@@ -6104,7 +6104,7 @@
 "atg" = (
 /obj/machinery/vending/snack{
 	icon_state = "snack-broken";
-	stat = 1
+	
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
@@ -6131,7 +6131,7 @@
 "atj" = (
 /obj/machinery/vending/coffee{
 	icon_state = "coffee-broken";
-	stat = 1
+	
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
@@ -7404,7 +7404,7 @@
 "awK" = (
 /obj/machinery/vending/sovietsoda{
 	icon_state = "sovietsoda-broken";
-	stat = 1
+	
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
@@ -8441,7 +8441,7 @@
 "azS" = (
 /obj/machinery/vending/snack{
 	icon_state = "snack-broken";
-	stat = 1
+	
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -20451,7 +20451,7 @@
 "bkD" = (
 /obj/machinery/vending/sovietsoda{
 	icon_state = "sovietsoda-broken";
-	stat = 1
+	
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -22295,7 +22295,7 @@
 "bqI" = (
 /obj/machinery/vending/snack{
 	icon_state = "snack-broken";
-	stat = 1
+	
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -22830,7 +22830,7 @@
 "bsJ" = (
 /obj/machinery/vending/coffee{
 	icon_state = "coffee-broken";
-	stat = 1
+	
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)

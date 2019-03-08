@@ -23,7 +23,7 @@
 					networks = list("CREED")
 
 /obj/machinery/computer/security/attack_hand(var/mob/user as mob)
-	if (stat & (NOPOWER|BROKEN))
+	if (machine_stat & (NOPOWER|BROKEN))
 		return
 
 	user.machine = src

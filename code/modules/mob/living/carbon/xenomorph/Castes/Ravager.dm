@@ -31,7 +31,7 @@
 	deevolves_to = /mob/living/carbon/Xenomorph/Hunter
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	armor_deflection = 20
@@ -272,7 +272,7 @@
 	set waitfor = 0
 	if(world.time <= used_fire_breath + 75)
 		return
-	var/list/turf/turfs = getline2(src, A)
+	var/list/turf/turfs = getline(src, A)
 	var/distance = 0
 	var/obj/structure/window/W
 	var/turf/T

@@ -57,6 +57,11 @@
 	action_icon_state = "shift_spit_neurotoxin"
 	plasma_cost = 0
 
+/datum/action/xeno_action/shift_spits/update_button_icon()
+	var/mob/living/carbon/Xenomorph/X = owner
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
+
 /datum/action/xeno_action/shift_spits/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X.check_state())
@@ -860,6 +865,9 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	else
 		return
 	if(X.observed_xeno)
+		if(!(X.observed_xeno.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER))
+			to_chat(X, "<span class='xenowarning'>This caste is unfit to lead.</span>")
+			return
 		if(X.queen_ability_cooldown > world.time)
 			to_chat(X, "<span class='xenowarning'>You're still recovering from your last overwatch ability. Wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>")
 			return

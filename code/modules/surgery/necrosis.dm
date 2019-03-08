@@ -8,7 +8,7 @@
 	if(target_zone == "mouth" || target_zone == "eyes")
 		return 0
 
-	return affected.surgery_open_stage == 2 && (affected.status & LIMB_NECROTIZED) && affected.necro_surgery_stage == necro_step
+	return affected.surgery_open_stage == 2 && (affected.limb_status & LIMB_NECROTIZED) && affected.necro_surgery_stage == necro_step
 
 
 /datum/surgery_step/necro/fix_dead_tissue //Debridement
@@ -64,7 +64,7 @@
 	..()
 
 /datum/surgery_step/necro/treat_necrosis/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	affected.status &= ~LIMB_NECROTIZED
+	affected.limb_status &= ~LIMB_NECROTIZED
 	target.update_body()
 
 	user.visible_message("<span class='notice'>[user] applies \the [tool] on the affected tissue in [target]'s [affected.display_name].</span>", \

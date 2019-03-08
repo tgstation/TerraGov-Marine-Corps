@@ -15,7 +15,7 @@
 	update_icon()
 
 /obj/machinery/tank_part_fabricator/update_icon()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "drone_fab_nopower"
 		return
 	if(busy)
@@ -97,7 +97,7 @@
 
 /obj/machinery/tank_part_fabricator/proc/build_tank_part(part_type, cost, mob/user)
 	set waitfor = 0
-	if(stat & NOPOWER) 
+	if(machine_stat & NOPOWER) 
 		return
 	if(tank_points < cost)
 		to_chat(user, "<span class='warning'>You don't have enough points to build that.</span>")

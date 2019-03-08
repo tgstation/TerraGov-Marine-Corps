@@ -61,7 +61,7 @@
 			update_icon()
 
 /obj/machinery/fuelcell_recycler/process()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		update_use_power(NO_POWER_USE)
 		update_icon()
 		return
@@ -95,7 +95,7 @@
 /obj/machinery/fuelcell_recycler/update_icon()
 	src.overlays.Cut()
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		icon_state = "recycler0"
 		if(cell_left != null)
 			src.overlays += "recycler-left-cell"

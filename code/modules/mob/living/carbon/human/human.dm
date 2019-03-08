@@ -178,7 +178,7 @@
 		if(EvacuationAuthority)
 			var/eta_status = EvacuationAuthority.get_status_panel_eta()
 			if(eta_status)
-				stat(null, eta_status)
+				stat("Evacuation in:", eta_status)
 
 		if(internal)
 			stat("Internal Atmosphere Info", internal.name)
@@ -203,38 +203,46 @@
 
 	var/b_loss = null
 	var/f_loss = null
+	var/armor = max(0, 1 - getarmor(null, "bomb"))
 	switch(severity)
 		if(1)
-			b_loss += rand(125, 175)
-			if(!prob(getarmor(null, "bomb") + 75)) //Much less likely to gib than before
-				gib()
-				return
-			else
-				var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
-				throw_at(target, 200, 4)
-		if(2)
-			b_loss += rand(50, 70)
-			f_loss += rand(50, 70)
+			b_loss += rand(120, 160) * armor	//Probably instant death
+			f_loss += rand(120, 160) * armor	//Probably instant death
 
-			if(prob(getarmor(null, "bomb")))
-				b_loss = b_loss/1.5
-				f_loss = f_loss/1.5
+			var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
+			throw_at(target, 200, 4)
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 30
-				ear_deaf += 120
-			if(prob(70))
-				KnockOut(10)
+				ear_damage += 60 * armor
+				ear_deaf += 240 * armor
+
+			adjust_stagger(12 * armor)
+			add_slowdown(round(12 * armor,0.1))
+			KnockOut(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
+
+		if(2)
+			b_loss += rand(60, 80) * armor	//Ouchie time. Armor makes it survivable
+			f_loss += rand(60, 80) * armor	//Ouchie time. Armor makes it survivable
+
+			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
+				ear_damage += 30 * armor
+				ear_deaf += 120 * armor
+
+			adjust_stagger(6 * armor)
+			add_slowdown(round(6 * armor,0.1))
+			KnockDown(4 * armor)
 
 		if(3)
-			b_loss += rand(50, 70)
-			if(prob(getarmor(null, "bomb")))
-				b_loss = b_loss/2
+			b_loss += rand(30, 40) * armor
+			f_loss += rand(30, 40) * armor
+
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 15
-				ear_deaf += 60
-			if(prob(50))
-				KnockOut(10)
+				ear_damage += 15 * armor
+				ear_deaf += 60 * armor
+
+			adjust_stagger(3 * armor)
+			add_slowdown(round(3 * armor,0.1))
+			KnockDown(2 * armor)
 
 	var/update = 0
 
@@ -421,7 +429,7 @@
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when polyacided or when updating a human's name variable
 /mob/living/carbon/human/proc/get_face_name()
 	var/datum/limb/head/head = get_limb("head")
-	if( !head || head.disfigured || (head.status & LIMB_DESTROYED) || !real_name || (HUSK in mutations) )	//disfigured. use id-name if possible
+	if( !head || head.disfigured || (head.limb_status & LIMB_DESTROYED) || !real_name || (HUSK in mutations) )	//disfigured. use id-name if possible
 		return "Unknown"
 	return real_name
 
@@ -601,7 +609,7 @@
 			var/count = 0
 			for(var/X in limbs)
 				var/datum/limb/E = X
-				if(E.status & LIMB_SPLINTED)
+				if(E.limb_status & LIMB_SPLINTED)
 					count = 1
 					break
 			if(count)
@@ -611,8 +619,8 @@
 					var/limbcount = 0
 					for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
 						var/datum/limb/o = get_limb(organ)
-						if (o && o.status & LIMB_SPLINTED)
-							o.status &= ~LIMB_SPLINTED
+						if (o && o.limb_status & LIMB_SPLINTED)
+							o.limb_status &= ~LIMB_SPLINTED
 							limbcount++
 					if(limbcount)
 						var/obj/item/W = new /obj/item/stack/medical/splint(loc, limbcount)
@@ -1177,10 +1185,10 @@
 
 /mob/living/carbon/human/revive(keep_viruses)
 	for (var/datum/limb/O in limbs)
-		if(O.status & LIMB_ROBOT)
-			O.status = LIMB_ROBOT
+		if(O.limb_status & LIMB_ROBOT)
+			O.limb_status = LIMB_ROBOT
 		else
-			O.status = NOFLAGS
+			O.limb_status = NOFLAGS
 		O.perma_injury = 0
 		O.germ_level = 0
 		O.wounds.Cut()
@@ -1191,7 +1199,7 @@
 	h.disfigured = 0
 	name = get_visible_name()
 
-	if(species && !(species.flags & NO_BLOOD))
+	if(species && !(species.species_flags & NO_BLOOD))
 		restore_blood()
 
 	//try to find the brain player in the decapitated head and put them back in control of the human
@@ -1239,7 +1247,7 @@
 /mob/living/carbon/human/proc/handle_embedded_objects()
 
 	for(var/datum/limb/organ in limbs)
-		if(organ.status & LIMB_SPLINTED || organ.status & LIMB_STABILIZED || (m_intent == MOVE_INTENT_WALK && !pulledby) ) //Splints prevent movement. Walking stops shrapnel from harming organs unless being pulled.
+		if(organ.limb_status & LIMB_SPLINTED || organ.limb_status & LIMB_STABILIZED || (m_intent == MOVE_INTENT_WALK && !pulledby) ) //Splints prevent movement. Walking stops shrapnel from harming organs unless being pulled.
 			continue
 		for(var/obj/item/O in organ.implants)
 			if(!istype(O,/obj/item/implant) && prob(4)) //Moving with things stuck in you could be bad.
@@ -1255,8 +1263,8 @@
 				to_chat(src, msg)
 
 				organ.take_damage(rand(1,2), 0, 0)
-				if(!(organ.status & LIMB_ROBOT) && !(species.flags & NO_BLOOD)) //There is no blood in protheses.
-					organ.status |= LIMB_BLEEDING
+				if(!(organ.limb_status & LIMB_ROBOT) && !(species.species_flags & NO_BLOOD)) //There is no blood in protheses.
+					organ.limb_status |= LIMB_BLEEDING
 					if(prob(10)) src.adjustToxLoss(1)
 
 /mob/living/carbon/human/verb/check_pulse()
@@ -1467,12 +1475,12 @@
 	return ..()
 
 /mob/living/carbon/human/getDNA()
-	if(species.flags & NO_SCAN)
+	if(species.species_flags & NO_SCAN)
 		return null
 	..()
 
 /mob/living/carbon/human/setDNA()
-	if(species.flags & NO_SCAN)
+	if(species.species_flags & NO_SCAN)
 		return
 	..()
 
@@ -1483,6 +1491,73 @@
 	if(shoes && !override_noslip) // && (shoes.flags_inventory & NOSLIPPING)) // no more slipping if you have shoes on. -spookydonut
 		return FALSE
 	. = ..()
+
+/mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
+	if(luminosity <= 0)
+		return FALSE
+
+	if(sparks)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
+
+	var/light_off = 0
+	var/goes_out = 0
+	if(armor)
+		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
+			var/obj/item/clothing/suit/storage/marine/S = wear_suit
+			if(S.turn_off_light(src))
+				light_off++
+	if(guns)
+		for(var/obj/item/weapon/gun/G in contents)
+			if(G.turn_off_light(src))
+				light_off++
+	if(flares)
+		for(var/obj/item/device/flashlight/flare/F in contents)
+			if(F.on)
+				goes_out++
+			F.turn_off(src)
+		for(var/obj/item/explosive/grenade/flare/FL in contents)
+			if(FL.active)
+				goes_out++
+			FL.turn_off(src)
+	if(misc)
+		for(var/obj/item/clothing/head/hardhat/H in contents)
+			if(H.turn_off_light(src))
+				light_off++
+		for(var/obj/item/device/flashlight/L in contents)
+			if(istype(L, /obj/item/device/flashlight/flare))
+				continue
+			if(L.turn_off_light(src))
+				light_off++
+		for(var/obj/item/tool/weldingtool/W in contents)
+			if(W.isOn())
+				W.toggle()
+				goes_out++
+		for(var/obj/item/tool/pickaxe/plasmacutter/W in contents)
+			if(W.powered)
+				W.toggle()
+				goes_out++
+		for(var/obj/item/tool/match/M in contents)
+			M.burn_out(src)
+		for(var/obj/item/tool/lighter/Z in contents)
+			if(Z.turn_off(src))
+				goes_out++
+	if(!silent)
+		if(goes_out && light_off)
+			to_chat(src, "<span class='notice'>Your sources of light short and fizzle out.</span>")
+		else if(goes_out)
+			if(goes_out > 1)
+				to_chat(src, "<span class='notice'>Your sources of light fizzle out.</span>")
+			else
+				to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
+		else if(light_off)
+			if(light_off > 1)
+				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
+			else
+				to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
+		return TRUE
 
 /mob/living/carbon/get_standard_pixel_y_offset()
 	if(lying)

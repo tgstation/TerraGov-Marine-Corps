@@ -35,7 +35,7 @@
 	deevolves_to = /mob/living/carbon/Xenomorph/Warrior
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	armor_deflection = 80
@@ -249,13 +249,13 @@
 	if(istype(target, /obj/structure/razorwire))
 		var/obj/structure/razorwire/B = target
 		if(charge_speed >= charge_speed_max) //plows right through
-			flags_pass = 0
+			flags_pass |= PASSTABLE
 			update_icons()
 			return TRUE
 		else if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
 			visible_message("<span class='danger'>[src] rams into [B] and skids to a halt!</span>",
 			"<span class='xenowarning'>You ram into [B] and skid to a halt!</span>")
-			flags_pass = 0
+			flags_pass &= ~PASSTABLE
 			update_icons()
 			return TRUE
 		else
@@ -396,7 +396,7 @@
 	X.visible_message("<span class='danger'>[X] rams [src]!</span>",
 	"<span class='xenodanger'>You ram [src]!</span>")
 	playsound(loc, "punch", 25, 1)
-	stat = 1
+	machine_stat = 1
 	on = 0
 	update_icon()
 	update_health(X.charge_speed * 20)

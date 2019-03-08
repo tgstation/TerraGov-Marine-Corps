@@ -33,7 +33,7 @@
 	evolves_to = list(/mob/living/carbon/Xenomorph/Defiler)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -182,7 +182,6 @@
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
 		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit
 		)
 
@@ -194,7 +193,3 @@
 	if(speed_activated)
 		if(locate(/obj/effect/alien/weeds) in loc)
 			. -= 1.5
-
-/mob/living/carbon/Xenomorph/Initialize()
-	. = ..()
-	update_spits()

@@ -38,7 +38,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	jobtype = /datum/job/command/captain
 
 	id = /obj/item/card/id/gold
-	belt = /obj/item/storage/belt/gun/m4a3/captain
+	belt = /obj/item/storage/belt/gun/mateba/cmateba/full
 	ears = /obj/item/device/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
@@ -76,7 +76,7 @@ Make the TGMC proud!"})
 	jobtype = /datum/job/command/fieldcommander
 
 	id = /obj/item/card/id/dogtag
-	belt = /obj/item/storage/belt/gun/mateba/cmateba/full
+	belt = /obj/item/storage/belt/gun/m4a3/fieldcommander/
 	ears = /obj/item/device/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
 	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner/fancy

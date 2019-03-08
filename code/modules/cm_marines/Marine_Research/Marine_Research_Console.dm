@@ -568,7 +568,7 @@
 
 
 /obj/machinery/computer/NTresearch/attack_hand(mob/user as mob)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	user.set_interaction(src)

@@ -570,7 +570,7 @@
 	state("<span class='boldnotice'>Orbital bombardment request accepted. Orbital cannons are now calibrating.</span>")
 	send_to_squads("Initializing fire coordinates...")
 	if(selected_target)
-		playsound(selected_target.loc,'sound/effects/alert.ogg', 25, 1)  //Placeholder
+		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, 20)  //Placeholder
 	addtimer(CALLBACK(src, .send_to_squads, "Transmitting beacon feed..."), 1.5 SECONDS)
 	addtimer(CALLBACK(src, .send_to_squads, "Calibrating trajectory window..."), 3 SECONDS)
 	addtimer(CALLBACK(src, .do_fire_bombard, T, usr), 4.1 SECONDS)

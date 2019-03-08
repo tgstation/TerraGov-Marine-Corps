@@ -15,7 +15,7 @@
 
 /datum/reagent/toxin/on_mob_life(mob/living/carbon/M , alien)
 	var/mob/living/carbon/human/H = M
-	if(H.species.flags & NO_POISON)
+	if(H.species.species_flags & NO_POISON)
 		return FALSE //immunity to toxin reagents
 	if(toxpwr)
 		M.adjustToxLoss(toxpwr*REM)
@@ -251,7 +251,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.dna)
-				if(H.species.flags & IS_PLANT) //plantmen take a LOT of damage
+				if(H.species.species_flags & IS_PLANT) //plantmen take a LOT of damage
 					H.adjustToxLoss(10)
 
 /datum/reagent/toxin/sleeptoxin
@@ -438,7 +438,7 @@
 					if(affecting.take_damage(4*toxpwr, 2*toxpwr))
 						H.UpdateDamageIcon()
 					if(prob(meltprob)) //Applies disfigurement
-						if(!(H.species && (H.species.flags & NO_PAIN)))
+						if(!(H.species && (H.species.species_flags & NO_PAIN)))
 							H.emote("scream")
 						H.status_flags |= DISFIGURED
 						H.name = H.get_visible_name()

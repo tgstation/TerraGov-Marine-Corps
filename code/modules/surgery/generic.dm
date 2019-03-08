@@ -12,13 +12,13 @@
 		return 0
 	if(!affected)
 		return 0
-	if(affected.status & LIMB_DESTROYED)
+	if(affected.limb_status & LIMB_DESTROYED)
 		return 0
 	if(!isnull(open_step) && affected.surgery_open_stage != open_step)
 		return 0
-	if(target_zone == "head" && target.species && (target.species.flags & IS_SYNTHETIC))
+	if(target_zone == "head" && target.species && (target.species.species_flags & IS_SYNTHETIC))
 		return 1
-	if(affected.status & LIMB_ROBOT)
+	if(affected.limb_status & LIMB_ROBOT)
 		return 0
 	if(isyautja(target) && !isyautja(user))
 		return 0
@@ -46,8 +46,8 @@
 	"<span class='notice'>You have constructed a prepared incision on and within [target]'s [affected.display_name] with \the [tool].</span>",)
 	affected.surgery_open_stage = 1
 
-	if(istype(target) && !(target.species.flags & NO_BLOOD))
-		affected.status |= LIMB_BLEEDING
+	if(istype(target) && !(target.species.species_flags & NO_BLOOD))
+		affected.limb_status |= LIMB_BLEEDING
 
 	affected.createwound(CUT, 1)
 	affected.clamp() //Hemostat function, clamp bleeders
@@ -88,8 +88,8 @@
 	//Could be cleaner
 	affected.surgery_open_stage = 1
 
-	if(istype(target) && !(target.species.flags & NO_BLOOD))
-		affected.status |= LIMB_BLEEDING
+	if(istype(target) && !(target.species.species_flags & NO_BLOOD))
+		affected.limb_status |= LIMB_BLEEDING
 
 	affected.createwound(CUT, 1)
 	affected.clamp() //Hemostat function, clamp bleeders
@@ -130,8 +130,8 @@
 	"<span class='notice'>You have made an incision on [target]'s [affected.display_name] with \the [tool].</span>",)
 	affected.surgery_open_stage = 1
 
-	if(istype(target) && !(target.species.flags & NO_BLOOD))
-		affected.status |= LIMB_BLEEDING
+	if(istype(target) && !(target.species.species_flags & NO_BLOOD))
+		affected.limb_status |= LIMB_BLEEDING
 
 	affected.createwound(CUT, 1)
 	target.updatehealth()
@@ -156,7 +156,7 @@
 
 /datum/surgery_step/generic/clamp_bleeders/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(..())
-		return affected.surgery_open_stage && (affected.status & LIMB_BLEEDING)
+		return affected.surgery_open_stage && (affected.limb_status & LIMB_BLEEDING)
 
 /datum/surgery_step/generic/clamp_bleeders/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='notice'>[user] starts clamping bleeders in [target]'s [affected.display_name] with \the [tool].</span>", \
@@ -251,7 +251,7 @@
 	"<span class='notice'>You cauterize the incision on [target]'s [affected.display_name] with \the [tool].</span>")
 	affected.surgery_open_stage = 0
 	affected.germ_level = 0
-	affected.status &= ~LIMB_BLEEDING
+	affected.limb_status &= ~LIMB_BLEEDING
 
 /datum/surgery_step/generic/cauterize/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, leaving a small burn on [target]'s [affected.display_name] with \the [tool]!</span>", \
