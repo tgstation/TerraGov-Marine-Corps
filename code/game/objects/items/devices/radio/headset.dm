@@ -318,7 +318,7 @@
 /obj/item/device/radio/headset/almayer/proc/handle_interface(mob/living/carbon/human/user, flag1)
 	user.set_interaction(src)
 	var/dat = {"<TT>
-	<b><A href='?src=\ref[src];headset_hud_on=1'>Turn Squad HUD [headset_hud_on ? "Off" : "On"]</A></b><BR>
+	<b><A href='?src=\ref[src];headset_hud_on=1'>Squad HUD: [headset_hud_on ? "On" : "Off"]</A></b><BR>
 	<BR>
 	<b><A href='?src=\ref[src];sl_direction=1'>Turn Squad Leader Directional Indicator [sl_direction ? "Off" : "On"]</A></b><BR>
 	<BR>
