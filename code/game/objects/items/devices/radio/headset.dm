@@ -320,7 +320,7 @@
 	var/dat = {"<TT>
 	<b><A href='?src=\ref[src];headset_hud_on=1'>Squad HUD: [headset_hud_on ? "On" : "Off"]</A></b><BR>
 	<BR>
-	<b><A href='?src=\ref[src];sl_direction=1'>Turn Squad Leader Directional Indicator [sl_direction ? "Off" : "On"]</A></b><BR>
+	<b><A href='?src=\ref[src];sl_direction=1'>Squad Leader Directional Indicator: [sl_direction ? "On" : "Off"]</A></b><BR>
 	<BR>
 	</TT>"}
 	user << browse(dat, "window=radio")
