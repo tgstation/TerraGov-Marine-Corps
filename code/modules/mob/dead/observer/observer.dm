@@ -219,7 +219,7 @@
 	if(!client)
 		return FALSE
 
-	if(!mind || !mind.current || mind.current.gc_destroyed || !can_reenter_corpse)
+	if(!mind?.current || mind.current.gc_destroyed || !can_reenter_corpse)
 		to_chat(src, "<span class='warning'>You have no body.</span>")
 		return FALSE
 

@@ -822,6 +822,9 @@
 				return
 			target = C
 
+	if(!istype(target))
+		return
+
 	private_message(target, null)
 
 

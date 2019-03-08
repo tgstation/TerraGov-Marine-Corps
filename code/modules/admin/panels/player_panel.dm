@@ -5,7 +5,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/dat = {"
+	var/dat = {"<html>
 
 		<head>
 			<script type='text/javascript'>
@@ -284,7 +284,7 @@
 						<a id='link[i]'
 						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[M_key]","[M.lastKnownIP]","[REF(M)]")'
 						>
-						<span id='search[i]'>[M_name] - [M_rname] - [M_key] ([M_job])</span>
+						<b id='search[i]' style='font-weight:normal'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
 						</a>
 						<br><span id='item[i]'></span>
 					</td>
@@ -304,7 +304,7 @@
 			var maintable = document.getElementById("maintable_data_archive");
 			var complete_list = maintable.innerHTML;
 		</script>
-	</body>
+	</body></html>
 	"}
 
 	log_admin("[key_name(usr)] opened the player panel.")

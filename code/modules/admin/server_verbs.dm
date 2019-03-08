@@ -10,7 +10,7 @@
 		return
 
 	var/message = FALSE
-	if(alert("Send the new round message?", "Mention Role", "Yes", "No") == "Yes")
+	if(alert("Send the new round message?", "Message", "Yes", "No") == "Yes")
 		message = TRUE
 
 	to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by: [usr.key]</span>")
