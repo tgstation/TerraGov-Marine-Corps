@@ -19,7 +19,7 @@
 	speed = -1
 
 	// *** Plasma *** //
-	plasma_max = 0 //default is 10
+	plasma_max = 50 // can't be zero, causes runtimes
 
 	// *** Health *** //
 	max_health = 155
