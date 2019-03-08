@@ -71,7 +71,7 @@
 		for(var/datum/reagent/consumable/C in M.reagents.reagent_list) //we add the nutrition value of what we're currently digesting
 			fullness += C.nutriment_factor * C.volume / C.custom_metabolism
 		if(M == user)
-			if (fullness <= 60)
+			if (fullness <= 50)
 				to_chat(M, "<span class='warning'>You hungrily chew out a piece of [src] and gobble it!</span>")
 			if (fullness > 60 && fullness <= 150)
 				to_chat(M, "<span class='warning'>You hungrily begin to eat [src].</span>")

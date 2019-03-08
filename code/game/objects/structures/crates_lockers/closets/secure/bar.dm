@@ -36,7 +36,7 @@
 		else
 			icon_state = icon_opened
 
-/obj/structure/closet/secure_closet/bar/commander
+/obj/structure/closet/secure_closet/bar/captain
 	name = "Success Cabinet"
-	req_access = list(ACCESS_MARINE_COMMANDER)
+	req_access = list(ACCESS_MARINE_CAPTAIN)
 	

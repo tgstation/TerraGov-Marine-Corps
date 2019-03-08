@@ -65,7 +65,7 @@
 					if(2)	hud_used.healths.icon_state = "health7"
 					else
 						var/perceived_health = health - traumatic_shock
-						if(species && species.flags & NO_PAIN)
+						if(species && species.species_flags & NO_PAIN)
 							perceived_health = health
 
 						switch(perceived_health)

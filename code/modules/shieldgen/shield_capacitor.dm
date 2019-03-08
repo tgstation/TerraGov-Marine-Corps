@@ -71,17 +71,17 @@
 	return src.attack_hand(user)
 
 /obj/machinery/shield_capacitor/attack_hand(mob/user)
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		return
 	interact(user)
 
 /obj/machinery/shield_capacitor/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN)) )
+	if ( (get_dist(src, user) > 1 ) || (machine_stat & (BROKEN)) )
 		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=shield_capacitor")
 			return
-	var/t = "<B>Shield Capacitor Control Console</B><br><br>"
+	var/t
 	if(locked)
 		t += "<i>Swipe your ID card to begin.</i>"
 	else
@@ -101,8 +101,12 @@
 	t += "<A href='?src=\ref[src]'>Refresh</A> "
 	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
 
-	user << browse(t, "window=shield_capacitor;size=500x400")
 	user.set_interaction(src)
+
+	var/datum/browser/popup = new(user, "shield_capacitor", "<div align='center'>Shield Capacitor Console</div>", 500, 400)
+	popup.set_content(t)
+	popup.open(FALSE)
+
 
 /obj/machinery/shield_capacitor/process()
 	if (!anchored)
@@ -142,7 +146,7 @@
 	updateDialog()
 
 /obj/machinery/shield_capacitor/power_change()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "broke"
 	else
 		..()

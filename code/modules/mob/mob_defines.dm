@@ -152,6 +152,9 @@
 	var/list/tile_contents = list()  //the contents of the turf being examined in the stat panel
 	var/tile_contents_change = 0
 
+	//Emotes
+	var/audio_emote_time = 1
+
 	var/list/active_genes=list()
 
 	var/away_timer = 0 //How long the player has been disconnected
@@ -168,5 +171,7 @@
 	var/scatter_modifier = 0 //Applies a penalty or bonus to scatter probability in gun_system.dm
 
 	var/list/fullscreens = list()
+
+	var/list/light_sources = list()
 
 	var/notransform

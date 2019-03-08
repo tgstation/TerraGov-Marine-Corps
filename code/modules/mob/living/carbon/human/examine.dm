@@ -7,7 +7,7 @@
 			msg += "[icon2html(icon, user)] "
 		msg += "<b>[name]</b>!\n"
 
-		if(species.flags & IS_SYNTHETIC)
+		if(species.species_flags & IS_SYNTHETIC)
 			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is not organic.</span>\n"
 
 		if(status_flags & XENO_HOST)
@@ -199,9 +199,9 @@
 	for(var/organ in list("l_leg","r_leg","l_arm","r_arm","l_foot","r_foot","l_hand","r_hand","chest","groin","head"))
 		var/datum/limb/o = get_limb(organ)
 		if(o)
-			if(o.status & LIMB_SPLINTED)
+			if(o.limb_status & LIMB_SPLINTED)
 				msg += "<span class='warning'>[t_He] [t_has] a splint on [t_his] [o.display_name]!</span>\n"
-			if(o.status & LIMB_STABILIZED)
+			if(o.limb_status & LIMB_STABILIZED)
 				msg += "<span class='warning'>[t_He] [t_has] a suit brace stabilizing [t_his] [o.display_name]!</span>\n"
 
 	if(holo_card_color)
@@ -259,13 +259,13 @@
 	var/list/is_bleeding = list()
 	for(var/datum/limb/temp in limbs)
 		if(temp)
-			if(temp.status & LIMB_DESTROYED)
+			if(temp.limb_status & LIMB_DESTROYED)
 				is_destroyed["[temp.display_name]"] = 1
 				wound_flavor_text["[temp.display_name]"] = "<span class='warning'><b>[t_He] is missing [t_his] [temp.display_name].</b></span>\n"
 				continue
-			if(temp.status & LIMB_ROBOT)
+			if(temp.limb_status & LIMB_ROBOT)
 				if(!(temp.brute_dam + temp.burn_dam))
-					if(!(species.flags & IS_SYNTHETIC))
+					if(!(species.species_flags & IS_SYNTHETIC))
 						wound_flavor_text["[temp.display_name]"] = "<span class='warning'>[t_He] has a robot [temp.display_name]!</span>\n"
 						continue
 				else
@@ -335,7 +335,7 @@
 					wound_flavor_text["[temp.display_name]"] = flavor_text_string
 				else
 					wound_flavor_text["[temp.display_name]"] = ""
-				if(temp.status & LIMB_BLEEDING)
+				if(temp.limb_status & LIMB_BLEEDING)
 					is_bleeding["[temp.display_name]"] = 1
 			else
 				wound_flavor_text["[temp.display_name]"] = ""

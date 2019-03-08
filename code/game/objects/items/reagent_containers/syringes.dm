@@ -229,7 +229,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		affecting = H.get_limb(target_zone)
-		if(affecting.status & LIMB_DESTROYED)
+		if(affecting.limb_status & LIMB_DESTROYED)
 			to_chat(user, "What [affecting.display_name]?")
 			return
 		hit_area = affecting.display_name

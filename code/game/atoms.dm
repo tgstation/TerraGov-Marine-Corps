@@ -531,6 +531,8 @@ its easier to just keep the beam vertical.
 			log_attack(log_text)
 		if(LOG_SAY)
 			log_say(log_text)
+		if(LOG_TELECOMMS)
+			log_say(log_text)
 		if(LOG_WHISPER)
 			log_whisper(log_text)
 		if(LOG_HIVEMIND)
@@ -704,9 +706,12 @@ Proc for attack log creation, because really why not
 /atom/proc/setDir(newdir)
 	dir = newdir
 
+
 /atom/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	.["Jump to"] = "?_src_=vars;[HrefToken()];observecoordjump=1;X=[src.x];Y=[src.y];Z=[src.z]"
+	var/turf/curturf = get_turf(src)
+	if(curturf)
+		.["Jump to"] = "?_src_=holder;[HrefToken()];observecoordjump=1;X=[curturf.x];Y=[curturf.y];Z=[curturf.z]"
 	.["Modify Transform"] = "?_src_=vars;[HrefToken()];modtransform=[REF(src)]"
 	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"

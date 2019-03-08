@@ -216,7 +216,7 @@
 	name = "Doctor"
 	corpseuniform = /obj/item/clothing/under/colonist
 	corpsesuit = /obj/item/clothing/suit/storage/labcoat
-	corpseback = /obj/item/storage/backpack/medic
+	corpseback = /obj/item/storage/backpack/corpsman
 	corpsepocket1 = /obj/item/device/flashlight/pen
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpseid = 1

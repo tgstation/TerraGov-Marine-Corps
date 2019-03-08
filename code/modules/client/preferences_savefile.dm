@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	20
+#define SAVEFILE_VERSION_MAX	21
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -29,6 +29,10 @@
 	if(!ckey)
 		return
 	path = "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/[filename]"
+
+	if(savefile_version < 21)
+		muted << NOFLAGS
+
 	savefile_version = SAVEFILE_VERSION_MAX
 
 
@@ -63,8 +67,6 @@
 	S["show_typing"]		>> show_typing
 	S["ghost_hud"]			>> ghost_hud
 
-	S["muted"]				>> muted
-
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
 	ooccolor		= sanitize_hexcolor(ooccolor, initial(ooccolor))
@@ -78,8 +80,6 @@
 	toggles_sound	= sanitize_integer(toggles_sound, 0, 8388608, initial(toggles_sound))
 	show_typing		= sanitize_integer(show_typing, 0, 1, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, 0, 8388608, initial(ghost_hud))
-
-	muted 			= sanitize_integer(muted, 0, 8388608, initial(muted))
 
 	return TRUE
 
@@ -107,8 +107,6 @@
 	show_typing		= sanitize_integer(show_typing, 0, 1, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, 0, 8388608, initial(ghost_hud))
 
-	muted 			= sanitize_integer(muted, 0, 8388608, initial(muted))
-
 	S["default_slot"]		<< default_slot
 	S["lastchangelog"]		<< lastchangelog
 	S["ooccolor"]			<< ooccolor
@@ -121,8 +119,6 @@
 	S["toggles_sound"]		<< toggles_sound
 	S["show_typing"]		<< show_typing
 	S["ghost_hud"]			<< ghost_hud
-
-	S["muted"]				<< muted
 
 	return TRUE
 
@@ -195,6 +191,7 @@
 	S["gen_record"]			>> gen_record
 	S["exploit_record"]		>> exploit_record
 	S["metadata"]			>> metadata
+	S["flavor_text"]		>> flavor_text
 
 
 	be_special		= sanitize_integer(be_special, 0, 8388608, initial(be_special))
@@ -250,6 +247,7 @@
 	gen_record		= sanitize_text(gen_record, initial(gen_record))
 	exploit_record	= sanitize_text(exploit_record, initial(exploit_record))
 	metadata		= sanitize_text(metadata, initial(metadata))
+	flavor_text		= sanitize_text(flavor_text, initial(flavor_text))
 
 	if(!synthetic_name)
 		synthetic_name = "David"
@@ -325,6 +323,7 @@
 	gen_record		= sanitize_text(gen_record, initial(gen_record))
 	exploit_record	= sanitize_text(exploit_record, initial(exploit_record))
 	metadata		= sanitize_text(metadata, initial(metadata))
+	flavor_text		= sanitize_text(flavor_text, initial(flavor_text))
 
 	S["be_special"]			<< be_special
 
@@ -377,6 +376,7 @@
 	S["gen_record"]			<< gen_record
 	S["exploit_record"]		<< exploit_record
 	S["metadata"]			<< metadata
+	S["flavor_text"]		<< flavor_text
 
 	return TRUE
 

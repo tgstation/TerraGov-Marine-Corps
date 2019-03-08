@@ -49,7 +49,7 @@
 					terminal = term
 					break dir_loop
 	if(!terminal)
-		stat |= BROKEN
+		machine_stat |= BROKEN
 		return
 	terminal.master = src
 	if(!terminal.powernet)
@@ -64,7 +64,7 @@
 
 /obj/machinery/power/smes/update_icon()
 	overlays.Cut()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	if(panel_open)
@@ -89,7 +89,7 @@
 
 
 /obj/machinery/power/smes/process()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	//store machine state to see if we need to update the icon overlays
@@ -141,7 +141,7 @@
 // called after all power processes are finished
 // restores charge level to smes if there was excess this ptick
 /obj/machinery/power/smes/proc/restore()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	if(!outputting)
@@ -171,13 +171,13 @@
 	terminal = new/obj/machinery/power/terminal(T)
 	terminal.setDir(get_dir(T,src))
 	terminal.master = src
-	stat &= ~BROKEN
+	machine_stat &= ~BROKEN
 
 /obj/machinery/power/smes/disconnect_terminal()
 	if(terminal)
 		terminal.master = null
 		terminal = null
-		stat |= BROKEN
+		machine_stat |= BROKEN
 
 /obj/machinery/power/smes/add_load(var/amount)
 	if(terminal && terminal.powernet)
@@ -265,7 +265,7 @@
 
 /obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	// this is the data which will be sent to the ui

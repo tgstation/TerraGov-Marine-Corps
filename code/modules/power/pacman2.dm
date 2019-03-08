@@ -6,8 +6,8 @@
 	name = "Pacman II"
 	desc = "P.A.C.M.A.N. type II portable generator. Uses liquid phoron as a fuel source."
 	power_gen = 4500
-	var/obj/item/weapon/tank/phoron/P = null
-	var/board_path = "/obj/item/weapon/circuitboard/pacman2"
+	var/obj/item/tank/phoron/P = null
+	var/board_path = "/obj/item/circuitboard/machine/pacman2"
 	var/emagged = 0
 	var/heat = 0
 /*
@@ -33,21 +33,21 @@
 	New()
 		..()
 		component_parts = list()
-		component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-		component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+		component_parts += new /obj/item/stock_parts/matter_bin(src)
+		component_parts += new /obj/item/stock_parts/micro_laser(src)
 		component_parts += new /obj/item/stack/cable_coil(src)
 		component_parts += new /obj/item/stack/cable_coil(src)
-		component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
+		component_parts += new /obj/item/stock_parts/capacitor(src)
 		component_parts += new board_path(src)
 		RefreshParts()
 
 	RefreshParts()
 		var/temp_rating = 0
 		var/temp_reliability = 0
-		for(var/obj/item/weapon/stock_parts/SP in component_parts)
-			if(istype(SP, /obj/item/weapon/stock_parts/matter_bin))
+		for(var/obj/item/stock_parts/SP in component_parts)
+			if(istype(SP, /obj/item/stock_parts/matter_bin))
 				//max_coins = SP.rating * SP.rating * 1000
-			else if(istype(SP, /obj/item/weapon/stock_parts/micro_laser) || istype(SP, /obj/item/weapon/stock_parts/capacitor))
+			else if(istype(SP, /obj/item/stock_parts/micro_laser) || istype(SP, /obj/item/stock_parts/capacitor))
 				temp_rating += SP.rating
 		for(var/obj/item/weapon/CP in component_parts)
 			temp_reliability += CP.reliability
@@ -73,7 +73,7 @@
 			explosion(get_turf(src), 2, 5, 2, -1)
 
 	attackby(var/obj/item/O as obj, var/mob/user as mob)
-		if(istype(O, /obj/item/weapon/tank/phoron))
+		if(istype(O, /obj/item/tank/phoron))
 			if(P)
 				to_chat(user, "<span class='warning'>The generator already has a phoron tank loaded!</span>")
 				return
@@ -105,7 +105,7 @@
 					to_chat(user, "<span class='notice'>You open the access panel.</span>")
 				else
 					to_chat(user, "<span class='notice'>You close the access panel.</span>")
-			else if(istype(O, /obj/item/weapon/crowbar) && !open)
+			else if(istype(O, /obj/item/tool/crowbar) && !open)
 				var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 				for(var/obj/item/I in component_parts)
 					if(I.reliability < 100)

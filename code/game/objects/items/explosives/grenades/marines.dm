@@ -130,14 +130,15 @@
 proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, burn_damage = 25, fire_stacks = 15, int_var = 0.5, dur_var = 0.5, colour = "red") //~Art updated fire.
 	if(!T || !isturf(T))
 		return
-	radius = CLAMP(radius, 1, 7) //Sterilize inputs
+	radius = CLAMP(radius, 1, 50) //Sanitize inputs
 	int_var = CLAMP(int_var, 0.1,0.5)
 	dur_var = CLAMP(int_var, 0.1,0.5)
 	fire_stacks = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 	burn_damage = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 	for(var/obj/flamer_fire/F in range(radius,T)) // No stacking flames!
 		qdel(F)
-	new /obj/flamer_fire(T, rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, radius, burn_damage, fire_stacks) //Gaussian.
+	for(var/turf/IT in diamondturfs(T,radius))
+		new /obj/flamer_fire(IT, rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, 0, burn_damage, fire_stacks)
 
 
 /obj/item/explosive/grenade/incendiary/molotov
@@ -285,11 +286,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		turn_on()
 
 /obj/item/explosive/grenade/flare/Destroy()
-	if(ismob(loc))
-		loc.SetLuminosity(-FLARE_BRIGHTNESS)
-	else
-		SetLuminosity(0)
-	STOP_PROCESSING(SSobj, src)
+	turn_off()
 	. = ..()
 
 /obj/item/explosive/grenade/flare/process()
@@ -301,15 +298,17 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/turn_off()
-	active = FALSE
+	fuel = 0
+	icon_state = "[initial(icon_state)]-empty"
 	heat_source = 0
 	force = initial(force)
 	damtype = initial(damtype)
 	if(ismob(loc))
-		var/mob/U = loc
-		update_brightness(U)
+		update_brightness(loc)
 	else
 		update_brightness(null)
+	//message_admins("TOGGLE FLARE LIGHT DEBUG 1: fuel: [fuel] loc: [loc]")
+	STOP_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/turn_on()
 	active = TRUE
@@ -352,11 +351,15 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	damtype = "fire"
 	START_PROCESSING(SSobj, src)
 
-/obj/item/explosive/grenade/flare/proc/update_brightness(var/mob/user = null)
-	if(active)
+/obj/item/explosive/grenade/flare/proc/update_brightness(mob/user)
+	if(!user && ismob(loc))
+		user = loc
+	if(active && fuel > 0)
 		icon_state = "[initial(icon_state)]_active"
 		if(loc && loc == user)
 			user.SetLuminosity(FLARE_BRIGHTNESS)
+			//message_admins("FLARE UPDATE BRIGHTNESS DEBUG: user: [user] light_sources length: [length(user.light_sources)]")
+			SetLuminosity(0)
 		else if(isturf(loc))
 			SetLuminosity(FLARE_BRIGHTNESS)
 	else

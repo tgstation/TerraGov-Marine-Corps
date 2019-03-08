@@ -60,7 +60,7 @@
 	icon_state = "beretred"
 
 /obj/item/clothing/head/cmberet/wo
-	name = "\improper TGMC chief MP beret"
+	name = "\improper Command Master at Arms beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."
 	icon_state = "beretwo"
 
@@ -156,13 +156,13 @@
 //Berets have armor, so they have their own category. PMC caps are helmets, so they're in helmets.dm.
 /obj/item/clothing/head/beret/marine
 	name = "marine officer beret"
-	desc = "A beret with the ensign insignia emblazoned on it. It radiates respect and authority."
-	icon_state = "beret_badge"
+	desc = "A beret with the TGMC insignia emblazoned on it. It radiates respect and authority."
+	icon_state = "hosberet"
 	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
 
-/obj/item/clothing/head/beret/marine/commander
-	name = "marine commander beret"
-	desc = "A beret with the commander insignia emblazoned on it. Wearer may suffer the heavy weight of responsibility upon his head and shoulders."
+/obj/item/clothing/head/beret/marine/captain
+	name = "captain's beret"
+	desc = "A beret with the captain insignia emblazoned on it. Wearer may suffer the heavy weight of responsibility upon his head and shoulders."
 	icon_state = "centcomcaptain"
 
 /obj/item/clothing/head/beret/marine/chiefofficer

@@ -10,43 +10,59 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	siemens_coefficient = 0.9
 
-	attack_self(mob/user)
-		if(!isturf(user.loc))
-			to_chat(user, "You cannot turn the light on while in [user.loc]")
-			return
-		on = !on
-		icon_state = "hardhat[on]_[hardhat_color]"
-		item_state = "hardhat[on]_[hardhat_color]"
+/obj/item/clothing/head/hardhat/attack_self(mob/user)
+	if(!isturf(user.loc))
+		to_chat(user, "You cannot turn the light on while in [user.loc]")
+		return
+	on = !on
+	icon_state = "hardhat[on]_[hardhat_color]"
+	item_state = "hardhat[on]_[hardhat_color]"
 
-		if(on)	user.SetLuminosity(brightness_on)
-		else	user.SetLuminosity(-brightness_on)
+	if(user == loc)
+		var/mob/M = loc
+		M.update_inv_head()
 
-		if(ismob(loc))
-			var/mob/M = loc
-			M.update_inv_head()
+	update_brightness(user)
+	update_action_button_icons()
 
+/obj/item/clothing/head/hardhat/proc/turn_off_light(mob/bearer)
+	if(on)
+		on = FALSE
+		update_brightness(bearer)
 		update_action_button_icons()
+		return TRUE
+	return FALSE
 
-	pickup(mob/user)
-		if(on)
+/obj/item/clothing/head/hardhat/proc/update_brightness(var/mob/user = null)
+	if(on)
+		if(loc && loc == user)
 			user.SetLuminosity(brightness_on)
-//			user.UpdateLuminosity()	//TODO: Carn
-			SetLuminosity(0)
-		..()
-
-	dropped(mob/user)
-		if(on)
-			user.SetLuminosity(-brightness_on)
-//			user.UpdateLuminosity()
+		else if(isturf(loc))
 			SetLuminosity(brightness_on)
-		..()
-
-	Destroy()
-		if(ismob(src.loc))
-			src.loc.SetLuminosity(-brightness_on)
-		else
+	else
+		icon_state = initial(icon_state)
+		if(loc && loc == user)
+			user.SetLuminosity(-brightness_on)
+		else if(isturf(loc))
 			SetLuminosity(0)
-		. = ..()
+
+/obj/item/clothing/head/hardhat/pickup(mob/user)
+	if(on && loc != user)
+		user.SetLuminosity(brightness_on)
+		SetLuminosity(0)
+	return ..()
+
+/obj/item/clothing/head/hardhat/dropped(mob/user)
+	if(on && loc != user)
+		user.SetLuminosity(-brightness_on)
+		SetLuminosity(brightness_on)
+	return ..()
+
+/obj/item/clothing/head/hardhat/Destroy()
+	if(ismob(loc))
+		loc.SetLuminosity(-brightness_on)
+	SetLuminosity(0)
+	. = ..()
 
 
 /obj/item/clothing/head/hardhat/orange

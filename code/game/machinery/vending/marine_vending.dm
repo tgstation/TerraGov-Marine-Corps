@@ -48,7 +48,7 @@
 
 /obj/machinery/vending/marine/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(GLOB.map_tag)
+	switch(SSmapping.config.map_name)
 		if(MAP_ICE_COLONY)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = 10,
@@ -460,9 +460,9 @@
 
 	products = list(
 						/obj/item/clothing/under/marine/medic = 4,
-						/obj/item/clothing/head/helmet/marine/medic = 4,
-						/obj/item/storage/backpack/marine/medic = 4,
-						/obj/item/storage/backpack/marine/satchel/medic = 4,
+						/obj/item/clothing/head/helmet/marine/corpsman = 4,
+						/obj/item/storage/backpack/marine/corpsman = 4,
+						/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 						/obj/item/device/encryptionkey/med = 4,
 						/obj/item/storage/belt/medical = 4,
 						/obj/item/bodybag/cryobag = 4,
@@ -633,7 +633,7 @@
 
 /obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(GLOB.map_tag)
+	switch(SSmapping.config.map_name)
 		if(MAP_ICE_COLONY)
 			products2 = list( /obj/item/map/ice_colony_map = 3)
 		if(MAP_BIG_RED)

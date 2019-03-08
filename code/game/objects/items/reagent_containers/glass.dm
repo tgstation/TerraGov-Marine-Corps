@@ -72,6 +72,10 @@
 		to_chat(user, "<span class='notice'>You fill [src] with [trans] unit\s of the contents of [target].</span>")
 
 	if(user.a_intent == INTENT_HARM)
+		if(!is_open_container()) //Can't splash stuff from a sealed container. I dare you to try.
+			to_chat(user, "<span class='warning'>An airtight seal prevents you from splashing the solution!</span>")
+			return
+
 		if(ismob(target) && target.reagents && reagents.total_volume)
 			to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
 			playsound(target, 'sound/effects/slosh.ogg', 25, 1)

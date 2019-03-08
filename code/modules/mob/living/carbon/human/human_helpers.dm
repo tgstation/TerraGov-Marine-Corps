@@ -178,9 +178,9 @@
 
 	if(check_limb)
 		var/datum/limb/affecting = get_limb(target_zone)
-		if(affecting.status & (LIMB_ROBOT|LIMB_DESTROYED))
+		if(affecting.limb_status & (LIMB_ROBOT|LIMB_DESTROYED))
 			. = FALSE
-			if(affecting.status & LIMB_DESTROYED)
+			if(affecting.limb_status & LIMB_DESTROYED)
 				message += "<span class='alert'>.. In fact, there is no [target_zone] at all.</span>"
 
 	if(!. && error_msg && user)

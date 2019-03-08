@@ -101,7 +101,7 @@ var/global/list/holodeck_programs = list(
 					log_game("[key_name(usr)] overrode the holodeck's safeties.")
 					message_admins("[ADMIN_TPMONTY(usr)] overrode the holodeck's safeties.")
 				else
-					log_game("[key_name(usr)] restored the holodeck's safeties.")				
+					log_game("[key_name(usr)] restored the holodeck's safeties.")
 					message_admins("[ADMIN_TPMONTY(usr)] restored the holodeck's safeties.")
 
 			src.add_fingerprint(usr)
@@ -399,6 +399,15 @@ var/global/list/holodeck_programs = list(
 	desc = "Here's your chance, do your dance at the Space Jam."
 	w_class = 4 //Stops people from hiding it in their bags/pockets
 
+	//Can be picked up by aliens
+/obj/item/toy/beach_ball/holoball/attack_paw(user as mob)
+	if(!isxeno(user))
+		return FALSE
+	attack_alien(user)
+
+/obj/item/toy/beach_ball/holoball/attack_alien(mob/living/carbon/Xenomorph/user)
+	attack_hand(user)
+
 /obj/structure/holohoop
 	name = "basketball hoop"
 	desc = "Boom, Shakalaka!"
@@ -485,7 +494,7 @@ var/global/list/holodeck_programs = list(
 	to_chat(user, "The device is a solid button, there's nothing you can do with it!")
 
 /obj/machinery/readybutton/attack_hand(mob/user as mob)
-	if(user.stat || stat & (NOPOWER|BROKEN))
+	if(user.stat || machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
 		return
 

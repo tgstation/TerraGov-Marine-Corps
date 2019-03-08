@@ -162,7 +162,7 @@
 /mob/living/carbon/proc/vomit()
 
 	var/mob/living/carbon/human/H = src
-	if(H.species.flags & (IS_SYNTHETIC) || !H.has_mouth() || stat == DEAD)
+	if(H.species.species_flags & (IS_SYNTHETIC) || !H.has_mouth() || stat == DEAD)
 		return //These guys don't throw up.
 
 	if(!lastpuke)

@@ -53,7 +53,7 @@
 			return
 
 /obj/machinery/prop/almayer/computer/proc/set_broken()
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	update_icon()
 
 /obj/machinery/prop/almayer/computer/power_change()
@@ -63,9 +63,9 @@
 /obj/machinery/prop/almayer/computer/update_icon()
 	..()
 	icon_state = initial(icon_state)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state += "b"
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = initial(icon_state)
 		icon_state += "0"
 

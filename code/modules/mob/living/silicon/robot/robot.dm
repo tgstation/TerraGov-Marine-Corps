@@ -294,7 +294,7 @@ var/list/robot_verbs_default = list(
 
 
 /mob/living/silicon/robot/proc/robot_alerts()
-	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
+	var/dat = "<META HTTP-EQUIV='Refresh' CONTENT='10'>\n"
 	dat += "<A HREF='?src=\ref[src];mach_close=robotalerts'>Close</A><BR><BR>"
 	for (var/cat in alarms)
 		dat += text("<B>[cat]</B><BR>\n")
@@ -312,7 +312,12 @@ var/list/robot_verbs_default = list(
 		dat += "<BR>\n"
 
 	viewalerts = 1
-	src << browse(dat, "window=robotalerts&can_close=0")
+
+	var/datum/browser/popup = new(src, "robotalerts", "<div align='center'>Current Station Alerts</div>")
+	popup.set_window_options("can_close=0")
+	popup.set_content(dat)
+	popup.open(FALSE)
+
 
 /mob/living/silicon/robot/proc/self_diagnosis()
 	if(!is_component_functioning("diagnosis unit"))
@@ -347,7 +352,10 @@ var/list/robot_verbs_default = list(
 	if (!cell_use_power(CO.active_usage))
 		to_chat(src, "<span class='warning'>Low Power.</span>")
 	var/dat = self_diagnosis()
-	src << browse(dat, "window=robotdiagnosis")
+
+	var/datum/browser/popup = new(src, "robotdiagnosis", "<div align='center'>Self-Diagnosis</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 
 /mob/living/silicon/robot/verb/toggle_component()
@@ -798,8 +806,8 @@ var/list/robot_verbs_default = list(
 	if(!module)
 		pick_module()
 		return
-	var/dat = "<HEAD><TITLE>Modules</TITLE></HEAD><BODY>\n"
-	dat += {"
+
+	var/dat = {"
 	<B>Activated Modules</B>
 	<BR>
 	Module 1: [module_state_1 ? "<A HREF=?src=\ref[src];mod=\ref[module_state_1]>[module_state_1]<A>" : "No Module"]<BR>
@@ -821,13 +829,10 @@ var/list/robot_verbs_default = list(
 			dat += text("[module.emag]: <B>Activated</B><BR>")
 		else
 			dat += text("[module.emag]: <A HREF=?src=\ref[src];act=\ref[module.emag]>Activate</A><BR>")
-/*
-		if(activated(obj))
-			dat += text("[obj]: \[<B>Activated</B>|<A HREF=?src=\ref[src];deact=\ref[obj]>Deactivate</A>\]<BR>")
-		else
-			dat += text("[obj]: \[<A HREF=?src=\ref[src];act=\ref[obj]>Activate</A>|<B>Deactivated</B>\]<BR>")
-*/
-	src << browse(dat, "window=robotmod")
+
+	var/datum/browser/popup = new(src, "robotmod", "<div align='center'>Modules</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 
 /mob/living/silicon/robot/Topic(href, href_list)

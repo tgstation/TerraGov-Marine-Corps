@@ -132,7 +132,7 @@
 		holder.remove_reagent("frostoil", 5)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if((H.species.flags & NO_PAIN))
+		if((H.species.species_flags & NO_PAIN))
 			return ..()
 	switch(current_cycle)
 		if(1 to agony_start - 1)
@@ -167,7 +167,7 @@
 			var/stunnable = TRUE
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				if(H.species?.flags & NO_PAIN)
+				if(H.species?.species_flags & NO_PAIN)
 					stunnable = FALSE
 			var/mouth_covered = FALSE
 			var/eyes_covered = FALSE

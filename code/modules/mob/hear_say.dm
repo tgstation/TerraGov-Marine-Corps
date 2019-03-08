@@ -12,7 +12,7 @@
 	var/comm_paygrade = ""
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
-	if (language && (language.flags & NONVERBAL))
+	if (language && (language.language_flags & NONVERBAL))
 		if (!speaker || is_blind(src) || !(speaker.z == z && get_dist(speaker, src) <= world.view))
 			message = stars(message)
 
@@ -70,7 +70,7 @@
 		sound_to_play = AI.ai_sound
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
-	if (language && (language.flags & NONVERBAL))
+	if (language && (language.language_flags & NONVERBAL))
 		if (!speaker || is_blind(speaker) || !(speaker in view(src)))
 			message = stars(message)
 

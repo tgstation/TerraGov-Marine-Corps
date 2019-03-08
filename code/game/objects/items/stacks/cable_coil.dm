@@ -120,12 +120,12 @@
 /obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
 	if(hasorgans(M))
 		var/datum/limb/S = M:get_limb(user.zone_selected)
-		if(!(S.status & LIMB_ROBOT) || user.a_intent == INTENT_HARM)
+		if(!(S.limb_status & LIMB_ROBOT) || user.a_intent == INTENT_HARM)
 			return ..()
 
 		if(istype(M,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
-			if(H.species.flags & IS_SYNTHETIC)
+			if(H.species.species_flags & IS_SYNTHETIC)
 				if(M == user)
 					to_chat(user, "<span class='warning'>You can't repair damage to your own body - it's against OH&S.</span>")
 					return
