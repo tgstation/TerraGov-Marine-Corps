@@ -1,4 +1,4 @@
-
+#define DEBUG_MINES		0
 
 ///***MINES***///
 //Mines have an invisible "tripwire" atom that explodes when crossed
@@ -17,8 +17,6 @@
 	unacidable = 1
 	flags_atom = CONDUCT
 
-	var/datum/ammo/bullet/shotgun/flechette/ammo = /datum/ammo/bullet/shotgun/flechette
-	var/obj/item/projectile/in_chamber = null
 	var/obj/machinery/camera/camera = null
 	var/iff_signal = ACCESS_IFF_MARINE
 	var/triggered = 0
@@ -88,7 +86,7 @@
 
 //Disarming
 /obj/item/explosive/mine/attackby(obj/item/W, mob/user)
-	if(!ismultitool(W))
+	if(ismultitool(W))
 		if(anchored)
 			user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
 			"<span class='notice'>You start disarming [src].</span>")
@@ -170,21 +168,26 @@
 		if(!L.lying)//so dragged corpses don't trigger mines.
 			Bumped(A)
 
-/obj/item/explosive/mine/Bumped(mob/living/carbon/human/H)
-	if(!armed || triggered) return
+/obj/item/explosive/mine/Bumped(mob/M)
+	if(!armed || triggered || iscyborg(M))
+		return
 
-	if((istype(H) && H.get_target_lock(iff_signal)) || iscyborg(H)) return
+	if(istype(M, /mob/living/carbon/human) )
+		var/mob/living/carbon/human/H = M
+		if(H.get_target_lock(iff_signal) )
+			return
 
-	H.visible_message("<span class='danger'>[icon2html(src, viewers(H))] The [name] clicks as [H] moves in front of it.</span>", \
-	"<span class='danger'>[icon2html(src, viewers(H))] The [name] clicks as you move in front of it.</span>", \
+	M.visible_message("<span class='danger'>[icon2html(src, viewers(M))] The [name] clicks as [M] moves in front of it.</span>", \
+	"<span class='danger'>[icon2html(src, viewers(M))] The [name] clicks as you move in front of it.</span>", \
 	"<span class='danger'>You hear a click.</span>")
 
-	triggered = 1
+	if(trigger_type != "Monitoring")
+		triggered = 1
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
-	trigger_explosion(H)
+	trigger_explosion(M)
 
 //Note : May not be actual explosion depending on linked method
-/obj/item/explosive/mine/proc/trigger_explosion(mob/M = null)
+/obj/item/explosive/mine/proc/trigger_explosion(mob/M)
 	set waitfor = 0
 
 	if(M)
@@ -206,6 +209,8 @@
 		var/direction = pick(cardinal)
 		var/step_direction = get_step(src, direction)
 		tripwire.forceMove(step_direction)
+		if(trigger_type == "Monitoring")
+			trigger_type = "Concussive" //It defaults to boom if in monitoring mode
 	trigger_explosion(M)
 
 /obj/item/explosive/mine/flamer_fire_act() //adding mine explosions
@@ -239,6 +244,8 @@
 		linked_claymore.Bumped(A)
 
 /obj/item/explosive/mine/proc/mine_alert(mob/M)
+	set waitfor = 0
+
 	if(!M)
 		return
 	var/notice = "<b>ALERT! [src] detonated. Hostile/unknown: [M] Detected at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
@@ -249,6 +256,10 @@
 
 	if(alarm_mode) //Play an audible alarm if toggled on.
 		playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+
+	#if DEBUG_MINES
+	to_chat(world, "DEBUG CLAYMORE MINE_ALERT: tripwire: [tripwire] target: [M] trigger_type: [trigger_type]")
+	#endif
 
 	if(!tripwire)
 		return
@@ -266,20 +277,51 @@
 			qdel(src)
 
 		if("Shrapnel")
+			var/datum/ammo/bullet/shotgun/flechette/ammo = /datum/ammo/bullet/shotgun/flechette/claymore
+			var/obj/item/projectile/in_chamber = null
+
 			in_chamber = new /obj/item/projectile(loc)
+			ammo = GLOB.ammo_list[ammo]
 			in_chamber.generate_bullet(ammo)
 			in_chamber.def_zone = pick("chest", "chest", "chest", "head")
 
-			var/target = M
-			var/turf/targloc = get_turf(target)
+			var/target = get_turf(tripwire)
+			var/turf/targloc = target
+			if(target)
+				var/angle = round(Get_Angle(src,target))
+				muzzle_flash(angle)
 
+			playsound(loc, 'sound/weapons/gun_shotgun.ogg', 75, 1)
 			for(var/i = 1 to 5)
+				target = get_turf(target)
 				if (prob(50))
 					var/scatter_x = rand(-1, 1)
 					var/scatter_y = rand(-1, 1)
 					var/turf/new_target = locate(targloc.x + round(scatter_x),targloc.y + round(scatter_y),targloc.z) //Locate an adjacent turf.
 					if(new_target) //Looks like we found a turf.
 						target = new_target
+				sleep(1)
 				in_chamber.fire_at(target, src, null, ammo.max_range, ammo.shell_speed) //powerful
 
+
 			qdel(src)
+
+/obj/item/explosive/mine/proc/muzzle_flash(var/angle)
+	if(isnull(angle))
+		return
+
+	var/muzzle_flash_lum = 3
+
+	SetLuminosity(muzzle_flash_lum)
+	spawn(10)
+		SetLuminosity(-muzzle_flash_lum)
+
+	if(prob(65))
+		var/layer = MOB_LAYER - 0.1
+
+		var/image/I = image('icons/obj/items/projectiles.dmi',src,"muzzle_flash",layer)
+		var/matrix/rotate = matrix() //Change the flash angle.
+		rotate.Translate(0, 5)
+		rotate.Turn(angle)
+		I.transform = rotate
+		flick_overlay_view(I, src, 3)
