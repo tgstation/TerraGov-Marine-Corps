@@ -585,7 +585,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		if(C.charge_speed < C.charge_speed_max/(1.1)) //Arbitrary ratio here, might want to apply a linear transformation instead
 			return
 
-		take_damage_type(100, "blunt", C)
+		take_damage_type(C.charge_speed * CRUSHER_CHARGE_TANK_MULTI, "blunt", C)
 
 //Redistributes damage ratios based off of what things are attached (no armor means the armor doesn't mitigate any damage)
 /obj/vehicle/multitile/root/cm_armored/proc/update_damage_distribs()

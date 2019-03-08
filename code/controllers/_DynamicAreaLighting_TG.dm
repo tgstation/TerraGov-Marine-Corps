@@ -208,16 +208,38 @@ atom/proc/AddLuminosity(delta_luminosity)
 
 //This slightly modifies human luminosity. Source of light do NOT stack.
 //When you drop a light source it should keep a running total of your actual luminosity and set it accordingly.
-mob/SetLuminosity(new_luminosity, trueLum)
-	if(!new_luminosity) //Our new addition is positive. Add it to our running total.
-		return..(0, trueLum)  //Set to ZERO.
+mob/SetLuminosity(new_luminosity, trueLum, reset)
+	//message_admins("MOB SET LUM DEBUG 1: luminosity_total: [luminosity_total] new_luminosity: [new_luminosity] length: [length(light_sources)]")
+	if(reset) //hard reset of the target's light sources; to be used sparingly
+		luminosity_total = 0
+		light_sources = list()
+
 	else
-		luminosity_total += new_luminosity //Keep track of our new total.
+		switch(new_luminosity)
+			if(1 to 100)  //If positive add a light source to the light source list.
+				light_sources.Add(new_luminosity)
+				if( luminosity_total < new_luminosity ) //Check to see if the new light source is more powerful than the current one; if not, check for light loss
+					luminosity_total = new_luminosity //we use the more powerful light source
 
-	if(new_luminosity > luminosity) //The lum we want to set to is higher. Use it.
-		..(new_luminosity, trueLum)
+			if(0) //We're not losing a light source; abort.
+				return
 
-	else if(luminosity_total < luminosity) //We want to drop our actual luminosity.
+			if(-100 to -1) //If negative, subtract the light source from the list instead.
+				light_sources.Remove(new_luminosity * -1)
+				if(luminosity_total <= (new_luminosity * -1) ) //We're losing a light source of magnitude equal to or greater than our current one; recalc luminosity from the list of remaining sources
+					//message_admins("MOB SET LUM DEBUG 2: luminosity_total: [luminosity_total] new_luminosity: [new_luminosity] length: [length(light_sources)]")
+					luminosity_total = 0
+					for(var/L in light_sources)
+						if(luminosity_total > L) //get the most powerful remaining light source
+							continue
+						luminosity_total = L
+
+
+	//message_admins("MOB SET LUM DEBUG 4: luminosity_total: [luminosity_total] new_luminosity: [new_luminosity] length: [length(light_sources)]")
+	if(!luminosity_total)
+		return..(0, trueLum)  //Set to ZERO.
+
+	if(luminosity_total != luminosity) //Set the new luminosity
 		..(luminosity_total, trueLum)
 
 	return
