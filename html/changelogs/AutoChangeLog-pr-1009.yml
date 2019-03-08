@@ -1,4 +1,0 @@
-author: "Shadow-Quill"
-delete-after: True
-changes: 
-  - tweak: "Job preferences will now go back to Medium if it was set to High, and you try to change another to High."
