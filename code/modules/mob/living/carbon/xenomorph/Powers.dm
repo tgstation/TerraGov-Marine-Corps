@@ -2556,9 +2556,15 @@
 	return FALSE
 
 /mob/living/carbon/human/can_zombie()
-	if(stat == DEAD && timeofdeath > 500 && !check_tod() && !chestburst) // Minimum amount of time required (500) so roundstart corpses are excluded from being able to be revived.
-		return TRUE
-	return FALSE
+	if(stat != DEAD)
+		return FALSE
+	if(!next_move)
+		return FALSE
+	if(chestburst)
+		return FALSE
+	if(check_tod())
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/species/machine/can_zombie()
 	return FALSE
