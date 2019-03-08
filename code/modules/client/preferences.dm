@@ -436,6 +436,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(!job.prefflag)
 		return FALSE
 	if(jobs_high && level == JOBS_PRIORITY_HIGH)
+		jobs_medium |= jobs_high
 		jobs_high = NOFLAGS
 	switch(level)
 		if(JOBS_PRIORITY_HIGH)
