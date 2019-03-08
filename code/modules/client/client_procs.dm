@@ -237,6 +237,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 			to_chat(src, message)
 		GLOB.clientmessages.Remove(ckey)
 
+	to_chat(src, get_message_output("message", ckey))
 	if(all_player_details[ckey])
 		player_details = all_player_details[ckey]
 	else

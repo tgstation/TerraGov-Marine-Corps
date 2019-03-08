@@ -591,8 +591,10 @@
 
 	if(see_invisible == SEE_INVISIBLE_OBSERVER_NOLIGHTING)
 		see_invisible = SEE_INVISIBLE_OBSERVER
+		to_chat(src, "<span class='notice'>You can now see in the dark.</span>")
 	else
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
+		to_chat(src, "<span class='notice'>You can no longer see in the dark.</span>")
 
 
 /mob/dead/observer/verb/hive_status()
