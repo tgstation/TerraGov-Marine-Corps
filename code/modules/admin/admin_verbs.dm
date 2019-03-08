@@ -789,6 +789,111 @@
 	message_admins("[ADMIN_TPMONTY(usr)] teleported [ADMIN_TPMONTY(M)] to [ADMIN_VERBOSEJMP(target)].")
 
 
+/datum/admins/proc/jump_area(var/area/A in return_sorted_areas())
+	set category = null
+	set name = "Jump to Area"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/mob/M = usr
+	var/target = pick(get_area_turfs(A))
+	M.on_mob_jump()
+	M.forceMove(target)
+
+	log_admin("[key_name(usr)] jumped to [AREACOORD(M)].")
+	if(!isobserver(M))
+		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(M)].")
+
+
+/datum/admins/proc/jump_turf(var/turf/T in GLOB.turfs)
+	set category = null
+	set name = "Jump to Turf"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	if(!T)
+		return
+
+	var/mob/M = usr
+	M.on_mob_jump()
+	M.forceMove(T)
+
+	log_admin("[key_name(M)] jumped to turf [AREACOORD(T)].")
+	if(!isobserver(M))
+		message_admins("[ADMIN_TPMONTY(M)] jumped to turf [ADMIN_VERBOSEJMP(T)].")
+
+
+/datum/admins/proc/jump_coord(tx as num, ty as num, tz as num)
+	set category = null
+	set name = "Jump to Coordinate"
+
+	if(!check_rights(R_ADMIN) && is_mentor(src))
+		return
+
+	var/mob/M = usr
+	M.on_mob_jump()
+	M.x = tx
+	M.y = ty
+	M.z = tz
+	var/turf/T = get_turf(M)
+	M.forceMove(T)
+
+	log_admin("[key_name(M)] jumped to coordinate [AREACOORD(T)].")
+	if(!isobserver(M))
+		message_admins("[ADMIN_TPMONTY(M)] jumped to coordinate [ADMIN_VERBOSEJMP(T)].")
+
+
+/datum/admins/proc/jump_mob()
+	set category = null
+	set name = "Jump to Mob"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/selection = input("Please, select a mob.", "Jump to Mob") as null|anything in sortmobs(GLOB.mob_list)
+	if(!selection)
+		return
+
+	var/mob/M = selection
+	var/mob/N = usr
+	var/turf/T = get_turf(M)
+
+	N.on_mob_jump()
+	N.forceMove(T)
+
+	log_admin("[key_name(N)] jumped to [key_name(M)]'s mob [AREACOORD(T)]")
+	if(!isobserver(N))
+		message_admins("[ADMIN_TPMONTY(N)] jumped to [ADMIN_TPMONTY(T)].")
+
+
+/datum/admins/proc/jump_key()
+	set category = null
+	set name = "Jump to Key"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/selection = input("Please, select a key.", "Jump to Key") as null|anything in sortKey(GLOB.clients)
+	if(!selection)
+		return
+
+	var/mob/M = selection:mob
+	if(!M)
+		return
+
+	var/mob/N = usr
+	var/turf/T = get_turf(M)
+
+	N.on_mob_jump()
+	N.forceMove(T)
+
+	log_admin("[key_name(usr)] jumped to [key_name(M)]'s key [AREACOORD(T)].")
+	if(!isobserver(N))
+		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_TPMONTY(T)].")
+
+
 /client/proc/private_message_context(var/mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Private Message Mob"
