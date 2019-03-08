@@ -2556,7 +2556,7 @@
 	return FALSE
 
 /mob/living/carbon/human/can_zombie()
-	if(stat == DEAD && timeofdeath  && !check_tod() && !chestburst)
+	if(stat == DEAD && timeofdeath > 500 && !check_tod() && !chestburst)
 		return TRUE
 	return FALSE
 

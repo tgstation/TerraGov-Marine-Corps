@@ -1,7 +1,7 @@
 /datum/xeno_caste/necromorph
 	caste_name = "Necromorph"
 	display_name = "Necromorph"
-	upgrade_name = "Bloody"
+	upgrade_name = ""
 	caste_desc = "A reinimated iteration of a human, looks like a hackjob."
 	caste_type_path = /mob/living/carbon/Xenomorph/Necromorph
 	tier = 0
