@@ -8,7 +8,6 @@
 	var/count_marine_humans = 0
 	var/count_infectedhumans = 0
 	var/count_aliens = 0
-	var/count_preds = 0
 
 	for(var/client/C in GLOB.clients)
 		if(isobserver(C.mob))
@@ -24,8 +23,6 @@
 					count_infectedhumans++
 			if(isxeno(C.mob))
 				count_aliens++
-			if(isyautja(C.mob))
-				count_preds++
 
 
 	var/msg = "<b>Current Players:</b><br>"
