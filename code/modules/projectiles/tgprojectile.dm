@@ -117,7 +117,6 @@
 	var/distance_travelled = 0
 	var/scatter = 0
 	var/datum/ammo/ammo
-	var/projectile_speed = 1
 	var/turf/target_turf = null
 	var/accuracy = 85
 	var/armor_type = null
@@ -525,10 +524,13 @@
 	damage_falloff = ammo.damage_falloff
 	list_reagents = ammo.ammo_reagents
 	armor_type = ammo.armor_type
+	speed = ammo.shell_speed
 
 // target, firer, shot from, range, speed
 /obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
 	//message_admins("fire_at [Get_Angle(F, target)]")
+	src.speed += speed
+	message_admins("speed = [speed]")
 	preparePixelProjectile(target, F, null)
 	fire(Get_Angle(F, target), null)
 	
