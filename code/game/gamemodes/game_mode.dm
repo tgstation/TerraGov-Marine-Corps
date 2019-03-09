@@ -213,16 +213,16 @@
 					found = 1
 					break
 			if(!found)
-				msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)<br>"
+				msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<b>Disconnected</b>)<br>"
 
 
 		if(L.ckey && L.client)
 			if(L.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))
-				msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)<br>"
+				msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<b>Connected, Inactive</b>)<br>"
 				continue //AFK client
 			if(L.stat)
 				if(L.suiciding)	//Suicider
-					msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<font color='red'><b>Suicide</b></font>)<br>"
+					msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<b>Suicide</b>)<br>"
 					continue //Disconnected client
 				if(L.stat == UNCONSCIOUS)
 					msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (Dying)<br>"
@@ -236,7 +236,7 @@
 			if(D.mind && D.mind.current == L)
 				if(L.stat == DEAD)
 					if(L.suiciding)	//Suicider
-						msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<font color='red'><b>Suicide</b></font>)<br>"
+						msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<b>Suicide</b>)<br>"
 						continue //Disconnected client
 					else
 						msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (Dead)<br>"
@@ -245,7 +245,7 @@
 					if(D.can_reenter_corpse)
 						continue //Lolwhat
 					else
-						msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<font color='red'><b>Ghosted</b></font>)<br>"
+						msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<b>Ghosted</b>)<br>"
 						continue //Ghosted while alive
 
 	msg += "<hr>"
