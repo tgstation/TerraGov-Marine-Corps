@@ -34,7 +34,7 @@
 	icon_state = "boozeomat"        //////////////18 drink entities below, plus the glasses, in case someone wants to edit the number of bottles
 	icon_deny = "boozeomat-deny"
 	products = list(/obj/item/reagent_container/food/drinks/bottle/gin = 5,/obj/item/reagent_container/food/drinks/bottle/whiskey = 5,
-					/obj/item/reagent_container/food/drinks/bottle/tequilla = 5,/obj/item/reagent_container/food/drinks/bottle/vodka = 5,
+					/obj/item/reagent_container/food/drinks/bottle/tequila = 5,/obj/item/reagent_container/food/drinks/bottle/vodka = 5,
 					/obj/item/reagent_container/food/drinks/bottle/vermouth = 5,/obj/item/reagent_container/food/drinks/bottle/rum = 5,
 					/obj/item/reagent_container/food/drinks/bottle/wine = 5,/obj/item/reagent_container/food/drinks/bottle/cognac = 5,
 					/obj/item/reagent_container/food/drinks/bottle/kahlua = 5,/obj/item/reagent_container/food/drinks/cans/beer = 6,

@@ -189,9 +189,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "spiked butterscotch"
 	boozepwr = 60
 
-/datum/reagent/consumable/ethanol/tequilla
+/datum/reagent/consumable/ethanol/tequila
 	name = "Tequila"
-	id = "tequilla"
+	id = "tequila"
 	description = "A strong and mildly flavoured, mexican produced spirit. Feeling thirsty hombre?"
 	color = "#FFFF91" // rgb: 255, 255, 145
 	boozepwr = 70
@@ -442,9 +442,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "alcoholic bravery"
 	boozepwr = 80
 
-/datum/reagent/consumable/ethanol/tequilla_sunrise
+/datum/reagent/consumable/ethanol/tequila_sunrise
 	name = "Tequila Sunrise"
-	id = "tequillasunrise"
+	id = "tequilasunrise"
 	description = "Tequila and orange juice. Much like a Screwdriver, only Mexican~"
 	color = "#FFE48C" // rgb: 255, 228, 140
 	taste_description = "oranges with a hint of pomegranate"
