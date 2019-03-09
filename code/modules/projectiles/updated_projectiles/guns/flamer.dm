@@ -468,6 +468,7 @@
 	if(burn_lvl)
 		burnlevel = burn_lvl
 	START_PROCESSING(SSobj, src)
+	burn_carbon(loc, fire_stacks, fire_damage)
 
 	if(fire_spread_amount > 0)
 		var/turf/T
@@ -486,17 +487,20 @@
 						break
 			spawn(0) //delay so the newer flame don't block the spread of older flames
 				new /obj/flamer_fire(T, fire_lvl, burn_lvl, f_color, new_spread_amt, fire_stacks, fire_damage)
-				var/mob/living/C
-				if(fire_stacks || fire_damage)
-					for(C in T)
-						if(C.fire_immune)
-							continue
-						else
-							C.adjust_fire_stacks(fire_stacks)
-							var/armor_block = C.run_armor_check("chest", "energy")
-							C.apply_damage(fire_damage, BURN, null, armor_block)
-							C.IgniteMob()
-							C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
+
+/obj/flamer_fire/proc/burn_carbon(loc, fire_stacks, fire_damage)
+	var/mob/living/C
+	if(fire_stacks || fire_damage)
+		for(C in loc)
+			if(C.fire_immune)
+				continue
+			else
+				C.adjust_fire_stacks(fire_stacks)
+				var/armor_block = C.run_armor_check("chest", "energy")
+				C.apply_damage(fire_damage, BURN, null, armor_block)
+				C.IgniteMob()
+				C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
+
 
 /obj/flamer_fire/Destroy()
 	SetLuminosity(0)

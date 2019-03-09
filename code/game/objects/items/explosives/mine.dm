@@ -17,6 +17,8 @@
 	unacidable = 1
 	flags_atom = CONDUCT
 
+	var/list/obj/alert_list = list()
+	var/last_alert = 0
 	var/obj/machinery/camera/camera = null
 	var/iff_signal = ACCESS_IFF_MARINE
 	var/triggered = 0
@@ -120,13 +122,13 @@
 <B>Current Detonation Mode:</B> [trigger_type]<BR>
 <A href='?src=\ref[src];trigger_type=Concussive'><B>Set to Concussive Blast Mode</B></A><BR>
 <A href='?src=\ref[src];trigger_type=Incendiary'><B>Set to Incendiary Mode</B></A><BR>
-<A href='?src=\ref[src];trigger_type=Shrapnel'><B>Set to Shrapnel Mode</B></A><BR>
 <A href='?src=\ref[src];trigger_type=Monitoring'><B>Set to Monitoring Mode</B></A><BR>
-
+<BR>
 <B>Current Alarm Mode:</B> [alarm_mode ? "Siren" : "Silent"]<BR>
 <A href='?src=\ref[src];alarm_mode=1'><B>Set Alarm Mode:</B> [alarm_mode ? "Silent" : "Siren"]</A><BR>
 
 </TT>"}
+//<A href='?src=\ref[src];trigger_type=Shrapnel'><B>Set to Shrapnel Mode</B></A><BR>
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
 	return
@@ -248,14 +250,18 @@
 
 	if(!M)
 		return
-	var/notice = "<b>ALERT! [src] detonated. Hostile/unknown: [M] Detected at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
-	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
-	AI.SetName("Smartmine Alert System")
-	AI.aiRadio.talk_into(AI,"[notice]","Theseus","announces")
-	qdel(AI)
 
-	if(alarm_mode) //Play an audible alarm if toggled on.
-		playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+	if(world.time > (last_alert + CLAYMORE_ALERT_DELAY) || !(M in alert_list)) //if we're not on cooldown or the target isn't in the list, sound the alarm
+		alert_list.Add(M)
+		last_alert = world.time
+		var/notice = "<b>ALERT! [src] detonated. Hostile/unknown: [M] Detected at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
+		var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
+		AI.SetName("Smartmine Alert System")
+		AI.aiRadio.talk_into(AI,"[notice]","Theseus","announces")
+		qdel(AI)
+
+		if(alarm_mode) //Play an audible alarm if toggled on.
+			playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 
 	#if DEBUG_MINES
 	to_chat(world, "DEBUG CLAYMORE MINE_ALERT: tripwire: [tripwire] target: [M] trigger_type: [trigger_type]")
@@ -276,6 +282,7 @@
 			flame_radius(2, tripwire.loc, 50, 50, 45, 15) //powerful
 			qdel(src)
 
+/*
 		if("Shrapnel")
 			var/datum/ammo/bullet/shotgun/flechette/ammo = /datum/ammo/bullet/shotgun/flechette/claymore
 			var/obj/item/projectile/in_chamber = null
@@ -302,7 +309,7 @@
 						target = new_target
 				sleep(1)
 				in_chamber.fire_at(target, src, null, ammo.max_range, ammo.shell_speed) //powerful
-
+*/
 
 			qdel(src)
 

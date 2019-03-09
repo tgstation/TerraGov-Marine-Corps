@@ -227,3 +227,6 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 //Lighter
 
 #define LIGHTER_LUMINOSITY	2
+
+//Claymore mine defines
+#define CLAYMORE_ALERT_DELAY				5 SECONDS
