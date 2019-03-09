@@ -946,6 +946,7 @@
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
 	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	burst_accuracy_mult = CONFIG_GET(number/combat_define/mlow_burst_accuracy_penalty)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
 	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
