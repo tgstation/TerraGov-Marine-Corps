@@ -104,12 +104,12 @@
 	var/mob/M
 	switch(input("Change by:", "Change CKey") as null|anything in list("Key", "Mob"))
 		if("Key")
-			var/client/C = input("Please, select a key.", "Get Key") as null|anything in sortList(GLOB.clients)
+			var/client/C = input("Please, select a key.", "Get Key") as null|anything in sortKey(GLOB.clients)
 			if(!C)
 				return
 			M = C.mob
 		if("Mob")
-			var/mob/N = input("Please, select a mob.", "Get Mob") as null|anything in sortList(GLOB.mob_list)
+			var/mob/N = input("Please, select a mob.", "Get Mob") as null|anything in sortNames(GLOB.mob_list)
 			if(!N)
 				return
 			M = N
@@ -155,12 +155,12 @@
 	var/mob/living/M
 	switch(input("Rejuvenate by:", "Rejuvenate") as null|anything in list("Key", "Mob"))
 		if("Key")
-			var/client/C = input("Please, select a key.", "Rejuvenate") as null|anything in sortList(GLOB.clients)
+			var/client/C = input("Please, select a key.", "Rejuvenate") as null|anything in sortKey(GLOB.clients)
 			if(!C)
 				return
 			M = C.mob
 		if("Mob")
-			var/mob/N = input("Please, select a mob.", "Rejuvenate") as null|anything in sortList(GLOB.mob_living_list)
+			var/mob/N = input("Please, select a mob.", "Rejuvenate") as null|anything in sortNames(GLOB.mob_living_list)
 			if(!N)
 				return
 			M = N
@@ -202,12 +202,12 @@
 	var/mob/M
 	switch(input("Toggle sleeping by:", "Toggle Sleeping") as null|anything in list("Key", "Mob"))
 		if("Key")
-			var/client/C = input("Please, select a key.", "Toggle Sleeping") as null|anything in sortList(GLOB.clients)
+			var/client/C = input("Please, select a key.", "Toggle Sleeping") as null|anything in sortKey(GLOB.clients)
 			if(!C)
 				return
 			M = C.mob
 		if("Mob")
-			var/mob/N = input("Please, select a mob.", "Toggle Sleeping") as null|anything in sortList(GLOB.mob_list)
+			var/mob/N = input("Please, select a mob.", "Toggle Sleeping") as null|anything in sortNames(GLOB.mob_list)
 			if(!N)
 				return
 			M = N
@@ -679,10 +679,10 @@
 			var/tz = input("Z", "Jump") as null|num
 			target = locate(tx, ty, tz)
 		if("Mob")
-			var/mob/M = input("Mob", "Jump") as null|anything in sortList(GLOB.mob_list)
+			var/mob/M = input("Mob", "Jump") as null|anything in sortNames(GLOB.mob_list)
 			target = get_turf(M)
 		if("Key")
-			var/client/C = input("Mob", "Jump") as null|anything in sortList(GLOB.clients)
+			var/client/C = input("Mob", "Jump") as null|anything in sortKey(GLOB.clients)
 			target = get_turf(C.mob)
 		else
 			return
@@ -713,12 +713,12 @@
 	var/mob/M
 	switch(input("Get by:", "Get") as null|anything in list("Key", "Mob"))
 		if("Key")
-			var/client/C = input("Please, select a key.", "Get Key") as null|anything in sortList(GLOB.clients)
+			var/client/C = input("Please, select a key.", "Get Key") as null|anything in sortKey(GLOB.clients)
 			if(!C)
 				return
 			M = C.mob
 		if("Mob")
-			var/mob/N = input("Please, select a mob.", "Get Mob") as null|anything in sortList(GLOB.mob_list)
+			var/mob/N = input("Please, select a mob.", "Get Mob") as null|anything in sortNames(GLOB.mob_list)
 			if(!N)
 				return
 			M = N
@@ -748,12 +748,12 @@
 	var/mob/M
 	switch(input("Send by:", "Send Mob") as null|anything in list("Key", "Mob"))
 		if("Key")
-			var/client/C = input("Please, select a key.", "Send Mob") as null|anything in sortList(GLOB.clients)
+			var/client/C = input("Please, select a key.", "Send Mob") as null|anything in sortKey(GLOB.clients)
 			if(!C)
 				return
 			M = C.mob
 		if("Mob")
-			var/mob/N = input("Please, select a mob.", "Send Mob") as null|anything in sortList(GLOB.mob_list)
+			var/mob/N = input("Please, select a mob.", "Send Mob") as null|anything in sortNames(GLOB.mob_list)
 			if(!N)
 				return
 			M = N
@@ -769,7 +769,7 @@
 				return
 			target = pick(get_area_turfs(A))
 		if("Mob")
-			var/mob/N = input("Pick a mob.", "Send Mob") as null|anything in sortList(GLOB.mob_list)
+			var/mob/N = input("Pick a mob.", "Send Mob") as null|anything in sortNames(GLOB.mob_list)
 			if(!N)
 				return
 			target = get_turf(N.loc)
@@ -852,7 +852,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/selection = input("Please, select a mob.", "Jump to Mob") as null|anything in sortList(GLOB.mob_list)
+	var/selection = input("Please, select a mob.", "Jump to Mob") as null|anything in sortNames(GLOB.mob_list)
 	if(!selection)
 		return
 
@@ -917,7 +917,7 @@
 	var/client/target
 	switch(input("Select target:", "Private Message") as null|anything in list("Mob", "Key"))
 		if("Mob")
-			var/mob/M = input("Pick a mob.", "Private Message") as null|anything in sortList(GLOB.player_list)
+			var/mob/M = input("Pick a mob.", "Private Message") as null|anything in sortNames(GLOB.player_list)
 			if(!M)
 				return
 			target = M.client

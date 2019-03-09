@@ -69,7 +69,7 @@
 	else
 		msg += "<b>Total Players: [length(Lines)]</b>"
 
-	var/datum/browser/browser = new(usr, "who", "<div align='center'>Who</div>", 300, 400)
+	var/datum/browser/browser = new(usr, "who", "<div align='center'>Who</div>", 400, 500)
 	browser.set_content(msg)
 	browser.open()
 
