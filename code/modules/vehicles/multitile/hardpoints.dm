@@ -170,9 +170,11 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/armor
 	slot = HDPT_ARMOR
+	max_clips = 0
 
 /obj/item/hardpoint/treads
 	slot = HDPT_TREADS
+	max_clips = 0
 
 ////////////////////
 // PRIMARY SLOTS // START
@@ -641,6 +643,7 @@ Currently only has the tank hardpoints
 	maxhealth = 250
 	health = 250
 	point_cost = 100
+	max_clips = 0
 
 	icon_state = "warray"
 
@@ -672,6 +675,7 @@ Currently only has the tank hardpoints
 	maxhealth = 250
 	health = 250
 	point_cost = 100
+	max_clips = 0
 
 	icon_state = "odrive_enhancer"
 
@@ -691,6 +695,7 @@ Currently only has the tank hardpoints
 	maxhealth = 250
 	health = 250
 	point_cost = 100
+	max_clips = 0
 
 	is_activatable = TRUE
 	var/is_active = FALSE
