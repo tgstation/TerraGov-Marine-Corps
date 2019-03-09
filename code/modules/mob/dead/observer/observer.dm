@@ -295,11 +295,10 @@
 	var/list/names = list()
 	var/list/namecounts = list()
 
-	for(var/x in sortNames(GLOB.dead_mob_list))
-		var/mob/M = x
-		if(!M.client)
+	for(var/mob/dead/observer/O in sortNames(GLOB.dead_mob_list))
+		if(!O.client)
 			continue
-		var/name = M.name
+		var/name = O.name
 		if(name in names)
 			namecounts[name]++
 			name = "[name] ([namecounts[name]])"
@@ -309,7 +308,7 @@
 
 		name += " (ghost)"
 
-		observers[name] = M
+		observers[name] = O
 
 	if(!length(observers))
 		to_chat(usr, "<span class='warning'>There are no ghosts at the moment.</span>")
@@ -467,7 +466,7 @@
 
 	for(var/x in sortNames(GLOB.dead_mob_list))
 		var/mob/M = x
-		if(isobserver(M))
+		if(isobserver(M) || isnewplayer(M))
 			continue
 		var/name = M.name
 		if(name in names)
