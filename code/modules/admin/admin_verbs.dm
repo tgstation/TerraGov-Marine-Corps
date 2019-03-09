@@ -1340,7 +1340,7 @@
 		to_chat(usr, "<span class='warning'>Database URL not set.</span>")
 		return
 
-	if(alert("This will open the MCDB in your browser. Are you sure?",, "Yes", "No") != "Yes")
+	if(alert("This will open the MCDB in your browser. Are you sure?", "MCDB", "Yes", "No") != "Yes")
 		return
 
 	usr << link(CONFIG_GET(string/dburl))
