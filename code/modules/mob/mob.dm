@@ -803,7 +803,7 @@ mob/proc/yank_out_object()
 /mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
 	var/viewers = viewers()
 	for(var/mob/M in viewers)
-		if(M.stat != CONSCIOUS || isdeaf(M))
+		if(!isobserver(M) && (M.stat != CONSCIOUS || isdeaf(M)))
 			continue
 		to_chat(M, emote_overlay)
 
