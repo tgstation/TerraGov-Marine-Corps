@@ -335,7 +335,7 @@ Proc Name                                                                  Self 
 			var/i = 0
 			while(++i <= 2 && hit_chance > 0) // This runs twice if necessary
 				hit_roll 					= rand(0, 99) //Our randomly generated roll
-				#if DEBUG_HIT_CHANCE
+				#ifdef DEBUG_HIT_CHANCE
 				to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
 				#endif
 				if(hit_roll < 25) //Sniper targets more likely to hit
@@ -344,7 +344,7 @@ Proc Name                                                                  Self 
 
 				if(firer && !firer.sniper_target(A)) //Avoid sentry run times
 					hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
-					#if DEBUG_HIT_CHANCE
+					#ifdef DEBUG_HIT_CHANCE
 					to_chat(world, "Hit Chance 2: [hit_chance]")
 					#endif
 
@@ -876,7 +876,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		round_statistics.total_bullet_hits_on_humans++
 
 	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff))
-	#if DEBUG_HUMAN_DEFENSE
+	#ifdef DEBUG_HUMAN_DEFENSE
 	to_chat(world, "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>")
 	#endif
 
@@ -906,7 +906,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		var/armor //Damage types don't correspond to armor types. We are thus merging them.
 		armor = getarmor_organ(organ, P.armor_type) //Should always have a type; this defaults to bullet if nothing else.
 
-		#if DEBUG_HUMAN_DEFENSE
+		#ifdef DEBUG_HUMAN_DEFENSE
 		to_chat(world, "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>")
 		#endif
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
@@ -914,7 +914,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
 			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
 		armor -= penetration//Minus armor penetration from the bullet. If the bullet has negative penetration, adding to their armor, but they don't have armor, they get nothing.
-		#if DEBUG_HUMAN_DEFENSE
+		#ifdef DEBUG_HUMAN_DEFENSE
 		to_chat(world, "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>")
 		#endif
 
@@ -926,7 +926,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			damage 			-= prob(critical_hit) ? 0 : armor_soak //Chance that you won't soak the initial amount.
 			armor			-= round(armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_low)) //If you still have armor left over, you generally should, we subtract the soak.
 											  		   //This gives smaller calibers a chance to actually deal damage.
-			#if DEBUG_HUMAN_DEFENSE
+			#ifdef DEBUG_HUMAN_DEFENSE
 			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
 			#endif
 			var/i = 0
@@ -936,7 +936,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 						armor_soak 	 = round(damage * 0.5)  //Cut it in half.
 						armor 		-= armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_high)
 						damage 		-= armor_soak
-						#if DEBUG_HUMAN_DEFENSE
+						#ifdef DEBUG_HUMAN_DEFENSE
 						to_chat(world, "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
 						#endif
 					else break //If we failed to block the damage, it's time to get out of the loop.
@@ -995,25 +995,25 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff)) //Has to be at least zero, no negatives.
 	//message_admins("[damage] boy [P.damage]")
-	#if DEBUG_XENO_DEFENSE
+	#ifdef DEBUG_XENO_DEFENSE
 	to_chat(world, "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>")
 	#endif
 
 	if(warding_aura) //Damage reduction. Every half point of warding decreases damage by 2.5 %. Maximum is 25 % at 5 pheromone strength.
 		damage = round(damage * (1 - (warding_aura * 0.05) ) )
-		#if DEBUG_XENO_DEFENSE
+		#ifdef DEBUG_XENO_DEFENSE
 		to_chat(world, "<span class='debuginfo'>Damage migated by a warding aura level of [warding_aura], damage is now <b>[damage]</b></span>")
 		#endif
 
 	if(damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR))
 		var/armor = xeno_caste.armor_deflection + armor_bonus + armor_pheromone_bonus
-		#if DEBUG_XENO_DEFENSE
+		#ifdef DEBUG_XENO_DEFENSE
 		world << "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>"
 		#endif
 		if(isxenoqueen(src) || isxenocrusher(src)) //Charging and crest resistances. Charging Xenos get a lot of extra armor, currently Crushers and Queens
 			var/mob/living/carbon/Xenomorph/charger = src
 			armor += round(charger.charge_speed * 5) //Some armor deflection when charging.
-			#if DEBUG_CREST_DEFENSE
+			#ifdef DEBUG_CREST_DEFENSE
 			world << "<span class='debuginfo'>Projectile direction is: <b>[P.dir]</b> and crest direction is: <b>[charger.dir]</b></span>"
 			#endif
 			if(P.dir == charger.dir)
@@ -1026,7 +1026,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			else if(isxenocrusher(src))
 				armor = max(0, armor - (xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_vlow))) //side armour eats a bit of shit if we're a Crusher
 			//Otherwise use the standard armor deflection for crushers.
-			#if DEBUG_XENO_DEFENSE
+			#ifdef DEBUG_XENO_DEFENSE
 			to_chat(world, "<span class='debuginfo'>Adjusted crest armor is: <b>[armor]</b></span>")
 			#endif
 
@@ -1037,7 +1037,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 		armor -= penetration
 
-		#if DEBUG_XENO_DEFENSE
+		#ifdef DEBUG_XENO_DEFENSE
 		world << "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>"
 		#endif
 		if(armor > 0) //Armor check. We should have some to continue.
@@ -1048,7 +1048,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			damage 			-= prob(critical_hit) ? 0 : armor_soak //Chance that you won't soak the initial amount.
 			armor			-= round(armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_low)) //If you still have armor left over, you generally should, we subtract the soak.
 											  		   //This gives smaller calibers a chance to actually deal damage.
-			#if DEBUG_XENO_DEFENSE
+			#ifdef DEBUG_XENO_DEFENSE
 			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
 			#endif
 			var/i = 0
@@ -1058,7 +1058,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 						armor_soak 	 = round(damage * 0.5)
 						armor 		-= armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_high)
 						damage 		-= armor_soak
-						#if DEBUG_XENO_DEFENSE
+						#ifdef DEBUG_XENO_DEFENSE
 						to_chat(world, "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
 						#endif
 					else break //If we failed to block the damage, it's time to get out of the loop.
@@ -1226,7 +1226,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			return 0
 
 	. = P.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
-	#if DEBUG_HIT_CHANCE
+	#ifdef DEBUG_HIT_CHANCE
 	to_chat(world, "<span class='debuginfo'>Base accuracy is <b>[P.accuracy]; scatter:[P.scatter]; distance:[P.distance_travelled]</b></span>")
 	#endif
 
@@ -1243,7 +1243,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		// Snipers have a smaller falloff constant due to longer max range
 
 
-	#if DEBUG_HIT_CHANCE
+	#ifdef DEBUG_HIT_CHANCE
 	to_chat(world, "<span class='debuginfo'>Final accuracy is <b>[.]</b></span>")
 	#endif
 
