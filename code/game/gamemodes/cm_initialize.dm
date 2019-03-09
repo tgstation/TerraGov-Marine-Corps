@@ -297,8 +297,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 /datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/new_xeno)
 	new_xeno.ghostize(0) //Make sure they're not getting a free respawn.
 	new_xeno.key = xeno_candidate.key
-	if(new_xeno.client) 
-		new_xeno.client.change_view(world.view)
+	new_xeno.client?.change_view(world.view)
 	log_admin("[key_name(new_xeno)] has joined as [new_xeno].")
 	message_admins("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")
 	if(isxeno(new_xeno)) //Dear lord

@@ -122,8 +122,7 @@
 
 	M.ghostize(FALSE)
 	M.ckey = ckey(new_ckey)
-	if(M.client)
-		M.client.change_view(world.view)
+	M.client?.change_view(world.view)
 
 	log_admin("[key_name(usr)] changed [M.name] ckey to [new_ckey].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed [M.name] ckey to [new_ckey].")
