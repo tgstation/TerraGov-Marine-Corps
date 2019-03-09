@@ -490,6 +490,9 @@ mob/proc/get_standard_bodytemperature()
 
 
 /mob/verb/toggle_move_intent(screen_num as null|num)
+	set name = "toggle-move-intent"
+	set hidden = TRUE
+
 	if(!screen_num || !client)
 		return
 
