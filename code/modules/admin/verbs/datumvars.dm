@@ -1170,7 +1170,7 @@
 						return
 					target = pick(get_area_turfs(AR))
 				if("Mob")
-					var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortmobs(GLOB.mob_list)
+					var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortList(GLOB.mob_list)
 					if(!N || !A)
 						return
 					target = get_turf(N)

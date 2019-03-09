@@ -769,7 +769,7 @@
 				return
 			target = pick(get_area_turfs(A))
 		if("Mob")
-			var/mob/N = input("Pick a mob.", "Send Mob") as null|anything in sortmobs(GLOB.mob_list)
+			var/mob/N = input("Pick a mob.", "Send Mob") as null|anything in sortList(GLOB.mob_list)
 			if(!N)
 				return
 			target = get_turf(N.loc)
@@ -852,7 +852,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/selection = input("Please, select a mob.", "Jump to Mob") as null|anything in sortmobs(GLOB.mob_list)
+	var/selection = input("Please, select a mob.", "Jump to Mob") as null|anything in sortList(GLOB.mob_list)
 	if(!selection)
 		return
 
@@ -917,7 +917,7 @@
 	var/client/target
 	switch(input("Select target:", "Private Message") as null|anything in list("Mob", "Key"))
 		if("Mob")
-			var/mob/M = input("Pick a mob.", "Private Message") as null|anything in sortmobs(GLOB.player_list)
+			var/mob/M = input("Pick a mob.", "Private Message") as null|anything in sortList(GLOB.player_list)
 			if(!M)
 				return
 			target = M.client

@@ -1141,7 +1141,7 @@
 					return
 				target = pick(get_area_turfs(A))
 			if("Mob")
-				var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortmobs(GLOB.mob_list)
+				var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortList(GLOB.mob_list)
 				if(!N || !M)
 					return
 				target = N.loc
