@@ -78,32 +78,6 @@
 		L.log_message("has been shot by [firer] with [src]", LOG_ATTACK, color="orange")
 
 	return L.apply_effects(stun, knockdown, unconscious, irradiate, slur, stutter, eyeblur, drowsy, blocked, stamina, jitter, paralyze, immobilize)
-
-around 2 mins of the pewpew
-
-                                               Profile results (total time)
-Proc Name                                                                  Self CPU    Total CPU    Real Time        Calls
-----------------------------------------------------------------------    ---------    ---------    ---------    ---------
-/obj/item/projectile/process                                                  1.102        2.351        2.385       496150
-/obj/item/projectile/proc/pixel_move                                          0.327        1.259        1.261        29080
-/obj/item/projectile/Move                                                     0.047        0.764        0.763         1740
-/obj/item/projectile/proc/can_hit_target                                      0.027        0.250        0.250         1740
-/obj/item/projectile/proc/fire_at                                             0.003        0.146        0.146          670
-/obj/item/projectile/forceMove                                                0.004        0.065        0.065         1340
-/obj/item/projectile/proc/fire                                                0.005        0.060        0.060          670
-/obj/item/projectile/proc/preparePixelProjectile                              0.005        0.047        0.047          670
-/obj/item/projectile/Crossed                                                  0.038        0.039        0.045       138460
-/obj/item/projectile/proc/Range                                               0.008        0.034        0.034        29080
-/obj/item/projectile/proc/on_range                                            0.000        0.026        0.026          480
-/datum/point/vector/proc/increment                                            0.025        0.025        0.025        29080
-/datum/point/proc/return_py                                                   0.023        0.024        0.030        58160
-/datum/point/proc/return_turf                                                 0.021        0.021        0.022        29080
-/datum/ammo/bullet/New                                                        0.002        0.020        0.020          670
-/obj/item/projectile/Destroy                                                  0.005        0.020        0.020          480
-/obj/item/projectile/proc/generate_bullet                                     0.008        0.013        0.013          670
-/obj/item/projectile/proc/setAngle                                            0.007        0.012        0.012         2010
-
-
 */
 
 /obj/machinery/pewpew
@@ -112,7 +86,7 @@ Proc Name                                                                  Self 
 
 /obj/machinery/pewpew/Initialize()
 	. = ..()
-	//start_processing()
+	start_processing()
 
 /obj/machinery/pewpew/Destroy()
 	stop_processing()
