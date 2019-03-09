@@ -171,3 +171,18 @@
 	prefs.save_character()
 
 	to_chat(src, "<span class='notice'>You will now equip/draw from the [slot] slot first.</span>")
+
+
+/client/verb/typing_indicator()
+	set category = "Preferences"
+	set name = "Toggle Typing Indicator"
+	set desc = "Toggles showing an indicator when you are typing emote or say message."
+
+	prefs.show_typing = !prefs.show_typing
+	prefs.save_preferences()
+
+	//Clear out any existing typing indicator.
+	if(!prefs.show_typing && istype(mob))
+		mob.toggle_typing_indicator()
+
+	to_chat(src, "<span class='notice'>You will [prefs.show_typing ? "now" : "no longer"] display a typing indicator.</span>")

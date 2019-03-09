@@ -45,17 +45,3 @@
 		return
 
 	me_verb(message)
-
-
-/client/verb/typing_indicator()
-	set name = "Show/Hide Typing Indicator"
-	set category = "Preferences"
-	set desc = "Toggles showing an indicator when you are typing emote or say message."
-
-	prefs.show_typing = !prefs.show_typing
-	prefs.save_preferences()
-	to_chat(src, "You will [prefs.show_typing ? "now" : "no longer"] display a typing indicator.")
-
-	//Clear out any existing typing indicator.
-	if(!prefs.show_typing && istype(mob))
-		mob.toggle_typing_indicator()
