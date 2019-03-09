@@ -43,51 +43,27 @@
 		if(!ismob(M))
 			return
 
-		var/location_description = ""
-		var/special_role_description = ""
-		var/health_description = ""
-		var/gender_description = ""
-		var/turf/T = get_turf(M)
+		var/status
+		var/health
 
-		//Location
-		if(isturf(T))
-			if(isarea(T.loc))
-				location_description = "([M.loc == T ? "at coordinates " : "in [M.loc] at coordinates "] [T.x], [T.y], [T.z] in area <b>[T.loc]</b>)"
-			else
-				location_description = "([M.loc == T ? "at coordinates " : "in [M.loc] at coordinates "] [T.x], [T.y], [T.z])"
-
-		//Job + antagonist
-		special_role_description = "Role: <b>[M.mind.assigned_role]</b>"
-
-		//Health
 		if(isliving(M))
 			var/mob/living/L = M
-			var/status
 			switch(M.stat)
 				if(CONSCIOUS)
 					status = "Alive"
 				if(UNCONSCIOUS)
-					status = "<font color='orange'><b>Unconscious</b></font>"
+					status = "Unconscious"
 				if(DEAD)
-					status = "<font color='red'><b>Dead</b></font>"
-			health_description = "Status = [status]"
-			health_description += "<BR>Oxy: [L.getOxyLoss()] - Tox: [L.getToxLoss()] - Fire: [L.getFireLoss()] - Brute: [L.getBruteLoss()] - Clone: [L.getCloneLoss()] - Brain: [L.getBrainLoss()]"
-		else
-			health_description = "This mob type has no health to speak of."
+					status = "Dead"
+			health = "Oxy: [L.getOxyLoss()] - Tox: [L.getToxLoss()] - Fire: [L.getFireLoss()] - Brute: [L.getBruteLoss()] - Clone: [L.getCloneLoss()] - Brain: [L.getBrainLoss()]"
 
-		//Gender
-		switch(M.gender)
-			if(MALE, FEMALE)
-				gender_description = "[M.gender]"
-			else
-				gender_description = "<font color='red'><b>[M.gender]</b></font>"
-
-		to_chat(usr, "<b>Info about [M.name]:</b> ")
-		to_chat(usr, "Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]")
-		to_chat(usr, "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind ? "[M.mind.name]" : ""]; Key = <b>[M.key]</b>;")
-		to_chat(usr, "Location = [location_description];")
-		to_chat(usr, "[special_role_description]")
-		to_chat(usr, ADMIN_FULLMONTY(M))
+		to_chat(usr, {"<span class='notice'><hr>
+<b>Info about [M.real_name]:</b>
+Type: [M.type] | Gender: [M.gender] | Job: [M.job]
+Location: [AREACOORD(M.loc)]
+Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
+<span class='admin'><span class='message'>[ADMIN_FULLMONTY(M)]</span></span>
+<hr></span>"})
 
 
 	else if(href_list["playerpanel"])

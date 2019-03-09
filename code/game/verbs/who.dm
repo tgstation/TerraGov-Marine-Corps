@@ -28,7 +28,7 @@
 				count_preds++
 
 
-	var/msg = "<b>Current Players:</b>\n"
+	var/msg = "<b>Current Players:</b><br>"
 
 	var/list/Lines = list()
 
@@ -46,11 +46,11 @@
 					if(isobserver(C.mob))
 						var/mob/dead/observer/O = C.mob
 						if(O.started_as_observer)
-							entry += " - <font color='#777'>Observing</font>"
+							entry += " - <font>Observing</font>"
 						else
-							entry += " - <font color='#000'><b>DEAD</b></font>"
+							entry += " - <font><b>DEAD</b></font>"
 					else
-						entry += " - <font color='#000'><b>DEAD</b></font>"
+						entry += " - <font><b>DEAD</b></font>"
 			entry += " (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 			Lines += entry
 	else
@@ -61,19 +61,20 @@
 				Lines += C.key
 
 	for(var/line in sortList(Lines))
-		msg += "[line]\n"
+		msg += "[line]<br>"
 
 	if(check_rights(R_ADMIN, FALSE))
 		var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
 		msg += "<b>Total Players: [length(Lines)]</b>"
-		msg += "<br><b style='color:#777'>Observers: [count_observers] (Non-Admin: [count_nonadmin_observers])</b>"
-		msg += "<br><b style='color:#2C7EFF'>Humans: [count_humans]</b> <b style='color:#688944'>(Marines: ~[count_marine_humans])</b> <b style='color:#F00'>(Infected: [count_infectedhumans])</b><br>"
-		msg += "<br><b style='color:#8200FF'>Aliens: [count_aliens]</b> <b style='color:#4D0096'>(Queen: [hive.living_xeno_queen ? "Alive" : "Dead"])</b>"
-		msg += "<br><b style='color:#7ABA19'>Predators: [count_preds]</b>"
+		msg += "<br><b>Observers: [count_observers] (Non-Admin: [count_nonadmin_observers])</b>"
+		msg += "<br><b>Humans: [count_humans]</b> <b>(Marines: ~[count_marine_humans])</b> <b>(Infected: [count_infectedhumans])</b><br>"
+		msg += "<br><b>Xenos: [count_aliens]</b> <b>(Queen: [hive.living_xeno_queen ? "Alive" : "Dead"])</b>"
 	else
 		msg += "<b>Total Players: [length(Lines)]</b>"
 
-	to_chat(src, msg)
+	var/datum/browser/browser = new(usr, "who", "<div align='center'>Who</div>", 300, 400)
+	browser.set_content(msg)
+	browser.open()
 
 
 /client/verb/staffwho()
@@ -137,4 +138,4 @@
 				num_mentors_online++
 
 	to_chat(src, "\n<b> Current Admins ([num_admins_online]):</b>\n[msg]")
-	to_chat(src, "\n<b> Current Mentors ([num_mentors_online]):</b>\n[mentmsg]")
+	to_chat(src, "\n<b> Current Mentors ([num_mentors_online]):</b>\n[mentmsg]<br>")
