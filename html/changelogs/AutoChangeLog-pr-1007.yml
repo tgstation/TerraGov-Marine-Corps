@@ -1,0 +1,4 @@
+author: "Shadow-Quill"
+delete-after: True
+changes: 
+  - spellcheck: "Removed a : in the headset hud config menu, which caused some confusion."
