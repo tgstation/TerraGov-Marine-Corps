@@ -1,7 +1,7 @@
 //Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
-#define DEBUG_HIT_CHANCE	1
-#define DEBUG_HUMAN_DEFENSE	1
-#define DEBUG_XENO_DEFENSE	1
+#define DEBUG_HIT_CHANCE	0
+#define DEBUG_HUMAN_DEFENSE	0
+#define DEBUG_XENO_DEFENSE	0
 #define DEBUG_CREST_DEFENSE	0
 
 #define MOVES_HITSCAN -1		//Not actually hitscan but close as we get without actual hitscan.
@@ -294,8 +294,6 @@
 	
 	var/hit_chance = A.get_projectile_hit_chance(src) // Calculated from combination of both ammo accuracy and gun accuracy
 
-	message_admins("reeee chance [hit_chance]")
-
 	if(hit_chance && !(A in permutated))
 		if(isliving(A))
 			if(firer && firer.sniper_target(A) && A != firer.sniper_target(A)) //First check to see if we've actually got anyone targeted; If we've singled out someone with a targeting laser, forsake all others
@@ -337,7 +335,6 @@
 							mob_is_hit = TRUE
 							break
 			if(mob_is_hit)
-				message_admins("on_hit_mob")
 				ammo.on_hit_mob(L,src)
 				if(L?.loc)
 					L.bullet_act(src)
@@ -347,7 +344,6 @@
 				L.visible_message("<span class='avoidharm'>[src] misses [L]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
 
 		else if(isobj(A))
-			message_admins("on_hit_obj")
 			ammo.on_hit_obj(A,src)
 			if(A && A.loc)
 				A.bullet_act(src)
@@ -355,7 +351,6 @@
 
 	// Explosive ammo always explodes on the turf of the clicked target
 	if(src && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE && T == target_turf)
-		message_admins("on_hit_turf")
 		ammo.on_hit_turf(T,src)
 		if(T?.loc)
 			T.bullet_act(src)
@@ -524,12 +519,13 @@
 	damage_falloff = ammo.damage_falloff
 	list_reagents = ammo.ammo_reagents
 	armor_type = ammo.armor_type
-	speed = ammo.shell_speed
+	speed = min(ammo.shell_speed, speed)
+	message_admins("new speed = [speed] ammo [ammo.shell_speed]")
 
 // target, firer, shot from, range, speed
 /obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
 	//message_admins("fire_at [Get_Angle(F, target)]")
-	src.speed += speed
+	src.speed = speed
 	message_admins("speed = [speed]")
 	preparePixelProjectile(target, F, null)
 	fire(Get_Angle(F, target), null)
