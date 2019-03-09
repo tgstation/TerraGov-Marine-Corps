@@ -3238,10 +3238,7 @@
 	icon_state = "fwindow";
 	dir = 1
 	},
-/obj/machinery/door/window/eastright{
-	req_access = null;
-	req_access_txt = "0"
-	},
+/obj/machinery/door/window,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/commandbunks)
 "akc" = (
@@ -20116,9 +20113,9 @@
 	dir = 1
 	},
 /turf/open/floor/almayer{
-	dir = 5;
+	tag = "icon-blue (NORTH)";
 	icon_state = "blue";
-	tag = "icon-blue"
+	dir = 1
 	},
 /area/almayer/shipboard/ex_firing_range)
 "aUc" = (
@@ -30989,43 +30986,31 @@
 	},
 /area/almayer/engineering/engine_core)
 "btz" = (
-/obj/item/fuelCell,
-/obj/item/fuelCell,
-/obj/item/fuelCell,
 /obj/structure/table/almayer,
-/obj/item/fuelCell,
 /obj/machinery/firealarm{
 	dir = 1
 	},
+/obj/item/fuelCell/full,
+/obj/item/fuelCell/full,
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
 /area/almayer/engineering/engine_core)
 "btA" = (
 /obj/structure/table/almayer,
-/obj/item/fuelCell,
-/obj/item/fuelCell,
-/obj/item/fuelCell,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/fuelCell/full,
+/obj/item/fuelCell/full,
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
 /area/almayer/engineering/engine_core)
 "btB" = (
 /obj/structure/table/almayer,
-/obj/item/fuelCell,
-/obj/item/fuelCell,
-/turf/open/floor/almayer{
-	icon_state = "cargo"
-	},
-/area/almayer/engineering/engine_core)
-"btC" = (
-/obj/structure/table/almayer,
-/obj/item/fuelCell,
-/obj/item/fuelCell,
-/obj/item/fuelCell,
+/obj/item/fuelCell/full,
+/obj/item/fuelCell/full,
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
@@ -38312,22 +38297,11 @@
 	dir = 8
 	},
 /area/almayer/engineering/engine_core)
-"bKi" = (
-/obj/item/fuelCell,
-/obj/item/fuelCell,
-/obj/item/fuelCell,
-/obj/structure/table/almayer,
-/obj/item/fuelCell,
-/turf/open/floor/almayer{
-	icon_state = "cargo"
-	},
-/area/almayer/engineering/engine_core)
 "bKj" = (
 /obj/structure/table/almayer,
-/obj/item/fuelCell,
-/obj/item/fuelCell,
-/obj/item/fuelCell,
 /obj/machinery/light,
+/obj/item/fuelCell/full,
+/obj/item/fuelCell/full,
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
@@ -44634,13 +44608,6 @@
 /obj/item/bedsheet/brown,
 /turf/open/floor/wood,
 /area/almayer/living/tankerbunks)
-"bYu" = (
-/turf/open/floor/almayer{
-	dir = 6;
-	icon_state = "blue";
-	tag = "icon-blue"
-	},
-/area/almayer/shipboard/ex_firing_range)
 "bYv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -47607,17 +47574,9 @@
 /obj/structure/closet/crate,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/ex_firing_range)
-"cfz" = (
-/obj/structure/table/almayer,
-/turf/open/floor/almayer/mono,
-/area/almayer/shipboard/ex_firing_range)
 "cfA" = (
 /obj/structure/table/almayer,
 /obj/item/reagent_container/spray/cleaner,
-/turf/open/floor/almayer/mono,
-/area/almayer/shipboard/ex_firing_range)
-"cfB" = (
-/obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/ex_firing_range)
 "cfC" = (
@@ -49690,7 +49649,11 @@
 /obj/machinery/firealarm{
 	dir = 1
 	},
-/turf/open/floor/almayer,
+/turf/open/floor/almayer{
+	tag = "icon-blue (NORTH)";
+	icon_state = "blue";
+	dir = 1
+	},
 /area/almayer/shipboard/ex_firing_range)
 "ckI" = (
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -50082,6 +50045,13 @@
 /obj/effect/landmark/shuttle_loc/marine_crs/dropship,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig)
+"dUd" = (
+/turf/open/floor/almayer{
+	tag = "icon-blue (NORTH)";
+	icon_state = "blue";
+	dir = 1
+	},
+/area/almayer/shipboard/ex_firing_range)
 "ees" = (
 /obj/structure/sign/nosmoking_2{
 	dir = 1
@@ -51081,6 +51051,13 @@
 	tag = "icon-red"
 	},
 /area/almayer/shipboard/weapon_room)
+"lYB" = (
+/turf/open/floor/almayer{
+	dir = 4;
+	icon_state = "bluecorner";
+	tag = "icon-bluecorner"
+	},
+/area/almayer/shipboard/ex_firing_range)
 "lZh" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -83016,7 +82993,7 @@ aSL
 aSg
 aTH
 lsF
-aQS
+lYB
 aRt
 cfv
 vHb
@@ -83273,8 +83250,8 @@ aSM
 aQi
 aQi
 vHb
-cfH
 aQi
+cfH
 aQi
 vHb
 aam
@@ -83530,7 +83507,7 @@ aTp
 bBM
 cic
 vHb
-aQS
+dUd
 aRt
 cfw
 vHb
@@ -84302,8 +84279,8 @@ bBM
 cic
 vHb
 aUb
-bYu
-cfz
+aRt
+aUc
 vHb
 aal
 aai
@@ -84558,7 +84535,7 @@ aTp
 bBM
 cic
 vHb
-aUc
+dUd
 aQS
 cfA
 vHb
@@ -85074,7 +85051,7 @@ cic
 vHb
 bxp
 aQS
-cfB
+eso
 vHb
 aam
 aai
@@ -109086,7 +109063,7 @@ bCd
 bCd
 bCd
 bvd
-bKi
+btB
 brQ
 aVm
 aVk
@@ -109600,7 +109577,7 @@ bFd
 bFd
 bHS
 bvd
-btC
+btB
 brQ
 aVn
 aVk
@@ -109857,7 +109834,7 @@ bxQ
 bxQ
 bxQ
 bvd
-btC
+btB
 brQ
 aVn
 aVk
@@ -110102,7 +110079,7 @@ aaa
 aVk
 aVm
 brQ
-btC
+btB
 bvd
 bxR
 bxR
@@ -110114,7 +110091,7 @@ bxR
 bxR
 bxR
 bvd
-btC
+btB
 brQ
 aVm
 aVk
