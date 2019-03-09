@@ -63,6 +63,9 @@ macro "macro"
 		name = "CTRL+4"
 		command = "a-intent hurt"
 	elem 
+		name = "CTRL+5"
+		command = "toggle-move-intent"
+	elem 
 		name = "CTRL+A+REP"
 		command = ".west"
 	elem 
@@ -314,17 +317,11 @@ macro "hotkeymode"
 		name = "F3"
 		command = "asay"
 	elem 
+		name = "F4"
+		command = "msay"
+	elem 
 		name = "F5"
-		command = "aghost"
-	elem 
-		name = "F6"
-		command = "Player-Panel"
-	elem 
-		name = "F7"
-		command = "Admin-PM"
-	elem 
-		name = "F8"
-		command = "Invisimin"
+		command = "dsay"
 	elem 
 		name = "F12"
 		command = "F12"
