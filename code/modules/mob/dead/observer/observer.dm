@@ -75,8 +75,7 @@
 		log_admin("[key_name(usr)] has taken [key_name_admin(target)].")
 		message_admins("[ADMIN_TPMONTY(usr)] has taken [ADMIN_TPMONTY(target)].")
 
-		target.key = usr.key
-		target.client.change_view(world.view)
+		mind.transfer_to(target, TRUE)
 		target.fully_replace_character_name(real_name, target.real_name)
 		if(target.job && target.mind)
 			var/datum/job/J = SSjob.name_occupations[target.job]
