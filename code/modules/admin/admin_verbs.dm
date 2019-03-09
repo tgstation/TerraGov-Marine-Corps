@@ -96,7 +96,7 @@
 
 /datum/admins/proc/change_key_panel()
 	set category = "Admin"
-	set name = "Change CKey"
+	set name = "Change CKey Mob"
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -146,7 +146,7 @@
 
 /datum/admins/proc/rejuvenate_panel()
 	set category = "Admin"
-	set name = "Rejuvenate"
+	set name = "Rejuvenate Mob"
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -193,7 +193,7 @@
 
 /datum/admins/proc/toggle_sleep_panel()
 	set category = "Admin"
-	set name = "Toggle Sleeping"
+	set name = "Toggle Sleeping Mob"
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -895,7 +895,7 @@
 
 /client/proc/private_message_context(var/mob/M in GLOB.mob_list)
 	set category = null
-	set name = "Private Message Mob"
+	set name = "Private Message"
 
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
@@ -908,7 +908,7 @@
 
 /client/proc/private_message_panel()
 	set category = "Admin"
-	set name = "Private Message"
+	set name = "Private Message Mob"
 
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return

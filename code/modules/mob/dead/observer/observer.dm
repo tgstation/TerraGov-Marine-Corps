@@ -69,6 +69,9 @@
 		if(target.taken || target.key || target.ckey)
 			to_chat(usr, "<span class='warning'>That mob has already been taken.</span>")
 			return
+		if(target.job && (is_banned_from(ckey, target.job) || jobban_isbanned(src, target.job)))
+			to_chat(usr, "<span class='warning'>You are jobbanned from that job.</span>")
+			return
 
 		target.taken = TRUE
 
