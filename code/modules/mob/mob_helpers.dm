@@ -486,3 +486,17 @@ mob/proc/get_standard_bodytemperature()
 					usr.client.screen[screen_num].selecting = "l_leg"
 
 	usr.client.screen[screen_num].update_icon(usr)
+
+
+
+/mob/verb/toggle_move_intent(screen_num as null|num)
+	if(!screen_num || !client)
+		return
+
+	switch(m_intent)
+		if(MOVE_INTENT_RUN)
+			m_intent = MOVE_INTENT_WALK
+		if(MOVE_INTENT_WALK)
+			m_intent = MOVE_INTENT_RUN
+
+	client.screen[screen_num].update_icon(src)
