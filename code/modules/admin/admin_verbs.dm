@@ -1330,3 +1330,17 @@
 	browser.height = min(100 + count * 20, 650)
 	browser.set_content(dat.Join())
 	browser.open()
+
+
+/datum/admins/proc/mcdb()
+	set category = "Admin"
+	set name = "Open MCDB"
+
+	if(!CONFIG_GET(string/dburl))
+		to_chat(usr, "<span class='warning'>Database URL not set.</span>")
+		return
+
+	if(alert("This will open the MCDB in your browser. Are you sure?",, "Yes", "No") != "Yes")
+		return
+
+	usr << link(CONFIG_GET(string/dburl))

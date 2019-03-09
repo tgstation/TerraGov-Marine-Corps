@@ -296,7 +296,8 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/mode_panel,
 	/datum/admins/proc/job_slots,
 	/datum/admins/proc/toggle_adminhelp_sound,
-	/datum/admins/proc/toggle_prayers
+	/datum/admins/proc/toggle_prayers,
+	/datum/admins/proc/mcdb
 	)
 
 GLOBAL_PROTECT(admin_verbs_mentor)
