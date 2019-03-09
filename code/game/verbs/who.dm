@@ -38,16 +38,16 @@
 			entry += " - Playing as [C.mob.real_name]"
 			switch(C.mob.stat)
 				if(UNCONSCIOUS)
-					entry += " - <font color='#404040'><b>Unconscious</b></font>"
+					entry += " - <b>Unconscious</b>"
 				if(DEAD)
 					if(isobserver(C.mob))
 						var/mob/dead/observer/O = C.mob
 						if(O.started_as_observer)
-							entry += " - <font>Observing</font>"
+							entry += " - Observing"
 						else
-							entry += " - <font><b>DEAD</b></font>"
+							entry += " - <b>DEAD</b>"
 					else
-						entry += " - <font><b>DEAD</b></font>"
+						entry += " - <b>DEAD</b>"
 			entry += " (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 			Lines += entry
 	else
