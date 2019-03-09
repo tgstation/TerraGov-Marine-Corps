@@ -213,7 +213,7 @@
 					found = 1
 					break
 			if(!found)
-				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)<br>"
+				msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)<br>"
 
 
 		if(L.ckey && L.client)
