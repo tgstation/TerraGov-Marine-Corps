@@ -164,6 +164,6 @@ F3 = ASAY<br>
 F4 = MSAY<br>
 F5 = DSAY"}
 
-	var/datum/browser/browser = new(src, "hotkeys", "<div align='center'>Hotkeys</div>", 300, 400)
+	var/datum/browser/browser = new(usr, "hotkeys", "<div align='center'>Hotkeys</div>", 300, 400)
 	browser.set_content(dat)
 	browser.open()
