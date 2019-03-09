@@ -1,0 +1,5 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "Tequila bottles now come with actual tequila inside."
+  - spellcheck: "Removed the extra L from many istances of \"tequila\"."
