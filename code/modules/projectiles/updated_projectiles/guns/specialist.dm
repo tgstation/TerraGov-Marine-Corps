@@ -266,11 +266,18 @@
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
 	attachable_allowed = list(
+						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/compensator,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/compensator)
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/attached_gun/grenade
+						)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
@@ -278,10 +285,10 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/m4ra, /obj/item/attachable/stock/rifle/marksman)
 
 /obj/item/weapon/gun/rifle/m4ra/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
