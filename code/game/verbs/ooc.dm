@@ -102,7 +102,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	if(!mob)
 		return
 
-	if(mob.stat == DEAD || !isliving(mob) && !admin)
+	if(mob.stat == DEAD && !admin)
 		to_chat(src, "<span class='warning'>You must be alive to use LOOC.</span>")
 		return
 
@@ -145,7 +145,7 @@ var/global/normal_ooc_colour = "#002eb8"
 
 	var/message
 
-	if(admin)
+	if(admin && isobserver(mob))
 		message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [usr.client.holder.fakekey ? "Administrator" : usr.client.key]: <span class='message'>[msg]</span></span></font>"
 		usr.visible_message(message, message, message)
 	else
