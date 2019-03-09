@@ -437,7 +437,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/dat = "<b>Contents of [key_name(M)]:</b><hr>"
 
 	var/list/L = M.get_contents()
-	for(var/atom/A in L)
+	for(var/i in L)
+		var/atom/A = i
 		dat += "[A] [ADMIN_VV(A)]<br>"
 
 	usr << browse(dat, "window=contents")

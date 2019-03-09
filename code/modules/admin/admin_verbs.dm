@@ -1234,11 +1234,10 @@
 		return
 
 	for(var/client/C in GLOB.clients)
-		if(isobserver(C.mob) || C.mob.stat == DEAD)
+		if(!ishuman(C.mob))
 			continue
-		if(ishuman(C.mob))
-			var/mob/living/carbon/human/H = C.mob
-			H.forceMove(get_turf(usr))
+		var/mob/living/carbon/human/H = C.mob
+		H.forceMove(get_turf(usr))
 
 
 /datum/admins/proc/get_all_xenos()
@@ -1246,11 +1245,10 @@
 		return
 
 	for(var/client/C in GLOB.clients)
-		if(isobserver(C.mob) || C.mob.stat == DEAD)
+		if(!isxeno(C.mob))
 			continue
-		if(isxeno(C.mob))
-			var/mob/living/carbon/Xenomorph/X = C.mob
-			X.forceMove(get_turf(usr))
+		var/mob/living/carbon/Xenomorph/X = C.mob
+		X.forceMove(get_turf(usr))
 
 
 /datum/admins/proc/get_all()
@@ -1258,7 +1256,7 @@
 		return
 
 	for(var/client/C in GLOB.clients)
-		if(isobserver(C.mob) || C.mob.stat == DEAD)
+		if(isobserver(C.mob) || isnewplayer(C.mob))
 			continue
 		var/mob/M = C.mob
 		M.forceMove(get_turf(usr))
