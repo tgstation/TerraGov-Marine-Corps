@@ -55,15 +55,13 @@
 					status = "Unconscious"
 				if(DEAD)
 					status = "Dead"
-			health = "Oxy: [L.getOxyLoss()] - Tox: [L.getToxLoss()] - Fire: [L.getFireLoss()] - Brute: [L.getBruteLoss()] - Clone: [L.getCloneLoss()] - Brain: [L.getBrainLoss()]"
+			health = "Oxy: [L.getOxyLoss()]  Tox: [L.getToxLoss()]  Fire: [L.getFireLoss()]  Brute: [L.getBruteLoss()]  Clone: [L.getCloneLoss()]  Brain: [L.getBrainLoss()]"
 
-		to_chat(usr, {"<span class='notice'><hr>
-<b>Info about [M.real_name]:</b>
+		to_chat(usr, {"<span class='notice'><hr><b>Info about [M.real_name]:</b>
 Type: [M.type] | Gender: [M.gender] | Job: [M.job]
 Location: [AREACOORD(M.loc)]
 Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
-<span class='admin'><span class='message'>[ADMIN_FULLMONTY(M)]</span></span>
-<hr></span>"})
+<span class='admin'><span class='message'>[ADMIN_FULLMONTY(M)]</span></span><hr></span>"})
 
 
 	else if(href_list["playerpanel"])
