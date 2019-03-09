@@ -175,7 +175,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(M)].")
 
 
-/datum/admins/proc/toggle_sleep(var/mob/living/M as mob in GLOB.mob_living_list)
+/datum/admins/proc/toggle_sleep(var/mob/living/M in GLOB.mob_living_list)
 	set category = null
 	set name = "Toggle Sleeping"
 
