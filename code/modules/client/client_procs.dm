@@ -233,12 +233,13 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 
 	to_chat(src, get_message_output("message", ckey))
 
-	if(holder.rank.rights & R_ADMIN)
-		message_admins("Admin login: [key_name_admin(src)].")
-		to_chat(src, get_message_output("memo"))
-	else if(holder.rank.rights & R_MENTOR)
-		message_staff("Mentor login: [key_name_admin(src)].")
-			
+	if(holder)
+		if(holder.rank.rights & R_ADMIN)
+			message_admins("Admin login: [key_name_admin(src)].")
+			to_chat(src, get_message_output("memo"))
+		else if(holder.rank.rights & R_MENTOR)
+			message_staff("Mentor login: [key_name_admin(src)].")
+
 	if(all_player_details[ckey])
 		player_details = all_player_details[ckey]
 	else
