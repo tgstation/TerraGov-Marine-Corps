@@ -167,12 +167,6 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	. = ..()	//calls mob.Login()
 	chatOutput.start() // Starts the chat
 
-	if(check_rights(R_ADMIN, FALSE))
-		message_admins("Admin login: [key_name_admin(src)].")
-		to_chat(src, get_message_output("memo"))
-	else if(check_rights(R_MENTOR, FALSE))
-		message_staff("Mentor login: [key_name_admin(src)].")
-
 	if(byond_version < 512)
 		to_chat(src, "<span class='userdanger'>Your version of byond is severely out of date.</span>")
 		to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
@@ -238,6 +232,13 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		GLOB.clientmessages.Remove(ckey)
 
 	to_chat(src, get_message_output("message", ckey))
+
+	if(check_rights(R_ADMIN, FALSE))
+		message_admins("Admin login: [key_name_admin(src)].")
+		to_chat(src, get_message_output("memo"))
+	else if(check_rights(R_MENTOR, FALSE))
+		message_staff("Mentor login: [key_name_admin(src)].")
+
 	if(all_player_details[ckey])
 		player_details = all_player_details[ckey]
 	else
