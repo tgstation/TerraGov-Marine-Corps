@@ -219,7 +219,7 @@
 /obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
 	var/list/dat = list()
 	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
-		if(current_mag && current_mag.current_rounds > 0)
+		if(current_mag?.current_rounds > 0)
 			if(flags_gun_features & GUN_AMMO_COUNTER)
 				dat += "Ammo counter shows [current_mag.current_rounds] round\s remaining.<br>"
 			else

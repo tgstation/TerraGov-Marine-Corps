@@ -336,7 +336,7 @@
 	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
 
 /obj/item/weapon/gun/smartgun/examine_ammo_count(mob/user)
-	to_chat(user, "[current_mag.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]")
+	to_chat(user, "[current_mag?.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]")
 	to_chat(user, "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"].")
 
 /obj/item/weapon/gun/smartgun/unique_action(mob/user)
@@ -469,7 +469,7 @@
 /obj/item/weapon/gun/launcher/m92/examine_ammo_count(mob/user)
 	if(!length(grenades) || (get_dist(user, src) > 2 && user != loc))
 		return
-	to_chat(user, "<span class='notice'> It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades.</span>")
+	to_chat(user, "<span class='notice'> It is loaded with <b>[length(grenades)] / [max_grenades]</b> grenades.</span>")
 
 
 /obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user)
@@ -760,7 +760,7 @@
 
 
 /obj/item/weapon/gun/launcher/rocket/examine_ammo_count(mob/user)
-	if(current_mag.current_rounds)
+	if(current_mag?.current_rounds)
 		to_chat(user, "It's ready to rocket.")
 	else
 		to_chat(user, "It's empty.")
