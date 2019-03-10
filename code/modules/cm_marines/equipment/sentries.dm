@@ -120,14 +120,15 @@
 
 	user.visible_message("<span class='notice'>[user] begins to fold up and retrieve \the [src].</span>",
 	"<span class='notice'>You begin to fold up and retrieve \the [src].</span>")
-	if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-		if(!src || anchored)//Check if we got exploded
-			return
-		user.visible_message("<span class='notice'>[user] folds up and retrieves \the [src].</span>",
-		"<span class='notice'>You fold up and retrieve \the [src].</span>")
-		var/obj/item/device/turret_tripod/T = new(loc)
-		user.put_in_hands(T)
-		qdel(src)
+	if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+		return
+	if(!src || anchored || !Adjacent(user))//Check if we got exploded
+		return
+	user.visible_message("<span class='notice'>[user] folds up and retrieves \the [src].</span>",
+	"<span class='notice'>You fold up and retrieve \the [src].</span>")
+	var/obj/item/device/turret_tripod/T = new(loc)
+	user.put_in_hands(T)
+	qdel(src)
 
 /obj/machinery/turret_tripod_deployed/attackby(var/obj/item/O as obj, mob/user as mob)
 	if(iswrench(O))
@@ -1260,14 +1261,15 @@
 
 	user.visible_message("<span class='notice'>[user] begins to fold up and retrieve [src].</span>",
 	"<span class='notice'>You begin to fold up and retrieve [src].</span>")
-	if(do_after(user, work_time * 1.5, TRUE, 5, BUSY_ICON_BUILD))
-		if(!src || on || anchored)//Check if we got exploded
-			return
-		to_chat(user, "<span class='notice'>You fold up and retrieve [src].</span>")
-		var/obj/item/device/marine_turret/mini/P = new(loc)
-		user.put_in_hands(P)
-		P.health = health //track the health
-		qdel(src)
+	if(!do_after(user, work_time * 1.5, TRUE, 5, BUSY_ICON_BUILD))
+		return
+	if(!src || on || anchored || !Adjacent(user))//Check if we got exploded
+		return
+	to_chat(user, "<span class='notice'>You fold up and retrieve [src].</span>")
+	var/obj/item/device/marine_turret/mini/P = new(loc)
+	user.put_in_hands(P)
+	P.health = health //track the health
+	qdel(src)
 
 /obj/machinery/marine_turret/mini/update_icon()
 	if(machine_stat && health > 0) //Knocked over
