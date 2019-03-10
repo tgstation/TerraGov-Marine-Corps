@@ -391,11 +391,11 @@
 	if(!check_rights(R_SOUND))
 		return
 
-	for(var/mob/M in GLOB.player_list)
-		if(M.client)
-			var/client/C = M.client
-			if(C?.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-				C.chatOutput.stopMusic()
+	for(var/i in GLOB.clients)
+		var/client/C = i
+		if(!C.chatOutput || C.chatOutput.broken || !C.chatOutput.loaded)
+			continue	
+		C.chatOutput.stopMusic()
 
 
 	log_admin("[key_name(usr)] stopped the currently playing music.")
