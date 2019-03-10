@@ -801,14 +801,14 @@
 
 	var/datum/outfit/O
 	H.delete_equipment(TRUE)
-	if(istype(dresscode, /datum/outfit))
-		O = dresscode
-		H.equipOutfit(dresscode, TRUE)
+	if(dresscode != "-- Naked")
+		O = new dresscode
+		H.equipOutfit(O, TRUE)
 
 	H.regenerate_icons()
 
-	log_admin("[key_name(usr)] changed the equipment of [key_name(H)] to [O ?  O.name : dresscode].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(H)] to [O ? O.name : dresscode].")
+	log_admin("[key_name(usr)] changed the equipment of [key_name(H)] to [istype(O) ?  O.name : dresscode].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(H)] to [istype(O) ? O.name : dresscode].")
 
 
 GLOBAL_LIST_EMPTY(custom_outfits)
