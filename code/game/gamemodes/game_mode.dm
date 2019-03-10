@@ -24,7 +24,6 @@
 	var/required_enemies = 0
 	var/recommended_enemies = 0
 	var/newscaster_announcements = null
-	var/ert_disabled = FALSE
 
 
 /datum/game_mode/proc/announce()
