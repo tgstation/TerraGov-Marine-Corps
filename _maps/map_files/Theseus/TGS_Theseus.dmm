@@ -2754,12 +2754,6 @@
 "aiP" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/goldappleseed,
-/obj/machinery/alarm/almayer{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/open/floor/almayer{
 	dir = 5;
 	icon_state = "silver";
@@ -31462,8 +31456,10 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/req)
 "buG" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/req)
 "buH" = (
@@ -32932,7 +32928,6 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/req)
 "bya" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
@@ -33538,12 +33533,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/req)
-"bzp" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/almayer/squads/req)
 "bzq" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 4;
@@ -34064,10 +34053,10 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/living/briefing)
 "bAA" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
 /obj/machinery/vending/snack,
+/obj/machinery/firealarm{
+	dir = 1
+	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/briefing)
 "bAB" = (
@@ -50281,6 +50270,12 @@
 	tag = "icon-blue"
 	},
 /area/almayer/hallways/aft_hallway)
+"gas" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/open/floor/almayer/mono,
+/area/almayer/squads/req)
 "gce" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -50737,6 +50732,16 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/commandbunks)
+"jZY" = (
+/obj/machinery/alarm/almayer{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	dir = 4;
+	icon_state = "silver";
+	tag = "icon-silver"
+	},
+/area/almayer/command/corporateliaison)
 "kac" = (
 /obj/machinery/power/apc/almayer,
 /obj/structure/cable{
@@ -74739,7 +74744,7 @@ aag
 aai
 aai
 adW
-avb
+jZY
 avb
 avb
 bvi
@@ -74996,7 +75001,7 @@ aag
 aai
 acg
 cSa
-ake
+apB
 ajT
 aiP
 azW
@@ -93119,9 +93124,9 @@ bpr
 bri
 bsT
 buG
-buG
+bAK
 bya
-bzp
+bnC
 bAO
 bnF
 bDH
@@ -93375,7 +93380,7 @@ bnG
 bps
 brj
 bnC
-buH
+gas
 bnC
 bnC
 bnC
@@ -110210,7 +110215,7 @@ aaa
 aad
 anD
 aoY
-mER
+aoY
 asv
 aoY
 pNG
@@ -110222,7 +110227,7 @@ aup
 avY
 aoY
 asv
-mER
+aoY
 aoY
 anD
 aMu
@@ -110466,8 +110471,8 @@ aaa
 aaa
 aad
 anD
-asv
-asv
+aoY
+aoY
 asv
 auj
 pNG
@@ -110479,8 +110484,8 @@ awa
 avY
 aHj
 asv
-asv
-asv
+aoY
+aoY
 anD
 aMu
 aaa
@@ -111495,7 +111500,7 @@ aaa
 aaa
 anD
 aoY
-aoY
+mER
 asv
 aui
 avX
@@ -111507,7 +111512,7 @@ lAe
 avX
 aHi
 asv
-aoY
+mER
 aoY
 anD
 aaa
