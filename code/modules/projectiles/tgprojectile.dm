@@ -1083,7 +1083,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 // walls can get shot and damaged, but bullets (vs energy guns) do much less.
 /turf/closed/wall/bullet_act(obj/item/projectile/P)
-	if(!..())
+	. = ..()
+	
+	if(!.)
 		return
 	var/damage = P.damage
 	if(damage < 1) return
