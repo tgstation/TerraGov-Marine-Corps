@@ -393,7 +393,7 @@
 
 	for(var/i in GLOB.clients)
 		var/client/C = i
-		if(!C.chatOutput || C.chatOutput.broken || !C.chatOutput.loaded)
+		if(!C?.chatOutput.loaded || C.chatOutput.broken)
 			continue	
 		C.chatOutput.stopMusic()
 
