@@ -8,6 +8,7 @@
 	canmove = FALSE
 	anchored = TRUE
 	invisibility = INVISIBILITY_OBSERVER
+	alpha = 127
 	layer = ABOVE_FLY_LAYER
 
 
@@ -68,6 +69,9 @@
 		if(target.taken || target.key || target.ckey)
 			to_chat(usr, "<span class='warning'>That mob has already been taken.</span>")
 			return
+		if(target.job && (is_banned_from(ckey, target.job) || jobban_isbanned(src, target.job)))
+			to_chat(usr, "<span class='warning'>You are jobbanned from that job.</span>")
+			return
 
 		target.taken = TRUE
 
@@ -76,6 +80,15 @@
 
 		mind.transfer_to(target, TRUE)
 		target.fully_replace_character_name(real_name, target.real_name)
+		if(target.job)
+			var/datum/job/J = SSjob.name_occupations[target.job]
+			var/datum/outfit/job/O = new J.outfit
+			var/datum/skills/L = new J.skills_type
+			target.mind.cm_skills = L
+			target.mind.comm_title = J.comm_title
+
+			SSjob.AssignRole(target, target.job)
+			O.post_equip(target)
 
 
 	else if(href_list["preference"])
@@ -208,7 +221,7 @@
 	if(!client)
 		return FALSE
 
-	if(!mind || !mind.current || mind.current.gc_destroyed || !can_reenter_corpse)
+	if(!mind?.current || mind.current.gc_destroyed || !can_reenter_corpse)
 		to_chat(src, "<span class='warning'>You have no body.</span>")
 		return FALSE
 
@@ -284,11 +297,10 @@
 	var/list/names = list()
 	var/list/namecounts = list()
 
-	for(var/x in sortNames(GLOB.dead_mob_list))
-		var/mob/M = x
-		if(!M.client)
+	for(var/mob/dead/observer/O in sortNames(GLOB.dead_mob_list))
+		if(!O.client)
 			continue
-		var/name = M.name
+		var/name = O.name
 		if(name in names)
 			namecounts[name]++
 			name = "[name] ([namecounts[name]])"
@@ -298,7 +310,7 @@
 
 		name += " (ghost)"
 
-		observers[name] = M
+		observers[name] = O
 
 	if(!length(observers))
 		to_chat(usr, "<span class='warning'>There are no ghosts at the moment.</span>")
@@ -456,7 +468,7 @@
 
 	for(var/x in sortNames(GLOB.dead_mob_list))
 		var/mob/M = x
-		if(isobserver(M))
+		if(isobserver(M) || isnewplayer(M))
 			continue
 		var/name = M.name
 		if(name in names)
@@ -580,8 +592,10 @@
 
 	if(see_invisible == SEE_INVISIBLE_OBSERVER_NOLIGHTING)
 		see_invisible = SEE_INVISIBLE_OBSERVER
+		to_chat(src, "<span class='notice'>You can no longer see in the dark.</span>")
 	else
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
+		to_chat(src, "<span class='notice'>You can now see in the dark.</span>")
 
 
 /mob/dead/observer/verb/hive_status()
@@ -681,8 +695,8 @@
 			return
 
 	var/mob/ghostmob = usr.client.mob
-	message_admins("[key_name(usr)] has joined as a [L].")
-	log_admin("[ADMIN_TPMONTY(usr)] has joined as a [L].")
+	log_admin("[key_name(usr)] has joined as a [L].")
+	message_admins("[ADMIN_TPMONTY(usr)] has joined as a [L].")
 	L.ckey = usr.ckey
 
 	L.client?.change_view(world.view)

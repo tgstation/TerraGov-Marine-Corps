@@ -136,10 +136,6 @@
 	name = "Circuit board (Robotics Control)"
 	build_path = /obj/machinery/computer/robotics
 	origin_tech = "programming=3"
-/obj/item/circuitboard/computer/drone_control
-	name = "Circuit board (Drone Control)"
-	build_path = /obj/machinery/computer/drone_control
-	origin_tech = "programming=3"
 /obj/item/circuitboard/computer/arcade
 	name = "Circuit board (Arcade)"
 	build_path = /obj/machinery/computer/arcade

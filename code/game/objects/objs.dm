@@ -82,10 +82,6 @@
 /obj/proc/interact(mob/user)
 	return
 
-/obj/proc/update_icon()
-	return
-
-
 
 /obj/item/proc/updateSelfDialog()
 	var/mob/M = src.loc

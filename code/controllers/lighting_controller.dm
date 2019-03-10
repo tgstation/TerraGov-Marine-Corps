@@ -26,6 +26,12 @@ datum/controller/lighting/New()
 		lighting_controller = src
 
 
+/datum/controller/lighting/stat_entry()
+	if(!statclick)
+		statclick = new/obj/effect/statclick/debug(null, "Debug", src)
+	stat("Lightning:", statclick)
+
+
 //Workhorse of lighting. It cycles through each light to see which ones need their effects updating. It updates their
 //effects and then processes every turf in the queue, moving the turfs to the corresponing lighting sub-area.
 //All queue lists prune themselves, which will cause lights with no luminosity to be garbage collected (cheaper and safer

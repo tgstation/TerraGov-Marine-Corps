@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			to_chat(src, "<span class='danger'>You have exceeded the spam filter limit for identical messages. An auto-mute was applied.</span>")
 			mute(src, mute_type, TRUE)
 			return TRUE
-		if(last_message_count >= SPAM_TRIGGER_WARNING)
+		else if(last_message_count >= SPAM_TRIGGER_WARNING)
 			to_chat(src, "<span class='danger'>You are nearing the spam filter limit for identical messages.</span>")
 			return TRUE
 	else
@@ -151,11 +151,6 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		GLOB.admins |= src
 		holder.owner = src
 		holder.activate()
-		if(check_rights(R_ADMIN, FALSE))
-			message_admins("Admin login: [key_name_admin(src)].")
-			to_chat(src, get_message_output("memo"))
-		else if(check_rights(R_MENTOR, FALSE))
-			message_staff("Mentor login: [key_name_admin(src)].")
 	else if(GLOB.deadmins[ckey])
 		verbs += /client/proc/readmin
 
@@ -235,6 +230,15 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		for(var/message in GLOB.clientmessages[ckey])
 			to_chat(src, message)
 		GLOB.clientmessages.Remove(ckey)
+
+	to_chat(src, get_message_output("message", ckey))
+
+	if(holder)
+		if(holder.rank.rights & R_ADMIN)
+			message_admins("Admin login: [key_name_admin(src)].")
+			to_chat(src, get_message_output("memo"))
+		else if(holder.rank.rights & R_MENTOR)
+			message_staff("Mentor login: [key_name_admin(src)].")
 
 	if(all_player_details[ckey])
 		player_details = all_player_details[ckey]

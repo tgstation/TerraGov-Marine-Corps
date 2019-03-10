@@ -141,7 +141,7 @@
 	. = list()
 	.["version"] = GLOB.game_version
 	.["mode"] = GLOB.master_mode
-	.["respawn"] = config ? !CONFIG_GET(flag/norespawn) : FALSE
+	.["respawn"] = GLOB.respawn_allowed
 	.["enter"] = GLOB.enter_allowed
 	.["vote"] = CONFIG_GET(flag/allow_vote_mode)
 	.["ai"] = CONFIG_GET(flag/allow_ai)
