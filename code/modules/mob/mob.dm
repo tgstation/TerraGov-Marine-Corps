@@ -812,11 +812,11 @@ mob/proc/yank_out_object()
 
 
 /mob/proc/remove_emote_overlay(client/C, image/emote_overlay, list/viewers)
-	C?.images -= emote_overlay
-	if(!viewers)
-		viewers = viewers()
+	if(C)
+		C.images -= emote_overlay
 	for(var/mob/M in viewers)
-		M.client?.images -= emote_overlay
+		if(M.client)
+			M.client.images -= emote_overlay
 	qdel(emote_overlay)
 
 
