@@ -7,79 +7,6 @@
 #define MOVES_HITSCAN -1		//Not actually hitscan but close as we get without actual hitscan.
 #define MUZZLE_EFFECT_PIXEL_INCREMENT 17	//How many pixels to move the muzzle flash up so your character doesn't look like they're shitting out lasers.
 
-/*
-/obj/item/projectile/proc/on_hit(atom/target, blocked = FALSE)
-	var/turf/target_loca = get_turf(target)
-
-	var/hitx
-	var/hity
-	if(target == original)
-		hitx = target.pixel_x + p_x - 16
-		hity = target.pixel_y + p_y - 16
-	else
-		hitx = target.pixel_x + rand(-8, 8)
-		hity = target.pixel_y + rand(-8, 8)
-
-	if(!nodamage && (damage_type == BRUTE || damage_type == BURN) && iswallturf(target_loca) && prob(75))
-		var/turf/closed/wall/W = target_loca
-		if(impact_effect_type && !hitscan)
-			new impact_effect_type(target_loca, hitx, hity)
-
-		//W.add_dent(WALL_DENT_SHOT, hitx, hity)
-
-		return BULLET_ACT_HIT
-
-	if(!isliving(target))
-		if(impact_effect_type && !hitscan)
-			new impact_effect_type(target_loca, hitx, hity)
-		return BULLET_ACT_HIT
-
-	var/mob/living/L = target
-
-	if(blocked != 100) // not completely blocked
-		if(damage && L.blood_volume && damage_type == BRUTE)
-			var/splatter_dir = dir
-			if(starting)
-				splatter_dir = get_dir(starting, target_loca)
-			if(isalien(L))
-				new /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter(target_loca, splatter_dir)
-			else
-				new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir)
-			if(prob(33))
-				L.add_splatter_floor(target_loca)
-		else if(impact_effect_type && !hitscan)
-			new impact_effect_type(target_loca, hitx, hity)
-
-		var/organ_hit_text = ""
-		var/limb_hit = L.check_limb_hit(def_zone)//to get the correct message info.
-		if(limb_hit)
-			organ_hit_text = " in \the [parse_zone(limb_hit)]"
-		if(suppressed)
-			playsound(loc, hitsound, 5, 1, -1)
-			to_chat(L, "<span class='userdanger'>You're shot by \a [src][organ_hit_text]!</span>")
-		else
-			if(hitsound)
-				var/volume = vol_by_damage()
-				playsound(loc, hitsound, volume, 1, -1)
-			L.visible_message("<span class='danger'>[L] is hit by \a [src][organ_hit_text]!</span>", \
-					"<span class='userdanger'>[L] is hit by \a [src][organ_hit_text]!</span>", null, COMBAT_MESSAGE_RANGE)
-		L.on_hit(src)
-
-	var/reagent_note
-	if(reagents && reagents.reagent_list)
-		reagent_note = " REAGENTS:"
-		for(var/datum/reagent/R in reagents.reagent_list)
-			reagent_note += R.id + " ("
-			reagent_note += num2text(R.volume) + ") "
-
-	if(ismob(firer))
-		log_combat(firer, L, "shot", src, reagent_note)
-	else
-		L.log_message("has been shot by [firer] with [src]", LOG_ATTACK, color="orange")
-
-	return L.apply_effects(stun, knockdown, unconscious, irradiate, slur, stutter, eyeblur, drowsy, blocked, stamina, jitter, paralyze, immobilize)
-*/
-
 /obj/machinery/pewpew
 	name = "pewpew"
 	use_power = 0
@@ -193,20 +120,7 @@
 	var/decayedRange			//stores original range
 	var/reflect_range_decrease = 5			//amount of original range that falls off when reflecting, so it doesn't go forever
 	var/reflectable = NONE // Can it be reflected or not?
-		//Effects
-	var/stun = 0
-	var/knockdown = 0
-	var/paralyze = 0
-	var/immobilize = 0
-	var/unconscious = 0
-	var/irradiate = 0
-	var/stutter = 0
-	var/slur = 0
-	var/eyeblur = 0
-	var/drowsy = 0
-	var/stamina = 0
-	var/jitter = 0
-	var/dismemberment = 0 //The higher the number, the greater the bonus to dismembering. 0 will not dismember at all.
+	
 	var/impact_effect_type //what type of impact effect to show when hitting something
 	var/log_override = FALSE //is this type spammed enough to not log? (KAs)
 
