@@ -1177,12 +1177,12 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 	return istype(thing, /datum) || istype(thing, /client)
 
 
-/obj/effect/statclick/SDQL2_delete/Click()
+/obj/effect/statclick/SDQL2_delete/clicked()
 	var/datum/SDQL2_query/Q = target
 	Q.delete_click()
 
 
-/obj/effect/statclick/SDQL2_action/Click()
+/obj/effect/statclick/SDQL2_action/clicked()
 	var/datum/SDQL2_query/Q = target
 	Q.action_click()
 
@@ -1191,5 +1191,5 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 	name = "VIEW VARIABLES"
 
 
-/obj/effect/statclick/SDQL2_VV_all/Click()
+/obj/effect/statclick/SDQL2_VV_all/clicked()
 	usr.client.debug_variables(GLOB.sdql2_queries)
