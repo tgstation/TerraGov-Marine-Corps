@@ -538,7 +538,7 @@
 	F.throw_range = 20
 	if(F?.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
 		log_explosion("[key_name(user)] fired a grenade [F] from [src] at [AREACOORD(user.loc)].")
-		log_combat(user, name, "fired a grenade [F] from ")
+		log_combat(user, src, "fired a grenade [F] from [src]")
 		F.det_time = min(10, F.det_time)
 		F.launched = TRUE
 		F.throwforce += F.launchforce //Throws with signifcantly more force than a standard marine can.

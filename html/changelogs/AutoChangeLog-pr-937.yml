@@ -1,5 +1,0 @@
-author: "by Surrealistik"
-delete-after: True
-changes: 
-  - balance: "Explosions now apply stagger and slow to Xenos and humans. The amount is higher at higher explosion powers, and is lowered by explosion resistance/Bomb armor."
-  - balance: "Damage and debuffs from explosions is reduced by a % equal to a human's Bomb armor. Initial damage has been reduced accordingly. Explosions can no longer gib humans in keeping with policy to minimize permadeath events. X-treme explosions will still probably instantly kill you dead though."

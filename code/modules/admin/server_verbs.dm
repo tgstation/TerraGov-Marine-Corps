@@ -9,9 +9,9 @@
 	if(alert("Restart the game world?", "Restart", "Yes", "No") != "Yes")
 		return
 
-	var/mention = FALSE
-	if(alert("Mention the New Round Alert role?", "Mention Role", "Yes", "No") == "Yes")
-		mention = TRUE
+	var/message = FALSE
+	if(alert("Send the new round message?", "Message", "Yes", "No") == "Yes")
+		message = TRUE
 
 	to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by: [usr.key]</span>")
 
@@ -19,7 +19,8 @@
 	message_admins("[ADMIN_TPMONTY(usr)] initiated a restart.")
 
 	spawn(50)
-		world.Reboot(mention)
+		world.Reboot(message)
+
 
 /datum/admins/proc/shutdown_server()
 	set category = "Server"
@@ -28,37 +29,37 @@
 
 	var/static/shuttingdown = null
 	var/static/timeouts = list()
-	if (!CONFIG_GET(flag/allow_shutdown))
+	if(!CONFIG_GET(flag/allow_shutdown))
 		to_chat(usr, "<span class='danger'>This has not been enabled by the server operator.</span>")
 		return
 
-	if (!check_rights(R_SERVER))
+	if(!check_rights(R_SERVER))
 		return
 
-	if (shuttingdown)
-		if (alert("Are you use you want to cancel the shutdown initiated by [shuttingdown]?", "Cancel the shutdown?", "No", "Yes, Cancel the shutdown", "No.") != "Yes, Cancel the shutdown")
+	if(shuttingdown)
+		if(alert("Are you use you want to cancel the shutdown initiated by [shuttingdown]?", "Cancel the shutdown?", "No", "Yes, Cancel the shutdown", "No.") != "Yes, Cancel the shutdown")
 			return
 		message_admins("[ADMIN_TPMONTY(usr)] Cancelled the server shutdown that [shuttingdown] started.")
 		timeouts[shuttingdown] = world.time
 		shuttingdown = FALSE
 		return
 
-	if (timeouts[usr.ckey] && timeouts[usr.ckey] + 2 MINUTES > world.time)
+	if(timeouts[usr.ckey] && timeouts[usr.ckey] + 2 MINUTES > world.time)
 		to_chat(usr, "<span class='danger'>You must wait 2 minutes after your shutdown attempt is aborted before you can try again.</span>")
 		return
 
-	if (alert("Are you sure you want to shutdown the server? Only somebody with remote access to the server can turn it back on.", "Shutdown Server?", "Cancel", "Shutdown Server", "Cancel.") != "Shutdown Server")
+	if(alert("Are you sure you want to shutdown the server? Only somebody with remote access to the server can turn it back on.", "Shutdown Server?", "Cancel", "Shutdown Server", "Cancel.") != "Shutdown Server")
 		return
 
-	if (!SSticker)
-		if (alert("The game ticker does not exist, normal checks will be bypassed.", "Continue Shutting Down Server?", "Cancel", "Continue Shutting Down Server", "Cancel.") != "Continue Shutting Down Server")
+	if(!SSticker)
+		if(alert("The game ticker does not exist, normal checks will be bypassed.", "Continue Shutting Down Server?", "Cancel", "Continue Shutting Down Server", "Cancel.") != "Continue Shutting Down Server")
 			return
 	else
 		var/required_state_message = "The server must be in either pre-game or post-game and the start/end must be delayed to shutdown the server."
-		if (SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_FINISHED)
+		if(SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_FINISHED)
 			to_chat(usr, "<span class='danger'>[required_state_message] The round is not in the lobby or endgame state.</span>")
 			return
-		if ((SSticker.current_state == GAME_STATE_PREGAME && going) || (SSticker.current_state == GAME_STATE_FINISHED && !SSticker.delay_end))
+		if((SSticker.current_state == GAME_STATE_PREGAME && going) || (SSticker.current_state == GAME_STATE_FINISHED && !SSticker.delay_end))
 			to_chat(usr, "<span class='danger'>[required_state_message] The round start/end is not delayed.</span>")
 			return
 
@@ -68,15 +69,15 @@
 
 	sleep(30 SECONDS)
 
-	if (!shuttingdown || shuttingdown != usr.ckey)
+	if(!shuttingdown || shuttingdown != usr.ckey)
 		return
 
-	if (!usr?.client)
+	if(!usr?.client)
 		message_admins("[ADMIN_TPMONTY(usr)] left the server before they could finish confirming they wanted to shutdown the server.")
 		shuttingdown = null
 		return
 
-	if (alert("ARE YOU SURE YOU WANT TO SHUTDOWN THE SERVER? ONLY SOMEBODY WITH REMOTE ACCESS TO THE SERVER CAN TURN IT BACK ON.", "Shutdown Server?", "Cancel", "Yes! Shutdown The Server!", "Cancel.") != "Yes! Shutdown The Server!")
+	if(alert("ARE YOU SURE YOU WANT TO SHUTDOWN THE SERVER? ONLY SOMEBODY WITH REMOTE ACCESS TO THE SERVER CAN TURN IT BACK ON.", "Shutdown Server?", "Cancel", "Yes! Shutdown The Server!", "Cancel.") != "Yes! Shutdown The Server!")
 		message_admins("[ADMIN_TPMONTY(usr)] decided against shutting down the server.")
 		shuttingdown = null
 		return
@@ -86,23 +87,23 @@
 
 	sleep(31 SECONDS) //to give the admins that final second to hit the confirm button on the cancel prompt.
 
-	if (!shuttingdown)
+	if(!shuttingdown)
 		to_chat(world, "<span class='notice'>Server shutdown was aborted</span>")
 		return
 
-	if (shuttingdown != usr.ckey) //somebody cancelled but then somebody started again.
+	if(shuttingdown != usr.ckey) //somebody cancelled but then somebody started again.
 		return
 
 	to_chat(world, "<span class='danger'>Server shutting down.</span> <span class='notice'>Initiated by: [shuttingdown]</span>")
 	log_game("Server shutting down. Initiated by: [shuttingdown]")
 
 #ifdef TGS_V3_API
-	if (GLOB.tgs)
+	if(GLOB.tgs)
 		var/datum/tgs_api/TA = GLOB.tgs
 		var/tgs3_path = CONFIG_GET(string/tgs3_commandline_path)
-		if (fexists(tgs3_path))
+		if(fexists(tgs3_path))
 			var/instancename = TA.InstanceName()
-			if (instancename)
+			if(instancename)
 				shell("[tgs3_path] --instance [instancename] dd stop --graceful") //this tells tgstation-server to ignore us shutting down
 			else
 				var/msg = "WARNING: Couldn't find tgstation-server3 instancename, server might restart after shutdown."
@@ -422,7 +423,7 @@
 	for(var/map in config.maplist)
 		var/datum/map_config/VM = config.maplist[map]
 		var/mapname = VM.map_name
-		if (VM == config.defaultmap)
+		if(VM == config.defaultmap)
 			mapname += " (Default)"
 
 		if(VM.config_min_users > 0 || VM.config_max_users > 0)

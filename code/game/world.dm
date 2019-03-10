@@ -37,9 +37,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	load_admins()
 
-	if(CONFIG_GET(flag/usewhitelist))
-		load_whitelist()
-
 	if(fexists(RESTART_COUNTER_PATH))
 		GLOB.restart_counter = text2num(trim(file2text(RESTART_COUNTER_PATH)))
 		fdel(RESTART_COUNTER_PATH)
@@ -54,9 +51,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	initialize_marine_armor()
 
 	callHook("startup")
-
-	if(CONFIG_GET(flag/usewhitelist))
-		load_whitelist()
 
 	if(byond_version < RECOMMENDED_VERSION)
 		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
@@ -174,7 +168,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/Reboot(ping = FALSE)
 	if(ping)
-		send2update("<@&545779447739973633>")
+		send2update(CONFIG_GET(string/restart_message))
 	send2update("Map: [SSmapping?.next_map_config?.map_name] | Last Round End State: [SSticker?.mode?.round_finished]")
 	TgsReboot()
 	for(var/client/C in GLOB.clients)
