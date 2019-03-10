@@ -831,7 +831,7 @@
 			IgniteMob()
 			emote("scream")
 			to_chat(src, "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>")
-	return 1
+	return TRUE
 
 /*
 Fixed and rewritten. For best results, the defender's combined armor for an area should not exceed 100.
@@ -840,7 +840,8 @@ sniper rifle or something similar. I suppose that's to be expected though.
 Normal range for a defender's bullet resist should be something around 30-50. ~N
 */
 /mob/living/carbon/human/bullet_act(obj/item/projectile/P)
-	if(!P) return
+	if(!P) 
+		return
 
 	flash_weak_pain()
 
@@ -947,7 +948,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			if(!stat && !(species.species_flags & NO_PAIN))
 				emote("scream")
 				to_chat(src, "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>")
-		return 1
+		return TRUE
 
 //Deal with xeno bullets.
 /mob/living/carbon/Xenomorph/bullet_act(obj/item/projectile/P)
@@ -1062,24 +1063,27 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	return TRUE
 
 /turf/bullet_act(obj/item/projectile/P)
-	if(!P || !density) return //It's just an empty turf
+	if(!P || !density) 
+		return //It's just an empty turf
 
 	bullet_ping(P)
 
 	var/turf/target_turf = P.loc
-	if(!istype(target_turf)) return //The bullet's not on a turf somehow.
+	if(!istype(target_turf)) 
+		return //The bullet's not on a turf somehow.
 
 	var/list/mobs_list = list() //Let's built a list of mobs on the bullet turf and grab one.
 	for(var/mob/living/L in target_turf)
-		if(L in P.permutated) continue
+		if(L in P.permutated) 
+			continue
 		mobs_list += L
 
 	if(mobs_list.len)
 		var/mob/living/picked_mob = pick(mobs_list) //Hit a mob, if there is one.
 		if(istype(picked_mob) && P.firer && prob(P.get_projectile_hit_chance(P.firer,picked_mob)))
 			picked_mob.bullet_act(P)
-			return 1
-	return 1
+			return TRUE
+	return TRUE
 
 // walls can get shot and damaged, but bullets (vs energy guns) do much less.
 /turf/closed/wall/bullet_act(obj/item/projectile/P)
@@ -1097,7 +1101,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC) current_bulletholes++
 	take_damage(damage)
 	if(prob(30 + damage)) P.visible_message("<span class='warning'>[src] is damaged by [P]!</span>")
-	return 1
+	return TRUE
 
 
 /turf/closed/wall/almayer/research/containment/bullet_act(obj/item/projectile/P)
@@ -1113,7 +1117,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 /obj/bullet_act(obj/item/projectile/P)
 	if(!CanPass(P, get_turf(src)) && density)
 		bullet_ping(P)
-		return 1
+		return TRUE
 
 /obj/structure/table/bullet_act(obj/item/projectile/P)
 	src.bullet_ping(P)
@@ -1121,14 +1125,14 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if (health < 0)
 		visible_message("<span class='warning'>[src] breaks down!</span>")
 		destroy_structure()
-	return 1
+	return TRUE
 
 //returns probability for the projectile to hit us.
 /atom/proc/get_projectile_hit_chance(obj/item/projectile/P)
-	return 0
+	return FALSE
 
 /atom/movable/get_projectile_hit_chance(obj/item/projectile/P)
-	return 0
+	return FALSE
 
 //obj version just returns true or false.
 /obj/get_projectile_hit_chance(obj/item/projectile/P)
@@ -1193,11 +1197,11 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 /mob/living/get_projectile_hit_chance(obj/item/projectile/P)
 
 	if(lying && src != P.original)
-		return 0
+		return FALSE
 
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
 		if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest))
-			return 0
+			return FALSE
 
 	. = P.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	#ifdef DEBUG_HIT_CHANCE
@@ -1247,7 +1251,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	. = ..()
 	if(.)
 		if(P.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && get_target_lock(P.ammo.iff_signal))
-			return 0
+			return FALSE
 		if(mobility_aura)
 			. -= mobility_aura * 5
 		var/mob/living/carbon/human/shooter_human = P.firer
@@ -1260,13 +1264,13 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	. = ..()
 	if(.)
 		if(P.ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS)
-			return 0
+			return FALSE
 		if(mob_size == MOB_SIZE_BIG)	. += 10
 		else							. -= 10
 
 
 /mob/living/silicon/robot/drone/get_projectile_hit_chance(obj/item/projectile/P)
-	return 0 // just stop them getting hit by projectiles completely
+	return FALSE // just stop them getting hit by projectiles completely
 
 
 /obj/item/projectile/proc/play_damage_effect(mob/M)
