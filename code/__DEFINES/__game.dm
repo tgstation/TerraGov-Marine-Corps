@@ -3,18 +3,12 @@
 #define DEBUG 0
 
 //Game defining directives.
-#define PLANET_Z_LEVEL 1
-#define MAIN_SHIP_Z_LEVEL 3 //the main ship
-#define MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS list(3,4) //the main ship and the z level where dropships transit
-#define ADMIN_Z_LEVEL 2
-#define LOW_ORBIT_Z_LEVEL 4 //where the Theseus dropships stand when in transit.
-#define GAME_PLAY_Z_LEVELS list(1,3,4)
 #define MAIN_AI_SYSTEM "ARES v3.2"
 #define MAIN_SHIP_ESCAPE_POD_NUMBER 11
 
 #define MAP_ICE_COLONY "Ice Colony"
-#define MAP_LV_624 "LV-624"
-#define MAP_BIG_RED "Solaris Ridge"
+#define MAP_LV_624 "LV624"
+#define MAP_BIG_RED "Big Red"
 #define MAP_PRISON_STATION "Prison Station"
 #define MAP_WHISKEY_OUTPOST "Whiskey Outpost"
 
@@ -49,37 +43,11 @@ These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) w
 
 #define INVISIBILITY_MAXIMUM 100
 
+#define INVISIBILITY_ABSTRACT 101 //only used for abstract objects (e.g. spacevine_controller), things that are not really there.
+
+
 //Object specific defines
 #define CANDLE_LUM 3 //For how bright candles are
-
-
-//Preference toggles//
-//toggles_sound
-#define SOUND_ADMINHELP	1
-#define SOUND_MIDI		2
-#define SOUND_AMBIENCE	4
-#define SOUND_LOBBY		8
-
-//toggles_chat
-#define CHAT_OOC			(1 << 0)
-#define CHAT_DEAD			(1 << 1)
-#define CHAT_GHOSTEARS		(1 << 2)
-#define CHAT_GHOSTSIGHT		(1 << 3)
-#define CHAT_PRAYER			(1 << 4)
-#define CHAT_RADIO			(1 << 5)
-#define CHAT_ATTACKLOGS		(1 << 6)
-#define CHAT_DEBUGLOGS		(1 << 7)
-#define CHAT_GHOSTRADIO 	(1 << 8)
-#define SHOW_TYPING 		(1 << 9)
-#define CHAT_FFATTACKLOGS 	(1 << 10)
-#define CHAT_ENDROUNDLOGS	(1 << 11)
-#define CHAT_GHOSTHIVEMIND	(1 << 12)
-#define CHAT_STATISTICS		(1 << 13)
-//=================================================
-
-#define TOGGLES_CHAT_DEFAULT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_FFATTACKLOGS|SHOW_TYPING|CHAT_GHOSTHIVEMIND|CHAT_STATISTICS)
-#define TOGGLES_SOUND_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY)
-
 
 /*
 	Shuttles
@@ -140,13 +108,7 @@ These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) w
 #define HOSTILE_STANCE_TIRED 5
 //=================================================
 
-//computer3 error codes, move lower in the file when it passes dev -Sayu
- #define PROG_CRASH      1  // Generic crash
- #define MISSING_PERIPHERAL  2  // Missing hardware
- #define BUSTED_ASS_COMPUTER  4  // Self-perpetuating error.  BAC will continue to crash forever.
- #define MISSING_PROGRAM    8  // Some files try to automatically launch a program.  This is that failing.
- #define FILE_DRM      16  // Some files want to not be copied/moved.  This is them complaining that you tried.
- #define NETWORK_FAILURE  32
+
 //=================================================
 //Game mode related defines.
 

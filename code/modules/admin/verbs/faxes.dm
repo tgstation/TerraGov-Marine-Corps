@@ -34,12 +34,13 @@ GLOBAL_LIST_EMPTY(faxes)
 				to_chat(C, "<span class='notice'><b><font color='#1F66A0'>FAX: </font>[key_name(sender)] (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxreply=[REF(F)]]'>REPLY</a>)</b>: Receiving '[title]' via secure connection ... <a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxview=[REF(F)]'>view message</a></span>")
 				C << 'sound/effects/sos-morse-code.ogg'
 
-	for(var/obj/machinery/faxmachine/FM in GLOB.faxmachines)
+	for(var/x in GLOB.faxmachines)
+		var/obj/machinery/faxmachine/FM = x
 		if(FM == sendmachine)
 			continue
 		if(FM.department != department)
 			continue
-		if(FM.stat & (BROKEN|NOPOWER))
+		if(FM.machine_stat & (BROKEN|NOPOWER))
 			continue
 
 		flick("faxreceive", F)
@@ -62,7 +63,7 @@ GLOBAL_LIST_EMPTY(faxes)
 
 
 /datum/admins/proc/view_faxes()
-	set category = "Admin"
+	set category = "Fun"
 	set name = "View Faxes"
 
 	if(!check_rights(R_ADMIN|R_MENTOR))

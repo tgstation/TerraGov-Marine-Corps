@@ -81,6 +81,8 @@ GLOBAL_PROTECT(protected_ranks)
 				flag = R_SOUND
 			if("SPAWN")
 				flag = R_SPAWN
+			if("DBRANKS")
+				flag = R_DBRANKS
 			if("EVERYTHING")
 				flag = R_EVERYTHING
 			if("@")

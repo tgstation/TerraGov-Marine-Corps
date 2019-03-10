@@ -87,9 +87,9 @@
 	set waitfor = 0
 	sleep(30)
 	if(!loc) return FALSE
-	if(ticker && ticker.mode && ticker.mode.predators.len)
+	if(length(SSticker?.mode?.predators))
 		var/datum/mind/M
-		for(var/i in ticker.mode.predators)
+		for(var/i in SSticker.mode.predators)
 			M = i
 			if(M.current && M.current.stat != DEAD)
 				to_chat(M.current, "<span class='event_announcement'>An abomination to your people has been brought onto the world at [get_area(src)]! Hunt it down and destroy it!</span>")
@@ -147,9 +147,9 @@ Your health meter will not regenerate normally, so kill and die for the hive!</s
 	"<span class='xenonotice'>You stoop near the host's body, savoring the moment before you claim a trophy for your kill. You must stand still...</span>")
 	if(do_after(src, PREDALIEN_BUTCHER_WAIT_TIME, FALSE, 5, BUSY_ICON_HOSTILE) && Adjacent(H))
 		var/datum/limb/head/O = H.get_limb("head")
-		if(!(O.status & LIMB_DESTROYED))
+		if(!(O.limb_status & LIMB_DESTROYED))
 			H.apply_damage(150, BRUTE, "head", FALSE, TRUE, TRUE)
-			if(!(O.status & LIMB_DESTROYED)) O.droplimb() //Still not actually detached?
+			if(!(O.limb_status & LIMB_DESTROYED)) O.droplimb() //Still not actually detached?
 			visible_message("<span class='danger'>[src] reaches down and rips off [H]'s spinal cord and skull!</span>",
 			"<span class='xenodanger'>You slice and pull on [H]'s head until it comes off in a bloody arc!</span>")
 			playsound(loc, 'sound/weapons/slice.ogg', 25)

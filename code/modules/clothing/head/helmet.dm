@@ -33,6 +33,11 @@
 	armor = list(melee = 80, bullet = 60, laser = 50, energy = 25, bomb = 50, bio = 10, rad = 0)
 	siemens_coefficient = 0.5
 
+/obj/item/clothing/head/helmet/augment/alien
+	name = "alien mask"
+	desc = "Part of a strange alien mask. It loosely fits on a human, but just barely."
+	unacidable = 1
+
 /obj/item/clothing/head/helmet/HoS
 	name = "Head of Security Hat"
 	desc = "The hat of the Head of Security. For showing the officers who's in charge."
@@ -265,11 +270,11 @@
 	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type,new_name,new_protection)
 
-/obj/item/clothing/head/helmet/marine/medic
-	name = "\improper M10 medic helmet"
+/obj/item/clothing/head/helmet/marine/corpsman
+	name = "\improper M10 corpsman helmet"
 
-/obj/item/clothing/head/helmet/marine/medic/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper M10 medic snow helmet"),
+/obj/item/clothing/head/helmet/marine/corpsman/New(loc,expected_type 		= type,
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper M10 corpsman snow helmet"),
 	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type,new_name,new_protection)
 

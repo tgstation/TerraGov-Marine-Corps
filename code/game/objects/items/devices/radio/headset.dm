@@ -219,8 +219,11 @@
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = PUB_FREQ
-	var/headset_hud_on = 1
 	var/obj/machinery/camera/camera
+	var/datum/mob_hud/squadhud = null
+	var/mob/living/carbon/human/wearer = null
+	var/headset_hud_on = FALSE
+	var/sl_direction = FALSE
 
 /obj/item/device/radio/headset/almayer/New()
 	. = ..()
@@ -229,13 +232,11 @@
 
 /obj/item/device/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
-		if(headset_hud_on)
-			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
-			H.add_hud_to(user)
-			//squad leader locator is no longer invisible on our player HUD.
-			if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
-				user.hud_used.locate_leader.alpha = 255
-				user.hud_used.locate_leader.mouse_opacity = 1
+		wearer = user
+		squadhud = huds[MOB_HUD_SQUAD]
+		headset_hud_on = FALSE //So we always activate on equip.
+		sl_direction = FALSE
+		toggle_squadhud(wearer)
 	if(camera)
 		camera.c_tag = user.name
 	return ..()
@@ -243,47 +244,116 @@
 /obj/item/device/radio/headset/almayer/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
 		if(user.wear_ear == src) //dropped() is called before the inventory reference is update.
-			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
-			H.remove_hud_from(user)
-			//squad leader locator is invisible again
-			if(user.hud_used && user.hud_used.locate_leader)
-				user.hud_used.locate_leader.alpha = 0
-				user.hud_used.locate_leader.mouse_opacity = 0
+			squadhud.remove_hud_from(user)
+			user.hud_used.SL_locator.alpha = 0
+			wearer = null
+			squadhud = null
 	if(camera)
 		camera.c_tag = "Unknown"
 	return ..()
 
 
+/obj/item/device/radio/headset/almayer/Destroy()
+	if(wearer && headset_hud_on)
+		if(wearer.wear_ear == src)
+			squadhud.remove_hud_from(wearer)
+			wearer.SL_directional = null
+			if(wearer.assigned_squad)
+				SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
+			wearer = null
+	squadhud = null
+	headset_hud_on = FALSE
+	sl_direction = null
+	return ..()
 
-/obj/item/device/radio/headset/almayer/verb/toggle_squadhud()
-	set name = "Toggle headset HUD"
+
+/obj/item/device/radio/headset/almayer/proc/toggle_squadhud(mob/living/carbon/human/user)
+	if(headset_hud_on)
+		squadhud.remove_hud_from(user)
+		if(sl_direction)
+			toggle_sl_direction(user)
+		to_chat(user, "<span class='notice'>You toggle the Squad HUD off.</span>")
+		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+		headset_hud_on = FALSE
+	else
+		squadhud.add_hud_to(user)
+		headset_hud_on = TRUE
+		if(user.mind && user.assigned_squad)
+			if(!sl_direction)
+				toggle_sl_direction(user)
+		to_chat(user, "<span class='notice'>You toggle the Squad HUD on.</span>")
+		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+
+/obj/item/device/radio/headset/almayer/proc/toggle_sl_direction(mob/living/carbon/human/user)
+	if(!headset_hud_on)
+		to_chat(user, "<span class='warning'>You need to turn the HUD on first!</span>")
+		return
+
+	if(sl_direction)
+		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
+			user.hud_used.SL_locator.alpha = 0
+			SSdirection.stop_tracking(user.assigned_squad.tracking_id, user)
+		sl_direction = FALSE
+		to_chat(user, "<span class='notice'>You toggle the SL directional display off.</span>")
+		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+	else
+		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
+			user.hud_used.SL_locator.alpha = 128
+			SSdirection.start_tracking(user.assigned_squad.tracking_id, user)
+		sl_direction = TRUE
+		to_chat(user, "<span class='notice'>You toggle the SL directional display on.</span>")
+		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+
+
+/obj/item/device/radio/headset/almayer/verb/configure_squadhud()
+	set name = "Configure Headset HUD"
 	set category = "Object"
 	set src in usr
 
-	if(usr.is_mob_incapacitated())
-		return 0
-	headset_hud_on = !headset_hud_on
-	if(ishuman(usr))
+	if(usr.is_mob_incapacitated() || usr != wearer || !ishuman(usr))
+		return FALSE
+
+	handle_interface(usr)
+
+/obj/item/device/radio/headset/almayer/proc/handle_interface(mob/living/carbon/human/user, flag1)
+	user.set_interaction(src)
+	var/dat = {"<TT>
+	<b><A href='?src=\ref[src];headset_hud_on=1'>Squad HUD: [headset_hud_on ? "On" : "Off"]</A></b><BR>
+	<BR>
+	<b><A href='?src=\ref[src];sl_direction=1'>Squad Leader Directional Indicator: [sl_direction ? "On" : "Off"]</A></b><BR>
+	<BR>
+	</TT>"}
+	user << browse(dat, "window=radio")
+	onclose(user, "radio")
+	return
+
+/obj/item/device/radio/headset/almayer/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
+	if(usr.is_mob_incapacitated() || usr != wearer || !ishuman(usr))
+		return
+	if(usr.contents.Find(src) )
+		usr.set_interaction(src)
 		var/mob/living/carbon/human/user = usr
-		if(src == user.wear_ear) //worn
-			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
-			if(headset_hud_on)
-				H.add_hud_to(usr)
-				if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
-					user.hud_used.locate_leader.alpha = 255
-					user.hud_used.locate_leader.mouse_opacity = 1
-					camera.status = TRUE //Allows us to turn the camera back on.
-			else
-				H.remove_hud_from(usr)
-				if(user.hud_used && user.hud_used.locate_leader)
-					user.hud_used.locate_leader.alpha = 0
-					user.hud_used.locate_leader.mouse_opacity = 0
-	to_chat(usr, "<span class='notice'>You toggle [src]'s headset HUD [headset_hud_on ? "on":"off"].</span>")
-	playsound(src,'sound/machines/click.ogg', 20, 1)
+		if(href_list["headset_hud_on"])
+			toggle_squadhud(user)
+
+		else if(href_list["sl_direction"])
+			toggle_sl_direction(user)
+
+		if(!master)
+			if(ishuman(loc))
+				handle_interface(loc)
+		else
+			if(ishuman(master.loc))
+				handle_interface(master.loc)
+	else
+		usr << browse(null, "window=radio")
 
 
 /obj/item/device/radio/headset/almayer/ce
-	name = "chief engineer's headset"
+	name = "chief ship engineer's headset"
 	desc = "The headset of the guy who is in charge of morons. To access the engineering channel, use :e. For command, use :v."
 	icon_state = "com_headset"
 	keyslot1 = new /obj/item/device/encryptionkey/ce
@@ -314,8 +384,8 @@
 
 
 /obj/item/device/radio/headset/almayer/cmpcom
-	name = "marine chief MP radio headset"
-	desc = "This is used by the chief MP. Channels are as follows: :v - marine command, :p - military police, :q - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad, :m - medbay, :u - requisitions"
+	name = "marine Command Master at Arms radio headset"
+	desc = "This is used by the Command Master at Arms. Channels are as follows: :v - marine command, :p - military police, :q - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad, :m - medbay, :u - requisitions"
 	icon_state = "med_headset"
 	keyslot1 = new /obj/item/device/encryptionkey/cmpcom
 
@@ -351,8 +421,8 @@
 	keyslot2 = new /obj/item/device/encryptionkey/engi
 
 /obj/item/device/radio/headset/almayer/marine/alpha/med
-	name = "marine alpha medic radio headset"
-	desc = "This is used by the marine alpha combat medics. Channels are as follows: ; - Alpha Squad :m - medical, :z - general chat."
+	name = "marine alpha corpsman radio headset"
+	desc = "This is used by the marine alpha combat corpsmen. Channels are as follows: ; - Alpha Squad :m - medical, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/med
 
 
@@ -374,8 +444,8 @@
 	keyslot2 = new /obj/item/device/encryptionkey/engi
 
 /obj/item/device/radio/headset/almayer/marine/bravo/med
-	name = "marine bravo medic radio headset"
-	desc = "This is used by the marine bravo combat medics. Channels are as follows: ; - Bravo Squad :m - medical, :z - general chat."
+	name = "marine bravo corpsman radio headset"
+	desc = "This is used by the marine bravo combat corpsmen. Channels are as follows: ; - Bravo Squad :m - medical, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/med
 
 
@@ -397,8 +467,8 @@
 	keyslot2 = new /obj/item/device/encryptionkey/engi
 
 /obj/item/device/radio/headset/almayer/marine/charlie/med
-	name = "marine charlie medic radio headset"
-	desc = "This is used by the marine charlie combat medics. Channels are as follows: ; - Charlie Squad :m - medical, :z - general chat."
+	name = "marine charlie corpsman radio headset"
+	desc = "This is used by the marine charlie combat corpsmen. Channels are as follows: ; - Charlie Squad :m - medical, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/med
 
 
@@ -420,8 +490,8 @@
 	keyslot2 = new /obj/item/device/encryptionkey/engi
 
 /obj/item/device/radio/headset/almayer/marine/delta/med
-	name = "marine delta medic radio headset"
-	desc = "This is used by the marine delta combat medics. Channels are as follows: ; - Delta Squad :m - medical, :z - general chat."
+	name = "marine delta corpsman radio headset"
+	desc = "This is used by the marine delta combat corpsmen. Channels are as follows: ; - Delta Squad :m - medical, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/med
 
 

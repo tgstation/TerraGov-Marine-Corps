@@ -79,7 +79,7 @@
 		new /obj/item/clothing/suit/surgical(src)
 		new /obj/item/clothing/suit/surgical(src)
 		new /obj/item/clothing/tie/storage/white_vest(src)
-		if(z == MAIN_SHIP_Z_LEVEL)
+		if(is_mainship_level(z))
 			new /obj/item/device/radio/headset/almayer/doc(src)
 		return
 
@@ -117,6 +117,8 @@
 		new /obj/item/storage/pouch/medkit(src)
 		new /obj/item/clothing/suit/surgical(src)
 		new /obj/item/clothing/tie/storage/white_vest(src)
+		new /obj/item/clothing/tie/medal/letter/commendation
+		new /obj/item/paper/commendation
 
 
 

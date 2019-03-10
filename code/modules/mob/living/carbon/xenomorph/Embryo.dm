@@ -55,40 +55,30 @@
 			var/mob/living/carbon/human/H = affected_mob
 			if(H.check_tod()) //Can't be defibbed.
 				var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
-				if(L)
-					L.initiate_burst(affected_mob)
+				L?.initiate_burst(affected_mob)
 				STOP_PROCESSING(SSobj, src)
 				return FALSE
 		else
 			var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
-			if(L)
-				L.initiate_burst(affected_mob)
+			L?.initiate_burst(affected_mob)
 			STOP_PROCESSING(SSobj, src)
 			return FALSE
 
-	if(affected_mob.in_stasis == STASIS_IN_CRYO_CELL)
-		return FALSE //If they are in cryo, the embryo won't grow.
+	if(affected_mob.in_stasis)
+		return FALSE //If they are in cryo, bag or cell, the embryo won't grow.
 
 	process_growth()
 
 
-/obj/item/alien_embryo/proc/process_growth() //Low temperature seriously hampers larva growth (as in, way below livable), so does stasis
-	var/stasis = FALSE
-	if(affected_mob.in_stasis || affected_mob.bodytemperature < 170)
-		stasis = TRUE
-		if(stage <= 4)
-			counter += 0.33
-		else if(stage == 4)
-			counter += 0.11
-	else if(istype(affected_mob.buckled, /obj/structure/bed/nest)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster.
+/obj/item/alien_embryo/proc/process_growth()
+
+	if(istype(affected_mob.buckled, /obj/structure/bed/nest)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster.
 		counter += 1 + max(0, (0.03 * affected_mob.health)) //Up to +300% faster, depending on the health of the host.
 	else if(stage <= 4)
 		counter++
 
-	if(isliving(affected_mob) && !stasis) //Cold temperatures and stasis prevent the growth toxin from having an effect.
-		var/mob/living/L = affected_mob
-		if(L.reagents.get_reagent_amount("xeno_growthtoxin"))
-			counter += 4 //Dramatically accelerates larval growth. You don't want this stuff in your body. Larva hits Stage 5 in just over 3 minutes, assuming the victim has growth toxin for the full duration.
+	if(affected_mob.reagents.get_reagent_amount("xeno_growthtoxin"))
+		counter += 4 //Dramatically accelerates larval growth. You don't want this stuff in your body. Larva hits Stage 5 in just over 3 minutes, assuming the victim has growth toxin for the full duration.
 
 	if(stage < 5 && counter >= 120)
 		counter = 0
@@ -126,8 +116,7 @@
 			larva_autoburst_countdown--
 			if(!larva_autoburst_countdown)
 				var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
-				if(L)
-					L.initiate_burst(affected_mob)
+				L?.initiate_burst(affected_mob)
 
 
 //We look for a candidate. If found, we spawn the candidate as a larva.
@@ -136,13 +125,13 @@
 	if(!affected_mob)
 		return
 
-	if(affected_mob.z == ADMIN_Z_LEVEL && !admin)
+	if(is_centcom_level(affected_mob.z) && !admin)
 		return
 
 	var/picked
 
 	//If the bursted person themselves has Xeno enabled, they get the honor of first dibs on the new larva.
-	if(affected_mob.client?.prefs && (affected_mob.client.prefs.be_special & BE_ALIEN) && !jobban_isbanned(affected_mob, "Alien"))
+	if(affected_mob.client?.prefs && (affected_mob.client.prefs.be_special & BE_ALIEN) && !jobban_isbanned(affected_mob, ROLE_XENOMORPH) && !is_banned_from(affected_mob.ckey, ROLE_XENOMORPH))
 		picked = affected_mob.key
 	else //Get a candidate from observers.
 		picked = get_alien_candidate()
@@ -200,8 +189,11 @@
 		victim.emote("roar")
 	else
 		victim.emote("scream")
-
-	forceMove(get_turf(victim)) //Moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
+	if(istype(victim.loc, /obj/vehicle/multitile/root))
+		var/obj/vehicle/multitile/root/V = victim.loc
+		V.handle_player_exit(src)
+	else
+		forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
 	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
 	round_statistics.total_larva_burst++
 	var/obj/item/alien_embryo/AE = locate() in victim
@@ -224,8 +216,8 @@
 	log_game("[key_name(src)] chestbursted as a [src] at [AREACOORD(src)].")
 
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
-	if((!key || !client) && loc.z == PLANET_Z_LEVEL && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL && hive.living_xeno_queen && hive.living_xeno_queen.z == loc.z)
+	if((!key || !client) && is_ground_level(loc.z) && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL && hive.living_xeno_queen && hive.living_xeno_queen.z == loc.z)
 		visible_message("<span class='xenodanger'>[src] quickly burrows into the ground.</span>")
 		round_statistics.total_xenos_created-- // keep stats sane
-		ticker.mode.stored_larva++
+		SSticker.mode.stored_larva++
 		qdel(src)

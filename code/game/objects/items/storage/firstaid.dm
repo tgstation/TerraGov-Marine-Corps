@@ -192,7 +192,7 @@
 /obj/item/storage/pill_bottle
 	name = "pill bottle"
 	desc = "It's an airtight container for storing medication."
-	icon_state = "pill_canister"
+	icon_state = "pill_canister1"
 	icon = 'icons/obj/items/chemistry.dmi'
 	item_state = "contsolid"
 	w_class = 2.0
@@ -264,34 +264,28 @@
 
 /obj/item/storage/pill_bottle/dexalin
 	name = "dexalin pill bottle"
-	icon_state = "pill_canister1"
+	icon_state = "pill_canister12"
 	pill_type_to_fill = /obj/item/reagent_container/pill/dexalin
 
-//Alkysine
 /obj/item/storage/pill_bottle/alkysine
 	name = "alkysine pill bottle"
 	icon_state = "pill_canister7"
 	pill_type_to_fill = /obj/item/reagent_container/pill/alkysine
 
-
-//imidazoline
 /obj/item/storage/pill_bottle/imidazoline
 	name = "imidazoline pill bottle"
 	icon_state = "pill_canister9"
 	pill_type_to_fill = /obj/item/reagent_container/pill/imidazoline
 
-//PERIDAXON
 /obj/item/storage/pill_bottle/peridaxon
 	name = "peridaxon pill bottle"
 	icon_state = "pill_canister10"
 	pill_type_to_fill = /obj/item/reagent_container/pill/peridaxon
 
-//RUSSIAN RED ANTI-RAD
 /obj/item/storage/pill_bottle/russianRed
 	name = "\improper Russian Red pill bottle"
-	icon_state = "pill_canister"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_container/pill/russianRed
-
 
 /obj/item/storage/pill_bottle/quickclot
 	name = "quick-clot pill bottle"
@@ -309,15 +303,14 @@
 	icon_state = "pill_canister9"
 	pill_type_to_fill = /obj/item/reagent_container/pill/tricordrazine
 
-
 /obj/item/storage/pill_bottle/happy
-	name = "\improper Happy pill bottle"
+	name = "happy pill bottle"
 	desc = "Contains highly illegal drugs. When you want to see the rainbow."
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_container/pill/happy
 
 /obj/item/storage/pill_bottle/zoom
-	name = "\improper Zoom pill bottle"
+	name = "zoom pill bottle"
 	desc = "Containts highly illegal drugs. Trade brain for speed."
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_container/pill/zoom
@@ -330,7 +323,6 @@
 	var/req_dna
 	var/scan_name = FALSE
 	var/req_role
-	var/req_spec_role
 
 /obj/item/storage/pill_bottle/restricted/proc/scan(mob/living/L)
 
@@ -355,12 +347,9 @@
 			to_chat(L, "<span class='notice'>It must have some kind of ID lock...</span>")
 			return FALSE
 
-	if((req_role || req_spec_role) && L.mind)
+	if(req_role && L.mind)
 		var/datum/mind/M = L.mind
 		if(req_role && M.assigned_role && M.assigned_role != req_role)
-			to_chat(L, "<span class='notice'>It must have some kind of special lock...</span>")
-			return FALSE
-		if(req_spec_role && M.special_role && M.special_role != req_spec_role)
 			to_chat(L, "<span class='notice'>It must have some kind of special lock...</span>")
 			return FALSE
 

@@ -47,7 +47,9 @@
 	if(!origin)
 		origin = get_location_area(location)
 
-	//it would be cool to play a sound here
+	if(at_station()) // Sound the alarm! The elevator is descending!
+		playsound(locate(SupplyElevator_x,SupplyElevator_y,SupplyElevator_z), 'sound/machines/warning-buzzer.ogg', 50, 0)
+
 	moving_status = SHUTTLE_WARMUP
 	spawn(warmup_time*10)
 		if (moving_status == SHUTTLE_IDLE)
@@ -83,10 +85,7 @@
 			raise_elevator_effect()
 			sleep(21)
 			move(away_area, destination)
-			SW?.loc = null
-			SE?.loc = null
-			NW?.loc = null
-			NE?.loc = null
+
 
 		moving_status = SHUTTLE_IDLE
 		stop_gears()
@@ -140,10 +139,14 @@
 		playsound(locate(SupplyElevator_x,SupplyElevator_y,SupplyElevator_z), 'sound/machines/elevator_openclose.ogg', 50, 0)
 
 /datum/shuttle/ferry/supply/proc/lower_elevator_effect()
-	SW?.loc = locate(SupplyElevator_x-2,SupplyElevator_y-2,SupplyElevator_z)
-	SE?.loc = locate(SupplyElevator_x+2,SupplyElevator_y-2,SupplyElevator_z)
-	NW?.loc = locate(SupplyElevator_x-2,SupplyElevator_y+2,SupplyElevator_z)
-	NE?.loc = locate(SupplyElevator_x+2,SupplyElevator_y+2,SupplyElevator_z)
+	SW = new /obj/effect/elevator/supply(locate(SupplyElevator_x-2,SupplyElevator_y-2,SupplyElevator_z))
+	SE = new /obj/effect/elevator/supply(locate(SupplyElevator_x+2,SupplyElevator_y-2,SupplyElevator_z))
+	SE.pixel_x = -128
+	NW = new /obj/effect/elevator/supply(locate(SupplyElevator_x-2,SupplyElevator_y+2,SupplyElevator_z))
+	NW.pixel_y = -128
+	NE = new /obj/effect/elevator/supply(locate(SupplyElevator_x+2,SupplyElevator_y+2,SupplyElevator_z))
+	NE.pixel_x = -128
+	NE.pixel_y = -128
 	if(SW)
 		flick("supply_elevator_lowering", SW)
 	if(SE)

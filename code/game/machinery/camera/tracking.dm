@@ -4,7 +4,7 @@
 /mob/living/silicon/ai/proc/InvalidTurf(turf/T as turf)
 	if(!T)
 		return 1
-	if(T.z == 2)
+	if(is_centcom_level(T.z))
 		return 1
 	if(T.z > 6)
 		return 1
@@ -201,10 +201,6 @@
 				if(H.digitalcamo)
 					U.ai_cancel_tracking(1)
 					return
-
-			if(istype(target.loc,/obj/effect/dummy))
-				U.ai_cancel_tracking()
-				return
 
 			if (!near_camera(target))
 				to_chat(U, "Target is not near any active cameras.")

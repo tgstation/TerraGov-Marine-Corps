@@ -272,7 +272,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		MessageNoRecipient(msg)
 
 		//send it to irc if nobody is on and tell us how many were on
-		var/admin_number_present = send2irc_adminless_only(initiator_ckey, "Ticket #[id]: [name]")
+		var/admin_number_present = send2irc_adminless_only(initiator_ckey, "Ticket #[id]: [sanitizediscord(name)]")
 		log_admin_private("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK staff.")
 		if(admin_number_present <= 0)
 			to_chat(C, "<span class='notice'>No active admins are online.</span>")
@@ -362,10 +362,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if(tier == TICKET_MENTOR && check_other_rights(X, R_ADMIN|R_MENTOR, FALSE))
 			if(X.prefs.toggles_sound & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+			window_flash(X)
 			to_chat(X, "<span class='adminnotice'><span class='adminhelp'>Mentor Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [check_other_rights(X, R_ADMIN, FALSE) ? FullMonty(ref_src) : HalfMonty(ref_src)] [check_other_rights(X, R_ADMIN, FALSE) ? ClosureLinks(ref_src) : ClosureLinksMentor(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>")
 		if(tier == TICKET_ADMIN && check_other_rights(X, R_ADMIN, FALSE))
 			if(X.prefs.toggles_sound & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+			window_flash(X)
 			to_chat(X, "<span class='adminnotice'><span class='adminhelp'>Admin Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [FullMonty(ref_src)] [ClosureLinks(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>")
 
 	//show it to the person adminhelping too
@@ -393,8 +395,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(initiator)
 		initiator.current_ticket = src
 
+	if(tier == TICKET_MENTOR)
+		tier = TICKET_ADMIN
+		message_admins("Ticket [TicketHref("#[id]")] has been made reopened by [ADMIN_TPMONTY(usr)].")
+	else if(tier == TICKET_ADMIN)
+		tier = TICKET_MENTOR
+		message_staff("Ticket [TicketHref("#[id]")] has been made reopened by [ADMIN_TPMONTY(usr)].")
+
 	AddInteraction("<font color='purple'>Reopened by [key_name_admin(usr)]</font>")
-	message_admins("Ticket [TicketHref("#[id]")] reopened by [ADMIN_TPMONTY(usr)].")
 	log_admin_private("Ticket (#[id]) reopened by [key_name(usr)].")
 	TicketPanel()	//can only be done from here, so refresh it
 
@@ -427,21 +435,30 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 	if(marked)
 		if(marked == usr.client)
+			if(alert("Do you want to unmark this ticket?", "Confirmation", "Yes", "No") != "Yes")
+				return
+			marked = null
+			if(tier == TICKET_MENTOR)
+				message_staff("Ticket [TicketHref("#[id]")] has been unmarked by [ADMIN_TPMONTY(usr)].")
+			else if(tier == TICKET_ADMIN)
+				message_admins("Ticket [TicketHref("#[id]")] has been unmarked by [ADMIN_TPMONTY(usr)].")
+			log_admin_private("Ticket (#[id]) has been unmarked by [key_name(usr)].")
 			return
-		if(alert("This ticket has already been marked by [marked], do you want to replace them?", "Confirmation", "Yes", "No") != "Yes")
+		else if(alert("This ticket has already been marked by [marked], do you want to replace them?", "Confirmation", "Yes", "No") != "Yes")
 			return
 		if(tier == TICKET_MENTOR)
 			message_staff("Ticket [TicketHref("#[id]")] has been re-marked by [ADMIN_TPMONTY(usr)].")
 		else if(tier == TICKET_ADMIN)
 			message_admins("Ticket [TicketHref("#[id]")] has been re-marked by [ADMIN_TPMONTY(usr)].")
 		marked = usr.client
+		log_admin_private("Ticket (#[id]) has been re-marked by [key_name(usr)].")
 		return
 	marked = usr.client
 	if(tier == TICKET_MENTOR)
 		message_staff("Ticket [TicketHref("#[id]")] has been marked by [ADMIN_TPMONTY(usr)].")
 	else if(tier == TICKET_ADMIN)
 		message_admins("Ticket [TicketHref("#[id]")] has been marked by [ADMIN_TPMONTY(usr)].")
-	log_admin_private("Ticket (#[id]) has been made marked by [key_name(usr)].")
+	log_admin_private("Ticket (#[id]) has been marked by [key_name(usr)].")
 
 
 //private
@@ -670,7 +687,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	adminhelp(msg)
 
 
-/client/verb/adminhelp(msg as text)
+/client/verb/adminhelp(msg as message)
 	set category = "Admin"
 	set name = "Adminhelp"
 
@@ -702,7 +719,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	new /datum/admin_help(msg, src, FALSE, TICKET_ADMIN)
 
 
-/client/verb/mentorhelp(msg as text)
+/client/verb/mentorhelp(msg as message)
 	set category = "Admin"
 	set name = "Mentorhelp"
 
@@ -788,14 +805,16 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			final = "[msg] - No admins online"
 		else
 			final = "[msg] - All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]! Total: [allmins.len] "
-		send2irc(source,final)
-		send2otherserver(source,final)
+		send2irc(source, final)
+		send2otherserver(source, final)
 
 
-/proc/send2irc(msg,msg2)
-	msg = replacetext(replacetext(msg, "\proper", ""), "\improper", "")
-	msg2 = replacetext(replacetext(msg2, "\proper", ""), "\improper", "")
+/proc/send2irc(msg, msg2)
 	world.TgsTargetedChatBroadcast("[msg] | [msg2]", TRUE)
+
+
+/proc/send2update(msg)
+	world.TgsTargetedChatBroadcast(msg, FALSE)
 
 
 /proc/send2otherserver(source,msg,type = "Ahelp")
@@ -886,11 +905,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 							mobs_found += found
 							if(!ai_found && isAI(found))
 								ai_found = 1
-							var/is_antag = 0
-							if(found.mind && found.mind.special_role)
-								is_antag = 1
-							founds += "Name: [found.name]([found.real_name]) Key: [found.key] Ckey: [found.ckey] [is_antag ? "(Antag)" : null] "
-							msg += "[original_word]<font size='1' color='[is_antag ? "red" : "black"]'>(<A HREF='?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(found)]'>?</A>|<A HREF='?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(found)]'>FLW</A>)</font> "
+							founds += "Name: [found.name]([found.real_name]) Key: [found.key] Ckey: [found.ckey] "
+							msg += "[original_word]<font size='1' color='black'>(<A HREF='?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(found)]'>?</A>|<A HREF='?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(found)]'>FLW</A>)</font> "
 							continue
 		msg += "[original_word] "
 	if(irc)

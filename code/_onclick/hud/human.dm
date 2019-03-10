@@ -215,8 +215,8 @@
 
 	else
 		//squad leader locator
-		locate_leader = new /obj/screen/squad_leader_locator()
-		infodisplay += locate_leader
+		SL_locator = new /obj/screen/SL_locator
+		infodisplay += SL_locator
 
 	use_attachment = new /obj/screen()
 	use_attachment.icon = ui_style
@@ -396,7 +396,7 @@
 	if(client && !hud_used)
 //		if(!client.prefs)
 //			client.prefs = new /datum/preferences(client) //Eughhhhhhhhh
-		var/ui_style = ui_style2icon(client.prefs.UI_style)
-		var/ui_color = client.prefs.UI_style_color
-		var/ui_alpha = client.prefs.UI_style_alpha
+		var/ui_style = ui_style2icon(client.prefs.ui_style)
+		var/ui_color = client.prefs.ui_style_color
+		var/ui_alpha = client.prefs.ui_style_alpha
 		hud_used = new /datum/hud/human(src, ui_style, ui_color, ui_alpha)

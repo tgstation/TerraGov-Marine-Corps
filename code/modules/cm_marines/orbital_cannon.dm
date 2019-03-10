@@ -73,15 +73,15 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 	if(!tray.warhead)
 		if(user)
-			to_chat(user, "no warhead in the tray, loading operation cancelled.")
+			to_chat(user, "<span class='warning'>No warhead in the tray, loading operation cancelled.</span>")
 		return
 
 	if(tray.fuel_amt < 1)
-		to_chat(user, "no solid fuel in the tray, loading operation cancelled.")
+		to_chat(user, "<span class='warning'>No solid fuel in the tray, loading operation cancelled.</span>")
 		return
 
 	if(loaded_tray)
-		to_chat(user, "Tray is already loaded.")
+		to_chat(user, "<span class='warning'>The tray is already loaded.</span>")
 		return
 
 	tray.forceMove(src)
@@ -110,11 +110,11 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 		return
 
 	if(chambered_tray)
-		to_chat(user, "Tray cannot be unloaded after its chambered, fire the gun first.")
+		to_chat(user, "<span class='warning'>The tray cannot be unloaded after its chambered, fire the gun first.</span>")
 		return
 
 	if(!loaded_tray)
-		to_chat(user, "No loaded tray to unload.")
+		to_chat(user, "<span class='warning'>The tray is not loaded.</span>")
 		return
 
 	flick("OBC_unloading",src)
@@ -141,6 +141,10 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 /obj/structure/orbital_cannon/proc/chamber_payload(mob/user)
 	set waitfor = 0
 
+	if(!loaded_tray)
+		to_chat(user, "<span class='warning'>You need to load the tray before chambering it.</span>")
+		return
+	
 	if(ob_cannon_busy)
 		return
 
@@ -150,12 +154,12 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 		return
 	if(!tray.warhead)
 		if(user)
-			to_chat(user, "<span class='warning'>no warhead in the tray, cancelling chambering operation.</span>")
+			to_chat(user, "<span class='warning'>No warhead in the tray, cancelling chambering operation.</span>")
 		return
 
 	if(tray.fuel_amt < 1)
 		if(user)
-			to_chat(user, "<span class='warning'>no solid fuel in the tray, cancelling chambering operation.</span>")
+			to_chat(user, "<span class='warning'>No solid fuel in the tray, cancelling chambering operation.</span>")
 		return
 
 	if(last_orbital_firing) //fired at least once
@@ -374,8 +378,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	icon_state = "ob_warhead_1"
 
 /obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0)
-	var/reduc = min(inaccuracy_amt*3, 5)
-	explosion(target,5 - reduc,7 - reduc,10 - reduc,12 - reduc,1,0) //massive boom
+	explosion(target, 4 - inaccuracy_amt, 6 - inaccuracy_amt, 9 - inaccuracy_amt, 11 - inaccuracy_amt, 1, 0)
 
 
 
@@ -384,12 +387,10 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	warhead_kind = "incendiary"
 	icon_state = "ob_warhead_2"
 
+
 /obj/structure/ob_ammo/warhead/incendiary/warhead_impact(turf/target, inaccuracy_amt = 0)
-	var/range_num = max(8 - inaccuracy_amt*2, 3)
-	for(var/turf/TU in range(range_num,target))
-		for(var/obj/flamer_fire/F in TU) // No stacking flames!
-			qdel(F)
-		new/obj/flamer_fire(TU, 10, 50) //super hot flames
+	var/range_num = max(15 - inaccuracy_amt, 12)
+	flame_radius(range_num, target)
 
 
 /obj/structure/ob_ammo/warhead/cluster
@@ -398,16 +399,16 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	icon_state = "ob_warhead_3"
 
 /obj/structure/ob_ammo/warhead/cluster/warhead_impact(turf/target, inaccuracy_amt = 0)
-	set waitfor = 0
+	set waitfor = FALSE
 
-	var/range_num = max(8 - inaccuracy_amt*2, 3)
+	var/range_num = max(9 - inaccuracy_amt, 6)
 	var/list/turf_list = list()
-	for(var/turf/T in range(range_num,target))
+	for(var/turf/T in range(range_num, target))
 		turf_list += T
-	var/total_amt = max(8 - inaccuracy_amt*3, 2)
+	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U,1,3,5,6,1,0) //rocket barrage
+		explosion(U, 1, 3, 5, 6, 1, 0) //rocket barrage
 		sleep(1)
 
 

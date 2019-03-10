@@ -9,9 +9,8 @@
 	to_chat(H, "<B>Joining the ranks of Nanotrasen has proven to be very profitable for you.</b>")
 	to_chat(H, "<B>While you are officially an employee, much of your work is off the books. You work as a skilled mercenary.</b>")
 	to_chat(H, "")
-	to_chat(H, "<B>Ensure no damage is incurred against Nanotrasen. Make sure the Corporate Liaison is safe.</b>")
-	to_chat(H, "<B>If there is no Liaison, eliminate the threat and cooperate with the Commander before returning back home.</b>")
-	to_chat(H, "<B>Deny Nanotrasen's involvement and do not trust the TGMC forces.</b>")
+	to_chat(H, "<B>Make sure the Corporate Liaison is safe.</b>")
+	to_chat(H, "<B>If there is no Liaison, eliminate the threat and cooperate with the Captain before returning back home.</b>")
 
 
 /datum/emergency_call/pmc/create_member(datum/mind/M)
@@ -32,38 +31,32 @@
 		H.real_name = H.name
 		H.voice_name = H.name
 
-	H.key = M.key
+	M.transfer_to(H, TRUE)
 
 	if(original)
 		qdel(original)
-
-	H.client?.change_view(world.view)
 
 	print_backstory(H)
 
 	if(!leader)
 		leader = H
 		var/datum/job/J = new /datum/job/pmc/leader
-		H.set_everything(H, "PMC Leader")
-		J.generate_equipment(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are the leader of this Nanotrasen mercenary squad!</span>")
 		return
 
 	if(prob(50))
 		var/datum/job/J = new /datum/job/pmc/gunner
-		H.set_everything(H, "PMC Gunner")
-		J.generate_equipment(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are a Nanostrasen heavy gunner!</span>")
 		return
 
 	if(prob(30))
 		var/datum/job/J = new /datum/job/pmc/sniper
-		H.set_everything(H, "PMC Sniper")
-		J.generate_equipment(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are a Nanotrasen sniper!</span>")
 		return
 
 	var/datum/job/J = new /datum/job/pmc/standard
-	H.set_everything(H, "PMC Standard")
-	J.generate_equipment(H)
+	J.equip(H)
 	to_chat(H, "<span class='notice'>You are a Nanotrasen mercenary!</span>")

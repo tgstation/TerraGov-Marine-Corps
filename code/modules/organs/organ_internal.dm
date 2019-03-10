@@ -69,7 +69,7 @@
 /datum/internal_organ/process()
 
 	//Process infections
-	if (robotic >= 2 || (owner.species && owner.species.flags & IS_PLANT))	//TODO make robotic internal and external organs separate types of organ instead of a flag
+	if (robotic >= 2 || (owner.species && owner.species.species_flags & IS_PLANT))	//TODO make robotic internal and external organs separate types of organ instead of a flag
 		germ_level = 0
 		return
 
@@ -186,7 +186,7 @@
 				owner.drip(10)
 			if(prob(4))
 				spawn owner.emote("me", 1, "gasps for air!")
-				owner.losebreath += 15
+				owner.Losebreath(15)
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT

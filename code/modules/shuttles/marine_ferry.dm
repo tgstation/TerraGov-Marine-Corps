@@ -267,8 +267,6 @@
 
 	sleep(travel_time) //Wait while we fly
 
-	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) return FALSE //If a nuke is in progress, don't attempt a landing.
-
 	playsound(turfs_int[sound_target], sound_landing, 60, 0)
 	playsound(turfs_trg[sound_target], sound_landing, 60, 0)
 
@@ -278,8 +276,6 @@
 			F.turn_on()
 
 	sleep(100) //Wait for it to finish.
-
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) return FALSE //If a nuke finished, don't land.
 
 	target_turf = T_trg
 	target_rotation = trg_rot
@@ -365,9 +361,6 @@
 
 	//END: Heavy lifting backend
 
-	if (moving_status == SHUTTLE_IDLE)
-		recharging = 0
-		return	//someone canceled the launch
 
 	var/travel_time = 0
 	travel_time = DROPSHIP_CRASH_TRANSIT_DURATION * 10
@@ -413,17 +406,17 @@
 	var/list/with_queen = list()
 	for(var/mob/living/carbon/Xenomorph/xeno in GLOB.alive_xeno_list)
 		if(xeno.hivenumber != XENO_HIVE_NORMAL) continue
-		if(xeno.loc.z == hive.living_xeno_queen.loc.z || xeno.loc.z in MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS) // yes loc because of vent crawling, xeno must be with queen or on round end Z levels
+		if(xeno.loc.z == hive.living_xeno_queen.loc.z || is_mainship_or_low_orbit_level(xeno.loc.z)) // yes loc because of vent crawling, xeno must be with queen or on round end Z levels
 			with_queen += xeno
 		else
 			left_behind += xeno
 	if(with_queen.len > left_behind.len) // to stop solo-suiciding by queens
-		ticker.mode.stored_larva = 0
+		SSticker.mode.stored_larva = 0
 		for(var/mob/living/carbon/Xenomorph/about_to_die in left_behind)
 			to_chat(about_to_die, "<span class='xenoannounce'>The Queen has left without you, you quickly find a hiding place to enter hibernation as you lose touch with the hive mind.</span>")
 			qdel(about_to_die) // just delete them
 	for(var/mob/living/carbon/potential_host in GLOB.alive_mob_list)
-		if(potential_host.loc.z != 1) continue // ground level
+		if(!is_ground_level(potential_host.loc?.z)) continue // ground level
 		if(potential_host.status_flags & XENO_HOST) // a host
 			for(var/obj/item/alien_embryo/embryo in potential_host)
 				qdel(embryo)
@@ -432,8 +425,6 @@
 
 	sleep(travel_time) //Wait while we fly, but give extra time for crashing announcements etc
 
-	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) return FALSE //If a nuke is in progress, don't attempt a landing.
-
 	//This is where things change and shit gets real
 
 	command_announcement.Announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", new_sound='sound/AI/dropship_emergency.ogg')
@@ -441,8 +432,6 @@
 	playsound(turfs_int[sound_target], sound_landing, 60, 0)
 
 	sleep(85)
-
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) return FALSE //If a nuke finished, don't land.
 
 	shake_cameras(turfs_int) //shake for 1.5 seconds before crash, 0.5 after
 
@@ -500,10 +489,10 @@
 
 	//Stolen from events.dm. WARNING: This code is old as hell
 	for (var/obj/machinery/power/apc/APC in GLOB.machines)
-		if(APC.z == MAIN_SHIP_Z_LEVEL || APC.z == LOW_ORBIT_Z_LEVEL)
+		if(is_mainship_or_low_orbit_level(APC.z))
 			APC.ion_act()
 	for (var/obj/machinery/power/smes/SMES in GLOB.machines)
-		if(SMES.z == MAIN_SHIP_Z_LEVEL || SMES.z == LOW_ORBIT_Z_LEVEL)
+		if(is_mainship_or_low_orbit_level(SMES.z))
 			SMES.ion_act()
 
 	if(security_level < SEC_LEVEL_RED) //automatically set security level to red.

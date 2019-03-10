@@ -12,6 +12,15 @@
 	//Active emote/pose
 	var/pose = null
 
+	var/failed_last_breath = FALSE //This is used to determine if the mob failed a breath. If they did fail a brath, they will attempt to breathe each tick, otherwise just once per 4 ticks.
+
+	var/oxygen_alert = 0
+	var/co2_alert = 0
+	var/phoron_alert = 0
+	var/fire_alert = 0
+	var/pressure_alert = 0
+	var/temperature_alert = 0
+
 	var/pulse = PULSE_NORM	//current pulse level
 	var/butchery_progress = 0
 	var/list/internal_organs = list()
@@ -29,4 +38,4 @@
 
 	//Stagger vars
 	var/slowdown = 0 //Temporary penalty on movement. Regenerates each tick.
-	var/stagger = 0 //Temporary inability to use special actions. Regenerates each tick.
+	var/stagger = 0 //Temporary inability to use special actions; hurts accuracy. Regenerates each tick.

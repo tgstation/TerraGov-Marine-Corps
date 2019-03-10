@@ -5,6 +5,7 @@
 
 
 /turf/open/space
+	plane = PLANE_SPACE
 	icon = 'icons/turf/space.dmi'
 	name = "\proper space"
 	icon_state = "0"
@@ -79,11 +80,10 @@
 
 	inertial_drift(A)
 
-	if(ticker && ticker.mode)
+	if(SSticker?.mode)
 
 
 		// Okay, so let's make it so that people can travel z levels but not nuke disks!
-		// if(ticker.mode.name == "nuclear emergency")	return
 		if(A.z > 6) return
 		if(A.x <= TRANSITIONEDGE || A.x >= (world.maxx - TRANSITIONEDGE - 1) || A.y <= TRANSITIONEDGE || A.y >= (world.maxy - TRANSITIONEDGE - 1))
 

@@ -356,6 +356,16 @@
 	anchored = 1
 	var/busy = 0 	//Something's being washed at the moment
 
+/obj/structure/sink/Initialize()
+	. = ..()
+	switch(dir)
+		if(WEST)
+			pixel_x = -12
+		if(NORTH)
+			pixel_y = 30
+		if(EAST)
+			pixel_x = 12
+
 /obj/structure/sink/attack_hand(mob/user)
 	if(iscyborg(user) || isAI(user))
 		return

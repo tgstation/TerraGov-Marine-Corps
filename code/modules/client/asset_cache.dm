@@ -86,7 +86,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	if(!unreceived || !unreceived.len)
 		return FALSE
 	if(length(unreceived) >= ASSET_CACHE_TELL_CLIENT_AMOUNT)
-		to_chat(client, "Sending Resources...")
+		to_chat(client, "<span class='boldnotice'>Sending Resources...</span>")
 	for(var/asset in unreceived)
 		if(asset in SSassets.cache)
 			client << browse_rsc(SSassets.cache[asset], asset)
@@ -470,8 +470,9 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/simple/jquery
 	verify = FALSE
 	assets = list(
-		"jquery.min.js"            = 'code/modules/html_interface/jquery.min.js'
+		"jquery.min.js"            = 'goon/browserassets/js/jquery.min.js',
 	)
+
 
 
 /datum/asset/simple/goonchat
@@ -479,6 +480,11 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	assets = list(
 		"json2.min.js"             = 'goon/browserassets/js/json2.min.js',
 		"browserOutput.js"         = 'goon/browserassets/js/browserOutput.js',
+		"errorHandler.js"          = 'goon/browserassets/js/errorHandler.js',
+		"fontawesome-webfont.eot"  = 'goon/browserassets/css/fonts/fontawesome-webfont.eot',
+		"fontawesome-webfont.svg"  = 'goon/browserassets/css/fonts/fontawesome-webfont.svg',
+		"fontawesome-webfont.ttf"  = 'goon/browserassets/css/fonts/fontawesome-webfont.ttf',
+		"fontawesome-webfont.woff" = 'goon/browserassets/css/fonts/fontawesome-webfont.woff',
 		"font-awesome.css"	       = 'goon/browserassets/css/font-awesome.css',
 		"browserOutput.css"	       = 'goon/browserassets/css/browserOutput.css'
 	)
@@ -496,3 +502,17 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	for (var/each in list('icons/obj/pipes/regular.dmi', 'icons/obj/pipes/disposal.dmi', 'icons/obj/pipes/transit_tube.dmi'))
 		InsertAll("", each, GLOB.alldirs)
 	return ..()
+
+
+/datum/asset/simple/permissions
+	assets = list(
+		"padlock.png"	= 'html/padlock.png'
+	)
+
+/datum/asset/simple/notes
+	assets = list(
+		"high_button.png" = 'html/high_button.png',
+		"medium_button.png" = 'html/medium_button.png',
+		"minor_button.png" = 'html/minor_button.png',
+		"none_button.png" = 'html/none_button.png',
+	)

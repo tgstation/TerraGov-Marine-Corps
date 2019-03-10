@@ -9,7 +9,7 @@
 	max_w_class = 3
 	max_storage_space = 14 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 4
-	req_access = list(ACCESS_MARINE_COMMANDER)
+	req_access = list(ACCESS_MARINE_CAPTAIN)
 	var/locked = 1
 	var/broken = 0
 	var/icon_locked = "lockbox+l"

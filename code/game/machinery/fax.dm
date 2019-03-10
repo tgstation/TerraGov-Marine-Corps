@@ -13,15 +13,20 @@
 	var/authenticated = FALSE
 
 	var/obj/item/paper/message = null
-	var/sendcooldown = 0
+	var/sendcooldown = FALSE
 
-	var/department = "Corporate Liasion"
+	var/department = "Corporate Liaison"
 	var/selected = "Nanotrasen"
 
 
 /obj/machinery/faxmachine/Initialize()
 	. = ..()
 	GLOB.faxmachines += src
+
+
+/obj/machinery/faxmachine/Destroy()
+	GLOB.faxmachines -= src
+	return ..()
 
 
 /obj/machinery/faxmachine/process()
@@ -39,7 +44,7 @@
 /obj/machinery/faxmachine/attack_hand(mob/user as mob)
 	user.set_interaction(src)
 
-	var/dat = "Fax Machine<BR>"
+	var/dat
 
 	var/scan_name
 	if(idscan)
@@ -77,7 +82,9 @@
 		if(message)
 			dat += "<a href ='byond://?src=\ref[src];remove=1'>Remove Paper</a><br>"
 
-	user << browse(dat, "window=fax")
+	var/datum/browser/popup = new(user, "fax", "<div align='center'>Fax Machine</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "fax")
 
 
@@ -86,8 +93,9 @@
 		if(message)
 			send_fax(usr, src, selected, message.name, message.info, FALSE)
 			to_chat(usr, "Message transmitted successfully.")
-			spawn(sendcooldown)
-				sendcooldown = 0
+			sendcooldown = TRUE
+			addtimer(CALLBACK(src, .proc/end_cooldown), 2 MINUTES)
+			updateUsrDialog()
 	if(href_list["remove"])
 		if(message)
 			if(!ishuman(usr))
@@ -154,9 +162,21 @@
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 
 
+/obj/machinery/faxmachine/proc/end_cooldown()
+	sendcooldown = FALSE
+
+
+/obj/machinery/faxmachine/cic
+	department = "Combat Information Center"
+
 /obj/machinery/faxmachine/cmp
-	department = "Chief Military Police"
+	department = "Command Master at Arms"
 
+/obj/machinery/faxmachine/brig
+	department = "Brig"
 
-/obj/machinery/faxmachine/prison
+/obj/machinery/faxmachine/research
+	department = "Research"
+
+/obj/machinery/faxmachine/warden //Prison Station
 	department = "Warden"

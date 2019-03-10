@@ -14,7 +14,7 @@
 	melee_damage_upper = 25
 
 	// *** Tackle *** //
-	tackle_damage = 25 
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = 0.7
@@ -32,10 +32,10 @@
 	deevolves_to = /mob/living/carbon/Xenomorph/Spitter
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor_deflection = 30 
+	armor_deflection = 30
 
 	// *** Ranged Attack *** //
 	spit_delay = 4 SECONDS
@@ -55,7 +55,7 @@
 	melee_damage_upper = 30
 
 	// *** Tackle *** //
-	tackle_damage = 25 
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = 0.6
@@ -77,7 +77,7 @@
 	spit_delay = 3 SECONDS
 
 	// *** Boiler Abilities *** //
-	bomb_strength = 1.5 
+	bomb_strength = 1.5
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
 	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
@@ -113,7 +113,7 @@
 	spit_delay = 2 SECONDS
 
 	// *** Boiler Abilities *** //
-	bomb_strength = 2 
+	bomb_strength = 2
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
 	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
@@ -185,14 +185,14 @@
 
 /mob/living/carbon/Xenomorph/Boiler/Initialize()
 	. = ..()
-	SetLuminosity(3)
+	SetLuminosity(BOILER_LUMINOSITY)
 	smoke = new /datum/effect_system/smoke_spread/xeno_acid
 	smoke.attach(src)
 	see_in_dark = 20
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
 
 /mob/living/carbon/Xenomorph/Boiler/Destroy()
-	SetLuminosity(0)
+	SetLuminosity(-BOILER_LUMINOSITY)
 	if(smoke)
 		qdel(smoke)
 		smoke = null

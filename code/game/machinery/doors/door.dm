@@ -29,7 +29,7 @@
 	dir = EAST
 	var/width = 1
 
-	New()
+	Initialize()
 		. = ..()
 		if(density)
 			layer = closed_layer
@@ -213,7 +213,7 @@
 /obj/machinery/door/proc/open()
 	if(!density)		return 1
 	if(operating > 0 || !loc)	return
-	if(!ticker)			return 0
+	if(!SSticker)			return 0
 	if(!operating)		operating = 1
 
 	do_animate("opening")

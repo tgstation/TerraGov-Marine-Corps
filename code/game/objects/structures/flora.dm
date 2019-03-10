@@ -91,13 +91,13 @@
 /obj/structure/flora/tree/attackby(obj/item/W, mob/user, params)
 	if(W.sharp && W.force > 0)
 		if(W.hitsound)
-			playsound(get_turf(src), W.hitsound, 100, 0, 0)
+			playsound(get_turf(src), W.hitsound, 50, 0, 0)
 		user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
 		var/cut_force = min(1, W.force)
 		var/cutting_time = CLAMP(10, 20, 100/cut_force) SECONDS
 		if(do_after(usr, cutting_time , TRUE, 5, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] fells [src] with the [W].</span>","<span class='notice'>You fell [src] with the [W].</span>", "You hear the sound of a tree falling.")
-			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 60 , 0, 0)
+			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 10 , 0, 0)
 			for(var/i=1 to log_amount)
 				new /obj/item/grown/log(get_turf(src))
 
@@ -261,6 +261,9 @@
 	icon = 'icons/obj/flora/plants.dmi'
 	icon_state = "plant-26"
 
+/obj/structure/flora/pottedplant/ten
+	icon_state = "plant-10"
+	
 //newbushes
 
 /obj/structure/flora/ausbushes
@@ -451,6 +454,10 @@
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
 	icon_state = "plantbot1"
 
+/obj/structure/jungle/plantbot1/alien
+	icon_state = "alienplant1"
+	luminosity = 2
+
 /obj/structure/jungle/planttop1
 	name = "strange tree"
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
@@ -470,16 +477,16 @@
 	else
 		. = ..()
 
-/obj/structure/jungle/vines/New()
-	..()
+/obj/structure/jungle/vines/Initialize()
+	. = ..()
 	icon_state = pick("Light1","Light2","Light3")
 
 /obj/structure/jungle/vines/heavy
 	desc = "A thick, coiled mass of twisted vines."
 	opacity = 1
 
-/obj/structure/jungle/vines/heavy/New()
-	..()
+/obj/structure/jungle/vines/heavy/Initialize()
+	. = ..()
 	icon_state = pick("Hvy1","Hvy2","Hvy3","Med1","Med2","Med3")
 
 /obj/structure/jungle/tree/grasscarpet

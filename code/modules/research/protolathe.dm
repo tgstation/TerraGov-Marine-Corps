@@ -119,7 +119,7 @@ Note: Must be placed west/left of and R&D console to function.
 	if (!istype(O, /obj/item/stack/sheet))
 		to_chat(user, "<span class='warning'>You cannot insert this item into the protolathe!</span>")
 		return 1
-	if (stat)
+	if (machine_stat)
 		return 1
 	if(istype(O,/obj/item/stack/sheet))
 		var/obj/item/stack/sheet/S = O

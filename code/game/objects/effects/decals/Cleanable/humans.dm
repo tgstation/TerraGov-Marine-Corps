@@ -23,8 +23,8 @@ var/global/list/image/splatter_cache=list()
 		D.cure(0)
 	. = ..()
 
-/obj/effect/decal/cleanable/blood/New()
-	..()
+/obj/effect/decal/cleanable/blood/Initialize()
+	. = ..()
 	update_icon()
 	if(istype(src, /obj/effect/decal/cleanable/blood/gibs))
 		return
@@ -37,8 +37,11 @@ var/global/list/image/splatter_cache=list()
 					if (B.blood_DNA)
 						blood_DNA |= B.blood_DNA.Copy()
 					qdel(B)
-	spawn(DRYING_TIME * (amount+1))
-		dry()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/effect/decal/cleanable/blood/LateInitialize()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/dry), DRYING_TIME * (amount+1))
 
 /obj/effect/decal/cleanable/blood/update_icon()
 	if(basecolor == "rainbow") basecolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
@@ -53,7 +56,7 @@ var/global/list/image/splatter_cache=list()
 	var/datum/limb/l_foot = perp.get_limb("l_foot")
 	var/datum/limb/r_foot = perp.get_limb("r_foot")
 	var/hasfeet = 1
-	if((!l_foot || l_foot.status & LIMB_DESTROYED) && (!r_foot || r_foot.status & LIMB_DESTROYED))
+	if((!l_foot || l_foot.limb_status & LIMB_DESTROYED) && (!r_foot || r_foot.limb_status & LIMB_DESTROYED))
 		hasfeet = 0
 	if(perp.shoes && !perp.buckled)//Adding blood to shoes
 		var/obj/item/clothing/shoes/S = perp.shoes

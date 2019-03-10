@@ -43,7 +43,7 @@
 					ExtinguishMob()
 				return 1
 
-			if(health >= CONFIG_GET(number/health_threshold_crit))
+			if(health >= get_crit_threshold())
 				help_shake_act(M)
 				return 1
 //			if(M.health < -75)	return 0
@@ -61,7 +61,7 @@
 			M.visible_message("<span class='danger'>[M] is trying perform CPR on [src]!</span>", null, null, 4)
 
 			if(do_mob(M, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_MEDICAL))
-				if(health > CONFIG_GET(number/health_threshold_dead) && health < CONFIG_GET(number/health_threshold_crit))
+				if(health > get_death_threshold() && health < get_crit_threshold())
 					var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
 					adjustOxyLoss(-suff)
 					updatehealth()
@@ -190,7 +190,7 @@
 
 
 /mob/living/carbon/human/help_shake_act(mob/living/carbon/M)
-	if (health >= CONFIG_GET(number/health_threshold_crit))
+	if (health >= get_crit_threshold())
 		if(src == M)
 			if(holo_card_color) //if we have a triage holocard printed on us, we remove it.
 				holo_card_color = null
@@ -230,13 +230,13 @@
 
 				if(!status) status = "OK"
 
-				if(org.status & LIMB_SPLINTED)
+				if(org.limb_status & LIMB_SPLINTED)
 					status += " <b>(SPLINTED)</b>"
-				if(org.status & LIMB_STABILIZED)
+				if(org.limb_status & LIMB_STABILIZED)
 					status += " <b>(STABILIZED)</b>"
-				if(org.status & LIMB_MUTATED)
+				if(org.limb_status & LIMB_MUTATED)
 					status = "weirdly shapen."
-				if(org.status & LIMB_DESTROYED)
+				if(org.limb_status & LIMB_DESTROYED)
 					status = "MISSING!"
 
 				if(brute_treated == FALSE && brutedamage > 0)

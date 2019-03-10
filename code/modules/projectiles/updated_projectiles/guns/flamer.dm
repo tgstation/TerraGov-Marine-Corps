@@ -18,7 +18,7 @@
 	attachable_allowed = list( //give it some flexibility.
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 
@@ -28,8 +28,7 @@
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
 	toggle_flame(user)
 
-/obj/item/weapon/gun/flamer/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
 	to_chat(user, "It's turned [lit? "on" : "off"].")
 	if(current_mag)
 		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
@@ -167,7 +166,7 @@
 		else
 			return
 
-	var/list/turf/turfs = getline2(user,target)
+	var/list/turf/turfs = getline(user,target)
 	playsound(user, fire_sound, 50, 1)
 	var/distance = 1
 	var/turf/prev_T
@@ -252,7 +251,7 @@
 
 			if(user)
 				var/area/A = get_area(user)
-				if(user.mind && !user.mind.special_role && H.mind && !H.mind.special_role)
+				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
 					log_combat(user, H, "shot", src)
 					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
 				else
@@ -279,7 +278,7 @@
 	set waitfor = 0
 
 	var/unleash_dir = user.dir //don't want the player to turn around mid-unleash to bend the fire.
-	var/list/turf/turfs = getline2(user,target)
+	var/list/turf/turfs = getline(user,target)
 	playsound(user, fire_sound, 50, 1)
 	var/distance = 1
 	var/turf/prev_T
@@ -340,9 +339,6 @@
 
 		distance++
 
-/obj/item/weapon/gun/flamer/has_ammo_counter()
-	return TRUE
-
 /obj/item/weapon/gun/flamer/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -362,7 +358,7 @@
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "m240t"
 	item_state = "m240t"
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	var/max_water = 200
 	var/last_use
 
@@ -501,7 +497,6 @@
 							C.apply_damage(fire_damage, BURN, null, armor_block)
 							C.IgniteMob()
 							C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
-
 
 /obj/flamer_fire/Destroy()
 	SetLuminosity(0)

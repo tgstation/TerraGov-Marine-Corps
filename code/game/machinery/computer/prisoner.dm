@@ -27,7 +27,7 @@
 		return
 	user.set_interaction(src)
 	var/dat
-	dat += "<B>Prisoner Implant Manager System</B><BR>"
+	dat += "<BR>"
 	if(screen == 0)
 		dat += "<HR><A href='?src=\ref[src];lock=1'>Unlock Console</A>"
 	else if(screen == 1)
@@ -49,7 +49,7 @@
 			if(!T.implanted) continue
 			var/loc_display = "Unknown"
 			var/mob/living/carbon/M = T.imp_in
-			if(M.z == 1 && !isspaceturf(M.loc))
+			if(is_ground_level(M.z) && !isspaceturf(M.loc))
 				var/turf/mob_loc = get_turf(M)
 				loc_display = mob_loc.loc
 			if(T.malfunction)
@@ -59,9 +59,10 @@
 			dat += "********************************<BR>"
 		dat += "<HR><A href='?src=\ref[src];lock=1'>Lock Console</A>"
 
-	user << browse(dat, "window=computer;size=400x500")
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Prisoner Implant Manager System</div>", 400, 500)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "computer")
-	return
 
 
 /obj/machinery/computer/prisoner/process()

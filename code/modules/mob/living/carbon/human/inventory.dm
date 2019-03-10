@@ -2,6 +2,9 @@
 	set name = "quick-equip"
 	set hidden = TRUE
 
+	if(is_mob_incapacitated() || lying || istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored))
+		return
+
 	var/obj/item/I = get_active_held_item()
 	if(!I)
 		if(next_move > world.time)
@@ -39,7 +42,7 @@
 	for(var/X in limbs)
 		var/datum/limb/E = X
 		if(E.body_part == org_name)
-			return !(E.status & LIMB_DESTROYED)
+			return !(E.limb_status & LIMB_DESTROYED)
 
 /mob/living/carbon/human/proc/has_limb_for_slot(slot)
 	switch(slot)
@@ -87,6 +90,10 @@
 			return has_limb(CHEST)
 		if(SLOT_IN_SUIT)
 			return has_limb(CHEST)
+		if(SLOT_IN_BELT)
+			return has_limb(CHEST)
+		if(SLOT_IN_HEAD)
+			return has_limb(HEAD)
 		if(SLOT_IN_ACCESSORY)
 			return has_limb(CHEST)
 		if(SLOT_IN_HOLSTER)
@@ -137,7 +144,7 @@
 			dropItemToGround(l_store)
 		if(belt)
 			dropItemToGround(belt)
-		if(wear_suit && (istype(wear_suit, /obj/item/clothing/suit/armor) || istype(wear_suit, /obj/item/clothing/suit/storage)))
+		if(wear_suit && istype(wear_suit, /obj/item/clothing/suit))
 			dropItemToGround(wear_suit)
 		w_uniform = null
 		update_suit_sensors()
@@ -361,6 +368,14 @@
 			var/obj/item/storage/internal/T = S.pockets
 			T.handle_item_insertion(W, FALSE)
 			T.close(src)
+		if(SLOT_IN_BELT)
+			var/obj/item/storage/belt/S = belt
+			S.handle_item_insertion(W, FALSE, src)
+		if(SLOT_IN_HEAD)
+			var/obj/item/clothing/head/helmet/marine/S = head
+			var/obj/item/storage/internal/T = S.pockets
+			T.handle_item_insertion(W, FALSE)
+			T.close(src)
 		if(SLOT_IN_ACCESSORY)
 			var/obj/item/clothing/under/U = w_uniform
 			var/obj/item/clothing/tie/storage/T = U.hastie
@@ -459,6 +474,9 @@
 	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 		if(I && Adjacent(M) && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
+			if(isidcard(I))
+				log_admin("[key_name(src)] took the [I] of [key_name(M)].")
+				message_admins("[ADMIN_TPMONTY(src)] took the [I] of [ADMIN_TPMONTY(M)].")
 
 	if(M)
 		if(interactee == M && Adjacent(M))
@@ -484,3 +502,25 @@
 	if(M)
 		if(interactee == M && Adjacent(M))
 			M.show_inv(src)
+
+
+/mob/living/carbon/human/proc/equipOutfit(outfit, visualsOnly = FALSE)
+	var/datum/outfit/O = null
+
+	if(ispath(outfit))
+		O = new outfit
+	else
+		O = outfit
+		if(!istype(O))
+			return 0
+	if(!O)
+		return 0
+
+	return O.equip(src, visualsOnly)
+
+
+/mob/living/carbon/human/proc/delete_equipment(save_id = FALSE)
+	for(var/i in contents)
+		if(save_id && istype(i, /obj/item/card/id))
+			continue
+		qdel(i)

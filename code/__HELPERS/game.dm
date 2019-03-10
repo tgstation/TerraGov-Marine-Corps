@@ -107,7 +107,16 @@
 			turfs += T
 	return turfs
 
+/proc/diamondturfs(center=usr, radius=3, check_view=FALSE)
+	var/turf/centerturf = get_turf(center)
+	if(radius < 0 || !centerturf)
+		return
 
+	var/list/turfs = list()
+	for(var/turf/T in check_view ? view(radius, centerturf) : range(radius, centerturf))
+		if(abs(T.x - centerturf.x) + abs(T.y - centerturf.y) <= radius)
+			turfs += T
+	. = turfs
 
 //var/debug_mob = 0
 
@@ -303,14 +312,18 @@ proc/isInSight(var/atom/A, var/atom/B)
 		if(deathtime < DEATHTIME_XENO_REQUIREMENT)
 			continue
 
-		if(!picked?.key)
+		//Aghosted admins don't get picked
+		if(O.mind?.current && copytext(O.mind.current.key, 1, 2) == "@")
+			continue
+
+		if(!picked)
 			picked = O
 			continue
 
-		if(O.timeofdeath < picked.timeofdeath && O.key)
+		if(O.timeofdeath < picked.timeofdeath)
 			picked = O
 
-	return picked.key
+	return picked?.key
 
 
 /proc/ScreenText(obj/O, maptext="", screen_loc="CENTER-7,CENTER-7", maptext_height=480, maptext_width=480)
@@ -428,3 +441,13 @@ datum/projectile_data
 		if(M.client)
 			viewing += M.client
 	flick_overlay(I, viewing, duration)
+
+
+/proc/window_flash(client/C)
+	if(ismob(C))
+		var/mob/M = C
+		if(M.client)
+			C = M.client
+	if(!C)
+		return
+	winset(C, "mainwindow", "flash=5")

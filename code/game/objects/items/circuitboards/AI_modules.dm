@@ -15,18 +15,14 @@
 /obj/item/circuitboard/ai_module/proc/install(var/obj/machinery/computer/C)
 	if (istype(C, /obj/machinery/computer/aiupload))
 		var/obj/machinery/computer/aiupload/comp = C
-		if(comp.stat & NOPOWER)
+		if(comp.machine_stat & NOPOWER)
 			to_chat(usr, "The upload computer has no power!")
 			return
-		if(comp.stat & BROKEN)
+		if(comp.machine_stat & BROKEN)
 			to_chat(usr, "The upload computer is broken!")
 			return
 		if (!comp.current)
 			to_chat(usr, "You haven't selected an AI to transmit laws to!")
-			return
-
-		if(ticker && ticker.mode && ticker.mode.name == "blob")
-			to_chat(usr, "Law uploads have been disabled by NanoTrasen!")
 			return
 
 		if (comp.current.stat == 2 || comp.current.control_disabled == 1)
@@ -46,10 +42,10 @@
 
 	else if (istype(C, /obj/machinery/computer/borgupload))
 		var/obj/machinery/computer/borgupload/comp = C
-		if(comp.stat & NOPOWER)
+		if(comp.machine_stat & NOPOWER)
 			to_chat(usr, "The upload computer has no power!")
 			return
-		if(comp.stat & BROKEN)
+		if(comp.machine_stat & BROKEN)
 			to_chat(usr, "The upload computer is broken!")
 			return
 		if (!comp.current)
@@ -127,14 +123,9 @@
 /obj/item/circuitboard/ai_module/oneHuman/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)
 	..()
 	var/law = "Only [targetName] is human."
-	if (!is_special_character(target)) // Makes sure the AI isn't a traitor before changing their law 0. --NeoFite
-		to_chat(target, law)
-		target.set_zeroth_law(law)
-		lawchanges.Add("The law specified [targetName]")
-	else
-		to_chat(target, "[sender.real_name] attempted to modify your zeroth law.")
-		to_chat(target, "It would be in your best interest to play along with [sender.real_name] that [law]")
-		lawchanges.Add("The law specified [targetName], but the AI's existing law 0 cannot be overriden.")
+	to_chat(target, law)
+	target.set_zeroth_law(law)
+	lawchanges.Add("The law specified [targetName]")
 
 /******************** ProtectStation ********************/
 
@@ -281,8 +272,7 @@
 
 /obj/item/circuitboard/ai_module/reset/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)
 	..()
-	if (!is_special_character(target))
-		target.set_zeroth_law("")
+	target.set_zeroth_law("")
 	target.clear_supplied_laws()
 	target.clear_ion_laws()
 	to_chat(target, "[sender.real_name] attempted to reset your laws using a reset module.")
@@ -297,8 +287,7 @@
 
 /obj/item/circuitboard/ai_module/purge/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)
 	..()
-	if (!is_special_character(target))
-		target.set_zeroth_law("")
+	target.set_zeroth_law("")
 	to_chat(target, "[sender.real_name] attempted to wipe your laws using a purge module.")
 	target.clear_supplied_laws()
 	target.clear_ion_laws()

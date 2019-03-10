@@ -5,7 +5,7 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "aiupload"
 	density = 1
-	req_one_access = list(ACCESS_MARINE_COMMANDER)
+	req_one_access = list(ACCESS_MARINE_CAPTAIN)
 	var/receipt_num
 	var/machine_id = ""
 	var/obj/item/card/id/held_card
@@ -17,7 +17,7 @@
 			return 0
 		if(ACCESS_NT_CORPORATE in held_card.access)
 			return 2
-		else if(ACCESS_MARINE_BRIDGE in held_card.access || ACCESS_MARINE_COMMANDER in held_card.access)
+		else if(ACCESS_MARINE_BRIDGE in held_card.access || ACCESS_MARINE_CAPTAIN in held_card.access)
 			return 1
 
 	proc/create_transation(target, reason, amount)
@@ -56,7 +56,7 @@
 	attack_hand(user)
 
 /obj/machinery/account_database/attack_hand(mob/user as mob)
-	if(stat & (NOPOWER|BROKEN)) return
+	if(machine_stat & (NOPOWER|BROKEN)) return
 	ui_interact(user)
 
 /obj/machinery/account_database/ui_interact(mob/user, ui_key="main", var/datum/nanoui/ui = null, var/force_open = 1)

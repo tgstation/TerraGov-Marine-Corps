@@ -106,11 +106,9 @@
 		else
 			if(light)
 				light.changed()
-	if(length(followers))
-		for(var/_F in followers)
-			var/mob/dead/observer/F = _F
-			F.loc = loc
-
+	for(var/_F in followers)
+		var/mob/dead/observer/F = _F
+		F.loc = loc
 
 /atom/movable/proc/forceMove(atom/destination)
 	if(destination)
@@ -403,8 +401,16 @@
 	return FALSE
 
 
+/atom/movable/proc/update_icon()
+	return
+
+
 /atom/movable/vv_get_dropdown()
 	. = ..()
 	. += "---"
+	. -= "Jump to"
+	.["Follow"] = "?_src_=holder;[HrefToken()];observefollow=[REF(src)]"
 	.["Get"] = "?_src_=vars;[HrefToken()];getatom=[REF(src)]"
 	.["Send"] = "?_src_=vars;[HrefToken()];sendatom=[REF(src)]"
+	.["Delete All Instances"] = "?_src_=vars;[HrefToken()];delall=[REF(src)]"
+	.["Update Icon"] = "?_src_=vars;[HrefToken()];updateicon=[REF(src)]"

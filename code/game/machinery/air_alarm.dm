@@ -108,7 +108,7 @@
 
 
 
-/obj/machinery/alarm/New(var/loc, var/direction, var/building = 0)
+/obj/machinery/alarm/Initialize(loc, direction, building = FALSE)
 	. = ..()
 
 	if(building)
@@ -117,11 +117,28 @@
 
 		if(direction)
 			setDir(direction)
-
 		buildstage = 0
-		wiresexposed = 1
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
-		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
+		wiresexposed = TRUE
+
+	set_frequency(frequency)
+
+	first_run()
+
+	if(!master_is_operating())
+		elect_master()
+
+	switch(dir)
+		if(NORTH) 
+			pixel_y = 25
+		if(SOUTH) 
+			pixel_y = -25
+		if(EAST) 
+			pixel_x = 25
+		if(WEST) 
+			pixel_x = -25
+
+	start_processing()
+
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
@@ -140,26 +157,8 @@
 	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
 
 
-/obj/machinery/alarm/Initialize()
-	. = ..()
-	set_frequency(frequency)
-
-	first_run()
-
-	if (!master_is_operating())
-		elect_master()
-
-	switch(dir)
-		if(NORTH) pixel_y = 25
-		if(SOUTH) pixel_y = -25
-		if(EAST) pixel_x = 25
-		if(WEST) pixel_x = -25
-
-	start_processing()
-
-
 /obj/machinery/alarm/process()
-	if((stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
+	if((machine_stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
 		return
 
 	var/turf/location = loc
@@ -228,13 +227,13 @@
 
 
 /obj/machinery/alarm/proc/master_is_operating()
-	return alarm_area.master_air_alarm && !(alarm_area.master_air_alarm.stat & (NOPOWER|BROKEN))
+	return alarm_area.master_air_alarm && !(alarm_area.master_air_alarm.machine_stat & (NOPOWER|BROKEN))
 
 
 /obj/machinery/alarm/proc/elect_master()
 	for (var/area/A in alarm_area.related)
 		for (var/obj/machinery/alarm/AA in A)
-			if (!(AA.stat & (NOPOWER|BROKEN)))
+			if (!(AA.machine_stat & (NOPOWER|BROKEN)))
 				alarm_area.master_air_alarm = AA
 				return 1
 	return 0
@@ -250,7 +249,7 @@
 	if(wiresexposed)
 		icon_state = "alarmx"
 		return
-	if((stat & (NOPOWER|BROKEN)) || shorted)
+	if((machine_stat & (NOPOWER|BROKEN)) || shorted)
 		icon_state = "alarmp"
 		return
 
@@ -267,7 +266,7 @@
 			icon_state = "alarm1"
 
 /obj/machinery/alarm/receive_signal(datum/signal/signal)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if (alarm_area.master_air_alarm != src)
 		if (master_is_operating())
@@ -555,7 +554,7 @@
 			return
 
 	if(wiresexposed && !issilicon(user))
-		var/t1 = text("<html><head><title>[alarm_area.name] Air Alarm Wires</title></head><body><B>Access Panel</B><br>\n")
+		var/t1 = text("<B>Access Panel</B><br>\n")
 		var/list/wirecolors = list(
 			"Orange" = 1,
 			"Dark red" = 2,
@@ -574,22 +573,25 @@
 				t1 += "<a href='?src=\ref[src];pulse=[wirecolors[wiredesc]]'>Pulse</a> "
 
 			t1 += "<br>"
-		t1 += text("<br>\n[(locked ? "The Air Alarm is locked." : "The Air Alarm is unlocked.")]<br>\n[((shorted || (stat & (NOPOWER|BROKEN))) ? "The Air Alarm is offline." : "The Air Alarm is working properly!")]<br>\n[(aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
-		t1 += text("<p><a href='?src=\ref[src];close2=1'>Close</a></p></body></html>")
-		user << browse(t1, "window=AAlarmwires")
+		t1 += text("<br>\n[(locked ? "The Air Alarm is locked." : "The Air Alarm is unlocked.")]<br>\n[((shorted || (machine_stat & (NOPOWER|BROKEN))) ? "The Air Alarm is offline." : "The Air Alarm is working properly!")]<br>\n[(aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
+		t1 += text("<p><a href='?src=\ref[src];close2=1'>Close</a></p>")
+		var/datum/browser/popup = new(user, "AAlarmwires", "<div align='center'>\The [src]</div>")
+		popup.set_content(t1)
+		popup.open(FALSE)
 		onclose(user, "AAlarmwires")
 
 	if(!shorted)
-		user << browse(return_text(user),"window=air_alarm")
+		var/datum/browser/popup = new(user, "air_alarm", "<div align='center'>[alarm_area.name] Air Alarm Wires</div>")
+		popup.set_content(return_text(user))
+		popup.open(FALSE)
 		onclose(user, "air_alarm")
 
-	return
 
 /obj/machinery/alarm/proc/return_text(mob/user)
 	if(!issilicon(user) && locked)
-		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr><i>(Swipe ID card to unlock interface)</i></body></html>"
+		return "[return_status()]<hr>[rcon_text()]<hr><i>(Swipe ID card to unlock interface)</i>"
 	else
-		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr>[return_controls()]</body></html>"
+		return "[return_status()]<hr>[rcon_text()]<hr>[return_controls()]"
 
 /obj/machinery/alarm/proc/return_status()
 	var/turf/location = get_turf(src)
@@ -1007,7 +1009,7 @@ table tr:first-child th:first-child { border: none;}
 				return attack_hand(user)
 
 			if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
-				if(stat & (NOPOWER|BROKEN))
+				if(machine_stat & (NOPOWER|BROKEN))
 					to_chat(user, "It does nothing")
 					return
 				else

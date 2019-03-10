@@ -6,7 +6,8 @@
 #define MUTE_PRAY		(1<<2)
 #define MUTE_ADMINHELP	(1<<3)
 #define MUTE_DEADCHAT	(1<<4)
-#define MUTE_ALL		(~0)
+#define MUTE_LOOC		(1<<5)
+#define MUTE_ALL		(1<<6)-1
 
 //Some constants for DB_Ban
 #define BANTYPE_PERMA		1
@@ -37,8 +38,9 @@
 #define R_VAREDIT		(1<<9)
 #define R_SOUND			(1<<10)
 #define R_SPAWN			(1<<11)
+#define R_DBRANKS		(1<<12)
 
-#define R_EVERYTHING 	(1<<12)-1 //the sum of all other rank permissions, used for +EVERYTHING
+#define R_EVERYTHING 	(1<<13)-1 //the sum of all other rank permissions, used for +EVERYTHING
 
 #define ADMIN_QUE(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(user)]'>?</a>)"
 #define ADMIN_FLW(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(user)]'>FLW</a>)"
@@ -71,3 +73,6 @@
 
 #define SPAM_TRIGGER_WARNING	5	//Number of identical messages required before the spam-prevention will warn you
 #define SPAM_TRIGGER_AUTOMUTE	10	//Number of identical messages required before the spam-prevention will automute you
+
+#define IRCREPLYCOUNT 2
+#define IRC_AHELP_USAGE "Usage: ticket <close|resolve|icissue|reject|reopen \[ticket #\]|list>"

@@ -128,30 +128,30 @@
 	* mob/RangedAttack(atom,params) - used only ranged, only used for tk and laser eyes but could be changed
 */
 
-/mob/proc/click(var/atom/A, var/list/mods)
-	return 0
+/mob/proc/click(atom/A, list/mods)
+	return FALSE
 
-/atom/proc/clicked(var/mob/user, var/list/mods)
+/atom/proc/clicked(mob/user, list/mods)
 
-	if (mods["shift"] && !mods["middle"])
+	if(mods["shift"] && !mods["middle"])
 		if(user.client && user.client.eye == user)
 			user.examinate(src)
-		return 1
+		return TRUE
 
-	if (mods["alt"])
+	if(mods["alt"])
 		var/turf/T = get_turf(src)
-		if(T && user.TurfAdjacent(T) && T.contents.len)
+		if(length(T?.contents) && get_dist(user,src) <= 1)
 			user.tile_contents = T.contents.Copy()
 
 			var/atom/A
-			for (A in user.tile_contents)
-				if (A.invisibility > user.see_invisible)
+			for(A in user.tile_contents)
+				if(A.invisibility > user.see_invisible)
 					user.tile_contents -= A
 
-			if (user.tile_contents.len)
-				user.tile_contents_change = 1
-		return 1
-	return 0
+			if(length(user.tile_contents))
+				user.tile_contents_change = TRUE
+		return TRUE
+	return FALSE
 
 /atom/movable/clicked(var/mob/user, var/list/mods)
 	if (..())
@@ -186,8 +186,6 @@
 */
 /mob/proc/RangedAttack(var/atom/A, var/params)
 	if(!mutations.len) return
-	if((LASER in mutations) && a_intent == INTENT_HARM)
-		LaserEyes(A) // moved into a proc below
 	else if(TK in mutations)
 		switch(get_dist(src,A))
 			if(0)
@@ -327,17 +325,3 @@
 	tX = CLAMP(origin.x + text2num(tX) - round(actual_view[1] / 2) - 1, 1, world.maxx)
 	tY = CLAMP(origin.y + text2num(tY) - round(actual_view[2] / 2) - 1, 1, world.maxy)
 	return locate(tX, tY, tZ)
-
-
-/proc/getviewsize(view)
-	var/viewX
-	var/viewY
-	if(isnum(view))
-		var/totalviewrange = 1 + 2 * view
-		viewX = totalviewrange
-		viewY = totalviewrange
-	else
-		var/list/viewrangelist = splittext(view,"x")
-		viewX = text2num(viewrangelist[1])
-		viewY = text2num(viewrangelist[2])
-	return list(viewX, viewY)

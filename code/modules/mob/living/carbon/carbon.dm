@@ -26,26 +26,6 @@
 			for(var/mob/M in hearers(4, src))
 				if(M.client)
 					M.show_message("<span class='warning'> You hear something rumbling inside [src]'s stomach...</span>", 2)
-		var/obj/item/I = user.get_active_held_item()
-		if(I && I.force)
-			var/d = rand(round(I.force / 4), I.force)
-			if(ishuman(src))
-				var/mob/living/carbon/human/H = src
-				var/organ = H.get_limb("chest")
-				if (istype(organ, /datum/limb))
-					var/datum/limb/temp = organ
-					if(temp.take_damage(d, 0))
-						H.UpdateDamageIcon()
-				H.updatehealth()
-			else
-				src.take_limb_damage(d)
-			for(var/mob/M in viewers(user, null))
-				if(M.client)
-					M.show_message("<span class='danger'>[user] attacks [src]'s stomach wall with the [I.name]!</span>", 2)
-			playsound(user.loc, 'sound/effects/attackblob.ogg', 25, 1)
-
-			if(prob(max(4*(100*getBruteLoss()/maxHealth - 75),0))) //4% at 24% health, 80% at 5% health
-				gib()
 	else if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
 		var/mob/living/carbon/Xenomorph/Larva/L = user
 		L.initiate_burst(src)
@@ -183,7 +163,7 @@
 /mob/living/carbon/proc/vomit()
 
 	var/mob/living/carbon/human/H = src
-	if(istype(H) && H.species.flags & IS_SYNTHETIC)
+	if(istype(H) && H.species.species_flags & IS_SYNTHETIC)
 		return //Machines don't throw up.
 
 	if(stat == DEAD) //Corpses don't puke
@@ -211,7 +191,7 @@
 	lastpuke = FALSE
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if(health >= CONFIG_GET(number/health_threshold_crit))
+	if(health >= get_crit_threshold())
 		if(src != M)
 			var/t_him = "it"
 			if (gender == MALE)
@@ -337,7 +317,7 @@
 
 /mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
 	. = ..()
-	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT+10)
+	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE+10)
 
 
 /mob/living/carbon/show_inv(mob/living/carbon/user as mob)
@@ -429,5 +409,7 @@
 /mob/living/carbon/vv_get_dropdown()
 	. = ..()
 	. += "---"
+	. -= "Update Icon"
 	.["Add Language"] = "?_src_=vars;[HrefToken()];addlanguage=[REF(src)]"
 	.["Remove Language"] = "?_src_=vars;[HrefToken()];remlanguage=[REF(src)]"
+	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"

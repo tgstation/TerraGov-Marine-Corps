@@ -97,11 +97,6 @@
 
 	T.KnockDown(5)
 
-	//Only official cool kids get the grab and no self-prone.
-	if(!(src.mind && src.mind.special_role))
-		src.KnockDown(5)
-		return
-
 	if(T == src || T.anchored)
 		return 0
 

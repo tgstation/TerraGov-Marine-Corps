@@ -317,7 +317,7 @@
 /obj/machinery/mining/brace/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/tool/wrench))
 
-		if(istype(get_turf(src),/turf/space))
+		if(istype(get_turf(src),/turf/open/space))
 			to_chat(user, "<span class='notice'>You can't anchor something to empty space. Idiot.</span>")
 			return
 

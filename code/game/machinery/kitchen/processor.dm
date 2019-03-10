@@ -116,7 +116,7 @@
 	what.forceMove(src)
 
 /obj/machinery/processor/attack_hand(var/mob/user as mob)
-	if (src.stat != 0) //NOPOWER etc
+	if (src.machine_stat != 0) //NOPOWER etc
 		return
 	if(src.processing)
 		to_chat(user, "<span class='warning'>The processor is in the process of processing.</span>")

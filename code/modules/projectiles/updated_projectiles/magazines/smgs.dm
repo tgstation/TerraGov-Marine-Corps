@@ -1,5 +1,5 @@
 /obj/item/ammo_magazine/smg
-	name = "\improper default SMG magazine"
+	name = "\improper SMG magazine"
 	desc = "A submachinegun magazine."
 	default_ammo = /datum/ammo/bullet/smg
 	max_rounds = 30
@@ -18,7 +18,7 @@
 
 /obj/item/ammo_magazine/smg/m39/ap
 	name = "\improper M39 AP magazine (10x20mm)"
-	icon_state = "m39_AP"
+	icon_state = "m39_ap"
 	default_ammo = /datum/ammo/bullet/smg/ap
 
 /obj/item/ammo_magazine/smg/m39/extended
@@ -36,7 +36,7 @@
 	desc = "A 9mm magazine for the MP5."
 	default_ammo = /datum/ammo/bullet/smg
 	caliber = "9mm"
-	icon_state = "mp7" //PLACEHOLDER
+	icon_state = "mp5"
 	gun_type = /obj/item/weapon/gun/smg/mp5
 	max_rounds = 30 //Also comes in 10 and 40.
 
@@ -51,7 +51,8 @@
 	caliber = "4.6x30mm"
 	icon_state = "mp7"
 	gun_type = /obj/item/weapon/gun/smg/mp7
-	max_rounds = 30 //Also comes in 20 and 40.
+	max_rounds = 30
+
 
 //-------------------------------------------------------
 //SKORPION //Based on the same thing.
@@ -60,7 +61,7 @@
 	name = "\improper CZ-81 magazine (.32ACP)"
 	desc = "A .32ACP caliber magazine for the CZ-81."
 	caliber = ".32ACP"
-	icon_state = "skorpion" //PLACEHOLDER
+	icon_state = "skorpion"
 	gun_type = /obj/item/weapon/gun/smg/skorpion
 	max_rounds = 20 //Can also be 10.
 
@@ -69,34 +70,37 @@
 //PPSH //Based on the PPSh-41.
 
 /obj/item/ammo_magazine/smg/ppsh
-	name = "\improper PPSh-17b drum magazine (7.62x25mm)"
+	name = "\improper PPSh-17b magazine (7.62x25mm)"
 	desc = "A drum magazine for the PPSh submachinegun."
 	default_ammo = /datum/ammo/bullet/smg/ppsh
 	caliber = "7.62x25mm"
-	icon_state = "ppsh17b"
+	icon_state = "ppsh"
 	max_rounds = 35
 	gun_type = /obj/item/weapon/gun/smg/ppsh
 
-/obj/item/ammo_magazine/smg/ppsh/extended
-	name = "\improper PPSh-17b extended magazine (7.62x25mm)"
-	max_rounds = 71
 
+/obj/item/ammo_magazine/smg/ppsh/extended
+	name = "\improper PPSh-17b drum magazine (7.62x25mm)"
+	icon_state = "ppsh_ext"
+	max_rounds = 71
+	bonus_overlay = "ppsh_ex"
 
 //-------------------------------------------------------
 //GENERIC UZI //Based on the uzi submachinegun, of course.
 
-/obj/item/ammo_magazine/smg/uzi //Based on the Uzi.
-	name = "\improper MAC-15 magazine (9mm)"
-	desc = "A magazine for the MAC-15."
+/obj/item/ammo_magazine/smg/uzi
+	name = "\improper GAL9 magazine (9mm)"
+	desc = "A magazine for the GAL9."
 	caliber = "9mm"
-	icon_state = "mac15"
-	max_rounds = 32 //Can also be 20, 25, 40, and 50.
+	icon_state = "uzi"
+	max_rounds = 32
 	gun_type = /obj/item/weapon/gun/smg/uzi
 
 /obj/item/ammo_magazine/smg/uzi/extended
-	name = "\improper MAC-15 extended magazine (9mm)"
+	name = "\improper GAL9 extended magazine (9mm)"
+	icon_state = "uzi_ext"
 	max_rounds = 50
-
+	bonus_overlay = "uzi_ex"
 
 //-------------------------------------------------------
 //FP9000 //Based on the FN P90

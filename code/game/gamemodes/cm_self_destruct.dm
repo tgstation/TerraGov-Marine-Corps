@@ -58,7 +58,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	var/dest_index = 1	//What rod the thing is currently on.
 	var/dest_status = NUKE_EXPLOSION_INACTIVE
 
-	var/flags_scuttle = NOFLAGS
+	var/flags_scuttle = FLAGS_EVACUATION_DENY|FLAGS_SELF_DESTRUCT_DENY
 
 /datum/authority/branch/evacuation/New()
 	. = ..()
@@ -81,7 +81,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 
 /datum/authority/branch/evacuation/proc/get_affected_zlevels() //This proc returns the ship's z level list (or whatever specified), when an evac/self destruct happens.
 	if(dest_status < NUKE_EXPLOSION_IN_PROGRESS && evac_status == EVACUATION_STATUS_COMPLETE) //Nuke is not in progress and evacuation finished, end the round on ship and low orbit (dropships in transit) only.
-		. = MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS
+		. = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_LOW_ORBIT))
 
 #undef SELF_DESTRUCT_ROD_STARTUP_TIME
 //=========================================================================================
@@ -210,7 +210,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		trigger_self_destruct(,,override)
 		return TRUE
 
-/datum/authority/branch/evacuation/proc/trigger_self_destruct(list/z_levels = list(MAIN_SHIP_Z_LEVEL), origin = dest_master, override)
+/datum/authority/branch/evacuation/proc/trigger_self_destruct(list/z_levels = list(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)), origin = dest_master, override)
 	set waitfor = FALSE
 	if(dest_status < NUKE_EXPLOSION_IN_PROGRESS) //One more check for good measure, in case it's triggered through a bomb instead of the destruct mechanism/admin panel.
 		GLOB.enter_allowed = FALSE //Do not want baldies spawning in as everything is exploding.
@@ -219,10 +219,9 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		world << pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
 
 		var/ship_status = 1
-		for(var/i in z_levels)
-			if(i == MAIN_SHIP_Z_LEVEL)
-				ship_status = 0
-			break
+		var/f = SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
+		if(f in z_levels)
+			ship_status = 0 //Destroyed.
 
 		for(var/x in GLOB.player_list)
 			var/mob/M = x
@@ -352,7 +351,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 				nanomanager.close_user_uis(usr, src, "main")
 
 		if("dest_cancel")
-			var/list/allowed_officers = list("Commander", "Executive Officer", "Staff Officer", "Chief MP","Chief Medical Officer","Chief Engineer")
+			var/list/allowed_officers = list("Captain", "Field Commander", "Intelligence Officer", "Command Master at Arms","Chief Medical Officer","Chief Ship Engineer")
 			if(!usr.mind || !allowed_officers.Find(usr.mind.assigned_role))
 				to_chat(usr, "<span class='notice'>You don't have the necessary clearance to cancel the emergency destruct system.</span>")
 				return

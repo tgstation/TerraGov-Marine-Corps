@@ -1,7 +1,7 @@
 macro "macro"
 	elem 
 		name = "Tab"
-		command = ".winset \"mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
+		command = ".winset \"mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true input.background-color=#f0f0f0\""
 	elem 
 		name = "Center+REP"
 		command = ".center"
@@ -63,6 +63,9 @@ macro "macro"
 		name = "CTRL+4"
 		command = "a-intent hurt"
 	elem 
+		name = "CTRL+5"
+		command = "toggle-move-intent"
+	elem 
 		name = "CTRL+A+REP"
 		command = ".west"
 	elem 
@@ -111,17 +114,11 @@ macro "macro"
 		name = "F3"
 		command = "asay"
 	elem 
+		name = "F4"
+		command = "msay"
+	elem 
 		name = "F5"
-		command = "aghost"
-	elem 
-		name = "F6"
-		command = "Player-Panel"
-	elem 
-		name = "F7"
-		command = "Admin-PM"
-	elem 
-		name = "F8"
-		command = "Invisimin"
+		command = "dsay"
 	elem 
 		name = "F12"
 		command = "F12"
@@ -129,7 +126,7 @@ macro "macro"
 macro "hotkeymode"
 	elem 
 		name = "Tab"
-		command = ".winset \"mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true\""
+		command = ".winset \"mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true input.background-color=#d3b5b5\""
 	elem 
 		name = "Center+REP"
 		command = ".center"
@@ -202,6 +199,9 @@ macro "hotkeymode"
 	elem 
 		name = "CTRL+4"
 		command = "a-intent hurt"
+	elem 
+		name = "5"
+		command = "toggle-move-intent"
 	elem 
 		name = "A+REP"
 		command = ".west"
@@ -317,17 +317,11 @@ macro "hotkeymode"
 		name = "F3"
 		command = "asay"
 	elem 
+		name = "F4"
+		command = "msay"
+	elem 
 		name = "F5"
-		command = "aghost"
-	elem 
-		name = "F6"
-		command = "Player-Panel"
-	elem 
-		name = "F7"
-		command = "Admin-PM"
-	elem 
-		name = "F8"
-		command = "Invisimin"
+		command = "dsay"
 	elem 
 		name = "F12"
 		command = "F12"
@@ -652,7 +646,6 @@ window "mainwindow"
 		anchor2 = none
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
-		title = "TerraGov Marine Corps - TGS Theseus"
 		is-maximized = true
 		icon = 'icons\\ss13_64.png'
 		macro = "macro"
@@ -736,16 +729,11 @@ window "mapwindow"
 window "outputwindow"
 	elem "outputwindow"
 		type = MAIN
-		pos = 281,0
+		pos = 0,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
 		saved-params = "pos;size;is-minimized;is-maximized"
-		titlebar = false
-		statusbar = false
-		can-close = false
-		can-minimize = false
-		can-resize = false
 		is-pane = true
 	elem "browseroutput"
 		type = BROWSER
@@ -754,9 +742,18 @@ window "outputwindow"
 		anchor1 = 0,0
 		anchor2 = 100,100
 		background-color = #ffffff
+		is-visible = false
 		is-disabled = true
 		saved-params = ""
 		auto-format = false
+	elem "output"
+		type = OUTPUT
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		is-default = true
+		saved-params = ""
 
 window "rpane"
 	elem "rpane"
@@ -928,3 +925,30 @@ window "infowindow"
 		on-show = ".winset\"rpane.infob.is-visible=true;rpane.browseb.is-visible=true?rpane.infob.pos=130,0:rpane.infob.pos=65,0 rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
 		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
 
+window "preferences_window"
+	elem "preferences_window"
+		type = MAIN
+		pos = 372,0
+		size = 1120x1000
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		statusbar = false
+	elem "preferences_browser"
+		type = BROWSER
+		pos = -8,-8
+		size = 896x1008
+		anchor1 = 0,0
+		anchor2 = 90,100
+		background-color = none
+		saved-params = ""
+	elem "character_preview_map"
+		type = MAP
+		pos = 887,0
+		size = 313x1000
+		anchor1 = 90,0
+		anchor2 = 100,100
+		right-click = true
+		saved-params = "zoom;letterbox;zoom-mode"

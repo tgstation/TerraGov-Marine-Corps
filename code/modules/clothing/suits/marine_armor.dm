@@ -105,17 +105,16 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/marine/proc/turn_off_light(mob/wearer)
 	if(flags_marine_armor & ARMOR_LAMP_ON)
-		wearer.SetLuminosity(-brightness_on)
-		SetLuminosity(brightness_on)
-		toggle_armor_light() //turn the light off
+		SetLuminosity(0)
+		toggle_armor_light(wearer) //turn the light off
 		return TRUE
 	return FALSE
 
 /obj/item/clothing/suit/storage/marine/Destroy()
 	if(ismob(loc))
-		loc.SetLuminosity(-brightness_on)
-	else
-		SetLuminosity(0)
+		var/mob/user = loc
+		user.SetLuminosity(-brightness_on)
+	SetLuminosity(0)
 	if(pockets)
 		qdel(pockets)
 	return ..()
@@ -142,6 +141,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	return TRUE //only give action button when armor is worn.
 
 /obj/item/clothing/suit/storage/marine/proc/toggle_armor_light(mob/user)
+	//message_admins("TOGGLE ARMOR LIGHT DEBUG 1: flags_marine_armor: [flags_marine_armor] user: [user]")
 	flashlight_cooldown = world.time + 2 SECONDS //2 seconds cooldown every time the light is toggled
 	if(flags_marine_armor & ARMOR_LAMP_ON) //Turn it off.
 		if(user)
@@ -201,8 +201,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	armor = list(melee = 30, bullet = 70, laser = 45, energy = 30, bomb = 60, bio = 10, rad = 10)
 
 /obj/item/clothing/suit/storage/marine/MP
-	name = "\improper M2 pattern MP armor"
-	desc = "A standard TerraGov Marine Corps M2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	name = "\improper N2 pattern MA armor"
+	desc = "A standard TerraGov Navy N2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "mp"
 	armor = list(melee = 40, bullet = 70, laser = 35, energy = 20, bomb = 25, bio = 10, rad = 10)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -223,8 +223,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/marine/MP/WO
 	icon_state = "warrant_officer"
-	name = "\improper M3 pattern MP armor"
-	desc = "A well-crafted suit of M3 Pattern Armor typically distributed to Chief MPs. Useful for letting your men know who is in charge."
+	name = "\improper N3 pattern MA armor"
+	desc = "A well-crafted suit of N3 Pattern Armor typically distributed to Command Masters at Arms. Useful for letting your men know who is in charge."
 	armor = list(melee = 50, bullet = 80, laser = 40, energy = 25, bomb = 30, bio = 10, rad = 10)
 
 /obj/item/clothing/suit/storage/marine/MP/admiral
@@ -265,6 +265,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 /obj/item/clothing/suit/storage/marine/smartgunner/New()
 	select_gamemode_skin(/obj/item/clothing/suit/storage/marine/smartgunner)
 	..()
+
+
+/obj/item/clothing/suit/storage/marine/smartgunner/fancy
+	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories. This luxury model appears to belong to the CO. You feel like you probably could get fired for touching this.."
+	icon_state = "8fancy"
 
 
 /obj/item/clothing/suit/storage/marine/leader
@@ -385,16 +390,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("tricordrazine") + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 
 	if(wearer.getFireLoss() > B18_automed_damage && !B18_burn_cooldown)
-		var/dermaline = CLAMP(REAGENTS_OVERDOSE*0.5 - (wearer.reagents.get_reagent_amount("dermaline") + 0.5),0,REAGENTS_OVERDOSE*0.5 * B18_CHEM_MOD)
 		var/kelotane = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("kelotane") + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
-		if(dermaline)
-			wearer.reagents.add_reagent("dermaline",dermaline)
 		if(kelotane)
 			wearer.reagents.add_reagent("kelotane",kelotane)
 		if(tricordrazine)
 			wearer.reagents.add_reagent("tricordrazine",tricordrazine)
-		if(dermaline || kelotane || tricordrazine) //Only report if we actually administer something
-			details +=("Significant tissue burns detected. Restorative injection administered. <b>Dosage:[dermaline ? " Dermaline: [dermaline]U |" : ""][kelotane ? " Kelotane: [kelotane]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
+		if(kelotane || tricordrazine) //Only report if we actually administer something
+			details +=("Significant tissue burns detected. Restorative injection administered. <b>Dosage:[kelotane ? " Kelotane: [kelotane]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
 			B18_burn_cooldown = world.time + B18_CHEM_COOLDOWN
 			handle_chem_cooldown(B18_BURN_CODE)
 			dose_administered = TRUE

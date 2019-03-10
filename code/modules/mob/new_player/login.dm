@@ -17,7 +17,10 @@
 	sight |= SEE_TURFS
 	GLOB.player_list |= src
 
-	new_player_panel_proc()
+	new_player_panel()
+
+	if(CONFIG_GET(flag/use_exp_tracking))
+		client.set_exp_from_db()
 
 	spawn(40)
 		if(client)

@@ -1,4 +1,5 @@
-
+/mob/living/carbon/human/get_crit_threshold()
+	return CONFIG_GET(number/human_health_threshold_crit)
 
 /mob/living/carbon/human/IsAdvancedToolUser()
 	return species.has_fine_manipulation
@@ -272,3 +273,11 @@ mob/living/carbon/human/get_standard_bodytemperature()
 /mob/living/carbon/human/throw_item(atom/target)
 	. = ..()
 	camo_off_process(SCOUT_CLOAK_OFF_ATTACK)
+
+
+/mob/living/carbon/human/toggle_move_intent(screen_num as null|num)
+	screen_num = 10
+	if(legcuffed)
+		to_chat(src, "<span class='notice'>You are legcuffed! You cannot run until you get [legcuffed] removed!</span>")
+		m_intent = MOVE_INTENT_WALK
+	return ..()

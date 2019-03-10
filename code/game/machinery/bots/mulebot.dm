@@ -72,9 +72,7 @@
 /obj/machinery/bot/mulebot/Initialize()
 	. = ..()
 	botcard = new(src)
-	var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/logistics/tech/cargo] : new /datum/job/logistics/tech/cargo
-	botcard.access = J.get_access()
-//	botcard.access += access_robotics //Why --Ikki
+	botcard.access = ALL_MARINE_ACCESS
 	cell = new(src)
 	cell.charge = 2000
 	cell.maxcharge = 2000

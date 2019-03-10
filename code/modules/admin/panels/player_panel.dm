@@ -5,9 +5,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/dat = "<html><head><title>Player Panel</title></head>"
-
-	dat += {"
+	var/dat = {"<html>
 
 		<head>
 			<script type='text/javascript'>
@@ -63,7 +61,7 @@
 
 				}
 
-				function expand(id,job,name,real_name,image,key,ip,antagonist,ref){
+				function expand(id,job,name,real_name,key,ip,ref){
 
 					clearAll();
 
@@ -74,7 +72,7 @@
 
 					body += "</td><td align='center'>";
 
-					body += "<font size='2'><b>"+job+" "+name+"</b><br><b>Real name "+real_name+"</b><br><b>Played by "+key+" ("+ip+")</b></font>"
+					body += "<font size='2'>"+job+" "+name+"<br>Real name "+real_name+"<br>Played by "+key+" ("+ip+")</font>"
 
 					body += "</td><td align='center'>";
 
@@ -142,7 +140,7 @@
 						return;
 					locked_tabs.push(id);
 					var notice_span = document.getElementById(notice_span_id);
-					notice_span.innerHTML = "<font color='red'>Locked</font> ";
+					notice_span.innerHTML = "<font color='#bc3c3c'>Locked</font> ";
 					//link.setAttribute("onClick","attempt('"+id+"','"+link_id+"','"+notice_span_id+"');");
 					//document.write("removeFromLocked('"+id+"','"+link_id+"','"+notice_span_id+"')");
 					//document.write("aa - "+link.getAttribute("onClick"));
@@ -190,10 +188,9 @@
 	//title + search bar
 	dat += {"
 
-		<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable'>
+		<table width='650' align='center' cellspacing='0' cellpadding='5' id='maintable'>
 			<tr id='title_tr'>
 				<td align='center'>
-					<font size='5'><b>Player panel</b></font><br>
 					Hover over a line to see more information.
 					<p>
 				</td>
@@ -210,17 +207,15 @@
 	//player table header
 	dat += {"
 		<span id='maintable_data_archive'>
-		<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable_data'>"}
+		<table width='650' align='center' cellspacing='0' cellpadding='5' id='maintable_data'>"}
 
-	var/list/mobs = sortmobs()
 	var/i = 1
-	for(var/mob/M in mobs)
+	for(var/mob/M in sortmobs())
 		if(M.ckey && M.client)
 
-			var/color = "#e6e6e6"
+			var/color = "#494949"
 			if(i % 2 == 0)
-				color = "#f2f2f2"
-			var/is_antagonist = is_special_character(M)
+				color = "#595959"
 
 			var/M_job = ""
 
@@ -233,15 +228,15 @@
 						M_job = "Monkey"
 					else if(isxeno(M))
 						if(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined")
-							M_job = "alien - [M.client.prefs.xeno_name]"
+							M_job = "Xenomorph - [M.client.prefs.xeno_name]"
 						else
-							M_job = "alien"
+							M_job = "Xenomorph"
 					else
 						M_job = "Carbon-based"
 
 				else if(issilicon(M)) //silicon
 					if(isAI(M))
-						M_job = "aI"
+						M_job = "AI"
 					else if(iscyborg(M))
 						M_job = "Cyborg"
 					else
@@ -287,9 +282,9 @@
 					<td align='center' bgcolor='[color]'>
 						<span id='notice_span[i]'></span>
 						<a id='link[i]'
-						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","--unused--","[M_key]","[M.lastKnownIP]",[is_antagonist],"\ref[M]")'
+						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[M_key]","[M.lastKnownIP]","[REF(M)]")'
 						>
-						<b id='search[i]'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
+						<b id='search[i]' style='font-weight:normal'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
 						</a>
 						<br><span id='item[i]'></span>
 					</td>
@@ -314,7 +309,9 @@
 
 	log_admin("[key_name(usr)] opened the player panel.")
 
-	usr << browse(dat, "window=players;size=600x480")
+	var/datum/browser/browser = new(usr, "players", "<div align='center'>Player Panel</div>", 700, 500)
+	browser.set_content(dat)
+	browser.open()
 
 
 
@@ -326,11 +323,9 @@
 		return
 
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
-	var/dat = "<html><head><title>Player Menu</title></head>"
-	dat += "<body><table border=1 cellspacing=5><B><tr><th>Key</th><th>Name</th><th>Type</th><th>PP</th><th>CID</th><th>IP</th><th>JMP</th><th>FLW</th><th>Notes</th></tr></B>"
-	var/list/mobs = sortmobs()
+	var/dat = "<table border=0 cellspacing=5><B><tr><th>Key</th><th>Name</th><th>Type</th><th>PP</th><th>CID</th><th>IP</th><th>JMP</th><th>FLW</th><th>Notes</th></tr></B>"
 
-	for(var/mob/M in mobs)
+	for(var/mob/M in sortmobs())
 		if(!M.ckey)
 			continue
 
@@ -362,15 +357,18 @@
 		<td>[M.lastKnownIP]</td>
 		<td><a href='?src=[ref];observejump=[REF(M)]'>JMP</a></td>
 		<td><a href='?src=[ref];observefollow=[REF(M)]'>FLW</a></td>
-		<td><a href='?src=[ref];notes=show;mob=[REF(M)]'>Notes</a></td>
+		<td><a href='?src=[ref];showmessageckey=[M.ckey]'>Notes</a></td>
 		"}
 
 
-	dat += "</table></body></html>"
+	dat += "</table>"
 
 	log_admin("[key_name(usr)] opened the extended player panel.")
 
-	usr << browse(dat, "window=players;size=640x480")
+
+	var/datum/browser/browser = new(usr, "players", "<div align='center'>Player Panel Extended</div>", 800, 600)
+	browser.set_content(dat)
+	browser.open()
 
 
 /datum/admins/proc/show_player_panel(var/mob/M in GLOB.mob_list)
@@ -381,13 +379,16 @@
 		return
 
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
-	var/body = "<html><head><title>Player Panel: [key_name(M)]</title></head>"
+	var/body
 
-	body += "[M.name]"
+	if(!M?.name)
+		message_admins("[M] has no name or is null! Here's a VV: [ADMIN_VV(M)]")
+
+	body += "<b>[M.name]</b>"
 
 	if(M.client)
 		body += " played by <b>[M.client]</b> "
-		body += "\[<a href='?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]"
+		body += " <a href='?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank : "Player"]</A>"
 
 	if(istype(M, /mob/new_player))
 		body += " <B>Hasn't Entered Game</B> "
@@ -395,7 +396,7 @@
 		body += " \[<a href='?src=[ref];revive=[REF(M)]'>Heal</a>\] "
 
 	body += {"
-		<br><br>\[
+		<br><br>
 		<a href='?priv_msg=[M.ckey]'>PM</a> -
 		<a href='?src=[ref];subtlemessage=[REF(M)]'>SM</a> -
 		<a href='?_src_=vars;[HrefToken()];vars=[REF(M)]'>VV</a> -
@@ -403,26 +404,39 @@
 		<a href='?src=[ref];spawnfortunecookie=[REF(M)]'>SFC</a> -
 		<a href='?src=[ref];observejump=[REF(M)]'>JMP</a> -
 		<a href='?src=[ref];observefollow=[REF(M)]'>FLW</a> -
-		<a href='?src=[ref];individuallog=[REF(M)]'>LOGS</a> \]</b><br>
+		<a href='?src=[ref];individuallog=[REF(M)]'>LOGS</a></b><br>
 		<b>Mob Type:</b> [M.type]<br>
 		<b>Mob Location:</b> [AREACOORD(M.loc)]<br>
-		<a href='?src=[ref];kick=[REF(M)]'>Kick</a> |
-		<a href='?src=[ref];ban=[REF(M)]'>Ban</a> |
-		<a href='?src=[ref];jobbanpanel=[REF(M)]'>Jobban</a> |
-		<a href='?src=[ref];notes=show;mob=[REF(M)]'>Notes</a> |
-		<a href='?src=[ref];cryo=[REF(M)]'>Cryo</a> |
-	"}
+		<b>Mob Faction:</b> [M.faction]<br>"}
+
+	if(M.mind?.assigned_role)
+		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"
+
+	body += "<a href='?src=[ref];kick=[REF(M)]'>Kick</a> | "
+		
+	if(M.client)
+		body += "<a href='?src=[ref];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</A> | "
+	else
+		body += "<a href='?src=[ref];newbankey=[M.key]'>Ban</a> |"
+
+	body += "<a href='?src=[ref];showmessageckey=[M.ckey]'>Notes</a> | "
+	body += "<a href='?src=[ref];cryo=[REF(M)]'>Cryo</a>"
+
+	if(M.client)
+		body += "| <a href='?src=[ref];lobby=[REF(M)]'> Send back to Lobby</a>"
+
+	body += "<br>"
 
 	if(M.client?.prefs)
-		body += "\ <a href='?src=[ref];lobby=[REF(M)]'> Send back to Lobby</a>"
 		var/muted = M.client.prefs.muted
 		body += {"<br><b>Mute: </b>
-			\[<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
-			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_OOC]'><font color='[(muted & MUTE_OOC)?"red":"blue"]'>OOC</font></a> |
-			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY)?"red":"blue"]'>PRAY</font></a> |
-			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP)?"red":"blue"]'>ADMINHELP</font></a> |
-			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]
-			(<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL)?"red":"blue"]'>toggle all</font></a>)
+			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC) ? "#ff5e5e" : "white"]'>IC</font></a> |
+			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_OOC]'><font color='[(muted & MUTE_OOC) ? "#ff5e5e" : "white"]'>OOC</font></a> |
+			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_LOOC]'><font color='[(muted & MUTE_LOOC) ? "#ff5e5e" : "white"]'>LOOC</font></a> |
+			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY) ? "#ff5e5e" : "white"]'>PRAY</font></a> |
+			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP) ? "#ff5e5e" : "white"]'>ADMINHELP</font></a> |
+			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT) ? "#ff5e5e" : "white"]'>DEADCHAT</font></a>
+			(<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL) ? "#ff5e5e" : "white"]'>\[toggle all\]</font></a>)
 		"}
 
 	body += {"
@@ -433,39 +447,40 @@
 		<br>
 	"}
 
+
+	body += {"<br>
+		<b>Transformation:</b><br>
+		 Observer: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a>
+		<br> Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
+		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
+		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a> |
+		<a href='?src=[ref];transform=yautja;mob=[REF(M)]'>Yautja</a>
+		<br> Alien Tier 0:
+		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a>
+		<br> Alien Tier 1:
+		<a href='?src=[ref];transform=runner;mob=[REF(M)]'>Runner</a> |
+		<a href='?src=[ref];transform=drone;mob=[REF(M)]'>Drone</a> |
+		<a href='?src=[ref];transform=sentinel;mob=[REF(M)]'>Sentinel</a> |
+		<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a>
+		<br> Alien Tier 2:
+		<a href='?src=[ref];transform=hunter;mob=[REF(M)]'>Hunter</a> |
+		<a href='?src=[ref];transform=warrior;mob=[REF(M)]'>Warrior</a> |
+		<a href='?src=[ref];transform=spitter;mob=[REF(M)]'>Spitter</a> |
+		<a href='?src=[ref];transform=hivelord;mob=[REF(M)]'>Hivelord</a> |
+		<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a>
+		<br> Alien Tier 3:
+		<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
+		<a href='?src=[ref];transform=praetorian;mob=[REF(M)]'>Praetorian</a> |
+		<a href='?src=[ref];transform=boiler;mob=[REF(M)]'>Boiler</a> |
+		<a href='?src=[ref];transform=defiler;mob=[REF(M)]'>Defiler</a> |
+		<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a>
+		<br> Alien Tier 4:
+		<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a>
+		<br>
+	"}
+
+
 	if(!istype(M, /mob/new_player))
-		body += {"<br>
-			<b>Transformation:</b><br>
-			\[ Observer: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> \]
-			<br>\[ Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
-			<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
-			<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a> |
-			<a href='?src=[ref];transform=yautja;mob=[REF(M)]'>Yautja</a> \]
-			<br>\[ Alien Tier 0:
-			<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a> \]
-			<br>\[ Alien Tier 1:
-			<a href='?src=[ref];transform=runner;mob=[REF(M)]'>Runner</a> |
-			<a href='?src=[ref];transform=drone;mob=[REF(M)]'>Drone</a> |
-			<a href='?src=[ref];transform=sentinel;mob=[REF(M)]'>Sentinel</a> |
-			<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a> \]
-			<br>\[ Alien Tier 2:
-			<a href='?src=[ref];transform=hunter;mob=[REF(M)]'>Hunter</a> |
-			<a href='?src=[ref];transform=warrior;mob=[REF(M)]'>Warrior</a> |
-			<a href='?src=[ref];transform=spitter;mob=[REF(M)]'>Spitter</a> |
-			<a href='?src=[ref];transform=hivelord;mob=[REF(M)]'>Hivelord</a> |
-			<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a> \]
-			<br>\[ Alien Tier 3:
-			<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
-			<a href='?src=[ref];transform=praetorian;mob=[REF(M)]'>Praetorian</a> |
-			<a href='?src=[ref];transform=boiler;mob=[REF(M)]'>Boiler</a> |
-			<a href='?src=[ref];transform=defiler;mob=[REF(M)]'>Defiler</a> |
-			<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a> \]
-			<br>\[ Alien Tier 4:
-			<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a> \]
-			<br>
-		"}
-
-
 		body += {"<br><br>
 			<b>Other actions:</b>
 			<br>
@@ -474,11 +489,8 @@
 			<a href='?src=[ref];gib=[REF(M)]'>Gib</a>
 		"}
 
-	body += {"
-	<br>
-	</body></html>
-	"}
-
 	log_admin("[key_name(usr)] opened the player panel of [key_name(M)].")
 
-	usr << browse(body, "window=adminplayeropts;size=550x515")
+	var/datum/browser/browser = new(usr, "player_panel_[key_name(M)]", "<div align='center'>Player Panel [key_name(M)]</div>", 575, 555)
+	browser.set_content(body)
+	browser.open()

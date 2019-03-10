@@ -207,7 +207,7 @@
 
 /datum/controller/configuration/stat_entry()
 	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Edit", src)
+		statclick = new/obj/effect/statclick/debug(null, "Debug", src)
 	stat("[name]:", statclick)
 
 
@@ -271,8 +271,6 @@
 
 
 /datum/controller/configuration/proc/loadmaplist(filename)
-	return
-	/*
 	log_config("Loading config file [filename]...")
 	filename = "[directory]/[filename]"
 	var/list/Lines = world.file2list(filename)
@@ -326,8 +324,6 @@
 				currentmap = null
 			else
 				log_config("Unknown command in map vote config: '[command]'")
-	*/
-
 
 /datum/controller/configuration/proc/pick_mode(mode_name)
 	// I wish I didn't have to instance the game modes in order to look up

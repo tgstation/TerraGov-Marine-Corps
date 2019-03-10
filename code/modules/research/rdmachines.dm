@@ -48,8 +48,10 @@
 		dat += text("The red light is [src.disabled ? "off" : "on"].<BR>")
 		dat += text("The green light is [src.shocked ? "off" : "on"].<BR>")
 		dat += text("The blue light is [src.hacked ? "off" : "on"].<BR>")
-		user << browse("<HTML><HEAD><TITLE>[src.name] Hacking</TITLE></HEAD><BODY>[dat]</BODY></HTML>","window=hack_win")
-	return
+
+		var/datum/browser/popup = new(user, "hack_win", "<div align='center'>[name] Hacking</div>")
+		popup.set_content(dat)
+		popup.open(FALSE)
 
 
 /obj/machinery/r_n_d/Topic(href, href_list)

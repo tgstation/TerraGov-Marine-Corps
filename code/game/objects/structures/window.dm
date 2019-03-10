@@ -119,6 +119,7 @@
 		attack_generic(M, M.xeno_caste.melee_damage_lower)
 
 /obj/structure/window/attack_hand(mob/user as mob)
+	add_fingerprint(user)
 	if(HULK in user.mutations)
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
 		if(damageable) //Possible to destroy
@@ -266,11 +267,13 @@
 
 /obj/structure/window/proc/shatter_window(create_debris)
 	if(create_debris)
-		new shardtype(loc)
+		var/atom/A = new shardtype(loc)
+		transfer_fingerprints_to(A)
 		if(is_full_window())
 			new shardtype(loc)
 		if(reinf)
-			new /obj/item/stack/rods(loc)
+			var/obj/item/stack/rods/R = new(loc)
+			transfer_fingerprints_to(R)
 	qdel(src)
 
 

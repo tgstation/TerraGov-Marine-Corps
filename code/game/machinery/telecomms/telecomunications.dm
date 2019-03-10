@@ -35,6 +35,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/circuitboard = null // string pointing to a circuitboard type
 	var/hide = 0				// Is it a hidden machine?
 	var/listening_level = 0	// 0 = auto set in New() - this is the z level that the machine is listening to.
+	var/listen_same_level = FALSE
 	unacidable = 1
 
 //Never allow tecommunications machinery being blown up
@@ -146,10 +147,13 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	telecomms_list += src
 	..()
 
+	var/turf/position = get_turf(src)
+	if(listen_same_level)
+		listening_level = position.z
+
 	//Set the listening_level if there's none.
-	if(!listening_level)
+	else if(!listening_level)
 		//Defaults to our Z level!
-		var/turf/position = get_turf(src)
 		listening_level = position.z
 
 	start_processing()
@@ -196,7 +200,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 /obj/machinery/telecomms/proc/update_power()
 
 	if(toggled)
-		if(stat & (BROKEN|NOPOWER|EMPED) || integrity <= 0) // if powered, on. if not powered, off. if too damaged, off
+		if(machine_stat & (BROKEN|NOPOWER|EMPED) || integrity <= 0) // if powered, on. if not powered, off. if too damaged, off
 			on = 0
 		else
 			on = 1
@@ -217,11 +221,11 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 /obj/machinery/telecomms/emp_act(severity)
 	if(prob(100/severity))
-		if(!(stat & EMPED))
-			stat |= EMPED
+		if(!(machine_stat & EMPED))
+			machine_stat |= EMPED
 			var/duration = (300 * 10)/severity
 			spawn(rand(duration - 20, duration + 20)) // Takes a long time for the machines to reboot.
-				stat &= ~EMPED
+				machine_stat &= ~EMPED
 	..()
 
 ///obj/machinery/telecomms/proc/checkheat()

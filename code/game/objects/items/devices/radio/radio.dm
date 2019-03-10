@@ -72,10 +72,7 @@
 	if(!on)
 		return
 
-	if(active_uplink_check(user))
-		return
-
-	var/dat = "<html><head><title>[src]</title></head><body><TT>"
+	var/dat
 
 	if(!istype(src, /obj/item/device/radio/headset)) //Headsets dont get a mic button
 		dat += "Microphone: [broadcasting ? "<A href='byond://?src=\ref[src];talk=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];talk=1'>Disengaged</A>"]<BR>"
@@ -92,10 +89,13 @@
 
 	for (var/ch_name in channels)
 		dat+=text_sec_channel(ch_name, channels[ch_name])
-	dat+={"[text_wires()]</TT></body></html>"}
-	user << browse(dat, "window=radio")
+	dat+={"[text_wires()]"}
+
+	var/datum/browser/popup = new(user, "radio", "<div align='center'>[src]</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "radio")
-	return
+
 
 /obj/item/device/radio/proc/text_wires()
 	if (!b_stat)
@@ -136,10 +136,6 @@
 		if (!freerange || (frequency < 1200 || frequency > 1600))
 			new_frequency = sanitize_frequency(new_frequency, maxf)
 		set_frequency(new_frequency)
-		if(hidden_uplink)
-			if(hidden_uplink.check_trigger(usr, frequency, traitor_frequency))
-				usr << browse(null, "window=radio")
-				return
 
 	else if (href_list["talk"])
 		broadcasting = text2num(href_list["talk"])
@@ -618,8 +614,7 @@
 	if(!on)
 		return
 
-	var/dat = "<html><head><title>[src]</title></head><body><TT>"
-	dat += {"
+	var/dat = {"
 				Speaker: [listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>
 				Frequency:
 				<A href='byond://?src=\ref[src];freq=-10'>-</A>
@@ -634,10 +629,12 @@
 	if(!subspace_transmission)//Don't even bother if subspace isn't turned on
 		for (var/ch_name in channels)
 			dat+=text_sec_channel(ch_name, channels[ch_name])
-	dat+={"[text_wires()]</TT></body></html>"}
-	user << browse(dat, "window=radio")
+	dat += {"[text_wires()]"}
+
+	var/datum/browser/popup = new(user, "radio", "<div align='center'>[src]</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "radio")
-	return
 
 
 /obj/item/device/radio/proc/config(op)

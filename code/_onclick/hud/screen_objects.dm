@@ -124,6 +124,8 @@
 	var/selecting = "chest"
 
 /obj/screen/zone_sel/update_icon(mob/living/user)
+	if(!user)
+		return
 	overlays.Cut()
 	overlays += image('icons/mob/zone_sel.dmi', "[selecting]")
 	user.zone_selected = selecting
@@ -210,7 +212,7 @@
 	switch(name)
 
 		if("equip")
-			if (istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
+			if (istype(user.loc,/obj/mecha) || istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 				return TRUE
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
@@ -295,7 +297,7 @@
 		return TRUE
 	if(user.is_mob_incapacitated(TRUE))
 		return TRUE
-	if (istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
+	if (istype(user.loc,/obj/mecha) || istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return TRUE
 	switch(name)
 		if("r_hand")
@@ -376,26 +378,22 @@
 	icon_state = "running"
 	screen_loc = ui_movi
 
-/obj/screen/mov_intent/clicked(var/mob/user)
-	if (..())
+/obj/screen/mov_intent/clicked(mob/user)
+	. = ..()
+	if(.)
 		return TRUE
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
-		if(C.legcuffed)
-			to_chat(C, "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>")
-			C.m_intent = MOVE_INTENT_WALK	//Just incase
-			icon_state = "walking"
-			return
+	user.toggle_move_intent()
+
+
+/obj/screen/mov_intent/update_icon(mob/user)
+	if(!user)
+		return
+
 	switch(user.m_intent)
 		if(MOVE_INTENT_RUN)
-			user.m_intent = MOVE_INTENT_WALK
-			icon_state = "walking"
-		if(MOVE_INTENT_WALK)
-			user.m_intent = MOVE_INTENT_RUN
 			icon_state = "running"
-	if(isxeno(user))
-		user.update_icons()
-	return TRUE
+		if(MOVE_INTENT_WALK)
+			icon_state = "walking"
 
 
 /obj/screen/act_intent
@@ -604,6 +602,14 @@
 	icon_state = "other"
 	screen_loc = ui_inventory
 
+/obj/screen/SL_locator
+	name = "sl locator"
+	icon = 'icons/Marine/marine-items.dmi'
+	icon_state = "SL_locator"
+	alpha = 0 //invisible
+	mouse_opacity = 0
+	screen_loc = ui_sl_dir
+
 /obj/screen/toggle_inv/clicked(var/mob/user)
 	if (..())
 		return TRUE
@@ -631,7 +637,7 @@
 
 	var/obj/item/weapon/gun/G = user.get_active_held_item()
 
-	if(!G || !G.has_ammo_counter() || !G.hud_enabled)
+	if(!G?.hud_enabled || !(G.flags_gun_features & GUN_AMMO_COUNTER))
 		return
 
 	user.client.screen += src
@@ -645,7 +651,7 @@
 
 	var/obj/item/weapon/gun/G = user.get_active_held_item()
 
-	if(!G || !istype(G) || !G.has_ammo_counter() || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
+	if(!istype(G) || !(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
 		remove_hud()
 		return
 

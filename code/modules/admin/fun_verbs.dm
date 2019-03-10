@@ -5,59 +5,18 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(usr.client.view == world.view)
-		var/newview = input("Select view range:", "Change View Range", 7) as null|num
-		if(newview && newview != usr.client.view)
-			usr.client.change_view(newview)
-	else
+	if(usr.client.view != world.view)
 		usr.client.change_view(world.view)
+		return
+
+	var/newview = input("Select view range:", "Change View Range", 7) as null|num
+	if(!newview || newview == usr.client.view)
+		return
+
+	usr.client.change_view(newview)
 
 	log_admin("[key_name(usr)] changed their view range to [usr.client.view].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed their view range to [usr.client.view].")
-
-
-/datum/admins/proc/gib_self()
-	set name = "Gib Self"
-	set category = "Fun"
-
-	if(!check_rights(R_FUN))
-		return
-
-	if(istype(usr, /mob/dead/observer))
-		return
-
-	if(alert(usr, "Are you sure you want to gib yourself?", "Warning" , "Yes", "No") != "Yes")
-		return
-
-	if(!usr || istype(usr, /mob/dead/observer))
-		return
-
-	usr.gib()
-
-	log_admin("[key_name(usr)] has gibbed themselves.")
-	message_admins("[ADMIN_TPMONTY(usr)] has gibbed themselves.")
-
-
-/datum/admins/proc/gib()
-	set category = "Fun"
-	set name = "Gib"
-
-	if(!check_rights(R_FUN))
-		return
-
-	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(GLOB.mob_living_list)
-	if(!selection)
-		return
-
-	var/mob/living/M = selection
-
-	if(alert(usr, "Are you sure you want to gib [M]?", "Warning", "Yes", "No") != "Yes")
-		return
-
-	log_admin("[key_name(usr)] has gibbed [key_name(M)].")
-	message_admins("[ADMIN_TPMONTY(usr)] has gibbed [ADMIN_TPMONTY(M)].")
-
-	M.gib()
 
 
 /datum/admins/proc/emp()
@@ -88,13 +47,12 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/input = input("This should be a message from the ruler of the Xenomorph race.",, "") as message|null
 	var/customname = input("What do you want it to be called?.",, "Queen Mother Psychic Directive")
-
+	var/input = input("This should be a message from the ruler of the Xenomorph race.",, "") as message|null
 	if(!input || !customname)
-		return FALSE
+		return
 
-	var/msg = "<h1>[customname]</h1><br><br><br><span class='warning'>[input]<br><br></span>"
+	var/msg = "<br><h2 class='alert'>[customname]</h2><br><span class='warning'>[input]</span><br><br>"
 
 	for(var/mob/M in GLOB.player_list)
 		if(isxeno(M) || isobserver(M))
@@ -106,19 +64,18 @@
 
 /datum/admins/proc/hive_status()
 	set category = "Fun"
-	set name = "Check Hive Status"
+	set name = "Hive Status"
 	set desc = "Check the status of the hive."
 
 	if(!check_rights(R_FUN))
 		return
 
-	if(!ticker)
+	if(!SSticker)
 		return
 
 	check_hive_status()
 
 	log_admin("[key_name(usr)] checked the hive status.")
-	message_admins("[ADMIN_TPMONTY(usr)] checked the hive status.")
 
 
 /datum/admins/proc/ai_report()
@@ -136,11 +93,11 @@
 		if(!ai_system.Announce(input))
 			return
 	else
-		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = 'sound/misc/notice2.ogg')
+		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = 'sound/misc/interference.ogg')
 
 	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
-			if(!(C.stat & (BROKEN|NOPOWER)))
+			if(!(C.machine_stat & (BROKEN|NOPOWER)))
 				var/obj/item/paper/P = new /obj/item/paper(C.loc)
 				P.name = "'[MAIN_AI_SYSTEM] Update.'"
 				P.info = input
@@ -168,7 +125,7 @@
 
 	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
-			if(!(C.stat & (BROKEN|NOPOWER)))
+			if(!(C.machine_stat & (BROKEN|NOPOWER)))
 				var/obj/item/paper/P = new /obj/item/paper(C.loc)
 				P.name = "'[command_name()] Update.'"
 				P.info = input
@@ -206,8 +163,8 @@
 	message_admins("[ADMIN_TPMONTY(usr)] used Global Narrate: [msg]")
 
 
-/datum/admins/proc/narage_direct(var/mob/M)
-	set category = "Fun"
+/datum/admins/proc/narage_direct(var/mob/M in GLOB.mob_list)
+	set category = null
 	set name = "Direct Narrate"
 
 	if(!check_rights(R_FUN))
@@ -223,7 +180,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] used Direct Narrate on [ADMIN_TPMONTY(M)]: [msg]")
 
 
-/datum/admins/proc/subtle_message(var/mob/M in GLOB.mob_list)
+/datum/admins/proc/subtle_message(var/mob/M in GLOB.player_list)
 	set category = "Fun"
 	set name = "Subtle Message"
 
@@ -247,31 +204,6 @@
 	message_admins("[ADMIN_TPMONTY(usr)] used Subtle Message on [ADMIN_TPMONTY(M)]: [msg]")
 
 
-/datum/admins/proc/drop_everything()
-	set category = "Fun"
-	set name = "Drop Everything"
-
-	if(!check_rights(R_FUN))
-		return
-
-	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(GLOB.human_mob_list)
-	if(!selection)
-		return
-
-	var/mob/living/carbon/human/H = selection
-
-	if(alert(usr, "Make [H] drop everything?", "Warning", "Yes", "No") != "Yes")
-		return
-
-	for(var/obj/item/W in H)
-		if(istype(W, /obj/item/alien_embryo))
-			continue
-		H.dropItemToGround(W)
-
-	log_admin("[key_name(usr)] made [key_name(H)] drop everything.")
-	message_admins("[ADMIN_TPMONTY(usr)] made [ADMIN_TPMONTY(H)] drop everything.")
-
-
 /datum/admins/proc/award_medal()
 	set category = "Fun"
 	set name = "Award a Medal"
@@ -289,7 +221,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear", "Cancel"))
+	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear"))
 		if("Change")
 			custom_event_msg = input(usr, "Set the custom information players get on joining or via the OOC tab.",, custom_event_msg) as message|null
 
@@ -439,25 +371,40 @@
 
 /datum/admins/proc/sound_stop()
 	set category = "Fun"
-	set name = "Stop All Playing Sounds"
+	set name = "Stop Regular Sounds"
 
 	if(!check_rights(R_SOUND))
 		return
 
-	log_admin("[key_name(usr)] stopped all currently playing sounds.")
-	message_admins("[ADMIN_TPMONTY(usr)] stopped all currently playing sounds.")
 	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			SEND_SOUND(M, sound(null))
-			var/client/C = M.client
-			if(C?.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-				C.chatOutput.stopMusic()
+
+	log_admin("[key_name(usr)] stopped regular sounds.")
+	message_admins("[ADMIN_TPMONTY(usr)] stopped regular sounds.")
+
+
+/datum/admins/proc/music_stop()
+	set category = "Fun"
+	set name = "Stop Playing Music"
+
+	if(!check_rights(R_SOUND))
+		return
+
+	for(var/i in GLOB.clients)
+		var/client/C = i
+		if(!C?.chatOutput.loaded || C.chatOutput.broken)
+			continue	
+		C.chatOutput.stopMusic()
+
+
+	log_admin("[key_name(usr)] stopped the currently playing music.")
+	message_admins("[ADMIN_TPMONTY(usr)] stopped the currently playing music.")
 
 
 /datum/admins/proc/announce()
 	set category = "Fun"
-	set name = "Announce"
-	set desc = "Announce your desires to the world."
+	set name = "Admin Announce"
 
 	if(!check_rights(R_FUN))
 		return
@@ -469,7 +416,7 @@
 	if(!message)
 		return
 
-	log_admin("AdminAnnounce: [key_name(usr)] : [message]")
+	log_admin("Announce: [key_name(usr)] : [message]")
 	message_admins("[ADMIN_TPMONTY(usr)] Announces:")
 	to_chat(world, "<span class='notice'><b>[usr.client.holder.fakekey ? "Administrator" : "[usr.client.key] ([usr.client.holder.rank])"] Announces:</b>\n [message]</span>")
 
@@ -482,22 +429,22 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(!ticker?.mode)
+	if(!SSticker?.mode)
 		to_chat(src, "<span class='warning'>Please wait for the round to begin first.</span>")
 
-	if(ticker.mode.waiting_for_candidates)
+	if(SSticker.mode.waiting_for_candidates)
 		to_chat(src, "<span class='warning'>Please wait for the current beacon to be finalized.</span>")
 		return
 
-	if(ticker.mode.picked_call)
-		ticker.mode.picked_call.members = list()
-		ticker.mode.picked_call.candidates = list()
-		ticker.mode.waiting_for_candidates = FALSE
-		ticker.mode.on_distress_cooldown = FALSE
-		ticker.mode.picked_call = null
+	if(SSticker.mode.picked_call)
+		SSticker.mode.picked_call.members = list()
+		SSticker.mode.picked_call.candidates = list()
+		SSticker.mode.waiting_for_candidates = FALSE
+		SSticker.mode.on_distress_cooldown = FALSE
+		SSticker.mode.picked_call = null
 
 	var/list/list_of_calls = list()
-	for(var/datum/emergency_call/L in ticker.mode.all_calls)
+	for(var/datum/emergency_call/L in SSticker.mode.all_calls)
 		if(L.name)
 			list_of_calls += L.name
 
@@ -508,36 +455,36 @@
 		return
 
 	if(choice == "Randomize")
-		ticker.mode.picked_call	= ticker.mode.get_random_call()
+		SSticker.mode.picked_call	= SSticker.mode.get_random_call()
 	else
-		for(var/datum/emergency_call/C in ticker.mode.all_calls)
+		for(var/datum/emergency_call/C in SSticker.mode.all_calls)
 			if(C.name == choice)
-				ticker.mode.picked_call = C
+				SSticker.mode.picked_call = C
 				break
 
-	if(!istype(ticker.mode.picked_call))
+	if(!istype(SSticker.mode.picked_call))
 		return
 
 	var/max = input("What should the maximum amount of mobs be?", "Max Mobs", 20) as null|num
 	if(!max || max < 1)
 		return
 
-	ticker.mode.picked_call.mob_max = max
+	SSticker.mode.picked_call.mob_max = max
 
 	var/min = input("What should the minimum amount of mobs be?", "Min Mobs", 1) as null|num
 	if(!min || min < 1)
 		return
 
-	ticker.mode.picked_call.mob_min = min
+	SSticker.mode.picked_call.mob_min = min
 
 	var/is_announcing = TRUE
 	if(alert(usr, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No") != "Yes")
 		is_announcing = FALSE
 
-	ticker.mode.picked_call.activate(is_announcing)
+	SSticker.mode.picked_call.activate(is_announcing)
 
-	log_admin("[key_name(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]. Min: [min], Max: [max].")
-	message_admins("[ADMIN_TPMONTY(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name] Min: [min], Max: [max].")
+	log_admin("[key_name(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [SSticker.mode.picked_call.name]. Min: [min], Max: [max].")
+	message_admins("[ADMIN_TPMONTY(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [SSticker.mode.picked_call.name] Min: [min], Max: [max].")
 
 
 /datum/admins/proc/force_dropship()
@@ -586,7 +533,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(!ticker?.mode)
+	if(!SSticker?.mode)
 		return
 
 	var/tag = input("Which ERT shuttle should be force launched?", "Select an ERT Shuttle:") as null|anything in list("Distress", "Distress_PMC", "Distress_UPP", "Distress_Big")
@@ -643,9 +590,8 @@
 
 
 /datum/admins/proc/object_sound(atom/O as obj in world)
-	set category = "Fun"
+	set category = null
 	set name = "Object Sound"
-	set desc = "Display a message to everyone who can hear the target"
 
 	if(!check_rights(R_FUN))
 		return
@@ -692,10 +638,12 @@
 		if("Big Bomb")
 			explosion(M.loc, 3, 5, 7, 5)
 		if("Custom Bomb")
-			var/devastation_range = input("Devastation range (in tiles):") as num
-			var/heavy_impact_range = input("Heavy impact range (in tiles):") as num
-			var/light_impact_range = input("Light impact range (in tiles):") as num
-			var/flash_range = input("Flash range (in tiles):") as num
+			var/devastation_range = input("Devastation range (in tiles):") as null|num
+			var/heavy_impact_range = input("Heavy impact range (in tiles):") as null|num
+			var/light_impact_range = input("Light impact range (in tiles):") as null|num
+			var/flash_range = input("Flash range (in tiles):") as null|num
+			if(isnull(devastation_range) || isnull(heavy_impact_range) || isnull(light_impact_range) || isnull(flash_range))
+				return
 			explosion(M.loc, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 
 	log_admin("[key_name(usr)] dropped a bomb at [AREACOORD(M.loc)].")
@@ -709,7 +657,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red","delta")-get_security_level())
+	var/sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green", "blue", "red", "delta") - get_security_level())
 	if(!sec_level || alert("Switch from code [get_security_level()] to code [sec_level]?", "Change security level?", "Yes", "No") != "Yes")
 		return
 
@@ -728,42 +676,61 @@
 
 	switch(alert("Modify the rank or give them a new one?", "Select Rank", "New Rank", "Modify", "Cancel"))
 		if("New Rank")
-			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(RoleAuthority.roles_by_name)
+			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(SSjob.name_occupations)
 			if(!newrank)
 				return
 
 			if(!H?.mind)
 				return
 
-			H.set_everything(H, newrank)
+			var/datum/job/J = SSjob.name_occupations[newrank]
+			var/datum/outfit/job/O = new J.outfit
+			var/id = O.id ? O.id : /obj/item/card/id
+			var/obj/item/card/id/I = new id
+			var/datum/skills/L = new J.skills_type
+			H.mind.cm_skills = L
+			H.mind.comm_title = J.comm_title
+
+			if(H.wear_id)
+				qdel(H.wear_id)
+
+			H.job = newrank
+			H.faction = J.faction
+
+			H.equip_to_slot_or_del(I, SLOT_WEAR_ID)
+
+			SSjob.AssignRole(H, newrank)
+			O.post_equip(H)
+
 			log_admin("[key_name(usr)] has set the rank of [key_name(H)] to [newrank].")
 			message_admins("[ADMIN_TPMONTY(usr)] has set the rank of [ADMIN_TPMONTY(H)] to [newrank].")
+
 		if("Modify")
 			var/obj/item/card/id/I = H.wear_id
 			if(!istype(I))
 				H.wear_id = new /obj/item/card/id(H)
 			switch(input("What do you want to edit?") as null|anything in list("Comms Title - \[Engineering (Title)]", "Chat Title - Title John Doe screams!", "ID title - Jane Doe's ID Card (Title)", "Registered Name - Jane Doe's ID Card", "Skills"))
 				if("Comms Title - \[Engineering (Title)]")
-					var/commtitle = input("Write the custom title appearing on the comms themselves, for example: \[Command (Title)]", "Comms title") as null|text
+					var/commtitle = input("Write the custom title appearing in the comms: Comms Title - \[Engineering (Title)]", "Comms Title") as null|text
 					if(!commtitle || !H?.mind)
 						return
-					H.mind.role_comm_title = commtitle
+					H.mind.comm_title = commtitle
 				if("Chat Title - Title John Doe screams!")
-					var/chattitle = input("Write the custom title appearing in all chats: Title Jane Doe screams!", "Chat title") as null|text
+					var/chattitle = input("Write the custom title appearing in all chats: Title Jane Doe screams!", "Chat Title") as null|text
 					if(chattitle || !H)
 						return
 					if(!istype(I) || I != H.wear_id)
 						H.wear_id = new /obj/item/card/id(H)
 					I.paygrade = chattitle
+					I.update_label()
 				if("ID title - Jane Doe's ID Card (Title)")
-					var/idtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID title") as null|text
+					var/idtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID Title") as null|text
 					if(!H || I != H.wear_id)
 						return
 					if(!istype(I) || I != H.wear_id)
 						H.wear_id = new /obj/item/card/id(H)
-					I.rank = idtitle
 					I.assignment = idtitle
-					I.name = "[I.registered_name]'s ID Card[idtitle ? " ([I.assignment])" : ""]"
+					I.update_label()
 				if("Registered Name - Jane Doe's ID Card")
 					var/regname = input("Write the name appearing on the ID itself: Jane Doe's ID Card", "Registered Name") as null|text
 					if(!H || I != H.wear_id)
@@ -771,13 +738,14 @@
 					if(!istype(I) || I != H.wear_id)
 						H.wear_id = new /obj/item/card/id(H)
 					I.registered_name = regname
-					I.name = "[regname]'s ID Card ([I.assignment])"
+					I.update_label()
 				if("Skills")
-					var/newskillset = input("Select a skillset", "Skill Set") as null|anything in RoleAuthority.roles_by_name
+					var/newskillset = input("Select a skillset", "Skill Set") as null|anything in sortList(SSjob.name_occupations)
 					if(!newskillset || !H?.mind)
 						return
-					var/datum/job/J = RoleAuthority.roles_by_name[newskillset]
-					H.mind.set_cm_skills(J.skills_type)
+					var/datum/job/J = SSjob.name_occupations[newskillset]
+					var/datum/skills/S = new J.skills_type()
+					H.mind.cm_skills = S
 				else
 					return
 
@@ -785,79 +753,189 @@
 			message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank/skill change for [ADMIN_TPMONTY(H)].")
 
 
-/datum/admins/proc/select_equipment(var/mob/living/carbon/human/M in GLOB.human_mob_list)
+/datum/admins/proc/select_equipment(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Select Equipment"
 
-	if(!ishuman(M))
+	if(!check_rights(R_FUN))
 		return
 
-	var/list/dresspacks = sortList(RoleAuthority.roles_by_equipment)
+	var/list/outfits = list("Naked", "Custom", "As Job...")
+	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job)
+	for(var/path in paths)
+		var/datum/outfit/O = path
+		if(initial(O.can_be_admin_equipped))
+			outfits[initial(O.name)] = path
 
-	var/dresscode = input("Choose equipment for [M]", "Select Equipment") as null|anything in dresspacks
+	var/dresscode = input("Please select an outfit.", "Select Equipment") as null|anything in list("-- Naked", "-- Job", "-- Custom")
+	if(isnull(dresscode))
+		return
+
+	if(outfits[dresscode])
+		dresscode = outfits[dresscode]
+
+	if(dresscode == "-- Job")
+		var/list/job_paths = subtypesof(/datum/outfit/job)
+		var/list/job_outfits = list()
+		for(var/path in job_paths)
+			var/datum/outfit/O = path
+			if(initial(O.can_be_admin_equipped))
+				job_outfits[initial(O.name)] = path
+
+		dresscode = input("Select job equipment", "Select Equipment") as null|anything in sortList(job_outfits)
+		dresscode = job_outfits[dresscode]
+		if(isnull(dresscode))
+			return
+
+	if(dresscode == "-- Custom")
+		var/list/custom_names = list()
+		for(var/datum/outfit/D in GLOB.custom_outfits)
+			custom_names[D.name] = D
+		var/selected_name = input("Select outfit", "Select Equipment") as null|anything in sortList(custom_names)
+		dresscode = custom_names[selected_name]
+		if(isnull(dresscode))
+			return
+
 	if(!dresscode)
 		return
 
-	for(var/obj/item/I in M)
-		if(istype(I, /obj/item/implant) || istype(I, /obj/item/card/id))
-			continue
-		qdel(I)
+	var/datum/outfit/O
+	H.delete_equipment(TRUE)
+	if(dresscode != "-- Naked")
+		O = new dresscode
+		H.equipOutfit(O, TRUE)
 
-	var/datum/job/J = dresspacks[dresscode]
-	J.generate_equipment(M)
-	M.regenerate_icons()
+	H.regenerate_icons()
 
-	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(M)] to [dresscode].")
-
-
-/datum/admins/proc/possess(obj/O as obj in GLOB.object_list)
-	set category = "Object"
-	set name = "Possess Obj"
-
-	if(!check_rights(R_FUN))
-		return
-
-	var/mob/M = usr
-
-	if(!M.control_object)
-		M.name_archive = M.real_name
-
-	M.loc = O
-	M.real_name = O.name
-	M.name = O.name
-	M.control_object = O
-	M.client.eye = O
-
-	log_admin("[key_name(usr)] has possessed [O] ([O.type]).")
-	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]).")
+	log_admin("[key_name(usr)] changed the equipment of [key_name(H)] to [istype(O) ?  O.name : dresscode].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(H)] to [istype(O) ? O.name : dresscode].")
 
 
-/datum/admins/proc/release(obj/O as obj in GLOB.object_list)
-	set category = "Object"
-	set name = "Release Obj"
+GLOBAL_LIST_EMPTY(custom_outfits)
+
+/datum/admins/proc/create_outfit()
+	set category = "Fun"
+	set name = "Create Custom Outfit"
 
 	if(!check_rights(R_FUN))
 		return
 
-	var/mob/M = usr
+	var/dat = {"
+	<html><head><title>Create Outfit</title></head><body>
+	<div>Input typepaths and watch the magic happen.</div>
+	<form name="outfit" action="byond://?src=[REF(usr.client.holder)];[HrefToken()]" method="get">
+	<input type="hidden" name="src" value="[REF(usr.client.holder)];[HrefToken()]">
+	[HrefTokenFormField()]
+	<table>
+		<tr>
+			<th>Name:</th>
+			<td>
+				<input type="text" name="outfit_name" value="Custom Outfit">
+			</td>
+		</tr>
+		<tr>
+			<th>Uniform:</th>
+			<td>
+			   <input type="text" name="outfit_uniform" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Suit:</th>
+			<td>
+				<input type="text" name="outfit_suit" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Back:</th>
+			<td>
+				<input type="text" name="outfit_back" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Belt:</th>
+			<td>
+				<input type="text" name="outfit_belt" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Gloves:</th>
+			<td>
+				<input type="text" name="outfit_gloves" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Shoes:</th>
+			<td>
+				<input type="text" name="outfit_shoes" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Head:</th>
+			<td>
+				<input type="text" name="outfit_head" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Mask:</th>
+			<td>
+				<input type="text" name="outfit_mask" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Ears:</th>
+			<td>
+				<input type="text" name="outfit_ears" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Glasses:</th>
+			<td>
+				<input type="text" name="outfit_glasses" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>ID:</th>
+			<td>
+				<input type="text" name="outfit_id" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Left Pocket:</th>
+			<td>
+				<input type="text" name="outfit_l_pocket" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Right Pocket:</th>
+			<td>
+				<input type="text" name="outfit_r_pocket" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Suit Store:</th>
+			<td>
+				<input type="text" name="outfit_s_store" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Right Hand:</th>
+			<td>
+				<input type="text" name="outfit_r_hand" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Left Hand:</th>
+			<td>
+				<input type="text" name="outfit_l_hand" value="">
+			</td>
+		</tr>
+	</table>
+	<br>
+	<input type="submit" value="Save">
+	</form></body></html>
+	"}
 
-	if(!M.control_object || !M.name_archive)
-		return
-
-	M.real_name = M.name_archive
-	M.name = M.real_name
-
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		H.name = H.get_visible_name()
-
-	M.loc = O.loc
-	M.control_object = null
-	M.client.eye = M
-
-	log_admin("[key_name(usr)] has released [O] ([O.type]).")
-	message_admins("[ADMIN_TPMONTY(usr)] has released [O] ([O.type]).")
+	usr << browse(dat, "window=dressup;size=550x600")
 
 
 /datum/admins/proc/edit_appearance(mob/living/carbon/human/H in GLOB.human_mob_list)
@@ -932,3 +1010,130 @@
 
 	log_admin("[key_name(usr)] updated the appearance of [key_name(H)].")
 	message_admins("[ADMIN_TPMONTY(usr)] updated the appearance of [ADMIN_TPMONTY(H)].")
+
+
+/datum/admins/proc/offer(var/mob/M in GLOB.mob_list)
+	set category = "Fun"
+	set name = "Offer Mob"
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(!isliving(M))
+		return
+
+	var/mob/living/L = M
+
+	if(L.key || L.ckey)
+		if(alert("This mob has a player inside, are you sure you want to proceed?", "WARNING", "Yes", "No") != "Yes")
+			return
+		L.taken = FALSE
+		var/mob/dead/observer/ghost = L.ghostize(FALSE)
+		if(ghost)
+			ghost.timeofdeath = world.time
+	else if(L.taken)
+		if(alert("This mob has been offered, are you sure you want to proceed?", "Warning", "Yes", "No") != "Yes")
+			return
+		L.taken = FALSE
+
+	if(alert("Are you sure?", "Offer Mob", "Yes", "No") != "Yes")
+		return
+	for(var/i in GLOB.dead_mob_list)
+		var/mob/dead/D = i
+		to_chat(D, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [L.name] \[<a href='byond://?src=[REF(D)];claim=[REF(L)]'>CLAIM</a>\]</span><hr><br>")
+
+	log_admin("[key_name(usr)] has offered [key_name_admin(M)].")
+	message_admins("[ADMIN_TPMONTY(usr)] has offered [ADMIN_TPMONTY(M)].")
+
+
+/datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.xeno_mob_list)
+	set category = "Fun"
+	set name = "Change Hivenumber"
+	set desc = "Set the hivenumber of a xenomorph."
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(!istype(X))
+		return
+
+	var/hivenumber_status = X.hivenumber
+
+	var/list/namelist = list()
+	for(var/Y in hive_datum)
+		var/datum/hive_status/H = Y
+		namelist += H.name
+
+	var/newhive = input(src, "Select a hive.", null, null) in namelist
+
+	var/newhivenumber
+	switch(newhive)
+		if("Normal")
+			newhivenumber = XENO_HIVE_NORMAL
+		if("Corrupted")
+			newhivenumber = XENO_HIVE_CORRUPTED
+		if("Alpha")
+			newhivenumber = XENO_HIVE_ALPHA
+		if("Beta")
+			newhivenumber = XENO_HIVE_BETA
+		if("Zeta")
+			newhivenumber = XENO_HIVE_ZETA
+		else
+			return
+
+	if(!istype(X) || X.gc_destroyed || !SSticker || X.hivenumber != hivenumber_status)
+		return
+
+	X.set_hive_number(newhivenumber)
+
+	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] to [newhive].")
+
+
+/datum/admins/proc/release(obj/O in GLOB.object_list)
+	set category = null
+	set name = "Release Obj"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/mob/M = usr
+
+	if(!M.control_object || !M.name_archive)
+		return
+
+	M.real_name = M.name_archive
+	M.name = M.real_name
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.name = H.get_visible_name()
+
+	M.loc = O.loc
+	M.control_object = null
+	M.client.eye = M
+
+	log_admin("[key_name(usr)] has released [O] ([O.type]).")
+	message_admins("[ADMIN_TPMONTY(usr)] has released [O] ([O.type]).")
+
+
+/datum/admins/proc/possess(obj/O in GLOB.object_list)
+	set category = null
+	set name = "Possess Obj"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/mob/M = usr
+
+	if(!M.control_object)
+		M.name_archive = M.real_name
+
+	M.loc = O
+	M.real_name = O.name
+	M.name = O.name
+	M.control_object = O
+	M.client.eye = O
+
+	log_admin("[key_name(usr)] has possessed [O] ([O.type]).")
+	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]).")

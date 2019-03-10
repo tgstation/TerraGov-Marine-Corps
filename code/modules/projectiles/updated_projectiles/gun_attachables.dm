@@ -76,10 +76,11 @@ Defined in conflicts.dm of the #defines folder.
 	var/bipod_deployed = FALSE //only used by bipod
 	var/current_rounds 	= 0 //How much it has.
 	var/max_rounds 		= 0 //How much ammo it can store
+	var/max_range		= 0
 	var/attach_applied = FALSE //Prevents it from getting picked up after being attached
 
 	var/attachment_action_type
-
+	var/scope_zoom_mod = FALSE //codex
 
 
 /obj/item/attachable/attackby(obj/item/I, mob/user)
@@ -151,6 +152,7 @@ Defined in conflicts.dm of the #defines folder.
 	G.burst_scatter_mult += burst_scatter_mod
 	G.movement_acc_penalty_mult += movement_acc_penalty_mod
 	G.shell_speed_mod	+= attach_shell_speed_mod
+	G.scope_zoom 		+= scope_zoom_mod
 
 	if(G.burst_amount <= 1)
 		G.flags_gun_features &= ~GUN_BURST_ON //Remove burst if they can no longer use it.
@@ -205,6 +207,7 @@ Defined in conflicts.dm of the #defines folder.
 	G.burst_scatter_mult -= burst_scatter_mod
 	G.movement_acc_penalty_mult -= movement_acc_penalty_mod
 	G.shell_speed_mod	-=attach_shell_speed_mod
+	G.scope_zoom 		-= scope_zoom_mod
 	G.update_force_list()
 
 	if(silence_mod) //Built in silencers always come as an attach, so the gun can't be silenced right off the bat.
@@ -217,6 +220,9 @@ Defined in conflicts.dm of the #defines folder.
 		if(DA.target == src)
 			qdel(X)
 			break
+
+	//turn_off_light()
+	//G.flags_gun_features &= ~GUN_FLASHLIGHT_ON
 
 	loc = get_turf(G)
 
@@ -253,6 +259,13 @@ Defined in conflicts.dm of the #defines folder.
 	silence_mod = 1
 	pixel_shift_y = 16
 	attach_icon = "suppressor_a"
+
+/obj/item/attachable/suppressor/unremovable
+	flags_attach_features = NOFLAGS
+
+/obj/item/attachable/suppressor/unremovable/invisible
+	attach_icon = ""
+	icon_state = ""
 
 /obj/item/attachable/suppressor/Initialize()
 	. = ..()
@@ -440,17 +453,26 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/flashlight/activate_attachment(obj/item/weapon/gun/G, mob/living/user, turn_off)
 	if(turn_off && !(G.flags_gun_features & GUN_FLASHLIGHT_ON))
 		return
-	var/flashlight_on = (G.flags_gun_features & GUN_FLASHLIGHT_ON) ? -1 : 1
-	var/atom/movable/light_source =  ismob(G.loc) ? G.loc : G
-	light_source.SetLuminosity(light_mod * flashlight_on)
-	G.flags_gun_features ^= GUN_FLASHLIGHT_ON
+
+	if(ismob(G.loc) && !user)
+		user = G.loc
 
 	if(G.flags_gun_features & GUN_FLASHLIGHT_ON)
-		icon_state = "flashlight-on"
-		attach_icon = "flashlight_a-on"
-	else
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
+		if(user && G.loc == user)
+			user.SetLuminosity(-light_mod)
+		else
+			G.SetLuminosity(0)
+	else
+		icon_state = "flashlight-on"
+		attach_icon = "flashlight_a-on"
+		if(user && G.loc == user)
+			user.SetLuminosity(light_mod)
+		else
+			G.SetLuminosity(light_mod)
+
+	G.flags_gun_features ^= GUN_FLASHLIGHT_ON
 
 	G.update_attachable(slot)
 
@@ -518,9 +540,12 @@ Defined in conflicts.dm of the #defines folder.
 	var/zoom_viewsize = 12
 	var/zoom_accuracy = SCOPE_RAIL
 
+/obj/item/attachable/scope/unremovable
+	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/Initialize()
 	. = ..()
+	scope_zoom_mod = TRUE
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/low_movement_acc_penalty)
 	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 
@@ -551,25 +576,37 @@ Defined in conflicts.dm of the #defines folder.
 	zoom_viewsize = 7
 	zoom_accuracy = SCOPE_RAIL_MINI
 
-/obj/item/attachable/scope/Initialize()
+/obj/item/attachable/scope/mini/Initialize()
 	. = ..()
+	scope_zoom_mod = TRUE
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/scope/m4ra
 	name = "m4ra rail scope"
-	icon_state = "sniperscope"
-	attach_icon = "sniperscope_a"
+	//icon_state = "sniperscope"
+	//attach_icon = "sniperscope_a"
 	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	flags_attach_features = ATTACH_ACTIVATION
+	attach_icon = ""
+	icon_state = ""
 
 /obj/item/attachable/scope/m42a
 	name = "m42a rail scope"
-	icon_state = "sniperscope"
-	attach_icon = "sniperscope_a"
+	//icon_state = "sniperscope"
+	//attach_icon = "sniperscope_a"
 	desc = "A rail mounted zoom sight scope specialized for the M42A Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
 	zoom_accuracy = SCOPE_RAIL_SNIPER
+	flags_attach_features = ATTACH_ACTIVATION
+	attach_icon = ""
+	icon_state = ""
 
 /obj/item/attachable/scope/slavic
 	icon_state = "slavicscope"
+
+/obj/item/attachable/scope/pmc
+	icon_state = "pmcscope"
+	attach_icon = "pmcscope"
+	flags_attach_features = ATTACH_ACTIVATION
 
 //////////// Stock attachments ////////////////////////////
 
@@ -619,8 +656,9 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A standard polymer stock for the ZX-76 assault shotgun. Designed for maximum ease of use in close quarters."
 	icon_state = "zx_stock"
 	wield_delay_mod = 0
+	flags_attach_features = NOFLAGS
 
-/obj/item/attachable/stock/scout/New()
+/obj/item/attachable/stock/scout/Initialize()
 	. = ..()
 	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 	recoil_mod = -CONFIG_GET(number/combat_define/min_recoil_value)
@@ -731,7 +769,7 @@ Defined in conflicts.dm of the #defines folder.
 	pockets.max_w_class = 1
 	pockets.bypass_w_limit = list("/obj/item/weapon/gun/pistol/vp70")
 	pockets.max_storage_space = 3
-	
+
 /obj/item/attachable/stock/vp70/attack_hand(mob/user)
 	if(loc == user && length(pockets.contents))
 		var/obj/item/I = pockets.contents[length(pockets.contents)]
@@ -789,7 +827,7 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "laserstock"
 	pixel_shift_x = 41
 	pixel_shift_y = 10
-
+	flags_attach_features = NOFLAGS
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
@@ -798,7 +836,7 @@ Defined in conflicts.dm of the #defines folder.
 	attachment_action_type = /datum/action/item_action/toggle
 	//Some attachments may be fired. So here are the variables related to that.
 	var/datum/ammo/ammo = null //If it has a default bullet-like ammo.
-	var/max_range 		= 0 //Determines # of tiles distance the attachable can fire, if it's not a projectile.
+	max_range 		= 0 //Determines # of tiles distance the attachable can fire, if it's not a projectile.
 	var/type_of_casings = null
 	var/attachment_firing_delay = 0 //the delay between shots, for attachments that fires stuff
 	var/fire_sound = null //Sound to play when firing it alternately
@@ -849,6 +887,13 @@ Defined in conflicts.dm of the #defines folder.
 	fire_sound = 'sound/weapons/gun_m92_attachable.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 	var/list/loaded_grenades //list of grenade types loaded in the UGL
+
+/obj/item/attachable/attached_gun/grenade/unremovable
+	flags_attach_features = ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
+
+/obj/item/attachable/attached_gun/grenade/unremovable/invisible
+	icon_state = ""
+	attach_icon = ""
 
 /obj/item/attachable/attached_gun/grenade/Initialize()
 	. = ..()
@@ -923,6 +968,9 @@ Defined in conflicts.dm of the #defines folder.
 	fire_sound = 'sound/weapons/gun_flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 
+/obj/item/attachable/attached_gun/flamer/unremovable
+	flags_attach_features = ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
+
 /obj/item/attachable/attached_gun/flamer/Initialize()
 	. = ..()
 	attachment_firing_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
@@ -996,7 +1044,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/attached_gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
-	var/list/turf/turfs = getline2(user,target)
+	var/list/turf/turfs = getline(user,target)
 	var/distance = 0
 	var/turf/prev_T
 	playsound(user, 'sound/weapons/gun_flamethrower2.ogg', 50, 1)
@@ -1042,7 +1090,7 @@ Defined in conflicts.dm of the #defines folder.
 			var/mob/living/carbon/human/H = M
 
 			if(user)
-				if(user.mind?.special_role && H.mind?.special_role && user.mind.special_role != H.mind.special_role)
+				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
 					log_combat(user, H, "shot", src)
 					log_ffattack("[key_name(usr)] shot [key_name(H)] with [name] in [AREACOORD(T)].")
 					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")

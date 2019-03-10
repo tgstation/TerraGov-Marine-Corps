@@ -1,5 +1,5 @@
 /obj/item/weapon/gun
-	name = "gun"
+	name = "Guns"
 	desc = "Its a gun. It's pretty terrible, though."
 	icon = 'icons/obj/items/gun.dmi'
 	icon_state = ""
@@ -114,8 +114,10 @@
 			current_mag = null
 			update_icon()
 		else
-			current_mag = new current_mag(src, spawn_empty ? 1 : 0)
+			current_mag = new current_mag(src, spawn_empty ? TRUE : FALSE)
 			ammo = current_mag.default_ammo ? GLOB.ammo_list[current_mag.default_ammo] : GLOB.ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
+		if(flags_gun_features & GUN_LOAD_INTO_CHAMBER && current_mag?.current_rounds > 0)
+			load_into_chamber()
 	else
 		ammo = GLOB.ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
 	set_gun_config_values()
@@ -160,9 +162,8 @@
 	if(flags_gun_features & GUN_FLASHLIGHT_ON)//Handle flashlight.
 		flags_gun_features &= ~GUN_FLASHLIGHT_ON
 		if(ismob(loc))
-			loc.SetLuminosity(-rail.light_mod)
-		else
-			SetLuminosity(0)
+			loc.SetLuminosity(-(rail.light_mod) )
+		SetLuminosity(0)
 	rail 			= null
 	under 			= null
 	stock 			= null
@@ -198,16 +199,25 @@
 	else
 		dat += "The safety's off!<br>"
 
-	if(rail) 	dat += "It has [icon2html(rail, user)] [rail.name] mounted on the top.<br>"
-	if(muzzle) 	dat += "It has [icon2html(muzzle, user)] [muzzle.name] mounted on the front.<br>"
-	if(stock) 	dat += "It has [icon2html(stock, user)] [stock.name] for a stock.<br>"
+	if(rail)
+		dat += "It has [icon2html(rail, user)] [rail.name] mounted on the top.<br>"
+	if(muzzle)
+		dat += "It has [icon2html(muzzle, user)] [muzzle.name] mounted on the front.<br>"
+	if(stock)
+		dat += "It has [icon2html(stock, user)] [stock.name] for a stock.<br>"
 	if(under)
 		dat += "It has [icon2html(under, user)] [under.name]"
 		if(under.flags_attach_features & ATTACH_WEAPON)
 			dat += " ([under.current_rounds]/[under.max_rounds])"
 		dat += " mounted underneath.<br>"
 
+	if(dat)
+		to_chat(user, "[dat.Join(" ")]")
 
+	examine_ammo_count(user)
+
+/obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
+	var/list/dat = list()
 	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
 		if(current_mag && current_mag.current_rounds > 0)
 			if(flags_gun_features & GUN_AMMO_COUNTER)
@@ -481,10 +491,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			flags_gun_features &= ~GUN_BURST_FIRING
 		return
 
-	if(user && user.client && user.gun_mode && !(A in target))
-		PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
-	else
-		Fire(A,user,params) //Otherwise, fire normally.
+	if(user?.client && user.gun_mode && !(A in target))
+		PreFire(A, user, params) //They're using the new gun system, locate what they're aiming at.
+	else if(!istype(A, /obj/screen))
+		Fire(A, user, params) //Otherwise, fire normally.
 
 /*
 load_into_chamber(), reload_into_chamber(), and clear_jam() do all of the heavy lifting.

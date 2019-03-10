@@ -50,9 +50,9 @@
 			break
 
 	if(!turbine)
-		stat |= BROKEN
+		machine_stat |= BROKEN
 	else
-		turbine.stat &= ~BROKEN
+		turbine.machine_stat &= ~BROKEN
 		turbine.compressor = src
 
 
@@ -63,17 +63,17 @@
 	if(!starter)
 		return
 	overlays.Cut()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	if(!turbine)
-		stat |= BROKEN
+		machine_stat |= BROKEN
 		return
 	rpm = 0.9* rpm + 0.1 * rpmtarget
 
 	rpm = max(0, rpm - (rpm*rpm)/COMPFRICTION)
 
 
-	if(starter && !(stat & NOPOWER))
+	if(starter && !(machine_stat & NOPOWER))
 		use_power(2800)
 		if(rpm<1000)
 			rpmtarget = 1000
@@ -104,9 +104,9 @@
 			break
 
 	if(!compressor)
-		stat |= BROKEN
+		machine_stat |= BROKEN
 	else
-		compressor.stat &= ~BROKEN
+		compressor.machine_stat &= ~BROKEN
 		compressor.turbine = src
 
 
@@ -116,12 +116,12 @@
 
 /obj/machinery/power/turbine/process()
 	if(!compressor)
-		stat |= BROKEN
+		machine_stat |= BROKEN
 		return
 	if(!compressor.starter)
 		return
 	overlays.Cut()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	lastgen = ((compressor.rpm / TURBGENQ)**TURBGENG) *TURBGENQ
 
@@ -137,11 +137,16 @@
 	AutoUpdateAI(src)
 
 /obj/machinery/power/turbine/attack_hand(mob/user)
+	. = ..()
 
-	if ( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && !isAI(user) )
+	if(!ishuman(user))
+		return
+
+	if ( (get_dist(src, user) > 1 ) || (machine_stat & (NOPOWER|BROKEN)) && !isAI(user) )
 		user.unset_interaction()
 		user << browse(null, "window=turbine")
 		return
+
 
 	user.set_interaction(src)
 
@@ -163,14 +168,13 @@
 
 /obj/machinery/power/turbine/Topic(href, href_list)
 	..()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	if (usr.is_mob_incapacitated(TRUE))
 		return
-	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
-		if(!isAI(usr))
-			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
-			return
+
+	if(!ishuman(usr))
+		return
 
 	if (( usr.interactee==src && ((get_dist(src, usr) <= 1) && isturf(loc))) || isAI(usr))
 
@@ -215,7 +219,7 @@
 	if(isscrewdriver(I))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
-			if (src.stat & BROKEN)
+			if (src.machine_stat & BROKEN)
 				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				new /obj/item/shard( src.loc )
@@ -334,3 +338,14 @@
 /obj/machinery/computer/turbine_computer/process()
 	src.updateDialog()
 	return
+
+/obj/machinery/power/turbinemotor
+	name = "motor"
+	desc = "Electrogenerator. Converts rotation into power."
+	icon = 'icons/obj/pipeturbine.dmi'
+	icon_state = "motor"
+	anchored = 0
+	density = 1
+
+	var/kin_to_el_ratio = 0.1	//How much kinetic energy will be taken from turbine and converted into electricity
+	var/obj/machinery/atmospherics/pipeturbine/turbine
