@@ -702,7 +702,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 
 /datum/SDQL2_query/proc/SDQL_print(object, list/text_list, print_nulls = TRUE)
 	if(is_proper_datum(object))
-		text_list += "<A HREF='?_src_=vars;[HrefToken(TRUE)];Vars=[REF(object)]'>[REF(object)]</A> : [object]"
+		text_list += "<A HREF='?_src_=vars;[HrefToken(TRUE)];vars=[REF(object)]'>[REF(object)]</A> : [object]"
 		if(istype(object, /atom))
 			var/atom/A = object
 			var/turf/T = get_turf(A)
@@ -983,7 +983,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 	if(is_proper_datum(object))
 		D = object
 
-	if (object == world && (!long || expression[start + 1] == ".") && !(expression[start] in exclude))
+	if(object == world && (!long || expression[start + 1] == ".") && !(expression[start] in exclude))
 		to_chat(usr, "<span class='danger'>World variables are not allowed to be accessed. Use global.</span>")
 		return null
 
