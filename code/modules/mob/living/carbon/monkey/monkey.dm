@@ -342,7 +342,7 @@
 	..()
 
 /mob/living/carbon/monkey/has_smoke_protection()
-	if(wear_mask?.flags_inventory & BLOCKGASEFFECT)
+	if(istype(wear_mask) && wear_mask.flags_inventory & BLOCKGASEFFECT)
 		return TRUE
 	return ..()
 

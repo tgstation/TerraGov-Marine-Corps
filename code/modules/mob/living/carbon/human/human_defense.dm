@@ -120,9 +120,9 @@ Contains most of the procs that are called when a mob is attacked by something
 	..()
 
 /mob/living/carbon/human/has_smoke_protection()
-	if(wear_mask?.flags_inventory & BLOCKGASEFFECT)
+	if(istype(wear_mask) && wear_mask.flags_inventory & BLOCKGASEFFECT)
 		return TRUE
-	if(glasses.flags_inventory & BLOCKGASEFFECT)
+	if(istype(glasses) && glasses.flags_inventory & BLOCKGASEFFECT)
 		return TRUE
 	if(head && istype(head, /obj/item/clothing))
 		var/obj/item/clothing/CH = head
