@@ -30,6 +30,8 @@ Basics, the most important.
 
 /datum/config_entry/string/donationurl
 
+/datum/config_entry/string/dburl
+
 /datum/config_entry/string/shipurl
 
 /datum/config_entry/string/lv624url
@@ -43,6 +45,8 @@ Basics, the most important.
 /datum/config_entry/string/whiskeyoutposturl
 
 /datum/config_entry/string/python_path
+
+/datum/config_entry/string/restart_message
 
 /datum/config_entry/flag/guest_ban
 

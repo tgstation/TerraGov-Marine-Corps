@@ -140,6 +140,8 @@
 						client.prefs.real_name = species.random_name(client.prefs.gender)
 					else
 						observer.real_name = client.prefs.real_name
+				else
+					observer.real_name = species.random_name()
 
 				observer.name = observer.real_name
 

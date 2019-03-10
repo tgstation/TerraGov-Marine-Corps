@@ -483,7 +483,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 //Generic proc for taking damage
 //ALWAYS USE THIS WHEN INFLICTING DAMAGE TO THE VEHICLES
-/obj/vehicle/multitile/root/cm_armored/proc/take_damage_type(var/damage, var/type, var/atom/attacker)
+/obj/vehicle/multitile/root/cm_armored/proc/take_damage_type(damage, type, atom/attacker)
 	for(var/i in hardpoints)
 		var/obj/item/hardpoint/HP = hardpoints[i]
 		if(!istype(HP))

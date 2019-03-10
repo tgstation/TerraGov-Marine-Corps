@@ -55,6 +55,8 @@
 		log_admin_private("[key_name(usr)] has [muteunmute] [key_name(C)] from [mute_string].")
 		message_admins("[ADMIN_TPMONTY(usr)] has [muteunmute] [ADMIN_TPMONTY(C.mob)] from [mute_string].")
 
+	usr.client.holder.show_player_panel(C.mob)
+
 
 //checks client ban cache or DB ban table if ckey is banned from one or more roles
 //doesn't return any details, use only for if statements
@@ -1004,11 +1006,11 @@
 
 /datum/admins/proc/stickyban_gethtml(ckey, ban)
 	. = {"
-		<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove&ckey=[ckey]'>\[-\]</a>
-		<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=revert&ckey=[ckey]'>\[revert\]</a>
+		<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove&ckey=[ckey]'>Remove</a>
+		<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=revert&ckey=[ckey]'>Revert</a>
 		<b>[ckey]</b>
 		<br />"
-		[ban["message"]] <b><a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=edit&ckey=[ckey]'>\[Edit\]</a></b><br />
+		[ban["message"]] <b><a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=edit&ckey=[ckey]'>Edit</a></b><br />
 	"}
 	if (ban["admin"])
 		. += "[ban["admin"]]<br />"
@@ -1018,7 +1020,7 @@
 	for (var/key in ban["keys"])
 		if (ckey(key) == ckey)
 			continue
-		. += "<li><a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove_alt&ckey=[ckey]&alt=[ckey(key)]'>\[-\]</a>[key]</li>"
+		. += "<li><a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove_alt&ckey=[ckey]&alt=[ckey(key)]'>Remove</a>[key]</li>"
 	. += "</ol>\n"
 
 
@@ -1086,16 +1088,11 @@
 		banhtml += "<br /><hr />\n"
 		banhtml += usr.client.holder.stickyban_gethtml(ckey,ban)
 
-	var/html = {"
-	<head>
-		<title>Sticky Bans</title>
-	</head>
-	<body>
-		<h2>All Sticky Bans:</h2> <a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=add'>\[+\]</a><br>
-		[banhtml]
-	</body>
-	"}
-	usr << browse(html,"window=stickybans;size=700x400")
+	var/html = "<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=add'>Add</a><br>[banhtml]"
+
+	var/datum/browser/browser = new(usr, "stickybans", "<div align='center'>Sticky Bans</div>", 700, 400)
+	browser.set_content(html)
+	browser.open()
 
 
 //Blocks an attempt to connect before even creating our client datum thing.
