@@ -592,7 +592,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 	if(type == "*")
 		for(var/i in location)
 			var/datum/d = i
-			if(d.can_vv_get() || superuser)
+			if(!isnull(d) && (d.can_vv_get() || superuser))
 				out += d
 			SDQL2_TICK_CHECK
 			SDQL2_HALT_CHECK
