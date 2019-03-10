@@ -20320,7 +20320,7 @@
 "aOE" = (
 /obj/machinery/light,
 /obj/structure/table/reinforced,
-/obj/machinery/juicer{
+/obj/machinery/reagentgrinder{
 	pixel_y = 5
 	},
 /turf/open/floor/prison{
@@ -45900,7 +45900,7 @@
 /area/almayer/living/grunt_rnr)
 "bSx" = (
 /obj/structure/table/almayer,
-/obj/machinery/juicer{
+/obj/machinery/reagentgrinder{
 	pixel_y = 5
 	},
 /obj/machinery/light{
