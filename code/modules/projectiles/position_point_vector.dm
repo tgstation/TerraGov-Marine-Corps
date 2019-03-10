@@ -140,7 +140,7 @@
 	var/starting_z = 0
 
 /datum/point/vector/New(_x, _y, _z, _pixel_x = 0, _pixel_y = 0, _angle, _speed, initial_increment = 0)
-	..()
+	. = ..()
 	initialize_trajectory(_speed, _angle)
 	if(initial_increment)
 		increment(initial_increment)
