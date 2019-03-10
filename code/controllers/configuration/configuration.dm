@@ -207,7 +207,7 @@
 
 /datum/controller/configuration/stat_entry()
 	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Edit", src)
+		statclick = new/obj/effect/statclick/debug(null, "Debug", src)
 	stat("[name]:", statclick)
 
 

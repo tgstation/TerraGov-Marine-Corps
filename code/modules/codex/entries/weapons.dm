@@ -73,11 +73,11 @@
 		switch(aim_speed_mod)
 			if(-INFINITY to SLOWDOWN_ADS_SHOTGUN)
 				attach_strings += "<br>It will slow the user down more by a small amount if wielded."
-			if(SLOWDOWN_ADS_SHOTGUN to SLOWDOWN_ADS_SPECIALIST_LIGHT)
+			if((SLOWDOWN_ADS_SHOTGUN + 0.01) to SLOWDOWN_ADS_SPECIALIST_LIGHT)
 				attach_strings += "<br>It will slow the user down more by a modest amount if wielded."
-			if(SLOWDOWN_ADS_SPECIALIST_LIGHT to SLOWDOWN_ADS_SCOPE)
+			if((SLOWDOWN_ADS_SPECIALIST_LIGHT + 0.01) to SLOWDOWN_ADS_SCOPE)
 				attach_strings += "<br>It will slow the user down more by a large amount if wielded."
-			if(SLOWDOWN_ADS_SPECIALIST_HEAVY to INFINITY)
+			if((SLOWDOWN_ADS_SCOPE + 0.01) to INFINITY)
 				attach_strings += "<br>It will slow the user down more by a massive amount if wielded."
 	if(!aim_speed_mod)
 		attach_strings += "<br>It will not slow the user down more if this is attached and wielded."

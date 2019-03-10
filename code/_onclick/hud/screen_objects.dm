@@ -378,26 +378,22 @@
 	icon_state = "running"
 	screen_loc = ui_movi
 
-/obj/screen/mov_intent/clicked(var/mob/user)
-	if (..())
+/obj/screen/mov_intent/clicked(mob/user)
+	. = ..()
+	if(.)
 		return TRUE
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
-		if(C.legcuffed)
-			to_chat(C, "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>")
-			C.m_intent = MOVE_INTENT_WALK	//Just incase
-			icon_state = "walking"
-			return
+	user.toggle_move_intent()
+
+
+/obj/screen/mov_intent/update_icon(mob/user)
+	if(!user)
+		return
+
 	switch(user.m_intent)
 		if(MOVE_INTENT_RUN)
-			user.m_intent = MOVE_INTENT_WALK
-			icon_state = "walking"
-		if(MOVE_INTENT_WALK)
-			user.m_intent = MOVE_INTENT_RUN
 			icon_state = "running"
-	if(isxeno(user))
-		user.update_icons()
-	return TRUE
+		if(MOVE_INTENT_WALK)
+			icon_state = "walking"
 
 
 /obj/screen/act_intent
