@@ -1078,7 +1078,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			continue
 		mobs_list += L
 
-	if(mobs_list.len)
+	if(length(mobs_list))
 		var/mob/living/picked_mob = pick(mobs_list) //Hit a mob, if there is one.
 		if(istype(picked_mob) && P.firer && prob(P.get_projectile_hit_chance(P.firer,picked_mob)))
 			picked_mob.bullet_act(P)
