@@ -1059,7 +1059,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 				"<span class='xenodanger'>You burst into flames!! Auuugh! Resist to put out the flames!</span>")
 		updatehealth()
 
-	return 1
+	return TRUE
 
 /turf/bullet_act(obj/item/projectile/P)
 	if(!P || !density) return //It's just an empty turf
