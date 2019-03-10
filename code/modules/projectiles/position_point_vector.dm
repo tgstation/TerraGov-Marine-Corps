@@ -152,7 +152,7 @@
 	starting_z = z
 
 /datum/point/vector/copy_to(datum/point/vector/v = new)
-	..(v)
+	. = ..(v)
 	v.speed = speed
 	v.iteration = iteration
 	v.angle = angle
