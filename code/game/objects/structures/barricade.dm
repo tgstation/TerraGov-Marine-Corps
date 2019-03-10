@@ -64,11 +64,11 @@
 
 		var/mob/living/carbon/Xenomorph/Crusher/C = A
 
-		if(C.charge_speed < C.charge_speed_max/2)
+		if(C.charge_speed < C.charge_speed_max * 0.5)
 			return
 
 		if(crusher_resistant)
-			health -= 100
+			health -= C.charge_speed * CRUSHER_CHARGE_BARRICADE_MULTI
 			update_health()
 
 		else if(!C.stat)

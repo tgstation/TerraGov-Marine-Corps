@@ -4,8 +4,7 @@
 		unset_interaction()
 	GLOB.player_list -= src
 	log_access("Logout: [key_name(src)]")
-	log_message("[src] has logged out.", LOG_OOC, "blue")
+	log_message("[key_name(src)] has logged out.", LOG_OOC)
 	if(s_active)
 		s_active.hide_from(src)
-	. = ..()
-	return TRUE
+	return ..()

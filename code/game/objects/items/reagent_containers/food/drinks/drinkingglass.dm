@@ -134,9 +134,9 @@
 					name = "Glass of Vermouth"
 					desc = "You wonder why you're even drinking this straight."
 					center_of_mass = list("x"=16, "y"=12)
-				if("tequilla")
-					icon_state = "tequillaglass"
-					name = "Glass of Tequilla"
+				if("tequila")
+					icon_state = "tequilaglass"
+					name = "Glass of Tequila"
 					desc = "Now all that's missing is the weird colored shades!"
 					center_of_mass = list("x"=16, "y"=12)
 				if("patron")
@@ -192,11 +192,11 @@
 				if("bravebull")
 					icon_state = "bravebullglass"
 					name = "Brave Bull"
-					desc = "Tequilla and Coffee liquor, brought together in a mouthwatering mixture. Drink up."
+					desc = "Tequila and Coffee liquor, brought together in a mouthwatering mixture. Drink up."
 					center_of_mass = list("x"=15, "y"=8)
-				if("tequillasunrise")
-					icon_state = "tequillasunriseglass"
-					name = "Tequilla Sunrise"
+				if("tequilasunrise")
+					icon_state = "tequilasunriseglass"
+					name = "Tequila Sunrise"
 					desc = "Oh great, now you feel nostalgic about sunrises back on Terra..."
 					center_of_mass = list("x"=16, "y"=10)
 				if("phoronspecial")

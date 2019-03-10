@@ -23,7 +23,7 @@
 	return format_text ? format_text(A.name) : A.name
 
 /proc/get_open_turf_in_dir(atom/center, dir)
-	var/turf/open/T = get_ranged_target_turf(center, dir, 1)
+	var/turf/open/T = get_step(center, dir)
 	if(istype(T))
 		return T
 
@@ -118,7 +118,16 @@
 			turfs += T
 	return turfs
 
+/proc/diamondturfs(center=usr, radius=3, check_view=FALSE)
+	var/turf/centerturf = get_turf(center)
+	if(radius < 0 || !centerturf)
+		return
 
+	var/list/turfs = list()
+	for(var/turf/T in check_view ? view(radius, centerturf) : range(radius, centerturf))
+		if(abs(T.x - centerturf.x) + abs(T.y - centerturf.y) <= radius)
+			turfs += T
+	. = turfs
 
 //var/debug_mob = 0
 
@@ -465,3 +474,13 @@ datum/projectile_data
 		if(M.client)
 			viewing += M.client
 	flick_overlay(I, viewing, duration)
+
+
+/proc/window_flash(client/C)
+	if(ismob(C))
+		var/mob/M = C
+		if(M.client)
+			C = M.client
+	if(!C)
+		return
+	winset(C, "mainwindow", "flash=5")

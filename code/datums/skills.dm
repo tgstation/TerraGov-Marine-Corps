@@ -23,6 +23,15 @@
 	var/powerloader = SKILL_POWERLOADER_DEFAULT
 	var/large_vehicle = SKILL_LARGE_VEHICLE_DEFAULT
 
+	var/list/values = list()
+
+
+/datum/skills/New()
+	values = list("Close Quarter Combat" = cqc, "Melee Weapons" = melee_weapons, "Firearms" = firearms, "Pistols" = pistols, "Shotguns" = shotguns,\
+	"Rifles" = rifles, "Submachine Guns" = smgs, "Heavy Weapons" = heavy_weapons, "Smartgun" = smartgun, "Specialist Weapons" = spec_weapons, \
+	"Engineering" = engineer, "Construction" = construction, "Leadership" = leadership, "Medical" = medical, "Surgery" = surgery, \
+	"Piloting" = pilot, "Police" = police, "Powerloaders" = powerloader, "Large Vehicles" = large_vehicle)
+
 
 /datum/skills/pfc
 	name = "Private"
