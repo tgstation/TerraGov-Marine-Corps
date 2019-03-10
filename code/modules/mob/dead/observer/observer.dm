@@ -80,7 +80,7 @@
 
 		mind.transfer_to(target, TRUE)
 		target.fully_replace_character_name(real_name, target.real_name)
-		if(target.job && target.mind)
+		if(target.job)
 			var/datum/job/J = SSjob.name_occupations[target.job]
 			var/datum/outfit/job/O = new J.outfit
 			var/datum/skills/L = new J.skills_type
