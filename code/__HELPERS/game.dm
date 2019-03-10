@@ -23,7 +23,7 @@
 	return format_text ? format_text(A.name) : A.name
 
 /proc/get_open_turf_in_dir(atom/center, dir)
-	var/turf/open/T = get_ranged_target_turf(center, dir, 1)
+	var/turf/open/T = get_step(center, dir)
 	if(istype(T))
 		return T
 
