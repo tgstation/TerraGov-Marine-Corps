@@ -605,7 +605,7 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 
 
 /proc/IsAdminAdvancedProcCall()
-	return usr && usr.client && GLOB.AdminProcCaller == usr.client.ckey
+	return usr?.client && GLOB.AdminProcCaller == usr.client.ckey
 
 
 /proc/GenIrcStealthKey()
