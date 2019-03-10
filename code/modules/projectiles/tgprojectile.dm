@@ -90,7 +90,7 @@
 
 /obj/machinery/pewpew/Destroy()
 	stop_processing()
-	. = ..()
+	return ..()
 
 /obj/machinery/pewpew/process()
 	for(var/i in 1 to 10)
