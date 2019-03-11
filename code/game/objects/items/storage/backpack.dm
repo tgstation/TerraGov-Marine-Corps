@@ -330,15 +330,15 @@
 
 /obj/item/storage/backpack/marine/corpsman/update_icon()
 	icon_state = initial(icon_state)
-	if(cell?.charge)
-		switch(round(cell.charge * 100 / max(1,cell.maxcharge)))
+	if(cell?.charge >= 0)
+		switch(PERCENT(cell.charge/cell.maxcharge))
 			if(75 to INFINITY)
 				icon_state += "_100"
-			if(50 to 74)
+			if(50 to 74.9)
 				icon_state += "_75"
-			if(25 to 49)
+			if(25 to 49.9)
 				icon_state += "_50"
-			if(1 to 24)
+			if(0.1 to 24.9)
 				icon_state += "_25"
 	else
 		icon_state += "_0"
