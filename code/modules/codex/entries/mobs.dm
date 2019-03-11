@@ -78,4 +78,4 @@
 	associated_paths = list(/mob/living/carbon/Xenomorph)
 	mechanics_text = "Xenomorphs are a hostile lifeform. They are very powerful individually and also in groups. \
 	They reproduce by capturing hosts and impregnating them with facehuggers. Some time later the larva growing in the hosts \
-	chest will violently burst out killing the host in the process. Not suitable for pet ownership."
+	chest will violently burst out killing the host in the process. <br><br>Not suitable for pet ownership."
