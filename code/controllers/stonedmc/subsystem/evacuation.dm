@@ -147,8 +147,9 @@ SUBSYSTEM_DEF(evacuation)
 	dest_status = NUKE_EXPLOSION_INACTIVE
 	for(i in dest_rods)
 		I = i
-		if(I.active_state == SELF_DESTRUCT_MACHINE_ACTIVE || (I.active_state == SELF_DESTRUCT_MACHINE_ARMED && override)) I.toggle(1)
-	dest_master.toggle(1)
+		if(I.active_state == SELF_DESTRUCT_MACHINE_ACTIVE || (I.active_state == SELF_DESTRUCT_MACHINE_ARMED && override)) 
+			I.toggle(TRUE)
+	dest_master.toggle(TRUE)
 	dest_index = 1
 	command_announcement.Announce("The emergency destruct system has been deactivated.", "Priority Alert", new_sound='sound/AI/selfdestruct_deactivated.ogg')
 	if(evac_status == EVACUATION_STATUS_STANDING_BY)
@@ -167,7 +168,7 @@ SUBSYSTEM_DEF(evacuation)
 			dest_master.state("<span class='warning'>WARNING: Unable to trigger detonation. Please arm all control rods.</span>")
 			return FALSE
 	command_announcement.Announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
-	trigger_self_destruct(,,override)
+	trigger_self_destruct(override = override)
 	return TRUE
 
 
@@ -180,10 +181,10 @@ SUBSYSTEM_DEF(evacuation)
 	playsound(origin, 'sound/machines/Alarm.ogg', 75, 0, 30)
 	SEND_SOUND(world, pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'))
 
-	var/ship_status = 1
+	var/ship_intact = TRUE
 	var/f = SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
 	if(f in z_levels)
-		ship_status = 0
+		ship_intact = FALSE
 
 	for(var/x in GLOB.player_list)
 		var/mob/M = x
@@ -191,10 +192,10 @@ SUBSYSTEM_DEF(evacuation)
 			continue
 		shake_camera(M, 110, 4)
 
-	addtimer(CALLBACK(src, .proc/show_cinematic, override, ship_status), 10 SECONDS)
+	addtimer(CALLBACK(src, .proc/show_cinematic, override, ship_intact), 10 SECONDS)
 
 
-/datum/controller/subsystem/evacuation/proc/show_cinematic(override, ship_status)
+/datum/controller/subsystem/evacuation/proc/show_cinematic(override, ship_intact)
 	var/obj/screen/cinematic/explosion/E = new
 
 	for(var/x in GLOB.clients)
@@ -202,14 +203,14 @@ SUBSYSTEM_DEF(evacuation)
 		C.screen += E
 		C.change_view(world.view)
 
-	addtimer(CALLBACK(src, .proc/flick_cinematic, E, override, ship_status), 1.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/flick_cinematic, E, override, ship_intact), 1.5 SECONDS)
 
 
-/datum/controller/subsystem/evacuation/proc/flick_cinematic(obj/screen/cinematic/explosion/E, override, ship_status)
+/datum/controller/subsystem/evacuation/proc/flick_cinematic(obj/screen/cinematic/explosion/E, override, ship_intact)
 	flick(override ? "intro_override" : "intro_nuke", E)
-	flick(ship_status ? "ship_spared" : "ship_destroyed", E)
+	flick(ship_intact ? "ship_spared" : "ship_destroyed", E)
 	SEND_SOUND(world, 'sound/effects/explosionfar.ogg')
-	E.icon_state = ship_status ? "summary_spared" : "summary_destroyed"
+	E.icon_state = ship_intact ? "summary_spared" : "summary_destroyed"
 
 	dest_status = NUKE_EXPLOSION_FINISHED
 
