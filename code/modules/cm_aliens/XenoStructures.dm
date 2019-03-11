@@ -453,7 +453,7 @@
 
 	health = 80
 	var/obj/item/clothing/mask/facehugger/hugger = null
-	var/hugger_type = /obj/item/clothing/mask/facehugger/stasis
+	var/hugger_type = /obj/item/clothing/mask/facehugger
 	var/list/egg_triggers = list()
 	var/status = EGG_GROWING
 	var/hivenumber = XENO_HIVE_NORMAL
@@ -463,13 +463,12 @@
 	if(hugger_type)
 		hugger = new hugger_type(src)
 		hugger.hivenumber = hivenumber
-		if(!hugger.stasis)
-			hugger.GoIdle(TRUE)
+		hugger.GoIdle(TRUE)
 	addtimer(CALLBACK(src, .proc/Grow), rand(EGG_MIN_GROWTH_TIME, EGG_MAX_GROWTH_TIME))
 
 /obj/effect/alien/egg/Destroy()
 	QDEL_LIST(egg_triggers)
-	return ..()
+	. = ..()
 
 /obj/effect/alien/egg/proc/Grow()
 	if(status == EGG_GROWING)
