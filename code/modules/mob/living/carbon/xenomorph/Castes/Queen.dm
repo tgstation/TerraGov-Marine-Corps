@@ -763,6 +763,3 @@
 		target.hud_set_queen_overwatch()
 	reset_view()
 
-
-/mob/living/carbon/Xenomorph/Queen/gib()
-	death(1) //we need the body to show the queen's name at round end.
