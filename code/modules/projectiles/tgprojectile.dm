@@ -7,25 +7,6 @@
 #define MOVES_HITSCAN -1		//Not actually hitscan but close as we get without actual hitscan.
 #define MUZZLE_EFFECT_PIXEL_INCREMENT 17	//How many pixels to move the muzzle flash up so your character doesn't look like they're shitting out lasers.
 
-/obj/machinery/pewpew
-	name = "pewpew"
-	use_power = 0
-
-/obj/machinery/pewpew/Initialize()
-	. = ..()
-	start_processing()
-
-/obj/machinery/pewpew/Destroy()
-	stop_processing()
-	return ..()
-
-/obj/machinery/pewpew/process()
-	for(var/i in 1 to 10)
-		var/obj/item/projectile/P = new /obj/item/projectile(loc)
-		P.generate_bullet(new /datum/ammo/bullet, 0, 0)
-		P.name = "boolet"
-		P.fire_at(locate(x, y - 5, z), src, src, 30, 1)
-
 /obj/item/projectile
 	name = "projectile"
 	icon = 'icons/obj/items/projectiles.dmi'
