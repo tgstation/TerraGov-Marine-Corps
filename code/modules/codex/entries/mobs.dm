@@ -23,17 +23,16 @@
 
 	xeno_strings += "Name: '[name]'"
 	xeno_strings += "Tier: [tier]"
-	xeno_strings += "Melee slash damage between: [xeno_caste.melee_damage_lower] and [xeno_caste.melee_damage_upper]"
+	xeno_strings += "Melee slash damage: between [xeno_caste.melee_damage_lower] and [xeno_caste.melee_damage_upper]"
 	xeno_strings += "Tackle damage: [xeno_caste.tackle_damage]"
 	if(wall_smash)
 		xeno_strings += "Can smash walls: Yes"
 	else
 		xeno_strings += "Can smash walls: No"
 	xeno_strings += "Max health: [xeno_caste.max_health]"
-	xeno_strings += "Armor deflect: [xeno_caste.armor_deflection]"
+	xeno_strings += "Armor: [xeno_caste.armor_deflection]"
 	xeno_strings += "Max plasma: [xeno_caste.plasma_max]"
 	xeno_strings += "Plasma gain: [xeno_caste.plasma_gain]"
-	xeno_strings += "See in dark range: [see_in_dark]"
 	if(hivenumber)
 		switch(hivenumber)
 			if(XENO_HIVE_NORMAL)
