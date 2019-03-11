@@ -1064,6 +1064,10 @@
 	if(!isxeno(A) || !check_state() || A == src)
 		return
 
+	if(action_busy)
+		to_chat(src, "<span class='warning'>You're already busy doing something!</span>")
+		return
+
 	var/mob/living/carbon/Xenomorph/target = A
 	var/energy = isxenosilicon(src) ? "charge" : "essence"
 

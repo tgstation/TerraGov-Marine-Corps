@@ -112,11 +112,19 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	sleep(60)
 	if(xenomorphs.len)
 		var/dat = "<span class='round_body'>The xenomorph Queen(s) were:</span>"
+		var/status = "SURVIVED"
+		var/mob_name
 		var/mob/M
-		for(var/datum/mind/X in xenomorphs)
+		for(var/datum/mind/X in queens)
 			if(istype(X))
-				M = X.current
-				if(M && M.loc && istype(M,/mob/living/carbon/Xenomorph/Queen)) dat += "<br>[X.key] was [M] <span class='boldnotice'>([M.stat == DEAD? "DIED":"SURVIVED"])</span>"
+				if(M == X.current && M.loc && istype(M,/mob/living/carbon/Xenomorph/Queen))
+					mob_name = M.name
+					if(isdead(M))
+						status = "DIED"
+				else
+					mob_name = "Obliterated"
+					status = "DIED, BODY DESTROYED"
+			dat += "<br>[X.key] was [mob_name] <span class='boldnotice'>([status])</span>"
 
 		to_chat(world, dat)
 

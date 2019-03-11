@@ -51,6 +51,7 @@ Additional game mode variables.
 
 /datum/game_mode
 	var/datum/mind/xenomorphs[] = list() //These are our basic lists to keep track of who is in the game.
+	var/datum/mind/queens[] = list() //List of queens
 	var/datum/mind/survivors[] = list()
 	var/datum/mind/predators[] = list()
 	var/datum/mind/queen
@@ -162,6 +163,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			continue
 		new_queen.assigned_role = "Queen"
 		queen = new_queen
+		queens.Add(new_queen) //You're now on the queen list
 		break
 
 	if(!queen)
@@ -330,6 +332,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	new_queen = new /mob/living/carbon/Xenomorph/Queen (pick(GLOB.xeno_spawn))
 	ghost_mind.transfer_to(new_queen)
 	ghost_mind.name = ghost_mind.current.name
+	queens.Add(ghost_mind) //You're now on the queen list
 
 	to_chat(new_queen, "<B>You are now the alien queen!</B>")
 	to_chat(new_queen, "<B>Your job is to spread the hive.</B>")
