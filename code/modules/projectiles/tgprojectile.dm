@@ -95,7 +95,6 @@
 	var/damage = 10
 	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
 	var/nodamage = 0 //Determines if the projectile will skip any damage inflictions
-	var/flag = "bullet" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb
 	var/projectile_type = /obj/item/projectile
 	var/range = 50 //This will de-increment every step. When 0, it will deletze the projectile.
 	var/decayedRange			//stores original range
@@ -678,7 +677,8 @@
 
 //This is where the bullet bounces off.
 /atom/proc/bullet_ping(obj/item/projectile/P)
-	if(!P || !P.ammo.ping) return
+	if(!P || !P.ammo.ping) 
+		return
 	if(prob(65))
 		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
 		var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
@@ -976,15 +976,21 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(!.)
 		return
 	var/damage = P.damage
-	if(damage < 1) return
+	if(damage < 1) 
+		return
 
 	switch(P.ammo.damage_type)
-		if(BRUTE) 	damage = P.ammo.flags_ammo_behavior & AMMO_ROCKET ? round(damage * 10) : damage //Bullets do much less to walls and such.
-		if(BURN)	damage = P.ammo.flags_ammo_behavior & (AMMO_ENERGY) ? round(damage * 1.5) : damage
-		else return
-	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC) current_bulletholes++
+		if(BRUTE) 	
+			damage = P.ammo.flags_ammo_behavior & AMMO_ROCKET ? round(damage * 10) : damage //Bullets do much less to walls and such.
+		if(BURN)	
+			damage = P.ammo.flags_ammo_behavior & (AMMO_ENERGY) ? round(damage * 1.5) : damage
+		else 
+			return
+	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC) 
+		current_bulletholes++
 	take_damage(damage)
-	if(prob(30 + damage)) P.visible_message("<span class='warning'>[src] is damaged by [P]!</span>")
+	if(prob(30 + damage)) 
+		P.visible_message("<span class='warning'>[src] is damaged by [P]!</span>")
 	return TRUE
 
 
@@ -1110,7 +1116,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	#endif
 
 	. = max(5, .) //default hit chance is at least 5%.
-	if(lying && stat) . += 15 //Bonus hit against unconscious people.
+	if(lying && stat) 
+		. += 15 //Bonus hit against unconscious people.
 
 	if(isliving(P.firer))
 		var/mob/living/shooter_living = P.firer
@@ -1133,24 +1140,28 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 /mob/living/carbon/human/get_projectile_hit_chance(obj/item/projectile/P)
 	. = ..()
-	if(.)
-		if(P.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && get_target_lock(P.ammo.iff_signal))
-			return FALSE
-		if(mobility_aura)
-			. -= mobility_aura * 5
-		var/mob/living/carbon/human/shooter_human = P.firer
-		if(istype(shooter_human))
-			if(shooter_human.faction == faction || m_intent == MOVE_INTENT_WALK)
-				. -= 15
+	if(!.)
+		return
+	if(P.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && get_target_lock(P.ammo.iff_signal))
+		return FALSE
+	if(mobility_aura)
+		. -= mobility_aura * 5
+	var/mob/living/carbon/human/shooter_human = P.firer
+	if(istype(shooter_human))
+		if(shooter_human.faction == faction || m_intent == MOVE_INTENT_WALK)
+			. -= 15
 
 
 /mob/living/carbon/Xenomorph/get_projectile_hit_chance(obj/item/projectile/P)
 	. = ..()
-	if(.)
-		if(P.ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS)
-			return FALSE
-		if(mob_size == MOB_SIZE_BIG)	. += 10
-		else							. -= 10
+	if(!.)
+		return
+	if(P.ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS)
+		return FALSE
+	if(mob_size == MOB_SIZE_BIG)	
+		. += 10
+	else							
+		. -= 10
 
 
 /mob/living/silicon/robot/drone/get_projectile_hit_chance(obj/item/projectile/P)
@@ -1158,8 +1169,10 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 
 /obj/item/projectile/proc/play_damage_effect(mob/M)
-	if(ammo.sound_hit) playsound(M, ammo.sound_hit, 50, 1)
-	if(M.stat != DEAD) animation_flash_color(M)
+	if(ammo.sound_hit) 
+		playsound(M, ammo.sound_hit, 50, 1)
+	if(M.stat != DEAD) 
+		animation_flash_color(M)
 
 #undef DEBUG_HIT_CHANCE
 #undef DEBUG_HUMAN_DEFENSE
