@@ -224,11 +224,12 @@
 		stat(null, "Stored Eggs: [eggs_cur] / [xeno_caste.eggs_max]")
 
 
-/mob/living/carbon/Xenomorph/Carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE)
+/mob/living/carbon/Xenomorph/Carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE, forced = FALSE)
 	if(huggers.len < xeno_caste.huggers_max)
-		if(F.stat == CONSCIOUS)
-			transferItemToLoc(F, src)
-			F.GoIdle(TRUE)
+		if(F.stat == CONSCIOUS || forced)
+			temporarilyRemoveItemFromInventory(F)
+			if(!F.stasis)
+				F.GoIdle(TRUE)
 			huggers.Add(F)
 			if(message)
 				to_chat(src, "<span class='notice'>You store the facehugger and carry it for safekeeping. Now sheltering: [huggers.len] / [xeno_caste.huggers_max].</span>")
