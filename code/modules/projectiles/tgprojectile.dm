@@ -174,7 +174,6 @@
 
 
 /obj/item/projectile/Bump(atom/A as mob|obj|turf|area)
-	//message_admins("Bump [A.name]")
 	var/datum/point/pcache = trajectory.copy_to()
 	var/turf/T = get_turf(A)
 	if(check_ricochet(A) && check_ricochet_flag(A) && ricochets < ricochets_max)
@@ -438,7 +437,6 @@
 
 // target, firer, shot from, range, speed
 /obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
-	//message_admins("fire_at [Get_Angle(F, target)]")
 	src.speed = speed
 	message_admins("speed = [speed]")
 	preparePixelProjectile(target, F, null)
@@ -516,32 +514,25 @@
 //Returns true if the target atom is on our current turf and above the right layer
 //If direct target is true it's the originally clicked target.
 /obj/item/projectile/proc/can_hit_target(atom/target, list/passthrough = permutated, direct_target = FALSE, ignore_loc = FALSE)
-	//message_admins("looking at [target.name]")
 	if(QDELETED(target))
-		//message_admins("QDELETED")
 		return FALSE
 	if(!ignore_source_check && firer)
 		var/mob/M = firer
 		if((target == firer) || ((target == firer.loc) && ismecha(firer.loc)) || (istype(M) && (M.buckled == target)))
-			//message_admins("can't shoot yerself")
 			return FALSE
 	if(!ignore_loc && (loc != target.loc))
-		//message_admins("loc problems [loc.x], [loc.y], [loc.z] vs [target.loc.x], [target.loc.y], [target.loc.z] [target.name]")
 		return FALSE
 	if(target in passthrough)
-		//message_admins("already passed")
 		return FALSE
 	if(target.density)		//This thing blocks projectiles, hit it regardless of layer/mob stuns/etc.
 		return TRUE
 	if(!isliving(target))
 		if(target.layer <= PROJECTILE_HIT_THRESHHOLD_LAYER)
-			//message_admins("layer problems")
 			return FALSE
 	else
 		var/mob/living/L = target
 		if(!direct_target)
 			if(!(L.stat == CONSCIOUS))		//If they're able to 1. stand or 2. use items or 3. move, AND they are not softcrit,  they are not stunned enough to dodge projectiles passing over.
-				//message_admins("yeet")
 				return FALSE
 	return TRUE
 
@@ -726,7 +717,8 @@
 	return
 
 /mob/living/bullet_act(obj/item/projectile/P)
-	if(!P) return
+	if(!P) 
+		return
 
 	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff))
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
@@ -786,7 +778,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			return
 
 	var/datum/limb/organ = get_limb(check_zone(P.def_zone)) //Let's finally get what organ we actually hit.
-	if(!organ) return//Nope. Gotta shoot something!
+	if(!organ) 
+		return//Nope. Gotta shoot something!
 
 	//Run armor check. We won't bother if there is no damage being done.
 	if( damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) )
@@ -866,13 +859,10 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 //Deal with xeno bullets.
 /mob/living/carbon/Xenomorph/bullet_act(obj/item/projectile/P)
-	//message_admins("[name] taking [P.name] bullet.")
 	if(!P || !istype(P)) 
-		//message_admins("this wont happen")
 		return
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX) ) //Aliens won't be harming aliens.
 		bullet_ping(P)
-		//message_admins("ppiiiing")
 		return
 
 	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
@@ -881,7 +871,6 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	flash_weak_pain()
 
 	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff)) //Has to be at least zero, no negatives.
-	//message_admins("[damage] boy [P.damage]")
 	#ifdef DEBUG_XENO_DEFENSE
 	to_chat(world, "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>")
 	#endif
