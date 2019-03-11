@@ -140,6 +140,8 @@
 						client.prefs.real_name = species.random_name(client.prefs.gender)
 					else
 						observer.real_name = client.prefs.real_name
+				else
+					observer.real_name = species.random_name()
 
 				observer.name = observer.real_name
 
@@ -155,11 +157,6 @@
 			if(SSticker.mode.flags_round_type	& MODE_NO_LATEJOIN)
 				to_chat(src, "<span class='warning'>Sorry, you cannot late join during [SSticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible.</span>")
 				return
-
-			if(client.prefs.species != "Human")
-				if(!is_alien_whitelisted(client.prefs.species) && CONFIG_GET(flag/usealienwhitelist))
-					to_chat(src, alert("You are currently not whitelisted to play [client.prefs.species]."))
-					return
 
 			LateChoices()
 
@@ -194,10 +191,6 @@
 			if(!GLOB.enter_allowed)
 				to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.</span>")
 				return
-			if(client.prefs.species != "Human")
-				if(!is_alien_whitelisted(client.prefs.species) && CONFIG_GET(flag/usealienwhitelist))
-					to_chat(src, alert("You are currently not whitelisted to play [client.prefs.species]."))
-					return FALSE
 
 			AttemptLateSpawn(href_list["job_selected"])
 
@@ -303,11 +296,7 @@
 		chosen_species = GLOB.all_species[client.prefs.species]
 	if(!chosen_species)
 		return "Human"
-
-	if(is_alien_whitelisted(chosen_species))
-		return chosen_species.name
-
-	return "Human"
+	return chosen_species
 
 
 /mob/new_player/get_gender()

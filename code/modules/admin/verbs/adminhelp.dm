@@ -362,10 +362,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if(tier == TICKET_MENTOR && check_other_rights(X, R_ADMIN|R_MENTOR, FALSE))
 			if(X.prefs.toggles_sound & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+			window_flash(X)
 			to_chat(X, "<span class='adminnotice'><span class='adminhelp'>Mentor Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [check_other_rights(X, R_ADMIN, FALSE) ? FullMonty(ref_src) : HalfMonty(ref_src)] [check_other_rights(X, R_ADMIN, FALSE) ? ClosureLinks(ref_src) : ClosureLinksMentor(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>")
 		if(tier == TICKET_ADMIN && check_other_rights(X, R_ADMIN, FALSE))
 			if(X.prefs.toggles_sound & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+			window_flash(X)
 			to_chat(X, "<span class='adminnotice'><span class='adminhelp'>Admin Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [FullMonty(ref_src)] [ClosureLinks(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>")
 
 	//show it to the person adminhelping too
@@ -393,8 +395,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(initiator)
 		initiator.current_ticket = src
 
+	if(tier == TICKET_MENTOR)
+		tier = TICKET_ADMIN
+		message_admins("Ticket [TicketHref("#[id]")] has been made reopened by [ADMIN_TPMONTY(usr)].")
+	else if(tier == TICKET_ADMIN)
+		tier = TICKET_MENTOR
+		message_staff("Ticket [TicketHref("#[id]")] has been made reopened by [ADMIN_TPMONTY(usr)].")
+
 	AddInteraction("<font color='purple'>Reopened by [key_name_admin(usr)]</font>")
-	message_admins("Ticket [TicketHref("#[id]")] reopened by [ADMIN_TPMONTY(usr)].")
 	log_admin_private("Ticket (#[id]) reopened by [key_name(usr)].")
 	TicketPanel()	//can only be done from here, so refresh it
 
@@ -679,7 +687,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	adminhelp(msg)
 
 
-/client/verb/adminhelp(msg as text)
+/client/verb/adminhelp(msg as message)
 	set category = "Admin"
 	set name = "Adminhelp"
 
@@ -711,7 +719,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	new /datum/admin_help(msg, src, FALSE, TICKET_ADMIN)
 
 
-/client/verb/mentorhelp(msg as text)
+/client/verb/mentorhelp(msg as message)
 	set category = "Admin"
 	set name = "Mentorhelp"
 

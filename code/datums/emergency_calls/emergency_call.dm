@@ -83,6 +83,8 @@
 	if(SSticker?.mode?.waiting_for_candidates) //It's already been activated
 		return FALSE
 
+	picked_call.mob_max = rand(5, 15)
+
 	picked_call.activate()
 
 
@@ -172,10 +174,9 @@
 					if(M.current?.stat != DEAD)
 						candidates -= M //Strip them from the list, they aren't dead anymore.
 						continue
-					if(name == "Xenomorphs")
-						if(!(M.current.client?.prefs?.be_special & BE_ALIEN) || is_banned_from(M.current.ckey, ROLE_XENOMORPH))
-							candidates -= M
-							continue
+					if(name == "Xenomorphs" && is_banned_from(M.current.ckey, ROLE_XENOMORPH))
+						candidates -= M
+						continue
 					picked_candidates += M
 					candidates -= M
 

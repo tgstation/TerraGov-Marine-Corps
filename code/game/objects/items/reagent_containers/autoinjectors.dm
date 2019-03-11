@@ -77,7 +77,7 @@
 	list_reagents = list("tramadol" = 15)
 
 /obj/item/reagent_container/hypospray/autoinjector/oxycodone
-	name = "oxycodone (EXTREME PAINKILLER) autoinjector"
+	name = "oxycodone autoinjector"
 	desc = "An auto-injector loaded with 10 units of oxycodone, a powerful pankiller intended for life-threatening situations."
 	amount_per_transfer_from_this = 10
 	volume = 10
@@ -99,7 +99,7 @@
 /obj/item/reagent_container/hypospray/autoinjector/inaprovaline
 	name = "inaprovaline autoinjector"
 	desc = "An auto-injector loaded with 15 units of inaprovaline, an emergency stabilization medicine for patients in critical condition."
-	icon_state = "autoinjector-9" 
+	icon_state = "autoinjector-9"
 	list_reagents = list("inaprovaline" = 15)
 
 /obj/item/reagent_container/hypospray/autoinjector/hypervene

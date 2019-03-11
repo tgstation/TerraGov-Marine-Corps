@@ -1,3 +1,108 @@
+/obj/item/attachable/get_antag_info()
+	var/list/entries = SScodex.retrieve_entries_for_string(name)
+	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
+	if(general_entry && general_entry.antag_text)
+		return general_entry.antag_text
+
+/obj/item/attachable/get_lore_info()
+	var/list/entries = SScodex.retrieve_entries_for_string(name)
+	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
+	if(general_entry && general_entry.lore_text)
+		return general_entry.lore_text
+
+/obj/item/attachable/get_mechanics_info()
+	. = ..()
+	var/list/attach_strings = list()
+
+	var/list/entries = SScodex.retrieve_entries_for_string(name)
+	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
+	if(general_entry && general_entry.mechanics_text)
+		attach_strings += general_entry.mechanics_text
+
+	if(slot == "muzzle")
+		attach_strings += "This attaches to the muzzle slot on most weapons.<br>"
+	if(slot == "rail")
+		attach_strings += "This attaches to the rail slot on most weapons.<br>"
+	if(slot == "stock")
+		attach_strings += "This attaches to the stock slot on most weapons.<br>"
+	if(slot == "under")
+		attach_strings += "This attaches to the underbarrel slot on most weapons.<br>"
+
+	if(flags_attach_features & ATTACH_REMOVABLE)
+		attach_strings += "This can be field stripped off the weapon if needed."
+
+	if(flags_attach_features & ATTACH_ACTIVATION)
+		attach_strings += "This needs to be activated to be used."
+
+	if(flags_attach_features & ATTACH_RELOADABLE)
+		attach_strings += "This can be reloaded with the appropriate ammunition."	
+
+	attach_strings += "<br><U>Always on modifications</U>:<br>"
+
+	if(max_range)
+		attach_strings += "This attachment has a max range of [max_range] tiles."
+	if(damage_mod)
+		attach_strings += "Damage: [damage_mod * 100]%"
+	if(damage_falloff_mod)
+		attach_strings += "Damage falloff: [damage_falloff_mod * 100]%"
+	if(burst_scatter_mod)
+		attach_strings += "Scatter chance: [burst_scatter_mod * 100]%"
+	if(silence_mod)
+		attach_strings += "This can silence the weapon if it is attached."
+	if(light_mod)
+		attach_strings += "Light increase: [light_mod] if turned on."
+	if(delay_mod)
+		attach_strings += "Delay between shots: [delay_mod / 10]"
+	if(burst_mod)
+		attach_strings += "Burst change: [burst_mod] shots."
+	if(size_mod)
+		attach_strings += "This will make your weapon [size_mod] weight bigger. Potentially making it no longer suitable for holsters."
+	if(melee_mod)
+		attach_strings += "Melee damage: [melee_mod]."
+	if(wield_delay_mod)
+		attach_strings += "Wield delay: [wield_delay_mod / 10] seconds."
+	if(attach_shell_speed_mod)
+		attach_strings += "Bullet speed: [attach_shell_speed_mod * 100]%"
+	if(movement_acc_penalty_mod)
+		attach_strings += "Running accuracy penalty: [movement_acc_penalty_mod * 100]%"
+	if(max_rounds)
+		attach_strings += "This attachment can hold [max_rounds] of its ammunition."
+	if(scope_zoom_mod)
+		attach_strings += "This has optical glass allowing for magnification and viewing long distances."
+	if(aim_speed_mod)
+		switch(aim_speed_mod)
+			if(-INFINITY to SLOWDOWN_ADS_SHOTGUN)
+				attach_strings += "<br>It will slow the user down more by a small amount if wielded."
+			if((SLOWDOWN_ADS_SHOTGUN + 0.01) to SLOWDOWN_ADS_SPECIALIST_LIGHT)
+				attach_strings += "<br>It will slow the user down more by a modest amount if wielded."
+			if((SLOWDOWN_ADS_SPECIALIST_LIGHT + 0.01) to SLOWDOWN_ADS_SCOPE)
+				attach_strings += "<br>It will slow the user down more by a large amount if wielded."
+			if((SLOWDOWN_ADS_SCOPE + 0.01) to INFINITY)
+				attach_strings += "<br>It will slow the user down more by a massive amount if wielded."
+	if(!aim_speed_mod)
+		attach_strings += "<br>It will not slow the user down more if this is attached and wielded."
+
+	attach_strings += "<br><U>Wielded modifications</U>:<br>"
+
+	if(accuracy_mod)
+		attach_strings += "Accuracy wielded: [accuracy_mod * 100]%"
+	if(scatter_mod)
+		attach_strings += "Scatter wielded: [scatter_mod]%"
+	if(recoil_mod)
+		attach_strings += "Recoil wielded: [recoil_mod]"
+
+	attach_strings += "<br><U>un-wielded modifications</U>:<br>"
+
+	if(accuracy_unwielded_mod)
+		attach_strings += "Accuracy un-wielded: [accuracy_unwielded_mod * 100]%"
+	if(scatter_unwielded_mod)
+		attach_strings += "Scatter un-wielded: [scatter_unwielded_mod]%"
+	if(recoil_unwielded_mod)
+		attach_strings += "Recoil un-wielded: [recoil_unwielded_mod]"
+
+	. += jointext(attach_strings, "<br>")
+
+
 /datum/codex_entry/baton
 	associated_paths = list(/obj/item/weapon/baton)
 	mechanics_text = "The baton needs to be turned on to apply the stunning effect. Use it in your hand to toggle it on or off. If your intent is \

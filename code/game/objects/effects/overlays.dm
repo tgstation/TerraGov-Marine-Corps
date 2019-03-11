@@ -182,6 +182,18 @@
 	effect_duration = 20
 
 
+/obj/effect/overlay/temp/tank_laser
+	name = "tanklaser"
+	anchored = TRUE
+	mouse_opacity = 0
+	luminosity = 2
+	icon = 'icons/obj/items/projectiles.dmi'
+	icon_state = "laser_target3"
+	effect_duration = 20
+
+/obj/effect/overlay/temp/tank_laser/Destroy()
+	SetLuminosity(0)
+	return ..()
 
 
 //gib animation

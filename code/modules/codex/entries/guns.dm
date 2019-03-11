@@ -67,7 +67,42 @@
 		for(var/X in attachable_allowed)
 			var/obj/item/attachable/A = X
 			traits += "[initial(A.name)]"
-		
+
+	traits += "<br><U>Basic Statistics for this weapon are as follows</U>:"
+	if(w_class)
+		traits += "Size: [w_class]"
+	if(force)
+		traits += "Base melee damage: [force]"
+	if(accuracy_mult)
+		traits += "Accuracy: [((accuracy_mult - 1) * 100) > 0 ? "+[(accuracy_mult - 1) * 100]" : "[(accuracy_mult - 1) * 100]"]%"
+	if(damage_mult)
+		traits += "Damage modifier: [((damage_mult - 1) * 100) > 0 ? "+[(damage_mult - 1) * 100]" : "[(damage_mult - 1) * 100]"]%"
+	if(damage_falloff_mult)
+		traits += "Damage falloff: -[damage_falloff_mult] per tile travelled."
+	if(recoil)
+		traits += "Recoil: [recoil]"
+	if(scatter)
+		traits += "Scatter chance modifier: [scatter]%"
+	if(burst_scatter_mult)
+		traits += "Burst scatter chance multiplier: x[burst_scatter_mult]"
+	if(accuracy_mod)
+		traits += "Accuracy modifier: [accuracy_mod * 100]%"
+	if(accuracy_mult_unwielded)
+		traits += "Accuracy unwielded modifier: [((accuracy_mult_unwielded - 1) * 100) > 0 ? "+[(accuracy_mult_unwielded - 1) * 100]" : "[(accuracy_mult_unwielded - 1) * 100]"]%"
+	if(recoil_unwielded)
+		traits += "Recoil Unwielded: [recoil_unwielded]"
+	if(scatter_unwielded)
+		traits += "Unwielded Scatter chance modifier: [scatter_unwielded > 0 ? "+[scatter_unwielded]" : "[scatter_unwielded]"]%"
+	if(movement_acc_penalty_mult)
+		traits += "Movement penalty modifier: -[movement_acc_penalty_mult * 15]%"
+	if(fire_delay)
+		traits += "Time between single-fire: [fire_delay / 10] seconds"
+	if(wield_delay)
+		traits += "Wield delay: [wield_delay / 10] seconds"
+	if(burst_amount > 1)
+		traits += "Shots fired on burst mode: [burst_amount]"
+		traits += "Time between burst-fire: [(min((burst_delay * 2), (fire_delay * 3))) / 10] seconds"
+	
 	. += jointext(traits, "<br>")
 
 /obj/item/weapon/gun/energy/get_mechanics_info()
