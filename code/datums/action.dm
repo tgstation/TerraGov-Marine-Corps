@@ -111,6 +111,7 @@
 /datum/action/xeno_action
 	var/action_icon_state
 	var/plasma_cost = 0
+	var/mechanics_text = "This ability not found in codex."
 
 /datum/action/xeno_action/New(Target)
 	..()

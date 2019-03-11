@@ -29,7 +29,7 @@
 		xeno_strings += "Can smash walls: Yes"
 	else
 		xeno_strings += "Can smash walls: No"
-	xeno_strings += "Max health: [xeno_caste.maxHealth]"
+	xeno_strings += "Max health: [xeno_caste.max_health]"
 	xeno_strings += "Armor deflect: [xeno_caste.armor_deflection]"
 	xeno_strings += "Max plasma: [xeno_caste.plasma_max]"
 	xeno_strings += "Plasma gain: [xeno_caste.plasma_gain]"
@@ -48,10 +48,16 @@
 				xeno_strings += "Hive: Zeta"
 
 	if(length(xeno_caste.evolves_to) > 0)
-		xeno_strings += "<br><U>this can evolve to</U>:"
+		xeno_strings += "<br><U>This can evolve to</U>:"
 		for(var/type in xeno_caste.evolves_to)
 			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][1]
 			xeno_strings += "[Z.caste_name]"
+
+	if(length(actions) > 0)	
+		xeno_strings += "<br><U>This has the following abilities</U>:"
+		for(var/X in actions)
+			var/datum/action/xeno_action/A = X
+			xeno_strings += "[A.name]: [A.mechanics_text]"
 
 	. += jointext(xeno_strings, "<br>")
 
@@ -72,9 +78,3 @@
 	mechanics_text = "Xenomorphs are a hostile lifeform. They are very powerful individually and also in groups. \
 	They reproduce by capturing hosts and impregnating them with facehuggers. Some time later the larva growing in the hosts \
 	chest will violently burst out killing the host in the process. Not suitable for pet ownership."
-
-/datum/codex_entry/xenomorph_drone
-	display_name = "Drone"
-	associated_paths = list(/mob/living/carbon/Xenomorph/Drone)
-	mechanics_text = "The worker of the xenomorph hive. They place weed nodes and can build most structures such as walls, nests, and doors. \
-	They have the potential to become the Queen."
