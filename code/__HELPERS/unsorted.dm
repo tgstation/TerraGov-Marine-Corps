@@ -1370,12 +1370,6 @@ var/list/WALLITEMS = list(
 /datum/proc/stack_trace(msg)
 	CRASH(msg)
 
-////// Matrices ///////
-
-/matrix/proc/TurnTo(old_angle, new_angle)
-	. = new_angle - old_angle
-	Turn(.) //BYOND handles cases such as -270, 360, 540 etc. DOES NOT HANDLE 180 TURNS WELL, THEY TWEEN AND LOOK LIKE SHIT
-
 //Key thing that stops lag. Cornerstone of performance in ss13, Just sitting here, in unsorted.dm.
 
 //Increases delay as the server gets more overloaded,

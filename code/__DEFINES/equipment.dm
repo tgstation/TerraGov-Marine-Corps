@@ -39,6 +39,7 @@
 #define TWOHANDED				(1<<4)	// The item is twohanded.
 #define WIELDED					(1<<5)	// The item is wielded with both hands.
 #define	ITEM_ABSTRACT			(1<<6)	//The item is abstract (grab, powerloader_clamp, etc)
+#define ABSTRACT 				(1<<7)
 
 //==========================================================================================
 
@@ -249,6 +250,11 @@
 
 #define ICE_PLANET_min_cold_protection_temperature 		200 //For the ice planet map protection from the elements.
 //=================================================
+
+//Inventory depth: limits how many nested storage items you can access directly.
+//1: stuff in mob, 2: stuff in backpack, 3: stuff in box in backpack, etc
+#define INVENTORY_DEPTH		3
+#define STORAGE_VIEW_DEPTH	2
 
 //ITEM INVENTORY WEIGHT, FOR w_class
 #define WEIGHT_CLASS_TINY     1 //Usually items smaller then a human hand, ex: Playing Cards, Lighter, Scalpel, Coins/Money

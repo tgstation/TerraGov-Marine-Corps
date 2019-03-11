@@ -263,6 +263,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/pref_ff_attack_logs,
 	/datum/admins/proc/pref_end_attack_logs,
 	/datum/admins/proc/pref_debug_logs,
+	/datum/admins/proc/toggle_interface_interact,
 	/datum/admins/proc/set_ooc_color_self,
 	/datum/admins/proc/admin_ghost,
 	/datum/admins/proc/invisimin,
