@@ -102,7 +102,7 @@
 	to_chat(usr, "<span class='notice'>You will [(usr.client.prefs.toggles_sound & SOUND_ADMINHELP) ? "now" : "no longer"] hear a sound when adminhelps arrive.</span>")
 
 
-	/datum/admins/proc/toggle_interface_interact()
+/datum/admins/proc/toggle_interface_interact()
 	set category = "Preferences"
 	set name = "Admin Interface Interaction"
 	set desc = "Allows you to interact with most machines as an AI would as a ghost"
