@@ -25,10 +25,12 @@
 	xeno_strings += "Tier: [tier]"
 	xeno_strings += "Melee slash damage: between [xeno_caste.melee_damage_lower] and [xeno_caste.melee_damage_upper]"
 	xeno_strings += "Tackle damage: [xeno_caste.tackle_damage]"
-	if(wall_smash)
-		xeno_strings += "Can smash walls: Yes"
-	else
-		xeno_strings += "Can smash walls: No"
+	if(mob_size)
+		switch(mob_size)
+			if(MOB_SIZE_BIG)
+				xeno_strings += "Can smash walls: Yes"
+			if(MOB_SIZE_XENO)
+				xeno_strings += "Can smash walls: No"
 	xeno_strings += "Max health: [xeno_caste.max_health]"
 	xeno_strings += "Armor: [xeno_caste.armor_deflection]"
 	xeno_strings += "Max plasma: [xeno_caste.plasma_max]"
@@ -56,7 +58,7 @@
 		xeno_strings += "<br><U>This has the following abilities</U>:"
 		for(var/X in actions)
 			var/datum/action/xeno_action/A = X
-			xeno_strings += "[A.name]: [A.mechanics_text]"
+			xeno_strings += "<U>[A.name]</U>: [A.mechanics_text]"
 
 	. += jointext(xeno_strings, "<br>")
 
