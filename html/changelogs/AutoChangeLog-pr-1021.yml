@@ -1,0 +1,4 @@
+author: "Jalordon"
+delete-after: True
+changes: 
+  - rscdel: "Removed the tiny chance of playing a random spooky sound while in darkness"
