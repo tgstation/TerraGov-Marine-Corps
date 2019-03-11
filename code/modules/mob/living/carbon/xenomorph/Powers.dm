@@ -495,7 +495,7 @@
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			C.adjust_stagger(3)
-			C.add_slowdown(1)
+			C.add_slowdown(3)
 
 		H.apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
 	shake_camera(M, 2, 1)
