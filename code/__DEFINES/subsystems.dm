@@ -49,7 +49,6 @@
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
-#define INIT_ORDER_TICKER			23
 #define INIT_ORDER_TITLE 			22
 #define INIT_ORDER_CODEX 			21
 #define INIT_ORDER_GARBAGE			20
@@ -62,6 +61,7 @@
 #define INIT_ORDER_EVENTS			13
 #define INIT_ORDER_JOBS				12
 #define INIT_ORDER_QUIRKS			11
+#define INIT_ORDER_TICKER			10
 #define INIT_ORDER_MAPPING			9
 #define INIT_ORDER_NETWORKS			8
 #define INIT_ORDER_ECONOMY			7
@@ -77,6 +77,7 @@
 #define INIT_ORDER_OVERLAY			-6
 #define INIT_ORDER_XKEYSCORE		-10
 #define INIT_ORDER_STICKY_BAN		-10
+#define INIT_ORDER_EVACUATION		-15
 #define INIT_ORDER_LIGHTING			-20
 #define INIT_ORDER_SHUTTLE			-21
 #define INIT_ORDER_SQUEAK			-40

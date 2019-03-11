@@ -5,7 +5,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!SSticker?.mode || !EvacuationAuthority)
+	if(!SSticker?.mode || !SSevacuation)
 		return
 
 	var/dat
@@ -18,14 +18,14 @@
 
 	var/countdown = SSticker.mode.get_queen_countdown()
 	if(countdown)
-		dat += "Queen Re-Check: [countdown]"
+		dat += "Queen Re-Check: [countdown]<br>"
 
 	dat += "<b>Evacuation:</b> "
-	switch(EvacuationAuthority.evac_status)
+	switch(SSevacuation.evac_status)
 		if(EVACUATION_STATUS_STANDING_BY)
 			dat += "STANDING BY"
 		if(EVACUATION_STATUS_INITIATING)
-			dat += "IN PROGRESS: [EvacuationAuthority.get_status_panel_eta()]"
+			dat += "IN PROGRESS: [SSevacuation.get_status_panel_eta()]"
 		if(EVACUATION_STATUS_COMPLETE)
 			dat += "COMPLETE"
 
@@ -39,7 +39,7 @@
 	dat += "<br>"
 
 	dat += "<b>Self Destruct:</b> "
-	switch(EvacuationAuthority.dest_status)
+	switch(SSevacuation.dest_status)
 		if(NUKE_EXPLOSION_INACTIVE)
 			dat += "INACTIVE"
 		if(NUKE_EXPLOSION_ACTIVE)
@@ -54,11 +54,7 @@
 	dat += "<a href='?src=[ref];evac_authority=init_dest'>Unlock Self Destruct control panel for humans</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=cancel_dest'>Lock Self Destruct control panel for humans</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=use_dest'>Destruct the [MAIN_SHIP_NAME] NOW</a><br>"
-	dat += "<a href='?src=[ref];evac_authority=toggle_dest'>Toggle Self Destruct Permission (does not affect evac in progress)</a><br>"
-
-	dat += "<br>"
-
-	dat += "<A HREF='?_src_=vars;[HrefToken()];vars=[REF(EvacuationAuthority)]'>VV Evacuation/SD Controller</A><br>"
+	dat += "<a href='?src=[ref];evac_authority=toggle_dest'>Toggle Self Destruct Permission</a><br>"
 
 	dat += "<br><br>"
 

@@ -176,8 +176,8 @@
 	. = ..()
 
 	if(statpanel("Stats"))
-		if(EvacuationAuthority)
-			var/eta_status = EvacuationAuthority.get_status_panel_eta()
+		if(SSevacuation)
+			var/eta_status = SSevacuation.get_status_panel_eta()
 			if(eta_status)
 				stat("Evacuation in:", eta_status)
 

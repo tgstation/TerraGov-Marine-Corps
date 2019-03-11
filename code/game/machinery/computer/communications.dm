@@ -145,15 +145,21 @@
 					to_chat(usr, "<span class='warning'>The ship must be under red alert in order to enact evacuation procedures.</span>")
 					return FALSE
 
-				if(EvacuationAuthority.flags_scuttle & FLAGS_EVACUATION_DENY)
+				if(SSevacuation.flags_scuttle & FLAGS_SDEVAC_TIMELOCK)
+					to_chat(usr, "<span class='warning'>The sensors do not detect a sufficient threat present.</span>")
+					return FALSE
+
+				if(SSevacuation.flags_scuttle & FLAGS_EVACUATION_DENY)
 					to_chat(usr, "<span class='warning'>The TGMC has placed a lock on deploying the evacuation pods.</span>")
 					return FALSE
 
-				if(!EvacuationAuthority.initiate_evacuation())
+				if(!SSevacuation.initiate_evacuation())
 					to_chat(usr, "<span class='warning'>You are unable to initiate an evacuation procedure right now!</span>")
 					return FALSE
 
-				EvacuationAuthority.enable_self_destruct()
+				if(!SSevacuation.dest_master)
+					SSevacuation.Initialize()
+				SSevacuation.enable_self_destruct()
 
 				log_game("[key_name(usr)] has called for an emergency evacuation.")
 				message_admins("[ADMIN_TPMONTY(usr)] has called for an emergency evacuation.")
@@ -164,14 +170,14 @@
 
 		if("evacuation_cancel")
 			if(state == STATE_EVACUATION_CANCEL)
-				if(!EvacuationAuthority.cancel_evacuation())
+				if(!SSevacuation.cancel_evacuation())
 					to_chat(usr, "<span class='warning'>You are unable to cancel the evacuation right now!</span>")
 					return FALSE
 
 				spawn(35)//some time between AI announcements for evac cancel and SD cancel.
-					if(EvacuationAuthority.evac_status == EVACUATION_STATUS_STANDING_BY)//nothing changed during the wait
+					if(SSevacuation.evac_status == EVACUATION_STATUS_STANDING_BY)//nothing changed during the wait
 						 //if the self_destruct is active we try to cancel it (which includes lowering alert level to red)
-						if(!EvacuationAuthority.cancel_self_destruct(1))
+						if(!SSevacuation.cancel_self_destruct(1))
 							//if SD wasn't active (likely canceled manually in the SD room), then we lower the alert level manually.
 							set_security_level(SEC_LEVEL_RED, TRUE) //both SD and evac are inactive, lowering the security level.
 
@@ -327,8 +333,8 @@
 
 	user.set_interaction(src)
 	var/dat
-	if(EvacuationAuthority.evac_status == EVACUATION_STATUS_INITIATING)
-		dat += "<B>Evacuation in Progress</B>\n<BR>\nETA: [EvacuationAuthority.get_status_panel_eta()]<BR>"
+	if(SSevacuation.evac_status == EVACUATION_STATUS_INITIATING)
+		dat += "<B>Evacuation in Progress</B>\n<BR>\nETA: [SSevacuation.get_status_panel_eta()]<BR>"
 
 
 	switch(state)
@@ -345,7 +351,7 @@
 					dat += length(GLOB.admins) > 0 ? "<BR>\[ <A HREF='?src=\ref[src];operation=messageTGMC'>Send a message to TGMC</A> \]" : "<BR>\[ TGMC communication offline \]"
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=award'>Award a medal</A> \]"
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=distress'>Send Distress Beacon</A> \]"
-					switch(EvacuationAuthority.evac_status)
+					switch(SSevacuation.evac_status)
 						if(EVACUATION_STATUS_STANDING_BY) dat += "<BR>\[ <A HREF='?src=\ref[src];operation=evacuation_start'>Initiate emergency evacuation</A> \]"
 						if(EVACUATION_STATUS_INITIATING) dat += "<BR>\[ <A HREF='?src=\ref[src];operation=evacuation_cancel'>Cancel emergency evacuation</A> \]"
 
@@ -400,9 +406,9 @@
 		if(STATE_ALERT_LEVEL)
 			dat += "Current alert level: [get_security_level()]<BR>"
 			if(security_level == SEC_LEVEL_DELTA)
-				if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_ACTIVE)
-					dat += "<font color='red'><b>The self-destruct mechanism is active. [EvacuationAuthority.evac_status != EVACUATION_STATUS_INITIATING ? "You have to manually deactivate the self-destruct mechanism." : ""]</b></font><BR>"
-				switch(EvacuationAuthority.evac_status)
+				if(SSevacuation.dest_status >= NUKE_EXPLOSION_ACTIVE)
+					dat += "<font color='red'><b>The self-destruct mechanism is active. [SSevacuation.evac_status != EVACUATION_STATUS_INITIATING ? "You have to manually deactivate the self-destruct mechanism." : ""]</b></font><BR>"
+				switch(SSevacuation.evac_status)
 					if(EVACUATION_STATUS_INITIATING)
 						dat += "<font color='red'><b>Evacuation initiated. Evacuate or rescind evacuation orders.</b></font>"
 					if(EVACUATION_STATUS_IN_PROGRESS)
@@ -419,7 +425,7 @@
 			dat += "<A HREF='?src=\ref[src];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
 
 	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A>|" : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"
-	
+
 	var/datum/browser/popup = new(user, "communications", "<div align='center'>Communications Console</div>", 400, 500)
 	popup.set_content(dat)
 	popup.open(FALSE)
