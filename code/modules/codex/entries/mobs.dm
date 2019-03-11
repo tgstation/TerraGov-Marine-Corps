@@ -1,3 +1,60 @@
+/mob/living/carbon/Xenomorph/get_antag_info()
+	var/list/entries = SScodex.retrieve_entries_for_string(name)
+	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
+	if(general_entry && general_entry.antag_text)
+		return general_entry.antag_text
+
+/mob/living/carbon/Xenomorph/get_lore_info()
+	var/list/entries = SScodex.retrieve_entries_for_string(name)
+	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
+	if(general_entry && general_entry.lore_text)
+		return general_entry.lore_text
+
+/mob/living/carbon/Xenomorph/get_mechanics_info()
+	. = ..()
+	var/list/xeno_strings = list()
+
+	var/list/entries = SScodex.retrieve_entries_for_string(name)
+	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
+	if(general_entry && general_entry.mechanics_text)
+		xeno_strings += general_entry.mechanics_text + "<br>"
+
+	xeno_strings += "<br><U>Basic Statistics for this Xeno are as follows</U>:"
+
+	xeno_strings += "Name: '[name]'"
+	xeno_strings += "Tier: [tier]"
+	xeno_strings += "Melee slash damage between: [xeno_caste.melee_damage_lower] and [xeno_caste.melee_damage_upper]"
+	xeno_strings += "Tackle damage: [xeno_caste.tackle_damage]"
+	if(wall_smash)
+		xeno_strings += "Can smash walls: Yes"
+	else
+		xeno_strings += "Can smash walls: No"
+	xeno_strings += "Max health: [xeno_caste.maxHealth]"
+	xeno_strings += "Armor deflect: [xeno_caste.armor_deflection]"
+	xeno_strings += "Max plasma: [xeno_caste.plasma_max]"
+	xeno_strings += "Plasma gain: [xeno_caste.plasma_gain]"
+	xeno_strings += "See in dark range: [see_in_dark]"
+	if(hivenumber)
+		switch(hivenumber)
+			if(XENO_HIVE_NORMAL)
+				xeno_strings += "Hive: Normal"
+			if(XENO_HIVE_CORRUPTED)
+				xeno_strings += "Hive: Corrupted"
+			if(XENO_HIVE_ALPHA)
+				xeno_strings += "Hive: Alpha"
+			if(XENO_HIVE_BETA)
+				xeno_strings += "Hive: Beta"
+			if(XENO_HIVE_ZETA)
+				xeno_strings += "Hive: Zeta"
+
+	if(length(xeno_caste.evolves_to) > 0)
+		xeno_strings += "<br><U>this can evolve to</U>:"
+		for(var/type in xeno_caste.evolves_to)
+			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][1]
+			xeno_strings += "[Z.caste_name]"
+
+	. += jointext(xeno_strings, "<br>")
+
 /datum/codex_entry/maint_drone
 	display_name = "maintenance drone"
 	associated_paths = list(/mob/living/silicon/robot/drone)
