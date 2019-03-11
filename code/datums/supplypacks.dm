@@ -13,7 +13,7 @@
 #define RO_PRICE_PRETTY_PRICY	80
 #define RO_PRICE_VERY_PRICY		100
 #define RO_PRICE_MAX_PRICY		120
-#define RO_PRICE_EXTREME_PRICY	175
+#define RO_PRICE_EXTREME_PRICY	150
 
 var/list/all_supply_groups = list("Operations", "Weapons", "Hardpoint Modules", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Science", "Supplies")
 
