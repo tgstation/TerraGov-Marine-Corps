@@ -360,9 +360,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(loc == C.loc) // treaded over.
 		if(!knocked_down)
 			KnockDown(1)
-		temp = get_step(T, facing)
+		var/target_dir = turn(get_dir(src, C), 180)
+		temp = get_step(loc, target_dir)
 		T = temp
-		T = get_step(T, pick(cardinal))
+		T = get_step(T, target_dir)
+		face_atom(T)
 		throw_at(T, 2, 1, C, 0)
 		apply_damage(rand(5, 7.5), BRUTE)
 		return
