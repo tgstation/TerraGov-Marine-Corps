@@ -298,10 +298,12 @@
 	desc = "The standard-issue backpack worn by TGMC corpsmen."
 	icon_state = "marinepackm"
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
+	var/icon_skin
 
 /obj/item/storage/backpack/marine/corpsman/New()
 	. = ..()
-	cell = new /obj/item/cell/high(src)
+	cell = new (src)
+	icon_skin = icon_state
 	update_icon()
 
 /obj/item/storage/backpack/marine/corpsman/proc/use_charge(mob/user, amount = 0, mention_charge = TRUE)
@@ -329,7 +331,7 @@
 		to_chat(user, "<span class='warning'>Its defibrillator recharge unit does not have a power cell installed!</span>")
 
 /obj/item/storage/backpack/marine/corpsman/update_icon()
-	icon_state = initial(icon_state)
+	icon_state = icon_skin
 	if(cell?.charge >= 0)
 		switch(PERCENT(cell.charge/cell.maxcharge))
 			if(75 to INFINITY)
