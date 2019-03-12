@@ -15,6 +15,7 @@ SUBSYSTEM_DEF(chat)
 		var/client/C = i
 		C << output(payload[C], "browseroutput:output")
 		payload -= C
+		CHECK_TICK
 
 
 /datum/controller/subsystem/chat/proc/queue(target, message, handle_whitespace = TRUE)
@@ -46,7 +47,7 @@ SUBSYSTEM_DEF(chat)
 		for(var/I in target)
 			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
 
-			if(!C?.chatOutput || C.chatOutput.broken) // A player who hasn't updated his skin file.
+			if(C?.chatOutput?.broken) // A player who hasn't updated his skin file.
 				continue
 
 			if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue
@@ -58,7 +59,7 @@ SUBSYSTEM_DEF(chat)
 	else
 		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
 
-		if(!C?.chatOutput || C.chatOutput.broken) //A player who hasn't updated his skin file.
+		if(C?.chatOutput?.broken) //A player who hasn't updated his skin file.
 			return
 
 		if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue
