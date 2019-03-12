@@ -18,13 +18,14 @@ SUBSYSTEM_DEF(chat)
 
 
 /datum/controller/subsystem/chat/proc/queue(target, message, handle_whitespace = TRUE)
-	if(!target)
+	if(!target || !message)
 		return
 
 	//Sorry but this will have to do for a while.
 	if(!istext(message))
 		if(istype(message, /image) || istype(message, /sound) || istype(target, /savefile) || !(ismob(target) || islist(target) || istype(target, /client) || target == world))
 			target << message
+			return
 
 	if(target == world)
 		target = GLOB.clients
