@@ -160,7 +160,7 @@
 	eject_brain()
 	death()
 
-/mob/living/simple_animal/spiderbot/proc/update_icon()
+/mob/living/simple_animal/spiderbot/update_icon()
 	if(mmi)
 		if(istype(mmi,/obj/item/device/mmi))
 			icon_state = "spiderbot-chassis-mmi"

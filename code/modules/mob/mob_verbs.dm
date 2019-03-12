@@ -81,7 +81,7 @@
 	set category = "OOC"
 
 	if(!GLOB.respawn_allowed && !check_rights(R_ADMIN, FALSE))
-		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
+		to_chat(usr, "<span class='notice'>Respawn is disabled. This is the default state, you can usually rejoin the round as a human only via ERT.</span>")
 		return
 	if(stat != DEAD)
 		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
@@ -181,14 +181,3 @@
 				//so we must undo it here so the victim can move right away
 				M.client.next_movement = world.time
 			M.update_canmove()
-
-
-/mob/verb/view_admin_remarks()
-	set category = "OOC"
-	set name = "View Admin Remarks"
-
-	if(!CONFIG_GET(flag/see_own_notes))
-		to_chat(usr, "<span class='notice'>Sorry, that function is not enabled on this server.</span>")
-		return
-
-	browse_messages(null, usr.ckey, null, TRUE)

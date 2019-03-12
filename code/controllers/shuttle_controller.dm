@@ -1,12 +1,12 @@
-var/global/datum/shuttle_controller/shuttle_controller
+var/global/datum/controller/shuttle_controller/shuttle_controller
 
 
-/datum/shuttle_controller
+/datum/controller/shuttle_controller
 	var/list/shuttles	//maps shuttle tags to shuttle datums, so that they can be looked up.
 	var/list/process_shuttles	//simple list of shuttles, for processing
 	var/list/locs_crash
 
-/datum/shuttle_controller/process()
+/datum/controller/shuttle_controller/process()
 	//process ferry shuttles
 	for (var/datum/shuttle/ferry/shuttle in process_shuttles)
 
@@ -19,7 +19,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 			shuttle.process()
 
 
-/datum/shuttle_controller/New()
+/datum/controller/shuttle_controller/New()
 	shuttles = list()
 	process_shuttles = list()
 	locs_crash = list()
@@ -340,7 +340,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	process_shuttles += shuttle
 
 //This is called by gameticker after all the machines and radio frequencies have been properly initialized
-/datum/shuttle_controller/proc/setup_shuttle_docks()
+/datum/controller/shuttle_controller/proc/setup_shuttle_docks()
 	var/datum/shuttle/shuttle
 	var/list/dock_controller_map = list()	//so we only have to iterate once through each list
 
@@ -372,3 +372,9 @@ var/global/datum/shuttle_controller/shuttle_controller
 	for(var/shuttle_tag in shuttles)
 		shuttle = shuttles[shuttle_tag]
 		shuttle.dock()
+
+
+/datum/controller/shuttle_controller/stat_entry()
+	if(!statclick)
+		statclick = new/obj/effect/statclick/debug(null, "Debug", src)
+	stat("Shuttle:", statclick)

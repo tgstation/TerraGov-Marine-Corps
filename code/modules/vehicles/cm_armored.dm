@@ -483,7 +483,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 //Generic proc for taking damage
 //ALWAYS USE THIS WHEN INFLICTING DAMAGE TO THE VEHICLES
-/obj/vehicle/multitile/root/cm_armored/proc/take_damage_type(var/damage, var/type, var/atom/attacker)
+/obj/vehicle/multitile/root/cm_armored/proc/take_damage_type(damage, type, atom/attacker)
 	for(var/i in hardpoints)
 		var/obj/item/hardpoint/HP = hardpoints[i]
 		if(!istype(HP))
@@ -591,7 +591,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		if(C.charge_speed < C.charge_speed_max/(1.1)) //Arbitrary ratio here, might want to apply a linear transformation instead
 			return
 
-		take_damage_type(100, "blunt", C)
+		take_damage_type(C.charge_speed * CRUSHER_CHARGE_TANK_MULTI, "blunt", C)
 
 //Redistributes damage ratios based off of what things are attached (no armor means the armor doesn't mitigate any damage)
 /obj/vehicle/multitile/root/cm_armored/proc/update_damage_distribs()

@@ -261,12 +261,14 @@
 
 //Outerhull
 
-/turf/open/floor/almayer_hull
+/turf/open/floor/theseus_hull
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "outerhull"
 	name = "hull"
 	hull_floor = TRUE
 
+/turf/open/floor/theseus_hull/dir
+	icon_state = "outerhull_dir"
 
 
 

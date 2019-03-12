@@ -144,6 +144,7 @@
 	. += "---"
 	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
 	.["Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
+	.["Drop Everything"] = "?_src_=vars;[HrefToken()];dropeverything=[REF(src)]"
 	.["Copy Outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
 
 
@@ -203,38 +204,46 @@
 
 	var/b_loss = null
 	var/f_loss = null
+	var/armor = max(0, 1 - getarmor(null, "bomb"))
 	switch(severity)
 		if(1)
-			b_loss += rand(125, 175)
-			if(!prob(getarmor(null, "bomb") + 75)) //Much less likely to gib than before
-				gib()
-				return
-			else
-				var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
-				throw_at(target, 200, 4)
-		if(2)
-			b_loss += rand(50, 70)
-			f_loss += rand(50, 70)
+			b_loss += rand(120, 160) * armor	//Probably instant death
+			f_loss += rand(120, 160) * armor	//Probably instant death
 
-			if(prob(getarmor(null, "bomb")))
-				b_loss = b_loss/1.5
-				f_loss = f_loss/1.5
+			var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
+			throw_at(target, 200, 4)
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 30
-				ear_deaf += 120
-			if(prob(70))
-				KnockOut(10)
+				ear_damage += 60 * armor
+				ear_deaf += 240 * armor
+
+			adjust_stagger(12 * armor)
+			add_slowdown(round(12 * armor,0.1))
+			KnockOut(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
+
+		if(2)
+			b_loss += rand(60, 80) * armor	//Ouchie time. Armor makes it survivable
+			f_loss += rand(60, 80) * armor	//Ouchie time. Armor makes it survivable
+
+			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
+				ear_damage += 30 * armor
+				ear_deaf += 120 * armor
+
+			adjust_stagger(6 * armor)
+			add_slowdown(round(6 * armor,0.1))
+			KnockDown(4 * armor)
 
 		if(3)
-			b_loss += rand(50, 70)
-			if(prob(getarmor(null, "bomb")))
-				b_loss = b_loss/2
+			b_loss += rand(30, 40) * armor
+			f_loss += rand(30, 40) * armor
+
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 15
-				ear_deaf += 60
-			if(prob(50))
-				KnockOut(10)
+				ear_damage += 15 * armor
+				ear_deaf += 60 * armor
+
+			adjust_stagger(3 * armor)
+			add_slowdown(round(3 * armor,0.1))
+			KnockDown(2 * armor)
 
 	var/update = 0
 
@@ -1638,3 +1647,24 @@
 /mob/living/carbon/human/a_select_zone(input as text, screen_num as null|num)
 	screen_num = 21
 	return ..()
+
+
+/mob/living/carbon/human/verb/check_skills()
+	set category = "IC"
+	set name = "Check Skills"
+
+	var/dat
+	if(!mind)
+		dat += "You have no mind!"
+	else if(!mind.cm_skills)
+		dat += "You don't have any skills restrictions. Enjoy."
+	else
+		var/datum/skills/S = mind.cm_skills
+		for(var/i = 1 to length(S.values))
+			var/index = S.values[i]
+			var/value = max(S.values[index], 0)
+			dat += "[index]: [value]<br>"
+
+	var/datum/browser/popup = new(src, "skills", "<div align='center'>Skills</div>", 300, 600)
+	popup.set_content(dat)
+	popup.open(FALSE)

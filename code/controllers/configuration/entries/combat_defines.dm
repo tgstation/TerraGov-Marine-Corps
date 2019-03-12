@@ -541,3 +541,30 @@ Scatter penalty while bursting.
 */
 /datum/config_entry/number/combat_define/low_burst_scatter_penalty
 	config_entry_value = 0.25
+
+/*
+Accuracy penalty while bursting.
+*/
+/datum/config_entry/number/combat_define/min_burst_accuracy_penalty
+	config_entry_value = 0.9
+
+/datum/config_entry/number/combat_define/low_burst_accuracy_penalty
+	config_entry_value = 0.8
+
+/datum/config_entry/number/combat_define/mlow_burst_accuracy_penalty
+	config_entry_value = 0.7
+
+/datum/config_entry/number/combat_define/med_burst_accuracy_penalty
+	config_entry_value = 0.6
+
+/datum/config_entry/number/combat_define/hmed_burst_accuracy_penalty
+	config_entry_value = 0.5
+
+/datum/config_entry/number/combat_define/high_burst_accuracy_penalty
+	config_entry_value = 0.4
+
+/datum/config_entry/number/combat_define/mhigh_burst_accuracy_penalty
+	config_entry_value = 0.3
+
+/datum/config_entry/number/combat_define/max_burst_accuracy_penalty
+	config_entry_value = 0.2

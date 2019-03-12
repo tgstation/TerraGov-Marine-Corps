@@ -43,6 +43,7 @@
 	var/recoil 					= 0				//Screen shake when the weapon is fired.
 	var/scatter					= 0				//How much the bullet scatters when fired.
 	var/burst_scatter_mult		= 3				//Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
+	var/burst_accuracy_mult		= 1				//Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
 
 	var/accuracy_mod			= 0				//accuracy modifier, used by most attachments.
 	var/accuracy_mult_unwielded 		= 1		//same vars as above but for unwielded firing.
@@ -915,6 +916,8 @@ and you're good to go.
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * CONFIG_GET(number/combat_define/low_hit_accuracy_mult)))
 		gun_scatter += max(0, movement_acc_penalty_mult * CONFIG_GET(number/combat_define/min_scatter_value))
 
+	if(flags_gun_features & GUN_BURST_ON && burst_amount > 1)
+		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
 		if(gun_skill_category == GUN_SKILL_PISTOLS)
