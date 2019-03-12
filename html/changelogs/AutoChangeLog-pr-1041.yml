@@ -1,4 +1,0 @@
-author: "Menshin"
-delete-after: True
-changes: 
-  - bugfix: "Fusion reactor with empty cell will now correctly update icon on wrenching."

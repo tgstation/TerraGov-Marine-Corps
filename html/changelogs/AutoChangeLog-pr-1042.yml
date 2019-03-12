@@ -1,4 +1,0 @@
-author: "Menshin"
-delete-after: True
-changes: 
-  - bugfix: "You can now correctly pulse APCs with a multitool."
