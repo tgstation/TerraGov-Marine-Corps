@@ -69,6 +69,7 @@
 #define INIT_ORDER_LANGUAGE			5
 #define INIT_ORDER_MACHINES			4
 #define INIT_ORDER_CIRCUIT			3
+#define INIT_ORDER_CHAT				2	
 #define INIT_ORDER_TIMER			1
 #define INIT_ORDER_DEFAULT			0
 #define INIT_ORDER_AIR				-1
@@ -113,6 +114,7 @@
 #define FIRE_PRIORITY_TGUI			110
 #define FIRE_PRIORITY_NANOUI		111
 #define FIRE_PRIORITY_TICKER		200
+#define FIRE_PRIORITY_CHAT			400
 #define FIRE_PRIORITY_OVERLAYS		500
 #define FIRE_PRIORITY_INPUT			1000 // This must always always be the max highest priority. Player input must never be lost.
 

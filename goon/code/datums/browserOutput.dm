@@ -176,7 +176,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	log_world("\[[time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")]\] Client: [(src.owner.key ? src.owner.key : src.owner)] triggered JS error: [error]")
 
 //Global chat procs
-/proc/to_chat(target, message, handle_whitespace=TRUE)
+/proc/to_chat_immediate(target, message, handle_whitespace = TRUE)
 	if(!target)
 		return
 
@@ -202,7 +202,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		for(var/I in target)
 			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
 
-			if (!C)
+			if(!C)
 				continue
 
 			//Send it to the old style output window.
@@ -220,7 +220,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	else
 		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
 
-		if (!C)
+		if(!C)
 			return
 
 		//Send it to the old style output window.
@@ -236,3 +236,10 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 		// url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
 		C << output(url_encode(url_encode(message)), "browseroutput:output")
+
+
+/proc/to_chat(target, message, handle_whitespace = TRUE)
+	if(!SSchat)
+		to_chat_immediate(target, message, handle_whitespace = TRUE)
+		return
+	SSchat.queue(target, message, handle_whitespace = TRUE)
