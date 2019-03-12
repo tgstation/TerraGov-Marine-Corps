@@ -240,6 +240,6 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 /proc/to_chat(target, message, handle_whitespace = TRUE)
 	if(!SSchat)
-		to_chat_immediate(target, message, handle_whitespace = TRUE)
+		to_chat_immediate(target, message, handle_whitespace)
 		return
-	SSchat.queue(target, message, handle_whitespace = TRUE)
+	SSchat.queue(target, message, handle_whitespace)
