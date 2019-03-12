@@ -69,7 +69,6 @@
 #define INIT_ORDER_LANGUAGE			5
 #define INIT_ORDER_MACHINES			4
 #define INIT_ORDER_CIRCUIT			3
-#define INIT_ORDER_CHAT				2	
 #define INIT_ORDER_TIMER			1
 #define INIT_ORDER_DEFAULT			0
 #define INIT_ORDER_AIR				-1
