@@ -45,9 +45,9 @@ SUBSYSTEM_DEF(chat)
 	if(islist(target))
 		for(var/I in target)
 			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
-
-			if(C?.chatOutput?.broken) // A player who hasn't updated his skin file.
-				continue
+			
+			if(!C?.chatOutput || C.chatOutput.broken) //A player who hasn't updated his skin file.
+				return
 
 			if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue
 				C.chatOutput.messageQueue += message
@@ -58,7 +58,7 @@ SUBSYSTEM_DEF(chat)
 	else
 		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
 
-		if(C?.chatOutput?.broken) //A player who hasn't updated his skin file.
+		if(!C?.chatOutput || C.chatOutput.broken) //A player who hasn't updated his skin file.
 			return
 
 		if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue
