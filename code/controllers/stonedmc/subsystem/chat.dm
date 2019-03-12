@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(chat)
 
 	//Sorry but this will have to do for a while.
 	if(!istext(message))
-		if(istype(message, /image) || istype(message, /sound) || istype(target, /savefile) || !(ismob(target) || islist(target) || istype(target, /client) || target == world))
+		if(istype(message, /image) || istype(message, /sound) || istype(target, /savefile) || !(ismob(target))
 			target << message
 			return
 
@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(chat)
 			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
 			
 			if(!C?.chatOutput || C.chatOutput.broken) //A player who hasn't updated his skin file.
-				return
+				continue
 
 			if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue
 				C.chatOutput.messageQueue += message
