@@ -305,10 +305,10 @@ var/datum/mob_hud/huds = list(
 					holder2_set = 1
 			else
 				holder.icon_state = "huddead"
+				holder4.icon_state = ""
 				if(!holder2_set || check_tod())
 					holder2.icon_state = "huddead"
 					holder3.icon_state = "huddead"
-					holder4.icon_state = "huddead"
 					holder2_set = 1
 
 			return

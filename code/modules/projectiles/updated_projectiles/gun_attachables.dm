@@ -69,6 +69,8 @@ Defined in conflicts.dm of the #defines folder.
 	var/attach_delay = 30 //How long in deciseconds it takes to attach a weapon with level 1 firearms training. Default is 30 seconds.
 	var/detach_delay = 30 //How long in deciseconds it takes to detach a weapon with level 1 firearms training. Default is 30 seconds.
 
+	var/attachment_firing_delay = 0 //the delay between shots, for attachments that fires stuff
+
 	var/activation_sound = 'sound/machines/click.ogg'
 
 	var/flags_attach_features = ATTACH_REMOVABLE
@@ -838,7 +840,6 @@ Defined in conflicts.dm of the #defines folder.
 	var/datum/ammo/ammo = null //If it has a default bullet-like ammo.
 	max_range 		= 0 //Determines # of tiles distance the attachable can fire, if it's not a projectile.
 	var/type_of_casings = null
-	var/attachment_firing_delay = 0 //the delay between shots, for attachments that fires stuff
 	var/fire_sound = null //Sound to play when firing it alternately
 
 

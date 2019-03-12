@@ -22,7 +22,7 @@
 
 	if(statpanel("Stats"))
 		stat("Operation Time: [worldtime2text()]")
-		stat("The current map is: [SSmapping.config.map_name]")
+		stat("The current map is: [SSmapping.config?.map_name ? SSmapping.config.map_name : "Loading..."]")
 
 
 	if(client?.holder?.rank?.rights)
@@ -238,7 +238,7 @@
 		if(!U.hastie)
 			return FALSE
 		var/obj/item/clothing/tie/storage/T = U.hastie
-		if(!T.hold)
+		if(!istype(T) || !T.hold)
 			return FALSE
 		var/obj/item/storage/internal/S = T.hold
 		if(!length(S.contents))

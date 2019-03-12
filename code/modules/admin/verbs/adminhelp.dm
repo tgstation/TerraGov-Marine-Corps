@@ -676,7 +676,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //
 
 /client/proc/giveadminhelpverb()
-	src.verbs |= /client/verb/adminhelp
+	if(!src)
+		return
+	verbs |= /client/verb/adminhelp
 	deltimer(adminhelptimerid)
 	adminhelptimerid = 0
 
