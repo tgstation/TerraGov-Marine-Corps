@@ -1,9 +1,0 @@
-author: "Alterist"
-delete-after: True
-changes: 
-  - rscadd: "Marine Dress Vendors added to Bunks"
-  - rscdel: "Removed pool, Garden is now in its place"
-  - tweak: "Tweaked medbay, bridge area, brig, upper engineering"
-  - balance: "Slightly weakened SD, removed an autodoc, removed a Cluster OB"
-  - bugfix: "Fixed some broken dirs, wrong areas, broken pipes, wiring issues, disposal issues"
-  - imageadd: "added new red 2x1 doors"
