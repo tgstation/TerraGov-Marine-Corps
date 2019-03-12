@@ -357,15 +357,18 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	return
 
 /mob/living/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	if(isdead(src)) //We don't care about the dead
+		return
 	if(loc == C.loc) // treaded over.
 		if(!knocked_down)
 			KnockDown(1)
-		var/target_dir = turn(get_dir(src, C), 180)
-		temp = get_step(loc, target_dir)
+		var/target_dir = turn(C.dir, 180)
+		temp = get_step(C.loc, target_dir)
 		T = temp
+		target_dir = turn(C.dir, 180)
 		T = get_step(T, target_dir)
 		face_atom(T)
-		throw_at(T, 2, 1, C, 0)
+		throw_at(T, 2, 1, C, 1)
 		apply_damage(rand(5, 7.5), BRUTE)
 		return
 	if(!lying)
