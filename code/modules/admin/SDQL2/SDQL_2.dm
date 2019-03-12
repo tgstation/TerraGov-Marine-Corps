@@ -113,6 +113,7 @@
 	"CALL <proc call> ON <selectors>"
 	"UPDATE <selectors> SET var=<value>,var2=<value>"
 	"DELETE <selectors>"
+	"FILE" to upload a file easily, later referenced by just: file
 
 	"<selectors>" in this context is "<type> [IN <source>] [chain of MAP/WHERE modifiers]"
 
@@ -144,7 +145,7 @@
 	* Lists: [a, b, c] or [a: b, c: d]
 	* Math and stuff.
 	* A few special variables: src (the object currently scoped on), usr (your mob),
-		marked (your marked datum), global(global scope)
+		marked (your marked datum), global(global scope), file (your marked file)
 
 	TG ADDITIONS START:
 	Add USING keyword to the front of the query to use options system
@@ -1011,8 +1012,13 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 			if("src")
 				v = source
 			if("marked")
-				if(usr.client && usr.client.holder && usr.client.holder.marked_datum)
+				if(usr.client?.holder?.marked_datum)
 					v = usr.client.holder.marked_datum
+				else
+					return null
+			if("file")
+				if(usr.client?.holder?.marked_file)
+					v = usr.client.holder.marked_file
 				else
 					return null
 			if("world")

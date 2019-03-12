@@ -16,6 +16,7 @@ GLOBAL_PROTECT(href_token)
 	var/fakekey			= null
 
 	var/datum/marked_datum
+	var/marked_file
 
 	var/href_token
 

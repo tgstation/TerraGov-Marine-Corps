@@ -1,11 +1,12 @@
 //////////
 //
-//	query				:	select_query | delete_query | update_query | call_query | explain
+//	query				:	select_query | delete_query | update_query | call_query | explain | file
 //	explain				:	'EXPLAIN' query
 //	select_query		:	'SELECT' object_selectors
 //	delete_query		:	'DELETE' object_selectors
 //	update_query		:	'UPDATE' object_selectors 'SET' assignments
 //	call_query			:	'CALL' variable 'ON' object_selectors // Note here: 'variable' does function calls. This simplifies parsing.
+//  file 				: 	opens up a prompt to select your marked file for ease of access
 //
 //	select_item			:	'*' | object_type
 //
@@ -119,7 +120,7 @@
 	return i
 
 
-//query:	select_query | delete_query | update_query
+//query:	select_query | delete_query | update_query | file
 /datum/SDQL_parser/proc/query(i, list/node)
 	query_type = tokenl(i)
 
@@ -140,6 +141,10 @@
 			node += "explain"
 			node["explain"] = list()
 			query(i + 1, node["explain"])
+
+		if("file")
+			if(usr.client.holder)
+				usr.client.holder.marked_file = input("Select a file:", "File") as null|file
 
 
 //	select_query:	'SELECT' object_selectors
