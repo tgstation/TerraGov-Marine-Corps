@@ -97,7 +97,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 	for(var/message in messageQueue)
 		// whitespace has already been handled by the original to_chat
-		to_chat(owner, message, handle_whitespace=FALSE)
+		to_chat_immediate(owner, message, handle_whitespace = FALSE)
 
 	messageQueue = null
 	sendClientData()
@@ -177,13 +177,14 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 //Global chat procs
 /proc/to_chat_immediate(target, message, handle_whitespace = TRUE)
-	if(!target)
+	if(!target || !message)
 		return
 
 	//Sorry but this will have to do for a while.
 	if(!istext(message))
 		if(istype(message, /image) || istype(message, /sound) || istype(target, /savefile) || !(ismob(target) || islist(target) || istype(target, /client) || target == world))
 			target << message
+			return
 
 	if(target == world)
 		target = GLOB.clients
