@@ -159,21 +159,22 @@
 	for(var/datum/limb/L in limbs)
 		L.icon_name = get_limb_icon_name(species, b_icon, gender, L.display_name, e_icon)
 
-/mob/living/carbon/human/can_inject(var/mob/user, var/error_msg, var/target_zone)
-	. = 1
+/mob/living/carbon/human/can_inject(mob/user, error_msg, target_zone, penetrate_thick = FALSE)
+	. = TRUE
 
 	if(!user)
 		target_zone = pick("chest","chest","chest","left leg","right leg","left arm", "right arm", "head")
 	else if(!target_zone)
 		target_zone = user.zone_selected
 
-	switch(target_zone)
-		if("head")
-			if(head && head.flags_inventory & BLOCKSHARPOBJ)
-				. = 0
-		else
-			if(wear_suit && wear_suit.flags_inventory & BLOCKSHARPOBJ)
-				. = 0
+	if(!penetrate_thick)
+		switch(target_zone)
+			if("head")
+				if(head && head.flags_inventory & BLOCKSHARPOBJ)
+					. = FALSE
+			else
+				if(wear_suit && wear_suit.flags_inventory & BLOCKSHARPOBJ)
+					. = FALSE
 	if(!. && error_msg && user)
  		// Might need re-wording.
 		to_chat(user, "<span class='alert'>There is no exposed flesh or thin material [target_zone == "head" ? "on their head" : "on their body"] to inject into.</span>")
