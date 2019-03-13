@@ -396,11 +396,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		initiator.current_ticket = src
 
 	if(tier == TICKET_MENTOR)
-		tier = TICKET_ADMIN
-		message_admins("Ticket [TicketHref("#[id]")] has been made reopened by [ADMIN_TPMONTY(usr)].")
-	else if(tier == TICKET_ADMIN)
-		tier = TICKET_MENTOR
 		message_staff("Ticket [TicketHref("#[id]")] has been made reopened by [ADMIN_TPMONTY(usr)].")
+	else if(tier == TICKET_ADMIN)
+		message_admins("Ticket [TicketHref("#[id]")] has been made reopened by [ADMIN_TPMONTY(usr)].")
 
 	AddInteraction("<font color='purple'>Reopened by [key_name_admin(usr)]</font>")
 	log_admin_private("Ticket (#[id]) reopened by [key_name(usr)].")
