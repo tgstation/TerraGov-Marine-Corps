@@ -12,6 +12,7 @@
 	layer = ABOVE_FLY_LAYER
 
 
+	var/inquisitive_ghost = FALSE
 	var/can_reenter_corpse = FALSE
 	var/datum/hud/living/carbon/hud = null
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
@@ -768,7 +769,7 @@
 
 /mob/dead/observer/verb/dnr()
 	set category = "Ghost"
-	set name = "Become DNR"
+	set name = "Do Not Revive"
 	set desc = "Noone will be able to revive you."
 
 	if(can_reenter_corpse && alert("Are you sure? You won't be able to get revived.", "Confirmation", "Yes", "No") == "Yes")
@@ -776,3 +777,16 @@
 		to_chat(usr, "<span class='notice'>You can no longer be revived.</span>")
 	else if(!can_reenter_corpse)
 		to_chat(usr, "<span class='warning'>You already can't be revived.</span>")
+
+
+/mob/dead/observer/verb/toggle_inquisition()
+	set category = "Ghost"
+	set name = "Toggle Inquisitiveness"
+	set desc = "Sets whether your ghost examines everything on click by default"
+
+	inquisitive_ghost = !inquisitive_ghost
+
+	if(inquisitive_ghost)
+		to_chat(src, "<span class='notice'>You will now examine everything you click on.</span>")
+	else
+		to_chat(src, "<span class='notice'>You will no longer examine things you click on.</span>")

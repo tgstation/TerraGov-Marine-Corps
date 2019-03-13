@@ -389,7 +389,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/possess,
 	/datum/admins/proc/release,
-	/client/proc/build_mode
+	/client/proc/toggle_buildmode
 	)
 
 GLOBAL_PROTECT(admin_verbs_server)

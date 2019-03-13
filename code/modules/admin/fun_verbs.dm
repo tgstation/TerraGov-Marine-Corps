@@ -1137,3 +1137,13 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 
 	log_admin("[key_name(usr)] has possessed [O] ([O.type]).")
 	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]).")
+
+
+/client/proc/toggle_buildmode()
+	set category = "Fun"
+	set name = "Toggle Build Mode"
+
+	if(!check_rights(R_FUN))
+		return
+
+	togglebuildmode(usr)

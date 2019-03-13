@@ -953,22 +953,35 @@ var/global/image/busy_indicator_hostile
 			else
 				air_master.tiles_to_update += T2*/
 
-proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
-	if(!original)
-		return null
 
-	var/obj/O = null
+/proc/DuplicateObject(atom/original, perfectcopy = TRUE, sameloc, atom/newloc)
+	if(!original)
+		return
+	var/atom/O
 
 	if(sameloc)
-		O=new original.type(original.loc)
+		O = new original.type(original.loc)
 	else
-		O=new original.type(locate(0,0,0))
+		O = new original.type(newloc)
 
-	if(perfectcopy)
-		if((O) && (original))
-			for(var/V in original.vars)
-				if(!(V in list("type","loc","locs","vars", "parent", "parent_type","verbs","ckey","key")))
-					O.vars[V] = original.vars[V]
+	if(perfectcopy && O && original)
+		for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
+			if(islist(original.vars[V]))
+				var/list/L = original.vars[V]
+				O.vars[V] = L.Copy()
+			else if(istype(original.vars[V], /datum))
+				continue	// this would reference the original's object, that will break when it is used or deleted.
+			else
+				O.vars[V] = original.vars[V]
+
+	if(isobj(O))
+		var/obj/N = O
+
+		N.update_icon()
+		if(ismachinery(O))
+			var/obj/machinery/M = O
+			M.power_change()
+
 	return O
 
 
