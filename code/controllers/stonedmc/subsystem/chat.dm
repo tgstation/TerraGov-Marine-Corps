@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(chat)
 
 	//Sorry but this will have to do for a while.
 	if(!istext(message))
-		if(istype(message, /image) || istype(message, /sound) || istype(target, /savefile) || !ismob(target))
+		if(istype(message, /image) || istype(message, /sound) || !ismob(target))
 			target << message
 			return
 
