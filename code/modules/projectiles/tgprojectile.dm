@@ -646,7 +646,8 @@
 // OLD PROCS, TRY TO REPLACE
 
 /mob/proc/bullet_message(obj/item/projectile/P)
-	if(!P) return
+	if(!P) 
+		return
 
 	if(P.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
 		to_chat(src, "[isxeno(src) ? "<span class='xenodanger'>" : "<span class='highdanger'>" ]You've been shot in the [parse_zone(P.def_zone)] by [P.name]!</span>")
