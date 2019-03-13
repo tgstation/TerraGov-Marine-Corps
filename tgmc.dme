@@ -818,6 +818,7 @@
 #include "code\modules\admin\verbs\datumvars.dm"
 #include "code\modules\admin\verbs\faxes.dm"
 #include "code\modules\admin\verbs\legacy.dm"
+#include "code\modules\admin\verbs\map_template.dm"
 #include "code\modules\admin\verbs\pray.dm"
 #include "code\modules\admin\verbs\varedit.dm"
 #include "code\modules\almayer\machinery.dm"
