@@ -970,6 +970,7 @@
 #include "code\modules\codex\categories\_category.dm"
 #include "code\modules\codex\categories\category_reagents.dm"
 #include "code\modules\codex\entries\_codex_entry.dm"
+#include "code\modules\codex\entries\ammunition.dm"
 #include "code\modules\codex\entries\atmospherics.dm"
 #include "code\modules\codex\entries\clothing.dm"
 #include "code\modules\codex\entries\engineering.dm"
