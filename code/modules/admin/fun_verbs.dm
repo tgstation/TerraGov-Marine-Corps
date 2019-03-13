@@ -677,10 +677,13 @@
 	switch(alert("Modify the rank or give them a new one?", "Select Rank", "New Rank", "Modify", "Cancel"))
 		if("New Rank")
 			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(SSjob.name_occupations)
-			if(!newrank)
+			if(!newrank || !H)
 				return
 
-			if(!H?.mind)
+			if(!H.mind)
+				H.job = newrank
+				log_admin("[key_name(usr)] has set the rank of mindless mob [H] to [newrank].")
+				message_admins("[ADMIN_TPMONTY(usr)] has set the rank of mindless mob [H] to [newrank].")
 				return
 
 			var/datum/job/J = SSjob.name_occupations[newrank]
