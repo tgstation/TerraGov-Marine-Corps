@@ -247,17 +247,5 @@ Useful as an alternative to TG radials and the unholy input()
 
 /datum/action/collapsible/can_use_action()
 	return TRUE //Shouldn't be too much of an issue, the actions to be displayed should be properaly sanity checked however
-
-/datum/action/collapsible/action_activate()
-	if(IsOpen)
-		Collapse()
-	else
-		Expand()
-
-/datum/action/collapsible/proc/Collapse()
-	for(var/datum/action/act in actions)
-		act.remove_action(owner)
-
-/datum/action/collapsible/proc/Expand()
-	for(var/datum/action/act in actions)
-		act.give_action(owner)
+	
+	
