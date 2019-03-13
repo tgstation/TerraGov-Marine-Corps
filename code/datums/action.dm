@@ -235,17 +235,4 @@
 
 	if(reload_screen)
 		client.screen += hud_used.hide_actions_toggle
-/*
-A new action button type that expands and collapses more action buttons at a user's will
-Useful as an alternative to TG radials and the unholy input()
-*/
 
-/datum/action/collapsible
-	name = "Collapsible Action Button"
-	var/list/datum/action/actions //All actions to be displayed when expanded
-	var/IsOpen = FALSE
-
-/datum/action/collapsible/can_use_action()
-	return TRUE //Shouldn't be too much of an issue, the actions to be displayed should be properaly sanity checked however
-	
-	
