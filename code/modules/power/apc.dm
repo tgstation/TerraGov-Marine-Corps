@@ -107,11 +107,11 @@
 	APCWireColorToIndex = list(0, 0, 0, 0)
 	var/flagIndex = 1
 	for(var/flag = 1, flag < 16, flag += flag)
-		var/valid = 0
+		var/valid = FALSE
 		while(!valid)
 			var/colorIndex = rand(1, 4)
 			if(apcwires[colorIndex] == 0)
-				valid = 1
+				valid = TRUE
 				apcwires[colorIndex] = flag
 				APCIndexToFlag[flagIndex] = flag
 				APCIndexToWireColor[flagIndex] = colorIndex
@@ -874,11 +874,11 @@
 
 /obj/machinery/power/apc/proc/isWireColorCut(var/wireColor)
 	var/wireFlag = APCWireColorToFlag[wireColor]
-	return ((src.apcwires & wireFlag) == 0)
+	return ((apcwires & wireFlag) == 0)
 
 /obj/machinery/power/apc/proc/isWireCut(var/wireIndex)
 	var/wireFlag = APCIndexToFlag[wireIndex]
-	return ((src.apcwires & wireFlag) == 0)
+	return ((apcwires & wireFlag) == 0)
 
 /obj/machinery/power/apc/proc/cut(var/wireColor)
 	var/wireFlag = APCWireColorToFlag[wireColor]
@@ -1023,9 +1023,9 @@
 		if(isWireColorCut(t1))
 			to_chat(usr, "<span class='warning'>You can't pulse a cut wire.</span>")
 			return FALSE
-		else  if(!skillcheck(usr))
+		if(!skillcheck(usr))
 			return FALSE
-			pulse(t1)
+		pulse(t1)
 
 	else if(href_list["lock"])
 		coverlocked = !coverlocked
@@ -1344,7 +1344,7 @@
 	var/mob/living/carbon/human/H = user
 	if(!H.mind)
 		return FALSE
-	if(H.mind.cm_skills && H.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+	if(H.mind.cm_skills?.engineer < SKILL_ENGINEER_ENGI)
 		H.visible_message("<span class='notice'>[H] fumbles around figuring out how to operate [src]'s interface.</span>",
 		"<span class='notice'>You fumble around figuring out how to operate [src]'s interface.</span>")
 		var/fumbling_time = 50 * (SKILL_ENGINEER_ENGI - H.mind.cm_skills.engineer)
