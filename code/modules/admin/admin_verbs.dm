@@ -545,7 +545,7 @@
 	return "<a href='?src=[REF(usr.client.holder)];[HrefToken()];individuallog=[REF(M)];log_type=[log_type];log_src=[log_src]'>[slabel]</a>"
 
 
-/datum/admins/proc/asay(msg as text)
+/client/proc/asay(msg as text)
 	set category = "Admin"
 	set name = "asay"
 	set hidden = TRUE
@@ -558,19 +558,19 @@
 	if(!msg)
 		return
 
-	log_admin_private_asay("[key_name(usr)]: [msg]")
+	log_admin_private_asay("[key_name(src)]: [msg]")
 
 	var/color = "adminsay"
 	if(check_rights(R_PERMISSIONS, FALSE))
 		color = "headminsay"
 
-	msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(usr)]: <span class='message'>[msg]</span></span>"
+	msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(mob)]: <span class='message'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ASAY, FALSE))
 			to_chat(C, msg)
 
 
-/datum/admins/proc/msay(msg as text)
+/client/proc/msay(msg as text)
 	set category = "Admin"
 	set name = "msay"
 	set hidden = TRUE
@@ -586,7 +586,7 @@
 	if(!msg)
 		return
 
-	log_admin_private_msay("[key_name(usr)]: [msg]")
+	log_admin_private_msay("[key_name(src)]: [msg]")
 
 	var/color = "mod"
 	if(check_rights(R_PERMISSIONS, FALSE))
@@ -596,14 +596,14 @@
 
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
-			to_chat(C, "<span class='[color]'><span class='prefix'>[usr.client.holder.rank.name]:</span> [ADMIN_TPMONTY(usr)]: <span class='message'>[msg]</span></span>")
-		else if(is_mentor(C) && usr.stat == DEAD)
-			to_chat(C, "<span class='[color]'><span class='prefix'>[usr.client.holder.rank.name]:</span> [key_name_admin(usr, TRUE, TRUE, FALSE)] [ADMIN_JMP(usr)] [ADMIN_FLW(usr)]: <span class='message'>[msg]</span></span>")
+			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [ADMIN_TPMONTY(mob)]: <span class='message'>[msg]</span></span>")
+		else if(is_mentor(C) && mob.stat == DEAD)
+			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>")
 		else if(is_mentor(C))
-			to_chat(C, "<span class='[color]'><span class='prefix'>[usr.client.holder.rank.name]:</span> [key_name_admin(usr, TRUE, FALSE, FALSE)] [ADMIN_JMP(usr)] [ADMIN_FLW(usr)]: <span class='message'>[msg]</span></span>")
+			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>")
 
 
-/datum/admins/proc/dsay(msg as text)
+/client/proc/dsay(msg as text)
 	set category = "Admin"
 	set name = "dsay"
 	set hidden = TRUE
@@ -611,19 +611,19 @@
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
 
-	if(is_mentor(src) && usr.stat != DEAD)
-		to_chat(usr, "<span class='warning'>You must be an observer to use dsay.</span>")
+	if(is_mentor(src) && mob.stat != DEAD)
+		to_chat(src, "<span class='warning'>You must be an observer to use dsay.</span>")
 		return
 
 	if(usr.client.prefs.muted & MUTE_DEADCHAT)
-		to_chat(usr, "<span class='warning'>You cannot send DSAY messages (muted).</span>")
+		to_chat(src, "<span class='warning'>You cannot send DSAY messages (muted).</span>")
 		return
 
-	if(!(usr.client.prefs.toggles_chat & CHAT_DEAD))
-		to_chat(usr, "<span class='warning'>You have deadchat muted.</span>")
+	if(!(prefs.toggles_chat & CHAT_DEAD))
+		to_chat(src, "<span class='warning'>You have deadchat muted.</span>")
 		return
 
-	if(usr.client.handle_spam_prevention(msg, MUTE_DEADCHAT))
+	if(handle_spam_prevention(msg, MUTE_DEADCHAT))
 		return
 
 	msg = noscript(msg)
@@ -631,8 +631,8 @@
 	if(!msg)
 		return
 
-	log_dsay("[key_name(usr)]: [msg]")
-	msg = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>([usr.client.holder.fakekey ? "" : usr.client.holder.rank.name]) [usr.client.holder.fakekey ? "Administrator" : usr.key]</span> says, \"<span class='message'>[msg]</span>\"</span>"
+	log_dsay("[key_name(src)]: [msg]")
+	msg = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[holder.fakekey ? "" : "([holder.rank.name]) "][holder.fakekey ? "Administrator" : key]</span> says, \"<span class='message'>[msg]</span>\"</span>"
 
 	for(var/client/C in GLOB.clients)
 		if(istype(C.mob, /mob/new_player))
