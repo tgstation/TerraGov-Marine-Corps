@@ -2,6 +2,7 @@
 	name = "Plant Weeds (75)"
 	action_icon_state = "plant_weeds"
 	plasma_cost = 75
+	mechanics_text = "Plant a weed node that will spread weeds over time."
 
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
@@ -34,6 +35,7 @@
 /datum/action/xeno_action/xeno_resting
 	name = "Rest"
 	action_icon_state = "resting"
+	mechanics_text = "Rest on weeds to restore your health and plasma."
 
 //resting action can be done even when lying down
 /datum/action/xeno_action/xeno_resting/can_use_action()
