@@ -499,6 +499,10 @@
 		Burst(TRUE)
 		return
 
+	if(isxenolarva(M))
+		to_chat(M, "<span class='xenowarning'>You nudge the egg, but nothing happens.</span>")
+		return
+
 	switch(status)
 		if(EGG_BURST, EGG_DESTROYED)
 			if(M.xeno_caste.can_hold_eggs)
@@ -510,9 +514,6 @@
 		if(EGG_GROWING)
 			to_chat(M, "<span class='xenowarning'>The child is not developed yet.</span>")
 		if(EGG_GROWN)
-			if(isxenolarva(M))
-				to_chat(M, "<span class='xenowarning'>You nudge the egg, but nothing happens.</span>")
-				return
 			to_chat(M, "<span class='xenonotice'>You retrieve the child.</span>")
 			Burst(FALSE)
 

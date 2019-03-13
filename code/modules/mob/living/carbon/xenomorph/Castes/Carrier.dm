@@ -264,6 +264,8 @@
 			to_chat(src, "<span class='warning'>You don't have any facehuggers to use!</span>")
 			return
 		F = pick_n_take(huggers)
+		if(QDELETED(F))
+			return //hotfix miami.
 		put_in_active_hand(F)
 		F.GoActive(TRUE)
 		to_chat(src, "<span class='xenonotice'>You grab one of the facehugger in your storage. Now sheltering: [huggers.len] / [xeno_caste.huggers_max].</span>")
@@ -291,12 +293,9 @@
 		to_chat(src, "<span class='warning'>That egg is tainted!</span>")
 		return
 	if(eggs_cur < xeno_caste.eggs_max)
-		if(stat == CONSCIOUS)
-			eggs_cur++
-			to_chat(src, "<span class='notice'>You store the egg and carry it for safekeeping. Now sheltering: [eggs_cur] / [xeno_caste.eggs_max].</span>")
-			qdel(E)
-		else
-			to_chat(src, "<span class='warning'>This [E.name] looks too unhealthy.</span>")
+		eggs_cur++
+		to_chat(src, "<span class='notice'>You store the egg and carry it for safekeeping. Now sheltering: [eggs_cur] / [xeno_caste.eggs_max].</span>")
+		qdel(E)
 	else
 		to_chat(src, "<span class='warning'>You can't carry more eggs on you.</span>")
 
