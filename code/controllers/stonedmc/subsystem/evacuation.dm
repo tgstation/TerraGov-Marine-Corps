@@ -1,6 +1,5 @@
 SUBSYSTEM_DEF(evacuation)
 	name = "Evacuation"
-	init_order = INIT_ORDER_EVACUATION
 	flags = SS_NO_INIT|SS_TICKER
 
 	var/list/pod_list = list()
@@ -17,8 +16,7 @@ SUBSYSTEM_DEF(evacuation)
 	var/flags_scuttle = FLAGS_SDEVAC_TIMELOCK
 
 
-/datum/controller/subsystem/evacuation/Initialize()
-	. = ..()
+/datum/controller/subsystem/evacuation/proc/prepare()
 	dest_master = locate()
 	if(!dest_master)
 		stack_trace("SSevacuation: Could not find dest_master.")

@@ -1354,7 +1354,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		if(!SSevacuation.dest_master)
-			SSevacuation.Initialize()
+			SSevacuation.prepare()
 
 		switch(href_list["evac_authority"])
 			if("init_evac")

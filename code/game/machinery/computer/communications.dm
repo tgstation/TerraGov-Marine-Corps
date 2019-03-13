@@ -158,7 +158,7 @@
 					return FALSE
 
 				if(!SSevacuation.dest_master)
-					SSevacuation.Initialize()
+					SSevacuation.prepare()
 				SSevacuation.enable_self_destruct()
 
 				log_game("[key_name(usr)] has called for an emergency evacuation.")
