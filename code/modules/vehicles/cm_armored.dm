@@ -357,7 +357,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	return
 
 /mob/living/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
-	if(isdead(src)) //We don't care about the dead
+	if(stat == DEAD) //We don't care about the dead
 		return
 	if(loc == C.loc) // treaded over.
 		if(!knocked_down)
