@@ -966,11 +966,11 @@ var/global/image/busy_indicator_hostile
 
 	if(perfectcopy && O && original)
 		for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
-			if(islist(original.vars[V]))
+			if(istype(original.vars[V], /datum)) // this would reference the original's object, that will break when it is used or deleted.
+				continue
+			else if(islist(original.vars[V]))
 				var/list/L = original.vars[V]
 				O.vars[V] = L.Copy()
-			else if(istype(original.vars[V], /datum))
-				continue	// this would reference the original's object, that will break when it is used or deleted.
 			else
 				O.vars[V] = original.vars[V]
 
