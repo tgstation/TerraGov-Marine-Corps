@@ -187,7 +187,7 @@
 		move_delay += mob.movement_delay()
 		//We are now going to move
 		moving = 1
-		glide_size = 32 / max(move_delay, tick_lag) * tick_lag
+		mob.glide_size = 32 / max(move_delay, CONFIG_GET(number/ticklag)) * CONFIG_GET(number/ticklag)
 
 		var/mob/living/L = mob
 		if(L.confused)
