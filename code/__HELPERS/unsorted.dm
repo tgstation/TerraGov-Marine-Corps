@@ -974,6 +974,15 @@ var/global/image/busy_indicator_hostile
 			else
 				O.vars[V] = original.vars[V]
 
+		for(var/V in original.contents)
+			if(istype(V, /datum)) // this would reference the original's object, that will break when it is used or deleted.
+				continue
+			else if(islist(V))
+				var/list/L = V
+				O.contents += L.Copy()
+			else
+				O.contents += V
+
 	if(isobj(O))
 		var/obj/N = O
 
