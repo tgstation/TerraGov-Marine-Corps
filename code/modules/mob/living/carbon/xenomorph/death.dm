@@ -111,6 +111,8 @@
 		remains.icon_state = "gibbed-a-corpse-runner"
 	else if(isxenolarva(src))
 		remains.icon_state = "larva_gib_corpse"
+	else if(isxenohunter(src))
+		remains.icon_state = "Hunter Gibs"
 	else
 		remains.icon_state = "gibbed-a-corpse"
 
@@ -126,6 +128,8 @@
 		to_flick = "gibbed-a-runner"
 	else if(isxenolarva(src))
 		to_flick = "larva_gib"
+	else if(isxenohunter(src))
+		to_flick = "Hunter Gibbed"
 	new /obj/effect/overlay/temp/gib_animation/xeno(loc, src, to_flick, icon)
 
 /mob/living/carbon/Xenomorph/spawn_gibs()

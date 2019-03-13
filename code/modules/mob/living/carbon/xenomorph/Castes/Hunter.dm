@@ -145,7 +145,7 @@
 	caste_base_type = /mob/living/carbon/Xenomorph/Hunter
 	name = "Hunter"
 	desc = "A beefy, fast alien with sharp claws."
-	icon = 'icons/Xeno/48x48_Xenos.dmi'
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Hunter Running"
 	health = 150
 	maxHealth = 150
