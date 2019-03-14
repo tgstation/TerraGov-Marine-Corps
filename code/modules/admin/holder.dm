@@ -421,7 +421,8 @@ GLOBAL_PROTECT(admin_verbs_permissions)
 GLOBAL_LIST_INIT(admin_verbs_permissions, world.AVpermissions())
 /world/proc/AVpermissions()
 	return list(
-	/datum/admins/proc/permissions_panel
+	/datum/admins/proc/permissions_panel,
+	/datum/admins/proc/create_poll
 	)
 
 GLOBAL_PROTECT(admin_verbs_color)
