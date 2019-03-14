@@ -473,7 +473,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 //Ravager defines:
 #define RAVAGER_MAX_RAGE 50
-#define RAV_RAGE_ON_HIT					10 //+10 rage whenever we slash
+#define RAV_RAGE_ON_HIT					7.5 //+7.5 rage whenever we slash
 #define RAV_CHARGESPEED					100
 #define RAV_CHARGESTRENGTH				3
 #define RAV_CHARGEDISTANCE				7
