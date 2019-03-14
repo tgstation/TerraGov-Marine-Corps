@@ -503,10 +503,7 @@
 
 	var/previous_plant = seed.display_name
 	var/newseed = seed.get_mutant_variant()
-	if(newseed in GLOB.seed_types)
-		seed = GLOB.seed_types[newseed]
-	else
-		return
+	seed = GLOB.seed_types[newseed] || seed
 
 	dead = 0
 	mutate(1)
