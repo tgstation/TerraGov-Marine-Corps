@@ -51,5 +51,3 @@
 //=================================================
 
 #define LATEJOIN_LARVA_DISABLED 0
-
-#define ERT_MARINE_TO_XENO_RATIO 3
