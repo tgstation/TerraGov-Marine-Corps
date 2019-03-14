@@ -118,15 +118,21 @@
 					dat += "<a href='?src=\ref[src];operation=supplies'>Supply Drop Control</a><br>"
 					dat += "<a href='?src=\ref[src];operation=monitor'>Squad Monitor</a><br>"
 					dat += "----------------------<br>"
-					dat += "<b>Rail Gun Control</b><br>"
-					dat += "<b>Current Rail Gun Status:</b> "
+					dat += "<b>Ground Support Weapon Control</b><br>"
+					dat += "<b>Current Rail Gun and Laser Battery Status:</b> "
 					var/cooldown_left = (almayer_rail_gun.last_firing + 600) - world.time // 60 seconds between shots
 					if(cooldown_left > 0)
-						dat += "Rail Gun on cooldown ([round(cooldown_left/10)] seconds)<br>"
-					else if(!almayer_rail_gun.rail_gun_ammo?.ammo_count)
-						dat += "<font color='red'>Ammo depleted.</font><br>"
+						dat += "Ground support weaponry on cooldown: ([round(cooldown_left/10)] seconds)<br>"
 					else
-						dat += "<font color='green'>Ready!</font><br>"
+						if(!almayer_rail_gun.rail_gun_ammo?.ammo_count)
+							dat += "<font color='red'>Rail gun ammo depleted.</font><br>"
+						else
+							dat += "<font color='green'>Rail gun ready!</font><br>"
+						if(!almayer_rail_gun.machine_current_charge < ORBITAL_LASER_COST)
+							dat += "<font color='red'>Laser battery charge depleted.</font><br>"
+						else
+							dat += "<font color='green'>Laser battery ready!</font><br>"
+
 					dat += "<B>[current_squad.name] Laser Targets:</b><br>"
 					if(active_laser_targets.len)
 						for(var/obj/effect/overlay/temp/laser_target/LT in current_squad.squad_laser_targets)
@@ -151,7 +157,9 @@
 						selected_target = null
 					else
 						dat += "<font color='green'>[selected_target.name]</font><br>"
-					dat += "<A href='?src=\ref[src];operation=shootrailgun'>\[FIRE!\]</a><br>"
+					dat += "<A href='?src=\ref[src];operation=shootrailgun'>\[FIRE RAILGUN\]</a><br>"
+					dat += "----------------------<br>"
+					dat += "<A href='?src=\ref[src];operation=firelasers'>\[FIRE LASER BATTERY\]</a><br>"
 					dat += "----------------------<br>"
 					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a>"
 			if(OW_MONITOR)//Info screen.
@@ -348,7 +356,7 @@
 			else
 				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Dead marines are now shown again.</span>")
 		if("choose_z")
-			switch(z_hidden) 
+			switch(z_hidden)
 				if(HIDE_NONE)
 					z_hidden = HIDE_ON_SHIP
 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [MAIN_SHIP_NAME] are now hidden.</span>")
@@ -383,6 +391,13 @@
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No target detected!</span>")
 			else
 				almayer_rail_gun.fire_rail_gun(get_turf(selected_target),usr)
+		if("firelasers")
+			if((almayer_rail_gun.last_firing + 600) > world.time)
+				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The Laser Battery hasn't cooled down yet!</span>")
+			else if(!selected_target)
+				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No target detected!</span>")
+			else
+				almayer_rail_gun.fire_laser_battery(get_turf(selected_target),usr)
 		if("back")
 			state = OW_MAIN
 		if("use_cam")

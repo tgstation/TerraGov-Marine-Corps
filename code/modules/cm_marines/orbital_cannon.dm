@@ -4,7 +4,7 @@
 var/obj/structure/orbital_cannon/almayer_orbital_cannon
 var/list/ob_type_fuel_requirements
 
-var/obj/structure/ship_rail_gun/almayer_rail_gun
+var/obj/machinery/ship_rail_gun/almayer_rail_gun
 
 /obj/structure/orbital_cannon
 	name = "\improper Orbital Cannon"
@@ -144,7 +144,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	if(!loaded_tray)
 		to_chat(user, "<span class='warning'>You need to load the tray before chambering it.</span>")
 		return
-	
+
 	if(ob_cannon_busy)
 		return
 
@@ -521,7 +521,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 //	updateUsrDialog()
 	attack_hand(usr)
 
-/obj/structure/ship_rail_gun
+/obj/machinery/ship_rail_gun
 	name = "\improper Rail Gun"
 	desc = "A powerful ship-to-ship weapon sometimes used for ground support at reduced efficiency."
 	icon = 'icons/obj/machines/artillery.dmi'
@@ -533,19 +533,26 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	bound_height = 64
 	bound_y = 64
 	unacidable = TRUE
+	use_power = 1
+	idle_power_usage = 10
+	active_power_usage = 100
+	machine_current_charge = 50000
+	machine_max_charge = 50000
 	var/cannon_busy = FALSE
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
 	var/obj/structure/ship_ammo/heavygun/highvelocity/rail_gun_ammo
+	var/obj/structure/ship_ammo/laser_battery/orbital/laser_ammo
 
-/obj/structure/ship_rail_gun/New()
+/obj/machinery/ship_rail_gun/New()
 	. = ..()
 	if(!almayer_rail_gun)
 		almayer_rail_gun = src
 	rail_gun_ammo = new /obj/structure/ship_ammo/heavygun/highvelocity(src)
+	laser_ammo = new /obj/structure/ship_ammo/laser_battery/orbital(src)
 	rail_gun_ammo.max_ammo_count = 16000 //400 uses
 	rail_gun_ammo.ammo_count = 16000
 
-/obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user)
+/obj/machinery/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user)
 	set waitfor = 0
 	if(cannon_busy)
 		return
@@ -562,8 +569,26 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	rail_gun_ammo.detonate_on(target)
 	cannon_busy = FALSE
 
-/obj/structure/ship_rail_gun/ex_act()
+/obj/machinery/ship_rail_gun/ex_act()
 	return
 
-/obj/structure/ship_rail_gun/bullet_act()
+/obj/machinery/ship_rail_gun/bullet_act()
 	return
+
+/obj/machinery/ship_rail_gun/proc/fire_laser_battery(turf/T, mob/user)
+	set waitfor = 0
+	if(cannon_busy)
+		return
+	if(ORBITAL_LASER_COST > machine_current_charge)
+		to_chat(user, "<span class='warning'>[src]'s APC has run out of charge.</span>")
+		return
+	machine_current_charge -= ORBITAL_LASER_COST
+	flick("Railgun_firing",src)
+	cannon_busy = TRUE
+	last_firing = world.time
+	playsound(loc, 'sound/weapons/tank_smokelauncher_fire.ogg', 70, 1)
+	playsound(loc, 'sound/weapons/pred_plasma_shot.ogg', 70, 1)
+	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
+	sleep(15)
+	laser_ammo.detonate_on(target)
+	cannon_busy = FALSE

@@ -149,6 +149,7 @@
 	warning_sound = 'sound/effects/nightvision.ogg'
 	point_cost = 300
 
+/obj/structure/ship_ammo/laser_battery/orbital
 
 /obj/structure/ship_ammo/laser_battery/examine(mob/user)
 	..()
@@ -191,6 +192,15 @@
 	for(var/obj/flamer_fire/F in T) // No stacking flames!
 		qdel(F)
 	new/obj/flamer_fire(T, 5, 30) //short but intense
+
+/obj/structure/ship_ammo/laser_battery/orbital/laser_burn(turf/T)
+	for(var/mob/living/L in T)
+		L.adjustFireLoss(40)
+		L.adjust_fire_stacks(30)
+		L.IgniteMob()
+	for(var/obj/flamer_fire/F in T) // No stacking flames!
+		qdel(F)
+	new/obj/flamer_fire(T, 10, 40) //short but intense
 
 
 //Rockets

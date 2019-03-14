@@ -87,3 +87,5 @@
 #define MEDIUM		(1<<4)
 #define FULL		(1<<5)
 #define DANGER		(1<<6)
+
+#define ORBITAL_LASER_COST 10000
