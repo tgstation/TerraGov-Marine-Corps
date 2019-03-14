@@ -171,6 +171,7 @@
 	var/wired = 0
 	var/obj/item/cell/cell = 0
 	var/clipped = 0
+	var/transfer_prints = FALSE
 	flags_armor_protection = HANDS
 	flags_equip_slot = ITEM_SLOT_GLOVES
 	attack_verb = list("challenged")
