@@ -151,7 +151,7 @@
 	dir = NORTH
 
 /obj/item/stack/medical/advanced/update_icon()
-	if(max_amount >= amount)
+	if(amount >= max_amount)
 		switch(amount)
 			if(1 to 2)
 				setDir(SOUTH)
