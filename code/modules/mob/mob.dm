@@ -586,13 +586,6 @@
 	return TRUE
 
 
-//Can the mob use Topic to interact with machines
-/mob/proc/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
-	return
-
-
-/mob/proc/canUseStorage()
-	return FALSE
 
 
 /mob/proc/IsAdvancedToolUser()//This might need a rename but it should replace the can this mob use things check
