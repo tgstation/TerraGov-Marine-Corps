@@ -172,7 +172,7 @@
 					var/mob/living/carbon/Xenomorph/Queen/Q = usr // typechecked above
 					xeno_message("<span class='xenoannounce'>The Queen has commanded the metal bird to depart for the metal hive in the sky! Rejoice!</span>",3,Q.hivenumber)
 					playsound(src, 'sound/misc/queen_alarm.ogg')
-					SSevacuation.flags_scuttle &= FLAGS_SDEVAC_TIMELOCK
+					SSevacuation.flags_scuttle &= ~FLAGS_SDEVAC_TIMELOCK
 				else if(i == "No")
 					return
 				else

@@ -165,21 +165,16 @@ SUBSYSTEM_DEF(evacuation)
 		if(I.active_state != SELF_DESTRUCT_MACHINE_ARMED && !override)
 			dest_master.state("<span class='warning'>WARNING: Unable to trigger detonation. Please arm all control rods.</span>")
 			return FALSE
+	
 	command_announcement.Announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
-	trigger_self_destruct(override = override)
-	return TRUE
-
-
-/datum/controller/subsystem/evacuation/proc/trigger_self_destruct(list/z_levels = list(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)), origin = dest_master, override)
-	if(dest_status >= NUKE_EXPLOSION_IN_PROGRESS)
-		return FALSE
-
 	GLOB.enter_allowed = FALSE
 	dest_status = NUKE_EXPLOSION_IN_PROGRESS
-	playsound(origin, 'sound/machines/Alarm.ogg', 75, 0, 30)
+	playsound(dest_master, 'sound/machines/Alarm.ogg', 75, 0, 30)
 	SEND_SOUND(world, pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'))
 
+	var/list/z_levels = list(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
 	var/ship_intact = TRUE
+
 	var/f = SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
 	if(f in z_levels)
 		ship_intact = FALSE

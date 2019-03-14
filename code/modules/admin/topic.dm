@@ -1358,7 +1358,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		switch(href_list["evac_authority"])
 			if("init_evac")
-				if(!SSevacuation.initiate_evacuation())
+				if(!SSevacuation.initiate_evacuation(TRUE))
 					to_chat(usr, "<span class='warning'>You are unable to initiate an evacuation right now!</span>")
 					return
 				log_admin("[key_name(usr)] called an evacuation.")

@@ -384,7 +384,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	safety = 1
 	if(!lighthack) icon_state = "nuclearbomb3"
 
-	SSevacuation.trigger_self_destruct(list(z), src) //The round ends as soon as this happens, or it should.
+	SSevacuation.initiate_self_destruct(TRUE) //The round ends as soon as this happens, or it should.
 	return TRUE
 
 /obj/item/disk/nuclear/Destroy()
