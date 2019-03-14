@@ -5,7 +5,7 @@
 	caste_desc = "D'awwwww, so cute!"
 	caste_type_path = /mob/living/carbon/Xenomorph/Larva
 	tier = XENO_TIER_ZERO
-	upgrade = -1
+	upgrade = XENO_UPGRADE_INVALID
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 0
@@ -39,7 +39,7 @@
 	flags_pass = PASSTABLE | PASSMOB
 	away_timer = XENO_AFK_TIMER
 	tier = XENO_TIER_ZERO  //Larva's don't count towards Pop limits
-	upgrade = -1
+	upgrade = XENO_UPGRADE_INVALID
 	gib_chance = 25
 	wound_type = "alien" //used to match appropriate wound overlays
 	actions = list(

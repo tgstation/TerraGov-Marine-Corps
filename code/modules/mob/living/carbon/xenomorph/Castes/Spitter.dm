@@ -5,7 +5,7 @@
 	caste_desc = "Ptui!"
 	caste_type_path = /mob/living/carbon/Xenomorph/Spitter
 	tier = XENO_TIER_TWO
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 18
@@ -47,7 +47,7 @@
 	upgrade_name = "Mature"
 	caste_desc = "A ranged damage dealer. It looks a little more dangerous."
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 25
@@ -81,7 +81,7 @@
 	upgrade_name = "Elder"
 	caste_desc = "A ranged damage dealer. It looks pretty strong."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 28
@@ -115,7 +115,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "A ranged destruction machine."
 	ancient_message = "You are a master of ranged stuns and damage. Go fourth and generate salt."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -158,7 +158,7 @@
 	pixel_x = -12
 	old_x = -12
 	tier = XENO_TIER_TWO
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 	acid_cooldown = 0
 	wound_type = "alien" //used to match appropriate wound overlays
 

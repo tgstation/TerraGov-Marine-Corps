@@ -7,7 +7,7 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Defender
 
 	tier = XENO_TIER_ONE
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
@@ -48,7 +48,7 @@
 /datum/xeno_caste/defender/mature
 	upgrade_name = "Mature"
 	caste_desc = "An alien with an armored head crest. It looks a little more dangerous."
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -80,7 +80,7 @@
 /datum/xeno_caste/defender/elder
 	upgrade_name = "Elder"
 	caste_desc = "An alien with an armored head crest. It looks pretty strong."
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 23
@@ -112,7 +112,7 @@
 /datum/xeno_caste/defender/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "An unstoppable force that remains when others would fall."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "You are a incredibly resilient, you can control the battle through sheer force."
 
 	// *** Melee Attacks *** //
@@ -155,7 +155,7 @@
 	pixel_x = -16
 	old_x = -16
 	tier = XENO_TIER_ONE
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 	pull_speed = -2
 	wound_type = "defender" //used to match appropriate wound overlays
 	actions = list(

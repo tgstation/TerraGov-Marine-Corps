@@ -5,7 +5,7 @@
 	caste_desc = "A powerful front line combatant."
 	caste_type_path = /mob/living/carbon/Xenomorph/Warrior
 	tier = XENO_TIER_TWO
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -44,7 +44,7 @@
 	upgrade_name = "Mature"
 	caste_desc = "An alien with an armored carapace. It looks a little more dangerous."
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 35
@@ -75,7 +75,7 @@
 	upgrade_name = "Elder"
 	caste_desc = "An alien with an armored carapace. It looks pretty strong."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40
@@ -107,7 +107,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "An hulking beast capable of effortlessly breaking and tearing through its enemies."
 	ancient_message = "None can stand before you. You will annihilate all weaklings who try."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 45
@@ -148,7 +148,7 @@
 	pixel_x = -16
 	old_x = -16
 	tier = XENO_TIER_TWO
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,

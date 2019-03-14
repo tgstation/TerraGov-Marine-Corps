@@ -7,7 +7,7 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Carrier
 
 	tier = XENO_TIER_TWO
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -54,7 +54,7 @@
 	upgrade_name = "Mature"
 	caste_desc = "A portable Love transport. It looks a little more dangerous."
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 25
@@ -91,7 +91,7 @@
 	upgrade_name = "Elite"
 	caste_desc = "A portable Love transport. It looks pretty strong."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -127,7 +127,7 @@
 /datum/xeno_caste/carrier/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "It's literally crawling with 11 huggers."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "You are the master of huggers. Throw them like baseballs at the marines!"
 
 	// *** Melee Attacks *** //
@@ -180,7 +180,7 @@
 	var/last_spawn_facehugger
 	var/cooldown_spawn_facehugger = 100 //10 seconds; keeping this as a var for now as I may have it adjust with upgrade level
 	tier = XENO_TIER_TWO
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 	pixel_x = -16 //Needed for 2x2
 	old_x = -16
 

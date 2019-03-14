@@ -6,7 +6,7 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Xenoborg
 
 	tier = XENO_TIER_ZERO
-	upgrade = 0
+	upgrade = XENO_UPGRADE_INVALID
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 24

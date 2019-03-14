@@ -6,7 +6,7 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Crusher
 
 	tier = XENO_TIER_THREE
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -46,7 +46,7 @@
 	upgrade_name = "Mature"
 	caste_desc = "A huge tanky xenomorph. It looks a little more dangerous."
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -77,7 +77,7 @@
 	upgrade_name = "Elder"
 	caste_desc = "A huge tanky xenomorph. It looks pretty strong."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -108,7 +108,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "It always has the right of way."
 	ancient_message = "You are the physical manifestation of a Tank. Almost nothing can harm you."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 35
@@ -143,7 +143,7 @@
 	plasma_stored = 200
 	speed = 0.1
 	tier = XENO_TIER_THREE
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 	drag_delay = 6 //pulling a big dead xeno is hard
 	xeno_explosion_resistance = 3 //no stuns from explosions, ignore damages except devastation range.
 	mob_size = MOB_SIZE_BIG

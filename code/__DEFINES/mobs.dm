@@ -182,6 +182,17 @@ var/list/global_mutations = list() // list of hidden mutation things
 GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE, XENO_TIER_FOUR))
 
 // =============================
+// xeno upgrades
+
+#define XENO_UPGRADE_INVALID "invalid" // not applicable, the old -1
+#define XENO_UPGRADE_ZERO "zero"	// god forgive me again
+#define XENO_UPGRADE_ONE "one"
+#define XENO_UPGRADE_TWO "two"
+#define XENO_UPGRADE_THREE "three"
+
+GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE))
+
+// =============================
 // xeno slashing
 #define XENO_SLASHING_FORBIDDEN 0
 #define XENO_SLASHING_ALLOWED 1

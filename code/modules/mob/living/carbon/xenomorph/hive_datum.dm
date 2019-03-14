@@ -14,18 +14,23 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	var/list/xeno_leader_list
 	var/list/xenos_by_typepath
 	var/list/xenos_by_tier
+	var/list/xenos_by_upgrade
 
 /datum/hive_status/New()
 	. = ..()
 	xeno_leader_list = list()
 	xenos_by_typepath = list()
 	xenos_by_tier = list()
+	xenos_by_upgrade = list()
 
 	for(var/mob/living/carbon/Xenomorph/X in subtypesof(/mob/living/carbon/Xenomorph))
 		xenos_by_typepath[initial(X.caste_base_type)] = list()
 
 	for(var/tier in GLOB.xenotiers)
 		xenos_by_tier[tier] = list()
+
+	for(var/upgrade in GLOB.xenoupgradetiers)
+		xenos_by_upgrade[upgrade] = list()
 
 /datum/hive_status/proc/remove_leader(var/mob/living/carbon/Xenomorph/X)
 	xeno_leader_list -= X

@@ -5,7 +5,7 @@
 	caste_desc = "A weak ranged combat alien."
 	caste_type_path = /mob/living/carbon/Xenomorph/Sentinel
 	tier = XENO_TIER_ONE
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
@@ -44,7 +44,7 @@
 	upgrade_name = "Mature"
 	caste_desc = "A ranged combat alien. It looks a little more dangerous."
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -77,7 +77,7 @@
 	upgrade_name = "Elder"
 	caste_desc = "A ranged combat alien. It looks pretty strong."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 23
@@ -110,7 +110,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "Neurotoxin Factory, don't let it get you."
 	ancient_message = "You are the stun master. Your stunning is legendary and causes massive quantities of salt."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 25
@@ -151,7 +151,7 @@
 	pixel_x = -12
 	old_x = -12
 	tier = XENO_TIER_ONE
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 	speed = -0.8
 	pull_speed = -2
 	wound_type = "alien" //used to match appropriate wound overlays

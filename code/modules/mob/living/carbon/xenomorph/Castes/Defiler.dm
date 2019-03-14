@@ -5,7 +5,7 @@
 	caste_desc = "A frightening looking, bulky xeno that drips with suspect green fluids."
 	caste_type_path = /mob/living/carbon/Xenomorph/Defiler
 	tier = XENO_TIER_THREE
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -42,7 +42,7 @@
 	upgrade_name = "Mature"
 	caste_desc = "A frightening looking, bulky xeno that drips with suspect green fluids. It looks a little more dangerous."
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 35
@@ -74,7 +74,7 @@
 	upgrade_name = "Elder"
 	caste_desc = "A frightening looking, bulky xeno that drips with suspect green fluids. It looks pretty strong."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40
@@ -106,7 +106,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "Being within mere eyeshot of this hulking, dripping monstrosity fills you with a deep, unshakeable sense of unease."
 	ancient_message = "You are the ultimate alien impregnator. You will infect the marines, see them burst open before you, and hear the gleeful screes of your larvae."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 45
@@ -148,7 +148,7 @@
 	old_x = -16
 	wound_type = "defiler" //used to match appropriate wound overlays
 	tier = XENO_TIER_THREE
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 	var/datum/effect_system/smoke_spread/smoke_system = null
 	var/last_defiler_sting = null
 	var/last_emit_neurogas = null

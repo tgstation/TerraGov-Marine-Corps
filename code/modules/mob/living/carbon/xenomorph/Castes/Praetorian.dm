@@ -5,7 +5,7 @@
 	caste_desc = "Ptui!"
 	caste_type_path = /mob/living/carbon/Xenomorph/Praetorian
 	tier = XENO_TIER_THREE
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -49,7 +49,7 @@
 /datum/xeno_caste/praetorian/mature
 	upgrade_name = "Mature"
 	caste_desc = "A giant ranged monster. It looks a little more dangerous."
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40
@@ -84,7 +84,7 @@
 /datum/xeno_caste/praetorian/elder
 	upgrade_name = "Elder"
 	caste_desc = "A giant ranged monster. It looks pretty strong."
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 45
@@ -119,7 +119,7 @@
 /datum/xeno_caste/praetorian/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "Its mouth looks like a minigun."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "You are the strongest range fighter around. Your spit is devestating and you can fire nearly a constant stream."
 
 	// *** Melee Attacks *** //
@@ -164,7 +164,7 @@
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_THREE
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 	var/sticky_cooldown = 0
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

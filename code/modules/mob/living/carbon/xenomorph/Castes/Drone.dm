@@ -6,7 +6,7 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Drone
 
 	tier = XENO_TIER_ONE
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 12
@@ -47,7 +47,7 @@
 	upgrade_name = "Mature"
 	caste_desc = "The workhorse of the hive. It looks a little more dangerous."
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
@@ -79,7 +79,7 @@
 	upgrade_name = "Elite"
 	caste_desc = "The workhorse of the hive. It looks a little more dangerous."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
@@ -111,7 +111,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "A very mean architect."
 	ancient_message = "You are the ultimate worker of the Hive. Time to clock in, and clock the tallhosts out."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -146,7 +146,7 @@
 	maxHealth = 120
 	plasma_stored = 350
 	tier = XENO_TIER_ONE
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 	speed = -0.8
 	pixel_x = -12
 	old_x = -12

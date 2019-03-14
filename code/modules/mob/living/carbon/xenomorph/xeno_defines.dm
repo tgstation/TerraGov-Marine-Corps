@@ -9,7 +9,7 @@
 	var/ancient_message = ""
 
 	var/tier = XENO_TIER_ZERO
-	var/upgrade = 0
+	var/upgrade = XENO_UPGRADE_ZERO
 
 	var/language = "Xenomorph"
 
@@ -142,7 +142,7 @@
 	var/evolution_stored = 0 //How much evolution they have stored
 
 	var/upgrade_stored = 0 //How much upgrade points they have stored.
-	var/upgrade = -1  //This will track their upgrade level. -1 means cannot upgrade
+	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level. 
 	var/gib_chance = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
 	var/critical_proc = 0
 	var/critical_delay = 25

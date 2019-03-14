@@ -5,7 +5,7 @@
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 
 	tier = XENO_TIER_FOUR
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 45
@@ -49,7 +49,7 @@
 /datum/xeno_caste/queen/mature
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 50
@@ -87,7 +87,7 @@
 /datum/xeno_caste/queen/elder
 	caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 55
@@ -125,7 +125,7 @@
 /datum/xeno_caste/queen/ancient
 	caste_desc = "The most perfect Xeno form imaginable."
 	ancient_message = "You are the Alpha and the Omega. The beginning and the end."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 60
@@ -185,7 +185,7 @@
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
-	upgrade = 0
+	upgrade = XENO_UPGRADE_ZERO
 	xeno_explosion_resistance = 3 //some resistance against explosion stuns.
 
 	var/breathing_counter = 0
