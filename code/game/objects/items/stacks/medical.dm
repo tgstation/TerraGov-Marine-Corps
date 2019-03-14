@@ -147,6 +147,24 @@
 	stack_id = "Tear petals"
 
 
+/obj/item/stack/medical/advanced/
+	dir = NORTH
+
+/obj/item/stack/medical/advanced/update_icon()
+	if(max_amount >= amount)
+		switch(amount)
+			if(1 to 2)
+				setDir(SOUTH)
+			if(3 to 4)
+				setDir(EAST)
+			if(5 to 6)
+				setDir(SOUTHEAST)
+			if(7 to 8)
+				setDir(WEST)
+			if(9 to INFINITY)
+				setDir(NORTH)
+
+
 /obj/item/stack/medical/advanced/bruise_pack
 	name = "advanced trauma kit"
 	singular_name = "advanced trauma kit"
@@ -158,7 +176,7 @@
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M, mob/user)
 	if(..())
-		return 1
+		return TRUE
 
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -202,6 +220,7 @@
 					return
 			else
 				to_chat(user, "<span class='notice'>The [affecting.display_name] is cut open, you'll need more than a bandage!</span>")
+
 
 /obj/item/stack/medical/advanced/ointment
 	name = "advanced burn kit"
