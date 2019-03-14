@@ -176,6 +176,10 @@
 			if(action_intent)
 				action_intent.screen_loc = initial(action_intent.screen_loc) //Restore intent selection to the original position
 
+			mymob.client.screen += ammo
+			var/obj/screen/ammo/A = ammo
+			A.update_hud(mymob)
+
 		if(HUD_STYLE_REDUCED)	//Reduced HUD
 			hud_shown = 0	//Governs behavior of other procs
 			if(static_inventory.len)
@@ -213,10 +217,10 @@
 	mymob.reload_fullscreens()
 
 
-
 /datum/hud/human/show_hud(version = 0)
-	..()
+	. = ..()
 	hidden_inventory_update()
+
 
 /datum/hud/proc/hidden_inventory_update()
 	return

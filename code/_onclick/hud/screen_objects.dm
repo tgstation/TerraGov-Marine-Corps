@@ -631,7 +631,7 @@
 	screen_loc = ui_ammo
 	var/warned = FALSE
 
-/obj/screen/ammo/proc/add_hud(var/mob/user)
+/obj/screen/ammo/proc/add_hud(mob/user)
 	if(!user?.client)
 		return
 
@@ -642,17 +642,17 @@
 
 	user.client.screen += src
 
-/obj/screen/ammo/proc/remove_hud(var/mob/user)
+/obj/screen/ammo/proc/remove_hud(mob/user)
 	user?.client?.screen -= src
 
-/obj/screen/ammo/proc/update_hud(var/mob/user)
+/obj/screen/ammo/proc/update_hud(mob/user)
 	if(!user?.client?.screen.Find(src))
 		return
 
 	var/obj/item/weapon/gun/G = user.get_active_held_item()
 
 	if(!istype(G) || !(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
-		remove_hud()
+		remove_hud(user)
 		return
 
 	var/list/ammo_type = G.get_ammo_type()
