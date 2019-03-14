@@ -16,7 +16,8 @@ GLOBAL_LIST_EMPTY(player_details)	// ckey -> /datum/player_details
 		return
 	var/list/names = args.Copy(2)
 	var/datum/player_details/P = GLOB.player_details[ckey]
-	if(P)
-		for(var/name in names)
-			if(name)
-				P.played_names |= name
+	if(!P)
+		return
+	for(var/name in names)
+		if(name)
+			P.played_names |= name
