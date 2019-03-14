@@ -35,7 +35,7 @@
 
 			if(hivenumber == XENO_HIVE_NORMAL)
 				if(SSticker.mode.stored_larva)
-					SSticker.mode.stored_larva = round(SSticker.mode.stored_larva * ((upgrade+1)/6.0)) // 83/66/50/33 for ancient/elder emp/elder queen/queen
+					SSticker.mode.stored_larva = round(SSticker.mode.stored_larva * QUEEN_DEATH_LARVA_MULTIPLIER
 					var/turf/larva_spawn
 					while(SSticker.mode.stored_larva > 0) // stil some left
 						larva_spawn = pick(GLOB.xeno_spawn)

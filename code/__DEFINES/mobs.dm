@@ -465,6 +465,12 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define WARRIOR_AGILITY_ARMOR 30
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 
+#define SPIT_UPGRADE_BONUS ( max(0,upgrade) * 0.15 ) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
+#define SPRAY_STRUCTURE_UPGRADE_BONUS 8
+#define SPRAY_MOB_UPGRADE_BONUS 4
+
+#define QUEEN_DEATH_LARVA_MULTIPLIER ( (upgrade+1)/6.0) ) // 83/66/50/33 for ancient/elder emp/elder queen/queen
+
 #define PLASMA_TRANSFER_AMOUNT 50
 #define PLASMA_SALVAGE_AMOUNT 40
 #define PLASMA_SALVAGE_MULTIPLIER 0.5 // I'd not reccomend setting this higher than one.
@@ -501,6 +507,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CRUSHER_CHARGE_BARRICADE_MULTI	60
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI	100
 #define CRUSHER_CHARGE_TANK_MULTI		100
+
+#define CRUSHER_STOMP_UPGRADE_BONUS ( 1 + upgrade * 0.05 )
 
 //carrier defines
 

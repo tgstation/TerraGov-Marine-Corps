@@ -269,7 +269,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	hardness = 1.5
 	layer = RESIN_STRUCTURE_LAYER
-	var/health = 80
+	health = 80
 	var/close_delay = 100
 
 	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)
@@ -682,7 +682,7 @@ TUNNEL
 
 	var/tunnel_desc = "" //description added by the hivelord.
 
-	var/health = 140
+	health = 140
 	var/obj/structure/tunnel/other = null
 	var/id = null //For mapping
 

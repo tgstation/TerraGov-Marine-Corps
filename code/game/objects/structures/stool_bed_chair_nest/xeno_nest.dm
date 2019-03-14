@@ -8,7 +8,7 @@
 	buckling_y = 6
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
 	unacidable = TRUE
-	var/health = 100
+	health = 100
 	var/on_fire = 0
 	var/resisting = 0
 	var/resisting_ready = 0
