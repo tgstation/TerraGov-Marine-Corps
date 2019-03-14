@@ -376,7 +376,8 @@
 			var/mob/living/carbon/Xenomorph/X = i
 			SEND_SOUND(X, sound(get_sfx("queen"), wait = 0,volume = 50))
 
-	for(var/mob/dead/observer/G in GLOB.player_list)
+	for(var/i in GLOB.observer_list)
+		var/mob/dead/observer/G = i
 		SEND_SOUND(G, sound(get_sfx("queen"), wait = 0,volume = 50))
 		to_chat(G, "[queensWord]")
 

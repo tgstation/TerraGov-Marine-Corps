@@ -25,7 +25,7 @@
 
 	death_cry()
 
-	if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == src)
+	if(hive.living_xeno_queen?.observed_xeno == src)
 		hive.living_xeno_queen.set_queen_overwatch(src, TRUE)
 
 	hive.remove_leader(src)

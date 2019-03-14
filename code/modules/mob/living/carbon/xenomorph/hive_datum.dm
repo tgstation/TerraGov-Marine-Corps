@@ -114,7 +114,7 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 		stack_trace("trying to add an invalid typepath into hivestatus list")
 		return FALSE
 
-	xenos_by_typepath[X.caste_base_type].Add(X)
+	xenos_by_typepath[X.caste_base_type] += X
 
 	post_add(X)
 	return TRUE
@@ -157,7 +157,7 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 
 /datum/hive_status/normal/unbury_all_larva()
 	var/turf/larva_spawn
-	while(SSticker.mode.stored_larva > 0) // stil some left
+	while(SSticker.mode.stored_larva > 0) // still some left
 		larva_spawn = pick(GLOB.xeno_spawn)
 		new /mob/living/carbon/Xenomorph/Larva(larva_spawn)
 		SSticker.mode.stored_larva--

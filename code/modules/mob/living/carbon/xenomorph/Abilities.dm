@@ -1127,7 +1127,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		new_xeno.queen_chosen_lead = TRUE
 		new_xeno.hud_set_queen_overwatch()
 
-	if(X.hive.living_xeno_queen && X.hive.living_xeno_queen.observed_xeno == T)
+	if(X.hive.living_xeno_queen?.observed_xeno == T)
 		X.hive.living_xeno_queen.set_queen_overwatch(new_xeno)
 
 	// this sets the right datum

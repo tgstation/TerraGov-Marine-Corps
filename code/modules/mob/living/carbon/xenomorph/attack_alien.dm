@@ -56,7 +56,7 @@
 					if(status_flags & XENO_HOST)
 						for(var/obj/item/alien_embryo/embryo in src)
 							if(embryo.issamexenohive(M))
-								to_chat(M, "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>")
+								to_chat(M, "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is an embryo inside!</span>")
 								return FALSE
 
 					if(M.health > round(M.maxHealth * 0.66)) //Note : Under 66 % health
