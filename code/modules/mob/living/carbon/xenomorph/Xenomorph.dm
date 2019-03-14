@@ -88,14 +88,7 @@
 //Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
 //We set their name first, then update their real_name AND their mind name
 /mob/living/carbon/Xenomorph/proc/generate_name()
-	//Queens have weird, hardcoded naming conventions based on upgrade levels. They also never get nicknumbers
-	if(isxenoqueen(src))
-		switch(upgrade)
-			if(0) name = "[hive.prefix]Queen"			 //Young
-			if(1) name = "[hive.prefix]Elder Queen"	 //Mature
-			if(2) name = "[hive.prefix]Elder Empress"	 //Elder
-			if(3) name = "[hive.prefix]Ancient Empress" //Ancient
-	else name = "[hive.prefix][xeno_caste.upgrade_name] [xeno_caste.display_name] ([nicknumber])"
+	name = "[hive.prefix][xeno_caste.upgrade_name] [xeno_caste.display_name] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name

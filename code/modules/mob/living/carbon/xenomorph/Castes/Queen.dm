@@ -545,6 +545,20 @@
 		victim.gib() //Splut
 		stop_pulling()
 
+/mob/living/carbon/Xenomorph/Queen/generate_name()
+	switch(upgrade)
+		if(0) 
+			name = "[hive.prefix]Queen"			 //Young
+		if(1) 
+			name = "[hive.prefix]Elder Queen"	 //Mature
+		if(2) 
+			name = "[hive.prefix]Elder Empress"	 //Elder
+		if(3) 
+			name = "[hive.prefix]Ancient Empress" //Ancient
+
+	real_name = name
+	if(mind) mind.name = name 
+
 /mob/living/carbon/Xenomorph/Queen/proc/mount_ovipositor()
 	if(ovipositor) return //sanity check
 	ovipositor = TRUE
