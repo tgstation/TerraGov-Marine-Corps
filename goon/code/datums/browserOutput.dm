@@ -118,7 +118,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if(!findtext(music, GLOB.is_http_protocol))
 		return
 	var/list/music_data = list("adminMusic" = url_encode(url_encode(music)))
-	if(extra_data?.len)
+	if(length(extra_data))
 		music_data["musicRate"] = extra_data["pitch"]
 		music_data["musicSeek"] = extra_data["start"]
 		music_data["musicHalt"] = extra_data["end"]
