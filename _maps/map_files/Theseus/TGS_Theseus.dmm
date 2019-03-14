@@ -36060,7 +36060,7 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bFh" = (
-/obj/structure/ship_rail_gun,
+/obj/machinery/ship_rail_gun,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
