@@ -81,15 +81,27 @@
 
 		mind.transfer_to(target, TRUE)
 		target.fully_replace_character_name(real_name, target.real_name)
-		if(target.job)
-			var/datum/job/J = SSjob.name_occupations[target.job]
+		if(ishuman(target) && target.job)
+			var/mob/living/carbon/human/H = target
+			var/datum/job/J = SSjob.name_occupations[H.job]
 			var/datum/outfit/job/O = new J.outfit
+			var/id = O.id ? O.id : /obj/item/card/id
+			var/obj/item/card/id/I = new id
 			var/datum/skills/L = new J.skills_type
-			target.mind.cm_skills = L
-			target.mind.comm_title = J.comm_title
+			H.mind.cm_skills = L
+			H.mind.comm_title = J.comm_title
 
-			SSjob.AssignRole(target, target.job)
-			O.post_equip(target)
+			if(H.wear_id)
+				qdel(H.wear_id)
+
+			H.faction = J.faction
+
+			H.equip_to_slot_or_del(I, SLOT_WEAR_ID)
+
+			H.update_action_buttons()
+
+			SSjob.AssignRole(H, H.job)
+			O.post_equip(H)
 
 
 	else if(href_list["preference"])

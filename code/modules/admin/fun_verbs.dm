@@ -682,8 +682,8 @@
 
 			if(!H.mind)
 				H.job = newrank
-				log_admin("[key_name(usr)] has set the rank of mindless mob [H] to [newrank].")
-				message_admins("[ADMIN_TPMONTY(usr)] has set the rank of mindless mob [H] to [newrank].")
+				log_admin("[key_name(usr)] has set the rank of mindless mob [key_name(H)] to [newrank].")
+				message_admins("[ADMIN_TPMONTY(usr)] has set the rank of mindless mob [ADMIN_TPMONTY(H)] to [newrank].")
 				return
 
 			var/datum/job/J = SSjob.name_occupations[newrank]
@@ -1041,9 +1041,8 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 
 	if(alert("Are you sure?", "Offer Mob", "Yes", "No") != "Yes")
 		return
-	for(var/i in GLOB.dead_mob_list)
-		var/mob/dead/D = i
-		to_chat(D, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [L.name] \[<a href='byond://?src=[REF(D)];claim=[REF(L)]'>CLAIM</a>\]</span><hr><br>")
+
+	L.offer_mob()
 
 	log_admin("[key_name(usr)] has offered [key_name_admin(M)].")
 	message_admins("[ADMIN_TPMONTY(usr)] has offered [ADMIN_TPMONTY(M)].")
