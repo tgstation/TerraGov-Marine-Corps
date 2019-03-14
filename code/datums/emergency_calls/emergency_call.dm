@@ -90,12 +90,12 @@
 		if(humans / max(1,xenos) > 3) //Humans don't need any further help as they already have advantageous/desirable numbers
 			return FALSE
 
-		var/reinforcements = CLAMP( (xenos - humans * 0.33 ) * 3, 1, 15) //We get the difference between the ideal ratio of 3 humans to 1 xeno, and the current xeno count, then multiply it by 3
+		var/reinforcements = CLAMP( (xenos - humans * 0.33 ) * ERT_MARINE_TO_XENO_RATIO, 1, 15) //We get the difference between the ideal ratio of 3 humans to 1 xeno, and the current xeno count, then multiply it by 3
 
 		picked_call.mob_max = round(rand(reinforcements * 0.9, reinforcements * 1.1)) //Keep that RNG low
 
 	else
-		picked_call.mob_max = round(5, 15) //Default otherwise
+		picked_call.mob_max = rand(5, 15) //Default otherwise
 
 	picked_call.activate()
 
