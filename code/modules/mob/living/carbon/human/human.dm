@@ -1668,3 +1668,12 @@
 	var/datum/browser/popup = new(src, "skills", "<div align='center'>Skills</div>", 300, 600)
 	popup.set_content(dat)
 	popup.open(FALSE)
+
+
+/mob/living/carbon/human/canUseTopic(atom/movable/M, be_close = FALSE)
+	if(!Adjacent(M) && (M.loc != src))
+		if(!be_close)
+			return TRUE
+		to_chat(src, "<span class='warning'>You are too far away!</span>")
+		return FALSE
+	return TRUE

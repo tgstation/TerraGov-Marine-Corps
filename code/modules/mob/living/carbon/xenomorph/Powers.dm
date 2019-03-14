@@ -453,7 +453,7 @@
 		return
 
 	if(xeno_hivenumber(M) == hivenumber)
-		return M.attack_alien(src, force_intent = INTENT_HARM) //harmless nibbling.
+		return M.attack_alien() //harmless nibbling.
 
 	if (!check_plasma(20))
 		return

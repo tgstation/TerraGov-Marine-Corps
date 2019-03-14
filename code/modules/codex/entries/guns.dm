@@ -94,7 +94,7 @@
 	if(scatter_unwielded)
 		traits += "Unwielded Scatter chance modifier: [scatter_unwielded > 0 ? "+[scatter_unwielded]" : "[scatter_unwielded]"]%"
 	if(movement_acc_penalty_mult)
-		traits += "Movement penalty modifier: -[movement_acc_penalty_mult * 15]%"
+		traits += "Movement unwielded penalty modifier: -[(movement_acc_penalty_mult * CONFIG_GET(number/combat_define/low_hit_accuracy_mult)) * 100]%"
 	if(fire_delay)
 		traits += "Time between single-fire: [fire_delay / 10] seconds"
 	if(wield_delay)

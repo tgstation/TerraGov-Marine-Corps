@@ -110,6 +110,10 @@
 	return TRUE
 
 
+/mob/dead/observer/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
+	return IsAdminGhost(usr)
+
+
 /mob/proc/ghostize(var/can_reenter_corpse = TRUE)
 	if(!key)
 		return FALSE

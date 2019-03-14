@@ -22,7 +22,7 @@
 
 	if(statpanel("Stats"))
 		stat("Operation Time: [worldtime2text()]")
-		stat("The current map is: [SSmapping.config.map_name]")
+		stat("The current map is: [SSmapping.config?.map_name ? SSmapping.config.map_name : "Loading..."]")
 
 
 	if(client?.holder?.rank?.rights)
@@ -53,7 +53,12 @@
 		if(client.holder.rank.rights & (R_ADMIN|R_MENTOR))
 			if(statpanel("Tickets"))
 				GLOB.ahelp_tickets.stat_entry()
-
+		if(length(GLOB.sdql2_queries))
+			if(statpanel("SDQL2"))
+				stat("Access Global SDQL2 List", GLOB.sdql2_vv_statobj)
+				for(var/i in GLOB.sdql2_queries)
+					var/datum/SDQL2_query/Q = i
+					Q.generate_stat()
 
 	if(length(tile_contents))
 		if(statpanel("Tile Contents"))
@@ -238,7 +243,7 @@
 		if(!U.hastie)
 			return FALSE
 		var/obj/item/clothing/tie/storage/T = U.hastie
-		if(!T.hold)
+		if(!istype(T) || !T.hold)
 			return FALSE
 		var/obj/item/storage/internal/S = T.hold
 		if(!length(S.contents))
@@ -581,6 +586,13 @@
 	return TRUE
 
 
+//Can the mob use Topic to interact with machines
+/mob/proc/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
+	return
+
+
+/mob/proc/canUseStorage()
+	return FALSE
 
 
 /mob/proc/IsAdvancedToolUser()//This might need a rename but it should replace the can this mob use things check
@@ -800,8 +812,24 @@ mob/proc/yank_out_object()
 	return TRUE
 
 
-/mob/proc/remove_emote_overlay(var/image/overlay_to_remove)
-	overlays -= overlay_to_remove
+/mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
+	var/viewers = viewers()
+	for(var/mob/M in viewers)
+		if(!isobserver(M) && (M.stat != CONSCIOUS || isdeaf(M)))
+			continue
+		to_chat(M, emote_overlay)
+
+	if(remove_delay)
+		addtimer(CALLBACK(src, .proc/remove_emote_overlay, client, emote_overlay, viewers), remove_delay)
+
+
+/mob/proc/remove_emote_overlay(client/C, image/emote_overlay, list/viewers)
+	if(C)
+		C.images -= emote_overlay
+	for(var/mob/M in viewers)
+		if(M.client)
+			M.client.images -= emote_overlay
+	qdel(emote_overlay)
 
 
 /mob/proc/audio_emote_cooldown(player_caused)

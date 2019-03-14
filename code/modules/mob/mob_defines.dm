@@ -77,7 +77,7 @@
 	var/specset //Simple way to track which set has the player taken
 
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
-	var/knocked_out = 0.
+	var/knocked_out = 0
 	var/stunned = 0
 	var/frozen = 0
 	var/knocked_down = 0
@@ -95,6 +95,7 @@
 	var/obj/item/clothing/mask/wear_mask = null//Carbon
 
 	var/datum/hud/hud_used = null
+	var/datum/component/storage/active_storage
 
 	var/grab_level = GRAB_PASSIVE //if we're pulling a mob, tells us how aggressive our grab is.
 
@@ -175,3 +176,10 @@
 	var/list/light_sources = list()
 
 	var/notransform
+
+	var/typing
+	var/last_typed
+	var/last_typed_time
+	var/list/observers = null	//The list of people observing this mob.
+
+	var/list/progressbars = null	//for stacking do_after bars
