@@ -128,7 +128,7 @@
 
 	check_blood_splash(35, BURN, 65, 2) //Some testing numbers. 35 burn, 65 chance.
 
-	..(1)
+	return ..()
 
 
 /mob/living/carbon/Xenomorph/gib_animation()
