@@ -488,6 +488,10 @@
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(TRUE)//any explosion destroys the egg.
 
+/obj/effect/alien/egg/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+	to_chat(M, "<span class='xenowarning'>You nudge [src], but nothing happens.</span>")
+	return
+
 /obj/effect/alien/egg/attack_alien(mob/living/carbon/Xenomorph/M)
 
 	if(!istype(M))
@@ -497,10 +501,6 @@
 		M.animation_attack_on(src)
 		M.visible_message("<span class='xenowarning'>[M] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
 		Burst(TRUE)
-		return
-
-	if(isxenolarva(M))
-		to_chat(M, "<span class='xenowarning'>You nudge the egg, but nothing happens.</span>")
 		return
 
 	switch(status)

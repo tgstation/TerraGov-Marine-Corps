@@ -260,7 +260,7 @@
 	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(!F) //empty active hand
 		//if no hugger in active hand, we take one from our storage
-		if(huggers.len <= 0)
+		if(length(huggers) <= 0)
 			to_chat(src, "<span class='warning'>You don't have any facehuggers to use!</span>")
 			return
 		F = pick_n_take(huggers)

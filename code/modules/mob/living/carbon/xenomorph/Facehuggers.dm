@@ -147,9 +147,9 @@
 /obj/item/clothing/mask/facehugger/flamer_fire_act()
 	Die()
 
-/obj/item/clothing/mask/facehugger/proc/monitor_surrounding(skip_life = FALSE)
-	if(loc && !throwing) //Make sure we're conscious and not idle, dead or in action.
-		if(check_lifecycle(skip_life))
+/obj/item/clothing/mask/facehugger/proc/monitor_surrounding(check_life = TRUE)
+	if(loc && !throwing && check_life) //Make sure we're conscious and not idle, dead or in action.
+		if(check_lifecycle())
 			leap_at_nearest_target()
 
 /obj/item/clothing/mask/facehugger/proc/GoIdle(hybernate = FALSE, no_activate = FALSE) //Idle state does not count toward the death timer.
@@ -169,10 +169,10 @@
 		return TRUE
 	return FALSE
 
-/obj/item/clothing/mask/facehugger/proc/check_lifecycle(skip_life = FALSE)
+/obj/item/clothing/mask/facehugger/proc/check_lifecycle()
 	if(sterile)
 		return TRUE
-	if(!skip_life && lifecycle - 4 SECONDS <= 0)
+	if(lifecycle - 4 SECONDS <= 0)
 		if(isturf(loc))
 			var/obj/effect/alien/egg/E = locate() in loc
 			if(E?.status == EGG_BURST)
@@ -268,7 +268,7 @@
 
 /obj/item/clothing/mask/facehugger/proc/fast_activate(unhybernate = FALSE)
 	if(GoActive(unhybernate))
-		monitor_surrounding(TRUE)
+		monitor_surrounding(FALSE)
 
 /mob/proc/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
 	return FALSE
