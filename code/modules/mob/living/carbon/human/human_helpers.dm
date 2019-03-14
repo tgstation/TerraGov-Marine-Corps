@@ -160,7 +160,10 @@
 		L.icon_name = get_limb_icon_name(species, b_icon, gender, L.display_name, e_icon)
 
 /mob/living/carbon/human/can_inject(mob/user, error_msg, target_zone, penetrate_thick = FALSE)
-	. = TRUE
+	. = reagents
+
+	if(!.) //yikes
+		return
 
 	if(!user)
 		target_zone = pick("chest","chest","chest","left leg","right leg","left arm", "right arm", "head")
@@ -170,10 +173,10 @@
 	if(!penetrate_thick)
 		switch(target_zone)
 			if("head")
-				if(head && head.flags_inventory & BLOCKSHARPOBJ)
+				if(head?.flags_inventory & BLOCKSHARPOBJ)
 					. = FALSE
 			else
-				if(wear_suit && wear_suit.flags_inventory & BLOCKSHARPOBJ)
+				if(wear_suit?.flags_inventory & BLOCKSHARPOBJ)
 					. = FALSE
 	if(!. && error_msg && user)
  		// Might need re-wording.

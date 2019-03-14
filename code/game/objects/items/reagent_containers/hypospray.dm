@@ -111,7 +111,7 @@
 	if(!reagents.total_volume)
 		to_chat(user, "<span class='warning'>[src] is empty.</span>")
 		return
-	if(!A.is_injectable() && !isliving(A))
+	if(!A.is_injectable() && !ismob(A))
 		to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 		return
 	if(skilllock && user.mind?.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
@@ -120,8 +120,10 @@
 		if(!do_after(user, SKILL_TASK_EASY, TRUE, 5, BUSY_ICON_BUILD))
 			return
 
-	if(isliving(A))
-		var/mob/living/M = A
+	if(ismob(A))
+		var/mob/M = A
+		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
+			return
 		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isyautjastrict(M))) // preds have null skills
 			user.KnockDown(3)
 			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
@@ -140,7 +142,7 @@
 	var/contained = english_list(injected)
 	log_combat(user, A, "injected", src, "Reagents: [english_list(reagents.reagent_list)]")
 
-	if(isliving(A))
+	if(ismob(A))
 		var/mob/living/M = A
 		msg_admin_attack("[ADMIN_TPMONTY(usr)] injected [ADMIN_TPMONTY(M)] with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]).")
 		to_chat(user, "<span class='notice'>You inject [M] with [src]</span>.")
