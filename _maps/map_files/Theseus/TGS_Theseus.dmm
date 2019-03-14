@@ -48153,6 +48153,11 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/open/floor/almayer,
 /area/almayer/command/cic)
 "cgT" = (
@@ -48164,6 +48169,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -48189,6 +48199,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/open/floor/almayer{
 	tag = "icon-silvercorner (NORTH)";
 	icon_state = "silvercorner";
@@ -48205,6 +48220,11 @@
 "cgY" = (
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 1
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor/almayer{
 	tag = "icon-sterile";
@@ -48232,6 +48252,11 @@
 	},
 /area/almayer/shipboard/brig_cells)
 "chc" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/open/floor/almayer{
 	tag = "icon-silvercorner (EAST)";
 	icon_state = "silvercorner";
@@ -48277,6 +48302,11 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig)
 "chg" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/open/floor/almayer{
 	tag = "icon-silver (NORTH)";
 	icon_state = "silver";
@@ -48307,12 +48337,22 @@
 /area/almayer/living/bridgebunks)
 "chk" = (
 /obj/machinery/door/firedoor/border_only/almayer,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/open/floor/almayer,
 /area/almayer/living/captain_mess)
 "chl" = (
 /obj/structure/bed/chair/wood/wings{
 	icon_state = "wooden_chair_wings";
 	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor/carpet{
 	tag = "icon-carpetside (SOUTHWEST)";
@@ -48338,6 +48378,11 @@
 "chp" = (
 /obj/structure/table/woodentable,
 /obj/effect/landmark/shuttle_loc/marine_crs/dropship,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
 	},
@@ -48476,6 +48521,11 @@
 	tag = "icon-wooden_chair_wings (WEST)";
 	icon_state = "wooden_chair_wings";
 	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor/carpet{
 	tag = "icon-carpetside (SOUTHEAST)";
@@ -49836,6 +49886,14 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cryo_cells)
+"crd" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/wood,
+/area/almayer/living/captain_mess)
 "ctN" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -51174,6 +51232,16 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/bridgebunks)
+"ncA" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/prison{
+	icon_state = "kitchen"
+	},
+/area/almayer/living/captain_mess)
 "ndZ" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -51539,6 +51607,16 @@
 /obj/machinery/door/window/brigdoor/theseus/cell_2,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/brig_cells)
+"qlu" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/prison{
+	icon_state = "kitchen"
+	},
+/area/almayer/living/captain_mess)
 "qmK" = (
 /obj/structure/closet,
 /obj/item/toy/farwadoll,
@@ -51969,6 +52047,14 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/bridgebunks)
+"vwA" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer/mono,
+/area/almayer/living/captain_mess)
 "vAb" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/warning_stripes/thin{
@@ -71937,7 +72023,7 @@ aar
 aIQ
 aIT
 aIT
-aIT
+crd
 aNH
 frn
 aQd
@@ -72194,7 +72280,7 @@ aar
 aIR
 aIT
 aIT
-aIT
+crd
 aNH
 aMN
 aQd
@@ -73222,7 +73308,7 @@ aar
 aIT
 aIT
 aIT
-aIT
+crd
 aNH
 aOA
 aQe
@@ -73479,7 +73565,7 @@ aDk
 aDk
 aKv
 aLs
-aLs
+vwA
 kNU
 aOB
 aQd
@@ -73735,8 +73821,8 @@ aGi
 aHF
 aDk
 aKw
-chm
-chm
+ncA
+qlu
 chq
 aOC
 aQe
