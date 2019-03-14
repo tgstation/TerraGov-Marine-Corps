@@ -503,3 +503,26 @@ mob/proc/get_standard_bodytemperature()
 			m_intent = MOVE_INTENT_RUN
 
 	client.screen[screen_num].update_icon(src)
+
+
+/mob/has_trait(trait, list/sources, check_mind=TRUE)
+	. = ..(trait, sources)
+	if(.)
+		return
+
+	if(check_mind && istype(mind))
+		return mind.has_trait(trait, sources)
+
+
+/proc/IsAdminGhost(var/mob/user)
+	if(!user)		//Are they a mob? Auto interface updates call this with a null src
+		return
+	if(!user.client) // Do they have a client?
+		return
+	if(!isobserver(user)) // Are they a ghost?
+		return
+	if(!check_other_rights(user.client, R_ADMIN, FALSE)) // Are they allowed?
+		return
+	if(!user.client.admin_interface) // Do they have it enabled?
+		return
+	return TRUE

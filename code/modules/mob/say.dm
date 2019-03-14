@@ -2,13 +2,6 @@
 	return
 
 
-/mob/verb/whisper()
-	set name = "Whisper"
-	set category = "IC"
-
-	return
-
-
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"

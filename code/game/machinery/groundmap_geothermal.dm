@@ -22,29 +22,29 @@
 //We don't want to cut/update the power overlays every single proc. Just when it actually changes. This should save on CPU cycles. Efficiency!
 /obj/machinery/power/geothermal/update_icon()
 	..()
-	if(!buildstate && is_on)
-		desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently on, and beeping randomly amid faint hisses of steam."
-		switch(power_gen_percent)
-			if(25)
-				icon_state = "on[power_gen_percent]"
-			if(50)
-				icon_state = "on[power_gen_percent]"
-			if(75)
-				icon_state = "on[power_gen_percent]"
-			if(100)
-				icon_state = "on[power_gen_percent]"
-
-	else if (!buildstate && !is_on)
-		icon_state = "off"
-		desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently turned off and silent."
-	else
-		if(buildstate == GEOTHERMAL_HEAVY_DAMAGE)
+	switch(buildstate)
+		if(GEOTHERMAL_NO_DAMAGE)
+			if(is_on)
+				desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently on, and beeping randomly amid faint hisses of steam."
+				switch(power_gen_percent)
+					if(25)
+						icon_state = "on25"
+					if(50)
+						icon_state = "on50"
+					if(75)
+						icon_state = "on75"
+					if(100)
+						icon_state = "on100"
+			else
+				icon_state = "off"
+				desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently turned off and silent."
+		if(GEOTHERMAL_HEAVY_DAMAGE)
 			icon_state = "weld"
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, wirecutters, and then a wrench to repair it."
-		else if(buildstate == GEOTHERMAL_MEDIUM_DAMAGE)
+		if(GEOTHERMAL_MEDIUM_DAMAGE)
 			icon_state = "wire"
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is damaged. Use wirecutters and then a wrench to repair it."
-		else
+		if(GEOTHERMAL_LIGHT_DAMAGE)
 			icon_state = "wrench"
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is lightly damaged. Use a wrench to repair it."
 
