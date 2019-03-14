@@ -143,7 +143,7 @@
 	log_combat(user, A, "injected", src, "Reagents: [english_list(reagents.reagent_list)]")
 
 	if(ismob(A))
-		var/mob/living/M = A
+		var/mob/M = A
 		msg_admin_attack("[ADMIN_TPMONTY(usr)] injected [ADMIN_TPMONTY(M)] with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]).")
 		to_chat(user, "<span class='notice'>You inject [M] with [src]</span>.")
 		to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")
