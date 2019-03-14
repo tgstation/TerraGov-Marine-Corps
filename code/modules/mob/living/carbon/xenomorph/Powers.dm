@@ -1054,6 +1054,11 @@
 
 	if(plasma_stored < amount)
 		amount = plasma_stored //Just use all of it
+
+	if(target.plasma_stored >= target.xeno_caste.plasma_max)
+		to_chat(src, "<span class='xenowarning'>[target] already has full plasma.</span>")
+		return
+
 	use_plasma(amount)
 	target.gain_plasma(amount)
 	to_chat(target, "<span class='xenowarning'>[src] has transfered [amount] units of [energy] to you. You now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
