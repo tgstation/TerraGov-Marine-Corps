@@ -483,6 +483,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define RAV_RAVAGE_COOLDOWN				10 SECONDS
 #define RAV_RAVAGE_DAMAGE_MULITPLIER	0.25 //+25% +3% bonus damage per point of Rage.relative to base melee damage.
 #define RAV_RAVAGE_RAGE_MULITPLIER		0.03 //+25% +3% bonus damage per point of Rage.relative to base melee damage.
+#define RAV_DAMAGE_RAGE_MULITPLIER		0.25  //Gain Rage stacks equal to 25% of damage received.
 #define RAV_HANDLE_CHARGE				1
 
 //defender defines
