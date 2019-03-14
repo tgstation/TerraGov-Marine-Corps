@@ -54,7 +54,6 @@
 /datum/game_mode/infection/declare_completion()
 	//to_chat(world, "<span class='round_header'>[round_finished]</span>")
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
-	feedback_set_details("round_end_result",round_finished)
 
 	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [SSmapping.config.map_name].</span>")
 	var/musical_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
