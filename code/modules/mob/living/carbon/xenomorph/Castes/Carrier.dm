@@ -227,7 +227,7 @@
 /mob/living/carbon/Xenomorph/Carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE, forced = FALSE)
 	if(huggers.len < xeno_caste.huggers_max)
 		if(F.stat == CONSCIOUS || forced)
-			if(F.loc = src)
+			if(F.loc == src)
 				temporarilyRemoveItemFromInventory(F)
 			else
 				F.loc = null
@@ -267,8 +267,6 @@
 			to_chat(src, "<span class='warning'>You don't have any facehuggers to use!</span>")
 			return
 		F = pick_n_take(huggers)
-		if(QDELETED(F))
-			return //hotfix miami.
 		put_in_active_hand(F)
 		F.GoActive(TRUE)
 		to_chat(src, "<span class='xenonotice'>You grab one of the facehugger in your storage. Now sheltering: [huggers.len] / [xeno_caste.huggers_max].</span>")
