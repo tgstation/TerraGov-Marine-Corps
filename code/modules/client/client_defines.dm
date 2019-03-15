@@ -3,7 +3,6 @@
 		////////////////
 		//ADMIN THINGS//
 		////////////////
-	var/admin_interface = FALSE
 	var/datum/admins/holder = null
 	var/buildmode		= FALSE
 

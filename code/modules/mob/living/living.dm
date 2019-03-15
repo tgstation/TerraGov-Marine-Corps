@@ -597,13 +597,3 @@ below 100 is not dizzy
 		if(!G || !gear.Find(i))
 			continue
 		equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
-
-
-/mob/living/canUseTopic(atom/movable/M, be_close = FALSE)
-	if(is_mob_incapacitated())
-		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
-		return FALSE
-	if(be_close && !in_range(M, src))
-		to_chat(src, "<span class='warning'>You are too far away!</span>")
-		return FALSE
-	return TRUE

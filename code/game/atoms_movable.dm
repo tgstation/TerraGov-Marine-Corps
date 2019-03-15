@@ -16,7 +16,6 @@
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 								// and if yes, are we doing the first or second move.
 
-	var/datum/component/orbiter/orbiting
 	var/list/mob/dead/observer/followers = list()
 
 //===========================================================================
@@ -415,74 +414,3 @@
 	.["Send"] = "?_src_=vars;[HrefToken()];sendatom=[REF(src)]"
 	.["Delete All Instances"] = "?_src_=vars;[HrefToken()];delall=[REF(src)]"
 	.["Update Icon"] = "?_src_=vars;[HrefToken()];updateicon=[REF(src)]"
-
-
-/atom/movable/proc/moveToNullspace()
-	return doMove(null)
-
-
-/atom/movable/proc/doMove(atom/destination)
-	. = FALSE
-	if(destination)
-		if(pulledby)
-			pulledby.stop_pulling()
-		var/atom/oldloc = loc
-		var/same_loc = oldloc == destination
-		var/area/old_area = get_area(oldloc)
-		var/area/destarea = get_area(destination)
-
-		loc = destination
-		moving_diagonally = 0
-
-		if(!same_loc)
-			if(oldloc)
-				oldloc.Exited(src, destination)
-				if(old_area && old_area != destarea)
-					old_area.Exited(src, destination)
-			for(var/atom/movable/AM in oldloc)
-				AM.Uncrossed(src)
-			var/turf/oldturf = get_turf(oldloc)
-			var/turf/destturf = get_turf(destination)
-			var/old_z = (oldturf ? oldturf.z : null)
-			var/dest_z = (destturf ? destturf.z : null)
-			if (old_z != dest_z)
-				onTransitZ(old_z, dest_z)
-			destination.Entered(src, oldloc)
-			if(destarea && old_area != destarea)
-				destarea.Entered(src, oldloc)
-
-			for(var/atom/movable/AM in destination)
-				if(AM == src)
-					continue
-				AM.Crossed(src, oldloc)
-
-		Moved(oldloc, NONE, TRUE)
-		. = TRUE
-
-	//If no destination, move the atom into nullspace (don't do this unless you know what you're doing)
-	else
-		. = TRUE
-		if (loc)
-			var/atom/oldloc = loc
-			var/area/old_area = get_area(oldloc)
-			oldloc.Exited(src, null)
-			if(old_area)
-				old_area.Exited(src, null)
-		loc = null
-
-
-//called when this atom is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
-/atom/movable/proc/on_exit_storage(datum/component/storage/concrete/S)
-	return
-
-
-//called when this atom is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
-/atom/movable/proc/on_enter_storage(datum/component/storage/concrete/S)
-	return
-
-
-/atom/movable/proc/onTransitZ(old_z,new_z)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
-	for(var/item in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
-		var/atom/movable/AM = item
-		AM.onTransitZ(old_z,new_z)
