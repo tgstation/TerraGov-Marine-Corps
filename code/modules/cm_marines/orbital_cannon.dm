@@ -533,7 +533,7 @@ var/obj/machinery/ship_rail_gun/almayer_rail_gun
 	bound_height = 64
 	bound_y = 64
 	unacidable = TRUE
-	use_power = 1
+	use_power = TRUE
 	idle_power_usage = 10
 	active_power_usage = 100
 	machine_current_charge = 50000
@@ -576,7 +576,7 @@ var/obj/machinery/ship_rail_gun/almayer_rail_gun
 	return
 
 /obj/machinery/ship_rail_gun/proc/fire_laser_battery(turf/T, mob/user)
-	set waitfor = 0
+	set waitfor = FALSE
 	if(cannon_busy)
 		return
 	if(ORBITAL_LASER_COST > machine_current_charge)
