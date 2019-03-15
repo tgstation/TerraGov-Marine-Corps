@@ -156,6 +156,33 @@ Remember: although this tradeoff makes sense in many cases, it doesn't cover the
 Our game controller is pretty good at handling long operations and lag, but it can't control what happens when the map is loaded, which calls `New` for all atoms on the map. If you're creating a new atom, use the `Initialize` proc to do what you would normally do in `New`. This cuts down on the number of proc calls needed when the world is loaded. See here for details on `Initialize`: https://github.com/tgstation/tgstation/blob/master/code/game/atoms.dm#L49
 While we normally encourage (and in some cases, even require) bringing out of date code up to date when you make unrelated changes near the out of date code, that is not the case for `New` -> `Initialize` conversions. These systems are generally more dependant on parent and children procs so unrelated random conversions of existing things can cause bugs that take months to figure out.
 
+### `Initialize()` must be used properly
+`Initialize()` must always call the parent proc `..()` to ensure the atom initializes and must return a valid value either by using `. = ..()` or `return ..()` or `return INITIALIZE_HINT_*`
+This ensures atoms initialize correctly and there are not false positives of failures.
+You also must not use `qdel(src)` inside `Initialize()`, use `return INITIALIZE_HINT_QDEL` instead.
+
+### Use of `..()` vs `. = ..()`
+There's no reason to not to use `. = ..()` instead of `..()`.  The exception being `return ..()` or procs where you do not want to call the parent proc.
+
+### Type checks vs Overrides
+It is preferable to override a proc instead of using `istype()` checks for special behaviour for subtypes.
+eg;
+````DM
+/mob/proc/do_a_thing()
+	if(istype(src, /mob/subtype))
+		do something different
+	else
+		do something
+````
+Instead of this you should;
+````DM
+/mob/proc/do_a_thing()
+	do something
+
+/mob/subtype/do_a_thing()
+	do something different
+````
+
 ### No magic numbers or strings
 This means stuff like having a "mode" variable for an object set to "1" or "2" with no clear indicator of what that means. Make these #defines with a name that more clearly states what it's for. For instance:
 ````DM
