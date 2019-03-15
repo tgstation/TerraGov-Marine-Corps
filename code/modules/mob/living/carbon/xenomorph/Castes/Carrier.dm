@@ -228,9 +228,7 @@
 	if(huggers.len < xeno_caste.huggers_max)
 		if(F.stat == CONSCIOUS || forced)
 			if(F.loc == src)
-				temporarilyRemoveItemFromInventory(F)
-			else
-				F.loc = null
+				transferItemToLoc(F, src)
 			if(!F.stasis)
 				F.GoIdle(TRUE)
 			huggers.Add(F)
@@ -263,7 +261,7 @@
 	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(!F) //empty active hand
 		//if no hugger in active hand, we take one from our storage
-		if(length(huggers) <= 0)
+		if(!length(huggers))
 			to_chat(src, "<span class='warning'>You don't have any facehuggers to use!</span>")
 			return
 		F = pick_n_take(huggers)
@@ -290,19 +288,19 @@
 	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/Carrier/proc/store_egg(obj/item/xeno_egg/E)
+	if(eggs_cur >= xeno_caste.eggs_max)
+		to_chat(src, "<span class='warning'>You can't carry more eggs on you.</span>")
+		return
 	if(E.hivenumber != hivenumber)
 		to_chat(src, "<span class='warning'>That egg is tainted!</span>")
 		return
-	if(eggs_cur < xeno_caste.eggs_max)
-		eggs_cur++
-		to_chat(src, "<span class='notice'>You store the egg and carry it for safekeeping. Now sheltering: [eggs_cur] / [xeno_caste.eggs_max].</span>")
-		qdel(E)
-	else
-		to_chat(src, "<span class='warning'>You can't carry more eggs on you.</span>")
-
+	eggs_cur++
+	to_chat(src, "<span class='notice'>You store the egg and carry it for safekeeping. Now sheltering: [eggs_cur] / [xeno_caste.eggs_max].</span>")
+	qdel(E)
 
 /mob/living/carbon/Xenomorph/Carrier/proc/retrieve_egg(atom/T)
-	if(!T) return
+	if(!T)
+		return
 
 	if(!check_state())
 		return
