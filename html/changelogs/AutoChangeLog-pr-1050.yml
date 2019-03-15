@@ -1,0 +1,4 @@
+author: "Shadow-Quill"
+delete-after: True
+changes: 
+  - bugfix: "Fixed photocopiers showing the wrong paper icon after copying."

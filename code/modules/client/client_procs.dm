@@ -1,7 +1,8 @@
 ////////////////
 //  SECURITY  //
 ////////////////
-#define UPLOAD_LIMIT		1048576	//Restricts client uploads to the server to 1MB, could probably do with being lower.
+#define UPLOAD_LIMIT			1000000	//Restricts client uploads to the server to 1MB
+#define UPLOAD_LIMIT_ADMIN		10000000	//Restricts admin uploads to the server to 10MB
 
 GLOBAL_LIST_INIT(blacklisted_builds, list(
 	"1407" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
@@ -97,7 +98,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			to_chat(src, "<span class='danger'>You have exceeded the spam filter limit for identical messages. An auto-mute was applied.</span>")
 			mute(src, mute_type, TRUE)
 			return TRUE
-		if(last_message_count >= SPAM_TRIGGER_WARNING)
+		else if(last_message_count >= SPAM_TRIGGER_WARNING)
 			to_chat(src, "<span class='danger'>You are nearing the spam filter limit for identical messages.</span>")
 			return TRUE
 	else
@@ -108,8 +109,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
 /client/AllowUpload(filename, filelength)
-	if(filelength > UPLOAD_LIMIT)
+	if(!check_rights(R_ADMIN, FALSE) && filelength > UPLOAD_LIMIT)
 		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB.</font>")
+		return FALSE
+	else if(filelength > UPLOAD_LIMIT_ADMIN)
+		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB. Stop trying to break the server.</font>")
 		return FALSE
 	return TRUE
 
@@ -151,11 +155,6 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		GLOB.admins |= src
 		holder.owner = src
 		holder.activate()
-		if(check_rights(R_ADMIN, FALSE))
-			message_admins("Admin login: [key_name_admin(src)].")
-			to_chat(src, get_message_output("memo"))
-		else if(check_rights(R_MENTOR, FALSE))
-			message_staff("Mentor login: [key_name_admin(src)].")
 	else if(GLOB.deadmins[ckey])
 		verbs += /client/proc/readmin
 
@@ -235,6 +234,15 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		for(var/message in GLOB.clientmessages[ckey])
 			to_chat(src, message)
 		GLOB.clientmessages.Remove(ckey)
+
+	to_chat(src, get_message_output("message", ckey))
+
+	if(holder)
+		if(holder.rank.rights & R_ADMIN)
+			message_admins("Admin login: [key_name_admin(src)].")
+			to_chat(src, get_message_output("memo"))
+		else if(holder.rank.rights & R_MENTOR)
+			message_staff("Mentor login: [key_name_admin(src)].")
 
 	if(all_player_details[ckey])
 		player_details = all_player_details[ckey]

@@ -175,3 +175,7 @@
 	var/list/light_sources = list()
 
 	var/notransform
+
+	var/typing
+	var/last_typed
+	var/last_typed_time

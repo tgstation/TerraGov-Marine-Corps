@@ -52,6 +52,10 @@
 
 			for(var/mob/living/carbon/human/H in hearers(6,user))
 				H.playsound_local(user, nade_sound, 35)
+
+			var/image/grenade = image('icons/mob/talk.dmi', user, "grenade")
+			user.add_emote_overlay(grenade)
+
 		if(iscarbon(user))
 			var/mob/living/carbon/C = user
 			C.throw_mode_on()

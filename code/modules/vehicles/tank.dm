@@ -307,3 +307,16 @@
 /obj/vehicle/multitile/hitbox/cm_armored/tank/get_driver()
 	var/obj/vehicle/multitile/root/cm_armored/tank/T = root
 	return T?.driver
+
+
+/obj/vehicle/multitile/root/cm_armored/tank/take_damage_type(damage, type, atom/attacker)
+	. = ..()
+
+	if(istype(attacker, /mob))
+		var/mob/M = attacker
+		log_combat(M, src, "damaged [src] with [damage] [type] damage.")
+
+	if(gunner)
+		log_combat(gunner, null, "[src] took [damage] [type] damage [ismob(attacker) ? "from [key_name(attacker)]" : ""].")
+	if(driver)
+		log_combat(driver, null, "[src] took [damage] [type] damage [ismob(attacker) ? "from [key_name(attacker)]" : ""].")
