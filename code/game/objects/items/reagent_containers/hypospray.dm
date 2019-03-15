@@ -133,9 +133,6 @@
 			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			return FALSE
 
-		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
-			return FALSE
-
 	var/list/injected = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
 		injected += R.name
