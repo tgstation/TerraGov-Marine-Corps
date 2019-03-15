@@ -105,8 +105,8 @@
 
 //Define sniper laser multipliers
 
-#define SNIPER_LASER_DAMAGE_MULTIPLIER	1.5
-#define SNIPER_LASER_ARMOR_MULTIPLIER	1.5
+#define SNIPER_LASER_DAMAGE_MULTIPLIER	1.6 //+60% damage vs the aimed target
+#define SNIPER_LASER_ARMOR_MULTIPLIER	1.6 //+60% penetration vs the aimed target
 
 //Define lasgun
 #define M37_STANDARD_AMMO_COST			20
