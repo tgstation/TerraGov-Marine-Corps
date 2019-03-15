@@ -204,9 +204,10 @@
 
 /mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
 	take_overall_damage(null, damage, null, null, null, armor_block)
-	if(!isyautja(src))
-		emote("scream")
-		KnockDown(1)
+	if(isyautja(src))
+		return
+	emote("scream")
+	KnockDown(1)
 
 /mob/living/carbon/Xenomorph/acid_spray_act(mob/living/carbon/Xenomorph/X)
 	return
