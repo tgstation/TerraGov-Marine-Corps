@@ -87,9 +87,6 @@
 		var/xenos = length(GLOB.alive_xeno_list)
 		var/humans = length(GLOB.alive_human_list)
 
-		if(humans / max(1,xenos) > 3) //Humans don't need any further help as they already have advantageous/desirable numbers
-			return FALSE
-
 		var/reinforcements = CLAMP( ( xenos - humans * max(1, CONFIG_GET(number/xeno_coefficient) ) ) * CONFIG_GET(number/xeno_coefficient), 1, 15) //We get the difference per the ideal human to xeno ratio, and the current xeno count, then multiply it by the xeno coefficient
 
 		picked_call.mob_max = round(rand(reinforcements * 0.9, reinforcements * 1.1)) //Keep that RNG low
