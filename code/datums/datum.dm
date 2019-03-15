@@ -1,6 +1,7 @@
 /datum
 	var/gc_destroyed //Time when this object was destroyed.
 	var/list/active_timers  //for SStimer
+	var/list/datum_components //for /datum/components
 	var/list/status_traits
 	var/list/comp_lookup //it used to be for looking up components which had registered a signal but now anything can register
 	var/list/signal_procs
@@ -8,6 +9,7 @@
 	var/datum_flags = NONE
 	var/datum/weakref/weak_reference
 	var/hidden_from_codex = FALSE //set to TRUE if you want something to be hidden.
+
 
 #ifdef TESTING
 	var/running_find_references
