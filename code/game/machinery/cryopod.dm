@@ -6,10 +6,6 @@
  * ~ Zuhayr
  */
 
-//Used for logging people entering cryosleep and important items they are carrying.
-var/global/list/frozen_crew = list()
-var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list(),"Delta"=list(),"MP"=list(),"REQ"=list(),"Eng"=list(),"Med"=list())
-
 //Main cryopod console.
 
 /obj/machinery/computer/cryopod
@@ -17,7 +13,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	desc = "A large console controlling the ship's hypersleep bay. Most of the options are disabled and locked, although it allows recovery of items from long-term hypersleeping crew."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "cellconsole"
-	circuit = "/obj/item/circuitboard/computer/cryopodcontrol"
+	circuit = /obj/item/circuitboard/computer/cryopodcontrol
 	exproof = TRUE
 	unacidable = TRUE
 	var/cryotype = "REQ"
@@ -45,10 +41,10 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	cryotype = "Delta"
 
 /obj/machinery/computer/cryopod/attack_paw()
-	src.attack_hand()
+	attack_hand()
 
 /obj/machinery/computer/cryopod/attack_ai()
-	src.attack_hand()
+	attack_hand()
 
 /obj/machinery/computer/cryopod/attack_hand(mob/user = usr)
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -81,14 +77,17 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	//	return
 
 	var/mob/user = usr
-	var/list/frozen_items_for_type = frozen_items[cryotype]
+	var/list/stored_items = GLOB.cryoed_item_list[cryotype]
+	for(var/obj/item/I in stored_items)
+		if(QDELETED(I))
+			stored_items -= I
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	if(href_list["log"])
 
 		var/dat = "<b>Recently stored crewmembers</b><br/><hr/><br/>"
-		for(var/person in frozen_crew)
+		for(var/person in GLOB.cryoed_mob_list)
 			dat += "[person]<br/>"
 		dat += "<hr/>"
 
@@ -97,7 +96,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	if(href_list["view"])
 
 		var/dat = "<b>Recently stored objects</b><br/><hr/><br/>"
-		for(var/obj/item/I in frozen_items_for_type)
+		for(var/obj/item/I in stored_items)
 			dat += "[I.name]<br/>"
 		dat += "<hr/>"
 
@@ -105,61 +104,58 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 
 	else if(href_list["item"])
 
-		if(frozen_items_for_type.len == 0)
+		if(!length(stored_items))
 			to_chat(user, "<span class='warning'>There is nothing to recover from storage.</span>")
 			return
 
-		var/obj/item/I = input(usr, "Please choose which object to retrieve.", "Object recovery",null) as null|anything in frozen_items_for_type
-		if(!I)
-			return
+		var/obj/item/I = input(usr, "Please choose which object to retrieve.", "Object recovery",null) as null|anything in stored_items
 
-		if(!(I in frozen_items_for_type))
-			to_chat(user, "<span class='warning'>[I] is no longer in storage.</span>")
-			return
-
-		visible_message("<span class='notice'>[src] beeps happily as it disgorges [I].</span>")
-
-		I.loc = get_turf(src)
-		frozen_items_for_type -= I
+		dispense_item(I)
 
 	else if(href_list["allitems"])
 
-		if(frozen_items_for_type.len == 0)
+		if(!length(stored_items.len))
 			to_chat(user, "<span class='warning'>There is nothing to recover from storage.</span>")
 			return
 
 		visible_message("<span class='notice'>[src] beeps happily as it disgorges the desired objects.</span>")
 
-		for(var/obj/item/I in frozen_items_for_type)
-			I.loc = get_turf(src)
-			frozen_items_for_type -= I
+		for(var/obj/item/I in stored_items)
+			dispense_item(user, I, FALSE)
 
-	src.updateUsrDialog()
+	updateUsrDialog()
 	return
 
+/obj/machinery/computer/cryopod/proc/dispense_item(mob/user, obj/item/I, message = TRUE)
+	if(QDELETED(I))
+		GLOB.cryoed_item_list[cryotype] -= I
+		return
+	if(!(I in GLOB.cryoed_item_list[cryotype]))
+		if(message)
+			to_chat(user, "<span class='warning'>[I] is no longer in storage.</span>")
+		return
+	if(message)
+		visible_message("<span class='notice'>[src] beeps happily as it disgorges [I].</span>")
+	I.forceMove(get_turf(src))
 
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed
-
 	name = "hypersleep chamber feed"
 	desc = "A bewildering tangle of machinery and pipes linking the hypersleep chambers to the hypersleep bay.."
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "cryo_rear"
-	anchored = 1
+	anchored = TRUE
 
-	var/orient_right = null //Flips the sprite.
+	var/orient_right //Flips the sprite.
 
 /obj/structure/cryofeed/right
-	orient_right = 1
+	orient_right = TRUE
 	icon_state = "cryo_rear-r"
 
 /obj/structure/cryofeed/New()
-
 	if(orient_right)
-		icon_state = "cryo_rear-r"
-	else
-		icon_state = "cryo_rear"
-	..()
+		icon_state = "cryo_rear[orient_right ? "-r" : ""]"
+	return ..()
 
 //Cryopods themselves.
 /obj/machinery/cryopod
@@ -167,13 +163,13 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	desc = "A large automated capsule with LED displays intended to put anyone inside into 'hypersleep', a form of non-cryogenic statis used on most ships, linked to a long-term hypersleep bay on a lower level."
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scanner_0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
-	var/mob/living/occupant = null //Person waiting to be despawned.
-	var/orient_right = null // Flips the sprite.
-	var/time_till_despawn = 6000 //10 minutes-ish safe period before being despawned.
-	var/time_entered = 0 //Used to keep track of the safe period.
+	var/mob/living/occupant //Person waiting to be despawned.
+	var/orient_right = FALSE // Flips the sprite.
+	var/time_till_despawn = 10 MINUTES
+	var/time_entered
 	var/obj/item/device/radio/intercom/announce //Intercom for cryo announcements
 
 /obj/machinery/cryopod/right
@@ -196,128 +192,53 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 		stop_processing()
 		update_icon()
 		return
-	//Allow a ten minute gap between entering the pod and actually despawning.
-	if(world.time - time_entered < time_till_despawn)
-		return
 
 	if(occupant.stat == DEAD) //Occupant is dead, abort.
 		go_out()
 		return
 
-	//Drop all items into the pod.
-	for(var/obj/item/W in occupant)
-		occupant.transferItemToLoc(W, src)
+	//Allow a ten minute gap between entering the pod and actually despawning.
+	if(world.time - time_entered < time_till_despawn)
+		return
 
-	//Delete all items not on the preservation list.
+	if(occupant.despawn(src))
+		QDEL_NULL(occupant)
+	stop_processing()
+	update_icon()
 
+/mob/proc/despawn(obj/machinery/cryopod/pod)
 	var/list/items = contents.Copy()
-	items -= occupant //Don't delete the occupant
-	items -= announce //or the autosay radio.
 
-	var/list/dept_console = frozen_items["REQ"]
-	if(ishuman(occupant))
-		var/mob/living/carbon/human/H = occupant
+	var/list/stored_items = list()
+
+	for(var/obj/item/W in items)
+		stored_items += W.place_in_storage()
+
+	var/list/dept_console = GLOB.cryoed_item_list["REQ"]
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
 		switch(H.job)
 			if("Master at Arms","Command Master at Arms")
-				dept_console = frozen_items["MP"]
+				dept_console = GLOB.cryoed_item_list["MP"]
 			if("Medical Officer","Medical Researcher","Chief Medical Officer")
-				dept_console = frozen_items["Med"]
+				dept_console = GLOB.cryoed_item_list["Med"]
 			if("Ship Engineer","Chief Ship Engineer")
-				dept_console = frozen_items["Eng"]
+				dept_console = GLOB.cryoed_item_list["Eng"]
+			else if(H.assigned_squad)
+				switch(H.assigned_squad.id)
+					if(ALPHA_SQUAD)
+						dept_console = GLOB.cryoed_item_list["Alpha"]
+					if(BRAVO_SQUAD)
+						dept_console = GLOB.cryoed_item_list["Bravo"]
+					if(CHARLIE_SQUAD)
+						dept_console = GLOB.cryoed_item_list["Charlie"]
+					if(DELTA_SQUAD)
+						dept_console = GLOB.cryoed_item_list["Delta"]
 
-	var/list/deleteempty = list(/obj/item/storage/backpack/marine/satchel)
+	dept_console += stored_items
 
-	var/list/deleteall = list(/obj/item/clothing/mask/cigarette, \
-	/obj/item/clothing/glasses/sunglasses, \
-	/obj/item/device/pda, \
-	/obj/item/clothing/glasses/mgoggles, \
-	/obj/item/clothing/head/cmberet/red, \
-	/obj/item/clothing/gloves/black, \
-	/obj/item/weapon/baton, \
-	/obj/item/weapon/gun/energy/taser, \
-	/obj/item/clothing/glasses/sunglasses/sechud, \
-	/obj/item/device/radio/headset/almayer, \
-	/obj/item/card/id, \
-	/obj/item/clothing/under/marine, \
-	/obj/item/clothing/shoes/marine, \
-	/obj/item/clothing/head/cmcap)
-
-	var/list/strippeditems = list()
-
-	item_loop:
-		for(var/obj/item/W in items)
-			if(W.flags_item & (ITEM_ABSTRACT|NODROP|DELONDROP)) //We don't keep undroppable/unremovable items
-				if(istype(W, /obj/item/clothing/suit/storage))
-					var/obj/item/clothing/suit/storage/S = W
-					for(var/obj/item/I in S.pockets) //But we keep stuff inside them
-						S.pockets.remove_from_storage(I, loc)
-						strippeditems += I
-						I.loc = null
-				if(istype(W, /obj/item/storage))
-					var/obj/item/storage/S = W
-					for(var/obj/item/I in S)
-						S.remove_from_storage(I, loc)
-						strippeditems += I
-						I.loc = null
-				qdel(W)
-				continue
-
-
-			//special items that store stuff in a nonstandard way, we properly remove those items
-
-			if(istype(W, /obj/item/clothing/suit/storage))
-				var/obj/item/clothing/suit/storage/SS = W
-				for(var/obj/item/I in SS.pockets)
-					SS.pockets.remove_from_storage(I, loc)
-					strippeditems += I
-					I.loc = null
-
-			if(istype(W, /obj/item/clothing/under))
-				var/obj/item/clothing/under/UN = W
-				if(UN.hastie)
-					var/obj/item/TIE = UN.hastie
-					UN.remove_accessory()
-					strippeditems += TIE
-					TIE.loc = null
-
-			if(istype(W, /obj/item/clothing/shoes/marine))
-				var/obj/item/clothing/shoes/marine/MS = W
-				if(MS.knife)
-					strippeditems += MS.knife
-					MS.knife.loc = null
-					MS.knife = null
-
-
-
-			for(var/TT in deleteempty)
-				if(istype(W, TT))
-					if(length(W.contents) == 0)
-						qdel(W) // delete all the empty satchels
-						continue item_loop
-					break // not empty, don't delete
-
-			for(var/DA in deleteall)
-				if(istype(W, DA))
-					qdel(W)
-					continue item_loop
-
-
-
-			dept_console += W
-			W.loc = null
-
-	stripped_items:
-		for(var/obj/item/A in strippeditems)
-			for(var/DAA in deleteall)
-				if(istype(A, DAA))
-					qdel(A)
-					continue stripped_items
-
-			dept_console += A
-			A.loc = null
-
-	if(ishuman(occupant))
-		var/mob/living/carbon/human/H = occupant
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
 		if(H.mind && H.assigned_squad)
 			var/datum/squad/S = H.assigned_squad
 			switch(H.mind.assigned_role)
@@ -340,42 +261,77 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	SSticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
 
 	//Handle job slot/tater cleanup.
-	if(occupant.mind?.assigned_role)
-		var/datum/job/J = SSjob.name_occupations[occupant.mind.assigned_role]
+	if(mind?.assigned_role)
+		var/datum/job/J = SSjob.name_occupations[mind.assigned_role]
 		J.current_positions--
 
 	//Delete them from datacore.
-	if(PDA_Manifest.len)
+	if(length(PDA_Manifest))
 		PDA_Manifest.Cut()
 	for(var/datum/data/record/R in data_core.medical)
-		if((R.fields["name"] == occupant.real_name))
+		if((R.fields["name"] == real_name))
 			data_core.medical -= R
 			qdel(R)
 	for(var/datum/data/record/T in data_core.security)
-		if((T.fields["name"] == occupant.real_name))
+		if((T.fields["name"] == real_name))
 			data_core.security -= T
 			qdel(T)
 	for(var/datum/data/record/G in data_core.general)
-		if((G.fields["name"] == occupant.real_name))
+		if((G.fields["name"] == real_name))
 			data_core.general -= G
 			qdel(G)
 
 
-	occupant.ghostize(0) //We want to make sure they are not kicked to lobby.
+	ghostize(0) //We want to make sure they are not kicked to lobby.
 	//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?
 
 	//Make an announcement and log the person entering storage.
-	frozen_crew += "[occupant.real_name]"
+	GLOB.cryoed_mob_list += "[real_name]"
 
-	announce.autosay("[occupant.real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", "Hypersleep Storage System")
-	visible_message("<span class='notice'>[src] hums and hisses as it moves [occupant.real_name] into hypersleep storage.</span>")
+	pod.announce.autosay("[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", "Hypersleep Storage System")
+	pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")
 
-	//Delete the mob.
+	return TRUE //Delete the mob.
 
-	QDEL_NULL(occupant)
-	stop_processing()
-	update_icon()
+/obj/item/proc/place_in_storage(/obj/machinery/cryopod/pod)
 
+	//bandaid for special cases (mob_holders, intellicards etc.) which are NOT currently handled on their own.
+	if(locate(/mob) in src)
+		forceMove(src, get_turf(src))
+		return
+
+	if(is_type_in_typecache(src, GLOB.do_not_preserve))
+		qdel(src)
+		return
+
+	. += list(src)
+	//special items that store stuff in a nonstandard way, we properly remove those items
+
+	if(istype(src, /obj/item/clothing/suit/storage))
+		var/obj/item/clothing/suit/storage/SS = src
+		for(var/obj/item/I in SS.pockets)
+			SS.pockets.remove_from_storage(I, loc)
+			. += I.place_in_storage()
+
+	else if(istype(src, /obj/item/clothing/under))
+		var/obj/item/clothing/under/UN = src
+		if(UN.hastie)
+			var/obj/item/TIE = UN.hastie
+			UN.remove_accessory()
+			. += TIE.place_in_storage()
+
+	else if(istype(src, /obj/item/clothing/shoes/marine))
+		var/obj/item/clothing/shoes/marine/MS = src
+		if(MS.knife)
+			. += MS.knife.place_in_storage()
+			MS.knife = null
+			MS.update_icon()
+
+	if(flags_item & (ITEM_ABSTRACT|NODROP|DELONDROP) || (is_type_in_typecache(src, GLOB.do_not_preserve_empty) && !length(contents)))
+		. -= src
+		qdel(src)
+	else
+		loc = null
 
 /obj/machinery/cryopod/attackby(obj/item/W, mob/living/user)
 
@@ -445,16 +401,6 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	if(usr.stat != CONSCIOUS || usr.loc != src)
 		return
 
-	//Eject any items that aren't meant to be in the pod.
-	var/list/items = contents
-	if(occupant)
-		items -= occupant
-	if(announce)
-		items -= announce
-
-	for(var/atom/movable/A in items)
-		A.forceMove(src)
-
 	go_out()
 	add_fingerprint(usr)
 	return
@@ -498,7 +444,12 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	if(!occupant)
 		return
 
-	occupant.forceMove(get_turf(src))
+	//Eject any items that aren't meant to be in the pod.
+	var/list/items = contents - announce
+
+	for(var/atom/movable/A in items)
+		occupant.forceMove(get_turf(src))
+
 	occupant = null
 	stop_processing()
 	update_icon()
