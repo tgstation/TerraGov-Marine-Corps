@@ -187,6 +187,7 @@
 #include "code\datums\supplyexports.dm"
 #include "code\datums\supplypacks.dm"
 #include "code\datums\weakrefs.dm"
+#include "code\datums\world_topic.dm"
 #include "code\datums\diseases\appendicitis.dm"
 #include "code\datums\diseases\beesease.dm"
 #include "code\datums\diseases\black_goo.dm"

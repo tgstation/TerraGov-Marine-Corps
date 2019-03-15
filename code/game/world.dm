@@ -121,49 +121,25 @@ var/world_topic_spam_protect_time = world.timeofday
 
 
 /world/Topic(T, addr, master, key)
-	TGS_TOPIC
+	TGS_TOPIC	//redirect to server tools if necessary
 
-	if(CONFIG_GET(flag/log_world_topic))
+	var/static/list/topic_handlers = TopicHandlers()
+
+	var/list/input = params2list(T)
+	var/datum/world_topic/handler
+	for(var/I in topic_handlers)
+		if(I in input)
+			handler = topic_handlers[I]
+			break
+
+	if((!handler || initial(handler.log)) && config && CONFIG_GET(flag/log_world_topic))
 		log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
 
-	if(T == "ping")
-		var/x = 1
-		for (var/client/C)
-			x++
-		return x
+	if(!handler)
+		return
 
-	else if(T == "players")
-		var/n = 0
-		for(var/mob/M in GLOB.player_list)
-			if(M.client)
-				n++
-		return n
-
-	else if(T == "status")
-		var/list/s = list()
-		s["version"] = game_version
-		s["mode"] = GLOB.master_mode
-		s["respawn"] = config ? GLOB.respawn_allowed : 0
-		s["enter"] = GLOB.enter_allowed
-		s["vote"] = CONFIG_GET(flag/allow_vote_mode)
-		s["host"] = host ? host : null
-		s["players"] = list()
-		s["stationtime"] = duration2text()
-		var/n = 0
-		var/admins = 0
-
-		for(var/client/C in GLOB.clients)
-			if(C.holder)
-				if(C.holder.fakekey)
-					continue	//so stealthmins aren't revealed by the hub
-				admins++
-			s["player[n]"] = C.key
-			n++
-		s["players"] = n
-
-		s["admins"] = admins
-
-		return list2params(s)
+	handler = new handler()
+	return handler.TryRun(input)
 
 
 /world/Reboot(ping = FALSE)
