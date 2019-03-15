@@ -23,7 +23,7 @@
 	if(left_click)
 		var/turf/T = get_turf(object)
 		if(stored)
-			DuplicateObject(stored, perfectcopy = TRUE, sameloc = FALSE, newloc = T)
+			DuplicateObject(stored, T)
 			log_admin("Build Mode: [key_name(c)] copied [stored] to [AREACOORD(object)]")
 			to_chat(c, "<span class='notice'>Success.</span>")
 	else if(right_click)

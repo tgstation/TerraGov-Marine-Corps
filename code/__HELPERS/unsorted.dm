@@ -960,30 +960,27 @@ var/global/image/busy_indicator_hostile
 				air_master.tiles_to_update += T2*/
 
 
-/proc/DuplicateObject(atom/original, perfectcopy = TRUE, sameloc, atom/newloc)
-	if(!original)
+/proc/DuplicateObject(atom/original, atom/newloc)
+	if(!original || !newloc)
 		return
-	var/atom/O
 
-	if(sameloc)
-		O = new original.type(original.loc)
-	else
-		O = new original.type(newloc)
+	var/atom/O = new original.type(newloc)
+	if(!O)
+		return
 
-	if(perfectcopy && O && original)
-		O.contents.Cut()
+	O.contents.Cut()
 
-		for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
-			if(istype(original.vars[V], /datum)) // this would reference the original's object, that will break when it is used or deleted.
-				continue
-			else if(islist(original.vars[V]))
-				var/list/L = original.vars[V]
-				O.vars[V] = L.Copy()
-			else
-				O.vars[V] = original.vars[V]
+	for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
+		if(istype(original.vars[V], /datum)) // this would reference the original's object, that will break when it is used or deleted.
+			continue
+		else if(islist(original.vars[V]))
+			var/list/L = original.vars[V]
+			O.vars[V] = L.Copy()
+		else
+			O.vars[V] = original.vars[V]
 
-		for(var/atom/A in original.contents)
-			O.contents += new A.type
+	for(var/atom/A in original.contents)
+		O.contents += new A.type
 
 	if(isobj(O))
 		var/obj/N = O
