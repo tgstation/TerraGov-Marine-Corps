@@ -710,8 +710,6 @@
 
 		if("Modify")
 			var/obj/item/card/id/I = H.wear_id
-			if(!istype(I))
-				H.wear_id = new /obj/item/card/id(H)
 			switch(input("What do you want to edit?") as null|anything in list("Comms Title - \[Engineering (Title)]", "Chat Title - Title John Doe screams!", "ID title - Jane Doe's ID Card (Title)", "Registered Name - Jane Doe's ID Card", "Skills"))
 				if("Comms Title - \[Engineering (Title)]")
 					var/commtitle = input("Write the custom title appearing in the comms: Comms Title - \[Engineering (Title)]", "Comms Title") as null|text
@@ -720,26 +718,20 @@
 					H.mind.comm_title = commtitle
 				if("Chat Title - Title John Doe screams!")
 					var/chattitle = input("Write the custom title appearing in all chats: Title Jane Doe screams!", "Chat Title") as null|text
-					if(chattitle || !H)
+					if(chattitle || !H || !istype(I))
 						return
-					if(!istype(I) || I != H.wear_id)
-						H.wear_id = new /obj/item/card/id(H)
 					I.paygrade = chattitle
 					I.update_label()
 				if("ID title - Jane Doe's ID Card (Title)")
 					var/idtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID Title") as null|text
-					if(!H || I != H.wear_id)
+					if(!idtitle || !H || !istype(I))
 						return
-					if(!istype(I) || I != H.wear_id)
-						H.wear_id = new /obj/item/card/id(H)
 					I.assignment = idtitle
 					I.update_label()
 				if("Registered Name - Jane Doe's ID Card")
 					var/regname = input("Write the name appearing on the ID itself: Jane Doe's ID Card", "Registered Name") as null|text
-					if(!H || I != H.wear_id)
+					if(!H || I != H.wear_id || !istype(I))
 						return
-					if(!istype(I) || I != H.wear_id)
-						H.wear_id = new /obj/item/card/id(H)
 					I.registered_name = regname
 					I.update_label()
 				if("Skills")
