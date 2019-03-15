@@ -1,5 +1,0 @@
-author: "Shadow-Quill"
-delete-after: True
-changes: 
-  - bugfix: "Fixes Theseus APC access for Shipside Engineers."
-  - bugfix: "Connected the Captain's Mess at CIC to the power grid."
