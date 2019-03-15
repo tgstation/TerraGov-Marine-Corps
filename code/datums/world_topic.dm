@@ -139,3 +139,8 @@
 
 	.["security_level"] = get_security_level()
 	.["round_duration"] = SSticker ? round((world.time - SSticker.round_start_time) / 10) : 0
+
+	.["time_dilation_current"] = SStime_track.time_dilation_current
+	.["time_dilation_avg"] = SStime_track.time_dilation_avg
+	.["time_dilation_avg_slow"] = SStime_track.time_dilation_avg_slow
+	.["time_dilation_avg_fast"] = SStime_track.time_dilation_avg_fast

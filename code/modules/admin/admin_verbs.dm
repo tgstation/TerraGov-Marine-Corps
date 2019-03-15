@@ -1149,7 +1149,7 @@
 	var/compliant_msg = trim(lowertext(msg))
 	var/irc_tagged = "[sender](IRC)"
 	var/list/splits = splittext(compliant_msg, " ")
-	if(splits.len && splits[1] == "ticket")
+	if(length(splits) && splits[1] == "ticket")
 		if(splits.len < 2)
 			return IRC_AHELP_USAGE
 		switch(splits[2])
@@ -1210,12 +1210,12 @@
 	if(!stealthkey)
 		stealthkey = GenIrcStealthKey()
 
-	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
+	msg = sanitize(copytext(msg, 1, MAX_MESSAGE_LEN))
 	if(!msg)
 		return "Error: No message"
 
-	message_admins("IRC message from [sender] to [key_name_admin(C)] : [msg]")
 	log_admin_private("IRC PM: [sender] -> [key_name(C)] : [msg]")
+	message_admins("IRC PM: [sender] -> [key_name_admin(C)] : [msg]")
 
 	to_chat(C, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 	to_chat(C, "<font color='red'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>")
