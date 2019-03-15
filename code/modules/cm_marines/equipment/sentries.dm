@@ -288,7 +288,7 @@
 	camera_number = rand(1,1000)
 	camera = new (src)
 	camera.network = list("military")
-	camera.c_tag = "Sentry: [get_area(src)] | X: [x] | Y: [y]| [camera_number]" //Update Camera name
+	camera.c_tag = "Sentry: [get_area(src)] | X: [x] | Y: [y] | [camera_number]" //Update Camera name
 	machine_stat = NOFLAGS
 	//START_PROCESSING(SSobj, src)
 	ammo = GLOB.ammo_list[ammo]

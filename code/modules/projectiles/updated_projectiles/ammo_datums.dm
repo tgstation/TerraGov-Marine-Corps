@@ -641,7 +641,7 @@
 	bonus_projectiles_amount = CONFIG_GET(number/combat_define/low_proj_extra)
 
 /datum/ammo/bullet/shotgun/flechette/claymore/New()
-	..()
+	. = ..()
 	bonus_projectiles_amount = 0
 
 /datum/ammo/bullet/shotgun/flechette_spread

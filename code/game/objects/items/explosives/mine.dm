@@ -246,7 +246,7 @@
 		linked_claymore.Bumped(A)
 
 /obj/item/explosive/mine/proc/mine_alert(mob/M)
-	set waitfor = 0
+	set waitfor = FALSE
 
 	if(!M)
 		return
