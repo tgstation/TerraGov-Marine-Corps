@@ -370,4 +370,6 @@ SUBSYSTEM_DEF(ticker)
 	log_game("<span class='boldnotice'>Rebooting World. [reason]</span>")
 	to_chat(world, "<span class='boldnotice'>Rebooting...</span>")
 
+	sleep(1)
+
 	world.Reboot(TRUE)
