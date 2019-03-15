@@ -131,6 +131,8 @@
 
 
 /client/Move(n, direct)
+
+
 	if(mob.control_object)
 		return Move_object(direct) //admins possessing object
 
@@ -155,6 +157,9 @@
 			if(item.zoom)
 				item.zoom(mob)
 				break
+
+	var/tick_config = CONFIG_GET(number/ticklag)
+	move_delay = world.time + tick_config
 
 	//Check if you are being grabbed and if so attemps to break it
 	if(mob.pulledby)
@@ -187,8 +192,7 @@
 		move_delay += mob.movement_delay()
 		//We are now going to move
 		moving = 1
-		var/tick_config = CONFIG_GET(number/ticklag)
-		mob.glide_size = 32 / max(move_delay, tick_config) * tick_config
+		mob.glide_size = 8
 
 		var/mob/living/L = mob
 		if(L.confused)
