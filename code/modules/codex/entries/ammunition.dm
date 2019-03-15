@@ -1,9 +1,10 @@
 /datum/codex_category/ammo/New()
 
 	for(var/thing in subtypesof(/datum/ammo))
-		var/datum/ammo/ammo = new thing()
 		if(initial(ammo.hidden_from_codex))
 			continue
+		var/datum/ammo/ammo = new thing()
+
 		var/ammo_name = lowertext(initial(ammo.name))
 		var/datum/codex_entry/entry = new( \
 		 _display_name = "[ammo_name] (ammunition)", \
