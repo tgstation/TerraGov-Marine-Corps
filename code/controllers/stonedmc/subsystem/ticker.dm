@@ -368,6 +368,6 @@ SUBSYSTEM_DEF(ticker)
 		end_state = end_string
 
 	log_game("<span class='boldnotice'>Rebooting World. [reason]</span>")
-	to_chat_immediate(world, "<span class='boldnotice'>Rebooting...</span>")
+	to_chat(world, "<span class='boldnotice'>Rebooting...</span>")
 
 	world.Reboot(TRUE)
