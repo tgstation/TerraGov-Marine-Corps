@@ -313,6 +313,7 @@
 				X.stop_momentum(X.charge_dir)
 				return FALSE
 
+
 //Beginning special object overrides.
 
 //**READ ME**

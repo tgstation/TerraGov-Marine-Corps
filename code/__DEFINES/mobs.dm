@@ -584,3 +584,6 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define TRACK_BRAVO_SQUAD "bravo"
 #define TRACK_CHARLIE_SQUAD "charlie"
 #define TRACK_DELTA_SQUAD "delta"
+
+
+#define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.

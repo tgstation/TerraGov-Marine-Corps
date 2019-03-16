@@ -16,6 +16,7 @@ GLOBAL_PROTECT(href_token)
 	var/fakekey			= null
 
 	var/datum/marked_datum
+	var/marked_file
 
 	var/href_token
 
@@ -344,7 +345,8 @@ GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 	/datum/admins/proc/delete_atom,
 	/datum/admins/proc/fix_next_move,
 	/datum/admins/proc/restart_controller,
-	/datum/admins/proc/check_contents
+	/datum/admins/proc/check_contents,
+	/datum/admins/proc/SDQL2_query
 	)
 
 GLOBAL_PROTECT(admin_verbs_varedit)

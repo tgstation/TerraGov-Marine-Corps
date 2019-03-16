@@ -301,7 +301,7 @@
 		return
 
 	var/web_sound_url = ""
-	var/pitch
+	var/list/music_extra_data = list()
 	var/title
 	var/show = FALSE
 	if(length(web_sound_input))
@@ -325,6 +325,8 @@
 			if(data["url"])
 				web_sound_url = data["url"]
 				title = "[data["title"]]"
+				music_extra_data["start"] = data["start_time"]
+				music_extra_data["end"] = data["end_time"]
 				var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "Yes", "No", "Cancel")
 				switch(res)
 					if("Yes")
@@ -361,7 +363,7 @@
 			if(!C?.prefs)
 				continue
 			if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-				C.chatOutput.sendMusic(web_sound_url, pitch)
+				C.chatOutput.sendMusic(web_sound_url, music_extra_data)
 				if(show)
 					to_chat(C, "<span class='boldnotice'>An admin played: [show]</span>")
 
