@@ -143,7 +143,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		qdel(F)
 	new /obj/flamer_fire(T, rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, radius, burn_damage, fire_stacks) //Gaussian.
 
-/proc/frag_blast(turf/T, atom/source = null, projectiles = 16, datum/ammo/bullet/P = /datum/ammo/bullet/shrapnel/flechette) //Projectile count should generally be some multiple of 8.
+/proc/frag_blast(turf/T, atom/source, projectiles = 16, datum/ammo/bullet/P = /datum/ammo/bullet/shrapnel/flechette) //Projectile count should generally be some multiple of 8.
 	if(!isturf(T))
 		return
 	var/turf/initial_turf = T

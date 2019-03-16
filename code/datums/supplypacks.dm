@@ -1753,7 +1753,7 @@ AMMO
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/explosives
-	containername = "\improper fragmentation M5 RPG ammo crate"
+	containername = "fragmentation M5 RPG ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_box_rifle
