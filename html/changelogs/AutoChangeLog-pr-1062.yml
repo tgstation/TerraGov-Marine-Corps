@@ -1,4 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - bugfix: "You will no longer lose plasma while transferring if the target's plasma is full."
