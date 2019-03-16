@@ -207,32 +207,10 @@
 	update_icon()
 
 /mob/proc/despawn(obj/machinery/cryopod/pod, list/dept_console = GLOB.cryoed_item_list["REQ"])
-	var/list/items = contents.Copy()
-
 	var/list/stored_items = list()
 
-	for(var/obj/item/W in items)
+	for(var/obj/item/W in contents)
 		stored_items.Add(W.store_in_cryo())
-
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		switch(H.job)
-			if("Master at Arms","Command Master at Arms")
-				dept_console = GLOB.cryoed_item_list["MP"]
-			if("Medical Officer","Medical Researcher","Chief Medical Officer")
-				dept_console = GLOB.cryoed_item_list["Med"]
-			if("Ship Engineer","Chief Ship Engineer")
-				dept_console = GLOB.cryoed_item_list["Eng"]
-			else if(H.assigned_squad)
-				switch(H.assigned_squad.id)
-					if(ALPHA_SQUAD)
-						dept_console = GLOB.cryoed_item_list["Alpha"]
-					if(BRAVO_SQUAD)
-						dept_console = GLOB.cryoed_item_list["Bravo"]
-					if(CHARLIE_SQUAD)
-						dept_console = GLOB.cryoed_item_list["Charlie"]
-					if(DELTA_SQUAD)
-						dept_console = GLOB.cryoed_item_list["Delta"]
 
 	dept_console += stored_items
 
