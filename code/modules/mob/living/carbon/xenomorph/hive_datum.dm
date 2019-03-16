@@ -49,6 +49,16 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	for(var/t in xenos_by_tier)
 		. += length(xenos_by_tier[t])
 
+/datum/hive_status/proc/get_all_xenos(queen = TRUE)
+	var/list/xenos = list()
+	for(var/typepath in xenos_by_typepath)
+		if(!queen && typepath == /mob/living/carbon/Xenomorph/Queen) // hardcoded check for now
+			continue
+		for(var/i in xenos_by_typepath[typepath])
+			var/mob/living/carbon/Xenomorph/X = i
+			xenos += X
+	return xenos
+
 // doing this by type means we get a pseudo sorted list
 /datum/hive_status/proc/get_watchable_xenos()
 	var/list/xenos = list()

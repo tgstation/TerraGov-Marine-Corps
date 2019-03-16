@@ -74,10 +74,7 @@
 	//We don't have a nicknumber yet, assign one to stick with us
 	if(!nicknumber)
 		var/tempnumber = rand(1, 999)
-		var/list/numberlist = list()
-		for(var/mob/living/carbon/Xenomorph/X in GLOB.xeno_mob_list)
-			numberlist += X.nicknumber
-
+		var/list/xenolist = hive.get_all_xenos(FALSE))
 		while(tempnumber in numberlist)
 			tempnumber = rand(1, 999)
 
