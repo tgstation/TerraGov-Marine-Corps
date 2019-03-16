@@ -179,7 +179,7 @@
 
 /obj/structure/razorwire/acid_spray_act(mob/living/carbon/Xenomorph/X)
 	. = ..()
-	. = FALSE // not normal density flag
+	return FALSE // not normal density flag
 
 /obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/Xenomorph/X)
 	take_damage_type(rand(40,60) + (X.upgrade * SPRAY_STRUCTURE_UPGRADE_BONUS), "acid", src)

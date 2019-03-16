@@ -469,7 +469,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define SPRAY_STRUCTURE_UPGRADE_BONUS 8
 #define SPRAY_MOB_UPGRADE_BONUS 4
 
-#define QUEEN_DEATH_LARVA_MULTIPLIER ( (upgrade+1)/6.0) ) // 83/66/50/33 for ancient/elder emp/elder queen/queen
+#define QUEEN_DEATH_LARVA_MULTIPLIER ( (upgrade+1) * 0.17) ) // 85/68/51/34 for ancient/elder emp/elder queen/queen
 
 #define PLASMA_TRANSFER_AMOUNT 50
 #define PLASMA_SALVAGE_AMOUNT 40
