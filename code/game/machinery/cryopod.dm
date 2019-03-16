@@ -206,13 +206,13 @@
 	stop_processing()
 	update_icon()
 
-/mob/proc/despawn(obj/machinery/cryopod/pod, list/dept_console = GLOB.cryoed_item_list["REQ"])
+/mob/proc/despawn(obj/machinery/cryopod/pod, list/dept_console = "REQ")
 	var/list/stored_items = list()
 
 	for(var/obj/item/W in contents)
 		stored_items.Add(W.store_in_cryo())
 
-	dept_console += stored_items
+	GLOB.cryoed_item_list[dept_console].Add(stored_items)
 
 	SSticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
 
@@ -248,41 +248,40 @@
 
 	return TRUE //Delete the mob.
 
-/mob/living/carbon/human/despawn(obj/machinery/cryopod/pod, list/dept_console = GLOB.cryoed_item_list["REQ"])
+/mob/living/carbon/human/despawn(obj/machinery/cryopod/pod, dept_console = "REQ")
 	switch(job)
 		if("Master at Arms","Command Master at Arms")
-			dept_console = GLOB.cryoed_item_list["MP"]
+			dept_console = "MP"
 		if("Medical Officer","Medical Researcher","Chief Medical Officer")
-			dept_console = GLOB.cryoed_item_list["Med"]
+			dept_console = "Med"
 		if("Ship Engineer","Chief Ship Engineer")
-			dept_console = GLOB.cryoed_item_list["Eng"]
+			dept_console = "Eng"
 		else if(assigned_squad)
 			switch(assigned_squad.id)
 				if(ALPHA_SQUAD)
-					dept_console = GLOB.cryoed_item_list["Alpha"]
+					dept_console = "Alpha"
 				if(BRAVO_SQUAD)
-					dept_console = GLOB.cryoed_item_list["Bravo"]
+					dept_console = "Bravo"
 				if(CHARLIE_SQUAD)
-					dept_console = GLOB.cryoed_item_list["Charlie"]
+					dept_console = "Charlie"
 				if(DELTA_SQUAD)
-					dept_console = GLOB.cryoed_item_list["Delta"]
+					dept_console = "Delta"
 	if(assigned_squad)
 		var/datum/squad/S = assigned_squad
-		if(mind)
-			switch(mind.assigned_role)
-				if("Squad Engineer")
-					S.num_engineers--
-				if("Squad Corpsman")
-					S.num_medics--
-				if("Squad Specialist")
-					S.num_specialists--
-					if(specset && !available_specialist_sets.Find(specset))
-						available_specialist_sets += specset //we make the set this specialist took if any available again
-				if("Squad Smartgunner")
-					S.num_smartgun--
-				if("Squad Leader")
-					S.num_leaders--
-			S.count--
+		switch(job)
+			if("Squad Engineer")
+				S.num_engineers--
+			if("Squad Corpsman")
+				S.num_medics--
+			if("Squad Specialist")
+				S.num_specialists--
+				if(specset && !available_specialist_sets.Find(specset))
+					available_specialist_sets += specset //we make the set this specialist took if any available again
+			if("Squad Smartgunner")
+				S.num_smartgun--
+			if("Squad Leader")
+				S.num_leaders--
+		S.count--
 		S.clean_marine_from_squad(src, TRUE) //Remove from squad recods, if any.
 
 	return ..()
