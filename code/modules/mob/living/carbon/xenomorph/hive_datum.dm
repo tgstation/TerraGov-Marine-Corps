@@ -156,7 +156,7 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	if(!SSticker.mode.stored_larva)
 		return
 
-	SSticker.mode.stored_larva = round(SSticker.mode.stored_larva * QUEEN_DEATH_LARVA_MULTIPLIER)
+	SSticker.mode.stored_larva = round(SSticker.mode.stored_larva * ((Q.upgrade_as_number() + 1) * QUEEN_DEATH_LARVA_MULTIPLIER))
 
 	INVOKE_ASYNC(src, .proc/unbury_all_larva) // this is potentially a lot of calls so do it async
 

@@ -94,9 +94,6 @@
 	real_name = name
 	if(mind) mind.name = name //This gives them the proper name in deadchat if they explode on death. It's always the small things
 
-/mob/living/carbon/Xenomorph/proc/acid_structure_damage()
-	return upgrade_as_number() * ACID_SPRAY_STRUCTURE_DAMAGE
-
 /mob/living/carbon/Xenomorph/proc/upgrade_as_number()
 	switch(upgrade)
 		if(XENO_UPGRADE_INVALID)
