@@ -74,8 +74,8 @@
 	//We don't have a nicknumber yet, assign one to stick with us
 	if(!nicknumber)
 		var/tempnumber = rand(1, 999)
-		var/list/xenolist = hive.get_all_xenos(FALSE))
-		while(tempnumber in numberlist)
+		var/list/xenolist = hive.get_all_xenos(FALSE)
+		while(tempnumber in xenolist)
 			tempnumber = rand(1, 999)
 
 		nicknumber = tempnumber
