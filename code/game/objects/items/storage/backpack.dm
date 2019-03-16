@@ -699,16 +699,15 @@
 
 
 /obj/item/storage/backpack/marine/engineerpack/flamethrower/attackby(obj/item/W, mob/living/user)
-	. = ..()
 	if(!istype(W, /obj/item/ammo_magazine/flamer_tank))
-		return
+		return ..()
 	var/obj/item/ammo_magazine/flamer_tank/FTL = W
 	if(FTL.default_ammo != /datum/ammo/flamethrower)
-		return
+		return ..()
 	if(FTL.max_rounds == FTL.current_rounds)
-		return
+		return ..()
 	if(reagents.total_volume <= 0)
-		return
+		return ..()
 	var/fuel_refill = FTL.max_rounds - FTL.current_rounds
 	if(reagents.total_volume < fuel_refill)
 		fuel_refill = reagents.total_volume
