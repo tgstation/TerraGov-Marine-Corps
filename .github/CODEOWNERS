@@ -9,6 +9,10 @@
 /_maps/ @Alterist
 /icons/ @Alterist
 
+# Hughgent
+
+/code/modules/codex/ @Hughgent
+
 # LaKiller8
 
 /code/modules/admin/ @DominikPanic
