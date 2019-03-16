@@ -275,10 +275,10 @@ Vehicles are placed on the map by a spawner or admin verb
 			if(!step(A, direction))
 				blocked[C] = A //We couldn't move, so remember that and try again next time
 
-	if(blocked.len == objs.len)
+	if(length(blocked) == length(objs))
 		return FALSE //No more things can move, return false
 
-	else if(blocked.len)
+	else if(length(blocked))
 		return try_move(blocked, direction, is_rotation) //Some things moved, retry the others
 
 	else if(!length(blocked))

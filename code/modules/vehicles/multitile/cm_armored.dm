@@ -160,14 +160,14 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	//TODO: make this a proc so I don't keep repeating this code
 	var/list/slots = get_activatable_hardpoints()
 
-	if(!slots.len)
+	if(!length(slots))
 		to_chat(usr, "<span class='warning'>All of the modules can't be reloaded or are broken.</span>")
 		return
 
 	var/slot = input("Select a slot.") in slots
 
 	var/obj/item/hardpoint/HP = hardpoints[slot]
-	if(!HP?.backup_clips.len)
+	if(!length(HP?.backup_clips))
 		to_chat(usr, "<span class='warning'>That module is either missing or has no remaining backup clips.</span>")
 		return
 

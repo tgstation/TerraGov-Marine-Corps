@@ -6,9 +6,9 @@
 /obj/machinery/tank_part_fabricator
 	name = "tank part fabricator"
 	desc = "A large automated 3D printer for producing new tank parts and maintaining old ones."
-	density = 1
-	anchored = 1
-	use_power = 1
+	density = TRUE
+	anchored = TRUE
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 	icon = 'icons/obj/machines/drone_fab.dmi'
 	icon_state = "drone_fab_idle"
@@ -37,7 +37,8 @@
 		icon_state = "drone_fab_idle"
 
 /obj/machinery/tank_part_fabricator/attack_hand(mob/user)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	user.set_interaction(src)
 	var/dat
@@ -256,7 +257,8 @@
 	addtimer(CALLBACK(src, .proc/set_busy, FALSE), 6 SECONDS)
 
 /obj/machinery/tank_part_fabricator/Topic(href, href_list)
-	if(..())
+	. =..()
+	if(.)
 		return
 
 	usr.set_interaction(src)

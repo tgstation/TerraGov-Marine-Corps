@@ -38,6 +38,8 @@ Currently only has the tank hardpoints
 		ammo = new starter_ammo
 
 /obj/item/hardpoint/attackby(obj/item/W, mob/user)
+	if(!iswelder(W) && !iswrench(W))
+		return ..()
 	var/repair_delays = 6
 	var/obj/item/tool/repair_tool = /obj/item/tool/weldingtool
 	switch(slot)
@@ -52,7 +54,8 @@ Currently only has the tank hardpoints
 		if(HDPT_ARMOR)
 			repair_delays = 10
 	if(!istype(W, repair_tool))
-		return ..()
+		to_chat(user, "<span class='warning'>That's the wrong tool. Use a [iswrench(repair_tool) ? "wrench" : "welder"].</span>")
+		return
 	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(!WT.isOn())
@@ -102,7 +105,7 @@ Currently only has the tank hardpoints
 	if(max_clips == 0)
 		to_chat(user, "<span class='warning'>This module does not have room for additional ammo.</span>")
 		return FALSE
-	else if(backup_clips.len >= max_clips)
+	else if(length(backup_clips) >= max_clips)
 		to_chat(user, "<span class='warning'>The reloader is full.</span>")
 		return FALSE
 	else if(!istype(A, starter_ammo))
@@ -327,7 +330,7 @@ Currently only has the tank hardpoints
 			S = 'sound/weapons/tank_minigun_stop_joke.ogg'
 		if(chained <= 0) chained = 1
 
-	next_use = world.time + (chained > chain_delays.len ? 0.5 : chain_delays[chained]) * owner.misc_ratios["prim_cool"]
+	next_use = world.time + (chained > length(chain_delays) ? 0.5 : chain_delays[chained]) * owner.misc_ratios["prim_cool"]
 	if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
 		T = get_step(T, pick(cardinal))
 	var/obj/item/projectile/P = new
