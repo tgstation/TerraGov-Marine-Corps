@@ -244,8 +244,8 @@
 	var/dat = "<html><body><center>"
 	dat += "Round Duration: [worldtime2text()]<br>"
 
-	if(EvacuationAuthority)
-		switch(EvacuationAuthority.evac_status)
+	if(SSevacuation)
+		switch(SSevacuation.evac_status)
 			if(EVACUATION_STATUS_INITIATING)
 				dat += "<font color='red'><b>The [MAIN_SHIP_NAME] is being evacuated.</b></font><br>"
 			if(EVACUATION_STATUS_COMPLETE)

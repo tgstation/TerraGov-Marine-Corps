@@ -118,11 +118,11 @@
 
 
 /datum/game_mode/colonialmarines/check_win()
-	var/living_player_list[] = count_humans_and_xenos(EvacuationAuthority.get_affected_zlevels())
+	var/living_player_list[] = count_humans_and_xenos(SSevacuation.get_affected_zlevels())
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) //Nuke went off, ending the round.
+	if(SSevacuation.dest_status == NUKE_EXPLOSION_FINISHED) //Nuke went off, ending the round.
 		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]")
 		round_finished = MODE_GENERIC_DRAW_NUKE
 	else if(!num_humans && num_xenos)

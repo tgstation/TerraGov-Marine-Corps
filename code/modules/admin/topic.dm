@@ -1353,52 +1353,59 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_ADMIN))
 			return
 
+		if(!SSevacuation.dest_master)
+			SSevacuation.prepare()
+
 		switch(href_list["evac_authority"])
 			if("init_evac")
-				if(!EvacuationAuthority.initiate_evacuation())
+				if(!SSevacuation.initiate_evacuation(TRUE))
 					to_chat(usr, "<span class='warning'>You are unable to initiate an evacuation right now!</span>")
-				else
-					log_admin("[key_name(usr)] called an evacuation.")
-					message_admins("[ADMIN_TPMONTY(usr)] called an evacuation.")
+					return
+				log_admin("[key_name(usr)] called an evacuation.")
+				message_admins("[ADMIN_TPMONTY(usr)] called an evacuation.")
 
 			if("cancel_evac")
-				if(!EvacuationAuthority.cancel_evacuation())
+				if(!SSevacuation.cancel_evacuation())
 					to_chat(usr, "<span class='warning'>You are unable to cancel an evacuation right now!</span>")
-				else
-					log_admin("[key_name(usr)] canceled an evacuation.")
-					message_admins("[ADMIN_TPMONTY(usr)] canceled an evacuation.")
+					return
+
+				log_admin("[key_name(usr)] canceled an evacuation.")
+				message_admins("[ADMIN_TPMONTY(usr)] canceled an evacuation.")
 
 			if("toggle_evac")
-				EvacuationAuthority.flags_scuttle ^= FLAGS_EVACUATION_DENY
-				log_admin("[key_name(src)] has [EvacuationAuthority.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
-				message_admins("[ADMIN_TPMONTY(usr)] has [EvacuationAuthority.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
+				SSevacuation.flags_scuttle ^= FLAGS_EVACUATION_DENY
+				log_admin("[key_name(src)] has [SSevacuation.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
+				message_admins("[ADMIN_TPMONTY(usr)] has [SSevacuation.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
 
 			if("force_evac")
-				if(!EvacuationAuthority.begin_launch())
+				if(!SSevacuation.begin_launch())
 					to_chat(usr, "<span class='warning'>You are unable to launch the pods directly right now!</span>")
-				else
-					log_admin("[key_name(usr)] force-launched the escape pods.")
-					message_admins("[ADMIN_TPMONTY(usr)] force-launched the escape pods.")
+					return
+
+				log_admin("[key_name(usr)] force-launched the escape pods.")
+				message_admins("[ADMIN_TPMONTY(usr)] force-launched the escape pods.")
 
 			if("init_dest")
-				if(!EvacuationAuthority.enable_self_destruct())
+				if(!SSevacuation.enable_self_destruct())
 					to_chat(usr, "<span class='warning'>You are unable to authorize the self-destruct right now!</span>")
-				else
-					log_admin("[key_name(usr)] force-enabled the self-destruct system.")
-					message_admins("[ADMIN_TPMONTY(usr)] force-enabled the self-destruct system.")
+					return
+
+				log_admin("[key_name(usr)] force-enabled the self-destruct system.")
+				message_admins("[ADMIN_TPMONTY(usr)] force-enabled the self-destruct system.")
 
 			if("cancel_dest")
-				if(!EvacuationAuthority.cancel_self_destruct(TRUE))
+				if(!SSevacuation.cancel_self_destruct(TRUE))
 					to_chat(usr, "<span class='warning'>You are unable to cancel the self-destruct right now!</span>")
-				else
-					log_admin("[key_name(usr)] canceled the self-destruct system.")
-					message_admins("[ADMIN_TPMONTY(usr)] canceled the self-destruct system.")
+					return
+					
+				log_admin("[key_name(usr)] canceled the self-destruct system.")
+				message_admins("[ADMIN_TPMONTY(usr)] canceled the self-destruct system.")
 
 			if("use_dest")
 				if(alert("Are you sure you want to destroy the [MAIN_SHIP_NAME] right now?", "Self-Destruct", "Yes", "No") != "Yes")
 					return
 
-				if(!EvacuationAuthority.initiate_self_destruct(TRUE))
+				if(!SSevacuation.initiate_self_destruct(TRUE))
 					to_chat(usr, "<span class='warning'>You are unable to trigger the self-destruct right now!</span>")
 					return
 
@@ -1406,9 +1413,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destrust system, destroying the [MAIN_SHIP_NAME].")
 
 			if("toggle_dest")
-				EvacuationAuthority.flags_scuttle ^= FLAGS_SELF_DESTRUCT_DENY
-				log_admin("[key_name(src)] has [EvacuationAuthority.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
-				message_admins("[ADMIN_TPMONTY(usr)] has [EvacuationAuthority.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
+				SSevacuation.flags_scuttle ^= FLAGS_SELF_DESTRUCT_DENY
+				log_admin("[key_name(src)] has [SSevacuation.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
+				message_admins("[ADMIN_TPMONTY(usr)] has [SSevacuation.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
 
 
 	else if(href_list["object_list"])

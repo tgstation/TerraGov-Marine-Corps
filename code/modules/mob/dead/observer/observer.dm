@@ -204,10 +204,9 @@
 	. = ..()
 
 	if(statpanel("Stats"))
-		if(EvacuationAuthority)
-			var/eta_status = EvacuationAuthority.get_status_panel_eta()
-			if(eta_status)
-				stat(null, eta_status)
+		var/eta_status = SSevacuation?.get_status_panel_eta()
+		if(eta_status)
+			stat("Evacuation in:", eta_status)
 		if(SSticker?.mode)
 			var/countdown = SSticker.mode.get_queen_countdown()
 			if(countdown)
