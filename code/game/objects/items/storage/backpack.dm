@@ -707,6 +707,7 @@
 	if(FTL.max_rounds == FTL.current_rounds)
 		return ..()
 	if(reagents.total_volume <= 0)
+		to_chat(user, "<span class='warning'>You try to refill \the [FTL] but \the [src] fuel reserve is empty.</span>")
 		return ..()
 	var/fuel_refill = FTL.max_rounds - FTL.current_rounds
 	if(reagents.total_volume < fuel_refill)
