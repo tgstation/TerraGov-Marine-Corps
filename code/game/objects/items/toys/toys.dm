@@ -447,7 +447,7 @@
 
 /obj/item/bikehorn/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, /datum/outputs/bikehorn, 50)
+	AddComponent(/datum/component/squeak, 'sound/items/bikehorn.ogg', 50)
 
 
 /obj/item/toy/farwadoll

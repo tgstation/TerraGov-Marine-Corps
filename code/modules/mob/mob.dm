@@ -70,19 +70,6 @@
 	for(var/hud in hud_possible)
 		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
 
-
-/mob/proc/display_output(sound/S, mutable_appearance/vfx, text, turf/turf_source, vol as num, vary, frequency, falloff, channel = 0, pressure_affected = TRUE)
-	if(!isdeaf(src))
-		return
-	//Process sound
-	if(S)
-		SEND_SOUND(src, S)
-	//Process text
-	if(text)
-		to_chat(src, "<span class='italics'>[text]</span>")
-	//to whoever sees this: icons are handled in living.dm
-
-
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
 	if(!client)	return

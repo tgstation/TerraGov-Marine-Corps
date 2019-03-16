@@ -87,7 +87,7 @@
 
 /obj/item/clothing/shoes/clown_shoes/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, /datum/outputs/clownstep, 50)
+	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg', 'sound/effects/clownstep2.ogg'), 50)
 
 
 /obj/item/clothing/shoes/jackboots
