@@ -1511,7 +1511,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isxeno(firer))
 		var/mob/living/carbon/Xenomorph/X = firer
 		smoke_system.strength = X.xeno_caste.bomb_strength
-		range += X.upgrade
+		range = min(2, range + X.upgrade)
 	smoke_system.set_up(range, T)
 	smoke_system.start()
 	T.visible_message(danger_message)
