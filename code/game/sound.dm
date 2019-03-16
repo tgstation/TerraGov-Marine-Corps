@@ -1,6 +1,3 @@
-#define FALLOFF_SOUNDS 1
-
-
 //Proc used to play a sound.
 //source: self-explanatory.
 //soundin: the .ogg to use.
@@ -217,3 +214,14 @@
 				S = pick("sound/voice/human_female_grenadethrow_1.ogg", 'sound/voice/human_female_grenadethrow_2.ogg', 'sound/voice/human_female_grenadethrow_3.ogg')
 
 	return S
+
+
+/proc/open_sound_channel()
+	var/static/next_channel = 1	//loop through the available 1024 - (the ones we reserve) channels and pray that its not still being used
+	. = ++next_channel
+	if(next_channel > CHANNEL_HIGHEST_AVAILABLE)
+		next_channel = 1
+
+
+/proc/get_rand_frequency()
+	return rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.

@@ -101,7 +101,10 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 		var/upgrade_level = CLAMP(C.upgrade + 1, 1, 4)
 		GLOB.xeno_caste_datums[C.caste_type_path][upgrade_level] = C
 
-	return 1
+	for(var/A in subtypesof(/datum/outputs))
+		GLOB.outputs[A] = new A
+
+	return TRUE
 
 /* // Uncomment to debug chemical reaction list.
 /client/verb/debug_chemical_list()

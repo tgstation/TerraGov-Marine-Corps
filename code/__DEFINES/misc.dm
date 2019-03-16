@@ -62,6 +62,9 @@ var/global/TAB = "&nbsp;&nbsp;&nbsp;&nbsp;"
 #define SHELLEO_STDOUT 2
 #define SHELLEO_STDERR 3
 
+#define FALLOFF_SOUNDS 1
+#define CHANNEL_HIGHEST_AVAILABLE 1015
+
 //different types of atom colorations
 #define ADMIN_COLOUR_PRIORITY 		1 //only used by rare effects like greentext coloring mobs and when admins varedit color
 #define TEMPORARY_COLOUR_PRIORITY 	2 //e.g. purple effect of the revenant on a mob, black effect when mob electrocuted

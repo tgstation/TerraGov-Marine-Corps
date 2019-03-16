@@ -1,3 +1,7 @@
+/obj/item/clothing/shoes/proc/step_action() //this was made to rewrite clown shoes squeaking
+	SEND_SIGNAL(src, COMSIG_SHOES_STEP_ACTION)
+
+
 /obj/item/clothing/shoes/syndigaloshes
 	desc = "A pair of brown shoes. They seem to have extra grip."
 	name = "brown shoes"
@@ -77,9 +81,14 @@
 	name = "clown shoes"
 	icon_state = "clown"
 	item_state = "clown_shoes"
-	slowdown = SHOES_SLOWDOWN+1
-	var/footstep = 1	//used for squeeks whilst walking
+	slowdown = SHOES_SLOWDOWN + 1
 	species_restricted = null
+
+
+/obj/item/clothing/shoes/clown_shoes/Initialize()
+	. = ..()
+	AddComponent(/datum/component/squeak, /datum/outputs/clownstep, 50)
+
 
 /obj/item/clothing/shoes/jackboots
 	name = "jackboots"

@@ -725,3 +725,17 @@ Proc for attack log creation, because really why not
 		.["Jump to"] = "?_src_=holder;[HrefToken()];observecoordjump=1;X=[curturf.x];Y=[curturf.y];Z=[curturf.z]"
 	.["Modify Transform"] = "?_src_=vars;[HrefToken()];modtransform=[REF(src)]"
 	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"
+
+
+/atom/Entered(atom/movable/AM, atom/oldLoc)
+	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, oldLoc)
+
+
+/atom/Exit(atom/movable/AM, atom/newLoc)
+	. = ..()
+	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, newLoc) & COMPONENT_ATOM_BLOCK_EXIT)
+		return FALSE
+
+
+/atom/Exited(atom/movable/AM, atom/newLoc)
+	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, newLoc)
