@@ -1073,7 +1073,7 @@ var/global/image/busy_indicator_hostile
 
 
 					for(var/obj/O in objs)
-						newobjs += DuplicateObject(O , 1)
+						newobjs += DuplicateObject(O, T)
 
 
 					for(var/obj/O in newobjs)
@@ -1085,7 +1085,7 @@ var/global/image/busy_indicator_hostile
 						mobs += M
 
 					for(var/mob/M in mobs)
-						newmobs += DuplicateObject(M , 1)
+						newmobs += DuplicateObject(M, T)
 
 					for(var/mob/M in newmobs)
 						M.loc = X
