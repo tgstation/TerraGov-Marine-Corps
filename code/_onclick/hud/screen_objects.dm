@@ -631,7 +631,7 @@
 	screen_loc = ui_ammo
 	var/warned = FALSE
 
-/obj/screen/ammo/proc/add_hud(mob/user)
+/obj/screen/ammo/proc/add_hud(mob/living/user)
 	if(!user?.client)
 		return
 
@@ -642,10 +642,10 @@
 
 	user.client.screen += src
 
-/obj/screen/ammo/proc/remove_hud(mob/user)
+/obj/screen/ammo/proc/remove_hud(mob/living/user)
 	user?.client?.screen -= src
 
-/obj/screen/ammo/proc/update_hud(mob/user)
+/obj/screen/ammo/proc/update_hud(mob/living/user)
 	if(!user?.client?.screen.Find(src))
 		return
 
