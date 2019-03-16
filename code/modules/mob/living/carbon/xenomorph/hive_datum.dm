@@ -214,11 +214,7 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 /mob/living/carbon/Xenomorph/proc/set_initial_hivenumber()
 	add_to_hive_by_hivenumber(hivenumber, force=TRUE)
 
-	if(isxenolarva(src))
-		var/mob/living/carbon/Xenomorph/Larva/L = src
-		L.update_icons() // larva renaming done differently
-	else
-		generate_name()
+	generate_name()
 
 /mob/living/carbon/Xenomorph/proc/add_to_hive_by_hivenumber(var/hivenumber, force=FALSE)
 	if(!GLOB.hive_datums[hivenumber])
