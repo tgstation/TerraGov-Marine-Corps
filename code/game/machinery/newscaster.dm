@@ -470,7 +470,6 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 					newChannel.channel_name = src.channel_name
 					newChannel.author = src.scanned_user
 					newChannel.locked = c_locked
-					feedback_inc("newscaster_channels",1)
 					/*for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)    //Let's add the new channel in all casters.
 						NEWSCASTER.channel_list += newChannel*/                     //Now that it is sane, get it into the list. -OBSOLETE
 					news_network.network_channels += newChannel                        //Adding channel to the global network
@@ -506,7 +505,6 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 				newMsg.body = src.msg
 				if(photo)
 					newMsg.img = photo.img
-				feedback_inc("newscaster_stories",1)
 				for(var/datum/feed_channel/FC in news_network.network_channels)
 					if(FC.channel_name == src.channel_name)
 						FC.messages += newMsg                  //Adding message to the network's appropriate feed_channel
@@ -936,7 +934,6 @@ obj/item/newspaper/attackby(obj/item/W as obj, mob/user as mob)
 
 
 /obj/machinery/newscaster/proc/print_paper()
-	feedback_inc("newscaster_newspapers_printed",1)
 	var/obj/item/newspaper/NEWSPAPER = new /obj/item/newspaper
 	for(var/datum/feed_channel/FC in news_network.network_channels)
 		NEWSPAPER.news_content += FC

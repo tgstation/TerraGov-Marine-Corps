@@ -91,21 +91,15 @@ var/list/lastsignalers = list(	)	//keeps last 100 signals here in format: "[src]
 var/list/lawchanges = list(  ) //Stores who uploaded laws to which silicon-based lifeform, and what the law was
 var/list/reg_dna = list(  )
 
-var/mouse_respawn_time = 15 //Amount of time that must pass between a player dying as a mouse and repawning as a mouse. In minutes.
-
 var/HangarUpperElevator
 var/HangarLowerElevator
 
 var/list/cardinal = list( NORTH, SOUTH, EAST, WEST )
 var/list/alldirs = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-// reverse_dir[dir] = reverse of dir
 var/list/reverse_dir = list(2, 1, 3, 8, 10, 9, 11, 4, 6, 5, 7, 12, 14, 13, 15, 32, 34, 33, 35, 40, 42, 41, 43, 36, 38, 37, 39, 44, 46, 45, 47, 16, 18, 17, 19, 24, 26, 25, 27, 20, 22, 21, 23, 28, 30, 29, 31, 48, 50, 49, 51, 56, 58, 57, 59, 52, 54, 53, 55, 60, 62, 61, 63)
 
-var/datum/station_state/start_state = null
 var/datum/sun/sun = null
 
-
-var/list/all_player_details = list()  // [ckey] = /datum/player_details
 
 var/Debug = 0	// global debug switch
 var/Debug2 = 0
@@ -120,14 +114,10 @@ var/gravity_is_on = 1
 var/shuttlecoming = 0
 
 var/join_motd = null
-var/forceblob = 0
 
 // nanomanager, the manager for Nano UIs
 var/datum/nanomanager/nanomanager = new()
 
-	//airlockWireColorToIndex takes a number representing the wire color, e.g. the orange wire is always 1, the dark red wire is always 2, etc. It returns the index for whatever that wire does.
-	//airlockIndexToWireColor does the opposite thing - it takes the index for what the wire does, for example AIRLOCK_WIRE_IDSCAN is 1, AIRLOCK_WIRE_POWER1 is 2, etc. It returns the wire color number.
-	//airlockWireColorToFlag takes the wire color number and returns the flag for it (1, 2, 4, 8, 16, etc)
 var/list/globalAirlockWireColorToFlag = RandomAirlockWires()
 var/list/globalAirlockIndexToFlag
 var/list/globalAirlockIndexToWireColor
@@ -153,50 +143,13 @@ var/list/AAlarmWireColorToIndex
 #define FIRE_DAMAGE_MODIFIER 0.0215 //Higher values result in more external fire damage to the skin (default 0.0215)
 #define AIR_DAMAGE_MODIFIER 2.025 //More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
 
-	//Don't set this very much higher then 1024 unless you like inviting people in to dos your server with message spam
-#define MAX_MESSAGE_LEN 1024
-#define MAX_PAPER_MESSAGE_LEN 3072
-#define MAX_BOOK_MESSAGE_LEN 9216
-#define MAX_NAME_LEN 26
 
-#define shuttle_time_in_station 1800 // 3 minutes in the station
-#define shuttle_time_to_arrive 6000 // 10 minutes to arrive
-
-	//away missions
-var/list/awaydestinations = list()	//a list of landmarks that the warpgate can take you to
-
-	// MySQL configuration
-
-var/sqladdress = "localhost"
-var/sqlport = "3306"
-var/sqldb = "tgstation"
-var/sqllogin = "root"
-var/sqlpass = ""
-
-	// Feedback gathering sql connection
-
-var/sqlfdbkdb = "test"
-var/sqlfdbklogin = "root"
-var/sqlfdbkpass = ""
-
-var/sqllogging = 0 // Should we log deaths, population stats, etc?
-
-	// For FTP requests. (i.e. downloading runtime logs.)
-	// However it'd be ok to use for accessing attack logs and such too, which are even laggier.
+// For FTP requests. (i.e. downloading runtime logs.)
+// However it'd be ok to use for accessing attack logs and such too, which are even laggier.
 var/fileaccess_timer = 0
 var/custom_event_msg = null
-
-//Database connections
-//A connection is established on world creation. Ideally, the connection dies when the server restarts (After feedback logging.).
-var/DBConnection/dbcon = new()	//Feedback database (New database)
-var/DBConnection/dbcon_old = new()	//Tgstation database (Old database) - See the files in the SQL folder for information what goes where.
 
 // Reference list for disposal sort junctions. Filled up by sorting junction's New()
 /var/list/tagger_locations = list()
 
-//added for Xenoarchaeology, might be useful for other stuff
-var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
-
-//Used for autocall procs on ERT
-//var/global/list/unanswered_distress = list()
 var/distress_cancel = 0

@@ -38,15 +38,11 @@
 								}
 								var ltd = tr.getElementsByTagName("td");
 								var td = ltd\[0\];
-								var lsearch = td.getElementsByTagName("b");
+								var lsearch = td.getElementsByClassName("filter_data");
 								var search = lsearch\[0\];
-								//var inner_span = li.getElementsByTagName("span")\[1\] //Should only ever contain one element.
-								//document.write("<p>"+search.innerText+"<br>"+filter+"<br>"+search.innerText.indexOf(filter))
 								if ( search.innerText.toLowerCase().indexOf(filter) == -1 )
 								{
-									//document.write("a");
-									//ltr.removeChild(tr);
-									td.innerHTML = "";
+									tr.innerHTML = "";
 									i--;
 								}
 							}catch(err) {   }
@@ -58,10 +54,9 @@
 					var debug = document.getElementById("debug");
 
 					locked_tabs = new Array();
-
 				}
 
-				function expand(id,job,name,real_name,key,ip,ref){
+				function expand(id,job,name,real_name,old_names,key,ip,ref){
 
 					clearAll();
 
@@ -72,7 +67,7 @@
 
 					body += "</td><td align='center'>";
 
-					body += "<font size='2'>"+job+" "+name+"<br>Real name "+real_name+"<br>Played by "+key+" ("+ip+")</font>"
+					body += "<font size='2'>"+job+" "+name+"<br>Real name "+real_name+"<br>Played by "+key+" ("+ip+")<br>Old names: "+old_names+"</font>";
 
 					body += "</td><td align='center'>";
 
@@ -83,8 +78,8 @@
 					body += "<a href='?_src_=holder;[HrefToken()];observejump="+ref+"'>JMP</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];observefollow="+ref+"'>FLW</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];individuallog="+ref+"'>LOGS</a><br>"
-					body += "</td></tr></table>";
 
+					body += "</td></tr></table>";
 
 					span.innerHTML = body
 				}
@@ -96,7 +91,7 @@
 
 						var id = span.getAttribute("id");
 
-						if(!(id.indexOf("item")==0))
+						if(!id || !(id.indexOf("item")==0))
 							continue;
 
 						var pass = 1;
@@ -141,9 +136,6 @@
 					locked_tabs.push(id);
 					var notice_span = document.getElementById(notice_span_id);
 					notice_span.innerHTML = "<font color='#bc3c3c'>Locked</font> ";
-					//link.setAttribute("onClick","attempt('"+id+"','"+link_id+"','"+notice_span_id+"');");
-					//document.write("removeFromLocked('"+id+"','"+link_id+"','"+notice_span_id+"')");
-					//document.write("aa - "+link.getAttribute("onClick"));
 				}
 
 				function attempt(ab){
@@ -166,8 +158,6 @@
 					locked_tabs\[index\] = "";
 					var notice_span = document.getElementById(notice_span_id);
 					notice_span.innerHTML = "";
-					//var link = document.getElementById(link_id);
-					//link.setAttribute("onClick","addToLocked('"+id+"','"+link_id+"','"+notice_span_id+"')");
 				}
 
 				function selectTextField(){
@@ -211,88 +201,83 @@
 
 	var/i = 1
 	for(var/mob/M in sortmobs())
-		if(M.ckey && M.client)
+		if(!M.ckey || !M.client)
+			continue
 
-			var/color = "#494949"
-			if(i % 2 == 0)
-				color = "#595959"
+		var/color = "#494949"
+		if(i % 2 == 0)
+			color = "#595959"
 
-			var/M_job = ""
+		var/M_job = ""
 
-			if(isliving(M))
-
-				if(iscarbon(M)) //Carbon stuff
-					if(ishuman(M))
-						M_job = M.job
-					else if(ismonkey(M))
-						M_job = "Monkey"
-					else if(isxeno(M))
-						if(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined")
-							M_job = "Xenomorph - [M.client.prefs.xeno_name]"
-						else
-							M_job = "Xenomorph"
+		if(isliving(M))
+			if(iscarbon(M)) //Carbon stuff
+				if(ishuman(M))
+					M_job = M.job
+				else if(ismonkey(M))
+					M_job = "Monkey"
+				else if(isxeno(M))
+					if(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined")
+						M_job = "Xenomorph - [M.client.prefs.xeno_name]"
 					else
-						M_job = "Carbon-based"
-
-				else if(issilicon(M)) //silicon
-					if(isAI(M))
-						M_job = "AI"
-					else if(iscyborg(M))
-						M_job = "Cyborg"
-					else
-						M_job = "Silicon-based"
-
-				else if(isanimal(M)) //simple animals
-					if(iscorgi(M))
-						M_job = "Corgi"
-					else
-						M_job = "animal"
-
+						M_job = "Xenomorph"
 				else
-					M_job = "Living"
+					M_job = "Carbon-based"
 
-			else if(istype(M,/mob/new_player))
-				M_job = "New player"
+			else if(issilicon(M)) //silicon
+				if(isAI(M))
+					M_job = "AI"
+				else if(iscyborg(M))
+					M_job = "Cyborg"
+				else
+					M_job = "Silicon"
 
-			else if(isobserver(M))
-				M_job = "Ghost"
+			else if(isanimal(M)) //simple animals
+				if(iscorgi(M))
+					M_job = "Corgi"
+				else
+					M_job = "Animal"
 
-			M_job = oldreplacetext(M_job, "'", "")
-			M_job = oldreplacetext(M_job, "\"", "")
-			M_job = oldreplacetext(M_job, "\\", "")
+			else
+				M_job = "Living"
 
-			var/M_name = M.name
-			M_name = oldreplacetext(M_name, "'", "")
-			M_name = oldreplacetext(M_name, "\"", "")
-			M_name = oldreplacetext(M_name, "\\", "")
-			var/M_rname = M.real_name
-			M_rname = oldreplacetext(M_rname, "'", "")
-			M_rname = oldreplacetext(M_rname, "\"", "")
-			M_rname = oldreplacetext(M_rname, "\\", "")
+		else if(istype(M,/mob/new_player))
+			M_job = "New player"
 
-			var/M_key = M.key
-			M_key = oldreplacetext(M_key, "'", "")
-			M_key = oldreplacetext(M_key, "\"", "")
-			M_key = oldreplacetext(M_key, "\\", "")
+		else if(isobserver(M))
+			M_job = "Ghost"
 
-			//output for each mob
-			dat += {"
+		M_job = html_encode(M_job)
+		var/M_name = html_encode(M.name)
+		var/M_rname = html_encode(M.real_name)
+		var/M_key = html_encode(M.key)
 
-				<tr id='data[i]' name='[i]' onClick="addToLocked('item[i]','data[i]','notice_span[i]')">
-					<td align='center' bgcolor='[color]'>
-						<span id='notice_span[i]'></span>
-						<a id='link[i]'
-						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[M_key]","[M.lastKnownIP]","[REF(M)]")'
-						>
-						<b id='search[i]' style='font-weight:normal'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
-						</a>
-						<br><span id='item[i]'></span>
+		var/previous_names = ""
+		var/datum/player_details/P = GLOB.player_details[M.ckey]
+		if(P)
+			previous_names = P.played_names.Join(", ")
+		previous_names = html_encode(previous_names)
+
+		//output for each mob
+		dat += {"
+
+			<tr id='data[i]' name='[i]' onClick="addToLocked('item[i]','data[i]','notice_span[i]')">
+				<td align='center' bgcolor='[color]'>
+					<span id='notice_span[i]'></span>
+					<a id='link[i]'
+					onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[previous_names]","[M_key]","[M.lastKnownIP]","[REF(M)]")'
+					>
+					<b id='search[i]' style='font-weight:normal'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
+					<span hidden class='filter_data'>[M_name] [M_rname] [M_key] [M_job] [previous_names]</span>
+					</a>
+					<br><span id='item[i]'></span>
 					</td>
 				</tr>
+			</tr>
 
-			"}
+		"}
 
-			i++
+		i++
 
 
 	//player table ending

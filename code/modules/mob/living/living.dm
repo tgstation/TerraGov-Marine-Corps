@@ -472,6 +472,12 @@
 		attack_icon.pixel_y = new_pix_y
 
 
+/mob/living/proc/offer_mob()
+	for(var/i in GLOB.dead_mob_list)
+		var/mob/dead/D = i
+		to_chat(D, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] \[<a href='byond://?src=[REF(D)];claim=[REF(src)]'>CLAIM</a>\] \[<a href='byond://?src=[REF(D)];track=[REF(src)]'>FOLLOW</a>\]</span><hr><br>")
+
+
 //used in datum/reagents/reaction() proc
 /mob/living/proc/get_permeability_protection()
 	return LIVING_PERM_COEFF

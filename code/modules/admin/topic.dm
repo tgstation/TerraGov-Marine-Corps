@@ -1528,19 +1528,50 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 
 	else if(href_list["admin_log"])
-		if(!check_rights(R_ASAY))
+		if(!check_rights(R_ADMIN))
 			return
 
 		var/dat = "<html><head><title>Admin Log</title></head><body>"
 
 		for(var/x in GLOB.admin_log)
-			dat += x
-			dat += "<br>"
+			dat += "[x]<br>"
 
 		dat += "</body></html>"
 
 		usr << browse(dat, "window=adminlog")
 
+
+	else if(href_list["asay_log"])
+		if(!check_rights(R_ASAY))
+			return
+
+		var/list/dat = list()
+
+		dat += "<html><head><title>Asay Log</title></head><body>"
+
+		for(var/x in GLOB.asay_log)
+			dat += "[x]<br>"
+
+		dat += "</body></html>"
+
+		usr << browse(dat.Join(), "window=adminlog")
+
+
+	else if(href_list["msay_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/list/dat = list()
+
+		dat += "<html><head><title>Msay Log</title></head><body>"
+
+		for(var/x in GLOB.msay_log)
+			dat += "[x]<br>"
+
+		dat += "</body></html>"
+
+		usr << browse(dat.Join(), "window=adminlog")
+		
 
 	else if(href_list["ffattack_log"])
 		if(!check_rights(R_ADMIN))

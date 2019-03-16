@@ -23,6 +23,11 @@ GLOBAL_PROTECT(world_manifest_log)
 GLOBAL_LIST_EMPTY(admin_log)
 GLOBAL_PROTECT(admin_log)
 
+GLOBAL_LIST_EMPTY(asay_log)
+GLOBAL_PROTECT(asay_log)
+GLOBAL_LIST_EMPTY(msay_log)
+GLOBAL_PROTECT(msay_log)
+
 GLOBAL_LIST_EMPTY(ffattack_log)
 GLOBAL_PROTECT(ffattack_log)
 

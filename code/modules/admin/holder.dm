@@ -256,8 +256,6 @@ GLOBAL_PROTECT(admin_verbs_admin)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 /world/proc/AVadmin()
 	return list(
-	/client/proc/private_message_panel,
-	/client/proc/private_message_context,
 	/datum/admins/proc/show_player_panel,
 	/datum/admins/proc/pref_attack_logs,
 	/datum/admins/proc/pref_ff_attack_logs,
@@ -287,8 +285,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/jump_coord,
 	/datum/admins/proc/jump_mob,
 	/datum/admins/proc/jump_key,
-	/datum/admins/proc/msay,
-	/datum/admins/proc/dsay,
 	/datum/admins/proc/player_panel,
 	/datum/admins/proc/player_panel_extended,
 	/datum/admins/proc/secrets_panel,
@@ -298,22 +294,26 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/job_slots,
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
-	/datum/admins/proc/mcdb
+	/datum/admins/proc/mcdb,
+	/client/proc/private_message_panel,
+	/client/proc/private_message_context,
+	/client/proc/msay,
+	/client/proc/dsay
 	)
 
 GLOBAL_PROTECT(admin_verbs_mentor)
 GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 /world/proc/AVmentor()
 	return list(
-	/datum/admins/proc/msay,
-	/datum/admins/proc/dsay,
 	/datum/admins/proc/admin_ghost,
 	/datum/admins/proc/subtle_message,
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
 	/client/proc/private_message_panel,
-	/client/proc/private_message_context
+	/client/proc/private_message_context,
+	/client/proc/msay,
+	/client/proc/dsay
 	)
 
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -330,7 +330,7 @@ GLOBAL_PROTECT(admin_verbs_asay)
 GLOBAL_LIST_INIT(admin_verbs_asay, world.AVasay())
 /world/proc/AVasay()
 	return list(
-	/datum/admins/proc/asay
+	/client/proc/asay
 	)
 
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -346,7 +346,9 @@ GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 	/datum/admins/proc/fix_next_move,
 	/datum/admins/proc/restart_controller,
 	/datum/admins/proc/check_contents,
-	/datum/admins/proc/SDQL2_query
+	/datum/admins/proc/SDQL2_query,
+	/datum/admins/proc/map_template_load,
+	/datum/admins/proc/map_template_upload
 	)
 
 GLOBAL_PROTECT(admin_verbs_varedit)
@@ -387,7 +389,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/possess,
 	/datum/admins/proc/release,
-	/client/proc/build_mode
+	/client/proc/toggle_buildmode
 	)
 
 GLOBAL_PROTECT(admin_verbs_server)
@@ -419,7 +421,8 @@ GLOBAL_PROTECT(admin_verbs_permissions)
 GLOBAL_LIST_INIT(admin_verbs_permissions, world.AVpermissions())
 /world/proc/AVpermissions()
 	return list(
-	/datum/admins/proc/permissions_panel
+	/datum/admins/proc/permissions_panel,
+	/datum/admins/proc/create_poll
 	)
 
 GLOBAL_PROTECT(admin_verbs_color)

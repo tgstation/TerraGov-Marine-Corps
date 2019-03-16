@@ -98,11 +98,6 @@
 						//Only notify the admins if an actual change happened
 						log_game("[key_name(usr)] has changed the security level to [get_security_level()].")
 						message_admins("[ADMIN_TPMONTY(usr)] has changed the security level to [get_security_level()].")
-						switch(security_level)
-							if(SEC_LEVEL_GREEN)
-								feedback_inc("alert_comms_green",1)
-							if(SEC_LEVEL_BLUE)
-								feedback_inc("alert_comms_blue",1)
 				else
 					to_chat(usr, "<span class='warning'>You are not authorized to do this.</span>")
 				tmp_alertlevel = SEC_LEVEL_GREEN //Reset to green.
