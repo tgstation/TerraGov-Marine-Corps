@@ -9,15 +9,15 @@
 
 	switch(upgrade)
 		//FIRST UPGRADE
-		if(1)
+		if(XENO_UPGRADE_ONE)
 			to_chat(src, "<span class='xenodanger'>You feel a bit stronger.</span>")
 
 		//SECOND UPGRADE
-		if(2)
+		if(XENO_UPGRADE_TWO)
 			to_chat(src, "<span class='xenodanger'>You feel a whole lot stronger.</span>")
 
 		//Final UPGRADE
-		if(3)
+		if(XENO_UPGRADE_THREE)
 			to_chat(src, "<span class='xenoannounce'>[xeno_caste.ancient_message]</span>")
 
 	generate_name() //Give them a new name now

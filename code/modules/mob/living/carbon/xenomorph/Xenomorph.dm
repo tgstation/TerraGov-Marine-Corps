@@ -54,9 +54,9 @@
 		CRASH("xeno spawned without a caste_base_type set")
 	if(!GLOB.xeno_caste_datums[caste_base_type])
 		CRASH("error finding base type")
-	if(!GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)])
+	if(!GLOB.xeno_caste_datums[caste_base_type][upgrade])
 		CRASH("error finding datum")
-	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
+	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][upgrade]
 	if(!istype(X))
 		CRASH("error with caste datum")
 	xeno_caste = X
@@ -68,7 +68,7 @@
 
 /mob/living/carbon/Xenomorph/Defiler/set_datum()
 	. = ..()
-	var/datum/xeno_caste/defiler/neuro_upgrade = GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
+	var/datum/xeno_caste/defiler/neuro_upgrade = GLOB.xeno_caste_datums[caste_base_type][upgrade]
 	neuro_claws_dose = neuro_upgrade.neuro_claws_amount
 
 /mob/living/carbon/Xenomorph/proc/generate_nicknumber()
