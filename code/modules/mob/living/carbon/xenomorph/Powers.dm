@@ -173,7 +173,7 @@
 /obj/structure/acid_spray_act(mob/living/carbon/Xenomorph/X)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
-	health -= rand(40,60) + (X.upgrade * SPRAY_STRUCTURE_UPGRADE_BONUS)
+	health -= rand(40,60) + (X.upgrade_as_number() * SPRAY_STRUCTURE_UPGRADE_BONUS)
 	update_health(TRUE)
 	return TRUE // normal density flag
 
@@ -182,7 +182,7 @@
 	return FALSE // not normal density flag
 
 /obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/Xenomorph/X)
-	take_damage_type(rand(40,60) + (X.upgrade * SPRAY_STRUCTURE_UPGRADE_BONUS), "acid", src)
+	take_damage_type(rand(40,60) + (X.upgrade_as_number() * SPRAY_STRUCTURE_UPGRADE_BONUS), "acid", src)
 	healthcheck()
 	return TRUE
 
@@ -195,7 +195,7 @@
 
 	acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
 	var/armor_block = run_armor_check("chest", "energy")
-	var/damage = rand(30,40) + (X.upgrade * SPRAY_MOB_UPGRADE_BONUS)
+	var/damage = rand(30,40) + (X.upgrade_as_number() * SPRAY_MOB_UPGRADE_BONUS)
 	apply_acid_spray_damage(damage, armor_block)
 	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
 
@@ -1461,6 +1461,26 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	else
 		check_hive_status(src)
 
+/proc/xeno_status_output(list/xenolist, can_overwatch = FALSE, ignore_leads = TRUE, user)
+	var/xenoinfo = ""
+	var/leadprefix = (ignore_leads?"":"<b>(-L-)</b>")
+	for(var/i in xenolist)
+		var/mob/living/carbon/Xenomorph/X = i
+		if(ignore_leads && X.queen_chosen_lead)
+			continue
+		if(can_overwatch)
+			xenoinfo += "<tr><td>[leadprefix]<a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
+		else
+			xenoinfo += "<tr><td>[leadprefix][X.name] "
+		if(!X.client)
+			xenoinfo += " <i>(SSD)</i>"
+		else if(X.client.prefs.xeno_name && X.client.prefs.xeno_name != "Undefined")
+			xenoinfo += "- [X.client.prefs.xeno_name]"
+
+		var/area/A = get_area(X)
+		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
+	
+	return xenoinfo
 
 /proc/check_hive_status(mob/living/carbon/Xenomorph/user, var/anchored = FALSE)
 	if(!SSticker)
@@ -1485,29 +1505,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(Q.ovipositor)
 			can_overwatch = TRUE
 
-	for(var/i in hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Queen])
-		var/mob/living/carbon/Xenomorph/X = i
-		xenoinfo += "<tr><td>[X.name] "
-		if(!X.client)
-			xenoinfo += " <i>(SSD)</i>"
-		else if(X.client.prefs.xeno_name && X.client.prefs.xeno_name != "Undefined")
-			xenoinfo += "- [X.client.prefs.xeno_name]"
-		var/area/A = get_area(X)
-		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
+	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Queen], FALSE, TRUE)
 
-	for(var/i in hive.xeno_leader_list)
-		var/mob/living/carbon/Xenomorph/X = i
-		if(can_overwatch)
-			xenoinfo += "<tr><td><b>(-L-)</b><a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
-		else
-			xenoinfo += "<tr><td><b>(-L-)</b>[X.name] "
-		if(!X.client)
-			xenoinfo += " <i>(SSD)</i>"
-		else if(X.client.prefs.xeno_name && X.client.prefs.xeno_name != "Undefined")
-			xenoinfo += "- [X.client.prefs.xeno_name]"
-
-		var/area/A = get_area(X)
-		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
+	xenoinfo += xeno_status_output(hive.xeno_leader_list, can_overwatch, FALSE, user)
 
 	for(var/typepath in hive.xenos_by_typepath)
 		var/mob/living/carbon/Xenomorph/T = typepath
@@ -1524,33 +1524,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			if(XENO_TIER_ONE)
 				tier1counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
 
-		for(var/i in hive.xenos_by_typepath[typepath])
-			var/mob/living/carbon/Xenomorph/X = i
-			if(X.queen_chosen_lead)
-				continue
-			if(can_overwatch)
-				xenoinfo += "<tr><td><a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
-			else
-				xenoinfo += "<tr><td>[X.name] "
-			if(!X.client)
-				xenoinfo += " <i>(SSD)</i>"
-			else if(X.client.prefs.xeno_name && X.client.prefs.xeno_name != "Undefined")
-				xenoinfo += "- [X.client.prefs.xeno_name]"
-			var/area/A = get_area(X)
-			xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
+		xenoinfo += xeno_status_output(hive.xenos_by_typepath[typepath], can_overwatch, TRUE, user)
 
-	for(var/i in hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Larva])
-		var/mob/living/carbon/Xenomorph/X = i
-		if(can_overwatch)
-			xenoinfo += "<tr><td><a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
-		else
-			xenoinfo += "<tr><td>[X.name] "
-		if(!X.client)
-			xenoinfo += " <i>(SSD)</i>"
-		else if(X.client.prefs.xeno_name && X.client.prefs.xeno_name != "Undefined")
-			xenoinfo += "- [X.client.prefs.xeno_name]"
-		var/area/A = get_area(X)
-		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
+	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Larva], can_overwatch, TRUE, user)
 
 	dat += "<b>Total Living Sisters: [user.hive.get_total_xeno_number()]</b><BR>"
 	dat += "<b>Tier 3: [length(user.hive.xenos_by_tier[XENO_TIER_THREE])] Sisters</b>[tier3counts]<BR>"
