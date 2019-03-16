@@ -161,7 +161,7 @@
 	queen_leader_limit = 4
 
 /mob/living/carbon/Xenomorph/Queen/handle_decay()
-	if(prob(20+abs(3*upgrade)))
+	if(prob(20+abs(3*upgrade_as_number())))
 		use_plasma(min(rand(1,2), plasma_stored))
 
 /mob/living/carbon/Xenomorph/Queen

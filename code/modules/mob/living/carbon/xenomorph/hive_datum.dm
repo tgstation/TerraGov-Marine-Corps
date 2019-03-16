@@ -32,6 +32,10 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	for(var/upgrade in GLOB.xenoupgradetiers)
 		xenos_by_upgrade[upgrade] = list()
 
+/datum/hive_status/proc/upgrade_xeno(var/mob/living/carbon/Xenomorph/X, oldlevel, newlevel)
+	xenos_by_upgrade[oldlevel] -= X
+	xenos_by_upgrade[newlevel] += X
+
 /datum/hive_status/proc/remove_leader(var/mob/living/carbon/Xenomorph/X)
 	xeno_leader_list -= X
 	X.queen_chosen_lead = FALSE
@@ -113,6 +117,7 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 
 /datum/hive_status/proc/add_xeno(mob/living/carbon/Xenomorph/X)
 	xenos_by_tier[X.tier] += X
+	xenos_by_upgrade[X.upgrade] += X
 
 	if(!xenos_by_typepath[X.caste_base_type])
 		stack_trace("trying to add an invalid typepath into hivestatus list")
@@ -127,6 +132,10 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	// Remove() returns 1 if it removes an element from a list
 	if(!xenos_by_tier[X.tier].Remove(X))
 		stack_trace("failed to remove a xeno from hive status tier list, nothing was removed!?")
+		return FALSE
+
+	if(!xenos_by_upgrade[X.upgrade].Remove(X))
+		stack_trace("trying to remove a xeno from hivestatus upgrade list, nothing was removed!?")
 		return FALSE
 
 	if(!xenos_by_typepath[X.caste_base_type])

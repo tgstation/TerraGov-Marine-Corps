@@ -36,7 +36,7 @@
 	armor_deflection = 30
 
 	// *** Defiler Abilities *** //
-	var/neuro_claws_amount = DEFILER_CLAW_AMOUNT
+	neuro_claws_amount = DEFILER_CLAW_AMOUNT
 
 /datum/xeno_caste/defiler/mature
 	upgrade_name = "Mature"

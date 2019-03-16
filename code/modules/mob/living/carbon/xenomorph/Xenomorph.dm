@@ -68,8 +68,7 @@
 
 /mob/living/carbon/Xenomorph/Defiler/set_datum()
 	. = ..()
-	var/datum/xeno_caste/defiler/neuro_upgrade = GLOB.xeno_caste_datums[caste_base_type][upgrade]
-	neuro_claws_dose = neuro_upgrade.neuro_claws_amount
+	neuro_claws_dose = xeno_caste.neuro_claws_amount
 
 /mob/living/carbon/Xenomorph/proc/generate_nicknumber()
 	//We don't have a nicknumber yet, assign one to stick with us
@@ -106,6 +105,32 @@
 			return 2
 		if(XENO_UPGRADE_THREE)
 			return 3
+
+/mob/living/carbon/Xenomorph/proc/upgrade_next()
+	switch(upgrade)
+		if(XENO_UPGRADE_INVALID)
+			return XENO_UPGRADE_INVALID
+		if(XENO_UPGRADE_ZERO)
+			return XENO_UPGRADE_ONE
+		if(XENO_UPGRADE_ONE)
+			return XENO_UPGRADE_TWO
+		if(XENO_UPGRADE_TWO)
+			return XENO_UPGRADE_THREE
+		if(XENO_UPGRADE_THREE)
+			return XENO_UPGRADE_THREE
+
+/mob/living/carbon/Xenomorph/proc/upgrade_prev()
+	switch(upgrade)
+		if(XENO_UPGRADE_INVALID)
+			return XENO_UPGRADE_INVALID
+		if(XENO_UPGRADE_ZERO)
+			return XENO_UPGRADE_ZERO
+		if(XENO_UPGRADE_ONE)
+			return XENO_UPGRADE_ZERO
+		if(XENO_UPGRADE_TWO)
+			return XENO_UPGRADE_ONE
+		if(XENO_UPGRADE_THREE)
+			return XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/examine(mob/user)
 	..()

@@ -9,6 +9,9 @@
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
 	HS.xeno_message(message, size)
 
+/mob/living/carbon/Xenomorph/proc/upgrade_possible()
+	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_THREE)
+
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
 /mob/living/carbon/Xenomorph/Stat()
@@ -24,7 +27,7 @@
 	else
 		stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
 
-	if(upgrade != -1 && upgrade != 3) //upgrade possible
+	if(upgrade_possible()) 
 		stat(null, "Upgrade Progress: [upgrade_stored]/[xeno_caste.upgrade_threshold]")
 	else //Upgrade process finished or impossible
 		stat(null, "Upgrade Progress (FINISHED)")
@@ -191,12 +194,12 @@
 		. -= round(rage * 0.012,0.01) //Ravagers gain 0.016 units of speed per unit of rage; min -0.012, max -0.6
 
 /mob/living/carbon/Xenomorph/proc/update_progression()
-	if(upgrade != -1 && upgrade != 3) //upgrade possible
+	if(upgrade_possible()) //upgrade possible
 		if(client && ckey) // pause for ssd/ghosted
 			if(!hive?.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z)
 				if(upgrade_stored >= xeno_caste.upgrade_threshold)
 					if(health == maxHealth && !is_mob_incapacitated() && !handcuffed && !legcuffed)
-						upgrade_xeno(upgrade+1)
+						upgrade_xeno(upgrade_next())
 				else
 					upgrade_stored = min(upgrade_stored + 1, xeno_caste.upgrade_threshold)
 

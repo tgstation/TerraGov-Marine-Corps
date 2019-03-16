@@ -1059,7 +1059,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		to_chat(X, "<span class='xenowarning'>[T] can't be deevolved.</span>")
 		return
 
-	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[T.xeno_caste.deevolves_to][1]
+	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[T.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
 
 	var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", , "Yes", "No")
 	if(confirm == "No")
@@ -1131,7 +1131,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		X.hive.living_xeno_queen.set_queen_overwatch(new_xeno)
 
 	// this sets the right datum
-	new_xeno.upgrade_xeno(min(T.upgrade+1,3)) //a young Crusher de-evolves into a MATURE Hunter
+	new_xeno.upgrade_xeno(T.upgrade_next()) //a young Crusher de-evolves into a MATURE Hunter
 
 	log_admin("[key_name(X)] has deevolved [key_name(T)]. Reason: [reason]")
 	message_admins("[ADMIN_TPMONTY(X)] has deevolved [ADMIN_TPMONTY(T)]. Reason: [reason]")
