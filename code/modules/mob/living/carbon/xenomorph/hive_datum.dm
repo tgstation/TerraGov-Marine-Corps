@@ -66,15 +66,14 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 /datum/hive_status/proc/update_queen()
 	if(living_xeno_queen)
 		return TRUE
-	if(length(xenos_by_typepath[/mob/living/carbon/Xenomorph/Queen]))
-		for(var/i in xenos_by_typepath[/mob/living/carbon/Xenomorph/Queen])
-			var/mob/living/carbon/Xenomorph/Queen/Q = i
-			if(is_centcom_level(Q.z))
-				continue
-			living_xeno_queen = Q
-			xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
-			update_leader_pheromones()
-			return TRUE
+	for(var/i in xenos_by_typepath[/mob/living/carbon/Xenomorph/Queen])
+		var/mob/living/carbon/Xenomorph/Queen/Q = i
+		if(is_centcom_level(Q.z))
+			continue
+		living_xeno_queen = Q
+		xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
+		update_leader_pheromones()
+		return TRUE
 	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3)
 	xeno_message("<span class='xenoannounce'>The slashing of hosts is now permitted.</span>",2)
 	slashing_allowed = XENO_SLASHING_ALLOWED
