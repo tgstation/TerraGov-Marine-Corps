@@ -149,21 +149,24 @@
 
 /obj/item/stack/medical/advanced/
 	dir = NORTH
+	flags_atom = DIRLOCK
 
 /obj/item/stack/medical/advanced/update_icon()
+	if(max_amount < 1)
+		return
+	var/percentage = round(amount / max_amount) * 100
 	if(amount >= max_amount)
-		switch(amount)
-			if(1 to 2)
+		switch(percentage)
+			if(1 to 20)
 				setDir(SOUTH)
-			if(3 to 4)
+			if(21 to 40)
 				setDir(EAST)
-			if(5 to 6)
+			if(41 to 60)
 				setDir(SOUTHEAST)
-			if(7 to 8)
+			if(61 to 80)
 				setDir(WEST)
-			if(9 to INFINITY)
+			if(81 to INFINITY)
 				setDir(NORTH)
-
 
 /obj/item/stack/medical/advanced/bruise_pack
 	name = "advanced trauma kit"
