@@ -114,7 +114,7 @@
 
 	else if(href_list["allitems"])
 
-		if(!length(stored_items.len))
+		if(!length(stored_items))
 			to_chat(user, "<span class='warning'>There is nothing to recover from storage.</span>")
 			return
 
@@ -206,15 +206,14 @@
 	stop_processing()
 	update_icon()
 
-/mob/proc/despawn(obj/machinery/cryopod/pod)
+/mob/proc/despawn(obj/machinery/cryopod/pod, list/dept_console = GLOB.cryoed_item_list["REQ"])
 	var/list/items = contents.Copy()
 
 	var/list/stored_items = list()
 
 	for(var/obj/item/W in items)
-		stored_items += W.place_in_storage()
+		stored_items.Add(W.store_in_cryo())
 
-	var/list/dept_console = GLOB.cryoed_item_list["REQ"]
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		switch(H.job)
@@ -237,33 +236,11 @@
 
 	dept_console += stored_items
 
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if(H.mind && H.assigned_squad)
-			var/datum/squad/S = H.assigned_squad
-			switch(H.mind.assigned_role)
-				if("Squad Engineer")
-					S.num_engineers--
-				if("Squad Corpsman")
-					S.num_medics--
-				if("Squad Specialist")
-					S.num_specialists--
-					if(H.specset && !available_specialist_sets.Find(H.specset))
-						available_specialist_sets += H.specset //we make the set this specialist took if any available again
-
-				if("Squad Smartgunner")
-					S.num_smartgun--
-				if("Squad Leader")
-					S.num_leaders--
-			S.count--
-		H.assigned_squad?.clean_marine_from_squad(H,TRUE) //Remove from squad recods, if any.
-
 	SSticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
 
 	//Handle job slot/tater cleanup.
-	if(mind?.assigned_role)
-		var/datum/job/J = SSjob.name_occupations[mind.assigned_role]
-		J.current_positions--
+	var/datum/job/J = job
+	J?.current_positions--
 
 	//Delete them from datacore.
 	if(length(PDA_Manifest))
@@ -282,7 +259,7 @@
 			qdel(G)
 
 
-	ghostize(0) //We want to make sure they are not kicked to lobby.
+	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
 	//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?
 
 	//Make an announcement and log the person entering storage.
@@ -293,7 +270,46 @@
 
 	return TRUE //Delete the mob.
 
-/obj/item/proc/place_in_storage(/obj/machinery/cryopod/pod)
+/mob/living/carbon/human/despawn(obj/machinery/cryopod/pod, list/dept_console = GLOB.cryoed_item_list["REQ"])
+	switch(job)
+		if("Master at Arms","Command Master at Arms")
+			dept_console = GLOB.cryoed_item_list["MP"]
+		if("Medical Officer","Medical Researcher","Chief Medical Officer")
+			dept_console = GLOB.cryoed_item_list["Med"]
+		if("Ship Engineer","Chief Ship Engineer")
+			dept_console = GLOB.cryoed_item_list["Eng"]
+		else if(assigned_squad)
+			switch(assigned_squad.id)
+				if(ALPHA_SQUAD)
+					dept_console = GLOB.cryoed_item_list["Alpha"]
+				if(BRAVO_SQUAD)
+					dept_console = GLOB.cryoed_item_list["Bravo"]
+				if(CHARLIE_SQUAD)
+					dept_console = GLOB.cryoed_item_list["Charlie"]
+				if(DELTA_SQUAD)
+					dept_console = GLOB.cryoed_item_list["Delta"]
+	if(assigned_squad)
+		var/datum/squad/S = assigned_squad
+		if(mind)
+			switch(mind.assigned_role)
+				if("Squad Engineer")
+					S.num_engineers--
+				if("Squad Corpsman")
+					S.num_medics--
+				if("Squad Specialist")
+					S.num_specialists--
+					if(specset && !available_specialist_sets.Find(specset))
+						available_specialist_sets += specset //we make the set this specialist took if any available again
+				if("Squad Smartgunner")
+					S.num_smartgun--
+				if("Squad Leader")
+					S.num_leaders--
+			S.count--
+		S.clean_marine_from_squad(src, TRUE) //Remove from squad recods, if any.
+
+	return ..()
+
+/obj/item/proc/store_in_cryo(list/items)
 
 	//bandaid for special cases (mob_holders, intellicards etc.) which are NOT currently handled on their own.
 	if(locate(/mob) in src)
@@ -304,34 +320,46 @@
 		qdel(src)
 		return
 
-	. += list(src)
-	//special items that store stuff in a nonstandard way, we properly remove those items
-
-	if(istype(src, /obj/item/clothing/suit/storage))
-		var/obj/item/clothing/suit/storage/SS = src
-		for(var/obj/item/I in SS.pockets)
-			SS.pockets.remove_from_storage(I, loc)
-			. += I.place_in_storage()
-
-	else if(istype(src, /obj/item/clothing/under))
-		var/obj/item/clothing/under/UN = src
-		if(UN.hastie)
-			var/obj/item/TIE = UN.hastie
-			UN.remove_accessory()
-			. += TIE.place_in_storage()
-
-	else if(istype(src, /obj/item/clothing/shoes/marine))
-		var/obj/item/clothing/shoes/marine/MS = src
-		if(MS.knife)
-			. += MS.knife.place_in_storage()
-			MS.knife = null
-			MS.update_icon()
+	LAZYADD(items, src)
 
 	if(flags_item & (ITEM_ABSTRACT|NODROP|DELONDROP) || (is_type_in_typecache(src, GLOB.do_not_preserve_empty) && !length(contents)))
-		. -= src
+		items -= src
 		qdel(src)
 	else
 		loc = null
+	return items
+
+/obj/item/clothing/suit/storage/store_in_cryo(list/items)
+	for(var/obj/item/I in pockets)
+		pockets.remove_from_storage(I, loc)
+		items = I.store_in_cryo(items)
+	return ..()
+
+/obj/item/clothing/under/store_in_cryo(list/items)
+	if(hastie)
+		var/obj/item/TIE = hastie
+		remove_accessory()
+		items = TIE.store_in_cryo(items)
+	return ..()
+
+/obj/item/clothing/shoes/marine/store_in_cryo(list/items)
+	if(knife)
+		items = knife.store_in_cryo(items)
+		knife = null
+		update_icon()
+	return ..()
+
+/obj/item/clothing/tie/storage/store_in_cryo(list/items)
+	for(var/obj/item/I in hold)
+		hold.remove_from_storage(I, loc)
+		items = I.store_in_cryo(items)
+	return ..()
+
+/obj/item/clothing/tie/holster/store_in_cryo(list/items)
+	if(holstered)
+		items = holstered.store_in_cryo(items)
+		holstered = null
+		update_icon()
 
 /obj/machinery/cryopod/attackby(obj/item/W, mob/living/user)
 
