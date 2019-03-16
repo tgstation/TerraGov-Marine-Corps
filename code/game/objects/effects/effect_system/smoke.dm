@@ -99,7 +99,8 @@
 /obj/effect/particle_effect/smoke/proc/copy_stats(obj/effect/particle_effect/smoke/parent)
 	amount = parent.amount-1
 	lifetime = parent.lifetime
-	fraction = INVERSE(parent.lifetime)
+	if(lifetime)
+		fraction = INVERSE(lifetime)
 
 /obj/effect/particle_effect/smoke/proc/spawn_smoke(list/newsmokes)
 	for(var/obj/effect/particle_effect/smoke/SM in newsmokes)
@@ -349,16 +350,14 @@
 		to_chat(C, "<span class='danger'>Your eyes sting. You can't see!</span>")
 	C.blur_eyes(4)
 	C.blind_eyes(2)
-	var/reagent_amount = 6 + strength * 2
+	var/reagent_amount = 5 + strength * 2
 	C.reagents.add_reagent("xeno_toxin", reagent_amount)
-	if(prob(reagent_amount * 5)) //Likely to momentarily freeze up/fall due to arms/hands seizing up
-		if(prob(50))
+	if(prob(reagent_amount * 4)) //Likely to momentarily freeze up/fall due to arms/hands seizing up
+		if(!C.is_mob_incapacitated(TRUE))
 			to_chat(C, "<span class='danger'>Your body is going numb, almost as if paralyzed!</span>")
 		C.AdjustKnockeddown(1)
 	if(prob(50))
-		C.emote("cough")
-	else
-		C.emote("gasp")
+		C.emote(pick("cough", "gasp"))
 
 /obj/effect/particle_effect/smoke/xeno/neuro/effect_contact(mob/living/carbon/C)
 	if(!C.internal && !C.has_smoke_protection()) //skin protection won't matter if without gas protection
