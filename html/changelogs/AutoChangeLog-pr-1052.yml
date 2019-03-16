@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - rscadd: "Codex now includes every type of projectile"
