@@ -206,7 +206,7 @@
 	stop_processing()
 	update_icon()
 
-/mob/proc/despawn(obj/machinery/cryopod/pod, list/dept_console = "REQ")
+/mob/proc/despawn(obj/machinery/cryopod/pod, dept_console = "REQ")
 	var/list/stored_items = list()
 
 	for(var/obj/item/W in contents)
