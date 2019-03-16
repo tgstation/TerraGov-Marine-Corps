@@ -442,10 +442,9 @@
 	throw_speed = 3
 	throw_range = 15
 	attack_verb = list("HONKED")
-	var/spam_flag = 0
 
 
-/obj/item/bikehorn/Initialize()
+/obj/item/toy/bikehorn/Initialize()
 	. = ..()
 	AddComponent(/datum/component/squeak, 'sound/items/bikehorn.ogg', 50)
 

@@ -12,7 +12,7 @@
 	var/use_delay = 20
 
 
-/datum/component/squeak/Initialize(squeak_sound, volume_override, chance_override, step_delay_override, use_delay_override)
+/datum/component/squeak/Initialize(sound_to_play, volume_override, chance_override, step_delay_override, use_delay_override)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_ATOM_ENTERED, COMSIG_PARENT_ATTACKBY), .proc/play_squeak)
@@ -27,8 +27,8 @@
 			if(istype(parent, /obj/item/clothing/shoes))
 				RegisterSignal(parent, COMSIG_SHOES_STEP_ACTION, .proc/step_squeak)
 
-	if(islist(squeak_sound))
-		squeak_sound = pick(squeak_sound)
+	squeak_sound = sound_to_play
+
 	if(chance_override)
 		squeak_chance = chance_override
 	if(volume_override)
@@ -40,11 +40,16 @@
 
 
 /datum/component/squeak/proc/play_squeak()
-	if(prob(squeak_chance))
-		if(!squeak_sound)
-			CRASH("Squeak component attempted to play invalid sound.")
-		else
-			playsound(parent, squeak_sound, volume, 1, -1)
+	if(!prob(squeak_chance))
+		return
+	if(!squeak_sound)
+		CRASH("Squeak component attempted to play invalid sound.")
+		return
+
+	if(islist(squeak_sound))
+		playsound(parent, sound(pick(squeak_sound)), volume)
+	else
+		playsound(parent, sound(squeak_sound), volume)
 
 
 /datum/component/squeak/proc/step_squeak()
