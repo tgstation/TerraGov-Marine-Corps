@@ -316,14 +316,11 @@
 /mob/living/carbon/human/ignore_pull_delay()
 	return isyautjastrict(src) //Predators aren't slowed when pulling their prey.
 
-/mob/living/proc/can_inject()
-	return TRUE
-
 /mob/living/is_injectable(allowmobs = TRUE)
-	return (allowmobs && reagents && can_inject())
+	return (allowmobs && can_inject())
 
 /mob/living/is_drawable(allowmobs = TRUE)
-	return (allowmobs && reagents && can_inject())
+	return (allowmobs && can_inject())
 
 /mob/living/Bump(atom/movable/AM, yes)
 	if(buckled || !yes || now_pushing)
@@ -585,7 +582,7 @@ below 100 is not dizzy
 /mob/living/proc/equip_preference_gear(client/C)
 	if(!C?.prefs || !istype(back, /obj/item/storage/backpack))
 		return
-	
+
 	var/datum/preferences/P = C.prefs
 	var/list/gear = P.gear
 
