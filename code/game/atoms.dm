@@ -691,18 +691,11 @@ Proc for attack log creation, because really why not
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_atom |= INITIALIZED
 
-	ComponentInitialize()
-
 	return INITIALIZE_HINT_NORMAL
 
 
 //called if Initialize returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize()
-	return
-
-
-// Put your AddComponent() calls here
-/atom/proc/ComponentInitialize()
 	return
 
 
