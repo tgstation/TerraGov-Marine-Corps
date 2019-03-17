@@ -24,7 +24,6 @@
 
 /obj/effect/landmark/start
 	name = "start"
-	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
 	anchored = TRUE
 	layer = MOB_LAYER
@@ -177,3 +176,8 @@
 	. = ..()
 	GLOB.prisonwarp += loc
 	return INITIALIZE_HINT_QDEL
+
+
+/obj/effect/landmark/observer_start
+	name = "Observer-Start"
+	icon_state = "observer_start"

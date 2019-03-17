@@ -1,0 +1,22 @@
+.jobs
+{
+	width: 300px;
+	margin: 0 auto;
+}
+
+.jobsColumn
+{
+	float: center;
+	width: 270px;
+	text-align: center;
+}
+
+.commandPosition
+{
+	font-weight: bold;
+}
+
+.otherPosition
+{
+	
+}

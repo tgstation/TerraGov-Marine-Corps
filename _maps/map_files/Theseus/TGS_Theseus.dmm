@@ -19750,6 +19750,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
+/obj/effect/landmark/observer_start,
 /turf/open/floor/almayer,
 /area/almayer/hallways/aft_hallway)
 "aSY" = (
@@ -50929,6 +50930,13 @@
 	dir = 4
 	},
 /area/almayer/engineering/upper_engineering)
+"lfc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/landmark/observer_start,
+/turf/open/floor/almayer,
+/area/almayer/living/briefing)
 "lhN" = (
 /obj/machinery/camera/autoname/almayer,
 /turf/open/floor/almayer{
@@ -88331,7 +88339,7 @@ bvX
 bIz
 bIz
 bIz
-bqX
+lfc
 ckX
 ckX
 ckX

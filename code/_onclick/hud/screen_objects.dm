@@ -10,7 +10,7 @@
 	name = ""
 	icon = 'icons/mob/screen1.dmi'
 	layer = ABOVE_HUD_LAYER
-	unacidable = 1
+	unacidable = TRUE
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
 
 /obj/screen/text
@@ -699,3 +699,50 @@
 			overlays += image('icons/mob/ammoHUD.dmi', src, "o9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "t9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "h9")
+
+
+
+
+/obj/screen/splash
+	icon = 'icons/blank_title.png'
+	icon_state = ""
+	screen_loc = "1,1"
+	layer = SPLASHSCREEN_LAYER
+	plane = SPLASHSCREEN_PLANE
+	var/client/holder
+
+/obj/screen/splash/New(client/C, visible, use_previous_title) //TODO: Make this use INITIALIZE_IMMEDIATE, except its not easy
+	. = ..()
+
+	holder = C
+
+	if(!visible)
+		alpha = 0
+
+	if(!use_previous_title)
+		if(SStitle.icon)
+			icon = SStitle.icon
+	else
+		if(!SStitle.previous_icon)
+			qdel(src)
+			return
+		icon = SStitle.previous_icon
+
+	holder.screen += src
+
+/obj/screen/splash/proc/Fade(out, qdel_after = TRUE)
+	if(QDELETED(src))
+		return
+	if(out)
+		animate(src, alpha = 0, time = 30)
+	else
+		alpha = 0
+		animate(src, alpha = 255, time = 30)
+	if(qdel_after)
+		QDEL_IN(src, 30)
+
+/obj/screen/splash/Destroy()
+	if(holder)
+		holder.screen -= src
+		holder = null
+	return ..()
