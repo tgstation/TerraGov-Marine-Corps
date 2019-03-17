@@ -922,7 +922,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		T.hud_set_queen_overwatch()
 		T.handle_xeno_leader_pheromones(X)
 	else
-		if(X.hive.xeno_leader_list.len > 1)
+		if(X.hive.xeno_leader_list.len)
 			var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph leader?") as null|anything in X.hive.xeno_leader_list
 			if(!selected_xeno || !selected_xeno.queen_chosen_lead || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z != X.z || !X.check_state())
 				return

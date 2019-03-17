@@ -117,11 +117,9 @@
 
 /datum/hive_status/proc/post_add(mob/living/carbon/Xenomorph/X)
 	X.color = color
-	return
 
 /datum/hive_status/proc/post_removal(mob/living/carbon/Xenomorph/X)
 	X.color = null
-	return
 
 /datum/hive_status/proc/add_xeno(mob/living/carbon/Xenomorph/X)
 	xenos_by_tier[X.tier] += X

@@ -246,57 +246,52 @@
 	if(stat == DEAD)
 		return
 
-	if(++breathing_counter >= rand(12, 17)) //Increase the breathing variable each tick. Play it at random intervals.
-		playsound(loc, pick('sound/voice/alien_queen_breath1.ogg', 'sound/voice/alien_queen_breath2.ogg'), 15, 1, 4)
-		breathing_counter = 0 //Reset the counter
+		if(observed_xeno)
+			if(observed_xeno.stat == DEAD || observed_xeno.gc_destroyed)
+				set_queen_overwatch(observed_xeno, TRUE)
 
-	if(observed_xeno)
-		if(observed_xeno.stat == DEAD || observed_xeno.gc_destroyed)
-			set_queen_overwatch(observed_xeno, TRUE)
+		if(ovipositor && !is_mob_incapacitated(TRUE))
+			egg_amount += 0.07 //one egg approximately every 30 seconds
+			if(egg_amount >= 1)
+				if(isturf(loc))
+					var/turf/T = loc
+					if(T.contents.len <= 25) //so we don't end up with a million object on that turf.
+						egg_amount--
+						var/obj/item/xeno_egg/newegg = new /obj/item/xeno_egg(loc)
+						newegg.hivenumber = hivenumber
 
-	if(!ovipositor || is_mob_incapacitated(TRUE))
-		return
+			if(hivenumber == XENO_HIVE_NORMAL && is_ground_level(loc.z))
+				if(SSticker.mode.stored_larva)
+					if((last_larva_time + 600) < world.time) // every minute
+						last_larva_time = world.time
+						var/picked = get_alien_candidate()
+						if(picked)
+							var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
+							new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
+							"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
+							SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
+							new_xeno.key = picked
 
-	egg_amount += 0.07 //one egg approximately every 30 seconds
-	if(egg_amount < 1)
-		return
+							if(new_xeno.client)
+								new_xeno.client.change_view(world.view)
 
-	if(isturf(loc))
-		var/turf/T = loc
-		if(length(T.contents) <= 25) //so we don't end up with a million object on that turf.
-			egg_amount--
-			var/obj/item/xeno_egg/newegg = new /obj/item/xeno_egg(loc)
-			newegg.hivenumber = hivenumber
+							to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
+							SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
 
-	if(!isdistress(SSticker?.mode))
-		return
+							SSticker.mode.stored_larva--
 
-	var/datum/game_mode/distress/D = SSticker.mode
-
-	if(hivenumber != XENO_HIVE_NORMAL || !is_ground_level(loc.z))
-		return
-
-	if(!D.stored_larva)
-		return
-
-	if((last_larva_time + 1 MINUTES) > world.time)
-		return
-
-	last_larva_time = world.time
-	var/picked = get_alien_candidate()
-	if(!picked)
-		return
-
-	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
-	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
-	"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
-
-	new_xeno.key = picked
-
-	to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
-	SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
-
-	D.stored_larva--
+				var/searchx
+				var/searchy
+				var/turf/searchspot
+				for(searchx=-1, searchx<1, searchx++)
+					for(searchy=-1, searchy<1, searchy++)
+						searchspot = locate(loc.x+searchx, loc.y+searchy, loc.z)
+						for(var/mob/living/carbon/Xenomorph/Larva/L in searchspot)
+							if(!L.ckey || !L.client) // no one home
+								visible_message("<span class='xenodanger'>[L] quickly burrows into the ground.</span>")
+								SSticker.mode.stored_larva++
+								round_statistics.total_xenos_created-- // keep stats sane
+								qdel(L)
 
 
 //Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
@@ -558,7 +553,8 @@
 			name = "[hive.prefix]Ancient Empress" //Ancient
 
 	real_name = name
-	if(mind) mind.name = name 
+	if(mind) 
+		mind.name = name 
 
 /mob/living/carbon/Xenomorph/Queen/proc/mount_ovipositor()
 	if(ovipositor) return //sanity check
