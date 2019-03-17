@@ -49,6 +49,7 @@ GLOBAL_LIST_EMPTY(latejoin_ai_cores)
 
 GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 
+GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 
 /proc/update_config_movespeed_type_lookup(update_mobs = TRUE)
 	return

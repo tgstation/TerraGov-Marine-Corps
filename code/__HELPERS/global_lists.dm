@@ -102,6 +102,7 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 
 	for(var/H in subtypesof(/datum/hive_status))
 		var/datum/hive_status/HS = new H
+		GLOB.hive_datums += HS.hivenumber
 		GLOB.hive_datums[HS.hivenumber] = HS
 
 	return 1

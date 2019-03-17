@@ -1,6 +1,3 @@
-
-GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
-
 /datum/hive_status
 	var/name = "Normal"
 	var/hivenumber = XENO_HIVE_NORMAL
@@ -23,7 +20,8 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	xenos_by_tier = list()
 	xenos_by_upgrade = list()
 
-	for(var/mob/living/carbon/Xenomorph/X in subtypesof(/mob/living/carbon/Xenomorph))
+	for(var/t in subtypesof(/mob/living/carbon/Xenomorph))
+		var/mob/living/carbon/Xenomorph/X = t
 		xenos_by_typepath[initial(X.caste_base_type)] = list()
 
 	for(var/tier in GLOB.xenotiers)
@@ -32,15 +30,15 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	for(var/upgrade in GLOB.xenoupgradetiers)
 		xenos_by_upgrade[upgrade] = list()
 
-/datum/hive_status/proc/upgrade_xeno(var/mob/living/carbon/Xenomorph/X, oldlevel, newlevel)
+/datum/hive_status/proc/upgrade_xeno(mob/living/carbon/Xenomorph/X, oldlevel, newlevel)
 	xenos_by_upgrade[oldlevel] -= X
 	xenos_by_upgrade[newlevel] += X
 
-/datum/hive_status/proc/remove_leader(var/mob/living/carbon/Xenomorph/X)
+/datum/hive_status/proc/remove_leader(mob/living/carbon/Xenomorph/X)
 	xeno_leader_list -= X
 	X.queen_chosen_lead = FALSE
 
-/datum/hive_status/proc/add_leader(var/mob/living/carbon/Xenomorph/X)
+/datum/hive_status/proc/add_leader(mob/living/carbon/Xenomorph/X)
 	xeno_leader_list += X
 	X.queen_chosen_lead = TRUE
 
@@ -130,7 +128,7 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	xenos_by_upgrade[X.upgrade] += X
 
 	if(!xenos_by_typepath[X.caste_base_type])
-		stack_trace("trying to add an invalid typepath into hivestatus list")
+		stack_trace("trying to add an invalid typepath into hivestatus list [X.caste_base_type]")
 		return FALSE
 
 	xenos_by_typepath[X.caste_base_type] += X
@@ -138,7 +136,7 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	post_add(X)
 	return TRUE
 
-/datum/hive_status/proc/remove_xeno(var/mob/living/carbon/Xenomorph/X)
+/datum/hive_status/proc/remove_xeno(mob/living/carbon/Xenomorph/X)
 	// Remove() returns 1 if it removes an element from a list
 	if(!xenos_by_tier[X.tier].Remove(X))
 		stack_trace("failed to remove a xeno from hive status tier list, nothing was removed!?")
@@ -204,11 +202,11 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	prefix = "Corrupted "
 	color = "#00ff80"
 
-/datum/hive_status/corrupted/post_add(var/mob/living/carbon/Xenomorph/X)
+/datum/hive_status/corrupted/post_add(mob/living/carbon/Xenomorph/X)
 	. = ..()
 	X.add_language("English")
 
-/datum/hive_status/corrupted/post_removal(var/mob/living/carbon/Xenomorph/X)
+/datum/hive_status/corrupted/post_removal(mob/living/carbon/Xenomorph/X)
 	. = ..()
 	X.remove_language("English")
 
@@ -235,13 +233,13 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 
 	generate_name()
 
-/mob/living/carbon/Xenomorph/proc/add_to_hive_by_hivenumber(var/hivenumber, force=FALSE)
+/mob/living/carbon/Xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE)
 	if(!GLOB.hive_datums[hivenumber])
 		CRASH("add_to_hive_by_hivenumber called with invalid hivenumber")
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
 	add_to_hive(HS, force)
 
-/mob/living/carbon/Xenomorph/proc/add_to_hive(var/datum/hive_status/HS, force=FALSE)
+/mob/living/carbon/Xenomorph/proc/add_to_hive(datum/hive_status/HS, force=FALSE)
 	if(!force && hivenumber != XENO_HIVE_NONE)
 		CRASH("trying to do a dirty add_to_hive")
 
@@ -254,7 +252,7 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	hive = HS
 	hivenumber = HS.hivenumber // just to be sure
 
-/mob/living/carbon/Xenomorph/Queen/add_to_hive(var/datum/hive_status/HS, force=FALSE)
+/mob/living/carbon/Xenomorph/Queen/add_to_hive(datum/hive_status/HS, force=FALSE)
 	. = ..()
 	if(HS.living_xeno_queen) // theres already a queen
 		return
@@ -265,7 +263,7 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	if(!istype(hive))
 		CRASH("tried to remove a xeno from a hive that didnt have a hive to be removed from")
 
-	if(!hive.remove_xeno())
+	if(!hive.remove_xeno(src))
 		CRASH("failed to remove xeno from a hive")
 
 	if(queen_chosen_lead || src in hive.xeno_leader_list)
@@ -282,7 +280,7 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	. = ..()
 	HS.update_queen()
 
-/mob/living/carbon/Xenomorph/proc/transfer_to_hive(var/hivenumber)
+/mob/living/carbon/Xenomorph/proc/transfer_to_hive(hivenumber)
 	if(!GLOB.hive_datums[hivenumber])
 		CRASH("invalid hivenumber passed to transfer_to_hive")
 

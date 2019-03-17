@@ -33,6 +33,8 @@
 	GLOB.xeno_mob_list += src
 	round_statistics.total_xenos_created++
 
+	add_to_hive_by_hivenumber(hivenumber, TRUE)
+
 	generate_nicknumber()
 
 	//Mind has to be transferred! Hopefully this will give it enough time to do so.

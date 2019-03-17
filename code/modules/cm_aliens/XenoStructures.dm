@@ -459,8 +459,8 @@
 	var/status = EGG_GROWING
 	var/hivenumber = XENO_HIVE_NORMAL
 
-/obj/effect/alien/egg/New()
-	..()
+/obj/effect/alien/egg/Initialize()
+	. = ..()
 	if(hugger_type)
 		hugger = new hugger_type(src)
 		hugger.hivenumber = hivenumber
@@ -557,9 +557,11 @@
 
 /obj/effect/alien/egg/update_icon()
 	overlays.Cut()
-	if(hivenumber && GLOB.hive_datums[hivenumber])
+	if(hivenumber != XENO_HIVE_NORMAL && GLOB.hive_datums[hivenumber])
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 		color = hive.color
+	else
+		color = null
 	switch(status)
 		if(EGG_DESTROYED)
 			icon_state = "Egg Exploded"
