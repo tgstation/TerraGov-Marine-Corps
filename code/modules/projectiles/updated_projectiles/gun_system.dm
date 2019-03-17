@@ -983,7 +983,7 @@ and you're good to go.
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.damage = round(projectile_to_fire.damage * damage_mult) 		// Apply gun damage multiplier to projectile damage
 	projectile_to_fire.damage_falloff	= round(projectile_to_fire.damage_falloff * damage_falloff_mult) 	// Apply gun damage bleed multiplier to projectile damage bleed
-	projectile_to_fire.speed -= shell_speed_mod
+	projectile_to_fire.set_shell_speed(src, projectile_to_fire.get_shell_tile_speed() - shell_speed_mod)
 	projectile_to_fire.firer = src
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
 

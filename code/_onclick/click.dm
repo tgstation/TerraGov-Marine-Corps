@@ -214,35 +214,6 @@
 	Laser Eyes: as the name implies, handles this since nothing else does currently
 	face_atom: turns the mob towards what you clicked on
 */
-/mob/proc/LaserEyes(atom/A)
-	return
-
-/mob/living/LaserEyes(atom/A)
-	next_move = world.time + 6
-	var/turf/T = get_turf(src)
-	var/turf/U = get_turf(A)
-
-	var/obj/item/projectile/beam/LE = new /obj/item/projectile/beam( loc )
-	LE.icon = 'icons/effects/genetics.dmi'
-	LE.icon_state = "eyelasers"
-	playsound(usr.loc, 'sound/weapons/taser2.ogg', 25, 1)
-
-	LE.firer = src
-	LE.def_zone = get_limbzone_target()
-	LE.original = A
-	LE.current = T
-	LE.yo = U.y - T.y
-	LE.xo = U.x - T.x
-	spawn( 1 )
-		LE.process()
-
-/mob/living/carbon/human/LaserEyes()
-	if(nutrition>0)
-		..()
-		nutrition = max(nutrition - rand(1,5),0)
-		handle_regular_hud_updates()
-	else
-		to_chat(src, "<span class='warning'>You're out of energy!  You need food!</span>")
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /mob/proc/face_atom(var/atom/A)

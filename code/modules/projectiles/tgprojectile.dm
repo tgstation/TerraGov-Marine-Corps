@@ -21,7 +21,6 @@
 	var/hitsound_wall = ""
 	layer = FLY_LAYER
 
-	var/current = null // TODO: this is use in some laser beam eye code ONCE, ??? code/_onclick/click.dm:235 ???
 	var/distance_travelled = 0
 	var/scatter = 0
 	var/datum/ammo/ammo
@@ -51,7 +50,7 @@
 	var/datum/point/vector/trajectory
 	var/trajectory_ignore_forcemove = FALSE	//instructs forceMove to NOT reset our trajectory to the new location!
 
-	var/speed = 0.8			//Amount of deciseconds it takes for projectile to travel
+	var/speed = 0			//Amount of deciseconds it takes for projectile to travel
 	var/Angle = 0
 	var/original_angle = 0		//Angle at firing
 	var/nondirectional_sprite = FALSE //Set TRUE to prevent projectiles from having their sprites rotated based on firing angle
@@ -106,12 +105,25 @@
 
 	var/temporary_unstoppable_movement = FALSE
 
+/obj/item/projectile/proc/set_shell_speed(atom/something, number) // convert the speed in tiles/second to seconds/tile
+	if(number == 0) // division by zero BEGONE!!
+		speed = 0
+		return
+	message_admins("[something.name] tried to change speed to [number] from [speed]. Changed to [1/number]")
+	speed = 1 / number
+
+/obj/item/projectile/proc/get_shell_tile_speed() // this should return the amount of tiles travelled in 1 second
+	if(speed == 0) // division by zero BEGONE!!
+		return 0
+	return (1 / speed)
+
 /obj/item/projectile/Initialize()
 	. = ..()
 	permutated = list()
 	decayedRange = range
 
 /obj/item/projectile/proc/Range()
+	message_admins("e:b:ic range time!!")
 	range--
 	if(range <= 0 && loc)
 		on_range()
@@ -154,6 +166,8 @@
 
 
 /obj/item/projectile/Bump(atom/A as mob|obj|turf|area)
+	if(A in permutated)
+		return
 	var/datum/point/pcache = trajectory.copy_to()
 	var/turf/T = get_turf(A)
 	if(check_ricochet(A) && check_ricochet_flag(A) && ricochets < ricochets_max)
@@ -176,7 +190,7 @@
 			volume = 5
 		playsound(loc, hitsound_wall, volume, 1, -1)
 
-	if(!(A in permutated) && A.density && isturf(A) )
+	if(A.density && isturf(A) )
 		ammo.on_hit_turf(A, src)
 		if(A?.loc)
 			A.bullet_act(src)
@@ -187,7 +201,7 @@
 	
 	var/hit_chance = A.get_projectile_hit_chance(src) // Calculated from combination of both ammo accuracy and gun accuracy
 
-	if(hit_chance && !(A in permutated))
+	if(hit_chance)
 		if(isliving(A))
 			if(firer && firer.sniper_target(A) && A != firer.sniper_target(A)) //First check to see if we've actually got anyone targeted; If we've singled out someone with a targeting laser, forsake all others
 				return
@@ -240,15 +254,6 @@
 			ammo.on_hit_obj(A,src)
 			if(A && A.loc)
 				A.bullet_act(src)
-		qdel(src)
-
-	// Explosive ammo always explodes on the turf of the clicked target
-	if(src && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE && T == target_turf)
-		ammo.on_hit_turf(T,src)
-		if(T?.loc)
-			T.bullet_act(src)
-	
-		//A.bullet_act(src)
 		qdel(src)
 
 /obj/item/projectile/proc/check_ricochet()
@@ -412,13 +417,12 @@
 	damage_falloff = ammo.damage_falloff
 	list_reagents = ammo.ammo_reagents
 	armor_type = ammo.armor_type
-	speed = min(ammo.shell_speed, speed)
-	message_admins("new speed = [speed] ammo [ammo.shell_speed]")
 
 // target, firer, shot from, range, speed
 /obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
-	src.speed = speed
-	message_admins("speed = [speed]")
+	permutated += F // don't hit yourself
+	target_turf = get_turf(target)
+	set_shell_speed(src, speed + get_shell_tile_speed())
 	preparePixelProjectile(target, F, null)
 	fire(Get_Angle(F, target), null)
 	
@@ -468,7 +472,6 @@
 		pixel_x = trajectory.return_px() - trajectory.mpx * trajectory_multiplier * SSprojectiles.global_iterations_per_move
 		pixel_y = trajectory.return_py() - trajectory.mpy * trajectory_multiplier * SSprojectiles.global_iterations_per_move
 		animate(src, pixel_x = trajectory.return_px(), pixel_y = trajectory.return_py(), time = 1, flags = ANIMATION_END_NOW)
-	Range()
 
 /obj/item/projectile/proc/process_homing()			//may need speeding up in the future performance wise.
 	if(!homing_target)
@@ -592,11 +595,22 @@
 	if(!fired)
 		return
 	distance_travelled++
+	Range()
 	if(can_hit_target(original, permutated, TRUE))
 		Bump(original)
 	for(var/atom/i in (get_turf(newloc)).contents)
 		if(i.density && i.loc == loc)
 			Bump(i)
+
+	// Explosive ammo always explodes on the turf of the clicked target
+	var/turf/T = get_turf(newloc)
+	if(src && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE && T == target_turf)
+		ammo.on_hit_turf(T,src)
+		if(T?.loc)
+			T.bullet_act(src)
+	
+		//A.bullet_act(src)
+		qdel(src)
 
 /obj/item/projectile/Destroy()
 	if(hitscan)

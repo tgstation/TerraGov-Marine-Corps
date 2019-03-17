@@ -186,7 +186,6 @@
 	if (!istype(target, /turf))
 		qdel(A)
 		return
-	A.current = target
 	A.yo = target:y - start:y
 	A.xo = target:x - start:x
 	spawn( 0 )
