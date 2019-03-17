@@ -152,8 +152,8 @@
 	plasma_stored = 50
 	tier = 2
 	upgrade = 0
-	pixel_x = -12
-	old_x = -12
+	pixel_x = 0
+	old_x = 0
 	var/stealth_delay = null
 	var/last_stealth = null
 	var/used_stealth = FALSE
