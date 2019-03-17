@@ -129,20 +129,8 @@
 	ammo.do_at_max_range(src)
 	qdel(src)
 
-//to get the correct limb (if any) for the projectile hit message
-/mob/living/proc/check_limb_hit(hit_zone)
-	return hit_zone
-
-/mob/living/carbon/check_limb_hit(hit_zone)
-	//message_admins("[hit_zone] zone")
-//TODO: make this actually do something
-	//if(get_bodypart(hit_zone))
-	//	return hit_zone
-	//else //when a limb is missing the damage is actually passed to the chest
-	return "chest"
 /obj/item/projectile/proc/prehit(atom/target)
 	return TRUE
-
 
 /obj/item/projectile/proc/vol_by_damage()
 	if(damage)
@@ -177,10 +165,6 @@
 			if(hitscan)
 				store_hitscan_collision(pcache)
 			return TRUE
-
-	var/distance = get_dist(T, starting) // Get the distance between the turf shot from and the mob we hit and use that for the calculations.
-	// TODO: distance and distance_travelled aren't the same, one is using the amount of tiles moved, the other is using actual distance calculations
-	def_zone = ran_zone(def_zone, max(100-(7*distance), 5)) //Lower accurancy/longer range tradeoff. 7 is a balanced number to use.
 
 	if(isturf(A) && hitsound_wall)
 		var/volume = CLAMP(vol_by_damage() + 20, 0, 100)
