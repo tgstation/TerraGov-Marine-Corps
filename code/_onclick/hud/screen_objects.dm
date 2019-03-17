@@ -707,8 +707,8 @@
 	icon = 'icons/blank_title.png'
 	icon_state = ""
 	screen_loc = "1,1"
-	layer = SPLASHSCREEN_LAYER
-	plane = SPLASHSCREEN_PLANE
+	layer = CINEMATIC_LAYER
+	plane = CINEMATIC_LAYER
 	var/client/holder
 
 /obj/screen/splash/New(client/C, visible, use_previous_title) //TODO: Make this use INITIALIZE_IMMEDIATE, except its not easy
