@@ -165,77 +165,36 @@
 				store_hitscan_collision(pcache)
 			return TRUE
 
-	if(isturf(A) && hitsound_wall)
-		var/volume = CLAMP(vol_by_damage() + 20, 0, 100)
-		if(suppressed)
-			volume = 5
-		playsound(loc, hitsound_wall, volume, 1, -1)
+	return process_hit(A, T)
 
-	if(A.density && isturf(A) )
+/obj/item/projectile/proc/process_hit(atom/A, turf/T) //Placeholder, this should be a redefined proc, not a projectile one.
+
+	if(isturf(A))
+		if(hitsound_wall)
+			var/volume = CLAMP(vol_by_damage() + 20, 0, 100)
+			if(suppressed)
+				volume = 5
+			playsound(loc, hitsound_wall, volume, 1, -1)
 		ammo.on_hit_turf(A, src)
 		if(A?.loc)
 			A.bullet_act(src)
 		qdel(src)
-		return
-
-	//return process_hit(T, select_target(T, A))
+		return TRUE
 	
-	var/hit_chance = A.get_projectile_hit_chance(src) // Calculated from combination of both ammo accuracy and gun accuracy
-
-	if(hit_chance)
-		if(isliving(A))
-			if(firer && firer.sniper_target(A) && A != firer.sniper_target(A)) //First check to see if we've actually got anyone targeted; If we've singled out someone with a targeting laser, forsake all others
-				return
-			var/mob_is_hit = FALSE
-			var/mob/living/L = A
-
-			var/hit_roll
-			var/critical_miss = rand(CONFIG_GET(number/combat_define/critical_chance_low), CONFIG_GET(number/combat_define/critical_chance_high))
-			var/i = 0
-			while(++i <= 2 && hit_chance > 0) // This runs twice if necessary
-				hit_roll 					= rand(0, 99) //Our randomly generated roll
-				#ifdef DEBUG_HIT_CHANCE
-				to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
-				#endif
-				if(hit_roll < 25) //Sniper targets more likely to hit
-					if(firer && !firer.sniper_target(A) || !firer) //Avoid sentry run times
-						def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
-
-				if(firer && !firer.sniper_target(A)) //Avoid sentry run times
-					hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
-					#ifdef DEBUG_HIT_CHANCE
-					to_chat(world, "Hit Chance 2: [hit_chance]")
-					#endif
-
-				switch(i)
-					if(1)
-						if(hit_chance > hit_roll)
-							mob_is_hit = TRUE
-							break //Hit
-						if( hit_chance < (hit_roll - 20) )
-							break //Outright miss.
-						def_zone 	  = pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
-						hit_chance   -= 10 //If you missed once, the next go around will be harder to hit.
-					if(2)
-						if(prob(critical_miss) )
-							break //Critical miss on the second go around.
-						if(hit_chance > hit_roll)
-							mob_is_hit = TRUE
-							break
-			if(mob_is_hit)
-				ammo.on_hit_mob(L,src)
-				if(L?.loc)
-					L.bullet_act(src)
-			else if (!L.lying)
-				animatation_displace_reset(L)
-				if(ammo.sound_miss) L.playsound_local(get_turf(L), ammo.sound_miss, 75, 1)
-				L.visible_message("<span class='avoidharm'>[src] misses [L]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
-
-		else if(isobj(A))
-			ammo.on_hit_obj(A,src)
-			if(A && A.loc)
-				A.bullet_act(src)
+	if(isobj(A))
+		ammo.on_hit_obj(A,src)
+		if(A?.loc)
+			A.bullet_act(src)
 		qdel(src)
+		return TRUE
+
+	if(isliving(A))
+		ammo.on_hit_mob(A,src)
+		if(A?.loc)
+			A.bullet_act(src)
+		qdel(src)
+		return TRUE
+
 
 /obj/item/projectile/proc/check_ricochet()
 	return FALSE
@@ -477,28 +436,86 @@
 
 //Returns true if the target atom is on our current turf and above the right layer
 //If direct target is true it's the originally clicked target.
-/obj/item/projectile/proc/can_hit_target(atom/target, list/passthrough = permutated, direct_target = FALSE, ignore_loc = FALSE)
+/obj/item/projectile/proc/can_hit_target(atom/target, list/passthrough = permutated, direct_target, ignore_loc = FALSE)
 	if(QDELETED(target))
 		return FALSE
-	if(!ignore_source_check && firer)
+	if(!ignore_source_check && firer) //Related to ricochet, might be in for deleting.
 		var/mob/M = firer
 		if((target == firer) || ((target == firer.loc) && ismecha(firer.loc)) || (istype(M) && (M.buckled == target)))
 			return FALSE
 	if(!ignore_loc && (loc != target.loc))
 		return FALSE
-	if(target in passthrough)
+	if(target in (passthrough + permutated)) //Forbidden lists
 		return FALSE
-	if(target.density)		//This thing blocks projectiles, hit it regardless of layer/mob stuns/etc.
-		return TRUE
-	if(!isliving(target))
-		if(target.layer <= PROJECTILE_HIT_THRESHHOLD_LAYER)
+
+	return target.can_be_hit(src, direct_target)
+
+
+/atom/proc/can_be_hit(obj/item/projectile/P)
+	return FALSE
+
+/mob/living/can_be_hit(obj/item/projectile/P, direct_target)
+	
+	if(layer <= PROJECTILE_HIT_THRESHHOLD_LAYER)
+		return FALSE
+	var/laser_target = P.firer?.sniper_target(src)
+	if(!direct_target)
+		if(lying) //We are lying and not directly shot at.
 			return FALSE
-	else
-		var/mob/living/L = target
-		if(!direct_target)
-			if(!(L.stat == CONSCIOUS))		//If they're able to 1. stand or 2. use items or 3. move, AND they are not softcrit,  they are not stunned enough to dodge projectiles passing over.
-				return FALSE
-	return TRUE
+		if(!laser_target) //Sniper targeting someone that's not us.
+			return FALSE
+
+	var/hit_chance = get_projectile_hit_chance(P) // Calculated from combination of both ammo accuracy and gun accuracy
+	if(!hit_chance)
+		return FALSE
+	var/mob_is_hit = FALSE
+	var/hit_roll
+	var/critical_miss = rand(CONFIG_GET(number/combat_define/critical_chance_low), CONFIG_GET(number/combat_define/critical_chance_high))
+
+	for(var/i = 1 to 2)
+		hit_roll = rand(0, 99) //Our randomly generated roll
+		#ifdef DEBUG_HIT_CHANCE
+		to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
+		#endif
+		if(laser_target) //Sniper targets more likely to hit
+			if(hit_roll < 25)
+				P.def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
+		else
+			hit_chance -= base_miss_chance[P.def_zone] // Reduce accuracy based on spot.
+			#ifdef DEBUG_HIT_CHANCE
+			to_chat(world, "Hit Chance 2: [hit_chance]")
+			#endif
+		switch(i)
+			if(1)
+				if(hit_chance > hit_roll)
+					mob_is_hit = TRUE
+					break //Hit
+				if(hit_chance < (hit_roll - 20))
+					break //Outright miss.
+				P.def_zone = pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
+				hit_chance -= 10 //If you missed once, the next go around will be harder to hit.
+			if(2)
+				if(prob(critical_miss))
+					break //Critical miss on the second go around.
+				if(hit_chance > hit_roll)
+					mob_is_hit = TRUE
+					break
+		if(hit_chance <= 0)
+			break
+
+	if(!mob_is_hit && !lying)
+		animatation_displace_reset(src)
+		if(P.ammo.sound_miss)
+			playsound_local(loc, P.ammo.sound_miss, 75, 1)
+		visible_message("<span class='avoidharm'>[P] misses [src]!</span>","<span class='avoidharm'>[P] narrowly misses you!</span>", null, 4)
+
+	return mob_is_hit
+
+/obj/can_be_hit(obj/item/projectile/P)
+	return !CanPass(P, loc)
+
+/turf/can_be_hit(obj/item/projectile/P)
+	return !CanPass(P, src)
 
 //Spread is FORCED!
 /obj/item/projectile/proc/preparePixelProjectile(atom/target, atom/source, params, spread = 0)

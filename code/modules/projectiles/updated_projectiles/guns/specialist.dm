@@ -140,12 +140,7 @@
 	return FALSE
 
 /obj/item/weapon/gun/rifle/sniper/M42A/sniper_target(atom/A)
-	if(!laser_target)
-		return FALSE
-	if(A == laser_target)
-		return laser_target
-	else
-		return TRUE
+	return laser_target
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user)
 	if(!zoom) //Can only use and prime the laser targeter when zoomed.
