@@ -424,7 +424,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/damage = 30
 	var/tank_damage = 2
 
-	if(facing == get_dir(loc, get_turf(src)) && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
+	if(facing == get_dir(CA.loc, src) && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
 		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
 		if(SP.health > 0)
 			damage = 60
@@ -441,7 +441,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/damage = 30
 	var/tank_damage = 2
 
-	if(facing == get_dir(loc, get_turf(src)) && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
+	if(facing == get_dir(CA.loc, src) && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
 		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
 		if(SP.health > 0)
 			damage = 60
@@ -459,7 +459,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/damage = 30
 	var/tank_damage = 2
 
-	if(facing == get_dir(loc, get_turf(src)) && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
+	if(facing == get_dir(CA.loc, src) && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
 		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
 		if(SP.health > 0)
 			damage = 60
