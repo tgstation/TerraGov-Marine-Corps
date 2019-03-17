@@ -147,7 +147,7 @@
 	stack_id = "Tear petals"
 
 
-/obj/item/stack/medical/advanced/
+/obj/item/stack/medical/advanced
 	dir = NORTH
 	flags_atom = DIRLOCK
 
