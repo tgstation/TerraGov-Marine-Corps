@@ -1,0 +1,4 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - bugfix: "Fixed minor bug with Spec GL not working correctly with impact nades."
