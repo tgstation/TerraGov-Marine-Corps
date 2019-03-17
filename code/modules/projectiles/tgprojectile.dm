@@ -154,7 +154,6 @@
 	if(A in permutated)
 		return
 	var/datum/point/pcache = trajectory.copy_to()
-	var/turf/T = get_turf(A)
 	if(check_ricochet(A) && check_ricochet_flag(A) && ricochets < ricochets_max)
 		ricochets++
 		if(A.handle_ricochet(src))
