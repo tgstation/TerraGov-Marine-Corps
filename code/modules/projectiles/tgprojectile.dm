@@ -109,7 +109,6 @@
 	if(number == 0) // division by zero BEGONE!!
 		speed = 0
 		return
-	message_admins("[something.name] tried to change speed to [number] from [speed]. Changed to [1/number]")
 	speed = 1 / number
 
 /obj/item/projectile/proc/get_shell_tile_speed() // this should return the amount of tiles travelled in 1 second
@@ -123,9 +122,7 @@
 	decayedRange = range
 
 /obj/item/projectile/proc/Range()
-	message_admins("e:b:ic range time!!")
-	range--
-	if(range <= 0 && loc)
+	if(--range <= 0 && loc)
 		on_range()
 
 /obj/item/projectile/proc/on_range() //if we want there to be effects when they reach the end of their range
