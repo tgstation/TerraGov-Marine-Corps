@@ -179,6 +179,7 @@
 			return TRUE
 
 	var/distance = get_dist(T, starting) // Get the distance between the turf shot from and the mob we hit and use that for the calculations.
+	// TODO: distance and distance_travelled aren't the same, one is using the amount of tiles moved, the other is using actual distance calculations
 	def_zone = ran_zone(def_zone, max(100-(7*distance), 5)) //Lower accurancy/longer range tradeoff. 7 is a balanced number to use.
 
 	if(isturf(A) && hitsound_wall)
@@ -595,9 +596,6 @@
 	Range()
 	if(can_hit_target(original, permutated, TRUE))
 		Bump(original)
-	for(var/atom/i in (get_turf(newloc)).contents)
-		if(i.density && i.loc == loc)
-			Bump(i)
 
 	// Explosive ammo always explodes on the turf of the clicked target
 	var/turf/T = get_turf(newloc)

@@ -1,5 +1,9 @@
 /mob/CanPass(atom/movable/mover, turf/target)
-	if(mover.checkpass(PASSMOB)) return 1
+	if(mover.checkpass(PASSMOB))
+		return 1
+	if(istype(mover, /obj/item/projectile))
+		var/obj/item/projectile/P = mover
+		return !P.can_hit_target(src, P.permutated, src == P.original, TRUE)
 	if(ismob(mover))
 		if(checkpass(PASSMOB))
 			return 1
