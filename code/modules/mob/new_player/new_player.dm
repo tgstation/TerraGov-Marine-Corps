@@ -50,9 +50,6 @@
 				output += "<p>\[ <b>Ready</b> | [LINKIFY_READY("Not Ready", PLAYER_NOT_READY)] | [LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)] \]</p>"
 			if(PLAYER_READY_TO_OBSERVE)
 				output += "<p>\[ [LINKIFY_READY("Ready", PLAYER_READY_TO_PLAY)] | [LINKIFY_READY("Not Ready", PLAYER_NOT_READY)] | <b> Observe </b> \]</p>"
-
-	//	output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=[REF(src)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
-
 	else
 		output += "<p><a href='byond://?src=[REF(src)];manifest=1'>View the Crew Manifest</A></p>"
 		output += "<p><a href='byond://?src=[REF(src)];late_join=1'>Join the TGMC!</A></p>"
@@ -146,7 +143,7 @@
 			return
 
 		//if(SSticker.queued_players.len || (relevant_cap && living_player_count() >= relevant_cap && !(ckey(key) in GLOB.admin_datums)))
-		//	to_chat(usr, "<splate_join_xenoan class='danger'>[CONFIG_GET(string/hard_popcap_message)]</span>")
+		//	to_chat(usr, "<span class='danger'>[CONFIG_GET(string/hard_popcap_message)]</span>")
 
 		//	var/queue_position = SSticker.queued_players.Find(usr)
 		//	if(queue_position == 1)
@@ -300,9 +297,7 @@
 		ready = PLAYER_NOT_READY
 		return FALSE
 
-	var/this_is_like_playing_right = alert(src,"Are you sure you wish to observe?\nYou will have to wait at least 5 minutes before being able to respawn!","Player Setup","Yes","No")
-
-	if(QDELETED(src) || !src.client || this_is_like_playing_right != "Yes")
+	if(QDELETED(src) || !src.client || alert(src,"Are you sure you wish to observe?\nYou will have to wait at least 5 minutes before being able to respawn!","Player Setup","Yes","No") != "Yes")
 		ready = PLAYER_NOT_READY
 		src << browse(null, "window=playersetup") //closes the player setup window
 		new_player_panel()
@@ -324,7 +319,12 @@
 	observer.client = client
 	//observer.set_ghost_appearance()
 	if(observer.client && observer.client.prefs)
-		observer.real_name = observer.client.prefs.real_name
+		if(!observer.client.prefs.real_name)
+			//what is the probability of this happening anyways
+			observer.real_name = species.random_name()
+			to_chat(src, "Something went horribly wrong, your name wasn't fetched for some reason so you got a random name")
+		else
+			observer.real_name = observer.client.prefs.real_name
 		observer.name = observer.real_name
 	observer.update_icon()
 	observer.alpha = 127
