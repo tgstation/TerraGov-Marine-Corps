@@ -119,16 +119,12 @@
 
 #define POINT_LAYER 12
 
-#define LIGHTING_PLANE 15
-
 #define ABOVE_LIGHTING_PLANE 16
 #define ABOVE_LIGHTING_LAYER 16
 
-#define FLOOR_OPENSPACE_PLANE 17
 
 #define BELOW_FULLSCREEN_LAYER 17.9 //blip from motion detector
 
-#define CAMERA_STATIC_PLANE 18
 
 #define FULLSCREEN_LAYER 18
 #define FULLSCREEN_IMPAIRED_LAYER 18.02 //visual impairment from wearing welding helmet, etc
