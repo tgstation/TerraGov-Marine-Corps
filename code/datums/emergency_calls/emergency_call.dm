@@ -83,11 +83,11 @@
 	if(SSticker?.mode?.waiting_for_candidates) //It's already been activated
 		return FALSE
 
-	if(name == "Distress Signal") //If we're fighting benos
+	if(istype(src, /datum/game_mode/colonialmarines) ) //If we're fighting benos
 		var/xenos = length(GLOB.alive_xeno_list)
 		var/humans = length(GLOB.alive_human_list)
 
-		var/reinforcements = CLAMP( ( xenos - humans * max(1, CONFIG_GET(number/xeno_coefficient) ) ) * CONFIG_GET(number/xeno_coefficient), 1, 15) //We get the difference per the ideal human to xeno ratio, and the current xeno count, then multiply it by the xeno coefficient
+		var/reinforcements = CLAMP( ( xenos - humans / max(1, CONFIG_GET(number/xeno_coefficient) ) ) * CONFIG_GET(number/xeno_coefficient), picked_call.mob_min, 15) //We get the difference per the ideal human to xeno ratio, and the current xeno count, then multiply it by the xeno coefficient
 
 		picked_call.mob_max = round(rand(reinforcements * 0.9, reinforcements * 1.1)) //Keep that RNG low
 
