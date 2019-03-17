@@ -198,8 +198,7 @@
 		return
 
 	if(!ready && href_list["preference"])
-		if(client)
-			client.prefs.process_link(src, href_list)
+		client.prefs.process_link(src, href_list)
 	else if(!href_list["late_join"])
 		new_player_panel()
 
@@ -293,11 +292,11 @@
 		to_chat(src, "<span class='warning'>The game is still setting up, please try again later.</span>")
 		return FALSE
 
-	if(QDELETED(src) || !src.client)
+	if(QDELETED(src) || !client)
 		ready = PLAYER_NOT_READY
 		return FALSE
 
-	if(QDELETED(src) || !src.client || alert(src,"Are you sure you wish to observe?\nYou will have to wait at least 5 minutes before being able to respawn!","Player Setup","Yes","No") != "Yes")
+	if(QDELETED(src) || !client || alert(src,"Are you sure you wish to observe?\nYou will have to wait at least 5 minutes before being able to respawn!","Player Setup","Yes","No") != "Yes")
 		ready = PLAYER_NOT_READY
 		src << browse(null, "window=playersetup") //closes the player setup window
 		new_player_panel()
