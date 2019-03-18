@@ -275,8 +275,7 @@
 	else
 		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
 		params += "&catcher=1"
-		if(T)
-			usr.do_click(T, location, params)
+		T?.Click(location, control, params)
 	return TRUE
 
 /client/proc/change_view(new_size)
