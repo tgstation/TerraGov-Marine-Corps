@@ -813,7 +813,7 @@ mob/proc/yank_out_object()
 	for(var/mob/M in viewers)
 		if(!isobserver(M) && (M.stat != CONSCIOUS || isdeaf(M)))
 			continue
-		to_chat(M, emote_overlay)
+		SEND_IMAGE(M, emote_overlay)
 
 	if(remove_delay)
 		addtimer(CALLBACK(src, .proc/remove_emote_overlay, client, emote_overlay, viewers), remove_delay)
