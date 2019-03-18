@@ -197,9 +197,9 @@ var/world_topic_spam_protect_time = world.timeofday
 			switch(SSmapping.config.map_name)
 				if("Ice Colony")
 					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[SSmapping.config.map_name]</a></b>"
-				if("LV-624")
+				if("LV624")
 					s += "<br>Map: <a href='[CONFIG_GET(string/lv624url)]'><b>[SSmapping.config.map_name]</a></b>"
-				if("Solaris Ridge")
+				if("Big Red")
 					s += "<br>Map: <a href='[CONFIG_GET(string/bigredurl)]'><b>[SSmapping.config.map_name]</a></b>"
 				if("Prison Station")
 					s += "<br>Map: <a href='[CONFIG_GET(string/prisonstationurl)]'><b>[SSmapping.config.map_name]</a></b>"
