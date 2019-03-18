@@ -380,4 +380,4 @@
 	if(get_dir(loc, target) == dir)
 		return !density
 	else
-return TRUE
+		return TRUE
