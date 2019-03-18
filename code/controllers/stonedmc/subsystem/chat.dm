@@ -21,11 +21,9 @@ SUBSYSTEM_DEF(chat)
 	if(!target || !message)
 		return
 
-	//Sorry but this will have to do for a while.
 	if(!istext(message))
-		if(istype(message, /image) || istype(message, /sound) || !ismob(target))
-			target << message
-			return
+		stack_trace("to_chat called with invalid input type")
+		return
 
 	if(target == world)
 		target = GLOB.clients

@@ -180,11 +180,9 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if(!target || !message)
 		return
 
-	//Sorry but this will have to do for a while.
 	if(!istext(message))
-		if(istype(message, /image) || istype(message, /sound) || istype(target, /savefile) || !(ismob(target) || islist(target) || istype(target, /client) || target == world))
-			target << message
-			return
+		stack_trace("to_chat_immediate called with invalid input type")
+		return
 
 	if(target == world)
 		target = GLOB.clients
