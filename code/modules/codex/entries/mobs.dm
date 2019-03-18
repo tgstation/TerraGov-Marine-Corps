@@ -56,7 +56,7 @@
 		xeno_strings += "<br><U>This has the following abilities</U>:"
 		for(var/X in actions)
 			var/datum/action/xeno_action/A = X
-			xeno_strings += "<U>[A.name]</U>: [A.mechanics_text]"
+			xeno_strings += "<U>[A.name]</U>: [A.mechanics_text]<br>"
 
 	. += jointext(xeno_strings, "<br>")
 
