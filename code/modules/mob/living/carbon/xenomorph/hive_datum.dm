@@ -52,9 +52,7 @@
 	for(var/typepath in xenos_by_typepath)
 		if(!queen && typepath == /mob/living/carbon/Xenomorph/Queen) // hardcoded check for now
 			continue
-		for(var/i in xenos_by_typepath[typepath])
-			var/mob/living/carbon/Xenomorph/X = i
-			xenos += X
+		xenos += xenos_by_typepath[typepath]
 	return xenos
 
 // doing this by type means we get a pseudo sorted list
@@ -102,18 +100,16 @@
 /datum/hive_status/proc/xeno_message(message = null, size = 3)
 	if(!can_xeno_message())
 		return
-	for(var/tier in GLOB.xenotiers)
-		for(var/i in xenos_by_tier[tier])
-			var/mob/living/carbon/Xenomorph/X = i
-			if(X.stat) // dead/crit cant hear
-				continue
-			to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
+	for(var/i in get_all_xenos())
+		var/mob/living/carbon/Xenomorph/X = i
+		if(X.stat) // dead/crit cant hear
+			continue
+		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
 
 /datum/hive_status/proc/hive_mind_message(mob/living/carbon/Xenomorph/sender, message)
-	for(var/t in xenos_by_tier)
-		for(var/i in xenos_by_tier[t])
-			var/mob/living/carbon/Xenomorph/X = i
-			X.receive_hivemind_message(sender, message)
+	for(var/i in get_all_xenos())
+		var/mob/living/carbon/Xenomorph/X = i
+		X.receive_hivemind_message(sender, message)
 
 /datum/hive_status/proc/post_add(mob/living/carbon/Xenomorph/X)
 	X.color = color
