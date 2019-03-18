@@ -27,11 +27,6 @@
 
 	// No clicking on atoms with the NOINTERACT flag
 	if((A.flags_atom & NOINTERACT))
-		if(istype(A, /obj/screen/click_catcher))
-			var/list/mods = params2list(params)
-			var/turf/TU = params2turf(mods["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
-			if(TU)
-				do_click(TU, location, params)
 		return
 
 
@@ -255,7 +250,6 @@
 	plane = -99
 	mouse_opacity = 2
 	screen_loc = "CENTER-7,CENTER-7"
-	flags_atom = NOINTERACT
 
 
 /obj/screen/click_catcher/proc/UpdateGreed(view_size_x = 15, view_size_y = 15)
@@ -273,7 +267,17 @@
 	M.Scale(px/sx, py/sy)
 	transform = M
 
-
+/obj/screen/click_catcher/Click(location, control, params)
+	var/list/modifiers = params2list(params)
+	if(modifiers["middle"] && iscarbon(usr))
+		var/mob/living/carbon/C = usr
+		C.swap_hand()
+	else
+		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
+		params += "&catcher=1"
+		if(T)
+			usr.do_click(T, location, params)
+	return TRUE
 
 /client/proc/change_view(new_size)
 	view = new_size
