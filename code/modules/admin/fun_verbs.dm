@@ -1065,7 +1065,7 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 
 	var/list/namelist = list()
 	for(var/Y in GLOB.hive_datums)
-		var/datum/hive_status/H = Y
+		var/datum/hive_status/H = GLOB.hive_datums[Y]
 		namelist += H.name
 
 	var/newhive = input(src, "Select a hive.", null, null) in namelist
