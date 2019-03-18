@@ -341,7 +341,6 @@
 		if(contents.len)
 			if(mode == 2)
 				spawn(0)
-					feedback_inc("disposal_auto_flush", 1)
 					flush()
 		flush_count = 0
 
@@ -601,7 +600,7 @@
 	level = 1			//Underfloor only
 	var/dpdir = 0		//Bitmask of pipe directions
 	dir = 0				//dir will contain dominant direction for junction pipes
-	var/health = 10 	//Health points 0-10
+	health = 10 	//Health points 0-10
 	layer = DISPOSAL_PIPE_LAYER //Slightly lower than wires and other pipes
 	var/base_icon_state	//Initial icon state on map
 

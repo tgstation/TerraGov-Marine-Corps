@@ -378,26 +378,22 @@
 	icon_state = "running"
 	screen_loc = ui_movi
 
-/obj/screen/mov_intent/clicked(var/mob/user)
-	if (..())
+/obj/screen/mov_intent/clicked(mob/user)
+	. = ..()
+	if(.)
 		return TRUE
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
-		if(C.legcuffed)
-			to_chat(C, "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>")
-			C.m_intent = MOVE_INTENT_WALK	//Just incase
-			icon_state = "walking"
-			return
+	user.toggle_move_intent()
+
+
+/obj/screen/mov_intent/update_icon(mob/user)
+	if(!user)
+		return
+
 	switch(user.m_intent)
 		if(MOVE_INTENT_RUN)
-			user.m_intent = MOVE_INTENT_WALK
-			icon_state = "walking"
-		if(MOVE_INTENT_WALK)
-			user.m_intent = MOVE_INTENT_RUN
 			icon_state = "running"
-	if(isxeno(user))
-		user.update_icons()
-	return TRUE
+		if(MOVE_INTENT_WALK)
+			icon_state = "walking"
 
 
 /obj/screen/act_intent
@@ -635,7 +631,7 @@
 	screen_loc = ui_ammo
 	var/warned = FALSE
 
-/obj/screen/ammo/proc/add_hud(var/mob/user)
+/obj/screen/ammo/proc/add_hud(mob/living/user)
 	if(!user?.client)
 		return
 
@@ -646,17 +642,17 @@
 
 	user.client.screen += src
 
-/obj/screen/ammo/proc/remove_hud(var/mob/user)
+/obj/screen/ammo/proc/remove_hud(mob/living/user)
 	user?.client?.screen -= src
 
-/obj/screen/ammo/proc/update_hud(var/mob/user)
+/obj/screen/ammo/proc/update_hud(mob/living/user)
 	if(!user?.client?.screen.Find(src))
 		return
 
 	var/obj/item/weapon/gun/G = user.get_active_held_item()
 
 	if(!istype(G) || !(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
-		remove_hud()
+		remove_hud(user)
 		return
 
 	var/list/ammo_type = G.get_ammo_type()

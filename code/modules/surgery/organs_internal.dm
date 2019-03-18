@@ -306,7 +306,7 @@
 				//Transfer over some blood data, if the organ doesn't have data.
 				var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in O.reagents.reagent_list
 				if(!organ_blood || !organ_blood.data["blood_DNA"])
-					target.take_blood(O, 5)
+					target.take_blood(O, 5, user)
 
 				//Kinda redundant, but I'm getting some buggy behavior.
 				target.internal_organs_by_name[affected.surgery_organ] = null

@@ -152,7 +152,7 @@
 	if(!(istype(M,/mob)))
 		return
 	..()
-	if(M.can_inject(user,1))
+	if(M.can_inject(user, TRUE, user.zone_selected))
 		if(reagents.total_volume)
 			reagents.reaction(M, INJECT)
 			if(M.reagents) reagents.trans_to(M, 50)

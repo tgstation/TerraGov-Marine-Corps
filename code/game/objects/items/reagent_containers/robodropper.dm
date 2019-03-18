@@ -18,7 +18,7 @@
 				to_chat(user, "<span class='warning'>[target] is full.</span>")
 				return
 
-			if(!target.is_injectable() && !ismob(target)) //You can inject humans and food but you cant remove the shit.
+			if(!ismob(target) && !target.is_injectable()) //You can inject humans and food but you cant remove the shit.
 				to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 				return
 

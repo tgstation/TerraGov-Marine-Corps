@@ -90,8 +90,8 @@
 		injection_time = max(5, 50 - 10*user.mind.cm_skills.medical)
 
 	var/target_zone = user.zone_selected
-	if(isliving(target))
-		var/mob/living/L = target
+	if(ismob(target))
+		var/mob/L = target
 		if(!L.can_inject(user, TRUE, target_zone))
 			return
 
@@ -108,12 +108,14 @@
 				if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
 					to_chat(user, "<span class='warning'>There is already a blood sample in this syringe.</span>")
 					return
+				if(!C.can_inject(user, TRUE, target_zone))
+					return
 				if(target != user)
 					user.visible_message("<span class='warning'>[user] is trying to take a blood sample from [target]!</span>", \
 						"<span class='danger'>You start trying to take a blood sample from [target]...</span>")
 					if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 						return
-				if(!C.take_blood(src, amount, user, target_zone))
+				if(!C.take_blood(src, amount, user, target_zone, FALSE))
 					return
 
 				on_reagent_change()
@@ -128,7 +130,7 @@
 					return
 
 				if(!target.is_drawable())
-					to_chat(user, "<span class='warning'>You cannot directly remove reagents from this object.</span>")
+					to_chat(user, "<span class='warning'>You cannot directly remove reagents from [target].</span>")
 					return
 
 				var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this) // transfer from, transfer to - who cares?
@@ -145,8 +147,8 @@
 			if(istype(target, /obj/item/implantcase/chem))
 				return
 
-			if(!target.is_injectable() && !ismob(target))
-				to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
+			if(!ismob(target) && !target.is_injectable())
+				to_chat(user, "<span class='warning'>You cannot directly fill [target].</span>")
 				return
 			if(target.reagents.holder_full())
 				to_chat(user, "<span class='warning'>[target] is full.</span>")
@@ -238,8 +240,8 @@
 
 	var/malpractice = target.getarmor(target_zone, "melee")
 	if ((target != user && malpractice > 5 && prob(malpractice/2)) || !target.can_inject(user, FALSE, target_zone))
-		user.visible_message("<span class='danger'>[user] tries to stab [target] [hit_area ? "in [hit_area]" : ""] with [src], but the attack is deflected by armor!</span>",
-							"<span class='danger'>You try to stab [target] in [hit_area ? "in [hit_area]" : ""] with [src], but the attack is deflected by armor!</span>", null, 5)
+		user.visible_message("<span class='danger'>[user] tries to stab [target] [hit_area ? "in the [hit_area]" : ""] with [src], but the attack is deflected by armor!</span>",
+							"<span class='danger'>You try to stab [target] in [hit_area ? "in the [hit_area]" : ""] with [src], but the attack is deflected by armor!</span>", null, 5)
 		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 		return
@@ -292,7 +294,7 @@
 					return
 
 				if(!target.is_drawable())
-					to_chat(user, "<span class='warning'>You cannot directly remove reagents from this object.</span>")
+					to_chat(user, "<span class='warning'>You cannot directly remove reagents from [target].</span>")
 					return
 
 				var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this) // transfer from, transfer to - who cares?
@@ -308,7 +310,7 @@
 				return
 			if(istype(target, /obj/item/implantcase/chem))
 				return
-			if(!target.is_injectable() && !ismob(target))
+			if(!ismob(target) && !target.is_injectable())
 				to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 				return
 			if(target.reagents.holder_full())
@@ -316,12 +318,15 @@
 				return
 
 			var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
-			if(isliving(target))
-				var/mob/living/L = target
-				if(!L.can_inject(user, TRUE))
+			if(ismob(target))
+				var/mob/L = target
+				var/target_zone = user.zone_selected
+				if(!L.can_inject(user, TRUE, target_zone))
 					return
 				user.visible_message("<span class='danger'>[user] is trying to inject [target] with [src]!</span>")
-				if(!do_mob(user, target, 300, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+				if(!do_mob(user, target, 30 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+					return
+				if(!L.can_inject(user, TRUE, target_zone))
 					return
 				user.visible_message("<span class='warning'>[user] injects [target] with [src]!</span>")
 				if(iscarbon(target) && locate(/datum/reagent/blood) in reagents.reagent_list)

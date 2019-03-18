@@ -71,21 +71,21 @@
 
 	return level
 
-/datum/map_template/proc/load(turf/T, centered = FALSE)
+/datum/map_template/proc/load(turf/T, centered, delete)
 	if(centered)
 		T = locate(T.x - round(width/2) , T.y - round(height/2) , T.z)
 	if(!T)
 		return
-	if(T.x+width > world.maxx)
+	if(T.x + width > world.maxx)
 		return
-	if(T.y+height > world.maxy)
+	if(T.y + height > world.maxy)
 		return
 
 	// Accept cached maps, but don't save them automatically - we don't want
 	// ruins clogging up memory for the whole round.
 	var/datum/parsed_map/parsed = cached_map || new(file(mappath))
 	cached_map = keep_cached_map ? parsed : null
-	if(!parsed.load(T.x, T.y, T.z, cropMap=TRUE, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS), placeOnTop=TRUE))
+	if(!parsed.load(T.x, T.y, T.z, cropMap = TRUE, no_changeturf = (SSatoms.initialized == INITIALIZATION_INSSATOMS), placeOnTop = TRUE, delete = delete))
 		return
 	var/list/bounds = parsed.bounds
 	if(!bounds)

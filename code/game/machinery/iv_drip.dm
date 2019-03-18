@@ -78,7 +78,7 @@
 
 			log_admin("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(src.loc)].")
 			message_admins("[ADMIN_TPMONTY(usr)] put a [beaker] into [src], containing [reagentnames].")
-			
+
 			to_chat(user, "You attach \the [W] to \the [src].")
 			update_icon()
 		return
@@ -125,14 +125,11 @@
 			if(NOCLONE in T.mutations)
 				return
 
-			if(T.species && T.species.species_flags & NO_BLOOD)
-				return
+			if(T.take_blood(beaker,amount, target_zone = "chest"))
+				// If the human is losing too much blood, beep.
+				if(T.blood_volume < BLOOD_VOLUME_SAFE && prob(5))
+					visible_message("\The [src] beeps loudly.")
 
-			// If the human is losing too much blood, beep.
-			if(T.blood_volume < BLOOD_VOLUME_SAFE) if(prob(5))
-				visible_message("\The [src] beeps loudly.")
-
-			T.take_blood(beaker,amount)
 			update_icon()
 
 /obj/machinery/iv_drip/attack_hand(mob/user as mob)

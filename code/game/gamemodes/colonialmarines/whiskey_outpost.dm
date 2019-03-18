@@ -1017,7 +1017,6 @@
 //////////////////////////////////////////////////////////////////////
 /datum/game_mode/whiskey_outpost/declare_completion()
 	if(finished == 1)
-		feedback_set_details("round_end_result","Xenos won")
 		to_chat(world, "<span class='round_header'>The Xenos have succesfully defended their hive from colonization.</span>")
 		to_chat(world, "<span class='round_body'>Well done, you've secured LV-624 for the hive!</span>")
 		to_chat(world, "<span class='round_body'>It will be another five years before the TGMC returns to the Tychon's Rift sector, with the arrival of the 7th 'Falling Falcons' Battalion and the [MAIN_SHIP_NAME].</span>")
@@ -1027,7 +1026,6 @@
 		log_game("Marines remaining: [count_humans()]\nRound time: [duration2text()]\nBig Winner:)")
 
 	else if(finished == 2)
-		feedback_set_details("round_end_result","Marines Won")
 		to_chat(world, "<span class='round_header'>Against the onslaught, the marines have survived.</span>")
 		to_chat(world, "<span class='round_body'>The signal rings out to the USS Alistoun, and Dust Raiders stationed elsewhere in Tychon's Rift begin to converge on LV-624.</span>")
 		to_chat(world, "<span class='round_body'>Eventually, the Dust Raiders secure LV-624 and the entire Tychon's Rift sector in 2182, pacifiying it and establishing peace in the sector for decades to come.</span>")
@@ -1036,7 +1034,6 @@
 
 		log_game("Marines remaining: [count_humans()]\nRound time: [duration2text()]")
 	else
-		feedback_set_details("round_end_result","no winners")
 		to_chat(world, "<span class='round_header'>NOBODY WON!</span>")
 		to_chat(world, "<span class='round_body'>How? Don't ask me...</span>")
 		world << 'sound/misc/sadtrombone.ogg'

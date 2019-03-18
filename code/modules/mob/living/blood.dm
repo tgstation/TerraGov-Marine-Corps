@@ -257,9 +257,9 @@
 	return 1
 
 
-/mob/living/carbon/human/take_blood(obj/O, amount, user, target_zone)
+/mob/living/carbon/human/take_blood(obj/O, amount, user, target_zone, penetrate_thick = TRUE)
 
-	if(target_zone && !can_inject(user, FALSE, target_zone))
+	if(target_zone && !can_inject(user, FALSE, target_zone, penetrate_thick))
 		return
 
 	if(species?.species_flags & NO_BLOOD)

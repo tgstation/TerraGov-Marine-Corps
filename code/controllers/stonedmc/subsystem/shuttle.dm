@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(shuttle)
 
 /datum/controller/subsystem/shuttle/Initialize()
 	if(!shuttle_controller)
-		shuttle_controller = new /datum/shuttle_controller()
+		shuttle_controller = new /datum/controller/shuttle_controller()
 
 	for(var/obj/effect/landmark/shuttle_loc/L in GLOB.shuttle_locations)
 		L.link_location() // hacky fix for the out of order init.

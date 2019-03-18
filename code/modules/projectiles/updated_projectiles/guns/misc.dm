@@ -264,7 +264,7 @@
 
 					M.visible_message("<span class='danger'>[M] is hit by the syringe!</span>")
 
-					if(M.can_inject())
+					if(M.can_inject(target_zone = ran_zone(user.zone_selected)))
 						if(D.reagents)
 							D.reagents.reaction(M, INJECT)
 							D.reagents.trans_to(M, 15)

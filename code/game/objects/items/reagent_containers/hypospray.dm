@@ -65,27 +65,15 @@
 			return
 
 		if(iscarbon(A))
-			var/amount = min(reagents.maximum_volume - reagents.total_volume, amount_per_transfer_from_this)
 			var/mob/living/carbon/C = A
+			if(!C.can_inject(user, TRUE, penetrate_thick = TRUE))
+				return
+			var/amount = min(reagents.maximum_volume - reagents.total_volume, amount_per_transfer_from_this)
 			if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
 				to_chat(user, "<span class='warning'>There is already a blood sample in [src].</span>")
 				return
-			if(!C.dna)
-				to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-				return
-			if(NOCLONE in C.mutations) //target done been et, no more blood in him
-				to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-				return
 
-			if(ishuman(C))
-				var/mob/living/carbon/human/H = C
-				if(H.species.species_flags & NO_BLOOD)
-					to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-					return
-				else
-					C.take_blood(src,amount)
-			else
-				C.take_blood(src,amount)
+			C.take_blood(src, amount, user)
 
 			reagents.handle_reactions()
 			user.visible_message("<span clas='warning'>[user] takes a blood sample from [A].</span>",
@@ -111,7 +99,7 @@
 	if(!reagents.total_volume)
 		to_chat(user, "<span class='warning'>[src] is empty.</span>")
 		return
-	if(!A.is_injectable())
+	if(!A.is_injectable() && !ismob(A))
 		to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 		return
 	if(skilllock && user.mind?.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
@@ -120,15 +108,10 @@
 		if(!do_after(user, SKILL_TASK_EASY, TRUE, 5, BUSY_ICON_BUILD))
 			return
 
-
-	var/list/injected = list()
-	for(var/datum/reagent/R in reagents.reagent_list)
-		injected += R.name
-	var/contained = english_list(injected)
-	log_combat(user, A, "injected", src, "Reagents: [english_list(reagents.reagent_list)]")
-
 	if(ismob(A))
 		var/mob/M = A
+		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
+			return
 		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isyautjastrict(M))) // preds have null skills
 			user.KnockDown(3)
 			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
@@ -138,6 +121,14 @@
 			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			return FALSE
 
+	var/list/injected = list()
+	for(var/datum/reagent/R in reagents.reagent_list)
+		injected += R.name
+	var/contained = english_list(injected)
+	log_combat(user, A, "injected", src, "Reagents: [english_list(reagents.reagent_list)]")
+
+	if(ismob(A))
+		var/mob/M = A
 		msg_admin_attack("[ADMIN_TPMONTY(usr)] injected [ADMIN_TPMONTY(M)] with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]).")
 		to_chat(user, "<span class='notice'>You inject [M] with [src]</span>.")
 		to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")

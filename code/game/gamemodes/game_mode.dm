@@ -24,7 +24,6 @@
 	var/required_enemies = 0
 	var/recommended_enemies = 0
 	var/newscaster_announcements = null
-	var/ert_disabled = FALSE
 
 
 /datum/game_mode/proc/announce()
@@ -83,7 +82,7 @@
 
 
 /datum/game_mode/proc/check_finished()
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)
+	if(SSevacuation.dest_status == NUKE_EXPLOSION_FINISHED)
 		return TRUE
 
 
@@ -112,15 +111,15 @@
 
 	var/roletext
 	switch(role)
-		if(BE_DEATHMATCH)	
+		if(BE_DEATHMATCH)
 			roletext = "End of Round Deathmatch"
-		if(BE_ALIEN)		
+		if(BE_ALIEN)
 			roletext = ROLE_XENOMORPH
-		if(BE_QUEEN)		
+		if(BE_QUEEN)
 			roletext = ROLE_XENO_QUEEN
-		if(BE_SURVIVOR)		
+		if(BE_SURVIVOR)
 			roletext = ROLE_SURVIVOR
-		if(BE_SQUAD_STRICT)	
+		if(BE_SQUAD_STRICT)
 			roletext = "Prefer squad over role"
 
 	//Assemble a list of active players without jobbans.
@@ -128,7 +127,7 @@
 		if(!player.client || !player.ready)
 			continue
 		if(jobban_isbanned(player, roletext) || is_banned_from(player.ckey, roletext))
-			continue	
+			continue
 		players += player
 
 	//Shuffle the players list so that it becomes ping-independent.
@@ -203,7 +202,7 @@
 
 
 /datum/game_mode/proc/display_roundstart_logout_report()
-	var/msg = "<span class='notice'><b>Roundstart logout report</b></span>\n"
+	var/msg = "<hr><span class='notice'><b>Roundstart logout report</b></span><br>"
 	for(var/mob/living/L in GLOB.mob_living_list)
 
 		if(L.ckey)
@@ -213,22 +212,22 @@
 					found = 1
 					break
 			if(!found)
-				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
+				msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<b>Disconnected</b>)<br>"
 
 
 		if(L.ckey && L.client)
 			if(L.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))
-				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
+				msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<b>Connected, Inactive</b>)<br>"
 				continue //AFK client
 			if(L.stat)
 				if(L.suiciding)	//Suicider
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='red'><b>Suicide</b></font>)\n"
+					msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<b>Suicide</b>)<br>"
 					continue //Disconnected client
 				if(L.stat == UNCONSCIOUS)
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dying)\n"
+					msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (Dying)<br>"
 					continue //Unconscious
 				if(L.stat == DEAD)
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dead)\n"
+					msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (Dead)<br>"
 					continue //Dead
 
 			continue //Happy connected client
@@ -236,18 +235,19 @@
 			if(D.mind && D.mind.current == L)
 				if(L.stat == DEAD)
 					if(L.suiciding)	//Suicider
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Suicide</b></font>)\n"
+						msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<b>Suicide</b>)<br>"
 						continue //Disconnected client
 					else
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (Dead)\n"
+						msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (Dead)<br>"
 						continue //Dead mob, ghost abandoned
 				else
 					if(D.can_reenter_corpse)
 						continue //Lolwhat
 					else
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Ghosted</b></font>)\n"
+						msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<b>Ghosted</b>)<br>"
 						continue //Ghosted while alive
 
+	msg += "<hr>"
 
 
 	for(var/client/C in GLOB.clients)

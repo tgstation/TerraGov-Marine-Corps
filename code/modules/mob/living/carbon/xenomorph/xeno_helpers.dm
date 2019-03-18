@@ -9,7 +9,9 @@
 	return TRUE
 
 
-/mob/living/carbon/Xenomorph/can_inject()
+/mob/living/carbon/Xenomorph/can_inject(mob/user, error_msg = FALSE, target_zone, penetrate_thick = FALSE, check_limb = TRUE)
+	if(user && error_msg)
+		to_chat(user, "<span class='alert'>[src]'s chitin plating is too tough to be inject through.</span>")
 	return FALSE
 
 //These don't do much currently. Or anything? Only around for legacy code.
@@ -25,3 +27,9 @@
 /mob/living/carbon/Xenomorph/a_select_zone(input as text, screen_num as null|num)
 	screen_num = 9
 	return ..()
+
+
+/mob/living/carbon/Xenomorph/toggle_move_intent(screen_num as null|num)
+	screen_num = 3
+	. = ..()
+	update_icons()

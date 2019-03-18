@@ -405,6 +405,7 @@
 /mob/living/carbon/vv_get_dropdown()
 	. = ..()
 	. += "---"
+	. -= "Update Icon"
 	.["Add Language"] = "?_src_=vars;[HrefToken()];addlanguage=[REF(src)]"
 	.["Remove Language"] = "?_src_=vars;[HrefToken()];remlanguage=[REF(src)]"
 	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"

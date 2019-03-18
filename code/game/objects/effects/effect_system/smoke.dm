@@ -185,9 +185,11 @@
 	alpha = 145
 	opaque = FALSE
 
+
 /obj/effect/particle_effect/smoke/tactical/Move()
 	. = ..()
 	apply_smoke_effect(get_turf(src))
+
 
 /obj/effect/particle_effect/smoke/tactical/Destroy()
 	apply_smoke_effect(get_turf(src))
@@ -204,15 +206,15 @@
 		else
 			M.smokecloak_off()
 
-/obj/effect/particle_effect/smoke/tactical/Crossed(mob/living/M)
-	. = ..()
-	if(istype(M))
-		smoke_mob(M)
 
 /obj/effect/particle_effect/smoke/tactical/Uncrossed(mob/living/M)
 	. = ..()
 	if(istype(M) && !locate(type) in get_turf(M))
 		M.smokecloak_off()
+/obj/effect/particle_effect/smoke/tactical/Crossed(mob/living/M)
+	. = ..()
+	if(istype(M))
+		smoke_mob(M)
 
 /obj/effect/particle_effect/smoke/tactical/proc/cloak_smoke_act(mob/living/M)
 	if(ishuman(M))

@@ -21,7 +21,7 @@
 			to_chat(user, "<span class='notice'>[target] is full.</span>")
 			return
 
-		if(!target.is_injectable() && !isliving(target))
+		if(!isliving(target) && !target.is_injectable())
 			to_chat(user, "<span class='warning'>You cannot directly fill [target]!</span>")
 			return
 

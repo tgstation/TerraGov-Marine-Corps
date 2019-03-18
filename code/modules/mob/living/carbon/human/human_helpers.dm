@@ -159,29 +159,35 @@
 	for(var/datum/limb/L in limbs)
 		L.icon_name = get_limb_icon_name(species, b_icon, gender, L.display_name, e_icon)
 
-/mob/living/carbon/human/can_inject(mob/user, error_msg = FALSE, target_zone, check_limb = TRUE)
-	. = TRUE
+/mob/living/carbon/human/can_inject(mob/user, error_msg = FALSE, target_zone, penetrate_thick = FALSE, check_limb = TRUE)
+	. = ..()
 
-	var/message = "<span class='alert'>There is no exposed flesh or thin material on their [target_zone] to inject into.</span>"
+	if(!.) //yikes
+		return
+
 	if(!user)
-		target_zone = pick("chest","left hand","right hand","left leg","right leg","left arm", "right arm", "head")
+		target_zone = pick("chest","l_hand","r_hand","l_leg","r_leg","l_arm", "r_arm", "head")
 	else if(!target_zone)
 		target_zone = user.zone_selected
 
-	switch(target_zone)
-		if("head")
-			if(head?.flags_inventory & THICKMATERIAL)
-				. = FALSE
-		else
-			if(wear_suit?.flags_inventory & THICKMATERIAL)
-				. = FALSE
+	var/message = "<span class='alert'>There is no exposed flesh or thin material on [p_their()] [target_zone] to inject into.</span>"
 
+	if(!penetrate_thick)
+		switch(target_zone)
+			if("head")
+				if(head?.flags_inventory & THICKMATERIAL)
+					. = FALSE
+			else
+				if(wear_suit?.flags_inventory & THICKMATERIAL)
+					. = FALSE
 	if(check_limb)
 		var/datum/limb/affecting = get_limb(target_zone)
 		if(affecting.limb_status & (LIMB_ROBOT|LIMB_DESTROYED))
 			. = FALSE
 			if(affecting.limb_status & LIMB_DESTROYED)
-				message += "<span class='alert'>.. In fact, there is no [target_zone] at all.</span>"
+				message += "<span class='alert'>.. In fact, [p_they()] [p_have()] no [target_zone] at all.</span>"
+			else if(affecting.limb_status & LIMB_ROBOT)
+				message = "<span class='alert'>There is no exposed flesh on [p_their()] robotic [target_zone] to inject into.</span>"
 
 	if(!. && error_msg && user)
  		// Might need re-wording.
@@ -303,3 +309,11 @@ mob/living/carbon/human/get_standard_bodytemperature()
 /mob/living/carbon/human/throw_item(atom/target)
 	. = ..()
 	camo_off_process(SCOUT_CLOAK_OFF_ATTACK)
+
+
+/mob/living/carbon/human/toggle_move_intent(screen_num as null|num)
+	screen_num = 10
+	if(legcuffed)
+		to_chat(src, "<span class='notice'>You are legcuffed! You cannot run until you get [legcuffed] removed!</span>")
+		m_intent = MOVE_INTENT_WALK
+	return ..()

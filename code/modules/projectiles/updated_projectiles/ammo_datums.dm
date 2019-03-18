@@ -17,6 +17,8 @@
 
 #define DEBUG_STAGGER_SLOWDOWN	0
 
+GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/effect/alien/egg, /obj/structure/mineral_door, /obj/effect/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
+
 /datum/ammo
 	var/name 		= "generic bullet"
 	var/icon 		= 'icons/obj/items/projectiles.dmi'
@@ -723,7 +725,7 @@
 	damage_falloff = 0
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SKIPS_HUMANS
-	accurate_range_min = 10
+	accurate_range_min = 5
 
 /datum/ammo/bullet/sniper/New()
 	..()
@@ -1369,13 +1371,21 @@
 	drop_resin(get_turf(M))
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
-		C.add_slowdown(0.7) //slow em down
+		if( (xeno_hivenumber(C) && xeno_hivenumber(C) == xeno_hivenumber(P.firer) ) )
+			return
+		C.add_slowdown(2) //slow em down
+		C.next_move_slowdown += 8 //really slow down their next move, as if they stepped in sticky doo doo
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/O,obj/item/projectile/P)
-	drop_resin(get_turf(P))
+	var/turf/T = get_turf(O)
+	if(!T)
+		T = get_turf(P)
+	drop_resin(T)
 
 /datum/ammo/xeno/sticky/on_hit_turf(turf/T,obj/item/projectile/P)
-	drop_resin(get_turf(P))
+	if(!T)
+		T = get_turf(P)
+	drop_resin(T)
 
 /datum/ammo/xeno/sticky/do_at_max_range(obj/item/projectile/P)
 	drop_resin(get_turf(P))
@@ -1383,15 +1393,11 @@
 /datum/ammo/xeno/sticky/proc/drop_resin(turf/T)
 	if(T.density)
 		return
+
 	for(var/obj/O in T.contents)
-		if(istype(O, /obj/item/clothing/mask/facehugger))
+		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
-		if(istype(O, /obj/effect/alien/egg))
-			return
-		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin) || istype(O, /obj/structure/bed))
-			return
-		if(O.density && !(O.flags_atom & ON_BORDER))
-			return
+
 	new /obj/effect/alien/resin/sticky/thin(T)
 
 /datum/ammo/xeno/acid
@@ -1431,15 +1437,25 @@
 	damage = CONFIG_GET(number/combat_define/low_hit_damage)
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/item/projectile/P)
-	drop_acid(get_turf(M))
+	var/turf/T = get_turf(M)
+	if(!T)
+		T = get_turf(P)
+	drop_acid(T)
+
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
 		C.acid_process_cooldown = world.time
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/item/projectile/P)
-	drop_acid(get_turf(P))
+	var/turf/T = get_turf(O)
+	if(!T)
+		T = get_turf(P)
+	drop_acid(T)
+
 
 /datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/item/projectile/P)
+	if(!T)
+		T = get_turf(P)
 	drop_acid(T)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(obj/item/projectile/P)
@@ -1448,6 +1464,7 @@
 /datum/ammo/xeno/acid/proc/drop_acid(turf/T) //Leaves behind a short lived acid pool; lasts for 1-3 seconds.
 	if(T.density)
 		return
+
 	new /obj/effect/xenomorph/spray(T, 10)
 
 /datum/ammo/xeno/boiler_gas
