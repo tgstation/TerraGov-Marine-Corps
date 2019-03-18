@@ -478,7 +478,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO,
 #define WARRIOR_AGILITY_ARMOR 30
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 
-#define SPIT_UPGRADE_BONUS ( max(0,upgrade) * 0.15 ) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
+#define SPIT_UPGRADE_BONUS ( max(0,upgrade_as_number()) * 0.15 ) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
 #define SPRAY_STRUCTURE_UPGRADE_BONUS 8
 #define SPRAY_MOB_UPGRADE_BONUS 4
 

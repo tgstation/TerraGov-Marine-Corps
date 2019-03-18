@@ -569,5 +569,5 @@
 	return ..()
 
 /mob/living/carbon/Xenomorph/proc/handle_decay()
-	if(prob(7+(3*tier)+(3*upgrade))) // higher level xenos decay faster, higher plasma storage.
+	if(prob(7+(3*tier)+(3*upgrade_as_number()))) // higher level xenos decay faster, higher plasma storage.
 		use_plasma(min(rand(1,2), plasma_stored))
