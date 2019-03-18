@@ -331,7 +331,7 @@
 	var/protection = max(1 - C.get_permeability_protection(), 0.25)
 	if(prob(50) * protection)
 		to_chat(C, "<span class='danger'>Your skin feels like it is melting away!</span>")
-	C.adjustFireLoss(strength * rand(5, 10) * protection) //widespread burn damage, strength corresponds to the caste's bomb_strength
+	C.adjustFireLoss(strength * rand(8, 12) * protection) //widespread burn damage, strength corresponds to the caste's bomb_strength
 
 /obj/effect/particle_effect/smoke/xeno/burn/effect_inhale(mob/living/carbon/C)
 	C.adjustOxyLoss(5)
