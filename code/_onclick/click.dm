@@ -13,8 +13,20 @@
 */
 
 /client/Click(atom/A, location, control, params)
-	if(control)	// No .click macros allowed
-		return usr.do_click(A, location, params)
+	if(!control)	// No .click macros allowed
+		return
+	if(istype(A, /obj/screen/click_catcher))
+		var/list/modifiers = params2list(params)
+		if(modifiers["middle"] && iscarbon(usr))
+			var/mob/living/carbon/C = usr
+			C.swap_hand()
+		else
+			var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
+			params += "&catcher=1"
+			if(T)
+				usr.do_click(T, location, params)
+		return TRUE
+	return usr.do_click(A, location, params)
 
 
 /mob/proc/do_click(atom/A, location, params)
@@ -104,7 +116,7 @@
 
 /atom/proc/clicked(mob/user, list/mods)
 
-	if(mods["shift"] && !mods["middle"])
+	if(mods["shift"] && !mods["middle"] && !mods["catcher"])
 		if(user.client && user.client.eye == user)
 			user.examinate(src)
 		return TRUE
@@ -266,17 +278,6 @@
 	var/matrix/M = new
 	M.Scale(px/sx, py/sy)
 	transform = M
-
-/obj/screen/click_catcher/Click(location, control, params)
-	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && iscarbon(usr))
-		var/mob/living/carbon/C = usr
-		C.swap_hand()
-	else
-		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
-		params += "&catcher=1"
-		T?.Click(location, control, params)
-	return TRUE
 
 /client/proc/change_view(new_size)
 	view = new_size
