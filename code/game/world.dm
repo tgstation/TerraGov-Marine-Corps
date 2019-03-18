@@ -20,6 +20,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	SetupExternalRSC()
 
 	//make_datum_references_lists()	//Port this from /tg/
+	populate_seed_list()
 	populate_gear_list()
 	makeDatumRefLists() //Legacy
 
@@ -56,12 +57,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
 	update_status()
-
-	// Set up roundstart seed list. This is here because vendors were
-	// bugging out and not populating with the correct packet names
-	// due to this list not being instantiated.
-	populate_seed_list()
-
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 

@@ -448,7 +448,7 @@
 
 	//Remove the seed if something is already planted.
 	if(seed) seed = null
-	seed = seed_types[pick(list("reishi","nettles","amanita","mushrooms","plumphelmet","towercap","harebells","weeds"))]
+	seed = GLOB.seed_types[pick(list("reishi","nettles","amanita","mushrooms","plumphelmet","towercap","harebells","weeds"))]
 	if(!seed) return //Weed does not exist, someone fucked up.
 
 	dead = 0
@@ -478,7 +478,7 @@
 	// We need to make sure we're not modifying one of the global seed datums.
 	// If it's not in the global list, then no products of the line have been
 	// harvested yet and it's safe to assume it's restricted to this tray.
-	if(!isnull(seed_types[seed.name]))
+	if(!isnull(GLOB.seed_types[seed.name]))
 		seed = seed.diverge()
 	seed.mutate(severity,get_turf(src))
 
@@ -503,10 +503,7 @@
 
 	var/previous_plant = seed.display_name
 	var/newseed = seed.get_mutant_variant()
-	if(newseed in seed_types)
-		seed = seed_types[newseed]
-	else
-		return
+	seed = GLOB.seed_types[newseed] || seed
 
 	dead = 0
 	mutate(1)
@@ -601,7 +598,7 @@
 				dead = 0
 				age = 1
 				//Snowflakey, maybe move this to the seed datum
-				health = (istype(S, /obj/item/seeds/cutting) ? round(seed.endurance/rand(2,5)) : seed.endurance)
+				health = seed.endurance
 
 				lastcycle = world.time
 
