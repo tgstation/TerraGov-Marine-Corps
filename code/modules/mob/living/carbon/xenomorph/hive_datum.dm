@@ -93,6 +93,10 @@
 /datum/hive_status/proc/on_queen_death(mob/living/carbon/Xenomorph/Queen/Q)
 	return
 
+/datum/hive_status/proc/check_queen_timer()
+	if(xeno_queen_timer && --xeno_queen_timer <= 1)
+		xeno_message("The Hive is ready for a new Queen to evolve.", 3)
+
 /datum/hive_status/proc/can_xeno_message() // override to let corrupted hives still talk
 	return living_xeno_queen
 
