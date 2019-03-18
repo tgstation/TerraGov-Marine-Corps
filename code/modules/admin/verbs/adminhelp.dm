@@ -593,6 +593,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Show the ticket panel
 /datum/admin_help/proc/TicketPanel()
+	if(!check_rights(R_ADMIN, FALSE) && is_mentor(usr))
+		return
 	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		var/data = "<html><head><title>Access Denied</title></head><body>Access Denied</body></html>"
 		usr << browse(data, "window=ahelp[id];size=620x480")
