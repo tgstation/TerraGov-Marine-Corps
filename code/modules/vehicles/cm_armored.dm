@@ -420,11 +420,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		H?.livingmob_interact(src)
 
 /turf/closed/wall/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
-	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
+	var/obj/vehicle/multitile/root/cm_armored/tank/CA = C.root
 	var/damage = 30
 	var/tank_damage = 2
 
-	if(facing == get_dir(CA.loc, src) && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
+	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
 		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
 		if(SP.health > 0)
 			damage = 60
@@ -437,11 +437,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		C.lastsound = world.time
 
 /obj/machinery/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
-	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
+	var/obj/vehicle/multitile/root/cm_armored/tank/CA = C.root
 	var/damage = 30
 	var/tank_damage = 2
 
-	if(facing == get_dir(CA.loc, src) && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
+	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
 		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
 		if(SP.health > 0)
 			damage = 60
@@ -455,11 +455,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		C.lastsound = world.time
 
 /obj/structure/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
-	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
+	var/obj/vehicle/multitile/root/cm_armored/tank/CA = C.root
 	var/damage = 30
 	var/tank_damage = 2
 
-	if(facing == get_dir(CA.loc, src) && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
+	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
 		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
 		if(SP.health > 0)
 			damage = 60
