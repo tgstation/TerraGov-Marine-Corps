@@ -151,8 +151,6 @@
 
 
 /obj/item/projectile/Bump(atom/A as mob|obj|turf|area)
-	if(A in permutated)
-		return
 	var/datum/point/pcache = trajectory.copy_to()
 	if(check_ricochet(A) && check_ricochet_flag(A) && ricochets < ricochets_max)
 		ricochets++
@@ -165,35 +163,37 @@
 				store_hitscan_collision(pcache)
 			return TRUE
 
-	return process_hit(A, T)
+	return A.process_hit(src)
 
-/obj/item/projectile/proc/process_hit(atom/A, turf/T) //Placeholder, this should be a redefined proc, not a projectile one.
 
-	if(isturf(A))
-		if(hitsound_wall)
-			var/volume = CLAMP(vol_by_damage() + 20, 0, 100)
-			if(suppressed)
-				volume = 5
-			playsound(loc, hitsound_wall, volume, 1, -1)
-		ammo.on_hit_turf(A, src)
-		if(A?.loc)
-			A.bullet_act(src)
-		qdel(src)
-		return TRUE
-	
-	if(isobj(A))
-		ammo.on_hit_obj(A,src)
-		if(A?.loc)
-			A.bullet_act(src)
-		qdel(src)
-		return TRUE
+/atom/proc/process_hit(obj/item/projectile/P)
+	return FALSE
 
-	if(isliving(A))
-		ammo.on_hit_mob(A,src)
-		if(A?.loc)
-			A.bullet_act(src)
-		qdel(src)
-		return TRUE
+
+/mob/living/process_hit(obj/item/projectile/P)
+	P.ammo.on_hit_mob(src, P)
+	var/ret_value = bullet_act(P)
+	qdel(P)
+	return ret_value
+
+
+/obj/process_hit(obj/item/projectile/P)
+	P.ammo.on_hit_obj(src, P)
+	var/ret_value = bullet_act(P)
+	qdel(P)
+	return ret_value
+
+
+/turf/process_hit(obj/item/projectile/P)
+	if(P.hitsound_wall)
+		var/volume = CLAMP(P.vol_by_damage() + 20, 0, 100)
+		if(P.suppressed)
+			volume = 5
+		playsound(src, P.hitsound_wall, volume, 1, -1)
+	P.ammo.on_hit_turf(src, P)
+	var/ret_value = bullet_act(P)
+	qdel(P)
+	return ret_value
 
 
 /obj/item/projectile/proc/check_ricochet()
@@ -434,35 +434,36 @@
 	if(prob(50))
 		homing_offset_y = -homing_offset_y
 
-//Returns true if the target atom is on our current turf and above the right layer
-//If direct target is true it's the originally clicked target.
-/obj/item/projectile/proc/can_hit_target(atom/target, list/passthrough = permutated, direct_target, ignore_loc = FALSE)
+
+/obj/item/projectile/proc/can_hit_target(atom/target, ignore_loc = FALSE)
 	if(QDELETED(target))
 		return FALSE
-	if(!ignore_source_check && firer) //Related to ricochet, might be in for deleting.
-		var/mob/M = firer
-		if((target == firer) || ((target == firer.loc) && ismecha(firer.loc)) || (istype(M) && (M.buckled == target)))
-			return FALSE
+	if(!ignore_source_check && firer == target) //You can only pass this check through ricochet.
+		return FALSE
 	if(!ignore_loc && (loc != target.loc))
 		return FALSE
-	if(target in (passthrough + permutated)) //Forbidden lists
+	if(target in permutated) //Forbidden list
 		return FALSE
 
-	return target.can_be_hit(src, direct_target)
+	return target.can_be_shot(src)
 
 
-/atom/proc/can_be_hit(obj/item/projectile/P)
+/atom/proc/can_be_shot(obj/item/projectile/P)
 	return FALSE
 
-/mob/living/can_be_hit(obj/item/projectile/P, direct_target)
-	
+
+/mob/living/can_be_shot(obj/item/projectile/P)
 	if(layer <= PROJECTILE_HIT_THRESHHOLD_LAYER)
 		return FALSE
-	var/laser_target = P.firer?.sniper_target(src)
-	if(!direct_target)
-		if(lying) //We are lying and not directly shot at.
+	var/laser_target
+	if(P.firer)
+		//if(P.firer.buckled == src) //Piggybacking mobs, /tg/ feature.
+		//	return FALSE
+		laser_target = P.firer.sniper_target(src)
+	if(P.original != src) //They are not out to get us.
+		if(lying) //Duck for cover!
 			return FALSE
-		if(!laser_target) //Sniper targeting someone that's not us.
+		if(laser_target) //Sniper targeting someone that's not us.
 			return FALSE
 
 	var/hit_chance = get_projectile_hit_chance(P) // Calculated from combination of both ammo accuracy and gun accuracy
@@ -511,11 +512,20 @@
 
 	return mob_is_hit
 
-/obj/can_be_hit(obj/item/projectile/P)
+
+/obj/can_be_shot(obj/item/projectile/P)
 	return !CanPass(P, loc)
 
-/turf/can_be_hit(obj/item/projectile/P)
+
+/obj/mecha/can_be_shot(obj/item/projectile/P)
+	if(P.firer?.loc == src)
+		return FALSE
 	return !CanPass(P, src)
+
+
+/turf/can_be_shot(obj/item/projectile/P)
+	return !CanPass(P, src)
+
 
 //Spread is FORCED!
 /obj/item/projectile/proc/preparePixelProjectile(atom/target, atom/source, params, spread = 0)
@@ -582,8 +592,7 @@
 /obj/item/projectile/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.
 	. = ..()
 	if(isliving(AM) && !(flags_pass & PASSMOB))
-		var/mob/living/L = AM
-		if(can_hit_target(L, permutated, (AM == original)))
+		if(can_hit_target(AM))
 			Bump(AM)
 
 /obj/item/projectile/Move(atom/newloc, dir = NONE)
@@ -594,7 +603,7 @@
 		return
 	distance_travelled++
 	Range()
-	if(can_hit_target(original, permutated, TRUE))
+	if(can_hit_target(original))
 		Bump(original)
 
 	// Explosive ammo always explodes on the turf of the clicked target

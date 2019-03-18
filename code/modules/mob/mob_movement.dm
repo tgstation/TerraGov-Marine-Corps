@@ -1,12 +1,12 @@
 /mob/CanPass(atom/movable/mover, turf/target)
 	if(mover.checkpass(PASSMOB))
-		return 1
+		return TRUE
 	if(istype(mover, /obj/item/projectile))
 		var/obj/item/projectile/P = mover
-		return !P.can_hit_target(src, P.permutated, src == P.original, TRUE)
+		return !P.can_hit_target(src, TRUE)
 	if(ismob(mover))
 		if(checkpass(PASSMOB))
-			return 1
+			return TRUE
 	return (!mover.density || !density || lying)
 
 
