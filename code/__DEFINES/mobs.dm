@@ -163,12 +163,12 @@ var/list/global_mutations = list() // list of hidden mutation things
 // =============================
 // hive types
 
-#define XENO_HIVE_NONE -1
-#define XENO_HIVE_NORMAL 1
-#define XENO_HIVE_CORRUPTED 2
-#define XENO_HIVE_ALPHA 3
-#define XENO_HIVE_BETA 4
-#define XENO_HIVE_ZETA 5
+#define XENO_HIVE_NONE "none"
+#define XENO_HIVE_NORMAL "normal"
+#define XENO_HIVE_CORRUPTED "corrupted"
+#define XENO_HIVE_ALPHA "alpha"
+#define XENO_HIVE_BETA "beta"
+#define XENO_HIVE_ZETA "zeta"
 
 // =============================
 // xeno tiers
