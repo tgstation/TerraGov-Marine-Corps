@@ -252,7 +252,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(initiator.current_ticket)	//This is a bug
 		stack_trace("Multiple ahelp current_tickets.")
 		initiator.current_ticket.AddInteraction("Ticket erroneously left open by code.")
-		initiator.current_ticket.Close()
+		initiator.current_ticket.Close(TRUE, TRUE)
 	initiator.current_ticket = src
 
 	if(tier == TICKET_ADMIN)
@@ -375,12 +375,17 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 
 //Reopen a closed ticket
-/datum/admin_help/proc/Reopen()
-	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+/datum/admin_help/proc/Reopen(irc)
+	if(!irc && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	if(state == AHELP_ACTIVE)
 		to_chat(usr, "<span class='warning'>This ticket is already open.</span>")
 		return
+	var/ref
+	if(irc)
+		ref = key_name_admin(usr)
+	else
+		ref = ADMIN_TPMONTY(usr)
 
 	if(GLOB.ahelp_tickets.CKey2ActiveTicket(initiator_ckey))
 		to_chat(usr, "<span class='warning'>This user already has an active ticket, cannot reopen this one.</span>")
@@ -396,9 +401,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		initiator.current_ticket = src
 
 	if(tier == TICKET_MENTOR)
-		message_staff("Ticket [TicketHref("#[id]")] has been made reopened by [ADMIN_TPMONTY(usr)].")
+		message_staff("Ticket [TicketHref("#[id]")] has been made reopened by [ref].")
 	else if(tier == TICKET_ADMIN)
-		message_admins("Ticket [TicketHref("#[id]")] has been made reopened by [ADMIN_TPMONTY(usr)].")
+		message_admins("Ticket [TicketHref("#[id]")] has been made reopened by [ref].")
 
 	AddInteraction("<font color='purple'>Reopened by [key_name_admin(usr)]</font>")
 	log_admin_private("Ticket (#[id]) reopened by [key_name(usr)].")
@@ -406,20 +411,25 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 
 //Change the tier
-/datum/admin_help/proc/Tier()
-	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+/datum/admin_help/proc/Tier(irc)
+	if(!irc && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
+	var/ref
+	if(irc)
+		ref = key_name_admin(usr)
+	else
+		ref = ADMIN_TPMONTY(usr)
 	var/msg
 	if(tier == TICKET_MENTOR)
 		tier = TICKET_ADMIN
 		msg = "an admin ticket"
 		AddInteraction("<font color='red'>Made admin ticket by: [key_name_admin(usr)].</font>")
-		message_admins("Ticket [TicketHref("#[id]")] has been made [msg] by [ADMIN_TPMONTY(usr)].")
+		message_admins("Ticket [TicketHref("#[id]")] has been made [msg] by [ref].")
 	else if(tier == TICKET_ADMIN)
 		tier = TICKET_MENTOR
 		msg = "a mentor ticket"
 		AddInteraction("<font color='red'>Made mentor ticket by: [key_name_admin(usr)].</font>")
-		message_staff("Ticket [TicketHref("#[id]")] has been made [msg] by [ADMIN_TPMONTY(usr)].")
+		message_staff("Ticket [TicketHref("#[id]")] has been made [msg] by [ref].")
 		if(is_mentor(usr.client) && usr.client.prefs.toggles_sound & SOUND_ADMINHELP)
 			SEND_SOUND(usr.client, sound('sound/effects/adminhelp.ogg'))
 	log_admin_private("Ticket (#[id]) has been made [msg] by [key_name(usr)].")
@@ -471,36 +481,48 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 
 //Mark open ticket as closed/meme
-/datum/admin_help/proc/Close(key_name = key_name_admin(usr), silent = FALSE, force = FALSE)
-	if(!force && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+/datum/admin_help/proc/Close(silent, irc)
+	if(!irc && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	if(state != AHELP_ACTIVE)
 		return
+	var/ref
+	if(irc)
+		ref = key_name_admin(usr)
+	else
+		ref = ADMIN_TPMONTY(usr)
 	RemoveActive()
 	state = AHELP_CLOSED
 	GLOB.ahelp_tickets.ListInsert(src)
-	AddInteraction("<font color='red'>Closed by [key_name].</font>")
+	AddInteraction("<font color='red'>Closed by [key_name_admin(usr)].</font>")
 	if(!silent)
 		log_admin_private("Ticket (#[id]) closed by [key_name(usr)].")
 		if(tier == TICKET_MENTOR)
-			message_staff("Ticket [TicketHref("#[id]")] closed by [ADMIN_TPMONTY(usr)].")
+			message_staff("Ticket [TicketHref("#[id]")] closed by [ref].")
 		else if(tier == TICKET_ADMIN)
-			message_admins("Ticket [TicketHref("#[id]")] closed by [ADMIN_TPMONTY(usr)].")
+			message_admins("Ticket [TicketHref("#[id]")] closed by [ref].")
 
 
 //Mark open ticket as resolved/legitimate, returns ahelp verb
-/datum/admin_help/proc/Resolve(key_name = key_name_admin(usr), silent = FALSE)
-	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+/datum/admin_help/proc/Resolve(silent, irc)
+	if(!irc && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	if(state != AHELP_ACTIVE)
 		return
+
+	var/ref
+	if(irc)
+		ref = key_name_admin(usr)
+	else
+		ref = ADMIN_TPMONTY(usr)
+
 	RemoveActive()
 	state = AHELP_RESOLVED
 	GLOB.ahelp_tickets.ListInsert(src)
 
 	addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 50)
 
-	AddInteraction("<font color='green'>Resolved by [key_name].</font>")
+	AddInteraction("<font color='green'>Resolved by [key_name_admin(usr)].</font>")
 	if(tier == TICKET_MENTOR)
 		to_chat(initiator, "<span class='adminhelp'>Your mentor ticket has been resolved, if you need to ask something again, feel free to send another one.</span>")
 	if(tier == TICKET_ADMIN)
@@ -508,17 +530,24 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(!silent)
 		log_admin_private("Ticket (#[id]) resolved by [key_name(usr)].")
 		if(tier == TICKET_MENTOR)
-			message_staff("Ticket [TicketHref("#[id]")] resolved by [ADMIN_TPMONTY(usr)].")
+			message_staff("Ticket [TicketHref("#[id]")] resolved by [ref].")
 		else if(tier == TICKET_ADMIN)
-			message_admins("Ticket [TicketHref("#[id]")] resolved by [ADMIN_TPMONTY(usr)].")
+			message_admins("Ticket [TicketHref("#[id]")] resolved by [ref].")
 
 
 //Close and return ahelp verb, use if ticket is incoherent
-/datum/admin_help/proc/Reject(key_name = key_name_admin(usr))
-	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+/datum/admin_help/proc/Reject(irc)
+	if(!irc && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	if(state != AHELP_ACTIVE)
 		return
+
+	var/ref
+	if(irc)
+		ref = key_name_admin(usr)
+	else
+		ref = ADMIN_TPMONTY(usr)
+
 	if(initiator)
 		initiator.giveadminhelpverb()
 
@@ -530,18 +559,24 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			to_chat(initiator, "<font color='red' size='4'><b>- Adminhelp Rejected! -</b></font>")
 			to_chat(initiator, "<font color='red'><b>Your admin help was rejected.</b> The adminhelp verb has been returned to you so that you may try again.</font>")
 			to_chat(initiator, "Please try to be calm, clear, and descriptive in admin helps, do not assume the admin has seen any related events, and clearly state the names of anybody you are reporting.")
-	message_admins("Ticket [TicketHref("#[id]")] rejected by [ADMIN_TPMONTY(usr)].")
+	message_admins("Ticket [TicketHref("#[id]")] rejected by [ref].")
 	log_admin_private("Ticket (#[id]) rejected by [key_name(usr)].")
-	AddInteraction("Rejected by [key_name].")
-	Close(silent = TRUE)
+	AddInteraction("Rejected by [key_name_admin(usr)].")
+	Close(TRUE, irc)
 
 
 //Resolve ticket with IC Issue message
-/datum/admin_help/proc/ICIssue(key_name = key_name_admin(usr))
-	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+/datum/admin_help/proc/ICIssue(irc)
+	if(!irc && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	if(state != AHELP_ACTIVE)
 		return
+
+	var/ref
+	if(irc)
+		ref = key_name_admin(usr)
+	else
+		ref = ADMIN_TPMONTY(usr)
 
 	var/msg = "<font color='red' size='4'><b>- Adminhelp marked as IC! -</b></font><br>"
 	msg += "<font color='red'>Whatever your query was, you will have to find out using IC mean, the staff won't reveal anything relevant.</font>"
@@ -550,10 +585,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(initiator)
 		to_chat(initiator, msg)
 
-	message_admins("Ticket [TicketHref("#[id]")] marked as IC by [ADMIN_TPMONTY(usr)].")
+	message_admins("Ticket [TicketHref("#[id]")] marked as IC by [ref].")
 	log_admin_private("Ticket (#[id]) marked as IC by [key_name(usr)].")
-	AddInteraction("Marked as IC issue by [key_name]")
-	Resolve(silent = TRUE)
+	AddInteraction("Marked as IC issue by [key_name_admin(usr)]")
+	Resolve(TRUE, irc)
 
 
 //Show the ticket panel
@@ -714,7 +749,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")
 		else
 			current_ticket.AddInteraction("[key_name_admin(usr)] opened a new ticket.")
-			current_ticket.Close(key_name_admin(usr), TRUE, TRUE)
+			current_ticket.Close(TRUE, TRUE)
 
 	new /datum/admin_help(msg, src, FALSE, TICKET_ADMIN)
 
@@ -745,7 +780,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")
 		else
 			current_ticket.AddInteraction("[key_name_admin(usr)] opened a new ticket.")
-			current_ticket.Close(key_name_admin(usr), TRUE, TRUE)
+			current_ticket.Close(TRUE, TRUE)
 
 	new /datum/admin_help(msg, src, FALSE, TICKET_MENTOR)
 

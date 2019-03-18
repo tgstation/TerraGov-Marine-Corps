@@ -153,10 +153,10 @@
 
 				if(is_banned_from(ckey, "Appearance") || !client?.prefs)
 					species = GLOB.all_species[DEFAULT_SPECIES]
-					species.random_name()
+					observer.real_name = species.random_name()
 				else if(client.prefs)
 					if(client.prefs.random_name)
-						client.prefs.real_name = species.random_name(client.prefs.gender)
+						observer.real_name = species.random_name(client.prefs.gender)
 					else
 						observer.real_name = client.prefs.real_name
 				else

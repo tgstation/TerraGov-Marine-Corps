@@ -818,6 +818,7 @@
 #include "code\modules\admin\SDQL2\SDQL_2_parser.dm"
 #include "code\modules\admin\SDQL2\SDQL_2_wrappers.dm"
 #include "code\modules\admin\verbs\adminhelp.dm"
+#include "code\modules\admin\verbs\chat_commands.dm"
 #include "code\modules\admin\verbs\create_poll.dm"
 #include "code\modules\admin\verbs\datumvars.dm"
 #include "code\modules\admin\verbs\faxes.dm"
