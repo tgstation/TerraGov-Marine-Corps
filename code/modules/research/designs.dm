@@ -1897,4 +1897,4 @@ datum/design/cart_captain
 	build_type = PROTOLATHE
 	materials = list("$metal" = 50, "$glass" = 50)
 	build_path = "/obj/item/cartridge/captain"
-	locked = 1
+	locked = 1 */
