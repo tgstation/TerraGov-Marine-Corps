@@ -84,6 +84,8 @@
 				if(M.loc != src)
 					continue
 				M.forceMove(loc)
+				var/mob/living/carbon/human/H = M
+				H.devoured = FALSE
 	return TRUE
 
 /mob/living/carbon/Xenomorph/Defender/update_stat()

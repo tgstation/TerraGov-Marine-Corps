@@ -86,6 +86,9 @@
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents.Remove(A)
 		A.forceMove(loc)
+		if(iscarbon(A))
+			var/mob/living/carbon/C = A
+			C.devoured = FALSE
 
 	round_statistics.total_xeno_deaths++
 

@@ -114,6 +114,7 @@
 				//Then, we place the mob where it ought to be
 				X.stomach_contents.Add(pulled)
 				pulled.forceMove(X)
+				pulled.devoured = TRUE
 				if(ishuman(pulled)) //Check for camera; if we have one, turn it off.
 					var/mob/living/carbon/human/H = pulled
 					if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))

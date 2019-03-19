@@ -40,6 +40,9 @@
 		A.forceMove(loc)
 		if(ismob(A))
 			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
+			if(iscarbon(A))
+				var/mob/living/carbon/C = A
+				C.devoured = FALSE
 
 	. = ..()
 

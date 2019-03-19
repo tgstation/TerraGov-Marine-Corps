@@ -1617,7 +1617,7 @@
 
 /mob/living/carbon/human/update_tint()
 	tinttotal = get_total_tint()
-	if(tinttotal >= 3)
+	if(tinttotal >= 3 || devoured)
 		blind_eyes(1)
 		return TRUE
 	else if(eye_blind == 1)
