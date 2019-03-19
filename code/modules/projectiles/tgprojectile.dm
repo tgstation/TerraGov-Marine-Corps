@@ -153,6 +153,7 @@
 /obj/item/projectile/Bump(atom/A as mob|obj|turf|area)
 	var/datum/point/pcache = trajectory.copy_to()
 	if(check_ricochet(A) && check_ricochet_flag(A) && ricochets < ricochets_max)
+		message_admins("no.")
 		ricochets++
 		if(A.handle_ricochet(src))
 			on_ricochet(A)
@@ -601,6 +602,9 @@
 		return
 	if(!fired)
 		return
+	if(temporary_unstoppable_movement)
+		temporary_unstoppable_movement = FALSE
+		movement_type |= MOVEMENT_UNSTOPPABLE
 	distance_travelled++
 	Range()
 	if(can_hit_target(original))
