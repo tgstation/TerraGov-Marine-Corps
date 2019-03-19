@@ -490,6 +490,26 @@
 /mob/living/proc/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
 	return FALSE
 
+/mob/living/update_tint()
+	tinttotal = get_total_tint()
+	if(tinttotal >= TINT_BLIND)
+		blind_eyes(1)
+		return TRUE
+	else if(eye_blind == 1)
+		adjust_blindness(-1)
+	if(tinttotal == TINT_HEAVY)
+		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, 2)
+		return TRUE
+	else
+		clear_fullscreen("tint", 0)
+		return FALSE
+
+/mob/living/proc/get_total_tint()
+	if(iscarbon(loc))
+		var/mob/living/carbon/C = loc
+		for(src in C.stomach_contents)
+			. = TINT_BLIND
+
 /mob/living/proc/smokecloak_on()
 
 	if(smokecloaked)
@@ -585,7 +605,7 @@ below 100 is not dizzy
 /mob/living/proc/equip_preference_gear(client/C)
 	if(!C?.prefs || !istype(back, /obj/item/storage/backpack))
 		return
-	
+
 	var/datum/preferences/P = C.prefs
 	var/list/gear = P.gear
 

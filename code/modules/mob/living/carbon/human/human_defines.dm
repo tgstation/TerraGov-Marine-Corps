@@ -67,8 +67,6 @@
 
 	var/icon/stand_icon = null
 
-	var/tinttotal = 0
-
 	var/voice = ""	//Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
 
 	var/speech_problem_flag = 0

@@ -636,7 +636,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!user)
 		return
 	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
-	var/mob/living/carbon/human/H = user
 
 	for(var/obj/item/I in user.contents)
 		if(I.zoom && I != src)
@@ -647,8 +646,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
 	else if(!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
-	else if(!zoom && user.client && H.tinttotal >= 2)
-		to_chat(user, "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>")
+	else if(!zoom && user.get_total_tint() >= TINT_HEAVY)
+		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
 	else if(!zoom && user.get_active_held_item() != src)
 		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
 	else if(zoom) //If we are zoomed out, reset that parameter.

@@ -82,8 +82,11 @@
 #define NOPRESSUREDMAGE (1<<7) //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
 //SUITS AND HELMETS====================================================================================
 
-
-
+//vision obscuring facegear and etc.
+#define TINT_NONE 0
+#define TINT_MILD 1
+#define TINT_HEAVY 2
+#define TINT_BLIND 3
 
 
 //===========================================================================================
