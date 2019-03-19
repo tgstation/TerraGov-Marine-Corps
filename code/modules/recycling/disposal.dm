@@ -475,6 +475,7 @@
 	//Note AM since can contain mobs or objs
 	for(var/atom/movable/AM in D)
 		AM.loc = src
+		SEND_SIGNAL(AM, COMSIG_MOVABLE_DISPOSING, src, D)
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
 			if(FAT in H.mutations) //Is a human and fat?
