@@ -284,10 +284,8 @@
 
 	if(iscarbon(loc))
 		var/mob/living/carbon/C = loc
-		for(var/mob/living/L in C.stomach_contents)
-			if(L == M)
-				message = Gibberish(message, 100)
-				break
+		if(M in C.stomach_contents)
+			message = Gibberish(message, 100)
 
   /* ###### Radio headsets can only broadcast through subspace ###### */
 
