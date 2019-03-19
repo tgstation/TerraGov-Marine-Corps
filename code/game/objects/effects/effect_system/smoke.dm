@@ -331,15 +331,12 @@
 	var/protection = max(1 - C.get_permeability_protection(), 0.25)
 	if(prob(50) * protection)
 		to_chat(C, "<span class='danger'>Your skin feels like it is melting away!</span>")
-	C.adjustFireLoss(strength * rand(8, 12) * protection) //widespread burn damage, strength corresponds to the caste's bomb_strength
+	C.adjustFireLoss(strength * rand(10, 15) * protection) //widespread burn damage, strength corresponds to the caste's bomb_strength
 
 /obj/effect/particle_effect/smoke/xeno/burn/effect_inhale(mob/living/carbon/C)
-	C.adjustOxyLoss(5)
-	if(!C.stat)
-		if(prob(50))
-			C.emote("cough")
-		else
-			C.emote("gasp")
+	C.adjustOxyLoss(4 + strength)
+	if(C.stat == CONSCIOUS && prob(50))
+		C.emote(pick("cough", "gasp"))
 
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
@@ -350,22 +347,20 @@
 		to_chat(C, "<span class='danger'>Your eyes sting. You can't see!</span>")
 	C.blur_eyes(4)
 	C.blind_eyes(2)
-	var/reagent_amount = 5 + strength * 2
+	var/reagent_amount = 1 + strength * 2
 	C.reagents.add_reagent("xeno_toxin", reagent_amount)
-	if(prob(reagent_amount * 4)) //Likely to momentarily freeze up/fall due to arms/hands seizing up
-		if(!C.is_mob_incapacitated(TRUE))
-			to_chat(C, "<span class='danger'>Your body is going numb, almost as if paralyzed!</span>")
-		C.AdjustKnockeddown(1)
+	if(prob(reagent_amount * 4) && !C.is_mob_incapacitated(TRUE)) //Likely to momentarily freeze up/fall due to arms/hands seizing up
+		to_chat(C, "<span class='danger'>You feel your body going numb and lifeless!</span>")
 	if(prob(50))
 		C.emote(pick("cough", "gasp"))
 
 /obj/effect/particle_effect/smoke/xeno/neuro/effect_contact(mob/living/carbon/C)
 	if(!C.internal && !C.has_smoke_protection()) //skin protection won't matter if without gas protection
 		return
-	var/reagent_amount = 2 + strength
-	var/bio_vulnerability = 1 - min(C.get_permeability_protection(), 0.9)
+	var/reagent_amount = 1 + strength
+	var/bio_vulnerability = 1 - min(C.get_permeability_protection(), 0.8)
 	C.reagents.add_reagent("xeno_toxin", round(reagent_amount * bio_vulnerability, 0.1))
-	if(prob(bio_vulnerability * 5))
+	if(prob(bio_vulnerability * reagent_amount * 2))
 		to_chat(C, "<span class='danger'>Your body goes numb where the gas touches it!</span>")
 
 /////////////////////////////////////////////
