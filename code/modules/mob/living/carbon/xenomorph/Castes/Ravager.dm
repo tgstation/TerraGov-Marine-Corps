@@ -10,7 +10,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40
 	melee_damage_upper = 60
-	attack_delay = -2
+	attack_delay = 6
 
 	// *** Tackle *** //
 	tackle_damage = 55
@@ -50,7 +50,6 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 50
 	melee_damage_upper = 70
-	attack_delay = -2
 
 	// *** Tackle *** //
 	tackle_damage = 60
@@ -82,7 +81,6 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 55
 	melee_damage_upper = 75
-	attack_delay = -2
 
 	// *** Tackle *** //
 	tackle_damage = 65
@@ -114,7 +112,6 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 60
 	melee_damage_upper = 80
-	attack_delay = -2
 
 	// *** Tackle *** //
 	tackle_damage = 70
@@ -226,7 +223,6 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 70
 	melee_damage_upper = 90
-	attack_delay = -2
 
 	// *** Tackle *** //
 	tackle_damage = 55

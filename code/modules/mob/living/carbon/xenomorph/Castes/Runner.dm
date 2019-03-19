@@ -10,7 +10,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 10
 	melee_damage_upper = 20
-	attack_delay = -4
+	attack_delay = 4
 
 	savage_cooldown = 30 SECONDS
 
@@ -52,7 +52,6 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
 	melee_damage_upper = 30
-	attack_delay = -4
 
 	savage_cooldown = 30 SECONDS
 
@@ -87,7 +86,6 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
 	melee_damage_upper = 35
-	attack_delay = -4
 
 	savage_cooldown = 30 SECONDS
 
@@ -122,7 +120,6 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 25
 	melee_damage_upper = 35
-	attack_delay = -4
 
 	savage_cooldown = 30 SECONDS
 

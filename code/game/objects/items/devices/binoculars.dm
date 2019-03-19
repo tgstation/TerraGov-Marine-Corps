@@ -16,12 +16,6 @@
 /obj/item/device/binoculars/attack_self(mob/user)
 	zoom(user, 11, 12)
 
-/obj/item/device/binoculars/on_set_interaction(var/mob/user)
-	flags_atom |= RELAY_CLICK
-
-
-/obj/item/device/binoculars/on_unset_interaction(var/mob/user)
-	flags_atom &= ~RELAY_CLICK
 
 /obj/item/device/binoculars/tactical
 	name = "tactical binoculars"
@@ -51,15 +45,37 @@
 		coord = null
 	. = ..()
 
-/obj/item/device/binoculars/tactical/on_unset_interaction(var/mob/user)
-	..()
 
-	if (user && (laser || coord))
-		if (!zoom)
-			if(laser)
-				qdel(laser)
-			if(coord)
-				qdel(coord)
+/obj/item/device/binoculars/tactical/attack_self(mob/user)
+	if(!user?.client)
+		return
+	user.client.click_intercept = src
+	zoom(user, 11, 12)
+
+
+/obj/item/device/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
+	var/list/pa = params2list(params)
+	if(!pa.Find("ctrl"))
+		return FALSE
+	acquire_target(object, user)
+	return TRUE
+
+
+/obj/item/device/binoculars/tactical/on_unset_interaction(var/mob/user)
+	. = ..()
+
+	if(!user?.client)
+		return
+
+	user.client.click_intercept = null
+
+	if(zoom)
+		return
+	if(laser)
+		qdel(laser)
+	if(coord)
+		qdel(coord)
+
 
 /obj/item/device/binoculars/tactical/update_icon()
 	..()

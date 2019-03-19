@@ -195,9 +195,6 @@
 		else
 			. = ..()
 
-			if (mob.tile_contents)
-				mob.tile_contents = list()
-
 		moving = 0
 		next_movement = start_move_time + move_delay
 		return .

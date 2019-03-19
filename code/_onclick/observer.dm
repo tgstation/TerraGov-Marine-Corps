@@ -1,37 +1,56 @@
-/mob/dead/observer/click(var/atom/A, var/list/mods)
-	. = ..()
-	if(.)
-		return TRUE
+/mob/dead/observer/DblClickOn(var/atom/A, var/params)
+	if(can_reenter_corpse && mind && mind.current)
+		if(A == mind.current || (mind.current in A)) // double click your corpse or whatever holds it
+			reenter_corpse()						// (cloning scanner, body bag, closet, mech, etc)
+			return									// seems legit.
+
+	// Things you might plausibly want to follow
+	if(ismovableatom(A))
+		ManualFollow(A)
+
+	// Otherwise jump
+	else if(A.loc)
+		forceMove(get_turf(A))
+
+
+/mob/dead/observer/ClickOn(var/atom/A, var/params)
+	if(check_click_intercept(params, A))
+		return
+
+	var/list/modifiers = params2list(params)
+	if(modifiers["shift"] && modifiers["middle"])
+		ShiftMiddleClickOn(A)
+		return
+	if(modifiers["shift"] && modifiers["ctrl"])
+		CtrlShiftClickOn(A)
+		return
+	if(modifiers["middle"])
+		MiddleClickOn(A)
+		return
+	if(modifiers["shift"])
+		ShiftClickOn(A)
+		return
+	if(modifiers["alt"])
+		AltClickNoInteract(src, A)
+		return
+	if(modifiers["ctrl"])
+		CtrlClickOn(A)
+		return
 
 	if(world.time <= next_move)
-		return TRUE
-
-	if(mods["ctrl"] && mods["middle"])
-		if(can_reenter_corpse && mind?.current)
-			if(A == mind.current || (mind.current in A))
-				reenter_corpse()
-
-		else if(ismob(A) && A != src)
-			ManualFollow(A)
-
-		else
-			unfollow()
-			loc = get_turf(A)
-
-		return TRUE
-
-	next_move = world.time + 8
-
-	if(!mods["shift"])
-		A.attack_ghost(src)
-
-	return TRUE
-
-
-/atom/proc/attack_ghost(mob/dead/observer/user)
-	if(!user.client || !user.inquisitive_ghost)
 		return
-	examine(user)
+	// You are responsible for checking config.ghost_interaction when you override this function
+	// Not all of them require checking, see below
+	A.attack_ghost(src)
+
+
+// Oh by the way this didn't work with old click code which is why clicking shit didn't spam you
+/atom/proc/attack_ghost(mob/dead/observer/user)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_GHOST, user) & COMPONENT_NO_ATTACK_HAND)
+		return TRUE
+	if(user.inquisitive_ghost)
+		user.examinate(src)
+	return FALSE
 
 
 /obj/structure/ladder/attack_ghost(mob/user as mob)

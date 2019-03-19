@@ -199,7 +199,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	return ..()
 
 
-/obj/effect/statclick/ticket_list/clicked()
+/obj/effect/statclick/ticket_list/Click()
 	GLOB.ahelp_tickets.BrowseTickets(current_state)
 
 
@@ -660,7 +660,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	return ..(ahelp_datum.name)
 
 
-/obj/effect/statclick/ahelp/clicked()
+/obj/effect/statclick/ahelp/Click()
 	ahelp_datum.TicketPanel()
 
 

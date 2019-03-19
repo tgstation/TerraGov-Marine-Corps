@@ -61,6 +61,8 @@
 	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
 
 
+	var/reach = 1
+
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
 	sprite_sheets = list(

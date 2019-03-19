@@ -250,36 +250,36 @@
 	src.closer.screen_loc = "4:[storage_width+19],2:16"
 	return
 
-/obj/screen/storage/clicked(var/mob/user, var/list/mods)
-	if(user.is_mob_incapacitated(TRUE))
-		return 1
-	if (istype(user.loc,/obj/mecha) || istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
-		return 1
 
-	// Placing something in the storage screen
-	if(master)
-		var/obj/item/storage/S = master
-		var/obj/item/I = user.get_active_held_item()
-		if(I)
-			if (master.attackby(I, user))
-				user.next_move = world.time + 2
-			return 1
+/obj/screen/storage/Click(location, control, params)
+	if(usr.is_mob_incapacitated(TRUE))
+		return
 
-		// Taking something out of the storage screen (including clicking on item border overlay)
-		var/list/screen_loc_params = splittext(mods["screen-loc"], ",")
-		var/list/screen_loc_X = splittext(screen_loc_params[1],":")
-		var/click_x = text2num(screen_loc_X[1])*32+text2num(screen_loc_X[2]) - 144
+	if(istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+		return
 
-		for(var/i=1,i<=S.click_border_start.len,i++)
-			if (S.click_border_start[i] <= click_x && click_x <= S.click_border_end[i])
-				I = S.contents[i]
-				if (I)
-					if (I.clicked(user, mods))
-						return 1
+	var/list/PL = params2list(params)
 
-					I.attack_hand(user)
-					return 1
-	return 0
+	if(!master)
+		return
+
+	var/obj/item/storage/S = master
+	var/obj/item/I = usr.get_active_held_item()
+	if(I)
+		master.attackby(I, usr)
+
+	// Taking something out of the storage screen (including clicking on item border overlay)
+	var/list/screen_loc_params = splittext(PL["screen-loc"], ",")
+	var/list/screen_loc_X = splittext(screen_loc_params[1],":")
+	var/click_x = text2num(screen_loc_X[1]) * 32 + text2num(screen_loc_X[2]) - 144
+
+	for(var/i = 1 to length(S.click_border_start))
+		if(S.click_border_start[i] > click_x || click_x > S.click_border_end[i])
+			continue
+		if(I == S.contents[length(S.contents)])
+			continue
+		I = S.contents[i]
+		I.attack_hand(usr)
 
 
 /datum/numbered_display
@@ -451,28 +451,11 @@
 	return 1
 
 //This proc is called when you want to place an item into the storage item.
-/obj/item/storage/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-
-	if(iscyborg(user))
-		to_chat(user, "<span class='notice'>You're a robot. No.</span>")
-		return //Robots can't interact with storage items.
+/obj/item/storage/attackby(obj/item/W, mob/user)
+	. = ..()
 
 	if(!can_be_inserted(W))
 		return
-
-	if(istype(W, /obj/item/tool/kitchen/tray))
-		var/obj/item/tool/kitchen/tray/T = W
-		if(T.calc_carry() > 0)
-			if(prob(85))
-				to_chat(user, "<span class='warning'>The tray won't fit in [src].</span>")
-				return
-			else
-				W.loc = user.loc
-				if ((user.client && user.s_active != src))
-					user.client.screen -= W
-				W.dropped(user)
-				to_chat(user, "<span class='warning'>God damnit!</span>")
 
 	W.add_fingerprint(user)
 	return handle_item_insertion(W, FALSE, user)

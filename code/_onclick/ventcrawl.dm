@@ -2,8 +2,10 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	/obj/machinery/atmospherics/components/unary/vent_pump,
 	/obj/machinery/atmospherics/components/unary/vent_scrubber)))
 
+
 /mob/living/proc/can_ventcrawl()
 	return FALSE
+
 
 /mob/living/proc/ventcrawl_carry()
 	for(var/atom/A in src.contents)
@@ -13,20 +15,11 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	return TRUE
 
 
-/mob/living/click(var/atom/A, var/list/mods)
-	if (..())
-		return TRUE
-	if (mods["alt"])
-		if(can_ventcrawl() && is_type_in_list(A, GLOB.ventcrawl_machinery))
-			handle_ventcrawl(A)
-		return TRUE
-
-
 /mob/proc/start_ventcrawl()
 	var/atom/pipe
 	var/list/pipes = list()
 	for(var/obj/machinery/atmospherics/components/unary/U in range(1))
-		if(is_type_in_list(U,GLOB.ventcrawl_machinery) && Adjacent(U))
+		if(is_type_in_list(U, GLOB.ventcrawl_machinery) && Adjacent(U))
 			pipes |= U
 	if(!pipes || !pipes.len)
 		to_chat(src, "<span class='warning'>There are no pipes that you can ventcrawl into within range!</span>")
@@ -38,17 +31,20 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	if(!is_mob_incapacitated() && pipe)
 		return pipe
 
+
 /mob/living/carbon/monkey/can_ventcrawl()
 	return TRUE
+
 
 /mob/living/simple_animal/mouse/can_ventcrawl()
 	return TRUE
 
+
 /mob/living/simple_animal/spiderbot/can_ventcrawl()
 	return TRUE
 
-//VENTCRAWLING
 
+//VENTCRAWLING
 /mob/living/proc/handle_ventcrawl(atom/A)
 	if(!can_ventcrawl() || !Adjacent(A))
 		return
@@ -108,6 +104,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	else
 		to_chat(src, "<span class='warning'>This ventilation duct is not connected to anything!</span>")
 
+
 /mob/living/proc/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
 	if(!istype(starting_machine) || !starting_machine.can_see_pipes())
 		return
@@ -121,18 +118,18 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	if(client)
 		for(var/X in totalMembers)
 			var/obj/machinery/atmospherics/A = X //all elements in totalMembers are necessarily of this type.
-			//if(in_view_range(client.mob, A))
 			if(!A.pipe_vision_img)
 				A.pipe_vision_img = image(A, A.loc, layer = ABOVE_HUD_LAYER, dir = A.dir)
 				A.pipe_vision_img.plane = ABOVE_HUD_PLANE
 			A.pipe_vision_img.alpha = 200
 			client.images += A.pipe_vision_img
 			pipes_shown += A.pipe_vision_img
-	//setMovetype(movement_type | VENTCRAWLING)
+
 
 /mob/living/carbon/Xenomorph/Hunter/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
 	. = ..()
 	cancel_stealth()
+
 
 /mob/living/proc/remove_ventcrawl()
 	is_ventcrawling = FALSE
@@ -143,8 +140,10 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 
 	pipes_shown.len = 0
 
+
 /atom/proc/update_pipe_vision(atom/new_loc = null)
 	return
+
 
 /mob/living/update_pipe_vision(atom/new_loc = null)
 	. = loc

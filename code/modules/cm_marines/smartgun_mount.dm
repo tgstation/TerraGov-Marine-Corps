@@ -497,7 +497,6 @@
 
 
 /obj/machinery/m56d_hmg/on_set_interaction(mob/user)
-	flags_atom |= RELAY_CLICK
 	user.client.change_view(view_tiles)
 	switch(dir)
 		if(NORTH)
@@ -516,7 +515,6 @@
 	user.verbs += /mob/living/proc/toogle_mg_burst_fire
 
 /obj/machinery/m56d_hmg/on_unset_interaction(mob/user)
-	flags_atom &= ~RELAY_CLICK
 	if(user.client)
 		user.client.change_view(world.view)
 		user.client.pixel_x = 0

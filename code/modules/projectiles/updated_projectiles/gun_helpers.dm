@@ -116,11 +116,8 @@ DEFINES in setup.dm, referenced here.
 			//						   	  \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/clicked(var/mob/user, var/list/mods)
-	if(mods["alt"])
-		toggle_gun_safety()
-		return TRUE
-	return ..()
+/obj/item/weapon/gun/AltClick(mob/user)
+	toggle_gun_safety()
 
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
