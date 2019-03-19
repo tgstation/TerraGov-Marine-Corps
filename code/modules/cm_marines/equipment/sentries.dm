@@ -286,7 +286,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	cell = new /obj/item/cell/high(src)
-	camera_number = rand(1,1000)
+	camera_number = UNIQUEID
 	camera = new (src)
 	camera.network = list("military")
 	camera.c_tag = "Sentry: [get_area(src)] | X: [x] | Y: [y] | [camera_number]" //Update Camera name

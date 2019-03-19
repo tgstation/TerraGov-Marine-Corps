@@ -37,10 +37,10 @@
 
 /obj/item/explosive/mine/Destroy()
 	if(tripwire)
-		qdel(tripwire)
+		QDEL_NULL(tripwire)
 		tripwire = null
 	if(camera)
-		qdel(camera)
+		QDEL_NULL(camera)
 		camera = null
 	. = ..()
 
@@ -92,7 +92,7 @@
 		if(anchored)
 			user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
 			"<span class='notice'>You start disarming [src].</span>")
-			if(!do_after(user, 80, TRUE, 5, BUSY_ICON_FRIENDLY))
+			if(!do_after(user, SKILL_TASK_AVERAGE, TRUE, 5, BUSY_ICON_FRIENDLY))
 				user.visible_message("<span class='warning'>[user] stops disarming [src].", \
 				"<span class='warning'>You stop disarming [src].")
 				return
@@ -114,7 +114,7 @@
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = 20
+		var/fumbling_time = SKILL_TASK_VERY_EASY
 		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
 			return
 	user.set_interaction(src)
@@ -128,7 +128,7 @@
 <A href='?src=\ref[src];alarm_mode=1'><B>Set Alarm Mode:</B> [alarm_mode ? "Silent" : "Siren"]</A><BR>
 
 </TT>"}
-//<A href='?src=\ref[src];trigger_type=Shrapnel'><B>Set to Shrapnel Mode</B></A><BR>
+
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
 	return
@@ -282,53 +282,4 @@
 			flame_radius(2, tripwire.loc, 50, 50, 45, 15) //powerful
 			qdel(src)
 
-/*
-		if("Shrapnel")
-			var/datum/ammo/bullet/shotgun/flechette/ammo = /datum/ammo/bullet/shotgun/flechette/claymore
-			var/obj/item/projectile/in_chamber = null
 
-			in_chamber = new /obj/item/projectile(loc)
-			ammo = GLOB.ammo_list[ammo]
-			in_chamber.generate_bullet(ammo)
-			in_chamber.def_zone = pick("chest", "chest", "chest", "head")
-
-			var/target = get_turf(tripwire)
-			var/turf/targloc = target
-			if(target)
-				var/angle = round(Get_Angle(src,target))
-				muzzle_flash(angle)
-
-			playsound(loc, 'sound/weapons/gun_shotgun.ogg', 75, 1)
-			for(var/i = 1 to 5)
-				target = get_turf(target)
-				if (prob(50))
-					var/scatter_x = rand(-1, 1)
-					var/scatter_y = rand(-1, 1)
-					var/turf/new_target = locate(targloc.x + round(scatter_x),targloc.y + round(scatter_y),targloc.z) //Locate an adjacent turf.
-					if(new_target) //Looks like we found a turf.
-						target = new_target
-				sleep(1)
-				in_chamber.fire_at(target, src, null, ammo.max_range, ammo.shell_speed) //powerful
-*/
-
-			qdel(src)
-
-/obj/item/explosive/mine/proc/muzzle_flash(var/angle)
-	if(isnull(angle))
-		return
-
-	var/muzzle_flash_lum = 3
-
-	SetLuminosity(muzzle_flash_lum)
-	spawn(10)
-		SetLuminosity(-muzzle_flash_lum)
-
-	if(prob(65))
-		var/layer = MOB_LAYER - 0.1
-
-		var/image/I = image('icons/obj/items/projectiles.dmi',src,"muzzle_flash",layer)
-		var/matrix/rotate = matrix() //Change the flash angle.
-		rotate.Translate(0, 5)
-		rotate.Turn(angle)
-		I.transform = rotate
-		flick_overlay_view(I, src, 3)

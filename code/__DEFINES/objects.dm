@@ -230,3 +230,4 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 
 //Claymore mine defines
 #define CLAYMORE_ALERT_DELAY				5 SECONDS
+#define CLAYMORE_SHRAPNEL_DELAY				1
