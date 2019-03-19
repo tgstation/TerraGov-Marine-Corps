@@ -25,7 +25,7 @@
 
 /datum/job/command/captain/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"As the captain of the [MAIN_SHIP_NAME] you are held by higher standard and are expected to act competently.
+	to_chat(M, {"As the captain of the [CONFIG_GET(string/ship_name)] you are held by higher standard and are expected to act competently.
 While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
 Your first order of business should be briefing the marines on the mission they are about to undertake.

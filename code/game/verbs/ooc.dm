@@ -147,10 +147,12 @@ var/global/normal_ooc_colour = "#002eb8"
 
 	if(admin && isobserver(mob))
 		message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [usr.client.holder.fakekey ? "Administrator" : usr.client.key]: <span class='message'>[msg]</span></span></font>"
-		usr.visible_message(message, message, message)
+		for(var/mob/M in range(mob))
+			to_chat(M, message)
 	else
 		message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [mob.name]: <span class='message'>[msg]</span></span></font>"
-		mob.visible_message(message, message)
+		for(var/mob/M in range(mob))
+			to_chat(M, message)
 
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE) || C.mob == mob)

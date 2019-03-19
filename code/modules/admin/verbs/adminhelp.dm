@@ -91,8 +91,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	for(var/I in l2b)
 		var/datum/admin_help/AH = I
 		if(AH.tier == TICKET_MENTOR && check_rights(R_ADMIN|R_MENTOR, FALSE))
+			if(!AH.initiator)
+				dat += "\[DC\]"
 			dat += "<span class='adminnotice'><span class='adminhelp'>#[AH.id] Mentor Ticket</span>: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 		else if(AH.tier == TICKET_ADMIN && check_rights(R_ADMIN, FALSE))
+			if(!AH.initiator)
+				dat += "\[DC\]"
 			dat += "<span class='adminnotice'><span class='adminhelp'>#[AH.id] Admin Ticket</span>: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 	usr << browse(dat.Join(), "window=ahelp_list[state];size=600x480")
 
@@ -226,6 +230,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/list/_interactions	//use AddInteraction() or, preferably, admin_ticket_log()
 
 	var/obj/effect/statclick/ahelp/statclick
+
+	var/tier_cooldown
 
 	var/static/ticket_counter = 0
 
@@ -412,6 +418,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Change the tier
 /datum/admin_help/proc/Tier(irc)
+	if(tier_cooldown > world.time)
+		to_chat(usr, "<span class='warning'>Please wait a moment before changing the tier.</span>")
+		return
 	if(!irc && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	var/ref
@@ -432,6 +441,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		message_staff("Ticket [TicketHref("#[id]")] has been made [msg] by [ref].")
 		if(is_mentor(usr.client) && usr.client.prefs.toggles_sound & SOUND_ADMINHELP)
 			SEND_SOUND(usr.client, sound('sound/effects/adminhelp.ogg'))
+	tier_cooldown = world.time + 5 SECONDS
 	log_admin_private("Ticket (#[id]) has been made [msg] by [key_name(usr)].")
 
 
@@ -785,6 +795,21 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			current_ticket.Close(TRUE, TRUE)
 
 	new /datum/admin_help(msg, src, FALSE, TICKET_MENTOR)
+
+
+/client/verb/choosehelp()
+	set category = null
+	set name = "choosehelp"
+
+	var/message = input("What do you need help with? Please describe your issue in detail.", "Request Help") as null|message
+	if(!message)
+		return
+
+	switch(input("Who do you want to contanct?", "Request Help") as null|anything in list("Mentors", "Admins"))
+		if("Mentors")
+			mentorhelp(message)
+		if("Admins")
+			adminhelp(message)
 
 
 //

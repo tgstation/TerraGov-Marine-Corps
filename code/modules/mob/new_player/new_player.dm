@@ -349,9 +349,9 @@
 	if(SSevacuation)
 		switch(SSevacuation.evac_status)
 			if(EVACUATION_STATUS_INITIATING)
-				dat += "<font color='red'><b>The [MAIN_SHIP_NAME] is being evacuated.</b></font><br>"
+				dat += "<font color='red'><b>The [CONFIG_GET(string/ship_name)] is being evacuated.</b></font><br>"
 			if(EVACUATION_STATUS_COMPLETE)
-				dat += "<font color='red'>The [MAIN_SHIP_NAME] has undergone evacuation.</font><br>"
+				dat += "<font color='red'>The [CONFIG_GET(string/ship_name)] has undergone evacuation.</font><br>"
 
 	dat += "Choose from the following open positions:<br>"
 	var/datum/job/J

@@ -15,7 +15,7 @@
 		sleep(600)
 
 
-		command_announcement.Announce("The [station_name()] has entered the radiation belt. Please remain in a sheltered area until it has passed.", "Anomaly Alert")
+		command_announcement.Announce("The [CONFIG_GET(string/server_name)] has entered the radiation belt. Please remain in a sheltered area until it has passed.", "Anomaly Alert")
 
 		for(var/i = 0, i < 10, i++)
 			for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
@@ -49,7 +49,7 @@
 			sleep(100)
 
 
-		command_announcement.Announce("The [station_name()] has passed the radiation belt. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
+		command_announcement.Announce("The [CONFIG_GET(string/server_name)] has passed the radiation belt. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
 
 
 		sleep(600) // Want to give them time to get out of maintenance.

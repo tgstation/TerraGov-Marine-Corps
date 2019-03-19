@@ -1402,15 +1402,15 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				message_admins("[ADMIN_TPMONTY(usr)] canceled the self-destruct system.")
 
 			if("use_dest")
-				if(alert("Are you sure you want to destroy the [MAIN_SHIP_NAME] right now?", "Self-Destruct", "Yes", "No") != "Yes")
+				if(alert("Are you sure you want to destroy the [CONFIG_GET(string/ship_name)] right now?", "Self-Destruct", "Yes", "No") != "Yes")
 					return
 
 				if(!SSevacuation.initiate_self_destruct(TRUE))
 					to_chat(usr, "<span class='warning'>You are unable to trigger the self-destruct right now!</span>")
 					return
 
-				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [MAIN_SHIP_NAME].")
-				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destrust system, destroying the [MAIN_SHIP_NAME].")
+				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [CONFIG_GET(string/ship_name)].")
+				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destrust system, destroying the [CONFIG_GET(string/ship_name)].")
 
 			if("toggle_dest")
 				SSevacuation.flags_scuttle ^= FLAGS_SELF_DESTRUCT_DENY

@@ -171,8 +171,8 @@ SUBSYSTEM_DEF(mapping)
 	var/datum/map_config/theseus = new
 	theseus.LoadConfig("_maps/theseus.json")
 
-	INIT_ANNOUNCE("Loading [MAIN_SHIP_NAME]...")
-	LoadGroup(FailedZs, MAIN_SHIP_NAME, theseus.map_path, theseus.map_file, theseus.traits, ZTRAITS_MAIN_SHIP)
+	INIT_ANNOUNCE("Loading [CONFIG_GET(string/ship_name)]...")
+	LoadGroup(FailedZs, CONFIG_GET(string/ship_name), theseus.map_path, theseus.map_file, theseus.traits, ZTRAITS_MAIN_SHIP)
 
 	var/datum/map_config/low_orbit = new
 	low_orbit.LoadConfig("_maps/low_orbit.json")

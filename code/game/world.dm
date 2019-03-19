@@ -23,6 +23,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	populate_seed_list()
 	populate_gear_list()
 	makeDatumRefLists() //Legacy
+	loadShuttleInfoDatums()
 
 	TgsNew(new /datum/tgs_event_handler/tg, minimum_required_security_level = TGS_SECURITY_TRUSTED)
 
@@ -190,9 +191,9 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	if(CONFIG_GET(string/server_name))
 		if(CONFIG_GET(string/discordurl))
-			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</a></b>"
+			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [CONFIG_GET(string/ship_name)]</a></b>"
 		else
-			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</b>"
+			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [CONFIG_GET(string/ship_name)]</b>"
 		if(Master?.current_runlevel && GLOB.master_mode)
 			switch(SSmapping.config.map_name)
 				if("Ice Colony")

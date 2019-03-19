@@ -127,10 +127,10 @@
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
 			if(!(C.machine_stat & (BROKEN|NOPOWER)))
 				var/obj/item/paper/P = new /obj/item/paper(C.loc)
-				P.name = "'[command_name()] Update.'"
+				P.name = "'[CONFIG_GET(string/server_name)] Update.'"
 				P.info = input
 				P.update_icon()
-				C.messagetitle.Add("[command_name()] Update")
+				C.messagetitle.Add("[CONFIG_GET(string/server_name)] Update")
 				C.messagetext.Add(P.info)
 
 	switch(alert("Should this be announced to the general population?", "Announce", "Yes", "No", "Cancel"))
@@ -507,7 +507,7 @@
 		else
 			return
 
-	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[MAIN_SHIP_NAME + " " + tag]
+	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[CONFIG_GET(string/ship_name) + " " + tag]
 
 	if(!dropship)
 		return
@@ -553,7 +553,7 @@
 	var/dock_list = list("Port", "Starboard", "Aft")
 	if(shuttle.use_umbilical)
 		dock_list = list("Port Hangar", "Starboard Hangar")
-	var/dock_name = input("Where on the [MAIN_SHIP_NAME] should the shuttle dock?", "Select a docking zone:") as null|anything in dock_list
+	var/dock_name = input("Where on the [CONFIG_GET(string/ship_name)] should the shuttle dock?", "Select a docking zone:") as null|anything in dock_list
 	switch(dock_name)
 		if("Port")
 			dock_id = /area/shuttle/distress/arrive_2
@@ -688,25 +688,6 @@
 				message_admins("[ADMIN_TPMONTY(usr)] has set the rank of mindless mob [ADMIN_TPMONTY(H)] to [newrank].")
 				return
 
-			var/datum/job/J = SSjob.name_occupations[newrank]
-			var/datum/outfit/job/O = new J.outfit
-			var/id = O.id ? O.id : /obj/item/card/id
-			var/obj/item/card/id/I = new id
-			var/datum/skills/L = new J.skills_type
-			H.mind.cm_skills = L
-			H.mind.comm_title = J.comm_title
-
-			if(H.wear_id)
-				qdel(H.wear_id)
-
-			H.job = newrank
-			H.faction = J.faction
-
-			H.equip_to_slot_or_del(I, SLOT_WEAR_ID)
-
-			SSjob.AssignRole(H, newrank)
-			O.post_equip(H)
-
 			log_admin("[key_name(usr)] has set the rank of [key_name(H)] to [newrank].")
 			message_admins("[ADMIN_TPMONTY(usr)] has set the rank of [ADMIN_TPMONTY(H)] to [newrank].")
 
@@ -757,21 +738,11 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/list/outfits = list("Naked", "Custom", "As Job...")
-	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job)
-	for(var/path in paths)
-		var/datum/outfit/O = path
-		if(initial(O.can_be_admin_equipped))
-			outfits[initial(O.name)] = path
-
-	var/dresscode = input("Please select an outfit.", "Select Equipment") as null|anything in list("-- Naked", "-- Job", "-- Custom")
-	if(isnull(dresscode))
+	var/dresscode = input("Please select an outfit.", "Select Equipment") as null|anything in list("{Naked}", "{Job}", "{Custom}")
+	if(!dresscode)
 		return
 
-	if(outfits[dresscode])
-		dresscode = outfits[dresscode]
-
-	if(dresscode == "-- Job")
+	if(dresscode == "{Job}")
 		var/list/job_paths = subtypesof(/datum/outfit/job)
 		var/list/job_outfits = list()
 		for(var/path in job_paths)
@@ -781,24 +752,20 @@
 
 		dresscode = input("Select job equipment", "Select Equipment") as null|anything in sortList(job_outfits)
 		dresscode = job_outfits[dresscode]
-		if(isnull(dresscode))
-			return
 
-	if(dresscode == "-- Custom")
+	else if(dresscode == "{Custom}")
 		var/list/custom_names = list()
 		for(var/datum/outfit/D in GLOB.custom_outfits)
 			custom_names[D.name] = D
 		var/selected_name = input("Select outfit", "Select Equipment") as null|anything in sortList(custom_names)
 		dresscode = custom_names[selected_name]
-		if(isnull(dresscode))
-			return
 
 	if(!dresscode)
 		return
 
 	var/datum/outfit/O
 	H.delete_equipment(TRUE)
-	if(dresscode != "-- Naked")
+	if(dresscode != "{Naked}")
 		O = new dresscode
 		H.equipOutfit(O, TRUE)
 
