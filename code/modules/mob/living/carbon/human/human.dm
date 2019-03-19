@@ -144,6 +144,7 @@
 	. += "---"
 	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
 	.["Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
+	.["Drop Everything"] = "?_src_=vars;[HrefToken()];dropeverything=[REF(src)]"
 	.["Copy Outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
 
 
@@ -175,10 +176,9 @@
 	. = ..()
 
 	if(statpanel("Stats"))
-		if(EvacuationAuthority)
-			var/eta_status = EvacuationAuthority.get_status_panel_eta()
-			if(eta_status)
-				stat("Evacuation in:", eta_status)
+		var/eta_status = SSevacuation?.get_status_panel_eta()
+		if(eta_status)
+			stat("Evacuation in:", eta_status)
 
 		if(internal)
 			stat("Internal Atmosphere Info", internal.name)
@@ -1646,3 +1646,24 @@
 /mob/living/carbon/human/a_select_zone(input as text, screen_num as null|num)
 	screen_num = 21
 	return ..()
+
+
+/mob/living/carbon/human/verb/check_skills()
+	set category = "IC"
+	set name = "Check Skills"
+
+	var/dat
+	if(!mind)
+		dat += "You have no mind!"
+	else if(!mind.cm_skills)
+		dat += "You don't have any skills restrictions. Enjoy."
+	else
+		var/datum/skills/S = mind.cm_skills
+		for(var/i = 1 to length(S.values))
+			var/index = S.values[i]
+			var/value = max(S.values[index], 0)
+			dat += "[index]: [value]<br>"
+
+	var/datum/browser/popup = new(src, "skills", "<div align='center'>Skills</div>", 300, 600)
+	popup.set_content(dat)
+	popup.open(FALSE)

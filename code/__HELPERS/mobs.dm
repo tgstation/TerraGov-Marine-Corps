@@ -55,10 +55,7 @@ proc/random_skin_tone()
 	return min(max( .+rand(-25, 25), -185),34)
 
 /proc/get_playable_species()
-	var/list/playable_species = list()
-	for(var/species in GLOB.all_species)
-		if(is_alien_whitelisted(species))
-			playable_species += species
+	var/list/playable_species = list(GLOB.all_species[DEFAULT_SPECIES])
 	return playable_species
 
 proc/skintone2racedescription(tone)

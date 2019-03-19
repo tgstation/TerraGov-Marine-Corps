@@ -1105,23 +1105,20 @@
 	var/message = ""
 	switch(command_aura)
 		if("move")
-			var/image/move = image('icons/mob/talk.dmi', icon_state = "order_move")
-			overlays += move
+			var/image/move = image('icons/mob/talk.dmi', src, icon_state = "order_move")
 			message = pick(";GET MOVING!", ";GO, GO, GO!", ";WE ARE ON THE MOVE!", ";MOVE IT!", ";DOUBLE TIME!")
 			say(message)
-			addtimer(CALLBACK(src, .proc/remove_emote_overlay, move), 5 SECONDS)
+			add_emote_overlay(move)
 		if("hold")
-			var/image/hold = image('icons/mob/talk.dmi', icon_state = "order_hold")
-			overlays += hold
+			var/image/hold = image('icons/mob/talk.dmi', src, icon_state = "order_hold")
 			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!")
 			say(message)
-			addtimer(CALLBACK(src, .proc/remove_emote_overlay, hold), 5 SECONDS)
+			add_emote_overlay(hold)
 		if("focus")
-			var/image/focus = image('icons/mob/talk.dmi', icon_state = "order_focus")
-			overlays += focus
+			var/image/focus = image('icons/mob/talk.dmi', src, icon_state = "order_focus")
 			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
 			say(message)
-			addtimer(CALLBACK(src, .proc/remove_emote_overlay, focus), 5 SECONDS)
+			add_emote_overlay(focus)
 	update_action_buttons()
 
 

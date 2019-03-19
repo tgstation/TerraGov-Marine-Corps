@@ -111,7 +111,12 @@
 	glass = TRUE
 	req_access_txt = "19"
 
-
+/obj/machinery/door/airlock/multi_tile/almayer/secdoor
+	name = "\improper Security Airlock"
+	icon = 'icons/obj/doors/almayer/2x1secdoor.dmi'
+	opacity = FALSE
+	glass = TRUE
+	req_access = list(ACCESS_MARINE_BRIG)
 
 
 /obj/machinery/door/airlock/multi_tile/almayer/handle_multidoor()

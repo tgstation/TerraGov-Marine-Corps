@@ -282,7 +282,7 @@
 /obj/machinery/power/fusion_engine/update_icon()
 	switch(buildstate)
 		if(FUSION_ENGINE_NO_DAMAGE)
-			if(fusion_cell)
+			if(fusion_cell?.fuel_amount > 0)
 				var/pstatus = is_on ? "on" : "off"
 				switch(fusion_cell.fuel_amount)
 					if(1 to 10)

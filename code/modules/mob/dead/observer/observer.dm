@@ -8,9 +8,11 @@
 	canmove = FALSE
 	anchored = TRUE
 	invisibility = INVISIBILITY_OBSERVER
+	alpha = 127
 	layer = ABOVE_FLY_LAYER
 
 
+	var/inquisitive_ghost = FALSE
 	var/can_reenter_corpse = FALSE
 	var/datum/hud/living/carbon/hud = null
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
@@ -68,6 +70,9 @@
 		if(target.taken || target.key || target.ckey)
 			to_chat(usr, "<span class='warning'>That mob has already been taken.</span>")
 			return
+		if(target.job && (is_banned_from(ckey, target.job) || jobban_isbanned(src, target.job)))
+			to_chat(usr, "<span class='warning'>You are jobbanned from that job.</span>")
+			return
 
 		target.taken = TRUE
 
@@ -76,6 +81,27 @@
 
 		mind.transfer_to(target, TRUE)
 		target.fully_replace_character_name(real_name, target.real_name)
+		if(ishuman(target) && target.job)
+			var/mob/living/carbon/human/H = target
+			var/datum/job/J = SSjob.name_occupations[H.job]
+			var/datum/outfit/job/O = new J.outfit
+			var/id = O.id ? O.id : /obj/item/card/id
+			var/obj/item/card/id/I = new id
+			var/datum/skills/L = new J.skills_type
+			H.mind.cm_skills = L
+			H.mind.comm_title = J.comm_title
+
+			if(H.wear_id)
+				qdel(H.wear_id)
+
+			H.faction = J.faction
+
+			H.equip_to_slot_or_del(I, SLOT_WEAR_ID)
+
+			H.update_action_buttons()
+
+			SSjob.AssignRole(H, H.job)
+			O.post_equip(H)
 
 
 	else if(href_list["preference"])
@@ -191,10 +217,9 @@
 	. = ..()
 
 	if(statpanel("Stats"))
-		if(EvacuationAuthority)
-			var/eta_status = EvacuationAuthority.get_status_panel_eta()
-			if(eta_status)
-				stat(null, eta_status)
+		var/eta_status = SSevacuation?.get_status_panel_eta()
+		if(eta_status)
+			stat("Evacuation in:", eta_status)
 		if(SSticker?.mode)
 			var/countdown = SSticker.mode.get_queen_countdown()
 			if(countdown)
@@ -208,7 +233,7 @@
 	if(!client)
 		return FALSE
 
-	if(!mind || !mind.current || mind.current.gc_destroyed || !can_reenter_corpse)
+	if(!mind?.current || mind.current.gc_destroyed || !can_reenter_corpse)
 		to_chat(src, "<span class='warning'>You have no body.</span>")
 		return FALSE
 
@@ -284,11 +309,10 @@
 	var/list/names = list()
 	var/list/namecounts = list()
 
-	for(var/x in sortNames(GLOB.dead_mob_list))
-		var/mob/M = x
-		if(!M.client)
+	for(var/mob/dead/observer/O in sortNames(GLOB.dead_mob_list))
+		if(!O.client)
 			continue
-		var/name = M.name
+		var/name = O.name
 		if(name in names)
 			namecounts[name]++
 			name = "[name] ([namecounts[name]])"
@@ -298,7 +322,7 @@
 
 		name += " (ghost)"
 
-		observers[name] = M
+		observers[name] = O
 
 	if(!length(observers))
 		to_chat(usr, "<span class='warning'>There are no ghosts at the moment.</span>")
@@ -456,7 +480,7 @@
 
 	for(var/x in sortNames(GLOB.dead_mob_list))
 		var/mob/M = x
-		if(isobserver(M))
+		if(isobserver(M) || isnewplayer(M))
 			continue
 		var/name = M.name
 		if(name in names)
@@ -580,8 +604,10 @@
 
 	if(see_invisible == SEE_INVISIBLE_OBSERVER_NOLIGHTING)
 		see_invisible = SEE_INVISIBLE_OBSERVER
+		to_chat(src, "<span class='notice'>You can no longer see in the dark.</span>")
 	else
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
+		to_chat(src, "<span class='notice'>You can now see in the dark.</span>")
 
 
 /mob/dead/observer/verb/hive_status()
@@ -681,8 +707,8 @@
 			return
 
 	var/mob/ghostmob = usr.client.mob
-	message_admins("[key_name(usr)] has joined as a [L].")
-	log_admin("[ADMIN_TPMONTY(usr)] has joined as a [L].")
+	log_admin("[key_name(usr)] has joined as a [L].")
+	message_admins("[ADMIN_TPMONTY(usr)] has joined as a [L].")
 	L.ckey = usr.ckey
 
 	L.client?.change_view(world.view)
@@ -754,7 +780,7 @@
 
 /mob/dead/observer/verb/dnr()
 	set category = "Ghost"
-	set name = "Become DNR"
+	set name = "Do Not Revive"
 	set desc = "Noone will be able to revive you."
 
 	if(can_reenter_corpse && alert("Are you sure? You won't be able to get revived.", "Confirmation", "Yes", "No") == "Yes")
@@ -762,3 +788,16 @@
 		to_chat(usr, "<span class='notice'>You can no longer be revived.</span>")
 	else if(!can_reenter_corpse)
 		to_chat(usr, "<span class='warning'>You already can't be revived.</span>")
+
+
+/mob/dead/observer/verb/toggle_inquisition()
+	set category = "Ghost"
+	set name = "Toggle Inquisitiveness"
+	set desc = "Sets whether your ghost examines everything on click by default"
+
+	inquisitive_ghost = !inquisitive_ghost
+
+	if(inquisitive_ghost)
+		to_chat(src, "<span class='notice'>You will now examine everything you click on.</span>")
+	else
+		to_chat(src, "<span class='notice'>You will no longer examine things you click on.</span>")

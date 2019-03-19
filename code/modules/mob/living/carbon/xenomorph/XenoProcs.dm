@@ -602,9 +602,6 @@
 	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
 	return ..()
 
-
-//////////// XENO CASTE PROCS //////////////////
-
-/datum/xeno_caste/proc/handle_decay(mob/living/carbon/Xenomorph/X)
+/mob/living/carbon/Xenomorph/proc/handle_decay()
 	if(prob(7+(3*tier)+(3*upgrade))) // higher level xenos decay faster, higher plasma storage.
-		X.use_plasma(min(rand(1,2), X.plasma_stored))
+		use_plasma(min(rand(1,2), plasma_stored))

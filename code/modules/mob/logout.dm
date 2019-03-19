@@ -4,8 +4,11 @@
 		unset_interaction()
 	GLOB.player_list -= src
 	log_access("Logout: [key_name(src)]")
-	log_message("[src] has logged out.", LOG_OOC, "blue")
+	log_message("[key_name(src)] has logged out.", LOG_OOC)
 	if(s_active)
 		s_active.hide_from(src)
-	. = ..()
-	return TRUE
+	if(client)
+		for(var/foo in client.player_details.post_logout_callbacks)
+			var/datum/callback/CB = foo
+			CB.Invoke()
+	return ..()

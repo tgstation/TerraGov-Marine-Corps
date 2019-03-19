@@ -232,6 +232,7 @@
 		copy.overlays += img
 	copy.updateinfolinks()
 	toner--
+	copy.update_icon()
 	return copy
 
 
