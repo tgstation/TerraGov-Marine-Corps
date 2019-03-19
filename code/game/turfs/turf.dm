@@ -77,8 +77,6 @@
 	for(var/obj/obstacle in mover.loc)
 		if(!(obstacle.flags_atom & ON_BORDER) && (mover != obstacle) && (forget != obstacle))
 			if(!obstacle.CheckExit(mover, src))
-				if(mover.movement_type & MOVEMENT_UNSTOPPABLE)
-					message_admins("yeet me up [mover.name] !!")
 				mover.Bump(obstacle, 1)
 				return 0
 
@@ -86,8 +84,6 @@
 	for(var/obj/border_obstacle in mover.loc)
 		if((border_obstacle.flags_atom & ON_BORDER) && (mover != border_obstacle) && (forget != border_obstacle))
 			if(!border_obstacle.CheckExit(mover, src))
-				if(mover.movement_type & MOVEMENT_UNSTOPPABLE)
-					message_admins("yeet me up [mover.name] 2222!!")
 				mover.Bump(border_obstacle, 1)
 				return 0
 
@@ -95,8 +91,6 @@
 	for(var/obj/border_obstacle in src)
 		if(border_obstacle.flags_atom & ON_BORDER)
 			if(!border_obstacle.CanPass(mover, mover.loc) && (forget != border_obstacle))
-				if(mover.movement_type & MOVEMENT_UNSTOPPABLE)
-					message_admins("yeet me up [mover.name] !!3333")
 				mover.Bump(border_obstacle, 1)
 				return 0
 
@@ -104,8 +98,6 @@
 
 	//Then, check the turf itself
 	if (!CanPass(mover, src))
-		if(mover.movement_type & MOVEMENT_UNSTOPPABLE)
-			message_admins("yeet me up [mover.name] !4444!")
 		mover.Bump(src, 1)
 		return 0
 
