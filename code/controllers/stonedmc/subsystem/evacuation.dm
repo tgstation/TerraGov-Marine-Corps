@@ -43,6 +43,8 @@ SUBSYSTEM_DEF(evacuation)
 		if(EVACUATION_STATUS_IN_PROGRESS)
 			if(world.time < pod_cooldown + EVACUATION_POD_LAUNCH_COOLDOWN)
 				return
+			if(!length(pod_list))
+				return
 			var/datum/shuttle/ferry/marine/evacuation_pod/P = pick(pod_list)
 			P.prepare_for_launch()
 			pod_list -= P
