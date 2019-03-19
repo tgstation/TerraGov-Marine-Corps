@@ -1,4 +1,3 @@
-//EDITING BY APOPHIS:  Non-Ripleys disabled, as well as mech suit weapons.
 
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
@@ -561,7 +560,7 @@ datum/design/intellicard
 //////////Mecha Module Disks///////
 ///////////////////////////////////
 
-/*datum/design/ripley_main
+datum/design/ripley_main
 	name = "Circuit Design (APLU \"Ripley\" Central Control module)"
 	desc = "Allows for the construction of a \"Ripley\" Central Control module."
 	id = "ripley_main"
@@ -676,13 +675,13 @@ datum/design/honker_targ
 	req_tech = list("programming" = 3)
 	build_type = IMPRINTER
 	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/circuitboard/mecha/honker/targeting"*/
+	build_path = "/obj/item/circuitboard/mecha/honker/targeting"
 
 ////////////////////////////////////////
 /////////// Mecha Equpment /////////////
 ////////////////////////////////////////
 
-/*datum/design/mech_scattershot
+datum/design/mech_scattershot
 	name = "Exosuit Weapon Design (LBX AC 10 \"Scattershot\")"
 	desc = "Allows for the construction of LBX AC 10."
 	id = "mech_scattershot"
@@ -780,7 +779,7 @@ datum/design/mech_rcd
 	req_tech = list("bluespace" = 2, "magnets" = 3, "engineering" = 3)
 	build_path = "/obj/item/mecha_parts/mecha_equipment/gravcatapult"
 	category = "Exosuit Equipment"
-*/
+
 datum/design/mech_repair_droid
 	name = "Exosuit Module Design (Repair Droid Module)"
 	desc = "Automated Repair Droid. BEEP BOOP"
@@ -826,7 +825,7 @@ datum/design/mech_proj_armor
 	req_tech = list("materials" = 5, "combat" = 5, "engineering"=3)
 	build_path = "/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster"
 	category = "Exosuit Equipment"
-/*
+
 datum/design/mech_syringe_gun
 	name = "Exosuit Module Design(Syringe Gun)"
 	desc = "Exosuit-mounted syringe gun and chemical synthesizer."
@@ -852,7 +851,7 @@ datum/design/mech_generator_nuclear
 	build_type = MECHFAB
 	req_tech = list("powerstorage"= 3, "engineering" = 3, "materials" = 3)
 	build_path = "/obj/item/mecha_parts/mecha_equipment/generator/nuclear"
-	category = "Exosuit Equipment"*/
+	category = "Exosuit Equipment"
 
 
 ////////////////////////////////////////
