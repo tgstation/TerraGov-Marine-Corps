@@ -27,7 +27,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/targetmarker_on = FALSE
 	var/targetmarker_primed = FALSE
-	var/mob/living/carbon/laser_target = null
+	var/mob/living/laser_target = null
 	var/image/LT = null
 	var/obj/item/device/binoculars/tactical/integrated_laze = null
 	attachable_allowed = list(
@@ -64,7 +64,7 @@
 	return ..()
 
 
-/mob/living/carbon/proc/apply_laser()
+/mob/living/proc/apply_laser()
 	return FALSE
 
 /mob/living/carbon/human/apply_laser()
@@ -82,7 +82,7 @@
 	apply_overlay(M_LASER_LAYER)
 	return TRUE
 
-/mob/living/carbon/proc/remove_laser()
+/mob/living/proc/remove_laser()
 	return FALSE
 
 /mob/living/carbon/human/remove_laser()
@@ -140,12 +140,7 @@
 	return FALSE
 
 /obj/item/weapon/gun/rifle/sniper/M42A/sniper_target(atom/A)
-	if(!laser_target)
-		return FALSE
-	if(A == laser_target)
-		return laser_target
-	else
-		return TRUE
+	return laser_target
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user)
 	if(!zoom) //Can only use and prime the laser targeter when zoomed.
