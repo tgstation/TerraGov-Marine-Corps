@@ -543,6 +543,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		if(P.shot_from && src == P.shot_from.sniper_target(src)) //Runtimes bad
 			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
 			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
+			add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
+
 		armor -= penetration//Minus armor penetration from the bullet. If the bullet has negative penetration, adding to their armor, but they don't have armor, they get nothing.
 		#if DEBUG_HUMAN_DEFENSE
 		to_chat(world, "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>")
@@ -657,6 +659,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		if(P.shot_from && src == P.shot_from.sniper_target(src))
 			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
 			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
+			add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
 		armor -= penetration
 

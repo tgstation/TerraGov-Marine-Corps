@@ -736,9 +736,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration= CONFIG_GET(number/combat_define/mhigh_armor_penetration)
 	shell_speed = CONFIG_GET(number/combat_define/ultra_shell_speed)
 
-/datum/ammo/bullet/sniper/on_hit_mob(mob/M,obj/item/projectile/P)
-	staggerstun(M, P, CONFIG_GET(number/combat_define/long_shell_range), 0, 0, 0, 3)
-
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
 	hud_state = "sniper_fire"
