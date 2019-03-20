@@ -78,28 +78,28 @@
 		if(!(obstacle.flags_atom & ON_BORDER) && (mover != obstacle) && (forget != obstacle))
 			if(!obstacle.CheckExit(mover, src))
 				mover.Bump(obstacle, 1)
-				return 0
+				return (mover.movement_type & MOVEMENT_UNSTOPPABLE)
 
 	//Now, check objects to block exit that are on the border
 	for(var/obj/border_obstacle in mover.loc)
 		if((border_obstacle.flags_atom & ON_BORDER) && (mover != border_obstacle) && (forget != border_obstacle))
 			if(!border_obstacle.CheckExit(mover, src))
 				mover.Bump(border_obstacle, 1)
-				return 0
+				return (mover.movement_type & MOVEMENT_UNSTOPPABLE)
 
 	//Next, check objects to block entry that are on the border
 	for(var/obj/border_obstacle in src)
 		if(border_obstacle.flags_atom & ON_BORDER)
 			if(!border_obstacle.CanPass(mover, mover.loc) && (forget != border_obstacle))
 				mover.Bump(border_obstacle, 1)
-				return 0
+				return (mover.movement_type & MOVEMENT_UNSTOPPABLE)
 
 	
 
 	//Then, check the turf itself
 	if (!CanPass(mover, src))
 		mover.Bump(src, 1)
-		return 0
+		return (mover.movement_type & MOVEMENT_UNSTOPPABLE)
 
 	//Finally, check objects/mobs to block entry that are not on the border
 	for(var/atom/movable/obstacle in src)

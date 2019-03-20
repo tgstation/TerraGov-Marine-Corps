@@ -163,8 +163,11 @@
 				store_hitscan_collision(pcache)
 			return TRUE
 
-	return A.process_hit(src)
+	if(!temporary_unstoppable_movement)
+		temporary_unstoppable_movement = TRUE
+		movement_type |= MOVEMENT_UNSTOPPABLE
 
+	return A.process_hit(src)
 
 /atom/proc/process_hit(obj/item/projectile/P)
 	return FALSE
@@ -516,7 +519,6 @@
 /obj/can_be_shot(obj/item/projectile/P)
 	return !CanPass(P, loc)
 
-
 /obj/mecha/can_be_shot(obj/item/projectile/P)
 	if(P.firer?.loc == src)
 		return FALSE
@@ -601,9 +603,7 @@
 		return
 	if(!fired)
 		return
-	if(temporary_unstoppable_movement)
-		temporary_unstoppable_movement = FALSE
-		movement_type |= MOVEMENT_UNSTOPPABLE
+	
 	distance_travelled++
 	Range()
 	if(can_hit_target(original))
