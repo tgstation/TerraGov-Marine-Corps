@@ -2190,25 +2190,25 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return
 
 	if(world.time < last_defiler_sting + DEFILER_STING_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='xenodanger'>You are not ready to Defile again. It will be ready in [(last_defiler_sting + DEFILER_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
+		to_chat(src, "<span class='warning'>You are not ready to Defile again. It will be ready in [(last_defiler_sting + DEFILER_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
 		return
 
 	if(stagger)
-		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
+		to_chat(src, "<span class='warning'>You try to sting but are too disoriented!</span>")
 		return
 
 	if(!C.can_sting())
-		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
+		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
 		return
 
 	if(!Adjacent(C))
 		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
-			to_chat(src, "<span class='xenowarning'>You can't reach this target!</span>")
+			to_chat(src, "<span class='warning'>You can't reach this target!</span>")
 			recent_notice = world.time //anti-notice spam
 		return
 
 	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
-		to_chat(src, "<span class='xenowarning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
+		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return
 
 	if(!check_plasma(150))
@@ -2221,6 +2221,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	addtimer(CALLBACK(src, .defiler_sting_cooldown), DEFILER_STING_COOLDOWN)
 
 	larva_injection(C)
+	larval_growth_sting(C)
 	
 
 /mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting_cooldown()
@@ -2237,7 +2238,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(stagger)
 		return FALSE
 	if(locate(/obj/item/alien_embryo) in C) // already got one, stops doubling up
-		to_chat(src, "<span class='xenodanger'>There is already a little one in this vessel!</span>")
+		to_chat(src, "<span class='warning'>There is already a little one in this vessel!</span>")
 		return FALSE
 	face_atom(C)
 	animation_attack_on(C)
@@ -2279,7 +2280,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return
 
 	if(get_active_held_item())
-		to_chat(src, "<span class='xenowarning'>You need an empty claw for this!</span>")
+		to_chat(src, "<span class='warning'>You need an empty claw for this!</span>")
 		return
 
 	if(!check_plasma(200))
@@ -2323,12 +2324,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return FALSE
 	var/datum/reagent/body_tox = C.reagents.get_reagent(toxin)
 	if(body_tox?.overdosed)
-		to_chat(src, "<span class='xenowarning'>You defer from injecting [body_tox.name] as you sense your host is already saturated with it.</span>")
+		to_chat(src, "<span class='warning'>You defer from injecting [body_tox.name] as you sense the host is already saturated with it.</span>")
 		return FALSE
 	for(var/i = 1 to count)
 		face_atom(C)
-		if(!do_after(src, channel_time, TRUE, 5, BUSY_ICON_HOSTILE))
-			return FALSE
 		if(stagger)
 			return FALSE
 		animation_attack_on(C)
@@ -2336,12 +2335,15 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 		if(body_tox && transfer_amount + body_tox.volume > body_tox.overdose_threshold)
 			C.reagents.add_reagent(toxin, body_tox.overdose_threshold - body_tox.volume) //Enough to go back to the OD threshold.
+			to_chat(src, "<span class='xenowarning'>You finish injecting [body_tox.name] as you sense the host is already saturated with it.</span>")
 			break
 		C.reagents.add_reagent(toxin, transfer_amount)
 		if(!body_tox)
 			body_tox = C.reagents.get_reagent(toxin)
 			to_chat(C, "<span class='danger'>You feel a tiny prick.</span>")
 			to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with [body_tox.name]!</span>")
+		if(i != count && !do_after(src, channel_time, TRUE, 5, BUSY_ICON_HOSTILE))
+			return FALSE
 	return TRUE
 
 
@@ -2351,25 +2353,25 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return
 
 	if(!C?.can_sting())
-		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
+		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
 		return
 
 	if(world.time < last_neurotoxin_sting + XENO_NEURO_STING_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='xenowarning'>You are not ready to use the sting again. It will be ready in [(last_neurotoxin_sting + XENO_NEURO_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
+		to_chat(src, "<span class='warning'>You are not ready to use the sting again. It will be ready in [(last_neurotoxin_sting + XENO_NEURO_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
 		return
 
 	if(stagger)
-		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
+		to_chat(src, "<span class='warning'>You try to sting but are too disoriented!</span>")
 		return
 
 	if(!Adjacent(C))
 		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
-			to_chat(src, "<span class='xenowarning'>You can't reach this target!</span>")
+			to_chat(src, "<span class='warning'>You can't reach this target!</span>")
 			recent_notice = world.time //anti-notice spam
 		return
 
 	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
-		to_chat(src, "<span class='xenowarning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
+		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return
 
 	if(!check_plasma(150))
@@ -2381,6 +2383,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	addtimer(CALLBACK(src, .neurotoxin_sting_cooldown), XENO_NEURO_STING_COOLDOWN)
 	recurring_injection(C, "xeno_toxin", XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
+
 
 /mob/living/carbon/Xenomorph/proc/neurotoxin_sting_cooldown()
 	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -2394,25 +2397,25 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return
 
 	if(!C?.can_sting())
-		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
+		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
 		return
 
 	if(world.time < last_larva_growth_used + XENO_LARVAL_GROWTH_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='xenodanger'>You are not ready to sting again. Your sting will be ready in [(last_larva_growth_used + XENO_LARVAL_GROWTH_COOLDOWN - world.time) * 0.1] seconds.</span>")
+		to_chat(src, "<span class='warning'>You are not ready to sting again. Your sting will be ready in [(last_larva_growth_used + XENO_LARVAL_GROWTH_COOLDOWN - world.time) * 0.1] seconds.</span>")
 		return
 
 	if(stagger)
-		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
+		to_chat(src, "<span class='warning'>You try to sting but are too disoriented!</span>")
 		return
 
 	if(!Adjacent(C))
 		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
-			to_chat(src, "<span class='xenowarning'>You can't reach this target!</span>")
+			to_chat(src, "<span class='warning'>You can't reach this target!</span>")
 			recent_notice = world.time //anti-notice spam
 		return
 
 	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
-		to_chat(src, "<span class='xenowarning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
+		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return
 
 	if(!check_plasma(150))
