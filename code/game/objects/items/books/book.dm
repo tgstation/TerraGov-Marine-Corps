@@ -64,7 +64,7 @@
 					src.name = newtitle
 					src.title = newtitle
 			if("Contents")
-				var/content = strip_html(input(usr, "Write your book's contents (HTML NOT allowed):"),8192) as message|null
+				var/content = strip_html(input(usr, "Write your book's contents (HTML NOT allowed):") as message|null,8192)
 				if(!content)
 					to_chat(usr, "The content is invalid.")
 					return

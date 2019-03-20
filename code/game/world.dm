@@ -155,7 +155,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		while(1)
 			sleep(INACTIVITY_KICK)
 			for(var/client/C in GLOB.clients)
-				if(check_other_rights(C, R_ADMIN, FALSE)).
+				if(check_other_rights(C, R_ADMIN, FALSE))
 					continue
 				if(C.is_afk(INACTIVITY_KICK))
 					if(!istype(C.mob, /mob/dead))
