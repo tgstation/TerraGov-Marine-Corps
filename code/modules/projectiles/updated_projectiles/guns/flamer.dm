@@ -489,12 +489,11 @@
 	for(var/mob/living/C in T)
 		if(C.fire_immune)
 			continue
-		else
-			C.adjust_fire_stacks(fire_stacks)
-			var/armor_block = C.run_armor_check("chest", "energy")
-			C.apply_damage(fire_damage, BURN, null, armor_block)
-			C.IgniteMob()
-			C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
+
+		C.flamer_fire_act(fire_stacks,100)
+		var/armor_block = C.run_armor_check("chest", "energy")
+		C.apply_damage(fire_damage, BURN, null, armor_block)
+		C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
 /obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
 	if(istype(M))
