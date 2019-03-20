@@ -188,9 +188,7 @@
 		L.adjustFireLoss(120)
 		L.adjust_fire_stacks(20)
 		L.IgniteMob()
-	for(var/obj/flamer_fire/F in T) // No stacking flames!
-		qdel(F)
-	new/obj/flamer_fire(T, 5, 30) //short but intense
+	T.ignite(5, 30) //short but intense
 
 
 //Rockets
@@ -294,9 +292,7 @@
 		spawn(5)
 			explosion(impact,1,2,3,6,1,0) //relatively weak
 			for(var/turf/T in range(4,impact))
-				for(var/obj/flamer_fire/F in T) // No stacking flames!
-					qdel(F)
-				new/obj/flamer_fire(T, 60, 30) //cooking for a long time
+				T.ignite(60, 30) //cooking for a long time
 			qdel(src)
 
 
@@ -348,9 +344,7 @@
 	detonate_on(turf/impact)
 		..()
 		spawn(5)
-			for(var/obj/flamer_fire/F in impact) // No stacking flames!
-				qdel(F)
-			new/obj/flamer_fire(impact)
+			impact.ignite()
 
 /obj/structure/ship_ammo/minirocket/illumination
 	name = "illumination rocket-launched flare stack"
