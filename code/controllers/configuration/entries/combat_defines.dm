@@ -414,22 +414,22 @@ Speed.
 How quick the projectile travels, or more accurately how many turfs per sleep(1) it travels.
 */
 /datum/config_entry/number/combat_define/min_shell_speed
-	config_entry_value = 0.1
-
-/datum/config_entry/number/combat_define/slow_shell_speed
 	config_entry_value = 1
 
-/datum/config_entry/number/combat_define/reg_shell_speed
+/datum/config_entry/number/combat_define/slow_shell_speed
 	config_entry_value = 2
 
-/datum/config_entry/number/combat_define/fast_shell_speed
+/datum/config_entry/number/combat_define/reg_shell_speed
 	config_entry_value = 3
 
-/datum/config_entry/number/combat_define/super_shell_speed
+/datum/config_entry/number/combat_define/fast_shell_speed
 	config_entry_value = 4
 
-/datum/config_entry/number/combat_define/ultra_shell_speed
+/datum/config_entry/number/combat_define/super_shell_speed
 	config_entry_value = 5
+
+/datum/config_entry/number/combat_define/ultra_shell_speed
+	config_entry_value = 6
 
 /*
 Penetration.
