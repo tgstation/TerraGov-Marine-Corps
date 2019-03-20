@@ -216,7 +216,7 @@ world
 #define TO_HEX_DIGIT(n) ascii2text((n&15) + ((n&15)<10 ? 48 : 87))
 
 
-icon/proc/BecomeLying()
+/icon/proc/BecomeLying()
 	Turn(90)
 	Shift(SOUTH,6)
 	Shift(EAST,1)
@@ -778,9 +778,9 @@ icon/proc/BecomeLying()
 
 
 // Creates a single icon from a given /atom or /image.  Only the first argument is required.
-/proc/getFlatIcon(image/A, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT)
+/proc/getFlatIcon(image/A, defdir=2, deficon, defstate, defblend = BLEND_DEFAULT)
 	// We start with a blank canvas, otherwise some icon procs crash silently
-	var/icon/flat = icon('icons/effects/effects.dmi', "icon_state"="nothing") // Final flattened icon
+	var/icon/flat = icon('icons/effects/effects.dmi', "nothing") // Final flattened icon
 	if(!A)
 		return flat
 	if(A.alpha <= 0)
