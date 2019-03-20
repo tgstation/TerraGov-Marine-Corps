@@ -179,13 +179,11 @@
 	qdel(P)
 	return ret_value
 
-
 /obj/process_hit(obj/item/projectile/P)
 	P.ammo.on_hit_obj(src, P)
 	var/ret_value = bullet_act(P)
 	qdel(P)
 	return ret_value
-
 
 /turf/process_hit(obj/item/projectile/P)
 	if(P.hitsound_wall)
@@ -360,6 +358,9 @@
 	damage_falloff = ammo.damage_falloff
 	list_reagents = ammo.ammo_reagents
 	armor_type = ammo.armor_type
+	
+	if(ammo.flags_ammo_behavior & AMMO_ENERGY)
+		flags_pass |= PASSGLASS
 
 // target, firer, shot from, range, speed
 /obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
