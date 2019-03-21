@@ -433,6 +433,9 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/effect/alien/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	take_damage(40)
 
+/obj/effect/alien/weeds/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	return
+
 /obj/vehicle/multitile/hitbox/cm_armored/Move(atom/A, direction)
 
 	for(var/mob/living/M in get_turf(src))
