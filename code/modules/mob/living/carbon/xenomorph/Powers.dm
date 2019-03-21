@@ -167,6 +167,56 @@
 	used_acid_spray = FALSE
 	to_chat(src, "<span class='notice'>You have produced enough acid to spray again.</span>")
 
+/atom/proc/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	return TRUE
+
+/obj/structure/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
+		return TRUE // normal density flag
+	health -= rand(40,60) + (X.upgrade * SPRAY_STRUCTURE_UPGRADE_BONUS)
+	update_health(TRUE)
+	return TRUE // normal density flag
+
+/obj/structure/razorwire/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	. = ..()
+	return FALSE // not normal density flag
+
+/obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	take_damage_type(rand(40,60) + (X.upgrade * SPRAY_STRUCTURE_UPGRADE_BONUS), "acid", src)
+	healthcheck()
+	return TRUE
+
+/mob/living/carbon/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest))
+		return
+
+	if(isxenopraetorian(X))
+		round_statistics.praetorian_spray_direct_hits++
+
+	acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
+	var/armor_block = run_armor_check("chest", "energy")
+	var/damage = rand(30,40) + (X.upgrade * SPRAY_MOB_UPGRADE_BONUS)
+	apply_acid_spray_damage(damage, armor_block)
+	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
+
+/mob/living/carbon/proc/apply_acid_spray_damage(damage, armor_block)
+	apply_damage(damage, BURN, null, armor_block)
+
+/mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
+	take_overall_damage(null, damage, null, null, null, armor_block)
+	if(isyautja(src))
+		return
+	emote("scream")
+	KnockDown(1)
+
+/mob/living/carbon/Xenomorph/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	return
+
+/mob/living/carbon/hellhound/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	return
+
+GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/vehicle/multitile/root/cm_armored, /obj/structure/razorwire)))
+
 /mob/living/carbon/Xenomorph/proc/do_acid_spray_cone(var/turf/T)
 	set waitfor = 0
 
@@ -180,21 +230,8 @@
 
 		for (var/obj/O in T)
 			if(!O.CheckExit(src, next_T))
-				if(istype(O, /obj/structure/barricade))
-					var/obj/structure/barricade/B = O
-					B.health -= rand(40,60) + 8 * upgrade
-					B.update_health(1)
-					return
-				else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-					var/obj/vehicle/multitile/root/cm_armored/A = O
-					A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-					A.healthcheck()
-					return
-				else if(istype(O, /obj/structure/razorwire) )
-					var/obj/structure/razorwire/R = O
-					R.health -= rand(40,60) + 8 * upgrade
-					R.update_health()
-
+				if(is_type_in_typecache(O, GLOB.acid_spray_hit) && O.acid_spray_act(src))
+					return // returned true if normal density applies
 
 		T = next_T
 
@@ -203,21 +240,8 @@
 
 		for (var/obj/O in T)
 			if(!O.CanPass(src, loc))
-				if(istype(O, /obj/structure/barricade))
-					var/obj/structure/barricade/B = O
-					B.health -= rand(40,60) + 8 * upgrade
-					B.update_health(1)
-					return
-				else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-					var/obj/vehicle/multitile/root/cm_armored/A = O
-					A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-					A.healthcheck()
-					return
-				else if(istype(O, /obj/structure/razorwire) )
-					var/obj/structure/razorwire/R = O
-					R.health -= rand(40,60) + 8 * upgrade
-					R.update_health()
-
+				if(is_type_in_typecache(O, GLOB.acid_spray_hit) && O.acid_spray_act(src))
+					return // returned true if normal density applies
 
 		var/obj/effect/xenomorph/spray/S = acid_splat_turf(T)
 		do_acid_spray_cone_normal(T, i, facing, S)
@@ -250,19 +274,8 @@
 			for (var/obj/O in normal_turf)
 				if(!O.CheckExit(left_S, next_normal_turf))
 					normal_density_flag = TRUE
-					if(istype(O, /obj/structure/barricade))
-						var/obj/structure/barricade/B = O
-						B.health -= rand(40,60) + 8 * upgrade
-						B.update_health(1)
-					else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-						var/obj/vehicle/multitile/root/cm_armored/A = O
-						A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-						A.healthcheck()
-					else if(istype(O, /obj/structure/razorwire) )
-						var/obj/structure/razorwire/R = O
-						R.health -= rand(40,60) + 8 * upgrade
-						R.update_health()
-						normal_density_flag = FALSE //passable for acid spray
+					if(is_type_in_typecache(O, GLOB.acid_spray_hit))
+						normal_density_flag = O.acid_spray_act(src)
 					break
 
 			normal_turf = next_normal_turf
@@ -274,19 +287,8 @@
 				for (var/obj/O in normal_turf)
 					if(!O.CanPass(left_S, left_S.loc))
 						normal_density_flag = TRUE
-						if(istype(O, /obj/structure/barricade))
-							var/obj/structure/barricade/B = O
-							B.health -= rand(40,60) + 8 * upgrade
-							B.update_health(1)
-						else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-							var/obj/vehicle/multitile/root/cm_armored/A = O
-							A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-							A.healthcheck()
-						else if(istype(O, /obj/structure/razorwire) )
-							var/obj/structure/razorwire/R = O
-							R.health -= rand(40,60) + 8 * upgrade
-							R.update_health()
-							normal_density_flag = FALSE //passable for acid spray
+						if(is_type_in_typecache(O, GLOB.acid_spray_hit))
+							normal_density_flag = O.acid_spray_act(src)
 						break
 
 			if (!normal_density_flag)
@@ -300,19 +302,8 @@
 			for (var/obj/O in inverse_normal_turf)
 				if(!O.CheckExit(right_S, next_inverse_normal_turf))
 					inverse_normal_density_flag = TRUE
-					if(istype(O, /obj/structure/barricade))
-						var/obj/structure/barricade/B = O
-						B.health -= rand(40,60) + 8 * upgrade
-						B.update_health(1)
-					else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-						var/obj/vehicle/multitile/root/cm_armored/A = O
-						A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-						A.healthcheck()
-					else if(istype(O, /obj/structure/razorwire) )
-						var/obj/structure/razorwire/R = O
-						R.health -= rand(40,60) + 8 * upgrade
-						R.update_health()
-						inverse_normal_density_flag = FALSE //passable for acid spray
+					if(is_type_in_typecache(O, GLOB.acid_spray_hit))
+						inverse_normal_density_flag = O.acid_spray_act(src)
 					break
 
 			inverse_normal_turf = next_inverse_normal_turf
@@ -324,19 +315,8 @@
 				for (var/obj/O in inverse_normal_turf)
 					if(!O.CanPass(right_S, right_S.loc))
 						inverse_normal_density_flag = TRUE //passable for acid spray
-						if(istype(O, /obj/structure/barricade))
-							var/obj/structure/barricade/B = O
-							B.health -= rand(40,60) + 8 * upgrade
-							B.update_health(1)
-						else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-							var/obj/vehicle/multitile/root/cm_armored/A = O
-							A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-							A.healthcheck()
-						else if(istype(O, /obj/structure/razorwire) )
-							var/obj/structure/razorwire/R = O
-							R.health -= rand(40,60) + 8 * upgrade
-							R.update_health()
-							inverse_normal_density_flag = FALSE //passable for acid spray
+						if(is_type_in_typecache(O, GLOB.acid_spray_hit))
+							inverse_normal_density_flag = O.acid_spray_act(src)
 						break
 
 			if (!inverse_normal_density_flag)
@@ -349,42 +329,11 @@
 	if(!.)
 		. = new /obj/effect/xenomorph/spray(T)
 
-		// This should probably be moved into obj/effect/xenomorph/spray or something
-		for (var/obj/structure/barricade/B in T)
-			B.health -= rand(40,60) + 8 * upgrade
-			B.update_health(1)
-
-		for (var/obj/vehicle/multitile/root/cm_armored/A in T)
-			A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-			A.healthcheck()
-
-		for (var/obj/structure/razorwire/R in T)
-			R.health -= rand(40,60) + 8 * upgrade
-			R.update_health(1)
-
-		for (var/mob/living/carbon/C in T)
-			if (!ishuman(C) && !ismonkey(C))
+		for(var/i in T)
+			var/atom/A = i
+			if(!A)
 				continue
-
-			if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
-				continue
-
-			round_statistics.praetorian_spray_direct_hits++
-
-			C.acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
-			var/armor_block = C.run_armor_check("chest", "energy")
-			var/damage = rand(30,40) + 4 * upgrade
-			if(ishuman(C))
-				var/mob/living/carbon/human/H = C
-				H.take_overall_damage(null, damage, null, null, null, armor_block)
-			else
-				C.apply_damage(damage, BURN, null, armor_block)
-			to_chat(C, "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>")
-
-			if (!isyautja(C))
-				C.emote("scream")
-				C.KnockDown(1)
-
+			A.acid_spray_act(src)
 
 // Warrior Fling
 /mob/living/carbon/Xenomorph/proc/fling(atom/A)
@@ -433,9 +382,31 @@
 	to_chat(src, "<span class='notice'>You gather enough strength to fling something again.</span>")
 	update_action_button_icons()
 
-/mob/living/carbon/Xenomorph/proc/punch(var/mob/living/M)
+/mob/living/proc/punch_act(mob/living/carbon/Xenomorph/X, damage, target_zone)
+	apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
 
-	if (!M || M == src || !isliving(M))
+/mob/living/carbon/human/punch_act(mob/living/carbon/Xenomorph/X, damage, target_zone)
+	var/datum/limb/L = get_limb(target_zone)
+
+	if (!L || (L.limb_status & LIMB_DESTROYED))
+		return
+
+	X.visible_message("<span class='xenowarning'>\The [X] hits [src] in the [L.display_name] with a devastatingly powerful punch!</span>", \
+		"<span class='xenowarning'>You hit [src] in the [L.display_name] with a devastatingly powerful punch!</span>")
+
+	if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
+		L.limb_status &= ~LIMB_SPLINTED
+		to_chat(src, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
+
+	L.take_damage(damage, 0, 0, 0, null, null, null, run_armor_check(target_zone))
+
+	adjust_stagger(3)
+	add_slowdown(3)
+
+	apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
+
+/mob/living/carbon/Xenomorph/proc/punch(var/mob/living/M)
+	if (!istype(M) || M == src)
 		return
 
 	if (!check_state() || agility)
@@ -467,37 +438,13 @@
 	var/target_zone = check_zone(zone_selected)
 	if(!target_zone)
 		target_zone = "chest"
-	var/armor_block = M.run_armor_check(target_zone)
 	var/damage = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper)
 	used_punch = TRUE
 	use_plasma(20)
 	playsound(M, S, 50, 1)
 
-	if(!ishuman(M))
-		M.apply_damage(damage, BRUTE, target_zone, armor_block) //If we're not a humie, just apply brute.
-	else
-		var/mob/living/carbon/human/H = M
+	M.punch_act(src, damage, target_zone)
 
-		var/datum/limb/L = H.get_limb(check_zone(zone_selected))
-
-		if (!L || (L.limb_status & LIMB_DESTROYED))
-			return
-
-		visible_message("<span class='xenowarning'>\The [src] hits [H] in the [L.display_name] with a devastatingly powerful punch!</span>", \
-		"<span class='xenowarning'>You hit [H] in the [L.display_name] with a devastatingly powerful punch!</span>")
-
-
-		if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
-			L.limb_status &= ~LIMB_SPLINTED
-			to_chat(H, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
-
-		L.take_damage(damage, 0, 0, 0, null, null, null, armor_block)
-		if(iscarbon(L))
-			var/mob/living/carbon/C = L
-			C.adjust_stagger(3)
-			C.add_slowdown(3)
-
-		H.apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
 	shake_camera(M, 2, 1)
 	step_away(M, src, 2)
 
@@ -648,7 +595,7 @@
 
 // Defender Headbutt
 /mob/living/carbon/Xenomorph/proc/headbutt(var/mob/M)
-	if (!M || !ishuman(M))
+	if (!ishuman(M))
 		return
 
 	if(M.stat == DEAD || (istype(M.buckled, /obj/structure/bed/nest) && M.status_flags & XENO_HOST) ) //No bullying the dead/secured hosts
@@ -1054,6 +1001,11 @@
 
 	if(plasma_stored < amount)
 		amount = plasma_stored //Just use all of it
+
+	if(target.plasma_stored >= target.xeno_caste.plasma_max)
+		to_chat(src, "<span class='xenowarning'>[target] already has full plasma.</span>")
+		return
+
 	use_plasma(amount)
 	target.gain_plasma(amount)
 	to_chat(target, "<span class='xenowarning'>[src] has transfered [amount] units of [energy] to you. You now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
@@ -1151,7 +1103,7 @@
 	playsound(src.loc, sound_to_play, 25, 1)
 
 	var/obj/item/projectile/A = new /obj/item/projectile(current_turf)
-	A.generate_bullet(ammo, ammo.damage * (max(0,upgrade) * 0.15)) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
+	A.generate_bullet(ammo, ammo.damage * SPIT_UPGRADE_BONUS) 
 	A.permutated += src
 	A.def_zone = get_limbzone_target()
 
@@ -2042,8 +1994,7 @@
 
 		for(var/obj/structure/barricade/B in prev_turf)
 			if(get_dir(prev_turf, T) & B.dir)
-				B.health -= rand(45, 60) + 8 * upgrade
-				B.update_health(TRUE)
+				B.acid_spray_act(src)
 
 		if(T.density || isspaceturf(T))
 			break
@@ -2070,8 +2021,7 @@
 
 		for(var/obj/structure/barricade/B in TF)
 			if(get_dir(TF, prev_turf) & B.dir)
-				B.health -= rand(45, 60) + 8 * upgrade
-				B.update_health(TRUE)
+				B.acid_spray_act(src)
 
 		splat_turf(TF)
 
@@ -2095,12 +2045,7 @@
 			continue
 		if((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)) //nested infected hosts are not hurt by acid spray
 			continue
-		var/armor_block = M.run_armor_check("chest")
-		M.apply_damage(rand(30, 40) + 5 * upgrade, BURN, "chest", armor_block)
-		to_chat(M, "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>")
-		if(!isyautja(M))
-			M.emote("scream")
-			M.KnockDown(1)
+		M.acid_spray_act(src)
 
 /mob/living/carbon/Xenomorph/proc/acid_spray(atom/T, plasmacost = 250, acid_d = xeno_caste.acid_delay)
 	if(!T)

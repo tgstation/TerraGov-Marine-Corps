@@ -396,11 +396,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		initiator.current_ticket = src
 
 	if(tier == TICKET_MENTOR)
-		tier = TICKET_ADMIN
-		message_admins("Ticket [TicketHref("#[id]")] has been made reopened by [ADMIN_TPMONTY(usr)].")
-	else if(tier == TICKET_ADMIN)
-		tier = TICKET_MENTOR
 		message_staff("Ticket [TicketHref("#[id]")] has been made reopened by [ADMIN_TPMONTY(usr)].")
+	else if(tier == TICKET_ADMIN)
+		message_admins("Ticket [TicketHref("#[id]")] has been made reopened by [ADMIN_TPMONTY(usr)].")
 
 	AddInteraction("<font color='purple'>Reopened by [key_name_admin(usr)]</font>")
 	log_admin_private("Ticket (#[id]) reopened by [key_name(usr)].")
@@ -796,19 +794,18 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /proc/send2irc_adminless_only(source, msg, requiredflags = R_BAN)
 	var/list/adm = get_admin_counts(requiredflags)
 	var/list/activemins = adm["present"]
-	. = activemins.len
+	. = length(activemins)
 	if(. <= 0)
 		var/final = ""
 		var/list/afkmins = adm["afk"]
 		var/list/stealthmins = adm["stealth"]
 		var/list/powerlessmins = adm["noflags"]
 		var/list/allmins = adm["total"]
-		if(!afkmins.len && !stealthmins.len && !powerlessmins.len)
+		if(!length(afkmins) && !length(stealthmins) && !length(powerlessmins))
 			final = "[msg] - No admins online"
 		else
 			final = "[msg] - All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]! Total: [allmins.len] "
 		send2irc(source, final)
-		send2otherserver(source, final)
 
 
 /proc/send2irc(msg, msg2)
@@ -819,40 +816,22 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	world.TgsTargetedChatBroadcast(msg, FALSE)
 
 
-/proc/send2otherserver(source,msg,type = "Ahelp")
-	var/comms_key = CONFIG_GET(string/comms_key)
-	if(!comms_key)
-		return
-	var/list/message = list()
-	message["message_sender"] = source
-	message["message"] = msg
-	message["source"] = "([CONFIG_GET(string/cross_comms_name)])"
-	message["key"] = comms_key
-	message += type
-
-	var/list/servers = CONFIG_GET(keyed_list/cross_server)
-	for(var/I in servers)
-		world.Export("[servers[I]]?[list2params(message)]")
-
-
 /proc/ircadminwho()
-	var/list/message = list("Admins: ")
-	var/list/admin_keys = list()
-	for(var/adm in GLOB.admins)
-		var/client/C = adm
-		admin_keys += "[C][C.holder.fakekey ? "(Stealth)" : ""][C.is_afk() ? "(AFK)" : ""]"
-
-	for(var/admin in admin_keys)
-		if(LAZYLEN(message) > 1)
-			message += ", [admin]"
+	var/list/adm = get_admin_counts()
+	var/list/activemins = adm["present"]
+	. = length(activemins)
+	if(. <= 0)
+		var/list/afkmins = adm["afk"]
+		var/list/stealthmins = adm["stealth"]
+		var/list/powerlessmins = adm["noflags"]
+		var/list/allmins = adm["total"]
+		if(!length(afkmins) && !length(stealthmins) && !length(powerlessmins))
+			return "No admins online"
 		else
-			message += "[admin]"
-
-	return jointext(message, "")
+			return "All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]! Total: [length(allmins)]"
 
 
-/proc/keywords_lookup(msg,irc)
-
+/proc/keywords_lookup(msg, irc)
 	//This is a list of words which are ignored by the parser when comparing message contents for names. MUST BE IN LOWER CASE!
 	var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","alien","as", "i")
 

@@ -13,7 +13,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 /datum/admins/proc/proccall_atom(datum/A as null|area|mob|obj|turf)
-	set category = "Debug"
+	set category = null
 	set name = "Atom ProcCall"
 	set waitfor = FALSE
 

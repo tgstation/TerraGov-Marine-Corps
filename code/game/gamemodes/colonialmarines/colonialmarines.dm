@@ -118,11 +118,11 @@
 
 
 /datum/game_mode/colonialmarines/check_win()
-	var/living_player_list[] = count_humans_and_xenos(EvacuationAuthority.get_affected_zlevels())
+	var/living_player_list[] = count_humans_and_xenos(SSevacuation.get_affected_zlevels())
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) //Nuke went off, ending the round.
+	if(SSevacuation.dest_status == NUKE_EXPLOSION_FINISHED) //Nuke went off, ending the round.
 		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]")
 		round_finished = MODE_GENERIC_DRAW_NUKE
 	else if(!num_humans && num_xenos)
@@ -160,7 +160,6 @@
 /datum/game_mode/colonialmarines/declare_completion()
 	. = ..()
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
-	feedback_set_details("round_end_result",round_finished)
 
 	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [SSmapping.config.map_name].</span>")
 	var/musical_track

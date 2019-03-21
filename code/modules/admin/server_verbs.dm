@@ -6,6 +6,9 @@
 	if(!check_rights(R_SERVER))
 		return
 
+	if(SSticker.admin_delay_notice && alert(usr, "Are you sure? An admin has already delayed the round end for the following reason: [SSticker.admin_delay_notice]", "Confirmation", "Yes", "No") != "Yes")
+		return
+
 	if(alert("Restart the game world?", "Restart", "Yes", "No") != "Yes")
 		return
 
@@ -300,8 +303,7 @@
 
 /datum/admins/proc/delay_start()
 	set category = "Server"
-	set name = "Delay Round-Start"
-	set desc = "Delay the game start."
+	set name = "Delay Round Start"
 
 	if(!check_rights(R_SERVER))
 		return
@@ -331,14 +333,20 @@
 
 /datum/admins/proc/delay_end()
 	set category = "Server"
-	set name = "Delay Round-End"
-	set desc = "Delay the game end."
+	set name = "Delay Round End"
 
+	if(!check_rights(R_SERVER))
+		return
+
+	if(!SSticker)
+		return
+
+	SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
 
 	SSticker.delay_end = !SSticker.delay_end
 
-	log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round-end" : "made the round end normally"].")
-	message_admins("<hr><br><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end" : "made the round end normally"].</h4><hr><br>")
+	log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].")
+	message_admins("<hr><br><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].</h4><hr><br>")
 
 
 /datum/admins/proc/toggle_gun_restrictions()

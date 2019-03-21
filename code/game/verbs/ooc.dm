@@ -153,10 +153,10 @@ var/global/normal_ooc_colour = "#002eb8"
 		mob.visible_message(message, message)
 
 	for(var/client/C in GLOB.admins)
-		if(!check_other_rights(C, R_ADMIN, FALSE))
+		if(!check_other_rights(C, R_ADMIN, FALSE) || C.mob == mob)
 			continue
 		if(C.prefs.toggles_chat & CHAT_LOOC)
-			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [key_name(mob)]</span>: <span class='message'>[msg]</span></span></font>")
+			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [ADMIN_TPMONTY(mob)]</span>: <span class='message'>[msg]</span></span></font>")
 
 
 /client/verb/setup_character()

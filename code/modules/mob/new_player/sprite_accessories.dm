@@ -155,6 +155,11 @@
 	icon_state = "hair_stail"
 	gender = FEMALE
 
+/datum/sprite_accessory/hair/longponytail
+	name = "Long Ponytail"
+	icon_state = "hair_longponytail"
+	gender = FEMALE
+
 /datum/sprite_accessory/hair/parted
 	name = "Parted"
 	icon_state = "hair_parted"

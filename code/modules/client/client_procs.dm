@@ -167,6 +167,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
+	var/full_version = "[byond_version].[byond_build ? byond_build : "xxx"]"
 
 	. = ..()	//calls mob.Login()
 	chatOutput.start() // Starts the chat
@@ -244,11 +245,13 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		else if(holder.rank.rights & R_MENTOR)
 			message_staff("Mentor login: [key_name_admin(src)].")
 
-	if(all_player_details[ckey])
-		player_details = all_player_details[ckey]
+	if(GLOB.player_details[ckey])
+		player_details = GLOB.player_details[ckey]
+		player_details.byond_version = full_version
 	else
 		player_details = new
-		all_player_details[ckey] = player_details
+		player_details.byond_version = full_version
+		GLOB.player_details[ckey] = player_details
 
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
 

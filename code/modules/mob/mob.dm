@@ -706,6 +706,9 @@ mob/proc/yank_out_object()
 /mob/proc/update_stat()
 	return
 
+/mob/proc/can_inject()
+	return reagents
+
 /mob/proc/get_idcard(hand_first)
 	return
 

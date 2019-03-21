@@ -12,7 +12,7 @@
 	layer = BUSH_LAYER
 	var/indestructable = 0
 	var/stump = 0
-	var/health = 100
+	health = 100
 
 /obj/structure/bush/New()
 	health = rand(50,75)

@@ -178,6 +178,9 @@ SUBSYSTEM_DEF(vote)
 			if("map")
 				var/list/maps = list()
 				for(var/i in config.maplist)
+					var/datum/map_config/VM = config.maplist[i]
+					if(!VM.voteweight)
+						continue
 					maps += i
 				choices.Add(maps)
 			if("custom")
