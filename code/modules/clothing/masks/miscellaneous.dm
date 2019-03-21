@@ -131,7 +131,7 @@
 	flags_inv_hide = HIDEFACE|HIDEALLHAIR
 	flags_armor_protection = HEAD|FACE
 	flags_cold_protection = HEAD
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	w_class = 2
 	siemens_coefficient = 3.0
 
