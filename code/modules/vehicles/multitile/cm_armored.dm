@@ -304,11 +304,10 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		icon = 'icons/obj/tank_EW.dmi'
 
 	//Basic iteration that snags the overlay from the hardpoint module object
-	var/i
-	for(i in hardpoints)
+	for(var/i in hardpoints)
 		var/obj/item/hardpoint/H = hardpoints[i]
 
-		if((i == HDPT_TREADS && !H) || H?.health <= 0) //Treads not installed or broken
+		if((i == HDPT_TREADS && !H) || (H && H.health <= 0)) //Treads not installed or broken
 			var/image/I = image(icon, icon_state = "damaged_hardpt_[i]")
 			overlays += I
 			continue
@@ -444,8 +443,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	. = ..()
 
 	if(.)
-		for(var/atom/B in get_turf(A))
-			B.tank_collision(src)
+		for(var/mob/living/M in get_turf(A))
+			M.tank_collision(src)
 
 //Can't hit yourself with your own bullet
 /obj/vehicle/multitile/hitbox/cm_armored/get_projectile_hit_chance(obj/item/projectile/P)
@@ -574,7 +573,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	. = ..()
 
 /obj/vehicle/multitile/root/cm_armored/Entered(atom/movable/A)
-	if(istype(A, /obj) && !istype(A, /obj/item/ammo_magazine/tank))
+	if(istype(A, /obj) && !istype(A, /obj/item/ammo_magazine/tank) && !istype(A, /obj/item/hardpoint))
 		A.forceMove(loc)
 		return
 
