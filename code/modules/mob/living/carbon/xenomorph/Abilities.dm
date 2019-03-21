@@ -505,7 +505,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/toggle_long_range
 	name = "Toggle Long Range Sight (20)"
 	action_icon_state = "toggle_long_range"
-	mechanics_text = "Activates your weapon sight in the direction you’re facing. Must remain stationary to use."
+	mechanics_text = "Activates your weapon sight in the direction you are facing. Must remain stationary to use."
 	plasma_cost = 20
 
 /datum/action/xeno_action/toggle_long_range/can_use_action()

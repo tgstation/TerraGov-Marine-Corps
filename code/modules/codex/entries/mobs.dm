@@ -2,13 +2,13 @@
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
 	if(general_entry?.antag_text)
-		return general_entry?.antag_text
+		return general_entry.antag_text
 
 /mob/living/carbon/Xenomorph/get_lore_info()
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
 	if(general_entry?.lore_text)
-		return general_entry?.lore_text
+		return general_entry.lore_text
 
 /mob/living/carbon/Xenomorph/get_mechanics_info()
 	. = ..()
