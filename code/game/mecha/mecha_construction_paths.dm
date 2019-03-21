@@ -270,10 +270,6 @@
 					holder.icon_state = "ripley12"
 		return 1
 
-	spawn_result()
-		..()
-		feedback_inc("mecha_ripley_created",1)
-		return
 
 
 
@@ -552,10 +548,6 @@
 					holder.icon_state = "gygax18"
 		return 1
 
-	spawn_result()
-		..()
-		feedback_inc("mecha_gygax_created",1)
-		return
 
 /datum/construction/mecha/firefighter_chassis
 	steps = list(list("key"=/obj/item/mecha_parts/part/ripley_torso),//1
@@ -776,10 +768,6 @@
 					holder.icon_state = "fireripley13"
 		return 1
 
-	spawn_result()
-		..()
-		feedback_inc("mecha_firefighter_created",1)
-		return
 
 /datum/construction/mecha/durand_chassis
 	steps = list(list("key"=/obj/item/mecha_parts/part/durand_torso),//1
@@ -1056,10 +1044,6 @@
 					holder.icon_state = "durand18"
 		return 1
 
-	spawn_result()
-		..()
-		feedback_inc("mecha_durand_created",1)
-		return
 
 
 /datum/construction/mecha/phazon_chassis
@@ -1288,8 +1272,3 @@
 					user.visible_message("[user] unfastens the external armor layer.", "You unfasten the external armor layer.")
 					holder.icon_state = "odysseus12"
 		return 1
-
-	spawn_result()
-		..()
-		feedback_inc("mecha_odysseus_created",1)
-		return

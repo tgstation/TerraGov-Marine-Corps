@@ -9,7 +9,7 @@
 	return TRUE
 
 
-/mob/living/carbon/Xenomorph/can_inject()
+/mob/living/carbon/Xenomorph/can_inject(mob/user, error_msg, target_zone, penetrate_thick = FALSE)
 	return FALSE
 
 

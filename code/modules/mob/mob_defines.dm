@@ -7,6 +7,8 @@
 //	flags = NOREACT
 	var/datum/mind/mind
 
+	var/datum/click_intercept
+
 	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
 	var/obj/screen/hands = null //robot
 
@@ -62,6 +64,9 @@
 	var/luminosity_total = 0 //For max luminosity stuff.
 
 	var/timeofdeath = 0.0//Living
+
+	// 1 decisecond click delay (above and beyond mob/next_move)
+	var/next_click = 0
 
 	var/bodytemperature = 310.055	//98.7 F
 	var/old_x = 0

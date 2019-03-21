@@ -190,7 +190,7 @@ Currently only has the tank hardpoints
 
 	to_chat(usr, "<span class='warning'>Preparing to fire... keep the tank still for [delay * 0.1] seconds.</span>")
 
-	if(!do_after(usr, delay, FALSE, 5))
+	if(!do_after(usr, delay, FALSE, 5, BUSY_ICON_HOSTILE, null, TRUE) )
 		to_chat(usr, "<span class='warning'>The [name]'s firing was interrupted.</span>")
 		if(TL)
 			qdel(TL)
@@ -397,7 +397,7 @@ Currently only has the tank hardpoints
 	if(delay)
 		to_chat(usr, "<span class='warning'>Preparing to fire... keep the tank still for [delay * 0.1] seconds.</span>")
 
-		if(!do_after(usr, delay, FALSE, 5))
+		if(!do_after(usr, delay, FALSE, 5, BUSY_ICON_HOSTILE, null, TRUE))
 			to_chat(usr, "<span class='warning'>The [name]'s firing was interrupted.</span>")
 			if(TL)
 				qdel(TL)
@@ -915,7 +915,7 @@ Currently only has the tank hardpoints
 	icon_state = "painless"
 	w_class = 10
 	default_ammo = /datum/ammo/bullet/minigun
-	max_rounds = 300
+	max_rounds = 500
 	point_cost = 25
 	gun_type = /obj/item/hardpoint/primary/minigun
 

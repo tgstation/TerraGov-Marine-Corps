@@ -195,7 +195,7 @@
 							internal = back
 							visible_message("[src] is now running on internals.", null, 3)
 							internal.add_fingerprint(usr)
-							if (hud_used. && hud_used.internals)
+							if (hud_used && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
 
 

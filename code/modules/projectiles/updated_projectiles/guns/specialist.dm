@@ -548,9 +548,9 @@
 		log_combat(user, src, "fired a grenade [F] from [src]")
 		F.det_time = min(10, F.det_time)
 		F.launched = TRUE
+		F.activate()
 		F.throwforce += F.launchforce //Throws with signifcantly more force than a standard marine can.
 		F.throw_at(target, 20, 3, user)
-		F.activate()
 		playsound(F.loc, fire_sound, 50, 1)
 
 /obj/item/weapon/gun/launcher/m92/get_ammo_type()

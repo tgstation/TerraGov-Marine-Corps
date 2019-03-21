@@ -59,6 +59,8 @@
 				. += 1.5
 	else
 		if(shoes)
+			var/obj/item/clothing/shoes/S = shoes
+			S.step_action()
 			. += shoes.slowdown
 
 		for(var/organ_name in list("l_foot","r_foot","l_leg","r_leg","chest","groin","head"))

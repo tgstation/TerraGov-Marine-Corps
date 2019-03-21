@@ -142,7 +142,7 @@ SUBSYSTEM_DEF(vote)
 
 /datum/controller/subsystem/vote/proc/submit_vote(vote)
 	if(mode)
-		if(CONFIG_GET(flag/no_dead_vote) && usr.stat == DEAD && !check_other_rights(usr.client., R_ADMIN, FALSE))
+		if(CONFIG_GET(flag/no_dead_vote) && usr.stat == DEAD && !check_other_rights(usr.client, R_ADMIN, FALSE))
 			return FALSE
 		if(!(usr.ckey in voted))
 			if(vote && 1 <= vote && vote <= length(choices))
@@ -178,6 +178,9 @@ SUBSYSTEM_DEF(vote)
 			if("map")
 				var/list/maps = list()
 				for(var/i in config.maplist)
+					var/datum/map_config/VM = config.maplist[i]
+					if(!VM.voteweight)
+						continue
 					maps += i
 				choices.Add(maps)
 			if("custom")

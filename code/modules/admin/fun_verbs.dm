@@ -301,7 +301,7 @@
 		return
 
 	var/web_sound_url = ""
-	var/pitch
+	var/list/music_extra_data = list()
 	var/title
 	var/show = FALSE
 	if(length(web_sound_input))
@@ -325,6 +325,8 @@
 			if(data["url"])
 				web_sound_url = data["url"]
 				title = "[data["title"]]"
+				music_extra_data["start"] = data["start_time"]
+				music_extra_data["end"] = data["end_time"]
 				var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "Yes", "No", "Cancel")
 				switch(res)
 					if("Yes")
@@ -361,7 +363,7 @@
 			if(!C?.prefs)
 				continue
 			if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-				C.chatOutput.sendMusic(web_sound_url, pitch)
+				C.chatOutput.sendMusic(web_sound_url, music_extra_data)
 				if(show)
 					to_chat(C, "<span class='boldnotice'>An admin played: [show]</span>")
 
@@ -677,10 +679,13 @@
 	switch(alert("Modify the rank or give them a new one?", "Select Rank", "New Rank", "Modify", "Cancel"))
 		if("New Rank")
 			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(SSjob.name_occupations)
-			if(!newrank)
+			if(!newrank || !H)
 				return
 
-			if(!H?.mind)
+			if(!H.mind)
+				H.job = newrank
+				log_admin("[key_name(usr)] has set the rank of mindless mob [key_name(H)] to [newrank].")
+				message_admins("[ADMIN_TPMONTY(usr)] has set the rank of mindless mob [ADMIN_TPMONTY(H)] to [newrank].")
 				return
 
 			var/datum/job/J = SSjob.name_occupations[newrank]
@@ -707,8 +712,6 @@
 
 		if("Modify")
 			var/obj/item/card/id/I = H.wear_id
-			if(!istype(I))
-				H.wear_id = new /obj/item/card/id(H)
 			switch(input("What do you want to edit?") as null|anything in list("Comms Title - \[Engineering (Title)]", "Chat Title - Title John Doe screams!", "ID title - Jane Doe's ID Card (Title)", "Registered Name - Jane Doe's ID Card", "Skills"))
 				if("Comms Title - \[Engineering (Title)]")
 					var/commtitle = input("Write the custom title appearing in the comms: Comms Title - \[Engineering (Title)]", "Comms Title") as null|text
@@ -717,26 +720,20 @@
 					H.mind.comm_title = commtitle
 				if("Chat Title - Title John Doe screams!")
 					var/chattitle = input("Write the custom title appearing in all chats: Title Jane Doe screams!", "Chat Title") as null|text
-					if(chattitle || !H)
+					if(chattitle || !H || !istype(I))
 						return
-					if(!istype(I) || I != H.wear_id)
-						H.wear_id = new /obj/item/card/id(H)
 					I.paygrade = chattitle
 					I.update_label()
 				if("ID title - Jane Doe's ID Card (Title)")
 					var/idtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID Title") as null|text
-					if(!H || I != H.wear_id)
+					if(!idtitle || !H || !istype(I))
 						return
-					if(!istype(I) || I != H.wear_id)
-						H.wear_id = new /obj/item/card/id(H)
 					I.assignment = idtitle
 					I.update_label()
 				if("Registered Name - Jane Doe's ID Card")
 					var/regname = input("Write the name appearing on the ID itself: Jane Doe's ID Card", "Registered Name") as null|text
-					if(!H || I != H.wear_id)
+					if(!H || I != H.wear_id || !istype(I))
 						return
-					if(!istype(I) || I != H.wear_id)
-						H.wear_id = new /obj/item/card/id(H)
 					I.registered_name = regname
 					I.update_label()
 				if("Skills")
@@ -1038,9 +1035,8 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 
 	if(alert("Are you sure?", "Offer Mob", "Yes", "No") != "Yes")
 		return
-	for(var/i in GLOB.dead_mob_list)
-		var/mob/dead/D = i
-		to_chat(D, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [L.name] \[<a href='byond://?src=[REF(D)];claim=[REF(L)]'>CLAIM</a>\]</span><hr><br>")
+
+	L.offer_mob()
 
 	log_admin("[key_name(usr)] has offered [key_name_admin(M)].")
 	message_admins("[ADMIN_TPMONTY(usr)] has offered [ADMIN_TPMONTY(M)].")
@@ -1137,3 +1133,13 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 
 	log_admin("[key_name(usr)] has possessed [O] ([O.type]).")
 	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]).")
+
+
+/client/proc/toggle_buildmode()
+	set category = "Fun"
+	set name = "Toggle Build Mode"
+
+	if(!check_rights(R_FUN))
+		return
+
+	togglebuildmode(usr)

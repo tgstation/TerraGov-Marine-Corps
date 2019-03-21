@@ -136,7 +136,7 @@
 			to_chat(user, "<span class='warning'>The [src] needs to be turned off first.</span>")
 			return TRUE
 		if(!fusion_cell)
-			if(user.transferItemToLoc(O, src.))
+			if(user.transferItemToLoc(O, src))
 				fusion_cell = O
 				update_icon()
 				to_chat(user, "<span class='notice'>You load the [src] with the [O].</span>")

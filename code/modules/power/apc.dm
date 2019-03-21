@@ -1355,6 +1355,7 @@
 //------Theseus APCs ------//
 
 /obj/machinery/power/apc/almayer
+	req_access = list(ACCESS_MARINE_ENGINEERING)
 	cell_type = /obj/item/cell/high
 
 /obj/machinery/power/apc/almayer/hardened
