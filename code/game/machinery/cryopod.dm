@@ -108,7 +108,7 @@
 			to_chat(user, "<span class='warning'>There is nothing to recover from storage.</span>")
 			return
 
-		var/obj/item/I = input(usr, "Please choose which object to retrieve.", "Object recovery",null) as null|anything in stored_items
+		var/obj/item/I = input(usr, "Please choose which object to retrieve.", "Object recovery") in stored_items
 
 		dispense_item(I)
 
@@ -137,6 +137,7 @@
 	if(message)
 		visible_message("<span class='notice'>[src] beeps happily as it disgorges [I].</span>")
 	I.forceMove(get_turf(src))
+	GLOB.cryoed_item_list[cryotype] -= I
 
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed
@@ -201,8 +202,7 @@
 	if(world.time - time_entered < time_till_despawn)
 		return
 
-	if(occupant.despawn(src))
-		QDEL_NULL(occupant)
+	occupant.despawn(src)
 	stop_processing()
 	update_icon()
 
@@ -214,11 +214,13 @@
 
 	GLOB.cryoed_item_list[dept_console].Add(stored_items)
 
-	SSticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
-
 	//Handle job slot/tater cleanup.
-	var/datum/job/J = job
-	J?.current_positions--
+	if(job)
+		var/datum/job/J = job
+		J.current_positions--
+		if(J.title in JOBS_REGULAR_ALL)
+			SSticker.mode.latejoin_tally-- //Cryoing someone removes a player from the round, blocking further larva spawns until accounted for
+
 
 	//Delete them from datacore.
 	if(length(PDA_Manifest))
@@ -245,30 +247,34 @@
 
 	pod.announce.autosay("[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", "Hypersleep Storage System")
 	pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")
+	pod.occupant = null
+	qdel(src)
 
-	return TRUE //Delete the mob.
 
 /mob/living/carbon/human/despawn(obj/machinery/cryopod/pod, dept_console = "REQ")
-	switch(job)
-		if("Master at Arms","Command Master at Arms")
-			dept_console = "MP"
-		if("Medical Officer","Medical Researcher","Chief Medical Officer")
-			dept_console = "Med"
-		if("Ship Engineer","Chief Ship Engineer")
-			dept_console = "Eng"
-		else if(assigned_squad)
-			switch(assigned_squad.id)
-				if(ALPHA_SQUAD)
-					dept_console = "Alpha"
-				if(BRAVO_SQUAD)
-					dept_console = "Bravo"
-				if(CHARLIE_SQUAD)
-					dept_console = "Charlie"
-				if(DELTA_SQUAD)
-					dept_console = "Delta"
+	if(job)
+		var/datum/job/J = job
+		switch(J.title)
+			if("Master at Arms","Command Master at Arms")
+				dept_console = "MP"
+			if("Medical Officer","Medical Researcher","Chief Medical Officer")
+				dept_console = "Med"
+			if("Ship Engineer","Chief Ship Engineer")
+				dept_console = "Eng"
+			else if(assigned_squad)
+				switch(assigned_squad.id)
+					if(ALPHA_SQUAD)
+						dept_console = "Alpha"
+					if(BRAVO_SQUAD)
+						dept_console = "Bravo"
+					if(CHARLIE_SQUAD)
+						dept_console = "Charlie"
+					if(DELTA_SQUAD)
+						dept_console = "Delta"
 	if(assigned_squad)
 		var/datum/squad/S = assigned_squad
-		switch(job)
+		var/datum/job/J = job
+		switch(J?.title)
 			if("Squad Engineer")
 				S.num_engineers--
 			if("Squad Corpsman")
@@ -303,7 +309,7 @@
 		items -= src
 		qdel(src)
 	else
-		loc = null
+		moveToNullspace()
 	return items
 
 /obj/item/clothing/suit/storage/store_in_cryo(list/items)
