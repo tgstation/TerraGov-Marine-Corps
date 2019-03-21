@@ -1,6 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - rscadd: "Alien larvas can now nudge themselves against alien eggs."
-  - bugfix: "Fixing some inconveniences around facehuggers having a shorter lifespan when unleashed by eggs and trapholes."
-  - bugfix: "Fixed a bug with huggers not being properly retrieved by carriers."
