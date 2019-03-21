@@ -430,6 +430,9 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		C.lastsound = world.time
 
+/obj/effect/alien/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	take_damage(40)
+
 /obj/vehicle/multitile/hitbox/cm_armored/Move(atom/A, direction)
 
 	for(var/mob/living/M in get_turf(src))
@@ -438,8 +441,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	. = ..()
 
 	if(.)
-		for(var/mob/living/M in get_turf(A))
-			M.tank_collision(src)
+		for(var/atom/B in get_turf(A))
+			B.tank_collision(src)
 
 //Can't hit yourself with your own bullet
 /obj/vehicle/multitile/hitbox/cm_armored/get_projectile_hit_chance(obj/item/projectile/P)
