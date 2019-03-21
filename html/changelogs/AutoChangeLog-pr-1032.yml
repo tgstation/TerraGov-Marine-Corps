@@ -1,0 +1,6 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - tweak: "Rage gained per slash increased to 7.5 up from 5. and Rage gained from damage is now 25% of damage taken down from 30%. Subject to tweaking."
+  - tweak: "Ravager base movement speed increased to -0.5 up from -0.4. Progression remains the same."
+  - tweak: "Ravager Ravage bonus damage retooled to +25% + 3% per point of rage."
