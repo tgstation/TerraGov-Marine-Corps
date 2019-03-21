@@ -569,7 +569,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 /obj/vehicle/multitile/root/cm_armored/Entered(atom/movable/A)
 	if(istype(A, /obj) && !istype(A, /obj/item/ammo_magazine/tank))
-		A.forceMove(src.loc)
+		A.forceMove(loc)
 		return
 
 	return ..()
@@ -826,7 +826,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(!do_after(user, 30*num_delays, TRUE, num_delays, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='warning'>[user] stops removing \the [old] on [src].</span>", "<span class='warning'>You stop removing \the [old] on [src].</span>")
 		return
-	if(!old)
+	if(QDELETED(old) || old != hardpoints[slot])
 		return
 
 	user.visible_message("<span class='notice'>[user] removes \the [old] on [src].</span>", "<span class='notice'>You remove \the [old] on [src].</span>")
@@ -841,7 +841,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	HP.owner = src
 	if(HP.health > 0)
 		HP.apply_buff()
-	HP.loc = src
+	HP.forceMove(src)
 
 	hardpoints[HP.slot] = HP
 	update_damage_distribs()
@@ -850,7 +850,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //General proc for taking off hardpoints
 //ALWAYS CALL THIS WHEN REMOVING HARDPOINTS
 /obj/vehicle/multitile/root/cm_armored/proc/remove_hardpoint(obj/item/hardpoint/old, mob/user)
-	old.loc = user ? user.loc : entrance.loc
+	old.forceMove(user ? user.loc : entrance.loc)
 	old.remove_buff()
 	old.owner = null
 

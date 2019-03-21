@@ -231,8 +231,8 @@ Vehicles are placed on the map by a spawner or admin verb
 //Forces the root object to move so everything can update relative to it
 /obj/vehicle/multitile/root/proc/move_root(var/direction)
 
-	var/turf/T = get_step(src.loc, direction)
-	src.loc = T
+	var/turf/T = get_step(loc, direction)
+	loc = T
 
 //The REAL guts of multitile movement
 //Here's how this shit works:
@@ -248,7 +248,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	var/list/blocked = list() //What couldn't move this time
 	for(var/datum/coords/C in objs) //objs is an associative list like linked_objs
 		var/atom/movable/A = objs[C]
-		var/turf/T = locate(src.x + C.x_pos, src.y + C.y_pos, src.z + C.z_pos)
+		var/turf/T = locate(x + C.x_pos, y + C.y_pos, z + C.z_pos)
 		if(is_rotation) //Special case for rotations where two hitboxes need to swap locations
 			//Fun fact, there's actually a bug in this part of the algorithm
 			//Not all hitboxes want to switch locations, so sometimes a hitbox can end up in vastly the wrong location

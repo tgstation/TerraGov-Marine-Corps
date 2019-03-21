@@ -33,7 +33,7 @@
 
 /obj/effect/multitile_spawner/cm_armored/tank/New()
 
-	var/obj/vehicle/multitile/root/cm_armored/tank/R = new(src.loc)
+	var/obj/vehicle/multitile/root/cm_armored/tank/R = new(loc)
 	R.setDir(EAST)
 
 	var/datum/coords/dimensions = new
@@ -271,7 +271,7 @@
 		var/obj/item/hardpoint/armor/snowplow/SP = hardpoints[HDPT_ARMOR]
 		if(SP.health > 0)
 			for(var/datum/coords/C in linked_objs)
-				var/turf/T = locate(src.x + C.x_pos, src.y + C.y_pos, src.z + C.z_pos)
+				var/turf/T = locate(x + C.x_pos, y + C.y_pos, z + C.z_pos)
 				if(!istype(T, /turf/open/snow)) continue
 				var/turf/open/snow/ST = T
 				if(!ST || !ST.slayer)
