@@ -78,7 +78,8 @@
 
 	var/mob/user = usr
 	var/list/stored_items = GLOB.cryoed_item_list[cryotype]
-	for(var/obj/item/I in stored_items)
+	for(var/A in stored_items)
+		var/obj/item/I = A
 		if(QDELETED(I))
 			stored_items -= I
 
@@ -242,7 +243,6 @@
 	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
 	//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?
 
-	//Make an announcement and log the person entering storage.
 	GLOB.cryoed_mob_list += "[real_name]"
 
 	pod.announce.autosay("[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", "Hypersleep Storage System")
