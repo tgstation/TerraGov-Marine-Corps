@@ -228,20 +228,23 @@
 
 
 //Gets blood from mob to the container, preserving all data in it.
-/mob/living/carbon/proc/take_blood(obj/O, amount, user, target_zone)
+/mob/living/carbon/proc/take_blood(obj/O, amount, user, target_zone, penetrate_thick = TRUE)
 	if(!O.reagents)
-		return
+		return FALSE
 
-	if(blood_volume < amount)
-		return
+	if(target_zone && !can_inject(user, FALSE, target_zone, penetrate_thick))
+		return FALSE
 
 	var/b_id = get_blood_id()
 	if(!b_id)
-		return
+		return FALSE
 
-	if(!dna || NOCLONE in mutations) //target done been et, no more blood in him
+	if(blood_volume <= 0 || !dna || (NOCLONE in mutations)) //target done been et, no more blood in him
 		to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-		return
+		return FALSE
+
+	if(blood_volume <= amount)
+		amount = blood_volume
 
 	var/list/data = get_blood_data()
 
@@ -254,18 +257,13 @@
 	O.reagents.add_reagent(b_id, amount, data)
 
 	blood_volume = max(0, blood_volume - amount) // Removes blood if human
-	return 1
+	return FALSE
 
 
 /mob/living/carbon/human/take_blood(obj/O, amount, user, target_zone, penetrate_thick = TRUE)
-
-	if(target_zone && !can_inject(user, FALSE, target_zone, penetrate_thick))
-		return
-
 	if(species?.species_flags & NO_BLOOD)
 		to_chat(user, "<span class='warning'>You are unable to locate any blood in [src].</span>")
-		return
-
+		return FALSE
 	. = ..()
 
 
