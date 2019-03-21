@@ -1,4 +1,4 @@
-//Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
+//Some debug variables. Comment/Uncomment them to Enable/Disable the debug messages.
 #define DEBUG_HIT_CHANCE	0
 #define DEBUG_HUMAN_DEFENSE	0
 #define DEBUG_XENO_DEFENSE	0
@@ -363,11 +363,14 @@
 		flags_pass |= PASSGLASS
 
 // target, firer, shot from, range, speed
-/obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
+/obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30, speed = 1, spread = 0)
 	permutated += F // don't hit yourself
+	firer = F
+	src.spread = spread
+	
 	target_turf = get_turf(target)
 	set_shell_speed(src, speed + get_shell_tile_speed())
-	preparePixelProjectile(target, F, null)
+	preparePixelProjectile(target, F, null, spread)
 	fire(Get_Angle(F, target), null)
 	
 	round_statistics.total_projectiles_fired++
@@ -489,6 +492,7 @@
 			hit_chance -= base_miss_chance[P.def_zone] // Reduce accuracy based on spot.
 			#ifdef DEBUG_HIT_CHANCE
 			to_chat(world, "Hit Chance 2: [hit_chance]")
+			to_chat(world, "Accuracy reduced by [base_miss_chance[P.def_zone]] because of [P.def_zone] zone.")
 			#endif
 		switch(i)
 			if(1)
@@ -539,21 +543,17 @@
 	trajectory_ignore_forcemove = FALSE
 	starting = get_turf(source)
 	original = target
-	if(targloc || !params)
-		yo = targloc.y - curloc.y
-		xo = targloc.x - curloc.x
-		setAngle(Get_Angle(src, targloc) + spread)
 
 	if(isliving(source) && params)
 		var/list/calculated = calculate_projectile_angle_and_pixel_offsets(source, params)
 		p_x = calculated[2]
 		p_y = calculated[3]
 
-		setAngle(calculated[1] + spread)
+		setAngle(calculated[1] + ((rand() - 0.5) * spread))
 	else if(targloc)
 		yo = targloc.y - curloc.y
 		xo = targloc.x - curloc.x
-		setAngle(Get_Angle(src, targloc) + spread)
+		setAngle(Get_Angle(src, targloc) + ((rand() - 0.5) * spread))
 	else
 		stack_trace("WARNING: Projectile [type] fired without either mouse parameters, or a target atom to aim at!")
 		qdel(src)

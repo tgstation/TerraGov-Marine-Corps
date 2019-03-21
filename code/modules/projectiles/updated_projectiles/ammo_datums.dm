@@ -197,6 +197,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			P.scatter = round(P.scatter - (initial(original_P.scatter) - original_P.scatter) ) //if the gun changes the scatter of the main projectile, it also affects the bonus ones.
 
 			if(prob(P.scatter))
+				to_chat(world, "[P.scatter] probability thing.")
 				var/scatter_x = rand(-1,1)
 				var/scatter_y = rand(-1,1)
 				new_target = locate(original_P.target_turf.x + round(scatter_x),original_P.target_turf.y + round(scatter_y),original_P.target_turf.z)
@@ -208,7 +209,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 			if(!new_target)
 				new_target = original_P.target_turf
-			P.fire_at(new_target,original_P.firer,original_P.firer,P.ammo.max_range,P.ammo.shell_speed) //Fire!
+			P.fire_at(new_target, original_P.firer, original_P.firer, P.ammo.max_range, P.ammo.shell_speed) //Fire!
 
 	//This is sort of a workaround for now. There are better ways of doing this ~N.
 	proc/stun_living(mob/living/target, obj/item/projectile/P) //Taser proc to stun folks.
