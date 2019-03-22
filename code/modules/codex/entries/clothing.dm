@@ -99,12 +99,12 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 	if(flags_inventory & BLOCKSHARPOBJ)
 		armor_strings += "The material is exceptionally thick."
 
-	if(max_heat_protection_temperature >= FIRESUIT_max_heat_protection_temperature)
+	if(max_heat_protection_temperature >= FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE)
 		armor_strings += "This can protect you from high temperatures, but you aren't fireproof."
-	else if(max_heat_protection_temperature >= SPACE_SUIT_max_heat_protection_temperature)
+	else if(max_heat_protection_temperature >= SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE)
 		armor_strings += "It provides good protection against fire and heat."
 
-	if(!isnull(min_cold_protection_temperature) && min_cold_protection_temperature <= ICE_PLANET_min_cold_protection_temperature)
+	if(!isnull(min_cold_protection_temperature) && min_cold_protection_temperature <= ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE)
 		armor_strings += "It provides protection against cold temperatures."
 
 	var/list/covers = list()
