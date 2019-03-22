@@ -161,7 +161,7 @@
 	. = ..()
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [SSmapping.config.map_name].</span>")
+	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [CONFIG_GET(string/ship_name)] and their struggle on [SSmapping.config.map_name].</span>")
 	var/musical_track
 	switch(round_finished)
 		if(MODE_INFESTATION_X_MAJOR)
