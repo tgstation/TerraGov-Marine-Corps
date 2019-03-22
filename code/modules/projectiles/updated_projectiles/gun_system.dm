@@ -676,12 +676,7 @@ and you're good to go.
 		target = original_target ? original_target : targloc
 		target = simulate_scatter(projectile_to_fire, target, targloc, scatter_chance_mod, user, burst_scatter_chance_mod)
 
-		if(params)
-			var/list/mouse_control = params2list(params)
-			if(mouse_control["icon-x"])
-				projectile_to_fire.p_x = text2num(mouse_control["icon-x"])
-			if(mouse_control["icon-y"])
-				projectile_to_fire.p_y = text2num(mouse_control["icon-y"])
+		// there was code that did stuff with mouse control and the params given in afterattack, but I just let projectile code handle it
 
 		//Finally, make with the pew pew!
 		if(!projectile_to_fire || !istype(projectile_to_fire,/obj))
@@ -695,7 +690,7 @@ and you're good to go.
 
 			//This is where the projectile leaves the barrel and deals with projectile code only.
 			//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-			projectile_to_fire.fire_at(target,user,src,projectile_to_fire.ammo.max_range,projectile_to_fire.ammo.shell_speed)
+			projectile_to_fire.fire_at(target, user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, params)
 			//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 			last_fired = world.time
 

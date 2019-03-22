@@ -352,6 +352,7 @@
 	icon_state 	= ammo.icon_state
 	damage 		= ammo.damage + bonus_damage //Mainly for emitters.
 	scatter		= ammo.scatter
+	spread 		= ammo.spread
 	accuracy   += ammo.accuracy
 	accuracy   *= rand(CONFIG_GET(number/combat_define/proj_variance_low)-ammo.accuracy_var_low, CONFIG_GET(number/combat_define/proj_variance_high)+ammo.accuracy_var_high) * CONFIG_GET(number/combat_define/proj_base_accuracy_mult)//Rand only works with integers.
 	damage     *= rand(CONFIG_GET(number/combat_define/proj_variance_low)-ammo.damage_var_low, CONFIG_GET(number/combat_define/proj_variance_high)+ammo.damage_var_high) * CONFIG_GET(number/combat_define/proj_base_damage_mult)
@@ -363,15 +364,14 @@
 		flags_pass |= PASSGLASS
 
 // target, firer, shot from, range, speed
-/obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30, speed = 1, spread = 0)
+/obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30, speed = 1, params)
 	permutated += F // don't hit yourself
 	firer = F
-	src.spread = spread
 	
 	target_turf = get_turf(target)
 	set_shell_speed(src, speed + get_shell_tile_speed())
-	preparePixelProjectile(target, F, null, spread)
-	fire(Get_Angle(F, target), null)
+	preparePixelProjectile(target, F, params, spread)
+	fire(null, null)
 	
 	round_statistics.total_projectiles_fired++
 	if(ammo.flags_ammo_behavior & AMMO_BALLISTIC)
@@ -548,7 +548,6 @@
 		var/list/calculated = calculate_projectile_angle_and_pixel_offsets(source, params)
 		p_x = calculated[2]
 		p_y = calculated[3]
-
 		setAngle(calculated[1] + ((rand() - 0.5) * spread))
 	else if(targloc)
 		yo = targloc.y - curloc.y
@@ -559,17 +558,19 @@
 		qdel(src)
 
 /proc/calculate_projectile_angle_and_pixel_offsets(mob/user, params)
-	var/list/mouse_control = params2list(params)
+	if(!islist(params)) // not a list, convert
+		to_chat(world, "not a list, converting.")
+		params = params2list(params)
 	var/p_x = 0
 	var/p_y = 0
 	var/angle = 0
-	if(mouse_control["icon-x"])
-		p_x = text2num(mouse_control["icon-x"])
-	if(mouse_control["icon-y"])
-		p_y = text2num(mouse_control["icon-y"])
-	if(mouse_control["screen-loc"])
+	if(params["icon-x"])
+		p_x = text2num(params["icon-x"])
+	if(params["icon-y"])
+		p_y = text2num(params["icon-y"])
+	if(params["screen-loc"])
 		//Split screen-loc up into X+Pixel_X and Y+Pixel_Y
-		var/list/screen_loc_params = splittext(mouse_control["screen-loc"], ",")
+		var/list/screen_loc_params = splittext(params["screen-loc"], ",")
 
 		//Split X+Pixel_X up into list(X, Pixel_X)
 		var/list/screen_loc_X = splittext(screen_loc_params[1],":")

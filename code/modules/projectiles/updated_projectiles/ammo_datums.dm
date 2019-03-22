@@ -40,6 +40,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/point_blank_range			= 0			// Weapons will get a large accuracy buff at this short range
 	var/max_range 					= 0 		// This will de-increment a counter on the bullet
 	var/scatter  					= 0 		// How much the ammo scatters when burst fired, added to gun scatter, along with other mods
+	var/spread						= 0			// Like scatter, but slightly better.
 	var/damage 						= 0 		// This is the base damage of the bullet as it is fired
 	var/damage_var_low				= 0 		// Same as with accuracy variance
 	var/damage_var_high				= 0
@@ -209,7 +210,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 			if(!new_target)
 				new_target = original_P.target_turf
-			P.fire_at(new_target, original_P.firer, original_P.firer, P.ammo.max_range, P.ammo.shell_speed) //Fire!
+			P.fire_at(new_target, original_P.firer, original_P.firer, P.ammo.max_range, P.ammo.shell_speed, null) //Fire!
 
 	//This is sort of a workaround for now. There are better ways of doing this ~N.
 	proc/stun_living(mob/living/target, obj/item/projectile/P) //Taser proc to stun folks.
