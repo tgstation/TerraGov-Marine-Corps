@@ -87,6 +87,11 @@
 		to_chat(src, "<span class='warning'>The restraints are too restricting to allow you to evolve.</span>")
 		return
 
+	// used below
+	var/tierones
+	var/tiertwos
+	var/tierthrees
+
 	if(new_caste_type == /mob/living/carbon/Xenomorph/Queen) //Special case for dealing with queenae
 		if(jobban_isbanned(src, "Queen"))
 			to_chat(src, "<span class='warning'>You are jobbanned from the Queen role.</span>")
@@ -119,10 +124,14 @@
 	else
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Drone])
 
-		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(hive.xenos_by_tier[XENO_TIER_ONE], hive.xenos_by_tier[XENO_TIER_TWO], hive.xenos_by_tier[XENO_TIER_THREE]))
+		tierones = length(hive.xenos_by_tier[XENO_TIER_ONE])
+		tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
+		tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
+
+		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(hive.xenos_by_tier[XENO_TIER_ONE], hive.xenos_by_tier[XENO_TIER_TWO], hive.xenos_by_tier[XENO_TIER_THREE]))
+		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 			return
 		else if(!hive.living_xeno_queen && potential_queens == 1 && isxenolarva(src) && new_caste_type != /mob/living/carbon/Xenomorph/Drone)
@@ -149,10 +158,14 @@
 		to_chat(src, "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>")
 		return
 
-	if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(hive.xenos_by_tier[XENO_TIER_ONE], hive.xenos_by_tier[XENO_TIER_TWO], hive.xenos_by_tier[XENO_TIER_THREE]))
+	tierones = length(hive.xenos_by_tier[XENO_TIER_ONE])
+	tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
+	tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
+
+	if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierones, tiertwos, tierthrees))
 		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
 		return
-	else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(hive.xenos_by_tier[XENO_TIER_ONE], hive.xenos_by_tier[XENO_TIER_TWO], hive.xenos_by_tier[XENO_TIER_THREE]))
+	else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierones, tiertwos, tierthrees))
 		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 3.</span>")
 		return
 
