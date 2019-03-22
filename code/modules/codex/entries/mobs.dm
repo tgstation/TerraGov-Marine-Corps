@@ -52,7 +52,7 @@
 			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][1]
 			xeno_strings += "[Z.caste_name]"
 
-	if(length(actions) > 0)	
+	if(length(actions))
 		xeno_strings += "<br><U>This has the following abilities</U>:"
 		for(var/X in actions)
 			var/datum/action/xeno_action/A = X
