@@ -179,7 +179,7 @@
 	if(target == start)
 		return
 
-	var/obj/item/projectile/A = new /obj/item/projectile(user.loc) // rework this code, they just shoot bullets for now
+	var/obj/item/projectile/A = new /obj/item/projectile(user:loc) // rework this code, they just shoot bullets for now
 	playsound(user, projectilesound, 25, 1)
 	if(!A)	
 		return
@@ -187,7 +187,8 @@
 	if (!istype(target, /turf))
 		qdel(A)
 		return
-	A.generate_bullet(datum/ammo/bullet/revolver)
+	A.generate_bullet(new /datum/ammo/bullet/revolver)
+	to_chat(world, "shooting")
 	A.fire_at(target, src, src, A.ammo.max_range, A.ammo.shell_speed)
 	return
 
