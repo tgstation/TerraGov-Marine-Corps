@@ -32,7 +32,8 @@
 
 /obj/item/clothing/mask/facehugger/Initialize()
 	. = ..()
-	START_PROCESSING(SSobj, src)
+	if(stat == CONSCIOUS)
+		START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/facehugger/ex_act(severity)
 	Die()
@@ -147,9 +148,8 @@
 	Die()
 
 /obj/item/clothing/mask/facehugger/proc/monitor_surrounding()
-	if(loc && !throwing) //Make sure we're conscious and not idle, dead or in action.
-		if(check_lifecycle())
-			leap_at_nearest_target()
+	if(!throwing && check_lifecycle()) //Make sure we're conscious and not idle, dead or in action.
+		leap_at_nearest_target()
 
 /obj/item/clothing/mask/facehugger/proc/GoIdle(hybernate = FALSE, no_activate = FALSE) //Idle state does not count toward the death timer.
 	if(stat == CONSCIOUS)
@@ -171,8 +171,6 @@
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
 	if(sterile)
 		return TRUE
-	if(check_neighbours())
-		return FALSE
 	if(lifecycle - 4 SECONDS <= 0)
 		if(isturf(loc))
 			var/obj/effect/alien/egg/E = locate() in loc
@@ -198,18 +196,6 @@
 	lifecycle -= 4 SECONDS
 	return TRUE
 
-/obj/item/clothing/mask/facehugger/proc/check_neighbours()
-	if(isturf(loc))
-		var/count = 0
-		for(var/obj/item/clothing/mask/facehugger/F in loc)
-			if(F.stat == CONSCIOUS && !F.sterile)
-				count++
-			if(count > 2) //Was 5, our rules got much tighter
-				visible_message("<span class='xenowarning'>The facehugger is furiously cannibalized by the nearby horde of other ones!</span>")
-				qdel(src)
-				return TRUE
-	return FALSE
-
 /obj/item/clothing/mask/facehugger/Crossed(atom/target)
 	if(stat == CONSCIOUS)
 		HasProximity(target)
@@ -230,17 +216,18 @@
 	return FALSE
 
 /obj/item/clothing/mask/facehugger/proc/leap_at_nearest_target()
-	if(isturf(loc))
-		var/i = 10//So if we have a pile of dead bodies around, it doesn't scan everything, just ten iterations.
-		for(var/mob/living/carbon/M in view(4,src))
-			if(!i)
-				break
-			if(M.can_be_facehugged(src))
-				visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", null, 4)
-				leaping = TRUE
-				throw_at(M, 4, 1)
-				break
-			--i
+	if(!isturf(loc))
+		return
+	var/i = 10//So if we have a pile of dead bodies around, it doesn't scan everything, just ten iterations.
+	for(var/mob/living/carbon/M in view(4,src))
+		if(!i)
+			break
+		if(M.can_be_facehugged(src))
+			visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", null, 4)
+			leaping = TRUE
+			throw_at(M, 4, 1)
+			break
+		--i
 
 /obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
 	. = ..()
@@ -280,8 +267,8 @@
 		fast_activate()
 
 /obj/item/clothing/mask/facehugger/proc/fast_activate(unhybernate = FALSE)
-	if(GoActive(unhybernate))
-		monitor_surrounding()
+	if(GoActive(unhybernate) && !throwing)
+		leap_at_nearest_target()
 
 /mob/proc/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
 	return FALSE
@@ -499,11 +486,23 @@
 	visible_message("[icon2html(src, viewers(src))] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
 	qdel(src)
 
+/obj/item/clothing/mask/facehugger/stasis
+	stat = UNCONSCIOUS
+	stasis = TRUE
+
+/obj/item/clothing/mask/facehugger/stasis/Initialize()
+	. = ..()
+	update_icon()
+
 /obj/item/clothing/mask/facehugger/dead
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?"
-	icon_state = "facehugger_impregnated"
 	name = "????"
 	stat = DEAD
+	sterile = TRUE
+
+/obj/item/clothing/mask/facehugger/dead/Initialize()
+	. = ..()
+	update_icon()
 
 #undef FACEHUGGER_LIFECYCLE
 #undef FACEHUGGER_KNOCKOUT

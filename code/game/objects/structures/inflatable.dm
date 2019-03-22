@@ -43,7 +43,7 @@
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "wall"
 
-	var/health = 50.0
+	health = 50.0
 	var/deflated = FALSE
 
 

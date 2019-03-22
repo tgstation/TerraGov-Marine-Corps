@@ -1,6 +1,6 @@
 /obj/structure/flora
 	anchored = TRUE
-	var/health = 25
+	health = 25
 	var/health_max = 25
 	var/on_fire = FALSE
 

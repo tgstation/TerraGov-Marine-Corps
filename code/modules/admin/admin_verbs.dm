@@ -545,7 +545,7 @@
 	return "<a href='?src=[REF(usr.client.holder)];[HrefToken()];individuallog=[REF(M)];log_type=[log_type];log_src=[log_src]'>[slabel]</a>"
 
 
-/datum/admins/proc/asay(msg as text)
+/client/proc/asay(msg as text)
 	set category = "Admin"
 	set name = "asay"
 	set hidden = TRUE
@@ -558,19 +558,19 @@
 	if(!msg)
 		return
 
-	log_admin_private_asay("[key_name(usr)]: [msg]")
+	log_admin_private_asay("[key_name(src)]: [msg]")
 
 	var/color = "adminsay"
-	if(check_rights(R_PERMISSIONS, FALSE))
+	if(check_other_rights(src, R_DBRANKS, FALSE))
 		color = "headminsay"
 
-	msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(usr)]: <span class='message'>[msg]</span></span>"
+	msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(mob)]: <span class='message'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ASAY, FALSE))
 			to_chat(C, msg)
 
 
-/datum/admins/proc/msay(msg as text)
+/client/proc/msay(msg as text)
 	set category = "Admin"
 	set name = "msay"
 	set hidden = TRUE
@@ -586,24 +586,24 @@
 	if(!msg)
 		return
 
-	log_admin_private_msay("[key_name(usr)]: [msg]")
+	log_admin_private_msay("[key_name(src)]: [msg]")
 
 	var/color = "mod"
-	if(check_rights(R_PERMISSIONS, FALSE))
+	if(check_other_rights(src, R_DBRANKS, FALSE))
 		color = "headminmod"
-	else if(check_rights(R_ADMIN, FALSE))
+	else if(check_other_rights(src, R_ADMIN, FALSE))
 		color = "adminmod"
 
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
-			to_chat(C, "<span class='[color]'><span class='prefix'>[usr.client.holder.rank.name]:</span> [ADMIN_TPMONTY(usr)]: <span class='message'>[msg]</span></span>")
-		else if(is_mentor(C) && usr.stat == DEAD)
-			to_chat(C, "<span class='[color]'><span class='prefix'>[usr.client.holder.rank.name]:</span> [key_name_admin(usr, TRUE, TRUE, FALSE)] [ADMIN_JMP(usr)] [ADMIN_FLW(usr)]: <span class='message'>[msg]</span></span>")
+			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [ADMIN_TPMONTY(mob)]: <span class='message'>[msg]</span></span>")
+		else if(is_mentor(C) && mob.stat == DEAD)
+			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>")
 		else if(is_mentor(C))
-			to_chat(C, "<span class='[color]'><span class='prefix'>[usr.client.holder.rank.name]:</span> [key_name_admin(usr, TRUE, FALSE, FALSE)] [ADMIN_JMP(usr)] [ADMIN_FLW(usr)]: <span class='message'>[msg]</span></span>")
+			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>")
 
 
-/datum/admins/proc/dsay(msg as text)
+/client/proc/dsay(msg as text)
 	set category = "Admin"
 	set name = "dsay"
 	set hidden = TRUE
@@ -611,19 +611,19 @@
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
 
-	if(is_mentor(src) && usr.stat != DEAD)
-		to_chat(usr, "<span class='warning'>You must be an observer to use dsay.</span>")
+	if(is_mentor(src) && mob.stat != DEAD)
+		to_chat(src, "<span class='warning'>You must be an observer to use dsay.</span>")
 		return
 
 	if(usr.client.prefs.muted & MUTE_DEADCHAT)
-		to_chat(usr, "<span class='warning'>You cannot send DSAY messages (muted).</span>")
+		to_chat(src, "<span class='warning'>You cannot send DSAY messages (muted).</span>")
 		return
 
-	if(!(usr.client.prefs.toggles_chat & CHAT_DEAD))
-		to_chat(usr, "<span class='warning'>You have deadchat muted.</span>")
+	if(!(prefs.toggles_chat & CHAT_DEAD))
+		to_chat(src, "<span class='warning'>You have deadchat muted.</span>")
 		return
 
-	if(usr.client.handle_spam_prevention(msg, MUTE_DEADCHAT))
+	if(handle_spam_prevention(msg, MUTE_DEADCHAT))
 		return
 
 	msg = noscript(msg)
@@ -631,8 +631,8 @@
 	if(!msg)
 		return
 
-	log_dsay("[key_name(usr)]: [msg]")
-	msg = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>([usr.client.holder.fakekey ? "" : usr.client.holder.rank.name]) [usr.client.holder.fakekey ? "Administrator" : usr.key]</span> says, \"<span class='message'>[msg]</span>\"</span>"
+	log_dsay("[key_name(src)]: [msg]")
+	msg = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[holder.fakekey ? "" : "([holder.rank.name]) "][holder.fakekey ? "Administrator" : key]</span> says, \"<span class='message'>[msg]</span>\"</span>"
 
 	for(var/client/C in GLOB.clients)
 		if(istype(C.mob, /mob/new_player))
@@ -1149,44 +1149,60 @@
 	var/compliant_msg = trim(lowertext(msg))
 	var/irc_tagged = "[sender](IRC)"
 	var/list/splits = splittext(compliant_msg, " ")
-	if(splits.len && splits[1] == "ticket")
-		if(splits.len < 2)
+	if(length(splits) && splits[1] == "ticket")
+		if(length(splits) < 2)
 			return IRC_AHELP_USAGE
 		switch(splits[2])
 			if("close")
 				if(ticket)
-					ticket.Close(irc_tagged)
+					ticket.Close(FALSE, TRUE)
+					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully closed"
 			if("resolve")
 				if(ticket)
-					ticket.Resolve(irc_tagged)
+					ticket.Resolve(FALSE, TRUE)
+					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully resolved"
 			if("icissue")
 				if(ticket)
-					ticket.ICIssue(irc_tagged)
+					ticket.ICIssue(TRUE)
+					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully marked as IC issue"
 			if("reject")
 				if(ticket)
-					ticket.Reject(irc_tagged)
+					ticket.Reject(TRUE)
+					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully rejected"
+			if("tier")
+				if(ticket)
+					ticket.Tier(TRUE)
+					ticket.AddInteraction("<font color='red'>IRC interaction by: [sender].</font>")
+					message_admins("IRC interaction by: [irc_tagged]")
+					return "Ticket #[ticket.id] successfully tiered"
 			if("reopen")
 				if(ticket)
 					return "Error: [target] already has ticket #[ticket.id] open"
-				var/fail = splits.len < 3 ? null : -1
-				if(!isnull(fail))
-					fail = text2num(splits[3])
-				if(isnull(fail))
-					return "Error: No/Invalid ticket id specified. [IRC_AHELP_USAGE]"
-				var/datum/admin_help/AH = GLOB.ahelp_tickets.TicketByID(fail)
+				if(length(splits) < 3)
+					return "Error: No ticket id specified. [IRC_AHELP_USAGE]"
+				var/id = text2num(splits[3])
+				if(isnull(id))
+					return "Error: Invalid ticket id specified. [IRC_AHELP_USAGE]"
+				var/datum/admin_help/AH = GLOB.ahelp_tickets.TicketByID(id)
 				if(!AH)
-					return "Error: Ticket #[fail] not found"
+					return "Error: Ticket #[id] not found"
 				if(AH.initiator_ckey != target)
-					return "Error: Ticket #[fail] belongs to [AH.initiator_ckey]"
-				AH.Reopen()
+					return "Error: Ticket #[id] belongs to [AH.initiator_ckey]"
+				AH.Reopen(TRUE)
+				AH.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+				message_admins("IRC interaction by: [irc_tagged]")
 				return "Ticket #[ticket.id] successfully reopened"
 			if("list")
 				var/list/tickets = GLOB.ahelp_tickets.TicketsByCKey(target)
-				if(!tickets.len)
+				if(!length(tickets))
 					return "None"
 				. = ""
 				for(var/I in tickets)
@@ -1210,12 +1226,12 @@
 	if(!stealthkey)
 		stealthkey = GenIrcStealthKey()
 
-	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
+	msg = sanitize(copytext(msg, 1, MAX_MESSAGE_LEN))
 	if(!msg)
 		return "Error: No message"
 
-	message_admins("IRC message from [sender] to [key_name_admin(C)] : [msg]")
-	log_admin_private("IRC PM: [sender] -> [key_name(C)] : [msg]")
+	log_admin_private("IRC PM: [irc_tagged] -> [key_name(C)] : [msg]")
+	message_admins("IRC PM: [irc_tagged] -> [key_name_admin(C, FALSE, FALSE)] : [msg]")
 
 	to_chat(C, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 	to_chat(C, "<font color='red'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>")

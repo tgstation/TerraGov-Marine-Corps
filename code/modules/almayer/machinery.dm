@@ -187,9 +187,9 @@
 	density = 0
 	unacidable = 1
 
-/obj/structure/prop/almayer/name_stencil/New()
+/obj/structure/prop/almayer/name_stencil/Initialize()
 	. = ..()
-	name = MAIN_SHIP_NAME
+	name = CONFIG_GET(string/ship_name)
 
 
 /obj/structure/prop/almayer/hangar_stencil

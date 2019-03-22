@@ -81,13 +81,13 @@
 /datum/game_mode/colonialmarines/proc/map_announce()
 	switch(SSmapping.config.map_name)
 		if(MAP_LV_624)
-			command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
+			command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. A response team from the [CONFIG_GET(string/ship_name)] will be dispatched shortly to investigate.", "[CONFIG_GET(string/ship_name)]")
 		if(MAP_ICE_COLONY)
-			command_announcement.Announce("An automated distress signal has been received from archaeology site \"Shiva's Snowball\", on border ice world \"Ifrit\". A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
+			command_announcement.Announce("An automated distress signal has been received from archaeology site \"Shiva's Snowball\", on border ice world \"Ifrit\". A response team from the [CONFIG_GET(string/ship_name)] will be dispatched shortly to investigate.", "[CONFIG_GET(string/ship_name)]")
 		if(MAP_BIG_RED)
-			command_announcement.Announce("We've lost contact with the Nanotrasen's research facility, [SSmapping.config.map_name]. The [MAIN_SHIP_NAME] has been dispatched to assist.", "[MAIN_SHIP_NAME]")
+			command_announcement.Announce("We've lost contact with the Nanotrasen's research facility, [SSmapping.config.map_name]. The [CONFIG_GET(string/ship_name)] has been dispatched to assist.", "[CONFIG_GET(string/ship_name)]")
 		if(MAP_PRISON_STATION)
-			command_announcement.Announce("An automated distress signal has been received from maximum-security prison \"Fiorina Orbital Penitentiary\". A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
+			command_announcement.Announce("An automated distress signal has been received from maximum-security prison \"Fiorina Orbital Penitentiary\". A response team from the [CONFIG_GET(string/ship_name)] will be dispatched shortly to investigate.", "[CONFIG_GET(string/ship_name)]")
 
 
 /datum/game_mode/colonialmarines/process()
@@ -118,11 +118,11 @@
 
 
 /datum/game_mode/colonialmarines/check_win()
-	var/living_player_list[] = count_humans_and_xenos(EvacuationAuthority.get_affected_zlevels())
+	var/living_player_list[] = count_humans_and_xenos(SSevacuation.get_affected_zlevels())
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) //Nuke went off, ending the round.
+	if(SSevacuation.dest_status == NUKE_EXPLOSION_FINISHED) //Nuke went off, ending the round.
 		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]")
 		round_finished = MODE_GENERIC_DRAW_NUKE
 	else if(!num_humans && num_xenos)
@@ -160,9 +160,8 @@
 /datum/game_mode/colonialmarines/declare_completion()
 	. = ..()
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
-	feedback_set_details("round_end_result",round_finished)
 
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [SSmapping.config.map_name].</span>")
+	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [CONFIG_GET(string/ship_name)] and their struggle on [SSmapping.config.map_name].</span>")
 	var/musical_track
 	switch(round_finished)
 		if(MODE_INFESTATION_X_MAJOR)
@@ -176,7 +175,7 @@
 		if(MODE_INFESTATION_DRAW_DEATH)
 			musical_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg') //This one is unlikely to play.
 
-	to_chat(world, musical_track)
+	SEND_SOUND(world, musical_track)
 
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [GLOB.clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created]")
 

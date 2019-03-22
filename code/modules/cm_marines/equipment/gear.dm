@@ -12,7 +12,7 @@
 //MARINE SNIPER TARPS
 
 /obj/item/bodybag/tarp
-	name = "\improper V1 thermal-dapening tarp (folded)"
+	name = "\improper V1 thermal-dampening tarp (folded)"
 	desc = "A tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_folded"

@@ -4,7 +4,8 @@
 		//ADMIN THINGS//
 		////////////////
 	var/datum/admins/holder = null
-	var/buildmode		= FALSE
+	var/buildmode = FALSE
+	var/datum/click_intercept = null // Needs to implement InterceptClickOn(user,params,atom) proc
 
 	var/ban_cache = null //Used to cache this client's bans to save on DB queries
 	var/last_message	= "" //Contains the last message sent by this client - used to protect against copy-paste spamming.

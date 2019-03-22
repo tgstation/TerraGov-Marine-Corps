@@ -199,7 +199,7 @@
 		if(isxeno(M) || M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)))
 			continue
 		var/distance = get_dist(M, loc)
-		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * (1 + upgrade * 0.05)) / max(1,distance + 1)
+		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS) / max(1,distance + 1)
 		if(frenzy_aura > 0)
 			damage *= (1 + round(frenzy_aura * 0.1,0.01)) //+10% per level of Frenzy
 		if(distance == 0) //If we're on top of our victim, give him the full impact
@@ -312,6 +312,7 @@
 			else
 				X.stop_momentum(X.charge_dir)
 				return FALSE
+
 
 //Beginning special object overrides.
 

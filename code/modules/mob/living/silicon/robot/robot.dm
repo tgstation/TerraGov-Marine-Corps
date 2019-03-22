@@ -232,7 +232,6 @@ var/list/robot_verbs_default = list(
 	module.add_languages(src)
 
 	hands.icon_state = lowertext(modtype)
-	feedback_inc("cyborg_[lowertext(modtype)]",1)
 	updatename()
 
 	if(modtype == "Medic" || modtype == "Security" || modtype == "Surgeon")

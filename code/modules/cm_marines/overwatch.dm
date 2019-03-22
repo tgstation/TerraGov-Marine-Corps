@@ -351,7 +351,7 @@
 			switch(z_hidden) 
 				if(HIDE_NONE)
 					z_hidden = HIDE_ON_SHIP
-					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [MAIN_SHIP_NAME] are now hidden.</span>")
+					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [CONFIG_GET(string/ship_name)] are now hidden.</span>")
 				if(HIDE_ON_SHIP)
 					z_hidden = HIDE_ON_GROUND
 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the ground are now hidden.</span>")
@@ -592,7 +592,7 @@
 /obj/machinery/computer/overwatch/proc/do_shake_camera()
 	for(var/mob/living/carbon/H in GLOB.alive_mob_list)
 		if(is_mainship_level(H.z) && !H.stat) //TGS Theseus decks.
-			to_chat(H, "<span class='warning'>The deck of the [MAIN_SHIP_NAME] shudders as the orbital cannons open fire on the colony.</span>")
+			to_chat(H, "<span class='warning'>The deck of the [CONFIG_GET(string/ship_name)] shudders as the orbital cannons open fire on the colony.</span>")
 			if(H.client)
 				shake_camera(H, 10, 1)
 
@@ -1097,23 +1097,20 @@
 	var/message = ""
 	switch(command_aura)
 		if("move")
-			var/image/move = image('icons/mob/talk.dmi', icon_state = "order_move")
-			overlays += move
+			var/image/move = image('icons/mob/talk.dmi', src, icon_state = "order_move")
 			message = pick(";GET MOVING!", ";GO, GO, GO!", ";WE ARE ON THE MOVE!", ";MOVE IT!", ";DOUBLE TIME!")
 			say(message)
-			addtimer(CALLBACK(src, .proc/remove_emote_overlay, move), 5 SECONDS)
+			add_emote_overlay(move)
 		if("hold")
-			var/image/hold = image('icons/mob/talk.dmi', icon_state = "order_hold")
-			overlays += hold
+			var/image/hold = image('icons/mob/talk.dmi', src, icon_state = "order_hold")
 			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!")
 			say(message)
-			addtimer(CALLBACK(src, .proc/remove_emote_overlay, hold), 5 SECONDS)
+			add_emote_overlay(hold)
 		if("focus")
-			var/image/focus = image('icons/mob/talk.dmi', icon_state = "order_focus")
-			overlays += focus
+			var/image/focus = image('icons/mob/talk.dmi', src, icon_state = "order_focus")
 			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
 			say(message)
-			addtimer(CALLBACK(src, .proc/remove_emote_overlay, focus), 5 SECONDS)
+			add_emote_overlay(focus)
 	update_action_buttons()
 
 

@@ -28,7 +28,7 @@
 	var/reinforced = FALSE
 	var/flipped = FALSE
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
-	var/health = 100
+	health = 100
 
 /obj/structure/table/destroy_structure(deconstruct)
 	if(deconstruct)

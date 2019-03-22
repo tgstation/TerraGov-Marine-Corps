@@ -105,10 +105,11 @@
 
 //Define sniper laser multipliers
 
-#define SNIPER_LASER_DAMAGE_MULTIPLIER	1.5
-#define SNIPER_LASER_ARMOR_MULTIPLIER	1.5
+#define SNIPER_LASER_DAMAGE_MULTIPLIER	1.5 //+50% damage vs the aimed target
+#define SNIPER_LASER_ARMOR_MULTIPLIER	1.5 //+50% penetration vs the aimed target
+#define SNIPER_LASER_SLOWDOWN_STACKS	4
 
 //Define lasgun
-#define M37_STANDARD_AMMO_COST			20
-#define M37_OVERCHARGE_AMMO_COST		80
-#define M37_OVERCHARGE_FIRE_DELAY		10
+#define M43_STANDARD_AMMO_COST			20
+#define M43_OVERCHARGE_AMMO_COST		80
+#define M43_OVERCHARGE_FIRE_DELAY		10

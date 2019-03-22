@@ -118,11 +118,11 @@
 /proc/get_region_accesses_name(code)
 	switch(code)
 		if(0) return "All"
-		if(1) return "[MAIN_SHIP_NAME] Security"//security
-		if(2) return "[MAIN_SHIP_NAME] Medbay"//medbay
-		if(3) return "[MAIN_SHIP_NAME] Research"//research
-		if(4) return "[MAIN_SHIP_NAME] Engineering"//engineering and maintenance
-		if(5) return "[MAIN_SHIP_NAME] Command"//command
+		if(1) return "[CONFIG_GET(string/ship_name)] Security"//security
+		if(2) return "[CONFIG_GET(string/ship_name)] Medbay"//medbay
+		if(3) return "[CONFIG_GET(string/ship_name)] Research"//research
+		if(4) return "[CONFIG_GET(string/ship_name)] Engineering"//engineering and maintenance
+		if(5) return "[CONFIG_GET(string/ship_name)] Command"//command
 		if(6) return "Marines"//marine prep
 		if(7) return "Squads"//squads
 		if(8) return "Civilian"//Civilian
@@ -137,19 +137,19 @@
 		if(ACCESS_MARINE_CMO)
 			return "CMO's Office"
 		if(ACCESS_MARINE_MEDBAY)
-			return "[MAIN_SHIP_NAME] Medbay"
+			return "[CONFIG_GET(string/ship_name)] Medbay"
 		if(ACCESS_MARINE_RESEARCH)
-			return "[MAIN_SHIP_NAME] Research"
+			return "[CONFIG_GET(string/ship_name)] Research"
 		if(ACCESS_MARINE_CE)
 			return "CE's Office"
 		if(ACCESS_MARINE_ENGINEERING)
-			return "[MAIN_SHIP_NAME] Engineering"
+			return "[CONFIG_GET(string/ship_name)] Engineering"
 		if(ACCESS_MARINE_CAPTAIN)
 			return "Captain's Quarters"
 		if(ACCESS_MARINE_LOGISTICS)
-			return "[MAIN_SHIP_NAME] Logistics"
+			return "[CONFIG_GET(string/ship_name)] Logistics"
 		if(ACCESS_MARINE_BRIDGE)
-			return "[MAIN_SHIP_NAME] Bridge"
+			return "[CONFIG_GET(string/ship_name)] Bridge"
 		if(ACCESS_MARINE_PREP)
 			return "Marine Prep"
 		if(ACCESS_MARINE_ENGPREP)
@@ -187,7 +187,7 @@
 		if(ACCESS_CIVILIAN_PUBLIC)
 			return "Civilian"
 		if(ACCESS_IFF_MARINE)
-			return "[MAIN_SHIP_NAME] Identification"
+			return "[CONFIG_GET(string/ship_name)] Identification"
 
 /proc/get_centcom_access_desc(A)
 	switch(A)

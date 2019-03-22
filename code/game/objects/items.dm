@@ -237,6 +237,8 @@ cases. Override_icon_state should be a list.*/
 		var/datum/action/A = X
 		A.remove_action(user)
 
+	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
+
 	if(flags_item & DELONDROP)
 		qdel(src)
 
@@ -286,6 +288,7 @@ cases. Override_icon_state should be a list.*/
 // for items that can be placed in multiple slots
 // note this isn't called during the initial dressing of a player
 /obj/item/proc/equipped(mob/user, slot)
+	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
 	for(var/X in actions)
 		var/datum/action/A = X
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
