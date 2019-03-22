@@ -92,7 +92,7 @@
 
 	var/damage = 10
 	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
-	var/nodamage = 0 //Determines if the projectile will skip any damage inflictions
+	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
 	var/projectile_type = /obj/item/projectile
 	var/range = 50 //This will de-increment every step. When 0, it will deletze the projectile.
 	var/decayedRange			//stores original range
@@ -313,12 +313,11 @@
 /obj/item/projectile/proc/before_z_change(atom/oldloc, atom/newloc)
 
 /obj/item/projectile/vv_edit_var(var_name, var_value)
-	switch(var_name)
-		if(NAMEOF(src, Angle))
-			setAngle(var_value)
-			return TRUE
-		else
-			return ..()
+	if(NAMEOF(src, Angle))
+		setAngle(var_value)
+		return TRUE
+	else
+		return ..()
 
 /obj/item/projectile/proc/set_pixel_speed(new_speed)
 	if(trajectory)
@@ -702,17 +701,19 @@
 /atom/proc/bullet_ping(obj/item/projectile/P)
 	if(!P || !P.ammo.ping) 
 		return
-	if(prob(65))
-		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
-		var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
-		var/angle = (P.firer && prob(60)) ? round(Get_Angle(P.firer,src)) : round(rand(1,359))
-		I.pixel_x += rand(-6,6)
-		I.pixel_y += rand(-6,6)
+	if(!prob(65))
+		return
+	if(P.ammo.sound_bounce) 
+		playsound(src, P.ammo.sound_bounce, 50, 1)
+	var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
+	var/angle = (P.firer && prob(60)) ? round(Get_Angle(P.firer,src)) : round(rand(1,359))
+	I.pixel_x += rand(-6,6)
+	I.pixel_y += rand(-6,6)
 
-		var/matrix/rotate = matrix()
-		rotate.Turn(angle)
-		I.transform = rotate
-		flick_overlay_view(I, src, 3)
+	var/matrix/rotate = matrix()
+	rotate.Turn(angle)
+	I.transform = rotate
+	flick_overlay_view(I, src, 3)
 
 // Boolet is deleted if returned TRUE, if returned FALSE, it isn't. Currently used by simple_animals/construct/armoured where it reflects a bullet
 /atom/proc/bullet_act(obj/item/projectile/P)
@@ -889,13 +890,13 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR))
 		var/armor = xeno_caste.armor_deflection + armor_bonus + armor_pheromone_bonus
 		#ifdef DEBUG_XENO_DEFENSE
-		world << "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>"
+		to_chat(world, "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>")
 		#endif
 		if(isxenoqueen(src) || isxenocrusher(src)) //Charging and crest resistances. Charging Xenos get a lot of extra armor, currently Crushers and Queens
 			var/mob/living/carbon/Xenomorph/charger = src
 			armor += round(charger.charge_speed * 5) //Some armor deflection when charging.
 			#ifdef DEBUG_CREST_DEFENSE
-			world << "<span class='debuginfo'>Projectile direction is: <b>[P.dir]</b> and crest direction is: <b>[charger.dir]</b></span>"
+			to_chat(world, "<span class='debuginfo'>Projectile direction is: <b>[P.dir]</b> and crest direction is: <b>[charger.dir]</b></span>")
 			#endif
 			if(P.dir == charger.dir)
 				if(isxenoqueen(src))
@@ -1087,7 +1088,6 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	var/accuracy_factor = 50 //degree to which accuracy affects probability   (if accuracy is 100, probability is unaffected. Lower accuracies will increase block chance)
 
 	var/hitchance = min(coverage, (coverage * distance/distance_limit) + accuracy_factor * (1 - P.accuracy/100))
-	//to_chat(world, "Distance travelled: [distance]  |  Accuracy: [P.accuracy]  |  Hit chance: [hitchance]")
 	return prob(hitchance)
 
 /obj/structure/window/get_projectile_hit_chance(obj/item/projectile/P)

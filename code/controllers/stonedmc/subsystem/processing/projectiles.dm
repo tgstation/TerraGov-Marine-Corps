@@ -15,9 +15,8 @@ PROCESSING_SUBSYSTEM_DEF(projectiles)
 			P.set_pixel_speed(new_speed)
 
 /datum/controller/subsystem/processing/projectiles/vv_edit_var(var_name, var_value)
-	switch(var_name)
-		if(NAMEOF(src, global_pixel_speed))
-			set_pixel_speed(var_value)
-			return TRUE
-		else
-			return ..()
+	if(NAMEOF(src, global_pixel_speed))
+		set_pixel_speed(var_value)
+		return TRUE
+	else
+		return ..()
