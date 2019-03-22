@@ -368,7 +368,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		target_dir = turn(C.dir, 180)
 		T = get_step(T, target_dir)
 		face_atom(T)
-		throw_at(T, 2, 1, C, 1)
+		throw_at(T, 3, 2, C, 1)
 		apply_damage(rand(5, 7.5), BRUTE)
 		return
 	if(!lying)
@@ -376,9 +376,9 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		T = temp
 		T = get_step(T, pick(cardinal))
 		if(mob_size == MOB_SIZE_BIG)
-			throw_at(T, 2, 1, C, 0)
+			throw_at(T, 3, 2, C, 0)
 		else
-			throw_at(T, 2, 1, C, 1)
+			throw_at(T, 3, 2, C, 1)
 		if(!knocked_down)
 			KnockDown(1)
 		apply_damage(rand(10, 15), BRUTE)
@@ -395,7 +395,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	temp = get_step(T, facing)
 	T = temp
 	T = get_step(T, pick(cardinal))
-	throw_at(T, 2, 1, C, 0)
+	throw_at(T, 2, 2, C, 0)
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
 
 /mob/living/carbon/Xenomorph/Crusher/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
@@ -404,7 +404,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	temp = get_step(T, facing)
 	T = temp
 	T = get_step(T, pick(cardinal))
-	throw_at(T, 2, 1, C, 0)
+	throw_at(T, 2, 2, C, 0)
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
 
 /mob/living/carbon/Xenomorph/Larva/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
