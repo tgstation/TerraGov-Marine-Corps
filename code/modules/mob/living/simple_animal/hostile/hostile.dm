@@ -188,7 +188,6 @@
 		qdel(A)
 		return
 	A.generate_bullet(new /datum/ammo/bullet/revolver)
-	to_chat(world, "shooting")
 	A.fire_at(target, src, src, A.ammo.max_range, A.ammo.shell_speed)
 	return
 
