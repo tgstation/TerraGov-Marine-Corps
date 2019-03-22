@@ -3,20 +3,22 @@ PROCESSING_SUBSYSTEM_DEF(projectiles)
 	wait = 1
 	stat_tag = "PP"
 	flags = SS_NO_INIT|SS_TICKER
-	var/global_max_tick_moves = 5
-	var/global_pixel_speed = 1
-	var/global_iterations_per_move = 16
+	var/global_max_tick_moves = 1
+	var/global_pixel_speed = 16
+	var/global_iterations_per_move = 2
 
 /datum/controller/subsystem/processing/projectiles/proc/set_pixel_speed(new_speed)
 	global_pixel_speed = new_speed
 	for(var/i in processing)
 		var/obj/item/projectile/P = i
-		if(istype(P))			//there's non projectiles on this too.
-			P.set_pixel_speed(new_speed)
+		if(!istype(P))			//there's non projectiles on this too.
+			continue
+		P.set_pixel_speed(new_speed)
 
 /datum/controller/subsystem/processing/projectiles/vv_edit_var(var_name, var_value)
-	if(NAMEOF(src, global_pixel_speed))
-		set_pixel_speed(var_value)
-		return TRUE
-	else
-		return ..()
+	switch(var_name)
+		if(NAMEOF(src, global_pixel_speed))
+			set_pixel_speed(var_value)
+			return TRUE
+		else
+			return ..()

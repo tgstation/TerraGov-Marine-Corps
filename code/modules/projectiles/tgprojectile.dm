@@ -343,11 +343,12 @@
 /obj/item/projectile/proc/before_z_change(atom/oldloc, atom/newloc)
 
 /obj/item/projectile/vv_edit_var(var_name, var_value)
-	if(NAMEOF(src, Angle))
-		setAngle(var_value)
-		return TRUE
-	else
-		return ..()
+	switch(var_name)
+		if(NAMEOF(src, Angle))
+			setAngle(var_value)
+			return TRUE
+		else
+			return ..()
 
 /obj/item/projectile/proc/set_pixel_speed(new_speed)
 	if(trajectory)
@@ -1123,8 +1124,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 /obj/structure/window/get_projectile_hit_chance(obj/item/projectile/P)
 	if(P.ammo.flags_ammo_behavior & AMMO_ENERGY || ( (flags_atom & ON_BORDER) && P.dir != dir && P.dir != reverse_direction(dir) ) )
 		return FALSE
-	else
-		return TRUE
+	return TRUE
 
 /obj/machinery/door/poddoor/railing/get_projectile_hit_chance(obj/item/projectile/P)
 	return src == P.original
