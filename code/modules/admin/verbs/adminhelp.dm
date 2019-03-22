@@ -882,7 +882,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/list/adm = get_admin_counts()
 	var/list/activemins = adm["present"]
 	. = length(activemins)
-	if(. >= 0)
+	if(.)
 		var/list/afkmins = adm["afk"]
 		var/list/stealthmins = adm["stealth"]
 		var/list/powerlessmins = adm["noflags"]
