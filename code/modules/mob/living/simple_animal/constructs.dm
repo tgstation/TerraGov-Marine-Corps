@@ -146,15 +146,24 @@
 			var/new_x = P.starting.x + pick(0, 0, -1, 1, -2, 2, -2, 2, -2, 2, -3, 3, -3, 3)
 			var/new_y = P.starting.y + pick(0, 0, -1, 1, -2, 2, -2, 2, -2, 2, -3, 3, -3, 3)
 			var/turf/curloc = get_turf(src)
+			var/turf/targloc = locate(new_x, new_y, P.z)
 
 			// redirect the projectile
-			P.original = locate(new_x, new_y, P.z)
+			P.original = targloc
 			P.starting = curloc
+			P.target_turf = targloc
 			P.firer = src
 			P.yo = new_y - curloc.y
 			P.xo = new_x - curloc.x
+			P.p_x = 16
+			P.p_y = 16
+			P.setAngle(Get_Angle(src, targloc))
+			to_chat(world, "Targetting [targloc.name] [P.Angle]")
+			P.permutated = list()
+			P.permutated += src
+			//P.forceMove()
 
-		return -1 // complete projectile permutation
+		return FALSE // don't delete it
 
 	return (..(P))
 

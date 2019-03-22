@@ -137,7 +137,7 @@
 
 	//Don't act on seeds like dionaea that shouldn't change.
 	if(seed && seed.immutable > 0)
-		return 0
+		return TRUE
 
 	..()
 

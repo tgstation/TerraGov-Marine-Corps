@@ -47,7 +47,7 @@
 
 
 /obj/machinery/computer/marine_card/bullet_act()
-	return 0
+	return TRUE
 
 /obj/machinery/computer/marine_card/attack_hand(var/mob/user as mob)
 	if(..())
@@ -393,7 +393,7 @@
 
 
 /obj/machinery/computer/squad_changer/bullet_act()
-	return 0
+	return TRUE
 
 /obj/machinery/computer/squad_changer/attack_hand(var/mob/user as mob)
 	if(..())

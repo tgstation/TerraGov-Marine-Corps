@@ -492,7 +492,7 @@
 	src.log_message("Hit by projectile. Type: [Proj.name].", color="red")
 	call((proc_res["dynbulletdamage"]||src), "dynbulletdamage")(Proj) //calls equipment
 	..()
-	return 1
+	return TRUE
 
 /obj/mecha/proc/dynbulletdamage(var/obj/item/projectile/Proj)
 	if(prob(src.deflect_chance))

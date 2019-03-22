@@ -74,12 +74,12 @@
 
 
 /mob/living/simple_animal/hostile/syndicate/melee/bullet_act(var/obj/item/projectile/Proj)
-	if(!Proj)	return 0
+	if(!Proj)	return TRUE
 	if(prob(65))
 		src.health -= Proj.damage
 	else
 		visible_message("<span class='danger'>[src] blocks [Proj] with its shield!</span>")
-	return 0
+	return TRUE
 
 
 /mob/living/simple_animal/hostile/syndicate/melee/space

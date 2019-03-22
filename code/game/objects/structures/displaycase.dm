@@ -31,7 +31,7 @@
 	health -= Proj.ammo.damage
 	..()
 	src.healthcheck()
-	return 1
+	return TRUE
 
 /obj/structure/displaycase/proc/healthcheck()
 	if (src.health <= 0)

@@ -95,4 +95,4 @@
 
 /obj/ovipositor/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage
-	return 1
+	return TRUE

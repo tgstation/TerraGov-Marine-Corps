@@ -27,7 +27,7 @@
 	return
 
 /obj/effect/decal/mecha_wreckage/bullet_act(var/obj/item/projectile/Proj)
-	return 1
+	return TRUE
 
 
 /obj/effect/decal/mecha_wreckage/attackby(obj/item/W as obj, mob/user as mob)

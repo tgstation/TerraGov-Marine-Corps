@@ -245,11 +245,11 @@
 /obj/machinery/power/supermatter/bullet_act(var/obj/item/projectile/Proj)
 	var/turf/L = loc
 	if(!istype(L))		// We don't run process() when we are in space
-		return 0	// This stops people from being able to really power up the supermatter
-				// Then bring it inside to explode instantly upon landing on a valid turf.
+		return FALSE	// This stops people from being able to really power up the supermatter
+						// Then bring it inside to explode instantly upon landing on a valid turf.
 
 	power += Proj.damage * config_bullet_energy	* CHARGING_FACTOR / POWER_FACTOR
-	return 1
+	return TRUE
 
 /obj/machinery/power/supermatter/attack_paw(mob/user as mob)
 	return attack_hand(user)

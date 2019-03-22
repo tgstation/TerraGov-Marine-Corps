@@ -424,7 +424,7 @@ var/list/robot_verbs_default = list(
 /mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj)
 	..(Proj)
 	if(prob(75) && Proj.damage > 0) spark_system.start()
-	return 2
+	return TRUE
 
 /mob/living/silicon/robot/Bump(atom/movable/AM as mob|obj, yes)
 	..()

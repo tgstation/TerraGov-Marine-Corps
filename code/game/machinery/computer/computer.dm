@@ -51,13 +51,13 @@
 
 /obj/machinery/computer/bullet_act(var/obj/item/projectile/Proj)
 	if(exproof)
-		visible_message("[Proj] ricochets off [src]!")
-		return 0
+		visible_message("[Proj] doesn't even leave a dent on [src]!")
+		return TRUE
 	else
 		if(prob(round(Proj.ammo.damage /2)))
 			set_broken()
 		..()
-		return 1
+		return TRUE
 
 /obj/machinery/computer/update_icon()
 	..()

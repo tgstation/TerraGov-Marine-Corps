@@ -15,7 +15,7 @@
 	if(P.damage)
 		visible_message("<span class='warning'>[P] tears [src] down!</span>")
 		qdel(src)
-	return 0
+	return TRUE
 
 /obj/structure/curtain/attack_hand(mob/user)
 	playsound(get_turf(loc), "rustle", 15, 1, 6)

@@ -36,7 +36,7 @@
 	health -= Proj.damage
 	..()
 	src.healthcheck()
-	return 1
+	return TRUE
 
 /obj/structure/lamarr/proc/healthcheck()
 	if (src.health <= 0)

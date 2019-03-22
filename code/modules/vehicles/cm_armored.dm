@@ -513,6 +513,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	take_damage_type(P.damage * (0.75 + P.ammo.penetration/100), dam_type, P.firer)
 
 	healthcheck()
+	
+	return TRUE
 
 //severity 1.0 explosions never really happen so we're gonna follow everyone else's example
 /obj/vehicle/multitile/root/cm_armored/ex_act(var/severity)

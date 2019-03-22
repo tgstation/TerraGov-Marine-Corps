@@ -196,7 +196,7 @@
 
 /obj/effect/alien/resin/trap/bullet_act(obj/item/projectile/P)
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
-		return
+		return TRUE
 	return ..()
 
 /obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
@@ -541,11 +541,11 @@
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/P)
 	..()
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
-		return
+		return TRUE
 	health -= P.ammo.damage_type == BURN ? P.damage * 1.3 : P.damage
 	healthcheck()
 	P.ammo.on_hit_obj(src,P)
-	return 1
+	return TRUE
 
 /obj/effect/alien/egg/proc/update_status(new_stat)
 	if(new_stat)
@@ -720,7 +720,7 @@ TUNNEL
 		qdel(src)
 
 /obj/structure/tunnel/bullet_act(var/obj/item/projectile/Proj)
-	return 0
+	return TRUE
 
 /obj/structure/tunnel/ex_act(severity)
 	switch(severity)

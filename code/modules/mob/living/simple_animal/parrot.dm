@@ -272,7 +272,7 @@
 		parrot_been_shot += 5
 		icon_state = "parrot_fly"
 		drop_parrot_held_item(0)
-	return 1
+	return TRUE
 
 
 /*

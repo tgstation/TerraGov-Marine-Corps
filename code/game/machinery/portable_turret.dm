@@ -259,7 +259,7 @@ Status: []<BR>"},
 /obj/machinery/porta_turret/bullet_act(var/obj/item/projectile/Proj)
 
 	if(Proj.ammo.damage_type == HALLOSS)
-		return
+		return TRUE
 
 	if(on)
 		if(!attacked && !emagged)
@@ -273,7 +273,7 @@ Status: []<BR>"},
 	if(prob(45) && Proj.ammo.damage > 0) src.spark_system.start()
 	if (src.health <= 0)
 		src.die() // the death process :(
-	return
+	return TRUE
 
 /obj/machinery/porta_turret/emp_act(severity)
 	if(on)

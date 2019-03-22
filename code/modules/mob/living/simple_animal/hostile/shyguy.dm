@@ -447,11 +447,11 @@
 
 /mob/living/simple_animal/shyguy/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj || Proj.damage <= 0)
-		return 0
+		return TRUE
 
 	visible_message("<span class='danger'>[src] is staggered by [Proj]!</span>")
 	adjustBruteLoss(Proj.damage)
-	return 1
+	return TRUE
 
 /mob/living/simple_animal/shyguy/adjustBruteLoss(var/damage)
 

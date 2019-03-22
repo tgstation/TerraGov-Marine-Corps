@@ -49,10 +49,10 @@
 	if(health <=0)
 		visible_message("<span class='notice'> The [src] dissipates!</span>")
 		qdel(src)
-		return 1
+		return TRUE
 	opacity = 1
 	spawn(20) if(src) opacity = 0
-	return 1
+	return TRUE
 
 /obj/machinery/shield/ex_act(severity)
 	switch(severity)

@@ -116,7 +116,7 @@
 
 /obj/machinery/power/am_control_unit/bullet_act(var/obj/item/projectile/Proj)
 	stability -= Proj.force
-	return 0
+	return TRUE
 
 
 /obj/machinery/power/am_control_unit/power_change()

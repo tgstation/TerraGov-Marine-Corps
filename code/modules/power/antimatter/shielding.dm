@@ -99,7 +99,7 @@ proc/cardinalrange(var/center)
 
 /obj/machinery/am_shielding/bullet_act(var/obj/item/projectile/Proj)
 	stability -= Proj.damage
-	return 0
+	return TRUE
 
 
 /obj/machinery/am_shielding/update_icon()

@@ -154,7 +154,7 @@
 
 /obj/structure/reagent_dispensers/fueltank/bullet_act(obj/item/projectile/Proj)
 	if(exploding)
-		return FALSE
+		return TRUE
 
 	. = ..()
 

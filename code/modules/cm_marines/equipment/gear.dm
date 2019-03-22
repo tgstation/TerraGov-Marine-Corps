@@ -89,7 +89,7 @@
 /obj/structure/closet/bodybag/tarp/bullet_act(var/obj/item/projectile/Proj)
 	var/mob/M = locate() in src //need to be occupied
 	if(!opened && M)
-		M.bullet_act(Proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
+		return M.bullet_act(Proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
 
 /obj/structure/closet/bodybag/tarp/open()
 	. = ..()

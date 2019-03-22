@@ -214,7 +214,7 @@
 	return
 
 /obj/structure/prop/almayer/cannon_cables/bullet_act()
-	return
+	return TRUE
 
 
 /obj/structure/prop/almayer/cannon_cable_connector
@@ -228,7 +228,7 @@
 	return
 
 /obj/structure/prop/almayer/cannon_cable_connector/bullet_act()
-	return
+	return TRUE
 
 //------- Cryobag Recycler -------//
 // Wanted to put this in, but since we still have extra time until tomorrow and this is really simple thing. It just recycles opened cryobags to make it nice-r for medics.

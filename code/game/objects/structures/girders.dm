@@ -17,7 +17,7 @@
 /obj/structure/girder/bullet_act(var/obj/item/projectile/Proj)
 	//Tasers and the like should not damage girders.
 	if(Proj.ammo.damage_type == HALLOSS || Proj.ammo.damage_type == TOX || Proj.ammo.damage_type == CLONE || Proj.damage == 0)
-		return 0
+		return TRUE
 
 	if(Proj.ammo.damage_type == BURN)
 		health -= Proj.damage
@@ -28,7 +28,7 @@
 			health -= round(Proj.ammo.damage / 2)
 			if(health <= 0)
 				update_state()
-	return 1
+	return TRUE
 
 /obj/structure/girder/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.mob_size != MOB_SIZE_BIG || unacidable)

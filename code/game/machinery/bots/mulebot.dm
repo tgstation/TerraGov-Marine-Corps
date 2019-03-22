@@ -185,7 +185,7 @@
 		else
 			wires |= index
 	..()
-	return 1
+	return TRUE
 
 
 /obj/machinery/bot/mulebot/attack_ai(var/mob/user)

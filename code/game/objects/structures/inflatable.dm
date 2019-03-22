@@ -56,7 +56,7 @@
 	..()
 	if(health <= 0 && !deflated)
 		deflate(1)
-	return 1
+	return TRUE
 
 
 /obj/structure/inflatable/ex_act(severity)

@@ -137,7 +137,7 @@
 
 	//Tasers and the like should not damage grilles.
 	if(Proj.ammo.damage_type == HALLOSS)
-		return FALSE
+		return TRUE
 
 	src.health -= round(Proj.damage*0.3)
 	healthcheck()

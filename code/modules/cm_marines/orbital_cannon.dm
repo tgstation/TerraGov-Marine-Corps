@@ -48,7 +48,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	return
 
 /obj/structure/orbital_cannon/bullet_act()
-	return
+	return TRUE
 
 
 
@@ -268,7 +268,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	return
 
 /obj/structure/orbital_tray/bullet_act()
-	return
+	return TRUE
 
 
 /obj/structure/orbital_tray/update_icon()
@@ -442,7 +442,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	return
 
 /obj/machinery/computer/orbital_cannon_console/bullet_act()
-	return
+	return TRUE
 
 
 /obj/machinery/computer/orbital_cannon_console/attack_hand(mob/user)
@@ -566,4 +566,4 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	return
 
 /obj/structure/ship_rail_gun/bullet_act()
-	return
+	return TRUE
