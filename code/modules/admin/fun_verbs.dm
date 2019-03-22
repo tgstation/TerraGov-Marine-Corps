@@ -127,10 +127,10 @@
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
 			if(!(C.machine_stat & (BROKEN|NOPOWER)))
 				var/obj/item/paper/P = new /obj/item/paper(C.loc)
-				P.name = "'[CONFIG_GET(string/server_name)] Update.'"
+				P.name = "'[CONFIG_GET(string/ship_name)] Update.'"
 				P.info = input
 				P.update_icon()
-				C.messagetitle.Add("[CONFIG_GET(string/server_name)] Update")
+				C.messagetitle.Add("[CONFIG_GET(string/ship_name)] Update")
 				C.messagetext.Add(P.info)
 
 	switch(alert("Should this be announced to the general population?", "Announce", "Yes", "No", "Cancel"))

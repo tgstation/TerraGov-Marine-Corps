@@ -18,7 +18,7 @@
 	var/message = "A brute force hack has been detected (in progress since [worldtime2text()]). The target of the attack is: Financial account #[affected_account.account_number], \
 	without intervention this attack will succeed in approximately 10 minutes. Required intervention: temporary suspension of affected accounts until the attack has ceased. \
 	Notifications will be sent as updates occur.<br>"
-	var/my_department = "[CONFIG_GET(string/server_name)] firewall subroutines"
+	var/my_department = "[CONFIG_GET(string/ship_name)] firewall subroutines"
 	var/sending = message + "<font color='blue'><b>Message dispatched by [my_department].</b></font>"
 
 	var/pass = 0
@@ -79,7 +79,7 @@
 		//crew wins
 		message = "The attack has ceased, the affected accounts can now be brought online."
 
-	var/my_department = "[CONFIG_GET(string/server_name)] firewall subroutines"
+	var/my_department = "[CONFIG_GET(string/ship_name)] firewall subroutines"
 	var/sending = message + "<font color='blue'><b>Message dispatched by [my_department].</b></font>"
 
 	var/pass = 0

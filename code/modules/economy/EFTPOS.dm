@@ -13,7 +13,7 @@
 
 /obj/item/device/eftpos/Initialize()
 	. = ..()
-	machine_id = "[CONFIG_GET(string/server_name)] EFTPOS #[num_financial_terminals++]"
+	machine_id = "[CONFIG_GET(string/ship_name)] EFTPOS #[num_financial_terminals++]"
 	access_code = rand(1111,111111)
 	spawn(0)
 		print_reference()

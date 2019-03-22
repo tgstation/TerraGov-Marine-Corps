@@ -9,7 +9,7 @@
 
 
 /datum/event/brand_intelligence/announce()
-	command_announcement.Announce("Rampant brand intelligence has been detected aboard [CONFIG_GET(string/server_name)], please stand-by.", "Machine Learning Alert")
+	command_announcement.Announce("Rampant brand intelligence has been detected aboard [CONFIG_GET(string/ship_name)], please stand-by.", "Machine Learning Alert")
 
 
 /datum/event/brand_intelligence/start()

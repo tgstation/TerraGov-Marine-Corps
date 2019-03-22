@@ -16,7 +16,7 @@
 
 /datum/event/prison_break/announce()
 	if(prisonAreas && prisonAreas.len > 0)
-		command_announcement.Announce("Malignant trojan detected in [CONFIG_GET(string/server_name)] brig subroutines.", "Security Alert")
+		command_announcement.Announce("Malignant trojan detected in [CONFIG_GET(string/ship_name)] brig subroutines.", "Security Alert")
 	else
 		log_world("ERROR: Could not initate. Unable find prison or brig area.")
 		kill()
