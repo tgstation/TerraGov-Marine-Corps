@@ -1493,6 +1493,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	else
 		hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 
+	if(!hive)
+		CRASH("couldnt find a hive in check_hive_status")
+
 	var/xenoinfo = ""
 	var/can_overwatch = FALSE
 
@@ -1511,12 +1514,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	for(var/typepath in hive.xenos_by_typepath)
 		var/mob/living/carbon/Xenomorph/T = typepath
-		if(initial(T.tier) == XENO_TIER_ZERO)
-			continue
 		if(typepath == /mob/living/carbon/Xenomorph/Queen)
 			continue
 		
 		switch(initial(T.tier))
+			if(XENO_TIER_ZERO)
+				continue
 			if(XENO_TIER_THREE)
 				tier3counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
 			if(XENO_TIER_TWO)
@@ -1528,10 +1531,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Larva], can_overwatch, TRUE, user)
 
-	dat += "<b>Total Living Sisters: [user.hive.get_total_xeno_number()]</b><BR>"
-	dat += "<b>Tier 3: [length(user.hive.xenos_by_tier[XENO_TIER_THREE])] Sisters</b>[tier3counts]<BR>"
-	dat += "<b>Tier 2: [length(user.hive.xenos_by_tier[XENO_TIER_TWO])] Sisters</b>[tier2counts]<BR>"
-	dat += "<b>Tier 1: [length(user.hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
+	dat += "<b>Total Living Sisters: [hive.get_total_xeno_number()]</b><BR>"
+	dat += "<b>Tier 3: [length(hive.xenos_by_tier[XENO_TIER_THREE])] Sisters</b>[tier3counts]<BR>"
+	dat += "<b>Tier 2: [length(hive.xenos_by_tier[XENO_TIER_TWO])] Sisters</b>[tier2counts]<BR>"
+	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Larva])] Sisters<BR>"
 	if(istype(user)) // cover calling it without parameters
 		if(user.hivenumber == XENO_HIVE_NORMAL)
