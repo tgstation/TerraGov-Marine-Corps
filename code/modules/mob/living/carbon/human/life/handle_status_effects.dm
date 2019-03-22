@@ -49,7 +49,7 @@
 		aura_recovery_multiplier = 1 + max(0,0.5 + 0.5 * protection_aura) //Protection aura adds +50% recovery rate per point of leadership; +100% for an SL +200% for a CO/XO
 		Dizzy(- 3 * aura_recovery_multiplier + 3)
 		Jitter(- 3 * aura_recovery_multiplier + 3)
-	//hud_set_pheromone() //TODO: HOOK THIS UP, ASK PHIL
+	hud_set_order()
 
 	return 1
 
