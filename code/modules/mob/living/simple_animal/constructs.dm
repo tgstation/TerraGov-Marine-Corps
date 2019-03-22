@@ -158,7 +158,6 @@
 			P.p_x = 16
 			P.p_y = 16
 			P.setAngle(Get_Angle(P.loc, targloc))
-			to_chat(world, "Targetting [targloc.name] [P.Angle]")
 			P.permutated = list()
 			P.permutated += src
 		return FALSE // don't delete it
