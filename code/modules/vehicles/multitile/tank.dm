@@ -227,7 +227,7 @@
 
 	if(!M.action_busy)
 		if(occupant_exiting)
-			to_chat(M, "<span class='notice'>Someone is already getting out of the vehicle.</span>")
+			to_chat(M, "<span class='notice'>Someone is already getting out of [src].</span>")
 			return
 		occupant_exiting = M
 
@@ -295,7 +295,7 @@
 
 	. = ..(deg, user, force)
 
-	if(. && istype(hardpoints[HDPT_SUPPORT], /obj/item/hardpoint/support/artillery_module) && gunner && gunner.client)
+	if(. && istype(hardpoints[HDPT_SUPPORT], /obj/item/hardpoint/support/artillery_module) && gunner?.client)
 		var/client/C = gunner.client
 		var/old_x = C.pixel_x
 		var/old_y = C.pixel_y

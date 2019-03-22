@@ -249,23 +249,21 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		var/obj/item/hardpoint/HP = hardpoints[i]
 		if(!HP)
 			to_chat(user, "There is nothing installed on the [i] hardpoint slot.")
-		else
-			if((user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer >= SKILL_ENGINEER_METAL) || isobserver(user))
-				switch(PERCENT(HP.health / HP.maxhealth))
-					if(-INFINITY to 0)
-						to_chat(user, "There is a broken [HP] installed on [i] hardpoint slot.")
-					if(0.1 to 33)
-						to_chat(user, "There is a heavily damaged [HP] installed on [i] hardpoint slot.")
-					if(33.1 to 66)
-						to_chat(user, "There is a damaged [HP] installed on [i] hardpoint slot.")
-					if(66.1 to 90)
-						to_chat(user, "There is a lightly damaged [HP] installed on [i] hardpoint slot.")
-					if(90.1 to 100)
-						to_chat(user, "There is a non-damaged [HP] installed on [i] hardpoint slot.")
-					if(100.1 to INFINITY) //you never know.
-						to_chat(user, "There is a reinforced [HP] installed on [i] hardpoint slot.")
-			else
-				to_chat(user, "There is a [HP.health <= 0 ? "broken" : "working"] [HP] installed on the [i] hardpoint slot.")
+			continue
+		var/status = HP.health <= 0.1 ? "broken" : "working"
+		if((user?.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer >= SKILL_ENGINEER_METAL) || isobserver(user))
+			switch(PERCENT(HP.health / HP.maxhealth))
+				if(0.1 to 33)
+					status = "heavily damaged"
+				if(33.1 to 66)
+					status = "damaged"
+				if(66.1 to 90)
+					status = "slighty damaged"
+				if(90.1 to 100)
+					status = "intact"
+				if(100.1 to INFINITY) //you never know.
+					status = "reinforced"
+		to_chat(user, "There is a [status] [HP] installed on the [i] hardpoint slot.")
 
 //Special armored vic healthcheck that mainly updates the hardpoint states
 /obj/vehicle/multitile/root/cm_armored/healthcheck()
@@ -655,8 +653,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		to_chat(user, "<span class='warning'>There is nothing installed on that slot.</span>")
 		return
 
-	if(old.health >= maxhealth)
-		to_chat(user, "<span class='notice'>\the [slot] is already in perfect conditions.</span>")
+	if(old.health >= old.maxhealth)
+		to_chat(user, "<span class='notice'>\the [old] is already in perfect conditions.</span>")
 		return
 
 	//Determine how many 3 second intervals to wait and if you have the right tool

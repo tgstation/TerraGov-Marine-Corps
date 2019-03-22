@@ -37,6 +37,23 @@ Currently only has the tank hardpoints
 	if(starter_ammo)
 		ammo = new starter_ammo
 
+/obj/item/hardpoint/examine(mob/user)
+	. = ..()
+	var/status = health <= 0.1 ? "broken" : "functional"
+	if((user?.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer >= SKILL_ENGINEER_METAL) || isobserver(user))
+		switch(PERCENT(health / maxhealth))
+			if(0.1 to 33)
+				status = "heavily damaged"
+			if(33.1 to 66)
+				status = "damaged"
+			if(66.1 to 90)
+				status = "slighty damaged"
+			if(90.1 to 100)
+				status = "intact"
+			if(100.1 to INFINITY) //you never know.
+				status = "reinforced"
+	to_chat(user, "It's [status].")
+
 /obj/item/hardpoint/attackby(obj/item/W, mob/user)
 	if(!iswelder(W) && !iswrench(W))
 		return ..()
@@ -178,6 +195,7 @@ Currently only has the tank hardpoints
 /obj/item/hardpoint/treads
 	slot = HDPT_TREADS
 	max_clips = 0
+	gender = PLURAL
 
 ////////////////////
 // PRIMARY SLOTS // START
