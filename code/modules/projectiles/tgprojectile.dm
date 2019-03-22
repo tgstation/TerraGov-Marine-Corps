@@ -366,7 +366,7 @@
 		flags_pass |= PASSGLASS
 
 // target, firer, shot from, range, speed
-/obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30, speed = 1, params)
+/obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30, speed = 1, params = null)
 	permutated += F // don't hit yourself
 	firer = F
 	

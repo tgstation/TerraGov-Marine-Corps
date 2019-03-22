@@ -179,17 +179,16 @@
 	if(target == start)
 		return
 
-	var/obj/item/projectile/A = new projectiletype(user:loc)
+	var/obj/item/projectile/A = new /obj/item/projectile(user.loc) // rework this code, they just shoot bullets for now
 	playsound(user, projectilesound, 25, 1)
-	if(!A)	return
+	if(!A)	
+		return
 
 	if (!istype(target, /turf))
 		qdel(A)
 		return
-	A.yo = target:y - start:y
-	A.xo = target:x - start:x
-	spawn( 0 )
-		A.process()
+	A.generate_bullet(datum/ammo/bullet/revolver)
+	A.fire_at(target, src, src, A.ammo.max_range, A.ammo.shell_speed)
 	return
 
 /mob/living/simple_animal/hostile/proc/DestroySurroundings()

@@ -157,12 +157,10 @@
 			P.xo = new_x - curloc.x
 			P.p_x = 16
 			P.p_y = 16
-			P.setAngle(Get_Angle(src, targloc))
+			P.setAngle(Get_Angle(P.loc, targloc))
 			to_chat(world, "Targetting [targloc.name] [P.Angle]")
 			P.permutated = list()
 			P.permutated += src
-			//P.forceMove()
-
 		return FALSE // don't delete it
 
 	return (..(P))
