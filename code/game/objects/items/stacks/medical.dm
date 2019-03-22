@@ -155,7 +155,7 @@
 	if(max_amount < 1)
 		return
 	var/percentage = round(amount / max_amount) * 100
-	if(max_amount >= amount)
+	if(amount < max_amount)
 		switch(percentage)
 			if(1 to 20)
 				setDir(SOUTH)
