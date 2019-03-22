@@ -198,7 +198,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			P.scatter = round(P.scatter - (initial(original_P.scatter) - original_P.scatter) ) //if the gun changes the scatter of the main projectile, it also affects the bonus ones.
 
 			if(prob(P.scatter))
-				to_chat(world, "[P.scatter] probability thing.")
 				var/scatter_x = rand(-1,1)
 				var/scatter_y = rand(-1,1)
 				new_target = locate(original_P.target_turf.x + round(scatter_x),original_P.target_turf.y + round(scatter_y),original_P.target_turf.z)
