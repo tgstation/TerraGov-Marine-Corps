@@ -85,15 +85,15 @@
 		CRASH("error finding base type")
 	if(!GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)])
 		CRASH("error finding datum")
-	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
-	if(!istype(X))
+	var/datum/xeno_caste/old_caste = GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade, 0, 4)]
+	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
+	if(!istype(new_caste) || !istype(old_caste) )
 		CRASH("error with caste datum")
-	xeno_caste = X
 
-	plasma_stored = xeno_caste.plasma_max
-	maxHealth = xeno_caste.max_health
+	plasma_stored = new_caste.plasma_max
+	maxHealth = new_caste.max_health
 	health = maxHealth
-	speed = xeno_caste.speed
+	speed += (new_caste.speed - old_caste.speed) //Add the difference so we don't break things if we upgrade while speed is pending modification from a temporary penalty/benefit
 
 /mob/living/carbon/Xenomorph/Defiler/set_datum()
 	. = ..()
