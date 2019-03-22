@@ -561,7 +561,6 @@
 
 /proc/calculate_projectile_angle_and_pixel_offsets(mob/user, params)
 	if(!islist(params)) // not a list, convert
-		to_chat(world, "not a list, converting.")
 		params = params2list(params)
 	var/p_x = 0
 	var/p_y = 0
