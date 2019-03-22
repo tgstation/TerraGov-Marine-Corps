@@ -700,7 +700,7 @@
 
 //This is where the bullet bounces off.
 /atom/proc/bullet_ping(obj/item/projectile/P)
-	if(!P || !P.ammo.ping) 
+	if(!P?.ammo?.ping) 
 		return
 	if(prob(65))
 		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
