@@ -120,7 +120,7 @@
 		return
 
 	if(stagger)
-		to_chat(src, "<span class='xenowarning'>You're too disoriented from the shock!</span>")
+		to_chat(src, "<span class='warning'>You're too disoriented from the shock!</span>")
 		return
 
 	if (!check_plasma(200))
@@ -144,7 +144,7 @@
 		return
 
 	if(stagger)
-		to_chat(src, "<span class='xenowarning'>You're too disoriented from the shock!</span>")
+		to_chat(src, "<span class='warning'>You're too disoriented from the shock!</span>")
 		return
 
 	round_statistics.praetorian_acid_sprays++
