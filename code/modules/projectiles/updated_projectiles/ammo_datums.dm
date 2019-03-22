@@ -884,6 +884,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/minigun
 	name = "minigun bullet"
 	hud_state = "minigun"
+	spread = 5 // Breaking news, rogue coder DESTROYS minigunner spec!
 
 /datum/ammo/bullet/minigun/New()
 	..()

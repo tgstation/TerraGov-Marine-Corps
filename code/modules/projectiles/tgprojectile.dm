@@ -4,8 +4,7 @@
 #define DEBUG_XENO_DEFENSE	0
 #define DEBUG_CREST_DEFENSE	0
 
-#define MOVES_HITSCAN -1		//Not actually hitscan but close as we get without actual hitscan.
-#define MUZZLE_EFFECT_PIXEL_INCREMENT 17	//How many pixels to move the muzzle flash up so your character doesn't look like they're shitting out lasers.
+// check _DEFINES/projectiles.dm for some more defines
 
 /obj/item/projectile
 	name = "projectile"
@@ -176,13 +175,15 @@
 /mob/living/process_hit(obj/item/projectile/P)
 	P.ammo.on_hit_mob(src, P)
 	var/ret_value = bullet_act(P)
-	qdel(P)
+	if(ret_value)
+		qdel(P)
 	return ret_value
 
 /obj/process_hit(obj/item/projectile/P)
 	P.ammo.on_hit_obj(src, P)
 	var/ret_value = bullet_act(P)
-	qdel(P)
+	if(ret_value)
+		qdel(P)
 	return ret_value
 
 /turf/process_hit(obj/item/projectile/P)
@@ -193,7 +194,8 @@
 		playsound(src, P.hitsound_wall, volume, 1, -1)
 	P.ammo.on_hit_turf(src, P)
 	var/ret_value = bullet_act(P)
-	qdel(P)
+	if(ret_value)
+		qdel(P)
 	return ret_value
 
 
@@ -617,8 +619,6 @@
 		ammo.on_hit_turf(T,src)
 		if(T?.loc)
 			T.bullet_act(src)
-	
-		//A.bullet_act(src)
 		qdel(src)
 
 /obj/item/projectile/Destroy()
@@ -715,6 +715,7 @@
 		I.transform = rotate
 		flick_overlay_view(I, src, 3)
 
+// Boolet is deleted if returned TRUE, if returned FALSE, it isn't. Currently used by simple_animals/construct/armoured where it reflects a bullet
 /atom/proc/bullet_act(obj/item/projectile/P)
 	return density
 
