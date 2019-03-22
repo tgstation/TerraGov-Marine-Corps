@@ -35,9 +35,9 @@
 	siemens_coefficient = 0.6
 
 	flags_cold_protection = FEET
-	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_heat_protection = FEET
-	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/shoes/space_ninja
 	name = "ninja shoes"
@@ -49,9 +49,9 @@
 	siemens_coefficient = 0.2
 
 	flags_cold_protection = FEET
-	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_heat_protection = FEET
-	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = null
 
 /obj/item/clothing/shoes/sandal
@@ -105,9 +105,9 @@
 	siemens_coefficient = 0.7
 
 	flags_cold_protection = FEET
-	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_heat_protection = FEET
-	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = null
 
 /obj/item/clothing/shoes/cyborg
@@ -151,6 +151,6 @@
 	siemens_coefficient = 0.6
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
-	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
-	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 
