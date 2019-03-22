@@ -15,8 +15,6 @@ with the original.*/
 /datum/shuttle/ferry/marine/evacuation_pod
 	location = 0
 	warmup_time = 5
-	shuttle_tag = "TGS Theseus Evac"
-	info_tag = "TGS Theseus Evac"
 	sound_target = 18
 	sound_misc = 'sound/effects/escape_pod_launch.ogg'
 	var/static/passengers = 0 //How many living escape on the shuttle. Does not count simple animals.
@@ -55,7 +53,14 @@ with the original.*/
 		. = ..()
 		evacuation_program.dock_state = STATE_LAUNCHED
 		spawn(10)
-			check_passengers("<br><br><span class='centerbold'><big>You have successfully left the [MAIN_SHIP_NAME]. You may now ghost and observe the rest of the round.</big></span><br>")
+			check_passengers("<br><br><span class='centerbold'><big>You have successfully left the [CONFIG_GET(string/ship_name)]. You may now ghost and observe the rest of the round.</big></span><br>")
+
+
+/datum/shuttle/ferry/marine/evacuation_pod/New()
+	. = ..()
+	shuttle_tag = "[CONFIG_GET(string/ship_name)] Evac"
+	info_tag = "[CONFIG_GET(string/ship_name)] Evac"
+
 
 /*
 This processes tags and connections dynamically, so you do not need to modify or pregenerate linked objects.

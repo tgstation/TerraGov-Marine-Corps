@@ -81,13 +81,13 @@
 /datum/game_mode/colonialmarines/proc/map_announce()
 	switch(SSmapping.config.map_name)
 		if(MAP_LV_624)
-			command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
+			command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. A response team from the [CONFIG_GET(string/ship_name)] will be dispatched shortly to investigate.", "[CONFIG_GET(string/ship_name)]")
 		if(MAP_ICE_COLONY)
-			command_announcement.Announce("An automated distress signal has been received from archaeology site \"Shiva's Snowball\", on border ice world \"Ifrit\". A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
+			command_announcement.Announce("An automated distress signal has been received from archaeology site \"Shiva's Snowball\", on border ice world \"Ifrit\". A response team from the [CONFIG_GET(string/ship_name)] will be dispatched shortly to investigate.", "[CONFIG_GET(string/ship_name)]")
 		if(MAP_BIG_RED)
-			command_announcement.Announce("We've lost contact with the Nanotrasen's research facility, [SSmapping.config.map_name]. The [MAIN_SHIP_NAME] has been dispatched to assist.", "[MAIN_SHIP_NAME]")
+			command_announcement.Announce("We've lost contact with the Nanotrasen's research facility, [SSmapping.config.map_name]. The [CONFIG_GET(string/ship_name)] has been dispatched to assist.", "[CONFIG_GET(string/ship_name)]")
 		if(MAP_PRISON_STATION)
-			command_announcement.Announce("An automated distress signal has been received from maximum-security prison \"Fiorina Orbital Penitentiary\". A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
+			command_announcement.Announce("An automated distress signal has been received from maximum-security prison \"Fiorina Orbital Penitentiary\". A response team from the [CONFIG_GET(string/ship_name)] will be dispatched shortly to investigate.", "[CONFIG_GET(string/ship_name)]")
 
 
 /datum/game_mode/colonialmarines/process()
@@ -161,7 +161,7 @@
 	. = ..()
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [SSmapping.config.map_name].</span>")
+	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [CONFIG_GET(string/ship_name)] and their struggle on [SSmapping.config.map_name].</span>")
 	var/musical_track
 	switch(round_finished)
 		if(MODE_INFESTATION_X_MAJOR)

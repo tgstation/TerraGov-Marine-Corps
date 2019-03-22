@@ -153,10 +153,10 @@
 
 				if(is_banned_from(ckey, "Appearance") || !client?.prefs)
 					species = GLOB.all_species[DEFAULT_SPECIES]
-					species.random_name()
+					observer.real_name = species.random_name()
 				else if(client.prefs)
 					if(client.prefs.random_name)
-						client.prefs.real_name = species.random_name(client.prefs.gender)
+						observer.real_name = species.random_name(client.prefs.gender)
 					else
 						observer.real_name = client.prefs.real_name
 				else
@@ -349,9 +349,9 @@
 	if(SSevacuation)
 		switch(SSevacuation.evac_status)
 			if(EVACUATION_STATUS_INITIATING)
-				dat += "<font color='red'><b>The [MAIN_SHIP_NAME] is being evacuated.</b></font><br>"
+				dat += "<font color='red'><b>The [CONFIG_GET(string/ship_name)] is being evacuated.</b></font><br>"
 			if(EVACUATION_STATUS_COMPLETE)
-				dat += "<font color='red'>The [MAIN_SHIP_NAME] has undergone evacuation.</font><br>"
+				dat += "<font color='red'>The [CONFIG_GET(string/ship_name)] has undergone evacuation.</font><br>"
 
 	dat += "Choose from the following open positions:<br>"
 	var/datum/job/J

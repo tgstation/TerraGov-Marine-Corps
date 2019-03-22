@@ -10,11 +10,11 @@
 	set name = "Test Theseus Evac"
 
 	for(var/datum/shuttle/ferry/marine/M in shuttle_controller.process_shuttles)
-		if(M.info_tag == "[MAIN_SHIP_NAME] Evac" || M.info_tag == "Alt [MAIN_SHIP_NAME] Evac")
+		if(M.info_tag == "[CONFIG_GET(string/ship_name)] Evac" || M.info_tag == "Alt [CONFIG_GET(string/ship_name)] Evac")
 			spawn(1)
 				M.short_jump()
 				to_chat(world, "LAUNCHED THING WITH TAG [M.shuttle_tag]")
-		else if(M.info_tag == "[MAIN_SHIP_NAME] Dropship")
+		else if(M.info_tag == "[CONFIG_GET(string/ship_name)] Dropship")
 			spawn(1)
 				M.short_jump()
 				to_chat(world, "LAUNCHED THING WITH TAG [M.shuttle_tag]")
@@ -75,11 +75,11 @@
 		return //Kill it so as not to repeat
 
 /datum/shuttle/ferry/marine/proc/load_datums()
-	if(!(info_tag in s_info))
-		log_admin("ERROR: Shuttle tag does not exist.")
-		message_admins("ERROR: Shuttle tag does not exist.")
+	if(!(info_tag in GLOB.s_info))
+		log_admin("ERROR: Shuttle tag does not exist. [info_tag]")
+		message_admins("ERROR: Shuttle tag does not exist. [info_tag]")
 
-	var/list/L = s_info[info_tag]
+	var/list/L = GLOB.s_info[info_tag]
 	info_datums = L.Copy()
 
 /datum/shuttle/ferry/marine/proc/launch_crash(var/user)
@@ -106,7 +106,7 @@
 		door_override = TRUE
 
 		var/ship_id = "sh_dropship1"
-		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+		if(shuttle_tag == "[CONFIG_GET(string/ship_name)] Dropship 2")
 			ship_id = "sh_dropship2"
 
 		for(var/obj/machinery/door/airlock/dropship_hatch/D in GLOB.machines)
@@ -350,7 +350,7 @@
 			if(crash_turfs.len) 
 				T_trg = pick(crash_turfs)
 			else 
-				message_admins("ERROR: No crash turf found in [MAIN_SHIP_NAME] Hangar.")
+				message_admins("ERROR: No crash turf found in [CONFIG_GET(string/ship_name)] Hangar.")
 			break
 
 	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))
@@ -715,7 +715,7 @@
 		if("No") crash = 0
 		else return
 
-	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[MAIN_SHIP_NAME + " " + tag]
+	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[CONFIG_GET(string/ship_name) + " " + tag]
 	if(!dropship)
 		to_chat(src, "<span class='danger'>Error: Attempted to force a dropship launch but the shuttle datum was null. Code: MSD_FSV_DIN</span>")
 		log_admin("Error: Attempted to force a dropship launch but the shuttle datum was null. Code: MSD_FSV_DIN")
