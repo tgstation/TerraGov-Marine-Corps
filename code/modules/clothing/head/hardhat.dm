@@ -76,14 +76,14 @@
 	name = "firefighter helmet"
 	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
 	flags_heat_protection = HEAD
-	max_heat_protection_temperature = FIRE_HELMET_max_heat_protection_temperature
+	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/head/hardhat/white
 	icon_state = "hardhat0_white"
 	hardhat_color = "white"
 	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
 	flags_heat_protection = HEAD
-	max_heat_protection_temperature = FIRE_HELMET_max_heat_protection_temperature
+	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/head/hardhat/dblue
 	icon_state = "hardhat0_dblue"
