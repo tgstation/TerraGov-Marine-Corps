@@ -126,7 +126,8 @@ var/global/datum/controller/shuttle_controller/shuttle_controller
 		P = new
 		P.shuttle_tag = CONFIG_GET(string/ship_name) + " Evac [i]"
 		switch(i) //TODO: Do this procedurally.
-			if(10 to 11) P.info_tag = "Alt [CONFIG_GET(string/ship_name)] Evac"
+			if(10 to 11) 
+				P.info_tag = "Alt [CONFIG_GET(string/ship_name)] Evac"
 		P.load_datums()
 		shuttles[P.shuttle_tag] = P
 		process_shuttles += P
