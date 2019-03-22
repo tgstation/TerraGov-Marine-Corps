@@ -46,7 +46,7 @@
 		if(XENO_HIVE_ZETA)
 			xeno_strings += "Hive: Zeta"
 
-	if(length(xeno_caste.evolves_to) > 0)
+	if(length(xeno_caste.evolves_to))
 		xeno_strings += "<br><U>This can evolve to</U>:"
 		for(var/type in xeno_caste.evolves_to)
 			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][1]
