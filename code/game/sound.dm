@@ -97,7 +97,7 @@
 			0, 1.0, 1.0, 1.0, 1.0, 7)
 
 	if(!is_global) S.environment = 2
-	to_chat(src, S)
+	SEND_SOUND(src, S)
 
 /client/proc/playtitlemusic()
 	if(!SSticker?.login_music)	return FALSE
