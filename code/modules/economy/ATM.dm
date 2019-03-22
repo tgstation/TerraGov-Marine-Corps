@@ -28,7 +28,7 @@ log transactions
 	var/max_pin_attempts = 3
 	var/ticks_left_locked_down = 0
 	var/ticks_left_timeout = 0
-	var/machine_id = "RT #[num_financial_terminals++]"
+	var/machine_id = ""
 	var/obj/item/card/held_card
 	var/editing_security_level = 0
 	var/view_screen = NO_SCREEN
@@ -36,6 +36,7 @@ log transactions
 
 /obj/machinery/atm/Initialize()
 	. = ..()
+	machine_id = "RT #[num_financial_terminals++]"
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)

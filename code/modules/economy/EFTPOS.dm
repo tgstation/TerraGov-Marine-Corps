@@ -2,7 +2,7 @@
 	name = "EFTPOS scanner"
 	desc = "Swipe your ID card to make purchases electronically."
 	icon_state = "eftpos"
-	var/machine_id = "EFTPOS #[num_financial_terminals++]"
+	var/machine_id = ""
 	var/eftpos_name = "Default EFTPOS scanner"
 	var/transaction_locked = 0
 	var/transaction_paid = 0
@@ -13,6 +13,7 @@
 
 /obj/item/device/eftpos/Initialize()
 	. = ..()
+	machine_id = "EFTPOS #[num_financial_terminals++]"
 	access_code = rand(1111,111111)
 	spawn(0)
 		print_reference()

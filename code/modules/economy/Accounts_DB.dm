@@ -39,8 +39,8 @@
 		"}
 
 /obj/machinery/account_database/New()
-	machine_id = "[CONFIG_GET(string/ship_name)] Acc. DB #[num_financial_terminals++]"
-	..()
+	machine_id = "Acc. DB #[num_financial_terminals++]"
+	return ..()
 
 /obj/machinery/account_database/attackby(obj/O, mob/user)
 	if(!istype(O, /obj/item/card/id))
