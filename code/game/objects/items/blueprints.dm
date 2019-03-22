@@ -47,7 +47,7 @@
 /obj/item/blueprints/interact()
 	var/area/A = get_area()
 	var/text = {"<HTML><head><title>[src]</title></head><BODY>
-<h2>[CONFIG_GET(string/server_name)] blueprints</h2>
+<h2>[CONFIG_GET(string/ship_name)] blueprints</h2>
 <small>Property of Nanotrasen. For heads of staff only. Store in high-secure storage.</small><hr>
 "}
 	switch (get_area_type())
