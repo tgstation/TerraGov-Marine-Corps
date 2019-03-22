@@ -87,7 +87,7 @@
 
 		if(TANKFAB_PRINTER)
 			dat += "<h3>Armor:</h3>"
-			for(var/build_type in typesof(/obj/item/hardpoint/armor))
+			for(var/build_type in subtypesof(/obj/item/hardpoint/armor))
 				var/obj/item/hardpoint/armor/AR = build_type
 				if(!initial(AR.buyable))
 					continue
@@ -97,7 +97,7 @@
 					dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
 
 			dat += "<h3>Primary Weapon:</h3>"
-			for(var/build_type in typesof(/obj/item/hardpoint/primary))
+			for(var/build_type in subtypesof(/obj/item/hardpoint/primary))
 				var/obj/item/hardpoint/primary/PR = build_type
 				if(!initial(PR.buyable))
 					continue
@@ -107,7 +107,7 @@
 					dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
 
 			dat += "<h3>Secondary Weapon:</h3>"
-			for(var/build_type in typesof(/obj/item/hardpoint/secondary))
+			for(var/build_type in subtypesof(/obj/item/hardpoint/secondary))
 				var/obj/item/hardpoint/secondary/SE = build_type
 				if(!initial(SE.buyable))
 					continue
@@ -117,7 +117,7 @@
 					dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
 
 			dat += "<h3>Support Module:</h3>"
-			for(var/build_type in typesof(/obj/item/hardpoint/support))
+			for(var/build_type in subtypesof(/obj/item/hardpoint/support))
 				var/obj/item/hardpoint/support/SP = build_type
 				if(!initial(SP.buyable))
 					continue
@@ -127,7 +127,7 @@
 					dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
 
 			dat += "<h3>Treads:</h3>"
-			for(var/build_type in typesof(/obj/item/hardpoint/treads))
+			for(var/build_type in subtypesof(/obj/item/hardpoint/treads))
 				var/obj/item/hardpoint/treads/TR = build_type
 				if(!initial(TR.buyable))
 					continue
@@ -137,7 +137,7 @@
 					dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
 
 			dat += "<h3>Weapon Ammo:</h3>"
-			for(var/build_type in typesof(/obj/item/ammo_magazine/tank))
+			for(var/build_type in subtypesof(/obj/item/ammo_magazine/tank))
 				var/obj/item/ammo_magazine/tank/AM = build_type
 				var/build_name = initial(AM.name)
 				var/build_cost = initial(AM.point_cost)

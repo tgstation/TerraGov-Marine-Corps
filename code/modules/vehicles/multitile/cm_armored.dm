@@ -116,7 +116,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	next_move = world.time + move_delay * misc_ratios["move"] * (force ? 2 : 3) //3 for a 3 point turn, idk
 	return ..()
 
-/obj/vehicle/multitile/root/cm_armored/proc/can_use_hp(var/mob/M)
+/obj/vehicle/multitile/root/cm_armored/proc/can_use_hp(mob/M)
 	return TRUE
 
 //Used by the gunner to swap which module they are using
@@ -139,7 +139,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/slot = input("Select a slot.") in slots
 
 	var/obj/item/hardpoint/HP = hardpoints[slot]
-	if(!HP?.health > 0)
+	if(!(HP?.health > 0))
 		to_chat(usr, "<span class='warning'>That module is either missing or broken.</span>")
 		return
 
@@ -196,7 +196,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/list/slots = list()
 	for(var/slot in hardpoints)
 		var/obj/item/hardpoint/HP = hardpoints[slot]
-		if(!HP?.health > 0)
+		if(!(HP?.health > 0))
 			continue
 		if(!HP.is_activatable)
 			continue
@@ -205,7 +205,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	return slots
 
 //Specialness for armored vics
-/obj/vehicle/multitile/root/cm_armored/load_hitboxes(var/datum/coords/dimensions, var/datum/coords/root_pos)
+/obj/vehicle/multitile/root/cm_armored/load_hitboxes(datum/coords/dimensions, datum/coords/root_pos)
 
 	var/start_x = -1 * root_pos.x_pos
 	var/start_y = -1 * root_pos.x_pos
@@ -229,21 +229,21 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			H.root = src
 			linked_objs[C] = H
 
-/obj/vehicle/multitile/root/cm_armored/load_entrance_marker(var/datum/coords/rel_pos)
+/obj/vehicle/multitile/root/cm_armored/load_entrance_marker(datum/coords/rel_pos)
 
 	entrance = new(locate(x + rel_pos.x_pos, y + rel_pos.y_pos, z))
 	entrance.master = src
 	linked_objs[rel_pos] = entrance
 
 //Returns 1 or 0 if the slot in question has a broken installed hardpoint or not
-/obj/vehicle/multitile/root/cm_armored/proc/is_slot_damaged(var/slot)
+/obj/vehicle/multitile/root/cm_armored/proc/is_slot_damaged(slot)
 	var/obj/item/hardpoint/HP = hardpoints[slot]
-	if(HP?.health <= 0)
+	if(!(HP?.health > 0))
 		return TRUE
 	return FALSE
 
 //Normal examine() but tells the player what is installed and if it's broken
-/obj/vehicle/multitile/root/cm_armored/examine(var/mob/user)
+/obj/vehicle/multitile/root/cm_armored/examine(mob/user)
 	..()
 	for(var/i in hardpoints)
 		var/obj/item/hardpoint/HP = hardpoints[i]
@@ -463,7 +463,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/hitbox/cm_armored/attackby(obj/item/O, mob/user)
 	return root.attackby(O, user)
 
-/obj/vehicle/multitile/hitbox/cm_armored/attack_alien(var/mob/living/carbon/Xenomorph/M, var/dam_bonus)
+/obj/vehicle/multitile/hitbox/cm_armored/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus)
 	return root.attack_alien(M, dam_bonus)
 
 //A bit icky, but basically if you're adjacent to the tank hitbox, you are then adjacent to the root object
@@ -503,7 +503,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 //Differentiates between damage types from different bullets
 //Applies a linear transformation to bullet damage that will generally decrease damage done
-/obj/vehicle/multitile/root/cm_armored/bullet_act(var/obj/item/projectile/P)
+/obj/vehicle/multitile/root/cm_armored/bullet_act(obj/item/projectile/P)
 
 	var/dam_type = "bullet"
 
@@ -514,7 +514,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	healthcheck()
 
 //severity 1.0 explosions never really happen so we're gonna follow everyone else's example
-/obj/vehicle/multitile/root/cm_armored/ex_act(var/severity)
+/obj/vehicle/multitile/root/cm_armored/ex_act(severity)
 
 	switch(severity)
 		if(1)
@@ -610,7 +610,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		dmg_distribs[slot] = ratio/acc //Redistribute according to previous ratios for full damage taking, but ignoring empty slots
 
 //Special cases abound, handled below or in subclasses
-/obj/vehicle/multitile/root/cm_armored/attackby(var/obj/item/O, var/mob/user)
+/obj/vehicle/multitile/root/cm_armored/attackby(obj/item/O, mob/user)
 
 	if(istype(O, /obj/item/hardpoint)) //Are we trying to install stuff?
 		var/obj/item/hardpoint/HP = O
@@ -749,7 +749,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //Similar to repairing stuff, down to the time delay
 /obj/vehicle/multitile/root/cm_armored/proc/install_hardpoint(obj/item/hardpoint/HP, mob/user)
 
-	if(user.mind?.cm_skills?.engineer < SKILL_ENGINEER_MT)
+	if(user.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [HP] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [HP] on the [src].</span>")
 		var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
@@ -796,7 +796,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //Again, similar to the above ones
 /obj/vehicle/multitile/root/cm_armored/proc/uninstall_hardpoint(obj/item/O, mob/user)
 
-	if(user.mind?.cm_skills?.engineer < SKILL_ENGINEER_MT)
+	if(user.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [O] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [O] on the [src].</span>")
 		var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )

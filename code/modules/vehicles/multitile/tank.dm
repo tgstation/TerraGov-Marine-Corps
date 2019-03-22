@@ -259,7 +259,7 @@
 		to_chat(M, "<span class='notice'>You climb out of [src].</span>")
 
 //No one but the driver can drive
-/obj/vehicle/multitile/root/cm_armored/tank/relaymove(var/mob/user, var/direction)
+/obj/vehicle/multitile/root/cm_armored/tank/relaymove(mob/user, direction)
 	if(user != driver || user.is_mob_incapacitated())
 		return
 
@@ -288,7 +288,7 @@
 		next_sound_play = world.time + 21
 
 //No one but the driver can turn
-/obj/vehicle/multitile/root/cm_armored/tank/try_rotate(var/deg, var/mob/user, var/force = 0)
+/obj/vehicle/multitile/root/cm_armored/tank/try_rotate(deg, mob/user, force = FALSE)
 
 	if(user != driver || user.is_mob_incapacitated())
 		return

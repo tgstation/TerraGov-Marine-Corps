@@ -32,13 +32,13 @@ Vehicles are placed on the map by a spawner or admin verb
 	var/obj/vehicle/multitile/root/master
 	invisibility = INVISIBILITY_MAXIMUM
 
-/obj/effect/multitile_entrance/Destroy(var/override = 0)
+/obj/effect/multitile_entrance/Destroy(override = FALSE)
 	if(!override)
 		return TA_IGNORE_ME
 	return ..()
 
 //Always moves where you want it to, no matter what
-/obj/effect/multitile_entrance/Move(var/atom/A)
+/obj/effect/multitile_entrance/Move(atom/A)
 	loc = get_turf(A)
 	return TRUE
 
@@ -62,7 +62,7 @@ Vehicles are placed on the map by a spawner or admin verb
 */
 
 /*
-/obj/effect/landmark/multitile_exit/verb/exit_multitile(var/mob/M)
+/obj/effect/landmark/multitile_exit/verb/exit_multitile(mob/M)
 	set category = "Vehicle"
 	set name = "Exit Vehicle"
 	set src in master
@@ -75,7 +75,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	name = "multitile vehicle"
 	desc = "You shouldn't see this"
 
-/obj/vehicle/multitile/relaymove()
+/obj/vehicle/multitile/relaymove(mob/user, direction)
 	return
 
 //Hitboxes, do notthing but move with the root object and take up space
@@ -125,15 +125,15 @@ Vehicles are placed on the map by a spawner or admin verb
 	if(!usr.is_mob_incapacitated(TRUE))
 		handle_player_exit(usr)
 
-/obj/vehicle/multitile/root/proc/handle_player_exit(var/mob/M)
+/obj/vehicle/multitile/root/proc/handle_player_exit(mob/M)
 	return
 
-/obj/vehicle/multitile/root/proc/handle_player_entrance(var/mob/M)
+/obj/vehicle/multitile/root/proc/handle_player_entrance(mob/M)
 	if(M.resting || M.buckled || M.is_mob_incapacitated())
 		return FALSE
 	return TRUE
 
-/obj/vehicle/multitile/root/proc/handle_harm_attack(var/mob/M)
+/obj/vehicle/multitile/root/proc/handle_harm_attack(mob/M)
 	if(M.resting || M.buckled || M.is_mob_incapacitated())
 		return FALSE
 	return TRUE
@@ -156,10 +156,10 @@ Vehicles are placed on the map by a spawner or admin verb
 	try_rotate(90, M)
 
 //A wrapper for try_move() that rotates
-/obj/vehicle/multitile/root/proc/try_rotate(var/deg, var/mob/user, var/force = 0)
+/obj/vehicle/multitile/root/proc/try_rotate(deg, mob/user, force = FALSE)
 	save_locs()
 	rotate_coords(deg)
-	if(!try_move(linked_objs, null, 1))
+	if(!try_move(linked_objs, null, TRUE))
 		rotate_coords(-1*deg)
 		revert_locs()
 		return FALSE
@@ -169,7 +169,7 @@ Vehicles are placed on the map by a spawner or admin verb
 
 //Called when players try to move from inside the vehicle
 //Another wrapper for try_move()
-/obj/vehicle/multitile/root/relaymove(var/mob/user, var/direction)
+/obj/vehicle/multitile/root/relaymove(mob/user, direction)
 	if(dir in list(EAST, WEST))
 		if(direction == SOUTH)
 			return try_rotate( (dir == WEST ? 90 : -90), user, 1)
@@ -199,10 +199,10 @@ Vehicles are placed on the map by a spawner or admin verb
 	C.y_pos = 0
 	linked_objs[C] = src
 
-/obj/vehicle/multitile/root/proc/load_hitboxes(var/datum/coords/dimensions, var/datum/coords/root_pos)
+/obj/vehicle/multitile/root/proc/load_hitboxes(datum/coords/dimensions, datum/coords/root_pos)
 	return
 
-/obj/vehicle/multitile/root/proc/load_entrance_marker(var/datum/coords/rel_pos)
+/obj/vehicle/multitile/root/proc/load_entrance_marker(datum/coords/rel_pos)
 	return
 
 //Saves where everything is so we can revert
@@ -229,7 +229,7 @@ Vehicles are placed on the map by a spawner or admin verb
 			O.buckled_mob?.loc = old_locs[A]
 
 //Forces the root object to move so everything can update relative to it
-/obj/vehicle/multitile/root/proc/move_root(var/direction)
+/obj/vehicle/multitile/root/proc/move_root(direction)
 
 	var/turf/T = get_step(loc, direction)
 	loc = T
@@ -243,7 +243,7 @@ Vehicles are placed on the map by a spawner or admin verb
 //			This is so if one hitbox is blocking another, eventually they will both move
 //Step 4: If on this level of recursion, we couldn't move any more things, we've failed
 //Step 5: Continue steps 1 through 4 until we fail or succeed
-/obj/vehicle/multitile/root/proc/try_move(var/list/objs, var/direction, var/is_rotation = 0)
+/obj/vehicle/multitile/root/proc/try_move(list/objs, direction, is_rotation = FALSE)
 
 	var/list/blocked = list() //What couldn't move this time
 	for(var/datum/coords/C in objs) //objs is an associative list like linked_objs
@@ -288,7 +288,7 @@ Vehicles are placed on the map by a spawner or admin verb
 		return FALSE //Shouldn't even be possible, so say we failed anyways
 
 //Applies the 2D transformation matrix to the saved coords
-/obj/vehicle/multitile/root/proc/rotate_coords(var/deg)
+/obj/vehicle/multitile/root/proc/rotate_coords(deg)
 
 	for(var/datum/coords/C in linked_objs)
 

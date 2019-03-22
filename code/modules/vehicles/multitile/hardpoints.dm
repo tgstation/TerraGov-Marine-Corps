@@ -84,13 +84,13 @@ Currently only has the tank hardpoints
 
 //Called when you want to activate the hardpoint, such as a gun
 //This can also be used for some type of temporary buff, up to you
-/obj/item/hardpoint/proc/active_effect(var/turf/T)
+/obj/item/hardpoint/proc/active_effect(turf/T)
 	return
 
 /obj/item/hardpoint/proc/deactivate()
 	return
 
-/obj/item/hardpoint/proc/livingmob_interact(var/mob/living/M)
+/obj/item/hardpoint/proc/livingmob_interact(mob/living/M)
 	return
 
 //If our cooldown has elapsed
@@ -100,7 +100,7 @@ Currently only has the tank hardpoints
 		return FALSE
 	return TRUE
 
-/obj/item/hardpoint/proc/try_add_clip(var/obj/item/ammo_magazine/A, var/mob/user)
+/obj/item/hardpoint/proc/try_add_clip(obj/item/ammo_magazine/A, mob/user)
 
 	if(max_clips == 0)
 		to_chat(user, "<span class='warning'>This module does not have room for additional ammo.</span>")
@@ -124,7 +124,7 @@ Currently only has the tank hardpoints
 	return TRUE
 
 //Returns the image object to overlay onto the root object
-/obj/item/hardpoint/proc/get_icon_image(var/x_offset, var/y_offset, var/new_dir)
+/obj/item/hardpoint/proc/get_icon_image(x_offset, y_offset, new_dir)
 
 	var/icon_suffix = "NS"
 	var/icon_state_suffix = "0"
@@ -139,7 +139,7 @@ Currently only has the tank hardpoints
 
 	return image(icon = "[disp_icon]_[icon_suffix]", icon_state = "[disp_icon_state]_[icon_state_suffix]", pixel_x = x_offset, pixel_y = y_offset)
 
-/obj/item/hardpoint/proc/firing_arc(var/atom/A)
+/obj/item/hardpoint/proc/firing_arc(atom/A)
 	var/turf/T = get_turf(A)
 	var/dx = T.x - owner.x
 	var/dy = T.y - owner.y
@@ -217,9 +217,9 @@ Currently only has the tank hardpoints
 		return FALSE
 	return TRUE
 
-/obj/item/hardpoint/primary/cannon/active_effect(var/turf/T)
+/obj/item/hardpoint/primary/cannon/active_effect(turf/T)
 
-	if(!ammo?.current_rounds > 0)
+	if(!(ammo?.current_rounds > 0))
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
@@ -302,9 +302,9 @@ Currently only has the tank hardpoints
 		return FALSE
 	return TRUE
 
-/obj/item/hardpoint/primary/minigun/active_effect(var/turf/T)
+/obj/item/hardpoint/primary/minigun/active_effect(turf/T)
 
-	if(!ammo?.current_rounds > 0)
+	if(!(ammo?.current_rounds > 0))
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 	var/S = 'sound/weapons/tank_minigun_start.ogg'
@@ -377,9 +377,9 @@ Currently only has the tank hardpoints
 		return FALSE
 	return TRUE
 
-/obj/item/hardpoint/secondary/flamer/active_effect(var/turf/T)
+/obj/item/hardpoint/secondary/flamer/active_effect(turf/T)
 
-	if(!ammo?.current_rounds > 0)
+	if(!(ammo?.current_rounds > 0))
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
@@ -425,9 +425,9 @@ Currently only has the tank hardpoints
 		return FALSE
 	return TRUE
 
-/obj/item/hardpoint/secondary/towlauncher/active_effect(var/turf/T)
+/obj/item/hardpoint/secondary/towlauncher/active_effect(turf/T)
 
-	if(!ammo?.current_rounds > 0)
+	if(!(ammo?.current_rounds > 0))
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
@@ -495,9 +495,9 @@ Currently only has the tank hardpoints
 		return FALSE
 	return TRUE
 
-/obj/item/hardpoint/secondary/m56cupola/active_effect(var/turf/T)
+/obj/item/hardpoint/secondary/m56cupola/active_effect(turf/T)
 
-	if(!ammo?.current_rounds > 0)
+	if(!(ammo?.current_rounds > 0))
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
@@ -543,9 +543,9 @@ Currently only has the tank hardpoints
 		return FALSE
 	return TRUE
 
-/obj/item/hardpoint/secondary/grenade_launcher/active_effect(var/turf/T)
+/obj/item/hardpoint/secondary/grenade_launcher/active_effect(turf/T)
 
-	if(!ammo?.current_rounds > 0)
+	if(!(ammo?.current_rounds > 0))
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
@@ -604,9 +604,9 @@ Currently only has the tank hardpoints
 		return FALSE
 	return TRUE
 
-/obj/item/hardpoint/support/smoke_launcher/active_effect(var/turf/T)
+/obj/item/hardpoint/support/smoke_launcher/active_effect(turf/T)
 
-	if(!ammo?.current_rounds > 0)
+	if(!(ammo?.current_rounds > 0))
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
@@ -622,7 +622,7 @@ Currently only has the tank hardpoints
 		playsound(get_turf(src), 'sound/weapons/tank_smokelauncher_fire_joke.ogg', 60, 1)
 	ammo.current_rounds--
 
-/obj/item/hardpoint/support/smoke_launcher/get_icon_image(var/x_offset, var/y_offset, var/new_dir)
+/obj/item/hardpoint/support/smoke_launcher/get_icon_image(x_offset, y_offset, new_dir)
 
 	var/icon_suffix = "NS"
 	var/icon_state_suffix = "0"
@@ -634,7 +634,7 @@ Currently only has the tank hardpoints
 
 	if(health <= 0)
 		icon_state_suffix = "1"
-	else if(ammo.current_rounds <= 0)
+	else if(!(ammo?.current_rounds > 0))
 		icon_state_suffix = "2"
 
 	return image(icon = "[disp_icon]_[icon_suffix]", icon_state = "[disp_icon_state]_[icon_state_suffix]", pixel_x = x_offset, pixel_y = y_offset)
@@ -711,7 +711,7 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "artillerymod"
 
-/obj/item/hardpoint/support/artillery_module/active_effect(var/turf/T)
+/obj/item/hardpoint/support/artillery_module/active_effect(turf/T)
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
 	if(!C.gunner)
 		return
@@ -886,7 +886,7 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "snowplow"
 
-/obj/item/hardpoint/armor/snowplow/livingmob_interact(var/mob/living/M)
+/obj/item/hardpoint/armor/snowplow/livingmob_interact(mob/living/M)
 	var/turf/targ = get_step(M, owner.dir)
 	targ = get_step(M, owner.dir)
 	targ = get_step(M, owner.dir)
@@ -918,7 +918,7 @@ Currently only has the tank hardpoints
 	health = 0
 	buyable = FALSE
 
-/obj/item/hardpoint/treads/standard/get_icon_image(var/x_offset, var/y_offset, var/new_dir)
+/obj/item/hardpoint/treads/standard/get_icon_image(x_offset, y_offset, new_dir)
 	return null //Handled in update_icon()
 
 /obj/item/hardpoint/treads/standard/apply_buff()
