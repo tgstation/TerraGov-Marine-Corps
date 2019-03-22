@@ -1410,7 +1410,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 
 				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [CONFIG_GET(string/ship_name)].")
-				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destrust system, destroying the [CONFIG_GET(string/ship_name)].")
+				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destruct system, destroying the [CONFIG_GET(string/ship_name)].")
 
 			if("toggle_dest")
 				SSevacuation.flags_scuttle ^= FLAGS_SELF_DESTRUCT_DENY
