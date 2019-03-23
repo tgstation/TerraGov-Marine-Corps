@@ -52,6 +52,9 @@
 /obj/structure/morgue/attack_hand(mob/user)
 	toggle_morgue(user)
 
+/obj/structure/morgue/attack_alien(mob/living/carbon/Xenomorph/M)
+	toggle_morgue(M)
+
 /obj/structure/morgue/proc/toggle_morgue(mob/user)
 	add_fingerprint(user)
 	if(!connected) return
