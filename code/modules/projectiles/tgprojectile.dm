@@ -11,7 +11,7 @@
 /obj/machinery/pewpew
 	name = "pewpewpew"
 	use_power = NO_POWER_USE
-	var/ammo_left = 100 * 100
+	var/ammo_left = 800
 	var/datum/ammo/ammo = new /datum/ammo/bullet/pistol
 
 /obj/machinery/pewpew/Initialize()
@@ -23,11 +23,38 @@
 		stop_processing()
 		return PROCESS_KILL
 	
-	for(var/i = 0; i < min(ammo_left, 100); i++)
-		var/obj/item/projectile/P = new /obj/item/projectile(loc)
-		P.generate_bullet(ammo)
-		P.fire_at(locate(x, y + 5, z), src, src, ammo.max_range, ammo.shell_speed)
-		ammo_left--
+	var/obj/item/projectile/P = new /obj/item/projectile(loc)
+	P.generate_bullet(ammo)
+	P.fire_at(locate(x, y + 5, z), src, src, ammo.max_range, ammo.shell_speed)
+		
+	P = new /obj/item/projectile(loc)
+	P.generate_bullet(ammo)
+	P.fire_at(locate(x, y - 5, z), src, src, ammo.max_range, ammo.shell_speed)
+		
+	P = new /obj/item/projectile(loc)
+	P.generate_bullet(ammo)
+	P.fire_at(locate(x + 5, y, z), src, src, ammo.max_range, ammo.shell_speed)
+		
+	P = new /obj/item/projectile(loc)
+	P.generate_bullet(ammo)
+	P.fire_at(locate(x - 5, y, z), src, src, ammo.max_range, ammo.shell_speed)
+		
+	P = new /obj/item/projectile(loc)
+	P.generate_bullet(ammo)
+	P.fire_at(locate(x - 5, y - 5, z), src, src, ammo.max_range, ammo.shell_speed)
+		
+	P = new /obj/item/projectile(loc)
+	P.generate_bullet(ammo)
+	P.fire_at(locate(x - 5, y + 5, z), src, src, ammo.max_range, ammo.shell_speed)
+		
+	P = new /obj/item/projectile(loc)
+	P.generate_bullet(ammo)
+	P.fire_at(locate(x + 5, y + 5, z), src, src, ammo.max_range, ammo.shell_speed)
+		
+	P = new /obj/item/projectile(loc)
+	P.generate_bullet(ammo)
+	P.fire_at(locate(x + 5, y - 5, z), src, src, ammo.max_range, ammo.shell_speed)
+	ammo_left -= 8
 	
 	to_chat(world, "[ammo_left] left.")
 		
