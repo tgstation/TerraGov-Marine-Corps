@@ -33,8 +33,8 @@
 				H.mobility_new = command_aura_strength
 			if(command_aura == "hold" && command_aura_strength > H.protection_new)
 				H.protection_new = command_aura_strength
-			if(command_aura == "focus" && command_aura_strength > H.marskman_new)
-				H.marskman_new = command_aura_strength
+			if(command_aura == "focus" && command_aura_strength > H.marksman_new)
+				H.marksman_new = command_aura_strength
 
 	mobility_aura = mobility_new
 	protection_aura = protection_new

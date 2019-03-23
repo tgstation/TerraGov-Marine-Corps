@@ -201,7 +201,7 @@
 			stat(null, "You are affected by a MOVE order.")
 		if(protection_aura)
 			stat(null, "You are affected by a HOLD order.")
-		if(marskman_aura)
+		if(marksman_aura)
 			stat(null, "You are affected by a FOCUS order.")
 
 /mob/living/carbon/human/ex_act(severity)
