@@ -269,7 +269,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	hardness = 1.5
 	layer = RESIN_STRUCTURE_LAYER
-	var/health = 80
+	health = 80
 	var/close_delay = 100
 
 	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)
@@ -488,6 +488,10 @@
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(TRUE)//any explosion destroys the egg.
 
+/obj/effect/alien/egg/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+	to_chat(M, "<span class='xenowarning'>You nudge [src], but nothing happens.</span>")
+	return
+
 /obj/effect/alien/egg/attack_alien(mob/living/carbon/Xenomorph/M)
 
 	if(!istype(M))
@@ -510,9 +514,6 @@
 		if(EGG_GROWING)
 			to_chat(M, "<span class='xenowarning'>The child is not developed yet.</span>")
 		if(EGG_GROWN)
-			if(isxenolarva(M))
-				to_chat(M, "<span class='xenowarning'>You nudge the egg, but nothing happens.</span>")
-				return
 			to_chat(M, "<span class='xenonotice'>You retrieve the child.</span>")
 			Burst(FALSE)
 
@@ -682,7 +683,7 @@ TUNNEL
 
 	var/tunnel_desc = "" //description added by the hivelord.
 
-	var/health = 140
+	health = 140
 	var/obj/structure/tunnel/other = null
 	var/id = null //For mapping
 

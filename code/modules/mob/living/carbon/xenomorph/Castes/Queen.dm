@@ -46,10 +46,6 @@
 	// *** Queen Abilities *** //
 	queen_leader_limit = 1 //Amount of leaders allowed
 
-/datum/xeno_caste/queen/handle_decay(mob/living/carbon/Xenomorph/X)
-	if(prob(20+abs(3*upgrade)))
-		X.use_plasma(min(rand(1,2), X.plasma_stored))
-
 /datum/xeno_caste/queen/mature
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 
@@ -163,6 +159,10 @@
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 4
+
+/mob/living/carbon/Xenomorph/Queen/handle_decay()
+	if(prob(20+abs(3*upgrade)))
+		use_plasma(min(rand(1,2), plasma_stored))
 
 /proc/update_living_queens() // needed to update when you change a queen to a different hive
 	outer_loop:

@@ -36,8 +36,8 @@
 
 /obj/item/circuitboard/proc/set_general()
 	is_general_board = TRUE
-	name = "[initial.(name)] (General)"
-	desc = "[initial.(desc)] This appears to be a modular general circuit that can switch between pre-programmed modes with a multitool."
+	name = "[initial(name)] (General)"
+	desc = "[initial(desc)] This appears to be a modular general circuit that can switch between pre-programmed modes with a multitool."
 
 //Called when the circuitboard is used to contruct a new machine.
 /obj/item/circuitboard/proc/construct(var/obj/machinery/M)

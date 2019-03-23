@@ -465,6 +465,12 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define WARRIOR_AGILITY_ARMOR 30
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 
+#define SPIT_UPGRADE_BONUS ( max(0,upgrade) * 0.15 ) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
+#define SPRAY_STRUCTURE_UPGRADE_BONUS 8
+#define SPRAY_MOB_UPGRADE_BONUS 4
+
+#define QUEEN_DEATH_LARVA_MULTIPLIER ( (upgrade+1) * 0.17) ) // 85/68/51/34 for ancient/elder emp/elder queen/queen
+
 #define PLASMA_TRANSFER_AMOUNT 50
 #define PLASMA_SALVAGE_AMOUNT 40
 #define PLASMA_SALVAGE_MULTIPLIER 0.5 // I'd not reccomend setting this higher than one.
@@ -473,6 +479,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 //Ravager defines:
 #define RAVAGER_MAX_RAGE 50
+#define RAV_RAGE_ON_HIT					7.5 //+7.5 rage whenever we slash
 #define RAV_CHARGESPEED					100
 #define RAV_CHARGESTRENGTH				3
 #define RAV_CHARGEDISTANCE				7
@@ -480,6 +487,9 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define RAV_CHARGE_TYPE					3
 #define RAV_SECOND_WIND_COOLDOWN		240 SECONDS
 #define RAV_RAVAGE_COOLDOWN				10 SECONDS
+#define RAV_RAVAGE_DAMAGE_MULITPLIER	0.25 //+25% +3% bonus damage per point of Rage.relative to base melee damage.
+#define RAV_RAVAGE_RAGE_MULITPLIER		0.03 //+25% +3% bonus damage per point of Rage.relative to base melee damage.
+#define RAV_DAMAGE_RAGE_MULITPLIER		0.25  //Gain Rage stacks equal to 25% of damage received.
 #define RAV_HANDLE_CHARGE				1
 
 //defender defines
@@ -501,6 +511,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CRUSHER_CHARGE_BARRICADE_MULTI	60
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI	100
 #define CRUSHER_CHARGE_TANK_MULTI		100
+
+#define CRUSHER_STOMP_UPGRADE_BONUS ( 1 + upgrade * 0.05 )
 
 //carrier defines
 

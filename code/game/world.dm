@@ -20,8 +20,10 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	SetupExternalRSC()
 
 	//make_datum_references_lists()	//Port this from /tg/
+	populate_seed_list()
 	populate_gear_list()
 	makeDatumRefLists() //Legacy
+	loadShuttleInfoDatums()
 
 	TgsNew(new /datum/tgs_event_handler/tg, minimum_required_security_level = TGS_SECURITY_TRUSTED)
 
@@ -56,12 +58,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
 	update_status()
-
-	// Set up roundstart seed list. This is here because vendors were
-	// bugging out and not populating with the correct packet names
-	// due to this list not being instantiated.
-	populate_seed_list()
-
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
@@ -121,49 +117,25 @@ var/world_topic_spam_protect_time = world.timeofday
 
 
 /world/Topic(T, addr, master, key)
-	TGS_TOPIC
+	TGS_TOPIC	//redirect to server tools if necessary
 
-	if(CONFIG_GET(flag/log_world_topic))
+	var/static/list/topic_handlers = TopicHandlers()
+
+	var/list/input = params2list(T)
+	var/datum/world_topic/handler
+	for(var/I in topic_handlers)
+		if(I in input)
+			handler = topic_handlers[I]
+			break
+
+	if((!handler || initial(handler.log)) && config && CONFIG_GET(flag/log_world_topic))
 		log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
 
-	if(T == "ping")
-		var/x = 1
-		for (var/client/C)
-			x++
-		return x
+	if(!handler)
+		return
 
-	else if(T == "players")
-		var/n = 0
-		for(var/mob/M in GLOB.player_list)
-			if(M.client)
-				n++
-		return n
-
-	else if(T == "status")
-		var/list/s = list()
-		s["version"] = game_version
-		s["mode"] = GLOB.master_mode
-		s["respawn"] = config ? GLOB.respawn_allowed : 0
-		s["enter"] = GLOB.enter_allowed
-		s["vote"] = CONFIG_GET(flag/allow_vote_mode)
-		s["host"] = host ? host : null
-		s["players"] = list()
-		s["stationtime"] = duration2text()
-		var/n = 0
-		var/admins = 0
-
-		for(var/client/C in GLOB.clients)
-			if(C.holder)
-				if(C.holder.fakekey)
-					continue	//so stealthmins aren't revealed by the hub
-				admins++
-			s["player[n]"] = C.key
-			n++
-		s["players"] = n
-
-		s["admins"] = admins
-
-		return list2params(s)
+	handler = new handler()
+	return handler.TryRun(input)
 
 
 /world/Reboot(ping = FALSE)
@@ -184,7 +156,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		while(1)
 			sleep(INACTIVITY_KICK)
 			for(var/client/C in GLOB.clients)
-				if(check_other_rights(C, R_ADMIN, FALSE)).
+				if(check_other_rights(C, R_ADMIN, FALSE))
 					continue
 				if(C.is_afk(INACTIVITY_KICK))
 					if(!istype(C.mob, /mob/dead))
@@ -219,16 +191,16 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	if(CONFIG_GET(string/server_name))
 		if(CONFIG_GET(string/discordurl))
-			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</a></b>"
+			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [CONFIG_GET(string/ship_name)]</a></b>"
 		else
-			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</b>"
+			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [CONFIG_GET(string/ship_name)]</b>"
 		if(Master?.current_runlevel && GLOB.master_mode)
 			switch(SSmapping.config.map_name)
 				if("Ice Colony")
 					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[SSmapping.config.map_name]</a></b>"
-				if("LV-624")
+				if("LV624")
 					s += "<br>Map: <a href='[CONFIG_GET(string/lv624url)]'><b>[SSmapping.config.map_name]</a></b>"
-				if("Solaris Ridge")
+				if("Big Red")
 					s += "<br>Map: <a href='[CONFIG_GET(string/bigredurl)]'><b>[SSmapping.config.map_name]</a></b>"
 				if("Prison Station")
 					s += "<br>Map: <a href='[CONFIG_GET(string/prisonstationurl)]'><b>[SSmapping.config.map_name]</a></b>"
@@ -244,48 +216,11 @@ var/world_topic_spam_protect_time = world.timeofday
 		status = s
 
 
-#define FAILED_DB_CONNECTION_CUTOFF 1
-var/failed_db_connections = 0
-var/failed_old_db_connections = 0
-
-
-/proc/setup_database_connection()
-	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
-		return FALSE
-	if(!dbcon)
-		dbcon = new()
-
-	var/user = sqlfdbklogin
-	var/pass = sqlfdbkpass
-	var/db = sqlfdbkdb
-	var/address = sqladdress
-	var/port = sqlport
-
-	dbcon.Connect("dbi:mysql:[db]:[address]:[port]", "[user]", "[pass]")
-	. = dbcon.IsConnected()
-	if(.)
-		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
-	else
-		failed_db_connections++		//If it failed, increase the failed connections counter.
-		log_sql(dbcon.ErrorMsg())
-
-	return .
-
-//This proc ensures that the connection to the feedback database (global variable dbcon) is established
-/proc/establish_db_connection()
-	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
-		return FALSE
-	if(!dbcon || !dbcon.IsConnected())
-		return setup_database_connection()
-	else
-		return TRUE
-
-
-#undef FAILED_DB_CONNECTION_CUTOFF
-
 /world/proc/incrementMaxZ()
 	maxz++
 	SSmobs.MaxZChanged()
+
+
 /world/proc/SetupExternalRSC()
 	if(!CONFIG_GET(string/resource_url))
 		return

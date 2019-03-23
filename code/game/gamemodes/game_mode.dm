@@ -82,7 +82,7 @@
 
 
 /datum/game_mode/proc/check_finished()
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)
+	if(SSevacuation.dest_status == NUKE_EXPLOSION_FINISHED)
 		return TRUE
 
 
@@ -111,15 +111,15 @@
 
 	var/roletext
 	switch(role)
-		if(BE_DEATHMATCH)	
+		if(BE_DEATHMATCH)
 			roletext = "End of Round Deathmatch"
-		if(BE_ALIEN)		
+		if(BE_ALIEN)
 			roletext = ROLE_XENOMORPH
-		if(BE_QUEEN)		
+		if(BE_QUEEN)
 			roletext = ROLE_XENO_QUEEN
-		if(BE_SURVIVOR)		
+		if(BE_SURVIVOR)
 			roletext = ROLE_SURVIVOR
-		if(BE_SQUAD_STRICT)	
+		if(BE_SQUAD_STRICT)
 			roletext = "Prefer squad over role"
 
 	//Assemble a list of active players without jobbans.
@@ -127,7 +127,7 @@
 		if(!player.client || !player.ready)
 			continue
 		if(jobban_isbanned(player, roletext) || is_banned_from(player.ckey, roletext))
-			continue	
+			continue
 		players += player
 
 	//Shuffle the players list so that it becomes ping-independent.

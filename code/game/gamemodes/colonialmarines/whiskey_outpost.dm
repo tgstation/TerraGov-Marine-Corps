@@ -94,7 +94,7 @@
 
 	sleep(10)
 	to_chat(world, "<span class='round_header'>The current game mode is - WHISKEY OUTPOST!</span>")
-	to_chat(world, "<span class='round_body'>It is the year 2181 on the planet LV-624, five years before the arrival of the [MAIN_SHIP_NAME] and the 7th 'Falling Falcons' Battalion in the sector</span>")
+	to_chat(world, "<span class='round_body'>It is the year 2181 on the planet LV-624, five years before the arrival of the [CONFIG_GET(string/ship_name)] and the 7th 'Falling Falcons' Battalion in the sector</span>")
 	to_chat(world, "<span class='round_body'>The 3rd 'Dust Raiders' Battalion is charged with establishing a TGMC prescence in the Tychon's Rift sector</span>")
 	to_chat(world, "<span class='round_body'>[SSmapping.config.map_name], one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>")
 	to_chat(world, "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at [SSmapping.config.map_name] must survive for an hour to alert the rest of their battalion in the sector</span>")
@@ -1017,26 +1017,23 @@
 //////////////////////////////////////////////////////////////////////
 /datum/game_mode/whiskey_outpost/declare_completion()
 	if(finished == 1)
-		feedback_set_details("round_end_result","Xenos won")
 		to_chat(world, "<span class='round_header'>The Xenos have succesfully defended their hive from colonization.</span>")
 		to_chat(world, "<span class='round_body'>Well done, you've secured LV-624 for the hive!</span>")
-		to_chat(world, "<span class='round_body'>It will be another five years before the TGMC returns to the Tychon's Rift sector, with the arrival of the 7th 'Falling Falcons' Battalion and the [MAIN_SHIP_NAME].</span>")
+		to_chat(world, "<span class='round_body'>It will be another five years before the TGMC returns to the Tychon's Rift sector, with the arrival of the 7th 'Falling Falcons' Battalion and the [CONFIG_GET(string/ship_name)].</span>")
 		to_chat(world, "<span class='round_body'>The xenomorph hive on LV-624 remains unthreatened until then..</span>")
 		world << sound('sound/misc/Game_Over_Man.ogg')
 
 		log_game("Marines remaining: [count_humans()]\nRound time: [duration2text()]\nBig Winner:)")
 
 	else if(finished == 2)
-		feedback_set_details("round_end_result","Marines Won")
 		to_chat(world, "<span class='round_header'>Against the onslaught, the marines have survived.</span>")
 		to_chat(world, "<span class='round_body'>The signal rings out to the USS Alistoun, and Dust Raiders stationed elsewhere in Tychon's Rift begin to converge on LV-624.</span>")
 		to_chat(world, "<span class='round_body'>Eventually, the Dust Raiders secure LV-624 and the entire Tychon's Rift sector in 2182, pacifiying it and establishing peace in the sector for decades to come.</span>")
-		to_chat(world, "<span class='round_body'>The [MAIN_SHIP_NAME] and the 7th 'Falling Falcons' Battalion are never sent to the sector and are spared their fate in 2186.</span>")
+		to_chat(world, "<span class='round_body'>The [CONFIG_GET(string/ship_name)] and the 7th 'Falling Falcons' Battalion are never sent to the sector and are spared their fate in 2186.</span>")
 		world << sound('sound/misc/hell_march.ogg')
 
 		log_game("Marines remaining: [count_humans()]\nRound time: [duration2text()]")
 	else
-		feedback_set_details("round_end_result","no winners")
 		to_chat(world, "<span class='round_header'>NOBODY WON!</span>")
 		to_chat(world, "<span class='round_body'>How? Don't ask me...</span>")
 		world << 'sound/misc/sadtrombone.ogg'
