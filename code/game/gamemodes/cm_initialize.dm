@@ -94,7 +94,8 @@ Additional game mode variables.
 
 datum/game_mode/proc/initialize_special_clamps()
 	var/ready_players = ready_players() // Get all players that have "Ready" selected
-	xeno_starting_num = max((round(ready_players / CONFIG_GET(number/xeno_coefficient))), xeno_required_num)
+	var/max_xeno_num = round(ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * ready_players))
+	xeno_starting_num = max(max_xeno_num, xeno_required_num)
 	surv_starting_num = CLAMP((round(ready_players / CONFIG_GET(number/survivor_coefficient))), 0, 8)
 	merc_starting_num = max((round(ready_players / MERC_STARTING_COEF)), 1)
 	marine_starting_num = ready_players - xeno_starting_num - surv_starting_num - merc_starting_num
