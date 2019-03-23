@@ -152,7 +152,7 @@
 	flags_atom = DIRLOCK
 
 /obj/item/stack/medical/advanced/update_icon()
-	if(max_amount < 1)
+	if(max_amount < 1 || amount < max_amount)
 		return
 	var/percentage = round(amount / max_amount) * 100
 	if(amount < max_amount)
