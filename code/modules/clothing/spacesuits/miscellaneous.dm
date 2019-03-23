@@ -25,7 +25,7 @@
 	icon_state = "santahat"
 	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEYES
-	flags_armor_protection = HEAD
+	body_parts_covered = HEAD
 
 /obj/item/clothing/suit/space/santa
 	name = "Santa's suit"
@@ -44,7 +44,7 @@
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEYES
-	flags_armor_protection = 0
+	body_parts_covered = NONE
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/suit/space/pirate
@@ -57,7 +57,7 @@
 	slowdown = 0
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.9
-	flags_armor_protection = CHEST|ARMS
+	body_parts_covered = CHEST|ARMS
 
 
 

@@ -327,13 +327,13 @@
 
 
 /obj/effect/particle_effect/smoke/xeno/burn/effect_contact(mob/living/carbon/C)
-	var/protection = max(1 - C.get_permeability_protection(), 0.25)
+	var/protection = max(1 - C.get_permeability_protection() * 0.8)
 	if(prob(50) * protection)
 		to_chat(C, "<span class='danger'>Your skin feels like it is melting away!</span>")
-	C.adjustFireLoss(strength * rand(20, 30) * protection) //widespread burn damage, strength corresponds to the caste's bomb_strength
+	C.adjustFireLoss(strength * rand(20, 23) * protection) //widespread burn damage, strength corresponds to the caste's bomb_strength
 
 /obj/effect/particle_effect/smoke/xeno/burn/effect_inhale(mob/living/carbon/C)
-	C.adjustOxyLoss(4 + strength)
+	C.adjustOxyLoss(4 + strength * 2)
 	if(C.stat == CONSCIOUS && prob(50))
 		C.emote(pick("cough", "gasp"))
 
@@ -346,9 +346,9 @@
 		to_chat(C, "<span class='danger'>Your eyes sting. You can't see!</span>")
 	C.blur_eyes(4)
 	C.blind_eyes(2)
-	var/reagent_amount = 2 + strength * 2
+	var/reagent_amount = 4 + strength * 2
 	C.reagents.add_reagent("xeno_toxin", reagent_amount)
-	if(prob(reagent_amount * 4) && !C.is_mob_incapacitated(TRUE)) //Likely to momentarily freeze up/fall due to arms/hands seizing up
+	if(prob(20 * strength)) //Likely to momentarily freeze up/fall due to arms/hands seizing up
 		to_chat(C, "<span class='danger'>You feel your body going numb and lifeless!</span>")
 	if(prob(50))
 		C.emote(pick("cough", "gasp"))
@@ -356,10 +356,10 @@
 /obj/effect/particle_effect/smoke/xeno/neuro/effect_contact(mob/living/carbon/C)
 	if(!C.internal && !C.has_smoke_protection()) //skin protection won't matter if without gas protection
 		return
-	var/reagent_amount = 1 + strength
-	var/bio_vulnerability = 1 - min(C.get_permeability_protection(), 0.8)
+	var/reagent_amount = 2 + strength
+	var/bio_vulnerability = 1 - C.get_permeability_protection() * 0.8
 	C.reagents.add_reagent("xeno_toxin", round(reagent_amount * bio_vulnerability, 0.1))
-	if(prob(bio_vulnerability * reagent_amount * 2))
+	if(prob(20 * strength * bio_vulnerability))
 		to_chat(C, "<span class='danger'>Your body goes numb where the gas touches it!</span>")
 
 /////////////////////////////////////////////

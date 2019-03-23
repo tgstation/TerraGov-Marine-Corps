@@ -9,7 +9,7 @@
 	icon_state = "apron"
 	item_state = "apron"
 	blood_overlay_type = "armor"
-	flags_armor_protection = 0
+	body_parts_covered = NONE
 	allowed = list (/obj/item/reagent_container/spray/plantbgone,/obj/item/device/analyzer/plant_analyzer,/obj/item/seeds,/obj/item/reagent_container/glass/fertilizer,/obj/item/tool/minihoe)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
@@ -19,7 +19,7 @@
 	desc = "A plastic covering to prevent the passage of bodily fluids during surgery."
 	icon_state = "surgical"
 	item_state = "surgical"
-	flags_armor_protection = CHEST
+	body_parts_covered = CHEST
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 10, rad = 0)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
@@ -30,7 +30,7 @@
 	desc = "Worn by a Captain to show their class."
 	icon_state = "captunic"
 	item_state = "bio_suit"
-	flags_armor_protection = CHEST|ARMS
+	body_parts_covered = CHEST|ARMS
 	flags_inv_hide = HIDEJUMPSUIT
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
@@ -39,7 +39,7 @@
 	desc = "A less formal jacket for everyday captain use."
 	icon_state = "capjacket"
 	item_state = "bio_suit"
-	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv_hide = HIDEJUMPSUIT
 
 //Chaplain
@@ -48,7 +48,7 @@
 	desc = "This suit says to you 'hush'!"
 	icon_state = "chaplain_hoodie"
 	item_state = "chaplain_hoodie"
-	flags_armor_protection = CHEST|ARMS
+	body_parts_covered = CHEST|ARMS
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 //Chaplain
@@ -57,7 +57,6 @@
 	desc = "Maximum piety in this star system."
 	icon_state = "nun"
 	item_state = "nun"
-	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_inv_hide = HIDESHOES|HIDEJUMPSUIT
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
@@ -69,7 +68,7 @@
 	item_state = "chef"
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
-	flags_armor_protection = CHEST|GROIN|ARMS
+	body_parts_covered = CHEST|GROIN|ARMS
 	allowed = list (/obj/item/tool/kitchen/knife,/obj/item/tool/kitchen/knife/butcher)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
@@ -80,7 +79,7 @@
 	icon_state = "apronchef"
 	item_state = "apronchef"
 	blood_overlay_type = "armor"
-	flags_armor_protection = 0
+	body_parts_covered = NONE
 
 //Security
 /obj/item/clothing/suit/security/navyofficer
@@ -88,21 +87,21 @@
 	desc = "This jacket is for those special occasions when a security officer actually feels safe."
 	icon_state = "officerbluejacket"
 	item_state = "officerbluejacket"
-	flags_armor_protection = CHEST|GROIN|ARMS
+	body_parts_covered = CHEST|GROIN|ARMS
 
 /obj/item/clothing/suit/security/navywarden
 	name = "warden's jacket"
 	desc = "Perfectly suited for the warden that wants to leave an impression of style on those who visit the brig."
 	icon_state = "wardenbluejacket"
 	item_state = "wardenbluejacket"
-	flags_armor_protection = CHEST|GROIN|ARMS
+	body_parts_covered = CHEST|GROIN|ARMS
 
 /obj/item/clothing/suit/security/navyhos
 	name = "head of security's jacket"
 	desc = "This piece of clothing was specifically designed for asserting superior authority."
 	icon_state = "hosbluejacket"
 	item_state = "hosbluejacket"
-	flags_armor_protection = CHEST|GROIN|ARMS
+	body_parts_covered = CHEST|GROIN|ARMS
 
 //Detective
 /obj/item/clothing/suit/storage/det_suit
@@ -111,7 +110,7 @@
 	icon_state = "detective"
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
-	flags_armor_protection = CHEST|ARMS
+	body_parts_covered = CHEST|ARMS
 	allowed = list(/obj/item/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/handcuffs,/obj/item/storage/fancy/cigarettes,/obj/item/tool/lighter,/obj/item/device/detective_scanner,/obj/item/device/taperecorder)
 	armor = list(melee = 50, bullet = 10, laser = 25, energy = 10, bomb = 0, bio = 0, rad = 0)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
@@ -124,7 +123,7 @@
 	name = "jacket"
 	desc = "A forensics technician jacket."
 	item_state = "det_suit"
-	flags_armor_protection = CHEST|ARMS
+	body_parts_covered = CHEST|ARMS
 	allowed = list(/obj/item/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/handcuffs,/obj/item/device/detective_scanner,/obj/item/device/taperecorder)
 	armor = list(melee = 10, bullet = 10, laser = 15, energy = 10, bomb = 0, bio = 0, rad = 0)
 
@@ -148,7 +147,7 @@
 	allowed = list (/obj/item/device/analyzer, /obj/item/device/flashlight, /obj/item/device/multitool, /obj/item/device/pipe_painter, /obj/item/device/radio, /obj/item/device/t_scanner, \
 	/obj/item/tool/crowbar, /obj/item/tool/screwdriver, /obj/item/tool/weldingtool, /obj/item/tool/wirecutters, /obj/item/tool/wrench, /obj/item/tank/emergency_oxygen, \
 	/obj/item/clothing/mask/gas, /obj/item/tool/taperoll/engineering)
-	flags_armor_protection = CHEST
+	body_parts_covered = CHEST
 
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
@@ -159,7 +158,7 @@
 	icon_state = "suitjacket_blue_open"
 	item_state = "suitjacket_blue_open"
 	blood_overlay_type = "coat"
-	flags_armor_protection = CHEST|ARMS
+	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/suit/storage/lawyer/purpjacket
 	name = "Purple Suit Jacket"
@@ -167,7 +166,7 @@
 	icon_state = "suitjacket_purp"
 	item_state = "suitjacket_purp"
 	blood_overlay_type = "coat"
-	flags_armor_protection = CHEST|ARMS
+	body_parts_covered = CHEST|ARMS
 
 //Internal Affairs
 /obj/item/clothing/suit/storage/internalaffairs
@@ -176,7 +175,7 @@
 	icon_state = "ia_jacket_open"
 	item_state = "ia_jacket"
 	blood_overlay_type = "coat"
-	flags_armor_protection = CHEST|ARMS
+	body_parts_covered = CHEST|ARMS
 
 	verb/toggle()
 		set name = "Toggle Coat Buttons"
@@ -207,7 +206,7 @@
 	blood_overlay_type = "armor"
 	allowed = list(/obj/item/stack/medical, /obj/item/reagent_container/dropper, /obj/item/reagent_container/hypospray, /obj/item/reagent_container/syringe, \
 	/obj/item/device/healthanalyzer, /obj/item/device/flashlight, /obj/item/device/radio, /obj/item/tank/emergency_oxygen)
-	flags_armor_protection = CHEST|ARMS
+	body_parts_covered = CHEST|ARMS
 
 	verb/toggle()
 		set name = "Toggle Jacket Buttons"
@@ -233,4 +232,4 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "suspenders"
 	blood_overlay_type = "armor" //it's the less thing that I can put here
-	flags_armor_protection = 0
+	body_parts_covered = NONE

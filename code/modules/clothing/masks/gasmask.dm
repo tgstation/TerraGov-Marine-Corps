@@ -51,7 +51,7 @@
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
 	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 75, rad = 0)
-	flags_armor_protection = HEAD|FACE
+	body_parts_covered = HEAD|FACE
 
 /obj/item/clothing/mask/gas/swat
 	name = "\improper SWAT mask"
@@ -60,7 +60,7 @@
 	anti_hug = 1
 	tint = 0
 	siemens_coefficient = 0.7
-	flags_armor_protection = FACE|EYES
+	body_parts_covered = FACE|EYES
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"
@@ -108,7 +108,7 @@
 	desc = "A mask used when acting as a monkey."
 	icon_state = "monkeymask"
 	item_state = "monkeymask"
-	flags_armor_protection = HEAD|FACE|EYES
+	body_parts_covered = HEAD|FACE|EYES
 
 /obj/item/clothing/mask/gas/sexymime
 	name = "sexy mime mask"

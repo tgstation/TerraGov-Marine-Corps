@@ -19,7 +19,7 @@
 	item_state = "helmet"
 	armor = list(melee = 80, bullet = 95, laser = 70, energy = 70, bomb = 65, bio = 100, rad = 100)
 	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
-	flags_armor_protection = HEAD|FACE|EYES
+	body_parts_covered = HEAD|FACE|EYES
 	flags_cold_protection = HEAD
 	flags_inventory = COVEREYES|COVERMOUTH|NOPRESSUREDMAGE|ALLOWINTERNALS|ALLOWREBREATH|BLOCKGASEFFECT|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDELOWHAIR
@@ -120,7 +120,7 @@
 	icon_state = "halfarmor1"
 	item_state = "armor"
 	sprite_sheet_id = 1
-	flags_armor_protection = CHEST|ARM_LEFT
+	body_parts_covered = CHEST|ARM_LEFT
 	armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
 	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
@@ -150,49 +150,49 @@
 			if(7128)
 				name = "\improper 'Armor of the Swamp Horror'"
 				icon_state = "halfarmor_elder_joshuu"
-				flags_armor_protection = CHEST|GROIN|ARMS
+				body_parts_covered = CHEST|GROIN|ARMS
 				armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 			if(9867)
 				name = "\improper 'Armor of the Enforcer'"
 				icon_state = "halfarmor_elder_feweh"
-				flags_armor_protection = CHEST|ARMS
+				body_parts_covered = CHEST|ARMS
 				armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 			if(4879)
 				name = "\improper 'Armor of the Ambivalent Collector'"
 				icon_state = "halfarmor_elder_n"
-				flags_armor_protection = CHEST|GROIN|ARMS
+				body_parts_covered = CHEST|GROIN|ARMS
 				armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 			else
 				name = "clan elder's armor"
 				icon_state = "halfarmor_elder"
-				flags_armor_protection = CHEST|GROIN|ARMS
+				body_parts_covered = CHEST|GROIN|ARMS
 				armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 	else
 		switch(armor_number)
 			if(2)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = CHEST|ARMS
+				body_parts_covered = CHEST|ARMS
 				armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 			if(3)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = CHEST|GROIN
+				body_parts_covered = CHEST|GROIN
 				armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 			if(4)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = CHEST
+				body_parts_covered = CHEST
 				armor = list(melee = 75, bullet = 80, laser = 60, energy = 70, bomb = 70, bio = 20, rad = 20)
 			if(5,441)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = CHEST|GROIN|ARMS
+				body_parts_covered = CHEST|GROIN|ARMS
 				armor = list(melee = 70, bullet = 70, laser = 55, energy = 65, bomb = 65, bio = 20, rad = 20)
-	flags_cold_protection = flags_armor_protection
-	flags_heat_protection = flags_armor_protection
+	flags_cold_protection = body_parts_covered
+	flags_heat_protection = body_parts_covered
 
 /obj/item/clothing/suit/armor/yautja/full
 	name = "heavy clan armor"
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon_state = "fullarmor"
-	flags_armor_protection = CHEST|GROIN|ARMS
+	body_parts_covered = CHEST|GROIN|ARMS
 	armor = list(melee = 90, bullet = 95, laser = 75, energy = 75, bomb = 75, bio = 25, rad = 25)
 	slowdown = 1
 
@@ -209,7 +209,7 @@
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "cape_elder"
 	flags_equip_slot = ITEM_SLOT_BACK
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	armor = list(melee = 10, bullet = 0, laser = 5, energy = 15, bomb = 0, bio = 0, rad = 0)
 	unacidable = 1
 
@@ -236,7 +236,7 @@
 	unacidable = 1
 	permeability_coefficient = 0.01
 	flags_inventory = NOSLIPPING
-	flags_armor_protection = FEET|LEGS
+	body_parts_covered = FEET|LEGS
 	armor = list(melee = 75, bullet = 85, laser = 60, energy = 50, bomb = 50, bio = 20, rad = 20)
 	siemens_coefficient = 0.2
 	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
@@ -247,10 +247,10 @@
 	..()
 	icon_state = "y-boots[boot_number]"
 	if(boot_number != 1) //More overall protection, less defensive value.
-		flags_armor_protection = FEET|LEGS|GROIN
+		body_parts_covered = FEET|LEGS|GROIN
 		armor = list(melee = 65, bullet = 75, laser = 55, energy = 45, bomb = 45, bio = 20, rad = 20)
-	flags_cold_protection = flags_armor_protection
-	flags_heat_protection = flags_armor_protection
+	flags_cold_protection = body_parts_covered
+	flags_heat_protection = body_parts_covered
 
 /obj/item/clothing/under/chainshirt
 	name = "body mesh"
@@ -275,7 +275,6 @@
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	flags_item = NODROP
-	flags_armor_protection = HANDS
 	armor = list(melee = 80, bullet = 80, laser = 55, energy = 50, bomb = 50, bio = 10, rad = 10)
 	flags_cold_protection = HANDS
 	flags_heat_protection = HANDS

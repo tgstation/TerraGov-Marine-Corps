@@ -24,11 +24,10 @@
 	icon_state = "capcap"
 	flags_inventory = NOFLAGS
 	flags_inv_hide = NOFLAGS
-	flags_armor_protection = 0
+	body_parts_covered = NONE
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
 	siemens_coefficient = 0.9
-	flags_armor_protection = 0
 
 //Chaplain
 /obj/item/clothing/head/chaplain_hood
@@ -38,7 +37,7 @@
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEARS|HIDEALLHAIR
 	siemens_coefficient = 0.9
-	flags_armor_protection = HEAD|EYES
+	body_parts_covered = HEAD|EYES
 
 //Chaplain
 /obj/item/clothing/head/nun_hood
@@ -55,7 +54,7 @@
 	desc = "A beret, an artists favorite headwear."
 	icon_state = "beret"
 	siemens_coefficient = 0.9
-	flags_armor_protection = 0
+	body_parts_covered = NONE
 
 //Security
 /obj/item/clothing/head/beret/sec
@@ -114,7 +113,7 @@
 	allowed = list(/obj/item/reagent_container/food/snacks/candy_corn, /obj/item/tool/pen)
 	armor = list(melee = 50, bullet = 5, laser = 25,energy = 10, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
-	flags_armor_protection = 0
+	body_parts_covered = NONE
 
 /obj/item/clothing/head/det_hat/black
 	icon_state = "detective2"

@@ -1,7 +1,7 @@
 /obj/item/clothing/head
 	name = "head"
 	icon = 'icons/obj/clothing/hats.dmi'
-	flags_armor_protection = HEAD
+	body_parts_covered = HEAD
 	flags_equip_slot = ITEM_SLOT_HEAD
 	w_class = 2.0
 	var/anti_hug = 0
@@ -218,7 +218,7 @@
 	icon_state = "bearpelt"
 	siemens_coefficient = 2.0
 	anti_hug = 4
-	flags_armor_protection = HEAD|CHEST|ARMS
+	body_parts_covered = HEAD|CHEST|ARMS
 	armor = list(melee = 90, bullet = 70, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
 	flags_cold_protection = HEAD|CHEST|ARMS
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
@@ -234,7 +234,7 @@
 	sprite_sheet_id = 1
 	siemens_coefficient = 2.0
 	//anti_hug = 2
-	flags_armor_protection = HEAD
+	body_parts_covered = HEAD
 	armor = list(melee = 50, bullet = 50, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
@@ -252,7 +252,7 @@
 	sprite_sheet_id = 1
 	icon_state = "freelancer_cap"
 	siemens_coefficient = 2.0
-	flags_armor_protection = HEAD
+	body_parts_covered = HEAD
 	armor = list(melee = 50, bullet = 50, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
@@ -270,7 +270,7 @@
 	sprite_sheet_id = 1
 	icon_state = "rebel_hood"
 	siemens_coefficient = 2.0
-	flags_armor_protection = HEAD|CHEST
+	body_parts_covered = HEAD|CHEST
 	armor = list(melee = 30, bullet = 30, laser = 45, energy = 35, bomb = 45, bio = 20, rad = 30)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
@@ -282,7 +282,7 @@
 	desc = "A sturdy admiral's cap. More protective than it seems. Please don't ditch this for a helmet like a punk."
 	icon_state = "admiral_helmet"
 	siemens_coefficient = 2.0
-	flags_armor_protection = HEAD
+	body_parts_covered = HEAD
 	armor = list(melee = 60, bullet = 60, laser = 45, energy = 55, bomb = 55, bio = 10, rad = 10)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature

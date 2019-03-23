@@ -14,7 +14,6 @@
 	flags_heat_protection = HANDS
 	min_cold_protection_temperature = GLOVES_min_cold_protection_temperature
 	max_heat_protection_temperature = GLOVES_max_heat_protection_temperature
-	flags_armor_protection = HANDS
 	armor = list(melee = 60, bullet = 40, laser = 30,energy = 20, bomb = 30, bio = 10, rad = 10)
 
 /obj/item/clothing/gloves/marine/alpha

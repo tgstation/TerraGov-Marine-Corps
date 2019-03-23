@@ -17,7 +17,7 @@
 	w_class = 4//bulky item
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
-	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	allowed = list(/obj/item/device/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/tool/extinguisher)
 	slowdown = 1.0
 	flags_inventory = NOPRESSUREDMAGE
@@ -50,7 +50,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 100, bio = 0, rad = 0)
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEFACE|HIDEMASK|HIDEEARS|HIDEALLHAIR
-	flags_armor_protection = HEAD|FACE|EYES
+	body_parts_covered = HEAD|FACE|EYES
 	siemens_coefficient = 0
 
 
@@ -73,13 +73,13 @@
 /obj/item/clothing/head/bomb_hood/security
 	icon_state = "bombsuitsec"
 	item_state = "bombsuitsec"
-	flags_armor_protection = HEAD
+	body_parts_covered = HEAD
 
 /obj/item/clothing/suit/bomb_suit/security
 	icon_state = "bombsuitsec"
 	item_state = "bombsuitsec"
 	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/baton,/obj/item/handcuffs)
-	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 
 /*
  * Radiation protection
@@ -90,7 +90,7 @@
 	desc = "A hood with radiation protective properties. Label: Made with lead, do not eat insulation"
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEFACE|HIDEMASK|HIDEEARS|HIDEALLHAIR
-	flags_armor_protection = HEAD|FACE|EYES
+	body_parts_covered = HEAD|FACE|EYES
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 100)
 
 
@@ -102,7 +102,7 @@
 	w_class = 4//bulky item
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
-	flags_armor_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
 	allowed = list(/obj/item/device/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/clothing/head/radiation,/obj/item/clothing/mask/gas)
 	slowdown = 1.5
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 100)

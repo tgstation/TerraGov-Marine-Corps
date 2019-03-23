@@ -22,7 +22,7 @@
 	flags_atom = CONDUCT
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE
-	flags_armor_protection = HEAD|FACE|EYES
+	body_parts_covered = HEAD|FACE|EYES
 	actions_types = list(/datum/action/item_action/toggle)
 	siemens_coefficient = 0.9
 	w_class = 3
@@ -81,7 +81,7 @@
 	var/status = 0
 	var/fire_resist = T0C+1300	//this is the max temp it can stand before you start to cook. although it might not burn away, you take damage
 	var/processing = 0 //I dont think this is used anywhere.
-	flags_armor_protection = EYES
+	body_parts_covered = EYES
 
 /obj/item/clothing/head/cakehat/process()
 	if(!onfire)
@@ -113,7 +113,7 @@
 	item_state = "hardhat0_pumpkin"
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
-	flags_armor_protection = HEAD|EYES
+	body_parts_covered = HEAD|EYES
 	var/brightness_on = 2 //luminosity when on
 	var/on = 0
 	w_class = 3
@@ -156,15 +156,15 @@
 	name = "kitty ears"
 	desc = "A pair of kitty ears. Meow!"
 	icon_state = "kitty"
-	flags_armor_protection = 0
+	body_parts_covered = NONE
 	siemens_coefficient = 1.5
 	var/icon/ears = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kitty")
 	var/icon/earbit = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kittyinner")
 
 /obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user, remove = FALSE)
-	if(!istype(user)) 
+	if(!istype(user))
 		return
-	
+
 	ears = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kitty")
 	ears.Blend(rgb(user.r_hair, user.g_hair, user.b_hair), ICON_ADD)
 	ears.Blend(earbit, ICON_OVERLAY)

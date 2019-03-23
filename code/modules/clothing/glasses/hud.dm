@@ -35,7 +35,7 @@
 	name = "\improper HealthMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
 	icon_state = "healthhud"
-	flags_armor_protection = 0
+	body_parts_covered = NONE
 	toggleable = 1
 	hud_type = MOB_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
@@ -45,7 +45,7 @@
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
 	icon_state = "securityhud"
 	toggleable = 1
-	flags_armor_protection = 0
+	body_parts_covered = NONE
 	hud_type = MOB_HUD_SECURITY_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 	var/global/list/jobs[0]
@@ -64,7 +64,7 @@
 	name = "XenoMate HUD"
 	desc = "A heads-up display that scans any nearby xenomorph's data."
 	icon_state = "securityhud"
-	flags_armor_protection = 0
+	body_parts_covered = NONE
 	toggleable = TRUE
 	hud_type = MOB_HUD_XENO_STATUS
 	actions_types = list(/datum/action/item_action/toggle)

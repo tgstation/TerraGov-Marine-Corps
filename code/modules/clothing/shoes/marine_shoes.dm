@@ -5,7 +5,6 @@
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time."
 	icon_state = "marine"
 	item_state = "marine"
-	flags_armor_protection = FEET
 	armor = list(melee = 60, bullet = 40, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
@@ -51,7 +50,7 @@
 
 /obj/item/clothing/shoes/marine/pyro
 	name = "flame-resistant combat boots"
-	desc = "Protects you from fire and even contains a pouch for your knife!"	
+	desc = "Protects you from fire and even contains a pouch for your knife!"
 
 
 /obj/item/clothing/shoes/marinechief
@@ -77,7 +76,6 @@
 	desc = "The height of fashion, but these look to be woven with protective fiber."
 	icon_state = "jackboots"
 	item_state = "jackboots"
-	flags_armor_protection = FEET
 	armor = list(melee = 60, bullet = 40, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
 	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
 	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
@@ -91,7 +89,6 @@
 	desc = "A pair of heavily armored, acid-resistant boots."
 	icon_state = "commando_boots"
 	permeability_coefficient = 0.01
-	flags_armor_protection = FEET
 	armor = list(melee = 90, bullet = 120, laser = 100, energy = 90, bomb = 50, bio = 30, rad = 30)
 	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
 	max_heat_protection_temperature = SHOE_max_heat_protection_temperature

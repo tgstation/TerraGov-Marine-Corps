@@ -146,7 +146,7 @@
 				Cl = SLOT_W_UNIFORM
 				. = prob((Cl.permeability_coefficient*100) - 1)
 		if(3)
-			if(isobj(wear_suit) && wear_suit.flags_armor_protection&HANDS)
+			if(isobj(wear_suit) && wear_suit.body_parts_covered&HANDS)
 				Cl = wear_suit
 				. = prob((Cl.permeability_coefficient*100) - 1)
 
@@ -154,7 +154,7 @@
 				Cl = gloves
 				. = prob((Cl.permeability_coefficient*100) - 1)
 		if(4)
-			if(isobj(wear_suit) && wear_suit.flags_armor_protection&FEET)
+			if(isobj(wear_suit) && wear_suit.body_parts_covered&FEET)
 				Cl = wear_suit
 				. = prob((Cl.permeability_coefficient*100) - 1)
 

@@ -72,7 +72,7 @@
 				if(H.species.species_flags & IS_SYNTHETIC || H.species.insulated)
 					return
 
-				if( !H.shoes && ( !H.wear_suit || !(H.wear_suit.flags_armor_protection & FEET) ) )
+				if( !H.shoes && ( !H.wear_suit || !(H.wear_suit.body_parts_covered & FEET) ) )
 					var/datum/limb/affecting = H.get_limb(pick("l_foot", "r_foot"))
 					if(affecting.limb_status & LIMB_ROBOT)
 						return

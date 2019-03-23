@@ -110,7 +110,7 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 	var/list/covers = list()
 	var/list/slots = list()
 	for(var/name in string_part_flags)
-		if(flags_armor_protection & string_part_flags[name])
+		if(body_parts_covered & string_part_flags[name])
 			covers += name
 	for(var/name in string_equip_flags)
 		if(flags_equip_slot & string_equip_flags[name])
@@ -138,7 +138,7 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 		. += "<br><br><U>You can also carry the following special items in this</U>:"
 		for(var/X in hold.bypass_w_limit)
 			var/obj/B = X
-			. += "<br>[initial(text2path(B).name)]"	
+			. += "<br>[initial(text2path(B).name)]"
 
 /obj/item/clothing/suit/storage/get_mechanics_info()
 	. = ..()
@@ -148,7 +148,7 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 		. += "<br><U>You can also carry the following special items in this internal inventory</U>:"
 		for(var/X in pockets.bypass_w_limit)
 			var/obj/B = X
-			. += "<br>[initial(text2path(B).name)]"	
+			. += "<br>[initial(text2path(B).name)]"
 
 /obj/item/clothing/suit/armor/pcarrier/get_mechanics_info()
 	. = ..()

@@ -29,7 +29,7 @@
 	desc = "A dress shirt and khakis with a security patch sewn on."
 	icon_state = "dispatch"
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	flags_armor_protection = CHEST|GROIN|LEGS
+	body_parts_covered = CHEST|GROIN|LEGS
 	siemens_coefficient = 0.9
 	rollable_sleeves = FALSE
 

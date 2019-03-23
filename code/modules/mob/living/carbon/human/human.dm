@@ -1450,21 +1450,21 @@
 	var/feet_exposed = 1
 
 	for(var/obj/item/clothing/C in equipment)
-		if(C.flags_armor_protection & HEAD)
+		if(C.body_parts_covered & HEAD)
 			head_exposed = 0
-		if(C.flags_armor_protection & FACE)
+		if(C.body_parts_covered & FACE)
 			face_exposed = 0
-		if(C.flags_armor_protection & EYES)
+		if(C.body_parts_covered & EYES)
 			eyes_exposed = 0
-		if(C.flags_armor_protection & CHEST)
+		if(C.body_parts_covered & CHEST)
 			torso_exposed = 0
-		if(C.flags_armor_protection & ARMS)
+		if(C.body_parts_covered & ARMS)
 			arms_exposed = 0
-		if(C.flags_armor_protection & HANDS)
+		if(C.body_parts_covered & HANDS)
 			hands_exposed = 0
-		if(C.flags_armor_protection & LEGS)
+		if(C.body_parts_covered & LEGS)
 			legs_exposed = 0
-		if(C.flags_armor_protection & FEET)
+		if(C.body_parts_covered & FEET)
 			feet_exposed = 0
 
 	for (var/T in flavor_texts)

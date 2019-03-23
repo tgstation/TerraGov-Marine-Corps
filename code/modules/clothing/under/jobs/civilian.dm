@@ -25,7 +25,7 @@
 	desc = "Shooooorts! They're comfy and easy to wear!"
 	icon_state = "cargotech"
 	item_state = "lb_suit"
-	flags_armor_protection = CHEST|GROIN|ARMS
+	body_parts_covered = CHEST|GROIN|ARMS
 
 /obj/item/clothing/under/rank/chaplain
 	desc = "It's a black jumpsuit, often worn by religious folk."
