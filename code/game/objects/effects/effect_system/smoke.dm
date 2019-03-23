@@ -13,6 +13,7 @@
 	var/amount = 3
 	var/spread_speed = 1 //time in decisecond for a smoke to spread one tile.
 	var/lifetime = 5
+	var/expansion_speed = 1
 	var/opaque = TRUE //whether the smoke can block the view when in enough amount
 	var/list/current_cloud // for associated chemical smokes.
 	var/fraction = 0.2
@@ -94,7 +95,7 @@
 		SetOpacity(TRUE)
 
 	if(newsmokes.len)
-		addtimer(CALLBACK(src, .proc/spawn_smoke, newsmokes), 1) //the smoke spreads rapidly but not instantly
+		addtimer(CALLBACK(src, .proc/spawn_smoke, newsmokes), expansion_speed) //the smoke spreads rapidly but not instantly
 
 /obj/effect/particle_effect/smoke/proc/copy_stats(obj/effect/particle_effect/smoke/parent)
 	amount = parent.amount-1
@@ -159,7 +160,7 @@
 		location = get_turf(holder)
 	var/obj/effect/particle_effect/smoke/S = new smoke_type(location, range, lifetime)
 	if(S.amount)
-		S.spread_smoke()
+		addtimer(CALLBACK(S, /obj/effect/particle_effect/smoke.proc/spread_smoke), S.expansion_speed)
 
 /////////////////////////////////////////////
 // Bad smoke
@@ -287,6 +288,7 @@
 	lifetime = 6
 	spread_speed = 7
 	var/strength = 1 // Effects scale with the emitter's bomb_strength upgrades.
+	expansion_speed = 3
 
 /obj/effect/particle_effect/smoke/xeno/copy_stats(obj/effect/particle_effect/smoke/xeno/parent)
 	strength = parent.strength
@@ -314,24 +316,21 @@
 	color = "#86B028" //Mostly green?
 
 /obj/effect/particle_effect/smoke/xeno/burn/apply_smoke_effect(turf/T)
-	for(var/mob/living/carbon/C in get_turf(src))
-		smoke_mob(C)
+	. = ..()
 	for(var/obj/structure/barricade/B in get_turf(src))
 		B.acid_smoke_damage(src)
 	for(var/obj/structure/razorwire/R in get_turf(src))
 		R.acid_smoke_damage(src)
 	for(var/obj/vehicle/multitile/hitbox/cm_armored/H in get_turf(src))
 		var/obj/vehicle/multitile/root/cm_armored/R = H.root
-		if(!R)
-			continue
-		R.take_damage_type(30, "acid")
+		R?.take_damage_type(30, "acid")
 
 
 /obj/effect/particle_effect/smoke/xeno/burn/effect_contact(mob/living/carbon/C)
 	var/protection = max(1 - C.get_permeability_protection(), 0.25)
 	if(prob(50) * protection)
 		to_chat(C, "<span class='danger'>Your skin feels like it is melting away!</span>")
-	C.adjustFireLoss(strength * rand(10, 15) * protection) //widespread burn damage, strength corresponds to the caste's bomb_strength
+	C.adjustFireLoss(strength * rand(20, 30) * protection) //widespread burn damage, strength corresponds to the caste's bomb_strength
 
 /obj/effect/particle_effect/smoke/xeno/burn/effect_inhale(mob/living/carbon/C)
 	C.adjustOxyLoss(4 + strength)
@@ -347,7 +346,7 @@
 		to_chat(C, "<span class='danger'>Your eyes sting. You can't see!</span>")
 	C.blur_eyes(4)
 	C.blind_eyes(2)
-	var/reagent_amount = 1 + strength * 2
+	var/reagent_amount = 2 + strength * 2
 	C.reagents.add_reagent("xeno_toxin", reagent_amount)
 	if(prob(reagent_amount * 4) && !C.is_mob_incapacitated(TRUE)) //Likely to momentarily freeze up/fall due to arms/hands seizing up
 		to_chat(C, "<span class='danger'>You feel your body going numb and lifeless!</span>")
@@ -392,7 +391,7 @@ datum/effect_system/smoke_spread/tactical
 	var/obj/effect/particle_effect/smoke/xeno/S = new smoke_type(location, range, lifetime)
 	S.strength = strength
 	if(S.amount)
-		S.spread_smoke()
+		addtimer(CALLBACK(S, /obj/effect/particle_effect/smoke.proc/spread_smoke), S.expansion_speed)
 
 /datum/effect_system/smoke_spread/xeno/acid
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn
@@ -492,4 +491,4 @@ datum/effect_system/smoke_spread/tactical
 		S.icon += mixcolor
 
 	if(S.amount)
-		S.spread_smoke()
+		addtimer(CALLBACK(S, /obj/effect/particle_effect/smoke.proc/spread_smoke), S.expansion_speed)
