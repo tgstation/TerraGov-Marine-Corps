@@ -267,6 +267,7 @@
 	var/obj/item/I = usr.get_active_held_item()
 	if(I)
 		master.attackby(I, usr)
+		return
 
 	// Taking something out of the storage screen (including clicking on item border overlay)
 	var/list/screen_loc_params = splittext(PL["screen-loc"], ",")
@@ -278,8 +279,6 @@
 			continue
 		I = S.contents[i]
 		if(!I)
-			continue
-		if(I == S.contents[length(S.contents)])
 			continue
 		I.attack_hand(usr)
 		return
