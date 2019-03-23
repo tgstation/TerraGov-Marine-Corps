@@ -152,20 +152,20 @@
 	flags_atom = DIRLOCK
 
 /obj/item/stack/medical/advanced/update_icon()
-	if(max_amount < 1 || amount < max_amount)
+	if(max_amount < 1 || amount > max_amount)
 		return
 	var/percentage = round(amount / max_amount) * 100
-		switch(percentage)
-			if(1 to 20)
-				setDir(SOUTH)
-			if(21 to 40)
-				setDir(EAST)
-			if(41 to 60)
-				setDir(SOUTHEAST)
-			if(61 to 80)
-				setDir(WEST)
-			if(81 to INFINITY)
-				setDir(NORTH)
+	switch(percentage)
+		if(1 to 20)
+			setDir(SOUTH)
+		if(21 to 40)
+			setDir(EAST)
+		if(41 to 60)
+			setDir(SOUTHEAST)
+		if(61 to 80)
+			setDir(WEST)
+		if(81 to INFINITY)
+			setDir(NORTH)
 
 /obj/item/stack/medical/advanced/bruise_pack
 	name = "advanced trauma kit"
@@ -275,7 +275,8 @@
 	stack_id = "splint"
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)
-	if(..()) return TRUE
+	if(..())
+		return TRUE
 
 	if(user.action_busy)
 		return
