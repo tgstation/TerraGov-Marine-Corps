@@ -1,0 +1,5 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - rscadd: "Medkits now show how much is left in it's stack"
+  - imageadd: "updated some item/storage sprites thanks to Bay and CEV-Eris"
