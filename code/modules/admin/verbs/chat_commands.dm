@@ -90,6 +90,7 @@
 /datum/tgs_chat_command/reload_admins/Run(datum/tgs_chat_user/sender, params)
 	ReloadAsync()
 	log_admin("[sender.friendly_name] reloaded admins via chat command.")
+	message_admins("[sender.friendly_name] reloaded admins via chat command.")
 	return "Admins reloaded."
 
 
