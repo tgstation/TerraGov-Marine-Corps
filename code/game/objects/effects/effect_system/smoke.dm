@@ -80,9 +80,9 @@
 		apply_smoke_effect(T)
 		var/obj/effect/particle_effect/smoke/S = new type(T)
 		reagents.copy_to(S, reagents.total_volume)
-		S.current_cloud += current_cloud
+		LAZYADD(S.current_cloud, current_cloud)
 		for(var/obj/effect/particle_effect/smoke/C in current_cloud)
-			C.current_cloud += S
+			LAZYADD(C.current_cloud, S)
 		S.copy_stats(src)
 		S.setDir(pick(cardinal))
 		if(S.amount > 0)
@@ -431,16 +431,16 @@ datum/effect_system/smoke_spread/tactical
 
 /obj/effect/particle_effect/smoke/chem/effect_inhale(mob/living/carbon/C)
 	if(!length(smoked_mobs))
-		addtimer(CALLBACK(src, .proc/chemical_effect), 4)
+		addtimer(CALLBACK(src, .proc/chemical_effect), 1)
 	for(var/obj/effect/particle_effect/smoke/chem/S in current_cloud)
-		smoked_mobs += C
+		LAZYADD(smoked_mobs, C)
 
 /obj/effect/particle_effect/smoke/chem/proc/chemical_effect()
 	for(var/mob/living/carbon/C in smoked_mobs)
 		reagents.reaction(C, INGEST, fraction / length(smoked_mobs))
 		reagents.copy_to(C, reagents.total_volume, fraction / length(smoked_mobs))
 	for(var/obj/effect/particle_effect/smoke/chem/S in current_cloud)
-		S.smoked_mobs.Cut()
+		LAZYCLEARLIST(S.smoked_mobs)
 
 /datum/effect_system/smoke_spread/chem
 	var/obj/chemholder
