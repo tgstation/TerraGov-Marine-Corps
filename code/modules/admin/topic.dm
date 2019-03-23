@@ -143,7 +143,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			log_admin("[key_name(usr)] jumped to [key_name(AM)].")
 			message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_TPMONTY(AM)].")
 
-		C.mob.forceMove(AM.loc)
+		var/mob/dead/observer/M = C.mob
+
+		M.on_mob_jump()
+		M.forceMove(AM.loc)
 
 
 	else if(href_list["secrets"])
