@@ -123,7 +123,7 @@
 
 // This is necessary for storage items not on your person.
 /obj/item/Adjacent(atom/neighbor)
-	if(neighbor == loc || neighbor == loc.loc) //Item is in the neighbor or something that it holds.
+	if(neighbor == loc || neighbor == loc?.loc) //Item is in the neighbor or something that it holds.
 		return TRUE
 
 	if(isitem(loc)) //Special case handling.
