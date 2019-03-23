@@ -51,7 +51,8 @@
 	stack_id = "bruise pack"
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return TRUE
 
 	if (ishuman(M))
@@ -100,7 +101,8 @@
 	stack_id = "ointment"
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return TRUE
 
 	if (ishuman(M))
@@ -177,7 +179,8 @@
 	stack_id = "advanced bruise pack"
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M, mob/user)
-	if(..())
+	. = ..()
+	if(.)
 		return TRUE
 
 	if (ishuman(M))
@@ -234,7 +237,8 @@
 	stack_id = "advanced burn kit"
 
 /obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return TRUE
 
 	if(ishuman(M))
@@ -275,7 +279,8 @@
 	stack_id = "splint"
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)
-	if(..())
+	. = ..()
+	if(.)
 		return TRUE
 
 	if(user.action_busy)
