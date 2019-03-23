@@ -33,7 +33,7 @@
 	GLOB.xeno_mob_list += src
 	round_statistics.total_xenos_created++
 
-	add_to_hive_by_hivenumber(hivenumber, TRUE)
+	set_initial_hivenumber()
 
 	generate_nicknumber()
 

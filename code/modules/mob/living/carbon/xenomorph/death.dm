@@ -9,7 +9,7 @@
 
 	GLOB.alive_xeno_list -= src
 	GLOB.dead_xeno_list += src
-	round_statistics.total_xeno_deaths++
+	hive?.on_xeno_death(src)
 
 	if(is_zoomed)
 		zoom_out()
@@ -25,11 +25,6 @@
 
 	death_cry()
 
-	if(hive.living_xeno_queen?.observed_xeno == src)
-		hive.living_xeno_queen.set_queen_overwatch(src, TRUE)
-
-	hive.remove_leader(src)
-		
 	xeno_death_alert()
 
 	hud_set_queen_overwatch() //updates the overwatch hud to remove the upgrade chevrons, gold star, etc
@@ -37,8 +32,6 @@
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents.Remove(A)
 		A.forceMove(loc)
-
-	remove_from_hive(death=TRUE)
 
 	round_statistics.total_xeno_deaths++
 

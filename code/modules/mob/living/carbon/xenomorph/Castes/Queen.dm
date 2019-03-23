@@ -702,7 +702,7 @@
 			return
 		if(!ovipositor)
 			return
-		var/mob/living/carbon/Xenomorph/target = locate(href_list["queentrack"]) in GLOB.alive_xeno_list
+		var/mob/living/carbon/Xenomorph/target = locate(href_list["queentrack"]) in hive.get_watchable_xenos()
 		if(!istype(target))
 			return
 		if(target.stat == DEAD || is_centcom_level(target.z))
@@ -716,7 +716,7 @@
 		if(!check_state())
 			return
 		var/xeno_num = text2num(href_list["watch_xeno_number"])
-		for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
+		for(var/mob/living/carbon/Xenomorph/X in hive.get_watchable_xenos())
 			if(!is_centcom_level(X.z) && X.nicknumber == xeno_num)
 				if(observed_xeno == X)
 					set_queen_overwatch(X, TRUE)
