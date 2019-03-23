@@ -84,8 +84,9 @@
 		return FALSE
 
 	if(istype(src, /datum/game_mode/colonialmarines) ) //If we're fighting benos
-		var/xenos = length(GLOB.alive_xeno_list)
-		var/humans = length(GLOB.alive_human_list)
+		var/list/total_count = count_humans_and_xenos()
+		var/xenos = total_count[2]
+		var/humans = total_count[1]
 
 		var/reinforcements = CLAMP( ( xenos - humans / max(1, CONFIG_GET(number/xeno_coefficient) ) ) * CONFIG_GET(number/xeno_coefficient), picked_call.mob_min, 15) //We get the difference per the ideal human to xeno ratio, and the current xeno count, then multiply it by the xeno coefficient
 
