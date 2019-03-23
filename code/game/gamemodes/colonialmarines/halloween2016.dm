@@ -192,7 +192,7 @@
 	defer_powernet_rebuild = 2
 
 	sleep (100)
-	command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. Beginning playback.", "[MAIN_SHIP_NAME]")
+	command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. Beginning playback.", "[CONFIG_GET(string/ship_name)]")
 	world << 'sound/misc/eventhorizon_shiplog.ogg'
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -872,7 +872,7 @@
 				to_chat(H, "<span class='danger'>You are the [H.mind.assigned_role]!</span>")
 				to_chat(H, "Gear up, maggot! You have been dropped off in this God-forsaken place to complete some wetworks for Uncle Sam! Not even your mother knows that you're here!")
 				to_chat(H, "Some NT mercs are camping out north of the colony, and they got some doo-hickie doomsday device they are planning to use. Make sure they don't!")
-				to_chat(H, "Wipe them out and destroy their tech! The [MAIN_SHIP_NAME] will maintain radio silence for the duration of the mission!")
+				to_chat(H, "Wipe them out and destroy their tech! The [CONFIG_GET(string/ship_name)] will maintain radio silence for the duration of the mission!")
 				to_chat(H, "You've got an hour. And watch out... That colony ain't right, it ain't right at all. <b>DISMISSED!</b>")
 				to_chat(H, "________________________")
 

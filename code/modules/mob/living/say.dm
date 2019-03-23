@@ -118,7 +118,7 @@ var/list/department_radio_keys = list(
 	var/not_dead_speaker = (stat != DEAD)
 	for(var/mob/M in listening)
 		if(not_dead_speaker)
-			to_chat(M, speech_bubble)
+			SEND_IMAGE(M, speech_bubble)
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 
 	addtimer(CALLBACK(src, .proc/remove_speech_bubble, client, speech_bubble, (not_dead_speaker ? listening : null)), 30)

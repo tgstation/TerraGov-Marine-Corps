@@ -26,7 +26,7 @@
 	flags_inv_hide = NOFLAGS
 	body_parts_covered = NONE
 	flags_cold_protection = HEAD
-	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
+	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
 
 //Chaplain

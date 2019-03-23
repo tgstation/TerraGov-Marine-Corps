@@ -23,7 +23,7 @@
 	flags_inventory = NOPRESSUREDMAGE
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	flags_heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	max_heat_protection_temperature = FIRESUIT_max_heat_protection_temperature
+	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 
 
@@ -66,7 +66,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 100, bio = 0, rad = 0)
 	flags_inv_hide = HIDEJUMPSUIT|HIDETAIL
 	flags_heat_protection = CHEST|GROIN
-	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
+	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
 
 

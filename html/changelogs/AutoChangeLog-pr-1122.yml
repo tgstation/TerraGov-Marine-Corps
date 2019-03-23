@@ -1,0 +1,4 @@
+author: "Mitii"
+delete-after: True
+changes: 
+  - code_imp: "edited round start announcement strings, so that they are more TGMC-lore friendly."
