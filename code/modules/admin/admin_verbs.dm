@@ -1199,7 +1199,7 @@
 				AH.Reopen(TRUE)
 				AH.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
 				message_admins("IRC interaction by: [irc_tagged]")
-				return "Ticket #[ticket.id] successfully reopened"
+				return "Ticket #[id] successfully reopened"
 			if("list")
 				var/list/tickets = GLOB.ahelp_tickets.TicketsByCKey(target)
 				if(!length(tickets))

@@ -439,8 +439,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		msg = "a mentor ticket"
 		AddInteraction("<font color='red'>Made mentor ticket by: [key_name_admin(usr)].</font>")
 		message_staff("Ticket [TicketHref("#[id]")] has been made [msg] by [ref].")
-		if(is_mentor(usr.client) && usr.client.prefs.toggles_sound & SOUND_ADMINHELP)
-			SEND_SOUND(usr.client, sound('sound/effects/adminhelp.ogg'))
+		if(!irc)
+			for(var/client/X in GLOB.admins)
+				if(!is_mentor(X))
+					continue
+				if(X.prefs.toggles_sound & SOUND_ADMINHELP)
+					SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+				window_flash(X)
 	tier_cooldown = world.time + 5 SECONDS
 	log_admin_private("Ticket (#[id]) has been made [msg] by [key_name(usr)].")
 
@@ -603,7 +608,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Show the ticket panel
 /datum/admin_help/proc/TicketPanel()
-	if(!check_rights(R_ADMIN, FALSE) && is_mentor(usr))
+	if(!check_rights(R_ADMIN, FALSE) && !is_mentor(usr.client))
 		return
 	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		var/data = "<html><head><title>Access Denied</title></head><body>Access Denied</body></html>"

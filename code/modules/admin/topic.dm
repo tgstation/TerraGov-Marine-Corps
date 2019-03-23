@@ -769,7 +769,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!ref)
 			return
 		var/datum/fax/F = GLOB.faxes[ref]
-		if(!F || F.admin)
+		if(!F || F.admin || F.marked == usr.client)
 			return
 
 		if(F.marked)
