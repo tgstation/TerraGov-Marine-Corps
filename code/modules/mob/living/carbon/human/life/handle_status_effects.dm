@@ -38,11 +38,11 @@
 
 	mobility_aura = mobility_new
 	protection_aura = protection_new
-	marskman_aura = marskman_new
+	marksman_aura = marksman_new
 
 	mobility_new = 0
 	protection_new = 0
-	marskman_new = 0
+	marksman_new = 0
 
 	//Natural recovery; enhanced by hold/protection aura.
 	if(protection_aura)

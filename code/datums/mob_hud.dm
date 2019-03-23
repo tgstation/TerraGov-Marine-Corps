@@ -507,7 +507,7 @@ var/datum/mob_hud/huds = list(
 			tempname += "move"
 		if(protection_aura)
 			tempname += "hold"
-		if(marskman_aura)
+		if(marksman_aura)
 			tempname += "focus"
 		if(tempname)
 			holder.icon_state = "hud[tempname]"
