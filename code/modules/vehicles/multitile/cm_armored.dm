@@ -250,20 +250,21 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		if(!HP)
 			to_chat(user, "There is nothing installed on the [i] hardpoint slot.")
 			continue
-		var/status = HP.health <= 0.1 ? "broken" : "working"
+		var/status = HP.health <= 0.1 ? "broken" : "functional"
+		var/span_class = health <= 0.1 ? "<span class = 'danger'>" : "<span class = 'notice'>"
 		if((user?.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer >= SKILL_ENGINEER_METAL) || isobserver(user))
 			switch(PERCENT(HP.health / HP.maxhealth))
 				if(0.1 to 33)
 					status = "heavily damaged"
+					span_class = "<span class = 'warning'>"
 				if(33.1 to 66)
 					status = "damaged"
+					span_class = "<span class = 'warning'>"
 				if(66.1 to 90)
 					status = "slighty damaged"
 				if(90.1 to 100)
 					status = "intact"
-				if(100.1 to INFINITY) //you never know.
-					status = "reinforced"
-		to_chat(user, "There is a [status] [HP] installed on the [i] hardpoint slot.")
+		to_chat(user, "[span_class]There is a [status] [HP] installed on the [i] slot.</span>")
 
 //Special armored vic healthcheck that mainly updates the hardpoint states
 /obj/vehicle/multitile/root/cm_armored/healthcheck()

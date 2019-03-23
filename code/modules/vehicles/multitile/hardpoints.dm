@@ -40,19 +40,20 @@ Currently only has the tank hardpoints
 /obj/item/hardpoint/examine(mob/user)
 	. = ..()
 	var/status = health <= 0.1 ? "broken" : "functional"
+	var/span_class = health <= 0.1 ? "<span class = 'danger'>" : "<span class = 'notice'>"
 	if((user?.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer >= SKILL_ENGINEER_METAL) || isobserver(user))
 		switch(PERCENT(health / maxhealth))
 			if(0.1 to 33)
 				status = "heavily damaged"
+				span_class = "<span class = 'warning'>"
 			if(33.1 to 66)
 				status = "damaged"
+				span_class = "<span class = 'warning'>"
 			if(66.1 to 90)
 				status = "slighty damaged"
 			if(90.1 to 100)
 				status = "intact"
-			if(100.1 to INFINITY) //you never know.
-				status = "reinforced"
-	to_chat(user, "It's [status].")
+	to_chat(user, "[span_class]It's [status].</span>")
 
 /obj/item/hardpoint/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/ammo_magazine/tank))

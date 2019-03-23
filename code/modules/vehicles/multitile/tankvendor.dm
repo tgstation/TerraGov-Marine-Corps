@@ -13,7 +13,7 @@
 	icon = 'icons/obj/machines/drone_fab.dmi'
 	icon_state = "drone_fab_idle"
 	var/obj/item/loaded_mod
-	var/tank_points = 500
+	var/tank_points = 625
 	var/busy = FALSE
 	var/screen = TANKFAB_MAIN_MENU
 
