@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	/obj/machinery/vending)))
 
 //hypersleep related
-GLOBAL_LIST_INIT(cryoed_item_list, list("Alpha"=list(),"Bravo"=list(),"Charlie"=list(),"Delta"=list(),"MP"=list(),"REQ"=list(),"Eng"=list(),"Med"=list()))
+GLOBAL_LIST_INIT(cryoed_item_list, list(CRYO_ALPHA = list(), CRYO_BRAVO = list(), CRYO_CHARLIE = list(), CRYO_DELTA =list(), CRYO_SEC = list(), CRYO_REQ = list(), CRYO_ENGI = list(), CRYO_MED = list()))
 
 GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 	/obj/item/clothing/mask/cigarette,

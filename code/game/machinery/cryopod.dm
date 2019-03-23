@@ -8,37 +8,48 @@
 
 //Main cryopod console.
 
+#define CRYOCONSOLE_MOB_LIST 1
+#define CRYOCONSOLE_ITEM_LIST 2
+
 /obj/machinery/computer/cryopod
 	name = "hypersleep bay console"
-	desc = "A large console controlling the ship's hypersleep bay. Most of the options are disabled and locked, although it allows recovery of items from long-term hypersleeping crew."
+	desc = "A large console controlling the ship's hypersleep bay. Mainly used for recovery of items from long-term hypersleeping crew."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "cellconsole"
 	circuit = /obj/item/circuitboard/computer/cryopodcontrol
 	exproof = TRUE
 	unacidable = TRUE
-	var/cryotype = "REQ"
-	var/mode = null
+	var/cryotypes = list(CRYO_REQ, CRYO_ALPHA, CRYO_BRAVO, CRYO_CHARLIE, CRYO_DELTA)
+	var/mode = CRYOCONSOLE_ITEM_LIST
+	var/category = CRYO_REQ
 
 /obj/machinery/computer/cryopod/medical
-	cryotype = "Med"
+	cryotypes = list(CRYO_MED)
+	category = CRYO_MED
 
 /obj/machinery/computer/cryopod/brig
-	cryotype = "MP"
+	cryotypes = list(CRYO_SEC)
+	category = CRYO_SEC
 
 /obj/machinery/computer/cryopod/eng
-	cryotype = "Eng"
+	cryotypes = list(CRYO_ENGI)
+	category = CRYO_ENGI
 
 /obj/machinery/computer/cryopod/alpha
-	cryotype = "Alpha"
+	cryotypes = list(CRYO_ALPHA)
+	category = CRYO_ALPHA
 
 /obj/machinery/computer/cryopod/bravo
-	cryotype = "Bravo"
+	cryotypes = list(CRYO_BRAVO)
+	category = CRYO_BRAVO
 
 /obj/machinery/computer/cryopod/charlie
-	cryotype = "Charlie"
+	cryotypes = list(CRYO_CHARLIE)
+	category = CRYO_CHARLIE
 
 /obj/machinery/computer/cryopod/delta
-	cryotype = "Delta"
+	cryotypes = list(CRYO_DELTA)
+	category = CRYO_DELTA
 
 /obj/machinery/computer/cryopod/attack_paw()
 	attack_hand()
@@ -53,17 +64,55 @@
 	user.set_interaction(src)
 	src.add_fingerprint(usr)
 
-	var/dat
-
 	if(!(SSticker))
 		return
 
-	dat += "<hr/><br/><b>Cryogenic Oversight Control for [cryotype]</b><br/>"
-	dat += "<i>Welcome, [user.real_name].</i><br/><br/><hr/>"
-	dat += "<a href='?src=\ref[src];log=1'>View storage log</a>.<br>"
-	dat += "<a href='?src=\ref[src];view=1'>View objects</a>.<br>"
-	dat += "<a href='?src=\ref[src];item=1'>Recover object</a>.<br>"
-	dat += "<a href='?src=\ref[src];allitems=1'>Recover all objects</a>.<br>"
+	var/dat = "<hr/><br/><b>Cryogenic Oversight Control for [initial(category)]</b><br/>"
+	dat += "<i>Welcome, [user.name == "Unknown" ? "John Doe" : user.name].</i><br/><br/><hr/>"
+	var/mob_list = mode != CRYOCONSOLE_MOB_LIST ? "<a href='byond://?src=\ref[src];mode=[CRYOCONSOLE_MOB_LIST]'>Cryosleep Logs</a>" : "<b>Cryosleep Logs</b>"
+	var/item_list = mode != CRYOCONSOLE_ITEM_LIST ? "<a href='byond://?src=\ref[src];mode=[CRYOCONSOLE_ITEM_LIST]'>Inventory Storage</a>" : "<b>Inventory Storage</b>"
+	dat += "<center><table><tr><td><center>[mob_list]</center><td><td><center>[item_list]</center><td><tr><table></center>"
+
+	switch(mode)
+		if(CRYOCONSOLE_MOB_LIST)
+			dat += {"
+	<head><style>
+		.manifest {border-collapse:collapse;}
+		.manifest td, th {border:1px solid "black"; padding:.25em}
+		.manifest th {height: 2em; border-top-width: 3px}
+		.manifest tr.head th {border-top-width: 1px}
+		.manifest td:first-child {text-align:right}
+		.manifest tr.alt td {border-top-width: 2px}
+	</style></head>
+	<table class="manifest" width='350px'>
+	<tr class='head'><th>Name</th><th>Rank</th><th>Timestamp</th></tr>
+	"}
+			dat += "<tr><th colspan=3>Recently stored crewmembers</th></tr>"
+			var/even = FALSE
+			for(var/info in GLOB.cryoed_mob_list)
+				var/who = info[1]
+				var/work = info[2]
+				var/when = info[3]
+				dat += "<tr[even ? " class='alt'" : ""]><td>[who]</td><td>[work]</td><td>[when]</td></tr>"
+				even = !even
+			dat += "</table>"
+		if(CRYOCONSOLE_ITEM_LIST)
+			dat += "<b>Recently stored objects</b><br/><hr/><br/>"
+			dat +="<center><table><tr>"
+			for(var/dept in cryotypes)
+				dat += "<td><center>"
+				dat += category != dept ? "<a href='byond://?src=\ref[src];category=[dept]'>[dept]</a>" : "<b>[dept]</b>"
+				dat += "</center><td>"
+			dat += "<tr><table></center>"
+			dat += "<center><a href='byond://?src=\ref[src];dispense_all=TRUE'>Dispense All</a></center><br/>"
+			var/list/stored_items = GLOB.cryoed_item_list[category]
+			for(var/A in stored_items)
+				var/obj/item/I = A
+				if(QDELETED(I))
+					stored_items -= I
+					continue
+				dat += "<a href='byond://?src=\ref[src];dispense_item=[I]'>[I.name]</a><br/>"
+			dat += "<hr/>"
 
 	var/datum/browser/popup = new(user, "cryopod_console", "<div align='center'>Cryogenics</div>")
 	popup.set_content(dat)
@@ -73,72 +122,53 @@
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
 
-	//if(..())
-	//	return
+	. =..()
+	if(.)
+		return
 
-	var/mob/user = usr
-	var/list/stored_items = GLOB.cryoed_item_list[cryotype]
-	for(var/A in stored_items)
-		var/obj/item/I = A
-		if(QDELETED(I))
-			stored_items -= I
+	usr.set_interaction(src)
+	add_fingerprint(usr)
 
-	add_fingerprint(user)
+	if(href_list["mode"])
+		mode = text2num(href_list["mode"])
 
-	if(href_list["log"])
-
-		var/dat = "<b>Recently stored crewmembers</b><br/><hr/><br/>"
-		for(var/person in GLOB.cryoed_mob_list)
-			dat += "[person]<br/>"
-		dat += "<hr/>"
-
-		user << browse(dat, "window=cryolog")
-
-	if(href_list["view"])
-
-		var/dat = "<b>Recently stored objects</b><br/><hr/><br/>"
-		for(var/obj/item/I in stored_items)
-			dat += "[I.name]<br/>"
-		dat += "<hr/>"
-
-		user << browse(dat, "window=cryoitems")
+	else if(href_list["category"])
+		category = href_list["category"]
 
 	else if(href_list["item"])
-
-		if(!length(stored_items))
-			to_chat(user, "<span class='warning'>There is nothing to recover from storage.</span>")
-			return
-
-		var/obj/item/I = input(usr, "Please choose which object to retrieve.", "Object recovery") in stored_items
-
-		dispense_item(I)
+		dispense_item(href_list["item"], usr)
 
 	else if(href_list["allitems"])
 
-		if(!length(stored_items))
-			to_chat(user, "<span class='warning'>There is nothing to recover from storage.</span>")
+		if(!length(GLOB.cryoed_item_list[category]))
+			to_chat(usr, "<span class='warning'>There is nothing to recover from storage.</span>")
+			updateUsrDialog()
 			return
 
 		visible_message("<span class='notice'>[src] beeps happily as it disgorges the desired objects.</span>")
 
-		for(var/obj/item/I in stored_items)
-			dispense_item(user, I, FALSE)
+		for(var/A in GLOB.cryoed_item_list[category])
+			var/obj/item/I = A
+			dispense_item(I, usr, FALSE)
 
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/cryopod/proc/dispense_item(mob/user, obj/item/I, message = TRUE)
+/obj/machinery/computer/cryopod/proc/dispense_item(obj/item/I, mob/user, message = TRUE)
 	if(QDELETED(I))
-		GLOB.cryoed_item_list[cryotype] -= I
+		GLOB.cryoed_item_list[category] -= I
 		return
-	if(!(I in GLOB.cryoed_item_list[cryotype]))
+	if(!(I in GLOB.cryoed_item_list[category]))
 		if(message)
 			to_chat(user, "<span class='warning'>[I] is no longer in storage.</span>")
 		return
 	if(message)
 		visible_message("<span class='notice'>[src] beeps happily as it disgorges [I].</span>")
 	I.forceMove(get_turf(src))
-	GLOB.cryoed_item_list[cryotype] -= I
+	GLOB.cryoed_item_list[category] -= I
+
+#undef CRYOCONSOLE_MOB_LIST
+#undef CRYOCONSOLE_ITEM_LIST
 
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed
@@ -178,17 +208,16 @@
 	orient_right = TRUE
 	icon_state = "body_scanner_0-r"
 
-/obj/machinery/cryopod/New()
+/obj/machinery/cryopod/Initialize()
+	. = ..()
 	announce = new(src)
 	update_icon()
-	return ..()
 
 /obj/machinery/cryopod/update_icon()
 	var/occupied = occupant ? TRUE : FALSE
 	var/mirror = orient_right ? "-r" : ""
 	icon_state = "body_scanner_[occupied][mirror]"
 
-//Lifted from Unity stasis.dm and refactored. ~Zuhayr
 /obj/machinery/cryopod/process()
 	if(!occupant)
 		stop_processing()
@@ -207,7 +236,7 @@
 	stop_processing()
 	update_icon()
 
-/mob/proc/despawn(obj/machinery/cryopod/pod, dept_console = "REQ")
+/mob/proc/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
 	var/list/stored_items = list()
 
 	for(var/obj/item/W in contents)
@@ -215,13 +244,17 @@
 
 	GLOB.cryoed_item_list[dept_console].Add(stored_items)
 
+	var/who = "[real_name]"
+	var/work = "Unassigned"
+	var/when = gameTimestamp()
+
 	//Handle job slot/tater cleanup.
 	if(job)
 		var/datum/job/J = job
+		work = J.title
 		J.current_positions--
 		if(J.title in JOBS_REGULAR_ALL)
 			SSticker.mode.latejoin_tally-- //Cryoing someone removes a player from the round, blocking further larva spawns until accounted for
-
 
 	//Delete them from datacore.
 	if(length(PDA_Manifest))
@@ -243,7 +276,7 @@
 	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
 
 	//Make an announcement and log the person entering storage.
-	GLOB.cryoed_mob_list += "[real_name]"
+	GLOB.cryoed_mob_list += list(who, work, when)
 
 	pod.announce.autosay("[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", "Hypersleep Storage System")
 	pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")
@@ -251,26 +284,26 @@
 	qdel(src)
 
 
-/mob/living/carbon/human/despawn(obj/machinery/cryopod/pod, dept_console = "REQ")
+/mob/living/carbon/human/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
 	if(job)
 		var/datum/job/J = job
 		switch(J.title)
 			if("Master at Arms","Command Master at Arms")
-				dept_console = "MP"
+				dept_console = CRYO_SEC
 			if("Medical Officer","Medical Researcher","Chief Medical Officer")
-				dept_console = "Med"
+				dept_console = CRYO_MED
 			if("Ship Engineer","Chief Ship Engineer")
-				dept_console = "Eng"
+				dept_console = CRYO_ENGI
 			else if(assigned_squad)
 				switch(assigned_squad.id)
 					if(ALPHA_SQUAD)
-						dept_console = "Alpha"
+						dept_console = CRYO_ALPHA
 					if(BRAVO_SQUAD)
-						dept_console = "Bravo"
+						dept_console = CRYO_BRAVO
 					if(CHARLIE_SQUAD)
-						dept_console = "Charlie"
+						dept_console = CRYO_CHARLIE
 					if(DELTA_SQUAD)
-						dept_console = "Delta"
+						dept_console = CRYO_DELTA
 	if(assigned_squad)
 		var/datum/squad/S = assigned_squad
 		var/datum/job/J = job
@@ -434,27 +467,31 @@
 		to_chat(usr, "<span class='warning'>[src] is occupied.</span>")
 		return
 
+	climb_in(usr)
+
+/obj/machinery/cryopod/proc/climb_in(mob/user)
 	usr.visible_message("<span class='notice'>[usr] starts climbing into [src].</span>",
 	"<span class='notice'>You start climbing into [src].</span>")
 
-	if(do_after(usr, 20, FALSE, 5, BUSY_ICON_GENERIC))
+	if(!do_after(usr, 20, FALSE, 5, BUSY_ICON_GENERIC))
+		return
 
-		if(!usr?.client)
-			return
+	if(!usr?.client)
+		return
 
-		if(occupant)
-			to_chat(usr, "<span class='warning'>[src] is occupied.</span>")
-			return
+	if(occupant)
+		to_chat(usr, "<span class='warning'>[src] is occupied.</span>")
+		return
 
-		usr.forceMove(src)
-		occupant = usr
-		update_icon()
+	usr.forceMove(src)
+	occupant = usr
+	update_icon()
 
-		to_chat(usr, "<span class='notice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
-		to_chat(usr, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
-		time_entered = world.time
-		start_processing()
-		add_fingerprint(usr)
+	to_chat(usr, "<span class='notice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
+	to_chat(usr, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
+	time_entered = world.time
+	start_processing()
+	add_fingerprint(usr)
 
 /obj/machinery/cryopod/proc/go_out()
 
@@ -470,3 +507,18 @@
 	occupant = null
 	stop_processing()
 	update_icon()
+
+/obj/machinery/cryopod/admin //Invisible admin magic.
+	name = "inconspicious bluespace hypersleep chamber."
+	desc = "A large automated capsule capable of putting anyone inside into 'hypersleep'. Enough said."
+	density = FALSE
+	time_till_despawn = 0 SECONDS
+	alpha = 0
+
+/obj/machinery/cryopod/admin/Initialize(mapload, mob/victim)
+	. = ..()
+	if(victim)
+		victim.forceMove(src)
+		occupant = victim
+		victim.despawn(src)
+		qdel(src)
