@@ -3789,6 +3789,12 @@
 "aod" = (
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
+"aoe" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/warning{
+	dir = 10
+	},
+/area/lv624/ground/river2)
 "aof" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/tile/vault{
@@ -4864,6 +4870,12 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle6)
+"asK" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/gm/coast/corner{
+	dir = 4
+	},
+/area/lv624/ground/river2)
 "asL" = (
 /obj/structure/jungle/vines,
 /turf/open/gm/coast/corner{
@@ -4971,6 +4983,7 @@
 /turf/open/gm/grass,
 /area/lv624/ground/compound/sw)
 "atk" = (
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/warning{
 	dir = 6
 	},
@@ -20522,12 +20535,18 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/relay)
-"iLb" = (
+"tPp" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/gm/dirtgrassborder2/corner{
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
+"wTt" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/gm/coast{
+	dir = 1
+	},
+/area/lv624/ground/river2)
 
 (1,1,1) = {"
 aaa
@@ -37147,9 +37166,9 @@ ajz
 ajz
 apD
 ajz
+apD
 ajz
-ajz
-ajz
+apD
 apD
 are
 avb
@@ -37403,9 +37422,9 @@ aqm
 akp
 ajz
 ajz
-ajz
+apD
 aqm
-ajz
+apD
 alc
 ajA
 auf
@@ -37662,7 +37681,7 @@ alL
 alQ
 alL
 alQ
-api
+aoe
 aoy
 arU
 auF
@@ -38684,7 +38703,7 @@ aph
 alS
 alS
 alS
-aqH
+ajS
 alS
 alS
 alS
@@ -39200,10 +39219,10 @@ ajz
 ajz
 arO
 apD
-ajz
+apD
 arO
 aqI
-ald
+asK
 aro
 arV
 atX
@@ -39459,7 +39478,7 @@ aqs
 ajz
 ajz
 apD
-alb
+wTt
 arU
 arV
 arW
@@ -50255,7 +50274,7 @@ apD
 aqI
 ajA
 ald
-iLb
+tPp
 atW
 atX
 arW
