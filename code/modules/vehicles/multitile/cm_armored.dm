@@ -251,7 +251,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			to_chat(user, "There is nothing installed on the [i] hardpoint slot.")
 			continue
 		var/status = HP.health <= 0.1 ? "broken" : "functional"
-		var/span_class = health <= 0.1 ? "<span class = 'danger'>" : "<span class = 'notice'>"
+		var/span_class = HP.health <= 0.1 ? "<span class = 'danger'>" : "<span class = 'notice'>"
 		if((user?.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer >= SKILL_ENGINEER_METAL) || isobserver(user))
 			switch(PERCENT(HP.health / HP.maxhealth))
 				if(0.1 to 33)
