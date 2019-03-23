@@ -70,7 +70,7 @@ GLOBAL_LIST_EMPTY(faxes)
 	set category = "Fun"
 	set name = "View Faxes"
 
-	if(!check_rights(R_ADMIN) && !is_mentor(usr.client))
+	if(!check_rights(R_ADMIN, FALSE) && !is_mentor(usr.client))
 		return
 
 	var/dat
