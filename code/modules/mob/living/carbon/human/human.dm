@@ -1692,7 +1692,7 @@
 	equip_to_slot_or_del(I, SLOT_WEAR_ID)
 
 	SSjob.AssignRole(src, rank)
-	O.post_equip(src)
+	O.handle_id(src)
 
 
 /mob/living/carbon/human/proc/set_equipment(equipment)

@@ -227,8 +227,6 @@
 					message_admins("[ADMIN_TPMONTY(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
 
 
-				callHook("reassign_employee", list(modify))
-
 		if ("reg")
 			if (is_authenticated())
 				var/t2 = modify
@@ -286,8 +284,6 @@
 				modify.access = list()
 				log_admin("[key_name(usr)] terminated the ID of [modify.registered_name].")
 				message_admins("[ADMIN_TPMONTY(usr)] terminated the ID of [modify.registered_name].")
-
-				callHook("terminate_employee", list(modify))
 
 	if (modify)
 		modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")

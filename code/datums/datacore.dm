@@ -1,12 +1,3 @@
-/hook/startup/proc/createDatacore()
-	data_core = new /obj/effect/datacore()
-	return 1
-
-
-
-
-
-
 /obj/effect/datacore
 	name = "datacore"
 	var/medical[] = list()

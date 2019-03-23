@@ -60,7 +60,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			ticket_list = resolved_tickets
 		else
 			CRASH("Invalid ticket state: [new_ticket.state]")
-	var/num_closed = ticket_list.len
+	var/num_closed = length(ticket_list)
 	if(num_closed)
 		for(var/I in 1 to num_closed)
 			var/datum/admin_help/AH = ticket_list[I]
@@ -866,7 +866,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if(!length(afkmins) && !length(stealthmins) && !length(powerlessmins))
 			final = "[msg] - No admins online"
 		else
-			final = "[msg] - All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]! Total: [allmins.len] "
+			final = "[msg] - No available admins - Stealth: ([english_list(stealthmins)]) | AFK: ([english_list(afkmins)]) | Mentors: ([english_list(powerlessmins)]) | Total: [length(allmins)]"
 		send2irc(source, final)
 
 
@@ -881,21 +881,19 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /proc/ircadminwho()
 	var/list/adm = get_admin_counts()
 	var/list/activemins = adm["present"]
-	. = length(activemins)
-	if(.)
-		var/list/afkmins = adm["afk"]
-		var/list/stealthmins = adm["stealth"]
-		var/list/powerlessmins = adm["noflags"]
-		var/list/allmins = adm["total"]
-		if(!length(afkmins) && !length(stealthmins) && !length(powerlessmins))
-			return "No admins online"
-		else
-			return "All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]! Total: [length(allmins)]"
+	var/list/afkmins = adm["afk"]
+	var/list/stealthmins = adm["stealth"]
+	var/list/powerlessmins = adm["noflags"]
+	var/list/allmins = adm["total"]
+	if(!length(afkmins) && !length(stealthmins) && !length(powerlessmins))
+		return "No admins online"
+
+	return "Present admins: ([english_list(activemins)]) | Stealth: ([english_list(stealthmins)]) | AFK: ([english_list(afkmins)]) | Mentors: ([english_list(powerlessmins)]) | Total: [length(allmins)]"
 
 
 /proc/keywords_lookup(msg, irc)
 	//This is a list of words which are ignored by the parser when comparing message contents for names. MUST BE IN LOWER CASE!
-	var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","alien","as", "i")
+	var/list/adminhelp_ignored_words = list("unknown", "the", "a", "an", "of", "monkey", "alien", "as", "i")
 
 	//explode the input msg into a list
 	var/list/msglist = splittext(msg, " ")
@@ -905,7 +903,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/list/forenames = list()
 	var/list/ckeys = list()
 	var/founds = ""
-	for(var/mob/M in GLOB.mob_list)
+	for(var/x in GLOB.mob_list)
+		var/mob/M = x
 		var/list/indexing = list(M.real_name, M.name)
 		if(M.mind)
 			indexing += M.mind.name
@@ -914,14 +913,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			var/list/L = splittext(string, " ")
 			var/surname_found = 0
 			//surnames
-			for(var/i=L.len, i>=1, i--)
+			for(var/i = length(L), i >= 1, i--)
 				var/word = ckey(L[i])
 				if(word)
 					surnames[word] = M
 					surname_found = i
 					break
 			//forenames
-			for(var/i=1, i<surname_found, i++)
+			for(var/i = 1, i < surname_found, i++)
 				var/word = ckey(L[i])
 				if(word)
 					forenames[word] = M

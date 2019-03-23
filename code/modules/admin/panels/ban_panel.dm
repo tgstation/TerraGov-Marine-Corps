@@ -1,7 +1,9 @@
-/client/proc/mute(var/client/C, mute_type, force = FALSE)
-	if(!force)
-		if(!check_if_greater_rights_than(C) && !check_rights(R_BAN, FALSE))
-			return
+/client/proc/mute(client/C, mute_type, force = FALSE)
+	if(IsAdminAdvancedProcCall())
+		return
+
+	if(!force && (!check_if_greater_rights_than(C) || !check_rights(R_BAN, FALSE)))
+		return
 
 	if(!C?.prefs)
 		return
@@ -328,9 +330,11 @@
 /datum/admins/proc/ban_parse_href(list/href_list)
 	if(!check_rights(R_BAN))
 		return
+
 	if(!SSdbcore.Connect())
 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
 		return
+
 	var/list/error_state = list()
 	var/player_key
 	var/ip_check = FALSE
@@ -414,7 +418,7 @@
 			changes += list("Duration" = "[href_list["oldduration"]] MINUTE to [duration] [interval]")
 		if(reason != href_list["oldreason"])
 			changes += list("Reason" = "[href_list["oldreason"]]<br>to<br>[reason]")
-		if(!changes.len)
+		if(!length(changes))
 			error_state += "No changes were detected."
 	else
 		severity = href_list["radioseverity"]
@@ -425,16 +429,16 @@
 				roles_to_ban += "Server"
 			if("role")
 				href_list.Remove("Command", "Police", "Engineering", "Medical", "Marines", "Requisitions", "Silicon", "Abstract", "Antagonist Positions") //remove the role banner hidden input values
-				if(href_list[href_list.len] == "roleban_delimiter")
+				if(href_list[length(href_list)] == "roleban_delimiter")
 					error_state += "Role ban was selected but no roles to ban were selected."
 				else
 					var/delimiter_pos = href_list.Find("roleban_delimiter")
-					href_list.Cut(1, delimiter_pos+1)//remove every list element before and including roleban_delimiter so we have a list of only the roles to ban
+					href_list.Cut(1, delimiter_pos + 1)//remove every list element before and including roleban_delimiter so we have a list of only the roles to ban
 					for(var/key in href_list) //flatten into a list of only unique keys
 						roles_to_ban |= key
 			else
 				error_state += "No ban type was selected."
-	if(error_state.len)
+	if(length(error_state))
 		to_chat(usr, "<span class='danger'>Ban not [edit_id ? "edited" : "created"] because the following errors were present:\n[error_state.Join("\n")]</span>")
 		return
 	if(edit_id)
@@ -535,7 +539,7 @@
 	if(!SSdbcore.MassInsert(format_table_name("ban"), sql_ban, warn = 1))
 		return
 	var/target = ban_target_string(player_key, player_ip, player_cid)
-	var/msg = "has created a [isnull(duration) ? "permanent" : "temporary [time_message]"] [applies_to_admins ? "admin " : ""][roles_to_ban[1] == "Server" ? "server ban" : "role ban from [roles_to_ban.len] roles"] for [target]."
+	var/msg = "has created a [isnull(duration) ? "permanent" : "temporary [time_message]"] [applies_to_admins ? "admin " : ""][roles_to_ban[1] == "Server" ? "server ban" : "role ban from [length(roles_to_ban)] roles"] for [target]."
 	log_admin_private("[kn] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join(", ")]"] Reason: [reason]")
 	message_admins("[kna] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join("\n")]"]\nReason: [reason]")
 	if(applies_to_admins)
@@ -1164,9 +1168,9 @@
 				newmatches_admin[ckey] = ckey
 
 			if(\
-				newmatches.len > STICKYBAN_MAX_MATCHES || \
-				newmatches_connected.len > STICKYBAN_MAX_EXISTING_USER_MATCHES || \
-				newmatches_admin.len > STICKYBAN_MAX_ADMIN_MATCHES \
+				length(newmatches) > STICKYBAN_MAX_MATCHES || \
+				length(newmatches_connected) > STICKYBAN_MAX_EXISTING_USER_MATCHES || \
+				length(newmatches_admin) > STICKYBAN_MAX_ADMIN_MATCHES \
 				)
 				if (cachedban["reverting"])
 					return null

@@ -204,7 +204,7 @@
 			to_chat(usr, results[I])
 
 
-/world/proc/SDQL2_query(query_text, log_entry1, log_entry2)
+/world/proc/SDQL2_query(query_text, log_entry1, log_entry2, irc = FALSE)
 	var/query_log = "executed SDQL query(s): \"[query_text]\"."
 	message_admins("[log_entry1] [query_log]")
 	query_log = "[log_entry2] [query_log]"
@@ -212,6 +212,12 @@
 	NOTICE(query_log)
 
 	var/start_time_total = REALTIMEOFDAY
+
+	if(!irc && lowertext(query_text) == "file")
+		if(usr.client.holder)
+			usr.client.holder.marked_file = input("Select a file:", "File") as null|file
+			to_chat(usr, "<span class='notice'>File selected successfully.</span>")
+			return
 
 	if(!length(query_text))
 		return
@@ -269,6 +275,10 @@
 	while(!finished)
 
 	var/end_time_total = REALTIMEOFDAY - start_time_total
+	if(irc)
+		return list("SDQL query combined results: [query_text]",\
+			"SDQL query completed: [objs_all] objects selected by path, and [selectors_used ? objs_eligible : objs_all] objects executed on after WHERE filtering/MAPping if applicable.",\
+			"SDQL combined querys took [DisplayTimeText(end_time_total)] to complete.") + combined_refs
 	return list("<span class='admin'>SDQL query combined results: [query_text]</span>",\
 		"<span class='admin'>SDQL query completed: [objs_all] objects selected by path, and [selectors_used ? objs_eligible : objs_all] objects executed on after WHERE filtering/MAPping if applicable.</span>",\
 		"<span class='admin'>SDQL combined querys took [DisplayTimeText(end_time_total)] to complete.</span>") + combined_refs

@@ -1,22 +1,3 @@
-/datum/tgs_chat_command/ircstatus
-	name = "status"
-	help_text = "Gets the admincount, playercount, gamemode, and true game mode of the server"
-	admin_only = TRUE
-	var/last_irc_status = 0
-
-
-/datum/tgs_chat_command/ircstatus/Run(datum/tgs_chat_user/sender, params)
-	var/rtod = REALTIMEOFDAY
-	if(rtod - last_irc_status < IRC_STATUS_THROTTLE)
-		return
-	last_irc_status = rtod
-	var/list/adm = get_admin_counts()
-	var/list/allmins = adm["total"]
-	var/status = "Admins: [length(allmins)] (Active: [english_list(adm["present"])] AFK: [english_list(adm["afk"])] Stealth: [english_list(adm["stealth"])] Other: [english_list(adm["noflags"])]). "
-	status += "Players: [length(GLOB.clients)]. Mode: [SSticker.mode ? SSticker.mode.name : "Not started"]."
-	return status
-
-
 /datum/tgs_chat_command/irccheck
 	name = "check"
 	help_text = "Gets the playercount, gamemode, and address of the server"
@@ -29,7 +10,7 @@
 		return
 	last_irc_check = rtod
 	var/server = CONFIG_GET(string/server)
-	return "[GLOB.round_id ? "Round #[GLOB.round_id]: " : ""][length(GLOB.clients)] players on [SSmapping.config.map_name], Mode: [GLOB.master_mode]; Round [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "Active" : "Finishing") : "Starting"] -- [server ? server : "<[world.internet_address]:[world.port]>"]" 
+	return "[GLOB.round_id ? "Round #[GLOB.round_id]: " : ""][length(GLOB.clients)] players on [SSmapping.config.map_name], Mode: [GLOB.master_mode]; Round [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "Active" : "Finishing") : "Starting"] -- [server ? server : "<byond://[world.internet_address]:[world.port]>"]" 
 
 
 /datum/tgs_chat_command/ahelp
@@ -68,7 +49,7 @@
 		return "Insufficient parameters"
 	log_admin("Chat Name Check: [sender.friendly_name] on [params]")
 	message_admins("Name checking [params] from [sender.friendly_name]")
-	return keywords_lookup(params, 1)
+	return keywords_lookup(params, TRUE)
 
 
 /datum/tgs_chat_command/adminwho

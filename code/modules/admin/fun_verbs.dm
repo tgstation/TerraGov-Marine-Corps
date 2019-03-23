@@ -688,6 +688,8 @@
 				message_admins("[ADMIN_TPMONTY(usr)] has set the rank of mindless mob [ADMIN_TPMONTY(H)] to [newrank].")
 				return
 
+			H.set_rank(newrank)
+
 			log_admin("[key_name(usr)] has set the rank of [key_name(H)] to [newrank].")
 			message_admins("[ADMIN_TPMONTY(usr)] has set the rank of [ADMIN_TPMONTY(H)] to [newrank].")
 
