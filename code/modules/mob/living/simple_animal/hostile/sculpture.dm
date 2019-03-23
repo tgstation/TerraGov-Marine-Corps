@@ -237,10 +237,10 @@
 			snap_neck(M)
 			break
 
-/mob/living/simple_animal/sculpture/doMove(atom/destination)
-	. = ..()
-	if(.)
-		check_snap_neck()
+/mob/living/simple_animal/sculpture/forceMove(atom/destination, var/no_tp = 0)
+
+	..()
+	check_snap_neck()
 
 /mob/living/simple_animal/sculpture/proc/snap_neck(var/mob/living/target)
 

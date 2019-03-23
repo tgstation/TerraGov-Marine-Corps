@@ -322,10 +322,10 @@
 			murder(M)
 			break
 
-/mob/living/simple_animal/shyguy/doMove(atom/destination)
-	. = ..()
-	if(.)
-		check_murder()
+/mob/living/simple_animal/shyguy/forceMove(atom/destination, var/no_tp = 0)
+
+	..()
+	check_murder()
 
 /mob/living/simple_animal/shyguy/proc/murder(var/mob/living/T)
 

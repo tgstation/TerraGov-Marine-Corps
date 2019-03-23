@@ -111,55 +111,29 @@
 		F.loc = loc
 
 /atom/movable/proc/forceMove(atom/destination)
-	. = FALSE
 	if(destination)
-		. = doMove()
-	else
-		CRASH("No valid destination passed into forceMove")
-
-/atom/movable/proc/moveToNullspace()
-	return doMove(null)
-
-/atom/movable/proc/doMove(atom/destination)
-	. = FALSE
-	if(destination)
-		pulledby?.stop_pulling()
-		var/atom/oldloc = loc
-		var/same_loc = oldloc == destination
-		var/area/old_area = get_area(oldloc)
-		var/area/destarea = get_area(destination)
-
+		if(pulledby)
+			pulledby.stop_pulling()
+		var/oldLoc
+		if(loc)
+			oldLoc = loc
+			loc.Exited(src)
 		loc = destination
-		moving_diagonally = FALSE
-
-		if(!same_loc)
-			if(oldloc)
-				oldloc.Exited(src, destination)
-				if(old_area && old_area != destarea)
-					old_area.Exited(src, destination)
-			for(var/atom/movable/AM in oldloc)
-				AM.Uncrossed(src)
-			destination.Entered(src, oldloc)
-			if(destarea && old_area != destarea)
-				destarea.Entered(src, oldloc)
-
-			for(var/atom/movable/AM in destination)
-				if(AM == src)
-					continue
-				AM.Crossed(src, oldloc)
-
-		Moved(oldloc, NONE, TRUE)
-		. = TRUE
-
-	//If no destination, move the atom into nullspace (don't do this unless you know what you're doing)
-	else
-		. = TRUE
-		if (loc)
-			var/atom/oldloc = loc
-			var/area/old_area = get_area(oldloc)
-			oldloc.Exited(src, null)
-			old_area?.Exited(src, null)
-		loc = null
+		loc.Entered(src)
+		var/area/old_area
+		if(oldLoc)
+			old_area = get_area(oldLoc)
+		var/area/new_area = get_area(destination)
+		if(new_area && old_area != new_area)
+			new_area.Entered(src)
+		for(var/atom/movable/AM in destination)
+			if(AM == src)
+				continue
+			AM.Crossed(src)
+		if(oldLoc)
+			Moved(oldLoc,dir)
+		return 1
+	return 0
 
 
 //called when src is thrown into hit_atom

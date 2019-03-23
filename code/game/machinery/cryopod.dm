@@ -309,8 +309,14 @@
 		items -= src
 		qdel(src)
 	else
-		moveToNullspace()
+		loc = null
 	return items
+
+/obj/item/storage/store_in_cryo(list/items)
+	for(var/obj/item/I in src)
+		remove_from_storage(I, loc)
+		items = I.store_in_cryo(items)
+	return ..()
 
 /obj/item/clothing/suit/storage/store_in_cryo(list/items)
 	for(var/obj/item/I in pockets)
