@@ -35,7 +35,6 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 /mob/living/carbon/monkey/can_ventcrawl()
 	return TRUE
 
-
 /mob/living/simple_animal/mouse/can_ventcrawl()
 	return TRUE
 
@@ -129,7 +128,6 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 /mob/living/carbon/Xenomorph/Hunter/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
 	. = ..()
 	cancel_stealth()
-
 
 /mob/living/proc/remove_ventcrawl()
 	is_ventcrawling = FALSE
