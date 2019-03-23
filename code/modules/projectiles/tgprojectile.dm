@@ -1,8 +1,8 @@
 //Some debug variables. Comment/Uncomment them to Enable/Disable the debug messages.
-#define DEBUG_HIT_CHANCE	0
-#define DEBUG_HUMAN_DEFENSE	0
-#define DEBUG_XENO_DEFENSE	0
-#define DEBUG_CREST_DEFENSE	0
+//#define DEBUG_HIT_CHANCE	0
+//#define DEBUG_HUMAN_DEFENSE	0
+//#define DEBUG_XENO_DEFENSE	0
+//#define DEBUG_CREST_DEFENSE	0
 
 // check _DEFINES/projectiles.dm for some more defines
 
