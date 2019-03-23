@@ -215,7 +215,10 @@
 
 	if(!irc && lowertext(query_text) == "file")
 		if(usr.client.holder)
-			usr.client.holder.marked_file = input("Select a file:", "File") as null|file
+			var/file = input("Select a file:", "File") as null|file
+			if(!file)
+				return
+			usr.client.holder.marked_file = file
 			to_chat(usr, "<span class='notice'>File selected successfully.</span>")
 			return
 
