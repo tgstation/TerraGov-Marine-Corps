@@ -47,10 +47,10 @@
 
 
 /obj/item/device/binoculars/tactical/attack_self(mob/user)
+	. = ..()
 	if(!user?.client)
 		return
 	user.client.click_intercept = src
-	zoom(user, 11, 12)
 
 
 /obj/item/device/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
@@ -61,7 +61,7 @@
 	return TRUE
 
 
-/obj/item/device/binoculars/tactical/on_unset_interaction(var/mob/user)
+/obj/item/device/binoculars/tactical/on_unset_interaction(mob/user)
 	. = ..()
 
 	if(!user?.client)

@@ -122,7 +122,7 @@
 	if(A in DirectAccess())
 		if(W)
 			if(!A.attackby(W, src))
-				W.afterattack(src, A, params)
+				W.afterattack(A, src, params)
 		else
 			UnarmedAttack(A)
 		return
@@ -135,7 +135,6 @@
 	if(CanReach(A, W))
 		if(W)
 			if(!A.attackby(W, src))
-				to_chat(world, "[W].affterattack on [A]")
 				W.afterattack(A, src, params)
 		else
 			UnarmedAttack(A, 1)
@@ -143,7 +142,7 @@
 		if(W)
 			if(A.Adjacent(src))
 				A.attackby(W, src)
-			W.afterattack(A, src, 0, params)
+			W.afterattack(A, src, FALSE, params)
 		else
 			if(A.Adjacent(src))
 				A.attack_hand(src)
@@ -158,7 +157,7 @@
 
 	var/list/closed = list()
 	var/list/checking = list(ultimate_target)
-	while (checking.len && depth > 0)
+	while(checking.len && depth > 0)
 		var/list/next = list()
 		--depth
 
@@ -167,7 +166,7 @@
 				continue
 			closed[target] = TRUE
 			if(isturf(target) || isturf(target.loc) || (target in direct_access)) //Directly accessible atoms
-				if(Adjacent(target) || (tool && CheckToolReach(src, target, tool.reach))) //Adjacent or reaching attacks
+				if(Adjacent(target) || target.Adjacent(src) || (tool && CheckToolReach(src, target, tool.reach))) //Adjacent or reaching attacks
 					return TRUE
 
 			if(!target.loc)
@@ -440,9 +439,9 @@
 
 /obj/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && iscarbon(usr))
-		var/mob/living/carbon/C = usr
-		C.swap_hand()
+	if(modifiers["middle"] && ishuman(usr))
+		var/mob/living/carbon/human/H = usr
+		H.swap_hand()
 	else
 		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
 		params += "&catcher=1"

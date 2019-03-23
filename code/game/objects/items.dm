@@ -661,6 +661,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = !zoom
 		user.zoom_cooldown = world.time + 20
+		if(user.client.click_intercept)
+			user.client.click_intercept = null
 	else //Otherwise we want to zoom in.
 		if(world.time <= user.zoom_cooldown) //If we are spamming the zoom, cut it out
 			return

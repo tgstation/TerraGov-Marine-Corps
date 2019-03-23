@@ -154,6 +154,7 @@
 		for(var/obj/item/item in mob.contents)
 			if(item.zoom)
 				item.zoom(mob)
+				click_intercept = null
 				break
 
 	//Check if you are being grabbed and if so attemps to break it

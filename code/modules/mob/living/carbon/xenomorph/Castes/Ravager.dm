@@ -10,7 +10,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40
 	melee_damage_upper = 60
-	attack_delay = 6
+	attack_delay = 7
 
 	// *** Tackle *** //
 	tackle_damage = 55

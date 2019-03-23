@@ -9,11 +9,11 @@
 	name = "storage"
 	icon = 'icons/obj/items/storage/storage.dmi'
 	w_class = 3.0
-	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
-	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
-	var/list/bypass_w_limit = new/list() //a list of objects which this item can store despite not passing the w_class limit
-	var/list/click_border_start = new/list() //In slotless storage, stores areas where clicking will refer to the associated item
-	var/list/click_border_end = new/list()
+	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
+	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
+	var/list/bypass_w_limit = list() //a list of objects which this item can store despite not passing the w_class limit
+	var/list/click_border_start = list() //In slotless storage, stores areas where clicking will refer to the associated item
+	var/list/click_border_end = list()
 	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_storage_space = 14 //The sum of the storage costs of all the items in this storage item.
 	var/storage_slots = 7 //The number of storage slots in this container.
@@ -276,10 +276,13 @@
 	for(var/i = 1 to length(S.click_border_start))
 		if(S.click_border_start[i] > click_x || click_x > S.click_border_end[i])
 			continue
+		I = S.contents[i]
+		if(!I)
+			continue
 		if(I == S.contents[length(S.contents)])
 			continue
-		I = S.contents[i]
 		I.attack_hand(usr)
+		return
 
 
 /datum/numbered_display

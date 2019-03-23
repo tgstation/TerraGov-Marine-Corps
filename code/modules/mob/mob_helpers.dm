@@ -366,7 +366,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return
 
 /mob/proc/is_mob_incapacitated(ignore_restrained)
-	return (stat || stunned || knocked_down || knocked_out || (!ignore_restrained && is_mob_restrained()))
+	return (stat || stunned || knocked_down || knocked_out || istype(loc, /mob/living/carbon/Xenomorph) || (!ignore_restrained && is_mob_restrained()))
 
 /mob/proc/reagent_check(datum/reagent/R)
 	return 1
@@ -414,7 +414,7 @@ mob/proc/get_standard_bodytemperature()
 
 /mob/verb/a_select_zone(input as text, screen_num as null|num)
 	set name = "a-select-zone"
-	set hidden = 1
+	set hidden = TRUE
 
 	if(!screen_num)
 		return

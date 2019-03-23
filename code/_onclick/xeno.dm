@@ -3,8 +3,7 @@
 		return FALSE
 
 	if(xeno_caste)
-		var/datum/xeno_caste/X = xeno_caste
-		changeNext_move(X.attack_delay)
+		changeNext_move(xeno_caste.attack_delay)
 	else
 		changeNext_move(CLICK_CD_MELEE)
 

@@ -42,6 +42,7 @@
 	var/turf/T = target
 	if(T.density || !T.Adjacent(user))
 		return
+	user.changeNext_move(CLICK_CD_MELEE)
 	step(user.pulling, get_dir(user.pulling.loc, T))
 
 
@@ -119,6 +120,7 @@
 
 				//Then, we place the mob where it ought to be
 				X.stomach_contents.Add(pulled)
+				pulled.KnockDown(3)
 				pulled.forceMove(X)
 				if(ishuman(pulled)) //Check for camera; if we have one, turn it off.
 					var/mob/living/carbon/human/H = pulled

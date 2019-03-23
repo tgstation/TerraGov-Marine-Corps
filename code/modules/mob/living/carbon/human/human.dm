@@ -1644,7 +1644,7 @@
 
 
 /mob/living/carbon/human/a_select_zone(input as text, screen_num as null|num)
-	screen_num = 21
+	screen_num = 20
 	return ..()
 
 

@@ -478,6 +478,8 @@
 	if(!put_in_hands(G)) //placing the grab in hand failed, grab is dropped, deleted, and we stop pulling automatically.
 		return
 
+	changeNext_move(CLICK_CD_RANGE)
+
 	if(M)
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
