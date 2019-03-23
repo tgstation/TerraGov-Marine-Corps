@@ -55,6 +55,9 @@ Currently only has the tank hardpoints
 	to_chat(user, "It's [status].")
 
 /obj/item/hardpoint/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/ammo_magazine/tank))
+		try_add_clip(W, user)
+		return
 	if(!iswelder(W) && !iswrench(W))
 		return ..()
 	var/repair_delays = 6
@@ -117,9 +120,9 @@ Currently only has the tank hardpoints
 		return FALSE
 	return TRUE
 
-/obj/item/hardpoint/proc/try_add_clip(obj/item/ammo_magazine/A, mob/user)
+/obj/item/hardpoint/proc/try_add_clip(obj/item/ammo_magazine/tank/A, mob/user)
 
-	if(max_clips == 0)
+	if(!max_clips)
 		to_chat(user, "<span class='warning'>This module does not have room for additional ammo.</span>")
 		return FALSE
 	else if(length(backup_clips) >= max_clips)
@@ -129,15 +132,17 @@ Currently only has the tank hardpoints
 		to_chat(user, "<span class='warning'>That is the wrong ammo type.</span>")
 		return FALSE
 
-	to_chat(user, "<span class='notice'>Installing \the [A] in \the [owner].</span>")
+	to_chat(user, "<span class='notice'>You start loading [A] in [src].</span>")
 
-	if(!do_after(user, 10))
-		to_chat(user, "<span class='warning'>Something interrupted you while reloading [owner].</span>")
+	if(!do_after(user, 10, TRUE, 5, BUSY_ICON_FRIENDLY) || !Adjacent(user))
+		to_chat(user, "<span class='warning'>Something interrupted you while loading [src].</span>")
 		return FALSE
 
-	user.temporarilyRemoveItemFromInventory(A, 0)
-	to_chat(user, "<span class='notice'>You install \the [A] in \the [owner].</span>")
+	user.temporarilyRemoveItemFromInventory(A, FALSE)
+	user.visible_message("<span class='notice'>[user] loads [A] in [src]</span>",
+				"<span class='notice'>You finish loading [A] in \the [src].</span>", null, 3)
 	backup_clips += A
+	playsound(user.loc, 'sound/weapons/gun_minigun_cocked.ogg', 25)
 	return TRUE
 
 //Returns the image object to overlay onto the root object

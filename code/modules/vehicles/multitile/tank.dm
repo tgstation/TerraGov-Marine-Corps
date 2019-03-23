@@ -242,12 +242,18 @@
 	if(!M || get_turf(M) != get_turf(src) || (M.is_mob_incapacitated() && !forced))
 		return
 
-	if(forced)
-		M.forceMove(get_turf(entrance))
-	else if(!M.Move(get_turf(entrance)))
-		if(!silent)
-			to_chat(M, "<span class='notice'>Something is blocking you from exiting.</span>")
-		return
+	var/turf/T = get_turf(entrance)
+	if(!forced)
+		if(!T.CanPass(M, T))
+			if(!silent)
+				to_chat(M, "<span class='notice'>Something is blocking you from exiting.</span>")
+			return
+		for(var/atom/A in T)
+			if(!A.CanPass(M, T))
+				if(!silent)
+					to_chat(M, "<span class='notice'>Something is blocking you from exiting.</span>")
+				return
+	M.forceMove(T)
 
 	if(M == gunner)
 		deactivate_all_hardpoints()

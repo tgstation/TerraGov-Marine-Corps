@@ -13,7 +13,7 @@
 	icon = 'icons/obj/machines/drone_fab.dmi'
 	icon_state = "drone_fab_idle"
 	var/obj/item/loaded_mod
-	var/tank_points = 625
+	var/tank_points = 500
 	var/busy = FALSE
 	var/screen = TANKFAB_MAIN_MENU
 
@@ -190,19 +190,18 @@
 /obj/machinery/tank_part_fabricator/proc/calculate_mod_value()
 	if(istype(loaded_mod, /obj/item/hardpoint))
 		var/obj/item/hardpoint/mod = loaded_mod
-		. = CLAMP(mod.point_cost * (mod.health/mod.maxhealth), mod.point_cost * 0.3, mod.point_cost * 0.75)
+		. = (mod.point_cost - mod.point_cost * (1 - (mod.health/mod.maxhealth)) * 0.5) * 0.5
 		if(mod.starter_ammo)
 			if(mod.ammo)
-				. += min(mod.ammo.point_cost * (mod.ammo.current_rounds/mod.ammo.max_rounds) * 0.9)
+				. += (mod.ammo.point_cost - mod.ammo.point_cost * (1 - (mod.ammo.current_rounds/mod.ammo.max_rounds)) * 0.5) * 0.5
 			else
-				. += mod.starter_ammo.point_cost * 0.9
+				. -= initial(mod.starter_ammo.point_cost) * 0.5
 			for(var/O in mod.backup_clips)
 				var/obj/item/ammo_magazine/tank/A = O
-				. += CLAMP(A.point_cost * (A.current_rounds/A.max_rounds), A.point_cost * 0.1, A.point_cost * 0.75)
+				. = (A.point_cost - A.point_cost * (1 - (A.current_rounds/A.max_rounds)) * 0.5) * 0.5
 	else if(istype(loaded_mod, /obj/item/ammo_magazine/tank))
 		var/obj/item/ammo_magazine/tank/A = loaded_mod
-		. = CLAMP(A.point_cost * (A.current_rounds/A.max_rounds), A.point_cost * 0.1, A.point_cost * 0.75)
-
+		. = (A.point_cost - A.point_cost * (1 - (A.current_rounds/A.max_rounds)) * 0.5) * 0.5
 	. = max(round(.), 0)
 
 /obj/machinery/tank_part_fabricator/proc/calculate_repair_price()

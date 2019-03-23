@@ -485,7 +485,9 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/root/cm_armored/proc/take_damage_type(damage, type, atom/attacker)
 	for(var/i in hardpoints)
 		var/obj/item/hardpoint/HP = hardpoints[i]
-		HP?.health -= max(damage * dmg_distribs[i] * get_dmg_multi(type), 0)
+		HP?.health = CLAMP(health - damage * dmg_distribs[i] * get_dmg_multi(type), 0, HP.maxhealth)
+
+	healthcheck()
 
 	if(istype(attacker, /mob))
 		var/mob/M = attacker
@@ -509,8 +511,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	take_damage_type(P.damage * (0.75 + P.ammo.penetration/100), dam_type, P.firer)
 
-	healthcheck()
-
 //severity 1.0 explosions never really happen so we're gonna follow everyone else's example
 /obj/vehicle/multitile/root/cm_armored/ex_act(severity)
 
@@ -522,8 +522,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		if(2)
 			take_damage_type(rand(30, 40), "explosive") //Heavy explosions do some damage, but are largely deferred by the armour/bulk.
 			take_damage_type(rand(10, 15), "slash")
-
-	healthcheck() //Tanks/armoured vehicles don't really take damage from light explosions, such as frag grenades. Also makes using the LTB more viable due to crush/stun chaining being removed.
 
 //Honestly copies some code from the Xeno files, just handling some special cases
 /obj/vehicle/multitile/root/cm_armored/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus)
@@ -558,8 +556,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	"<span class='danger'>You slash [src]!</span>")
 
 	take_damage_type(damage * ( (isxenoravager(M)) ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
-
-	healthcheck()
 
 //Special case for entering the vehicle without using the verb
 /obj/vehicle/multitile/root/cm_armored/attack_hand(mob/user)
