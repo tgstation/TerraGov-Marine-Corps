@@ -270,6 +270,7 @@ cases. Override_icon_state should be a list.*/
 		H.updatehealth()
 		qdel(current_acid)
 		current_acid = null
+	user.changeNext_move(CLICK_CD_RAPID)
 	return
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
