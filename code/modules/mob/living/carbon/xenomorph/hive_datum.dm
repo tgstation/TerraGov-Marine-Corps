@@ -391,7 +391,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 // atom level because of /obj/item/projectile/var/atom/firer
 /atom/proc/issamexenohive(atom/A)
-	if(!get_xeno_hivenumber() || !A.get_xeno_hivenumber())
+	if(!get_xeno_hivenumber() || !A?.get_xeno_hivenumber())
 		return FALSE
 	return get_xeno_hivenumber() == A.get_xeno_hivenumber()
 

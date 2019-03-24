@@ -565,7 +565,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO,
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI	100
 #define CRUSHER_CHARGE_TANK_MULTI		100
 
-#define CRUSHER_STOMP_UPGRADE_BONUS ( 1 + upgrade * 0.05 )
+#define CRUSHER_STOMP_UPGRADE_BONUS ( 1 + upgrade_as_number() * 0.05 )
 
 //carrier defines
 
