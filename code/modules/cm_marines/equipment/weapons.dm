@@ -380,8 +380,10 @@
 				switch(SSmapping.config.map_name)
 					if(MAP_ICE_COLONY)
 						new /obj/item/clothing/head/helmet/marine(src)
+						new /obj/item/clothing/under/marine/sniper(src)
 					else
 						new /obj/item/clothing/head/helmet/durag(src)
+						new /obj/item/clothing/under/marine/sniper(src)
 						new /obj/item/facepaint/sniper(src)
 		..()
 
