@@ -2322,28 +2322,23 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /mob/living/carbon/Xenomorph/proc/recurring_injection(mob/living/carbon/C, toxin = "xeno_toxin", channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 3)
 	if(!C?.can_sting() || !toxin)
 		return FALSE
-	var/datum/reagent/body_tox = C.reagents.get_reagent(toxin)
-	if(body_tox?.overdosed)
-		to_chat(src, "<span class='warning'>You defer from injecting [body_tox.name] as you sense the host is already saturated with it.</span>")
-		return FALSE
-	for(var/i = 1 to count)
+	var/datum/reagent/body_tox
+	var/i = 1
+	do
 		face_atom(C)
 		if(stagger)
 			return FALSE
 		animation_attack_on(C)
 		playsound(C, 'sound/effects/spray3.ogg', 15, 1)
 		playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-		if(body_tox && transfer_amount + body_tox.volume > body_tox.overdose_threshold)
-			C.reagents.add_reagent(toxin, body_tox.overdose_threshold - body_tox.volume) //Enough to go back to the OD threshold.
-			to_chat(src, "<span class='xenowarning'>You finish injecting [body_tox.name] as you sense the host is already saturated with it.</span>")
-			break
 		C.reagents.add_reagent(toxin, transfer_amount)
-		if(!body_tox)
+		if(!body_tox) //Let's check this each time because depending on the metabolization rate it can disappear between stings.
 			body_tox = C.reagents.get_reagent(toxin)
-			to_chat(C, "<span class='danger'>You feel a tiny prick.</span>")
-			to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with [body_tox.name]!</span>")
-		if(i != count && !do_after(src, channel_time, TRUE, 5, BUSY_ICON_HOSTILE))
-			return FALSE
+		to_chat(C, "<span class='danger'>You feel a tiny prick.</span>")
+		to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with [body_tox.name]!</span>")
+		if(body_tox.volume > body_tox.overdose_threshold)
+			to_chat(src, "<span class='danger'>You sense the host is saturated with [body_tox.name].</span>")
+	while(i++ < count && do_after(src, channel_time, TRUE, 5, BUSY_ICON_HOSTILE))
 	return TRUE
 
 

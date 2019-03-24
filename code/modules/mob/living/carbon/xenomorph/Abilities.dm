@@ -1161,7 +1161,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 
 /datum/action/xeno_action/activable/larva_growth/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(world.time > X.last_larva_growth_used + XENO_LARVAL_GROWTH_COOLDOWN)
+	if(world.time > X.last_larva_growth_used + XENO_LARVAL_ADVANCEMENT_COOLDOWN)
 		return TRUE
 
 /datum/action/xeno_action/activable/larva_growth/use_ability(atom/A)
@@ -1169,8 +1169,8 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	if(!X.check_state() || X.action_busy)
 		return
 
-	if(world.time < X.last_larva_growth_used + XENO_LARVAL_GROWTH_COOLDOWN)
-		to_chat(X, "<span class='xenowarning'>You're still recovering from your previous larva growth advance. Wait [round((X.last_larva_growth_used + XENO_LARVAL_GROWTH_COOLDOWN - world.time) * 0.1)] seconds.</span>")
+	if(world.time < X.last_larva_growth_used + XENO_LARVAL_ADVANCEMENT_COOLDOWN)
+		to_chat(X, "<span class='xenowarning'>You're still recovering from your previous larva growth advance. Wait [round((X.last_larva_growth_used + XENO_LARVAL_ADVANCEMENT_COOLDOWN - world.time) * 0.1)] seconds.</span>")
 		return
 
 	if(!istype(A, /mob/living/carbon/human))

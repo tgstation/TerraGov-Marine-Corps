@@ -463,6 +463,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 #define CRITICAL_HIT_DELAY 25
 
+#define XENO_LARVAL_ADVANCEMENT_COOLDOWN	15 SECONDS
+
 #define XENO_LARVAL_GROWTH_COOLDOWN			12 SECONDS
 #define XENO_LARVAL_AMOUNT_RECURRING		10
 #define XENO_LARVAL_CHANNEL_TIME			1.5 SECONDS
