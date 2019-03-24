@@ -157,12 +157,9 @@
 	return
 
 /obj/machinery/computer/cryopod/proc/dispense_item(obj/item/I, mob/user, message = TRUE)
-	if(!istype(I))
-		to_chat(world, "what the fuck 1?! [I]")
-	if(QDELETED(I))
-		to_chat(world, "what the fuck 2?!")
+	if(!istype(I) || QDELETED(I))
 		GLOB.cryoed_item_list[category] -= I
-		return
+		CRASH("Deleted or erroneous variable ([I]) called for hypersleep inventory retrivial.")
 	if(!(I in GLOB.cryoed_item_list[category]))
 		if(message)
 			to_chat(user, "<span class='warning'>[I] is no longer in storage.</span>")
@@ -257,7 +254,6 @@
 			dept_console = CRYO_MED
 		else if(J.title in JOBS_ENGINEERING)
 			dept_console = CRYO_ENGI
-	to_chat(world, "step 1")
 	if(assigned_squad)
 		var/datum/squad/S = assigned_squad
 		switch(S.id)
@@ -285,14 +281,12 @@
 				S.num_leaders--
 		S.count--
 		S.clean_marine_from_squad(src, TRUE) //Remove from squad recods, if any.
-	to_chat(world, "step 2")
-	var/list/stored_items = list()
 
+	var/list/stored_items = list()
 	for(var/obj/item/W in src)
 		stored_items.Add(W.store_in_cryo())
-
 	GLOB.cryoed_item_list[dept_console].Add(stored_items)
-	to_chat(world, "step 3")
+
 	//Delete them from datacore.
 	if(length(PDA_Manifest))
 		PDA_Manifest.Cut()
@@ -308,21 +302,18 @@
 		if((G.fields["name"] == real_name))
 			data_core.general -= G
 			qdel(G)
-	to_chat(world, "step 4")
+
 	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
-	to_chat(world, "step 5")
+
 	//Make an announcement and log the person entering storage.
 	var/data = num2text(length(GLOB.cryoed_mob_list))
-	to_chat(world, "step 5.5")
 	GLOB.cryoed_mob_list += data
 	GLOB.cryoed_mob_list[data] = list(real_name, job ? job : "Unassigned", gameTimestamp())
-	to_chat(world, "step 6")
 
 	pod.announce.autosay("[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", "Hypersleep Storage System")
 	pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")
 	pod.occupant = null
 	qdel(src)
-	to_chat(world, "step 7")
 
 /obj/item/proc/store_in_cryo(list/items)
 
