@@ -652,9 +652,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	dat += "<br><br>"
 	if(initiator)
 		if(check_rights(R_ADMIN, FALSE))
-			dat += "<b>Actions:</b> [FullMonty(ref_src)] [ClosureLinks(ref_src)]<br>"
+			dat += "<b>Actions:</b> [FullMonty(ref_src)]<br>[ClosureLinks(ref_src)]<br>"
 		else if(check_rights(R_MENTOR, FALSE))
-			dat += "<b>Actions:</b> [HalfMonty(ref_src)] [ClosureLinksMentor(ref_src)]<br>"
+			dat += "<b>Actions:</b> [HalfMonty(ref_src)]<br>[ClosureLinksMentor(ref_src)]<br>"
 	else
 		if(check_rights(R_ADMIN, FALSE))
 			dat += "<b>DISCONNECTED</b>\t[ClosureLinks(ref_src)]<br>"
