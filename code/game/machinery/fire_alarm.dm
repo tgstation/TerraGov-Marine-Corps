@@ -20,7 +20,6 @@ FIRE ALARM
 	idle_power_usage = 2
 	active_power_usage = 6
 	power_channel = ENVIRON
-	var/last_process = 0
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 
@@ -146,25 +145,6 @@ FIRE ALARM
 	..()
 	return
 
-/obj/machinery/firealarm/process()//Note: this processing was mostly phased out due to other code, and only runs when needed
-	if(machine_stat & (NOPOWER|BROKEN))
-		return
-
-	if(src.timing)
-		if(src.time > 0)
-			src.time = src.time - ((world.timeofday - last_process)/10)
-		else
-			src.alarm()
-			src.time = 0
-			src.timing = 0
-			//STOP_PROCESSING(SSobj, src) // uh what
-		src.updateDialog()
-	last_process = world.timeofday
-/*
-	if(locate(/obj/fire) in loc)
-		alarm()
-*/
-	return
 
 /obj/machinery/firealarm/power_change()
 	..()
@@ -237,7 +217,6 @@ FIRE ALARM
 			src.alarm()
 		else if (href_list["time"])
 			src.timing = text2num(href_list["time"])
-			last_process = world.timeofday
 			//START_PROCESSING(SSobj, src)
 		else if (href_list["tp"])
 			var/tp = text2num(href_list["tp"])

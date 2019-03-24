@@ -46,10 +46,7 @@ SUBSYSTEM_DEF(machines)
 	while(length(currentrun))
 		var/obj/machinery/thing = currentrun[currentrun.len]
 		currentrun.len--
-		if(!QDELETED(thing) && thing.process(seconds) != PROCESS_KILL)
-			if(thing.use_power)
-				thing.auto_use_power() //add back the power state
-		else
+		if(QDELETED(thing) || thing.process(seconds) == PROCESS_KILL)
 			processing -= thing
 			if(!QDELETED(thing))
 				thing.datum_flags &= ~DF_ISPROCESSING
