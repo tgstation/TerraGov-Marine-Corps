@@ -145,6 +145,9 @@ datum/game_mode/proc/initialize_special_clamps()
 	if(xenomorphs.len < xeno_required_num)
 		return FALSE
 
+	if(length(xenomorphs) < xeno_starting_num)
+		stored_larva += xeno_starting_num - length(xenomorphs)
+
 	return TRUE
 
 /datum/game_mode/proc/initialize_starting_queen_list()
