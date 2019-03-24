@@ -138,7 +138,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			num_admins_resolved++
 
 	if(check_rights(R_ADMIN, FALSE))
-		stat("Active Tickets:", astatclick.update("[num_mentors_active + num_admins_active]"))
+		stat("Active Tickets:", astatclick.update("[num_mentors_active + num_admins_active - num_admins_disconnected - num_mentors_disconnected]"))
 	else if(check_rights(R_MENTOR, FALSE))
 		stat("Active Tickets:", astatclick.update("[num_mentors_active]"))
 
