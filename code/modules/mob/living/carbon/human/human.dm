@@ -1671,9 +1671,12 @@
 /mob/living/carbon/human/proc/set_rank(rank)
 	if(!mind)
 		job = rank
-		return
+		return FALSE
 
 	var/datum/job/J = SSjob.name_occupations[rank]
+	if(!J)
+		return FALSE
+
 	var/datum/outfit/job/O = new J.outfit
 	var/id = O.id ? O.id : /obj/item/card/id
 	var/obj/item/card/id/I = new id
@@ -1692,10 +1695,14 @@
 	SSjob.AssignRole(src, rank)
 	O.handle_id(src)
 
+	GLOB.datacore.manifest_update(real_name, real_name, job)
+
+	return TRUE
+
 
 /mob/living/carbon/human/proc/set_equipment(equipment)
 	if(!equipment)
-		return
+		return FALSE
 
 	var/list/job_paths = subtypesof(/datum/outfit/job)
 	var/list/outfits = list()
@@ -1708,8 +1715,10 @@
 		outfits[D.name] = D
 
 	if(!(equipment in outfits))
-		return
+		return FALSE
 
 	var/datum/outfit/O = new outfits[equipment]
 	delete_equipment(TRUE)
 	equipOutfit(O, TRUE)
+
+	return TRUE
