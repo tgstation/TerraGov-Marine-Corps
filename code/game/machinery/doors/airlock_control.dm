@@ -13,11 +13,6 @@ obj/machinery/door/airlock/proc/can_radio()
 		return 0
 	return 1
 
-obj/machinery/door/airlock/process()
-	..()
-	if (arePowerSystemsOn())
-		execute_current_command()
-
 obj/machinery/door/airlock/receive_signal(datum/signal/signal)
 	if (!arePowerSystemsOn()) return //no power
 
