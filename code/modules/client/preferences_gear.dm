@@ -24,14 +24,14 @@ GLOBAL_LIST_EMPTY(gear_datums)
 
 /datum/gear/bandana_green
 	display_name = "TGMC bandana (green)"
-	path = /obj/item/clothing/head/cmbandana
+	path = /obj/item/clothing/head/tgmcbandana
 	cost = 3
 	slot = SLOT_HEAD
 
 
 /datum/gear/bandana_tan
 	display_name = "TGMC bandana (tan)"
-	path = /obj/item/clothing/head/cmbandana/tan
+	path = /obj/item/clothing/head/tgmcbandana/tan
 	cost = 3
 	slot = SLOT_HEAD
 

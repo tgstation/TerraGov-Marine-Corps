@@ -12,6 +12,130 @@
 		M.update_inv_head()
 
 
+/obj/item/clothing/head/tgmcbandana
+	name = "\improper TGMC bandana"
+	desc = "Typically worn by heavy-weapon operators, mercenaries and scouts, the bandana serves as a lightweight and comfortable hat. Comes in two stylish colors."
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
+	icon_state = "band"
+	flags_inv_hide = HIDETOPHAIR
+
+
+/obj/item/clothing/head/tgmcbandana/New()
+	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_band") )
+	return ..()
+
+
+/obj/item/clothing/head/tgmcbandana/tan
+	icon_state = "band2"
+
+
+/obj/item/clothing/head/beanie
+	name = "\improper TGMC beanie"
+	desc = "A standard military beanie, often worn by non-combat military personnel and support crews, though the occasional one finds its way to the front line. Popular due to being comfortable and snug."
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
+	icon_state = "beanie_cargo"
+	flags_inv_hide = HIDETOPHAIR
+	armor = list(melee = 35, bullet = 35, laser = 35, energy = 15, bomb = 10, bio = 0, rad = 0)
+
+
+/obj/item/clothing/head/tgmcberet
+	name = "\improper TGMC beret"
+	desc = "A hat typically worn by the field-officers of the TGMC. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
+	icon_state = "beret"
+	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
+
+
+/obj/item/clothing/head/tgmcberet/New()
+	select_gamemode_skin(/obj/item/clothing/head/tgmcberet, list(MAP_ICE_COLONY = "s_beret"))
+	return ..()
+
+
+/obj/item/clothing/head/tgmcberet/tan
+	icon_state = "berettan"
+
+
+/obj/item/clothing/head/tgmcberet/tan/New()
+	select_gamemode_skin(/obj/item/clothing/head/tgmcberet/tan)
+	return ..()
+
+
+/obj/item/clothing/head/tgmcberet/red
+	icon_state = "beretred"
+
+
+/obj/item/clothing/head/tgmcberet/wo
+	name = "\improper Command Master at Arms beret"
+	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."
+	icon_state = "beretwo"
+	armor = list(melee = 60, bullet = 80, laser = 80,energy = 20, bomb = 10, bio = 0, rad = 0)
+
+
+/obj/item/clothing/head/tgmccap
+	name = "\improper TGMC cap"
+	desc = "A casual cap occasionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
+	icon_state = "cap"
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
+	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
+	var/flipped_cap = FALSE
+	var/base_cap_icon
+
+
+/obj/item/clothing/head/tgmccap/New()
+	select_gamemode_skin(/obj/item/clothing/head/tgmccap)
+	base_cap_icon = icon_state
+	return ..()
+
+
+/obj/item/clothing/head/tgmccap/verb/fliphat()
+	set name = "Flip hat"
+	set category = "Object"
+	set src in usr
+	if(!isliving(usr))
+		return
+	if(usr.is_mob_incapacitated())
+		return
+
+	flipped_cap = !flipped_cap
+	if(flipped_cap)
+		to_chat(usr, "You spin the hat backwards! You look like a tool.")
+		icon_state = base_cap_icon + "_b"
+	else
+		to_chat(usr, "You spin the hat back forwards. That's better.")
+		icon_state = base_cap_icon
+
+	update_clothing_icon()
+
+
+/obj/item/clothing/head/tgmccap/ro
+	name = "\improper TGMC officer cap"
+	desc = "A hat usually worn by officers in the TGMC. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
+	icon_state = "rocap"
+
+
+/obj/item/clothing/head/tgmccap/ro/New()
+	select_gamemode_skin(/obj/item/clothing/head/tgmccap/ro)
+	return ..()
+
+
+/obj/item/clothing/head/tgmccap/req
+	name = "\improper TGMC requisition cap"
+	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
+	icon_state = "cargocap"
+
+
+/obj/item/clothing/head/boonie
+	name = "Boonie Hat"
+	desc = "The pinnacle of tacticool technology."
+	icon_state = "booniehat"
+	item_state = "booniehat"
+	armor = list(melee = 35, bullet = 35, laser = 35, energy = 15, bomb = 10, bio = 0, rad = 0)
+
+
 /obj/item/clothing/head/headband
 	name = "\improper TGMC headband"
 	desc = "A rag typically worn by the less-orthodox weapons operators in the TGMC. While it offers no protection, it is certainly comfortable to wear compared to the standard helmet. Comes in two stylish colors."
