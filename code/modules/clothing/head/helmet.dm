@@ -170,7 +170,7 @@
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "helmet"
-	armor = list(melee = 65, bullet = 35, laser = 30, energy = 20, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 65, bullet = 60, laser = 30, energy = 20, bomb = 25, bio = 0, rad = 0)
 	health = 5
 	var/helmet_overlays[]
 	flags_inventory = BLOCKSHARPOBJ
@@ -282,7 +282,7 @@
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
-	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
+	armor = list(melee = 75, bullet = 65, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 
 /obj/item/clothing/head/helmet/marine/leader/New(loc,expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper M11 pattern leader snow helmet"),
@@ -305,7 +305,7 @@
 	name = "\improper M3-S helmet"
 	icon_state = "scout_helmet"
 	desc = "A custom helmet designed for TGMC Scouts."
-	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
+	armor = list(melee = 75, bullet = 70, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 	New()
@@ -316,7 +316,7 @@
 	name = "\improper M35 helmet"
 	icon_state = "pyro_helmet"
 	desc = "A helmet designed for TGMC Pyrotechnicians. Contains heavy insulation, covered in nomex weave."
-	armor = list(melee = 85, bullet = 75, laser = 60, energy = 50, bomb = 50, bio = 10, rad = 10)
+	armor = list(melee = 85, bullet = 80, laser = 60, energy = 50, bomb = 50, bio = 10, rad = 10)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
@@ -328,7 +328,7 @@
 	name = "\improper M30 tactical helmet"
 	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is required to fly the Alamo and Normandy dropships manually and in safety."
 	icon_state = "helmetp"
-	armor = list(melee = 65, bullet = 50, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
+	armor = list(melee = 65, bullet = 65, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
@@ -341,7 +341,7 @@
 	name = "\improper M50 tanker helmet"
 	desc = "The lightweight M50 tanker helmet is designed for use by armored crewmen in the TGMC. It offers low weight protection, and allows agile movement inside the confines of an armored vehicle."
 	icon_state = "tanker_helmet"
-	armor = list(melee = 40, bullet = 40, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
+	armor = list(melee = 65, bullet = 65, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
@@ -524,3 +524,105 @@
 	icon_state = "mercenary_engineer_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 55, bullet = 60, laser = 45, energy = 55, bomb = 60, bio = 10, rad = 10)
+
+
+//===========================//HELGHAST - MERCENARY\\================================\\
+//=====================================================================\\
+
+
+/obj/item/clothing/head/beanie
+	name = "\improper TGMC beanie"
+	desc = "A standard military beanie, often worn by non-combat military personnel and support crews, though the occasional one finds its way to the front line. Popular due to being comfortable and snug."
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
+	icon_state = "beanie_cargo"
+	flags_inv_hide = HIDETOPHAIR
+	armor = list(melee = 35, bullet = 35, laser = 35, energy = 15, bomb = 10, bio = 0, rad = 0)
+
+
+/obj/item/clothing/head/tgmcberet
+	name = "\improper TGMC beret"
+	desc = "A hat typically worn by the field-officers of the TGMC. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
+	icon_state = "beret"
+	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
+
+
+/obj/item/clothing/head/tgmcberet/New()
+	select_gamemode_skin(/obj/item/clothing/head/tgmcberet, list(MAP_ICE_COLONY = "s_beret"))
+	return ..()
+
+
+/obj/item/clothing/head/tgmcberet/tan
+	icon_state = "berettan"
+
+
+/obj/item/clothing/head/tgmcberet/tan/New()
+	select_gamemode_skin(/obj/item/clothing/head/tgmcberet/tan)
+	return ..()
+
+
+/obj/item/clothing/head/tgmcberet/red
+	icon_state = "beretred"
+
+
+/obj/item/clothing/head/tgmcberet/wo
+	name = "\improper Command Master at Arms beret"
+	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."
+	icon_state = "beretwo"
+	armor = list(melee = 60, bullet = 80, laser = 80,energy = 20, bomb = 10, bio = 0, rad = 0)
+
+
+/obj/item/clothing/head/tgmccap
+	name = "\improper TGMC cap"
+	desc = "A casual cap occasionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
+	icon_state = "cap"
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
+	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
+	var/flipped_cap = FALSE
+	var/base_cap_icon
+
+
+/obj/item/clothing/head/tgmccap/New()
+	select_gamemode_skin(/obj/item/clothing/head/tgmccap)
+	base_cap_icon = icon_state
+	return ..()
+
+
+/obj/item/clothing/head/tgmccap/verb/fliphat()
+	set name = "Flip hat"
+	set category = "Object"
+	set src in usr
+	if(!isliving(usr))
+		return
+	if(usr.is_mob_incapacitated())
+		return
+
+	flipped_cap = !flipped_cap
+	if(flipped_cap)
+		to_chat(usr, "You spin the hat backwards! You look like a tool.")
+		icon_state = base_cap_icon + "_b"
+	else
+		to_chat(usr, "You spin the hat back forwards. That's better.")
+		icon_state = base_cap_icon
+
+	update_clothing_icon()
+
+
+/obj/item/clothing/head/tgmccap/ro
+	name = "\improper TGMC officer cap"
+	desc = "A hat usually worn by officers in the TGMC. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
+	icon_state = "rocap"
+
+
+/obj/item/clothing/head/tgmccap/ro/New()
+	select_gamemode_skin(/obj/item/clothing/head/tgmccap/ro)
+	return ..()
+
+
+/obj/item/clothing/head/tgmccap/req
+	name = "\improper TGMC requisition cap"
+	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
+	icon_state = "cargocap"

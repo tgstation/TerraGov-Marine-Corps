@@ -38,14 +38,14 @@ GLOBAL_LIST_EMPTY(gear_datums)
 
 /datum/gear/beret_green
 	display_name = "TGMC beret (green)"
-	path = /obj/item/clothing/head/cmberet
+	path = /obj/item/clothing/head/tgmcberet
 	cost = 3
 	slot = SLOT_HEAD
 
 
 /datum/gear/beret_tan
 	display_name = "TGMC beret (tan)"
-	path = /obj/item/clothing/head/cmberet/tan
+	path = /obj/item/clothing/head/tgmcberet/tan
 	cost = 3
 	slot = SLOT_HEAD
 
@@ -73,7 +73,7 @@ GLOBAL_LIST_EMPTY(gear_datums)
 
 /datum/gear/cap
 	display_name = "TGMC cap"
-	path = /obj/item/clothing/head/cmcap
+	path = /obj/item/clothing/head/tgmccap
 	cost = 3
 	slot = SLOT_HEAD
 
