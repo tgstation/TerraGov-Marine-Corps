@@ -286,7 +286,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(istype(H.wear_id))
-			var/obj/item/card/C = H.wear_id
+			var/obj/item/card/id/C = H.wear_id
 			C.update_label()
 
 		if(!GLOB.datacore.manifest_update(oldname, newname, H.job))
