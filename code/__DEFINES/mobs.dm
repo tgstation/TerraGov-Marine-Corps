@@ -470,7 +470,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define XENO_LARVAL_CHANNEL_TIME			1.5 SECONDS
 
 #define XENO_NEURO_STING_COOLDOWN			12 SECONDS
-#define XENO_NEURO_AMOUNT_RECURRING			10
+#define XENO_NEURO_AMOUNT_RECURRING			15
 #define XENO_NEURO_CHANNEL_TIME				1.5 SECONDS
 
 #define CANNOT_HOLD_EGGS 0
@@ -562,7 +562,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define DEFILER_GAS_CHANNEL_TIME			2 SECONDS
 #define DEFILER_GAS_DELAY					1 SECONDS
 #define DEFILER_STING_CHANNEL_TIME			1.5 SECONDS
-#define DEFILER_CLAW_AMOUNT					6
+#define DEFILER_CLAW_AMOUNT					6.5
 #define DEFILER_STING_AMOUNT_RECURRING		10
 #define GROWTH_TOXIN_METARATE		0.2
 
