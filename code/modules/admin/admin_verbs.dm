@@ -1045,7 +1045,7 @@
 
 	if(irc)
 		to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]</span></font>")
-		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='red'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>IRC</i>: [keywordparsedmsg]</font>")
+		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>IRC</i>: [keywordparsedmsg]</font>")
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
 	else
 		if(check_other_rights(recipient, R_ADMIN, FALSE) || is_mentor(recipient))
@@ -1067,7 +1067,7 @@
 					admin_ticket_log(recipient, interaction_message)
 
 			else //Recipient is a staff member, sender is not.
-				admin_ticket_log(src, "<font size='3' color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
+				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 				to_chat(recipient, "<font size='3' color='red'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 				window_flash(recipient)
 				to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[msg]</span></font>")
@@ -1098,7 +1098,7 @@
 					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg'))
 
 				window_flash(recipient)
-				admin_ticket_log(recipient, "<font color='blue'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
+				admin_ticket_log(recipient, "<font color='#a7f2ef'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
 
 
 			else		//neither are admins
@@ -1236,7 +1236,7 @@
 	to_chat(C, "<font color='red'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>")
 	to_chat(C, "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
 
-	admin_ticket_log(C, "<font color='blue'>PM From [irc_tagged]: [msg]</font>")
+	admin_ticket_log(C, "<font color='#a7f2ef'>PM From [irc_tagged]: [msg]</font>")
 
 	//always play non-admin recipients the adminhelp sound
 	SEND_SOUND(C, 'sound/effects/adminhelp.ogg')
