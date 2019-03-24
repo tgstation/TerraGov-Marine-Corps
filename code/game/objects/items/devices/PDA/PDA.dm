@@ -45,7 +45,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	var/list/cartmodes = list(40, 42, 43, 433, 44, 441, 45, 451, 46, 48, 47, 49) // If you add more cartridge modes add them to this list as well.
 	var/list/no_auto_update = list(1, 40, 43, 44, 441, 45, 451)		     // These modes we turn off autoupdate
-	var/list/update_every_five = list(3, 41, 433, 46, 47, 48, 49)			     // These we update every 5 ticks
+	var/list/update_every_five = list(3, 433, 46, 47, 48, 49)			     // These we update every 5 ticks
 
 	var/obj/item/card/id/id = null //Making it possible to slot an ID card into the PDA so it can function as both.
 	var/ownjob = null //related to above
@@ -424,8 +424,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				data["convo_name"] = sanitize(c["owner"])
 				data["convo_job"] = sanitize(c["job"])
 				break
-	if(mode==41)
-		data["manifest"] = GLOB.datacore.get_manifest_json()
 
 
 	if(mode==3)
@@ -553,8 +551,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			mode = 0
 		if("chatroom") // chatroom hub
 			mode = 5
-		if("41") //Manifest
-			mode = 41
 
 
 //MAIN FUNCTIONS===================================

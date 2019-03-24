@@ -267,8 +267,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 
 
-//This will update a mob's name, real_name, mind.name, GLOB.datacore records, pda and id
-//Calling this proc without an oldname will only update the mob and skip updating the pda, id and records ~Carn
+//This will update a mob's name, real_name, mind.name, GLOB.datacore records and id
 /mob/proc/fully_replace_character_name(oldname, newname)
 	if(!newname)	
 		return FALSE
@@ -284,45 +283,16 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	if(dna)
 		dna.real_name = real_name
 
-	if(oldname)
-		//update the datacore records! This is goig to be a bit costly.
-		var/found = FALSE
-		for(var/list/L in list(GLOB.datacore.general, GLOB.datacore.medical, GLOB.datacore.security, GLOB.datacore.locked))
-			for(var/datum/data/record/R in L)
-				if(R.fields["name"] == oldname)
-					R.fields["name"] = newname
-					if(job)
-						R.fields["real_rank"] = job
-						R.fields["rank"] = job
-					found = TRUE
-					break
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(istype(H.wear_id))
+			var/obj/item/card/C = H.wear_id
+			C.update_label()
 
-		if(!found && ishuman(src))
-			var/mob/living/carbon/human/H = src
+		if(!GLOB.datacore.manifest_update(oldname, newname, H.job))
 			GLOB.datacore.manifest_inject(H)
 
-		//update our pda and id if we have them on our person
-		var/list/searching = GetAllContents(searchDepth = 3)
-		var/search_id = 1
-		var/search_pda = 1
-
-		for(var/A in searching)
-			if( search_id && istype(A,/obj/item/card/id) )
-				var/obj/item/card/id/ID = A
-				if(ID.registered_name == oldname)
-					ID.registered_name = newname
-					ID.name = "[newname]'s ID Card ([ID.assignment])"
-					if(!search_pda)	break
-					search_id = 0
-
-			else if( search_pda && istype(A,/obj/item/device/pda) )
-				var/obj/item/device/pda/PDA = A
-				if(PDA.owner == oldname)
-					PDA.owner = newname
-					PDA.name = "PDA-[newname] ([PDA.ownjob])"
-					if(!search_id)	break
-					search_pda = 0
-	return 1
+	return TRUE
 
 
 

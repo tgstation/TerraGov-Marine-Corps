@@ -976,3 +976,31 @@ obj/proc/apply_overlay(var/icon = null, var/atom/A, var/icon_state = null, var/p
 
 	var/icon/I = getFlatIcon(thing)
 	return icon2html(I, target)
+
+
+//For creating consistent icons for human looking simple animals
+/proc/get_flat_human_icon(icon_id, datum/job/J, datum/preferences/prefs, dummy_key, showDirs = GLOB.cardinals, outfit_override = null)
+	var/static/list/humanoid_icon_cache = list()
+	if(!icon_id || !humanoid_icon_cache[icon_id])
+		var/mob/living/carbon/human/dummy/body = generate_or_wait_for_human_dummy(dummy_key)
+
+		if(prefs)
+			prefs.copy_to(body,TRUE,FALSE)
+		if(J)
+			J.equip(body, TRUE, FALSE, outfit_override = outfit_override)
+		else if (outfit_override)
+			body.equipOutfit(outfit_override,visualsOnly = TRUE)
+
+
+		var/icon/out_icon = icon('icons/effects/effects.dmi', "nothing")
+		for(var/D in showDirs)
+			body.setDir(D)
+			COMPILE_OVERLAYS(body)
+			var/icon/partial = getFlatIcon(body)
+			out_icon.Insert(partial,dir=D)
+
+		humanoid_icon_cache[icon_id] = out_icon
+		dummy_key? unset_busy_human_dummy(dummy_key) : qdel(body)
+		return out_icon
+	else
+		return humanoid_icon_cache[icon_id]

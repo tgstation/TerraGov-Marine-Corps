@@ -339,9 +339,6 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 				var/datum/job/J = SSjob.name_occupations[occupant.mind.assigned_role]
 				J.current_positions--
 
-			//Delete them from datacore.
-			if(PDA_Manifest.len)
-				PDA_Manifest.Cut()
 			for(var/datum/data/record/R in GLOB.datacore.medical)
 				if((R.fields["name"] == occupant.real_name))
 					GLOB.datacore.medical -= R
