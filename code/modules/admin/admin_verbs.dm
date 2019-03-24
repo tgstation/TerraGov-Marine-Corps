@@ -1061,15 +1061,14 @@
 				window_flash(recipient)
 				window_flash(src)
 
-				var/interaction_message = "<font color='purple'>PM from-<b>[key_name(src, recipient, TRUE)]</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [keywordparsedmsg]</font>"
+				var/interaction_message = "<font color='#cea7f1'>PM from-<b>[key_name(src, recipient, TRUE)]</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [keywordparsedmsg]</font>"
 				admin_ticket_log(src, interaction_message)
 				if(recipient != src)
 					admin_ticket_log(recipient, interaction_message)
 
 			else //Recipient is a staff member, sender is not.
-				var/replymsg = "<font size='3' color='red'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>"
-				admin_ticket_log(src, replymsg)
-				to_chat(recipient, replymsg)
+				admin_ticket_log(src, "<font size='3' color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
+				to_chat(recipient, "<font size='3' color='red'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 				window_flash(recipient)
 				to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[msg]</span></font>")
 

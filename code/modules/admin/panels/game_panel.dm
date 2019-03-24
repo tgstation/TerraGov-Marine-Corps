@@ -20,7 +20,6 @@
 		<br>
 		<a href='?src=[ref];ffattack_log=1'>FF Log</a><br>
 		<a href='?src=[ref];explosion_log=1'>Explosion Log</a><br>
-		<a href='?src=[ref];comms_log=1'>Comms Log</a>
 		"}
 
 	var/datum/browser/browser = new(usr, "gamepanel", "<div align='center'>Game Panel</div>", 220, 330)
