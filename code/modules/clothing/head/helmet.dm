@@ -626,3 +626,11 @@
 	name = "\improper TGMC requisition cap"
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
 	icon_state = "cargocap"
+
+
+/obj/item/clothing/head/boonie
+	name = "Boonie Hat"
+	desc = "The pinnacle of tacticool technology."
+	icon_state = "booniehat"
+	item_state = "booniehat"
+	armor = list(melee = 35, bullet = 35, laser = 35, energy = 15, bomb = 10, bio = 0, rad = 0)
