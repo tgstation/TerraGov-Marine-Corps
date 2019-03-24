@@ -83,7 +83,7 @@
 	src.build_inventory(contraband, 1)
 	src.build_inventory(premium, 0, 1)
 	power_change()
-	start_processing()
+
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)

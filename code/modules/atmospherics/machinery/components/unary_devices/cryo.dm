@@ -169,7 +169,7 @@
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/turn_off()
 	on = FALSE
-	stop_processing()
+	STOP_PROCESSING(SSmachines, src)
 	update_icon()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/process()
@@ -181,7 +181,7 @@
 
 	if(!on)
 		updateUsrDialog()
-		stop_processing()
+		STOP_PROCESSING(SSmachines, src)
 		return
 
 	if(occupant)
@@ -467,7 +467,7 @@
 		to_chat(usr, "<span class='warning'>The cryo cell is not functioning.</span>")
 		return
 	on = TRUE
-	start_processing()
+	START_PROCESSING(SSmachines, src)
 	update_icon()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Topic(href, href_list)

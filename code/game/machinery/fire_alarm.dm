@@ -275,8 +275,8 @@ FIRE ALARM
 	//playsound(src.loc, 'sound/ambience/signal.ogg', 50, 0)
 	return
 
-/obj/machinery/firealarm/New(loc, dir, building)
-	..()
+/obj/machinery/firealarm/Initialize(loc, dir, building)
+	. = ..()
 
 	if(loc)
 		src.loc = loc
@@ -297,4 +297,3 @@ FIRE ALARM
 			src.overlays += image('icons/obj/monitors.dmi', "overlay_green")
 
 	update_icon()
-	start_processing()

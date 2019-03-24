@@ -21,19 +21,17 @@
 	maptext_height = 26
 	maptext_width = 32
 
-/obj/machinery/door_display/New()
-	..()
+/obj/machinery/door_display/Initialize()
+	. = ..()
 
-	spawn(20)
-		for(var/obj/machinery/door/D in GLOB.machines)
-			if (D.id == id)
-				targets += D
+	for(var/obj/machinery/door/D in GLOB.machines)
+		if (D.id == id)
+			targets += D
 
-		if(targets.len == 0)
-			machine_stat |= BROKEN
-		update_icon()
-	start_processing()
-	return
+	if(targets.len == 0)
+		machine_stat |= BROKEN
+	update_icon()
+
 
 // Display process loop.
 /obj/machinery/door_display/process()

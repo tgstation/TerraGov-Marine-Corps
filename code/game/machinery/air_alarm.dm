@@ -137,8 +137,6 @@
 		if(WEST) 
 			pixel_x = -25
 
-	start_processing()
-
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)

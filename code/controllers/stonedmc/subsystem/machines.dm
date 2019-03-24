@@ -2,7 +2,10 @@ SUBSYSTEM_DEF(machines)
 	name = "Machines"
 	init_order = INIT_ORDER_MACHINES
 	flags = SS_KEEP_TIMING
-	var/list/currentrunmachines = list()
+
+	var/list/processing = list()
+	var/list/currentrun = list()
+
 	var/list/powernets = list()
 	var/list/cable_list = list()
 	var/list/zlevel_cables = list() //up or down cables
@@ -25,30 +28,36 @@ SUBSYSTEM_DEF(machines)
 			propagate_network(PC,PC.powernet)
 
 /datum/controller/subsystem/machines/stat_entry()
-	..("AA:[active_areas.len]|PN:[powernets.len]|PM:[processing_machines.len]")
+	..("AA:[length(active_areas)]|PN:[length(powernets)]|PM:[length(processing)]")
+
 
 /datum/controller/subsystem/machines/fire(resumed = 0)
-	if (!resumed)
+	if(!resumed)
 		for(var/datum/powernet/Powernet in powernets)
 			Powernet.reset() //reset the power state.
-		currentrunmachines = processing_machines.Copy()
+		src.currentrun = processing.Copy()
 		currentrunareas = active_areas.Copy()
+		
 
-	while (currentrunmachines.len)
-		var/obj/machinery/M = currentrunmachines[currentrunmachines.len]
-		currentrunmachines.len--
+	//cache for sanic speed (lists are references anyways)
+	var/list/currentrun = src.currentrun
 
-		if (!M || M.gc_destroyed) // should never happen
-			processing_machines -= M
-			continue
-
-		M.process()
-
-		if (MC_TICK_CHECK)
+	var/seconds = wait * 0.1
+	while(length(currentrun))
+		var/obj/machinery/thing = currentrun[currentrun.len]
+		currentrun.len--
+		if(!QDELETED(thing) && thing.process(seconds) != PROCESS_KILL)
+			if(thing.use_power)
+				thing.auto_use_power() //add back the power state
+		else
+			processing -= thing
+			if(!QDELETED(thing))
+				thing.datum_flags &= ~DF_ISPROCESSING
+		if(MC_TICK_CHECK)
 			return
 
-	while (currentrunareas.len)
-		var/area/A = currentrunareas[currentrunareas.len]
+	while(length(currentrunareas))
+		var/area/A = currentrunareas[length(currentrunareas)]
 		currentrunareas.len--
 
 		if(A.master == A)
@@ -64,15 +73,16 @@ SUBSYSTEM_DEF(machines)
 						if(!(M.machine_stat & NOPOWER) && M.use_power)
 							M.auto_use_power()
 
-			if(A.apc.len)
-				if (MC_TICK_CHECK)
+			if(length(A.apc))
+				if(MC_TICK_CHECK)
 					return
 				continue
 
 		A.powerupdate = 0
 
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
+
 
 /datum/controller/subsystem/machines/proc/setup_template_powernets(list/cables)
 	for(var/A in cables)

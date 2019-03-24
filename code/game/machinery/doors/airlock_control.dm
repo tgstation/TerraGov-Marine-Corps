@@ -140,8 +140,8 @@ obj/machinery/door/airlock/Initialize()
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
-	start_processing()
 	update_icon()
+
 
 obj/machinery/airlock_sensor
 	icon = 'icons/obj/airlock_machines.dmi'
@@ -208,7 +208,7 @@ obj/machinery/airlock_sensor/proc/set_frequency(new_frequency)
 obj/machinery/airlock_sensor/Initialize()
 	. = ..()
 	set_frequency(frequency)
-	start_processing()
+	START_PROCESSING(SSmachines, src)
 
 obj/machinery/airlock_sensor/New()
 	..()
