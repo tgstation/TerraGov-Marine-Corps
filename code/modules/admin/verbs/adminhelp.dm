@@ -539,13 +539,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	state = AHELP_RESOLVED
 	GLOB.ahelp_tickets.ListInsert(src)
 
-	addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 50)
-
 	AddInteraction("<font color='#9adb92'>Resolved by [key_name_admin(usr)].</font>")
 	if(tier == TICKET_MENTOR)
 		to_chat(initiator, "<span class='adminhelp'>Your mentor ticket has been resolved, if you need to ask something again, feel free to send another one.</span>")
-	if(tier == TICKET_ADMIN)
+	else if(tier == TICKET_ADMIN)
 		to_chat(initiator, "<span class='adminhelp'>Your ticket has been resolved by an admin. The Adminhelp verb will be returned to you shortly.</span>")
+		addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 50)
 	if(!silent)
 		log_admin_private("Ticket (#[id]) resolved by [key_name(usr)].")
 		if(tier == TICKET_MENTOR)
