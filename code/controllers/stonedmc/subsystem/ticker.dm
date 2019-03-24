@@ -171,8 +171,6 @@ SUBSYSTEM_DEF(ticker)
 	reset_squads()
 	equip_characters()
 
-	GLOB.datacore.manifest()
-
 	transfer_characters()	//transfer keys to the new mobs
 
 	for(var/I in round_start_events)
@@ -181,6 +179,8 @@ SUBSYSTEM_DEF(ticker)
 	LAZYCLEARLIST(round_start_events)
 
 	supply_controller.process()
+
+	GLOB.datacore.manifest()
 
 	log_world("Game start took [(world.timeofday - init_start) / 10]s")
 	round_start_time = world.time
