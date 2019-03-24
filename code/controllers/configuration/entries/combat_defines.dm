@@ -568,3 +568,12 @@ Accuracy penalty while bursting.
 
 /datum/config_entry/number/combat_define/max_burst_accuracy_penalty
 	config_entry_value = 0.2
+	
+/*
+Accuracy bonuses from focus order
+*/
+/datum/config_entry/number/combat_define/focus_base_bonus
+	config_entry_value = 3
+	
+/datum/config_entry/number/combat_define/focus_per_tile_bonus
+	config_entry_value = 0.35	
