@@ -51,8 +51,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 		/obj/item/storage/bible,
 		/obj/item/storage/sparepouch,
 		/obj/item/storage/large_holster/machete,
-		/obj/item/storage/belt/gun/m4a3,
-		/obj/item/storage/belt/gun/m44,)
+		/obj/item/storage/belt/gun/)
 
 	var/brightness_on = 5 //Average attachable pocket light
 	var/flashlight_cooldown = 0 //Cooldown for toggling the light
@@ -200,6 +199,26 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	icon_state = "6"
 	armor = list(melee = 30, bullet = 70, laser = 45, energy = 30, bomb = 60, bio = 10, rad = 10)
 
+/obj/item/clothing/suit/storage/marine/M3P/tanker
+	name = "\improper M3 pattern tanker armor"
+	desc = "A modified and refashioned suit of M3 Pattern armor designed to be worn by the loader of a TGMC vehicle crew. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
+	icon_state = "tanker"
+
+	New()
+		select_gamemode_skin(type)
+		..()
+
+/obj/item/clothing/suit/storage/marine/leader
+	name = "\improper B12 pattern leader armor"
+	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Designed in a lovely forest green. Use it to toggle the built-in flashlight."
+	icon_state = "7"
+	armor = list(melee = 50, bullet = 60, laser = 45, energy = 40, bomb = 40, bio = 15, rad = 15)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+
+	New(loc,expected_type 	= type,
+		new_name[] 		= list(MAP_ICE_COLONY = "\improper B12 pattern leader snow armor"))
+		..(loc,expected_type,new_name)
+
 /obj/item/clothing/suit/storage/marine/MP
 	name = "\improper N2 pattern MA armor"
 	desc = "A standard TerraGov Navy N2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
@@ -270,26 +289,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 /obj/item/clothing/suit/storage/marine/smartgunner/fancy
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories. This luxury model appears to belong to the CO. You feel like you probably could get fired for touching this.."
 	icon_state = "8fancy"
-
-
-/obj/item/clothing/suit/storage/marine/leader
-	name = "\improper B12 pattern leader armor"
-	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Designed in a lovely forest green. Use it to toggle the built-in flashlight."
-	icon_state = "7"
-	armor = list(melee = 50, bullet = 60, laser = 45, energy = 40, bomb = 40, bio = 15, rad = 15)
-
-	New(loc,expected_type 	= type,
-		new_name[] 		= list(MAP_ICE_COLONY = "\improper B12 pattern leader snow armor"))
-		..(loc,expected_type,new_name)
-
-/obj/item/clothing/suit/storage/marine/M3P/tanker
-	name = "\improper M3 pattern tanker armor"
-	desc = "A modified and refashioned suit of M3 Pattern armor designed to be worn by the loader of a TGMC vehicle crew. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
-	icon_state = "tanker"
-
-	New()
-		select_gamemode_skin(type)
-		..()
 
 //===========================SPECIALIST================================
 
