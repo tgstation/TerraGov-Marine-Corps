@@ -75,43 +75,44 @@
 
 	switch(mode)
 		if(CRYOCONSOLE_MOB_LIST)
+			dat += "<hr/><b>Recently stored Crewmembers :</b><br/>"
 			dat += {"
-	<head><style>
-		.manifest {border-collapse:collapse;}
-		.manifest td, th {border:1px solid "black"; padding:.25em}
-		.manifest th {height: 2em; border-top-width: 3px}
-		.manifest tr.head th {border-top-width: 1px}
-		.manifest td:first-child {text-align:right}
-		.manifest tr.alt td {border-top-width: 2px}
-	</style></head>
-	<table class="manifest" width='350px'>
-	<tr class='head'><th>Name</th><th>Rank</th><th>Timestamp</th></tr>
-	"}
-			dat += "<tr><th colspan=3>Recently stored crewmembers</th></tr>"
-			var/even = FALSE
-			for(var/info in GLOB.cryoed_mob_list)
-				var/who = info[1]
-				var/work = info[2]
-				var/when = info[3]
-				dat += "<tr[even ? " class='alt'" : ""]><td>[who]</td><td>[work]</td><td>[when]</td></tr>"
-				even = !even
+			<style>
+				.cryo {border-collapse: collapse; color:#ffffff}
+				.cryo tr:nth-child(even) {color:#f0f0f0}
+				.cryo td, th {border:1px solid #666666; padding: 4px}
+				.cryo td {text-align: left}
+				.cryo th {text-align:center; font-weight: bold}
+			</style>
+			<table class='cryo' width='100%'>
+			<tr><th><b>Name</b></th><th><b>Rank</b></th><th><b>Time</b></th></tr>
+			"}
+			for(var/data in GLOB.cryoed_mob_list)
+				var/list/infos = GLOB.cryoed_mob_list[data]
+				if(!istype(infos))
+					continue
+				var/who = infos[1]
+				var/work = infos[2]
+				var/when = infos[3]
+				dat += "<tr><td>[who]</td><td>[work]</td><td>[when]</td></tr>"
 			dat += "</table>"
+
 		if(CRYOCONSOLE_ITEM_LIST)
 			dat += "<b>Recently stored objects</b><br/><hr/><br/>"
-			dat +="<center><table><tr>"
+			dat +="<table style='text-align:justify'><tr>"
 			for(var/dept in cryotypes)
-				dat += "<td><center>"
+				dat += "<th style='border:2px solid #777777'>"
 				dat += category != dept ? "<a href='byond://?src=\ref[src];category=[dept]'>[dept]</a>" : "<b>[dept]</b>"
-				dat += "</center><td>"
-			dat += "<tr><table></center>"
-			dat += "<center><a href='byond://?src=\ref[src];dispense_all=TRUE'>Dispense All</a></center><br/>"
+				dat += "<th>"
+			dat += "<tr></table>"
+			dat += "<center><a href='byond://?src=\ref[src];allitems=TRUE'>Dispense All</a></center><br/>"
 			var/list/stored_items = GLOB.cryoed_item_list[category]
 			for(var/A in stored_items)
 				var/obj/item/I = A
 				if(QDELETED(I))
 					stored_items -= I
 					continue
-				dat += "<a href='byond://?src=\ref[src];dispense_item=[I]'>[I.name]</a><br/>"
+				dat += "<p style='text-align:left'><a href='byond://?src=\ref[src];item=\ref[I]'>[I.name]</a></p>"
 			dat += "<hr/>"
 
 	var/datum/browser/popup = new(user, "cryopod_console", "<div align='center'>Cryogenics</div>")
@@ -136,12 +137,13 @@
 		category = href_list["category"]
 
 	else if(href_list["item"])
-		dispense_item(href_list["item"], usr)
+		var/obj/item/I = locate(href_list["item"]) in GLOB.cryoed_item_list[category]
+		dispense_item(I, usr)
 
 	else if(href_list["allitems"])
 
 		if(!length(GLOB.cryoed_item_list[category]))
-			to_chat(usr, "<span class='warning'>There is nothing to recover from storage.</span>")
+			to_chat(usr, "<span class='warning'>There is nothing to recover from [category] storage.</span>")
 			updateUsrDialog()
 			return
 
@@ -155,7 +157,10 @@
 	return
 
 /obj/machinery/computer/cryopod/proc/dispense_item(obj/item/I, mob/user, message = TRUE)
+	if(!istype(I))
+		to_chat(world, "what the fuck 1?! [I]")
 	if(QDELETED(I))
+		to_chat(world, "what the fuck 2?!")
 		GLOB.cryoed_item_list[category] -= I
 		return
 	if(!(I in GLOB.cryoed_item_list[category]))
@@ -236,26 +241,58 @@
 	stop_processing()
 	update_icon()
 
-/mob/proc/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
-	var/list/stored_items = list()
+/mob/proc/despawn(obj/machinery/cryopod/pod)
 
-	for(var/obj/item/W in contents)
-		stored_items.Add(W.store_in_cryo())
-
-	GLOB.cryoed_item_list[dept_console].Add(stored_items)
-
-	var/who = "[real_name]"
-	var/work = "Unassigned"
-	var/when = gameTimestamp()
+	var/dept_console = CRYO_REQ
 
 	//Handle job slot/tater cleanup.
 	if(job)
-		var/datum/job/J = job
-		work = J.title
+		var/datum/job/J = SSjob.name_occupations[job]
 		J.current_positions--
 		if(J.title in JOBS_REGULAR_ALL)
 			SSticker.mode.latejoin_tally-- //Cryoing someone removes a player from the round, blocking further larva spawns until accounted for
+		if(J.title in JOBS_POLICE)
+			dept_console = CRYO_SEC
+		else if(J.title in JOBS_MEDICAL)
+			dept_console = CRYO_MED
+		else if(J.title in JOBS_ENGINEERING)
+			dept_console = CRYO_ENGI
+	to_chat(world, "step 1")
+	if(assigned_squad)
+		var/datum/squad/S = assigned_squad
+		switch(S.id)
+			if(ALPHA_SQUAD)
+				dept_console = CRYO_ALPHA
+			if(BRAVO_SQUAD)
+				dept_console = CRYO_BRAVO
+			if(CHARLIE_SQUAD)
+				dept_console = CRYO_CHARLIE
+			if(DELTA_SQUAD)
+				dept_console = CRYO_DELTA
+		if(job)
+			var/datum/job/J = SSjob.name_occupations[job]
+			if(J.flag & SQUAD_ENGINEER)
+				S.num_engineers--
+			if(J.flag & SQUAD_CORPSMAN)
+				S.num_medics--
+			if(J.flag & SQUAD_SPECIALIST)
+				S.num_specialists--
+				if(specset && !available_specialist_sets.Find(specset))
+					available_specialist_sets += specset //we make the set this specialist took if any available again
+			if(J.flag & SQUAD_SMARTGUNNER)
+				S.num_smartgun--
+			if(J.flag & SQUAD_LEADER)
+				S.num_leaders--
+		S.count--
+		S.clean_marine_from_squad(src, TRUE) //Remove from squad recods, if any.
+	to_chat(world, "step 2")
+	var/list/stored_items = list()
 
+	for(var/obj/item/W in src)
+		stored_items.Add(W.store_in_cryo())
+
+	GLOB.cryoed_item_list[dept_console].Add(stored_items)
+	to_chat(world, "step 3")
 	//Delete them from datacore.
 	if(length(PDA_Manifest))
 		PDA_Manifest.Cut()
@@ -271,59 +308,21 @@
 		if((G.fields["name"] == real_name))
 			data_core.general -= G
 			qdel(G)
-
-
+	to_chat(world, "step 4")
 	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
-
+	to_chat(world, "step 5")
 	//Make an announcement and log the person entering storage.
-	GLOB.cryoed_mob_list += list(who, work, when)
+	var/data = num2text(length(GLOB.cryoed_mob_list))
+	to_chat(world, "step 5.5")
+	GLOB.cryoed_mob_list += data
+	GLOB.cryoed_mob_list[data] = list(real_name, job ? job : "Unassigned", gameTimestamp())
+	to_chat(world, "step 6")
 
 	pod.announce.autosay("[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", "Hypersleep Storage System")
 	pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")
 	pod.occupant = null
 	qdel(src)
-
-
-/mob/living/carbon/human/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
-	if(job)
-		var/datum/job/J = job
-		switch(J.title)
-			if("Master at Arms","Command Master at Arms")
-				dept_console = CRYO_SEC
-			if("Medical Officer","Medical Researcher","Chief Medical Officer")
-				dept_console = CRYO_MED
-			if("Ship Engineer","Chief Ship Engineer")
-				dept_console = CRYO_ENGI
-			else if(assigned_squad)
-				switch(assigned_squad.id)
-					if(ALPHA_SQUAD)
-						dept_console = CRYO_ALPHA
-					if(BRAVO_SQUAD)
-						dept_console = CRYO_BRAVO
-					if(CHARLIE_SQUAD)
-						dept_console = CRYO_CHARLIE
-					if(DELTA_SQUAD)
-						dept_console = CRYO_DELTA
-	if(assigned_squad)
-		var/datum/squad/S = assigned_squad
-		var/datum/job/J = job
-		switch(J?.title)
-			if("Squad Engineer")
-				S.num_engineers--
-			if("Squad Corpsman")
-				S.num_medics--
-			if("Squad Specialist")
-				S.num_specialists--
-				if(specset && !available_specialist_sets.Find(specset))
-					available_specialist_sets += specset //we make the set this specialist took if any available again
-			if("Squad Smartgunner")
-				S.num_smartgun--
-			if("Squad Leader")
-				S.num_leaders--
-		S.count--
-		S.clean_marine_from_squad(src, TRUE) //Remove from squad recods, if any.
-
-	return ..()
+	to_chat(world, "step 7")
 
 /obj/item/proc/store_in_cryo(list/items)
 
