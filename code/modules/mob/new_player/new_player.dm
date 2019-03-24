@@ -375,7 +375,7 @@
 
 
 /mob/new_player/proc/ViewManifest()
-	var/dat = GLOB.datacore.get_manifest(OOC = 1)
+	var/dat = GLOB.datacore.get_manifest(ooc = TRUE)
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 400, 420)
 	popup.set_content(dat)
