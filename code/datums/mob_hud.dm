@@ -386,8 +386,8 @@ var/datum/mob_hud/huds = list(
 			if(queen_chosen_lead)
 				var/image/I = image('icons/mob/hud.dmi',src, "hudxenoleader")
 				holder.overlays += I
-		if(upgrade)
-			var/image/J = image('icons/mob/hud.dmi',src, "hudxenoupgrade[upgrade]")
+		if(upgrade_as_number() > 0) // theres only icons for 1 2 3, not for -1
+			var/image/J = image('icons/mob/hud.dmi',src, "hudxenoupgrade[upgrade_as_number()]")
 			holder.overlays += J
 	hud_list[QUEEN_OVERWATCH_HUD] = holder
 
