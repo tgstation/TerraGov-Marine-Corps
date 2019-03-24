@@ -195,7 +195,6 @@ var/list/ai_verbs_default = list(
 	if(isnull(powered_ai))
 		qdel(src)
 		return
-	loc = powered_ai.loc
 	use_power(1) // Just incase we need to wake up the power system.
 
 
