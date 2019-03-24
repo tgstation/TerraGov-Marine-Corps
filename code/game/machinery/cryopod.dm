@@ -342,17 +342,17 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 			//Delete them from datacore.
 			if(PDA_Manifest.len)
 				PDA_Manifest.Cut()
-			for(var/datum/data/record/R in data_core.medical)
+			for(var/datum/data/record/R in GLOB.datacore.medical)
 				if((R.fields["name"] == occupant.real_name))
-					data_core.medical -= R
+					GLOB.datacore.medical -= R
 					qdel(R)
-			for(var/datum/data/record/T in data_core.security)
+			for(var/datum/data/record/T in GLOB.datacore.security)
 				if((T.fields["name"] == occupant.real_name))
-					data_core.security -= T
+					GLOB.datacore.security -= T
 					qdel(T)
-			for(var/datum/data/record/G in data_core.general)
+			for(var/datum/data/record/G in GLOB.datacore.general)
 				if((G.fields["name"] == occupant.real_name))
-					data_core.general -= G
+					GLOB.datacore.general -= G
 					qdel(G)
 
 			if(orient_right)

@@ -86,13 +86,15 @@
 				S.clean_marine_from_squad(H)
 
 		mind.transfer_to(target, TRUE)
-		target.fully_replace_character_name(real_name, target.real_name)
 
 		if(!ishuman(target) || !target.job)
+			target.fully_replace_character_name(real_name, target.real_name)
 			return
 
 		var/mob/living/carbon/human/H = target
 		H.set_rank(H.job)
+
+		target.fully_replace_character_name(real_name, target.real_name)
 
 		if(!H.assigned_squad)
 			return
@@ -621,7 +623,7 @@
 	set category = "Ghost"
 	set name = "View Crew Manifest"
 
-	var/dat = data_core.get_manifest()
+	var/dat = GLOB.datacore.get_manifest()
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
 	popup.set_content(dat)

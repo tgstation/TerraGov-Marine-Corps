@@ -181,11 +181,50 @@
 
 
 /datum/admins/proc/subtle_message(var/mob/M in GLOB.player_list)
-	set category = "Fun"
+	set category = null
 	set name = "Subtle Message"
 
 	if(!check_rights(R_FUN|R_MENTOR))
 		return
+
+	var/msg = input("Subtle PM to [key_name(M)]:", "Subtle Message", "") as text
+
+	if(!M?.client || !msg)
+		return
+
+	if(check_rights(R_ADMIN, FALSE))
+		msg = noscript(msg)
+	else
+		msg = sanitize(msg)
+
+	to_chat(M, "<b>You hear a voice in your head... [msg]</b>")
+
+	admin_ticket_log(M, "[key_name_admin(usr)] used Subtle Message: [sanitize(msg)]")
+	log_admin("SubtleMessage: [key_name(usr)] to [key_name(M)]: [msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] used Subtle Message on [ADMIN_TPMONTY(M)]: [msg]")
+
+
+/datum/admins/proc/subtle_message_panel()
+	set category = "Fun"
+	set name = "Subtle Message Mob"
+
+	if(!check_rights(R_FUN|R_MENTOR))
+		return
+
+	var/mob/M
+	switch(input("Message by:", "Subtle Message") as null|anything in list("Key", "Mob"))
+		if("Key")
+			var/client/C = input("Please, select a key.", "Subtle Message") as null|anything in sortKey(GLOB.clients)
+			if(!C)
+				return
+			M = C.mob
+		if("Mob")
+			var/mob/N = input("Please, select a mob.", "Subtle Message") as null|anything in sortNames(GLOB.player_list)
+			if(!N)
+				return
+			M = N
+		else
+			return
 
 	var/msg = input("Subtle PM to [key_name(M)]:", "Subtle Message", "") as text
 

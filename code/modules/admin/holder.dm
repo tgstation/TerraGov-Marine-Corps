@@ -307,6 +307,7 @@ GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 	return list(
 	/datum/admins/proc/admin_ghost,
 	/datum/admins/proc/subtle_message,
+	/datum/admins/proc/subtle_message_panel,
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
@@ -374,6 +375,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/narrate_global,
 	/datum/admins/proc/narage_direct,
 	/datum/admins/proc/subtle_message,
+	/datum/admins/proc/subtle_message_panel,
 	/datum/admins/proc/award_medal,
 	/datum/admins/proc/custom_info,
 	/datum/admins/proc/announce,

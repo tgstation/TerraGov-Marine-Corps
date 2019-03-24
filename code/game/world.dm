@@ -54,7 +54,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	load_mode()
 
-	data_core = new /obj/effect/datacore()
 	radio_controller = new /datum/controller/radio()
 
 	if(byond_version < RECOMMENDED_VERSION)

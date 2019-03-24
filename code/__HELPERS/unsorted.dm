@@ -267,7 +267,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 
 
-//This will update a mob's name, real_name, mind.name, data_core records, pda and id
+//This will update a mob's name, real_name, mind.name, GLOB.datacore records, pda and id
 //Calling this proc without an oldname will only update the mob and skip updating the pda, id and records ~Carn
 /mob/proc/fully_replace_character_name(oldname, newname)
 	if(!newname)	
@@ -286,11 +286,20 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	if(oldname)
 		//update the datacore records! This is goig to be a bit costly.
-		for(var/list/L in list(data_core.general,data_core.medical,data_core.security,data_core.locked))
+		var/found = FALSE
+		for(var/list/L in list(GLOB.datacore.general, GLOB.datacore.medical, GLOB.datacore.security, GLOB.datacore.locked))
 			for(var/datum/data/record/R in L)
 				if(R.fields["name"] == oldname)
 					R.fields["name"] = newname
+					if(job)
+						R.fields["real_rank"] = job
+						R.fields["rank"] = job
+					found = TRUE
 					break
+
+		if(!found && ishuman(src))
+			var/mob/living/carbon/human/H = src
+			GLOB.datacore.manifest_inject(H)
 
 		//update our pda and id if we have them on our person
 		var/list/searching = GetAllContents(searchDepth = 3)

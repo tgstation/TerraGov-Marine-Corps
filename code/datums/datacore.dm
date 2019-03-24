@@ -1,10 +1,12 @@
+GLOBAL_DATUM_INIT(datacore, /obj/effect/datacore, new)
+
 /obj/effect/datacore
 	name = "datacore"
-	var/medical[] = list()
-	var/general[] = list()
-	var/security[] = list()
+	var/list/medical = list()
+	var/list/general = list()
+	var/list/security = list()
 	//This list tracks characters spawned in the world and cannot be modified in-game. Currently referenced by respawn_character().
-	var/locked[] = list()
+	var/list/locked = list()
 
 
 
@@ -34,7 +36,7 @@
 	var/even = 0
 	// sort mobs
 
-	for(var/datum/data/record/t in data_core.general)
+	for(var/datum/data/record/t in GLOB.datacore.general)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
 		var/real_rank = t.fields["real_rank"]
@@ -131,7 +133,7 @@ var/global/list/PDA_Manifest = list()
 	var/mar[0]
 	var/misc[0]
 
-	for(var/datum/data/record/t in data_core.general)
+	for(var/datum/data/record/t in GLOB.datacore.general)
 		var/name = sanitize(t.fields["name"])
 		var/rank = sanitize(t.fields["rank"])
 		var/real_rank = t.fields["real_rank"]
@@ -182,22 +184,24 @@ var/global/list/PDA_Manifest = list()
 
 
 
-/obj/effect/datacore/proc/manifest(var/nosleep = 0)
-	spawn()
-		if(!nosleep)
-			sleep(40)
-		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			if(isyautjastrict(H))
-				continue
-			manifest_inject(H)
-		return
+/obj/effect/datacore/proc/manifest(reset)
+	if(reset)
+		medical = list()
+		general = list()
+		security = list()
+		locked = list()
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(!ishumanbasic(H))
+			continue
+		manifest_inject(H)
+
 
 /obj/effect/datacore/proc/manifest_modify(name, assignment, rank)
 	if(PDA_Manifest.len)
 		PDA_Manifest.Cut()
 	var/datum/data/record/foundrecord
 
-	for(var/datum/data/record/t in data_core.general)
+	for(var/datum/data/record/t in GLOB.datacore.general)
 		if (t)
 			if(t.fields["name"] == name)
 				foundrecord = t

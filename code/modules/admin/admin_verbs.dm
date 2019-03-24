@@ -1,6 +1,6 @@
 /datum/admins/proc/admin_ghost()
 	set category = "Admin"
-	set name = "Admin Ghost"
+	set name = "Aghost"
 	set desc = "Allows you to ghost and re-enter body at will."
 
 	if(!check_rights(R_ADMIN|R_MENTOR))
@@ -104,12 +104,12 @@
 	var/mob/M
 	switch(input("Change by:", "Change CKey") as null|anything in list("Key", "Mob"))
 		if("Key")
-			var/client/C = input("Please, select a key.", "Get Key") as null|anything in sortKey(GLOB.clients)
+			var/client/C = input("Please, select a key.", "Change CKey") as null|anything in sortKey(GLOB.clients)
 			if(!C)
 				return
 			M = C.mob
 		if("Mob")
-			var/mob/N = input("Please, select a mob.", "Get Mob") as null|anything in sortNames(GLOB.mob_list)
+			var/mob/N = input("Please, select a mob.", "Change CKey") as null|anything in sortNames(GLOB.mob_list)
 			if(!N)
 				return
 			M = N
@@ -272,7 +272,7 @@
 	S.put_marine_in_squad(H)
 
 	//Crew manifest
-	for(var/datum/data/record/t in data_core.general)
+	for(var/datum/data/record/t in GLOB.datacore.general)
 		if(t.fields["name"] == H.real_name)
 			t.fields["squad"] = S.name
 			break

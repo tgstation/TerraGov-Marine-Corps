@@ -171,7 +171,7 @@ SUBSYSTEM_DEF(ticker)
 	reset_squads()
 	equip_characters()
 
-	data_core.manifest()
+	GLOB.datacore.manifest()
 
 	transfer_characters()	//transfer keys to the new mobs
 
