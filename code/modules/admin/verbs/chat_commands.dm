@@ -79,7 +79,7 @@
 	var/list/text_res = results.Copy(1, 3)
 	var/list/refs = results[4]
 	var/list/names = results[5]
-	. = "[text_res.Join("\n")][length(refs) ? "\nRefs: [refs.Join(" ")]" : ""][length(names) ? "\nText: [names.Join(" ")]" : ""]"
+	. = "[text_res.Join("\n")][length(refs) ? "\nRefs: [refs.Join(" ")]" : ""][length(names) ? "\nText: [replacetext(names.Join(" "), "<br>", "")]" : ""]"
 
 
 /datum/tgs_chat_command/reload_admins

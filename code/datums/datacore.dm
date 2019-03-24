@@ -117,6 +117,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(!ishumanbasic(H))
 			continue
+		CHECK_TICK
 		manifest_inject(H)
 
 
