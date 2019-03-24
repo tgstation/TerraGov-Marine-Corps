@@ -77,9 +77,9 @@
 	if(!results)
 		return "Query produced no output"
 	var/list/text_res = results.Copy(1, 3)
-	var/list/refs = length(results) > 3 ? results.Copy(4) : null
-	var/list/names = length(results) > 4 ? results.Copy(5) : null
-	. = "[text_res.Join("\n")][refs ? "\nRefs: [refs.Join(" ")]" : ""][names ? "\nText: [names.Join(" ")]" : ""]"
+	var/list/refs = results[4]
+	var/list/names = results[5]
+	. = "[text_res.Join("\n")][length(refs) ? "\nRefs: [refs.Join(" ")]" : ""][length(names) ? "\nText: [names.Join(" ")]" : ""]"
 
 
 /datum/tgs_chat_command/reload_admins
