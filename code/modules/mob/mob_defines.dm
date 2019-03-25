@@ -98,6 +98,14 @@
 	var/obj/item/storage/s_active = null//Carbon
 	var/obj/item/clothing/mask/wear_mask = null//Carbon
 
+	// 1 decisecond click delay (above and beyond mob/next_move)
+	//This is mainly modified by click code, to modify click delays elsewhere, use next_move and changeNext_move()
+	var/next_click	= 0
+
+	// THESE DO NOT EFFECT THE BASE 1 DECISECOND DELAY OF NEXT_CLICK
+	var/next_move_adjust = 0 //Amount to adjust action/click delays by, + or -
+	var/next_move_modifier = 1 //Value to multiply action/click delays by
+
 	var/datum/hud/hud_used = null
 
 	var/grab_level = GRAB_PASSIVE //if we're pulling a mob, tells us how aggressive our grab is.
