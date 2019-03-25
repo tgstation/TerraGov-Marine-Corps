@@ -282,10 +282,9 @@
 		jobname = "Unknown"
 		voicemask = 1
 
-	if(iscarbon(loc))
-		var/mob/living/carbon/C = loc
+	if(iscarbon(M.loc))
+		var/mob/living/carbon/C = M.loc
 		if(M in C.stomach_contents)
-			to_chat(world, "Person below quintuble chumbis")
 			message = Gibberish(message, 100)
 
   /* ###### Radio headsets can only broadcast through subspace ###### */
