@@ -1,0 +1,5 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - tweak: "Scout battle rifle has a 0.9 accuracy multiplier when bursting."
+  - tweak: "Scout scope is now a miniscope without downsides."
