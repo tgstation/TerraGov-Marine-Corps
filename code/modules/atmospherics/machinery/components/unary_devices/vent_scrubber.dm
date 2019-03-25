@@ -333,8 +333,6 @@
 
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/AltClick(mob/living/user)
-	if(!user.can_ventcrawl())
-		return
 	user.handle_ventcrawl(src)
 
 

@@ -3,7 +3,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	/obj/machinery/atmospherics/components/unary/vent_scrubber)))
 
 
-/mob/living/proc/can_ventcrawl()
+/mob/proc/can_ventcrawl()
 	return FALSE
 
 
@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 
 
 //VENTCRAWLING
-/mob/living/proc/handle_ventcrawl(atom/A)
+/mob/proc/handle_ventcrawl(atom/A)
 	if(!can_ventcrawl() || !Adjacent(A))
 		return
 	if(stat)
