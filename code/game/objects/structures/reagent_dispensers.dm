@@ -226,7 +226,6 @@
 /obj/structure/reagent_dispensers/wallmounted
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "generic_tank"
-	bound_height = 32
 	anchored = TRUE
 	density = FALSE
 

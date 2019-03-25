@@ -9,7 +9,6 @@ FIRE ALARM
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "fire0"
-	bound_height = 32
 	var/detecting = 1.0
 	var/working = 1.0
 	var/time = 10.0

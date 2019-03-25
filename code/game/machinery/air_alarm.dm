@@ -62,7 +62,6 @@
 	name = "alarm"
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "alarm0"
-	bound_height = 32
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 80
