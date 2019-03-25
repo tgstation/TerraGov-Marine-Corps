@@ -50,7 +50,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			var/weight = organ_rel_size[E.name]
 			armorval += getarmor_organ(E, type) * weight
 			total += weight
-			#if DEBUG_HUMAN_ARMOR
+			#if DEBUG_HUMAN_EXPLOSIONS
 			to_chat(src, "DEBUG getarmor: total: [total], armorval: [armorval], weight: [weight], name: [E.name]")
 			#endif
 	return ( round(armorval/max(total, 1)*0.01,0.01) )
