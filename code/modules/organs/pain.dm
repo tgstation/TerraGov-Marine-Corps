@@ -27,7 +27,7 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 			var/i
 			for(var/datum/limb/O in list(right_hand, left_hand))
 				if(!O || !O.is_usable()) continue //Not if the organ can't possibly function.
-				if(O.name == "l_hand") 	drop_l_hand()
+				if(O.body_part == HAND_LEFT) 	drop_l_hand()
 				else 					drop_r_hand()
 				i++
 			if(i) msg += ", [pick("fumbling with","struggling with","losing control of")] your [i < 2 ? "hand" : "hands"]"
@@ -64,7 +64,7 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 mob/living/carbon/human/proc/custom_pain(message, flash_strength)
 	if(stat >= UNCONSCIOUS)
 		return
-	if(species && species.flags & NO_PAIN)
+	if(species && species.species_flags & NO_PAIN)
 		return
 	if(reagent_pain_modifier <= PAIN_REDUCTION_HEAVY)
 		return //anything as or more powerful than paracetamol
@@ -83,7 +83,7 @@ mob/living/carbon/human/proc/custom_pain(message, flash_strength)
 mob/living/carbon/human/proc/handle_pain()
 	if(stat >= UNCONSCIOUS)
 		return 	// not when sleeping
-	if(species && species.flags & NO_PAIN)
+	if(species && species.species_flags & NO_PAIN)
 		return
 	if(reagent_pain_modifier <= PAIN_REDUCTION_HEAVY)
 		return //anything as or more powerful than paracetamol
@@ -98,12 +98,12 @@ mob/living/carbon/human/proc/handle_pain()
 		Amputated, dead, or missing limbs don't cause pain messages.
 		Broken limbs that are also splinted do not cause pain messages either.
 		*/
-		if(E.status & (LIMB_NECROTIZED|LIMB_DESTROYED))
+		if(E.limb_status & (LIMB_NECROTIZED|LIMB_DESTROYED))
 			continue
 
 		dam = E.get_damage()
-		if(E.status & LIMB_BROKEN)
-			if(E.status & LIMB_SPLINTED || E.status & LIMB_STABILIZED)
+		if(E.limb_status & LIMB_BROKEN)
+			if(E.limb_status & LIMB_SPLINTED || E.limb_status & LIMB_STABILIZED)
 				dam -= E.min_broken_damage //If they have a splinted body part, and it's broken, we want to subtract bone break damage.
 		// make the choice of the organ depend on damage,
 		// but also sometimes use one of the less damaged ones

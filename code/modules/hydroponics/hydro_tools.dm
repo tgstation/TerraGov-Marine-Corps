@@ -22,13 +22,13 @@
 	else if(istype(target,/obj/item/reagent_container/food/snacks/grown))
 
 		var/obj/item/reagent_container/food/snacks/grown/G = target
-		grown_seed = seed_types[G.plantname]
+		grown_seed = GLOB.seed_types[G.plantname]
 		grown_reagents = G.reagents
 
 	else if(istype(target,/obj/item/grown))
 
 		var/obj/item/grown/G = target
-		grown_seed = seed_types[G.plantname]
+		grown_seed = GLOB.seed_types[G.plantname]
 		grown_reagents = G.reagents
 
 	else if(istype(target,/obj/item/seeds))
@@ -43,11 +43,11 @@
 		grown_reagents = H.reagents
 
 	if(!grown_seed)
-		to_chat(user, "\red [src] can tell you nothing about [target].")
+		to_chat(user, "<span class='warning'>[src] can tell you nothing about [target].</span>")
 		return
 
 	var/dat = "<h3>Plant data for [target]</h3>"
-	user.visible_message("\blue [user] runs the scanner over [target].")
+	user.visible_message("<span class='notice'> [user] runs the scanner over [target].</span>")
 
 	dat += "<h2>General Data</h2>"
 

@@ -105,6 +105,10 @@
 
 	user << browse(dat, "window=guestpass;size=400x520")
 	onclose(user, "guestpass")
+	var/datum/browser/popup = new(user, "guestpass", "<div align='center'>Arcade</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
+	onclose(user, "guestpass")
 
 
 /obj/machinery/computer/guestpass/Topic(href, href_list)
@@ -143,7 +147,7 @@
 				if (giver)
 					if(ishuman(usr))
 						giver.loc = usr.loc
-						if(!usr.get_active_hand())
+						if(!usr.get_active_held_item())
 							usr.put_in_hands(giver)
 						giver = null
 					else
@@ -151,7 +155,7 @@
 						giver = null
 					accesses.Cut()
 				else
-					var/obj/item/I = usr.get_active_hand()
+					var/obj/item/I = usr.get_active_held_item()
 					if (istype(I, /obj/item/card/id))
 						if(usr.drop_held_item())
 							I.forceMove(src)
@@ -187,6 +191,6 @@
 					pass.reason = reason
 					pass.name = "guest pass #[number]"
 				else
-					to_chat(usr, "\red Cannot issue pass without issuing ID.")
+					to_chat(usr, "<span class='warning'>Cannot issue pass without issuing ID.</span>")
 	updateUsrDialog()
 	return

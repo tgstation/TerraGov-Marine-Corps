@@ -38,19 +38,13 @@ do
 		sed -i '1s/^/#define '$arg'\n/' $dmepath.mdme
 		continue
 	fi
-	if [[ $var == -M* ]]
-	then
-		sed -i '1s/^/#define MAP_OVERRIDE\n/' $dmepath.mdme
-		sed -i 's!// BEGIN_INCLUDE!// BEGIN_INCLUDE\n#include "_maps\\'$arg'.dm"!' $dmepath.mdme
-		continue
-	fi
 done
 
 #windows
 if [[ `uname` == MINGW* ]]
 then
 	dm=""
-	
+
 	if hash dm.exe 2>/dev/null
 	then
 		dm='dm.exe'
@@ -61,13 +55,13 @@ then
 	then
 		dm='/c/Program Files/BYOND/bin/dm.exe'
 	fi
-	
+
 	if [[ $dm == "" ]]
 	then
 		echo "Couldn't find the DreamMaker executable, aborting."
 		exit 3
 	fi
-	
+
 	"$dm" $dmepath.mdme 2>&1 | tee result.log
 	retval=$?
 	if ! grep '\- 0 errors, 0 warnings' result.log
@@ -77,9 +71,9 @@ then
 else
 	if hash DreamMaker 2>/dev/null
 	then
-		DreamMaker $dmepath.mdme 2>&1 | tee result.log
+		DreamMaker -max_errors 0 $dmepath.mdme 2>&1 | tee result.log
 		retval=$?
-		if ! grep '0 errors, 0 warnings' result.log
+		if ! grep '\- 0 errors, 0 warnings' result.log
 		then
 			retval=1 #hard fail, due to warnings or errors
 		fi

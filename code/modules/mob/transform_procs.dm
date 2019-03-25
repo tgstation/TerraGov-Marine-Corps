@@ -4,13 +4,13 @@
 	for(var/obj/item/W in src)
 		if (W==w_uniform) // will be torn
 			continue
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
 	stunned = 1
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	for(var/t in limbs)
 		qdel(t)
 	var/atom/movable/overlay/animation = new /atom/movable/overlay( loc )
@@ -34,7 +34,7 @@
 	O.dna.SetSEValueRange(MONKEYBLOCK,0xDAC, 0xFFF)
 	O.loc = loc
 	O.viruses = viruses
-	O.a_intent = "hurt"
+	O.a_intent = INTENT_HARM
 
 	for(var/datum/disease/D in O.viruses)
 		D.affected_mob = O
@@ -70,11 +70,11 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	return ..()
 
 /mob/proc/AIize()
@@ -86,27 +86,26 @@
 
 	if(mind)
 		mind.transfer_to(O)
-		O.mind.original = O
 	else
 		O.key = key
 		if(O.client) O.client.change_view(world.view)
 
 	var/obj/loc_landmark
-	for(var/obj/effect/landmark/start/sloc in landmarks_list)
+	for(var/obj/effect/landmark/start/sloc in GLOB.landmarks_list)
 		if (sloc.name != "AI")
 			continue
 		if (locate(/mob/living) in sloc.loc)
 			continue
 		loc_landmark = sloc
 	if (!loc_landmark)
-		for(var/obj/effect/landmark/tripai in landmarks_list)
+		for(var/obj/effect/landmark/tripai in GLOB.landmarks_list)
 			if (tripai.name == "tripai")
 				if(locate(/mob/living) in tripai.loc)
 					continue
 				loc_landmark = tripai
 	if (!loc_landmark)
 		to_chat(O, "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone.")
-		for(var/obj/effect/landmark/start/sloc in landmarks_list)
+		for(var/obj/effect/landmark/start/sloc in GLOB.landmarks_list)
 			if (sloc.name == "AI")
 				loc_landmark = sloc
 
@@ -135,12 +134,12 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	for(var/t in limbs)
 		qdel(t)
 
@@ -157,10 +156,6 @@
 
 	if(mind)		//TODO
 		mind.transfer_to(O)
-		if(O.mind.assigned_role == "Cyborg")
-			O.mind.original = O
-		else if(mind && mind.special_role)
-			O.mind.store_memory("In case you look at this after being borged, the objectives are only here until I find a way to make them not show up for you, as I can't simply delete them without screwing up round-end reporting. --NeoFite")
 	else
 		O.key = key
 		if(O.client) O.client.change_view(world.view)
@@ -168,10 +163,7 @@
 	O.loc = loc
 	O.job = "Cyborg"
 	if(O.mind.assigned_role == "Cyborg")
-		if(O.mind.role_alt_title == "Robot")
-			O.mmi = null //Robots do not have removable brains.
-		else
-			O.mmi = new /obj/item/device/mmi(O)
+		O.mmi = new /obj/item/device/mmi(O)
 
 		if(O.mmi)
 			O.mmi.transfer_identity(src)
@@ -189,19 +181,19 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	for(var/t in limbs)
 		qdel(t)
 
 //	var/alien_caste = "larva"
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
 
-	new_xeno.a_intent = "hurt"
+	new_xeno.a_intent = INTENT_HARM
 	new_xeno.key = key
 	if(new_xeno.client) new_xeno.client.change_view(world.view)
 
@@ -215,19 +207,19 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	for(var/t in limbs)
 		qdel(t)
 
 //	var/alien_caste = "Drone"
 	var/mob/living/carbon/Xenomorph/Drone/new_xeno = new /mob/living/carbon/Xenomorph/Drone(loc)
 
-	new_xeno.a_intent = "hurt"
+	new_xeno.a_intent = INTENT_HARM
 	new_xeno.key = key
 	if(new_xeno.client) new_xeno.client.change_view(world.view)
 
@@ -241,17 +233,17 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	for(var/t in limbs)	//this really should not be necessary
 		qdel(t)
 
 	var/mob/living/simple_animal/corgi/new_corgi = new /mob/living/simple_animal/corgi (loc)
-	new_corgi.a_intent = "hurt"
+	new_corgi.a_intent = INTENT_HARM
 	new_corgi.key = key
 	if(new_corgi.client) new_corgi.client.change_view(world.view)
 
@@ -266,19 +258,19 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, "\red Sorry but this mob type is currently unavailable.")
+		to_chat(usr, "<span class='warning'>Sorry but this mob type is currently unavailable.</span>")
 		return
 
 	if(monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 	for(var/t in limbs)
 		qdel(t)
@@ -287,7 +279,7 @@
 
 	new_mob.key = key
 	if(new_mob.client) new_mob.client.change_view(world.view)
-	new_mob.a_intent = "hurt"
+	new_mob.a_intent = INTENT_HARM
 
 
 	to_chat(new_mob, "You suddenly feel more... animalistic.")
@@ -301,14 +293,14 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, "\red Sorry but this mob type is currently unavailable.")
+		to_chat(usr, "<span class='warning'>Sorry but this mob type is currently unavailable.</span>")
 		return
 
 	var/mob/new_mob = new mobpath(src.loc)
 
 	new_mob.key = key
 	if(new_mob.client) new_mob.client.change_view(world.view)
-	new_mob.a_intent = "hurt"
+	new_mob.a_intent = INTENT_HARM
 	to_chat(new_mob, "You feel more... animalistic")
 
 	qdel(src)

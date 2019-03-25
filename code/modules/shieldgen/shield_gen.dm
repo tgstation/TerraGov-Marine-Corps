@@ -30,14 +30,13 @@
 	var/energy_conversion_rate = 0.0002	//how many renwicks per watt?
 	use_power = 0	//doesn't use APC power
 
-/obj/machinery/shield_gen/New()
-	spawn(10)
-		for(var/obj/machinery/shield_capacitor/possible_cap in range(1, src))
-			if(get_dir(possible_cap, src) == possible_cap.dir)
-				owned_capacitor = possible_cap
-				break
-	field = new/list()
-	..()
+/obj/machinery/shield_gen/Initialize()
+	for(var/obj/machinery/shield_capacitor/possible_cap in range(1, src))
+		if(get_dir(possible_cap, src) == possible_cap.dir)
+			owned_capacitor = possible_cap
+			break
+	field = list()
+	. = ..()
 	start_processing()
 
 /obj/machinery/shield_gen/attackby(obj/item/W, mob/user)
@@ -48,7 +47,7 @@
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 			updateDialog()
 		else
-			to_chat(user, "\red Access denied.")
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 	else if(istype(W, /obj/item/card/emag))
 		if(prob(75))
 			src.locked = !src.locked
@@ -58,9 +57,9 @@
 		s.set_up(5, 1, src)
 		s.start()
 
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		src.anchored = !src.anchored
-		src.visible_message("\blue \icon[src] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user].")
+		src.visible_message("<span class='notice'> [icon2html(src, viewers(src))] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user].</span>")
 
 		if(active)
 			toggle()
@@ -88,17 +87,17 @@
 	return src.attack_hand(user)
 
 /obj/machinery/shield_gen/attack_hand(mob/user)
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		return
 	interact(user)
 
 /obj/machinery/shield_gen/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN)) )
-		if (!istype(user, /mob/living/silicon))
+	if ( (get_dist(src, user) > 1 ) || (machine_stat & (BROKEN)) )
+		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=shield_generator")
 			return
-	var/t = "<B>Shield Generator Control Console</B><BR><br>"
+	var/t
 	if(locked)
 		t += "<i>Swipe your ID card to begin.</i>"
 	else
@@ -130,8 +129,13 @@
 	t += "<hr>"
 	t += "<A href='?src=\ref[src]'>Refresh</A> "
 	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
-	user << browse(t, "window=shield_generator;size=500x400")
+
 	user.set_interaction(src)
+
+	var/datum/browser/popup = new(user, "shield_generator", "<div align='center'>Shield Generator Console</div>", 500, 400)
+	popup.set_content(t)
+	popup.open(FALSE)
+
 
 /obj/machinery/shield_gen/process()
 	if (!anchored && active)
@@ -182,7 +186,7 @@
 		return
 	else if( href_list["toggle"] )
 		if (!active && !anchored)
-			to_chat(usr, "\red The [src] needs to be firmly secured to the floor first.")
+			to_chat(usr, "<span class='warning'>The [src] needs to be firmly secured to the floor first.</span>")
 			return
 		toggle()
 	else if( href_list["change_radius"] )
@@ -215,17 +219,17 @@
 		qdel(covered_turfs)
 
 		for(var/mob/M in view(5,src))
-			to_chat(M, "\icon[src] You hear heavy droning start up.")
+			to_chat(M, "[icon2html(src, M)] You hear heavy droning start up.")
 	else
 		for(var/obj/effect/energy_field/D in field)
 			field.Remove(D)
 			D.loc = null
 
 		for(var/mob/M in view(5,src))
-			to_chat(M, "\icon[src] You hear heavy droning fade out.")
+			to_chat(M, "[icon2html(src, M)] You hear heavy droning fade out.")
 
 /obj/machinery/shield_gen/update_icon()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "broke"
 	else
 		if (src.active)

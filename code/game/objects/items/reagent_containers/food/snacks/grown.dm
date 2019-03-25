@@ -7,42 +7,35 @@
 
 //Grown foods
 //Subclass so we can pass on values
-/obj/item/reagent_container/food/snacks/grown/
+/obj/item/reagent_container/food/snacks/grown
 	var/plantname
 	var/potency = -1
 	icon = 'icons/obj/items/harvest.dmi'
-	New(newloc,newpotency)
-		if (!isnull(newpotency))
-			potency = newpotency
-		..()
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)
 
-/obj/item/reagent_container/food/snacks/grown/New()
+/obj/item/reagent_container/food/snacks/grown/New(newloc,newpotency)
 	if(!tastes)
 		tastes = list("[name]" = 1)
-	..()
+	if (!isnull(newpotency))
+		potency = newpotency
+	. = ..()
+	// Fill the object up with the appropriate reagents.
+	if(!isnull(plantname))
+		var/datum/seed/S = GLOB.seed_types[plantname]
+		if(!S || !S.chems)
+			return
 
-	//Handle some post-spawn var stuff.
-	spawn(1)
-		// Fill the object up with the appropriate reagents.
-		if(!isnull(plantname))
-			var/datum/seed/S = seed_types[plantname]
-			if(!S || !S.chems)
-				return
+		potency = S.potency
 
-			potency = S.potency
+		for(var/rid in S.chems)
+			var/list/reagent_data = S.chems[rid]
+			var/rtotal = reagent_data[1]
+			if(reagent_data.len > 1 && potency > 0)
+				rtotal += round(potency/reagent_data[2])
+			if(reagents)
+				reagents.add_reagent(rid, max(1, rtotal))
 
-			for(var/rid in S.chems)
-				var/list/reagent_data = S.chems[rid]
-				var/rtotal = reagent_data[1]
-				if(reagent_data.len > 1 && potency > 0)
-					rtotal += round(potency/reagent_data[2])
-				if(reagents)
-					reagents.add_reagent(rid, max(1, rtotal))
-
-		if(reagents.total_volume > 0)
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	if(reagents.total_volume > 0)
+		bitesize = 1+round(reagents.total_volume / 2, 1)
 
 /obj/item/reagent_container/food/snacks/grown/corn
 	name = "ear of corn"
@@ -87,7 +80,7 @@
 
 /obj/item/reagent_container/food/snacks/grown/potato/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/stack/cable_coil))
+	if(iscablecoil(W))
 		var/obj/item/stack/cable_coil/C = W
 		if(C.use(5))
 			to_chat(user, "<span class='notice'>You add some cable to the potato and slide it inside the battery encasing.</span>")

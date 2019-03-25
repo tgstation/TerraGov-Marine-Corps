@@ -47,7 +47,7 @@
 		H.death()
 
 	//This is a terrible hack and I should be ashamed.
-	var/datum/seed/diona = seed_types["diona"]
+	var/datum/seed/diona = GLOB.seed_types["diona"]
 	if(!diona)
 		qdel(src)
 

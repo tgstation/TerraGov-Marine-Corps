@@ -68,7 +68,7 @@
 	desc = "Used for emergencies. Contains very little oxygen, so try to conserve it until you actually need it."
 	icon_state = "emergency"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = 1
 	force = 4.0
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD

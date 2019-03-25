@@ -18,7 +18,7 @@
 /obj/mecha/hoverpod/New()
 	..()
 	var/turf/T = get_turf(src)
-	if(T.z != 2)
+	if(!is_centcom_level(T.z))
 		new /obj/item/mecha_parts/mecha_tracking(src)
 
 	ion_trail = new /datum/effect_system/ion_trail_follow()
@@ -41,7 +41,7 @@
 
 //these three procs overriden to play different sounds
 /obj/mecha/hoverpod/mechturn(direction)
-	dir = direction
+	setDir(direction)
 	//playsound(src,'sound/machines/hiss.ogg',40,1)
 	return 1
 
@@ -68,7 +68,7 @@
 	if(href_list["drop_from_cargo"])
 		var/obj/O = locate(href_list["drop_from_cargo"])
 		if(O && O in src.cargo)
-			src.occupant_message("\blue You unload [O].")
+			src.occupant_message("<span class='notice'> You unload [O].</span>")
 			O.loc = get_turf(src)
 			src.cargo -= O
 			var/turf/T = get_turf(O)

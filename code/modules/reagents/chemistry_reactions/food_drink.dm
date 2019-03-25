@@ -113,7 +113,7 @@
 	name = "Patron"
 	id = "patron"
 	results = list("patron" = 10)
-	required_reagents = list("tequilla" = 10, "silver" = 1)
+	required_reagents = list("tequila" = 10, "silver" = 1)
 
 /datum/chemical_reaction/bilk
 	name = "Bilk"
@@ -267,13 +267,13 @@
 	name = "Brave Bull"
 	id = "bravebull"
 	results = list("bravebull" = 3)
-	required_reagents = list("tequilla" = 2, "kahlua" = 1)
+	required_reagents = list("tequila" = 2, "kahlua" = 1)
 
-/datum/chemical_reaction/tequilla_sunrise
-	name = "Tequilla Sunrise"
-	id = "tequillasunrise"
-	results = list("tequillasunrise" = 3)
-	required_reagents = list("tequilla" = 2, "orangejuice" = 1)
+/datum/chemical_reaction/tequila_sunrise
+	name = "Tequila Sunrise"
+	id = "tequilasunrise"
+	results = list("tequilasunrise" = 3)
+	required_reagents = list("tequila" = 2, "orangejuice" = 1)
 
 /datum/chemical_reaction/phoron_special
 	name = "Toxins Special"
@@ -296,7 +296,7 @@
 /datum/chemical_reaction/irish_cream
 	name = "Irish Cream"
 	id = "irishcream"
-	results = "irishcream"
+	results = list("irishcream" = 3)
 	required_reagents = list("whiskey" = 2, "cream" = 1)
 
 /datum/chemical_reaction/manly_dorf
@@ -333,19 +333,19 @@
 	name = "Margarita"
 	id = "margarita"
 	results = list("margarita" = 3)
-	required_reagents = list("tequilla" = 2, "limejuice" = 1)
+	required_reagents = list("tequila" = 2, "limejuice" = 1)
 
 /datum/chemical_reaction/longislandicedtea
 	name = "Long Island Iced Tea"
 	id = "longislandicedtea"
 	results = list("longislandicedtea" = 4)
-	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "cubalibre" = 1)
+	required_reagents = list("vodka" = 1, "gin" = 1, "tequila" = 1, "cubalibre" = 1)
 
 /datum/chemical_reaction/icedtea
 	name = "Long Island Iced Tea"
 	id = "longislandicedtea"
 	results = list("longislandicedtea" = 4)
-	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "cubalibre" = 1)
+	required_reagents = list("vodka" = 1, "gin" = 1, "tequila" = 1, "cubalibre" = 1)
 
 /datum/chemical_reaction/threemileisland
 	name = "Three Mile Island Iced Tea"

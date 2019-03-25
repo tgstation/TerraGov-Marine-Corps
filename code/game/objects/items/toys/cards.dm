@@ -117,7 +117,7 @@
 	H.update_icon()
 	update_icon()
 	if(user==target)
-		user.visible_message("\The [user] deals a card to \himself.")
+		user.visible_message("\The [user] deals a card to [user.p_them()]self.")
 	else
 		user.visible_message("\The [user] deals a card to \the [target].")
 	H.throw_at(get_step(target,target.dir),10,1,H)

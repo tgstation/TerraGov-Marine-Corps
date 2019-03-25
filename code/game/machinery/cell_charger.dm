@@ -14,7 +14,7 @@
 /obj/machinery/cell_charger/proc/updateicon()
 	icon_state = "ccharger[charging ? 1 : 0]"
 
-	if(charging && !(stat & (BROKEN|NOPOWER)) )
+	if(charging && !(machine_stat & (BROKEN|NOPOWER)) )
 
 		var/newlevel = 	round(charging.percent() * 4.0 / 99)
 		//to_chat(world, "nl: [newlevel]")
@@ -35,30 +35,30 @@
 		to_chat(user, "Current charge: [charging.charge]")
 
 /obj/machinery/cell_charger/attackby(obj/item/W, mob/user)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	if(istype(W, /obj/item/cell) && anchored)
 		if(charging)
-			to_chat(user, "\red There is already a cell in the charger.")
+			to_chat(user, "<span class='warning'>There is already a cell in the charger.</span>")
 			return
 		else
 			var/area/a = loc.loc // Gets our locations location, like a dream within a dream
 			if(!isarea(a))
 				return
 			if(a.power_equip == 0) // There's no APC in this area, don't try to cheat power!
-				to_chat(user, "\red The [name] blinks red as you try to insert the cell!")
+				to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the cell!</span>")
 				return
 
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				charging = W
 				user.visible_message("[user] inserts a cell into the charger.", "You insert a cell into the charger.")
 				chargelevel = -1
 				start_processing()
 		updateicon()
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		if(charging)
-			to_chat(user, "\red Remove the cell first!")
+			to_chat(user, "<span class='warning'>Remove the cell first!</span>")
 			return
 
 		anchored = !anchored
@@ -81,7 +81,7 @@
 	return
 
 /obj/machinery/cell_charger/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(charging)
 		charging.emp_act(severity)
@@ -90,12 +90,12 @@
 
 /obj/machinery/cell_charger/process()
 	//to_chat(world, "ccpt [charging] [stat]")
-	if((stat & (BROKEN|NOPOWER)) || !anchored)
+	if((machine_stat & (BROKEN|NOPOWER)) || !anchored)
 		update_use_power(0)
 		return
 
 	if (charging && !charging.fully_charged())
-		charging.give(active_power_usage*CELLRATE)
+		charging.give(active_power_usage*GLOB.CELLRATE)
 		update_use_power(2)
 
 		updateicon()

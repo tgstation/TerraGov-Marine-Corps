@@ -2,6 +2,11 @@
 #define CAT_HIDDEN 1
 #define CAT_COIN   2
 
+#define WIRE_EXTEND 1
+#define WIRE_SCANID 2
+#define	WIRE_SHOCK 3
+#define	WIRE_SHOOTINV 4
+
 /datum/data/vending_product
 	var/product_name = "generic"
 	var/product_path = null
@@ -15,17 +20,17 @@
 	desc = "A generic vending machine."
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "generic"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	layer = BELOW_OBJ_LAYER
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	var/vend_power_usage = 150 //actuators and stuff
 
-	var/active = 1 //No sales pitches if off!
+	var/active = TRUE //No sales pitches if off!
 	var/delay_product_spawn // If set, uses sleep() in product spawn proc (mostly for seeds to retrieve correct names).
-	var/vend_ready = 1 //Are we ready to vend?? Is it time??
+	var/vend_ready = TRUE //Are we ready to vend?? Is it time??
 	var/vend_delay = 10 //How long does it take to vend?
 	var/datum/data/vending_product/currently_vending = null // A /datum/data/vending_product instance of what we're paying for right now.
 
@@ -50,44 +55,35 @@
 	var/icon_deny //Icon_state when vending!
 	//var/emagged = 0 //Ignores if somebody doesn't have card access to that machine.
 	var/seconds_electrified = 0 //Shock customers like an airlock.
-	var/shoot_inventory = 0 //Fire items at customers! We're broken!
-	var/shut_up = 0 //Stop spouting those godawful pitches!
-	var/extended_inventory = 0 //can we access the hidden inventory?
-	var/panel_open = 0 //Hacking that vending machine. Gonna get a free candy bar.
+	var/shoot_inventory = FALSE //Fire items at customers! We're broken!
+	var/shut_up = FALSE //Stop spouting those godawful pitches!
+	var/extended_inventory = FALSE //can we access the hidden inventory?
 	var/wires = 15
 	var/obj/item/coin/coin
 	var/tokensupport = TOKEN_GENERAL
-	var/const/WIRE_EXTEND = 1
-	var/const/WIRE_SCANID = 2
-	var/const/WIRE_SHOCK = 3
-	var/const/WIRE_SHOOTINV = 4
 
 	var/check_accounts = 0		// 1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!
 	var/obj/item/spacecash/ewallet/ewallet
 	var/tipped_level = 0
-	var/hacking_safety = 0 //1 = Will never shoot inventory or allow all access
-	var/wrenchable = TRUE
+	var/hacking_safety = FALSE //1 = Will never shoot inventory or allow all access
+	wrenchable = TRUE
 	var/isshared = FALSE
 
-/obj/machinery/vending/New()
-	..()
-	spawn(4)
-		src.slogan_list = text2list(src.product_slogans, ";")
+/obj/machinery/vending/Initialize()
+	. = ..()
+	src.slogan_list = text2list(src.product_slogans, ";")
 
-		// So not all machines speak at the exact same time.
-		// The first time this machine says something will be at slogantime + this random value,
-		// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
-		src.last_slogan = world.time + rand(0, slogan_delay)
+	// So not all machines speak at the exact same time.
+	// The first time this machine says something will be at slogantime + this random value,
+	// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
+	src.last_slogan = world.time + rand(0, slogan_delay)
 
-		src.build_inventory(products)
-		 //Add hidden inventory
-		src.build_inventory(contraband, 1)
-		src.build_inventory(premium, 0, 1)
-		power_change()
-		start_processing()
-		return
-
-	return
+	src.build_inventory(products)
+		//Add hidden inventory
+	src.build_inventory(contraband, 1)
+	src.build_inventory(premium, 0, 1)
+	power_change()
+	start_processing()
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)
@@ -105,9 +101,6 @@
 	return
 
 /obj/machinery/vending/proc/build_inventory(var/list/productlist,hidden=0,req_coin=0)
-
-	if(delay_product_spawn)
-		sleep(15) //Make ABSOLUTELY SURE the seed datum is properly populated.
 
 	for(var/typepath in productlist)
 		var/amount = productlist[typepath]
@@ -140,20 +133,21 @@
 			R.category=CAT_NORMAL
 			product_records += R
 
-		if(delay_product_spawn)
-			sleep(5) //sleep(1) did not seem to cut it, so here we are.
+		if(ispath(typepath, /obj/item/seeds))
+			var/obj/item/seeds/S = typepath
+			var/datum/seed/SD = GLOB.seed_types[initial(S.seed_type)]
+			R.product_name = "packet of [SD.seed_name] [SD.seed_noun]"
+			continue
 
 		R.product_name = initial(temp_path.name)
 
-//		to_chat(world, "Added: [R.product_name]] - [R.amount] - [R.product_path]")
-	return
 
 /obj/machinery/vending/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(tipped_level)
 		to_chat(M, "<span class='warning'>There's no reason to bother with that old piece of trash.</span>")
 		return FALSE
 
-	if(M.a_intent == "hurt")
+	if(M.a_intent == INTENT_HARM)
 		M.animation_attack_on(src)
 		if(prob(M.xeno_caste.melee_damage_lower))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
@@ -182,10 +176,6 @@
 	else
 		tipped_level = 0
 
-/obj/structure/inflatable/attack_alien(mob/living/carbon/Xenomorph/M)
-	M.animation_attack_on(src)
-	deflate(1)
-
 /obj/machinery/vending/proc/tip_over()
 	var/matrix/A = matrix()
 	tipped_level = 2
@@ -200,7 +190,7 @@
 	density = TRUE
 	var/matrix/A = matrix()
 	transform = A
-	stat &= ~BROKEN //Remove broken. MAGICAL REPAIRS
+	machine_stat &= ~BROKEN //Remove broken. MAGICAL REPAIRS
 
 /obj/machinery/vending/attackby(obj/item/W, mob/user)
 	if(tipped_level)
@@ -211,7 +201,7 @@
 		src.emagged = 1
 		to_chat(user, "You short out the product lock on [src]")
 		return
-	else if(istype(W, /obj/item/tool/screwdriver))
+	else if(isscrewdriver(W))
 		src.panel_open = !src.panel_open
 		to_chat(user, "You [src.panel_open ? "open" : "close"] the maintenance panel.")
 		src.overlays.Cut()
@@ -219,7 +209,7 @@
 			src.overlays += image(src.icon, "[initial(icon_state)]-panel")
 		src.updateUsrDialog()
 		return
-	else if(istype(W, /obj/item/device/multitool)||istype(W, /obj/item/tool/wirecutters))
+	else if(ismultitool(W)||iswirecutter(W))
 		if(src.panel_open)
 			attack_hand(user)
 		return
@@ -232,9 +222,9 @@
 			to_chat(user, "<span class='warning'>[src] doesn't have a coin slot.</span>")
 			return
 		if(C.flags_token & tokensupport)
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				coin = W
-				to_chat(user, "\blue You insert the [W] into the [src]")
+				to_chat(user, "<span class='notice'>You insert the [W] into the [src]</span>")
 		else
 			to_chat(user, "<span class='warning'>\The [src] rejects the [W].</span>")
 			return
@@ -244,12 +234,12 @@
 		scan_card(I)
 		return
 	else if (istype(W, /obj/item/spacecash/ewallet))
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			ewallet = W
-			to_chat(user, "\blue You insert the [W] into the [src]")
+			to_chat(user, "<span class='notice'>You insert the [W] into the [src]</span>")
 		return
 
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		if(!wrenchable) return
 
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
@@ -282,9 +272,9 @@
 					//Just Vend it.
 					transfer_and_vend(CH)
 			else
-				to_chat(usr, "\icon[src]<span class='warning'>Connected account has been suspended.</span>")
+				to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Connected account has been suspended.</span>")
 		else
-			to_chat(usr, "\icon[src]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
+			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
 
 /obj/machinery/vending/proc/transfer_and_vend(var/datum/money_account/acc)
 	if(acc)
@@ -310,9 +300,9 @@
 			src.vend(src.currently_vending, usr)
 			currently_vending = null
 		else
-			to_chat(usr, "\icon[src]<span class='warning'>You don't have that much money!</span>")
+			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>You don't have that much money!</span>")
 	else
-		to_chat(usr, "\icon[src]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
+		to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
 
 
 /obj/machinery/vending/attack_paw(mob/user as mob)
@@ -349,16 +339,16 @@
 /obj/machinery/vending/attack_hand(mob/user as mob)
 	if(tipped_level == 2)
 		tipped_level = 1
-		user.visible_message("\blue [user] begins to heave the vending machine back into place!","\blue You start heaving the vending machine back into place..")
+		user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
 		if(do_after(user,80, FALSE, 5, BUSY_ICON_FRIENDLY))
-			user.visible_message("\blue [user] rights the [src]!","\blue You right the [src]!")
+			user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
 			flip_back()
 			return
 		else
 			tipped_level = 2
 			return
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	user.set_interaction(src)
@@ -376,7 +366,7 @@
 			"Goldenrod" = 3,
 			"Green" = 4,
 		)
-		dat += "<br><hr><br><B>Access Panel</B><br>"
+		dat += "<br>"
 		for(var/wiredesc in vendwires)
 			var/is_uncut = src.wires & APCWireColorToFlag[vendwires[wiredesc]]
 			dat += "[wiredesc] wire: "
@@ -396,8 +386,11 @@
 		if (product_slogans != "")
 			dat += "The speaker switch is [src.shut_up ? "off" : "on"]. <a href='?src=\ref[src];togglevoice=[1]'>Toggle</a>"
 
-		user << browse(dat, "window=vending")
+		var/datum/browser/popup = new(user, "vending", "<div align='center'>Access Panel</div>")
+		popup.set_content(dat)
+		popup.open(FALSE)
 		onclose(user, "vending")
+
 
 
 	ui_interact(user)
@@ -442,7 +435,7 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/vending/Topic(href, href_list)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(usr.is_mob_incapacitated())
 		return
@@ -453,9 +446,9 @@
 			return
 
 		coin.loc = src.loc
-		if(!usr.get_active_hand())
+		if(!usr.get_active_held_item())
 			usr.put_in_hands(coin)
-		to_chat(usr, "\blue You remove the [coin] from the [src]")
+		to_chat(usr, "<span class='notice'>You remove the [coin] from the [src]</span>")
 		coin = null
 
 	if(href_list["remove_ewallet"] && !istype(usr,/mob/living/silicon))
@@ -463,9 +456,9 @@
 			to_chat(usr, "There is no charge card in this machine.")
 			return
 		ewallet.loc = src.loc
-		if(!usr.get_active_hand())
+		if(!usr.get_active_held_item())
 			usr.put_in_hands(ewallet)
-		to_chat(usr, "\blue You remove the [ewallet] from the [src]")
+		to_chat(usr, "<span class='notice'>You remove the [ewallet] from the [src]</span>")
 		ewallet = null
 
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
@@ -492,7 +485,7 @@
 						ewallet.worth -= R.price
 						src.vend(R, usr)
 					else
-						to_chat(usr, "\red The ewallet doesn't have enough money to pay for that.")
+						to_chat(usr, "<span class='warning'>The ewallet doesn't have enough money to pay for that.</span>")
 						src.currently_vending = R
 						src.updateUsrDialog()
 				else
@@ -511,8 +504,9 @@
 				usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
 				"<span class='notice'>You fumble around figuring out the wiring.</span>")
 				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
-				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-			if (!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
+				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
+			if (!iswirecutter(usr.get_active_held_item()))
 				to_chat(usr, "You need wirecutters!")
 				return
 			if (src.isWireColorCut(twire))
@@ -527,7 +521,7 @@
 				"<span class='notice'>You fumble around figuring out the wiring.</span>")
 				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
 				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if (!ismultitool(usr.get_active_held_item()))
 				to_chat(usr, "You need a multitool!")
 				return
 			if (src.isWireColorCut(twire))
@@ -554,13 +548,13 @@
 
 	if (R in coin_records)
 		if(!coin)
-			to_chat(user, "\blue You need to insert a coin to get this item.")
+			to_chat(user, "<span class='notice'>You need to insert a coin to get this item.</span>")
 			return
 		if(coin.string_attached)
 			if(prob(50))
-				to_chat(user, "\blue You successfully pull the coin out before the [src] could swallow it.")
+				to_chat(user, "<span class='notice'>You successfully pull the coin out before the [src] could swallow it.</span>")
 			else
-				to_chat(user, "\blue You weren't able to pull the coin out fast enough, the machine ate it, string and all.")
+				to_chat(user, "<span class='notice'>You weren't able to pull the coin out fast enough, the machine ate it, string and all.</span>")
 				qdel(coin)
 				coin = null
 		else
@@ -575,7 +569,6 @@
 			src.speak(src.vend_reply)
 			src.last_reply = world.time
 
-
 	release_item(R, vend_delay)
 	vend_ready = 1
 	updateUsrDialog()
@@ -583,15 +576,28 @@
 /obj/machinery/vending/proc/release_item(datum/data/vending_product/R, delay_vending = 0, dump_product = 0)
 	set waitfor = 0
 	if(delay_vending)
-		use_power(vend_power_usage)	//actuators and stuff
-		if (icon_vend) flick(icon_vend,src) //Show the vending animation if needed
-		sleep(delay_vending)
-	if(ispath(R.product_path,/obj/item/weapon/gun)) . = new R.product_path(get_turf(src),1)
-	else . = new R.product_path(get_turf(src))
+		if(powered(power_channel))
+			use_power(vend_power_usage)	//actuators and stuff
+			if (icon_vend)
+				flick(icon_vend,src) //Show the vending animation if needed
+			sleep(delay_vending)
+		else if(machine_current_charge > vend_power_usage) //if no power, use the machine's battery.
+			machine_current_charge -= min(machine_current_charge, vend_power_usage) //Sterilize with min; no negatives allowed.
+			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Vend Power Usage: [vend_power_usage] Machine Current Charge: [machine_current_charge].</span>")
+			if (icon_vend)
+				flick(icon_vend,src) //Show the vending animation if needed
+			sleep(delay_vending)
+		else
+			return
+	if(ispath(R.product_path,/obj/item/weapon/gun))
+		return new R.product_path(get_turf(src),1)
+	else
+		return new R.product_path(get_turf(src))
+
 
 /obj/machinery/vending/MouseDrop_T(var/atom/movable/A, mob/user)
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(user.stat || user.is_mob_restrained() || user.lying)
@@ -604,7 +610,7 @@
 		var/obj/item/I = A
 		stock(I, user)
 
-/obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user)
+/obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
 	var/datum/data/vending_product/R //Let's try with a new datum.
 	 //More accurate comparison between absolute paths.
 	for(R in (product_records + hidden_records + coin_records))
@@ -635,21 +641,22 @@
 			if(item_to_stock.loc == user) //Inside the mob's inventory
 				if(item_to_stock.flags_item & WIELDED)
 					item_to_stock.unwield(user)
-				user.temp_drop_inv_item(item_to_stock)
+				user.temporarilyRemoveItemFromInventory(item_to_stock)
 
 			if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
 				var/obj/item/storage/S = item_to_stock.loc
 				S.remove_from_storage(item_to_stock, user.loc)
 
 			qdel(item_to_stock)
-			user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
-			"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
+			if(!recharge)
+				user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
+				"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
 			R.amount++
 			updateUsrDialog()
 			return //We found our item, no reason to go on.
 
 /obj/machinery/vending/process()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(!src.active)
@@ -667,10 +674,8 @@
 	if(src.shoot_inventory && prob(2) && !hacking_safety)
 		src.throw_item()
 
-	return
-
 /obj/machinery/vending/proc/speak(var/message)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	if (!message)
@@ -678,18 +683,16 @@
 
 	for(var/mob/O in hearers(src, null))
 		O.show_message("<span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"",2)
-	return
 
 /obj/machinery/vending/power_change()
 	..()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
+	else if( !(machine_stat & NOPOWER) )
+		icon_state = initial(icon_state)
 	else
-		if( !(stat & NOPOWER) )
-			icon_state = initial(icon_state)
-		else
-			spawn(rand(0, 15))
-				icon_state = "[initial(icon_state)]-off"
+		spawn(rand(0, 15))
+			icon_state = "[initial(icon_state)]-off"
 
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()
@@ -705,16 +708,15 @@
 			R.amount--
 		break
 
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	src.icon_state = "[initial(icon_state)]-broken"
-	return
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
 /obj/machinery/vending/proc/throw_item()
 	var/obj/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)
-		return 0
+		return FALSE
 
 	for(var/datum/data/vending_product/R in product_records)
 		if (R.amount <= 0) //Try to use a record that actually has something to dump.
@@ -727,11 +729,11 @@
 		throw_item = release_item(R, 0)
 		break
 	if (!throw_item)
-		return 0
+		return FALSE
 	spawn(0)
 		throw_item.throw_at(target, 16, 3, src)
 	src.visible_message("<span class='warning'>[src] launches [throw_item.name] at [target]!</span>")
-	return 1
+	. = TRUE
 
 /obj/machinery/vending/proc/isWireColorCut(var/wireColor)
 	var/wireFlag = APCWireColorToFlag[wireColor]

@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 	layer = WINDOW_LAYER
-	var/health = 50
+	health = 50
 	var/health_max = 50
 	var/cut = FALSE //Cut fences can be passed through
 	var/junction = 0 //Because everything is terrible, I'm making this a fence-level var
@@ -66,7 +66,7 @@
 		health -= 100
 		healthcheck(1, 1, user)
 
-	else if(ishuman(user) && user.a_intent == "hurt")
+	else if(ishuman(user) && user.a_intent == INTENT_HARM)
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			attack_generic(H, 25)
@@ -138,7 +138,7 @@
 
 	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
 		var/obj/item/grab/G = W
-		if(istype(G.grabbed_thing, /mob/living))
+		if(isliving(G.grabbed_thing))
 			var/mob/living/M = G.grabbed_thing
 			var/state = user.grab_level
 			user.drop_held_item()
@@ -164,7 +164,7 @@
 	if(W.flags_item & NOBLUDGEON)
 		return
 
-	if(istype(W, /obj/item/tool/wirecutters))
+	if(iswirecutter(W))
 		user.visible_message("<span class='notice'>[user] starts cutting through [src] with [W].</span>",
 		"<span class='notice'>You start cutting through [src] with [W]")
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
@@ -194,7 +194,7 @@
 	..()
 
 	if(start_dir)
-		dir = start_dir
+		setDir(start_dir)
 
 	update_nearby_icons()
 
@@ -206,7 +206,7 @@
 /obj/structure/fence/Move()
 	var/ini_dir = dir
 	..()
-	dir = ini_dir
+	setDir(ini_dir)
 
 //This proc is used to update the icons of nearby windows.
 /obj/structure/fence/proc/update_nearby_icons()

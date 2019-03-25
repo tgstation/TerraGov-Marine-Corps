@@ -40,7 +40,7 @@
 		if(!secured)	return 0
 		pulse(0)
 		if(!holder)
-			visible_message("\icon[src] *beep* *beep*", "*beep* *beep*")
+			visible_message("[icon2html(src, viewers(src))] *beep* *beep*", "*beep* *beep*")
 		cooldown = 2
 		spawn(10)
 			process_cooldown()
@@ -70,7 +70,7 @@
 
 	interact(mob/user as mob)//TODO: Have this use the wires
 		if(!secured)
-			user.show_message("\red The [name] is unsecured!")
+			user.show_message("<span class='warning'> The [name] is unsecured!</span>")
 			return 0
 		var/second = time % 60
 		var/minute = (time - second) / 60

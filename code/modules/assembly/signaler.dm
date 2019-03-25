@@ -136,7 +136,7 @@
 
 		if(!holder)
 			for(var/mob/O in hearers(1, src.loc))
-				O.show_message(text("\icon[] *beep* *beep*", src), 3, "*beep* *beep*", 2)
+				O.show_message("[icon2html(src, O)] *beep* *beep*")
 		return
 
 
@@ -169,4 +169,4 @@
 		set desc = "BOOOOM!"
 		deadman = 1
 		START_PROCESSING(SSobj, src)
-		usr.visible_message("\red [usr] moves their finger over [src]'s signal button...")
+		usr.visible_message("<span class='warning'> [usr] moves their finger over [src]'s signal button...</span>")

@@ -9,12 +9,21 @@
 	hud_possible = list(STATUS_HUD_XENO_INFECTION)
 
 	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie
-	var/greaterform = "Human"                  // Used when humanizing a monkey.
+	var/datum/species/greaterform              // Used when humanizing a monkey.
+	var/greaterform_type = /datum/species/human
 	icon_state = "monkey1"
 	//var/uni_append = "12C4E2"                // Small appearance modifier for different species.
 	var/list/uni_append = list(0x12C,0x4E2)    // Same as above for DNA2.
 	var/update_muts = 1                        // Monkey gene must be set at start.
-	var/env_low_temp_resistance = T0C + 10 //lowest temperature the monkey can handle without taking dmg (used by yiren)
+
+	//temperature limits, will default to the greater form's if not set.
+	var/cold_level_1
+	var/cold_level_2
+	var/cold_level_3
+
+	var/heat_level_1
+	var/heat_level_2
+	var/heat_level_3
 
 
 /mob/living/carbon/monkey/prepare_huds()
@@ -28,7 +37,7 @@
 	voice_name = "farwa"
 	speak_emote = list("mews")
 	icon_state = "tajkey1"
-	greaterform = "Tajara"
+	greaterform_type = /datum/species/tajaran
 	uni_append = list(0x0A0,0xE00) // 0A0E00
 
 /mob/living/carbon/monkey/skrell
@@ -36,7 +45,7 @@
 	voice_name = "neaera"
 	speak_emote = list("squicks")
 	icon_state = "skrellkey1"
-	greaterform = "Skrell"
+	greaterform_type = /datum/species/skrell
 	uni_append = list(0x01C,0xC92) // 01CC92
 
 /mob/living/carbon/monkey/unathi
@@ -44,7 +53,7 @@
 	voice_name = "stok"
 	speak_emote = list("hisses")
 	icon_state = "stokkey1"
-	greaterform = "Unathi"
+	greaterform_type = /datum/species/unathi
 	uni_append = list(0x044,0xC5D) // 044C5D
 
 
@@ -54,23 +63,34 @@
 	voice_name = "yiren"
 	speak_emote = list("grumbles")
 	icon_state = "yirenkey1"
-	env_low_temp_resistance = ICE_PLANET_min_cold_protection_temperature
+	cold_level_1 = ICE_COLONY_TEMPERATURE - 20
+	cold_level_2 = ICE_COLONY_TEMPERATURE - 40
+	cold_level_3 = ICE_COLONY_TEMPERATURE - 80
 
 
-/mob/living/carbon/monkey/New()
+/mob/living/carbon/monkey/Initialize()
 	verbs += /mob/living/proc/lay_down
-	var/datum/reagents/R = new/datum/reagents(1000)
-	reagents = R
-	R.my_atom = src
+	create_reagents(1000)
 
-	species = all_species[greaterform]
-	add_language(species.language)
+	if(greaterform_type)
+		greaterform = new greaterform_type()
+
+		add_language(greaterform.language)
+
+		cold_level_1 = null ? greaterform.cold_level_1 : cold_level_1
+		cold_level_2 = null ? greaterform.cold_level_2 : cold_level_2
+		cold_level_3 = null ? greaterform.cold_level_3 : cold_level_3
+
+		heat_level_1 = null ? greaterform.heat_level_1 : heat_level_1
+		heat_level_2 = null ? greaterform.heat_level_2 : heat_level_2
+		heat_level_3 = null ? greaterform.heat_level_3 : heat_level_3
+
 
 	if(name == initial(name)) //To stop Pun-Pun becoming generic.
 		name = "[name] ([rand(1, 1000)])"
 		real_name = name
 
-	if (!(dna))
+	if (!dna)
 		if(gender == NEUTER)
 			gender = pick(MALE, FEMALE)
 		dna = new /datum/dna( null )
@@ -97,19 +117,19 @@
 
 		update_muts=1
 
-	..()
+	return ..()
 
 
-/mob/living/carbon/monkey/unathi/New()
-	..()
+/mob/living/carbon/monkey/unathi/Initialize()
+	. = ..()
 	dna.mutantrace = "lizard"
 
-/mob/living/carbon/monkey/skrell/New()
-	..()
+/mob/living/carbon/monkey/skrell/Initialize()
+	. = ..()
 	dna.mutantrace = "skrell"
 
-/mob/living/carbon/monkey/tajara/New()
-	..()
+/mob/living/carbon/monkey/tajara/Initialize()
+	. = ..()
 	dna.mutantrace = "tajaran"
 
 /mob/living/carbon/monkey/movement_delay()
@@ -124,7 +144,7 @@
 	if(bodytemperature < 283.222)
 		. += (283.222 - bodytemperature) / 10 * 1.75
 
-	. += config.monkey_delay
+	. += CONFIG_GET(number/outdated_movedelay/monkey_delay)
 
 /mob/living/carbon/monkey/get_permeability_protection()
 	var/protection = 0
@@ -151,7 +171,7 @@
 				if(what)
 					usr.stripPanelUnequip(what,src,slot)
 				else
-					what = usr.get_active_hand()
+					what = usr.get_active_held_item()
 					usr.stripPanelEquip(what,src,slot)
 
 	if(href_list["internal"])
@@ -159,9 +179,9 @@
 		if(!usr.action_busy)
 			log_combat(usr, src, "toggled internals (attempted)")
 			if(internal)
-				usr.visible_message("\red <B>[usr] is trying to disable [src]'s internals</B>", null, 4)
+				usr.visible_message("<span class='danger'>[usr] is trying to disable [src]'s internals</span>", null, 4)
 			else
-				usr.visible_message("\red <B>[usr] is trying to enable [src]'s internals.</B>", null, 4)
+				usr.visible_message("<span class='danger'>[usr] is trying to enable [src]'s internals.</span>", null, 4)
 
 			if(do_mob(usr, src, 30, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 				if (internal)
@@ -175,7 +195,7 @@
 							internal = back
 							visible_message("[src] is now running on internals.", null, 3)
 							internal.add_fingerprint(usr)
-							if (hud_used. && hud_used.internals)
+							if (hud_used && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
 
 
@@ -185,14 +205,14 @@
 /mob/living/carbon/monkey/attack_paw(mob/M as mob)
 	..()
 
-	if (M.a_intent == "help")
+	if (M.a_intent == INTENT_HARM)
 		help_shake_act(M)
 	else
-		if ((M.a_intent == "hurt" && !( istype(wear_mask, /obj/item/clothing/mask/muzzle) )))
+		if ((M.a_intent == INTENT_HARM && !( istype(wear_mask, /obj/item/clothing/mask/muzzle) )))
 			if ((prob(75) && health > 0))
 				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 				for(var/mob/O in viewers(src, null))
-					O.show_message("\red <B>[M.name] has bit [name]!</B>", 1)
+					O.show_message("<span class='danger'>[M.name] has bit [name]!</span>", 1)
 				var/damage = rand(1, 5)
 				adjustBruteLoss(damage)
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
@@ -201,11 +221,11 @@
 						contract_disease(D,1,0)
 			else
 				for(var/mob/O in viewers(src, null))
-					O.show_message("\red <B>[M.name] has attempted to bite [name]!</B>", 1)
+					O.show_message("<span class='danger'>[M.name] has attempted to bite [name]!</span>", 1)
 	return
 
 /mob/living/carbon/monkey/attack_hand(mob/living/carbon/human/M as mob)
-	if (!ticker)
+	if (!SSticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
 
@@ -216,7 +236,7 @@
 	if(M.gloves)
 		var/obj/item/clothing/gloves/G = M.gloves
 		if(G.cell)
-			if(M.a_intent == "hurt")//Stungloves. Any contact will stun the alien.
+			if(M.a_intent == INTENT_HARM)//Stungloves. Any contact will stun the alien.
 				if(G.cell.charge >= 2500)
 					G.cell.use(2500)
 					KnockDown(5)
@@ -226,19 +246,19 @@
 
 					for(var/mob/O in viewers(src, null))
 						if (O.client)
-							O.show_message("\red <B>[src] has been touched with the stun gloves by [M]!</B>", 1, "\red You hear someone fall", 2)
+							O.show_message("<span class='danger'>[src] has been touched with the stun gloves by [M]!</span>", 1, "<span class='warning'> You hear someone fall</span>", 2)
 					return
 				else
-					to_chat(M, "\red Not enough charge! ")
+					to_chat(M, "<span class='warning'>Not enough charge! </span>")
 					return
 
-	if (M.a_intent == "help")
+	if (M.a_intent == INTENT_HELP)
 		help_shake_act(M)
 	else
-		if (M.a_intent == "hurt")
+		if (M.a_intent == INTENT_HARM)
 			var/datum/unarmed_attack/attack = M.species.unarmed
 			if ((prob(75) && health > 0))
-				visible_message("\red <B>[M] [pick(attack.attack_verb)]ed [src]!</B>")
+				visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>")
 
 				playsound(loc, "punch", 25, 1)
 				var/damage = rand(5, 10)
@@ -246,7 +266,7 @@
 					damage = rand(10, 15)
 					if (knocked_out < 5)
 						KnockOut(rand(10, 15))
-						visible_message("\red <B>[M] has knocked out [src]!</B>")
+						visible_message("<span class='danger'>[M] has knocked out [src]!</span>")
 
 				adjustBruteLoss(damage)
 
@@ -256,9 +276,9 @@
 				updatehealth()
 			else
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
-				visible_message("\red <B>[M] tried to [pick(attack.attack_verb)] [src]!</B>")
+				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>")
 		else
-			if (M.a_intent == "grab")
+			if (M.a_intent == INTENT_GRAB)
 				if(M == src || anchored)
 					return 0
 
@@ -271,13 +291,13 @@
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 						for(var/mob/O in viewers(src, null))
 							if ((O.client && !is_blind(O)))
-								O.show_message(text("\red <B>[] has pushed down [name]!</B>", M), 1)
+								O.show_message(text("<span class='danger'>[] has pushed down [name]!</span>", M), 1)
 					else
 						drop_held_item()
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 						for(var/mob/O in viewers(src, null))
 							if ((O.client && !is_blind(O)))
-								O.show_message(text("\red <B>[] has disarmed [name]!</B>", M), 1)
+								O.show_message(text("<span class='danger'>[] has disarmed [name]!</span>", M), 1)
 	return
 
 /mob/living/carbon/monkey/attack_animal(mob/living/M as mob)
@@ -289,8 +309,7 @@
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
-		for(var/mob/O in viewers(src, null))
-			O.show_message("\red <B>[M]</B> [M.attacktext] [src]!", 1)
+		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>", 1)
 		log_combat(M, src, "attacked")
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		adjustBruteLoss(damage)
@@ -305,8 +324,11 @@
 		return initial(pixel_y)
 
 /mob/living/carbon/monkey/Stat()
-	stat(null, text("Intent: []", a_intent))
-	stat(null, text("Move Mode: []", m_intent))
+	. = ..()
+
+	if(statpanel("Stats"))
+		stat(null, text("Intent: []", a_intent))
+		stat(null, text("Move Mode: []", m_intent))
 
 /mob/living/carbon/monkey/verb/removeinternal()
 	set name = "Remove Internals"
@@ -342,9 +364,7 @@
 	return
 
 /mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
-	if(universal_speak == 1)
-		return 1
-	return 0
+	return universal_speak
 
 /mob/living/carbon/monkey/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/italics=0, var/message_range = world.view, var/list/used_radios = list())
         if(stat)
@@ -385,11 +405,11 @@
 	//Check hands
 	var/obj/item/card/id/id_card
 	var/obj/item/held_item
-	held_item = get_active_hand()
+	held_item = get_active_held_item()
 	if(held_item) //Check active hand
 		id_card = held_item.GetID()
 	if(!id_card) //If there is no id, check the other hand
-		held_item = get_inactive_hand()
+		held_item = get_inactive_held_item()
 		if(held_item)
 			id_card = held_item.GetID()
 	if(id_card)

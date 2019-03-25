@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
-	if(slot == WEAR_JACKET)
+	if(slot == SLOT_WEAR_SUIT)
 		check_limb_support(TRUE, user)
 
 /obj/item/clothing/suit/dropped(mob/living/carbon/human/user)
@@ -29,14 +29,14 @@
 
 	for(var/datum/limb/E in H.limbs)
 		if(equip)
-			if((E.status & LIMB_BROKEN) && !(E.status & LIMB_STABILIZED) && supporting_limbs.Find(E.body_part))
-				E.status |= LIMB_STABILIZED
+			if((E.limb_status & LIMB_BROKEN) && !(E.limb_status & LIMB_STABILIZED) && supporting_limbs.Find(E.body_part))
+				E.limb_status |= LIMB_STABILIZED
 				playsound(src,'sound/voice/b18_fracture.ogg', 15, 0, 1)
 				to_chat(H, "<span class='notice'><b>You feel [src] constrict about your [E.display_name], stabilizing it.</b></span>")
 				playsound(loc, 'sound/machines/hydraulics_1.ogg', 15, 0, 1)
 		else
-			if((E.status & LIMB_STABILIZED) && supporting_limbs.Find(E.body_part))
-				E.status &= ~LIMB_STABILIZED
+			if((E.limb_status & LIMB_STABILIZED) && supporting_limbs.Find(E.body_part))
+				E.limb_status &= ~LIMB_STABILIZED
 				to_chat(H, "<span class='danger'>You feel the pressure from [src] about your [E.display_name] release, leaving it unsupported.</span>")
 				playsound(loc, 'sound/machines/hiss.ogg', 15, 0, 1)
 
@@ -49,8 +49,8 @@
 	if(!ishuman(user))
 		return
 
-	if((E.status & LIMB_BROKEN) && !(E.status & LIMB_STABILIZED) && supporting_limbs.Find(E.body_part))
-		E.status |= LIMB_STABILIZED
+	if((E.limb_status & LIMB_BROKEN) && !(E.limb_status & LIMB_STABILIZED) && supporting_limbs.Find(E.body_part))
+		E.limb_status |= LIMB_STABILIZED
 		playsound(src,'sound/voice/b18_fracture.ogg', 15, 0, 1)
 		playsound(loc, 'sound/machines/hydraulics_1.ogg', 15, 0, 1)
 		to_chat(user, "<span class='notice'><b>You feel [src] constrict about your [E.display_name], stabilizing it.</b></span>")

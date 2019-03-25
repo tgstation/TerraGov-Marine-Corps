@@ -13,7 +13,7 @@
 
 /obj/machinery/computer/aifixer/attackby(I as obj, user as mob)
 	if(istype(I, /obj/item/device/aicard))
-		if(stat & (NOPOWER|BROKEN))
+		if(machine_stat & (NOPOWER|BROKEN))
 			to_chat(user, "This terminal isn't functioning right now, get it working!")
 			return
 		I:transfer_ai("AIFIXER","AICARD",src,user)
@@ -32,7 +32,7 @@
 		return
 
 	user.set_interaction(src)
-	var/dat = "<h3>AI System Integrity Restorer</h3><br><br>"
+	var/dat
 
 	if (src.occupant)
 		var/laws
@@ -70,9 +70,11 @@
 			dat += "<br><br>Reconstruction in process, please wait.<br>"
 	dat += {" <A href='?src=\ref[user];mach_close=computer'>Close</A>"}
 
-	user << browse(dat, "window=computer;size=400x500")
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>AI System Integrity Restorer</div>", 400, 500)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "computer")
-	return
+
 
 /obj/machinery/computer/aifixer/process()
 	if(..())
@@ -94,8 +96,8 @@
 			if (src.occupant.health >= 0 && src.occupant.stat == DEAD)
 				src.occupant.stat = CONSCIOUS
 				src.occupant.lying = 0
-				dead_mob_list -= src.occupant
-				living_mob_list += src.occupant
+				GLOB.dead_mob_list -= src.occupant
+				GLOB.alive_mob_list += src.occupant
 				occupant.reload_fullscreens()
 				src.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-404")
 				src.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-full")
@@ -114,7 +116,7 @@
 /obj/machinery/computer/aifixer/update_icon()
 	..()
 	// Broken / Unpowered
-	if((stat & BROKEN) || (stat & NOPOWER))
+	if((machine_stat & BROKEN) || (machine_stat & NOPOWER))
 		overlays.Cut()
 
 	// Working / Powered

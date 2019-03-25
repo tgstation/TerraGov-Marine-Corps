@@ -6,7 +6,7 @@
 	name = "\improper M42A marksman magazine (10x28mm Caseless)"
 	desc = "A magazine of sniper rifle ammo."
 	caliber = "10x28mm"
-	icon_state = "m42c" //PLACEHOLDER
+	icon_state = "m42c"
 	w_class = 3
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/sniper
@@ -14,7 +14,7 @@
 
 	New()
 		..()
-		reload_delay = config.low_fire_delay
+		reload_delay = CONFIG_GET(number/combat_define/low_fire_delay)
 
 /obj/item/ammo_magazine/sniper/incendiary
 	name = "\improper M42A incendiary magazine (10x28mm)"
@@ -44,7 +44,7 @@
 	name = "\improper SVD magazine (7.62x54mmR)"
 	desc = "A large caliber magazine for the SVD sniper rifle."
 	caliber = "7.62x54mmR"
-	icon_state = "svd003"
+	icon_state = "svd"
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/rifle/sniper/svd
@@ -109,6 +109,7 @@
 	default_ammo = /datum/ammo/rocket
 	gun_type = /obj/item/weapon/gun/launcher/rocket
 	flags_magazine = NOFLAGS
+	reload_delay = 60
 
 	attack_self(mob/user)
 		if(current_rounds <= 0)
@@ -147,6 +148,7 @@
 	caliber = "rocket"
 	default_ammo = /datum/ammo/rocket
 	max_rounds = 1
+	current_rounds = 0
 	reload_delay = 60
 
 
@@ -169,4 +171,20 @@
 	caliber = "rocket array"
 	default_ammo = /datum/ammo/rocket/wp/quad
 	max_rounds = 4
+
+//-------------------------------------------------------
+//Minigun
+
+/obj/item/ammo_magazine/minigun
+	name = "rotating ammo drum (7.62x51mm)"
+	desc = "A huge ammo drum for a huge gun."
+	caliber = "7.62x51mm"
+	icon_state = "minigun"
+	origin_tech = "combat=3;materials=3"
+	matter = list("metal" = 10000)
+	default_ammo = /datum/ammo/bullet/minigun
+	max_rounds = 300
+	reload_delay = 50 //Hard to reload.
+	w_class = 3
+	gun_type = /obj/item/weapon/gun/minigun
 

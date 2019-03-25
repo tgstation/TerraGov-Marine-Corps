@@ -9,8 +9,8 @@
 
 	var/datum/computer/file/embedded_program/docking/multi/docking_program
 
-/obj/machinery/embedded_controller/radio/docking_port_multi/initialize()
-	..()
+/obj/machinery/embedded_controller/radio/docking_port_multi/Initialize()
+	. = ..()
 	docking_program = new/datum/computer/file/embedded_program/docking/multi(src)
 	program = docking_program
 
@@ -55,8 +55,8 @@
 	var/datum/computer/file/embedded_program/airlock/multi_docking/airlock_program
 	tag_secure = 1
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port_multi/initialize()
-	..()
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi/Initialize()
+	. = ..()
 	airlock_program = new/datum/computer/file/embedded_program/airlock/multi_docking(src)
 	program = airlock_program
 
@@ -107,47 +107,3 @@
 		program.receive_user_command(href_list["command"])
 
 	return 1
-
-
-
-/*** DEBUG VERBS ***
-
-/datum/computer/file/embedded_program/docking/multi/proc/print_state()
-	to_chat(world, "id_tag: [id_tag]")
-	to_chat(world, "dock_state: [dock_state]")
-	to_chat(world, "control_mode: [control_mode]")
-	to_chat(world, "tag_target: [tag_target]")
-	to_chat(world, "response_sent: [response_sent]")
-
-/datum/computer/file/embedded_program/docking/multi/post_signal(datum/signal/signal, comm_line)
-	to_chat(world, "Program [id_tag] sent a message!")
-	print_state()
-	to_chat(world, "[id_tag] sent command \"[signal.data["command"]]\" to \"[signal.data["recipient"]]\"")
-	..(signal)
-
-/obj/machinery/embedded_controller/radio/docking_port_multi/verb/view_state()
-	set category = "Debug"
-	set src in view(1)
-	src.program:print_state()
-
-/obj/machinery/embedded_controller/radio/docking_port_multi/verb/spoof_signal(var/command as text, var/sender as text)
-	set category = "Debug"
-	set src in view(1)
-	var/datum/signal/signal = new
-	signal.data["tag"] = sender
-	signal.data["command"] = command
-	signal.data["recipient"] = id_tag
-
-	src.program:receive_signal(signal)
-
-/obj/machinery/embedded_controller/radio/docking_port_multi/verb/debug_init_dock(var/target as text)
-	set category = "Debug"
-	set src in view(1)
-	src.program:initiate_docking(target)
-
-/obj/machinery/embedded_controller/radio/docking_port_multi/verb/debug_init_undock()
-	set category = "Debug"
-	set src in view(1)
-	src.program:initiate_undocking()
-
-*/

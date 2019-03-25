@@ -9,32 +9,31 @@
 /mob/living/carbon/human
 	var/last_chew = 0
 
-/mob/living/carbon/human/click(var/atom/A, var/list/mods)
-	if(interactee)
-		return interactee.handle_click(src, A, mods)
-
-	return ..()
-
 /mob/living/carbon/human/RestrainedClickOn(var/atom/A) //chewing your handcuffs
 	if (A != src) return ..()
 	var/mob/living/carbon/human/H = A
 
 	if (last_chew + 75 > world.time)
-		to_chat(H, "\red You can't bite your hand again yet...")
+		to_chat(H, "<span class='warning'>You can't bite your hand again yet...</span>")
 		return
 
 
-	if (!H.handcuffed) return
-	if (H.a_intent != "hurt") return
-	if (H.zone_selected != "mouth") return
-	if (H.wear_mask) return
-	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
+	if (!H.handcuffed)
+		return
+	if (H.a_intent != INTENT_HARM)
+		return
+	if (H.zone_selected != "mouth")
+		return
+	if (H.wear_mask)
+		return
+	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket))
+		return
 
 	var/datum/limb/O = H.get_limb(H.hand?"l_hand":"r_hand")
 	if (!O) return
 
-	var/s = "\red [H.name] chews on \his [O.display_name]!"
-	H.visible_message(s, "\red You chew on your [O.display_name]!")
+	var/s = "<span class='warning'>[H.name] chews on [H.p_their()] [O.display_name]!</span>"
+	H.visible_message(s, "<span class='warning'>You chew on your [O.display_name]!</span>")
 	H.log_message("[s] ([key_name(H)])", LOG_ATTACK)
 
 	if(O.take_damage(1,0,1,1,"teeth marks"))
@@ -66,10 +65,8 @@
 
 	if(!gloves && !mutations.len) return
 	var/obj/item/clothing/gloves/G = gloves
-	if((LASER in mutations) && a_intent == "hurt")
-		LaserEyes(A) // moved into a proc below
 
-	else if(istype(G) && G.Touch(A,0)) // for magic gloves
+	if(istype(G) && G.Touch(A,0)) // for magic gloves
 		return
 
 	else if(TK in mutations)
@@ -83,9 +80,6 @@
 			if(16 to 128)
 				return
 		A.attack_tk(src)
-
-/atom/movable/proc/handle_click(mob/living/carbon/human/user, atom/A, params) //Heres our handle click relay proc thing.
-	return
 
 /atom/proc/attack_hand(mob/user)
 	return

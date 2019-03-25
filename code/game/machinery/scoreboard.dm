@@ -58,7 +58,7 @@
 	active_power_usage = 4
 
 /obj/machinery/scoreboard_button/attack_hand(mob/user as mob)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)
 		return
@@ -68,7 +68,7 @@
 	active = 1
 	icon_state = "launcheract"
 
-	for(var/obj/machinery/scoreboard/X in machines)
+	for(var/obj/machinery/scoreboard/X in GLOB.machines)
 		if(X.id == id)
 			X.reset_scores()
 

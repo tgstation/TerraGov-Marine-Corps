@@ -10,7 +10,9 @@
 
 	..()
 
-	if(stat == DEAD) //Dead, nothing else to do.
+	if(stat == DEAD) //Dead, nothing else to do but this.
+		if(plasma_stored && !(xeno_caste.caste_flags & CASTE_DECAY_PROOF))
+			handle_decay()
 		return
 	if(stat == UNCONSCIOUS)
 		if(is_zoomed)
@@ -38,8 +40,15 @@
 		adjust_slowdown( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
 		adjust_stagger( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
 		rage_resist = CLAMP(1-round(rage * 0.014,0.01),0.3,1) //+1.4% damage resist per point of rage, max 70%
-		fire_resist_modifier = -round(rage * 0.01,0.01) //+1% fire resistance per stack of rage, max +50%; initial resist is 50%
+		fire_resist_modifier = CLAMP(round(rage * -0.01,0.01),-0.5,0) //+1% fire resistance per stack of rage, max +50%; initial resist is 50%
 		attack_delay = initial(attack_delay) - round(rage * 0.05,0.01) //-0.05 attack delay to a maximum reduction of -2.5
+	return ..()
+
+/mob/living/carbon/Xenomorph/Runner/handle_status_effects()
+	if(hit_and_run)
+		var/last_move = last_move_intent - 10
+		if(last_move && last_move < world.time - 5) //If we haven't moved in the last 500 ms, we lose our bonus
+			hit_and_run = 1
 	return ..()
 
 /mob/living/carbon/Xenomorph/update_stat()
@@ -90,17 +99,17 @@
 		return
 	//Initial stealth
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
-		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
+		alpha = HUNTER_STEALTH_RUN_ALPHA
 		return
 	//Stationary stealth
 	else if(last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
-		alpha = HUNTER_STEALTH_STILL_ALPHA //95% invisible
+		alpha = HUNTER_STEALTH_STILL_ALPHA
 	//Walking stealth
 	else if(m_intent == MOVE_INTENT_WALK)
-		alpha = HUNTER_STEALTH_WALK_ALPHA //80% invisible
+		alpha = HUNTER_STEALTH_WALK_ALPHA
 	//Running stealth
 	else
-		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
+		alpha = HUNTER_STEALTH_RUN_ALPHA
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!plasma_stored)
 		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
@@ -127,50 +136,40 @@
 	. = ..()
 	handle_stealth()
 
-/mob/living/carbon/Xenomorph/proc/handle_critical_health_updates()
-	var/turf/T = loc
-	if(istype(T))
-		if(!locate(/obj/effect/alien/weeds) in T) //In crit, damage is maximal if you're caught off weeds
-			adjustBruteLoss(2.5 - warding_aura*0.5) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
-		else
-			adjustBruteLoss(-warding_aura*0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
-
 /mob/living/carbon/Xenomorph/handle_fire()
 	. = ..()
 	if(.)
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
-		adjustFireLoss((fire_stacks + 3) * (xeno_caste.fire_resist + fire_resist_modifier)) // modifier is negative
+		if(stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to y'know being on fire.
+			stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+		adjustFireLoss((fire_stacks + 3) * CLAMP(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) // modifier is negative
 
 /mob/living/carbon/Xenomorph/proc/handle_living_health_updates()
-	if(health >= maxHealth || xeno_caste.hardcore) //no damage, don't bother
+	if(health < 0)
+		handle_critical_health_updates()
+		return
+	if(health >= maxHealth || xeno_caste.hardcore || on_fire) //can't regenerate.
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 		return
 	var/turf/T = loc
-	if(!T || !istype(T) || xeno_caste.hardcore)
-		return
-	if(on_fire) //Can't regenerate while on fire
-		updatehealth()
-		return
-	if(xeno_caste.caste_flags & CASTE_INNATE_HEALING) //Larvas regenerate fast anywhere as long as not in crit.
-		if(!(locate(/obj/effect/alien/weeds) in T) && health <= 0)
-			adjustBruteLoss(XENO_CRIT_DAMAGE)
-		else
-			heal_wounds(XENO_RESTING_HEAL)
-		updatehealth()
+	if(!T || !istype(T))
 		return
 	var/datum/hive_status/hive = hive_datum[hivenumber]
-	if(hive.living_xeno_queen && hive.living_xeno_queen.loc.z != loc.z) //if there is a queen, it must be in the same z-level
-		updatehealth()
-		return
-	if(locate(/obj/effect/alien/weeds) in T) //We regenerate on weeds.
-		if(lying || resting)
-			heal_wounds(XENO_RESTING_HEAL)
-		else
-			heal_wounds(XENO_STANDING_HEAL) //Major healing nerf if standing.
-	else if(health <= 0)
-		adjustBruteLoss(XENO_CRIT_DAMAGE) //Crit and no weeds makes us bleed.
+	if(!hive.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z) //if there is a queen, it must be in the same z-level
+		if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
+			if(lying || resting)
+				heal_wounds(XENO_RESTING_HEAL)
+			else
+				heal_wounds(XENO_STANDING_HEAL) //Major healing nerf if standing.
 	updatehealth()
+
+/mob/living/carbon/Xenomorph/proc/handle_critical_health_updates()
+	var/turf/T = loc
+	if((istype(T) && locate(/obj/effect/alien/weeds) in T))
+		heal_wounds(XENO_RESTING_HEAL + warding_aura * 0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
+	else
+		adjustBruteLoss(XENO_CRIT_DAMAGE - warding_aura) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
 
 /mob/living/carbon/Xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL)
 	var/amount = (1 + (maxHealth * 0.02) ) // 1 damage + 2% max health
@@ -226,7 +225,9 @@
 		if(recovery_aura)
 			plasma_stored += round(xeno_caste.plasma_gain * recovery_aura * 0.25 * modifier) //Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
 	else
-		plasma_stored++
+		var/datum/hive_status/hive = hive_datum[hivenumber]
+		if(!hive.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z) //We only regenerate plasma off weeds while on the same Z level as the queen; if one's alive
+			plasma_stored++
 	if(plasma_stored > xeno_caste.plasma_max)
 		plasma_stored = xeno_caste.plasma_max
 	else if(plasma_stored < 0)
@@ -255,7 +256,7 @@
 	if(on_fire) //Burning Xenos can't emit pheromones; they get burnt up! Null it baby! Disco inferno
 		current_aura = null
 	if(current_aura && plasma_stored > 5)
-		if(isXenoQueen(src) && anchored) //stationary queen's pheromone apply around the observed xeno.
+		if(isxenoqueen(src) && anchored) //stationary queen's pheromone apply around the observed xeno.
 			var/mob/living/carbon/Xenomorph/Queen/Q = src
 			var/atom/phero_center = Q
 			if(Q.observed_xeno)
@@ -424,7 +425,7 @@
 	var/env_temperature = loc.return_temperature()
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
 		if(env_temperature > (T0C + 66))
-			adjustFireLoss((env_temperature - (T0C + 66)) / 5 * (xeno_caste.fire_resist + fire_resist_modifier)) //Might be too high, check in testing.
+			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * CLAMP(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) //Might be too high, check in testing.
 			updatehealth() //unused while atmos is off
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"
@@ -454,7 +455,7 @@
 		var/area/A = get_area(loc)
 		var/area/QA = get_area(hive.living_xeno_queen.loc)
 		if(A.fake_zlevel == QA.fake_zlevel)
-			hud_used.locate_leader.dir = get_dir(src,hive.living_xeno_queen)
+			hud_used.locate_leader.setDir(get_dir(src,hive.living_xeno_queen))
 			hud_used.locate_leader.icon_state = "trackon"
 		else
 			hud_used.locate_leader.icon_state = "trackondirect"
@@ -480,22 +481,7 @@
 		AdjustKnockeddown(-5)
 	return knocked_down
 
-/mob/living/carbon/Xenomorph/proc/handle_stagger()
-	if(stagger)
-		#if DEBUG_XENO_LIFE
-		world << "<span class='debuginfo'>Regen: Initial stagger is: <b>[stagger]</b></span>"
-		#endif
-		adjust_stagger(-1)
-		#if DEBUG_XENO_LIFE
-		world << "<span class='debuginfo'>Regen: Final stagger is: <b>[stagger]</b></span>"
-		#endif
-	return stagger
-
-/mob/living/carbon/Xenomorph/proc/adjust_stagger(amount)
-	stagger = max(stagger + amount,0)
-	return stagger
-
-/mob/living/carbon/Xenomorph/proc/handle_slowdown()
+/mob/living/carbon/Xenomorph/handle_slowdown()
 	if(slowdown)
 		#if DEBUG_XENO_LIFE
 		world << "<span class='debuginfo'>Regen: Initial slowdown is: <b>[slowdown]</b></span>"
@@ -506,11 +492,7 @@
 		#endif
 	return slowdown
 
-/mob/living/carbon/Xenomorph/proc/adjust_slowdown(amount)
-	slowdown = max(slowdown + amount,0)
-	return slowdown
-
-/mob/living/carbon/Xenomorph/proc/add_slowdown(amount)
+/mob/living/carbon/Xenomorph/add_slowdown(amount)
 	slowdown = adjust_slowdown(amount*XENO_SLOWDOWN_REGEN)
 	return slowdown
 

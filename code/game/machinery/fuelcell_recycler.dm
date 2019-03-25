@@ -16,11 +16,11 @@
 /obj/machinery/fuelcell_recycler/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/fuelCell))
 		if(!cell_left)
-			if(user.drop_inv_item_to_loc(I, src))
+			if(user.transferItemToLoc(I, src))
 				cell_left = I
 				start_processing()
 		else if(!cell_right)
-			if(user.drop_inv_item_to_loc(I, src))
+			if(user.transferItemToLoc(I, src))
 				cell_right = I
 				start_processing()
 		else
@@ -61,12 +61,12 @@
 			update_icon()
 
 /obj/machinery/fuelcell_recycler/process()
-	if(stat & (BROKEN|NOPOWER))
-		update_use_power(0)
+	if(machine_stat & (BROKEN|NOPOWER))
+		update_use_power(NO_POWER_USE)
 		update_icon()
 		return
 	if(!cell_left && !cell_right)
-		update_use_power(1)
+		update_use_power(IDLE_POWER_USE)
 		update_icon()
 		stop_processing()
 		return
@@ -75,15 +75,15 @@
 		if(cell_left != null)
 			if(!cell_left.is_regenerated())
 				active = TRUE
-				cell_left.give(active_power_usage*(CELLRATE * 0.1))
+				cell_left.give(active_power_usage*(GLOB.CELLRATE * 0.1))
 		if(cell_right != null)
 			if(!cell_right.is_regenerated())
 				active = TRUE
-				cell_right.give(active_power_usage*(CELLRATE * 0.1))
+				cell_right.give(active_power_usage*(GLOB.CELLRATE * 0.1))
 		if(active)
-			update_use_power(2)
+			update_use_power(ACTIVE_POWER_USE)
 		else
-			update_use_power(1)
+			update_use_power(IDLE_POWER_USE)
 			stop_processing()
 
 		update_icon()
@@ -95,7 +95,7 @@
 /obj/machinery/fuelcell_recycler/update_icon()
 	src.overlays.Cut()
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		icon_state = "recycler0"
 		if(cell_left != null)
 			src.overlays += "recycler-left-cell"

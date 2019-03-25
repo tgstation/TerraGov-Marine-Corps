@@ -1,9 +1,9 @@
 /mob/living/silicon/decoy/ship_ai //For the moment, pending better pathing.
 
-/mob/living/silicon/decoy/ship_ai/New()
+/mob/living/silicon/decoy/ship_ai/Initialize()
 	. = ..()
 	name = MAIN_AI_SYSTEM
-	desc = "This is the artificial intelligence system for the [MAIN_SHIP_NAME]. Like many other military-grade AI systems, this one was manufactured by Weyland-Yutani."
+	desc = "This is the artificial intelligence system for the [CONFIG_GET(string/ship_name)]. Like many other military-grade AI systems, this one was manufactured by NanoTrasen."
 	ai_headset = new(src)
 
 
@@ -21,9 +21,9 @@
 	var/sound/ai_sound //The lines that it plays when speaking.
 
 /mob/living/silicon/decoy/Life()
-	if(stat == DEAD) 
+	if(stat == DEAD)
 		return FALSE
-	if(health <= config.health_threshold_dead && stat != DEAD) 
+	if(health <= get_death_threshold() && stat != DEAD)
 		death(FALSE, "<b>\The [name]</b> sparks up and falls silent...")
 
 /mob/living/silicon/decoy/updatehealth()
@@ -44,7 +44,7 @@
 	explosion(loc, -1, 0, 8, 12)
 
 /mob/living/silicon/decoy/say(message, new_sound) //General communication across the ship.
-	if(stat || !message) 
+	if(stat || !message)
 		return FALSE
 
 	ai_sound = new_sound ? new_sound : 'sound/misc/interference.ogg' //Remember the sound we need to play.
@@ -54,11 +54,11 @@
 	var/message_mode = parse_message_mode(message) //I really prefer my rewrite of all this.
 
 	switch(message_mode)
-		if("headset") 
+		if("headset")
 			message = copytext(message, 2)
-		if("broadcast") 
+		if("broadcast")
 			message_mode = "headset"
-		else 
+		else
 			message = copytext(message, 3)
 
 	ai_headset.talk_into(src, message, message_mode, "states", languages[1])
@@ -73,7 +73,7 @@
 	if(length(message) >= 2)
 		var/channel_prefix = copytext(message, 1 ,3)
 		channel_prefix = department_radio_keys[channel_prefix]
-		if(channel_prefix) 
+		if(channel_prefix)
 			return channel_prefix
 
 

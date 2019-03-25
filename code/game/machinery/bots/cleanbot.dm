@@ -37,8 +37,7 @@
 	should_patrol = 1
 
 	src.botcard = new /obj/item/card/id(src)
-	var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/logistics/tech/maint] : new /datum/job/logistics/tech/maint
-	botcard.access = J.get_access()
+	botcard.access = ALL_MARINE_ACCESS
 
 	src.locked = 0 // Start unlocked so roboticist can set them to patrol.
 
@@ -286,7 +285,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 /obj/machinery/bot/cleanbot/proc/clean(var/obj/effect/decal/cleanable/target)
 	anchored = 1
 	icon_state = "cleanbot-c"
-	visible_message("\red [src] begins to clean up the [target]")
+	visible_message("<span class='warning'> [src] begins to clean up the [target]</span>")
 	cleaning = 1
 	var/cleantime = 50
 	if(istype(target,/obj/effect/decal/cleanable/dirt))		// Clean Dirt much faster
@@ -300,7 +299,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 
 /obj/machinery/bot/cleanbot/explode()
 	src.on = 0
-	src.visible_message("\red <B>[src] blows apart!</B>", 1)
+	src.visible_message("<span class='danger'>[src] blows apart!</span>", 1)
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/reagent_container/glass/bucket(Tsec)

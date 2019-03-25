@@ -50,8 +50,8 @@
 					if(H.species.name in species_restricted)
 						wearable = 1
 
-				if(!wearable && (slot != 15 && slot != 16)) //Pockets.
-					to_chat(M, "\red Your species cannot wear [src].")
+				if(!wearable && (slot != SLOT_L_STORE && slot != SLOT_R_STORE)) //Pockets.
+					to_chat(M, "<span class='warning'>Your species cannot wear [src].</span>")
 					return 0
 
 	return 1
@@ -102,7 +102,7 @@
 	name = "ears"
 	w_class = 1.0
 	throwforce = 2
-	flags_equip_slot = SLOT_EAR
+	flags_equip_slot = ITEM_SLOT_EARS
 
 /obj/item/clothing/ears/update_clothing_icon()
 	if (ismob(src.loc))
@@ -114,7 +114,7 @@
 	desc = "Protects your hearing from loud noises, and quiet ones as well."
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
-	flags_equip_slot = SLOT_EAR
+	flags_equip_slot = ITEM_SLOT_EARS
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -123,33 +123,41 @@
 	icon = 'icons/obj/clothing/suits.dmi'
 	name = "suit"
 	var/fire_resist = T0C+100
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/tank/emergency_oxygen)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	flags_equip_slot = SLOT_OCLOTHING
+	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	var/list/supporting_limbs = null
 	siemens_coefficient = 0.9
 	w_class = 3
 
 /obj/item/clothing/suit/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
+	if(ismob(loc))
+		var/mob/M = loc
 		M.update_inv_wear_suit()
 
 /obj/item/clothing/suit/mob_can_equip(mob/M, slot, disable_warning = 0)
 	//if we can't equip the item anyway, don't bother with other checks.
-	if (!..())
-		return 0
+	. = ..()
+	if(!.)
+		return FALSE
 
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/clothing/under/U = H.w_uniform
-		//some uniforms prevent you from wearing any suits but certain types
-		if(U?.suit_restricted && !is_type_in_list(src, U.suit_restricted))
-			to_chat(H, "<span class='warning'>[src] can't be worn with [U].</span>")
-			return 0
-	return 1
+	if(!ishuman(M))
+		return TRUE
+
+	var/mob/living/carbon/human/H = M
+
+	if(!istype(H.w_uniform, /obj/item/clothing/under))
+		return FALSE
+
+	var/obj/item/clothing/under/U = H.w_uniform
+	//some uniforms prevent you from wearing any suits but certain types
+	if(U.suit_restricted && !is_type_in_list(src, U.suit_restricted))
+		to_chat(H, "<span class='warning'>[src] can't be worn with [U].</span>")
+		return FALSE
+
+	return TRUE
 
 
 /////////////////////////////////////////////////////////
@@ -164,7 +172,7 @@
 	var/obj/item/cell/cell = 0
 	var/clipped = 0
 	flags_armor_protection = HANDS
-	flags_equip_slot = SLOT_HANDS
+	flags_equip_slot = ITEM_SLOT_GLOVES
 	attack_verb = list("challenged")
 	species_restricted = list("exclude","Yautja")
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/gloves.dmi')
@@ -190,14 +198,14 @@
 	return 0 // return 1 to cancel attack_hand()
 
 /obj/item/clothing/gloves/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/tool/wirecutters) || istype(W, /obj/item/tool/surgery/scalpel))
+	if(iswirecutter(W) || istype(W, /obj/item/tool/surgery/scalpel))
 		if (clipped)
 			to_chat(user, "<span class='notice'>The [src] have already been clipped!</span>")
 			update_icon()
 			return
 
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-		user.visible_message("\red [user] cuts the fingertips off of the [src].","\red You cut the fingertips off of the [src].")
+		user.visible_message("<span class='warning'> [user] cuts the fingertips off of the [src].</span>","<span class='warning'> You cut the fingertips off of the [src].</span>")
 
 		clipped = 1
 		name = "mangled [name]"
@@ -214,7 +222,7 @@
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi'
 	flags_armor_protection = HEAD
-	flags_equip_slot = SLOT_FACE
+	flags_equip_slot = ITEM_SLOT_MASK
 	flags_armor_protection = FACE|EYES
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
 	var/anti_hug = 0
@@ -243,7 +251,7 @@
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	siemens_coefficient = 0.9
 	flags_armor_protection = FEET
-	flags_equip_slot = SLOT_FEET
+	flags_equip_slot = ITEM_SLOT_FEET
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	species_restricted = list("exclude","Yautja")

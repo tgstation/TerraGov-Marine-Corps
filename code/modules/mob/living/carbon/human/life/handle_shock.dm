@@ -2,7 +2,7 @@
 
 /mob/living/carbon/human/handle_shock()
 	. = ..()
-	if(status_flags & GODMODE || analgesic || (species && species.flags & NO_PAIN) || stat == DEAD)
+	if(status_flags & GODMODE || analgesic || (species && species.species_flags & NO_PAIN) || stat == DEAD)
 		shock_stage = null
 		return //Godmode or some other pain reducers. //Analgesic avoids all traumatic shock temporarily
 
@@ -82,7 +82,7 @@
 
 
 /mob/living/carbon/human/halloss_recovery()
-	if(status_flags & GODMODE || analgesic || (species && species.flags & NO_PAIN) || stat == DEAD)
+	if(status_flags & GODMODE || analgesic || (species && species.species_flags & NO_PAIN) || stat == DEAD)
 		setHalLoss(0)
 		return
 	var/rate = BASE_HALLOSS_RECOVERY_RATE

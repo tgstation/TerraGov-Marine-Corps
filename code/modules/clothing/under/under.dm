@@ -2,11 +2,11 @@
 /obj/item/clothing/under
 	icon = 'icons/obj/clothing/uniforms.dmi'
 	name = "under"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
+	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
+	flags_heat_protection = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.90
-	flags_equip_slot = SLOT_ICLOTHING
+	flags_equip_slot = ITEM_SLOT_ICLOTHING
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	w_class = 3
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
@@ -51,7 +51,7 @@
 		hastie = T
 		hastie.on_attached(src, user)
 
-		if(istype(loc, /mob/living/carbon/human))
+		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
 			H.update_inv_w_uniform()
 
@@ -61,7 +61,7 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.w_uniform == src)
-				H.drop_inv_item_on_ground(src)
+				H.dropItemToGround(src)
 				if(H.equip_to_appropriate_slot(I))
 					H.put_in_active_hand(src)
 
@@ -88,10 +88,10 @@
 			if(over_object)
 				switch(over_object.name)
 					if("r_hand")
-						usr.drop_inv_item_on_ground(src)
+						usr.dropItemToGround(src)
 						usr.put_in_r_hand(src)
 					if("l_hand")
-						usr.drop_inv_item_on_ground(src)
+						usr.dropItemToGround(src)
 						usr.put_in_l_hand(src)
 				add_fingerprint(usr)
 
@@ -111,15 +111,17 @@
 	if(hastie)
 		to_chat(user, "\A [hastie] is clipped to it.")
 
-/obj/item/clothing/under/proc/set_sensors(mob/user)
-	if (istype(user, /mob/dead/)) return
-	if (user.stat || user.is_mob_restrained()) return
+/obj/item/clothing/under/proc/set_sensors(mob/living/user)
+	if (!istype(user))
+		return
+	if (user.is_mob_incapacitated(TRUE))
+		return
 	if(has_sensor >= 2)
-		to_chat(user, "The controls are locked.")
-		return 0
+		to_chat(user, "The sensors in [src] can't be modified.")
+		return FALSE
 	if(has_sensor <= 0)
-		to_chat(user, "This suit does not have any sensors.")
-		return 0
+		to_chat(user, "[src] does not have any sensors.")
+		return FALSE
 
 	var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
 	var/switchMode = input("Select a sensor mode:", "Suit Sensor Mode", modes[sensor_mode + 1]) in modes
@@ -147,7 +149,7 @@
 		switch(sensor_mode)
 			if(0)
 				for(var/mob/V in viewers(usr, 1))
-					V.show_message("\red [user] disables [src.loc]'s remote sensing equipment.", 1)
+					V.show_message("<span class='warning'> [user] disables [src.loc]'s remote sensing equipment.</span>", 1)
 			if(1)
 				for(var/mob/V in viewers(usr, 1))
 					V.show_message("[user] turns [src.loc]'s remote sensors to binary.", 1)
@@ -174,14 +176,14 @@
 
 	if(rollable_sleeves)
 		rolled_sleeves = !rolled_sleeves
-		var/full_coverage = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+		var/full_coverage = CHEST|GROIN|LEGS|ARMS
 		if(rolled_sleeves)
-			var/partial_coverage = UPPER_TORSO|LOWER_TORSO|LEGS
+			var/partial_coverage = CHEST|GROIN|LEGS
 			var/final_coverage
 			//Marine uniforms can only roll up the sleeves, not wear it at the waist.
 			if(istype(src,/obj/item/clothing/under/marine))
 				final_coverage = copytext(icon_state,1,3) == "s_" ? full_coverage : partial_coverage
-			else final_coverage = partial_coverage & ~UPPER_TORSO
+			else final_coverage = partial_coverage & ~CHEST
 			flags_armor_protection = final_coverage
 		else
 			flags_armor_protection = full_coverage
@@ -208,7 +210,8 @@
 	set name = "Remove Accessory"
 	set category = "Object"
 	set src in usr
-	if(!istype(usr, /mob/living)) return
+	if(!isliving(usr))
+		return
 	if(usr.stat) return
 
 	src.remove_accessory(usr)

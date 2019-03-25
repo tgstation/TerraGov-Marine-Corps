@@ -3,22 +3,22 @@
 ////////////////////////////////
 
 /datum/construction/mecha/custom_action(step, atom/used_atom, mob/user)
-	if(istype(used_atom, /obj/item/tool/weldingtool))
+	if(iswelder(used_atom))
 		var/obj/item/tool/weldingtool/W = used_atom
 		if (W.remove_fuel(0, user))
 			playsound(holder, 'sound/items/Welder2.ogg', 25, 1)
 		else
 			return 0
-	else if(istype(used_atom, /obj/item/tool/wrench))
+	else if(iswrench(used_atom))
 		playsound(holder, 'sound/items/Ratchet.ogg', 25, 1)
 
-	else if(istype(used_atom, /obj/item/tool/screwdriver))
+	else if(isscrewdriver(used_atom))
 		playsound(holder, 'sound/items/Screwdriver.ogg', 25, 1)
 
-	else if(istype(used_atom, /obj/item/tool/wirecutters))
+	else if(iswirecutter(used_atom))
 		playsound(holder, 'sound/items/Wirecutter.ogg', 25, 1)
 
-	else if(istype(used_atom, /obj/item/stack/cable_coil))
+	else if(iscablecoil(used_atom))
 		var/obj/item/stack/cable_coil/C = used_atom
 		if(C.use(4))
 			playsound(holder, 'sound/items/Deconstruct.ogg', 25, 1)
@@ -35,22 +35,22 @@
 	return 1
 
 /datum/construction/reversible/mecha/custom_action(index as num, diff as num, atom/used_atom, mob/user as mob)
-	if(istype(used_atom, /obj/item/tool/weldingtool))
+	if(iswelder(used_atom))
 		var/obj/item/tool/weldingtool/W = used_atom
 		if (W.remove_fuel(0, user))
 			playsound(holder, 'sound/items/Welder2.ogg', 25, 1)
 		else
 			return 0
-	else if(istype(used_atom, /obj/item/tool/wrench))
+	else if(iswrench(used_atom))
 		playsound(holder, 'sound/items/Ratchet.ogg', 25, 1)
 
-	else if(istype(used_atom, /obj/item/tool/screwdriver))
+	else if(isscrewdriver(used_atom))
 		playsound(holder, 'sound/items/Screwdriver.ogg', 25, 1)
 
-	else if(istype(used_atom, /obj/item/tool/wirecutters))
+	else if(iswirecutter(used_atom))
 		playsound(holder, 'sound/items/Wirecutter.ogg', 25, 1)
 
-	else if(istype(used_atom, /obj/item/stack/cable_coil))
+	else if(iscablecoil(used_atom))
 		var/obj/item/stack/cable_coil/C = used_atom
 		if(C.use(4))
 			playsound(holder, 'sound/items/Deconstruct.ogg', 25, 1)
@@ -270,10 +270,6 @@
 					holder.icon_state = "ripley12"
 		return 1
 
-	spawn_result()
-		..()
-		feedback_inc("mecha_ripley_created",1)
-		return
 
 
 
@@ -552,10 +548,6 @@
 					holder.icon_state = "gygax18"
 		return 1
 
-	spawn_result()
-		..()
-		feedback_inc("mecha_gygax_created",1)
-		return
 
 /datum/construction/mecha/firefighter_chassis
 	steps = list(list("key"=/obj/item/mecha_parts/part/ripley_torso),//1
@@ -776,10 +768,6 @@
 					holder.icon_state = "fireripley13"
 		return 1
 
-	spawn_result()
-		..()
-		feedback_inc("mecha_firefighter_created",1)
-		return
 
 /datum/construction/mecha/durand_chassis
 	steps = list(list("key"=/obj/item/mecha_parts/part/durand_torso),//1
@@ -1056,10 +1044,6 @@
 					holder.icon_state = "durand18"
 		return 1
 
-	spawn_result()
-		..()
-		feedback_inc("mecha_durand_created",1)
-		return
 
 
 /datum/construction/mecha/phazon_chassis
@@ -1288,8 +1272,3 @@
 					user.visible_message("[user] unfastens the external armor layer.", "You unfasten the external armor layer.")
 					holder.icon_state = "odysseus12"
 		return 1
-
-	spawn_result()
-		..()
-		feedback_inc("mecha_odysseus_created",1)
-		return

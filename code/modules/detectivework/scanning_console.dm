@@ -203,8 +203,11 @@
 						dat += "<a href='?src=\ref[src];operation=scan'>Scan</a><br>"
 				dat += "Insert fingerprint card here: <a href='?src=\ref[src];operation=card'>-----</a>"
 
-	user << browse(dat,"window=fscanner")
-	onclose(user,"fscanner")
+	var/datum/browser/popup = new(user, "fscanner", "<div align='center'>Forensic Console</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
+	onclose(user, "fscanner")
+
 
 /obj/machinery/computer/forensic_scanning/Topic(href,href_list)
 	switch(href_list["operation"])
@@ -215,7 +218,7 @@
 		if("logout")
 			authenticated = 0
 		if("filter")
-			var/filterstr = stripped_input(usr,"Input the search criteria. Multiple values can be input, separated by a comma.", "Filter setting") as text|null
+			var/filterstr = stripped_input(usr,"Input the search criteria. Multiple values can be input, separated by a comma.", "Filter setting")
 			if(filterstr)
 				filter_list[href_list["filter"]] = text2list(filterstr,",")
 			else
@@ -236,7 +239,7 @@
 						current = null
 		if("label")
 			if(current)
-				var/label = stripped_input(usr,"Input the label for this record. Multiple values can be input, separated by a comma.", "Labeling record", current.fields["label"]) as text|null
+				var/label = stripped_input(usr,"Input the label for this record. Multiple values can be input, separated by a comma.", "Labeling record", current.fields["label"])
 				current.fields["label"] = label
 		if("object")
 			if(scanning)
@@ -245,7 +248,7 @@
 				scanning = null
 			else
 				var/mob/M = usr
-				var/obj/item/I = M.get_active_hand()
+				var/obj/item/I = M.get_active_held_item()
 				if(I && istype(I))
 					if(istype(I, /obj/item/evidencebag))
 						scanning = I.contents[1]
@@ -267,7 +270,7 @@
 			scan_progress = -1
 		if("card")
 			var/mob/M = usr
-			var/obj/item/I = M.get_active_hand()
+			var/obj/item/I = M.get_active_held_item()
 			if(istype(I, /obj/item/f_card))
 				if(process_card(I))
 					M.drop_held_item()

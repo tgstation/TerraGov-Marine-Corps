@@ -1,103 +1,3 @@
-
-// fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
-/proc/ishuman(A)
-	if(istype(A, /mob/living/carbon/human))
-		return TRUE
-	return FALSE
-
-/proc/iszombie(A)
-	if(ishuman(A))
-		var/mob/living/carbon/human/Z = A
-		if(Z.species.name == "Zombie")
-			return TRUE
-		return FALSE
-	return FALSE
-
-/proc/ismonkey(A)
-	if(A && istype(A, /mob/living/carbon/monkey))
-		return TRUE
-	return FALSE
-
-/proc/isbrain(A)
-	if(A && istype(A, /mob/living/brain))
-		return TRUE
-	return FALSE
-
-/proc/isrobot(A)
-	if(istype(A, /mob/living/silicon/robot))
-		return TRUE
-	return FALSE
-
-/proc/isanimal(A)
-	if(istype(A, /mob/living/simple_animal))
-		return TRUE
-	return FALSE
-
-/proc/iscorgi(A)
-	if(istype(A, /mob/living/simple_animal/corgi))
-		return TRUE
-	return FALSE
-
-/proc/iscrab(A)
-	if(istype(A, /mob/living/simple_animal/crab))
-		return TRUE
-	return FALSE
-
-/proc/iscat(A)
-	if(istype(A, /mob/living/simple_animal/cat))
-		return TRUE
-	return FALSE
-
-/proc/ismouse(A)
-	if(istype(A, /mob/living/simple_animal/mouse))
-		return TRUE
-	return FALSE
-
-/proc/isbear(A)
-	if(istype(A, /mob/living/simple_animal/hostile/bear))
-		return TRUE
-	return FALSE
-
-/proc/iscarp(A)
-	if(istype(A, /mob/living/simple_animal/hostile/carp))
-		return TRUE
-	return FALSE
-
-/proc/isclown(A)
-	if(istype(A, /mob/living/simple_animal/hostile/retaliate/clown))
-		return TRUE
-	return FALSE
-
-/proc/isAI(A)
-	if(istype(A, /mob/living/silicon/ai))
-		return TRUE
-	return FALSE
-
-/proc/iscarbon(A)
-	if(istype(A, /mob/living/carbon))
-		return TRUE
-	return FALSE
-
-/proc/issilicon(A)
-	if(istype(A, /mob/living/silicon))
-		return TRUE
-	return FALSE
-
-/proc/isliving(A)
-	if(istype(A, /mob/living))
-		return TRUE
-	return FALSE
-
-proc/isobserver(A)
-	if(istype(A, /mob/dead/observer))
-		return TRUE
-	return FALSE
-
-proc/isorgan(A)
-	if(istype(A, /datum/limb))
-		return TRUE
-	return FALSE
-
 proc/isdeaf(A)
 	if(isliving(A))
 		var/mob/living/M = A
@@ -110,132 +10,17 @@ proc/is_blind(A)
 		return M.eye_blind
 	return FALSE
 
-
-proc/isnewplayer(A)
-	if(istype(A, /mob/new_player))
-		return TRUE
-	return FALSE
-
-proc/isXeno(A)
-	if(istype(A, /mob/living/carbon/Xenomorph))
-		return TRUE
-	return FALSE
-
 proc/xeno_hivenumber(A)
-	if(isXeno(A))
+	if(isxeno(A))
 		var/mob/living/carbon/Xenomorph/X = A
 		return X.hivenumber
 	return FALSE
 
-proc/isXenoBoiler(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Boiler))
-		return TRUE
-	return FALSE
-
-proc/isXenoCarrier(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Carrier))
-		return TRUE
-	return FALSE
-
-proc/isXenoCrusher(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Crusher))
-		return TRUE
-	return FALSE
-
-proc/isXenoDrone(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Drone))
-		return TRUE
-	return FALSE
-
-proc/isXenoHivelord(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Hivelord))
-		return TRUE
-	return FALSE
-
-proc/isXenoHunter(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Hunter))
-		return TRUE
-	return FALSE
-
-proc/isXenoDefender(A)
-	if (istype(A, /mob/living/carbon/Xenomorph/Defender))
-		return TRUE
-	return FALSE
-
-proc/isXenoLarva(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Larva))
-		return TRUE
-	return FALSE
-
-proc/isXenoLarvaStrict(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Larva) && !istype(A, /mob/living/carbon/Xenomorph/Larva/predalien))
-		return TRUE
-	return FALSE
-
-proc/isXenoPraetorian(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Praetorian))
-		return TRUE
-	return FALSE
-
-proc/isXenoQueen(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Queen))
-		return TRUE
-	return FALSE
-
-proc/isXenoRavager(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Ravager))
-		return TRUE
-	return FALSE
-
-proc/isXenoRunner(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Runner))
-		return TRUE
-	return FALSE
-
-proc/isXenoSentinel(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Sentinel))
-		return TRUE
-	return FALSE
-
-proc/isXenoSpitter(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Spitter))
-		return TRUE
-	return FALSE
-
-proc/isXenoWarrior(A)
-	if (istype(A, /mob/living/carbon/Xenomorph/Warrior))
-		return TRUE
-	return FALSE
-
-proc/isXenoPredalien(A)
-	if(istype(A, /mob/living/carbon/Xenomorph/Predalien))
-		return TRUE
-	return FALSE
-
-proc/isYautja(A)
-	if(isHellhound(A))
-		return TRUE //They are always considered Yautja.
-	if(ishuman(A))
-		var/mob/living/carbon/human/H = A
-		if(H.species.name == "Yautja")
+/proc/isxenosilicon(A)
+	if(isxeno(A))
+		var/mob/living/carbon/Xenomorph/X = A
+		if(X.xeno_caste.caste_flags & CASTE_IS_ROBOTIC)
 			return TRUE
-	return FALSE
-
-proc/isSynth(A)
-	if(ishuman(A))
-		var/mob/living/carbon/human/H = A
-		if(H.species.name == "Synthetic" || H.species.name == "Early Synthetic")
-			return TRUE
-	return FALSE
-
-proc/ismaintdrone(A)
-	if(istype(A,/mob/living/silicon/robot/drone))
-		return TRUE
-	return FALSE
-
-proc/isHellhound(A)
-	if(istype(A, /mob/living/carbon/hellhound))
-		return TRUE
 	return FALSE
 
 proc/hasorgans(A)
@@ -249,13 +34,10 @@ proc/hasorgans(A)
 /mob/proc/can_use_hands()
 	return
 
-/mob/proc/is_dead()
-	return stat == DEAD
-
 /mob/proc/is_mechanical()
 	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
 		return TRUE
-	return istype(src, /mob/living/silicon) || get_species() == "Machine"
+	return issilicon(src) || isIPC(src)
 
 /mob/proc/is_ready()
 	return client && !!mind
@@ -479,38 +261,24 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 /proc/shake_camera(mob/M, duration, strength=1)
-	if(!M || !M.client || M.shakecamera)
+	if(!M || !M.client || duration < 1)
 		return
-	M.shakecamera = 1
-	spawn(1)
-		if(!M.client)
-			return
+	var/client/C = M.client
+	var/oldx = C.pixel_x
+	var/oldy = C.pixel_y
+	var/max = strength*world.icon_size
+	var/min = -(strength*world.icon_size)
 
-		var/atom/oldeye=M.client.eye
-		var/aiEyeFlag = 0
-		if(istype(oldeye, /mob/aiEye))
-			aiEyeFlag = 1
-
-		var/x
-		for(x=0; x<duration, x++)
-			if(!M) return //Might have died/logged out before it ended
-
-			if(!M.client)
-				M.shakecamera = 0
-				return
-
-			if(aiEyeFlag)
-				M.client.eye = locate(dd_range(1,oldeye.loc.x+rand(-strength,strength),world.maxx),dd_range(1,oldeye.loc.y+rand(-strength,strength),world.maxy),oldeye.loc.z)
-			else
-				M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
-			sleep(1)
-		if(M.client)
-			M.client.eye=oldeye //Mighta disconnected
-		M.shakecamera = 0
+	for(var/i in 0 to duration-1)
+		if (i == 0)
+			animate(C, pixel_x=rand(min,max), pixel_y=rand(min,max), time=1)
+		else
+			animate(pixel_x=rand(min,max), pixel_y=rand(min,max), time=1)
+	animate(pixel_x=oldx, pixel_y=oldy, time=1)
 
 
 /proc/findname(msg)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.real_name == text("[msg]"))
 			return TRUE
 	return FALSE
@@ -526,41 +294,48 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return FALSE
 
 //converts intent-strings into numbers and back
-var/list/intents = list("help","disarm","grab","hurt")
 /proc/intent_numeric(argument)
 	if(istext(argument))
 		switch(argument)
-			if("help")		return 0
-			if("disarm")	return 1
-			if("grab")		return 2
-			else			return 3
+			if(INTENT_HELP)
+				return INTENT_NUMBER_HELP
+			if(INTENT_DISARM)
+				return INTENT_NUMBER_DISARM
+			if(INTENT_GRAB)
+				return INTENT_NUMBER_GRAB
+			else
+				return INTENT_NUMBER_HARM
 	else
 		switch(argument)
-			if(0)			return "help"
-			if(1)			return "disarm"
-			if(2)			return "grab"
-			else			return "hurt"
+			if(INTENT_NUMBER_HELP)
+				return INTENT_HELP
+			if(INTENT_NUMBER_DISARM)
+				return INTENT_DISARM
+			if(INTENT_NUMBER_GRAB)
+				return INTENT_GRAB
+			else
+				return INTENT_HARM
 
 //change a mob's act-intent. Input the intent as a string such as "help" or use "right"/"left
 /mob/verb/a_intent_change(input as text)
 	set name = "a-intent"
 	set hidden = 1
 
-	if(isrobot(src) || ismonkey(src))
+	if(iscyborg(src) || ismonkey(src))
 		switch(input)
-			if("help")
-				a_intent = "help"
-			if("hurt")
-				a_intent = "hurt"
-			if("right","left")
+			if(INTENT_HELP)
+				a_intent = INTENT_HELP
+			if(INTENT_HARM)
+				a_intent = INTENT_HARM
+			if(INTENT_HOTKEY_RIGHT,INTENT_HOTKEY_LEFT)
 				a_intent = intent_numeric(intent_numeric(a_intent) - 3)
 	else
 		switch(input)
-			if("help","disarm","grab","hurt")
+			if(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 				a_intent = input
-			if("right")
+			if(INTENT_HOTKEY_RIGHT)
 				a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
-			if("left")
+			if(INTENT_HOTKEY_LEFT)
 				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
 
 
@@ -614,7 +389,7 @@ mob/proc/get_standard_bodytemperature()
 	// Cannot use the list as a map if the key is a number, so we stringify it (thank you BYOND)
 	var/smessage_type = num2text(message_type)
 
-	if(client)
+	if(client?.player_details)
 		if(!islist(client.player_details.logging[smessage_type]))
 			client.player_details.logging[smessage_type] = list()
 
@@ -628,14 +403,14 @@ mob/proc/get_standard_bodytemperature()
 		else
 			colored_message = "<font color='[color]'>[message]</font>"
 
-	var/list/timestamped_message = list("[length(logging[smessage_type]) + 1]\[[time_stamp()]\] [key_name(src)] [loc_name(src)]" = colored_message)
+	var/list/timestamped_message = list("[length(logging[smessage_type]) + 1]\[[stationTimestamp()]\] [key_name(src)] [loc_name(src)]" = colored_message)
 
 	logging[smessage_type] += timestamped_message
 
-	if(client)
+	if(client?.player_details)
 		client.player_details.logging[smessage_type] += timestamped_message
 
-	..()
+	return ..()
 
 /mob/verb/a_select_zone(input as text, screen_num as null|num)
 	set name = "a-select-zone"
@@ -710,4 +485,21 @@ mob/proc/get_standard_bodytemperature()
 					usr.zone_selected = "l_leg"
 					usr.client.screen[screen_num].selecting = "l_leg"
 
-	usr.client.screen[screen_num].update_icon()
+	usr.client.screen[screen_num].update_icon(usr)
+
+
+
+/mob/verb/toggle_move_intent(screen_num as null|num)
+	set name = "toggle-move-intent"
+	set hidden = TRUE
+
+	if(!screen_num || !client)
+		return
+
+	switch(m_intent)
+		if(MOVE_INTENT_RUN)
+			m_intent = MOVE_INTENT_WALK
+		if(MOVE_INTENT_WALK)
+			m_intent = MOVE_INTENT_RUN
+
+	client.screen[screen_num].update_icon(src)

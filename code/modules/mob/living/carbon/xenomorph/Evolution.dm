@@ -6,12 +6,15 @@
 //Such as evolves_to = list("Warrior", "Sentinel", "Runner", "Badass") etc
 // except use typepaths now so you dont have to have an entry for literally every evolve path
 
+#define TO_XENO_TIER_2_FORMULA(tierA, tierB, tierC) ( (tierB + tierC) > tierA ) )
+#define TO_XENO_TIER_3_FORMULA(tierA, tierB, tierC) ( (tierC * 3) > (tierA + tierB) )
+
 /mob/living/carbon/Xenomorph/verb/Evolve()
 	set name = "Evolve"
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
-	var totalXenos = 0 //total number of Xenos
-	// var tierA = 0.0 //Tier 1 - Not used in calculation of Tier maximums
+
+	var/tierA = 0 //Tier 1
 	var/tierB = 0 //Tier 2
 	var/tierC = 0 //Tier 3
 	var/potential_queens = 0
@@ -40,7 +43,7 @@
 		to_chat(src, "<span class='warning'>The restraints are too restricting to allow you to evolve.</span>")
 		return
 
-	if(isXenoLarva(src)) //Special case for dealing with larvae
+	if(isxenolarva(src)) //Special case for dealing with larvae
 		if(amount_grown < max_grown)
 			to_chat(src, "<span class='warning'>You are not yet fully grown. Currently at: [amount_grown] / [max_grown].</span>")
 			return
@@ -62,22 +65,21 @@
 		return
 
 	var/list/castes_to_pick = list()
-	if(xeno_caste?.evolves_to?.len)
-		for(var/type in xeno_caste.evolves_to)
-			var/datum/xeno_caste/Z = xeno_caste_datums[type][1]
-			castes_to_pick += Z.caste_name
+	for(var/type in xeno_caste.evolves_to)
+		var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][1]
+		castes_to_pick += Z.caste_name
 	var/castepick = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in castes_to_pick
 	if(!castepick) //Changed my mind
 		return
 
 	var/new_caste_type
 	for(var/type in xeno_caste.evolves_to)
-		if(castepick == xeno_caste_datums[type][1].caste_name)
+		if(castepick == GLOB.xeno_caste_datums[type][1].caste_name)
 			new_caste_type = type
 
 	if(!new_caste_type)
 		to_chat(src, "EVO8: Something went wrong with evolving")
-		return 
+		return
 
 	if(!isturf(loc)) //cdel'd or inside something
 		return
@@ -87,7 +89,7 @@
 		return
 
 	var/datum/hive_status/hive
-	if(hivenumber && hivenumber <= hive_datum.len)
+	if(hivenumber && hivenumber <= length(hive_datum))
 		hive = hive_datum[hivenumber]
 	else
 		hivenumber = XENO_HIVE_NORMAL
@@ -112,7 +114,7 @@
 			to_chat(src, "<span class='warning'>There already is a living Queen.</span>")
 			return
 
-		if(hivenumber == XENO_HIVE_NORMAL && ticker && ticker.mode && hive.xeno_queen_timer)
+		if(hivenumber == XENO_HIVE_NORMAL && SSticker?.mode && hive.xeno_queen_timer)
 			to_chat(src, "<span class='warning'>You must wait about [round(hive.xeno_queen_timer / 60)] minutes for the hive to recover from the previous Queen's death.<span>")
 			return
 
@@ -129,16 +131,17 @@
 	else
 		//This will build a list of ALL the current Xenos and their Tiers, then use that to calculate if they can evolve or not.
 		//Should count mindless as well so people don't cheat
-		for(var/mob/living/carbon/Xenomorph/M in living_mob_list)
+		for(var/mob/living/carbon/Xenomorph/M in GLOB.alive_xeno_list)
 			if(hivenumber == M.hivenumber)
 				switch(M.tier)
 					if(0)
-						if(isXenoLarvaStrict(M))
+						if(isxenolarvastrict(M))
 							if(M.client && M.ckey)
 								potential_queens++
 						continue
 					if(1)
-						if(isXenoDrone(M))
+						tierA++
+						if(isxenodrone(M))
 							if(M.client && M.ckey)
 								potential_queens++
 					if(2)
@@ -149,22 +152,19 @@
 						to_chat(src, "<span class='warning'>You shouldn't see this. If you do, bug repot it! (Error XE01).</span>")
 
 						continue
-				if(M.client && M.ckey)
-					totalXenos++
-
-		if(tier == 1 && ((tierB + tierC) / max(totalXenos, 1))> 0.5)
+		if((tier == 1 && TO_XENO_TIER_2_FORMULA(tierA, tierB, tierC))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(tier == 2 && (tierC / max(totalXenos, 1))> 0.25)
+		else if(tier == 2 && TO_XENO_TIER_3_FORMULA(tierA, tierB, tierC))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(!hive.living_xeno_queen && potential_queens == 1 && isXenoLarva(src) && new_caste_type == /mob/living/carbon/Xenomorph/Drone)
+		else if(!hive.living_xeno_queen && potential_queens == 1 && isxenolarva(src) && new_caste_type != /mob/living/carbon/Xenomorph/Drone)
 			to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become Queen! The survival of the hive requires you to be a Drone!</span>")
 			return
 		else if(xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
 			to_chat(src, "<span class='warning'>You must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold].</span>")
 			return
-		else if((!hive.living_xeno_queen) && !isXenoLarva(src))
+		else if((!hive.living_xeno_queen) && !isxenolarva(src))
 			to_chat(src, "<span class='warning'>The Hive is shaken by the death of the last Queen. You can't find the strength to evolve.</span>")
 			return
 		else
@@ -180,6 +180,13 @@
 
 	if(!do_after(src, 25, FALSE, 5, BUSY_ICON_HOSTILE))
 		to_chat(src, "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>")
+		return
+
+	if((tier == 1 && TO_XENO_TIER_2_FORMULA(tierA, tierB, tierC))
+		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
+		return
+	else if(tier == 2 && TO_XENO_TIER_3_FORMULA(tierA, tierB, tierC))
+		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 3.</span>")
 		return
 
 	if(!isturf(loc)) //cdel'd or moved into something
@@ -224,7 +231,7 @@
 	update_spits() //Update spits to new/better ones
 
 	for(var/obj/item/W in contents) //Drop stuff
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 
 	empty_gut()
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src].</span>", \
@@ -232,7 +239,7 @@
 
 	round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 
-	if(queen_chosen_lead && new_caste_type == /mob/living/carbon/Xenomorph/Queen) // xeno leader is removed by Destroy()
+	if(queen_chosen_lead && new_caste_type != /mob/living/carbon/Xenomorph/Queen) // xeno leader is removed by Destroy()
 		new_xeno.queen_chosen_lead = TRUE
 		hive.xeno_leader_list += new_xeno
 		new_xeno.hud_set_queen_overwatch()
@@ -244,3 +251,6 @@
 	qdel(src)
 	spawn(0)
 		new_xeno.do_jitter_animation(1000)
+
+#undef TO_XENO_TIER_2_FORMULA
+#undef TO_XENO_TIER_3_FORMULA

@@ -18,9 +18,14 @@
 	var/sec_hud = MOB_HUD_SECURITY_ADVANCED //Determines the sec hud to use
 	var/list/HUD_toggled = list(0,0,0)
 
-/mob/living/silicon/New()
-	..()
+/mob/living/silicon/Initialize()
+	. = ..()
+	GLOB.silicon_mobs += src
 	add_language("English")
+
+/mob/living/silicon/Destroy()
+	GLOB.silicon_mobs -= src
+	return ..()
 
 /mob/living/silicon/proc/show_laws()
 	return
@@ -28,7 +33,7 @@
 /mob/living/silicon/drop_held_item()
 	return
 
-/mob/living/silicon/drop_held_items()
+/mob/living/silicon/drop_all_held_items()
 	return
 
 /mob/living/simple_animal/update_transform()
@@ -53,8 +58,8 @@
 			Stun(rand(1,5))
 	flash_eyes(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
 
-	to_chat(src, "\red <B>*BZZZT*</B>")
-	to_chat(src, "\red Warning: Electromagnetic pulse detected.")
+	to_chat(src, "<span class='danger'>*BZZZT*</span>")
+	to_chat(src, "<span class='warning'>Warning: Electromagnetic pulse detected.</span>")
 	..()
 
 /mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)
@@ -69,9 +74,9 @@
 
 		shock_damage *= 0.75	//take reduced damage
 		take_overall_damage(0, shock_damage)
-		visible_message("\red [src] was shocked by \the [source]!", \
-			"\red <B>Energy pulse detected, system damaged!</B>", \
-			"\red You hear an electrical crack")
+		visible_message("<span class='warning'> [src] was shocked by \the [source]!</span>", \
+			"<span class='danger'>Energy pulse detected, system damaged!</span>", \
+			"<span class='warning'> You hear an electrical crack</span>")
 		if(prob(20))
 			Stun(2)
 		return
@@ -80,7 +85,7 @@
 	return
 
 /mob/living/silicon/IsAdvancedToolUser()
-	return 1
+	return TRUE
 
 /mob/living/silicon/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0)
 	return 0//The only effect that can hit them atm is flashes and they still directly edit so this works for now
@@ -107,37 +112,36 @@
 
 // this function displays the shuttles ETA in the status panel if the shuttle has been called
 /mob/living/silicon/proc/show_emergency_shuttle_eta()
-	if(EvacuationAuthority)
-		var/eta_status = EvacuationAuthority.get_status_panel_eta()
-		if(eta_status)
-			stat(null, eta_status)
+	var/eta_status = SSevacuation?.get_status_panel_eta()
+	if(eta_status)
+		stat("Evacuation in:", eta_status)
 
 
 // This adds the basic clock, shuttle recall timer, and malf_ai info to all silicon lifeforms
 /mob/living/silicon/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	show_station_time()
-	show_emergency_shuttle_eta()
-	show_system_integrity()
-	return 1
+	if(statpanel("Stats"))
+		show_station_time()
+		show_emergency_shuttle_eta()
+		show_system_integrity()
 
 // this function displays the stations manifest in a separate window
 /mob/living/silicon/proc/show_station_manifest()
 	var/dat
-	dat += "<h4>Crew Manifest</h4>"
 	if(data_core)
 		dat += data_core.get_manifest(1) // make it monochrome
-	dat += "<br>"
-	src << browse(dat, "window=airoster")
+
+	var/datum/browser/popup = new(src, "airoster", "<div align='center'>Crew Manifest</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(src, "airoster")
 
 //can't inject synths
-/mob/living/silicon/can_inject(var/mob/user, var/error_msg)
-	if(error_msg)
+/mob/living/silicon/can_inject(mob/user, error_msg, target_zone, penetrate_thick = FALSE)
+	if(user && error_msg)
 		to_chat(user, "<span class='alert'>The armoured plating is too tough.</span>")
-	return 0
+	return FALSE
 
 
 //Silicon mob language procs
@@ -147,7 +151,7 @@
 
 /mob/living/silicon/add_language(var/language, var/can_speak=1)
 	if (..(language) && can_speak)
-		speech_synthesizer_langs.Add(all_languages[language])
+		speech_synthesizer_langs.Add(GLOB.all_languages[language])
 		return 1
 
 /mob/living/silicon/remove_language(var/rem_language)
@@ -162,13 +166,14 @@
 	set category = "IC"
 	set src = usr
 
-	var/dat = "<b><font size = 5>Known Languages</font></b><br/><br/>"
+	var/dat
 
 	for(var/datum/language/L in languages)
 		dat += "<b>[L.name] (:[L.key])</b><br/>Speech Synthesizer: <i>[(L in speech_synthesizer_langs)? "YES":"NOT SUPPORTED"]</i><br/>[L.desc]<br/><br/>"
 
-	src << browse(dat, "window=checklanguage")
-	return
+	var/datum/browser/popup = new(src, "checklanguage", "<div align='center'>Known Languages</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 
 
@@ -196,11 +201,11 @@
 	if(HUD_toggled[HUD_nbr])
 		HUD_toggled[HUD_nbr] = 0
 		H.remove_hud_from(src)
-		to_chat(src, "\blue <B>[hud_choice] Disabled</B>")
+		to_chat(src, "<span class='boldnotice'>[hud_choice] Disabled</span>")
 	else
 		HUD_toggled[HUD_nbr] = 1
 		H.add_hud_to(src)
-		to_chat(src, "\blue <B>[hud_choice] Enabled</B>")
+		to_chat(src, "<span class='boldnotice'>[hud_choice] Enabled</span>")
 
 /mob/living/silicon/verb/pose()
 	set name = "Set Pose"

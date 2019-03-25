@@ -44,7 +44,7 @@
 
 	// update the invisibility and icon
 	hide(var/intact)
-		invisibility = intact ? 101 : 0
+		invisibility = intact ? INVISIBILITY_MAXIMUM : 0
 		updateicon()
 
 	// update the icon_state
@@ -129,7 +129,7 @@
 
 
 	process()
-		if(stat & NOPOWER)
+		if(machine_stat & NOPOWER)
 			on = 0
 
 		// Sanity checks:
@@ -182,7 +182,8 @@
 						step_towards(M, center)
 
 				for(var/mob/living/silicon/S in orange(magnetic_field, center))
-					if(istype(S, /mob/living/silicon/ai)) continue
+					if(isAI(S))
+						continue
 					step_towards(S, center)
 
 			use_power(electricity_level * 5)
@@ -222,7 +223,7 @@
 		..()
 
 		if(autolink)
-			for(var/obj/machinery/magnetic_module/M in machines)
+			for(var/obj/machinery/magnetic_module/M in GLOB.machines)
 				if(M.freq == frequency && M.code == code)
 					magnets.Add(M)
 
@@ -238,7 +239,7 @@
 
 	process()
 		if(magnets.len == 0 && autolink)
-			for(var/obj/machinery/magnetic_module/M in machines)
+			for(var/obj/machinery/magnetic_module/M in GLOB.machines)
 				if(M.freq == frequency && M.code == code)
 					magnets.Add(M)
 
@@ -247,10 +248,10 @@
 		return src.attack_hand(user)
 
 	attack_hand(mob/user as mob)
-		if(stat & (BROKEN|NOPOWER))
+		if(machine_stat & (BROKEN|NOPOWER))
 			return
 		user.set_interaction(src)
-		var/dat = "<B>Magnetic Control Console</B><BR><BR>"
+		var/dat
 		if(!autolink)
 			dat += {"
 			Frequency: <a href='?src=\ref[src];operation=setfreq'>[frequency]</a><br>
@@ -270,12 +271,13 @@
 		dat += "Path: {<a href='?src=\ref[src];operation=setpath'>[path]</a>}<br>"
 		dat += "Moving: <a href='?src=\ref[src];operation=togglemoving'>[moving ? "Enabled":"Disabled"]</a>"
 
-
-		user << browse(dat, "window=magnet;size=400x500")
+		var/datum/browser/popup = new(user, "magnet", "<div align='center'>Magnetic Control Console</div>", 400, 500)
+		popup.set_content(dat)
+		popup.open(FALSE)
 		onclose(user, "magnet")
 
 	Topic(href, href_list)
-		if(stat & (BROKEN|NOPOWER))
+		if(machine_stat & (BROKEN|NOPOWER))
 			return
 		usr.set_interaction(src)
 		src.add_fingerprint(usr)
@@ -343,7 +345,7 @@
 
 		while(moving && rpath.len >= 1)
 
-			if(stat & (BROKEN|NOPOWER))
+			if(machine_stat & (BROKEN|NOPOWER))
 				break
 
 			looping = 1

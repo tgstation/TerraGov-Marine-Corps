@@ -4,7 +4,7 @@
 	if(!silent)
 		command_announcement.Announce("Ionic radiation flare detected from nearby star. Imminent telecommunication failu*3mga;b4;'1v�-BZZZT", new_sound = 'sound/misc/interference.ogg')
 	else // AIs will always know if there's a comm blackout, rogue AIs could then lie about comm blackouts in the future while they shutdown comms
-		for(var/mob/living/silicon/ai/A in player_list)
+		for(var/mob/living/silicon/ai/A in GLOB.player_list)
 			to_chat(A, "<br>")
 			to_chat(A, "<span class='warning'><b>Ionic radiation flare detected from nearby star. Imminent telecommunication failu*3mga;b4;'1v�-BZZZT<b></span>")
 			to_chat(A, "<br>")

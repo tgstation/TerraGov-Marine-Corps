@@ -9,8 +9,8 @@
 	armor = list(melee = 60, bullet = 40, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
-	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
-	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
 	var/obj/item/knife
 	var/armor_stage = 0
@@ -49,6 +49,9 @@
 			icon_state = initial(icon_state)
 
 
+/obj/item/clothing/shoes/marine/pyro
+	name = "flame-resistant combat boots"
+	desc = "Protects you from fire and even contains a pouch for your knife!"	
 
 
 /obj/item/clothing/shoes/marinechief
@@ -59,10 +62,13 @@
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
-/obj/item/clothing/shoes/marinechief/commander
-	name = "commander shoes"
+/obj/item/clothing/shoes/marinechief/captain
+	name = "captain's shoes"
 	desc = "Has special soles for better trampling those underneath."
 
+/obj/item/clothing/shoes/marinechief/sa
+	name = "spatial agent's shoes"
+	desc = "Shoes worn by a spatial agent."
 
 /obj/item/clothing/shoes/veteran
 
@@ -73,8 +79,8 @@
 	item_state = "jackboots"
 	flags_armor_protection = FEET
 	armor = list(melee = 60, bullet = 40, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
-	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
-	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
 	flags_inventory = NOSLIPPING
@@ -87,8 +93,8 @@
 	permeability_coefficient = 0.01
 	flags_armor_protection = FEET
 	armor = list(melee = 90, bullet = 120, laser = 100, energy = 90, bomb = 50, bio = 30, rad = 30)
-	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
-	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
 	siemens_coefficient = 0.2

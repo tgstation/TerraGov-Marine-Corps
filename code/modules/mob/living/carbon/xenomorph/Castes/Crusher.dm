@@ -35,7 +35,7 @@
 	deevolves_to = /mob/living/carbon/Xenomorph/Warrior
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	armor_deflection = 80
@@ -196,20 +196,20 @@
 	create_stomp() //Adds the visual effect. Wom wom wom
 
 	for(var/mob/living/M in range(2,loc))
-		if(isXeno(M) || M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)))
+		if(isxeno(M) || M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)))
 			continue
 		var/distance = get_dist(M, loc)
-		var/damage = (rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * 1.5) / max(1,distance + 1)
+		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS) / max(1,distance + 1)
 		if(frenzy_aura > 0)
 			damage *= (1 + round(frenzy_aura * 0.1,0.01)) //+10% per level of Frenzy
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			round_statistics.crusher_stomp_victims++
-			var/armor_block = M.run_armor_check("chest", "melee")
+			var/armor_block = M.run_armor_check("chest", "melee") * 0.5 //Only 50% armor applies vs stomp brute damage
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				H.take_overall_damage(rand(damage * 0.75,damage * 1.25), armor_block) //Armour functions against this.
+				H.take_overall_damage(rand(damage), null, 0, 0, 0, armor_block) //Armour functions against this.
 			else
-				M.take_overall_damage(rand(damage * 0.75,damage * 1.25), armor_block) //Armour functions against this.
+				M.take_overall_damage(rand(damage), 0, null, armor_block) //Armour functions against this.
 			to_chat(M, "<span class='highdanger'>You are stomped on by [src]!</span>")
 			shake_camera(M, 3, 3)
 		else
@@ -220,7 +220,7 @@
 			M.KnockDown(1)
 		else
 			M.Stun(1) //Otherwise we just get stunned.
-		M.apply_damage(rand(damage * 0.75 , damage * 1.25), HALLOSS) //Armour ignoring Halloss
+		M.apply_damage(damage, HALLOSS) //Armour ignoring Halloss
 
 
 //The atom collided with is passed to this proc, all types of collisions are dealt with here.
@@ -249,13 +249,13 @@
 	if(istype(target, /obj/structure/razorwire))
 		var/obj/structure/razorwire/B = target
 		if(charge_speed >= charge_speed_max) //plows right through
-			flags_pass = 0
+			flags_pass |= PASSTABLE
 			update_icons()
 			return TRUE
 		else if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
 			visible_message("<span class='danger'>[src] rams into [B] and skids to a halt!</span>",
 			"<span class='xenowarning'>You ram into [B] and skid to a halt!</span>")
-			flags_pass = 0
+			flags_pass &= ~PASSTABLE
 			update_icons()
 			return TRUE
 		else
@@ -312,6 +312,7 @@
 			else
 				X.stop_momentum(X.charge_dir)
 				return FALSE
+
 
 //Beginning special object overrides.
 
@@ -396,7 +397,7 @@
 	X.visible_message("<span class='danger'>[X] rams [src]!</span>",
 	"<span class='xenodanger'>You ram [src]!</span>")
 	playsound(loc, "punch", 25, 1)
-	stat = 1
+	machine_stat = 1
 	on = 0
 	update_icon()
 	update_health(X.charge_speed * 20)

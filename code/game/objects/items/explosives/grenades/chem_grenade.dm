@@ -40,15 +40,15 @@
 	if(istype(W,/obj/item/device/assembly_holder) && (!stage || stage==1) && path != 2)
 		var/obj/item/device/assembly_holder/det = W
 		if(istype(det.a_left,det.a_right.type) || (!isigniter(det.a_left) && !isigniter(det.a_right)))
-			to_chat(user, "\red Assembly must contain one igniter.")
+			to_chat(user, "<span class='warning'>Assembly must contain one igniter.</span>")
 			return
 		if(!det.secured)
-			to_chat(user, "\red Assembly must be secured with screwdriver.")
+			to_chat(user, "<span class='warning'>Assembly must be secured with screwdriver.</span>")
 			return
 		path = 1
-		to_chat(user, "\blue You add [W] to the metal casing.")
+		to_chat(user, "<span class='notice'>You add [W] to the metal casing.</span>")
 		playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, 0, 6)
-		user.temp_drop_inv_item(det)
+		user.temporarilyRemoveItemFromInventory(det)
 		det.forceMove(src)
 		detonator = det
 		icon_state = initial(icon_state) +"_ass"
@@ -58,22 +58,22 @@
 		if(stage == 1)
 			path = 1
 			if(beakers.len)
-				to_chat(user, "\blue You lock the assembly.")
+				to_chat(user, "<span class='notice'>You lock the assembly.</span>")
 				name = "grenade"
 			else
-//					to_chat(user, "\red You need to add at least one beaker before locking the assembly.")
-				to_chat(user, "\blue You lock the empty assembly.")
+//					to_chat(user, "<span class='warning'>You need to add at least one beaker before locking the assembly.</span>")
+				to_chat(user, "<span class='notice'>You lock the empty assembly.</span>")
 				name = "fake grenade"
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 0, 6)
 			icon_state = initial(icon_state) +"_locked"
 			stage = 2
 		else if(stage == 2)
 			if(active && prob(95))
-				to_chat(user, "\red You trigger the assembly!")
+				to_chat(user, "<span class='warning'>You trigger the assembly!</span>")
 				prime()
 				return
 			else
-				to_chat(user, "\blue You unlock the assembly.")
+				to_chat(user, "<span class='notice'>You unlock the assembly.</span>")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 0, 6)
 				name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 				icon_state = initial(icon_state) + (detonator?"_ass":"")
@@ -82,18 +82,18 @@
 	else if(is_type_in_list(W, allowed_containers) && (!stage || stage==1) && path != 2)
 		path = 1
 		if(beakers.len == 2)
-			to_chat(user, "\red The grenade can not hold more containers.")
+			to_chat(user, "<span class='warning'>The grenade can not hold more containers.</span>")
 			return
 		else
 			if(W.reagents.total_volume)
 				if(user.drop_held_item())
-					to_chat(user, "\blue You add \the [W] to the assembly.")
+					to_chat(user, "<span class='notice'>You add \the [W] to the assembly.</span>")
 					W.forceMove(src)
 					beakers += W
 					stage = 1
 					name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 			else
-				to_chat(user, "\red \the [W] is empty.")
+				to_chat(user, "<span class='warning'>\the [W] is empty.</span>")
 
 /obj/item/explosive/grenade/chem_grenade/examine(mob/user)
 	..()
@@ -114,7 +114,7 @@
 		icon_state = initial(icon_state) + "_active"
 
 		if(user)
-			msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) primed \a [src]")
+			msg_admin_attack("[ADMIN_TPMONTY(usr)] primed \a [src].")
 
 	return
 
@@ -152,9 +152,9 @@
 				if( A == src ) continue
 				src.reagents.reaction(A, 1, 10)
 
-		if(istype(loc, /mob/living/carbon))		//drop dat grenade if it goes off in your hand
+		if(iscarbon(loc))		//drop dat grenade if it goes off in your hand
 			var/mob/living/carbon/C = loc
-			C.drop_inv_item_on_ground(src)
+			C.dropItemToGround(src)
 			C.throw_mode_off()
 
 		invisibility = INVISIBILITY_MAXIMUM //Why am i doing this?
@@ -174,6 +174,7 @@
 /obj/item/explosive/grenade/chem_grenade/metalfoam
 	name = "Metal-Foam Grenade"
 	desc = "Used for emergency sealing of air breaches."
+	dangerous = FALSE
 	path = 1
 	stage = 2
 
@@ -220,6 +221,7 @@
 /obj/item/explosive/grenade/chem_grenade/antiweed
 	name = "weedkiller grenade"
 	desc = "Used for purging large areas of invasive plant species. Contents under pressure. Do not directly inhale contents."
+	dangerous = FALSE
 	path = 1
 	stage = 2
 
@@ -243,6 +245,7 @@
 /obj/item/explosive/grenade/chem_grenade/cleaner
 	name = "cleaner grenade"
 	desc = "BLAM!-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
+	dangerous = FALSE
 	stage = 2
 	path = 1
 

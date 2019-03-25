@@ -58,9 +58,9 @@ var/list/mechtoys = list(
 	if(istype(A, /obj/vehicle))	//no vehicles
 		return 0
 
-	if(istype(A, /mob/living)) // You Shall Not Pass!
+	if(isliving(A)) // You Shall Not Pass!
 		var/mob/living/M = A
-		if(!M.lying && !istype(M, /mob/living/carbon/monkey) && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/silicon/robot/drone))  //If your not laying down, or a small creature, no pass.
+		if(!M.lying && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse) && !ismaintdrone(M))  //If your not laying down, or a small creature, no pass.
 			return 0
 	return ..()
 
@@ -107,7 +107,7 @@ var/list/mechtoys = list(
 	icon_state = "X"
 	icon = 'icons/misc/mark.dmi'
 	name = "X"
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	anchored = 1
 	opacity = 0
 */
@@ -119,12 +119,8 @@ var/list/mechtoys = list(
 	var/comment = null
 
 /datum/controller/supply
-	var/processing = 1
-	var/processing_interval = 300
-	var/iteration = 0
 	//supply points
 	var/points = 120
-	var/points_per_process = 2
 	var/points_per_slip = 1
 	var/points_per_crate = 5
 	var/points_per_platinum = 5
@@ -152,20 +148,11 @@ var/list/mechtoys = list(
 			var/datum/supply_export/E = new typepath()
 			export_types += E
 
-		spawn(0)
-			set background = 1
-			while(1)
-				if(processing)
-					iteration++
-					points += points_per_process
-
-				sleep(processing_interval)
-
 	//To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
 	proc/forbidden_atoms_check(atom/A)
 		if(istype(A,/mob/living))
 			var/mob/living/X = A
-			if (!(isXeno(X) && X.stat == DEAD))
+			if (!(isxeno(X) && X.stat == DEAD))
 				return 1
 		if(istype(A,/obj/item/disk/nuclear))
 			return 1
@@ -218,7 +205,7 @@ var/list/mechtoys = list(
 						plat_count += P.get_amount()
 
 			//Sell Xeno Corpses
-			if (isXeno(MA))
+			if (isxeno(MA))
 				var/cost = 0
 				for(var/datum/supply_export in export_types)
 					var/datum/supply_export/E = supply_export
@@ -296,6 +283,14 @@ var/list/mechtoys = list(
 		shoppinglist.Cut()
 		return
 
+
+
+/datum/controller/supply/stat_entry()
+	if(!statclick)
+		statclick = new/obj/effect/statclick/debug(null, "Debug", src)
+	stat("Supply:", statclick)
+
+
 /obj/item/paper/manifest
 	name = "Supply Manifest"
 
@@ -330,15 +325,17 @@ var/list/mechtoys = list(
 		<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR><BR>
 		<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
 
-	user << browse(dat, "window=computer;size=575x450")
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Ordering Console</div>", 575, 450)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "computer")
-	return
+
 
 /obj/machinery/computer/ordercomp/Topic(href, href_list)
 	if(..())
 		return
 
-	if( isturf(loc) && (in_range(src, usr) || istype(usr, /mob/living/silicon)) )
+	if( isturf(loc) && (in_range(src, usr) || issilicon(usr)) )
 		usr.set_interaction(src)
 
 	if(href_list["order"])
@@ -388,7 +385,7 @@ var/list/mechtoys = list(
 		supply_controller.ordernum++
 		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[station_name] Supply Requisition Form</h3><hr>"
+		reqform.info += "<h3>[CONFIG_GET(string/ship_name)] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[supply_controller.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"
@@ -436,7 +433,7 @@ var/list/mechtoys = list(
 
 /obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, "\red Access Denied.")
+		to_chat(user, "<span class='warning'>Access Denied.</span>")
 		return
 
 	if(..())
@@ -449,7 +446,6 @@ var/list/mechtoys = list(
 	else
 		var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
 		if (shuttle)
-			dat += "<BR><B>Automated Storage and Retrieval System</B><HR>"
 			dat += "\nPlatform position: "
 			if (shuttle.has_arrive_time())
 				dat += "Moving<BR>"
@@ -489,13 +485,15 @@ var/list/mechtoys = list(
 		\n<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
 
 
-	user << browse(dat, "window=computer;size=575x450")
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Automated Storage and Retrieval System</div>", 575, 450)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "computer")
-	return
+
 
 /obj/machinery/computer/supplycomp/attackby(I as obj, user as mob)
 	if(istype(I,/obj/item/card/emag) && !hacked)
-		to_chat(user, "\blue Special supplies unlocked.")
+		to_chat(user, "<span class='notice'>Special supplies unlocked.</span>")
 		hacked = 1
 		return
 	else
@@ -513,7 +511,7 @@ var/list/mechtoys = list(
 	if(..())
 		return
 
-	if(isturf(loc) && ( in_range(src, usr) || istype(usr, /mob/living/silicon) ) )
+	if(isturf(loc) && ( in_range(src, usr) || issilicon(usr) ) )
 		usr.set_interaction(src)
 
 	//Calling the shuttle
@@ -593,7 +591,7 @@ var/list/mechtoys = list(
 		supply_controller.ordernum++
 		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[station_name] Supply Requisition Form</h3><hr>"
+		reqform.info += "<h3>[CONFIG_GET(string/ship_name)] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[supply_controller.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"
@@ -627,7 +625,7 @@ var/list/mechtoys = list(
 		temp += "<BR><A href='?src=\ref[src];order=[last_viewed_group]'>Back</A>|<A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
 
 		if(supply_controller.shoppinglist.len > 20)
-			to_chat(usr, "\red Current retrieval load has reached maximum capacity.")
+			to_chat(usr, "<span class='warning'>Current retrieval load has reached maximum capacity.</span>")
 			return
 
 		for(var/i=1, i<=supply_controller.requestlist.len, i++)
@@ -636,6 +634,7 @@ var/list/mechtoys = list(
 				O = SO
 				P = O.object
 				if(supply_controller.points >= round(P.cost))
+					log_game("[key_name(usr)] approved the [P.name] supply pack.")
 					supply_controller.requestlist.Cut(i,i+1)
 					supply_controller.points -= round(P.cost)
 					supply_controller.shoppinglist += O

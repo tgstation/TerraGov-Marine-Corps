@@ -40,26 +40,24 @@
 	var/const/STATUS_DISPLAY_TIME = 4
 	var/const/STATUS_DISPLAY_CUSTOM = 99
 
-/obj/machinery/status_display/New()
-	..()
+/obj/machinery/status_display/Initialize()
+	. = ..()
 	set_picture("default")
 	start_processing()
 
-// register for radio system
-/obj/machinery/status_display/initialize()
-	..()
-	/*if(radio_controller)
-		radio_controller.add_object(src, frequency)*/
+	switch(dir)
+		if(NORTH)
+			pixel_y = 32
 
 // timed process
 /obj/machinery/status_display/process()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		remove_display()
 		return
 	update()
 
 /obj/machinery/status_display/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 	set_picture("ai_bsod")
@@ -77,7 +75,7 @@
 			return 1
 		if(STATUS_DISPLAY_TRANSFER_SHUTTLE_TIME)				//emergency shuttle timer
 			message1 = "EVAC"
-			message2 = EvacuationAuthority.get_status_panel_eta()
+			message2 = SSevacuation.get_status_panel_eta()
 			if(message2)
 				if(length(message2) > CHARS_PER_LINE) message2 = "Error"
 				update_display(message1, message2)
@@ -197,14 +195,14 @@
 	var/emotion = "Neutral"
 
 /obj/machinery/ai_status_display/process()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		overlays.Cut()
 		return
 
 	update()
 
 /obj/machinery/ai_status_display/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 	set_picture("ai_bsod")

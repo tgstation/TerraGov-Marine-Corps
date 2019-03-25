@@ -23,7 +23,7 @@
 	return
 
 /obj/item/map/proc/initialize_map()
-	var/wikiurl = config.wikiurl
+	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(wikiurl)
 		dat = {"
 
@@ -84,12 +84,11 @@
 //used by marine equipment machines to spawn the correct map.
 /obj/item/map/current_map
 
-/obj/item/map/current_map/New()
-	..()
-	if(!map_tag)
-		qdel(src)
-		return
-	switch(map_tag)
+/obj/item/map/current_map/Initialize()
+	. = ..()
+	if(!SSmapping.config?.map_name)
+		return INITIALIZE_HINT_QDEL
+	switch(SSmapping.config.map_name)
 		if(MAP_LV_624)
 			name = "\improper Lazarus Landing Map"
 			desc = "A satellite printout of the Lazarus Landing colony on LV-624."
@@ -111,10 +110,15 @@
 			html_link = "images/4/4c/Map_Prison.png"
 			color = "#e88a10"
 		else
-			qdel(src)
+			return INITIALIZE_HINT_QDEL
 
 
 
 // Landmark - Used for mapping. Will spawn the appropriate map for each gamemode (LV map items will spawn when LV is the gamemode, etc)
 /obj/effect/landmark/map_item
 	name = "map item"
+
+/obj/effect/landmark/map_item/Initialize()
+	. = ..()
+	GLOB.map_items += loc
+	return INITIALIZE_HINT_QDEL

@@ -17,33 +17,33 @@
 
 	W.loc = src
 	switch(slot)
-		if(WEAR_BACK)
+		if(SLOT_BACK)
 			back = W
 			W.equipped(src, slot)
 			update_inv_back()
-		if(WEAR_FACE)
+		if(SLOT_WEAR_MASK)
 			wear_mask = W
 			W.equipped(src, slot)
 			update_inv_wear_mask()
-		if(WEAR_HANDCUFFS)
+		if(SLOT_HANDCUFFED)
 			handcuffed = W
 			handcuff_update()
-		if(WEAR_LEGCUFFS)
+		if(SLOT_LEGCUFFED)
 			legcuffed = W
 			W.equipped(src, slot)
 			legcuff_update()
-		if(WEAR_L_HAND)
+		if(SLOT_L_HAND)
 			l_hand = W
 			W.equipped(src, slot)
 			update_inv_l_hand()
-		if(WEAR_R_HAND)
+		if(SLOT_R_HAND)
 			r_hand = W
 			W.equipped(src, slot)
 			update_inv_r_hand()
-		if(WEAR_IN_BACK)
+		if(SLOT_IN_BACKPACK)
 			W.forceMove(back)
 		else
-			to_chat(usr, "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...")
+			to_chat(usr, "<span class='warning'>You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...</span>")
 			return
 
 	W.layer = ABOVE_HUD_LAYER
@@ -55,16 +55,16 @@
 
 /mob/living/carbon/monkey/get_item_by_slot(slot_id)
 	switch(slot_id)
-		if(WEAR_BACK)
+		if(SLOT_BACK)
 			return back
-		if(WEAR_FACE)
+		if(SLOT_WEAR_MASK)
 			return wear_mask
-		if(WEAR_L_HAND)
+		if(SLOT_L_HAND)
 			return l_hand
-		if(WEAR_R_HAND)
+		if(SLOT_R_HAND)
 			return r_hand
-		if(WEAR_HANDCUFFS)
+		if(SLOT_HANDCUFFED)
 			return handcuffed
-		if(WEAR_LEGCUFFS)
+		if(SLOT_LEGCUFFED)
 			return legcuffed
 

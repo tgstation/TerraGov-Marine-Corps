@@ -8,7 +8,7 @@
 
 	if (src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
-			to_chat(src, "\red You cannot talk in deadchat (muted).")
+			to_chat(src, "<span class='warning'>You cannot talk in deadchat (muted).</span>")
 			return
 
 		if (src.client.handle_spam_prevention(message,MUTE_DEADCHAT))
@@ -39,7 +39,7 @@
 		style = language.colour
 
 	var/speaker_name = speaker.name
-	if(istype(speaker, /mob/living/carbon/human))
+	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 		speaker_name = H.GetVoice()
 		comm_paygrade = H.get_paygrade()
@@ -81,7 +81,7 @@
 
 	if(src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
-			to_chat(src, "\red You cannot emote in deadchat (muted).")
+			to_chat(src, "<span class='warning'>You cannot emote in deadchat (muted).</span>")
 			return
 
 		if(src.client.handle_spam_prevention(message, MUTE_DEADCHAT))

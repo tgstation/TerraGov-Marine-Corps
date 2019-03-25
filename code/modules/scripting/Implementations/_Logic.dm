@@ -281,11 +281,11 @@ proc/n_inrange(var/num, var/min=-1, var/max=1)
 			//CharCopy (dest + targetIndex, src + sourceIndex, count);
 			//CharCopy (dest + curPos, source + lastReadPos, precopy);
 			buf+=copytext(haystack,lastReadPos,precopy)
-			log_misc("buf+=copytext([haystack],[lastReadPos],[precopy])")
-			log_misc("[buf]")
+			log_sql("buf+=copytext([haystack],[lastReadPos],[precopy])")
+			log_sql("[buf]")
 			lastReadPos = dat[i] + lena
 			//CharCopy (dest + curPos, replace, newValue.length);
 			buf+=b
-			log_misc("[buf]")
+			log_sql("[buf]")
 		buf+=copytext(haystack,lastReadPos, 0)
 		return buf

@@ -19,13 +19,12 @@
 	var/charge_rate = 100000	//100 kW
 	var/obj/machinery/shield_gen/owned_gen
 
-/obj/machinery/shield_capacitor/New()
-	spawn(10)
-		for(var/obj/machinery/shield_gen/possible_gen in range(1, src))
-			if(get_dir(src, possible_gen) == src.dir)
-				possible_gen.owned_capacitor = src
-				break
-	..()
+/obj/machinery/shield_capacitor/Initialize()
+	for(var/obj/machinery/shield_gen/possible_gen in range(1, src))
+		if(get_dir(src, possible_gen) == src.dir)
+			possible_gen.owned_capacitor = src
+			break
+	. = ..()
 	start_processing()
 
 /obj/machinery/shield_capacitor/attackby(obj/item/W, mob/user)
@@ -37,7 +36,7 @@
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 			updateDialog()
 		else
-			to_chat(user, "\red Access denied.")
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 	else if(istype(W, /obj/item/card/emag))
 		if(prob(75))
 			src.locked = !src.locked
@@ -47,9 +46,9 @@
 		s.set_up(5, 1, src)
 		s.start()
 
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		src.anchored = !src.anchored
-		src.visible_message("\blue \icon[src] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].")
+		src.visible_message("<span class='notice'> [icon2html(src, viewers(src))] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</span>")
 
 		if(anchored)
 			spawn(0)
@@ -72,17 +71,17 @@
 	return src.attack_hand(user)
 
 /obj/machinery/shield_capacitor/attack_hand(mob/user)
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		return
 	interact(user)
 
 /obj/machinery/shield_capacitor/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN)) )
-		if (!istype(user, /mob/living/silicon))
+	if ( (get_dist(src, user) > 1 ) || (machine_stat & (BROKEN)) )
+		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=shield_capacitor")
 			return
-	var/t = "<B>Shield Capacitor Control Console</B><br><br>"
+	var/t
 	if(locked)
 		t += "<i>Swipe your ID card to begin.</i>"
 	else
@@ -102,8 +101,12 @@
 	t += "<A href='?src=\ref[src]'>Refresh</A> "
 	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
 
-	user << browse(t, "window=shield_capacitor;size=500x400")
 	user.set_interaction(src)
+
+	var/datum/browser/popup = new(user, "shield_capacitor", "<div align='center'>Shield Capacitor Console</div>", 500, 400)
+	popup.set_content(t)
+	popup.open(FALSE)
+
 
 /obj/machinery/shield_capacitor/process()
 	if (!anchored)
@@ -118,7 +121,7 @@
 
 	if (PN)
 		var/power_draw = between(0, max_charge - stored_charge, charge_rate) //what we are trying to draw
-		power_draw = PN.draw_power(power_draw) //what we actually get
+		power_draw = C.add_load(power_draw) //what we actually get
 		stored_charge += power_draw
 
 	time_since_fail++
@@ -134,7 +137,7 @@
 		return
 	if( href_list["toggle"] )
 		if(!active && !anchored)
-			to_chat(usr, "\red The [src] needs to be firmly secured to the floor first.")
+			to_chat(usr, "<span class='warning'>The [src] needs to be firmly secured to the floor first.</span>")
 			return
 		active = !active
 	if( href_list["charge_rate"] )
@@ -143,7 +146,7 @@
 	updateDialog()
 
 /obj/machinery/shield_capacitor/power_change()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "broke"
 	else
 		..()
@@ -156,5 +159,5 @@
 	if (src.anchored)
 		to_chat(usr, "It is fastened to the floor!")
 		return
-	src.dir = turn(src.dir, 270)
+	setDir(turn(dir, 270))
 	return

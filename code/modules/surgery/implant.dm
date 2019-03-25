@@ -8,7 +8,7 @@
 	priority = 1
 
 /datum/surgery_step/cavity/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
-	return affected.surgery_open_stage == (affected.encased ? 3 : 2) && !(affected.status & LIMB_BLEEDING)
+	return affected.surgery_open_stage == (affected.encased ? 3 : 2) && !(affected.limb_status & LIMB_BLEEDING)
 
 /datum/surgery_step/cavity/proc/get_max_wclass(datum/limb/affected)
 	switch (affected.name)
@@ -122,7 +122,7 @@
 		var/datum/wound/internal_bleeding/I = new (10)
 		affected.wounds += I
 		affected.owner.custom_pain("You feel something rip in your [affected.display_name]!", 1)
-	user.drop_inv_item_to_loc(tool, target)
+	user.transferItemToLoc(tool, target)
 	affected.hidden = tool
 	affected.cavity = 0
 
@@ -175,13 +175,13 @@
 			imp.imp_in = null
 			imp.implanted = 0
 
-		if(istype(target, /mob/living/carbon/human))
+		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			H.sec_hud_set_implants()
 
 	else if(affected.hidden)
 		user.visible_message("<span class='notice'>[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool].</span>", \
-		"\blue You take something out of incision on [target]'s [affected.display_name]s with \the [tool].</span>")
+		"<span class='notice'> You take something out of incision on [target]'s [affected.display_name]s with \the [tool].</span>")
 		affected.hidden.loc = get_turf(target)
 		if(!affected.hidden.blood_DNA)
 			affected.hidden.blood_DNA = list()

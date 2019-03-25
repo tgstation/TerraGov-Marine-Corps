@@ -6,9 +6,11 @@ Thumbs.db
 *.dmb
 *.lk
 *.backup
+*.dmm.before
 data/
 cfg/
+tmp/
 tools/Runtime Condenser/Input.txt
 tools/Runtime Condenser/Output.txt
 tools/MapDaemon/logs/*.txt
-*.json
+.vscode/*

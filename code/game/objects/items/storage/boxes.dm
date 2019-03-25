@@ -445,7 +445,7 @@
 	icon_state = "matchbox"
 	item_state = "zippo"
 	w_class = 1
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	can_hold = list("/obj/item/tool/match")
 
 	New()
@@ -542,23 +542,24 @@
 	name = "\improper M20P mine box"
 
 /obj/item/storage/box/m94
-	name = "\improper M94 marking flare pack"
-	desc = "A packet of five M94 Marking Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp."
+	name = "\improper M40 FLDP flare pack"
+	desc = "A packet of five M40 FLDP Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
 	icon_state = "m94"
 	w_class = 3
 	max_storage_space = 10
 	can_hold = list(
-		"/obj/item/device/flashlight/flare"
+		"/obj/item/device/flashlight/flare",
+		"/obj/item/explosive/grenade/flare",
 		)
 
 /obj/item/storage/box/m94/New()
 	..()
 	contents = list()
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
 
 
 /obj/item/storage/box/m94/update_icon()
@@ -602,6 +603,28 @@
 		"/obj/item/explosive/grenade/frag/training"
 		)
 
+/obj/item/storage/box/nade_box/HIDP
+	name = "\improper HIDP incendiary grenade box"
+	desc = "A secure box holding 25 incendiary grenades. Warning: highly flammable!!."
+	icon_state = "HIDP_nade_placeholder"
+	storage_slots = 15
+	max_storage_space = 30
+	grenade_type = /obj/item/explosive/grenade/incendiary
+	can_hold = list(
+		"/obj/item/explosive/grenade/incendiary"
+		)
+
+/obj/item/storage/box/nade_box/M15
+	name = "\improper M15 grenade box"
+	desc = "A secure box holding M15 fragmentation grenades."
+	icon_state = "M15_nade_placeholder"
+	storage_slots = 15
+	max_storage_space = 30
+	grenade_type = /obj/item/explosive/grenade/frag/m15
+	can_hold = list(
+		"/obj/item/explosive/grenade/frag/m15"
+		)
+
 
 /obj/item/storage/box/nade_box/tear_gas
 	name = "\improper M66 tear gas grenade box"
@@ -611,6 +634,12 @@
 	grenade_type = /obj/item/explosive/grenade/chem_grenade/teargas
 
 
+/obj/item/storage/box/nade_box/impact
+	name = "\improper M40 IMDP grenade box"
+	desc = "A secure box holding 25 M40 IMDP impact grenades. High explosive, don't store near the flamer fuel."
+	icon_state = "nade_placeholder"
+	grenade_type = /obj/item/explosive/grenade/impact
+	can_hold = list("/obj/item/explosive/grenade/impact")
 
 
 
@@ -657,27 +686,33 @@
 	foldable = 0
 	var/isopened = 0
 
-/obj/item/storage/box/MRE/New()
-		..()
-		pickflavor()
+/obj/item/storage/box/MRE/Initialize()
+	. = ..()
+	pickflavor()
+
+/obj/item/storage/box/MRE/Destroy()
+	var/turf/T = get_turf(src)
+	if(T)
+		new /obj/item/trash/mre(T)
+	return ..()
 
 /obj/item/storage/box/MRE/proc/pickflavor()
-	var/entree = pick("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti", "chicken tenders", "red crayon")
-	var/side = pick("meatballs", "cheese spread", "beef turnover", "mashed potatoes", "yellow crayon")
-	var/snack = pick("biscuit", "pretzels", "peanuts", "cracker", "purple crayon")
-	var/desert = pick("spiced apples", "chocolate brownie", "sugar cookie", "choco bar", "blue crayon")
+	var/entree = pick("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti", "chicken tenders")
+	var/side = pick("meatballs", "cheese spread", "beef turnover", "mashed potatoes")
+	var/snack = pick("biscuit", "pretzels", "peanuts", "cracker")
+	var/desert = pick("spiced apples", "chocolate brownie", "sugar cookie", "choco bar", "crayon")
 	name = "[initial(name)] ([entree])"
 	new /obj/item/reagent_container/food/snacks/packaged_meal(src, entree)
 	new /obj/item/reagent_container/food/snacks/packaged_meal(src, side)
 	new /obj/item/reagent_container/food/snacks/packaged_meal(src, snack)
 	new /obj/item/reagent_container/food/snacks/packaged_meal(src, desert)
 
-/obj/item/storage/box/MRE/update_icon()
-	if(!contents.len)
-		var/turf/T = get_turf(src)
-		if(T)
-			new /obj/item/trash/uscm_mre(T)
+/obj/item/storage/box/MRE/remove_from_storage()
+	. = ..()
+	if(. && !contents.len && !gc_destroyed)
 		qdel(src)
-	else if(!isopened)
+
+/obj/item/storage/box/MRE/update_icon()
+	if(!isopened)
 		isopened = 1
 		icon_state = "mealpackopened"

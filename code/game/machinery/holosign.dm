@@ -11,7 +11,7 @@
 	var/on_icon = "sign_on"
 
 /obj/machinery/holosign/proc/toggle()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	lit = !lit
 	update_icon()
@@ -23,7 +23,7 @@
 		icon_state = on_icon
 
 /obj/machinery/holosign/power_change()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		lit = 0
 	update_icon()
 
@@ -58,7 +58,7 @@
 
 /obj/machinery/holosign_switch/attack_hand(mob/user as mob)
 	src.add_fingerprint(usr)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	add_fingerprint(user)
 
@@ -70,7 +70,7 @@
 	else
 		icon_state = "light0"
 
-	for(var/obj/machinery/holosign/M in machines)
+	for(var/obj/machinery/holosign/M in GLOB.machines)
 		if (M.id == src.id)
 			spawn(0)
 				M.toggle()

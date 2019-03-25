@@ -16,7 +16,7 @@
 	if(health_deficiency >= 40)
 		reducible_tally += round(health_deficiency / 25)
 
-	if(!(species && (species.flags & NO_PAIN)))
+	if(!(species && (species.species_flags & NO_PAIN)))
 		if(halloss >= 10)
 			reducible_tally += round(halloss / 15) //halloss shouldn't slow you down if you can't even feel it
 
@@ -31,12 +31,10 @@
 	if(wear_suit)
 		reducible_tally += wear_suit.slowdown
 
-	reducible_tally += reagent_move_delay_modifier //hyperzine and ultrazine
-
-	if(shock_stage >= 10 && !isYautja(src))
+	if(shock_stage >= 10 && !isyautja(src))
 		reducible_tally += 3
 
-	if(bodytemperature < species.cold_level_1 && !isYautja(src))
+	if(bodytemperature < species.cold_level_1 && !isyautja(src))
 		reducible_tally += 2 //Major slowdown if you're freezing
 
 	if(temporary_slowdown)
@@ -46,31 +44,36 @@
 	//Compile reducible tally and send it to total tally. Cannot go more than 1 units faster from the reducible tally!
 	. += max(-0.7, reducible_tally)
 
-	if(istype(get_active_hand(), /obj/item/weapon/gun))
-		var/obj/item/weapon/gun/G = get_active_hand() //If wielding, it will ALWAYS be on the active hand
+	if(istype(get_active_held_item(), /obj/item/weapon/gun))
+		var/obj/item/weapon/gun/G = get_active_held_item() //If wielding, it will ALWAYS be on the active hand
 		. += G.slowdown
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		for(var/organ_name in list("l_hand","r_hand","l_arm","r_arm","chest","groin","head"))
 			var/datum/limb/E = get_limb(organ_name)
-			if(!E || (E.status & LIMB_DESTROYED))
+			if(!E || (E.limb_status & LIMB_DESTROYED))
 				. += 4
-			if(E.status & LIMB_SPLINTED || E.status & LIMB_STABILIZED)
+			if(E.limb_status & LIMB_SPLINTED || E.limb_status & LIMB_STABILIZED)
 				. += 0.65
-			else if(E.status & LIMB_BROKEN)
+			else if(E.limb_status & LIMB_BROKEN)
 				. += 1.5
 	else
 		if(shoes)
+			var/obj/item/clothing/shoes/S = shoes
+			S.step_action()
 			. += shoes.slowdown
 
 		for(var/organ_name in list("l_foot","r_foot","l_leg","r_leg","chest","groin","head"))
 			var/datum/limb/E = get_limb(organ_name)
-			if(!E || (E.status & LIMB_DESTROYED))
+			if(!E || (E.limb_status & LIMB_DESTROYED))
 				. += 4
-			if(E.status & LIMB_SPLINTED || E.status & LIMB_STABILIZED)
+			if(E.limb_status & LIMB_SPLINTED || E.limb_status & LIMB_STABILIZED)
 				. += 0.75
-			else if(E.status & LIMB_BROKEN)
+			else if(E.limb_status & LIMB_BROKEN)
 				. += 1.5
+
+	if(slowdown)
+		. += slowdown
 
 	if(mobility_aura)
 		. -= 0.1 + 0.1 * mobility_aura
@@ -78,15 +81,35 @@
 	if(mRun in mutations)
 		. = 0
 
-	Process_Cloaking(src)
+	Process_Cloaking_Router(src)
 
-	. += config.human_delay
+	. += CONFIG_GET(number/outdated_movedelay/human_delay)
 
+	. = max(-2.5, . + reagent_move_delay_modifier) //hyperzine and ultrazine
+/mob/living/carbon/human/proc/clear_leader_tracking()
+	var/obj/screen/SL_dir = hud_used.SL_locator
+	SL_dir.icon_state = "SL_locator_off"
 
-/mob/living/carbon/human/proc/Process_Cloaking(mob/living/carbon/human/user)
-	if(!istype(back, /obj/item/storage/backpack/marine/satchel/scout_cloak) )
+/mob/living/carbon/human/proc/update_leader_tracking(var/mob/living/carbon/human/H)
+	var/obj/screen/SL_dir = hud_used.SL_locator
+
+	if(H.z != src.z || get_dist(src,H) < 1 || src == H)
+		SL_dir.icon_state = ""
+	else
+		SL_dir.icon_state = "SL_locator"
+		SL_dir.transform = 0 //Reset and 0 out
+		SL_dir.transform = turn(SL_dir.transform, Get_Angle(src,H))
+
+/mob/living/carbon/human/proc/Process_Cloaking_Router(mob/living/carbon/human/user)
+	if(!user.cloaking)
 		return
-	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back
+	if(istype(back, /obj/item/storage/backpack/marine/satchel/scout_cloak/scout) )
+		Process_Cloaking_Scout(user)
+	else if(istype(back, /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper) )
+		Process_Cloaking_Sniper(user)
+
+/mob/living/carbon/human/proc/Process_Cloaking_Scout(mob/living/carbon/human/user)
+	var/obj/item/storage/backpack/marine/satchel/scout_cloak/scout/S = back
 	if(!S.camo_active)
 		return
 	if(S.camo_last_shimmer > world.time - SCOUT_CLOAK_STEALTH_DELAY) //Shimmer after taking aggressive actions
@@ -103,6 +126,12 @@
 	else
 		alpha = SCOUT_CLOAK_RUN_ALPHA //50% invisible
 		S.camo_adjust_energy(src, SCOUT_CLOAK_RUN_DRAIN)
+
+/mob/living/carbon/human/proc/Process_Cloaking_Sniper(mob/living/carbon/human/user)
+	var/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/S = back
+	if(!S.camo_active)
+		return
+	alpha = initial(alpha) //Sniper variant has *no* mobility stealth, but no drain on movement either
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
 	//Can we act
@@ -125,7 +154,7 @@
 /mob/living/carbon/human/Process_Spaceslipping(var/prob_slip = 5)
 	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
 
-	if(species.flags & NO_SLIP)
+	if(species.species_flags & NO_SLIP)
 		return
 
 	if(stat)

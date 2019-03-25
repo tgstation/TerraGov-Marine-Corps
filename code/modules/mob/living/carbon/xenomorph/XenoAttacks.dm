@@ -26,7 +26,7 @@
 
 	switch(M.a_intent)
 
-		if("help")
+		if(INTENT_HELP)
 			help_shake_act(M)
 		else
 			if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
@@ -47,7 +47,7 @@
 	M.next_move += 7 //Adds some lag to the 'attack'. This will add up to 10
 	switch(M.a_intent)
 
-		if("help")
+		if(INTENT_HELP)
 			if(stat == DEAD)
 				M.visible_message("<span class='warning'>\The [M] pokes \the [src], but nothing happens.</span>", \
 				"<span class='warning'>You poke \the [src], but nothing happens.</span>", null, 5)
@@ -55,7 +55,7 @@
 				M.visible_message("<span class='warning'>\The [M] pokes \the [src].</span>", \
 				"<span class='warning'>You poke \the [src].</span>", null, 5)
 
-		if("grab")
+		if(INTENT_GRAB)
 			if(M == src || anchored)
 				return 0
 
@@ -94,13 +94,13 @@
 //Actually just used for eating people.
 /mob/living/carbon/Xenomorph/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(src != M)
-		if(isXenoLarva(M)) //Larvas can't eat people
+		if(isxenolarva(M)) //Larvas can't eat people
 			M.visible_message("<span class='danger'>[M] nudges its head against \the [src].</span>", \
 			"<span class='danger'>You nudge your head against \the [src].</span>")
 			return 0
 
 		switch(M.a_intent)
-			if("help")
+			if(INTENT_HELP)
 
 				if(on_fire)
 					fire_stacks = max(fire_stacks - 1, 0)
@@ -116,7 +116,7 @@
 					M.visible_message("<span class='notice'>\The [M] caresses \the [src] with its scythe-like arm.</span>", \
 					"<span class='notice'>You caress \the [src] with your scythe-like arm.</span>", null, 5)
 
-			if("grab")
+			if(INTENT_GRAB)
 				if(M == src || anchored)
 					return 0
 
@@ -127,7 +127,7 @@
 					"<span class='warning'>You grab \the [src]!</span>", null, 5)
 					playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
-			if("hurt")//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
+			if(INTENT_HARM)//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
 				M.animation_attack_on(src)
 				if(hivenumber == M.hivenumber)
 					M.visible_message("<span class='warning'>\The [M] nibbles \the [src].</span>", \
@@ -157,7 +157,7 @@
 					playsound(loc, "alien_claw_flesh", 25, 1)
 					apply_damage(damage, BRUTE)
 
-			if("disarm")
+			if(INTENT_DISARM)
 				M.animation_attack_on(src)
 				M.flick_attack_overlay(src, "disarm")
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)

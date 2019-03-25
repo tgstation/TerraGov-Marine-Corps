@@ -27,35 +27,31 @@
 	maptext_height = 26
 	maptext_width = 32
 
-/obj/machinery/door_timer/New()
-	..()
+/obj/machinery/door_timer/Initialize()
+	. = ..()
 
-	spawn(20)
-		for(var/obj/machinery/door/window/brigdoor/M in machines)
-			if (M.id == src.id)
-				targets += M
+	for(var/obj/machinery/door/window/brigdoor/M in GLOB.machines)
+		if (M.id == src.id)
+			targets += M
 
-		for(var/obj/machinery/flasher/F in machines)
-			if(F.id == src.id)
-				targets += F
+	for(var/obj/machinery/flasher/F in GLOB.machines)
+		if(F.id == src.id)
+			targets += F
 
-		for(var/obj/structure/closet/secure_closet/brig/C in structure_list)
-			if(C.id == src.id)
-				targets += C
+	for(var/obj/structure/closet/secure_closet/brig/C in GLOB.structure_list)
+		if(C.id == src.id)
+			targets += C
 
-		if(targets.len==0)
-			stat |= BROKEN
-		update_icon()
-		return
-	return
-
+	if(targets.len==0)
+		machine_stat |= BROKEN
+	update_icon()
 
 //Main door timer loop, if it's timing and time is >0 reduce time by 1.
 // if it's less than 0, open door, reset timer
 // update the door_timer window and the icon
 /obj/machinery/door_timer/process()
 
-	if(stat & (NOPOWER|BROKEN))	return
+	if(machine_stat & (NOPOWER|BROKEN))	return
 	if(src.timing)
 
 		// poorly done midnight rollover
@@ -90,7 +86,7 @@
 
 // Closes and locks doors, power check
 /obj/machinery/door_timer/proc/timer_start()
-	if(stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))	return 0
 
 	// Set releasetime
 	releasetime = world.timeofday + timetoset
@@ -111,7 +107,7 @@
 
 // Opens and unlocks doors, power check
 /obj/machinery/door_timer/proc/timer_end()
-	if(stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))	return 0
 
 	// Reset releasetime
 	releasetime = 0
@@ -169,9 +165,9 @@
 	user.set_interaction(src)
 
 	// dat
-	var/dat = "<HTML><BODY><TT>"
+	var/dat
 
-	dat += "<HR>Timer System:</hr>"
+	dat += "Timer System:</hr>"
 	dat += " <b>Door [src.id] controls</b><br/>"
 
 	// Start/Stop timer
@@ -201,11 +197,11 @@
 			dat += "<br/><A href='?src=\ref[src];fc=1'>Activate Flash</A>"
 
 	dat += "<br/><br/><a href='?src=\ref[user];mach_close=computer'>Close</a>"
-	dat += "</TT></BODY></HTML>"
 
-	user << browse(dat, "window=computer;size=400x500")
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Photocopier</div>", 400, 500)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "computer")
-	return
 
 
 //Function for using door_timer dialog input, checks if user has permission
@@ -259,10 +255,10 @@
 // if BROKEN, display blue screen of death icon AI uses
 // if timing=true, run update display function
 /obj/machinery/door_timer/update_icon()
-	if(stat & (NOPOWER))
+	if(machine_stat & (NOPOWER))
 		icon_state = "frame"
 		return
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		set_picture("ai_bsod")
 		return
 	if(src.timing)

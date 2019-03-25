@@ -25,7 +25,7 @@
 
 	..()
 
-	dir = CalcDir()
+	setDir(CalcDir())
 
 	if(!floor)
 		switch(dir) //offset to make it be on the wall rather than on the floor
@@ -54,7 +54,7 @@
 
 	for(var/wallDir in cardinal)
 		var/turf/newTurf = get_step(location,wallDir)
-		if(istype(newTurf, /turf/closed/wall))
+		if(iswallturf(newTurf))
 			direction |= wallDir
 
 	for(var/obj/effect/glowshroom/shroom in location)

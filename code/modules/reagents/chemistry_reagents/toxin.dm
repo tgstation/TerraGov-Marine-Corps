@@ -15,7 +15,7 @@
 
 /datum/reagent/toxin/on_mob_life(mob/living/carbon/M , alien)
 	var/mob/living/carbon/human/H = M
-	if(H.species.flags & NO_POISON)
+	if(H.species.species_flags & NO_POISON)
 		return FALSE //immunity to toxin reagents
 	if(toxpwr)
 		M.adjustToxLoss(toxpwr*REM)
@@ -117,7 +117,7 @@
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/M)
 	M.adjustOxyLoss(4*REM)
 	if(current_cycle > 10)
-		M.sleeping += 2
+		M.Sleeping(2)
 	..()
 
 /datum/reagent/toxin/minttoxin
@@ -187,7 +187,7 @@
 
 /datum/reagent/toxin/mindbreaker/overdose_crit_process(mob/living/M, alien)
 	M.adjustToxLoss(1)
-	M.adjustBrainLoss(1)
+	M.adjustBrainLoss(1, TRUE)
 	M.Jitter(5)
 	if(prob(10) && !M.stat)
 		M.KnockOut(5)
@@ -251,7 +251,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.dna)
-				if(H.species.flags & IS_PLANT) //plantmen take a LOT of damage
+				if(H.species.species_flags & IS_PLANT) //plantmen take a LOT of damage
 					H.adjustToxLoss(10)
 
 /datum/reagent/toxin/sleeptoxin
@@ -328,8 +328,8 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 
 /datum/reagent/toxin/potassium_chloride/overdose_process(mob/living/carbon/M, alien)
-	if(M.losebreath >= 10)
-		M.losebreath = max(10, M.losebreath-10)
+	if(M.losebreath > 10)
+		M.set_Losebreath(10)
 	M.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
@@ -347,8 +347,8 @@
 
 /datum/reagent/toxin/potassium_chlorophoride/on_mob_life(mob/living/carbon/M)
 	if(M.stat != UNCONSCIOUS)
-		if(M.losebreath >= 10)
-			M.losebreath = max(10, M.losebreath-10)
+		if(M.losebreath > 10)
+			M.set_Losebreath(10)
 		M.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
@@ -431,14 +431,14 @@
 				return
 
 		if(!M.unacidable)
-			if(istype(M, /mob/living/carbon/human) && volume >= 10)
+			if(ishuman(M) && volume >= 10)
 				var/mob/living/carbon/human/H = M
 				var/datum/limb/affecting = H.get_limb("head")
 				if(affecting)
 					if(affecting.take_damage(4*toxpwr, 2*toxpwr))
 						H.UpdateDamageIcon()
 					if(prob(meltprob)) //Applies disfigurement
-						if(!(H.species && (H.species.flags & NO_PAIN)))
+						if(!(H.species && (H.species.species_flags & NO_PAIN)))
 							H.emote("scream")
 						H.status_flags |= DISFIGURED
 						H.name = H.get_visible_name()
@@ -454,7 +454,7 @@
 			var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 			I.desc = "Looks like this was \an [O] some time ago."
 			for(var/mob/M in viewers(5, O))
-				to_chat(M, "\red \the [O] melts.")
+				to_chat(M, "<span class='warning'>\the [O] melts.</span>")
 				qdel(O)
 
 /datum/reagent/toxin/acid/polyacid

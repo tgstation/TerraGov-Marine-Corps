@@ -6,9 +6,15 @@
 	density = 1
 	anchored = 1
 	unacidable = 1//Dissolving the case would also delete Lamarr
-	var/health = 30
+	health = 30
 	var/occupied = 1
 	var/destroyed = 0
+
+/obj/structure/lamarr/destroyed
+	icon_state = "labcageb0"
+	density = FALSE
+	destroyed = TRUE
+	occupied = FALSE
 
 /obj/structure/lamarr/ex_act(severity)
 	switch(severity)
@@ -65,10 +71,10 @@
 	if (src.destroyed)
 		return
 	else
-		to_chat(usr, text("\blue You kick the lab cage."))
+		to_chat(usr, text("<span class='notice'> You kick the lab cage.</span>"))
 		for(var/mob/O in oviewers())
 			if ((O.client && !( is_blind(O) )))
-				to_chat(O, text("\red [] kicks the lab cage.", usr))
+				to_chat(O, text("<span class='warning'> [] kicks the lab cage.</span>", usr))
 		src.health -= 2
 		healthcheck()
 		return

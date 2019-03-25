@@ -50,9 +50,9 @@
 		var/shuttle_tag
 		switch(id)
 			if("sh_dropship1")
-				shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
+				shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 			if("sh_dropship2")
-				shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
+				shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 			else
 				return
 
@@ -64,7 +64,7 @@
 
 /obj/machinery/door_control/attackby(obj/item/W, mob/user as mob)
 	/* For later implementation
-	if (istype(W, /obj/item/tool/screwdriver))
+	if (isscrewdriver(W))
 	{
 		if(wiresexposed)
 			icon_state = "doorctrl0"
@@ -89,9 +89,9 @@
 	var/shuttle_tag
 	switch(ship_id)
 		if("sh_dropship1")
-			shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
+			shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 		if("sh_dropship2")
-			shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
+			shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 	if(!shuttle_tag)
 		return
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
@@ -99,9 +99,9 @@
 		return
 	if(shuttle.door_override)
 		return // its been locked down by the queen
-	if(z == 3) // on the almayer
+	if(is_mainship_level(z)) // on the almayer
 		return
-	for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
+	for(var/obj/machinery/door/airlock/dropship_hatch/M in GLOB.machines)
 		if(M.id == ship_id)
 			if(M.locked && M.density)
 				continue // jobs done
@@ -114,10 +114,10 @@
 	var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
 	switch(ship_id)
 		if("sh_dropship1")
-			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in machines)
+			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in GLOB.machines)
 				reardoor = D
 		if("sh_dropship2")
-			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
+			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in GLOB.machines)
 				reardoor = D
 
 	if(!reardoor.locked && reardoor.density)
@@ -168,13 +168,13 @@
 					D.safe = 1
 
 /obj/machinery/door_control/proc/handle_pod()
-	for(var/obj/machinery/door/poddoor/M in machines)
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == id)
 			var/datum/shuttle/ferry/marine/S
 			var/area/A = get_area(M)
 			for(var/i = 1 to 2)
 				if(istype(A, text2path("/area/shuttle/drop[i]")))
-					S = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Dropship [i]"]
+					S = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] Dropship [i]"]
 					if(S.moving_status == SHUTTLE_INTRANSIT) return FALSE
 			if(M.density)
 				spawn()
@@ -194,12 +194,12 @@
 	src.add_fingerprint(user)
 	if(istype(user,/mob/living/carbon/Xenomorph))
 		return
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
 		return
 
 	if(!allowed(user) && (wires & 1))
-		to_chat(user, "\red Access Denied")
+		to_chat(user, "<span class='warning'>Access Denied</span>")
 		flick("doorctrl-denied",src)
 		return
 
@@ -219,12 +219,12 @@
 
 	desiredstate = !desiredstate
 	spawn(15)
-		if(!(stat & NOPOWER))
+		if(!(machine_stat & NOPOWER))
 			icon_state = "doorctrl0"
 
 /obj/machinery/door_control/power_change()
 	..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else
 		icon_state = "doorctrl0"
@@ -244,7 +244,7 @@
 /obj/machinery/driver_button/attack_hand(mob/user as mob)
 
 	src.add_fingerprint(usr)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)
 		return
@@ -255,7 +255,7 @@
 	active = 1
 	icon_state = "launcheract"
 
-	for(var/obj/machinery/door/poddoor/M in machines)
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == src.id)
 			spawn(0)
 				M.open()
@@ -263,13 +263,13 @@
 
 	sleep(20)
 
-	for(var/obj/machinery/mass_driver/M in machines)
+	for(var/obj/machinery/mass_driver/M in GLOB.machines)
 		if(M.id == src.id)
 			M.drive()
 
 	sleep(50)
 
-	for(var/obj/machinery/door/poddoor/M in machines)
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == src.id)
 			spawn(0)
 				M.close()
@@ -311,5 +311,5 @@
 		STOP_PROCESSING(SSobj, src)
 		//stop_processing()
 		spawn(15)
-			if(!(stat & NOPOWER))
+			if(!(machine_stat & NOPOWER))
 				icon_state = "doorctrl0"

@@ -32,11 +32,17 @@
 	var/can_bloody = TRUE //Can blood spawn on this turf?
 	var/oldTurf = "" //The previous turf's path as text. Used when deconning on LV --MadSnailDisease
 
-
+	// baseturfs can be either a list or a single turf type.
+	// In class definition like here it should always be a single type.
+	// A list will be created in initialization that figures out the baseturf's baseturf etc.
+	// In the case of a list it is sorted from bottom layer to top.
+	// This shouldn't be modified directly, use the helper procs.
+	var/list/baseturfs = /turf/baseturf_bottom
+	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
 /turf/New()
 	..()
-	turfs += src
+	GLOB.turfs += src
 	for(var/atom/movable/AM as mob|obj in src)
 		spawn(0)
 			Entered(AM)
@@ -62,9 +68,6 @@
 
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
-	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		to_chat(usr, "\red Movement is admin-disabled.")
-		return
 	if (!mover || !isturf(mover.loc))
 		return 1
 
@@ -116,7 +119,7 @@
 		if(M.lastarea.has_gravity == 0)
 			inertial_drift(M)
 
-		else if(!istype(src, /turf/open/space))
+		else if(!isspaceturf(src))
 			M.inertia_dir = 0
 			M.make_floating(0)
 	..()
@@ -124,20 +127,19 @@
 
 
 /turf/proc/is_plating()
-	return 0
-
+	return FALSE
 /turf/proc/is_asteroid_floor()
-	return 0
+	return FALSE
 /turf/proc/is_plasteel_floor()
-	return 0
+	return FALSE
 /turf/proc/is_light_floor()
-	return 0
+	return FALSE
 /turf/proc/is_grass_floor()
-	return 0
+	return FALSE
 /turf/proc/is_wood_floor()
-	return 0
+	return FALSE
 /turf/proc/is_carpet_floor()
-	return 0
+	return FALSE
 /turf/proc/return_siding_icon_state()		//used for grass floors, which have siding.
 	return 0
 
@@ -166,7 +168,7 @@
 
 
 //Creates a new turf. this is called by every code that changes a turf ("spawn atom" verb, cdel, build mode stuff, etc)
-/turf/proc/ChangeTurf(new_turf_path, forget_old_turf)
+/turf/proc/ChangeTurf(new_turf_path, forget_old_turf, flags)
 	if (!new_turf_path)
 		return
 
@@ -178,6 +180,10 @@
 	var/turf/W = new new_turf_path( locate(src.x, src.y, src.z) )
 	if(!forget_old_turf)	//e.g. if an admin spawn a new wall on a wall tile, we don't
 		W.oldTurf = path	//want the new wall to change into the old wall when destroyed
+
+	if(!(flags & CHANGETURF_DEFER_CHANGE))
+		W.AfterChange(flags)
+
 	W.lighting_lumcount += old_lumcount
 	if(old_lumcount != W.lighting_lumcount)
 		W.lighting_changed = 1
@@ -229,15 +235,32 @@
 		tracks = new typepath(src)
 	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
 
+//Cables laying helpers
+/turf/proc/can_have_cabling()
+	return TRUE
 
+/turf/proc/can_lay_cable()
+	return can_have_cabling() & !intact_tile
 
+//Enable cable laying on turf click instead of pixel hunting the cable
+/turf/attackby(obj/item/I, mob/living/user, params)
+	if(..())
+		return TRUE
 
+	if(can_lay_cable() && istype(I, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = I
+		for(var/obj/structure/cable/C in src)
+			if(C.d1 == CABLE_NODE || C.d2 == CABLE_NODE)
+				C.attackby(I,user)
+				return
+		coil.place_turf(src, user)
+		return TRUE
 
-
+	return FALSE
 
 //for xeno corrosive acid, 0 for unmeltable, 1 for regular, 2 for strong walls that require strong acid and more time.
 /turf/proc/can_be_dissolved()
-	return 0
+	return FALSE
 
 /turf/proc/ceiling_debris_check(var/size = 1)
 	return
@@ -307,10 +330,6 @@
 /turf/proc/wet_floor()
 	return
 
-
-
-
-
 //////////////////////////////////////////////////////////
 
 
@@ -341,7 +360,7 @@
 	return !slayer
 
 /turf/open/mars/is_weedable()
-	return FALSE
+	return TRUE
 
 
 /turf/open/floor/plating/plating_catwalk/is_weedable() //covered catwalks are unweedable
@@ -353,9 +372,6 @@
 
 /turf/closed/wall/is_weedable()
 	return TRUE //so we can spawn weeds on the walls
-
-
-
 
 
 
@@ -375,9 +391,6 @@
 	return TRUE
 
 /turf/open/mars/can_dig_xeno_tunnel()
-	return TRUE
-
-/turf/open/mars_cave/can_dig_xeno_tunnel()
 	return TRUE
 
 /turf/open/floor/prison/can_dig_xeno_tunnel()
@@ -413,3 +426,200 @@
 
 	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
 		return !density
+
+GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
+	/turf/open/space,
+	/turf/baseturf_bottom,
+	)))
+
+// Make a new turf and put it on top
+// The args behave identical to PlaceOnBottom except they go on top
+// Things placed on top of closed turfs will ignore the topmost closed turf
+// Returns the new turf
+/turf/proc/PlaceOnTop(list/new_baseturfs, turf/fake_turf_type, flags)
+	var/area/turf_area = loc
+	if(new_baseturfs && !length(new_baseturfs))
+		new_baseturfs = list(new_baseturfs)
+	flags = turf_area.PlaceOnTopReact(new_baseturfs, fake_turf_type, flags) // A hook so areas can modify the incoming args
+
+	var/turf/newT
+	if(flags & CHANGETURF_SKIP) // We haven't been initialized
+		if(flags_atom & INITIALIZED)
+			stack_trace("CHANGETURF_SKIP was used in a PlaceOnTop call for a turf that's initialized. This is a mistake. [src]([type])")
+		assemble_baseturfs()
+	if(fake_turf_type)
+		if(!new_baseturfs) // If no baseturfs list then we want to create one from the turf type
+			if(!length(baseturfs))
+				baseturfs = list(baseturfs)
+			var/list/old_baseturfs = baseturfs.Copy()
+			if(!istype(src, /turf/closed))
+				old_baseturfs += type
+			newT = ChangeTurf(fake_turf_type, null, flags)
+			newT.assemble_baseturfs(initial(fake_turf_type.baseturfs)) // The baseturfs list is created like roundstart
+			if(!length(newT.baseturfs))
+				newT.baseturfs = list(baseturfs)
+			newT.baseturfs -= GLOB.blacklisted_automated_baseturfs
+			newT.baseturfs.Insert(1, old_baseturfs) // The old baseturfs are put underneath
+			return newT
+		if(!length(baseturfs))
+			baseturfs = list(baseturfs)
+		if(!istype(src, /turf/closed))
+			baseturfs += type
+		baseturfs += new_baseturfs
+		return ChangeTurf(fake_turf_type, null, flags)
+	if(!length(baseturfs))
+		baseturfs = list(baseturfs)
+	if(!istype(src, /turf/closed))
+		baseturfs += type
+	var/turf/change_type
+	if(length(new_baseturfs))
+		change_type = new_baseturfs[new_baseturfs.len]
+		new_baseturfs.len--
+		if(new_baseturfs.len)
+			baseturfs += new_baseturfs
+	else
+		change_type = new_baseturfs
+	return ChangeTurf(change_type, null, flags)
+
+// Copy an existing turf and put it on top
+// Returns the new turf
+/turf/proc/CopyOnTop(turf/copytarget, ignore_bottom=1, depth=INFINITY, copy_air = FALSE)
+	var/list/new_baseturfs = list()
+	new_baseturfs += baseturfs
+	new_baseturfs += type
+
+	if(depth)
+		var/list/target_baseturfs
+		if(length(copytarget.baseturfs))
+			// with default inputs this would be Copy(CLAMP(2, -INFINITY, baseturfs.len))
+			// Don't forget a lower index is lower in the baseturfs stack, the bottom is baseturfs[1]
+			target_baseturfs = copytarget.baseturfs.Copy(CLAMP(1 + ignore_bottom, 1 + copytarget.baseturfs.len - depth, copytarget.baseturfs.len))
+		else if(!ignore_bottom)
+			target_baseturfs = list(copytarget.baseturfs)
+		if(target_baseturfs)
+			target_baseturfs -= new_baseturfs & GLOB.blacklisted_automated_baseturfs
+			new_baseturfs += target_baseturfs
+
+	var/turf/newT = copytarget.copyTurf(src, copy_air)
+	newT.baseturfs = new_baseturfs
+	return newT
+
+/turf/proc/copyTurf(turf/T)
+	if(T.type != type)
+		var/obj/O
+		if(underlays.len)	//we have underlays, which implies some sort of transparency, so we want to a snapshot of the previous turf as an underlay
+			O = new()
+			O.underlays.Add(T)
+		T.ChangeTurf(type)
+		if(underlays.len)
+			T.underlays = O.underlays
+	if(T.icon_state != icon_state)
+		T.icon_state = icon_state
+	if(T.icon != icon)
+		T.icon = icon
+	//if(T.dir != dir)//components
+	//	T.setDir(dir)
+	return T
+
+//If you modify this function, ensure it works correctly with lateloaded map templates.
+/turf/proc/AfterChange(flags) //called after a turf has been replaced in ChangeTurf()
+	levelupdate()
+	//CalculateAdjacentTurfs() // linda
+
+	//update firedoor adjacency
+//	var/list/turfs_to_check = get_adjacent_open_turfs(src) | src
+//	for(var/I in turfs_to_check)
+//		var/turf/T = I
+//		for(var/obj/machinery/door/firedoor/FD in T)
+//			FD.CalculateAffectingAreas()
+
+//	queue_smooth_neighbors(src)
+
+	HandleTurfChange(src)
+
+/turf/open/AfterChange(flags)
+	..()
+	RemoveLattice()
+
+// Removes all signs of lattice on the pos of the turf -Donkieyo
+/turf/proc/RemoveLattice()
+	var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+	if(L && (L.flags_atom & INITIALIZED))
+		qdel(L)
+
+// A proc in case it needs to be recreated or badmins want to change the baseturfs
+/turf/proc/assemble_baseturfs(turf/fake_baseturf_type)
+	var/static/list/created_baseturf_lists = list()
+	var/turf/current_target
+	if(fake_baseturf_type)
+		if(length(fake_baseturf_type)) // We were given a list, just apply it and move on
+			baseturfs = fake_baseturf_type
+			return
+		current_target = fake_baseturf_type
+	else
+		if(length(baseturfs))
+			return // No replacement baseturf has been given and the current baseturfs value is already a list/assembled
+		if(!baseturfs)
+			current_target = initial(baseturfs) || type // This should never happen but just in case...
+			stack_trace("baseturfs var was null for [type]. Failsafe activated and it has been given a new baseturfs value of [current_target].")
+		else
+			current_target = baseturfs
+
+	// If we've made the output before we don't need to regenerate it
+	if(created_baseturf_lists[current_target])
+		var/list/premade_baseturfs = created_baseturf_lists[current_target]
+		if(length(premade_baseturfs))
+			baseturfs = premade_baseturfs.Copy()
+		else
+			baseturfs = premade_baseturfs
+		return baseturfs
+
+	var/turf/next_target = initial(current_target.baseturfs)
+	//Most things only have 1 baseturf so this loop won't run in most cases
+	if(current_target == next_target)
+		baseturfs = current_target
+		created_baseturf_lists[current_target] = current_target
+		return current_target
+	var/list/new_baseturfs = list(current_target)
+	for(var/i=0;current_target != next_target;i++)
+		if(i > 100)
+			// A baseturfs list over 100 members long is silly
+			// Because of how this is all structured it will only runtime/message once per type
+			stack_trace("A turf <[type]> created a baseturfs list over 100 members long. This is most likely an infinite loop.")
+			message_admins("A turf <[type]> created a baseturfs list over 100 members long. This is most likely an infinite loop.")
+			break
+		new_baseturfs.Insert(1, next_target)
+		current_target = next_target
+		next_target = initial(current_target.baseturfs)
+
+	baseturfs = new_baseturfs
+	created_baseturf_lists[new_baseturfs[new_baseturfs.len]] = new_baseturfs.Copy()
+	return new_baseturfs
+
+// Take the input as baseturfs and put it underneath the current baseturfs
+// If fake_turf_type is provided and new_baseturfs is not the baseturfs list will be created identical to the turf type's
+// If both or just new_baseturfs is provided they will be inserted below the existing baseturfs
+/turf/proc/PlaceOnBottom(list/new_baseturfs, turf/fake_turf_type)
+	if(fake_turf_type)
+		if(!new_baseturfs)
+			if(!length(baseturfs))
+				baseturfs = list(baseturfs)
+			var/list/old_baseturfs = baseturfs.Copy()
+			assemble_baseturfs(fake_turf_type)
+			if(!length(baseturfs))
+				baseturfs = list(baseturfs)
+			baseturfs -= baseturfs & GLOB.blacklisted_automated_baseturfs
+			baseturfs += old_baseturfs
+			return
+		else if(!length(new_baseturfs))
+			new_baseturfs = list(new_baseturfs, fake_turf_type)
+		else
+			new_baseturfs += fake_turf_type
+	if(!length(baseturfs))
+		baseturfs = list(baseturfs)
+	baseturfs.Insert(1, new_baseturfs)
+
+/turf/baseturf_bottom
+	name = "Z-level baseturf placeholder"
+	desc = "Marker for z-level baseturf, usually resolves to space."
+	baseturfs = /turf/baseturf_bottom

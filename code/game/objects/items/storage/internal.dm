@@ -31,7 +31,7 @@
 		if(user.lying) //Can't use your inventory when lying
 			return
 
-		if(istype(user.loc, /obj/mecha)) //Stops inventory actions in a mech
+		if(istype(user.loc, /obj/mecha) || istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
 			return 0
 
 		if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
@@ -56,11 +56,11 @@
 							if(!do_after(user, master_item.time_to_unequip, TRUE, 5, BUSY_ICON_GENERIC))
 								to_chat(user, "You stop taking off \the [master_item]")
 							else
-								user.drop_inv_item_on_ground(master_item)
+								user.dropItemToGround(master_item)
 								user.put_in_r_hand(master_item)
 							return 0
 					else
-						user.drop_inv_item_on_ground(master_item)
+						user.dropItemToGround(master_item)
 						user.put_in_r_hand(master_item)
 				if("l_hand")
 					if(master_item.time_to_unequip)
@@ -68,11 +68,11 @@
 							if(!do_after(user, master_item.time_to_unequip, TRUE, 5, BUSY_ICON_GENERIC))
 								to_chat(user, "You stop taking off \the [master_item]")
 							else
-								user.drop_inv_item_on_ground(master_item)
+								user.dropItemToGround(master_item)
 								user.put_in_l_hand(master_item)
 							return 0
 					else
-						user.drop_inv_item_on_ground(master_item)
+						user.dropItemToGround(master_item)
 						user.put_in_l_hand(master_item)
 			master_item.add_fingerprint(user)
 			return 0
@@ -88,11 +88,11 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.l_store == master_item && !H.get_active_hand())	//Prevents opening if it's in a pocket.
+		if(H.l_store == master_item && !H.get_active_held_item())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(master_item)
 			H.l_store = null
 			return 0
-		if(H.r_store == master_item && !H.get_active_hand())
+		if(H.r_store == master_item && !H.get_active_held_item())
 			H.put_in_hands(master_item)
 			H.r_store = null
 			return 0

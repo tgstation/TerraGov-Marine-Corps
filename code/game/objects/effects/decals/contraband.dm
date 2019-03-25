@@ -49,7 +49,7 @@ obj/structure/sign/poster/New(var/serial)
 	..()
 
 obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/wirecutters))
+	if(iswirecutter(W))
 		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 		if(ruined)
 			to_chat(user, "<span class='notice'>You remove the remnants of the poster.</span>")
@@ -89,7 +89,7 @@ obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 /turf/closed/wall/proc/place_poster(var/obj/item/contraband/poster/P, var/mob/user)
 
 	if(!istype(src,/turf/closed/wall))
-		to_chat(user, "\red You can't place this here!")
+		to_chat(user, "<span class='warning'>You can't place this here!</span>")
 		return
 
 	var/stuff_on_wall = 0

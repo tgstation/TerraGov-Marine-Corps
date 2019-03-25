@@ -1,159 +1,175 @@
 /datum/job/freelancer
-	special_role = "Freelancer"
-	comm_title = "FRE"
-	faction = "Freelancers"
-	idtype = /obj/item/card/id
+	department_flag = J_FLAG_FREELANCER
+	access = ALL_ANTAGONIST_ACCESS
+	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/pfc/crafty
-	access = ALL_MARINE_ACCESS
-	minimal_access = ALL_MARINE_ACCESS
-	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
+	faction = "Freelancers"
 
 
 //Freelancer Standard
 /datum/job/freelancer/standard
 	title = "Freelancer Standard"
 	paygrade = "FRE1"
-	equipment = TRUE
-
-/datum/job/freelancer/standard/generate_equipment(mob/living/carbon/human/H)
-	var/obj/item/storage/belt/marine/W = new /obj/item/storage/belt/marine(H)
-	W.contents += new /obj/item/ammo_magazine/rifle/mar40
-	W.contents += new /obj/item/ammo_magazine/rifle/mar40
-	W.contents += new /obj/item/ammo_magazine/rifle/mar40
-	W.contents += new /obj/item/ammo_magazine/rifle/mar40
-	W.contents += new /obj/item/ammo_magazine/rifle/mar40
-
-	var/obj/item/storage/pouch/general/RS = new /obj/item/storage/pouch/general(H)
-	RS.contents += new /obj/item/weapon/throwing_knife
-
-	var/obj/item/clothing/suit/storage/faction/freelancer/J = new /obj/item/clothing/suit/storage/faction/freelancer(H)
-	J.pockets.contents += new /obj/item/explosive/grenade/frag/stick
-	J.pockets.contents += new /obj/item/explosive/grenade/frag/stick
-
-	var/obj/item/clothing/shoes/marine/S = new /obj/item/clothing/shoes/marine(H)
-	S.knife = new /obj/item/weapon/combat_knife
-	S.update_icon()
-
-	var/obj/item/storage/backpack/lightpack/B = new /obj/item/storage/backpack/lightpack(H)
-	B.contents += new /obj/item/stack/sheet/metal/small_stack
-	B.contents += new /obj/item/stack/sheet/metal/small_stack
-	B.contents += new /obj/item/storage/box/MRE
-	B.contents += new /obj/item/storage/box/MRE
-	B.contents += new /obj/item/device/radio
-	B.contents += new /obj/item/tool/crowbar/red
-	B.contents += new /obj/item/storage/box/m94
-	B.contents += new /obj/item/storage/box/m94
+	flag = FRE_STANDARD
+	outfit = /datum/outfit/job/freelancer/standard
 
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/freelancer(H), WEAR_BODY)
-	H.equip_to_slot_or_del(J, WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(W, WEAR_WAIST)
-	H.equip_to_slot_or_del(B, WEAR_BACK)
-	H.equip_to_slot_or_del(S, WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(RS, WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/mar40(H), WEAR_J_STORE)
+/datum/outfit/job/freelancer/standard
+	name = "Freelancer Standard"
+	jobtype = /datum/job/freelancer/standard
+
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/belt/marine
+	ears = /obj/item/device/radio/headset/distress/dutch
+	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer
+	shoes = /obj/item/clothing/shoes/marine
+	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer
+	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	head = /obj/item/clothing/head/frelancer
+	suit_store = /obj/item/weapon/gun/rifle/mar40
+	r_store = /obj/item/storage/pouch/general
+	l_store = /obj/item/storage/pouch/firstaid/full
+	back = /obj/item/storage/backpack/lightpack
+
+
+/datum/outfit/job/freelancer/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/device/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/throwing_knife, SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife, SLOT_IN_BOOT)
 
 
 //Freelancer Medic
 /datum/job/freelancer/medic
 	title = "Freelancer Medic"
 	paygrade = "FRE2"
-	equipment = TRUE
+	flag = FRE_MEDIC
 	skills_type = /datum/skills/combat_medic
+	outfit = /datum/outfit/job/freelancer/medic
 
-/datum/job/freelancer/medic/generate_equipment(mob/living/carbon/human/H)
-	var/obj/item/storage/pouch/medkit/RS = new /obj/item/storage/pouch/medkit(H)
-	RS.contents += new /obj/item/storage/firstaid/adv
 
-	var/obj/item/clothing/suit/storage/faction/freelancer/J = new /obj/item/clothing/suit/storage/faction/freelancer(H)
-	J.pockets.contents += new /obj/item/explosive/grenade/frag/stick
-	J.pockets.contents += new /obj/item/explosive/grenade/frag/stick
+/datum/outfit/job/freelancer/medic
+	name = "Freelancer Medic"
+	jobtype = /datum/job/freelancer/medic
 
-	var/obj/item/clothing/shoes/marine/S = new /obj/item/clothing/shoes/marine(H)
-	S.knife = new /obj/item/weapon/combat_knife
-	S.update_icon()
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/belt/combatLifesaver/upp
+	ears = /obj/item/device/radio/headset/distress/dutch
+	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer
+	shoes = /obj/item/clothing/shoes/marine
+	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer
+	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	head = /obj/item/clothing/head/frelancer
+	glasses = /obj/item/clothing/glasses/hud/health
+	suit_store = /obj/item/weapon/gun/smg/p90
+	r_store = /obj/item/storage/pouch/medkit
+	l_store = /obj/item/storage/pouch/medical/full
+	back = /obj/item/storage/backpack/lightpack
 
-	var/obj/item/storage/backpack/lightpack/B = new /obj/item/storage/backpack/lightpack(H)
-	B.contents += new /obj/item/device/defibrillator
-	B.contents += new /obj/item/device/healthanalyzer
-	B.contents += new /obj/item/roller
-	B.contents += new /obj/item/stack/sheet/metal/small_stack
-	B.contents += new /obj/item/storage/box/MRE
-	B.contents += new /obj/item/storage/box/MRE
-	B.contents += new /obj/item/storage/box/MRE
-	B.contents += new /obj/item/device/radio
-	B.contents += new /obj/item/tool/crowbar/red
-	B.contents += new /obj/item/storage/box/m94
-	B.contents += new /obj/item/ammo_magazine/smg/p90
-	B.contents += new /obj/item/ammo_magazine/smg/p90
-	B.contents += new /obj/item/ammo_magazine/smg/p90
-	B.contents += new /obj/item/ammo_magazine/smg/p90
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/freelancer(H), WEAR_BODY)
-	H.equip_to_slot_or_del(J, WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/combatLifesaver/upp(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(B, WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/medical/full(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(RS, WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/p90(H), WEAR_J_STORE)
+/datum/outfit/job/freelancer/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+
+	H.equip_to_slot_or_del(new /obj/item/device/defibrillator, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/device/healthanalyzer, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/device/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv, SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife, SLOT_IN_BOOT)
 
 
 //Freelancer Leader
 /datum/job/freelancer/leader
 	title = "Freelancer Leader"
 	paygrade = "FRE3"
-	equipment = TRUE
+	flag = FRE_LEADER
 	skills_type = /datum/skills/SL
-
-/datum/job/freelancer/leader/generate_equipment(mob/living/carbon/human/H)
-	var/obj/item/storage/belt/marine/W = new /obj/item/storage/belt/marine(H)
-	W.contents += new /obj/item/ammo_magazine/rifle/mar40
-	W.contents += new /obj/item/ammo_magazine/rifle/mar40
-	W.contents += new /obj/item/ammo_magazine/rifle/mar40
-	W.contents += new /obj/item/ammo_magazine/rifle/mar40
-	W.contents += new /obj/item/ammo_magazine/rifle/mar40
-
-	var/obj/item/storage/pouch/general/medium/RS = new /obj/item/storage/pouch/general/medium(H)
-	RS.contents += new /obj/item/device/binoculars
-	RS.contents += new /obj/item/explosive/plastique
-
-	var/obj/item/clothing/suit/storage/faction/freelancer/J = new /obj/item/clothing/suit/storage/faction/freelancer(H)
-	J.pockets.contents += new /obj/item/explosive/grenade/frag/stick
-	J.pockets.contents += new /obj/item/explosive/grenade/frag/stick
-
-	var/obj/item/clothing/shoes/marine/S = new /obj/item/clothing/shoes/marine(H)
-	S.knife = new /obj/item/weapon/combat_knife
-	S.update_icon()
-
-	var/obj/item/storage/backpack/lightpack/B = new /obj/item/storage/backpack/lightpack(H)
-	B.contents += new /obj/item/stack/sheet/metal/small_stack
-	B.contents += new /obj/item/stack/sheet/metal/small_stack
-	B.contents += new /obj/item/stack/sheet/plasteel/small_stack
-	B.contents += new /obj/item/storage/box/MRE
-	B.contents += new /obj/item/storage/box/MRE
-	B.contents += new /obj/item/device/radio
-	B.contents += new /obj/item/tool/crowbar/red
-	B.contents += new /obj/item/storage/box/m94
-	B.contents += new /obj/item/storage/box/m94
+	outfit = /datum/outfit/job/freelancer/leader
 
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/freelancer(H), WEAR_BODY)
-	H.equip_to_slot_or_del(J, WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer/beret(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(W, WEAR_WAIST)
-	H.equip_to_slot_or_del(B, WEAR_BACK)
-	H.equip_to_slot_or_del(S, WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(RS, WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/mar40/carbine(H), WEAR_J_STORE)
+/datum/outfit/job/freelancer/leader
+	name = "Freelancer Leader"
+	jobtype = /datum/job/freelancer/leader
+
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/belt/marine
+	ears = /obj/item/device/radio/headset/distress/dutch
+	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer
+	shoes = /obj/item/clothing/shoes/marine
+	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer
+	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	head = /obj/item/clothing/head/frelancer/beret
+	glasses = /obj/item/clothing/glasses/hud/health
+	suit_store = /obj/item/weapon/gun/rifle/mar40/carbine
+	r_store = /obj/item/storage/pouch/general/medium
+	l_store = /obj/item/storage/pouch/firstaid/full
+	back = /obj/item/storage/backpack/lightpack
+
+
+/datum/outfit/job/freelancer/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+
+	H.equip_to_slot_or_del(new /obj/item/device/defibrillator, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/device/healthanalyzer, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/device/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv, SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife, SLOT_IN_BOOT)

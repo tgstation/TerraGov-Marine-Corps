@@ -22,7 +22,7 @@
 	"radium","sacid","silicon","sodium","sugar","sulfur","tungsten","water")
 
 /obj/machinery/chem_dispenser/proc/recharge()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	var/addenergy = 10
 	var/oldenergy = energy
@@ -75,7 +75,7 @@
   * @return nothing
   */
 /obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 0)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(user.stat || user.is_mob_restrained())
 		return
@@ -121,7 +121,7 @@
 		ui.open()
 
 /obj/machinery/chem_dispenser/Topic(href, href_list)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE // don't update UIs attached to this object
 
 	if(href_list["amount"])
@@ -151,13 +151,13 @@
 	return TRUE // update UIs attached to this object
 
 /obj/machinery/chem_dispenser/attackby(var/obj/item/reagent_container/B as obj, var/mob/user as mob)
-	if(isrobot(user))
+	if(iscyborg(user))
 		return
 	if(src.beaker)
 		to_chat(user, "Something is already loaded into the machine.")
 		return
 	if(istype(B, /obj/item/reagent_container) && B.is_open_container())
-		if(user.drop_inv_item_to_loc(B, src))
+		if(user.transferItemToLoc(B, src))
 			beaker =  B
 			to_chat(user, "You set [B] on the machine.")
 			nanomanager.update_uis(src) // update all UIs attached to src
@@ -171,7 +171,7 @@
 	return src.attack_hand(user)
 
 /obj/machinery/chem_dispenser/attack_hand(mob/user as mob)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	var/mob/living/carbon/human/H = user
 	if(!check_access(H.wear_id))
@@ -192,7 +192,7 @@
 
 /obj/machinery/chem_dispenser/soda/attackby(var/obj/item/B as obj, var/mob/user as mob)
 	..()
-	if(istype(B, /obj/item/device/multitool))
+	if(ismultitool(B))
 		if(hackedcheck == 0)
 			to_chat(user, "You change the mode from 'McNano' to 'Pizza King'.")
 			dispensable_reagents += list("thirteenloko","grapesoda")
@@ -214,12 +214,12 @@
 	max_energy = 100
 	req_one_access = list()
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
-	dispensable_reagents = list("lemon_lime","sugar","orangejuice","limejuice","sodawater","tonic","beer","kahlua","whiskey","sake","wine","vodka","gin","rum","tequilla","vermouth","cognac","ale","mead")
+	dispensable_reagents = list("lemon_lime","sugar","orangejuice","limejuice","sodawater","tonic","beer","kahlua","whiskey","sake","wine","vodka","gin","rum","tequila","vermouth","cognac","ale","mead")
 
 /obj/machinery/chem_dispenser/beer/attackby(var/obj/item/B as obj, var/mob/user as mob)
 	..()
 
-	if(istype(B, /obj/item/device/multitool))
+	if(ismultitool(B))
 		if(hackedcheck == 0)
 			to_chat(user, "You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes.")
 			dispensable_reagents += list("goldschlager","patron","watermelonjuice","berryjuice")
@@ -248,9 +248,11 @@
 	var/mode = 0
 	var/condi = 0
 	var/useramount = 30 // Last used amount
-	var/pillamount = 10
+	var/pillamount = 16
+	var/pillbottlesprite = "1"
 	var/bottlesprite = "1" //yes, strings
 	var/pillsprite = "1"
+	var/autoinjectorsprite = "11"
 	var/client/has_sprites = list()
 	var/max_pill_count = 20
 
@@ -275,7 +277,7 @@
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
-		user.drop_inv_item_to_loc(I, src)
+		user.transferItemToLoc(I, src)
 		beaker = I
 		to_chat(user, "<span class='notice'>You add the beaker to the machine!</span>")
 		updateUsrDialog()
@@ -290,7 +292,7 @@
 			return
 
 		loaded_pill_bottle = I
-		user.drop_inv_item_to_loc(I, src)
+		user.transferItemToLoc(I, src)
 		to_chat(user, "<span class='notice'>You add the pill bottle into the dispenser slot!</span>")
 		updateUsrDialog()
 	return
@@ -304,7 +306,7 @@
 				source.reagents.trans_id_to(dest, reagent_id, amount)
 
 /obj/machinery/chem_master/Topic(href, href_list)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(!ishuman(usr))
 		return
@@ -323,7 +325,7 @@
 			loaded_pill_bottle.loc = loc
 			loaded_pill_bottle = null
 	else if(href_list["close"])
-		user << browse(null, "window=chemmaster")
+		user << browse(null, "window=chem_master")
 		user.unset_interaction()
 		return
 
@@ -341,12 +343,14 @@
 					var/A = G.name
 					var/B = G.data["blood_type"]
 					var/C = G.data["blood_DNA"]
-					dat += "<TITLE>Chemmaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[A]<BR><BR>Description:<BR>Blood Type: [B]<br>DNA: [C]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
+					dat += "Chemical infos:<BR><BR>Name:<BR>[A]<BR><BR>Description:<BR>Blood Type: [B]<br>DNA: [C]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
 				else
-					dat += "<TITLE>Chemmaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
+					dat += "Chemical infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
 			else
-				dat += "<TITLE>Condimaster 3000</TITLE>Condiment infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
-			user << browse(dat, "window=chem_master;size=575x400")
+				dat += "Condiment infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
+			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Chemmaster 3000</div>", 575, 400)
+			popup.set_content(dat)
+			popup.open(FALSE)
 			return
 
 		else if (href_list["add"])
@@ -394,6 +398,18 @@
 				beaker = null
 				reagents.clear_reagents()
 				icon_state = "mixer0"
+
+		else if (href_list["createpillbottle"])
+			if(!condi)
+				if(loaded_pill_bottle)
+					to_chat(user, "<span class='warning'>A pill bottle is already loaded into the machine.</span>")
+					return
+				var/obj/item/storage/pill_bottle/I = new/obj/item/storage/pill_bottle
+				I.icon_state = "pill_canister"+pillbottlesprite
+				loaded_pill_bottle = I
+				to_chat(user, "<span class='notice'>The Chemmaster 3000 sets a pill bottle into the dispenser slot.</span>")
+				updateUsrDialog()
+
 		else if (href_list["createpill"] || href_list["createpill_multiple"])
 			var/count = 1
 
@@ -401,7 +417,7 @@
 				return
 
 			if (href_list["createpill_multiple"])
-				count = CLAMP(input("Select the number of pills to make. (max: [max_pill_count])", 10, pillamount) as num|null,0,max_pill_count)
+				count = CLAMP(input("Select the number of pills to make. (max: [max_pill_count])", 16, pillamount) as num|null,0,max_pill_count)
 				if(!count)
 					return
 
@@ -409,7 +425,7 @@
 				return
 
 			var/amount_per_pill = reagents.total_volume/count
-			if (amount_per_pill > 60) amount_per_pill = 60
+			if (amount_per_pill > 15) amount_per_pill = 15
 
 			var/name = reject_bad_text(input(user,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)") as text|null)
 			if(!name)
@@ -420,6 +436,7 @@
 			while (count--)
 				var/obj/item/reagent_container/pill/P = new/obj/item/reagent_container/pill(loc)
 				if(!name) name = reagents.get_master_reagent_name()
+				P.name = name
 				P.pill_desc = "A [name] pill."
 				P.pixel_x = rand(-7, 7) //random position
 				P.pixel_y = rand(-7, 7)
@@ -446,42 +463,92 @@
 			else
 				var/obj/item/reagent_container/food/condiment/P = new/obj/item/reagent_container/food/condiment(loc)
 				reagents.trans_to(P,50)
+
+		else if (href_list["createautoinjector"])
+			if(!condi)
+				var/name = reject_bad_text(input(user,"Name:","Name your autoinjector!",reagents.get_master_reagent_name()) as text|null)
+				if(!name)
+					return
+				var/obj/item/reagent_container/hypospray/autoinjector/fillable/P = new/obj/item/reagent_container/hypospray/autoinjector/fillable(loc)
+				if(!name) name = reagents.get_master_reagent_name()
+				P.name = "[name] autoinjector"
+				P.pixel_x = rand(-7, 7) //random position
+				P.pixel_y = rand(-7, 7)
+				P.icon_state = "autoinjector-"+autoinjectorsprite
+				reagents.trans_to(P,30)
+				P.update_icon()
+
+		else if(href_list["change_pill_bottle"])
+			#define MAX_PILL_BOTTLE_SPRITE 12 //max icon state of the pill sprites
+			var/dat = "<table>"
+			for(var/i = 1 to MAX_PILL_BOTTLE_SPRITE)
+				dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[i]\">Select</a><img src=\"pill_canister[i].png\" /><br></td></tr>"
+			dat += "</table>"
+			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Pill Bottle</div>")
+			popup.set_content(dat)
+			popup.open(FALSE)
+			return
+
 		else if(href_list["change_pill"])
-			#define MAX_PILL_SPRITE 20 //max icon state of the pill sprites
+			#define MAX_PILL_SPRITE 21 //max icon state of the pill sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_PILL_SPRITE)
-				dat += "<tr><td><a href=\"?src=\ref[src]&pill_sprite=[i]\"><img src=\"pill[i].png\" /></a></td></tr>"
+				dat += "<tr><td><a href=\"?src=\ref[src]&pill_sprite=[i]\">Select</a><img src=\"pill[i].png\" /><br></td></tr>"
 			dat += "</table>"
-			user << browse(dat, "window=chem_master")
+			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Pill</div>")
+			popup.set_content(dat)
+			popup.open(FALSE)
 			return
+
 		else if(href_list["change_bottle"])
 			#define MAX_BOTTLE_SPRITE 4 //max icon state of the bottle sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)
-				dat += "<tr><td><a href=\"?src=\ref[src]&bottle_sprite=[i]\"><img src=\"bottle-[i].png\" /></a></td></tr>"
+				dat += "<tr><td><a href=\"?src=\ref[src]&bottle_sprite=[i]\">Select</a><img src=\"bottle-[i].png\" /><br></td></tr>"
 			dat += "</table>"
-			user << browse(dat, "window=chem_master")
+			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Bottle</div>")
+			popup.set_content(dat)
+			popup.open(FALSE)
 			return
+
+		else if(href_list["change_autoinjector"])
+			#define MAX_AUTOINJECTOR_SPRITE 11 //max icon state of the autoinjector sprites
+			var/dat = "<table>"
+			for(var/i = 1 to MAX_AUTOINJECTOR_SPRITE)
+				dat += "<tr><td><a href=\"?src=\ref[src]&autoinjector_sprite=[i]\">Select</a><img src=\"autoinjector-[i].png\" /><br></td></tr>"
+			dat += "</table>"
+			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Autoinjector</div>")
+			popup.set_content(dat)
+			popup.open(FALSE)
+			return
+
+		else if(href_list["pill_bottle_sprite"])
+			pillbottlesprite = href_list["pill_bottle_sprite"]
 		else if(href_list["pill_sprite"])
 			pillsprite = href_list["pill_sprite"]
 		else if(href_list["bottle_sprite"])
 			bottlesprite = href_list["bottle_sprite"]
-
+		else if(href_list["autoinjector_sprite"])
+			autoinjectorsprite = href_list["autoinjector_sprite"]
 	//src.updateUsrDialog()
 	attack_hand(user)
 
 
 /obj/machinery/chem_master/attack_hand(mob/living/user)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	user.set_interaction(src)
 	if(!(user.client in has_sprites))
 		spawn()
 			has_sprites += user.client
+			for(var/i = 1 to MAX_PILL_BOTTLE_SPRITE)
+				user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill_canister" + num2text(i)), "pill_canister[i].png")
 			for(var/i = 1 to MAX_PILL_SPRITE)
 				user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill" + num2text(i)), "pill[i].png")
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)
 				user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "bottle-" + num2text(i)), "bottle-[i].png")
+			for(var/i = 1 to MAX_AUTOINJECTOR_SPRITE)
+				user << browse_rsc(icon('icons/obj/items/syringe.dmi', "autoinjector-" + num2text(i)), "autoinjector-[i].png")
 	var/dat = ""
 	if(!beaker)
 		dat = "Please insert beaker.<BR>"
@@ -522,17 +589,18 @@
 		else
 			dat += "Empty<BR>"
 		if(!condi)
-			dat += "<HR><BR><A href='?src=\ref[src];createpill=1'>Create pill (60 units max)</A><a href=\"?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
+			dat += "<HR><BR><A href='?src=\ref[src];createpillbottle=1'>Load pill bottle</A><a href=\"?src=\ref[src]&change_pill_bottle=1\">Change</a><img src=\"pill_canister[pillbottlesprite].png\" /><BR>"
+			dat += "<A href='?src=\ref[src];createpill=1'>Create pill (15 units max)</A><a href=\"?src=\ref[src]&change_pill=1\">Change</a><img src=\"pill[pillsprite].png\" /><BR>"
 			dat += "<A href='?src=\ref[src];createpill_multiple=1'>Create multiple pills</A><BR>"
-			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (60 units max)<a href=\"?src=\ref[src]&change_bottle=1\"><img src=\"bottle-[bottlesprite].png\" /></A>"
+			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (60 units max)<a href=\"?src=\ref[src]&change_bottle=1\">Change</A><img src=\"bottle-[bottlesprite].png\" /><BR>"
+			dat += "<A href='?src=\ref[src];createautoinjector=1'>Create autoinjector (30 units max)<a href=\"?src=\ref[src]&change_autoinjector=1\">Change</A><img src=\"autoinjector-[autoinjectorsprite].png\" />"
 		else
 			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (50 units max)</A>"
-	if(!condi)
-		user << browse("<TITLE>Chemmaster 3000</TITLE>Chemmaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
-	else
-		user << browse("<TITLE>Condimaster 3000</TITLE>Condimaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
+
+	var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Chemmaster menu</div>", 575, 450)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "chem_master")
-	return
 
 
 /obj/machinery/chem_master/condimaster
@@ -567,15 +635,15 @@
 
 /obj/machinery/computer/pandemic/set_broken()
 	icon_state = (beaker?"mixer1_b":"mixer0_b")
-	stat |= BROKEN
+	machine_stat |= BROKEN
 
 
 /obj/machinery/computer/pandemic/power_change()
 	..()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = (beaker?"mixer1_b":"mixer0_b")
 
-	else if(!(stat & NOPOWER))
+	else if(!(machine_stat & NOPOWER))
 		icon_state = (beaker?"mixer1":"mixer0")
 
 	else
@@ -584,7 +652,7 @@
 
 
 /obj/machinery/computer/pandemic/Topic(href, href_list)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(!ishuman(usr))
 		return
@@ -675,7 +743,7 @@
 		return
 	else if(href_list["name_disease"])
 		var/new_name = stripped_input(user, "Name the Disease", "New Name", "", MAX_NAME_LEN)
-		if(stat & (NOPOWER|BROKEN))
+		if(machine_stat & (NOPOWER|BROKEN))
 			return
 		if(user.stat || user.is_mob_restrained())
 			return
@@ -785,21 +853,22 @@
 		dat += "<BR><A href='?src=\ref[src];eject=1'>Eject beaker</A>[((beaker.reagents.total_volume && beaker.reagents.reagent_list.len) ? "-- <A href='?src=\ref[src];empty_beaker=1'>Empty beaker</A>":"")]<BR>"
 		dat += "<A href='?src=\ref[user];mach_close=pandemic'>Close</A>"
 
-	user << browse("<TITLE>[src.name]</TITLE><BR>[dat]", "window=pandemic;size=575x400")
+	var/datum/browser/popup = new(user, "pandemic", "<div align='center'>[name]</div>", 575, 400)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "pandemic")
-	return
 
 
 /obj/machinery/computer/pandemic/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/reagent_container) && I.is_open_container())
-		if(stat & (NOPOWER|BROKEN))
+		if(machine_stat & (NOPOWER|BROKEN))
 			return
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
 
 		beaker =  I
-		user.drop_inv_item_to_loc(I, src)
+		user.transferItemToLoc(I, src)
 		to_chat(user, "<span class='notice'>You add the beaker to the machine!</span>")
 		updateUsrDialog()
 		icon_state = "mixer1"
@@ -886,7 +955,7 @@
 			return TRUE
 		else
 			beaker =  O
-			user.drop_inv_item_to_loc(O, src)
+			user.transferItemToLoc(O, src)
 			update_icon()
 			updateUsrDialog()
 			return FALSE
@@ -916,7 +985,7 @@
 		to_chat(user, "Cannot refine into a reagent.")
 		return TRUE
 
-	user.drop_inv_item_to_loc(O, src)
+	user.transferItemToLoc(O, src)
 	holdingitems += O
 	updateUsrDialog()
 	return FALSE
@@ -963,7 +1032,7 @@
 	[processing_chamber]<br>
 	[beaker_contents]<hr>
 	"}
-		if (is_beaker_ready && !is_chamber_empty && !(stat & (NOPOWER|BROKEN)))
+		if (is_beaker_ready && !is_chamber_empty && !(machine_stat & (NOPOWER|BROKEN)))
 			dat += "<A href='?src=\ref[src];action=grind'>Grind the reagents</a><BR>"
 			dat += "<A href='?src=\ref[src];action=juice'>Juice the reagents</a><BR><BR>"
 		if(holdingitems && holdingitems.len > 0)
@@ -972,9 +1041,11 @@
 			dat += "<A href='?src=\ref[src];action=detach'>Detach the beaker</a><BR>"
 	else
 		dat += "Please wait..."
-	user << browse("<HEAD><TITLE>All-In-One Grinder</TITLE></HEAD><TT>[dat]</TT>", "window=reagentgrinder")
+
+	var/datum/browser/popup = new(user, "reagentgrinder", "<div align='center'>All-In-One Grinder</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "reagentgrinder")
-	return
 
 
 /obj/machinery/reagentgrinder/Topic(href, href_list)
@@ -1058,7 +1129,7 @@
 
 /obj/machinery/reagentgrinder/proc/juice()
 	power_change()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if (!beaker || (beaker && beaker.reagents.total_volume >= beaker.reagents.maximum_volume))
 		return
@@ -1091,7 +1162,7 @@
 /obj/machinery/reagentgrinder/proc/grind()
 
 	power_change()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if (!beaker || (beaker && beaker.reagents.total_volume >= beaker.reagents.maximum_volume))
 		return

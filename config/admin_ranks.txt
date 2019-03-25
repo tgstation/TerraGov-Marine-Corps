@@ -1,1 +1,14 @@
-Admin +EVERYTHING
+Name = Admin
+Include = EVERYTHING
+Exclude =
+Edit = EVERYTHING
+
+Name = Mentor
+Include = MENTOR COLOR
+Exclude =
+Edit =
+
+Name = BossOfThisGym
+Include = EVERYTHING
+Exclude =
+Edit = EVERYTHING

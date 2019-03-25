@@ -11,7 +11,7 @@
 	var/toggleable = 0
 	var/active = 1
 	flags_inventory = COVEREYES
-	flags_equip_slot = SLOT_EYES
+	flags_equip_slot = ITEM_SLOT_EYES
 	flags_armor_protection = EYES
 	var/deactive_state = "degoggles"
 	var/fullscreen_vision
@@ -67,7 +67,7 @@
 	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/material
-	name = "Optical Material Scanner"
+	name = "optical material scanner"
 	desc = "Very confusing glasses."
 	icon_state = "material"
 	item_state = "glasses"
@@ -77,15 +77,14 @@
 	vision_flags = SEE_OBJS
 
 /obj/item/clothing/glasses/regular
-	name = "Marine RPG glasses"
+	name = "marine RPG glasses"
 	desc = "The Corps may call them Regulation Prescription Glasses but you know them as Rut Prevention Glasses."
 	icon_state = "mBCG"
 	item_state = "mBCG"
 	prescription = 1
-	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/regular/hipster
-	name = "Prescription Glasses"
+	name = "prescription glasses"
 	desc = "Made by Uncool. Co."
 	icon_state = "hipster_glasses"
 	item_state = "hipster_glasses"
@@ -98,7 +97,7 @@
 	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/gglasses
-	name = "Green Glasses"
+	name = "green glasses"
 	desc = "Forest green glasses, like the kind you'd wear when hatching a nasty scheme."
 	icon_state = "gglasses"
 	item_state = "gglasses"
@@ -109,20 +108,13 @@
 	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
-	flags_equip_slot = SLOT_EYES|SLOT_FACE
+	flags_equip_slot = ITEM_SLOT_EYES|ITEM_SLOT_MASK
 
 /obj/item/clothing/glasses/mgoggles/prescription
 	name = "prescription marine ballistic goggles"
 	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
-	prescription = 1
-
-/obj/item/clothing/glasses/mbcg
-	name = "Marine RPG glasses"
-	desc = "The Corps may call them Regulation Prescription Glasses but you know them as Rut Prevention Glasses."
-	icon_state = "mBCG"
-	item_state = "mBCG"
 	prescription = 1
 
 /obj/item/clothing/glasses/m42_goggles
@@ -195,6 +187,7 @@
 	desc = "Welding goggles made from more expensive materials, strangely smells like potatoes."
 	icon_state = "rwelding-g"
 	item_state = "rwelding-g"
+	tint = 1
 
 
 
@@ -206,6 +199,7 @@
 	icon_state = "sun"
 	item_state = "sunglasses"
 	darkness_view = -1
+	eye_protection = 1
 
 /obj/item/clothing/glasses/sunglasses/blindfold
 	name = "blindfold"
@@ -224,11 +218,47 @@
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
 
+/obj/item/clothing/glasses/sunglasses/big/prescription
+	name = "prescription sunglasses"
+	prescription = TRUE
+
+/obj/item/clothing/glasses/sunglasses/fake
+	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
+	eye_protection = 0
+
+/obj/item/clothing/glasses/sunglasses/fake/prescription
+	name = "prescription sunglasses"
+	prescription = TRUE
+
+/obj/item/clothing/glasses/sunglasses/fake/big
+	desc = "A pair of larger than average designer sunglasses. Doesn't seem like it'll block flashes."
+	icon_state = "bigsunglasses"
+	item_state = "bigsunglasses"
+
+/obj/item/clothing/glasses/sunglasses/fake/big/prescription
+	name = "prescription sunglasses"
+	prescription = TRUE
+
+/obj/item/clothing/glasses/sunglasses/sa
+	name = "spatial agent's sunglasses"
+	desc = "Glasses worn by a spatial agent."
+	eye_protection = 2
+	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
+	var/hud_type = MOB_HUD_MEDICAL_OBSERVER|MOB_HUD_SECURITY_ADVANCED
+
+/obj/item/clothing/glasses/sunglasses/sa/equipped(mob/living/carbon/human/user, slot)
+	if(slot == SLOT_GLASSES)
+		user.see_invisible = SEE_INVISIBLE_MINIMUM
+		user.see_in_dark = 8
+
+/obj/item/clothing/glasses/sunglasses/sa/dropped(mob/living/carbon/human/user)
+	user.see_invisible = initial(user.see_invisible)
+	user.see_in_dark = initial(user.see_in_dark)
+
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
 	icon_state = "sunhud"
-	eye_protection = 1
 	var/hud_type = MOB_HUD_SECURITY_ADVANCED
 
 /obj/item/clothing/glasses/sunglasses/sechud/eyepiece
@@ -236,12 +266,10 @@
 	desc = "A standard eyepiece, but modified to display security information to the user visually. This makes it commonplace among military police, though other models exist."
 	icon_state = "securityhud"
 	item_state = "securityhud"
-	eye_protection = 1
-
 
 
 /obj/item/clothing/glasses/sunglasses/sechud/equipped(mob/living/carbon/human/user, slot)
-	if(slot == WEAR_EYES)
+	if(slot == SLOT_GLASSES)
 		var/datum/mob_hud/H = huds[hud_type]
 		H.add_hud_to(user)
 	..()

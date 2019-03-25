@@ -1,4 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
+#define DEATHTIME_XENO_REQUIREMENT 3000
 
 /proc/dopage(src,target)
 	var/href_list
@@ -21,11 +22,6 @@
 		return null
 	return format_text ? format_text(A.name) : A.name
 
-/proc/in_range(source, user)
-	if(get_dist(source, user) <= 1)
-		return 1
-
-	return 0 //not in range and not telekinetic
 
 // Like view but bypasses luminosity check
 
@@ -111,7 +107,16 @@
 			turfs += T
 	return turfs
 
+/proc/diamondturfs(center=usr, radius=3, check_view=FALSE)
+	var/turf/centerturf = get_turf(center)
+	if(radius < 0 || !centerturf)
+		return
 
+	var/list/turfs = list()
+	for(var/turf/T in check_view ? view(radius, centerturf) : range(radius, centerturf))
+		if(abs(T.x - centerturf.x) + abs(T.y - centerturf.y) <= radius)
+			turfs += T
+	. = turfs
 
 //var/debug_mob = 0
 
@@ -200,13 +205,13 @@
 
 
 	// Try to find all the players who can hear the message
-	for(var/i = 1; i <= player_list.len; i++)
-		var/mob/M = player_list[i]
+	for(var/i = 1; i <= GLOB.player_list.len; i++)
+		var/mob/M = GLOB.player_list[i]
 		if(M)
 			var/turf/ear = get_turf(M)
 			if(ear)
 				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
-				if(speaker_coverage[ear] || (istype(M, /mob/dead/observer) && (M.client) && (M.client.prefs) && (M.client.prefs.toggles_chat & CHAT_GHOSTRADIO)))
+				if(speaker_coverage[ear] || (isobserver(M) && M.client?.prefs?.toggles_chat & CHAT_GHOSTRADIO))
 					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
 	return .
 
@@ -270,7 +275,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 			return get_step(start, EAST)
 
 /proc/get_mob_by_key(var/key)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if(M.ckey == lowertext(key))
 			return M
 	return null
@@ -282,7 +287,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
 	while(candidates.len <= 0 && i < 5)
-		for(var/mob/dead/observer/G in player_list)
+		for(var/mob/dead/observer/G in GLOB.player_list)
 			if(((G.client.inactivity/10)/60) <= buffer + i) // the most active players are more likely to become an alien
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 					candidates += G.key
@@ -290,34 +295,36 @@ proc/isInSight(var/atom/A, var/atom/B)
 	return candidates
 
 // Same as above but for alien candidates.
-/proc/get_alien_candidates()
-	var/list/candidates = list()
+/proc/get_alien_candidate()
+	var/mob/picked
 
-	for (var/mob/dead/observer/O in player_list)
-		// Jobban check
-		if (!O.client || !O.client.prefs || !(O.client.prefs.be_special & BE_ALIEN) || jobban_isbanned(O, "Alien"))
-			continue
-
-		// copied from join as xeno
-		var/deathtime = world.time - O.timeofdeath
-		if(deathtime < 3000 && ( !O.client.holder || !(O.client.holder.rights & R_ADMIN)) )
+	for(var/mob/dead/observer/O in GLOB.dead_mob_list)
+		//Players without preferences or jobbaned players cannot be drafted.
+		if(!O.key || !O.client?.prefs || !(O.client.prefs.be_special & BE_ALIEN) || jobban_isbanned(O, "Alien"))
 			continue
 
 		//AFK players cannot be drafted
 		if(O.client.inactivity / 600 > ALIEN_SELECT_AFK_BUFFER + 5)
 			continue
 
-		if(O.client.holder)
-			switch(alert("You have been drafted for xenomorph, do you wish to proceed?",,"Yes","No"))
-				if("Yes")
-					candidates += O.key
-					continue
-				if("No")
-					continue
+		//Recently dead observers cannot be drafted.
+		var/deathtime = world.time - O.timeofdeath
+		if(deathtime < DEATHTIME_XENO_REQUIREMENT)
+			continue
 
-		candidates += O.key
+		//Aghosted admins don't get picked
+		if(O.mind?.current && copytext(O.mind.current.key, 1, 2) == "@")
+			continue
 
-	return candidates
+		if(!picked)
+			picked = O
+			continue
+
+		if(O.timeofdeath < picked.timeofdeath)
+			picked = O
+
+	return picked?.key
+
 
 /proc/ScreenText(obj/O, maptext="", screen_loc="CENTER-7,CENTER-7", maptext_height=480, maptext_width=480)
 	if(!isobj(O))	O = new /obj/screen/text()
@@ -329,7 +336,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 
 /proc/Show2Group4Delay(obj/O, list/group, delay=0)
 	if(!isobj(O))	return
-	if(!group)	group = clients
+	if(!group)	group = GLOB.clients
 	for(var/client/C in group)
 		C.screen += O
 	if(delay)
@@ -425,8 +432,7 @@ datum/projectile_data
 /proc/flick_overlay(image/I, list/show_to, duration)
 	for(var/client/C in show_to)
 		C.images += I
-	spawn(duration)
-		remove_images_from_clients(I, show_to)
+	addtimer(CALLBACK(GLOBAL_PROC, /proc/remove_images_from_clients, I, show_to), duration, TIMER_CLIENT_TIME)
 
 /proc/flick_overlay_view(image/I, atom/target, duration) //wrapper for the above, flicks to everyone who can see the target atom
 	var/list/viewing = list()
@@ -435,3 +441,13 @@ datum/projectile_data
 		if(M.client)
 			viewing += M.client
 	flick_overlay(I, viewing, duration)
+
+
+/proc/window_flash(client/C)
+	if(ismob(C))
+		var/mob/M = C
+		if(M.client)
+			C = M.client
+	if(!C)
+		return
+	winset(C, "mainwindow", "flash=5")

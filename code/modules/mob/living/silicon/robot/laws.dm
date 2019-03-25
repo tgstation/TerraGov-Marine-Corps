@@ -20,17 +20,13 @@
 				lawsync()
 				photosync()
 				to_chat(src, "<b>Laws synced with AI, be sure to note any changes.</b>")
-				if(mind && mind.special_role == "traitor" && mind.original == src)
-					to_chat(src, "<b>Remember, your AI does NOT share or know about your law 0.")
 		else
 			to_chat(src, "<b>No AI selected to sync laws with, disabling lawsync protocol.</b>")
 			lawupdate = 0
 
 	to_chat(who, "<b>Obey these laws:</b>")
 	laws.show_laws(who)
-	if (mind && (mind.special_role == "traitor" && mind.original == src) && connected_ai)
-		to_chat(who, "<b>Remember, [connected_ai.name] is technically your master, but your objective comes first.</b>")
-	else if (connected_ai)
+	if (connected_ai)
 		to_chat(who, "<b>Remember, [connected_ai.name] is your master, other AIs can be ignored.</b>")
 	else if (emagged)
 		to_chat(who, "<b>Remember, you are not required to listen to the AI.</b>")
@@ -49,12 +45,12 @@
 			if (length(temp) > 0)
 				laws.ion[index] = temp
 
-		if (!is_special_character(src) || mind.original != src)
-			if(master.zeroth_borg) //If the AI has a defined law zero specifically for its borgs, give it that one, otherwise give it the same one. --NEO
-				temp = master.zeroth_borg
-			else
-				temp = master.zeroth
-			laws.zeroth = temp
+
+		if(master.zeroth_borg) //If the AI has a defined law zero specifically for its borgs, give it that one, otherwise give it the same one. --NEO
+			temp = master.zeroth_borg
+		else
+			temp = master.zeroth
+		laws.zeroth = temp
 
 		laws.inherent.len = master.inherent.len
 		for (var/index = 1, index <= master.inherent.len, index++)

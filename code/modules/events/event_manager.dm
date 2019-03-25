@@ -19,7 +19,7 @@ var/scheduledEvent = null
 	if(!scheduledEvent)
 		//more players = more time between events, less players = less time between events
 		var/playercount_modifier = 1
-		switch(player_list.len)
+		switch(GLOB.player_list.len)
 			if(0 to 10)
 				playercount_modifier = 1.2
 			if(11 to 15)
@@ -33,7 +33,7 @@ var/scheduledEvent = null
 
 		var/next_event_delay = rand(eventTimeLower, eventTimeUpper) * playercount_modifier
 		scheduledEvent = world.timeofday + next_event_delay
-		log_debug("Next event in [next_event_delay/600] minutes.")
+		log_game("Next event in [next_event_delay/600] minutes.")
 
 	else if(world.timeofday > scheduledEvent)
 		spawn_dynamic_event()
@@ -55,14 +55,3 @@ var/scheduledEvent = null
 	//and start working via the constructor.
 	new Type
 */
-
-/client/proc/forceEvent(var/type in allEvents)
-	set name = "Trigger Event (Debug Only)"
-	set category = "Debug"
-
-	if(!holder)
-		return
-
-	if(ispath(type))
-		new type
-		message_admins("[key_name_admin(usr)] has triggered an event. ([type])", 1)

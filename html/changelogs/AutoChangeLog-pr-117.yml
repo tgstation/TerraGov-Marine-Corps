@@ -1,6 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - tweak: "Sentry parts can now be re-inserted back into the box."
-  - imageadd: "Implemented new sentry sprites made by ArachnidNexus"
-  - code_imp: "Sentry building is now more streamlined and modular, can be fully deconstructed any time before completion."

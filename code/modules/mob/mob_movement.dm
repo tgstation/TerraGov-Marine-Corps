@@ -16,21 +16,21 @@
 
 /client/verb/fastSouth()
 	set instant = TRUE
-	set hidden = TRUE 
+	set hidden = TRUE
 	set name = ".fastSouth"
 	Move(get_step(mob, SOUTH), SOUTH)
 
 
 /client/verb/fastWest()
 	set instant = TRUE
-	set hidden = TRUE 
+	set hidden = TRUE
 	set name = ".fastWest"
 	Move(get_step(mob, WEST), WEST)
 
 
 /client/verb/fastEast()
 	set instant = TRUE
-	set hidden = TRUE 
+	set hidden = TRUE
 	set name = ".fastEast"
 	Move(get_step(mob, EAST), EAST)
 
@@ -50,19 +50,19 @@
 		var/mob/living/carbon/C = usr
 		C.toggle_throw_mode()
 	else
-		to_chat(usr, "\red This mob type cannot throw items.")
+		to_chat(usr, "<span class='warning'>This mob type cannot throw items.</span>")
 	return
 
 
 /client/Northwest()
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
-		if(!C.get_active_hand())
-			to_chat(usr, "\red You have nothing to drop in your hand.")
+		if(!C.get_active_held_item())
+			to_chat(usr, "<span class='warning'>You have nothing to drop in your hand.</span>")
 			return
 		C.drop_held_item()
 	else
-		to_chat(usr, "\red This mob type cannot drop items.")
+		to_chat(usr, "<span class='warning'>This mob type cannot drop items.</span>")
 	return
 
 //This gets called when you press the delete button.
@@ -70,13 +70,13 @@
 	set hidden = 1
 
 	if(!usr.pulling)
-		to_chat(usr, "\blue You are not pulling anything.")
+		to_chat(usr, "<span class='notice'>You are not pulling anything.</span>")
 		return
 	usr.stop_pulling()
 
 /client/verb/swap_hand()
 	set hidden = 1
-	if(istype(mob, /mob/living/carbon))
+	if(iscarbon(mob))
 		mob:swap_hand()
 	if(istype(mob,/mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = mob
@@ -94,7 +94,7 @@
 
 /client/verb/toggle_throw_mode()
 	set hidden = 1
-	if(!istype(mob, /mob/living/carbon))
+	if(!iscarbon(mob))
 		return
 	if (!mob.stat && isturf(mob.loc) && !mob.is_mob_restrained())
 		mob:toggle_throw_mode()
@@ -104,7 +104,7 @@
 
 /client/verb/drop_item()
 	set hidden = 1
-	if(!isrobot(mob))
+	if(!iscyborg(mob))
 		mob.drop_item_v()
 	return
 
@@ -124,7 +124,7 @@
 		if(mob.control_object.density)
 			step(mob.control_object,direct)
 			if(!mob.control_object)	return
-			mob.control_object.dir = direct
+			mob.control_object.setDir(direct)
 		else
 			mob.control_object.loc = get_step(mob.control_object,direct)
 	return
@@ -145,7 +145,7 @@
 		return
 
 	// There should be a var/is_zoomed in mob code not this mess
-	if(isXeno(mob))
+	if(isxeno(mob))
 		if(mob:is_zoomed)
 			mob:zoom_out()
 
@@ -181,9 +181,9 @@
 		mob.last_move_intent = world.time + 10
 		switch(mob.m_intent)
 			if(MOVE_INTENT_RUN)
-				move_delay = 2 + config.run_speed
+				move_delay = 2 + CONFIG_GET(number/movedelay/run_delay)
 			if(MOVE_INTENT_WALK)
-				move_delay = 7 + config.walk_speed
+				move_delay = 7 + CONFIG_GET(number/movedelay/walk_delay)
 		move_delay += mob.movement_delay()
 		//We are now going to move
 		moving = 1
@@ -228,7 +228,7 @@
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)))
-		to_chat(src, "\blue <B>You slipped!</B>")
+		to_chat(src, "<span class='boldnotice'>You slipped!</span>")
 		src.inertia_dir = src.last_move_dir
 		step(src, src.inertia_dir)
 		return 0

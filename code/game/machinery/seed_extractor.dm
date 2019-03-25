@@ -11,15 +11,15 @@ obj/machinery/seed_extractor/attackby(var/obj/item/O as obj, var/mob/user as mob
 	// Fruits and vegetables.
 	if(istype(O, /obj/item/reagent_container/food/snacks/grown) || istype(O, /obj/item/grown))
 
-		if(user.temp_drop_inv_item(O))
+		if(user.temporarilyRemoveItemFromInventory(O))
 
 			var/datum/seed/new_seed_type
 			if(istype(O, /obj/item/grown))
 				var/obj/item/grown/F = O
-				new_seed_type = seed_types[F.plantname]
+				new_seed_type = GLOB.seed_types[F.plantname]
 			else
 				var/obj/item/reagent_container/food/snacks/grown/F = O
-				new_seed_type = seed_types[F.plantname]
+				new_seed_type = GLOB.seed_types[F.plantname]
 
 			if(new_seed_type)
 				to_chat(user, "<span class='notice'>You extract some seeds from [O].</span>")

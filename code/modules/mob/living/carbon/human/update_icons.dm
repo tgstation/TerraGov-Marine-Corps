@@ -112,7 +112,7 @@ var/global/list/damage_icon_parts = list()
 	var/damage_appearance = ""
 
 	for(var/datum/limb/O in limbs)
-		if(O.status & LIMB_DESTROYED) damage_appearance += "d"
+		if(O.limb_status & LIMB_DESTROYED) damage_appearance += "d"
 		else
 			damage_appearance += O.damage_state
 
@@ -130,7 +130,7 @@ var/global/list/damage_icon_parts = list()
 
 	// blend the individual damage states with our icons
 	for(var/datum/limb/O in limbs)
-		if(!(O.status & LIMB_DESTROYED))
+		if(!(O.limb_status & LIMB_DESTROYED))
 			O.update_icon()
 			if(O.damage_state == "00") continue
 
@@ -170,14 +170,14 @@ var/global/list/damage_icon_parts = list()
 	var/icon_key = "[species.race_key][g][ethnicity]"
 	for(var/datum/limb/part in limbs)
 
-		if(istype(part,/datum/limb/head) && !(part.status & LIMB_DESTROYED))
+		if(istype(part,/datum/limb/head) && !(part.limb_status & LIMB_DESTROYED))
 			has_head = 1
 
-		if(part.status & LIMB_DESTROYED)
+		if(part.limb_status & LIMB_DESTROYED)
 			icon_key = "[icon_key]0"
-		else if(part.status & LIMB_ROBOT)
+		else if(part.limb_status & LIMB_ROBOT)
 			icon_key = "[icon_key]2"
-		else if(part.status & LIMB_NECROTIZED)
+		else if(part.limb_status & LIMB_NECROTIZED)
 			icon_key = "[icon_key]3"
 		else
 			icon_key = "[icon_key]1"
@@ -204,7 +204,7 @@ var/global/list/damage_icon_parts = list()
 		var/datum/limb/chest = get_limb("chest")
 		base_icon = chest.get_icon(race_icon,deform_icon,g)
 
-		if(chest.status & LIMB_NECROTIZED)
+		if(chest.limb_status & LIMB_NECROTIZED)
 			base_icon.ColorTone(necrosis_color_mod)
 			base_icon.SetIntensity(0.7)
 
@@ -212,7 +212,7 @@ var/global/list/damage_icon_parts = list()
 
 			var/icon/temp //Hold the bodypart icon for processing.
 
-			if(part.status & LIMB_DESTROYED)
+			if(part.limb_status & LIMB_DESTROYED)
 				continue
 
 			if(istype(part, /datum/limb/chest)) //already done above
@@ -223,7 +223,7 @@ var/global/list/damage_icon_parts = list()
 			else
 				temp = part.get_icon(race_icon,deform_icon)
 
-			if(part.status & LIMB_NECROTIZED)
+			if(part.limb_status & LIMB_NECROTIZED)
 				temp.ColorTone(necrosis_color_mod)
 				temp.SetIntensity(0.7)
 
@@ -282,7 +282,7 @@ var/global/list/damage_icon_parts = list()
 
 	/*
 	//Skin colour. Not in cache because highly variable (and relatively benign).
-	if (species.flags & HAS_SKIN_COLOR)
+	if (species.species_flags & HAS_SKIN_COLOR)
 		stand_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 	*/
 
@@ -294,18 +294,18 @@ var/global/list/damage_icon_parts = list()
 			stand_icon.Blend(eyes, ICON_OVERLAY)
 
 		//Mouth	(lipstick!)
-		if(lip_style && (species && species.flags & HAS_LIPS))	//skeletons are allowed to wear lipstick no matter what you think, agouri.
+		if(lip_style && (species && species.species_flags & HAS_LIPS))	//skeletons are allowed to wear lipstick no matter what you think, agouri.
 			stand_icon.Blend(new/icon('icons/mob/human_face.dmi', "camo_[lip_style]_s"), ICON_OVERLAY)
 
 
-	if(species.flags & HAS_UNDERWEAR)
+	if(species.species_flags & HAS_UNDERWEAR)
 
 		//Underwear
 		if(underwear >0 && underwear < 3)
 			if(!fat && !skeleton)
 				stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryo[underwear]_[g]_s"), ICON_OVERLAY)
 
-		if(job in ROLES_MARINES) //undoing override
+		if(job in JOBS_MARINES) //undoing override
 			if(undershirt>0 && undershirt < 5)
 				stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryoshirt[undershirt]_s"), ICON_OVERLAY)
 		else if(undershirt>0 && undershirt < 5)
@@ -321,11 +321,11 @@ var/global/list/damage_icon_parts = list()
 	//Reset our hair
 	remove_overlay(HAIR_LAYER)
 
-	if(species.flags & HAS_NO_HAIR)
+	if(species.species_flags & HAS_NO_HAIR)
 		return
 
 	var/datum/limb/head/head_organ = get_limb("head")
-	if( !head_organ || (head_organ.status & LIMB_DESTROYED) )
+	if( !head_organ || (head_organ.limb_status & LIMB_DESTROYED) )
 		return
 
 	//masks and helmets can obscure our hair.
@@ -336,7 +336,7 @@ var/global/list/damage_icon_parts = list()
 	var/icon/face_standing	= new /icon('icons/mob/human_face.dmi',"bald_s")
 
 	if(f_style && !(wear_suit && (wear_suit.flags_inv_hide & HIDELOWHAIR)) && !(wear_mask && (wear_mask.flags_inv_hide & HIDELOWHAIR)))
-		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
+		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && src.species.name in facial_hair_style.species_allowed)
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
@@ -345,7 +345,7 @@ var/global/list/damage_icon_parts = list()
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
 	if(h_style && !(head && (head.flags_inv_hide & HIDETOPHAIR)))
-		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
+		var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[h_style]
 		if(hair_style && src.species.name in hair_style.species_allowed)
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration)
@@ -375,25 +375,6 @@ var/global/list/damage_icon_parts = list()
 			var/underlay=gene.OnDrawUnderlays(src,g,fat)
 			if(underlay)
 				standing.underlays += underlay
-				add_image = 1
-	for(var/mut in mutations)
-		switch(mut)
-			/*
-			if(HULK)
-				if(fat)
-					standing.underlays	+= "hulk_[fat]_s"
-				else
-					standing.underlays	+= "hulk_[g]_s"
-				add_image = 1
-			if(COLD_RESISTANCE)
-				standing.underlays	+= "fire[fat]_s"
-				add_image = 1
-			if(TK)
-				standing.underlays	+= "telekinesishead[fat]_s"
-				add_image = 1
-			*/
-			if(LASER)
-				standing.overlays	+= "lasereyes_s"
 				add_image = 1
 	if(add_image)
 		overlays_standing[MUTATIONS_LAYER]	= standing
@@ -727,7 +708,7 @@ var/global/list/damage_icon_parts = list()
 				for(var/i in marine_armor.armor_overlays)
 					I = marine_armor.armor_overlays[i]
 					if(I)
-						I = image(I.icon,src,I.icon_state)
+						I = image('icons/mob/suit_1.dmi',src,I.icon_state)
 						standing.overlays += I
 
 		if(wear_suit.blood_DNA)
@@ -889,14 +870,14 @@ var/global/list/damage_icon_parts = list()
 	var/icon/face_lying		= new /icon('icons/mob/human_face.dmi',"bald_l")
 
 	if(f_style)
-		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
+		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
 		if(facial_hair_style)
 			var/icon/facial_l = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_l")
 			facial_l.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
 			face_lying.Blend(facial_l, ICON_OVERLAY)
 
 	if(h_style)
-		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
+		var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[h_style]
 		if(hair_style)
 			var/icon/hair_l = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_l")
 			hair_l.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)

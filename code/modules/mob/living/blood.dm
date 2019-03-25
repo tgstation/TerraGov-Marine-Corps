@@ -26,7 +26,7 @@
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
 
-	if(NO_BLOOD in species.flags)
+	if(NO_BLOOD in species.species_flags)
 		return
 
 	if(stat != DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
@@ -68,7 +68,7 @@
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 				if(prob(1))
 					var/word = pick("dizzy","woozy","faint")
-					to_chat(src, "\red You feel [word]")
+					to_chat(src, "<span class='warning'>You feel [word]</span>")
 				if(oxyloss < 20)
 					adjustOxyLoss(3)
 			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
@@ -83,13 +83,13 @@
 				if(prob(15))
 					KnockOut(rand(1,3))
 					var/word = pick("dizzy","woozy","faint")
-					to_chat(src, "\red You feel extremely [word]")
+					to_chat(src, "<span class='warning'>You feel extremely [word]</span>")
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 				adjustOxyLoss(5)
 				adjustToxLoss(2)
 				if(prob(15))
 					var/word = pick("dizzy","woozy","faint")
-					to_chat(src, "\red You feel extremely [word]")
+					to_chat(src, "<span class='warning'>You feel extremely [word]</span>")
 			if(0 to BLOOD_VOLUME_SURVIVE)
 				death()
 
@@ -104,12 +104,12 @@
 		//Bleeding out
 		var/blood_max = 0
 		for(var/datum/limb/temp in limbs)
-			if(!(temp.status & LIMB_BLEEDING) || temp.status & LIMB_ROBOT)
+			if(!(temp.limb_status & LIMB_BLEEDING) || temp.limb_status & LIMB_ROBOT)
 				continue
 			for(var/datum/wound/W in temp.wounds)
 				if(W.bleeding())
 					blood_max += (W.damage / 40)
-			if(temp.status & LIMB_DESTROYED && !(temp.status & LIMB_AMPUTATED))
+			if(temp.limb_status & LIMB_DESTROYED && !(temp.limb_status & LIMB_AMPUTATED))
 				blood_max += 5 //Yer missing a fucking limb.
 			if (temp.surgery_open_stage)
 				blood_max += 0.6  //Yer stomach is cut open
@@ -137,7 +137,7 @@
 /mob/living/carbon/human/drip(amt)
 	if(in_stasis) // stasis now stops bloodloss
 		return
-	if(NO_BLOOD in species.flags)
+	if(NO_BLOOD in species.species_flags)
 		return
 	..()
 
@@ -218,7 +218,7 @@
 
 	var/datum/reagent/blood/B = locate() in container.reagents.reagent_list
 
-	if(species && species.flags & NO_BLOOD)
+	if(species && species.species_flags & NO_BLOOD)
 		reagents.add_reagent(B.id, amount, B.data)
 		reagents.update_total()
 		container.reagents.remove_reagent(B.id, amount)
@@ -257,7 +257,7 @@
 
 /mob/living/carbon/human/take_blood(obj/O, var/amount)
 
-	if(species && species.flags & NO_BLOOD)
+	if(species && species.species_flags & NO_BLOOD)
 		return
 
 	. = ..()
@@ -356,13 +356,13 @@
 	return "xenoblood"
 
 /mob/living/carbon/human/get_blood_id()
-	if((NO_BLOOD in species.flags))
+	if((NO_BLOOD in species.species_flags))
 		return
-	if(species.name == "Yautja")
+	if(isyautjastrict(src))
 		return "greenblood"
-	if(species.name == "Synthetic" || species.name == "Early Synthetic")
+	if(issynth(src))
 		return "whiteblood"
-	if(species.name == "Zombie")
+	if(iszombie(src))
 		return "greyblood"
 	return "blood"
 
@@ -464,7 +464,7 @@
 
 
 /mob/living/carbon/human/add_splatter_floor(turf/T, small_drip, b_color)
-	if(NO_BLOOD in species.flags)
+	if(NO_BLOOD in species.species_flags)
 		return
 
 	b_color = species.blood_color

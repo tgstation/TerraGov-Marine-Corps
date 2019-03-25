@@ -226,7 +226,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	var/list/heard_garbled	= list() // garbled message (ie "f*c* **u, **i*er!")
 	var/list/heard_gibberish= list() // completely screwed over message (ie "F%! (O*# *#!<>&**%!")
 
-	var/command = 0 //Is this a commander? This var actually sets the message size. 2 is normal, 3 is big, 4 is OMGHUGE
+	var/command = 0 //Is this a captain? This var actually sets the message size. 2 is normal, 3 is big, 4 is OMGHUGE
 
 	if(M)
 		if(ishuman(M))
@@ -235,8 +235,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 				if(H.mind.cm_skills && H.mind.cm_skills.leadership >= SKILL_LEAD_TRAINED)
 					command = 3
 
-				if(H.mind.role_comm_title)
-					comm_title = H.mind.role_comm_title //Set up [CO] and stuff after frequency
+				if(H.mind.comm_title)
+					comm_title = H.mind.comm_title
 		else if(istype(M,/mob/living/silicon/decoy/ship_ai)) command = 3
 
 	for (var/mob/R in receive)
@@ -246,11 +246,11 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if (R.client && !(R.client.prefs.toggles_chat & CHAT_RADIO)) //Adminning with 80 people on can be fun when you're trying to talk and all you can hear is radios.
 			continue
 
-		if(istype(R, /mob/new_player)) // we don't want new players to hear messages. rare but generates runtimes.
+		if(isnewplayer(R)) // we don't want new players to hear messages. rare but generates runtimes.
 			continue
 
 		// Ghosts hearing all radio chat don't want to hear syndicate intercepts, they're duplicates
-		if(data == 3 && istype(R, /mob/dead/observer) && R.client && (R.client.prefs.toggles_chat & CHAT_GHOSTRADIO))
+		if(data == 3 && isobserver(R) && R.client && (R.client.prefs.toggles_chat & CHAT_GHOSTRADIO))
 			continue
 
 		// --- Check for compression ---
@@ -263,7 +263,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(display_freq == PUB_FREQ && M.loc && R.loc) //We actually have z levels to check.
 			var/atom/Am = get_turf(M) //Getting turfs, just to be safe.
 			var/atom/Ar = get_turf(R)
-			if(Am && Ar && Am.z != Ar.z && (Am.z == 1 || Ar.z == 1) ) continue //If listener and receiver are on different zs, and one of those zs is 1.
+			if(Am && Ar && Am.z != Ar.z && (is_ground_level(Am.z) || is_ground_level(Ar.z)) ) 
+				continue //If listener and receiver are on different zs, and one of those zs is 1.
 
 		// --- Can understand the speech ---
 
@@ -305,8 +306,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		var/part_b_extra = ""
 		if(data == 3) // intercepted radio message
 			part_b_extra = " <i>(Intercepted)</i>"
-		var/part_b = "</span><b> \icon[radio]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
-		var/part_c = "</span></span>"
+		var/part_b = "</span><b> [icon2html(radio, (heard_masked + heard_normal + heard_voice + heard_garbled + heard_gibberish))]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 
 		// Antags!
 		if (display_freq in ANTAG_FREQS)
@@ -350,46 +350,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		// If all else fails and it's a dept_freq, color me purple!
 		else if (display_freq in DEPT_FREQS)
 			part_a = "<span class='deptradio'><span class='name'>"
-
-		// --- Filter the message; place it in quotes apply a verb ---
-
-		var/quotedmsg = null
-		if(M)
-			quotedmsg = M.say_quote(message)
-		else
-			quotedmsg = "says, \"[message]\""
-
-		// --- This following recording is intended for research and feedback in the use of department radio channels ---
-
-		var/part_blackbox_b = "</span><b> \[[freq_text]\]</b> <span class='message'>" // Tweaked for security headsets -- TLE
-		var/blackbox_msg = "[part_a][name][part_blackbox_b][quotedmsg][part_c]"
-		//var/blackbox_admin_msg = "[part_a][M.name] (Real name: [M.real_name])[part_blackbox_b][quotedmsg][part_c]"
-
-		//BR.messages_admin += blackbox_admin_msg
-		if(istype(blackbox))
-			switch(display_freq)
-				if(PUB_FREQ)
-					blackbox.msg_common += blackbox_msg
-//				if(SCI_FREQ)
-//					blackbox.msg_science += blackbox_msg
-				if(COMM_FREQ)
-					blackbox.msg_command += blackbox_msg
-				if(MED_FREQ)
-					blackbox.msg_medical += blackbox_msg
-				if(ENG_FREQ)
-					blackbox.msg_engineering += blackbox_msg
-				if(SEC_FREQ)
-					blackbox.msg_security += blackbox_msg
-				if(DTH_FREQ)
-					blackbox.msg_deathsquad += blackbox_msg
-				if(SYND_FREQ)
-					blackbox.msg_syndicate += blackbox_msg
-//				if(SUP_FREQ)
-//					blackbox.msg_cargo += blackbox_msg
-				else
-					blackbox.messages += blackbox_msg
-
-		//End of research and feedback code.
 
 	 /* ###### Send the message ###### */
 
@@ -536,7 +496,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		// Create a radio headset for the sole purpose of using its icon
 		var/obj/item/device/radio/headset/radio = new
 
-		var/part_b = "</span><b> \icon[radio]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
+		var/part_b = "</span><b> [icon2html(radio, (heard_normal + heard_garbled + heard_gibberish))]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_c = "</span></span>"
 
 		if (display_freq in ANTAG_FREQS)
@@ -545,38 +505,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			part_a = "<span class='comradio'><span class='name'>"
 		else if (display_freq in DEPT_FREQS)
 			part_a = "<span class='deptradio'><span class='name'>"
-
-		// --- This following recording is intended for research and feedback in the use of department radio channels ---
-
-		var/part_blackbox_b = "</span><b> \[[freq_text]\]</b> <span class='message'>" // Tweaked for security headsets -- TLE
-		var/blackbox_msg = "[part_a][source][part_blackbox_b]\"[text]\"[part_c]"
-		//var/blackbox_admin_msg = "[part_a][M.name] (Real name: [M.real_name])[part_blackbox_b][quotedmsg][part_c]"
-
-		//BR.messages_admin += blackbox_admin_msg
-		if(istype(blackbox))
-			switch(display_freq)
-				if(PUB_FREQ)
-					blackbox.msg_common += blackbox_msg
-//				if(SCI_FREQ)
-//					blackbox.msg_science += blackbox_msg
-				if(COMM_FREQ)
-					blackbox.msg_command += blackbox_msg
-				if(MED_FREQ)
-					blackbox.msg_medical += blackbox_msg
-				if(ENG_FREQ)
-					blackbox.msg_engineering += blackbox_msg
-				if(SEC_FREQ)
-					blackbox.msg_security += blackbox_msg
-				if(DTH_FREQ)
-					blackbox.msg_deathsquad += blackbox_msg
-				if(SYND_FREQ)
-					blackbox.msg_syndicate += blackbox_msg
-//				if(SUP_FREQ)
-//					blackbox.msg_cargo += blackbox_msg
-				else
-					blackbox.messages += blackbox_msg
-
-		//End of research and feedback code.
 
 	 /* ###### Send the message ###### */
 

@@ -17,19 +17,13 @@
 	life_tick++
 
 	voice = GetVoice()
-	if(stat == DEAD && species.name == "Zombie" && regenZ)
+	if(stat == DEAD && iszombie(src) && regenZ)
 		handle_organs()
 		return
 	//No need to update all of these procs if the guy is dead.
+
 	if(!in_stasis)
 		if(stat != DEAD)
-			if(life_tick % 2 == 0 || failed_last_breath || (health < config.health_threshold_crit)) //First, resolve location and get a breath
-				breathe() //Only try to take a breath every 4 ticks, unless suffocating
-
-			else //Still give containing object the chance to interact
-				if(istype(loc, /obj/))
-					var/obj/location_as_object = loc
-					location_as_object.handle_internal_lifeform(src)
 
 			// Moved this from /mob/living/carbon/Life()
 			// Increase germ_level regularly
@@ -61,14 +55,10 @@
 				if(timeofdeath < 5 || !check_tod())	//We are dead beyond revival, or we're junk mobs spawned like the clowns on the clown shuttle
 					undefibbable = TRUE
 					med_hud_set_status()
-				else if((world.time - timeofdeath) > (config.revive_grace_period * 0.4) && (world.time - timeofdeath) < (config.revive_grace_period * 0.8))
+				else if((world.time - timeofdeath) > (CONFIG_GET(number/revive_grace_period) * 0.4) && (world.time - timeofdeath) < (CONFIG_GET(number/revive_grace_period) * 0.8))
 					med_hud_set_status()
-				else if((world.time - timeofdeath) > (config.revive_grace_period * 0.8))
+				else if((world.time - timeofdeath) > (CONFIG_GET(number/revive_grace_period) * 0.8))
 					med_hud_set_status()
-
-	else
-		handle_stasis_bag()
-
 
 	stabilize_body_temperature() //Body temperature adjusts itself (self-regulation) (even when dead)
 

@@ -4,7 +4,7 @@
 	item_state = "buildpipe"
 	icon_state = "blank"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	matter = list("metal" = 500, "glass" = 0)
 	var/construction_time = 100
 	var/list/construction_cost = list("metal"=20000,"glass"=5000)
@@ -97,7 +97,6 @@
 	if(src.l_arm && src.r_arm)
 		if(src.l_leg && src.r_leg)
 			if(src.chest && src.head)
-				feedback_inc("cyborg_frames_built",1)
 				return 1
 	return 0
 
@@ -105,61 +104,61 @@
 	..()
 	if(istype(W, /obj/item/robot_parts/l_leg))
 		if(l_leg)	return
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			l_leg = W
 			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/r_leg))
 		if(r_leg)	return
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			r_leg = W
 			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/l_arm))
 		if(l_arm)	return
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			l_arm = W
 			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/r_arm))
 		if(r_arm)	return
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			r_arm = W
 			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/chest))
 		if(chest)	return
 		if(W:wires && W:cell)
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				chest = W
 				updateicon()
 		else if(!W:wires)
-			to_chat(user, "\blue You need to attach wires to it first!")
+			to_chat(user, "<span class='notice'>You need to attach wires to it first!</span>")
 		else
-			to_chat(user, "\blue You need to attach a cell to it first!")
+			to_chat(user, "<span class='notice'>You need to attach a cell to it first!</span>")
 
 	if(istype(W, /obj/item/robot_parts/head))
 		if(head)	return
 		if(W:flash2 && W:flash1)
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				head = W
 				updateicon()
 		else
-			to_chat(user, "\blue You need to attach a flash to it first!")
+			to_chat(user, "<span class='notice'>You need to attach a flash to it first!</span>")
 
 	if(istype(W, /obj/item/device/mmi))
 		var/obj/item/device/mmi/M = W
 		if(check_completion())
 			if(!istype(loc,/turf))
-				to_chat(user, "\red You can't put \the [W] in, the frame has to be standing on the ground to be perfectly precise.")
+				to_chat(user, "<span class='warning'>You can't put \the [W] in, the frame has to be standing on the ground to be perfectly precise.</span>")
 				return
 			if(!M.brainmob)
-				to_chat(user, "\red Sticking an empty [W] into the frame would sort of defeat the purpose.")
+				to_chat(user, "<span class='warning'>Sticking an empty [W] into the frame would sort of defeat the purpose.</span>")
 				return
 			if(!M.brainmob.key)
 				var/ghost_can_reenter = 0
 				if(M.brainmob.mind)
-					for(var/mob/dead/observer/G in player_list)
+					for(var/mob/dead/observer/G in GLOB.player_list)
 						if(G.can_reenter_corpse && G.mind == M.brainmob.mind)
 							ghost_can_reenter = 1
 							break
@@ -168,11 +167,7 @@
 					return
 
 			if(M.brainmob.stat == DEAD)
-				to_chat(user, "\red Sticking a dead [W] into the frame would sort of defeat the purpose.")
-				return
-
-			if(jobban_isbanned(M.brainmob, "Cyborg"))
-				to_chat(user, "\red This [W] does not seem to fit.")
+				to_chat(user, "<span class='warning'>Sticking a dead [W] into the frame would sort of defeat the purpose.</span>")
 				return
 
 			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(get_turf(loc), unfinished = 1)
@@ -187,9 +182,6 @@
 
 			M.brainmob.mind.transfer_to(O)
 
-			if(O.mind && O.mind.special_role)
-				O.mind.store_memory("In case you look at this after being borged, the objectives are only here until I find a way to make them not show up for you, as I can't simply delete them without screwing up round-end reporting. --NeoFite")
-
 			O.job = "Cyborg"
 
 			O.cell = chest.cell
@@ -202,13 +194,12 @@
 				cell_component.wrapped = O.cell
 				cell_component.installed = 1
 
-			feedback_inc("cyborg_birth",1)
 			callHook("borgify", list(O))
 			O.Namepick()
 
 			qdel(src)
 		else
-			to_chat(user, "\blue The MMI must go in after everything else!")
+			to_chat(user, "<span class='notice'>The MMI must go in after everything else!</span>")
 
 	if (istype(W, /obj/item/tool/pen))
 		var/t = stripped_input(user, "Enter new robot name", src.name, src.created_name, MAX_NAME_LEN)
@@ -225,44 +216,44 @@
 	..()
 	if(istype(W, /obj/item/cell))
 		if(src.cell)
-			to_chat(user, "\blue You have already inserted a cell!")
+			to_chat(user, "<span class='notice'>You have already inserted a cell!</span>")
 			return
 		else
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				cell = W
-				to_chat(user, "\blue You insert the cell!")
-	if(istype(W, /obj/item/stack/cable_coil))
+				to_chat(user, "<span class='notice'>You insert the cell!</span>")
+	if(iscablecoil(W))
 		if(src.wires)
-			to_chat(user, "\blue You have already inserted wire!")
+			to_chat(user, "<span class='notice'>You have already inserted wire!</span>")
 			return
 		else
 			var/obj/item/stack/cable_coil/coil = W
 			coil.use(1)
 			src.wires = 1.0
-			to_chat(user, "\blue You insert the wire!")
+			to_chat(user, "<span class='notice'>You insert the wire!</span>")
 	return
 
 /obj/item/robot_parts/head/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/device/flash))
 		if(istype(user,/mob/living/silicon/robot))
-			to_chat(user, "\red How do you propose to do that?")
+			to_chat(user, "<span class='warning'>How do you propose to do that?</span>")
 			return
 		else if(src.flash1 && src.flash2)
-			to_chat(user, "\blue You have already inserted the eyes!")
+			to_chat(user, "<span class='notice'>You have already inserted the eyes!</span>")
 			return
 		else if(src.flash1)
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				flash2 = W
-				to_chat(user, "\blue You insert the flash into the eye socket!")
+				to_chat(user, "<span class='notice'>You insert the flash into the eye socket!</span>")
 		else
-			user.drop_inv_item_to_loc(W, src)
+			user.transferItemToLoc(W, src)
 			flash1 = W
-			to_chat(user, "\blue You insert the flash into the eye socket!")
+			to_chat(user, "<span class='notice'>You insert the flash into the eye socket!</span>")
 	else if(istype(W, /obj/item/stock_parts/manipulator))
-		to_chat(user, "\blue You install some manipulators and modify the head, creating a functional spider-bot!")
+		to_chat(user, "<span class='notice'>You install some manipulators and modify the head, creating a functional spider-bot!</span>")
 		new /mob/living/simple_animal/spiderbot(get_turf(loc))
-		user.temp_drop_inv_item(W)
+		user.temporarilyRemoveItemFromInventory(W)
 		qdel(W)
 		qdel(src)
 		return

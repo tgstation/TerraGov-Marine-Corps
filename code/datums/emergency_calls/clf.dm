@@ -28,7 +28,7 @@
 		H.real_name = H.name
 		H.voice_name = H.name
 
-	H.key = M.key
+	M.transfer_to(H, TRUE)
 
 	if(original)
 		qdel(original)
@@ -38,20 +38,17 @@
 	if(!leader)
 		leader = H
 		var/datum/job/J = new /datum/job/clf/leader
-		H.set_everything(H, "CLF Leader")
-		J.generate_equipment(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are a leader of the local resistance group, the Colonial Liberation Front.</span>")
 		return
 
 	if(medics < max_medics)
 		var/datum/job/J = new /datum/job/clf/medic
-		H.set_everything(H, "CLF Medic")
-		J.generate_equipment(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are a medic of the local resistance group, the Colonial Liberation Front.</span>")
 		medics++
 		return
 
 	var/datum/job/J = new /datum/job/clf/standard
-	H.set_everything(H, "CLF Standard")
-	J.generate_equipment(H)
+	J.equip(H)
 	to_chat(H, "<span class='notice'>You are a member of the local resistance group, the Colonial Liberation Front.</span>")

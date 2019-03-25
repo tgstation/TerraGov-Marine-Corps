@@ -6,15 +6,15 @@
 	item_state = "flashlight"
 	w_class = 2
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	matter = list("metal" = 50,"glass" = 20)
 	actions_types = list(/datum/action/item_action)
 	var/on = FALSE
 	var/brightness_on = 5 //luminosity when on
 	var/raillight_compatible = TRUE //Can this be turned into a rail light ?
 
-/obj/item/device/flashlight/initialize()
-	..()
+/obj/item/device/flashlight/Initialize()
+	. = ..()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 		SetLuminosity(brightness_on)
@@ -24,13 +24,14 @@
 
 /obj/item/device/flashlight/Destroy()
 	if(ismob(src.loc))
-		src.loc.SetLuminosity(-brightness_on)
-	else
-		SetLuminosity(0)
+		loc.SetLuminosity(-brightness_on)
+	SetLuminosity(0)
 	. = ..()
 
 
 /obj/item/device/flashlight/proc/update_brightness(var/mob/user = null)
+	if(!user && ismob(loc))
+		user = loc
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 		if(loc && loc == user)
@@ -49,7 +50,7 @@
 		to_chat(user, "You cannot turn the light on while in [user.loc].")
 		return 0
 	on = !on
-	update_brightness(user)
+	update_brightness()
 	update_action_button_icons()
 	return 1
 
@@ -72,7 +73,7 @@
 			var/obj/item/storage/S = loc
 			S.remove_from_storage(src)
 		if(loc == user)
-			user.drop_inv_item_on_ground(src) //This part is important to make sure our light sources update, as it calls dropped()
+			user.dropItemToGround(src) //This part is important to make sure our light sources update, as it calls dropped()
 		var/obj/item/attachable/flashlight/F = new(src.loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>")
@@ -89,25 +90,22 @@
 		if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
-		if(!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")	//don't have dexterity
-			to_chat(user, "<span class='notice'>You don't have the dexterity to do this!</span>")
-			return
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
-		if(istype(M, /mob/living/carbon/human) && ((H.head && H.head.flags_inventory & COVEREYES) || (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) || (H.glasses && H.glasses.flags_inventory & COVEREYES)))
+		if(ishuman(M) && ((H.head && H.head.flags_inventory & COVEREYES) || (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) || (H.glasses && H.glasses.flags_inventory & COVEREYES)))
 			to_chat(user, "<span class='notice'>You're going to need to remove that [(H.head && H.head.flags_inventory & COVEREYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) ? "mask": "glasses"] first.</span>")
 			return
 
 		if(M == user)	//they're using it on themselves
 			M.flash_eyes()
-			M.visible_message("<span class='notice'>[M] directs [src] to \his eyes.</span>", \
+			M.visible_message("<span class='notice'>[M] directs [src] to [M.p_their()] eyes.</span>", \
 									 "<span class='notice'>You wave the light in front of your eyes! Trippy!</span>")
 			return
 
 		user.visible_message("<span class='notice'>[user] directs [src] to [M]'s eyes.</span>", \
 							 "<span class='notice'>You direct [src] to [M]'s eyes.</span>")
 
-		if(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey))	//robots and aliens are unaffected
+		if(ishuman(M) || ismonkey(M))	//robots and aliens are unaffected
 			if(M.stat == DEAD || M.sdisabilities & BLIND)	//mob is dead or fully blind
 				to_chat(user, "<span class='notice'>[M] pupils does not react to the light!</span>")
 			else if(XRAY in M.mutations)	//mob has X-RAY vision
@@ -121,14 +119,14 @@
 
 
 /obj/item/device/flashlight/pickup(mob/user)
-	if(on && src.loc != user)
+	if(on && loc != user)
 		user.SetLuminosity(brightness_on)
 		SetLuminosity(0)
 	..()
 
 
 /obj/item/device/flashlight/dropped(mob/user)
-	if(on && src.loc != user)
+	if(on && loc != user)
 		user.SetLuminosity(-brightness_on)
 		SetLuminosity(brightness_on)
 	..()
@@ -223,6 +221,7 @@
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/device/flashlight/flare/proc/turn_off()
+	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.
 	on = 0
 	heat_source = 0
 	force = initial(force)

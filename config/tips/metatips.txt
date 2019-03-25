@@ -1,0 +1,39 @@
+Dying is part of the game.
+Almost every specialist has been reworked.
+You can select locations on the doll by using the number pad.
+As a human, say '*medic' to call out for medical attention.
+As a human, melee a person on fire with help intent to put the fire out.
+As a human, use 'resist' to stop drop and roll when on fire.
+Not being ready at the start of the round means xenos get more burrowed larva, and that you don't get to play as quickly.
+Sometimes you won't be able to avoid dying no matter how good you are at the game. Try not to stress too much about it.
+When a round ends nearly everything about it is lost forever, leave your salt behind with it.
+Some people are unable to read text on a game where half of it is based on text.
+It's fun to try and predict the round type from the tip of the round message.
+This is a game that is constantly being developed for. Expect things to be added, removed, fixed, and broken on a daily basis.
+As a PFC, you can help out your squad by bringing extra ammunition and food to share.
+As a PFC, you can take two guns, one in the suit slot and one on your back.
+As a PFC, you can usually get two attachments of your choice from Requisitions.
+As a doctor, the cryotubes are excellent at dealing with basic damage.
+As a doctor, the cryotubes heal internal bleeding and organ damage, although slowly.
+As a doctor, surgery time from fastest to slowest is: by hand, Autodoc manual, Autodoc automatic.
+As a doctor, the white vest fits on your scrubs and can hold surgical tools.
+As a doctor, wear the surgical apron to help prevent infection while on the ground.
+As a doctor, you've got access to the chemistry machine, experiment to find the best medications.
+As a doctor, hygiene is important! keep yourself clean to prevent infections.
+As an engineer, you can take sandbag barricades apart with your entrenching tool.
+As an engineer, you can repair barricades with a welder.
+As an engineer, C4 is cheaper but det packs are more versatile.
+As an engineer, det packs can be set on demolition mode for an explosive trap.
+As an engineer, you build barricades the fastest.
+As a corpsman, the medevac stretcher needs to be linked to an active, powered beacon for it to teleport the patient.
+As a corpsman, the marines are counting on you to fix them up.
+As a corpsman, scan before you treat and you can't be beat.
+As a corpsman or doctor, remember that your HUD will tell you how much time is left to defibrillate a patient.
+As a corpsman, remember to bring extra kelotane or dermaline to heal burn damage. Xenos love acid and burning marines.
+As a corpsman, hypervene is useful. Use it to purge deadly neurotoxins and larva boosting growth hormones.
+As a B18 specialist, your armor has a built in medical system.
+As a scout specialist, you can take your battle rifle or your custom shotgun.
+As a sniper specialist, you've got a tarp that can make you stealth so long as you don't move.
+As a pyro specialist, your flamethrower has an extinguisher built into it.
+As the RO, things get more expensive the more often you buy it.
+Even if a patient dies a second after being successfully revived by a defibrillator, this resets the time it takes for them to become permanently brain dead.

@@ -26,8 +26,9 @@
 		if(!is_open_container())
 			to_chat(user, "<span class='info'>An airtight lid seals it completely.</span>")
 
-/obj/item/reagent_container/glass/attack_self()
-	..()
+/obj/item/reagent_container/glass/verb/attach_lid()
+	set name = "Attach/Detach lid"
+	set category = "Object"
 	if(is_open_container())
 		to_chat(usr, "<span class='notice'>You put the lid on \the [src].</span>")
 		container_type ^= OPENCONTAINER
@@ -70,7 +71,11 @@
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
 		to_chat(user, "<span class='notice'>You fill [src] with [trans] unit\s of the contents of [target].</span>")
 
-	if(user.a_intent == "harm")
+	if(user.a_intent == INTENT_HARM)
+		if(!is_open_container()) //Can't splash stuff from a sealed container. I dare you to try.
+			to_chat(user, "<span class='warning'>An airtight seal prevents you from splashing the solution!</span>")
+			return
+
 		if(ismob(target) && target.reagents && reagents.total_volume)
 			to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
 			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
@@ -81,7 +86,7 @@
 				injected += R.name
 			var/contained = english_list(injected)
 			log_combat(user, M, "splashed", src, "Reagents: [contained]")
-			msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) splashed [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)])")
+			msg_admin_attack("[ADMIN_TPMONTY(usr)] splashed [ADMIN_TPMONTY(M)] with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]).")
 
 			visible_message("<span class='warning'>[target] has been splashed with something by [user]!</span>")
 			reagents.reaction(target, TOUCH)
@@ -245,7 +250,7 @@
 		to_chat(user, "You add [I] to [src].")
 		qdel(I)
 		user.put_in_hands(new /obj/item/frame/bucket_sensor)
-		user.drop_inv_item_on_ground(src)
+		user.dropItemToGround(src)
 		qdel(src)
 	else if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)

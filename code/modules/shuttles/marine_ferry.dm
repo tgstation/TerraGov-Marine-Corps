@@ -10,11 +10,11 @@
 	set name = "Test Theseus Evac"
 
 	for(var/datum/shuttle/ferry/marine/M in shuttle_controller.process_shuttles)
-		if(M.info_tag == "[MAIN_SHIP_NAME] Evac" || M.info_tag == "Alt [MAIN_SHIP_NAME] Evac")
+		if(M.info_tag == "[CONFIG_GET(string/ship_name)] Evac" || M.info_tag == "Alt [CONFIG_GET(string/ship_name)] Evac")
 			spawn(1)
 				M.short_jump()
 				to_chat(world, "LAUNCHED THING WITH TAG [M.shuttle_tag]")
-		else if(M.info_tag == "[MAIN_SHIP_NAME] Dropship")
+		else if(M.info_tag == "[CONFIG_GET(string/ship_name)] Dropship")
 			spawn(1)
 				M.short_jump()
 				to_chat(world, "LAUNCHED THING WITH TAG [M.shuttle_tag]")
@@ -70,16 +70,16 @@
 
 /datum/shuttle/ferry/marine/announce_preflight_failure()
 	for(var/obj/machinery/computer/shuttle_control/control in controls)
-		playsound(control, 'sound/effects/adminhelp-error.ogg', 20) //Arbitrary notification sound
+		playsound(control, 'sound/effects/adminhelp.ogg', 20) //Arbitrary notification sound
 		control.visible_message(fail_flavortext)
 		return //Kill it so as not to repeat
 
 /datum/shuttle/ferry/marine/proc/load_datums()
-	if(!(info_tag in s_info))
-		message_admins("<span class=warning>Error with shuttles: Shuttle tag does not exist. Code: MSD10.\n WARNING: DROPSHIP LAUNCH WILL PROBABLY FAIL</span>")
-		log_admin("Error with shuttles: Shuttle tag does not exist. Code: MSD10.")
+	if(!(info_tag in GLOB.s_info))
+		log_admin("ERROR: Shuttle tag does not exist. [info_tag]")
+		message_admins("ERROR: Shuttle tag does not exist. [info_tag]")
 
-	var/list/L = s_info[info_tag]
+	var/list/L = GLOB.s_info[info_tag]
 	info_datums = L.Copy()
 
 /datum/shuttle/ferry/marine/proc/launch_crash(var/user)
@@ -106,20 +106,20 @@
 		door_override = TRUE
 
 		var/ship_id = "sh_dropship1"
-		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+		if(shuttle_tag == "[CONFIG_GET(string/ship_name)] Dropship 2")
 			ship_id = "sh_dropship2"
 
-		for(var/obj/machinery/door/airlock/dropship_hatch/D in machines)
+		for(var/obj/machinery/door/airlock/dropship_hatch/D in GLOB.machines)
 			if(D.id == ship_id)
 				D.unlock()
 
 		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
 		switch(ship_id)
 			if("sh_dropship1")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in GLOB.machines)
 					reardoor = D
 			if("sh_dropship2")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in GLOB.machines)
 					reardoor = D
 
 		reardoor.unlock()
@@ -197,8 +197,8 @@
 		trg_rot = src_rot
 
 	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))
-		message_admins("<span class=warning>Error with shuttles: Reference turfs not correctly instantiated. Code: MSD02.\n <font size=10>WARNING: DROPSHIP LAUNCH WILL FAIL</font></span>")
-		log_admin("Error with shuttles: Reference turfs not correctly instantiated. Code: MSD02.")
+		log_admin("ERROR: Shuttle reference turfs not correctly instantiated.")
+		message_admins("ERROR: Shuttle reference turfs not correctly instantiated.")
 
 	//Switch the landmarks, to swap docking and landing locs, so we can move back and forth.
 	if(!transit_gun_mission) //gun mission makes you land back where you started. no need to swap dock and land turfs.
@@ -267,8 +267,6 @@
 
 	sleep(travel_time) //Wait while we fly
 
-	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) return FALSE //If a nuke is in progress, don't attempt a landing.
-
 	playsound(turfs_int[sound_target], sound_landing, 60, 0)
 	playsound(turfs_trg[sound_target], sound_landing, 60, 0)
 
@@ -278,8 +276,6 @@
 			F.turn_on()
 
 	sleep(100) //Wait for it to finish.
-
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) return FALSE //If a nuke finished, don't land.
 
 	target_turf = T_trg
 	target_rotation = trg_rot
@@ -351,21 +347,20 @@
 			for(var/turf/TU in shuttle_controller.locs_crash)
 				if(istype(get_area(TU), /area/almayer/hallways/hangar))
 					crash_turfs += TU
-			if(crash_turfs.len) T_trg = pick(crash_turfs)
-			else message_admins("\blue no crash turf found in [MAIN_SHIP_NAME] Hangar, contact coders.")
+			if(crash_turfs.len) 
+				T_trg = pick(crash_turfs)
+			else 
+				message_admins("ERROR: No crash turf found in [CONFIG_GET(string/ship_name)] Hangar.")
 			break
 
 	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))
-		message_admins("<span class=warning>Error with shuttles: Reference turfs not correctly instantiated. Code: MSD04.\n WARNING: DROPSHIP LAUNCH WILL FAIL</span>")
-		log_admin("Error with shuttles: Reference turfs not correctly instantiated. Code: MSD04.")
+		log_admin("ERROR: Shuttle reference turfs not correctly instantiated.")		
+		message_admins("ERROR: Shuttle reference turfs not correctly instantiated.")
 
 	shuttle_controller.locs_crash -= T_trg
 
 	//END: Heavy lifting backend
 
-	if (moving_status == SHUTTLE_IDLE)
-		recharging = 0
-		return	//someone canceled the launch
 
 	var/travel_time = 0
 	travel_time = DROPSHIP_CRASH_TRANSIT_DURATION * 10
@@ -409,19 +404,19 @@
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
 	var/list/left_behind = list()
 	var/list/with_queen = list()
-	for(var/mob/living/carbon/Xenomorph/xeno in living_xeno_list)
+	for(var/mob/living/carbon/Xenomorph/xeno in GLOB.alive_xeno_list)
 		if(xeno.hivenumber != XENO_HIVE_NORMAL) continue
-		if(xeno.loc.z == hive.living_xeno_queen.loc.z || xeno.loc.z in MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS) // yes loc because of vent crawling, xeno must be with queen or on round end Z levels
+		if(xeno.loc.z == hive.living_xeno_queen.loc.z || is_mainship_or_low_orbit_level(xeno.loc.z)) // yes loc because of vent crawling, xeno must be with queen or on round end Z levels
 			with_queen += xeno
 		else
 			left_behind += xeno
 	if(with_queen.len > left_behind.len) // to stop solo-suiciding by queens
-		ticker.mode.stored_larva = 0
+		SSticker.mode.stored_larva = 0
 		for(var/mob/living/carbon/Xenomorph/about_to_die in left_behind)
 			to_chat(about_to_die, "<span class='xenoannounce'>The Queen has left without you, you quickly find a hiding place to enter hibernation as you lose touch with the hive mind.</span>")
 			qdel(about_to_die) // just delete them
-	for(var/mob/living/carbon/potential_host in living_mob_list)
-		if(potential_host.loc.z != 1) continue // ground level
+	for(var/mob/living/carbon/potential_host in GLOB.alive_mob_list)
+		if(!is_ground_level(potential_host.loc?.z)) continue // ground level
 		if(potential_host.status_flags & XENO_HOST) // a host
 			for(var/obj/item/alien_embryo/embryo in potential_host)
 				qdel(embryo)
@@ -429,8 +424,6 @@
 				qdel(larva)
 
 	sleep(travel_time) //Wait while we fly, but give extra time for crashing announcements etc
-
-	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) return FALSE //If a nuke is in progress, don't attempt a landing.
 
 	//This is where things change and shit gets real
 
@@ -440,11 +433,9 @@
 
 	sleep(85)
 
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) return FALSE //If a nuke finished, don't land.
-
 	shake_cameras(turfs_int) //shake for 1.5 seconds before crash, 0.5 after
 
-	for(var/obj/machinery/power/apc/A in machines) //break APCs
+	for(var/obj/machinery/power/apc/A in GLOB.machines) //break APCs
 		if(A.z != T_trg.z) continue
 		if(prob(A.crash_break_probability))
 			A.overload_lighting()
@@ -461,17 +452,17 @@
 	var/datum/shuttle/ferry/hangar/hangarelevator = shuttle_controller.shuttles["Hangar"]
 	hangarelevator.process_state = FORCE_CRASH
 
-	for(var/mob/living/carbon/M in mob_list) //knock down mobs
+	for(var/mob/living/carbon/M in GLOB.mob_living_list) //knock down mobs
 		if(M.z != T_trg.z) continue
 		if(M.buckled)
-			to_chat(M, "\red You are jolted against [M.buckled]!")
+			to_chat(M, "<span class='warning'>You are jolted against [M.buckled]!</span>")
 			shake_camera(M, 3, 1)
 		else
-			to_chat(M, "\red The floor jolts under your feet!")
+			to_chat(M, "<span class='warning'>The floor jolts under your feet!</span>")
 			shake_camera(M, 10, 1)
 			M.KnockDown(3)
 
-	enter_allowed = 0 //No joining after dropship crash
+	GLOB.enter_allowed = FALSE //No joining after dropship crash
 
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
@@ -497,11 +488,11 @@
 	open_doors_crashed(turfs_trg) //And now open the doors
 
 	//Stolen from events.dm. WARNING: This code is old as hell
-	for (var/obj/machinery/power/apc/APC in machines)
-		if(APC.z == MAIN_SHIP_Z_LEVEL || APC.z == LOW_ORBIT_Z_LEVEL)
+	for (var/obj/machinery/power/apc/APC in GLOB.machines)
+		if(is_mainship_or_low_orbit_level(APC.z))
 			APC.ion_act()
-	for (var/obj/machinery/power/smes/SMES in machines)
-		if(SMES.z == MAIN_SHIP_Z_LEVEL || SMES.z == LOW_ORBIT_Z_LEVEL)
+	for (var/obj/machinery/power/smes/SMES in GLOB.machines)
+		if(is_mainship_or_low_orbit_level(SMES.z))
 			SMES.ion_act()
 
 	if(security_level < SEC_LEVEL_RED) //automatically set security level to red.
@@ -526,8 +517,8 @@
 
 	//Switch the landmarks so we can do this again
 	if(!istype(T_src) || !istype(T_trg))
-		message_admins("<span class=warning>Error with shuttles: Ref turfs are null. Code: MSD15.\n WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</span>")
-		log_admin("Error with shuttles: Ref turfs are null. Code: MSD15.")
+		log_admin("ERROR: Shuttles ref turfs are null.")
+		message_admins("ERROR: Shuttle ref turfs are null.")		
 		return FALSE
 
 	locs_dock -= T_src
@@ -670,7 +661,7 @@
 		T = i
 		if(!istype(T)) continue
 
-		if(istype(T, /turf/closed/wall))
+		if(iswallturf(T))
 			var/turf/closed/wall/W = T
 			if(prob(20)) W.thermitemelt()
 			else if(prob(25)) W.take_damage(W.damage_cap) //It should leave a girder
@@ -724,7 +715,7 @@
 		if("No") crash = 0
 		else return
 
-	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[MAIN_SHIP_NAME + " " + tag]
+	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[CONFIG_GET(string/ship_name) + " " + tag]
 	if(!dropship)
 		to_chat(src, "<span class='danger'>Error: Attempted to force a dropship launch but the shuttle datum was null. Code: MSD_FSV_DIN</span>")
 		log_admin("Error: Attempted to force a dropship launch but the shuttle datum was null. Code: MSD_FSV_DIN")
@@ -787,6 +778,6 @@
 
 /datum/shuttle/ferry/elevator/announce_preflight_failure()
 	for(var/obj/machinery/computer/shuttle_control/control in controls)
-		playsound(control, 'sound/effects/adminhelp-error.ogg', 20) //Arbitrary notification sound
+		playsound(control, 'sound/effects/adminhelp.ogg', 20) //Arbitrary notification sound
 		control.visible_message(fail_flavortext)
 		return //Kill it so as not to repeat

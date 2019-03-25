@@ -98,11 +98,6 @@
 	if(!area || !istype(area)) //somehow
 		return
 
-	for(var/obj/machinery/door/unpowered/D in area)
-		if(!D.density && !D.locked)
-			spawn(0)
-				D.close()
-
 	for(var/obj/machinery/door/poddoor/shutters/P in area)
 		if(!P.density)
 			spawn(0)
@@ -122,17 +117,17 @@
 					D.lock()
 				else
 					D.lock()
+	else
+		for(var/obj/machinery/door/airlock/unpowered/D in area)
+			if(!D.density && !D.locked)
+				spawn(0)
+					D.close()
 
 
 
 /datum/shuttle/proc/open_doors(var/area/area)
 	if(!area || !istype(area)) //somehow
 		return
-
-	for(var/obj/machinery/door/unpowered/D in area)
-		if(D.density && !D.locked)
-			spawn(0)
-				D.open()
 
 	for(var/obj/machinery/door/poddoor/shutters/P in area)
 		if(P.density)
@@ -151,6 +146,11 @@
 				spawn(0)
 					D.unlock()
 			if (D.density)
+				spawn(0)
+					D.open()
+	else
+		for(var/obj/machinery/door/airlock/unpowered/D in area)
+			if(D.density && !D.locked)
 				spawn(0)
 					D.open()
 
@@ -212,19 +212,19 @@
 		if(M.client)
 			spawn(0)
 				if(M.buckled && !iselevator)
-					to_chat(M, "\red Sudden acceleration presses you into [M.buckled]!")
+					to_chat(M, "<span class='warning'>Sudden acceleration presses you into [M.buckled]!</span>")
 					shake_camera(M, 3, 1)
 				else if (!M.buckled)
-					to_chat(M, "\red The floor lurches beneath you!")
+					to_chat(M, "<span class='warning'>The floor lurches beneath you!</span>")
 					shake_camera(M, iselevator? 2 : 10, 1)
-		if(istype(M, /mob/living/carbon) && !iselevator)
+		if(iscarbon(M) && !iselevator)
 			if(!M.buckled)
 				M.KnockDown(3)
 
 	for(var/turf/T in origin) // WOW so hacky - who cares. Abby
 		if(iselevator)
 			if(istype(T,/turf/open/space))
-				if(T.z == 3)
+				if(is_mainship_level(T.z))
 					T.ChangeTurf(/turf/open/floor/almayer/empty)
 				else
 					T.ChangeTurf(/turf/open/gm/empty)

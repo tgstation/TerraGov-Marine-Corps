@@ -23,7 +23,7 @@
 
 	if(!parts)
 		to_chat(user, "<span class='warning'>This kit has no parts for this modification left.</span>")
-		user.temp_drop_inv_item(src)
+		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 		return
 
@@ -49,7 +49,7 @@
 
 	playsound(user.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 
-	user.visible_message("\red [user] opens \the [src] and modifies \the [O].","\red You open \the [src] and modify \the [O].")
+	user.visible_message("<span class='warning'> [user] opens \the [src] and modifies \the [O].</span>","<span class='warning'> You open \the [src] and modify \the [O].</span>")
 
 	I.refit_for_species(target_species)
 
@@ -59,7 +59,7 @@
 		parts &= ~MODKIT_SUIT
 
 	if(!parts)
-		user.temp_drop_inv_item(src)
+		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 
 /obj/item/device/modkit/examine(mob/user)

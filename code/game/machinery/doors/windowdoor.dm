@@ -41,7 +41,8 @@
 					close()
 		return
 	var/mob/M = AM // we've returned by here if M is not a mob
-	if (!( ticker ))
+	add_fingerprint(M)
+	if (!( SSticker ))
 		return
 	if (src.operating)
 		return
@@ -73,7 +74,7 @@
 /obj/machinery/door/window/open()
 	if (src.operating == 1) //doors can still open when emag-disabled
 		return FALSE
-	if (!ticker)
+	if (!SSticker)
 		return FALSE
 	if(!src.operating) //in case of emag
 		src.operating = 1
@@ -105,11 +106,13 @@
 	src.operating = 0
 	return TRUE
 
-/obj/machinery/door/window/proc/take_damage(var/damage)
+/obj/machinery/door/window/take_damage(var/damage)
 	src.health = max(0, src.health - damage)
 	if (src.health <= 0)
-		new /obj/item/shard(src.loc)
-		var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src.loc)
+		var/obj/item/shard/S = new(loc)
+		transfer_fingerprints_to(S)
+		var/obj/item/stack/cable_coil/CC = new(loc)
+		transfer_fingerprints_to(CC)
 		CC.amount = 2
 		var/obj/item/circuitboard/airlock/ae
 		if(!electronics)
@@ -125,6 +128,7 @@
 			ae = electronics
 			electronics = null
 			ae.loc = src.loc
+		transfer_fingerprints_to(ae)
 		if(operating == -1)
 			ae.icon_state = "door_electronics_smoked"
 			operating = 0
@@ -141,7 +145,7 @@
 /obj/machinery/door/window/hitby(AM as mob|obj)
 
 	..()
-	visible_message("\red <B>The glass door was hit by [AM].</B>", 1)
+	visible_message("<span class='danger'>The glass door was hit by [AM].</span>", 1)
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 40
@@ -172,7 +176,7 @@
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-			visible_message("\red <B>[user] smashes against the [src.name].</B>", 1)
+			visible_message("<span class='danger'>[user] smashes against the [src.name].</span>", 1)
 			take_damage(25)
 			return
 	return try_to_activate_door(user)
@@ -192,11 +196,11 @@
 		return TRUE
 
 	//If it's emagged, crowbar can pry electronics out.
-	if (src.operating == -1 && istype(I, /obj/item/tool/crowbar))
+	if (src.operating == -1 && iscrowbar(I))
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
 		if (do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
-			to_chat(user, "\blue You removed the windoor electronics!")
+			to_chat(user, "<span class='notice'>You removed the windoor electronics!</span>")
 
 			var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)
 			if (istype(src, /obj/machinery/door/window/brigdoor))
@@ -206,7 +210,7 @@
 				wa.name = "Wired Windoor Assembly"
 			if (src.base_state == "right" || src.base_state == "rightsecure")
 				wa.facing = "r"
-			wa.dir = src.dir
+			wa.setDir(dir)
 			wa.state = "02"
 			wa.update_icon()
 
@@ -233,7 +237,7 @@
 	if(!(I.flags_item & NOBLUDGEON) && I.force && density) //trying to smash windoor with item
 		var/aforce = I.force
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-		visible_message("\red <B>[src] was hit by [I].</B>")
+		visible_message("<span class='danger'>[src] was hit by [I].</span>")
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			take_damage(aforce)
 		return TRUE
@@ -251,6 +255,36 @@
 	req_access = list(ACCESS_MARINE_BRIG)
 	health = 300.0 //Stronger doors for prison (regular window door health is 200)
 
+
+//theseus brig doors
+/obj/machinery/door/window/brigdoor/theseus/
+	name = "Cell"
+	id = "Cell"
+	health = 500
+
+/obj/machinery/door/window/brigdoor/theseus/cell_1
+	name = "Cell 1"
+	id = "Cell 1"
+
+/obj/machinery/door/window/brigdoor/theseus/cell_2
+	name = "Cell 2"
+	id = "Cell 2"
+
+/obj/machinery/door/window/brigdoor/theseus/cell_3
+	name = "Cell 3"
+	id = "Cell 3"
+
+/obj/machinery/door/window/brigdoor/theseus/cell_4
+	name = "Cell 4"
+	id = "Cell 4"
+
+/obj/machinery/door/window/brigdoor/theseus/cell_5
+	name = "Cell 5"
+	id = "Cell 5"
+
+/obj/machinery/door/window/brigdoor/theseus/cell_6
+	name = "Cell 6"
+	id = "Cell 6"
 
 /obj/machinery/door/window/northleft
 	dir = NORTH

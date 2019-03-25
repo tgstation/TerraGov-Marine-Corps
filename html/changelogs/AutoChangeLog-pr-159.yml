@@ -1,9 +1,0 @@
-author: "jeser"
-delete-after: True
-changes: 
-  - tweak: "Synths can no longer fire the M56D."
-  - tweak: "The M56D can only be manned by standing on its back."
-  - tweak: "It's no longer needed to screwdrive the mount to the ground."
-  - tweak: "Burst-fire mode switch is now done through the toggle-mg-burst-fire verb in Weapons tab. Ctrl-clicking will make you shoot in burst-fire if you are in single-fire mode, and vice-versa."
-  - bugfix: "Fixed synth-gun-use-related message bug."
-  - bugfix: "Fixed sprite bug after installing gun that has ammo on a tripod."

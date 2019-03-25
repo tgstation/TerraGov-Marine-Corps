@@ -20,7 +20,7 @@
 			Aim(M) //Aha!  Aim at them!
 		else if(!ismob(M) || (ismob(M) && !(M in view(user)))) //Nope!  They weren't there!
 			Fire(A,user,params)  //Fire like normal, then.
-	usr.dir = get_cardinal_dir(src, A)
+	usr.setDir(get_cardinal_dir(src, A))
 
 //Aiming at the target mob.
 /obj/item/weapon/gun/proc/Aim(var/mob/living/M)
@@ -32,9 +32,9 @@
 					L.NotTargeted(src)
 			qdel(target)
 			target = null
-			usr.visible_message("\red <b>[usr] turns \the [src] on [M]!</b>")
+			usr.visible_message("<span class='danger'>[usr] turns \the [src] on [M]!</span>")
 		else
-			usr.visible_message("\red <b>[usr] aims \a [src] at [M]!</b>")
+			usr.visible_message("<span class='danger'>[usr] aims \a [src] at [M]!</span>")
 		M.Targeted(src)
 
 //HE MOVED, SHOOT HIM!
@@ -51,7 +51,7 @@
 	else
 		click_empty(M)
 
-	usr.dir = get_cardinal_dir(src, T)
+	usr.setDir(get_cardinal_dir(src, T))
 
 	if (!firerate) // If firerate is set to lower aim after one shot, untarget the target
 		T.NotTargeted(src)
@@ -151,7 +151,7 @@
 		else
 			return
 //		if(m_intent == MOVE_INTENT_RUN && T.client.target_can_move == 1 && T.client.target_can_run == 0)
-//			to_chat(src, "\red Your move intent is now set to walk, as your targeter permits it.")
+//			to_chat(src, "<span class='warning'>Your move intent is now set to walk, as your targeter permits it.</span>")
 //			set_m_intent(MOVE_INTENT_WALK)
 
 		//Processing the aiming. Should be probably in separate object with process() but lasy.
@@ -258,7 +258,7 @@
 				if(target_can_move)
 					to_chat(M, "Your character may now <b>walk</b> at the discretion of their targeter.")
 					if(!target_can_run)
-						to_chat(M, "\red Your move intent is now set to walk, as your targeter permits it.")
+						to_chat(M, "<span class='warning'>Your move intent is now set to walk, as your targeter permits it.</span>")
 						M.set_m_intent(MOVE_INTENT_WALK)
 				else
 					to_chat(M, "<span class='danger'>Your character will now be shot if they move.</span>")

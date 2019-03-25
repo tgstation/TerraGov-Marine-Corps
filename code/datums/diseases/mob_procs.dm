@@ -98,7 +98,7 @@
 
 
 /mob/living/carbon/human/contract_disease(datum/disease/virus, skip_this = 0, force_species_check=1, spread_type = -5)
-	if(species.flags & IS_SYNTHETIC) return //synthetic species are immune
+	if(species.species_flags & IS_SYNTHETIC) return //synthetic species are immune
 	..()
 
 
@@ -142,8 +142,8 @@
 			if(isobj(wear_suit))
 				Cl = wear_suit
 				. = prob((Cl.permeability_coefficient*100) - 1)
-			if(. && isobj(WEAR_BODY))
-				Cl = WEAR_BODY
+			if(. && isobj(SLOT_W_UNIFORM))
+				Cl = SLOT_W_UNIFORM
 				. = prob((Cl.permeability_coefficient*100) - 1)
 		if(3)
 			if(isobj(wear_suit) && wear_suit.flags_armor_protection&HANDS)
