@@ -507,7 +507,7 @@
 /mob/living/proc/get_total_tint()
 	if(iscarbon(loc))
 		var/mob/living/carbon/C = loc
-		for(src in C.stomach_contents)
+		if(src in C.stomach_contents)
 			. = TINT_BLIND
 
 /mob/living/proc/smokecloak_on()

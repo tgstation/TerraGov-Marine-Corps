@@ -285,6 +285,7 @@
 	if(iscarbon(loc))
 		var/mob/living/carbon/C = loc
 		if(M in C.stomach_contents)
+			to_chat(world, "Person below quintuble chumbis")
 			message = Gibberish(message, 100)
 
   /* ###### Radio headsets can only broadcast through subspace ###### */
