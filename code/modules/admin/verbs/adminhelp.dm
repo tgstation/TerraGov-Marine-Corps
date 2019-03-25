@@ -661,6 +661,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 
 /obj/effect/statclick/ahelp/Click()
+	if(!ahelp_datum)
+		return
 	ahelp_datum.TicketPanel()
 
 
