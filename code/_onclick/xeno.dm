@@ -57,7 +57,7 @@
 
 /mob/living/carbon/Xenomorph/Boiler/ClickOn(atom/A, params)
 	. = ..()
-	if(istype(A, /obj/screen) || !is_bombarding)
+	if(!is_bombarding)
 		return
 	if(isturf(A))
 		bomb_turf(A)
@@ -69,8 +69,6 @@
 
 /mob/living/carbon/Xenomorph/Crusher/ClickOn(atom/A, params)
 	. = ..()
-	if(istype(A, /obj/screen))
-		return
 	if(!is_charging)
 		return
 	stop_momentum(charge_dir)
