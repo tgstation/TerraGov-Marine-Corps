@@ -48,8 +48,8 @@
 
 /obj/machinery/optable/attack_paw(mob/user as mob)
 	if ((HULK in usr.mutations))
-		to_chat(usr, text("\blue You destroy the operating table."))
-		visible_message("\red [usr] destroys the operating table!")
+		to_chat(usr, text("<span class='notice'> You destroy the operating table.</span>"))
+		visible_message("<span class='warning'> [usr] destroys the operating table!</span>")
 		src.density = 0
 		qdel(src)
 	if (!( locate(/obj/machinery/optable, user.loc) ))
@@ -68,8 +68,8 @@
 
 /obj/machinery/optable/attack_hand(mob/living/user)
 	if (HULK in usr.mutations)
-		to_chat(usr, text("\blue You destroy the table."))
-		visible_message("\red [usr] destroys the operating table!")
+		to_chat(usr, text("<span class='notice'> You destroy the table.</span>"))
+		visible_message("<span class='warning'> [usr] destroys the operating table!</span>")
 		src.density = 0
 		qdel(src)
 		return
@@ -101,18 +101,18 @@
 	if(!anes_tank)
 		to_chat(user, "<span class='warning'>There is no anesthetic tank connected to the table, load one first.</span>")
 		return
-	if(H.wear_mask && !H.drop_inv_item_on_ground(H.wear_mask))
+	if(H.wear_mask && !H.dropItemToGround(H.wear_mask))
 		to_chat(user, "<span class='danger'>You can't remove their mask!</span>")
 		return
 	var/obj/item/clothing/mask/breath/medical/B = new()
-	if(!H.equip_if_possible(B, WEAR_FACE))
+	if(!H.equip_if_possible(B, SLOT_WEAR_MASK))
 		to_chat(user, "<span class='danger'>You can't fit the gas mask over their face!</span>")
 		qdel(B)
 		return
 	H.internal = anes_tank
 	H.visible_message("<span class='notice'>[user] fits the mask over [H]'s face and turns on the anesthetic.</span>'")
 	to_chat(H, "<span class='information'>You begin to feel sleepy.</span>")
-	H.dir = SOUTH
+	H.setDir(SOUTH)
 	..()
 
 /obj/machinery/optable/unbuckle(mob/living/user)
@@ -122,7 +122,7 @@
 		var/mob/living/carbon/human/H = buckled_mob
 		H.internal = null
 		var/obj/item/M = H.wear_mask
-		H.drop_inv_item_on_ground(M)
+		H.dropItemToGround(M)
 		qdel(M)
 		H.visible_message("<span class='notice'>[user] turns off the anesthetic and removes the mask from [H].</span>")
 		..()
@@ -140,7 +140,7 @@
 
 	if(istype(A, /obj/item))
 		var/obj/item/I = A
-		if (!istype(I) || user.get_active_hand() != I)
+		if (!istype(I) || user.get_active_held_item() != I)
 			return
 		if(user.drop_held_item())
 			if (I.loc != loc)
@@ -193,7 +193,7 @@
 /obj/machinery/optable/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/tank/anesthetic))
 		if(!anes_tank)
-			user.drop_inv_item_to_loc(W, src)
+			user.transferItemToLoc(W, src)
 			anes_tank = W
 			to_chat(user, "<span class='notice'>You connect \the [anes_tank] to \the [src].</span>")
 			return
@@ -223,11 +223,11 @@
 
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
 	if(victim)
-		to_chat(usr, "\blue <B>The table is already occupied!</B>")
+		to_chat(usr, "<span class='boldnotice'>The table is already occupied!</span>")
 		return 0
 
 	if(patient.buckled)
-		to_chat(usr, "\blue <B>Unbuckle first!</B>")
+		to_chat(usr, "<span class='boldnotice'>Unbuckle first!</span>")
 		return 0
 
 	return 1

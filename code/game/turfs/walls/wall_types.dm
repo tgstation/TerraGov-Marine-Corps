@@ -1,7 +1,3 @@
-
-
-
-
 //-----TGS Theseus Walls ---//
 
 /turf/closed/wall/almayer
@@ -12,9 +8,9 @@
 	walltype = "testwall"
 
 	damage = 0
-	damage_cap = 10000 //Wall will break down to girders if damage reaches this point
+	damage_cap = 3000 //Wall will break down to girders if damage reaches this point
 
-	max_temperature = 18000 //K, walls will take damage if they're next to a fire hotter than this
+	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
 
 	opacity = 1
 	density = 1
@@ -115,7 +111,7 @@
 	icon_state = "sulaco0"
 	hull = 0 //Can't be deconstructed
 
-	damage_cap = 8000 //As tough as R_walls.
+	damage_cap = 3000
 	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
 	walltype = "sulaco" //Changes all the sprites and icons.
 
@@ -157,11 +153,6 @@
 
 
 
-
-
-
-
-
 /turf/closed/wall/indestructible
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
@@ -169,19 +160,21 @@
 	opacity = 1
 	hull = 1
 
-/turf/closed/wall/indestructible/ex_act(severity) //Should make it indestructable
+/turf/closed/wall/indestructible/ex_act(severity)
 	return
 
 /turf/closed/wall/indestructible/fire_act(exposed_temperature, exposed_volume)
 	return
 
-/turf/closed/wall/indestructible/attackby() //This should fix everything else. No cables, etc
+/turf/closed/wall/indestructible/attackby()
 	return
 
 /turf/closed/wall/indestructible/can_be_dissolved()
 	return 0
 
-
+/turf/closed/wall/indestructible/mineral
+	name = "impenetrable rock"
+	icon_state = "rock_dark"
 
 /turf/closed/wall/indestructible/bulkhead
 	name = "bulkhead"
@@ -207,11 +200,6 @@
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
-
-
-
-
-
 
 // Mineral Walls
 
@@ -440,7 +428,7 @@
 
 
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M)) //Larvae can't do shit
+	if(isxenolarva(M)) //Larvae can't do shit
 		return 0
 	M.animation_attack_on(src)
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \

@@ -13,13 +13,13 @@
 /obj/structure/computerframe/attackby(obj/item/P as obj, mob/user as mob)
 	switch(state)
 		if(0)
-			if(istype(P, /obj/item/tool/wrench))
+			if(iswrench(P))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					to_chat(user, "\blue You wrench the frame into place.")
+					to_chat(user, "<span class='notice'>You wrench the frame into place.</span>")
 					src.anchored = 1
 					src.state = 1
-			if(istype(P, /obj/item/tool/weldingtool))
+			if(iswelder(P))
 				var/obj/item/tool/weldingtool/WT = P
 				if(!WT.remove_fuel(0, user))
 					to_chat(user, "[WT] must be on to complete this task.")
@@ -27,43 +27,43 @@
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 					if(!src || !WT.isOn()) return
-					to_chat(user, "\blue You deconstruct the frame.")
+					to_chat(user, "<span class='notice'>You deconstruct the frame.</span>")
 					new /obj/item/stack/sheet/metal( src.loc, 5 )
 					qdel(src)
 		if(1)
-			if(istype(P, /obj/item/tool/wrench))
+			if(iswrench(P))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					to_chat(user, "\blue You unfasten the frame.")
+					to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
 					src.anchored = 0
 					src.state = 0
 			if(istype(P, /obj/item/circuitboard/computer) && !circuit)
 				if(user.drop_held_item())
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					to_chat(user, "\blue You place the circuit board inside the frame.")
+					to_chat(user, "<span class='notice'>You place the circuit board inside the frame.</span>")
 					icon_state = "1"
 					circuit = P
 					P.forceMove(src)
 
-			if(istype(P, /obj/item/tool/screwdriver) && circuit)
+			if(isscrewdriver(P) && circuit)
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				to_chat(user, "\blue You screw the circuit board into place.")
+				to_chat(user, "<span class='notice'>You screw the circuit board into place.</span>")
 				src.state = 2
 				src.icon_state = "2"
-			if(istype(P, /obj/item/tool/crowbar) && circuit)
+			if(iscrowbar(P) && circuit)
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-				to_chat(user, "\blue You remove the circuit board.")
+				to_chat(user, "<span class='notice'>You remove the circuit board.</span>")
 				src.state = 1
 				src.icon_state = "0"
 				circuit.loc = src.loc
 				src.circuit = null
 		if(2)
-			if(istype(P, /obj/item/tool/screwdriver) && circuit)
+			if(isscrewdriver(P) && circuit)
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				to_chat(user, "\blue You unfasten the circuit board.")
+				to_chat(user, "<span class='notice'>You unfasten the circuit board.</span>")
 				src.state = 1
 				src.icon_state = "1"
-			if(istype(P, /obj/item/stack/cable_coil))
+			if(iscablecoil(P))
 				var/obj/item/stack/cable_coil/C = P
 				if (C.get_amount() < 5)
 					to_chat(user, "<span class='warning'>You need five coils of wire to add them to the frame.</span>")
@@ -76,9 +76,9 @@
 						state = 3
 						icon_state = "3"
 		if(3)
-			if(istype(P, /obj/item/tool/wirecutters))
+			if(iswirecutter(P))
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-				to_chat(user, "\blue You remove the cables.")
+				to_chat(user, "<span class='notice'>You remove the cables.</span>")
 				src.state = 2
 				src.icon_state = "2"
 				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( src.loc )
@@ -97,15 +97,15 @@
 						src.state = 4
 						src.icon_state = "4"
 		if(4)
-			if(istype(P, /obj/item/tool/crowbar))
+			if(iscrowbar(P))
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-				to_chat(user, "\blue You remove the glass panel.")
+				to_chat(user, "<span class='notice'>You remove the glass panel.</span>")
 				src.state = 3
 				src.icon_state = "3"
 				new /obj/item/stack/sheet/glass( src.loc, 2 )
-			if(istype(P, /obj/item/tool/screwdriver))
+			if(isscrewdriver(P))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				to_chat(user, "\blue You connect the monitor.")
+				to_chat(user, "<span class='notice'>You connect the monitor.</span>")
 				var/B = new src.circuit.build_path ( src.loc )
 				src.circuit.construct(B)
 				qdel(src)

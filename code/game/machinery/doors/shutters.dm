@@ -3,6 +3,7 @@
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = "shutter1"
 	power_channel = ENVIRON
+	destructible = FALSE
 
 /obj/machinery/door/poddoor/shutters/New()
 	..()
@@ -26,7 +27,7 @@
 			qdel()
 		return
 
-	if(density && (stat & NOPOWER) && !operating && !unacidable)
+	if(density && (machine_stat & NOPOWER) && !operating && !unacidable)
 		operating = 1
 		spawn(-1)
 			flick("shutterc0", src)
@@ -41,7 +42,7 @@
 /obj/machinery/door/poddoor/shutters/open()
 	if(operating == 1) //doors can still open when emag-disabled
 		return
-	if(!ticker)
+	if(!SSticker)
 		return 0
 	if(!operating) //in case of emag
 		operating = 1
@@ -84,10 +85,9 @@
 		/obj/structure/window/framed/almayer,
 		/obj/machinery/door/airlock)
 
-	New()
-		spawn(10) // No fucken idea but this somehow makes it work. What the actual fuck.
-			relativewall_neighbours()
-		..()
+/obj/machinery/door/poddoor/shutters/almayer/Initialize()
+	relativewall_neighbours()
+	return ..()
 
 
 //transit shutters used by marine dropships

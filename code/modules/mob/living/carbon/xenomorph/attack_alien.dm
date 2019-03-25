@@ -16,11 +16,11 @@
 
 	switch(intent)
 
-		if("help")
+		if(INTENT_HELP)
 			M.visible_message("<span class='notice'>\The [M] caresses [src] with its scythe-like arm.</span>", \
 			"<span class='notice'>You caress [src] with your scythe-like arm.</span>", null, 5)
 
-		if("grab")
+		if(INTENT_GRAB)
 			if(M == src || anchored || buckled)
 				return FALSE
 
@@ -36,29 +36,24 @@
 			if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-		if("hurt")
+		if(INTENT_HARM)
 			var/datum/hive_status/hive
 			if(M.hivenumber && M.hivenumber <= hive_datum.len)
 				hive = hive_datum[M.hivenumber]
 			else return
 
-			if(!hive.slashing_allowed && !(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
-				to_chat(M, "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>")
-				return FALSE
-
 			if(stat == DEAD)
 				if(luminosity > 0)
 					playsound(loc, "alien_claw_metal", 25, 1)
 					M.flick_attack_overlay(src, "slash")
-					var/datum/effect_system/spark_spread/spark_system2
-					spark_system2 = new /datum/effect_system/spark_spread()
-					spark_system2.set_up(5, 0, src)
-					spark_system2.attach(src)
-					spark_system2.start(src)
-					disable_lights()
+					disable_lights(sparks = TRUE)
 					to_chat(M, "<span class='warning'>You disable whatever annoying lights the dead creature possesses.</span>")
 				else
 					to_chat(M, "<span class='warning'>[src] is dead, why would you want to touch it?</span>")
+				return FALSE
+
+			if(!hive.slashing_allowed && !(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
+				to_chat(M, "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>")
 				return FALSE
 
 			if(!(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
@@ -106,8 +101,7 @@
 				attack_message2 = "<span class='danger'>You viciously rend \the [src] with your teeth!</span>"
 				log = "bit"
 				M.critical_proc = TRUE
-				spawn(CRITICAL_HIT_DELAY)
-					M.critical_proc = FALSE
+				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), CRITICAL_HIT_DELAY)
 
 			//Check for a special bite attack
 			if(prob(M.xeno_caste.bite_chance) && !M.critical_proc && !no_crit && !M.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
@@ -118,8 +112,7 @@
 				attack_message2 = "<span class='danger'>You violently impale \the [src] with your tail!</span>"
 				log = "tail-stabbed"
 				M.critical_proc = TRUE
-				spawn(CRITICAL_HIT_DELAY)
-					M.critical_proc = FALSE
+				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), CRITICAL_HIT_DELAY)
 
 			//Somehow we will deal no damage on this attack
 			if(!damage)
@@ -146,7 +139,7 @@
 
 			var/armor_block = run_armor_check(affecting, "melee")
 
-			if(isYautja(src) && check_zone(M.zone_selected) == "head")
+			if(isyautja(src) && check_zone(M.zone_selected) == "head")
 				if(istype(wear_mask, /obj/item/clothing/mask/gas/yautja))
 					var/knock_chance = 1
 					if(M.frenzy_aura > 0)
@@ -158,7 +151,7 @@
 						playsound(loc, "alien_claw_metal", 25, 1)
 						M.visible_message("<span class='danger'>The [M] smashes off [src]'s [wear_mask.name]!</span>", \
 						"<span class='danger'>You smash off [src]'s [wear_mask.name]!</span>", null, 5)
-						drop_inv_item_on_ground(wear_mask)
+						dropItemToGround(wear_mask)
 						emote("roar")
 						return TRUE
 
@@ -167,31 +160,42 @@
 			M.visible_message("[attack_message1]", \
 			"[attack_message2]")
 
-			//Logging, including anti-rulebreak logging
-			if(src.status_flags & XENO_HOST && src.stat != DEAD)
-				if(istype(src.buckled, /obj/structure/bed/nest)) //Host was buckled to nest while infected, this is a rule break
-					log_combat(M, src, log, addition="while they were infected and nested")
-					msg_admin_ff("[key_name(M)] slashed [key_name(src)] while they were infected and nested.") //This is a blatant rulebreak, so warn the admins
-				else //Host might be rogue, needs further investigation
-					log_combat(M, src, log, addition="while they were infected")
+			if(status_flags & XENO_HOST && stat != DEAD)
+				if(istype(buckled, /obj/structure/bed/nest))
+					var/turf/T = get_turf(M)
+					log_ffattack("[key_name(M)] slashed [key_name(src)] while they were infected and nested in [AREACOORD(T)].")
+					log_combat(M, src, log, addition = "while they were infected and nested")
+					msg_admin_ff("[ADMIN_TPMONTY(M)] slashed [ADMIN_TPMONTY(src)] while they were infected and nested in [ADMIN_VERBOSEJMP(T)].")
+				else
+					log_combat(M, src, log, addition = "while they were infected")
 			else //Normal xenomorph friendship with benefits
 				log_combat(M, src, log)
 
 			if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 				if(M.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //Pouncing prevents us from making a sneak attack for 4 seconds
-					damage *= 3 //Massive damage on the sneak attack... hope you have armour.
+					if(m_intent == MOVE_INTENT_RUN)
+						damage *= 1.75 //Half the multiplier if running.
+						M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
+						"<span class='danger'>You strike [src] with vicious precision!</span>")
+					else
+						damage *= 3.5 //Massive damage on the sneak attack... hope you have armour.
+						M.visible_message("<span class='danger'>\The [M] strikes [src] with deadly precision!</span>", \
+						"<span class='danger'>You strike [src] with deadly precision!</span>")
 					KnockOut(2) //...And we knock them out
-					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
-					"<span class='danger'>You strike [src] with vicious precision!</span>")
+					adjust_stagger(3)
+					add_slowdown(1.5)
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
+			M.neuroclaw_router(src) //if we have neuroclaws...
+
+			damage = M.hit_and_run_bonus(damage) //Apply Runner hit and run bonus damage if applicable
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
 			updatehealth()
 
 			M.process_rage_attack() //Process Ravager rage gains on attack
 
-		if("disarm")
-			if(M.legcuffed && isYautja(src))
+		if(INTENT_DISARM)
+			if(M.legcuffed && isyautja(src))
 				to_chat(M, "<span class='xenodanger'>You don't have the dexterity to tackle the headhunter with that thing on your leg!</span>")
 				return FALSE
 			if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest)) //No more memeing nested and infected hosts
@@ -213,7 +217,7 @@
 
 			playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 
-			var/tackle_pain = (rand(M.xeno_caste.tackle_damage * 0.20, M.xeno_caste.tackle_damage * 0.80) + rand(M.xeno_caste.tackle_damage * 0.20, M.xeno_caste.tackle_damage * 0.80))
+			var/tackle_pain = M.xeno_caste.tackle_damage
 			if(M.frenzy_aura)
 				tackle_pain = tackle_pain * (1 + (0.05 * M.frenzy_aura))  //Halloss damage increased by 5% per rank of frenzy aura
 			if(protection_aura)
@@ -221,16 +225,27 @@
 			if(M.stealth_router(HANDLE_STEALTH_CHECK))
 				if(M.stealth_router(HANDLE_SNEAK_ATTACK_CHECK))
 					KnockOut(2)
-					tackle_pain *= 3 //Halloss multiplied by 3.
-					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
-					"<span class='danger'>You strike [src] with vicious precision!</span>")
+					if(m_intent == MOVE_INTENT_RUN && ( last_move_intent > (world.time - 20) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
+						tackle_pain *= 1.75 //Half the multiplier if running.
+						M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
+						"<span class='danger'>You strike [src] with vicious precision!</span>")
+					else
+						tackle_pain *= 3.5 //Massive damage on the sneak attack... hope you have armour.
+						M.visible_message("<span class='danger'>\The [M] strikes [src] with deadly precision!</span>", \
+						"<span class='danger'>You strike [src] with deadly precision!</span>")
+					adjust_stagger(3)
+					add_slowdown(1.5)
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+			M.neuroclaw_router(src) //if we have neuroclaws...
 			if(dam_bonus)
 				tackle_pain += dam_bonus
-			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.5) //Only half armour applies vs tackle
+
+			tackle_pain = M.hit_and_run_bonus(tackle_pain) //Apply Runner hit and run bonus damage if applicable
+
+			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.4) //Only half armour applies vs tackle
 			updatehealth()
 			updateshock()
-			var/throttle_message = "<span class='danger'>The [M] throttles [src]!</span>"
+			var/throttle_message = "<span class='danger'>\The [M] throttles [src]!</span>"
 			var/throttle_message2 = "<span class='danger'>You throttle [src]!</span>"
 			if(tackle_pain > 40)
 				throttle_message = "<span class='danger'>\The [M] badly throttles [src]!</span>"
@@ -241,34 +256,41 @@
 
 	return TRUE
 
+/mob/living/carbon/Xenomorph/proc/reset_critical_hit()
+	critical_proc = FALSE
+
 /mob/living/carbon/Xenomorph/proc/process_rage_attack()
 	return FALSE
 
 /mob/living/carbon/Xenomorph/Ravager/process_rage_attack()
-	rage += 5 //Gain 5 rage stacks for the attack.
+	rage += RAV_RAGE_ON_HIT
 	last_rage = world.time //We incremented rage, so bookmark this.
 
 
 //Every other type of nonhuman mob
-/mob/living/attack_alien(mob/living/carbon/Xenomorph/M)
+/mob/living/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if (M.fortify)
 		return FALSE
 
-	switch(M.a_intent)
-		if("help")
+	var/intent = force_intent ? force_intent : M.a_intent
+
+	switch(intent)
+		if(INTENT_HELP)
 			M.visible_message("<span class='notice'>\The [M] caresses [src] with its scythe-like arm.</span>", \
 			"<span class='notice'>You caress [src] with your scythe-like arm.</span>", null, 5)
 			return FALSE
 
-		if("grab")
+		if(INTENT_GRAB)
 			if(M == src || anchored || buckled)
 				return FALSE
 
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
+			if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-		if("hurt")
-			if(isXeno(src) && xeno_hivenumber(src) == M.hivenumber)
+		if(INTENT_HARM)
+			if(isxeno(src) && xeno_hivenumber(src) == M.hivenumber)
 				M.visible_message("<span class='warning'>\The [M] nibbles [src].</span>", \
 				"<span class='warning'>You nibble [src].</span>", null, 5)
 				return TRUE
@@ -312,6 +334,14 @@
 			if(M.frenzy_aura > 0)
 				damage += (M.frenzy_aura * 2)
 
+			if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+				if(M.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //Pouncing prevents us from making a sneak attack for 4 seconds
+					damage *= 3.5 //Massive damage on the sneak attack... hope you have armour.
+					KnockOut(2) //...And we knock them out
+					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
+					"<span class='danger'>You strike [src] with vicious precision!</span>")
+				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+
 			//Somehow we will deal no damage on this attack
 			if(!damage)
 				playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
@@ -327,7 +357,7 @@
 			playsound(loc, "alien_claw_flesh", 25, 1)
 			apply_damage(damage, BRUTE)
 
-		if("disarm")
+		if(INTENT_DISARM)
 			playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 			M.visible_message("<span class='warning'>\The [M] shoves [src]!</span>", \
 			"<span class='warning'>You shove [src]!</span>", null, 5)

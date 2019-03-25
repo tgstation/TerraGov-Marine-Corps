@@ -39,36 +39,38 @@
 
 	for(var/x in total_calls)
 		var/datum/emergency_call/D = new x()
-		if(!D?.name) 
+		if(!D?.name)
 			continue //The default parent, don't add it
 		all_calls += D
 
 
 //Randomizes and chooses a call datum.
 /datum/game_mode/proc/get_random_call()
-	var/datum/emergency_call/chosen_call
+    var/datum/emergency_call/chosen_call
+    var/list/valid_calls = list()
 
-	for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
-		if(probability < 1) //Those that are meant to be admin-only
-			continue
+    for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
+        if(E.probability < 1) //Those that are meant to be admin-only
+            continue
 
-		if(prob(E.probability))
-			chosen_call = E
-			break
+        valid_calls.Add(E)
 
-	if(!istype(chosen_call))
-		chosen_call = pick(all_calls)
-		
-	return chosen_call
+        if(prob(E.probability))
+            chosen_call = E
+            break
 
+    if(!istype(chosen_call))
+        chosen_call = pick(valid_calls)
+
+    return chosen_call
 
 /datum/emergency_call/proc/show_join_message()
-	if(!mob_max || !ticker?.mode) //Not a joinable distress call.
+	if(!mob_max || !SSticker?.mode) //Not a joinable distress call.
 		return
 
-	for(var/mob/dead/observer/M in player_list)
+	for(var/mob/dead/observer/M in GLOB.player_list)
 		if(M.client)
-			to_chat(M, "<br><font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Ghost > Join Response Team</b> verb to join!</span><br>")
+			to_chat(M, "<br><font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Ghost > Join Response Team</b> verb to join!</span></font><br>")
 			to_chat(M, "<span class='attack'>You cannot join if you have Ghosted before this message.</span><br>")
 
 
@@ -78,8 +80,10 @@
 	if(!picked_call) //Something went horribly wrong
 		return FALSE
 
-	if(ticker?.mode?.waiting_for_candidates) //It's already been activated
+	if(SSticker?.mode?.waiting_for_candidates) //It's already been activated
 		return FALSE
+
+	picked_call.mob_max = rand(5, 15)
 
 	picked_call.activate()
 
@@ -89,13 +93,13 @@
 	set category = "Ghost"
 	set desc = "Join an ongoing distress call response. You must be ghosted to do this."
 
-	var/datum/emergency_call/distress = ticker?.mode?.picked_call //Just to simplify things a bit
+	var/datum/emergency_call/distress = SSticker?.mode?.picked_call //Just to simplify things a bit
 
-	if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team"))
+	if(jobban_isbanned(usr, ROLE_ERT) || is_banned_from(usr.ckey, ROLE_ERT))
 		to_chat(usr, "<span class='danger'>You are jobbanned from the emergency reponse team!</span>")
 		return
 
-	if(isnull(distress) || !istype(distress) || !ticker.mode.waiting_for_candidates || distress.mob_max < 1)
+	if(!istype(distress) || !SSticker.mode.waiting_for_candidates || distress.mob_max < 1)
 		to_chat(usr, "<span class='warning'>No distress beacons that need candidates are active. You will be notified if that changes.</span>")
 		return
 
@@ -107,7 +111,7 @@
 
 	if(!usr.mind) //How? Give them a new one anyway.
 		usr.mind = new /datum/mind(usr.key)
-		usr.mind.active = 1
+		usr.mind.active = TRUE
 		usr.mind.current = usr
 
 	if(usr.mind.key != usr.key) //This can happen when admin-switching people into afking people, leading to runtime errors for a clientless key.
@@ -124,50 +128,53 @@
 
 
 /datum/emergency_call/proc/activate(announce = TRUE)
-	if(!ticker?.mode) //Something horribly wrong with the gamemode ticker
-		return
+	if(!SSticker?.mode) //Something horribly wrong with the gamemode SSticker
+		return FALSE
 
-	if(ticker.mode.on_distress_cooldown) //It's already been called.
-		return
+	if(SSticker.mode.on_distress_cooldown) //It's already been called.
+		return FALSE
 
 	if(mob_max > 0)
-		ticker.mode.waiting_for_candidates = TRUE
+		SSticker.mode.waiting_for_candidates = TRUE
 
 	show_join_message() //Show our potential candidates the message to let them join.
-	message_admins("Distress beacon: '[name]' activated. Looking for candidates.", 1)
+	message_admins("Distress beacon: '[name]' activated. Looking for candidates.")
 
 	if(announce)
-		command_announcement.Announce("A distress beacon has been launched from the [MAIN_SHIP_NAME].", "Priority Alert", new_sound='sound/AI/distressbeacon.ogg')
+		command_announcement.Announce("A distress beacon has been launched from the [CONFIG_GET(string/ship_name)].", "Priority Alert", new_sound='sound/AI/distressbeacon.ogg')
 
-	ticker.mode.on_distress_cooldown = TRUE
+	SSticker.mode.on_distress_cooldown = TRUE
 
-	spawn(1 MINUTE)
+	spawn(1 MINUTES)
 		if(length(candidates) < mob_min)
-			message_admins("Aborting distress beacon [name], not enough candidates. Found [length(candidates)].", 1)
-			ticker.mode.waiting_for_candidates = FALSE
+			message_admins("Aborting distress beacon [name], not enough candidates. Found: [length(candidates)]. Minimum required: [mob_min].")
+			SSticker.mode.waiting_for_candidates = FALSE
 			members = list() //Empty the members list.
 			candidates = list()
 
 			if(announce)
 				command_announcement.Announce("The distress signal has not received a response, the launch tubes are now recalibrating.", "Distress Beacon")
 
-			ticker.mode.picked_call = null
-			ticker.mode.on_distress_cooldown = TRUE
+			SSticker.mode.picked_call = null
+			SSticker.mode.on_distress_cooldown = TRUE
 
 			spawn(COOLDOWN_COMM_REQUEST)
-				ticker.mode.on_distress_cooldown = FALSE
+				SSticker.mode.on_distress_cooldown = FALSE
 		else
-			ticker.mode.waiting_for_candidates = FALSE
+			SSticker.mode.waiting_for_candidates = FALSE
 			var/datum/mind/picked_candidates = list()
 			if(mob_max > 0)
 				for(var/i = 1 to mob_max)
 					if(!length(candidates)) //We ran out of candidates.
 						break
 					var/datum/mind/M = pick(candidates) //Get a random candidate, then remove it from the candidates list.
-					if(M.current.stat != DEAD)
+					if(!istype(M)) //Something went horrifically wrong
+						candidates -= M
+						continue
+					if(M.current?.stat != DEAD)
 						candidates -= M //Strip them from the list, they aren't dead anymore.
 						continue
-					if(!istype(M)) //Something went horrifically wrong
+					if(name == "Xenomorphs" && is_banned_from(M.current.ckey, ROLE_XENOMORPH))
 						candidates -= M
 						continue
 					picked_candidates += M
@@ -176,13 +183,12 @@
 				if(length(candidates))
 					for(var/datum/mind/M in candidates)
 						if(M.current)
-							message_admins("ERROR: [M.key] didn't get pick even though they are in candidates.")
 							to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team. Better luck next time!</span>")
 
 			if(announce)
 				command_announcement.Announce(dispatch_message, "Distress Beacon", new_sound='sound/AI/distressreceived.ogg') //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
 
-			message_admins("Distress beacon: [name] finalized, setting up candidates.", 1)
+			message_admins("Distress beacon: [name] finalized, setting up candidates.")
 			var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_id]
 
 			if(!shuttle || !istype(shuttle))
@@ -200,11 +206,14 @@
 				for(var/datum/mind/M in picked_candidates)
 					members += M
 					create_member(M)
+			else
+				message_admins("ERROR: No picked candidates, aborting.")
+				return
 
 			candidates = list() //Blank out the candidates list for next time.
 			
 			spawn(COOLDOWN_COMM_REQUEST)
-				ticker.mode.on_distress_cooldown = 0
+				SSticker.mode.on_distress_cooldown = FALSE
 
 
 /datum/emergency_call/proc/add_candidate(var/mob/M)
@@ -225,19 +234,20 @@
 
 
 /datum/emergency_call/proc/get_spawn_point(is_for_items)
-	var/list/spawn_list = list()
+	var/index
+	if(is_for_items)
+		index = "[name_of_spawn]Item"
+	else
+		index = name_of_spawn
+	if(!GLOB.distress_spawns_by_name[index])
+		return FALSE
 
-	for(var/obj/effect/landmark/L in landmarks_list)
-		if(is_for_items && L.name == "[name_of_spawn]Item")
-			spawn_list += L
-		else
-			if(L.name == name_of_spawn) //Default is "Distress"
-				spawn_list += L
+	var/list/spawn_list = GLOB.distress_spawns_by_name[index].Copy()
 
 	if(!length(spawn_list)) //Empty list somehow
 		return FALSE
 
-	var/turf/spawn_loc	= get_turf(pick(spawn_list))
+	var/turf/spawn_loc	= pick(spawn_list)
 	if(!istype(spawn_loc))
 		return FALSE
 

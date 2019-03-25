@@ -17,11 +17,13 @@
 					/obj/item/weapon/gun/revolver/m44 = 5,
 					/obj/item/weapon/gun/smg/m39 = 20,
 					/obj/item/weapon/gun/rifle/m41a = 25,
+					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
 					/obj/item/weapon/gun/shotgun/pump = 10,
 					/obj/item/ammo_magazine/pistol = 30,
 					/obj/item/ammo_magazine/revolver = 25,
 					/obj/item/ammo_magazine/smg/m39 = 30,
 					/obj/item/ammo_magazine/rifle = 22,
+					/obj/item/cell/lasgun/M43 = 22,
 					/obj/item/ammo_magazine/shotgun = 8,
 					/obj/item/ammo_magazine/shotgun/buckshot = 8,
 					/obj/item/ammo_magazine/shotgun/flechette = 8,
@@ -46,7 +48,7 @@
 
 /obj/machinery/vending/marine/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(map_tag)
+	switch(SSmapping.config.map_name)
 		if(MAP_ICE_COLONY)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = 10,
@@ -56,11 +58,11 @@
 
 /obj/machinery/vending/marine/New()
 	..()
-	marine_vendors.Add(src)
+	GLOB.marine_vendors.Add(src)
 
 /obj/machinery/vending/marine/Destroy()
 	. = ..()
-	marine_vendors.Remove(src)
+	GLOB.marine_vendors.Remove(src)
 
 /obj/machinery/vending/marine/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/gun))
@@ -110,7 +112,9 @@
 					/obj/item/weapon/gun/shotgun/pump = 10,
 					// /obj/item/weapon/gun/shotgun/combat = 1,
 					/obj/item/explosive/mine = 2,
-					/obj/item/storage/box/nade_box = 2,
+					/obj/item/storage/box/nade_box = 1,
+					/obj/item/storage/box/nade_box/impact = 1,
+					/obj/item/weapon/gun/energy/lasgun/M43 = 5,
 					/obj/item/explosive/grenade/frag/m15 = 2,
 					/obj/item/explosive/grenade/incendiary = 4,
 					/obj/item/explosive/grenade/smokebomb = 5,
@@ -121,8 +125,11 @@
 					)
 
 	contraband = list(
+					/obj/item/storage/box/nade_box/HIDP = 1,
+					/obj/item/storage/box/nade_box/M15 = 1,
 					/obj/item/weapon/gun/smg/ppsh = 4,
 					/obj/item/weapon/gun/shotgun/double = 2,
+					/obj/item/weapon/gun/shotgun/pump/bolt = 2,
 					/obj/item/weapon/gun/smg/m39/elite = 0,
 					/obj/item/weapon/gun/rifle/m41aMK1 = 0,
 					/obj/item/weapon/gun/rifle/m41a/elite = 0,
@@ -151,12 +158,12 @@
 
 /obj/machinery/vending/marine/cargo_guns/New()
 	..()
-	cargo_guns_vendors.Add(src)
-	marine_vendors.Remove(src)
+	GLOB.cargo_guns_vendors.Add(src)
+	GLOB.marine_vendors.Remove(src)
 
 /obj/machinery/vending/marine/cargo_guns/Destroy()
 	. = ..()
-	cargo_guns_vendors.Remove(src)
+	GLOB.cargo_guns_vendors.Remove(src)
 
 
 
@@ -198,12 +205,15 @@
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
 					/obj/item/ammo_magazine/shotgunbox/flechette = 3,
 					/obj/item/ammo_magazine/shotgun/flechette = 15,
+					/obj/item/cell/lasgun/M43 = 15,
+					/obj/item/cell/lasgun/M43/highcap = 1,
 					/obj/item/smartgun_powerpack = 2
 					)
 
 	contraband = list(
 					/obj/item/ammo_magazine/smg/ppsh/ = 20,
 					/obj/item/ammo_magazine/smg/ppsh/extended = 4,
+					/obj/item/ammo_magazine/rifle/bolt = 10,
 					/obj/item/ammo_magazine/sniper = 0,
 					/obj/item/ammo_magazine/sniper/incendiary = 0,
 					/obj/item/ammo_magazine/sniper/flak = 0,
@@ -231,12 +241,119 @@
 
 /obj/machinery/vending/marine/cargo_ammo/New()
 	..()
-	cargo_ammo_vendors.Add(src)
-	marine_vendors.Remove(src)
+	GLOB.cargo_ammo_vendors.Add(src)
+	GLOB.marine_vendors.Remove(src)
 
 /obj/machinery/vending/marine/cargo_ammo/Destroy()
 	. = ..()
-	cargo_ammo_vendors.Remove(src)
+	GLOB.cargo_ammo_vendors.Remove(src)
+
+/obj/machinery/vending/lasgun
+	name = "ColMarTech Lasgun Field Charger"
+	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
+	icon_state = "lascharger"
+	icon_vend = "lascharger-vend"
+	icon_deny = "lascharger-denied"
+	req_access = null
+	req_one_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+	wrenchable = TRUE
+	drag_delay = FALSE
+	anchored = FALSE
+	idle_power_usage = 1
+	vend_power_usage = 50
+	machine_current_charge = 50000 //integrated battery for recharging energy weapons. Normally 10000.
+	machine_max_charge = 50000
+
+	product_ads = "Lasgun running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
+	products = list(
+					/obj/item/cell/lasgun/M43 = 10,
+					/obj/item/cell/lasgun/M43/highcap = 2,
+					)
+
+	contraband =   list()
+
+	premium = list()
+
+	prices = list()
+
+/obj/machinery/vending/lasgun/New()
+	. = ..()
+	update_icon()
+
+/obj/machinery/vending/lasgun/update_icon()
+	if(machine_max_charge)
+		switch(machine_current_charge / max(1,machine_max_charge))
+			if(0)
+				icon_state = "lascharger-off"
+			if(1 to 0.76)
+				icon_state = "lascharger"
+			if(0.75 to 0.51)
+				icon_state = "lascharger_75"
+			if(0.50 to 0.26)
+				icon_state = "lascharger_50"
+			if(0.25 to 0.01)
+				icon_state = "lascharger_25"
+
+/obj/machinery/vending/lasgun/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/cell/lasgun))
+		stock(W, user, TRUE)
+		return TRUE
+	return ..()
+
+/obj/machinery/vending/lasgun/examine(mob/user)
+	. = ..()
+	to_chat(user, "<b>It has [machine_current_charge] of [machine_max_charge] charge remaining.</b>")
+
+
+/obj/machinery/vending/lasgun/MouseDrop_T(var/atom/movable/A, mob/user)
+	. = ..()
+
+	var/obj/item/I = A
+	if(istype(I, /obj/item/cell/lasgun))
+		stock(I, user, TRUE)
+	else
+		stock(I, user)
+
+/obj/machinery/vending/lasgun/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
+	var/datum/data/vending_product/R //Let's try with a new datum.
+	 //More accurate comparison between absolute paths.
+	for(R in (product_records + hidden_records + coin_records))
+		if(item_to_stock.type == R.product_path && !istype(item_to_stock,/obj/item/storage)) //Nice try, specialists/engis
+			if(istype(item_to_stock, /obj/item/cell/lasgun) && recharge)
+				if(!recharge_lasguncell(item_to_stock, user))
+					return //Can't recharge so cancel out
+
+			if(item_to_stock.loc == user) //Inside the mob's inventory
+				if(item_to_stock.flags_item & WIELDED)
+					item_to_stock.unwield(user)
+				user.temporarilyRemoveItemFromInventory(item_to_stock)
+
+			if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
+				var/obj/item/storage/S = item_to_stock.loc
+				S.remove_from_storage(item_to_stock, user.loc)
+
+			qdel(item_to_stock)
+			if(!recharge)
+				user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
+				"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
+			R.amount++
+			updateUsrDialog()
+			break //We found our item, no reason to go on.
+
+/obj/machinery/vending/lasgun/proc/recharge_lasguncell(obj/item/cell/lasgun/A, mob/user)
+	var/recharge_cost = (A.maxcharge - A.charge)
+	if(recharge_cost > machine_current_charge)
+		to_chat(user, "<span class='warning'>[A] cannot be recharged; [src] has inadequate charge remaining: [machine_current_charge] of [machine_max_charge].</span>")
+		return FALSE
+	else
+		to_chat(user, "<span class='warning'>You insert [A] into [src] to be recharged.</span>")
+		if(icon_vend)
+			flick(icon_vend,src)
+		playsound(loc, 'sound/machines/hydraulics_1.ogg', 25, 0, 1)
+		machine_current_charge -= min(machine_current_charge, recharge_cost)
+		to_chat(user, "<span class='notice'>This dispenser has [machine_current_charge] of [machine_max_charge] remaining.</span>")
+		update_icon()
+		return TRUE
 
 
 /obj/machinery/vending/marineFood
@@ -249,7 +366,6 @@
 					/obj/item/reagent_container/food/snacks/mre_pack/meal2 = 15,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal3 = 15,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal4 = 15,
-					/obj/item/reagent_container/food/snacks/mre_pack/meal5 = 15,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal6 = 15,
 					/obj/item/storage/box/MRE = 10,
 					/obj/item/reagent_container/food/drinks/flask = 5)
@@ -258,7 +374,8 @@
 					/obj/item/reagent_container/food/snacks/mre_pack/xmas1 = 25,
 					/obj/item/reagent_container/food/snacks/mre_pack/xmas2 = 25,
 					/obj/item/reagent_container/food/snacks/mre_pack/xmas3 = 25)*/
-	contraband = list(/obj/item/reagent_container/food/drinks/flask/marine = 10)
+	contraband = list(/obj/item/reagent_container/food/drinks/flask/marine = 10,
+					/obj/item/reagent_container/food/snacks/mre_pack/meal5 = 15)
 	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
 	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork."
@@ -343,9 +460,9 @@
 
 	products = list(
 						/obj/item/clothing/under/marine/medic = 4,
-						/obj/item/clothing/head/helmet/marine/medic = 4,
-						/obj/item/storage/backpack/marine/medic = 4,
-						/obj/item/storage/backpack/marine/satchel/medic = 4,
+						/obj/item/clothing/head/helmet/marine/corpsman = 4,
+						/obj/item/storage/backpack/marine/corpsman = 4,
+						/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 						/obj/item/device/encryptionkey/med = 4,
 						/obj/item/storage/belt/medical = 4,
 						/obj/item/bodybag/cryobag = 4,
@@ -413,6 +530,7 @@
 					/obj/item/storage/box/spec/heavy_grenadier = 1,
 					/obj/item/storage/box/spec/sniper = 1,
 					/obj/item/storage/box/spec/scout = 1,
+					/obj/item/storage/box/spec/scoutshotgun = 1,
 					/obj/item/storage/box/spec/pyro = 1
 			)
 	prices = list()
@@ -515,7 +633,7 @@
 
 /obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(map_tag)
+	switch(SSmapping.config.map_name)
 		if(MAP_ICE_COLONY)
 			products2 = list( /obj/item/map/ice_colony_map = 3)
 		if(MAP_BIG_RED)
@@ -570,11 +688,11 @@
 
 /obj/machinery/vending/attachments/New()
 	..()
-	attachment_vendors.Add(src)
+	GLOB.attachment_vendors.Add(src)
 
 /obj/machinery/vending/attachments/Destroy()
 	. = ..()
-	attachment_vendors.Remove(src)
+	GLOB.attachment_vendors.Remove(src)
 
 
 
@@ -630,6 +748,21 @@
 
 	prices = list()
 
+/obj/machinery/vending/dress_supply
+	name = "\improper ColMarTech dress uniform vendor"
+	desc = "A automated weapon rack hooked up to a colossal storage of dress uniforms"
+	icon_state = "marineuniform"
+	icon_vend = "marineuniform_vend"
+	icon_deny = "marineuniform"
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
+	product_ads = "Hey! You! Stop looking like a turtle and start looking like a TRUE soldier!;Dress whites, fresh off the ironing board!;Why kill in armor when you can kill in style?;These uniforms are so sharp you'd cut yourself just looking at them!"
+	products = list(
+					/obj/item/clothing/under/whites = 50,
+					/obj/item/clothing/head/white_dress = 50,
+					/obj/item/clothing/shoes/white = 50,
+					/obj/item/clothing/gloves/white = 50,
+					)
+
 /obj/machinery/vending/uniform_supply/New()
 	..()
 	var/products2[]
@@ -651,11 +784,11 @@
 		products2 = list(/obj/item/device/radio/headset/almayer = 10,
 						/obj/item/clothing/gloves/marine = 10)
 	build_inventory(products2)
-	marine_vendors.Add(src)
+	GLOB.marine_vendors.Add(src)
 
 
 /obj/machinery/vending/uniform_supply/Destroy()
 	. = ..()
-	marine_vendors.Remove(src)
+	GLOB.marine_vendors.Remove(src)
 
 

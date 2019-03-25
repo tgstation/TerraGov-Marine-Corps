@@ -59,7 +59,7 @@
 				var/mob/living/carbon/monkey/O = what
 				if (O.client) //grief-proof
 					O.loc = loc
-					O.visible_message("\blue Suddenly [O] jumps out from the processor!", \
+					O.visible_message("<span class='notice'> Suddenly [O] jumps out from the processor!</span>", \
 							"You jump out from the processor", \
 							"You hear chimp")
 					return
@@ -96,10 +96,10 @@
 
 /obj/machinery/processor/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(src.processing)
-		to_chat(user, "\red The processor is in the process of processing.")
+		to_chat(user, "<span class='warning'>The processor is in the process of processing.</span>")
 		return 1
 	if(src.contents.len > 0) //TODO: several items at once? several different items?
-		to_chat(user, "\red Something is already in the processing chamber.")
+		to_chat(user, "<span class='warning'>Something is already in the processing chamber.</span>")
 		return 1
 	var/obj/what = O
 	if (istype(O, /obj/item/grab))
@@ -108,7 +108,7 @@
 
 	var/datum/food_processor_process/P = select_recipe(what)
 	if (!P)
-		to_chat(user, "\red That probably won't blend.")
+		to_chat(user, "<span class='warning'>That probably won't blend.</span>")
 		return 1
 	user.visible_message("[user] put [what] into [src].", \
 		"You put the [what] into [src].")
@@ -116,13 +116,13 @@
 	what.forceMove(src)
 
 /obj/machinery/processor/attack_hand(var/mob/user as mob)
-	if (src.stat != 0) //NOPOWER etc
+	if (src.machine_stat != 0) //NOPOWER etc
 		return
 	if(src.processing)
-		to_chat(user, "\red The processor is in the process of processing.")
+		to_chat(user, "<span class='warning'>The processor is in the process of processing.</span>")
 		return 1
 	if(src.contents.len == 0)
-		to_chat(user, "\red The processor is empty.")
+		to_chat(user, "<span class='warning'>The processor is empty.</span>")
 		return 1
 	for(var/O in src.contents)
 		var/datum/food_processor_process/P = select_recipe(O)
@@ -130,7 +130,7 @@
 			log_admin("DEBUG: [O] in processor havent suitable recipe. How do you put it in?") //-rastaf0
 			continue
 		src.processing = 1
-		user.visible_message("\blue [user] turns on [src].", \
+		user.visible_message("<span class='notice'> [user] turns on [src].</span>", \
 			"You turn on [src].", \
 			"You hear a food processor.")
 		playsound(src.loc, 'sound/machines/blender.ogg', 25, 1)
@@ -138,6 +138,6 @@
 		sleep(P.time)
 		P.process(src.loc, O)
 		src.processing = 0
-	src.visible_message("\blue \the [src] finished processing.", \
+	src.visible_message("<span class='notice'> \the [src] finished processing.</span>", \
 		"You hear the food processor stopping/")
 

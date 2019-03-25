@@ -32,7 +32,7 @@
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
 	vision_flags = SEE_TURFS
-	darkness_view = 12
+	darkness_view = 24
 	toggleable = 1
 	fullscreen_vision = null
 	actions_types = list(/datum/action/item_action/toggle)
@@ -58,7 +58,7 @@
 	fullscreen_vision = null //Nulled out due to general dislike for the overlay.
 
 /obj/item/clothing/glasses/night/m56_goggles/mob_can_equip(mob/user, slot)
-	if(slot == WEAR_EYES)
+	if(slot == SLOT_GLASSES)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(!istype(H.back, /obj/item/smartgun_powerpack))

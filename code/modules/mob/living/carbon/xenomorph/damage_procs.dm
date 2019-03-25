@@ -12,21 +12,27 @@
 		if(1)
 			switch(xeno_explosion_resistance)
 				if(3)
-					apply_damage(rand(125, 175), BRUTE) //Used to be rand(200, 300) which would one-shot most things. Tanks have severity 1 explosions on direct hits...
-					updatehealth()
+					b_loss += rand(70, 80)
+					f_loss += rand(70, 80)
+					adjust_stagger(1)
+					add_slowdown(1.1)
 				if(2)
 					KnockDown(6)
-					apply_damage(rand(125, 175), BRUTE)
-					updatehealth()
+					adjust_stagger(3)
+					add_slowdown(2.25)
+					b_loss += rand(75, 85)
+					f_loss += rand(75, 85)
 				if(1)
 					if(prob(80))
 						KnockOut(2)
 					KnockDown(8)
-					apply_damage(rand(125, 175), BRUTE)
-					updatehealth()
+					adjust_stagger(4)
+					add_slowdown(3)
+					b_loss += rand(80, 90)
+					f_loss += rand(80, 90)
 				else
 					gib()
-			return
+					return
 
 		if(2)
 			switch(xeno_explosion_resistance)
@@ -39,12 +45,18 @@
 					return
 				if(2)
 					KnockDown(4)
+					adjust_stagger(1)
+					add_slowdown(0.75)
 				if(1)
 					KnockDown(6)
+					adjust_stagger(2)
+					add_slowdown(1.5)
 				if(0)
 					if(prob(80))
 						KnockOut(4)
 					KnockDown(8)
+					adjust_stagger(3)
+					add_slowdown(2)
 
 			b_loss += rand(60, 75)
 			f_loss += rand(60, 75)
@@ -61,14 +73,19 @@
 				if(2)
 					if(!knocked_down) //so marines can't chainstun with grenades
 						KnockDown(2)
+					add_slowdown(0.6)
 				if(1)
 					if(!knocked_down)
 						KnockDown(3)
+					adjust_stagger(1)
+					add_slowdown(1.15)
 				if(0)
 					if(prob(40))
 						KnockOut(2)
 					if(!knocked_down)
 						KnockDown(4)
+					adjust_stagger(2)
+					add_slowdown(1.5)
 
 			b_loss += rand(30, 45)
 			f_loss += rand(30, 45)
@@ -109,27 +126,31 @@
 
 	switch(damagetype)
 		if(BRUTE)
-			adjustBruteLoss(damage)
+			adjustBruteLoss(damage, FALSE)
 		if(BURN)
-			adjustFireLoss(damage)
+			adjustFireLoss(damage, FALSE)
 
 	updatehealth()
 	return TRUE
 
 
-/mob/living/carbon/Xenomorph/adjustBruteLoss(amount)
+/mob/living/carbon/Xenomorph/adjustBruteLoss(amount, process_rage = TRUE)
+	if(process_rage)
+		amount = process_rage_damage(amount)
 	bruteloss = CLAMP(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
 
-/mob/living/carbon/Xenomorph/adjustFireLoss(amount)
+/mob/living/carbon/Xenomorph/adjustFireLoss(amount, process_rage = TRUE)
+	if(process_rage)
+		amount = process_rage_damage(amount)
 	fireloss = CLAMP(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
 
 /mob/living/carbon/Xenomorph/proc/process_rage_damage(damage)
 	return damage
 
 /mob/living/carbon/Xenomorph/Ravager/process_rage_damage(damage)
-	if(!damage || world.time < last_damage)
+	if(damage < 1 || world.time < last_damage)
 		return damage
-	rage += round(damage * 0.3) //Gain Rage stacks equal to 30% of damage received.
+	rage += round(damage * RAV_DAMAGE_RAGE_MULITPLIER)
 	last_rage = world.time //We incremented rage, so bookmark this.
 	last_damage = world.time + 2 //Limit how often this proc can trigger; once per 0.2 seconds
 	damage *= rage_resist //reduce damage by rage resist %
@@ -167,13 +188,13 @@
 			splash_chance = 80 - (i * 5)
 			if(victim.loc == loc) splash_chance += 30 //Same tile? BURN
 			splash_chance += distance * -15
-			if(victim.species && victim.species.name == "Yautja")
+			if(isyautjastrict(victim))
 				splash_chance -= 70 //Preds know to avoid the splashback.
 
 			if(splash_chance > 0 && prob(splash_chance)) //Success!
 				i++
 				victim.visible_message("<span class='danger'>\The [victim] is scalded with hissing green blood!</span>", \
 				"<span class='danger'>You are splattered with sizzling blood! IT BURNS!</span>")
-				if(prob(60) && !victim.stat && !(victim.species.flags & NO_PAIN))
+				if(prob(60) && !victim.stat && !(victim.species.species_flags & NO_PAIN))
 					victim.emote("scream") //Topkek
 				victim.take_limb_damage(0, rand(10, 25)) //Sizzledam! This automagically burns a random existing body part.

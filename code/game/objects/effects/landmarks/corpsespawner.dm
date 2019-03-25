@@ -35,7 +35,8 @@
 	var/xenovictim = FALSE //whether this person was infected and killed by xenos
 
 
-/obj/effect/landmark/corpsespawner/initialize()
+/obj/effect/landmark/corpsespawner/Initialize()
+	. = ..()
 	if(loc && !gc_destroyed) //there's some issue with the code that calls this initialize twice,
 		createCorpse()	//once normally and once when the landmark is in null space, thus spawning a mob there
 						//this is a bandaid until it's properly fixed.
@@ -47,29 +48,29 @@
 	M.real_name = name
 	M.death(1) //Kills the new mob
 	if(corpseuniform)
-		M.equip_to_slot_or_del(new corpseuniform(M), WEAR_BODY)
+		M.equip_to_slot_or_del(new corpseuniform(M), SLOT_W_UNIFORM)
 	if(corpsesuit)
-		M.equip_to_slot_or_del(new corpsesuit(M), WEAR_JACKET)
+		M.equip_to_slot_or_del(new corpsesuit(M), SLOT_WEAR_SUIT)
 	if(corpseshoes)
-		M.equip_to_slot_or_del(new corpseshoes(M), WEAR_FEET)
+		M.equip_to_slot_or_del(new corpseshoes(M), SLOT_SHOES)
 	if(corpsegloves)
-		M.equip_to_slot_or_del(new corpsegloves(M), WEAR_HANDS)
+		M.equip_to_slot_or_del(new corpsegloves(M), SLOT_GLOVES)
 	if(corpseradio)
-		M.equip_to_slot_or_del(new corpseradio(M), WEAR_EAR)
+		M.equip_to_slot_or_del(new corpseradio(M), SLOT_EARS)
 	if(corpseglasses)
-		M.equip_to_slot_or_del(new corpseglasses(M), WEAR_EYES)
+		M.equip_to_slot_or_del(new corpseglasses(M), SLOT_GLASSES)
 	if(corpsemask)
-		M.equip_to_slot_or_del(new corpsemask(M), WEAR_FACE)
+		M.equip_to_slot_or_del(new corpsemask(M), SLOT_WEAR_MASK)
 	if(corpsehelmet)
-		M.equip_to_slot_or_del(new corpsehelmet(M), WEAR_HEAD)
+		M.equip_to_slot_or_del(new corpsehelmet(M), SLOT_HEAD)
 	if(corpsebelt)
-		M.equip_to_slot_or_del(new corpsebelt(M), WEAR_WAIST)
+		M.equip_to_slot_or_del(new corpsebelt(M), SLOT_BELT)
 	if(corpsepocket1)
-		M.equip_to_slot_or_del(new corpsepocket1(M), WEAR_R_STORE)
+		M.equip_to_slot_or_del(new corpsepocket1(M), SLOT_R_STORE)
 	if(corpsepocket2)
-		M.equip_to_slot_or_del(new corpsepocket2(M), WEAR_L_STORE)
+		M.equip_to_slot_or_del(new corpsepocket2(M), SLOT_L_STORE)
 	if(corpseback)
-		M.equip_to_slot_or_del(new corpseback(M), WEAR_BACK)
+		M.equip_to_slot_or_del(new corpseback(M), SLOT_BACK)
 	if(corpseid)
 		var/obj/item/card/id/W = new(M)
 		W.name = "[M.real_name]'s ID Card"
@@ -89,7 +90,7 @@
 		if(corpseidjob)
 			W.assignment = corpseidjob
 		W.registered_name = M.real_name
-		M.equip_to_slot_or_del(W, WEAR_ID)
+		M.equip_to_slot_or_del(W, SLOT_WEAR_ID)
 	if(xenovictim)
 		M.adjustBruteLoss(100)
 		M.adjustBruteLoss(100)
@@ -106,7 +107,7 @@
 		var/obj/structure/bed/nest/N = locate() in get_turf(src)
 		if(N)
 			M.buckled = N
-			M.dir = N.dir
+			M.setDir(N.dir)
 			M.update_canmove()
 			N.buckled_mob = M
 			N.afterbuckle(M)
@@ -215,7 +216,7 @@
 	name = "Doctor"
 	corpseuniform = /obj/item/clothing/under/colonist
 	corpsesuit = /obj/item/clothing/suit/storage/labcoat
-	corpseback = /obj/item/storage/backpack/medic
+	corpseback = /obj/item/storage/backpack/corpsman
 	corpsepocket1 = /obj/item/device/flashlight/pen
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpseid = 1

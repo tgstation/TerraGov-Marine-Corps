@@ -1,6 +1,6 @@
 /mob/living/carbon/human/gib()
 
-	var/is_a_synth = isSynth(src)
+	var/is_a_synth = issynth(src)
 	for(var/datum/limb/E in limbs)
 		if(istype(E, /datum/limb/chest))
 			continue
@@ -50,22 +50,30 @@
 
 
 /mob/living/carbon/human/death(gibbed)
+	if(stat == DEAD) 
+		return
 
-	if(stat == DEAD) return
 	if(pulledby)
 		pulledby.stop_pulling()
+
 	//Handle species-specific deaths.
-	if(species) species.handle_death(src, gibbed)
+	if(species) 
+		species.handle_death(src, gibbed)
 
 	//callHook("death", list(src, gibbed))
+
+	toggle_typing_indicator()
 
 	if(!gibbed && species.death_sound)
 		playsound(loc, species.death_sound, 50, 1)
 
-	if(ticker && ticker.current_state == 3) //game has started, to ignore the map placed corpses.
+	if(SSticker && SSticker.current_state == 3) //game has started, to ignore the map placed corpses.
 		round_statistics.total_human_deaths++
 
-	return ..(gibbed,species.death_message)
+	GLOB.dead_human_list += src
+	GLOB.alive_human_list -= src
+
+	return ..()
 
 /mob/living/carbon/human/proc/makeSkeleton()
 	if(SKELETON in src.mutations)	return
@@ -85,7 +93,7 @@
 
 /mob/living/carbon/human/proc/ChangeToHusk()
 	if(HUSK in mutations)	return
-	if(isSynth(src)) return // dont husk synths
+	if(issynth(src)) return // dont husk synths
 
 	if(f_style)
 		f_style = "Shaved"		//we only change the icon_state of the hair datum, so it doesn't mess up their UI/UE

@@ -213,8 +213,8 @@
 				var/mob/user = PDA.fingerprintslast
 				if(istype(PDA.loc,/mob/living))
 					name = PDA.loc
-				log_admin("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
-				message_admins("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
+				log_admin("[key_name(user)] set status screen with [PDA]. Message: [data1] [data2]")
+				message_admins("[ADMIN_TPMONTY(user)] set status screen with [PDA]. Message: [data1] [data2]")
 
 		if("alert")
 			status_signal.data["picture_state"] = data1
@@ -255,8 +255,8 @@
 	if(mode==43 || mode==433)
 		var/pMonData[0]
 		var/apcData[0]
-		for(var/obj/machinery/power/monitor/pMon in machines)
-			if(!(pMon.stat & (NOPOWER|BROKEN)) )
+		for(var/obj/machinery/power/monitor/pMon in GLOB.machines)
+			if(!(pMon.machine_stat & (NOPOWER|BROKEN)) )
 				var/turf/monitorturf = locate(pMon.x,pMon.y,pMon.z)
 				var/area/monitorarea = monitorturf.loc
 				pMonData[++pMonData.len] = list ("Name" = html_encode(monitorarea ? pMon.name + " in " + monitorarea.name : pMon.name), "ref" = "\ref[pMon]")
@@ -452,7 +452,7 @@
 		else
 			JaniData["user_loc"] = list("x" = 0, "y" = 0)
 		var/MopData[0]
-		for(var/obj/item/tool/mop/M in item_list)
+		for(var/obj/item/tool/mop/M in GLOB.item_list)
 			var/turf/ml = get_turf(M)
 			if(ml)
 				if(ml.z != cl.z)
@@ -465,7 +465,7 @@
 
 
 		var/BucketData[0]
-		for(var/obj/structure/mopbucket/B in structure_list)
+		for(var/obj/structure/mopbucket/B in GLOB.structure_list)
 			var/turf/bl = get_turf(B)
 			if(bl)
 				if(bl.z != cl.z)
@@ -477,7 +477,7 @@
 			BucketData[++BucketData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
 
 		var/CbotData[0]
-		for(var/obj/machinery/bot/cleanbot/B in machines)
+		for(var/obj/machinery/bot/cleanbot/B in GLOB.machines)
 			var/turf/bl = get_turf(B)
 			if(bl)
 				if(bl.z != cl.z)
@@ -489,7 +489,7 @@
 		if(!CbotData.len)
 			CbotData[++CbotData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
 		var/CartData[0]
-		for(var/obj/structure/janitorialcart/B in structure_list)
+		for(var/obj/structure/janitorialcart/B in GLOB.structure_list)
 			var/turf/bl = get_turf(B)
 			if(bl)
 				if(bl.z != cl.z)

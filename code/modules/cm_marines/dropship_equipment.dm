@@ -65,10 +65,16 @@
 	base_category = DROPSHIP_WEAPON
 
 /obj/effect/attach_point/weapon/dropship1
-	ship_tag = "TGS Theseus Dropship 1"
+
+/obj/effect/attach_point/weapon/dropship1/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/effect/attach_point/weapon/dropship2
-	ship_tag = "TGS Theseus Dropship 2"
+
+/obj/effect/attach_point/weapon/dropship2/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 
 
 /obj/effect/attach_point/crew_weapon
@@ -76,10 +82,18 @@
 	base_category = DROPSHIP_CREW_WEAPON
 
 /obj/effect/attach_point/crew_weapon/dropship1
-	ship_tag = "TGS Theseus Dropship 1"
+
+
+/obj/effect/attach_point/crew_weapon/dropship1/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/effect/attach_point/crew_weapon/dropship2
-	ship_tag = "TGS Theseus Dropship 2"
+
+
+/obj/effect/attach_point/crew_weapon/dropship2/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 
 
 /obj/effect/attach_point/electronics
@@ -88,10 +102,17 @@
 	icon_state = "equip_base_front"
 
 /obj/effect/attach_point/electronics/dropship1
-	ship_tag = "TGS Theseus Dropship 1"
+
+
+/obj/effect/attach_point/electronics/dropship1/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/effect/attach_point/electronics/dropship2
-	ship_tag = "TGS Theseus Dropship 2"
+
+/obj/effect/attach_point/electronics/dropship2/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 
 
 /obj/effect/attach_point/fuel
@@ -101,20 +122,32 @@
 	base_category = DROPSHIP_FUEL_EQP
 
 /obj/effect/attach_point/fuel/dropship1
-	ship_tag = "TGS Theseus Dropship 1"
+
+/obj/effect/attach_point/fuel/dropship1/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/effect/attach_point/fuel/dropship2
-	ship_tag = "TGS Theseus Dropship 2"
+
+/obj/effect/attach_point/fuel/dropship2/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 
 
 /obj/effect/attach_point/computer
 	base_category = DROPSHIP_COMPUTER
 
 /obj/effect/attach_point/computer/dropship1
-	ship_tag = "TGS Theseus Dropship 1"
+
+/obj/effect/attach_point/computer/dropship1/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/effect/attach_point/computer/dropship2
-	ship_tag = "TGS Theseus Dropship 2"
+
+/obj/effect/attach_point/computer/dropship2/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 
 
 
@@ -138,6 +171,7 @@
 	var/datum/shuttle/ferry/marine/linked_shuttle
 	var/screen_mode = 0 //used by the dropship console code when this equipment is selected
 	var/point_cost = 0 //how many points it costs to build this with the fabricator, set to 0 if unbuildable.
+	breakable = FALSE
 
 /obj/structure/dropship_equipment/Destroy()
 	if(ammo_equipped)
@@ -280,7 +314,7 @@
 		to_chat(user, "<span class='warning'>[src] is busy.</span>")
 		return //prevents spamming deployment/undeployment
 	if(deployed_turret.loc == src) //not deployed
-		if(z == LOW_ORBIT_Z_LEVEL)
+		if(is_low_orbit_level(z))
 			to_chat(user, "<span class='warning'>[src] can't deploy mid-flight.</span>")
 		else
 			to_chat(user, "<span class='notice'>You deploy [src].</span>")
@@ -292,12 +326,12 @@
 
 /obj/structure/dropship_equipment/sentry_holder/update_equipment()
 	if(ship_base)
-		dir = ship_base.dir
+		setDir(ship_base.dir)
 		icon_state = "sentry_system_installed"
 		if(deployed_turret)
-			deployed_turret.dir = dir
+			deployed_turret.setDir(dir)
 			if(linked_shuttle && deployed_turret.camera)
-				if(linked_shuttle.shuttle_tag == "[MAIN_SHIP_NAME] Dropship 1")
+				if(linked_shuttle.shuttle_tag == "[CONFIG_GET(string/ship_name)] Dropship 1")
 					deployed_turret.camera.network.Add("dropship1") //accessible via the dropship camera console
 				else
 					deployed_turret.camera.network.Add("dropship2")
@@ -307,7 +341,7 @@
 				if(EAST) deployed_turret.pixel_x = -8
 				if(WEST) deployed_turret.pixel_x = 8
 	else
-		dir = initial(dir)
+		setDir(initial(dir))
 		if(deployed_turret)
 			if(deployed_turret.camera)
 				if(deployed_turret.camera.network.Find("dropship1"))
@@ -318,7 +352,7 @@
 			deployed_turret.pixel_y = 0
 			deployed_turret.pixel_x = 0
 			deployed_turret.loc = src
-			deployed_turret.dir = dir
+			deployed_turret.setDir(dir)
 			deployed_turret.on = 0
 		else
 			icon_state = "sentry_system_destroyed"
@@ -583,11 +617,11 @@
 
 /obj/structure/dropship_equipment/weapon/update_equipment()
 	if(ship_base)
-		dir = ship_base.dir
+		setDir(ship_base.dir)
 		bound_width = 32
 		bound_height = 32
 	else
-		dir = initial(dir)
+		setDir(initial(dir))
 		bound_width = initial(bound_width)
 		bound_height = initial(bound_height)
 	update_icon()
@@ -840,7 +874,7 @@
 	if(!selected_stretcher.stretcher_activated)//stretcher beacon was deactivated midway
 		return
 
-	if(selected_stretcher.z != 1) //in case the stretcher was on a groundside dropship that flew away during our input()
+	if(!is_ground_level(selected_stretcher.z)) //in case the stretcher was on a groundside dropship that flew away during our input()
 		return
 
 	if(!selected_stretcher.buckled_mob && !selected_stretcher.buckled_bodybag)
@@ -928,7 +962,7 @@
 		to_chat(user, "<span class='warning'>There seems to be no medevac stretcher connected to [src].</span>")
 		return
 
-	if(linked_stretcher.z != 1)
+	if(!is_ground_level(linked_stretcher.z))
 		linked_stretcher.linked_medevac = null
 		linked_stretcher = null
 		to_chat(user, "<span class='warning'> There seems to be no medevac stretcher connected to [src].</span>")
@@ -953,7 +987,7 @@
 
 	busy_winch = FALSE
 	var/fail
-	if(!linked_stretcher || linked_stretcher != old_stretcher || linked_stretcher.z != 1)
+	if(!linked_stretcher || linked_stretcher != old_stretcher || !is_ground_level(linked_stretcher.z))
 		fail = TRUE
 
 	else if(!ship_base) //uninstalled midway

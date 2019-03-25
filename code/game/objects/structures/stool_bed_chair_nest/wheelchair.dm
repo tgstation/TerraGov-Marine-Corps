@@ -13,7 +13,7 @@
 	var/image/O = image(icon = 'icons/obj/objects.dmi', icon_state = "w_overlay", layer = FLY_LAYER, dir = src.dir)
 	overlays += O
 	if(buckled_mob)
-		buckled_mob.dir = dir
+		buckled_mob.setDir(dir)
 
 /obj/structure/bed/chair/wheelchair/relaymove(mob/user, direction)
 	if(world.time <= l_move_time + move_delay)
@@ -31,15 +31,15 @@
 		var/datum/limb/right_hand = driver.get_limb("r_hand")
 		var/working_hands = 2
 		move_delay = initial(move_delay)
-		if(!left_hand || (left_hand.status & LIMB_DESTROYED))
+		if(!left_hand || (left_hand.limb_status & LIMB_DESTROYED))
 			move_delay += 4 //harder to move a wheelchair with a single hand
 			working_hands--
-		else if((left_hand.status & LIMB_BROKEN) && !(left_hand.status & LIMB_SPLINTED) && !(left_hand.status & LIMB_STABILIZED))
+		else if((left_hand.limb_status & LIMB_BROKEN) && !(left_hand.limb_status & LIMB_SPLINTED) && !(left_hand.limb_status & LIMB_STABILIZED))
 			move_delay++
-		if(!right_hand || (right_hand.status & LIMB_DESTROYED))
+		if(!right_hand || (right_hand.limb_status & LIMB_DESTROYED))
 			move_delay += 4
 			working_hands--
-		else if((right_hand.status & LIMB_BROKEN) && !(right_hand.status & LIMB_SPLINTED) && !(right_hand.status & LIMB_STABILIZED))
+		else if((right_hand.limb_status & LIMB_BROKEN) && !(right_hand.limb_status & LIMB_SPLINTED) && !(right_hand.limb_status & LIMB_STABILIZED))
 			move_delay += 2
 		if(!working_hands)
 			return // No hands to drive your chair? Tough luck!
@@ -51,7 +51,7 @@
 					pull_delay = M.buckled.drag_delay
 			move_delay += max(driver.pull_speed + pull_delay + 3*driver.grab_level, 0) //harder grab makes you slower
 
-		if(istype(driver.get_active_hand(), /obj/item/weapon/gun)) //Wheelchair user has a gun out, so obviously can't move
+		if(istype(driver.get_active_held_item(), /obj/item/weapon/gun)) //Wheelchair user has a gun out, so obviously can't move
 			return
 
 		if(driver.next_move_slowdown)
@@ -88,7 +88,7 @@
 		occupant.apply_effect(6, STUTTER, blocked)
 		occupant.apply_damage(10, BRUTE, def_zone)
 		playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
-		if(istype(A, /mob/living))
+		if(isliving(A))
 			var/mob/living/victim = A
 			def_zone = ran_zone()
 			blocked = victim.run_armor_check(def_zone, "melee")
@@ -102,12 +102,12 @@
 	var/obj/effect/decal/cleanable/blood/tracks/B = new(loc)
 	var/newdir = get_dir(get_step(loc, dir), loc)
 	if(newdir == dir)
-		B.dir = newdir
+		B.setDir(newdir)
 	else
 		newdir = newdir|dir
 		if(newdir == 3)
 			newdir = 1
 		else if(newdir == 12)
 			newdir = 4
-		B.dir = newdir
+		B.setDir(newdir)
 	bloodiness--

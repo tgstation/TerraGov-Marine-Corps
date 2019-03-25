@@ -21,7 +21,7 @@
 
 
 	check_eye(mob/user)
-		if (user.is_mob_incapacitated() || ((get_dist(user, src) > 1 || !( user.canmove ) || is_blind(user)) && !istype(user, /mob/living/silicon))) //user can't see - not sure why canmove is here.
+		if (user.is_mob_incapacitated() || ((get_dist(user, src) > 1 || !( user.canmove ) || is_blind(user)) && !issilicon(user))) //user can't see - not sure why canmove is here.
 			user.unset_interaction()
 			return
 		else if ( !current || !current.can_use() ) //camera doesn't work
@@ -42,9 +42,9 @@
 
 	attack_hand(mob/user)
 		if (src.z > 6)
-			to_chat(user, "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!")
+			to_chat(user, "<span class='danger'>Unable to establish a connection: You're too far away from the station!</span>")
 			return
-		if(stat & (NOPOWER|BROKEN))	return
+		if(machine_stat & (NOPOWER|BROKEN))	return
 
 		if(!isAI(user))
 			user.set_interaction(src)
@@ -92,7 +92,7 @@
 			A.client.eye = A.eyeobj
 			return 1
 
-		if (!C.can_use() || user.is_mob_incapacitated() || (get_dist(user, src) > 1 || user.interactee != src || is_blind(user) || !( user.canmove ) && !istype(user, /mob/living/silicon)))
+		if (!C.can_use() || user.is_mob_incapacitated() || (get_dist(user, src) > 1 || user.interactee != src || is_blind(user) || !( user.canmove ) && !issilicon(user)))
 			return 0
 		src.current = C
 		use_power(50)
@@ -109,7 +109,7 @@
 		else if(ismob(A))
 			if(ishuman(A))
 				jump_to = locate() in A:head
-			else if(isrobot(A))
+			else if(iscyborg(A))
 				jump_to = A:camera
 		else if(isobj(A))
 			jump_to = locate() in A
@@ -149,7 +149,7 @@
 
 /obj/machinery/computer/security/telescreen/update_icon()
 	icon_state = initial(icon_state)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state += "b"
 	return
 

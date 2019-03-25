@@ -1,4 +1,0 @@
-author: "Surrealistik"
-delete-after: True
-changes: 
-  - rscadd: "The Sentinel gains the ability to administer a neurotoxic sting. The sting costs 150 plasma, and has a cooldown of 30 seconds. It injects 15U neurotoxin initially, and 20U additional neurotoxin over a 3 second period at 1.5 second channeling intervals with 10U injected per interval, totaling 35U neurotoxin."

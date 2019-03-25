@@ -14,14 +14,13 @@
 	var/brightness_on = 7		//can't remember what the maxed out value is
 	unacidable = 1
 
-	New()
-		..()
-		spawn(1)
-			cell = new /obj/item/cell(src)
+/obj/machinery/floodlight/Initialize()
+	. = ..()
+	cell = new /obj/item/cell(src)
 
-	Destroy()
-		SetLuminosity(0)
-		. = ..()
+/obj/machinery/floodlight/Destroy()
+	SetLuminosity(0)
+	return ..()
 
 /obj/machinery/floodlight/proc/updateicon()
 	icon_state = "flood[open ? "o" : ""][open && cell ? "b" : ""]0[on]"
@@ -40,7 +39,7 @@
 /obj/machinery/floodlight/attack_hand(mob/user as mob)
 	if(open && cell)
 		if(ishuman(user))
-			if(!user.get_active_hand())
+			if(!user.get_active_held_item())
 				user.put_in_hands(cell)
 				cell.loc = user.loc
 		else
@@ -56,7 +55,7 @@
 
 	if(on)
 		on = 0
-		to_chat(user, "\blue You turn off the light.")
+		to_chat(user, "<span class='notice'>You turn off the light.</span>")
 		SetLuminosity(0)
 		unacidable = 1
 	else
@@ -65,7 +64,7 @@
 		if(cell.charge <= 0)
 			return
 		on = 1
-		to_chat(user, "\blue You turn on the light.")
+		to_chat(user, "<span class='notice'>You turn on the light.</span>")
 		SetLuminosity(brightness_on)
 		unacidable = 0
 
@@ -76,7 +75,7 @@
 	if(!ishuman(user))
 		return
 
-	if (istype(W, /obj/item/tool/wrench))
+	if (iswrench(W))
 		if (!anchored)
 			anchored = 1
 			to_chat(user, "You anchor the [src] in place.")
@@ -84,7 +83,7 @@
 			anchored = 0
 			to_chat(user, "You remove the bolts from the [src].")
 
-	if (istype(W, /obj/item/tool/screwdriver))
+	if (isscrewdriver(W))
 		if (!open)
 			if(unlocked)
 				unlocked = 0
@@ -93,7 +92,7 @@
 				unlocked = 1
 				to_chat(user, "You unscrew the battery panel.")
 
-	if (istype(W, /obj/item/tool/crowbar))
+	if (iscrowbar(W))
 		if(unlocked)
 			if(open)
 				open = 0
@@ -109,7 +108,7 @@
 			if(cell)
 				to_chat(user, "There is a power cell already installed.")
 			else
-				if(user.drop_inv_item_to_loc(W, src))
+				if(user.transferItemToLoc(W, src))
 					cell = W
 					to_chat(user, "You insert the power cell.")
 	updateicon()

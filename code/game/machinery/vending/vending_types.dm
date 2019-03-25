@@ -34,7 +34,7 @@
 	icon_state = "boozeomat"        //////////////18 drink entities below, plus the glasses, in case someone wants to edit the number of bottles
 	icon_deny = "boozeomat-deny"
 	products = list(/obj/item/reagent_container/food/drinks/bottle/gin = 5,/obj/item/reagent_container/food/drinks/bottle/whiskey = 5,
-					/obj/item/reagent_container/food/drinks/bottle/tequilla = 5,/obj/item/reagent_container/food/drinks/bottle/vodka = 5,
+					/obj/item/reagent_container/food/drinks/bottle/tequila = 5,/obj/item/reagent_container/food/drinks/bottle/vodka = 5,
 					/obj/item/reagent_container/food/drinks/bottle/vermouth = 5,/obj/item/reagent_container/food/drinks/bottle/rum = 5,
 					/obj/item/reagent_container/food/drinks/bottle/wine = 5,/obj/item/reagent_container/food/drinks/bottle/cognac = 5,
 					/obj/item/reagent_container/food/drinks/bottle/kahlua = 5,/obj/item/reagent_container/food/drinks/cans/beer = 6,
@@ -66,9 +66,10 @@
 	icon_state = "coffee"
 	icon_vend = "coffee-vend"
 	vend_delay = 34
-	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
-	vend_power_usage = 85000 //85 kJ to heat a 250 mL cup of coffee
-	products = list(/obj/item/reagent_container/food/drinks/coffee = 25,/obj/item/reagent_container/food/drinks/tea = 25,/obj/item/reagent_container/food/drinks/h_chocolate = 25)
+	products = list(/obj/item/reagent_container/food/drinks/coffee = 20,
+					/obj/item/reagent_container/food/drinks/coffee/cafe_latte = 20,
+					/obj/item/reagent_container/food/drinks/tea = 25,
+					/obj/item/reagent_container/food/drinks/h_chocolate = 25)
 	contraband = list(/obj/item/reagent_container/food/drinks/ice = 10)
 	prices = list()
 
@@ -336,11 +337,11 @@
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
-	desc = "Spare tool vending. What? Did you expect some witty description?"
+	desc = "Spare electronics vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
 	req_access_txt = "7" //Engineering Equipment access
-	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/device/multitool = 4,/obj/item/circuitboard/airlock = 10,/obj/item/circuitboard/apc = 10,/obj/item/circuitboard/airalarm = 10,/obj/item/cell/high = 10)
+	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/device/multitool = 4,/obj/item/circuitboard/airlock = 10,/obj/item/circuitboard/apc = 10,/obj/item/circuitboard/airalarm = 10, /obj/item/circuitboard/general = 20, /obj/item/cell/high = 10)
 	contraband = list(/obj/item/cell/potato = 3)
 	premium = list(/obj/item/storage/belt/utility = 3)
 

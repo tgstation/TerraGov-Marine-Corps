@@ -83,7 +83,7 @@
 
 	if(mods["ctrl"] && mods["middle"])
 		if(ovipositor)
-			if(isXeno(A) && A != src)
+			if(isxeno(A) && A != src)
 				var/mob/living/carbon/Xenomorph/X = A
 				if(X.stat != DEAD)
 					set_queen_overwatch(A)

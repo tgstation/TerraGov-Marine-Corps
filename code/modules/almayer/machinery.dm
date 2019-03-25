@@ -53,7 +53,7 @@
 			return
 
 /obj/machinery/prop/almayer/computer/proc/set_broken()
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	update_icon()
 
 /obj/machinery/prop/almayer/computer/power_change()
@@ -63,9 +63,9 @@
 /obj/machinery/prop/almayer/computer/update_icon()
 	..()
 	icon_state = initial(icon_state)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state += "b"
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = initial(icon_state)
 		icon_state += "0"
 
@@ -187,9 +187,9 @@
 	density = 0
 	unacidable = 1
 
-/obj/structure/prop/almayer/name_stencil/New()
+/obj/structure/prop/almayer/name_stencil/Initialize()
 	. = ..()
-	name = MAIN_SHIP_NAME
+	name = CONFIG_GET(string/ship_name)
 
 
 /obj/structure/prop/almayer/hangar_stencil
@@ -252,7 +252,7 @@
 		if(W.name == "used stasis bag") //possiblity for abuse, but fairly low considering its near impossible to rename something without VV
 			var/obj/item/bodybag/cryobag/R = new /obj/item/bodybag/cryobag //lets give them the bag considering having it unfolded would be a pain in the ass.
 			R.add_fingerprint(user)
-			user.temp_drop_inv_item(W)
+			user.temporarilyRemoveItemFromInventory(W)
 			qdel(W)
 			user.put_in_hands(R)
 			return TRUE

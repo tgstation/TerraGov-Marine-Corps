@@ -1,22 +1,22 @@
 proc/random_ethnicity()
-	return pick(ethnicities_list)
+	return pick(GLOB.ethnicities_list)
 
 proc/random_body_type()
-	return pick(body_types_list)
+	return pick(GLOB.body_types_list)
 
 proc/random_hair_style(gender, species = "Human")
 	var/h_style = "Crewcut"
 
 	var/list/valid_hairstyles = list()
-	for(var/hairstyle in hair_styles_list)
-		var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
+	for(var/hairstyle in GLOB.hair_styles_list)
+		var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
 		if(gender == MALE && S.gender == FEMALE)
 			continue
 		if(gender == FEMALE && S.gender == MALE)
 			continue
 		if( !(species in S.species_allowed))
 			continue
-		valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
+		valid_hairstyles[hairstyle] = GLOB.hair_styles_list[hairstyle]
 
 	if(valid_hairstyles.len)
 		h_style = pick(valid_hairstyles)
@@ -28,8 +28,8 @@ proc/random_facial_hair_style(gender, species = "Human")
 	var/f_style = "Shaved"
 
 	var/list/valid_facialhairstyles = list()
-	for(var/facialhairstyle in facial_hair_styles_list)
-		var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
+	for(var/facialhairstyle in GLOB.facial_hair_styles_list)
+		var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
 		if(gender == MALE && S.gender == FEMALE)
 			continue
 		if(gender == FEMALE && S.gender == MALE)
@@ -37,7 +37,7 @@ proc/random_facial_hair_style(gender, species = "Human")
 		if( !(species in S.species_allowed))
 			continue
 
-		valid_facialhairstyles[facialhairstyle] = facial_hair_styles_list[facialhairstyle]
+		valid_facialhairstyles[facialhairstyle] = GLOB.facial_hair_styles_list[facialhairstyle]
 
 	if(valid_facialhairstyles.len)
 		f_style = pick(valid_facialhairstyles)
@@ -55,10 +55,7 @@ proc/random_skin_tone()
 	return min(max( .+rand(-25, 25), -185),34)
 
 /proc/get_playable_species()
-	var/list/playable_species = list()
-	for(var/species in all_species)
-		if(is_alien_whitelisted(species))
-			playable_species += species
+	var/list/playable_species = list(GLOB.all_species[DEFAULT_SPECIES])
 	return playable_species
 
 proc/skintone2racedescription(tone)
@@ -85,13 +82,3 @@ proc/age2agedescription(age)
 		if(60 to 70)		return "aging"
 		if(70 to INFINITY)	return "elderly"
 		else				return "unknown"
-
-
-proc/has_species(var/mob/M, var/species)
-	if(!M || !istype(M,/mob/living/carbon/human)) return 0
-	var/mob/living/carbon/human/H = M
-
-	if(!H.species) return 0
-	if(H.species.name != species) return 0
-
-	return 1

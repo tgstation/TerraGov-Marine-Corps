@@ -4,12 +4,13 @@
 	icon = 'icons/obj/structures/closet.dmi'
 	icon_state = "closed"
 	density = TRUE
+	layer = BELOW_OBJ_LAYER
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/opened = FALSE
 	var/welded = FALSE
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
-	var/health = 100
+	health = 100
 	var/lastbang = FALSE
 	var/storage_capacity = 30 //This is so that someone can't pack hundreds of items in a locker/crate
 							  //then open it in a populated area to crash clients.
@@ -19,18 +20,24 @@
 	var/store_items = TRUE
 	var/store_mobs = TRUE
 
+	var/closet_stun_delay = 1
+
 	anchored = TRUE
 
 	var/const/mob_size = 15
 
-/obj/structure/closet/initialize()
-	..()
-	spawn(1)
-		if(!opened)		// if closed, any item at the crate's loc is put in the contents
-			for(var/obj/item/I in src.loc)
-				if(I.density || I.anchored || I == src)
-					continue
-				I.loc = src
+/obj/structure/closet/open
+	icon_state = "open"
+	density = FALSE
+	opened = TRUE
+
+/obj/structure/closet/Initialize()
+	. = ..()
+	if(!opened)		// if closed, any item at the crate's loc is put in the contents
+		for(var/obj/item/I in loc)
+			if(I.density || I.anchored || I == src)
+				continue
+			I.loc = src
 
 /obj/structure/closet/alter_health()
 	return get_turf(src)
@@ -40,9 +47,6 @@
 		return TRUE
 	else
 		return !density
-
-/obj/structure/closet/proc/select_gamemode_equipment(gamemode)
-	return
 
 /obj/structure/closet/proc/can_open()
 	if(src.welded)
@@ -64,9 +68,8 @@
 
 	for(var/mob/M in src)
 		M.forceMove(loc)
-		M.stunned = max(M.stunned, 2) //Action delay when going out of a closet
-		M.update_canmove() //Force the delay to go in action immediately
-		if(!M.lying)
+		M.Stun(closet_stun_delay)//Action delay when going out of a closet
+		if(!M.lying && M.stunned)
 			M.visible_message("<span class='warning'>[M] suddenly gets out of [src]!",
 			"<span class='warning'>You get out of [src] and get your bearings!")
 
@@ -81,7 +84,7 @@
 
 	opened = TRUE
 	update_icon()
-	playsound(src.loc, open_sound, 15, 1)
+	playsound(loc, open_sound, 15, 1)
 	density = FALSE
 	return TRUE
 
@@ -100,12 +103,12 @@
 	opened = FALSE
 	update_icon()
 
-	playsound(src.loc, close_sound, 15, 1)
+	playsound(loc, close_sound, 15, 1)
 	density = TRUE
 	return TRUE
 
 /obj/structure/closet/proc/store_items(var/stored_units)
-	for(var/obj/item/I in src.loc)
+	for(var/obj/item/I in loc)
 		var/item_size = CEILING(I.w_class / 2, 1)
 		if(stored_units + item_size > storage_capacity)
 			continue
@@ -115,10 +118,10 @@
 	return stored_units
 
 /obj/structure/closet/proc/store_mobs(var/stored_units)
-	for(var/mob/M in src.loc)
+	for(var/mob/M in loc)
 		if(stored_units + mob_size > storage_capacity)
 			break
-		if(istype (M, /mob/dead/observer))
+		if(isobserver(M))
 			continue
 		if(M.buckled)
 			continue
@@ -141,19 +144,19 @@
 	switch(severity)
 		if(1)
 			for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
-				A.loc = src.loc
+				A.loc = loc
 				A.ex_act(severity++)
 			qdel(src)
 		if(2)
 			if(prob(50))
 				for (var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+					A.loc = loc
 					A.ex_act(severity++)
 				qdel(src)
 		if(3)
 			if(prob(5))
 				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+					A.loc = loc
 					A.ex_act(severity++)
 				qdel(src)
 
@@ -164,7 +167,7 @@
 	if(prob(30)) playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 	if(health <= 0)
 		for(var/atom/movable/A as mob|obj in src)
-			A.loc = src.loc
+			A.loc = loc
 		spawn(1)
 			playsound(loc, 'sound/effects/meteorimpact.ogg', 25, 1)
 			qdel(src)
@@ -173,13 +176,13 @@
 
 /obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)
-		visible_message("\red [user] destroys the [src]. ")
+		visible_message("<span class='warning'> [user] destroys the [src]. </span>")
 		for(var/atom/movable/A as mob|obj in src)
-			A.loc = src.loc
+			A.loc = loc
 		qdel(src)
 
 /obj/structure/closet/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent == "hurt" && !unacidable)
+	if(M.a_intent == INTENT_HARM && !unacidable)
 		M.animation_attack_on(src)
 		if(!opened && prob(70))
 			break_open()
@@ -188,13 +191,15 @@
 		else
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src]!</span>", \
 			"<span class='danger'>You smash \the [src]!</span>", null, 5)
+		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 	else
 		return attack_paw(M)
 
 /obj/structure/closet/attackby(obj/item/W, mob/living/user)
 	if(src.opened)
 		if(istype(W, /obj/item/grab))
-			if(isXeno(user))
+			if(isxeno(user))
 				return
 			var/obj/item/grab/G = W
 			if(G.grabbed_thing)
@@ -202,12 +207,12 @@
 			return
 		if(W.flags_item & ITEM_ABSTRACT)
 			return FALSE
-		if(istype(W, /obj/item/tool/weldingtool))
+		if(iswelder(W))
 			var/obj/item/tool/weldingtool/WT = W
 			if(!WT.remove_fuel(0,user))
 				to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
 				return
-			new /obj/item/stack/sheet/metal(src.loc)
+			new /obj/item/stack/sheet/metal(loc)
 			for(var/mob/M in viewers(src))
 				M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with [WT].</span>", 3, "You hear welding.", 2)
 			qdel(src)
@@ -221,13 +226,13 @@
 			qdel(src)
 			return
 
-		if(isrobot(user))
+		if(iscyborg(user))
 			return
-		user.drop_inv_item_to_loc(W,loc)
+		user.transferItemToLoc(W,loc)
 
 	else if(istype(W, /obj/item/packageWrap))
 		return
-	else if(istype(W, /obj/item/tool/weldingtool))
+	else if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(!WT.remove_fuel(0,user))
 			to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
@@ -270,7 +275,7 @@
 
 
 /obj/structure/closet/relaymove(mob/user)
-	if(!isturf(src.loc))
+	if(!isturf(loc))
 		return
 	if(user.is_mob_incapacitated(TRUE))
 		return

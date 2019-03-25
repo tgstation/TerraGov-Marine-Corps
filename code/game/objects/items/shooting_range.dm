@@ -33,7 +33,7 @@
 
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/tool/weldingtool))
+		if (iswelder(W))
 			var/obj/item/tool/weldingtool/WT = W
 			if(WT.remove_fuel(0, user))
 				overlays.Cut()
@@ -57,7 +57,7 @@
 
 				loc = user.loc
 				if(ishuman(user))
-					if(!user.get_active_hand())
+					if(!user.get_active_held_item())
 						user.put_in_hands(src)
 						to_chat(user, "You take the target out of the stake.")
 				else
@@ -95,7 +95,7 @@
 		if(hp <= 0)
 			for(var/mob/O in oviewers())
 				if (O.client && !is_blind(O))
-					to_chat(O, "\red [src] breaks into tiny pieces and collapses!")
+					to_chat(O, "<span class='warning'>[src] breaks into tiny pieces and collapses!</span>")
 			qdel(src)
 
 		// Create a temporary object to represent the damage
@@ -115,7 +115,7 @@
 
 			if(Proj.ammo.damage >= 20)
 				bmark.icon_state = "scorch"
-				bmark.dir = pick(NORTH,SOUTH,EAST,WEST) // random scorch design
+				bmark.setDir(pick(NORTH,SOUTH,EAST,WEST)) // random scorch design
 
 
 			else

@@ -11,14 +11,14 @@
 	var/signlang_verb = list()       // list of emotes that might be displayed if this language has NONVERBAL or SIGNLANG flags
 	var/colour = "body"         // CSS style to use for strings in this language.
 	var/key = "x"                    // Character used to speak in language eg. :o for Unathi.
-	var/flags = 0                    // Various language flags.
+	var/language_flags = NOFLAGS                    // Various language flags.
 	var/native                       // If set, non-native speakers will have trouble speaking.
 
 /datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 
 	speaker.log_talk(message, LOG_SAY)
 
-	for(var/mob/player in player_list)
+	for(var/mob/player in GLOB.player_list)
 
 		var/understood = 0
 
@@ -54,7 +54,7 @@
 	exclaim_verb = "roars"
 	colour = "soghun"
 	key = "o"
-	flags = WHITELISTED
+	language_flags = WHITELISTED
 
 /datum/language/tajaran
 	name = "Siik'tajr"
@@ -64,7 +64,7 @@
 	exclaim_verb = "yowls"
 	colour = "tajaran"
 	key = "j"
-	flags = WHITELISTED
+	language_flags = WHITELISTED
 
 /datum/language/skrell
 	name = "Skrellian"
@@ -74,7 +74,7 @@
 	exclaim_verb = "warbles"
 	colour = "skrell"
 	key = "k"
-	flags = WHITELISTED
+	language_flags = WHITELISTED
 
 /datum/language/vox
 	name = "Vox-pidgin"
@@ -84,14 +84,14 @@
 	exclaim_verb = "SHRIEKS"
 	colour = "vox"
 	key = "9"
-	flags = RESTRICTED
+	language_flags = RESTRICTED
 
 /datum/language/common
 	name = "English"
 	desc = "Common earth English."
 	speech_verb = "says"
 	key = "0"
-	flags = RESTRICTED
+	language_flags = RESTRICTED
 
 /datum/language/common/get_speech_verb(mob/living/carbon/human/H)
 	return H.species?.speech_verb_override || speech_verb
@@ -136,7 +136,7 @@
 	exclaim_verb = "roars"
 	colour = "tajaran"
 	key = "s"
-	flags = WHITELISTED
+	language_flags = WHITELISTED
 
 /datum/language/xenocommon
 	name = "Xenomorph"
@@ -146,7 +146,7 @@
 	ask_verb = "hisses"
 	exclaim_verb = "hisses"
 	key = "x"
-	flags = RESTRICTED
+	language_flags = RESTRICTED
 
 /datum/language/xenos
 	name = "Hivemind"
@@ -156,7 +156,7 @@
 	exclaim_verb = "hiveminds"
 	colour = "soghun"
 	key = "a"
-	flags = RESTRICTED|HIVEMIND
+	language_flags = RESTRICTED|HIVEMIND
 
 /datum/language/xenos/check_special_condition(var/mob/other)
 
@@ -184,7 +184,7 @@
 	ask_verb = "queries"
 	exclaim_verb = "declares"
 	key = "6"
-	flags = RESTRICTED|HIVEMIND
+	language_flags = RESTRICTED|HIVEMIND
 	var/drone_only
 
 /datum/language/binary/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
@@ -198,15 +198,15 @@
 	var/message_start = "<i><span class='game say'>[name], <span class='name'>[speaker.name]</span>"
 	var/message_body = "<span class='message'>[speaker.say_quote(message)], \"[message]\"</span></span></i>"
 
-	for (var/mob/M in dead_mob_list)
+	for (var/mob/M in GLOB.dead_mob_list)
 		if(!istype(M,/mob/new_player) && !istype(M,/mob/living/brain)) //No meta-evesdropping
 			M.show_message("[message_start] [message_body]", 2)
 
-	for (var/mob/living/S in living_mob_list)
+	for (var/mob/living/S in GLOB.alive_mob_list)
 
 		if(drone_only && !istype(S,/mob/living/silicon/robot/drone))
 			continue
-		else if(istype(S , /mob/living/silicon/ai))
+		else if(isAI(S))
 			message_start = "<i><span class='game say'>[name], <a href='byond://?src=\ref[S];track2=\ref[S];track=\ref[speaker];trackname=[html_encode(speaker.name)]'><span class='name'>[speaker.name]</span></a>"
 		else if (!S.binarycheck())
 			continue
@@ -217,12 +217,12 @@
 	listening -= src
 
 	for (var/mob/living/M in listening)
-		if(istype(M, /mob/living/silicon) || M.binarycheck())
+		if(issilicon(M) || M.binarycheck())
 			continue
 		M.show_message("<i><span class='game say'><span class='name'>synthesised voice</span> <span class='message'>beeps, \"beep beep beep\"</span></span></i>",2)
 
 	//robot binary xmitter component power usage
-	if (isrobot(speaker))
+	if (iscyborg(speaker))
 		var/mob/living/silicon/robot/R = speaker
 		var/datum/robot_component/C = R.components["comms"]
 		R.cell_use_power(C.active_usage)
@@ -235,13 +235,20 @@
 	exclaim_verb = "transmits"
 	colour = "say_quote"
 	key = "d"
-	flags = RESTRICTED|HIVEMIND
+	language_flags = RESTRICTED|HIVEMIND
 	drone_only = 1
+
+/datum/language/zombie
+	name = "Zombie"
+	desc = "If you select this from the language screen, expect braaaains..."
+	colour = "green"
+	key = "4"
+	language_flags = RESTRICTED
 
 // Language handling.
 /mob/proc/add_language(var/language)
 
-	var/datum/language/new_language = all_languages[language]
+	var/datum/language/new_language = GLOB.all_languages[language]
 
 	if(!istype(new_language) || new_language in languages)
 		return 0
@@ -251,7 +258,7 @@
 
 /mob/proc/remove_language(var/rem_language)
 
-	languages.Remove(all_languages[rem_language])
+	languages.Remove(GLOB.all_languages[rem_language])
 
 	return 0
 
@@ -266,10 +273,11 @@
 	set category = "IC"
 	set src = usr
 
-	var/dat = "<b><font size = 5>Known Languages</font></b><br/><br/>"
+	var/dat
 
 	for(var/datum/language/L in languages)
 		dat += "<b>[L.name] (:[L.key])</b><br/>[L.desc]<br/><br/>"
 
-	src << browse(dat, "window=checklanguage")
-	return
+	var/datum/browser/popup = new(src, "checklanguage", "<div align='center'>Known Languages</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)

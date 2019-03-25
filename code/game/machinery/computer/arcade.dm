@@ -1,10 +1,10 @@
 /obj/machinery/computer/arcade
 	name = "Black Donnovan II: Double Revenge"
-	desc = "Two years after the average high school teenager Josh transformed into the powerful ninja 'Black Donnovan' and defeated the evil forces of Colonel Ranchenko and his UPP experiments to save his captured ninja girlfriend Reino, chaos is unleashed again on the world. Josh's Canadian cousin, transforming into the powerful ninja 'Fury Fuhrer', has created a world in Florida no longer exists. Josh once again transforms into 'Black Donnovan' to fight against Fury Fuhrer's legions of goons and restore the hellscape world to its former glory."
+	desc = "Does not support Pinball."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "arcade"
 	circuit = "/obj/item/circuitboard/computer/arcade"
-	var/enemy_name = "Fury Fuhrer"
+	var/enemy_name = "Space Villain"
 	var/temp = "Sponsored by Nanotrasen and the TerraGov Marine Corps" //Temporary message, for attack messages, etc
 	var/player_hp = 30 //Player health/attack points
 	var/player_mp = 10
@@ -68,9 +68,11 @@
 
 	dat += "</b></center>"
 
-	user << browse(dat, "window=arcade")
+	var/datum/browser/popup = new(user, "arcade", "<div align='center'>Arcade</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "arcade")
-	return
+
 
 /obj/machinery/computer/arcade/Topic(href, href_list)
 	if(..())
@@ -144,15 +146,14 @@
 			src.temp = "[src.enemy_name] has fallen! Rejoice!"
 
 			if(emagged)
-				feedback_inc("arcade_win_emagged")
 				new /obj/effect/spawner/newbomb/timer/syndicate(src.loc)
 				new /obj/item/clothing/head/collectable/petehat(src.loc)
-				message_admins("[key_name_admin(usr)] has outbombed Cuban Pete and been awarded a bomb.")
-				log_game("[key_name_admin(usr)] has outbombed Cuban Pete and been awarded a bomb.")
+				log_game("[key_name(usr)] has outbombed Cuban Pete and been awarded a bomb.")
+				message_admins("[ADMIN_TPMONTY(usr)] has outbombed Cuban Pete and been awarded a bomb.")
+
 				src.New()
 				emagged = 0
 			else if(!contents.len)
-				feedback_inc("arcade_win_normal")
 				var/prizeselect = pickweight(prizes)
 				new prizeselect(src.loc)
 
@@ -163,7 +164,6 @@
 					new	/obj/item/clothing/head/syndicatefake(src.loc)
 
 			else
-				feedback_inc("arcade_win_normal")
 				var/atom/movable/prize = pick(contents)
 				prize.loc = src.loc
 
@@ -183,10 +183,7 @@
 			sleep(10)
 			src.temp = "You have been drained! GAME OVER"
 			if(emagged)
-				feedback_inc("arcade_loss_mana_emagged")
 				usr.gib()
-			else
-				feedback_inc("arcade_loss_mana_normal")
 
 	else if ((src.enemy_hp <= 10) && (src.enemy_mp > 4))
 		src.temp = "[src.enemy_name] heals for 4 health!"
@@ -202,10 +199,7 @@
 		src.gameover = 1
 		src.temp = "GAME OVER"
 		if(emagged)
-			feedback_inc("arcade_loss_hp_emagged")
 			usr.gib()
-		else
-			feedback_inc("arcade_loss_hp_normal")
 
 	src.blocked = 0
 	return
@@ -233,7 +227,7 @@
 
 
 /obj/machinery/computer/arcade/emp_act(severity)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		..(severity)
 		return
 	var/empprize = null

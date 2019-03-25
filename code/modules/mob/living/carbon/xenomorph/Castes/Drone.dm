@@ -32,7 +32,7 @@
 	evolves_to = list(/mob/living/carbon/Xenomorph/Queen, /mob/living/carbon/Xenomorph/Carrier, /mob/living/carbon/Xenomorph/Hivelord)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -140,7 +140,7 @@
 	caste_base_type = /mob/living/carbon/Xenomorph/Drone
 	name = "Drone"
 	desc = "An Alien Drone"
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	icon_state = "Drone Walking"
 	health = 120
 	maxHealth = 120
@@ -148,9 +148,10 @@
 	tier = 1
 	upgrade = 0
 	speed = -0.8
-	pixel_x = 0
-	old_x = 0
+	pixel_x = -12
+	old_x = -12
 	pull_speed = -2
+	var/last_drone_sting = null
 	wound_type = "alien" //used to match appropriate wound overlays
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -159,8 +160,10 @@
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/activable/transfer_plasma,
+		/datum/action/xeno_action/activable/salvage_plasma,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
-		/datum/action/xeno_action/emit_pheromones,
+		/datum/action/xeno_action/activable/drone_sting,
+		/datum/action/xeno_action/toggle_pheromones
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,

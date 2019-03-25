@@ -30,7 +30,7 @@
 	max_co2 = 0
 	max_tox = 0
 
-	a_intent = "harm" //so they don't get pushed around
+	a_intent = INTENT_HARM //so they don't get pushed around
 
 	wall_smash = 1
 
@@ -75,7 +75,7 @@
 			if(stat == CONSCIOUS || stat == UNCONSCIOUS)
 				icon_state = "spacewormhead[previous?1:0]"
 				if(previous)
-					dir = get_dir(previous,src)
+					setDir(get_dir(previous,src))
 			else
 				icon_state = "spacewormheaddead"
 
@@ -123,13 +123,13 @@
 
 		return
 
-	proc/update_icon() //only for the sake of consistency with the other update icon procs
+	update_icon() //only for the sake of consistency with the other update icon procs
 		if(stat == CONSCIOUS || stat == UNCONSCIOUS)
 			if(previous) //midsection
 				icon_state = "spaceworm[get_dir(src,previous)|get_dir(src,next)]" //see 3 lines below
 			else //tail
 				icon_state = "spacewormtail"
-				dir = get_dir(src,next) //next will always be present since it's not a head and if it's dead, it goes in the other if branch
+				setDir(get_dir(src,next)) //next will always be present since it's not a head and if it's dead, it goes in the other if branch
 		else
 			icon_state = "spacewormdead"
 
@@ -137,7 +137,7 @@
 
 	proc/AttemptToEat(var/atom/target)
 		if(istype(target,/turf/closed/wall))
-			if((!istype(target,/turf/closed/wall/r_wall) && eatingDuration >= 100) || eatingDuration >= 200) //need 20 ticks to eat an rwall, 10 for a regular one
+			if((!isrwallturf(target) && eatingDuration >= 100) || eatingDuration >= 200) //need 20 ticks to eat an rwall, 10 for a regular one
 				var/turf/closed/wall/wall = target
 				wall.ChangeTurf(/turf/open/floor)
 				new /obj/item/stack/sheet/metal(src, flatPlasmaValue)

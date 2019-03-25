@@ -20,9 +20,9 @@
 
 
 /obj/item/implanter/attack(mob/M as mob, mob/user as mob)
-	if (!istype(M, /mob/living/carbon/human) && !istype(M, /mob/living/carbon/monkey))
+	if (!ishuman(M) && !ismonkey(M))
 		return
-	if(isYautja(M))
+	if(isyautja(M))
 		return
 	if (user && src.imp)
 		user.visible_message("<span class='warning'>[user] is attemping to implant [M].</span>", "<span class='notice'>You're attemping to implant [M].</span>")
@@ -34,7 +34,7 @@
 					M.visible_message("<span class='warning'>[M] has been implanted by [user].</span>")
 
 					log_combat(user, M, "implanted", src)
-					message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) implanted [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>)(<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [src.name] (INTENT: [uppertext(usr.a_intent)])")
+					message_admins("[ADMIN_TPMONTY(usr)] implanted [ADMIN_TPMONTY(M)] with [src.name].")
 
 					src.imp.loc = M
 					src.imp.imp_in = M
@@ -83,6 +83,10 @@
 	update()
 	return
 
+/obj/item/implanter/codex
+	name = "implanter (codex)"
+	imp = /obj/item/implant/codex
+
 /obj/item/implanter/compressed
 	name = "implanter (C)"
 	icon_state = "cimplanter1"
@@ -118,12 +122,12 @@
 	if(istype(A,/obj/item) && imp)
 		var/obj/item/implant/compressed/c = imp
 		if (c.scanned)
-			to_chat(user, "\red Something is already scanned inside the implant!")
+			to_chat(user, "<span class='warning'>Something is already scanned inside the implant!</span>")
 			return
 		c.scanned = A
 		if(istype(A.loc,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = A.loc
-			H.drop_inv_item_on_ground(A)
+			H.dropItemToGround(A)
 		else if(istype(A.loc,/obj/item/storage))
 			var/obj/item/storage/S = A.loc
 			S.remove_from_storage(A)

@@ -58,7 +58,7 @@
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/engineering/ce_room
-	name = "\improper Chief Engineer Office"
+	name = "\improper Chief Ship Engineer Office"
 	icon_state = "ceroom"
 	fake_zlevel = 1 // upperdeck
 
@@ -133,9 +133,14 @@
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/shipboard/chief_mp_office
-	name = "\improper Brig Chief MP Office"
+	name = "\improper Brig Command Master at Arms Office"
 	icon_state = "chiefmpoffice"
 	fake_zlevel = 2 // lowerdeck
+
+/area/almayer/shipboard/ex_firing_range
+	name = "\improper Experimental Firing Range"
+	icon_state = "firingrange"
+	fake_zlevel = 1 // upperdeck
 
 /area/almayer/shipboard/firing_range
 	name = "\improper Firing Range"
@@ -151,20 +156,10 @@
 	icon_state = "hangar"
 	fake_zlevel = 2 // lowerdeck
 
-/area/almayer/hallways/vehiclehangar
-	name = "\improper Vehicle Storage"
-	icon_state = "exoarmor"
-	fake_zlevel = 3
-
 /area/almayer/living/tankerbunks
 	name = "\improper Vehicle Crew Bunks"
 	icon_state = "livingspace"
-	fake_zlevel = 3
-
-/area/almayer/squads/tankdeliveries
-	name = "\improper Vehicle ASRS"
-	icon_state = "req"
-	fake_zlevel = 3 // lowerdeck
+	fake_zlevel = 2
 
 /area/almayer/hallways/exoarmor
 	name = "\improper Vehicle Armor Storage"
@@ -210,11 +205,6 @@
 	name = "\improper Hallway Starboard"
 	icon_state = "starboard"
 	fake_zlevel = 2 // lowerdeck
-
-/area/almayer/hull/under_hull
-	name = "\improper Hull Under"
-	icon_state = "lowerhull"
-	fake_zlevel = 3
 
 /area/almayer/hull/lower_hull
 	name = "\improper Hull Lower"
@@ -307,12 +297,12 @@
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/living/bridgebunks
-	name = "\improper Staff Officer Bunks"
+	name = "\improper Intelligence Officer Bunks"
 	icon_state = "livingspace"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/commandbunks
-	name = "\improper Commander's Bunk"
+	name = "\improper Captain's Bunk"
 	icon_state = "livingspace"
 	fake_zlevel = 1 // upperdeck
 

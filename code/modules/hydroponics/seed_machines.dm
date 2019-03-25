@@ -71,15 +71,15 @@
 	active = 0
 	if(failed_task)
 		failed_task = 0
-		visible_message("\icon[src] [src] pings unhappily, flashing a red warning light.")
+		visible_message("[icon2html(src, viewers(src))] [src] pings unhappily, flashing a red warning light.")
 	else
-		visible_message("\icon[src] [src] pings happily.")
+		visible_message("[icon2html(src, viewers(src))] [src] pings happily.")
 
 	if(eject_disk)
 		eject_disk = 0
 		if(loaded_disk)
 			loaded_disk.loc = get_turf(src)
-			visible_message("\icon[src] [src] beeps and spits out [loaded_disk].")
+			visible_message("[icon2html(src, viewers(src))] [src] beeps and spits out [loaded_disk].")
 			loaded_disk = null
 	stop_processing()
 
@@ -100,11 +100,11 @@
 
 	if(istype(W,/obj/item/tool/screwdriver))
 		open = !open
-		to_chat(user, "\blue You [open ? "open" : "close"] the maintenance panel.")
+		to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the maintenance panel.</span>")
 		return
 
 	if(open)
-		if(istype(W, /obj/item/tool/crowbar))
+		if(iscrowbar(W))
 			dismantle()
 			return
 
@@ -148,8 +148,8 @@
 	var/list/data = list()
 
 	var/list/geneMasks[0]
-	for(var/gene_tag in gene_tag_masks)
-		geneMasks.Add(list(list("tag" = gene_tag, "mask" = gene_tag_masks[gene_tag])))
+	for(var/gene_tag in GLOB.gene_tag_masks)
+		geneMasks.Add(list(list("tag" = gene_tag, "mask" = GLOB.gene_tag_masks[gene_tag])))
 	data["geneMasks"] = geneMasks
 
 	data["activity"] = active
@@ -190,20 +190,20 @@
 		if(!seed) return
 		seed.loc = get_turf(src)
 
-		if(seed.seed.name == "new line" || isnull(seed_types[seed.seed.name]))
-			seed.seed.uid = seed_types.len + 1
+		if(seed.seed.name == "new line" || isnull(GLOB.seed_types[seed.seed.name]))
+			seed.seed.uid = GLOB.seed_types.len + 1
 			seed.seed.name = "[seed.seed.uid]"
-			seed_types[seed.seed.name] = seed.seed
+			GLOB.seed_types[seed.seed.name] = seed.seed
 
 		seed.update_seed()
-		visible_message("\icon[src] [src] beeps and spits out [seed].")
+		visible_message("[icon2html(src, viewers(src))] [src] beeps and spits out [seed].")
 
 		seed = null
 
 	if(href_list["eject_disk"])
 		if(!loaded_disk) return
 		loaded_disk.loc = get_turf(src)
-		visible_message("\icon[src] [src] beeps and spits out [loaded_disk].")
+		visible_message("[icon2html(src, viewers(src))] [src] beeps and spits out [loaded_disk].")
 		loaded_disk = null
 
 	usr.set_interaction(src)
@@ -248,8 +248,8 @@
 		if(!genetics.roundstart)
 			loaded_disk.genesource += " (variety #[genetics.uid])"
 
-		loaded_disk.name += " ([gene_tag_masks[href_list["get_gene"]]], #[genetics.uid])"
-		loaded_disk.desc += " The label reads \'gene [gene_tag_masks[href_list["get_gene"]]], sampled from [genetics.display_name]\'."
+		loaded_disk.name += " ([GLOB.gene_tag_masks[href_list["get_gene"]]], #[genetics.uid])"
+		loaded_disk.desc += " The label reads \'gene [GLOB.gene_tag_masks[href_list["get_gene"]]], sampled from [genetics.display_name]\'."
 		eject_disk = 1
 
 		degradation += rand(20,60)
@@ -294,7 +294,7 @@
 
 		for(var/datum/plantgene/P in loaded_disk.genes)
 			if(data["locus"] != "") data["locus"] += ", "
-			data["locus"] += "[gene_tag_masks[P.genetype]]"
+			data["locus"] += "[GLOB.gene_tag_masks[P.genetype]]"
 
 	else
 		data["disk"] = 0
@@ -325,7 +325,7 @@
 		active = 1
 		start_processing()
 
-		if(!isnull(seed_types[seed.seed.name]))
+		if(!isnull(GLOB.seed_types[seed.seed.name]))
 			seed.seed = seed.seed.diverge(1)
 			seed.seed_type = seed.seed.name
 			seed.update_seed()

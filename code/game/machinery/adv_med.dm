@@ -41,10 +41,10 @@
 	if (usr.stat || !(ishuman(usr) || ismonkey(usr)))
 		return
 	if (src.occupant)
-		to_chat(usr, "\blue <B>The scanner is already occupied!</B>")
+		to_chat(usr, "<span class='boldnotice'>The scanner is already occupied!</span>")
 		return
 	if (usr.abiotic())
-		to_chat(usr, "\blue <B>Subject cannot have abiotic items on.</B>")
+		to_chat(usr, "<span class='boldnotice'>Subject cannot have abiotic items on.</span>")
 		return
 	usr.forceMove(src)
 	src.occupant = usr
@@ -159,10 +159,10 @@
 
 /obj/machinery/body_scanconsole/power_change()
 	..()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "body_scannerconsole-p"
 	else
-		if (stat & NOPOWER)
+		if (machine_stat & NOPOWER)
 			spawn(rand(0, 15))
 				src.icon_state = "body_scannerconsole-p"
 		else
@@ -180,22 +180,19 @@
 	anchored = 1
 
 
-/obj/machinery/body_scanconsole/New()
-	..()
-	spawn( 5 )
-		src.connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
-		return
-	return
+/obj/machinery/body_scanconsole/Initialize()
+	. = ..()
+	connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
 
 /*
 
 /obj/machinery/body_scanconsole/process() //not really used right now
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	//use_power(250) // power stuff
 
 //	var/mob/M //occupant
-//	if (!( src.status )) //remove this
+//	if (!( src.limb_status )) //remove this
 //		return
 //	if ((src.connected && src.connected.occupant)) //connected & occupant ok
 //		M = src.connected.occupant
@@ -204,7 +201,7 @@
 //		//do stuff
 //		else
 ///			src.temphtml = "Process terminated due to lack of occupant in scanning chamber."
-//			src.status = null
+//			src.limb_status = null
 //	src.updateDialog()
 //	return
 
@@ -220,9 +217,9 @@
 /obj/machinery/body_scanconsole/attack_hand(var/mob/living/user)
 	if(..())
 		return
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	if(!connected || (connected.stat & (NOPOWER|BROKEN)))
+	if(!connected || (connected.machine_stat & (NOPOWER|BROKEN)))
 		to_chat(user, "<span class='warning'>This console is not connected to a functioning body scanner.</span>")
 		return
 	if(!ishuman(connected.occupant))
@@ -242,8 +239,10 @@
 			dat = "<font color='red'> Error: No Body Scanner connected.</font>"
 
 	dat += text("<BR><A href='?src=\ref[];mach_close=scanconsole'>Close</A>", user)
-	user << browse(dat, "window=scanconsole;size=430x600")
-	return
+
+	var/datum/browser/popup = new(user, "scanconsole", "<div align='center'>Body Scanner Console</div>", 430, 600)
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 
 /obj/machinery/body_scanconsole/Topic(href, href_list)
@@ -252,14 +251,14 @@
 
 	if (href_list["print"])
 		if (!src.connected)
-			to_chat(usr, "\icon[src]<span class='warning'>Error: No body scanner connected.</span>")
+			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Error: No body scanner connected.</span>")
 			return
 		var/mob/living/carbon/human/occupant = src.connected.occupant
 		if (!src.connected.occupant)
-			to_chat(usr, "\icon[src]<span class='warning'>The body scanner is empty.</span>")
+			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>The body scanner is empty.</span>")
 			return
 		if (!istype(occupant,/mob/living/carbon/human))
-			to_chat(usr, "\icon[src]<span class='warning'>The body scanner cannot scan that lifeform.</span>")
+			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>The body scanner cannot scan that lifeform.</span>")
 			return
 		var/obj/item/paper/R = new(src.loc)
 		R.name = "Body scan report -[src.connected.occupant.real_name]-"

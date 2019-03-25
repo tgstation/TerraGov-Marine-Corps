@@ -3,17 +3,12 @@
 #define DEBUG 0
 
 //Game defining directives.
-#define MAIN_SHIP_Z_LEVEL 3 //the main ship
-#define MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS list(3,4) //the main ship and the z level where dropships transit
-#define ADMIN_Z_LEVEL 2
-#define LOW_ORBIT_Z_LEVEL 4 //where the Theseus dropships stand when in transit.
-#define GAME_PLAY_Z_LEVELS list(1,3,4)
 #define MAIN_AI_SYSTEM "ARES v3.2"
 #define MAIN_SHIP_ESCAPE_POD_NUMBER 11
 
 #define MAP_ICE_COLONY "Ice Colony"
-#define MAP_LV_624 "LV-624"
-#define MAP_BIG_RED "Solaris Ridge"
+#define MAP_LV_624 "LV624"
+#define MAP_BIG_RED "Big Red"
 #define MAP_PRISON_STATION "Prison Station"
 #define MAP_WHISKEY_OUTPOST "Whiskey Outpost"
 
@@ -28,27 +23,6 @@ These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) w
 #define TA_PURGE_ME_NOW	4 //Purge it immediately. Generally don't want to use this.
 #define TA_IGNORE_ME	5 //Ignore this atom, don't do anything with it. In case the atom will die on its own or something.
 					 	  //Shouldn't usually use this as garbage collection is far better.
-
-//A set of constants used to determine which type of mute an admin wishes to apply:
-//Please read and understand the muting/automuting stuff before changing these. MUTE_IC_AUTO etc = (MUTE_IC << 1)
-//Therefore there needs to be a gap between the flags for the automute flags
-#define MUTE_IC			1
-#define MUTE_OOC		2
-#define MUTE_PRAY		4
-#define MUTE_ADMINHELP	8
-#define MUTE_DEADCHAT	16
-#define MUTE_ALL		31
-
-//Number of identical messages required to get the spam-prevention automute thing to trigger warnings and automutes
-#define SPAM_TRIGGER_WARNING 5
-#define SPAM_TRIGGER_AUTOMUTE 10
-
-//Some constants for DB_Ban
-#define BANTYPE_PERMA		1
-#define BANTYPE_TEMP		2
-#define BANTYPE_JOB_PERMA	3
-#define BANTYPE_JOB_TEMP	4
-#define BANTYPE_ANY_FULLBAN	5 //used to locate stuff to unban.
 
 #define SEE_INVISIBLE_MINIMUM 5
 
@@ -69,38 +43,11 @@ These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) w
 
 #define INVISIBILITY_MAXIMUM 100
 
+#define INVISIBILITY_ABSTRACT 101 //only used for abstract objects (e.g. spacevine_controller), things that are not really there.
+
+
 //Object specific defines
 #define CANDLE_LUM 3 //For how bright candles are
-
-
-//Preference toggles//
-//toggles_sound
-#define SOUND_ADMINHELP	1
-#define SOUND_MIDI		2
-#define SOUND_AMBIENCE	4
-#define SOUND_LOBBY		8
-
-//toggles_chat
-#define CHAT_OOC			(1 << 0)
-#define CHAT_DEAD			(1 << 1)
-#define CHAT_GHOSTEARS		(1 << 2)
-#define CHAT_GHOSTSIGHT		(1 << 3)
-#define CHAT_PRAYER			(1 << 4)
-#define CHAT_RADIO			(1 << 5)
-#define CHAT_ATTACKLOGS		(1 << 6)
-#define CHAT_DEBUGLOGS		(1 << 7)
-#define CHAT_GHOSTRADIO 	(1 << 8)
-#define SHOW_TYPING 		(1 << 9)
-#define CHAT_FFATTACKLOGS 	(1 << 10)
-#define CHAT_ENDROUNDLOGS	(1 << 11)
-#define CHAT_GHOSTHIVEMIND	(1 << 12)
-#define CHAT_STATISTICS		(1 << 13)
-//=================================================
-
-#define TOGGLES_CHAT_DEFAULT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_ATTACKLOGS|CHAT_GHOSTHIVEMIND|CHAT_STATISTICS)
-
-#define TOGGLES_SOUND_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY)
-
 
 /*
 	Shuttles
@@ -161,18 +108,7 @@ These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) w
 #define HOSTILE_STANCE_TIRED 5
 //=================================================
 
-#define ROUNDSTART_LOGOUT_REPORT_TIME 6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
-
-//=================================================
-
-//computer3 error codes, move lower in the file when it passes dev -Sayu
- #define PROG_CRASH      1  // Generic crash
- #define MISSING_PERIPHERAL  2  // Missing hardware
- #define BUSTED_ASS_COMPUTER  4  // Self-perpetuating error.  BAC will continue to crash forever.
- #define MISSING_PROGRAM    8  // Some files try to automatically launch a program.  This is that failing.
- #define FILE_DRM      16  // Some files want to not be copied/moved.  This is them complaining that you tried.
- #define NETWORK_FAILURE  32
 //=================================================
 //Game mode related defines.
 
@@ -185,8 +121,6 @@ var/list/accessable_z_levels = list("1" = 10, "3" = 10, "4" = 10, "5" = 70)
 
 #define TRANSITIONEDGE	3 //Distance from edge to move to another z-level
 
-
-var/static/list/scarySounds = list('sound/weapons/thudswoosh.ogg','sound/weapons/Taser.ogg','sound/weapons/armbomb.ogg','sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg','sound/voice/hiss5.ogg','sound/voice/hiss6.ogg','sound/effects/Glassbr1.ogg','sound/effects/Glassbr2.ogg','sound/effects/Glassbr3.ogg','sound/items/Welder.ogg','sound/items/Welder2.ogg','sound/machines/airlock.ogg','sound/effects/clownstep1.ogg','sound/effects/clownstep2.ogg')
 //Flags for zone sleeping
 #define ZONE_ACTIVE 1
 #define ZONE_SLEEPING 0
@@ -209,3 +143,9 @@ var/static/list/scarySounds = list('sound/weapons/thudswoosh.ogg','sound/weapons
 
 // Default preferences
 #define DEFAULT_SPECIES "Human"
+
+
+#define MAX_MESSAGE_LEN 1024
+#define MAX_PAPER_MESSAGE_LEN 3072
+#define MAX_BOOK_MESSAGE_LEN 9216
+#define MAX_NAME_LEN 26

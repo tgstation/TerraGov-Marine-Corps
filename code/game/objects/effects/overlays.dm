@@ -39,6 +39,12 @@
 	icon_state = "danger"
 	layer = ABOVE_FLY_LAYER
 
+/obj/effect/overlay/sparks
+	name = "Sparks"
+	layer = ABOVE_FLY_LAYER
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "electricity"
+
 /obj/effect/overlay/temp
 	anchored = 1
 	layer = ABOVE_FLY_LAYER //above mobs
@@ -148,6 +154,17 @@
 	SetLuminosity(0)
 	. = ..()
 
+/obj/effect/overlay/temp/sniper_laser
+	name = "laser"
+	mouse_opacity = 0
+	luminosity = 2
+	icon = 'icons/obj/items/projectiles.dmi'
+	icon_state = "sniper_laser"
+
+/obj/effect/overlay/temp/blinking_laser/Destroy()
+	SetLuminosity(0)
+	return ..()
+
 /obj/effect/overlay/temp/emp_sparks
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "empdisable"
@@ -155,7 +172,7 @@
 	effect_duration = 10
 
 	New(loc)
-		dir = pick(cardinal)
+		setDir(pick(cardinal))
 		..()
 
 /obj/effect/overlay/temp/emp_pulse
@@ -165,6 +182,18 @@
 	effect_duration = 20
 
 
+/obj/effect/overlay/temp/tank_laser
+	name = "tanklaser"
+	anchored = TRUE
+	mouse_opacity = 0
+	luminosity = 2
+	icon = 'icons/obj/items/projectiles.dmi'
+	icon_state = "laser_target3"
+	effect_duration = 20
+
+/obj/effect/overlay/temp/tank_laser/Destroy()
+	SetLuminosity(0)
+	return ..()
 
 
 //gib animation
@@ -189,7 +218,7 @@
 
 
 /obj/effect/overlay/temp/gib_animation/xeno
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	effect_duration = 10
 
 /obj/effect/overlay/temp/gib_animation/xeno/New(Loc, mob/source_mob, gib_icon, new_icon)
@@ -208,4 +237,4 @@
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
-	..()
+	return ..()

@@ -65,13 +65,13 @@ var/list/department_radio_keys = list(
 
 	//handle nonverbal and sign languages here
 	if (speaking)
-		if (speaking.flags & NONVERBAL)
+		if (speaking.language_flags & NONVERBAL)
 			if (prob(30))
 				src.custom_emote(1, "[pick(speaking.signlang_verb)].")
 
-		if (speaking.flags & SIGNLANG)
+		if (speaking.language_flags & SIGNLANG)
 			say_signlang(message, pick(speaking.signlang_verb), speaking)
-			return 1
+			return TRUE
 
 	var/list/listening = list()
 	var/list/listening_obj = list()
@@ -105,7 +105,7 @@ var/list/department_radio_keys = list(
 				listening_obj |= O
 
 
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.stat == DEAD && M.client && M.client.prefs && (M.client.prefs.toggles_chat & CHAT_GHOSTEARS))
 				listening |= M
 				continue
@@ -118,24 +118,31 @@ var/list/department_radio_keys = list(
 	var/not_dead_speaker = (stat != DEAD)
 	for(var/mob/M in listening)
 		if(not_dead_speaker)
-			to_chat(M, speech_bubble)
+			SEND_IMAGE(M, speech_bubble)
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 
-	spawn(30)
-		if(client) client.images -= speech_bubble
-		if(not_dead_speaker)
-			for(var/mob/M in listening)
-				if(M.client) M.client.images -= speech_bubble
-		qdel(speech_bubble)
-
+	addtimer(CALLBACK(src, .proc/remove_speech_bubble, client, speech_bubble, (not_dead_speaker ? listening : null)), 30)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
 			if(O) //It's possible that it could be deleted in the meantime.
 				O.hear_talk(src, message, verb, speaking, italics)
 
-	src.log_talk(message, LOG_SAY)
-	return 1
+	if(!ishuman(src))
+		log_talk(message, LOG_SAY)
+
+	return TRUE
+
+
+/mob/living/proc/remove_speech_bubble(client/C, image/speech_bubble, list/listening)
+	if(C)
+		C.images -= speech_bubble
+	if(listening)
+		for(var/mob/M in listening)
+			if(M.client)
+				M.client.images -= speech_bubble
+	qdel(speech_bubble)
+
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
 	for (var/mob/O in viewers(src, null))

@@ -81,7 +81,7 @@
 	var/aidisabled = 0
 	var/AAlarmwires = 31
 	var/shorted = 0
-
+	var/obj/item/circuitboard/airalarm/electronics = null
 	var/mode = AALARM_MODE_SCRUBBING
 	var/screen = AALARM_SCREEN_MAIN
 	var/area_uid
@@ -108,32 +108,35 @@
 
 
 
-/obj/machinery/alarm/New(var/loc, var/direction, var/building = 0)
-	..()
+/obj/machinery/alarm/Initialize(loc, direction, building = FALSE)
+	. = ..()
 
 	if(building)
 		if(loc)
 			src.loc = loc
 
 		if(direction)
-			src.dir = direction
-
+			setDir(direction)
 		buildstage = 0
-		wiresexposed = 1
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
-		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
-		update_icon()
-		if(ticker && ticker.current_state == 3)//if the game is running
-			src.initialize()
-		return
+		wiresexposed = TRUE
 
-	switch(dir)
-		if(NORTH) pixel_y = 25
-		if(SOUTH) pixel_y = -25
-		if(EAST) pixel_x = 25
-		if(WEST) pixel_x = -25
+	set_frequency(frequency)
 
 	first_run()
+
+	if(!master_is_operating())
+		elect_master()
+
+	switch(dir)
+		if(NORTH) 
+			pixel_y = 25
+		if(SOUTH) 
+			pixel_y = -25
+		if(EAST) 
+			pixel_x = 25
+		if(WEST) 
+			pixel_x = -25
+
 	start_processing()
 
 
@@ -154,13 +157,8 @@
 	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
 
 
-/obj/machinery/alarm/initialize()
-	set_frequency(frequency)
-	if (!master_is_operating())
-		elect_master()
-
 /obj/machinery/alarm/process()
-	if((stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
+	if((machine_stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
 		return
 
 	var/turf/location = loc
@@ -229,13 +227,13 @@
 
 
 /obj/machinery/alarm/proc/master_is_operating()
-	return alarm_area.master_air_alarm && !(alarm_area.master_air_alarm.stat & (NOPOWER|BROKEN))
+	return alarm_area.master_air_alarm && !(alarm_area.master_air_alarm.machine_stat & (NOPOWER|BROKEN))
 
 
 /obj/machinery/alarm/proc/elect_master()
 	for (var/area/A in alarm_area.related)
 		for (var/obj/machinery/alarm/AA in A)
-			if (!(AA.stat & (NOPOWER|BROKEN)))
+			if (!(AA.machine_stat & (NOPOWER|BROKEN)))
 				alarm_area.master_air_alarm = AA
 				return 1
 	return 0
@@ -251,12 +249,12 @@
 	if(wiresexposed)
 		icon_state = "alarmx"
 		return
-	if((stat & (NOPOWER|BROKEN)) || shorted)
+	if((machine_stat & (NOPOWER|BROKEN)) || shorted)
 		icon_state = "alarmp"
 		return
 
 	var/icon_level = danger_level
-	if (alarm_area.atmosalm)
+	if (alarm_area?.atmosalm)
 		icon_level = max(icon_level, 1)	//if there's an atmos alarm but everything is okay locally, no need to go past yellow
 
 	switch(icon_level)
@@ -268,7 +266,7 @@
 			icon_state = "alarm1"
 
 /obj/machinery/alarm/receive_signal(datum/signal/signal)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if (alarm_area.master_air_alarm != src)
 		if (master_is_operating())
@@ -543,20 +541,20 @@
 		return
 
 	if ( (get_dist(src, user) > 1 ))
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=air_alarm")
 			user << browse(null, "window=AAlarmwires")
 			return
 
 
-		else if (istype(user, /mob/living/silicon) && aidisabled)
+		else if (issilicon(user) && aidisabled)
 			to_chat(user, "AI control for this Air Alarm interface has been disabled.")
 			user << browse(null, "window=air_alarm")
 			return
 
-	if(wiresexposed && (!istype(user, /mob/living/silicon)))
-		var/t1 = text("<html><head><title>[alarm_area.name] Air Alarm Wires</title></head><body><B>Access Panel</B><br>\n")
+	if(wiresexposed && !issilicon(user))
+		var/t1 = text("<B>Access Panel</B><br>\n")
 		var/list/wirecolors = list(
 			"Orange" = 1,
 			"Dark red" = 2,
@@ -575,22 +573,25 @@
 				t1 += "<a href='?src=\ref[src];pulse=[wirecolors[wiredesc]]'>Pulse</a> "
 
 			t1 += "<br>"
-		t1 += text("<br>\n[(locked ? "The Air Alarm is locked." : "The Air Alarm is unlocked.")]<br>\n[((shorted || (stat & (NOPOWER|BROKEN))) ? "The Air Alarm is offline." : "The Air Alarm is working properly!")]<br>\n[(aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
-		t1 += text("<p><a href='?src=\ref[src];close2=1'>Close</a></p></body></html>")
-		user << browse(t1, "window=AAlarmwires")
+		t1 += text("<br>\n[(locked ? "The Air Alarm is locked." : "The Air Alarm is unlocked.")]<br>\n[((shorted || (machine_stat & (NOPOWER|BROKEN))) ? "The Air Alarm is offline." : "The Air Alarm is working properly!")]<br>\n[(aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
+		t1 += text("<p><a href='?src=\ref[src];close2=1'>Close</a></p>")
+		var/datum/browser/popup = new(user, "AAlarmwires", "<div align='center'>\The [src]</div>")
+		popup.set_content(t1)
+		popup.open(FALSE)
 		onclose(user, "AAlarmwires")
 
 	if(!shorted)
-		user << browse(return_text(user),"window=air_alarm")
+		var/datum/browser/popup = new(user, "air_alarm", "<div align='center'>[alarm_area.name] Air Alarm Wires</div>")
+		popup.set_content(return_text(user))
+		popup.open(FALSE)
 		onclose(user, "air_alarm")
 
-	return
 
 /obj/machinery/alarm/proc/return_text(mob/user)
-	if(!(istype(user, /mob/living/silicon)) && locked)
-		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr><i>(Swipe ID card to unlock interface)</i></body></html>"
+	if(!issilicon(user) && locked)
+		return "[return_status()]<hr>[rcon_text()]<hr><i>(Swipe ID card to unlock interface)</i>"
 	else
-		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr>[return_controls()]</body></html>"
+		return "[return_status()]<hr>[rcon_text()]<hr>[return_controls()]"
 
 /obj/machinery/alarm/proc/return_status()
 	var/turf/location = get_turf(src)
@@ -827,7 +828,7 @@ table tr:first-child th:first-child { border: none;}
 	return output
 
 /obj/machinery/alarm/Topic(href, href_list)
-	if(..() || !( Adjacent(usr) || istype(usr, /mob/living/silicon)) ) // dont forget calling super in machine Topics -walter0o
+	if(..() || !( Adjacent(usr) || issilicon(usr)) ) // dont forget calling super in machine Topics -walter0o
 		usr.unset_interaction()
 		usr << browse(null, "window=air_alarm")
 		usr << browse(null, "window=AAlarmwires")
@@ -861,7 +862,7 @@ table tr:first-child th:first-child { border: none;}
 			target_temperature = input_temperature + T0C
 
 	// hrefs that need the AA unlocked -walter0o
-	if(!locked || istype(usr, /mob/living/silicon))
+	if(!locked || issilicon(usr))
 
 		if(href_list["command"])
 			var/device_id = href_list["id_tag"]
@@ -957,7 +958,7 @@ table tr:first-child th:first-child { border: none;}
 
 		if (href_list["AAlarmwires"])
 			var/t1 = text2num(href_list["AAlarmwires"])
-			if (!( istype(usr.get_held_item(), /obj/item/tool/wirecutters) ))
+			if (!iswirecutter(usr.get_held_item()))
 				to_chat(usr, "You need wirecutters!")
 				return
 			if (isWireColorCut(t1))
@@ -972,7 +973,7 @@ table tr:first-child th:first-child { border: none;}
 
 		else if (href_list["pulse"])
 			var/t1 = text2num(href_list["pulse"])
-			if (!istype(usr.get_held_item(), /obj/item/device/multitool))
+			if (!ismultitool(usr.get_held_item()))
 				to_chat(usr, "You need a multitool!")
 				return
 			if (isWireColorCut(t1))
@@ -985,11 +986,11 @@ table tr:first-child th:first-child { border: none;}
 
 
 /obj/machinery/alarm/attackby(obj/item/W as obj, mob/user as mob)
-/*	if (istype(W, /obj/item/tool/wirecutters))
+/*	if (iswirecutter(W))
 		stat ^= BROKEN
 		add_fingerprint(user)
 		for(var/mob/O in viewers(user, null))
-			O.show_message(text("\red [] has []activated []!", user, (stat&BROKEN) ? "de" : "re", src), 1)
+			O.show_message(text("<span class='warning'> [] has []activated []!</span>", user, (stat&BROKEN) ? "de" : "re", src), 1)
 		update_icon()
 		return
 */
@@ -1004,24 +1005,24 @@ table tr:first-child th:first-child { border: none;}
 				update_icon()
 				return
 
-			if(wiresexposed && ((istype(W, /obj/item/device/multitool) || istype(W, /obj/item/tool/wirecutters))))
+			if(wiresexposed && (ismultitool(W) || iswirecutter(W)))
 				return attack_hand(user)
 
 			if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
-				if(stat & (NOPOWER|BROKEN))
+				if(machine_stat & (NOPOWER|BROKEN))
 					to_chat(user, "It does nothing")
 					return
 				else
 					if(allowed(usr) && !isWireCut(AALARM_WIRE_IDSCAN))
 						locked = !locked
-						to_chat(user, "\blue You [ locked ? "lock" : "unlock"] the Air Alarm interface.")
+						to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] the Air Alarm interface.</span>")
 						updateUsrDialog()
 					else
-						to_chat(user, "\red Access denied.")
+						to_chat(user, "<span class='warning'>Access denied.</span>")
 			return
 
 		if(1)
-			if(iscoil(W))
+			if(iscablecoil(W))
 				var/obj/item/stack/cable_coil/C = W
 				if(C.use(5))
 					to_chat(user, "<span class='notice'>You wire \the [src].</span>")
@@ -1040,8 +1041,14 @@ table tr:first-child th:first-child { border: none;}
 				if(do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
 					user.visible_message("<span class='notice'>[user] pries out [src]'s circuits.</span>",
 					"<span class='notice'>You pry out [src]'s circuits.</span>")
-					var/obj/item/circuitboard/airalarm/circuit = new()
-					circuit.loc = user.loc
+					var/obj/item/circuitboard/airalarm/circuit
+					if(!electronics)
+						circuit = new/obj/item/circuitboard/airalarm( src.loc )
+					else
+						circuit = new electronics( src.loc )
+						if(electronics.is_general_board)
+							circuit.set_general()
+					electronics = null
 					buildstage = 0
 					update_icon()
 				return

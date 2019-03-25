@@ -20,11 +20,18 @@
 			deploy_bodybag(user, T)
 
 /obj/item/bodybag/proc/deploy_bodybag(mob/user, atom/location)
+	if(!isturf(user.loc))
+		return FALSE
+	for(var/obj/O in location)
+		if(istype(O, /obj/structure/closet) || O.density)
+			to_chat(user, "<span class='warning'>\the [src] can't be deployed here.</span>")
+			return FALSE
 	var/obj/structure/closet/bodybag/R = new unfolded_path(location, src)
 	R.add_fingerprint(user)
 	R.open(user)
-	user.temp_drop_inv_item(src)
+	user.temporarilyRemoveItemFromInventory(src)
 	qdel(src)
+	return TRUE
 
 
 /obj/item/bodybag/cryobag
@@ -88,7 +95,7 @@
 /obj/structure/closet/bodybag/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/tool/pen))
 		var/t = stripped_input(user, "What would you like the label to be?", name, null, MAX_MESSAGE_LEN)
-		if (user.get_active_hand() != W)
+		if (user.get_active_held_item() != W)
 			return
 		if (!in_range(src, user) && src.loc != user)
 			return
@@ -100,7 +107,7 @@
 			src.name = "body bag"
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
 		return
-	else if(istype(W, /obj/item/tool/wirecutters))
+	else if(iswirecutter(W))
 		to_chat(user, "<span class='notice'>You cut the tag off the bodybag.</span>")
 		src.name = "body bag"
 		src.overlays.Cut()
@@ -119,7 +126,7 @@
 			dead_mobs += M
 			continue
 		var/mob/living/carbon/human/H = M
-		if(H.check_tod() || isSynth(H)) // revivable
+		if(H.check_tod() || issynth(H)) // revivable
 			if(H.is_revivable() && H.get_ghost()) // definitely revivable
 				continue
 		dead_mobs += M

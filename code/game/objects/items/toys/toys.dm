@@ -44,7 +44,7 @@
 	if(!proximity) return
 	if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to(src, 10)
-		to_chat(user, "\blue You fill the balloon with the contents of [A].")
+		to_chat(user, "<span class='notice'>You fill the balloon with the contents of [A].</span>")
 		src.desc = "A translucent balloon with some form of liquid sloshing around in it."
 		src.update_icon()
 	return
@@ -61,14 +61,14 @@
 					qdel(src)
 				else
 					src.desc = "A translucent balloon with some form of liquid sloshing around in it."
-					to_chat(user, "\blue You fill the balloon with the contents of [O].")
+					to_chat(user, "<span class='notice'>You fill the balloon with the contents of [O].</span>")
 					O.reagents.trans_to(src, 10)
 	src.update_icon()
 	return
 
 /obj/item/toy/balloon/throw_impact(atom/hit_atom)
 	if(src.reagents.total_volume >= 1)
-		src.visible_message("\red The [src] bursts!","You hear a pop and a splash.")
+		src.visible_message("<span class='warning'> The [src] bursts!</span>","You hear a pop and a splash.")
 		src.reagents.reaction(get_turf(hit_atom), TOUCH)
 		for(var/atom/A in get_turf(hit_atom))
 			src.reagents.reaction(A, TOUCH)
@@ -136,9 +136,9 @@
 	var/instant = 0
 	var/colourName = "red" //for updateIcon purposes
 
-	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is jamming the [src.name] up \his nose and into \his brain. It looks like \he's trying to commit suicide.</b>"
-		return (BRUTELOSS|OXYLOSS)
+/obj/item/toy/crayon/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is jamming the [name] up [user.p_their()] nose and into [user.p_their()] brain. It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	return (BRUTELOSS|OXYLOSS)
 
 /*
  * Snap pops
@@ -155,7 +155,7 @@
 		s.set_up(3, 1, src)
 		s.start()
 		new /obj/effect/decal/cleanable/ash(src.loc)
-		src.visible_message("\red The [src.name] explodes!","\red You hear a snap!")
+		src.visible_message("<span class='warning'> The [src.name] explodes!</span>","<span class='warning'> You hear a snap!</span>")
 		playsound(src, 'sound/effects/snap.ogg', 25, 1)
 		qdel(src)
 
@@ -163,13 +163,13 @@
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
 		if(M.m_intent == MOVE_INTENT_RUN)
-			to_chat(M, "\red You step on the snap pop!")
+			to_chat(M, "<span class='warning'>You step on the snap pop!</span>")
 
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(2, 0, src)
 			s.start()
 			new /obj/effect/decal/cleanable/ash(src.loc)
-			src.visible_message("\red The [src.name] explodes!","\red You hear a snap!")
+			src.visible_message("<span class='warning'> The [src.name] explodes!</span>","<span class='warning'> You hear a snap!</span>")
 			playsound(src, 'sound/effects/snap.ogg', 25, 1)
 			qdel(src)
 
@@ -204,12 +204,12 @@
 
 	else if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to(src, 10)
-		to_chat(user, "\blue You refill your flower!")
+		to_chat(user, "<span class='notice'>You refill your flower!</span>")
 		return
 
 	else if (src.reagents.total_volume < 1)
 		src.empty = 1
-		to_chat(user, "\blue Your flower has run dry!")
+		to_chat(user, "<span class='notice'>Your flower has run dry!</span>")
 		return
 
 	else
@@ -231,7 +231,7 @@
 				for(var/atom/T in get_turf(D))
 					D.reagents.reaction(T)
 					if(ismob(T) && T:client)
-						to_chat(T:client, "\red [user] has sprayed you with water!")
+						to_chat(T:client, "<span class='warning'>[user] has sprayed you with water!</span>")
 				sleep(4)
 			qdel(D)
 
@@ -377,7 +377,7 @@
 	icon_state = "inflatable"
 	item_state = "inflatable"
 	icon = 'icons/obj/clothing/belts.dmi'
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 
 
 /obj/item/toy/beach_ball
@@ -442,16 +442,11 @@
 	throw_speed = 3
 	throw_range = 15
 	attack_verb = list("HONKED")
-	var/spam_flag = 0
 
-/obj/item/toy/bikehorn/attack_self(mob/user as mob)
-	if (spam_flag == 0)
-		spam_flag = 1
-		playsound(src.loc, 'sound/items/bikehorn.ogg', 25, 1)
-		src.add_fingerprint(user)
-		spawn(20)
-			spam_flag = 0
 
+/obj/item/toy/bikehorn/Initialize()
+	. = ..()
+	AddComponent(/datum/component/squeak, 'sound/items/bikehorn.ogg', 50)
 
 
 /obj/item/toy/farwadoll

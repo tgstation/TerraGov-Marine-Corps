@@ -4,7 +4,7 @@
 	name = "wall"
 	desc = "A huge chunk of metal used to seperate rooms."
 	icon = 'icons/turf/walls.dmi'
-	icon_state = "0"
+	icon_state = "metal"
 	opacity = 1
 	var/hull = 0 //1 = Can't be deconstructed by tools or thermite. Used for Sulaco walls
 	var/walltype = "metal"
@@ -62,7 +62,7 @@
 			T = get_step(src, i)
 
 			//update junction type of nearby walls
-			if(istype(T, /turf/closed/wall))
+			if(iswallturf(T))
 				T.relativewall()
 
 			//nearby glowshrooms updated
@@ -84,7 +84,7 @@
 
 /turf/closed/wall/MouseDrop_T(mob/M, mob/user)
 	if(acided_hole)
-		if(M == user && isXeno(user))
+		if(M == user && isxeno(user))
 			acided_hole.use_wall_hole(user)
 			return
 	..()
@@ -179,7 +179,7 @@
 
 		var/base_direction = base_dir(current_bulletholes,bullethole_increment)
 		var/current_direction = cur_dir(base_direction)
-		dir = current_direction
+		setDir(current_direction)
 		/*Hack. Image overlays behave as the parent object, so that means they are also attached to it and follow its directional.
 		Luckily, it doesn't matter what direction the walls are set to, they link together via icon_state it seems.
 		But I haven't thoroughly tested it.*/
@@ -222,10 +222,11 @@
 
 /turf/closed/wall/proc/make_girder(destroyed_girder = FALSE)
 	var/obj/structure/girder/G = new /obj/structure/girder(src)
+	transfer_fingerprints_to(G)
 	G.icon_state = "girder[junctiontype]"
 	G.original = src.type
 
-	if (destroyed_girder)
+	if(destroyed_girder)
 		G.dismantle()
 
 
@@ -300,7 +301,7 @@
 
 /turf/closed/wall/attack_animal(mob/living/M as mob)
 	if(M.wall_smash)
-		if((istype(src, /turf/closed/wall/r_wall)) || hull)
+		if((isrwallturf(src)) || hull)
 			to_chat(M, "<span class='warning'>This [name] is far too strong for you to destroy.</span>")
 			return
 		else
@@ -345,7 +346,7 @@
 			if(hull)
 				to_chat(user, "<span class='warning'>[src] is much too tough for you to do anything to it with [W]</span>.")
 			else
-				if(istype(W, /obj/item/tool/weldingtool))
+				if(iswelder(W))
 					var/obj/item/tool/weldingtool/WT = W
 					WT.remove_fuel(0,user)
 				thermitemelt(user)
@@ -394,13 +395,13 @@
 			dismantle_wall()
 		return
 
-	if(damage && istype(W, /obj/item/tool/weldingtool))
+	if(damage && iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			user.visible_message("<span class='notice'>[user] starts repairing the damage to [src].</span>",
 			"<span class='notice'>You start repairing the damage to [src].</span>")
 			playsound(src, 'sound/items/Welder.ogg', 25, 1)
-			if(do_after(user, max(5, round(damage / 5)), TRUE, 5, BUSY_ICON_FRIENDLY) && istype(src, /turf/closed/wall) && WT && WT.isOn())
+			if(do_after(user, max(5, round(damage / 5)), TRUE, 5, BUSY_ICON_FRIENDLY) && iswallturf(src) && WT && WT.isOn())
 				user.visible_message("<span class='notice'>[user] finishes repairing the damage to [src].</span>",
 				"<span class='notice'>You finish repairing the damage to [src].</span>")
 				take_damage(-damage)
@@ -412,7 +413,7 @@
 	//DECONSTRUCTION
 	switch(d_state)
 		if(0)
-			if(istype(W, /obj/item/tool/weldingtool))
+			if(iswelder(W))
 
 				var/obj/item/tool/weldingtool/WT = W
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
@@ -420,7 +421,8 @@
 				"<span class='notice'>You begin slicing through the outer plating.</span>")
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall) || !WT || !WT.isOn())	return
+					if(!iswallturf(src) || !WT || !WT.isOn())
+						return
 
 					if(!d_state)
 						d_state++
@@ -429,14 +431,15 @@
 				return
 
 		if(1)
-			if(istype(W, /obj/item/tool/screwdriver))
+			if(isscrewdriver(W))
 
 				user.visible_message("<span class='notice'>[user] begins removing the support lines.</span>",
 				"<span class='notice'>You begin removing the support lines.</span>")
 				playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall)) return
+					if(!iswallturf(src))
+						return
 
 					if(d_state == 1)
 						d_state++
@@ -445,7 +448,7 @@
 				return
 
 		if(2)
-			if(istype(W, /obj/item/tool/weldingtool))
+			if(iswelder(W))
 
 				var/obj/item/tool/weldingtool/WT = W
 				user.visible_message("<span class='notice'>[user] begins slicing through the metal cover.</span>",
@@ -453,7 +456,8 @@
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall) || !WT || !WT.isOn())	return
+					if(!iswallturf(src) || !WT || !WT.isOn())
+						return
 
 					if(d_state == 2)
 						d_state++
@@ -462,14 +466,15 @@
 				return
 
 		if(3)
-			if(istype(W, /obj/item/tool/crowbar))
+			if(iscrowbar(W))
 
 				user.visible_message("<span class='notice'>[user] struggles to pry off the cover.</span>",
 				"<span class='notice'>You struggle to pry off the cover.</span>")
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall)) return
+					if(!iswallturf(src))
+						return
 
 					if(d_state == 3)
 						d_state++
@@ -478,14 +483,15 @@
 				return
 
 		if(4)
-			if(istype(W, /obj/item/tool/wrench))
+			if(iswrench(W))
 
 				user.visible_message("<span class='notice'>[user] starts loosening the anchoring bolts securing the support rods.</span>",
 				"<span class='notice'>You start loosening the anchoring bolts securing the support rods.</span>")
 				playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall)) return
+					if(!iswallturf(src))
+						return
 
 					if(d_state == 4)
 						d_state++
@@ -494,14 +500,15 @@
 				return
 
 		if(5)
-			if(istype(W, /obj/item/tool/wirecutters))
+			if(iswirecutter(W))
 
 				user.visible_message("<span class='notice'>[user] begins uncrimping the hydraulic lines.</span>",
 				"<span class='notice'>You begin uncrimping the hydraulic lines.</span>")
 				playsound(src, 'sound/items/Wirecutter.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall)) return
+					if(!iswallturf(src))
+						return
 
 					if(d_state == 5)
 						d_state++
@@ -510,14 +517,15 @@
 				return
 
 		if(6)
-			if(istype(W, /obj/item/tool/crowbar))
+			if(iscrowbar(W))
 
 				user.visible_message("<span class='notice'>[user] struggles to pry off the inner sheath.</span>",
 				"<span class='notice'>You struggle to pry off the inner sheath.</span>")
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall)) return
+					if(!iswallturf(src))
+						return
 
 					if(d_state == 6)
 						d_state++
@@ -526,7 +534,7 @@
 				return
 
 		if(7)
-			if(istype(W, /obj/item/tool/weldingtool))
+			if(iswelder(W))
 
 				var/obj/item/tool/weldingtool/WT = W
 				user.visible_message("<span class='notice'>[user] begins slicing through the final layer.</span>",
@@ -534,10 +542,12 @@
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall) || !WT || !WT.isOn())	return
+					if(!iswallturf(src) || !WT || !WT.isOn())
+						return
 
 					if(d_state == 7)
-						new /obj/item/stack/rods(src)
+						var/obj/item/stack/rods/R = new /obj/item/stack/rods(src)
+						transfer_fingerprints_to(R)
 						user.visible_message("<span class='notice'>The support rods drop out as [user] slices through the final layer.</span>",
 						"<span class='notice'>The support rods drop out as you slice through the final layer.</span>")
 						dismantle_wall()

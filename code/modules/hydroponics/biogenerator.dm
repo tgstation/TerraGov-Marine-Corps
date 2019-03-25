@@ -34,46 +34,46 @@
 /obj/machinery/biogenerator/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/reagent_container/glass))
 		if(beaker)
-			to_chat(user, "\red The biogenerator is already loaded.")
+			to_chat(user, "<span class='warning'>The biogenerator is already loaded.</span>")
 		else
-			user.drop_inv_item_to_loc(O, src)
+			user.transferItemToLoc(O, src)
 			beaker = O
 			updateUsrDialog()
 	else if(processing)
-		to_chat(user, "\red The biogenerator is currently processing.")
+		to_chat(user, "<span class='warning'>The biogenerator is currently processing.</span>")
 	else if(istype(O, /obj/item/storage/bag/plants))
 		var/i = 0
 		for(var/obj/item/reagent_container/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
-			to_chat(user, "\red The biogenerator is already full! Activate it.")
+			to_chat(user, "<span class='warning'>The biogenerator is already full! Activate it.</span>")
 		else
 			for(var/obj/item/reagent_container/food/snacks/grown/G in O.contents)
 				G.loc = src
 				i++
 				if(i >= 10)
-					to_chat(user, "\blue You fill the biogenerator to its capacity.")
+					to_chat(user, "<span class='notice'>You fill the biogenerator to its capacity.</span>")
 					break
 			if(i<10)
-				to_chat(user, "\blue You empty the plant bag into the biogenerator.")
+				to_chat(user, "<span class='notice'>You empty the plant bag into the biogenerator.</span>")
 
 
 	else if(!istype(O, /obj/item/reagent_container/food/snacks/grown))
-		to_chat(user, "\red You cannot put this in [src.name]")
+		to_chat(user, "<span class='warning'>You cannot put this in [src.name]</span>")
 	else
 		var/i = 0
 		for(var/obj/item/reagent_container/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
-			to_chat(user, "\red The biogenerator is full! Activate it.")
+			to_chat(user, "<span class='warning'>The biogenerator is full! Activate it.</span>")
 		else
-			if(user.drop_inv_item_to_loc(O, src))
-				to_chat(user, "\blue You put [O.name] in [src.name]")
+			if(user.transferItemToLoc(O, src))
+				to_chat(user, "<span class='notice'>You put [O.name] in [src.name]</span>")
 	update_icon()
 
 
 /obj/machinery/biogenerator/interact(mob/user as mob)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	user.set_interaction(src)
 	var/dat = "<TITLE>Biogenerator</TITLE>Biogenerator:<BR>"
@@ -122,10 +122,10 @@
 /obj/machinery/biogenerator/proc/activate()
 	if (usr.stat != 0)
 		return
-	if (src.stat != 0) //NOPOWER etc
+	if (src.machine_stat != 0) //NOPOWER etc
 		return
 	if(src.processing)
-		to_chat(usr, "\red The biogenerator is in the process of working.")
+		to_chat(usr, "<span class='warning'>The biogenerator is in the process of working.</span>")
 		return
 	var/S = 0
 	for(var/obj/item/reagent_container/food/snacks/grown/I in contents)
@@ -203,7 +203,7 @@
 	return 1
 
 /obj/machinery/biogenerator/Topic(href, href_list)
-	if(stat & BROKEN) return
+	if(machine_stat & BROKEN) return
 	if(usr.stat || usr.is_mob_restrained()) return
 	if(!in_range(src, usr)) return
 

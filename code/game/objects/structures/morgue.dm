@@ -62,7 +62,7 @@
 		connected.loc = src
 	else
 		if(step(connected, dir))
-			connected.dir = dir
+			connected.setDir(dir)
 			for(var/atom/movable/A in src)
 				A.forceMove(connected.loc)
 		else
@@ -79,7 +79,7 @@
 		return
 	else if (istype(P, /obj/item/tool/pen))
 		var/t = copytext(stripped_input(user, "What would you like the label to be?", name, null),1,MAX_MESSAGE_LEN)
-		if (user.get_active_hand() != P)
+		if (user.get_active_held_item() != P)
 			return
 		if ((!in_range(src, user) && src.loc != user))
 			return
@@ -139,7 +139,7 @@
 	O.forceMove(loc)
 	if (user != O)
 		for(var/mob/B in viewers(user, 3))
-			B.show_message("\red [user] stuffs [O] into [src]!", 1)
+			B.show_message("<span class='warning'> [user] stuffs [O] into [src]!</span>", 1)
 
 
 
@@ -183,9 +183,9 @@
 		return
 
 	if(contents.len <= 1) //1 because the tray is inside.
-		visible_message("\red You hear a hollow crackle.")
+		visible_message("<span class='warning'> You hear a hollow crackle.</span>")
 	else
-		visible_message("\red You hear a roar as the crematorium activates.")
+		visible_message("<span class='warning'> You hear a roar as the crematorium activates.</span>")
 
 		cremating = 1
 
@@ -197,7 +197,7 @@
 					M.emote("scream")
 				else
 					var/mob/living/carbon/C = M
-					if (!(C.species && (C.species.flags & NO_PAIN)))
+					if (!(C.species && (C.species.species_flags & NO_PAIN)))
 						C.emote("scream")
 
 			log_combat(user, M, "creamated", src)
@@ -237,7 +237,7 @@
 				if(!C.cremating)
 					C.cremate(user)
 	else
-		to_chat(user, "\red Access denied.")
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 
 
 

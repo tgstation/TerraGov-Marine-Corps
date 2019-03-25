@@ -13,7 +13,7 @@
 	var/shield_idle_power = 1500		//how much power we use when just being sustained.
 
 /obj/machinery/shield/New()
-	src.dir = pick(1,2,3,4)
+	setDir(pick(1,2,3,4))
 	..()
 
 /obj/machinery/shield/Destroy()
@@ -34,7 +34,7 @@
 
 
 	if (src.health <= 0)
-		visible_message("\blue The [src] dissipates!")
+		visible_message("<span class='notice'> The [src] dissipates!</span>")
 		qdel(src)
 		return
 
@@ -47,7 +47,7 @@
 	health -= Proj.damage
 	..()
 	if(health <=0)
-		visible_message("\blue The [src] dissipates!")
+		visible_message("<span class='notice'> The [src] dissipates!</span>")
 		qdel(src)
 		return 1
 	opacity = 1
@@ -77,7 +77,7 @@
 
 /obj/machinery/shield/hitby(AM as mob|obj)
 	//Let everyone know we've been hit!
-	visible_message("\red <B>[src] was hit by [AM].</B>")
+	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
 
 	//Super realistic, resource-intensive, real-time damage calculations.
 	var/tforce = 0
@@ -93,7 +93,7 @@
 
 	//Handle the destruction of the shield
 	if (src.health <= 0)
-		visible_message("\blue The [src] dissipates!")
+		visible_message("<span class='notice'> The [src] dissipates!</span>")
 		qdel(src)
 		return
 
@@ -175,14 +175,14 @@
 /obj/machinery/shieldgen/power_change()
 	..()
 	if(!active) return
-	if (stat & NOPOWER)
+	if (machine_stat & NOPOWER)
 		collapse_shields()
 	else
 		create_shields()
 	update_icon()
 
 /obj/machinery/shieldgen/process()
-	if (!active || (stat & NOPOWER))
+	if (!active || (machine_stat & NOPOWER))
 		return
 
 	if(malfunction)
@@ -250,14 +250,14 @@
 		return
 
 	if (src.active)
-		user.visible_message("\blue \icon[src] [user] deactivated the shield generator.", \
-			"\blue \icon[src] You deactivate the shield generator.", \
+		user.visible_message("<span class='notice'> [icon2html(src, viewers(user))] [user] deactivated the shield generator.</span>", \
+			"<span class='notice'> [icon2html(src, viewers(user))] You deactivate the shield generator.</span>", \
 			"You hear heavy droning fade out.")
 		src.shields_down()
 	else
 		if(anchored)
-			user.visible_message("\blue \icon[src] [user] activated the shield generator.", \
-				"\blue \icon[src] You activate the shield generator.", \
+			user.visible_message("<span class='notice'> [icon2html(src, viewers(user))] [user] activated the shield generator.</span>", \
+				"<span class='notice'> [icon2html(src, viewers(user))] You activate the shield generator.</span>", \
 				"You hear heavy droning.")
 			src.shields_up()
 		else
@@ -269,16 +269,16 @@
 		malfunction = 1
 		update_icon()
 
-	else if(istype(W, /obj/item/tool/screwdriver))
+	else if(isscrewdriver(W))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		if(is_open)
-			to_chat(user, "\blue You close the panel.")
+			to_chat(user, "<span class='notice'>You close the panel.</span>")
 			is_open = 0
 		else
-			to_chat(user, "\blue You open the panel and expose the wiring.")
+			to_chat(user, "<span class='notice'>You open the panel and expose the wiring.</span>")
 			is_open = 1
 
-	else if(istype(W, /obj/item/stack/cable_coil) && malfunction && is_open)
+	else if(iscablecoil(W) && malfunction && is_open)
 		var/obj/item/stack/cable_coil/coil = W
 		to_chat(user, "<span class='notice'>You begin to replace the wires.</span>")
 		//if(do_after(user, min(60, round( ((maxhealth/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
@@ -289,21 +289,22 @@
 				to_chat(user, "<span class='notice'>You repair the [src]!</span>")
 				update_icon()
 
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		if(locked)
 			to_chat(user, "The bolts are covered, unlocking this would retract the covers.")
 			return
 		if(anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			to_chat(user, "\blue You unsecure the [src] from the floor!")
+			to_chat(user, "<span class='notice'>You unsecure the [src] from the floor!</span>")
 			if(active)
-				to_chat(user, "\blue The [src] shuts off!")
+				to_chat(user, "<span class='notice'>The [src] shuts off!</span>")
 				src.shields_down()
 			anchored = 0
 		else
-			if(istype(get_turf(src), /turf/open/space)) return //No wrenching these in space!
+			if(isspaceturf(get_turf(src)))
+				return //No wrenching these in space!
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			to_chat(user, "\blue You secure the [src] to the floor!")
+			to_chat(user, "<span class='notice'>You secure the [src] to the floor!</span>")
 			anchored = 1
 
 
@@ -312,14 +313,14 @@
 			src.locked = !src.locked
 			to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
 		else
-			to_chat(user, "\red Access denied.")
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 
 	else
 		..()
 
 
 /obj/machinery/shieldgen/update_icon()
-	if(active && !(stat & NOPOWER))
+	if(active && !(machine_stat & NOPOWER))
 		src.icon_state = malfunction ? "shieldonbr":"shieldon"
 	else
 		src.icon_state = malfunction ? "shieldoffbr":"shieldoff"

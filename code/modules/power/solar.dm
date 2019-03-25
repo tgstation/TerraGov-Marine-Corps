@@ -22,7 +22,6 @@ var/list/solars_list = list()
 	icon_state = "sp_base"
 	anchored = 1
 	density = 1
-	directwired = 1
 	use_power = 0
 	idle_power_usage = 0
 	active_power_usage = 0
@@ -83,7 +82,7 @@ var/list/solars_list = list()
 
 /obj/machinery/power/solar/proc/healthcheck()
 	if (src.health <= 0)
-		if(!(stat & BROKEN))
+		if(!(machine_stat & BROKEN))
 			broken()
 		else
 			new /obj/item/shard(src.loc)
@@ -96,11 +95,11 @@ var/list/solars_list = list()
 /obj/machinery/power/solar/update_icon()
 	..()
 	overlays.Cut()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel-b", layer = FLY_LAYER)
 	else
 		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel", layer = FLY_LAYER)
-		src.dir = angle2dir(adir)
+		setDir(angle2dir(adir))
 	return
 
 
@@ -118,7 +117,7 @@ var/list/solars_list = list()
 
 
 /obj/machinery/power/solar/process()//TODO: remove/add this from machines to save on processing as needed ~Carn PRIORITY
-	if(stat & BROKEN)	return
+	if(machine_stat & BROKEN)	return
 	if(!control)	return
 
 	if(adir != ndir)
@@ -136,7 +135,7 @@ var/list/solars_list = list()
 
 
 /obj/machinery/power/solar/proc/broken()
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	update_icon()
 	return
 
@@ -226,7 +225,7 @@ var/list/solars_list = list()
 	if(!tracker)
 		if(istype(W, /obj/item/circuitboard/solar_tracker))
 			tracker = 1
-			if(user.temp_drop_inv_item(W))
+			if(user.temporarilyRemoveItemFromInventory(W))
 				qdel(W)
 				user.visible_message("<span class='notice'>[user] inserts the electronics into the solar assembly.</span>")
 			return 1
@@ -249,7 +248,6 @@ var/list/solars_list = list()
 	icon_state = "solar"
 	anchored = 1
 	density = 1
-	directwired = 1
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 20
@@ -263,10 +261,8 @@ var/list/solars_list = list()
 	var/nexttime = 0		// Next clock time that manual tracking will move the array
 
 
-/obj/machinery/power/solar_control/New()
-	..()
-	if(ticker)
-		initialize()
+/obj/machinery/power/solar_control/Initialize()
+	. = ..()
 	connect_to_network()
 
 /obj/machinery/power/solar_control/disconnect_from_network()
@@ -278,17 +274,17 @@ var/list/solars_list = list()
 	if(powernet)
 		solars_list.Add(src)
 
-/obj/machinery/power/solar_control/initialize()
+/obj/machinery/power/solar_control/Initialize()
 	..()
 	if(!powernet) return
 	set_panels(cdir)
 
 /obj/machinery/power/solar_control/update_icon()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "broken"
 		overlays.Cut()
 		return
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "c_unpowered"
 		overlays.Cut()
 		return
@@ -301,22 +297,22 @@ var/list/solars_list = list()
 
 /obj/machinery/power/solar_control/attack_ai(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER)) return
+	if(machine_stat & (BROKEN|NOPOWER)) return
 	interact(user)
 
 
 /obj/machinery/power/solar_control/attack_hand(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER)) return
+	if(machine_stat & (BROKEN|NOPOWER)) return
 	interact(user)
 
 
 /obj/machinery/power/solar_control/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/tool/screwdriver))
+	if(isscrewdriver(I))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-			if (src.stat & BROKEN)
-				to_chat(user, "\blue The broken glass falls out.")
+			if (src.machine_stat & BROKEN)
+				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 				var/obj/structure/computerframe/A = new( src.loc )
 				new /obj/item/shard( src.loc )
 				var/obj/item/circuitboard/computer/solar_control/M = new( A )
@@ -328,7 +324,7 @@ var/list/solars_list = list()
 				A.anchored = 1
 				qdel(src)
 			else
-				to_chat(user, "\blue You disconnect the monitor.")
+				to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
 				var/obj/structure/computerframe/A = new( src.loc )
 				var/obj/item/circuitboard/computer/solar_control/M = new( A )
 				for (var/obj/C in src)
@@ -347,7 +343,7 @@ var/list/solars_list = list()
 	lastgen = gen
 	gen = 0
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	//use_power(250)
@@ -364,7 +360,7 @@ var/list/solars_list = list()
 
 // called by solar tracker when sun position changes
 /obj/machinery/power/solar_control/proc/tracker_update(var/angle)
-	if(track != 2 || stat & (NOPOWER|BROKEN))
+	if(track != 2 || machine_stat & (NOPOWER|BROKEN))
 		return
 	cdir = angle
 	set_panels(cdir)
@@ -373,9 +369,9 @@ var/list/solars_list = list()
 
 
 /obj/machinery/power/solar_control/interact(mob/user)
-	if(stat & (BROKEN|NOPOWER)) return
+	if(machine_stat & (BROKEN|NOPOWER)) return
 	if ( (get_dist(src, user) > 1 ))
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=solcon")
 			return
@@ -469,7 +465,7 @@ var/list/solars_list = list()
 
 /obj/machinery/power/solar_control/power_change()
 	..()
-	if(!(stat & NOPOWER))
+	if(!(machine_stat & NOPOWER))
 		update_icon()
 	else
 		spawn(rand(0, 15))
@@ -477,7 +473,7 @@ var/list/solars_list = list()
 
 
 /obj/machinery/power/solar_control/proc/broken()
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	update_icon()
 
 /obj/machinery/power/solar_control/ex_act(severity)

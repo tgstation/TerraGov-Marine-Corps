@@ -6,7 +6,7 @@
 	bound_width = 32
 	bound_height = 64
 	density = 1
-	var/health = 200
+	health = 200
 	opacity = 1
 	anchored = 1
 
@@ -27,6 +27,30 @@
 		user.visible_message("<span class='warning'>[user] beats against the [src] to no avail.</span>", \
 						 "<span class='warning'>[user] beats against the [src].</span>", \
 						 "You hear twisting metal.")
+
+/obj/structure/cargo_container/red
+	icon_state = "red"
+
+/obj/structure/cargo_container/green
+	icon_state = "green"
+
+/obj/structure/cargo_container/nt
+	icon_state = "NT"
+
+/obj/structure/cargo_container/hd
+	icon_state = "HD"
+
+/obj/structure/cargo_container/ch_red
+	icon_state = "ch_red"
+
+/obj/structure/cargo_container/ch_green
+	icon_state = "ch_green"
+
+/obj/structure/cargo_container/hd_blue
+	icon_state = "HD_blue"
+
+/obj/structure/cargo_container/gorg
+	icon_state = "gorg"	
 
 /obj/structure/cargo_container/horizontal
 	name = "Cargo Container"

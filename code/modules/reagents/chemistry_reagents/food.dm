@@ -132,7 +132,7 @@
 		holder.remove_reagent("frostoil", 5)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if((H.species.flags & NO_PAIN))
+		if((H.species.species_flags & NO_PAIN))
 			return ..()
 	switch(current_cycle)
 		if(1 to agony_start - 1)
@@ -153,14 +153,14 @@
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "scorching agony"
 	taste_multi = 10
-	targ_temp = BODYTEMP_HEAT_DAMAGE_LIMIT + 5
+	targ_temp = BODYTEMP_HEAT_DAMAGE_LIMIT_ONE + 5
 	discomfort_message = "<span class='danger'>You feel like your insides are burning!</span>"
 	agony_start = 3
 	agony_amount = 4
 
 /datum/reagent/consumable/capsaicin/condensed/reaction_mob(mob/living/M, method=TOUCH, volume)
 	if(method in list(TOUCH, VAPOR, PATCH))
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/victim = M
 			var/mouth_covered = 0
 			var/eyes_covered = 0
@@ -197,13 +197,13 @@
 				return
 			else if( eyes_covered ) // Mouth cover is better than eye cover, except it's actually the opposite.
 				to_chat(victim, "<span class='danger'>Your [safe_thing] protects you from most of the pepperspray!</span>")
-				if(!(victim.species && (victim.species.flags & NO_PAIN)))
+				if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
 					if(prob(10))
 						victim.Stun(1)
 				victim.blur_eyes(5)
 				return
 			else // Oh dear :D
-				if(!(victim.species && (victim.species.flags & NO_PAIN)))
+				if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
 					if(prob(10))
 						victim.emote("scream")
 				to_chat(victim, "<span class='danger'>You're sprayed directly in the eyes with pepperspray!</span>")

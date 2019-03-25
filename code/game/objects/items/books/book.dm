@@ -64,7 +64,7 @@
 					src.name = newtitle
 					src.title = newtitle
 			if("Contents")
-				var/content = strip_html(input(usr, "Write your book's contents (HTML NOT allowed):"),8192) as message|null
+				var/content = strip_html(input(usr, "Write your book's contents (HTML NOT allowed):") as message|null,8192)
 				if(!content)
 					to_chat(usr, "The content is invalid.")
 					return
@@ -80,7 +80,7 @@
 			else
 				return
 
-	else if(istype(W, /obj/item/tool/kitchen/knife) || istype(W, /obj/item/tool/wirecutters))
+	else if(istype(W, /obj/item/tool/kitchen/knife) || iswirecutter(W))
 		if(carved)	return
 		to_chat(user, "<span class='notice'>You begin to carve out [title].</span>")
 		if(do_after(user, 30, TRUE, 5, BUSY_ICON_HOSTILE))

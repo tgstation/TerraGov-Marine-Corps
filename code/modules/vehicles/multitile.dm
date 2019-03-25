@@ -30,7 +30,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	desc = "Marker for the entrance of a multitile vehicle."
 
 	var/obj/vehicle/multitile/root/master
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/effect/multitile_entrance/Destroy(var/override = 0)
 	if(!override) return TA_IGNORE_ME
@@ -43,7 +43,7 @@ Vehicles are placed on the map by a spawner or admin verb
 
 //A basic handoff to the root object to actually deal with attempted player entrance
 /obj/effect/multitile_entrance/verb/enter_multitile()
-	set category = "Object"
+	set category = "Vehicle"
 	set name = "Enter Vehicle"
 	set src in view(0)
 
@@ -55,14 +55,14 @@ Vehicles are placed on the map by a spawner or admin verb
 	name = "Landmark"
 	desc = "Marker for the exit of the interior"
 
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 	var/obj/vehicle/multitile/root/master
 */
 
 /*
 /obj/effect/landmark/multitile_exit/verb/exit_multitile(var/mob/M)
-	set category = "Object"
+	set category = "Vehicle"
 	set name = "Exit Vehicle"
 	set src in master
 
@@ -84,7 +84,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	desc = "Generic multitile vehicle hitbox"
 
 	var/obj/vehicle/multitile/root/root
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/vehicle/multitile/root
 	name = "Root"
@@ -117,24 +117,29 @@ Vehicles are placed on the map by a spawner or admin verb
 
 //How to get out, via verb
 /obj/vehicle/multitile/root/verb/exit_multitile()
-	set category = "Object"
+	set category = "Vehicle"
 	set name = "Exit Vehicle"
 	set src in view(0)
 
-	handle_player_exit(usr)
+	if(!usr.is_mob_incapacitated(TRUE))
+		handle_player_exit(usr)
 
 /obj/vehicle/multitile/root/proc/handle_player_exit(var/mob/M)
 	return
 
 /obj/vehicle/multitile/root/proc/handle_player_entrance(var/mob/M)
-	return
+	if(M.resting || M.buckled || M.is_mob_incapacitated())
+		return FALSE
+	return TRUE
 
 /obj/vehicle/multitile/root/proc/handle_harm_attack(var/mob/M)
-	return
+	if(M.resting || M.buckled || M.is_mob_incapacitated())
+		return FALSE
+	return TRUE
 
 //Vebrs for rotations, set up a macro and get turnin
 /obj/vehicle/multitile/root/verb/clockwise_rotate_multitile()
-	set category = "Object"
+	set category = "Vehicle"
 	set name = "Rotate Vehicle Clockwise"
 	set src in view(0)
 
@@ -142,7 +147,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	try_rotate(-90, M)
 
 /obj/vehicle/multitile/root/verb/counterclockwise_rotate_multitile()
-	set category = "Object"
+	set category = "Vehicle"
 	set name = "Rotate Vehicle Counterclockwise"
 	set src in view(0)
 
@@ -180,10 +185,10 @@ Vehicles are placed on the map by a spawner or admin verb
 	save_locs()
 	if(!try_move(linked_objs, direction))
 		revert_locs()
-		dir = old_dir
+		setDir(old_dir)
 		return 0 //Failed movement
 
-	dir = old_dir //Preserve the direction you're facing when moving backwards
+	setDir(old_dir) //Preserve the direction you're facing when moving backwards
 	return 1
 
 /obj/vehicle/multitile/root/New()
@@ -289,7 +294,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	for(var/datum/coords/C in linked_objs)
 
 		var/atom/movable/A = linked_objs[C]
-		A.dir = turn(A.dir, deg) //Turn the thing at that tile
+		A.setDir(turn(A.dir, deg)) //Turn the thing at that tile
 
 		//Update coords
 		var/new_x = C.x_pos*cos(deg) - C.y_pos*sin(deg)

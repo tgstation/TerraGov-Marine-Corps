@@ -19,27 +19,34 @@
 
 	// *** Plasma *** //
 	plasma_max = 800
-	plasma_gain = 45
+	plasma_gain = 50
 
 	// *** Health *** //
 	max_health = 250
 
 	// *** Evolution *** //
+	evolution_threshold = 200
 	upgrade_threshold = 200
 
 	deevolves_to = /mob/living/carbon/Xenomorph/Drone
 
+	evolves_to = list(/mob/living/carbon/Xenomorph/Defiler)
+
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
-	
-	// *** Defense *** //
-	armor_deflection = 5
 
-	// *** Pheromones *** //	
-	aura_strength = 1 //Hivelord's aura is not extremely strong, but better than Drones. At the top, it's just a bit above a young Queen. Climbs by 0.5 to 2.5
-	aura_allowed = list("frenzy", "warding", "recovery") 
+	// *** Defense *** //
+	armor_deflection = 10
+
+	// *** Ranged Attack *** //
+	spit_delay = 1.3 SECONDS
+	spit_types = list(/datum/ammo/xeno/sticky)
+
+	// *** Pheromones *** //
+	aura_strength = 2 //Hivelord's aura is not extremely strong, but better than Drones.
+	aura_allowed = list("frenzy", "warding", "recovery")
 
 /datum/xeno_caste/hivelord/mature
 	upgrade_name = "Mature"
@@ -58,19 +65,23 @@
 
 	// *** Plasma *** //
 	plasma_max = 900
-	plasma_gain = 50
+	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 270
+	max_health = 275
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor_deflection = 10
+	armor_deflection = 15
 
-	// *** Pheromones *** //	
-	aura_strength = 1.5
+	// *** Ranged Attack *** //
+	spit_delay = 1.3 SECONDS
+	spit_types = list(/datum/ammo/xeno/sticky)
+
+	// *** Pheromones *** //
+	aura_strength = 2.6
 
 /datum/xeno_caste/hivelord/elder
 	upgrade_name = "Elder"
@@ -89,7 +100,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 1000
-	plasma_gain = 55
+	plasma_gain = 63
 
 	// *** Health *** //
 	max_health = 290
@@ -98,10 +109,14 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 10
+	armor_deflection = 18
 
-	// *** Pheromones *** //	
-	aura_strength = 2
+	// *** Ranged Attack *** //
+	spit_delay = 1.3 SECONDS
+	spit_types = list(/datum/ammo/xeno/sticky)
+
+	// *** Pheromones *** //
+	aura_strength = 2.9
 
 /datum/xeno_caste/hivelord/ancient
 	upgrade_name = "Ancient"
@@ -121,7 +136,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 1200
-	plasma_gain = 60
+	plasma_gain = 65
 
 	// *** Health *** //
 	max_health = 300
@@ -130,11 +145,15 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 15
+	armor_deflection = 20
 
-	// *** Pheromones *** //	
-	aura_strength = 2
-					
+	// *** Ranged Attack *** //
+	spit_delay = 1.3 SECONDS
+	spit_types = list(/datum/ammo/xeno/sticky)
+
+	// *** Pheromones *** //
+	aura_strength = 3
+
 /mob/living/carbon/Xenomorph/Hivelord
 	caste_base_type = /mob/living/carbon/Xenomorph/Hivelord
 	name = "Hivelord"
@@ -158,11 +177,12 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin/hivelord,
-		/datum/action/xeno_action/activable/transfer_plasma/hivelord,
+		/datum/action/xeno_action/activable/transfer_plasma/improved,
 		/datum/action/xeno_action/activable/corrosive_acid,
-		/datum/action/xeno_action/emit_pheromones,
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
+		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/activable/xeno_spit
 		)
 
 
@@ -173,3 +193,7 @@
 	if(speed_activated)
 		if(locate(/obj/effect/alien/weeds) in loc)
 			. -= 1.5
+
+/mob/living/carbon/Xenomorph/Hivelord/Initialize()
+	. = ..()
+	update_spits()

@@ -5,7 +5,7 @@
 	item_state = "electropack"
 	frequency = 1457
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 5.0
 
 	matter = list("metal" = 10000,"glass" = 2500)
@@ -23,7 +23,7 @@
 	//..()
 	if(usr.stat || usr.is_mob_restrained())
 		return
-	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
+	if((ishuman(usr) && usr.contents.Find(src)) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf))))
 		usr.set_interaction(src)
 		if(href_list["freq"])
 			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
@@ -84,7 +84,7 @@
 
 /obj/item/device/radio/electropack/attack_self(mob/user as mob, flag1)
 
-	if(!istype(user, /mob/living/carbon/human))
+	if(!ishuman(user))
 		return
 	user.set_interaction(src)
 	var/dat = {"<TT>

@@ -55,7 +55,7 @@
 /obj/vehicle/train/cargo/engine/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/key/cargo_train))
 		if(!key)
-			user.drop_inv_item_to_loc(W, src)
+			user.transferItemToLoc(W, src)
 			key = W
 			verbs += /obj/vehicle/train/cargo/engine/verb/remove_key
 		return
@@ -135,7 +135,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!ishuman(usr))
 		return
 
 	if(on)
@@ -159,7 +159,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!ishuman(usr))
 		return
 
 	if(!on)
@@ -175,7 +175,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!ishuman(usr))
 		return
 
 	if(!key || (buckled_mob && buckled_mob != usr))
@@ -185,7 +185,7 @@
 		turn_off()
 
 	key.loc = usr.loc
-	if(!usr.get_active_hand())
+	if(!usr.get_active_held_item())
 		usr.put_in_hands(key)
 	key = null
 

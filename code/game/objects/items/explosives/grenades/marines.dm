@@ -6,7 +6,6 @@
 	icon_state = "grenade"
 	det_time = 40
 	item_state = "grenade"
-	dangerous = 1
 	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/frag/prime()
@@ -28,7 +27,7 @@
 	icon_state = "training_grenade"
 	item_state = "grenade"
 	hud_state = "grenade_dummy"
-	dangerous = 0
+	dangerous = FALSE
 
 /obj/item/explosive/grenade/frag/training/prime()
 	spawn(0)
@@ -118,8 +117,6 @@
 	det_time = 40
 	item_state = "grenade_fire"
 	hud_state = "grenade_fire"
-	flags_equip_slot = SLOT_WAIST
-	dangerous = 1
 	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/incendiary/prime()
@@ -133,14 +130,15 @@
 proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, burn_damage = 25, fire_stacks = 15, int_var = 0.5, dur_var = 0.5, colour = "red") //~Art updated fire.
 	if(!T || !isturf(T))
 		return
-	radius = CLAMP(radius, 1, 7) //Sterilize inputs
+	radius = CLAMP(radius, 1, 50) //Sanitize inputs
 	int_var = CLAMP(int_var, 0.1,0.5)
 	dur_var = CLAMP(int_var, 0.1,0.5)
 	fire_stacks = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 	burn_damage = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 	for(var/obj/flamer_fire/F in range(radius,T)) // No stacking flames!
 		qdel(F)
-	new /obj/flamer_fire(T, rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, radius, burn_damage, fire_stacks) //Gaussian.
+	for(var/turf/IT in diamondturfs(T,radius))
+		new /obj/flamer_fire(IT, rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, 0, burn_damage, fire_stacks)
 
 
 /obj/item/explosive/grenade/incendiary/molotov
@@ -172,6 +170,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	item_state = "grenade_smoke"
 	hud_state = "grenade_smoke"
 	underslug_launchable = TRUE
+	dangerous = FALSE
 	var/datum/effect_system/smoke_spread/bad/smoke
 
 /obj/item/explosive/grenade/smokebomb/New()
@@ -193,6 +192,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	det_time = 20
 	item_state = "grenade_cloak"
 	hud_state = "grenade_hide"
+	dangerous = FALSE
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/tactical/smoke
 
@@ -236,3 +236,159 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	desc = "A deadly gas grenade found within the ranks of the UPP. Designed to spill white phosporus on the target. It explodes 2 seconds after the pin has been pulled."
 	icon_state = "grenade_upp_wp"
 	item_state = "grenade_upp_wp"
+
+/obj/item/explosive/grenade/impact
+	name = "\improper M40 IMDP grenade"
+	desc = "A high explosive contact detonation munition utilizing the standard DP canister chassis. Has a focused blast specialized for door breaching and combating emplacements and light armoured vehicles. WARNING: Handthrowing does not result in sufficient force to trigger impact detonators."
+	icon_state = "grenade_impact"
+	item_state = "grenade_impact"
+	hud_state = "grenade_frag"
+	det_time = 40
+	dangerous = TRUE
+	underslug_launchable = TRUE
+
+/obj/item/explosive/grenade/impact/prime()
+	spawn(0)
+		explosion(loc, -1, -1, 1, 2)
+		qdel(src)
+	return
+
+/obj/item/explosive/grenade/impact/flamer_fire_act()
+	var/turf/T = loc
+	qdel(src)
+	explosion(T, -1, -1, 1, 2)
+
+/obj/item/explosive/grenade/impact/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	if(launched && active && !istype(hit_atom, /turf/open)) //Only contact det if active, we actually hit something, and we're fired from a grenade launcher.
+		explosion(loc, -1, -1, 1, 2)
+		qdel(src)
+
+
+/obj/item/explosive/grenade/flare
+	name = "\improper M40 FLDP grenade"
+	desc = "A TGMC standard issue flare utilizing the standard DP canister chassis. Capable of being loaded in the M92 Launcher, or thrown by hand."
+	icon_state = "flare_grenade"
+	det_time = 0
+	throwforce = 1
+	dangerous = FALSE
+	underslug_launchable = TRUE
+	w_class = 2
+	hud_state = "grenade_frag"
+	var/fuel = 0
+
+/obj/item/explosive/grenade/flare/New()
+	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
+	return ..()
+
+/obj/item/explosive/grenade/flare/flamer_fire_act()
+	if(!active)
+		turn_on()
+
+/obj/item/explosive/grenade/flare/Destroy()
+	turn_off()
+	. = ..()
+
+/obj/item/explosive/grenade/flare/process()
+	fuel = max(fuel - 1, 0)
+	if(!fuel || !active)
+		turn_off()
+		if(!fuel)
+			icon_state = "[initial(icon_state)]-empty"
+		STOP_PROCESSING(SSobj, src)
+
+/obj/item/explosive/grenade/flare/proc/turn_off()
+	fuel = 0
+	icon_state = "[initial(icon_state)]-empty"
+	heat_source = 0
+	force = initial(force)
+	damtype = initial(damtype)
+	if(ismob(loc))
+		update_brightness(loc)
+	else
+		update_brightness(null)
+	//message_admins("TOGGLE FLARE LIGHT DEBUG 1: fuel: [fuel] loc: [loc]")
+	STOP_PROCESSING(SSobj, src)
+
+/obj/item/explosive/grenade/flare/proc/turn_on()
+	active = TRUE
+	force = 5
+	throwforce = 10
+	igniting = TRUE
+	item_fire_stacks = 5
+	heat_source = 1500
+	damtype = "fire"
+	update_brightness()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/explosive/grenade/flare/attack_self(mob/user)
+
+	// Usual checks
+	if(!fuel)
+		to_chat(user, "<span class='notice'>It's out of fuel.</span>")
+		return
+	if(active)
+		return
+
+	// All good, turn it on.
+	user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You depress the ignition button, activating it!</span>")
+	turn_on(user)
+
+/obj/item/explosive/grenade/flare/activate(mob/user)
+	if(!active)
+		turn_on(user)
+
+/obj/item/explosive/grenade/flare/on/New()
+
+	. = ..()
+	active = TRUE
+	heat_source = 1500
+	update_brightness()
+	force = 5
+	throwforce = 10
+	igniting = TRUE
+	item_fire_stacks = 5
+	damtype = "fire"
+	START_PROCESSING(SSobj, src)
+
+/obj/item/explosive/grenade/flare/proc/update_brightness(mob/user)
+	if(!user && ismob(loc))
+		user = loc
+	if(active && fuel > 0)
+		icon_state = "[initial(icon_state)]_active"
+		if(loc && loc == user)
+			user.SetLuminosity(FLARE_BRIGHTNESS)
+			//message_admins("FLARE UPDATE BRIGHTNESS DEBUG: user: [user] light_sources length: [length(user.light_sources)]")
+			SetLuminosity(0)
+		else if(isturf(loc))
+			SetLuminosity(FLARE_BRIGHTNESS)
+	else
+		icon_state = initial(icon_state)
+		if(loc && loc == user)
+			user.SetLuminosity(-FLARE_BRIGHTNESS)
+		else if(isturf(loc))
+			SetLuminosity(0)
+
+/obj/item/explosive/grenade/flare/pickup(mob/user)
+	if(active && loc != user)
+		user.SetLuminosity(FLARE_BRIGHTNESS)
+		SetLuminosity(0)
+	return ..()
+
+/obj/item/explosive/grenade/flare/dropped(mob/user)
+	if(active && loc != user)
+		user.SetLuminosity(-FLARE_BRIGHTNESS)
+		SetLuminosity(FLARE_BRIGHTNESS)
+	return ..()
+
+/obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	if(isliving(hit_atom) && active)
+		var/mob/living/L = hit_atom
+
+		var/target_zone = check_zone(L.zone_selected)
+		if(!target_zone || rand(40))
+			target_zone = "chest"
+		var/armor_block = L.run_armor_check(target_zone, "energy")
+		if(launched && igniting)
+			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, armor_block) //Do more damage if launched from a proper launcher and active

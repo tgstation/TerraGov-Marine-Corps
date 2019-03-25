@@ -21,7 +21,7 @@
 	var/obj/item/organ/organ_holder // If not in a body, held in this item.
 	var/list/transplant_data
 	var/germ_level = 0		// INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE
-
+	var/organ_id
 
 /datum/internal_organ/process()
 		return 0
@@ -69,7 +69,7 @@
 /datum/internal_organ/process()
 
 	//Process infections
-	if (robotic >= 2 || (owner.species && owner.species.flags & IS_PLANT))	//TODO make robotic internal and external organs separate types of organ instead of a flag
+	if (robotic >= 2 || (owner.species && owner.species.species_flags & IS_PLANT))	//TODO make robotic internal and external organs separate types of organ instead of a flag
 		germ_level = 0
 		return
 
@@ -95,23 +95,23 @@
 				parent.germ_level++
 
 			if (prob(3))	//about once every 30 seconds
-				take_damage(1,silent=prob(30))
+				take_damage(1, prob(30))
 
-/datum/internal_organ/proc/take_damage(amount, var/silent=0)
-	if(src.robotic == ORGAN_ROBOT)
-		src.damage += (amount * 0.8)
+/datum/internal_organ/proc/take_damage(amount, silent= FALSE)
+	if(amount <= 0)
+		heal_damage(- amount)
+		return
+	if(robotic == ORGAN_ROBOT)
+		damage += (amount * 0.8)
 	else
-		src.damage += amount
+		damage += amount
 
 	var/datum/limb/parent = owner.get_limb(parent_limb)
 	if (!silent)
 		owner.custom_pain("Something inside your [parent.display_name] hurts a lot.", 1)
 
 /datum/internal_organ/proc/heal_damage(amount)
-	if(damage < amount)
-		damage = 0
-	else
-		damage -= amount
+	damage = max(damage - amount, 0)
 
 /datum/internal_organ/proc/emp_act(severity)
 	switch(robotic)
@@ -160,6 +160,7 @@
 	parent_limb = "chest"
 	removed_type = /obj/item/organ/heart
 	robotic_type = /obj/item/organ/heart/prosthetic
+	organ_id = ORGAN_HEART
 
 /datum/internal_organ/heart/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT
@@ -170,6 +171,7 @@
 	parent_limb = "chest"
 	removed_type = /obj/item/organ/lungs
 	robotic_type = /obj/item/organ/lungs/prosthetic
+	organ_id = ORGAN_LUNGS
 
 /datum/internal_organ/lungs/process()
 	..()
@@ -184,7 +186,7 @@
 				owner.drip(10)
 			if(prob(4))
 				spawn owner.emote("me", 1, "gasps for air!")
-				owner.losebreath += 15
+				owner.Losebreath(15)
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
@@ -197,13 +199,14 @@
 	removed_type = /obj/item/organ/liver
 	robotic_type = /obj/item/organ/liver/prosthetic
 	var/alcohol_tolerance = 0.005 //lower value, higher resistance.
+	organ_id = ORGAN_LIVER
 
 /datum/internal_organ/liver/process()
 	..()
 
 	if (germ_level > INFECTION_LEVEL_ONE)
 		if(prob(1))
-			to_chat(owner, "\red Your skin itches.")
+			to_chat(owner, "<span class='warning'>Your skin itches.</span>")
 	if (germ_level > INFECTION_LEVEL_TWO)
 		if(prob(1))
 			spawn owner.vomit()
@@ -214,22 +217,19 @@
 		if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent("dylovene"))
 			//Healthy liver suffers on its own
 			if (damage < min_broken_damage)
-				damage += 0.2 * PROCESS_ACCURACY
+				take_damage(0.2 * PROCESS_ACCURACY, TRUE)
 			//Damaged one shares the fun
 			else
 				var/datum/internal_organ/O = pick(owner.internal_organs)
 				if(O)
-					O.damage += 0.2  * PROCESS_ACCURACY
+					O.take_damage(0.2  * PROCESS_ACCURACY, TRUE)
 
 		// Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxins.
 		if(!owner.drunkenness && owner.getToxLoss() <= 15 && !owner.radiation && min_bruised_damage > damage > 0)
 			if(!owner.reagents.has_reagent("dylovene")) // Detox effect
-				damage -= 0.2 * PROCESS_ACCURACY
+				heal_damage(0.2 * PROCESS_ACCURACY)
 			else
-				damage -= 0.04 * PROCESS_ACCURACY
-
-		if(damage < 0)
-			damage = 0
+				heal_damage(0.04 * PROCESS_ACCURACY)
 
 		// Get the effectiveness of the liver.
 		var/filter_effect = 3
@@ -271,6 +271,7 @@
 	parent_limb = "groin"
 	removed_type = /obj/item/organ/kidneys
 	robotic_type = /obj/item/organ/kidneys/prosthetic
+	organ_id = ORGAN_KIDNEYS
 
 /datum/internal_organ/kidneys/process()
 	..()
@@ -302,7 +303,8 @@
 	parent_limb = "head"
 	removed_type = /obj/item/organ/brain
 	robotic_type = /obj/item/organ/brain/prosthetic
-	vital = 1
+	vital = TRUE
+	organ_id = ORGAN_BRAIN
 
 /datum/internal_organ/brain/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT
@@ -318,6 +320,7 @@
 	removed_type = /obj/item/organ/eyes
 	robotic_type = /obj/item/organ/eyes/prosthetic
 	var/eye_surgery_stage = 0 //stores which stage of the eye surgery the eye is at
+	organ_id = ORGAN_EYES
 
 /datum/internal_organ/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()
@@ -336,6 +339,7 @@
 	name = "appendix"
 	parent_limb = "groin"
 	removed_type = /obj/item/organ/appendix
+	organ_id = ORGAN_APPENDIX
 
 /datum/internal_organ/proc/remove(var/mob/user)
 

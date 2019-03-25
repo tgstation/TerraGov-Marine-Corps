@@ -12,7 +12,7 @@
 	var/stack_type //The type of stack the barricade dropped when disassembled if any.
 	var/stack_amount = 5 //The amount of stack dropped when disassembled at full health
 	var/destroyed_stack_amount //to specify a non-zero amount of stack to drop when destroyed
-	var/health = 100 //Pretty tough. Changes sprites at 300 and 150
+	health = 100 //Pretty tough. Changes sprites at 300 and 150
 	var/maxhealth = 100 //Basic code functions
 	var/crusher_resistant = TRUE //Whether a crusher can ram through it.
 	var/barricade_resistance = 5 //How much force an item needs to even damage it at all.
@@ -27,10 +27,9 @@
 	var/image/wired_overlay
 	flags_barrier = HANDLE_BARRIER_CHANCE
 
-/obj/structure/barricade/New()
-	..()
-	spawn(0)
-		update_icon()
+/obj/structure/barricade/Initialize()
+	. = ..()
+	update_icon()
 
 /obj/structure/barricade/handle_barrier_chance(mob/living/M)
 	return prob(max(30,(100.0*health)/maxhealth))
@@ -65,11 +64,11 @@
 
 		var/mob/living/carbon/Xenomorph/Crusher/C = A
 
-		if(C.charge_speed < C.charge_speed_max/2)
+		if(C.charge_speed < C.charge_speed_max * 0.5)
 			return
 
 		if(crusher_resistant)
-			health -= 100
+			health -= C.charge_speed * CRUSHER_CHARGE_BARRICADE_MULTI
 			update_health()
 
 		else if(!C.stat)
@@ -137,6 +136,8 @@
 		"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 		M.apply_damage(10)
 	update_health(TRUE)
+	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 /obj/structure/barricade/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/zombie_claws))
@@ -175,7 +176,7 @@
 				climbable = FALSE
 		return
 
-	if(istype(W, /obj/item/tool/wirecutters))
+	if(iswirecutter(W))
 		if(is_wired)
 			user.visible_message("<span class='notice'>[user] begin removing the barbed wire on [src].</span>",
 			"<span class='notice'>You begin removing the barbed wire on [src].</span>")
@@ -225,6 +226,10 @@
 			health -= rand(10, 33)
 	update_health()
 
+/obj/structure/barricade/setDir(newdir)
+	. = ..()
+	update_icon()
+
 /obj/structure/barricade/update_icon()
 	if(!closed)
 		if(can_change_dmg_state)
@@ -232,9 +237,12 @@
 		else
 			icon_state = "[barricade_type]"
 		switch(dir)
-			if(SOUTH) layer = ABOVE_MOB_LAYER
-			if(NORTH) layer = initial(layer) - 0.01
-			else layer = initial(layer)
+			if(SOUTH)
+				layer = ABOVE_MOB_LAYER
+			if(NORTH)
+				layer = initial(layer) - 0.01
+			else
+				layer = initial(layer)
 		if(!anchored)
 			layer = initial(layer)
 	else
@@ -261,7 +269,7 @@
 	health -= I.force * 0.5
 	update_health()
 
-/obj/structure/barricade/proc/update_health(nomessage)
+/obj/structure/barricade/update_health(nomessage)
 	health = CLAMP(health, 0, maxhealth)
 
 	if(!health)
@@ -295,8 +303,7 @@
 		to_chat(usr, "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>")
 		return FALSE
 
-	dir = turn(dir, 90)
-	update_icon()
+	setDir(turn(dir, 90))
 	return
 
 /obj/structure/barricade/verb/revrotate()
@@ -308,8 +315,7 @@
 		to_chat(usr, "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>")
 		return FALSE
 
-	dir = turn(dir, 270)
-	update_icon()
+	setDir(turn(dir, 270))
 	return
 
 
@@ -329,11 +335,6 @@
 	destroyed_stack_amount = 0
 	can_wire = FALSE
 
-/obj/structure/barricade/snow/New(loc, direction)
-	if(direction)
-		dir = direction
-	..()
-
 
 
 //Item Attack
@@ -343,18 +344,18 @@
 			to_chat(user, "You can't get near that, it's melting!")
 			return
 	//Removing the barricades
-	if(istype(W, /obj/item/tool/shovel) && user.a_intent != "hurt")
+	if(istype(W, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
 		var/obj/item/tool/shovel/ET = W
 		if(ET.folded)
 			return
 		if(user.action_busy)
-			user  << "\red You are already shoveling!"
+			user  << "<span class='warning'> You are already shoveling!</span>"
 			return
 		user.visible_message("[user.name] starts clearing out \the [src].","You start removing \the [src].")
 		if(!do_after(user, ET.shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
 			return
 		if(!ET.folded)
-			user.visible_message("\blue \The [user] removes \the [src].")
+			user.visible_message("<span class='notice'> \The [user] removes \the [src].</span>")
 			destroy_structure(TRUE)
 		return
 	else
@@ -401,6 +402,10 @@
 	can_change_dmg_state = FALSE
 	barricade_type = "wooden"
 	can_wire = FALSE
+
+/obj/structure/barricade/wooden/lv_snowflake
+	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it..."
+	health = 25000
 
 /obj/structure/barricade/wooden/attackby(obj/item/W as obj, mob/user as mob)
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
@@ -819,7 +824,7 @@
 	. = ..()
 
 /obj/structure/barricade/plasteel/attack_hand(mob/user as mob)
-	if(isXeno(user))
+	if(isxeno(user))
 		return
 
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -873,15 +878,14 @@
 	barricade_type = "sandbag"
 	can_wire = TRUE
 
-/obj/structure/barricade/sandbags/New(loc, direction)
-	if(direction)
-		dir = direction
-
+/obj/structure/barricade/sandbags/update_icon()
+	. = ..()
 	if(dir == SOUTH)
 		pixel_y = -7
 	else if(dir == NORTH)
 		pixel_y = 7
-	..()
+	else
+		pixel_y = 0
 
 
 /obj/structure/barricade/sandbags/attackby(obj/item/W, mob/user)
@@ -891,7 +895,7 @@
 			to_chat(user, "You can't get near that, it's melting!")
 			return
 
-	if(istype(W, /obj/item/tool/shovel) && user.a_intent != "hurt")
+	if(istype(W, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
 		var/obj/item/tool/shovel/ET = W
 		if(!ET.folded)
 			user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",

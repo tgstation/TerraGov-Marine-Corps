@@ -1,6 +1,3 @@
-
-// 1 decisecond click delay (above and beyond mob/next_move)
-/mob/var/next_click = 0
 /*
 	client/Click is called every time a client clicks anywhere, it should never be overridden.
 
@@ -16,13 +13,20 @@
 */
 
 /client/Click(atom/A, location, control, params)
-	if (control)	// No .click macros allowed
+	if(control)	// No .click macros allowed
 		return usr.do_click(A, location, params)
 
 
 /mob/proc/do_click(atom/A, location, params)
+	if(world.time <= next_click)
+		return
+	next_click = world.time + 1
+
+	if(check_click_intercept(params, A))
+		return
+
 	// No clicking on atoms with the NOINTERACT flag
-	if ((A.flags_atom & NOINTERACT))
+	if((A.flags_atom & NOINTERACT))
 		if(istype(A, /obj/screen/click_catcher))
 			var/list/mods = params2list(params)
 			var/turf/TU = params2turf(mods["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
@@ -30,25 +34,11 @@
 				do_click(TU, location, params)
 		return
 
-	if (world.time <= next_click)
-		//DEBUG: to_chat(world, "FAIL! TIME:[world.time]   NEXT_CLICK:[next_click]    NEXT_MOVE: [next_move]")
-		return
-
-	next_click = world.time + 1
-	//DEBUG: to_chat(world, "SUCCESS! TIME:[world.time]   NEXT_CLICK:[next_click]     NEXT_MOVE: [next_move]")
 
 	var/list/mods = params2list(params)
 
 	// Don't allow any other clicks while dragging something
-	if (mods["drag"])
-		return
-
-	if(client.buildmode)
-		if (istype(A, /obj/effect/bmode))
-			A.clicked(src, mods)
-			return
-
-		build_click(src, client.buildmode, mods, A)
+	if(mods["drag"])
 		return
 
 	var/click_handled = 0
@@ -56,27 +46,26 @@
 	click_handled = click(A, mods)
 	click_handled |= A.clicked(src, mods, location, params)
 
-	if (click_handled)
+	if(click_handled)
 		return
 
 	// Default click functions from here on.
-
-	if (is_mob_incapacitated(TRUE))
+	if(is_mob_incapacitated(TRUE))
 		return
 
 	face_atom(A)
 
 	// Special type of click.
-	if (is_mob_restrained())
+	if(is_mob_restrained())
 		RestrainedClickOn(A)
 		return
 
 	// Throwing stuff.
-	if (in_throw_mode)
+	if(in_throw_mode)
 		throw_item(A)
 		return
 
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_held_item()
 
 	// Special gun mode stuff.
 	if(W == A)
@@ -84,20 +73,20 @@
 		return
 
 	// Don't allow doing anything else if inside a container of some sort, like a locker.
-	if (!isturf(loc))
+	if(!isturf(loc))
 		return
 
-	if (world.time <= next_move)	// Attack click cooldown check
+	if(world.time <= next_move)	// Attack click cooldown check
 		//DEBUG: to_chat(world, "FAIL! TIME:[world.time]   NEXT_CLICK:[next_click]    NEXT_MOVE: [next_move]")
 		return
 
 	next_move = world.time
 	// If standing next to the atom clicked.
-	if (A.Adjacent(src))
-		if (W)
-			if (W.attack_speed)
+	if(A.Adjacent(src))
+		if(W)
+			if(W.attack_speed)
 				next_move += W.attack_speed
-			if (!A.attackby(W, src) && A && !A.gc_destroyed)
+			if(!A.attackby(W, src) && A && !A.gc_destroyed)
 				W?.afterattack(A, src, 1, mods) //The attackby could have made W dissappear, such as refilling mags on an ammo box.
 		else
 			next_move += 4
@@ -106,7 +95,7 @@
 		return
 
 	// If not standing next to the atom clicked.
-	if (W)
+	if(W)
 		W.afterattack(A, src, 0, mods)
 		return
 
@@ -114,54 +103,43 @@
 	return
 
 
-/*	OLD DESCRIPTION
-	Standard mob ClickOn()
-	Handles exceptions: Buildmode, middle click, modified clicks, mech actions
+/mob/proc/click(atom/A, list/mods)
+	return FALSE
 
-	After that, mostly just check your state, check whether you're holding an item,
-	check whether you're adjacent to the target, then pass off the click to whoever
-	is recieving it.
-	The most common are:
-	* mob/UnarmedAttack(atom,adjacent) - used here only when adjacent, with no item in hand; in the case of humans, checks gloves
-	* atom/attackby(item,user) - used only when adjacent
-	* item/afterattack(atom,user,adjacent,params) - used both ranged and adjacent
-	* mob/RangedAttack(atom,params) - used only ranged, only used for tk and laser eyes but could be changed
-*/
 
-/mob/proc/click(var/atom/A, var/list/mods)
-	return 0
+/atom/proc/clicked(mob/user, list/mods)
 
-/atom/proc/clicked(var/mob/user, var/list/mods)
-
-	if (mods["shift"] && !mods["middle"])
+	if(mods["shift"] && !mods["middle"])
 		if(user.client && user.client.eye == user)
 			user.examinate(src)
-		return 1
+		return TRUE
 
-	if (mods["alt"])
+	if(mods["alt"])
 		var/turf/T = get_turf(src)
-		if(T && user.TurfAdjacent(T) && T.contents.len)
+		if(length(T?.contents) && get_dist(user,src) <= 1)
 			user.tile_contents = T.contents.Copy()
 
 			var/atom/A
-			for (A in user.tile_contents)
-				if (A.invisibility > user.see_invisible)
+			for(A in user.tile_contents)
+				if(A.invisibility > user.see_invisible)
 					user.tile_contents -= A
 
-			if (user.tile_contents.len)
-				user.tile_contents_change = 1
-		return 1
-	return 0
+			if(length(user.tile_contents))
+				user.tile_contents_change = TRUE
+		return TRUE
+	return FALSE
+
 
 /atom/movable/clicked(var/mob/user, var/list/mods)
-	if (..())
-		return 1
+	. = ..()
+	if(.)
+		return TRUE
 
-	if (mods["ctrl"])
-		if (Adjacent(user))
+	if(mods["ctrl"])
+		if(Adjacent(user))
 			user.start_pulling(src)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /*
 	Translates into attack_hand, etc.
@@ -186,8 +164,6 @@
 */
 /mob/proc/RangedAttack(var/atom/A, var/params)
 	if(!mutations.len) return
-	if((LASER in mutations) && a_intent == "harm")
-		LaserEyes(A) // moved into a proc below
 	else if(TK in mutations)
 		switch(get_dist(src,A))
 			if(0)
@@ -244,7 +220,7 @@
 		nutrition = max(nutrition - rand(1,5),0)
 		handle_regular_hud_updates()
 	else
-		to_chat(src, "\red You're out of energy!  You need food!")
+		to_chat(src, "<span class='warning'>You're out of energy!  You need food!</span>")
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /mob/proc/face_atom(var/atom/A)
@@ -261,10 +237,9 @@
 	else
 		if(dx > 0)	direction = EAST
 		else		direction = WEST
-	usr.dir = direction
+	usr.setDir(direction)
 	if(buckled)
-		buckled.dir = direction
-		buckled.handle_rotation()
+		buckled.setDir(direction)
 
 
 
@@ -330,15 +305,19 @@
 	return locate(tX, tY, tZ)
 
 
-/proc/getviewsize(view)
-	var/viewX
-	var/viewY
-	if(isnum(view))
-		var/totalviewrange = 1 + 2 * view
-		viewX = totalviewrange
-		viewY = totalviewrange
-	else
-		var/list/viewrangelist = splittext(view,"x")
-		viewX = text2num(viewrangelist[1])
-		viewY = text2num(viewrangelist[2])
-	return list(viewX, viewY)
+/mob/proc/check_click_intercept(params, A)
+	//Client level intercept
+	if(client?.click_intercept)
+		if(istype(A, /obj/screen/buildmode))
+			return FALSE
+		else if(call(client.click_intercept, "InterceptClickOn")(src, params, A))
+			return TRUE
+
+	//Mob level intercept
+	if(click_intercept)
+		if(istype(A, /obj/screen/buildmode))
+			return FALSE
+		if(call(click_intercept, "InterceptClickOn")(src, params, A))
+			return TRUE
+
+	return FALSE

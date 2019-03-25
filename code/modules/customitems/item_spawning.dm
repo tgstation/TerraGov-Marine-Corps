@@ -34,7 +34,7 @@
 					var/obj/item/card/id/I = Item
 					for(var/obj/item/card/id/C in M)
 						//default settings
-						I.name = "[M.real_name]'s ID Card ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
+						I.name = "[M.real_name]'s ID Card ([M.mind.assigned_role])"
 						I.registered_name = M.real_name
 						I.access = C.access
 						I.assignment = C.assignment
@@ -43,19 +43,19 @@
 						I.fingerprint_hash = C.fingerprint_hash
 						//replace old ID
 						qdel(C)
-						ok = M.equip_if_possible(I, WEAR_ID, 0)	//if 1, last argument deletes on fail
+						ok = M.equip_if_possible(I, SLOT_WEAR_ID, 0)	//if 1, last argument deletes on fail
 						break
 				else if(istype(Item,/obj/item/storage/belt))
 					var/obj/item/storage/belt/I = Item
 					if(istype(M.belt,/obj/item/storage/belt))
 						qdel(M.belt)
 						M.belt=null
-						ok = M.equip_if_possible(I, WEAR_WAIST, 0)
+						ok = M.equip_if_possible(I, SLOT_BELT, 0)
 						break
 					if(istype(M.belt,/obj/item/device/pda))
-						M.equip_if_possible(M.belt, WEAR_L_STORE, 0)
+						M.equip_if_possible(M.belt, SLOT_L_STORE, 0)
 						M.belt=null
-						ok = M.equip_if_possible(I, WEAR_WAIST, 0)
+						ok = M.equip_if_possible(I, SLOT_BELT, 0)
 				else
 					for(var/obj/item/storage/S in M.contents) // Try to place it in any item that can store stuff, on the mob.
 						if (S.handle_item_insertion(Item, TRUE))

@@ -38,7 +38,7 @@
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 
-	to_chat(brainmob, "\blue You feel slightly disoriented. That's normal when you're just a brain.")
+	to_chat(brainmob, "<span class='notice'>You feel slightly disoriented. That's normal when you're just a brain.</span>")
 	callHook("debrain", list(brainmob))
 
 /obj/item/organ/brain/examine(mob/user)

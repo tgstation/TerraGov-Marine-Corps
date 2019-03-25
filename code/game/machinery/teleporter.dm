@@ -16,8 +16,8 @@
 	underlays += image('icons/obj/stationobjs.dmi', icon_state = "telecomp-wires")
 	return
 
-/obj/machinery/computer/teleporter/initialize()
-	..()
+/obj/machinery/computer/teleporter/Initialize()
+	. = ..()
 	var/obj/machinery/teleport/station/station = locate(/obj/machinery/teleport/station, get_step(src, dir))
 	var/obj/machinery/teleport/hub/hub
 	if(station)
@@ -25,21 +25,21 @@
 
 	if(istype(station))
 		station.com = hub
-		station.dir = dir
+		station.setDir(dir)
 
 	if(istype(hub))
 		hub.com = src
-		hub.dir = dir
+		hub.setDir(dir)
 
 /obj/machinery/computer/teleporter/attackby(I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/card/data/))
 		var/obj/item/card/data/C = I
-		if(stat & (NOPOWER|BROKEN) & (C.function != "teleporter"))
+		if(machine_stat & (NOPOWER|BROKEN) & (C.function != "teleporter"))
 			src.attack_hand()
 
 		var/obj/L = null
 
-		for(var/obj/effect/landmark/sloc in landmarks_list)
+		for(var/obj/effect/landmark/sloc in GLOB.landmarks_list)
 			if(sloc.name != C.data) continue
 			if(locate(/mob/living) in sloc.loc) continue
 			L = sloc
@@ -58,7 +58,7 @@
 			if(C.data == "Clown Land")
 				//whoops
 				for(var/mob/O in hearers(src, null))
-					O.show_message("\red Incoming bluespace portal detected, unable to lock in.", 2)
+					O.show_message("<span class='warning'> Incoming bluespace portal detected, unable to lock in.</span>", 2)
 
 				for(var/obj/machinery/teleport/hub/H in range(1))
 					var/amount = rand(2,5)
@@ -67,7 +67,7 @@
 				//
 			else
 				for(var/mob/O in hearers(src, null))
-					O.show_message("\blue Locked In", 2)
+					O.show_message("<span class='notice'> Locked In</span>", 2)
 				src.locked = L
 				one_time_use = 1
 
@@ -84,17 +84,17 @@
 	src.attack_hand()
 
 /obj/machinery/computer/teleporter/attack_hand()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	var/list/L = list()
 	var/list/areaindex = list()
 
-	for(var/obj/item/device/radio/beacon/R in item_list)
+	for(var/obj/item/device/radio/beacon/R in GLOB.item_list)
 		var/turf/T = get_turf(R)
 		if (!T)
 			continue
-		if(T.z == 2 || T.z > 7)
+		if(is_centcom_level(T.z) || T.z > 7)
 			continue
 		var/tmpname = T.loc.name
 		if(areaindex[tmpname])
@@ -103,7 +103,7 @@
 			areaindex[tmpname] = 1
 		L[tmpname] = R
 
-	for (var/obj/item/implant/tracking/I in item_list)
+	for (var/obj/item/implant/tracking/I in GLOB.item_list)
 		if (!I.implanted || !ismob(I.loc))
 			continue
 		else
@@ -113,7 +113,7 @@
 					continue
 			var/turf/T = get_turf(M)
 			if(T)	continue
-			if(T.z == 2)	continue
+			if(is_centcom_level(T.z))	continue
 			var/tmpname = M.real_name
 			if(areaindex[tmpname])
 				tmpname = "[tmpname] ([++areaindex[tmpname]])"
@@ -129,7 +129,7 @@
 
 	src.locked = L[desc]
 	for(var/mob/O in hearers(src, null))
-		O.show_message("\blue Locked In", 2)
+		O.show_message("<span class='notice'> Locked In</span>", 2)
 	src.add_fingerprint(usr)
 	return
 
@@ -139,7 +139,7 @@
 	set src in oview(1)
 	set desc = "ID Tag:"
 
-	if(stat & (NOPOWER|BROKEN) || !istype(usr,/mob/living))
+	if(machine_stat & (NOPOWER|BROKEN) || !istype(usr,/mob/living))
 		return
 	if (t)
 		src.id = t
@@ -189,9 +189,9 @@
 		return
 	if (!com.locked)
 		for(var/mob/O in hearers(src, null))
-			O.show_message("\red Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate matrix.")
+			O.show_message("<span class='warning'> Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate matrix.</span>")
 		return
-	if (istype(M, /atom/movable))
+	if (ismovableatom(M))
 		if(prob(5) && !accurate) //oh dear a problem, put em in deep space
 			do_teleport(M, locate(rand((2*TRANSITIONEDGE), world.maxx - (2*TRANSITIONEDGE)), rand((2*TRANSITIONEDGE), world.maxy - (2*TRANSITIONEDGE)), 3), 2)
 		else
@@ -207,7 +207,7 @@
 		accurate = 1
 		spawn(3000)	accurate = 0 //Accurate teleporting for 5 minutes
 		for(var/mob/B in hearers(src, null))
-			B.show_message("\blue Test fire completed.")
+			B.show_message("<span class='notice'> Test fire completed.</span>")
 	return
 /*
 /proc/do_teleport(atom/movable/M as mob|obj, atom/destination, precision)
@@ -216,12 +216,12 @@
 		return
 	if (istype(M, /obj/item/disk/nuclear)) // Don't let nuke disks get teleported --NeoFite
 		for(var/mob/O in viewers(M, null))
-			O.show_message(text("\red <B>The [] bounces off of the portal!</B>", M.name), 1)
+			O.show_message(text("<span class='danger'>The [] bounces off of the portal!</span>", M.name), 1)
 		return
-	if (istype(M, /mob/living))
+	if (isliving(M))
 		var/mob/living/MM = M
 		if(MM.check_contents_for(/obj/item/disk/nuclear))
-			to_chat(MM, "\red Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.")
+			to_chat(MM, "<span class='warning'>Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.</span>")
 			return
 	var/disky = 0
 	for (var/atom/O in M.contents) //I'm pretty sure this accounts for the maximum amount of container in container stacking. --NeoFite
@@ -235,20 +235,20 @@
 					disky = 1
 		if (istype(O, /obj/item/disk/nuclear))
 			disky = 1
-		if (istype(O, /mob/living))
+		if (isliving(O))
 			var/mob/living/MM = O
 			if(MM.check_contents_for(/obj/item/disk/nuclear))
 				disky = 1
 	if (disky)
 		for(var/mob/P in viewers(M, null))
-			P.show_message(text("\red <B>The [] bounces off of the portal!</B>", M.name), 1)
+			P.show_message(text("<span class='danger'>The [] bounces off of the portal!</span>", M.name), 1)
 		return
 
 //Bags of Holding cause bluespace teleportation to go funky. --NeoFite
-	if (istype(M, /mob/living))
+	if (isliving(M))
 		var/mob/living/MM = M
 		if(MM.check_contents_for(/obj/item/storage/backpack/holding))
-			to_chat(MM, "\red The Bluespace interface on your Bag of Holding interferes with the teleport!")
+			to_chat(MM, "<span class='warning'>The Bluespace interface on your Bag of Holding interferes with the teleport!</span>")
 			precision = rand(1,100)
 	if (istype(M, /obj/item/storage/backpack/holding))
 		precision = rand(1,100)
@@ -263,7 +263,7 @@
 					precision = rand(1,100)
 		if (istype(O, /obj/item/storage/backpack/holding))
 			precision = rand(1,100)
-		if (istype(O, /mob/living))
+		if (isliving(O))
 			var/mob/living/MM = O
 			if(MM.check_contents_for(/obj/item/storage/backpack/holding))
 				precision = rand(1,100)
@@ -329,27 +329,27 @@
 		src.engage()
 
 /obj/machinery/teleport/station/proc/engage()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if (com)
 		com.icon_state = "tele1"
 		use_power(5000)
 		for(var/mob/O in hearers(src, null))
-			O.show_message("\blue Teleporter engaged!", 2)
+			O.show_message("<span class='notice'> Teleporter engaged!</span>", 2)
 	src.add_fingerprint(usr)
 	src.engaged = 1
 	return
 
 /obj/machinery/teleport/station/proc/disengage()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if (com)
 		com.icon_state = "tele0"
 		com.accurate = 0
 		for(var/mob/O in hearers(src, null))
-			O.show_message("\blue Teleporter disengaged!", 2)
+			O.show_message("<span class='notice'> Teleporter disengaged!</span>", 2)
 	src.add_fingerprint(usr)
 	src.engaged = 0
 	return
@@ -359,13 +359,13 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(stat & (BROKEN|NOPOWER) || !istype(usr,/mob/living))
+	if(machine_stat & (BROKEN|NOPOWER) || !istype(usr,/mob/living))
 		return
 
 	if (com && !active)
 		active = 1
 		for(var/mob/O in hearers(src, null))
-			O.show_message("\blue Test firing!", 2)
+			O.show_message("<span class='notice'> Test firing!</span>", 2)
 		com.teleport()
 		use_power(5000)
 
@@ -377,7 +377,7 @@
 
 /obj/machinery/teleport/station/power_change()
 	..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "controller-p"
 
 		if(com)

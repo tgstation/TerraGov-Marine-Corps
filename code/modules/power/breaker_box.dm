@@ -8,52 +8,50 @@
 	name = "Breaker Box"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "bbox_off"
-	directwired = 0
 	var/icon_state_on = "bbox_on"
 	var/icon_state_off = "bbox_off"
-	density = 1
-	anchored = 1
-	var/on = 0
-	var/busy = 0
+	density = TRUE
+	anchored = TRUE
+	var/on = FALSE
+	var/busy = FALSE
 	var/directions = list(1,2,4,8,5,6,9,10)
 
 /obj/machinery/power/breakerbox/activated
 	icon_state = "bbox_on"
 
 	// Enabled on server startup. Used in substations to keep them in bypass mode.
-/obj/machinery/power/breakerbox/activated/initialize()
+/obj/machinery/power/breakerbox/activated/Initialize()
+	..()
 	set_state(1)
 
 /obj/machinery/power/breakerbox/examine(mob/user)
 	to_chat(user, "Large machine with heavy duty switching circuits used for advanced grid control")
 	if(on)
-		to_chat(user, "\green It seems to be online.")
+		to_chat(user, "<span class='green'> It seems to be online.</span>")
 	else
-		to_chat(user, "\red It seems to be offline")
+		to_chat(user, "<span class='warning'>It seems to be offline</span>")
 
 /obj/machinery/power/breakerbox/attack_ai(mob/user)
 	if(busy)
-		to_chat(user, "\red System is busy. Please wait until current operation is finished before changing power settings.")
+		to_chat(user, "<span class='warning'>System is busy. Please wait until current operation is finished before changing power settings.</span>")
 		return
 
 	busy = 1
-	to_chat(user, "\green Updating power settings..")
+	to_chat(user, "<span class='green'> Updating power settings..</span>")
 	if(do_after(user, 50, FALSE, 5, BUSY_ICON_GENERIC)) //5s for AI as AIs can manipulate electronics much faster.
 		set_state(!on)
-		to_chat(user, "\green Update Completed. New setting:[on ? "on": "off"]")
+		to_chat(user, "<span class='green'> Update Completed. New setting:[on ? "on": "off"]</span>")
 	busy = 0
 
 
 /obj/machinery/power/breakerbox/attack_hand(mob/user)
 
 	if(busy)
-		to_chat(user, "\red System is busy. Please wait until current operation is finished before changing power settings.")
+		to_chat(user, "<span class='warning'>System is busy. Please wait until current operation is finished before changing power settings.</span>")
 		return
 
 	busy = 1
-	for(var/mob/O in viewers(user))
-		O.show_message(text("\red [user] started reprogramming [src]!"), 1)
-
+	user.visible_message("<span class='warning'> [user] started reprogramming [src]!</span>","You start reprogramming [src]")
 	if(do_after(user, 300, FALSE, 5, BUSY_ICON_BUILD)) // 30s for non-AIs as humans have to manually reprogram it and rapid switching may cause some lag / powernet updates flood. If AIs spam it they can be easily traced.
 		set_state(!on)
 		user.visible_message(\
@@ -77,11 +75,11 @@
 			C.d1 = 0
 			C.d2 = direction
 			C.icon_state = "[C.d1]-[C.d2]"
-			C.breaker_box = src
+			//C.breaker_box = src
 
 			var/datum/powernet/PN = new()
-			PN.number = powernets.len + 1
-			powernets += PN
+			PN.number = SSmachines.powernets.len + 1
+			SSmachines.powernets += PN
 			PN.cables += C
 
 			C.mergeConnectedNetworks(C.d2)

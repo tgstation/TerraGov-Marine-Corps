@@ -21,8 +21,8 @@ proc/explosion_rec(turf/epicenter, power)
 	epicenter = get_turf(epicenter)
 	if(!epicenter) return
 
-	message_admins("Explosion with size ([power]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z])")
-	log_game("Explosion with size ([power]) in area [epicenter.loc.name] ")
+	log_game("Explosion with size ([power]) in [AREACOORD(epicenter.loc)].")
+	message_admins("Explosion with size ([power]) in area [ADMIN_VERBOSEJMP(epicenter.loc)].")
 
 	playsound(epicenter, 'sound/effects/explosionfar.ogg', 75, 1, max(round(8*power,1),14) )
 	playsound(epicenter, "explosion", 75, 1, max(round(4*power,1),7) )
@@ -54,7 +54,7 @@ proc/explosion_rec(turf/epicenter, power)
 			T = locate(x,y,z)
 		for(var/atom/A in T)
 			A.ex_act(severity)
-		LAGCHECK(TICK_LIMIT_MC)
+		CHECK_TICK
 	explosion_in_progress = 0
 
 /turf

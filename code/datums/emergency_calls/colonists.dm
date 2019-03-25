@@ -16,7 +16,7 @@
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
 
-	H.key = M.key
+	M.transfer_to(H, TRUE)
 
 	if(original)
 		qdel(original)
@@ -24,5 +24,4 @@
 	print_backstory(H)
 
 	var/datum/job/J = new /datum/job/other/colonist
-	H.set_everything(H, "Colonist")
-	J.generate_equipment(H)
+	J.equip(H)

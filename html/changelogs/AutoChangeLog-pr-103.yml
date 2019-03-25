@@ -1,7 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - rscadd: "Implements an Ammo HUD to the vast majority of weapons, which becomes visible upon wielding, shows your current amount of ammo, and the ammo type of the current bullet. Once it reaches 0 rounds it will warns you by flashing. It can be toggled for every gun."
-  - imageadd: "Ammo HUD sprites made by ArachnidNexus."
-  - refactor: "Cleans up the energy weapons code, which now use batteries for an energy source."
-  - balance: "As a side effect, pred rifles no longer self-chages for now."

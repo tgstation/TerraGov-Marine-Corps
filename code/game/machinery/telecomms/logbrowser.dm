@@ -16,7 +16,7 @@
 	req_access = list(ACCESS_MARINE_BRIDGE)
 
 	attack_hand(mob/user as mob)
-		if(stat & (BROKEN|NOPOWER))
+		if(machine_stat & (BROKEN|NOPOWER))
 			return
 		user.set_interaction(src)
 		var/dat = "<TITLE>Telecommunication Server Monitor</TITLE><center><b>Telecommunications Server Monitor</b></center>"
@@ -177,7 +177,7 @@
 		if(href_list["delete"])
 
 			if(!src.allowed(usr) && !emagged)
-				to_chat(usr, "\red ACCESS DENIED.")
+				to_chat(usr, "<span class='warning'>ACCESS DENIED.</span>")
 				return
 
 			if(SelectedServer)
@@ -211,11 +211,11 @@
 		return
 
 	attackby(var/obj/item/D as obj, var/mob/user as mob)
-		if(istype(D, /obj/item/tool/screwdriver))
+		if(isscrewdriver(D))
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-				if (src.stat & BROKEN)
-					to_chat(user, "\blue The broken glass falls out.")
+				if (src.machine_stat & BROKEN)
+					to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 					new /obj/item/shard( src.loc )
 					var/obj/item/circuitboard/computer/comm_server/M = new /obj/item/circuitboard/computer/comm_server( A )
@@ -227,7 +227,7 @@
 					A.anchored = 1
 					qdel(src)
 				else
-					to_chat(user, "\blue You disconnect the monitor.")
+					to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 					var/obj/item/circuitboard/computer/comm_server/M = new /obj/item/circuitboard/computer/comm_server( A )
 					for (var/obj/C in src)
@@ -240,6 +240,6 @@
 		else if(istype(D, /obj/item/card/emag) && !emagged)
 			playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 			emagged = 1
-			to_chat(user, "\blue You you disable the security protocols")
+			to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 		src.updateUsrDialog()
 		return

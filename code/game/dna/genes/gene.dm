@@ -113,10 +113,10 @@
 	M.mutations.Add(mutation)
 	if(activation_messages.len)
 		var/msg = pick(activation_messages)
-		to_chat(M, "\blue [msg]")
+		to_chat(M, "<span class='notice'>[msg]</span>")
 
 /datum/dna/gene/basic/deactivate(var/mob/M)
 	M.mutations.Remove(mutation)
 	if(deactivation_messages.len)
 		var/msg = pick(deactivation_messages)
-		to_chat(M, "\red [msg]")
+		to_chat(M, "<span class='warning'>[msg]</span>")

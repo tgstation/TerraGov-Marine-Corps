@@ -1,373 +1,227 @@
-var/global/datum/global_init/init = new ()
+#define RESTART_COUNTER_PATH "data/round_counter.txt"
 
-/*
-	Pre-map initialization stuff should go here.
-*/
-/datum/global_init/New()
-	world.log = config_error_log = world_pda_log = sql_error_log = world_runtime_log = world_attack_log = world_game_log = "data/logs/config_error.log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
-	load_configuration()
-	makeDatumRefLists()
-	qdel(src)
 
+GLOBAL_VAR(restart_counter)
+//TODO: Replace INFINITY with the version that fixes http://www.byond.com/forum/?post=2407430
+GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_build < INFINITY)
+
+
+//This happens after the Master subsystem new(s) (it's a global datum)
+//So subsystems globals exist, but are not initialised
 /world/New()
+	hub_password = "kMZy3U5jJHSiBQjr"
 
-	hub_password = "[config.hub_password]"
-	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
+	log_world("World loaded at [time_stamp()]!")
 
-	TgsNew(null, TGS_SECURITY_TRUSTED)
-	TgsInitializationComplete()
+	GLOB.config_error_log = GLOB.world_qdel_log = GLOB.world_manifest_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set
+
+	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
+
+	SetupExternalRSC()
+
+	//make_datum_references_lists()	//Port this from /tg/
+	populate_seed_list()
+	populate_gear_list()
+	makeDatumRefLists() //Legacy
+	loadShuttleInfoDatums()
+
+	TgsNew(new /datum/tgs_event_handler/tg, minimum_required_security_level = TGS_SECURITY_TRUSTED)
+
+	GLOB.revdata = new
+
+	//SetupLogs depends on the RoundID, so lets check
+	//DB schema and set RoundID if we can
+	SSdbcore.CheckSchemaVersion()
+	SSdbcore.SetRoundID()
+	SetupLogs()
+
+	world.log = file("[GLOB.log_directory]/runtime.log")
+
+	load_admins()
+
+	if(fexists(RESTART_COUNTER_PATH))
+		GLOB.restart_counter = text2num(trim(file2text(RESTART_COUNTER_PATH)))
+		fdel(RESTART_COUNTER_PATH)
+
+	if(NO_INIT_PARAMETER in params)
+		return
+
+	Master.Initialize(10, FALSE, TRUE)
+
+	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
+
+	initialize_marine_armor()
+
+	callHook("startup")
 
 	if(byond_version < RECOMMENDED_VERSION)
 		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
-	initialize_marine_armor()
+	update_status()
 
-	if(config && config.server_name != null && config.server_suffix && world.port > 0)
-		// dumb and hardcoded but I don't care~
-		config.server_name += " #[(world.port % 1000) / 100]"
+	world.tick_lag = CONFIG_GET(number/ticklag)
 
-	SetupLogs()
-
-	callHook("startup")
-	//Emergency Fix
-	//end-emergency fix
-
-	src.update_status()
-
-	. = ..()
-
-	TgsInitializationComplete()
-	sleep_offline = 1
-
-	// Set up roundstart seed list. This is here because vendors were
-	// bugging out and not populating with the correct packet names
-	// due to this list not being instantiated.
-	populate_seed_list()
-
-	if(!RoleAuthority)
-		RoleAuthority = new /datum/authority/branch/role()
-		to_chat(world, "\red \b Job setup complete")
-
-	if(!syndicate_code_phrase)		syndicate_code_phrase	= generate_code_phrase()
-	if(!syndicate_code_response)	syndicate_code_response	= generate_code_phrase()
-	if(!EvacuationAuthority)		EvacuationAuthority = new
-
-	world.tick_lag = config.Ticklag
-
-	// Process Scheduler
-	to_chat(src, "\red \b Scheduler initialized.")
-	processScheduler = new
-
-	spawn(0)
-		processScheduler.setup()
-
-	to_chat(src, "\red \b Scheduler setup complete.")
-
-	spawn(0)
-		processScheduler.start()
-
-//	master_controller = new /datum/controller/game_controller()
-
-	//spawn(1)
-		//master_controller.setup()
-
-	spawn(3000)		//so we aren't adding to the round-start lag
-		if(config.ToRban)
-			ToRban_autoupdate()
-		if(config.kick_inactive)
+	spawn(3000)
+		if(CONFIG_GET(flag/kick_inactive))
 			KickInactiveClients()
 
-#undef RECOMMENDED_VERSION
+	return ..()
 
-	return
 
 /world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
 	if(!override_dir)
-		log_directory = "data/logs/[time2text(world.realtime, "YYYY/MM/DD")]/round-[replacetext(time_stamp(), ":", ".")]"
+		var/realtime = world.realtime
+		var/texttime = time2text(realtime, "YYYY/MM/DD")
+		GLOB.log_directory = "data/logs/[texttime]/round-"
+		if(GLOB.round_id)
+			GLOB.log_directory += "[GLOB.round_id]"
+		else
+			var/timestamp = replacetext(time_stamp(), ":", ".")
+			GLOB.log_directory += "[timestamp]"
 	else
-		log_directory = "data/logs/[override_dir]"
-	world_game_log = file("[log_directory]/game.log")
-	world_attack_log = file("[log_directory]/attack.log")
-	world_runtime_log = file("[log_directory]/runtime.log")
-	world_ra_log = file("[log_directory]/recycle.log")
-	world_pda_log = file("[log_directory]/pda.log")
-	world_href_log = file("[log_directory]/hrefs.log")
-	sql_error_log = file("[log_directory]/sql.log")
-	world_game_log << "\n\nStarting up round [time_stamp()]\n---------------------"
-	world_attack_log << "\n\nStarting up round [time_stamp()]\n---------------------"
-	world_runtime_log << "\n\nStarting up round [time_stamp()]\n---------------------"
-	world_pda_log << "\n\nStarting up round [time_stamp()]\n---------------------"
-	world_href_log << "\n\nStarting up round [time_stamp()]\n---------------------"
-	world.log = world_runtime_log
-	if(fexists(config_error_log))
-		fcopy(config_error_log, "[log_directory]/config_error.log")
-		fdel(config_error_log)
+		GLOB.log_directory = "data/logs/[override_dir]"
 
+	GLOB.world_game_log = "[GLOB.log_directory]/game.log"
+	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
+	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
+	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
+	GLOB.sql_error_log = "[GLOB.log_directory]/sql.log"
+	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
+	GLOB.world_runtime_log = "[GLOB.log_directory]/runtime.log"
 
-//world/Topic(href, href_list[])
-//		to_chat(world, "Received a Topic() call!")
-//		to_chat(world, "[href]")
-//		for(var/a in href_list)
-//			to_chat(world, "[a]")
-//		if(href_list["hello"])
-//			to_chat(world, "Hello world!")
-//			return "Hello world!"
-//		to_chat(world, "End of Topic() call.")
-//		..()
+	start_log(GLOB.world_game_log)
+	start_log(GLOB.world_attack_log)
+	start_log(GLOB.world_manifest_log)
+	start_log(GLOB.world_href_log)
+	start_log(GLOB.sql_error_log)
+	start_log(GLOB.world_qdel_log)
+	start_log(GLOB.world_runtime_log)
+
+	GLOB.changelog_hash = md5('html/changelog.html') //for telling if the changelog has changed recently
+	if(fexists(GLOB.config_error_log))
+		fcopy(GLOB.config_error_log, "[GLOB.log_directory]/config_error.log")
+		fdel(GLOB.config_error_log)
+
+	if(GLOB.round_id)
+		log_game("Round ID: [GLOB.round_id]")
+
+	// This was printed early in startup to the world log and config_error.log,
+	// but those are both private, so let's put the commit info in the runtime
+	// log which is ultimately public.
+	log_runtime(GLOB.revdata.get_log_message())
+
 
 var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
 
+
 /world/Topic(T, addr, master, key)
-	TGS_TOPIC
-	
-	if(config.log_world_topic)
+	TGS_TOPIC	//redirect to server tools if necessary
+
+	var/static/list/topic_handlers = TopicHandlers()
+
+	var/list/input = params2list(T)
+	var/datum/world_topic/handler
+	for(var/I in topic_handlers)
+		if(I in input)
+			handler = topic_handlers[I]
+			break
+
+	if((!handler || initial(handler.log)) && config && CONFIG_GET(flag/log_world_topic))
 		log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
 
-	if (T == "ping")
-		var/x = 1
-		for (var/client/C)
-			x++
-		return x
+	if(!handler)
+		return
 
-	else if(T == "players")
-		var/n = 0
-		for(var/mob/M in player_list)
-			if(M.client)
-				n++
-		return n
-
-	else if (T == "status")
-		var/list/s = list()
-		s["version"] = game_version
-		s["mode"] = master_mode
-		s["respawn"] = config ? abandon_allowed : 0
-		s["enter"] = enter_allowed
-		s["vote"] = config.allow_vote_mode
-		s["ai"] = config.allow_ai
-		s["host"] = host ? host : null
-		s["players"] = list()
-		s["stationtime"] = duration2text()
-		var/n = 0
-		var/admins = 0
-
-		for(var/client/C in clients)
-			if(C.holder)
-				if(C.holder.fakekey)
-					continue	//so stealthmins aren't revealed by the hub
-				admins++
-			s["player[n]"] = C.key
-			n++
-		s["players"] = n
-
-		s["admins"] = admins
-
-		return list2params(s)
-
-	else if(copytext(T,1,6) == "notes")
-		/*
-			We got a request for notes from the IRC Bot
-			expected output:
-				1. notes = ckey of person the notes lookup is for
-				2. validationkey = the key the bot has, it should match the gameservers commspassword in it's configuration.
-		*/
-		var/input[] = params2list(T)
-		if(input["key"] != config.comms_password)
-			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
-
-				spawn(50)
-					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
-
-			world_topic_spam_protect_time = world.time
-			world_topic_spam_protect_ip = addr
-			return "Bad Key"
-
-		return player_notes_show_irc(input["notes"])
+	handler = new handler()
+	return handler.TryRun(input)
 
 
-/world/Reboot(var/reason)
-	/*spawn(0)
-		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
-		*/
+/world/Reboot(ping = FALSE)
+	if(ping)
+		send2update(CONFIG_GET(string/restart_message))
+	send2update("Map: [SSmapping?.next_map_config?.map_name] | Last Round End State: [SSticker?.mode?.round_finished]")
 	TgsReboot()
-	for(var/client/C in clients)
-		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
-			C << link("byond://[config.server]")
-
-	..(reason)
+	for(var/client/C in GLOB.clients)
+		if(CONFIG_GET(string/server))
+			C << link("byond://[CONFIG_GET(string/server)]")
+	return ..()
 
 
 #define INACTIVITY_KICK	6000	//10 minutes in ticks (approx.)
 /world/proc/KickInactiveClients()
 	spawn(-1)
-		set background = 1
+		set background = TRUE
 		while(1)
 			sleep(INACTIVITY_KICK)
-			for(var/client/C in clients)
-				if(C.holder && C.holder.rights & R_ADMIN) //Skip admins.
+			for(var/client/C in GLOB.clients)
+				if(check_other_rights(C, R_ADMIN, FALSE))
 					continue
 				if(C.is_afk(INACTIVITY_KICK))
 					if(!istype(C.mob, /mob/dead))
-						log_access("AFK: [key_name(C)]")
-						to_chat(C, "\red You have been inactive for more than 10 minutes and have been disconnected.")
+						log_access("AFK: [key_name(C)].")
+						to_chat(C, "<span class='warning'>You have been inactive for more than 10 minutes and have been disconnected.</span>")
 						qdel(C)
 #undef INACTIVITY_KICK
 
 
 /hook/startup/proc/loadMode()
 	world.load_mode()
-	return 1
+	return TRUE
+
 
 /world/proc/load_mode()
 	var/list/Lines = file2list("data/mode.txt")
 	if(Lines.len)
 		if(Lines[1])
-			master_mode = Lines[1]
-			log_misc("Saved mode is '[master_mode]'")
+			GLOB.master_mode = Lines[1]
+			log_config("Saved mode is '[GLOB.master_mode]'")
+
 
 /world/proc/save_mode(var/the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
-	to_chat(F, the_mode)
-
-/hook/startup/proc/loadMOTD()
-	world.load_motd()
-	return 1
-
-/world/proc/load_motd()
-	join_motd = file2text("config/motd.txt")
-
-/proc/load_configuration()
-	config = new /datum/configuration()
-	config.load("config/config.txt")
-	config.load("config/game_options.txt","game_options")
-	config.load("config/combat_defines.txt","combat_defines")
-	config.loadsql("config/dbconfig.txt")
-	config.loadforumsql("config/forumdbconfig.txt")
-	// apply some settings from config..
-	abandon_allowed = config.respawn
+	WRITE_FILE(F, the_mode)
 
 
 /world/proc/update_status()
 	//Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
 	var/s = ""
 
-	if (config && config.server_name)
-		if(config.chaturl)
-			s += "<a href=\"[config.chaturl]\"><b>[config.server_name] &#8212; [MAIN_SHIP_NAME]</a></b>"
+	if(CONFIG_GET(string/server_name))
+		if(CONFIG_GET(string/discordurl))
+			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [CONFIG_GET(string/ship_name)]</a></b>"
 		else
-			s += "<b>[config.server_name] &#8212; [MAIN_SHIP_NAME]</b>"
-		if(ticker)
-			if(master_mode)
-				switch(map_tag)
-					if("Ice Colony")
-						s += "<br>Map: <a href=\"[config.icecolony_url]\"><b>[map_tag]</a></b>"
-					if("LV-624")
-						s += "<br>Map: <a href=\"[config.lv624_url]\"><b>[map_tag]</a></b>"
-					if("Solaris Ridge")
-						s += "<br>Map: <a href=\"[config.bigred_url]\"><b>[map_tag]</a></b>"
-					if("Prison Station")
-						s += "<br>Map: <a href=\"[config.prisonstation_url]\"><b>[map_tag]</a></b>"
-					if("Whiskey Outpost")
-						s += "<br>Map: <a href=\"[config.whiskeyoutpost_url]\"><b>[map_tag]</a></b>"
-					else
-						s += "<br>Map: <b>[map_tag]</b>"
-				s += "<br>Mode: <b>[ticker.mode.name]</b>"
-				s += "<br>Round time: <b>[duration2text()]</b>"
+			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [CONFIG_GET(string/ship_name)]</b>"
+		if(Master?.current_runlevel && GLOB.master_mode)
+			switch(SSmapping.config.map_name)
+				if("Ice Colony")
+					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[SSmapping.config.map_name]</a></b>"
+				if("LV624")
+					s += "<br>Map: <a href='[CONFIG_GET(string/lv624url)]'><b>[SSmapping.config.map_name]</a></b>"
+				if("Big Red")
+					s += "<br>Map: <a href='[CONFIG_GET(string/bigredurl)]'><b>[SSmapping.config.map_name]</a></b>"
+				if("Prison Station")
+					s += "<br>Map: <a href='[CONFIG_GET(string/prisonstationurl)]'><b>[SSmapping.config.map_name]</a></b>"
+				if("Whiskey Outpost")
+					s += "<br>Map: <a href='[CONFIG_GET(string/whiskeyoutposturl)]'><b>[SSmapping.config.map_name]</a></b>"
+				else
+					s += "<br>Map: <b>[SSmapping.config.map_name]</b>"
+			s += "<br>Mode: <b>[(Master.current_runlevel & RUNLEVELS_DEFAULT) ? SSticker.mode.name : "Lobby"]</b>"
+			s += "<br>Round time: <b>[duration2text()]</b>"
 		else
-			s += "<br>Map: <b>[map_tag]</b>"
-		// s += enter_allowed ? "<br>Entering: <b>Enabled</b>" : "<br>Entering: <b>Disabled</b>"
+			s += "<br>Map: <b>[SSmapping.config?.map_name ? SSmapping.config.map_name : "Loading..."]</b>"
 
 		status = s
 
-#define FAILED_DB_CONNECTION_CUTOFF 1
-var/failed_db_connections = 0
-var/failed_old_db_connections = 0
 
-// /hook/startup/proc/connectDB()
-// 	if(!setup_database_connection())
-// 		log_world("Your server failed to establish a connection with the feedback database.")
-// 	else
-// 		log_world("Feedback database connection established.")
-// 	return 1
-
-proc/setup_database_connection()
-
-	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
-		return 0
-
-	if(!dbcon)
-		dbcon = new()
-
-	var/user = sqlfdbklogin
-	var/pass = sqlfdbkpass
-	var/db = sqlfdbkdb
-	var/address = sqladdress
-	var/port = sqlport
-
-	dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
-	. = dbcon.IsConnected()
-	if ( . )
-		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
-	else
-		failed_db_connections++		//If it failed, increase the failed connections counter.
-		log_sql(dbcon.ErrorMsg())
-
-	return .
-
-//This proc ensures that the connection to the feedback database (global variable dbcon) is established
-proc/establish_db_connection()
-	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
-		return 0
-
-	if(!dbcon || !dbcon.IsConnected())
-		return setup_database_connection()
-	else
-		return 1
+/world/proc/incrementMaxZ()
+	maxz++
+	SSmobs.MaxZChanged()
 
 
-// /hook/startup/proc/connectOldDB()
-// 	if(!setup_old_database_connection())
-// 		log_world("Your server failed to establish a connection with the SQL database.")
-// 	else
-// 		log_world("SQL database connection established.")
-// 	return 1
-
-//These two procs are for the old database, while it's being phased out. See the tgstation.sql file in the SQL folder for more information.
-proc/setup_old_database_connection()
-
-	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
-		return 0
-
-	if(!dbcon_old)
-		dbcon_old = new()
-
-	var/user = sqllogin
-	var/pass = sqlpass
-	var/db = sqldb
-	var/address = sqladdress
-	var/port = sqlport
-
-	dbcon_old.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
-	. = dbcon_old.IsConnected()
-	if ( . )
-		failed_old_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
-	else
-		failed_old_db_connections++		//If it failed, increase the failed connections counter.
-		log_sql(dbcon.ErrorMsg())
-
-	return .
-
-//This proc ensures that the connection to the feedback database (global variable dbcon) is established
-proc/establish_old_db_connection()
-	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)
-		return 0
-
-	if(!dbcon_old || !dbcon_old.IsConnected())
-		return setup_old_database_connection()
-	else
-		return 1
-
-#undef FAILED_DB_CONNECTION_CUTOFF
+/world/proc/SetupExternalRSC()
+	if(!CONFIG_GET(string/resource_url))
+		return
+	GLOB.external_rsc_url = CONFIG_GET(string/resource_url)

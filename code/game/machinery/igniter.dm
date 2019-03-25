@@ -27,7 +27,7 @@
 	return
 
 /obj/machinery/igniter/process()	//ugh why is this even in process()?
-//	if (src.on && !(stat & NOPOWER) )
+//	if (src.on && !(machine_stat & NOPOWER) )
 //		var/turf/location = src.loc
 //		if (isturf(location))
 //			location.hotspot_expose(1000,500,1)
@@ -39,7 +39,7 @@
 
 /obj/machinery/igniter/power_change()
 	..()
-	if(!( stat & NOPOWER) )
+	if(!( machine_stat & NOPOWER) )
 		icon_state = "igniter[src.on]"
 	else
 		icon_state = "igniter0"
@@ -62,7 +62,7 @@
 
 /obj/machinery/sparker/power_change()
 	..()
-	if ( !(stat & NOPOWER) && disable == 0 )
+	if ( !(machine_stat & NOPOWER) && disable == 0 )
 
 		icon_state = "[base_state]"
 //		src.sd_SetLuminosity(2)
@@ -73,14 +73,14 @@
 /obj/machinery/sparker/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/detective_scanner))
 		return
-	if (istype(W, /obj/item/tool/screwdriver))
+	if (isscrewdriver(W))
 		add_fingerprint(user)
 		src.disable = !src.disable
 		if (src.disable)
-			user.visible_message("\red [user] has disabled the [src]!", "\red You disable the connection to the [src].")
+			user.visible_message("<span class='warning'> [user] has disabled the [src]!</span>", "<span class='warning'> You disable the connection to the [src].</span>")
 			icon_state = "[base_state]-d"
 		if (!src.disable)
-			user.visible_message("\red [user] has reconnected the [src]!", "\red You fix the connection to the [src].")
+			user.visible_message("<span class='warning'> [user] has reconnected the [src]!</span>", "<span class='warning'> You fix the connection to the [src].</span>")
 			if(src.powered())
 				icon_state = "[base_state]"
 			else
@@ -112,7 +112,7 @@
 	return 1
 
 /obj/machinery/sparker/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 	ignite()
@@ -129,7 +129,7 @@
 
 /obj/machinery/ignition_switch/attack_hand(mob/user as mob)
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)
 		return
@@ -139,12 +139,12 @@
 	active = 1
 	icon_state = "launcheract"
 
-	for(var/obj/machinery/sparker/M in machines)
+	for(var/obj/machinery/sparker/M in GLOB.machines)
 		if (M.id == src.id)
 			spawn( 0 )
 				M.ignite()
 
-	for(var/obj/machinery/igniter/M in machines)
+	for(var/obj/machinery/igniter/M in GLOB.machines)
 		if(M.id == src.id)
 			use_power(50)
 			M.on = !( M.on )

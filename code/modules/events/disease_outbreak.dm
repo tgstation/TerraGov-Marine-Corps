@@ -4,7 +4,7 @@
 
 
 /datum/event/disease_outbreak/announce()
-	command_announcement.Announce("Confirmed outbreak of level 7 viral biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
+	command_announcement.Announce("Confirmed outbreak of level 7 viral biohazard aboard [CONFIG_GET(string/ship_name)]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
 
 /datum/event/disease_outbreak/setup()
 	announceWhen = rand(15, 30)
@@ -12,12 +12,12 @@
 /datum/event/disease_outbreak/start()
 	var/virus_type = pick(/datum/disease/dnaspread, /datum/disease/advance/flu, /datum/disease/advance/cold, /datum/disease/brainrot, /datum/disease/magnitis)
 
-	for(var/mob/living/carbon/human/H in shuffle(living_mob_list))
+	for(var/mob/living/carbon/human/H in shuffle(GLOB.alive_human_list))
 		var/foundAlready = 0	// don't infect someone that already has the virus
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
-		if(T.z != 3 || T.z != 4)
+		if(!is_mainship_or_low_orbit_level(T.z))
 			continue
 		for(var/datum/disease/D in H.viruses)
 			foundAlready = 1

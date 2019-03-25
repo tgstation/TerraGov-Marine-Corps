@@ -43,13 +43,6 @@
 		empulse(location, round(created_volume / 24), round(created_volume / 14), 1)
 		holder.clear_reagents()
 
-
-/datum/chemical_reaction/hptoxin
-	name = "Toxin"
-	id = "hptoxin"
-	results = list("hptoxin" = 2)
-	required_reagents = list("hyperzine" = 1, "peridaxon" = 1)
-
 /datum/chemical_reaction/pttoxin
 	name = "Toxin"
 	id = "pttoxin"
@@ -58,10 +51,9 @@
 
 /datum/chemical_reaction/sdtoxin
 	name = "Toxin"
-	id = "sdtoxin"
+	id = "sdtoxin2"
 	results = list("sdtoxin" = 2)
 	required_reagents = list("synaptizine" = 1, "dylovene" = 1)
-
 
 /datum/chemical_reaction/sleeptoxin
 	name = "Soporific"
@@ -301,7 +293,7 @@
 /datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/mob/M in viewers(5, location))
-		to_chat(M, "\red The solution spews out foam!")
+		to_chat(M, "<span class='warning'>The solution spews out foam!</span>")
 	var/datum/effect_system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 0)
 	s.start()
@@ -319,7 +311,7 @@
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
-		to_chat(M, "\red The solution spews out a metalic foam!")
+		to_chat(M, "<span class='warning'>The solution spews out a metalic foam!</span>")
 
 	var/datum/effect_system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 1)
@@ -337,7 +329,7 @@
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
-		to_chat(M, "\red The solution spews out a metallic foam!")
+		to_chat(M, "<span class='warning'>The solution spews out a metallic foam!</span>")
 
 	var/datum/effect_system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 2)

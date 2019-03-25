@@ -1,11 +1,17 @@
 
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
+		return
 	return
 
-// No comment
+
 /atom/proc/attackby(obj/item/W, mob/living/user)
-	return
+	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, W, user) & COMPONENT_NO_AFTERATTACK)
+		return TRUE
+	return FALSE
+
+
 /atom/movable/attackby(obj/item/W, mob/living/user)
 	if(W)
 		if(!(W.flags_item & NOBLUDGEON))
@@ -25,6 +31,8 @@
 
 
 /obj/item/proc/attack(mob/living/M, mob/living/user, def_zone)
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user)
+
 	if(flags_item & NOBLUDGEON)
 		return
 
@@ -77,7 +85,7 @@
 			if("fire")
 				if (!(COLD_RESISTANCE in M.mutations))
 					M.apply_damage(power,BURN)
-					to_chat(M, "\red It burns!")
+					to_chat(M, "<span class='warning'>It burns!</span>")
 		M.updatehealth()
 	else
 		var/mob/living/carbon/human/H = M

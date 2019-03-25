@@ -1,4 +1,3 @@
-//wip wip wup
 /obj/structure/mirror
 	name = "mirror"
 	desc = "Mirror mirror on the wall, who's the most robust of them all?"
@@ -8,6 +7,21 @@
 	anchored = TRUE
 	var/shattered = FALSE
 
+/obj/structure/mirror/Initialize()
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_y = 30
+		if(SOUTH)
+			pixel_y = -30
+		if(EAST)
+			pixel_x = 30
+		if(WEST)
+			pixel_x = -30
+
+/obj/structure/mirror/broken
+	icon_state = "mirror_broke"
+	shattered = TRUE
 
 /obj/structure/mirror/attack_hand(mob/user as mob)
 
@@ -17,7 +31,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 
-		if(H.a_intent == "hurt")
+		if(H.a_intent == INTENT_HARM)
 			if(shattered)
 				playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
 				return
@@ -37,12 +51,12 @@
 		if(H.gender == MALE)
 			var/list/species_facial_hair = list()
 			if(H.species)
-				for(var/i in facial_hair_styles_list)
-					var/datum/sprite_accessory/facial_hair/tmp_facial = facial_hair_styles_list[i]
+				for(var/i in GLOB.facial_hair_styles_list)
+					var/datum/sprite_accessory/facial_hair/tmp_facial = GLOB.facial_hair_styles_list[i]
 					if(H.species.name in tmp_facial.species_allowed)
 						species_facial_hair += i
 			else
-				species_facial_hair = facial_hair_styles_list
+				species_facial_hair = GLOB.facial_hair_styles_list
 
 			var/new_style = input(user, "Select a facial hair style", "Grooming")  as null|anything in species_facial_hair
 			if(userloc != H.loc)
@@ -53,12 +67,12 @@
 		//handle normal hair
 		var/list/species_hair = list()
 		if(H.species)
-			for(var/i in hair_styles_list)
-				var/datum/sprite_accessory/hair/tmp_hair = hair_styles_list[i]
+			for(var/i in GLOB.hair_styles_list)
+				var/datum/sprite_accessory/hair/tmp_hair = GLOB.hair_styles_list[i]
 				if(H.species.name in tmp_hair.species_allowed)
 					species_hair += i
 		else
-			species_hair = hair_styles_list
+			species_hair = GLOB.hair_styles_list
 
 		var/new_style = input(user, "Select a hair style", "Grooming")  as null|anything in species_hair
 		if(userloc != H.loc)
@@ -74,7 +88,7 @@
 		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
 		return TRUE
 
-	if(M.a_intent == "help")
+	if(M.a_intent == INTENT_HELP)
 		M.visible_message("<span class='warning'>\The [M] oogles its own reflection in [src].</span>", \
 		"<span class='warning'>You oogle your own reflection in [src].</span>", null, 5)
 	else

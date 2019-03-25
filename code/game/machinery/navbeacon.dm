@@ -54,7 +54,7 @@
 	// called when turf state changes
 	// hide the object if turf is intact
 	hide(var/intact)
-		invisibility = intact ? 101 : 0
+		invisibility = intact ? INVISIBILITY_MAXIMUM : 0
 		updateicon()
 
 	// update the icon_state
@@ -104,7 +104,7 @@
 		if(T.intact_tile)
 			return		// prevent intraction when T-scanner revealed
 
-		if(istype(I, /obj/item/tool/screwdriver))
+		if(isscrewdriver(I))
 			open = !open
 
 			user.visible_message("[user] [open ? "opens" : "closes"] the beacon's cover.", "You [open ? "open" : "close"] the beacon's cover.")
@@ -117,7 +117,7 @@
 					src.locked = !src.locked
 					to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 				else
-					to_chat(user, "\red Access denied.")
+					to_chat(user, "<span class='warning'>Access denied.</span>")
 				updateDialog()
 			else
 				to_chat(user, "You must open the cover first!")
@@ -184,7 +184,7 @@ Transponder Codes:<UL>"}
 		..()
 		if (usr.stat)
 			return
-		if ((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
+		if ((in_range(src, usr) && istype(src.loc, /turf)) || (issilicon(usr)))
 			if(open && !locked)
 				usr.set_interaction(src)
 

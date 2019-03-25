@@ -85,12 +85,12 @@
 /obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.flags_item & ITEM_ABSTRACT) return
 	if(opened)
-		if(isrobot(user))
+		if(iscyborg(user))
 			return
-		user.drop_inv_item_to_loc(W, loc)
+		user.transferItemToLoc(W, loc)
 	else if(istype(W, /obj/item/packageWrap))
 		return
-	else if(istype(W, /obj/item/stack/cable_coil))
+	else if(iscablecoil(W))
 		var/obj/item/stack/cable_coil/C = W
 		if(rigged)
 			to_chat(user, "<span class='notice'>[src] is already rigged!</span>")
@@ -105,7 +105,7 @@
 			user.drop_held_item()
 			W.loc = src
 			return
-	else if(istype(W, /obj/item/tool/wirecutters))
+	else if(iswirecutter(W))
 		if(rigged)
 			user  << "<span class='notice'>You cut away the wiring.</span>"
 			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)

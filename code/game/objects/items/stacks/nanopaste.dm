@@ -6,6 +6,7 @@
 	icon_state = "tube"
 	origin_tech = "materials=4;engineering=3"
 	amount = 10
+	max_amount = 10
 	w_class = 2
 	stack_id = "nanopaste"
 
@@ -25,13 +26,13 @@
 			to_chat(user, "<span class='notice'>All [R]'s systems are nominal.</span>")
 
 	if (istype(M,/mob/living/carbon/human))		//Repairing robolimbs
-		if(isSynth(M) && M == user)
+		if(issynth(M) && M == user)
 			return
 		var/mob/living/carbon/human/H = M
 		var/datum/limb/S = H.get_limb(user.zone_selected)
 
 		if(S.surgery_open_stage == 0)
-			if (S && (S.status & LIMB_ROBOT))
+			if (S && (S.limb_status & LIMB_ROBOT))
 				if(S.get_damage())
 					S.heal_damage(15, 15, robo_repair = 1)
 					H.updatehealth()

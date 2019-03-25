@@ -13,7 +13,7 @@
 	throw_range = 2
 	w_class = 1
 	var/access = list()
-	access = ACCESS_MARINE_COMMANDER
+	access = ACCESS_MARINE_CAPTAIN
 	var/worth = 0
 
 /obj/item/spacecash/attackby(obj/item/W as obj, mob/user as mob)
@@ -23,7 +23,7 @@
 		var/obj/item/spacecash/bundle/bundle
 		if(!istype(W, /obj/item/spacecash/bundle))
 			var/obj/item/spacecash/cash = W
-			user.temp_drop_inv_item(cash)
+			user.temporarilyRemoveItemFromInventory(cash)
 			bundle = new (src.loc)
 			bundle.worth += cash.worth
 			qdel(cash)
@@ -31,10 +31,10 @@
 			bundle = W
 		bundle.worth += src.worth
 		bundle.update_icon()
-		if(istype(user, /mob/living/carbon/human))
+		if(ishuman(user))
 			var/mob/living/carbon/human/h_user = user
-			h_user.temp_drop_inv_item(src)
-			h_user.temp_drop_inv_item(bundle)
+			h_user.temporarilyRemoveItemFromInventory(src)
+			h_user.temporarilyRemoveItemFromInventory(bundle)
 			h_user.put_in_hands(bundle)
 		to_chat(user, "<span class='notice'>You add [src.worth] dollars worth of money to the bundles.<br>It holds [bundle.worth] dollars now.</span>")
 		qdel(src)
@@ -78,7 +78,7 @@
 	src.worth -= amount
 	src.update_icon()
 	if(!worth)
-		usr.temp_drop_inv_item(src)
+		usr.temporarilyRemoveItemFromInventory(src)
 	if(amount in list(1000,500,200,100,50,20,1))
 		var/cashtype = text2path("/obj/item/spacecash/c[amount]")
 		var/obj/cash = new cashtype (usr.loc)
@@ -143,13 +143,13 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	if(sum in list(1000,500,200,100,50,20,10,1))
 		var/cash_type = text2path("/obj/item/spacecash/c[sum]")
 		var/obj/cash = new cash_type (usr.loc)
-		if(ishuman(human_user) && !human_user.get_active_hand())
+		if(ishuman(human_user) && !human_user.get_active_held_item())
 			human_user.put_in_hands(cash)
 	else
 		var/obj/item/spacecash/bundle/bundle = new (spawnloc)
 		bundle.worth = sum
 		bundle.update_icon()
-		if (ishuman(human_user) && !human_user.get_active_hand())
+		if (ishuman(human_user) && !human_user.get_active_held_item())
 			human_user.put_in_hands(bundle)
 	return
 

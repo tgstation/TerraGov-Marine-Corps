@@ -1,4 +1,4 @@
-client/script = {"<style>
+/client/script = {"<style>
 body					{font-family: Verdana, sans-serif;}
 
 h1, h2, h3, h4, h5, h6	{color: #0000ff;	font-family: Georgia, Verdana, sans-serif;}
@@ -10,6 +10,7 @@ em						{font-style: normal;	font-weight: bold;}
 	{color: #638500;	text-decoration: underline;}
 .motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover
 	{color: #638500;}
+.tip					{color: #a000c4;	font-weight: bold;}
 
 .prefix					{					font-weight: bold;}
 
@@ -21,6 +22,9 @@ em						{font-style: normal;	font-weight: bold;}
 .admin					{color: #386aff;	font-weight: bold;}
 .adminsay				{color: #9611D4;	font-weight: bold;}
 .headminsay				{color: #5A0A7F;	font-weight: bold;}
+
+.adminnotice			{color: #0000ff;}
+.adminhelp              {color: #ff0000;    font-weight: bold;}
 
 .name					{					font-weight: bold;}
 
@@ -87,9 +91,10 @@ h1.alert, h2.alert		{color: #000000;}
 
 .centerbold				{				 	text-align: center; font-weight: bold;}
 
-.mod					{color: #735638;	font-weight: bold;}
+.mod					{color: #775c40;	font-weight: bold;}
 .modooc					{color: #184880;	font-weight: bold;}
-.adminmod				{color: #402A14;	font-weight: bold;}
+.adminmod				{color: #66411e;	font-weight: bold;}
+.headminmod				{color: #402A14;	font-weight: bold;}
 .tajaran				{color: #803B56;}
 .tajaran_signlang		{color: #941C1C;}
 .skrell					{color: #00CED1;}
@@ -98,6 +103,32 @@ h1.alert, h2.alert		{color: #000000;}
 .vox					{color: #AA00AA;}
 .rough					{font-family: trebuchet-ms, cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
+
+
+.green					{color: #37ba54;}
+.nicegreen				{color: #14a833;}
+.shadowling				{color: #3b2769;}
+.cult					{color: #960000;}
+.cultlarge				{color: #960000; font-weight: bold; font-size: 3;}
+.narsie					{color: #960000; font-weight: bold; font-size: 15;}
+.narsiesmall			{color: #960000; font-weight: bold; font-size: 6;}
+.colossus				{color: #7F282A; font-size: 5;}
+.hierophant				{color: #660099; font-weight: bold; font-style: italic;}
+.hierophant_warning		{color: #660099; font-style: italic;}
+.purple					{color: #5e2d79;}
+.holoparasite			{color: #35333a;}
+
+.revennotice			{color: #1d2953;}
+.revenboldnotice		{color: #1d2953;	font-weight: bold;}
+.revenbignotice			{color: #1d2953;	font-weight: bold; font-size: 3;}
+.revenminor				{color: #823abb}
+.revenwarning			{color: #760fbb;	font-style: italic;}
+.revendanger			{color: #760fbb;	font-weight: bold; font-size: 3;}
+.umbra					{color: #5000A0;}
+.umbra_emphasis			{color: #5000A0;	font-weight: bold;	font-style: italic;}
+.umbra_large			{color: #5000A0; font-size: 3; font-weight: bold; font-style: italic;}
+
+.deconversion_message	{color: #5000A0; font-size: 3; font-style: italic;}
 
 .interface				{color: #330033;}
 </style>"}

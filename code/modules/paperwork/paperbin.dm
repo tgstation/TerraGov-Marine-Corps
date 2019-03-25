@@ -14,7 +14,7 @@
 
 /obj/item/paper_bin/MouseDrop(atom/over_object)
 	if(over_object == usr && ishuman(usr) && !usr.is_mob_restrained() && !usr.stat && (loc == usr || in_range(src, usr)))
-		if(!usr.get_active_hand())		//if active hand is empty
+		if(!usr.get_active_held_item())		//if active hand is empty
 			attack_hand(usr, 1, 1)
 
 	return
@@ -43,11 +43,6 @@
 		else
 			if(response == "Regular")
 				P = new /obj/item/paper
-				if(Holiday == "April Fool's Day")
-					if(prob(30))
-						P.info = "<font face=\"[P.crayonfont]\" color=\"red\"><b>HONK HONK HONK HONK HONK HONK HONK<br>HOOOOOOOOOOOOOOOOOOOOOONK<br>APRIL FOOLS</b></font>"
-						P.rigged = 1
-						P.updateinfolinks()
 			else if (response == "Carbon-Copy")
 				P = new /obj/item/paper/carbon
 
@@ -65,7 +60,7 @@
 	if(!istype(i))
 		return
 
-	if(user.drop_inv_item_to_loc(i, src))
+	if(user.transferItemToLoc(i, src))
 		to_chat(user, "<span class='notice'>You put [i] in [src].</span>")
 		papers.Add(i)
 		amount++

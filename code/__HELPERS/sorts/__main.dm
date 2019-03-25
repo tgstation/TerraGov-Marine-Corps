@@ -1,21 +1,22 @@
 //These are macros used to reduce on proc calls
 #define fetchElement(L, i) (associative) ? L[L[i]] : L[i]
 
-	//Minimum sized sequence that will be merged. Anything smaller than this will use binary-insertion sort.
-	//Should be a power of 2
+//Minimum sized sequence that will be merged. Anything smaller than this will use binary-insertion sort.
+//Should be a power of 2
 #define MIN_MERGE 32
 
-	//When we get into galloping mode, we stay there until both runs win less often than MIN_GALLOP consecutive times.
+//When we get into galloping mode, we stay there until both runs win less often than MIN_GALLOP consecutive times.
 #define MIN_GALLOP 7
 
-	//This is a global instance to allow much of this code to be reused. The interfaces are kept seperately
-var/datum/sortInstance/sortInstance = new()
+//This is a global instance to allow much of this code to be reused. The interfaces are kept separately
+GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 /datum/sortInstance
 	//The array being sorted.
 	var/list/L
 
 	//The comparator proc-reference
 	var/cmp = /proc/cmp_numeric_asc
+	var/sortkey
 
 	//whether we are sorting list keys (0: L[i]) or associated values (1: L[L[i]])
 	var/associative = 0
@@ -27,7 +28,6 @@ var/datum/sortInstance/sortInstance = new()
 	//Stores information regarding runs yet to be merged.
 	//Run i starts at runBase[i] and extends for runLen[i] elements.
 	//runBase[i] + runLen[i] == runBase[i+1]
-	//var/stackSize
 	var/list/runBases = list()
 	var/list/runLens = list()
 
@@ -114,7 +114,7 @@ start	the index of the first element in the range that is	not already known to b
 		//in other words, find where the pivot element should go using bisection search
 		while(left < right)
 			var/mid = (left + right) >> 1	//round((left+right)/2)
-			if(call(cmp)(fetchElement(L,mid), pivot) < 0)
+			if(call(cmp)(fetchElement(L,mid), pivot, sortkey) > 0)
 				right = mid
 			else
 				left = mid+1
@@ -144,11 +144,11 @@ reverse a descending sequence without violating stability.
 	var/last = fetchElement(L,lo)
 	var/current = fetchElement(L,runHi++)
 
-	if(call(cmp)(current, last) < 0)
+	if(call(cmp)(current, last, sortkey) < 0)
 		while(runHi < hi)
 			last = current
 			current = fetchElement(L,runHi)
-			if(call(cmp)(current, last) >= 0)
+			if(call(cmp)(current, last, sortkey) >= 0)
 				break
 			++runHi
 		reverseRange(L, lo, runHi)
@@ -156,7 +156,7 @@ reverse a descending sequence without violating stability.
 		while(runHi < hi)
 			last = current
 			current = fetchElement(L,runHi)
-			if(call(cmp)(current, last) < 0)
+			if(call(cmp)(current, last, sortkey) < 0)
 				break
 			++runHi
 
@@ -262,9 +262,9 @@ reverse a descending sequence without violating stability.
 
 	var/lastOffset = 0
 	var/offset = 1
-	if(call(cmp)(key, fetchElement(L,base+hint)) > 0)
+	if(call(cmp)(key, fetchElement(L,base+hint), sortkey) > 0)
 		var/maxOffset = len - hint
-		while(offset < maxOffset && call(cmp)(key, fetchElement(L,base+hint+offset)) > 0)
+		while(offset < maxOffset && call(cmp)(key, fetchElement(L,base+hint+offset), sortkey) > 0)
 			lastOffset = offset
 			offset = (offset << 1) + 1
 
@@ -276,7 +276,7 @@ reverse a descending sequence without violating stability.
 
 	else
 		var/maxOffset = hint + 1
-		while(offset < maxOffset && call(cmp)(key, fetchElement(L,base+hint-offset)) <= 0)
+		while(offset < maxOffset && call(cmp)(key, fetchElement(L,base+hint-offset), sortkey) <= 0)
 			lastOffset = offset
 			offset = (offset << 1) + 1
 
@@ -295,7 +295,7 @@ reverse a descending sequence without violating stability.
 	while(lastOffset < offset)
 		var/m = lastOffset + ((offset - lastOffset) >> 1)
 
-		if(call(cmp)(key, fetchElement(L,base+m)) > 0)
+		if(call(cmp)(key, fetchElement(L,base+m), sortkey) > 0)
 			lastOffset = m + 1
 		else
 			offset = m
@@ -321,13 +321,11 @@ reverse a descending sequence without violating stability.
 
 	var/offset = 1
 	var/lastOffset = 0
-	if(call(cmp)(key, fetchElement(L,base+hint)) < 0)	//key <= L[base+hint]
+	if(call(cmp)(key, fetchElement(L,base+hint), sortkey) < 0)	//key <= L[base+hint]
 		var/maxOffset = hint + 1	//therefore we want to insert somewhere in the range [base,base+hint] = [base+,base+(hint+1))
-		while(offset < maxOffset && call(cmp)(key, fetchElement(L,base+hint-offset)) < 0)	//we are iterating backwards
+		while(offset < maxOffset && call(cmp)(key, fetchElement(L,base+hint-offset), sortkey) < 0)	//we are iterating backwards
 			lastOffset = offset
 			offset = (offset << 1) + 1	//1 3 7 15
-			//if(offset <= 0)	//int overflow, not an issue here since we are using floats
-			//	offset = maxOffset
 
 		if(offset > maxOffset)
 			offset = maxOffset
@@ -338,11 +336,9 @@ reverse a descending sequence without violating stability.
 
 	else	//key > L[base+hint]
 		var/maxOffset = len - hint	//therefore we want to insert somewhere in the range (base+hint,base+len) = [base+hint+1, base+hint+(len-hint))
-		while(offset < maxOffset && call(cmp)(key, fetchElement(L,base+hint+offset)) >= 0)
+		while(offset < maxOffset && call(cmp)(key, fetchElement(L,base+hint+offset), sortkey) >= 0)
 			lastOffset = offset
 			offset = (offset << 1) + 1
-			//if(offset <= 0)	//int overflow, not an issue here since we are using floats
-			//	offset = maxOffset
 
 		if(offset > maxOffset)
 			offset = maxOffset
@@ -356,7 +352,7 @@ reverse a descending sequence without violating stability.
 	while(lastOffset < offset)
 		var/m = lastOffset + ((offset - lastOffset) >> 1)
 
-		if(call(cmp)(key, fetchElement(L,base+m)) < 0)	//key <= L[base+m]
+		if(call(cmp)(key, fetchElement(L,base+m), sortkey) < 0)	//key <= L[base+m]
 			offset = m
 		else							//key > L[base+m]
 			lastOffset = m + 1
@@ -397,7 +393,7 @@ reverse a descending sequence without violating stability.
 
 			do
 				//ASSERT(len1 > 1 && len2 > 0)
-				if(call(cmp)(fetchElement(L,cursor2), fetchElement(L,cursor1)) < 0)
+				if(call(cmp)(fetchElement(L,cursor2), fetchElement(L,cursor1), sortkey) < 0)
 					moveElement(L, cursor2++, cursor1++)
 					--len2
 
@@ -463,7 +459,7 @@ reverse a descending sequence without violating stability.
 
 	if(len1 == 1)
 		//ASSERT(len2 > 0)
-		moveRange(L, cursor1, cursor2+len2)
+		moveElement(L, cursor1, cursor2+len2)
 
 	//else
 		//ASSERT(len2 == 0)
@@ -486,7 +482,6 @@ reverse a descending sequence without violating stability.
 		return
 
 	moveElement(L, cursor1--, cursor2-- + 1)
-
 	--len1
 
 	outer:
@@ -497,7 +492,7 @@ reverse a descending sequence without violating stability.
 			//do the straightfoward thing until one run starts winning consistently
 			do
 				//ASSERT(len1 > 0 && len2 > 1)
-				if(call(cmp)(fetchElement(L,cursor2), fetchElement(L,cursor1)) < 0)
+				if(call(cmp)(fetchElement(L,cursor2), fetchElement(L,cursor1), sortkey) < 0)
 					moveElement(L, cursor1--, cursor2-- + 1)
 					--len1
 
@@ -530,8 +525,6 @@ reverse a descending sequence without violating stability.
 
 					cursor2 -= count1
 					len1 -= count1
-
-					moveRange(L, cursor1+1, cursor2+1, count1)
 
 					if(len1 == 0)
 						break outer
@@ -578,7 +571,6 @@ reverse a descending sequence without violating stability.
 
 	//If array is small, do an insertion sort
 	if(remaining < MIN_MERGE)
-		//var/initRunLen = countRunAndMakeAscending(start, end)
 		binarySort(start, end, start/*+initRunLen*/)
 		return
 
@@ -629,20 +621,17 @@ reverse a descending sequence without violating stability.
 	var/val2 = fetchElement(L,cursor2)
 
 	while(1)
-		if(call(cmp)(val1,val2) < 0)
+		if(call(cmp)(val1,val2, sortkey) <= 0)
 			if(++cursor1 >= end1)
 				break
 			val1 = fetchElement(L,cursor1)
 		else
 			moveElement(L,cursor2,cursor1)
 
-			++cursor2
 			if(++cursor2 >= end2)
 				break
 			++end1
 			++cursor1
-			//if(++cursor1 >= end1)
-			//	break
 
 			val2 = fetchElement(L,cursor2)
 

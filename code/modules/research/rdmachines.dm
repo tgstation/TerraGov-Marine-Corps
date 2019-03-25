@@ -48,8 +48,10 @@
 		dat += text("The red light is [src.disabled ? "off" : "on"].<BR>")
 		dat += text("The green light is [src.shocked ? "off" : "on"].<BR>")
 		dat += text("The blue light is [src.hacked ? "off" : "on"].<BR>")
-		user << browse("<HTML><HEAD><TITLE>[src.name] Hacking</TITLE></HEAD><BODY>[dat]</BODY></HTML>","window=hack_win")
-	return
+
+		var/datum/browser/popup = new(user, "hack_win", "<div align='center'>[name] Hacking</div>")
+		popup.set_content(dat)
+		popup.open(FALSE)
 
 
 /obj/machinery/r_n_d/Topic(href, href_list)
@@ -59,7 +61,7 @@
 	src.add_fingerprint(usr)
 	if(href_list["pulse"])
 		var/temp_wire = href_list["wire"]
-		if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+		if (!ismultitool(usr.get_active_held_item()))
 			to_chat(usr, "You need a multitool!")
 		else
 			if(src.wires[temp_wire])
@@ -77,7 +79,7 @@
 					src.shock(usr,50)
 					spawn(100) src.shocked = !src.shocked
 	if(href_list["cut"])
-		if (!istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
+		if (!iswirecutter(usr.get_active_held_item()))
 			to_chat(usr, "You need wirecutters!")
 		else
 			var/temp_wire = href_list["wire"]

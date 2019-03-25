@@ -184,67 +184,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return destination
 
-
-//among other things, used by flamethrower and boiler spray to calculate if flame/spray can pass through.
-/proc/PostBlocksFire(turf/loc) //Will be affected by fire but not allow it to spread further.
-	if(loc.density)
-		return TRUE
-	for(var/obj/structure/window/D in loc)
-		if(!D.density)
-			continue
-		if(D.is_full_window())
-			return TRUE
-	for(var/obj/machinery/door/D in loc)
-		if(!D.density)
-			continue
-		if(!istype(D, /obj/machinery/door/window))
-			return TRUE	// it's a real, air blocking door
-	for(var/obj/structure/mineral_door/D in loc)
-		if(D.density)
-			return TRUE
-	return FALSE
-
-/proc/LinkPreBlocksFire(turf/A, turf/B) //Will cut fire, protecting the tile.
-	if(A == null || B == null)
-		return TRUE
-	var/abdir = get_dir(A,B)
-	if(abdir & (abdir-1))//is diagonal direction
-		var/turf/Y = get_step(A,abdir&(NORTH|SOUTH))
-		if(!DirPreBlockedFire(A,Y) && !DirPreBlockedFire(Y,B))
-			return FALSE // can go through the Y axis
-		var/turf/X = get_step(A,abdir&(EAST|WEST))
-		if(!DirPreBlockedFire(A,X) && !DirPreBlockedFire(X,B))
-			return FALSE // can go through the X axis
-		return TRUE // both directions blocked
-	if(DirPreBlockedFire(A,B))
-		return TRUE
-	return FALSE
-
-/proc/DirPreBlockedFire(turf/A,turf/B)
-	var/abdir = get_dir(A,B)
-	var/badir = get_dir(B,A)
-	for(var/obj/structure/window/D in A)
-		if(!D.density)
-			continue
-		if(D.dir == abdir)
-			return TRUE
-	for(var/obj/machinery/door/D in A)
-		if(!D.density)
-			continue
-		if(D.dir == abdir)
-			return TRUE
-	for(var/obj/structure/window/D in B)
-		if(!D.density)
-			continue
-		if(D.dir == badir)
-			return TRUE
-	for(var/obj/machinery/door/D in B)
-		if(!D.density)
-			continue
-		if(D.dir == badir)
-			return TRUE
-	return FALSE
-
 /proc/LinkBlocked(turf/A, turf/B)
 	if(A == null || B == null)
 		return TRUE
@@ -330,12 +269,18 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //This will update a mob's name, real_name, mind.name, data_core records, pda and id
 //Calling this proc without an oldname will only update the mob and skip updating the pda, id and records ~Carn
-/mob/proc/fully_replace_character_name(var/oldname,var/newname)
-	if(!newname)	return 0
+/mob/proc/fully_replace_character_name(oldname, newname)
+	if(!newname)	
+		return FALSE
+
+	log_played_names(ckey, newname)
+
 	real_name = newname
 	name = newname
 	if(mind)
 		mind.name = newname
+		if(mind.key)
+			log_played_names(mind.key, newname) //Just in case the mind is unsynced at the moment.
 	if(dna)
 		dna.real_name = real_name
 
@@ -387,7 +332,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				return	//took too long
 			newname = reject_bad_name(newname,allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
 
-			for(var/mob/living/M in player_list)
+			for(var/mob/living/M in GLOB.player_list)
 				if(M == src)
 					continue
 				if(!newname || M.real_name == newname)
@@ -422,7 +367,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/freeborg()
 	var/select = null
 	var/list/borgs = list()
-	for (var/mob/living/silicon/robot/A in player_list)
+	for (var/mob/living/silicon/robot/A in GLOB.player_list)
 		if (A.stat == 2 || A.connected_ai || A.scrambledcodes)
 			continue
 		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
@@ -435,7 +380,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //When a borg is activated, it can choose which AI it wants to be slaved to
 /proc/active_ais()
 	. = list()
-	for(var/mob/living/silicon/ai/A in living_mob_list)
+	for(var/mob/living/silicon/ai/A in GLOB.alive_mob_list)
 		if(A.stat == DEAD)
 			continue
 		if(A.control_disabled == 1)
@@ -460,165 +405,10 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		else		. = pick(ais)
 	return .
 
-/proc/get_sorted_mobs()
-	var/list/old_list = getmobs()
-	var/list/AI_list = list()
-	var/list/Dead_list = list()
-	var/list/keyclient_list = list()
-	var/list/key_list = list()
-	var/list/logged_list = list()
-	for(var/named in old_list)
-		var/mob/M = old_list[named]
-		if(issilicon(M))
-			AI_list |= M
-		else if(isobserver(M) || M.stat == 2)
-			Dead_list |= M
-		else if(M.key && M.client)
-			keyclient_list |= M
-		else if(M.key)
-			key_list |= M
-		else
-			logged_list |= M
-		old_list.Remove(named)
-	var/list/new_list = list()
-	new_list += AI_list
-	new_list += keyclient_list
-	new_list += key_list
-	new_list += logged_list
-	new_list += Dead_list
-	return new_list
-
-//Returns a list of all mobs with their name
-/proc/getmobs()
-	var/list/mobs = sortmobs()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		var/name = M.name
-		if (name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
-			if(istype(M, /mob/dead/observer/))
-				name += " \[ghost\]"
-			else
-				name += " \[dead\]"
-		creatures[name] = M
-
-	return creatures
-
-/proc/getxenos()
-	var/list/mobs = sortxenos()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		var/name = M.name
-		if (name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
-			if(istype(M, /mob/dead/observer/))
-				name += " \[ghost\]"
-			else
-				name += " \[dead\]"
-		creatures[name] = M
-
-	return creatures
-
-/proc/getpreds()
-	var/list/mobs = sortpreds()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		if(!isYautja(M)) continue
-		var/name = M.name
-		if (name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
-			if(istype(M, /mob/dead/observer/))
-				name += " \[ghost\]"
-			else
-				name += " \[dead\]"
-		creatures[name] = M
-
-	return creatures
-
-/proc/gethumans()
-	var/list/mobs = sorthumans()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		if(isYautja(M)) continue
-		if(iszombie(M))	continue
-		var/name = M.name
-		if (name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
-			if(istype(M, /mob/dead/observer/))
-				name += " \[ghost\]"
-			else
-				name += " \[dead\]"
-		creatures[name] = M
-
-	return creatures
-
-/proc/getlivinghumans()
-	var/list/mobs = sorthumans()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		if(isYautja(M))
-			continue
-		if(iszombie(M))
-			continue
-		if (M.stat == 2)
-			continue
-		if(!M.ckey || !M.client)
-			continue
-		var/name = M.name
-		if (name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		creatures[name] = M
-
-	return creatures
-
 //Orders mobs by type then by name
 /proc/sortmobs()
 	var/list/moblist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/silicon/ai/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/silicon/robot/M in sortmob)
@@ -643,7 +433,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/sortxenos()
 	var/list/xenolist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/Xenomorph/M in sortmob)
 		if(!M.client)
 			continue
@@ -652,18 +442,18 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/sortpreds()
 	var/list/predlist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/human/M in sortmob)
-		if(!M.client || !M.species.name == "Yautja")
+		if(!M.client || !isyautjastrict(M))
 			continue
 		predlist.Add(M)
 	return predlist
 
 /proc/sorthumans()
 	var/list/humanlist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/human/M in sortmob)
-		if(!M.client || M.species.name == "Yautja")
+		if(!M.client || isyautjastrict(M))
 			continue
 		humanlist.Add(M)
 	return humanlist
@@ -684,72 +474,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		return M
 	if(M < 0)
 		return -M
-
-
-/proc/key_name(var/whom, var/include_link = null, var/include_name = 1, var/highlight_special_characters = 1)
-	var/mob/M
-	var/client/C
-	var/key
-
-	if(!whom)	return "*null*"
-	if(istype(whom, /client))
-		C = whom
-		M = C.mob
-		key = C.key
-	else if(ismob(whom))
-		M = whom
-		C = M.client
-		key = M.key
-	else // Catch-all cases if none of the types above match
-		var/swhom = null
-
-		if(istype(whom, /atom))
-			var/atom/A = whom
-			swhom = "[A.name]"
-		else if(istype(whom, /datum))
-			swhom = "[whom]"
-
-		if(!swhom)
-			swhom = "*invalid*"
-
-		return "\[[swhom]\]"
-
-	. = ""
-
-	if(key)
-		if(include_link && C)
-			. += "<a href='?priv_msg=\ref[C]'>"
-
-		if(C && C.holder && C.holder.fakekey && !include_name)
-			. += "Administrator"
-		else
-			. += key
-
-		if(include_link)
-			if(C)	. += "</a>"
-			else	. += " (DC)"
-	else
-		. += "*no key*"
-
-	if(include_name && M)
-		var/name
-
-		if(M.real_name)
-			name = M.real_name
-		else if(M.name)
-			name = M.name
-
-
-		if(include_link && is_special_character(M) && highlight_special_characters)
-			. += "/(<font color='#FFA500'>[name]</font>)" //Orange
-		else
-			. += "/([name])"
-
-	return .
-
-/proc/key_name_admin(var/whom, var/include_name = 1)
-	return key_name(whom, 1, include_name)
-
 
 // returns the turf located at the map edge in the specified direction relative to A
 // used for mass driver
@@ -827,7 +551,7 @@ proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as te
 //The variables should be apparent enough.
 	var/atom/movable/overlay/animation = new(location)
 	if(direction)
-		animation.dir = direction
+		animation.setDir(direction)
 	animation.icon = a_icon
 	animation.layer = target.layer+0.1
 	if(a_icon_state)
@@ -964,7 +688,7 @@ var/global/image/busy_indicator_hostile
 	var/user_loc = user.loc
 	var/target_loc = target.loc
 	var/delayfraction = round(time/5)
-	var/holding = user.get_active_hand()
+	var/holding = user.get_active_held_item()
 
 	. = TRUE
 	for(var/i = 0 to 5)
@@ -975,7 +699,7 @@ var/global/image/busy_indicator_hostile
 		if(user.loc != user_loc || target.loc != target_loc)
 			. = FALSE
 			break
-		if(user.get_active_hand() != holding)
+		if(user.get_active_held_item() != holding)
 			. = FALSE
 			break
 		if(user.is_mob_incapacitated(TRUE) || user.lying)
@@ -1002,7 +726,8 @@ var/global/image/busy_indicator_hostile
 		return FALSE
 
 	var/mob/living/L
-	if(istype(user, /mob/living)) L = user //No more doing things while you're in crit
+	if(isliving(user))
+		L = user //No more doing things while you're in crit
 
 	var/image/busy_icon
 	if(show_busy_icon)
@@ -1016,25 +741,26 @@ var/global/image/busy_indicator_hostile
 	if(selected_zone_check)
 		cur_zone_sel = user.zone_selected
 
-	var/delayfraction = round(delay/numticks)
 	var/original_loc = user.loc
 	var/original_turf = get_turf(user)
-	var/obj/holding = user.get_active_hand()
+	var/obj/holding = user.get_active_held_item()
+
 	. = TRUE
-	for(var/i = 0 to numticks)
-		sleep(delayfraction)
+	var/endtime = world.time + delay
+	while(world.time < endtime)
+		stoplag(1)
 		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.knocked_down || user.stunned)
 			. = FALSE
 			break
-		if(L && L.health < config.health_threshold_crit)
+		if(L?.health && L.health < L.get_crit_threshold())
 			. = FALSE //catching mobs below crit level but haven't had their stat var updated
 			break
 		if(needhand)
 			if(holding)
-				if(!holding.loc || user.get_active_hand() != holding) //no longer holding the required item
+				if(!holding.loc || user.get_active_held_item() != holding) //no longer holding the required item
 					. = FALSE
 					break
-			else if(user.get_active_hand()) //something in active hand when we need it to stay empty
+			else if(user.get_active_held_item()) //something in active hand when we need it to stay empty
 				. = FALSE
 				break
 
@@ -1154,7 +880,7 @@ var/global/image/busy_indicator_hostile
 					var/old_icon1 = T.icon
 
 					var/turf/X = B.ChangeTurf(T.type)
-					X.dir = old_dir1
+					X.setDir(old_dir1)
 					X.icon_state = old_icon_state1
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
 
@@ -1173,7 +899,7 @@ var/global/image/busy_indicator_hostile
 
 						// Find a new turf to take on the property of
 						var/turf/nextturf = get_step(corner, direction)
-						if(!nextturf || !istype(nextturf, /turf/open/space))
+						if(!nextturf || !isspaceturf(nextturf))
 							nextturf = get_step(corner, turn(direction, 180))
 
 
@@ -1233,22 +959,37 @@ var/global/image/busy_indicator_hostile
 			else
 				air_master.tiles_to_update += T2*/
 
-proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
-	if(!original)
-		return null
 
-	var/obj/O = null
+/proc/DuplicateObject(atom/original, atom/newloc)
+	if(!original || !newloc)
+		return
 
-	if(sameloc)
-		O=new original.type(original.loc)
-	else
-		O=new original.type(locate(0,0,0))
+	var/atom/O = new original.type(newloc)
+	if(!O)
+		return
 
-	if(perfectcopy)
-		if((O) && (original))
-			for(var/V in original.vars)
-				if(!(V in list("type","loc","locs","vars", "parent", "parent_type","verbs","ckey","key")))
-					O.vars[V] = original.vars[V]
+	O.contents.Cut()
+
+	for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
+		if(istype(original.vars[V], /datum)) // this would reference the original's object, that will break when it is used or deleted.
+			continue
+		else if(islist(original.vars[V]))
+			var/list/L = original.vars[V]
+			O.vars[V] = L.Copy()
+		else
+			O.vars[V] = original.vars[V]
+
+	for(var/atom/A in original.contents)
+		O.contents += new A.type
+
+	if(isobj(O))
+		var/obj/N = O
+
+		N.update_icon()
+		if(ismachinery(O))
+			var/obj/machinery/M = O
+			M.power_change()
+
 	return O
 
 
@@ -1309,11 +1050,11 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 					var/old_icon1 = T.icon
 
 					if(platingRequired)
-						if(istype(B, /turf/open/space))
+						if(isspaceturf(B))
 							continue moving
 
 					var/turf/X = new T.type(B)
-					X.dir = old_dir1
+					X.setDir(old_dir1)
 					X.icon_state = old_icon_state1
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
 
@@ -1332,7 +1073,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 
 
 					for(var/obj/O in objs)
-						newobjs += DuplicateObject(O , 1)
+						newobjs += DuplicateObject(O, T)
 
 
 					for(var/obj/O in newobjs)
@@ -1344,7 +1085,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 						mobs += M
 
 					for(var/mob/M in mobs)
-						newmobs += DuplicateObject(M , 1)
+						newmobs += DuplicateObject(M, T)
 
 					for(var/mob/M in newmobs)
 						M.loc = X
@@ -1417,7 +1158,7 @@ proc/oview_or_orange(distance = world.view , center = usr , type)
 
 proc/get_mob_with_client_list()
 	var/list/mobs = list()
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.client)
 			mobs += M
 	return mobs
@@ -1464,46 +1205,6 @@ var/global/list/common_tools = list(
 		return 1
 	return 0
 
-/proc/iswrench(O)
-	if(istype(O, /obj/item/tool/wrench))
-		return 1
-	return 0
-
-/proc/iswelder(O)
-	if(istype(O, /obj/item/tool/weldingtool))
-		return 1
-	return 0
-
-/proc/iscoil(O)
-	if(istype(O, /obj/item/stack/cable_coil))
-		return 1
-	return 0
-
-/proc/iswirecutter(O)
-	if(istype(O, /obj/item/tool/wirecutters))
-		return 1
-	return 0
-
-/proc/isscrewdriver(O)
-	if(istype(O, /obj/item/tool/screwdriver))
-		return 1
-	return 0
-
-/proc/ismultitool(O)
-	if(istype(O, /obj/item/device/multitool))
-		return 1
-	return 0
-
-/proc/iscrowbar(O)
-	if(istype(O, /obj/item/tool/crowbar))
-		return 1
-	return 0
-
-/proc/iswire(O)
-	if(istype(O, /obj/item/stack/cable_coil))
-		return 1
-	return 0
-
 proc/is_hot(obj/item/I)
 	return I.heat_source
 
@@ -1524,7 +1225,7 @@ proc/is_hot(obj/item/I)
 /proc/can_puncture(obj/item/W)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
 	if(!istype(W)) return 0
 	return (W.sharp || W.heat_source >= 400 	|| \
-		istype(W, /obj/item/tool/screwdriver)	 || \
+		isscrewdriver(W)	 || \
 		istype(W, /obj/item/tool/pen) 		 || \
 		istype(W, /obj/item/tool/shovel) \
 	)
@@ -1625,134 +1326,63 @@ var/list/WALLITEMS = list(
 		arglist = list2params(arglist)
 	return "<a href='?src=\ref[D];[arglist]'>[content]</a>"
 
-/proc/getline(atom/M,atom/N)//Ultra-Fast Bresenham Line-Drawing Algorithm
-	var/px=M.x		//starting x
-	var/py=M.y
-	var/line[] = list(locate(px,py,M.z))
-	var/dx=N.x-px	//x distance
-	var/dy=N.y-py
-	var/dxabs = abs(dx)//Absolute value of x distance
-	var/dyabs = abs(dy)
-	var/sdx = SIGN(dx)	//Sign of x distance (+ or -)
-	var/sdy = SIGN(dy)
-	var/x=dxabs>>1	//Counters for steps taken, setting to distance/2
-	var/y=dyabs>>1	//Bit-shifting makes me l33t.  It also makes getline() unnessecarrily fast.
-	var/j			//Generic integer for counting
-	if(dxabs>=dyabs)	//x distance is greater than y
-		for(j=0;j<dxabs;j++)//It'll take dxabs steps to get there
-			y+=dyabs
-			if(y>=dxabs)	//Every dyabs steps, step once in y direction
-				y-=dxabs
-				py+=sdy
-			px+=sdx		//Step on in x direction
-			line+=locate(px,py,M.z)//Add the turf to the list
+#define SIGN(x) ( x < 0 ? -1  : 1 )
+//Reasonably Optimized Bresenham's Line Drawing
+/proc/getline(atom/start, atom/end)
+	var/x = start.x
+	var/y = start.y
+	var/z = start.z
+
+	//horizontal and vertical lines special case
+	if(y == end.y)
+		return x <= end.x ? block(locate(x,y,z), locate(end.x,y,z)) : reverseRange(block(locate(end.x,y,z), locate(x,y,z)))
+	if(x == end.x)
+		return y <= end.y ? block(locate(x,y,z), locate(x,end.y,z)) : reverseRange(block(locate(x,end.y,z), locate(x,y,z)))
+
+	//let's compute these only once
+	var/abs_dx = abs(end.x - x)
+	var/abs_dy = abs(end.y - y)
+	var/sign_dx = SIGN(end.x - x)
+	var/sign_dy = SIGN(end.y - y)
+
+	var/list/turfs = list(locate(x,y,z))
+
+	//diagonal special case
+	if(abs_dx == abs_dy)
+		for(var/j = 1 to abs_dx)
+			x += sign_dx
+			y += sign_dy
+			turfs += locate(x,y,z)
+		return turfs
+
+	/*x_error and y_error represents how far we are from the ideal line.
+	Initialized so that we will check these errors against 0, instead of 0.5 * abs_(dx/dy)*/
+
+	//We multiply every check by the line slope denominator so that we only handles integers
+	if(abs_dx > abs_dy)
+		var/y_error = -(abs_dx >> 1)
+		var/steps = abs_dx
+		while(steps--)
+			y_error += abs_dy
+			if(y_error > 0)
+				y_error -= abs_dx
+				y += sign_dy
+			x += sign_dx
+			turfs += locate(x,y,z)
 	else
-		for(j=0;j<dyabs;j++)
-			x+=dxabs
-			if(x>=dyabs)
-				x-=dyabs
-				px+=sdx
-			py+=sdy
-			line+=locate(px,py,M.z)
-	return line
+		var/x_error = -(abs_dy >> 1)
+		var/steps = abs_dy
+		while(steps--)
+			x_error += abs_dx
+			if(x_error > 0)
+				x_error -= abs_dy
+				x += sign_dx
+			y += sign_dy
+			turfs += locate(x,y,z)
 
-//Bresenham's algorithm. This one deals efficiently with all 8 octants.
-//Just don't ask me how it works.
-/proc/getline2(atom/from_atom, atom/to_atom, exclude_origin=FALSE)
-	if(!from_atom || !to_atom) return 0
-	var/list/turf/turfs = list()
+	. = turfs
 
-	var/cur_x = from_atom.x
-	var/cur_y = from_atom.y
-
-	var/w = to_atom.x - from_atom.x
-	var/h = to_atom.y - from_atom.y
-	var/dx1 = 0
-	var/dx2 = 0
-	var/dy1 = 0
-	var/dy2 = 0
-	if(w < 0)
-		dx1 = -1
-		dx2 = -1
-	else if(w > 0)
-		dx1 = 1
-		dx2 = 1
-	if(h < 0) dy1 = -1
-	else if(h > 0) dy1 = 1
-	var/longest = abs(w)
-	var/shortest = abs(h)
-	if(!(longest > shortest))
-		longest = abs(h)
-		shortest = abs(w)
-		if(h < 0) dy2 = -1
-		else if (h > 0) dy2 = 1
-		dx2 = 0
-
-	var/numerator = longest>>1
-	var/i
-	for(i = 0; i <= longest; i++)
-		turfs += locate(cur_x,cur_y,from_atom.z)
-		numerator += shortest
-		if(!(numerator < longest))
-			numerator -= longest
-			cur_x += dx1
-			cur_y += dy1
-		else
-			cur_x += dx2
-			cur_y += dy2
-
-	if(exclude_origin)
-		turfs -= get_turf(from_atom)
-
-	return turfs
-
-//Another line algorithm pulled from DM code snippets.
-/proc/getline3(atom/a,atom/b)
-	var/list/line = new
-	line+=locate(b.x,b.y,b.z)
-	line+=locate(a.x,a.y,a.z)
-
-	var/x1 = a.x
-	var/x2 = b.x
-	var/y1 = a.y
-	var/y2 = b.y
-	var/steep = abs(y2 - y1) > abs(x2 - x1)
-	if(steep)
-		var/temp = x1
-		x1 = y1
-		y1 = temp
-		temp = x2
-		x2 = y2
-		y2 = temp
-	if(x1 > x2)
-		var/temp = x1
-		x1 = x2
-		x2 = temp
-		temp = y1
-		y1 = y2
-		y2 = temp
-	var/deltax = x2 - x1
-	var/deltay = abs(y2 - y1)
-	var/error = 0
-	var/ystep
-	var/y = y1
-	if(y1 < y2)
-		ystep = 1
-	else
-		ystep = -1
-	for(var/x = x1, x < x2, x++)
-		if(steep)
-			line += locate(y,x,a.z)
-		else
-			line += locate(x,y,a.z)
-		error += deltay
-		if((2 * error) >= deltax)
-			y += ystep
-			error -= deltax
-	return line
-
-/proc/to_chat(target, message)
-	target << message
+#undef SIGN
 
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
@@ -1767,3 +1397,124 @@ var/list/WALLITEMS = list(
 	. = new_angle - old_angle
 	Turn(.) //BYOND handles cases such as -270, 360, 540 etc. DOES NOT HANDLE 180 TURNS WELL, THEY TWEEN AND LOOK LIKE SHIT
 
+//Key thing that stops lag. Cornerstone of performance in ss13, Just sitting here, in unsorted.dm.
+
+//Increases delay as the server gets more overloaded,
+//as sleeps aren't cheap and sleeping only to wake up and sleep again is wasteful
+#define DELTA_CALC max(((max(TICK_USAGE, world.cpu) / 100) * max(Master.sleep_delta-1,1)), 1)
+
+//returns the number of ticks slept
+/proc/stoplag(initial_delay)
+	if (!Master || !(Master.current_runlevel & RUNLEVELS_DEFAULT))
+		sleep(world.tick_lag)
+		return 1
+	if (!initial_delay)
+		initial_delay = world.tick_lag
+	. = 0
+	var/i = DS2TICKS(initial_delay)
+	do
+		. += CEILING(i*DELTA_CALC, 1)
+		sleep(i*world.tick_lag*DELTA_CALC)
+		i *= 2
+	while (TICK_USAGE > min(TICK_LIMIT_TO_RUN, Master.current_ticklimit))
+
+#undef DELTA_CALC
+
+//datum may be null, but it does need to be a typed var
+#define NAMEOF(datum, X) (#X || ##datum.##X)
+
+// \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
+// If it ever becomes necesary to get a more performant REF(), this lies here in wait
+// #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
+/proc/REF(input)
+	if(istype(input, /datum))
+		var/datum/thing = input
+		if(thing.datum_flags & DF_USE_TAG)
+			if(!thing.tag)
+				stack_trace("A ref was requested of an object with DF_USE_TAG set but no tag: [thing]")
+				thing.datum_flags &= ~DF_USE_TAG
+			else
+				return "\[[url_encode(thing.tag)]\]"
+	return "\ref[input]"
+
+// Makes a call in the context of a different usr
+// Use sparingly
+/world/proc/PushUsr(mob/M, datum/callback/CB, ...)
+	var/temp = usr
+	usr = M
+	if (length(args) > 2)
+		. = CB.Invoke(arglist(args.Copy(3)))
+	else
+		. = CB.Invoke()
+	usr = temp
+
+#define UNTIL(X) while(!(X)) stoplag()
+
+
+//returns a GUID like identifier (using a mostly made up record format)
+//guids are not on their own suitable for access or security tokens, as most of their bits are predictable.
+//	(But may make a nice salt to one)
+/proc/GUID()
+	var/const/GUID_VERSION = "b"
+	var/const/GUID_VARIANT = "d"
+	var/node_id = copytext(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][world.contents.len][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
+
+	var/time_high = "[num2hex(text2num(time2text(world.realtime,"YYYY")), 2)][num2hex(world.realtime, 6)]"
+
+	var/time_mid = num2hex(world.timeofday, 4)
+
+	var/time_low = num2hex(world.time, 3)
+
+	var/time_clock = num2hex(TICK_DELTA_TO_MS(world.tick_usage), 3)
+
+	return "{[time_high]-[time_mid]-[GUID_VERSION][time_low]-[GUID_VARIANT][time_clock]-[node_id]}"
+
+/proc/pass()
+	return
+
+proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
+	if (value == FALSE) //nothing should be calling us with a number, so this is safe
+		value = input("Enter type to find (blank for all, cancel to cancel)", "Search for type") as null|text
+		if (isnull(value))
+			return
+	value = trim(value)
+	if(!isnull(value) && value != "")
+		matches = filter_fancy_list(matches, value)
+
+	if(matches.len==0)
+		return
+
+	var/chosen
+	if(matches.len==1)
+		chosen = matches[1]
+	else
+		chosen = input("Select a type", "Pick Type", matches[1]) as null|anything in matches
+		if(!chosen)
+			return
+	chosen = matches[chosen]
+	return chosen
+
+
+/proc/IsValidSrc(datum/D)
+	if(istype(D))
+		return !QDELETED(D)
+	return FALSE
+
+//Repopulates sortedAreas list
+/proc/repopulate_sorted_areas()
+	GLOB.sortedAreas = list()
+
+	for(var/area/A in world)
+		GLOB.sortedAreas.Add(A)
+
+	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)
+
+// Format a power value in W, kW, MW, or GW.
+/proc/DisplayPower(powerused)
+	if(powerused < 1000) //Less than a kW
+		return "[powerused] W"
+	else if(powerused < 1000000) //Less than a MW
+		return "[round((powerused * 0.001),0.01)] kW"
+	else if(powerused < 1000000000) //Less than a GW
+		return "[round((powerused * 0.000001),0.001)] MW"
+	return "[round((powerused * 0.000000001),0.0001)] GW"

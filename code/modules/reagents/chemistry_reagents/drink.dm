@@ -234,7 +234,7 @@
 			var/mob/living/carbon/human/H = M
 			var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 			if(E)
-				E.damage += 0.1
+				E.take_damage(0.1, TRUE)
 			M.emote(pick("twitch", "blink_r", "shiver"))
 
 /datum/reagent/consumable/drink/coffee/overdose_crit_process(mob/living/M, alien)
@@ -248,7 +248,7 @@
 			var/mob/living/carbon/human/H = M
 			var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 			if(E)
-				E.damage += 0.1
+				E.take_damage(0.1, TRUE)
 
 /datum/reagent/consumable/drink/coffee/icecoffee
 	name = "Iced Coffee"

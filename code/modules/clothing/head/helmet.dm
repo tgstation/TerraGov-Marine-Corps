@@ -10,8 +10,8 @@
 	flags_inv_hide = HIDEEARS|HIDEEYES
 	flags_cold_protection = HEAD
 	flags_heat_protection = HEAD
-	min_cold_protection_temperature = HELMET_min_cold_protection_temperature
-	max_heat_protection_temperature = HELMET_max_heat_protection_temperature
+	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
 	w_class = 4
 
@@ -32,6 +32,11 @@
 	item_state = "v62"
 	armor = list(melee = 80, bullet = 60, laser = 50, energy = 25, bomb = 50, bio = 10, rad = 0)
 	siemens_coefficient = 0.5
+
+/obj/item/clothing/head/helmet/augment/alien
+	name = "alien mask"
+	desc = "Part of a strange alien mask. It loosely fits on a human, but just barely."
+	unacidable = 1
 
 /obj/item/clothing/head/helmet/HoS
 	name = "Head of Security Hat"
@@ -83,7 +88,7 @@
 	flags_inventory = COVEREYES|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES
 	flags_cold_protection = HEAD
-	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
+	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
 	anti_hug = 1
 
@@ -96,7 +101,7 @@
 	item_state = "thunderdome"
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 10, rad = 0)
 	flags_cold_protection = HEAD
-	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
+	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 1
 
 /obj/item/clothing/head/helmet/gladiator
@@ -161,13 +166,12 @@
 
 /obj/item/clothing/head/helmet/marine
 	name = "\improper M10 pattern marine helmet"
-	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'. Contains a small built-in camera."
+	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "helmet"
 	armor = list(melee = 65, bullet = 35, laser = 30, energy = 20, bomb = 25, bio = 0, rad = 0)
 	health = 5
-	var/obj/machinery/camera/camera
 	var/helmet_overlays[]
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
@@ -194,7 +198,7 @@
 
 /obj/item/clothing/head/helmet/marine/New(loc,expected_type 		= /obj/item/clothing/head/helmet/marine,
 	new_name[] 			= list(MAP_ICE_COLONY =  "\improper M10 pattern marine snow helmet"),
-	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
+	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
 	select_gamemode_skin(expected_type,null,new_name,new_protection)
 	..()
 	helmet_overlays = list("damage","band","item") //To make things simple.
@@ -203,9 +207,6 @@
 	pockets.max_w_class = 1 //can hold tiny items only, EXCEPT for glasses & metal flask.
 	pockets.bypass_w_limit = list("/obj/item/clothing/glasses", "/obj/item/reagent_container/food/drinks/flask")
 	pockets.max_storage_space = 3
-
-	camera = new /obj/machinery/camera(src)
-	camera.network = list("LEADER")
 
 /obj/item/clothing/head/helmet/marine/attack_hand(mob/user)
 	if (pockets.handle_attack_hand(user))
@@ -251,16 +252,6 @@
 		var/mob/M = loc
 		M.update_inv_head()
 
-/obj/item/clothing/head/helmet/marine/equipped(var/mob/living/carbon/human/mob, slot)
-	if(camera)
-		camera.c_tag = mob.name
-	..()
-
-/obj/item/clothing/head/helmet/marine/dropped(var/mob/living/carbon/human/mob)
-	if(camera)
-		camera.c_tag = "Unknown"
-	..()
-
 
 /obj/item/clothing/head/helmet/marine/proc/add_hugger_damage() //This is called in XenoFacehuggers.dm to first add the overlay and set the var.
 	if(flags_marine_helmet & HELMET_DAMAGE_OVERLAY && !(flags_marine_helmet & HELMET_IS_DAMAGED))
@@ -276,26 +267,26 @@
 
 /obj/item/clothing/head/helmet/marine/tech/New(loc,expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper M10 technician snow helmet"),
-	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
+	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
 	..(loc,expected_type,new_name,new_protection)
 
-/obj/item/clothing/head/helmet/marine/medic
-	name = "\improper M10 medic helmet"
+/obj/item/clothing/head/helmet/marine/corpsman
+	name = "\improper M10 corpsman helmet"
 
-/obj/item/clothing/head/helmet/marine/medic/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper M10 medic snow helmet"),
-	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
+/obj/item/clothing/head/helmet/marine/corpsman/New(loc,expected_type 		= type,
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper M10 corpsman snow helmet"),
+	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
 	..(loc,expected_type,new_name,new_protection)
 
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
-	desc = "A slightly fancier helmet for marine leaders. This one contains a small built-in camera and has cushioning to project your fragile brain."
+	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
 	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 
 /obj/item/clothing/head/helmet/marine/leader/New(loc,expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper M11 pattern leader snow helmet"),
-	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
+	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
 	..(loc,expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/specialist
@@ -307,7 +298,7 @@
 
 /obj/item/clothing/head/helmet/marine/specialist/New(loc,expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper B18 snow helmet"),
-	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
+	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
 	..(loc,expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/scout
@@ -315,7 +306,7 @@
 	icon_state = "scout_helmet"
 	desc = "A custom helmet designed for TGMC Scouts."
 	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 	New()
 		select_gamemode_skin(type)
@@ -326,8 +317,8 @@
 	icon_state = "pyro_helmet"
 	desc = "A helmet designed for TGMC Pyrotechnicians. Contains heavy insulation, covered in nomex weave."
 	armor = list(melee = 85, bullet = 75, laser = 60, energy = 50, bomb = 50, bio = 10, rad = 10)
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	max_heat_protection_temperature = FIRESUIT_max_heat_protection_temperature
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
 	New()
 		select_gamemode_skin(type)
@@ -338,7 +329,7 @@
 	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is required to fly the Alamo and Normandy dropships manually and in safety."
 	icon_state = "helmetp"
 	armor = list(melee = 65, bullet = 50, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	flags_marine_helmet = NOFLAGS
@@ -351,7 +342,7 @@
 	desc = "The lightweight M50 tanker helmet is designed for use by armored crewmen in the TGMC. It offers low weight protection, and allows agile movement inside the confines of an armored vehicle."
 	icon_state = "tanker_helmet"
 	armor = list(melee = 40, bullet = 40, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	flags_marine_helmet = NOFLAGS
@@ -369,7 +360,7 @@
 	desc = "A protective cap made from flexible kevlar. Standard issue for most security forms in the place of a helmet."
 	icon_state = "pmc_hat"
 	armor = list(melee = 38, bullet = 38, laser = 32, energy = 22, bomb = 12, bio = 5, rad = 5)
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = NOFLAGS
 	flags_marine_helmet = NOFLAGS
@@ -441,7 +432,7 @@
 	desc = "Is good for winter, because it has hole to put vodka through."
 	icon_state = "dutch_helmet"
 	armor = list(melee = 90, bullet = 65, laser = 40, energy = 35, bomb = 35, bio = 5, rad = 5)
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
 
 /obj/item/clothing/head/helmet/UPP
@@ -451,7 +442,7 @@
 	sprite_sheet_id = 1
 	icon_state = "upp_helmet1"
 	armor = list(melee = 70, bullet = 55, laser = 40, energy = 35, bomb = 35, bio = 5, rad = 5)
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/head/helmet/UPP/heavy
 	name = "\improper UH7 helmet"
@@ -497,7 +488,7 @@
 
 /obj/item/clothing/head/helmet/durag/jungle/New(loc,expected_type 	= type,
 	new_name[] 		= list(MAP_ICE_COLONY = "\improper M6 marksman hood"),
-	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
+	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
 	select_gamemode_skin(expected_type,,new_name,new_protection)
 	..()
 	switch(icon_state)

@@ -14,7 +14,7 @@
 	melee_damage_upper = 25
 
 	// *** Tackle *** //
-	tackle_damage = 25 
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = 0.7
@@ -32,10 +32,10 @@
 	deevolves_to = /mob/living/carbon/Xenomorph/Spitter
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor_deflection = 30 
+	armor_deflection = 30
 
 	// *** Ranged Attack *** //
 	spit_delay = 4 SECONDS
@@ -55,7 +55,7 @@
 	melee_damage_upper = 30
 
 	// *** Tackle *** //
-	tackle_damage = 25 
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = 0.6
@@ -77,7 +77,7 @@
 	spit_delay = 3 SECONDS
 
 	// *** Boiler Abilities *** //
-	bomb_strength = 1.5 
+	bomb_strength = 1.5
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
 	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
@@ -113,7 +113,7 @@
 	spit_delay = 2 SECONDS
 
 	// *** Boiler Abilities *** //
-	bomb_strength = 2 
+	bomb_strength = 2
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
 	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
@@ -183,16 +183,16 @@
 		/datum/action/xeno_action/activable/spray_acid,
 		)
 
-/mob/living/carbon/Xenomorph/Boiler/New()
-	..()
-	SetLuminosity(3)
+/mob/living/carbon/Xenomorph/Boiler/Initialize()
+	. = ..()
+	SetLuminosity(BOILER_LUMINOSITY)
 	smoke = new /datum/effect_system/smoke_spread/xeno_acid
 	smoke.attach(src)
 	see_in_dark = 20
-	ammo = ammo_list[/datum/ammo/xeno/boiler_gas]
+	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
 
 /mob/living/carbon/Xenomorph/Boiler/Destroy()
-	SetLuminosity(0)
+	SetLuminosity(-BOILER_LUMINOSITY)
 	if(smoke)
 		qdel(smoke)
 		smoke = null
@@ -210,7 +210,7 @@
 	var/turf/U = get_turf(src)
 
 	if(bomb_turf && bomb_turf != U)
-		is_bombarding = 0
+		is_bombarding = FALSE
 		if(client)
 			client.mouse_pointer_icon = initial(client.mouse_pointer_icon) //Reset the mouse pointer.
 		return
@@ -249,34 +249,34 @@
 	to_chat(src, "<span class='xenonotice'>You begin building up acid.</span>")
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon) //Reset the mouse pointer.
-	bomb_cooldown = 1
-	is_bombarding = 0
+	bomb_cooldown = TRUE
+	is_bombarding = FALSE
 	use_plasma(200)
 
-	if(do_after(src, 50, FALSE, 5, BUSY_ICON_HOSTILE))
-		if(!check_state())
-			bomb_cooldown = 0
-			return
-		bomb_turf = null
-		visible_message("<span class='xenowarning'>\The [src] launches a huge glob of acid hurling into the distance!</span>", \
-		"<span class='xenowarning'>You launch a huge glob of acid hurling into the distance!</span>", null, 5)
-
-		var/obj/item/projectile/P = new /obj/item/projectile(loc)
-		P.generate_bullet(ammo)
-		P.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
-		playsound(src, 'sound/effects/blobattack.ogg', 25, 1)
-		if(ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
-			round_statistics.boiler_acid_smokes++
-		else
-			round_statistics.boiler_neuro_smokes++
-
-
-		spawn(xeno_caste.bomb_delay) //20 seconds cooldown.
-			bomb_cooldown = 0
-			to_chat(src, "<span class='notice'>You feel your toxin glands swell. You are able to bombard an area again.</span>")
-			update_action_button_icons()
-		return
-	else
-		bomb_cooldown = 0
+	if(!do_after(src, 50, FALSE, 5, BUSY_ICON_HOSTILE))
+		bomb_cooldown = FALSE
 		to_chat(src, "<span class='warning'>You decide not to launch any acid.</span>")
-	return
+		return
+
+	if(!check_state())
+		bomb_cooldown = FALSE
+		return
+	bomb_turf = null
+	visible_message("<span class='xenowarning'>\The [src] launches a huge glob of acid hurling into the distance!</span>", \
+	"<span class='xenowarning'>You launch a huge glob of acid hurling into the distance!</span>", null, 5)
+
+	var/obj/item/projectile/P = new /obj/item/projectile(loc)
+	P.generate_bullet(ammo)
+	P.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
+	playsound(src, 'sound/effects/blobattack.ogg', 25, 1)
+	if(ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
+		round_statistics.boiler_acid_smokes++
+	else
+		round_statistics.boiler_neuro_smokes++
+
+	addtimer(CALLBACK(src, .bomb_cooldown), xeno_caste.bomb_delay)
+
+/mob/living/carbon/Xenomorph/Boiler/proc/bomb_cooldown()
+	bomb_cooldown = FALSE
+	to_chat(src, "<span class='notice'>You feel your toxin glands swell. You are able to bombard an area again.</span>")
+	update_action_button_icons()

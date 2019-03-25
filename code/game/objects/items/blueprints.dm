@@ -28,7 +28,7 @@
 
 /obj/item/blueprints/Topic(href, href_list)
 	..()
-	if ((usr.is_mob_restrained() || usr.stat || usr.get_active_hand() != src))
+	if ((usr.is_mob_restrained() || usr.stat || usr.get_active_held_item() != src))
 		return
 	if (!href_list["action"])
 		return
@@ -47,7 +47,7 @@
 /obj/item/blueprints/interact()
 	var/area/A = get_area()
 	var/text = {"<HTML><head><title>[src]</title></head><BODY>
-<h2>[station_name()] blueprints</h2>
+<h2>[CONFIG_GET(string/ship_name)] blueprints</h2>
 <small>Property of Nanotrasen. For heads of staff only. Store in high-secure storage.</small><hr>
 "}
 	switch (get_area_type())
@@ -105,20 +105,20 @@ move an amendment</a> to the drawing.</p>
 	if(!istype(res,/list))
 		switch(res)
 			if(ROOM_ERR_SPACE)
-				to_chat(usr, "\red The new area must be completely airtight!")
+				to_chat(usr, "<span class='warning'>The new area must be completely airtight!</span>")
 				return
 			if(ROOM_ERR_TOOLARGE)
-				to_chat(usr, "\red The new area too large!")
+				to_chat(usr, "<span class='warning'>The new area too large!</span>")
 				return
 			else
-				to_chat(usr, "\red Error! Please notify administration!")
+				to_chat(usr, "<span class='warning'>Error! Please notify administration!</span>")
 				return
 	var/list/turf/turfs = res
 	var/str = trim(stripped_input(usr,"New area name:","Blueprint Editing", "", MAX_NAME_LEN))
 	if(!str || !length(str)) //cancel
 		return
 	if(length(str) > 50)
-		to_chat(usr, "\red Name too long.")
+		to_chat(usr, "<span class='warning'>Name too long.</span>")
 		return
 	var/area/A = new
 	A.name = str
@@ -158,12 +158,12 @@ move an amendment</a> to the drawing.</p>
 	if(!str || !length(str) || str==prevname) //cancel
 		return
 	if(length(str) > 50)
-		to_chat(usr, "\red Text too long.")
+		to_chat(usr, "<span class='warning'>Text too long.</span>")
 		return
 	set_area_machinery_title(A,str,prevname)
 	for(var/area/RA in A.related)
 		RA.name = str
-	to_chat(usr, "\blue You set the area '[prevname]' title to '[str]'.")
+	to_chat(usr, "<span class='notice'>You set the area '[prevname]' title to '[str]'.</span>")
 	interact()
 	return
 
@@ -177,16 +177,16 @@ move an amendment</a> to the drawing.</p>
 			M.name = oldreplacetext(M.name,oldtitle,title)
 		for(var/obj/machinery/power/apc/M in RA)
 			M.name = oldreplacetext(M.name,oldtitle,title)
-		for(var/obj/machinery/atmospherics/unary/vent_scrubber/M in RA)
+		for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/M in RA)
 			M.name = oldreplacetext(M.name,oldtitle,title)
-		for(var/obj/machinery/atmospherics/unary/vent_pump/M in RA)
+		for(var/obj/machinery/atmospherics/components/unary/vent_pump/M in RA)
 			M.name = oldreplacetext(M.name,oldtitle,title)
 		for(var/obj/machinery/door/M in RA)
 			M.name = oldreplacetext(M.name,oldtitle,title)
 	//TODO: much much more. Unnamed airlocks, cameras, etc.
 
 /obj/item/blueprints/proc/check_tile_is_border(var/turf/T2,var/dir)
-	if (istype(T2, /turf/open/space))
+	if (isspaceturf(T2))
 		return BORDER_SPACE //omg hull breach we all going to die here
 	if (istype(T2, /turf/open/shuttle))
 		return BORDER_SPACE
@@ -194,7 +194,7 @@ move an amendment</a> to the drawing.</p>
 		return BORDER_SPACE
 	if (get_area_type(T2.loc)!=AREA_SPACE)
 		return BORDER_BETWEEN
-	if (istype(T2, /turf/closed/wall))
+	if (iswallturf(T2))
 		return BORDER_2NDTILE
 
 	for (var/obj/structure/window/W in T2)

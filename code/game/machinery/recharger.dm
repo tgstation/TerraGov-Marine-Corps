@@ -22,25 +22,25 @@ obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
 
 	if(allowed)
 		if(charging)
-			to_chat(user, "\red \A [charging] is already charging here.")
+			to_chat(user, "<span class='warning'>\A [charging] is already charging here.</span>")
 			return
 		// Checks to make sure he's not in space doing it, and that the area got proper power.
 		var/area/a = get_area(src)
 		if(!isarea(a) || (a.power_equip == 0 && !a.unlimited_power))
-			to_chat(user, "\red The [name] blinks red as you try to insert the item!")
+			to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the item!</span>")
 			return
 		if(istype(G, /obj/item/device/defibrillator))
 			var/obj/item/device/defibrillator/D = G
 			if(D.ready)
 				to_chat(user, "<span class='warning'>It won't fit, put the paddles back into [D] first!</span>")
 				return
-		if(user.drop_inv_item_to_loc(G, src))
+		if(user.transferItemToLoc(G, src))
 			charging = G
 			start_processing()
 			update_icon()
-	else if(istype(G, /obj/item/tool/wrench))
+	else if(iswrench(G))
 		if(charging)
-			to_chat(user, "\red Remove [charging] first!")
+			to_chat(user, "<span class='warning'>Remove [charging] first!</span>")
 			return
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "attached" : "detached"] the recharger.")
@@ -64,7 +64,7 @@ obj/machinery/recharger/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
 obj/machinery/recharger/process()
-	if(stat & (NOPOWER|BROKEN) || !anchored)
+	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
 		update_use_power(0)
 		update_icon()
 		return
@@ -77,7 +77,7 @@ obj/machinery/recharger/process()
 		if(istype(charging, /obj/item/weapon/gun/energy/taser))
 			var/obj/item/weapon/gun/energy/taser/E = charging
 			if(!E.cell.fully_charged())
-				E.cell.give(active_power_usage*CELLRATE)
+				E.cell.give(active_power_usage*GLOB.CELLRATE)
 				percent_charge_complete = E.cell.percent()
 				update_use_power(2)
 				update_icon()
@@ -91,7 +91,7 @@ obj/machinery/recharger/process()
 			var/obj/item/weapon/baton/B = charging
 			if(B.bcell)
 				if(!B.bcell.fully_charged())
-					B.bcell.give(active_power_usage*CELLRATE)
+					B.bcell.give(active_power_usage*GLOB.CELLRATE)
 					percent_charge_complete = B.bcell.percent()
 					update_use_power(2)
 					update_icon()
@@ -108,7 +108,7 @@ obj/machinery/recharger/process()
 		if(istype(charging, /obj/item/device/defibrillator))
 			var/obj/item/device/defibrillator/D = charging
 			if(!D.dcell.fully_charged())
-				D.dcell.give(active_power_usage*CELLRATE)
+				D.dcell.give(active_power_usage*GLOB.CELLRATE)
 				percent_charge_complete = D.dcell.percent()
 				update_use_power(2)
 				update_icon()
@@ -121,7 +121,7 @@ obj/machinery/recharger/process()
 		if(istype(charging, /obj/item/cell))
 			var/obj/item/cell/C = charging
 			if(!C.fully_charged())
-				C.give(active_power_usage*CELLRATE)
+				C.give(active_power_usage*GLOB.CELLRATE)
 				percent_charge_complete = C.percent()
 				update_use_power(2)
 				update_icon()
@@ -153,7 +153,7 @@ obj/machinery/recharger/process()
 	update_icon()
 
 obj/machinery/recharger/emp_act(severity)
-	if(stat & (NOPOWER|BROKEN) || !anchored)
+	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
 		..(severity)
 		return
 /*
@@ -170,7 +170,7 @@ obj/machinery/recharger/emp_act(severity)
 
 obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
 	src.overlays = 0
-	if((stat & (NOPOWER|BROKEN)))
+	if((machine_stat & (NOPOWER|BROKEN)))
 		return
 	else if(!charging)
 		overlays += "recharger-power"

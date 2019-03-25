@@ -11,7 +11,7 @@
 		return TRUE
 	return FALSE
 
-
-/mob/living/carbon/proc/handle_special()
-	if(acid_process_cooldown)
-		acid_process_cooldown = max(acid_process_cooldown - 1, 0) //Your protection from the acid puddle process eventually goes away.
+/mob/living/carbon/proc/need_breathe()
+	if(reagents.has_reagent("lexorin") || in_stasis)
+		return FALSE
+	return TRUE

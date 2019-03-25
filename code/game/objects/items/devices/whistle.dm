@@ -4,7 +4,7 @@
 	icon_state = "whistle"
 	w_class = 1.0
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_FACE
+	flags_equip_slot = ITEM_SLOT_MASK
 
 	var/volume = 60
 	var/spamcheck = 0
@@ -38,15 +38,15 @@
 		spamcheck = 0
 
 /obj/item/device/whistle/MouseDrop(obj/over_object as obj)
-	if(ishuman(usr) || ismonkey(usr) || isrobot(usr))
+	if(ishuman(usr) || ismonkey(usr) || iscyborg(usr))
 
 		if(!usr.is_mob_restrained() && !usr.stat && usr.wear_mask == src)
 			switch(over_object.name)
 				if("r_hand")
-					usr.drop_inv_item_on_ground(src)
+					usr.dropItemToGround(src)
 					usr.put_in_r_hand(src)
 				if("l_hand")
-					usr.drop_inv_item_on_ground(src)
+					usr.dropItemToGround(src)
 					usr.put_in_l_hand(src)
 			add_fingerprint(usr)
 
@@ -73,7 +73,7 @@
 			user.show_message("<span class='warning'>[user]'s [name] gurgles, \"FUCK YOUR CUNT YOU SHIT EATING CUNT TILL YOU ARE A MASS EATING SHIT CUNT. EAT PENISES IN YOUR FUCK FACE AND SHIT OUT ABORTIONS TO FUCK UP SHIT IN YOUR ASS YOU COCK FUCK SHIT MONKEY FROM THE DEPTHS OF SHIT\"</span>",2) //It's a hearable message silly!
 			insults--
 		else
-			to_chat(user, "\red *BZZZZcuntZZZZT*")
+			to_chat(user, "<span class='warning'>*BZZZZcuntZZZZT*</span>")
 	else
 		playsound(get_turf(src), 'sound/voice/halt.ogg', 25, 1, vary = 0)
 		user.show_message("<span class='warning'>[user]'s [name] rasps, \"Halt! Security!\"</span>",1)
@@ -84,7 +84,7 @@
 
 /obj/item/device/hailer/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/emag) && !emagged)
-		to_chat(user, "\red You overload \the [src]'s voice synthesizer.")
+		to_chat(user, "<span class='warning'>You overload \the [src]'s voice synthesizer.</span>")
 		emagged = 1
 		insults = rand(1, 3)//to prevent dickflooding
 		return

@@ -37,7 +37,7 @@
 		return 0
 	charge_tick = 0
 
-	if(isrobot(loc))
+	if(iscyborg(loc))
 		var/mob/living/silicon/robot/R = loc
 		if(R && R.cell)
 			for(var/T in reagent_ids)
@@ -54,8 +54,8 @@
 		to_chat(user, "<span class='warning'>The injector is empty.</span>")
 		return
 
-	to_chat(user, "\blue You inject [M] with the injector.")
-	to_chat(M, "\blue [user] injects you with the injector.")
+	to_chat(user, "<span class='notice'> You inject [M] with the injector.</span>")
+	to_chat(M, "<span class='notice'> [user] injects you with the injector.</span>")
 	playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
 
 	reagents.reaction(M, INJECT)
@@ -64,7 +64,7 @@
 		M.reagents.add_reagent(reagent_ids[mode], t)
 		reagent_volumes[reagent_ids[mode]] -= t
 		// to_chat(user, "<span class='notice'>[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining.</span>")
-		to_chat(user, "\blue [t] units of \red [reagent_ids[mode]] \blue injected for a total of \red [round(M.reagents.get_reagent_amount(reagent_ids[mode]))]\blue. [reagent_volumes[reagent_ids[mode]]] units remaining.")
+		to_chat(user, "<span class='notice'> [t] units of <span class='warning'> [reagent_ids[mode]] <span class='notice'> injected for a total of <span class='warning'> [round(M.reagents.get_reagent_amount(reagent_ids[mode]))]<span class='notice'>. [reagent_volumes[reagent_ids[mode]]] units remaining.</span>")
 
 	return
 
@@ -72,7 +72,7 @@
 	var/selection = input("Please select a reagent:", "Reagent", null) as null|anything in reagent_ids
 	if(!selection) return
 	var/datum/reagent/R = chemical_reagents_list[selection]
-	to_chat(user, "\blue Synthesizer is now producing '[R.name]'.")
+	to_chat(user, "<span class='notice'> Synthesizer is now producing '[R.name]'.</span>")
 	mode = reagent_ids.Find(selection)
 	playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
 	return

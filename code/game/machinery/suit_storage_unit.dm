@@ -56,13 +56,13 @@
 
 	else
 		icon_state = "closed"
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state += "_off"
 
 
 /obj/machinery/suit_storage_unit/power_change()
 	..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		dump_everything()
 		isUV = 0
 	update_icon()
@@ -86,15 +86,13 @@
 	var/dat
 	if(..())
 		return
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 		dat+= "<HR><BR><A href='?src=\ref[user];mach_close=suit_storage_unit'>Close panel</A>"
 	if(isUV) //The thing is running its cauterisation cycle. You have to wait.
-		dat += "<HEAD><TITLE>Suit storage unit</TITLE></HEAD>"
 		dat+= "<font color ='red'><B>Unit is cauterising contents with UV ray. Please wait.</font></B><BR>"
 
 	else
-		dat+= "<HEAD><TITLE>Suit storage unit</TITLE></HEAD>"
 		dat+= "<font color='blue'><font size = 4><B>U-Stor-It Suit Storage Unit, model DS1900</B></FONT><BR>"
 		dat+= "<B>Welcome to the Unit control panel.</B><HR>"
 
@@ -119,9 +117,10 @@
 		dat += "<A href='?src=\ref[src];start_UV=1'>Start Disinfection cycle</A><BR>"
 		dat += "<BR><BR><A href='?src=\ref[user];mach_close=suit_storage_unit'>Close control panel</A>"
 
-	user << browse(dat, "window=suit_storage_unit;size=400x500")
+	var/datum/browser/popup = new(user, "suit_storage_unit", "<div align='center'>Suit storage unit</div>", 400, 500)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "suit_storage_unit")
-	return
 
 
 /obj/machinery/suit_storage_unit/Topic(href, href_list) //I fucking HATE this proc
@@ -239,7 +238,7 @@
 
 /obj/machinery/suit_storage_unit/attackby(obj/item/I, mob/living/user)
 
-	if(!(stat & NOPOWER))
+	if(!(machine_stat & NOPOWER))
 
 		if(isopen)
 
@@ -248,7 +247,7 @@
 				if(inserted_suit)
 					to_chat(user, "<span class='warning'>The unit already contains a suit.</span>")
 					return
-				if(user.drop_inv_item_to_loc(S, src))
+				if(user.transferItemToLoc(S, src))
 					to_chat(user, "<span class='notice'>You load the [S.name] into the storage compartment.</span>")
 					inserted_suit = S
 					update_icon()
@@ -261,7 +260,7 @@
 					to_chat(user, "<span class='warning'>The unit already contains a helmet.</span>")
 					return
 				to_chat(user, "<span class='notice'>You load the [H.name] into the storage compartment.</span>")
-				if(user.drop_inv_item_to_loc(H, src))
+				if(user.transferItemToLoc(H, src))
 					inserted_helmet = H
 					update_icon()
 					updateUsrDialog()
@@ -273,7 +272,7 @@
 					to_chat(user, "<span class='warning'>The unit already contains a mask.</span>")
 					return
 				to_chat(user, "<span class='notice'>You load the [M.name] into the storage compartment.</span>")
-				if(user.drop_inv_item_to_loc(M, src))
+				if(user.transferItemToLoc(M, src))
 					inserted_mask = M
 					update_icon()
 					updateUsrDialog()
@@ -285,7 +284,7 @@
 					to_chat(user, "<span class='warning'>The unit already contains a tank.</span>")
 					return
 				to_chat(user, "<span class='notice'>You load the [T.name] into the storage compartment.</span>")
-				if(user.drop_inv_item_to_loc(T, src))
+				if(user.transferItemToLoc(T, src))
 					inserted_tank = T
 					update_icon()
 					updateUsrDialog()

@@ -17,7 +17,7 @@
 
 
 /obj/machinery/bot/proc/turn_on()
-	if(stat)
+	if(machine_stat)
 		return FALSE
 	on = TRUE
 	SetLuminosity(initial(luminosity))
@@ -43,10 +43,12 @@
 		locked = FALSE
 		emagged = 1
 		to_chat(user, "<span class='warning'>You short out [src]'s maintenance hatch lock.</span>")
-		log_and_message_admins("emagged [src]'s maintenance hatch lock")
+		log_admin("[key_name(user)] emagged [src]'s maintenance hatch lock.")
+		message_admins("[ADMIN_TPMONTY(user)] emagged [src]'s maintenance hatch lock.")
 	if(!locked && open)
 		emagged = 2
-		log_and_message_admins("emagged [src]'s inner circuits")
+		log_admin("[key_name(user)] emagged [src]'s inner circuits.")
+		message_admins("[ADMIN_TPMONTY(user)] emagged [src]'s inner circuits.")
 
 /obj/machinery/bot/examine(mob/user)
 	..()
@@ -60,7 +62,7 @@
 	if(M.melee_damage_upper == 0)
 		return
 	health -= M.melee_damage_upper
-	visible_message("\red <B>[M] has [M.attacktext] [src]!</B>")
+	visible_message("<span class='danger'>[M] has [M.attacktext] [src]!</span>")
 	log_combat(M, src, "attacked")
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
@@ -81,15 +83,15 @@
 	healthcheck()
 
 /obj/machinery/bot/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/screwdriver))
+	if(isscrewdriver(W))
 		if(!locked)
 			open = !open
 			to_chat(user, "<span class='notice'>Maintenance panel is now [src.open ? "opened" : "closed"].</span>")
-	else if(istype(W, /obj/item/tool/weldingtool))
+	else if(iswelder(W))
 		if(health < maxhealth)
 			if(open)
 				health = min(maxhealth, health+10)
-				user.visible_message("\red [user] repairs [src]!","\blue You repair [src]!")
+				user.visible_message("<span class='warning'> [user] repairs [src]!</span>","<span class='notice'> You repair [src]!</span>")
 			else
 				to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
 		else
@@ -130,12 +132,12 @@
 
 /obj/machinery/bot/emp_act(severity)
 	var/was_on = on
-	stat |= EMPED
+	machine_stat |= EMPED
 	new /obj/effect/overlay/temp/emp_sparks (loc)
 	if(on)
 		turn_off()
 	spawn(severity*300)
-		stat &= ~EMPED
+		machine_stat &= ~EMPED
 		if(was_on)
 			turn_on()
 
