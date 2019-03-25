@@ -2,11 +2,11 @@
 	name = "wall locker"
 	desc = "A wall mounted storage locker."
 	icon = 'icons/obj/wallframes.dmi'
-	icon_state = "wall-locker"
+	icon_state = "walllocker"
 	density = FALSE
 	anchored = TRUE
-	icon_closed = "wall-locker"
-	icon_opened = "wall-lockeropen"
+	icon_closed = "walllocker"
+	icon_opened = "walllockeropen"
 	store_mobs = FALSE
 	wall_mounted = TRUE
 	storage_capacity = 20

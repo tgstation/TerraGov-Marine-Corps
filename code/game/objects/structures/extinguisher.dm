@@ -1,13 +1,13 @@
 /obj/structure/extinguisher_cabinet
 	name = "extinguisher cabinet"
 	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
-	icon = 'icons/obj/structures/closet.dmi'
-	icon_state = "extinguisher_closed"
-	anchored = 1
-	density = 0
+	icon = 'icons/obj/wallframes.dmi'
+	icon_state = "extinguisher"
+	anchored = TRUE
+	density = FALSE
 	var/obj/item/tool/extinguisher/has_extinguisher
 	var/starter_extinguisher = /obj/item/tool/extinguisher
-	var/opened = 0
+	var/opened = FALSE
 
 /obj/structure/extinguisher_cabinet/Initialize(mapload, ndir)
 	. = ..()
@@ -24,6 +24,7 @@
 			pixel_x = 32
 	if(starter_extinguisher)
 		has_extinguisher = new starter_extinguisher(src)
+	update_icon()
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
 	if(iscyborg(user))
@@ -71,7 +72,7 @@
 
 /obj/structure/extinguisher_cabinet/update_icon()
 	overlays.Cut()
-	icon_state = "extinguisher[opened]"
+	icon_state = "[initial(icon_state)][opened]"
 
 	if(opened && has_extinguisher)
 		overlays += "extinguishero_[has_extinguisher.sprite_name]"

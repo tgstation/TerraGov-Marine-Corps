@@ -151,8 +151,14 @@
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "aw" = (
-/obj/machinery/blackbox_recorder,
-/turf/open/floor/tile/dark,
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/open/floor,
 /area/whiskey_outpost)
 "ax" = (
 /obj/machinery/vending/snack,
@@ -201,14 +207,15 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "aE" = (
-/obj/machinery/power/apc{
+/obj/structure/bed,
+/obj/effect/landmark{
+	icon_state = "x3";
+	name = "whiskey_outpost_marine"
+	},
+/obj/structure/closet/walllocker/hydrant,
+/turf/open/floor/tile/red/redtaupe{
 	dir = 8
 	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/turf/open/floor,
 /area/whiskey_outpost)
 "aF" = (
 /obj/structure/cable{
@@ -444,16 +451,16 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "bn" = (
-/obj/structure/bed,
-/obj/effect/landmark{
-	icon_state = "x3";
-	name = "whiskey_outpost_marine"
+/obj/structure/table,
+/obj/item/storage/box/masks,
+/obj/item/storage/box/gloves{
+	pixel_x = 5;
+	pixel_y = 5
 	},
-/obj/structure/closet/hydrant{
-	pixel_y = 32
-	},
-/turf/open/floor/tile/red/redtaupe{
-	dir = 8
+/obj/structure/closet/walllocker/hydrant,
+/turf/open/floor{
+	icon_state = "cafeteria";
+	dir = 2
 	},
 /area/whiskey_outpost)
 "bo" = (
@@ -480,6 +487,13 @@
 	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 4
+	},
+/area/whiskey_outpost)
+"br" = (
+/obj/structure/closet/walllocker/hydrant,
+/turf/open/floor{
+	icon_state = "cafeteria";
+	dir = 2
 	},
 /area/whiskey_outpost)
 "bs" = (
@@ -557,19 +571,8 @@
 	},
 /area/whiskey_outpost)
 "bC" = (
-/obj/structure/table,
-/obj/item/storage/box/masks,
-/obj/item/storage/box/gloves{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/structure/closet/hydrant{
-	pixel_y = 32
-	},
-/turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
-	},
+/obj/structure/closet/walllocker/hydrant,
+/turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "bD" = (
 /obj/structure/table,
@@ -611,12 +614,10 @@
 	},
 /area/whiskey_outpost)
 "bG" = (
-/obj/structure/closet/hydrant{
-	pixel_y = 32
-	},
+/obj/structure/closet/walllocker/hydrant,
 /turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
+	dir = 8;
+	icon_state = "yellow"
 	},
 /area/whiskey_outpost)
 "bH" = (
@@ -1722,12 +1723,6 @@
 "el" = (
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
-"em" = (
-/obj/structure/closet/hydrant{
-	pixel_y = 32
-	},
-/turf/open/floor/tile/whiteyellow/full,
-/area/whiskey_outpost)
 "en" = (
 /obj/machinery/vending/marineFood,
 /turf/open/floor{
@@ -1763,15 +1758,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor,
-/area/whiskey_outpost)
-"es" = (
-/obj/structure/closet/hydrant{
-	pixel_y = 32
-	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "yellow"
-	},
 /area/whiskey_outpost)
 "et" = (
 /obj/machinery/vending/engineering,
@@ -13312,7 +13298,7 @@ aL
 aL
 aL
 bd
-em
+bC
 eE
 eS
 fc
@@ -14055,7 +14041,7 @@ aa
 ab
 ac
 ap
-aE
+aw
 ac
 aU
 bh
@@ -15431,12 +15417,12 @@ aa
 aa
 ab
 ac
-aw
+az
 az
 az
 aY
 ac
-bC
+bn
 bx
 bx
 bx
@@ -16048,7 +16034,7 @@ az
 az
 az
 ac
-bG
+br
 bx
 bx
 bx
@@ -16984,7 +16970,7 @@ aL
 aL
 aL
 bd
-es
+bG
 eJ
 eJ
 eJ
@@ -17271,7 +17257,7 @@ ab
 ak
 aQ
 bd
-bn
+aE
 bH
 bH
 bH
@@ -17280,7 +17266,7 @@ bd
 ct
 aQ
 bd
-bn
+aE
 bH
 bH
 bH

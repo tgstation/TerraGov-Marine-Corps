@@ -180,6 +180,13 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
+"aaL" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
 "aaM" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -294,13 +301,21 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
-"abe" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
+"abd" = (
+/obj/structure/reagent_dispensers/wallmounted/peppertank{
+	icon_state = "peppertank";
+	dir = 4
 	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/space_port)
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"abe" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/reagent_dispensers/wallmounted/peppertank{
+	icon_state = "peppertank";
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
 "abf" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/tile/dark,
@@ -373,6 +388,28 @@
 "abq" = (
 /turf/open/mars/random/cave/rock,
 /area/bigredv2/caves)
+"abr" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/open/floor/tile/whiteyellow{
+	dir = 8
+	},
+/area/bigredv2/caves/lambda_lab)
+"abs" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
 "abt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds1/delayone{
@@ -503,6 +540,17 @@
 /obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/mars/random/cave,
 /area/bigredv2/caves)
+"abO" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/caves/lambda_lab)
 "abP" = (
 /obj/machinery/light{
 	dir = 4
@@ -533,6 +581,28 @@
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
+"abU" = (
+/obj/machinery/camera/autoname{
+	dir = 2
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/power/apc{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"abV" = (
+/obj/structure/closet/walllocker/hydrant{
+	icon_state = "hydrant";
+	dir = 1
+	},
+/turf/open/floor/tile/dark/purple2{
+	dir = 2
+	},
+/area/bigredv2/caves/lambda_lab)
 "abW" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
 /turf/open/mars/random/cave,
@@ -559,6 +629,19 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
+"acb" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/open/floor/tile/whitegreenv{
+	dir = 5
+	},
+/area/bigredv2/caves/lambda_lab)
 "acc" = (
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 4
@@ -617,6 +700,31 @@
 	dir = 2
 	},
 /area/bigredv2/outside/space_port)
+"ack" = (
+/obj/structure/closet/walllocker/hydrant,
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 4
+	},
+/area/bigredv2/outside/marshal_office)
+"acl" = (
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/general_offices)
+"acm" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 10
+	},
+/area/bigredv2/caves/lambda_lab)
 "acn" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
@@ -645,6 +753,22 @@
 /obj/structure/window_frame/colony/reinforced,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
+"act" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
+	},
+/area/bigredv2/caves/lambda_lab)
 "acu" = (
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/asteroidfloor,
@@ -735,6 +859,12 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
+"acK" = (
+/obj/machinery/alarm{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/caves/lambda_lab)
 "acL" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -779,6 +909,14 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
+"acS" = (
+/obj/machinery/power/apc,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
 "acT" = (
 /obj/machinery/light{
 	dir = 8
@@ -796,6 +934,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
+"acW" = (
+/obj/machinery/alarm,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
 "acX" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/tile/white,
@@ -841,6 +983,17 @@
 /obj/item/folder/black_random,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
+"adg" = (
+/obj/machinery/light/built,
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/open/floor/tile/darkish,
+/area/bigredv2/caves/lambda_lab)
 "adh" = (
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
@@ -928,6 +1081,17 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
+"adw" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/power/apc,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/medical)
 "adx" = (
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/plating,
@@ -1002,6 +1166,15 @@
 /obj/item/tool/extinguisher,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
+"adJ" = (
+/obj/structure/closet/walllocker/hydrant{
+	icon_state = "hydrant";
+	dir = 8
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 5
+	},
+/area/bigredv2/caves/lambda_lab)
 "adK" = (
 /obj/effect/landmark/shuttle_loc/marine_trg/landing{
 	name = "1"
@@ -1033,11 +1206,16 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/marshal_office)
 "adQ" = (
-/obj/structure/reagent_dispensers/peppertank{
-	pixel_x = -32
+/obj/machinery/light{
+	dir = 4
 	},
-/turf/open/floor,
-/area/bigredv2/outside/marshal_office)
+/obj/machinery/power/apc,
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/library)
 "adR" = (
 /obj/machinery/light{
 	dir = 1
@@ -1190,12 +1368,13 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/marshal_office)
 "aep" = (
-/obj/structure/reagent_dispensers/peppertank{
-	pixel_x = -32
+/obj/machinery/power/apc,
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor,
-/area/bigredv2/outside/marshal_office)
+/turf/open/floor/wood,
+/area/bigredv2/outside/bar)
 "aeq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/bed/stool,
@@ -1219,6 +1398,15 @@
 /obj/item/clothing/tie/holster/armpit,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
+"aev" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 8
+	},
+/area/bigredv2/caves/lambda_lab)
 "aew" = (
 /obj/structure/closet/crate/internals,
 /turf/open/floor/plating,
@@ -1258,6 +1446,20 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
+"aeD" = (
+/obj/structure/table,
+/obj/effect/spawner/random/toolbox,
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 10
+	},
+/area/bigredv2/caves/lambda_lab)
 "aeE" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -1266,6 +1468,37 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
+"aeF" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/reagent_dispensers/wallmounted/virusfood,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 9
+	},
+/area/bigredv2/caves/lambda_lab)
+"aeG" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/machinery/power/apc/drained,
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 9
+	},
+/area/bigredv2/caves/lambda_lab)
+"aeH" = (
+/obj/machinery/alarm{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/bigredv2/outside/bar)
 "aeI" = (
 /turf/open/mars/random/sand,
 /area/bigredv2/outside/nw)
@@ -1322,20 +1555,26 @@
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
+"aeU" = (
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 1
+	},
+/turf/open/floor/freezer,
+/area/bigredv2/outside/hydroponics)
 "aeV" = (
 /obj/structure/closet/crate/radiation,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "aeW" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor/tile/whiteyellow{
-	dir = 8
+/obj/machinery/power/apc/drained,
+/turf/open/floor/bluegrid{
+	tag = "icon-bcircuitoff";
+	icon_state = "bcircuitoff"
 	},
 /area/bigredv2/caves/lambda_lab)
 "aeX" = (
@@ -1382,15 +1621,13 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "afd" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
+/obj/machinery/power/apc,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "afe" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -1407,6 +1644,20 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
+"afg" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 5
+	},
+/area/bigredv2/caves/lambda_lab)
 "afh" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating,
@@ -1516,18 +1767,12 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
 "afx" = (
-/obj/machinery/power/apc/drained{
+/obj/structure/cable,
+/obj/machinery/power/apc{
 	dir = 1
 	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/lambda_lab)
+/turf/open/floor/plating,
+/area/bigredv2/outside/admin_building)
 "afy" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -1849,6 +2094,22 @@
 	dir = 5
 	},
 /area/bigredv2/outside/space_port)
+"agt" = (
+/obj/machinery/alarm{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/admin_building)
+"agu" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/donkpockets,
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
+	},
+/area/bigredv2/caves/lambda_lab)
 "agv" = (
 /turf/open/floor/plating/dmg2,
 /area/bigredv2/outside/space_port)
@@ -2021,6 +2282,13 @@
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
+"agT" = (
+/obj/structure/reagent_dispensers/wallmounted/virusfood{
+	icon_state = "virusfoodtank";
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "agU" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -2175,16 +2443,13 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ahp" = (
-/obj/machinery/camera/autoname{
-	dir = 2
-	},
-/obj/machinery/power/apc,
+/obj/machinery/power/apc/drained,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/marshal_office)
+/turf/open/floor/plating,
+/area/bigredv2/outside/general_store)
 "ahq" = (
 /obj/machinery/light,
 /obj/structure/cable{
@@ -2223,6 +2488,15 @@
 /obj/effect/alien/weeds/node,
 /turf/open/mars/random/cave,
 /area/bigredv2/caves)
+"ahy" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/office_complex)
 "ahz" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/surgery/scalpel/manager,
@@ -2271,13 +2545,23 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "ahF" = (
-/obj/structure/closet/hydrant{
-	pixel_y = -32
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
 	},
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
+/obj/machinery/power/apc{
+	dir = 1
 	},
-/area/bigredv2/caves/lambda_lab)
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"ahG" = (
+/obj/machinery/power/apc,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
 "ahH" = (
 /turf/open/floor/tile/dark/purple2{
 	dir = 2
@@ -2868,6 +3152,17 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
+"ajw" = (
+/obj/structure/table,
+/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/toolbox,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
 "ajx" = (
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
@@ -3079,6 +3374,14 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
+"aka" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "akb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -3301,6 +3604,16 @@
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
+"akH" = (
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "akI" = (
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
@@ -3406,6 +3719,16 @@
 "akX" = (
 /turf/open/mars/random/dirt,
 /area/bigredv2/caves)
+"akY" = (
+/obj/structure/table,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "akZ" = (
 /turf/open/mars/cavetodirt{
 	dir = 8
@@ -3472,18 +3795,12 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "alk" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/power/apc/drained{
-	dir = 4
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 1
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/open/floor/tile/whitegreenv{
-	dir = 5
-	},
-/area/bigredv2/caves/lambda_lab)
+/turf/open/floor/plating,
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "all" = (
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/telecomm)
@@ -3520,14 +3837,6 @@
 "alr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
-/area/bigredv2/outside/marshal_office)
-"als" = (
-/obj/structure/closet/hydrant{
-	pixel_y = 32
-	},
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 4
-	},
 /area/bigredv2/outside/marshal_office)
 "alt" = (
 /obj/effect/landmark/start/surv_spawn,
@@ -4903,15 +5212,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
-"apv" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 10
-	},
-/area/bigredv2/caves/lambda_lab)
 "apw" = (
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 8
@@ -5417,22 +5717,6 @@
 /obj/structure/table/holotable/wood,
 /obj/item/device/flashlight/lamp,
 /turf/open/floor/elevatorshaft,
-/area/bigredv2/caves/lambda_lab)
-"arb" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
-	},
-/turf/open/floor/tile/dark/purple2{
-	dir = 8
-	},
 /area/bigredv2/caves/lambda_lab)
 "arc" = (
 /obj/structure/cable{
@@ -6751,10 +7035,6 @@
 "auY" = (
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
-"auZ" = (
-/obj/machinery/alarm,
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/lambda_lab)
 "ava" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -6981,16 +7261,6 @@
 "avE" = (
 /obj/machinery/camera/autoname{
 	dir = 1
-	},
-/turf/open/floor,
-/area/bigredv2/outside/dorms)
-"avF" = (
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -7570,17 +7840,6 @@
 	},
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
-"axq" = (
-/obj/machinery/light/built,
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/turf/open/floor/tile/darkish,
-/area/bigredv2/caves/lambda_lab)
 "axr" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -8069,19 +8328,6 @@
 	},
 /area/bigredv2/outside/medical)
 "ayV" = (
-/turf/open/floor/plating,
-/area/bigredv2/outside/medical)
-"ayW" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "ayX" = (
@@ -8616,14 +8862,6 @@
 "aAl" = (
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
-	},
-/area/bigredv2/caves/lambda_lab)
-"aAm" = (
-/obj/structure/closet/hydrant{
-	pixel_x = 32
-	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
 "aAp" = (
@@ -9611,19 +9849,6 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
-"aDh" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/open/floor/wood,
-/area/bigredv2/outside/library)
 "aDi" = (
 /obj/machinery/light/small,
 /turf/open/floor/engine,
@@ -9997,16 +10222,6 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
-"aEb" = (
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/open/floor/wood,
-/area/bigredv2/outside/bar)
 "aEc" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/wood,
@@ -10047,15 +10262,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
-"aEm" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 8
-	},
-/area/bigredv2/caves/lambda_lab)
 "aEn" = (
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/tile/purple/whitepurplefull,
@@ -10747,20 +10953,6 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
-"aGh" = (
-/obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/turf/open/floor/tile/purple/taupepurple{
-	dir = 10
-	},
-/area/bigredv2/caves/lambda_lab)
 "aGi" = (
 /obj/item/clothing/glasses/welding,
 /obj/structure/cable{
@@ -10779,20 +10971,6 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/caves/lambda_lab)
-"aGk" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/reagent_dispensers/virusfood{
-	pixel_y = 32
-	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 9
-	},
 /area/bigredv2/caves/lambda_lab)
 "aGl" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -11009,21 +11187,6 @@
 	},
 /turf/open/floor/tile/purple/taupepurple,
 /area/bigredv2/caves/lambda_lab)
-"aGZ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 9
-	},
-/area/bigredv2/caves/lambda_lab)
 "aHa" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 6
@@ -11221,12 +11384,6 @@
 "aHF" = (
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
-"aHG" = (
-/obj/machinery/alarm{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/bigredv2/outside/bar)
 "aHH" = (
 /obj/machinery/light{
 	dir = 1
@@ -12511,11 +12668,6 @@
 /obj/machinery/gibber,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/hydroponics)
-"aKH" = (
-/obj/machinery/power/apc,
-/obj/structure/cable,
-/turf/open/floor/freezer,
-/area/bigredv2/outside/hydroponics)
 "aKI" = (
 /obj/machinery/processor,
 /turf/open/floor/freezer,
@@ -12843,19 +12995,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
-"aLH" = (
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/turf/open/floor/bluegrid{
-	tag = "icon-bcircuitoff";
-	icon_state = "bcircuitoff"
-	},
-/area/bigredv2/caves/lambda_lab)
 "aLI" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -14269,16 +14408,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
-"aQC" = (
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/virology)
 "aQE" = (
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -15330,20 +15459,6 @@
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
-"aTJ" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 5
-	},
-/area/bigredv2/caves/lambda_lab)
 "aTK" = (
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8
@@ -15458,11 +15573,6 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
-/area/bigredv2/outside/admin_building)
-"aUd" = (
-/obj/machinery/power/apc,
-/obj/structure/cable,
-/turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
 "aUe" = (
 /obj/machinery/light{
@@ -16085,16 +16195,6 @@
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
-"aWa" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/donkpockets,
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
-/area/bigredv2/caves/lambda_lab)
 "aWb" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/wy_mre,
@@ -16330,12 +16430,6 @@
 /obj/structure/mineral_door/resin,
 /turf/open/mars/random/cave,
 /area/bigredv2/caves)
-"aWO" = (
-/obj/structure/reagent_dispensers/virusfood{
-	pixel_x = -32
-	},
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/virology)
 "aWP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -16422,16 +16516,6 @@
 /obj/structure/table,
 /obj/item/toy/sword,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/bigredv2/outside/general_store)
-"aXb" = (
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
 /area/bigredv2/outside/general_store)
 "aXc" = (
 /turf/open/floor/plating,
@@ -18169,17 +18253,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
-"bcZ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/open/floor,
-/area/bigredv2/outside/office_complex)
 "bda" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera/autoname{
@@ -18340,14 +18413,6 @@
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
-/area/bigredv2/outside/chapel)
-"bdG" = (
-/obj/machinery/power/apc,
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "bdH" = (
 /obj/structure/cable{
@@ -19354,33 +19419,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/lightred/full,
 /area/bigredv2/outside/cargo)
-"bhf" = (
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/open/floor,
-/area/bigredv2/outside/cargo)
 "bhg" = (
 /obj/structure/table,
 /obj/effect/spawner/random/toolbox,
 /obj/effect/spawner/random/toolbox,
-/turf/open/floor,
-/area/bigredv2/outside/storage)
-"bhh" = (
-/obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc{
-	dir = 1
-	},
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "bhi" = (
@@ -21299,12 +21341,6 @@
 /obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"bnJ" = (
-/obj/machinery/power/apc,
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
 "bnK" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor,
@@ -21870,14 +21906,6 @@
 	dir = 1;
 	name = "\improper Engineering Lockers";
 	req_one_access_txt = "0"
-	},
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
-"bpB" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -22773,14 +22801,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
-"bsB" = (
-/obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/machinery/power/apc,
-/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bsC" = (
@@ -24999,11 +25019,6 @@
 	dir = 6
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"bBM" = (
-/obj/machinery/power/apc,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nanotrasen_lab/inside)
 "bBN" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
@@ -26369,16 +26384,6 @@
 "knF" = (
 /turf/open/mars/random/cave,
 /area/bigredv2/outside/engineering)
-"koP" = (
-/obj/machinery/power/apc{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/general_offices)
 "kpd" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/wood,
@@ -27096,10 +27101,6 @@
 /obj/effect/alien/weeds/node,
 /turf/open/jungle/clear,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"vUq" = (
-/obj/machinery/alarm,
-/turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
 "vUH" = (
 /turf/open/mars/dirttosand{
 	dir = 8
@@ -27141,12 +27142,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"wnk" = (
-/obj/machinery/alarm{
-	dir = 1
-	},
-/turf/open/floor,
-/area/bigredv2/outside/dorms)
 "wxA" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/down,
 /turf/open/mars/random/sand,
@@ -29937,7 +29932,7 @@ ads
 adf
 aed
 ade
-afd
+abs
 afK
 acQ
 aas
@@ -31295,7 +31290,7 @@ aSz
 aUL
 aVC
 aWd
-aWO
+agT
 aXu
 aMz
 aYz
@@ -32156,7 +32151,7 @@ aMz
 aNd
 aOs
 aMz
-aQC
+afd
 aRH
 aSu
 aNh
@@ -36862,7 +36857,7 @@ aae
 aax
 aaN
 aaX
-abe
+aaL
 abn
 aby
 aaC
@@ -40626,7 +40621,7 @@ aNo
 aVe
 aVM
 aMB
-aXb
+ahp
 aXI
 aYd
 aXK
@@ -40645,7 +40640,7 @@ blb
 blb
 blb
 aXK
-bhf
+ahG
 bhG
 bis
 biN
@@ -40880,7 +40875,7 @@ kdR
 bmk
 boJ
 bpi
-bpB
+akH
 bmk
 bpg
 bmi
@@ -44920,7 +44915,7 @@ aer
 ajF
 aer
 acp
-als
+ack
 amj
 anc
 acp
@@ -45636,7 +45631,7 @@ aBR
 aBR
 aMc
 bgG
-bhh
+ajw
 bhJ
 bhI
 bhg
@@ -45998,7 +45993,7 @@ acp
 afo
 afT
 agF
-ahp
+abU
 acp
 aiI
 afT
@@ -46241,7 +46236,7 @@ awm
 awX
 axE
 apC
-ayW
+adw
 azJ
 ayV
 apC
@@ -47077,9 +47072,9 @@ aac
 acP
 acP
 acp
-adQ
-aep
-adQ
+abd
+abe
+abd
 afr
 afU
 adS
@@ -47566,7 +47561,7 @@ aPT
 aRf
 aRZ
 aSY
-aUd
+afx
 aKn
 aVU
 aWE
@@ -47783,7 +47778,7 @@ aPU
 aRg
 aKn
 aTa
-vUq
+agt
 aKn
 aVW
 aWF
@@ -49393,7 +49388,7 @@ bxN
 bBg
 bBu
 bBD
-bBM
+alk
 bxN
 bCi
 bCq
@@ -49565,7 +49560,7 @@ bqu
 bqW
 brB
 brX
-bsB
+akY
 bkt
 btm
 bjA
@@ -50793,7 +50788,7 @@ asH
 asH
 asH
 asH
-avF
+acS
 ayZ
 ayZ
 ayZ
@@ -51010,7 +51005,7 @@ asH
 atx
 atX
 asH
-wnk
+acW
 asJ
 asJ
 asJ
@@ -51676,7 +51671,7 @@ aDU
 aBs
 aFT
 asH
-aHG
+aeH
 aIq
 edO
 aEO
@@ -52376,7 +52371,7 @@ blD
 blX
 bmH
 bnl
-bnJ
+aka
 bkt
 bjw
 bjw
@@ -54276,7 +54271,7 @@ aAJ
 aBu
 aCc
 azb
-aEb
+aep
 aEO
 aEO
 aEO
@@ -55558,7 +55553,7 @@ akx
 amE
 akx
 aou
-koP
+acl
 aph
 aou
 aou
@@ -55608,7 +55603,7 @@ aXp
 aXp
 aXp
 aXp
-bcZ
+ahy
 bdA
 bdX
 beo
@@ -58406,7 +58401,7 @@ aCZ
 aCZ
 aIC
 aJx
-aKH
+aeU
 aBv
 aCX
 aKJ
@@ -61436,7 +61431,7 @@ arD
 arD
 arD
 aBy
-aDh
+adQ
 aEi
 aEi
 aBy
@@ -61685,7 +61680,7 @@ baT
 bbF
 bap
 baT
-bdG
+ahF
 aZf
 bes
 bes
@@ -64440,7 +64435,7 @@ aac
 aac
 aac
 adZ
-afx
+abO
 agc
 agO
 agd
@@ -65548,7 +65543,7 @@ asp
 aqc
 adZ
 agP
-auZ
+acK
 adZ
 adZ
 adZ
@@ -65745,7 +65740,7 @@ adZ
 afB
 adZ
 agQ
-ahF
+abV
 adZ
 rvh
 rvh
@@ -65777,7 +65772,7 @@ aAP
 aBA
 aCs
 aDj
-aEm
+aev
 aFf
 adZ
 aac
@@ -65958,7 +65953,7 @@ aac
 aac
 adZ
 aey
-aeW
+abr
 afC
 agf
 agU
@@ -65974,7 +65969,7 @@ alP
 anq
 anS
 aoH
-apv
+acm
 adZ
 adZ
 vIl
@@ -66640,7 +66635,7 @@ rvh
 rvh
 adZ
 adZ
-aAm
+adJ
 aAl
 aBC
 alQ
@@ -67287,7 +67282,7 @@ auu
 avh
 agd
 agd
-axq
+adg
 adZ
 adZ
 ayE
@@ -67495,7 +67490,7 @@ anY
 lLO
 pbI
 aqi
-arb
+act
 arJ
 asu
 ahH
@@ -69223,7 +69218,7 @@ agd
 ajv
 adZ
 adZ
-alk
+acb
 alY
 amU
 amU
@@ -69250,7 +69245,7 @@ aCy
 aDq
 agd
 aFm
-aGh
+aeD
 adZ
 adZ
 adZ
@@ -69691,7 +69686,7 @@ afv
 aIK
 aJO
 adZ
-aLH
+aeW
 aLK
 aMW
 aLK
@@ -72073,7 +72068,7 @@ aac
 aac
 adZ
 adZ
-aGZ
+aeG
 aHT
 aJa
 aJZ
@@ -72289,7 +72284,7 @@ aac
 aac
 aEu
 adZ
-aGk
+aeF
 aHa
 aHU
 aJb
@@ -72523,7 +72518,7 @@ aSq
 aTF
 aUG
 aVz
-aWa
+agu
 adZ
 aac
 aac
@@ -73388,7 +73383,7 @@ aac
 aac
 adZ
 adZ
-aTJ
+afg
 aUJ
 adZ
 adZ

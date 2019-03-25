@@ -299,6 +299,12 @@
 	},
 /turf/open/space/transit/north/shuttlespace_ns12,
 /area/space)
+"aV" = (
+/obj/structure/closet/walllocker/medical_wall,
+/turf/open/floor{
+	icon_state = "panelscorched"
+	},
+/area/deathmatch)
 "aW" = (
 /obj/machinery/camera{
 	pixel_x = 10;
@@ -453,6 +459,10 @@
 /obj/item/tool/extinguisher,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"bq" = (
+/obj/structure/closet/walllocker/hydrant,
+/turf/open/shuttle/brig,
+/area/deathmatch)
 "br" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -468,6 +478,13 @@
 /obj/machinery/computer/security/telescreen,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"bu" = (
+/obj/structure/closet/walllocker/hydrant{
+	icon_state = "hydrant";
+	dir = 1
+	},
+/turf/open/shuttle/brig,
+/area/deathmatch)
 "bv" = (
 /obj/item/tool/wrench,
 /turf/open/floor/tile/red/yellowfull,
@@ -1067,6 +1084,15 @@
 	dir = 2
 	},
 /area/yautja)
+"cS" = (
+/obj/structure/closet/walllocker/medical_wall{
+	icon_state = "medical_wall";
+	dir = 1
+	},
+/turf/open/floor{
+	icon_state = "panelscorched"
+	},
+/area/deathmatch)
 "cT" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_container/hypospray/autoinjector/yautja,
@@ -6336,14 +6362,6 @@
 	dir = 4
 	},
 /area/deathmatch)
-"pN" = (
-/obj/structure/closet/medical_wall{
-	pixel_y = 32
-	},
-/turf/open/floor{
-	icon_state = "panelscorched"
-	},
-/area/deathmatch)
 "pO" = (
 /obj/structure/largecrate/guns/merc,
 /obj/item/tool/crowbar,
@@ -6371,12 +6389,6 @@
 /area/deathmatch)
 "pU" = (
 /turf/open/gm/dirtgrassborder2/corner,
-/area/deathmatch)
-"pV" = (
-/obj/structure/closet/hydrant{
-	pixel_y = 32
-	},
-/turf/open/shuttle/brig,
 /area/deathmatch)
 "pW" = (
 /obj/structure/closet,
@@ -6645,20 +6657,6 @@
 "qX" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor,
-/area/deathmatch)
-"qY" = (
-/obj/structure/closet/hydrant{
-	pixel_y = -32
-	},
-/turf/open/shuttle/brig,
-/area/deathmatch)
-"qZ" = (
-/obj/structure/closet/medical_wall{
-	pixel_y = -32
-	},
-/turf/open/floor{
-	icon_state = "panelscorched"
-	},
 /area/deathmatch)
 "ra" = (
 /obj/structure/table,
@@ -27457,7 +27455,7 @@ pG
 pH
 pC
 pC
-pN
+aV
 pH
 pk
 pH
@@ -27633,7 +27631,7 @@ pH
 pH
 pH
 pH
-qY
+bu
 pC
 pt
 pt
@@ -28065,7 +28063,7 @@ pI
 pH
 pC
 pC
-pV
+bq
 pH
 pH
 ql
@@ -28241,7 +28239,7 @@ pH
 pH
 pH
 pH
-qZ
+cS
 pC
 pt
 pt
