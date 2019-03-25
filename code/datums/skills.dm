@@ -162,7 +162,7 @@
 	melee_weapons = SKILL_MELEE_SUPER
 	pilot = SKILL_PILOT_TRAINED
 	police = SKILL_POLICE_MP
-	powerloader = SKILL_POWERLOADER_TRAINED
+	powerloader = SKILL_POWERLOADER_MASTER
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
 
@@ -203,7 +203,7 @@
 /datum/skills/pilot
 	name = "Pilot Officer"
 	pilot = SKILL_PILOT_TRAINED
-	powerloader = SKILL_POWERLOADER_PRO
+	powerloader = SKILL_POWERLOADER_MASTER
 	leadership = SKILL_LEAD_TRAINED
 
 /datum/skills/MP
@@ -223,13 +223,13 @@
 	construction = SKILL_CONSTRUCTION_MASTER
 	leadership = SKILL_LEAD_MASTER
 	police = SKILL_POLICE_FLASH
-	powerloader = SKILL_POWERLOADER_TRAINED
+	powerloader = SKILL_POWERLOADER_MASTER
 
 /datum/skills/RO
 	name = "Requisition Officer"
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_TRAINED
-	powerloader = SKILL_POWERLOADER_TRAINED
+	powerloader = SKILL_POWERLOADER_MASTER
 
 /datum/skills/MT
 	name = "Ship Engineer"
@@ -240,7 +240,7 @@
 /datum/skills/CT
 	name = "Cargo Technician"
 	construction = SKILL_CONSTRUCTION_METAL
-	powerloader = SKILL_POWERLOADER_PRO
+	powerloader = SKILL_POWERLOADER_MASTER
 
 
 
