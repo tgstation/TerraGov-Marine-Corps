@@ -7,7 +7,7 @@
 	flags_inventory = COVERMOUTH | COVEREYES | ALLOWINTERNALS | BLOCKGASEFFECT | ALLOWREBREATH
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDELOWHAIR
 	flags_cold_protection = HEAD
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	w_class = 2.0
 	item_state = "gas_alt"
 	gas_transfer_coefficient = 0.01

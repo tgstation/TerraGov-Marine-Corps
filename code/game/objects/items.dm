@@ -61,6 +61,8 @@
 	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
 
 
+	var/reach = 1
+
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
 	sprite_sheets = list(
@@ -237,6 +239,8 @@ cases. Override_icon_state should be a list.*/
 		var/datum/action/A = X
 		A.remove_action(user)
 
+	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
+
 	if(flags_item & DELONDROP)
 		qdel(src)
 
@@ -266,6 +270,7 @@ cases. Override_icon_state should be a list.*/
 		H.updatehealth()
 		qdel(current_acid)
 		current_acid = null
+	user.changeNext_move(CLICK_CD_RAPID)
 	return
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
@@ -286,6 +291,7 @@ cases. Override_icon_state should be a list.*/
 // for items that can be placed in multiple slots
 // note this isn't called during the initial dressing of a player
 /obj/item/proc/equipped(mob/user, slot)
+	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
 	for(var/X in actions)
 		var/datum/action/A = X
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
@@ -655,6 +661,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = !zoom
 		user.zoom_cooldown = world.time + 20
+		if(user.client.click_intercept)
+			user.client.click_intercept = null
 	else //Otherwise we want to zoom in.
 		if(world.time <= user.zoom_cooldown) //If we are spamming the zoom, cut it out
 			return

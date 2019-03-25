@@ -577,9 +577,6 @@ datum/proc/dd_SortValue()
 		LIST.Insert(__BIN_MID, IN);\
 	}
 
-//Checks for specific types in specifically structured (Assoc "type" = TRUE) lists ('typecaches')
-#define is_type_in_typecache(A, L) (A && length(L) && L[(ispath(A) ? A : A:type)])
-
 //Copies a list, and all lists inside it recusively
 //Does not copy any other reference type
 /proc/deepCopyList(list/l)

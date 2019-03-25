@@ -20,7 +20,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 /obj/effect/statclick/debug
 	var/class
 
-/obj/effect/statclick/debug/clicked()
+/obj/effect/statclick/debug/Click()
 	if(!usr.client.holder || !target)
 		return
 	if(!class)

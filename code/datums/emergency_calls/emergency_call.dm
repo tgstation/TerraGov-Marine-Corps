@@ -70,7 +70,7 @@
 
 	for(var/mob/dead/observer/M in GLOB.player_list)
 		if(M.client)
-			to_chat(M, "<br><font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Ghost > Join Response Team</b> verb to join!</span><br>")
+			to_chat(M, "<br><font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Ghost > Join Response Team</b> verb to join!</span></font><br>")
 			to_chat(M, "<span class='attack'>You cannot join if you have Ghosted before this message.</span><br>")
 
 
@@ -141,7 +141,7 @@
 	message_admins("Distress beacon: '[name]' activated. Looking for candidates.")
 
 	if(announce)
-		command_announcement.Announce("A distress beacon has been launched from the [MAIN_SHIP_NAME].", "Priority Alert", new_sound='sound/AI/distressbeacon.ogg')
+		command_announcement.Announce("A distress beacon has been launched from the [CONFIG_GET(string/ship_name)].", "Priority Alert", new_sound='sound/AI/distressbeacon.ogg')
 
 	SSticker.mode.on_distress_cooldown = TRUE
 

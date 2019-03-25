@@ -12,7 +12,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
 	melee_damage_upper = 30
-	attack_delay = -1
+	attack_delay = 7
 
 	// *** Tackle *** //
 	tackle_damage = 35
@@ -52,7 +52,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
 	melee_damage_upper = 40
-	attack_delay = -1.25
+	attack_delay = 6.75
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -84,7 +84,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 35
 	melee_damage_upper = 45
-	attack_delay = -1.4
+	attack_delay = 6.6
 
 	// *** Tackle *** //
 	tackle_damage = 45
@@ -117,7 +117,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40
 	melee_damage_upper = 50
-	attack_delay = -1.5
+	attack_delay = 6.5
 
 	// *** Tackle *** //
 	tackle_damage = 50
@@ -152,8 +152,6 @@
 	plasma_stored = 50
 	tier = 2
 	upgrade = 0
-	pixel_x = -12
-	old_x = -12
 	var/stealth_delay = null
 	var/last_stealth = null
 	var/used_stealth = FALSE

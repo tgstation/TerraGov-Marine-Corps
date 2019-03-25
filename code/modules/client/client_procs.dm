@@ -167,6 +167,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
+	var/full_version = "[byond_version].[byond_build ? byond_build : "xxx"]"
 
 	. = ..()	//calls mob.Login()
 	chatOutput.start() // Starts the chat
@@ -224,7 +225,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	send_assets()
 	nanomanager.send_resources(src)
 
-	create_clickcatcher()
+	generate_clickcatcher()
 	apply_clickcatcher()
 
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
@@ -244,11 +245,13 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		else if(holder.rank.rights & R_MENTOR)
 			message_staff("Mentor login: [key_name_admin(src)].")
 
-	if(all_player_details[ckey])
-		player_details = all_player_details[ckey]
+	if(GLOB.player_details[ckey])
+		player_details = GLOB.player_details[ckey]
+		player_details.byond_version = full_version
 	else
 		player_details = new
-		all_player_details[ckey] = player_details
+		player_details.byond_version = full_version
+		GLOB.player_details[ckey] = player_details
 
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
 
@@ -482,3 +485,25 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 			return
 	qdel(query_get_notes)
 	create_message("note", key, system_ckey, message, null, null, 0, 0, null, 0, 0)
+
+
+/client/proc/change_view(new_size)
+	if(isnull(new_size))
+		CRASH("change_view called without argument.")
+
+	view = new_size
+	apply_clickcatcher()
+	mob.reload_fullscreens()
+
+
+/client/proc/generate_clickcatcher()
+	if(void)
+		return
+	void = new()
+	screen += void
+
+
+/client/proc/apply_clickcatcher()
+	generate_clickcatcher()
+	var/list/actualview = getviewsize(view)
+	void.UpdateGreed(actualview[1], actualview[2])

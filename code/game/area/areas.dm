@@ -328,7 +328,9 @@
 
 	master.powerupdate = TRUE
 
-/area/Entered(A,atom/OldLoc)
+/area/Entered(atom/movable/A, atom/OldLoc)
+	SEND_SIGNAL(src, COMSIG_AREA_ENTERED, A)
+	SEND_SIGNAL(A, COMSIG_ENTER_AREA, src) //The atom that enters the area
 	var/musVolume = 20
 	var/sound = 'sound/ambience/ambigen1.ogg'
 
@@ -367,6 +369,12 @@
 		if(world.time > L.client.played + 900)
 			L << sound(sound, repeat = 0, wait = 0, volume = musVolume, channel = 1)
 			L.client.played = world.time
+
+
+/area/Exited(atom/movable/M)
+	SEND_SIGNAL(src, COMSIG_AREA_EXITED, M)
+	SEND_SIGNAL(M, COMSIG_EXIT_AREA, src) //The atom that exits the area
+
 
 /area/proc/gravitychange(var/gravitystate = 0, var/area/A)
 

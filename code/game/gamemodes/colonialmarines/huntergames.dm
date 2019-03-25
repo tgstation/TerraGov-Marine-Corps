@@ -267,18 +267,15 @@ var/waiting_for_drop_votes = 0
 			break
 
 	if(round_finished == 1 && !isnull(winner) && istype(winner))
-		feedback_set_details("round_end_result","single winner")
 		to_chat(world, "<span class='round_header'>We have a winner! >> [winner.real_name] << defeated all enemies!</span>")
 		to_chat(world, "<FONT size = 3><B>Well done, your tale of survival will live on in legend!</B></FONT>")
 		log_game("Humans remaining: [count_humans()]\nRound time: [duration2text()]\nBig Winner: [winner.real_name]")
 	else if(round_finished == 2)
-		feedback_set_details("round_end_result","no winners")
 		to_chat(world, "<span class='round_header'>NOBODY WON!?</span>")
 		to_chat(world, "<FONT size = 3><B>'Somehow you stupid humans managed to even fuck up killing yourselves. Well done.'</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 		log_game("Humans remaining: [count_humans()]\nRound time: [duration2text()]")
 	else
-		feedback_set_details("round_end_result","no winners")
 		to_chat(world, "<span class='round_header'>NOBODY WON!</span>")
 		to_chat(world, "<FONT size = 3><B>There was a winner, but they died before they could receive the prize!! Bummer.</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'

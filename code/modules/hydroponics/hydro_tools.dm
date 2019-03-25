@@ -22,13 +22,13 @@
 	else if(istype(target,/obj/item/reagent_container/food/snacks/grown))
 
 		var/obj/item/reagent_container/food/snacks/grown/G = target
-		grown_seed = seed_types[G.plantname]
+		grown_seed = GLOB.seed_types[G.plantname]
 		grown_reagents = G.reagents
 
 	else if(istype(target,/obj/item/grown))
 
 		var/obj/item/grown/G = target
-		grown_seed = seed_types[G.plantname]
+		grown_seed = GLOB.seed_types[G.plantname]
 		grown_reagents = G.reagents
 
 	else if(istype(target,/obj/item/seeds))
