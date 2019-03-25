@@ -163,10 +163,14 @@
 	config_entry_value = 4
 	min_val = 1
 
+/datum/config_entry/number/min_xenos
+	config_entry_value = 5
+	min_val = 1
+
 /datum/config_entry/number/xeno_coefficient
 	integer = FALSE
 	config_entry_value = 0.04
-	min_val = 0.01
+	min_val = 0.001
 
 /datum/config_entry/number/survivor_coefficient
 	integer = FALSE
