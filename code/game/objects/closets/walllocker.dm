@@ -73,7 +73,7 @@
 
 /obj/structure/closet/walllocker/medical_wall/full // spawners
 
-/obj/structure/closet/walllocker/hydrant/full/New()
+/obj/structure/closet/walllocker/medical_wall/full/New()
 	. = ..()
 	sleep(2)
 	new /obj/item/storage/firstaid/regular(src)

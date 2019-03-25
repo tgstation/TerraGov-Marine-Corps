@@ -300,16 +300,15 @@
 			update_overlay |= APC_UPOVERLAY_ENVIRON1
 		else if(environ == 2)
 			update_overlay |= APC_UPOVERLAY_ENVIRON2
-	if(opened && cell && !(update_state & UPSTATE_MAINT))
-		if((opened == APC_COVER_OPENED && !(update_state & UPSTATE_BROKE)) || opened == APC_COVER_REMOVED)
-			update_overlay |= APC_UPOVERLAY_CELL_IN
+	if(opened && cell && !(update_state & UPSTATE_MAINT) && ((opened == APC_COVER_OPENED && !(update_state & UPSTATE_BROKE)) || opened == APC_COVER_REMOVED))
+		update_overlay |= APC_UPOVERLAY_CELL_IN
 
 	var/results = 0
 	if(last_update_state == update_state && last_update_overlay == update_overlay)
 		return 0
 	if(last_update_state != update_state)
 		results += 1
-	if(last_update_overlay != update_overlay && update_overlay)
+	if(last_update_overlay != update_overlay)
 		results += 2
 	return results
 
