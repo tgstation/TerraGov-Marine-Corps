@@ -55,6 +55,8 @@ SUBSYSTEM_DEF(ticker)
 	switch(current_state)
 		if(GAME_STATE_STARTUP)
 			if(Master.initializations_finished_with_no_players_logged_in)
+				start_at = world.time + ((CONFIG_GET(number/lobby_countdown) * 10) * 2)
+			else
 				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C)
@@ -62,9 +64,10 @@ SUBSYSTEM_DEF(ticker)
 			to_chat(world, "<span class='role_body'>Please, setup your character and select ready. Game will start in [CONFIG_GET(number/lobby_countdown)] seconds.</span>")
 			current_state = GAME_STATE_PREGAME
 			fire()
+
 		if(GAME_STATE_PREGAME)
 			if(isnull(time_left))
-				time_left = max(0,start_at - world.time)
+				time_left = max(0, start_at - world.time)
 			if(start_immediately)
 				time_left = 0
 
@@ -81,10 +84,10 @@ SUBSYSTEM_DEF(ticker)
 
 		if(GAME_STATE_SETTING_UP)
 			if(!setup())
-				//setup failed
 				current_state = GAME_STATE_STARTUP
-				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 				time_left = null
+				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
+				start_immediately = FALSE
 				Master.SetRunLevel(RUNLEVEL_LOBBY)
 
 		if(GAME_STATE_PLAYING)
@@ -95,8 +98,8 @@ SUBSYSTEM_DEF(ticker)
 				GLOB.ooc_allowed = TRUE
 				GLOB.dooc_allowed = TRUE
 				mode.declare_completion(force_ending)
-				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "map", "SERVER"), 15 SECONDS)
-				addtimer(CALLBACK(src, .proc/Reboot), 16 SECONDS)
+				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "map", "SERVER"), 1 MINUTES)
+				addtimer(CALLBACK(src, .proc/Reboot), 1 MINUTES)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 
@@ -105,17 +108,8 @@ SUBSYSTEM_DEF(ticker)
 	var/init_start = world.timeofday
 		//Create and announce mode
 	var/list/datum/game_mode/runnable_modes
-	if(GLOB.master_mode == "random" || GLOB.master_mode == "secret")
+	if(GLOB.master_mode == "random")
 		runnable_modes = config.get_runnable_modes()
-
-		if(GLOB.master_mode == "secret")
-			hide_mode = 1
-			if(GLOB.secret_force_mode != "secret")
-				var/datum/game_mode/smode = config.pick_mode(GLOB.secret_force_mode)
-				if(!smode.can_start())
-					message_admins("<span class='danger'>Unable to force secret [GLOB.secret_force_mode]. [smode.required_players] players and [smode.required_enemies] eligible antagonists needed.</span>")
-				else
-					mode = smode
 
 		if(!mode)
 			if(!length(runnable_modes))
@@ -128,18 +122,15 @@ SUBSYSTEM_DEF(ticker)
 	else
 		mode = config.pick_mode(GLOB.master_mode)
 		if(!mode.can_start())
-			to_chat(world, "<b>Unable to start [mode.name].</b> Not enough players, [mode.required_players] players and [mode.required_enemies] eligible antagonists needed. Reverting to pre-game lobby.")
-			qdel(mode)
-			mode = null
+			to_chat(world, "<b>Unable to start [mode.name].</b> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
+			QDEL_NULL(mode)
 			SSjob.ResetOccupations()
 			return FALSE
 
 	CHECK_TICK
-	//Configure mode and assign player to special mode stuff
-	var/can_continue = 0
-	can_continue = src.mode.pre_setup()		//Choose antagonists
+	var/can_continue = mode.pre_setup()
 	CHECK_TICK
-	SSjob.DivideOccupations() 				//Distribute jobs
+	SSjob.DivideOccupations() 
 	CHECK_TICK
 
 	if(!GLOB.Debug2)
