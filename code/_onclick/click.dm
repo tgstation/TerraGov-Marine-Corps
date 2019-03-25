@@ -435,9 +435,8 @@
 	else
 		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
 		params += "&catcher=1"
-		if(T)
-			T.Click(location, control, params)
-	. = 1
+		T?.Click(location, control, params)
+	. = TRUE
 
 
 /* MouseWheelOn */
