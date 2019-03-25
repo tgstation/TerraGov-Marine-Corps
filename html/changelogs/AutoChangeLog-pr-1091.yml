@@ -1,0 +1,6 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - balance: "Sentry Guns now cost 120 Requisition up from 100."
+  - tweak: "Sentry Gun burst accuracy penalty increased from (burst amount - 1) ^ 2 to  (burst amount - 1) ^ 2 * 1.2"
+  - tweak: "AP of minisentry reduced from 20 to 10, but it now deploys anchored and activated, can be undeployed while anchored and powered, and can be secured/unsecured with a screwdriver in 1 second down from 2."
