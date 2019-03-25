@@ -471,7 +471,7 @@
 /obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
-	corpsehelmet = /obj/item/clothing/head/cmcap/req;
+	corpsehelmet = /obj/item/clothing/head/tgmccap/req;
 	corpseshoes = /obj/item/clothing/shoes/black;
 	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
@@ -685,7 +685,7 @@
 "acA" = (
 /obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/security{
-	corpsehelmet = /obj/item/clothing/head/cmcap/req;
+	corpsehelmet = /obj/item/clothing/head/tgmccap/req;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Olin Berus"
 	},

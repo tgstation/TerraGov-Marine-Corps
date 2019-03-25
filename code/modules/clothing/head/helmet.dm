@@ -170,7 +170,7 @@
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "helmet"
-	armor = list(melee = 65, bullet = 35, laser = 30, energy = 20, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 65, bullet = 60, laser = 30, energy = 20, bomb = 25, bio = 0, rad = 0)
 	health = 5
 	var/helmet_overlays[]
 	flags_inventory = BLOCKSHARPOBJ
@@ -282,7 +282,7 @@
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
-	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
+	armor = list(melee = 75, bullet = 65, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 
 /obj/item/clothing/head/helmet/marine/leader/New(loc,expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper M11 pattern leader snow helmet"),
@@ -305,7 +305,7 @@
 	name = "\improper M3-S helmet"
 	icon_state = "scout_helmet"
 	desc = "A custom helmet designed for TGMC Scouts."
-	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
+	armor = list(melee = 75, bullet = 70, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 	New()
@@ -316,7 +316,7 @@
 	name = "\improper M35 helmet"
 	icon_state = "pyro_helmet"
 	desc = "A helmet designed for TGMC Pyrotechnicians. Contains heavy insulation, covered in nomex weave."
-	armor = list(melee = 85, bullet = 75, laser = 60, energy = 50, bomb = 50, bio = 10, rad = 10)
+	armor = list(melee = 85, bullet = 80, laser = 60, energy = 50, bomb = 50, bio = 10, rad = 10)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
@@ -328,7 +328,7 @@
 	name = "\improper M30 tactical helmet"
 	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is required to fly the Alamo and Normandy dropships manually and in safety."
 	icon_state = "helmetp"
-	armor = list(melee = 65, bullet = 50, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
+	armor = list(melee = 65, bullet = 65, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
@@ -341,7 +341,7 @@
 	name = "\improper M50 tanker helmet"
 	desc = "The lightweight M50 tanker helmet is designed for use by armored crewmen in the TGMC. It offers low weight protection, and allows agile movement inside the confines of an armored vehicle."
 	icon_state = "tanker_helmet"
-	armor = list(melee = 40, bullet = 40, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
+	armor = list(melee = 65, bullet = 65, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
