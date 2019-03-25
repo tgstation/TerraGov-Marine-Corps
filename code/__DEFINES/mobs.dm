@@ -464,6 +464,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define DEFENDER_FORTIFY_ARMOR 60
 #define WARRIOR_AGILITY_ARMOR 30
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
+#define XENO_EXPLOSION_RESIST_3_MODIFIER	0.25 //multiplies top level explosive damage by this amount.
 
 #define SPIT_UPGRADE_BONUS ( max(0,upgrade) * 0.15 ) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
 #define SPRAY_STRUCTURE_UPGRADE_BONUS 8

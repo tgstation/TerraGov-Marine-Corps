@@ -1,3 +1,5 @@
+#define DEBUG_HUMAN_ARMOR	0
+
 /mob/living/carbon/human
 	name = "unknown"
 	real_name = "unknown"
@@ -206,8 +208,8 @@
 	var/armor = max(0, 1 - getarmor(null, "bomb"))
 	switch(severity)
 		if(1)
-			b_loss += rand(120, 160) * armor	//Probably instant death
-			f_loss += rand(120, 160) * armor	//Probably instant death
+			b_loss += rand(160, 200) * armor	//Probably instant death
+			f_loss += rand(160, 200) * armor	//Probably instant death
 
 			var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
 			throw_at(target, 200, 4)
@@ -221,8 +223,8 @@
 			KnockOut(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
 
 		if(2)
-			b_loss += rand(60, 80) * armor	//Ouchie time. Armor makes it survivable
-			f_loss += rand(60, 80) * armor	//Ouchie time. Armor makes it survivable
+			b_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
+			f_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 30 * armor
@@ -233,19 +235,21 @@
 			KnockDown(4 * armor)
 
 		if(3)
-			b_loss += rand(30, 40) * armor
-			f_loss += rand(30, 40) * armor
+			b_loss += (rand(40, 50) * armor)
+			f_loss += (rand(40, 50) * armor)
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 15 * armor
-				ear_deaf += 60 * armor
+				ear_damage += 10 * armor
+				ear_deaf += 30 * armor
 
 			adjust_stagger(3 * armor)
 			add_slowdown(round(3 * armor,0.1))
 			KnockDown(2 * armor)
 
 	var/update = 0
-
+	#if DEBUG_HUMAN_ARMOR
+	to_chat(src, "DEBUG EX_ACT: armor: [armor], b_loss: [b_loss], f_loss: [f_loss]")
+	#endif
 	//Focus half the blast on one organ
 	var/datum/limb/take_blast = pick(limbs)
 	update |= take_blast.take_damage(b_loss * 0.5, f_loss * 0.5, used_weapon = "Explosive blast")
