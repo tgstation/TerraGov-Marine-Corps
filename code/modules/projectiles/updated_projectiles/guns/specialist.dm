@@ -298,6 +298,7 @@
 	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	burst_accuracy_mult = CONFIG_GET(number/combat_define/min_burst_accuracy_penalty)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
