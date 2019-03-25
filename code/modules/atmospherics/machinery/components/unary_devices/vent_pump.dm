@@ -321,7 +321,7 @@
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 100, 1)
 
 
-/obj/machinery/atmospherics/components/unary/vent_pump/AltClick(mob/living/user)
+/obj/machinery/atmospherics/components/unary/vent_pump/AltClick(mob/user)
 	user.handle_ventcrawl(src)
 
 
