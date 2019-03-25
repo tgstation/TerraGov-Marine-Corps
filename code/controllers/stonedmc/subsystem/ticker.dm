@@ -1,5 +1,3 @@
-#define ROUND_START_MUSIC_LIST "strings/round_start_sounds.txt"
-
 SUBSYSTEM_DEF(ticker)
 	name = "Ticker"
 	init_order = INIT_ORDER_TICKER
@@ -9,7 +7,7 @@ SUBSYSTEM_DEF(ticker)
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME
 
 	var/current_state = GAME_STATE_STARTUP	//State of current round used by process()
-	var/force_ending = 0					//Round was ended by admin intervention
+	var/force_ending = FALSE					//Round was ended by admin intervention
 
 	var/start_immediately = FALSE //If true, there is no lobby phase, the game starts immediately.
 	var/setup_done = FALSE //All game setup done including mode post setup and
@@ -18,28 +16,17 @@ SUBSYSTEM_DEF(ticker)
 	var/datum/game_mode/mode = null
 
 	var/login_music							//Music played in pregame lobby
-	var/round_end_sound						//Music/jingle played when the world reboots
-	var/round_end_sound_sent = TRUE			//If all clients have loaded it
 
 	var/list/datum/mind/minds = list()		//The characters in the game. Used for objective tracking.
 	var/datum/mind/liaison
 
 	var/delay_end = FALSE					//If set true, the round will not restart on it's own
 	var/admin_delay_notice = ""				//A message to display to anyone who tries to restart the world after a delay
-	var/ready_for_reboot = FALSE			//All roundend preparation done with, all that's left is reboot
-
-	var/tipped = FALSE						//Did we broadcast the tip of the day yet?
-	var/selected_tip						//What will be the tip of the day?
 
 	var/time_left							//Pre-game timer
 	var/start_at
 
 	var/gametime_offset = 432000			//Deciseconds to add to world.time for station time.
-
-	var/queue_delay = 0
-	var/list/queued_players = list()		//used for join queues when the server exceeds the hard population cap
-
-	var/late_join_disabled = FALSE
 
 	var/roundend_check_paused = FALSE
 
@@ -69,6 +56,8 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_STARTUP)
 			if(Master.initializations_finished_with_no_players_logged_in)
 				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
+			for(var/client/C in GLOB.clients)
+				window_flash(C)
 			to_chat(world, "<span class='round_body'>Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!</span>")
 			to_chat(world, "<span class='role_body'>Please, setup your character and select ready. Game will start in [CONFIG_GET(number/lobby_countdown)] seconds.</span>")
 			current_state = GAME_STATE_PREGAME
@@ -83,10 +72,6 @@ SUBSYSTEM_DEF(ticker)
 			if(time_left < 0)
 				return
 			time_left -= wait
-
-			if(time_left <= 300 && !tipped)
-				send_tip_of_the_round()
-				tipped = TRUE
 
 			if(time_left <= 0)
 				current_state = GAME_STATE_SETTING_UP
@@ -298,22 +283,6 @@ SUBSYSTEM_DEF(ticker)
 		L.notransform = FALSE
 
 
-/datum/controller/subsystem/ticker/proc/send_tip_of_the_round()
-	var/m
-	if(selected_tip)
-		m = selected_tip
-	else
-		var/list/randomtips = world.file2list("strings/tips.txt")
-		var/list/memetips = world.file2list("strings/sillytips.txt")
-		if(randomtips.len && prob(95))
-			m = pick(randomtips)
-		else if(memetips.len)
-			m = pick(memetips)
-
-	if(m)
-		to_chat(world, "<font color='purple'><b>Tip of the round: </b>[html_encode(m)]</font>")
-
-
 /datum/controller/subsystem/ticker/proc/HasRoundStarted()
 	return current_state >= GAME_STATE_PLAYING
 
@@ -329,23 +298,12 @@ SUBSYSTEM_DEF(ticker)
 	mode = SSticker.mode
 
 	login_music = SSticker.login_music
-	round_end_sound = SSticker.round_end_sound
 
 	minds = SSticker.minds
 
 	delay_end = SSticker.delay_end
 
-	tipped = SSticker.tipped
-	selected_tip = SSticker.selected_tip
-
 	time_left = SSticker.time_left
-
-	queue_delay = SSticker.queue_delay
-	queued_players = SSticker.queued_players
-	round_start_time = SSticker.round_start_time
-
-	queue_delay = SSticker.queue_delay
-	queued_players = SSticker.queued_players
 
 	switch(current_state)
 		if(GAME_STATE_SETTING_UP)
@@ -384,18 +342,6 @@ SUBSYSTEM_DEF(ticker)
 	WRITE_FILE(F, the_mode)
 
 
-/datum/controller/subsystem/ticker/proc/SetRoundEndSound(the_sound)
-	set waitfor = FALSE
-	round_end_sound_sent = FALSE
-	round_end_sound = fcopy_rsc(the_sound)
-	for(var/thing in GLOB.clients)
-		var/client/C = thing
-		if (!C)
-			continue
-		C.Export("##action=load_rsc", round_end_sound)
-	round_end_sound_sent = TRUE
-
-
 /datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay)
 	set waitfor = FALSE
 
@@ -413,7 +359,6 @@ SUBSYSTEM_DEF(ticker)
 	to_chat(world, "<span class='boldnotice'>Rebooting World in [DisplayTimeText(delay)]. [reason]</span>")
 
 	var/start_wait = world.time
-	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2))	//don't wait forever
 	sleep(delay - (world.time - start_wait))
 
 	if(delay_end && !skip_delay)
@@ -423,6 +368,6 @@ SUBSYSTEM_DEF(ticker)
 		end_state = end_string
 
 	log_game("<span class='boldnotice'>Rebooting World. [reason]</span>")
-	to_chat(world, "<span class='boldnotice'>Rebooting...</span>")
+	to_chat_immediate(world, "<h3><span class='boldnotice'>Rebooting...</span></h3>")
 
 	world.Reboot(TRUE)

@@ -128,7 +128,10 @@
 	icon_state = "luchag"
 	item_state = "luchag"
 	flags_inv_hide = HIDEFACE|HIDEALLHAIR
+	flags_cold_protection = HEAD
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_armor_protection = HEAD|FACE
+	flags_inventory = COVERMOUTH|ALLOWREBREATH
 	w_class = 2
 	siemens_coefficient = 3.0
 

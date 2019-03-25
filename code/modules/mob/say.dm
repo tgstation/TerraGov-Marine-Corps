@@ -2,13 +2,6 @@
 	return
 
 
-/mob/verb/whisper()
-	set name = "Whisper"
-	set category = "IC"
-
-	return
-
-
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
@@ -46,13 +39,11 @@
 		to_chat(usr, "<span class='warning'>You have deadchat muted.</span>")
 		return
 
-	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[message]\"</span></span>"
-
 	for(var/mob/M in GLOB.player_list)
-
 		if(isnewplayer(M))
 			continue
 
+		var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> [M != src ? "(<a href='byond://?src=[REF(M)];track=[REF(src)]'>follow</a>)" : ""] says, <span class='message'>\"[message]\"</span></span>"
 		if(M.client && M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD))
 			to_chat(M, rendered)
 

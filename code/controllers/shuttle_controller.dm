@@ -1,12 +1,12 @@
-var/global/datum/shuttle_controller/shuttle_controller
+var/global/datum/controller/shuttle_controller/shuttle_controller
 
 
-/datum/shuttle_controller
+/datum/controller/shuttle_controller
 	var/list/shuttles	//maps shuttle tags to shuttle datums, so that they can be looked up.
 	var/list/process_shuttles	//simple list of shuttles, for processing
 	var/list/locs_crash
 
-/datum/shuttle_controller/process()
+/datum/controller/shuttle_controller/process()
 	//process ferry shuttles
 	for (var/datum/shuttle/ferry/shuttle in process_shuttles)
 
@@ -19,7 +19,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 			shuttle.process()
 
 
-/datum/shuttle_controller/New()
+/datum/controller/shuttle_controller/New()
 	shuttles = list()
 	process_shuttles = list()
 	locs_crash = list()
@@ -99,8 +99,8 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle1.location = 0
 	shuttle1.warmup_time = 10
 	shuttle1.move_time = DROPSHIP_TRANSIT_DURATION
-	shuttle1.shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
-	shuttle1.info_tag = "[MAIN_SHIP_NAME] Dropship"
+	shuttle1.shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
+	shuttle1.info_tag = "[CONFIG_GET(string/ship_name)] Dropship"
 	shuttle1.can_be_optimized = TRUE
 	shuttle1.can_do_gun_mission = TRUE
 	shuttle1.load_datums()
@@ -112,8 +112,8 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle1.location = 0
 	shuttle1.warmup_time = 10
 	shuttle1.move_time = DROPSHIP_TRANSIT_DURATION
-	shuttle1.shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
-	shuttle1.info_tag = "[MAIN_SHIP_NAME] Dropship"
+	shuttle1.shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
+	shuttle1.info_tag = "[CONFIG_GET(string/ship_name)] Dropship"
 	shuttle1.can_be_optimized = TRUE
 	shuttle1.can_do_gun_mission = TRUE
 	shuttle1.load_datums()
@@ -124,9 +124,10 @@ var/global/datum/shuttle_controller/shuttle_controller
 	var/datum/shuttle/ferry/marine/evacuation_pod/P
 	for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
 		P = new
-		P.shuttle_tag = MAIN_SHIP_NAME + " Evac [i]"
+		P.shuttle_tag = CONFIG_GET(string/ship_name) + " Evac [i]"
 		switch(i) //TODO: Do this procedurally.
-			if(10 to 11) P.info_tag = "Alt [MAIN_SHIP_NAME] Evac"
+			if(10 to 11) 
+				P.info_tag = "Alt [CONFIG_GET(string/ship_name)] Evac"
 		P.load_datums()
 		shuttles[P.shuttle_tag] = P
 		process_shuttles += P
@@ -340,7 +341,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	process_shuttles += shuttle
 
 //This is called by gameticker after all the machines and radio frequencies have been properly initialized
-/datum/shuttle_controller/proc/setup_shuttle_docks()
+/datum/controller/shuttle_controller/proc/setup_shuttle_docks()
 	var/datum/shuttle/shuttle
 	var/list/dock_controller_map = list()	//so we only have to iterate once through each list
 
@@ -372,3 +373,9 @@ var/global/datum/shuttle_controller/shuttle_controller
 	for(var/shuttle_tag in shuttles)
 		shuttle = shuttles[shuttle_tag]
 		shuttle.dock()
+
+
+/datum/controller/shuttle_controller/stat_entry()
+	if(!statclick)
+		statclick = new/obj/effect/statclick/debug(null, "Debug", src)
+	stat("Shuttle:", statclick)

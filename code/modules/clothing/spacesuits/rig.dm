@@ -11,7 +11,7 @@
 	var/rig_color = "engineering" //Determines used sprites: rig[on]-[color] and rig[on]-[color]2 (lying down sprite)
 	actions_types = list(/datum/action/item_action/toggle)
 	flags_heat_protection = HEAD
-	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
+	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
 	//Species-specific stuff.
 	species_restricted = list("exclude","Unathi","Tajara","Skrell","Vox")
@@ -72,7 +72,7 @@
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
 	allowed = list(/obj/item/device/flashlight,/obj/item/tank,/obj/item/device/suit_cooling_unit)
 	flags_heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
+	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
 	species_restricted = list("exclude","Unathi","Tajara","Vox")
 	sprite_sheets_refit = list(
@@ -252,7 +252,7 @@
 				if(!helmet)
 					to_chat(user, "\The [src] does not have a helmet installed.")
 				else
-					to_chat(user, "You detatch \the [helmet] from \the [src]'s helmet mount.")
+					to_chat(user, "You detach \the [helmet] from \the [src]'s helmet mount.")
 					helmet.loc = get_turf(src)
 					src.helmet = null
 				return
@@ -279,7 +279,7 @@
 				if(!boots)
 					to_chat(user, "\The [src] does not have any boots installed.")
 				else
-					to_chat(user, "You detatch \the [boots] from \the [src]'s boot mounts.")
+					to_chat(user, "You detach \the [boots] from \the [src]'s boot mounts.")
 					boots.loc = get_turf(src)
 					boots = null
 				return
@@ -476,7 +476,7 @@
 	item_state = "atmos_helm"
 	rig_color = "atmos"
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 50)
-	max_heat_protection_temperature = FIRE_HELMET_max_heat_protection_temperature
+	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/suit/space/rig/atmos
 	desc = "A special suit that protects against hazardous, low pressure environments. Has improved thermal protection and minor radiation shielding."
@@ -484,4 +484,4 @@
 	name = "atmos hardsuit"
 	item_state = "atmos_hardsuit"
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 50)
-	max_heat_protection_temperature = FIRESUIT_max_heat_protection_temperature
+	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE

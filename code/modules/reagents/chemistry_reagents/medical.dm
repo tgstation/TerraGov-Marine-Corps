@@ -600,7 +600,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
             if(I.damage)
                 if(M.bodytemperature > 169 && I.damage > 5)
                     continue
-                I.heal_damage(1)                
+                I.heal_damage(1)
     return ..()
 
 /datum/reagent/medicine/peridaxon/overdose_process(mob/living/M, alien)
@@ -829,7 +829,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 		var/mob/living/carbon/human/H = C
 		var/affected_organ = pick("heart","lungs","liver","kidneys")
 		var/datum/internal_organ/I =  H.internal_organs_by_name[affected_organ]
-			I.take_damage(2)
+		I.take_damage(2)
 	return
 
 

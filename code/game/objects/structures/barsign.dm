@@ -46,7 +46,7 @@
 	"vladssaladbar",
 	"theshaken",
 	"thealenath",
-	"alohasnackbar,"
+	"alohasnackbar",
 	"thenet",
 	"maidcafe",
 	"thelightbulb",

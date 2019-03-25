@@ -4,7 +4,7 @@
 
 
 /datum/emergency_call/freelancers/print_backstory(mob/living/carbon/human/H)
-	to_chat(H, "<B>Today, you have been contracted by the TGMC to assist the [MAIN_SHIP_NAME].</b>")
+	to_chat(H, "<B>Today, you have been contracted by the TGMC to assist the [CONFIG_GET(string/ship_name)].</b>")
 	to_chat(H, "<B>Ensure they are not destroyed. Collect payment.</b>")
 
 

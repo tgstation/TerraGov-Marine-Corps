@@ -90,7 +90,7 @@
 /atom/movable/Bump(atom/A, yes) //yes arg is to distinguish our calls of this proc from the calls native from byond.
 	if(throwing)
 		throw_impact(A)
-
+	SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A)
 	spawn( 0 )
 		if ((A && yes))
 			A.last_bumped = world.time
@@ -98,6 +98,12 @@
 		return
 	..()
 	return
+
+
+//oldloc = old location on atom, inserted when forceMove is called and ONLY when forceMove is called!
+/atom/movable/Crossed(atom/movable/AM, oldloc)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, AM)
+
 
 /atom/movable/proc/Moved(atom/OldLoc,Dir)
 	if(isturf(loc))
@@ -157,6 +163,8 @@
 			if(istype(src,/mob/living))
 				var/mob/living/M = src
 				M.turf_collision(T, speed)
+
+	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
 
 //decided whether a movable atom being thrown can pass through the turf it is in.
 /atom/movable/proc/hit_check(var/speed)
@@ -401,6 +409,10 @@
 	return FALSE
 
 
+/atom/movable/proc/update_icon()
+	return
+
+
 /atom/movable/vv_get_dropdown()
 	. = ..()
 	. += "---"
@@ -409,3 +421,4 @@
 	.["Get"] = "?_src_=vars;[HrefToken()];getatom=[REF(src)]"
 	.["Send"] = "?_src_=vars;[HrefToken()];sendatom=[REF(src)]"
 	.["Delete All Instances"] = "?_src_=vars;[HrefToken()];delall=[REF(src)]"
+	.["Update Icon"] = "?_src_=vars;[HrefToken()];updateicon=[REF(src)]"

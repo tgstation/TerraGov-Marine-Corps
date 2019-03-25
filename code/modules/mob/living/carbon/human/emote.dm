@@ -195,8 +195,8 @@
 			if(muzzled || audio_emote_cooldown(player_caused))
 				return
 			message = "<B>[comm_paygrade][src] calls for a medic!</b>"
-			var/image/medic = image('icons/mob/talk.dmi', icon_state = "medic")
-			overlays += medic
+			var/image/medic = image('icons/mob/talk.dmi', src, icon_state = "medic")
+			add_emote_overlay(medic)
 			if(gender == "male")
 				if(prob(95))
 					playsound(loc, 'sound/voice/human_male_medic.ogg', 25, 0)
@@ -204,7 +204,6 @@
 					playsound(loc, 'sound/voice/human_male_medic2.ogg', 25, 0)
 			else
 				playsound(loc, 'sound/voice/human_female_medic.ogg', 25, 0)
-			addtimer(CALLBACK(src, .proc/remove_emote_overlay, medic), TYPING_INDICATOR_LIFETIME)
 
 		if("moan")
 			m_type = EMOTE_AUDIBLE
@@ -221,15 +220,14 @@
 			m_type = EMOTE_AUDIBLE
 			if(muzzled || audio_emote_cooldown(player_caused))
 				return
-			var/image/pain = image('icons/mob/talk.dmi', icon_state = "pain")
-			overlays += pain
+			var/image/pain = image('icons/mob/talk.dmi', src, icon_state = "pain")
+			add_emote_overlay(pain)
 			message = "<B>[comm_paygrade][src]</B> cries out in pain!"
 			if(species)
 				if(species.paincries[gender])
 					playsound(loc, species.paincries[gender], 50)
 				else if(species.screams[NEUTER])
 					playsound(loc, species.paincries[NEUTER], 50)
-			addtimer(CALLBACK(src, .proc/remove_emote_overlay, pain), TYPING_INDICATOR_LIFETIME)
 
 		if("salute")
 			m_type = EMOTE_AUDIBLE
@@ -246,14 +244,13 @@
 			if(muzzled || audio_emote_cooldown(player_caused))
 				return
 			message = "<B>[comm_paygrade][src]</B> screams!"
-			var/image/scream = image('icons/mob/talk.dmi', icon_state = "scream")
-			overlays += scream
+			var/image/scream = image('icons/mob/talk.dmi', src, icon_state = "scream")
+			add_emote_overlay(scream)
 			if(client && species)
 				if(species.screams[gender])
 					playsound(loc, species.screams[gender], 50)
 				else if(species.screams[NEUTER])
 					playsound(loc, species.screams[NEUTER], 50)
-			addtimer(CALLBACK(src, .proc/remove_emote_overlay, scream), TYPING_INDICATOR_LIFETIME)
 
 		if("shakehead")
 			message = "<B>[comm_paygrade][src]</B> shakes [p_their()] head."

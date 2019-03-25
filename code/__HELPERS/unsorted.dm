@@ -269,12 +269,18 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //This will update a mob's name, real_name, mind.name, data_core records, pda and id
 //Calling this proc without an oldname will only update the mob and skip updating the pda, id and records ~Carn
-/mob/proc/fully_replace_character_name(var/oldname,var/newname)
-	if(!newname)	return 0
+/mob/proc/fully_replace_character_name(oldname, newname)
+	if(!newname)	
+		return FALSE
+
+	log_played_names(ckey, newname)
+
 	real_name = newname
 	name = newname
 	if(mind)
 		mind.name = newname
+		if(mind.key)
+			log_played_names(mind.key, newname) //Just in case the mind is unsynced at the moment.
 	if(dna)
 		dna.real_name = real_name
 
@@ -953,22 +959,37 @@ var/global/image/busy_indicator_hostile
 			else
 				air_master.tiles_to_update += T2*/
 
-proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
-	if(!original)
-		return null
 
-	var/obj/O = null
+/proc/DuplicateObject(atom/original, atom/newloc)
+	if(!original || !newloc)
+		return
 
-	if(sameloc)
-		O=new original.type(original.loc)
-	else
-		O=new original.type(locate(0,0,0))
+	var/atom/O = new original.type(newloc)
+	if(!O)
+		return
 
-	if(perfectcopy)
-		if((O) && (original))
-			for(var/V in original.vars)
-				if(!(V in list("type","loc","locs","vars", "parent", "parent_type","verbs","ckey","key")))
-					O.vars[V] = original.vars[V]
+	O.contents.Cut()
+
+	for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
+		if(istype(original.vars[V], /datum)) // this would reference the original's object, that will break when it is used or deleted.
+			continue
+		else if(islist(original.vars[V]))
+			var/list/L = original.vars[V]
+			O.vars[V] = L.Copy()
+		else
+			O.vars[V] = original.vars[V]
+
+	for(var/atom/A in original.contents)
+		O.contents += new A.type
+
+	if(isobj(O))
+		var/obj/N = O
+
+		N.update_icon()
+		if(ismachinery(O))
+			var/obj/machinery/M = O
+			M.power_change()
+
 	return O
 
 
@@ -1052,7 +1073,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 
 
 					for(var/obj/O in objs)
-						newobjs += DuplicateObject(O , 1)
+						newobjs += DuplicateObject(O, T)
 
 
 					for(var/obj/O in newobjs)
@@ -1064,7 +1085,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 						mobs += M
 
 					for(var/mob/M in mobs)
-						newmobs += DuplicateObject(M , 1)
+						newmobs += DuplicateObject(M, T)
 
 					for(var/mob/M in newmobs)
 						M.loc = X

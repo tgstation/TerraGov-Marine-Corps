@@ -8,13 +8,14 @@
 
 //=================================================
 //Self destruct, nuke, and evacuation.
-#define EVACUATION_TIME_LOCK 60 MINUTES
+#define EVACUATION_TIME_LOCK 30 MINUTES
 #define DISTRESS_TIME_LOCK 10 MINUTES
 #define SHUTTLE_TIME_LOCK 10 MINUTES
 #define SHUTTLE_LOCK_COOLDOWN 10 MINUTES
 #define SHUTTLE_LOCK_TIME_LOCK 45 MINUTES
 #define EVACUATION_AUTOMATIC_DEPARTURE 3 MINUTES //All pods automatically depart in 10 minutes, unless they are full or unable to launch for some reason.
 #define EVACUATION_ESTIMATE_DEPARTURE ((evac_time + EVACUATION_AUTOMATIC_DEPARTURE - world.time) * 0.1)
+#define EVACUATION_POD_LAUNCH_COOLDOWN 5 SECONDS
 #define EVACUATION_STATUS_STANDING_BY 0
 #define EVACUATION_STATUS_INITIATING 1
 #define EVACUATION_STATUS_IN_PROGRESS 2
@@ -31,8 +32,10 @@
 #define NUKE_EXPLOSION_IN_PROGRESS 2
 #define NUKE_EXPLOSION_FINISHED 3
 
-#define FLAGS_EVACUATION_DENY 1
-#define FLAGS_SELF_DESTRUCT_DENY 2
+#define FLAGS_EVACUATION_DENY 		(1<<0)
+#define FLAGS_SELF_DESTRUCT_DENY 	(1<<1)
+#define FLAGS_SDEVAC_TIMELOCK		(1<<2)
+
 //=================================================
 
 #define MODE_INFESTATION		(1<<0)
@@ -51,3 +54,9 @@
 //=================================================
 
 #define LATEJOIN_LARVA_DISABLED 0
+
+#define SELF_DESTRUCT_ROD_STARTUP_TIME 20 MINUTES
+
+#define SELF_DESTRUCT_MACHINE_INACTIVE 0
+#define SELF_DESTRUCT_MACHINE_ACTIVE 1
+#define SELF_DESTRUCT_MACHINE_ARMED 2

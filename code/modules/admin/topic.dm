@@ -43,51 +43,25 @@
 		if(!ismob(M))
 			return
 
-		var/location_description = ""
-		var/special_role_description = ""
-		var/health_description = ""
-		var/gender_description = ""
-		var/turf/T = get_turf(M)
+		var/status
+		var/health
 
-		//Location
-		if(isturf(T))
-			if(isarea(T.loc))
-				location_description = "([M.loc == T ? "at coordinates " : "in [M.loc] at coordinates "] [T.x], [T.y], [T.z] in area <b>[T.loc]</b>)"
-			else
-				location_description = "([M.loc == T ? "at coordinates " : "in [M.loc] at coordinates "] [T.x], [T.y], [T.z])"
-
-		//Job + antagonist
-		special_role_description = "Role: <b>[M.mind.assigned_role]</b>"
-
-		//Health
 		if(isliving(M))
 			var/mob/living/L = M
-			var/status
 			switch(M.stat)
 				if(CONSCIOUS)
 					status = "Alive"
 				if(UNCONSCIOUS)
-					status = "<font color='orange'><b>Unconscious</b></font>"
+					status = "Unconscious"
 				if(DEAD)
-					status = "<font color='red'><b>Dead</b></font>"
-			health_description = "Status = [status]"
-			health_description += "<BR>Oxy: [L.getOxyLoss()] - Tox: [L.getToxLoss()] - Fire: [L.getFireLoss()] - Brute: [L.getBruteLoss()] - Clone: [L.getCloneLoss()] - Brain: [L.getBrainLoss()]"
-		else
-			health_description = "This mob type has no health to speak of."
+					status = "Dead"
+			health = "Oxy: [L.getOxyLoss()]  Tox: [L.getToxLoss()]  Fire: [L.getFireLoss()]  Brute: [L.getBruteLoss()]  Clone: [L.getCloneLoss()]  Brain: [L.getBrainLoss()]"
 
-		//Gender
-		switch(M.gender)
-			if(MALE, FEMALE)
-				gender_description = "[M.gender]"
-			else
-				gender_description = "<font color='red'><b>[M.gender]</b></font>"
-
-		to_chat(usr, "<b>Info about [M.name]:</b> ")
-		to_chat(usr, "Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]")
-		to_chat(usr, "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind ? "[M.mind.name]" : ""]; Key = <b>[M.key]</b>;")
-		to_chat(usr, "Location = [location_description];")
-		to_chat(usr, "[special_role_description]")
-		to_chat(usr, ADMIN_FULLMONTY(M))
+		to_chat(usr, {"<span class='notice'><hr><b>Info about [M.real_name]:</b>
+Type: [M.type] | Gender: [M.gender] | Job: [M.job]
+Location: [AREACOORD(M.loc)]
+Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
+<span class='admin'><span class='message'>[ADMIN_FULLMONTY(M)]</span></span><hr></span>"})
 
 
 	else if(href_list["playerpanel"])
@@ -931,7 +905,7 @@
 
 		to_chat(H, "<span class='boldnotice'>Please stand by for a message from TGMC:[input]</span>")
 
-		log_admin("[ADMIN_TPMONTY(usr)] replied to [ADMIN_TPMONTY(H)]'s TGMC message with: [input].")
+		log_admin("[key_name(usr)] replied to [ADMIN_TPMONTY(H)]'s TGMC message with: [input].")
 		message_admins("[ADMIN_TPMONTY(usr)] replied to [ADMIN_TPMONTY(H)]'s' TGMC message with: [input]")
 
 
@@ -1141,7 +1115,7 @@
 					return
 				target = pick(get_area_turfs(A))
 			if("Mob")
-				var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortmobs(GLOB.mob_list)
+				var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortList(GLOB.mob_list)
 				if(!N || !M)
 					return
 				target = N.loc
@@ -1379,62 +1353,69 @@
 		if(!check_rights(R_ADMIN))
 			return
 
+		if(!SSevacuation.dest_master)
+			SSevacuation.prepare()
+
 		switch(href_list["evac_authority"])
 			if("init_evac")
-				if(!EvacuationAuthority.initiate_evacuation())
+				if(!SSevacuation.initiate_evacuation(TRUE))
 					to_chat(usr, "<span class='warning'>You are unable to initiate an evacuation right now!</span>")
-				else
-					log_admin("[key_name(usr)] called an evacuation.")
-					message_admins("[ADMIN_TPMONTY(usr)] called an evacuation.")
+					return
+				log_admin("[key_name(usr)] called an evacuation.")
+				message_admins("[ADMIN_TPMONTY(usr)] called an evacuation.")
 
 			if("cancel_evac")
-				if(!EvacuationAuthority.cancel_evacuation())
+				if(!SSevacuation.cancel_evacuation())
 					to_chat(usr, "<span class='warning'>You are unable to cancel an evacuation right now!</span>")
-				else
-					log_admin("[key_name(usr)] canceled an evacuation.")
-					message_admins("[ADMIN_TPMONTY(usr)] canceled an evacuation.")
-
-			if("toggle_evac")
-				EvacuationAuthority.flags_scuttle ^= FLAGS_EVACUATION_DENY
-				log_admin("[key_name(src)] has [EvacuationAuthority.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
-				message_admins("[ADMIN_TPMONTY(usr)] has [EvacuationAuthority.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
-
-			if("force_evac")
-				if(!EvacuationAuthority.begin_launch())
-					to_chat(usr, "<span class='warning'>You are unable to launch the pods directly right now!</span>")
-				else
-					log_admin("[key_name(usr)] force-launched the escape pods.")
-					message_admins("[ADMIN_TPMONTY(usr)] force-launched the escape pods.")
-
-			if("init_dest")
-				if(!EvacuationAuthority.enable_self_destruct())
-					to_chat(usr, "<span class='warning'>You are unable to authorize the self-destruct right now!</span>")
-				else
-					log_admin("[key_name(usr)] force-enabled the self-destruct system.")
-					message_admins("[ADMIN_TPMONTY(usr)] force-enabled the self-destruct system.")
-
-			if("cancel_dest")
-				if(!EvacuationAuthority.cancel_self_destruct(TRUE))
-					to_chat(usr, "<span class='warning'>You are unable to cancel the self-destruct right now!</span>")
-				else
-					log_admin("[key_name(usr)] canceled the self-destruct system.")
-					message_admins("[ADMIN_TPMONTY(usr)] canceled the self-destruct system.")
-
-			if("use_dest")
-				if(alert("Are you sure you want to destroy the [MAIN_SHIP_NAME] right now?", "Self-Destruct", "Yes", "No") != "Yes")
 					return
 
-				if(!EvacuationAuthority.initiate_self_destruct(TRUE))
+				log_admin("[key_name(usr)] canceled an evacuation.")
+				message_admins("[ADMIN_TPMONTY(usr)] canceled an evacuation.")
+
+			if("toggle_evac")
+				SSevacuation.flags_scuttle ^= FLAGS_EVACUATION_DENY
+				log_admin("[key_name(src)] has [SSevacuation.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
+				message_admins("[ADMIN_TPMONTY(usr)] has [SSevacuation.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
+
+			if("force_evac")
+				if(!SSevacuation.begin_launch())
+					to_chat(usr, "<span class='warning'>You are unable to launch the pods directly right now!</span>")
+					return
+
+				log_admin("[key_name(usr)] force-launched the escape pods.")
+				message_admins("[ADMIN_TPMONTY(usr)] force-launched the escape pods.")
+
+			if("init_dest")
+				if(!SSevacuation.enable_self_destruct())
+					to_chat(usr, "<span class='warning'>You are unable to authorize the self-destruct right now!</span>")
+					return
+
+				log_admin("[key_name(usr)] force-enabled the self-destruct system.")
+				message_admins("[ADMIN_TPMONTY(usr)] force-enabled the self-destruct system.")
+
+			if("cancel_dest")
+				if(!SSevacuation.cancel_self_destruct(TRUE))
+					to_chat(usr, "<span class='warning'>You are unable to cancel the self-destruct right now!</span>")
+					return
+					
+				log_admin("[key_name(usr)] canceled the self-destruct system.")
+				message_admins("[ADMIN_TPMONTY(usr)] canceled the self-destruct system.")
+
+			if("use_dest")
+				if(alert("Are you sure you want to destroy the [CONFIG_GET(string/ship_name)] right now?", "Self-Destruct", "Yes", "No") != "Yes")
+					return
+
+				if(!SSevacuation.initiate_self_destruct(TRUE))
 					to_chat(usr, "<span class='warning'>You are unable to trigger the self-destruct right now!</span>")
 					return
 
-				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [MAIN_SHIP_NAME].")
-				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destrust system, destroying the [MAIN_SHIP_NAME].")
+				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [CONFIG_GET(string/ship_name)].")
+				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destruct system, destroying the [CONFIG_GET(string/ship_name)].")
 
 			if("toggle_dest")
-				EvacuationAuthority.flags_scuttle ^= FLAGS_SELF_DESTRUCT_DENY
-				log_admin("[key_name(src)] has [EvacuationAuthority.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
-				message_admins("[ADMIN_TPMONTY(usr)] has [EvacuationAuthority.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
+				SSevacuation.flags_scuttle ^= FLAGS_SELF_DESTRUCT_DENY
+				log_admin("[key_name(src)] has [SSevacuation.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
+				message_admins("[ADMIN_TPMONTY(usr)] has [SSevacuation.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
 
 
 	else if(href_list["object_list"])
@@ -1547,7 +1528,7 @@
 
 
 	else if(href_list["admin_log"])
-		if(!check_rights(R_ASAY))
+		if(!check_rights(R_ADMIN))
 			return
 
 		var/dat = "<html><head><title>Admin Log</title></head><body>"
@@ -1559,6 +1540,38 @@
 
 		usr << browse(dat, "window=adminlog")
 
+
+	else if(href_list["asay_log"])
+		if(!check_rights(R_ASAY))
+			return
+
+		var/list/dat = list()
+
+		dat += "<html><head><title>Asay Log</title></head><body>"
+
+		for(var/x in GLOB.asay_log)
+			dat += "[x]<br>"
+
+		dat += "</body></html>"
+
+		usr << browse(dat.Join(), "window=adminlog")
+
+
+	else if(href_list["msay_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/list/dat = list()
+
+		dat += "<html><head><title>Msay Log</title></head><body>"
+
+		for(var/x in GLOB.msay_log)
+			dat += "[x]<br>"
+
+		dat += "</body></html>"
+
+		usr << browse(dat.Join(), "window=adminlog")
+		
 
 	else if(href_list["ffattack_log"])
 		if(!check_rights(R_ADMIN))
@@ -1857,3 +1870,102 @@
 
 	else if(href_list["stickyban"])
 		stickyban(href_list["stickyban"], href_list)
+
+
+	else if(href_list["addjobslot"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/slot = href_list["addjobslot"]
+
+		var/datum/job/J = SSjob.name_occupations[slot]
+		J.total_positions++
+
+		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has added a [slot] job slot.")
+		message_admins("[ADMIN_TPMONTY(usr)] has added a [slot] job slot.")
+
+
+	else if(href_list["filljobslot"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/slot = href_list["filljobslot"]
+
+		var/datum/job/J = SSjob.name_occupations[slot]
+		if(J.current_positions >= J.total_positions)
+			to_chat(usr, "<span class='warning'>Filling would cause an overflow. Please add more slots first.</span>")
+			return
+		J.current_positions++
+
+		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has filled a [slot] job slot.")
+		message_admins("[ADMIN_TPMONTY(usr)] has filled a [slot] job slot.")
+
+
+	else if(href_list["freejobslot"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/slot = href_list["freejobslot"]
+
+		var/datum/job/J = SSjob.name_occupations[slot]
+		if(J.current_positions <= 0)
+			to_chat(usr, "<span class='warning'>Cannot free more job slots.</span>")
+			return
+		J.current_positions--
+
+		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has freed a [slot] job slot.")
+		message_admins("[ADMIN_TPMONTY(usr)] has freed a [slot] job slot.")
+
+
+	else if(href_list["removejobslot"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/slot = href_list["removejobslot"]
+
+		var/datum/job/J = SSjob.name_occupations[slot]
+		if(J.total_positions <= 0 || (J.total_positions - 1) < J.current_positions)
+			to_chat(usr, "<span class='warning'>Cannot remove more job slots.</span>")
+			return
+		J.total_positions--
+
+		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has removed a [slot] job slot.")
+		message_admins("[ADMIN_TPMONTY(usr)] has removed a [slot] job slot.")
+
+
+	else if(href_list["unlimitjobslot"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/slot = href_list["unlimitjobslot"]
+
+		var/datum/job/J = SSjob.name_occupations[slot]
+		J.total_positions = -1
+
+		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has unlimited the [slot] job.")
+		message_admins("[ADMIN_TPMONTY(usr)] has unlimited the [slot] job.")
+
+
+	else if(href_list["limitjobslot"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/slot = href_list["limitjobslot"]
+
+		var/datum/job/J = SSjob.name_occupations[slot]
+		J.total_positions = J.current_positions
+
+		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has limited the [slot] job.")
+		message_admins("[ADMIN_TPMONTY(usr)] has limited the [slot] job.")

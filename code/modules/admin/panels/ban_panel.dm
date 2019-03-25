@@ -1,14 +1,3 @@
-//How many new ckey matches before we revert the stickyban to it's roundstart state
-//These are exclusive, so once it goes over one of these numbers, it reverts the ban
-#define STICKYBAN_MAX_MATCHES 20
-#define STICKYBAN_MAX_EXISTING_USER_MATCHES 5 //ie, users who were connected before the ban triggered
-#define STICKYBAN_MAX_ADMIN_MATCHES 2
-
-
-#define MAX_ADMINBANS_PER_ADMIN 1
-#define MAX_ADMINBANS_PER_HEADMIN 10
-
-
 /client/proc/mute(var/client/C, mute_type, force = FALSE)
 	if(!force)
 		if(!check_if_greater_rights_than(C) && !check_rights(R_BAN, FALSE))
@@ -38,8 +27,6 @@
 		else
 			return
 
-	C.prefs.load_preferences()
-
 	if(C.prefs.muted & mute_type)
 		muteunmute = "unmuted"
 		C.prefs.muted &= ~mute_type
@@ -47,13 +34,13 @@
 		muteunmute = "muted"
 		C.prefs.muted |= mute_type
 
-	C.prefs.save_preferences()
-
 	to_chat(C, "<span class='boldannounce'>You have been [muteunmute] from [mute_string].</span>")
 
 	if(!force)
 		log_admin_private("[key_name(usr)] has [muteunmute] [key_name(C)] from [mute_string].")
 		message_admins("[ADMIN_TPMONTY(usr)] has [muteunmute] [ADMIN_TPMONTY(C.mob)] from [mute_string].")
+
+	usr.client.holder.show_player_panel(C.mob)
 
 
 //checks client ban cache or DB ban table if ckey is banned from one or more roles
@@ -585,7 +572,7 @@
 
 	if(!check_rights(R_BAN))
 		return
-	
+
 	usr.client.holder.unbanpanel()
 
 
@@ -1004,11 +991,11 @@
 
 /datum/admins/proc/stickyban_gethtml(ckey, ban)
 	. = {"
-		<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove&ckey=[ckey]'>\[-\]</a>
-		<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=revert&ckey=[ckey]'>\[revert\]</a>
+		<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove&ckey=[ckey]'>Remove</a>
+		<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=revert&ckey=[ckey]'>Revert</a>
 		<b>[ckey]</b>
 		<br />"
-		[ban["message"]] <b><a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=edit&ckey=[ckey]'>\[Edit\]</a></b><br />
+		[ban["message"]] <b><a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=edit&ckey=[ckey]'>Edit</a></b><br />
 	"}
 	if (ban["admin"])
 		. += "[ban["admin"]]<br />"
@@ -1018,7 +1005,7 @@
 	for (var/key in ban["keys"])
 		if (ckey(key) == ckey)
 			continue
-		. += "<li><a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove_alt&ckey=[ckey]&alt=[ckey(key)]'>\[-\]</a>[key]</li>"
+		. += "<li><a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove_alt&ckey=[ckey]&alt=[ckey(key)]'>Remove</a>[key]</li>"
 	. += "</ol>\n"
 
 
@@ -1086,16 +1073,11 @@
 		banhtml += "<br /><hr />\n"
 		banhtml += usr.client.holder.stickyban_gethtml(ckey,ban)
 
-	var/html = {"
-	<head>
-		<title>Sticky Bans</title>
-	</head>
-	<body>
-		<h2>All Sticky Bans:</h2> <a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=add'>\[+\]</a><br>
-		[banhtml]
-	</body>
-	"}
-	usr << browse(html,"window=stickybans;size=700x400")
+	var/html = "<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=add'>Add</a><br>[banhtml]"
+
+	var/datum/browser/browser = new(usr, "stickybans", "<div align='center'>Sticky Bans</div>", 700, 400)
+	browser.set_content(html)
+	browser.open()
 
 
 //Blocks an attempt to connect before even creating our client datum thing.
@@ -1113,17 +1095,6 @@
 	var/ckey = ckey(key)
 	if(GLOB.admin_datums[ckey] || GLOB.deadmins[ckey])
 		admin = TRUE
-
-	//Whitelist
-	if(CONFIG_GET(flag/usewhitelist))
-		if(!check_whitelist(ckey))
-			if(admin)
-				log_admin("The admin [key] has been allowed to bypass the whitelist")
-				message_admins("<span class='adminnotice'>The admin [key] has been allowed to bypass the whitelist</span>")
-				addclientmessage(ckey,"<span class='adminnotice'>You have been allowed to bypass the whitelist</span>")
-			else
-				log_access("Failed Login: [key] - Not on whitelist")
-				return list("reason" = "whitelist", "desc" = "\nReason: You are not on the whitelist for this server")
 
 	//Guest Checking
 	if(!real_bans_only && IsGuestKey(key))

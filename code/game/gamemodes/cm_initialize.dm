@@ -214,7 +214,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		var/deathtime = world.time - xeno_candidate.timeofdeath
 		var/deathtimeminutes = round(deathtime / 600)
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-		if(deathtime < 3000 && ( !xeno_candidate.client.holder || !check_rights(xeno_candidate, R_ADMIN)))
+		if(deathtime < 3000 && ( !xeno_candidate.client.holder || !check_other_rights(xeno_candidate, R_ADMIN, FALSE)))
 			to_chat(xeno_candidate, "<span class='warning'>You have been dead for [deathtimeminutes >= 1 ? "[deathtimeminutes] minute\s and " : ""][deathtimeseconds] second\s.</span>")
 			to_chat(xeno_candidate, "<span class='warning'>You must wait 5 minutes before rejoining the game!</span>")
 			return FALSE
@@ -225,7 +225,6 @@ datum/game_mode/proc/initialize_post_queen_list()
 		return FALSE
 	if(!SSticker.mode.stored_larva || !istype(mother))
 		to_chat(xeno_candidate, "<span class='warning'>Something went awry. Can't spawn at the moment.</span>")
-		log_admin("[xeno_candidate.key] has failed to join as a larva.")
 		return FALSE
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(mother.loc)
 	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
@@ -237,7 +236,9 @@ datum/game_mode/proc/initialize_post_queen_list()
 	to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
 	new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 	SSticker.mode.stored_larva--
-	log_admin("[new_xeno.key] has joined as [new_xeno].")
+	log_admin("[key_name(new_xeno)] has joined as [new_xeno].")
+	message_admins("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")
+
 
 /datum/game_mode/proc/attempt_to_join_as_xeno(mob/xeno_candidate, instant_join = 0)
 	var/available_xenos[] = list()
@@ -296,9 +297,9 @@ datum/game_mode/proc/initialize_post_queen_list()
 /datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/new_xeno)
 	new_xeno.ghostize(0) //Make sure they're not getting a free respawn.
 	new_xeno.key = xeno_candidate.key
-	if(new_xeno.client) new_xeno.client.change_view(world.view)
-	message_admins("[key_name(new_xeno)] has joined as [new_xeno].")
-	log_admin("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")
+	new_xeno.client?.change_view(world.view)
+	log_admin("[key_name(new_xeno)] has joined as [new_xeno].")
+	message_admins("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")
 	if(isxeno(new_xeno)) //Dear lord
 		var/mob/living/carbon/Xenomorph/X = new_xeno
 		if(X.is_ventcrawling) X.add_ventcrawl(X.loc) //If we are in a vent, fetch a fresh vent map
@@ -755,20 +756,20 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 // generic landmark setup
 
-#define MAX_TUNNELS_PER_MAP 3
+#define MAX_TUNNELS_PER_MAP 10
 
 /datum/game_mode/proc/setup_xeno_tunnels()
 	var/obj/structure/tunnel/T
 	var/i = 0
 	var/turf/t
-	while(GLOB.xeno_tunnel_landmarks.len && i++ < MAX_TUNNELS_PER_MAP)
+	while(length(GLOB.xeno_tunnel_landmarks) && i++ < MAX_TUNNELS_PER_MAP)
 		t = pick(GLOB.xeno_tunnel_landmarks)
 		GLOB.xeno_tunnel_landmarks -= t
 		T = new(t)
 		T.id = "hole[i]"
 		for(var/x in GLOB.xeno_tunnels)
 			var/obj/structure/tunnel/TO = x
-			if(TO.id != T.id || T == TO || !TO.other)
+			if(TO.id != T.id || T == TO || TO.other)
 				continue
 			TO.other = T
 			T.other = TO

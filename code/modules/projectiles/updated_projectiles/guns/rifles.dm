@@ -83,7 +83,7 @@
 	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/vlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
 	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
@@ -295,7 +295,7 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 14)
 
 /obj/item/weapon/gun/rifle/lmg/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)

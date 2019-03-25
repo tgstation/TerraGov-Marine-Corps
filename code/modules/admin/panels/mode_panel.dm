@@ -1,11 +1,11 @@
-/datum/admins/proc/gamemode_panel()
+/datum/admins/proc/mode_panel()
 	set category = "Admin"
 	set name = "Mode Panel"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!SSticker?.mode || !EvacuationAuthority)
+	if(!SSticker?.mode || !SSevacuation)
 		return
 
 	var/dat
@@ -14,18 +14,18 @@
 	dat += "<html><head><title>Round Status</title></head>"
 	dat += "<body><h1><b>Round Status</b></h1>"
 	dat += "Current Game Mode: <B>[SSticker.mode.name]</B><BR>"
-	dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
+	dat += "Round Duration: <B>[worldtime2text()]</B><BR>"
 
 	var/countdown = SSticker.mode.get_queen_countdown()
 	if(countdown)
-		dat += "Queen Re-Check: [countdown]"
+		dat += "Queen Re-Check: [countdown]<br>"
 
 	dat += "<b>Evacuation:</b> "
-	switch(EvacuationAuthority.evac_status)
+	switch(SSevacuation.evac_status)
 		if(EVACUATION_STATUS_STANDING_BY)
 			dat += "STANDING BY"
 		if(EVACUATION_STATUS_INITIATING)
-			dat += "IN PROGRESS: [EvacuationAuthority.get_status_panel_eta()]"
+			dat += "IN PROGRESS: [SSevacuation.get_status_panel_eta()]"
 		if(EVACUATION_STATUS_COMPLETE)
 			dat += "COMPLETE"
 
@@ -39,7 +39,7 @@
 	dat += "<br>"
 
 	dat += "<b>Self Destruct:</b> "
-	switch(EvacuationAuthority.dest_status)
+	switch(SSevacuation.dest_status)
 		if(NUKE_EXPLOSION_INACTIVE)
 			dat += "INACTIVE"
 		if(NUKE_EXPLOSION_ACTIVE)
@@ -53,50 +53,41 @@
 
 	dat += "<a href='?src=[ref];evac_authority=init_dest'>Unlock Self Destruct control panel for humans</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=cancel_dest'>Lock Self Destruct control panel for humans</a><br>"
-	dat += "<a href='?src=[ref];evac_authority=use_dest'>Destruct the [MAIN_SHIP_NAME] NOW</a><br>"
-	dat += "<a href='?src=[ref];evac_authority=toggle_dest'>Toggle Self Destruct Permission (does not affect evac in progress)</a><br>"
-
-	dat += "<br>"
-
-	dat += "<A HREF='?_src_=vars;[HrefToken()];vars=[REF(EvacuationAuthority)]'>VV Evacuation/SD Controller</A><br>"
-	dat += "<A HREF='?_src_=vars;[HrefToken()];vars=[REF(GLOB.faxes)]'>VV Faxes List</A><br>"
-	dat += "<A HREF='?_src_=vars;[HrefToken()];vars=[REF(GLOB.custom_outfits)]'>VV Outfit List</A><br>"
+	dat += "<a href='?src=[ref];evac_authority=use_dest'>Destruct the [CONFIG_GET(string/ship_name)] NOW</a><br>"
+	dat += "<a href='?src=[ref];evac_authority=toggle_dest'>Toggle Self Destruct Permission</a><br>"
 
 	dat += "<br><br>"
 
 	if(length(SSticker.mode.xenomorphs))
 		dat += "<table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
 		for(var/datum/mind/L in SSticker.mode.xenomorphs)
-			var/mob/M = L.current
-			var/location = ""
-			if(M)
-				location = get_area(M.loc)
-				dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined") ? " - [M.client.prefs.xeno_name]" : ""][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-				dat += "<td>[location]</td>"
-				dat += "<td><a href='?src=[ref];playerpanel=[REF(M)]'>PP</A></td></TR>"
+			var/mob/living/carbon/Xenomorph/X = L.current
+			if(!istype(X) || X.stat == DEAD)
+				continue
+			dat += "<tr><td><a href='?priv_msg=[REF(X)]'>[X.real_name]</a>[X.client ? "" : " <i>(logged out)</i>"][(X.client?.prefs?.xeno_name && X.client.prefs.xeno_name != "Undefined") ? " - [X.client.prefs.xeno_name]" : ""]</td>"
+			dat += "<td>[get_area(get_turf(X))]</td>"
+			dat += "<td><a href='?src=[ref];playerpanel=[REF(X)]'>PP</A></td></TR>"
 		dat += "</table>"
 
 	if(SSticker.liaison)
 		dat += "<br><table cellspacing=5><tr><td><B>Corporate Liaison</B></td><td></td><td></td></tr>"
-		var/mob/M = SSticker.liaison.current
-		var/location = ""
-		if(M)
-			location = get_area(M.loc)
-			dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-			dat += "<td>[location]</td>"
-			dat += "<td><a href='?src=[ref];playerpanel=[REF(M)]'>PP</A></td></TR>"
+		var/mob/living/carbon/human/H = SSticker.liaison.current
+		if(!istype(H))
+			return
+		dat += "<tr><td><a href='?priv_msg=[REF(H)]'>[H.real_name]</a>[H.client ? "" : " <i>(logged out)</i>"][H.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+		dat += "<td>[get_area(get_turf(H))]</td>"
+		dat += "<td><a href='?src=[ref];playerpanel=[REF(H)]'>PP</A></td></TR>"
 		dat += "</table>"
 
 	if(length(SSticker.mode.survivors))
 		dat += "<br><table cellspacing=5><tr><td><B>Survivors</B></td><td></td><td></td></tr>"
 		for(var/datum/mind/L in SSticker.mode.survivors)
-			var/mob/M = L.current
-			var/location = ""
-			if(M)
-				location = get_area(M.loc)
-				dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-				dat += "<td>[location]</td>"
-				dat += "<td><a href='?src=[ref];playerpanel=[REF(M)]'>PP</A></td></TR>"
+			var/mob/living/carbon/human/H = L.current
+			if(!istype(H))
+				continue
+			dat += "<tr><td><a href='?priv_msg=[REF(H)]'>[H.real_name]</a>[H.client ? "" : " <i>(logged out)</i>"][H.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+			dat += "<td>[get_area(get_turf(H))]</td>"
+			dat += "<td><a href='?src=[ref];playerpanel=[REF(H)]'>PP</A></td></TR>"
 		dat += "</table>"
 
 	dat += "</body></html>"

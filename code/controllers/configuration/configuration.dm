@@ -49,7 +49,7 @@
 	if(_directory)
 		directory = _directory
 	if(entries)
-		CRASH("[THIS_PROC_TYPE_WEIRD] called more than once!")
+		CRASH("/datum/controller/configuration/Load() called more than once!")
 	InitEntries()
 	LoadModes()
 	if(fexists("[directory]/config.txt") && LoadEntries("config.txt") <= 1)
@@ -207,7 +207,7 @@
 
 /datum/controller/configuration/stat_entry()
 	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Edit", src)
+		statclick = new/obj/effect/statclick/debug(null, "Debug", src)
 	stat("[name]:", statclick)
 
 

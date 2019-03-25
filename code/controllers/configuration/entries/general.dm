@@ -3,6 +3,8 @@ Basics, the most important.
 */
 /datum/config_entry/string/server_name	// The name used for the server almost universally.
 
+/datum/config_entry/string/ship_name //The name of the main marine ship
+
 /datum/config_entry/string/serversqlname	// Short form of the previous used for the DB.
 
 /datum/config_entry/string/server // If you set this location, it sends you there instead of trying to reconnect.
@@ -30,6 +32,8 @@ Basics, the most important.
 
 /datum/config_entry/string/donationurl
 
+/datum/config_entry/string/dburl
+
 /datum/config_entry/string/shipurl
 
 /datum/config_entry/string/lv624url
@@ -43,6 +47,8 @@ Basics, the most important.
 /datum/config_entry/string/whiskeyoutposturl
 
 /datum/config_entry/string/python_path
+
+/datum/config_entry/string/restart_message
 
 /datum/config_entry/flag/guest_ban
 
@@ -162,6 +168,13 @@ Administrative related.
 /datum/config_entry/number/notify_new_player_age
 	min_val = -1
 
+/datum/config_entry/flag/allow_shutdown
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/string/tgs3_commandline_path
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+	config_entry_value = "C:\\Program Files (x86)\\TG Station Server\\TGCommandLine.exe"
+
 /*
 Voting
 */
@@ -278,28 +291,3 @@ The default value assumes youtube-dl is in your system PATH
 */
 /datum/config_entry/string/invoke_youtubedl
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
-
-/*
-Not yet implemented.
-*/
-/datum/config_entry/flag/norespawn
-
-/*
-Legacy - work on reworking/removing these.
-*/
-/datum/config_entry/number/max_maint_drones
-
-/datum/config_entry/flag/allow_drone_spawn
-
-/datum/config_entry/number/drone_build_time
-
-/datum/config_entry/flag/usealienwhitelist
-
-/datum/config_entry/flag/load_legacy_ranks_only
-
-/datum/config_entry/flag/allow_shutdown
-	protection = CONFIG_ENTRY_LOCKED
-
-/datum/config_entry/string/tgs3_commandline_path
-	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
-	config_entry_value = "C:\\Program Files (x86)\\TG Station Server\\TGCommandLine.exe"

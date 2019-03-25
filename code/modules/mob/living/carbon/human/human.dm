@@ -144,6 +144,7 @@
 	. += "---"
 	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
 	.["Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
+	.["Drop Everything"] = "?_src_=vars;[HrefToken()];dropeverything=[REF(src)]"
 	.["Copy Outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
 
 
@@ -175,10 +176,9 @@
 	. = ..()
 
 	if(statpanel("Stats"))
-		if(EvacuationAuthority)
-			var/eta_status = EvacuationAuthority.get_status_panel_eta()
-			if(eta_status)
-				stat("Evacuation in:", eta_status)
+		var/eta_status = SSevacuation?.get_status_panel_eta()
+		if(eta_status)
+			stat("Evacuation in:", eta_status)
 
 		if(internal)
 			stat("Internal Atmosphere Info", internal.name)
@@ -203,38 +203,46 @@
 
 	var/b_loss = null
 	var/f_loss = null
+	var/armor = max(0, 1 - getarmor(null, "bomb"))
 	switch(severity)
 		if(1)
-			b_loss += rand(125, 175)
-			if(!prob(getarmor(null, "bomb") + 75)) //Much less likely to gib than before
-				gib()
-				return
-			else
-				var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
-				throw_at(target, 200, 4)
-		if(2)
-			b_loss += rand(50, 70)
-			f_loss += rand(50, 70)
+			b_loss += rand(120, 160) * armor	//Probably instant death
+			f_loss += rand(120, 160) * armor	//Probably instant death
 
-			if(prob(getarmor(null, "bomb")))
-				b_loss = b_loss/1.5
-				f_loss = f_loss/1.5
+			var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
+			throw_at(target, 200, 4)
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 30
-				ear_deaf += 120
-			if(prob(70))
-				KnockOut(10)
+				ear_damage += 60 * armor
+				ear_deaf += 240 * armor
+
+			adjust_stagger(12 * armor)
+			add_slowdown(round(12 * armor,0.1))
+			KnockOut(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
+
+		if(2)
+			b_loss += rand(60, 80) * armor	//Ouchie time. Armor makes it survivable
+			f_loss += rand(60, 80) * armor	//Ouchie time. Armor makes it survivable
+
+			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
+				ear_damage += 30 * armor
+				ear_deaf += 120 * armor
+
+			adjust_stagger(6 * armor)
+			add_slowdown(round(6 * armor,0.1))
+			KnockDown(4 * armor)
 
 		if(3)
-			b_loss += rand(50, 70)
-			if(prob(getarmor(null, "bomb")))
-				b_loss = b_loss/2
+			b_loss += rand(30, 40) * armor
+			f_loss += rand(30, 40) * armor
+
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 15
-				ear_deaf += 60
-			if(prob(50))
-				KnockOut(10)
+				ear_damage += 15 * armor
+				ear_deaf += 60 * armor
+
+			adjust_stagger(3 * armor)
+			add_slowdown(round(3 * armor,0.1))
+			KnockDown(2 * armor)
 
 	var/update = 0
 
@@ -329,7 +337,7 @@
 	<BR><B>Head:</B> <A href='?src=\ref[src];item=[SLOT_HEAD]'>[(head ? head : "Nothing")]</A>
 	<BR><B>Shoes:</B> <A href='?src=\ref[src];item=[SLOT_SHOES]'>[(shoes ? shoes : "Nothing")]</A>
 	<BR><B>Belt:</B> <A href='?src=\ref[src];item=[SLOT_BELT]'>[(belt ? belt : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(belt, /obj/item/tank) && !internal) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
-	<BR><B>Uniform:</B> <A href='?src=\ref[src];item=[SLOT_W_UNIFORM]'>[(w_uniform ? w_uniform : "Nothing")]</A> [(suit) ? ((suit.has_sensor == 1) ? " <A href='?src=\ref[src];sensor=1'>Sensors</A>" : "") :]
+	<BR><B>Uniform:</B> <A href='?src=\ref[src];item=[SLOT_W_UNIFORM]'>[(w_uniform ? w_uniform : "Nothing")]</A> [(suit) ? ((suit.has_sensor == 1) ? " <A href='?src=\ref[src];sensor=1'>Sensors</A>" : "") : ""]
 	<BR><B>(Exo)Suit:</B> <A href='?src=\ref[src];item=[SLOT_WEAR_SUIT]'>[(wear_suit ? wear_suit : "Nothing")]</A>
 	<BR><B>Back:</B> <A href='?src=\ref[src];item=[SLOT_BACK]'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
 	<BR><B>ID:</B> <A href='?src=\ref[src];item=[SLOT_WEAR_ID]'>[(wear_id ? wear_id : "Nothing")]</A>
@@ -586,7 +594,7 @@
 						if (internal)
 							visible_message("<span class='notice'>[src] is now running on internals.</span>", null, null, 1)
 							internal.add_fingerprint(usr)
-							if (hud_used. && hud_used.internals)
+							if (hud_used && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
 
 				// Update strip window
@@ -1638,3 +1646,72 @@
 /mob/living/carbon/human/a_select_zone(input as text, screen_num as null|num)
 	screen_num = 21
 	return ..()
+
+
+/mob/living/carbon/human/verb/check_skills()
+	set category = "IC"
+	set name = "Check Skills"
+
+	var/dat
+	if(!mind)
+		dat += "You have no mind!"
+	else if(!mind.cm_skills)
+		dat += "You don't have any skills restrictions. Enjoy."
+	else
+		var/datum/skills/S = mind.cm_skills
+		for(var/i = 1 to length(S.values))
+			var/index = S.values[i]
+			var/value = max(S.values[index], 0)
+			dat += "[index]: [value]<br>"
+
+	var/datum/browser/popup = new(src, "skills", "<div align='center'>Skills</div>", 300, 600)
+	popup.set_content(dat)
+	popup.open(FALSE)
+
+
+
+/mob/living/carbon/human/proc/set_rank(rank)
+	if(!mind)
+		job = rank
+		return
+
+	var/datum/job/J = SSjob.name_occupations[rank]
+	var/datum/outfit/job/O = new J.outfit
+	var/id = O.id ? O.id : /obj/item/card/id
+	var/obj/item/card/id/I = new id
+	var/datum/skills/L = new J.skills_type
+	mind.cm_skills = L
+	mind.comm_title = J.comm_title
+
+	if(wear_id)
+		qdel(wear_id)
+
+	job = rank
+	faction = J.faction
+
+	equip_to_slot_or_del(I, SLOT_WEAR_ID)
+
+	SSjob.AssignRole(src, rank)
+	O.post_equip(src)
+
+
+/mob/living/carbon/human/proc/set_equipment(equipment)
+	if(!equipment)
+		return
+
+	var/list/job_paths = subtypesof(/datum/outfit/job)
+	var/list/outfits = list()
+	for(var/path in job_paths)
+		var/datum/outfit/O = path
+		if(initial(O.can_be_admin_equipped))
+			outfits[initial(O.name)] = path
+
+	for(var/datum/outfit/D in GLOB.custom_outfits)
+		outfits[D.name] = D
+
+	if(!(equipment in outfits))
+		return
+
+	var/datum/outfit/O = new outfits[equipment]
+	delete_equipment(TRUE)
+	equipOutfit(O, TRUE)

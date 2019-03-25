@@ -17,6 +17,8 @@
 
 #define DEBUG_STAGGER_SLOWDOWN	0
 
+GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/effect/alien/egg, /obj/structure/mineral_door, /obj/effect/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
+
 /datum/ammo
 	var/name 		= "generic bullet"
 	var/icon 		= 'icons/obj/items/projectiles.dmi'
@@ -723,7 +725,7 @@
 	damage_falloff = 0
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SKIPS_HUMANS
-	accurate_range_min = 10
+	accurate_range_min = 5
 
 /datum/ammo/bullet/sniper/New()
 	..()
@@ -803,11 +805,6 @@
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC
 	icon_state 	= "bullet"
-
-/datum/ammo/bullet/smartgun/lethal/New()
-	..()
-	damage = CONFIG_GET(number/combat_define/low_hit_damage)
-	penetration = CONFIG_GET(number/combat_define/mlow_armor_penetration)
 
 /datum/ammo/bullet/smartgun/dirty
 	name = "irradiated smartgun bullet"
@@ -1261,7 +1258,7 @@
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
-	ammo_reagents = list("xeno_toxin" = 6)
+	ammo_reagents = list("xeno_toxin" = 7)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	spit_cost = 50
 	added_spit_delay = 5
@@ -1275,7 +1272,7 @@
 	max_range = CONFIG_GET(number/combat_define/near_shell_range)
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
-	damage = CONFIG_GET(number/combat_define/mlow_hit_damage)
+	damage = CONFIG_GET(number/combat_define/min_hit_damage)
 	damage_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_var_high = CONFIG_GET(number/combat_define/mlow_proj_variance)
 
@@ -1302,13 +1299,13 @@
 
 /datum/ammo/xeno/toxin/upgrade1
 	name = "neurotoxic spit"
-	ammo_reagents = list("xeno_toxin" = 7.2)
+	ammo_reagents = list("xeno_toxin" = 8.05)
 
 /datum/ammo/xeno/toxin/upgrade2
-	ammo_reagents = list("xeno_toxin" = 7.8)
+	ammo_reagents = list("xeno_toxin" = 8.75)
 
 /datum/ammo/xeno/toxin/upgrade3
-	ammo_reagents = list("xeno_toxin" = 8.1)
+	ammo_reagents = list("xeno_toxin" = 9.1)
 
 
 /datum/ammo/xeno/toxin/medium //Queen
@@ -1322,17 +1319,17 @@
 	damage = CONFIG_GET(number/combat_define/low_hit_damage)
 
 /datum/ammo/xeno/toxin/medium/upgrade1
-	ammo_reagents = list("xeno_toxin" = 10.2)
+	ammo_reagents = list("xeno_toxin" = 9.78)
 
 /datum/ammo/xeno/toxin/medium/upgrade2
-	ammo_reagents = list("xeno_toxin" = 11.1)
+	ammo_reagents = list("xeno_toxin" = 10.63)
 
 /datum/ammo/xeno/toxin/medium/upgrade3
-	ammo_reagents = list("xeno_toxin" = 11.48)
+	ammo_reagents = list("xeno_toxin" = 11.05)
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	ammo_reagents = list("xeno_toxin" = 11)
+	ammo_reagents = list("xeno_toxin" = 10)
 	added_spit_delay = 15
 	spit_cost = 100
 
@@ -1341,13 +1338,13 @@
 	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	ammo_reagents = list("xeno_toxin" = 13.2)
+	ammo_reagents = list("xeno_toxin" = 11.5)
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	ammo_reagents = list("xeno_toxin" = 14.3)
+	ammo_reagents = list("xeno_toxin" = 12.5)
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	ammo_reagents = list("xeno_toxin" = 14.85)
+	ammo_reagents = list("xeno_toxin" = 13)
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
@@ -1369,13 +1366,21 @@
 	drop_resin(get_turf(M))
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
-		C.add_slowdown(0.7) //slow em down
+		if( (xeno_hivenumber(C) && xeno_hivenumber(C) == xeno_hivenumber(P.firer) ) )
+			return
+		C.add_slowdown(2) //slow em down
+		C.next_move_slowdown += 8 //really slow down their next move, as if they stepped in sticky doo doo
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/O,obj/item/projectile/P)
-	drop_resin(get_turf(P))
+	var/turf/T = get_turf(O)
+	if(!T)
+		T = get_turf(P)
+	drop_resin(T)
 
 /datum/ammo/xeno/sticky/on_hit_turf(turf/T,obj/item/projectile/P)
-	drop_resin(get_turf(P))
+	if(!T)
+		T = get_turf(P)
+	drop_resin(T)
 
 /datum/ammo/xeno/sticky/do_at_max_range(obj/item/projectile/P)
 	drop_resin(get_turf(P))
@@ -1383,15 +1388,11 @@
 /datum/ammo/xeno/sticky/proc/drop_resin(turf/T)
 	if(T.density)
 		return
+
 	for(var/obj/O in T.contents)
-		if(istype(O, /obj/item/clothing/mask/facehugger))
+		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
-		if(istype(O, /obj/effect/alien/egg))
-			return
-		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin) || istype(O, /obj/structure/bed))
-			return
-		if(O.density && !(O.flags_atom & ON_BORDER))
-			return
+
 	new /obj/effect/alien/resin/sticky/thin(T)
 
 /datum/ammo/xeno/acid
@@ -1431,15 +1432,25 @@
 	damage = CONFIG_GET(number/combat_define/low_hit_damage)
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/item/projectile/P)
-	drop_acid(get_turf(M))
+	var/turf/T = get_turf(M)
+	if(!T)
+		T = get_turf(P)
+	drop_acid(T)
+
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
 		C.acid_process_cooldown = world.time
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/item/projectile/P)
-	drop_acid(get_turf(P))
+	var/turf/T = get_turf(O)
+	if(!T)
+		T = get_turf(P)
+	drop_acid(T)
+
 
 /datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/item/projectile/P)
+	if(!T)
+		T = get_turf(P)
 	drop_acid(T)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(obj/item/projectile/P)
@@ -1448,6 +1459,7 @@
 /datum/ammo/xeno/acid/proc/drop_acid(turf/T) //Leaves behind a short lived acid pool; lasts for 1-3 seconds.
 	if(T.density)
 		return
+
 	new /obj/effect/xenomorph/spray(T, 10)
 
 /datum/ammo/xeno/boiler_gas

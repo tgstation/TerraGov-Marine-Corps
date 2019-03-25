@@ -63,7 +63,7 @@
 		if(0)
 			overlays -= I
 			qdel(I)
-		if(1) 
+		if(1)
 			overlays += I
 
 /turf/open/floor/plating/plating_catwalk/attackby(obj/item/W as obj, mob/user as mob)
@@ -261,12 +261,14 @@
 
 //Outerhull
 
-/turf/open/floor/almayer_hull
+/turf/open/floor/theseus_hull
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "outerhull"
 	name = "hull"
 	hull_floor = TRUE
 
+/turf/open/floor/theseus_hull/dir
+	icon_state = "outerhull_dir"
 
 
 

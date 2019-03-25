@@ -316,14 +316,11 @@
 /mob/living/carbon/human/ignore_pull_delay()
 	return isyautjastrict(src) //Predators aren't slowed when pulling their prey.
 
-/mob/living/proc/can_inject()
-	return TRUE
-
 /mob/living/is_injectable(allowmobs = TRUE)
-	return (allowmobs && reagents && can_inject())
+	return (allowmobs && can_inject())
 
 /mob/living/is_drawable(allowmobs = TRUE)
-	return (allowmobs && reagents && can_inject())
+	return (allowmobs && can_inject())
 
 /mob/living/Bump(atom/movable/AM, yes)
 	if(buckled || !yes || now_pushing)
@@ -475,6 +472,11 @@
 		attack_icon.pixel_y = new_pix_y
 
 
+/mob/living/proc/offer_mob()
+	for(var/mob/dead/observer/O in GLOB.dead_mob_list)
+		to_chat(O, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] \[<a href='byond://?src=[REF(O)];claim=[REF(src)]'>CLAIM</a>\] \[<a href='byond://?src=[REF(O)];track=[REF(src)]'>FOLLOW</a>\]</span><hr><br>")
+
+
 //used in datum/reagents/reaction() proc
 /mob/living/proc/get_permeability_protection()
 	return LIVING_PERM_COEFF
@@ -585,7 +587,7 @@ below 100 is not dizzy
 /mob/living/proc/equip_preference_gear(client/C)
 	if(!C?.prefs || !istype(back, /obj/item/storage/backpack))
 		return
-	
+
 	var/datum/preferences/P = C.prefs
 	var/list/gear = P.gear
 

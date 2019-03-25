@@ -67,7 +67,6 @@
 	if(screen == 1)
 		dat += "Select an event to trigger:<ul>"
 		dat += "<li><A href='?src=\ref[src];triggerevent=Red alert'>Red alert</A></li>"
-		dat += "<li><A href='?src=\ref[src];triggerevent=Emergency Response Team'>Emergency Response Team</A></li>"
 
 		dat += "<li><A href='?src=\ref[src];triggerevent=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
 		dat += "<li><A href='?src=\ref[src];triggerevent=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
@@ -148,22 +147,11 @@
 	switch(event)
 		if("Red alert")
 			set_security_level(SEC_LEVEL_RED)
-			feedback_inc("alert_keycard_auth_red",1)
 		if("Grant Emergency Maintenance Access")
 			make_maint_all_access()
-			feedback_inc("alert_keycard_auth_maintGrant",1)
 		if("Revoke Emergency Maintenance Access")
 			revoke_maint_all_access()
-			feedback_inc("alert_keycard_auth_maintRevoke",1)
-		if("Emergency Response Team")
-			if(is_ert_blocked())
-				to_chat(usr, "<span class='warning'>All emergency response teams are dispatched and can not be called at this time.</span>")
-				return
 
-			feedback_inc("alert_keycard_auth_ert",1)
-
-/obj/machinery/keycard_auth/proc/is_ert_blocked()
-	return SSticker.mode && SSticker.mode.ert_disabled
 
 var/global/maint_all_access = 0
 

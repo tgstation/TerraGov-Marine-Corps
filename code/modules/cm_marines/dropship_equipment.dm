@@ -65,10 +65,16 @@
 	base_category = DROPSHIP_WEAPON
 
 /obj/effect/attach_point/weapon/dropship1
-	ship_tag = "TGS Theseus Dropship 1"
+
+/obj/effect/attach_point/weapon/dropship1/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/effect/attach_point/weapon/dropship2
-	ship_tag = "TGS Theseus Dropship 2"
+
+/obj/effect/attach_point/weapon/dropship2/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 
 
 /obj/effect/attach_point/crew_weapon
@@ -76,10 +82,18 @@
 	base_category = DROPSHIP_CREW_WEAPON
 
 /obj/effect/attach_point/crew_weapon/dropship1
-	ship_tag = "TGS Theseus Dropship 1"
+
+
+/obj/effect/attach_point/crew_weapon/dropship1/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/effect/attach_point/crew_weapon/dropship2
-	ship_tag = "TGS Theseus Dropship 2"
+
+
+/obj/effect/attach_point/crew_weapon/dropship2/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 
 
 /obj/effect/attach_point/electronics
@@ -88,10 +102,17 @@
 	icon_state = "equip_base_front"
 
 /obj/effect/attach_point/electronics/dropship1
-	ship_tag = "TGS Theseus Dropship 1"
+
+
+/obj/effect/attach_point/electronics/dropship1/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/effect/attach_point/electronics/dropship2
-	ship_tag = "TGS Theseus Dropship 2"
+
+/obj/effect/attach_point/electronics/dropship2/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 
 
 /obj/effect/attach_point/fuel
@@ -101,20 +122,32 @@
 	base_category = DROPSHIP_FUEL_EQP
 
 /obj/effect/attach_point/fuel/dropship1
-	ship_tag = "TGS Theseus Dropship 1"
+
+/obj/effect/attach_point/fuel/dropship1/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/effect/attach_point/fuel/dropship2
-	ship_tag = "TGS Theseus Dropship 2"
+
+/obj/effect/attach_point/fuel/dropship2/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 
 
 /obj/effect/attach_point/computer
 	base_category = DROPSHIP_COMPUTER
 
 /obj/effect/attach_point/computer/dropship1
-	ship_tag = "TGS Theseus Dropship 1"
+
+/obj/effect/attach_point/computer/dropship1/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/effect/attach_point/computer/dropship2
-	ship_tag = "TGS Theseus Dropship 2"
+
+/obj/effect/attach_point/computer/dropship2/Initialize()
+	. = ..()
+	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 
 
 
@@ -298,7 +331,7 @@
 		if(deployed_turret)
 			deployed_turret.setDir(dir)
 			if(linked_shuttle && deployed_turret.camera)
-				if(linked_shuttle.shuttle_tag == "[MAIN_SHIP_NAME] Dropship 1")
+				if(linked_shuttle.shuttle_tag == "[CONFIG_GET(string/ship_name)] Dropship 1")
 					deployed_turret.camera.network.Add("dropship1") //accessible via the dropship camera console
 				else
 					deployed_turret.camera.network.Add("dropship2")

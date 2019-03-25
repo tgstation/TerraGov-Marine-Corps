@@ -593,14 +593,14 @@ GLOBAL_PROTECT(VVpixelmovement)
 			to_chat(src, "If a direction, direction is: [dir_text]")
 
 	if(autodetect_class && default != VV_NULL)
-		if (default == VV_TEXT)
+		if(default == VV_TEXT)
 			default = VV_MESSAGE
 		class = default
 
 	var/list/value = vv_get_value(class, default, var_value, extra_classes = list(VV_LIST), var_name = variable)
 	class = value["class"]
 
-	if (!class)
+	if(!class)
 		return
 	var/var_new = value["value"]
 
@@ -626,15 +626,14 @@ GLOBAL_PROTECT(VVpixelmovement)
 				var_new = replacetext(var_new,"\[[V]]","[O.vars[V]]")
 
 
-	if (O.vv_edit_var(variable, var_new) == FALSE)
+	if(O.vv_edit_var(variable, var_new) == FALSE)
 		to_chat(src, "Your edit was rejected by the object.")
 		return
 	vv_update_display(O, "varedited", VV_MSG_EDITED)
 	log_world("### VarEdit by [key_name(src)]: [O.type] [variable]=[var_value] => [var_new]")
 	log_admin("[key_name(src)] modified [original_name]'s [variable] from [html_encode("[var_value]")] to [html_encode("[var_new]")]")
-	var/msg = "[key_name_admin(src)] modified [original_name]'s [variable] from [var_value] to [var_new]"
-	message_admins(msg)
-	admin_ticket_log(O, msg)
+	message_admins("[ADMIN_TPMONTY(usr)] modified [original_name]'s [variable] from [var_value] to [var_new]")
+	admin_ticket_log(O, "[key_name_admin(src)] modified [original_name]'s [variable] from [var_value] to [var_new]")
 	return TRUE
 
 

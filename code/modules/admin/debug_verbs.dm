@@ -13,7 +13,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 /datum/admins/proc/proccall_atom(datum/A as null|area|mob|obj|turf)
-	set category = "Debug"
+	set category = null
 	set name = "Atom ProcCall"
 	set waitfor = FALSE
 
@@ -198,7 +198,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			del_amt++
 			qdel(O)
 
-	log_admin("[key_name(src)] deleted all instances of [hsbitem] ([del_amt]).")
+	log_admin("[key_name(usr)] deleted all instances of [hsbitem] ([del_amt]).")
 	message_admins("[ADMIN_TPMONTY(usr)] deleted all instances of [hsbitem] ([del_amt]).")
 
 
@@ -211,8 +211,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 
 	SSmachines.makepowernets()
-	log_admin("[key_name(src)] has remade the powernet. makepowernets() called.")
-	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.")
+	log_admin("[key_name(usr)] has remade the powernet. makepowernets() called.")
+	message_admins("[ADMIN_TPMONTY(usr)] has remade the powernets. makepowernets() called.")
+
 
 /datum/admins/proc/debug_mob_lists()
 	set category = "Debug"
@@ -334,9 +335,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 /datum/admins/proc/delete_atom(atom/O as obj|mob|turf in world)
-	set category = "Debug"
+	set category = null
 	set name = "Delete"
-	set desc = "Delete an atom."
 
 	if(!check_rights(R_DEBUG))
 		return
@@ -402,38 +402,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[ADMIN_TPMONTY(usr)] has restarted the [controller] controller.")
 
 
-/datum/admins/proc/debug_controller(controller in list("Master", "Lighting", "Sun", "Radio", "Supply", "Shuttles", "Configuration", "Cameras", "Global Vars"))
-	set category = "Debug"
-	set name = "Debug Controllers"
-	set desc = "Debug the various periodic loop controllers for the game."
-
-	if(!check_rights(R_DEBUG))
-		return
-
-	switch(controller)
-		if("Master")
-			usr.client.debug_variables(Master)
-		if("Lighting")
-			usr.client.debug_variables(lighting_controller)
-		if("Sun")
-			usr.client.debug_variables(sun)
-		if("Radio")
-			usr.client.debug_variables(radio_controller)
-		if("Supply")
-			usr.client.debug_variables(supply_controller)
-		if("Shuttles")
-			usr.client.debug_variables(shuttle_controller)
-		if("Configuration")
-			usr.client.debug_variables(config)
-		if("Cameras")
-			usr.client.debug_variables(cameranet)
-		if("Global Vars")
-			usr.client.debug_variables(GLOB)
-
-	log_admin("[key_name(usr)] is debugging the [controller] controller.")
-	message_admins("[ADMIN_TPMONTY(usr)] is debugging the [controller] controller.")
-
-
 /datum/admins/proc/check_contents()
 	set category = "Debug"
 	set name = "Check Contents"
@@ -453,12 +421,12 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 				return
 			M = selection:mob
 		if("Cliented Mob")
-			var/selection = input("Please, select a cliented mob.", "Check Contents") as null|anything in sortList(GLOB.player_list)
+			var/selection = input("Please, select a cliented mob.", "Check Contents") as null|anything in sortNames(GLOB.player_list)
 			if(!selection)
 				return
 			M = selection
 		if("Mob")
-			var/selection = input("Please, select a mob.", "Check Contents") as null|anything in sortList(GLOB.mob_list)
+			var/selection = input("Please, select a mob.", "Check Contents") as null|anything in sortNames(GLOB.mob_list)
 			if(!selection)
 				return
 			M = selection
@@ -469,8 +437,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/dat = "<b>Contents of [key_name(M)]:</b><hr>"
 
 	var/list/L = M.get_contents()
-	for(var/t in L)
-		dat += "[t]<br>"
+	for(var/i in L)
+		var/atom/A = i
+		dat += "[A] [ADMIN_VV(A)]<br>"
 
 	usr << browse(dat, "window=contents")
 
@@ -478,21 +447,32 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[ADMIN_TPMONTY(usr)] checked the contents of [ADMIN_TPMONTY(M)].")
 
 
-/datum/admins/proc/update_mob_sprite()
+
+/datum/admins/proc/reestablish_db_connection()
 	set category = "Debug"
-	set name = "Update Mob Sprite"
-	set desc = "Should fix any mob sprite errors."
+	set name = "Reestablish DB Connection"
 
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/selection = input("Please, select a human!", "Update Mob Sprite", null, null) as null|anything in sortmobs(GLOB.human_mob_list)
-	if(!selection)
+	if(!CONFIG_GET(flag/sql_enabled))
+		to_chat(usr, "<span class='adminnotice'>The Database is not enabled!</span>")
 		return
 
-	var/mob/living/carbon/human/H = selection
+	if(SSdbcore.IsConnected())
+		if(alert("The database is already connected! If you *KNOW* that this is incorrect, you can force a reconnection", "The database is already connected!", "Force Reconnect", "Cancel") != "Force Reconnect")
+			return
 
-	H.regenerate_icons()
+		SSdbcore.Disconnect()
+		log_admin("[key_name(usr)] has forced the database to disconnect")
+		message_admins("[ADMIN_TPMONTY(usr)] has forced the database to disconnect!")
 
-	log_admin("[key_name(usr)] updated the mob sprite of [key_name(H)].")
-	message_admins("[ADMIN_TPMONTY(usr)] updated the mob sprite of [ADMIN_TPMONTY(H)].")
+	log_admin("[key_name(usr)] is attempting to re-established the DB Connection.")
+	message_admins("[ADMIN_TPMONTY(usr)] is attempting to re-established the DB Connection.")
+
+	SSdbcore.failed_connections = 0
+
+	if(!SSdbcore.Connect())
+		message_admins("Database connection failed: " + SSdbcore.ErrorMsg())
+	else
+		message_admins("Database connection re-established!")

@@ -97,10 +97,12 @@ var/global/normal_ooc_colour = "#002eb8"
 	set name = "LOOC"
 	set category = "OOC"
 
+	var/admin = check_rights(R_ADMIN, FALSE)
+
 	if(!mob)
 		return
 
-	if(mob.stat == DEAD || !isliving(mob))
+	if(mob.stat == DEAD && !admin)
 		to_chat(src, "<span class='warning'>You must be alive to use LOOC.</span>")
 		return
 
@@ -108,7 +110,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		to_chat(src, "Guests may not use LOOC.")
 		return
 
-	if(!check_rights(R_ADMIN, FALSE))
+	if(!admin)
 		msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
 	else
 		msg = noscript(msg)
@@ -120,7 +122,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		to_chat(src, "<span class='warning'>You have LOOC muted.</span>")
 		return
 
-	if(!check_rights(R_ADMIN, FALSE))
+	if(!admin)
 		if(!CONFIG_GET(flag/looc_enabled))
 			to_chat(src, "<span class='warning'>LOOC is globally muted</span>")
 			return
@@ -141,15 +143,22 @@ var/global/normal_ooc_colour = "#002eb8"
 
 	mob.log_talk("LOOC: [msg]", LOG_LOOC)
 
-	var/message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [mob.name]: <span class='message'>[msg]</span></span></font>"
+	var/message
 
-	mob.visible_message(message, message)
+	if(admin && isobserver(mob))
+		message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [usr.client.holder.fakekey ? "Administrator" : usr.client.key]: <span class='message'>[msg]</span></span></font>"
+		for(var/mob/M in range(mob))
+			to_chat(M, message)
+	else
+		message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [mob.name]: <span class='message'>[msg]</span></span></font>"
+		for(var/mob/M in range(mob))
+			to_chat(M, message)
 
 	for(var/client/C in GLOB.admins)
-		if(!check_other_rights(C, R_ADMIN, FALSE))
+		if(!check_other_rights(C, R_ADMIN, FALSE) || C.mob == mob)
 			continue
 		if(C.prefs.toggles_chat & CHAT_LOOC)
-			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [key_name(mob)]</span>: <span class='message'>[msg]</span></span></font>")
+			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [ADMIN_TPMONTY(mob)]</span>: <span class='message'>[msg]</span></span></font>")
 
 
 /client/verb/setup_character()
@@ -195,3 +204,14 @@ var/global/normal_ooc_colour = "#002eb8"
 	var/datum/browser/popup = new(src, "playerplaytime[ckey]", "<div align='center'>Playtime for [key]</div>", 550, 615)
 	popup.set_content(body.Join())
 	popup.open(FALSE)
+
+
+/client/verb/view_admin_remarks()
+	set category = "OOC"
+	set name = "View Admin Remarks"
+
+	if(!CONFIG_GET(flag/see_own_notes))
+		to_chat(usr, "<span class='notice'>Sorry, that function is not enabled on this server.</span>")
+		return
+
+	browse_messages(null, ckey, null, TRUE)

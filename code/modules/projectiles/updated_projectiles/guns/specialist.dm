@@ -126,7 +126,7 @@
 		laser_off(user)
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 		return
-	if(!can_see(user, laser_target, length=23))
+	if(!can_see(user, laser_target, length=24))
 		laser_off()
 		to_chat(user, "<span class='danger'>You lose sight of your target!</span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
@@ -266,11 +266,18 @@
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
 	attachable_allowed = list(
+						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/compensator,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/compensator)
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/attached_gun/grenade
+						)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
@@ -278,10 +285,10 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/m4ra, /obj/item/attachable/stock/rifle/marksman)
 
 /obj/item/weapon/gun/rifle/m4ra/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
@@ -336,7 +343,7 @@
 	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
 
 /obj/item/weapon/gun/smartgun/examine_ammo_count(mob/user)
-	to_chat(user, "[current_mag.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]")
+	to_chat(user, "[current_mag?.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]")
 	to_chat(user, "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"].")
 
 /obj/item/weapon/gun/smartgun/unique_action(mob/user)
@@ -469,7 +476,7 @@
 /obj/item/weapon/gun/launcher/m92/examine_ammo_count(mob/user)
 	if(!length(grenades) || (get_dist(user, src) > 2 && user != loc))
 		return
-	to_chat(user, "<span class='notice'> It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades.</span>")
+	to_chat(user, "<span class='notice'> It is loaded with <b>[length(grenades)] / [max_grenades]</b> grenades.</span>")
 
 
 /obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user)
@@ -538,12 +545,12 @@
 	F.throw_range = 20
 	if(F?.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
 		log_explosion("[key_name(user)] fired a grenade [F] from [src] at [AREACOORD(user.loc)].")
-		log_combat(user, name, "fired a grenade [F] from ")
+		log_combat(user, src, "fired a grenade [F] from [src]")
 		F.det_time = min(10, F.det_time)
 		F.launched = TRUE
+		F.activate()
 		F.throwforce += F.launchforce //Throws with signifcantly more force than a standard marine can.
 		F.throw_at(target, 20, 3, user)
-		F.activate()
 		playsound(F.loc, fire_sound, 50, 1)
 
 /obj/item/weapon/gun/launcher/m92/get_ammo_type()
@@ -760,7 +767,7 @@
 
 
 /obj/item/weapon/gun/launcher/rocket/examine_ammo_count(mob/user)
-	if(current_mag.current_rounds)
+	if(current_mag?.current_rounds)
 		to_chat(user, "It's ready to rocket.")
 	else
 		to_chat(user, "It's empty.")
@@ -893,6 +900,7 @@
 	fire_delay = CONFIG_GET(number/combat_define/scoutshottie_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/no_fire_delay) //basically instantaneous two shots
+	burst_accuracy_mult = CONFIG_GET(number/combat_define/mlow_burst_accuracy_penalty)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)

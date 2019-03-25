@@ -521,11 +521,11 @@ its easier to just keep the beam vertical.
 	return
 
 // Generic logging helper
-/atom/proc/log_message(message, message_type, color=null, log_globally=TRUE)
+/atom/proc/log_message(message, message_type, color, log_globally = TRUE)
 	if(!log_globally)
 		return
 
-	var/log_text = "[key_name(src)] [message] [loc_name(src)]"
+	var/log_text = "[key_name(src)] [message] [AREACOORD(src)]"
 	switch(message_type)
 		if(LOG_ATTACK)
 			log_attack(log_text)
@@ -560,7 +560,7 @@ its easier to just keep the beam vertical.
 			log_game(log_text)
 
 // Helper for logging chat messages or other logs wiht arbitrary inputs (e.g. announcements)
-/atom/proc/log_talk(message, message_type, tag=null, log_globally=TRUE)
+/atom/proc/log_talk(message, message_type, tag, log_globally = TRUE)
 	var/prefix = tag ? "([tag]) " : ""
 	log_message("[prefix]\"[message]\"", message_type, log_globally=log_globally)
 
@@ -583,7 +583,7 @@ Proc for attack log creation, because really why not
 5 is any additional text, which will be appended to the rest of the log line
 */
 
-/proc/log_combat(atom/user, atom/target, what_done, atom/object=null, addition=null)
+/proc/log_combat(atom/user, atom/target, what_done, atom/object, addition)
 	var/ssource = key_name(user)
 	var/starget = key_name(target)
 
@@ -600,11 +600,12 @@ Proc for attack log creation, because really why not
 	var/postfix = "[sobject][saddition][hp]"
 
 	var/message = "has [what_done] [starget][postfix]"
-	user.log_message(message, LOG_ATTACK, color="red")
+	user.log_message(message, LOG_ATTACK, color = "#f46666")
 
-	if(user != target)
+	if(target && user != target)
 		var/reverse_message = "has been [what_done] by [ssource][postfix]"
-		target.log_message(reverse_message, LOG_ATTACK, color="orange", log_globally=FALSE)
+		target.log_message(reverse_message, LOG_ATTACK, color = "#eabd7e", log_globally = FALSE)
+
 
 /atom/New(loc, ...)
 	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
@@ -692,9 +693,11 @@ Proc for attack log creation, because really why not
 
 	return INITIALIZE_HINT_NORMAL
 
+
 //called if Initialize returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize()
 	return
+
 
 //called when the turf the atom resides on is ChangeTurfed
 /atom/proc/HandleTurfChange(turf/T)
@@ -704,6 +707,7 @@ Proc for attack log creation, because really why not
 
 //Hook for running code when a dir change occurs
 /atom/proc/setDir(newdir)
+	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, newdir)
 	dir = newdir
 
 
@@ -715,3 +719,17 @@ Proc for attack log creation, because really why not
 		.["Jump to"] = "?_src_=holder;[HrefToken()];observecoordjump=1;X=[curturf.x];Y=[curturf.y];Z=[curturf.z]"
 	.["Modify Transform"] = "?_src_=vars;[HrefToken()];modtransform=[REF(src)]"
 	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"
+
+
+/atom/Entered(atom/movable/AM, atom/oldLoc)
+	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, oldLoc)
+
+
+/atom/Exit(atom/movable/AM, atom/newLoc)
+	. = ..()
+	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, newLoc) & COMPONENT_ATOM_BLOCK_EXIT)
+		return FALSE
+
+
+/atom/Exited(atom/movable/AM, atom/newLoc)
+	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, newLoc)

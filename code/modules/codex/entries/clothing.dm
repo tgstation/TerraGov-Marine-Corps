@@ -48,7 +48,7 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 
 /obj/item/clothing/get_mechanics_info()
 	var/list/armor_strings = list()
-	
+
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
 	if(general_entry && general_entry.mechanics_text)
@@ -99,12 +99,12 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 	if(flags_inventory & BLOCKSHARPOBJ)
 		armor_strings += "The material is exceptionally thick."
 
-	if(max_heat_protection_temperature >= FIRESUIT_max_heat_protection_temperature)
+	if(max_heat_protection_temperature >= FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE)
 		armor_strings += "This can protect you from high temperatures, but you aren't fireproof."
-	else if(max_heat_protection_temperature >= SPACE_SUIT_max_heat_protection_temperature)
+	else if(max_heat_protection_temperature >= SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE)
 		armor_strings += "It provides good protection against fire and heat."
 
-	if(!isnull(min_cold_protection_temperature) && min_cold_protection_temperature <= ICE_PLANET_min_cold_protection_temperature)
+	if(!isnull(min_cold_protection_temperature) && min_cold_protection_temperature <= ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE)
 		armor_strings += "It provides protection against cold temperatures."
 
 	var/list/covers = list()
@@ -125,10 +125,30 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 	if(allowed)
 		armor_strings += "<br><U>You can carry the following in it's storage slot</U>:"
 		for(var/X in allowed)
-			var/obj/item/A = X
-			armor_strings += "[initial(A.name)]"
+			var/obj/B = X
+			armor_strings += "[initial(B.name)]"
+
 
 	. += jointext(armor_strings, "<br>")
+
+/obj/item/clothing/tie/storage/get_mechanics_info()
+	. = ..()
+	. += "<br>This item has an internal inventory of [slots] slots."
+	if(length(hold.bypass_w_limit) > 0)
+		. += "<br><br><U>You can also carry the following special items in this</U>:"
+		for(var/X in hold.bypass_w_limit)
+			var/obj/B = X
+			. += "<br>[initial(text2path(B).name)]"	
+
+/obj/item/clothing/suit/storage/get_mechanics_info()
+	. = ..()
+	. += "<br><br>This item has an internal inventory of [pockets.storage_slots] slots."
+	. += "<br>It can carry weight [pockets.max_w_class] things or lighter."
+	if(length(pockets.bypass_w_limit) > 0)
+		. += "<br><U>You can also carry the following special items in this internal inventory</U>:"
+		for(var/X in pockets.bypass_w_limit)
+			var/obj/B = X
+			. += "<br>[initial(text2path(B).name)]"	
 
 /obj/item/clothing/suit/armor/pcarrier/get_mechanics_info()
 	. = ..()
