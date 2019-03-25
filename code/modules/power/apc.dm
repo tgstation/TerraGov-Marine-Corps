@@ -29,6 +29,7 @@
 	desc = "A control terminal for the area electrical systems."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "apc0"
+	bound_height = 32
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
@@ -1284,9 +1285,6 @@
 
 /obj/machinery/power/apc/lowcharge
 	start_charge = 25
-
-/obj/machinery/power/apc/supercharged
-	start_charge = 200
 
 /obj/machinery/power/apc/potato
 	cell_type = /obj/item/cell/potato

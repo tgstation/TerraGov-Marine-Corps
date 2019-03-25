@@ -3,6 +3,7 @@
 	desc = "A wall mounted storage locker."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "walllocker"
+	bound_height = 32
 	density = FALSE
 	anchored = TRUE
 	icon_closed = "walllocker"
@@ -86,6 +87,7 @@
 	name = "secure wall locker"
 	desc = "It's an immobile card-locked storage unit."
 	icon = 'icons/obj/wallframes.dmi'
+	bound_height = 32
 	icon_state = "sec_locker1"
 	icon_closed = "secure"
 	icon_locked = "sec_locker1"
@@ -143,6 +145,7 @@
 	desc = "It's a secure wall locker for personnel. The first card swiped gains control."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "sec_locker1"
+	bound_height = 32
 	icon_closed = "secure"
 	icon_locked = "sec_locker1"
 	icon_opened = "sec_locker_opened"

@@ -3,6 +3,7 @@
 	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "extinguisher"
+	bound_height = 32
 	anchored = TRUE
 	density = FALSE
 	var/obj/item/tool/extinguisher/has_extinguisher
