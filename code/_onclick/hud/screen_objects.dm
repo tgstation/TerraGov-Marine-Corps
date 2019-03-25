@@ -420,8 +420,7 @@
 
 
 /obj/screen/component_button/Click(params)
-	if(parent)
-		parent.component_click(src, params)
+	parent?.component_click(src, params)
 
 
 /obj/screen/cinematic
