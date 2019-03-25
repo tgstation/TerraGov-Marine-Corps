@@ -26,8 +26,6 @@
 	universal_speak = TRUE
 	var/atom/movable/following = null
 
-	var/voted_this_drop = FALSE
-
 
 /mob/dead/observer/Initialize()
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
@@ -633,11 +631,15 @@
 	set name = "Join as Xeno"
 	set desc = "Select an alive but logged-out Xenomorph to rejoin the game."
 
-	if(!client || !SSticker.mode.check_xeno_late_join(src))
+	if(!client)
 		return
 
 	if(!SSticker?.mode || SSticker.current_state < GAME_STATE_PLAYING)
 		to_chat(src, "<span class='warning'>The game hasn't started yet!</span>")
+		return
+
+	if(jobban_isbanned(src, ROLE_XENOMORPH) || is_banned_from(ckey, ROLE_XENOMORPH))
+		to_chat(src, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
 		return
 
 	var/choice = alert("Would you like to join as a larva or as a xeno?", "Join as Xeno", "Xeno", "Larva", "Cancel")
@@ -714,49 +716,6 @@
 
 	if(isobserver(ghostmob))
 		qdel(ghostmob)
-
-
-/mob/dead/observer/verb/drop_vote()
-	set category = "Ghost"
-	set name = "Hunter Games Vote"
-	set desc = "If it's on Hunter Games gamemode, vote on who gets a supply drop!"
-
-	if(!SSticker?.mode || SSticker.current_state < GAME_STATE_PLAYING)
-		to_chat(usr, "<span class='warning'>The game hasn't started yet!</span>")
-		return
-
-	if(!istype(SSticker.mode,/datum/game_mode/huntergames))
-		to_chat(usr, "Wrong game mode. You have to be observing a Hunter Games round.")
-		return
-
-	if(!waiting_for_drop_votes)
-		to_chat(usr, "There's no drop vote currently in progress. Wait for a supply drop to be announced!")
-		return
-
-	if(voted_this_drop)
-		to_chat(usr, "You voted for this one already. Only one please!")
-		return
-
-	var/list/mobs = GLOB.alive_mob_list
-	var/target = null
-
-	for(var/mob/living/M in mobs)
-		if(!istype(M,/mob/living/carbon/human) || M.stat || isyautja(M)) mobs -= M
-
-
-	target = input("Please, select a contestant!", "Cake Time", null, null) as null|anything in mobs
-
-	if(!target)
-		return
-
-	to_chat(usr, "Your vote for [target] has been counted!")
-	SSticker.mode:supply_votes += target
-	voted_this_drop = TRUE
-	addtimer(CALLBACK(src, .proc/reset_vote), 3 MINUTES)
-
-
-/mob/dead/observer/proc/reset_vote()
-	voted_this_drop = FALSE
 
 
 /mob/dead/observer/verb/observe()

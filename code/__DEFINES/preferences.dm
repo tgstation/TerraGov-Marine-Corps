@@ -10,9 +10,6 @@
 
 #define MAX_GEAR_COST 5 //Custom loadout point limit.
 
-//Number of marine players against which the Marine's gear scales
-#define MARINE_GEAR_SCALING_NORMAL 30
-
 #define BE_ALIEN		(1<<0)
 #define BE_QUEEN		(1<<1)
 #define BE_SURVIVOR		(1<<2)

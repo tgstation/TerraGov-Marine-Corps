@@ -48,8 +48,7 @@
 				/obj/structure/largecrate/supply/generator = 1,
 				/obj/structure/largecrate/supply/floodlights = 2,
 				/obj/structure/largecrate/supply/supplies/flares = 3,
-				/obj/structure/largecrate/supply/powerloader = 1,
-				/obj/structure/largecrate/machine/recycler = 2
+				/obj/structure/largecrate/supply/powerloader = 1
 				)
 
 /obj/effect/landmark/supplyspawner/turrets
@@ -326,17 +325,6 @@
 				return
 	..()
 
-/obj/structure/largecrate/machine/recycler
-	name = "recycler crate (x1)"
-	desc = "A crate containing one recycler, for removal of trash."
-	dir_needed = 0
-
-/obj/structure/largecrate/machine/recycler/attackby(obj/item/W as obj, mob/user as mob)
-	if(iscrowbar(W))
-		var/turf/T = get_turf(loc)
-		if(isopenturf(T))
-			new /obj/machinery/wo_recycler (T)
-	..()
 
 /obj/structure/largecrate/machine/autodoc
 	name = "autodoctor machine crate (x1)"
