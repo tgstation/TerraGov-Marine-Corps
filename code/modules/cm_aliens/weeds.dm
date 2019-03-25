@@ -139,6 +139,8 @@
 	if(!W || !user || isnull(W) || (W.flags_item & NOBLUDGEON))
 		return 0
 
+	user.changeNext_move(W.attack_speed)
+
 	var/damage = W.force
 	if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
 		damage *= 0.25

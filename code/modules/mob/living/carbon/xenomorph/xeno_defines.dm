@@ -16,7 +16,7 @@
 	// *** Melee Attacks *** //
 	var/melee_damage_lower = 10
 	var/melee_damage_upper = 20
-	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
+	var/attack_delay = CLICK_CD_MELEE
 
 	var/savage_cooldown = 30 SECONDS
 

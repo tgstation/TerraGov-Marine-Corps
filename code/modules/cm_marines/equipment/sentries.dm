@@ -91,7 +91,6 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
-	flags_atom = RELAY_CLICK
 	var/has_top = FALSE
 
 /obj/machinery/turret_tripod_deployed/examine(mob/user as mob)
@@ -214,7 +213,6 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
-	flags_atom = RELAY_CLICK
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	var/iff_signal = ACCESS_IFF_MARINE
 	var/safety_off = FALSE

@@ -6,22 +6,31 @@
 	return
 
 
-/atom/proc/attackby(obj/item/W, mob/living/user)
-	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, W, user) & COMPONENT_NO_AFTERATTACK)
+
+/atom/proc/attackby(obj/item/W, mob/user, params)
+	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, W, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
 	return FALSE
 
 
-/atom/movable/attackby(obj/item/W, mob/living/user)
-	if(W)
-		if(!(W.flags_item & NOBLUDGEON))
-			visible_message("<span class='danger'>[src] has been hit by [user] with [W].</span>", null, 5)
-			user.animation_attack_on(src)
-			user.flick_attack_overlay(src, "punch")
+/obj/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return TRUE
+	user.changeNext_move(I.attack_speed)
 
-/mob/living/attackby(obj/item/I, mob/user)
-	if(istype(I) && ismob(user))
-		I.attack(src, user)
+
+/obj/item/storage/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	user.changeNext_move(CLICK_CD_FASTEST)
+
+
+/mob/living/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(.)
+		return TRUE
+	user.changeNext_move(I.attack_speed)
+	return I.attack(src, user)
 
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.

@@ -64,6 +64,14 @@
 	return ..()
 
 
+/obj/item/weapon/gun/rifle/sniper/M42A/InterceptClickOn(mob/user, params, atom/object)
+	var/list/pa = params2list(params)
+	if(!pa.Find("ctrl"))
+		return FALSE
+	integrated_laze.acquire_target(object, user)
+	return TRUE
+
+
 /mob/living/carbon/proc/apply_laser()
 	return FALSE
 
@@ -152,7 +160,8 @@
 		to_chat(user, "<span class='warning'>You must be zoomed in to use your target marker!</span>")
 		return
 	targetmarker_primed = TRUE //We prime the target laser
-	if(user)
+	if(user?.client)
+		user.client.click_intercept = src
 		to_chat(user, "<span class='notice'><b>You activate your target marker and take careful aim.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 
@@ -164,7 +173,8 @@
 		STOP_PROCESSING(SSobj, src)
 		targetmarker_on = FALSE
 	targetmarker_primed = FALSE
-	if(user)
+	if(user?.client)
+		user.client.click_intercept = null
 		to_chat(user, "<span class='notice'><b>You deactivate your target marker.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 
