@@ -42,8 +42,8 @@
 		M.dna = dna.Clone()
 
 	if(mind && isliving(M))
-		mind.transfer_to(M, TRUE) // second argument to force key move to new mob)
 		mind.name = M.real_name
+		mind.transfer_to(M, TRUE) // second argument to force key move to new mob)
 	else
 		M.key = key
 		if(M.client) 
