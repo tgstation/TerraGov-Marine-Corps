@@ -2430,7 +2430,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	update_action_button_icons()
 
 
-/mob/proc/can_sting()
+/atom/proc/can_sting()
 	return FALSE
 
 /mob/living/carbon/monkey/can_sting()
