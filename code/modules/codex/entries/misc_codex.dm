@@ -44,17 +44,17 @@
 			var/obj/item/A = X
 			storage_strings += "[initial(text2path(A).name)]"
 
-	if(length(bypass_w_limit) > 0)
+	if(length(bypass_w_limit))
 		storage_strings += "<br><U>You can also carry the following special items in this</U>:"
 		for(var/X in bypass_w_limit)
 			var/obj/item/A = X
-			storage_strings += "[initial(text2path(A).name)]"
+			storage_strings += "[initial(A.name)]"
 
-	if(length(cant_hold) > 0)
+	if(length(cant_hold))
 		storage_strings += "<br><U>You can specifically not carry these things in this</U>:"
 		for(var/X in cant_hold)
 			var/obj/item/A = X
-			storage_strings += "[initial(text2path(A).name)]"
+			storage_strings += "[initial(A.name)]"
 
 	. += jointext(storage_strings, "<br>")
 

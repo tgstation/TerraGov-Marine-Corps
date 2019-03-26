@@ -180,7 +180,7 @@
 	name = "strange canister"
 	desc = "A strange looking metal container."
 	storage_slots = 3
-	can_hold = list("/obj/item/reagent_container/food/drinks/bottle/black_goo")
+	can_hold = list(/obj/item/reagent_container/food/drinks/bottle/black_goo)
 
 
 	examine(mob/user)

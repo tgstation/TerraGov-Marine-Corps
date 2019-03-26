@@ -328,12 +328,12 @@
 	draw_mode = 1
 	icon_state = "medkit"
 	desc = "It's specifically made to hold a medkit."
-	can_hold = list("/obj/item/storage/firstaid")
-	bypass_w_limit = list("/obj/item/storage/firstaid")
+	can_hold = list(/obj/item/storage/firstaid)
+	bypass_w_limit = list(/obj/item/storage/firstaid)
 
 
-/obj/item/storage/pouch/medkit/full/New()
-	..()
+/obj/item/storage/pouch/medkit/full/Initialize()
+	. = ..()
 	new /obj/item/storage/firstaid/regular(src)
 
 /obj/item/storage/pouch/document

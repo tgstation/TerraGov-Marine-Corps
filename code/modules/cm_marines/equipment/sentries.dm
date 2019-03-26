@@ -30,7 +30,7 @@
 					/obj/item/ammo_magazine/sentry,
 					)
 
-/obj/item/storage/box/sentry/New()
+/obj/item/storage/box/sentry/Initialize()
 	. = ..()
 	new /obj/item/device/turret_top(src)
 	new /obj/item/device/turret_tripod(src)

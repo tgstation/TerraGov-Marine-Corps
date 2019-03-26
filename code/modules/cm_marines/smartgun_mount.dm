@@ -28,20 +28,19 @@
 	icon_state = "M56D_case" // I guess a placeholder? Not actually going to show up ingame for now.
 	w_class = 5
 	storage_slots = 6
-	bypass_w_limit = list("/obj/item/device/m56d_gun",
-					"/obj/item/ammo_magazine/m56d",
-					"/obj/item/device/m56d_post",
+	bypass_w_limit = list(/obj/item/device/m56d_gun,
+					/obj/item/ammo_magazine/m56d,
+					/obj/item/device/m56d_post,
 					)
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/device/m56d_gun(src) //gun itself
-			new /obj/item/ammo_magazine/m56d(src) //ammo for the gun
-			new /obj/item/device/m56d_post(src) //post for the gun
-			new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
-			new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
-			new /obj/item/ammo_magazine/m56d(src)
+/obj/item/storage/box/m56d_hmg/Initialize()
+	. = ..()
+	new /obj/item/device/m56d_gun(src) //gun itself
+	new /obj/item/ammo_magazine/m56d(src) //ammo for the gun
+	new /obj/item/device/m56d_post(src) //post for the gun
+	new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
+	new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
+	new /obj/item/ammo_magazine/m56d(src)
 
 // The actual gun itself.
 /obj/item/device/m56d_gun

@@ -282,12 +282,6 @@
 	name = "\improper lightweight IMP backpack"
 	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield."
 	icon_state = "marinepack"
-	var/has_gamemode_skin = TRUE
-
-	New()
-		if(has_gamemode_skin)
-			select_gamemode_skin(type)
-		..()
 
 /obj/item/storage/backpack/marine/standard
 	name = "\improper lightweight IMP backpack"
@@ -377,15 +371,15 @@
 	name = "\improper TGMC technician backpack"
 	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
 	icon_state = "marinepackt"
-	bypass_w_limit = list("/obj/item/device/m56d_gun",
-					"/obj/item/ammo_magazine/m56d",
-					"/obj/item/device/m56d_post",
-					"/obj/item/device/turret_top",
-					"/obj/item/ammo_magazine/sentry",
-					"/obj/item/ammo_magazine/minisentry",
-					"/obj/item/device/marine_turret/mini",
-					"/obj/item/stack/razorwire",
-					"/obj/item/stack/sandbags"
+	bypass_w_limit = list(/obj/item/device/m56d_gun,
+					/obj/item/ammo_magazine/m56d,
+					/obj/item/device/m56d_post,
+					/obj/item/device/turret_top,
+					/obj/item/ammo_magazine/sentry,
+					/obj/item/ammo_magazine/minisentry,
+					/obj/item/device/marine_turret/mini,
+					/obj/item/stack/razorwire,
+					/obj/item/stack/sandbags
 					)
 
 /obj/item/storage/backpack/marine/satchel
@@ -420,7 +414,6 @@
 	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard TGMC ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments."
 	icon_state = "scout_cloak"
 	uniform_restricted = list(/obj/item/clothing/suit/storage/marine/M3S) //Need to wear Scout armor to equip this.
-	has_gamemode_skin = FALSE //same sprite for all gamemode.
 	var/camo_active = 0
 	var/camo_active_timer = 0
 	var/camo_cooldown_timer = null
@@ -638,7 +631,6 @@
 	icon_state = "engineerpack"
 	var/max_fuel = 260
 	storage_slots = null
-	has_gamemode_skin = FALSE //same sprites for all gamemodes
 	max_storage_space = 15
 
 /obj/item/storage/backpack/marine/engineerpack/New()

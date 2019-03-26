@@ -405,10 +405,6 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/stock/shotgun)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
-/obj/item/weapon/gun/shotgun/pump/Initialize()
-	. = ..()
-	select_gamemode_skin(/obj/item/weapon/gun/shotgun/pump)
-
 /obj/item/weapon/gun/shotgun/pump/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 5
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)

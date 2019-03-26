@@ -38,7 +38,11 @@
 	var/opened = 0 //Has it been opened before?
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
 
-
+/obj/item/storage/Initialize(mapload, ...)
+	. = ..()
+	can_hold = typecacheof(can_hold)
+	cant_hold = typecacheof(cant_hold)
+	bypass_w_limit = typecacheof(bypass_w_limit)
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(ishuman(usr) || ismonkey(usr) || iscyborg(usr)) //so monkeys can take off their backpacks -- Urist
@@ -359,14 +363,7 @@
 				to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
 			return FALSE
 
-	var/w_limit_bypassed = FALSE
-	if(length(bypass_w_limit))
-		for(var/A in bypass_w_limit)
-			if(istype(W, text2path(A)))
-				w_limit_bypassed = TRUE
-				break
-
-	if(!w_limit_bypassed && W.w_class > max_w_class)
+	if(!is_type_in_typecache(W, bypass_w_limit) && W.w_class > max_w_class)
 		if(warning)
 			to_chat(usr, "<span class='notice'>[W] is too long for this [src].</span>")
 		return FALSE

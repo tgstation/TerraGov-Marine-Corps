@@ -39,7 +39,6 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/m42a, /obj/item/attachable/sniperbarrel)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Initialize()
-	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a"))
 	. = ..()
 	LT = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
 	integrated_laze = new(src)

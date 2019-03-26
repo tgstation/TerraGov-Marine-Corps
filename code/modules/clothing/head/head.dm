@@ -21,11 +21,6 @@
 	flags_inv_hide = HIDETOPHAIR
 
 
-/obj/item/clothing/head/tgmcbandana/New()
-	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_band") )
-	return ..()
-
-
 /obj/item/clothing/head/tgmcbandana/tan
 	icon_state = "band2"
 
@@ -49,19 +44,8 @@
 	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
 
 
-/obj/item/clothing/head/tgmcberet/New()
-	select_gamemode_skin(/obj/item/clothing/head/tgmcberet, list(MAP_ICE_COLONY = "s_beret"))
-	return ..()
-
-
 /obj/item/clothing/head/tgmcberet/tan
 	icon_state = "berettan"
-
-
-/obj/item/clothing/head/tgmcberet/tan/New()
-	select_gamemode_skin(/obj/item/clothing/head/tgmcberet/tan)
-	return ..()
-
 
 /obj/item/clothing/head/tgmcberet/red
 	icon_state = "beretred"
@@ -83,12 +67,6 @@
 	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
 	var/flipped_cap = FALSE
 	var/base_cap_icon
-
-
-/obj/item/clothing/head/tgmccap/New()
-	select_gamemode_skin(/obj/item/clothing/head/tgmccap)
-	base_cap_icon = icon_state
-	return ..()
 
 
 /obj/item/clothing/head/tgmccap/verb/fliphat()
@@ -117,11 +95,6 @@
 	icon_state = "rocap"
 
 
-/obj/item/clothing/head/tgmccap/ro/New()
-	select_gamemode_skin(/obj/item/clothing/head/tgmccap/ro)
-	return ..()
-
-
 /obj/item/clothing/head/tgmccap/req
 	name = "\improper TGMC requisition cap"
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
@@ -142,18 +115,6 @@
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "headband"
-
-/obj/item/clothing/head/headband/New()
-	select_gamemode_skin(type, list(MAP_ICE_COLONY = "ushanka") )
-	..()
-	switch(icon_state)
-		if("ushanka") //Weird case, since the item basically transforms into another item.
-			name = "\improper TGMC ushanka"
-			desc = "Worn during cold operations by idiots."
-			flags_cold_protection = HEAD
-			min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-			flags_inventory = BLOCKSHARPOBJ
-			flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
 /obj/item/clothing/head/headband/red
 	icon_state = "headbandred"

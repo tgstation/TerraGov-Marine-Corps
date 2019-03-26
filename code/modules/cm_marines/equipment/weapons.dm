@@ -33,9 +33,8 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	var/reloading = FALSE
 
-/obj/item/smartgun_powerpack/New()
+/obj/item/smartgun_powerpack/Initialize()
 	. = ..()
-	select_gamemode_skin(/obj/item/smartgun_powerpack)
 	pcell = new /obj/item/cell(src)
 
 /obj/item/smartgun_powerpack/attack_self(mob/user, automatic = FALSE)

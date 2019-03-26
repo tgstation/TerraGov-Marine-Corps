@@ -79,7 +79,7 @@
 	storage_slots = 50
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * ore.w_class
 	max_w_class = 3
-	can_hold = list("/obj/item/ore")
+	can_hold = list(/obj/item/ore)
 
 
 // -----------------------------
@@ -94,7 +94,10 @@
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * plants.w_class
 	max_w_class = 3
 	w_class = 2
-	can_hold = list("/obj/item/reagent_container/food/snacks/grown","/obj/item/seeds","/obj/item/grown")
+	can_hold = list(
+		/obj/item/reagent_container/food/snacks/grown,
+		/obj/item/seeds,
+		/obj/item/grown)
 
 
 // -----------------------------
@@ -251,4 +254,6 @@
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * cash.w_class
 	max_w_class = 3
 	w_class = 2
-	can_hold = list("/obj/item/coin","/obj/item/spacecash")
+	can_hold = list(
+		/obj/item/coin,
+		/obj/item/spacecash)
