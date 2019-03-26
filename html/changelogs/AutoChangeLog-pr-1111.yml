@@ -1,4 +1,0 @@
-author: "Alterist"
-delete-after: True
-changes: 
-  - tweak: "opens a few paths in the fog on LV, removes vines on dense jungle tiles to make open paths clearer"
