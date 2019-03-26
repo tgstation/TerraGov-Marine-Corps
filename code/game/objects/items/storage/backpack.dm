@@ -294,7 +294,7 @@
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
 	var/icon_skin
 
-/obj/item/storage/backpack/marine/corpsman/New()
+/obj/item/storage/backpack/marine/corpsman/Initialize(mapload, ...)
 	. = ..()
 	cell = new (src)
 	icon_skin = icon_state
@@ -633,12 +633,12 @@
 	storage_slots = null
 	max_storage_space = 15
 
-/obj/item/storage/backpack/marine/engineerpack/New()
+/obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
 	R.my_atom = src
 	R.add_reagent("fuel", max_fuel)
-	..()
 
 
 /obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/W, mob/living/user)

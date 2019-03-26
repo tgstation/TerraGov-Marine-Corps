@@ -101,15 +101,10 @@
 	name = "Diskette Box"
 	icon_state = "disk_kit"
 
-/obj/item/storage/box/disks/New()
-	..()
-	new /obj/item/disk/data(src)
-	new /obj/item/disk/data(src)
-	new /obj/item/disk/data(src)
-	new /obj/item/disk/data(src)
-	new /obj/item/disk/data(src)
-	new /obj/item/disk/data(src)
-	new /obj/item/disk/data(src)
+/obj/item/storage/box/disks/Initialize(mapload, ...)
+	. = ..()
+	for(var/i in 1 to 7)
+		new /obj/item/disk/data(src)
 
 /*
  *	Manual -- A big ol' manual.

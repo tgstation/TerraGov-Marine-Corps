@@ -65,8 +65,8 @@
 /obj/item/storage/box/syndie_kit/imp_freedom
 	name = "boxed freedom implant (with injector)"
 
-/obj/item/storage/box/syndie_kit/imp_freedom/New()
-	..()
+/obj/item/storage/box/syndie_kit/imp_freedom/Initialize(mapload, ...)
+	. = ..()
 	var/obj/item/implanter/O = new(src)
 	O.imp = new /obj/item/implant/freedom(O)
 	O.update()
@@ -74,28 +74,22 @@
 
 /obj/item/storage/box/syndie_kit/imp_compress
 	name = "box (C)"
-
-/obj/item/storage/box/syndie_kit/imp_compress/New()
-	new /obj/item/implanter/compressed(src)
-	..()
-	return
+	spawn_type = /obj/item/implanter/compressed
+	spawn_number = 1
 
 /obj/item/storage/box/syndie_kit/imp_explosive
 	name = "box (E)"
-
-/obj/item/storage/box/syndie_kit/imp_explosive/New()
-	new /obj/item/implanter/explosive(src)
-	..()
-	return
+	spawn_type = /obj/item/implanter/explosive
+	spawn_number = 1
 
 /obj/item/storage/box/syndie_kit/space
 	name = "boxed space suit and helmet"
 
-/obj/item/storage/box/syndie_kit/space/New()
-	..()
+/obj/item/storage/box/syndie_kit/space/Initialize(mapload, ...)
+	. = ..()
 	new /obj/item/clothing/suit/space/syndicate(src)
 	new /obj/item/clothing/head/helmet/space/syndicate(src)
-	return
+
 /obj/item/storage/box/syndie_kit/chameleon
 	name = "Chameleon Kit"
 	desc = "Comes with all the clothes you need to impersonate most people.  Acting lessons sold seperately."

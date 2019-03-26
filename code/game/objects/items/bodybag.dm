@@ -53,16 +53,8 @@
 	desc = "This box contains body bags."
 	icon_state = "bodybags"
 	w_class = 3
-/obj/item/storage/box/bodybags/New()
-	..()
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-
+	spawn_type = /obj/item/bodybag
+	spawn_number = 7
 
 /obj/structure/closet/bodybag
 	name = "body bag"

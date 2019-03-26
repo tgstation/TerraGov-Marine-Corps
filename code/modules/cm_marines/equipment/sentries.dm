@@ -1237,7 +1237,7 @@
 	ammo = /datum/ammo/bullet/turret/mini //Similar to M39 AP rounds.
 	magazine_type = /obj/item/ammo_magazine/minisentry
 
-/obj/item/storage/box/sentry/New()
+/obj/item/storage/box/sentry/Initialize(mapload, ...)
 	. = ..()
 	update_icon()
 
