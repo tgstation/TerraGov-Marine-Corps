@@ -674,6 +674,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			to_chat(usr, "<span class='warning'>This fax has already been marked by [F.marked], please unmark it to be able to proceed.")
 			return
 		else if(!F.marked)
+			F.marked = usr.client
 			message_staff("[key_name_admin(usr)] marked and started replying to a fax from [key_name_admin(F.sender)].")
 
 		var/mob/sender = F.sender
