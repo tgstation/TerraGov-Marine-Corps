@@ -1,5 +1,0 @@
-author: "by Surrealistik"
-delete-after: True
-changes: 
-  - balance: "Accuracy multiplier for ZX reduced by 30% when bursting; to be tweaked as necessary."
-  - tweak: "M4RA fire delay decreased from 0.5 to 0.4 seconds, dramatically increased the number of compatible attachments, base accuracy multiplier increased from 1 to 1.2x, burst amount decreased from 3 to 2, burst delay decreased from 0.2 to 0.1 seconds."

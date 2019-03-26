@@ -18,7 +18,7 @@
 	icon_state = "pred_mask1"
 	item_state = "helmet"
 	armor = list(melee = 80, bullet = 95, laser = 70, energy = 70, bomb = 65, bio = 100, rad = 100)
-	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
+	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_armor_protection = HEAD|FACE|EYES
 	flags_cold_protection = HEAD
 	flags_inventory = COVEREYES|COVERMOUTH|NOPRESSUREDMAGE|ALLOWINTERNALS|ALLOWREBREATH|BLOCKGASEFFECT|BLOCKSHARPOBJ
@@ -122,8 +122,8 @@
 	sprite_sheet_id = 1
 	flags_armor_protection = CHEST|ARM_LEFT
 	armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
-	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
-	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
+	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.1
 	allowed = list(/obj/item/weapon/harpoon,
 			/obj/item/weapon/gun/launcher/spike,
@@ -239,8 +239,8 @@
 	flags_armor_protection = FEET|LEGS
 	armor = list(melee = 75, bullet = 85, laser = 60, energy = 50, bomb = 50, bio = 20, rad = 20)
 	siemens_coefficient = 0.2
-	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
-	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = null
 
 /obj/item/clothing/shoes/yautja/New(location, boot_number = rand(1,3))
@@ -262,7 +262,7 @@
 	has_sensor = 0
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 10)
 	siemens_coefficient = 0.9
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	species_restricted = null
 
 /obj/item/clothing/gloves/yautja
@@ -279,8 +279,8 @@
 	armor = list(melee = 80, bullet = 80, laser = 55, energy = 50, bomb = 50, bio = 10, rad = 10)
 	flags_cold_protection = HANDS
 	flags_heat_protection = HANDS
-	min_cold_protection_temperature = GLOVES_min_cold_protection_temperature
-	max_heat_protection_temperature = GLOVES_max_heat_protection_temperature
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	unacidable = 1
 	var/charge = 2000
 	var/charge_max = 2000

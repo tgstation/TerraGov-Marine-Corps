@@ -15,8 +15,6 @@ with the original.*/
 /datum/shuttle/ferry/marine/evacuation_pod
 	location = 0
 	warmup_time = 5
-	shuttle_tag = "TGS Theseus Evac"
-	info_tag = "TGS Theseus Evac"
 	sound_target = 18
 	sound_misc = 'sound/effects/escape_pod_launch.ogg'
 	var/static/passengers = 0 //How many living escape on the shuttle. Does not count simple animals.
@@ -39,7 +37,7 @@ with the original.*/
 		process_state = WAIT_LAUNCH
 
 	can_launch() //Cannot launch it early before the evacuation takes place proper, and the pod must be ready. Cannot be delayed, broken, launching, or otherwise.
-		if(..() && EvacuationAuthority.evac_status >= EVACUATION_STATUS_INITIATING)
+		if(..() && SSevacuation.evac_status >= EVACUATION_STATUS_INITIATING)
 			switch(evacuation_program.dock_state)
 				if(STATE_READY) return TRUE
 				if(STATE_DELAYED)
@@ -49,13 +47,20 @@ with the original.*/
 
 	//The pod can be delayed until after the automatic launch.
 	can_cancel()
-		. = (EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY && (evacuation_program.dock_state in STATE_READY to STATE_DELAYED)) //Must be evac time and the pod can't be launching/launched.
+		. = (SSevacuation.evac_status > EVACUATION_STATUS_STANDING_BY && (evacuation_program.dock_state in STATE_READY to STATE_DELAYED)) //Must be evac time and the pod can't be launching/launched.
 
 	short_jump()
 		. = ..()
 		evacuation_program.dock_state = STATE_LAUNCHED
 		spawn(10)
-			check_passengers("<br><br><span class='centerbold'><big>You have successfully left the [MAIN_SHIP_NAME]. You may now ghost and observe the rest of the round.</big></span><br>")
+			check_passengers("<br><br><span class='centerbold'><big>You have successfully left the [CONFIG_GET(string/ship_name)]. You may now ghost and observe the rest of the round.</big></span><br>")
+
+
+/datum/shuttle/ferry/marine/evacuation_pod/New()
+	. = ..()
+	shuttle_tag = "[CONFIG_GET(string/ship_name)] Evac"
+	info_tag = "[CONFIG_GET(string/ship_name)] Evac"
+
 
 /*
 This processes tags and connections dynamically, so you do not need to modify or pregenerate linked objects.

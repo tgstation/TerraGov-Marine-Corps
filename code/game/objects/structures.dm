@@ -9,6 +9,7 @@
 
 	var/damage = 0
 	var/damage_cap = 500 //The point where things start breaking down.
+	var/health
 
 /obj/structure/New()
 	..()
@@ -26,6 +27,9 @@
 
 /obj/structure/proc/handle_barrier_chance(mob/living/M)
 	return FALSE
+
+/obj/structure/proc/update_health()
+	return
 
 /obj/structure/attack_hand(mob/user)
 	..()

@@ -136,7 +136,7 @@
 			to_chat(user, "<span class='warning'>The [src] needs to be turned off first.</span>")
 			return TRUE
 		if(!fusion_cell)
-			if(user.transferItemToLoc(O, src.))
+			if(user.transferItemToLoc(O, src))
 				fusion_cell = O
 				update_icon()
 				to_chat(user, "<span class='notice'>You load the [src] with the [O].</span>")
@@ -279,7 +279,7 @@
 /obj/machinery/power/fusion_engine/update_icon()
 	switch(buildstate)
 		if(FUSION_ENGINE_NO_DAMAGE)
-			if(fusion_cell)
+			if(fusion_cell?.fuel_amount > 0)
 				var/pstatus = is_on ? "on" : "off"
 				switch(fusion_cell.fuel_amount)
 					if(1 to 10)

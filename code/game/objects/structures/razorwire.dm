@@ -14,7 +14,7 @@
 	var/sheet_type = /obj/item/stack/barbed_wire
 	var/sheet_type2 = /obj/item/stack/rods
 	var/table_prefix = "" //used in update_icon()
-	var/health = RAZORWIRE_MAX_HEALTH
+	health = RAZORWIRE_MAX_HEALTH
 	var/soak = 5
 
 /obj/structure/razorwire/proc/destroyed(deconstruct = FALSE)
@@ -269,7 +269,7 @@
 			razorwire_tangle(C)
 	return ..()
 
-/obj/structure/razorwire/proc/update_health(nomessage)
+/obj/structure/razorwire/update_health(nomessage)
 	health = CLAMP(health, 0, RAZORWIRE_MAX_HEALTH)
 
 	if(!health)

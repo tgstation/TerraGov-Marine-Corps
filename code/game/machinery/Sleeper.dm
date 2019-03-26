@@ -192,7 +192,7 @@
 		icon_state = "sleeper_0-r"
 		
 /obj/machinery/sleeper/Destroy()
-	occupant.in_stasis = FALSE //clean up; end stasis; remove from processing
+	occupant?.in_stasis = FALSE //clean up; end stasis; remove from processing
 	occupant = null
 	STOP_PROCESSING(SSobj, src)
 	stop_processing()

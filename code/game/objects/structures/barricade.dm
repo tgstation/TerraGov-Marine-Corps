@@ -12,7 +12,7 @@
 	var/stack_type //The type of stack the barricade dropped when disassembled if any.
 	var/stack_amount = 5 //The amount of stack dropped when disassembled at full health
 	var/destroyed_stack_amount //to specify a non-zero amount of stack to drop when destroyed
-	var/health = 100 //Pretty tough. Changes sprites at 300 and 150
+	health = 100 //Pretty tough. Changes sprites at 300 and 150
 	var/maxhealth = 100 //Basic code functions
 	var/crusher_resistant = TRUE //Whether a crusher can ram through it.
 	var/barricade_resistance = 5 //How much force an item needs to even damage it at all.
@@ -269,7 +269,7 @@
 	health -= I.force * 0.5
 	update_health()
 
-/obj/structure/barricade/proc/update_health(nomessage)
+/obj/structure/barricade/update_health(nomessage)
 	health = CLAMP(health, 0, maxhealth)
 
 	if(!health)

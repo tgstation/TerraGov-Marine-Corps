@@ -29,14 +29,21 @@
 		M.stop_pulling()
 	. = ..()
 
+
 /obj/item/grab/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	if(user.pulling == user.buckled) return //can't move the thing you're sitting on.
+	if(!istype(user))
+		return
+	if(user.pulling == user.buckled) 
+		return //can't move the thing you're sitting on.
 	if(istype(target, /obj/effect))//if you click a blood splatter with a grab instead of the turf,
 		target = get_turf(target)	//we still try to move the grabbed thing to the turf.
-	if(isturf(target))
-		var/turf/T = target
-		if(!T.density && T.Adjacent(user))
-			step(user.pulling, get_dir(user.pulling.loc, T))
+	if(!isturf(target))
+		return
+	var/turf/T = target
+	if(T.density || !T.Adjacent(user))
+		return
+	user.changeNext_move(CLICK_CD_MELEE)
+	step(user.pulling, get_dir(user.pulling.loc, T))
 
 
 /obj/item/grab/attack_self(mob/user)
@@ -113,6 +120,7 @@
 
 				//Then, we place the mob where it ought to be
 				X.stomach_contents.Add(pulled)
+				pulled.KnockDown(3)
 				pulled.forceMove(X)
 				if(ishuman(pulled)) //Check for camera; if we have one, turn it off.
 					var/mob/living/carbon/human/H = pulled

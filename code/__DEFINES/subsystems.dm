@@ -49,7 +49,6 @@
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
-#define INIT_ORDER_TICKER			23
 #define INIT_ORDER_TITLE 			22
 #define INIT_ORDER_CODEX 			21
 #define INIT_ORDER_GARBAGE			20
@@ -62,6 +61,7 @@
 #define INIT_ORDER_EVENTS			13
 #define INIT_ORDER_JOBS				12
 #define INIT_ORDER_QUIRKS			11
+#define INIT_ORDER_TICKER			10
 #define INIT_ORDER_MAPPING			9
 #define INIT_ORDER_NETWORKS			8
 #define INIT_ORDER_ECONOMY			7
@@ -113,6 +113,7 @@
 #define FIRE_PRIORITY_TGUI			110
 #define FIRE_PRIORITY_NANOUI		111
 #define FIRE_PRIORITY_TICKER		200
+#define FIRE_PRIORITY_CHAT			400
 #define FIRE_PRIORITY_OVERLAYS		500
 #define FIRE_PRIORITY_INPUT			1000 // This must always always be the max highest priority. Player input must never be lost.
 

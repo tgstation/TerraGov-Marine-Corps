@@ -12,6 +12,7 @@
 	layer = ABOVE_FLY_LAYER
 
 
+	var/inquisitive_ghost = FALSE
 	var/can_reenter_corpse = FALSE
 	var/datum/hud/living/carbon/hud = null
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
@@ -78,17 +79,28 @@
 		log_admin("[key_name(usr)] has taken [key_name_admin(target)].")
 		message_admins("[ADMIN_TPMONTY(usr)] has taken [ADMIN_TPMONTY(target)].")
 
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			if(H.assigned_squad)
+				var/datum/squad/S = H.assigned_squad
+				S.clean_marine_from_squad(H)
+
 		mind.transfer_to(target, TRUE)
 		target.fully_replace_character_name(real_name, target.real_name)
-		if(target.job)
-			var/datum/job/J = SSjob.name_occupations[target.job]
-			var/datum/outfit/job/O = new J.outfit
-			var/datum/skills/L = new J.skills_type
-			target.mind.cm_skills = L
-			target.mind.comm_title = J.comm_title
 
-			SSjob.AssignRole(target, target.job)
-			O.post_equip(target)
+		if(!ishuman(target) || !target.job)
+			return
+
+		var/mob/living/carbon/human/H = target
+		H.set_rank(H.job)
+
+		if(!H.assigned_squad)
+			return
+
+		var/datum/squad/S = H.assigned_squad
+		S.put_marine_in_squad(H)
+
+
 
 
 	else if(href_list["preference"])
@@ -204,10 +216,9 @@
 	. = ..()
 
 	if(statpanel("Stats"))
-		if(EvacuationAuthority)
-			var/eta_status = EvacuationAuthority.get_status_panel_eta()
-			if(eta_status)
-				stat(null, eta_status)
+		var/eta_status = SSevacuation?.get_status_panel_eta()
+		if(eta_status)
+			stat("Evacuation in:", eta_status)
 		if(SSticker?.mode)
 			var/countdown = SSticker.mode.get_queen_countdown()
 			if(countdown)
@@ -768,7 +779,7 @@
 
 /mob/dead/observer/verb/dnr()
 	set category = "Ghost"
-	set name = "Become DNR"
+	set name = "Do Not Revive"
 	set desc = "Noone will be able to revive you."
 
 	if(can_reenter_corpse && alert("Are you sure? You won't be able to get revived.", "Confirmation", "Yes", "No") == "Yes")
@@ -776,3 +787,16 @@
 		to_chat(usr, "<span class='notice'>You can no longer be revived.</span>")
 	else if(!can_reenter_corpse)
 		to_chat(usr, "<span class='warning'>You already can't be revived.</span>")
+
+
+/mob/dead/observer/verb/toggle_inquisition()
+	set category = "Ghost"
+	set name = "Toggle Inquisitiveness"
+	set desc = "Sets whether your ghost examines everything on click by default"
+
+	inquisitive_ghost = !inquisitive_ghost
+
+	if(inquisitive_ghost)
+		to_chat(src, "<span class='notice'>You will now examine everything you click on.</span>")
+	else
+		to_chat(src, "<span class='notice'>You will no longer examine things you click on.</span>")

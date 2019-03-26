@@ -148,9 +148,8 @@
 	Die()
 
 /obj/item/clothing/mask/facehugger/proc/monitor_surrounding()
-	if(loc && !throwing) //Make sure we're conscious and not idle, dead or in action.
-		if(check_lifecycle())
-			leap_at_nearest_target()
+	if(!throwing && check_lifecycle()) //Make sure we're conscious and not idle, dead or in action.
+		leap_at_nearest_target()
 
 /obj/item/clothing/mask/facehugger/proc/GoIdle(hybernate = FALSE, no_activate = FALSE) //Idle state does not count toward the death timer.
 	if(stat == CONSCIOUS)
@@ -217,17 +216,18 @@
 	return FALSE
 
 /obj/item/clothing/mask/facehugger/proc/leap_at_nearest_target()
-	if(isturf(loc))
-		var/i = 10//So if we have a pile of dead bodies around, it doesn't scan everything, just ten iterations.
-		for(var/mob/living/carbon/M in view(4,src))
-			if(!i)
-				break
-			if(M.can_be_facehugged(src))
-				visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", null, 4)
-				leaping = TRUE
-				throw_at(M, 4, 1)
-				break
-			--i
+	if(!isturf(loc))
+		return
+	var/i = 10//So if we have a pile of dead bodies around, it doesn't scan everything, just ten iterations.
+	for(var/mob/living/carbon/M in view(4,src))
+		if(!i)
+			break
+		if(M.can_be_facehugged(src))
+			visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", null, 4)
+			leaping = TRUE
+			throw_at(M, 4, 1)
+			break
+		--i
 
 /obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
 	. = ..()
@@ -267,8 +267,8 @@
 		fast_activate()
 
 /obj/item/clothing/mask/facehugger/proc/fast_activate(unhybernate = FALSE)
-	if(GoActive(unhybernate))
-		monitor_surrounding()
+	if(GoActive(unhybernate) && !throwing)
+		leap_at_nearest_target()
 
 /mob/proc/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
 	return FALSE

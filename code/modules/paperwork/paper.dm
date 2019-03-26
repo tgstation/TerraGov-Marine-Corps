@@ -86,15 +86,6 @@
 	add_fingerprint(usr)
 	return
 
-/obj/item/paper/attack_self(mob/living/user)
-	examine(user)
-	if(rigged && (Holiday == "April Fool's Day"))
-		if(spam_flag == 0)
-			spam_flag = 1
-			playsound(loc, 'sound/items/bikehorn.ogg', 25, 1)
-			spawn(20)
-				spam_flag = 0
-	return
 
 /obj/item/paper/attack_ai(var/mob/living/silicon/ai/user as mob)
 	var/dist

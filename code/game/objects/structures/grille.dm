@@ -8,7 +8,7 @@
 	flags_atom = CONDUCT
 	layer = OBJ_LAYER
 	explosion_resistance = 5
-	var/health = 10
+	health = 10
 	var/destroyed = FALSE
 
 /obj/structure/grille/broken

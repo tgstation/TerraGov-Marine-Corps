@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 	layer = WINDOW_LAYER
-	var/health = 50
+	health = 50
 	var/health_max = 50
 	var/cut = FALSE //Cut fences can be passed through
 	var/junction = 0 //Because everything is terrible, I'm making this a fence-level var

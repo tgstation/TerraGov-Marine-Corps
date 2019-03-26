@@ -612,6 +612,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 //Special cases abound, handled below or in subclasses
 /obj/vehicle/multitile/root/cm_armored/attackby(var/obj/item/O, var/mob/user)
+	. = ..()
 
 	if(istype(O, /obj/item/hardpoint)) //Are we trying to install stuff?
 		var/obj/item/hardpoint/HP = O
@@ -635,7 +636,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(!(O.flags_item & NOBLUDGEON))
 		take_damage_type(O.force * 0.05, "blunt", user) //Melee weapons from people do very little damage
 
-	. = ..()
 
 /obj/vehicle/multitile/root/cm_armored/proc/handle_hardpoint_repair(var/obj/item/O, var/mob/user)
 

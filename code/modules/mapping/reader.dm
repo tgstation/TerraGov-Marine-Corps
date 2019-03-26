@@ -130,14 +130,14 @@
 	parsed_bounds = bounds
 
 /// Load the parsed map into the world. See [/proc/load_map] for arguments.
-/datum/parsed_map/proc/load(x_offset, y_offset, z_offset, cropMap, no_changeturf, x_lower, x_upper, y_lower, y_upper, placeOnTop)
+/datum/parsed_map/proc/load(x_offset, y_offset, z_offset, cropMap, no_changeturf, x_lower, x_upper, y_lower, y_upper, placeOnTop, delete)
 	//How I wish for RAII
 	Master.StartLoadingMap()
-	. = _load_impl(x_offset, y_offset, z_offset, cropMap, no_changeturf, x_lower, x_upper, y_lower, y_upper, placeOnTop)
+	. = _load_impl(x_offset, y_offset, z_offset, cropMap, no_changeturf, x_lower, x_upper, y_lower, y_upper, placeOnTop, delete)
 	Master.StopLoadingMap()
 
 // Do not call except via load() above.
-/datum/parsed_map/proc/_load_impl(x_offset = 1, y_offset = 1, z_offset = world.maxz + 1, cropMap = FALSE, no_changeturf = FALSE, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, placeOnTop = FALSE)
+/datum/parsed_map/proc/_load_impl(x_offset = 1, y_offset = 1, z_offset = world.maxz + 1, cropMap = FALSE, no_changeturf = FALSE, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, placeOnTop = FALSE, delete = FALSE)
 	var/list/areaCache = list()
 	var/list/modelCache = build_cache(no_changeturf)
 	var/space_key = modelCache[SPACE_KEY]
@@ -183,7 +183,7 @@
 							var/list/cache = modelCache[model_key]
 							if(!cache)
 								CRASH("Undefined model key in DMM: [model_key]")
-							build_coordinate(areaCache, cache, locate(xcrd, ycrd, zcrd), no_afterchange, placeOnTop)
+							build_coordinate(areaCache, cache, locate(xcrd, ycrd, zcrd), no_afterchange, placeOnTop, delete)
 
 							// only bother with bounds that actually exist
 							bounds[MAP_MINX] = min(bounds[MAP_MINX], xcrd)
@@ -293,7 +293,7 @@
 
 		.[model_key] = list(members, members_attributes)
 
-/datum/parsed_map/proc/build_coordinate(list/areaCache, list/model, turf/crds, no_changeturf as num, placeOnTop as num)
+/datum/parsed_map/proc/build_coordinate(list/areaCache, list/model, turf/crds, no_changeturf as num, placeOnTop as num, delete)
 	var/index
 	var/list/members = model[1]
 	var/list/members_attributes = model[2]
@@ -309,9 +309,9 @@
 		var/atype = members[index]
 		GLOB._preloader.setup(members_attributes[index], atype)//preloader for assigning  set variables on atom creation
 		var/atom/instance = areaCache[atype]
-		if (!instance)
+		if(!instance)
 			instance = GLOB.areas_by_type[atype]
-			if (!instance)
+			if(!instance)
 				instance = new atype(null)
 			areaCache[atype] = instance
 		if(crds)
@@ -331,20 +331,20 @@
 	//instanciate the first /turf
 	var/turf/T
 	if(members[first_turf_index] != /turf/template_noop)
-		T = instance_atom(members[first_turf_index],members_attributes[first_turf_index],crds,no_changeturf,placeOnTop)
+		T = instance_atom(members[first_turf_index], members_attributes[first_turf_index], crds,no_changeturf, placeOnTop, delete)
 
 	if(T)
 		//if others /turf are presents, simulates the underlays piling effect
 		index = first_turf_index + 1
 		while(index <= members.len - 1) // Last item is an /area
 			var/underlay = T.appearance
-			T = instance_atom(members[index],members_attributes[index],crds,no_changeturf,placeOnTop)//instance new turf
+			T = instance_atom(members[index], members_attributes[index], crds,no_changeturf, placeOnTop, delete)//instance new turf
 			T.underlays += underlay
 			index++
 
 	//finally instance all remainings objects/mobs
 	for(index in 1 to first_turf_index-1)
-		instance_atom(members[index],members_attributes[index],crds,no_changeturf,placeOnTop)
+		instance_atom(members[index], members_attributes[index], crds, no_changeturf, placeOnTop, delete)
 	//Restore initialization to the previous value
 	SSatoms.map_loader_stop()
 
@@ -353,11 +353,15 @@
 ////////////////
 
 //Instance an atom at (x,y,z) and gives it the variables in attributes
-/datum/parsed_map/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf, placeOnTop)
+/datum/parsed_map/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf, placeOnTop, delete)
 	GLOB._preloader.setup(attributes, path)
 
 	if(crds)
 		if(ispath(path, /turf))
+			if(delete)
+				for(var/obj/O in crds.contents)
+					qdel(O)
+
 			if(placeOnTop)
 				. = crds.PlaceOnTop(null, path, CHANGETURF_DEFER_CHANGE | (no_changeturf ? CHANGETURF_SKIP : NONE))
 			else if(!no_changeturf)

@@ -236,6 +236,7 @@
 
 	if(!(I.flags_item & NOBLUDGEON) && I.force && density) //trying to smash windoor with item
 		var/aforce = I.force
+		user.changeNext_move(I.attack_speed)
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 		visible_message("<span class='danger'>[src] was hit by [I].</span>")
 		if(I.damtype == BRUTE || I.damtype == BURN)

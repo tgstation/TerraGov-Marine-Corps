@@ -1,14 +1,3 @@
-//How many new ckey matches before we revert the stickyban to it's roundstart state
-//These are exclusive, so once it goes over one of these numbers, it reverts the ban
-#define STICKYBAN_MAX_MATCHES 20
-#define STICKYBAN_MAX_EXISTING_USER_MATCHES 5 //ie, users who were connected before the ban triggered
-#define STICKYBAN_MAX_ADMIN_MATCHES 2
-
-
-#define MAX_ADMINBANS_PER_ADMIN 1
-#define MAX_ADMINBANS_PER_HEADMIN 10
-
-
 /client/proc/mute(var/client/C, mute_type, force = FALSE)
 	if(!force)
 		if(!check_if_greater_rights_than(C) && !check_rights(R_BAN, FALSE))
@@ -38,16 +27,12 @@
 		else
 			return
 
-	C.prefs.load_preferences()
-
 	if(C.prefs.muted & mute_type)
 		muteunmute = "unmuted"
 		C.prefs.muted &= ~mute_type
 	else
 		muteunmute = "muted"
 		C.prefs.muted |= mute_type
-
-	C.prefs.save_preferences()
 
 	to_chat(C, "<span class='boldannounce'>You have been [muteunmute] from [mute_string].</span>")
 

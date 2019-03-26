@@ -36,7 +36,7 @@
 	if(user.action_busy)
 		return
 
-	if (!user.action_busy && (ishuman(target) || ishuman(target)))
+	if (!user.action_busy && (ishuman(target) || ismonkey(target)))
 		playsound(src.loc, cuff_sound, 25, 1, 4)
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
@@ -46,8 +46,6 @@
 
 		log_combat(user, target, "handcuffed", src, addition="(attempt)")
 		msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(target)]")
-
-		feedback_add_details("handcuffs","target")
 
 		user.visible_message("<span class='notice'>[user] tries to put [src] on [target].</span>")
 		if(do_mob(user, target, cuff_delay, icon_display = TARGET_PROG_ICON_GENERIC, CALLBACK(user, .Adjacent, target)) && !target.handcuffed)

@@ -9,7 +9,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 65
 	melee_damage_upper = 80
-	attack_delay = -2 //Bonus or pen to time in between attacks. + makes slashes slower.
+	attack_delay = 6
 
 	// *** Tackle *** //
 	tackle_damage = 50 //How much HALLOSS damage a xeno deals when tackling
@@ -39,9 +39,9 @@
 	charge_type = 4
 	pounce_delay = 4 SECONDS
 
-/datum/xeno_caste/predalien/handle_decay(mob/living/carbon/Xenomorph/X)
+/mob/living/carbon/Xenomorph/Predalien/handle_decay()
 	if(prob(20))
-		X.use_plasma(min(rand(1,2), X.plasma_stored))
+		use_plasma(min(rand(1,2), plasma_stored))
 
 /mob/living/carbon/Xenomorph/Predalien
 	caste_base_type = /mob/living/carbon/Xenomorph/Predalien
