@@ -190,10 +190,9 @@
 	storage_slots = null
 	max_storage_space = 15
 
-/obj/item/storage/backpack/satchel/withwallet
-	New()
-		..()
-		new /obj/item/storage/wallet/random( src )
+/obj/item/storage/backpack/satchel/withwallet/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/storage/wallet/random( src )
 
 /obj/item/storage/backpack/satchel/norm
 	name = "satchel"
@@ -371,16 +370,16 @@
 	name = "\improper TGMC technician backpack"
 	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
 	icon_state = "marinepackt"
-	bypass_w_limit = list(/obj/item/device/m56d_gun,
-					/obj/item/ammo_magazine/m56d,
-					/obj/item/device/m56d_post,
-					/obj/item/device/turret_top,
-					/obj/item/ammo_magazine/sentry,
-					/obj/item/ammo_magazine/minisentry,
-					/obj/item/device/marine_turret/mini,
-					/obj/item/stack/razorwire,
-					/obj/item/stack/sandbags
-					)
+	bypass_w_limit = list(
+		/obj/item/device/m56d_gun,
+		/obj/item/ammo_magazine/m56d,
+		/obj/item/device/m56d_post,
+		/obj/item/device/turret_top,
+		/obj/item/ammo_magazine/sentry,
+		/obj/item/ammo_magazine/minisentry,
+		/obj/item/device/marine_turret/mini,
+		/obj/item/stack/razorwire,
+		/obj/item/stack/sandbags)
 
 /obj/item/storage/backpack/marine/satchel
 	name = "\improper TGMC satchel"
