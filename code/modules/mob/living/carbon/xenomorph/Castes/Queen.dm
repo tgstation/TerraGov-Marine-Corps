@@ -750,8 +750,6 @@
 	return
 
 /mob/living/carbon/Xenomorph/Queen/death(gibbed)
-	if(hive)
-		hive.on_queen_death(src)
 	. = ..()
 	if(observed_xeno)
 		set_queen_overwatch(observed_xeno, TRUE)

@@ -225,6 +225,9 @@
 // *********** Xeno death
 // ***************************************
 /datum/hive_status/proc/on_xeno_death(mob/living/carbon/Xenomorph/X)
+	if(isxenoqueen(X))
+		on_queen_death(X)
+
 	if(living_xeno_queen?.observed_xeno == X)
 		living_xeno_queen.set_queen_overwatch(X, TRUE)
 		
@@ -261,7 +264,10 @@
 
 // These are defined for per-hive behaviour
 /datum/hive_status/proc/on_queen_death(mob/living/carbon/Xenomorph/Queen/Q)
-	return
+	if(living_xeno_queen == Q)
+		living_xeno_queen = null
+	update_queen()
+	return TRUE
 
 /datum/hive_status/proc/start_queen_timer()
 	return
@@ -312,14 +318,16 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /datum/hive_status/normal/on_queen_death(mob/living/carbon/Xenomorph/Queen/Q)
 	if(living_xeno_queen != Q)
-		return
+		return FALSE
 
 	if(!stored_larva) // no larva to deal with
-		return
+		return ..()
 
 	stored_larva = round(stored_larva * ((Q.upgrade_as_number() + 1) * QUEEN_DEATH_LARVA_MULTIPLIER))
 
 	INVOKE_ASYNC(src, .proc/unbury_all_larva) // this is potentially a lot of calls so do it async
+
+	return ..()
 
 /datum/hive_status/normal/unbury_all_larva()
 	var/turf/larva_spawn
