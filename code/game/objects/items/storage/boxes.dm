@@ -290,6 +290,8 @@
 	spawn_type = /obj/item/light_bulb/bulb
 	spawn_number = 21
 
+/obj/item/storage/box/lights/bulbs // mapping placeholder
+
 /obj/item/storage/box/lights/tubes
 	name = "box of replacement tubes"
 	icon_state = "lighttube"

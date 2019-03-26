@@ -133,7 +133,7 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 
 /obj/item/clothing/tie/storage/get_mechanics_info()
 	. = ..()
-	. += "<br>This item has an internal inventory of [slots] slots."
+	. += "<br>This item has an internal inventory of [hold.storage_slots] slots."
 	if(length(hold.bypass_w_limit))
 		. += "<br><br><U>You can also carry the following special items in this</U>:"
 		for(var/X in hold.bypass_w_limit)

@@ -3,7 +3,7 @@
 
 /obj/item/clothing/suit/storage/Initialize()
 	. = ..()
-	pockets = pockets(src)
+	pockets = new pockets(src)
 
 /obj/item/clothing/suit/storage/attack_hand(mob/user)
 	if(pockets.handle_attack_hand(user))

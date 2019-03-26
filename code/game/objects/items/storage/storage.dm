@@ -347,21 +347,15 @@
 		return FALSE //Storage item is full
 
 	if(length(can_hold))
-		var/ok = FALSE
-		for(var/A in can_hold)
-			if(istype(W, text2path(A)))
-				ok = TRUE
-				break
-		if(!ok)
+		if(!is_type_in_typecache(W, can_hold))
 			if(warning)
 				to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
 			return FALSE
 
-	for(var/A in cant_hold) //Check for specific items which this container can't hold.
-		if(istype(W, text2path(A) ))
-			if(warning)
-				to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
-			return FALSE
+	if(is_type_in_typecache(W, cant_hold)) //Check for specific items which this container can't hold.
+		if(warning)
+			to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
+		return FALSE
 
 	if(!is_type_in_typecache(W, bypass_w_limit) && W.w_class > max_w_class)
 		if(warning)

@@ -35,14 +35,14 @@
 	if(max_storage_space)
 		storage_strings += "It can carry [max_storage_space] weight of stuff."
 
-	if(max_w_class & length(can_hold) < 1)
+	if(max_w_class && !length(can_hold))
 		storage_strings += "It can carry weight [max_w_class] things or lighter."
 
-	if(length(can_hold) > 0)
+	if(length(can_hold))
 		storage_strings += "<br><U>You can only carry the following in this</U>:"
 		for(var/X in can_hold)
 			var/obj/item/A = X
-			storage_strings += "[initial(text2path(A).name)]"
+			storage_strings += "[initial(A.name)]"
 
 	if(length(bypass_w_limit))
 		storage_strings += "<br><U>You can also carry the following special items in this</U>:"

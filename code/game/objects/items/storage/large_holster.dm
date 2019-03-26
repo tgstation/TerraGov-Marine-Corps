@@ -56,7 +56,7 @@
 		/obj/item/weapon/gun/shotgun/pump,
 		/obj/item/weapon/gun/shotgun/combat)
 
-/obj/item/storage/large_holster/m37/Initialize()
+/obj/item/storage/large_holster/m37/full/Initialize()
 	. = ..()
 	icon_state = "m37_holster_full"
 	new /obj/item/weapon/gun/shotgun/pump(src)

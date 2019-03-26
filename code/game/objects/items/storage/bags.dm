@@ -36,7 +36,7 @@
 	max_w_class = 2
 	storage_slots = 21
 	can_hold = list() // any
-	cant_hold = list("/obj/item/disk/nuclear")
+	cant_hold = list(/obj/item/disk/nuclear)
 
 /obj/item/storage/bag/trash/update_icon()
 	if(contents.len == 0)
@@ -63,7 +63,7 @@
 	max_w_class = 2
 	storage_slots = 21
 	can_hold = list() // any
-	cant_hold = list("/obj/item/disk/nuclear")
+	cant_hold = list(/obj/item/disk/nuclear)
 
 // -----------------------------
 //        Mining Satchel

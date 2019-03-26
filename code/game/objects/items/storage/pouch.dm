@@ -53,18 +53,21 @@
 /obj/item/storage/pouch/bayonet
 	name = "bayonet sheath"
 	desc = "A pouch for your knives."
-	can_hold = list("/obj/item/weapon/combat_knife", "/obj/item/weapon/throwing_knife", "/obj/item/attachable/bayonet")
+	can_hold = list(
+		/obj/item/weapon/combat_knife, 
+		/obj/item/weapon/throwing_knife, 
+		/obj/item/attachable/bayonet)
 	icon_state = "bayonet"
 	storage_slots = 3
 	draw_mode = 1
 
-/obj/item/storage/pouch/bayonet/full/New()
-	..()
+/obj/item/storage/pouch/bayonet/full/Initialize()
+	. = ..()
 	new /obj/item/weapon/combat_knife(src)
 
 
-/obj/item/storage/pouch/bayonet/upp/New()
-	..()
+/obj/item/storage/pouch/bayonet/upp/Initialize()
+	. = ..()
 	new /obj/item/weapon/combat_knife/upp (src)
 
 /obj/item/storage/pouch/survival
@@ -74,15 +77,14 @@
 	storage_slots = 6
 	max_w_class = 3
 	can_hold = list(
-					"/obj/item/device/flashlight",
-					"/obj/item/reagent_container/pill",
-					"/obj/item/stack/medical/bruise_pack",
-					"/obj/item/stack/sheet/metal",
-					"/obj/item/stack/sheet/plasteel",
-					"/obj/item/tool/weldingtool"
-					)
+		/obj/item/device/flashlight,
+		/obj/item/reagent_container/pill,
+		/obj/item/stack/medical/bruise_pack,
+		/obj/item/stack/sheet/metal,
+		/obj/item/stack/sheet/plasteel,
+		/obj/item/tool/weldingtool)
 
-/obj/item/storage/pouch/survival/full/New()
+/obj/item/storage/pouch/survival/full/Initialize()
 	. = ..()
 	new /obj/item/device/flashlight(src)
 	new /obj/item/reagent_container/pill/tramadol(src)
@@ -100,17 +102,16 @@
 	icon_state = "firstaid"
 	storage_slots = 5
 	can_hold = list(
-					"/obj/item/stack/medical/ointment",
-					"/obj/item/reagent_container/hypospray/autoinjector",
-					"/obj/item/stack/medical/bruise_pack",
-					"/obj/item/stack/medical/splint"
-					)
+		/obj/item/stack/medical/ointment,
+		/obj/item/reagent_container/hypospray/autoinjector,
+		/obj/item/stack/medical/bruise_pack,
+		/obj/item/stack/medical/splint)
 
 /obj/item/storage/pouch/firstaid/full
 	desc = "Contains a painkiller autoinjector, first-aid autoinjector, splints, some ointment, and some bandages."
 
-/obj/item/storage/pouch/firstaid/full/New()
-	..()
+/obj/item/storage/pouch/firstaid/full/Initialize()
+	. = ..()
 	new /obj/item/stack/medical/ointment (src)
 	new /obj/item/reagent_container/hypospray/autoinjector/tramadol (src)
 	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine (src)
@@ -122,8 +123,9 @@
 	desc = "It can contain a pistol. Useful for emergencies."
 	icon_state = "pistol"
 	max_w_class = 3
-	can_hold = list("/obj/item/weapon/gun/pistol",
-					"/obj/item/weapon/gun/revolver")
+	can_hold = list(
+		/obj/item/weapon/gun/pistol,
+		/obj/item/weapon/gun/revolver)
 	draw_mode = 1
 
 
@@ -137,16 +139,22 @@
 	max_w_class = 3
 	storage_slots = 2
 	draw_mode = 0
-	can_hold = list("/obj/item/ammo_magazine/rifle",
-					"/obj/item/ammo_magazine/smg",
-					"/obj/item/ammo_magazine/pistol",
-					"/obj/item/ammo_magazine/revolver",
-					"/obj/item/ammo_magazine/lasgun",
-					"/obj/item/ammo_magazine/sniper",
-					"/obj/item/ammo_magazine/handful",
-					"/obj/item/cell/lasgun",
-					)
+	can_hold = list(
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/handful,
+		/obj/item/cell/lasgun)
+	var/magazine_type
+	var/magazine_number = 0
 
+/obj/item/storage/pouch/magazine/Initialize()
+	. = ..()
+	if(magazine_number)
+		for(var/i in 1 to magazine_number)
+			new magazine_type(src)
 
 /obj/item/storage/pouch/magazine/large
 	name = "large magazine pouch"
@@ -163,88 +171,62 @@
 	storage_slots = 3
 
 	can_hold = list(
-					"/obj/item/ammo_magazine/pistol",
-					"/obj/item/ammo_magazine/revolver",
-					)
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver)
 
 /obj/item/storage/pouch/magazine/pistol/large
 	name = "large pistol magazine pouch"
 	storage_slots = 6
 	icon_state = "large_pistol_mag"
 
-/obj/item/storage/pouch/magazine/pistol/large/full/New()
-	. = ..()
-	new /obj/item/ammo_magazine/pistol(src)
-	new /obj/item/ammo_magazine/pistol(src)
-	new /obj/item/ammo_magazine/pistol(src)
-	new /obj/item/ammo_magazine/pistol(src)
-	new /obj/item/ammo_magazine/pistol(src)
-	new /obj/item/ammo_magazine/pistol(src)
+/obj/item/storage/pouch/magazine/pistol/large/full
+	magazine_type = /obj/item/ammo_magazine/pistol
+	magazine_number = 6
 
-/obj/item/storage/pouch/magazine/pistol/pmc_mateba/New()
-	. = ..()
-	new /obj/item/ammo_magazine/revolver/mateba (src)
-	new /obj/item/ammo_magazine/revolver/mateba (src)
-	new /obj/item/ammo_magazine/revolver/mateba (src)
+/obj/item/storage/pouch/magazine/pistol/pmc_mateba
+	magazine_type = /obj/item/ammo_magazine/revolver/mateba
+	magazine_number = 3
 
-/obj/item/storage/pouch/magazine/pistol/pmc_vp70/New()
-	. = ..()
-	new /obj/item/ammo_magazine/pistol/vp70(src)
-	new /obj/item/ammo_magazine/pistol/vp70(src)
-	new /obj/item/ammo_magazine/pistol/vp70(src)
+/obj/item/storage/pouch/magazine/pistol/
+	magazine_type = /obj/item/ammo_magazine/pistol/vp70
+	magazine_number = 3
 
-/obj/item/storage/pouch/magazine/pistol/pmc_vp78/New()
-	. = ..()
-	new /obj/item/ammo_magazine/pistol/vp78(src)
-	new /obj/item/ammo_magazine/pistol/vp78(src)
-	new /obj/item/ammo_magazine/pistol/vp78(src)
+/obj/item/storage/pouch/magazine/pistol/pmc_vp78
+	magazine_type = /obj/item/ammo_magazine/pistol/vp78
+	magazine_number = 3
 
+/obj/item/storage/pouch/magazine/upp
+	magazine_type = /obj/item/ammo_magazine/rifle/type71
+	magazine_number = 2
 
-/obj/item/storage/pouch/magazine/upp/New()
-	. = ..()
-	new /obj/item/ammo_magazine/rifle/type71(src)
-	new /obj/item/ammo_magazine/rifle/type71(src)
+/obj/item/storage/pouch/magazine/large/upp
+	magazine_type = /obj/item/ammo_magazine/rifle/type71
+	magazine_number = 3
 
-/obj/item/storage/pouch/magazine/large/upp/New()
-	. = ..()
-	new /obj/item/ammo_magazine/rifle/type71(src)
-	new /obj/item/ammo_magazine/rifle/type71(src)
-	new /obj/item/ammo_magazine/rifle/type71(src)
+/obj/item/storage/pouch/magazine/upp_smg
+	magazine_type = /obj/item/ammo_magazine/smg/skorpion
+	magazine_number = 2
 
-/obj/item/storage/pouch/magazine/upp_smg/New()
-	. = ..()
-	new /obj/item/ammo_magazine/smg/skorpion(src)
-	new /obj/item/ammo_magazine/smg/skorpion(src)
+/obj/item/storage/pouch/magazine/large/pmc_m39
+	magazine_type = /obj/item/ammo_magazine/smg/m39/ap
+	magazine_number = 3
 
-/obj/item/storage/pouch/magazine/large/pmc_m39/New()
-	. = ..()
-	new /obj/item/ammo_magazine/smg/m39/ap(src)
-	new /obj/item/ammo_magazine/smg/m39/ap(src)
-	new /obj/item/ammo_magazine/smg/m39/ap(src)
+/obj/item/storage/pouch/magazine/large/pmc_p90
+	magazine_type = /obj/item/ammo_magazine/smg/p90
+	magazine_number = 3
 
-/obj/item/storage/pouch/magazine/large/pmc_p90/New()
-	. = ..()
-	new /obj/item/ammo_magazine/smg/p90(src)
-	new /obj/item/ammo_magazine/smg/p90(src)
-	new /obj/item/ammo_magazine/smg/p90(src)
+/obj/item/storage/pouch/magazine/large/pmc_lmg
+	magazine_type = /obj/item/ammo_magazine/rifle/lmg
+	magazine_number = 3
 
-/obj/item/storage/pouch/magazine/large/pmc_lmg/New()
-	. = ..()
-	new /obj/item/ammo_magazine/rifle/lmg(src)
-	new /obj/item/ammo_magazine/rifle/lmg(src)
-	new /obj/item/ammo_magazine/rifle/lmg(src)
+/obj/item/storage/pouch/magazine/large/pmc_sniper
+	magazine_type = /obj/item/ammo_magazine/sniper/elite
+	magazine_number = 3
 
-/obj/item/storage/pouch/magazine/large/pmc_sniper/New()
-	. = ..()
-	new /obj/item/ammo_magazine/sniper/elite(src)
-	new /obj/item/ammo_magazine/sniper/elite(src)
-	new /obj/item/ammo_magazine/sniper/elite(src)
+/obj/item/storage/pouch/magazine/large/pmc_rifle
+	magazine_type = /obj/item/ammo_magazine/rifle/ap
+	magazine_number = 3
 
-/obj/item/storage/pouch/magazine/large/pmc_rifle/New()
-	. = ..()
-	new /obj/item/ammo_magazine/rifle/ap(src)
-	new /obj/item/ammo_magazine/rifle/ap(src)
-	new /obj/item/ammo_magazine/rifle/ap(src)
 
 
 
@@ -255,24 +237,23 @@
 	storage_slots = 4
 	max_w_class = 3
 	can_hold = list(
-					"/obj/item/explosive/plastique",
-					"/obj/item/explosive/mine",
-					"/obj/item/explosive/grenade",
-					"/obj/item/storage/box/explosive_mines",
-					"/obj/item/ammo_magazine/rocket",
-					"/obj/item/device/radio/detpack",
-					"/obj/item/device/assembly/signaler",
-					)
+		/obj/item/explosive/plastique,
+		/obj/item/explosive/mine,
+		/obj/item/explosive/grenade,
+		/obj/item/storage/box/explosive_mines,
+		/obj/item/ammo_magazine/rocket,
+		/obj/item/device/radio/detpack,
+		/obj/item/device/assembly/signaler)
 
-/obj/item/storage/pouch/explosive/full/New()
-	..()
+/obj/item/storage/pouch/explosive/full/Initialize()
+	. = ..()
 	new /obj/item/explosive/grenade/frag (src)
 	new /obj/item/explosive/grenade/frag (src)
 	new /obj/item/explosive/grenade/frag (src)
 
 
-/obj/item/storage/pouch/explosive/upp/New()
-	..()
+/obj/item/storage/pouch/explosive/upp/Initialize()
+	. = ..()
 	new /obj/item/explosive/plastique(src)
 	new /obj/item/explosive/plastique(src)
 	new /obj/item/explosive/plastique(src)
@@ -284,19 +265,18 @@
 	storage_slots = 3
 
 	can_hold = list(
-		"/obj/item/device/healthanalyzer",
-		"/obj/item/reagent_container/dropper",
-		"/obj/item/reagent_container/pill",
-		"/obj/item/reagent_container/glass/bottle",
-		"/obj/item/reagent_container/syringe",
-		"/obj/item/storage/pill_bottle",
-		"/obj/item/stack/medical",
-		"/obj/item/device/flashlight/pen",
-	    "/obj/item/reagent_container/hypospray"
-	)
+		/obj/item/device/healthanalyzer,
+		/obj/item/reagent_container/dropper,
+		/obj/item/reagent_container/pill,
+		/obj/item/reagent_container/glass/bottle,
+		/obj/item/reagent_container/syringe,
+		/obj/item/storage/pill_bottle,
+		/obj/item/stack/medical,
+		/obj/item/device/flashlight/pen,
+	    /obj/item/reagent_container/hypospray)
 
-/obj/item/storage/pouch/medical/full/New()
-	..()
+/obj/item/storage/pouch/medical/full/Initialize()
+	. = ..()
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
@@ -308,7 +288,7 @@
 	storage_slots = 7
 	max_storage_space = 14
 	can_hold = list(
-	    "/obj/item/reagent_container/hypospray/autoinjector"
+	    /obj/item/reagent_container/hypospray/autoinjector
 	)
 
 
@@ -318,7 +298,7 @@
 	icon_state = "syringe"
 	storage_slots = 5
 	max_storage_space = 10
-	can_hold = list("/obj/item/reagent_container/syringe")
+	can_hold = list(/obj/item/reagent_container/syringe)
 
 
 /obj/item/storage/pouch/medkit
@@ -341,7 +321,9 @@
 	desc = "It can contain papers and clipboards."
 	icon_state = "document"
 	storage_slots = 7
-	can_hold = list("/obj/item/paper", "/obj/item/clipboard")
+	can_hold = list(
+		/obj/item/paper, 
+		/obj/item/clipboard)
 
 
 /obj/item/storage/pouch/flare
@@ -351,8 +333,9 @@
 	storage_slots = 5
 	draw_mode = 1
 	icon_state = "flare"
-	can_hold = list("/obj/item/device/flashlight/flare",
-					"/obj/item/explosive/grenade/flare")
+	can_hold = list(
+		/obj/item/device/flashlight/flare,
+		/obj/item/explosive/grenade/flare)
 
 /obj/item/storage/pouch/flare/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/storage/box/m94))
@@ -377,8 +360,8 @@
 	else
 		return ..()
 
-/obj/item/storage/pouch/flare/full/New()
-	..()
+/obj/item/storage/pouch/flare/full/Initialize()
+	. = ..()
 	new /obj/item/explosive/grenade/flare(src)
 	new /obj/item/explosive/grenade/flare(src)
 	new /obj/item/explosive/grenade/flare(src)
@@ -394,7 +377,7 @@
 	icon_state = "radio"
 	draw_mode = 1
 	desc = "It can contain two handheld radios."
-	can_hold = list("/obj/item/device/radio")
+	can_hold = list(/obj/item/device/radio)
 
 
 /obj/item/storage/pouch/field_pouch
@@ -404,19 +387,19 @@
 	icon_state = "radio"
 	draw_mode = 1
 	desc = "It can contain a motion detector, signaller, beacons, maps, flares, radios and other handy battlefield communication and detection devices."
-	can_hold = list("/obj/item/device/motiondetector",
-					"/obj/item/device/radio",
-					"/obj/item/device/assembly/signaler",
-					"/obj/item/device/megaphone",
-					"/obj/item/device/flashlight",
-					"/obj/item/device/whistle",
-					"/obj/item/device/binoculars",
-					"/obj/item/map/current_map",
-					"/obj/item/map/squad_beacon",
-					)
+	can_hold = list(
+		/obj/item/device/motiondetector,
+		/obj/item/device/radio,
+		/obj/item/device/assembly/signaler,
+		/obj/item/device/megaphone,
+		/obj/item/device/flashlight,
+		/obj/item/device/whistle,
+		/obj/item/device/binoculars,
+		/obj/item/map/current_map,
+		/obj/item/device/squad_beacon)
 
-/obj/item/storage/pouch/field_pouch/full/New()
-	.=..()
+/obj/item/storage/pouch/field_pouch/full/Initialize()
+	. = ..()
 	new /obj/item/device/motiondetector (src)
 	new /obj/item/device/whistle (src)
 	new /obj/item/device/radio (src)
@@ -430,12 +413,11 @@
 	icon_state = "electronics"
 	storage_slots = 5
 	can_hold = list(
-					"/obj/item/circuitboard",
-					"/obj/item/cell"
-					)
+		/obj/item/circuitboard,
+		/obj/item/cell)
 
-/obj/item/storage/pouch/electronics/full/New()
-	..()
+/obj/item/storage/pouch/electronics/full/Initialize()
+	. = ..()
 	new /obj/item/circuitboard/airlock (src)
 	new /obj/item/circuitboard/apc (src)
 	new /obj/item/cell/high (src)
@@ -448,16 +430,15 @@
 	max_w_class = 3
 	icon_state = "construction"
 	can_hold = list(
-					"/obj/item/stack/barbed_wire",
-					"/obj/item/stack/sheet",
-					"/obj/item/stack/rods",
-					"/obj/item/stack/cable_coil",
-					"/obj/item/tool/shovel/etool",
-					"/obj/item/stack/sandbags_empty"
-					)
+		/obj/item/stack/barbed_wire,
+		/obj/item/stack/sheet,
+		/obj/item/stack/rods,
+		/obj/item/stack/cable_coil,
+		/obj/item/tool/shovel/etool,
+		/obj/item/stack/sandbags_empty)
 
-/obj/item/storage/pouch/construction/full/New()
-	..()
+/obj/item/storage/pouch/construction/full/Initialize()
+	. = ..()
 	new /obj/item/stack/sandbags_empty/half (src)
 	new /obj/item/stack/barbed_wire/small_stack (src)
 	new /obj/item/tool/shovel/etool (src)
@@ -469,19 +450,18 @@
 	max_w_class = 3
 	icon_state = "tools"
 	can_hold = list(
-					"/obj/item/tool/wirecutters",
-					"/obj/item/tool/shovel/etool",
-					"/obj/item/tool/screwdriver",
-					"/obj/item/tool/crowbar",
-					"/obj/item/tool/weldingtool",
-					"/obj/item/device/multitool",
-					"/obj/item/tool/wrench",
-					"/obj/item/stack/cable_coil",
-					"/obj/item/tool/extinguisher/mini"
-					)
+		/obj/item/tool/wirecutters,
+		/obj/item/tool/shovel/etool,
+		/obj/item/tool/screwdriver,
+		/obj/item/tool/crowbar,
+		/obj/item/tool/weldingtool,
+		/obj/item/device/multitool,
+		/obj/item/tool/wrench,
+		/obj/item/stack/cable_coil,
+		/obj/item/tool/extinguisher/mini)
 
-/obj/item/storage/pouch/tools/full/New()
-	..()
+/obj/item/storage/pouch/tools/full/Initialize()
+	. = ..()
 	new /obj/item/tool/screwdriver (src)
 	new /obj/item/tool/wirecutters (src)
 	new /obj/item/device/multitool (src)
@@ -494,8 +474,7 @@
 	icon_state = "small_drop"
 	storage_slots = 4
 	draw_mode = 0
-	can_hold = list("/obj/item/ammo_magazine/handful",
-					)
+	can_hold = list(/obj/item/ammo_magazine/handful)
 
 /obj/item/storage/pouch/shotgun/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/ammo_magazine/shotgun))

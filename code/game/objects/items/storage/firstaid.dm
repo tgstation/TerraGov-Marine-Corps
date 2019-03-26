@@ -14,14 +14,15 @@
 	w_class = 4
 	throw_speed = 2
 	throw_range = 8
-	cant_hold = list("/obj/item/ammo_magazine",
-						"/obj/item/explosive/grenade")
+	cant_hold = list(
+		/obj/item/ammo_magazine,
+		/obj/item/explosive/grenade)
 	var/empty = FALSE //whether the kit starts empty
 	var/icon_full //icon state to use when kit is full
 	var/possible_icons_full
 
-/obj/item/storage/firstaid/New()
-	..()
+/obj/item/storage/firstaid/Initialize(mapload, ...)
+	. = ..()
 	if(possible_icons_full)
 		icon_state = pick(possible_icons_full)
 	icon_full = icon_state
