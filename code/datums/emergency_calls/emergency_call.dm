@@ -171,7 +171,6 @@
 					if(!istype(M)) //Something went horrifically wrong
 						candidates -= M
 						continue
-          
 					if(M.current?.stat != DEAD)
 						candidates -= M //Strip them from the list, they aren't dead anymore.
 						continue
