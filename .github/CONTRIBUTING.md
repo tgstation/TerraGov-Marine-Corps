@@ -161,9 +161,6 @@ While we normally encourage (and in some cases, even require) bringing out of da
 This ensures atoms initialize correctly and there are not false positives of failures.
 You also must not use `qdel(src)` inside `Initialize()`, use `return INITIALIZE_HINT_QDEL` instead.
 
-### Use of `..()` vs `. = ..()`
-There's no reason to not to use `. = ..()` instead of `..()`.  The exception being `return ..()` or procs where you do not want to call the parent proc.
-
 ### Type checks vs Overrides
 It is preferable to override a proc instead of using `istype()` checks for special behaviour for subtypes.
 eg;
