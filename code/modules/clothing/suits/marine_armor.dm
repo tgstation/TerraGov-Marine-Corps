@@ -764,9 +764,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	armor = list(melee = 85, bullet = 85, laser = 85, energy = 85, bomb = 85, bio = 25, rad = 25)
 	brightness_on = 6 // better light
 
-/obj/item/clothing/suit/storage/marine/imperial/apothecary
-	name = "\improper Imperial Guard apothecary armour"
-	desc = "An armour worn by the apothecaries of the Imperial Guard."
+/obj/item/clothing/suit/storage/marine/imperial/medicae
+	name = "\improper Imperial Guard medicae armour"
+	desc = "An armour worn by the medicae of the Imperial Guard."
 	icon_state = "guardmedicarmor"
 	item_state = "guardmedicarmor"
 

@@ -488,8 +488,8 @@
 	medical = SKILL_MEDICAL_CHEM
 	surgery = SKILL_SURGERY_AMATEUR
 
-/datum/skills/imperial/apothecary
-	name = "Guardsman Apothecary" // medic
+/datum/skills/imperial/medicae
+	name = "Guardsman Medicae" // medic
 	
 	medical = SKILL_MEDICAL_MEDIC
 	surgery = SKILL_SURGERY_TRAINED

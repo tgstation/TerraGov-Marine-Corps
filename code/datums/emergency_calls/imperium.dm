@@ -24,7 +24,7 @@
 	H.real_name = H.name
 	H.voice_name = H.name
 	
-	H.key = M.key
+	M.transfer_to(H, TRUE)
 	
 	if(original)
 		qdel(original)
@@ -35,22 +35,17 @@
 		// assign leader
 		leader = H
 		var/datum/job/J = new /datum/job/imperial/guardsman/sergeant
-		H.set_everything(H, "Guardsman Sergeant")
-		J.generate_equipment(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are a veteran of the Imperial Guard, a sergeant.\nYou lead your men to battle, and have fought many times.</span><span class='danger'>FOR THE EMPEROR!</span>")
 		return
 	
-	// wh40k got no medics!! at least not guardsmen ones :: apparently they do... https://cdn.discordapp.com/attachments/498992197207588864/540643052096716801/Vostroyan_Female_Medic.jpg
-	
 	if(medics < max_medics)
-		var/datum/job/J = new /datum/job/imperial/guardsman/apothecary
-		H.set_everything(H, "Guardsman Apothecary")
-		J.generate_equipment(H)
-		to_chat(H, "<span class='notice'>You are an apothecary of the Imperial Guard, a medic.\nYou help fellow guardsmen to live, and if they cannot be saved, you end their suffering.</span><span class='danger'>FOR THE EMPEROR!</span>")
+		var/datum/job/J = new /datum/job/imperial/guardsman/medicae
+		J.equip(H)
+		to_chat(H, "<span class='notice'>You are a medicae of the Imperial Guard, a medic.\nYou help fellow guardsmen to live, and if they cannot be saved, you end their suffering.</span><span class='danger'>FOR THE EMPEROR!</span>")
 		return
 	
 	var/datum/job/J = new /datum/job/imperial/guardsman
-	H.set_everything(H, "Guardsman")
-	J.generate_equipment(H)
+	J.equip(H)
 	to_chat(H, "<span class='notice'>You are a member of the Imperial Guard, a lowly guardsman.\nThere are many like you, but you are special in your own way.\n</span><span class='danger'>FOR THE EMPEROR!</span>")
 
