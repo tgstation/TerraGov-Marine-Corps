@@ -1249,8 +1249,9 @@
 		return
 
 	if(anchored)
-		to_chat(user, "<span class='warning'>You must unanchor [src] to retrieve it!</span>")
-		return
+		to_chat(user, "<span class='warning'>The [src] disengages its anchor bolts as you initiate the retrieval process.</span>")
+		anchored = FALSE
+		update_icon()
 
 	if(on)
 		to_chat(user, "<span class='warning'>You depower [src] to facilitate its retrieval.</span>")
