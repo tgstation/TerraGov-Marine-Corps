@@ -18,7 +18,7 @@
 	speed = -0.3
 
 	// *** Plasma *** //
-	plasma_max = 100
+	plasma_max = 80
 	plasma_gain = 8
 
 	// *** Health *** //
@@ -32,7 +32,7 @@
 	deevolves_to = /mob/living/carbon/Xenomorph/Defender
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	armor_deflection = 40
@@ -51,17 +51,17 @@
 	melee_damage_upper = 45
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 50
 
 	// *** Speed *** //
 	speed = -0.4
 
 	// *** Plasma *** //
 	plasma_max = 100
-	plasma_gain = 8
+	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
@@ -82,14 +82,14 @@
 	melee_damage_upper = 45
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 53
 
 	// *** Speed *** //
-	speed = -0.4
+	speed = -0.45
 
 	// *** Plasma *** //
-	plasma_max = 100
-	plasma_gain = 8
+	plasma_max = 115
+	plasma_gain = 11
 
 	// *** Health *** //
 	max_health = 260
@@ -120,11 +120,11 @@
 	speed = -0.5
 
 	// *** Plasma *** //
-	plasma_max = 100
-	plasma_gain = 8
+	plasma_max = 120
+	plasma_gain = 12
 
 	// *** Health *** //
-	max_health = 265
+	max_health = 270
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
@@ -215,7 +215,7 @@
 			round_statistics.warrior_grabs++
 			grab_level = GRAB_NECK
 			L.drop_all_held_items()
-			L.KnockDown(3)
+			L.KnockDown(1)
 			visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
 			"<span class='xenowarning'>You grab [L] by the throat!</span>")
 

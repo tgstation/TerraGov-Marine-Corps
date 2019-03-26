@@ -47,7 +47,6 @@
 							icon_state = "beartrap0"
 							playsound(loc, 'sound/effects/snap.ogg', 25, 1)
 							to_chat(H, "<span class='danger'>You step on \the [src]!</span>")
-							feedback_add_details("handcuffs","B") //Yes, I know they're legcuffs. Don't change this, no need for an extra variable. The "B" is used to tell them apart.
 							for(var/mob/O in viewers(H, null))
 								if(O == H)
 									continue
@@ -111,19 +110,20 @@
 							src.loc = H
 							H.legcuff_update()
 							playsound(H,'sound/weapons/tablehit1.ogg', 25, 1)
-							to_chat(H, "[bicon(src)] <span class='warning'> <B>You step on \the [src]!</B></span>")
+							to_chat(H, "[icon2html(src, H)] <span class='warning'> <B>You step on \the [src]!</B></span>")
 							H.KnockDown(4)
 							if(ishuman(H))
 								H.emote("pain")
-							feedback_add_details("handcuffs","B")
 							for(var/mob/O in viewers(H, null))
 								if(O == H)
 									continue
-								O.show_message("<span class='warning'>[bicon(src)] <B>[H] steps on [src].</B></span>", 1)
+								O.show_message("<span class='warning'>[icon2html(src, O)] <B>[H] steps on [src].</B></span>", 1)
 				if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
 					armed = 0
 					var/mob/living/simple_animal/SA = AM
 					SA.health -= 20
 	..()
 
-
+/obj/item/legcuffs/yautja/ancient
+	name = "Alien Mine"
+	desc = "A bizarre alien device used for trapping and killing prey."

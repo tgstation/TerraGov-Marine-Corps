@@ -7,7 +7,7 @@
 	var/bone_step
 
 /datum/surgery_step/bone/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
-	return affected.surgery_open_stage >= 2 && !(affected.status & LIMB_DESTROYED) && affected.bone_repair_stage == bone_step && !(affected.status & LIMB_REPAIRED)
+	return affected.surgery_open_stage >= 2 && !(affected.limb_status & LIMB_DESTROYED) && affected.bone_repair_stage == bone_step && !(affected.limb_status & LIMB_REPAIRED)
 
 
 /datum/surgery_step/bone/glue_bone
@@ -66,10 +66,10 @@
 	else
 		user.visible_message("<span class='notice'>[user] sets the bone in [target]'s [affected.display_name] in place with \the [tool].</span>", \
 		"<span class='notice'>You set the bone in [target]'s [affected.display_name] in place with \the [tool].</span>")
-	affected.status &= ~LIMB_BROKEN
-	affected.status &= ~LIMB_SPLINTED
-	affected.status &= ~LIMB_STABILIZED
-	affected.status |= LIMB_REPAIRED
+	affected.limb_status &= ~LIMB_BROKEN
+	affected.limb_status &= ~LIMB_SPLINTED
+	affected.limb_status &= ~LIMB_STABILIZED
+	affected.limb_status |= LIMB_REPAIRED
 	affected.bone_repair_stage = 0
 	affected.perma_injury = 0
 

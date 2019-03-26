@@ -15,9 +15,6 @@
 	if (gulp_size < 5) gulp_size = 5
 	else gulp_size = max(round(reagents.total_volume / 5), 5)
 
-/obj/item/reagent_container/food/drinks/attack_self(mob/user as mob)
-	return
-
 /obj/item/reagent_container/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
 	var/datum/reagents/R = src.reagents
 	var/fillevel = gulp_size
@@ -30,7 +27,7 @@
 
 		if(istype(M,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
-			if(H.species.flags & IS_SYNTHETIC)
+			if(H.species.species_flags & IS_SYNTHETIC)
 				to_chat(H, "<span class='warning'>You have a monitor for a head, where do you think you're going to put that?</span>")
 				return
 
@@ -44,7 +41,7 @@
 	else if(istype(M,/mob/living/carbon/human))
 
 		var/mob/living/carbon/human/H = M
-		if(H.species.flags & IS_SYNTHETIC)
+		if(H.species.species_flags & IS_SYNTHETIC)
 			to_chat(H, "<span class='warning'>They have a monitor for a head, where do you think you're going to put that?</span>")
 			return
 
@@ -187,6 +184,11 @@
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
 	list_reagents = list("coffee" = 30)
+
+/obj/item/reagent_container/food/drinks/coffee/cafe_latte
+	name = "\improper Cafe Latte"
+	desc = "The beverage you're about to enjoy is hot."
+	list_reagents = list("cafe_latte" = 30)
 
 /obj/item/reagent_container/food/drinks/tea
 	name = "\improper Duke Purple Tea"

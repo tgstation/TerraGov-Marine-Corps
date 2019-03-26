@@ -46,11 +46,6 @@
 	if(!A || !istype(A)) //somehow
 		return
 
-	for(var/obj/machinery/door/unpowered/D in A)
-		if(D.density)
-			spawn(0)
-				D.open()
-
 	for(var/obj/machinery/door/airlock/D in A)
 		if(D.density)
 			spawn(0)
@@ -160,13 +155,13 @@
 
 	if(href_list["select_dock"])
 
-		if(MS.moving_status == SHUTTLE_IDLE && z == ADMIN_Z_LEVEL)
+		if(MS.moving_status == SHUTTLE_IDLE && is_centcom_level(z))
 			var/dock_id = /area/shuttle/distress/arrive_1
 			var/dock_list = list("Port", "Starboard", "Aft")
 			if(MS.use_umbilical)
 				dock_list = list("Port Hangar", "Starboard Hangar")
-			var/dock_name = input("Where on the [MAIN_SHIP_NAME] should the shuttle dock?", "Select a docking zone:") as null|anything in dock_list
-			if(MS.moving_status != SHUTTLE_IDLE || z != ADMIN_Z_LEVEL)
+			var/dock_name = input("Where on the [CONFIG_GET(string/ship_name)] should the shuttle dock?", "Select a docking zone:") as null|anything in dock_list
+			if(MS.moving_status != SHUTTLE_IDLE || !is_centcom_level(z))
 				return
 			switch(dock_name)
 				if("Port") dock_id = /area/shuttle/distress/arrive_2
@@ -187,7 +182,7 @@
 			for(var/area/A in all_areas)
 				if(A.type == dock_id)
 					MS.area_station = A
-					to_chat(usr, "<span class='warning'>You set the docking area on the [MAIN_SHIP_NAME] to \"[dock_name]\".</span>")
+					to_chat(usr, "<span class='warning'>You set the docking area on the [CONFIG_GET(string/ship_name)] to \"[dock_name]\".</span>")
 					break
 
 		ui_interact(usr)

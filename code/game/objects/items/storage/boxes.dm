@@ -686,27 +686,33 @@
 	foldable = 0
 	var/isopened = 0
 
-/obj/item/storage/box/MRE/New()
-		..()
-		pickflavor()
+/obj/item/storage/box/MRE/Initialize()
+	. = ..()
+	pickflavor()
+
+/obj/item/storage/box/MRE/Destroy()
+	var/turf/T = get_turf(src)
+	if(T)
+		new /obj/item/trash/mre(T)
+	return ..()
 
 /obj/item/storage/box/MRE/proc/pickflavor()
-	var/entree = pick("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti", "chicken tenders", "red crayon")
-	var/side = pick("meatballs", "cheese spread", "beef turnover", "mashed potatoes", "yellow crayon")
-	var/snack = pick("biscuit", "pretzels", "peanuts", "cracker", "purple crayon")
-	var/desert = pick("spiced apples", "chocolate brownie", "sugar cookie", "choco bar", "blue crayon")
+	var/entree = pick("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti", "chicken tenders")
+	var/side = pick("meatballs", "cheese spread", "beef turnover", "mashed potatoes")
+	var/snack = pick("biscuit", "pretzels", "peanuts", "cracker")
+	var/desert = pick("spiced apples", "chocolate brownie", "sugar cookie", "choco bar", "crayon")
 	name = "[initial(name)] ([entree])"
 	new /obj/item/reagent_container/food/snacks/packaged_meal(src, entree)
 	new /obj/item/reagent_container/food/snacks/packaged_meal(src, side)
 	new /obj/item/reagent_container/food/snacks/packaged_meal(src, snack)
 	new /obj/item/reagent_container/food/snacks/packaged_meal(src, desert)
 
-/obj/item/storage/box/MRE/update_icon()
-	if(!contents.len)
-		var/turf/T = get_turf(src)
-		if(T)
-			new /obj/item/trash/uscm_mre(T)
+/obj/item/storage/box/MRE/remove_from_storage()
+	. = ..()
+	if(. && !contents.len && !gc_destroyed)
 		qdel(src)
-	else if(!isopened)
+
+/obj/item/storage/box/MRE/update_icon()
+	if(!isopened)
 		isopened = 1
 		icon_state = "mealpackopened"

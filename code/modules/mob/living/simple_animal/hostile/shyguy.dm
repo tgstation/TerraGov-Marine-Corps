@@ -24,7 +24,7 @@
 	var/scare_sound = list('sound/scp/scare1.ogg','sound/scp/scare2.ogg','sound/scp/scare3.ogg','sound/scp/scare4.ogg')	//Boo
 	var/hibernate = 0 //Disables SCP until toggled back to 0
 	var/scare_played = 0 //Did we rape everyone's ears yet ?
-	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent //Graciously stolen from spider code
+	var/obj/machinery/atmospherics/components/unary/vent_pump/entry_vent //Graciously stolen from spider code
 
 	var/list/shitlist = list() //list of folks this guy is about to murder
 	var/list/examine_urge_list = list() //tracks urge to examine
@@ -183,7 +183,8 @@
 		else
 			to_chat(userguy, target_desc_2)
 		if(will_scream)
-			if(!buckled) dir = 2
+			if(!buckled)
+				setDir(SOUTH)
 			visible_message("<span class='danger'>[src] SCREAMS!</span>")
 			playsound(get_turf(src), 'sound/voice/scream_horror1.ogg', 50, 1)
 			screaming = 1
@@ -267,7 +268,7 @@
 					next_turf = target_turf
 					to_chat(target, "<span class='danger'>DID YOU THINK YOU COULD HIDE?</span>")
 				else
-					dir = get_dir(src, target)
+					setDir(get_dir(src, target))
 					next_turf = get_step(src, get_dir(next_turf,target))
 			limit--
 			sleep(move_to_delay + round(staggered/8))
@@ -280,33 +281,32 @@
 	var/source_level = 0 //0 means lower level or left side, depending on map, 1 means upper level or right side
 	var/target_level = 0
 
-	switch(z)
-		if(MAIN_SHIP_Z_LEVEL) //on the Theseus
-			switch(y)
-				if(0 to 100)
-					source_level = 0
-				if(100 to 200)
-					source_level = 1
-				else
-					source_level = 2
-			switch(target_turf.y)
-				if(0 to 100)
-					target_level = 0
-				if(100 to 200)
-					target_level = 1
-				else
-					target_level = 2
-		if(LOW_ORBIT_Z_LEVEL) //dropships
-			switch(x)
-				if (0 to 44)
-					source_level = 0
-				else
-					source_level = 1
-			switch(target_turf.x)
-				if (0 to 44)
-					target_level = 0
-				else
-					target_level = 1
+	if(is_mainship_level(z))//on the Theseus
+		switch(y)
+			if(0 to 100)
+				source_level = 0
+			if(100 to 200)
+				source_level = 1
+			else
+				source_level = 2
+		switch(target_turf.y)
+			if(0 to 100)
+				target_level = 0
+			if(100 to 200)
+				target_level = 1
+			else
+				target_level = 2
+	if(is_low_orbit_level(z)) //dropships
+		switch(x)
+			if (0 to 44)
+				source_level = 0
+			else
+				source_level = 1
+		switch(target_turf.x)
+			if (0 to 44)
+				target_level = 0
+			else
+				target_level = 1
 
 	if(source_level != target_level)
 		return 1
@@ -332,7 +332,7 @@
 	if(T)
 		T.loc = src.loc
 		visible_message("<span class='danger'>[src] grabs [T]!</span>")
-		dir = 2
+		setDir(SOUTH)
 		T.KnockDown(10)
 		T.anchored = 1
 		var/original_y = T.pixel_y
@@ -420,14 +420,14 @@
 		visible_message("<span class='danger'>\The [src] starts trying to slide itself into the vent!</span>")
 		sleep(50) //Let's stop for five seconds to do our parking job
 		..()
-		if(entry_vent.network && entry_vent.network.normal_members.len)
+		if(entry_vent.parents?.members?.len)
 			var/list/vents = list()
-			for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in entry_vent.network.normal_members)
+			for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in entry_vent.parents.members)
 				vents.Add(temp_vent)
 			if(!vents.len)
 				entry_vent = null
 				return
-			var/obj/machinery/atmospherics/unary/vent_pump/exit_vent = pick(vents)
+			var/obj/machinery/atmospherics/components/unary/vent_pump/exit_vent = pick(vents)
 			spawn()
 				visible_message("<span class='danger'>\The [src] suddenly disappears into the vent!</span>")
 				loc = exit_vent

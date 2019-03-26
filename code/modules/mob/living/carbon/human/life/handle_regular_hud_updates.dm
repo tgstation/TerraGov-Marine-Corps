@@ -9,7 +9,7 @@
 
 		update_sight()
 
-		if(stat == UNCONSCIOUS && health <= CONFIG_GET(number/health_threshold_crit))
+		if(stat == UNCONSCIOUS && health <= get_crit_threshold())
 			var/severity = 0
 			switch(health)
 				if(-20 to -10) severity = 1
@@ -56,9 +56,6 @@
 			else
 				clear_fullscreen("brute")
 
-		if(hud_used.locate_leader && hud_used.locate_leader.alpha && prob(25)) //not invisible, 25% to not call it all the time
-			locate_squad_leader()
-
 		if(hud_used.healths)
 			if(analgesic)
 				hud_used.healths.icon_state = "health_health_numb"
@@ -68,7 +65,7 @@
 					if(2)	hud_used.healths.icon_state = "health7"
 					else
 						var/perceived_health = health - traumatic_shock
-						if(species && species.flags & NO_PAIN)
+						if(species && species.species_flags & NO_PAIN)
 							perceived_health = health
 
 						switch(perceived_health)

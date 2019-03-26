@@ -5,8 +5,7 @@
 	GLOB.alive_mob_list -= src
 	ghostize()
 	clear_fullscreens()
-	. = ..()
-	return TA_PURGE_ME_NOW
+	return ..()
 
 /mob/Initialize()
 	GLOB.mob_list += src
@@ -23,7 +22,7 @@
 
 	if(statpanel("Stats"))
 		stat("Operation Time: [worldtime2text()]")
-		stat("The current map is: [GLOB.map_tag]")
+		stat("The current map is: [SSmapping.config?.map_name ? SSmapping.config.map_name : "Loading..."]")
 
 
 	if(client?.holder?.rank?.rights)
@@ -32,6 +31,12 @@
 				stat("CPU:", "[world.cpu]")
 				stat("Instances:", "[num2text(length(world.contents), 10)]")
 				stat("World Time:", "[world.time]")
+				GLOB.stat_entry()
+				config.stat_entry()
+				supply_controller.stat_entry()
+				shuttle_controller.stat_entry()
+				lighting_controller.stat_entry()
+				radio_controller.stat_entry()
 				stat(null)
 				if(Master)
 					Master.stat_entry()
@@ -48,11 +53,31 @@
 		if(client.holder.rank.rights & (R_ADMIN|R_MENTOR))
 			if(statpanel("Tickets"))
 				GLOB.ahelp_tickets.stat_entry()
+		if(length(GLOB.sdql2_queries))
+			if(statpanel("SDQL2"))
+				stat("Access Global SDQL2 List", GLOB.sdql2_vv_statobj)
+				for(var/i in GLOB.sdql2_queries)
+					var/datum/SDQL2_query/Q = i
+					Q.generate_stat()
 
 
-	if(length(tile_contents))
-		if(statpanel("Tile Contents"))
-			stat(tile_contents)
+	if(listed_turf && client)
+		if(!TurfAdjacent(listed_turf))
+			listed_turf = null
+		else
+			statpanel(listed_turf.name, null, listed_turf)
+			var/list/overrides = list()
+			for(var/image/I in client.images)
+				if(I.loc && I.loc.loc == listed_turf && I.override)
+					overrides += I.loc
+			for(var/atom/A in listed_turf)
+				if(!A.mouse_opacity)
+					continue
+				if(A.invisibility > see_invisible)
+					continue
+				if(length(overrides) && (A in overrides))
+					continue
+				statpanel(listed_turf.name, null, A)
 
 
 /mob/proc/prepare_huds()
@@ -133,27 +158,25 @@
 /mob/proc/attack_ui(slot)
 	var/obj/item/W = get_active_held_item()
 	if(istype(W))
-		equip_to_slot_if_possible(W, slot, 0) // equiphere
+		equip_to_slot_if_possible(W, slot, FALSE) // equiphere
 
-/mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = 0, disable_warning = 1, redraw_mob = 1)
-	if(equip_to_slot_if_possible(W, SLOT_L_HAND, 1, del_on_fail, disable_warning, redraw_mob))
-		return 1
-	else if(equip_to_slot_if_possible(W, SLOT_R_HAND, 1, del_on_fail, disable_warning, redraw_mob))
-		return 1
-	return 0
+/mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = FALSE, warning = FALSE, redraw_mob = TRUE)
+	if(equip_to_slot_if_possible(W, SLOT_L_HAND, TRUE, del_on_fail, warning, redraw_mob))
+		return TRUE
+	else if(equip_to_slot_if_possible(W, SLOT_R_HAND, TRUE, del_on_fail, warning, redraw_mob))
+		return TRUE
+	return FALSE
 
 //This is a SAFE proc. Use this instead of equip_to_splot()!
 //set del_on_fail to have it delete W if it fails to equip
-//set disable_warning to disable the 'you are unable to equip that' warning.
 //unset redraw_mob to prevent the mob from being redrawn at the end.
-/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, disable_warning = FALSE, redraw_mob = TRUE, permanent = FALSE)
+/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, permanent = FALSE)
 	if(!istype(W))
 		return
-
-	if(!W.mob_can_equip(src, slot, disable_warning))
+	if(!W.mob_can_equip(src, slot, warning))
 		if(del_on_fail)
 			qdel(W)
-		else if(!disable_warning)
+		else if(warning)
 			to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
 		return
 	var/start_loc = W.loc
@@ -190,46 +213,84 @@
 	return
 
 //This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds tarts and when events happen and such.
-/mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = 0)
-	return equip_to_slot_if_possible(W, slot, 1, 1, 1, 0, permanent)
+/mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = FALSE)
+	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, permanent)
 
-//The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
-var/list/slot_equipment_priority = list( \
-		SLOT_IN_HOLSTER,\
-		SLOT_IN_S_HOLSTER,\
-		SLOT_IN_B_HOLSTER,\
-		SLOT_BACK,\
-		SLOT_WEAR_ID,\
-		SLOT_W_UNIFORM,\
-		SLOT_ACCESSORY,\
-		SLOT_WEAR_SUIT,\
-		SLOT_WEAR_MASK,\
-		SLOT_HEAD,\
-		SLOT_SHOES,\
-		SLOT_GLOVES,\
-		SLOT_EARS,\
-		SLOT_GLASSES,\
-		SLOT_BELT,\
-		SLOT_S_STORE,\
-		SLOT_L_STORE,\
-		SLOT_R_STORE,\
-		SLOT_IN_BOOT,\
-		SLOT_IN_STORAGE,\
-		SLOT_IN_L_POUCH,\
-		SLOT_IN_R_POUCH\
-	)
 
-//puts the item "W" into an appropriate slot in a human's inventory
-//returns 0 if it cannot, 1 if successful
 /mob/proc/equip_to_appropriate_slot(obj/item/W, ignore_delay = TRUE)
 	if(!istype(W))
 		return FALSE
 
-	for(var/slot in slot_equipment_priority)
-		if(equip_to_slot_if_possible(W, slot, ignore_delay, 0, 1, 1)) //del_on_fail = 0; disable_warning = 0; redraw_mob = 1
+	for(var/slot in SLOT_EQUIP_ORDER)
+		if(equip_to_slot_if_possible(W, slot, ignore_delay, FALSE, FALSE, FALSE))
 			return TRUE
 
 	return FALSE
+
+
+/mob/proc/draw_from_slot_if_possible(slot)
+	if(!slot)
+		return FALSE
+
+	var/obj/item/I = get_item_by_slot(slot)
+
+	if(!I)
+		return FALSE
+
+	if(istype(I, /obj/item/storage/belt/gun))
+		var/obj/item/storage/belt/gun/B = I
+		if(!B.current_gun)
+			return FALSE
+		var/obj/item/W = B.current_gun
+		B.remove_from_storage(W)
+		put_in_hands(W)
+		return TRUE
+	else if(istype(I, /obj/item/clothing/shoes/marine))
+		var/obj/item/clothing/shoes/marine/S = I
+		if(!S.knife)
+			return FALSE
+		put_in_hands(S.knife)
+		S.knife = null
+		S.update_icon()
+		return TRUE
+	else if(istype(I, /obj/item/clothing/under))
+		var/obj/item/clothing/under/U = I
+		if(!U.hastie)
+			return FALSE
+		var/obj/item/clothing/tie/storage/T = U.hastie
+		if(!istype(T) || !T.hold)
+			return FALSE
+		var/obj/item/storage/internal/S = T.hold
+		if(!length(S.contents))
+			return FALSE
+		var/obj/item/W = S.contents[length(S.contents)]
+		S.remove_from_storage(W)
+		put_in_hands(W)
+		return TRUE
+	else if(istype(I, /obj/item/clothing/suit/storage))
+		var/obj/item/clothing/suit/storage/S = I
+		if(!S.pockets)
+			return FALSE
+		var/obj/item/storage/internal/P = S.pockets
+		if(!length(P.contents))
+			return FALSE
+		var/obj/item/W = P.contents[length(P.contents)]
+		P.remove_from_storage(W)
+		put_in_hands(W)
+		return TRUE
+	else if(istype(I, /obj/item/storage))
+		var/obj/item/storage/S = I
+		if(!length(S.contents))
+			return FALSE
+		var/obj/item/W = S.contents[length(S.contents)]
+		S.remove_from_storage(W)
+		put_in_hands(W)
+		return TRUE
+	else
+		doUnEquip(I)
+		put_in_hands(I)
+		return TRUE
+
 
 /mob/proc/reset_view(atom/A)
 	if (client)
@@ -335,12 +396,12 @@ var/list/slot_equipment_priority = list( \
 		'html/scales.png'
 		)
 
-	src << browse_rsc('html/changelog2015.html', "changelog2015.html") 
-	src << browse_rsc('html/changelog2016.html', "changelog2016.html") 
-	src << browse_rsc('html/changelog2017.html', "changelog2017.html") 
-	src << browse_rsc('html/changelog20181.html', "changelog20181.html") 
+	src << browse_rsc('html/changelog2015.html', "changelog2015.html")
+	src << browse_rsc('html/changelog2016.html', "changelog2016.html")
+	src << browse_rsc('html/changelog2017.html', "changelog2017.html")
+	src << browse_rsc('html/changelog20181.html', "changelog20181.html")
 	src << browse_rsc('html/changelog20182.html', "changelog20182.html")
-	src << browse_rsc('html/changelog.html', "changelog.html")  
+	src << browse_rsc('html/changelog.html', "changelog.html")
 
 
 	src << browse('html/changelog.html', "window=changes;size=675x650")
@@ -381,7 +442,7 @@ var/list/slot_equipment_priority = list( \
 	return
 
 /mob/living/start_pulling(atom/movable/AM, lunge, no_msg)
-	if ( !AM || !usr || src==AM || !isturf(loc) || !isturf(AM.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if(!AM || !usr || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
 	if (AM.anchored || AM.throwing)
@@ -416,6 +477,8 @@ var/list/slot_equipment_priority = list( \
 	G.grabbed_thing = AM
 	if(!put_in_hands(G)) //placing the grab in hand failed, grab is dropped, deleted, and we stop pulling automatically.
 		return
+
+	changeNext_move(CLICK_CD_RANGE)
 
 	if(M)
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
@@ -532,12 +595,12 @@ var/list/slot_equipment_priority = list( \
 
 
 /mob/proc/facedir(var/ndir)
-	if(!canface())	return 0
-	dir = ndir
+	if(!canface())
+		return FALSE
+	setDir(ndir)
 	if(buckled && !buckled.anchored)
-		buckled.dir = ndir
-		buckled.handle_rotation()
-	return 1
+		buckled.setDir(ndir)
+	return TRUE
 
 
 
@@ -660,6 +723,9 @@ mob/proc/yank_out_object()
 /mob/proc/update_stat()
 	return
 
+/mob/proc/can_inject()
+	return reagents
+
 /mob/proc/get_idcard(hand_first)
 	return
 
@@ -668,9 +734,6 @@ mob/proc/yank_out_object()
 
 /mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
-
-/mob/proc/TurfAdjacent(var/turf/T)
-	return T.AdjacentQuick(src)
 
 /mob/on_stored_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
@@ -757,3 +820,34 @@ mob/proc/yank_out_object()
 		if(istype(M))
 			M.reset_view(destination)
 	return TRUE
+
+
+/mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
+	var/viewers = viewers()
+	for(var/mob/M in viewers)
+		if(!isobserver(M) && (M.stat != CONSCIOUS || isdeaf(M)))
+			continue
+		SEND_IMAGE(M, emote_overlay)
+
+	if(remove_delay)
+		addtimer(CALLBACK(src, .proc/remove_emote_overlay, client, emote_overlay, viewers), remove_delay)
+
+
+/mob/proc/remove_emote_overlay(client/C, image/emote_overlay, list/viewers)
+	if(C)
+		C.images -= emote_overlay
+	for(var/mob/M in viewers)
+		if(M.client)
+			M.client.images -= emote_overlay
+	qdel(emote_overlay)
+
+
+/mob/proc/audio_emote_cooldown(player_caused)
+	if(player_caused)
+		if(audio_emote_time < world.time)
+			audio_emote_time = world.time + 80
+			return FALSE
+		else
+			to_chat(usr, "<span class='notice'>You just did an audible emote. Wait a while.</span>")
+			return TRUE
+	return FALSE

@@ -7,8 +7,8 @@
 	if(!message)
 		return
 
-	if(ticker && ticker.mode && ticker.mode.xenomorphs.len) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
-		for(var/datum/mind/L in ticker.mode.xenomorphs)
+	if(length(SSticker?.mode?.xenomorphs)) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
+		for(var/datum/mind/L in SSticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/M = L.current
 			if(M && istype(M) && !M.stat && M.client && hivenumber == M.hivenumber) //Only living and connected xenos
 				to_chat(M, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
@@ -27,8 +27,6 @@
 				stat(null, "Evolve Progress (FINISHED)")
 			else if(!hive.living_xeno_queen)
 				stat(null, "Evolve Progress (HALTED - NO QUEEN)")
-			else if(!hive.living_xeno_queen.ovipositor)
-				stat(null, "Evolve Progress (HALTED - QUEEN HAS NO OVIPOSITOR)")
 			else
 				stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
 
@@ -143,6 +141,9 @@
 
 	if(frenzy_aura)
 		. -= (frenzy_aura * 0.05)
+
+	if(hit_and_run) //We need to have the hit and run ability before we do anything
+		hit_and_run = min(2, hit_and_run + 0.05) //increment the damage of our next attack by +5% up to 200%
 
 	if(is_charging)
 		if(legcuffed)
@@ -293,7 +294,7 @@
 					if(xeno_caste.charge_type == 2)
 						if(stealth_router(HANDLE_STEALTH_CHECK))
 							M.adjust_stagger(3)
-							M.add_slowdown(3)
+							M.add_slowdown(1)
 							to_chat(src, "<span class='xenodanger'>Pouncing from the shadows, you stagger your victim.</span>")
 					if(!isxenosilicon(src))
 						playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
@@ -313,12 +314,17 @@
 	return ..() //Do the parent otherwise, for turfs.
 
 /mob/living/carbon/Xenomorph/proc/reset_movement()
-	frozen = FALSE
+	set_frozen(FALSE)
 	update_canmove()
 
 /mob/living/carbon/Xenomorph/proc/stop_movement()
-	frozen = TRUE
+	set_frozen(TRUE)
 	update_canmove()
+
+/mob/living/carbon/Xenomorph/set_frozen(freeze = TRUE)
+	if(fortify && !freeze)
+		return FALSE
+	return ..()
 
 //Bleuugh
 /mob/living/carbon/Xenomorph/proc/empty_gut()
@@ -525,7 +531,7 @@
 
 
 /mob/living/carbon/Xenomorph/proc/update_spits()
-	if(!ammo || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
+	if(!ammo || !xeno_caste.spit_types || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
 		return
 	for(var/i in 1 to xeno_caste.spit_types.len)
 		if(ammo.icon_state == GLOB.ammo_list[xeno_caste.spit_types[i]].icon_state)
@@ -568,7 +574,7 @@
 /mob/living/carbon/Xenomorph/Ravager/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
 	if(hit)
 		var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.04) ) //+4% bonus damage per point of Rage.relative to base melee damage.
-		M.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, "hurt") //Location is always random, cannot crit, harm only
+		M.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
 		var/target_turf = get_step_away(src,M,rand(1,3)) //This is where we blast our target
 		target_turf =  get_step_rand(target_turf) //Scatter
 		throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, M)
@@ -591,8 +597,11 @@
 		update_living_queens()
 
 
-//////////// XENO CASTE PROCS //////////////////
+/mob/living/carbon/Xenomorph/Larva/death(gibbed, deathmessage)
+	log_admin("[key_name(src)] died as a Larva at [AREACOORD(src.loc)].")
+	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
+	return ..()
 
-/datum/xeno_caste/proc/handle_decay(mob/living/carbon/Xenomorph/X)
+/mob/living/carbon/Xenomorph/proc/handle_decay()
 	if(prob(7+(3*tier)+(3*upgrade))) // higher level xenos decay faster, higher plasma storage.
-		X.use_plasma(min(rand(1,2), X.plasma_stored))
+		use_plasma(min(rand(1,2), plasma_stored))

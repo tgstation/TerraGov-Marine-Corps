@@ -107,7 +107,7 @@
 		var/obj/structure/bed/nest/N = locate() in get_turf(src)
 		if(N)
 			M.buckled = N
-			M.dir = N.dir
+			M.setDir(N.dir)
 			M.update_canmove()
 			N.buckled_mob = M
 			N.afterbuckle(M)
@@ -216,7 +216,7 @@
 	name = "Doctor"
 	corpseuniform = /obj/item/clothing/under/colonist
 	corpsesuit = /obj/item/clothing/suit/storage/labcoat
-	corpseback = /obj/item/storage/backpack/medic
+	corpseback = /obj/item/storage/backpack/corpsman
 	corpsepocket1 = /obj/item/device/flashlight/pen
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpseid = 1

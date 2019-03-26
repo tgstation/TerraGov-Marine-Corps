@@ -6,7 +6,8 @@
 #define MUTE_PRAY		(1<<2)
 #define MUTE_ADMINHELP	(1<<3)
 #define MUTE_DEADCHAT	(1<<4)
-#define MUTE_ALL		(~0)
+#define MUTE_LOOC		(1<<5)
+#define MUTE_ALL		(1<<6)-1
 
 //Some constants for DB_Ban
 #define BANTYPE_PERMA		1
@@ -37,13 +38,14 @@
 #define R_VAREDIT		(1<<9)
 #define R_SOUND			(1<<10)
 #define R_SPAWN			(1<<11)
+#define R_DBRANKS		(1<<12)
 
-#define R_EVERYTHING 	(1<<12)-1 //the sum of all other rank permissions, used for +EVERYTHING
+#define R_EVERYTHING 	(1<<13)-1 //the sum of all other rank permissions, used for +EVERYTHING
 
 #define ADMIN_QUE(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(user)]'>?</a>)"
 #define ADMIN_FLW(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(user)]'>FLW</a>)"
-#define ADMIN_JMP(src) "(<a href='?_src_=holder;[HrefToken(TRUE)];observecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)"
-#define ADMIN_JMP_USER(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];observecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)"
+#define ADMIN_JMP(src) "(<a href='?_src_=holder;[HrefToken(TRUE)];observecoordjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)"
+#define ADMIN_JMP_USER(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];observecoordjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)"
 #define ADMIN_PP(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(user)]'>PP</a>)"
 #define ADMIN_VV(atom) "(<a href='?_src_=vars;[HrefToken(TRUE)];vars=[REF(atom)]'>VV</a>)"
 #define ADMIN_SM(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];subtlemessage=[REF(user)]'>SM</a>)"
@@ -71,3 +73,29 @@
 
 #define SPAM_TRIGGER_WARNING	5	//Number of identical messages required before the spam-prevention will warn you
 #define SPAM_TRIGGER_AUTOMUTE	10	//Number of identical messages required before the spam-prevention will automute you
+
+#define IRCREPLYCOUNT 2
+#define IRC_STATUS_THROTTLE 5
+
+#define IRC_AHELP_USAGE "Usage: ticket <close|resolve|icissue|reject|reopen \[ticket #\]|list>"
+
+
+//How many new ckey matches before we revert the stickyban to it's roundstart state
+//These are exclusive, so once it goes over one of these numbers, it reverts the ban
+#define STICKYBAN_MAX_MATCHES 20
+#define STICKYBAN_MAX_EXISTING_USER_MATCHES 5 //ie, users who were connected before the ban triggered
+#define STICKYBAN_MAX_ADMIN_MATCHES 2
+
+
+#define MAX_ADMINBANS_PER_ADMIN 1
+#define MAX_ADMINBANS_PER_HEADMIN 10
+
+
+#define POLLTYPE_OPTION		"OPTION"
+#define POLLTYPE_TEXT		"TEXT"
+#define POLLTYPE_RATING		"NUMVAL"
+#define POLLTYPE_MULTI		"MULTICHOICE"
+#define POLLTYPE_IRV		"IRV"
+
+
+#define PR_ANNOUNCEMENTS_PER_ROUND 5 //The number of unique PR announcements allowed per round

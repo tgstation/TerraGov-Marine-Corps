@@ -12,7 +12,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
 	melee_damage_upper = 30
-	attack_delay = -1
+	attack_delay = 7
 
 	// *** Tackle *** //
 	tackle_damage = 35
@@ -35,7 +35,7 @@
 	deevolves_to = /mob/living/carbon/Xenomorph/Runner
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	armor_deflection = 10
@@ -52,7 +52,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
 	melee_damage_upper = 40
-	attack_delay = -1.25
+	attack_delay = 6.75
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -84,7 +84,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 35
 	melee_damage_upper = 45
-	attack_delay = -1.4
+	attack_delay = 6.6
 
 	// *** Tackle *** //
 	tackle_damage = 45
@@ -117,7 +117,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40
 	melee_damage_upper = 50
-	attack_delay = -1.5
+	attack_delay = 6.5
 
 	// *** Tackle *** //
 	tackle_damage = 50
@@ -145,7 +145,7 @@
 	caste_base_type = /mob/living/carbon/Xenomorph/Hunter
 	name = "Hunter"
 	desc = "A beefy, fast alien with sharp claws."
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Hunter Running"
 	health = 150
 	maxHealth = 150

@@ -113,7 +113,7 @@
 	//latch with src as the follower
 	lead = T
 	T.tow = src
-	dir = lead.dir
+	setDir(lead.dir)
 
 	if(user && !silent)
 		to_chat(user, "<span class='notice'>You hitch [src] to [T].</span>")
@@ -139,16 +139,16 @@
 
 	update_stats()
 
-/obj/vehicle/train/proc/latch(obj/vehicle/train/T, mob/user)
+/obj/vehicle/train/proc/latch(obj/vehicle/train/T, mob/user, var/silent=FALSE)
 	if(!istype(T) || !Adjacent(T))
 		return FALSE
 
 	var/T_dir = get_dir(src, T)	//figure out where T is wrt src
 
 	if(dir == T_dir) 	//if car is ahead
-		src.attach_to(T, user)
+		src.attach_to(T, user, silent)
 	else if(reverse_direction(dir) == T_dir)	//else if car is behind
-		T.attach_to(src, user)
+		T.attach_to(src, user, silent)
 
 //returns true if this is the lead car of the train
 /obj/vehicle/train/proc/is_train_head()

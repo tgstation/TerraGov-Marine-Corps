@@ -95,7 +95,7 @@
 			light_disabled = !light_disabled
 
 		if(CAMERA_WIRE_ALARM)
-			src.visible_message("[bicon(src)] *beep*", "[bicon(src)] *beep*")
+			src.visible_message("[icon2html(src, viewers(src))] *beep*", "[icon2html(src, viewers(src))] *beep*")
 
 	src.interact(usr)
 

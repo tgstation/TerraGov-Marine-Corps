@@ -39,7 +39,7 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 		b_icon = B.icon_name
 
 	icon_state = "[get_limb_icon_name(H.species, b_icon, H.gender, name, e_icon)]"
-	dir = SOUTH
+	setDir(SOUTH)
 	transform = turn(transform, rand(70,130))
 
 
@@ -82,7 +82,7 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	if(istype(H))
 		src.icon_state = H.gender == MALE? "head_m" : "head_f"
 	..()
-	if(H.species.flags & HAS_NO_HAIR)
+	if(H.species.species_flags & HAS_NO_HAIR)
 		return
 	//Add (facial) hair.
 	if(H.f_style)

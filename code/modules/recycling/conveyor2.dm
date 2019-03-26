@@ -24,7 +24,7 @@
 /obj/machinery/conveyor/New(loc, newdir, on = 0)
 	..(loc)
 	if(newdir)
-		dir = newdir
+		setDir(newdir)
 	switch(dir)
 		if(NORTH)
 			forwards = NORTH
@@ -62,13 +62,13 @@
 	update()
 
 /obj/machinery/conveyor/proc/update()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "conveyor-broken"
 		operating = 0
 		stop_processing()
 		return
 
-	if(!operable || (stat & NOPOWER))
+	if(!operable || (machine_stat & NOPOWER))
 		operating = 0
 
 	if(operating)
@@ -83,7 +83,7 @@
 	// machine process
 	// move items to the target location
 /obj/machinery/conveyor/process()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(!operating)
 		return
@@ -133,7 +133,7 @@
 // make the conveyor broken
 // also propagate inoperability to any connected conveyor with the same ID
 /obj/machinery/conveyor/proc/broken()
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	update()
 
 	var/obj/machinery/conveyor/C = locate() in get_step(src, dir)

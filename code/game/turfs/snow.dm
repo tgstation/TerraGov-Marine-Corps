@@ -14,7 +14,7 @@
 
 //Xenos digging up snow
 /turf/open/snow/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent == "grab")
+	if(M.a_intent == INTENT_GRAB)
 
 		if(!slayer)
 			to_chat(M, "<span class='warning'>There is nothing to clear out!</span>")
@@ -63,8 +63,8 @@
 
 
 //Update icon and sides on start, but skip nearby check for turfs.
-/turf/open/snow/New()
-	..()
+/turf/open/snow/Initialize()
+	. = ..()
 	update_icon(1,1)
 
 /turf/open/snow/Entered(atom/movable/AM)
@@ -88,7 +88,7 @@
 //Update icon
 /turf/open/snow/update_icon(var/update_full, var/skip_sides)
 	icon_state = "snow_[slayer]"
-	dir = pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST)
+	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 	switch(slayer)
 		if(0)
 			name = "dirt floor"

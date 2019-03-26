@@ -27,6 +27,9 @@
 		new /obj/item/storage/box/pillbottles(src)
 		return
 
+/obj/structure/closet/secure_closet/medical1/colony
+	req_access = list(ACCESS_CIVILIAN_PUBLIC)
+
 /obj/structure/closet/secure_closet/medical2
 	name = "anesthetic closet"
 	desc = "Used to knock people out."
@@ -76,9 +79,12 @@
 		new /obj/item/clothing/suit/surgical(src)
 		new /obj/item/clothing/suit/surgical(src)
 		new /obj/item/clothing/tie/storage/white_vest(src)
-		if(z == MAIN_SHIP_Z_LEVEL)
+		if(is_mainship_level(z))
 			new /obj/item/device/radio/headset/almayer/doc(src)
 		return
+
+/obj/structure/closet/secure_closet/medical3/colony
+	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 
 /obj/structure/closet/secure_closet/CMO
 	name = "chief medical officer's locker"
@@ -111,6 +117,8 @@
 		new /obj/item/storage/pouch/medkit(src)
 		new /obj/item/clothing/suit/surgical(src)
 		new /obj/item/clothing/tie/storage/white_vest(src)
+		new /obj/item/clothing/tie/medal/letter/commendation
+		new /obj/item/paper/commendation
 
 
 
@@ -146,6 +154,9 @@
 		new /obj/item/storage/box/pillbottles(src)
 		new /obj/item/storage/box/pillbottles(src)
 		return
+
+/obj/structure/closet/secure_closet/chemical/colony
+	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 
 /obj/structure/closet/secure_closet/medical_wall
 	name = "first aid closet"

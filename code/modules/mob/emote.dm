@@ -58,8 +58,12 @@
 		to_chat(src, "<span class='danger'>You have deadchat muted.</span>")
 		return
 
-	if(!client.holder && !dsay_allowed)
+	if(!client.holder && !GLOB.dsay_allowed)
 		to_chat(src, "<span class='danger'>Deadchat is globally muted.</span>")
+		return
+
+	if(is_banned_from(ckey, "Emote"))
+		to_chat(src, "<span class='warning'>You cannot send emotes (banned).</span>")
 		return
 
 	var/input

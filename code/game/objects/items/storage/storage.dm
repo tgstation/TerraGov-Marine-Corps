@@ -9,11 +9,11 @@
 	name = "storage"
 	icon = 'icons/obj/items/storage/storage.dmi'
 	w_class = 3.0
-	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
-	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
-	var/list/bypass_w_limit = new/list() //a list of objects which this item can store despite not passing the w_class limit
-	var/list/click_border_start = new/list() //In slotless storage, stores areas where clicking will refer to the associated item
-	var/list/click_border_end = new/list()
+	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
+	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
+	var/list/bypass_w_limit = list() //a list of objects which this item can store despite not passing the w_class limit
+	var/list/click_border_start = list() //In slotless storage, stores areas where clicking will refer to the associated item
+	var/list/click_border_end = list()
 	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_storage_space = 14 //The sum of the storage costs of all the items in this storage item.
 	var/storage_slots = 7 //The number of storage slots in this container.
@@ -46,7 +46,7 @@
 		if(usr.lying)
 			return
 
-		if(istype(usr.loc, /obj/mecha)) // stops inventory actions in a mech
+		if(istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 			return
 
 		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
@@ -250,36 +250,38 @@
 	src.closer.screen_loc = "4:[storage_width+19],2:16"
 	return
 
-/obj/screen/storage/clicked(var/mob/user, var/list/mods)
-	if(user.is_mob_incapacitated(TRUE))
-		return 1
-	if (istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
-		return 1
 
-	// Placing something in the storage screen
-	if(master)
-		var/obj/item/storage/S = master
-		var/obj/item/I = user.get_active_held_item()
-		if(I)
-			if (master.attackby(I, user))
-				user.next_move = world.time + 2
-			return 1
+/obj/screen/storage/Click(location, control, params)
+	if(usr.is_mob_incapacitated(TRUE))
+		return
 
-		// Taking something out of the storage screen (including clicking on item border overlay)
-		var/list/screen_loc_params = splittext(mods["screen-loc"], ",")
-		var/list/screen_loc_X = splittext(screen_loc_params[1],":")
-		var/click_x = text2num(screen_loc_X[1])*32+text2num(screen_loc_X[2]) - 144
+	if(istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+		return
 
-		for(var/i=1,i<=S.click_border_start.len,i++)
-			if (S.click_border_start[i] <= click_x && click_x <= S.click_border_end[i])
-				I = S.contents[i]
-				if (I)
-					if (I.clicked(user, mods))
-						return 1
+	var/list/PL = params2list(params)
 
-					I.attack_hand(user)
-					return 1
-	return 0
+	if(!master)
+		return
+
+	var/obj/item/storage/S = master
+	var/obj/item/I = usr.get_active_held_item()
+	if(I)
+		master.attackby(I, usr)
+		return
+
+	// Taking something out of the storage screen (including clicking on item border overlay)
+	var/list/screen_loc_params = splittext(PL["screen-loc"], ",")
+	var/list/screen_loc_X = splittext(screen_loc_params[1],":")
+	var/click_x = text2num(screen_loc_X[1]) * 32 + text2num(screen_loc_X[2]) - 144
+
+	for(var/i = 1 to length(S.click_border_start))
+		if(S.click_border_start[i] > click_x || click_x > S.click_border_end[i])
+			continue
+		I = S.contents[i]
+		if(!I)
+			continue
+		I.attack_hand(usr)
+		return
 
 
 /datum/numbered_display
@@ -328,65 +330,70 @@
 	return
 
 //This proc return 1 if the item can be picked up and 0 if it can't.
-//Set the stop_messages to stop it from printing messages
-/obj/item/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = 0)
+//Set the warning to stop it from printing messages
+/obj/item/storage/proc/can_be_inserted(obj/item/W as obj, warning = TRUE)
 	if(!istype(W) || (W.flags_item & NODROP))
 		return //Not an item
 
-	if(src.loc == W)
+	if(loc == W)
 		return FALSE //Means the item is already in the storage item
 	if(storage_slots != null && contents.len >= storage_slots)
-		if(!stop_messages)
+		if(warning)
 			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
 		return FALSE //Storage item is full
 
-	if(can_hold.len)
-		var/ok = 0
+	if(length(can_hold))
+		var/ok = FALSE
 		for(var/A in can_hold)
-			if(istype(W, text2path(A) ))
-				ok = 1
+			if(istype(W, text2path(A)))
+				ok = TRUE
 				break
 		if(!ok)
-			if(!stop_messages)
-				if (istype(W, /obj/item/tool/hand_labeler))
-					return 0
+			if(warning)
 				to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
-			return 0
+			return FALSE
 
 	for(var/A in cant_hold) //Check for specific items which this container can't hold.
 		if(istype(W, text2path(A) ))
-			if(!stop_messages)
+			if(warning)
 				to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
-			return 0
+			return FALSE
 
-	var/w_limit_bypassed = 0
-	if(bypass_w_limit.len)
+	var/w_limit_bypassed = FALSE
+	if(length(bypass_w_limit))
 		for(var/A in bypass_w_limit)
-			if(istype(W, text2path(A) ))
-				w_limit_bypassed = 1
+			if(istype(W, text2path(A)))
+				w_limit_bypassed = TRUE
 				break
 
-	if (!w_limit_bypassed && W.w_class > max_w_class)
-		if(!stop_messages)
+	if(!w_limit_bypassed && W.w_class > max_w_class)
+		if(warning)
 			to_chat(usr, "<span class='notice'>[W] is too long for this [src].</span>")
-		return 0
+		return FALSE
 
 	var/sum_storage_cost = W.get_storage_cost()
 	for(var/obj/item/I in contents)
 		sum_storage_cost += I.get_storage_cost() //Adds up the combined storage costs which will be in the storage item if the item is added to it.
 
 	if(sum_storage_cost > max_storage_space)
-		if(!stop_messages)
+		if(warning)
 			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
-		return 0
+		return FALSE
 
-	if(W.w_class >= src.w_class && (istype(W, /obj/item/storage)))
+	if(W.w_class >= w_class && (istype(W, /obj/item/storage)))
 		if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
-			if(!stop_messages)
+			if(warning)
 				to_chat(usr, "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>")
-			return 0 //To prevent the stacking of same sized storage items.
+			return FALSE //To prevent the stacking of same sized storage items.
 
-	return 1
+	if(istype(W, /obj/item/tool/hand_labeler))
+		var/obj/item/tool/hand_labeler/L = W
+		if(L.on)
+			return FALSE
+		else
+			return TRUE
+
+	return TRUE
 
 //This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
@@ -446,28 +453,11 @@
 	return 1
 
 //This proc is called when you want to place an item into the storage item.
-/obj/item/storage/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-
-	if(iscyborg(user))
-		to_chat(user, "<span class='notice'>You're a robot. No.</span>")
-		return //Robots can't interact with storage items.
+/obj/item/storage/attackby(obj/item/W, mob/user)
+	. = ..()
 
 	if(!can_be_inserted(W))
 		return
-
-	if(istype(W, /obj/item/tool/kitchen/tray))
-		var/obj/item/tool/kitchen/tray/T = W
-		if(T.calc_carry() > 0)
-			if(prob(85))
-				to_chat(user, "<span class='warning'>The tray won't fit in [src].</span>")
-				return
-			else
-				W.loc = user.loc
-				if ((user.client && user.s_active != src))
-					user.client.screen -= W
-				W.dropped(user)
-				to_chat(user, "<span class='warning'>God damnit!</span>")
 
 	W.add_fingerprint(user)
 	return handle_item_insertion(W, FALSE, user)

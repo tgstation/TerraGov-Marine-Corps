@@ -11,7 +11,7 @@
 	w_class = 3
 	origin_tech = "combat=2"
 	attack_verb = list("beaten")
-	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_COMMANDER, ACCESS_NT_CORPORATE, ACCESS_NT_PMC_GREEN)
+	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_CAPTAIN, ACCESS_NT_CORPORATE, ACCESS_NT_PMC_GREEN)
 	var/stunforce = 10
 	var/agonyforce = 80
 	var/status = 0		//whether the thing is on or not
@@ -148,7 +148,7 @@
 	var/mob/living/L = M
 
 	var/target_zone = check_zone(user.zone_selected)
-	if(user.a_intent == "hurt")
+	if(user.a_intent == INTENT_HARM)
 		if (!..())	//item/attack() does it's own messaging and logs
 			return 0	// item/attack() will return 1 if they hit, 0 if they missed.
 		agony *= 0.5	//whacking someone causes a much poorer contact than prodding them.

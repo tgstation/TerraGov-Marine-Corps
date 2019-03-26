@@ -11,46 +11,55 @@ html, body {
 }
 body {
 	background: #fff;
-    font-family: Verdana, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Verdana, sans-serif;
     font-size: 9pt;
     line-height: 1.2;
 	overflow-x: hidden;
 	overflow-y: scroll;
 	word-wrap: break-word;
 }
-h1, h2, h3, h4, h5, h6 {color: #00f; font-family: Georgia, Verdana, sans-serif;}
+
+em {
+	font-style: normal;
+	font-weight: bold;
+}
+
 img {
 	margin: 0;
 	padding: 0;
 	line-height: 1;
+	-ms-interpolation-mode: nearest-neighbor;
+	image-rendering: pixelated;
 }
 img.icon {
-	width: 16px;
-	height: 16px;
+	height: 1em;
+	min-height: 16px;
+	width: auto;
+	vertical-align: bottom;
 }
 
-.repeat:before { /* "repeated" badge class for combined messages */
+
+.r:before { /* "repeated" badge class for combined messages */
 	content: 'x';
 }
-
-.repeat {
+.r {
 	display: inline-block;
-	min-width: 1em;
+	min-width: 0.5em;
 	font-size: 0.7em;
-	padding: 0.3em;
+	padding: 0.2em 0.3em;
 	line-height: 1;
 	color: white;
 	text-align: center;
 	white-space: nowrap;
 	vertical-align: middle;
 	background-color: crimson;
-	border-radius: 12px;
+	border-radius: 10px;
 }
 
 a {color: #0000ff;}
+a.visited {color: #ff00ff;}
 a:visited {color: #ff00ff;}
 a.popt {text-decoration: none;}
-
 
 /*****************************************
 *
@@ -69,7 +78,7 @@ a.popt {text-decoration: none;}
 #loading i {display: block; padding-bottom: 3px;}
 
 #messages {
-	font-size: 14px;
+	font-size: 13px;
 	padding: 3px;
 	margin: 0;
 	word-wrap: break-word;
@@ -92,7 +101,7 @@ a.popt {text-decoration: none;}
 #ping {
 	position: fixed;
 	top: 0;
-	right: 40px;
+	right: 80px;
 	width: 45px;
 	background: #ddd;
 	height: 30px;
@@ -105,12 +114,12 @@ a.popt {text-decoration: none;}
 	font-size: 8pt;
 	padding-top: 2px;
 }
-#options {
+#userBar {
 	position: fixed;
 	top: 0;
 	right: 0;
 }
-#options a {
+#userBar .subCell {
 	background: #ddd;
     height: 30px;
 	padding: 5px 0;
@@ -120,47 +129,23 @@ a.popt {text-decoration: none;}
     line-height: 28px;
     border-top: 1px solid #b4b4b4;
 }
-#musicVolumeText {
-	background: #ddd;
-    height: 30px;
-	padding: 5px 4px 5px 10px;
-	display: block;
-	color: #333;
-	text-decoration: none;
-    line-height: 28px;
-    font-size: 0.9em;
-    border-top: 1px solid #b4b4b4;
-}
-#musicVolume {
-	position: absolute;
-	right: 20px;
-}
-.icon-music {
-	display: block;
-	padding: 0;
-	font-size: 1.1em;
-	width: 22px;
-	text-align: center;
-	line-height: 30px;
-	float: right;
-}
-#options a:hover {background: #ccc;}
-#options .toggle {
+#userBar .subCell:hover {background: #ccc;}
+#userBar .toggle {
 	width: 40px;
     background: #ccc;
     border-top: 0;
     float: right;
     text-align: center;
 }
-#options .sub {clear: both; display: none; width: 160px;}
-#options .sub.scroll {overflow-y: scroll;}
-#options .sub a {padding: 5px 0 5px 8px; line-height: 30px; font-size: 0.9em; clear: both;}
-#options .sub span {
+#userBar .sub {clear: both; display: none; width: 160px;}
+#userBar .sub.scroll {overflow-y: scroll;}
+#userBar .sub.subCell {padding: 3px 0 3px 8px; line-height: 30px; font-size: 0.9em; clear: both;}
+#userBar .sub span {
 	display: block;
 	line-height: 30px;
 	float: left;
 }
-#options .sub i {
+#userBar .sub i {
 	display: block;
 	padding: 0 5px;
 	font-size: 1.1em;
@@ -169,7 +154,14 @@ a.popt {text-decoration: none;}
 	line-height: 30px;
 	float: right;
 }
-#options .decreaseFont {border-top: 0;}
+#userBar .sub input {
+	position: absolute;
+	padding: 7px 5px;
+	width: 121px;
+	line-height: 30px;
+	float: left;
+}
+#userBar .topCell {border-top: 0;}
 
 /* POPUPS */
 .popup {
@@ -242,6 +234,7 @@ a.popt {text-decoration: none;}
 .admin					{color: #386aff;	font-weight: bold;}
 .adminsay				{color: #9611D4;	font-weight: bold;}
 .headminsay				{color: #5A0A7F;	font-weight: bold;}
+.boldannounce			{color: #ff0000;	font-weight: bold;}
 
 .adminnotice			{color: #0000ff;}
 .adminhelp              {color: #ff0000;    font-weight: bold;}
@@ -301,8 +294,8 @@ h1.alert, h2.alert		{color: #000000;}
 .alien					{color: #543354;}
 .newscaster				{color: #800000;}
 
-.role_header			{color: #db0000;		text-align: center; font-weight: bold; font-family: trebuchet-ms; font-size: 1.5em;}
-.role_body				{color: #000099;	text-align: center;}
+.role_header			{color: #db0000;	display: block; text-align: center; font-weight: bold; font-family: trebuchet-ms; font-size: 1.5em;}
+.role_body				{color: #000099;	display: block; text-align: center;}
 
 .round_setup			{color: #db0000;		font-family: impact; font-size: 1.25em;}
 .round_header			{color: #db0000; 	display: block; text-align: center; font-family: courier; font-weight: bold; font-size: 2em;}
@@ -325,7 +318,7 @@ h1.alert, h2.alert		{color: #000000;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
 
 
-.green					{color: #03ff39;}
+.green					{color: #29b245;}
 .nicegreen				{color: #14a833;}
 .shadowling				{color: #3b2769;}
 .cult					{color: #960000;}
@@ -359,4 +352,3 @@ h1.alert, h2.alert		{color: #000000;}
 /* HELPER CLASSES */
 .text-normal {font-weight: normal; font-style: normal;}
 .hidden {display: none; visibility: hidden;}
-

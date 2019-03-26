@@ -13,7 +13,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 /datum/admins/proc/proccall_atom(datum/A as null|area|mob|obj|turf)
-	set category = "Debug"
+	set category = null
 	set name = "Atom ProcCall"
 	set waitfor = FALSE
 
@@ -77,17 +77,20 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/list/proclist = splittext(procname, "/")
 	if(!length(proclist))
 		return
+
 	procname = proclist[length(proclist)]
 
 	var/proctype = "proc"
 	if("verb" in proclist)
 		proctype = "verb"
 
+
+	var/procpath
 	if(targetselected && !hascall(target, procname))
 		to_chat(usr, "<font color='red'>Error: callproc(): type [target.type] has no [proctype] named [procname].</font>")
 		return
 	else if(!targetselected)
-		var/procpath = text2path("/[proctype]/[procname]")
+		procpath = text2path("/[proctype]/[procname]")
 		if(!procpath)
 			to_chat(usr, "<font color='red'>Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)</font>")
 			return
@@ -100,16 +103,15 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if(!target)
 			to_chat(usr, "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>")
 			return
-		var/msg = "[key_name(src)] called [target]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"]."
-		log_admin(msg)
-		message_admins(msg)
-		admin_ticket_log(target, msg)
+		log_admin("[key_name(usr)] called [target]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+		message_admins("[ADMIN_TPMONTY(usr)] called [target]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+		admin_ticket_log(target, "[key_name(usr)] called [target]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
 		returnval = WrapAdminProcCall(target, procname, lst) // Pass the lst as an argument list to the proc
 	else
 		//this currently has no hascall protection. wasn't able to get it working.
 		log_admin("[key_name(usr)] called [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
 		message_admins("[ADMIN_TPMONTY(usr)] called [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
-		returnval = WrapAdminProcCall(GLOBAL_PROC, procname, lst) // Pass the lst as an argument list to the proc
+		returnval = WrapAdminProcCall(GLOBAL_PROC, procpath, lst) // Pass the lst as an argument list to the proc
 
 	. = usr.client.holder.get_callproc_returnval(returnval, procname)
 	if(.)
@@ -160,52 +162,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		. += named_args
 
 
-/datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.xeno_mob_list)
-	set category = "Debug"
-	set name = "Change Hivenumber"
-	set desc = "Set the hivenumber of a xenomorph."
-
-	if(!check_rights(R_DEBUG))
-		return
-
-	if(!X || !istype(X))
-		return
-
-	var/hivenumber_status = X.hivenumber
-
-	var/list/namelist = list()
-	for(var/datum/hive_status/H in hive_datum)
-		namelist += H.name
-
-	var/newhive = input(src, "Select a hive.", null, null) in namelist
-
-	if(!X || !istype(X))
-		return
-
-	var/newhivenumber
-	switch(newhive)
-		if("Normal")
-			newhivenumber = XENO_HIVE_NORMAL
-		if("Corrupted")
-			newhivenumber = XENO_HIVE_CORRUPTED
-		if("Alpha")
-			newhivenumber = XENO_HIVE_ALPHA
-		if("Beta")
-			newhivenumber = XENO_HIVE_BETA
-		if("Zeta")
-			newhivenumber = XENO_HIVE_ZETA
-		else
-			return
-
-	if(!X || !istype(X) || X.gc_destroyed || !ticker || X.hivenumber != hivenumber_status)
-		return
-
-	X.set_hive_number(newhivenumber)
-
-	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] to [newhive].")
-
-
 /datum/admins/proc/delete_all()
 	set category = "Debug"
 	set name = "Delete Instances"
@@ -242,7 +198,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			del_amt++
 			qdel(O)
 
-	log_admin("[key_name(src)] deleted all instances of [hsbitem] ([del_amt]).")
+	log_admin("[key_name(usr)] deleted all instances of [hsbitem] ([del_amt]).")
 	message_admins("[ADMIN_TPMONTY(usr)] deleted all instances of [hsbitem] ([del_amt]).")
 
 
@@ -254,32 +210,89 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	makepowernets()
-
-	log_admin("[key_name(src)] has remade the powernets.")
-	message_admins("[ADMIN_TPMONTY(usr)] has remade the powernets.")
+	SSmachines.makepowernets()
+	log_admin("[key_name(usr)] has remade the powernet. makepowernets() called.")
+	message_admins("[ADMIN_TPMONTY(usr)] has remade the powernets. makepowernets() called.")
 
 
 /datum/admins/proc/debug_mob_lists()
 	set category = "Debug"
 	set name = "Debug Mob Lists"
 
-	switch(input("Which list?") in list("Players", "Admins", "Mobs", "Living Mobs", "Dead Mobs", "Clients"))
-		if("Players")
-			to_chat(usr, list2text(GLOB.player_list,","))
-		if("Admins")
-			to_chat(usr, list2text(GLOB.admins,","))
-		if("Mobs")
-			to_chat(usr, list2text(GLOB.mob_list,","))
-		if("Living Mobs")
-			to_chat(usr, list2text(GLOB.alive_mob_list,","))
-		if("Dead Mobs")
-			to_chat(usr, list2text(GLOB.dead_mob_list,","))
-		if("Clients")
-			to_chat(usr, list2text(GLOB.clients,","))
+	var/dat = "<html><head><title>"
 
-	log_admin("[key_name(usr)] is debugging mob lists.")
-	message_admins("[ADMIN_TPMONTY(usr)] is debugging mob lists.")
+	var/choice = input("Which list?") as null|anything in list("Players", "Admins", "Clients", "Mobs", "Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
+	if(!choice)
+		return
+
+	switch(choice)
+		if("Players")
+			dat += "Players</title></head><body>"
+			for(var/i in GLOB.player_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Admins")
+			dat += "Admins</title></head><body>"
+			for(var/i in GLOB.admins)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Clients")
+			dat += "Clients</title></head><body>"
+			for(var/i in GLOB.clients)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Mobs")
+			dat += "Mobs</title></head><body>"
+			for(var/i in GLOB.mob_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Living Mobs")
+			dat += "Living Mobs</title></head><body>"
+			for(var/i in GLOB.alive_mob_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Dead Mobs")
+			dat += "Dead Mobs</title></head><body>"
+			for(var/i in GLOB.dead_mob_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Xenos")
+			dat += "Xenos</title></head><body>"
+			for(var/i in GLOB.xeno_mob_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Alive Xenos")
+			dat += "Alive Xenos</title></head><body>"
+			for(var/i in GLOB.alive_xeno_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Dead Xenos")
+			dat += "Dead Xenos</title></head><body>"
+			for(var/i in GLOB.dead_xeno_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Humans")
+			dat += "Humans</title></head><body>"
+			for(var/i in GLOB.human_mob_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Alive Humans")
+			dat += "Alive Humans</title></head><body>"
+			for(var/i in GLOB.alive_human_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Dead Humans")
+			dat += "Dead Humans</title></head><body>"
+			for(var/i in GLOB.player_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+
+	dat += "</body></html>"
+
+	usr << browse(dat, "window=moblists")
+
+	log_admin("[key_name(usr)] is debugging the [choice] list.")
+	message_admins("[ADMIN_TPMONTY(usr)] is debugging the [choice] list.")
 
 
 /datum/admins/proc/spawn_atom(var/object as text)
@@ -311,7 +324,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if(!chosen)
 			return
 
-	if(ispath(chosen,/turf))
+	if(ispath(chosen, /turf))
 		var/turf/T = get_turf(usr.loc)
 		T.ChangeTurf(chosen)
 	else
@@ -322,9 +335,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 /datum/admins/proc/delete_atom(atom/O as obj|mob|turf in world)
-	set category = "Debug"
+	set category = null
 	set name = "Delete"
-	set desc = "Delete an atom."
 
 	if(!check_rights(R_DEBUG))
 		return
@@ -390,40 +402,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[ADMIN_TPMONTY(usr)] has restarted the [controller] controller.")
 
 
-/datum/admins/proc/debug_controller(controller in list("Master","Ticker","Lighting","Jobs","Sun","Radio","Supply","Shuttles","Configuration","Cameras", "Transfer Controller", "Gas Data"))
-	set category = "Debug"
-	set name = "Debug Controllers"
-	set desc = "Debug the various periodic loop controllers for the game."
-
-	if(!check_rights(R_DEBUG))
-		return
-
-	switch(controller)
-		if("Master")
-			usr.client.debug_variables(Master)
-		if("Ticker")
-			usr.client.debug_variables(ticker)
-		if("Lighting")
-			usr.client.debug_variables(lighting_controller)
-		if("Jobs")
-			usr.client.debug_variables(RoleAuthority)
-		if("Sun")
-			usr.client.debug_variables(sun)
-		if("Radio")
-			usr.client.debug_variables(radio_controller)
-		if("Supply")
-			usr.client.debug_variables(supply_controller)
-		if("Shuttles")
-			usr.client.debug_variables(shuttle_controller)
-		if("Configuration")
-			usr.client.debug_variables(config)
-		if("Cameras")
-			usr.client.debug_variables(cameranet)
-
-	log_admin("[key_name(usr)] is debugging the [controller] controller.")
-	message_admins("[ADMIN_TPMONTY(usr)] is debugging the [controller] controller.")
-
-
 /datum/admins/proc/check_contents()
 	set category = "Debug"
 	set name = "Check Contents"
@@ -431,17 +409,37 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/selection = input("Please, select a mob!", "Check Contents", null, null) as null|anything in sortmobs(GLOB.mob_list)
-	if(!selection)
+	var/choice = input("Check contents of", "Check Contents") as null|anything in list("Key", "Cliented Mob", "Mob")
+	if(!choice)
 		return
 
-	var/mob/M = selection
+	var/mob/M
+	switch(choice)
+		if("Key")
+			var/selection = input("Please, select a key.", "Check Contents") as null|anything in sortKey(GLOB.clients)
+			if(!selection)
+				return
+			M = selection:mob
+		if("Cliented Mob")
+			var/selection = input("Please, select a cliented mob.", "Check Contents") as null|anything in sortNames(GLOB.player_list)
+			if(!selection)
+				return
+			M = selection
+		if("Mob")
+			var/selection = input("Please, select a mob.", "Check Contents") as null|anything in sortNames(GLOB.mob_list)
+			if(!selection)
+				return
+			M = selection
+
+	if(!isliving(M))
+		return
+
 	var/dat = "<b>Contents of [key_name(M)]:</b><hr>"
 
-
 	var/list/L = M.get_contents()
-	for(var/t in L)
-		dat += "[t]\n"
+	for(var/i in L)
+		var/atom/A = i
+		dat += "[A] [ADMIN_VV(A)]<br>"
 
 	usr << browse(dat, "window=contents")
 
@@ -449,21 +447,32 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[ADMIN_TPMONTY(usr)] checked the contents of [ADMIN_TPMONTY(M)].")
 
 
-/datum/admins/proc/update_mob_sprite()
+
+/datum/admins/proc/reestablish_db_connection()
 	set category = "Debug"
-	set name = "Update Mob Sprite"
-	set desc = "Should fix any mob sprite errors."
+	set name = "Reestablish DB Connection"
 
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/selection = input("Please, select a human!", "Update Mob Sprite", null, null) as null|anything in sortmobs(GLOB.human_mob_list)
-	if(!selection)
+	if(!CONFIG_GET(flag/sql_enabled))
+		to_chat(usr, "<span class='adminnotice'>The Database is not enabled!</span>")
 		return
 
-	var/mob/living/carbon/human/H = selection
+	if(SSdbcore.IsConnected())
+		if(alert("The database is already connected! If you *KNOW* that this is incorrect, you can force a reconnection", "The database is already connected!", "Force Reconnect", "Cancel") != "Force Reconnect")
+			return
 
-	H.regenerate_icons()
+		SSdbcore.Disconnect()
+		log_admin("[key_name(usr)] has forced the database to disconnect")
+		message_admins("[ADMIN_TPMONTY(usr)] has forced the database to disconnect!")
 
-	log_admin("[key_name(usr)] updated the mob sprite of [key_name(H)].")
-	message_admins("[ADMIN_TPMONTY(usr)] updated the mob sprite of [ADMIN_TPMONTY(H)].")
+	log_admin("[key_name(usr)] is attempting to re-established the DB Connection.")
+	message_admins("[ADMIN_TPMONTY(usr)] is attempting to re-established the DB Connection.")
+
+	SSdbcore.failed_connections = 0
+
+	if(!SSdbcore.Connect())
+		message_admins("Database connection failed: " + SSdbcore.ErrorMsg())
+	else
+		message_admins("Database connection re-established!")

@@ -1,6 +1,6 @@
 /obj/structure/flora
 	anchored = TRUE
-	var/health = 25
+	health = 25
 	var/health_max = 25
 	var/on_fire = FALSE
 
@@ -22,6 +22,8 @@
 /obj/structure/flora/attackby(obj/item/W, mob/living/user)
 	if(!W || !user || (W.flags_item & NOBLUDGEON))
 		return FALSE
+
+	user.changeNext_move(W.attack_speed)
 
 	var/damage = W.force
 	if(W.w_class < 3 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
@@ -90,14 +92,15 @@
 
 /obj/structure/flora/tree/attackby(obj/item/W, mob/user, params)
 	if(W.sharp && W.force > 0)
+		user.changeNext_move(W.attack_speed)
 		if(W.hitsound)
-			playsound(get_turf(src), W.hitsound, 100, 0, 0)
+			playsound(get_turf(src), W.hitsound, 50, 0, 0)
 		user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
 		var/cut_force = min(1, W.force)
 		var/cutting_time = CLAMP(10, 20, 100/cut_force) SECONDS
-		if(!do_after(usr, cutting_time , TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(usr, cutting_time , TRUE, 5, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] fells [src] with the [W].</span>","<span class='notice'>You fell [src] with the [W].</span>", "You hear the sound of a tree falling.")
-			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , 0, 0)
+			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 10 , 0, 0)
 			for(var/i=1 to log_amount)
 				new /obj/item/grown/log(get_turf(src))
 
@@ -261,6 +264,9 @@
 	icon = 'icons/obj/flora/plants.dmi'
 	icon_state = "plant-26"
 
+/obj/structure/flora/pottedplant/ten
+	icon_state = "plant-10"
+	
 //newbushes
 
 /obj/structure/flora/ausbushes
@@ -451,32 +457,14 @@
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
 	icon_state = "plantbot1"
 
+/obj/structure/jungle/plantbot1/alien
+	icon_state = "alienplant1"
+	luminosity = 2
+
 /obj/structure/jungle/planttop1
 	name = "strange tree"
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
 	icon_state = "planttop1"
-
-/obj/structure/jungle/tree
-	icon = 'icons/obj/flora/ground_map64.dmi'
-	desc = "What an enormous tree!"
-	layer = ABOVE_FLY_LAYER
-
-/obj/structure/jungle/tree/bigtreeTR
-	name = "huge tree"
-	icon_state = "bigtreeTR"
-
-/obj/structure/jungle/tree/bigtreeTL
-	name = "huge tree"
-	icon_state = "bigtreeTL"
-
-/obj/structure/jungle/tree/bigtreeBOT
-	name = "huge tree"
-	icon_state = "bigtreeBOT"
-
-/obj/structure/jungle/treeblocker
-	name = "huge tree"
-	icon_state = ""	//will this break it?? - Nope
-	density = 1
 
 /obj/structure/jungle/vines
 	name = "vines"
@@ -485,6 +473,7 @@
 
 /obj/structure/jungle/vines/attackby(obj/item/W, mob/living/user)
 	if(W.sharp == IS_SHARP_ITEM_BIG)
+		user.changeNext_move(W.attack_speed)
 		to_chat(user, "<span class='warning'>You cut \the [src] away with \the [W].</span>")
 		user.animation_attack_on(src)
 		playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
@@ -492,16 +481,16 @@
 	else
 		. = ..()
 
-/obj/structure/jungle/vines/New()
-	..()
+/obj/structure/jungle/vines/Initialize()
+	. = ..()
 	icon_state = pick("Light1","Light2","Light3")
 
 /obj/structure/jungle/vines/heavy
 	desc = "A thick, coiled mass of twisted vines."
 	opacity = 1
 
-/obj/structure/jungle/vines/heavy/New()
-	..()
+/obj/structure/jungle/vines/heavy/Initialize()
+	. = ..()
 	icon_state = pick("Hvy1","Hvy2","Hvy3","Med1","Med2","Med3")
 
 /obj/structure/jungle/tree/grasscarpet

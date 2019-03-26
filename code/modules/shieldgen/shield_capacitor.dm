@@ -48,7 +48,7 @@
 
 	else if(iswrench(W))
 		src.anchored = !src.anchored
-		src.visible_message("<span class='notice'> [bicon(src)] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</span>")
+		src.visible_message("<span class='notice'> [icon2html(src, viewers(src))] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</span>")
 
 		if(anchored)
 			spawn(0)
@@ -71,17 +71,17 @@
 	return src.attack_hand(user)
 
 /obj/machinery/shield_capacitor/attack_hand(mob/user)
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		return
 	interact(user)
 
 /obj/machinery/shield_capacitor/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN)) )
+	if ( (get_dist(src, user) > 1 ) || (machine_stat & (BROKEN)) )
 		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=shield_capacitor")
 			return
-	var/t = "<B>Shield Capacitor Control Console</B><br><br>"
+	var/t
 	if(locked)
 		t += "<i>Swipe your ID card to begin.</i>"
 	else
@@ -101,8 +101,12 @@
 	t += "<A href='?src=\ref[src]'>Refresh</A> "
 	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
 
-	user << browse(t, "window=shield_capacitor;size=500x400")
 	user.set_interaction(src)
+
+	var/datum/browser/popup = new(user, "shield_capacitor", "<div align='center'>Shield Capacitor Console</div>", 500, 400)
+	popup.set_content(t)
+	popup.open(FALSE)
+
 
 /obj/machinery/shield_capacitor/process()
 	if (!anchored)
@@ -117,7 +121,7 @@
 
 	if (PN)
 		var/power_draw = between(0, max_charge - stored_charge, charge_rate) //what we are trying to draw
-		power_draw = PN.draw_power(power_draw) //what we actually get
+		power_draw = C.add_load(power_draw) //what we actually get
 		stored_charge += power_draw
 
 	time_since_fail++
@@ -142,7 +146,7 @@
 	updateDialog()
 
 /obj/machinery/shield_capacitor/power_change()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "broke"
 	else
 		..()
@@ -155,5 +159,5 @@
 	if (src.anchored)
 		to_chat(usr, "It is fastened to the floor!")
 		return
-	src.dir = turn(src.dir, 270)
+	setDir(turn(dir, 270))
 	return

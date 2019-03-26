@@ -1,11 +1,12 @@
 /obj/effect
+	unacidable = TRUE
 
-/obj/effect/New()
-	..()
+
+/obj/effect/Initialize()
+	. = ..()
 	GLOB.effect_list += src
+
 
 /obj/effect/Destroy()
 	. = ..()
 	GLOB.effect_list -= src
-
-

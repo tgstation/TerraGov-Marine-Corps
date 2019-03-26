@@ -2,6 +2,7 @@
 	name = "Plant Weeds (75)"
 	action_icon_state = "plant_weeds"
 	plasma_cost = 75
+	mechanics_text = "Plant a weed node (purple sac) on your tile."
 
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
@@ -34,6 +35,7 @@
 /datum/action/xeno_action/xeno_resting
 	name = "Rest"
 	action_icon_state = "resting"
+	mechanics_text = "Rest on weeds to regenerate health and plasma."
 
 //resting action can be done even when lying down
 /datum/action/xeno_action/xeno_resting/can_use_action()
@@ -55,7 +57,13 @@
 /datum/action/xeno_action/shift_spits
 	name = "Toggle Spit Type"
 	action_icon_state = "shift_spit_neurotoxin"
+	mechanics_text = "Switch from neurotoxin to acid spit."
 	plasma_cost = 0
+
+/datum/action/xeno_action/shift_spits/update_button_icon()
+	var/mob/living/carbon/Xenomorph/X = owner
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
 
 /datum/action/xeno_action/shift_spits/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
@@ -76,6 +84,7 @@
 /datum/action/xeno_action/regurgitate
 	name = "Regurgitate"
 	action_icon_state = "regurgitate"
+	mechanics_text = "Vomit whatever you have devoured."
 	plasma_cost = 0
 
 /datum/action/xeno_action/regurgitate/action_activate()
@@ -93,6 +102,7 @@
 			if(M.loc != X)
 				continue
 			M.forceMove(X.loc)
+			M.KnockDown(1)
 
 		X.visible_message("<span class='xenowarning'>\The [X] hurls out the contents of their stomach!</span>", \
 		"<span class='xenowarning'>You hurl out the contents of your stomach!</span>", null, 5)
@@ -104,6 +114,7 @@
 /datum/action/xeno_action/choose_resin
 	name = "Choose Resin Structure"
 	action_icon_state = "resin wall"
+	mechanics_text = "Selects which structure you will build with the (secrete resin) ability."
 	plasma_cost = 0
 
 /datum/action/xeno_action/choose_resin/action_activate()
@@ -132,6 +143,7 @@
 /datum/action/xeno_action/activable/secrete_resin
 	name = "Secrete Resin (75)"
 	action_icon_state = "secrete_resin"
+	mechanics_text = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	ability_name = "secrete resin"
 	var/resin_plasma_cost = 75
 
@@ -148,6 +160,7 @@
 /datum/action/xeno_action/activable/corrosive_acid
 	name = "Corrosive Acid (100)"
 	action_icon_state = "corrosive_acid"
+	mechanics_text = "Cover an object with acid to slowly melt it. Takes a few seconds."
 	ability_name = "corrosive acid"
 	var/acid_plasma_cost = 100
 	var/acid_type = /obj/effect/xenomorph/acid
@@ -169,6 +182,7 @@
 /datum/action/xeno_action/activable/spray_acid
 	name = "Spray Acid"
 	action_icon_state = "spray_acid"
+	mechanics_text = "Spray a line or cone of dangerous acid at your target."
 	ability_name = "spray acid"
 
 
@@ -195,6 +209,7 @@
 /datum/action/xeno_action/activable/toggle_agility
 	name = "Toggle Agility"
 	action_icon_state = "agility_on"
+	mechanics_text = "Move an all fours for greater speed. Cannot use abilities while in this mode."
 	ability_name = "toggle agility"
 
 /datum/action/xeno_action/activable/toggle_agility/action_activate()
@@ -210,6 +225,7 @@
 /datum/action/xeno_action/activable/lunge
 	name = "Lunge"
 	action_icon_state = "lunge"
+	mechanics_text = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
 	ability_name = "lunge"
 
 /datum/action/xeno_action/activable/lunge/use_ability(atom/A)
@@ -225,6 +241,7 @@
 /datum/action/xeno_action/activable/fling
 	name = "Fling"
 	action_icon_state = "fling"
+	mechanics_text = "Knock a target flying up to 5 tiles."
 	ability_name = "Fling"
 
 /datum/action/xeno_action/activable/fling/use_ability(atom/A)
@@ -240,6 +257,7 @@
 /datum/action/xeno_action/activable/punch
 	name = "Punch"
 	action_icon_state = "punch"
+	mechanics_text = "Strike a target up to 1 tile away with a chance to break bones."
 	ability_name = "punch"
 
 /datum/action/xeno_action/activable/punch/use_ability(atom/A)
@@ -255,6 +273,7 @@
 /datum/action/xeno_action/activable/headbutt
 	name = "Headbutt"
 	action_icon_state = "headbutt"
+	mechanics_text = "Charge a target up to 2 tiles away, knocking them away and down and disarming them."
 	ability_name = "headbutt"
 
 /datum/action/xeno_action/activable/headbutt/use_ability(atom/A)
@@ -270,6 +289,7 @@
 /datum/action/xeno_action/activable/tail_sweep
 	name = "Tail Sweep"
 	action_icon_state = "tail_sweep"
+	mechanics_text = "Hit all adjacent units around you, knocking them away and down."
 	ability_name = "tail sweep"
 
 /datum/action/xeno_action/activable/tail_sweep/use_ability()
@@ -285,6 +305,7 @@
 /datum/action/xeno_action/activable/toggle_crest_defense
 	name = "Toggle Crest Defense"
 	action_icon_state = "crest_defense"
+	mechanics_text = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
 	ability_name = "toggle crest defense"
 
 /datum/action/xeno_action/activable/toggle_crest_defense/action_activate()
@@ -300,6 +321,7 @@
 /datum/action/xeno_action/activable/fortify
 	name = "Fortify"
 	action_icon_state = "fortify"	// TODO
+	mechanics_text = "Plant yourself for a large defensive boost."
 	ability_name = "fortify"
 
 /datum/action/xeno_action/activable/fortify/action_activate()
@@ -315,6 +337,7 @@
 /datum/action/xeno_action/activable/pounce
 	name = "Pounce"
 	action_icon_state = "pounce"
+	mechanics_text = "Leap at your target, tackling and disarming them."
 	ability_name = "pounce"
 
 /datum/action/xeno_action/activable/pounce/use_ability(atom/A)
@@ -328,6 +351,7 @@
 /datum/action/xeno_action/activable/xeno_spit
 	name = "Xeno Spit"
 	action_icon_state = "xeno_spit"
+	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
 
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
@@ -341,6 +365,7 @@
 /datum/action/xeno_action/xenohide
 	name = "Hide"
 	action_icon_state = "xenohide"
+	mechanics_text = "Causes your sprite to hide behind certain objects and under tables. Not the same as stealth. Does not use plasma."
 	plasma_cost = 0
 
 /datum/action/xeno_action/xenohide/action_activate()
@@ -357,6 +382,7 @@
 /datum/action/xeno_action/toggle_pheromones
 	name = "Open/Collapse Pheromone Options"
 	action_icon_state = "emit_pheromones"
+	mechanics_text = "Opens your pheromone options."
 	plasma_cost = 0
 	var/PheromonesOpen = FALSE //If the  pheromone choices buttons are already displayed or not
 
@@ -422,21 +448,25 @@
 /datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding
 	name = "Emit Recovery Pheromones (30)"
 	action_icon_state = "emit_recovery"
+	mechanics_text = "Increases healing for yourself and nearby teammates."
 	aura_type = "recovery"
 
 /datum/action/xeno_action/pheromones/emit_warding
 	name = "Emit Warding Pheromones (30)"
 	action_icon_state = "emit_warding"
+	mechanics_text = "Increases armor for yourself and nearby teammates."
 	aura_type = "warding"
 
 /datum/action/xeno_action/pheromones/emit_frenzy
 	name = "Emit Frenzy Pheromones (30)"
 	action_icon_state = "emit_frenzy"
+	mechanics_text = "Increases damage for yourself and nearby teammates."
 	aura_type = "frenzy"
 
 /datum/action/xeno_action/activable/transfer_plasma
 	name = "Transfer Plasma"
 	action_icon_state = "transfer_plasma"
+	mechanics_text = "Give some of your plasma to a teammate."
 	ability_name = "transfer plasma"
 	var/plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT
 	var/transfer_delay = 2 SECONDS
@@ -475,6 +505,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/toggle_long_range
 	name = "Toggle Long Range Sight (20)"
 	action_icon_state = "toggle_long_range"
+	mechanics_text = "Activates your weapon sight in the direction you are facing. Must remain stationary to use."
 	plasma_cost = 20
 
 /datum/action/xeno_action/toggle_long_range/can_use_action()
@@ -499,6 +530,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/toggle_bomb
 	name = "Toggle Bombard Type"
 	action_icon_state = "toggle_bomb0"
+	mechanics_text = "Switches Boiler Bombard type between Corrosive Acid and Neurotoxin."
 	plasma_cost = 0
 
 /datum/action/xeno_action/toggle_bomb/action_activate()
@@ -515,6 +547,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/bombard
 	name = "Bombard"
 	action_icon_state = "bombard"
+	mechanics_text = "Launch a glob of neurotoxin or acid. Must remain stationary for a few seconds to use."
 	plasma_cost = 0
 
 /datum/action/xeno_action/bombard/action_cooldown_check()
@@ -559,6 +592,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/activable/throw_hugger
 	name = "Use/Throw Facehugger"
 	action_icon_state = "throw_hugger"
+	mechanics_text = "Click once to bring a facehugger into your hand. Click again to ready that facehugger for throwing at a target or tile."
 	ability_name = "throw facehugger"
 
 /datum/action/xeno_action/activable/throw_hugger/use_ability(atom/A)
@@ -572,6 +606,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/activable/retrieve_egg
 	name = "Retrieve Egg"
 	action_icon_state = "retrieve_egg"
+	mechanics_text = "Store an egg on your body for future use. The egg has to be unplanted."
 	ability_name = "retrieve egg"
 
 /datum/action/xeno_action/activable/retrieve_egg/use_ability(atom/A)
@@ -581,6 +616,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/place_trap
 	name = "Place hugger trap (200)"
 	action_icon_state = "place_trap"
+	mechanics_text = "Place a hole on weeds that can be filled with a hugger. Activates when a marine steps on it."
 	plasma_cost = 200
 
 /datum/action/xeno_action/place_trap/action_activate()
@@ -620,6 +656,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/activable/stomp
 	name = "Stomp (50)"
 	action_icon_state = "stomp"
+	mechanics_text = "Knocks all adjacent targets away and down."
 	ability_name = "stomp"
 
 /datum/action/xeno_action/activable/stomp/action_cooldown_check()
@@ -634,6 +671,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/ready_charge
 	name = "Toggle Charging"
 	action_icon_state = "ready_charge"
+	mechanics_text = "Toggles the Crusher’s movement based charge on and off."
 	plasma_cost = 0
 
 /datum/action/xeno_action/ready_charge/action_activate()
@@ -651,6 +689,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/toggle_speed
 	name = "Resin Walker (50)"
 	action_icon_state = "toggle_speed"
+	mechanics_text = "Move faster on resin."
 	plasma_cost = 50
 
 /datum/action/xeno_action/toggle_speed/can_use_action()
@@ -677,6 +716,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/build_tunnel
 	name = "Dig Tunnel (200)"
 	action_icon_state = "build_tunnel"
+	mechanics_text = "Create a tunnel entrance. Use again to create the tunnel exit."
 	plasma_cost = 200
 
 /datum/action/xeno_action/build_tunnel/can_use_action()
@@ -693,6 +733,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/grow_ovipositor
 	name = "Grow Ovipositor (700)"
 	action_icon_state = "grow_ovipositor"
+	mechanics_text = "Grow an ovipositor to lay eggs and access new abilities. Takes 20 seconds and you cannot move while on the ovipositor."
 	plasma_cost = 700
 
 /datum/action/xeno_action/grow_ovipositor/action_activate()
@@ -737,6 +778,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/remove_eggsac
 	name = "Remove Eggsac"
 	action_icon_state = "grow_ovipositor"
+	mechanics_text = "Get off your ovipositor, causing it to collapse. You must grow a new one the next time you wish to reattach."
 	plasma_cost = 0
 
 /datum/action/xeno_action/remove_eggsac/action_activate()
@@ -764,6 +806,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/activable/screech
 	name = "Screech (250)"
 	action_icon_state = "screech"
+	mechanics_text = "A large area knockdown that causes pain and screen-shake."
 	ability_name = "screech"
 
 /datum/action/xeno_action/activable/screech/action_cooldown_check()
@@ -812,6 +855,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/watch_xeno
 	name = "Watch Xenomorph"
 	action_icon_state = "watch_xeno"
+	mechanics_text = "See from the target Xenomorphs vision."
 	plasma_cost = 0
 
 /datum/action/xeno_action/watch_xeno/action_activate()
@@ -820,11 +864,11 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		return
 	var/list/possible_xenos = list()
 	for(var/mob/living/carbon/Xenomorph/T in GLOB.alive_xeno_list)
-		if(T.z != ADMIN_Z_LEVEL && !isxenoqueen(T) && X.hivenumber == T.hivenumber)
+		if(!is_centcom_level(T.z) && !isxenoqueen(T) && X.hivenumber == T.hivenumber)
 			possible_xenos += T
 
 	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
-	if(!selected_xeno || selected_xeno.gc_destroyed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z == ADMIN_Z_LEVEL || !X.check_state())
+	if(!selected_xeno || selected_xeno.gc_destroyed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !X.check_state())
 		if(X.observed_xeno)
 			X.set_queen_overwatch(X.observed_xeno, TRUE)
 	else
@@ -833,6 +877,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/toggle_queen_zoom
 	name = "Toggle Queen Zoom"
 	action_icon_state = "toggle_queen_zoom"
+	mechanics_text = "Zoom out for a larger view around wherever you are looking."
 	plasma_cost = 0
 
 /datum/action/xeno_action/toggle_queen_zoom/action_activate()
@@ -847,6 +892,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/set_xeno_lead
 	name = "Choose/Follow Xenomorph Leaders"
 	action_icon_state = "xeno_lead"
+	mechanics_text = "Make a target Xenomorph a leader."
 	plasma_cost = 0
 
 /datum/action/xeno_action/set_xeno_lead/action_activate()
@@ -859,6 +905,9 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	else
 		return
 	if(X.observed_xeno)
+		if(!(X.observed_xeno.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER))
+			to_chat(X, "<span class='xenowarning'>This caste is unfit to lead.</span>")
+			return
 		if(X.queen_ability_cooldown > world.time)
 			to_chat(X, "<span class='xenowarning'>You're still recovering from your last overwatch ability. Wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>")
 			return
@@ -896,6 +945,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/queen_heal
 	name = "Heal Xenomorph (600)"
 	action_icon_state = "heal_xeno"
+	mechanics_text = "Heals a target Xenomorph (you must be overwatching them.)"
 	plasma_cost = 600
 
 /datum/action/xeno_action/queen_heal/action_activate()
@@ -929,6 +979,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/queen_give_plasma
 	name = "Give Plasma (600)"
 	action_icon_state = "queen_give_plasma"
+	mechanics_text = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	plasma_cost = 600
 
 /datum/action/xeno_action/queen_give_plasma/action_activate()
@@ -987,6 +1038,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/deevolve
 	name = "De-Evolve a Xenomorph"
 	action_icon_state = "xeno_deevolve"
+	mechanics_text = "De-evolve a target Xenomorph of Tier 2 or higher to the next lowest tier."
 	plasma_cost = 600
 
 /datum/action/xeno_action/deevolve/action_activate()
@@ -1104,6 +1156,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/activable/larva_growth
 	name = "Advance Larval Growth (300)"
 	action_icon_state = "larva_growth"
+	mechanics_text = "Instantly cause the larva inside a host to grow a set amount."
 	ability_name = "advance larval growth"
 
 /datum/action/xeno_action/activable/larva_growth/action_cooldown_check()
@@ -1154,6 +1207,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/activable/charge
 	name = "Eviscerating Charge (80)"
 	action_icon_state = "charge"
+	mechanics_text = "Charge up to 7 tiles and viciously attack your target."
 	ability_name = "charge"
 
 /datum/action/xeno_action/activable/charge/use_ability(atom/A)
@@ -1168,6 +1222,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/activable/ravage
 	name = "Ravage (40)"
 	action_icon_state = "ravage"
+	mechanics_text = "Release all of your rage in a vicious melee attack against a single target. The more rage you have, the more damage is done."
 	ability_name = "ravage"
 
 /datum/action/xeno_action/activable/ravage/use_ability(atom/A)
@@ -1179,20 +1234,27 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	return !X.ravage_used
 
 
-/datum/action/xeno_action/second_wind
+/datum/action/xeno_action/activable/second_wind
 	name = "Second Wind"
 	action_icon_state = "second_wind"
+	mechanics_text = "A channeled ability to restore health that uses plasma and rage. Must stand still for it to work."
 
-/datum/action/xeno_action/second_wind/action_activate()
+
+/datum/action/xeno_action/activable/second_wind/action_activate(atom/A)
 	var/mob/living/carbon/Xenomorph/Ravager/X = owner
 	X.Second_Wind()
 
 
-//Ravenger
+/datum/action/xeno_action/activable/second_wind/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	return !X.second_wind_used
 
+
+//Ravenger
 /datum/action/xeno_action/activable/breathe_fire
 	name = "Breathe Fire"
 	action_icon_state = "breathe_fire"
+	mechanics_text = "Not as dangerous to yourself as you would think."
 	ability_name = "breathe fire"
 
 /datum/action/xeno_action/activable/breathe_fire/use_ability(atom/A)
@@ -1208,6 +1270,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/activable/fire_cannon
 	name = "Fire Cannon (5)"
 	action_icon_state = "fire_cannon"
+	mechanics_text = "Pew pew pew, shoot your arm guns!"
 	ability_name = "fire cannon"
 
 /datum/action/xeno_action/activable/fire_cannon/use_ability(atom/A)
@@ -1218,6 +1281,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/toggle_savage
 	name = "Toggle Savage"
 	action_icon_state = "savage_on"
+	mechanics_text = "Toggle on to add a vicious attack to your pounce."
 	plasma_cost = 0
 
 /datum/action/xeno_action/toggle_savage/action_activate()
@@ -1241,6 +1305,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/activable/cresttoss
 	name = "Crest Toss"
 	action_icon_state = "cresttoss"
+	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
 	ability_name = "crest toss"
 
 /datum/action/xeno_action/activable/cresttoss/use_ability(atom/A)
@@ -1255,6 +1320,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/spawn_hugger
 	name = "Spawn Facehugger (100)"
 	action_icon_state = "spawn_hugger"
+	mechanics_text = "Spawn a facehugger that is stored on your body."
 	plasma_cost = 100
 
 /datum/action/xeno_action/spawn_hugger/action_activate()
@@ -1269,6 +1335,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/activable/stealth
 	name = "Toggle Stealth"
 	action_icon_state = "stealth_on"
+	mechanics_text = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
 	ability_name = "stealth"
 
 /datum/action/xeno_action/activable/stealth/action_activate()
@@ -1283,6 +1350,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/activable/neurotox_sting
 	name = "Neurotoxin Sting"
 	action_icon_state = "neuro_sting"
+	mechanics_text = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	ability_name = "neurotoxin sting"
 
 /datum/action/xeno_action/activable/neurotox_sting/use_ability(atom/A)
@@ -1299,6 +1367,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/neuroclaws
 	name = "Toggle Neuroinjectors"
 	action_icon_state = "neuroclaws_off"
+	mechanics_text = "Toggle on to add neurotoxin to your melee slashes."
 
 /datum/action/xeno_action/neuroclaws/action_activate()
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
@@ -1329,6 +1398,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/activable/defiler_sting
 	name = "Defile"
 	action_icon_state = "defiler_sting"
+	mechanics_text = "Channel to inject an adjacent target with larval growth serum. At the end of the channel your target will be infected."
 	ability_name = "defiler sting"
 
 /datum/action/xeno_action/activable/defiler_sting/use_ability(atom/A)
@@ -1344,6 +1414,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/activable/emit_neurogas
 	name = "Emit Neurogas"
 	action_icon_state = "emit_neurogas"
+	mechanics_text = "Channel for 3 seconds to emit a cloud of noxious smoke that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
 	ability_name = "emit neurogas"
 
 /datum/action/xeno_action/activable/emit_neurogas/action_cooldown_check()
@@ -1359,6 +1430,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/activable/drone_sting
 	name = "Larval Growth Sting"
 	action_icon_state = "drone_sting"
+	mechanics_text = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
 	ability_name = "drone sting"
 
 /datum/action/xeno_action/activable/drone_sting/use_ability(atom/A)

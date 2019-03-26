@@ -3,8 +3,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/reagent_container/hypospray
-	name = "\improper hypospray"
-	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy."
+	name = "hypospray"
+	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages."
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "hypo"
 	icon_state = "hypo_base"
@@ -20,6 +20,11 @@
 	var/inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 	var/core_name = "hypospray"
 	var/label = null
+
+/obj/item/reagent_container/hypospray/advanced
+	name = "advanced hypospray"
+	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy."
+	core_name = "hypospray"
 
 /obj/item/reagent_container/hypospray/advanced/attack_self(mob/user)
 	if(user.is_mob_incapacitated() || !user.IsAdvancedToolUser())
@@ -74,7 +79,7 @@
 
 			if(ishuman(C))
 				var/mob/living/carbon/human/H = C
-				if(H.species.flags & NO_BLOOD)
+				if(H.species.species_flags & NO_BLOOD)
 					to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 					return
 				else
@@ -106,7 +111,7 @@
 	if(!reagents.total_volume)
 		to_chat(user, "<span class='warning'>[src] is empty.</span>")
 		return
-	if(!A.is_injectable())
+	if(!A.is_injectable() && !ismob(A))
 		to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 		return
 	if(skilllock && user.mind?.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
@@ -115,6 +120,18 @@
 		if(!do_after(user, SKILL_TASK_EASY, TRUE, 5, BUSY_ICON_BUILD))
 			return
 
+	if(ismob(A))
+		var/mob/M = A
+		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
+			return
+		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isyautjastrict(M))) // preds have null skills
+			user.KnockDown(3)
+			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
+			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
+			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!</span>", \
+				"<span class='warning'>You knock [user] to the ground before they could inject you!</span>", null, 5)
+			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+			return FALSE
 
 	var/list/injected = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
@@ -124,15 +141,6 @@
 
 	if(ismob(A))
 		var/mob/M = A
-		if(M != user && M.stat != DEAD && M.a_intent != "help" && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isyautjastrict(M))) // preds have null skills
-			user.KnockDown(3)
-			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
-			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
-			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!</span>", \
-				"<span class='warning'>You knock [user] to the ground before they could inject you!</span>", null, 5)
-			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-			return FALSE
-
 		msg_admin_attack("[ADMIN_TPMONTY(usr)] injected [ADMIN_TPMONTY(M)] with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]).")
 		to_chat(user, "<span class='notice'>You inject [M] with [src]</span>.")
 		to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")

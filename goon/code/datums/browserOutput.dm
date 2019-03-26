@@ -2,79 +2,59 @@
 For the main html chat area
 *********************************/
 
-/var/list/chatResources = list(
-	"code/modules/html_interface/jquery.min.js",
-	"goon/browserassets/js/json2.min.js",
-	"goon/browserassets/js/browserOutput.js",
-	"goon/browserassets/css/fonts/fontawesome-webfont.eot",
-	"goon/browserassets/css/fonts/fontawesome-webfont.svg",
-	"goon/browserassets/css/fonts/fontawesome-webfont.ttf",
-	"goon/browserassets/css/fonts/fontawesome-webfont.woff",
-	"goon/browserassets/css/font-awesome.css",
-	"goon/browserassets/css/browserOutput.css",
-	"goon/browserassets/css/browserOutput_colorblindv1.css"
-)
-
 //Precaching a bunch of shit
-/var/savefile/iconCache = new /savefile("data/iconCache.sav") //Cache of icons for the browser output
+GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of icons for the browser output
 
 //On client, created on login
 /datum/chatOutput
-	var/client/owner = null //client ref
-	var/loaded       = 0 // Has the client loaded the browser output area?
-	var/list/messageQueue = list() //If they haven't loaded chat, this is where messages will go until they do
-	var/cookieSent   = 0 // Has the client sent a cookie for analysis
-	var/list/connectionHistory = list() //Contains the connection history passed from chat cookie
+	var/client/owner	 //client ref
+	var/loaded       = FALSE // Has the client loaded the browser output area?
+	var/list/messageQueue //If they haven't loaded chat, this is where messages will go until they do
+	var/cookieSent   = FALSE // Has the client sent a cookie for analysis
 	var/broken       = FALSE
-	var/adminMusicVolume = 25 //This is for the Play Global Sound verb
-
+	var/list/connectionHistory //Contains the connection history passed from chat cookie
+	var/adminMusicVolume = 10 //This is for the Play Global Sound verb
 
 /datum/chatOutput/New(client/C)
-	. = ..()
-
 	owner = C
-	// world.log << "chatOutput: New()"
+	messageQueue = list()
+	connectionHistory = list()
 
 /datum/chatOutput/proc/start()
 	//Check for existing chat
 	if(!owner)
-		return 0
+		return FALSE
 
 	if(!winexists(owner, "browseroutput")) // Oh goddamnit.
-		alert(owner.mob, "Updated chat window does not exist. If you are using a custom skin file please allow the game to update.")
+		set waitfor = FALSE
 		broken = TRUE
-		return 0
+		message_admins("Couldn't start chat for [key_name_admin(owner)]!")
+		. = FALSE
+		alert(owner.mob, "Updated chat window does not exist. If you are using a custom skin file please allow the game to update.")
+		return
 
-	if(winget(owner, "browseroutput", "is-disabled") == "false") //Already setup
+	if(winget(owner, "browseroutput", "is-visible") == "true") //Already setup
 		doneLoading()
 
 	else //Not setup
 		load()
 
-	return 1
+	return TRUE
 
 /datum/chatOutput/proc/load()
 	set waitfor = FALSE
 	if(!owner)
 		return
 
-	//world.log << "chatOutput: load()"
+	var/datum/asset/stuff = get_asset_datum(/datum/asset/group/goonchat)
+	stuff.send(owner)
 
-	for(var/attempts = 1 to 5)
-		for(var/asset in global.chatResources) // No asset cache, just get this fucking shit SENT.
-			owner << browse_rsc(file(asset))
+	owner << browse(file('goon/browserassets/html/browserOutput.html'), "window=browseroutput")
 
-		//world.log << "Sending main chat window to client [owner.ckey]"
-		owner << browse(file("goon/browserassets/html/browserOutput.html"), "window=browseroutput")
-		sleep(20 SECONDS)
-		if(!owner || loaded)
-			break
-
-	//world.log << "chatOutput: load() completed"
-
-/datum/chatOutput/Topic(var/href, var/list/href_list)
+/datum/chatOutput/Topic(href, list/href_list)
 	if(usr.client != owner)
-		return 1
+		return TRUE
+
 	// Build arguments.
 	// Arguments are in the form "param[paramname]=thing"
 	var/list/params = list()
@@ -99,27 +79,12 @@ For the main html chat area
 		if("analyzeClientData")
 			data = analyzeClientData(arglist(params))
 
-		if("encoding")
-			var/encoding = href_list["encoding"]
-			var/static/regex/RE = regex("windows-(874|125\[0-8])")
-			if (RE.Find(encoding))
-				owner.encoding = RE.group[1]
-
-			else if (encoding == "gb2312")
-				owner.encoding = "2312"
-
-			// This seems to be the result on Japanese locales, but the client still seems to accept 1252.
-			else if (encoding == "_autodetect")
-				owner.encoding = "1252"
-
-			else
-				stack_trace("Unknown encoding received from client: \"[sanitize(encoding)]\". Please report this as a bug.")
-
 		if("setMusicVolume")
 			data = setMusicVolume(arglist(params))
 
 	if(data)
 		ehjax_send(data = data)
+
 
 //Called on chat output done-loading by JS.
 /datum/chatOutput/proc/doneLoading()
@@ -127,45 +92,44 @@ For the main html chat area
 		return
 
 	loaded = TRUE
-	winset(owner, "browseroutput", "is-disabled=false")
+	showChat()
+
+
 	for(var/message in messageQueue)
-		to_chat(owner, message)
+		// whitespace has already been handled by the original to_chat
+		to_chat_immediate(owner, message, handle_whitespace = FALSE)
 
 	messageQueue = null
-	src.sendClientData()
+	sendClientData()
 
-	pingLoop()
+	//do not convert to to_chat()
+	SEND_TEXT(owner, "<span class=\"userdanger\">Failed to load fancy chat, reverting to old chat. Certain features won't work.</span>")
 
-/datum/chatOutput/proc/pingLoop()
-	set waitfor = FALSE
+/datum/chatOutput/proc/showChat()
+	winset(owner, "output", "is-visible=false")
+	winset(owner, "browseroutput", "is-disabled=false;is-visible=true")
 
-	while (owner)
-		ehjax_send(data = owner.is_afk(29 SECONDS) ? "softPang" : "pang") // SoftPang isn't handled anywhere but it'll always reset the opts.lastPang.
-		sleep(30 SECONDS)
-
-/datum/chatOutput/proc/ehjax_send(var/client/C = owner, var/window = "browseroutput", var/data)
+/datum/chatOutput/proc/ehjax_send(client/C = owner, window = "browseroutput", data)
 	if(islist(data))
 		data = json_encode(data)
 	C << output("[data]", "[window]:ehjaxCallback")
 
-
-/datum/chatOutput/proc/sendMusic(music, pitch)
+/datum/chatOutput/proc/sendMusic(music, list/extra_data)
 	if(!findtext(music, GLOB.is_http_protocol))
 		return
 	var/list/music_data = list("adminMusic" = url_encode(url_encode(music)))
-	if(pitch)
-		music_data["musicRate"] = pitch
+	if(length(extra_data))
+		music_data["musicRate"] = extra_data["pitch"]
+		music_data["musicSeek"] = extra_data["start"]
+		music_data["musicHalt"] = extra_data["end"]
 	ehjax_send(data = music_data)
-
 
 /datum/chatOutput/proc/stopMusic()
 	ehjax_send(data = "stopMusic")
 
-
 /datum/chatOutput/proc/setMusicVolume(volume = "")
 	if(volume)
 		adminMusicVolume = CLAMP(text2num(volume), 0, 100)
-
 
 //Sends client connection details to the chat to handle and save
 /datum/chatOutput/proc/sendClientData()
@@ -174,7 +138,7 @@ For the main html chat area
 	deets["clientData"]["ckey"] = owner.ckey
 	deets["clientData"]["ip"] = owner.address
 	deets["clientData"]["compid"] = owner.computer_id
-	var/data = list2json(deets)
+	var/data = json_encode(deets)
 	ehjax_send(data = data)
 
 //Called by client, sent data to investigate (cookie history so far)
@@ -183,13 +147,13 @@ For the main html chat area
 		return
 
 	if(cookie != "none")
-		var/list/connData = json2list(cookie)
+		var/list/connData = json_decode(cookie)
 		if (connData && islist(connData) && connData.len > 0 && connData["connData"])
-			src.connectionHistory = connData["connData"] //lol fuck
+			connectionHistory = connData["connData"] //lol fuck
 			var/list/found = new()
-			for (var/i = src.connectionHistory.len; i >= 1; i--)
+			for(var/i in connectionHistory.len to 1 step -1)
 				var/list/row = src.connectionHistory[i]
-				if (!row || row.len < 3 || (!row["ckey"] && !row["compid"] && !row["ip"])) //Passed malformed history object
+				if (!row || row.len < 3 || (!row["ckey"] || !row["compid"] || !row["ip"])) //Passed malformed history object
 					return
 				if (world.IsBanned(row["ckey"], row["compid"], row["ip"]))
 					found = row
@@ -198,10 +162,10 @@ For the main html chat area
 			//Uh oh this fucker has a history of playing on a banned account!!
 			if (found.len > 0)
 				//TODO: add a new evasion ban for the CURRENT client details, using the matched row details
-				message_admins("<span class='danger big'>[key_name(src.owner)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])</span>")
-				log_admin("[key_name(src.owner)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
+				message_admins("[key_name(src.owner)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
+				log_admin_private("[key_name(owner)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
 
-	cookieSent = 1
+	cookieSent = TRUE
 
 //Called by js client every 60 seconds
 /datum/chatOutput/proc/ping()
@@ -209,122 +173,72 @@ For the main html chat area
 
 //Called by js client on js error
 /datum/chatOutput/proc/debug(error)
-	world.log <<"\[[time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")]\] Client: [(src.owner.key ? src.owner.key : src.owner)] triggered JS error: [error]"
-
-/client/verb/debug_chat()
-	set hidden = 1
-	chatOutput.ehjax_send(data = list("firebug" = 1))
+	log_world("\[[time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")]\] Client: [(src.owner.key ? src.owner.key : src.owner)] triggered JS error: [error]")
 
 //Global chat procs
-
-/var/list/bicon_cache = list()
-
-//Converts an icon to base64. Operates by putting the icon in the iconCache savefile,
-// exporting it as text, and then parsing the base64 from that.
-// (This relies on byond automatically storing icons in savefiles as base64)
-/proc/icon2base64(var/icon/icon, var/iconKey = "misc")
-	if (!isicon(icon))
-		return 0
-
-	iconCache[iconKey] << icon
-	var/iconData = iconCache.ExportText(iconKey)
-	var/list/partial = splittext(iconData, "{")
-	return replacetext(copytext(partial[2], 3, -5), "\n", "")
-
-/proc/bicon(var/obj)
-	if (!obj)
+/proc/to_chat_immediate(target, message, handle_whitespace = TRUE)
+	if(!target || !message)
 		return
 
-	if (isicon(obj))
-		//Icons get pooled constantly, references are no good here.
-		/*if (!bicon_cache["\ref[obj]"]) // Doesn't exist yet, make it.
-			bicon_cache["\ref[obj]"] = icon2base64(obj)
-		return "<img class='icon misc' src='data:image/png;base64,[bicon_cache["\ref[obj]"]]'>"*/
-		return "<img class='icon misc' src='data:image/png;base64,[icon2base64(obj)]'>"
-
-	// Either an atom or somebody fucked up and is gonna get a runtime, which I'm fine with.
-	var/atom/A = obj
-	var/key = ("[A.icon]" || "\ref[A.icon]")+":[A.icon_state]"
-	if (!bicon_cache[key]) // Doesn't exist, make it.
-		var/icon/I = icon(A.icon, A.icon_state, SOUTH, 1, 0)
-		if (!"[A.icon]") // Shitty workaround for a BYOND issue.
-			var/icon/temp = I
-			I = icon()
-			I.Insert(temp, dir = SOUTH)
-		bicon_cache[key] = icon2base64(I, key)
-
-	return "<img class='icon [A.icon_state]' src='data:image/png;base64,[bicon_cache[key]]'>"
-
-//Aliases for bicon
-/proc/bi(obj)
-	bicon(obj)
-
-//Costlier version of bicon() that uses getFlatIcon() to account for overlays, underlays, etc. Use with extreme moderation, ESPECIALLY on mobs.
-/proc/costly_bicon(var/obj)
-	if (!obj)
+	if(!istext(message))
+		stack_trace("to_chat_immediate called with invalid input type")
 		return
 
-	if (isicon(obj))
-		return bicon(obj)
+	if(target == world)
+		target = GLOB.clients
 
-	var/icon/I = getFlatIcon(obj)
-	return bicon(I)
-
-/proc/to_chat(target, message)
-	//Ok so I did my best but I accept that some calls to this will be for shit like sound and images
-	//It stands that we PROBABLY don't want to output those to the browser output so just handle them here
-	/*if (istype(target, /datum/zLevel)) //Passing it to an entire z level
-		for(var/mob/M in player_list) //List of all mobs with clients, excluding new_player
-			if(!istype(get_z_level(M),target))
-				continue
-			to_chat(M, message)
-		return*/
-
-	if (istype(message, /image) || istype(message, /sound) || istype(target, /savefile) || !(ismob(target) || islist(target) || istype(target,/client) || istype(target, /datum/log) || target == world))
-
-		target << message
-		if (!istype(target, /atom)) // Really easy to mix these up, and not having to make sure things are mobs makes the code cleaner.
-			CRASH("DEBUG: Boutput called with invalid message")
-		return
-	//Otherwise, we're good to throw it at the user
-	else if (istext(message))
-		if (istext(target))
-			return
-
-		//Some macros remain in the string even after parsing and fuck up the eventual output
-		if (findtext(message, "\improper"))
-			message = replacetext(message, "\improper", "")
-		if (findtext(message, "\proper"))
-			message = replacetext(message, "\proper", "")
-
-		//Grab us a client if possible
-		var/client/C
-		if (istype(target, /client))
-			C = target
-		else if (istype(target, /mob))
-			C = target:client
-		else if (istype(target, /datum/mind) && target:current)
-			C = target:current:client
-
-		if (C && C.chatOutput)
-			if(C.chatOutput.broken) // Either a secret repo fuck up or a player who hasn't updated his skin file.
-				C << message
-				return
-
-			if(!C.chatOutput.loaded && C.chatOutput.messageQueue && islist(C.chatOutput.messageQueue))
-				//Client sucks at loading things, put their messages in a queue
-				C.chatOutput.messageQueue.Add(message)
-				return
-
-		if(istype(target, /datum/log))
-			var/datum/log/L = target
-			L.log += (message + "\n")
-			return
-
+	var/original_message = message
+	//Some macros remain in the string even after parsing and fuck up the eventual output
+	message = replacetext(message, "\improper", "")
+	message = replacetext(message, "\proper", "")
+	if(handle_whitespace)
 		message = replacetext(message, "\n", "<br>")
+		message = replacetext(message, "\t", "[GLOB.TAB][GLOB.TAB]")
+
+	if(islist(target))
+		// Do the double-encoding outside the loop to save nanoseconds
+		var/twiceEncoded = url_encode(url_encode(message))
+		for(var/I in target)
+			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
+
+			if(!C)
+				continue
+
+			//Send it to the old style output window.
+			SEND_TEXT(C, original_message)
+
+			if(!C.chatOutput || C.chatOutput.broken) // A player who hasn't updated his skin file.
+				continue
+
+			if(!C.chatOutput.loaded)
+				//Client still loading, put their messages in a queue
+				C.chatOutput.messageQueue += message
+				continue
+
+			C << output(twiceEncoded, "browseroutput:output")
+	else
+		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
+
+		if(!C)
+			return
+
+		//Send it to the old style output window.
+		SEND_TEXT(C, original_message)
+
+		if(!C.chatOutput || C.chatOutput.broken) // A player who hasn't updated his skin file.
+			return
+
+		if(!C.chatOutput.loaded)
+			//Client still loading, put their messages in a queue
+			C.chatOutput.messageQueue += message
+			return
 
 		// url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
-		target << output(url_encode(url_encode(message)), "browseroutput:output")
+		C << output(url_encode(url_encode(message)), "browseroutput:output")
 
-/datum/log	//exists purely to capture to_chat() output
-	var/log = ""
+
+/proc/to_chat(target, message, handle_whitespace = TRUE)
+	if(!SSchat)
+		to_chat_immediate(target, message, handle_whitespace)
+		return
+	SSchat.queue(target, message, handle_whitespace)

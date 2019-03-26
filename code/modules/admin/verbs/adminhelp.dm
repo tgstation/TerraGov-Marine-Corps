@@ -91,8 +91,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	for(var/I in l2b)
 		var/datum/admin_help/AH = I
 		if(AH.tier == TICKET_MENTOR && check_rights(R_ADMIN|R_MENTOR, FALSE))
+			if(!AH.initiator)
+				dat += "\[DC\]"
 			dat += "<span class='adminnotice'><span class='adminhelp'>#[AH.id] Mentor Ticket</span>: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 		else if(AH.tier == TICKET_ADMIN && check_rights(R_ADMIN, FALSE))
+			if(!AH.initiator)
+				dat += "\[DC\]"
 			dat += "<span class='adminnotice'><span class='adminhelp'>#[AH.id] Admin Ticket</span>: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 	usr << browse(dat.Join(), "window=ahelp_list[state];size=600x480")
 
@@ -199,7 +203,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	return ..()
 
 
-/obj/effect/statclick/ticket_list/clicked()
+/obj/effect/statclick/ticket_list/Click()
 	GLOB.ahelp_tickets.BrowseTickets(current_state)
 
 
@@ -227,6 +231,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	var/obj/effect/statclick/ahelp/statclick
 
+	var/tier_cooldown
+
 	var/static/ticket_counter = 0
 
 //call this on its own to create a ticket, don't manually assign current_ticket
@@ -252,7 +258,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(initiator.current_ticket)	//This is a bug
 		stack_trace("Multiple ahelp current_tickets.")
 		initiator.current_ticket.AddInteraction("Ticket erroneously left open by code.")
-		initiator.current_ticket.Close()
+		initiator.current_ticket.Close(TRUE, TRUE)
 	initiator.current_ticket = src
 
 	if(tier == TICKET_ADMIN)
@@ -272,7 +278,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		MessageNoRecipient(msg)
 
 		//send it to irc if nobody is on and tell us how many were on
-		var/admin_number_present = send2irc_adminless_only(initiator_ckey, "Ticket #[id]: [name]")
+		var/admin_number_present = send2irc_adminless_only(initiator_ckey, "Ticket #[id]: [sanitizediscord(name)]")
 		log_admin_private("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK staff.")
 		if(admin_number_present <= 0)
 			to_chat(C, "<span class='notice'>No active admins are online.</span>")
@@ -292,7 +298,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(heard_by_no_admins && usr && usr.ckey != initiator_ckey)
 		heard_by_no_admins = FALSE
 		send2irc(initiator_ckey, "Ticket #[id]: Answered by [key_name(usr)]")
-	_interactions += "[gameTimestamp()]: [formatted_message]"
+	_interactions += "[stationTimestamp()]: [formatted_message]"
 
 //Removes the ahelp verb and returns it after 2 minutes
 /datum/admin_help/proc/TimeoutVerb()
@@ -362,10 +368,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if(tier == TICKET_MENTOR && check_other_rights(X, R_ADMIN|R_MENTOR, FALSE))
 			if(X.prefs.toggles_sound & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+			window_flash(X)
 			to_chat(X, "<span class='adminnotice'><span class='adminhelp'>Mentor Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [check_other_rights(X, R_ADMIN, FALSE) ? FullMonty(ref_src) : HalfMonty(ref_src)] [check_other_rights(X, R_ADMIN, FALSE) ? ClosureLinks(ref_src) : ClosureLinksMentor(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>")
 		if(tier == TICKET_ADMIN && check_other_rights(X, R_ADMIN, FALSE))
 			if(X.prefs.toggles_sound & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+			window_flash(X)
 			to_chat(X, "<span class='adminnotice'><span class='adminhelp'>Admin Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [FullMonty(ref_src)] [ClosureLinks(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>")
 
 	//show it to the person adminhelping too
@@ -373,12 +381,17 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 
 //Reopen a closed ticket
-/datum/admin_help/proc/Reopen()
-	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+/datum/admin_help/proc/Reopen(irc)
+	if(!irc && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	if(state == AHELP_ACTIVE)
 		to_chat(usr, "<span class='warning'>This ticket is already open.</span>")
 		return
+	var/ref
+	if(irc)
+		ref = key_name_admin(usr)
+	else
+		ref = ADMIN_TPMONTY(usr)
 
 	if(GLOB.ahelp_tickets.CKey2ActiveTicket(initiator_ckey))
 		to_chat(usr, "<span class='warning'>This user already has an active ticket, cannot reopen this one.</span>")
@@ -393,29 +406,42 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(initiator)
 		initiator.current_ticket = src
 
+	if(tier == TICKET_MENTOR)
+		message_staff("Ticket [TicketHref("#[id]")] has been made reopened by [ref].")
+	else if(tier == TICKET_ADMIN)
+		message_admins("Ticket [TicketHref("#[id]")] has been made reopened by [ref].")
+
 	AddInteraction("<font color='purple'>Reopened by [key_name_admin(usr)]</font>")
-	message_admins("Ticket [TicketHref("#[id]")] reopened by [ADMIN_TPMONTY(usr)].")
 	log_admin_private("Ticket (#[id]) reopened by [key_name(usr)].")
 	TicketPanel()	//can only be done from here, so refresh it
 
 
 //Change the tier
-/datum/admin_help/proc/Tier()
-	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+/datum/admin_help/proc/Tier(irc)
+	if(tier_cooldown > world.time)
+		to_chat(usr, "<span class='warning'>Please wait a moment before changing the tier.</span>")
 		return
+	if(!irc && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+		return
+	var/ref
+	if(irc)
+		ref = key_name_admin(usr)
+	else
+		ref = ADMIN_TPMONTY(usr)
 	var/msg
 	if(tier == TICKET_MENTOR)
 		tier = TICKET_ADMIN
 		msg = "an admin ticket"
 		AddInteraction("<font color='red'>Made admin ticket by: [key_name_admin(usr)].</font>")
-		message_admins("Ticket [TicketHref("#[id]")] has been made [msg] by [ADMIN_TPMONTY(usr)].")
+		message_admins("Ticket [TicketHref("#[id]")] has been made [msg] by [ref].")
 	else if(tier == TICKET_ADMIN)
 		tier = TICKET_MENTOR
 		msg = "a mentor ticket"
 		AddInteraction("<font color='red'>Made mentor ticket by: [key_name_admin(usr)].</font>")
-		message_staff("Ticket [TicketHref("#[id]")] has been made [msg] by [ADMIN_TPMONTY(usr)].")
+		message_staff("Ticket [TicketHref("#[id]")] has been made [msg] by [ref].")
 		if(is_mentor(usr.client) && usr.client.prefs.toggles_sound & SOUND_ADMINHELP)
 			SEND_SOUND(usr.client, sound('sound/effects/adminhelp.ogg'))
+	tier_cooldown = world.time + 5 SECONDS
 	log_admin_private("Ticket (#[id]) has been made [msg] by [key_name(usr)].")
 
 
@@ -427,21 +453,30 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 	if(marked)
 		if(marked == usr.client)
+			if(alert("Do you want to unmark this ticket?", "Confirmation", "Yes", "No") != "Yes")
+				return
+			marked = null
+			if(tier == TICKET_MENTOR)
+				message_staff("Ticket [TicketHref("#[id]")] has been unmarked by [ADMIN_TPMONTY(usr)].")
+			else if(tier == TICKET_ADMIN)
+				message_admins("Ticket [TicketHref("#[id]")] has been unmarked by [ADMIN_TPMONTY(usr)].")
+			log_admin_private("Ticket (#[id]) has been unmarked by [key_name(usr)].")
 			return
-		if(alert("This ticket has already been marked by [marked], do you want to replace them?", "Confirmation", "Yes", "No") != "Yes")
+		else if(alert("This ticket has already been marked by [marked], do you want to replace them?", "Confirmation", "Yes", "No") != "Yes")
 			return
 		if(tier == TICKET_MENTOR)
 			message_staff("Ticket [TicketHref("#[id]")] has been re-marked by [ADMIN_TPMONTY(usr)].")
 		else if(tier == TICKET_ADMIN)
 			message_admins("Ticket [TicketHref("#[id]")] has been re-marked by [ADMIN_TPMONTY(usr)].")
 		marked = usr.client
+		log_admin_private("Ticket (#[id]) has been re-marked by [key_name(usr)].")
 		return
 	marked = usr.client
 	if(tier == TICKET_MENTOR)
 		message_staff("Ticket [TicketHref("#[id]")] has been marked by [ADMIN_TPMONTY(usr)].")
 	else if(tier == TICKET_ADMIN)
 		message_admins("Ticket [TicketHref("#[id]")] has been marked by [ADMIN_TPMONTY(usr)].")
-	log_admin_private("Ticket (#[id]) has been made marked by [key_name(usr)].")
+	log_admin_private("Ticket (#[id]) has been marked by [key_name(usr)].")
 
 
 //private
@@ -456,36 +491,48 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 
 //Mark open ticket as closed/meme
-/datum/admin_help/proc/Close(key_name = key_name_admin(usr), silent = FALSE, force = FALSE)
-	if(!force && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+/datum/admin_help/proc/Close(silent, irc)
+	if(!irc && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	if(state != AHELP_ACTIVE)
 		return
+	var/ref
+	if(irc)
+		ref = key_name_admin(usr)
+	else
+		ref = ADMIN_TPMONTY(usr)
 	RemoveActive()
 	state = AHELP_CLOSED
 	GLOB.ahelp_tickets.ListInsert(src)
-	AddInteraction("<font color='red'>Closed by [key_name].</font>")
+	AddInteraction("<font color='red'>Closed by [key_name_admin(usr)].</font>")
 	if(!silent)
 		log_admin_private("Ticket (#[id]) closed by [key_name(usr)].")
 		if(tier == TICKET_MENTOR)
-			message_staff("Ticket [TicketHref("#[id]")] closed by [ADMIN_TPMONTY(usr)].")
+			message_staff("Ticket [TicketHref("#[id]")] closed by [ref].")
 		else if(tier == TICKET_ADMIN)
-			message_admins("Ticket [TicketHref("#[id]")] closed by [ADMIN_TPMONTY(usr)].")
+			message_admins("Ticket [TicketHref("#[id]")] closed by [ref].")
 
 
 //Mark open ticket as resolved/legitimate, returns ahelp verb
-/datum/admin_help/proc/Resolve(key_name = key_name_admin(usr), silent = FALSE)
-	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+/datum/admin_help/proc/Resolve(silent, irc)
+	if(!irc && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	if(state != AHELP_ACTIVE)
 		return
+
+	var/ref
+	if(irc)
+		ref = key_name_admin(usr)
+	else
+		ref = ADMIN_TPMONTY(usr)
+
 	RemoveActive()
 	state = AHELP_RESOLVED
 	GLOB.ahelp_tickets.ListInsert(src)
 
 	addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 50)
 
-	AddInteraction("<font color='green'>Resolved by [key_name].</font>")
+	AddInteraction("<font color='green'>Resolved by [key_name_admin(usr)].</font>")
 	if(tier == TICKET_MENTOR)
 		to_chat(initiator, "<span class='adminhelp'>Your mentor ticket has been resolved, if you need to ask something again, feel free to send another one.</span>")
 	if(tier == TICKET_ADMIN)
@@ -493,17 +540,24 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(!silent)
 		log_admin_private("Ticket (#[id]) resolved by [key_name(usr)].")
 		if(tier == TICKET_MENTOR)
-			message_staff("Ticket [TicketHref("#[id]")] resolved by [ADMIN_TPMONTY(usr)].")
+			message_staff("Ticket [TicketHref("#[id]")] resolved by [ref].")
 		else if(tier == TICKET_ADMIN)
-			message_admins("Ticket [TicketHref("#[id]")] resolved by [ADMIN_TPMONTY(usr)].")
+			message_admins("Ticket [TicketHref("#[id]")] resolved by [ref].")
 
 
 //Close and return ahelp verb, use if ticket is incoherent
-/datum/admin_help/proc/Reject(key_name = key_name_admin(usr))
-	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+/datum/admin_help/proc/Reject(irc)
+	if(!irc && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	if(state != AHELP_ACTIVE)
 		return
+
+	var/ref
+	if(irc)
+		ref = key_name_admin(usr)
+	else
+		ref = ADMIN_TPMONTY(usr)
+
 	if(initiator)
 		initiator.giveadminhelpverb()
 
@@ -515,18 +569,24 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			to_chat(initiator, "<font color='red' size='4'><b>- Adminhelp Rejected! -</b></font>")
 			to_chat(initiator, "<font color='red'><b>Your admin help was rejected.</b> The adminhelp verb has been returned to you so that you may try again.</font>")
 			to_chat(initiator, "Please try to be calm, clear, and descriptive in admin helps, do not assume the admin has seen any related events, and clearly state the names of anybody you are reporting.")
-	message_admins("Ticket [TicketHref("#[id]")] rejected by [ADMIN_TPMONTY(usr)].")
+	message_admins("Ticket [TicketHref("#[id]")] rejected by [ref].")
 	log_admin_private("Ticket (#[id]) rejected by [key_name(usr)].")
-	AddInteraction("Rejected by [key_name].")
-	Close(silent = TRUE)
+	AddInteraction("Rejected by [key_name_admin(usr)].")
+	Close(TRUE, irc)
 
 
 //Resolve ticket with IC Issue message
-/datum/admin_help/proc/ICIssue(key_name = key_name_admin(usr))
-	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+/datum/admin_help/proc/ICIssue(irc)
+	if(!irc && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	if(state != AHELP_ACTIVE)
 		return
+
+	var/ref
+	if(irc)
+		ref = key_name_admin(usr)
+	else
+		ref = ADMIN_TPMONTY(usr)
 
 	var/msg = "<font color='red' size='4'><b>- Adminhelp marked as IC! -</b></font><br>"
 	msg += "<font color='red'>Whatever your query was, you will have to find out using IC mean, the staff won't reveal anything relevant.</font>"
@@ -535,14 +595,16 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(initiator)
 		to_chat(initiator, msg)
 
-	message_admins("Ticket [TicketHref("#[id]")] marked as IC by [ADMIN_TPMONTY(usr)].")
+	message_admins("Ticket [TicketHref("#[id]")] marked as IC by [ref].")
 	log_admin_private("Ticket (#[id]) marked as IC by [key_name(usr)].")
-	AddInteraction("Marked as IC issue by [key_name]")
-	Resolve(silent = TRUE)
+	AddInteraction("Marked as IC issue by [key_name_admin(usr)]")
+	Resolve(TRUE, irc)
 
 
 //Show the ticket panel
 /datum/admin_help/proc/TicketPanel()
+	if(!check_rights(R_ADMIN, FALSE) && is_mentor(usr))
+		return
 	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		var/data = "<html><head><title>Access Denied</title></head><body>Access Denied</body></html>"
 		usr << browse(data, "window=ahelp[id];size=620x480")
@@ -566,10 +628,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	dat += "</b>\t[TicketHref("Refresh", ref_src)]\t[TicketHref("Re-Title", ref_src, "retitle")]"
 	if(state != AHELP_ACTIVE)
 		dat += "\t[TicketHref("Reopen", ref_src, "reopen")]"
-	dat += "<br><br>Opened at: [gameTimestamp(wtime = opened_at)] (Approx [DisplayTimeText(world.time - opened_at)] ago)"
+	dat += "<br><br>Opened at: [stationTimestamp(wtime = opened_at)] (Approx [DisplayTimeText(world.time - opened_at)] ago)"
 	if(closed_at)
-		dat += "<br>Closed at: [gameTimestamp(wtime = closed_at)] (Approx [DisplayTimeText(world.time - closed_at)] ago)"
-	dat += "<br>Current time: [gameTimestamp()]"
+		dat += "<br>Closed at: [stationTimestamp(wtime = closed_at)] (Approx [DisplayTimeText(world.time - closed_at)] ago)"
+	dat += "<br>Current time: [stationTimestamp()]"
 	dat += "<br><br>"
 	if(initiator)
 		if(check_rights(R_ADMIN, FALSE))
@@ -645,8 +707,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	return ..(ahelp_datum.name)
 
 
-/obj/effect/statclick/ahelp/clicked()
-	ahelp_datum.TicketPanel()
+/obj/effect/statclick/ahelp/Click()
+	ahelp_datum?.TicketPanel()
 
 
 /obj/effect/statclick/ahelp/Destroy()
@@ -659,7 +721,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //
 
 /client/proc/giveadminhelpverb()
-	src.verbs |= /client/verb/adminhelp
+	if(!src)
+		return
+	verbs |= /client/verb/adminhelp
 	deltimer(adminhelptimerid)
 	adminhelptimerid = 0
 
@@ -670,7 +734,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	adminhelp(msg)
 
 
-/client/verb/adminhelp(msg as text)
+/client/verb/adminhelp(msg as message)
 	set category = "Admin"
 	set name = "Adminhelp"
 
@@ -697,12 +761,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")
 		else
 			current_ticket.AddInteraction("[key_name_admin(usr)] opened a new ticket.")
-			current_ticket.Close(key_name_admin(usr), TRUE, TRUE)
+			current_ticket.Close(TRUE, TRUE)
 
 	new /datum/admin_help(msg, src, FALSE, TICKET_ADMIN)
 
 
-/client/verb/mentorhelp(msg as text)
+/client/verb/mentorhelp(msg as message)
 	set category = "Admin"
 	set name = "Mentorhelp"
 
@@ -728,9 +792,24 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")
 		else
 			current_ticket.AddInteraction("[key_name_admin(usr)] opened a new ticket.")
-			current_ticket.Close(key_name_admin(usr), TRUE, TRUE)
+			current_ticket.Close(TRUE, TRUE)
 
 	new /datum/admin_help(msg, src, FALSE, TICKET_MENTOR)
+
+
+/client/verb/choosehelp()
+	set category = null
+	set name = "choosehelp"
+
+	var/message = input("What do you need help with? Please describe your issue in detail.", "Request Help") as null|message
+	if(!message)
+		return
+
+	switch(input("Who do you want to contanct?", "Request Help") as null|anything in list("Mentors", "Admins"))
+		if("Mentors")
+			mentorhelp(message)
+		if("Admins")
+			adminhelp(message)
 
 
 //
@@ -777,61 +856,44 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /proc/send2irc_adminless_only(source, msg, requiredflags = R_BAN)
 	var/list/adm = get_admin_counts(requiredflags)
 	var/list/activemins = adm["present"]
-	. = activemins.len
+	. = length(activemins)
 	if(. <= 0)
 		var/final = ""
 		var/list/afkmins = adm["afk"]
 		var/list/stealthmins = adm["stealth"]
 		var/list/powerlessmins = adm["noflags"]
 		var/list/allmins = adm["total"]
-		if(!afkmins.len && !stealthmins.len && !powerlessmins.len)
+		if(!length(afkmins) && !length(stealthmins) && !length(powerlessmins))
 			final = "[msg] - No admins online"
 		else
 			final = "[msg] - All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]! Total: [allmins.len] "
-		send2irc(source,final)
-		send2otherserver(source,final)
+		send2irc(source, final)
 
 
-/proc/send2irc(msg,msg2)
-	msg = replacetext(replacetext(msg, "\proper", ""), "\improper", "")
-	msg2 = replacetext(replacetext(msg2, "\proper", ""), "\improper", "")
+/proc/send2irc(msg, msg2)
 	world.TgsTargetedChatBroadcast("[msg] | [msg2]", TRUE)
 
 
-/proc/send2otherserver(source,msg,type = "Ahelp")
-	var/comms_key = CONFIG_GET(string/comms_key)
-	if(!comms_key)
-		return
-	var/list/message = list()
-	message["message_sender"] = source
-	message["message"] = msg
-	message["source"] = "([CONFIG_GET(string/cross_comms_name)])"
-	message["key"] = comms_key
-	message += type
-
-	var/list/servers = CONFIG_GET(keyed_list/cross_server)
-	for(var/I in servers)
-		world.Export("[servers[I]]?[list2params(message)]")
+/proc/send2update(msg)
+	world.TgsTargetedChatBroadcast(msg, FALSE)
 
 
 /proc/ircadminwho()
-	var/list/message = list("Admins: ")
-	var/list/admin_keys = list()
-	for(var/adm in GLOB.admins)
-		var/client/C = adm
-		admin_keys += "[C][C.holder.fakekey ? "(Stealth)" : ""][C.is_afk() ? "(AFK)" : ""]"
-
-	for(var/admin in admin_keys)
-		if(LAZYLEN(message) > 1)
-			message += ", [admin]"
+	var/list/adm = get_admin_counts()
+	var/list/activemins = adm["present"]
+	. = length(activemins)
+	if(.)
+		var/list/afkmins = adm["afk"]
+		var/list/stealthmins = adm["stealth"]
+		var/list/powerlessmins = adm["noflags"]
+		var/list/allmins = adm["total"]
+		if(!length(afkmins) && !length(stealthmins) && !length(powerlessmins))
+			return "No admins online"
 		else
-			message += "[admin]"
-
-	return jointext(message, "")
+			return "All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]! Total: [length(allmins)]"
 
 
-/proc/keywords_lookup(msg,irc)
-
+/proc/keywords_lookup(msg, irc)
 	//This is a list of words which are ignored by the parser when comparing message contents for names. MUST BE IN LOWER CASE!
 	var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","alien","as", "i")
 
@@ -886,11 +948,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 							mobs_found += found
 							if(!ai_found && isAI(found))
 								ai_found = 1
-							var/is_antag = 0
-							if(found.mind && found.mind.special_role)
-								is_antag = 1
-							founds += "Name: [found.name]([found.real_name]) Key: [found.key] Ckey: [found.ckey] [is_antag ? "(Antag)" : null] "
-							msg += "[original_word]<font size='1' color='[is_antag ? "red" : "black"]'>(<A HREF='?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(found)]'>?</A>|<A HREF='?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(found)]'>FLW</A>)</font> "
+							founds += "Name: [found.name]([found.real_name]) Key: [found.key] Ckey: [found.ckey] "
+							msg += "[original_word]<font size='1' color='black'>(<A HREF='?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(found)]'>?</A>|<A HREF='?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(found)]'>FLW</A>)</font> "
 							continue
 		msg += "[original_word] "
 	if(irc)

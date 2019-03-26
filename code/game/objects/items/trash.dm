@@ -94,7 +94,7 @@
 	icon_state = "fortune" //Thank you Alterist
 
 /obj/item/trash/fortunecookie/Initialize()
-	desc = "The fortune reads. <br><span class='tip'>[pick(marinetips)]</span>"
+	desc = "The fortune reads. <br><span class='tip'>[pick(GLOB.marinetips)]</span>"
 
 /obj/item/trash/c_tube
 	name = "cardboard tube"
@@ -147,7 +147,7 @@
 	desc = "An empty wrapper from a barcardine bar. You notice the inside has several medical labels. You're not sure if you care or not about that."
 	icon_state = "barcardine_trash"
 
-/obj/item/trash/uscm_mre
+/obj/item/trash/mre
 	name = "\improper crumbled TGMC MRE"
 	desc = "It has done its part for the TGMC. Have you?"
 	icon = 'icons/obj/items/trash.dmi'

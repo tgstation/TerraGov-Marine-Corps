@@ -7,25 +7,20 @@
 
 //Grown foods
 //Subclass so we can pass on values
-/obj/item/reagent_container/food/snacks/grown/
+/obj/item/reagent_container/food/snacks/grown
 	var/plantname
 	var/potency = -1
 	icon = 'icons/obj/items/harvest.dmi'
-	New(newloc,newpotency)
-		if (!isnull(newpotency))
-			potency = newpotency
-		..()
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)
 
-/obj/item/reagent_container/food/snacks/grown/Initialize()
+/obj/item/reagent_container/food/snacks/grown/New(newloc,newpotency)
 	if(!tastes)
 		tastes = list("[name]" = 1)
+	if (!isnull(newpotency))
+		potency = newpotency
 	. = ..()
-
 	// Fill the object up with the appropriate reagents.
 	if(!isnull(plantname))
-		var/datum/seed/S = seed_types[plantname]
+		var/datum/seed/S = GLOB.seed_types[plantname]
 		if(!S || !S.chems)
 			return
 

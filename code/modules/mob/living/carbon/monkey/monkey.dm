@@ -9,12 +9,21 @@
 	hud_possible = list(STATUS_HUD_XENO_INFECTION)
 
 	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie
-	var/greaterform = "Human"                  // Used when humanizing a monkey.
+	var/datum/species/greaterform              // Used when humanizing a monkey.
+	var/greaterform_type = /datum/species/human
 	icon_state = "monkey1"
 	//var/uni_append = "12C4E2"                // Small appearance modifier for different species.
 	var/list/uni_append = list(0x12C,0x4E2)    // Same as above for DNA2.
 	var/update_muts = 1                        // Monkey gene must be set at start.
-	var/env_low_temp_resistance = T0C + 10 //lowest temperature the monkey can handle without taking dmg (used by yiren)
+
+	//temperature limits, will default to the greater form's if not set.
+	var/cold_level_1
+	var/cold_level_2
+	var/cold_level_3
+
+	var/heat_level_1
+	var/heat_level_2
+	var/heat_level_3
 
 
 /mob/living/carbon/monkey/prepare_huds()
@@ -28,7 +37,7 @@
 	voice_name = "farwa"
 	speak_emote = list("mews")
 	icon_state = "tajkey1"
-	greaterform = "Tajara"
+	greaterform_type = /datum/species/tajaran
 	uni_append = list(0x0A0,0xE00) // 0A0E00
 
 /mob/living/carbon/monkey/skrell
@@ -36,7 +45,7 @@
 	voice_name = "neaera"
 	speak_emote = list("squicks")
 	icon_state = "skrellkey1"
-	greaterform = "Skrell"
+	greaterform_type = /datum/species/skrell
 	uni_append = list(0x01C,0xC92) // 01CC92
 
 /mob/living/carbon/monkey/unathi
@@ -44,7 +53,7 @@
 	voice_name = "stok"
 	speak_emote = list("hisses")
 	icon_state = "stokkey1"
-	greaterform = "Unathi"
+	greaterform_type = /datum/species/unathi
 	uni_append = list(0x044,0xC5D) // 044C5D
 
 
@@ -54,23 +63,34 @@
 	voice_name = "yiren"
 	speak_emote = list("grumbles")
 	icon_state = "yirenkey1"
-	env_low_temp_resistance = ICE_PLANET_min_cold_protection_temperature
+	cold_level_1 = ICE_COLONY_TEMPERATURE - 20
+	cold_level_2 = ICE_COLONY_TEMPERATURE - 40
+	cold_level_3 = ICE_COLONY_TEMPERATURE - 80
 
 
 /mob/living/carbon/monkey/Initialize()
 	verbs += /mob/living/proc/lay_down
-	var/datum/reagents/R = new/datum/reagents(1000)
-	reagents = R
-	R.my_atom = src
+	create_reagents(1000)
 
-	species = GLOB.all_species[greaterform]
-	add_language(species.language)
+	if(greaterform_type)
+		greaterform = new greaterform_type()
+
+		add_language(greaterform.language)
+
+		cold_level_1 = null ? greaterform.cold_level_1 : cold_level_1
+		cold_level_2 = null ? greaterform.cold_level_2 : cold_level_2
+		cold_level_3 = null ? greaterform.cold_level_3 : cold_level_3
+
+		heat_level_1 = null ? greaterform.heat_level_1 : heat_level_1
+		heat_level_2 = null ? greaterform.heat_level_2 : heat_level_2
+		heat_level_3 = null ? greaterform.heat_level_3 : heat_level_3
+
 
 	if(name == initial(name)) //To stop Pun-Pun becoming generic.
 		name = "[name] ([rand(1, 1000)])"
 		real_name = name
 
-	if (!(dna))
+	if (!dna)
 		if(gender == NEUTER)
 			gender = pick(MALE, FEMALE)
 		dna = new /datum/dna( null )
@@ -175,7 +195,7 @@
 							internal = back
 							visible_message("[src] is now running on internals.", null, 3)
 							internal.add_fingerprint(usr)
-							if (hud_used. && hud_used.internals)
+							if (hud_used && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
 
 
@@ -185,10 +205,10 @@
 /mob/living/carbon/monkey/attack_paw(mob/M as mob)
 	..()
 
-	if (M.a_intent == "help")
+	if (M.a_intent == INTENT_HARM)
 		help_shake_act(M)
 	else
-		if ((M.a_intent == "hurt" && !( istype(wear_mask, /obj/item/clothing/mask/muzzle) )))
+		if ((M.a_intent == INTENT_HARM && !( istype(wear_mask, /obj/item/clothing/mask/muzzle) )))
 			if ((prob(75) && health > 0))
 				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 				for(var/mob/O in viewers(src, null))
@@ -205,7 +225,7 @@
 	return
 
 /mob/living/carbon/monkey/attack_hand(mob/living/carbon/human/M as mob)
-	if (!ticker)
+	if (!SSticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
 
@@ -216,7 +236,7 @@
 	if(M.gloves)
 		var/obj/item/clothing/gloves/G = M.gloves
 		if(G.cell)
-			if(M.a_intent == "hurt")//Stungloves. Any contact will stun the alien.
+			if(M.a_intent == INTENT_HARM)//Stungloves. Any contact will stun the alien.
 				if(G.cell.charge >= 2500)
 					G.cell.use(2500)
 					KnockDown(5)
@@ -232,10 +252,10 @@
 					to_chat(M, "<span class='warning'>Not enough charge! </span>")
 					return
 
-	if (M.a_intent == "help")
+	if (M.a_intent == INTENT_HELP)
 		help_shake_act(M)
 	else
-		if (M.a_intent == "hurt")
+		if (M.a_intent == INTENT_HARM)
 			var/datum/unarmed_attack/attack = M.species.unarmed
 			if ((prob(75) && health > 0))
 				visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>")
@@ -258,7 +278,7 @@
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
 				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>")
 		else
-			if (M.a_intent == "grab")
+			if (M.a_intent == INTENT_GRAB)
 				if(M == src || anchored)
 					return 0
 

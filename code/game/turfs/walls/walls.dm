@@ -4,7 +4,7 @@
 	name = "wall"
 	desc = "A huge chunk of metal used to seperate rooms."
 	icon = 'icons/turf/walls.dmi'
-	icon_state = "0"
+	icon_state = "metal"
 	opacity = 1
 	var/hull = 0 //1 = Can't be deconstructed by tools or thermite. Used for Sulaco walls
 	var/walltype = "metal"
@@ -179,7 +179,7 @@
 
 		var/base_direction = base_dir(current_bulletholes,bullethole_increment)
 		var/current_direction = cur_dir(base_direction)
-		dir = current_direction
+		setDir(current_direction)
 		/*Hack. Image overlays behave as the parent object, so that means they are also attached to it and follow its directional.
 		Luckily, it doesn't matter what direction the walls are set to, they link together via icon_state it seems.
 		But I haven't thoroughly tested it.*/
@@ -222,10 +222,11 @@
 
 /turf/closed/wall/proc/make_girder(destroyed_girder = FALSE)
 	var/obj/structure/girder/G = new /obj/structure/girder(src)
+	transfer_fingerprints_to(G)
 	G.icon_state = "girder[junctiontype]"
 	G.original = src.type
 
-	if (destroyed_girder)
+	if(destroyed_girder)
 		G.dismantle()
 
 
@@ -545,7 +546,8 @@
 						return
 
 					if(d_state == 7)
-						new /obj/item/stack/rods(src)
+						var/obj/item/stack/rods/R = new /obj/item/stack/rods(src)
+						transfer_fingerprints_to(R)
 						user.visible_message("<span class='notice'>The support rods drop out as [user] slices through the final layer.</span>",
 						"<span class='notice'>The support rods drop out as you slice through the final layer.</span>")
 						dismantle_wall()

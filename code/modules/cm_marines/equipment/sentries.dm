@@ -73,7 +73,7 @@
 		if(!src) //Make sure the sentry still exists
 			return
 		var/obj/machinery/turret_tripod_deployed/S = new /obj/machinery/turret_tripod_deployed/(target)
-		S.dir = user.dir
+		S.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] unfolds \the [S].</span>",
 			"<span class='notice'>You unfold \the [S].</span>")
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
@@ -91,7 +91,6 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
-	flags_atom = RELAY_CLICK
 	var/has_top = FALSE
 
 /obj/machinery/turret_tripod_deployed/examine(mob/user as mob)
@@ -120,14 +119,15 @@
 
 	user.visible_message("<span class='notice'>[user] begins to fold up and retrieve \the [src].</span>",
 	"<span class='notice'>You begin to fold up and retrieve \the [src].</span>")
-	if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-		if(!src || anchored)//Check if we got exploded
-			return
-		user.visible_message("<span class='notice'>[user] folds up and retrieves \the [src].</span>",
-		"<span class='notice'>You fold up and retrieve \the [src].</span>")
-		var/obj/item/device/turret_tripod/T = new(loc)
-		user.put_in_hands(T)
-		qdel(src)
+	if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+		return
+	if(!src || anchored || !Adjacent(user))//Check if we got exploded
+		return
+	user.visible_message("<span class='notice'>[user] folds up and retrieves \the [src].</span>",
+	"<span class='notice'>You fold up and retrieve \the [src].</span>")
+	var/obj/item/device/turret_tripod/T = new(loc)
+	user.put_in_hands(T)
+	qdel(src)
 
 /obj/machinery/turret_tripod_deployed/attackby(var/obj/item/O as obj, mob/user as mob)
 	if(iswrench(O))
@@ -179,7 +179,7 @@
 
 			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 				var/obj/machinery/marine_turret/S = new /obj/machinery/marine_turret(loc)
-				S.dir = dir
+				S.setDir(dir)
 				user.visible_message("<span class='notice'>[user] finishes \the [S].</span>",
 					"<span class='notice'>You finish \the [S].</span>")
 				playsound(S.loc, 'sound/weapons/mine_armed.ogg', 25)
@@ -213,7 +213,6 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
-	flags_atom = RELAY_CLICK
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	var/iff_signal = ACCESS_IFF_MARINE
 	var/safety_off = FALSE
@@ -228,7 +227,7 @@
 	var/on = FALSE
 	var/health = 200
 	var/health_max = 200
-	stat = 0 //Used just like mob.stat
+	machine_stat = 0 //Used just like mob.stat
 	var/datum/effect_system/spark_spread/spark_system //The spark system, used for generating... sparks?
 	var/obj/item/cell/cell = null
 	var/burst_fire = FALSE
@@ -287,7 +286,7 @@
 	camera = new (src)
 	camera.network = list("military")
 	camera.c_tag = "[name] ([rand(0, 1000)])"
-	stat = NOFLAGS
+	machine_stat = NOFLAGS
 	//START_PROCESSING(SSobj, src)
 	ammo = GLOB.ammo_list[ammo]
 	update_icon()
@@ -328,13 +327,13 @@
 		to_chat(user, "<span class='warning'>[src]'s panel is completely locked, you can't do anything.</span>")
 		return
 
-	if(stat)
+	if(machine_stat)
 		user.visible_message("<span class='notice'>[user] begins to set [src] upright.</span>",
 		"<span class='notice'>You begin to set [src] upright.</span>")
 		if(do_after(user,20, TRUE, 5, BUSY_ICON_FRIENDLY))
 			user.visible_message("<span class='notice'>[user] sets [src] upright.</span>",
 			"<span class='notice'>You set [src] upright.</span>")
-			stat = 0
+			machine_stat = 0
 			update_icon()
 			update_health()
 		return
@@ -395,7 +394,7 @@
 	switch(href_list["op"])
 
 		if("burst")
-			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
+			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || machine_stat)
 				return
 
 			if(burst_fire)
@@ -410,7 +409,7 @@
 				state("<span class='notice'>A green light on [src] blinks rapidly.</span>")
 
 		if("burstup")
-			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
+			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || machine_stat)
 				return
 
 			burst_size = CLAMP(burst_size + 1, min_burst, max_burst)
@@ -418,7 +417,7 @@
 			"<span class='notice'>You increment [src]'s burst fire count.</span>")
 
 		if("burstdown")
-			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
+			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || machine_stat)
 				return
 
 			burst_size = CLAMP(burst_size - 1, min_burst, max_burst)
@@ -426,7 +425,7 @@
 			"<span class='notice'>You decrement [src]'s burst fire count.</span>")
 
 		if("safety")
-			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || stat)
+			if(!cell || cell.charge <= 0 || !anchored || immobile || !on || machine_stat)
 				return
 
 			if(!safety_off)
@@ -442,9 +441,6 @@
 
 		if("manual") //Alright so to clean this up, fuck that manual control pop up. Its a good idea but its not working out in practice.
 			if(!manual_override)
-				if(user.interactee != src) //Make sure if we're using a machine we can't use another one (ironically now impossible due to handle_click())
-					to_chat(user, "<span class='warning'>You can't multitask like this!</span>")
-					return
 				if(operator != user && operator) //Don't question this. If it has operator != user it wont fucken work. Like for some reason this does it proper.
 					to_chat(user, "<span class='warning'>Someone is already controlling [src].</span>")
 					return
@@ -463,8 +459,8 @@
 						user.unset_interaction()
 					else
 						to_chat(user, "<span class='warning'>You are not currently overriding this turret.</span>")
-				if(stat == 2)
-					stat = 0 //Weird bug goin on here
+				if(machine_stat == 2)
+					machine_stat = 0 //Weird bug goin on here
 			else //Seems to be a bug where the manual override isn't properly deactivated; this toggle should fix that.
 				state("<span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
 				manual_override = FALSE
@@ -603,19 +599,19 @@
 		user.visible_message("<span class='notice'>[user] rotates [src].</span>",
 		"<span class='notice'>You rotate [src].</span>")
 		if(dir == NORTH)
-			dir = EAST
+			setDir(EAST)
 		else if(dir == EAST)
-			dir = SOUTH
+			setDir(SOUTH)
 		else if(dir == SOUTH)
-			dir = WEST
+			setDir(WEST)
 		else if(dir == WEST)
-			dir = NORTH
+			setDir(NORTH)
 		return
 
 
 	if(iswelder(O))
 		var/obj/item/tool/weldingtool/WT = O
-		if(health < 0 || stat)
+		if(health < 0 || machine_stat)
 			to_chat(user, "<span class='warning'>[src]'s internal circuitry is ruined, there's no way you can salvage this on the go.</span>")
 			return
 
@@ -709,7 +705,7 @@
 	var/image/ammo_empty = image('icons/Marine/sentry.dmi', src, "sentry_ammo_empty")
 
 	overlays.Cut()
-	if(stat && health > 0) //Knocked over
+	if(machine_stat && health > 0) //Knocked over
 		on = FALSE
 		density = FALSE
 		icon_state = "sentry_fallen"
@@ -759,12 +755,12 @@
 	if(health > health_max) //Sanity
 		health = health_max
 
-	if(health <= 0 && stat != 2)
-		stat = 2
+	if(health <= 0 && machine_stat != 2)
+		machine_stat = 2
 		state("<span class='warning'>The [name] starts spitting out sparks and smoke!")
 		playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
-		for(var/i = 1 to 6)
-			dir = pick(1, 2, 3, 4)
+		for(var/i in 1 to 6)
+			setDir(pick(NORTH, SOUTH, EAST, WEST))
 			sleep(2)
 		spawn(10)
 			if(src && loc)
@@ -773,18 +769,18 @@
 					qdel(src)
 		return
 
-	if(!stat && damage > 0 && !immobile)
+	if(!machine_stat && damage > 0 && !immobile)
 		if(prob(10))
 			spark_system.start()
 		if(damage > knockdown_threshold) //Knockdown is certain if we deal this much in one hit; no more RNG nonsense, the fucking thing is bolted.
 			state("<span class='danger'>The [name] is knocked over!</span>")
-			stat = 1
+			machine_stat = 1
 			if(alerts_on && on)
 				sentry_alert(SENTRY_ALERT_FALLEN)
 	update_icon()
 
 /obj/machinery/marine_turret/proc/check_power(var/power)
-	if (!cell || !on || stat)
+	if (!cell || !on || machine_stat)
 		update_icon()
 		return FALSE
 
@@ -807,8 +803,8 @@
 		if(prob(50))
 			state("<span class='danger'>[src] beeps and buzzes wildly, flashing odd symbols on its screen before shutting down!</span>")
 			playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
-			for(var/i = 1 to 6)
-				dir = pick(1, 2, 3, 4)
+			for(var/i in 1 to 6)
+				setDir(pick(NORTH, SOUTH, EAST, WEST))
 				sleep(2)
 			on = FALSE
 	if(health > 0)
@@ -839,6 +835,8 @@
 		if(!locate(/obj/effect/decal/cleanable/blood/oil) in loc)
 			new /obj/effect/decal/cleanable/blood/oil(loc)
 	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
+	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 /obj/machinery/marine_turret/bullet_act(var/obj/item/projectile/Proj) //Nope.
 	visible_message("[src] is hit by the [Proj.name]!")
@@ -851,12 +849,12 @@
 
 /obj/machinery/marine_turret/process()
 
-	if(health > 0 && stat != 1)
-		stat = 0
+	if(health > 0 && machine_stat != 1)
+		machine_stat = 0
 	if(!anchored)
 		return
 
-	if(!on || stat == 1 || !cell)
+	if(!on || machine_stat == 1 || !cell)
 		return
 
 	if(!check_power(2))
@@ -885,7 +883,7 @@
 
 /obj/machinery/marine_turret/proc/load_into_chamber()
 	if(in_chamber) return 1 //Already set!
-	if(!on || !cell || rounds == 0 || stat == 1) return 0
+	if(!on || !cell || rounds == 0 || machine_stat == 1) return 0
 
 	in_chamber = new /obj/item/projectile(loc) //New bullet!
 	in_chamber.generate_bullet(ammo)
@@ -938,11 +936,11 @@
 	 return
 
 	var/target_dir = get_dir(src, targloc)
-	//if( ( target_dir & turn(dir, 180) ) && !radial_mode)
-	//	return
+	if( ( target_dir & turn(dir, 180) ) && !radial_mode)
+		return
 
 	if(radial_mode && !manual_override)
-		dir = target_dir
+		setDir(target_dir)
 
 
 	if(load_into_chamber())
@@ -951,8 +949,9 @@
 			if (burst_fire)
 				//Apply scatter
 				var/scatter_chance = in_chamber.ammo.scatter
-				scatter_chance += (burst_size * 2)
-				in_chamber.accuracy = round(in_chamber.accuracy * (CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/min_hit_accuracy_mult) * max(0,burst_size - 2) ) ) //Accuracy penalty scales with burst count.
+				var/burst_value = CLAMP(burst_size - 1, 1, 5)
+				scatter_chance += (burst_value * burst_value * 2)
+				in_chamber.accuracy = round(in_chamber.accuracy - (burst_value * burst_value * 1.2), 0.01) //Accuracy penalty scales with burst count.
 
 				if (prob(scatter_chance))
 					var/scatter_x = rand(-1, 1)
@@ -960,12 +959,15 @@
 					var/turf/new_target = locate(targloc.x + round(scatter_x),targloc.y + round(scatter_y),targloc.z) //Locate an adjacent turf.
 					if(new_target) //Looks like we found a turf.
 						target = new_target
-			else
-				in_chamber.accuracy = round(in_chamber.accuracy * (CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult))) //much more accurate on single fire
+
+			else //gains +50% accuracy, damage, and penetration on singlefire, and no spread.
+				in_chamber.accuracy = round(in_chamber.accuracy * 1.5, 0.01)
+				in_chamber.damage = round(in_chamber.damage * 1.5, 0.01)
+				in_chamber.ammo.penetration = round(in_chamber.ammo.penetration * 1.5, 0.01)
 
 			//Setup projectile
 			in_chamber.original = target
-			in_chamber.dir = dir
+			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest", "chest", "chest", "head")
 
 			//Shoot at the thing
@@ -1027,8 +1029,8 @@
 
 		var/angle = get_dir(src, M)
 		if(angle & dir || radial_mode)
-			path = getline2(src, M, TRUE)
-			//path -= get_turf(src)
+			path = getline(src, M)
+			path -= get_turf(src)
 			if(alerts_on) //They're within our field of detection and thus can trigger the alarm
 				if(world.time > (last_alert + SENTRY_ALERT_DELAY) || !(M in alert_list)) //if we're not on cooldown or the target isn't in the list, sound the alarm
 					playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
@@ -1059,62 +1061,6 @@
 
 	if(targets.len) . = pick(targets)
 
-//Direct replacement to new proc. Everything works.
-/obj/machinery/marine_turret/handle_click(mob/living/carbon/human/user, atom/A, params)
-	if(!operator || !istype(user) || operator != user)
-		return FALSE
-	if(istype(A, /obj/screen))
-		return FALSE
-	if(!manual_override)
-		return FALSE
-	if(operator.interactee != src)
-		return FALSE
-	if(is_bursting)
-		return
-	if(get_dist(user, src) > 1 || user.is_mob_incapacitated())
-		user.visible_message("<span class='notice'>[user] lets go of [src]</span>",
-		"<span class='notice'>You let go of [src]</span>")
-		state("<span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
-		user.unset_interaction()
-		return FALSE
-	if(user.get_active_held_item() != null)
-		to_chat(usr, "<span class='warning'>You need a free hand to shoot [src].</span>")
-		return FALSE
-
-	target = A
-	if(!istype(target))
-		return FALSE
-
-	if(target.z != z || target.z == 0 || z == 0 || isnull(operator.loc) || isnull(loc))
-		return FALSE
-
-	if(get_dist(target, loc) > 10)
-		return FALSE
-
-	var/list/modifiers = params2list(params) //Only single clicks.
-	if(modifiers["middle"] || modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"])
-		return FALSE
-
-	var/dx = target.x - x
-	var/dy = target.y - y //Calculate which way we are relative to them. Should be 90 degree cone..
-	var/direct
-
-	if(abs(dx) < abs(dy))
-		if(dy > 0)
-			direct = NORTH
-		else
-			direct = SOUTH
-	else
-		if(dx > 0)
-			direct = EAST
-		else
-			direct = WEST
-
-	if(direct == dir && target.loc != src.loc && target.loc != operator.loc)
-		process_shot()
-		return TRUE
-
-	return FALSE
 /*
 /obj/item/turret_laptop
 	name = "UA 571-C Turret Control Laptop"
@@ -1287,7 +1233,7 @@
 	rounds = 500
 	rounds_max = 500
 	knockdown_threshold = 70 //lighter, not as well secured.
-	work_time = 20 //significantly faster than the big sentry
+	work_time = 10 //significantly faster than the big sentry
 	ammo = /datum/ammo/bullet/turret/mini //Similar to M39 AP rounds.
 	magazine_type = /obj/item/ammo_magazine/minisentry
 
@@ -1313,17 +1259,18 @@
 
 	user.visible_message("<span class='notice'>[user] begins to fold up and retrieve [src].</span>",
 	"<span class='notice'>You begin to fold up and retrieve [src].</span>")
-	if(do_after(user, work_time * 1.5, TRUE, 5, BUSY_ICON_BUILD))
-		if(!src || on || anchored)//Check if we got exploded
-			return
-		to_chat(user, "<span class='notice'>You fold up and retrieve [src].</span>")
-		var/obj/item/device/marine_turret/mini/P = new(loc)
-		user.put_in_hands(P)
-		P.health = health //track the health
-		qdel(src)
+	if(!do_after(user, work_time * 3, TRUE, 5, BUSY_ICON_BUILD))
+		return
+	if(!src || !Adjacent(user))//Check if we got exploded
+		return
+	to_chat(user, "<span class='notice'>You fold up and retrieve [src].</span>")
+	var/obj/item/device/marine_turret/mini/P = new(loc)
+	user.put_in_hands(P)
+	P.health = health //track the health
+	qdel(src)
 
 /obj/machinery/marine_turret/mini/update_icon()
-	if(stat && health > 0) //Knocked over
+	if(machine_stat && health > 0) //Knocked over
 		on = FALSE
 		density = FALSE
 		icon_state = "minisentry_fallen"
@@ -1364,7 +1311,7 @@
 	icon_state = "minisentry_packed"
 	item_state = "minisentry_packed"
 	w_class = 4
-	health = 150 //We keep track of this when folding up the sentry.
+	health = 155 //We keep track of this when folding up the sentry.
 	flags_equip_slot = ITEM_SLOT_BACK
 
 /obj/item/device/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
@@ -1381,17 +1328,18 @@
 		if(!src) //Make sure the sentry still exists
 			return
 		var/obj/machinery/marine_turret/mini/M = new /obj/machinery/marine_turret/mini(target)
-		M.dir = user.dir
+		M.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] deploys [M].</span>",
-		"<span class='notice'>You deploy [M].</span>")
+		"<span class='notice'>You deploy [M]. The [M]'s securing bolts automatically anchor it to the ground.</span>")
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
 		M.health = health
-		M.update_icon()
+		M.anchored = TRUE
+		M.activate_turret()
 		qdel(src)
 
 /obj/item/ammo_magazine/minisentry
 	name = "M30 box magazine (10x20mm Caseless)"
-	desc = "A box of 500 10x20mm armor piercing caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	desc = "A box of 500 10x20mm caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 3
 	icon_state = "ua580"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
@@ -1420,4 +1368,15 @@
 		new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
 		new /obj/item/ammo_magazine/minisentry(src)
 
-
+/obj/machinery/marine_turret/proc/activate_turret()
+	if(!anchored)
+		return FALSE
+	target = null
+	on = TRUE
+	SetLuminosity(7)
+	if(!camera)
+		camera = new /obj/machinery/camera(src)
+		camera.network = list("military")
+		camera.c_tag = src.name
+	update_icon()
+	return TRUE

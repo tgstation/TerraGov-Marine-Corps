@@ -92,8 +92,7 @@
 
 					to_chat(src, "You've lost power!")
 //							to_chat(world, "DEBUG CODE TIME! [loc] is the area the AI is sucking power from")
-					if (!is_special_character(src))
-						src.set_zeroth_law("")
+					src.set_zeroth_law("")
 					//src.clear_supplied_laws() // Don't reset our laws.
 					//var/time = time2text(world.realtime,"hh:mm:ss")
 					//lawchanges.Add("[time] <b>:</b> [src.name]'s noncore laws have been reset due to power failure")
@@ -120,7 +119,7 @@
 /*
 						for (var/something in loc)
 							if (istype(something, /obj/machinery/power/apc))
-								if (!(something:stat & BROKEN))
+								if (!(something:machine_stat & BROKEN))
 									theAPC = something
 									break
 */
@@ -129,7 +128,7 @@
 							var/area/AIarea = get_area(src)
 							for(var/area/A in AIarea.master.related)
 								for (var/obj/machinery/power/apc/APC in A)
-									if (!(APC.stat & BROKEN))
+									if (!(APC.machine_stat & BROKEN))
 										theAPC = APC
 										break
 							if (!theAPC)
@@ -169,7 +168,7 @@
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
-		if(health <= CONFIG_GET(number/health_threshold_dead))
+		if(health <= get_death_threshold())
 			death()
 			return
 		else if(stat == UNCONSCIOUS)

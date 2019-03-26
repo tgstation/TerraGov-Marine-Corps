@@ -26,7 +26,7 @@
 		M.monkeyizing = 1
 		M.canmove = 0
 		M.icon = null
-		M.invisibility = 101
+		M.invisibility = INVISIBILITY_MAXIMUM
 		var/atom/movable/overlay/animation = new( M.loc )
 		animation.icon_state = "blank"
 		animation.icon = 'icons/mob/mob.dmi'
@@ -77,7 +77,7 @@
 	O.adjustToxLoss(M.getToxLoss() + 20)
 	O.adjustOxyLoss(M.getOxyLoss())
 	O.stat = M.stat
-	O.a_intent = "hurt"
+	O.a_intent = INTENT_HARM
 	for (var/obj/item/implant/I in implants)
 		I.loc = O
 		I.implanted = O
@@ -101,7 +101,7 @@
 		M.monkeyizing = 1
 		M.canmove = 0
 		M.icon = null
-		M.invisibility = 101
+		M.invisibility = INVISIBILITY_MAXIMUM
 		var/atom/movable/overlay/animation = new( M.loc )
 		animation.icon_state = "blank"
 		animation.icon = 'icons/mob/mob.dmi'
@@ -112,7 +112,7 @@
 
 	var/mob/living/carbon/human/O
 	if(Mo.greaterform)
-		O = new(src, Mo.greaterform)
+		O = new(src, Mo.greaterform.name)
 	else
 		O = new(src)
 

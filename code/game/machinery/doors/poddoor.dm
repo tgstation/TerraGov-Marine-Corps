@@ -29,7 +29,7 @@
 	add_fingerprint(user)
 	if(!W.pry_capable)
 		return
-	if(density && (stat & NOPOWER) && !operating && !unacidable)
+	if(density && (machine_stat & NOPOWER) && !operating && !unacidable)
 		spawn(0)
 			operating = 1
 			flick("pdoorc0", src)
@@ -46,7 +46,7 @@
 /obj/machinery/door/poddoor/open()
 	if(operating == 1) //doors can still open when emag-disabled
 		return
-	if(!ticker)
+	if(!SSticker)
 		return 0
 	if(!operating) //in case of emag
 		operating = 1
@@ -82,7 +82,7 @@
 /obj/machinery/door/poddoor/two_tile_hor/open()
 	if(operating == 1) //doors can still open when emag-disabled
 		return
-	if(!ticker)
+	if(!SSticker)
 		return 0
 	if(!operating) //in case of emag
 		operating = 1
@@ -126,7 +126,7 @@
 /obj/machinery/door/poddoor/four_tile_hor/open()
 	if(operating == 1) //doors can still open when emag-disabled
 		return
-	if(!ticker)
+	if(!SSticker)
 		return 0
 	if(!operating) //in case of emag
 		operating = 1
@@ -179,7 +179,7 @@
 /obj/machinery/door/poddoor/two_tile_ver/open()
 	if(operating == 1) //doors can still open when emag-disabled
 		return
-	if(!ticker)
+	if(!SSticker)
 		return 0
 	if(!operating) //in case of emag
 		operating = 1
@@ -224,7 +224,7 @@
 /obj/machinery/door/poddoor/four_tile_ver/open()
 	if(operating == 1) //doors can still open when emag-disabled
 		return
-	if(!ticker)
+	if(!SSticker)
 		return 0
 	if(!operating) //in case of emag
 		operating = 1

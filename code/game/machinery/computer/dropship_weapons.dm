@@ -148,14 +148,14 @@
 	name = "\improper 'Alamo' weapons controls"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
 
-/obj/machinery/computer/dropship_weapons/dropship1/New()
-	..()
-	shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
+/obj/machinery/computer/dropship_weapons/dropship1/Initialize()
+	. = ..()
+	shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/machinery/computer/dropship_weapons/dropship2
 	name = "\improper 'Normandy' weapons controls"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
 
-/obj/machinery/computer/dropship_weapons/dropship2/New()
-	..()
-	shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
+/obj/machinery/computer/dropship_weapons/dropship2/Initialize()
+	. = ..()
+	shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"

@@ -1,25 +1,23 @@
-/obj/machinery/door/unpowered
-	autoclose = 0
-	var/locked = 0
+/obj/machinery/door/airlock/unpowered
+	autoclose = FALSE
+	no_panel = TRUE
+	hackProof = TRUE
 
 
-	Bumped(atom/AM)
-		if(src.locked)
-			return
-		..()
-		return
+/obj/machinery/door/airlock/unpowered/try_to_activate_door(mob/user)
+	if(locked)
+		return FALSE
+	return ..()
 
 
-	attackby(obj/item/I as obj, mob/user as mob)
-		if(istype(I, /obj/item/card/emag))	return
-		if(src.locked)	return
-		..()
-		return
+/obj/machinery/door/airlock/unpowered/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/card/emag) || locked)
+		return FALSE
+	return ..()
 
-
-/obj/machinery/door/unpowered/shuttle
+/obj/machinery/door/airlock/unpowered/shuttle
 	icon = 'icons/turf/shuttle.dmi'
-	name = "door"
+	name = "Shuttle Airlock"
 	icon_state = "door1"
-	opacity = 1
-	density = 1
+	opacity = TRUE
+	density = TRUE

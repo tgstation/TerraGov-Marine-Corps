@@ -8,7 +8,7 @@
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
-	var/health = 15
+	health = 15
 	var/state = 2
 	var/reinf = FALSE
 	var/basestate = "window"
@@ -83,7 +83,7 @@
 /obj/structure/window/CheckExit(atom/movable/O, turf/target)
 	if(istype(O) && O.checkpass(PASSGLASS))
 		return TRUE
-	if(get_dir(O.loc, target) == dir)
+	if(get_dir(O.loc, target) == dir && !is_full_window())
 		return FALSE
 	return TRUE
 
@@ -110,7 +110,7 @@
 	playsound(loc, 'sound/effects/glassknock.ogg', 15, 1)
 
 /obj/structure/window/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent == "help")
+	if(M.a_intent == INTENT_HELP)
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 25, 1)
 		M.visible_message("<span class='warning'>\The [M] creepily taps on [src] with its huge claw.</span>", \
 		"<span class='warning'>You creepily tap on [src].</span>", \
@@ -119,6 +119,7 @@
 		attack_generic(M, M.xeno_caste.melee_damage_lower)
 
 /obj/structure/window/attack_hand(mob/user as mob)
+	add_fingerprint(user)
 	if(HULK in user.mutations)
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
 		if(damageable) //Possible to destroy
@@ -126,7 +127,7 @@
 			health -= 500
 		healthcheck(1, 1, 1, user)
 
-	else if(user.a_intent == "hurt")
+	else if(user.a_intent == INTENT_HARM)
 
 		if(istype(user,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
@@ -266,11 +267,13 @@
 
 /obj/structure/window/proc/shatter_window(create_debris)
 	if(create_debris)
-		new shardtype(loc)
+		var/atom/A = new shardtype(loc)
+		transfer_fingerprints_to(A)
 		if(is_full_window())
 			new shardtype(loc)
 		if(reinf)
-			new /obj/item/stack/rods(loc)
+			var/obj/item/stack/rods/R = new(loc)
+			transfer_fingerprints_to(R)
 	qdel(src)
 
 
@@ -287,7 +290,7 @@
 		to_chat(usr, "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>")
 		return FALSE
 
-	dir = turn(dir, 90)
+	setDir(turn(dir, 90))
 
 
 
@@ -304,7 +307,7 @@
 		to_chat(usr, "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>")
 		return FALSE
 
-	dir = turn(dir, 270)
+	setDir(turn(dir, 270))
 
 
 /obj/structure/window/Initialize(Loc, start_dir = null, constructed = 0)
@@ -315,7 +318,7 @@
 		anchored = FALSE
 
 	if(start_dir)
-		dir = start_dir
+		setDir(start_dir)
 
 	update_nearby_icons()
 
@@ -327,7 +330,7 @@
 /obj/structure/window/Move()
 	var/ini_dir = dir
 	..()
-	dir = ini_dir
+	setDir(ini_dir)
 
 //This proc is used to update the icons of nearby windows.
 /obj/structure/window/proc/update_nearby_icons()
@@ -469,10 +472,6 @@
 		qdel(WW)
 	. = ..()
 
-
-/obj/structure/window/framed/is_full_window()
-	return TRUE
-
 /obj/structure/window/framed/update_nearby_icons()
 	relativewall_neighbours()
 
@@ -484,14 +483,14 @@
 	if(window_frame)
 		var/obj/structure/window_frame/WF = new window_frame(loc)
 		WF.icon_state = "[WF.basestate][junction]_frame"
-		WF.dir = dir
+		WF.setDir(dir)
 	..()
 
 /obj/structure/window/framed/shatter_window(create_debris)
 	if(window_frame)
 		var/obj/structure/window_frame/new_window_frame = new window_frame(loc, TRUE)
 		new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
-		new_window_frame.dir = dir
+		new_window_frame.setDir(dir)
 	..()
 
 
@@ -499,7 +498,7 @@
 	if(window_frame)
 		var/obj/structure/window_frame/new_window_frame = new window_frame(loc, TRUE)
 		new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
-		new_window_frame.dir = dir
+		new_window_frame.setDir(dir)
 	qdel(src)
 
 /obj/structure/window/framed/almayer
@@ -643,9 +642,9 @@
 	var/obj/machinery/door/poddoor/shutters/almayer/pressure/P = new(get_turf(src))
 	switch(junction)
 		if(4,5,8,9,12)
-			P.dir = 2
+			P.setDir(SOUTH)
 		else
-			P.dir = 4
+			P.setDir(EAST)
 	spawn(16)
 		P.close()
 

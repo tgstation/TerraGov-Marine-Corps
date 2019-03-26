@@ -71,7 +71,7 @@
 		if(foundsmoke)
 			continue
 		var/obj/effect/particle_effect/smoke/S = new type(T, amount)
-		S.dir = pick(cardinal)
+		S.setDir(pick(cardinal))
 		S.time_to_live = time_to_live
 		if(S.amount>0)
 			S.spread_smoke()
@@ -125,38 +125,48 @@
 	opacity = 0
 	alpha = 145
 
+
 /obj/effect/particle_effect/smoke/tactical/New(loc, oldamount)
-	..()
+	. = ..()
 	for(var/mob/living/M in get_turf(src))
 		affect(M)
+
 
 /obj/effect/particle_effect/smoke/tactical/Move()
-	..()
+	. = ..()
 	for(var/mob/living/M in get_turf(src))
 		affect(M)
 
+
 /obj/effect/particle_effect/smoke/tactical/process()
-	.=..()
+	. = ..()
 	for(var/mob/living/M in get_turf(src))
 		affect(M)
+
 
 /obj/effect/particle_effect/smoke/tactical/Destroy()
 	for(var/mob/living/M in get_turf(src))
 		uncloak_smoke_act(M)
-	..()
+	return ..()
+
 
 /obj/effect/particle_effect/smoke/tactical/affect(var/mob/living/M)
-	if(istype(M))
-		cloak_smoke_act(M)
+	cloak_smoke_act(M)
 
-/obj/effect/particle_effect/smoke/tactical/Crossed(atom/movable/M)
-	..()
-	if(isliving(M))
-		affect(M)
 
-/obj/effect/particle_effect/smoke/tactical/Uncrossed(var/mob/living/M)
-	..()
-	uncloak_smoke_act(M)
+/obj/effect/particle_effect/smoke/tactical/Crossed(atom/movable/AM)
+	. = ..()
+	if(!isliving(AM))
+		return
+	affect(AM)
+
+
+/obj/effect/particle_effect/smoke/tactical/Uncrossed(atom/movable/AM)
+	. = ..()
+	if(!isliving(AM))
+		return
+	uncloak_smoke_act(AM)
+
 
 /obj/effect/particle_effect/smoke/tactical/proc/cloak_smoke_act(var/mob/living/M)
 	if(ishuman(M))
@@ -274,7 +284,7 @@
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno_burn
-	time_to_live = 6
+	time_to_live = 9
 	color = "#86B028" //Mostly green?
 	anchored = 1
 	spread_speed = 7

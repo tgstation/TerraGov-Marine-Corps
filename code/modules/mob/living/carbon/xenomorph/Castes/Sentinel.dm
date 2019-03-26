@@ -31,7 +31,7 @@
 	evolves_to = list(/mob/living/carbon/Xenomorph/Spitter)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	armor_deflection = 15
@@ -143,13 +143,13 @@
 	caste_base_type = /mob/living/carbon/Xenomorph/Sentinel
 	name = "Sentinel"
 	desc = "A slithery, spitting kind of alien."
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	icon_state = "Sentinel Walking"
 	health = 150
 	maxHealth = 150
 	plasma_stored = 75
-	pixel_x = 0
-	old_x = 0
+	pixel_x = -12
+	old_x = -12
 	tier = 1
 	upgrade = 0
 	speed = -0.8
@@ -169,6 +169,9 @@
 
 
 /mob/living/carbon/Xenomorph/Sentinel/proc/neurotoxin_sting(var/mob/living/H)
+
+	if(!H || !isliving(H))
+		return
 
 	if(!check_state())
 		return

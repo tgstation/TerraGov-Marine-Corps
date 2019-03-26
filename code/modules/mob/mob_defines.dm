@@ -1,14 +1,16 @@
 /mob
+	name = "nameless mob"
+
 	density = 1
 	layer = MOB_LAYER
 	animate_movement = 2
 //	flags = NOREACT
 	var/datum/mind/mind
 
+	var/datum/click_intercept
+
 	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
 	var/obj/screen/hands = null //robot
-
-	var/adminhelp_marked = 0 // Prevents marking an Adminhelp more than once. Making this a client define will cause runtimes and break some Adminhelps
 
 	/*A bunch of this stuff really needs to go under their own defines instead of being globally attached to mob.
 	A variable should only be globally attached to turfs/objects/whatever, when it is in fact needed as such.
@@ -63,6 +65,8 @@
 
 	var/timeofdeath = 0.0//Living
 
+	var/turf/listed_turf = null	//the current turf being examined in the stat panel
+
 	var/bodytemperature = 310.055	//98.7 F
 	var/old_x = 0
 	var/old_y = 0
@@ -77,13 +81,13 @@
 	var/specset //Simple way to track which set has the player taken
 
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
-	var/knocked_out = 0.0
-	var/stunned = 0.0
-	var/frozen = 0.0
-	var/knocked_down = 0.0
-	var/losebreath = 0.0//Carbon
+	var/knocked_out = 0.
+	var/stunned = 0
+	var/frozen = 0
+	var/knocked_down = 0
+	var/losebreath = 0 //Carbon
 	var/shakecamera = 0
-	var/a_intent = "help"//Living
+	var/a_intent = INTENT_HELP //Living
 	var/m_intent = MOVE_INTENT_RUN//Living
 	var/lastKnownIP = null
 	var/obj/buckled = null//Living
@@ -94,6 +98,14 @@
 	var/obj/item/storage/s_active = null//Carbon
 	var/obj/item/clothing/mask/wear_mask = null//Carbon
 
+	// 1 decisecond click delay (above and beyond mob/next_move)
+	//This is mainly modified by click code, to modify click delays elsewhere, use next_move and changeNext_move()
+	var/next_click	= 0
+
+	// THESE DO NOT EFFECT THE BASE 1 DECISECOND DELAY OF NEXT_CLICK
+	var/next_move_adjust = 0 //Amount to adjust action/click delays by, + or -
+	var/next_move_modifier = 1 //Value to multiply action/click delays by
+
 	var/datum/hud/hud_used = null
 
 	var/grab_level = GRAB_PASSIVE //if we're pulling a mob, tells us how aggressive our grab is.
@@ -101,6 +113,9 @@
 	var/list/mapobjs = list()
 
 	var/in_throw_mode = 0
+
+	var/canEnterVentWith = "/obj/item/implant=0&/obj/item/clothing/mask/facehugger=0&/obj/item/device/radio/borg=0&/obj/machinery/camera=0&/obj/item/verbs=0" // Vent crawling whitelisted items, whoo
+
 
 	var/coughedtime = null
 
@@ -118,17 +133,13 @@
 	var/datum/dna/dna = null//Carbon
 	var/radiation = 0.0//Carbon
 
+	var/list/viruses = list()
 	var/list/mutations = list() //Carbon -- Doohl
 	//see: setup.dm for list of mutations
 
 	var/voice_name = "unidentifiable voice"
 
-	var/faction = "neutral" //Used for checking whether hostile simple animals will attack you, possibly more stuff later
-
-//Wizard mode, but can be used in other modes thanks to the brand new "Give Spell" badmin button
-	var/obj/effect/proc_holder/spell/list/spell_list = list()
-
-	var/list/viruses = list() //List of active diseases
+	var/faction = "Neutral"
 
 //Monkey/infected mode
 	var/list/resistances = list()
@@ -153,8 +164,8 @@
 
 	var/immune_to_ssd = 0
 
-	var/list/tile_contents = list()  //the contents of the turf being examined in the stat panel
-	var/tile_contents_change = 0
+	//Emotes
+	var/audio_emote_time = 1
 
 	var/list/active_genes=list()
 
@@ -172,3 +183,11 @@
 	var/scatter_modifier = 0 //Applies a penalty or bonus to scatter probability in gun_system.dm
 
 	var/list/fullscreens = list()
+
+	var/list/light_sources = list()
+
+	var/notransform
+
+	var/typing
+	var/last_typed
+	var/last_typed_time

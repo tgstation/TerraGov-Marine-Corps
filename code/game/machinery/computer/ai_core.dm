@@ -131,10 +131,6 @@
 					to_chat(user, "<span class='warning'> Sticking a dead [P] into the frame would sort of defeat the purpose.</span>")
 					return
 
-				if(jobban_isbanned(P:brainmob, "AI"))
-					to_chat(user, "<span class='warning'> This [P] does not seem to fit.</span>")
-					return
-
 				if(user.drop_held_item())
 					P.forceMove(src)
 					brain = P
@@ -166,7 +162,6 @@
 				var/mob/living/silicon/ai/A = new /mob/living/silicon/ai ( loc, laws, brain )
 				if(A) //if there's no brain, the mob is deleted and a structure/AIcore is created
 					A.rename_self("ai", 1)
-				feedback_inc("cyborg_ais_created",1)
 				qdel(src)
 
 /obj/structure/AIcore/deactivated

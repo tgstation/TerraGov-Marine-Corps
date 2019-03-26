@@ -49,6 +49,11 @@
 #define ismoth(H) (is_species(H, /datum/species/moth))
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
 
+//Job/role helpers
+#define issurvivor(H) (H?.mind?.assigned_role == "Survivor")
+#define ismarine(H) (H?.faction == "Marine" && (H?.mind?.assigned_role in JOBS_MARINES))
+#define ispmc(H) (H?.faction == "PMC")
+
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
 
@@ -143,13 +148,21 @@
 
 #define isstructure(A) (istype(A, /obj/structure))
 
+#define iscable(A) (istype(A, /obj/structure/cable))
+
 #define ismachinery(A) (istype(A, /obj/machinery))
+
+#define ispowermachinery(A) (istype(A, /obj/machinery/power))
+
+#define isAPC(A) (istype(A, /obj/machinery/power/apc))
 
 #define ismecha(A) (istype(A, /obj/mecha))
 
 #define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/rune)) //if something is cleanable
 
 #define isorgan(A) (istype(A, /datum/limb))
+
+#define isidcard(A) (istype(A, /obj/item/card/id))
 
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/device/assembly))

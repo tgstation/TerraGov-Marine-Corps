@@ -85,7 +85,7 @@
 			var/mob/M = usr
 			var/obj/item/card/id/I = M.get_active_held_item()
 			if(istype(I))
-				if(ACCESS_MARINE_COMMANDER in I.access || ACCESS_MARINE_BRIDGE in I.access) //Let heads change the alert level.
+				if(ACCESS_MARINE_CAPTAIN in I.access || ACCESS_MARINE_BRIDGE in I.access) //Let heads change the alert level.
 					switch(tmp_alertlevel)
 						if(-INFINITY to SEC_LEVEL_GREEN)
 							tmp_alertlevel = SEC_LEVEL_GREEN //Cannot go below green.
@@ -98,11 +98,6 @@
 						//Only notify the admins if an actual change happened
 						log_game("[key_name(usr)] has changed the security level to [get_security_level()].")
 						message_admins("[ADMIN_TPMONTY(usr)] has changed the security level to [get_security_level()].")
-						switch(security_level)
-							if(SEC_LEVEL_GREEN)
-								feedback_inc("alert_comms_green",1)
-							if(SEC_LEVEL_BLUE)
-								feedback_inc("alert_comms_blue",1)
 				else
 					to_chat(usr, "<span class='warning'>You are not authorized to do this.</span>")
 				tmp_alertlevel = SEC_LEVEL_GREEN //Reset to green.
@@ -124,8 +119,8 @@
 				cooldown_message = world.time
 
 		if("award")
-			if(!usr.mind || usr.mind.assigned_role != "Commander")
-				to_chat(usr, "<span class='warning'>Only the Commander can award medals.</span>")
+			if(!usr.mind || usr.mind.assigned_role != "Captain")
+				to_chat(usr, "<span class='warning'>Only the Captain can award medals.</span>")
 				return
 
 			if(give_medal_award(loc))
@@ -137,23 +132,29 @@
 					to_chat(usr, "<span class='warning'>TGMC protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
 
-				if(!ticker?.mode)
-					to_chat(usr, "<span class='warning'>The [MAIN_SHIP_NAME]'s distress beacon must be activated prior to evacuation taking place.</span>")
+				if(!SSticker?.mode)
+					to_chat(usr, "<span class='warning'>The [CONFIG_GET(string/ship_name)]'s distress beacon must be activated prior to evacuation taking place.</span>")
 					return FALSE
 
 				if(security_level < SEC_LEVEL_RED)
 					to_chat(usr, "<span class='warning'>The ship must be under red alert in order to enact evacuation procedures.</span>")
 					return FALSE
 
-				if(EvacuationAuthority.flags_scuttle & FLAGS_EVACUATION_DENY)
+				if(SSevacuation.flags_scuttle & FLAGS_SDEVAC_TIMELOCK)
+					to_chat(usr, "<span class='warning'>The sensors do not detect a sufficient threat present.</span>")
+					return FALSE
+
+				if(SSevacuation.flags_scuttle & FLAGS_EVACUATION_DENY)
 					to_chat(usr, "<span class='warning'>The TGMC has placed a lock on deploying the evacuation pods.</span>")
 					return FALSE
 
-				if(!EvacuationAuthority.initiate_evacuation())
+				if(!SSevacuation.initiate_evacuation())
 					to_chat(usr, "<span class='warning'>You are unable to initiate an evacuation procedure right now!</span>")
 					return FALSE
 
-				EvacuationAuthority.enable_self_destruct()
+				if(!SSevacuation.dest_master)
+					SSevacuation.prepare()
+				SSevacuation.enable_self_destruct()
 
 				log_game("[key_name(usr)] has called for an emergency evacuation.")
 				message_admins("[ADMIN_TPMONTY(usr)] has called for an emergency evacuation.")
@@ -164,14 +165,14 @@
 
 		if("evacuation_cancel")
 			if(state == STATE_EVACUATION_CANCEL)
-				if(!EvacuationAuthority.cancel_evacuation())
+				if(!SSevacuation.cancel_evacuation())
 					to_chat(usr, "<span class='warning'>You are unable to cancel the evacuation right now!</span>")
 					return FALSE
 
 				spawn(35)//some time between AI announcements for evac cancel and SD cancel.
-					if(EvacuationAuthority.evac_status == EVACUATION_STATUS_STANDING_BY)//nothing changed during the wait
+					if(SSevacuation.evac_status == EVACUATION_STATUS_STANDING_BY)//nothing changed during the wait
 						 //if the self_destruct is active we try to cancel it (which includes lowering alert level to red)
-						if(!EvacuationAuthority.cancel_self_destruct(1))
+						if(!SSevacuation.cancel_self_destruct(1))
 							//if SD wasn't active (likely canceled manually in the SD room), then we lower the alert level manually.
 							set_security_level(SEC_LEVEL_RED, TRUE) //both SD and evac are inactive, lowering the security level.
 
@@ -187,21 +188,21 @@
 					to_chat(usr, "<span class='warning'>The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
 
-				if(!ticker?.mode)
+				if(!SSticker?.mode)
 					return FALSE //Not a game mode?
 
-				if(just_called || ticker.mode.waiting_for_candidates)
+				if(just_called || SSticker.mode.waiting_for_candidates)
 					to_chat(usr, "<span class='warning'>The distress beacon has been just launched.</span>")
 					return FALSE
 
-				if(ticker.mode.on_distress_cooldown)
+				if(SSticker.mode.on_distress_cooldown)
 					to_chat(usr, "<span class='warning'>The distress beacon is currently recalibrating.</span>")
 					return FALSE
 
-				var/Ship[] = ticker.mode.count_humans_and_xenos()
+				var/Ship[] = SSticker.mode.count_humans_and_xenos()
 				var/ShipMarines[] = Ship[1]
 				var/ShipXenos[] = Ship[2]
-				var/Planet[] = ticker.mode.count_humans_and_xenos(list(MAIN_SHIP_Z_LEVEL))
+				var/Planet[] = SSticker.mode.count_humans_and_xenos(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
 				var/PlanetMarines[] = Planet[1]
 				var/PlanetXenos[] = Planet[2]
 				if((PlanetXenos < round(PlanetMarines * 0.8)) && (ShipXenos < round(ShipMarines * 0.5))) //If there's less humans (weighted) than xenos, humans get home-turf advantage
@@ -212,7 +213,7 @@
 				for(var/client/C in GLOB.admins)
 					if(check_other_rights(C, R_ADMIN, FALSE))
 						C << 'sound/effects/sos-morse-code.ogg'
-						to_chat(C, "<span class='admin'><span class='prefix'>[ADMIN_TPMONTY(usr)] has called a Distress Beacon. It will be sent in 60 seconds unless denied or sent early. (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];distress=[REF(usr)]'>SEND</A>) (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];deny=[REF(usr)]'>DENY</A>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];reply=[REF(usr)]'>REPLY</a>).</span></span>")
+						to_chat(C, "<span class='notice'><b><font color='purple'>DISTRESS:</font> [ADMIN_TPMONTY(usr)] has called a Distress Beacon. It will be sent in 60 seconds unless denied or sent early. (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];distress=[REF(usr)]'>SEND</A>) (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];deny=[REF(usr)]'>DENY</A>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];reply=[REF(usr)]'>REPLY</a>).</b></span>")
 				to_chat(usr, "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>")
 
 				distress_cancel = FALSE
@@ -220,10 +221,10 @@
 				spawn(1 MINUTES)
 					just_called = FALSE
 					cooldown_request = world.time
-					if(distress_cancel || ticker.mode.on_distress_cooldown || ticker.mode.waiting_for_candidates)
+					if(distress_cancel || SSticker.mode.on_distress_cooldown || SSticker.mode.waiting_for_candidates)
 						return FALSE
 					else
-						ticker.mode.activate_distress()
+						SSticker.mode.activate_distress()
 						log_game("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within 60 seconds.")
 						message_admins("A distress beacon requested by [ADMIN_TPMONTY(usr)] was automatically sent due to not receiving an answer within 60 seconds.")
 						return TRUE
@@ -287,14 +288,14 @@
 					to_chat(usr, "<span class='warning'>Arrays recycling.  Please stand by.</span>")
 					return FALSE
 
-				var/input = stripped_input(usr, "Please choose a message to transmit to the TGMC High Command.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a small delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "")
-				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_central + COOLDOWN_COMM_CENTRAL)
+				var/msg = input(usr, "Please choose a message to transmit to the TGMC High Command.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a small delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "")
+				if(!msg || !usr.Adjacent(src) || authenticated != 2 || world.time < cooldown_central + COOLDOWN_COMM_CENTRAL)
 					return FALSE
 
 
-				Centcomm_announce(input, usr)
+				tgmc_message(msg, usr)
 				to_chat(usr, "<span class='notice'>Message transmitted.</span>")
-				usr.log_talk(input, LOG_SAY, tag="TGMC announcement")
+				usr.log_talk(msg, LOG_SAY, tag = "TGMC announcement")
 				cooldown_central = world.time
 
 		if("securitylevel")
@@ -326,19 +327,11 @@
 		return FALSE
 
 	user.set_interaction(src)
-	var/dat = "<head><title>Communications Console</title></head><body>"
-	if(EvacuationAuthority.evac_status == EVACUATION_STATUS_INITIATING)
-		dat += "<B>Evacuation in Progress</B>\n<BR>\nETA: [EvacuationAuthority.get_status_panel_eta()]<BR>"
+	var/dat
+	if(SSevacuation.evac_status == EVACUATION_STATUS_INITIATING)
+		dat += "<B>Evacuation in Progress</B>\n<BR>\nETA: [SSevacuation.get_status_panel_eta()]<BR>"
 
-/*
-	if(issilicon(user))
-		var/dat2 = interact_ai(user) // give the AI a different interact proc to limit its access
-		if(dat2)
-			dat +=  dat2
-			user << browse(dat, "window=communications;size=400x500")
-			onclose(user, "communications")
-		return FALSE
-*/
+
 	switch(state)
 		if(STATE_DEFAULT)
 			if(authenticated)
@@ -353,7 +346,7 @@
 					dat += length(GLOB.admins) > 0 ? "<BR>\[ <A HREF='?src=\ref[src];operation=messageTGMC'>Send a message to TGMC</A> \]" : "<BR>\[ TGMC communication offline \]"
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=award'>Award a medal</A> \]"
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=distress'>Send Distress Beacon</A> \]"
-					switch(EvacuationAuthority.evac_status)
+					switch(SSevacuation.evac_status)
 						if(EVACUATION_STATUS_STANDING_BY) dat += "<BR>\[ <A HREF='?src=\ref[src];operation=evacuation_start'>Initiate emergency evacuation</A> \]"
 						if(EVACUATION_STATUS_INITIATING) dat += "<BR>\[ <A HREF='?src=\ref[src];operation=evacuation_cancel'>Cancel emergency evacuation</A> \]"
 
@@ -361,10 +354,10 @@
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=login'>LOG IN</A> \]"
 
 		if(STATE_EVACUATION)
-			dat += "Are you sure you want to evacuate the [MAIN_SHIP_NAME]? \[ <A HREF='?src=\ref[src];operation=evacuation_start'>Confirm</A>\]"
+			dat += "Are you sure you want to evacuate the [CONFIG_GET(string/ship_name)]? \[ <A HREF='?src=\ref[src];operation=evacuation_start'>Confirm</A>\]"
 
 		if(STATE_EVACUATION_CANCEL)
-			dat += "Are you sure you want to cancel the evacuation of the [MAIN_SHIP_NAME]? \[ <A HREF='?src=\ref[src];operation=evacuation_cancel'>Confirm</A>\]"
+			dat += "Are you sure you want to cancel the evacuation of the [CONFIG_GET(string/ship_name)]? \[ <A HREF='?src=\ref[src];operation=evacuation_cancel'>Confirm</A>\]"
 
 		if(STATE_DISTRESS)
 			dat += "Are you sure you want to trigger a distress signal? The signal can be picked up by anyone listening, friendly or not. \[ <A HREF='?src=\ref[src];operation=distress'>Confirm</A>\]"
@@ -408,9 +401,9 @@
 		if(STATE_ALERT_LEVEL)
 			dat += "Current alert level: [get_security_level()]<BR>"
 			if(security_level == SEC_LEVEL_DELTA)
-				if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_ACTIVE)
-					dat += "<font color='red'><b>The self-destruct mechanism is active. [EvacuationAuthority.evac_status != EVACUATION_STATUS_INITIATING ? "You have to manually deactivate the self-destruct mechanism." : ""]</b></font><BR>"
-				switch(EvacuationAuthority.evac_status)
+				if(SSevacuation.dest_status >= NUKE_EXPLOSION_ACTIVE)
+					dat += "<font color='red'><b>The self-destruct mechanism is active. [SSevacuation.evac_status != EVACUATION_STATUS_INITIATING ? "You have to manually deactivate the self-destruct mechanism." : ""]</b></font><BR>"
+				switch(SSevacuation.evac_status)
 					if(EVACUATION_STATUS_INITIATING)
 						dat += "<font color='red'><b>Evacuation initiated. Evacuate or rescind evacuation orders.</b></font>"
 					if(EVACUATION_STATUS_IN_PROGRESS)
@@ -427,8 +420,12 @@
 			dat += "<A HREF='?src=\ref[src];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
 
 	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A>|" : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"
-	user << browse(dat, "window=communications;size=400x500")
+
+	var/datum/browser/popup = new(user, "communications", "<div align='center'>Communications Console</div>", 400, 500)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "communications")
+
 
 /*
 /obj/machinery/computer/communications/proc/interact_ai(var/mob/living/silicon/ai/user as mob)

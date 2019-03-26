@@ -53,8 +53,11 @@
 	icon_state = "M56D_gun_e"
 	var/rounds = 0 // How many rounds are in the weapon. This is useful if we break down our guns.
 
-	New()
-		update_icon()
+	
+/obj/item/device/m56d_gun/Initialize()
+	. = ..()
+	update_icon()
+
 
 /obj/item/device/m56d_gun/examine(mob/user as mob) //Let us see how much ammo we got in this thing.
 	. = ..()
@@ -101,7 +104,7 @@
 	if(!ishuman(usr)) return
 	to_chat(user, "<span class='notice'>You deploy [src].</span>")
 	var/obj/machinery/m56d_post/P = new(user.loc)
-	P.dir = user.dir
+	P.setDir(user.dir)
 	P.update_icon()
 	qdel(src)
 
@@ -144,7 +147,8 @@
 	M.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
 	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
-
+	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 /obj/machinery/m56d_post/MouseDrop(over_object, src_location, over_location) //Drag the tripod onto you to fold it.
 	if(!ishuman(usr))
@@ -166,7 +170,7 @@
 	if(istype(O,/obj/item/tool/wrench)) //rotate the mount
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] rotates [src].</span>","<span class='notice'>You rotate [src].</span>")
-		dir = turn(dir, -90)
+		setDir(turn(dir, -90))
 		return
 
 	if(istype(O,/obj/item/device/m56d_gun)) //lets mount the MG onto the mount.
@@ -206,8 +210,8 @@
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 				user.visible_message("<span class='notice'> [user] screws the M56D into the mount.</span>","<span class='notice'> You finalize the M56D mounted smartgun system.</span>")
 				var/obj/machinery/m56d_hmg/G = new(src.loc) //Here comes our new turret.
-				G.visible_message("[bicon(G)] <B>[G] is now complete!</B>") //finished it for everyone to
-				G.dir = src.dir //make sure we face the right direction
+				G.visible_message("[icon2html(G, viewers(G))] <B>[G] is now complete!</B>") //finished it for everyone to
+				G.setDir(dir) //make sure we face the right direction
 				G.rounds = src.gun_rounds //Inherent the amount of ammo we had.
 				G.update_icon()
 				qdel(src)
@@ -244,16 +248,16 @@
 	var/view_tile_offset = 3	//this is amount of tiles we shift our vision towards MG direction
 	var/view_tiles = 7		//this is amount of tiles we want person to see in each direction (7 by default)
 
-	New()
-		ammo = GLOB.ammo_list[ammo] //dunno how this works but just sliding this in from sentry-code.
-		update_icon()
+/obj/machinery/m56d_hmg/New()
+	. = ..()
+	ammo = GLOB.ammo_list[ammo] //dunno how this works but just sliding this in from sentry-code.
+	update_icon()
 
-	Destroy() //Make sure we pick up our trash.
-		if(operator)
-			operator.unset_interaction()
-		SetLuminosity(0)
-		STOP_PROCESSING(SSobj, src)
-		. = ..()
+/obj/machinery/m56d_hmg/Destroy() //Make sure we pick up our trash.
+	operator?.unset_interaction()
+	SetLuminosity(0)
+	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /obj/machinery/m56d_hmg/examine(mob/user) //Let us see how much ammo we got in this thing.
 	..()
@@ -283,7 +287,7 @@
 		else
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("[user] rotates the [src].","You rotate the [src].")
-			dir = turn(dir, -90)
+			setDir(turn(dir, -90))
 		return
 
 	if(isscrewdriver(O)) // Lets take it apart.
@@ -354,6 +358,8 @@
 	M.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
 	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
+	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 /obj/machinery/m56d_hmg/proc/load_into_chamber()
 	if(in_chamber)
@@ -424,7 +430,7 @@
 	if(load_into_chamber() == 1)
 		if(istype(in_chamber,/obj/item/projectile))
 			in_chamber.original = target
-			in_chamber.dir = src.dir
+			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest","chest","chest","head")
 			playsound(src.loc, 'sound/weapons/gun_rifle.ogg', 75, 1)
 			in_chamber.fire_at(U,src,null,ammo.max_range,ammo.shell_speed)
@@ -434,58 +440,10 @@
 			in_chamber = null
 			rounds--
 			if(!rounds)
-				visible_message("<span class='notice'> [bicon(src)] \The M56D beeps steadily and its ammo light blinks red.</span>")
+				visible_message("<span class='notice'> [icon2html(src, viewers(src))] \The M56D beeps steadily and its ammo light blinks red.</span>")
 				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 25, 1)
 				update_icon() //final safeguard.
 	return
-
-// New proc for MGs and stuff replaced handle_manual_fire(). Same arguements though, so alls good.
-/obj/machinery/m56d_hmg/handle_click(mob/living/carbon/human/user, atom/A, var/list/mods)
-	if(!operator)
-		return FALSE
-	if(operator != user)
-		return FALSE
-	if(istype(A,/obj/screen))
-		return FALSE
-	if(is_bursting)
-		return
-	if(user.lying || !Adjacent(user) || user.is_mob_incapacitated())
-		user.unset_interaction()
-		return FALSE
-	if(user.get_active_held_item())
-		to_chat(usr, "<span class='warning'>You need a free hand to shoot the [src].</span>")
-		return FALSE
-	target = A
-	if(!istype(target))
-		return FALSE
-
-	if(target.z != src.z || target.z == 0 || src.z == 0 || isnull(operator.loc) || isnull(src.loc))
-		return FALSE
-
-	if(get_dist(target,src.loc) > 15)
-		return FALSE
-
-	if(mods["middle"] || mods["shift"] || mods["alt"])
-		return 0
-
-	if(mods["ctrl"])
-		burst_fire = !burst_fire
-		burst_fire_toggled = TRUE
-
-	var/angle = get_dir(src,target)
-	//we can only fire in a 90 degree cone
-	if((dir & angle) && target.loc != src.loc && target.loc != operator.loc)
-
-		if(!rounds)
-			to_chat(user, "<span class='warning'><b>*click*</b></span>")
-			playsound(src, 'sound/weapons/gun_empty.ogg', 25, 1, 5)
-		else
-			process_shot()
-		return 1
-
-	if(burst_fire_toggled)
-		burst_fire = !burst_fire
-	return 0
 
 /obj/machinery/m56d_hmg/proc/muzzle_flash(var/angle) // Might as well keep this too.
 	if(isnull(angle))
@@ -505,11 +463,13 @@
 	if(!ishuman(usr))
 		return
 	var/mob/living/carbon/human/user = usr //this is us
+	if(user.is_mob_incapacitated())
+		return
 	src.add_fingerprint(usr)
 	if((over_object == user && (in_range(src, user) || locate(src) in user))) //Make sure its on ourselves
 		if(user.interactee == src)
 			user.unset_interaction()
-			visible_message("[bicon(src)] <span class='notice'>[user] decided to let someone else have a go </span>")
+			visible_message("[icon2html(src, viewers(src))] <span class='notice'>[user] decided to let someone else have a go </span>")
 			to_chat(usr, "<span class='notice'>You decided to let someone else have a go on the MG </span>")
 			return
 		if(!Adjacent(user))
@@ -534,13 +494,49 @@
 			if(user.get_active_held_item() != null)
 				to_chat(user, "<span class='warning'>You need a free hand to man the [src].</span>")
 			else
-				visible_message("[bicon(src)] <span class='notice'>[user] mans the M56D!</span>")
+				visible_message("[icon2html(src, viewers(src))] <span class='notice'>[user] mans the M56D!</span>")
 				to_chat(user, "<span class='notice'>You man the gun!</span>")
 				user.set_interaction(src)
 
 
+/obj/machinery/m56d_hmg/InterceptClickOn(mob/user, params, atom/object)
+	if(is_bursting)
+		return TRUE
+	if(user.lying || !Adjacent(user) || user.is_mob_incapacitated())
+		user.unset_interaction()
+		return FALSE
+	if(user.get_active_held_item())
+		to_chat(usr, "<span class='warning'>You need a free hand to shoot the [src].</span>")
+		return TRUE
+	target = object
+	if(!istype(target))
+		return FALSE
+	if(isnull(operator.loc) || isnull(loc) || !z || !target?.z == z)
+		return FALSE
+	if(get_dist(target, loc) > 15)
+		return TRUE
+
+	var/list/pa = params2list(params)
+	if(pa.Find("ctrl"))
+		burst_fire = !burst_fire
+		burst_fire_toggled = TRUE
+
+	var/angle = get_dir(src,target)
+	//we can only fire in a 90 degree cone
+	if((dir & angle) && target.loc != loc && target.loc != operator.loc)
+		if(!rounds)
+			to_chat(user, "<span class='warning'><b>*click*</b></span>")
+			playsound(src, 'sound/weapons/gun_empty.ogg', 25, 1, 5)
+		else
+			process_shot()
+		return TRUE
+
+	if(burst_fire_toggled)
+		burst_fire = !burst_fire
+	return FALSE
+
+
 /obj/machinery/m56d_hmg/on_set_interaction(mob/user)
-	flags_atom |= RELAY_CLICK
 	user.client.change_view(view_tiles)
 	switch(dir)
 		if(NORTH)
@@ -556,31 +552,31 @@
 			user.client.pixel_x = -1 * view_tile_offset * 32
 			user.client.pixel_y = 0
 	operator = user
+	user.verbs += /mob/living/proc/toogle_mg_burst_fire
+	user.client.click_intercept = src
 
 /obj/machinery/m56d_hmg/on_unset_interaction(mob/user)
-	flags_atom &= ~RELAY_CLICK
 	if(user.client)
 		user.client.change_view(world.view)
 		user.client.pixel_x = 0
 		user.client.pixel_y = 0
+		user.client.click_intercept = null
 	if(operator == user)
 		operator = null
+	user.verbs -= /mob/living/proc/toogle_mg_burst_fire
 
 /obj/machinery/m56d_hmg/check_eye(mob/user)
 	if(user.lying || !Adjacent(user) || user.is_mob_incapacitated() || !user.client)
 		user.unset_interaction()
 
-/obj/machinery/m56d_hmg/verb/toggle_mg_burst_fire()
+/mob/living/proc/toogle_mg_burst_fire(obj/machinery/m56d_hmg/MG in list(interactee))
 	set name = "Toggle MG Burst Fire"
 	set category = "Weapons"
-	set src in orange(1)
 
-	if (operator != usr)
-		return
-
-	burst_fire = !burst_fire
-	to_chat(usr, "<span class='notice'>You set [src] to [burst_fire ? "burst fire" : "single fire"] mode.</span>")
-	playsound(src.loc, 'sound/items/Deconstruct.ogg',25,1)
+	if(!is_mob_incapacitated() && MG.operator == src)
+		MG.burst_fire = !MG.burst_fire
+		to_chat(src, "<span class='notice'>You set [MG] to [MG.burst_fire ? "burst fire" : "single fire"] mode.</span>")
+		playsound(loc, 'sound/items/Deconstruct.ogg',25,1)
 
 /obj/machinery/m56d_hmg/mg_turret //Our mapbound version with stupid amounts of ammo.
 	name = "\improper M56D Smartgun Nest"

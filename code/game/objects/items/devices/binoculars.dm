@@ -16,12 +16,6 @@
 /obj/item/device/binoculars/attack_self(mob/user)
 	zoom(user, 11, 12)
 
-/obj/item/device/binoculars/on_set_interaction(var/mob/user)
-	flags_atom |= RELAY_CLICK
-
-
-/obj/item/device/binoculars/on_unset_interaction(var/mob/user)
-	flags_atom &= ~RELAY_CLICK
 
 /obj/item/device/binoculars/tactical
 	name = "tactical binoculars"
@@ -51,15 +45,37 @@
 		coord = null
 	. = ..()
 
-/obj/item/device/binoculars/tactical/on_unset_interaction(var/mob/user)
-	..()
 
-	if (user && (laser || coord))
-		if (!zoom)
-			if(laser)
-				qdel(laser)
-			if(coord)
-				qdel(coord)
+/obj/item/device/binoculars/tactical/attack_self(mob/user)
+	. = ..()
+	if(!user?.client)
+		return
+	user.client.click_intercept = src
+
+
+/obj/item/device/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
+	var/list/pa = params2list(params)
+	if(!pa.Find("ctrl"))
+		return FALSE
+	acquire_target(object, user)
+	return TRUE
+
+
+/obj/item/device/binoculars/tactical/on_unset_interaction(mob/user)
+	. = ..()
+
+	if(!user?.client)
+		return
+
+	user.client.click_intercept = null
+
+	if(zoom)
+		return
+	if(laser)
+		qdel(laser)
+	if(coord)
+		qdel(coord)
+
 
 /obj/item/device/binoculars/tactical/update_icon()
 	..()
@@ -67,12 +83,6 @@
 		overlays += "binoculars_range"
 	else
 		overlays += "binoculars_laser"
-
-/obj/item/device/binoculars/tactical/handle_click(var/mob/living/user, var/atom/A, var/list/mods)
-	if (mods["ctrl"])
-		acquire_target(A, user)
-		return 1
-	return 0
 
 /obj/item/device/binoculars/tactical/verb/toggle_mode()
 	set category = "Object"
@@ -125,7 +135,7 @@
 	if(!istype(TU))
 		return
 	var/is_outside = FALSE
-	if(TU.z == 1)
+	if(is_ground_level(TU.z))
 		switch(targ_area.ceiling)
 			if(CEILING_NONE)
 				is_outside = TRUE

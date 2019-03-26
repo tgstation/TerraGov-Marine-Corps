@@ -63,11 +63,11 @@
 		to_chat(user, "<span class='warning'>This syringe is broken!</span>")
 		return
 
-	if (user.a_intent == "hurt" && ismob(target))
+	if (user.a_intent == INTENT_HARM && ismob(target))
 		if((CLUMSY in user.mutations) && prob(50))
 			target = user
 		var/mob/M = target
-		if(M != user && M.stat != DEAD && M.a_intent != "help" && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isyautja(M))) // preds have null skills
+		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isyautja(M))) // preds have null skills
 			user.KnockDown(3)
 			log_combat(M, user, "blocked", addition="using their cqc skill (syringe injection)")
 			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
@@ -106,7 +106,7 @@
 
 					if(ishuman(T))
 						var/mob/living/carbon/human/H = T
-						if(H.species.flags & NO_BLOOD)
+						if(H.species.species_flags & NO_BLOOD)
 							to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 							return
 						else
@@ -241,7 +241,7 @@
 
 		if (!affecting)
 			return
-		if(affecting.status & LIMB_DESTROYED)
+		if(affecting.limb_status & LIMB_DESTROYED)
 			to_chat(user, "What [affecting.display_name]?")
 			return
 		var/hit_area = affecting.display_name

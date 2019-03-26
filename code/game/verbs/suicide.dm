@@ -7,21 +7,17 @@
 		to_chat(src, "You're already dead!")
 		return
 
-	if (!ticker)
+	if (!SSticker)
 		to_chat(src, "You can't commit suicide before the game starts!")
 		return
 
 
-	var/permitted = FALSE
-	var/list/allowed = list("Syndicate","traitor","Wizard","Head Revolutionary","Cultist","Changeling")
-	if((mind.special_role in allowed) || ticker.current_state == GAME_STATE_FINISHED)
-		permitted = TRUE
-
-	if(!permitted)
+	if(!mind?.bypass_ff)
 		message_admins("[ADMIN_TPMONTY(usr)] has tried to suicide using the suicide verb, but they were not permitted due to not being an antagonist.")
 		to_chat(src, "Suicide is easy! Just attack yourself with a gun, while targeting your mouth.")
 		to_chat(src, "Please don't do so flippantly! If you want to just leave the round, enter a hypersleep bed.")
 		return
+
 
 	if (suiciding)
 		to_chat(src, "You're already committing suicide! Be patient!")
@@ -92,7 +88,7 @@
 		to_chat(src, "You're already dead!")
 		return
 
-	if (!ticker)
+	if (!SSticker)
 		to_chat(src, "You can't commit suicide before the game starts!")
 		return
 
@@ -116,7 +112,7 @@
 		to_chat(src, "You're already dead!")
 		return
 
-	if (!ticker)
+	if (!SSticker)
 		to_chat(src, "You can't commit suicide before the game starts!")
 		return
 

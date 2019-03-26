@@ -23,6 +23,15 @@
 	var/powerloader = SKILL_POWERLOADER_DEFAULT
 	var/large_vehicle = SKILL_LARGE_VEHICLE_DEFAULT
 
+	var/list/values = list()
+
+
+/datum/skills/New()
+	values = list("Close Quarter Combat" = cqc, "Melee Weapons" = melee_weapons, "Firearms" = firearms, "Pistols" = pistols, "Shotguns" = shotguns,\
+	"Rifles" = rifles, "Submachine Guns" = smgs, "Heavy Weapons" = heavy_weapons, "Smartgun" = smartgun, "Specialist Weapons" = spec_weapons, \
+	"Engineering" = engineer, "Construction" = construction, "Leadership" = leadership, "Medical" = medical, "Surgery" = surgery, \
+	"Piloting" = pilot, "Police" = police, "Powerloaders" = powerloader, "Large Vehicles" = large_vehicle)
+
 
 /datum/skills/pfc
 	name = "Private"
@@ -64,8 +73,8 @@
 	engineer = SKILL_ENGINEER_MT
 	construction = SKILL_CONSTRUCTION_MASTER
 
-/datum/skills/civilian/survivor/marshall
-	name = "Survivor Marshall"
+/datum/skills/civilian/survivor/marshal
+	name = "Survivor Marshal"
 	cqc = SKILL_CQC_MP
 	firearms = SKILL_FIREARMS_DEFAULT
 	melee_weapons = SKILL_MELEE_DEFAULT
@@ -157,8 +166,8 @@
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
 
-/datum/skills/commander
-	name = "Commander"
+/datum/skills/captain
+	name = "Captain"
 	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_ADVANCED
 	smartgun = SKILL_SMART_TRAINED
@@ -168,19 +177,24 @@
 	police = SKILL_POLICE_FLASH
 	powerloader = SKILL_POWERLOADER_TRAINED
 
-/datum/skills/XO
-	name = "Executive Officer"
+/datum/skills/FO
+	name = "Field Commander"
 	engineer = SKILL_ENGINEER_ENGI //to fix CIC apc.
 	construction = SKILL_CONSTRUCTION_PLASTEEL
+	smartgun = SKILL_SMART_TRAINED
 	leadership = SKILL_LEAD_MASTER
 	medical = SKILL_MEDICAL_MEDIC
 	surgery = SKILL_SURGERY_AMATEUR
-	police = SKILL_POLICE_FLASH
+	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	cqc = SKILL_CQC_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	spec_weapons = SKILL_SPEC_TRAINED
 
 
 /datum/skills/SO
-	name = "Staff Officer"
+	name = "Intelligence Officer"
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_MEDIC
@@ -198,13 +212,13 @@
 	police = SKILL_POLICE_MP
 
 /datum/skills/CMP
-	name = "Chief MP"
+	name = "Command Master at Arms"
 	cqc = SKILL_CQC_MP
 	police = SKILL_POLICE_MP
 	leadership = SKILL_LEAD_TRAINED
 
 /datum/skills/CE
-	name = "Chief Engineer"
+	name = "Chief Ship Engineer"
 	engineer = SKILL_ENGINEER_MT
 	construction = SKILL_CONSTRUCTION_MASTER
 	leadership = SKILL_LEAD_MASTER
@@ -218,7 +232,7 @@
 	powerloader = SKILL_POWERLOADER_TRAINED
 
 /datum/skills/MT
-	name = "Maintenance Technician"
+	name = "Ship Engineer"
 	engineer = SKILL_ENGINEER_MT
 	construction = SKILL_CONSTRUCTION_MASTER
 	powerloader = SKILL_POWERLOADER_MASTER

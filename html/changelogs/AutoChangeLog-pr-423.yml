@@ -1,5 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - spellcheck: "Replaced more istances of W-Y with proper NT equivalents."
-  - code_imp: "Cleaned up implant cases code a little in the way."

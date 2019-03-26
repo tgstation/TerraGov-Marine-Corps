@@ -19,6 +19,7 @@
 
 	var/igniting = FALSE	//Whether it ignites on impact
 	var/item_fire_stacks = 0	//How many fire stacks it applies
+	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
 /obj/New()
 	..()
@@ -80,10 +81,6 @@
 
 /obj/proc/interact(mob/user)
 	return
-
-/obj/proc/update_icon()
-	return
-
 
 
 /obj/item/proc/updateSelfDialog()
@@ -158,7 +155,7 @@
 					"<span class='notice'>You hear metal clanking.</span>")
 			else
 				buckled_mob.visible_message(\
-					"<span class='notice'>[buckled_mob.name] unbuckled [p_them()]self!</span>",\
+					"<span class='notice'>[buckled_mob.name] unbuckled [buckled_mob.p_them()]self!</span>",\
 					"<span class='notice'>You unbuckle yourself from [src].</span>",\
 					"<span class='notice'>You hear metal clanking</span>")
 			unbuckle()
@@ -196,7 +193,7 @@
 	send_buckling_message(M, user)
 	M.buckled = src
 	M.loc = src.loc
-	M.dir = src.dir
+	M.setDir(dir)
 	M.update_canmove()
 	src.buckled_mob = M
 	src.add_fingerprint(user)

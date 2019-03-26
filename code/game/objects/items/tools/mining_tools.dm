@@ -105,11 +105,9 @@
 	var/dirt_amt_per_dig = 5
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
 
-/obj/item/tool/pickaxe/plasmacutter/New()
-	..()
+/obj/item/tool/pickaxe/plasmacutter/Initialize()
+	. = ..()
 	cell = new /obj/item/cell/high(src)
-	powered = TRUE
-	update_plasmacutter()
 
 
 /obj/item/tool/pickaxe/plasmacutter/examine(mob/user)
@@ -227,16 +225,21 @@
 	update_plasmacutter()
 	..()
 
-/obj/item/tool/pickaxe/plasmacutter/proc/update_plasmacutter(mob/user) //Updates the icon and power on/off status of the plasma cutter
+/obj/item/tool/pickaxe/plasmacutter/proc/update_plasmacutter(mob/user, var/silent=FALSE) //Updates the icon and power on/off status of the plasma cutter
+	if(!user && ismob(loc) )
+		user = loc
 	if(!cell || cell.charge <= 0 || powered == FALSE)
 		icon_state = "plasma_cutter_off"
 		if(powered)
-			playsound(loc, 'sound/weapons/saberoff.ogg', 25)
 			powered = FALSE
-			to_chat(user, "<span class='warning'>The plasma cutter abruptly shuts down due to a lack of power!</span>")
+			if(!silent)
+				playsound(loc, 'sound/weapons/saberoff.ogg', 25)
+				to_chat(user, "<span class='warning'>The plasma cutter abruptly shuts down due to a lack of power!</span>")
 		force = 5
 		damtype = "brute"
 		heat_source = 0
+		if(user)
+			user.SetLuminosity(-LIGHTER_LUMINOSITY)
 		SetLuminosity(0)
 	else
 		icon_state = "plasma_cutter_on"
@@ -244,11 +247,32 @@
 		force = 40
 		damtype = "fire"
 		heat_source = 3800
-		SetLuminosity(2)
+		if(user)
+			user.SetLuminosity(LIGHTER_LUMINOSITY)
+			SetLuminosity(0)
+		else
+			SetLuminosity(LIGHTER_LUMINOSITY)
+
+
+/obj/item/tool/pickaxe/plasmacutter/pickup(mob/user)
+	if(powered && loc != user)
+		user.SetLuminosity(LIGHTER_LUMINOSITY)
+		SetLuminosity(0)
+	return ..()
+
+/obj/item/tool/pickaxe/plasmacutter/dropped(mob/user)
+	if(powered && loc != user)
+		user.SetLuminosity(-LIGHTER_LUMINOSITY)
+		SetLuminosity(LIGHTER_LUMINOSITY)
+	return ..()
+
 
 /obj/item/tool/pickaxe/plasmacutter/Destroy()
-	if(powered)
-		SetLuminosity(0)
+	var/mob/user
+	if(ismob(loc))
+		user = loc
+		user.SetLuminosity(-LIGHTER_LUMINOSITY)
+	SetLuminosity(0)
 	return ..()
 
 /obj/item/tool/pickaxe/plasmacutter/attackby(obj/item/W, mob/user)
@@ -307,6 +331,8 @@
 		var/turf/T = target
 		var/turfdirt = T.get_dirt_type()
 		if(!turfdirt == DIRT_TYPE_SNOW)
+			return
+		if(!istype(T, /turf/open/snow))
 			return
 		var/turf/open/snow/ST = T
 		if(!ST.slayer)

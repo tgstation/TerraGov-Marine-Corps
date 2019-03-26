@@ -58,11 +58,11 @@ dat += " Your severe injuries will no-doubt be a topic for discussion in the fut
 //Managed to get to evac safely.
 dat += " At least you've made it to evac; it's all over now, right?"
 //Failed to catch it.
-dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
+dat += " You failed to evacuate \the [CONFIG_GET(string/ship_name)]"
 
 
 "<b>You have survived</b>
-"<b>You have survived</b>, and you have managed to evacuate the [MAIN_SHIP_NAME]. Maybe it's finally over..."
+"<b>You have survived</b>, and you have managed to evacuate the [CONFIG_GET(string/ship_name)]. Maybe it's finally over..."
 "<b>You have survived</b>. That is more than enough, but who knows what the future holds for you now..."
 
 "<span class='round_body'>You lead your hive, and you have survived. Your influence will grow in time.</span>"
@@ -85,15 +85,15 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 				var/turf/playerTurf = get_turf(Player)
 				if(emergency_shuttle.departed && emergency_shuttle.evac)
 					if(playerTurf.z != 2)
-						to_chat(Player, "<span class='round_body'>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</span>")
+						to_chat(Player, "<span class='round_body'>You managed to survive, but were marooned on [CONFIG_GET(string/server_name)] as [Player.real_name]...</span>")
 					else
 						to_chat(Player, "<font color='green'><b>You managed to survive the events of [name] as [m.real_name].</b></font>")
 				else if(playerTurf.z == 2)
-					to_chat(Player, "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>")
+					to_chat(Player, "<font color='green'><b>You successfully underwent crew transfer after events on [CONFIG_GET(string/server_name)] as [Player.real_name].</b></font>")
 				else if(issilicon(Player))
-					to_chat(Player, "<font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font>")
+					to_chat(Player, "<font color='green'><b>You remain operational after the events on [CONFIG_GET(string/server_name)] as [Player.real_name].</b></font>")
 				else
-					to_chat(Player, "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>")
+					to_chat(Player, "<font color='blue'><b>You missed the crew transfer after the events on [CONFIG_GET(string/server_name)] as [Player.real_name].</b></font>")
 			else
 
 	if(xenomorphs.len)
@@ -116,7 +116,6 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		for(var/datum/mind/X in xenomorphs)
 			if(istype(X))
 				M = X.current
-				if(!M || !M.loc) M = X.original
 				if(M && M.loc && istype(M,/mob/living/carbon/Xenomorph/Queen)) dat += "<br>[X.key] was [M] <span class='boldnotice'>([M.stat == DEAD? "DIED":"SURVIVED"])</span>"
 
 		to_chat(world, dat)
@@ -130,7 +129,6 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		for(var/datum/mind/S in survivors)
 			if(istype(S))
 				M = S.current
-				if(!M || !M.loc) M = S.original
 				if(M && M.loc) 	dat += "<br>[S.key] was [M.real_name] <span class='boldnotice'>([M.stat == DEAD? "DIED":"SURVIVED"])</span>"
 				else 			dat += "<br>[S.key]'s body was destroyed... <span class='boldnotice'>(DIED)</span>"
 
@@ -145,7 +143,6 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		for(var/datum/mind/P in predators)
 			if(istype(P))
 				M = P.current
-				if(!M || !M.loc) M = P.original
 				if(M && M.loc) 	dat += "<br>[P.key] was [M.real_name] <span class='boldnotice'>([M.stat == DEAD? "DIED":"SURVIVED"])</span>"
 				else 			dat += "<br>[P.key]'s body was destroyed... <span class='boldnotice'>(DIED)</span>"
 
@@ -155,10 +152,10 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 /datum/game_mode/proc/declare_completion_announce_medal_awards()
 	set waitfor = 0
 	sleep(120)
-	if(medal_awards.len)
+	if(length(GLOB.medal_awards))
 		var/dat =  "<span class='round_body'>Medal Awards:</span>"
-		for(var/recipient in medal_awards)
-			var/datum/recipient_awards/RA = medal_awards[recipient]
+		for(var/recipient in GLOB.medal_awards)
+			var/datum/recipient_awards/RA = GLOB.medal_awards[recipient]
 			for(var/i in 1 to RA.medal_names.len)
 				dat += "<br><b>[RA.recipient_rank] [recipient]</b> is awarded [RA.posthumous[i] ? "posthumously " : ""]the <span class='boldnotice'>[RA.medal_names[i]]</span>: \'<i>[RA.medal_citations[i]]</i>\'."
 		to_chat(world, dat)
@@ -209,6 +206,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		if(player?.client?.prefs?.toggles_chat & CHAT_STATISTICS)
 			to_chat(player, output)
 
+
 /datum/game_mode/proc/end_of_round_deathmatch()
 	var/list/spawns = GLOB.deathmatch.Copy()
 
@@ -250,9 +248,23 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 		if(picked)
 			if(M.mind)
-				M.mind.special_role = "Deathmatch"
+				M.mind.bypass_ff = TRUE
 			M.forceMove(picked)
 			M.revive()
+			if(isbrain(M))
+				M.change_mob_type(/mob/living/carbon/human, M.loc, null, TRUE)
+			M = C.mob
+			if(isxeno(M))
+				var/mob/living/carbon/Xenomorph/X = M
+				X.set_hive_number(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(!H.w_uniform)
+					var/job = pick(/datum/job/clf/leader, /datum/job/upp/commando/leader, /datum/job/freelancer/leader)
+					var/datum/job/J = new job
+					J.equip(H)
+					H.regenerate_icons()
+
 			to_chat(M, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
 		else
 			to_chat(M, "<br><br><h1><span class='danger'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")
@@ -299,32 +311,31 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	var/numLarvaPlanet  = 0
 	var/numLarvaShip    = 0
 
+	// todo: replace this with moblists per z level
 	for(var/mob/M in GLOB.player_list) //Scan through and detect Xenos and Hosts, but only those with clients.
 		if(M.stat != DEAD)
 			var/area/A = get_area(M)
 			if(isxeno(M))
-				switch(A?.z)
-					if(PLANET_Z_LEVEL || LOW_ORBIT_Z_LEVEL)
-						if(isxenolarva(M))
-							numLarvaPlanet++
-						numXenosPlanet++
-						xenoLocationsP += A
-					if(MAIN_SHIP_Z_LEVEL)
-						if(isxenolarva(M))
-							numLarvaShip++
-						numXenosShip++
-						xenoLocationsS += A
+				if(is_ground_level(A?.z) || is_low_orbit_level(A?.z))
+					if(isxenolarva(M))
+						numLarvaPlanet++
+					numXenosPlanet++
+					xenoLocationsP += A
+				else if(is_mainship_level(A?.z))
+					if(isxenolarva(M))
+						numLarvaShip++
+					numXenosShip++
+					xenoLocationsS += A
 
 				activeXenos += M
 
 			if(ishuman(M) && !isyautja(M))
-				switch(A?.z)
-					if(PLANET_Z_LEVEL || LOW_ORBIT_Z_LEVEL)
-						numHostsPlanet++
-						hostLocationsP += A
-					if(MAIN_SHIP_Z_LEVEL)
-						numHostsShip++
-						hostLocationsS += A
+				if(is_ground_level(A?.z) || is_low_orbit_level(A?.z))
+					numHostsPlanet++
+					hostLocationsP += A
+				else if(is_mainship_level(A?.z))
+					numHostsShip++
+					hostLocationsS += A
 
 
 
@@ -383,7 +394,10 @@ Count up surviving humans and aliens.
 Can't be in a locker, in space, in the thunderdome, or distress.
 Only checks living mobs with a client attached.
 */
-/datum/game_mode/proc/count_humans_and_xenos(list/z_levels = GAME_PLAY_Z_LEVELS)
+/datum/game_mode/proc/count_humans_and_xenos(list/z_levels)
+	if(!z_levels)
+		z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_LOW_ORBIT, ZTRAIT_GROUND))
+
 	var/num_humans = 0
 	var/num_xenos = 0
 
@@ -401,17 +415,6 @@ Only checks living mobs with a client attached.
 
 	return list(num_humans,num_xenos)
 
-/datum/game_mode/proc/count_marines_and_pmcs(list/z_levels = GAME_PLAY_Z_LEVELS)
-	var/num_marines = 0
-	var/num_pmcs = 0
-
-	for(var/mob/M in GLOB.player_list)
-		if(M.z && (M.z in z_levels) && M.stat != DEAD && !isspaceturf(M.loc))
-			if(ishuman(M) && !isyautja(M))
-				if(M.mind && M.mind.special_role == "PMC") 	num_pmcs++
-				else if(M.mind && !M.mind.special_role)		num_marines++
-
-	return list(num_marines,num_pmcs)
 
 /*
 #undef QUEEN_DEATH_COUNTDOWN

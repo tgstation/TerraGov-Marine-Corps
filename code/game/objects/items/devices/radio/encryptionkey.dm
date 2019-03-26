@@ -47,7 +47,7 @@
 	channels = list("MedSci" = TRUE)
 
 /obj/item/device/encryptionkey/ce
-	name = "Chief Engineer's Encryption Key"
+	name = "Chief Ship Engineer's Encryption Key"
 	icon_state = "ce_cypherkey"
 	channels = list("Engi" = TRUE, "Command" = TRUE)
 
@@ -80,7 +80,7 @@
 //MARINE ENCRYPTION KEYS
 
 /obj/item/device/encryptionkey/cmpcom
-	name = "\improper Marine Chief MP radio encryption key"
+	name = "\improper Marine Command Master at Arms radio encryption key"
 	icon_state = "cap_cypherkey"
 	channels = list("Command" = TRUE, "MP" = TRUE, "Alpha" = TRUE, "Bravo" = TRUE, "Charlie" = TRUE, "Delta" = TRUE, "Engi" = TRUE, "MedSci" = TRUE, "Req" = TRUE)
 

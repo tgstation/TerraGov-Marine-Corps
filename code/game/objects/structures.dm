@@ -9,7 +9,7 @@
 
 	var/damage = 0
 	var/damage_cap = 500 //The point where things start breaking down.
-
+	var/health
 
 /obj/structure/New()
 	..()
@@ -28,6 +28,9 @@
 /obj/structure/proc/handle_barrier_chance(mob/living/M)
 	return FALSE
 
+/obj/structure/proc/update_health()
+	return
+
 /obj/structure/attack_hand(mob/user)
 	..()
 	if(breakable)
@@ -44,7 +47,7 @@
 			return
 		if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
 			P.cut_apart(user, name, src)
-			qdel()
+			qdel(src)
 		return
 
 //Default "structure" proc. This should be overwritten by sub procs.

@@ -389,6 +389,8 @@ var/list/wood_icons = list("wood", "wood-broken")
 	if(hull_floor) //no interaction for hulls
 		return
 
+	user.changeNext_move(C.attack_speed)
+
 	if(istype(C,/obj/item/light_bulb/bulb)) //Only for light tiles
 		if(is_light_floor())
 			var/obj/item/stack/tile/light/T = floor_tile
@@ -475,14 +477,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 			else
 				to_chat(user, "<span class='notice'>This section is too damaged to support a tile. Use a welder to fix the damage.</span>")
 
-
-	if(iscablecoil(C))
-		if(is_plating())
-			var/obj/item/stack/cable_coil/coil = C
-			coil.turf_place(src, user)
-		else
-			to_chat(user, "<span class='warning'>You must remove the plating first.</span>")
-
 	if(istype(C, /obj/item/tool/shovel))
 		if(is_grass_floor())
 			new /obj/item/ore/glass(src)
@@ -505,8 +499,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 				else
 					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 
-
-
+	. = ..()
 
 /turf/open/floor/wet_floor(wet_level = FLOOR_WET_WATER)
 	if(wet >= wet_level) return

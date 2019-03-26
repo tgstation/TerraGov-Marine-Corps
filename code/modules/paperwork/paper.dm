@@ -86,15 +86,6 @@
 	add_fingerprint(usr)
 	return
 
-/obj/item/paper/attack_self(mob/living/user)
-	examine(user)
-	if(rigged && (Holiday == "April Fool's Day"))
-		if(spam_flag == 0)
-			spam_flag = 1
-			playsound(loc, 'sound/items/bikehorn.ogg', 25, 1)
-			spawn(20)
-				spam_flag = 0
-	return
 
 /obj/item/paper/attack_ai(var/mob/living/silicon/ai/user as mob)
 	var/dist
@@ -424,6 +415,22 @@
 /*
  * Premade paper
  */
+
+
+/obj/item/paper/commendation
+	name = "Commendation"
+	info = "<center><H1>Commendation<H2>of Medical Excellence</H2></H1><br>Proudly presented to<br><H2><I><span class=\"paper_field\"></span></I></H2><b>for superior performance and excellency in medical skills.</b><br><br><hr><br><small>They have gone above and beyond in saving human lives, treating wounded, medical knowledge and surgical performance. Even when working in a difficult environment, they have shown outstanding courage, determination and commitment to save those in need. <small><span class=\"paper_field\"></span></small><br><br>They are a true example of the ideal doctor.</small><br><br><hr><br><b>Date</b><br><I><span class=\"paper_field\"></span> - 2186</I><br><br><b>Granted by</b><br><I>Prof. <span class=\"paper_field\"></span></I><br><small>Chief Medical Officer</small><br><span class=\"paper_field\"></span></center>"
+	icon_state = "commendation"
+	fields = 5
+
+/obj/item/paper/commendation/update_icon() //it looks fancy and we want it to stay fancy.
+	return
+/*Let this be a lesson about pre-made forms.
+
+when building your paper, use the above parsed pen code in parsepencode(). no square bracket anything in the info field.
+Specifically for the field parts, use <span class=\"paper_field\"></span>.
+then, for every time you included a field, increment fields. */
+
 /obj/item/paper/Court
 	name = "Judgement"
 	info = "For crimes against the station, the offender is sentenced to:<BR>\n<BR>\n"

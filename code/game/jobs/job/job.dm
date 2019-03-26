@@ -1,153 +1,193 @@
+GLOBAL_LIST_INIT(exp_jobsmap, list(
+	EXP_TYPE_REGULAR_ALL = list("titles" = JOBS_REGULAR_ALL),
+	EXP_TYPE_COMMAND = list("titles" = JOBS_COMMAND),
+	EXP_TYPE_ENGINEERING = list("titles" = JOBS_ENGINEERING),
+	EXP_TYPE_MEDICAL = list("titles" = JOBS_MEDICAL),
+	EXP_TYPE_MARINES = list("titles" = JOBS_MARINES),
+	EXP_TYPE_REQUISITIONS = list("titles" = JOBS_REQUISITIONS),
+	EXP_TYPE_POLICE = list("titles" = JOBS_POLICE)
+))
+
+GLOBAL_LIST_INIT(exp_specialmap, list(
+	EXP_TYPE_LIVING = list(),
+	EXP_TYPE_XENO = list(ROLE_XENOMORPH, ROLE_XENO_QUEEN),
+	EXP_TYPE_SPECIAL = list(ROLE_SURVIVOR),
+	EXP_TYPE_GHOST = list()
+))
+GLOBAL_PROTECT(exp_jobsmap)
+GLOBAL_PROTECT(exp_specialmap)
+
+
 /datum/job
+	var/title = ""
+	var/paygrade = ""
+	var/comm_title = ""
 
-	//The name of the job
-	var/title = ""				 //The internal title for the job, used for the job ban system and so forth. Don't change these, change the disp_title instead.
-	var/special_role 			 //In case they have some special role on spawn.
-	var/disp_title				 //Determined on new(). Usually the same as the title, but doesn't have to be. Set this to override what the player sees in the game as their title.
-	var/comm_title 			= "" //The mini-title to display over comms.
-	var/paygrade 			= 0 //Also displays a ranking when talking over the radio.
-	var/equipment           = FALSE
+	var/list/minimal_access = list()
+	var/list/access = list()
 
-	//Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
-	var/list/minimal_access		//Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
-	var/list/access				//Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
+	var/department_head = list()
 
-	var/faction 			= "Marines" //Players will be allowed to spawn in as jobs that are set to "Marines". Other factions are special game mode spawns.
-	var/total_positions 	= 0 //How many players can be this job
-	var/spawn_positions 	= 0 //How many players can spawn in as this job
-	var/scaled = 0
-	var/current_positions 	= 0 //How many players have this job
-	var/supervisors 		= "" //Supervisors, who this person answers to directly. Should be a string, shown to the player when they enter the game.
-	var/selection_color 	= "#ffffff" //Sellection screen color.
-	var/idtype 				= /obj/item/card/id //The type of the ID the player will have.
-	var/list/alt_titles 	//List of alternate titles, if any.
-	//If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
-	var/minimal_player_age 	= 0
-	//var/flags_role				= NOFLAGS
-	var/flag = NOFLAGS //TODO robust this later.
-	//var/flags_department 			= NOFLAGS
-	var/department_flag = NOFLAGS //TODO robust this later.
-	var/flags_startup_parameters 	= NOFLAGS //These flags are used to determine how to load the role, and some other parameters.
-	var/flags_whitelist 			= NOFLAGS //Only used by whitelisted roles. Can be a single whitelist flag, or a combination of them.
+	var/list/head_announce = null
+	var/faction = "None"
 
-	var/skills_type //the job knowledges we have. a type path
+	var/flag = NOFLAGS
+	var/department_flag = NOFLAGS
+	var/prefflag = NOFLAGS
 
-	New()
-		..()
-		if(!disp_title) disp_title = title
+	var/spawn_positions = 0
+	var/total_positions = 0
+	var/current_positions = 0
 
-/datum/job/proc/get_alternative_title(mob/living/M, lowercase)
-	if(istype(M) && M.client && M.client.prefs)
-		. = M.client.prefs.GetPlayerAltTitle(src)
-		if(. && lowercase) . = lowertext(.)
+	var/supervisors = ""
+	var/selection_color = "#ffffff"
 
-/datum/job/proc/set_spawn_positions(var/count)
-	return spawn_positions
+	var/req_admin_notify
 
-/datum/job/proc/generate_equipment(mob/living/carbon/human/H)
-	return //This should ONLY be used to list things that the character can wear, or show on their sprite.
+	var/minimal_player_age = 0
+	var/exp_requirements = 0
+	var/exp_type = ""
+	var/exp_type_department = ""
 
-/datum/job/proc/generate_entry_message()
-	return //The job description that characters get, along with anything else that may be appropriate.
+	var/outfit = null
+	var/skills_type = null
 
-/datum/job/proc/announce_entry_message(mob/living/carbon/human/H, datum/money_account/M) //The actual message that is displayed to the mob when they enter the game as a new player.
-	set waitfor = 0
-	sleep(10)
-	if(H && H.loc && H.client)
-		var/title_given
-		var/title_alt
-		title_alt = get_alternative_title(H,1)
-		title_given = title_alt ? title_alt : lowertext(disp_title)
-
-		//Document syntax cannot have tabs for proper formatting.
-		var/t = {"
-<span class='role_body'>|______________________|</span>
-<span class='role_header'>You are \a [title_given]![flags_startup_parameters & ROLE_ADMIN_NOTIFY? "\nYou are playing a job that is important for game progression. If you have to disconnect, please head to cryo or notify the admins via adminhelp if you can't make it there." : ""]</span>
-
-<span class='role_body'>[generate_entry_message(H)]</span>
-
-<span class='role_body'>As a [title_given] you answer to [supervisors]. Special circumstances may change this.[M ? "\nYour account number is: <b>[M.account_number]</b>. Your account pin is: <b>[M.remote_access_pin]</b>." : ""]</span>
-<span class='role_body'>|______________________|</span>
-"}
-
-		to_chat(H, t)
-
-/datum/job/proc/generate_entry_conditions(mob/living/M)
-	return //Anything special that should happen to the mob upon entering the world.
+	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 
 
-//This should come after equip(), usually only on spawn or late join. Otherwise just use equip.
-/datum/job/proc/equip_preference_gear(mob/living/carbon/human/H)
-	 //TODO Adjust this based on mob and latejoin.
-	 //TODO Adjust the actual spawns, so they all have a slot, instead of spawning in the pack when they don't have a slot.
-	if(!H.client?.prefs?.gear)
-		return//We want to equip them with custom stuff second, after they are equipped with everything else.
-	var/datum/gear/G
-	var/i
-	for(i in H.client.prefs.gear)
-		G = gear_datums[i]
-		if(G)
-			if(G.allowed_roles && !(title in G.allowed_roles))
-				continue //Is the role allowed?
-			if(G.whitelisted && !is_alien_whitelisted(G.whitelisted))
-				continue //is the role whitelisted? //TODO Remove this.
-			H.equip_to_slot_or_del(new G.path(H), G.slot ? G.slot : SLOT_IN_BACKPACK)
-
-	//Give humans wheelchairs, if they need them.
-	var/datum/limb/l_foot = H.get_limb("l_foot")
-	var/datum/limb/r_foot = H.get_limb("r_foot")
-	if((!l_foot || l_foot.status & LIMB_DESTROYED) && (!r_foot || r_foot.status & LIMB_DESTROYED))
-		var/obj/structure/bed/chair/wheelchair/W = new (H.loc)
-		H.buckled = W
-		H.update_canmove()
-		W.dir = H.dir
-		W.buckled_mob = H
-		W.add_fingerprint(H)
-
-	//Gives glasses to the vision impaired
-	if(H.disabilities & NEARSIGHTED)
-		var/obj/item/clothing/glasses/regular/P = new (H)
-		P.prescription = 1
-		H.equip_to_slot_or_del(P, SLOT_GLASSES)
-
-/datum/job/proc/equip_identification(mob/living/carbon/human/H)
-	if(!istype(H))
+/datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
+	if(!ishuman(L))
 		return
-	var/obj/item/card/id/C
-	var/title_alt
-	title_alt = get_alternative_title(H)
-
-	C = new idtype(H)
-	C.access = get_access()
-	C.paygrade = paygrade
-	C.registered_name = H.real_name
-	C.rank = title
-	C.assignment = title_alt ? title_alt : disp_title
-	C.name = "[C.registered_name]'s ID Card ([C.assignment])"
-
-	//put the player's account number onto the ID
-	if(H.mind?.initial_account)
+	var/mob/living/carbon/human/H = L
+	var/obj/item/card/id/C = H.wear_id
+	if(istype(C) && H.mind?.initial_account)
 		C.associated_account_number = H.mind.initial_account.account_number
-	H.equip_to_slot_or_del(C, SLOT_WEAR_ID)
+
+
+/datum/job/proc/announce(mob/living/carbon/human/H)
+	if(head_announce)
+		announce_head(H, head_announce)
+
+
+/datum/job/proc/override_latejoin_spawn(mob/living/carbon/human/H)		//Return TRUE to force latejoining to not automatically place the person in latejoin shuttle/whatever.
+	return FALSE
+
+
+//Used for a special check of whether to allow a client to latejoin as this job.
+/datum/job/proc/special_check_latejoin(client/C)
 	return TRUE
 
+
+//Don't override this unless the job transforms into a non-human (Silicons do this for example)
+/datum/job/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
+	if(!H)
+		return FALSE
+
+	if(H.mind)
+		var/datum/skills/L = new skills_type
+		H.mind.cm_skills = L
+		H.mind.comm_title = comm_title
+
+	H.job = title
+	H.faction = faction
+
+	if(outfit_override || outfit)
+		H.equipOutfit(outfit_override ? outfit_override : outfit, visualsOnly)
+
+	if(!visualsOnly && announce)
+		announce(H)
+
+
 /datum/job/proc/get_access()
+	if(!config)	//Needed for robots.
+		return minimal_access.Copy()
+
+	. = list()
+
 	if(CONFIG_GET(flag/jobs_have_minimal_access))
-		return minimal_access.Copy() //Need to copy, because we want a new list here. Not the datum's list.
-	return access.Copy()
+		. = minimal_access.Copy()
+	else
+		. = access.Copy()
+
+
+/datum/job/proc/announce_head(var/mob/living/carbon/human/H, var/channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
+	return FALSE
+	//if(H && GLOB.announcement_systems.len)
+		//timer because these should come after the captain announcement
+		//SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/addtimer, CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
+
 
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)
 	if(available_in_days(C) == 0)
-		return TRUE	//If available in 0 days, the player is old enough to play. Can be compared to null, but I think this is clearer.
+		return TRUE	//Available in 0 days = available right now = player is old enough to play.
+	return FALSE
+
 
 /datum/job/proc/available_in_days(client/C)
-	//Checking the player's age is only possible through a db connection, so if there isn't one, player age will be a text string instead.
-	if(!istype(C) || !CONFIG_GET(flag/use_age_restriction_for_jobs) || !isnum(C.player_age) || !isnum(minimal_player_age))
-		return FALSE //One of the few times when returning 0 is the proper behavior.
+	if(!C)
+		return FALSE
+	if(!CONFIG_GET(flag/use_age_restriction_for_jobs))
+		return FALSE
+	if(!isnum(C.player_age))
+		return FALSE //This is only a number if the db connection is established, otherwise it is text: "Requires database", meaning these restrictions cannot be enforced
+	if(!isnum(minimal_player_age))
+		return FALSE
+
 	return max(0, minimal_player_age - C.player_age)
 
-//This lets you scale max jobs at runtime
-//All you have to do is rewrite the inheritance
-/datum/job/proc/get_total_positions(var/latejoin)
-	return latejoin ? spawn_positions : total_positions
+
+/datum/job/proc/config_check()
+	return TRUE
+
+
+/datum/job/proc/map_check()
+	return TRUE
+
+
+/datum/job/proc/radio_help_message(mob/M)
+	to_chat(M, {"
+<span class='role_body'>|______________________|</span>
+<span class='role_header'>You are a: [title]!</span>
+<span class='role_body'>As a [title] you answer to [supervisors]. Special circumstances may change this.</span>
+<span class='role_body'>|______________________|</span>
+"})
+	to_chat(M, "<b>Prefix your message with ; to speak on the default radio channel. To see other prefixes, look closely at your headset.</b>")
+
+
+/datum/outfit/job
+	var/jobtype
+
+
+/datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	return
+
+
+/datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/datum/job/J = SSjob.GetJobType(jobtype)
+	if(!J)
+		J = SSjob.GetJob(H.job)
+
+	var/obj/item/card/id/C = H.wear_id
+	if(istype(C))
+		C.access = J.get_access()
+		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
+		C.registered_name = H.real_name
+		C.assignment = J.title
+		C.rank = J.title
+		C.paygrade = J.paygrade
+		C.update_label()
+		H.sec_hud_set_ID()
+
+		if(H.mind.initial_account)
+			C.associated_account_number = H.mind.initial_account.account_number
+
+	H.name = H.get_visible_name()
+	H.hud_set_squad()
+
+
+/proc/guest_jobbans(var/job)
+	return (job in JOBS_COMMAND)

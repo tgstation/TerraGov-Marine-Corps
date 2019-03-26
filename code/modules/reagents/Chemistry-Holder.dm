@@ -413,7 +413,6 @@
 
 			for(var/P in selected_reaction.results)
 				multiplier = max(multiplier, 1) //This shouldn't happen...
-				feedback_add_details("chemical_reaction","[cached_results[P]*multiplier], [P]")
 				add_reagent(P, cached_results[P]*multiplier, null, chem_temp)
 
 			var/list/seen = viewers(4, get_turf(my_atom))
@@ -774,6 +773,7 @@
 		chem_temp = max(chem_temp + min(temp_delta, -1), temperature)
 	chem_temp = round(chem_temp)
 	handle_reactions()
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 

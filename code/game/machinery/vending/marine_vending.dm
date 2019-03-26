@@ -48,7 +48,7 @@
 
 /obj/machinery/vending/marine/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(GLOB.map_tag)
+	switch(SSmapping.config.map_name)
 		if(MAP_ICE_COLONY)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = 10,
@@ -124,11 +124,12 @@
 					/obj/item/clothing/mask/gas = 10
 					)
 
-	contraband = list(								
+	contraband = list(
 					/obj/item/storage/box/nade_box/HIDP = 1,
-					/obj/item/storage/box/nade_box/M15 = 1,																																																																										
+					/obj/item/storage/box/nade_box/M15 = 1,
 					/obj/item/weapon/gun/smg/ppsh = 4,
 					/obj/item/weapon/gun/shotgun/double = 2,
+					/obj/item/weapon/gun/shotgun/pump/bolt = 2,
 					/obj/item/weapon/gun/smg/m39/elite = 0,
 					/obj/item/weapon/gun/rifle/m41aMK1 = 0,
 					/obj/item/weapon/gun/rifle/m41a/elite = 0,
@@ -212,6 +213,7 @@
 	contraband = list(
 					/obj/item/ammo_magazine/smg/ppsh/ = 20,
 					/obj/item/ammo_magazine/smg/ppsh/extended = 4,
+					/obj/item/ammo_magazine/rifle/bolt = 10,
 					/obj/item/ammo_magazine/sniper = 0,
 					/obj/item/ammo_magazine/sniper/incendiary = 0,
 					/obj/item/ammo_magazine/sniper/flak = 0,
@@ -259,8 +261,8 @@
 	anchored = FALSE
 	idle_power_usage = 1
 	vend_power_usage = 50
-	machine_current_charge = 100000 //integrated battery for recharging energy weapons. Normally 10000.
-	machine_max_charge = 100000
+	machine_current_charge = 50000 //integrated battery for recharging energy weapons. Normally 10000.
+	machine_max_charge = 50000
 
 	product_ads = "Lasgun running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
@@ -364,7 +366,6 @@
 					/obj/item/reagent_container/food/snacks/mre_pack/meal2 = 15,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal3 = 15,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal4 = 15,
-					/obj/item/reagent_container/food/snacks/mre_pack/meal5 = 15,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal6 = 15,
 					/obj/item/storage/box/MRE = 10,
 					/obj/item/reagent_container/food/drinks/flask = 5)
@@ -373,7 +374,8 @@
 					/obj/item/reagent_container/food/snacks/mre_pack/xmas1 = 25,
 					/obj/item/reagent_container/food/snacks/mre_pack/xmas2 = 25,
 					/obj/item/reagent_container/food/snacks/mre_pack/xmas3 = 25)*/
-	contraband = list(/obj/item/reagent_container/food/drinks/flask/marine = 10)
+	contraband = list(/obj/item/reagent_container/food/drinks/flask/marine = 10,
+					/obj/item/reagent_container/food/snacks/mre_pack/meal5 = 15)
 	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
 	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork."
@@ -458,9 +460,9 @@
 
 	products = list(
 						/obj/item/clothing/under/marine/medic = 4,
-						/obj/item/clothing/head/helmet/marine/medic = 4,
-						/obj/item/storage/backpack/marine/medic = 4,
-						/obj/item/storage/backpack/marine/satchel/medic = 4,
+						/obj/item/clothing/head/helmet/marine/corpsman = 4,
+						/obj/item/storage/backpack/marine/corpsman = 4,
+						/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 						/obj/item/device/encryptionkey/med = 4,
 						/obj/item/storage/belt/medical = 4,
 						/obj/item/bodybag/cryobag = 4,
@@ -631,7 +633,7 @@
 
 /obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(GLOB.map_tag)
+	switch(SSmapping.config.map_name)
 		if(MAP_ICE_COLONY)
 			products2 = list( /obj/item/map/ice_colony_map = 3)
 		if(MAP_BIG_RED)

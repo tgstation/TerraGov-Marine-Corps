@@ -14,7 +14,7 @@
 	var/sheet_type = /obj/item/stack/barbed_wire
 	var/sheet_type2 = /obj/item/stack/rods
 	var/table_prefix = "" //used in update_icon()
-	var/health = RAZORWIRE_MAX_HEALTH
+	health = RAZORWIRE_MAX_HEALTH
 	var/soak = 5
 
 /obj/structure/razorwire/proc/destroyed(deconstruct = FALSE)
@@ -50,10 +50,12 @@
 	razorwire_tangle(M)
 
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/M, duration = RAZORWIRE_ENTANGLE_DELAY)
+	if(QDELETED(src) || health <= 0) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
+		return
 	M.entangle_delay = world.time + duration
 	M.visible_message("<span class='danger'>[M] gets entangled in the barbed wire!</span>",
-	"<span class='danger'>You get entangled in the barbed wire! Resist to untangle yourself after [(M.entangle_delay - world.time) * 0.1] seconds!</span>", null, 5)
-	M.frozen += 1
+	"<span class='danger'>You got entangled in the barbed wire! Resist to untangle yourself after [(M.entangle_delay - world.time) * 0.1] seconds!</span>", null, 5)
+	M.set_frozen(TRUE)
 	entangled_list += M //Add the entangled person to the trapped list.
 	M.entangled_by = src
 
@@ -66,7 +68,7 @@
 	entangled_list -= M
 	M.entangled_by = null
 	M.entangle_delay = null
-	M.frozen = FALSE
+	M.set_frozen(FALSE)
 	M.update_canmove()
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, null, 1) //Apply damage as we tear free
 	M.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
@@ -81,7 +83,7 @@
 /obj/structure/razorwire/Destroy()
 	. = ..()
 	for(var/mob/living/M in entangled_list)
-		M.frozen = FALSE
+		M.set_frozen(FALSE)
 		M.update_canmove()
 		if(M.entangled_by == src)
 			M.entangled_by = null
@@ -102,7 +104,7 @@
 		var/obj/item/grab/G = W
 		if(isliving(G.grabbed_thing))
 			var/mob/living/M = G.grabbed_thing
-			if(user.a_intent == "hurt")
+			if(user.a_intent == INTENT_HARM)
 				if(user.grab_level > GRAB_AGGRESSIVE)
 					var/armor_block = null
 					var/def_zone = ran_zone()
@@ -198,6 +200,8 @@
 	"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW)) //About a third as damaging as actually entering
 	update_health(TRUE)
+	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 /obj/structure/razorwire/ex_act(severity)
 	switch(severity)
@@ -221,14 +225,15 @@
 		if(C.charge_speed < C.charge_speed_max * 0.5)
 			return
 
-		health -= 200 * round(C.charge_speed / max(1, C.charge_speed_max),0.01)
-		update_health()
+		health -= C.charge_speed * CRUSHER_CHARGE_RAZORWIRE_MULTI
+
 
 		var/def_zone = ran_zone()
 		if(C.charge_speed >= C.charge_speed_max)
 			C.visible_message("<span class='danger'>[C] plows through the barbed wire!</span>",
 			"<span class='danger'>You plow through the barbed wire!</span>", null, 5)
-		else //If we didn't destroy the barbed wire, we get tangled up.
+
+		else if(health > 0) //If we didn't destroy the barbed wire, we get tangled up.
 			C.stop_momentum(C.charge_dir)
 			razorwire_tangle(C, RAZORWIRE_ENTANGLE_DELAY * 0.5) //entangled for only half as long
 
@@ -236,6 +241,7 @@
 		C.visible_message("<span class='danger'>The barbed wire slices into [C]!</span>",
 		"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
+		update_health()
 
 
 
@@ -264,7 +270,7 @@
 			razorwire_tangle(C)
 	return ..()
 
-/obj/structure/razorwire/proc/update_health(nomessage)
+/obj/structure/razorwire/update_health(nomessage)
 	health = CLAMP(health, 0, RAZORWIRE_MAX_HEALTH)
 
 	if(!health)

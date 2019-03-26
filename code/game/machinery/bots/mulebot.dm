@@ -72,9 +72,7 @@
 /obj/machinery/bot/mulebot/Initialize()
 	. = ..()
 	botcard = new(src)
-	var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/logistics/tech/cargo] : new /datum/job/logistics/tech/cargo
-	botcard.access = J.get_access()
-//	botcard.access += access_robotics //Why --Ikki
+	botcard.access = ALL_MARINE_ACCESS
 	cell = new(src)
 	cell.charge = 2000
 	cell.maxcharge = 2000
@@ -410,15 +408,15 @@
 				if(ismultitool(usr.get_active_held_item()))
 					switch(href_list["wire"])
 						if("1","2")
-							to_chat(usr, "<span class='notice'>[bicon(src)] The charge light flickers.</span>")
+							to_chat(usr, "<span class='notice'>[icon2html(src, usr)] The charge light flickers.</span>")
 						if("4")
-							to_chat(usr, "<span class='notice'>[bicon(src)] The external warning lights flash briefly.</span>")
+							to_chat(usr, "<span class='notice'>[icon2html(src, usr)] The external warning lights flash briefly.</span>")
 						if("8")
-							to_chat(usr, "<span class='notice'>[bicon(src)] The load platform clunks.</span>")
+							to_chat(usr, "<span class='notice'>[icon2html(src, usr)] The load platform clunks.</span>")
 						if("16", "32")
-							to_chat(usr, "<span class='notice'>[bicon(src)] The drive motor whines briefly.</span>")
+							to_chat(usr, "<span class='notice'>[icon2html(src, usr)] The drive motor whines briefly.</span>")
 						else
-							to_chat(usr, "<span class='notice'>[bicon(src)] You hear a radio crackle.</span>")
+							to_chat(usr, "<span class='notice'>[icon2html(src, usr)] You hear a radio crackle.</span>")
 				else
 					to_chat(usr, "<span class='notice'>You need a multitool!</span>")
 
@@ -609,14 +607,14 @@
 						var/obj/effect/decal/cleanable/blood/tracks/B = new(loc)
 						var/newdir = get_dir(next, loc)
 						if(newdir == dir)
-							B.dir = newdir
+							B.setDir(newdir)
 						else
 							newdir = newdir|dir
 							if(newdir == 3)
 								newdir = 1
 							else if(newdir == 12)
 								newdir = 4
-							B.dir = newdir
+							B.setDir(newdir)
 						bloodiness--
 
 

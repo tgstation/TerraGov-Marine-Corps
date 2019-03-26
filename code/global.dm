@@ -1,6 +1,4 @@
-//#define TESTING
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-#define MAIN_SHIP_NAME "TGS Theseus"
+#define GAME_YEAR 2386
 
 var/global/obj/effect/datacore/data_core = null
 
@@ -68,27 +66,14 @@ var/blobevent = 0
 	///////////////
 
 var/diaryofmeanpeople = null
-var/station_name = "[MAIN_SHIP_NAME]"
-var/game_version = "TerraGov Marine Corps"
-var/game_year = 2186
+var/game_year = GAME_YEAR
 
 var/datum/air_tunnel/air_tunnel1/SS13_airtunnel = null
 var/going = 1.0
-var/master_mode = "Distress Signal"
-var/secret_force_mode = "secret" // if this is anything but "secret", the secret rotation will forceably choose this mode
 
 var/datum/engine_eject/engine_eject_control = null
 var/host = null
-var/aliens_allowed = 1
-var/ooc_allowed = 1
-var/looc_allowed = 1
-var/dsay_allowed = 1
-var/dooc_allowed = 1
-var/dlooc_allowed = 0
-var/traitor_scaling = 1
-//var/goonsay_allowed = 0
 var/dna_ident = 1
-var/respawn_allowed = 0
 var/guests_allowed = 0
 var/shuttle_frozen = 0
 var/shuttle_left = 0
@@ -99,47 +84,19 @@ var/respawntime = 15
 
 var/list/jobMax = list()
 var/list/bombers = list(  )
-var/list/admin_log = list (  )
 var/list/lastsignalers = list(	)	//keeps last 100 signals here in format: "[src] used \ref[src] @ location [src.loc]: [freq]/[code]"
 var/list/lawchanges = list(  ) //Stores who uploaded laws to which silicon-based lifeform, and what the law was
 var/list/reg_dna = list(  )
-//	list/traitobj = list(  )
-
-var/mouse_respawn_time = 15 //Amount of time that must pass between a player dying as a mouse and repawning as a mouse. In minutes.
-
-var/CELLRATE = 0.002	// multiplier for watts per tick <> cell storage (eg: 0.02 means if there is a load of 1000 watts, 20 units will be taken from a cell per second)
-						//It's a conversion constant. power_used*CELLRATE = charge_provided, or charge_used/CELLRATE = power_provided
-var/CHARGELEVEL = 0.0005 // Cap for how fast cells charge, as a percentage-per-tick (0.01 means cellcharge is capped to 1% per second)
 
 var/HangarUpperElevator
 var/HangarLowerElevator
 
-//	list/traitors = list()	//traitor list
 var/list/cardinal = list( NORTH, SOUTH, EAST, WEST )
 var/list/alldirs = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-// reverse_dir[dir] = reverse of dir
 var/list/reverse_dir = list(2, 1, 3, 8, 10, 9, 11, 4, 6, 5, 7, 12, 14, 13, 15, 32, 34, 33, 35, 40, 42, 41, 43, 36, 38, 37, 39, 44, 46, 45, 47, 16, 18, 17, 19, 24, 26, 25, 27, 20, 22, 21, 23, 28, 30, 29, 31, 48, 50, 49, 51, 56, 58, 57, 59, 52, 54, 53, 55, 60, 62, 61, 63)
 
-var/datum/station_state/start_state = null
 var/datum/sun/sun = null
 
-//Logging
-/*
-var/log_directory
-var/world_game_log
-var/world_attack_log
-var/world_runtime_log
-var/world_ra_log
-var/world_pda_log
-var/world_href_log
-var/sql_error_log
-var/config_error_log
-*/
-
-var/list/all_player_details = list()  // [ckey] = /datum/player_details
-
-
-var/list/powernets = list()
 
 var/Debug = 0	// global debug switch
 var/Debug2 = 0
@@ -154,14 +111,10 @@ var/gravity_is_on = 1
 var/shuttlecoming = 0
 
 var/join_motd = null
-var/forceblob = 0
 
 // nanomanager, the manager for Nano UIs
 var/datum/nanomanager/nanomanager = new()
 
-	//airlockWireColorToIndex takes a number representing the wire color, e.g. the orange wire is always 1, the dark red wire is always 2, etc. It returns the index for whatever that wire does.
-	//airlockIndexToWireColor does the opposite thing - it takes the index for what the wire does, for example AIRLOCK_WIRE_IDSCAN is 1, AIRLOCK_WIRE_POWER1 is 2, etc. It returns the wire color number.
-	//airlockWireColorToFlag takes the wire color number and returns the flag for it (1, 2, 4, 8, 16, etc)
 var/list/globalAirlockWireColorToFlag = RandomAirlockWires()
 var/list/globalAirlockIndexToFlag
 var/list/globalAirlockIndexToWireColor
@@ -187,64 +140,13 @@ var/list/AAlarmWireColorToIndex
 #define FIRE_DAMAGE_MODIFIER 0.0215 //Higher values result in more external fire damage to the skin (default 0.0215)
 #define AIR_DAMAGE_MODIFIER 2.025 //More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
 
-	//Don't set this very much higher then 1024 unless you like inviting people in to dos your server with message spam
-#define MAX_MESSAGE_LEN 1024
-#define MAX_PAPER_MESSAGE_LEN 3072
-#define MAX_BOOK_MESSAGE_LEN 9216
-#define MAX_NAME_LEN 26
 
-#define shuttle_time_in_station 1800 // 3 minutes in the station
-#define shuttle_time_to_arrive 6000 // 10 minutes to arrive
-
-	//away missions
-var/list/awaydestinations = list()	//a list of landmarks that the warpgate can take you to
-
-	// MySQL configuration
-
-var/sqladdress = "localhost"
-var/sqlport = "3306"
-var/sqldb = "tgstation"
-var/sqllogin = "root"
-var/sqlpass = ""
-
-	// Feedback gathering sql connection
-
-var/sqlfdbkdb = "test"
-var/sqlfdbklogin = "root"
-var/sqlfdbkpass = ""
-
-var/sqllogging = 0 // Should we log deaths, population stats, etc?
-
-
-
-	// Forum MySQL configuration (for use with forum account/key authentication)
-	// These are all default values that will load should the forumdbconfig.txt
-	// file fail to read for whatever reason.
-
-var/forumsqladdress = "localhost"
-var/forumsqlport = "3306"
-var/forumsqldb = "tgstation"
-var/forumsqllogin = "root"
-var/forumsqlpass = ""
-var/forum_activated_group = "2"
-var/forum_authenticated_group = "10"
-
-	// For FTP requests. (i.e. downloading runtime logs.)
-	// However it'd be ok to use for accessing attack logs and such too, which are even laggier.
+// For FTP requests. (i.e. downloading runtime logs.)
+// However it'd be ok to use for accessing attack logs and such too, which are even laggier.
 var/fileaccess_timer = 0
 var/custom_event_msg = null
-
-//Database connections
-//A connection is established on world creation. Ideally, the connection dies when the server restarts (After feedback logging.).
-var/DBConnection/dbcon = new()	//Feedback database (New database)
-var/DBConnection/dbcon_old = new()	//Tgstation database (Old database) - See the files in the SQL folder for information what goes where.
 
 // Reference list for disposal sort junctions. Filled up by sorting junction's New()
 /var/list/tagger_locations = list()
 
-//added for Xenoarchaeology, might be useful for other stuff
-var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
-
-//Used for autocall procs on ERT
-//var/global/list/unanswered_distress = list()
 var/distress_cancel = 0

@@ -133,7 +133,7 @@
 	desc = "It's a backpack made by Honk! Co."
 	icon_state = "clownpack"
 
-/obj/item/storage/backpack/medic
+/obj/item/storage/backpack/corpsman
 	name = "medical backpack"
 	desc = "It's a backpack especially designed for use in a sterile environment."
 	icon_state = "medicalpack"
@@ -293,18 +293,20 @@
 	name = "\improper lightweight IMP backpack"
 	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield."
 
-/obj/item/storage/backpack/marine/medic
-	name = "\improper TGMC medic backpack"
-	desc = "The standard-issue backpack worn by TGMC medics."
+/obj/item/storage/backpack/marine/corpsman
+	name = "\improper TGMC corpsman backpack"
+	desc = "The standard-issue backpack worn by TGMC corpsmen."
 	icon_state = "marinepackm"
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
+	var/icon_skin
 
-/obj/item/storage/backpack/marine/medic/New()
+/obj/item/storage/backpack/marine/corpsman/New()
 	. = ..()
-	cell = new /obj/item/cell/high(src)
+	cell = new (src)
+	icon_skin = icon_state
 	update_icon()
 
-/obj/item/storage/backpack/marine/medic/proc/use_charge(mob/user, amount = 0, mention_charge = TRUE)
+/obj/item/storage/backpack/marine/corpsman/proc/use_charge(mob/user, amount = 0, mention_charge = TRUE)
 	var/warning = ""
 	if(amount > cell.charge)
 		playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
@@ -321,29 +323,29 @@
 	update_icon()
 	return ..()
 
-/obj/item/storage/backpack/marine/medic/examine(mob/user)
+/obj/item/storage/backpack/marine/corpsman/examine(mob/user)
 	. = ..()
 	if(cell)
 		to_chat(user, "<span class='notice'>Its defibrillator recharge unit has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 	else
 		to_chat(user, "<span class='warning'>Its defibrillator recharge unit does not have a power cell installed!</span>")
 
-/obj/item/storage/backpack/marine/medic/update_icon()
-	icon_state = initial(icon_state)
-	if(cell?.charge)
-		switch(round(cell.charge * 100 / max(1,cell.maxcharge)))
+/obj/item/storage/backpack/marine/corpsman/update_icon()
+	icon_state = icon_skin
+	if(cell?.charge >= 0)
+		switch(PERCENT(cell.charge/cell.maxcharge))
 			if(75 to INFINITY)
 				icon_state += "_100"
-			if(50 to 74)
+			if(50 to 74.9)
 				icon_state += "_75"
-			if(25 to 49)
+			if(25 to 49.9)
 				icon_state += "_50"
-			if(1 to 24)
+			if(0.1 to 24.9)
 				icon_state += "_25"
 	else
 		icon_state += "_0"
 
-/obj/item/storage/backpack/marine/medic/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the defib/power cell onto the backpack will trigger its special functionality.
+/obj/item/storage/backpack/marine/corpsman/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the defib/power cell onto the backpack will trigger its special functionality.
 	if(istype(W, /obj/item/device/defibrillator))
 		if(cell)
 			var/obj/item/device/defibrillator/D = W
@@ -382,6 +384,7 @@
 					"/obj/item/ammo_magazine/sentry",
 					"/obj/item/ammo_magazine/minisentry",
 					"/obj/item/device/marine_turret/mini",
+					"/obj/item/stack/razorwire",
 					"/obj/item/stack/sandbags"
 					)
 
@@ -394,9 +397,9 @@
 	max_storage_space = 15
 
 
-/obj/item/storage/backpack/marine/satchel/medic
-	name = "\improper TGMC medic satchel"
-	desc = "A heavy-duty satchel carried by some TGMC medics."
+/obj/item/storage/backpack/marine/satchel/corpsman
+	name = "\improper TGMC corpsman satchel"
+	desc = "A heavy-duty satchel carried by some TGMC corpsmen."
 	icon_state = "marinesatm"
 
 /obj/item/storage/backpack/marine/satchel/tech
@@ -696,17 +699,25 @@
 
 
 /obj/item/storage/backpack/marine/engineerpack/flamethrower/attackby(obj/item/W, mob/living/user)
-	if (istype(W, /obj/item/ammo_magazine/flamer_tank))
-		var/obj/item/ammo_magazine/flamer_tank/large/FTL = W
-		if(!FTL.current_rounds && reagents.total_volume)
-			var/fuel_available = reagents.total_volume < FTL.max_rounds ? reagents.total_volume : FTL.max_rounds
-			reagents.remove_reagent("fuel", fuel_available)
-			FTL.current_rounds = fuel_available
-			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-			FTL.caliber = "UT-Napthal Fuel"
-			to_chat(user, "<span class='notice'>You refill [FTL] with [lowertext(FTL.caliber)].</span>")
-			FTL.update_icon()
-	. = ..()
+	if(!istype(W, /obj/item/ammo_magazine/flamer_tank))
+		return ..()
+	var/obj/item/ammo_magazine/flamer_tank/FTL = W
+	if(FTL.default_ammo != /datum/ammo/flamethrower)
+		return ..()
+	if(FTL.max_rounds == FTL.current_rounds)
+		return ..()
+	if(reagents.total_volume <= 0)
+		to_chat(user, "<span class='warning'>You try to refill \the [FTL] but \the [src] fuel reserve is empty.</span>")
+		return ..()
+	var/fuel_refill = FTL.max_rounds - FTL.current_rounds
+	if(reagents.total_volume < fuel_refill)
+		fuel_refill = reagents.total_volume
+	reagents.remove_reagent("fuel", fuel_refill)
+	FTL.current_rounds = FTL.current_rounds + fuel_refill
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	to_chat(user, "<span class='notice'>You refill [FTL] with UT-Napthal Fuel as you place it inside of \the [src].</span>")
+	FTL.update_icon()
+
 
 /obj/item/storage/backpack/lightpack
 	name = "\improper lightweight combat pack"
@@ -721,8 +732,8 @@
 	storage_slots = null
 	max_storage_space = 30
 
-/obj/item/storage/backpack/mcommander
-	name = "marine commander backpack"
+/obj/item/storage/backpack/captain
+	name = "marine captain backpack"
 	desc = "The contents of this backpack are top secret."
 	icon_state = "marinepack"
 	storage_slots = null

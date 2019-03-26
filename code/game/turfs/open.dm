@@ -1,11 +1,12 @@
 
 //turfs with density = FALSE
 /turf/open
+	plane = FLOOR_PLANE
 	var/is_groundmap_turf = FALSE //whether this a turf used as main turf type for the 'outside' of a map.
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
 	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
-
+	var/has_catwalk = FALSE
 
 /turf/open/Entered(atom/A, atom/OL)
 	if(iscarbon(A))
@@ -61,66 +62,42 @@
 	..()
 	ceiling_desc(user)
 
-
-
-
 /turf/open/river
 	can_bloody = FALSE
 
 
+// Big Red
 
-
-// Mars grounds
-
-/turf/open/mars
-	name = "sand"
+/turf/open/mars/
 	icon = 'icons/turf/bigred.dmi'
-	icon_state = "mars_sand_1"
 	is_groundmap_turf = TRUE
 
-
-/turf/open/mars_cave
+/turf/open/mars/random/cave
 	name = "cave"
-	icon = 'icons/turf/bigred.dmi'
-	icon_state = "mars_cave_1"
+	icon_state = "mars_cave"
 
+/turf/open/mars/random/cave/rock
+	name = "cave"
+	icon_state = "mars_cave_rock"
 
-/turf/open/mars_cave/New()
-	..()
-
-	spawn(10)
-		var/r = rand(0, 2)
-
-		if (r == 0 && icon_state == "mars_cave_2")
-			icon_state = "mars_cave_3"
-
-/turf/open/mars_dirt
+/turf/open/mars/random/dirt
 	name = "dirt"
-	icon = 'icons/turf/bigred.dmi'
-	icon_state = "mars_dirt_1"
+	icon_state = "mars_dirt"
 
+/turf/open/mars/random/sand
+	name = "sand"
+	icon_state = "mars_sand"
 
-/turf/open/mars_dirt/New()
-	..()
-	spawn(10)
-		var/r = rand(0, 32)
+/turf/open/mars/random/Initialize()
+	. = ..()
+	dir = pick(alldirs)
 
-		if (r == 0 && icon_state == "mars_dirt_4")
-			icon_state = "mars_dirt_1"
-			return
-
-		r = rand(0, 32)
-
-		if (r == 0 && icon_state == "mars_dirt_4")
-			icon_state = "mars_dirt_2"
-			return
-
-		r = rand(0, 6)
-
-		if (r == 0 && icon_state == "mars_dirt_4")
-			icon_state = "mars_dirt_7"
-
-
+/turf/open/mars/dirttosand
+	name = "sand"
+	icon_state = "mars_dirt_to_sand"
+/turf/open/mars/cavetodirt
+	name = "cave"
+	icon_state = "mars_cave_to_dirt"
 
 
 
@@ -186,8 +163,8 @@
 	name = "dirt"
 	icon_state = "desert"
 
-/turf/open/gm/dirt/New()
-	..()
+/turf/open/gm/dirt/Initialize()
+	. = ..()
 	if(rand(0,15) == 0)
 		icon_state = "desert[pick("0","1","2","3")]"
 
@@ -195,32 +172,53 @@
 	name = "grass"
 	icon_state = "grass1"
 
+/turf/open/gm/grass/grass2
+	icon_state = "grass2"
+
+/turf/open/gm/grass/beach
+	icon_state = "grassbeach"
+
+/turf/open/gm/grass/beach/corner
+	icon_state = "gbcorner"
+
 /turf/open/gm/dirt2
 	name = "dirt"
 	icon_state = "dirt"
-
 
 /turf/open/gm/dirtgrassborder
 	name = "grass"
 	icon_state = "grassdirt_edge"
 
+/turf/open/gm/dirtgrassborder/corner
+	icon_state = "grassdirt_corner"
+
 /turf/open/gm/dirtgrassborder2
 	name = "grass"
 	icon_state = "grassdirt2_edge"
 
+/turf/open/gm/dirtgrassborder2/corner
+	icon_state = "grassdirt_corner2"
 
 /turf/open/gm/river
 	name = "river"
 	icon_state = "seashallow"
 	can_bloody = FALSE
 
-/turf/open/gm/river/New()
-	..()
-	overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=MOB_LAYER+0.1)
+/obj/effect/river_overlay
+	name = "river_overlay"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	layer = RIVER_OVERLAY_LAYER
 
+/turf/open/gm/river/Initialize()
+	. = ..()
+	if(!has_catwalk)
+		var/obj/effect/river_overlay/R = new(src)
+		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=RIVER_OVERLAY_LAYER)
 
 /turf/open/gm/river/Entered(atom/movable/AM)
 	..()
+	if(has_catwalk)
+		return
 	if(iscarbon(AM))
 		var/mob/living/carbon/C = AM
 		var/river_slowdown = 1.75
@@ -266,9 +264,11 @@
 	M.clean_blood()
 
 
-/turf/open/gm/river/poison/New()
-	..()
-	overlays += image("icon"='icons/effects/effects.dmi',"icon_state"="greenglow","layer"=MOB_LAYER+0.1)
+/turf/open/gm/river/poison/Initialize()
+	. = ..()
+	if(!has_catwalk)
+		var/obj/effect/river_overlay/R = new(src)
+		R.overlays += image("icon"='icons/effects/effects.dmi',"icon_state"="greenglow","layer"=RIVER_OVERLAY_LAYER)
 
 /turf/open/gm/river/poison/Entered(mob/living/M)
 	..()
@@ -280,14 +280,22 @@
 	name = "coastline"
 	icon_state = "beach"
 
+/turf/open/gm/coast/corner
+	icon_state = "beachcorner"
+
+/turf/open/gm/coast/corner2
+	icon_state = "beachcorner2"
+
 /turf/open/gm/riverdeep
 	name = "river"
 	icon_state = "seadeep"
 	can_bloody = FALSE
 
-/turf/open/gm/riverdeep/New()
-	..()
-	overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1)
+/turf/open/gm/riverdeep/Initialize()
+	. = ..()
+	if(!has_catwalk)
+		var/obj/effect/river_overlay/R = new(src)
+		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="water","layer"=RIVER_OVERLAY_LAYER)
 
 
 
@@ -453,9 +461,9 @@
 
 
 //Randomize ice floor sprite
-/turf/open/ice/New()
-	..()
-	dir = pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST)
+/turf/open/ice/Initialize()
+	. = ..()
+	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 
 
 
@@ -552,13 +560,15 @@
 		qdel(B)
 
 /turf/open/jungle/impenetrable
-	bushes_spawn = 0
+	bushes_spawn = TRUE
 	icon_state = "grass_impenetrable"
 	icon_spawn_state = "grass1"
-	New()
-		..()
+
+/turf/open/jungle/impenetrable/Initialize()
+	. = ..()
+	if(bushes_spawn)
 		var/obj/structure/bush/B = new(src)
-		B.indestructable = 1
+		B.indestructable = TRUE
 
 
 /turf/open/jungle/water

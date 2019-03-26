@@ -26,8 +26,9 @@
 		if(!is_open_container())
 			to_chat(user, "<span class='info'>An airtight lid seals it completely.</span>")
 
-/obj/item/reagent_container/glass/attack_self()
-	..()
+/obj/item/reagent_container/glass/verb/attach_lid()
+	set name = "Attach/Detach lid"
+	set category = "Object"
 	if(is_open_container())
 		to_chat(usr, "<span class='notice'>You put the lid on \the [src].</span>")
 		container_type ^= OPENCONTAINER
@@ -41,6 +42,8 @@
 /obj/item/reagent_container/glass/afterattack(obj/target, mob/user , proximity)
 	if(!proximity)
 		return
+
+	user.changeNext_move(CLICK_CD_RAPID)
 
 	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
 		if(!is_drainable())
@@ -70,7 +73,11 @@
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
 		to_chat(user, "<span class='notice'>You fill [src] with [trans] unit\s of the contents of [target].</span>")
 
-	if(user.a_intent == "harm")
+	if(user.a_intent == INTENT_HARM)
+		if(!is_open_container()) //Can't splash stuff from a sealed container. I dare you to try.
+			to_chat(user, "<span class='warning'>An airtight seal prevents you from splashing the solution!</span>")
+			return
+
 		if(ismob(target) && target.reagents && reagents.total_volume)
 			to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
 			playsound(target, 'sound/effects/slosh.ogg', 25, 1)

@@ -40,9 +40,6 @@
 			if("freedom")
 				var/obj/item/implanter/O = new /obj/item/implanter(src)
 				O.imp = new /obj/item/implant/freedom(O)
-				var/obj/item/implanter/U = new /obj/item/implanter(src)
-				U.imp = new /obj/item/implant/uplink(U)
-				return
 
 			if("hacker")
 				new /obj/item/circuitboard/ai_module/syndicate(src)
@@ -89,16 +86,6 @@
 /obj/item/storage/box/syndie_kit/imp_explosive/New()
 	new /obj/item/implanter/explosive(src)
 	..()
-	return
-
-/obj/item/storage/box/syndie_kit/imp_uplink
-	name = "boxed uplink implant (with injector)"
-
-/obj/item/storage/box/syndie_kit/imp_uplink/New()
-	..()
-	var/obj/item/implanter/O = new(src)
-	O.imp = new /obj/item/implant/uplink(O)
-	O.update()
 	return
 
 /obj/item/storage/box/syndie_kit/space

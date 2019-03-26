@@ -24,7 +24,7 @@
 	attack_hand(mob/user as mob)
 		user.set_interaction(src)
 
-		var/dat = "Photocopier<BR><BR>"
+		var/dat
 		if(copy || photocopy || bundle)
 			dat += "<a href='byond://?src=\ref[src];remove=1'>Remove Paper</a><BR>"
 			if(toner)
@@ -40,6 +40,10 @@
 		if(!toner)
 			dat +="<BR>Please insert a new toner cartridge!"
 		user << browse(dat, "window=copier")
+
+		var/datum/browser/popup = new(user, "copier", "<div align='center'>Photocopier</div>")
+		popup.set_content(dat)
+		popup.open(FALSE)
 		onclose(user, "copier")
 		return
 
@@ -228,6 +232,7 @@
 		copy.overlays += img
 	copy.updateinfolinks()
 	toner--
+	copy.update_icon()
 	return copy
 
 

@@ -15,7 +15,7 @@
 
 /datum/reagent/toxin/on_mob_life(mob/living/carbon/M , alien)
 	var/mob/living/carbon/human/H = M
-	if(H.species.flags & NO_POISON)
+	if(H.species.species_flags & NO_POISON)
 		return FALSE //immunity to toxin reagents
 	if(toxpwr)
 		M.adjustToxLoss(toxpwr*REM)
@@ -251,7 +251,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.dna)
-				if(H.species.flags & IS_PLANT) //plantmen take a LOT of damage
+				if(H.species.species_flags & IS_PLANT) //plantmen take a LOT of damage
 					H.adjustToxLoss(10)
 
 /datum/reagent/toxin/sleeptoxin
@@ -328,8 +328,8 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 
 /datum/reagent/toxin/potassium_chloride/overdose_process(mob/living/carbon/M, alien)
-	if(M.losebreath >= 10)
-		M.losebreath = max(10, M.losebreath-10)
+	if(M.losebreath > 10)
+		M.set_Losebreath(10)
 	M.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
@@ -347,8 +347,8 @@
 
 /datum/reagent/toxin/potassium_chlorophoride/on_mob_life(mob/living/carbon/M)
 	if(M.stat != UNCONSCIOUS)
-		if(M.losebreath >= 10)
-			M.losebreath = max(10, M.losebreath-10)
+		if(M.losebreath > 10)
+			M.set_Losebreath(10)
 		M.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
@@ -438,7 +438,7 @@
 					if(affecting.take_damage(4*toxpwr, 2*toxpwr))
 						H.UpdateDamageIcon()
 					if(prob(meltprob)) //Applies disfigurement
-						if(!(H.species && (H.species.flags & NO_PAIN)))
+						if(!(H.species && (H.species.species_flags & NO_PAIN)))
 							H.emote("scream")
 						H.status_flags |= DISFIGURED
 						H.name = H.get_visible_name()

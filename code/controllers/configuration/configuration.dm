@@ -20,6 +20,19 @@
 
 	var/motd
 
+/datum/controller/configuration/proc/loadtips()
+	GLOB.metatips = world.file2list("[directory]/tips/metatips.txt")
+	if (!GLOB.metatips)
+		log_config("Failed to load tips/metatips.txt")
+	GLOB.marinetips = world.file2list("[directory]/tips/marinetips.txt")
+	if (!GLOB.marinetips)
+		log_config("Failed to load tips/marinetips.txt")
+	GLOB.xenotips = world.file2list("[directory]/tips/xenotips.txt")
+	if (!GLOB.xenotips)
+		log_config("Failed to load tips/xenotips.txt")
+	GLOB.joketips = world.file2list("[directory]/tips/joketips.txt")
+	if (!GLOB.joketips)
+		log_config("Failed to load tips/joketips.txt")
 
 /datum/controller/configuration/proc/admin_reload()
 	if(IsAdminAdvancedProcCall())
@@ -36,7 +49,7 @@
 	if(_directory)
 		directory = _directory
 	if(entries)
-		CRASH("[THIS_PROC_TYPE_WEIRD] called more than once!")
+		CRASH("/datum/controller/configuration/Load() called more than once!")
 	InitEntries()
 	LoadModes()
 	if(fexists("[directory]/config.txt") && LoadEntries("config.txt") <= 1)
@@ -48,7 +61,9 @@
 					LoadEntries(J)
 				break
 	loadmaplist(CONFIG_MAPS_FILE)
+	loadtips()
 	LoadMOTD()
+
 
 
 /datum/controller/configuration/proc/full_wipe()
@@ -192,7 +207,7 @@
 
 /datum/controller/configuration/stat_entry()
 	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Edit", src)
+		statclick = new/obj/effect/statclick/debug(null, "Debug", src)
 	stat("[name]:", statclick)
 
 
@@ -246,7 +261,7 @@
 
 /datum/controller/configuration/proc/LoadMOTD()
 	join_motd = file2text("[directory]/motd.txt")
-	join_motd += "<br><br><span class='tip'>[pick(alltips)]<br></span>"
+	join_motd += "<br><br><span class='tip'>[pick(ALLTIPS)]<br></span>"
 
 	/*
 	var/tm_info = GLOB.revdata.GetTestMergeInfo()
@@ -256,8 +271,6 @@
 
 
 /datum/controller/configuration/proc/loadmaplist(filename)
-	return
-	/*
 	log_config("Loading config file [filename]...")
 	filename = "[directory]/[filename]"
 	var/list/Lines = world.file2list(filename)
@@ -311,8 +324,6 @@
 				currentmap = null
 			else
 				log_config("Unknown command in map vote config: '[command]'")
-	*/
-
 
 /datum/controller/configuration/proc/pick_mode(mode_name)
 	// I wish I didn't have to instance the game modes in order to look up

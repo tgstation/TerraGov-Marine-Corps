@@ -16,11 +16,11 @@
 
 	switch(intent)
 
-		if("help")
+		if(INTENT_HELP)
 			M.visible_message("<span class='notice'>\The [M] caresses [src] with its scythe-like arm.</span>", \
 			"<span class='notice'>You caress [src] with your scythe-like arm.</span>", null, 5)
 
-		if("grab")
+		if(INTENT_GRAB)
 			if(M == src || anchored || buckled)
 				return FALSE
 
@@ -36,7 +36,7 @@
 			if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-		if("hurt")
+		if(INTENT_HARM)
 			var/datum/hive_status/hive
 			if(M.hivenumber && M.hivenumber <= hive_datum.len)
 				hive = hive_datum[M.hivenumber]
@@ -162,32 +162,39 @@
 
 			if(status_flags & XENO_HOST && stat != DEAD)
 				if(istype(buckled, /obj/structure/bed/nest))
-					var/area/A = get_area(M)
-					log_combat(M, src, log, addition="while they were infected and nested")
-					msg_admin_ff("[ADMIN_TPMONTY(M)] slashed [ADMIN_TPMONTY(src)] while they were infected and nested in [ADMIN_VERBOSEJMP(A)].")
+					var/turf/T = get_turf(M)
+					log_ffattack("[key_name(M)] slashed [key_name(src)] while they were infected and nested in [AREACOORD(T)].")
+					log_combat(M, src, log, addition = "while they were infected and nested")
+					msg_admin_ff("[ADMIN_TPMONTY(M)] slashed [ADMIN_TPMONTY(src)] while they were infected and nested in [ADMIN_VERBOSEJMP(T)].")
 				else
-					log_combat(M, src, log, addition="while they were infected")
+					log_combat(M, src, log, addition = "while they were infected")
 			else //Normal xenomorph friendship with benefits
 				log_combat(M, src, log)
 
 			if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 				if(M.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //Pouncing prevents us from making a sneak attack for 4 seconds
-					damage *= 3.5 //Massive damage on the sneak attack... hope you have armour.
+					if(m_intent == MOVE_INTENT_RUN)
+						damage *= 1.75 //Half the multiplier if running.
+						M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
+						"<span class='danger'>You strike [src] with vicious precision!</span>")
+					else
+						damage *= 3.5 //Massive damage on the sneak attack... hope you have armour.
+						M.visible_message("<span class='danger'>\The [M] strikes [src] with deadly precision!</span>", \
+						"<span class='danger'>You strike [src] with deadly precision!</span>")
 					KnockOut(2) //...And we knock them out
 					adjust_stagger(3)
-					add_slowdown(3)
-					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
-					"<span class='danger'>You strike [src] with vicious precision!</span>")
+					add_slowdown(1.5)
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 			M.neuroclaw_router(src) //if we have neuroclaws...
 
+			damage = M.hit_and_run_bonus(damage) //Apply Runner hit and run bonus damage if applicable
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
 			updatehealth()
 
 			M.process_rage_attack() //Process Ravager rage gains on attack
 
-		if("disarm")
+		if(INTENT_DISARM)
 			if(M.legcuffed && isyautja(src))
 				to_chat(M, "<span class='xenodanger'>You don't have the dexterity to tackle the headhunter with that thing on your leg!</span>")
 				return FALSE
@@ -218,15 +225,23 @@
 			if(M.stealth_router(HANDLE_STEALTH_CHECK))
 				if(M.stealth_router(HANDLE_SNEAK_ATTACK_CHECK))
 					KnockOut(2)
-					tackle_pain *= 3.5 //Halloss multiplied by 3.
+					if(m_intent == MOVE_INTENT_RUN && ( last_move_intent > (world.time - 20) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
+						tackle_pain *= 1.75 //Half the multiplier if running.
+						M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
+						"<span class='danger'>You strike [src] with vicious precision!</span>")
+					else
+						tackle_pain *= 3.5 //Massive damage on the sneak attack... hope you have armour.
+						M.visible_message("<span class='danger'>\The [M] strikes [src] with deadly precision!</span>", \
+						"<span class='danger'>You strike [src] with deadly precision!</span>")
 					adjust_stagger(3)
-					add_slowdown(3)
-					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
-					"<span class='danger'>You strike [src] with vicious precision!</span>")
+					add_slowdown(1.5)
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 			M.neuroclaw_router(src) //if we have neuroclaws...
 			if(dam_bonus)
 				tackle_pain += dam_bonus
+
+			tackle_pain = M.hit_and_run_bonus(tackle_pain) //Apply Runner hit and run bonus damage if applicable
+
 			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.4) //Only half armour applies vs tackle
 			updatehealth()
 			updateshock()
@@ -248,29 +263,33 @@
 	return FALSE
 
 /mob/living/carbon/Xenomorph/Ravager/process_rage_attack()
-	rage += 5 //Gain 5 rage stacks for the attack.
+	rage += RAV_RAGE_ON_HIT
 	last_rage = world.time //We incremented rage, so bookmark this.
 
 
 //Every other type of nonhuman mob
-/mob/living/attack_alien(mob/living/carbon/Xenomorph/M)
+/mob/living/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if (M.fortify)
 		return FALSE
 
-	switch(M.a_intent)
-		if("help")
+	var/intent = force_intent ? force_intent : M.a_intent
+
+	switch(intent)
+		if(INTENT_HELP)
 			M.visible_message("<span class='notice'>\The [M] caresses [src] with its scythe-like arm.</span>", \
 			"<span class='notice'>You caress [src] with your scythe-like arm.</span>", null, 5)
 			return FALSE
 
-		if("grab")
+		if(INTENT_GRAB)
 			if(M == src || anchored || buckled)
 				return FALSE
 
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
+			if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-		if("hurt")
+		if(INTENT_HARM)
 			if(isxeno(src) && xeno_hivenumber(src) == M.hivenumber)
 				M.visible_message("<span class='warning'>\The [M] nibbles [src].</span>", \
 				"<span class='warning'>You nibble [src].</span>", null, 5)
@@ -315,6 +334,14 @@
 			if(M.frenzy_aura > 0)
 				damage += (M.frenzy_aura * 2)
 
+			if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+				if(M.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //Pouncing prevents us from making a sneak attack for 4 seconds
+					damage *= 3.5 //Massive damage on the sneak attack... hope you have armour.
+					KnockOut(2) //...And we knock them out
+					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
+					"<span class='danger'>You strike [src] with vicious precision!</span>")
+				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+
 			//Somehow we will deal no damage on this attack
 			if(!damage)
 				playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
@@ -330,7 +357,7 @@
 			playsound(loc, "alien_claw_flesh", 25, 1)
 			apply_damage(damage, BRUTE)
 
-		if("disarm")
+		if(INTENT_DISARM)
 			playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 			M.visible_message("<span class='warning'>\The [M] shoves [src]!</span>", \
 			"<span class='warning'>You shove [src]!</span>", null, 5)

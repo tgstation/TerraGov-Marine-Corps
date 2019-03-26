@@ -12,8 +12,8 @@
 	permeability_coefficient = 0.05
 	flags_cold_protection = HANDS
 	flags_heat_protection = HANDS
-	min_cold_protection_temperature = GLOVES_min_cold_protection_temperature
-	max_heat_protection_temperature = GLOVES_max_heat_protection_temperature
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_armor_protection = HANDS
 	armor = list(melee = 60, bullet = 40, laser = 30,energy = 20, bomb = 30, bio = 10, rad = 10)
 
@@ -81,8 +81,8 @@
 	siemens_coefficient = 0
 	permeability_coefficient = 0.01
 
-/obj/item/clothing/gloves/marine/techofficer/commander
-	name = "commander's gloves"
+/obj/item/clothing/gloves/marine/techofficer/captain
+	name = "captain's gloves"
 	desc = "You may like these gloves, but THEY think you are unworthy of them."
 	icon_state = "captain"
 	item_state = "egloves"

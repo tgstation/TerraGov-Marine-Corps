@@ -70,7 +70,7 @@
 /obj/machinery/particle_accelerator/control_box/Topic(href, href_list)
 	..()
 	//Ignore input if we are broken, !silicon guy cant touch us, or nonai controlling from super far away
-	if(stat & (BROKEN|NOPOWER) || (get_dist(src, usr) > 1 && !issilicon(usr)) || (get_dist(src, usr) > 8 && !isAI(usr)))
+	if(machine_stat & (BROKEN|NOPOWER) || (get_dist(src, usr) > 1 && !issilicon(usr)) || (get_dist(src, usr) > 8 && !isAI(usr)))
 		usr.unset_interaction()
 		usr << browse(null, "window=pacontrol")
 		return
@@ -82,7 +82,7 @@
 	if(href_list["togglep"])
 		src.toggle_power()
 		if(active)
-			log_game("[key_name(usr)] turned on a PA computer in [AREACOORD(src.loc)].")			
+			log_game("[key_name(usr)] turned on a PA computer in [AREACOORD(src.loc)].")
 			message_admins("[ADMIN_TPMONTY(usr)] turned on a PA computer.")
 	else if(href_list["scan"])
 		src.part_scan()
@@ -92,7 +92,7 @@
 		if(strength > 2)
 			strength = 2
 		else
-			log_game("[key_name(usr)] increased PA computer to [strength] in [AREACOORD(src.loc)].")			
+			log_game("[key_name(usr)] increased PA computer to [strength] in [AREACOORD(src.loc)].")
 			message_admins("[ADMIN_TPMONTY(usr)] increased PA computer to [strength].")
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
 			part.strength = strength
@@ -121,10 +121,10 @@
 
 /obj/machinery/particle_accelerator/control_box/power_change()
 	..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		active = 0
 		update_use_power(0)
-	else if(!stat && construction_state == 3)
+	else if(!machine_stat && construction_state == 3)
 		update_use_power(1)
 	return
 
@@ -144,7 +144,7 @@
 
 /obj/machinery/particle_accelerator/control_box/proc/part_scan()
 	for(var/obj/structure/particle_accelerator/fuel_chamber/F in orange(1,src))
-		src.dir = F.dir
+		setDir(F.dir)
 	connected_parts = list()
 	var/tally = 0
 	var/ldir = turn(dir,-90)
@@ -209,15 +209,14 @@
 
 
 /obj/machinery/particle_accelerator/control_box/interact(mob/user)
-	if((get_dist(src, user) > 1) || (stat & (BROKEN|NOPOWER)))
+	if((get_dist(src, user) > 1) || (machine_stat & (BROKEN|NOPOWER)))
 		if(!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=pacontrol")
 			return
 	user.set_interaction(src)
 
-	var/dat = ""
-	dat += "Particle Accelerator Control Panel<BR>"
+	var/dat
 	dat += "<A href='?src=\ref[src];close=1'>Close</A><BR><BR>"
 	dat += "Status:<BR>"
 	if(!assembled)
@@ -234,6 +233,8 @@
 		dat += "Particle Strength: [src.strength] "
 		dat += "<A href='?src=\ref[src];strengthdown=1'>--</A>|<A href='?src=\ref[src];strengthup=1'>++</A><BR><BR>"
 
-	user << browse(dat, "window=pacontrol;size=420x500")
+
+	var/datum/browser/popup = new(user, "pacontrol", "<div align='center'>Particle Accelerator Control Panel</div>", 420, 500)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "pacontrol")
-	return

@@ -41,7 +41,8 @@
 					close()
 		return
 	var/mob/M = AM // we've returned by here if M is not a mob
-	if (!( ticker ))
+	add_fingerprint(M)
+	if (!( SSticker ))
 		return
 	if (src.operating)
 		return
@@ -73,7 +74,7 @@
 /obj/machinery/door/window/open()
 	if (src.operating == 1) //doors can still open when emag-disabled
 		return FALSE
-	if (!ticker)
+	if (!SSticker)
 		return FALSE
 	if(!src.operating) //in case of emag
 		src.operating = 1
@@ -108,8 +109,10 @@
 /obj/machinery/door/window/take_damage(var/damage)
 	src.health = max(0, src.health - damage)
 	if (src.health <= 0)
-		new /obj/item/shard(src.loc)
-		var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src.loc)
+		var/obj/item/shard/S = new(loc)
+		transfer_fingerprints_to(S)
+		var/obj/item/stack/cable_coil/CC = new(loc)
+		transfer_fingerprints_to(CC)
 		CC.amount = 2
 		var/obj/item/circuitboard/airlock/ae
 		if(!electronics)
@@ -125,6 +128,7 @@
 			ae = electronics
 			electronics = null
 			ae.loc = src.loc
+		transfer_fingerprints_to(ae)
 		if(operating == -1)
 			ae.icon_state = "door_electronics_smoked"
 			operating = 0
@@ -206,7 +210,7 @@
 				wa.name = "Wired Windoor Assembly"
 			if (src.base_state == "right" || src.base_state == "rightsecure")
 				wa.facing = "r"
-			wa.dir = src.dir
+			wa.setDir(dir)
 			wa.state = "02"
 			wa.update_icon()
 
@@ -232,6 +236,7 @@
 
 	if(!(I.flags_item & NOBLUDGEON) && I.force && density) //trying to smash windoor with item
 		var/aforce = I.force
+		user.changeNext_move(I.attack_speed)
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 		visible_message("<span class='danger'>[src] was hit by [I].</span>")
 		if(I.damtype == BRUTE || I.damtype == BURN)
@@ -251,6 +256,36 @@
 	req_access = list(ACCESS_MARINE_BRIG)
 	health = 300.0 //Stronger doors for prison (regular window door health is 200)
 
+
+//theseus brig doors
+/obj/machinery/door/window/brigdoor/theseus/
+	name = "Cell"
+	id = "Cell"
+	health = 500
+
+/obj/machinery/door/window/brigdoor/theseus/cell_1
+	name = "Cell 1"
+	id = "Cell 1"
+
+/obj/machinery/door/window/brigdoor/theseus/cell_2
+	name = "Cell 2"
+	id = "Cell 2"
+
+/obj/machinery/door/window/brigdoor/theseus/cell_3
+	name = "Cell 3"
+	id = "Cell 3"
+
+/obj/machinery/door/window/brigdoor/theseus/cell_4
+	name = "Cell 4"
+	id = "Cell 4"
+
+/obj/machinery/door/window/brigdoor/theseus/cell_5
+	name = "Cell 5"
+	id = "Cell 5"
+
+/obj/machinery/door/window/brigdoor/theseus/cell_6
+	name = "Cell 6"
+	id = "Cell 6"
 
 /obj/machinery/door/window/northleft
 	dir = NORTH

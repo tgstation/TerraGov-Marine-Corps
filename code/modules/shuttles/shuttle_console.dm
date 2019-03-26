@@ -23,7 +23,7 @@
 	user.set_interaction(src)
 
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
-	if(!isxeno(user) && (onboard || z == 1) && !shuttle.iselevator)
+	if(!isxeno(user) && (onboard || is_ground_level(z)) && !shuttle.iselevator)
 		if(shuttle.queen_locked)
 			if(world.time < shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN)
 				to_chat(user, "<span class='warning'>You can't seem to re-enable remote control, some sort of safety cooldown is in place. Please wait another [round((shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN - world.time)/600)] minutes before trying again.</span>")
@@ -161,7 +161,7 @@
 			if(isxenoqueen(usr) && shuttle.location == 1 && shuttle.alerts_allowed && onboard && !shuttle.iselevator)
 				var/i = alert("Warning: Once you launch the shuttle you will not be able to bring it back. Confirm anyways?", "WARNING", "Yes", "No")
 				if(shuttle.moving_status != SHUTTLE_IDLE || shuttle.locked || shuttle.location != 1 || !shuttle.alerts_allowed || !shuttle.queen_locked || shuttle.recharging) return
-				if(istype(shuttle, /datum/shuttle/ferry/marine) && src.z == 1 && i == "Yes") //Shit's about to kick off now
+				if(istype(shuttle, /datum/shuttle/ferry/marine) && is_ground_level(z) && i == "Yes") //Shit's about to kick off now
 					var/datum/shuttle/ferry/marine/shuttle1 = shuttle
 					shuttle1.transit_gun_mission = 0
 					shuttle1.launch_crash()
@@ -172,6 +172,7 @@
 					var/mob/living/carbon/Xenomorph/Queen/Q = usr // typechecked above
 					xeno_message("<span class='xenoannounce'>The Queen has commanded the metal bird to depart for the metal hive in the sky! Rejoice!</span>",3,Q.hivenumber)
 					playsound(src, 'sound/misc/queen_alarm.ogg')
+					SSevacuation.flags_scuttle &= ~FLAGS_SDEVAC_TIMELOCK
 				else if(i == "No")
 					return
 				else
@@ -181,7 +182,7 @@
 				to_chat(usr, "<span class='alert'>Hrm, that didn't work. Maybe try the one on the ship?</span>")
 				return
 			else
-				if(z == 1)
+				if(is_ground_level(z))
 					shuttle.transit_gun_mission = FALSE //remote launch always do transport flight.
 				shuttle.launch(src)
 			log_admin("[key_name(usr)] launched a [shuttle.iselevator ? "elevator" : "shuttle"] from [src].")
@@ -205,7 +206,7 @@
 		if(shuttle.locked)
 			return
 		if(shuttle.transit_gun_mission == TRUE)
-			to_chat(M, "<span class='notice'>You reset the flight plan to a transport mission between the [MAIN_SHIP_NAME] and the planet.</span>")
+			to_chat(M, "<span class='notice'>You reset the flight plan to a transport mission between the [CONFIG_GET(string/ship_name)] and the planet.</span>")
 			shuttle.transit_gun_mission = FALSE
 		else
 			if(M.mind && M.mind.cm_skills && M.mind.cm_skills.pilot < SKILL_PILOT_TRAINED) //everyone can activate the fire mission mode while fumbling, but everyone can reset it back to transport without.
@@ -218,11 +219,11 @@
 			shuttle.transit_gun_mission = TRUE
 
 	if(href_list["lockdown"])
-		if(shuttle.door_override || z == 3)
+		if(shuttle.door_override || is_mainship_level(z))
 			return // its been locked down by the queen
 
 		var/ship_id = "sh_dropship1"
-		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+		if(shuttle_tag == "[CONFIG_GET(string/ship_name)] Dropship 2")
 			ship_id = "sh_dropship2"
 
 		for(var/obj/machinery/door/airlock/dropship_hatch/M in GLOB.machines)
@@ -261,12 +262,12 @@
 
 	if(href_list["release"])
 		var/ship_id = "sh_dropship1"
-		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+		if(shuttle_tag == "[CONFIG_GET(string/ship_name)] Dropship 2")
 			ship_id = "sh_dropship2"
 
 		for(var/obj/machinery/door/airlock/dropship_hatch/M in GLOB.machines)
 			if(M.id == ship_id)
-				if(M.z != 4)
+				if(!is_low_orbit_level(M.z))
 					M.unlock()
 
 		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
@@ -277,15 +278,15 @@
 			if("sh_dropship2")
 				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in GLOB.machines)
 					reardoor = D
-		if(reardoor.z != 4)
+		if(!is_low_orbit_level(reardoor.z))
 			reardoor.unlock()
 
 	if(href_list["side door"])
-		if(shuttle.door_override || z == 3)
+		if(shuttle.door_override || is_mainship_level(z))
 			return // its been locked down by the queen
 
 		var/ship_id = "sh_dropship1"
-		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+		if(shuttle_tag == "[CONFIG_GET(string/ship_name)] Dropship 2")
 			ship_id = "sh_dropship2"
 
 		for(var/obj/machinery/door/airlock/dropship_hatch/M in GLOB.machines)
@@ -306,11 +307,11 @@
 					to_chat(usr, "<span class='warning'>You hear a [sidename] door lock.</span>")
 
 	if(href_list["rear door"])
-		if(shuttle.door_override || z == 3)
+		if(shuttle.door_override || is_mainship_level(z))
 			return // its been locked down by the queen
 
 		var/ship_id = "sh_dropship1"
-		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+		if(shuttle_tag == "[CONFIG_GET(string/ship_name)] Dropship 2")
 			ship_id = "sh_dropship2"
 		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
 		switch(ship_id)
@@ -378,9 +379,9 @@
 	exproof = 1
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 
-/obj/machinery/computer/shuttle_control/dropship1/New()
-	..()
-	shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
+/obj/machinery/computer/shuttle_control/dropship1/Initialize()
+	. = ..()
+	shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/machinery/computer/shuttle_control/dropship1/onboard
 	name = "\improper 'Alamo' flight controls"
@@ -399,9 +400,9 @@
 	exproof = 1
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
 
-/obj/machinery/computer/shuttle_control/dropship2/New()
-	..()
-	shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
+/obj/machinery/computer/shuttle_control/dropship2/Initialize()
+	. = ..()
+	shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 
 /obj/machinery/computer/shuttle_control/dropship2/onboard
 	name = "\improper 'Normandy' flight controls"

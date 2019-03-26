@@ -1,63 +1,78 @@
 /datum/job/mercenaries
-	special_role = "Mercenary"
-	comm_title = "Merc"
-	faction = "Unknown Mercenary Group"
-	idtype = /obj/item/card/id
-	skills_type = /datum/skills/mercenary
+	department_flag = J_FLAG_MERCENARY
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
-	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
+	skills_type = /datum/skills/mercenary
+	faction = "Unknown Mercenary Group"
 
 
 //Mercenary Heavy
 /datum/job/mercenaries/heavy
 	title = "Mercenary Heavy"
 	paygrade = "MRC1"
-	equipment = TRUE
+	flag = MERC_HEAVY
+	outfit = /datum/outfit/job/mercenaries/heavy
 
 
-/datum/job/mercenaries/heavy/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), SLOT_EARS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/mercenary(H), SLOT_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/mercenary(H), SLOT_WEAR_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(H), SLOT_GLOVES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/mercenary(H), SLOT_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), SLOT_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), SLOT_WEAR_MASK)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
+
+/datum/outfit/job/mercenaries/heavy
+	name = "Mercenary Heavy"
+	jobtype = /datum/job/mercenaries/heavy
+
+	id = /obj/item/card/id/silver
+	ears = /obj/item/device/radio/headset/distress/dutch
+	w_uniform = /obj/item/clothing/under/marine/veteran/mercenary
+	shoes = /obj/item/clothing/shoes/veteran/PMC
+	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/mercenary
+	gloves = /obj/item/clothing/gloves/combat
+	head = /obj/item/clothing/head/helmet/marine/veteran/mercenary
+	mask = /obj/item/clothing/mask/gas/PMC
+	back = /obj/item/storage/backpack/satchel/norm
 
 
 //Mercenary Miner
 /datum/job/mercenaries/miner
 	title = "Mercenary Miner"
 	paygrade = "MRC2"
-	equipment = TRUE
+	flag = MERC_MINER
+	outfit = /datum/outfit/job/mercenaries/miner
 
-/datum/job/mercenaries/miner/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), SLOT_EARS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/mercenary/miner(H), SLOT_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/mercenary/miner(H), SLOT_WEAR_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(H), SLOT_GLOVES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/mercenary/miner(H), SLOT_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), SLOT_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), SLOT_WEAR_MASK)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
+
+/datum/outfit/job/mercenaries/miner
+	name = "Mercenary Miner"
+	jobtype = /datum/job/mercenaries/miner
+
+	id = /obj/item/card/id/silver
+	ears = /obj/item/device/radio/headset/distress/dutch
+	w_uniform = /obj/item/clothing/under/marine/veteran/mercenary/miner
+	shoes = /obj/item/clothing/shoes/veteran/PMC
+	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/mercenary/miner
+	gloves = /obj/item/clothing/gloves/combat
+	head = /obj/item/clothing/head/helmet/marine/veteran/mercenary/miner
+	mask = /obj/item/clothing/mask/gas/PMC
+	back = /obj/item/storage/backpack/satchel/norm
 
 
 //Mercenary Engineer
 /datum/job/mercenaries/engineer
 	title = "Mercenary Engineer"
 	paygrade = "MRC3"
-	equipment = TRUE
+	flag = MERC_ENGINEER
+	outfit = /datum/outfit/job/mercenaries/engineer
 
-/datum/job/mercenaries/engineer/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), SLOT_EARS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/mercenary/engineer(H), SLOT_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/mercenary/engineer(H), SLOT_WEAR_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(H), SLOT_GLOVES)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), SLOT_BELT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/mercenary/engineer(H), SLOT_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), SLOT_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), SLOT_WEAR_MASK)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/eng(H), SLOT_BACK)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), SLOT_GLASSES)
+
+/datum/outfit/job/mercenaries/engineer
+	name = "Mercenary Engineer"
+	jobtype = /datum/job/mercenaries/engineer
+
+	id = /obj/item/card/id/silver
+	ears = /obj/item/device/radio/headset/distress/dutch
+	w_uniform = /obj/item/clothing/under/marine/veteran/mercenary/engineer
+	belt = /obj/item/storage/belt/utility/full
+	shoes = /obj/item/clothing/shoes/veteran/PMC
+	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/mercenary/engineer
+	gloves = /obj/item/clothing/gloves/combat
+	head = /obj/item/clothing/head/helmet/marine/veteran/mercenary/engineer
+	glasses = /obj/item/clothing/glasses/welding
+	mask = /obj/item/clothing/mask/gas/PMC
+	back = /obj/item/storage/backpack/satchel/eng

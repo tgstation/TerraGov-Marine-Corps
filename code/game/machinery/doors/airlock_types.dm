@@ -224,16 +224,38 @@
 	icon = 'icons/obj/doors/almayer/secdoor.dmi'
 	req_access_txt = "3"
 
+/obj/machinery/door/airlock/almayer/security/CMA
+	name = "\improper Chief Master at Arms's Bunks"
+
 /obj/machinery/door/airlock/almayer/security/glass
 	name = "\improper Security Airlock"
 	icon = 'icons/obj/doors/almayer/secdoor_glass.dmi'
 	opacity = 0
 	glass = 1
 
+/obj/machinery/door/airlock/almayer/security/glass/CMA
+	name = "\improper Chief Master at Arms's Office"
+
 /obj/machinery/door/airlock/almayer/command
 	name = "\improper Command Airlock"
 	icon = 'icons/obj/doors/almayer/comdoor.dmi'
 	req_access_txt = "19"
+
+/obj/machinery/door/airlock/almayer/command/CPToffice
+	name = "\improper Captain's Office"
+
+/obj/machinery/door/airlock/almayer/command/CPTstudy
+	name = "\improper Captain's Study"
+	req_access = list(ACCESS_MARINE_CAPTAIN)
+
+/obj/machinery/door/airlock/almayer/command/CPTmess
+	name = "\improper Captain's Mess"
+
+/obj/machinery/door/airlock/almayer/command/FCDRoffice
+	name = "\improper Field Commander's Office"
+
+/obj/machinery/door/airlock/almayer/command/FCDRquarters
+	name = "\improper FCDR's Quarters"
 
 /obj/machinery/door/airlock/almayer/secure
 	name = "\improper Secure Airlock"
@@ -253,6 +275,10 @@
 	glass = 1
 	req_access_txt = "0"
 	req_one_access_txt = "2;7"
+
+/obj/machinery/door/airlock/almayer/engineering/CSEoffice
+	name = "\improper Chief Ship Engineer's Office"
+	req_access = list(ACCESS_MARINE_CE)
 
 /obj/machinery/door/airlock/almayer/medical
 	name = "\improper Medical Airlock"
@@ -502,9 +528,10 @@
 	icon = 'icons/obj/doors/almayer/dropship1_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	id = "sh_dropship1"
 	openspeed = 4 //shorter open animation.
-	unacidable = 1
-	no_panel = 1
-	not_weldable = 1
+	unacidable = TRUE
+	no_panel = TRUE
+	not_weldable = TRUE
+	destructible = FALSE
 
 /obj/machinery/door/airlock/dropship_hatch/ex_act(severity)
 	return
@@ -520,9 +547,9 @@
 		..()
 
 /obj/machinery/door/airlock/dropship_hatch/unlock()
-	if(z == 4) // in flight
-	 return
-	..()
+	if(is_low_orbit_level(z)) // in flight
+		return
+	return ..(TRUE)
 
 /obj/machinery/door/airlock/dropship_hatch/two
 	icon = 'icons/obj/doors/almayer/dropship2_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
@@ -533,9 +560,10 @@
 	name = "\improper Cockpit"
 	req_access_txt = "22"
 	req_one_access_txt = "0"
-	unacidable = 1
-	no_panel = 1
-	not_weldable = 1
+	unacidable = TRUE
+	no_panel = TRUE
+	not_weldable = TRUE
+	destructible = FALSE
 
 /obj/machinery/door/airlock/hatch/cockpit/two
 	icon = 'icons/obj/doors/almayer/dropship2_pilot.dmi'
@@ -548,3 +576,53 @@
 
 /obj/machinery/door/airlock/prison/horizontal
 	dir = 2
+
+
+//Colony Mapped Doors
+/obj/machinery/door/airlock/colony
+
+
+/obj/machinery/door/airlock/colony/engineering
+	icon = 'icons/obj/doors/almayer/engidoor.dmi'
+	opacity = FALSE
+	glass = TRUE
+	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
+
+/obj/machinery/door/airlock/colony/engineering/smes
+	name = "\improper Engineering Dome SMES"
+
+/obj/machinery/door/airlock/colony/engineering/nexusstorage
+	name = "\improper Nexus Cargo Storage"
+
+/obj/machinery/door/airlock/colony/engineering/nexusstorage/open
+	icon_state = "door_open"
+	density = FALSE
+
+
+/obj/machinery/door/airlock/colony/medical
+	icon = 'icons/obj/doors/almayer/medidoor_glass.dmi'
+	opacity = FALSE
+	glass = TRUE
+	req_access = list(ACCESS_CIVILIAN_MEDICAL)
+
+/obj/machinery/door/airlock/colony/medical/domestorage
+	name = "\improper Medical Dome Storage"
+
+/obj/machinery/door/airlock/colony/medical/domesurgery
+	name = "\improper Medical Dome Surgery"
+
+/obj/machinery/door/airlock/colony/medical/domelockers
+	name = "\improper Medical Dome Lockers"
+
+/obj/machinery/door/airlock/colony/medical/hydroponics
+	name = "\improper Hydroponics Dome"
+	req_access = list(ACCESS_CIVILIAN_PUBLIC)
+
+
+/obj/machinery/door/airlock/colony/research
+	icon = 'icons/obj/doors/almayer/medidoor.dmi'
+	req_access = list(ACCESS_CIVILIAN_RESEARCH)
+
+/obj/machinery/door/airlock/colony/research/dome
+	name = "\improper Research Dome"
+	locked = TRUE

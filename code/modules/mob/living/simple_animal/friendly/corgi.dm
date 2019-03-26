@@ -63,15 +63,15 @@
 
 				if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
 					if (movement_target.loc.x < src.x)
-						dir = WEST
+						setDir(WEST)
 					else if (movement_target.loc.x > src.x)
-						dir = EAST
+						setDir(EAST)
 					else if (movement_target.loc.y < src.y)
-						dir = SOUTH
+						setDir(SOUTH)
 					else if (movement_target.loc.y > src.y)
-						dir = NORTH
+						setDir(NORTH)
 					else
-						dir = SOUTH
+						setDir(SOUTH)
 
 					if(isturf(movement_target.loc) )
 						movement_target.attack_animal(src)
@@ -83,7 +83,7 @@
 			emote(pick("dances around","chases its tail"))
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
-					dir = i
+					setDir(i)
 					sleep(1)
 
 /obj/item/reagent_container/food/snacks/meat/corgi
@@ -99,7 +99,7 @@
 					M.show_message("<span class='notice'> [user] baps [name] on the nose with the rolled up [O]</span>")
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2))
-					dir = i
+					setDir(i)
 					sleep(1)
 	else
 		..()
@@ -149,6 +149,9 @@
 		return
 	..()
 
+/mob/living/simple_animal/corgi/puppy/mrwiggles
+	name = "\improper Mister Wiggles"
+	desc = "It's a corgi puppy. MISTER WIGGLES!! HE IS THE GREATEST!"
 
 //LISA! SQUEEEEEEEEE~
 /mob/living/simple_animal/corgi/Lisa
@@ -201,5 +204,5 @@
 			emote(pick("dances around","chases her tail"))
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
-					dir = i
+					setDir(i)
 					sleep(1)

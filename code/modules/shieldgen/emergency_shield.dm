@@ -13,7 +13,7 @@
 	var/shield_idle_power = 1500		//how much power we use when just being sustained.
 
 /obj/machinery/shield/New()
-	src.dir = pick(1,2,3,4)
+	setDir(pick(1,2,3,4))
 	..()
 
 /obj/machinery/shield/Destroy()
@@ -175,14 +175,14 @@
 /obj/machinery/shieldgen/power_change()
 	..()
 	if(!active) return
-	if (stat & NOPOWER)
+	if (machine_stat & NOPOWER)
 		collapse_shields()
 	else
 		create_shields()
 	update_icon()
 
 /obj/machinery/shieldgen/process()
-	if (!active || (stat & NOPOWER))
+	if (!active || (machine_stat & NOPOWER))
 		return
 
 	if(malfunction)
@@ -250,14 +250,14 @@
 		return
 
 	if (src.active)
-		user.visible_message("<span class='notice'> [bicon(src)] [user] deactivated the shield generator.</span>", \
-			"<span class='notice'> [bicon(src)] You deactivate the shield generator.</span>", \
+		user.visible_message("<span class='notice'> [icon2html(src, viewers(user))] [user] deactivated the shield generator.</span>", \
+			"<span class='notice'> [icon2html(src, viewers(user))] You deactivate the shield generator.</span>", \
 			"You hear heavy droning fade out.")
 		src.shields_down()
 	else
 		if(anchored)
-			user.visible_message("<span class='notice'> [bicon(src)] [user] activated the shield generator.</span>", \
-				"<span class='notice'> [bicon(src)] You activate the shield generator.</span>", \
+			user.visible_message("<span class='notice'> [icon2html(src, viewers(user))] [user] activated the shield generator.</span>", \
+				"<span class='notice'> [icon2html(src, viewers(user))] You activate the shield generator.</span>", \
 				"You hear heavy droning.")
 			src.shields_up()
 		else
@@ -320,7 +320,7 @@
 
 
 /obj/machinery/shieldgen/update_icon()
-	if(active && !(stat & NOPOWER))
+	if(active && !(machine_stat & NOPOWER))
 		src.icon_state = malfunction ? "shieldonbr":"shieldon"
 	else
 		src.icon_state = malfunction ? "shieldoffbr":"shieldoff"

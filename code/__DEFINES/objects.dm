@@ -37,12 +37,6 @@
 #define MAX_STACK_AMOUNT_GLASS	50
 #define MAX_STACK_AMOUNT_RODS	60
 
-#define GAS_O2 	(1 << 0)
-#define GAS_N2	(1 << 1)
-#define GAS_PL	(1 << 2)
-#define GAS_CO2	(1 << 3)
-#define GAS_N2O	(1 << 4)
-
 var/list/liftable_structures = list(
 	/obj/machinery/autolathe,
 	/obj/machinery/constructable_frame,
@@ -229,3 +223,7 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 // Random item spawns for huntergames
 #define HG_RANDOM_ITEM_CRAP 1
 #define HG_RANDOM_ITEM_GOOD 2
+
+//Lighter
+
+#define LIGHTER_LUMINOSITY	2

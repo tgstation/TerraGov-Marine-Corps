@@ -5,7 +5,6 @@
 //This is so they can be easily transferred between them without copypasta
 
 //All this stuff was written by Absynth.
-//Edited by Apop - 11JUN16
 
 /mob/living/carbon/Xenomorph
 	name = "Drone"
@@ -42,7 +41,7 @@
 
 	set_datum()
 	//WO GAMEMODE
-	if(GLOB.map_tag == MAP_WHISKEY_OUTPOST)
+	if(SSmapping.config.map_name == MAP_WHISKEY_OUTPOST)
 		xeno_caste.hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
 	add_language("Xenomorph") //xenocommon
@@ -74,6 +73,10 @@
 	med_hud_set_health()
 
 	toggle_xeno_mobhud() //This is a verb, but fuck it, it just werks
+
+	update_spits()
+
+	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/proc/set_datum()
 	if(!caste_base_type)
@@ -265,6 +268,9 @@
 
 /mob/living/carbon/Xenomorph/get_eye_protection()
 	return 2
+
+/mob/living/carbon/Xenomorph/need_breathe()
+	return FALSE
 
 /mob/living/carbon/Xenomorph/vomit()
 	return

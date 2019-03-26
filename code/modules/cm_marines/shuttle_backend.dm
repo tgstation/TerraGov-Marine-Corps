@@ -68,10 +68,10 @@ TODO: Create /datum/shuttle/ferry/marine/elevator and depreciate this
 
 */
 
-var/global/list/s_info = null
+GLOBAL_LIST_EMPTY(s_info)
 
-/hook/startup/proc/loadShuttleInfoDatums()
-	s_info = list()
+/proc/loadShuttleInfoDatums()
+	GLOB.s_info = list()
 
 	//This is how we switch from using those damn areas into using relative positions
 	//These hold the RELATIVE positions to the base turf of a shuttle
@@ -128,7 +128,7 @@ x_pos = 0 1 2 3 4 5 6 7 8
 		O O O X X X O O O -- y_pos = 1
 		T O O X X X O O O -- y_pos = 0
 	*/
-	s_info["Dropship 1"] = newlist(
+	GLOB.s_info["Dropship 1"] = newlist(
 		/datum/coords {x_pos = 3; y_pos = 17}, /datum/coords {x_pos = 4; y_pos = 17}, /datum/coords {x_pos = 5; y_pos = 17},
 
 		/datum/coords {x_pos = 3; y_pos = 16}, /datum/coords {x_pos = 4; y_pos = 16}, /datum/coords {x_pos = 5; y_pos = 16},
@@ -182,7 +182,7 @@ x_pos = 0 1 2 3 4 5 6 7 8
 		O X X X X X X X O -- y_pos = 1
 		T O O O O O O O O -- y_pos = 0
 	*/
-	s_info["Dropship 2"] = newlist(
+	GLOB.s_info["Dropship 2"] = newlist(
 		/datum/coords {x_pos = 1; y_pos = 7}, /datum/coords {x_pos = 2; y_pos = 7}, /datum/coords {x_pos = 3; y_pos = 7}, /datum/coords {x_pos = 4; y_pos = 7}, /datum/coords {x_pos = 5; y_pos = 7}, /datum/coords {x_pos = 6; y_pos = 7}, /datum/coords {x_pos = 7; y_pos = 7},
 
 		/datum/coords {x_pos = 1; y_pos = 6}, /datum/coords {x_pos = 2; y_pos = 6}, /datum/coords {x_pos = 3; y_pos = 6}, /datum/coords {x_pos = 4; y_pos = 6}, /datum/coords {x_pos = 5; y_pos = 6}, /datum/coords {x_pos = 6; y_pos = 6}, /datum/coords {x_pos = 7; y_pos = 6},
@@ -210,7 +210,7 @@ x_pos = 0 1 2 3 4 5
 		O X X X X O -- y_pos = 1
 		T O O O O O -- y_pos = 0
 	*/
-	s_info["[MAIN_SHIP_NAME] Evac"] = newlist(
+	GLOB.s_info["[CONFIG_GET(string/ship_name)] Evac"] = newlist(
 		/datum/coords {x_pos = 1; y_pos = 5}, /datum/coords {x_pos = 2; y_pos = 5}, /datum/coords {x_pos = 3; y_pos = 5}, /datum/coords {x_pos = 4; y_pos = 5},
 
 		/datum/coords {x_pos = 1; y_pos = 4}, /datum/coords {x_pos = 2; y_pos = 4}, /datum/coords {x_pos = 3; y_pos = 4}, /datum/coords {x_pos = 4; y_pos = 4},
@@ -233,7 +233,7 @@ x_pos = 0 1 2 3 4 5 6
 		O X X X X X O -- y_pos = 1
 		T O O O O O O -- y_pos = 0
 	*/
-	s_info["Alt [MAIN_SHIP_NAME] Evac"] = newlist(
+	GLOB.s_info["Alt [CONFIG_GET(string/ship_name)] Evac"] = newlist(
 		/datum/coords {x_pos = 1; y_pos = 4}, /datum/coords {x_pos = 2; y_pos = 4}, /datum/coords {x_pos = 3; y_pos = 4}, /datum/coords {x_pos = 4; y_pos = 4}, /datum/coords {x_pos = 5; y_pos = 4},
 
 		/datum/coords {x_pos = 1; y_pos = 3}, /datum/coords {x_pos = 2; y_pos = 3}, /datum/coords {x_pos = 3; y_pos = 3}, /datum/coords {x_pos = 4; y_pos = 3}, /datum/coords {x_pos = 5; y_pos = 3},
@@ -245,7 +245,7 @@ x_pos = 0 1 2 3 4 5 6
 
 	//TGS Theseus Dropship
 
-	s_info["[MAIN_SHIP_NAME] Dropship"] = newlist(
+	GLOB.s_info["[CONFIG_GET(string/ship_name)] Dropship"] = newlist(
 
 	/datum/coords{x_pos=3;y_pos=20}, /datum/coords{x_pos=4;y_pos=20}, /datum/coords{x_pos=5;y_pos=20}, /datum/coords{x_pos=6;y_pos=20}, /datum/coords{x_pos=7;y_pos=20},
 
@@ -299,7 +299,7 @@ x_pos = 0 1 2 3 4 5 6
 	icon_state = "spawn_shuttle"
 	var/rotation = 0 //When loading to this landmark, how much to rotate the turfs. See /proc/rotate_shuttle_turfs()
 
-/obj/effect/landmark/shuttle_loc/New() // unfortunately these need to be New() because of init order
+/obj/effect/landmark/shuttle_loc/Initialize()
 	. = ..()
 	GLOB.shuttle_locations += src
 
@@ -321,11 +321,10 @@ x_pos = 0 1 2 3 4 5 6
 
 #define SHUTTLE_LINK_LOCATIONS(T, L) \
 ..(); \
-var/datum/shuttle/ferry/marine/S = shuttle_controller.shuttles["[MAIN_SHIP_NAME] [T] [name]"]; \
-if(!S) {log_runtime("ERROR CODE SO1: unable to find shuttle with the tag of: ["[MAIN_SHIP_NAME] [T] [name]"]."); \
+var/datum/shuttle/ferry/marine/S = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] [T] [name]"]; \
+if(!S) {log_runtime("ERROR CODE SO1: unable to find shuttle with the tag of: ["[CONFIG_GET(string/ship_name)] [T] [name]"]."); \
 return FALSE}; \
-L[get_turf(src)] = rotation; \
-qdel(src)
+L[get_turf(src)] = rotation
 
 /obj/effect/landmark/shuttle_loc/marine_src/dropship //Name these "1" or "2", etc.
 
@@ -336,13 +335,12 @@ qdel(src)
 
 /obj/effect/landmark/shuttle_loc/marine_src/evacuation/link_location()
 	..()
-	var/datum/shuttle/ferry/marine/evacuation_pod/S = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Evac [name]"]
+	var/datum/shuttle/ferry/marine/evacuation_pod/S = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] Evac [name]"]
 	if(!S)
-		log_runtime("ERROR CODE SO1: unable to find shuttle with the tag of: ["[MAIN_SHIP_NAME] Evac [name]"].")
+		log_runtime("ERROR CODE SO1: unable to find shuttle with the tag of: ["[CONFIG_GET(string/ship_name)] Evac [name]"].")
 		return FALSE
 	S.locs_dock[get_turf(src)] = rotation
 	S.link_support_units(get_turf(src)) //Process links.
-	qdel(src)
 
 /obj/effect/landmark/shuttle_loc/marine_int/dropship
 
@@ -364,7 +362,6 @@ qdel(src)
 /obj/effect/landmark/shuttle_loc/marine_crs/dropship/link_location()
 	..()
 	shuttle_controller.locs_crash[get_turf(src)] = rotation
-	qdel(src)
 
 #undef SHUTTLE_LINK_LOCATIONS
 
@@ -454,7 +451,7 @@ qdel(src)
 		var/old_icon = T.icon
 
 		target.ChangeTurf(T.type)
-		target.dir = old_dir
+		target.setDir(old_dir)
 		target.icon_state = old_icon_state
 		target.icon = old_icon
 

@@ -471,9 +471,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	user.set_interaction(src)
 
-	if(active_uplink_check(user))
-		return
-
 	ui_interact(user) //NanoUI requires this proc
 	return
 
@@ -632,12 +629,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			var/t = input(U, "Please enter new ringtone", name, ttone) as text
 			if (in_range(src, U) && loc == U)
 				if (t)
-					if(src.hidden_uplink && hidden_uplink.check_trigger(U, lowertext(t), lowertext(lock_code)))
-						to_chat(U, "The PDA softly beeps.")
-						ui.close()
-					else
-						t = copytext(sanitize(t), 1, 20)
-						ttone = t
+					t = copytext(sanitize(t), 1, 20)
+					ttone = t
 			else
 				ui.close()
 				return 0
@@ -710,7 +703,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 							difficulty += P.cartridge.access_engine
 							difficulty += P.cartridge.access_clown
 							difficulty += P.cartridge.access_janitor
-							difficulty += 3 * P.hidden_uplink
 
 						if(prob(difficulty))
 							U.show_message("<span class='warning'> An error flashes on your [src].</span>", 1)
@@ -901,14 +893,14 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if (!P.silent)
 			playsound(P.loc, 'sound/machines/twobeep.ogg', 25, 1)
 		for (var/mob/O in hearers(3, P.loc))
-			if(!P.silent) O.show_message(text("[bicon(P)] *[P.ttone]*"))
+			if(!P.silent) O.show_message(text("[icon2html(P, O)] *[P.ttone]*"))
 		//Search for holder of the PDA.
 		var/mob/living/L = null
 		if(P.loc && isliving(P.loc))
 			L = P.loc
 
 		if(L)
-			to_chat(L, "[bicon(P)] <b>Message from [src.owner] ([ownjob]), </b>\"[t]\" (<a href='byond://?src=\ref[P];choice=Message;notap=[issilicon(L)];skiprefresh=1;target=\ref[src]'>Reply</a>)")
+			to_chat(L, "[icon2html(P, L)] <b>Message from [src.owner] ([ownjob]), </b>\"[t]\" (<a href='byond://?src=\ref[P];choice=Message;notap=[issilicon(L)];skiprefresh=1;target=\ref[src]'>Reply</a>)")
 			nanomanager.update_user_uis(L, P) // Update the receiving user's PDA UI so that they can see the new message
 
 		nanomanager.update_user_uis(U, P) // Update the sending user's PDA UI so that they can see the new message
@@ -1095,15 +1087,15 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 		if(5)
 
-			if(istype(A, /obj/item/tank) || istype(A, /obj/machinery/portable_atmospherics) || istype(A, /obj/machinery/atmospherics/pipe/tank))
+			if(istype(A, /obj/item/tank) || istype(A, /obj/machinery/portable_atmospherics) || istype(A, /obj/machinery/atmospherics/components/unary/tank))
 				var/obj/icon = A
 				for (var/mob/O in viewers(user, null))
-					to_chat(O, "<span class='warning'>[user] has used [src] on [bicon(icon)] [A]</span>")
+					to_chat(O, "<span class='warning'>[user] has used [src] on [icon2html(icon, O)] [A]</span>")
 				var/pressure = A.return_pressure()
 				var/temperature = A.return_temperature()
 				var/gas = A.return_gas()
 
-				to_chat(user, "<span class='notice'>Results of analysis of [bicon(icon)]</span>")
+				to_chat(user, "<span class='notice'>Results of analysis of [icon2html(icon, user)]</span>")
 				if (pressure>0)
 					to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
 					to_chat(user, "<span class='notice'>Gas Type: [gas]</span>")

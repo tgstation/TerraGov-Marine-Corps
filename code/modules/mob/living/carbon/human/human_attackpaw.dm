@@ -1,6 +1,6 @@
 /mob/living/carbon/human/attack_paw(mob/living/M)
 	..()
-	if (M.a_intent == "help")
+	if (M.a_intent == INTENT_HELP)
 		help_shake_act(M)
 	else
 		if (istype(wear_mask, /obj/item/clothing/mask/muzzle))

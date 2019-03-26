@@ -16,7 +16,7 @@
 	// *** Melee Attacks *** //
 	var/melee_damage_lower = 10
 	var/melee_damage_upper = 20
-	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
+	var/attack_delay = CLICK_CD_MELEE
 
 	var/savage_cooldown = 30 SECONDS
 
@@ -52,7 +52,7 @@
 	var/deevolves_to // type path to the caste to deevolve to
 
 	// *** Flags *** //
-	var/caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_QUEEN_HEALED
+	var/caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
 
 	var/can_hold_eggs = CANNOT_HOLD_EGGS
 
@@ -214,6 +214,9 @@
 	//Praetorian vars
 	var/used_acid_spray = 0
 
+	//Runner vars
+	var/hit_and_run = 0 //If we have a value here, we get bonus damage in proportion to movement.
+
 	//Leader vars
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
 	var/leader_current_aura = "" //Pheromone type inherited from Queen
@@ -237,6 +240,8 @@
 	var/cresttoss_used = FALSE
 
 	var/wound_type = "ravager" //used to match appropriate wound overlays
+
+	var/fire_luminosity = 0 //Luminosity of the current fire while burning
 
 /datum/hive_status
 	var/name = "Normal"

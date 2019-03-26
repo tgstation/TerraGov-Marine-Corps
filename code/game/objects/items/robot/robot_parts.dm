@@ -97,7 +97,6 @@
 	if(src.l_arm && src.r_arm)
 		if(src.l_leg && src.r_leg)
 			if(src.chest && src.head)
-				feedback_inc("cyborg_frames_built",1)
 				return 1
 	return 0
 
@@ -171,10 +170,6 @@
 				to_chat(user, "<span class='warning'>Sticking a dead [W] into the frame would sort of defeat the purpose.</span>")
 				return
 
-			if(jobban_isbanned(M.brainmob, "Cyborg"))
-				to_chat(user, "<span class='warning'>This [W] does not seem to fit.</span>")
-				return
-
 			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(get_turf(loc), unfinished = 1)
 			if(!O)	return
 
@@ -186,9 +181,6 @@
 			O.updatename("Default")
 
 			M.brainmob.mind.transfer_to(O)
-
-			if(O.mind && O.mind.special_role)
-				O.mind.store_memory("In case you look at this after being borged, the objectives are only here until I find a way to make them not show up for you, as I can't simply delete them without screwing up round-end reporting. --NeoFite")
 
 			O.job = "Cyborg"
 
@@ -202,7 +194,6 @@
 				cell_component.wrapped = O.cell
 				cell_component.installed = 1
 
-			feedback_inc("cyborg_birth",1)
 			callHook("borgify", list(O))
 			O.Namepick()
 

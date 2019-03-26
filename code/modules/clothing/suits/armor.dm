@@ -4,8 +4,8 @@
 	flags_armor_protection = CHEST|GROIN
 	flags_cold_protection = CHEST|GROIN
 	flags_heat_protection = CHEST|GROIN
-	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
-	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
+	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 	w_class = 5
 	allowed = list(/obj/item/weapon/gun)//Guns only.
@@ -143,7 +143,7 @@
 	flags_inventory = BLOCKSHARPOBJ|NOPRESSUREDMAGE
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 
 
@@ -224,7 +224,7 @@
 	flags_inventory = NOFLAGS
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/armor/heavy
@@ -292,7 +292,7 @@
 		if(istype(usr.get_active_held_item(),/obj) && istype(usr.get_inactive_held_item(),/obj))
 			to_chat(usr, "<span class='warning'>You need an empty hand to draw the gun!</span>")
 		else
-			if(usr.a_intent == "hurt")
+			if(usr.a_intent == INTENT_HARM)
 				usr.visible_message("<span class='warning'> \The [usr] draws \the [holstered], ready to shoot!</span>", \
 				"<span class='warning'> You draw \the [holstered], ready to shoot!</span>")
 			else
@@ -309,7 +309,7 @@
 	item_state = "armor"
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 20, bio = 0, rad = 0)
 
-//Commander
+//Captain
 /obj/item/clothing/suit/armor/vest/ert/command
 	name = "emergency response team commander armor"
 	desc = "A set of armor worn by the commander of a NanoTrasen Emergency Response Team. Has blue highlights."

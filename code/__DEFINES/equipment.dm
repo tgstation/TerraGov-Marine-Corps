@@ -1,48 +1,43 @@
-//FLAGS BITMASK
-
-
-//turf-only flags
-#define NOJAUNT		1
-
 //PASS FLAGS
-#define PASSTABLE	1
-#define PASSGLASS	2
-#define PASSGRILLE	4
-#define PASSBLOB	8
-#define PASSMOB		16
+#define PASSTABLE	(1<<0)
+#define PASSGLASS	(1<<1)
+#define PASSGRILLE	(1<<2)
+#define PASSBLOB	(1<<3)
+#define PASSMOB		(1<<4)
 
 //FLAGS
-#define NOFLAGS					0		//Nothing.
+#define NOFLAGS		0		//Nothing.
 
 //==========================================================================================
 
 //flags_atom
 
-#define NOINTERACT				1		// You can't interact with it, at all. Useful when doing certain animations.
-#define CONDUCT					2		// conducts electricity (metal etc.)
-#define ON_BORDER				4		// 'border object'. item has priority to check when entering or leaving
-#define NOBLOODY				8		// Don't want a blood overlay on this one.
-#define DIRLOCK					16		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
-#define RELAY_CLICK				32		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
-#define INITIALIZED				64  	//Whether /atom/Initialize() has already run for the object
+#define NOINTERACT				(1<<0)		// You can't interact with it, at all. Useful when doing certain animations.
+#define CONDUCT					(1<<1)		// conducts electricity (metal etc.)
+#define ON_BORDER				(1<<2)		// 'border object'. item has priority to check when entering or leaving
+#define NOBLOODY				(1<<3)		// Don't want a blood overlay on this one.
+#define DIRLOCK					(1<<4)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
+#define INITIALIZED				(1<<5)  	//Whether /atom/Initialize() has already run for the object
+#define NODECONSTRUCT			(1<<6)
+#define OVERLAY_QUEUED			(1<<7)
+
 //==========================================================================================
 
 //flags_barrier
-
 #define HANDLE_BARRIER_CHANCE 1
 #define HANDLE_BARRIER_BLOCK 2
 
-//flags_item
+
 //bitflags that were previously under flags_atom, these only apply to items.
 //clothing specific stuff uses flags_inventory.
-
-#define NODROP					1	// Cannot be dropped/unequipped at all, only deleted.
-#define NOBLUDGEON  			2	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define NOSHIELD				4	// weapon not affected by shield (does nothing currently)
-#define DELONDROP				8	// Deletes on drop instead of falling on the floor.
-#define TWOHANDED				16	// The item is twohanded.
-#define WIELDED					32	// The item is wielded with both hands.
-#define	ITEM_ABSTRACT			64	//The item is abstract (grab, powerloader_clamp, etc)
+//flags_item
+#define NODROP					(1<<0)	// Cannot be dropped/unequipped at all, only deleted.
+#define NOBLUDGEON  			(1<<1)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+#define NOSHIELD				(1<<2)	// weapon not affected by shield (does nothing currently)
+#define DELONDROP				(1<<3)	// Deletes on drop instead of falling on the floor.
+#define TWOHANDED				(1<<4)	// The item is twohanded.
+#define WIELDED					(1<<5)	// The item is wielded with both hands.
+#define	ITEM_ABSTRACT			(1<<6)	//The item is abstract (grab, powerloader_clamp, etc)
 
 //==========================================================================================
 
@@ -87,27 +82,31 @@
 //SUITS AND HELMETS====================================================================================
 
 
-
+//Inventory depth: limits how many nested storage items you can access directly.
+//1: stuff in mob, 2: stuff in backpack, 3: stuff in box in backpack, etc
+#define INVENTORY_DEPTH		4
+#define STORAGE_VIEW_DEPTH	3
 
 
 //===========================================================================================
 //Marine armor only, use for flags_marine_armor.
-#define ARMOR_SQUAD_OVERLAY		1
-#define ARMOR_LAMP_OVERLAY		2
-#define ARMOR_LAMP_ON			4
-#define ARMOR_IS_REINFORCED		8
+#define ARMOR_SQUAD_OVERLAY		(1<<0)
+#define ARMOR_LAMP_OVERLAY		(1<<1)
+#define ARMOR_LAMP_ON			(1<<2)
+#define ARMOR_IS_REINFORCED		(1<<3)
 //===========================================================================================
 
 //===========================================================================================
 //Marine helmet only, use for flags_marine_helmet.
-#define HELMET_SQUAD_OVERLAY	1
-#define HELMET_GARB_OVERLAY		2
-#define HELMET_DAMAGE_OVERLAY	4
-#define HELMET_STORE_GARB		8
-#define HELMET_IS_DAMAGED		16
+#define HELMET_SQUAD_OVERLAY	(1<<0)
+#define HELMET_GARB_OVERLAY		(1<<1)
+#define HELMET_DAMAGE_OVERLAY	(1<<2)
+#define HELMET_STORE_GARB		(1<<3)
+#define HELMET_IS_DAMAGED		(1<<4)
 //===========================================================================================
 
 //ITEM INVENTORY SLOT BITMASKS
+//flags_equip_slot
 #define ITEM_SLOT_OCLOTHING 	(1<<0)
 #define ITEM_SLOT_ICLOTHING 	(1<<1)
 #define ITEM_SLOT_GLOVES 		(1<<2)
@@ -156,6 +155,8 @@
 #define SLOT_IN_STORAGE		28
 #define SLOT_IN_L_POUCH		29
 #define SLOT_IN_R_POUCH		30
+#define SLOT_IN_HEAD		31
+#define SLOT_IN_BELT		32
 //=================================================
 
 //I hate that this has to exist
@@ -191,11 +192,12 @@
 
 //=================================================
 // bitflags for clothing parts
+//thermal_protection_flags
 #define HEAD			(1<<0)
 #define FACE			(1<<1)
 #define EYES			(1<<2)
-#define CHEST		(1<<3)
-#define GROIN		(1<<4)
+#define CHEST			(1<<3)
+#define GROIN			(1<<4)
 #define LEG_LEFT		(1<<5)
 #define LEG_RIGHT		(1<<6)
 #define LEGS			(LEG_RIGHT|LEG_LEFT)
@@ -232,20 +234,75 @@
 //=================================================
 
 //=================================================
-#define SPACE_HELMET_min_cold_protection_temperature 	2.0 //what min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.
-#define SPACE_SUIT_min_cold_protection_temperature 		2.0 //what min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.
-#define SPACE_SUIT_max_heat_protection_temperature 		5000	//These need better heat protect, but not as good heat protect as firesuits.
-#define FIRESUIT_max_heat_protection_temperature 		30000 //what max_heat_protection_temperature is set to for firesuit quality headwear. MUST NOT BE 0.
-#define FIRE_HELMET_max_heat_protection_temperature 	30000 //for fire helmet quality items (red and white hardhats)
-#define HELMET_min_cold_protection_temperature 			200	//For normal helmets
-#define HELMET_max_heat_protection_temperature 			600	//For normal helmets
-#define ARMOR_min_cold_protection_temperature 			200	//For armor
-#define ARMOR_max_heat_protection_temperature 			600	//For armor
+#define SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE 	2.0 //what min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.
+#define SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE 		2.0 //what min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.
+#define SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE 		5000	//These need better heat protect, but not as good heat protect as firesuits.
+#define FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE 		30000 //what max_heat_protection_temperature is set to for firesuit quality headwear. MUST NOT BE 0.
+#define FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 	30000 //for fire helmet quality items (red and white hardhats)
+#define HELMET_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For normal helmets
+#define HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For normal helmets
+#define ARMOR_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For armor
+#define ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For armor
 
-#define GLOVES_min_cold_protection_temperature 			200	//For some gloves (black and)
-#define GLOVES_max_heat_protection_temperature 			650	//For some gloves
-#define SHOE_min_cold_protection_temperature 			200	//For gloves
-#define SHOE_max_heat_protection_temperature 			650	//For gloves
+#define GLOVES_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For some gloves (black and)
+#define GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE 			650	//For some gloves
+#define SHOE_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For gloves
+#define SHOE_MAX_HEAT_PROTECTION_TEMPERATURE 			650	//For gloves
 
-#define ICE_PLANET_min_cold_protection_temperature 		200 //For the ice planet map protection from the elements.
+#define ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE 		200 //For the ice planet map protection from the elements.
 //=================================================
+
+//ITEM INVENTORY WEIGHT, FOR w_class
+#define WEIGHT_CLASS_TINY     1 //Usually items smaller then a human hand, ex: Playing Cards, Lighter, Scalpel, Coins/Money
+#define WEIGHT_CLASS_SMALL    2 //Pockets can hold small and tiny items, ex: Flashlight, Multitool, Grenades, GPS Device
+#define WEIGHT_CLASS_NORMAL   3 //Standard backpacks can carry tiny, small & normal items, ex: Fire extinguisher, Stunbaton, Gas Mask, Metal Sheets
+#define WEIGHT_CLASS_BULKY    4 //Items that can be weilded or equipped but not stored in an inventory, ex: Defibrillator, Backpack, Space Suits
+#define WEIGHT_CLASS_HUGE     5 //Usually represents objects that require two hands to operate, ex: Shotgun, Two Handed Melee Weapons
+#define WEIGHT_CLASS_GIGANTIC 6 //Essentially means it cannot be picked up or placed in an inventory, ex: Mech Parts, Safe
+
+#define SLOT_EQUIP_ORDER list(\
+	SLOT_IN_HOLSTER,\
+	SLOT_IN_S_HOLSTER,\
+	SLOT_IN_B_HOLSTER,\
+	SLOT_BACK,\
+	SLOT_WEAR_ID,\
+	SLOT_GLASSES,\
+	SLOT_IN_HEAD,\
+	SLOT_W_UNIFORM,\
+	SLOT_ACCESSORY,\
+	SLOT_WEAR_SUIT,\
+	SLOT_WEAR_MASK,\
+	SLOT_HEAD,\
+	SLOT_SHOES,\
+	SLOT_GLOVES,\
+	SLOT_EARS,\
+	SLOT_BELT,\
+	SLOT_S_STORE,\
+	SLOT_L_STORE,\
+	SLOT_R_STORE,\
+	SLOT_IN_BOOT,\
+	SLOT_IN_STORAGE,\
+	SLOT_IN_L_POUCH,\
+	SLOT_IN_R_POUCH,\
+	SLOT_IN_ACCESSORY,\
+	SLOT_IN_SUIT,\
+	SLOT_IN_BACKPACK,\
+	SLOT_IN_BELT\
+	)
+
+#define SLOT_DRAW_ORDER list(\
+	SLOT_IN_HOLSTER,\
+	SLOT_IN_S_HOLSTER,\
+	SLOT_IN_B_HOLSTER,\
+	SLOT_BACK,\
+	SLOT_BELT,\
+	SLOT_S_STORE,\
+	SLOT_L_STORE,\
+	SLOT_R_STORE,\
+	SLOT_IN_BOOT,\
+	SLOT_WEAR_SUIT,\
+	SLOT_IN_ACCESSORY,\
+	SLOT_IN_STORAGE,\
+	SLOT_IN_BELT,\
+	SLOT_IN_HEAD\
+	)

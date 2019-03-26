@@ -43,7 +43,7 @@
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "wall"
 
-	var/health = 50.0
+	health = 50.0
 	var/deflated = FALSE
 
 
@@ -94,6 +94,9 @@
 	if(M.melee_damage_upper <= 0) return
 	attack_generic(M, M.melee_damage_upper)
 
+/obj/structure/inflatable/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
+	deflate(1)
 
 /obj/structure/inflatable/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W)) return

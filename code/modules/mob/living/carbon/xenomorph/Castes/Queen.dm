@@ -46,10 +46,6 @@
 	// *** Queen Abilities *** //
 	queen_leader_limit = 1 //Amount of leaders allowed
 
-/datum/xeno_caste/queen/handle_decay(mob/living/carbon/Xenomorph/X)
-	if(prob(20+abs(3*upgrade)))
-		X.use_plasma(min(rand(1,2), X.plasma_stored))
-
 /datum/xeno_caste/queen/mature
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 
@@ -80,7 +76,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade1, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 3
@@ -118,7 +114,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade3, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 4
@@ -156,13 +152,17 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade3, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 5
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 4
+
+/mob/living/carbon/Xenomorph/Queen/handle_decay()
+	if(prob(20+abs(3*upgrade)))
+		use_plasma(min(rand(1,2), plasma_stored))
 
 /proc/update_living_queens() // needed to update when you change a queen to a different hive
 	outer_loop:
@@ -245,7 +245,7 @@
 
 /mob/living/carbon/Xenomorph/Queen/Initialize()
 	. = ..()
-	if(z != ADMIN_Z_LEVEL)//so admins can safely spawn Queens in Thunderdome for tests.
+	if(!is_centcom_level(z))//so admins can safely spawn Queens in Thunderdome for tests.
 		if(hivenumber && hivenumber <= hive_datum.len)
 			var/datum/hive_status/hive = hive_datum[hivenumber]
 			if(!hive.living_xeno_queen)
@@ -284,17 +284,17 @@
 						var/obj/item/xeno_egg/newegg = new /obj/item/xeno_egg(loc)
 						newegg.hivenumber = hivenumber
 
-			if(hivenumber == XENO_HIVE_NORMAL && loc.z == 1)
-				if(ticker.mode.stored_larva)
+			if(hivenumber == XENO_HIVE_NORMAL && is_ground_level(loc.z))
+				if(SSticker.mode.stored_larva)
 					if((last_larva_time + 600) < world.time) // every minute
 						last_larva_time = world.time
-						var/list/players_with_xeno_pref = get_alien_candidates()
-						if(players_with_xeno_pref.len)
+						var/picked = get_alien_candidate()
+						if(picked)
 							var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
 							new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 							"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
 							new_xeno << sound('sound/effects/xeno_newlarva.ogg')
-							new_xeno.key = pick(players_with_xeno_pref)
+							new_xeno.key = picked
 
 							if(new_xeno.client)
 								new_xeno.client.change_view(world.view)
@@ -302,7 +302,7 @@
 							to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
 							new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 
-							ticker.mode.stored_larva--
+							SSticker.mode.stored_larva--
 
 				var/searchx
 				var/searchy
@@ -313,7 +313,7 @@
 						for(var/mob/living/carbon/Xenomorph/Larva/L in searchspot)
 							if(!L.ckey || !L.client) // no one home
 								visible_message("<span class='xenodanger'>[L] quickly burrows into the ground.</span>")
-								ticker.mode.stored_larva++
+								SSticker.mode.stored_larva++
 								round_statistics.total_xenos_created-- // keep stats sane
 								qdel(L)
 
@@ -342,17 +342,6 @@
 
 	lastturf = null //Reset this so we can properly continue with momentum.
 	return TRUE
-
-//Chance of insta limb amputation after a melee attack.
-/mob/living/carbon/Xenomorph/Queen/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
-	if (prob(20))
-		O = H.get_limb(check_zone(zone_selected))
-		if (O.body_part != CHEST && O.body_part != GROIN && O.body_part != HEAD) //Only limbs.
-			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
-			O.droplimb()
-			return 1
-
-	return 0
 
 /mob/living/carbon/Xenomorph/Queen/proc/set_orders()
 	set category = "Alien"
@@ -402,8 +391,8 @@
 	var/queensWord = "<br><h2 class='alert'>The words of the queen reverberate in your head...</h2>"
 	queensWord += "<br><span class='alert'>[input]</span><br>"
 
-	if(ticker && ticker.mode)
-		for(var/datum/mind/L in ticker.mode.xenomorphs)
+	if(SSticker?.mode)
+		for(var/datum/mind/L in SSticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/X = L.current
 			if(X && X.client && istype(X) && !X.stat && hivenumber == X.hivenumber)
 				X << sound(get_sfx("queen"),wait = 0,volume = 50)
@@ -539,7 +528,7 @@
 
 	if(issynth(victim))
 		var/datum/limb/head/synthhead = victim.get_limb("head")
-		if(synthhead.status & LIMB_DESTROYED)
+		if(synthhead.limb_status & LIMB_DESTROYED)
 			return
 
 	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
@@ -621,7 +610,7 @@
 		for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
 			L.handle_xeno_leader_pheromones(src)
 
-	xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor, evolution progress resumed.</span>", 3, hivenumber)
+	xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor.</span>", 3, hivenumber)
 
 /mob/living/carbon/Xenomorph/Queen/proc/dismount_ovipositor(instant_dismount)
 	set waitfor = 0
@@ -679,7 +668,7 @@
 				L.handle_xeno_leader_pheromones(src)
 
 		if(!instant_dismount)
-			xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor, evolution progress paused.</span>", 3, hivenumber)
+			xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor.</span>", 3, hivenumber)
 
 /mob/living/carbon/Xenomorph/Queen/update_canmove()
 	. = ..()
@@ -740,7 +729,7 @@
 		var/mob/living/carbon/Xenomorph/target = locate(href_list["queentrack"]) in GLOB.alive_xeno_list
 		if(!istype(target))
 			return
-		if(target.stat == DEAD || target.z == ADMIN_Z_LEVEL)
+		if(target.stat == DEAD || is_centcom_level(target.z))
 			return
 		if(target == observed_xeno)
 			set_queen_overwatch(target, TRUE)
@@ -752,7 +741,7 @@
 			return
 		var/xeno_num = text2num(href_list["watch_xeno_number"])
 		for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
-			if(X.z != ADMIN_Z_LEVEL && X.nicknumber == xeno_num)
+			if(!is_centcom_level(X.z) && X.nicknumber == xeno_num)
 				if(observed_xeno == X)
 					set_queen_overwatch(X, TRUE)
 				else

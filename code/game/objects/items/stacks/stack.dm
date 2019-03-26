@@ -168,7 +168,7 @@
 		var/atom/O = new R.result_type(usr.loc)
 		usr.visible_message("<span class='notice'>[usr] assembles \a [O].</span>",
 		"<span class='notice'>You assemble \a [O].</span>")
-		O.dir = usr.dir
+		O.setDir(usr.dir)
 		if(R.max_res_amount > 1)
 			var/obj/item/stack/new_item = O
 			new_item.amount = R.res_amount * multiplier
@@ -195,20 +195,21 @@
 
 /obj/item/stack/proc/use(used)
 	if(used > amount) //If it's larger than what we have, no go.
-		return 0
+		return FALSE
 	amount -= used
 	if(amount <= 0)
 		if(usr && loc == usr)
 			usr.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
-	return 1
+	update_icon()
+	return TRUE
 
 /obj/item/stack/proc/add(var/extra)
 	if(amount + extra > max_amount)
-		return 0
+		return FALSE
 	else
 		amount += extra
-	return 1
+	return TRUE
 
 /obj/item/stack/proc/get_amount()
 	return amount

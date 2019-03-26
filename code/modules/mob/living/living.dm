@@ -175,10 +175,6 @@
 	if(Storage) //If it called itself
 		L += Storage.return_inv()
 
-		//Leave this commented out, it will cause storage items to exponentially add duplicate to the list
-		//for(var/obj/item/storage/S in Storage.return_inv()) //Check for storage items
-		//	L += get_contents(S)
-
 		for(var/obj/item/gift/G in Storage.return_inv()) //Check for gift-wrapped items
 			L += G.gift
 			if(istype(G.gift, /obj/item/storage))
@@ -192,28 +188,29 @@
 
 	else
 
-		L += src.contents
-		for(var/obj/item/storage/S in src.contents)	//Check for storage items
+		L += contents
+		for(var/obj/item/storage/S in contents)	//Check for storage items
 			L += get_contents(S)
 
-		for(var/obj/item/gift/G in src.contents) //Check for gift-wrapped items
+		for(var/obj/item/gift/G in contents) //Check for gift-wrapped items
 			L += G.gift
 			if(istype(G.gift, /obj/item/storage))
 				L += get_contents(G.gift)
 
-		for(var/obj/item/smallDelivery/D in src.contents) //Check for package wrapped items
+		for(var/obj/item/smallDelivery/D in contents) //Check for package wrapped items
 			L += D.wrapped
 			if(istype(D.wrapped, /obj/item/storage)) //this should never happen
 				L += get_contents(D.wrapped)
 		return L
 
-/mob/living/proc/check_contents_for(A)
-	var/list/L = src.get_contents()
 
-	for(var/obj/B in L)
-		if(B.type == A)
-			return 1
-	return 0
+/mob/living/proc/check_contents_for(A)
+	var/list/L = get_contents()
+
+	for(var/obj/O in L)
+		if(O.type == A)
+			return TRUE
+	return FALSE
 
 
 /mob/living/proc/get_limbzone_target()
@@ -319,14 +316,11 @@
 /mob/living/carbon/human/ignore_pull_delay()
 	return isyautjastrict(src) //Predators aren't slowed when pulling their prey.
 
-/mob/living/proc/can_inject()
-	return TRUE
-
 /mob/living/is_injectable(allowmobs = TRUE)
-	return (allowmobs && reagents && can_inject())
+	return (allowmobs && can_inject())
 
 /mob/living/is_drawable(allowmobs = TRUE)
-	return (allowmobs && reagents && can_inject())
+	return (allowmobs && can_inject())
 
 /mob/living/Bump(atom/movable/AM, yes)
 	if(buckled || !yes || now_pushing)
@@ -388,10 +382,10 @@
 		if(!L.buckled && !L.anchored)
 			var/mob_swap
 			//the puller can always swap with its victim if on grab intent
-			if(L.pulledby == src && a_intent == "grab")
+			if(L.pulledby == src && a_intent == INTENT_GRAB)
 				mob_swap = 1
 			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-			else if((L.is_mob_restrained() || L.a_intent == "help") && (is_mob_restrained() || a_intent == "help"))
+			else if((L.is_mob_restrained() || L.a_intent == INTENT_HELP) && (is_mob_restrained() || a_intent == INTENT_HELP))
 				mob_swap = 1
 			if(mob_swap)
 				//switch our position with L
@@ -445,10 +439,10 @@
 	if(!target || !src)	return 0
 	if(pulling) stop_pulling() //being thrown breaks pulls.
 	if(pulledby) pulledby.stop_pulling()
-	frozen = TRUE //can't move while being thrown
+	set_frozen(TRUE) //can't move while being thrown
 	update_canmove()
 	. = ..()
-	frozen = FALSE
+	set_frozen(FALSE)
 	update_canmove()
 
 //to make an attack sprite appear on top of the target atom.
@@ -476,6 +470,11 @@
 		attack_icon.icon_state = new_icon
 		attack_icon.pixel_x = new_pix_x
 		attack_icon.pixel_y = new_pix_y
+
+
+/mob/living/proc/offer_mob()
+	for(var/mob/dead/observer/O in GLOB.dead_mob_list)
+		to_chat(O, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] \[<a href='byond://?src=[REF(O)];claim=[REF(src)]'>CLAIM</a>\] \[<a href='byond://?src=[REF(O)];track=[REF(src)]'>FOLLOW</a>\]</span><hr><br>")
 
 
 //used in datum/reagents/reaction() proc
@@ -583,3 +582,20 @@ below 100 is not dizzy
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.update_button_icon()
+
+
+/mob/living/proc/equip_preference_gear(client/C)
+	if(!C?.prefs || !istype(back, /obj/item/storage/backpack))
+		return
+
+	var/datum/preferences/P = C.prefs
+	var/list/gear = P.gear
+
+	if(!length(gear))
+		return
+
+	for(var/i in GLOB.gear_datums)
+		var/datum/gear/G = GLOB.gear_datums[i]
+		if(!G || !gear.Find(i))
+			continue
+		equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)

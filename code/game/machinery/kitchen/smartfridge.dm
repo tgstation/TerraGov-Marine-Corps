@@ -47,7 +47,7 @@
 
 /obj/machinery/smartfridge/power_change()
 	..()
-	if( !(stat & NOPOWER) )
+	if( !(machine_stat & NOPOWER) )
 		src.ispowered = 1
 		if(!isbroken)
 			icon_state = icon_on

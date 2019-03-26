@@ -219,7 +219,7 @@ var/global/list/uneatable = list(
 			var/mob/living/carbon/human/H = A
 			if(H.mind)
 
-				if((H.mind.assigned_role == "Station Engineer") || (H.mind.assigned_role == "Chief Engineer") )
+				if((H.mind.assigned_role == "Station Engineer") || (H.mind.assigned_role == "Chief Ship Engineer") )
 					gain = 100
 
 				if(H.mind.assigned_role == "Clown")
@@ -258,7 +258,7 @@ var/global/list/uneatable = list(
 			for(var/obj/O in T.contents)
 				if(O.level != 1)
 					continue
-				if(O.invisibility == 101)
+				if(O.invisibility == INVISIBILITY_MAXIMUM)
 					src.consume(O)
 		T.ChangeTurf(/turf/open/space)
 		gain = 2

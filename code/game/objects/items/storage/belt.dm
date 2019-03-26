@@ -101,7 +101,7 @@
 	item_state = "medical"
 	storage_slots = 14 //can hold 2 "rows" of very limited medical equipment and ammo.
 	max_w_class = 3
-	max_storage_space = 28
+	max_storage_space = 29
 
 	can_hold = list(
 		"/obj/item/device/healthanalyzer",
@@ -145,6 +145,7 @@
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/device/healthanalyzer(src)
 
 
 /obj/item/storage/belt/combatLifesaver
@@ -491,18 +492,22 @@
 
 
 //There are only two types here that can be inserted, and they are mutually exclusive. We only track the gun.
-/obj/item/storage/belt/gun/can_be_inserted(obj/item/W, stop_messages) //We don't need to stop messages, but it can be left in.
-	if( ..() ) //If the parent did their thing, this should be fine. It pretty much handles all the checks.
-		if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
-			if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
-				if(!stop_messages) to_chat(usr, "<span class='warning'>[src] already holds a gun.</span>")
-				return //Nothing else to do.
-		else //Must be ammo.
-		//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
-			if(( (storage_slots - holds_guns_max) + holds_guns_now) <= contents.len) // We're over capacity, and the space is reserved for a gun.
-				if(!stop_messages) to_chat(usr, "<span class='warning'>[src] can't hold any more magazines.</span>")
-				return
-		return 1
+/obj/item/storage/belt/gun/can_be_inserted(obj/item/W, warning) //We don't need to stop messages, but it can be left in.
+	. = ..()
+	if(!.) //If the parent did their thing, this should be fine. It pretty much handles all the checks.
+		return
+	if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
+		if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
+			if(warning)
+				to_chat(usr, "<span class='warning'>[src] already holds a gun.</span>")
+			return FALSE
+	else //Must be ammo.
+	//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
+		if(((storage_slots - holds_guns_max) + holds_guns_now) <= length(contents)) // We're over capacity, and the space is reserved for a gun.
+			if(warning)
+				to_chat(usr, "<span class='warning'>[src] can't hold any more magazines.</span>")
+			return FALSE
+	return TRUE
 
 /obj/item/storage/belt/gun/m4a3
 	name = "\improper M276 pattern M4A3 holster rig"
@@ -525,13 +530,22 @@
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/commander/New()
+/obj/item/storage/belt/gun/m4a3/captain/New()
 	..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m4a3/custom(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
+	new_gun.on_enter_storage(src)
+
+/obj/item/storage/belt/gun/m4a3/fieldcommander/New()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m1911/custom(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new_gun.on_enter_storage(src)
 
 /obj/item/storage/belt/gun/m4a3/vp70/New()
@@ -554,12 +568,11 @@
 
 /obj/item/storage/belt/gun/m44
 	name = "\improper M276 pattern M44 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders. It faintly smells of hay."
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders."
 	icon_state = "m44_holster"
 	item_state = "m44_holster"
-	max_w_class = 7
 	can_hold = list(
-		"/obj/item/weapon/gun/revolver/m44",
+		"/obj/item/weapon/gun/revolver",
 		"/obj/item/ammo_magazine/revolver"
 		)
 	New()
@@ -577,10 +590,9 @@
 
 /obj/item/storage/belt/gun/mateba
 	name = "\improper M276 pattern Mateba holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders. This one is aging poorly, and seems to be surplus equipment. This one is stamped '3rd 'Dust Raiders' Battalion'."
-	icon_state = "s_cmateba_holster"
-	item_state = "s_cmateba_holster"
-	max_w_class = 7
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders."
+	icon_state = "mateba_holster"
+	item_state = "mateba_holster"
 	can_hold = list(
 		"/obj/item/weapon/gun/revolver/mateba",
 		"/obj/item/ammo_magazine/revolver/mateba"
@@ -596,10 +608,8 @@
 	new_gun.on_enter_storage(src)
 
 /obj/item/storage/belt/gun/mateba/cmateba
-	name = "\improper M276 pattern Mateba holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders. Was included with the mail-in order for the TGMC edition of the Mateba autorevolver in the early 2170s."
-	icon_state = "cmateba_holster"
-	item_state = "cmateba_holster"
+	icon_state = "c_mateba_holster"
+	item_state = "c_mateba_holster"
 	New()
 		..()
 		select_gamemode_skin(type)
@@ -615,8 +625,8 @@
 
 /obj/item/storage/belt/gun/mateba/admiral/New()
 	..()
-	icon_state = "amateba_holster"
-	item_state = "amateba_holster"
+	icon_state = "a_mateba_holster"
+	item_state = "a_mateba_holster"
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/admiral(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)

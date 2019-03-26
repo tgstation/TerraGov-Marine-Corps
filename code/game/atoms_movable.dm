@@ -16,6 +16,8 @@
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 								// and if yes, are we doing the first or second move.
 
+	var/list/mob/dead/observer/followers = list()
+
 //===========================================================================
 /atom/movable/Destroy()
 	for(var/atom/movable/I in contents)
@@ -75,7 +77,8 @@
 	var/old_dir = dir
 
 	. = ..()
-	if(flags_atom & DIRLOCK) dir = old_dir
+	if(flags_atom & DIRLOCK)
+		setDir(old_dir)
 	move_speed = world.time - l_move_time
 	l_move_time = world.time
 	if ((oldloc != loc && oldloc && oldloc.z == z))
@@ -87,7 +90,7 @@
 /atom/movable/Bump(atom/A, yes) //yes arg is to distinguish our calls of this proc from the calls native from byond.
 	if(throwing)
 		throw_impact(A)
-
+	SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A)
 	spawn( 0 )
 		if ((A && yes))
 			A.last_bumped = world.time
@@ -96,6 +99,12 @@
 	..()
 	return
 
+
+//oldloc = old location on atom, inserted when forceMove is called and ONLY when forceMove is called!
+/atom/movable/Crossed(atom/movable/AM, oldloc)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, AM)
+
+
 /atom/movable/proc/Moved(atom/OldLoc,Dir)
 	if(isturf(loc))
 		if(opacity)
@@ -103,7 +112,9 @@
 		else
 			if(light)
 				light.changed()
-	return
+	for(var/_F in followers)
+		var/mob/dead/observer/F = _F
+		F.loc = loc
 
 /atom/movable/proc/forceMove(atom/destination)
 	if(destination)
@@ -152,6 +163,8 @@
 			if(istype(src,/mob/living))
 				var/mob/living/M = src
 				M.turf_collision(T, speed)
+
+	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
 
 //decided whether a movable atom being thrown can pass through the turf it is in.
 /atom/movable/proc/hit_check(var/speed)
@@ -352,7 +365,7 @@
 
 	while (duration > turn_delay)
 		sleep(turn_delay)
-		dir = turn(dir, spin_degree)
+		setDir(turn(dir, spin_degree))
 		duration -= turn_delay
 
 /atom/movable/proc/spin_circle(var/num_circles = 1, var/turn_delay = 1, var/clockwise = 0, var/cardinal_only = 1)
@@ -373,7 +386,7 @@
 
 	for (var/x = 0, x < num_circles, x++)
 		sleep(turn_delay)
-		dir = turn(dir, spin_degree)
+		setDir(turn(dir, spin_degree))
 
 
 //called when a mob tries to breathe while inside us.
@@ -394,3 +407,18 @@
 			return TRUE //Blocked; we can't proceed further.
 
 	return FALSE
+
+
+/atom/movable/proc/update_icon()
+	return
+
+
+/atom/movable/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	. -= "Jump to"
+	.["Follow"] = "?_src_=holder;[HrefToken()];observefollow=[REF(src)]"
+	.["Get"] = "?_src_=vars;[HrefToken()];getatom=[REF(src)]"
+	.["Send"] = "?_src_=vars;[HrefToken()];sendatom=[REF(src)]"
+	.["Delete All Instances"] = "?_src_=vars;[HrefToken()];delall=[REF(src)]"
+	.["Update Icon"] = "?_src_=vars;[HrefToken()];updateicon=[REF(src)]"

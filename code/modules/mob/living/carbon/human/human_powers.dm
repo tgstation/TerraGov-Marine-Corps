@@ -97,11 +97,6 @@
 
 	T.KnockDown(5)
 
-	//Only official cool kids get the grab and no self-prone.
-	if(!(src.mind && src.mind.special_role))
-		src.KnockDown(5)
-		return
-
 	if(T == src || T.anchored)
 		return 0
 
@@ -149,12 +144,10 @@
 	set name = "Commune with creature"
 	set desc = "Send a telepathic message to an unlucky recipient."
 
-	var/list/targets = list()
 	var/target = null
 	var/text = null
 
-	targets += getmobs() //Fill list, prompt user with list
-	target = input("Select a creature!", "Speak to creature", null, null) as null|anything in targets
+	target = input("Select a creature!", "Speak to creature", null, null) as null|anything in GLOB.mob_list
 
 	if(!target) return
 
@@ -164,7 +157,7 @@
 
 	if(!text) return
 
-	var/mob/M = targets[target]
+	var/mob/M = target
 
 	if(isobserver(M) || M.stat == DEAD)
 		to_chat(src, "Not even a [src.species.name] can speak to the dead.")

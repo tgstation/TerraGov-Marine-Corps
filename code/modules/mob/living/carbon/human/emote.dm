@@ -1,9 +1,9 @@
-/mob/living/carbon/human/emote(var/act, var/m_type = EMOTE_VISIBLE, var/message = null, player_caused)
-	var/param = null
+/mob/living/carbon/human/emote(act, m_type = EMOTE_VISIBLE, message, player_caused)
+	var/param
 	var/comm_paygrade = get_paygrade()
 
-	if(findtext(act, "-", 1, null))
-		var/t1 = findtext(act, "-", 1, null)
+	if(findtext(act, "-"))
+		var/t1 = findtext(act, "-")
 		param = copytext(act, t1 + 1, length(act) + 1)
 		act = copytext(act, 1, t1)
 
@@ -23,9 +23,6 @@
 				H = A
 				break
 
-	if(!H || !istype(H))
-		param = null
-
 	if(act != "help") //you can always use the help emote
 		if(stat == DEAD)
 			return
@@ -39,6 +36,9 @@
 					to_chat(src, "<span class='warning'>You cannot send IC messages (muted).</span>")
 					return
 				if(client.handle_spam_prevention(message, MUTE_IC))
+					return
+				if(is_banned_from(ckey, "Emote"))
+					to_chat(src, "<span class='warning'>You cannot send emotes (banned).</span>")
 					return
 			return custom_emote(m_type, "[message]", player_caused)
 
@@ -91,7 +91,7 @@
 				return
 			var/datum/limb/l_arm/A = get_limb("l_arm")
 			var/datum/limb/r_arm/B = get_limb("r_arm")
-			if((!A || A.status & LIMB_DESTROYED) && (!B || B.status & LIMB_DESTROYED))
+			if((!A || A.limb_status & LIMB_DESTROYED) && (!B || B.limb_status & LIMB_DESTROYED))
 				to_chat(src, "You cannot dab without your arms.")
 				return
 
@@ -99,11 +99,11 @@
 			var/risk = rand (1, 100)
 			switch(risk)
 				if(1 to 3)
-					if(A || A.status && !LIMB_DESTROYED)
+					if(A || A.limb_status && !LIMB_DESTROYED)
 						A.droplimb()
 						message += " so hard their left arm goes flying off"
 				if(4 to 6)
-					if(B || B.status && !LIMB_DESTROYED)
+					if(B || B.limb_status && !LIMB_DESTROYED)
 						B.droplimb()
 						message += " so hard their right arm goes flying off"
 			message += "."
@@ -195,8 +195,8 @@
 			if(muzzled || audio_emote_cooldown(player_caused))
 				return
 			message = "<B>[comm_paygrade][src] calls for a medic!</b>"
-			var/image/medic = image('icons/mob/talk.dmi', icon_state = "medic")
-			overlays += medic
+			var/image/medic = image('icons/mob/talk.dmi', src, icon_state = "medic")
+			add_emote_overlay(medic)
 			if(gender == "male")
 				if(prob(95))
 					playsound(loc, 'sound/voice/human_male_medic.ogg', 25, 0)
@@ -204,7 +204,6 @@
 					playsound(loc, 'sound/voice/human_male_medic2.ogg', 25, 0)
 			else
 				playsound(loc, 'sound/voice/human_female_medic.ogg', 25, 0)
-			addtimer(CALLBACK(src, .proc/remove_emote_overlay, medic), TYPING_INDICATOR_LIFETIME)
 
 		if("moan")
 			m_type = EMOTE_AUDIBLE
@@ -221,15 +220,14 @@
 			m_type = EMOTE_AUDIBLE
 			if(muzzled || audio_emote_cooldown(player_caused))
 				return
-			var/image/pain = image('icons/mob/talk.dmi', icon_state = "pain")
-			overlays += pain
+			var/image/pain = image('icons/mob/talk.dmi', src, icon_state = "pain")
+			add_emote_overlay(pain)
 			message = "<B>[comm_paygrade][src]</B> cries out in pain!"
 			if(species)
 				if(species.paincries[gender])
 					playsound(loc, species.paincries[gender], 50)
 				else if(species.screams[NEUTER])
 					playsound(loc, species.paincries[NEUTER], 50)
-			addtimer(CALLBACK(src, .proc/remove_emote_overlay, pain), TYPING_INDICATOR_LIFETIME)
 
 		if("salute")
 			m_type = EMOTE_AUDIBLE
@@ -246,14 +244,13 @@
 			if(muzzled || audio_emote_cooldown(player_caused))
 				return
 			message = "<B>[comm_paygrade][src]</B> screams!"
-			var/image/scream = image('icons/mob/talk.dmi', icon_state = "scream")
-			overlays += scream
+			var/image/scream = image('icons/mob/talk.dmi', src, icon_state = "scream")
+			add_emote_overlay(scream)
 			if(client && species)
 				if(species.screams[gender])
 					playsound(loc, species.screams[gender], 50)
 				else if(species.screams[NEUTER])
 					playsound(loc, species.screams[NEUTER], 50)
-			addtimer(CALLBACK(src, .proc/remove_emote_overlay, scream), TYPING_INDICATOR_LIFETIME)
 
 		if("shakehead")
 			message = "<B>[comm_paygrade][src]</B> shakes [p_their()] head."
@@ -318,14 +315,14 @@
 blink, blink_r, bow-(mob name), chuckle, <span style='color: green;'>clap</span>, collapse, cough, cry, drool, eyebrow, facepalm,
 faint, frown, gasp, giggle, glare-(mob name), <span style='color: green;'>golfclap</span>, grin, grumble, handshake, hug-(mob name),
 laugh, look-(mob name), me, <span style='color: green;'>medic</span>, moan, mumble, nod, point, <span style='color: green;'>salute</span>,
-scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, stare-(mob name), twitch, wave, yawn</b><br>"}
+<span style='color: green;'>scream</span>, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, stare-(mob name), twitch, wave, yawn</b><br>"}
 			
 			if(CONFIG_GET(flag/fun_allowed)) //this is the *help message when fun_allowed = 1.
 				msg = {"<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Emotes that are <span style='color: red;'>RED</span> are done at your own risk. Spamming emotes with sound will likely get you in trouble, don't do it.<br><br> \
 blink, blink_r, bow-(mob name), chuckle, <span style='color: green;'>clap</span>, collapse, cough, cry, <span style='color: red;'>dab</span>, drool, eyebrow, facepalm, 
 faint, frown, gasp, giggle, glare-(mob name), <span style='color: green;'>golfclap</span>, grin, grumble, handshake, hug-(mob name), 
 laugh, look-(mob name), me, <span style='color: green;'>medic</span>, moan, mumble, nod, point, <span style='color: green;'>salute</span>, 
-scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, stare-(mob name), twitch, wave, yawn</b><br>"}
+<span style='color: green;'>scream</span>, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, stare-(mob name), twitch, wave, yawn</b><br>"}
 		
 			to_chat(src, msg)
 			if (isyautjastrict(src))
@@ -437,16 +434,3 @@ scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, star
 		else if(m_type == EMOTE_AUDIBLE)
 			for(var/mob/O in hearers(loc, null))
 				O.show_message(message, m_type)
-
-/mob/living/carbon/human/proc/remove_emote_overlay(var/image/overlay_to_remove)
-	overlays -= overlay_to_remove
-
-/mob/living/carbon/human/proc/audio_emote_cooldown(player_caused)
-	if(player_caused)
-		if(audio_emote_time < world.time)
-			audio_emote_time = world.time + 80
-			return FALSE
-		else
-			to_chat(usr, "<span class='notice'>You just did an audible emote. Wait a while.</span>")
-			return TRUE
-	return FALSE

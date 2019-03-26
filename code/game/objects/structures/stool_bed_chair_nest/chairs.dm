@@ -22,36 +22,72 @@
 		rotate()
 	return
 
+/obj/structure/bed/chair/setDir(newdir)
+	. = ..()
+	handle_rotation()
+
 /obj/structure/bed/chair/handle_rotation() //Making this into a seperate proc so office chairs can call it on Move()
 	if(src.dir == NORTH)
 		src.layer = FLY_LAYER
 	else
 		src.layer = OBJ_LAYER
 	if(buckled_mob)
-		buckled_mob.dir = dir
+		buckled_mob.setDir(dir)
 
 /obj/structure/bed/chair/verb/rotate()
 	set name = "Rotate Chair"
 	set category = "Object"
-	set src in oview(1)
+	set src in view(0)
+	
+	var/mob/living/carbon/user = usr
 
-	if(CONFIG_GET(flag/ghost_interaction))
-		src.dir = turn(src.dir, 90)
-		handle_rotation()
-		return
-	else
-		if(istype(usr, /mob/living/simple_animal/mouse))
-			return
-		if(!usr || !isturf(usr.loc))
-			return
-		if(usr.stat || usr.is_mob_restrained())
-			return
+	if(!istype(user) || !isturf(user.loc) || user.is_mob_incapacitated())
+		return FALSE
 
-		dir = turn(src.dir, 90)
-		handle_rotation()
-		return
+	if(!CONFIG_GET(flag/unlimited_rotate_speed))
+		if(world.time <= user.next_move)
+			return FALSE
+		user.next_move = world.time + 3
+
+	setDir(turn(dir, 90))
 
 //Chair types
+/obj/structure/bed/chair/reinforced
+	name = "reinforced chair"
+	desc = "Some say that the TGMC shouldn't spent this much money on reinforced chairs, but the documents from briefing riots prove otherwise."
+	buildstackamount = 2
+
+
+/obj/structure/bed/chair/reinforced/attackby(obj/item/W, mob/user)
+	if(iswrench(W))
+		to_chat(user, "<span class='warning'>You can only deconstruct this by welding it down!</span>")
+	else if(iswelder(W))
+		if(user.action_busy)
+			return
+
+		if(user.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to weld down \the [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to weld down \the [src].</span>")
+			var/fumbling_time = 50 * (SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer)
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+				return
+
+		var/obj/item/tool/weldingtool/WT = W
+		if(WT.remove_fuel(0, user))
+			user.visible_message("<span class='notice'>[user] begins welding down \the [src].</span>",
+			"<span class='notice'>You begin welding down \the [src].</span>")
+			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+			if(!do_after(user, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
+				to_chat(user, "<span class='warning'>You need to stand still!</span>")
+				return
+			user.visible_message("<span class='notice'>[user] welds down \the [src].</span>",
+			"<span class='notice'>You weld down \the [src].</span>")
+			if(buildstacktype)
+				new buildstacktype(loc, buildstackamount)
+			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+			qdel(src)
+
+
 /obj/structure/bed/chair/wood
 	buildstacktype = /obj/item/stack/sheet/wood
 	hit_bed_sound = 'sound/effects/woodhit.ogg'

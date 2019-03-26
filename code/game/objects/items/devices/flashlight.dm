@@ -24,13 +24,14 @@
 
 /obj/item/device/flashlight/Destroy()
 	if(ismob(src.loc))
-		src.loc.SetLuminosity(-brightness_on)
-	else
-		SetLuminosity(0)
+		loc.SetLuminosity(-brightness_on)
+	SetLuminosity(0)
 	. = ..()
 
 
 /obj/item/device/flashlight/proc/update_brightness(var/mob/user = null)
+	if(!user && ismob(loc))
+		user = loc
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 		if(loc && loc == user)
@@ -49,7 +50,7 @@
 		to_chat(user, "You cannot turn the light on while in [user.loc].")
 		return 0
 	on = !on
-	update_brightness(user)
+	update_brightness()
 	update_action_button_icons()
 	return 1
 
@@ -89,9 +90,6 @@
 		if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
-		if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")	//don't have dexterity
-			to_chat(user, "<span class='notice'>You don't have the dexterity to do this!</span>")
-			return
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
 		if(ishuman(M) && ((H.head && H.head.flags_inventory & COVEREYES) || (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) || (H.glasses && H.glasses.flags_inventory & COVEREYES)))
@@ -121,14 +119,14 @@
 
 
 /obj/item/device/flashlight/pickup(mob/user)
-	if(on && src.loc != user)
+	if(on && loc != user)
 		user.SetLuminosity(brightness_on)
 		SetLuminosity(0)
 	..()
 
 
 /obj/item/device/flashlight/dropped(mob/user)
-	if(on && src.loc != user)
+	if(on && loc != user)
 		user.SetLuminosity(-brightness_on)
 		SetLuminosity(brightness_on)
 	..()
@@ -223,6 +221,7 @@
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/device/flashlight/flare/proc/turn_off()
+	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.
 	on = 0
 	heat_source = 0
 	force = initial(force)

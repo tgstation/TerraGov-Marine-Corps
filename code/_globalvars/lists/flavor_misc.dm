@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 		return "ai-[lowertext(input)]"
 
 	//Backpacks
-GLOBAL_LIST_INIT(backbaglist, list("Nothing", "Backpack", "Satchel"))
+GLOBAL_LIST_INIT(backpacklist, list("Nothing", "Backpack", "Satchel"))
 
 //Uplink spawn loc
 #define UPLINK_PDA		"PDA"
@@ -96,9 +96,6 @@ GLOBAL_LIST_EMPTY(female_clothing_icons)
 
 	//radical shit
 GLOBAL_LIST_INIT(hit_appends, list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF"))
-
-GLOBAL_LIST_INIT(scarySounds, list('sound/weapons/thudswoosh.ogg','sound/weapons/taser.ogg','sound/weapons/armbomb.ogg','sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg','sound/voice/hiss5.ogg','sound/voice/hiss6.ogg','sound/effects/glassbr1.ogg','sound/effects/glassbr2.ogg','sound/effects/glassbr3.ogg','sound/items/welder.ogg','sound/items/welder2.ogg','sound/machines/airlock.ogg','sound/effects/clownstep1.ogg','sound/effects/clownstep2.ogg'))
-
 
 // Reference list for disposal sort junctions. Set the sortType variable on disposal sort junctions to
 // the index of the sort department that you want. For example, sortType set to 2 will reroute all packages
@@ -154,8 +151,6 @@ GLOBAL_LIST_INIT(TAGGERLOCATIONS, list("Disposals",
 	"Xenobiology", "Law Office","Detective's Office"))
 
 GLOBAL_LIST_INIT(station_prefixes, world.file2list("strings/station_prefixes.txt") + "")
-
-GLOBAL_LIST_INIT(station_names, world.file2list("strings/station_names.txt" + ""))
 
 GLOBAL_LIST_INIT(station_suffixes, world.file2list("strings/station_suffixes.txt"))
 

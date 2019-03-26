@@ -36,7 +36,7 @@
 	var/flags_armor_protection = NOFLAGS //see setup.dm for appropriate bit flags
 	var/flags_heat_protection = NOFLAGS //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
 	var/flags_cold_protection = NOFLAGS //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
-	var/armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	var/list/armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by flags_heat_protection flags
 	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by flags_cold_protection flags
 
@@ -44,7 +44,7 @@
 	var/list/actions_types = list() //list of paths of action datums to give to the item on New().
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
-	var/body_parts_covered = 0
+	var/body_parts_covered
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
@@ -60,7 +60,8 @@
 	var/time_to_equip = 0 // set to ticks it takes to equip a worn suit.
 	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
 
-	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
+
+	var/reach = 1
 
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
@@ -238,6 +239,8 @@ cases. Override_icon_state should be a list.*/
 		var/datum/action/A = X
 		A.remove_action(user)
 
+	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
+
 	if(flags_item & DELONDROP)
 		qdel(src)
 
@@ -267,6 +270,7 @@ cases. Override_icon_state should be a list.*/
 		H.updatehealth()
 		qdel(current_acid)
 		current_acid = null
+	user.changeNext_move(CLICK_CD_RAPID)
 	return
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
@@ -287,6 +291,7 @@ cases. Override_icon_state should be a list.*/
 // for items that can be placed in multiple slots
 // note this isn't called during the initial dressing of a player
 /obj/item/proc/equipped(mob/user, slot)
+	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
 	for(var/X in actions)
 		var/datum/action/A = X
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
@@ -300,7 +305,7 @@ cases. Override_icon_state should be a list.*/
 // If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
 // Set disable_warning to 1 if you wish it to not give you outputs.
 // warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
-/obj/item/proc/mob_can_equip(M as mob, slot, disable_warning = 0)
+/obj/item/proc/mob_can_equip(M as mob, slot, warning = TRUE)
 	if(!slot)
 		return FALSE
 	if(!M)
@@ -359,7 +364,7 @@ cases. Override_icon_state should be a list.*/
 				if(H.belt)
 					return FALSE
 				if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
-					if(!disable_warning)
+					if(warning)
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
 				if(!(flags_equip_slot & ITEM_SLOT_BELT))
@@ -399,7 +404,7 @@ cases. Override_icon_state should be a list.*/
 				if(H.l_store)
 					return FALSE
 				if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
-					if(!disable_warning)
+					if(warning)
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
 				if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
@@ -410,7 +415,7 @@ cases. Override_icon_state should be a list.*/
 				if(H.r_store)
 					return FALSE
 				if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
-					if(!disable_warning)
+					if(warning)
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
 				if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
@@ -422,11 +427,11 @@ cases. Override_icon_state should be a list.*/
 				if(H.s_store)
 					return FALSE
 				if(!H.wear_suit && (SLOT_WEAR_SUIT in mob_equip))
-					if(!disable_warning)
+					if(warning)
 						to_chat(H, "<span class='warning'>You need a suit before you can attach this [name].</span>")
 					return FALSE
 				if(!H.wear_suit.allowed)
-					if(!disable_warning)
+					if(warning)
 						to_chat(usr, "You somehow have a suit with no defined allowed items for suit storage, stop that.")
 					return FALSE
 				if( istype(src, /obj/item/device/pda) || istype(src, /obj/item/tool/pen) || is_type_in_list(src, H.wear_suit.allowed) )
@@ -462,43 +467,76 @@ cases. Override_icon_state should be a list.*/
 				if (!H.back || !istype(H.back, /obj/item/storage/backpack))
 					return FALSE
 				var/obj/item/storage/backpack/B = H.back
-				if(src.w_class <= B.max_w_class && B.can_be_inserted(src))
-					return TRUE
+				if(w_class > B.max_w_class || !B.can_be_inserted(src, warning))
+					return FALSE
+				return TRUE
 			if(SLOT_IN_B_HOLSTER)
-				if (H.back && istype(H.back, /obj/item/storage/large_holster))
-					var/obj/item/storage/S = H.back
-					if(S.can_be_inserted(src))
-						return TRUE
-				return FALSE
+				if(!H.back || !istype(H.back, /obj/item/storage/large_holster))
+					return FALSE
+				var/obj/item/storage/S = H.back
+				if(!S.can_be_inserted(src, warning))
+					return FALSE
+				return TRUE
+			if(SLOT_IN_BELT)
+				if(!H.belt || !istype(H.belt, /obj/item/storage/belt))
+					return FALSE
+				var/obj/item/storage/belt/S = H.belt
+				if(!S.can_be_inserted(src, warning))
+					return FALSE
+				return TRUE
 			if(SLOT_IN_HOLSTER)
 				if((H.belt && istype(H.belt,/obj/item/storage/large_holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
 					var/obj/item/storage/S = H.belt
-					if(S.can_be_inserted(src))
+					if(S.can_be_inserted(src, warning))
 						return TRUE
 				return FALSE
 			if(SLOT_IN_S_HOLSTER)
 				if((H.s_store && istype(H.s_store, /obj/item/storage/large_holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
 					var/obj/item/storage/S = H.s_store
-					if(S.can_be_inserted(src))
+					if(S.can_be_inserted(src, warning))
 						return TRUE
 				return FALSE
 			if(SLOT_IN_STORAGE)
 				if(!H.s_active)
 					return FALSE
 				var/obj/item/storage/S = H.s_active
-				if(S.can_be_inserted(src))
+				if(S.can_be_inserted(src, warning))
 					return TRUE
 			if(SLOT_IN_L_POUCH)
 				if(!H.l_store || !istype(H.l_store, /obj/item/storage/pouch))
 					return FALSE
 				var/obj/item/storage/S = H.l_store
-				if(S.can_be_inserted(src))
+				if(S.can_be_inserted(src, warning))
 					return TRUE
 			if(SLOT_IN_R_POUCH)
 				if(!H.r_store || !istype(H.r_store, /obj/item/storage/pouch))
 					return FALSE
 				var/obj/item/storage/S = H.r_store
-				if(S.can_be_inserted(src))
+				if(S.can_be_inserted(src, warning))
+					return TRUE
+			if(SLOT_IN_SUIT)
+				var/obj/item/clothing/suit/storage/S = H.wear_suit
+				if(!istype(S) || !S.pockets)
+					return FALSE
+				var/obj/item/storage/internal/T = S.pockets
+				if(T.can_be_inserted(src, warning))
+					return TRUE
+			if(SLOT_IN_HEAD)
+				var/obj/item/clothing/head/helmet/marine/S = H.head
+				if(!istype(S) || !S.pockets)
+					return FALSE
+				var/obj/item/storage/internal/T = S.pockets
+				if(T.can_be_inserted(src, warning))
+					return TRUE
+			if(SLOT_IN_ACCESSORY)
+				var/obj/item/clothing/under/U = H.w_uniform
+				if(!U?.hastie)
+					return FALSE
+				var/obj/item/clothing/tie/storage/T = U.hastie
+				if(!istype(T))
+					return FALSE
+				var/obj/item/storage/internal/S = T.hold
+				if(S.can_be_inserted(src, warning))
 					return TRUE
 		return FALSE //Unsupported slot
 		//END HUMAN
@@ -613,9 +651,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	if(is_blind(user))
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
-	else if(user.stat || !ishuman(user))
-		to_chat(user, "<span class='warning'>You are unable to focus through \the [zoom_device].</span>")
-	else if(!zoom && user.client && H.tinttotal >= 3)
+	else if(!user.IsAdvancedToolUser())
+		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
+	else if(!zoom && user.client && H.tinttotal >= 2)
 		to_chat(user, "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>")
 	else if(!zoom && user.get_active_held_item() != src)
 		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
@@ -624,6 +662,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = !zoom
 		user.zoom_cooldown = world.time + 20
+		if(user.client.click_intercept)
+			user.client.click_intercept = null
 	else //Otherwise we want to zoom in.
 		if(world.time <= user.zoom_cooldown) //If we are spamming the zoom, cut it out
 			return

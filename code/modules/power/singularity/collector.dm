@@ -8,7 +8,6 @@ var/global/list/rad_collectors = list()
 	icon_state = "ca"
 	anchored = 0
 	density = 1
-	directwired = 1
 	req_access = list(ACCESS_MARINE_ENGINEERING)
 //	use_power = 0
 	var/obj/item/tank/phoron/P = null
@@ -135,7 +134,7 @@ var/global/list/rad_collectors = list()
 	overlays.Cut()
 	if(P)
 		overlays += image('icons/obj/singularity.dmi', "ptank")
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)
 		overlays += image('icons/obj/singularity.dmi', "on")

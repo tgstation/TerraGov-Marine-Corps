@@ -42,7 +42,7 @@
 
 
 /obj/machinery/space_heater/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 	if(cell)
@@ -165,7 +165,7 @@
 				H.adjust_bodytemperature(min(round(T20C - H.bodytemperature)*0.7, 25), 0, T20C)
 
 
-			cell.use(50*CELLRATE)
+			cell.use(50*GLOB.CELLRATE)
 
 		else
 			on = 0

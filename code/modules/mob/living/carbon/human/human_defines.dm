@@ -39,7 +39,7 @@
 
 	var/underwear = 1	//Which underwear the player wants
 	var/undershirt = 0	//Which undershirt the player wants.
-	var/backbag = 2		//Which backpack type the player has chosen. Nothing, Satchel or Backpack.
+	var/backpack = 2		//Which backpack type the player has chosen. Nothing, Satchel or Backpack.
 
 	// General information
 	var/home_system = ""
@@ -75,8 +75,6 @@
 
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
-	var/failed_last_breath = 0 //This is used to determine if the mob failed a breath. If they did fail a brath, they will attempt to breathe each tick, otherwise just once per 4 ticks.
-
 	var/last_dam = -1	//Used for determining if we need to process all limbs or just some or even none.
 	//var/list/bad_limbs = list()// limbs we check until they are good.
 
@@ -87,17 +85,11 @@
 	var/list/flavor_texts = list()
 	var/recently_unbuckled = 0
 
-	//Emotes
-	var/audio_emote_time = 1
 
 	//Life variables
-	var/oxygen_alert = 0
-	var/phoron_alert = 0
-	var/co2_alert = 0
-	var/fire_alert = 0
-	var/pressure_alert = 0
+
 	var/prev_gender = null // Debug for plural genders
-	var/temperature_alert = 0
+
 	var/undefibbable = FALSE //whether the human is dead and past the defibbrillation period.
 
 	var/holo_card_color = "" //which color type of holocard is printed on us
@@ -125,3 +117,5 @@
 	var/datum/squad/assigned_squad //the squad this human is assigned to
 
 	var/cloaking = FALSE
+
+	var/image/SL_directional = null

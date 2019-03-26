@@ -52,7 +52,7 @@ Currently only has the tank hardpoints
 
 //If our cooldown has elapsed
 /obj/item/hardpoint/proc/is_ready()
-	if(owner.z == 2 || owner.z == 3)
+	if(is_centcom_level(owner.z) || is_mainship_or_low_orbit_level(owner.z))
 		to_chat(usr, "<span class='warning'>Don't fire here, you'll blow a hole in the ship!</span>")
 		return FALSE
 	return TRUE
@@ -98,6 +98,8 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/proc/firing_arc(var/atom/A)
 	var/turf/T = get_turf(A)
+	if(!T || !owner)
+		return FALSE
 	var/dx = T.x - owner.x
 	var/dy = T.y - owner.y
 	var/deg = 0
@@ -109,10 +111,10 @@ Currently only has the tank hardpoints
 
 	var/nx = dx * cos(deg) - dy * sin(deg)
 	var/ny = dx * sin(deg) + dy * cos(deg)
-	if(nx == 0) 
+	if(nx == 0)
 		return max_angle >= 90
 	var/angle = arctan(ny/nx)
-	if(nx < 0) 
+	if(nx < 0)
 		angle += 180
 	return abs(angle) <= max_angle
 
@@ -180,14 +182,36 @@ Currently only has the tank hardpoints
 
 	next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
 
-	if(!do_after(usr, 5, FALSE, 5, BUSY_ICON_HOSTILE))
+	var/delay = 5
+
+	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
+	var/obj/effect/overlay/temp/tank_laser/TL
+	if(C.is_zoomed)
+		delay = 20
+		TL = new /obj/effect/overlay/temp/tank_laser (T)
+
+	to_chat(usr, "<span class='warning'>Preparing to fire... keep the tank still for [delay * 0.1] seconds.</span>")
+
+	if(!do_after(usr, delay, FALSE, 5, BUSY_ICON_HOSTILE, null, TRUE) )
+		to_chat(usr, "<span class='warning'>The [name]'s firing was interrupted.</span>")
+		if(TL)
+			qdel(TL)
 		return
+
+	if(TL)
+		qdel(TL)
+
 	if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
 		T = get_step(T, pick(cardinal))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
+	log_combat(usr, usr, "fired the [src].")
+	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	playsound(get_turf(src), pick('sound/weapons/tank_cannon_fire1.ogg', 'sound/weapons/tank_cannon_fire2.ogg'), 60, 1)
+	if(!CONFIG_GET(flag/tank_mouth_noise))
+		playsound(get_turf(src), pick('sound/weapons/tank_cannon_fire1.ogg', 'sound/weapons/tank_cannon_fire2.ogg'), 60, 1)
+	else
+		playsound(get_turf(src), pick('sound/weapons/tank_cannon_fire1_joke.ogg', 'sound/weapons/tank_cannon_fire2_joke.ogg'), 60, 1)
 	ammo.current_rounds--
 
 /obj/item/hardpoint/primary/minigun
@@ -240,17 +264,28 @@ Currently only has the tank hardpoints
 	if(ammo.current_rounds <= 0)
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
-
 	var/S = 'sound/weapons/tank_minigun_start.ogg'
-	if(world.time - next_use <= 5)
-		chained++ //minigun spins up, minigun spins down
-		S = 'sound/weapons/tank_minigun_loop.ogg'
-	else if(world.time - next_use >= 15) //Too long of a delay, they restart the chain
-		chained = 1
-	else //In between 5 and 15 it slows down but doesn't stop
-		chained--
-		S = 'sound/weapons/tank_minigun_stop.ogg'
-	if(chained <= 0) chained = 1
+	if(!CONFIG_GET(flag/tank_mouth_noise))
+		if(world.time - next_use <= 5)
+			chained++ //minigun spins up, minigun spins down
+			S = 'sound/weapons/tank_minigun_loop.ogg'
+		else if(world.time - next_use >= 15) //Too long of a delay, they restart the chain
+			chained = 1
+		else //In between 5 and 15 it slows down but doesn't stop
+			chained--
+			S = 'sound/weapons/tank_minigun_stop.ogg'
+		if(chained <= 0) chained = 1
+	else
+		S = 'sound/weapons/tank_minigun_start_joke.ogg'
+		if(world.time - next_use <= 5)
+			chained++ //minigun spins up, minigun spins down
+			S = 'sound/weapons/tank_minigun_loop_joke.ogg'
+		else if(world.time - next_use >= 15) //Too long of a delay, they restart the chain
+			chained = 1
+		else //In between 5 and 15 it slows down but doesn't stop
+			chained--
+			S = 'sound/weapons/tank_minigun_stop_joke.ogg'
+		if(chained <= 0) chained = 1
 
 	next_use = world.time + (chained > chain_delays.len ? 0.5 : chain_delays[chained]) * owner.misc_ratios["prim_cool"]
 	if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
@@ -311,7 +346,10 @@ Currently only has the tank hardpoints
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	playsound(get_turf(src), 'sound/weapons/tank_flamethrower.ogg', 60, 1)
+	if(!CONFIG_GET(flag/tank_mouth_noise))
+		playsound(get_turf(src), 'sound/weapons/tank_flamethrower.ogg', 60, 1)
+	else
+		playsound(get_turf(src), 'sound/weapons/tank_flamethrower_joke.ogg', 60, 1)
 	ammo.current_rounds--
 
 /obj/item/hardpoint/secondary/towlauncher
@@ -350,11 +388,33 @@ Currently only has the tank hardpoints
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
+	var/delay = 3
+
+	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
+	var/obj/effect/overlay/temp/tank_laser/TL
+	if(C.is_zoomed)
+		delay = 15
+		TL = new /obj/effect/overlay/temp/tank_laser (T)
+
+	if(delay)
+		to_chat(usr, "<span class='warning'>Preparing to fire... keep the tank still for [delay * 0.1] seconds.</span>")
+
+		if(!do_after(usr, delay, FALSE, 5, BUSY_ICON_HOSTILE, null, TRUE))
+			to_chat(usr, "<span class='warning'>The [name]'s firing was interrupted.</span>")
+			if(TL)
+				qdel(TL)
+			return
+
+		if(TL)
+			qdel(TL)
+
 	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
 		T = get_step(T, pick(cardinal))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
+	log_combat(usr, usr, "fired the [src].")
+	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	ammo.current_rounds--
 
@@ -404,7 +464,10 @@ Currently only has the tank hardpoints
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	playsound(get_turf(src), pick(list('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg')), 60, 1)
+	if(!CONFIG_GET(flag/tank_mouth_noise))
+		playsound(get_turf(src), pick(list('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg')), 60, 1)
+	else
+		playsound(get_turf(src), pick(list('sound/weapons/gun_smartgun1_joke.ogg', 'sound/weapons/gun_smartgun2_joke.ogg', 'sound/weapons/gun_smartgun3_joke.ogg')), 60, 1)
 	ammo.current_rounds--
 
 /obj/item/hardpoint/secondary/grenade_launcher
@@ -448,8 +511,13 @@ Currently only has the tank hardpoints
 		T = get_step(T, pick(cardinal))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
+	log_combat(usr, usr, "fired the [src].")
+	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	playsound(get_turf(src), 'sound/weapons/gun_m92_attachable.ogg', 60, 1)
+	if(!CONFIG_GET(flag/tank_mouth_noise))
+		playsound(get_turf(src), 'sound/weapons/gun_m92_attachable.ogg', 60, 1)
+	else
+		playsound(get_turf(src), 'sound/weapons/gun_m92_attachable_joke.ogg', 60, 1)
 	ammo.current_rounds--
 /////////////////////
 // SECONDARY SLOTS // END
@@ -505,7 +573,10 @@ Currently only has the tank hardpoints
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	playsound(get_turf(src), 'sound/weapons/tank_smokelauncher_fire.ogg', 60, 1)
+	if(!CONFIG_GET(flag/tank_mouth_noise))
+		playsound(get_turf(src), 'sound/weapons/tank_smokelauncher_fire.ogg', 60, 1)
+	else
+		playsound(get_turf(src), 'sound/weapons/tank_smokelauncher_fire_joke.ogg', 60, 1)
 	ammo.current_rounds--
 
 /obj/item/hardpoint/support/smoke_launcher/get_icon_image(var/x_offset, var/y_offset, var/new_dir)
@@ -518,9 +589,9 @@ Currently only has the tank hardpoints
 	else if(new_dir in list(EAST, WEST))
 		icon_suffix = "EW"
 
-	if(health <= 0) 
+	if(health <= 0)
 		icon_state_suffix = "1"
-	else if(ammo.current_rounds <= 0) 
+	else if(ammo.current_rounds <= 0)
 		icon_state_suffix = "2"
 
 	return image(icon = "[disp_icon]_[icon_suffix]", icon_state = "[disp_icon_state]_[icon_state_suffix]", pixel_x = x_offset, pixel_y = y_offset)
@@ -596,19 +667,21 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/support/artillery_module/active_effect(var/turf/T)
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
-	if(!C.gunner) 
+	if(!C.gunner)
 		return
 	var/mob/M = C.gunner
-	if(!M.client) 
+	if(!M.client)
 		return
 	if(is_active)
 		M.client.change_view(7)
 		M.client.pixel_x = 0
 		M.client.pixel_y = 0
 		is_active = FALSE
+		C.is_zoomed = FALSE
 		return
 	M.client.change_view(view_buff)
 	is_active = TRUE
+	C.is_zoomed = TRUE
 	switch(C.dir)
 		if(NORTH)
 			M.client.pixel_x = 0
@@ -625,10 +698,10 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/support/artillery_module/deactivate()
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
-	if(!C.gunner) 
+	if(!C.gunner)
 		return
 	var/mob/M = C.gunner
-	if(!M.client) 
+	if(!M.client)
 		return
 	is_active = FALSE
 	M.client.change_view(7)
@@ -844,7 +917,7 @@ Currently only has the tank hardpoints
 	icon_state = "painless"
 	w_class = 10
 	default_ammo = /datum/ammo/bullet/minigun
-	max_rounds = 300
+	max_rounds = 500
 	point_cost = 25
 	gun_type = /obj/item/hardpoint/primary/minigun
 

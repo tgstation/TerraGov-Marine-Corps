@@ -142,10 +142,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	heat_source = 1000
 	damtype = "burn"
 	icon_state = "match_lit"
+	var/mob/user
 	if(ismob(loc))
-		loc.SetLuminosity(2)
+		user = loc
+	if(loc && loc == user)
+		user.SetLuminosity(LIGHTER_LUMINOSITY)
 	else
-		SetLuminosity(2)
+		SetLuminosity(LIGHTER_LUMINOSITY)
+
 	START_PROCESSING(SSobj, src)
 	update_icon()
 
@@ -156,7 +160,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "match_burnt"
 	item_state = "cigoff"
 	if(user && loc != user)
-		user.SetLuminosity(-2)
+		user.SetLuminosity(-LIGHTER_LUMINOSITY)
 	SetLuminosity(0)
 	name = "burnt match"
 	desc = "A match. This one has seen better days."
@@ -164,8 +168,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/tool/lighter/dropped(mob/user)
 	if(heat_source && src.loc != user)
-		user.SetLuminosity(-2)
-		SetLuminosity(2)
+		user.SetLuminosity(-LIGHTER_LUMINOSITY)
+		SetLuminosity(LIGHTER_LUMINOSITY)
 	return ..()
 //////////////////
 //FINE SMOKABLES//
@@ -344,7 +348,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(iscarbon(loc) && (src == loc:wear_mask)) // if it's in the human/monkey mouth, transfer reagents to the mob
 			if(ishuman(loc))
 				var/mob/living/carbon/human/H = loc
-				if(H.species.flags & IS_SYNTHETIC)
+				if(H.species.species_flags & IS_SYNTHETIC)
 					return
 			var/mob/living/carbon/C = loc
 
@@ -370,7 +374,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				light("<span class='notice'>[user] lights their [src] with the burning ground.</span>")
 				return
 
-		if(isliving(target) && user.a_intent == "help")
+		if(isliving(target) && user.a_intent == INTENT_HELP)
 			var/mob/living/M = target
 			if(M.on_fire)
 				if(user == M)
@@ -512,9 +516,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/tool/lighter/Destroy()
 	if(ismob(src.loc))
-		src.loc.SetLuminosity(-2)
-	else
-		SetLuminosity(0)
+		loc.SetLuminosity(-LIGHTER_LUMINOSITY)
+	SetLuminosity(0)
 	. = ..()
 
 /obj/item/tool/lighter/attack_self(mob/living/user)
@@ -536,7 +539,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 						user.apply_damage(2,BURN,"r_hand")
 					user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
 
-			user.SetLuminosity(2)
+			user.SetLuminosity(LIGHTER_LUMINOSITY)
 			START_PROCESSING(SSobj, src)
 		else
 			turn_off(user, 0)
@@ -554,8 +557,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				bearer.visible_message("<span class='rose'>You hear a quiet click, as [bearer] shuts off [src] without even looking at what they're doing.")
 			else
 				bearer.visible_message("<span class='notice'>[bearer] quietly shuts off the [src].")
-
-		bearer.SetLuminosity(-2)
+		bearer.SetLuminosity(-LIGHTER_LUMINOSITY)
+		SetLuminosity(0)
 		STOP_PROCESSING(SSobj, src)
 		return 1
 	return 0
@@ -583,14 +586,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 
 /obj/item/tool/lighter/pickup(mob/user)
-	if(heat_source && src.loc != user)
+	if(heat_source && loc != user)
+		user.SetLuminosity(LIGHTER_LUMINOSITY)
 		SetLuminosity(0)
-		user.SetLuminosity(2)
 	return
 
 
 /obj/item/tool/lighter/dropped(mob/user)
-	if(heat_source && src.loc != user)
-		user.SetLuminosity(-2)
-		SetLuminosity(2)
+	if(heat_source && loc != user)
+		user.SetLuminosity(-LIGHTER_LUMINOSITY)
+		SetLuminosity(LIGHTER_LUMINOSITY)
 	return ..()

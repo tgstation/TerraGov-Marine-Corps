@@ -18,7 +18,7 @@
 	attachable_allowed = list( //give it some flexibility.
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 
@@ -28,8 +28,7 @@
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
 	toggle_flame(user)
 
-/obj/item/weapon/gun/flamer/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
 	to_chat(user, "It's turned [lit? "on" : "off"].")
 	if(current_mag)
 		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
@@ -167,26 +166,49 @@
 		else
 			return
 
-	var/list/turf/turfs = getline2(user,target)
+	var/list/turf/turfs = getline(user,target)
 	playsound(user, fire_sound, 50, 1)
 	var/distance = 1
 	var/turf/prev_T
 
-	for(var/turf/T in turfs)
+	for(var/F in turfs)
+		var/turf/T = F
+
 		if(T == user.loc)
 			prev_T = T
 			continue
+		if((T.density && !istype(T, /turf/closed/wall/resin)) || isspaceturf(T))
+			break
 		if(loc != user)
 			break
-		if(!current_mag || !current_mag.current_rounds)
+		if(!current_mag?.current_rounds)
 			break
 		if(distance > max_range)
 			break
-		if(prev_T && LinkPreBlocksFire(prev_T, T))
-			break
+
+		var/blocked = FALSE
+		for(var/obj/O in T)
+			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
+				blocked = TRUE
+				break
+
+		var/turf/TF
+		if(!prev_T.Adjacent(T) && (T.x != prev_T.x || T.y != prev_T.y)) //diagonally blocked, it will seek for a cardinal turf by the former target.
+			blocked = TRUE
+			var/turf/Ty = locate(prev_T.x, T.y, prev_T.z)
+			var/turf/Tx = locate(T.x, prev_T.y, prev_T.z)
+			for(var/turf/TB in shuffle(list(Ty, Tx)))
+				if(prev_T.Adjacent(TB) && ((!TB.density && !isspaceturf(T)) || istype(T, /turf/closed/wall/resin)))
+					TF = TB
+					break
+			if(!TF)
+				break
+		else
+			TF = T
+
 		current_mag.current_rounds--
-		flame_turf(T,user, burntime, burnlevel, fire_color)
-		if(PostBlocksFire(T))
+		flame_turf(TF,user, burntime, burnlevel, fire_color)
+		if(blocked)
 			break
 		distance++
 		prev_T = T
@@ -229,7 +251,7 @@
 
 			if(user)
 				var/area/A = get_area(user)
-				if(user.mind && !user.mind.special_role && H.mind && !H.mind.special_role)
+				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
 					log_combat(user, H, "shot", src)
 					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
 				else
@@ -243,7 +265,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
-				H.show_message(text("Your suit protects you from the flames."),1)
+				H.show_message(text("Your suit protects you from most of the flames."), 1)
 				armor_block = CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
 		M.apply_damage(rand(burn,(burn*2))* fire_mod, BURN, null, armor_block) // Make it so its the amount of heat or twice it for the initial blast.
 
@@ -256,7 +278,7 @@
 	set waitfor = 0
 
 	var/unleash_dir = user.dir //don't want the player to turn around mid-unleash to bend the fire.
-	var/list/turf/turfs = getline2(user,target)
+	var/list/turf/turfs = getline(user,target)
 	playsound(user, fire_sound, 50, 1)
 	var/distance = 1
 	var/turf/prev_T
@@ -317,9 +339,6 @@
 
 		distance++
 
-/obj/item/weapon/gun/flamer/has_ammo_counter()
-	return TRUE
-
 /obj/item/weapon/gun/flamer/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -339,7 +358,7 @@
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "m240t"
 	item_state = "m240t"
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	var/max_water = 200
 	var/last_use
 
@@ -479,7 +498,6 @@
 							C.IgniteMob()
 							C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
-
 /obj/flamer_fire/Destroy()
 	SetLuminosity(0)
 	STOP_PROCESSING(SSobj, src)
@@ -494,7 +512,7 @@
 	. = ..()
 	if(attack_flag == "energy")
 		if(istype(wear_suit, /obj/item/clothing/suit/fire) || (istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(head, /obj/item/clothing/head/helmet/marine/pyro)))
-			show_message(text("Your suit protects you from the flames."),1)
+			show_message(text("Your suit protects you from most of the flames."), 1)
 			return CLAMP(. * 1.5, 0.75, 1) //Min 75% resist, max 100%
 
 // override this proc to give different walking-over-fire effects
@@ -509,7 +527,12 @@
 
 	to_chat(src, "<span class='danger'>You are burned!</span>")
 
-/mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
+
+/mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
+	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(shoes, /obj/item/clothing/shoes/marine/pyro) && istype(head, /obj/item/clothing/head/helmet/marine/pyro))
+		var/armor_block = run_armor_check(null, "energy")
+		apply_damage(round(burnlevel * 0.2) * fire_mod, BURN, null, armor_block)
+		return
 	. = ..()
 	if(isxeno(pulledby))
 		var/mob/living/carbon/Xenomorph/X = pulledby
@@ -572,7 +595,7 @@
 
 /mob/living/carbon/human/flamer_fire_act(burnlevel, firelevel)
 	if(istype(wear_suit, /obj/item/clothing/suit/fire) || istype(wear_suit,/obj/item/clothing/suit/space/rig/atmos) || (istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(head, /obj/item/clothing/head/helmet/marine/pyro)))
-		to_chat(src, "<span class='warning'>Your suit protects you from the flames.</span>")
+		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")
 		adjustFireLoss(rand(0 ,burnlevel*0.25)) //Does small burn damage to a person wearing one of the suits.
 		return
 	return ..()

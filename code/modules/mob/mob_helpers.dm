@@ -294,20 +294,27 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return FALSE
 
 //converts intent-strings into numbers and back
-var/list/intents = list("help","disarm","grab","hurt")
 /proc/intent_numeric(argument)
 	if(istext(argument))
 		switch(argument)
-			if("help")		return 0
-			if("disarm")	return 1
-			if("grab")		return 2
-			else			return 3
+			if(INTENT_HELP)
+				return INTENT_NUMBER_HELP
+			if(INTENT_DISARM)
+				return INTENT_NUMBER_DISARM
+			if(INTENT_GRAB)
+				return INTENT_NUMBER_GRAB
+			else
+				return INTENT_NUMBER_HARM
 	else
 		switch(argument)
-			if(0)			return "help"
-			if(1)			return "disarm"
-			if(2)			return "grab"
-			else			return "hurt"
+			if(INTENT_NUMBER_HELP)
+				return INTENT_HELP
+			if(INTENT_NUMBER_DISARM)
+				return INTENT_DISARM
+			if(INTENT_NUMBER_GRAB)
+				return INTENT_GRAB
+			else
+				return INTENT_HARM
 
 //change a mob's act-intent. Input the intent as a string such as "help" or use "right"/"left
 /mob/verb/a_intent_change(input as text)
@@ -316,19 +323,19 @@ var/list/intents = list("help","disarm","grab","hurt")
 
 	if(iscyborg(src) || ismonkey(src))
 		switch(input)
-			if("help")
-				a_intent = "help"
-			if("hurt")
-				a_intent = "hurt"
-			if("right","left")
+			if(INTENT_HELP)
+				a_intent = INTENT_HELP
+			if(INTENT_HARM)
+				a_intent = INTENT_HARM
+			if(INTENT_HOTKEY_RIGHT,INTENT_HOTKEY_LEFT)
 				a_intent = intent_numeric(intent_numeric(a_intent) - 3)
 	else
 		switch(input)
-			if("help","disarm","grab","hurt")
+			if(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 				a_intent = input
-			if("right")
+			if(INTENT_HOTKEY_RIGHT)
 				a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
-			if("left")
+			if(INTENT_HOTKEY_LEFT)
 				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
 
 
@@ -382,7 +389,7 @@ mob/proc/get_standard_bodytemperature()
 	// Cannot use the list as a map if the key is a number, so we stringify it (thank you BYOND)
 	var/smessage_type = num2text(message_type)
 
-	if(client)
+	if(client?.player_details)
 		if(!islist(client.player_details.logging[smessage_type]))
 			client.player_details.logging[smessage_type] = list()
 
@@ -396,18 +403,18 @@ mob/proc/get_standard_bodytemperature()
 		else
 			colored_message = "<font color='[color]'>[message]</font>"
 
-	var/list/timestamped_message = list("[length(logging[smessage_type]) + 1]\[[time_stamp()]\] [key_name(src)] [loc_name(src)]" = colored_message)
+	var/list/timestamped_message = list("[length(logging[smessage_type]) + 1]\[[stationTimestamp()]\] [key_name(src)] [loc_name(src)]" = colored_message)
 
 	logging[smessage_type] += timestamped_message
 
-	if(client)
+	if(client?.player_details)
 		client.player_details.logging[smessage_type] += timestamped_message
 
-	..()
+	return ..()
 
 /mob/verb/a_select_zone(input as text, screen_num as null|num)
 	set name = "a-select-zone"
-	set hidden = 1
+	set hidden = TRUE
 
 	if(!screen_num)
 		return
@@ -478,4 +485,21 @@ mob/proc/get_standard_bodytemperature()
 					usr.zone_selected = "l_leg"
 					usr.client.screen[screen_num].selecting = "l_leg"
 
-	usr.client.screen[screen_num].update_icon()
+	usr.client.screen[screen_num].update_icon(usr)
+
+
+
+/mob/verb/toggle_move_intent(screen_num as null|num)
+	set name = "toggle-move-intent"
+	set hidden = TRUE
+
+	if(!screen_num || !client)
+		return
+
+	switch(m_intent)
+		if(MOVE_INTENT_RUN)
+			m_intent = MOVE_INTENT_WALK
+		if(MOVE_INTENT_WALK)
+			m_intent = MOVE_INTENT_RUN
+
+	client.screen[screen_num].update_icon(src)

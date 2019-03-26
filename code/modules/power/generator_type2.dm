@@ -6,8 +6,8 @@
 	density = 1
 	use_power = 0
 
-	var/obj/machinery/atmospherics/unary/generator_input/input1
-	var/obj/machinery/atmospherics/unary/generator_input/input2
+	//var/obj/machinery/atmospherics/unary/generator_input/input1
+	//var/obj/machinery/atmospherics/unary/generator_input/input2
 
 	var/lastgen = 0
 	var/lastgenlev = -1
@@ -15,17 +15,17 @@
 
 /obj/machinery/power/generator_type2/Initialize()
 	. = ..()
-	input1 = locate(/obj/machinery/atmospherics/unary/generator_input) in get_step(src,turn(dir, 90))
-	input2 = locate(/obj/machinery/atmospherics/unary/generator_input) in get_step(src,turn(dir, -90))
-	if(!input1 || !input2)
-		stat |= BROKEN
+	//input1 = locate(/obj/machinery/atmospherics/unary/generator_input) in get_step(src,turn(dir, 90))
+	//input2 = locate(/obj/machinery/atmospherics/unary/generator_input) in get_step(src,turn(dir, -90))
+	//if(!input1 || !input2)
+	//	machine_stat |= BROKEN
 	updateicon()
 	start_processing()
 
 
 /obj/machinery/power/generator_type2/proc/updateicon()
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		overlays.Cut()
 	else
 		overlays.Cut()
@@ -37,8 +37,8 @@
 
 
 /obj/machinery/power/generator_type2/process()
-	if(!input1 || !input2)
-		return
+	//if(!input1 || !input2)
+	//	return
 
 	lastgen = 0
 
@@ -51,13 +51,13 @@
 
 
 /obj/machinery/power/generator_type2/attack_ai(mob/user)
-	if(stat & (BROKEN|NOPOWER)) return
+	if(machine_stat & (BROKEN|NOPOWER)) return
 	interact(user)
 
 
 /obj/machinery/power/generator_type2/attack_hand(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER)) return
+	if(machine_stat & (BROKEN|NOPOWER)) return
 	interact(user)
 
 
@@ -74,12 +74,12 @@
 	t += "Output : [round(lastgen)] W<BR><BR>"
 
 	t += "<B>Cold loop</B><BR>"
-	t += "Temperature: [round(input1.temperature, 0.1)] K<BR>"
-	t += "Pressure: [round(input1.pressure, 0.1)] kPa<BR>"
+	//t += "Temperature: [round(input1.temperature, 0.1)] K<BR>"
+	//t += "Pressure: [round(input1.pressure, 0.1)] kPa<BR>"
 
 	t += "<B>Hot loop</B><BR>"
-	t += "Temperature: [round(input2.temperature, 0.1)] K<BR>"
-	t += "Pressure: [round(input2.pressure, 0.1)] kPa<BR>"
+	//t += "Temperature: [round(input2.temperature, 0.1)] K<BR>"
+	//t += "Pressure: [round(input2.pressure, 0.1)] kPa<BR>"
 
 	t += "<BR><HR><A href='?src=\ref[src];close=1'>Close</A>"
 

@@ -9,21 +9,31 @@
 
 
 
-/turf/closed/mineral //mineral deposits
-	name = "Rock"
+/turf/closed/mineral
+	name = "rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
 
-/turf/closed/mineral/New()
-	..()
-	spawn(2)
-		var/list/step_overlays = list("s" = NORTH, "n" = SOUTH, "w" = EAST, "e" = WEST)
-		for(var/direction in step_overlays)
-			var/turf/turf_to_check = get_step(src,step_overlays[direction])
+/turf/closed/mineral/Initialize(mapload)
+    . = ..()
+    for(var/direction in GLOB.cardinals)
+        var/turf/turf_to_check = get_step(src, direction)
+        if(istype(turf_to_check, /turf/open))
+            var/image/rock_side = image(icon, "[icon_state]_side", dir = turn(direction, 180))
+            switch(direction)
+                if(NORTH)
+                    rock_side.pixel_y += world.icon_size
+                if(SOUTH)
+                    rock_side.pixel_y -= world.icon_size
+                if(EAST)
+                    rock_side.pixel_x += world.icon_size
+                if(WEST)
+                    rock_side.pixel_x -= world.icon_size
+            overlays += rock_side
 
-			if(istype(turf_to_check,/turf/open))
-				turf_to_check.overlays += image('icons/turf/walls.dmi', "rock_side_[direction]", 2.99) //Really high since it's an overhead turf and it shouldn't collide with anything else
-
+/turf/closed/mineral/bigred
+	name = "rock"
+	icon_state = "redrock"
 
 
 //Ground map dense jungle
@@ -45,15 +55,14 @@
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "wall2"
 
-/turf/closed/gm/dense/New()
-	..()
-	spawn(1)
-		if(rand(0,15) == 0)
-			icon_state = "wall1"
-		else if (rand(0,20) == 0)
-			icon_state = "wall3"
-		else
-			icon_state = "wall2"
+/turf/closed/gm/dense/Initialize()
+	. = ..()
+	if(rand(0,15) == 0)
+		icon_state = "wall1"
+	else if (rand(0,20) == 0)
+		icon_state = "wall3"
+	else
+		icon_state = "wall2"
 
 
 
@@ -126,7 +135,7 @@
 	icon_state = "Intersection"
 
 /turf/closed/attackby(obj/item/W, mob/user)
-
+	. = ..()
 	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
 		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/ice) && !istype(src, /turf/closed/desertdamrockwall))
@@ -142,7 +151,7 @@
 				ChangeTurf(/turf/open/jungle/clear)
 			else
 				ChangeTurf(/turf/open/ice)
-			return
+
 
 //Ice Secret Wall
 /turf/closed/ice/secret
@@ -179,35 +188,31 @@
 //randomized on New().
 /turf/closed/ice_rock/northWall
 	icon_state = "north_wall"
-	New()
-		..()
-		dir = pick(NORTH,SOUTH,EAST,WEST)
+
+/turf/closed/ice_rock/northWall/New()
+	. = ..()
+	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/southWall
 	icon_state = "south_wall"
-	New()
-		..()
-		dir = pick(NORTH,SOUTH,EAST,WEST)
+
+/turf/closed/ice_rock/southWall/New()
+	. = ..()
+	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/westWall
 	icon_state = "west_wall"
-	New()
-		..()
-		dir = pick(NORTH,SOUTH,EAST,WEST)
+
+/turf/closed/ice_rock/westWall/New()
+	. = ..()
+	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/eastWall
 	icon_state = "east_wall"
-	New()
-		..()
-		dir = pick(NORTH,SOUTH,EAST,WEST)
 
-/turf/closed/ice_rock/cornerOverlay
-	icon_state = "corner_overlay"
-
-
-
-
-
+/turf/closed/ice_rock/eastWall/New()
+	. = ..()
+	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 
 //SHUTTLE 'WALLS'
@@ -217,6 +222,31 @@
 	name = "wall"
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
+
+/turf/closed/shuttle/diagonal
+	icon_state = "diagonalWall"
+
+/turf/closed/shuttle/diagonal/plating
+	icon_state = "diagonalWallplating"
+	opacity = FALSE
+
+/turf/closed/shuttle/diagonal/sea
+	icon_state = "diagonalWallsea"
+	opacity = FALSE
+
+/turf/closed/shuttle/wall3
+	icon_state = "wall3"
+
+/turf/closed/shuttle/wall3/diagonal
+	icon_state = "diagonalWall3"
+
+/turf/closed/shuttle/wall3/diagonal/plating
+	icon_state = "diagonalWall3plating"
+	opacity = FALSE
+
+/turf/closed/shuttle/wall3/diagonal/sea
+	icon_state = "diagonalWall3sea"
+	opacity = FALSE
 
 /turf/closed/shuttle/dropship
 	icon = 'icons/turf/walls.dmi'

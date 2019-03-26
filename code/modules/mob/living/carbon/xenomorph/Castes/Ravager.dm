@@ -10,13 +10,13 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40
 	melee_damage_upper = 60
-	attack_delay = -2
+	attack_delay = 7
 
 	// *** Tackle *** //
 	tackle_damage = 55
 
 	// *** Speed *** //
-	speed = -0.4
+	speed = -0.5
 
 	// *** Plasma *** //
 	plasma_max = 150
@@ -31,7 +31,7 @@
 	deevolves_to = /mob/living/carbon/Xenomorph/Hunter
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	armor_deflection = 20
@@ -50,13 +50,12 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 50
 	melee_damage_upper = 70
-	attack_delay = -2
 
 	// *** Tackle *** //
 	tackle_damage = 60
 
 	// *** Speed *** //
-	speed = -0.45
+	speed = -0.55
 
 	// *** Plasma *** //
 	plasma_max = 175
@@ -82,13 +81,12 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 55
 	melee_damage_upper = 75
-	attack_delay = -2
 
 	// *** Tackle *** //
 	tackle_damage = 65
 
 	// *** Speed *** //
-	speed = -0.48
+	speed = -0.58
 
 	// *** Plasma *** //
 	plasma_max = 190
@@ -114,13 +112,12 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 60
 	melee_damage_upper = 80
-	attack_delay = -2
 
 	// *** Tackle *** //
 	tackle_damage = 70
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = -0.6
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -170,7 +167,7 @@
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/charge,
 		/datum/action/xeno_action/activable/ravage,
-		/datum/action/xeno_action/second_wind,
+		/datum/action/xeno_action/activable/second_wind,
 		)
 
 /mob/living/carbon/Xenomorph/Ravager/Stat()
@@ -214,17 +211,6 @@
 	playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 	update_action_button_icons()
 
-//Chance of insta limb amputation after a melee attack.
-/mob/living/carbon/Xenomorph/Ravager/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
-	if (prob(isyautja(H)?10:20)) // lets halve this for preds
-		O = H.get_limb(check_zone(zone_selected))
-		if (O.body_part != CHEST && O.body_part != GROIN && O.body_part != HEAD) //Only limbs.
-			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
-			O.droplimb()
-			return 1
-
-	return 0
-
 //Super hacky firebreathing Halloween rav.
 /datum/xeno_caste/ravager/ravenger
 	caste_name = "Ravenger"
@@ -237,7 +223,6 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 70
 	melee_damage_upper = 90
-	attack_delay = -2
 
 	// *** Tackle *** //
 	tackle_damage = 55
@@ -283,7 +268,7 @@
 	set waitfor = 0
 	if(world.time <= used_fire_breath + 75)
 		return
-	var/list/turf/turfs = getline2(src, A)
+	var/list/turf/turfs = getline(src, A)
 	var/distance = 0
 	var/obj/structure/window/W
 	var/turf/T
@@ -346,7 +331,7 @@
 		return ..()
 	var/mob/living/carbon/human/H = A
 	var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.04) ) //+4% bonus damage per point of Rage.relative to base melee damage.
-	H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, "hurt") //Location is always random, cannot crit, harm only
+	H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
 	var/target_turf = get_step_away(src, H, rand(1, 3)) //This is where we blast our target
 	target_turf =  get_step_rand(target_turf) //Scatter
 	H.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, H)

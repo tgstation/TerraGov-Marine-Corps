@@ -90,7 +90,7 @@ var/datum/mob_hud/huds = list(
 
 //medical hud used by ghosts
 /datum/mob_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, STATUS_HUD_OOC)
+	hud_icons = list(HEALTH_HUD, STATUS_HUD_OBSERVER_INFECTION, STATUS_HUD)
 
 
 //infection status that appears on humans, viewed by xenos only.
@@ -200,7 +200,7 @@ var/datum/mob_hud/huds = list(
 		holder.icon_state = "xenohealth0"
 	else
 		var/amount = round(health * 100 / maxHealth, 10)
-		if(!amount) 
+		if(!amount)
 			amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
 		holder.icon_state = "xenohealth[amount]"
 
@@ -258,8 +258,9 @@ var/datum/mob_hud/huds = list(
 	var/image/holder = hud_list[STATUS_HUD]
 	var/image/holder2 = hud_list[STATUS_HUD_OOC]
 	var/image/holder3 = hud_list[STATUS_HUD_XENO_INFECTION]
+	var/image/holder4 = hud_list[STATUS_HUD_OBSERVER_INFECTION]
 
-	if(species.flags & IS_SYNTHETIC)
+	if(species.species_flags & IS_SYNTHETIC)
 		holder.icon_state = "hudsynth"
 		holder2.icon_state = "hudsynth"
 		holder3.icon_state = "hudsynth"
@@ -286,8 +287,14 @@ var/datum/mob_hud/huds = list(
 			var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 			if(E)
 				holder3.icon_state = "infected[E.stage]"
+				holder4.icon_state = "infected[E.stage]"
 			else if(locate(/mob/living/carbon/Xenomorph/Larva) in src)
 				holder.icon_state = "infected5"
+				holder4.icon_state = "infected5"
+			else
+				holder4.icon_state = ""
+		else
+			holder4.icon_state = ""
 
 		if(stat == DEAD)
 			if(revive_enabled)
@@ -298,6 +305,7 @@ var/datum/mob_hud/huds = list(
 					holder2_set = 1
 			else
 				holder.icon_state = "huddead"
+				holder4.icon_state = ""
 				if(!holder2_set || check_tod())
 					holder2.icon_state = "huddead"
 					holder3.icon_state = "huddead"
@@ -446,47 +454,6 @@ var/datum/mob_hud/huds = list(
 					break
 
 
-
-//Special role HUD
-
-/mob/proc/hud_set_special_role()
-	return
-
-/mob/living/carbon/human/hud_set_special_role()
-	var/image/holder = hud_list[SPECIALROLE_HUD]
-	holder.icon_state = ""
-
-	if(mind)
-		switch(mind.special_role)
-			if("traitor", "Syndicate")
-				holder.icon_state = "hudsyndicate"
-			if("Revolutionary")
-				holder.icon_state = "hudrevolutionary"
-			if("Head Revolutionary")
-				holder.icon_state = "hudheadrevolutionary"
-			if("Cultist")
-				holder.icon_state = "hudcultist"
-			if("Changeling")
-				holder.icon_state = "hudchangeling"
-			if("Wizard", "Fake Wizard")
-				holder.icon_state = "hudwizard"
-			if("Death Commando")
-				holder.icon_state = "huddeathsquad"
-			if("Ninja")
-				holder.icon_state = "hudninja"
-			if("head_loyalist")
-				holder.icon_state = "hudloyalist"
-			if("loyalist")
-				holder.icon_state = "hudloyalist"
-			if("head_mutineer")
-				holder.icon_state = "hudmutineer"
-			if("mutineer")
-				holder.icon_state = "hudmutineer"
-
-
-
-
-
 //Squad HUD
 
 /mob/proc/hud_set_squad()
@@ -508,7 +475,7 @@ var/datum/mob_hud/huds = list(
 		switch(_role)
 			if("Squad Engineer") marine_rk = "engi"
 			if("Squad Specialist") marine_rk = "spec"
-			if("Squad Medic") marine_rk = "med"
+			if("Squad Corpsman") marine_rk = "med"
 			if("Squad Smartgunner") marine_rk = "gun"
 		if(assigned_squad.squad_leader == src)
 			marine_rk = "leader"

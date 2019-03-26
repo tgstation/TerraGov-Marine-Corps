@@ -44,7 +44,7 @@
 		if (src.z > 6)
 			to_chat(user, "<span class='danger'>Unable to establish a connection: You're too far away from the station!</span>")
 			return
-		if(stat & (NOPOWER|BROKEN))	return
+		if(machine_stat & (NOPOWER|BROKEN))	return
 
 		if(!isAI(user))
 			user.set_interaction(src)
@@ -129,14 +129,6 @@
 		if(can_access_camera(jump_to))
 			switch_to_camera(user,jump_to)
 
-//Camera control: mouse.
-/obj/machinery/computer/security/clicked(var/mob/user, var/list/mods)
-	if (mods["ctrl"] && mods["middle"])
-		if (src == user.interactee)
-			jump_on_click(user, src)
-		return 1
-
-	..()
 
 /obj/machinery/computer/security/telescreen
 	name = "Telescreen"
@@ -149,7 +141,7 @@
 
 /obj/machinery/computer/security/telescreen/update_icon()
 	icon_state = initial(icon_state)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state += "b"
 	return
 

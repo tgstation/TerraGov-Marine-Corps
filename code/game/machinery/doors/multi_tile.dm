@@ -111,7 +111,12 @@
 	glass = TRUE
 	req_access_txt = "19"
 
-
+/obj/machinery/door/airlock/multi_tile/almayer/secdoor
+	name = "\improper Security Airlock"
+	icon = 'icons/obj/doors/almayer/2x1secdoor.dmi'
+	opacity = FALSE
+	glass = TRUE
+	req_access = list(ACCESS_MARINE_BRIG)
 
 
 /obj/machinery/door/airlock/multi_tile/almayer/handle_multidoor()
@@ -168,6 +173,7 @@
 	unacidable = TRUE
 	no_panel = TRUE
 	not_weldable = TRUE
+	destructible = FALSE
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ex_act(severity)
 	return
@@ -184,9 +190,9 @@
 		..()
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/unlock()
-	if(z == 4)
+	if(is_low_orbit_level(z))
 		return // in orbit
-	..()
+	return ..(TRUE)
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1
 	name = "\improper Alamo cargo door"

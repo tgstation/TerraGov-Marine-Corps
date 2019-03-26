@@ -42,11 +42,7 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 
 /obj/effect/proc_holder/spell/proc/cast_check(skipcharge = 0,mob/user = usr) //checks if the spell can be cast based on its settings; skipcharge is used when an additional cast_check is called inside the spell
 
-	if(!(src in usr.spell_list))
-		to_chat(usr, "<span class='warning'>You shouldn't have this spell! Something's wrong.</span>")
-		return 0
-
-	if(usr.z == 2 && !centcomm_cancast) //Certain spells are not allowed on the centcomm zlevel
+	if(is_centcom_level(usr.z) && !centcomm_cancast) //Certain spells are not allowed on the centcomm zlevel
 		return 0
 
 	if(!skipcharge)
@@ -94,35 +90,37 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 
 	return 1
 
-/obj/effect/proc_holder/spell/proc/invocation(mob/user = usr) //spelling the spell out and setting it on recharge/reducing charges amount
-
+/obj/effect/proc_holder/spell/proc/invocation(mob/user) //spelling the spell out and setting it on recharge/reducing charges amount
+	var/mob/living/carbon/human/H
+	if(ishuman(user))
+		H = user
 	switch(invocation_type)
 		if("shout")
 			if(prob(50))//Auto-mute? Fuck that noise
-				usr.say(invocation)
+				user.say(invocation)
 			else
-				usr.say(oldreplacetext(invocation," ","`"))
-			if(usr.gender==MALE)
-				playsound(usr.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 25, 1)
+				user.say(oldreplacetext(invocation," ","`"))
+			if(user.gender==MALE)
+				playsound(user.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 25, 1)
 			else
-				playsound(usr.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 25, 1)
+				playsound(user.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 25, 1)
 		if("whisper")
+			if(!H)
+				return
 			if(prob(50))
-				usr.whisper(invocation)
+				H.whisper(invocation)
 			else
-				usr.whisper(oldreplacetext(invocation," ","`"))
+				H.whisper(oldreplacetext(invocation, " ", "`"))
 
 /obj/effect/proc_holder/spell/New()
 	..()
 
 	charge_counter = charge_max
 
-/obj/effect/proc_holder/spell/clicked()
-    ..()
 
+/obj/effect/proc_holder/spell/Click()
     if(cast_check())
         choose_targets()
-    return 1
 
 
 

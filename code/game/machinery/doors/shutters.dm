@@ -27,7 +27,7 @@
 			qdel()
 		return
 
-	if(density && (stat & NOPOWER) && !operating && !unacidable)
+	if(density && (machine_stat & NOPOWER) && !operating && !unacidable)
 		operating = 1
 		spawn(-1)
 			flick("shutterc0", src)
@@ -42,7 +42,7 @@
 /obj/machinery/door/poddoor/shutters/open()
 	if(operating == 1) //doors can still open when emag-disabled
 		return
-	if(!ticker)
+	if(!SSticker)
 		return 0
 	if(!operating) //in case of emag
 		operating = 1

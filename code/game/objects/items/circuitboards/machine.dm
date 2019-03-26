@@ -131,16 +131,16 @@ obj/item/circuitboard/machine/rdserver
 /obj/item/circuitboard/machine/unary_atmos/examine(mob/user)
 	..()
 	to_chat(user, "The jumper is connecting the [dir2text(machine_dir)] pins.")
-
+/*
 /obj/item/circuitboard/machine/unary_atmos/construct(var/obj/machinery/atmospherics/unary/U)
 	//TODO: Move this stuff into the relevant constructor when pipe/construction.dm is cleaned up.
-	U.dir = src.machine_dir
+	U.setDir(machine_dir)
 	U.initialize_directions = src.init_dirs
 	U.initialize()
 	U.build_network()
 	if (U.node)
 		U.node.initialize()
-		U.node.build_network()
+		U.node.build_network()*/
 
 /obj/item/circuitboard/machine/unary_atmos/heater
 	name = "Circuit Board (Gas Heating System)"

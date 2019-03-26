@@ -43,6 +43,7 @@
 			. = step(src, direction)
 
 /obj/vehicle/attackby(obj/item/W, mob/user)
+	. = ..()
 
 	if(isscrewdriver(W))
 		if(!locked)
@@ -76,11 +77,10 @@
 		playsound(src.loc, "smash.ogg", 25, 1)
 		user.visible_message("<span class='danger'>[user] hits [src] with [W].</span>","<span class='danger'>You hit [src] with [W].</span>")
 		healthcheck()
-	else
-		..()
+
 
 /obj/vehicle/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent == "hurt")
+	if(M.a_intent == INTENT_HARM)
 		M.animation_attack_on(src)
 		playsound(loc, "alien_claw_metal", 25, 1)
 		M.flick_attack_overlay(src, "slash")

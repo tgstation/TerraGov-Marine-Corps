@@ -15,7 +15,7 @@
 	response_harm = "hits the"
 	speak = list("ALERT.","Hostile-ile-ile entities dee-twhoooo-wected.","Threat parameterszzzz- szzet.","Bring sub-sub-sub-systems uuuup to combat alert alpha-a-a.")
 	emote_see = list("beeps menacingly","whirrs threateningly","scans its immediate vicinity")
-	a_intent = "harm"
+	a_intent = INTENT_HARM
 	stop_automated_movement_when_pulled = 0
 	health = 300
 	maxHealth = 300
@@ -85,7 +85,7 @@
 
 	//repair a bit of damage
 	if(prob(1))
-		src.visible_message("<span class='warning'> [bicon(src)] [src] shudders and shakes as some of it's damaged systems come back online.</span>")
+		src.visible_message("<span class='warning'> [icon2html(src, viewers(src))] [src] shudders and shakes as some of it's damaged systems come back online.</span>")
 		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 		s.set_up(3, 1, src)
 		s.start()
@@ -100,10 +100,10 @@
 	//sometimes our targetting sensors malfunction, and we attack anyone nearby
 	if(prob(disabled ? 0 : 1))
 		if(hostile_drone)
-			src.visible_message("<span class='notice'> [bicon(src)] [src] retracts several targetting vanes, and dulls it's running lights.</span>")
+			src.visible_message("<span class='notice'> [icon2html(src, viewers(src))] [src] retracts several targetting vanes, and dulls it's running lights.</span>")
 			hostile_drone = 0
 		else
-			src.visible_message("<span class='warning'> [bicon(src)] [src] suddenly lights up, and additional targetting vanes slide into place.</span>")
+			src.visible_message("<span class='warning'> [icon2html(src, viewers(src))] [src] suddenly lights up, and additional targetting vanes slide into place.</span>")
 			hostile_drone = 1
 
 	if(health / maxHealth > 0.9)
@@ -124,17 +124,17 @@
 		exploding = 0
 		if(!disabled)
 			if(prob(50))
-				src.visible_message("<span class='notice'> [bicon(src)] [src] suddenly shuts down!</span>")
+				src.visible_message("<span class='notice'> [icon2html(src, viewers(src))] [src] suddenly shuts down!</span>")
 			else
-				src.visible_message("<span class='notice'> [bicon(src)] [src] suddenly lies still and quiet.</span>")
+				src.visible_message("<span class='notice'> [icon2html(src, viewers(src))] [src] suddenly lies still and quiet.</span>")
 			disabled = rand(150, 600)
 			walk(src,0)
 
 	if(exploding && prob(20))
 		if(prob(50))
-			src.visible_message("<span class='warning'> [bicon(src)] [src] begins to spark and shake violenty!</span>")
+			src.visible_message("<span class='warning'> [icon2html(src, viewers(src))] [src] begins to spark and shake violenty!</span>")
 		else
-			src.visible_message("<span class='warning'> [bicon(src)] [src] sparks and shakes like it's about to explode!</span>")
+			src.visible_message("<span class='warning'> [icon2html(src, viewers(src))] [src] sparks and shakes like it's about to explode!</span>")
 		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 		s.set_up(3, 1, src)
 		s.start()

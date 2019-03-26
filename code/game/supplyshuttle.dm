@@ -107,7 +107,7 @@ var/list/mechtoys = list(
 	icon_state = "X"
 	icon = 'icons/misc/mark.dmi'
 	name = "X"
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	anchored = 1
 	opacity = 0
 */
@@ -283,6 +283,14 @@ var/list/mechtoys = list(
 		shoppinglist.Cut()
 		return
 
+
+
+/datum/controller/supply/stat_entry()
+	if(!statclick)
+		statclick = new/obj/effect/statclick/debug(null, "Debug", src)
+	stat("Supply:", statclick)
+
+
 /obj/item/paper/manifest
 	name = "Supply Manifest"
 
@@ -317,9 +325,11 @@ var/list/mechtoys = list(
 		<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR><BR>
 		<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
 
-	user << browse(dat, "window=computer;size=575x450")
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Ordering Console</div>", 575, 450)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "computer")
-	return
+
 
 /obj/machinery/computer/ordercomp/Topic(href, href_list)
 	if(..())
@@ -375,7 +385,7 @@ var/list/mechtoys = list(
 		supply_controller.ordernum++
 		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[station_name] Supply Requisition Form</h3><hr>"
+		reqform.info += "<h3>[CONFIG_GET(string/ship_name)] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[supply_controller.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"
@@ -436,7 +446,6 @@ var/list/mechtoys = list(
 	else
 		var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
 		if (shuttle)
-			dat += "<BR><B>Automated Storage and Retrieval System</B><HR>"
 			dat += "\nPlatform position: "
 			if (shuttle.has_arrive_time())
 				dat += "Moving<BR>"
@@ -476,9 +485,11 @@ var/list/mechtoys = list(
 		\n<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
 
 
-	user << browse(dat, "window=computer;size=575x450")
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Automated Storage and Retrieval System</div>", 575, 450)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "computer")
-	return
+
 
 /obj/machinery/computer/supplycomp/attackby(I as obj, user as mob)
 	if(istype(I,/obj/item/card/emag) && !hacked)
@@ -580,7 +591,7 @@ var/list/mechtoys = list(
 		supply_controller.ordernum++
 		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[station_name] Supply Requisition Form</h3><hr>"
+		reqform.info += "<h3>[CONFIG_GET(string/ship_name)] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[supply_controller.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"
@@ -623,6 +634,7 @@ var/list/mechtoys = list(
 				O = SO
 				P = O.object
 				if(supply_controller.points >= round(P.cost))
+					log_game("[key_name(usr)] approved the [P.name] supply pack.")
 					supply_controller.requestlist.Cut(i,i+1)
 					supply_controller.points -= round(P.cost)
 					supply_controller.shoppinglist += O

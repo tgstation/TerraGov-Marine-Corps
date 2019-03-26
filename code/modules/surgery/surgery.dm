@@ -111,7 +111,7 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(!istype(M))
 		return 0
-	if(user.a_intent == "harm") //Check for Hippocratic Oath
+	if(user.a_intent == INTENT_HARM) //Check for Hippocratic Oath
 		return 0
 	if(user.action_busy) //already doing an action
 		return 1
@@ -174,7 +174,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 					if(M.stat == CONSCIOUS) //If not on anesthetics or not unconsious, warn player
 						if(ishuman(M))
 							var/mob/living/carbon/human/H = M
-							if(!(H.species.flags & NO_PAIN))
+							if(!(H.species.species_flags & NO_PAIN))
 								M.emote("pain")
 						to_chat(user, "<span class='danger'>[M] moved during the surgery! Use anesthetics!</span>")
 					S.fail_step(user, M, user.zone_selected, tool, affected) //Malpractice
@@ -183,7 +183,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				affected.in_surgery_op = FALSE
 				return 1				   //Don't want to do weapony things after surgery
 
-	if(user.a_intent == "help")
+	if(user.a_intent == INTENT_HELP)
 		to_chat(user, "<span class='warning'>You can't see any useful way to use \the [tool] on [M].</span>")
 		return 1
 	return 0

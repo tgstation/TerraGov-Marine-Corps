@@ -205,6 +205,13 @@ var/global/datum/controller/radio/radio_controller
 /datum/controller/radio
 	var/list/datum/radio_frequency/frequencies = list()
 
+
+/datum/controller/radio/stat_entry()
+	if(!statclick)
+		statclick = new/obj/effect/statclick/debug(null, "Debug", src)
+	stat("Radio:", statclick)
+
+
 /datum/controller/radio/proc/add_object(obj/device as obj, var/new_frequency as num, var/filter = null as text|null)
 	var/f_text = num2text(new_frequency)
 	var/datum/radio_frequency/frequency = frequencies[f_text]

@@ -8,7 +8,7 @@
 	buckling_y = 6
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
 	unacidable = TRUE
-	var/health = 100
+	health = 100
 	var/on_fire = 0
 	var/resisting = 0
 	var/resisting_ready = 0
@@ -29,6 +29,7 @@
 		return TRUE
 	else
 		if(W.flags_item & NOBLUDGEON) return
+		user.changeNext_move(W.attack_speed)
 		var/aforce = W.force
 		health = max(0, health - aforce)
 		playsound(loc, "alien_resin_break", 25)
@@ -186,12 +187,14 @@
 /obj/structure/bed/nest/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isxenolarva(M)) //Larvae can't do shit
 		return
-	if(M.a_intent == "hurt")
+	if(M.a_intent == INTENT_HARM)
 		M.visible_message("<span class='danger'>\The [M] claws at \the [src]!</span>", \
 		"<span class='danger'>You claw at \the [src].</span>")
 		playsound(loc, "alien_resin_break", 25)
 		health -= (M.melee_damage_upper + 25) //Beef up the damage a bit
 		healthcheck()
+		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 	else
 		attack_hand(M)
 

@@ -1,4 +1,90 @@
-/proc/generate_templated_fax(var/show_nt_logo, var/fax_header, var/fax_subject, var/addressed_to, var/message_body, var/sent_by, var/sent_title, var/sent_department)
+GLOBAL_LIST_EMPTY(faxes)
+
+
+/datum/fax
+	var/mob/sender
+	var/obj/machinery/faxmachine/sendmachine
+	var/department
+	var/title
+	var/message
+	var/senttime
+	var/admin = FALSE
+
+
+/proc/send_fax(mob/sender, sendmachine, department, title, message, admin = FALSE)
+	var/datum/fax/F = new
+	F.sender = sender
+	F.sendmachine = sendmachine
+	F.department = department
+	F.title = title
+	F.message = message
+	F.senttime = worldtime2text()
+	F.admin = admin
+
+	GLOB.faxes[F] = F
+
+	log_admin("[key_name(sender)] sent a fax, department: [department], titled [title] with them message: [message]")
+
+	if(sendmachine)
+		for(var/client/C in GLOB.admins)
+			if(check_other_rights(C, R_ADMIN, FALSE))
+				to_chat(C, "<span class='notice'><b><font color='#1F66A0'>FAX: </font>[ADMIN_FULLMONTY(sender)] (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxreply=[REF(F)]]'>REPLY</a>)</b>: Receiving '[title]' via secure connection ... <a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxview=[REF(F)]'>view message</a></span>")
+				C << 'sound/effects/sos-morse-code.ogg'
+			else
+				to_chat(C, "<span class='notice'><b><font color='#1F66A0'>FAX: </font>[key_name(sender)] (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxreply=[REF(F)]]'>REPLY</a>)</b>: Receiving '[title]' via secure connection ... <a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxview=[REF(F)]'>view message</a></span>")
+				C << 'sound/effects/sos-morse-code.ogg'
+
+	for(var/x in GLOB.faxmachines)
+		var/obj/machinery/faxmachine/FM = x
+		if(FM == sendmachine)
+			continue
+		if(FM.department != department)
+			continue
+		if(FM.machine_stat & (BROKEN|NOPOWER))
+			continue
+
+		flick("faxreceive", F)
+
+		var/obj/item/paper/P = new /obj/item/paper(FM.loc)
+		P.name = "[title]"
+		P.info = "[message]"
+		P.update_icon()
+
+		if(admin)
+			var/image/stampoverlay = image('icons/obj/items/paper.dmi')
+			stampoverlay.icon_state = "paper_stamp-uscm"
+			if(!P.stamped)
+				P.stamped = new
+			P.stamped += /obj/item/tool/stamp
+			P.overlays += stampoverlay
+			P.stamps += "<HR><i>This paper has been stamped by the High Command Quantum Relay.</i>"
+
+		playsound(FM.loc, "sound/items/polaroid1.ogg", 15, 1)
+
+
+/datum/admins/proc/view_faxes()
+	set category = "Fun"
+	set name = "View Faxes"
+
+	if(!check_rights(R_ADMIN|R_MENTOR))
+		return
+
+	var/dat = "<html><head><title>Faxes</title></head>"
+
+	dat += "<body>"
+
+	for(var/datum/fax/F in GLOB.faxes)
+		dat += "[F.admin ? "STAFF " : ""]Fax titled '[F.title]', department: [F.department], sent by [key_name_admin(F.sender)] at [F.senttime] - "
+		dat += "[check_rights(R_ADMIN, FALSE) ? "[ADMIN_PP(F.sender)] " : ""][ADMIN_SM(F.sender)] (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxreply=[REF(F)]'>REPLY</a>) (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(F)]'>VIEW</a>)"
+		dat += "<br>"
+
+	dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxcreate=[REF(usr)]'>CREATE NEW FAX</a>"
+	dat += "</body></html>"
+
+	usr << browse(dat, "window=faxview")
+
+
+/proc/generate_templated_fax(show_nt_logo, fax_header, fax_subject, addressed_to, message_body, sent_by, sent_department)
 	var/dat = ""
 	dat += "<style>"
 	dat += "body {"
@@ -60,11 +146,6 @@
 	dat += "<body>"
 	dat += "<div id='width-container'>"
 
-	if(show_nt_logo)
-		dat += "<div id='fax-logo'>"
-		dat += "<img src='https://i.imgur.com/mEUy6g9.png'/>"
-		dat += "</div>"
-
 	dat += "<div class='message-header-text'>"
 	dat += "<p id='header-title'>[fax_header]</p>"
 	dat += "<p id='header-subtitle'>[fax_subject] - [time2text(world.realtime, "DD Month")] [game_year]</p>"
@@ -81,8 +162,6 @@
 	dat += "<div class='message-signature-text'>"
 	dat += "<p>"
 	dat += "<em>[sent_by]</em>"
-	dat += "<br/>"
-	dat += "<em>[sent_title]</em>"
 	dat += "<br/>"
 	dat += "<em>[sent_department]</em>"
 	dat += "<br/>"

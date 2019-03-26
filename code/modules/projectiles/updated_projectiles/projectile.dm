@@ -1,8 +1,8 @@
 
 //Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
-#define DEBUG_HIT_CHANCE	FALSE
-#define DEBUG_HUMAN_DEFENSE	FALSE
-#define DEBUG_XENO_DEFENSE	FALSE
+#define DEBUG_HIT_CHANCE	0
+#define DEBUG_HUMAN_DEFENSE	0
+#define DEBUG_XENO_DEFENSE	0
 #define DEBUG_CREST_DEFENSE	0
 
 //The actual bullet objects.
@@ -67,7 +67,6 @@
 	starting = null
 	permutated = null
 	path = null
-	list_reagents = null
 	return TA_REVIVE_ME
 
 /obj/item/projectile/Bumped(atom/A as mob|obj|turf|area)
@@ -92,7 +91,6 @@
 	accuracy   *= rand(CONFIG_GET(number/combat_define/proj_variance_low)-ammo.accuracy_var_low, CONFIG_GET(number/combat_define/proj_variance_high)+ammo.accuracy_var_high) * CONFIG_GET(number/combat_define/proj_base_accuracy_mult)//Rand only works with integers.
 	damage     *= rand(CONFIG_GET(number/combat_define/proj_variance_low)-ammo.damage_var_low, CONFIG_GET(number/combat_define/proj_variance_high)+ammo.damage_var_high) * CONFIG_GET(number/combat_define/proj_base_damage_mult)
 	damage_falloff = ammo.damage_falloff
-	list_reagents = ammo.ammo_reagents
 	armor_type = ammo.armor_type
 
 //Target, firer, shot from. Ie the gun
@@ -112,7 +110,7 @@
 	shot_from = S
 	in_flight = 1
 
-	dir = get_dir(loc, target_turf)
+	setDir(get_dir(loc, target_turf))
 
 	round_statistics.total_projectiles_fired++
 	if(ammo.flags_ammo_behavior & AMMO_BALLISTIC)
@@ -123,7 +121,7 @@
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
 	if(ammo.bonus_projectiles_amount && ammo.bonus_projectiles_type) ammo.fire_bonus_projectiles(src)
 
-	path = getline2(starting,target_turf)
+	path = getline(starting,target_turf)
 
 	var/change_x = target_turf.x - starting.x
 	var/change_y = target_turf.y - starting.y
@@ -197,7 +195,7 @@
 		if(this_iteration == path.len)
 			next_turf = locate(current_turf.x + change_x, current_turf.y + change_y, current_turf.z)
 			if(current_turf && next_turf)
-				path = getline2(current_turf,next_turf) //Build a new flight path.
+				path = getline(current_turf,next_turf) //Build a new flight path.
 				if(path.len && src) //TODO look into this. This should always be true, but it can fail, apparently, against DCed people who fall down. Better yet, redo this.
 					distance_travelled-- //because the new follow_flightpath() repeats the last step.
 					follow_flightpath(speed, change_x, change_y, range) //Onwards!
@@ -384,8 +382,8 @@
 		return 0
 
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
-		if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest))
-			return 0
+		if(((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest)) || stat == DEAD)
+			return FALSE
 
 	. = P.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	#if DEBUG_HIT_CHANCE
@@ -481,9 +479,6 @@
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
 		apply_effects(arglist(P.ammo.debilitate))
 
-	if(P.list_reagents && stat != DEAD && (ishuman(src) || ismonkey(src)))
-		reagents.add_reagent_list(P.list_reagents)
-
 	if(damage)
 		bullet_message(P)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, 0, 0, P)
@@ -546,8 +541,10 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		#endif
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
 		if(P.shot_from && src == P.shot_from.sniper_target(src)) //Runtimes bad
-			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
-			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
+			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
+			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
+			add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
+
 		armor -= penetration//Minus armor penetration from the bullet. If the bullet has negative penetration, adding to their armor, but they don't have armor, they get nothing.
 		#if DEBUG_HUMAN_DEFENSE
 		to_chat(world, "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>")
@@ -583,13 +580,10 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )  //They can't be dead and damage must be inflicted (or it's a xeno toxin).
 		//Predators and synths are immune to these effects to cut down on the stun spam. This should later be moved to their apply_effects proc, but right now they're just humans.
-		if(!isyautjastrict(src) && !(species.flags & IS_SYNTHETIC))
+		if(!isyautjastrict(src) && !(species.species_flags & IS_SYNTHETIC))
 			apply_effects(arglist(P.ammo.debilitate))
 
 	bullet_message(P) //We still want this, regardless of whether or not the bullet did damage. For griefers and such.
-
-	if(P.list_reagents && stat != DEAD)
-		reagents.add_reagent_list(P.list_reagents)
 
 	if(damage)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone)
@@ -600,22 +594,23 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			shrap.desc = "[shrap.desc] It looks like it was fired from [P.shot_from ? P.shot_from : "something unknown"]."
 			shrap.loc = organ
 			organ.embed(shrap)
-			if(!stat && !(species && species.flags & NO_PAIN))
+			if(!stat && !(species && species.species_flags & NO_PAIN))
 				emote("scream")
 				to_chat(src, "<span class='highdanger'>You scream in pain as the impact sends <B>shrapnel</b> into the wound!</span>")
 
 		if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 			adjust_fire_stacks(rand(6,11))
 			IgniteMob()
-			if(!stat && !(species.flags & NO_PAIN))
+			if(!stat && !(species.species_flags & NO_PAIN))
 				emote("scream")
 				to_chat(src, "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>")
 		return 1
 
 //Deal with xeno bullets.
 /mob/living/carbon/Xenomorph/bullet_act(obj/item/projectile/P)
-	if(!P || !istype(P)) return
-	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX) ) //Aliens won't be harming aliens.
+	if(!P || !istype(P))
+		return
+	if(xeno_hivenumber(src) && xeno_hivenumber(src) == xeno_hivenumber(P.firer)) //Aliens won't be harming allied aliens.
 		bullet_ping(P)
 		return
 
@@ -662,8 +657,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
 		if(P.shot_from && src == P.shot_from.sniper_target(src))
-			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
-			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
+			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
+			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
+			add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
 		armor -= penetration
 
@@ -814,14 +810,15 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	if(ismob(P.firer))
 		var/mob/firingMob = P.firer
-		var/area/A = get_area(firingMob)
-		if(ishuman(firingMob) && ishuman(src) && firingMob.mind && !firingMob.mind.special_role && mind && !mind.special_role) //One human shot another, be worried about it but do everything basically the same //special_role should be null or an empty string if done correctly
+		var/turf/T = get_turf(firingMob)
+		if(ishuman(firingMob) && ishuman(src) && !firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction)
 			log_combat(firingMob, src, "shot", P)
-			msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with \a [P] in [ADMIN_VERBOSEJMP(A)].")
+			log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [P] in [AREACOORD(T)].")
+			msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")
 			round_statistics.total_bullet_hits_on_marines++
 		else
 			log_combat(firingMob, src, "shot", P)
-			msg_admin_attack("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with \a [P] in [ADMIN_VERBOSEJMP(A)].")
+			msg_admin_attack("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")
 		return
 
 	if(P.firer)

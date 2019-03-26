@@ -39,7 +39,7 @@
 
 //Attack by item places it in to disposal
 /obj/machinery/disposal/attackby(var/obj/item/I, var/mob/user)
-	if(stat & BROKEN || !I || !user)
+	if(machine_stat & BROKEN || !I || !user)
 		return
 
 	if(isxeno(user)) //No, fuck off. Concerns trashing Marines and facehuggers
@@ -177,7 +177,7 @@
 
 //Monkeys can only pull the flush lever
 /obj/machinery/disposal/attack_paw(mob/user as mob)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	flush = !flush
@@ -199,11 +199,11 @@
 /obj/machinery/disposal/interact(mob/user, var/ai=0)
 
 	add_fingerprint(user)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		user.unset_interaction()
 		return
 
-	var/dat = "<head><title>Waste Disposal Unit</title></head><body><TT><B>Waste Disposal Unit</B><HR>"
+	var/dat = "<B>Status</B><HR>"
 
 	if(!ai)  //AI can't pull flush handle
 		if(flush)
@@ -214,16 +214,19 @@
 		dat += "<BR><HR><A href='?src=\ref[src];eject=1'>Eject contents</A><HR>"
 
 	if(mode <= 0)
-		dat += "Pump: <B>Off</B> <A href='?src=\ref[src];pump=1'>On</A><BR>"
+		dat += "Pump: <B>Off</B> On</A><BR>"
 	else if(mode == 1)
-		dat += "Pump: <A href='?src=\ref[src];pump=0'>Off</A> <B>On</B> (pressurizing)<BR>"
+		dat += "Pump: <B>On</B> (pressurizing)<BR>"
 	else
-		dat += "Pump: <A href='?src=\ref[src];pump=0'>Off</A> <B>On</B> (idle)<BR>"
+		dat += "Pump: <B>On</B> (idle)<BR>"
 
-	dat += "Pressure: [disposal_pressure*100/SEND_PRESSURE]%<BR></body>"
+	dat += "Pressure: [disposal_pressure*100/SEND_PRESSURE]%<BR>"
 
 	user.set_interaction(src)
-	user << browse(dat, "window=disposal;size=360x170")
+
+	var/datum/browser/popup = new(user, "disposal", "<div align='center'>Waste Disposal Unit</div>", 360, 220)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "disposal")
 
 //Handle machine interaction
@@ -237,7 +240,7 @@
 		return
 	..()
 	add_fingerprint(usr)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	if(usr.stat || usr.is_mob_restrained() || flushing)
 		return
@@ -303,7 +306,7 @@
 //Update the icon & overlays to reflect mode & status
 /obj/machinery/disposal/proc/update()
 	overlays.Cut()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "disposal-broken"
 		mode = 0
 		flush = 0
@@ -314,7 +317,7 @@
 		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-handle")
 
 	//Only handle is shown if no power
-	if(stat & NOPOWER || mode == -1)
+	if(machine_stat & NOPOWER || mode == -1)
 		return
 
 	//Check for items in disposal - occupied light
@@ -329,7 +332,7 @@
 
 //Timed process, charge the gas reservoir and perform flush if ready
 /obj/machinery/disposal/process()
-	if(stat & BROKEN) //Nothing can happen if broken
+	if(machine_stat & BROKEN) //Nothing can happen if broken
 		update_use_power(0)
 		return
 
@@ -338,7 +341,6 @@
 		if(contents.len)
 			if(mode == 2)
 				spawn(0)
-					feedback_inc("disposal_auto_flush", 1)
 					flush()
 		flush_count = 0
 
@@ -437,7 +439,7 @@
 //Virtual disposal object, travels through pipes in lieu of actual items
 //Contents will be items flushed by the disposal, this allows the gas flushed to be tracked
 /obj/structure/disposalholder
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	var/active = 0	//True if the holder is moving, otherwise inactive
 	dir = 0
 	var/count = 2048 //Can travel 2048 steps before going inactive (in case of loops)
@@ -473,6 +475,7 @@
 	//Note AM since can contain mobs or objs
 	for(var/atom/movable/AM in D)
 		AM.loc = src
+		SEND_SIGNAL(AM, COMSIG_MOVABLE_DISPOSING, src, D)
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
 			if(FAT in H.mutations) //Is a human and fat?
@@ -498,7 +501,7 @@
 
 	loc = D.trunk
 	active = 1
-	dir = DOWN
+	setDir(DOWN)
 	spawn(1)
 		move() //Spawn off the movement process
 
@@ -510,7 +513,7 @@
 		if(hasmob && prob(3))
 			for(var/mob/living/H in src)
 				if(!ismaintdrone(H)) //Drones use the mailing code to move through the disposal system,
-					if(GLOB.map_tag != MAP_WHISKEY_OUTPOST)
+					if(SSmapping.config.map_name != MAP_WHISKEY_OUTPOST)
 						H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
 
 		if(has_fat_guy && prob(2)) //Chance of becoming stuck per segment if contains a fat guy
@@ -598,7 +601,7 @@
 	level = 1			//Underfloor only
 	var/dpdir = 0		//Bitmask of pipe directions
 	dir = 0				//dir will contain dominant direction for junction pipes
-	var/health = 10 	//Health points 0-10
+	health = 10 	//Health points 0-10
 	layer = DISPOSAL_PIPE_LAYER //Slightly lower than wires and other pipes
 	var/base_icon_state	//Initial icon state on map
 
@@ -639,7 +642,7 @@
 //Transfer the holder through this pipe segment, overriden for special behaviour
 /obj/structure/disposalpipe/proc/transfer(var/obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
-	H.dir = nextdir
+	H.setDir(nextdir)
 	var/turf/T = H.nextloc()
 	var/obj/structure/disposalpipe/P = H.findpipe(T)
 
@@ -662,7 +665,7 @@
 
 //Hide called by levelupdate if turf intact status changes, change visibility status and force update of icon
 /obj/structure/disposalpipe/hide(var/intact)
-	invisibility = intact ? 101: 0	// hide if floor is intact
+	invisibility = intact ? INVISIBILITY_MAXIMUM: 0	// hide if floor is intact
 	updateicon()
 
 //Update actual icon_state depending on visibility, if invisible, append "f" to icon_state to show faded version, this will be revealed if a T-scanner is used
@@ -725,9 +728,9 @@
 		for(var/D in cardinal)
 			if(D & dpdir)
 				var/obj/structure/disposalpipe/broken/P = new(loc)
-				P.dir = D
+				P.setDir(D)
 
-	invisibility = 101	//Make invisible (since we won't delete the pipe immediately)
+	invisibility = INVISIBILITY_MAXIMUM	//Make invisible (since we won't delete the pipe immediately)
 	var/obj/structure/disposalholder/H = locate() in src
 	if(H)
 		//Holder was present
@@ -830,7 +833,7 @@
 		if("pipe-tagger-partial")
 			C.ptype = 14
 	transfer_fingerprints_to(C)
-	C.dir = dir
+	C.setDir(dir)
 	C.density = 0
 	C.anchored = 1
 	C.update()
@@ -847,6 +850,9 @@
 		else
 			dpdir = dir|turn(dir, -90)
 		update()
+
+/obj/structure/disposalpipe/segment/corner
+	icon_state = "pipe-c"
 
 //Z-Level stuff
 /obj/structure/disposalpipe/up
@@ -867,7 +873,7 @@
 
 /obj/structure/disposalpipe/up/transfer(var/obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
-	H.dir = nextdir
+	H.setDir(nextdir)
 
 	var/turf/T
 	var/obj/structure/disposalpipe/P
@@ -910,7 +916,7 @@
 
 /obj/structure/disposalpipe/down/transfer(var/obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
-	H.dir = nextdir
+	H.setDir(nextdir)
 
 	var/turf/T
 	var/obj/structure/disposalpipe/P
@@ -945,7 +951,7 @@
 
 /obj/structure/disposalpipe/up/almayer/transfer(var/obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
-	H.dir = nextdir
+	H.setDir(nextdir)
 
 	var/turf/T
 	var/obj/structure/disposalpipe/P
@@ -973,7 +979,7 @@
 
 /obj/structure/disposalpipe/down/almayer/transfer(var/obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
-	H.dir = nextdir
+	H.setDir(nextdir)
 
 	var/turf/T
 	var/obj/structure/disposalpipe/P
@@ -1015,6 +1021,9 @@
 		else //Pipe-y
 			dpdir = dir|turn(dir,90)|turn(dir, -90)
 		update()
+
+/obj/structure/disposalpipe/junction/flipped
+	icon_state = "pipe-j2"
 
 //Next direction to move, if coming in from secondary dirs, then next is primary dir, if coming in from primary dir, then next is equal chance of other dirs
 /obj/structure/disposalpipe/junction/nextdir(var/fromdir)
@@ -1164,7 +1173,7 @@
 
 /obj/structure/disposalpipe/sortjunction/transfer(var/obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir, H.destinationTag)
-	H.dir = nextdir
+	H.setDir(nextdir)
 	var/turf/T = H.nextloc()
 	var/obj/structure/disposalpipe/P = H.findpipe(T)
 

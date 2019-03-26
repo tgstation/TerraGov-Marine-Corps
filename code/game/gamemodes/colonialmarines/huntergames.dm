@@ -49,18 +49,22 @@
 
 #define HUNTER_FEET list(\
 							/obj/item/clothing/shoes/marine,\
-							/obj/item/clothing/shoes/marinechief/commander,\
+							/obj/item/clothing/shoes/marinechief/captain,\
 							/obj/item/clothing/shoes/laceup,\
 							/obj/item/clothing/shoes/jackboots)
 
 var/waiting_for_drop_votes = 0
 
 /obj/effect/landmark/huntergames_primary_spawn/Initialize()
+	. = ..()
 	GLOB.huntergames_primary_spawns += loc
+	flags_atom |= INITIALIZED
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/huntergames_secondary_spawn/Initialize()
+	. = ..()
 	GLOB.huntergames_secondary_spawns += loc
+	flags_atom |= INITIALIZED
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/hell_hound_blocker/Initialize()
@@ -71,7 +75,7 @@ var/waiting_for_drop_votes = 0
 	GLOB.landmarks_round_start -= src
 	return ..()
 
-/obj/effect/landmark/hell_hound_blocker/on_round_start(flags_round_type=NOFLAGS,flags_landmarks=NOFLAGS)
+/obj/effect/landmark/hell_hound_blocker/after_round_start(flags_round_type=NOFLAGS,flags_landmarks=NOFLAGS)
 	if(flags_landmarks & MODE_LANDMARK_HELLHOUND_BLOCKER)
 		new /obj/effect/step_trigger/hell_hound_blocker(loc)
 	qdel(src)
@@ -263,18 +267,15 @@ var/waiting_for_drop_votes = 0
 			break
 
 	if(round_finished == 1 && !isnull(winner) && istype(winner))
-		feedback_set_details("round_end_result","single winner")
 		to_chat(world, "<span class='round_header'>We have a winner! >> [winner.real_name] << defeated all enemies!</span>")
 		to_chat(world, "<FONT size = 3><B>Well done, your tale of survival will live on in legend!</B></FONT>")
 		log_game("Humans remaining: [count_humans()]\nRound time: [duration2text()]\nBig Winner: [winner.real_name]")
 	else if(round_finished == 2)
-		feedback_set_details("round_end_result","no winners")
 		to_chat(world, "<span class='round_header'>NOBODY WON!?</span>")
 		to_chat(world, "<FONT size = 3><B>'Somehow you stupid humans managed to even fuck up killing yourselves. Well done.'</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 		log_game("Humans remaining: [count_humans()]\nRound time: [duration2text()]")
 	else
-		feedback_set_details("round_end_result","no winners")
 		to_chat(world, "<span class='round_header'>NOBODY WON!</span>")
 		to_chat(world, "<FONT size = 3><B>There was a winner, but they died before they could receive the prize!! Bummer.</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'

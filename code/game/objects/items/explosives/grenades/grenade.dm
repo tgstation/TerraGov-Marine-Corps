@@ -20,10 +20,9 @@
 	var/hud_state = "grenade_he"
 	var/hud_state_empty = "grenade_empty"
 
+
 /obj/item/explosive/grenade/New()
-
-	..()
-
+	. = ..()
 	det_time = rand(det_time - 10, det_time + 10)
 
 /obj/item/explosive/grenade/attack_self(mob/user)
@@ -53,6 +52,10 @@
 
 			for(var/mob/living/carbon/human/H in hearers(6,user))
 				H.playsound_local(user, nade_sound, 35)
+
+			var/image/grenade = image('icons/mob/talk.dmi', user, "grenade")
+			user.add_emote_overlay(grenade)
+
 		if(iscarbon(user))
 			var/mob/living/carbon/C = user
 			C.throw_mode_on()
@@ -63,11 +66,11 @@
 		return
 
 	if(user)
+		log_explosion("[key_name(user)] primed [src] at [AREACOORD(user.loc)].")
 		log_combat(user, src, "primed")
-		msg_admin_attack("[ADMIN_TPMONTY(usr)] primed \a [src].")
 
 	icon_state = initial(icon_state) + "_active"
-	active = 1
+	active = TRUE
 	playsound(loc, arm_sound, 25, 1, 6)
 	if(dangerous)
 		round_statistics.grenades_thrown++

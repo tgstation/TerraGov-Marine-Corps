@@ -1,5 +1,5 @@
 /obj/item/weapon/gun
-	name = "gun"
+	name = "Guns"
 	desc = "Its a gun. It's pretty terrible, though."
 	icon = 'icons/obj/items/gun.dmi'
 	icon_state = ""
@@ -43,7 +43,9 @@
 	var/recoil 					= 0				//Screen shake when the weapon is fired.
 	var/scatter					= 0				//How much the bullet scatters when fired.
 	var/burst_scatter_mult		= 3				//Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
+	var/burst_accuracy_mult		= 1				//Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
 
+	var/accuracy_mod			= 0				//accuracy modifier, used by most attachments.
 	var/accuracy_mult_unwielded 		= 1		//same vars as above but for unwielded firing.
 	var/recoil_unwielded 				= 0
 	var/scatter_unwielded 				= 0
@@ -113,8 +115,10 @@
 			current_mag = null
 			update_icon()
 		else
-			current_mag = new current_mag(src, spawn_empty ? 1 : 0)
+			current_mag = new current_mag(src, spawn_empty ? TRUE : FALSE)
 			ammo = current_mag.default_ammo ? GLOB.ammo_list[current_mag.default_ammo] : GLOB.ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
+		if(flags_gun_features & GUN_LOAD_INTO_CHAMBER && current_mag?.current_rounds > 0)
+			load_into_chamber()
 	else
 		ammo = GLOB.ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
 	set_gun_config_values()
@@ -128,6 +132,7 @@
 //amounts to get specific values in each gun subtype's New().
 //This makes reading each gun's values MUCH easier.
 /obj/item/weapon/gun/proc/set_gun_config_values()
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
@@ -158,9 +163,8 @@
 	if(flags_gun_features & GUN_FLASHLIGHT_ON)//Handle flashlight.
 		flags_gun_features &= ~GUN_FLASHLIGHT_ON
 		if(ismob(loc))
-			loc.SetLuminosity(-rail.light_mod)
-		else
-			SetLuminosity(0)
+			loc.SetLuminosity(-(rail.light_mod) )
+		SetLuminosity(0)
 	rail 			= null
 	under 			= null
 	stock 			= null
@@ -196,18 +200,27 @@
 	else
 		dat += "The safety's off!<br>"
 
-	if(rail) 	dat += "It has [bicon(rail)] [rail.name] mounted on the top.<br>"
-	if(muzzle) 	dat += "It has [bicon(muzzle)] [muzzle.name] mounted on the front.<br>"
-	if(stock) 	dat += "It has [bicon(stock)] [stock.name] for a stock.<br>"
+	if(rail)
+		dat += "It has [icon2html(rail, user)] [rail.name] mounted on the top.<br>"
+	if(muzzle)
+		dat += "It has [icon2html(muzzle, user)] [muzzle.name] mounted on the front.<br>"
+	if(stock)
+		dat += "It has [icon2html(stock, user)] [stock.name] for a stock.<br>"
 	if(under)
-		dat += "It has [bicon(under)] [under.name]"
+		dat += "It has [icon2html(under, user)] [under.name]"
 		if(under.flags_attach_features & ATTACH_WEAPON)
 			dat += " ([under.current_rounds]/[under.max_rounds])"
 		dat += " mounted underneath.<br>"
 
+	if(dat)
+		to_chat(user, "[dat.Join(" ")]")
 
+	examine_ammo_count(user)
+
+/obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
+	var/list/dat = list()
 	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
-		if(current_mag && current_mag.current_rounds > 0)
+		if(current_mag?.current_rounds > 0)
 			if(flags_gun_features & GUN_AMMO_COUNTER)
 				dat += "Ammo counter shows [current_mag.current_rounds] round\s remaining.<br>"
 			else
@@ -479,10 +492,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			flags_gun_features &= ~GUN_BURST_FIRING
 		return
 
-	if(user && user.client && user.gun_mode && !(A in target))
-		PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
-	else
-		Fire(A,user,params) //Otherwise, fire normally.
+	if(user?.client && user.gun_mode && !(A in target))
+		PreFire(A, user, params) //They're using the new gun system, locate what they're aiming at.
+	else if(!istype(A, /obj/screen))
+		Fire(A, user, params) //Otherwise, fire normally.
 
 /*
 load_into_chamber(), reload_into_chamber(), and clear_jam() do all of the heavy lifting.
@@ -767,7 +780,7 @@ and you're good to go.
 				flags_gun_features ^= GUN_CAN_POINTBLANK //Reset this.
 			return
 
-		else if(user.a_intent == "hurt") //Point blanking doesn't actually fire the projectile. No reason to.
+		else if(user.a_intent == INTENT_HARM) //Point blanking doesn't actually fire the projectile. No reason to.
 			if(able_to_fire(user)) //If you can't fire the gun in the first place, we're just going to hit them with it.
 				if(!active_attachable && (flags_gun_features & GUN_BURST_ON) && burst_amount > 1)
 					..()
@@ -783,7 +796,7 @@ and you're good to go.
 					if(projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
 						user.visible_message("<span class='danger'>[user] fires [src] point blank at [M]!</span>")
 						apply_bullet_effects(projectile_to_fire, user) //We add any damage effects that we need.
-						projectile_to_fire.dir = get_dir(user, M)
+						projectile_to_fire.setDir(get_dir(user, M))
 						projectile_to_fire.distance_travelled = get_dist(user, M)
 						simulate_recoil(1, user)
 
@@ -792,7 +805,7 @@ and you're good to go.
 							for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
 								BP = new /obj/item/projectile(M.loc)
 								BP.generate_bullet(GLOB.ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
-								BP.dir = get_dir(user, M)
+								BP.setDir(get_dir(user, M))
 								BP.distance_travelled = get_dist(user, M)
 								BP.ammo.on_hit_mob(M, BP)
 								M.bullet_act(BP)
@@ -903,6 +916,8 @@ and you're good to go.
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * CONFIG_GET(number/combat_define/low_hit_accuracy_mult)))
 		gun_scatter += max(0, movement_acc_penalty_mult * CONFIG_GET(number/combat_define/min_scatter_value))
 
+	if(flags_gun_features & GUN_BURST_ON && burst_amount > 1)
+		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
 		if(gun_skill_category == GUN_SKILL_PISTOLS)

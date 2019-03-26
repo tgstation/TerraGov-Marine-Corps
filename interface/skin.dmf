@@ -1,7 +1,7 @@
 macro "macro"
 	elem 
 		name = "Tab"
-		command = ".winset \"mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
+		command = ".winset \"mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true input.background-color=#f0f0f0\""
 	elem 
 		name = "Center+REP"
 		command = ".center"
@@ -63,6 +63,9 @@ macro "macro"
 		name = "CTRL+4"
 		command = "a-intent hurt"
 	elem 
+		name = "CTRL+5"
+		command = "toggle-move-intent"
+	elem 
 		name = "CTRL+A+REP"
 		command = ".west"
 	elem 
@@ -97,7 +100,7 @@ macro "macro"
 		command = "Activate-Held-Object"
 	elem 
 		name = "F1"
-		command = "adminhelp"
+		command = "choosehelp"
 	elem 
 		name = "CTRL+SHIFT+F1+REP"
 		command = ".options"
@@ -111,17 +114,11 @@ macro "macro"
 		name = "F3"
 		command = "asay"
 	elem 
+		name = "F4"
+		command = "msay"
+	elem 
 		name = "F5"
-		command = "aghost"
-	elem 
-		name = "F6"
-		command = "Player-Panel"
-	elem 
-		name = "F7"
-		command = "Admin-PM"
-	elem 
-		name = "F8"
-		command = "Invisimin"
+		command = "dsay"
 	elem 
 		name = "F12"
 		command = "F12"
@@ -129,7 +126,7 @@ macro "macro"
 macro "hotkeymode"
 	elem 
 		name = "Tab"
-		command = ".winset \"mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true\""
+		command = ".winset \"mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true input.background-color=#d3b5b5\""
 	elem 
 		name = "Center+REP"
 		command = ".center"
@@ -198,10 +195,13 @@ macro "hotkeymode"
 		command = "a-intent grab"
 	elem 
 		name = "4"
-		command = "a-intent hurt"
+		command = "a-intent harm"
 	elem 
 		name = "CTRL+4"
 		command = "a-intent hurt"
+	elem 
+		name = "5"
+		command = "toggle-move-intent"
 	elem 
 		name = "A+REP"
 		command = ".west"
@@ -232,6 +232,9 @@ macro "hotkeymode"
 	elem 
 		name = "O"
 		command = "ooc"
+	elem 
+		name = "L"
+		command = "looc"
 	elem 
 		name = "Q"
 		command = ".northwest"
@@ -278,8 +281,29 @@ macro "hotkeymode"
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
 	elem 
+		name = "Numpad1"
+		command = "a-select-zone \"rleg\""
+	elem 
+		name = "Numpad2"
+		command = "a-select-zone \"groin\""
+	elem 
+		name = "Numpad3"
+		command = "a-select-zone \"lleg\""
+	elem 
+		name = "Numpad4"
+		command = "a-select-zone \"rarm\""
+	elem 
+		name = "Numpad5"
+		command = "a-select-zone \"chest\""
+	elem 
+		name = "Numpad6"
+		command = "a-select-zone \"larm\""
+	elem 
+		name = "Numpad8"
+		command = "a-select-zone \"head\""
+	elem 
 		name = "F1"
-		command = "adminhelp"
+		command = "choosehelp"
 	elem 
 		name = "CTRL+SHIFT+F1+REP"
 		command = ".options"
@@ -293,42 +317,14 @@ macro "hotkeymode"
 		name = "F3"
 		command = "asay"
 	elem 
+		name = "F4"
+		command = "msay"
+	elem 
 		name = "F5"
-		command = "aghost"
-	elem 
-		name = "F6"
-		command = "Player-Panel"
-	elem 
-		name = "F7"
-		command = "Admin-PM"
-	elem 
-		name = "F8"
-		command = "Invisimin"
+		command = "dsay"
 	elem 
 		name = "F12"
 		command = "F12"
-	elem 
-		name = "Numpad8"
-		command = "a-select-zone \"head\""
-	elem 
-		name = "Numpad5"
-		command = "a-select-zone \"chest\""
-	elem 
-		name = "Numpad2"
-		command = "a-select-zone \"groin\""
-	elem 
-		name = "Numpad4"
-		command = "a-select-zone \"rarm\""
-	elem 
-		name = "Numpad6"
-		command = "a-select-zone \"larm\""
-	elem 
-		name = "Numpad1"
-		command = "a-select-zone \"rleg\""
-	elem 
-		name = "Numpad3"
-		command = "a-select-zone \"lleg\""
-
 
 
 menu "menu"
@@ -427,8 +423,8 @@ menu "menu"
 		command = ""
 		saved-params = "is-checked"
 	elem 
-		name = "&Admin help\tF1"
-		command = "adminhelp"
+		name = "&Request Help\tF1"
+		command = "choosehelp"
 		category = "&Help"
 		saved-params = "is-checked"
 	elem 
@@ -650,7 +646,6 @@ window "mainwindow"
 		anchor2 = none
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
-		title = "TerraGov Marine Corps - TGS Theseus"
 		is-maximized = true
 		icon = 'icons\\ss13_64.png'
 		macro = "macro"
@@ -663,7 +658,7 @@ window "mainwindow"
 		anchor2 = none
 		saved-params = ""
 		text = "Hotkey Toggle"
-		command = ".winset \"mainwindow.macro!=macro ? mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true : mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
+		command = ".winset \"mainwindow.macro!=macro ? mainwindow.macro=macro hotkey_toggle.is-checked=false input.background-color=#d3b5b5 input.focus=true : mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true input.background-color=#f0f0f0 mapwindow.map.focus=true\""
 		button-type = pushbox
 	elem "mainvsplit"
 		type = CHILD
@@ -694,6 +689,14 @@ window "mainwindow"
 		text = "Chat"
 		command = ".winset \"saybutton.is-checked=true?input.command=\"!say \\\"\" macrobutton.is-checked=false:input.command=\""
 		button-type = pushbox
+	elem "asset_cache_browser"
+		type = BROWSER
+		pos = 0,0
+		size = 200x200
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = ""
 
 window "mapwindow"
 	elem "mapwindow"
@@ -726,16 +729,11 @@ window "mapwindow"
 window "outputwindow"
 	elem "outputwindow"
 		type = MAIN
-		pos = 281,0
+		pos = 0,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
 		saved-params = "pos;size;is-minimized;is-maximized"
-		titlebar = false
-		statusbar = false
-		can-close = false
-		can-minimize = false
-		can-resize = false
 		is-pane = true
 	elem "browseroutput"
 		type = BROWSER
@@ -744,9 +742,18 @@ window "outputwindow"
 		anchor1 = 0,0
 		anchor2 = 100,100
 		background-color = #ffffff
+		is-visible = false
 		is-disabled = true
 		saved-params = ""
 		auto-format = false
+	elem "output"
+		type = OUTPUT
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		is-default = true
+		saved-params = ""
 
 window "rpane"
 	elem "rpane"
@@ -768,39 +775,49 @@ window "rpane"
 		is-vert = false
 	elem "webmap"
 		type = BUTTON
-		pos = 720,0
-		size = 90x20
-		anchor1 = 92,0
-		anchor2 = 104,0
+		pos = 740,0
+		size = 80x20
+		anchor1 = 105,0
+		anchor2 = 117,0
 		saved-params = "is-checked"
 		text = "Webmap"
 		command = "webmap"
 		group = "rpanemode"
 	elem "submitbug"
 		type = BUTTON
-		pos = 540,0
-		size = 90x20
-		anchor1 = 67,0
-		anchor2 = 79,0
+		pos = 580,0
+		size = 80x20
+		anchor1 = 79,0
+		anchor2 = 92,0
 		saved-params = "is-checked"
 		text = "Submit Bug"
 		command = "submit-bug"
 		group = "rpanemode"
 	elem "patreon"
 		type = BUTTON
-		pos = 630,0
-		size = 90x20
-		anchor1 = 79,0
-		anchor2 = 92,0
+		pos = 660,0
+		size = 80x20
+		anchor1 = 92,0
+		anchor2 = 105,0
 		background-color = #ff8040
 		saved-params = "is-checked"
 		text = "Patreon"
 		command = "patreon"
 		group = "rpanemode"
+	elem "discord"
+		type = BUTTON
+		pos = 340,0
+		size = 80x20
+		anchor1 = 42,0
+		anchor2 = 55,0
+		saved-params = "is-checked"
+		text = "Discord"
+		command = "discord"
+		group = "rpanemode"
 	elem "rulesb"
 		type = BUTTON
-		pos = 270,0
-		size = 90x20
+		pos = 260,0
+		size = 80x20
 		anchor1 = 30,0
 		anchor2 = 42,0
 		saved-params = "is-checked"
@@ -810,7 +827,7 @@ window "rpane"
 	elem "changelog"
 		type = BUTTON
 		pos = 180,0
-		size = 90x20
+		size = 80x20
 		anchor1 = 18,0
 		anchor2 = 31,0
 		saved-params = "is-checked"
@@ -819,20 +836,20 @@ window "rpane"
 		group = "rpanemode"
 	elem "forumb"
 		type = BUTTON
-		pos = 450,0
-		size = 90x20
-		anchor1 = 55,0
-		anchor2 = 67,0
+		pos = 500,0
+		size = 80x20
+		anchor1 = 67,0
+		anchor2 = 80,0
 		saved-params = "is-checked"
 		text = "Forum"
 		command = "forum"
 		group = "rpanemode"
 	elem "wikib"
 		type = BUTTON
-		pos = 360,0
-		size = 90x20
-		anchor1 = 42,0
-		anchor2 = 55,0
+		pos = 420,0
+		size = 80x20
+		anchor1 = 55,0
+		anchor2 = 68,0
 		saved-params = "is-checked"
 		text = "Wiki"
 		command = "wiki"
@@ -908,3 +925,30 @@ window "infowindow"
 		on-show = ".winset\"rpane.infob.is-visible=true;rpane.browseb.is-visible=true?rpane.infob.pos=130,0:rpane.infob.pos=65,0 rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
 		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
 
+window "preferences_window"
+	elem "preferences_window"
+		type = MAIN
+		pos = 372,0
+		size = 1120x1000
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		statusbar = false
+	elem "preferences_browser"
+		type = BROWSER
+		pos = -8,-8
+		size = 896x1008
+		anchor1 = 0,0
+		anchor2 = 90,100
+		background-color = none
+		saved-params = ""
+	elem "character_preview_map"
+		type = MAP
+		pos = 887,0
+		size = 313x1000
+		anchor1 = 90,0
+		anchor2 = 100,100
+		right-click = true
+		saved-params = "zoom;letterbox;zoom-mode"
