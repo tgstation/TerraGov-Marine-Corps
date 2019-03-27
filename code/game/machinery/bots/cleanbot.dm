@@ -32,7 +32,7 @@
 /obj/machinery/bot/cleanbot/Initialize()
 	. = ..()
 	get_targets()
-	icon_state = "cleanbot[src.on]"
+	icon_state = "cleanbot[on]"
 
 	should_patrol = TRUE
 
