@@ -225,14 +225,14 @@
 // *********** Xeno death
 // ***************************************
 /datum/hive_status/proc/on_xeno_death(mob/living/carbon/Xenomorph/X)
-	if(isxenoqueen(X))
-		on_queen_death(X)
-
 	if(living_xeno_queen?.observed_xeno == X)
 		living_xeno_queen.set_queen_overwatch(X, TRUE)
 		
 	remove_from_lists(X)
 	dead_xenos += X
+
+	if(isxenoqueen(X))
+		on_queen_death(X)
 	return TRUE
 
 /datum/hive_status/proc/on_xeno_revive(mob/living/carbon/Xenomorph/X)
