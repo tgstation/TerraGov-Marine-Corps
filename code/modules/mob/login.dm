@@ -48,7 +48,7 @@
 
 	reset_view(loc)
 
-	//updating atom HUD
+	add_click_catcher()
 	refresh_huds()
 
 	if(client?.player_details)

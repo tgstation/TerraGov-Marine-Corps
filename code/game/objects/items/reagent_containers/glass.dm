@@ -43,6 +43,8 @@
 	if(!proximity)
 		return
 
+	user.changeNext_move(CLICK_CD_RAPID)
+
 	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
 		if(!is_drainable())
 			to_chat(user, "<span class='warning'>take [src]'s lid off first!</span>")

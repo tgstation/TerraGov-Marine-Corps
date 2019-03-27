@@ -273,7 +273,7 @@ WEAPONS
 	contains = list(
 					/obj/item/storage/box/sentry
 					)
-	cost = RO_PRICE_VERY_PRICY
+	cost = RO_PRICE_MAX_PRICY
 	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper sentry crate"
 	group = "Weapons"

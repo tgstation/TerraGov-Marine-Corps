@@ -237,7 +237,6 @@
 /area/sulaco/cargo)
 "aK" = (
 /obj/structure/sign/vacuum{
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /obj/machinery/light{
@@ -303,8 +302,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -369,7 +367,6 @@
 /obj/item/stack/medical/ointment,
 /obj/item/device/flashlight/flare,
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 8
 	},
 /turf/open/floor{
@@ -504,9 +501,7 @@
 	},
 /area/sulaco/cryosleep)
 "bt" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	on = 1
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -623,9 +618,8 @@
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/maintenance/north_solar_maint)
 "bM" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/sulaco/hub/top)
@@ -633,7 +627,6 @@
 /obj/structure/table,
 /obj/item/facepaint/green,
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/floor{
@@ -684,7 +677,6 @@
 /obj/item/device/camera,
 /obj/item/device/flashlight/flare,
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 8
 	},
 /turf/open/floor{
@@ -696,8 +688,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plating,
 /area/sulaco/cargo)
@@ -714,7 +705,6 @@
 /obj/machinery/door_control{
 	id = "Disposal Exit";
 	name = "Disposal Vent Control";
-	pixel_x = 0;
 	pixel_y = 36;
 	req_access_txt = "0";
 	req_one_access_txt = "7;21"
@@ -968,8 +958,7 @@
 	},
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/structure/grille,
 /turf/open/floor/plating,
@@ -1000,7 +989,6 @@
 /obj/structure/table,
 /obj/item/device/taperecorder,
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/floor{
@@ -1052,7 +1040,6 @@
 	},
 /obj/machinery/light,
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 1
 	},
 /turf/open/floor{
@@ -1154,7 +1141,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/open/floor{
@@ -1292,8 +1278,7 @@
 "dh" = (
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tube1"
 	},
 /obj/structure/table,
 /obj/machinery/recharger,
@@ -1357,8 +1342,7 @@
 /obj/structure/table,
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tube1"
 	},
 /obj/item/device/flashlight/flare,
 /obj/item/facepaint/brown,
@@ -1398,15 +1382,13 @@
 /area/sulaco/showers)
 "dt" = (
 /obj/machinery/status_display/supply_display{
-	pixel_x = -30;
-	pixel_y = 0
+	pixel_x = -30
 	},
 /turf/open/floor/plating,
 /area/sulaco/cargo)
 "du" = (
 /obj/machinery/status_display/supply_display{
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plating,
 /area/sulaco/cargo)
@@ -1432,8 +1414,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plating,
 /area/sulaco/disposal)
@@ -1571,9 +1552,7 @@
 	},
 /area/sulaco/medbay)
 "dN" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	on = 1
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -1877,9 +1856,7 @@
 	},
 /area/sulaco/medbay/west)
 "ex" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	on = 1
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor{
 	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
@@ -1890,7 +1867,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /obj/structure/bed/roller,
@@ -2081,9 +2057,7 @@
 	},
 /area/sulaco/showers)
 "eS" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	on = 1
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor{
 	icon_state = "freezerfloor"
 	},
@@ -2236,7 +2210,6 @@
 /obj/structure/table,
 /obj/item/stack/medical/bruise_pack,
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/floor{
@@ -2262,9 +2235,8 @@
 /obj/structure/table,
 /obj/item/tool/surgery/cautery,
 /obj/item/tool/surgery/hemostat,
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -2494,7 +2466,6 @@
 "fK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 8
 	},
 /turf/open/floor{
@@ -2569,8 +2540,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
@@ -3111,9 +3081,8 @@
 	},
 /area/sulaco/medbay/storage2)
 "gD" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -3202,9 +3171,8 @@
 	},
 /area/sulaco/showers)
 "gL" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -3275,8 +3243,7 @@
 "gT" = (
 /obj/structure/supply_drop/delta,
 /obj/structure/noticeboard{
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor{
 	icon_state = "cult";
@@ -3294,9 +3261,7 @@
 	},
 /area/sulaco/engineering/ce)
 "gV" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	on = 1
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor{
 	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
@@ -3313,15 +3278,12 @@
 /obj/machinery/driver_button{
 	id = "enginecore";
 	name = "Emergency Core Eject";
-	pixel_x = 30;
-	pixel_y = 0;
-	req_access_txt = "6";
+	pixel_x = 30req_access_txt = "6";
 	req_one_access_txt = "0"
 	},
 /obj/effect/decal/warning_stripes{
 	layer = 4;
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor{
 	tag = "icon-yellowfull";
@@ -3508,8 +3470,7 @@
 "hu" = (
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tube1"
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -3712,8 +3673,7 @@
 	},
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tube1"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -3757,8 +3717,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/camera/autoname{
@@ -3887,8 +3846,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -4004,7 +3962,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /obj/structure/cable/yellow{
@@ -4068,12 +4025,10 @@
 /obj/structure/table,
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tube1"
 	},
 /obj/item/device/camera,
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/floor{
@@ -4106,7 +4061,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/open/floor{
@@ -4364,10 +4318,7 @@
 /obj/machinery/door_control{
 	id = "ROlobby1";
 	name = "RO Line 1 Shutters";
-	pixel_x = -30;
-	pixel_y = 0;
-	pixel_z = 0;
-	req_one_access_txt = "1;21"
+	pixel_x = -30req_one_access_txt = "1;21"
 	},
 /obj/machinery/flasher_button{
 	id = "req";
@@ -4697,9 +4648,8 @@
 "jy" = (
 /obj/structure/table,
 /obj/item/tool/surgery/surgicaldrill,
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
 	},
 /obj/item/tool/surgery/FixOVein,
 /turf/open/floor{
@@ -4846,9 +4796,7 @@
 	},
 /area/sulaco/medbay)
 "jM" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	on = 1
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
@@ -4892,9 +4840,8 @@
 /area/sulaco/medbay)
 "jR" = (
 /obj/structure/table,
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
 /obj/item/book/manual/medical_diagnostics_manual,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -5090,9 +5037,7 @@
 /obj/machinery/door_control{
 	id = "qm_warehouse";
 	name = "RO Warehouse Shutters";
-	pixel_x = 0;
 	pixel_y = -30;
-	pixel_z = 0;
 	req_one_access_txt = "2;21"
 	},
 /turf/open/floor{
@@ -5115,9 +5060,7 @@
 	},
 /area/sulaco/engineering)
 "kn" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	on = 1
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor{
 	dir = 4;
 	icon_state = "yellowpatch"
@@ -5469,8 +5412,7 @@
 	},
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/structure/grille,
 /turf/open/floor/plating{
@@ -5575,9 +5517,8 @@
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "lk" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
@@ -5600,7 +5541,6 @@
 	layer = 2
 	},
 /obj/machinery/status_display/supply_display{
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /obj/machinery/door/poddoor/shutters{
@@ -6097,7 +6037,6 @@
 "mf" = (
 /obj/structure/bed/chair/wheelchair,
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 1
 	},
 /turf/open/floor{
@@ -6277,8 +6216,7 @@
 /obj/structure/sink{
 	dir = 4;
 	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = 11
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -6295,8 +6233,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = -30;
-	pixel_y = 0
+	pixel_x = -30
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
@@ -6417,8 +6354,6 @@
 	id = "qm_warehouse";
 	name = "RO Warehouse Shutters";
 	pixel_x = -30;
-	pixel_y = 0;
-	pixel_z = 0;
 	req_one_access_txt = "1;21"
 	},
 /turf/open/floor/plating,
@@ -6484,8 +6419,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/machinery/light{
 	dir = 4
@@ -6541,9 +6475,7 @@
 "mV" = (
 /obj/structure/table,
 /obj/item/tool/stamp{
-	name = "Quartermaster's stamp";
-	pixel_x = 0;
-	pixel_y = 0
+	name = "Quartermaster's stamp"
 	},
 /obj/item/clipboard,
 /obj/item/device/eftpos{
@@ -6880,7 +6812,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/open/floor,
@@ -7062,7 +6993,6 @@
 	last_flash = 100;
 	layer = 2.1;
 	name = "Mounted Flash RO";
-	pixel_x = 0;
 	range = 3
 	},
 /turf/open/floor,
@@ -7098,8 +7028,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor/plating,
@@ -7249,9 +7178,7 @@
 /obj/machinery/status_display{
 	pixel_y = 30
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "oi" = (
 /obj/structure/cable/yellow{
@@ -7262,30 +7189,23 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "oj" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "ok" = (
 /obj/structure/table,
 /obj/machinery/computer/squad_changer{
 	density = 0
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "ol" = (
 /obj/structure/sign/prop3,
@@ -7323,7 +7243,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /obj/machinery/camera/autoname,
@@ -7483,7 +7402,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /obj/machinery/camera/autoname,
@@ -7610,8 +7528,7 @@
 	},
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tube1"
 	},
 /turf/open/floor{
 	icon_state = "bot"
@@ -7775,7 +7692,6 @@
 /area/sulaco/bridge)
 "px" = (
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 1
 	},
 /turf/open/floor{
@@ -7787,7 +7703,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = 28
 	},
 /turf/open/floor{
@@ -7852,9 +7767,7 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "pF" = (
 /obj/structure/cable/yellow{
@@ -7868,9 +7781,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "pG" = (
 /obj/structure/cable/yellow{
@@ -7878,9 +7789,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "pH" = (
 /obj/structure/bed/chair/office/dark{
@@ -7894,9 +7803,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "pI" = (
 /obj/machinery/door/window/westleft{
@@ -7923,10 +7830,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/carpet{
-	tag = "icon-carpet11-12";
-	icon_state = "carpet11-12"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "pJ" = (
 /obj/structure/cable/yellow{
@@ -7942,14 +7846,12 @@
 "pK" = (
 /obj/structure/table,
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 8
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "pL" = (
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/floor,
@@ -8237,8 +8139,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/item/storage/box/uscm_mre,
 /turf/open/floor{
@@ -8277,8 +8178,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
@@ -8322,7 +8222,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/open/floor,
@@ -8418,7 +8317,6 @@
 	name = "Door Bolt Control";
 	normaldoorcontrol = 1;
 	pixel_x = -30;
-	pixel_y = 0;
 	req_access_txt = "7";
 	specialfunctions = 4
 	},
@@ -8630,9 +8528,7 @@
 	name = "XO's Quarters";
 	req_access_txt = "2"
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "ra" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -8640,9 +8536,7 @@
 	icon_state = "pipe-j2";
 	dir = 4
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "rb" = (
 /obj/structure/cable/yellow{
@@ -8654,9 +8548,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "rc" = (
 /obj/structure/table,
@@ -8673,18 +8565,14 @@
 	pixel_y = 7
 	},
 /obj/item/tool/pen,
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "rd" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/computer/marine_card,
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "re" = (
 /obj/structure/grille,
@@ -8828,7 +8716,6 @@
 	id = "bar";
 	name = "Briefing Shutters";
 	pixel_x = -30;
-	pixel_y = 0;
 	req_one_access_txt = "2;3;12;19";
 	throw_range = 15
 	},
@@ -8968,8 +8855,7 @@
 	dir = 8
 	},
 /obj/machinery/status_display/supply_display{
-	pixel_x = -30;
-	pixel_y = 0
+	pixel_x = -30
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
@@ -9190,7 +9076,6 @@
 	id = "EngineRads";
 	name = "Radiation Collector Access";
 	pixel_x = 30;
-	pixel_y = 0;
 	req_access_txt = "7"
 	},
 /obj/structure/cable/yellow{
@@ -9269,9 +9154,7 @@
 	},
 /area/sulaco/bridge)
 "sk" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	on = 1
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -9412,9 +9295,7 @@
 	},
 /area/sulaco/hallway/central_hall)
 "sw" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	on = 1
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor,
 /area/sulaco/hallway/central_hall)
 "sx" = (
@@ -9579,7 +9460,6 @@
 /obj/machinery/door_control{
 	id = "bar";
 	name = "Briefing Shutters";
-	pixel_x = 0;
 	pixel_y = 30;
 	req_one_access_txt = "2;3;12;19";
 	throw_range = 15
@@ -9609,18 +9489,15 @@
 /turf/open/floor,
 /area/sulaco/briefing)
 "sR" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	on = 1
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/structure/bed/chair,
 /turf/open/floor{
 	icon_state = "red"
 	},
 /area/sulaco/briefing)
 "sS" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
 	},
 /turf/open/floor{
 	icon_state = "cafeteria";
@@ -9779,7 +9656,6 @@
 	name = "Door Bolt Control";
 	normaldoorcontrol = 1;
 	pixel_x = 30;
-	pixel_y = 0;
 	req_access_txt = "7";
 	specialfunctions = 4
 	},
@@ -9814,7 +9690,6 @@
 	desc = "A remote control-switch for the engine control room blast doors.";
 	id = "EngineBlast";
 	name = "Engine Room Blast Doors";
-	pixel_x = 0;
 	pixel_y = -30;
 	req_access_txt = "6"
 	},
@@ -9971,14 +9846,12 @@
 /obj/machinery/door_control{
 	id = "Medbay";
 	name = "Medbay Lockdown";
-	pixel_x = 0;
 	pixel_y = -3;
 	req_one_access_txt = "5"
 	},
 /obj/machinery/door_control{
 	id = "sb blast";
 	name = "Fore Lockdown";
-	pixel_x = 0;
 	pixel_y = 6;
 	req_access_txt = "19"
 	},
@@ -10716,7 +10589,6 @@
 "uF" = (
 /obj/structure/sign/directions/engineering{
 	dir = 4;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -10758,7 +10630,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 1
 	},
 /turf/open/floor{
@@ -10791,7 +10662,6 @@
 "uK" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/floor,
@@ -10922,16 +10792,14 @@
 	},
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tube1"
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine)
@@ -11005,7 +10873,6 @@
 	id = "cooling_in";
 	name = "Coolant Injector";
 	on = 1;
-	pixel_y = 0;
 	volume_rate = 700
 	},
 /turf/open/floor/plating/airless,
@@ -11165,8 +11032,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tube1"
 	},
 /turf/open/floor,
 /area/sulaco/bridge)
@@ -11192,8 +11058,7 @@
 "vt" = (
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tube1"
 	},
 /obj/structure/sign/goldenplaque{
 	pixel_x = -32
@@ -11298,8 +11163,7 @@
 "vD" = (
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tube1"
 	},
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -11430,9 +11294,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
 /turf/open/floor,
 /area/sulaco/briefing)
@@ -11587,9 +11450,8 @@
 /turf/open/floor,
 /area/sulaco/hallway/central_hall3)
 "we" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
 /turf/open/floor,
 /area/sulaco/hallway/central_hall3)
@@ -11697,7 +11559,6 @@
 /obj/machinery/driver_button{
 	id = "enginecore";
 	name = "Emergency Core Eject";
-	pixel_x = 0;
 	pixel_y = 30;
 	req_access_txt = "6";
 	req_one_access_txt = "0"
@@ -12138,9 +11999,8 @@
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/tech_supply,
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -13053,8 +12913,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -13520,15 +13379,13 @@
 	name = "Dropship 2"
 	},
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 1
 	},
 /turf/open/floor,
 /area/sulaco/briefing)
 "yP" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
 /turf/open/floor,
 /area/sulaco/hallway/central_hall2)
@@ -13798,8 +13655,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /obj/effect/landmark/shuttle_loc/marine_crs{
 	name = "Dropship 2"
@@ -13840,7 +13696,6 @@
 	desc = "A remote control-switch for the engine control room blast doors.";
 	id = "EngineBlast";
 	name = "Engine Room Blast Doors";
-	pixel_x = 0;
 	pixel_y = -3;
 	req_access_txt = "7"
 	},
@@ -13951,7 +13806,6 @@
 	name = "Engine Emitter Port";
 	normaldoorcontrol = 0;
 	pixel_x = 30;
-	pixel_y = 0;
 	req_access_txt = "7"
 	},
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
@@ -14053,14 +13907,10 @@
 	req_access = null;
 	req_access_txt = "1"
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "zQ" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "zR" = (
 /obj/structure/cable/yellow{
@@ -14069,9 +13919,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "zS" = (
 /obj/structure/disposalpipe/segment{
@@ -14079,9 +13927,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "zT" = (
 /obj/machinery/disposal{
@@ -14090,9 +13936,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "zU" = (
 /obj/structure/grille,
@@ -14182,7 +14026,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
@@ -14297,7 +14140,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 1
 	},
 /turf/open/floor{
@@ -14351,9 +14193,8 @@
 /turf/open/floor,
 /area/sulaco/briefing)
 "Ar" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
 /turf/open/floor,
 /area/sulaco/briefing)
@@ -14450,7 +14291,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = -30
 	},
 /obj/machinery/light,
@@ -14485,7 +14325,6 @@
 	dir = 4
 	},
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 1
 	},
 /turf/open/floor{
@@ -14600,9 +14439,8 @@
 	},
 /area/sulaco/engineering)
 "AO" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-yellowfull";
@@ -14614,8 +14452,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/structure/table/reinforced,
 /obj/item/book/manual/supermatter_engine,
@@ -14635,9 +14472,7 @@
 	id = "engine_electrical_maintenance";
 	name = "Door Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -30;
-	pixel_y = 0;
-	req_access_txt = "7";
+	pixel_x = -30req_access_txt = "7";
 	specialfunctions = 4
 	},
 /obj/structure/cable{
@@ -14703,7 +14538,6 @@
 /area/sulaco/bridge)
 "AX" = (
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 1
 	},
 /turf/open/floor{
@@ -14740,7 +14574,6 @@
 /area/sulaco/bridge)
 "Ba" = (
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/floor,
@@ -14777,9 +14610,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "Bd" = (
 /turf/open/floor{
@@ -14833,9 +14664,8 @@
 /obj/structure/table,
 /obj/item/paper_bin,
 /obj/item/tool/pen,
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
 	},
 /obj/item/tool/stamp/captain{
 	name = "commander's rubber stamp"
@@ -14844,9 +14674,7 @@
 /obj/machinery/keycard_auth{
 	pixel_x = -30
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "Bj" = (
 /obj/structure/cable/yellow{
@@ -14857,9 +14685,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "Bk" = (
 /obj/structure/disposalpipe/segment{
@@ -14867,18 +14693,14 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "Bl" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/computer/marine_card,
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "Bm" = (
 /obj/structure/grille,
@@ -15090,7 +14912,6 @@
 /obj/machinery/door_control{
 	id = "bar";
 	name = "Briefing Shutters";
-	pixel_x = 0;
 	pixel_y = 30;
 	req_one_access_txt = "2;3;12;19";
 	throw_range = 15
@@ -15184,7 +15005,6 @@
 /area/sulaco/cafeteria)
 "BQ" = (
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 1
 	},
 /turf/open/floor{
@@ -15241,9 +15061,8 @@
 	},
 /area/sulaco/engineering/storage)
 "BW" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor{
@@ -15283,8 +15102,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -15640,9 +15458,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "CF" = (
 /obj/machinery/light,
@@ -15653,7 +15469,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = -30
 	},
 /obj/structure/cable/yellow{
@@ -15661,9 +15476,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "CG" = (
 /obj/structure/bed/chair/office/dark{
@@ -15674,9 +15487,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "CH" = (
 /obj/machinery/door/window/westleft{
@@ -15702,10 +15513,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/carpet{
-	tag = "icon-carpet11-12";
-	icon_state = "carpet11-12"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "CI" = (
 /obj/structure/cable/yellow{
@@ -15733,9 +15541,8 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 2
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
 	},
 /turf/open/floor,
 /area/sulaco/hallway/central_hall)
@@ -15782,7 +15589,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = -30
 	},
 /turf/open/floor,
@@ -15849,8 +15655,7 @@
 "CZ" = (
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tube1"
 	},
 /turf/open/floor,
 /area/sulaco/hallway/central_hall3)
@@ -15956,7 +15761,6 @@
 	id = "engine_electrical_maintenance";
 	name = "Door Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = 0;
 	pixel_y = -30;
 	req_access_txt = "7";
 	specialfunctions = 4
@@ -15975,9 +15779,7 @@
 	desc = "A remote control-switch for opening the engines blast doors.";
 	id = "EngineRads";
 	name = "Radiation Collector Access";
-	pixel_x = 30;
-	pixel_y = 0;
-	req_access_txt = "7"
+	pixel_x = 30req_access_txt = "7"
 	},
 /obj/structure/rack,
 /obj/item/tank/phoron,
@@ -16010,9 +15812,7 @@
 	density = 0
 	},
 /obj/structure/table/reinforced,
-/turf/open/floor/carpet{
-	icon_state = "carpetnoconnect"
-	},
+/turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "Dt" = (
 /turf/closed/wall/sulaco,
@@ -16502,9 +16302,6 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/machinery/power/apc/super{
 	dir = 8;
-	name = "Engine Room APC";
-	pixel_x = -30;
-	pixel_y = 0;
 	start_charge = 1000
 	},
 /obj/structure/cable,
@@ -16653,7 +16450,6 @@
 /obj/machinery/door_control{
 	id = "Secure Gate";
 	name = "Security Lockdown";
-	pixel_x = 0;
 	req_access_txt = "3"
 	},
 /turf/open/floor{
@@ -16741,7 +16537,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/open/floor/plating,
@@ -17009,7 +16804,7 @@
 	freerange = 1;
 	name = "General Listening Channel";
 	pixel_x = 28;
-	pixel_y = 0
+	
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor,
@@ -17041,7 +16836,6 @@
 	dir = 4
 	},
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -17099,8 +16893,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/storage)
@@ -17363,8 +17156,7 @@
 	dir = 4
 	},
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /turf/open/floor/plating{
 	icon_state = "warnplate";
@@ -17569,8 +17361,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -17642,7 +17433,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = -30
 	},
 /turf/open/floor/wood,
@@ -17657,7 +17447,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 1
 	},
 /turf/open/floor,
@@ -17670,10 +17459,7 @@
 	desc = "As the legendary US Army chaplain once said, 'There are no Athiests in fancy offices'.";
 	name = "Holy Bible"
 	},
-/obj/item/weapon/claymore/mercsword{
-	desc = "A fancy ceremonial sword passed down from generation to generation. Has the name Chang printed along the blade";
-	name = "Ceremonial Sword"
-	},
+/obj/item/weapon/claymore/mercsword/captain,
 /obj/item/ore/diamond,
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
@@ -17857,8 +17643,7 @@
 /area/sulaco/maintenance/south_solar_maint)
 "GV" = (
 /obj/structure/sign/vacuum{
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plating{
 	dir = 2;
@@ -17880,9 +17665,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
 /turf/open/floor{
 	dir = 4;
@@ -17900,8 +17684,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/camera/autoname{
@@ -17931,9 +17714,8 @@
 /turf/open/floor,
 /area/sulaco/marine)
 "Hf" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
 /turf/open/floor,
 /area/sulaco/marine)
@@ -17942,8 +17724,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor,
@@ -18012,9 +17793,8 @@
 /turf/open/floor/plating,
 /area/sulaco/hub/top)
 "Hp" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/sulaco/hub/top)
@@ -18029,7 +17809,6 @@
 	icon_state = "table"
 	},
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 1
 	},
 /turf/open/floor,
@@ -18126,7 +17905,6 @@
 	},
 /obj/item/storage/box/uscm_mre,
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 1
 	},
 /turf/open/floor,
@@ -18286,9 +18064,8 @@
 	},
 /area/sulaco/brig)
 "HT" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
 	},
 /obj/effect/landmark/start{
 	name = "Military Police"
@@ -18393,7 +18170,6 @@
 	icon_state = "1-4"
 	},
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/floor{
@@ -18567,9 +18343,8 @@
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/hallway/central_hall3)
 "IA" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/open/floor,
 /area/sulaco/hallway/central_hall3)
@@ -19244,14 +19019,12 @@
 /obj/structure/sink{
 	dir = 4;
 	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = 11
 	},
 /obj/item/device/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = -30
 	},
 /turf/open/floor{
@@ -19547,9 +19320,8 @@
 /turf/open/floor,
 /area/sulaco/command/eva)
 "Kp" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
 /turf/open/floor,
 /area/sulaco/command/eva)
@@ -19627,9 +19399,8 @@
 	},
 /area/sulaco/brig)
 "KA" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
 	},
 /obj/structure/table/reinforced,
 /obj/item/folder/red,
@@ -19845,8 +19616,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -20111,8 +19881,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -20133,8 +19902,7 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -20302,7 +20070,6 @@
 	dir = 1
 	},
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 8
 	},
 /turf/open/floor{
@@ -20313,7 +20080,6 @@
 "LQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/floor{
@@ -20324,7 +20090,6 @@
 "LR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/floor{
@@ -20420,7 +20185,6 @@
 "Mb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/floor{
@@ -20467,7 +20231,6 @@
 /area/sulaco/brig)
 "Mg" = (
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/floor{
@@ -20542,7 +20305,6 @@
 	dir = 4
 	},
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/shuttle{
@@ -20567,7 +20329,6 @@
 	dir = 8
 	},
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 8
 	},
 /turf/open/shuttle{
@@ -20677,9 +20438,8 @@
 	},
 /area/sulaco/command/eva)
 "MG" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
 /turf/open/floor/plating{
 	dir = 1;
@@ -20932,7 +20692,6 @@
 	dir = 4
 	},
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/shuttle{
@@ -21051,7 +20810,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/open/floor{
@@ -21135,7 +20893,6 @@
 	dir = 8
 	},
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 8
 	},
 /turf/open/shuttle{
@@ -21143,9 +20900,8 @@
 	},
 /area/shuttle/escape_pod2/station)
 "NB" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-floorgrime (EAST)";
@@ -21285,8 +21041,7 @@
 "NP" = (
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tube1"
 	},
 /turf/open/floor{
 	icon_state = "red";
@@ -21470,9 +21225,8 @@
 	},
 /area/sulaco/marine/delta)
 "Og" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
 /turf/open/floor{
 	dir = 4;
@@ -21480,9 +21234,8 @@
 	},
 /area/sulaco/marine/charlie)
 "Oh" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
 /turf/open/floor{
 	dir = 4;
@@ -21490,9 +21243,8 @@
 	},
 /area/sulaco/marine/bravo)
 "Oi" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
 /turf/open/floor{
 	icon_state = "red";
@@ -21732,9 +21484,8 @@
 	},
 /area/sulaco/brig)
 "OG" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-podhatch (NORTH)";
@@ -21794,7 +21545,6 @@
 	dir = 4
 	},
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/shuttle{
@@ -21806,7 +21556,6 @@
 	dir = 8
 	},
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 8
 	},
 /turf/open/shuttle{
@@ -21815,7 +21564,6 @@
 /area/shuttle/escape_pod3/station)
 "OR" = (
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/floor{
@@ -21825,7 +21573,6 @@
 /area/sulaco/marine/charlie)
 "OS" = (
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/floor{
@@ -21835,7 +21582,6 @@
 /area/sulaco/marine/bravo)
 "OT" = (
 /obj/structure/closet/walllocker/emerglocker{
-	icon_state = "emerg";
 	dir = 4
 	},
 /turf/open/floor{
@@ -21864,8 +21610,7 @@
 /area/sulaco/brig)
 "OX" = (
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-podhatch (EAST)";

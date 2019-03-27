@@ -1,3 +1,63 @@
+/mob/living/carbon/Xenomorph/get_antag_info()
+	var/list/entries = SScodex.retrieve_entries_for_string(name)
+	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
+	return general_entry?.antag_text
+
+/mob/living/carbon/Xenomorph/get_lore_info()
+	var/list/entries = SScodex.retrieve_entries_for_string(name)
+	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
+	return general_entry?.lore_text
+
+/mob/living/carbon/Xenomorph/get_mechanics_info()
+	. = ..()
+	var/list/xeno_strings = list()
+
+	var/list/entries = SScodex.retrieve_entries_for_string(name)
+	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
+	if(general_entry?.mechanics_text)
+		xeno_strings += general_entry?.mechanics_text + "<br>"
+
+	xeno_strings += "<br><U>Basic Statistics for this Xeno are as follows</U>:"
+
+	xeno_strings += "Name: '[name]'"
+	xeno_strings += "Tier: [tier]"
+	xeno_strings += "Melee slash damage: between [xeno_caste.melee_damage_lower] and [xeno_caste.melee_damage_upper]"
+	xeno_strings += "Tackle damage: [xeno_caste.tackle_damage]"
+	switch(mob_size)
+		if(MOB_SIZE_BIG)
+			xeno_strings += "Can smash walls: Yes"
+		if(MOB_SIZE_XENO)
+			xeno_strings += "Can smash walls: No"
+	xeno_strings += "Max health: [xeno_caste.max_health]"
+	xeno_strings += "Armor: [xeno_caste.armor_deflection]"
+	xeno_strings += "Max plasma: [xeno_caste.plasma_max]"
+	xeno_strings += "Plasma gain: [xeno_caste.plasma_gain]"
+	switch(hivenumber)
+		if(XENO_HIVE_NORMAL)
+			xeno_strings += "Hive: Normal"
+		if(XENO_HIVE_CORRUPTED)
+			xeno_strings += "Hive: Corrupted"
+		if(XENO_HIVE_ALPHA)
+			xeno_strings += "Hive: Alpha"
+		if(XENO_HIVE_BETA)
+			xeno_strings += "Hive: Beta"
+		if(XENO_HIVE_ZETA)
+			xeno_strings += "Hive: Zeta"
+
+	if(length(xeno_caste.evolves_to))
+		xeno_strings += "<br><U>This can evolve to</U>:"
+		for(var/type in xeno_caste.evolves_to)
+			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][1]
+			xeno_strings += "[Z.caste_name]"
+
+	if(length(actions))
+		xeno_strings += "<br><U>This has the following abilities</U>:"
+		for(var/X in actions)
+			var/datum/action/xeno_action/A = X
+			xeno_strings += "<U>[A.name]</U>: [A.mechanics_text]<br>"
+
+	. += jointext(xeno_strings, "<br>")
+
 /datum/codex_entry/maint_drone
 	display_name = "maintenance drone"
 	associated_paths = list(/mob/living/silicon/robot/drone)
@@ -14,10 +74,4 @@
 	associated_paths = list(/mob/living/carbon/Xenomorph)
 	mechanics_text = "Xenomorphs are a hostile lifeform. They are very powerful individually and also in groups. \
 	They reproduce by capturing hosts and impregnating them with facehuggers. Some time later the larva growing in the hosts \
-	chest will violently burst out killing the host in the process. Not suitable for pet ownership."
-
-/datum/codex_entry/xenomorph_drone
-	display_name = "Drone"
-	associated_paths = list(/mob/living/carbon/Xenomorph/Drone)
-	mechanics_text = "The worker of the xenomorph hive. They place weed nodes and can build most structures such as walls, nests, and doors. \
-	They have the potential to become the Queen."
+	chest will violently burst out killing the host in the process. <br><br>Not suitable for pet ownership."
