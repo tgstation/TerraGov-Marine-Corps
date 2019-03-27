@@ -134,6 +134,12 @@ directive is properly returned.
 /atom/proc/emp_act(var/severity)
 	return
 
+/atom/proc/effect_smoke(obj/effect/particle_effect/smoke/S)
+	if(S.lifetime < 1)
+		return FALSE
+	return TRUE
+
+
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
 	if(ispath(container))
 		if(istype(src.loc, container))

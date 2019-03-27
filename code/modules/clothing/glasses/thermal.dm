@@ -40,7 +40,7 @@
 	icon_state = "thermoncle"
 	flags_atom = null //doesn't protect eyes because it's a monocle, duh
 	toggleable = 0
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/glasses/thermal/eyepatch
 	name = "Optical Thermal Eyepatch"
@@ -48,7 +48,7 @@
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 	toggleable = 0
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/glasses/thermal/jensen
 	name = "Optical Thermal Implants"

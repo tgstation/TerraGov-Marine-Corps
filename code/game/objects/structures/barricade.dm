@@ -15,6 +15,7 @@
 	health = 100 //Pretty tough. Changes sprites at 300 and 150
 	var/maxhealth = 100 //Basic code functions
 	var/crusher_resistant = TRUE //Whether a crusher can ram through it.
+	var/base_acid_damage = 2
 	var/barricade_resistance = 5 //How much force an item needs to even damage it at all.
 	var/barricade_hitsound
 
@@ -290,9 +291,14 @@
 		if(75 to INFINITY) damage_state = 0
 
 
-/obj/structure/barricade/proc/acid_smoke_damage(obj/effect/particle_effect/smoke/xeno/S)
-	health -= 2 * S.strength
-	update_health()
+/obj/structure/barricade/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(S.smoke_traits & SMOKE_XENO_ACID)
+		health -= base_acid_damage * S.strength
+		update_health()
+
 
 /obj/structure/barricade/verb/rotate()
 	set name = "Rotate Barricade Counter-Clockwise"
@@ -382,10 +388,6 @@
 	update_health()
 	return TRUE
 
-/obj/structure/barricade/snow/acid_smoke_damage(obj/effect/particle_effect/smoke/xeno/S) //snow isn't as reactive with acid. Also for balance reasons because snow sucks total ass.
-	health -= 1.5 * S.strength
-	update_health()
-
 /*----------------------*/
 // WOOD
 /*----------------------*/
@@ -448,9 +450,6 @@
 	update_health()
 	return TRUE
 
-/obj/structure/barricade/wooden/acid_smoke_damage(obj/effect/particle_effect/smoke/xeno/S) //wood isn't as reactive with beno acid. Also for balance reasons because wood sucks total ass.
-	health -= 1.5 * S.strength
-	update_health()
 
 /*----------------------*/
 // METAL
@@ -941,7 +940,3 @@
 	update_health()
 
 	return TRUE
-
-/obj/structure/barricade/sandbags/acid_smoke_damage(obj/effect/particle_effect/smoke/xeno/S) //less vulnerable to acid due to being made of less reactive materials... and because it's harder to repair, demanding limited resources
-	health -= 1.5 * S.strength
-	update_health()

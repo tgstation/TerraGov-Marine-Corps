@@ -7,7 +7,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 20)
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEFACE|HIDEMASK|HIDEEARS|HIDEALLHAIR
-	body_parts_covered = HEAD|FACE|EYES
+	flags_armor_protection = HEAD|FACE|EYES
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/suit/bio_suit
@@ -18,7 +18,7 @@
 	w_class = 4//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	slowdown = 1.0
 	allowed = list(/obj/item/tank/emergency_oxygen,/obj/item/tool/pen,/obj/item/device/flashlight/pen)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 20)
@@ -32,7 +32,7 @@
 
 /obj/item/clothing/suit/bio_suit/general
 	icon_state = "bio_general"
-	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_inv_hide = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 
 //Virology biosuit, green stripe
@@ -41,7 +41,7 @@
 
 /obj/item/clothing/suit/bio_suit/virology
 	icon_state = "bio_virology"
-	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_inv_hide = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 
 //Security biosuit, grey with red stripe across the chest
@@ -50,7 +50,7 @@
 
 /obj/item/clothing/suit/bio_suit/security
 	icon_state = "bio_security"
-	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_inv_hide = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 
 //Janitor's biosuit, grey with purple arms
@@ -59,7 +59,7 @@
 
 /obj/item/clothing/suit/bio_suit/janitor
 	icon_state = "bio_janitor"
-	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_inv_hide = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 
 
@@ -69,13 +69,13 @@
 
 /obj/item/clothing/suit/bio_suit/scientist
 	icon_state = "bio_scientist"
-	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_inv_hide = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 
 //CMO's biosuit, blue stripe
 /obj/item/clothing/suit/bio_suit/cmo
 	icon_state = "bio_cmo"
-	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_inv_hide = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 
 /obj/item/clothing/head/bio_hood/cmo

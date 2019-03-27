@@ -28,14 +28,14 @@
 	name = "combat pants"
 	desc = "The only thing a man needs when he's up agains the world."
 	icon_state = "rambo_suit"
-	body_parts_covered = LEGS|GROIN
+	flags_armor_protection = LEGS|GROIN
 	flags_cold_protection = LEGS|GROIN
 	flags_heat_protection = LEGS|GROIN
 
 /obj/item/clothing/suit/gimmick/rambo
 	name = "pendant"
 	desc = "It's a precious stone and something of a talisman of protection."
-	body_parts_covered = CHEST
+	flags_armor_protection = CHEST
 	flags_cold_protection = CHEST
 	flags_heat_protection = CHEST
 	icon_state = "rambo_pendant"
@@ -45,7 +45,7 @@
 	name = "holiday attire"
 	desc = "The perfect outfit for a Christmas holiday with family. Shoes not included."
 	icon_state = "mcclane_suit"
-	body_parts_covered = CHEST|GROIN|LEGS
+	flags_armor_protection = CHEST|GROIN|LEGS
 	flags_cold_protection = CHEST|GROIN|LEGS
 	flags_heat_protection = CHEST|GROIN|LEGS
 
@@ -54,7 +54,7 @@
 	name = "combat fatigues"
 	desc = "Just another pair of military fatigues for a grueling tour in a jungle."
 	icon_state = "dutch_suit"
-	body_parts_covered = LEGS|GROIN
+	flags_armor_protection = LEGS|GROIN
 	flags_cold_protection = LEGS|GROIN
 	flags_heat_protection = LEGS|GROIN
 
@@ -62,7 +62,7 @@
 	name = "armored jacket"
 	desc = "It's hot in the jungle. Sometimes it's hot and heavy, and sometimes it's hell on earth."
 	icon_state = "dutch_armor"
-	body_parts_covered = CHEST
+	flags_armor_protection = CHEST
 	flags_cold_protection = CHEST
 	flags_heat_protection = CHEST
 	armor = list(melee = 45, bullet = 45, laser = 35, energy = 25, bomb = 25, bio = 0, rad = 0)
@@ -117,7 +117,7 @@
 	slowdown = 1
 	flags_atom = CONDUCT
 	flags_inventory = BLOCKSHARPOBJ
-	body_parts_covered = CHEST|GROIN|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/weapon/gun/pistol/auto9)

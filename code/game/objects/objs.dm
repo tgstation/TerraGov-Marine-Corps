@@ -231,6 +231,15 @@
 		return TRUE
 	. = ..()
 
+/obj/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(S.smoke_traits & SMOKE_CHEM)
+		var/turf/T = get_turf(src)
+		if(!(T?.intact_tile) || level != 1) //not hidden under the floor
+			S.reagents?.reaction(src, VAPOR, S.fraction)
+
 /obj/proc/check_skill_level(skill_threshold = 1, skill_type, mob/living/M) //used to calculate do-after delays
 	if(!skill_threshold) //autopass
 		return TRUE

@@ -4,7 +4,7 @@
 	icon_state = "muzzle"
 	item_state = "muzzle"
 	flags_inventory = COVERMOUTH
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
@@ -24,7 +24,7 @@
 	item_state = "sterile"
 	w_class = 2
 	flags_inventory = COVERMOUTH
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 25, rad = 0)
@@ -34,14 +34,14 @@
 	desc = "Warning: moustache is fake."
 	icon_state = "fake-moustache"
 	flags_inv_hide = HIDEFACE
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/mask/snorkel
 	name = "Snorkel"
 	desc = "For the Swimming Savant."
 	icon_state = "snorkel"
 	flags_inv_hide = HIDEFACE
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 //scarves (fit in in mask slot)
 
@@ -91,7 +91,7 @@
 	flags_inv_hide = HIDEFACE|HIDEALLHAIR|HIDEEYES|HIDEEARS
 	w_class = 2
 	siemens_coefficient = 0.9
-	body_parts_covered = HEAD|FACE|EYES
+	flags_armor_protection = HEAD|FACE|EYES
 
 /obj/item/clothing/mask/horsehead
 	name = "horse head mask"
@@ -100,7 +100,7 @@
 	item_state = "horsehead"
 	flags_inventory = COVERMOUTH|COVEREYES
 	flags_inv_hide = HIDEFACE|HIDEALLHAIR|HIDEEYES|HIDEEARS
-	body_parts_covered = HEAD|FACE|EYES
+	flags_armor_protection = HEAD|FACE|EYES
 	w_class = 2
 	var/voicechange = 0
 	siemens_coefficient = 0.9
@@ -112,7 +112,7 @@
 	icon_state = "balaclava"
 	item_state = "balaclava"
 	flags_inv_hide = HIDEFACE|HIDEALLHAIR
-	body_parts_covered = FACE
+	flags_armor_protection = FACE
 	w_class = 2
 
 /obj/item/clothing/mask/balaclava/tactical
@@ -130,7 +130,7 @@
 	flags_inv_hide = HIDEFACE|HIDEALLHAIR
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	body_parts_covered = HEAD|FACE
+	flags_armor_protection = HEAD|FACE
 	flags_inventory = COVERMOUTH|ALLOWREBREATH
 	w_class = 2
 	siemens_coefficient = 3.0

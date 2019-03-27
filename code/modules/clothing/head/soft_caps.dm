@@ -7,7 +7,7 @@
 	var/cap_color = "cargo"
 	var/flipped = 0
 	siemens_coefficient = 0.9
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/soft/dropped()
 	icon_state = "[cap_color]soft"

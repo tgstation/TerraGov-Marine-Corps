@@ -45,7 +45,7 @@
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 10, rad = 0)
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEARS
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/head/helmet/HoS/dermal
@@ -61,7 +61,7 @@
 	icon_state = "policehelm"
 	flags_inventory = NOFLAGS
 	flags_inv_hide = NOFLAGS
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/helmet/hop
 	name = "crew resource's hat"
@@ -69,7 +69,7 @@
 	icon_state = "hopcap"
 	flags_inventory = NOFLAGS
 	flags_inv_hide = NOFLAGS
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/helmet/formalcaptain
 	name = "parade hat"
@@ -77,7 +77,7 @@
 	icon_state = "officercap"
 	flags_inventory = NOFLAGS
 	flags_inv_hide = NOFLAGS
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
@@ -374,7 +374,7 @@
 	name = "\improper PMC sniper helmet"
 	desc = "A helmet worn by PMC Marksmen"
 	icon_state = "pmc_sniper_hat"
-	body_parts_covered = HEAD|FACE|EYES
+	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 55, bullet = 65, laser = 45, energy = 55, bomb = 60, bio = 10, rad = 10)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
@@ -384,7 +384,7 @@
 	name = "\improper PMC gunner helmet"
 	desc = "A modification of the standard Armat Systems M3 armor."
 	icon_state = "heavy_helmet"
-	body_parts_covered = HEAD|FACE|EYES
+	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 60, bomb = 70, bio = 10, rad = 10)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
@@ -394,7 +394,7 @@
 	name = "\improper PMC commando helmet"
 	desc = "A fully enclosed, armored helmet made for Nanotrasen elite commandos."
 	icon_state = "commando_helmet"
-	body_parts_covered = HEAD|FACE|EYES
+	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 90, bullet = 120, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 100)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
@@ -504,7 +504,7 @@
 	name = "\improper K12 ceramic helmet"
 	desc = "A sturdy helmet worn by an unknown mercenary group."
 	icon_state = "mercenary_heavy_helmet"
-	body_parts_covered = HEAD|FACE|EYES
+	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 60, bomb = 70, bio = 10, rad = 10)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR

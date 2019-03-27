@@ -77,6 +77,12 @@
 	if(AM && !AM in permutated)
 		scan_a_turf(get_turf(AM))
 
+/obj/item/projectile/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(S.smoke_traits & SMOKE_NERF_BEAM && ammo.flags_ammo_behavior & AMMO_ENERGY)
+		damage -= max(damage - ammo.damage * 0.5, 0)
 
 /obj/item/projectile/ex_act()
 	return FALSE //We do not want anything to delete these, simply to make sure that all the bullet references are not runtiming. Otherwise, constantly need to check if the bullet exists.

@@ -5,14 +5,14 @@
 	desc = "A traditional Unathi garment."
 	icon_state = "robe-unathi"
 	item_state = "robe-unathi"
-	body_parts_covered = CHEST|GROIN|LEGS
+	flags_armor_protection = CHEST|GROIN|LEGS
 
 /obj/item/clothing/suit/unathi/mantle
 	name = "hide mantle"
 	desc = "A rather grisly selection of cured hides and skin, sewn together to form a ragged mantle."
 	icon_state = "mantle-unathi"
 	item_state = "mantle-unathi"
-	body_parts_covered = CHEST
+	flags_armor_protection = CHEST
 
 //Taj clothing.
 
@@ -21,10 +21,10 @@
 	desc = "A traditional Zhan-Khazan garment."
 	icon_state = "zhan_furs"
 	item_state = "zhan_furs"
-	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS
 
 /obj/item/clothing/head/tajaran/scarf
 	name = "headscarf"
 	desc = "A scarf of coarse fabric. Seems to have ear-holes."
 	icon_state = "zhan_scarf"
-	body_parts_covered = HEAD|FACE
+	flags_armor_protection = HEAD|FACE

@@ -1450,21 +1450,21 @@
 	var/feet_exposed = 1
 
 	for(var/obj/item/clothing/C in equipment)
-		if(C.body_parts_covered & HEAD)
+		if(C.flags_armor_protection & HEAD)
 			head_exposed = 0
-		if(C.body_parts_covered & FACE)
+		if(C.flags_armor_protection & FACE)
 			face_exposed = 0
-		if(C.body_parts_covered & EYES)
+		if(C.flags_armor_protection & EYES)
 			eyes_exposed = 0
-		if(C.body_parts_covered & CHEST)
+		if(C.flags_armor_protection & CHEST)
 			torso_exposed = 0
-		if(C.body_parts_covered & ARMS)
+		if(C.flags_armor_protection & ARMS)
 			arms_exposed = 0
-		if(C.body_parts_covered & HANDS)
+		if(C.flags_armor_protection & HANDS)
 			hands_exposed = 0
-		if(C.body_parts_covered & LEGS)
+		if(C.flags_armor_protection & LEGS)
 			legs_exposed = 0
-		if(C.body_parts_covered & FEET)
+		if(C.flags_armor_protection & FEET)
 			feet_exposed = 0
 
 	for (var/T in flavor_texts)
@@ -1491,6 +1491,15 @@
 	if(shoes && !override_noslip) // && (shoes.flags_inventory & NOSLIPPING)) // no more slipping if you have shoes on. -spookydonut
 		return FALSE
 	. = ..()
+
+/mob/living/carbon/human/smokecloak_on()
+	var/obj/item/clothing/gloves/yautja/Y = gloves
+	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back
+	if(istype(S) && S.camo_active)
+		return FALSE
+	if(istype(Y) && Y.cloaked)
+		return FALSE
+	return ..()
 
 /mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
 	if(luminosity <= 0)

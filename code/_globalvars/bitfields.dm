@@ -189,7 +189,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"HAND_LEFT" = HAND_LEFT,
 		"HAND_RIGHT" = HAND_RIGHT
 		),
-	"body_parts_covered" = list(
+	"flags_armor_protection" = list(
 		"HEAD" = HEAD,
 		"FACE" = FACE,
 		"EYES" = EYES,

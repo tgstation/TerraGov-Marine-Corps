@@ -59,13 +59,13 @@
 	name = "sandals"
 	icon_state = "wizard"
 	species_restricted = null
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/shoes/sandal/marisa
 	desc = "A pair of magic, black shoes."
 	name = "magic shoes"
 	icon_state = "black"
-	body_parts_covered = FEET
+	flags_armor_protection = FEET
 
 /obj/item/clothing/shoes/galoshes
 	desc = "Rubber boots"

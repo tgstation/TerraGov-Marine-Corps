@@ -123,7 +123,7 @@
 	icon = 'icons/obj/clothing/suits.dmi'
 	name = "suit"
 	var/fire_resist = T0C+100
-	body_parts_covered = CHEST|GROIN|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/tank/emergency_oxygen)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
@@ -171,7 +171,7 @@
 	var/wired = 0
 	var/obj/item/cell/cell = 0
 	var/clipped = 0
-	body_parts_covered = HANDS
+	flags_armor_protection = HANDS
 	flags_equip_slot = ITEM_SLOT_GLOVES
 	attack_verb = list("challenged")
 	species_restricted = list("exclude","Yautja")
@@ -222,7 +222,7 @@
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi'
 	flags_equip_slot = ITEM_SLOT_MASK
-	body_parts_covered = FACE|EYES
+	flags_armor_protection = FACE|EYES
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
 	var/anti_hug = 0
 
@@ -249,7 +249,7 @@
 	desc = "Comfortable-looking shoes."
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	siemens_coefficient = 0.9
-	body_parts_covered = FEET
+	flags_armor_protection = FEET
 	flags_equip_slot = ITEM_SLOT_FEET
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN

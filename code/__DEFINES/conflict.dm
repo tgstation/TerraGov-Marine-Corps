@@ -124,3 +124,18 @@
 #define M43_STANDARD_AMMO_COST			20
 #define M43_OVERCHARGE_AMMO_COST		80
 #define M43_OVERCHARGE_FIRE_DELAY		10
+
+//Define smoke effects
+#define SMOKE_OPAQUE		(1<<0)
+#define SMOKE_COUGH			(1<<1)
+#define SMOKE_GASP			(1<<2)
+#define SMOKE_OXYLOSS		(1<<3)
+#define SMOKE_FOUL			(1<<4)
+#define SMOKE_NERF_BEAM		(1<<5)
+#define SMOKE_CAMO			(1<<6)
+#define SMOKE_SLEEP			(1<<7)
+#define SMOKE_BLISTERING	(1<<8)
+#define SMOKE_XENO			(1<<9)
+#define SMOKE_XENO_ACID		(1<<10)
+#define SMOKE_XENO_NEURO	(1<<11)
+#define SMOKE_CHEM			(1<<12)

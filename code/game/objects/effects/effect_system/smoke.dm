@@ -14,7 +14,9 @@
 	var/spread_speed = 1 //time in decisecond for a smoke to spread one tile.
 	var/lifetime = 5
 	var/expansion_speed = 1
-	var/opaque = TRUE //whether the smoke can block the view when in enough amount
+	var/smoke_traits = SMOKE_OPAQUE
+	var/strength = 1 // Effects scale with the emitter's bomb_strength upgrades.
+	var/bio_protection = 1 // how unefficient its effects are against protected target from 0 to 1.
 	var/list/current_cloud // for associated chemical smokes.
 	var/fraction = 0.2
 
@@ -35,15 +37,18 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/effect/particle_effect/smoke/Destroy()
+	if(lifetime && smoke_traits & SMOKE_CAMO)
+		apply_smoke_effect(get_turf(src))
 	STOP_PROCESSING(SSobj, src)
 	for(var/obj/effect/particle_effect/smoke/C in current_cloud)
 		C.current_cloud -= src
 	return ..()
 
 /obj/effect/particle_effect/smoke/proc/kill_smoke()
+	if(smoke_traits & SMOKE_CAMO)
+		apply_smoke_effect(get_turf(src))
 	STOP_PROCESSING(SSobj, src)
 	INVOKE_ASYNC(src, .proc/fade_out)
-	QDEL_IN(src, 10)
 
 /obj/effect/particle_effect/smoke/proc/fade_out(frames = 16)
 	if(alpha == 0) //Handle already transparent case
@@ -56,6 +61,7 @@
 		if(alpha < 160)
 			SetOpacity(FALSE) //if we were blocking view, we aren't now because we're fading out
 		stoplag()
+	qdel(src)
 
 /obj/effect/particle_effect/smoke/process()
 	lifetime--
@@ -65,9 +71,26 @@
 	apply_smoke_effect(get_turf(src))
 	return TRUE
 
+/obj/effect/particle_effect/smoke/Crossed(atom/movable/O)
+	. = ..()
+	if(smoke_traits & SMOKE_CAMO && isliving(O))
+		O.effect_smoke(src)
+	if(smoke_traits & SMOKE_NERF_BEAM && istype(O, /obj/item/projectile))
+		O.effect_smoke(src)
+
+/obj/effect/particle_effect/smoke/Uncrossed(mob/living/M)
+	. = ..()
+	if(smoke_traits & SMOKE_CAMO && istype(M))
+		var/obj/effect/particle_effect/smoke/S = locate() in get_turf(M)
+		if(!(S?.smoke_traits & SMOKE_CAMO))
+			M.smokecloak_off()
+
 /obj/effect/particle_effect/smoke/proc/apply_smoke_effect(turf/T)
-	for(var/mob/living/L in T)
-		smoke_mob(L)
+	if(smoke_traits & SMOKE_CHEM)
+		reagents?.reaction(T, VAPOR, fraction)
+	for(var/V in T)
+		var/atom/A = V
+		A.effect_smoke(src)
 
 /obj/effect/particle_effect/smoke/proc/spread_smoke()
 	var/turf/t_loc = get_turf(src)
@@ -91,7 +114,7 @@
 		else
 			S.lifetime += rand(-1,1)
 	lifetime += rand(-1,1)
-	if(opaque)
+	if(smoke_traits & SMOKE_OPAQUE)
 		SetOpacity(TRUE)
 
 	if(newsmokes.len)
@@ -100,6 +123,7 @@
 /obj/effect/particle_effect/smoke/proc/copy_stats(obj/effect/particle_effect/smoke/parent)
 	amount = parent.amount-1
 	lifetime = parent.lifetime
+	strength = parent.strength
 	if(lifetime)
 		fraction = INVERSE(lifetime)
 
@@ -116,26 +140,6 @@
 		if(!M.CanPass(src, T))
 			return TRUE
 	return FALSE
-
-/obj/effect/particle_effect/smoke/proc/smoke_mob(mob/living/carbon/C)
-	if(!istype(C) || lifetime < 1)
-		return
-	if(C.smoke_delay)
-		return
-	C.smoke_delay = TRUE
-	addtimer(CALLBACK(src, .proc/remove_smoke_delay, C), 10)
-	effect_contact(C)
-	if(!C.internal && !C.has_smoke_protection())
-		effect_inhale(C)
-
-/obj/effect/particle_effect/smoke/proc/remove_smoke_delay(mob/living/carbon/C)
-	C?.smoke_delay = FALSE
-
-/obj/effect/particle_effect/smoke/proc/effect_inhale(mob/living/carbon/C)
-	return
-
-/obj/effect/particle_effect/smoke/proc/effect_contact(mob/living/carbon/C)
-	return
 
 /////////////////////////////////////////////
 // Smoke spread
@@ -168,81 +172,22 @@
 
 /obj/effect/particle_effect/smoke/bad
 	lifetime = 8
-
-/obj/effect/particle_effect/smoke/bad/effect_inhale(mob/living/carbon/C)
-	if(prob(30))
-		C.drop_held_item()
-	C.adjustOxyLoss(1)
-	C.emote("cough")
-
-/obj/effect/particle_effect/smoke/bad/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover, /obj/item/projectile/beam))
-		var/obj/item/projectile/beam/B = mover
-		B.damage = (B.damage/2)
-	return TRUE
+	smoke_traits = SMOKE_OPAQUE|SMOKE_NERF_BEAM|SMOKE_FOUL|SMOKE_COUGH|SMOKE_OXYLOSS
 
 /////////////////////////////////////////////
 // Cloak Smoke
 /////////////////////////////////////////////
+
 /obj/effect/particle_effect/smoke/tactical
 	alpha = 145
-	opaque = FALSE
-
-
-/obj/effect/particle_effect/smoke/tactical/Move()
-	. = ..()
-	apply_smoke_effect(get_turf(src))
-
-
-/obj/effect/particle_effect/smoke/tactical/Destroy()
-	apply_smoke_effect(get_turf(src))
-	return ..()
-
-/obj/effect/particle_effect/smoke/tactical/kill_smoke()
-	apply_smoke_effect(get_turf(src))
-	return ..()
-
-/obj/effect/particle_effect/smoke/tactical/smoke_mob(mob/living/M)
-	if(lifetime)
-		cloak_smoke_act(M)
-	else
-		M.smokecloak_off()
-
-
-/obj/effect/particle_effect/smoke/tactical/Crossed(mob/living/M)
-	. = ..()
-	if(istype(M))
-		smoke_mob(M)
-
-/obj/effect/particle_effect/smoke/tactical/Uncrossed(mob/living/M)
-	. = ..()
-	if(istype(M) && !locate(type) in get_turf(M))
-		M.smokecloak_off()
-
-/obj/effect/particle_effect/smoke/tactical/proc/cloak_smoke_act(mob/living/M)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/clothing/gloves/yautja/Y = H.gloves
-		var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = H.back
-		if(istype(S))
-			if(S.camo_active)
-				return
-		if(istype(Y))
-			if(Y.cloaked)
-				return
-	M.smokecloak_on()
+	smoke_traits = SMOKE_CAMO
 
 /////////////////////////////////////////////
 // Sleep smoke
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/sleepy
-
-/obj/effect/particle_effect/smoke/sleepy/effect_inhale(mob/living/carbon/C)
-	C.Sleeping(1)
-	C.adjustOxyLoss(1)
-	if(prob(30))
-		C.emote("cough")
+	smoke_traits = SMOKE_OPAQUE|SMOKE_COUGH|SMOKE_SLEEP|SMOKE_OXYLOSS
 
 /////////////////////////////////////////////
 // Mustard Gas
@@ -251,21 +196,14 @@
 /obj/effect/particle_effect/smoke/mustard
 	name = "mustard gas"
 	icon_state = "mustard"
-
-/obj/effect/particle_effect/smoke/mustard/effect_inhale(var/mob/living/carbon/human/C)
-	C.emote("gasp")
-	var/protection = min(C.get_permeability_protection(), 0.75)
-	C.burn_skin(0.75 - protection)
+	smoke_traits = SMOKE_OPAQUE|SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS
 
 /////////////////////////////////////////////
 // Phosphorus Gas
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/bad/phosphorus
-
-/obj/effect/particle_effect/smoke/bad/phosphorus/effect_contact(mob/living/carbon/C)
-	var/protection = min(C.get_permeability_protection(), 0.75)
-	C.burn_skin(0.75 - protection)
+	smoke_traits = SMOKE_OPAQUE|SMOKE_BLISTERING
 
 //////////////////////////////////////
 // FLASHBANG SMOKE
@@ -286,80 +224,19 @@
 /obj/effect/particle_effect/smoke/xeno
 	lifetime = 6
 	spread_speed = 7
-	var/strength = 1 // Effects scale with the emitter's bomb_strength upgrades.
 	expansion_speed = 3
-
-/obj/effect/particle_effect/smoke/xeno/copy_stats(obj/effect/particle_effect/smoke/xeno/parent)
-	strength = parent.strength
-	return ..()
-
-/obj/effect/particle_effect/smoke/xeno/smoke_mob(mob/living/carbon/C)
-	if(lifetime < 1 || !istype(C))
-		return FALSE
-	if(C.stat == DEAD || isxeno(C))
-		return FALSE
-	if(istype(C.buckled, /obj/structure/bed/nest) && C.status_flags & XENO_HOST)
-		return FALSE
-	if(C.smoke_delay)
-		return FALSE
-	C.smoke_delay = TRUE
-	addtimer(CALLBACK(src, .proc/remove_smoke_delay, C), 10)
-	effect_contact(C)
-	if(!C.internal && !C.has_smoke_protection())
-		effect_inhale(C)
-	return TRUE
+	smoke_traits = SMOKE_OPAQUE|SMOKE_XENO
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
 	lifetime = 9
 	color = "#86B028" //Mostly green?
-
-/obj/effect/particle_effect/smoke/xeno/burn/apply_smoke_effect(turf/T)
-	. = ..()
-	for(var/obj/structure/barricade/B in get_turf(src))
-		B.acid_smoke_damage(src)
-	for(var/obj/structure/razorwire/R in get_turf(src))
-		R.acid_smoke_damage(src)
-	for(var/obj/vehicle/multitile/hitbox/cm_armored/H in get_turf(src))
-		var/obj/vehicle/multitile/root/cm_armored/R = H.root
-		R?.take_damage_type(30, "acid")
-
-
-/obj/effect/particle_effect/smoke/xeno/burn/effect_contact(mob/living/carbon/C)
-	var/protection = max(1 - C.get_permeability_protection() * 0.8)
-	if(prob(50) * protection)
-		to_chat(C, "<span class='danger'>Your skin feels like it is melting away!</span>")
-	C.adjustFireLoss(strength * rand(20, 23) * protection) //widespread burn damage, strength corresponds to the caste's bomb_strength
-
-/obj/effect/particle_effect/smoke/xeno/burn/effect_inhale(mob/living/carbon/C)
-	C.adjustOxyLoss(4 + strength * 2)
-	if(C.stat == CONSCIOUS && prob(50))
-		C.emote(pick("cough", "gasp"))
+	smoke_traits = SMOKE_OPAQUE|SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH
 
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
 	color = "#ffbf58" //Mustard orange?
-
-/obj/effect/particle_effect/smoke/xeno/neuro/effect_inhale(mob/living/carbon/C)
-	if(!is_blind(C) && C.has_eyes())
-		to_chat(C, "<span class='danger'>Your eyes sting. You can't see!</span>")
-	C.blur_eyes(4)
-	C.blind_eyes(2)
-	var/reagent_amount = 4 + strength * 2
-	C.reagents.add_reagent("xeno_toxin", reagent_amount)
-	if(prob(20 * strength)) //Likely to momentarily freeze up/fall due to arms/hands seizing up
-		to_chat(C, "<span class='danger'>You feel your body going numb and lifeless!</span>")
-	if(prob(50))
-		C.emote(pick("cough", "gasp"))
-
-/obj/effect/particle_effect/smoke/xeno/neuro/effect_contact(mob/living/carbon/C)
-	if(!C.internal && !C.has_smoke_protection()) //skin protection won't matter if without gas protection
-		return
-	var/reagent_amount = 2 + strength
-	var/bio_vulnerability = 1 - C.get_permeability_protection() * 0.8
-	C.reagents.add_reagent("xeno_toxin", round(reagent_amount * bio_vulnerability, 0.1))
-	if(prob(20 * strength * bio_vulnerability))
-		to_chat(C, "<span class='danger'>Your body goes numb where the gas touches it!</span>")
+	smoke_traits = SMOKE_OPAQUE|SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH
 
 /////////////////////////////////////////////
 // Smoke spreads
@@ -403,6 +280,7 @@ datum/effect_system/smoke_spread/tactical
 /////////////////////////////////////////////
 /obj/effect/particle_effect/smoke/chem
 	lifetime = 10
+	smoke_traits = SMOKE_OPAQUE|SMOKE_CHEM
 	var/list/smoked_mobs
 
 /obj/effect/particle_effect/smoke/chem/Destroy()
@@ -411,24 +289,18 @@ datum/effect_system/smoke_spread/tactical
 		neighbor.chemical_effect()
 	return ..()
 
+/obj/effect/particle_effect/smoke/chem/apply_smoke_effect(turf/T)
+	. = ..()
+	for(var/mob/living/carbon/C in T)
+		pre_chem_effect(C)
+
 /obj/effect/particle_effect/smoke/chem/copy_stats(obj/effect/particle_effect/smoke/parent)
 	icon = parent.icon
 	return ..()
 
-/obj/effect/particle_effect/smoke/chem/apply_smoke_effect(turf/T)
-	. = ..()
-	reagents.reaction(T, VAPOR, fraction)
-	for(var/obj/O in T)
-		if(O.type == type)
-			continue
-		if(T.intact_tile && O.level == 1) //hidden under the floor
-			continue
-		reagents.reaction(O, VAPOR, fraction)
-
-/obj/effect/particle_effect/smoke/chem/effect_contact(mob/living/carbon/C)
-	reagents.reaction(C, VAPOR, fraction)
-
-/obj/effect/particle_effect/smoke/chem/effect_inhale(mob/living/carbon/C)
+/obj/effect/particle_effect/smoke/chem/proc/pre_chem_effect(mob/living/carbon/C)
+	if(C.internal || C.has_smoke_protection())
+		return
 	if(!length(smoked_mobs))
 		addtimer(CALLBACK(src, .proc/chemical_effect), 1)
 	for(var/obj/effect/particle_effect/smoke/chem/S in current_cloud)

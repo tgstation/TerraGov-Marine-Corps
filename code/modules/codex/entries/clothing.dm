@@ -110,7 +110,7 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 	var/list/covers = list()
 	var/list/slots = list()
 	for(var/name in string_part_flags)
-		if(body_parts_covered & string_part_flags[name])
+		if(flags_armor_protection & string_part_flags[name])
 			covers += name
 	for(var/name in string_equip_flags)
 		if(flags_equip_slot & string_equip_flags[name])

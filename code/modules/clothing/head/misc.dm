@@ -6,14 +6,14 @@
 	desc = "It's good to be emperor."
 	item_state = "centhat"
 	siemens_coefficient = 0.9
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/hairflower
 	name = "hair flower pin"
 	icon_state = "hairflower"
 	desc = "Smells nice."
 	item_state = "hairflower"
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
@@ -27,19 +27,19 @@
 	icon_state = "tophat"
 	item_state = "that"
 	siemens_coefficient = 0.9
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/redcoat
 	name = "redcoat's hat"
 	icon_state = "redcoat"
 	desc = "<i>'I guess it's a redhead.'</i>"
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/mailman
 	name = "station cap"
 	icon_state = "mailman"
 	desc = "<i>Choo-choo</i>!"
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/plaguedoctorhat
 	name = "plague doctor's hat"
@@ -47,7 +47,7 @@
 	icon_state = "plaguedoctor"
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/hasturhood
 	name = "hastur's hood"
@@ -55,14 +55,14 @@
 	icon_state = "hasturhood"
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEARS|HIDEALLHAIR
-	body_parts_covered = HEAD|FACE|EYES
+	flags_armor_protection = HEAD|FACE|EYES
 
 /obj/item/clothing/head/nursehat
 	name = "nurse's hat"
 	desc = "It allows quick identification of trained medical personnel."
 	icon_state = "nursehat"
 	siemens_coefficient = 0.9
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/syndicatefake
 	name = "red space-helmet replica"
@@ -72,7 +72,7 @@
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	siemens_coefficient = 2.0
-	body_parts_covered = HEAD|FACE|EYES
+	flags_armor_protection = HEAD|FACE|EYES
 	anti_hug = 1
 
 /obj/item/clothing/head/cueball
@@ -83,7 +83,7 @@
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	item_state="cueball"
 	flags_inventory = 0
-	body_parts_covered = HEAD|FACE|EYES
+	flags_armor_protection = HEAD|FACE|EYES
 
 /obj/item/clothing/head/greenbandana
 	name = "green bandana"
@@ -92,7 +92,7 @@
 	item_state = "greenbandana"
 	flags_inventory = NOFLAGS
 	flags_inv_hide = NOFLAGS
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/cardborg
 	name = "cardborg helmet"
@@ -101,7 +101,7 @@
 	item_state = "cardborg_h"
 	flags_inventory = COVERMOUTH|COVEREYES
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
-	body_parts_covered = HEAD|FACE|EYES
+	flags_armor_protection = HEAD|FACE|EYES
 
 /obj/item/clothing/head/justice
 	name = "justice hat"
@@ -131,7 +131,7 @@
 	name = "rabbit ears"
 	desc = "Wearing these makes you looks useless, and only good for your sex appeal."
 	icon_state = "bunny"
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/flatcap
 	name = "flat cap"
@@ -145,14 +145,14 @@
 	desc = "Yarr."
 	icon_state = "pirate"
 	item_state = "pirate"
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/hgpiratecap
 	name = "pirate hat"
 	desc = "Yarr."
 	icon_state = "hgpiratecap"
 	item_state = "hgpiratecap"
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 	armor = list(melee = 50, bullet = 80, laser = 50,energy = 10, bomb = 50, bio = 0, rad = 0)
 
 /obj/item/clothing/head/bandana
@@ -171,7 +171,7 @@
 	desc = "Gentleman, elite aboard!"
 	icon_state = "bowler"
 	item_state = "bowler"
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 //stylish bs12 hats
 
@@ -180,7 +180,7 @@
 	icon_state = "bowler_hat"
 	item_state = "bowler_hat"
 	desc = "For the gentleman of distinction."
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/beaverhat
 	name = "beaver hat"
@@ -231,7 +231,7 @@
 	flags_inventory = NOFLAGS
 	flags_inv_hide = HIDEALLHAIR
 	siemens_coefficient = 2.0
-	body_parts_covered = HEAD|FACE|EYES
+	flags_armor_protection = HEAD|FACE|EYES
 
 /obj/item/clothing/head/xenos
 	name = "xenos helmet"
@@ -241,7 +241,7 @@
 	flags_inventory = COVERMOUTH|COVEREYES|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	siemens_coefficient = 2.0
-	body_parts_covered = HEAD|FACE|EYES
+	flags_armor_protection = HEAD|FACE|EYES
 	anti_hug = 10 //Lel
 
 /obj/item/clothing/head/white_dress

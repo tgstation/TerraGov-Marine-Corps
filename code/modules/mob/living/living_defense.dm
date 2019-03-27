@@ -183,3 +183,13 @@
 	IgniteMob()
 
 //Mobs on Fire end
+
+/mob/living/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		if(S.smoke_traits & SMOKE_CAMO)
+			smokecloak_off()
+		return FALSE
+
+	if(S.smoke_traits & SMOKE_CAMO)
+		smokecloak_on()

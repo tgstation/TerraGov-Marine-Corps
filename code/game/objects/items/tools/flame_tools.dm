@@ -181,7 +181,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	throw_speed = 0.5
 	item_state = "cigoff"
 	w_class = 1
-	body_parts_covered = NONE
+	flags_armor_protection = NONE
 	container_type = INJECTABLE
 	var/lit = FALSE
 	var/icon_on = "cigon"  //Note - these are in masks.dmi not in cigarette.dmi

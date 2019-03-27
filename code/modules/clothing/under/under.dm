@@ -2,7 +2,7 @@
 /obj/item/clothing/under
 	icon = 'icons/obj/clothing/uniforms.dmi'
 	name = "under"
-	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
 	flags_heat_protection = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.90
@@ -184,12 +184,12 @@
 			if(istype(src,/obj/item/clothing/under/marine))
 				final_coverage = copytext(icon_state,1,3) == "s_" ? full_coverage : partial_coverage
 			else final_coverage = partial_coverage & ~CHEST
-			body_parts_covered = final_coverage
+			flags_armor_protection = final_coverage
 		else
-			body_parts_covered = full_coverage
+			flags_armor_protection = full_coverage
 
-		flags_cold_protection = body_parts_covered
-		flags_heat_protection = body_parts_covered
+		flags_cold_protection = flags_armor_protection
+		flags_heat_protection = flags_armor_protection
 		update_clothing_icon()
 	else
 		to_chat(usr, "<span class='warning'>You cannot roll down the uniform!</span>")
