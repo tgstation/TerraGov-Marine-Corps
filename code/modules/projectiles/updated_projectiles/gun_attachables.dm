@@ -588,9 +588,13 @@ Defined in conflicts.dm of the #defines folder.
 	//icon_state = "sniperscope"
 	//attach_icon = "sniperscope_a"
 	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	zoom_offset = 5
+	zoom_viewsize = 7
+	zoom_accuracy = SCOPE_RAIL_MINI
 	flags_attach_features = ATTACH_ACTIVATION
 	attach_icon = ""
 	icon_state = ""
+
 
 /obj/item/attachable/scope/m42a
 	name = "m42a rail scope"

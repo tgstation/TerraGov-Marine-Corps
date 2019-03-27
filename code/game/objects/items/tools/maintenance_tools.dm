@@ -51,7 +51,8 @@
 	user.visible_message("<span class='danger'>[user] is stabbing the [name] into [user.p_their()] [pick("temple","heart")]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return(BRUTELOSS)
 
-/obj/item/tool/screwdriver/New()
+/obj/item/tool/screwdriver/Initialize()
+	. = ..()
 	switch(pick("red","blue","purple","brown","green","cyan","yellow"))
 		if ("red")
 			icon_state = "screwdriver2"
@@ -107,7 +108,8 @@
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 1
 
-/obj/item/tool/wirecutters/New()
+/obj/item/tool/wirecutters/Initialize()
+	. = ..()
 	if(prob(50))
 		icon_state = "cutters-y"
 		item_state = "cutters_yellow"
@@ -152,7 +154,8 @@
 	var/weld_tick = 0	//Used to slowly deplete the fuel when the tool is left on.
 	var/status = TRUE //When welder is secured on unsecured
 
-/obj/item/tool/weldingtool/New()
+/obj/item/tool/weldingtool/Initialize()
+	. = ..()
 //	var/random_fuel = min(rand(10,20),max_fuel)
 	create_reagents(max_fuel)
 	reagents.add_reagent("fuel", max_fuel)

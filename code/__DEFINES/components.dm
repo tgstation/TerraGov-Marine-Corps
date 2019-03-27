@@ -33,6 +33,14 @@
 #define COMSIG_ENTER_AREA "enter_area" 						//from base of area/Entered(): (/area)
 #define COMSIG_EXIT_AREA "exit_area" 							//from base of area/Exited(): (/area)
 
+
+#define COMSIG_CLICK "atom_click"								//from base of atom/Click(): (location, control, params, mob/user)
+#define COMSIG_CLICK_SHIFT "shift_click"						//from base of atom/ShiftClick(): (/mob)
+#define COMSIG_CLICK_CTRL "ctrl_click"							//from base of atom/CtrlClickOn(): (/mob)
+#define COMSIG_CLICK_ALT "alt_click"							//from base of atom/AltClick(): (/mob)
+#define COMSIG_CLICK_CTRL_SHIFT "ctrl_shift_click"				//from base of atom/CtrlShiftClick(/mob)
+
+
 // /atom signals
 #define COMSIG_PARENT_ATTACKBY "atom_attackby"			        //from base of atom/attackby(): (/obj/item, /mob/living)
 	#define COMPONENT_NO_AFTERATTACK 1								//Return this in response if you don't want afterattack to be called
@@ -41,6 +49,10 @@
 	#define COMPONENT_ATOM_BLOCK_EXIT 1
 #define COMSIG_ATOM_EXITED "atom_exited"						//from base of atom/Exited(): (atom/movable/exiting, atom/newloc)
 #define COMSIG_ATOM_DIR_CHANGE "atom_dir_change"				//from base of atom/setDir(): (old_dir, new_dir)
+#define COMSIG_ATOM_CANREACH "atom_can_reach"					//from internal loop in atom/movable/proc/CanReach(): (list/next)
+	#define COMPONENT_BLOCK_REACH 1
+#define COMSIG_ATOM_ATTACK_GHOST "atom_attack_ghost"			//from base of atom/attack_ghost(): (mob/dead/observer/ghost)
+	#define COMPONENT_NO_ATTACK_HAND 1							//works on all 3.
 
 // /atom/movable signals
 #define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, dir)
@@ -58,3 +70,9 @@
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
+
+
+// /mob signals
+#define COMSIG_MOB_CLICKON "mob_clickon"						//from base of mob/clickon(): (atom/A, params)
+	#define COMSIG_MOB_CANCEL_CLICKON 1
+#define COMSIG_MOB_ATTACK_RANGED "mob_attack_ranged"			//from base of mob/RangedAttack(): (atom/A, params)

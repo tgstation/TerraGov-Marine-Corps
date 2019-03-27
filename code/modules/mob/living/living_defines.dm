@@ -76,8 +76,6 @@
 
 	var/smokecloaked = FALSE //For the new Smoke Grenade
 
-	var/canEnterVentWith = "/obj/item/implant=0&/obj/item/clothing/mask/facehugger=0&/obj/item/device/radio/borg=0&/obj/machinery/camera=0&/obj/item/verbs=0" // Vent crawling whitelisted items, whoo
-
 	var/no_stun = FALSE
 
 	var/fire_immune = FALSE

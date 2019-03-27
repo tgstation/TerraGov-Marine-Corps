@@ -1221,6 +1221,21 @@ proc/is_hot(obj/item/I)
 	if (I.edge) return 1
 	return 0
 
+/proc/params2turf(scr_loc, turf/origin, client/C)
+	if(!scr_loc)
+		return null
+	var/tX = splittext(scr_loc, ",")
+	var/tY = splittext(tX[2], ":")
+	var/tZ = origin.z
+	tY = tY[1]
+	tX = splittext(tX[1], ":")
+	tX = tX[1]
+	var/list/actual_view = getviewsize(C ? C.view : world.view)
+	tX = CLAMP(origin.x + text2num(tX) - round(actual_view[1] / 2) - 1, 1, world.maxx)
+	tY = CLAMP(origin.y + text2num(tY) - round(actual_view[2] / 2) - 1, 1, world.maxy)
+	return locate(tX, tY, tZ)
+
+
 //Returns 1 if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.
 /proc/can_puncture(obj/item/W)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
 	if(!istype(W)) return 0
