@@ -6,23 +6,6 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 
-/datum/job/imperial/guardsman
-	title = "Guardsman"
-	comm_title = "Guard"
-	paygrade = "Guard"
-
-/datum/job/imperial/guardsman/sergeant
-	title = "Guardsman Sergeant"
-	comm_title = "Sergeant"
-	skills_type = /datum/skills/imperial/SL
-	paygrade = "Sergeant"
-
-/datum/job/imperial/guardsman/medicae
-	title = "Guardsman Medicae"
-	comm_title = "Medicae"
-	skills_type = /datum/skills/imperial/medicae
-	paygrade = "Medicae"
-
 /datum/outfit/job/imperial
 	name = "Imperial Standard"
 	jobtype = /datum/job/imperial
@@ -45,6 +28,11 @@
 /datum/outfit/job/imperial/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.add_language("Imperial")
+
+/datum/job/imperial/guardsman
+	title = "Guardsman"
+	comm_title = "Guard"
+	paygrade = "Guard"
 
 /datum/outfit/job/imperial/guardsman
 	name = "Imperial Guardsman"
@@ -78,6 +66,12 @@
 	var/obj/item/weapon/gun/energy/lasgun/M43/G = new /obj/item/weapon/gun/energy/lasgun/M43(H)
 	G.reload(H, new /obj/item/cell/lasgun/M43(G)) // starts out full
 	H.equip_to_slot_or_del(G, SLOT_S_STORE)
+
+/datum/job/imperial/guardsman/sergeant
+	title = "Guardsman Sergeant"
+	comm_title = "Sergeant"
+	skills_type = /datum/skills/imperial/SL
+	paygrade = "Sergeant"
 
 /datum/outfit/job/imperial/sergeant // don't inherit guardsman equipment
 	name = "Guardsman Sergeant"
@@ -113,6 +107,12 @@
 	G.reload(H, new /obj/item/cell/lasgun/M43/highcap(G)) // starts out reloaded
 	H.equip_to_slot_or_del(G, SLOT_S_STORE)
 
+/datum/job/imperial/guardsman/medicae
+	title = "Guardsman Medicae"
+	comm_title = "Medicae"
+	skills_type = /datum/skills/imperial/medicae
+	paygrade = "Medicae"
+
 /datum/outfit/job/imperial/medicae
 	name = "Guardsman Medicae"
 	jobtype = /datum/job/imperial/guardsman/medicae
@@ -120,6 +120,7 @@
 	belt = /obj/item/storage/belt/combatLifesaver
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial/medicae
 	head = /obj/item/clothing/head/helmet/marine/imperial
+	glasses = /obj/item/clothing/glasses/hud/health
 	l_store = /obj/item/storage/pouch/medkit
 	r_store = /obj/item/storage/pouch/autoinjector
 	back = /obj/item/storage/backpack/lightpack
