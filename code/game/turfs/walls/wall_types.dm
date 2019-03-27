@@ -461,6 +461,7 @@
 
 /turf/closed/wall/resin/attackby(obj/item/W, mob/living/user)
 	if(!(W.flags_item & NOBLUDGEON))
+		user.changeNext_move(W.attack_speed)
 		user.animation_attack_on(src)
 		var/damage = W.force
 		var/multiplier = 1

@@ -100,7 +100,7 @@ macro "macro"
 		command = "Activate-Held-Object"
 	elem 
 		name = "F1"
-		command = "adminhelp"
+		command = "choosehelp"
 	elem 
 		name = "CTRL+SHIFT+F1+REP"
 		command = ".options"
@@ -303,7 +303,7 @@ macro "hotkeymode"
 		command = "a-select-zone \"head\""
 	elem 
 		name = "F1"
-		command = "adminhelp"
+		command = "choosehelp"
 	elem 
 		name = "CTRL+SHIFT+F1+REP"
 		command = ".options"
@@ -423,8 +423,8 @@ menu "menu"
 		command = ""
 		saved-params = "is-checked"
 	elem 
-		name = "&Admin help\tF1"
-		command = "adminhelp"
+		name = "&Request Help\tF1"
+		command = "choosehelp"
 		category = "&Help"
 		saved-params = "is-checked"
 	elem 

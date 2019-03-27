@@ -348,7 +348,8 @@ GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 	/datum/admins/proc/check_contents,
 	/datum/admins/proc/SDQL2_query,
 	/datum/admins/proc/map_template_load,
-	/datum/admins/proc/map_template_upload
+	/datum/admins/proc/map_template_upload,
+	/datum/admins/proc/reestablish_db_connection
 	)
 
 GLOBAL_PROTECT(admin_verbs_varedit)

@@ -50,9 +50,9 @@
 		var/shuttle_tag
 		switch(id)
 			if("sh_dropship1")
-				shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
+				shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 			if("sh_dropship2")
-				shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
+				shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 			else
 				return
 
@@ -89,9 +89,9 @@
 	var/shuttle_tag
 	switch(ship_id)
 		if("sh_dropship1")
-			shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
+			shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 		if("sh_dropship2")
-			shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
+			shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 	if(!shuttle_tag)
 		return
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
@@ -174,7 +174,7 @@
 			var/area/A = get_area(M)
 			for(var/i = 1 to 2)
 				if(istype(A, text2path("/area/shuttle/drop[i]")))
-					S = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Dropship [i]"]
+					S = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] Dropship [i]"]
 					if(S.moving_status == SHUTTLE_INTRANSIT) return FALSE
 			if(M.density)
 				spawn()

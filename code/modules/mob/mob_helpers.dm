@@ -414,7 +414,7 @@ mob/proc/get_standard_bodytemperature()
 
 /mob/verb/a_select_zone(input as text, screen_num as null|num)
 	set name = "a-select-zone"
-	set hidden = 1
+	set hidden = TRUE
 
 	if(!screen_num)
 		return

@@ -79,29 +79,28 @@
 		log_admin("[key_name(usr)] has taken [key_name_admin(target)].")
 		message_admins("[ADMIN_TPMONTY(usr)] has taken [ADMIN_TPMONTY(target)].")
 
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			if(H.assigned_squad)
+				var/datum/squad/S = H.assigned_squad
+				S.clean_marine_from_squad(H)
+
 		mind.transfer_to(target, TRUE)
 		target.fully_replace_character_name(real_name, target.real_name)
-		if(ishuman(target) && target.job)
-			var/mob/living/carbon/human/H = target
-			var/datum/job/J = SSjob.name_occupations[H.job]
-			var/datum/outfit/job/O = new J.outfit
-			var/id = O.id ? O.id : /obj/item/card/id
-			var/obj/item/card/id/I = new id
-			var/datum/skills/L = new J.skills_type
-			H.mind.cm_skills = L
-			H.mind.comm_title = J.comm_title
 
-			if(H.wear_id)
-				qdel(H.wear_id)
+		if(!ishuman(target) || !target.job)
+			return
 
-			H.faction = J.faction
+		var/mob/living/carbon/human/H = target
+		H.set_rank(H.job)
 
-			H.equip_to_slot_or_del(I, SLOT_WEAR_ID)
+		if(!H.assigned_squad)
+			return
 
-			H.update_action_buttons()
+		var/datum/squad/S = H.assigned_squad
+		S.put_marine_in_squad(H)
 
-			SSjob.AssignRole(H, H.job)
-			O.post_equip(H)
+
 
 
 	else if(href_list["preference"])

@@ -43,6 +43,8 @@ SUBSYSTEM_DEF(evacuation)
 		if(EVACUATION_STATUS_IN_PROGRESS)
 			if(world.time < pod_cooldown + EVACUATION_POD_LAUNCH_COOLDOWN)
 				return
+			if(!length(pod_list))
+				return
 			var/datum/shuttle/ferry/marine/evacuation_pod/P = pick(pod_list)
 			P.prepare_for_launch()
 			pod_list -= P
@@ -78,7 +80,7 @@ SUBSYSTEM_DEF(evacuation)
 	xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
 	var/datum/shuttle/ferry/marine/evacuation_pod/P
 	for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
-		P = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Evac [i]"]
+		P = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] Evac [i]"]
 		P.toggle_ready()
 		pod_list += P
 	addtimer(CALLBACK(src, .proc/announce_evac_completion), 5 MINUTES)
@@ -102,7 +104,7 @@ SUBSYSTEM_DEF(evacuation)
 	command_announcement.Announce("Evacuation has been cancelled.", "Priority Alert", new_sound='sound/AI/evacuate_cancelled.ogg')
 	var/datum/shuttle/ferry/marine/evacuation_pod/P
 	for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
-		P = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Evac [i]"]
+		P = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] Evac [i]"]
 		P.toggle_ready()
 	return TRUE
 

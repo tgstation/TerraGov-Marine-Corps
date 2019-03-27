@@ -263,7 +263,7 @@
 	return FALSE
 
 /mob/living/carbon/Xenomorph/Ravager/process_rage_attack()
-	rage += 5 //Gain 5 rage stacks for the attack.
+	rage += RAV_RAGE_ON_HIT
 	last_rage = world.time //We incremented rage, so bookmark this.
 
 

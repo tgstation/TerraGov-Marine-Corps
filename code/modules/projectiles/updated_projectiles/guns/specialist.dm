@@ -64,6 +64,14 @@
 	return ..()
 
 
+/obj/item/weapon/gun/rifle/sniper/M42A/InterceptClickOn(mob/user, params, atom/object)
+	var/list/pa = params2list(params)
+	if(!pa.Find("ctrl"))
+		return FALSE
+	integrated_laze.acquire_target(object, user)
+	return TRUE
+
+
 /mob/living/carbon/proc/apply_laser()
 	return FALSE
 
@@ -126,7 +134,7 @@
 		laser_off(user)
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 		return
-	if(!can_see(user, laser_target, length=23))
+	if(!can_see(user, laser_target, length=24))
 		laser_off()
 		to_chat(user, "<span class='danger'>You lose sight of your target!</span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
@@ -152,7 +160,8 @@
 		to_chat(user, "<span class='warning'>You must be zoomed in to use your target marker!</span>")
 		return
 	targetmarker_primed = TRUE //We prime the target laser
-	if(user)
+	if(user?.client)
+		user.client.click_intercept = src
 		to_chat(user, "<span class='notice'><b>You activate your target marker and take careful aim.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 
@@ -164,7 +173,8 @@
 		STOP_PROCESSING(SSobj, src)
 		targetmarker_on = FALSE
 	targetmarker_primed = FALSE
-	if(user)
+	if(user?.client)
+		user.client.click_intercept = null
 		to_chat(user, "<span class='notice'><b>You deactivate your target marker.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 
@@ -288,6 +298,7 @@
 	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	burst_accuracy_mult = CONFIG_GET(number/combat_define/min_burst_accuracy_penalty)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)

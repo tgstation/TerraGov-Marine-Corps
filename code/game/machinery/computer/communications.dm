@@ -133,7 +133,7 @@
 					return FALSE
 
 				if(!SSticker?.mode)
-					to_chat(usr, "<span class='warning'>The [MAIN_SHIP_NAME]'s distress beacon must be activated prior to evacuation taking place.</span>")
+					to_chat(usr, "<span class='warning'>The [CONFIG_GET(string/ship_name)]'s distress beacon must be activated prior to evacuation taking place.</span>")
 					return FALSE
 
 				if(security_level < SEC_LEVEL_RED)
@@ -354,10 +354,10 @@
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=login'>LOG IN</A> \]"
 
 		if(STATE_EVACUATION)
-			dat += "Are you sure you want to evacuate the [MAIN_SHIP_NAME]? \[ <A HREF='?src=\ref[src];operation=evacuation_start'>Confirm</A>\]"
+			dat += "Are you sure you want to evacuate the [CONFIG_GET(string/ship_name)]? \[ <A HREF='?src=\ref[src];operation=evacuation_start'>Confirm</A>\]"
 
 		if(STATE_EVACUATION_CANCEL)
-			dat += "Are you sure you want to cancel the evacuation of the [MAIN_SHIP_NAME]? \[ <A HREF='?src=\ref[src];operation=evacuation_cancel'>Confirm</A>\]"
+			dat += "Are you sure you want to cancel the evacuation of the [CONFIG_GET(string/ship_name)]? \[ <A HREF='?src=\ref[src];operation=evacuation_cancel'>Confirm</A>\]"
 
 		if(STATE_DISTRESS)
 			dat += "Are you sure you want to trigger a distress signal? The signal can be picked up by anyone listening, friendly or not. \[ <A HREF='?src=\ref[src];operation=distress'>Confirm</A>\]"
