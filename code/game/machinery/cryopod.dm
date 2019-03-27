@@ -513,4 +513,4 @@
 		victim.forceMove(src)
 		occupant = victim
 		victim.despawn(src)
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
