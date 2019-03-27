@@ -3,49 +3,50 @@
 /datum/progressbar
 	var/goal = 1
 	var/image/bar
-	var/bar_icon
+	var/bar_tag = 0
 	var/image/display
+	var/display_tag
 	var/atom/display_owner
+	var/display_target = FALSE
 	var/display_icon
 	var/shown = 0
 	var/mob/user
 	var/client/client
 	var/listindex
 
-/datum/progressbar/New(mob/User, goal_number, atom/target, bar_var, display_var)
+/datum/progressbar/New(mob/U, goal_number, atom/target)
 	. = ..()
 	if (!istype(target))
 		EXCEPTION("Invalid target given")
 	if (goal_number)
 		goal = goal_number
-	bar_icon = bar_var
-	bar = image('icons/effects/progressbar.dmi', target, "prog_bar_[bar_icon]_0", HUD_LAYER)
-	bar.plane = ABOVE_HUD_PLANE
-	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	user = User
+	if(!isnull(bar_tag))
+		bar = image('icons/effects/progressbar.dmi', target, "prog_bar_[bar_tag]_0", HUD_LAYER)
+		bar.plane = ABOVE_HUD_PLANE
+		bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	user = U
 	if(user)
 		client = user.client
 
-	LAZYINITLIST(user.progressbars)
-	LAZYINITLIST(user.progressbars[bar.loc])
-	var/list/bars = user.progressbars[bar.loc]
-	bars.Add(src)
-	listindex = bars.len
-	bar.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1))
+	if(bar)
+		LAZYINITLIST(user.progressbars)
+		LAZYINITLIST(user.progressbars[bar.loc])
+		var/list/bars = user.progressbars[bar.loc]
+		bars.Add(src)
+		listindex = bars.len
+		bar.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1))
 
-	display_icon = display_var
-	if(display_icon)
-		display_owner = display_icon[1] == USER_PROG_DISPLAY ? user : target
-		var/busy_icon = display_icon[2]
+	if(!isnull(display_tag))
+		display_owner = display_target = TRUE ? target : user
 		LAZYINITLIST(display_owner.display_icons)
-		if(!LAZYFIND(display_owner.display_icons, busy_icon))
-			display = image('icons/effects/progressicons.dmi', null, busy_icon)
+		if(!LAZYFIND(display_owner.display_icons, display_tag))
+			display = image('icons/effects/progressicons.dmi', null, "busy_[display_tag]")
 			display.pixel_y = display_icon[3]
 			display.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 			display.plane = FLY_LAYER
 			display_owner.add_overlay(display, TRUE)
-			display_owner.display_icons.Add(busy_icon)
-		display_owner.display_icons[busy_icon]++
+			display_owner.display_icons.Add(display_tag)
+		display_owner.display_icons[display_tag]++
 
 /datum/progressbar/proc/get_display_target(display_icon)
 	return
@@ -59,7 +60,7 @@
 		user.client?.images += bar
 
 	progress = CLAMP(progress, 0, goal)
-	bar.icon_state = "prog_bar_[bar_icon]_[round(((progress / goal) * 100), 5)]"
+	bar.icon_state = "prog_bar_[bar_tag]_[round(((progress / goal) * 100), 5)]"
 	if (!shown)
 		user.client.images += bar
 		shown = TRUE
@@ -86,9 +87,8 @@
 		if(QDELETED(display_owner))
 			qdel(display)
 			return ..()
-		var/busy_icon = display_icon[2]
-		display_owner.display_icons[busy_icon]--
-		if(!display_owner.display_icons[busy_icon])
+		display_owner.display_icons[display_target]--
+		if(display_owner.display_icons[display_target] <= 0)
 			display_owner.cut_overlay(display, TRUE)
 			qdel(display)
 

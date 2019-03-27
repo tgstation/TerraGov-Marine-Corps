@@ -83,7 +83,7 @@ proc/age2agedescription(age)
 		if(70 to INFINITY)	return "elderly"
 		else				return "unknown"
 
-/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = FALSE, progress = TRUE, icon_display, datum/callback/extra_checks = null)
+/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = FALSE, datum/progressbar/prog_bar, icon_display, datum/callback/extra_checks = null)
 	if(!user || !target)
 		return FALSE
 	var/user_loc = user.loc
@@ -91,9 +91,8 @@ proc/age2agedescription(age)
 	var/target_loc = target.loc
 
 	var/holding = user.get_active_held_item()
-	var/datum/progressbar/progbar
-	if (progress)
-		progbar = new(user, time, target, progress, icon_display)
+	if (prog_bar)
+		prog_bar = new prog_bar(user, time, target)
 
 	user.action_busy++
 	var/endtime = world.time+time
@@ -101,8 +100,8 @@ proc/age2agedescription(age)
 	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
-		if (progress)
-			progbar.update(world.time - starttime)
+		prog_bar?.update(world.time - starttime)
+
 		if(QDELETED(user) || QDELETED(target) || (extra_checks && !extra_checks.Invoke()))
 			. = FALSE
 			break
@@ -112,8 +111,7 @@ proc/age2agedescription(age)
 		if(user.loc != user_loc || target.loc != target_loc || user.get_active_held_item() != holding || user.is_mob_incapacitated())
 			. = FALSE
 			break
-	if (progress)
-		qdel(progbar)
+	qdel(prog_bar)
 	user.action_busy--
 
 
@@ -133,7 +131,7 @@ proc/age2agedescription(age)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, delay, needhand = TRUE, atom/target = null, progress = TRUE, icon_display, datum/callback/extra_checks = null)
+/proc/do_after(mob/user, delay, needhand = TRUE, atom/target = null, datum/progressbar/prog_bar, datum/callback/extra_checks = null)
 	if(!user)
 		return FALSE
 
@@ -151,9 +149,8 @@ proc/age2agedescription(age)
 
 	delay *= user.do_after_coefficent()
 
-	var/datum/progressbar/progbar
-	if(progress)
-		progbar = new(user, delay, target, progress, icon_display)
+	if(prog_bar)
+		prog_bar = new prog_bar(user, delay, target)
 
 	user.action_busy++
 	var/endtime = world.time + delay
@@ -161,8 +158,7 @@ proc/age2agedescription(age)
 	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
-		if (progress)
-			progbar.update(world.time - starttime)
+		prog_bar?.update(world.time - starttime)
 
 		if(QDELETED(user) || user.stat || user.loc != Uloc || (extra_checks && !extra_checks.Invoke()))
 			. = FALSE
@@ -187,8 +183,7 @@ proc/age2agedescription(age)
 			if(user.get_active_held_item() != holding)
 				. = FALSE
 				break
-	if (progress)
-		qdel(progbar)
+	qdel(prog_bar)
 	user.action_busy--
 
 /mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1

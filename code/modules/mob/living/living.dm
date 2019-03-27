@@ -599,3 +599,6 @@ below 100 is not dizzy
 		if(!G || !gear.Find(i))
 			continue
 		equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
+
+/mob/living/proc/vomit()
+	return
