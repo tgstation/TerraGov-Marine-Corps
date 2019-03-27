@@ -203,16 +203,15 @@
 	return ..()
 
 /obj/effect/particle_effect/smoke/tactical/smoke_mob(mob/living/M)
-	if(istype(M))
-		if(lifetime)
-			cloak_smoke_act(M)
-		else
-			M.smokecloak_off()
+	if(lifetime)
+		cloak_smoke_act(M)
+	else
+		M.smokecloak_off()
 
 
 /obj/effect/particle_effect/smoke/tactical/Crossed(mob/living/M)
 	. = ..()
-	if(!istype(M))
+	if(istype(M))
 		smoke_mob(M)
 
 /obj/effect/particle_effect/smoke/tactical/Uncrossed(mob/living/M)
@@ -410,6 +409,7 @@ datum/effect_system/smoke_spread/tactical
 	if(length(smoked_mobs) && alpha) //so the whole cloud won't stop working somehow
 		var/obj/effect/particle_effect/smoke/chem/neighbor = pick(current_cloud)
 		neighbor.chemical_effect()
+	return ..()
 
 /obj/effect/particle_effect/smoke/chem/copy_stats(obj/effect/particle_effect/smoke/parent)
 	icon = parent.icon
