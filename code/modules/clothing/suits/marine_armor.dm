@@ -217,7 +217,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 	New(loc,expected_type 	= type,
 		new_name[] 		= list(MAP_ICE_COLONY = "\improper B12 pattern leader snow armor"))
-		..(loc,expected_type,new_name)
+	return ..()
 
 /obj/item/clothing/suit/storage/marine/MP
 	name = "\improper N2 pattern MA armor"
