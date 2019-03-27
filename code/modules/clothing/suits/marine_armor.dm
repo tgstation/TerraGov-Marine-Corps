@@ -206,7 +206,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 	New()
 		select_gamemode_skin(type)
-		..()
+	return ..()
 
 /obj/item/clothing/suit/storage/marine/leader
 	name = "\improper B12 pattern leader armor"
