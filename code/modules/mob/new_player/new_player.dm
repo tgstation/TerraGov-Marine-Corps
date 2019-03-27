@@ -336,7 +336,8 @@
 
 		if(D.latejoin_larva_drop && D.latejoin_tally >= D.latejoin_larva_drop)
 			D.latejoin_tally -= D.latejoin_larva_drop
-			D.stored_larva++
+			var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+			HS.stored_larva++
 
 	qdel(src)
 

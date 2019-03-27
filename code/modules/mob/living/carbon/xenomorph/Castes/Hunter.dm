@@ -1,13 +1,13 @@
 /datum/xeno_caste/hunter
 	caste_name = "Hunter"
 	display_name = "Hunter"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A fast, powerful front line combatant."
 
 	caste_type_path = /mob/living/carbon/Xenomorph/Hunter
 
 	tier = XENO_TIER_TWO
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -43,6 +43,11 @@
 	// *** Ranged Attack *** //
 	charge_type = 2 //Pounce - Hunter
 	pounce_delay = 15 SECONDS
+
+/datum/xeno_caste/hunter/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/hunter/mature
 	upgrade_name = "Mature"

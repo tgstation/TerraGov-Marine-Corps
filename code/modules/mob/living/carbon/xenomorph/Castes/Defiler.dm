@@ -1,11 +1,13 @@
 /datum/xeno_caste/defiler
 	caste_name = "Defiler"
 	display_name = "Defiler"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A frightening looking, bulky xeno that drips with suspect green fluids."
+
 	caste_type_path = /mob/living/carbon/Xenomorph/Defiler
+
 	tier = XENO_TIER_THREE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -37,6 +39,11 @@
 
 	// *** Defiler Abilities *** //
 	neuro_claws_amount = DEFILER_CLAW_AMOUNT
+
+/datum/xeno_caste/defiler
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/defiler/mature
 	upgrade_name = "Mature"

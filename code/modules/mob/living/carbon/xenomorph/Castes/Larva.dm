@@ -5,7 +5,7 @@
 	caste_desc = "D'awwwww, so cute!"
 	caste_type_path = /mob/living/carbon/Xenomorph/Larva
 	tier = XENO_TIER_ZERO
-	upgrade = XENO_UPGRADE_INVALID
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 0
@@ -26,6 +26,9 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_INNATE_HEALING|CASTE_DECAY_PROOF
+
+/datum/xeno_caste/larva/young
+	upgrade = XENO_UPGRADE_INVALID
 
 /mob/living/carbon/Xenomorph/Larva
 	caste_base_type = /mob/living/carbon/Xenomorph/Larva

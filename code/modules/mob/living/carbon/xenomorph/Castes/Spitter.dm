@@ -1,11 +1,11 @@
 /datum/xeno_caste/spitter
 	caste_name = "Spitter"
 	display_name = "Spitter"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "Ptui!"
 	caste_type_path = /mob/living/carbon/Xenomorph/Spitter
 	tier = XENO_TIER_TWO
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 18
@@ -42,6 +42,11 @@
 	spit_types = list(/datum/ammo/xeno/acid/heavy) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
 
 	acid_delay = 30 SECONDS //30 second delay on acid spray.
+
+/datum/xeno_caste/spitter/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/spitter/mature
 	upgrade_name = "Mature"

@@ -1,11 +1,11 @@
 /datum/xeno_caste/warrior
 	caste_name = "Warrior"
 	display_name = "Warrior"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A powerful front line combatant."
 	caste_type_path = /mob/living/carbon/Xenomorph/Warrior
 	tier = XENO_TIER_TWO
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -39,6 +39,11 @@
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
+
+/datum/xeno_caste/warrior/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/warrior/mature
 	upgrade_name = "Mature"

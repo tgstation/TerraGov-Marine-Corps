@@ -1,13 +1,13 @@
 /datum/xeno_caste/carrier
 	caste_name = "Carrier"
 	display_name = "Carrier"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A carrier of huggies."
 
 	caste_type_path = /mob/living/carbon/Xenomorph/Carrier
 
 	tier = XENO_TIER_TWO
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -49,6 +49,11 @@
 	huggers_max = 8
 	hugger_delay = 2.5 SECONDS
 	eggs_max = 3
+
+/datum/xeno_caste/carrier/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/carrier/mature
 	upgrade_name = "Mature"

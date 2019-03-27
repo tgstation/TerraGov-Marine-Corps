@@ -1,11 +1,11 @@
 /datum/xeno_caste/sentinel
 	caste_name = "Sentinel"
 	display_name = "Sentinel"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A weak ranged combat alien."
 	caste_type_path = /mob/living/carbon/Xenomorph/Sentinel
 	tier = XENO_TIER_ONE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
@@ -39,6 +39,11 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin)
+
+/datum/xeno_caste/sentinel/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/sentinel/mature
 	upgrade_name = "Mature"

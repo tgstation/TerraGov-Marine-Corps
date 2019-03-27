@@ -5,7 +5,7 @@
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 
 	tier = XENO_TIER_FOUR
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 45
@@ -45,6 +45,9 @@
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 1 //Amount of leaders allowed
+
+/datum/xeno_caste/queen/young
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/queen/mature
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
@@ -260,39 +263,7 @@
 						var/obj/item/xeno_egg/newegg = new /obj/item/xeno_egg(loc)
 						newegg.hivenumber = hivenumber
 
-			if(hivenumber == XENO_HIVE_NORMAL && is_ground_level(loc.z))
-				if(SSticker.mode.stored_larva)
-					if((last_larva_time + 600) < world.time) // every minute
-						last_larva_time = world.time
-						var/picked = get_alien_candidate()
-						if(picked)
-							var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
-							new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
-							"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
-							SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
-							new_xeno.key = picked
-
-							if(new_xeno.client)
-								new_xeno.client.change_view(world.view)
-
-							to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
-							SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
-
-							SSticker.mode.stored_larva--
-
-				var/searchx
-				var/searchy
-				var/turf/searchspot
-				for(searchx=-1, searchx<1, searchx++)
-					for(searchy=-1, searchy<1, searchy++)
-						searchspot = locate(loc.x+searchx, loc.y+searchy, loc.z)
-						for(var/mob/living/carbon/Xenomorph/Larva/L in searchspot)
-							if(!L.ckey || !L.client) // no one home
-								visible_message("<span class='xenodanger'>[L] quickly burrows into the ground.</span>")
-								SSticker.mode.stored_larva++
-								round_statistics.total_xenos_created-- // keep stats sane
-								qdel(L)
-
+			hive?.on_queen_life(src)
 
 //Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
 /mob/living/carbon/Xenomorph/Queen/Bump(atom/A, yes)

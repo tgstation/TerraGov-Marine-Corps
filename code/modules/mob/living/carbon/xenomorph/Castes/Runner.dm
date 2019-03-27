@@ -1,11 +1,11 @@
 /datum/xeno_caste/runner
 	caste_name = "Runner"
 	display_name = "Runner"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
 	caste_type_path = /mob/living/carbon/Xenomorph/Runner
 	tier = XENO_TIER_ONE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 10
@@ -42,6 +42,11 @@
 	// *** Ranged Attack *** //
 	charge_type = 1 //Pounce - Runner
 	pounce_delay = 3.5 SECONDS
+
+/datum/xeno_caste/runner/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/runner/mature
 	upgrade_name = "Mature"

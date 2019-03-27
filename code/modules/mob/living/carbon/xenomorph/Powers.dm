@@ -1513,10 +1513,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	xenoinfo += xeno_status_output(hive.xeno_leader_list, can_overwatch, FALSE, user)
 
 	for(var/typepath in hive.xenos_by_typepath)
-		var/mob/living/carbon/Xenomorph/T = typepath
 		if(typepath == /mob/living/carbon/Xenomorph/Queen)
 			continue
-		
+		var/mob/living/carbon/Xenomorph/T = typepath
+		var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[initial(T.caste_base_type)][XENO_UPGRADE_BASETYPE]
+		if(XC.caste_flags & CASTE_HIDE_IN_STATUS)
+			continue
+
 		switch(initial(T.tier))
 			if(XENO_TIER_ZERO)
 				continue
@@ -1536,9 +1539,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	dat += "<b>Tier 2: [length(hive.xenos_by_tier[XENO_TIER_TWO])] Sisters</b>[tier2counts]<BR>"
 	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Larva])] Sisters<BR>"
-	if(istype(user)) // cover calling it without parameters
-		if(user.hivenumber == XENO_HIVE_NORMAL)
-			dat += "<b>Burrowed Larva: [SSticker.mode.stored_larva] Sisters<BR>"
+	if(hive.hivenumber == XENO_HIVE_NORMAL)
+		var/datum/hive_status/normal/HN = hive
+		dat += "<b>Burrowed Larva: [HN.stored_larva] Sisters<BR>"
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table></body>"

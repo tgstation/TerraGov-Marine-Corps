@@ -1,11 +1,11 @@
 /datum/xeno_caste/praetorian
 	caste_name = "Praetorian"
 	display_name = "Praetorian"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "Ptui!"
 	caste_type_path = /mob/living/carbon/Xenomorph/Praetorian
 	tier = XENO_TIER_THREE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -45,6 +45,11 @@
 	// *** Pheromones *** //
 	aura_strength = 2.5 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
 	aura_allowed = list("frenzy", "warding", "recovery")
+
+/datum/xeno_caste/praetorian/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/praetorian/mature
 	upgrade_name = "Mature"

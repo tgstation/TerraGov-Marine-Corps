@@ -1,11 +1,11 @@
 /datum/xeno_caste/ravager
 	caste_name = "Ravager"
 	display_name = "Ravager"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A brutal, devastating front-line attacker."
 	caste_type_path = /mob/living/carbon/Xenomorph/Ravager
 	tier = XENO_TIER_THREE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40
@@ -40,6 +40,11 @@
 
 	// *** Ranged Attack *** //
 	charge_type = 3 //Claw at end of charge
+
+/datum/xeno_caste/ravager/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/ravager/mature
 	upgrade_name = "Mature"

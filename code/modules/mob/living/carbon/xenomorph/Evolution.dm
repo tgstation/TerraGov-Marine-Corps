@@ -61,7 +61,7 @@
 
 	var/list/castes_to_pick = list()
 	for(var/type in xeno_caste.evolves_to)
-		var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][XENO_UPGRADE_ZERO]
+		var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
 		castes_to_pick += Z.caste_name
 	var/castepick = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in castes_to_pick
 	if(!castepick) //Changed my mind
@@ -69,7 +69,7 @@
 
 	var/new_caste_type
 	for(var/type in xeno_caste.evolves_to)
-		if(castepick == GLOB.xeno_caste_datums[type][XENO_UPGRADE_ZERO].caste_name)
+		if(castepick == GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE].caste_name)
 			new_caste_type = type
 
 	if(!new_caste_type)

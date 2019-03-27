@@ -37,7 +37,7 @@
 	if(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED)
 		xeno_strings += "<br><U>This can evolve to</U>:"
 		for(var/type in xeno_caste.evolves_to)
-			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][XENO_UPGRADE_ZERO]
+			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
 			xeno_strings += "[Z.caste_name]"
 
 	if(length(actions))

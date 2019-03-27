@@ -1,13 +1,13 @@
 /datum/xeno_caste/defender
 	caste_name = "Defender"
 	display_name = "Defender"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A sturdy front line combatant."
 
 	caste_type_path = /mob/living/carbon/Xenomorph/Defender
 
 	tier = XENO_TIER_ONE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
@@ -44,6 +44,11 @@
 	// *** Defender Abilities *** //
 	crest_defense_armor = 35
 	fortify_armor = 70
+
+/datum/xeno_caste/defender/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/defender/mature
 	upgrade_name = "Mature"

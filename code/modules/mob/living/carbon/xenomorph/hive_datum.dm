@@ -84,6 +84,19 @@
 			xenos += X
 	return xenos
 
+/datum/hive_status/proc/get_ssd_xenos(var/only_away=FALSE)
+	var/list/xenos = list()
+	for(var/typepath in xenos_by_typepath)
+		for(var/i in xenos_by_typepath[typepath])
+			var/mob/living/carbon/Xenomorph/X = i
+			if(is_centcom_level(X.z))
+				continue
+			if(!X.client)
+				if(only_away && X.away_timer < XENO_AWAY_TIMER)
+					continue
+				xenos += X
+	return xenos
+
 // ***************************************
 // *********** Adding xenos
 // ***************************************
@@ -272,7 +285,21 @@
 /datum/hive_status/proc/start_queen_timer()
 	return
 
+/mob/living/carbon/Xenomorph/Larva/proc/burrow()
+	if(ckey && client)
+		return
+	hive?.burrow_larva(src)
+
+/mob/living/carbon/Xenomorph/Larva/predalien/burrow() // no no no
+	return
+
+/datum/hive_status/proc/burrow_larva(mob/living/carbon/Xenomorph/Larva/L)
+	return
+
 /datum/hive_status/proc/unbury_all_larva()
+	return
+
+/datum/hive_status/proc/on_queen_life(mob/living/carbon/Xenomorph/Queen/Q)
 	return
 
 // safe for use by gamemode code, this allows per hive overrides
@@ -315,6 +342,7 @@ to_chat will check for valid clients itself already so no need to double check f
 // ***************************************
 /datum/hive_status/normal // subtype for easier typechecking and overrides
 	var/stored_larva = 0 // this hive has special burrowed larva
+	var/last_larva_time = 0
 
 /datum/hive_status/normal/on_queen_death(mob/living/carbon/Xenomorph/Queen/Q)
 	if(living_xeno_queen != Q)
@@ -348,6 +376,38 @@ to_chat will check for valid clients itself already so no need to double check f
 	else
 		SSticker.mode.queen_death_countdown = world.time + QUEEN_DEATH_NOLARVA
 		addtimer(CALLBACK(SSticker.mode, /datum/game_mode.proc/check_queen_status, queen_time), QUEEN_DEATH_NOLARVA)
+
+/datum/hive_status/normal/on_queen_life(mob/living/carbon/Xenomorph/Queen/Q)
+	if(living_xeno_queen != Q || !is_ground_level(Q.z))
+		return
+	if(stored_larva && (last_larva_time + 1 MINUTES) < world.time) // every minute
+		last_larva_time = world.time
+		var/picked = get_alien_candidate()
+		if(picked)
+			var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(Q.loc)
+			new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
+			"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
+			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
+			new_xeno.key = picked
+
+			if(new_xeno.client)
+				new_xeno.client.change_view(world.view)
+
+			to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
+			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
+
+			stored_larva--
+		
+	for(var/mob/living/carbon/Xenomorph/Larva/L in range(1, Q))
+		L.burrow()
+
+/datum/hive_status/normal/burrow_larva(mob/living/carbon/Xenomorph/Larva/L)
+	if(!is_ground_level(L.z))
+		return
+	L.visible_message("<span class='xenodanger'>[L] quickly burrows into the ground.</span>")
+	stored_larva++
+	round_statistics.total_xenos_created-- // keep stats sane
+	qdel(L)
 
 // ***************************************
 // *********** Corrupted Xenos

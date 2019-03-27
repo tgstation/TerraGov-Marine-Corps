@@ -184,13 +184,14 @@ GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, X
 // =============================
 // xeno upgrades
 
+#define XENO_UPGRADE_BASETYPE "basetype"
 #define XENO_UPGRADE_INVALID "invalid" // not applicable, the old -1
 #define XENO_UPGRADE_ZERO "zero"	// god forgive me again
 #define XENO_UPGRADE_ONE "one"
 #define XENO_UPGRADE_TWO "two"
 #define XENO_UPGRADE_THREE "three"
 
-GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE))
+GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE))
 
 // =============================
 // xeno slashing
@@ -515,6 +516,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO,
 #define CASTE_IS_ROBOTIC			(1<<8)
 #define CASTE_DECAY_PROOF			(1<<9)
 #define CASTE_CAN_BE_LEADER			(1<<10)
+#define CASTE_HIDE_IN_STATUS		(1<<11)
 
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
@@ -596,22 +598,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO,
 //Boiler defines
 
 #define BOILER_LUMINOSITY					3
-
-#define CANNOT_HOLD_EGGS 0
-#define CAN_HOLD_TWO_HANDS 1
-#define CAN_HOLD_ONE_HAND 2
-
-#define CASTE_CAN_HOLD_FACEHUGGERS 	(1<<0)
-#define CASTE_CAN_VENT_CRAWL		(1<<1)
-#define CASTE_CAN_BE_QUEEN_HEALED	(1<<2)
-#define CASTE_CAN_BE_GIVEN_PLASMA	(1<<3)
-#define CASTE_INNATE_HEALING		(1<<4)
-#define CASTE_FIRE_IMMUNE			(1<<5)
-#define CASTE_EVOLUTION_ALLOWED		(1<<6)
-#define CASTE_IS_INTELLIGENT		(1<<7)
-#define CASTE_IS_ROBOTIC			(1<<8)
-#define CASTE_DECAY_PROOF			(1<<9)
-#define CASTE_CAN_BE_LEADER			(1<<10)
 
 //misc
 

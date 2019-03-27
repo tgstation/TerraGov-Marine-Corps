@@ -1,13 +1,13 @@
 /datum/xeno_caste/boiler
 	caste_name = "Boiler"
 	display_name = "Boiler"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "Gross!"
 
 	caste_type_path = /mob/living/carbon/Xenomorph/Boiler
 
 	tier = XENO_TIER_THREE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -44,6 +44,11 @@
 	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob. Improves by 0.5 per upgrade
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
 	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+
+/datum/xeno_caste/boiler/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/boiler/mature
 	upgrade_name = "Mature"

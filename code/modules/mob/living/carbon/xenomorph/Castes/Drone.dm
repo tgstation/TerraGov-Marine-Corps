@@ -1,12 +1,12 @@
 /datum/xeno_caste/drone
 	caste_name = "Drone"
 	display_name = "Drone"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A builder of hives. Only drones may evolve into Queens."
 	caste_type_path = /mob/living/carbon/Xenomorph/Drone
 
 	tier = XENO_TIER_ONE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 12
@@ -42,6 +42,11 @@
 	// *** Pheromones *** //
 	aura_strength = 1 //Drone's aura is the weakest. At the top of their evolution, it's equivalent to a Young Queen Climbs by 0.5 to 2
 	aura_allowed = list("frenzy", "warding", "recovery")
+
+/datum/xeno_caste/drone/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/drone/mature
 	upgrade_name = "Mature"

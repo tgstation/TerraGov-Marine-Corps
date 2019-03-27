@@ -1,12 +1,11 @@
 /datum/xeno_caste/hivelord
 	caste_name = "Hivelord"
 	display_name = "Hivelord"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A builder of REALLY BIG hives."
 	caste_type_path = /mob/living/carbon/Xenomorph/Hivelord
 	tier = XENO_TIER_TWO
-	upgrade = XENO_UPGRADE_ZERO
-
+	upgrade = XENO_UPGRADE_BASETYPE
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
 	melee_damage_upper = 20
@@ -47,6 +46,11 @@
 	// *** Pheromones *** //
 	aura_strength = 2 //Hivelord's aura is not extremely strong, but better than Drones.
 	aura_allowed = list("frenzy", "warding", "recovery")
+
+/datum/xeno_caste/hivelord/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/hivelord/mature
 	upgrade_name = "Mature"

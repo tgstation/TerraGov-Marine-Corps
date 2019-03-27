@@ -1,12 +1,12 @@
 /datum/xeno_caste/crusher
 	caste_name = "Crusher"
 	display_name = "Crusher"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A huge tanky xenomorph."
 	caste_type_path = /mob/living/carbon/Xenomorph/Crusher
 
 	tier = XENO_TIER_THREE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -41,6 +41,11 @@
 	armor_deflection = 80
 
 	// *** Crusher Abilities *** //
+
+/datum/xeno_caste/crusher/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/crusher/mature
 	upgrade_name = "Mature"
