@@ -1,0 +1,4 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - tweak: "Minisentry auto-unanchors when retrieving with drag and drop."
