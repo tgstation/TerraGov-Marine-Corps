@@ -28,7 +28,7 @@
 		if (D.id == id)
 			targets += D
 
-	if(targets.len == 0)
+	if(!length(targets))
 		machine_stat |= BROKEN
 	update_icon()
 
