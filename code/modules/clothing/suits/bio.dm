@@ -29,6 +29,7 @@
 //Standard biosuit, orange stripe
 /obj/item/clothing/head/bio_hood/general
 	icon_state = "bio_general"
+	flags_armor_protection = HEAD|FACE|EYES
 
 /obj/item/clothing/suit/bio_suit/general
 	icon_state = "bio_general"

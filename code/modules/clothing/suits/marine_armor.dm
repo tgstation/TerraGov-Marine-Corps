@@ -36,6 +36,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	item_state = "armor"
 	sprite_sheet_id = 1
 	flags_atom = CONDUCT
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
@@ -248,6 +249,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories."
 	icon_state = "8"
 	item_state = "armor"
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS
 	armor = list(melee = 55, bullet = 75, laser = 35, energy = 35, bomb = 35, bio = 10, rad = 10)
@@ -635,6 +637,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	icon_state = "pyro_armor"
 	armor = list(melee = 70, bullet = 90, laser = 60, energy = 60, bomb = 30, bio = 30, rad = 50)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET
 
@@ -658,6 +661,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M3 pattern marksman armor"
 	icon_state = "marine_sniperm"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
 	flags_heat_protection = CHEST|GROIN|LEGS|ARMS
 
@@ -710,6 +714,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A modification of the standard Armat Systems M3 armor. Hooked up with harnesses and straps allowing the user to carry an M56 Smartgun."
 	icon_state = "heavy_armor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS
 	armor = list(melee = 85, bullet = 85, laser = 55, energy = 65, bomb = 70, bio = 20, rad = 20)
@@ -749,6 +754,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	icon = 'icons/obj/clothing/cm_suits.dmi'
 	sprite_sheet_id = 1
 	flags_atom = CONDUCT
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE

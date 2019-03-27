@@ -4,7 +4,7 @@
 	icon_state = "wizard"
 	//Not given any special protective value since the magic robes are full-body protection --NEO
 	siemens_coefficient = 0.8
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 
 /obj/item/clothing/head/wizard/red
 	name = "red wizard hat"

@@ -45,6 +45,7 @@
 	icon_state = "hgpirate"
 	item_state = "hgpirate"
 	flags_inv_hide = HIDEJUMPSUIT
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	armor = list(melee = 60, bullet = 90, laser = 60, energy = 20, bomb = 25, bio = 10, rad = 10)
 
 
@@ -76,6 +77,7 @@
 	desc = "This robe commands authority."
 	icon_state = "judge"
 	item_state = "judge"
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/storage/fancy/cigarettes,/obj/item/spacecash)
 	flags_inv_hide = HIDEJUMPSUIT
 
@@ -149,6 +151,7 @@
 	desc = "This is a nice holiday my son."
 	icon_state = "holidaypriest"
 	item_state = "holidaypriest"
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	flags_inv_hide = HIDEJUMPSUIT
 
 
@@ -278,7 +281,7 @@
 
 //stripper
 /obj/item/clothing/under/stripper
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 
 /obj/item/clothing/under/stripper/stripper_pink
 	name = "pink swimsuit"
@@ -321,7 +324,7 @@
 //swimsuit
 /obj/item/clothing/under/swimsuit/
 	siemens_coefficient = 1
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 
 /obj/item/clothing/under/swimsuit/black
 	name = "black swimsuit"

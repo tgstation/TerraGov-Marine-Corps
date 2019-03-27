@@ -4,7 +4,7 @@
 	icon_state = "muzzle"
 	item_state = "muzzle"
 	flags_inventory = COVERMOUTH
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
@@ -24,7 +24,7 @@
 	item_state = "sterile"
 	w_class = 2
 	flags_inventory = COVERMOUTH
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 25, rad = 0)
@@ -34,14 +34,14 @@
 	desc = "Warning: moustache is fake."
 	icon_state = "fake-moustache"
 	flags_inv_hide = HIDEFACE
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 
 /obj/item/clothing/mask/snorkel
 	name = "Snorkel"
 	desc = "For the Swimming Savant."
 	icon_state = "snorkel"
 	flags_inv_hide = HIDEFACE
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 
 //scarves (fit in in mask slot)
 

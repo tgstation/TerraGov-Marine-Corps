@@ -275,6 +275,7 @@
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	flags_item = NODROP
+	flags_armor_protection = HANDS
 	armor = list(melee = 80, bullet = 80, laser = 55, energy = 50, bomb = 50, bio = 10, rad = 10)
 	flags_cold_protection = HANDS
 	flags_heat_protection = HANDS

@@ -4,7 +4,7 @@
 	icon_state = "breath"
 	item_state = "breath"
 	flags_inventory = COVERMOUTH|ALLOWINTERNALS
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 	w_class = 2
 	gas_transfer_coefficient = 0.10
 	permeability_coefficient = 0.50
@@ -53,7 +53,7 @@
 	icon_state = "rebreather"
 	item_state = "rebreather"
 	w_class = 2
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 	flags_inventory = COVERMOUTH|ALLOWREBREATH
 	flags_inv_hide = HIDELOWHAIR
 

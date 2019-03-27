@@ -57,14 +57,14 @@
 	desc = "Yarr."
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
 	item_state = "headset" // lol
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/material
 	name = "optical material scanner"
@@ -94,14 +94,14 @@
 	name = "3D glasses"
 	icon_state = "3d"
 	item_state = "3d"
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/gglasses
 	name = "green glasses"
 	desc = "Forest green glasses, like the kind you'd wear when hatching a nasty scheme."
 	icon_state = "gglasses"
 	item_state = "gglasses"
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/mgoggles
 	name = "marine ballistic goggles"

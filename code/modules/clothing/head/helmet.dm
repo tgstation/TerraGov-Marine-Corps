@@ -45,7 +45,7 @@
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 10, rad = 0)
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEARS
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/head/helmet/HoS/dermal
@@ -61,7 +61,7 @@
 	icon_state = "policehelm"
 	flags_inventory = NOFLAGS
 	flags_inv_hide = NOFLAGS
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 
 /obj/item/clothing/head/helmet/hop
 	name = "crew resource's hat"
@@ -69,7 +69,7 @@
 	icon_state = "hopcap"
 	flags_inventory = NOFLAGS
 	flags_inv_hide = NOFLAGS
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 
 /obj/item/clothing/head/helmet/formalcaptain
 	name = "parade hat"
@@ -77,7 +77,7 @@
 	icon_state = "officercap"
 	flags_inventory = NOFLAGS
 	flags_inv_hide = NOFLAGS
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
@@ -514,6 +514,7 @@
 	name = "\improper Y8 miner helmet"
 	desc = "A sturdy helmet worn by an unknown mercenary group."
 	icon_state = "mercenary_miner_helmet"
+	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 55, bullet = 55, laser = 45, energy = 55, bomb = 55, bio = 10, rad = 10)
 
 
@@ -521,4 +522,5 @@
 	name = "\improper Z7 engineer helmet"
 	desc = "A sturdy helmet worn by an unknown mercenary group."
 	icon_state = "mercenary_engineer_helmet"
+	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 55, bullet = 60, laser = 45, energy = 55, bomb = 60, bio = 10, rad = 10)

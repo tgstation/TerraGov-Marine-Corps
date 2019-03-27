@@ -9,7 +9,7 @@
 	icon_state = "apron"
 	item_state = "apron"
 	blood_overlay_type = "armor"
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 	allowed = list (/obj/item/reagent_container/spray/plantbgone,/obj/item/device/analyzer/plant_analyzer,/obj/item/seeds,/obj/item/reagent_container/glass/fertilizer,/obj/item/tool/minihoe)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
@@ -57,6 +57,7 @@
 	desc = "Maximum piety in this star system."
 	icon_state = "nun"
 	item_state = "nun"
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_inv_hide = HIDESHOES|HIDEJUMPSUIT
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
@@ -79,7 +80,7 @@
 	icon_state = "apronchef"
 	item_state = "apronchef"
 	blood_overlay_type = "armor"
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
 
 //Security
 /obj/item/clothing/suit/security/navyofficer
@@ -232,4 +233,4 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "suspenders"
 	blood_overlay_type = "armor" //it's the less thing that I can put here
-	flags_armor_protection = NONE
+	flags_armor_protection = 0
