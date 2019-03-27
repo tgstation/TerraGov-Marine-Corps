@@ -202,9 +202,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A modified and refashioned suit of M3 Pattern armor designed to be worn by the loader of a TGMC vehicle crew. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
 	icon_state = "tanker"
 
-/obj/item/clothing/suit/storage/marine/M3P/tanker/New()
-	select_gamemode_skin(type)
-	..()
+	New()
+		select_gamemode_skin(type)
+	return ..()
 
 /obj/item/clothing/suit/storage/marine/leader
 	name = "\improper B12 pattern leader armor"
@@ -213,9 +213,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	armor = list(melee = 50, bullet = 60, laser = 45, energy = 40, bomb = 40, bio = 15, rad = 15)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
-/obj/item/clothing/suit/storage/marine/leader/New(loc,expected_type = type,
-	new_name[] 		= list(MAP_ICE_COLONY = "\improper B12 pattern leader snow armor"))
-	..(loc,expected_type,new_name)
+	New(loc,expected_type 	= type,
+		new_name[] 		= list(MAP_ICE_COLONY = "\improper B12 pattern leader snow armor"))
+	return ..()
 
 /obj/item/clothing/suit/storage/marine/MP
 	name = "\improper N2 pattern MA armor"
