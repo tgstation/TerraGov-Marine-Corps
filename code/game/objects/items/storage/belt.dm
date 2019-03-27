@@ -114,11 +114,10 @@
 		/obj/item/ammo_magazine/handful,
 		/obj/item/device/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
-	    /obj/item/reagent_container/hypospray,
+		/obj/item/reagent_container/hypospray,
 	    /obj/item/bodybag,
 	    /obj/item/device/defibrillator,
-	    /obj/item/roller
-	)
+		/obj/item/roller)
 
 /obj/item/storage/belt/medical/Initialize()
 	. = ..()

@@ -204,13 +204,12 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
 	new /obj/item/bodybag/tarp(src)
-	if(SSmapping.config.map_name)
-		switch(SSmapping.config.map_name)
-			if(MAP_ICE_COLONY)
-				new /obj/item/clothing/head/helmet/marine(src)
-			else
-				new /obj/item/clothing/head/helmet/durag(src)
-				new /obj/item/facepaint/sniper(src)
+	switch(SSmapping.config.map_name)
+		if(MAP_ICE_COLONY)
+			new /obj/item/clothing/head/helmet/marine(src)
+		else
+			new /obj/item/clothing/head/helmet/durag(src)
+			new /obj/item/facepaint/sniper(src)
 
 /obj/item/storage/box/m42c_system_Jungle
 	name = "\improper M42A scoped rifle system (marksman set)"
@@ -232,16 +231,15 @@
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper/incendiary(src)
 	new /obj/item/weapon/gun/rifle/sniper/M42A/jungle(src)
-	if(SSmapping.config.map_name)
-		switch(SSmapping.config.map_name)
-			if(MAP_ICE_COLONY)
-				new /obj/item/clothing/under/marine/sniper(src)
-				new /obj/item/storage/backpack/marine/satchel(src)
-				new /obj/item/bodybag/tarp/snow(src)
-			else
-				new /obj/item/facepaint/sniper(src)
-				new /obj/item/storage/backpack/marine/smock(src)
-				new /obj/item/bodybag/tarp(src)
+	switch(SSmapping.config.map_name)
+		if(MAP_ICE_COLONY)
+			new /obj/item/clothing/under/marine/sniper(src)
+			new /obj/item/storage/backpack/marine/satchel(src)
+			new /obj/item/bodybag/tarp/snow(src)
+		else
+			new /obj/item/facepaint/sniper(src)
+			new /obj/item/storage/backpack/marine/smock(src)
+			new /obj/item/bodybag/tarp(src)
 
 /obj/item/storage/box/grenade_system
 	name = "\improper M92 grenade launcher case"
@@ -304,7 +302,7 @@
 
 /obj/item/storage/box/spec/demolitionist/Initialize(mapload, ...)
 	. = ..()
-	new	/obj/item/clothing/suit/storage/marine/M3T(src)
+	new /obj/item/clothing/suit/storage/marine/M3T(src)
 	new /obj/item/clothing/head/helmet/marine(src)
 	new /obj/item/weapon/gun/launcher/rocket(src)
 	new /obj/item/ammo_magazine/rocket(src)
@@ -355,13 +353,12 @@
 	new /obj/item/explosive/grenade/cloakbomb(src)
 	new /obj/item/explosive/grenade/cloakbomb(src)
 	new /obj/item/bodybag/tarp(src)
-	if(SSmapping.config.map_name)
-		switch(SSmapping.config.map_name)
-			if(MAP_ICE_COLONY)
-				new /obj/item/clothing/head/helmet/marine(src)
-			else
-				new /obj/item/clothing/head/helmet/durag(src)
-				new /obj/item/facepaint/sniper(src)
+	switch(SSmapping.config.map_name)
+		if(MAP_ICE_COLONY)
+			new /obj/item/clothing/head/helmet/marine(src)
+		else
+			new /obj/item/clothing/head/helmet/durag(src)
+			new /obj/item/facepaint/sniper(src)
 
 /obj/item/storage/box/spec/scout
 	name = "\improper Scout equipment"

@@ -151,23 +151,20 @@
 	. = ..()
 	pixel_y = rand(-3,3)
 	pixel_x = rand(-3,3)
-	for(var/i = 0,i < 6,i++)
-		var/rand_type = rand(0,8)
-		switch(rand_type)
-			if(0 to 2)
-				new /obj/item/reagent_container/food/snacks/protein_pack(src)
-			if(3)
-				new /obj/item/reagent_container/food/snacks/mre_pack/meal1(src)
-			if(4)
-				new /obj/item/reagent_container/food/snacks/mre_pack/meal2(src)
-			if(5)
-				new /obj/item/reagent_container/food/snacks/mre_pack/meal3(src)
-			if(6)
-				new /obj/item/reagent_container/food/snacks/mre_pack/meal4(src)
-			if(7)
-				new /obj/item/reagent_container/food/snacks/mre_pack/meal5(src)
-			if(8)
-				new /obj/item/reagent_container/food/snacks/mre_pack/meal6(src)
+	var/list/randompick = list(
+		/obj/item/reagent_container/food/snacks/protein_pack,
+		/obj/item/reagent_container/food/snacks/protein_pack,
+		/obj/item/reagent_container/food/snacks/protein_pack,
+		/obj/item/reagent_container/food/snacks/mre_pack/meal1,
+		/obj/item/reagent_container/food/snacks/mre_pack/meal2,
+		/obj/item/reagent_container/food/snacks/mre_pack/meal3,
+		/obj/item/reagent_container/food/snacks/mre_pack/meal4,
+		/obj/item/reagent_container/food/snacks/mre_pack/meal5,
+		/obj/item/reagent_container/food/snacks/mre_pack/meal6)
+		
+	for(var/i in 1 to 7)
+		var/picked = pick(randompick)
+		new picked(src)
 
 
 /obj/item/reagent_container/food/snacks/protein_pack
@@ -270,20 +267,16 @@
 	pixel_x = rand(-3,3)
 	new /obj/item/reagent_container/food/snacks/donkpocket(src)
 	new /obj/item/reagent_container/food/snacks/donkpocket(src)
-	var/randsnack
-	for(var/i = 1 to 3)
-		randsnack = rand(0,5)
-		switch(randsnack)
-			if(0)
-				new /obj/item/reagent_container/food/snacks/fries(src)
-			if(1)
-				new /obj/item/reagent_container/food/snacks/cheesyfries(src)
-			if(2)
-				new /obj/item/reagent_container/food/snacks/bigbiteburger(src)
-			if(4)
-				new /obj/item/reagent_container/food/snacks/taco(src)
-			if(5)
-				new /obj/item/reagent_container/food/snacks/hotdog(src)
+	var/list/randompick = list(
+		/obj/item/reagent_container/food/snacks/fries,
+		/obj/item/reagent_container/food/snacks/cheesyfries,
+		/obj/item/reagent_container/food/snacks/bigbiteburger,
+		/obj/item/reagent_container/food/snacks/taco,
+		/obj/item/reagent_container/food/snacks/hotdog)
+
+	for(var/i in 1 to 3)
+		var/picked = pick(randompick)
+		new picked(src)
 
 /obj/item/paper/janitor
 	name = "crumbled paper"
@@ -306,15 +299,12 @@
 	new /obj/item/reagent_container/food/snacks/donkpocket(src)
 	new /obj/item/reagent_container/food/snacks/donkpocket(src)
 	new /obj/item/reagent_container/food/drinks/coffee(src)
-	var/randsnack = rand(0,5)
-	switch(randsnack)
-		if(0)
-			new /obj/item/reagent_container/food/snacks/cheesiehonkers(src)
-		if(1)
-			new /obj/item/reagent_container/food/snacks/no_raisin(src)
-		if(2)
-			new /obj/item/reagent_container/food/snacks/spacetwinkie(src)
-		if(4)
-			new /obj/item/reagent_container/food/snacks/cookie(src)
-		if(5)
-			new /obj/item/reagent_container/food/snacks/chocolatebar(src)
+	var/list/randompick = list(
+		/obj/item/reagent_container/food/snacks/cheesiehonkers,
+		/obj/item/reagent_container/food/snacks/no_raisin,
+		/obj/item/reagent_container/food/snacks/spacetwinkie,
+		/obj/item/reagent_container/food/snacks/cookie,
+		/obj/item/reagent_container/food/snacks/chocolatebar)
+	
+	var/picked = pick(randompick)
+	new picked(src)

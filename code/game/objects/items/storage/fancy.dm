@@ -29,7 +29,7 @@
 			new spawn_type(src)
 
 /obj/item/storage/fancy/update_icon()
-	icon_state = "[icon_type]box[contents.len]"
+	icon_state = "[icon_type]box[length(contents)]"
 
 /obj/item/storage/fancy/remove_from_storage(obj/item/W, atom/new_location)
 	. = ..()
@@ -39,12 +39,13 @@
 
 /obj/item/storage/fancy/examine(mob/user)
 	. = ..()
-	if(contents.len <= 0)
-		to_chat(user, "There are no [src.icon_type]s left in the box.")
-	else if(contents.len == 1)
-		to_chat(user, "There is one [src.icon_type] left in the box.")
-	else
-		to_chat(user, "There are [src.contents.len] [src.icon_type]s in the box.")
+	switch(length(contents))
+		if(0)
+			to_chat(user, "There are no [icon_type]s left in the box.")
+		if(1)
+			to_chat(user, "There is one [icon_type] left in the box.")
+		if(2 to INFINITY)
+			to_chat(user, "There are [length(contents)] [icon_type]s in the box.")
 
 
 /*
