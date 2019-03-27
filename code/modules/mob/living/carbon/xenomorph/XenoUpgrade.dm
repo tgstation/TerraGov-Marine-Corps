@@ -1,5 +1,7 @@
 
 /mob/living/carbon/Xenomorph/proc/upgrade_xeno(newlevel)
+	if(!(newlevel in (GLOB.xenoupgradetiers - XENO_UPGRADE_BASETYPE - XENO_UPGRADE_INVALID)))
+		return // smelly badmins
 	hive.upgrade_xeno(src, upgrade, newlevel)
 	upgrade = newlevel
 	upgrade_stored = 0
