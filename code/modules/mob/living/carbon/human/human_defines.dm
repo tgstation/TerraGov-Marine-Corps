@@ -114,6 +114,8 @@
 
 	var/temporary_slowdown = 0 //Stacking slowdown caused from effects, currently used by neurotoxin gas
 
+	var/datum/squad/assigned_squad //the squad assigned to
+
 	var/cloaking = FALSE
 
 	var/image/SL_directional = null

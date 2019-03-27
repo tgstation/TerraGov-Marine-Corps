@@ -114,8 +114,6 @@
 	var/music_lastplayed = "null"
 
 	var/job = null//Living
-	var/datum/squad/assigned_squad //the squad assigned to
-
 
 	var/const/blindness = 1//Carbon
 	var/const/deafness = 2//Carbon

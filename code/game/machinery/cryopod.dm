@@ -238,9 +238,7 @@
 	stop_processing()
 	update_icon()
 
-/mob/proc/despawn(obj/machinery/cryopod/pod)
-
-	var/dept_console = CRYO_REQ
+/mob/proc/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
 
 	//Handle job slot/tater cleanup.
 	if(job)
@@ -254,33 +252,6 @@
 			dept_console = CRYO_MED
 		else if(J.title in JOBS_ENGINEERING)
 			dept_console = CRYO_ENGI
-	if(assigned_squad)
-		var/datum/squad/S = assigned_squad
-		switch(S.id)
-			if(ALPHA_SQUAD)
-				dept_console = CRYO_ALPHA
-			if(BRAVO_SQUAD)
-				dept_console = CRYO_BRAVO
-			if(CHARLIE_SQUAD)
-				dept_console = CRYO_CHARLIE
-			if(DELTA_SQUAD)
-				dept_console = CRYO_DELTA
-		if(job)
-			var/datum/job/J = SSjob.name_occupations[job]
-			if(J.flag & SQUAD_ENGINEER)
-				S.num_engineers--
-			if(J.flag & SQUAD_CORPSMAN)
-				S.num_medics--
-			if(J.flag & SQUAD_SPECIALIST)
-				S.num_specialists--
-				if(specset && !available_specialist_sets.Find(specset))
-					available_specialist_sets += specset //we make the set this specialist took if any available again
-			if(J.flag & SQUAD_SMARTGUNNER)
-				S.num_smartgun--
-			if(J.flag & SQUAD_LEADER)
-				S.num_leaders--
-		S.count--
-		S.clean_marine_from_squad(src, TRUE) //Remove from squad recods, if any.
 
 	var/list/stored_items = list()
 	for(var/obj/item/W in src)
@@ -314,6 +285,37 @@
 	pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")
 	pod.occupant = null
 	qdel(src)
+
+/mob/living/carbon/human/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
+	if(assigned_squad)
+		var/datum/squad/S = assigned_squad
+		switch(S.id)
+			if(ALPHA_SQUAD)
+				dept_console = CRYO_ALPHA
+			if(BRAVO_SQUAD)
+				dept_console = CRYO_BRAVO
+			if(CHARLIE_SQUAD)
+				dept_console = CRYO_CHARLIE
+			if(DELTA_SQUAD)
+				dept_console = CRYO_DELTA
+		if(job)
+			var/datum/job/J = SSjob.name_occupations[job]
+			if(J.flag & SQUAD_ENGINEER)
+				S.num_engineers--
+			if(J.flag & SQUAD_CORPSMAN)
+				S.num_medics--
+			if(J.flag & SQUAD_SPECIALIST)
+				S.num_specialists--
+				if(specset && !available_specialist_sets.Find(specset))
+					available_specialist_sets += specset //we make the set this specialist took if any available again
+			if(J.flag & SQUAD_SMARTGUNNER)
+				S.num_smartgun--
+			if(J.flag & SQUAD_LEADER)
+				S.num_leaders--
+		S.count--
+		S.clean_marine_from_squad(src, TRUE) //Remove from squad recods, if any.
+
+	. = ..()
 
 /obj/item/proc/store_in_cryo(list/items)
 
