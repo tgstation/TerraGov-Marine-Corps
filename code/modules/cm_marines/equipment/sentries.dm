@@ -91,7 +91,6 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
-	flags_atom = RELAY_CLICK
 	var/has_top = FALSE
 
 /obj/machinery/turret_tripod_deployed/examine(mob/user as mob)
@@ -214,7 +213,6 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
-	flags_atom = RELAY_CLICK
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	var/iff_signal = ACCESS_IFF_MARINE
 	var/safety_off = FALSE
@@ -953,7 +951,7 @@
 				var/scatter_chance = in_chamber.ammo.scatter
 				var/burst_value = CLAMP(burst_size - 1, 1, 5)
 				scatter_chance += (burst_value * burst_value * 2)
-				in_chamber.accuracy = round(in_chamber.accuracy - (burst_value * burst_value), 0.01) //Accuracy penalty scales with burst count.
+				in_chamber.accuracy = round(in_chamber.accuracy - (burst_value * burst_value * 1.2), 0.01) //Accuracy penalty scales with burst count.
 
 				if (prob(scatter_chance))
 					var/scatter_x = rand(-1, 1)
@@ -1235,7 +1233,7 @@
 	rounds = 500
 	rounds_max = 500
 	knockdown_threshold = 70 //lighter, not as well secured.
-	work_time = 20 //significantly faster than the big sentry
+	work_time = 10 //significantly faster than the big sentry
 	ammo = /datum/ammo/bullet/turret/mini //Similar to M39 AP rounds.
 	magazine_type = /obj/item/ammo_magazine/minisentry
 
@@ -1261,9 +1259,9 @@
 
 	user.visible_message("<span class='notice'>[user] begins to fold up and retrieve [src].</span>",
 	"<span class='notice'>You begin to fold up and retrieve [src].</span>")
-	if(!do_after(user, work_time * 1.5, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(user, work_time * 3, TRUE, 5, BUSY_ICON_BUILD))
 		return
-	if(!src || on || anchored || !Adjacent(user))//Check if we got exploded
+	if(!src || !Adjacent(user))//Check if we got exploded
 		return
 	to_chat(user, "<span class='notice'>You fold up and retrieve [src].</span>")
 	var/obj/item/device/marine_turret/mini/P = new(loc)
@@ -1332,10 +1330,11 @@
 		var/obj/machinery/marine_turret/mini/M = new /obj/machinery/marine_turret/mini(target)
 		M.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] deploys [M].</span>",
-		"<span class='notice'>You deploy [M].</span>")
+		"<span class='notice'>You deploy [M]. The [M]'s securing bolts automatically anchor it to the ground.</span>")
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
 		M.health = health
-		M.update_icon()
+		M.anchored = TRUE
+		M.activate_turret()
 		qdel(src)
 
 /obj/item/ammo_magazine/minisentry
@@ -1369,4 +1368,15 @@
 		new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
 		new /obj/item/ammo_magazine/minisentry(src)
 
-
+/obj/machinery/marine_turret/proc/activate_turret()
+	if(!anchored)
+		return FALSE
+	target = null
+	on = TRUE
+	SetLuminosity(7)
+	if(!camera)
+		camera = new /obj/machinery/camera(src)
+		camera.network = list("military")
+		camera.c_tag = src.name
+	update_icon()
+	return TRUE

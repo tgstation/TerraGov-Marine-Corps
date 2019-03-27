@@ -280,7 +280,7 @@ mob/living/carbon/human/get_standard_bodytemperature()
 
 
 /mob/living/carbon/human/toggle_move_intent(screen_num as null|num)
-	screen_num = 10
+	screen_num = 9
 	if(legcuffed)
 		to_chat(src, "<span class='notice'>You are legcuffed! You cannot run until you get [legcuffed] removed!</span>")
 		m_intent = MOVE_INTENT_WALK

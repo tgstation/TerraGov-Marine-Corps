@@ -389,6 +389,8 @@ var/list/wood_icons = list("wood", "wood-broken")
 	if(hull_floor) //no interaction for hulls
 		return
 
+	user.changeNext_move(C.attack_speed)
+
 	if(istype(C,/obj/item/light_bulb/bulb)) //Only for light tiles
 		if(is_light_floor())
 			var/obj/item/stack/tile/light/T = floor_tile

@@ -116,11 +116,8 @@ DEFINES in setup.dm, referenced here.
 			//						   	  \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/clicked(var/mob/user, var/list/mods)
-	if(mods["alt"])
-		toggle_gun_safety()
-		return TRUE
-	return ..()
+/obj/item/weapon/gun/AltClick(mob/user)
+	toggle_gun_safety()
 
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
@@ -286,6 +283,8 @@ should be alright.
 /obj/item/weapon/gun/attackby(obj/item/I, mob/user)
 	if(flags_gun_features & GUN_BURST_FIRING)
 		return
+
+	user.changeNext_move(CLICK_CD_CLICK_ABILITY)
 
 	if(istype(I,/obj/item/attachable))
 		if(check_inactive_hand(user))

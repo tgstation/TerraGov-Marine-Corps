@@ -23,11 +23,11 @@
 	return TRUE
 
 /mob/living/carbon/Xenomorph/a_select_zone(input as text, screen_num as null|num)
-	screen_num = 9
+	screen_num = 8
 	return ..()
 
 
 /mob/living/carbon/Xenomorph/toggle_move_intent(screen_num as null|num)
-	screen_num = 3
+	screen_num = 2
 	. = ..()
 	update_icons()

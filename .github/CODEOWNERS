@@ -1,0 +1,19 @@
+# This list auto requests reviews from the specified org members
+# when a PR that modifies the file in question is opened
+# This list is alphabetized by User -> Filename KEEP IT THAT WAY
+# In the event that multiple org members are to be informed of changes
+# to the same file or dir, add them to the end under Multiple Owners
+
+# Alterist
+
+/_maps/ @Alterist
+/icons/ @Alterist
+
+# LaKiller8
+
+/code/modules/admin/ @DominikPanic
+
+# spookydonut
+
+/code/controllers/stonedmc/ @spookydonut
+

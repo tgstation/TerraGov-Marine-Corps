@@ -9,7 +9,7 @@
 /mob/living/carbon/human
 	var/last_chew = 0
 
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A) //chewing your handcuffs
+/mob/living/carbon/human/RestrainedClickOn(atom/A) //chewing your handcuffs
 	if (A != src) return ..()
 	var/mob/living/carbon/human/H = A
 
@@ -41,10 +41,10 @@
 
 	last_chew = world.time
 
-/mob/living/carbon/human/UnarmedAttack(var/atom/A, var/proximity)
 
+/mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
 	if(lying) //No attacks while laying down
-		return 0
+		return FALSE
 
 	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
 
@@ -59,9 +59,11 @@
 		to_chat(src, "<span class='notice'>You try to move your [temp.display_name], but cannot!")
 		return
 
+	changeNext_move(CLICK_CD_MELEE)
 	A.attack_hand(src)
 
-/mob/living/carbon/human/RangedAttack(var/atom/A)
+
+/mob/living/carbon/human/RangedAttack(atom/A)
 
 	if(!gloves && !mutations.len) return
 	var/obj/item/clothing/gloves/G = gloves

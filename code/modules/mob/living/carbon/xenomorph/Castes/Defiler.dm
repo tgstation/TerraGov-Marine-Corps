@@ -164,12 +164,14 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/activable/emit_neurogas,
+		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/activable/defiler_sting,
-		/datum/action/xeno_action/neuroclaws,
+		/datum/action/xeno_action/activable/neurotox_sting,
+		/datum/action/xeno_action/activable/emit_neurogas,
+		/datum/action/xeno_action/neuroclaws
 		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/vent_crawl,
+		/mob/living/carbon/Xenomorph/proc/vent_crawl
 		)
 
 /mob/living/carbon/Xenomorph/Defiler/update_icons()

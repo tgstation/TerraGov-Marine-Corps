@@ -117,12 +117,10 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 
 	charge_counter = charge_max
 
-/obj/effect/proc_holder/spell/clicked()
-    ..()
 
+/obj/effect/proc_holder/spell/Click()
     if(cast_check())
         choose_targets()
-    return 1
 
 
 

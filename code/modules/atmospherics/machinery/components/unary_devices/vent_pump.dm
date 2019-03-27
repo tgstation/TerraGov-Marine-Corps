@@ -320,6 +320,12 @@
 	pipe_vision_img.plane = ABOVE_HUD_PLANE
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 100, 1)
 
+
+/obj/machinery/atmospherics/components/unary/vent_pump/AltClick(mob/user)
+	user.handle_ventcrawl(src)
+
+
+
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume
 	name = "large air vent"
 	power_channel = EQUIP
