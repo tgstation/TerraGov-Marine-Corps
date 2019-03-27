@@ -473,9 +473,8 @@
 
 
 /mob/living/proc/offer_mob()
-	for(var/i in GLOB.dead_mob_list)
-		var/mob/dead/D = i
-		to_chat(D, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] \[<a href='byond://?src=[REF(D)];claim=[REF(src)]'>CLAIM</a>\] \[<a href='byond://?src=[REF(D)];track=[REF(src)]'>FOLLOW</a>\]</span><hr><br>")
+	for(var/mob/dead/observer/O in GLOB.dead_mob_list)
+		to_chat(O, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] \[<a href='byond://?src=[REF(O)];claim=[REF(src)]'>CLAIM</a>\] \[<a href='byond://?src=[REF(O)];track=[REF(src)]'>FOLLOW</a>\]</span><hr><br>")
 
 
 //used in datum/reagents/reaction() proc
@@ -600,3 +599,6 @@ below 100 is not dizzy
 		if(!G || !gear.Find(i))
 			continue
 		equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
+
+/mob/living/proc/vomit()
+	return

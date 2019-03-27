@@ -561,7 +561,7 @@
 	log_admin_private_asay("[key_name(src)]: [msg]")
 
 	var/color = "adminsay"
-	if(check_rights(R_PERMISSIONS, FALSE))
+	if(check_other_rights(src, R_DBRANKS, FALSE))
 		color = "headminsay"
 
 	msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(mob)]: <span class='message'>[msg]</span></span>"
@@ -589,9 +589,9 @@
 	log_admin_private_msay("[key_name(src)]: [msg]")
 
 	var/color = "mod"
-	if(check_rights(R_PERMISSIONS, FALSE))
+	if(check_other_rights(src, R_DBRANKS, FALSE))
 		color = "headminmod"
-	else if(check_rights(R_ADMIN, FALSE))
+	else if(check_other_rights(src, R_ADMIN, FALSE))
 		color = "adminmod"
 
 	for(var/client/C in GLOB.admins)
@@ -1150,43 +1150,59 @@
 	var/irc_tagged = "[sender](IRC)"
 	var/list/splits = splittext(compliant_msg, " ")
 	if(length(splits) && splits[1] == "ticket")
-		if(splits.len < 2)
+		if(length(splits) < 2)
 			return IRC_AHELP_USAGE
 		switch(splits[2])
 			if("close")
 				if(ticket)
-					ticket.Close(irc_tagged)
+					ticket.Close(FALSE, TRUE)
+					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully closed"
 			if("resolve")
 				if(ticket)
-					ticket.Resolve(irc_tagged)
+					ticket.Resolve(FALSE, TRUE)
+					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully resolved"
 			if("icissue")
 				if(ticket)
-					ticket.ICIssue(irc_tagged)
+					ticket.ICIssue(TRUE)
+					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully marked as IC issue"
 			if("reject")
 				if(ticket)
-					ticket.Reject(irc_tagged)
+					ticket.Reject(TRUE)
+					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully rejected"
+			if("tier")
+				if(ticket)
+					ticket.Tier(TRUE)
+					ticket.AddInteraction("<font color='red'>IRC interaction by: [sender].</font>")
+					message_admins("IRC interaction by: [irc_tagged]")
+					return "Ticket #[ticket.id] successfully tiered"
 			if("reopen")
 				if(ticket)
 					return "Error: [target] already has ticket #[ticket.id] open"
-				var/fail = splits.len < 3 ? null : -1
-				if(!isnull(fail))
-					fail = text2num(splits[3])
-				if(isnull(fail))
-					return "Error: No/Invalid ticket id specified. [IRC_AHELP_USAGE]"
-				var/datum/admin_help/AH = GLOB.ahelp_tickets.TicketByID(fail)
+				if(length(splits) < 3)
+					return "Error: No ticket id specified. [IRC_AHELP_USAGE]"
+				var/id = text2num(splits[3])
+				if(isnull(id))
+					return "Error: Invalid ticket id specified. [IRC_AHELP_USAGE]"
+				var/datum/admin_help/AH = GLOB.ahelp_tickets.TicketByID(id)
 				if(!AH)
-					return "Error: Ticket #[fail] not found"
+					return "Error: Ticket #[id] not found"
 				if(AH.initiator_ckey != target)
-					return "Error: Ticket #[fail] belongs to [AH.initiator_ckey]"
-				AH.Reopen()
+					return "Error: Ticket #[id] belongs to [AH.initiator_ckey]"
+				AH.Reopen(TRUE)
+				AH.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+				message_admins("IRC interaction by: [irc_tagged]")
 				return "Ticket #[ticket.id] successfully reopened"
 			if("list")
 				var/list/tickets = GLOB.ahelp_tickets.TicketsByCKey(target)
-				if(!tickets.len)
+				if(!length(tickets))
 					return "None"
 				. = ""
 				for(var/I in tickets)
@@ -1214,8 +1230,8 @@
 	if(!msg)
 		return "Error: No message"
 
-	log_admin_private("IRC PM: [sender] -> [key_name(C)] : [msg]")
-	message_admins("IRC PM: [sender] -> [key_name_admin(C)] : [msg]")
+	log_admin_private("IRC PM: [irc_tagged] -> [key_name(C)] : [msg]")
+	message_admins("IRC PM: [irc_tagged] -> [key_name_admin(C, FALSE, FALSE)] : [msg]")
 
 	to_chat(C, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 	to_chat(C, "<font color='red'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>")

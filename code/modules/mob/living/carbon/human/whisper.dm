@@ -120,14 +120,14 @@
 	var/not_dead_speaker = (stat != DEAD)
 	for(var/mob/M in listening)
 		if(not_dead_speaker)
-			to_chat(M, speech_bubble)
+			SEND_IMAGE(M, speech_bubble)
 		M.hear_say(message, verb, speaking, alt_name, italics, src)
 
 	if (eavesdropping.len)
 		var/new_message = stars(message)	//hopefully passing the message twice through stars() won't hurt... I guess if you already don't understand the language, when they speak it too quietly to hear normally you would be able to catch even less.
 		for(var/mob/M in eavesdropping)
 			if(not_dead_speaker)
-				to_chat(M, speech_bubble)
+				SEND_IMAGE(M, speech_bubble)
 			M.hear_say(new_message, verb, speaking, alt_name, italics, src)
 
 	addtimer(CALLBACK(src, .proc/remove_speech_bubble, client, speech_bubble, (not_dead_speaker?listening : null)), 30)

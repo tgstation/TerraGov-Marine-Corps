@@ -75,6 +75,8 @@
 #define SPAM_TRIGGER_AUTOMUTE	10	//Number of identical messages required before the spam-prevention will automute you
 
 #define IRCREPLYCOUNT 2
+#define IRC_STATUS_THROTTLE 5
+
 #define IRC_AHELP_USAGE "Usage: ticket <close|resolve|icissue|reject|reopen \[ticket #\]|list>"
 
 

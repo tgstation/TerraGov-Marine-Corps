@@ -249,10 +249,11 @@
 				to_chat(M, "<span class='notice'>Something is blocking you from exiting.</span>")
 			return
 		for(var/atom/A in T)
-			if(!A.CanPass(M, T))
-				if(!silent)
-					to_chat(M, "<span class='notice'>Something is blocking you from exiting.</span>")
-				return
+			if(A.CanPass(M, T))
+				continue
+			if(!silent)
+				to_chat(M, "<span class='notice'>Something is blocking you from exiting.</span>")
+			return
 	M.forceMove(T)
 
 	if(M == gunner)
@@ -324,3 +325,28 @@
 		log_combat(gunner, null, "[src] took [damage] [type] damage [ismob(attacker) ? "from [key_name(attacker)]" : ""].")
 	if(driver)
 		log_combat(driver, null, "[src] took [damage] [type] damage [ismob(attacker) ? "from [key_name(attacker)]" : ""].")
+
+
+/obj/vehicle/multitile/root/cm_armored/proc/click_action(A, mob/user, params)
+	var/list/mods = params2list(params)
+	if(istype(A, /obj/screen) || A == src || mods["middle"] || mods["shift"] || mods["alt"])
+		return FALSE
+
+	if(!can_use_hp(user))
+		return TRUE
+
+	if(!hardpoints.Find(active_hp))
+		to_chat(user, "<span class='warning'>Please select an active hardpoint first.</span>")
+		return TRUE
+
+	var/obj/item/hardpoint/HP = hardpoints[active_hp]
+
+	if(!HP?.is_ready())
+		return TRUE
+
+	if(!HP.firing_arc(A))
+		to_chat(user, "<span class='warning'>The target is not within your firing arc.</span>")
+		return TRUE
+
+	HP.active_effect(A)
+	return TRUE

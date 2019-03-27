@@ -1,0 +1,6 @@
+author: "LaKiller8"
+delete-after: True
+changes: 
+  - balance: "Xeno scaling should now be more consistent across population levels, this should fix the current winrate issues."
+  - balance: "If all xeno slots don't get rolled roundstart, the difference is added to burrowed larva."
+  - balance: "The minimum amount of xenos is now configable and slightly higher."

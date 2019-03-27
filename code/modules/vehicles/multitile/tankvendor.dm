@@ -3,6 +3,7 @@
 #define TANKFAB_PRINTER		2
 #define TANKFAB_BUSY		3
 
+
 /obj/machinery/tank_part_fabricator
 	name = "tank part fabricator"
 	desc = "A large automated 3D printer for producing new tank parts and maintaining old ones."
@@ -93,8 +94,7 @@
 					continue
 				var/build_name = initial(AR.name)
 				var/build_cost = initial(AR.point_cost)
-				if(build_cost)
-					dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
+				dat += "<a href='byond://?src=\ref[src];produce=[build_type]'>[build_name] ([build_cost])</a><br>"
 
 			dat += "<h3>Primary Weapon:</h3>"
 			for(var/build_type in subtypesof(/obj/item/hardpoint/primary))
@@ -103,8 +103,7 @@
 					continue
 				var/build_name = initial(PR.name)
 				var/build_cost = initial(PR.point_cost)
-				if(build_cost)
-					dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
+				dat += "<a href='byond://?src=\ref[src];produce=[build_type]'>[build_name] ([build_cost])</a><br>"
 
 			dat += "<h3>Secondary Weapon:</h3>"
 			for(var/build_type in subtypesof(/obj/item/hardpoint/secondary))
@@ -113,8 +112,7 @@
 					continue
 				var/build_name = initial(SE.name)
 				var/build_cost = initial(SE.point_cost)
-				if(build_cost)
-					dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
+				dat += "<a href='byond://?src=\ref[src];produce=[build_type]'>[build_name] ([build_cost])</a><br>"
 
 			dat += "<h3>Support Module:</h3>"
 			for(var/build_type in subtypesof(/obj/item/hardpoint/support))
@@ -123,8 +121,7 @@
 					continue
 				var/build_name = initial(SP.name)
 				var/build_cost = initial(SP.point_cost)
-				if(build_cost)
-					dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
+				dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
 
 			dat += "<h3>Treads:</h3>"
 			for(var/build_type in subtypesof(/obj/item/hardpoint/treads))
@@ -133,21 +130,18 @@
 					continue
 				var/build_name = initial(TR.name)
 				var/build_cost = initial(TR.point_cost)
-				if(build_cost)
-					dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
+				dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
 
 			dat += "<h3>Weapon Ammo:</h3>"
 			for(var/build_type in subtypesof(/obj/item/ammo_magazine/tank))
 				var/obj/item/ammo_magazine/tank/AM = build_type
 				var/build_name = initial(AM.name)
 				var/build_cost = initial(AM.point_cost)
-				if(build_cost)
-					dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
+				dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
 
 	var/datum/browser/popup = new(user, "dropship_part_fab", "<div align='center'>Tank Part Fabricator</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "dropship_part_fab")
+	popup.open(TRUE)
 
 
 /obj/machinery/tank_part_fabricator/attackby(obj/item/W, mob/user)
@@ -268,7 +262,18 @@
 		return
 
 	if(href_list["produce"])
-		build_tank_part(href_list["produce"], text2num(href_list["cost"]), usr)
+		var/produce = text2path(href_list["produce"])
+		var/cost
+		if(ispath(produce, /obj/item/hardpoint))
+			var/obj/item/hardpoint/H = produce
+			cost = initial(H.point_cost)
+		else if(ispath(produce, /obj/item/ammo_magazine/tank))
+			var/obj/item/ammo_magazine/tank/A = produce
+			cost = initial(A.point_cost)
+		if(isnull(cost))
+			updateUsrDialog()
+			return
+		build_tank_part(produce, cost, usr)
 
 	if(href_list["eject"])
 		eject_tank_part(usr)

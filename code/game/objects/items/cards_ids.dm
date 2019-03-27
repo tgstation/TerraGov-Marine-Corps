@@ -91,7 +91,6 @@
 		/obj/machinery/deployable,
 		/obj/machinery/door_control,
 		/obj/machinery/shieldgen,
-		/obj/machinery/turretid,
 		/obj/machinery/vending,
 		/obj/machinery/bot,
 		/obj/machinery/door,

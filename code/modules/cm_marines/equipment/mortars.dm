@@ -10,7 +10,6 @@
 	unacidable = 1
 	density = 1
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
-	flags_atom = RELAY_CLICK
 	var/targ_x = 0 //Initial target coordinates
 	var/targ_y = 0
 	var/offset_x = 0 //Automatic offset from target

@@ -100,6 +100,7 @@
 
 /obj/effect/alien/resin/attackby(obj/item/W, mob/user)
 	if(!(W.flags_item & NOBLUDGEON))
+		user.changeNext_move(W.attack_speed)
 		var/damage = W.force
 		var/multiplier = 1
 		if(W.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
@@ -594,6 +595,8 @@
 
 	if(W.flags_item & NOBLUDGEON)
 		return
+
+	user.changeNext_move(W.attack_speed)
 
 	user.animation_attack_on(src)
 	if(W.attack_verb.len)

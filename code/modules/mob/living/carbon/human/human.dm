@@ -1644,7 +1644,7 @@
 
 
 /mob/living/carbon/human/a_select_zone(input as text, screen_num as null|num)
-	screen_num = 21
+	screen_num = 20
 	return ..()
 
 
@@ -1667,3 +1667,51 @@
 	var/datum/browser/popup = new(src, "skills", "<div align='center'>Skills</div>", 300, 600)
 	popup.set_content(dat)
 	popup.open(FALSE)
+
+
+
+/mob/living/carbon/human/proc/set_rank(rank)
+	if(!mind)
+		job = rank
+		return
+
+	var/datum/job/J = SSjob.name_occupations[rank]
+	var/datum/outfit/job/O = new J.outfit
+	var/id = O.id ? O.id : /obj/item/card/id
+	var/obj/item/card/id/I = new id
+	var/datum/skills/L = new J.skills_type
+	mind.cm_skills = L
+	mind.comm_title = J.comm_title
+
+	if(wear_id)
+		qdel(wear_id)
+
+	job = rank
+	faction = J.faction
+
+	equip_to_slot_or_del(I, SLOT_WEAR_ID)
+
+	SSjob.AssignRole(src, rank)
+	O.post_equip(src)
+
+
+/mob/living/carbon/human/proc/set_equipment(equipment)
+	if(!equipment)
+		return
+
+	var/list/job_paths = subtypesof(/datum/outfit/job)
+	var/list/outfits = list()
+	for(var/path in job_paths)
+		var/datum/outfit/O = path
+		if(initial(O.can_be_admin_equipped))
+			outfits[initial(O.name)] = path
+
+	for(var/datum/outfit/D in GLOB.custom_outfits)
+		outfits[D.name] = D
+
+	if(!(equipment in outfits))
+		return
+
+	var/datum/outfit/O = new outfits[equipment]
+	delete_equipment(TRUE)
+	equipOutfit(O, TRUE)

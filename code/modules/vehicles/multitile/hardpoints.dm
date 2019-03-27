@@ -77,8 +77,8 @@ Currently only has the tank hardpoints
 	if(!istype(W, repair_tool))
 		to_chat(user, "<span class='warning'>That's the wrong tool. Use a [iswrench(repair_tool) ? "wrench" : "welder"].</span>")
 		return
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
+	var/obj/item/tool/weldingtool/WT = iswelder(W) ? W : null
+	if(WT)
 		if(!WT.isOn())
 			to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
 			return
@@ -86,8 +86,7 @@ Currently only has the tank hardpoints
 		user.visible_message("<span class='notice'>[user] stops repairing [src].</span>",
 							"<span class='notice'>You stop repairing [src].</span>")
 		return
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
+	if(WT)
 		if(!WT.isOn())
 			return
 		WT.remove_fuel(repair_delays, user)
@@ -164,6 +163,8 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/proc/firing_arc(atom/A)
 	var/turf/T = get_turf(A)
+	if(!T || !owner)
+		return FALSE
 	var/dx = T.x - owner.x
 	var/dy = T.y - owner.y
 	var/deg = 0

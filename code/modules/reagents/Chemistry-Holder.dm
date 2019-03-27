@@ -646,6 +646,13 @@
 	return 0
 
 
+/datum/reagents/proc/get_reagent(reagent_id)
+	for(var/X in reagent_list)
+		var/datum/reagent/R = X
+		if(R.id == reagent_id)
+			return R
+
+
 /datum/reagents/proc/get_reagents()
 	var/list/names = list()
 	var/list/cached_reagents = reagent_list
@@ -716,9 +723,6 @@
 
 	return trans_data
 
-/datum/reagents/proc/get_reagent(type)
-	var/list/cached_reagents = reagent_list
-	. = locate(type) in cached_reagents
 
 /datum/reagents/proc/generate_taste_message(minimum_percent=15)
 	// the lower the minimum percent, the more sensitive the message is.
