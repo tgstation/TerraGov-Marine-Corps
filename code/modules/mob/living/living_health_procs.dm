@@ -79,6 +79,15 @@
 mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	return
 
+/mob/living/proc/Losebreath(amount, forced = FALSE)
+	return
+
+/mob/living/proc/adjust_Losebreath(amount, forced = FALSE)
+	return
+
+/mob/living/proc/set_Losebreath(amount, forced = FALSE)
+	return
+
 
 
 

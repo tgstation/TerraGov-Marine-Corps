@@ -64,10 +64,10 @@ GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 	/obj/item/clothing/glasses/sunglasses/fake,
 	/obj/item/device/pda,
 	/obj/item/clothing/glasses/mgoggles,
-	/obj/item/clothing/head/cmberet,
+	/obj/item/clothing/head/tgmcberet,
 	/obj/item/clothing/head/headband,
 	/obj/item/clothing/head/headset,
-	/obj/item/clothing/head/cmbandana,
+	/obj/item/clothing/head/tgmcbandana,
 	/obj/item/clothing/gloves/black,
 	/obj/item/weapon/baton,
 	/obj/item/weapon/gun/energy/taser,
@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 	/obj/item/card/id,
 	/obj/item/clothing/under/marine,
 	/obj/item/clothing/shoes/marine,
-	/obj/item/clothing/head/cmcap,
+	/obj/item/clothing/head/tgmccap,
 	/obj/item/trash)))
 
 GLOBAL_LIST_INIT(do_not_preserve_empty, typecacheof(list(
