@@ -1,5 +1,0 @@
-author: "by Surrealistik"
-delete-after: True
-changes: 
-  - balance: "Knockdown stacks for mobs crushed by the tank reduced from 12 to 1, and they are displaced behind the tank. Tanks do not apply knockdown stacks to knocked down mobs. Mobs crushed are displaced away from the tank."
-  - balance: "Tank takes no collision damage while running over objects/walls it is facing with the snowplow , and the damage it deals to them is doubled."
