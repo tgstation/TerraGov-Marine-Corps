@@ -223,7 +223,7 @@
 	upgrade_name = ""
 	caste_type_path = /mob/living/carbon/Xenomorph/Ravager/ravenger
 	tier = XENO_TIER_THREE
-	upgrade = XENO_UPGRADE_THREE
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 70
@@ -245,7 +245,7 @@
 	hardcore = TRUE
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_HIDE_IN_STATUS
 
 	// *** Defense *** //
 	armor_deflection = 20
@@ -254,6 +254,9 @@
 
 	// *** Ranged Attack *** //
 	charge_type = 3 //Claw at end of charge
+
+/datum/xeno_caste/ravager/ravenger/young
+	upgrade = XENO_UPGRADE_THREE
 
 /mob/living/carbon/Xenomorph/Ravager/ravenger
 	caste_base_type = /mob/living/carbon/Xenomorph/Ravager/ravenger

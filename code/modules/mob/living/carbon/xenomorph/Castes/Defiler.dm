@@ -40,7 +40,7 @@
 	// *** Defiler Abilities *** //
 	neuro_claws_amount = DEFILER_CLAW_AMOUNT
 
-/datum/xeno_caste/defiler
+/datum/xeno_caste/defiler/young
 	upgrade_name = "Young"
 
 	upgrade = XENO_UPGRADE_ZERO

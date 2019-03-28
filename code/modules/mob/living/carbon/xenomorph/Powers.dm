@@ -1516,7 +1516,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(typepath == /mob/living/carbon/Xenomorph/Queen)
 			continue
 		var/mob/living/carbon/Xenomorph/T = typepath
-		var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[initial(T.caste_base_type)][XENO_UPGRADE_BASETYPE]
+		var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[typepath][XENO_UPGRADE_BASETYPE]
 		if(XC.caste_flags & CASTE_HIDE_IN_STATUS)
 			continue
 
