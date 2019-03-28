@@ -48,10 +48,10 @@
 
 	reset_view(loc)
 
-	//updating atom HUD
+	add_click_catcher()
 	refresh_huds()
 
-	if(client)
+	if(client?.player_details)
 		for(var/foo in client.player_details.post_login_callbacks)
 			var/datum/callback/CB = foo
 			CB.Invoke()

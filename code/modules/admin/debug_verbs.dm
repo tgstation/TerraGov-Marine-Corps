@@ -445,3 +445,34 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	log_admin("[key_name(usr)] checked the contents of [key_name(M)].")
 	message_admins("[ADMIN_TPMONTY(usr)] checked the contents of [ADMIN_TPMONTY(M)].")
+
+
+
+/datum/admins/proc/reestablish_db_connection()
+	set category = "Debug"
+	set name = "Reestablish DB Connection"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	if(!CONFIG_GET(flag/sql_enabled))
+		to_chat(usr, "<span class='adminnotice'>The Database is not enabled!</span>")
+		return
+
+	if(SSdbcore.IsConnected())
+		if(alert("The database is already connected! If you *KNOW* that this is incorrect, you can force a reconnection", "The database is already connected!", "Force Reconnect", "Cancel") != "Force Reconnect")
+			return
+
+		SSdbcore.Disconnect()
+		log_admin("[key_name(usr)] has forced the database to disconnect")
+		message_admins("[ADMIN_TPMONTY(usr)] has forced the database to disconnect!")
+
+	log_admin("[key_name(usr)] is attempting to re-established the DB Connection.")
+	message_admins("[ADMIN_TPMONTY(usr)] is attempting to re-established the DB Connection.")
+
+	SSdbcore.failed_connections = 0
+
+	if(!SSdbcore.Connect())
+		message_admins("Database connection failed: " + SSdbcore.ErrorMsg())
+	else
+		message_admins("Database connection re-established!")

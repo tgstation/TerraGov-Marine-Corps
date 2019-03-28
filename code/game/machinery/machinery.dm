@@ -115,7 +115,7 @@ Class Procs:
 	var/manual = 0
 	var/global/gl_uid = 1
 	layer = OBJ_LAYER
-	var/machine_processing = 0 // whether the machine is busy and requires process() calls in scheduler.
+	var/speed_process = FALSE // Process as fast as possible?
 
 	var/wrenchable = FALSE
 	var/destructible = TRUE
@@ -140,13 +140,26 @@ Class Procs:
 	if(A)
 		A.area_machines += src
 
+	if(!speed_process)
+		START_PROCESSING(SSmachines, src)
+	else
+		START_PROCESSING(SSfastprocess, src)
+
+	power_change()
+
+
 /obj/machinery/Destroy()
 	GLOB.machines -= src
-	processing_machines -= src
 	var/area/A = get_area(src)
 	if(A)
 		A.area_machines -= src
-	. = ..()
+
+	if(!speed_process)
+		STOP_PROCESSING(SSmachines, src)
+	else
+		STOP_PROCESSING(SSfastprocess, src)
+
+	return ..()
 
 /obj/machinery/proc/dropContents(list/subset = null)
 	var/turf/T = get_turf(src)
@@ -168,15 +181,7 @@ Class Procs:
 /obj/machinery/proc/on_construction()
 	return
 
-/obj/machinery/proc/start_processing()
-	if(!machine_processing)
-		machine_processing = TRUE
-		processing_machines += src
-
-/obj/machinery/proc/stop_processing()
-	if(machine_processing)
-		machine_processing = FALSE
-		processing_machines -= src
+	. = ..()
 
 /obj/machinery/process()//If you dont use process or power why are you here
 	return PROCESS_KILL

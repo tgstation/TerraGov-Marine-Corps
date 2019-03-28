@@ -337,7 +337,7 @@
 	<BR><B>Head:</B> <A href='?src=\ref[src];item=[SLOT_HEAD]'>[(head ? head : "Nothing")]</A>
 	<BR><B>Shoes:</B> <A href='?src=\ref[src];item=[SLOT_SHOES]'>[(shoes ? shoes : "Nothing")]</A>
 	<BR><B>Belt:</B> <A href='?src=\ref[src];item=[SLOT_BELT]'>[(belt ? belt : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(belt, /obj/item/tank) && !internal) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
-	<BR><B>Uniform:</B> <A href='?src=\ref[src];item=[SLOT_W_UNIFORM]'>[(w_uniform ? w_uniform : "Nothing")]</A> [(suit) ? ((suit.has_sensor == 1) ? " <A href='?src=\ref[src];sensor=1'>Sensors</A>" : "") :]
+	<BR><B>Uniform:</B> <A href='?src=\ref[src];item=[SLOT_W_UNIFORM]'>[(w_uniform ? w_uniform : "Nothing")]</A> [(suit) ? ((suit.has_sensor == 1) ? " <A href='?src=\ref[src];sensor=1'>Sensors</A>" : "") : ""]
 	<BR><B>(Exo)Suit:</B> <A href='?src=\ref[src];item=[SLOT_WEAR_SUIT]'>[(wear_suit ? wear_suit : "Nothing")]</A>
 	<BR><B>Back:</B> <A href='?src=\ref[src];item=[SLOT_BACK]'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
 	<BR><B>ID:</B> <A href='?src=\ref[src];item=[SLOT_WEAR_ID]'>[(wear_id ? wear_id : "Nothing")]</A>
@@ -594,7 +594,7 @@
 						if (internal)
 							visible_message("<span class='notice'>[src] is now running on internals.</span>", null, null, 1)
 							internal.add_fingerprint(usr)
-							if (hud_used. && hud_used.internals)
+							if (hud_used && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
 
 				// Update strip window
@@ -1644,7 +1644,7 @@
 
 
 /mob/living/carbon/human/a_select_zone(input as text, screen_num as null|num)
-	screen_num = 21
+	screen_num = 20
 	return ..()
 
 
@@ -1667,3 +1667,51 @@
 	var/datum/browser/popup = new(src, "skills", "<div align='center'>Skills</div>", 300, 600)
 	popup.set_content(dat)
 	popup.open(FALSE)
+
+
+
+/mob/living/carbon/human/proc/set_rank(rank)
+	if(!mind)
+		job = rank
+		return
+
+	var/datum/job/J = SSjob.name_occupations[rank]
+	var/datum/outfit/job/O = new J.outfit
+	var/id = O.id ? O.id : /obj/item/card/id
+	var/obj/item/card/id/I = new id
+	var/datum/skills/L = new J.skills_type
+	mind.cm_skills = L
+	mind.comm_title = J.comm_title
+
+	if(wear_id)
+		qdel(wear_id)
+
+	job = rank
+	faction = J.faction
+
+	equip_to_slot_or_del(I, SLOT_WEAR_ID)
+
+	SSjob.AssignRole(src, rank)
+	O.post_equip(src)
+
+
+/mob/living/carbon/human/proc/set_equipment(equipment)
+	if(!equipment)
+		return
+
+	var/list/job_paths = subtypesof(/datum/outfit/job)
+	var/list/outfits = list()
+	for(var/path in job_paths)
+		var/datum/outfit/O = path
+		if(initial(O.can_be_admin_equipped))
+			outfits[initial(O.name)] = path
+
+	for(var/datum/outfit/D in GLOB.custom_outfits)
+		outfits[D.name] = D
+
+	if(!(equipment in outfits))
+		return
+
+	var/datum/outfit/O = new outfits[equipment]
+	delete_equipment(TRUE)
+	equipOutfit(O, TRUE)

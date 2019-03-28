@@ -32,7 +32,7 @@
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
 	vision_flags = SEE_TURFS
-	darkness_view = 12
+	darkness_view = 24
 	toggleable = 1
 	fullscreen_vision = null
 	actions_types = list(/datum/action/item_action/toggle)

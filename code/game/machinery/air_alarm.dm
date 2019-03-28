@@ -137,8 +137,6 @@
 		if(WEST) 
 			pixel_x = -25
 
-	start_processing()
-
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
@@ -156,44 +154,6 @@
 	TLV["pressure"] =		list(ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*0.90,ONE_ATMOSPHERE*1.10,ONE_ATMOSPHERE*1.20) /* kpa */
 	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
 
-
-/obj/machinery/alarm/process()
-	if((machine_stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
-		return
-
-	var/turf/location = loc
-	if(!istype(location))	return//returns if loc is not simulated
-
-	var/old_level = danger_level
-	var/old_pressurelevel = pressure_dangerlevel
-	danger_level = overall_danger_level(location)
-
-	if (old_level != danger_level)
-		apply_danger_level(danger_level)
-
-	if (old_pressurelevel != pressure_dangerlevel)
-		if (breach_detected())
-		//	mode = AALARM_MODE_OFF
-			apply_mode()
-
-	if (mode==AALARM_MODE_CYCLE && location.return_pressure()<ONE_ATMOSPHERE*0.05)
-		mode=AALARM_MODE_FILL
-		apply_mode()
-
-	//atmos computer remote controll stuff
-	switch(rcon_setting)
-		if(RCON_NO)
-			remote_control = 0
-		if(RCON_AUTO)
-			if(danger_level == 2)
-				remote_control = 1
-			else
-				remote_control = 0
-		if(RCON_YES)
-			remote_control = 1
-
-	updateDialog()
-	return
 
 /obj/machinery/alarm/proc/handle_heating_cooling()
 	return

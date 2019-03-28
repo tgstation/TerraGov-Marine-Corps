@@ -34,7 +34,6 @@
 	var/net_id
 	var/list/areas_added
 	var/list/users_to_open = new
-	var/next_process_time = 0
 
 	var/list/tile_info[4]
 	var/list/dir_alerts[4] // 4 dirs, bitflags
@@ -62,7 +61,7 @@
 		if(istype(A) && !(A in areas_added))
 			A.all_doors.Add(src)
 			areas_added += A
-	start_processing()
+
 
 /obj/machinery/door/firedoor/Destroy()
 	for(var/area/A in areas_added)
@@ -274,13 +273,6 @@
 /obj/machinery/door/firedoor/try_to_activate_door(mob/user)
 	return
 
-// CHECK PRESSURE
-/obj/machinery/door/firedoor/process()
-	..()
-
-	if(density && next_process_time <= world.time)
-		next_process_time = world.time + 100		// 10 second delays between process updates
-
 
 /obj/machinery/door/firedoor/proc/latetoggle()
 	if(operating || !nextstate)
@@ -341,15 +333,11 @@
 	return
 
 
-/obj/machinery/door/firedoor/border_only
-
-
-//ALMAYER FIRE DOOR
-
-/obj/machinery/door/firedoor/border_only/almayer
+/obj/machinery/door/firedoor/theseus
 	name = "\improper Emergency Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
 	icon = 'icons/obj/doors/almayer/purinadoor.dmi'
+	icon_state = "door_open"
 	openspeed = 4
 
 
@@ -357,10 +345,31 @@
 	icon = 'icons/obj/doors/DoorHazard2x1.dmi'
 	width = 2
 
+
+/obj/machinery/door/firedoor/border_only
+	icon = 'icons/obj/doors/edge_Doorfire.dmi'
+	flags_atom = ON_BORDER
+
+
+/obj/machinery/door/firedoor/border_only/closed
+	icon_state = "door_closed"
+	opacity = TRUE
+	density = TRUE
+
+
 /obj/machinery/door/firedoor/border_only/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if(istype(mover) && (mover.checkpass(PASSGLASS)))
 		return TRUE
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
+		return !density
+	else
+		return TRUE
+
+
+/obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover as mob|obj, turf/target)
+	if(istype(mover) && (mover.checkpass(PASSGLASS)))
+		return TRUE
+	if(get_dir(loc, target) == dir)
 		return !density
 	else
 		return TRUE

@@ -97,7 +97,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 	for(var/message in messageQueue)
 		// whitespace has already been handled by the original to_chat
-		to_chat(owner, message, handle_whitespace=FALSE)
+		to_chat_immediate(owner, message, handle_whitespace = FALSE)
 
 	messageQueue = null
 	sendClientData()
@@ -176,14 +176,13 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	log_world("\[[time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")]\] Client: [(src.owner.key ? src.owner.key : src.owner)] triggered JS error: [error]")
 
 //Global chat procs
-/proc/to_chat(target, message, handle_whitespace=TRUE)
-	if(!target)
+/proc/to_chat_immediate(target, message, handle_whitespace = TRUE)
+	if(!target || !message)
 		return
 
-	//Sorry but this will have to do for a while.
 	if(!istext(message))
-		if(istype(message, /image) || istype(message, /sound) || istype(target, /savefile) || !(ismob(target) || islist(target) || istype(target, /client) || target == world))
-			target << message
+		stack_trace("to_chat_immediate called with invalid input type")
+		return
 
 	if(target == world)
 		target = GLOB.clients
@@ -202,7 +201,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		for(var/I in target)
 			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
 
-			if (!C)
+			if(!C)
 				continue
 
 			//Send it to the old style output window.
@@ -220,7 +219,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	else
 		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
 
-		if (!C)
+		if(!C)
 			return
 
 		//Send it to the old style output window.
@@ -236,3 +235,10 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 		// url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
 		C << output(url_encode(url_encode(message)), "browseroutput:output")
+
+
+/proc/to_chat(target, message, handle_whitespace = TRUE)
+	if(!SSchat)
+		to_chat_immediate(target, message, handle_whitespace)
+		return
+	SSchat.queue(target, message, handle_whitespace)

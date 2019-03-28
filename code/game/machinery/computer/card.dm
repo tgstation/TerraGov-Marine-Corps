@@ -86,7 +86,7 @@
 
 	var/data[0]
 	data["src"] = "\ref[src]"
-	data["station_name"] = station_name()
+	data["ship_name"] = CONFIG_GET(string/ship_name)
 	data["mode"] = mode
 	data["printing"] = printing
 	data["manifest"] = data_core ? data_core.get_manifest(0) : null

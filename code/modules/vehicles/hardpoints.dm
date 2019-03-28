@@ -98,6 +98,8 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/proc/firing_arc(var/atom/A)
 	var/turf/T = get_turf(A)
+	if(!T || !owner)
+		return FALSE
 	var/dx = T.x - owner.x
 	var/dy = T.y - owner.y
 	var/deg = 0
@@ -915,7 +917,7 @@ Currently only has the tank hardpoints
 	icon_state = "painless"
 	w_class = 10
 	default_ammo = /datum/ammo/bullet/minigun
-	max_rounds = 300
+	max_rounds = 500
 	point_cost = 25
 	gun_type = /obj/item/hardpoint/primary/minigun
 

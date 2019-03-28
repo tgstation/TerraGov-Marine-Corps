@@ -77,13 +77,14 @@
 	update_canmove()
 
 	//Deal with devoured things and people
-	if(stomach_contents.len)
-		for(var/atom/movable/M in stomach_contents)
+	if(length(stomach_contents))
+		for(var/mob/M in stomach_contents)
 			if(world.time > devour_timer && ishuman(M) && !is_ventcrawling)
 				stomach_contents.Remove(M)
 				if(M.loc != src)
 					continue
 				M.forceMove(loc)
+				M.KnockDown(3)
 	return TRUE
 
 /mob/living/carbon/Xenomorph/Defender/update_stat()

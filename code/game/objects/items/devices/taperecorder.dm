@@ -23,7 +23,7 @@
 /obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verb="says", var/speaking, var/italics = 0)
 	if(recording)
 		timestamp+= timerecorded
-		storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] [M.name] [verb], \"[italics ? "<i>" : ][msg][italics ? "</i>" : ]\""
+		storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] [M.name] [verb], \"[italics ? "<i>" : ""][msg][italics ? "</i>" : ""]\""
 		return
 
 /obj/item/device/taperecorder/attackby(obj/item/W as obj, mob/user as mob)

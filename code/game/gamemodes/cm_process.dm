@@ -58,11 +58,11 @@ dat += " Your severe injuries will no-doubt be a topic for discussion in the fut
 //Managed to get to evac safely.
 dat += " At least you've made it to evac; it's all over now, right?"
 //Failed to catch it.
-dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
+dat += " You failed to evacuate \the [CONFIG_GET(string/ship_name)]"
 
 
 "<b>You have survived</b>
-"<b>You have survived</b>, and you have managed to evacuate the [MAIN_SHIP_NAME]. Maybe it's finally over..."
+"<b>You have survived</b>, and you have managed to evacuate the [CONFIG_GET(string/ship_name)]. Maybe it's finally over..."
 "<b>You have survived</b>. That is more than enough, but who knows what the future holds for you now..."
 
 "<span class='round_body'>You lead your hive, and you have survived. Your influence will grow in time.</span>"
@@ -85,15 +85,15 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 				var/turf/playerTurf = get_turf(Player)
 				if(emergency_shuttle.departed && emergency_shuttle.evac)
 					if(playerTurf.z != 2)
-						to_chat(Player, "<span class='round_body'>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</span>")
+						to_chat(Player, "<span class='round_body'>You managed to survive, but were marooned on [CONFIG_GET(string/server_name)] as [Player.real_name]...</span>")
 					else
 						to_chat(Player, "<font color='green'><b>You managed to survive the events of [name] as [m.real_name].</b></font>")
 				else if(playerTurf.z == 2)
-					to_chat(Player, "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>")
+					to_chat(Player, "<font color='green'><b>You successfully underwent crew transfer after events on [CONFIG_GET(string/server_name)] as [Player.real_name].</b></font>")
 				else if(issilicon(Player))
-					to_chat(Player, "<font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font>")
+					to_chat(Player, "<font color='green'><b>You remain operational after the events on [CONFIG_GET(string/server_name)] as [Player.real_name].</b></font>")
 				else
-					to_chat(Player, "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>")
+					to_chat(Player, "<font color='blue'><b>You missed the crew transfer after the events on [CONFIG_GET(string/server_name)] as [Player.real_name].</b></font>")
 			else
 
 	if(xenomorphs.len)
@@ -193,8 +193,8 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		dat += "[round_statistics.carrier_traps] hidey holes for huggers were made."
 	if(round_statistics.sentinel_neurotoxin_stings)
 		dat += "[round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
-	if(round_statistics.drone_stings)
-		dat += "[round_statistics.drone_stings] number of times Drones stung."
+	if(round_statistics.larval_growth_stings)
+		dat += "[round_statistics.larval_growth_stings] number of Larval Growth Serum stings."
 	if(round_statistics.drone_salvage_plasma)
 		dat += "[round_statistics.drone_salvage_plasma] number of times Drones salvaged corpses."
 	if(round_statistics.defiler_defiler_stings)

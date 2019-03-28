@@ -143,7 +143,7 @@
 		src.occupant.client.perspective = MOB_PERSPECTIVE
 	src.occupant.loc = src.loc
 	src.occupant = null
-	stop_processing()
+	STOP_PROCESSING(SSmachines, src)
 	build_icon()
 	update_use_power(1)
 	return
@@ -180,7 +180,7 @@
 		usr.client.eye = src
 	usr.loc = src
 	src.occupant = usr
-	start_processing()
+	START_PROCESSING(SSmachines, src)
 	/*for(var/obj/O in src)
 		O.loc = src.loc*/
 	src.add_fingerprint(usr)

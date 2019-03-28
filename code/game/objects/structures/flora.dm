@@ -23,6 +23,8 @@
 	if(!W || !user || (W.flags_item & NOBLUDGEON))
 		return FALSE
 
+	user.changeNext_move(W.attack_speed)
+
 	var/damage = W.force
 	if(W.w_class < 3 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
 		damage *= 0.25
@@ -90,6 +92,7 @@
 
 /obj/structure/flora/tree/attackby(obj/item/W, mob/user, params)
 	if(W.sharp && W.force > 0)
+		user.changeNext_move(W.attack_speed)
 		if(W.hitsound)
 			playsound(get_turf(src), W.hitsound, 50, 0, 0)
 		user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
@@ -470,6 +473,7 @@
 
 /obj/structure/jungle/vines/attackby(obj/item/W, mob/living/user)
 	if(W.sharp == IS_SHARP_ITEM_BIG)
+		user.changeNext_move(W.attack_speed)
 		to_chat(user, "<span class='warning'>You cut \the [src] away with \the [W].</span>")
 		user.animation_attack_on(src)
 		playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)

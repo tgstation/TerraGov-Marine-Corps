@@ -1,4 +1,3 @@
-#define MAIN_SHIP_NAME "TGS Theseus"
 #define GAME_YEAR 2386
 
 var/global/obj/effect/datacore/data_core = null
@@ -67,8 +66,6 @@ var/blobevent = 0
 	///////////////
 
 var/diaryofmeanpeople = null
-var/station_name = "[MAIN_SHIP_NAME]"
-var/game_version = "TerraGov Marine Corps"
 var/game_year = GAME_YEAR
 
 var/datum/air_tunnel/air_tunnel1/SS13_airtunnel = null
