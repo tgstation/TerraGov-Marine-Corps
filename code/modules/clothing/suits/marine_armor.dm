@@ -609,7 +609,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/marine/M3T/New()
 	select_gamemode_skin(type)
-	..()
+	return ..()
 
 /obj/item/clothing/suit/storage/marine/M3S
 	name = "\improper M3-S light armor"
