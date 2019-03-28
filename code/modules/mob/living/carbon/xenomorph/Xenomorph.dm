@@ -78,22 +78,30 @@
 
 	update_action_button_icons()
 
-/mob/living/carbon/Xenomorph/proc/set_datum()
+/mob/living/carbon/Xenomorph/proc/set_datum(upgrading = FALSE)
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")
 	if(!GLOB.xeno_caste_datums[caste_base_type])
 		CRASH("error finding base type")
 	if(!GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)])
 		CRASH("error finding datum")
-	var/datum/xeno_caste/old_caste = GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade, 0, 4)]
+	if(!GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade, 1, 4)])
+		CRASH("error finding datum")
+	var/datum/xeno_caste/old_caste = GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade, 1, 4)]
 	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
+
 	if(!istype(new_caste) || !istype(old_caste) )
 		CRASH("error with caste datum")
 
-	plasma_stored = new_caste.plasma_max
-	maxHealth = new_caste.max_health
+	xeno_caste = new_caste
+
+	plasma_stored = xeno_caste.plasma_max
+	maxHealth = xeno_caste.max_health
 	health = maxHealth
-	speed += (new_caste.speed - old_caste.speed) //Add the difference so we don't break things if we upgrade while speed is pending modification from a temporary penalty/benefit
+	if(upgrading) //If we're not upgrading, just set the speed outright; no temp modifications will apply anyways.
+		speed += (xeno_caste.speed - old_caste.speed) //Add the difference so we don't break things if we upgrade while speed is pending modification from a temporary penalty/benefit
+	else
+		speed = xeno_caste.speed
 
 /mob/living/carbon/Xenomorph/Defiler/set_datum()
 	. = ..()

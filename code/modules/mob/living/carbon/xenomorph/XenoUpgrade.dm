@@ -5,7 +5,7 @@
 	visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
 	"<span class='xenonotice'>You begin to twist and contort.</span>")
 	do_jitter_animation(1000)
-	set_datum()
+	set_datum(TRUE)
 
 	switch(upgrade)
 		//FIRST UPGRADE
