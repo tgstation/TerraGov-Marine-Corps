@@ -157,14 +157,14 @@
 	on = !on
 	update_icon()
 	if(on)
-		start_processing()
+		START_PROCESSING(SSmachines, src)
 		if (M.loc == loc)
 			wash(M)
 			check_heat(M)
 		for (var/atom/movable/G in src.loc)
 			G.clean_blood()
 	else
-		stop_processing()
+		STOP_PROCESSING(SSmachines, src)
 
 /obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.type == /obj/item/device/analyzer)

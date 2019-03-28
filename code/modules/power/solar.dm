@@ -34,11 +34,10 @@ var/list/solars_list = list()
 	var/turn_angle = 0
 	var/obj/machinery/power/solar_control/control = null
 
-/obj/machinery/power/solar/New(var/turf/loc, var/obj/item/frame/solar_assembly/S, var/process = 1)
-	..(loc)
+/obj/machinery/power/solar/Initialize(turf/loc, obj/item/frame/solar_assembly/S, process = 1)
+	. = ..()
 	Make(S)
 	connect_to_network(process)
-	start_processing()
 
 
 /obj/machinery/power/solar/disconnect_from_network()

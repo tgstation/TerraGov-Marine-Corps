@@ -115,14 +115,12 @@
 	var/list/alloy_data[0]
 	var/active = 0
 
-/obj/machinery/mineral/processing_unit/New()
-
-	..()
+/obj/machinery/mineral/processing_unit/Initialize()
+	. = ..()
 
 	//TODO: Ore and alloy global storage datum.
 	for(var/alloytype in subtypesof(/datum/alloy))
 		alloy_data += new alloytype()
-	start_processing()
 
 	for(var/oretype in subtypesof(/datum/ore))
 		var/datum/ore/OD = new oretype()
@@ -130,16 +128,16 @@
 		ores_processing[OD.oretag] = 0
 		ores_stored[OD.oretag] = 0
 
-	//Locate our output and input machinery.
-	spawn(5)
-		for (var/dir in cardinal)
-			src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
-			if(src.input) break
-		for (var/dir in cardinal)
-			src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
-			if(src.output) break
-		return
-	return
+
+	for(var/d in cardinal)
+		input = locate(/obj/machinery/mineral/input, get_step(src, d))
+		if(input) 
+			break
+
+	for(var/d in cardinal)
+		output = locate(/obj/machinery/mineral/output, get_step(src, d))
+		if(output) 
+			break
 
 /obj/machinery/mineral/processing_unit/process()
 
