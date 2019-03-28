@@ -101,7 +101,7 @@
 		if(C.opened && !C.close())	continue
 		C.locked = 1
 		C.icon_state = C.icon_locked
-	START_PROCESSING(SSmachines, src)
+	start_processing()
 	return 1
 
 
@@ -122,7 +122,7 @@
 		if(C.opened)	continue
 		C.locked = 0
 		C.icon_state = C.icon_closed
-	STOP_PROCESSING(SSmachines, src)
+	stop_processing()
 	return 1
 
 

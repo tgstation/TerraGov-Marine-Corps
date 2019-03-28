@@ -18,11 +18,11 @@
 		if(!cell_left)
 			if(user.transferItemToLoc(I, src))
 				cell_left = I
-				START_PROCESSING(SSmachines, src)
+				start_processing()
 		else if(!cell_right)
 			if(user.transferItemToLoc(I, src))
 				cell_right = I
-				START_PROCESSING(SSmachines, src)
+				start_processing()
 		else
 			to_chat(user, "<span class='notice'>The recycler is full!</span>")
 			return
@@ -68,7 +68,7 @@
 	if(!cell_left && !cell_right)
 		update_use_power(IDLE_POWER_USE)
 		update_icon()
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 		return
 	else
 		var/active = FALSE
@@ -84,7 +84,7 @@
 			update_use_power(ACTIVE_POWER_USE)
 		else
 			update_use_power(IDLE_POWER_USE)
-			STOP_PROCESSING(SSmachines, src)
+			stop_processing()
 
 		update_icon()
 

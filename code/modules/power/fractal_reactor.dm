@@ -5,7 +5,7 @@
 
 /obj/machinery/power/fractal_reactor
 	name = "Fractal Energy Reactor"
-	desc = "This thing drains power from fractal-subspace."
+	desc = "This thing drains power from fractal-subspace. (DEBUG ITEM: INFINITE POWERSOURCE FOR MAP TESTING. CONTACT DEVELOPERS IF FOUND.)"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "tracker" //ICON stolen from solar tracker. There is no need to make new texture for debug item
 	anchored = 1
@@ -13,6 +13,11 @@
 	var/power_generation_rate = 2000000 //Defaults to 2MW of power. Should be enough to run SMES charging on full 2 times.
 	var/powernet_connection_failed = 0
 
+	// This should be only used on Dev for testing purposes.
+/obj/machinery/power/fractal_reactor/New()
+	..()
+	to_chat(world, "<span class='danger'> WARNING: \black Map testing power source activated at: X:[src.loc.x] Y:[src.loc.y] Z:[src.loc.z]</span>")
+	start_processing()
 
 /obj/machinery/power/fractal_reactor/power_change()
 	return

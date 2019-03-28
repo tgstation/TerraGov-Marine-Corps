@@ -81,7 +81,7 @@
 			loaded_disk.loc = get_turf(src)
 			visible_message("[icon2html(src, viewers(src))] [src] beeps and spits out [loaded_disk].")
 			loaded_disk = null
-	STOP_PROCESSING(SSmachines, src)
+	stop_processing()
 
 /obj/machinery/botany/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/seeds))
@@ -223,7 +223,7 @@
 
 		last_action = world.time
 		active = 1
-		START_PROCESSING(SSmachines, src)
+		start_processing()
 
 		if(seed && seed.seed)
 			genetics = seed.seed
@@ -238,7 +238,7 @@
 
 		last_action = world.time
 		active = 1
-		START_PROCESSING(SSmachines, src)
+		start_processing()
 
 		var/datum/plantgene/P = genetics.get_gene(href_list["get_gene"])
 		if(!P) return
@@ -323,7 +323,7 @@
 
 		last_action = world.time
 		active = 1
-		START_PROCESSING(SSmachines, src)
+		start_processing()
 
 		if(!isnull(GLOB.seed_types[seed.seed.name]))
 			seed.seed = seed.seed.diverge(1)

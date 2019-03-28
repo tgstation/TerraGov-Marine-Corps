@@ -29,20 +29,22 @@
 	var/next_dest
 	var/next_dest_loc
 
-/obj/machinery/bot/cleanbot/Initialize()
-	. = ..()
-	get_targets()
-	icon_state = "cleanbot[on]"
+/obj/machinery/bot/cleanbot/New()
+	..()
+	src.get_targets()
+	src.icon_state = "cleanbot[src.on]"
 
-	should_patrol = TRUE
+	should_patrol = 1
 
-	botcard = new /obj/item/card/id(src)
+	src.botcard = new /obj/item/card/id(src)
 	botcard.access = ALL_MARINE_ACCESS
 
-	locked = FALSE // Start unlocked so roboticist can set them to patrol.
+	src.locked = 0 // Start unlocked so roboticist can set them to patrol.
 
 	if(radio_controller)
 		radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
+
+	start_processing()
 
 
 /obj/machinery/bot/cleanbot/turn_on()

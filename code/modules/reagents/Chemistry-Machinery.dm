@@ -42,10 +42,11 @@
 	else
 		recharged -= 1
 
-/obj/machinery/chem_dispenser/Initialize()
-	. = ..()
+/obj/machinery/chem_dispenser/New()
+	..()
 	recharge()
 	dispensable_reagents = sortList(dispensable_reagents)
+	start_processing()
 
 
 /obj/machinery/chem_dispenser/ex_act(severity)

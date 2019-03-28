@@ -21,8 +21,8 @@
 	id = "round_end_belt"
 
 	// create a conveyor
-/obj/machinery/conveyor/Initialize(loc, newdir, on = 0)
-	. = ..()
+/obj/machinery/conveyor/New(loc, newdir, on = 0)
+	..(loc)
 	if(newdir)
 		setDir(newdir)
 	switch(dir)
@@ -65,11 +65,18 @@
 	if(machine_stat & BROKEN)
 		icon_state = "conveyor-broken"
 		operating = 0
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 		return
 
 	if(!operable || (machine_stat & NOPOWER))
-		operating = FALSE
+		operating = 0
+
+	if(operating)
+		if(!machine_processing)
+			start_processing()
+	else
+		if(machine_processing)
+			stop_processing()
 
 	icon_state = "conveyor[operating]"
 
@@ -145,7 +152,7 @@
 	if(id != match_id)
 		return
 	operable = op
-	if(operable) START_PROCESSING(SSmachines, src)
+	if(operable) start_processing()
 
 	update()
 	var/obj/machinery/conveyor/C = locate() in get_step(src, stepdir)
@@ -183,15 +190,16 @@
 
 
 
-/obj/machinery/conveyor_switch/Initialize()
-	. = ..()
+/obj/machinery/conveyor_switch/New()
+	..()
 	update()
 
-	conveyors = list()
-	for(var/obj/machinery/conveyor/C in GLOB.machines)
-		if(C.id == id)
-			conveyors += C
-
+	spawn(5)		// allow map load
+		conveyors = list()
+		for(var/obj/machinery/conveyor/C in GLOB.machines)
+			if(C.id == id)
+				conveyors += C
+	start_processing()
 
 // update the icon depending on the position
 

@@ -78,8 +78,8 @@
 	var/list/stack_paths[0]
 	var/stack_amt = 50; // Amount to stack before releassing
 
-/obj/machinery/mineral/stacking_machine/Initialize()
-	. = ..()
+/obj/machinery/mineral/stacking_machine/New()
+	..()
 
 	for(var/stacktype in subtypesof(/obj/item/stack/sheet/mineral))
 		var/obj/item/stack/S = new stacktype(src)
@@ -94,16 +94,16 @@
 	stack_storage["plasteel"] = 0
 	stack_paths["plasteel"] = /obj/item/stack/sheet/plasteel
 
-	for(var/d in cardinal)
-		input = locate(/obj/machinery/mineral/input, get_step(src, d))
-		if(input) 
-			break
-
-	for(var/d in cardinal)
-		output = locate(/obj/machinery/mineral/output, get_step(src, d))
-		if(output) 
-			break
-
+	spawn( 5 )
+		for (var/dir in cardinal)
+			src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
+			if(src.input) break
+		for (var/dir in cardinal)
+			src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
+			if(src.output) break
+		start_processing()
+		return
+	return
 
 /obj/machinery/mineral/stacking_machine/process()
 	if (src.output && src.input)

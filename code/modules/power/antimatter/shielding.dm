@@ -29,7 +29,7 @@ proc/cardinalrange(var/center)
 /obj/machinery/am_shielding/Initialize()
 	. = ..()
 	controllerscan()
-
+	start_processing()
 
 /obj/machinery/am_shielding/proc/controllerscan(var/priorscan = 0)
 	//Make sure we are the only one here
