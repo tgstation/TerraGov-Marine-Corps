@@ -2,7 +2,7 @@
 Contains most of the procs that are called when a mob is attacked by something
 */
 
-#define DEBUG_HUMAN_EXPLOSIONS	0
+//#define DEBUG_HUMAN_EXPLOSIONS
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 	var/datum/limb/affected = get_limb(check_zone(def_zone))
@@ -50,7 +50,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			var/weight = organ_rel_size[E.name]
 			armorval += getarmor_organ(E, type) * weight
 			total += weight
-			#if DEBUG_HUMAN_EXPLOSIONS
+			#ifdef DEBUG_HUMAN_EXPLOSIONS
 			to_chat(src, "DEBUG getarmor: total: [total], armorval: [armorval], weight: [weight], name: [E.name]")
 			#endif
 	return ( round(armorval/max(total, 1)*0.01,0.01) )

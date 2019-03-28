@@ -1,4 +1,4 @@
-#define DEBUG_HUMAN_ARMOR	0
+//#define DEBUG_HUMAN_ARMOR
 
 /mob/living/carbon/human
 	name = "unknown"
@@ -247,7 +247,7 @@
 			KnockDown(2 * armor)
 
 	var/update = 0
-	#if DEBUG_HUMAN_ARMOR
+	#ifdef DEBUG_HUMAN_ARMOR
 	to_chat(src, "DEBUG EX_ACT: armor: [armor], b_loss: [b_loss], f_loss: [f_loss]")
 	#endif
 	//Focus half the blast on one organ
