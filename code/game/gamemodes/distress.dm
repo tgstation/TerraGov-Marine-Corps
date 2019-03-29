@@ -151,7 +151,6 @@
 
 
 /datum/game_mode/distress/proc/initialize_xenomorphs()
-	var/list/datum/mind/possible_xenomorphs = get_players_for_role(BE_ALIEN)
 	var/list/possible_xenomorphs = get_players_for_role(BE_ALIEN)
 	if(length(possible_xenomorphs) < xeno_required_num)
 		return FALSE
@@ -180,7 +179,6 @@
 
 
 /datum/game_mode/distress/proc/initialize_queen()
-	var/list/datum/mind/possible_queens = get_players_for_role(BE_QUEEN)
 	var/list/possible_queens = get_players_for_role(BE_QUEEN)
 	if(!length(possible_queens))
 		return FALSE
