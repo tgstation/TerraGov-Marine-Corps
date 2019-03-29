@@ -1619,24 +1619,8 @@
 
 
 
-
-
-/mob/living/carbon/human/update_tint()
-	tinttotal = get_total_tint()
-	if(tinttotal >= 3)
-		blind_eyes(1)
-		return TRUE
-	else if(eye_blind == 1)
-		adjust_blindness(-1)
-	if(tinttotal == 2)
-		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, 2)
-		return TRUE
-	else
-		clear_fullscreen("tint", 0)
-		return FALSE
-
-/mob/living/carbon/human/proc/get_total_tint()
-	. = 0
+/mob/living/carbon/human/get_total_tint()
+	. = ..()
 	var/obj/item/clothing/C
 	if(istype(head, /obj/item/clothing/head))
 		C = head
