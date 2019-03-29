@@ -102,5 +102,5 @@
 #define DEATH_TIMER				5 MINUTES
 
 
-#define DEATHTIME_CHECK(M) ((world.time - M.timeofdeath) > DEATH_TIMER) && check_other_rights(M, R_ADMIN, FALSE)
+#define DEATHTIME_CHECK(M) ((world.time - M.timeofdeath) > DEATH_TIMER) && check_other_rights(M.client, R_ADMIN, FALSE)
 #define DEATHTIME_MESSAGE(M) to_chat(M, "<span class='warning'>You have been dead for [(world.time - M.timeofdeath) / 10] second\s.</span><br><span class='warning'>You must wait [DEATH_TIMER / 10] seconds before rejoining the game!</span>")

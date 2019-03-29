@@ -168,6 +168,7 @@
 		return FALSE
 
 	xeno_required_num = CONFIG_GET(number/min_xenos)
+
 	if(length(xenomorphs) < xeno_required_num)
 		for(var/i = 1 to xeno_starting_num - length(xenomorphs))
 			new /mob/living/carbon/Xenomorph/Larva(pick(GLOB.xeno_spawn))
