@@ -1704,4 +1704,4 @@
 
 	var/datum/outfit/O = new outfits[equipment]
 	delete_equipment(TRUE)
-	equipOutfit(O, TRUE)
+	equipOutfit(O, FALSE)
