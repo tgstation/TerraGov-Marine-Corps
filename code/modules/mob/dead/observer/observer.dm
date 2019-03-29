@@ -291,7 +291,7 @@
 			ghost_orderhud = !ghost_orderhud
 			H = huds[MOB_HUD_ORDER]
 			ghost_orderhud ? H.add_hud_to(src) : H.remove_hud_from(src)
-			client.prefs.ghost_hud ^= GHOST_HUD_XENO
+			client.prefs.ghost_hud ^= GHOST_HUD_ORDER
 			client.prefs.save_preferences()
 			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_orderhud ? "Enabled" : "Disabled"]</span>")			
 		
