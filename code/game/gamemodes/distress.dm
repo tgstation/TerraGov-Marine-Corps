@@ -218,6 +218,10 @@
 /datum/game_mode/distress/proc/transform_xeno(datum/mind/M)
 	var/mob/living/carbon/Xenomorph/Larva/X = new (pick(GLOB.xeno_spawn))
 
+	if(isnewplayer(M.current))
+		var/mob/new_player/N = M.current
+		N.close_spawn_windows()
+
 	M.transfer_to(X, TRUE)
 
 	to_chat(X, "<B>You are now an alien!</B>")
@@ -230,6 +234,10 @@
 /datum/game_mode/distress/proc/transform_queen(datum/mind/M)
 	var/mob/living/carbon/Xenomorph/Queen/X = new (pick(GLOB.xeno_spawn))
 
+	if(isnewplayer(M.current))
+		var/mob/new_player/N = M.current
+		N.close_spawn_windows()
+
 	M.transfer_to(X, TRUE)
 
 	to_chat(X, "<B>You are now the alien queen!</B>")
@@ -241,6 +249,10 @@
 
 /datum/game_mode/distress/proc/transform_survivor(datum/mind/M)
 	var/mob/living/carbon/human/H = new (pick(GLOB.surv_spawn))
+
+	if(isnewplayer(M.current))
+		var/mob/new_player/N = M.current
+		N.close_spawn_windows()
 
 	M.transfer_to(H, TRUE)
 	H.client.prefs.copy_to(H)
