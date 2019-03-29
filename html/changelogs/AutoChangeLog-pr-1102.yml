@@ -1,5 +1,0 @@
-author: "Surrealistik and Ghommie"
-delete-after: True
-changes: 
-  - tweak: "Being devoured blinds a mob until it is disgorged. Further, any radio transmissions from that mob are badly garbled."
-  - refactor: "refactored vision tint embumberance (welding helmets, blindfolds) a little."
