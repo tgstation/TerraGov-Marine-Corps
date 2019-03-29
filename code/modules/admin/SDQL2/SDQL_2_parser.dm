@@ -1,6 +1,6 @@
 //////////
 //
-//	query				:	select_query | delete_query | update_query | call_query | explain | file
+//	query				:	select_query | delete_query | update_query | call_query | explain
 //	explain				:	'EXPLAIN' query
 //	select_query		:	'SELECT' object_selectors
 //	delete_query		:	'DELETE' object_selectors
@@ -120,7 +120,7 @@
 	return i
 
 
-//query:	select_query | delete_query | update_query | file
+//query:	select_query | delete_query | update_query
 /datum/SDQL_parser/proc/query(i, list/node)
 	query_type = tokenl(i)
 
@@ -141,11 +141,6 @@
 			node += "explain"
 			node["explain"] = list()
 			query(i + 1, node["explain"])
-
-		if("file")
-			if(usr.client.holder)
-				usr.client.holder.marked_file = input("Select a file:", "File") as null|file
-
 
 //	select_query:	'SELECT' object_selectors
 /datum/SDQL_parser/proc/select_query(i, list/node)

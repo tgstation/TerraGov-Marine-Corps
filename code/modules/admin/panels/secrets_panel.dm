@@ -6,7 +6,7 @@
 		return
 
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
-	var/dat = "<b>Papa Echard is watching.</b><hr>"
+	var/dat = "<b>Use responsibly.</b><hr>"
 
 
 	dat += {"
@@ -30,4 +30,6 @@
 		<a href='?src=[ref];secrets=rejuvall'>Rejuv ALL cliented mobs</a><br>
 		"}
 
-	usr << browse(dat, "window=secrets")
+	var/datum/browser/browser = new(usr, "secretspanel", "<div align='center'>Mode Panel</div>")
+	browser.set_content(dat)
+	browser.open()
