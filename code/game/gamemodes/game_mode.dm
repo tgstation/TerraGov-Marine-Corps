@@ -350,9 +350,9 @@
 			continue
 		if(!(X.z in z_levels) || isspaceturf(X.loc))
 			continue
-		num_humans++
+		num_xenos++
 
-	return list(num_humans,num_xenos)
+	return list(num_humans, num_xenos)
 
 
 /datum/game_mode/proc/disperse_fog()

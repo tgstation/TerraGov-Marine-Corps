@@ -32,7 +32,6 @@
 	if(!found_queen && !found_xenos)
 		return FALSE
 	initialize_survivor()
-	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
 	return TRUE
 
 
@@ -40,7 +39,7 @@
 	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.config.map_name]!</span>")
 
 
-/datum/game_mode/distress/post_setup()
+/datum/game_mode/distress/pre_setup()
 	. = ..()
 
 	for(var/i in xenomorphs)
@@ -92,7 +91,10 @@
 	if(round_finished)
 		return TRUE
 
-	var/living_player_list[] = count_humans_and_xenos(SSevacuation.get_affected_zlevels())
+	if(world.time < (SSticker.round_start_time + 5 SECONDS))
+		return FALSE
+
+	var/living_player_list[] = count_humans_and_xenos()
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
@@ -130,7 +132,7 @@
 		if(MODE_INFESTATION_DRAW_DEATH)
 			musical_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg') //This one is unlikely to play.
 
-	to_chat(world, musical_track)
+	SEND_SOUND(world, musical_track)
 
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal humans spawned: [round_statistics.total_humans_created]")
 
@@ -142,7 +144,7 @@
 
 
 /datum/game_mode/distress/proc/initialize_scales()
-	xeno_required_num = CONFIG_GET(number/min_xenos)
+	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
 	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * GLOB.ready_players)), xeno_required_num)
 	surv_starting_num = CLAMP((round(GLOB.ready_players / CONFIG_GET(number/survivor_coefficient))), 0, 8)
 	marine_starting_num = GLOB.ready_players - xeno_starting_num - surv_starting_num
@@ -150,6 +152,7 @@
 
 /datum/game_mode/distress/proc/initialize_xenomorphs()
 	var/list/datum/mind/possible_xenomorphs = get_players_for_role(BE_ALIEN)
+	var/list/possible_xenomorphs = get_players_for_role(BE_ALIEN)
 	if(length(possible_xenomorphs) < xeno_required_num)
 		return FALSE
 
@@ -164,6 +167,7 @@
 	if(!length(xenomorphs))
 		return FALSE
 
+	xeno_required_num = CONFIG_GET(number/min_xenos)
 	if(length(xenomorphs) < xeno_required_num)
 		for(var/i = 1 to xeno_starting_num - length(xenomorphs))
 			new /mob/living/carbon/Xenomorph/Larva(pick(GLOB.xeno_spawn))
@@ -176,6 +180,7 @@
 
 /datum/game_mode/distress/proc/initialize_queen()
 	var/list/datum/mind/possible_queens = get_players_for_role(BE_QUEEN)
+	var/list/possible_queens = get_players_for_role(BE_QUEEN)
 	if(!length(possible_queens))
 		return FALSE
 
@@ -185,6 +190,7 @@
 			continue
 		new_queen.assigned_role = "Queen"
 		queen = new_queen
+		xenomorphs += new_queen
 		break
 
 	if(!queen)
@@ -214,7 +220,7 @@
 /datum/game_mode/distress/proc/transform_xeno(datum/mind/M)
 	var/mob/living/carbon/Xenomorph/Larva/X = new (pick(GLOB.xeno_spawn))
 
-	M.transfer_to(X)
+	M.transfer_to(X, TRUE)
 
 	to_chat(X, "<B>You are now an alien!</B>")
 	to_chat(X, "<B>Your job is to spread the hive and protect the Queen. If there's no Queen, you can become the Queen yourself by evolving into a drone.</B>")
@@ -226,7 +232,7 @@
 /datum/game_mode/distress/proc/transform_queen(datum/mind/M)
 	var/mob/living/carbon/Xenomorph/Queen/X = new (pick(GLOB.xeno_spawn))
 
-	M.transfer_to(X)
+	M.transfer_to(X, TRUE)
 
 	to_chat(X, "<B>You are now the alien queen!</B>")
 	to_chat(X, "<B>Your job is to spread the hive.</B>")
@@ -235,10 +241,10 @@
 	X.update_icons()
 
 
-/datum/game_mode/distress/proc/transform_survivor(var/datum/mind/M)
+/datum/game_mode/distress/proc/transform_survivor(datum/mind/M)
 	var/mob/living/carbon/human/H = new (pick(GLOB.surv_spawn))
 
-	M.transfer_to(H)
+	M.transfer_to(H, TRUE)
 	H.client.prefs.copy_to(H)
 
 	var/survivor_job = pick(subtypesof(/datum/job/survivor))
