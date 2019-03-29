@@ -195,7 +195,7 @@
 	occupant?.in_stasis = FALSE //clean up; end stasis; remove from processing
 	occupant = null
 	STOP_PROCESSING(SSobj, src)
-	stop_processing()
+	STOP_PROCESSING(SSmachines, src)
 	return ..()
 
 /obj/machinery/sleeper/examine(mob/living/user)
@@ -255,7 +255,7 @@
 			occupant.in_stasis = null
 		stasis = FALSE
 		filtering = FALSE
-		stop_processing() //Shut down; stasis off, filtering off, stop processing.
+		STOP_PROCESSING(SSmachines, src) //Shut down; stasis off, filtering off, stop processing.
 		return
 
 	//Life support
@@ -307,8 +307,8 @@
 		visible_message("[user] puts [M.name] into the sleeper.", 3)
 		update_use_power(2)
 		occupant = M
-		start_processing()
-		connected.start_processing()
+		START_PROCESSING(SSmachines, src)
+		START_PROCESSING(SSmachines, connected)
 		icon_state = "sleeper_1"
 		if(orient == "RIGHT")
 			icon_state = "sleeper_1-r"
@@ -372,8 +372,8 @@
 	occupant.in_stasis = null //disable stasis
 	stasis = FALSE
 	occupant = null
-	stop_processing()
-	connected.stop_processing()
+	STOP_PROCESSING(SSmachines, src)
+	STOP_PROCESSING(SSmachines, connected)
 	update_use_power(1)
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
@@ -468,8 +468,8 @@
 	visible_message("[user] climbs into the sleeper.", 3)
 	update_use_power(2)
 	occupant = usr
-	start_processing()
-	connected.start_processing()
+	START_PROCESSING(SSmachines, src)
+	START_PROCESSING(SSmachines, connected)
 	icon_state = "sleeper_1"
 	if(orient == "RIGHT")
 		icon_state = "sleeper_1-r"

@@ -124,14 +124,14 @@
 		"mutagen" = 15
 		)
 
-/obj/machinery/portable_atmospherics/hydroponics/New()
-	..()
+/obj/machinery/portable_atmospherics/hydroponics/Initialize()
+	. = ..()
 	temp_chem_holder = new()
 	temp_chem_holder.create_reagents(10)
 	create_reagents(200)
 	connect()
 	update_icon()
-	start_processing()
+
 
 /obj/machinery/portable_atmospherics/hydroponics/bullet_act(var/obj/item/projectile/Proj)
 

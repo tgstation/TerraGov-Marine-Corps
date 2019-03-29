@@ -54,5 +54,5 @@ var/datum/round_statistics/round_statistics = new()
 	var/sentinel_neurotoxin_stings = 0
 	var/defiler_defiler_stings = 0
 	var/defiler_neurogas_uses = 0
-	var/drone_stings = 0
+	var/larval_growth_stings = 0
 	var/drone_salvage_plasma = 0

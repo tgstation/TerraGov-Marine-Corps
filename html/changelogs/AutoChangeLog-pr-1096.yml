@@ -1,0 +1,5 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - balance: "moved SD shutters forward, adds back inner walls"
+  - bugfix: "SD walls shouldn't link with the shutters anymore"

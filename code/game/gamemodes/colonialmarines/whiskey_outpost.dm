@@ -163,7 +163,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(H), SLOT_W_UNIFORM)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP/RO(H), SLOT_WEAR_SUIT)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/captain(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/tan(H), SLOT_HEAD)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/tgmcberet/tan(H), SLOT_HEAD)
 			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/techofficer/captain(H), SLOT_GLOVES)
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
 			H.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/captain(H), SLOT_R_HAND)

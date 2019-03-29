@@ -29,6 +29,7 @@
 		return TRUE
 	else
 		if(W.flags_item & NOBLUDGEON) return
+		user.changeNext_move(W.attack_speed)
 		var/aforce = W.force
 		health = max(0, health - aforce)
 		playsound(loc, "alien_resin_break", 25)

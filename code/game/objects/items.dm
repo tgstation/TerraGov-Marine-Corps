@@ -61,6 +61,8 @@
 	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
 
 
+	var/reach = 1
+
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
 	sprite_sheets = list(
@@ -268,6 +270,7 @@ cases. Override_icon_state should be a list.*/
 		H.updatehealth()
 		qdel(current_acid)
 		current_acid = null
+	user.changeNext_move(CLICK_CD_RAPID)
 	return
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
@@ -639,7 +642,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!user)
 		return
 	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
-	var/mob/living/carbon/human/H = user
 
 	for(var/obj/item/I in user.contents)
 		if(I.zoom && I != src)
@@ -650,8 +652,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
 	else if(!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
-	else if(!zoom && user.client && H.tinttotal >= 2)
-		to_chat(user, "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>")
+	else if(!zoom && user.get_total_tint() >= TINT_HEAVY)
+		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
 	else if(!zoom && user.get_active_held_item() != src)
 		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
 	else if(zoom) //If we are zoomed out, reset that parameter.
@@ -659,6 +661,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = !zoom
 		user.zoom_cooldown = world.time + 20
+		if(user.client.click_intercept)
+			user.client.click_intercept = null
 	else //Otherwise we want to zoom in.
 		if(world.time <= user.zoom_cooldown) //If we are spamming the zoom, cut it out
 			return

@@ -98,6 +98,8 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/proc/firing_arc(var/atom/A)
 	var/turf/T = get_turf(A)
+	if(!T || !owner)
+		return FALSE
 	var/dx = T.x - owner.x
 	var/dy = T.y - owner.y
 	var/deg = 0

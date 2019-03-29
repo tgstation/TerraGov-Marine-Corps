@@ -9,7 +9,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 65
 	melee_damage_upper = 80
-	attack_delay = -2 //Bonus or pen to time in between attacks. + makes slashes slower.
+	attack_delay = 6
 
 	// *** Tackle *** //
 	tackle_damage = 50 //How much HALLOSS damage a xeno deals when tackling

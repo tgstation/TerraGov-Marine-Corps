@@ -158,6 +158,7 @@
 		for(var/obj/item/item in mob.contents)
 			if(item.zoom)
 				item.zoom(mob)
+				click_intercept = null
 				break
 
 	//Check if you are being grabbed and if so attemps to break it
@@ -198,9 +199,6 @@
 			step(L, pick(cardinal))
 		else
 			. = ..()
-
-			if (mob.tile_contents)
-				mob.tile_contents = list()
 
 		moving = 0
 		next_movement = start_move_time + move_delay

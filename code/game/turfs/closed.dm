@@ -135,7 +135,7 @@
 	icon_state = "Intersection"
 
 /turf/closed/attackby(obj/item/W, mob/user)
-
+	. = ..()
 	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
 		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/ice) && !istype(src, /turf/closed/desertdamrockwall))
@@ -151,9 +151,7 @@
 				ChangeTurf(/turf/open/jungle/clear)
 			else
 				ChangeTurf(/turf/open/ice)
-			return
 
-	. = ..()
 
 //Ice Secret Wall
 /turf/closed/ice/secret

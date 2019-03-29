@@ -14,7 +14,7 @@
 
 /obj/item/clothing/under/marine/New(loc,expected_type 		= /obj/item/clothing/under/marine,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC snow uniform"),
-	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature),
+	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE),
 	override_icon_state[] 	= null
 	)
 	select_gamemode_skin(expected_type,override_icon_state,new_name,new_protection)
@@ -27,7 +27,7 @@
 
 /obj/item/clothing/under/marine/medic/New(loc,expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC corpsman snow uniform"),
-	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
+	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
 	..(loc,expected_type, new_name, new_protection)
 
 /obj/item/clothing/under/marine/engineer
@@ -37,7 +37,7 @@
 
 /obj/item/clothing/under/marine/engineer/New(loc,expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC engineer snow uniform"),
-	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
+	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
 	..(loc,expected_type, new_name, new_protection)
 
 /obj/item/clothing/under/marine/sniper
@@ -46,7 +46,7 @@
 
 /obj/item/clothing/under/marine/sniper/New(loc,expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC sniper snow uniform"),
-	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature),
+	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE),
 	override_icon_state[]		= list(MAP_ICE_COLONY = "s_marine_sniper")
 	)
 	..(loc,expected_type, override_icon_state, new_name, new_protection)
@@ -59,7 +59,7 @@
 /*
 /obj/item/clothing/under/marine/tanker/New(loc,expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC tanker snow uniform"),
-	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature),
+	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE),
 	override_icon_state[]		= list(MAP_ICE_COLONY = "s_marine_tanker")
 	)
 	..(loc,expected_type, override_icon_state, new_name, new_protection)
@@ -98,7 +98,7 @@
 	name = "pilot officer bodysuit"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented, survival-friendly pilot bodysuit. Fly the marines onwards to glory."
 	icon_state = "pilot_flightsuit"
-	flags_cold_protection = ICE_PLANET_min_cold_protection_temperature
+	flags_cold_protection = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/under/marine/officer/pilot/New()
 	select_gamemode_skin(/obj/item/clothing/under/marine/officer/pilot)
@@ -176,7 +176,7 @@
 	name = "\improper PMC fatigues"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit."
 	icon_state = "pmc_jumpsuit"
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 5, rad = 5)
 
 /obj/item/clothing/under/marine/veteran/PMC/leader
@@ -195,7 +195,7 @@
 	name = "\improper Iron Bear uniform"
 	desc = "A uniform worn by Iron Bears mercenaries in the service of Mother Russia. Smells a little like an actual bear."
 	icon_state = "bear_jumpsuit"
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	has_sensor = 0
 
 
@@ -203,7 +203,7 @@
 	name = "\improper UPP fatigues"
 	desc = "A set of UPP fatigues, mass-produced for the armed-forces of the Union of Progressive Peoples. The dark drab pattern of the UPP 17th battalion 'Smoldering Sons' emblazons it."
 	icon_state = "upp_uniform"
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	has_sensor = 0
 
 /obj/item/clothing/under/marine/veteran/UPP/medic
@@ -214,7 +214,7 @@
 	name = "freelancer fatigues"
 	desc = "A set of loose fitting fatigues, perfect for an informal mercenary. Smells like gunpowder, apple pie, and covered in grease and sake stains."
 	icon_state = "freelancer_uniform"
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	has_sensor = 0
 
 /obj/item/clothing/under/marine/veteran/dutch
@@ -236,7 +236,7 @@
 	name = "mercenary fatigues"
 	desc = "A beige suit with a red armband. Sturdy and thick, simply imposing. A mysterious crest emblazons it."
 	icon_state = "mercenary_heavy_uniform"
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
 
 /obj/item/clothing/under/marine/veteran/mercenary/miner

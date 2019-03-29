@@ -226,7 +226,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 			/obj/item/clothing/glasses/sunglasses, \
 			/obj/item/device/pda, \
 			/obj/item/clothing/glasses/mgoggles, \
-			/obj/item/clothing/head/cmberet/red, \
+			/obj/item/clothing/head/tgmcberet/red, \
 			/obj/item/clothing/gloves/black, \
 			/obj/item/weapon/baton, \
 			/obj/item/weapon/gun/energy/taser, \
@@ -235,7 +235,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 			/obj/item/card/id, \
 			/obj/item/clothing/under/marine, \
 			/obj/item/clothing/shoes/marine, \
-			/obj/item/clothing/head/cmcap)
+			/obj/item/clothing/head/tgmccap)
 
 			var/list/strippeditems = list()
 
@@ -374,7 +374,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 
 			qdel(occupant)
 			occupant = null
-			stop_processing()
+			STOP_PROCESSING(SSmachines, src)
 
 
 /obj/machinery/cryopod/attackby(obj/item/W, mob/living/user)
@@ -426,7 +426,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 			to_chat(M, "<span class='notice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
 			to_chat(M, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
 			occupant = M
-			start_processing()
+			START_PROCESSING(SSmachines, src)
 			time_entered = world.time
 
 			log_admin("[key_name(M)] has entered a stasis pod.")
@@ -503,7 +503,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 		to_chat(usr, "<span class='notice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
 		to_chat(usr, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
 		time_entered = world.time
-		start_processing()
+		START_PROCESSING(SSmachines, src)
 
 		add_fingerprint(usr)
 
@@ -516,7 +516,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 
 	occupant.forceMove(get_turf(src))
 	occupant = null
-	stop_processing()
+	STOP_PROCESSING(SSmachines, src)
 
 	if(orient_right)
 		icon_state = "body_scanner_0-r"

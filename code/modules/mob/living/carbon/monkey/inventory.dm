@@ -24,7 +24,7 @@
 		if(SLOT_WEAR_MASK)
 			wear_mask = W
 			W.equipped(src, slot)
-			update_inv_wear_mask()
+			wear_mask_update(W, TRUE)
 		if(SLOT_HANDCUFFED)
 			handcuffed = W
 			handcuff_update()

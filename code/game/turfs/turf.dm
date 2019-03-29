@@ -265,6 +265,8 @@
 	if(..())
 		return TRUE
 
+	user.changeNext_move(I.attack_speed)
+
 	if(can_lay_cable() && istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = I
 		for(var/obj/structure/cable/C in src)

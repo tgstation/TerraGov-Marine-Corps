@@ -5,6 +5,8 @@
 
 //https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
 #define MOUSE_OPACITY_TRANSPARENT 0
+#define MOUSE_OPACITY_ICON 1
+#define MOUSE_OPACITY_OPAQUE 2
 
 //defines for atom layers
 
@@ -13,6 +15,8 @@
 //#define AREA_LAYER 1
 
 //#define TURF_LAYER 2
+
+#define CLICKCATCHER_PLANE -99
 
 #define PLANE_SPACE -95
 #define PLANE_SPACE_PARALLAX -90
@@ -141,9 +145,9 @@
 #define FULLSCREEN_PAIN_LAYER	18.2 //pain flashes
 #define FULLSCREEN_CRIT_LAYER 18.25 //in critical
 
-#define HUD_LAYER 19
-#define ABOVE_HUD_LAYER 20
-#define ABOVE_HUD_PLANE 20
+#define HUD_PLANE 21
+#define HUD_LAYER 21
+#define ABOVE_HUD_PLANE 22
+#define ABOVE_HUD_LAYER 22
 
-#define CINEMATIC_LAYER 21
-
+#define CINEMATIC_LAYER 23

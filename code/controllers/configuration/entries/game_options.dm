@@ -158,10 +158,19 @@
 
 /datum/config_entry/flag/tank_mouth_noise //Causes the tank to sound like a 5 year old child is driving it.
 
+/datum/config_entry/number/xeno_number
+	integer = FALSE
+	config_entry_value = 4
+	min_val = 1
+
+/datum/config_entry/number/min_xenos
+	config_entry_value = 5
+	min_val = 1
+
 /datum/config_entry/number/xeno_coefficient
 	integer = FALSE
-	config_entry_value = 4.25
-	min_val = 1
+	config_entry_value = 0.04
+	min_val = 0.001
 
 /datum/config_entry/number/survivor_coefficient
 	integer = FALSE

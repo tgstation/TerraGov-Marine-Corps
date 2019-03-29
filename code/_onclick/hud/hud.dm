@@ -229,6 +229,12 @@
 	return
 
 
+/mob/proc/add_click_catcher()
+	client.screen += client.void
+
+
+/mob/new_player/add_click_catcher()
+	return
 
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)

@@ -813,17 +813,15 @@
 		M.stunned += 1.1
 		M.KnockDown(1.1)
 
-/datum/reagent/xeno_neurotoxin/overdose_process(mob/living/M)
-	M.adjustOxyLoss(min(2,volume * 0.1 * REM)) //Overdose starts applying more oxy damage
 
-/datum/reagent/xeno_neurotoxin/overdose_crit_process(mob/living/carbon/M)
-	M.adjustOxyLoss(min(4,volume * 0.2 * REM)) //Overdose starts applying more oxy damage
-	M.Losebreath(10) //Can't breathe; for punishing the bullies
-	M.Jitter(6) //Lets Xenos know they're ODing and should probably stop.
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(prob(10))
-			H.vomit()
+/datum/reagent/xeno_neurotoxin/overdose_process(mob/living/M)
+	M.adjustOxyLoss(5) //Overdose starts applying more oxy damage
+	M.Jitter(4) //Lets Xenos know they're ODing and should probably stop.
+
+
+/datum/reagent/xeno_neurotoxin/overdose_crit_process(mob/living/M)
+	M.Losebreath(2) //Can't breathe; for punishing the bullies
+
 
 /datum/reagent/xeno_growthtoxin
 	name = "Larval Accelerant"
@@ -836,8 +834,11 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
+
 /datum/reagent/xeno_growthtoxin/overdose_process(mob/living/M)
-	M.adjustOxyLoss(1) //Overdose starts applying more oxy damage
+	M.adjustOxyLoss(3)
+	M.Jitter(4) //Lets Xenos know they're ODing and should probably stop.
+
 
 /datum/reagent/xeno_growthtoxin/overdose_crit_process(mob/living/M)
-	M.adjustOxyLoss(2) //Overdose starts applying more oxy damage
+	M.Losebreath(2) //Can't breathe; for punishing the bullies.
