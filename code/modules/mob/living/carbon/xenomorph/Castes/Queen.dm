@@ -305,7 +305,7 @@
 		return
 
 	last_larva_time = world.time
-	var/mob/picked = get_alien_candidate()
+	var/picked = get_alien_candidate()
 	if(!picked)
 		return
 
@@ -313,7 +313,7 @@
 	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 	"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
 
-	picked.mind.transfer_to(new_xeno, TRUE)
+	new_xeno.key = picked
 
 	to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
 	SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
