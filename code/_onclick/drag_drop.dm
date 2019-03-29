@@ -12,7 +12,6 @@
 		return // should stop you from dragging through windows
 
 	over.MouseDrop_T(src,usr)
-	return
 
 
 // recieve a mousedrop
