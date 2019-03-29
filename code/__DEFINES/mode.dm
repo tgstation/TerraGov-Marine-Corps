@@ -97,7 +97,7 @@
 #define COOLDOWN_COMM_MESSAGE 	1 MINUTES
 #define COOLDOWN_COMM_CENTRAL 	30 SECONDS
 
-#define XENO_AFK_TIMER			300
+#define XENO_AFK_TIMER			300 // Number of life proc ticks. In for re-doing.
 
 #define DEATH_TIMER				5 MINUTES
 

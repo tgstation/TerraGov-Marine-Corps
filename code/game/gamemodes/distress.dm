@@ -10,7 +10,6 @@
 	var/xeno_required_num 	  = 1
 	var/xeno_starting_num 	  = 0
 	var/surv_starting_num 	  = 0
-	var/merc_starting_num 	  = 0
 	var/marine_starting_num   = 0
 
 	var/bioscan_current_interval = 45 MINUTES
@@ -458,7 +457,7 @@
 		CG.contraband = list(
 						/obj/item/weapon/gun/smg/ppsh = round(scale * 4),
 						/obj/item/weapon/gun/shotgun/double = round(scale * 2),
-						/obj/item/weapon/gun/shotgun/pump/bolt = round(scale * 2),
+						/obj/item/weapon/gun/shotgun/pump/bolt = round(scale * 2)
 						)
 
 		CG.build_inventory(CG.products)
@@ -492,8 +491,7 @@
 						/obj/item/storage/box/m94 = round(scale * 10),
 
 						/obj/item/attachable/flashlight = round(scale * 25),
-						/obj/item/attachable/bayonet = round(scale * 25),
-
+						/obj/item/attachable/bayonet = round(scale * 25)
 						)
 
 		M.contraband =   list(/obj/item/ammo_magazine/revolver/marksman = round(scale * 2),
