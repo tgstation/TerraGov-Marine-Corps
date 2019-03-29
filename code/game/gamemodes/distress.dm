@@ -63,13 +63,13 @@
 /datum/game_mode/distress/proc/map_announce()
 	switch(SSmapping.config.map_name)
 		if(MAP_LV_624)
-			command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. A response team from the [CONFIG_GET(string/ship_name)] will be dispatched shortly to investigate.", "[CONFIG_GET(string/ship_name)]")
+			command_announcement.Announce("A faint distress signal has been picked up by our scanners, which have tracked the source to a third generation colony, known as LV-624. Through use of bluespace drive tech, the [CONFIG_GET(string/ship_name)] has jumped within range of the colony. TGMC, gear up and get ready to respond!", "[CONFIG_GET(string/ship_name)]")
 		if(MAP_ICE_COLONY)
-			command_announcement.Announce("An automated distress signal has been received from archaeology site \"Shiva's Snowball\", on border ice world \"Ifrit\". A response team from the [CONFIG_GET(string/ship_name)] will be dispatched shortly to investigate.", "[CONFIG_GET(string/ship_name)]")
+			command_announcement.Announce("A garbled, unintelligible communications message was broadcasted over a general frequency, and picked up by our comms relay. The message appears to have come from a second generation settlement, located on an ice cold planet. The [CONFIG_GET(string/ship_name)] is moving into the sector with thrusters at max throttle. TGMC, get briefed and then move out! ", "[CONFIG_GET(string/ship_name)]")
 		if(MAP_BIG_RED)
-			command_announcement.Announce("We've lost contact with the Nanotrasen's research facility, [SSmapping.config.map_name]. The [CONFIG_GET(string/ship_name)] has been dispatched to assist.", "[CONFIG_GET(string/ship_name)]")
+			command_announcement.Announce("A second generation colony has had a beacon transmitting the same signal, nonstop. Attempts to hail the colony over comms have proved futile. Because the [CONFIG_GET(string/ship_name)] was at a nearby drydock, it has been dispatched to figure out what's wrong. TGMC, prepare to deploy! ", "[CONFIG_GET(string/ship_name)]")
 		if(MAP_PRISON_STATION)
-			command_announcement.Announce("An automated distress signal has been received from maximum-security prison \"Fiorina Orbital Penitentiary\". A response team from the [CONFIG_GET(string/ship_name)] will be dispatched shortly to investigate.", "[CONFIG_GET(string/ship_name)]")
+			command_announcement.Announce("A Nanotrasen maximum security prison has activated its distress signal. The [CONFIG_GET(string/ship_name)] is swiftly cruising through space, and nearing the vicinity of the prison station. TGMC, get moving! ", "[CONFIG_GET(string/ship_name)]")
 
 
 /datum/game_mode/distress/process()
@@ -142,7 +142,8 @@
 
 
 /datum/game_mode/distress/proc/initialize_scales()
-	xeno_starting_num = max((round(GLOB.ready_players / CONFIG_GET(number/xeno_coefficient))), xeno_required_num)
+	xeno_required_num = CONFIG_GET(number/min_xenos)
+	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * GLOB.ready_players)), xeno_required_num)
 	surv_starting_num = CLAMP((round(GLOB.ready_players / CONFIG_GET(number/survivor_coefficient))), 0, 8)
 	marine_starting_num = GLOB.ready_players - xeno_starting_num - surv_starting_num
 
@@ -163,9 +164,12 @@
 	if(!length(xenomorphs))
 		return FALSE
 
-	if(length(xenomorphs) < xeno_starting_num)
+	if(length(xenomorphs) < xeno_required_num)
 		for(var/i = 1 to xeno_starting_num - length(xenomorphs))
 			new /mob/living/carbon/Xenomorph/Larva(pick(GLOB.xeno_spawn))
+
+	else if(length(xenomorphs) < xeno_starting_num)
+		stored_larva += xeno_starting_num - length(xenomorphs)
 
 	return TRUE
 

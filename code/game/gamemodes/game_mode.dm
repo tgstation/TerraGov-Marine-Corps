@@ -318,8 +318,6 @@
 		dat += "[round_statistics.carrier_traps] hidey holes for huggers were made."
 	if(round_statistics.sentinel_neurotoxin_stings)
 		dat += "[round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
-	if(round_statistics.drone_stings)
-		dat += "[round_statistics.drone_stings] number of times Drones stung."
 	if(round_statistics.drone_salvage_plasma)
 		dat += "[round_statistics.drone_salvage_plasma] number of times Drones salvaged corpses."
 	if(round_statistics.defiler_defiler_stings)
