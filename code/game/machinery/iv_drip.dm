@@ -48,7 +48,7 @@
 			"You detach \the [src] from \the [attached].")
 			attached = null
 			update_icon()
-			stop_processing()
+			STOP_PROCESSING(SSmachines, src)
 			return
 
 		if(in_range(src, usr) && ishuman(over_object) && get_dist(over_object, src) <= 1)
@@ -56,7 +56,7 @@
 			"You attach \the [src] to \the [over_object].")
 			attached = over_object
 			update_icon()
-			start_processing()
+			START_PROCESSING(SSmachines, src)
 
 
 /obj/machinery/iv_drip/attackby(obj/item/W, mob/living/user)
@@ -94,7 +94,7 @@
 			attached.apply_damage(3, BRUTE, pick("r_arm", "l_arm"))
 			attached = null
 			update_icon()
-			stop_processing()
+			STOP_PROCESSING(SSmachines, src)
 			return
 
 	if(attached && beaker)

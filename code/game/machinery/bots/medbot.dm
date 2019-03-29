@@ -53,14 +53,14 @@
 
 /obj/machinery/bot/medbot/Initialize()
 	. = ..()
-	src.icon_state = "medibot[src.on]"
+	icon_state = "medibot[on]"
 
-	if(src.skin)
-		src.overlays += image('icons/obj/aibots.dmi', "medskin_[src.skin]")
+	if(skin)
+		overlays += image('icons/obj/aibots.dmi', "medskin_[skin]")
 
-	src.botcard = new /obj/item/card/id(src)
+	botcard = new /obj/item/card/id(src)
 	botcard.access = ALL_MARINE_ACCESS
-	start_processing()
+
 
 /obj/machinery/bot/medbot/turn_on()
 	. = ..()

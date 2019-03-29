@@ -17,9 +17,8 @@
 
 /obj/machinery/power/generator/Initialize()
 	. = ..()
-
 	reconnect()
-	start_processing()
+
 
 //generators connect in dir and reverse_dir(dir) directions
 //mnemonic to determine circulator/generator directions: the cirulators orbit clockwise around the generator

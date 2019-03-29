@@ -55,7 +55,7 @@
 	if(!terminal.powernet)
 		terminal.connect_to_network()
 	update_icon()
-	start_processing()
+
 
 /obj/machinery/power/smes/Destroy()
 	if(terminal)
