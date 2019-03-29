@@ -89,12 +89,6 @@
 /obj/machinery/proc/removeStaticPower(value, powerchannel)
 	addStaticPower(-value, powerchannel)
 
-/obj/machinery/proc/power_change(var/area/master_area = null)	// called whenever the power settings of the containing area change
-	if(powered(power_channel))									// by default, check equipment channel & set flag
-		machine_stat &= ~NOPOWER										// can override if needed
-	else
-		machine_stat |= NOPOWER
-
 // connect the machine to a powernet if a node cable is present on the turf
 /obj/machinery/power/proc/connect_to_network()
 	var/turf/T = src.loc

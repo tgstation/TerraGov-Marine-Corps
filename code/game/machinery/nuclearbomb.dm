@@ -210,7 +210,7 @@ var/bomb_set
 	return
 
 obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
-	var/dat as text
+	var/dat
 	dat += "<B>Nuclear Fission Explosive</B><BR>\nNuclear Device Wires:</A><HR>"
 	for(var/wire in src.wires)
 		dat += text("[wire] Wire: <A href='?src=\ref[src];wire=[wire];act=wire'>[src.wires[wire] ? "Mend" : "Cut"]</A> <A href='?src=\ref[src];wire=[wire];act=pulse'>Pulse</A><BR>")

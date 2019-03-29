@@ -69,7 +69,7 @@
 
 	name = lowertext("[fullname] sandwich")
 	if(length(name) > 80) name = "[pick(list("absurd","colossal","enormous","ridiculous"))] sandwich"
-	w_class = n_ceil(CLAMP((ingredients.len/2),1,3))
+	w_class = CEILING(CLAMP((ingredients.len/2),1,3),1)
 
 /obj/item/reagent_container/food/snacks/csandwich/Destroy()
 	for(var/obj/item/O in ingredients)
