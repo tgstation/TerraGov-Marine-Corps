@@ -8,8 +8,14 @@
 	storage_slots = 1
 	draw_mode = 0
 	allow_drawing_method = TRUE
+	var/fill_type
+	var/fill_number = 0
 
-
+/obj/item/storage/pouch/Initialize()
+	. = ..()
+	if(fill_number && fill_type)
+		for(var/i in 1 to fill_number)
+			new fill_type(src)
 
 /obj/item/storage/pouch/examine(mob/user)
 	..()
@@ -46,9 +52,9 @@
 	icon_state = "large_drop"
 	draw_mode = 0
 
-/obj/item/storage/pouch/general/large/command/Initialize()
-	. = ..()
-	new /obj/item/device/binoculars/tactical(src)
+/obj/item/storage/pouch/general/large/command
+	fill_type = /obj/item/device/binoculars/tactical
+	fill_number = 1
 
 /obj/item/storage/pouch/bayonet
 	name = "bayonet sheath"
@@ -61,14 +67,13 @@
 	storage_slots = 3
 	draw_mode = 1
 
-/obj/item/storage/pouch/bayonet/full/Initialize()
-	. = ..()
-	new /obj/item/weapon/combat_knife(src)
+/obj/item/storage/pouch/bayonet/full
+	fill_type = /obj/item/weapon/combat_knife
+	fill_number = 1
 
-
-/obj/item/storage/pouch/bayonet/upp/Initialize()
-	. = ..()
-	new /obj/item/weapon/combat_knife/upp (src)
+/obj/item/storage/pouch/bayonet/upp
+	fill_type = /obj/item/weapon/combat_knife/upp
+	fill_number = 1
 
 /obj/item/storage/pouch/survival
 	name = "survival pouch"
@@ -147,14 +152,6 @@
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
 		/obj/item/cell/lasgun)
-	var/magazine_type
-	var/magazine_number = 0
-
-/obj/item/storage/pouch/magazine/Initialize()
-	. = ..()
-	if(magazine_number)
-		for(var/i in 1 to magazine_number)
-			new magazine_type(src)
 
 /obj/item/storage/pouch/magazine/large
 	name = "large magazine pouch"
@@ -180,52 +177,52 @@
 	icon_state = "large_pistol_mag"
 
 /obj/item/storage/pouch/magazine/pistol/large/full
-	magazine_type = /obj/item/ammo_magazine/pistol
-	magazine_number = 6
+	fill_type = /obj/item/ammo_magazine/pistol
+	fill_number = 6
 
 /obj/item/storage/pouch/magazine/pistol/pmc_mateba
-	magazine_type = /obj/item/ammo_magazine/revolver/mateba
-	magazine_number = 3
+	fill_type = /obj/item/ammo_magazine/revolver/mateba
+	fill_number = 3
 
-/obj/item/storage/pouch/magazine/pistol/
-	magazine_type = /obj/item/ammo_magazine/pistol/vp70
-	magazine_number = 3
+/obj/item/storage/pouch/magazine/pistol/vp70
+	fill_type = /obj/item/ammo_magazine/pistol/vp70
+	fill_number = 3
 
 /obj/item/storage/pouch/magazine/pistol/pmc_vp78
-	magazine_type = /obj/item/ammo_magazine/pistol/vp78
-	magazine_number = 3
+	fill_type = /obj/item/ammo_magazine/pistol/vp78
+	fill_number = 3
 
 /obj/item/storage/pouch/magazine/upp
-	magazine_type = /obj/item/ammo_magazine/rifle/type71
-	magazine_number = 2
+	fill_type = /obj/item/ammo_magazine/rifle/type71
+	fill_number = 2
 
 /obj/item/storage/pouch/magazine/large/upp
-	magazine_type = /obj/item/ammo_magazine/rifle/type71
-	magazine_number = 3
+	fill_type = /obj/item/ammo_magazine/rifle/type71
+	fill_number = 3
 
 /obj/item/storage/pouch/magazine/upp_smg
-	magazine_type = /obj/item/ammo_magazine/smg/skorpion
-	magazine_number = 2
+	fill_type = /obj/item/ammo_magazine/smg/skorpion
+	fill_number = 2
 
 /obj/item/storage/pouch/magazine/large/pmc_m39
-	magazine_type = /obj/item/ammo_magazine/smg/m39/ap
-	magazine_number = 3
+	fill_type = /obj/item/ammo_magazine/smg/m39/ap
+	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_p90
-	magazine_type = /obj/item/ammo_magazine/smg/p90
-	magazine_number = 3
+	fill_type = /obj/item/ammo_magazine/smg/p90
+	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_lmg
-	magazine_type = /obj/item/ammo_magazine/rifle/lmg
-	magazine_number = 3
+	fill_type = /obj/item/ammo_magazine/rifle/lmg
+	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_sniper
-	magazine_type = /obj/item/ammo_magazine/sniper/elite
-	magazine_number = 3
+	fill_type = /obj/item/ammo_magazine/sniper/elite
+	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_rifle
-	magazine_type = /obj/item/ammo_magazine/rifle/ap
-	magazine_number = 3
+	fill_type = /obj/item/ammo_magazine/rifle/ap
+	fill_number = 3
 
 
 
@@ -245,18 +242,13 @@
 		/obj/item/device/radio/detpack,
 		/obj/item/device/assembly/signaler)
 
-/obj/item/storage/pouch/explosive/full/Initialize()
-	. = ..()
-	new /obj/item/explosive/grenade/frag (src)
-	new /obj/item/explosive/grenade/frag (src)
-	new /obj/item/explosive/grenade/frag (src)
+/obj/item/storage/pouch/explosive/full
+	fill_type = /obj/item/explosive/grenade/frag
+	fill_number = 3
 
-
-/obj/item/storage/pouch/explosive/upp/Initialize()
-	. = ..()
-	new /obj/item/explosive/plastique(src)
-	new /obj/item/explosive/plastique(src)
-	new /obj/item/explosive/plastique(src)
+/obj/item/storage/pouch/explosive/upp
+	fill_type = /obj/item/explosive/plastique
+	fill_number = 3
 
 /obj/item/storage/pouch/medical
 	name = "medical pouch"
@@ -312,9 +304,9 @@
 	bypass_w_limit = list(/obj/item/storage/firstaid)
 
 
-/obj/item/storage/pouch/medkit/full/Initialize()
-	. = ..()
-	new /obj/item/storage/firstaid/regular(src)
+/obj/item/storage/pouch/medkit/full
+	fill_type = /obj/item/storage/firstaid/regular
+	fill_number = 1
 
 /obj/item/storage/pouch/document
 	name = "document pouch"
@@ -360,16 +352,9 @@
 	else
 		return ..()
 
-/obj/item/storage/pouch/flare/full/Initialize()
-	. = ..()
-	new /obj/item/explosive/grenade/flare(src)
-	new /obj/item/explosive/grenade/flare(src)
-	new /obj/item/explosive/grenade/flare(src)
-	new /obj/item/explosive/grenade/flare(src)
-	new /obj/item/explosive/grenade/flare(src)
-
-
-
+/obj/item/storage/pouch/flare/full
+	fill_type = /obj/item/explosive/grenade/flare
+	fill_number = 5
 
 /obj/item/storage/pouch/radio
 	name = "radio pouch"

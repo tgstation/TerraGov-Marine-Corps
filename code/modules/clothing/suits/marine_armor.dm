@@ -57,7 +57,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/brightness_on = 5 //Average attachable pocket light
 	var/flashlight_cooldown = 0 //Cooldown for toggling the light
 	var/locate_cooldown = 0 //Cooldown for SL locator
-	var/armor_overlays[]
+	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
 	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
 	w_class = 5
@@ -268,10 +268,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	icon_state = "7"
 	armor = list(melee = 50, bullet = 60, laser = 45, energy = 40, bomb = 40, bio = 15, rad = 15)
 
-	New(loc,expected_type 	= type,
-		new_name[] 		= list(MAP_ICE_COLONY = "\improper B12 pattern leader snow armor"))
-		..(loc,expected_type,new_name)
-
 /obj/item/clothing/suit/storage/marine/M3P/tanker
 	name = "\improper M3 pattern tanker armor"
 	desc = "A modified and refashioned suit of M3 Pattern armor designed to be worn by the loader of a TGMC vehicle crew. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
@@ -302,11 +298,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	supporting_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT) //B18 effectively stabilizes these.
 	unacidable = TRUE
 
-	New(loc,expected_type 	= type,
-		new_name[] 		= list(MAP_ICE_COLONY = "\improper B18 defensive snow armor"))
-		..(loc,expected_type,new_name)
-
-/obj/item/clothing/suit/storage/marine/specialist/New()
+/obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
 	B18_analyzer = new /obj/item/device/healthanalyzer/integrated
 
@@ -625,10 +617,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	armor = list(melee = 65, bullet = 70, laser = 40, energy = 25, bomb = 30, bio = 10, rad = 10)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
-	New(loc,expected_type 	= type,
-		new_name[] 		= list(MAP_ICE_COLONY = "\improper M3 pattern sniper snow armor"))
-		..(loc,expected_type,,new_name)
-
 /obj/item/clothing/suit/storage/marine/sniper/jungle
 	name = "\improper M3 pattern marksman armor"
 	icon_state = "marine_sniperm"
@@ -636,11 +624,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
 	flags_heat_protection = CHEST|GROIN|LEGS|ARMS
-
-	New(loc,expected_type 	= type,
-		new_name[] 		= list(MAP_ICE_COLONY = "\improper M3 pattern marksman snow armor"))
-		..(loc,expected_type,,new_name)
-
 
 //=============================//PMCS\\==================================
 
@@ -751,8 +734,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	actions_types = list(/datum/action/item_action/toggle)
 	var/flags_faction_armor = ARMOR_LAMP_OVERLAY
 
-/obj/item/clothing/suit/storage/faction/New()
-	..()
+/obj/item/clothing/suit/storage/faction/Initialize(mapload, ...)
+	. = ..()
 	armor_overlays = list("lamp")
 	update_icon()
 
