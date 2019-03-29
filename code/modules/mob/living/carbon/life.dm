@@ -204,7 +204,7 @@
 	if(amount > 0)
 		slowdown = max(slowdown, amount) //Slowdown overlaps rather than stacking.
 	else
-		slowdown = max(slowdown - amount,0)
+		slowdown = max(slowdown + amount,0)
 	return slowdown
 
 /mob/living/carbon/proc/add_slowdown(amount)
