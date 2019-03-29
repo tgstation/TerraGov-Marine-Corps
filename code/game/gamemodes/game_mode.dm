@@ -256,7 +256,7 @@
 			X.set_hive_number(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
 
 		else if(ishuman(L))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/human/H = L
 			if(!H.w_uniform)
 				var/job = pick(/datum/job/clf/leader, /datum/job/upp/commando/leader, /datum/job/freelancer/leader)
 				var/datum/job/J = new job
