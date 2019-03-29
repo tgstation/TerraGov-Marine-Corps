@@ -105,11 +105,11 @@
 
 	var/mobility_aura = 0
 	var/protection_aura = 0
-	var/marskman_aura = 0
+	var/marksman_aura = 0
 
 	var/mobility_new = 0
 	var/protection_new = 0
-	var/marskman_new = 0
+	var/marksman_new = 0
 	var/aura_recovery_multiplier = 0
 
 	var/temporary_slowdown = 0 //Stacking slowdown caused from effects, currently used by neurotoxin gas

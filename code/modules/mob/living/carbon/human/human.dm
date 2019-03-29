@@ -4,7 +4,7 @@
 	voice_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, STATUS_HUD_OBSERVER_INFECTION)
+	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, STATUS_HUD_OBSERVER_INFECTION, ORDER_HUD)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/regenZ = 1 //Temp zombie thing until I write a better method ~Apop
 
@@ -137,6 +137,11 @@
 		dna.real_name = real_name
 
 	prev_gender = gender // Debug for plural genders
+	
+
+	//makes order hud visible
+	var/datum/mob_hud/H = huds[MOB_HUD_ORDER]
+		H.add_hud_to(usr)
 
 
 /mob/living/carbon/human/vv_get_dropdown()
@@ -157,6 +162,7 @@
 	sec_hud_set_implants()
 	sec_hud_set_security_status()
 	hud_set_squad()
+	hud_set_order()
 	//and display them
 	add_to_all_mob_huds()
 
@@ -195,7 +201,7 @@
 			stat(null, "You are affected by a MOVE order.")
 		if(protection_aura)
 			stat(null, "You are affected by a HOLD order.")
-		if(marskman_aura)
+		if(marksman_aura)
 			stat(null, "You are affected by a FOCUS order.")
 
 /mob/living/carbon/human/ex_act(severity)

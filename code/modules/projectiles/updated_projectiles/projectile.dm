@@ -424,9 +424,9 @@
 		. -= round(max(30,(shooter_human.traumatic_shock) * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
 		if(shooter_human.stagger)
 			. -= 30 //Being staggered fucks your aim.
-		if(shooter_human.marskman_aura)
-			. += shooter_human.marskman_aura * 1.5 //Flat buff of 3 % accuracy per aura level
-			. += P.distance_travelled * 0.35 * shooter_human.marskman_aura //Flat buff to accuracy per tile travelled
+		if(shooter_human.marksman_aura) // Accuracy bonus from active focus order: flat bonus + bonus per tile traveled
+			. += shooter_human.marksman_aura * CONFIG_GET(number/combat_define/focus_base_bonus) 
+			. += P.distance_travelled * shooter_human.marksman_aura * CONFIG_GET(number/combat_define/focus_per_tile_bonus)
 
 
 /mob/living/carbon/human/get_projectile_hit_chance(obj/item/projectile/P)
