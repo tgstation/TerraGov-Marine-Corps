@@ -1,0 +1,4 @@
+author: "Ondrej008"
+delete-after: True
+changes: 
+  - bugfix: "Select Equipment now gives pouches, yey"
