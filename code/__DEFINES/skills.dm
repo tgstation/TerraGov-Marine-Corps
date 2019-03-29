@@ -77,7 +77,7 @@
 #define SKILL_MEDICAL_CHEM		1 // recognizing chemicals, using autoinjectors & hyposprays with any chemicals (SL)
 #define SKILL_MEDICAL_MEDIC		2 //syringe use & defib use (Squad Corpsman)
 #define SKILL_MEDICAL_DOCTOR	3
-#define SKILL_MEDICAL_CMO		4
+#define SKILL_MEDICAL_SYNTH		4
 #define SKILL_MEDICAL_MASTER	5
 //higher levels means faster syringe use and better defibrillation
 
