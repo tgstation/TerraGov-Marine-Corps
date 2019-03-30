@@ -204,9 +204,9 @@
 			var/armor_block = M.run_armor_check("chest", "melee") * 0.5 //Only 50% armor applies vs stomp brute damage
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				H.take_overall_damage(rand(damage), null, 0, 0, 0, armor_block) //Armour functions against this.
+				H.take_overall_damage(damage, null, 0, 0, 0, armor_block) //Armour functions against this.
 			else
-				M.take_overall_damage(rand(damage), 0, null, armor_block) //Armour functions against this.
+				M.take_overall_damage(damage, 0, null, armor_block) //Armour functions against this.
 			to_chat(M, "<span class='highdanger'>You are stomped on by [src]!</span>")
 			shake_camera(M, 3, 3)
 		else
