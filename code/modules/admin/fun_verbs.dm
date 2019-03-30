@@ -767,7 +767,7 @@
 	H.delete_equipment(TRUE)
 	if(dresscode != "{Naked}")
 		O = new dresscode
-		H.equipOutfit(O, TRUE)
+		H.equipOutfit(O, FALSE)
 
 	H.regenerate_icons()
 
