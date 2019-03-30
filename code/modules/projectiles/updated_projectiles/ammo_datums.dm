@@ -775,6 +775,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "supersonic sniper bullet"
 	hud_state = "sniper_supersonic"
 	iff_signal = ACCESS_IFF_PMC
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
 
 /datum/ammo/bullet/sniper/elite/New()
 	..()
