@@ -88,7 +88,7 @@
 		power_gen_percent = 0
 		update_icon()
 		cur_tick = 0
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 		return TRUE
 	return FALSE //Nope, all fine
 
@@ -118,13 +118,13 @@
 		power_gen_percent = 0
 		cur_tick = 0
 		icon_state = "off"
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 		return TRUE
 	visible_message("[icon2html(src, viewers(src))] <span class='warning'><b>[src]</b> beeps loudly as [usr] turns on the turbines and the generator begins spinning up.")
 	icon_state = "on10"
 	is_on = TRUE
 	cur_tick = 0
-	START_PROCESSING(SSmachines, src)
+	start_processing()
 	return TRUE
 
 /obj/machinery/power/geothermal/attackby(var/obj/item/O as obj, var/mob/user as mob)

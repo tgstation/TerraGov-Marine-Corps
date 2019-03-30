@@ -25,6 +25,9 @@
 		var/max_stored_power = 50000 //50 kW
 		use_power = 0	//Draws directly from power net. Does not use APC power.
 
+/obj/machinery/shieldwallgen/New()
+	..()
+	start_processing()
 
 /obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
 	if(state != 1)
@@ -241,16 +244,17 @@
 		var/power_usage = 2500	//how much power it takes to sustain the shield
 		var/generate_power_usage = 7500	//how much power it takes to start up the shield
 
-/obj/machinery/shieldwall/Initialize(var/obj/machinery/shieldwallgen/A, var/obj/machinery/shieldwallgen/B)
-	. = ..()
-	gen_primary = A
-	gen_secondary = B
-	if(A?.active && B?.active)
+/obj/machinery/shieldwall/New(var/obj/machinery/shieldwallgen/A, var/obj/machinery/shieldwallgen/B)
+	..()
+	src.gen_primary = A
+	src.gen_secondary = B
+	if(A && B && A.active && B.active)
 		needs_power = 1
 		if(prob(50))
 			A.storedpower -= generate_power_usage
 		else
 			B.storedpower -= generate_power_usage
+		start_processing()
 	else
 		qdel(src) //need at least two generator posts
 

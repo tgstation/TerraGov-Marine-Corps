@@ -21,19 +21,19 @@
 	var/coinsToProduce = 10
 
 
-/obj/machinery/mineral/mint/Initialize()
-	. = ..()
-
-	for(var/d in cardinal)
-		input = locate(/obj/machinery/mineral/input, get_step(src, d))
-		if(input) 
-			break
-
-	for(var/d in cardinal)
-		output = locate(/obj/machinery/mineral/output, get_step(src, d))
-		if(output) 
-			break
-
+/obj/machinery/mineral/mint/New()
+	..()
+	spawn( 5 )
+		for (var/dir in cardinal)
+			src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
+			if(src.input) break
+		for (var/dir in cardinal)
+			src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
+			if(src.output) break
+		//START_PROCESSING(SSobj, src)
+		start_processing()
+		return
+	return
 
 
 /obj/machinery/mineral/mint/process()

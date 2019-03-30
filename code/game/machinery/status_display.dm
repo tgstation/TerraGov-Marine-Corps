@@ -43,6 +43,7 @@
 /obj/machinery/status_display/Initialize()
 	. = ..()
 	set_picture("default")
+	start_processing()
 
 	switch(dir)
 		if(NORTH)

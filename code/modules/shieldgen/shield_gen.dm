@@ -31,13 +31,13 @@
 	use_power = 0	//doesn't use APC power
 
 /obj/machinery/shield_gen/Initialize()
-	. = ..()
 	for(var/obj/machinery/shield_capacitor/possible_cap in range(1, src))
 		if(get_dir(possible_cap, src) == possible_cap.dir)
 			owned_capacitor = possible_cap
 			break
 	field = list()
-
+	. = ..()
+	start_processing()
 
 /obj/machinery/shield_gen/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id))

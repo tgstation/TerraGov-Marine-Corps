@@ -34,10 +34,12 @@
 	component_parts += new /obj/item/stock_parts/capacitor
 	component_parts += new /obj/item/stock_parts/capacitor
 
-/obj/machinery/power/smes/batteryrack/Initialize()
-	. = ..()
+/obj/machinery/power/smes/batteryrack/New()
+	..()
 	add_parts()
 	RefreshParts()
+	start_processing()
+	return
 
 
 //Maybe this should be moved up to obj/machinery

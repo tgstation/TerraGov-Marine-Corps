@@ -13,8 +13,8 @@
 
 /obj/machinery/computer/Initialize()
 	. = ..()
+	start_processing()
 	power_change()
-
 
 /obj/machinery/computer/process()
 	if(machine_stat & (NOPOWER|BROKEN))

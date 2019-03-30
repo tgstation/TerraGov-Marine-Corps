@@ -30,7 +30,7 @@
 	is_on = TRUE
 	power_gen_percent = 99//will get to 100 on first tick, updating fuel_rate in the process
 	update_icon()
-
+	start_processing()
 
 /obj/machinery/power/fusion_engine/random/Initialize()
 	. = ..()
@@ -54,7 +54,7 @@
 			is_on = FALSE
 			power_gen_percent = 0
 			update_icon()
-			STOP_PROCESSING(SSmachines, src)
+			stop_processing()
 		return FALSE
 	if (fusion_cell.fuel_amount <= 0)
 		visible_message("[icon2html(src, viewers(src))] <b>[src]</b> flashes that the fuel cell is empty as the engine seizes.")
@@ -64,7 +64,7 @@
 		power_gen_percent = 0
 		fail_rate+=2 //Each time the engine is allowed to seize up it's fail rate for the future increases because reasons.
 		update_icon()
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 		return FALSE
 
 	if(!check_failure())
@@ -109,7 +109,7 @@
 		power_gen_percent = 0
 		cur_tick = 0
 		update_icon()
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 		return TRUE
 
 	if(!fusion_cell)
@@ -127,7 +127,7 @@
 	is_on = TRUE
 	cur_tick = 0
 	update_icon()
-	START_PROCESSING(SSmachines, src)
+	start_processing()
 	return TRUE
 
 /obj/machinery/power/fusion_engine/attackby(obj/item/O, mob/user)
@@ -321,7 +321,7 @@
 		is_on = FALSE
 		power_gen_percent = 0
 		update_icon()
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 
 		return TRUE
 	else

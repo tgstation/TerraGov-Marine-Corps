@@ -265,7 +265,7 @@
 		if("scan")
 			if(scanning)
 				scan_progress = 10
-				START_PROCESSING(SSmachines, src)
+				start_processing()
 		if("cancel")
 			scan_progress = -1
 		if("card")
@@ -307,5 +307,5 @@
 			ping("Scan complete.")
 			var/datum/data/record/forensic/fresh = new(scanning)
 			add_record(fresh)
-			STOP_PROCESSING(SSmachines, src)
+			stop_processing()
 			updateUsrDialog()
