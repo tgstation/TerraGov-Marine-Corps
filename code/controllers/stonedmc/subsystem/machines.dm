@@ -8,6 +8,8 @@ SUBSYSTEM_DEF(machines)
 	var/list/zlevel_cables = list() //up or down cables
 	var/list/currentrunareas = list()
 
+	var/alternate = FALSE
+
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()
 	fire()
@@ -27,13 +29,22 @@ SUBSYSTEM_DEF(machines)
 /datum/controller/subsystem/machines/stat_entry()
 	..("AA:[active_areas.len]|PN:[powernets.len]|PM:[processing_machines.len]")
 
-/datum/controller/subsystem/machines/fire(resumed = 0)
-	if (!resumed)
-		for(var/datum/powernet/Powernet in powernets)
-			Powernet.reset() //reset the power state.
-		currentrunmachines = processing_machines.Copy()
-		currentrunareas = active_areas.Copy()
+/datum/controller/subsystem/machines/proc/firenew()
+	//cache for sanic speed (lists are references anyways)
+	var/list/currentrun = src.currentrunmachines
 
+	var/seconds = wait * 0.1
+	while(length(currentrun))
+		var/obj/machinery/thing = currentrun[currentrun.len]
+		currentrun.len--
+		if(QDELETED(thing) || thing.process(seconds) == PROCESS_KILL)
+			processing_machines -= thing
+			if(!QDELETED(thing))
+				thing.datum_flags &= ~DF_ISPROCESSING
+		if(MC_TICK_CHECK)
+			return
+
+/datum/controller/subsystem/machines/proc/fireold()
 	while (currentrunmachines.len)
 		var/obj/machinery/M = currentrunmachines[currentrunmachines.len]
 		currentrunmachines.len--
@@ -46,6 +57,20 @@ SUBSYSTEM_DEF(machines)
 
 		if (MC_TICK_CHECK)
 			return
+
+/datum/controller/subsystem/machines/fire(resumed = 0)
+	if (!resumed)
+		for(var/datum/powernet/Powernet in powernets)
+			Powernet.reset() //reset the power state.
+		currentrunmachines = processing_machines.Copy()
+		currentrunareas = active_areas.Copy()
+	alternate = !alternate
+
+	switch(alternate)
+		if(TRUE)
+			fireold()
+		if(FALSE)
+			firenew()
 
 	while (currentrunareas.len)
 		var/area/A = currentrunareas[currentrunareas.len]
