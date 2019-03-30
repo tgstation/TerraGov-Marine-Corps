@@ -63,14 +63,7 @@
 
 /obj/item/binoculars/tactical/on_unset_interaction(mob/user)
 	. = ..()
-
-	if(!user?.client)
-		return
-
-	user.client.click_intercept = null
-
-	if(zoom)
-		return
+	user.reset_client_sight()
 	if(laser)
 		qdel(laser)
 	if(coord)
@@ -97,7 +90,7 @@
 		to_chat(user, "These binoculars only have one mode.")
 		return
 
-	if(!zoom)
+	if(!zoomed)
 		mode = !mode
 		to_chat(user, "<span class='notice'>You switch [src] to [mode? "range finder" : "CAS marking" ] mode.</span>")
 		update_icon()

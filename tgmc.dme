@@ -1049,6 +1049,7 @@
 #include "code\modules\mob\mob_grab.dm"
 #include "code\modules\mob\mob_helpers.dm"
 #include "code\modules\mob\mob_movement.dm"
+#include "code\modules\mob\mob_procs.dm"
 #include "code\modules\mob\mob_status_procs.dm"
 #include "code\modules\mob\mob_transformation_simple.dm"
 #include "code\modules\mob\mob_verbs.dm"

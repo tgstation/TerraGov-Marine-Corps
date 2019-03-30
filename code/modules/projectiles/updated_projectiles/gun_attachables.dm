@@ -554,11 +554,11 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/scope/activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
 	if(turn_off)
-		if(G.zoom)
+		if(G.zoomed)
 			G.zoom(user, zoom_offset, zoom_viewsize)
 		return TRUE
 
-	if(!G.zoom && !(G.flags_item & WIELDED))
+	if(!G.zoomed && !(G.flags_item & WIELDED))
 		if(user)
 			to_chat(user, "<span class='warning'>You must hold [G] with two hands to use [src].</span>")
 		return FALSE
@@ -1356,7 +1356,7 @@ Defined in conflicts.dm of the #defines folder.
 	. = ..()
 	if(istype(rail,/obj/item/attachable/scope))
 		var/obj/item/attachable/scope/S = rail
-		if(zoom)
+		if(zoomed)
 			S.accuracy_mod = S.zoom_accuracy
 		else
 			S.accuracy_mod = 0

@@ -291,7 +291,7 @@
 
 	if((flags_item|TWOHANDED|WIELDED) != flags_item)
 		return //Have to be actually a twohander and wielded.
-	if(zoom)
+	if(zoomed)
 		zoom(user)
 	flags_item ^= WIELDED
 	name 	    = copytext(name, 1, -10)

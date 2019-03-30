@@ -152,7 +152,7 @@
 	// If mob moves while zoomed in with device, unzoom them.
 	if(view != world.view || pixel_x || pixel_y)
 		for(var/obj/item/item in mob.contents)
-			if(item.zoom)
+			if(item.zoomed)
 				item.zoom(mob)
 				click_intercept = null
 				break

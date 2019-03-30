@@ -133,7 +133,7 @@
 			to_chat(src, "<span class='warning'>Your other hand is too busy holding \the [offhand.name]</span>")
 			return
 		else wielded_item.unwield(src) //Get rid of it.
-	if(wielded_item && wielded_item.zoom) //Adding this here while we're at it
+	if(wielded_item && wielded_item.zoomed) //Adding this here while we're at it
 		wielded_item.zoom(src)
 	hand = !hand
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)

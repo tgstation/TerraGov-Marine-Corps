@@ -6,6 +6,8 @@
 	animate_movement = 2
 	datum_flags = DF_USE_TAG
 	var/datum/mind/mind
+	var/list/client_vars = list()
+	var/obj/item/zoom
 
 	var/datum/click_intercept
 

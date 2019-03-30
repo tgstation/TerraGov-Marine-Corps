@@ -141,14 +141,5 @@
 						hud_used.bodytemp_icon.icon_state = "temp0"
 
 
-		if(interactee)
-			interactee.check_eye(src)
-		else
-			var/isRemoteObserve = 0
-			if((mRemote in mutations) && remoteview_target)
-				if(remoteview_target.stat == CONSCIOUS)
-					isRemoteObserve = 1
-			if(!isRemoteObserve && client && !client.adminobs)
-				remoteview_target = null
-				reset_view(null)
-	return 1
+		interactee?.check_eye(src)
+	return TRUE

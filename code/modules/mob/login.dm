@@ -35,8 +35,7 @@
 	client.screen = list()				//remove hud items just in case
 	if(!hud_used) 
 		create_hud()
-	if(hud_used) 
-		hud_used.show_hud(hud_used.hud_version)
+	hud_used?.show_hud(hud_used.hud_version)
 
 	log_message("[src] has logged in.", LOG_OOC)
 
@@ -46,12 +45,12 @@
 	sight |= SEE_SELF
 	. = ..()
 
-	reset_view(loc)
+	regenerate_client_view()
 
 	add_click_catcher()
 	refresh_huds()
 
-	if(client?.player_details)
+	if(client.player_details)
 		for(var/foo in client.player_details.post_login_callbacks)
 			var/datum/callback/CB = foo
 			CB.Invoke()

@@ -18,9 +18,8 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
-	vision_flags = SEE_TURFS
-	darkness_view = 12
-	toggleable = 1
+	darkness_view = 13
+	toggleable = TRUE
 	fullscreen_vision = null
 	actions_types = list(/datum/action/item_action/toggle)
 
@@ -31,9 +30,8 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
-	vision_flags = SEE_TURFS
 	darkness_view = 24
-	toggleable = 1
+	toggleable = TRUE
 	fullscreen_vision = null
 	actions_types = list(/datum/action/item_action/toggle)
 
@@ -52,10 +50,10 @@
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
 	darkness_view = 8
-	toggleable = 1
+	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
-	vision_flags = SEE_TURFS
 	fullscreen_vision = null //Nulled out due to general dislike for the overlay.
+
 
 /obj/item/clothing/glasses/night/m56_goggles/mob_can_equip(mob/user, slot)
 	if(slot == SLOT_GLASSES)

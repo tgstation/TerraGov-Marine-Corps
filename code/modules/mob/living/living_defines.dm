@@ -1,5 +1,6 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
+	see_in_dark = 2
 
 	var/resize = 1 //Badminnery resize
 

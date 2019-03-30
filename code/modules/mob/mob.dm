@@ -190,7 +190,7 @@
 					W.flags_item |= NODROP
 				if(W.loc == start_loc && get_active_held_item() != W)
 					//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
-					if(W.zoom)
+					if(W.zoomed)
 						W.zoom(src)
 					if(W.flags_item & TWOHANDED)
 						W.unwield(src)
@@ -201,7 +201,7 @@
 			W.flags_item |= NODROP
 		if(W.loc == start_loc && get_active_held_item() != W)
 			//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
-			if(W.zoom)
+			if(W.zoomed)
 				W.zoom(src)
 			if(W.flags_item & TWOHANDED)
 				W.unwield(src)
@@ -290,21 +290,6 @@
 		doUnEquip(I)
 		put_in_hands(I)
 		return TRUE
-
-
-/mob/proc/reset_view(atom/A)
-	if (client)
-		if (ismovableatom(A))
-			client.perspective = EYE_PERSPECTIVE
-			client.eye = A
-		else
-			if (isturf(loc))
-				client.eye = client.mob
-				client.perspective = MOB_PERSPECTIVE
-			else
-				client.perspective = EYE_PERSPECTIVE
-				client.eye = loc
-	return
 
 
 /mob/proc/show_inv(mob/user)

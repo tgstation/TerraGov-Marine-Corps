@@ -1,3 +1,5 @@
+#define ZOOM_COOLDOWN 2 SECONDS
+
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items/items.dmi'
@@ -53,7 +55,7 @@
 	var/list/allowed = null //suit storage stuff.
 	var/obj/item/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
-	var/zoom = FALSE //TRUE if item is actively being used to zoom. For scoped guns and binoculars.
+	var/zoomed = FALSE //TRUE if item is actively being used to zoom. For scoped guns and binoculars.
 
 	var/list/uniform_restricted //Need to wear this uniform to equip this
 
@@ -209,7 +211,7 @@
 //the call happens after the item's potential loc change.
 /obj/item/proc/dropped(mob/user as mob)
 	if(user && user.client) //Dropped when disconnected, whoops
-		if(zoom) //binoculars, scope, etc
+		if(zoomed) //binoculars, scope, etc
 			zoom(user, 11, 12)
 
 	for(var/X in actions)
@@ -618,67 +620,49 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	if(!user)
 		return
+
 	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
-
-	for(var/obj/item/I in user.contents)
-		if(I.zoom && I != src)
-			to_chat(user, "<span class='warning'>You are already looking through \the [zoom_device].</span>")
-			return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
-
+	if(user.zoom != src)
+		to_chat(user, "<span class='warning'>You are already looking through \the [zoom_device].</span>")
+		return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
 	if(is_blind(user))
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
-	else if(!user.IsAdvancedToolUser())
+		return
+	if(!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
-	else if(!zoom && user.get_total_tint() >= TINT_HEAVY)
-		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
-	else if(!zoom && user.get_active_held_item() != src)
-		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
-	else if(zoom) //If we are zoomed out, reset that parameter.
+		return
+
+	if(zoomed) //If we are zoomed out, reset that parameter.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
-		zoom = !zoom
-		user.zoom_cooldown = world.time + 20
-		if(user.client.click_intercept)
-			user.client.click_intercept = null
+		zoomed = FALSE
+		user.zoom_cooldown = world.time + ZOOM_COOLDOWN
+		user.unset_interaction()
+		return
+
 	else //Otherwise we want to zoom in.
+		if(user.get_total_tint() >= TINT_HEAVY)
+			to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
+			return
+		if(user.get_active_held_item() != src)
+			to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
+			return
 		if(world.time <= user.zoom_cooldown) //If we are spamming the zoom, cut it out
 			return
-		user.zoom_cooldown = world.time + 20
-
-		if(user.client)
-			user.client.change_view(viewsize)
-
-			var/tilesize = 32
-			var/viewoffset = tilesize * tileoffset
-
-			switch(user.dir)
-				if(NORTH)
-					user.client.pixel_x = 0
-					user.client.pixel_y = viewoffset
-				if(SOUTH)
-					user.client.pixel_x = 0
-					user.client.pixel_y = -viewoffset
-				if(EAST)
-					user.client.pixel_x = viewoffset
-					user.client.pixel_y = 0
-				if(WEST)
-					user.client.pixel_x = -viewoffset
-					user.client.pixel_y = 0
+		user.zoom_cooldown = world.time + ZOOM_COOLDOWN
 
 		user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
 		"<span class='notice'>You peer through \the [zoom_device].</span>")
-		zoom = !zoom
-		if(user.interactee)
-			user.unset_interaction()
-		else if(!istype(src, /obj/item/attachable/scope))
-			user.set_interaction(src)
-		return
+		zoomed = TRUE
 
-	//General reset in case anything goes wrong, the view will always reset to default unless zooming in.
-	if(user.client)
-		user.client.change_view(world.view)
-		user.client.pixel_x = 0
-		user.client.pixel_y = 0
+		user.set_client_sight(viewsize, tileoffset)
+
+		if(user.interactee != src)
+			user.unset_interaction()
+
+		if(!istype(src, /obj/item/attachable/scope))
+			user.set_interaction(src)
+
 
 /obj/item/proc/eyecheck(mob/user)
 	if(!ishuman(user))
@@ -824,3 +808,5 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.inertia_dir = get_dir(target, user)
 		step(user, user.inertia_dir)
 	return
+
+#undef ZOOM_COOLDOWN
