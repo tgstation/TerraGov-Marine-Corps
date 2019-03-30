@@ -33,23 +33,23 @@
 				H.mobility_new = command_aura_strength
 			if(command_aura == "hold" && command_aura_strength > H.protection_new)
 				H.protection_new = command_aura_strength
-			if(command_aura == "focus" && command_aura_strength > H.marskman_new)
-				H.marskman_new = command_aura_strength
+			if(command_aura == "focus" && command_aura_strength > H.marksman_new)
+				H.marksman_new = command_aura_strength
 
 	mobility_aura = mobility_new
 	protection_aura = protection_new
-	marskman_aura = marskman_new
+	marksman_aura = marksman_new
 
 	mobility_new = 0
 	protection_new = 0
-	marskman_new = 0
+	marksman_new = 0
 
 	//Natural recovery; enhanced by hold/protection aura.
 	if(protection_aura)
 		aura_recovery_multiplier = 1 + max(0,0.5 + 0.5 * protection_aura) //Protection aura adds +50% recovery rate per point of leadership; +100% for an SL +200% for a CO/XO
 		Dizzy(- 3 * aura_recovery_multiplier + 3)
 		Jitter(- 3 * aura_recovery_multiplier + 3)
-	//hud_set_pheromone() //TODO: HOOK THIS UP, ASK PHIL
+	hud_set_order()
 
 	return 1
 

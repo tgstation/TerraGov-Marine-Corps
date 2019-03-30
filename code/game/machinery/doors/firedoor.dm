@@ -34,7 +34,6 @@
 	var/net_id
 	var/list/areas_added
 	var/list/users_to_open = new
-	var/next_process_time = 0
 
 	var/list/tile_info[4]
 	var/list/dir_alerts[4] // 4 dirs, bitflags
@@ -62,7 +61,7 @@
 		if(istype(A) && !(A in areas_added))
 			A.all_doors.Add(src)
 			areas_added += A
-	start_processing()
+
 
 /obj/machinery/door/firedoor/Destroy()
 	for(var/area/A in areas_added)
@@ -273,13 +272,6 @@
 
 /obj/machinery/door/firedoor/try_to_activate_door(mob/user)
 	return
-
-// CHECK PRESSURE
-/obj/machinery/door/firedoor/process()
-	..()
-
-	if(density && next_process_time <= world.time)
-		next_process_time = world.time + 100		// 10 second delays between process updates
 
 
 /obj/machinery/door/firedoor/proc/latetoggle()

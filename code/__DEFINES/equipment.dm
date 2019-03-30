@@ -81,6 +81,11 @@
 #define NOPRESSUREDMAGE (1<<7) //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
 //SUITS AND HELMETS====================================================================================
 
+//vision obscuring facegear and etc.
+#define TINT_NONE 0
+#define TINT_MILD 1
+#define TINT_HEAVY 2
+#define TINT_BLIND 3
 
 //Inventory depth: limits how many nested storage items you can access directly.
 //1: stuff in mob, 2: stuff in backpack, 3: stuff in box in backpack, etc

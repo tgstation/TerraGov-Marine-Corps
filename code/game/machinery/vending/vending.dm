@@ -82,8 +82,10 @@
 		//Add hidden inventory
 	src.build_inventory(contraband, 1)
 	src.build_inventory(premium, 0, 1)
+	if(!length(slogan_list))
+		STOP_PROCESSING(SSmachines, src)
 	power_change()
-	start_processing()
+
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)
@@ -662,8 +664,9 @@
 	if(!src.active)
 		return
 
-	if(src.seconds_electrified > 0)
-		src.seconds_electrified--
+	if(seconds_electrified > 0)
+		if(!--seconds_electrified)
+			stop_processing()
 
 	//Pitch to the people!  Really sell it!
 	if(((src.last_slogan + src.slogan_delay) <= world.time) && (src.slogan_list.len > 0) && (!src.shut_up) && prob(5))
@@ -673,6 +676,11 @@
 
 	if(src.shoot_inventory && prob(2) && !hacking_safety)
 		src.throw_item()
+
+/obj/machinery/vending/proc/stop_processing()
+	if(seconds_electrified || shoot_inventory || (length(slogan_list) && !shut_up))
+		return
+	STOP_PROCESSING(SSmachines, src)
 
 /obj/machinery/vending/proc/speak(var/message)
 	if(machine_stat & NOPOWER)
@@ -730,8 +738,7 @@
 		break
 	if (!throw_item)
 		return FALSE
-	spawn(0)
-		throw_item.throw_at(target, 16, 3, src)
+	INVOKE_ASYNC(throw_item, /atom/movable/proc/throw_at, target, 16, 3, src)
 	src.visible_message("<span class='warning'>[src] launches [throw_item.name] at [target]!</span>")
 	. = TRUE
 
@@ -749,12 +756,14 @@
 	src.wires &= ~wireFlag
 	switch(wireIndex)
 		if(WIRE_EXTEND)
-			src.extended_inventory = 0
+			extended_inventory = FALSE
 		if(WIRE_SHOCK)
-			src.seconds_electrified = -1
+			seconds_electrified = -1
+			START_PROCESSING(SSmachines, src)
 		if (WIRE_SHOOTINV)
 			if(!src.shoot_inventory)
-				src.shoot_inventory = 1
+				src.shoot_inventory = TRUE
+				START_PROCESSING(SSmachines, src)
 
 
 /obj/machinery/vending/proc/mend(var/wireColor)
@@ -763,9 +772,11 @@
 	src.wires |= wireFlag
 	switch(wireIndex)
 		if(WIRE_SHOCK)
-			src.seconds_electrified = 0
+			seconds_electrified = 0
+			stop_processing()
 		if (WIRE_SHOOTINV)
-			src.shoot_inventory = 0
+			shoot_inventory = FALSE
+			stop_processing()
 
 /obj/machinery/vending/proc/pulse(var/wireColor)
 	var/wireIndex = APCWireColorToIndex[wireColor]
@@ -774,5 +785,10 @@
 			src.extended_inventory = !src.extended_inventory
 		if (WIRE_SHOCK)
 			src.seconds_electrified = 30
+			START_PROCESSING(SSmachines, src)
 		if (WIRE_SHOOTINV)
-			src.shoot_inventory = !src.shoot_inventory
+			shoot_inventory = !shoot_inventory
+			if(shoot_inventory)
+				START_PROCESSING(SSmachines, src)
+			else
+				stop_processing()

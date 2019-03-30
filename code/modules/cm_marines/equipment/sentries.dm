@@ -306,7 +306,7 @@
 		target = null
 	alert_list = list()
 	SetLuminosity(0)
-	stop_processing()
+	STOP_PROCESSING(SSmachines, src)
 	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/user as mob)
@@ -709,7 +709,7 @@
 		on = FALSE
 		density = FALSE
 		icon_state = "sentry_fallen"
-		stop_processing()
+		STOP_PROCESSING(SSmachines, src)
 		return
 	else
 		density = initial(density)
@@ -722,7 +722,7 @@
 
 	if(!cell || cell.charge <= 0)
 		on = FALSE
-		stop_processing()
+		STOP_PROCESSING(SSmachines, src)
 		overlays += battery_black
 		return
 
@@ -737,11 +737,11 @@
 			overlays += battery_red
 
 	if(on)
-		start_processing()
+		START_PROCESSING(SSmachines, src)
 		overlays += active
 
 	else
-		stop_processing()
+		STOP_PROCESSING(SSmachines, src)
 
 /obj/machinery/marine_turret/proc/update_health(var/damage) //Negative damage restores health.
 
@@ -1249,8 +1249,9 @@
 		return
 
 	if(anchored)
-		to_chat(user, "<span class='warning'>You must unanchor [src] to retrieve it!</span>")
-		return
+		to_chat(user, "<span class='warning'>The [src] disengages its anchor bolts as you initiate the retrieval process.</span>")
+		anchored = FALSE
+		update_icon()
 
 	if(on)
 		to_chat(user, "<span class='warning'>You depower [src] to facilitate its retrieval.</span>")
@@ -1274,7 +1275,7 @@
 		on = FALSE
 		density = FALSE
 		icon_state = "minisentry_fallen"
-		stop_processing()
+		STOP_PROCESSING(SSmachines, src)
 		return
 	else
 		icon_state = "minisentry_off"
@@ -1282,18 +1283,18 @@
 
 	if(!cell)
 		on = FALSE
-		stop_processing()
+		STOP_PROCESSING(SSmachines, src)
 		icon_state = "minisentry_nobat"
 		return
 
 	if(cell.charge <= 0)
 		on = FALSE
-		stop_processing()
+		STOP_PROCESSING(SSmachines, src)
 		icon_state = "minisentry_nobat"
 		return
 
 	if(on)
-		start_processing()
+		START_PROCESSING(SSmachines, src)
 		if(!rounds)
 			icon_state = "minisentry_noammo"
 		else
@@ -1301,7 +1302,7 @@
 
 	else
 		icon_state = "minisentry_off"
-		stop_processing()
+		STOP_PROCESSING(SSmachines, src)
 
 
 /obj/item/device/marine_turret/mini

@@ -357,9 +357,18 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	return
 
 /mob/living/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	if(stat == DEAD) //We don't care about the dead
+		return
 	if(loc == C.loc) // treaded over.
 		if(!knocked_down)
-			KnockDown(12)
+			KnockDown(1)
+		var/target_dir = turn(C.dir, 180)
+		temp = get_step(C.loc, target_dir)
+		T = temp
+		target_dir = turn(C.dir, 180)
+		T = get_step(T, target_dir)
+		face_atom(T)
+		throw_at(T, 3, 2, C, 1)
 		apply_damage(rand(5, 7.5), BRUTE)
 		return
 	if(!lying)
@@ -367,10 +376,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		T = temp
 		T = get_step(T, pick(cardinal))
 		if(mob_size == MOB_SIZE_BIG)
-			throw_at(T, 2, 1, C, 0)
+			throw_at(T, 3, 2, C, 0)
 		else
-			throw_at(T, 2, 1, C, 1)
-		KnockDown(1)
+			throw_at(T, 3, 2, C, 1)
+		if(!knocked_down)
+			KnockDown(1)
 		apply_damage(rand(10, 15), BRUTE)
 		visible_message("<span class='danger'>[C] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[C] violently bumps into you!</span>")
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
@@ -385,7 +395,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	temp = get_step(T, facing)
 	T = temp
 	T = get_step(T, pick(cardinal))
-	throw_at(T, 2, 1, C, 0)
+	throw_at(T, 2, 2, C, 0)
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
 
 /mob/living/carbon/Xenomorph/Crusher/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
@@ -394,13 +404,13 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	temp = get_step(T, facing)
 	T = temp
 	T = get_step(T, pick(cardinal))
-	throw_at(T, 2, 1, C, 0)
+	throw_at(T, 2, 2, C, 0)
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
 
 /mob/living/carbon/Xenomorph/Larva/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	if(loc == C.loc) // treaded over.
 		if(!knocked_down)
-			KnockDown(12)
+			KnockDown(1)
 		apply_damage(rand(5, 7.5), BRUTE)
 		return
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
@@ -410,26 +420,53 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		H?.livingmob_interact(src)
 
 /turf/closed/wall/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
-	take_damage(30)
-	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
-	CA.take_damage_type(10, "blunt", src)
+	var/obj/vehicle/multitile/root/cm_armored/tank/CA = C.root
+	var/damage = 30
+	var/tank_damage = 2
+
+	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
+		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
+		if(SP.health > 0)
+			damage = 60
+			tank_damage = 0
+
+	take_damage(damage)
+	CA.take_damage_type(tank_damage, "blunt", src)
 	if(world.time > C.lastsound + 1 SECONDS)
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		C.lastsound = world.time
 
 /obj/machinery/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
-	take_damage(30)
-	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
-	CA.take_damage_type(2, "blunt", src)
+	var/obj/vehicle/multitile/root/cm_armored/tank/CA = C.root
+	var/damage = 30
+	var/tank_damage = 2
+
+	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
+		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
+		if(SP.health > 0)
+			damage = 60
+			tank_damage = 0
+
+	take_damage(damage)
+	CA.take_damage_type(tank_damage, "blunt", src)
 	if(world.time > C.lastsound + 1 SECONDS)
 		visible_message("<span class='danger'>[C.root] rams into \the [src]!</span>")
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		C.lastsound = world.time
 
 /obj/structure/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
-	take_damage(30)
-	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
-	CA.take_damage_type(2, "blunt", src)
+	var/obj/vehicle/multitile/root/cm_armored/tank/CA = C.root
+	var/damage = 30
+	var/tank_damage = 2
+
+	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
+		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
+		if(SP.health > 0)
+			damage = 60
+			tank_damage = 0
+
+	take_damage(damage)
+	CA.take_damage_type(tank_damage, "blunt", src)
 	if(world.time > C.lastsound + 1 SECONDS)
 		visible_message("<span class='danger'>[C.root] crushes \the [src]!</span>")
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)

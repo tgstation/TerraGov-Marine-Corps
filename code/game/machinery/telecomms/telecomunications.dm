@@ -143,9 +143,9 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		return 0
 
 
-/obj/machinery/telecomms/New()
+/obj/machinery/telecomms/Initialize()
+	. = ..()
 	telecomms_list += src
-	..()
 
 	var/turf/position = get_turf(src)
 	if(listen_same_level)
@@ -156,11 +156,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		//Defaults to our Z level!
 		listening_level = position.z
 
-	start_processing()
-
-/obj/machinery/telecomms/Initialize()
-	. = ..()
-	if(autolinkers.len)
+	if(length(autolinkers))
 		// Links nearby machines
 		if(!long_range_link)
 			for(var/obj/machinery/telecomms/T in orange(20, src))

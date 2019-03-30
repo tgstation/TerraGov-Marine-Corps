@@ -222,7 +222,7 @@
 
 /obj/machinery/cryopod/process()
 	if(!occupant)
-		stop_processing()
+		STOP_PROCESSING(SSmachines, src)
 		update_icon()
 		return
 
@@ -235,7 +235,7 @@
 		return
 
 	occupant.despawn(src)
-	stop_processing()
+	STOP_PROCESSING(SSmachines, src)
 	update_icon()
 
 /mob/proc/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
@@ -425,7 +425,7 @@
 
 			to_chat(M, "<span class='notice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
 			to_chat(M, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
-			start_processing()
+			START_PROCESSING(SSmachines, src)
 			time_entered = world.time
 
 			log_admin("[key_name(M)] has entered a stasis pod.")
@@ -482,7 +482,7 @@
 	to_chat(usr, "<span class='notice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
 	to_chat(usr, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
 	time_entered = world.time
-	start_processing()
+	START_PROCESSING(SSmachines, src)
 	add_fingerprint(usr)
 
 /obj/machinery/cryopod/proc/go_out()
@@ -497,7 +497,7 @@
 		occupant.forceMove(get_turf(src))
 
 	occupant = null
-	stop_processing()
+	STOP_PROCESSING(SSmachines, src)
 	update_icon()
 
 /obj/machinery/cryopod/admin //Invisible admin magic.

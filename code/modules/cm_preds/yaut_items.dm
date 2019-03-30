@@ -27,7 +27,7 @@
 	gas_filter_strength = 3
 	eye_protection = 2
 	var/current_goggles = 0 //0: OFF. 1: NVG. 2: Thermals. 3: Mesons
-	tint = 0
+	tint = TINT_NONE
 	unacidable = 1
 	anti_hug = 100
 

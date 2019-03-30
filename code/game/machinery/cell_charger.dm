@@ -54,7 +54,7 @@
 				charging = W
 				user.visible_message("[user] inserts a cell into the charger.", "You insert a cell into the charger.")
 				chargelevel = -1
-				start_processing()
+				START_PROCESSING(SSmachines, src)
 		updateicon()
 	else if(iswrench(W))
 		if(charging)
@@ -75,7 +75,7 @@
 		user.visible_message("[user] removes the cell from the charger.", "You remove the cell from the charger.")
 		chargelevel = -1
 		updateicon()
-		stop_processing()
+		STOP_PROCESSING(SSmachines, src)
 
 /obj/machinery/cell_charger/attack_ai(mob/user)
 	return
