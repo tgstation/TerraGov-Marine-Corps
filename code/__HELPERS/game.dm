@@ -46,36 +46,6 @@
 
 	return heard
 
-/proc/circlerange(center=usr,radius=3)
-
-	var/turf/centerturf = get_turf(center)
-	var/list/turfs = new/list()
-	var/rsq = radius * (radius+0.5)
-
-	for(var/atom/T in range(radius, centerturf))
-		var/dx = T.x - centerturf.x
-		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
-			turfs += T
-
-	//turfs += centerturf
-	return turfs
-
-/proc/circleview(center=usr,radius=3)
-
-	var/turf/centerturf = get_turf(center)
-	var/list/atoms = new/list()
-	var/rsq = radius * (radius+0.5)
-
-	for(var/atom/A in view(radius, centerturf))
-		var/dx = A.x - centerturf.x
-		var/dy = A.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
-			atoms += A
-
-	//turfs += centerturf
-	return atoms
-
 /proc/trange(rad = 0, turf/centre = null) //alternative to range (ONLY processes turfs and thus less intensive)
 	if(!centre)
 		return
@@ -91,43 +61,6 @@
 	var/dist = sqrt(dx**2 + dy**2)
 
 	return dist
-
-/proc/circlerangeturfs(center=usr,radius=3)
-
-	var/turf/centerturf = get_turf(center)
-	var/list/turfs = new/list()
-	var/rsq = radius * (radius+0.5)
-
-	for(var/turf/T in range(radius, centerturf))
-		var/dx = T.x - centerturf.x
-		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
-			turfs += T
-	return turfs
-
-/proc/circleviewturfs(center=usr,radius=3)		//Is there even a diffrence between this proc and circlerangeturfs()?
-
-	var/turf/centerturf = get_turf(center)
-	var/list/turfs = new/list()
-	var/rsq = radius * (radius+0.5)
-
-	for(var/turf/T in view(radius, centerturf))
-		var/dx = T.x - centerturf.x
-		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
-			turfs += T
-	return turfs
-
-/proc/diamondturfs(center=usr, radius=3, check_view=FALSE)
-	var/turf/centerturf = get_turf(center)
-	if(radius < 0 || !centerturf)
-		return
-
-	var/list/turfs = list()
-	for(var/turf/T in check_view ? view(radius, centerturf) : range(radius, centerturf))
-		if(abs(T.x - centerturf.x) + abs(T.y - centerturf.y) <= radius)
-			turfs += T
-	. = turfs
 
 //var/debug_mob = 0
 

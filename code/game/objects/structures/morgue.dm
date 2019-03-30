@@ -52,12 +52,24 @@
 /obj/structure/morgue/attack_hand(mob/user)
 	toggle_morgue(user)
 
+/atom/movable/proc/can_be_morgue_trayed()
+	return TRUE
+
+/mob/living/can_be_morgue_trayed()
+	return stat == DEAD
+
+/obj/structure/closet/bodybag/can_be_morgue_trayed()
+	. = ..()
+	for(var/atom/movable/AM in contents)
+		if(!AM.can_be_morgue_trayed())
+			return FALSE
+
 /obj/structure/morgue/proc/toggle_morgue(mob/user)
 	add_fingerprint(user)
 	if(!connected) return
 	if(morgue_open)
 		for(var/atom/movable/A in connected.loc)
-			if(!A.anchored)
+			if(!A.anchored && A.can_be_morgue_trayed())
 				A.forceMove(src)
 		connected.loc = src
 	else

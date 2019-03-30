@@ -202,10 +202,11 @@
 		return FALSE
 	if(!species.has_organ["eyes"]) //can see through other means
 		return TRUE
-	if(has_eyes())
-		if(tinttotal < 3)
-			return TRUE
-	return FALSE
+	if(!has_eyes())
+		return FALSE
+	if(get_total_tint() >= TINT_HEAVY)
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/is_mob_restrained(var/check_grab = 1)
 	if(check_grab && pulledby && pulledby.grab_level >= GRAB_NECK)

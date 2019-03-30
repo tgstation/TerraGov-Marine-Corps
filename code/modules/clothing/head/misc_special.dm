@@ -28,7 +28,7 @@
 	w_class = 3
 	anti_hug = 2
 	eye_protection = 2
-	tint = 2
+	tint = TINT_HEAVY
 	var/hug_memory = 0 //Variable to hold the "memory" of how many anti-hugs remain.  Because people were abusing the fuck out of it.
 
 /obj/item/clothing/head/welding/attack_self()
@@ -54,7 +54,7 @@
 			flags_inv_hide &= ~(HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[initial(icon_state)]up"
 			eye_protection = 0
-			tint = 0
+			tint = TINT_NONE
 			to_chat(usr, "You push the [src] up out of your face.")
 			hug_memory = anti_hug
 			anti_hug = 0
