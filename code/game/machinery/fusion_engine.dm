@@ -11,7 +11,7 @@
 	icon = 'icons/Marine/fusion_eng.dmi'
 	icon_state = "off"
 	desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat."
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	anchored = TRUE
 	density = TRUE
 

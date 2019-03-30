@@ -7,7 +7,6 @@
 	name = "alien thing"
 	desc = "You shouldn't be seeing this."
 	icon = 'icons/Xeno/effects.dmi'
-	unacidable = 1
 	layer = FLY_LAYER
 
 /obj/effect/xenomorph/splatter
@@ -105,7 +104,6 @@
 	density = 0
 	opacity = 0
 	anchored = 1
-	unacidable = 1
 	var/atom/acid_t
 	var/ticks = 0
 	var/acid_strength = 1 //100% speed, normal

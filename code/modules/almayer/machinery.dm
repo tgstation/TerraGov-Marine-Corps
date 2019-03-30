@@ -133,7 +133,7 @@
 	icon_state = "missiletubenorth"
 	bound_width = 32
 	bound_height = 96
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 
 
 /obj/structure/prop/almayer/ship_memorial
@@ -143,7 +143,7 @@
 	icon_state = "ship_memorial"
 	bound_width = 64
 	bound_height = 32
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 	var/list/fallen_list
 
 /obj/structure/prop/almayer/ship_memorial/attackby(obj/item/I, mob/user)
@@ -176,7 +176,7 @@
 	desc = "The Mark 74 Railgun is top of the line for space based weaponry. Capable of firing a round with a diameter of 3/4ths of a meter at 24 kilometers per second. It also is capable of using a variety of round types which can be interchanged at anytime with its newly designed feed system."
 	icon = 'icons/obj/machines/artillery.dmi'
 	icon_state = "1"
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 
 
 /obj/structure/prop/almayer/name_stencil
@@ -185,7 +185,7 @@
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "TGMC1"
 	density = 0
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 
 /obj/structure/prop/almayer/name_stencil/Initialize()
 	. = ..()

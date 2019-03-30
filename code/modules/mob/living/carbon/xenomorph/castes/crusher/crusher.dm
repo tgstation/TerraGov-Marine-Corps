@@ -102,7 +102,7 @@
 /obj/charge_act(mob/living/carbon/Xenomorph/X)
 	. = ..()
 	if(.)
-		if(unacidable)
+		if(CHECK_MULTIPLE_BITFIELDS(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 			X.stop_momentum(X.charge_dir)
 			return FALSE
 
@@ -144,7 +144,7 @@
 //Bumped() proc. ~Bmc777
 
 /obj/structure/window/charge_act(mob/living/carbon/Xenomorph/X)
-	if(unacidable)
+	if(CHECK_MULTIPLE_BITFIELDS(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		X.stop_momentum(X.charge_dir)
 		return FALSE
 	if(X.charge_speed < X.charge_speed_buildup * X.charge_turfs_to_charge)
@@ -158,7 +158,7 @@
 	return TRUE
 
 /obj/structure/grille/charge_act(mob/living/carbon/Xenomorph/X)
-	if(unacidable)
+	if(CHECK_MULTIPLE_BITFIELDS(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		X.stop_momentum(X.charge_dir)
 		return FALSE
 	if(X.charge_speed < X.charge_speed_buildup * X.charge_turfs_to_charge)
@@ -173,7 +173,7 @@
 
 /obj/machinery/vending/charge_act(mob/living/carbon/Xenomorph/X)
 	if(X.charge_speed > X.charge_speed_max/2) //Halfway to full speed or more
-		if(unacidable)
+		if(CHECK_MULTIPLE_BITFIELDS(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 			X.stop_momentum(X.charge_dir, TRUE)
 			return FALSE
 		X.visible_message("<span class='danger'>[X] smashes straight into [src]!</span>",
@@ -190,7 +190,7 @@
 		return FALSE
 
 /obj/mecha/charge_act(mob/living/carbon/Xenomorph/X)
-	if(unacidable)
+	if(CHECK_MULTIPLE_BITFIELDS(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		X.stop_momentum(X.charge_dir, TRUE)
 		return FALSE
 	if(X.charge_speed < X.charge_speed_buildup * X.charge_turfs_to_charge)
@@ -207,7 +207,7 @@
 	return TRUE
 
 /obj/machinery/marine_turret/charge_act(mob/living/carbon/Xenomorph/X)
-	if(unacidable)
+	if(CHECK_MULTIPLE_BITFIELDS(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		X.stop_momentum(X.charge_dir, TRUE)
 		return FALSE
 	if(X.charge_speed < X.charge_speed_buildup * X.charge_turfs_to_charge)

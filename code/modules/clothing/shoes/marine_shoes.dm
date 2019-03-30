@@ -98,7 +98,7 @@
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
 	siemens_coefficient = 0.2
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 
 //=========//Imperium\\=========\\
 
