@@ -39,7 +39,7 @@
 	else if(HasFuel())
 		active = TRUE
 		update_icon()
-		START_PROCESSING(SSmachines, src)
+		start_processing()
 
 /obj/machinery/power/port_gen/update_icon()
 	icon_state = "portgen[active]"
@@ -163,7 +163,7 @@
 /obj/machinery/power/port_gen/pacman/handleInactive()
 	heat = max(heat - 2, 0)
 	if(heat == 0)
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 
 /obj/machinery/power/port_gen/pacman/proc/overheat()
 	explosion(src.loc, 2, 5, 2, -1)

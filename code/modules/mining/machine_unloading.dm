@@ -11,19 +11,18 @@
 	var/obj/machinery/mineral/output = null
 
 
-/obj/machinery/mineral/unloading_machine/Initialize()
-	. = ..()
-
-	for(var/d in cardinal)
-		input = locate(/obj/machinery/mineral/input, get_step(src, d))
-		if(input) 
-			break
-
-	for(var/d in cardinal)
-		output = locate(/obj/machinery/mineral/output, get_step(src, d))
-		if(output) 
-			break
-
+/obj/machinery/mineral/unloading_machine/New()
+	..()
+	spawn( 5 )
+		for (var/dir in cardinal)
+			src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
+			if(src.input) break
+		for (var/dir in cardinal)
+			src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
+			if(src.output) break
+		start_processing()
+		return
+	return
 
 /obj/machinery/mineral/unloading_machine/process()
 	if (src.output && src.input)

@@ -7,6 +7,7 @@ var/global/list/joblist = list()					//List of all jobstypes, minus borg and AI
 
 var/global/list/active_areas = list()
 var/global/list/all_areas = list()
+var/global/list/processing_machines = list()
 var/global/list/active_diseases = list()
 var/global/list/events = list()
 

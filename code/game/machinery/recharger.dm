@@ -36,7 +36,7 @@ obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
 				return
 		if(user.transferItemToLoc(G, src))
 			charging = G
-			START_PROCESSING(SSmachines, src)
+			start_processing()
 			update_icon()
 	else if(iswrench(G))
 		if(charging)
@@ -56,7 +56,7 @@ obj/machinery/recharger/attack_hand(mob/user as mob)
 		charging.update_icon()
 		user.put_in_hands(charging)
 		charging = null
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 		percent_charge_complete = 0
 		update_icon()
 

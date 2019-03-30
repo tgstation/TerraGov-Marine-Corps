@@ -177,6 +177,8 @@
 		update_icon()
 		addtimer(CALLBACK(src, .proc/update), 5)
 
+	start_processing()
+
 	. = ..()
 
 	if(mapload)

@@ -39,10 +39,10 @@
 
 	var/datum/announcement/priority/command/crew_announcement = new
 
-/obj/machinery/computer/communications/Initialize()
+/obj/machinery/computer/communications/New()
 	. = ..()
 	crew_announcement.newscast = TRUE
-
+	start_processing()
 
 /obj/machinery/computer/communications/process()
 	if(..())

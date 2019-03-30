@@ -96,16 +96,17 @@
 		explosion_power = 3 //3,6,9,12? Or is that too small?
 
 
-/obj/machinery/power/supermatter/Initialize()
+/obj/machinery/power/supermatter/New()
 	. = ..()
-	radio = new(src)
+	radio = new (src)
+	start_processing()
 
 
 /obj/machinery/power/supermatter/Destroy()
 	qdel(radio)
 	radio = null
 	SetLuminosity(0)
-	return ..()
+	. = ..()
 
 /obj/machinery/power/supermatter/proc/explode()
 	anchored = 1

@@ -29,17 +29,18 @@
 	var/stored_power = 0//Power to deploy per tick
 
 
-/obj/machinery/power/am_control_unit/Initialize()
-	. = ..()
+/obj/machinery/power/am_control_unit/New()
+	..()
 	linked_shielding = list()
 	linked_cores = list()
+	start_processing()
 
 
 /obj/machinery/power/am_control_unit/Destroy()//Perhaps damage and run stability checks rather than just del on the others
 	for(var/obj/machinery/am_shielding/AMS in linked_shielding)
 		linked_shielding -= AMS
 		qdel(AMS)
-	return ..()
+	. = ..()
 
 
 /obj/machinery/power/am_control_unit/process()

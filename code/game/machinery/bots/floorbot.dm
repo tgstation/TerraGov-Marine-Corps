@@ -26,10 +26,10 @@
 	var/targetdirection
 
 
-/obj/machinery/bot/floorbot/Initialize()
-	. = ..()
-	updateicon()
-
+/obj/machinery/bot/floorbot/New()
+	..()
+	src.updateicon()
+	start_processing()
 
 /obj/machinery/bot/floorbot/turn_on()
 	. = ..()

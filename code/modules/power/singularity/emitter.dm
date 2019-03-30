@@ -25,15 +25,14 @@
 	var/locked = 0
 	var/datum/ammo/energy/emitter/ammo = /datum/ammo/energy/emitter
 
-	
-/obj/machinery/power/emitter/Initialize()
-	. = ..()
-	ammo = GLOB.ammo_list[ammo]
+	New()
+		..()
+		ammo = GLOB.ammo_list[ammo]
+		start_processing()
 
-	
-/obj/machinery/power/emitter/Destroy()
-	ammo = null
-	return ..()
+	Destroy()
+		ammo = null
+		. = ..()
 
 
 /obj/machinery/power/emitter/verb/rotate()

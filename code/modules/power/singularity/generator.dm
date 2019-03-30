@@ -9,6 +9,9 @@
 	use_power = 0
 	var/energy = 0
 
+/obj/machinery/the_singularitygen/New()
+	..()
+	start_processing()
 
 /obj/machinery/the_singularitygen/process()
 	var/turf/T = get_turf(src)

@@ -17,14 +17,14 @@ var/global/list/rad_collectors = list()
 	var/locked = 0
 	var/drainratio = 1
 
-/obj/machinery/power/rad_collector/Initialize()
-	. = ..()
+/obj/machinery/power/rad_collector/New()
+	..()
 	rad_collectors += src
-
+	start_processing()
 
 /obj/machinery/power/rad_collector/Destroy()
 	rad_collectors -= src
-	return ..()
+	. = ..()
 
 /obj/machinery/power/rad_collector/process()
 	//so that we don't zero out the meter if the SM is processed first.

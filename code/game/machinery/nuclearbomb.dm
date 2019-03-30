@@ -287,7 +287,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 							if (src.icon_state == "nuclearbomb2")
 								src.icon_state = "nuclearbomb1"
 						src.timing = 0
-						STOP_PROCESSING(SSmachines, src)
+						stop_processing()
 						bomb_set = 0
 					if(src.light_wire == temp_wire)
 						src.lighthack = !src.lighthack
@@ -346,7 +346,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 					src.safety = !( src.safety )
 					if(safety)
 						src.timing = 0
-						STOP_PROCESSING(SSmachines, src)
+						stop_processing()
 						bomb_set = 0
 				if (href_list["anchor"])
 
@@ -377,7 +377,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 /obj/machinery/nuclearbomb/proc/explode()
 	if(safety)
 		timing = 0
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 		return FALSE
 	timing = -1.0
 	yes_code = 0

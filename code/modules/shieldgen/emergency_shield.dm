@@ -12,15 +12,14 @@
 	var/shield_generate_power = 7500	//how much power we use when regenerating
 	var/shield_idle_power = 1500		//how much power we use when just being sustained.
 
-/obj/machinery/shield/Initialize()
-	. = ..()
+/obj/machinery/shield/New()
 	setDir(pick(1,2,3,4))
-
+	..()
 
 /obj/machinery/shield/Destroy()
 	opacity = 0
-	density = FALSE
-	return ..()
+	density = 0
+	. = ..()
 
 /obj/machinery/shield/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W)) return
@@ -128,6 +127,9 @@
 	use_power = 0
 	idle_power_usage = 0
 
+/obj/machinery/shieldgen/New()
+	..()
+	start_processing()
 
 /obj/machinery/shieldgen/Destroy()
 	collapse_shields()

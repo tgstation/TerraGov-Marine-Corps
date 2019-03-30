@@ -306,7 +306,7 @@
 		target = null
 	alert_list = list()
 	SetLuminosity(0)
-	STOP_PROCESSING(SSmachines, src)
+	stop_processing()
 	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/user as mob)
@@ -709,7 +709,7 @@
 		on = FALSE
 		density = FALSE
 		icon_state = "sentry_fallen"
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 		return
 	else
 		density = initial(density)
@@ -722,7 +722,7 @@
 
 	if(!cell || cell.charge <= 0)
 		on = FALSE
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 		overlays += battery_black
 		return
 
@@ -737,11 +737,11 @@
 			overlays += battery_red
 
 	if(on)
-		START_PROCESSING(SSmachines, src)
+		start_processing()
 		overlays += active
 
 	else
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 
 /obj/machinery/marine_turret/proc/update_health(var/damage) //Negative damage restores health.
 
@@ -1275,7 +1275,7 @@
 		on = FALSE
 		density = FALSE
 		icon_state = "minisentry_fallen"
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 		return
 	else
 		icon_state = "minisentry_off"
@@ -1283,18 +1283,18 @@
 
 	if(!cell)
 		on = FALSE
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 		icon_state = "minisentry_nobat"
 		return
 
 	if(cell.charge <= 0)
 		on = FALSE
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 		icon_state = "minisentry_nobat"
 		return
 
 	if(on)
-		START_PROCESSING(SSmachines, src)
+		start_processing()
 		if(!rounds)
 			icon_state = "minisentry_noammo"
 		else
@@ -1302,7 +1302,7 @@
 
 	else
 		icon_state = "minisentry_off"
-		STOP_PROCESSING(SSmachines, src)
+		stop_processing()
 
 
 /obj/item/device/marine_turret/mini

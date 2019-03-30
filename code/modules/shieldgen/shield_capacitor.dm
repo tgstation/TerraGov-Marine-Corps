@@ -20,11 +20,12 @@
 	var/obj/machinery/shield_gen/owned_gen
 
 /obj/machinery/shield_capacitor/Initialize()
-	. = ..()
 	for(var/obj/machinery/shield_gen/possible_gen in range(1, src))
 		if(get_dir(src, possible_gen) == src.dir)
 			possible_gen.owned_capacitor = src
 			break
+	. = ..()
+	start_processing()
 
 /obj/machinery/shield_capacitor/attackby(obj/item/W, mob/user)
 
