@@ -82,10 +82,7 @@
 		return
 
 	if(statpanel("Stats"))
-		if(SSticker.hide_mode)
-			stat("Game Mode:", "TerraGov Marine Corps")
-		else
-			stat("Game Mode:", "[GLOB.master_mode]")
+		stat("Game Mode:", "[GLOB.master_mode]")
 
 		if(SSticker.current_state == GAME_STATE_PREGAME)
 			stat("Time To Start:", "[going ? SSticker.GetTimeLeft() : "(DELAYED)"]")
