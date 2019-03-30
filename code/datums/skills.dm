@@ -322,7 +322,7 @@
 
 /datum/skills/smartgunner
 	name = "Squad Smartgunner"
-	smartgun = SKILL_SMART_EXPERT
+	smartgun = SKILL_SMART_TRAINED
 	leadership = SKILL_LEAD_BEGINNER
 
 /datum/skills/smartgunner/pmc
@@ -330,7 +330,7 @@
 	cqc = SKILL_CQC_TRAINED
 	construction = SKILL_CONSTRUCTION_METAL
 	firearms = SKILL_FIREARMS_TRAINED
-	smartgun = SKILL_SMART_EXPERT
+	smartgun = SKILL_SMART_TRAINED
 	spec_weapons = SKILL_SPEC_TRAINED
 	leadership = SKILL_LEAD_BEGINNER
 	melee_weapons = SKILL_MELEE_TRAINED
