@@ -82,7 +82,7 @@
 		)
 
 /obj/item/clothing/head/helmet/space/vox
-	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 15)
 	siemens_coefficient = 0.6
 	flags_inventory = COVEREYES|NOPRESSUREDMAGE
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE

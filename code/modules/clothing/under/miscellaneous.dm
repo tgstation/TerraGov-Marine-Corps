@@ -379,7 +379,7 @@
 	item_state = "pilot_spec"
 	unacidable = TRUE
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	armor = list(melee = 70, bullet = 70, laser = 70, energy = 70, bomb = 70, bio = 70, rad = 70)
+	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 70, "bomb" = 70, "bio" = 70, "rad" = 70, "fire" = 70)
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0

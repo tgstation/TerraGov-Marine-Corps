@@ -66,7 +66,7 @@
 	desc = "A heavy space helmet, designed to be coupled with the MK.50 compression suit, though it is less resilient than the suit. Feels like you could hotbox in here."
 	item_state = "compression"
 	icon_state = "compression"
-	armor = list(melee = 40, bullet = 45, laser = 40, energy = 55, bomb = 40, bio = 100, rad = 50)
+	armor = list("melee" = 40, "bullet" = 45, "laser" = 40, "energy" = 55, "bomb" = 40, "bio" = 100, "rad" = 50, "fire" = 55)
 	unacidable = 1
 
 /obj/item/clothing/suit/space/compression
