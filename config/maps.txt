@@ -9,23 +9,18 @@ Format:
 	maxplayers [number] (0 or less disables this requirement)
 	default (The last map with this defined will get all votes of players who have not explicitly voted for a map)
 	voteweight [number] (How much to count each player vote as, defaults to 1, setting to 0.5 counts each vote as half a vote, 2 as double, etc, Setting to 0 disables the map but allows players to still pick it)
-	announcetext [text] flavor text to display at the start of the round. use ###SHIPNAME### to display the config ship name
 	disabled (disables the map)
 endmap
 
 map lv624
 	default
-	announcetext A faint distress signal has been picked up by our scanners, which have tracked the source to a third generation colony, known as LV-624. Through use of bluespace drive tech, the ###SHIPNAME### has jumped within range of the colony. TGMC, gear up and get ready to respond!
 endmap
 
 map bigred_v2
-	announcetext A second generation colony has had a beacon transmitting the same signal, nonstop. Attempts to hail the colony over comms have proved futile. Because the ###SHIPNAME### was at a nearby drydock, it has been dispatched to figure out what's wrong. TGMC, prepare to deploy!
 endmap
 
 map ice_colony_v2
-	announcetext A garbled, unintelligible communications message was broadcasted over a general frequency, and picked up by our comms relay. The message appears to have come from a second generation settlement, located on an ice cold planet. The ###SHIPNAME### is moving into the sector with thrusters at max throttle. TGMC, get briefed and then move out!
 endmap
 
 map prison_station_fop
-	announcetext A Nanotrasen maximum security prison has activated its distress signal. The ###SHIPNAME### is swiftly cruising through space, and nearing the vicinity of the prison station. TGMC, get moving!
 endmap

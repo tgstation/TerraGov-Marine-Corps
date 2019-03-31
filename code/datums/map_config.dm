@@ -11,7 +11,6 @@
 	var/config_max_users = 0
 	var/config_min_users = 0
 	var/voteweight = 1
-	var/announce_text = ""
 
 	// Config actually from the JSON - should default to Box
 	var/map_name = "LV624"
@@ -30,6 +29,9 @@
 		"ferry" = "ferry_fancy",
 		"whiteship" = "whiteship_box",
 		"emergency" = "emergency_box")
+
+	var/announce_text = ""
+
 
 /proc/load_map_config(filename = "data/next_map.json", default_to_box, delete_after, error_if_missing = TRUE)
 	var/datum/map_config/config = new
@@ -117,6 +119,9 @@
 		return
 
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
+
+	if(json["announce_text"])
+		announce_text = replacetext(json["announce_text"], "###SHIPNAME###", CONFIG_GET(string/ship_name))
 
 	defaulted = FALSE
 	return TRUE
