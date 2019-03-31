@@ -78,10 +78,9 @@ Currently only has the tank hardpoints
 		to_chat(user, "<span class='warning'>That's the wrong tool. Use a [iswrench(repair_tool) ? "wrench" : "welder"].</span>")
 		return
 	var/obj/item/tool/weldingtool/WT = iswelder(W) ? W : null
-	if(WT)
-		if(!WT.isOn())
-			to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
-			return
+	if(WT && !WT.isOn())
+		to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
+		return
 	if(!do_after(user, 3 SECONDS * repair_delays, TRUE, repair_delays, BUSY_ICON_FRIENDLY) || !user.Adjacent(src))
 		user.visible_message("<span class='notice'>[user] stops repairing [src].</span>",
 							"<span class='notice'>You stop repairing [src].</span>")
