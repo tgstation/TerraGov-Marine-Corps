@@ -258,20 +258,18 @@
 		stored_items.Add(W.store_in_cryo())
 	GLOB.cryoed_item_list[dept_console].Add(stored_items)
 
-	//Delete them from datacore.
-	if(length(PDA_Manifest))
-		PDA_Manifest.Cut()
-	for(var/datum/data/record/R in data_core.medical)
+
+	for(var/datum/data/record/R in GLOB.datacore.medical)
 		if((R.fields["name"] == real_name))
-			data_core.medical -= R
+			GLOB.datacore.medical -= R
 			qdel(R)
-	for(var/datum/data/record/T in data_core.security)
+	for(var/datum/data/record/T in GLOB.datacore.security)
 		if((T.fields["name"] == real_name))
-			data_core.security -= T
+			GLOB.datacore.security -= T
 			qdel(T)
-	for(var/datum/data/record/G in data_core.general)
+	for(var/datum/data/record/G in GLOB.datacore.general)
 		if((G.fields["name"] == real_name))
-			data_core.general -= G
+			GLOB.datacore.general -= G
 			qdel(G)
 
 	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
