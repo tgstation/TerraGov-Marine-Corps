@@ -335,6 +335,11 @@ its easier to just keep the beam vertical.
 		AM.throwing = 0
 	return
 
+
+/atom/proc/GenerateTag()
+	return
+
+
 /atom/proc/add_hiddenprint(mob/living/M as mob)
 	if(isnull(M)) return
 	if(isnull(M.key)) return
@@ -612,6 +617,9 @@ Proc for attack log creation, because really why not
 /atom/New(loc, ...)
 	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
 		GLOB._preloader.load(src)
+
+	if(datum_flags & DF_USE_TAG)
+		GenerateTag()
 
 	var/do_initialize = SSatoms.initialized
 	if(do_initialize != INITIALIZATION_INSSATOMS)

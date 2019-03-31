@@ -89,7 +89,7 @@
 	data["ship_name"] = CONFIG_GET(string/ship_name)
 	data["mode"] = mode
 	data["printing"] = printing
-	data["manifest"] = data_core ? data_core.get_manifest(0) : null
+	data["manifest"] = GLOB.datacore ? GLOB.datacore.get_manifest(0) : null
 	data["target_name"] = modify ? modify.name : "-----"
 	data["target_owner"] = modify && modify.registered_name ? modify.registered_name : "-----"
 	data["target_rank"] = get_target_rank()
@@ -148,7 +148,7 @@
 	switch(href_list["choice"])
 		if ("modify")
 			if (modify)
-				data_core.manifest_modify(modify.registered_name, modify.assignment, modify.rank)
+				GLOB.datacore.manifest_modify(modify.registered_name, modify.assignment, modify.rank)
 				modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
 				if(ishuman(usr))
 					modify.loc = usr.loc
@@ -227,8 +227,6 @@
 					message_admins("[ADMIN_TPMONTY(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
 
 
-				callHook("reassign_employee", list(modify))
-
 		if ("reg")
 			if (is_authenticated())
 				var/t2 = modify
@@ -263,7 +261,7 @@
 						P.name = text("crew manifest ([])", worldtime2text())
 						P.info = {"<h4>Crew Manifest</h4>
 							<br>
-							[data_core ? data_core.get_manifest(0) : ""]
+							[GLOB.datacore ? GLOB.datacore.get_manifest(0) : ""]
 						"}
 					else if (modify)
 						P.name = "access report"
@@ -286,8 +284,6 @@
 				modify.access = list()
 				log_admin("[key_name(usr)] terminated the ID of [modify.registered_name].")
 				message_admins("[ADMIN_TPMONTY(usr)] terminated the ID of [modify.registered_name].")
-
-				callHook("terminate_employee", list(modify))
 
 	if (modify)
 		modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")

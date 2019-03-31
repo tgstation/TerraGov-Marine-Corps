@@ -666,9 +666,9 @@
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[wanted_marine] is missing in action.</span>")
 		return
 
-	for (var/datum/data/record/E in data_core.general)
+	for (var/datum/data/record/E in GLOB.datacore.general)
 		if(E.fields["name"] == wanted_marine.real_name)
-			for (var/datum/data/record/R in data_core.security)
+			for (var/datum/data/record/R in GLOB.datacore.security)
 				if (R.fields["id"] == E.fields["id"])
 					if(!findtext(R.fields["ma_crim"],"Insubordination."))
 						R.fields["criminal"] = "*Arrest*"
@@ -748,7 +748,7 @@
 	old_squad.remove_marine_from_squad(transfer_marine)
 	new_squad.put_marine_in_squad(transfer_marine)
 
-	for(var/datum/data/record/t in data_core.general) //we update the crew manifest
+	for(var/datum/data/record/t in GLOB.datacore.general) //we update the crew manifest
 		if(t.fields["name"] == transfer_marine.real_name)
 			t.fields["squad"] = new_squad.name
 			break

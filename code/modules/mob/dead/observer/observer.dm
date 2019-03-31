@@ -22,6 +22,7 @@
 	var/ghost_sechud = FALSE
 	var/ghost_squadhud = FALSE
 	var/ghost_xenohud = FALSE
+	var/ghost_orderhud = FALSE
 
 	universal_speak = TRUE
 	var/atom/movable/following = null
@@ -86,13 +87,15 @@
 				S.clean_marine_from_squad(H)
 
 		mind.transfer_to(target, TRUE)
-		target.fully_replace_character_name(real_name, target.real_name)
 
 		if(!ishuman(target) || !target.job)
+			target.fully_replace_character_name(real_name, target.real_name)
 			return
 
 		var/mob/living/carbon/human/H = target
 		H.set_rank(H.job)
+
+		target.fully_replace_character_name(real_name, target.real_name)
 
 		if(!H.assigned_squad)
 			return
@@ -254,7 +257,7 @@
 	if(!client?.prefs)
 		return
 
-	var/hud_choice = input("Choose a HUD to toggle", "Toggle HUD") as null|anything in list("Medical HUD", "Security HUD", "Squad HUD", "Xeno Status HUD")
+	var/hud_choice = input("Choose a HUD to toggle", "Toggle HUD") as null|anything in list("Medical HUD", "Security HUD", "Squad HUD", "Xeno Status HUD", "Order HUD")
 
 	var/datum/mob_hud/H
 	switch(hud_choice)
@@ -286,6 +289,14 @@
 			client.prefs.ghost_hud ^= GHOST_HUD_XENO
 			client.prefs.save_preferences()
 			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_xenohud ? "Enabled" : "Disabled"]</span>")
+		if("Order HUD")
+			ghost_orderhud = !ghost_orderhud
+			H = huds[MOB_HUD_ORDER]
+			ghost_orderhud ? H.add_hud_to(src) : H.remove_hud_from(src)
+			client.prefs.ghost_hud ^= GHOST_HUD_ORDER
+			client.prefs.save_preferences()
+			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_orderhud ? "Enabled" : "Disabled"]</span>")			
+		
 
 
 /mob/dead/observer/verb/teleport(var/area/A in return_sorted_areas())
@@ -621,7 +632,7 @@
 	set category = "Ghost"
 	set name = "View Crew Manifest"
 
-	var/dat = data_core.get_manifest()
+	var/dat = GLOB.datacore.get_manifest()
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
 	popup.set_content(dat)

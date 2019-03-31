@@ -44,6 +44,8 @@
 	else if(left_click)
 		if(ispath(objholder,/turf))
 			var/turf/T = get_turf(object)
+			if(!T)
+				return
 			log_admin("Build Mode: [key_name(c)] modified [T] in [AREACOORD(object)] to [objholder]")
 			T.ChangeTurf(objholder)
 		else if(!isnull(objholder))
