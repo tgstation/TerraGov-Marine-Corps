@@ -700,9 +700,9 @@
 				perpname = name
 
 			if(perpname)
-				for (var/datum/data/record/E in data_core.general)
+				for (var/datum/data/record/E in GLOB.datacore.general)
 					if (E.fields["name"] == perpname)
-						for (var/datum/data/record/R in data_core.security)
+						for (var/datum/data/record/R in GLOB.datacore.security)
 							if (R.fields["id"] == E.fields["id"])
 
 								var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Incarcerated", "Released", "Cancel")
@@ -730,9 +730,9 @@
 					perpname = tempPda.owner
 			else
 				perpname = src.name
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.datacore.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.security)
+					for (var/datum/data/record/R in GLOB.datacore.security)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
 								to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]")
@@ -760,9 +760,9 @@
 					perpname = tempPda.owner
 			else
 				perpname = src.name
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.datacore.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.security)
+					for (var/datum/data/record/R in GLOB.datacore.security)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
 								read = 1
@@ -788,9 +788,9 @@
 					perpname = tempPda.owner
 			else
 				perpname = src.name
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.datacore.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.security)
+					for (var/datum/data/record/R in GLOB.datacore.security)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
 								var/t1 = copytext(sanitize(input("Add Comment:", "Sec. records", null, null)  as message),1,MAX_MESSAGE_LEN)
@@ -820,9 +820,9 @@
 			else
 				perpname = src.name
 
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.datacore.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.general)
+					for (var/datum/data/record/R in GLOB.datacore.general)
 						if (R.fields["id"] == E.fields["id"])
 
 							var/setmedical = input(usr, "Specify a new medical status for this person.", "Medical HUD", R.fields["p_stat"]) in list("*SSD*", "*Deceased*", "Physically Unfit", "Active", "Disabled", "Cancel")
@@ -831,8 +831,6 @@
 								if(setmedical != "Cancel")
 									R.fields["p_stat"] = setmedical
 									modified = 1
-									if(PDA_Manifest.len)
-										PDA_Manifest.Cut()
 
 									spawn()
 										if(istype(usr,/mob/living/carbon/human))
@@ -858,9 +856,9 @@
 					perpname = tempPda.owner
 			else
 				perpname = src.name
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.datacore.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.medical)
+					for (var/datum/data/record/R in GLOB.datacore.medical)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
 								to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]")
@@ -889,9 +887,9 @@
 					perpname = tempPda.owner
 			else
 				perpname = src.name
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.datacore.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.medical)
+					for (var/datum/data/record/R in GLOB.datacore.medical)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
 								read = 1
@@ -917,9 +915,9 @@
 					perpname = tempPda.owner
 			else
 				perpname = src.name
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.datacore.general)
 				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.medical)
+					for (var/datum/data/record/R in GLOB.datacore.medical)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
 								var/t1 = copytext(sanitize(input("Add Comment:", "Med. records", null, null)  as message),1,MAX_MESSAGE_LEN)
@@ -964,7 +962,7 @@
 				to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
 				return
 
-			for(var/datum/data/record/R in data_core.medical)
+			for(var/datum/data/record/R in GLOB.datacore.medical)
 				if (R.fields["name"] == real_name)
 					if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
 						usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
@@ -1309,7 +1307,7 @@
 	set name = "View Crew Manifest"
 	set category = "IC"
 
-	var/dat = data_core.get_manifest()
+	var/dat = GLOB.datacore.get_manifest()
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
 	popup.set_content(dat)
@@ -1663,9 +1661,12 @@
 /mob/living/carbon/human/proc/set_rank(rank)
 	if(!mind)
 		job = rank
-		return
+		return FALSE
 
 	var/datum/job/J = SSjob.name_occupations[rank]
+	if(!J)
+		return FALSE
+
 	var/datum/outfit/job/O = new J.outfit
 	var/id = O.id ? O.id : /obj/item/card/id
 	var/obj/item/card/id/I = new id
@@ -1682,12 +1683,16 @@
 	equip_to_slot_or_del(I, SLOT_WEAR_ID)
 
 	SSjob.AssignRole(src, rank)
-	O.post_equip(src)
+	O.handle_id(src)
+
+	GLOB.datacore.manifest_update(real_name, real_name, job)
+
+	return TRUE
 
 
 /mob/living/carbon/human/proc/set_equipment(equipment)
 	if(!equipment)
-		return
+		return FALSE
 
 	var/list/job_paths = subtypesof(/datum/outfit/job)
 	var/list/outfits = list()
@@ -1700,8 +1705,10 @@
 		outfits[D.name] = D
 
 	if(!(equipment in outfits))
-		return
+		return FALSE
 
 	var/datum/outfit/O = new outfits[equipment]
 	delete_equipment(TRUE)
 	equipOutfit(O, FALSE)
+
+	return TRUE
