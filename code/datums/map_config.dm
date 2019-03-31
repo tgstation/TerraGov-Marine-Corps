@@ -11,6 +11,7 @@
 	var/config_max_users = 0
 	var/config_min_users = 0
 	var/voteweight = 1
+	var/announce_text = ""
 
 	// Config actually from the JSON - should default to Box
 	var/map_name = "LV624"

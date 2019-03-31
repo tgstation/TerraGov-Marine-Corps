@@ -59,15 +59,10 @@
 
 
 /datum/game_mode/distress/proc/map_announce()
-	switch(SSmapping.config.map_name)
-		if(MAP_LV_624)
-			command_announcement.Announce("A faint distress signal has been picked up by our scanners, which have tracked the source to a third generation colony, known as LV-624. Through use of bluespace drive tech, the [CONFIG_GET(string/ship_name)] has jumped within range of the colony. TGMC, gear up and get ready to respond!", "[CONFIG_GET(string/ship_name)]")
-		if(MAP_ICE_COLONY)
-			command_announcement.Announce("A garbled, unintelligible communications message was broadcasted over a general frequency, and picked up by our comms relay. The message appears to have come from a second generation settlement, located on an ice cold planet. The [CONFIG_GET(string/ship_name)] is moving into the sector with thrusters at max throttle. TGMC, get briefed and then move out! ", "[CONFIG_GET(string/ship_name)]")
-		if(MAP_BIG_RED)
-			command_announcement.Announce("A second generation colony has had a beacon transmitting the same signal, nonstop. Attempts to hail the colony over comms have proved futile. Because the [CONFIG_GET(string/ship_name)] was at a nearby drydock, it has been dispatched to figure out what's wrong. TGMC, prepare to deploy! ", "[CONFIG_GET(string/ship_name)]")
-		if(MAP_PRISON_STATION)
-			command_announcement.Announce("A Nanotrasen maximum security prison has activated its distress signal. The [CONFIG_GET(string/ship_name)] is swiftly cruising through space, and nearing the vicinity of the prison station. TGMC, get moving! ", "[CONFIG_GET(string/ship_name)]")
+	if(!SSmapping.config.announce_text)
+		return
+
+	command_announcement.Announce(SSmapping.config.announce_text, "[CONFIG_GET(string/ship_name)]")
 
 
 /datum/game_mode/distress/process()

@@ -322,6 +322,9 @@
 				currentmap = null
 			if ("disabled")
 				currentmap = null
+			if("announcetext")
+				var/parsed = replacetext(data, "###SHIPNAME###", CONFIG_GET(string/ship_name))
+				currentmap.announce_text = parsed
 			else
 				log_config("Unknown command in map vote config: '[command]'")
 
