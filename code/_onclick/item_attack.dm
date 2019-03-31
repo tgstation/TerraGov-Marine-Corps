@@ -1,21 +1,36 @@
 
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
+		return
 	return
 
-// No comment
-/atom/proc/attackby(obj/item/W, mob/living/user)
-	return
-/atom/movable/attackby(obj/item/W, mob/living/user)
-	if(W)
-		if(!(W.flags_item & NOBLUDGEON))
-			visible_message("<span class='danger'>[src] has been hit by [user] with [W].</span>", null, 5)
-			user.animation_attack_on(src)
-			user.flick_attack_overlay(src, "punch")
 
-/mob/living/attackby(obj/item/I, mob/user)
-	if(istype(I) && ismob(user))
-		I.attack(src, user)
+
+/atom/proc/attackby(obj/item/W, mob/user, params)
+	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, W, user, params) & COMPONENT_NO_AFTERATTACK)
+		return TRUE
+	return FALSE
+
+
+/obj/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return TRUE
+	user.changeNext_move(I.attack_speed)
+
+
+/obj/item/storage/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	user.changeNext_move(CLICK_CD_FASTEST)
+
+
+/mob/living/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(.)
+		return TRUE
+	user.changeNext_move(I.attack_speed)
+	return I.attack(src, user)
 
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
@@ -25,6 +40,8 @@
 
 
 /obj/item/proc/attack(mob/living/M, mob/living/user, def_zone)
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user)
+
 	if(flags_item & NOBLUDGEON)
 		return
 

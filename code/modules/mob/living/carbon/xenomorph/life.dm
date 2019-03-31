@@ -12,7 +12,7 @@
 
 	if(stat == DEAD) //Dead, nothing else to do but this.
 		if(plasma_stored && !(xeno_caste.caste_flags & CASTE_DECAY_PROOF))
-			xeno_caste.handle_decay(src)
+			handle_decay()
 		return
 	if(stat == UNCONSCIOUS)
 		if(is_zoomed)
@@ -77,13 +77,14 @@
 	update_canmove()
 
 	//Deal with devoured things and people
-	if(stomach_contents.len)
-		for(var/atom/movable/M in stomach_contents)
+	if(length(stomach_contents))
+		for(var/mob/M in stomach_contents)
 			if(world.time > devour_timer && ishuman(M) && !is_ventcrawling)
 				stomach_contents.Remove(M)
 				if(M.loc != src)
 					continue
 				M.forceMove(loc)
+				M.KnockDown(3)
 	return TRUE
 
 /mob/living/carbon/Xenomorph/Defender/update_stat()
@@ -288,20 +289,20 @@
 						if("recovery")
 							if(xeno_caste.aura_strength > Z.recovery_new)
 								Z.recovery_new = xeno_caste.aura_strength
-		if(leader_current_aura && !stat)
-			var/pheromone_range = round(6 + leader_aura_strength * 2)
-			for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
-				if(Z.stat != DEAD && hivenumber == Z.hivenumber && !Z.on_fire)
-					switch(leader_current_aura)
-						if("frenzy")
-							if(leader_aura_strength > Z.frenzy_new)
-								Z.frenzy_new = leader_aura_strength
-						if("warding")
-							if(leader_aura_strength > Z.warding_new)
-								Z.warding_new = leader_aura_strength
-						if("recovery")
-							if(leader_aura_strength > Z.recovery_new)
-								Z.recovery_new = leader_aura_strength
+	if(leader_current_aura && !stat && !on_fire)
+		var/pheromone_range = round(6 + leader_aura_strength * 2)
+		for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
+			if(Z.stat != DEAD && hivenumber == Z.hivenumber && !Z.on_fire)
+				switch(leader_current_aura)
+					if("frenzy")
+						if(leader_aura_strength > Z.frenzy_new)
+							Z.frenzy_new = leader_aura_strength
+					if("warding")
+						if(leader_aura_strength > Z.warding_new)
+							Z.warding_new = leader_aura_strength
+					if("recovery")
+						if(leader_aura_strength > Z.recovery_new)
+							Z.recovery_new = leader_aura_strength
 
 /mob/living/carbon/Xenomorph/proc/handle_aura_receiver()
 	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)

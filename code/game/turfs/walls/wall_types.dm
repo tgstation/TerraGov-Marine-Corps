@@ -31,12 +31,18 @@
 		icon_state = "[walltype][junction]"
 	junctiontype = junction
 
+/turf/closed/wall/almayer/nosmooth //for SD and other special walls
+	tiles_with = list(/turf/closed/wall,/obj/structure/window/framed,/obj/structure/window_frame,/obj/structure/girder)
+
 /turf/closed/wall/almayer/outer
 	name = "outer hull"
 	desc = "A huge chunk of metal used to seperate space from the ship"
 	//icon_state = "testwall0_debug" //Uncomment to check hull in the map editor.
 	walltype = "testwall"
 	hull = 1 //Impossible to destroy or even damage. Used for outer walls that would breach into space, potentially some special walls
+
+/turf/closed/wall/almayer/outer/reinforced
+	name = "reinforced hull"
 
 /turf/closed/wall/almayer/white
 	walltype = "wwall"
@@ -456,6 +462,7 @@
 
 /turf/closed/wall/resin/attackby(obj/item/W, mob/living/user)
 	if(!(W.flags_item & NOBLUDGEON))
+		user.changeNext_move(W.attack_speed)
 		user.animation_attack_on(src)
 		var/damage = W.force
 		var/multiplier = 1

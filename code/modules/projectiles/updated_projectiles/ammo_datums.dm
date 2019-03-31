@@ -806,11 +806,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC
 	icon_state 	= "bullet"
 
-/datum/ammo/bullet/smartgun/lethal/New()
-	..()
-	damage = CONFIG_GET(number/combat_define/low_hit_damage)
-	penetration = CONFIG_GET(number/combat_define/mlow_armor_penetration)
-
 /datum/ammo/bullet/smartgun/dirty
 	name = "irradiated smartgun bullet"
 	hud_state = "smartgun_radioactive"
@@ -863,8 +858,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/turret/mini/New()
 	. = ..()
-	damage = CONFIG_GET(number/combat_define/hlow_hit_damage) //35
-	penetration= CONFIG_GET(number/combat_define/low_armor_penetration) //20
+	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/mlow_armor_penetration)
 
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)

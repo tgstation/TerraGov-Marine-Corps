@@ -332,6 +332,9 @@
 		for(var/atom/movable/S in stomach_contents)
 			stomach_contents.Remove(S)
 			S.forceMove(get_turf(src))
+			if(isliving(S))
+				var/mob/living/M = S
+				M.adjust_blindness(-1)
 
 	if(contents.len) //Get rid of anything that may be stuck inside us as well
 		for(var/atom/movable/A in contents)
@@ -602,9 +605,6 @@
 	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
 	return ..()
 
-
-//////////// XENO CASTE PROCS //////////////////
-
-/datum/xeno_caste/proc/handle_decay(mob/living/carbon/Xenomorph/X)
+/mob/living/carbon/Xenomorph/proc/handle_decay()
 	if(prob(7+(3*tier)+(3*upgrade))) // higher level xenos decay faster, higher plasma storage.
-		X.use_plasma(min(rand(1,2), X.plasma_stored))
+		use_plasma(min(rand(1,2), plasma_stored))

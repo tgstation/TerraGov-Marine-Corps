@@ -11,8 +11,6 @@
 	var/dat
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 
-	dat += "<html><head><title>Round Status</title></head>"
-	dat += "<body><h1><b>Round Status</b></h1>"
 	dat += "Current Game Mode: <B>[SSticker.mode.name]</B><BR>"
 	dat += "Round Duration: <B>[worldtime2text()]</B><BR>"
 
@@ -53,7 +51,7 @@
 
 	dat += "<a href='?src=[ref];evac_authority=init_dest'>Unlock Self Destruct control panel for humans</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=cancel_dest'>Lock Self Destruct control panel for humans</a><br>"
-	dat += "<a href='?src=[ref];evac_authority=use_dest'>Destruct the [MAIN_SHIP_NAME] NOW</a><br>"
+	dat += "<a href='?src=[ref];evac_authority=use_dest'>Destruct the [CONFIG_GET(string/ship_name)] NOW</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=toggle_dest'>Toggle Self Destruct Permission</a><br>"
 
 	dat += "<br><br>"
@@ -90,8 +88,8 @@
 			dat += "<td><a href='?src=[ref];playerpanel=[REF(H)]'>PP</A></td></TR>"
 		dat += "</table>"
 
-	dat += "</body></html>"
-
 	log_admin("[key_name(usr)] opened the mode panel.")
 
-	usr << browse(dat, "window=roundstatus;size=600x500")
+	var/datum/browser/browser = new(usr, "modepanel", "<div align='center'>Mode Panel</div>", 600, 500)
+	browser.set_content(dat)
+	browser.open()

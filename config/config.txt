@@ -4,10 +4,13 @@
 $include dbconfig.txt
 
 ## Server name: This appears at the top of the screen in-game.
-#SERVER_NAME Something
+SERVER_NAME Something
+
+## Ship name. Used in various in-game places.
+SHIP_NAME Something Else
 
 ## Hosted by name for unix platforms.
-#HOSTEDBY yournamehere
+HOSTEDBY yournamehere
 
 ## The title of the main window.
 TITLE Change Me
@@ -85,8 +88,6 @@ LOG_MANIFEST
 GUEST_JOBBAN
 
 ALLOW_METADATA
-
-USEALIENWHITELIST
 
 LOOC_ENABLED
 

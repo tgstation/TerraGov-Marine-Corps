@@ -103,6 +103,7 @@
 /obj/structure/mineral_door/attackby(obj/item/W, mob/living/user)
 	var/is_resin = istype(src, /obj/structure/mineral_door/resin)
 	if(!(W.flags_item & NOBLUDGEON) && W.force)
+		user.changeNext_move(W.attack_speed)
 		var/multiplier = 1
 		var/obj/item/tool/pickaxe/plasmacutter/P
 		if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)

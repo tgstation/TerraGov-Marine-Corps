@@ -60,9 +60,24 @@
 					var/datum/SDQL2_query/Q = i
 					Q.generate_stat()
 
-	if(length(tile_contents))
-		if(statpanel("Tile Contents"))
-			stat(tile_contents)
+
+	if(listed_turf && client)
+		if(!TurfAdjacent(listed_turf))
+			listed_turf = null
+		else
+			statpanel(listed_turf.name, null, listed_turf)
+			var/list/overrides = list()
+			for(var/image/I in client.images)
+				if(I.loc && I.loc.loc == listed_turf && I.override)
+					overrides += I.loc
+			for(var/atom/A in listed_turf)
+				if(!A.mouse_opacity)
+					continue
+				if(A.invisibility > see_invisible)
+					continue
+				if(length(overrides) && (A in overrides))
+					continue
+				statpanel(listed_turf.name, null, A)
 
 
 /mob/proc/prepare_huds()
@@ -427,7 +442,7 @@
 	return
 
 /mob/living/start_pulling(atom/movable/AM, lunge, no_msg)
-	if ( !AM || !usr || src==AM || !isturf(loc) || !isturf(AM.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if(!AM || !usr || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
 	if (AM.anchored || AM.throwing)
@@ -462,6 +477,8 @@
 	G.grabbed_thing = AM
 	if(!put_in_hands(G)) //placing the grab in hand failed, grab is dropped, deleted, and we stop pulling automatically.
 		return
+
+	changeNext_move(CLICK_CD_RANGE)
 
 	if(M)
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
@@ -526,6 +543,11 @@
 	animate(src, pixel_y = old_y, time = 5, easing = SINE_EASING|EASE_IN) //halt animation
 	//reset the pixel offsets to zero
 	is_floating = 0
+
+
+/mob/GenerateTag()
+	tag = "mob_[next_mob_id++]"
+
 
 // facing verbs
 /mob/proc/canface()
@@ -718,9 +740,6 @@ mob/proc/yank_out_object()
 /mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
-/mob/proc/TurfAdjacent(var/turf/T)
-	return ( get_dist(T,src) <= 1 )
-
 /mob/on_stored_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
 		temporarilyRemoveItemFromInventory(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
@@ -813,7 +832,7 @@ mob/proc/yank_out_object()
 	for(var/mob/M in viewers)
 		if(!isobserver(M) && (M.stat != CONSCIOUS || isdeaf(M)))
 			continue
-		to_chat(M, emote_overlay)
+		SEND_IMAGE(M, emote_overlay)
 
 	if(remove_delay)
 		addtimer(CALLBACK(src, .proc/remove_emote_overlay, client, emote_overlay, viewers), remove_delay)

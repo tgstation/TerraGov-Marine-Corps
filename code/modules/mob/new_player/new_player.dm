@@ -369,7 +369,7 @@
 		var/obj/screen/splash/Spl = new(character.client, TRUE)
 		Spl.Fade(TRUE)
 
-	data_core.manifest_inject(character)
+	GLOB.datacore.manifest_inject(character)
 	SSticker.minds += character.mind
 	SSticker.mode.latejoin_tally += 1
 
@@ -390,9 +390,9 @@
 	if(SSevacuation)
 		switch(SSevacuation.evac_status)
 			if(EVACUATION_STATUS_INITIATING)
-				dat += "<div class='notice red'><b>The [MAIN_SHIP_NAME] is currently undergoing evacuation procedures.</b></div><br>"
+				dat += "<font color='red'><b>The [CONFIG_GET(string/ship_name)] is being evacuated.</b></font><br>"
 			if(EVACUATION_STATUS_COMPLETE)
-				dat += "<div class='notice red'>The [MAIN_SHIP_NAME] has undergone evacuation.</div><br>"
+				dat += "<font color='red'>The [CONFIG_GET(string/ship_name)] has undergone evacuation.</font><br>"
 
 	dat += "<div class='clearBoth'>Choose from the following open positions:</div><br>"
 	dat += "<div class='jobs'><div class='jobsColumn'>"
@@ -418,7 +418,7 @@
 
 
 /mob/new_player/proc/ViewManifest()
-	var/dat = data_core.get_manifest(OOC = 1)
+	var/dat = GLOB.datacore.get_manifest(ooc = TRUE)
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 400, 420)
 	popup.set_content(dat)

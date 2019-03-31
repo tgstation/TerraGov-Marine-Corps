@@ -424,9 +424,9 @@
 		. -= round(max(30,(shooter_human.traumatic_shock) * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
 		if(shooter_human.stagger)
 			. -= 30 //Being staggered fucks your aim.
-		if(shooter_human.marskman_aura)
-			. += shooter_human.marskman_aura * 1.5 //Flat buff of 3 % accuracy per aura level
-			. += P.distance_travelled * 0.35 * shooter_human.marskman_aura //Flat buff to accuracy per tile travelled
+		if(shooter_human.marksman_aura) // Accuracy bonus from active focus order: flat bonus + bonus per tile traveled
+			. += shooter_human.marksman_aura * CONFIG_GET(number/combat_define/focus_base_bonus) 
+			. += P.distance_travelled * shooter_human.marksman_aura * CONFIG_GET(number/combat_define/focus_per_tile_bonus)
 
 
 /mob/living/carbon/human/get_projectile_hit_chance(obj/item/projectile/P)
@@ -541,8 +541,10 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		#endif
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
 		if(P.shot_from && src == P.shot_from.sniper_target(src)) //Runtimes bad
-			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
-			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
+			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
+			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
+			add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
+
 		armor -= penetration//Minus armor penetration from the bullet. If the bullet has negative penetration, adding to their armor, but they don't have armor, they get nothing.
 		#if DEBUG_HUMAN_DEFENSE
 		to_chat(world, "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>")
@@ -655,8 +657,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
 		if(P.shot_from && src == P.shot_from.sniper_target(src))
-			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
-			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
+			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
+			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
+			add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
 		armor -= penetration
 

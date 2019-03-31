@@ -205,8 +205,8 @@
 	return
 
 /obj/structure/foamedmetal/attackby(var/obj/item/I, var/mob/user)
-
 	if(prob(I.force*20 - metal*25))
+		user.changeNext_move(I.attack_speed)
 		user.visible_message("<span class='warning'> [user] smashes through the foamed metal.</span>", "<span class='notice'> You smash through the foamed metal with \the [I].</span>")
 		qdel(src)
 	else

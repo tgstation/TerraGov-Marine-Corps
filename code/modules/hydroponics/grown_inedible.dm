@@ -20,7 +20,7 @@
 	spawn(1)
 		// Fill the object up with the appropriate reagents.
 		if(!isnull(plantname))
-			var/datum/seed/S = seed_types[plantname]
+			var/datum/seed/S = GLOB.seed_types[plantname]
 			if(!S || !S.chems)
 				return
 

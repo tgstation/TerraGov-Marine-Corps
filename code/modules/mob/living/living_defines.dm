@@ -53,6 +53,8 @@
 	var/in_stasis = FALSE //Is the mob in stasis bag?
 	var/metabolism_efficiency = 1 //more or less efficiency to metabolize helpful/harmful reagents and (TODO) regulate body temperature..
 
+	var/tinttotal = TINT_NONE
+
 	//Speech
 	var/stuttering = 0
 	var/slurring = 0
@@ -75,8 +77,6 @@
 	var/reagent_pain_modifier = 0 //same as above, except can potentially mask damage
 
 	var/smokecloaked = FALSE //For the new Smoke Grenade
-
-	var/canEnterVentWith = "/obj/item/implant=0&/obj/item/clothing/mask/facehugger=0&/obj/item/device/radio/borg=0&/obj/machinery/camera=0&/obj/item/verbs=0" // Vent crawling whitelisted items, whoo
 
 	var/no_stun = FALSE
 

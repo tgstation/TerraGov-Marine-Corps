@@ -39,10 +39,9 @@
 
 /obj/item/teleportation_scroll/proc/teleportscroll(var/mob/user)
 
-	var/A
-
-	A = input(user, "Area to jump to", "BOOYEA", A) in teleportlocs
-	var/area/thearea = teleportlocs[A]
+	var/area/thearea = input(user, "Area to jump to", "BOOYEA") as null|anything in return_sorted_areas()
+	if(!thearea)
+		return
 
 	if (user.stat || user.is_mob_restrained())
 		return

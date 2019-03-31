@@ -171,8 +171,6 @@ SUBSYSTEM_DEF(ticker)
 	reset_squads()
 	equip_characters()
 
-	data_core.manifest()
-
 	transfer_characters()	//transfer keys to the new mobs
 
 	for(var/I in round_start_events)
@@ -181,6 +179,8 @@ SUBSYSTEM_DEF(ticker)
 	LAZYCLEARLIST(round_start_events)
 
 	supply_controller.process()
+
+	GLOB.datacore.manifest()
 
 	log_world("Game start took [(world.timeofday - init_start) / 10]s")
 	round_start_time = world.time
@@ -368,6 +368,6 @@ SUBSYSTEM_DEF(ticker)
 		end_state = end_string
 
 	log_game("<span class='boldnotice'>Rebooting World. [reason]</span>")
-	to_chat(world, "<span class='boldnotice'>Rebooting...</span>")
+	to_chat_immediate(world, "<h3><span class='boldnotice'>Rebooting...</span></h3>")
 
 	world.Reboot(TRUE)

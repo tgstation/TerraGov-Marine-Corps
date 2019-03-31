@@ -218,7 +218,7 @@
 		if("logout")
 			authenticated = 0
 		if("filter")
-			var/filterstr = stripped_input(usr,"Input the search criteria. Multiple values can be input, separated by a comma.", "Filter setting") as text|null
+			var/filterstr = stripped_input(usr,"Input the search criteria. Multiple values can be input, separated by a comma.", "Filter setting")
 			if(filterstr)
 				filter_list[href_list["filter"]] = text2list(filterstr,",")
 			else
@@ -239,7 +239,7 @@
 						current = null
 		if("label")
 			if(current)
-				var/label = stripped_input(usr,"Input the label for this record. Multiple values can be input, separated by a comma.", "Labeling record", current.fields["label"]) as text|null
+				var/label = stripped_input(usr,"Input the label for this record. Multiple values can be input, separated by a comma.", "Labeling record", current.fields["label"])
 				current.fields["label"] = label
 		if("object")
 			if(scanning)

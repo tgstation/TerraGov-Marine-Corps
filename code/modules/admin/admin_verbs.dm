@@ -1,6 +1,6 @@
 /datum/admins/proc/admin_ghost()
 	set category = "Admin"
-	set name = "Admin Ghost"
+	set name = "Aghost"
 	set desc = "Allows you to ghost and re-enter body at will."
 
 	if(!check_rights(R_ADMIN|R_MENTOR))
@@ -104,12 +104,12 @@
 	var/mob/M
 	switch(input("Change by:", "Change CKey") as null|anything in list("Key", "Mob"))
 		if("Key")
-			var/client/C = input("Please, select a key.", "Get Key") as null|anything in sortKey(GLOB.clients)
+			var/client/C = input("Please, select a key.", "Change CKey") as null|anything in sortKey(GLOB.clients)
 			if(!C)
 				return
 			M = C.mob
 		if("Mob")
-			var/mob/N = input("Please, select a mob.", "Get Mob") as null|anything in sortNames(GLOB.mob_list)
+			var/mob/N = input("Please, select a mob.", "Change CKey") as null|anything in sortNames(GLOB.mob_list)
 			if(!N)
 				return
 			M = N
@@ -272,7 +272,7 @@
 	S.put_marine_in_squad(H)
 
 	//Crew manifest
-	for(var/datum/data/record/t in data_core.general)
+	for(var/datum/data/record/t in GLOB.datacore.general)
 		if(t.fields["name"] == H.real_name)
 			t.fields["squad"] = S.name
 			break
@@ -561,7 +561,7 @@
 	log_admin_private_asay("[key_name(src)]: [msg]")
 
 	var/color = "adminsay"
-	if(check_rights(R_PERMISSIONS, FALSE))
+	if(check_other_rights(src, R_DBRANKS, FALSE))
 		color = "headminsay"
 
 	msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(mob)]: <span class='message'>[msg]</span></span>"
@@ -589,9 +589,9 @@
 	log_admin_private_msay("[key_name(src)]: [msg]")
 
 	var/color = "mod"
-	if(check_rights(R_PERMISSIONS, FALSE))
+	if(check_other_rights(src, R_DBRANKS, FALSE))
 		color = "headminmod"
-	else if(check_rights(R_ADMIN, FALSE))
+	else if(check_other_rights(src, R_ADMIN, FALSE))
 		color = "adminmod"
 
 	for(var/client/C in GLOB.admins)
@@ -1045,7 +1045,7 @@
 
 	if(irc)
 		to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]</span></font>")
-		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='red'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>IRC</i>: [keywordparsedmsg]</font>")
+		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>IRC</i>: [keywordparsedmsg]</font>")
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
 	else
 		if(check_other_rights(recipient, R_ADMIN, FALSE) || is_mentor(recipient))
@@ -1061,15 +1061,14 @@
 				window_flash(recipient)
 				window_flash(src)
 
-				var/interaction_message = "<font color='purple'>PM from-<b>[key_name(src, recipient, TRUE)]</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [keywordparsedmsg]</font>"
+				var/interaction_message = "<font color='#cea7f1'>PM from-<b>[key_name(src, recipient, TRUE)]</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [keywordparsedmsg]</font>"
 				admin_ticket_log(src, interaction_message)
 				if(recipient != src)
 					admin_ticket_log(recipient, interaction_message)
 
 			else //Recipient is a staff member, sender is not.
-				var/replymsg = "<font size='3' color='red'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>"
-				admin_ticket_log(src, replymsg)
-				to_chat(recipient, replymsg)
+				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
+				to_chat(recipient, "<font size='3' color='red'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 				window_flash(recipient)
 				to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[msg]</span></font>")
 
@@ -1099,7 +1098,7 @@
 					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg'))
 
 				window_flash(recipient)
-				admin_ticket_log(recipient, "<font color='blue'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
+				admin_ticket_log(recipient, "<font color='#a7f2ef'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
 
 
 			else		//neither are admins
@@ -1150,43 +1149,59 @@
 	var/irc_tagged = "[sender](IRC)"
 	var/list/splits = splittext(compliant_msg, " ")
 	if(length(splits) && splits[1] == "ticket")
-		if(splits.len < 2)
+		if(length(splits) < 2)
 			return IRC_AHELP_USAGE
 		switch(splits[2])
 			if("close")
 				if(ticket)
-					ticket.Close(irc_tagged)
+					ticket.Close(FALSE, TRUE)
+					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully closed"
 			if("resolve")
 				if(ticket)
-					ticket.Resolve(irc_tagged)
+					ticket.Resolve(FALSE, TRUE)
+					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully resolved"
 			if("icissue")
 				if(ticket)
-					ticket.ICIssue(irc_tagged)
+					ticket.ICIssue(TRUE)
+					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully marked as IC issue"
 			if("reject")
 				if(ticket)
-					ticket.Reject(irc_tagged)
+					ticket.Reject(TRUE)
+					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully rejected"
+			if("tier")
+				if(ticket)
+					ticket.Tier(TRUE)
+					ticket.AddInteraction("<font color='red'>IRC interaction by: [sender].</font>")
+					message_admins("IRC interaction by: [irc_tagged]")
+					return "Ticket #[ticket.id] successfully tiered"
 			if("reopen")
 				if(ticket)
 					return "Error: [target] already has ticket #[ticket.id] open"
-				var/fail = splits.len < 3 ? null : -1
-				if(!isnull(fail))
-					fail = text2num(splits[3])
-				if(isnull(fail))
-					return "Error: No/Invalid ticket id specified. [IRC_AHELP_USAGE]"
-				var/datum/admin_help/AH = GLOB.ahelp_tickets.TicketByID(fail)
+				if(length(splits) < 3)
+					return "Error: No ticket id specified. [IRC_AHELP_USAGE]"
+				var/id = text2num(splits[3])
+				if(isnull(id))
+					return "Error: Invalid ticket id specified. [IRC_AHELP_USAGE]"
+				var/datum/admin_help/AH = GLOB.ahelp_tickets.TicketByID(id)
 				if(!AH)
-					return "Error: Ticket #[fail] not found"
+					return "Error: Ticket #[id] not found"
 				if(AH.initiator_ckey != target)
-					return "Error: Ticket #[fail] belongs to [AH.initiator_ckey]"
-				AH.Reopen()
-				return "Ticket #[ticket.id] successfully reopened"
+					return "Error: Ticket #[id] belongs to [AH.initiator_ckey]"
+				AH.Reopen(TRUE)
+				AH.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+				message_admins("IRC interaction by: [irc_tagged]")
+				return "Ticket #[id] successfully reopened"
 			if("list")
 				var/list/tickets = GLOB.ahelp_tickets.TicketsByCKey(target)
-				if(!tickets.len)
+				if(!length(tickets))
 					return "None"
 				. = ""
 				for(var/I in tickets)
@@ -1214,14 +1229,14 @@
 	if(!msg)
 		return "Error: No message"
 
-	log_admin_private("IRC PM: [sender] -> [key_name(C)] : [msg]")
-	message_admins("IRC PM: [sender] -> [key_name_admin(C)] : [msg]")
+	log_admin_private("IRC PM: [irc_tagged] -> [key_name(C)] : [msg]")
+	message_admins("IRC PM: [irc_tagged] -> [key_name_admin(C, FALSE, FALSE)] : [msg]")
 
 	to_chat(C, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 	to_chat(C, "<font color='red'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>")
 	to_chat(C, "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
 
-	admin_ticket_log(C, "<font color='blue'>PM From [irc_tagged]: [msg]</font>")
+	admin_ticket_log(C, "<font color='#a7f2ef'>PM From [irc_tagged]: [msg]</font>")
 
 	//always play non-admin recipients the adminhelp sound
 	SEND_SOUND(C, 'sound/effects/adminhelp.ogg')

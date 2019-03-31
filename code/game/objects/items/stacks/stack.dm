@@ -195,20 +195,21 @@
 
 /obj/item/stack/proc/use(used)
 	if(used > amount) //If it's larger than what we have, no go.
-		return 0
+		return FALSE
 	amount -= used
 	if(amount <= 0)
 		if(usr && loc == usr)
 			usr.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
-	return 1
+	update_icon()
+	return TRUE
 
 /obj/item/stack/proc/add(var/extra)
 	if(amount + extra > max_amount)
-		return 0
+		return FALSE
 	else
 		amount += extra
-	return 1
+	return TRUE
 
 /obj/item/stack/proc/get_amount()
 	return amount

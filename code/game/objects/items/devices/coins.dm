@@ -12,7 +12,8 @@
 	var/sides = 2
 	var/flags_token = TOKEN_GENERAL
 
-/obj/item/coin/New()
+/obj/item/coin/Initialize()
+	. = ..()
 	pixel_x = rand(0,16)-8
 	pixel_y = rand(0,8)-8
 

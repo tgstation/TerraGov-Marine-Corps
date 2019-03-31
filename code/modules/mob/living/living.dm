@@ -473,9 +473,8 @@
 
 
 /mob/living/proc/offer_mob()
-	for(var/i in GLOB.dead_mob_list)
-		var/mob/dead/D = i
-		to_chat(D, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] \[<a href='byond://?src=[REF(D)];claim=[REF(src)]'>CLAIM</a>\] \[<a href='byond://?src=[REF(D)];track=[REF(src)]'>FOLLOW</a>\]</span><hr><br>")
+	for(var/mob/dead/observer/O in GLOB.dead_mob_list)
+		to_chat(O, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] \[<a href='byond://?src=[REF(O)];claim=[REF(src)]'>CLAIM</a>\] \[<a href='byond://?src=[REF(O)];track=[REF(src)]'>FOLLOW</a>\]</span><hr><br>")
 
 
 //used in datum/reagents/reaction() proc
@@ -492,6 +491,26 @@
 
 /mob/living/proc/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
 	return FALSE
+
+/mob/living/update_tint()
+	tinttotal = get_total_tint()
+	if(tinttotal >= TINT_BLIND)
+		blind_eyes(1)
+		return TRUE
+	else if(eye_blind == 1)
+		adjust_blindness(-1)
+	if(tinttotal == TINT_HEAVY)
+		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, 2)
+		return TRUE
+	else
+		clear_fullscreen("tint", 0)
+		return FALSE
+
+/mob/living/proc/get_total_tint()
+	if(iscarbon(loc))
+		var/mob/living/carbon/C = loc
+		if(src in C.stomach_contents)
+			. = TINT_BLIND
 
 /mob/living/proc/smokecloak_on()
 
@@ -600,3 +619,6 @@ below 100 is not dizzy
 		if(!G || !gear.Find(i))
 			continue
 		equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
+
+/mob/living/proc/vomit()
+	return

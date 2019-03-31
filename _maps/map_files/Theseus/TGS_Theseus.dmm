@@ -238,9 +238,7 @@
 	},
 /area/almayer/evacuation/pod7)
 "aaI" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -682,9 +680,7 @@
 /turf/open/floor/carpet,
 /area/almayer/living/officer_rnr)
 "act" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -1572,7 +1568,7 @@
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "afm" = (
-/obj/machinery/door/firedoor/border_only/almayer{
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -1965,11 +1961,11 @@
 	},
 /area/almayer/living/officer_study)
 "agF" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/officer_study)
 "agG" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/aft_hallway)
 "agH" = (
@@ -2222,7 +2218,7 @@
 	dir = 4;
 	name = "\improper MP Bunks"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-red";
 	icon_state = "red"
@@ -2288,17 +2284,13 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Garden Area"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/starboard_garden)
 "ahC" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -2312,9 +2304,7 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Garden Area"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
@@ -2355,9 +2345,7 @@
 /turf/open/floor/almayer,
 /area/almayer/living/officer_rnr)
 "ahQ" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -2399,7 +2387,7 @@
 	dir = 2;
 	name = "\improper Officer's Study"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/officer_study)
 "ahW" = (
@@ -2407,7 +2395,7 @@
 	dir = 2;
 	name = "\improper Officer's Cafeteria"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/aft_hallway)
 "ahX" = (
@@ -2699,9 +2687,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
@@ -2825,7 +2811,7 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "aja" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
@@ -3152,9 +3138,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer,
@@ -3329,7 +3313,7 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "akq" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -3541,9 +3525,7 @@
 /obj/machinery/door/airlock/multi_tile/almayer/comdoor{
 	name = "\improper Conference Room"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
@@ -3551,9 +3533,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/living/officer_rnr)
 "akC" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
@@ -3567,17 +3547,13 @@
 /obj/machinery/door/airlock/multi_tile/almayer/comdoor{
 	name = "\improper Officer's Study"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/officer_study)
 "akE" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
@@ -3600,9 +3576,7 @@
 /obj/machinery/door/airlock/multi_tile/almayer/comdoor{
 	name = "\improper Officer's Cafeteria"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -3614,9 +3588,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
@@ -3719,7 +3691,7 @@
 	dir = 4;
 	name = "\improper MP Bunks"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	dir = 1;
 	icon_state = "red";
@@ -3967,9 +3939,7 @@
 /turf/closed/wall/almayer/white,
 /area/almayer/medical/upper_medical)
 "alx" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/medidoor{
@@ -3981,9 +3951,7 @@
 	},
 /area/almayer/medical/upper_medical)
 "aly" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -4220,7 +4188,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -4590,7 +4558,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -4698,7 +4666,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/stern_hallway)
 "amm" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
@@ -4728,7 +4696,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/almayer,
 /area/almayer/hallways/stern_hallway)
 "amu" = (
 /obj/machinery/light{
@@ -4863,7 +4831,7 @@
 /obj/machinery/door/airlock/almayer/security{
 	name = "\improper Execution Room"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-sterile";
 	icon_state = "sterile"
@@ -5168,7 +5136,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -5367,9 +5335,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
@@ -5708,14 +5674,10 @@
 	},
 /area/almayer/hull/upper_hull)
 "aoH" = (
-/turf/closed/wall/almayer/outer{
-	name = "reinforced hull"
-	},
+/turf/closed/wall/almayer/outer/reinforced,
 /area/almayer/hull/upper_hull)
 "aoI" = (
-/turf/closed/wall/almayer/outer{
-	name = "reinforced hull"
-	},
+/turf/closed/wall/almayer/outer/reinforced,
 /area/almayer/command/telecomms)
 "aoJ" = (
 /turf/closed/wall/almayer,
@@ -5746,7 +5708,7 @@
 /turf/closed/wall/almayer,
 /area/almayer/engineering/upper_engineering)
 "aoN" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/airlock/almayer/engineering{
 	dir = 1;
 	name = "\improper Engineering Lobby";
@@ -5756,7 +5718,7 @@
 /area/almayer/engineering/upper_engineering)
 "aoO" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/airlock/almayer/engineering{
 	dir = 1;
 	name = "\improper Engineering Lobby";
@@ -5799,21 +5761,12 @@
 	tag = "icon-red"
 	},
 /area/almayer/hallways/stern_hallway)
-"aoU" = (
+"aoV" = (
 /turf/open/floor/almayer{
 	dir = 5;
 	icon_state = "red";
 	tag = "icon-red"
 	},
-/area/almayer/hallways/stern_hallway)
-"aoV" = (
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 4;
-	id = "sd_lockdown";
-	name = "\improper Self Destruct Lockdown";
-	unacidable = 1
-	},
-/turf/open/floor/almayer/mono,
 /area/almayer/command/self_destruct)
 "aoW" = (
 /obj/machinery/door/airlock/almayer/secure{
@@ -5849,9 +5802,7 @@
 	dir = 2;
 	name = "\improper Interrogation"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -5864,9 +5815,7 @@
 	dir = 2;
 	name = "\improper Observation"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/plating/almayer,
@@ -6070,7 +6019,7 @@
 	},
 /area/almayer/command/cic)
 "apx" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-sterile";
 	icon_state = "sterile"
@@ -6203,9 +6152,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/upper_hull)
 "apO" = (
-/turf/closed/wall/almayer/outer{
-	name = "reinforced hull"
-	},
+/turf/closed/wall/almayer/outer/reinforced,
 /area/almayer/medical/medical_science)
 "apP" = (
 /obj/structure/foamedmetal,
@@ -6522,31 +6469,19 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
 /turf/open/floor/almayer{
 	tag = "icon-redcorner";
 	icon_state = "redcorner"
 	},
 /area/almayer/hallways/stern_hallway)
-"aqB" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
+"aqC" = (
 /turf/open/floor/almayer{
 	dir = 4;
 	icon_state = "red";
 	tag = "icon-red"
-	},
-/area/almayer/hallways/stern_hallway)
-"aqC" = (
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 4;
-	id = "sd_lockdown";
-	name = "\improper Self Destruct Lockdown";
-	unacidable = 1
-	},
-/turf/open/floor/almayer{
-	tag = "icon-test_floor4";
-	icon_state = "test_floor4"
 	},
 /area/almayer/command/self_destruct)
 "aqE" = (
@@ -6583,9 +6518,7 @@
 "aqK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/secdoor,
@@ -6664,7 +6597,7 @@
 	opacity = 0
 	},
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/shipboard/brig)
 "aqQ" = (
@@ -6706,9 +6639,7 @@
 /obj/machinery/door/airlock/almayer/command{
 	dir = 2
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -6896,7 +6827,7 @@
 /obj/machinery/door/airlock/almayer/command{
 	name = "\improper Combat Information Center"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/almayer{
 	density = 0;
 	dir = 4;
@@ -6994,7 +6925,7 @@
 /area/almayer/medical/upper_medical)
 "arG" = (
 /obj/structure/window/framed/almayer/white,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "eorprivacyshutter";
@@ -7131,9 +7062,7 @@
 /area/almayer/command/telecomms)
 "arX" = (
 /obj/machinery/door/airlock/almayer/secure,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open (WEST)";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 8
 	},
 /obj/structure/cable{
@@ -7387,7 +7316,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/airlock/multi_tile/almayer/secdoor{
 	dir = 2
 	},
@@ -7453,7 +7382,7 @@
 	dir = 4;
 	name = "\improper Security Office"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-sterile";
 	icon_state = "sterile"
@@ -7495,9 +7424,7 @@
 	},
 /area/almayer/shipboard/brig)
 "asN" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -7510,9 +7437,7 @@
 /obj/machinery/door/airlock/almayer/security/CMA{
 	dir = 2
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -7521,9 +7446,7 @@
 	},
 /area/almayer/shipboard/chief_mp_office)
 "asP" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/secdoor,
@@ -7535,9 +7458,7 @@
 "asQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -7919,7 +7840,7 @@
 	name = "Telecommuncation Power";
 	pixel_x = -25
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/airlock/almayer/secure{
@@ -8313,9 +8234,7 @@
 /area/almayer/shipboard/brig)
 "auy" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -8456,9 +8375,7 @@
 	dir = 2;
 	name = "\improper Conference Room"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -8597,9 +8514,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/aft_hallway)
 "avd" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/airlock/almayer/command/CPTmess{
@@ -8740,7 +8655,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/holosign/surgery{
 	id = "eorsign"
 	},
@@ -8988,16 +8903,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/ce_room)
-"avU" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/almayer{
-	dir = 8;
-	icon_state = "red";
-	tag = "icon-red"
-	},
-/area/almayer/hallways/stern_hallway)
 "avV" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -9064,9 +8969,7 @@
 	dir = 2;
 	name = "\improper Conference Room"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -9400,7 +9303,7 @@
 /area/almayer/engineering/upper_engineering)
 "awP" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/engineering/upper_engineering)
 "awQ" = (
@@ -9550,16 +9453,6 @@
 	icon_state = "tcomms"
 	},
 /area/almayer/engineering/upper_engineering)
-"axl" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/almayer{
-	tag = "icon-redcorner (EAST)";
-	icon_state = "redcorner";
-	dir = 4
-	},
-/area/almayer/hallways/stern_hallway)
 "axm" = (
 /obj/machinery/light{
 	dir = 8
@@ -9881,7 +9774,7 @@
 	name = "\improper Brig Lockdown Podlocks";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig)
 "axZ" = (
@@ -10074,7 +9967,7 @@
 	id = "containmentlockdown";
 	name = "\improper Containment Lockdown"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/airlock/almayer/research{
 	name = "\improper Research Pens"
 	},
@@ -10511,15 +10404,10 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 4;
-	id = "sd_lockdown";
-	name = "\improper Self Destruct Lockdown";
-	unacidable = 1
-	},
 /turf/open/floor/almayer{
-	tag = "icon-test_floor4";
-	icon_state = "test_floor4"
+	dir = 4;
+	icon_state = "red";
+	tag = "icon-red"
 	},
 /area/almayer/command/self_destruct)
 "azh" = (
@@ -10622,7 +10510,7 @@
 	name = "\improper Combat Information Center Blast Door";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/command/cic)
 "azs" = (
@@ -10714,7 +10602,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/aft_hallway)
 "azA" = (
@@ -10994,14 +10882,14 @@
 	req_access_txt = "20";
 	req_one_access_txt = "0"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/medical/upper_medical)
 "azZ" = (
 /obj/structure/window/framed/almayer/white,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/shutters/almayer/open{
 	dir = 4;
 	id = "researchlockdownext";
@@ -11054,7 +10942,7 @@
 	},
 /area/almayer/medical/medical_science)
 "aAe" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	dir = 2;
 	icon_state = "sterile_green_side";
@@ -11263,9 +11151,7 @@
 	name = "Telecommunications";
 	req_access_txt = "6"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open (WEST)";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -11325,7 +11211,7 @@
 /obj/item/folder/yellow,
 /obj/item/folder/yellow,
 /obj/item/tool/pen,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastleft{
 	req_one_access_txt = "0"
@@ -11375,9 +11261,7 @@
 /obj/machinery/door/airlock/almayer/engineering{
 	name = "\improper Engineering Lobby"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open (WEST)";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 8
 	},
 /obj/structure/cable{
@@ -11534,22 +11418,6 @@
 	tag = "icon-orange"
 	},
 /area/almayer/engineering/upper_engineering)
-"aAV" = (
-/obj/machinery/camera/autoname/almayer{
-	dir = 4
-	},
-/turf/open/floor/almayer{
-	dir = 8;
-	icon_state = "red";
-	tag = "icon-red"
-	},
-/area/almayer/hallways/stern_hallway)
-"aAW" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/almayer,
-/area/almayer/hallways/stern_hallway)
 "aAX" = (
 /obj/machinery/light{
 	dir = 8
@@ -11719,9 +11587,7 @@
 	name = "\improper Privacy Shutters";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -12024,7 +11890,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/airlock/multi_tile/almayer/medidoor{
 	dir = 2;
 	name = "Research Wing";
@@ -12075,7 +11941,7 @@
 	id = "containmentlockdown";
 	name = "\improper Containment Lockdown"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/airlock/almayer/research{
 	name = "\improper Research Pens"
 	},
@@ -12264,7 +12130,7 @@
 	req_one_access_txt = "0"
 	},
 /obj/machinery/door/window/westright,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
@@ -12755,7 +12621,7 @@
 /area/almayer/medical/upper_medical)
 "aDo" = (
 /obj/structure/window/framed/almayer/white,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/medical/upper_medical)
 "aDp" = (
@@ -12788,7 +12654,7 @@
 /turf/open/floor/wood,
 /area/almayer/medical/upper_medical)
 "aDt" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/window/westright,
 /obj/machinery/door/window/eastleft{
 	req_one_access_txt = "0"
@@ -12881,7 +12747,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig)
 "aDA" = (
@@ -12963,9 +12829,7 @@
 	dir = 1;
 	name = "\improper Engineering Reception"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open (WEST)";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 8
 	},
 /obj/structure/cable{
@@ -13103,15 +12967,6 @@
 	tag = "icon-orange"
 	},
 /area/almayer/engineering/upper_engineering)
-"aEd" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/almayer{
-	tag = "icon-redcorner";
-	icon_state = "redcorner"
-	},
-/area/almayer/hallways/stern_hallway)
 "aEf" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/almayer{
@@ -13173,7 +13028,7 @@
 /obj/machinery/door/airlock/almayer/command{
 	name = "\improper Combat Information Center"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer,
 /area/almayer/command/cic)
 "aEj" = (
@@ -13235,9 +13090,7 @@
 	dir = 2;
 	name = "\improper Security Office"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -13252,9 +13105,7 @@
 	dir = 2;
 	name = "\improper Security Office"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -13445,7 +13296,7 @@
 	name = "\improper Combat Information Center Blast Door";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/aft_hallway)
 "aED" = (
@@ -13564,7 +13415,7 @@
 /obj/machinery/door/airlock/almayer/medical/glass{
 	name = "\improper Medical Research Lounge"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/wood,
 /area/almayer/medical/upper_medical)
 "aEV" = (
@@ -13585,7 +13436,7 @@
 /area/almayer/medical/medical_science)
 "aEX" = (
 /obj/structure/window/framed/almayer/white,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/medical/medical_science)
 "aEY" = (
@@ -13853,7 +13704,7 @@
 	name = "\improper Combat Information Center Blast Door";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/aft_hallway)
 "aFv" = (
@@ -13945,7 +13796,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-sterile";
 	icon_state = "sterile"
@@ -13985,9 +13836,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -14047,7 +13896,7 @@
 	name = "\improper Cryoslation Chamber";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-sterile";
 	icon_state = "sterile"
@@ -14089,9 +13938,7 @@
 /area/almayer/command/cic)
 "aFQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/secdoor,
@@ -14337,7 +14184,7 @@
 	req_access_txt = "20";
 	req_one_access_txt = "0"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -14539,7 +14386,7 @@
 /turf/open/floor/plating/almayer,
 /area/almayer/command/telecomms)
 "aGO" = (
-/obj/machinery/door/firedoor/border_only/almayer{
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/airlock/almayer/secure{
@@ -14711,9 +14558,7 @@
 /area/almayer/command/self_destruct)
 "aHn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -14742,9 +14587,7 @@
 	dir = 2;
 	name = "\improper Permabrig"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -14845,7 +14688,7 @@
 /obj/machinery/door/airlock/almayer/command{
 	name = "\improper Combat Information Center"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/almayer{
 	density = 0;
 	dir = 4;
@@ -14866,7 +14709,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/command/cic)
 "aHD" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/airlock/multi_tile/almayer/secdoor{
 	dir = 2
 	},
@@ -14939,18 +14782,14 @@
 /area/almayer/living/captain_mess)
 "aHK" = (
 /obj/structure/window/framed/almayer/white,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/plating,
 /area/almayer/medical/upper_medical)
 "aHL" = (
 /obj/structure/window/framed/almayer/white,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -14962,9 +14801,7 @@
 	req_access_txt = "5";
 	req_one_access_txt = "0"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -15147,9 +14984,7 @@
 /area/almayer/command/telecomms)
 "aIf" = (
 /obj/machinery/door/airlock/almayer/secure,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open (WEST)";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 8
 	},
 /turf/open/floor/plating/almayer,
@@ -15525,7 +15360,7 @@
 /area/almayer/medical/lower_medical)
 "aJa" = (
 /obj/structure/window/framed/almayer/white,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/medical/lower_medical)
 "aJb" = (
@@ -15549,7 +15384,7 @@
 	},
 /area/almayer/medical/upper_medical)
 "aJd" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/shutters/almayer/open{
 	dir = 4;
 	id = "researchlockdownext";
@@ -16262,7 +16097,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/shutters/almayer/open{
 	dir = 4;
 	id = "researchlockdownext";
@@ -16474,7 +16309,7 @@
 	name = "\improper Engineering Lobby";
 	req_one_access_txt = "0"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -16693,7 +16528,7 @@
 	req_access_txt = "5";
 	req_one_access_txt = "0"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -16997,7 +16832,7 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "aMc" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -17137,7 +16972,7 @@
 	dir = 4;
 	name = "\improper Permabrig"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-sterile";
 	icon_state = "sterile"
@@ -17201,7 +17036,7 @@
 	opacity = 0
 	},
 /obj/structure/window/framed/almayer/requisitions,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/shipboard/brig_cells)
 "aMF" = (
@@ -17275,9 +17110,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -17323,7 +17156,7 @@
 	name = "Morgue Waiting Room";
 	req_one_access_txt = "0"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -17335,9 +17168,7 @@
 /obj/machinery/door/airlock/multi_tile/almayer/medidoor{
 	name = "\improper Medical Bay"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -17351,9 +17182,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -17495,7 +17324,7 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "aNf" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -17789,14 +17618,14 @@
 /area/almayer/command/cic)
 "aNF" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/living/captain_mess)
 "aNG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/airlock/multi_tile/almayer/comdoor{
 	dir = 2;
 	name = "\improper Officer's Cafeteria"
@@ -18115,9 +17944,7 @@
 /obj/machinery/door/airlock/almayer/command/FCDRoffice{
 	dir = 2
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -18611,9 +18438,7 @@
 /area/almayer/shipboard/brig_cells)
 "aPJ" = (
 /obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/closed/wall/almayer/outer{
-	name = "reinforced hull"
-	},
+/turf/closed/wall/almayer/outer/reinforced,
 /area/almayer/hull/upper_hull)
 "aPK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -18721,9 +18546,7 @@
 	name = "\improper Combat Information Center Blast Door";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/plating/almayer,
@@ -19397,7 +19220,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/starboard_point_defense)
 "aRU" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -20161,9 +19984,7 @@
 /turf/closed/wall/almayer,
 /area/almayer/hull/upper_hull)
 "aUl" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -20381,9 +20202,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/upper_hull)
 "aUU" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
@@ -20426,9 +20245,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/upper_hull)
 "aVa" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -20889,7 +20706,7 @@
 	id = "laddernortheast";
 	name = "\improper North East Ladders Shutters"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/lower_hull)
 "aWr" = (
@@ -21000,7 +20817,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/lower_hull)
 "aWD" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -21039,9 +20856,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hull/lower_hull)
 "aWG" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -21749,7 +21564,7 @@
 /obj/machinery/door/airlock/almayer/generic{
 	name = "\improper Extended Operations Bunks"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -21786,7 +21601,7 @@
 /area/almayer/hallways/starboard_hallway)
 "aYF" = (
 /obj/machinery/door/airlock/almayer/marine/alpha,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/alpha)
 "aYG" = (
@@ -21874,7 +21689,7 @@
 /area/almayer/squads/alpha)
 "aYP" = (
 /obj/machinery/door/airlock/almayer/marine/alpha,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -22150,7 +21965,7 @@
 /area/almayer/squads/alpha)
 "aZs" = (
 /obj/machinery/door/airlock/almayer/marine/alpha,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -22597,7 +22412,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer,
 /area/almayer/living/basketball)
 "bap" = (
@@ -22800,7 +22615,7 @@
 	dir = 2;
 	name = "\improper Recreation Area"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer,
 /area/almayer/living/basketball)
 "baL" = (
@@ -23380,7 +23195,7 @@
 /area/almayer/hallways/starboard_hallway)
 "bct" = (
 /obj/machinery/door/airlock/almayer/marine/bravo,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/bravo)
 "bcu" = (
@@ -23534,7 +23349,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/almayer/marine/bravo,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -23890,7 +23705,7 @@
 /area/almayer/squads/bravo)
 "bdw" = (
 /obj/machinery/door/airlock/almayer/marine/bravo,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -24096,9 +23911,7 @@
 	id = "laddernorthwest";
 	name = "\improper North West Ladders Shutters"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
@@ -24118,9 +23931,7 @@
 	id = "laddernorthwest";
 	name = "\improper North West Ladders Shutters"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -24321,7 +24132,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/starboard_hallway)
 "beF" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cafeteria_starboard)
 "beG" = (
@@ -24665,7 +24476,7 @@
 /obj/machinery/door/airlock/almayer/generic{
 	name = "\improper Extended Operations Bunks"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -24749,7 +24560,7 @@
 	dir = 2;
 	name = "\improper Canteen"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cafeteria_starboard)
 "bfK" = (
@@ -25221,7 +25032,7 @@
 /area/almayer/squads/bravo)
 "bgS" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/living/cafeteria_starboard)
 "bgT" = (
@@ -25281,7 +25092,7 @@
 /obj/machinery/door/airlock/almayer/generic{
 	name = "\improper Permabrig Bunks"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-sterile";
 	icon_state = "sterile"
@@ -25514,9 +25325,7 @@
 	},
 /area/almayer/living/basketball)
 "bhA" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -25527,9 +25336,7 @@
 	},
 /area/almayer/hallways/starboard_hallway)
 "bhB" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -25544,9 +25351,7 @@
 	},
 /area/almayer/hallways/starboard_hallway)
 "bhC" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -25555,9 +25360,7 @@
 	},
 /area/almayer/hallways/starboard_hallway)
 "bhD" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -25713,9 +25516,7 @@
 /turf/open/floor/engine,
 /area/almayer/engineering/lower_engineering)
 "bhW" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -25729,9 +25530,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -25842,9 +25641,7 @@
 /turf/open/floor/almayer,
 /area/almayer/shipboard/firing_range)
 "bih" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -25865,9 +25662,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -25882,9 +25677,7 @@
 /area/almayer/hallways/starboard_hallway)
 "bij" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -25893,17 +25686,13 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Recreation Area"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_hallway)
 "bil" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -25911,9 +25700,7 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_hallway)
 "bim" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
@@ -25922,9 +25709,7 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_hallway)
 "bin" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/cable{
@@ -25976,7 +25761,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/starboard_hallway)
 "biv" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
@@ -26000,9 +25785,7 @@
 /area/almayer/hallways/starboard_hallway)
 "biz" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -26011,17 +25794,13 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Canteen"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cafeteria_starboard)
 "biB" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -26040,9 +25819,7 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Canteen"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
@@ -26054,9 +25831,7 @@
 	},
 /area/almayer/living/cafeteria_starboard)
 "biD" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
@@ -26189,7 +25964,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/starboard_hallway)
 "biW" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "hangarentrancenorth";
@@ -26414,9 +26189,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/airlock/almayer/generic{
@@ -26588,7 +26361,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/starboard_hallway)
 "bjK" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "hangarentrancenorth";
@@ -26983,7 +26756,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/starboard_hallway)
 "bkg" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -27208,7 +26981,7 @@
 /area/almayer/engineering/lower_engineering)
 "bkz" = (
 /obj/structure/window/framed/almayer/hull,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/shipboard/weapon_room)
 "bkA" = (
@@ -27367,7 +27140,7 @@
 	id = "hangarentrancenorth";
 	name = "\improper North Hangar Shutters"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
@@ -27625,17 +27398,13 @@
 	dir = 2;
 	name = "\improper Security Checkpoint"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/lower_hull)
 "blS" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/window/framed/almayer/toughened,
@@ -27681,9 +27450,7 @@
 /area/almayer/hallways/starboard_hallway)
 "blY" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -27695,17 +27462,13 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Cryogenics Bay"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cryo_cells)
 "bmb" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -27720,26 +27483,20 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Cryogenics Bay"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cryo_cells)
 "bmd" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cryo_cells)
 "bme" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -27991,9 +27748,7 @@
 	name = "\improper Medical Bay";
 	req_one_access_txt = "0"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -28189,7 +27944,7 @@
 /area/almayer/medical/lower_medical)
 "bnm" = (
 /obj/structure/window/framed/almayer/white,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "or1privacyshutter";
@@ -28284,17 +28039,13 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Briefing Room"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/briefing)
 "bnw" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer,
@@ -28304,9 +28055,7 @@
 /area/almayer/living/briefing)
 "bny" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -28315,18 +28064,14 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Briefing Room"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/briefing)
 "bnA" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
@@ -28362,9 +28107,7 @@
 /turf/closed/wall/almayer,
 /area/almayer/squads/req)
 "bnG" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/window/framed/almayer/requisitions,
@@ -28380,9 +28123,7 @@
 	dir = 2;
 	name = "\improper Requisitions Bay"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -28475,7 +28216,7 @@
 /area/almayer/living/cryo_cells)
 "bnS" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/living/cryo_cells)
 "bnT" = (
@@ -29052,7 +28793,7 @@
 /area/almayer/living/briefing)
 "bpj" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/living/briefing)
 "bpk" = (
@@ -29602,9 +29343,7 @@
 	dir = 2;
 	name = "\improper Bridge Substation"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -29775,7 +29514,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/airlock/almayer/medical{
 	name = "Operating Theatre 1"
 	},
@@ -30152,7 +29891,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -30613,7 +30352,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -31396,7 +31135,7 @@
 	name = "Surgery Hallway 1";
 	req_access_txt = "0"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -31435,9 +31174,7 @@
 /area/almayer/hull/lower_hull)
 "buE" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -31449,9 +31186,7 @@
 	req_access_txt = "0";
 	req_one_access_txt = "1;26"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
@@ -31569,7 +31304,7 @@
 /area/almayer/engineering/lower_engineering)
 "buU" = (
 /obj/machinery/door/airlock/almayer/engineering,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/lower_engine_monitoring)
 "buV" = (
@@ -31948,7 +31683,7 @@
 /area/almayer/medical/surgery_hallway)
 "bvO" = (
 /obj/structure/window/framed/almayer/white,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "or2privacyshutter";
@@ -32060,7 +31795,7 @@
 	id = "ROlobby1";
 	name = "\improper RO Line 1"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/window/framed/almayer/requisitions,
 /turf/open/floor/plating,
 /area/almayer/squads/req)
@@ -32172,11 +31907,11 @@
 /area/almayer/living/cryo_cells)
 "bwu" = (
 /obj/machinery/vending/cola,
-/obj/machinery/firealarm{
-	dir = 2
-	},
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/engineering_workshop)
@@ -32272,7 +32007,7 @@
 /area/almayer/engineering/lower_engineering)
 "bwE" = (
 /obj/machinery/door/airlock/almayer/engineering,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -33099,7 +32834,7 @@
 /area/almayer/engineering/lower_engine_monitoring)
 "byy" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/engineering/lower_engine_monitoring)
 "byz" = (
@@ -33425,7 +33160,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/holosign/surgery{
 	id = "or2sign"
 	},
@@ -33488,9 +33223,7 @@
 	dir = 2;
 	name = "\improper Briefing Room"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
@@ -33502,7 +33235,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/living/briefing)
 "bzl" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/status_display{
 	pixel_y = 30
 	},
@@ -33579,7 +33312,7 @@
 /area/almayer/living/cryo_cells)
 "bzx" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/engineering/engineering_workshop)
 "bzy" = (
@@ -33761,7 +33494,7 @@
 	name = "\improper Hangar Lockdown Blast Door";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
@@ -33834,9 +33567,7 @@
 /area/almayer/hallways/hangar)
 "bAd" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -33880,7 +33611,7 @@
 	id = "medicalemergency";
 	name = "\improper Medical Emergency Shutters"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/airlock/multi_tile/almayer/medidoor{
 	dir = 2;
 	name = "\improper Medical Bay";
@@ -34112,7 +33843,7 @@
 	},
 /area/almayer/living/briefing)
 "bAF" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
@@ -34138,7 +33869,7 @@
 	id = "ROlobby1";
 	name = "\improper RO Line 1"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
@@ -34417,7 +34148,7 @@
 /area/shuttle/drop2/sulaco)
 "bBu" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/hallways/hangar)
 "bBv" = (
@@ -34872,7 +34603,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/engineering/lower_engine_monitoring)
 "bCy" = (
@@ -34997,7 +34728,7 @@
 	name = "\improper Hangar Lockdown Blast Door";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
@@ -35159,7 +34890,7 @@
 /area/almayer/medical/lower_medical)
 "bDg" = (
 /obj/structure/window/framed/almayer/white,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/medical/surgery_hallway)
 "bDi" = (
@@ -35215,7 +34946,7 @@
 /turf/open/floor/plating,
 /area/almayer/medical/surgery_hallway)
 "bDm" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "or3privacyshutter";
@@ -35353,7 +35084,7 @@
 	},
 /area/almayer/engineering/engine_core)
 "bDA" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/item/device/radio/intercom/general{
 	dir = 1
 	},
@@ -35385,7 +35116,7 @@
 	id = "ROlobby2";
 	name = "\improper RO Line 2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
@@ -35764,7 +35495,7 @@
 /area/almayer/medical/lower_medical)
 "bEA" = (
 /obj/machinery/door/airlock/almayer/medical/glass,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -35887,7 +35618,7 @@
 	id = "ROlobby2";
 	name = "\improper RO Line 2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/window/framed/almayer/requisitions,
 /turf/open/floor/plating,
 /area/almayer/squads/req)
@@ -36400,7 +36131,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/holosign/surgery{
 	id = "or3sign"
 	},
@@ -37208,7 +36939,7 @@
 /area/almayer/engineering/lower_engineering)
 "bHM" = (
 /obj/machinery/door/airlock/almayer/engineering,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -37333,9 +37064,7 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "bHZ" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -37384,9 +37113,7 @@
 	req_access_txt = "0";
 	req_one_access_txt = "3;22"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -37444,9 +37171,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/comdoor{
@@ -37475,7 +37200,7 @@
 	},
 /area/almayer/medical/lower_medical)
 "bIr" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -37572,7 +37297,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -37582,7 +37307,7 @@
 /area/almayer/squads/req)
 "bIC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/firedoor/border_only/almayer{
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -37594,7 +37319,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -37724,7 +37449,7 @@
 /area/almayer/engineering/lower_engineering)
 "bIQ" = (
 /obj/machinery/door/airlock/almayer/engineering,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -38020,7 +37745,7 @@
 	},
 /area/almayer/medical/lower_medical)
 "bJC" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "or4privacyshutter";
@@ -38715,7 +38440,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -38963,9 +38688,7 @@
 /area/almayer/shipboard/port_missiles)
 "bLD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -39258,7 +38981,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/holosign/surgery{
 	id = "or4sign"
 	},
@@ -39816,9 +39539,7 @@
 	},
 /area/almayer/medical/lower_medical)
 "bND" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -39849,9 +39570,7 @@
 	},
 /area/almayer/medical/lower_medical)
 "bNF" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/window/framed/almayer/white,
@@ -39933,7 +39652,7 @@
 	name = "Surgery Hallway 2";
 	req_access_txt = "0"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/cable{
 	icon_state = "4-8";
 	d1 = 4;
@@ -40017,17 +39736,13 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Briefing Room"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/briefing)
 "bNT" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -40037,9 +39752,7 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Briefing Room"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
@@ -40058,9 +39771,7 @@
 	dir = 2;
 	name = "\improper Requisitions Bay"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
@@ -40344,7 +40055,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/port_hallway)
 "bOQ" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
@@ -40362,18 +40073,14 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Cryogenics Bay"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cryo_cells)
 "bOU" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -40382,9 +40089,7 @@
 	},
 /area/almayer/hallways/port_hallway)
 "bOV" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -40582,7 +40287,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/port_hallway)
 "bPu" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "hangarentrancesouth";
@@ -40879,7 +40584,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/port_hallway)
 "bQa" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "hangarentrancesouth";
@@ -41269,7 +40974,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -41552,7 +41257,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "hangarentrancesouth";
@@ -41778,9 +41483,7 @@
 /turf/closed/wall/almayer,
 /area/almayer/hallways/port_umbilical)
 "bRA" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -41794,9 +41497,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -41826,9 +41527,7 @@
 /turf/closed/wall/almayer,
 /area/almayer/hallways/port_hallway)
 "bRG" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
@@ -41849,9 +41548,7 @@
 	},
 /area/almayer/hallways/port_hallway)
 "bRH" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -41866,9 +41563,7 @@
 /area/almayer/hallways/port_hallway)
 "bRI" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -41877,17 +41572,13 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Rest and Relaxation Area"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/port_hallway)
 "bRL" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -41897,9 +41588,7 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Rest and Relaxation Area"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
@@ -41907,9 +41596,7 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/port_hallway)
 "bRN" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/cable{
@@ -41943,9 +41630,7 @@
 /area/almayer/living/cafeteria_port)
 "bRR" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -41954,18 +41639,14 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Canteen"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cafeteria_port)
 "bRT" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -41975,9 +41656,7 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Canteen"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
@@ -41989,9 +41668,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
@@ -42040,9 +41717,7 @@
 /turf/closed/wall/almayer,
 /area/almayer/living/tankerbunks)
 "bSd" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -42051,9 +41726,7 @@
 	},
 /area/almayer/hallways/hangar)
 "bSe" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -42071,9 +41744,7 @@
 /turf/closed/wall/almayer,
 /area/almayer/living/pilotbunks)
 "bSg" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -42340,9 +42011,7 @@
 /turf/closed/wall/almayer,
 /area/almayer/living/port_emb)
 "bSP" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
@@ -42628,7 +42297,7 @@
 	name = "\improper Tanker Quarters";
 	req_one_access_txt = "22;2;7"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/tankerbunks)
 "bTz" = (
@@ -42641,7 +42310,7 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bTA" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 4;
 	name = "\improper Pilot's Quarters";
@@ -43044,7 +42713,7 @@
 /area/almayer/hallways/port_hallway)
 "bUH" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/plating,
 /area/almayer/living/cafeteria_port)
 "bUI" = (
@@ -43177,7 +42846,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 4;
 	name = "\improper Tanker Quarters";
@@ -43245,7 +42914,7 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bVf" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 4;
 	name = "\improper Pilot's Quarters";
@@ -43633,7 +43302,7 @@
 /obj/machinery/door/airlock/almayer/generic{
 	name = "\improper Extended Operations Bunks"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -43739,7 +43408,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/port_hallway)
 "bWd" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cafeteria_port)
 "bWe" = (
@@ -43873,7 +43542,7 @@
 	id = "pilotentrance";
 	name = "\improper Pilot Workshop Shutters"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
@@ -43910,9 +43579,7 @@
 	id = "laddersouthwest";
 	name = "\improper South West Ladders Shutters"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/cable{
@@ -43931,9 +43598,7 @@
 	id = "laddersouthwest";
 	name = "\improper South West Ladders Shutters"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -44080,7 +43745,7 @@
 	dir = 2;
 	name = "\improper Canteen"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cafeteria_port)
 "bXc" = (
@@ -44182,7 +43847,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/repair_bay)
 "bXu" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "pilotentrance";
@@ -44341,7 +44006,7 @@
 /area/almayer/living/port_emb)
 "bXN" = (
 /obj/machinery/door/airlock/almayer/marine/charlie,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/charlie)
 "bXO" = (
@@ -44436,7 +44101,7 @@
 /area/almayer/squads/charlie)
 "bXY" = (
 /obj/machinery/door/airlock/almayer/marine/charlie,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -44741,9 +44406,7 @@
 /area/almayer/hallways/repair_bay)
 "bYO" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -44754,9 +44417,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/airlock/almayer/generic{
@@ -45005,7 +44666,7 @@
 /area/almayer/squads/charlie)
 "bZq" = (
 /obj/machinery/door/airlock/almayer/marine/charlie,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -45189,7 +44850,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 4;
 	name = "\improper Pilot's Office";
@@ -45489,7 +45150,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/pilotbunks)
 "cat" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 4;
 	name = "\improper Pilot's Office";
@@ -46121,7 +45782,7 @@
 /area/almayer/hallways/port_hallway)
 "cce" = (
 /obj/machinery/door/airlock/almayer/marine/delta,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/delta)
 "ccf" = (
@@ -46276,7 +45937,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/almayer/marine/delta,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -46507,7 +46168,7 @@
 /obj/machinery/door/airlock/almayer/generic{
 	name = "\improper Extended Operations Bunks"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/port_emb)
 "ccO" = (
@@ -46573,7 +46234,7 @@
 /area/almayer/squads/delta)
 "ccY" = (
 /obj/machinery/door/airlock/almayer/marine/delta,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -46947,7 +46608,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/lower_hull)
 "cdY" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -46995,9 +46656,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/lower_hull)
 "ceb" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -47143,7 +46802,7 @@
 	id = "laddersoutheast";
 	name = "\improper South East Ladders Shutters"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -47509,9 +47168,7 @@
 /area/almayer/shipboard/ex_firing_range)
 "cfq" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -47620,7 +47277,7 @@
 	name = "\improper Experimental Weaponry Storage";
 	req_one_access_txt = "0"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer,
 /area/almayer/shipboard/ex_firing_range)
 "cfI" = (
@@ -48337,7 +47994,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/living/bridgebunks)
 "chk" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -48434,7 +48091,7 @@
 /area/almayer/shipboard/brig_cells)
 "chv" = (
 /obj/machinery/door/airlock/almayer/maint,
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer,
 /area/almayer/shipboard/ex_firing_range)
 "chw" = (
@@ -48442,7 +48099,7 @@
 	dir = 4;
 	name = "Tool Closet"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer,
 /area/almayer/shipboard/ex_firing_range)
 "chx" = (
@@ -49314,7 +48971,7 @@
 	name = "\improper Hangar Lockdown Blast Door";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
@@ -49668,9 +49325,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer,
@@ -49701,9 +49356,7 @@
 	id = "Solid_Fuel";
 	name = "\improper Solid Fuel Storage"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -49737,7 +49390,7 @@
 	id = "Solid_Fuel";
 	name = "\improper Solid Fuel Storage"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
@@ -49769,9 +49422,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/weapon_room)
 "ckP" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -49781,9 +49432,7 @@
 /area/almayer/shipboard/port_missiles)
 "ckQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -49793,9 +49442,7 @@
 /area/almayer/shipboard/port_missiles)
 "ckR" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer{
@@ -50510,6 +50157,16 @@
 /obj/structure/window/framed/almayer/requisitions,
 /turf/open/floor/plating,
 /area/almayer/engineering/starboard_atmos)
+"hyp" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	dir = 1;
+	icon_state = "red";
+	tag = "icon-red"
+	},
+/area/almayer/hallways/stern_hallway)
 "hBd" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -50550,6 +50207,21 @@
 	tag = "icon-red"
 	},
 /area/almayer/hallways/stern_hallway)
+"hIs" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	dir = 1;
+	icon_state = "red";
+	tag = "icon-red"
+	},
+/area/almayer/hallways/stern_hallway)
 "hKL" = (
 /obj/structure/janitorialcart,
 /obj/machinery/light/small,
@@ -50558,9 +50230,7 @@
 	},
 /area/almayer/hull/upper_hull)
 "hMM" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -50674,9 +50344,7 @@
 	},
 /area/almayer/squads/alpha)
 "iZq" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/cable{
@@ -50853,9 +50521,7 @@
 	name = "Bathroom"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -50895,6 +50561,13 @@
 	tag = "icon-blue"
 	},
 /area/almayer/shipboard/ex_firing_range)
+"kCn" = (
+/turf/open/floor/almayer{
+	dir = 6;
+	icon_state = "red";
+	tag = "icon-red"
+	},
+/area/almayer/command/self_destruct)
 "kNU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -50990,7 +50663,7 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/aft_hallway)
 "lol" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -51032,10 +50705,15 @@
 	d1 = 4;
 	d2 = 8
 	},
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 4;
+	id = "sd_lockdown";
+	name = "\improper Self Destruct Lockdown";
+	unacidable = 1
+	},
 /turf/open/floor/almayer{
-	tag = "icon-redcorner (NORTH)";
-	icon_state = "redcorner";
-	dir = 1
+	tag = "icon-test_floor4";
+	icon_state = "test_floor4"
 	},
 /area/almayer/hallways/stern_hallway)
 "lsF" = (
@@ -51045,6 +50723,15 @@
 	dir = 4
 	},
 /area/almayer/shipboard/ex_firing_range)
+"luI" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	tag = "icon-red";
+	icon_state = "red"
+	},
+/area/almayer/hallways/stern_hallway)
 "lvC" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -51453,7 +51140,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/weapon_room)
 "oTf" = (
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /obj/structure/cable{
 	icon_state = "4-8";
 	d1 = 4;
@@ -51481,7 +51168,7 @@
 	id = "medicalemergency";
 	name = "\improper Medical Emergency Shutters"
 	},
-/obj/machinery/door/firedoor/border_only/almayer,
+/obj/machinery/door/firedoor/theseus,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -51523,6 +51210,16 @@
 	icon_state = "redcorner"
 	},
 /area/almayer/hallways/stern_hallway)
+"pwg" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	dir = 4;
+	icon_state = "red";
+	tag = "icon-red"
+	},
+/area/almayer/command/self_destruct)
 "pyR" = (
 /obj/structure/mirror{
 	dir = 4
@@ -51664,9 +51361,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
@@ -51701,6 +51396,9 @@
 	tag = "icon-sterile"
 	},
 /area/almayer/medical/surgery_hallway)
+"qVi" = (
+/turf/closed/wall/almayer/nosmooth,
+/area/almayer/hull/upper_hull)
 "qWg" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
@@ -51731,6 +51429,18 @@
 	tag = "icon-red"
 	},
 /area/almayer/shipboard/port_missiles)
+"rGG" = (
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 4;
+	id = "sd_lockdown";
+	name = "\improper Self Destruct Lockdown";
+	unacidable = 1
+	},
+/turf/open/floor/almayer{
+	tag = "icon-test_floor4";
+	icon_state = "test_floor4"
+	},
+/area/almayer/hallways/stern_hallway)
 "rIs" = (
 /obj/structure/closet,
 /obj/item/clothing/glasses/mgoggles,
@@ -51792,6 +51502,18 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/command/cic)
+"spv" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/almayer/command/self_destruct)
 "syF" = (
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/almayer{
@@ -51903,6 +51625,23 @@
 	tag = "icon-red"
 	},
 /area/almayer/shipboard/brig_cells)
+"tUM" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 4;
+	id = "sd_lockdown";
+	name = "\improper Self Destruct Lockdown";
+	unacidable = 1
+	},
+/turf/open/floor/almayer{
+	tag = "icon-test_floor4";
+	icon_state = "test_floor4"
+	},
+/area/almayer/hallways/stern_hallway)
 "ugs" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -51913,9 +51652,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/command/cic)
 "uhG" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/medidoor{
@@ -52043,9 +51780,7 @@
 	},
 /area/almayer/shipboard/weapon_room)
 "vwd" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -52184,9 +51919,7 @@
 /area/almayer/shipboard/weapon_room)
 "wpW" = (
 /obj/structure/window/framed/almayer,
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
@@ -52208,6 +51941,16 @@
 	tag = "icon-bluecorner"
 	},
 /area/almayer/hallways/aft_hallway)
+"wKk" = (
+/obj/machinery/camera/autoname/almayer{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	dir = 4;
+	icon_state = "red";
+	tag = "icon-red"
+	},
+/area/almayer/command/self_destruct)
 "wLi" = (
 /obj/machinery/door/airlock/almayer/generic{
 	name = "\improper Bathroom"
@@ -52286,9 +52029,7 @@
 /turf/open/floor/almayer,
 /area/almayer/command/cic)
 "xjx" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
+/obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
 /obj/structure/cable{
@@ -52354,6 +52095,9 @@
 	tag = "icon-sterile_green_side"
 	},
 /area/almayer/medical/lower_medical)
+"xGM" = (
+/turf/closed/wall/almayer/nosmooth,
+/area/almayer/engineering/upper_engineering)
 "xKw" = (
 /obj/machinery/light{
 	dir = 1
@@ -90136,7 +89880,7 @@ bpj
 bpj
 bpj
 bnx
-bzl
+bAF
 bAF
 bnx
 bDA
@@ -107224,21 +106968,21 @@ aaa
 aad
 aag
 aai
-aoS
+hyp
 aqA
-aap
-aap
-aoM
-aoM
-aoM
-aoM
-aoM
-aoM
-aoM
-aoM
-aoM
-xkq
-aLc
+qVi
+qVi
+xGM
+xGM
+xGM
+xGM
+xGM
+xGM
+xGM
+xGM
+xGM
+hIs
+luI
 aai
 aag
 aMu
@@ -107481,21 +107225,21 @@ aaa
 aad
 aag
 aai
-aoS
-aqy
-aoQ
-aoQ
-avU
-aoQ
-aoQ
-aAV
-aoQ
-aoQ
-avU
-aoQ
-aoQ
+rGG
+tUM
+rGG
+rGG
+rGG
+rGG
+rGG
+rGG
+rGG
+rGG
+rGG
+rGG
+rGG
 lsi
-aLc
+rGG
 aai
 aag
 aMu
@@ -107740,17 +107484,17 @@ aag
 aai
 aoT
 amx
-anC
-anC
 avV
-anC
+avV
+avV
+avV
 amp
 avV
-anC
-anC
 avV
-anC
-anC
+avV
+avV
+avV
+avV
 oyt
 aLd
 aai
@@ -107995,21 +107739,21 @@ aaa
 aae
 aag
 aai
-aoU
-aqB
-aqB
-aqB
-aqB
-axl
+aoS
+amo
+amo
+amo
+amo
+amo
 azf
-aAW
+anp
 aCM
-aEd
-aqB
-aqB
-aqB
-aqB
-aLe
+amo
+amo
+amo
+amo
+amo
+aLc
 aai
 aag
 aMv
@@ -108254,19 +107998,19 @@ aad
 anD
 aoV
 aqC
+pwg
 aqC
 aqC
-aqC
-aqC
+pwg
 azg
+wKk
+aqC
+pwg
 aqC
 aqC
+pwg
 aqC
-aqC
-aqC
-aqC
-aqC
-aoV
+kCn
 anD
 aMu
 aaa
@@ -110565,8 +110309,8 @@ aaa
 aaa
 aad
 anD
-aoY
-aoY
+anD
+anD
 asv
 auj
 pNG
@@ -110578,8 +110322,8 @@ awa
 avY
 aHj
 asv
-aoY
-aoY
+anD
+anD
 anD
 aMu
 aaa
@@ -112367,8 +112111,8 @@ aad
 anD
 aJP
 asx
-aAX
-aIu
+aAY
+spv
 asv
 asv
 asv

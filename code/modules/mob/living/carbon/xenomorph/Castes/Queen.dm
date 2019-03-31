@@ -40,15 +40,11 @@
 	spit_types = list(/datum/ammo/xeno/toxin/medium, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
-	aura_strength = 2 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
+	aura_strength = 3 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 1 //Amount of leaders allowed
-
-/datum/xeno_caste/queen/handle_decay(mob/living/carbon/Xenomorph/X)
-	if(prob(20+abs(3*upgrade)))
-		X.use_plasma(min(rand(1,2), X.plasma_stored))
 
 /datum/xeno_caste/queen/mature
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
@@ -83,7 +79,7 @@
 	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade1, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
-	aura_strength = 3
+	aura_strength = 4
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 2
@@ -121,7 +117,7 @@
 	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
-	aura_strength = 4
+	aura_strength = 4.7
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 3
@@ -163,6 +159,10 @@
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 4
+
+/mob/living/carbon/Xenomorph/Queen/handle_decay()
+	if(prob(20+abs(3*upgrade)))
+		use_plasma(min(rand(1,2), plasma_stored))
 
 /proc/update_living_queens() // needed to update when you change a queen to a different hive
 	outer_loop:

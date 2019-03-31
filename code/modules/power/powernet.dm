@@ -55,7 +55,7 @@
 /datum/powernet/proc/remove_machine(obj/machinery/power/M)
 	nodes -=M
 	M.powernet = null
-	if(is_empty()).
+	if(is_empty())
 		qdel(src)
 
 

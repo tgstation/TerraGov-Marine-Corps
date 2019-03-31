@@ -282,7 +282,10 @@
 		jobname = "Unknown"
 		voicemask = 1
 
-
+	if(iscarbon(M.loc))
+		var/mob/living/carbon/C = M.loc
+		if(M in C.stomach_contents)
+			message = Gibberish(message, 100)
 
   /* ###### Radio headsets can only broadcast through subspace ###### */
 

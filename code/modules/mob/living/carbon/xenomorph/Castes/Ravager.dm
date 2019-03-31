@@ -10,13 +10,13 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40
 	melee_damage_upper = 60
-	attack_delay = -2
+	attack_delay = 7
 
 	// *** Tackle *** //
 	tackle_damage = 55
 
 	// *** Speed *** //
-	speed = -0.4
+	speed = -0.5
 
 	// *** Plasma *** //
 	plasma_max = 150
@@ -50,13 +50,12 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 50
 	melee_damage_upper = 70
-	attack_delay = -2
 
 	// *** Tackle *** //
 	tackle_damage = 60
 
 	// *** Speed *** //
-	speed = -0.45
+	speed = -0.55
 
 	// *** Plasma *** //
 	plasma_max = 175
@@ -82,13 +81,12 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 55
 	melee_damage_upper = 75
-	attack_delay = -2
 
 	// *** Tackle *** //
 	tackle_damage = 65
 
 	// *** Speed *** //
-	speed = -0.48
+	speed = -0.58
 
 	// *** Plasma *** //
 	plasma_max = 190
@@ -114,13 +112,12 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 60
 	melee_damage_upper = 80
-	attack_delay = -2
 
 	// *** Tackle *** //
 	tackle_damage = 70
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = -0.6
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -226,7 +223,6 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 70
 	melee_damage_upper = 90
-	attack_delay = -2
 
 	// *** Tackle *** //
 	tackle_damage = 55

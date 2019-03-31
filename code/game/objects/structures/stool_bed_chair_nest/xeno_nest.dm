@@ -8,7 +8,7 @@
 	buckling_y = 6
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
 	unacidable = TRUE
-	var/health = 100
+	health = 100
 	var/on_fire = 0
 	var/resisting = 0
 	var/resisting_ready = 0
@@ -29,6 +29,7 @@
 		return TRUE
 	else
 		if(W.flags_item & NOBLUDGEON) return
+		user.changeNext_move(W.attack_speed)
 		var/aforce = W.force
 		health = max(0, health - aforce)
 		playsound(loc, "alien_resin_break", 25)

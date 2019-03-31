@@ -20,8 +20,10 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	SetupExternalRSC()
 
 	//make_datum_references_lists()	//Port this from /tg/
+	populate_seed_list()
 	populate_gear_list()
 	makeDatumRefLists() //Legacy
+	loadShuttleInfoDatums()
 
 	TgsNew(new /datum/tgs_event_handler/tg, minimum_required_security_level = TGS_SECURITY_TRUSTED)
 
@@ -50,18 +52,14 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	initialize_marine_armor()
 
-	callHook("startup")
+	load_mode()
+
+	radio_controller = new /datum/controller/radio()
 
 	if(byond_version < RECOMMENDED_VERSION)
 		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
 	update_status()
-
-	// Set up roundstart seed list. This is here because vendors were
-	// bugging out and not populating with the correct packet names
-	// due to this list not being instantiated.
-	populate_seed_list()
-
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
@@ -160,7 +158,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		while(1)
 			sleep(INACTIVITY_KICK)
 			for(var/client/C in GLOB.clients)
-				if(check_other_rights(C, R_ADMIN, FALSE)).
+				if(check_other_rights(C, R_ADMIN, FALSE))
 					continue
 				if(C.is_afk(INACTIVITY_KICK))
 					if(!istype(C.mob, /mob/dead))
@@ -168,11 +166,6 @@ var/world_topic_spam_protect_time = world.timeofday
 						to_chat(C, "<span class='warning'>You have been inactive for more than 10 minutes and have been disconnected.</span>")
 						qdel(C)
 #undef INACTIVITY_KICK
-
-
-/hook/startup/proc/loadMode()
-	world.load_mode()
-	return TRUE
 
 
 /world/proc/load_mode()
@@ -195,16 +188,16 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	if(CONFIG_GET(string/server_name))
 		if(CONFIG_GET(string/discordurl))
-			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</a></b>"
+			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [CONFIG_GET(string/ship_name)]</a></b>"
 		else
-			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</b>"
+			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [CONFIG_GET(string/ship_name)]</b>"
 		if(Master?.current_runlevel && GLOB.master_mode)
 			switch(SSmapping.config.map_name)
 				if("Ice Colony")
 					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[SSmapping.config.map_name]</a></b>"
-				if("LV-624")
+				if("LV624")
 					s += "<br>Map: <a href='[CONFIG_GET(string/lv624url)]'><b>[SSmapping.config.map_name]</a></b>"
-				if("Solaris Ridge")
+				if("Big Red")
 					s += "<br>Map: <a href='[CONFIG_GET(string/bigredurl)]'><b>[SSmapping.config.map_name]</a></b>"
 				if("Prison Station")
 					s += "<br>Map: <a href='[CONFIG_GET(string/prisonstationurl)]'><b>[SSmapping.config.map_name]</a></b>"

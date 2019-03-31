@@ -167,6 +167,56 @@
 	used_acid_spray = FALSE
 	to_chat(src, "<span class='notice'>You have produced enough acid to spray again.</span>")
 
+/atom/proc/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	return TRUE
+
+/obj/structure/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
+		return TRUE // normal density flag
+	health -= rand(40,60) + (X.upgrade * SPRAY_STRUCTURE_UPGRADE_BONUS)
+	update_health(TRUE)
+	return TRUE // normal density flag
+
+/obj/structure/razorwire/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	. = ..()
+	return FALSE // not normal density flag
+
+/obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	take_damage_type(rand(40,60) + (X.upgrade * SPRAY_STRUCTURE_UPGRADE_BONUS), "acid", src)
+	healthcheck()
+	return TRUE
+
+/mob/living/carbon/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest))
+		return
+
+	if(isxenopraetorian(X))
+		round_statistics.praetorian_spray_direct_hits++
+
+	acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
+	var/armor_block = run_armor_check("chest", "energy")
+	var/damage = rand(30,40) + (X.upgrade * SPRAY_MOB_UPGRADE_BONUS)
+	apply_acid_spray_damage(damage, armor_block)
+	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
+
+/mob/living/carbon/proc/apply_acid_spray_damage(damage, armor_block)
+	apply_damage(damage, BURN, null, armor_block)
+
+/mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
+	take_overall_damage(null, damage, null, null, null, armor_block)
+	if(isyautja(src))
+		return
+	emote("scream")
+	KnockDown(1)
+
+/mob/living/carbon/Xenomorph/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	return
+
+/mob/living/carbon/hellhound/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	return
+
+GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/vehicle/multitile/root/cm_armored, /obj/structure/razorwire)))
+
 /mob/living/carbon/Xenomorph/proc/do_acid_spray_cone(var/turf/T)
 	set waitfor = 0
 
@@ -180,21 +230,8 @@
 
 		for (var/obj/O in T)
 			if(!O.CheckExit(src, next_T))
-				if(istype(O, /obj/structure/barricade))
-					var/obj/structure/barricade/B = O
-					B.health -= rand(40,60) + 8 * upgrade
-					B.update_health(1)
-					return
-				else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-					var/obj/vehicle/multitile/root/cm_armored/A = O
-					A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-					A.healthcheck()
-					return
-				else if(istype(O, /obj/structure/razorwire) )
-					var/obj/structure/razorwire/R = O
-					R.health -= rand(40,60) + 8 * upgrade
-					R.update_health()
-
+				if(is_type_in_typecache(O, GLOB.acid_spray_hit) && O.acid_spray_act(src))
+					return // returned true if normal density applies
 
 		T = next_T
 
@@ -203,21 +240,8 @@
 
 		for (var/obj/O in T)
 			if(!O.CanPass(src, loc))
-				if(istype(O, /obj/structure/barricade))
-					var/obj/structure/barricade/B = O
-					B.health -= rand(40,60) + 8 * upgrade
-					B.update_health(1)
-					return
-				else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-					var/obj/vehicle/multitile/root/cm_armored/A = O
-					A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-					A.healthcheck()
-					return
-				else if(istype(O, /obj/structure/razorwire) )
-					var/obj/structure/razorwire/R = O
-					R.health -= rand(40,60) + 8 * upgrade
-					R.update_health()
-
+				if(is_type_in_typecache(O, GLOB.acid_spray_hit) && O.acid_spray_act(src))
+					return // returned true if normal density applies
 
 		var/obj/effect/xenomorph/spray/S = acid_splat_turf(T)
 		do_acid_spray_cone_normal(T, i, facing, S)
@@ -250,19 +274,8 @@
 			for (var/obj/O in normal_turf)
 				if(!O.CheckExit(left_S, next_normal_turf))
 					normal_density_flag = TRUE
-					if(istype(O, /obj/structure/barricade))
-						var/obj/structure/barricade/B = O
-						B.health -= rand(40,60) + 8 * upgrade
-						B.update_health(1)
-					else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-						var/obj/vehicle/multitile/root/cm_armored/A = O
-						A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-						A.healthcheck()
-					else if(istype(O, /obj/structure/razorwire) )
-						var/obj/structure/razorwire/R = O
-						R.health -= rand(40,60) + 8 * upgrade
-						R.update_health()
-						normal_density_flag = FALSE //passable for acid spray
+					if(is_type_in_typecache(O, GLOB.acid_spray_hit))
+						normal_density_flag = O.acid_spray_act(src)
 					break
 
 			normal_turf = next_normal_turf
@@ -274,19 +287,8 @@
 				for (var/obj/O in normal_turf)
 					if(!O.CanPass(left_S, left_S.loc))
 						normal_density_flag = TRUE
-						if(istype(O, /obj/structure/barricade))
-							var/obj/structure/barricade/B = O
-							B.health -= rand(40,60) + 8 * upgrade
-							B.update_health(1)
-						else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-							var/obj/vehicle/multitile/root/cm_armored/A = O
-							A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-							A.healthcheck()
-						else if(istype(O, /obj/structure/razorwire) )
-							var/obj/structure/razorwire/R = O
-							R.health -= rand(40,60) + 8 * upgrade
-							R.update_health()
-							normal_density_flag = FALSE //passable for acid spray
+						if(is_type_in_typecache(O, GLOB.acid_spray_hit))
+							normal_density_flag = O.acid_spray_act(src)
 						break
 
 			if (!normal_density_flag)
@@ -300,19 +302,8 @@
 			for (var/obj/O in inverse_normal_turf)
 				if(!O.CheckExit(right_S, next_inverse_normal_turf))
 					inverse_normal_density_flag = TRUE
-					if(istype(O, /obj/structure/barricade))
-						var/obj/structure/barricade/B = O
-						B.health -= rand(40,60) + 8 * upgrade
-						B.update_health(1)
-					else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-						var/obj/vehicle/multitile/root/cm_armored/A = O
-						A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-						A.healthcheck()
-					else if(istype(O, /obj/structure/razorwire) )
-						var/obj/structure/razorwire/R = O
-						R.health -= rand(40,60) + 8 * upgrade
-						R.update_health()
-						inverse_normal_density_flag = FALSE //passable for acid spray
+					if(is_type_in_typecache(O, GLOB.acid_spray_hit))
+						inverse_normal_density_flag = O.acid_spray_act(src)
 					break
 
 			inverse_normal_turf = next_inverse_normal_turf
@@ -324,19 +315,8 @@
 				for (var/obj/O in inverse_normal_turf)
 					if(!O.CanPass(right_S, right_S.loc))
 						inverse_normal_density_flag = TRUE //passable for acid spray
-						if(istype(O, /obj/structure/barricade))
-							var/obj/structure/barricade/B = O
-							B.health -= rand(40,60) + 8 * upgrade
-							B.update_health(1)
-						else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-							var/obj/vehicle/multitile/root/cm_armored/A = O
-							A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-							A.healthcheck()
-						else if(istype(O, /obj/structure/razorwire) )
-							var/obj/structure/razorwire/R = O
-							R.health -= rand(40,60) + 8 * upgrade
-							R.update_health()
-							inverse_normal_density_flag = FALSE //passable for acid spray
+						if(is_type_in_typecache(O, GLOB.acid_spray_hit))
+							inverse_normal_density_flag = O.acid_spray_act(src)
 						break
 
 			if (!inverse_normal_density_flag)
@@ -349,42 +329,11 @@
 	if(!.)
 		. = new /obj/effect/xenomorph/spray(T)
 
-		// This should probably be moved into obj/effect/xenomorph/spray or something
-		for (var/obj/structure/barricade/B in T)
-			B.health -= rand(40,60) + 8 * upgrade
-			B.update_health(1)
-
-		for (var/obj/vehicle/multitile/root/cm_armored/A in T)
-			A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-			A.healthcheck()
-
-		for (var/obj/structure/razorwire/R in T)
-			R.health -= rand(40,60) + 8 * upgrade
-			R.update_health(1)
-
-		for (var/mob/living/carbon/C in T)
-			if (!ishuman(C) && !ismonkey(C))
+		for(var/i in T)
+			var/atom/A = i
+			if(!A)
 				continue
-
-			if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
-				continue
-
-			round_statistics.praetorian_spray_direct_hits++
-
-			C.acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
-			var/armor_block = C.run_armor_check("chest", "energy")
-			var/damage = rand(30,40) + 4 * upgrade
-			if(ishuman(C))
-				var/mob/living/carbon/human/H = C
-				H.take_overall_damage(null, damage, null, null, null, armor_block)
-			else
-				C.apply_damage(damage, BURN, null, armor_block)
-			to_chat(C, "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>")
-
-			if (!isyautja(C))
-				C.emote("scream")
-				C.KnockDown(1)
-
+			A.acid_spray_act(src)
 
 // Warrior Fling
 /mob/living/carbon/Xenomorph/proc/fling(atom/A)
@@ -433,9 +382,31 @@
 	to_chat(src, "<span class='notice'>You gather enough strength to fling something again.</span>")
 	update_action_button_icons()
 
-/mob/living/carbon/Xenomorph/proc/punch(var/mob/living/M)
+/mob/living/proc/punch_act(mob/living/carbon/Xenomorph/X, damage, target_zone)
+	apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
 
-	if (!M || M == src || !isliving(M))
+/mob/living/carbon/human/punch_act(mob/living/carbon/Xenomorph/X, damage, target_zone)
+	var/datum/limb/L = get_limb(target_zone)
+
+	if (!L || (L.limb_status & LIMB_DESTROYED))
+		return
+
+	X.visible_message("<span class='xenowarning'>\The [X] hits [src] in the [L.display_name] with a devastatingly powerful punch!</span>", \
+		"<span class='xenowarning'>You hit [src] in the [L.display_name] with a devastatingly powerful punch!</span>")
+
+	if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
+		L.limb_status &= ~LIMB_SPLINTED
+		to_chat(src, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
+
+	L.take_damage(damage, 0, 0, 0, null, null, null, run_armor_check(target_zone))
+
+	adjust_stagger(3)
+	add_slowdown(3)
+
+	apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
+
+/mob/living/carbon/Xenomorph/proc/punch(var/mob/living/M)
+	if (!istype(M) || M == src)
 		return
 
 	if (!check_state() || agility)
@@ -467,37 +438,13 @@
 	var/target_zone = check_zone(zone_selected)
 	if(!target_zone)
 		target_zone = "chest"
-	var/armor_block = M.run_armor_check(target_zone)
 	var/damage = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper)
 	used_punch = TRUE
 	use_plasma(20)
 	playsound(M, S, 50, 1)
 
-	if(!ishuman(M))
-		M.apply_damage(damage, BRUTE, target_zone, armor_block) //If we're not a humie, just apply brute.
-	else
-		var/mob/living/carbon/human/H = M
+	M.punch_act(src, damage, target_zone)
 
-		var/datum/limb/L = H.get_limb(check_zone(zone_selected))
-
-		if (!L || (L.limb_status & LIMB_DESTROYED))
-			return
-
-		visible_message("<span class='xenowarning'>\The [src] hits [H] in the [L.display_name] with a devastatingly powerful punch!</span>", \
-		"<span class='xenowarning'>You hit [H] in the [L.display_name] with a devastatingly powerful punch!</span>")
-
-
-		if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
-			L.limb_status &= ~LIMB_SPLINTED
-			to_chat(H, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
-
-		L.take_damage(damage, 0, 0, 0, null, null, null, armor_block)
-		if(iscarbon(L))
-			var/mob/living/carbon/C = L
-			C.adjust_stagger(3)
-			C.add_slowdown(3)
-
-		H.apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
 	shake_camera(M, 2, 1)
 	step_away(M, src, 2)
 
@@ -648,7 +595,7 @@
 
 // Defender Headbutt
 /mob/living/carbon/Xenomorph/proc/headbutt(var/mob/M)
-	if (!M || !ishuman(M))
+	if (!ishuman(M))
 		return
 
 	if(M.stat == DEAD || (istype(M.buckled, /obj/structure/bed/nest) && M.status_flags & XENO_HOST) ) //No bullying the dead/secured hosts
@@ -1156,7 +1103,7 @@
 	playsound(src.loc, sound_to_play, 25, 1)
 
 	var/obj/item/projectile/A = new /obj/item/projectile(current_turf)
-	A.generate_bullet(ammo, ammo.damage * (max(0,upgrade) * 0.15)) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
+	A.generate_bullet(ammo, ammo.damage * SPIT_UPGRADE_BONUS) 
 	A.permutated += src
 	A.def_zone = get_limbzone_target()
 
@@ -1958,7 +1905,7 @@
 		if(target_facing != dir && target_facing != turn(dir,45) && target_facing != turn(dir,-45) ) //Have to be actually facing the target
 			continue
 		if(H.stat != DEAD && !(istype(H.buckled, /obj/structure/bed/nest) && H.status_flags & XENO_HOST) ) //No bully
-			var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.01) ) //+1% bonus damage per point of Rage.relative to base melee damage.
+			var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * round(RAV_RAVAGE_DAMAGE_MULITPLIER + rage * RAV_RAVAGE_RAGE_MULITPLIER, 0.01)
 			H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
 			victims++
 			round_statistics.ravager_ravage_victims++
@@ -2047,8 +1994,7 @@
 
 		for(var/obj/structure/barricade/B in prev_turf)
 			if(get_dir(prev_turf, T) & B.dir)
-				B.health -= rand(45, 60) + 8 * upgrade
-				B.update_health(TRUE)
+				B.acid_spray_act(src)
 
 		if(T.density || isspaceturf(T))
 			break
@@ -2075,8 +2021,7 @@
 
 		for(var/obj/structure/barricade/B in TF)
 			if(get_dir(TF, prev_turf) & B.dir)
-				B.health -= rand(45, 60) + 8 * upgrade
-				B.update_health(TRUE)
+				B.acid_spray_act(src)
 
 		splat_turf(TF)
 
@@ -2100,12 +2045,7 @@
 			continue
 		if((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)) //nested infected hosts are not hurt by acid spray
 			continue
-		var/armor_block = M.run_armor_check("chest")
-		M.apply_damage(rand(30, 40) + 5 * upgrade, BURN, "chest", armor_block)
-		to_chat(M, "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>")
-		if(!isyautja(M))
-			M.emote("scream")
-			M.KnockDown(1)
+		M.acid_spray_act(src)
 
 /mob/living/carbon/Xenomorph/proc/acid_spray(atom/T, plasmacost = 250, acid_d = xeno_caste.acid_delay)
 	if(!T)
@@ -2245,30 +2185,30 @@
 
 
 
-/mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting(mob/living/H)
-	if(!check_state() || !istype(H))
+/mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting(mob/living/carbon/C)
+	if(!check_state() || !C?.can_sting())
 		return
 
 	if(world.time < last_defiler_sting + DEFILER_STING_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='xenodanger'>You are not ready to Defile again. It will be ready in [(last_defiler_sting + DEFILER_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
+		to_chat(src, "<span class='warning'>You are not ready to Defile again. It will be ready in [(last_defiler_sting + DEFILER_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
 		return
 
 	if(stagger)
-		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
+		to_chat(src, "<span class='warning'>You try to sting but are too disoriented!</span>")
 		return
 
-	if(!H.can_sting() )
-		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
+	if(!C.can_sting())
+		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
 		return
 
-	if(!Adjacent(H))
+	if(!Adjacent(C))
 		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
-			to_chat(src, "<span class='xenowarning'>You can't reach this target!</span>")
+			to_chat(src, "<span class='warning'>You can't reach this target!</span>")
 			recent_notice = world.time //anti-notice spam
 		return
 
-	if ((H.status_flags & XENO_HOST) && istype(H.buckled, /obj/structure/bed/nest))
-		to_chat(src, "<span class='xenowarning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
+	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
+		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return
 
 	if(!check_plasma(150))
@@ -2278,69 +2218,41 @@
 
 	round_statistics.defiler_defiler_stings++
 
-	face_atom(H)
-	animation_attack_on(H)
-	H.reagents.add_reagent("xeno_toxin", DEFILER_STING_AMOUNT_INITIAL) //15 units transferred initially.
-	to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with neurotoxin!</span>")
-	var/datum/reagent/xeno_growthtoxin/growth_toxin = chemical_reagents_list["xeno_growthtoxin"]
-	if(H.reagents.get_reagent_amount("xeno_growthtoxin") >= growth_toxin.overdose_threshold)
-		to_chat(src, "<span class='xenowarning'>You defer from injecting larval growth serum as you sense your host is already saturated with it.</span>")
-	else
-		H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_INITIAL, null, 300, FALSE, FALSE, TRUE) //Caps the amount injected by the overdose limit
-		to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with larval growth serum!</span>")
-	to_chat(H, "<span class='danger'>You feel a tiny prick.</span>")
-	playsound(H, 'sound/effects/spray3.ogg', 15, 1)
-	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-	overdose_check(H)
-
 	addtimer(CALLBACK(src, .defiler_sting_cooldown), DEFILER_STING_COOLDOWN)
 
-	recurring_injection(H, "xeno_toxin", "xeno_growthtoxin", TRUE)
+	larva_injection(C)
+	larval_growth_sting(C)
+	
 
 /mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting_cooldown()
 	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
 	to_chat(src, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
 	update_action_button_icons()
 
-/mob/living/carbon/Xenomorph/proc/recurring_injection(mob/living/H, toxin1 = "xeno_toxin", toxin2 = null, larva = FALSE, count = 2)
-	//set waitfor = FALSE
-	while(count)
-		face_atom(H)
-		if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
-			return
-		if(!Adjacent(H) || stagger)
-			return FALSE
-		animation_attack_on(H)
-		playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-		if(toxin1)
-			H.reagents.add_reagent(toxin1, DEFILER_STING_AMOUNT_RECURRING) //10 units transferred.
-			overdose_check(H, toxin1)
-		if(toxin2)
-			H.reagents.add_reagent(toxin2, DEFILER_STING_AMOUNT_RECURRING, null, 300, FALSE, FALSE, TRUE) //Caps the amount injected by the overdose limit
-			overdose_check(H, toxin2)
 
-		if(count < 2 && larva)
-			//It's infection time!
-			if(!H.can_sting())
-				return
-			var/embryos = 0
-			for(var/obj/item/alien_embryo/embryo in H) // already got one, stops doubling up
-				embryos++
-			if(!embryos)
-				var/obj/item/alien_embryo/embryo = new /obj/item/alien_embryo(H)
-				embryo.hivenumber = hivenumber
-				round_statistics.now_pregnant++
-				to_chat(src, "<span class='xenodanger'>Your stinger successfully implants a larva into the host.</span>")
-		count--
-	return
+/mob/living/carbon/Xenomorph/proc/larva_injection(mob/living/carbon/C)
+	if(!C?.can_sting())
+		return FALSE
+	if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+		return FALSE
+	if(stagger)
+		return FALSE
+	if(locate(/obj/item/alien_embryo) in C) // already got one, stops doubling up
+		to_chat(src, "<span class='warning'>There is already a little one in this vessel!</span>")
+		return FALSE
+	face_atom(C)
+	animation_attack_on(C)
+	playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+	var/obj/item/alien_embryo/embryo = new(C)
+	embryo.hivenumber = hivenumber
+	round_statistics.now_pregnant++
+	to_chat(src, "<span class='xenodanger'>Your stinger successfully implants a larva into the host.</span>")
+	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
+	C.apply_damage(100, HALLOSS)
+	C.apply_damage(10, BRUTE, "chest")
+	C.emote("scream")
+	return TRUE
 
-/mob/living/carbon/Xenomorph/proc/overdose_check(mob/living/L, toxin = "xeno_toxin")
-	if(!iscarbon(L))
-		return
-	var/mob/living/carbon/C = L
-	var/datum/reagent/xeno_tox = C.reagents.get_reagent(toxin)
-	if(xeno_tox?.overdosed)
-		to_chat(src, "<span class='xenodanger'>You sense this host is overdosed on [xeno_tox.name].</span>")
 
 /mob/living/carbon/Xenomorph/Hivelord/proc/build_tunnel()
 	if(!check_state())
@@ -2368,7 +2280,7 @@
 		return
 
 	if(get_active_held_item())
-		to_chat(src, "<span class='xenowarning'>You need an empty claw for this!</span>")
+		to_chat(src, "<span class='warning'>You need an empty claw for this!</span>")
 		return
 
 	if(!check_plasma(200))
@@ -2407,64 +2319,118 @@
 	tunnel_delay = FALSE
 
 
-/mob/living/carbon/Xenomorph/Drone/proc/drone_sting(mob/living/H)
+/mob/living/carbon/Xenomorph/proc/recurring_injection(mob/living/carbon/C, toxin = "xeno_toxin", channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 3)
+	if(!C?.can_sting() || !toxin)
+		return FALSE
+	var/datum/reagent/body_tox
+	var/i = 1
+	do
+		face_atom(C)
+		if(stagger)
+			return FALSE
+		animation_attack_on(C)
+		playsound(C, 'sound/effects/spray3.ogg', 15, 1)
+		playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+		C.reagents.add_reagent(toxin, transfer_amount)
+		if(!body_tox) //Let's check this each time because depending on the metabolization rate it can disappear between stings.
+			body_tox = C.reagents.get_reagent(toxin)
+		to_chat(C, "<span class='danger'>You feel a tiny prick.</span>")
+		to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with [body_tox.name]!</span>")
+		if(body_tox.volume > body_tox.overdose_threshold)
+			to_chat(src, "<span class='danger'>You sense the host is saturated with [body_tox.name].</span>")
+	while(i++ < count && do_after(src, channel_time, TRUE, 5, BUSY_ICON_HOSTILE))
+	return TRUE
 
-	if(!check_state() || !istype(H))
+
+/mob/living/carbon/Xenomorph/proc/neurotoxin_sting(mob/living/carbon/C)
+
+	if(!check_state())
 		return
 
-	if(world.time < last_drone_sting + DRONE_STING_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='xenodanger'>You are not ready to sting again. Your sting will be ready in [(last_drone_sting + DRONE_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
+	if(!C?.can_sting())
+		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
+		return
+
+	if(world.time < last_neurotoxin_sting + XENO_NEURO_STING_COOLDOWN) //Sure, let's use this.
+		to_chat(src, "<span class='warning'>You are not ready to use the sting again. It will be ready in [(last_neurotoxin_sting + XENO_NEURO_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
 		return
 
 	if(stagger)
-		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
+		to_chat(src, "<span class='warning'>You try to sting but are too disoriented!</span>")
 		return
 
-	if(!H.can_sting() )
-		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
-		return
-
-	if(!Adjacent(H))
+	if(!Adjacent(C))
 		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
-			to_chat(src, "<span class='xenowarning'>You can't reach this target!</span>")
+			to_chat(src, "<span class='warning'>You can't reach this target!</span>")
 			recent_notice = world.time //anti-notice spam
 		return
 
-	if ((H.status_flags & XENO_HOST) && istype(H.buckled, /obj/structure/bed/nest))
-		to_chat(src, "<span class='xenowarning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
+	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
+		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return
 
 	if(!check_plasma(150))
 		return
-	last_drone_sting = world.time
+	last_neurotoxin_sting = world.time
 	use_plasma(150)
 
-	round_statistics.drone_stings++
+	round_statistics.sentinel_neurotoxin_stings++
 
-	face_atom(H)
-	animation_attack_on(H)
+	addtimer(CALLBACK(src, .neurotoxin_sting_cooldown), XENO_NEURO_STING_COOLDOWN)
+	recurring_injection(C, "xeno_toxin", XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
 
-	var/datum/reagent/xeno_growthtoxin/growth_toxin = chemical_reagents_list["xeno_growthtoxin"]
-	if(H.reagents.get_reagent_amount("xeno_growthtoxin") >= growth_toxin.overdose_threshold)
-		to_chat(src, "<span class='xenowarning'>You defer from injecting larval growth serum as you sense your host is already saturated with it.</span>")
-	else
-		H.reagents.add_reagent("xeno_growthtoxin", DRONE_STING_AMOUNT_INITIAL, null, 300, FALSE, FALSE, TRUE) //Caps the amount injected by the overdose limit
-		to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with larval growth serum!</span>")
-	to_chat(H, "<span class='danger'>You feel a tiny prick.</span>")
-	playsound(H, 'sound/effects/spray3.ogg', 15, 1)
-	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 
-	addtimer(CALLBACK(src, .drone_sting_cooldown), DRONE_STING_COOLDOWN)
+/mob/living/carbon/Xenomorph/proc/neurotoxin_sting_cooldown()
+	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	to_chat(src, "<span class='xenodanger'>You feel your neurotoxin glands refill. You can use your Neurotoxin Sting again.</span>")
+	update_action_button_icons()
 
-	recurring_injection(H, null, "xeno_growthtoxin")
 
-/mob/living/carbon/Xenomorph/Drone/proc/drone_sting_cooldown()
+/mob/living/carbon/Xenomorph/proc/larval_growth_sting(mob/living/carbon/C)
+
+	if(!check_state())
+		return
+
+	if(!C?.can_sting())
+		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
+		return
+
+	if(world.time < last_larva_growth_used + XENO_LARVAL_GROWTH_COOLDOWN) //Sure, let's use this.
+		to_chat(src, "<span class='warning'>You are not ready to sting again. Your sting will be ready in [(last_larva_growth_used + XENO_LARVAL_GROWTH_COOLDOWN - world.time) * 0.1] seconds.</span>")
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='warning'>You try to sting but are too disoriented!</span>")
+		return
+
+	if(!Adjacent(C))
+		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
+			to_chat(src, "<span class='warning'>You can't reach this target!</span>")
+			recent_notice = world.time //anti-notice spam
+		return
+
+	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
+		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
+		return
+
+	if(!check_plasma(150))
+		return
+	last_larva_growth_used = world.time
+	use_plasma(150)
+
+	round_statistics.larval_growth_stings++
+
+	addtimer(CALLBACK(src, .larval_growth_sting_cooldown), XENO_LARVAL_GROWTH_COOLDOWN)
+	recurring_injection(C, "xeno_growthtoxin", XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
+
+
+/mob/living/carbon/Xenomorph/proc/larval_growth_sting_cooldown()
 	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
 	to_chat(src, "<span class='xenodanger'>You feel your growth toxin glands refill. You can use Growth Sting again.</span>")
 	update_action_button_icons()
 
 
-/mob/proc/can_sting()
+/atom/proc/can_sting()
 	return FALSE
 
 /mob/living/carbon/monkey/can_sting()

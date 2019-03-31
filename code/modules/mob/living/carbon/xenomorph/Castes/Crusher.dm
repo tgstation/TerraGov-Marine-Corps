@@ -11,7 +11,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
 	melee_damage_upper = 35
-	attack_delay = 0.5
+	attack_delay = 8.5
 
 	// *** Tackle *** //
 	tackle_damage = 55
@@ -51,7 +51,6 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
 	melee_damage_upper = 35
-	attack_delay = 0.5
 
 	// *** Tackle *** //
 	tackle_damage = 60
@@ -83,7 +82,6 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
 	melee_damage_upper = 40
-	attack_delay = 0.5
 
 	// *** Tackle *** //
 	tackle_damage = 65
@@ -115,7 +113,6 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 35
 	melee_damage_upper = 45
-	attack_delay = 0.5
 
 	// *** Tackle *** //
 	tackle_damage = 70
@@ -199,7 +196,7 @@
 		if(isxeno(M) || M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)))
 			continue
 		var/distance = get_dist(M, loc)
-		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * (1 + upgrade * 0.05)) / max(1,distance + 1)
+		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS) / max(1,distance + 1)
 		if(frenzy_aura > 0)
 			damage *= (1 + round(frenzy_aura * 0.1,0.01)) //+10% per level of Frenzy
 		if(distance == 0) //If we're on top of our victim, give him the full impact
@@ -207,9 +204,9 @@
 			var/armor_block = M.run_armor_check("chest", "melee") * 0.5 //Only 50% armor applies vs stomp brute damage
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				H.take_overall_damage(rand(damage), null, 0, 0, 0, armor_block) //Armour functions against this.
+				H.take_overall_damage(damage, null, 0, 0, 0, armor_block) //Armour functions against this.
 			else
-				M.take_overall_damage(rand(damage), 0, null, armor_block) //Armour functions against this.
+				M.take_overall_damage(damage, 0, null, armor_block) //Armour functions against this.
 			to_chat(M, "<span class='highdanger'>You are stomped on by [src]!</span>")
 			shake_camera(M, 3, 3)
 		else

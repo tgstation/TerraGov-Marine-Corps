@@ -13,8 +13,11 @@
 		return
 
 	var/message = FALSE
-	if(alert("Send the new round message?", "Message", "Yes", "No") == "Yes")
-		message = TRUE
+	switch(alert("Send the new round message?", "Message", "Yes", "No", "Cancel"))
+		if("Yes")
+			message = TRUE
+		if("Cancel")
+			return
 
 	to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by: [usr.key]</span>")
 
@@ -341,7 +344,10 @@
 	if(!SSticker)
 		return
 
-	SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
+	if(SSticker.admin_delay_notice)
+		SSticker.admin_delay_notice = null
+	else
+		SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
 
 	SSticker.delay_end = !SSticker.delay_end
 
