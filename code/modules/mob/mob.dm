@@ -544,6 +544,11 @@
 	//reset the pixel offsets to zero
 	is_floating = 0
 
+
+/mob/GenerateTag()
+	tag = "mob_[next_mob_id++]"
+
+
 // facing verbs
 /mob/proc/canface()
 	if(!canmove)						return 0

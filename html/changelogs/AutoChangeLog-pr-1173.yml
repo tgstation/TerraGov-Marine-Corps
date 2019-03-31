@@ -1,0 +1,4 @@
+author: "Jalordon"
+delete-after: True
+changes: 
+  - bugfix: "Leader pheromones now function again while the queen is ovipositored"

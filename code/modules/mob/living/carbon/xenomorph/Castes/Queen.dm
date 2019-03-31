@@ -40,7 +40,7 @@
 	spit_types = list(/datum/ammo/xeno/toxin/medium, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
-	aura_strength = 2 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
+	aura_strength = 3 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Queen Abilities *** //
@@ -79,7 +79,7 @@
 	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade1, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
-	aura_strength = 3
+	aura_strength = 4
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 2
@@ -117,7 +117,7 @@
 	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
-	aura_strength = 4
+	aura_strength = 4.7
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 3

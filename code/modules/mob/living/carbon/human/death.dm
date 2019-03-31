@@ -60,8 +60,6 @@
 	if(species) 
 		species.handle_death(src, gibbed)
 
-	//callHook("death", list(src, gibbed))
-
 	toggle_typing_indicator()
 
 	if(!gibbed && species.death_sound)

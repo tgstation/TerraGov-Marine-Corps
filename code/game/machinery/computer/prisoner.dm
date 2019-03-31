@@ -52,8 +52,6 @@
 			if(is_ground_level(M.z) && !isspaceturf(M.loc))
 				var/turf/mob_loc = get_turf(M)
 				loc_display = mob_loc.loc
-			if(T.malfunction)
-				loc_display = pick(teleportlocs)
 			dat += "ID: [T.id]|Location: [loc_display]<BR>"
 			dat += "<A href='?src=\ref[src];warn=\ref[T]'>(<font color=red><i>Message Holder</i></font>)</A> |<BR>"
 			dat += "********************************<BR>"

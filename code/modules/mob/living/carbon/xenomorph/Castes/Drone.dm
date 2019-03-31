@@ -40,7 +40,7 @@
 	armor_deflection = 0
 
 	// *** Pheromones *** //
-	aura_strength = 0.5 //Drone's aura is the weakest. At the top of their evolution, it's equivalent to a Young Queen Climbs by 0.5 to 2
+	aura_strength = 1 //Drone's aura is the weakest. At the top of their evolution, it's equivalent to a Young Queen Climbs by 0.5 to 2
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 /datum/xeno_caste/drone/mature
@@ -73,7 +73,7 @@
 	armor_deflection = 5
 
 	// *** Pheromones *** //
-	aura_strength = 1
+	aura_strength = 1.5
 
 /datum/xeno_caste/drone/elite
 	upgrade_name = "Elite"
@@ -105,7 +105,7 @@
 	armor_deflection = 10
 
 	// *** Pheromones *** //
-	aura_strength = 1.5
+	aura_strength = 1.8
 
 /datum/xeno_caste/drone/ancient
 	upgrade_name = "Ancient"

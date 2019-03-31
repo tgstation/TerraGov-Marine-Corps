@@ -11,8 +11,6 @@
 	var/dat
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 
-	dat += "<html><head><title>Round Status</title></head>"
-	dat += "<body><h1><b>Round Status</b></h1>"
 	dat += "Current Game Mode: <B>[SSticker.mode.name]</B><BR>"
 	dat += "Round Duration: <B>[worldtime2text()]</B><BR>"
 
@@ -90,8 +88,8 @@
 			dat += "<td><a href='?src=[ref];playerpanel=[REF(H)]'>PP</A></td></TR>"
 		dat += "</table>"
 
-	dat += "</body></html>"
-
 	log_admin("[key_name(usr)] opened the mode panel.")
 
-	usr << browse(dat, "window=roundstatus;size=600x500")
+	var/datum/browser/browser = new(usr, "modepanel", "<div align='center'>Mode Panel</div>", 600, 500)
+	browser.set_content(dat)
+	browser.open()

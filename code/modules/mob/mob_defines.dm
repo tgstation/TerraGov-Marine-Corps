@@ -4,10 +4,12 @@
 	density = 1
 	layer = MOB_LAYER
 	animate_movement = 2
-//	flags = NOREACT
+	datum_flags = DF_USE_TAG
 	var/datum/mind/mind
 
 	var/datum/click_intercept
+
+	var/static/next_mob_id = 0
 
 	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
 	var/obj/screen/hands = null //robot
