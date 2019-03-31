@@ -28,7 +28,7 @@ FLOOR SAFES
 	density = 1
 	layer = BELOW_OBJ_LAYER
 	unacidable = 1
-	explosion_resistance = 500
+
 	var/spawnkey = 1 //Spawn safe code on top of it?
 	var/open = 0		//is the safe open?
 	var/tumbler_1_pos	//the tumbler position- from 0 to 72
