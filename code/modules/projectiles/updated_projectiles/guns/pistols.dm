@@ -71,7 +71,7 @@
 
 /obj/item/weapon/gun/pistol/m4a3/custom
 	name = "\improper C-22TG service pistol"
-	desc = "A C22TG service pistol, TerraGov custom variant, manufactured by Armsdealer's Concord. Uses 9mm pistol rounds. The standard issue sidearm of the TerraGov Marine Corps.  It has an ivory-colored grip and a slide that has been carefully polished. It is normally issued to low-ranking officers."
+	desc = "A C22TG service pistol, TerraGov custom variant, manufactured by Armsdealer's Concord. Uses 9mm pistol rounds. The standard issue sidearm of the TerraGov Marine Corps.  It has an ivory-colored grip and a slide that has been carefully polished. Normally issued to low-ranking officers."
 	icon_state = "m4a3c"
 	item_state = "m4a3c"
 
@@ -92,7 +92,7 @@
 
 /obj/item/weapon/gun/pistol/m1911
 	name = "\improper C-45 service pistol"
-	desc = "A C45 service pistol. Chambered in .45. Hits harder than its 9mm sibling, the C-22 service pistol, in exchange for lower ammo capacity."
+	desc = "A C45 service pistol. Chambered in .45. Hits harder than its 9mm sibling, the C-22, in exchange for lower ammo capacity."
 	icon_state = "m4a345"
 	item_state = "m1911"
 	caliber = ".45 ACP" //codex
@@ -156,7 +156,7 @@
 
 /obj/item/weapon/gun/pistol/b92fs/raffica
 	name = "\improper MaxSec4 pistol"
-	desc = "A MaxSecurity4 Pistol. It is chambered in 9mm, and capable of burst fire. This is the current sidearm in use by Space Authority, now TerraGov, for its specialized security teams. It is much improved from the decades old MaxSec2, featuring a vertical foregrip at the front of the trigger guard, to improve stability during burst fire."
+	desc = "A MaxSecurity4 Pistol. It is chambered in 9mm, and capable of burst fire. This is the current sidearm in use by Space Authority, now TerraGov, for its specialized security teams. Features a vertical foregrip at the front of the trigger guard, to improve stability during burst fire."
 	icon_state = "b93r"
 	item_state = "b93r"
 	caliber = "9x19mm Parabellum" //codex
@@ -184,7 +184,7 @@
 
 /obj/item/weapon/gun/pistol/b92fs/M9
 	name = "\improper LowSec1 pistol"
-	desc = "A LowSecurity1 tranquilizer pistol. Fires tranq darts. Manufactured by an unknown manufacturer on Mars in the 2100s, now known as Cydonia Authority, as a nonlethal alternative to Armsdealer's Concord MaxSec series."
+	desc = "A LowSecurity1 tranquilizer pistol. Fires tranq darts.Created by a rival company as a nonlethal alternative to Armsdealer's Concord MaxSec series."
 	icon_state = "m9"
 	item_state = "m9"
 	caliber = "9x19mm tranquilizer" //codex
@@ -247,7 +247,7 @@
 
 /obj/item/weapon/gun/pistol/c99
 	name = "\improper CS pistol"
-	desc = "A C-S pistol. Mercenary variant. Comes with a built in suppresor. This one is already loaded with .22 HP rounds. The go to choice for clandestine operatives, due to the selection of variants, from lethal, to nonlethal."
+	desc = "A C-S pistol. Mercenary variant. Comes with a built in suppresor. This one is already loaded with .22 HP rounds. The go to choice for clandestine operatives."
 	icon_state = "pk9"
 	item_state = "pk9"
 	caliber = ".22 LR" //codex
@@ -280,12 +280,12 @@
 	item_state = "pk9r"
 
 /obj/item/weapon/gun/pistol/c99/upp
-	desc = "A C-S pistol. UPPToBeRemoved variant. Comes with a built in suppresor. This one is already loaded with .22 HP rounds. The go to choice for clandestine operatives, due to the selection of variants, from lethal, to nonlethal."
+	desc = "A C-S pistol. UPPToBeRemoved variant. Comes with a built in suppresor. This one is already loaded with .22 HP rounds. The go to choice for clandestine operatives."
 	icon_state = "pk9u"
 	item_state = "pk9u"
 
 /obj/item/weapon/gun/pistol/c99/upp/tranq
-	desc = "A C-S pistol. Nonlethal variant. Comes with a built in suppresor. This variant takes low recoil .22 dart rounds, making it a formidable tranquilizer gun. The go to choice for clandestine operatives, due to the selection of variants, from lethal, to nonlethal."
+	desc = "A C-S pistol. Nonlethal variant. Comes with a built in suppresor. This variant takes low recoil .22 dart rounds, making it a formidable tranquilizer gun. The go to choice for clandestine operatives."
 	current_mag = /obj/item/ammo_magazine/pistol/c99t
 
 //-------------------------------------------------------
@@ -293,7 +293,7 @@
 
 /obj/item/weapon/gun/pistol/kt42
 	name = "\improper K77-V pistol"
-	desc = "A K77-V pistol. Chambered in .44. This handcannon hits hard, and is more than capable of giving its wielder the power to take the law, into their own hands.
+	desc = "A K77-V pistol. Chambered in .44. This handcannon hits hard, and is more than capable of giving its wielder the power to take the law, into their own hands."
 	icon_state = "kt42"
 	item_state = "kt42"
 	caliber = ".44 magnum" //codex
@@ -353,7 +353,7 @@
 
 /obj/item/weapon/gun/pistol/highpower
 	name = "\improper TG-T-67 pistol"
-	desc = "A TG-T-67 pistol. Chambered in 9mm AP rounds. It is issued only to the high ranking personnel of the TerraGov Marine Corps, as well as TerraGov Space Force officers."
+	desc = "A TG-T-67 pistol. Chambered in 9mm AP rounds. It is issued only to the high ranking personnel of the TGMC, AND TGSF."
 	icon_state = "highpower"
 	item_state = "highpower"
 	caliber = "9x19mm Parabellum" //codex
