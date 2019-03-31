@@ -1,6 +1,6 @@
 #define GAME_YEAR 2386
 
-var/global/obj/effect/datacore/data_core = null
+var/global/obj/effect/datacore/GLOB.datacore = null
 
 		//items that ask to be called every cycle
 
