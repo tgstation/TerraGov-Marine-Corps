@@ -48,8 +48,8 @@
 //M4A3 PISTOL
 
 /obj/item/weapon/gun/pistol/m4a3
-	name = "\improper Concord Twenty2A service pistol"
-	desc = "(M4A3) A C-22A service pistol, military variant, manufactured by Armsdealer's Concord. Uses 9mm pistol rounds. The standard issue sidearm of the TerraGov Marine Corps. This is the first of its line, created after TerraGov put in a request for a reliable sidearm, for its Marine Corps."
+	name = "\improper C-22A service pistol"
+	desc = "A C22A service pistol, military variant. Uses 9mm pistol rounds. The standard issue sidearm of the TerraGov Marine Corps."
 	icon_state = "m4a3"
 	item_state = "m4a3"
 	caliber = "9x19mm Parabellum" //codex
@@ -70,8 +70,8 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 /obj/item/weapon/gun/pistol/m4a3/custom
-	name = "\improper Concord Twenty2TG service pistol"
-	desc = "(M4A3 Custom) A C-22TG service pistol, TerraGov custom variant, manufactured by Armsdealer's Concord. Uses 9mm pistol rounds. The standard issue sidearm of the TerraGov Marine Corps.  It has an ivory-colored grip and a slide that has been carefully polished. It is normally issued to low-ranking officers."
+	name = "\improper C-22TG service pistol"
+	desc = "A C22TG service pistol, TerraGov custom variant, manufactured by Armsdealer's Concord. Uses 9mm pistol rounds. The standard issue sidearm of the TerraGov Marine Corps.  It has an ivory-colored grip and a slide that has been carefully polished. It is normally issued to low-ranking officers."
 	icon_state = "m4a3c"
 	item_state = "m4a3c"
 
@@ -91,8 +91,8 @@
 //M4A3 45 //Inspired by the 1911
 
 /obj/item/weapon/gun/pistol/m1911
-	name = "\improper Concord FourFive service pistol"
-	desc = "(M4A3 .45) A C-45 service pistol. Chambered in .45. Hits harder than its 9mm sibling, the C-22 service pistol, in exchange for lower ammo capacity. Made by Armsdealer's Concord."
+	name = "\improper C-45 service pistol"
+	desc = "A C45 service pistol. Chambered in .45. Hits harder than its 9mm sibling, the C-22 service pistol, in exchange for lower ammo capacity."
 	icon_state = "m4a345"
 	item_state = "m1911"
 	caliber = ".45 ACP" //codex
@@ -112,8 +112,8 @@
 	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
 
 /obj/item/weapon/gun/pistol/m1911/custom
-	name = "\improper Colt Government Mk. IV Series 100"
-	desc = "(M1911A1) A CGMkIV100 Colt custom pistol. It lacks an auto magazine eject feature, so it's not recommended for beginners. Crafted by an Armsdealer's Concord manufacturer that was almost all but forgotten."
+	name = "\improper C-45E custom pistol"
+	desc = "A C45E custom pistol. It lacks an auto magazine eject feature, so it's not recommended for beginners."
 	icon_state = "m1911"
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
@@ -137,8 +137,8 @@
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
 
 /obj/item/weapon/gun/pistol/b92fs
-	name = "\improper MaxSecurity2 pistol"
-	desc = "(Berreta 92FS) A MaxSec2 pistol. It is chambered in 9mm. This sidearm was prominently issued to Space Authority forces, during the 2100s, where it saw much use against rioters on Mars. Sometimes the best way to cut off a rebellion, before it has time to grow and to fester, is to apply the utmost amount of force. Manufactured by Armsdealer's Concord."
+	name = "\improper MaxSec2 pistol"
+	desc = "A MaxSecurity2 pistol. It is chambered in 9mm. This sidearm was prominently issued to Space Authority forces, during the 2100s, where it saw much use against rioters on Mars."
 	icon_state = "b92fs"
 	item_state = "b92fs"
 	caliber = "9x19mm Parabellum" //codex
@@ -155,8 +155,8 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 /obj/item/weapon/gun/pistol/b92fs/raffica
-	name = "\improper MaxSecurity4 pistol"
-	desc = "(Beretta 93R) A MaxSec4 Pistol. It is chambered in 9mm, and capable of burst fire. This is the current sidearm in use by Space Authority, now TerraGov, for its specialized security teams. It is much improved from the decades old MaxSec2, featuring a vertical foregrip at the front of the trigger guard, to improve stability during burst fire. Manufactured by Armsdealer's Concord."
+	name = "\improper MaxSec4 pistol"
+	desc = "A MaxSecurity4 Pistol. It is chambered in 9mm, and capable of burst fire. This is the current sidearm in use by Space Authority, now TerraGov, for its specialized security teams. It is much improved from the decades old MaxSec2, featuring a vertical foregrip at the front of the trigger guard, to improve stability during burst fire."
 	icon_state = "b93r"
 	item_state = "b93r"
 	caliber = "9x19mm Parabellum" //codex
@@ -183,8 +183,8 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 /obj/item/weapon/gun/pistol/b92fs/M9
-	name = "\improper LowSecurity1 pistol"
-	desc = "(M9) A LowSec1 tranquilizer pistol. Fires tranq darts. Manufactured by an unknown manufacturer on Mars in the 2100s, now known as Cydonia Authority, as a nonlethal alternative to Armsdealer's Concord MaxSec series. This weapon was primarily used by clandestine operatives, before it lost popularity. The rioters on Mars were able to get their hands on these in the 2100's, in albeit few numbers, when they raided an important industrial facility that still had the LowSec1 in stock. It used to be favored by the Mars rioters for its nonlethal takedown capability. Cydonia Authority is the only manufacturer that currently still produces this weapon, but only in small numbers."
+	name = "\improper LowSec1 pistol"
+	desc = "A LowSecurity1 tranquilizer pistol. Fires tranq darts. Manufactured by an unknown manufacturer on Mars in the 2100s, now known as Cydonia Authority, as a nonlethal alternative to Armsdealer's Concord MaxSec series."
 	icon_state = "m9"
 	item_state = "m9"
 	caliber = "9x19mm tranquilizer" //codex
@@ -208,8 +208,8 @@
 //DEAGLE //Deagle Brand Deagle
 
 /obj/item/weapon/gun/pistol/heavy
-	name = "\improper Callisto Impact MkI pistol"
-	desc = "(Desert Eagle) A CI-MkI heavy pistol. It is chambered in .50ae. The unfortunate person to get shot by this, will feel like they were just hit by the Jovian moon it's named after. Made straight from an arms manufacturer on some Jovian moon. It has something engraved on the side of the slide: <i>'Si vis pacem, para bellum.'</i>"
+	name = "\improper CI-MkI pistol"
+	desc = "A Callisto Impact MkI heavy pistol. It is chambered in .50ae. The unfortunate person to get shot by this, will feel like they were just hit by the Jovian moon it's named after. It has something engraved on the side of the slide: <i>'Si vis pacem, para bellum.'</i>"
 	icon_state = "deagle"
 	item_state = "deagle"
 	caliber = ".50 AE" //codex
@@ -246,8 +246,8 @@
 //MAUSER MERC PISTOL //Inspired by the Makarov.
 
 /obj/item/weapon/gun/pistol/c99
-	name = "\improper Concord Raven-Zero pistol"
-	desc = "(PK-9) A CR-0 pistol. Mercenary variant. Crafted at an Armsdealer's Concord facility, in a colony located in the solar asteroid belt. Comes with a built in suppresor. This one is already loaded with .22 HP rounds. The go to choice for clandestine operatives, due to the selection of variants, from lethal, to nonlethal, all of them silenced."
+	name = "\improper CS pistol"
+	desc = "A C-S pistol. Mercenary variant. Comes with a built in suppresor. This one is already loaded with .22 HP rounds. The go to choice for clandestine operatives, due to the selection of variants, from lethal, to nonlethal."
 	icon_state = "pk9"
 	item_state = "pk9"
 	caliber = ".22 LR" //codex
@@ -280,20 +280,20 @@
 	item_state = "pk9r"
 
 /obj/item/weapon/gun/pistol/c99/upp
-	desc = "(PK-9) A CR-0 pistol. UPPToBeRemoved variant. Crafted at an Armsdealer's Concord facility, in a colony located in the solar asteroid belt. Comes with a built in suppresor. This one is already loaded with .22 HP rounds. The go to choice for clandestine operatives, due to the selection of variants, from lethal, to nonlethal, all of them silenced."
+	desc = "A C-S pistol. UPPToBeRemoved variant. Comes with a built in suppresor. This one is already loaded with .22 HP rounds. The go to choice for clandestine operatives, due to the selection of variants, from lethal, to nonlethal."
 	icon_state = "pk9u"
 	item_state = "pk9u"
 
 /obj/item/weapon/gun/pistol/c99/upp/tranq
-	desc = "(PK-9) A CR-0 pistol. Nonlethal variant. Crafted at an Armsdealer's Concord facility, in a colony located in the solar asteroid belt. Comes with a built in suppresor. This variant takes low recoil .22 dart rounds, making it a formidable tranquilizer gun. The go to choice for clandestine operatives, due to the selection of variants, from lethal, to nonlethal, all of them silenced."
+	desc = "A C-S pistol. Nonlethal variant. Comes with a built in suppresor. This variant takes low recoil .22 dart rounds, making it a formidable tranquilizer gun. The go to choice for clandestine operatives, due to the selection of variants, from lethal, to nonlethal."
 	current_mag = /obj/item/ammo_magazine/pistol/c99t
 
 //-------------------------------------------------------
 //KT-42 //Inspired by the .44 Auto Mag pistol
 
 /obj/item/weapon/gun/pistol/kt42
-	name = "\improper Concord K77-VIGILANTE pistol"
-	desc = "(KT-42) A K-77 pistol. Chambered in .44. This handcannon hits hard, and is more than capable of giving its wielder the power to take the law, into their own hands. An early product of Armsdealer's Concord, after 2250, which was when the war between Earth and TerraGov, ended."
+	name = "\improper K77-V pistol"
+	desc = "A K77-V pistol. Chambered in .44. This handcannon hits hard, and is more than capable of giving its wielder the power to take the law, into their own hands.
 	icon_state = "kt42"
 	item_state = "kt42"
 	caliber = ".44 magnum" //codex
@@ -319,7 +319,7 @@
 
 /obj/item/weapon/gun/pistol/holdout
 	name = "Last Chance pistol"
-	desc = "(holdout) A Last Chance pistol. Chambered in .22. This pistol is ridiculously easy to conceal, but it is only ever used as a last resort, due to its weak stopping power. Manufactured by a lesser known arms manufacturer. Some speculate that this weapon originated from a new rising faction, that only wants to make a place for itself in the universe. Whether or not those rumors are true, however, noone truly knows."
+	desc = "A Last Chance pistol. Chambered in .22. This pistol is ridiculously easy to conceal, but it is only ever used as a last resort, due to its weak stopping power."
 	icon_state = "holdout"
 	item_state = "holdout"
 	caliber = ".22 LR" //codex
@@ -352,8 +352,8 @@
 //.45 MARSHALS PISTOL //Inspired by the Browning Hipower
 
 /obj/item/weapon/gun/pistol/highpower
-	name = "\improper TG-Thunder-67 pistol"
-	desc = "(Highpower) A TG-T-67 pistol. Chambered in 9mm AP rounds. It is issued only to the high ranking personnel of the TerraGov Marine Corps, who share it with similarly high ranking TerraGov Space Force officers. Made precisely as requested, by Armsdealer's Concord."
+	name = "\improper TG-T-67 pistol"
+	desc = "A TG-T-67 pistol. Chambered in 9mm AP rounds. It is issued only to the high ranking personnel of the TerraGov Marine Corps, as well as TerraGov Space Force officers."
 	icon_state = "highpower"
 	item_state = "highpower"
 	caliber = "9x19mm Parabellum" //codex
@@ -378,8 +378,8 @@
 //VP70 //Not actually the VP70, but it's more or less the same thing. VP70 was the standard sidearm in Aliens though.
 
 /obj/item/weapon/gun/pistol/vp70
-	name = "\improper PhoeniX M5 combat pistol"
-	desc = "(88 Mod 4) A PXM5 combat pistol, chambered in 9mm AP rounds. It's capable of three round bursts. The PXM5 is standard issue for Nanotrasen response teams. Manufactured by Nanotrasen."
+	name = "\improper PXM5 combat pistol"
+	desc = "A PXM5 combat pistol, chambered in 9mm AP rounds. It's capable of three round bursts. The PXM5 is standard issue for Nanotrasen response teams."
 	icon_state = "88m4"
 	item_state = "88m4"
 	caliber = "9x19mm Parabellum" //codex
@@ -416,8 +416,8 @@
 //VP78
 
 /obj/item/weapon/gun/pistol/vp78
-	name = "\improper PhoeniX M10 pistol"
-	desc = "(V98) A PXM10 pistol. Chambered in 9mm. More often than not, these powerful sidearms find themselves in the hands of wealthy Nanotrasen personnel. Manufactured by Nanotrasen."
+	name = "\improper PXM10 pistol"
+	desc = "A PXM10 pistol. Chambered in 9mm. More often than not, these powerful sidearms find themselves in the hands of wealthy Nanotrasen personnel."
 	icon_state = "vp78"
 	item_state = "vp78"
 	caliber = "9x19mm Parabellum" //codex
@@ -447,8 +447,8 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 */
 
 /obj/item/weapon/gun/pistol/auto9
-	name = "\improper EX MOD-099 pistol"
-	desc = "(Auto-9) The EX-M-099. A pistol with great versatility, made possible by its select-fire capability. Burst mode allows it to fire three round bursts. Built by an Armsdealer's Concord manufacturer, based in Detroit, in honor of a fallen law enforcer."
+	name = "\improper EX-MOD-099 pistol"
+	desc = "The EX-MOD-099. A pistol with great versatility, made possible by its select-fire capability. Burst mode allows it to fire three round bursts. Built by an Armsdealer's Concord manufacturer, based in Detroit, in honor of a fallen law enforcer."
 	icon_state = "auto9"
 	item_state = "auto9"
 	caliber = "9x19mm Parabellum" //codex
@@ -476,7 +476,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 
 /obj/item/weapon/gun/pistol/chimp
 	name = "\improper BANAN-007 pistol"
-	desc = "(CHIMP70) A sidearm an Armsdealer's Concord manufacturer was tasked with making. Who it was for? Good luck finding out."
+	desc = "A sidearm an Armsdealer's Concord manufacturer was tasked with making. Who it was for? Good luck finding out."
 	icon_state = "c70"
 	item_state = "c70"
 	caliber = ".70 Mankey" //codex
