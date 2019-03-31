@@ -17,7 +17,7 @@
 
 	var/explosion_resistance = 0
 
-	var/resistance_flags
+	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
 	var/obj_flags
 
 	var/item_fire_stacks = 0	//How many fire stacks it applies
