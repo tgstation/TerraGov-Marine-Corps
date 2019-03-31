@@ -14223,8 +14223,7 @@
 	locked = 1;
 	name = "\improper Underground Maintenance";
 	req_access_txt = "100";
-	req_one_access_txt = "0";
-	unacidable = 1
+	req_one_access_txt = "0"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -21273,8 +21272,7 @@
 	locked = 1;
 	name = "\improper Underground Maintenance";
 	req_access_txt = "100";
-	req_one_access_txt = "0";
-	unacidable = 1
+	req_one_access_txt = "0"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -21797,8 +21795,7 @@
 	locked = 1;
 	name = "\improper Underground Maintenance";
 	req_access_txt = "100";
-	req_one_access_txt = "0";
-	unacidable = 1
+	req_one_access_txt = "0"
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/hangar)
@@ -23617,8 +23614,7 @@
 	locked = 1;
 	name = "\improper Underground Maintenance";
 	req_access_txt = "100";
-	req_one_access_txt = "0";
-	unacidable = 1
+	req_one_access_txt = "0"
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/hangar)
@@ -36734,8 +36730,7 @@
 	locked = 1;
 	name = "\improper Underground Maintenance";
 	req_access_txt = "100";
-	req_one_access_txt = "0";
-	unacidable = 1
+	req_one_access_txt = "0"
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/hallway/north_west)
@@ -38180,8 +38175,7 @@
 	level = 1;
 	listening_level = 1;
 	name = "Alien Mainframe";
-	network = "ALIEN";
-	unacidable = 1
+	network = "ALIEN"
 	},
 /turf/open/floor,
 /area/ice_colony/surface/tcomms)

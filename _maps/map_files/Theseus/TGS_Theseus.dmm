@@ -8717,8 +8717,7 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "Containment Cell 3";
-	name = "\improper Containment Cell 3";
-	unacidable = 1
+	name = "\improper Containment Cell 3"
 	},
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
@@ -8805,8 +8804,7 @@
 /area/almayer/command/telecomms)
 "avI" = (
 /obj/machinery/r_n_d/server/core{
-	produces_heat = 0;
-	unacidable = 1
+	produces_heat = 0
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -10124,8 +10122,7 @@
 /area/almayer/command/telecomms)
 "ayH" = (
 /obj/machinery/telecomms/relay/preset/telecomms{
-	listening_level = 4;
-	unacidable = 1
+	listening_level = 4
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -11086,8 +11083,7 @@
 /area/almayer/command/airoom)
 "aAs" = (
 /obj/machinery/telecomms/hub/preset{
-	produces_heat = 0;
-	unacidable = 1
+	produces_heat = 0
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -12053,8 +12049,7 @@
 /area/almayer/command/telecomms)
 "aCl" = (
 /obj/machinery/telecomms/processor/preset_one{
-	produces_heat = 0;
-	unacidable = 1
+	produces_heat = 0
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -12063,8 +12058,7 @@
 /area/almayer/command/telecomms)
 "aCm" = (
 /obj/machinery/telecomms/relay/preset/telecomms{
-	listening_level = 6;
-	unacidable = 1
+	listening_level = 6
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -13439,8 +13433,7 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "Containment Cell 4";
-	name = "\improper Containment Cell 4";
-	unacidable = 1
+	name = "\improper Containment Cell 4"
 	},
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
@@ -22048,8 +22041,7 @@
 "aZz" = (
 /obj/machinery/door/poddoor/almayer{
 	id = "n_umbilical";
-	name = "\improper Umbillical Airlock";
-	unacidable = 1
+	name = "\improper Umbillical Airlock"
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/starboard_umbilical)
@@ -22542,8 +22534,7 @@
 	},
 /obj/machinery/door/poddoor/almayer{
 	id = "n_umbilical";
-	name = "\improper Umbillical Airlock";
-	unacidable = 1
+	name = "\improper Umbillical Airlock"
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/starboard_umbilical)
@@ -44722,16 +44713,14 @@
 "bZw" = (
 /obj/machinery/door/poddoor/almayer{
 	id = "s_umbilical";
-	name = "\improper Umbillical Airlock";
-	unacidable = 1
+	name = "\improper Umbillical Airlock"
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/port_umbilical)
 "bZx" = (
 /obj/machinery/door/poddoor/almayer{
 	id = "s_umbilical";
-	name = "\improper Umbillical Airlock";
-	unacidable = 1
+	name = "\improper Umbillical Airlock"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -50681,8 +50670,7 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "sd_lockdown";
-	name = "\improper Self Destruct Lockdown";
-	unacidable = 1
+	name = "\improper Self Destruct Lockdown"
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -51406,8 +51394,7 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "sd_lockdown";
-	name = "\improper Self Destruct Lockdown";
-	unacidable = 1
+	name = "\improper Self Destruct Lockdown"
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -51607,8 +51594,7 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "sd_lockdown";
-	name = "\improper Self Destruct Lockdown";
-	unacidable = 1
+	name = "\improper Self Destruct Lockdown"
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";

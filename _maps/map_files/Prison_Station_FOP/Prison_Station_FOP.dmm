@@ -5184,8 +5184,7 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "research_secret";
-	name = "Classified Research Shutters";
-	unacidable = 0
+	name = "Classified Research Shutters"
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/research_medbay)
@@ -5528,8 +5527,7 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "research_secret";
-	name = "Classified Research Shutters";
-	unacidable = 0
+	name = "Classified Research Shutters"
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/research_medbay)
@@ -5724,7 +5722,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /obj/machinery/door/airlock/almayer/maint{
@@ -6353,16 +6350,14 @@
 "aqC" = (
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "research_secret";
-	name = "Classified Research Shutters";
-	unacidable = 0
+	name = "Classified Research Shutters"
 	},
 /turf/open/floor/prison/cleanmarked,
 /area/prison/research/secret)
 "aqD" = (
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "research_secret";
-	name = "Classified Research Shutters";
-	unacidable = 0
+	name = "Classified Research Shutters"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable{
@@ -6376,8 +6371,7 @@
 "aqE" = (
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "research_secret";
-	name = "Classified Research Shutters";
-	unacidable = 0
+	name = "Classified Research Shutters"
 	},
 /turf/open/floor/prison/darkpurple/full,
 /area/prison/research/secret)
@@ -7620,8 +7614,7 @@
 /area/prison/medbay)
 "atk" = (
 /obj/machinery/door/poddoor/four_tile_hor{
-	name = "Research Hangar Door";
-	unacidable = 1
+	name = "Research Hangar Door"
 	},
 /turf/open/floor/prison/darkpurple{
 	dir = 4
@@ -7792,8 +7785,7 @@
 /area/prison/medbay)
 "atC" = (
 /obj/machinery/door/poddoor/four_tile_hor{
-	name = "Research Hangar Door";
-	unacidable = 1
+	name = "Research Hangar Door"
 	},
 /turf/open/floor/plating,
 /area/prison/hangar_storage/research)
@@ -7908,8 +7900,7 @@
 /obj/machinery/door/window/northleft,
 /obj/machinery/door_control{
 	id = "research_secret";
-	name = "Classified Research Lockdown";
-	unacidable = 1
+	name = "Classified Research Lockdown"
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/sterilewhite,
@@ -10645,7 +10636,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison,
@@ -13377,7 +13367,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Shutters";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/plating,
@@ -15097,7 +15086,6 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "central";
 	name = "Timed Emergency Shutters";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/plating,
@@ -15147,7 +15135,6 @@
 	dir = 2;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison{
@@ -15167,7 +15154,6 @@
 	dir = 2;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison{
@@ -15495,7 +15481,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Shutters";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/plating,
@@ -16499,7 +16484,6 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "central";
 	name = "Timed Emergency Shutters";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/plating,
@@ -16712,7 +16696,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison/red{
@@ -17045,7 +17028,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison{
@@ -17678,7 +17660,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison,
@@ -17893,7 +17874,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison{
@@ -18391,7 +18371,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison/red,
@@ -18531,7 +18510,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison{
@@ -23082,8 +23060,7 @@
 /area/prison/hangar/main)
 "bbF" = (
 /obj/machinery/door/poddoor/four_tile_ver{
-	name = "Main Hangar Door";
-	unacidable = 1
+	name = "Main Hangar Door"
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/main)
@@ -24826,7 +24803,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison{
@@ -25947,7 +25923,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison{
@@ -28344,7 +28319,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison/blue{
@@ -28741,7 +28715,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison/blue/full,
@@ -29325,7 +29298,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison/blue/full,
@@ -29999,7 +29971,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison/blue{
@@ -34625,7 +34596,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Shutters";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/plating,
@@ -35878,7 +35848,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison{
@@ -36819,7 +36788,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison{
@@ -37000,7 +36968,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison{
@@ -37861,7 +37828,6 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "central";
 	name = "Timed Emergency Shutters";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/plating,
@@ -38308,7 +38274,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison/red{
@@ -38806,7 +38771,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison,
@@ -39448,7 +39412,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison,
@@ -39778,7 +39741,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison/red,
@@ -39908,7 +39870,6 @@
 /obj/machinery/telecomms/relay/preset/station{
 	idle_power_usage = 0;
 	listening_level = 1;
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor,
@@ -41551,7 +41512,6 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "central";
 	name = "Timed Emergency Shutters";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/plating,
@@ -41586,7 +41546,6 @@
 	dir = 2;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison/blue,
@@ -41604,7 +41563,6 @@
 	dir = 2;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison/blue,
@@ -41625,7 +41583,6 @@
 	dir = 2;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison{
@@ -41646,7 +41603,6 @@
 	dir = 2;
 	id = "central";
 	name = "Timed Emergency Blast Door";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/prison{
@@ -42059,7 +42015,6 @@
 	dir = 4;
 	id = "central";
 	name = "Timed Emergency Shutters";
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor/plating,
@@ -42889,8 +42844,7 @@
 "bRJ" = (
 /obj/machinery/atmospherics/components/unary/tank/oxygen{
 	dir = 8;
-	tag = "icon-o2_map (WEST)";
-	unacidable = 1
+	tag = "icon-o2_map (WEST)"
 	},
 /turf/open/floor/prison,
 /area/prison/engineering/atmos)
@@ -43644,8 +43598,7 @@
 "bTn" = (
 /obj/machinery/atmospherics/components/unary/tank/oxygen{
 	dir = 8;
-	tag = "icon-o2_map (WEST)";
-	unacidable = 1
+	tag = "icon-o2_map (WEST)"
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/prison,
@@ -44633,8 +44586,7 @@
 "bVz" = (
 /obj/structure/monorail,
 /obj/machinery/door/poddoor/shutters/almayer{
-	name = "Monorail Passage Door";
-	unacidable = 1
+	name = "Monorail Passage Door"
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
@@ -46866,8 +46818,7 @@
 /obj/structure/monorail,
 /obj/structure/lattice,
 /obj/machinery/door/poddoor/shutters/almayer{
-	name = "Monorail Passage Door";
-	unacidable = 1
+	name = "Monorail Passage Door"
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
@@ -49288,8 +49239,7 @@
 	density = 0;
 	icon_state = "pdoor0";
 	id = "execution";
-	opacity = 0;
-	unacidable = 0
+	opacity = 0
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -50337,8 +50287,7 @@
 	icon_state = "pdoor0";
 	id = "pirate_cargo";
 	name = "Rocinante Cargo Bay Door";
-	opacity = 0;
-	unacidable = 0
+	opacity = 0
 	},
 /turf/open/floor/marking/delivery,
 /area/prison/pirate)
@@ -50353,8 +50302,7 @@
 	icon_state = "pdoor0";
 	id = "pirate_cargo";
 	name = "Rocinante Cargo Bay Door";
-	opacity = 0;
-	unacidable = 0
+	opacity = 0
 	},
 /obj/effect/landmark/corpsespawner/prison_security,
 /obj/effect/decal/cleanable/blood,
@@ -50685,8 +50633,7 @@
 	density = 0;
 	icon_state = "pdoor0";
 	id = "riot_armory";
-	opacity = 0;
-	unacidable = 0
+	opacity = 0
 	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/armory/riot)
@@ -50695,8 +50642,7 @@
 	density = 0;
 	icon_state = "pdoor0";
 	id = "lethal_armory";
-	opacity = 0;
-	unacidable = 0
+	opacity = 0
 	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/armory/lethal)
@@ -54357,9 +54303,7 @@
 /area/prison/cellblock/mediumsec/east)
 "cry" = (
 /obj/machinery/conveyor,
-/obj/machinery/door/poddoor{
-	unacidable = 1
-	},
+/obj/machinery/door/poddoor,
 /turf/open/floor/plating,
 /area/prison/disposal)
 "crz" = (
@@ -57509,8 +57453,7 @@
 "cym" = (
 /obj/machinery/atmospherics/components/unary/tank/oxygen{
 	dir = 1;
-	tag = "icon-o2_map (WEST)";
-	unacidable = 1
+	tag = "icon-o2_map (WEST)"
 	},
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
