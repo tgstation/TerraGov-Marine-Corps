@@ -833,10 +833,6 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
-	/*
-	Removed ishuman() check. There is no reason for it, as it just eats up more processing, and adding fingerprints during the fire cycle is silly.
-	Consequently, predators are able to fire while cloaked.
-	*/
 	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 	if(ismob(user)) //Could be an object firing the gun.

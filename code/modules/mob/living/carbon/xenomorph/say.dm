@@ -63,8 +63,6 @@
 			var/noise = pick('sound/machines/ping.ogg','sound/machines/twobeep.ogg')
 			verb = pick("beeps", "buzzes", "pings")
 			playsound(src.loc, noise, 25, 1)
-		else if(isxenopredalien(src))
-			playsound(loc, 'sound/voice/predalien_click.ogg', 25, 1)
 		else
 			playsound(loc, "alien_talk", 25, 1)
 		..(message, speaking, verb, null, null, message_range, null)

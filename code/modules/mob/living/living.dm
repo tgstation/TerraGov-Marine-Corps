@@ -314,7 +314,7 @@
 	return FALSE
 
 /mob/living/carbon/human/ignore_pull_delay()
-	return isyautjastrict(src) //Predators aren't slowed when pulling their prey.
+	return FALSE
 
 /mob/living/is_injectable(allowmobs = TRUE)
 	return (allowmobs && can_inject())

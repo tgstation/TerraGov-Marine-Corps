@@ -131,18 +131,6 @@
 					if(3)
 						animation_teleport_spooky_in(A)
 
-/* Predator Ship Teleporter - set in each individual gamemode */
-
-/obj/effect/step_trigger/teleporter/yautja_ship
-
-	Trigger(atom/movable/A)
-
-		if(GLOB.yautja_teleport_loc.len)	//We have some possible locations.
-			var/turf/destination = pick(GLOB.yautja_teleport_loc)	//Pick one of them at random.
-			teleport_x = destination.x	//Configure the destination locations.
-			teleport_y = destination.y
-			teleport_z = destination.z
-			..(A, 1)	//Run the parent proc for teleportation. Tell it to play the animation.
 
 /* Random teleporter, teleports atoms to locations ranging from teleport_x - teleport_x_offset, etc */
 

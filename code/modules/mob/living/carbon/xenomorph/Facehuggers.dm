@@ -354,7 +354,7 @@
 			visible_message("<span class='warning'>[src] looks for a face to hug on [H], but finds none!</span>")
 			return FALSE
 
-		if(isyautja(H) && !self_done)
+		if(!self_done)
 			var/catch_chance = 50
 			if(H.dir == reverse_dir[dir])
 				catch_chance += 20

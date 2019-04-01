@@ -2,15 +2,6 @@
 								150; list(/obj/item/stack/medical/advanced/ointment, \
 										/obj/item/stack/medical/advanced/bruise_pack, \
 										/obj/item/storage/belt/combatLifesaver), \
-								125; list(/obj/item/weapon/yautja_chain, \
-										 /obj/item/weapon/yautja_knife, \
-										 /obj/item/weapon/yautja_scythe, \
-										 /obj/item/legcuffs/yautja, \
-										 /obj/item/legcuffs/yautja), \
-								100; list(/obj/item/weapon/twohanded/glaive, \
-										/obj/item/clothing/mask/gas/yautja, \
-										/obj/item/clothing/suit/armor/yautja, \
-										/obj/item/clothing/shoes/yautja), \
 								75; list(/obj/item/clothing/glasses/night, \
 										/obj/item/storage/backpack/holding, \
 										/obj/item/storage/belt/grenade, \
@@ -19,10 +10,6 @@
 										/obj/item/ammo_magazine/revolver/mateba,\
 										/obj/item/ammo_magazine/revolver/mateba,\
 										/obj/item/clothing/mask/balaclava/tactical),\
-								50; list(/obj/item/weapon/combistick, \
-										/obj/item/clothing/mask/gas/yautja, \
-										/obj/item/clothing/suit/armor/yautja/full, \
-										/obj/item/clothing/shoes/yautja), \
 								50; list(/obj/item/clothing/under/marine/veteran/PMC/commando, \
 										/obj/item/clothing/suit/storage/marine/veteran/PMC/commando, \
 										/obj/item/clothing/gloves/marine/veteran/PMC/commando, \
@@ -67,34 +54,12 @@
 	return INITIALIZE_HINT_QDEL
 
 
-/obj/effect/landmark/hell_hound_blocker/Initialize()
-	. = ..()
-	GLOB.landmarks_round_start += src
-
-
-/obj/effect/landmark/hell_hound_blocker/Destroy()
-	GLOB.landmarks_round_start -= src
-	return ..()
-
-
-/obj/effect/landmark/hell_hound_blocker/after_round_start(flags_round_type=NOFLAGS,flags_landmarks=NOFLAGS)
-	if(flags_landmarks & MODE_LANDMARK_HELLHOUND_BLOCKER)
-		new /obj/effect/step_trigger/hell_hound_blocker(loc)
-	qdel(src)
-
-
-/obj/effect/step_trigger/hell_hound_blocker/Trigger(mob/living/carbon/hellhound/H)
-	if(!istype(H))
-		return
-	H.gib() //No mercy.
-
-
 /datum/game_mode/huntergames
 	name = "Hunter Games"
 	config_tag = "Hunter Games"
 	required_players = 1
 	flags_round_type = MODE_NO_LATEJOIN
-	flags_landmarks = MODE_LANDMARK_RANDOM_ITEMS|MODE_LANDMARK_HELLHOUND_BLOCKER
+	flags_landmarks = MODE_LANDMARK_RANDOM_ITEMS
 
 	var/last_count
 	var/list/spawn_points
@@ -223,7 +188,7 @@
 	var/mob/living/carbon/winner = null
 
 	for(var/mob/living/carbon/human/Q in GLOB.alive_human_list)
-		if(istype(Q) && Q.stat == 0 && !isyautja(Q) && !istype(get_area(Q.loc), /area/centcom) && !istype(get_area(Q.loc), /area/tdome))
+		if(istype(Q) && Q.stat == 0 && !istype(get_area(Q.loc), /area/centcom) && !istype(get_area(Q.loc), /area/tdome))
 			winner = Q
 			break
 

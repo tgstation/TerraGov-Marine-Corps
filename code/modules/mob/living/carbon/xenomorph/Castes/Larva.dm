@@ -50,15 +50,6 @@
 		/mob/living/carbon/Xenomorph/proc/vent_crawl
 		)
 
-/datum/xeno_caste/larva/predalien
-	caste_name = "Predalien Larva"
-	evolves_to = list(/mob/living/carbon/Xenomorph/Predalien)
-	caste_type_path = /mob/living/carbon/Xenomorph/Larva/predalien
-
-/mob/living/carbon/Xenomorph/Larva/predalien
-	icon_state = "Predalien Larva"
-	caste_base_type = /mob/living/carbon/Xenomorph/Larva/predalien
-
 /mob/living/carbon/Xenomorph/Larva/UnarmedAttack(atom/A)
 	a_intent = INTENT_HELP //Forces help intent for all interactions.
 	. = ..()
@@ -112,8 +103,6 @@
 			progress = "Mature "
 
 	name = "\improper [name_prefix][progress]Larva ([nicknumber])"
-
-	if(istype(src,/mob/living/carbon/Xenomorph/Larva/predalien)) state = "Predalien " //Sort of a hack.
 
 	//Update linked data so they show up properly
 	real_name = name

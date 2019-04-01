@@ -355,9 +355,6 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	var/obj/structure/table/T = locate(/obj/structure/table, loc)
 	if(T && !T.flipped) return TRUE
 
-/mob/living/carbon/hellhound/can_be_operated_on()
-	return FALSE
-
 /mob/living/carbon/Xenomorph/can_be_operated_on()
 	return FALSE
 

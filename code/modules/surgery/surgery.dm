@@ -157,7 +157,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 							multipler += 0.45
 					if(M.shock_stage > 100) //Being near to unconsious is good in this case
 						multipler += 0.25
-				if(issynth(M) || isyautja(M)) multipler = 1
+				if(issynth(M)) 
+					multipler = 1
 
 				//calculate step duration
 				var/step_duration = rand(S.min_duration, S.max_duration)

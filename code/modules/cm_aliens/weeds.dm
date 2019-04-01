@@ -44,8 +44,7 @@
 /obj/effect/alien/weeds/Crossed(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		if(!isyautjastrict(H)) //predators are immune to weed slowdown effect
-			H.next_move_slowdown += 1
+		H.next_move_slowdown += 1
 
 
 /obj/effect/alien/weeds/proc/weed_expand(obj/effect/alien/weeds/node/node)

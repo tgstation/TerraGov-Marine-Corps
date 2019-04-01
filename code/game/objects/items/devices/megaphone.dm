@@ -22,10 +22,6 @@
 	if(user.silent)
 		return
 
-	if(isyautjastrict(user))
-		to_chat(user, "Some soft-meat toy. It's useless to you.")
-		return
-
 	if(spamcheck)
 		to_chat(user, "<span class='warning'>\The [src] needs to recharge!</span>")
 		return
@@ -47,9 +43,6 @@
 		else
 
 			for(var/mob/living/carbon/human/O in (viewers(user)))
-				if(isyautjastrict(O)) //NOPE
-					O.show_message("[user] says something on [src], but you can't understand it.", 2)
-					continue
 				O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>",2) // 2 stands for hearable message
 
 		spamcheck = 1

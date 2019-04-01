@@ -128,15 +128,6 @@
 	colour = "soghun"
 	key = "3"
 
-/datum/language/sainja
-	name = "Sainja"
-	desc = "The deep, rumbling, gutteral sounds of the Yautja predators. It is difficult to speak for those without facial mandibles."
-	speech_verb = "rumbles"
-	ask_verb = "rumbles"
-	exclaim_verb = "roars"
-	colour = "tajaran"
-	key = "s"
-	language_flags = WHITELISTED
 
 /datum/language/xenocommon
 	name = "Xenomorph"

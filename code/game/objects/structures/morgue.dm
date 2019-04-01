@@ -259,7 +259,7 @@
 
 /obj/structure/morgue/sarcophagus
     name = "sarcophagus"
-    desc = "Used to store predators."
+    desc = "Used to store mummies."
     icon_state = "sarcophagus1"
     morgue_type = "sarcophagus"
     tray_path = /obj/structure/morgue_tray/sarcophagus

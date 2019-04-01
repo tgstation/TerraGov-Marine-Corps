@@ -31,10 +31,10 @@
 	if(wear_suit)
 		reducible_tally += wear_suit.slowdown
 
-	if(shock_stage >= 10 && !isyautja(src))
+	if(shock_stage >= 10)
 		reducible_tally += 3
 
-	if(bodytemperature < species.cold_level_1 && !isyautja(src))
+	if(bodytemperature < species.cold_level_1)
 		reducible_tally += 2 //Major slowdown if you're freezing
 
 	if(temporary_slowdown)

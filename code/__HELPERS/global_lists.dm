@@ -89,7 +89,7 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 		GLOB.all_species[S.name] = S
 
 	// Our ammo stuff is initialized here.
-	var/blacklist = list(/datum/ammo/energy, /datum/ammo/energy/yautja, /datum/ammo/energy/yautja/rifle, /datum/ammo/bullet/shotgun, /datum/ammo/xeno)
+	var/blacklist = list(/datum/ammo/energy, /datum/ammo/bullet/shotgun, /datum/ammo/xeno)
 	for(var/t in subtypesof(/datum/ammo) - blacklist)
 		var/datum/ammo/A = new t
 		GLOB.ammo_list[A.type] = A

@@ -371,49 +371,6 @@
 			D.cure()
 	..()
 
-/datum/reagent/medicine/thwei //OP yautja chem
-	name = "thwei"
-	id = "thwei"
-	description = "A strange, alien liquid."
-	color = "#C8A5DC" // rgb: 200, 165, 220
-
-/datum/reagent/thwei/on_mob_life(mob/living/carbon/M,alien)
-	if(alien != IS_YAUTJA)
-		return
-
-	if(M.getBruteLoss() && prob(80))
-		M.heal_limb_damage(REM,0)
-	if(M.getFireLoss() && prob(80))
-		M.heal_limb_damage(0,REM)
-	if(M.getToxLoss() && prob(80))
-		M.adjustToxLoss(-1*REM)
-	M.reagents.remove_all_type(/datum/reagent/toxin, 5*REM, 0, 1)
-	M.setCloneLoss(0)
-	M.setOxyLoss(0)
-	M.radiation = 0
-	M.adjustToxLoss(-5)
-	M.hallucination = 0
-	M.setBrainLoss(0)
-	M.disabilities = 0
-	M.sdisabilities = 0
-	M.set_blurriness(0)
-	M.set_blindness(0)
-	M.silent = 0
-	M.dizziness = 0
-	M.drowsyness = 0
-	M.stuttering = 0
-	M.confused = 0
-	M.jitteriness = 0
-	M.drunkenness = 0
-	for(var/datum/internal_organ/I in M.internal_organs)
-		if(I.damage > 0)
-			I.damage = max(I.damage - 1, 0)
-	for(var/datum/disease/D in M.viruses)
-		D.spread = "Remissive"
-		D.stage--
-		if(D.stage < 1)
-			D.cure()
-	..()
 
 /datum/reagent/medicine/synaptizine
 	name = "Synaptizine"
