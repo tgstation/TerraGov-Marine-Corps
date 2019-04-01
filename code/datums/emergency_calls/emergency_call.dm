@@ -83,7 +83,7 @@
 	if(SSticker?.mode?.waiting_for_candidates) //It's already been activated
 		return FALSE
 
-	if(istype(src, /datum/game_mode/colonialmarines) ) //If we're fighting benos
+	if(istype(src, /datum/game_mode/distress) ) //If we're fighting benos
 		var/list/total_count = count_humans_and_xenos()
 		var/xenos = total_count[2]
 		var/humans = total_count[1]
