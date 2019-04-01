@@ -637,7 +637,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	icon_state = "pyro_armor"
 	armor = list(melee = 70, bullet = 90, laser = 60, energy = 60, bomb = 30, bio = 30, rad = 50)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET
 
@@ -661,7 +661,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M3 pattern marksman armor"
 	icon_state = "marine_sniperm"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
 	flags_heat_protection = CHEST|GROIN|LEGS|ARMS
 

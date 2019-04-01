@@ -77,7 +77,7 @@
 	desc = "This robe commands authority."
 	icon_state = "judge"
 	item_state = "judge"
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/storage/fancy/cigarettes,/obj/item/spacecash)
 	flags_inv_hide = HIDEJUMPSUIT
 
@@ -151,7 +151,7 @@
 	desc = "This is a nice holiday my son."
 	icon_state = "holidaypriest"
 	item_state = "holidaypriest"
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_inv_hide = HIDEJUMPSUIT
 
 

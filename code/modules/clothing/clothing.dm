@@ -221,7 +221,6 @@
 /obj/item/clothing/mask
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi'
-	flags_armor_protection = 0
 	flags_equip_slot = ITEM_SLOT_MASK
 	flags_armor_protection = FACE|EYES
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
