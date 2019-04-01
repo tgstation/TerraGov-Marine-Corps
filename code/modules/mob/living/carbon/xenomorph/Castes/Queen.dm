@@ -249,21 +249,29 @@
 	if(stat == DEAD)
 		return
 
-		if(observed_xeno)
-			if(observed_xeno.stat == DEAD || observed_xeno.gc_destroyed)
-				set_queen_overwatch(observed_xeno, TRUE)
+	if(observed_xeno)
+		if(observed_xeno.stat == DEAD || observed_xeno.gc_destroyed)
+			set_queen_overwatch(observed_xeno, TRUE)
 
-		if(ovipositor && !is_mob_incapacitated(TRUE))
-			egg_amount += 0.07 //one egg approximately every 30 seconds
-			if(egg_amount >= 1)
-				if(isturf(loc))
-					var/turf/T = loc
-					if(T.contents.len <= 25) //so we don't end up with a million object on that turf.
-						egg_amount--
-						var/obj/item/xeno_egg/newegg = new /obj/item/xeno_egg(loc)
-						newegg.hivenumber = hivenumber
+	if(!ovipositor || is_mob_incapacitated(TRUE))
+		return
 
-			hive?.on_queen_life(src)
+	hive?.on_queen_life(src)
+
+	egg_amount += 0.07 //one egg approximately every 30 seconds
+	if(egg_amount < 1)
+		return
+
+	if(!isturf(loc))
+		return
+
+	var/turf/T = loc
+	if(T.contents.len > 25) //so we don't end up with a million object on that turf.
+		return
+
+	egg_amount--
+	var/obj/item/xeno_egg/newegg = new /obj/item/xeno_egg(loc)
+	newegg.hivenumber = hivenumber
 
 //Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
 /mob/living/carbon/Xenomorph/Queen/Bump(atom/A, yes)

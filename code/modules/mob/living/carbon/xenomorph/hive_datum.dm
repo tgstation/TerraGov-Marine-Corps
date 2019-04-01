@@ -92,7 +92,7 @@
 			if(is_centcom_level(X.z))
 				continue
 			if(!X.client)
-				if(only_away && X.away_timer < XENO_AWAY_TIMER)
+				if(only_away && X.away_timer < XENO_AFK_TIMER)
 					continue
 				xenos += X
 	return xenos
@@ -273,6 +273,7 @@
 	xeno_message("<span class='xenoannounce'>The slashing of hosts is now permitted.</span>",2,TRUE)
 	slashing_allowed = XENO_SLASHING_ALLOWED
 	update_leader_pheromones()
+	start_queen_timer()
 	return TRUE
 
 // These are defined for per-hive behaviour
@@ -353,7 +354,8 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	stored_larva = round(stored_larva * ((Q.upgrade_as_number() + 1) * QUEEN_DEATH_LARVA_MULTIPLIER))
 
-	INVOKE_ASYNC(src, .proc/unbury_all_larva) // this is potentially a lot of calls so do it async
+	if(isdistress(SSticker?.mode))
+		INVOKE_ASYNC(src, .proc/unbury_all_larva) // this is potentially a lot of calls so do it async
 
 	return ..()
 
@@ -365,17 +367,17 @@ to_chat will check for valid clients itself already so no need to double check f
 		stored_larva--
 		CHECK_TICK // lets not lag everything
 
-	start_queen_timer() // spawning is done now start it counting down
-
 /datum/hive_status/normal/start_queen_timer()
-	if(!SSticker?.mode)
+	if(!isdistress(SSticker?.mode))
 		return
+	var/datum/game_mode/distress/D = SSticker.mode
+
 	if(length(xenos_by_typepath[/mob/living/carbon/Xenomorph/Larva]) || length(xenos_by_typepath[/mob/living/carbon/Xenomorph/Drone]))
-		SSticker.mode.queen_death_countdown = world.time + QUEEN_DEATH_COUNTDOWN
-		addtimer(CALLBACK(SSticker.mode, /datum/game_mode.proc/check_queen_status, queen_time), QUEEN_DEATH_COUNTDOWN)
+		D.queen_death_countdown = world.time + QUEEN_DEATH_COUNTDOWN
+		addtimer(CALLBACK(D, /datum/game_mode.proc/check_queen_status, queen_time), QUEEN_DEATH_COUNTDOWN)
 	else
-		SSticker.mode.queen_death_countdown = world.time + QUEEN_DEATH_NOLARVA
-		addtimer(CALLBACK(SSticker.mode, /datum/game_mode.proc/check_queen_status, queen_time), QUEEN_DEATH_NOLARVA)
+		D.queen_death_countdown = world.time + QUEEN_DEATH_NOLARVA
+		addtimer(CALLBACK(D, /datum/game_mode.proc/check_queen_status, queen_time), QUEEN_DEATH_NOLARVA)
 
 /datum/hive_status/normal/on_queen_life(mob/living/carbon/Xenomorph/Queen/Q)
 	if(living_xeno_queen != Q || !is_ground_level(Q.z))
