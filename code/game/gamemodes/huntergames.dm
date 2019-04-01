@@ -53,13 +53,12 @@
 							/obj/item/clothing/shoes/laceup,\
 							/obj/item/clothing/shoes/jackboots)
 
-var/waiting_for_drop_votes = 0
-
 /obj/effect/landmark/huntergames_primary_spawn/Initialize()
 	. = ..()
 	GLOB.huntergames_primary_spawns += loc
 	flags_atom |= INITIALIZED
 	return INITIALIZE_HINT_QDEL
+
 
 /obj/effect/landmark/huntergames_secondary_spawn/Initialize()
 	. = ..()
@@ -67,18 +66,28 @@ var/waiting_for_drop_votes = 0
 	flags_atom |= INITIALIZED
 	return INITIALIZE_HINT_QDEL
 
+
 /obj/effect/landmark/hell_hound_blocker/Initialize()
 	. = ..()
 	GLOB.landmarks_round_start += src
+
 
 /obj/effect/landmark/hell_hound_blocker/Destroy()
 	GLOB.landmarks_round_start -= src
 	return ..()
 
+
 /obj/effect/landmark/hell_hound_blocker/after_round_start(flags_round_type=NOFLAGS,flags_landmarks=NOFLAGS)
 	if(flags_landmarks & MODE_LANDMARK_HELLHOUND_BLOCKER)
 		new /obj/effect/step_trigger/hell_hound_blocker(loc)
 	qdel(src)
+
+
+/obj/effect/step_trigger/hell_hound_blocker/Trigger(mob/living/carbon/hellhound/H)
+	if(!istype(H))
+		return
+	H.gib() //No mercy.
+
 
 /datum/game_mode/huntergames
 	name = "Hunter Games"
@@ -91,15 +100,6 @@ var/waiting_for_drop_votes = 0
 	var/list/spawn_points
 	var/supply_votes[]
 
-/obj/effect/step_trigger/hell_hound_blocker/Trigger(mob/living/carbon/hellhound/H)
-	if(istype(H))
-		H.gib() //No mercy.
-
-/datum/game_mode/huntergames/announce()
-	return TRUE
-
-/datum/game_mode/huntergames/send_intercept()
-	return TRUE
 
 /datum/game_mode/huntergames/pre_setup()
 	. = ..()
@@ -118,7 +118,9 @@ var/waiting_for_drop_votes = 0
 
 	return TRUE
 
+
 /datum/game_mode/huntergames/post_setup()
+	. = ..()
 	spawn_points = GLOB.huntergames_primary_spawns.Copy()
 	var/mob/M
 	for(M in GLOB.mob_list)
@@ -128,10 +130,8 @@ var/waiting_for_drop_votes = 0
 
 	CONFIG_SET(flag/remove_gun_restrictions, TRUE) //This will allow anyone to use cool guns.
 
-	world << sound('sound/effects/siren.ogg')
+	SEND_SOUND(world, 'sound/effects/siren.ogg')
 
-	spawn(1000)
-		lootbox()
 
 /datum/game_mode/huntergames/proc/spawn_contestant(var/mob/living/carbon/H)
 	var/turf/picked
@@ -179,46 +179,24 @@ var/waiting_for_drop_votes = 0
 
 	return TRUE
 
-/datum/game_mode/huntergames/proc/lootbox()
-	while(round_finished == 0)
-		to_chat(world, "<span class='round_body'>Your Predator capturers have decided it is time to bestow a gift upon the scurrying humans.</span>")
-		to_chat(world, "<span class='round_body'>One lucky contestant should prepare for a supply drop in 60 seconds.</span>")
-		for(var/mob/dead/D in GLOB.dead_mob_list)
-			to_chat(D, "<span class='round_body'>Now is your chance to vote for a supply drop beneficiary! Go to Ghost tab, Spectator Vote!</span>")
-		world << sound('sound/effects/alert.ogg')
-		waiting_for_drop_votes = 1
-		sleep(600)
-		if(!supply_votes.len)
-			to_chat(world, "<span class='round_body'>Nobody got anything! .. weird.</span>")
-			waiting_for_drop_votes = 0
-			supply_votes = list()
-		else
-			var/mob/living/carbon/human/winner = pick(supply_votes) //Way it works is, more votes = more odds of winning. But not guaranteed.
-			if(istype(winner) && !winner.stat)
-				to_chat(world, "<span class='round_body'>The spectator and Predator votes have been tallied, and the supply drop recipient is <B>[winner.real_name]</B>! Congrats!</span>")
-				world << sound('sound/effects/alert.ogg')
-				to_chat(world, "<span class='round_body'>The package will shortly be dropped off at: [get_area(winner.loc)].</span>")
-				var/turf/drop_zone = locate(winner.x + rand(-2,2),winner.y + rand(-2,2),winner.z)
-				if(istype(drop_zone))
-					playsound(drop_zone,'sound/effects/bamf.ogg', 50, 1)
-					place_lootbox(drop_zone)
-			else
-				to_chat(world, "<span class='round_body'>The spectator and Predator votes have been talled, and the supply drop recipient is dead or dying<B>. Bummer.</b></span>")
-				world << sound('sound/misc/sadtrombone.ogg')
-			supply_votes = list()
-			waiting_for_drop_votes = 0
-		sleep(5000)
 
-/datum/game_mode/huntergames/process()
-	if(--round_started > 0)
-		return FALSE
+/datum/game_mode/huntergames/proc/count_humans()
+	var/human_count = 0
 
-	if(!round_finished)
-		if(++round_checkwin >= 5) //Only check win conditions every 5 ticks.
-			check_win()
-			round_checkwin = 0
+	for(var/i in GLOB.alive_human_list)
+		var/mob/living/carbon/human/H = i
+		if(H.stat != CONSCIOUS)
+			continue
+		if(istype(get_area(H), /area/centcom) || istype(get_area(H), /area/tdome))
+			continue
+		human_count++
 
-/datum/game_mode/huntergames/check_win()
+	return human_count
+
+///////////////////////////////
+//Checks if the round is over//
+///////////////////////////////
+/datum/game_mode/huntergames/check_finished()
 	var/C = count_humans()
 	if(C < last_count)
 		if(last_count - C == 1)
@@ -236,23 +214,6 @@ var/waiting_for_drop_votes = 0
 		round_finished = 2
 	else
 		round_finished = 0
-
-/datum/game_mode/huntergames/proc/count_humans()
-	var/human_count = 0
-
-	for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
-		if(istype(H) && H.stat == 0 && !istype(get_area(H.loc), /area/centcom) && !istype(get_area(H.loc), /area/tdome) && H.species != "Yautja")
-			human_count += 1 //Add them to the amount of people who're alive.
-
-	return human_count
-
-///////////////////////////////
-//Checks if the round is over//
-///////////////////////////////
-/datum/game_mode/huntergames/check_finished()
-	if(round_finished)
-		return TRUE
-	return FALSE
 
 
 //////////////////////////////////////////////////////////////////////

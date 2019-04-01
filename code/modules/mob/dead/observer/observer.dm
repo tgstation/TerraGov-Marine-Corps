@@ -22,11 +22,10 @@
 	var/ghost_sechud = FALSE
 	var/ghost_squadhud = FALSE
 	var/ghost_xenohud = FALSE
+	var/ghost_orderhud = FALSE
 
 	universal_speak = TRUE
 	var/atom/movable/following = null
-
-	var/voted_this_drop = FALSE
 
 
 /mob/dead/observer/Initialize()
@@ -86,13 +85,15 @@
 				S.clean_marine_from_squad(H)
 
 		mind.transfer_to(target, TRUE)
-		target.fully_replace_character_name(real_name, target.real_name)
 
 		if(!ishuman(target) || !target.job)
+			target.fully_replace_character_name(real_name, target.real_name)
 			return
 
 		var/mob/living/carbon/human/H = target
 		H.set_rank(H.job)
+
+		target.fully_replace_character_name(real_name, target.real_name)
 
 		if(!H.assigned_squad)
 			return
@@ -254,7 +255,7 @@
 	if(!client?.prefs)
 		return
 
-	var/hud_choice = input("Choose a HUD to toggle", "Toggle HUD") as null|anything in list("Medical HUD", "Security HUD", "Squad HUD", "Xeno Status HUD")
+	var/hud_choice = input("Choose a HUD to toggle", "Toggle HUD") as null|anything in list("Medical HUD", "Security HUD", "Squad HUD", "Xeno Status HUD", "Order HUD")
 
 	var/datum/mob_hud/H
 	switch(hud_choice)
@@ -286,6 +287,14 @@
 			client.prefs.ghost_hud ^= GHOST_HUD_XENO
 			client.prefs.save_preferences()
 			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_xenohud ? "Enabled" : "Disabled"]</span>")
+		if("Order HUD")
+			ghost_orderhud = !ghost_orderhud
+			H = huds[MOB_HUD_ORDER]
+			ghost_orderhud ? H.add_hud_to(src) : H.remove_hud_from(src)
+			client.prefs.ghost_hud ^= GHOST_HUD_ORDER
+			client.prefs.save_preferences()
+			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_orderhud ? "Enabled" : "Disabled"]</span>")			
+		
 
 
 /mob/dead/observer/verb/teleport(var/area/A in return_sorted_areas())
@@ -621,7 +630,7 @@
 	set category = "Ghost"
 	set name = "View Crew Manifest"
 
-	var/dat = data_core.get_manifest()
+	var/dat = GLOB.datacore.get_manifest()
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
 	popup.set_content(dat)
@@ -633,11 +642,15 @@
 	set name = "Join as Xeno"
 	set desc = "Select an alive but logged-out Xenomorph to rejoin the game."
 
-	if(!client || !SSticker.mode.check_xeno_late_join(src))
+	if(!client)
 		return
 
 	if(!SSticker?.mode || SSticker.current_state < GAME_STATE_PLAYING)
 		to_chat(src, "<span class='warning'>The game hasn't started yet!</span>")
+		return
+
+	if(jobban_isbanned(src, ROLE_XENOMORPH) || is_banned_from(ckey, ROLE_XENOMORPH))
+		to_chat(src, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
 		return
 
 	var/choice = alert("Would you like to join as a larva or as a xeno?", "Join as Xeno", "Xeno", "Larva", "Cancel")
@@ -714,49 +727,6 @@
 
 	if(isobserver(ghostmob))
 		qdel(ghostmob)
-
-
-/mob/dead/observer/verb/drop_vote()
-	set category = "Ghost"
-	set name = "Hunter Games Vote"
-	set desc = "If it's on Hunter Games gamemode, vote on who gets a supply drop!"
-
-	if(!SSticker?.mode || SSticker.current_state < GAME_STATE_PLAYING)
-		to_chat(usr, "<span class='warning'>The game hasn't started yet!</span>")
-		return
-
-	if(!istype(SSticker.mode,/datum/game_mode/huntergames))
-		to_chat(usr, "Wrong game mode. You have to be observing a Hunter Games round.")
-		return
-
-	if(!waiting_for_drop_votes)
-		to_chat(usr, "There's no drop vote currently in progress. Wait for a supply drop to be announced!")
-		return
-
-	if(voted_this_drop)
-		to_chat(usr, "You voted for this one already. Only one please!")
-		return
-
-	var/list/mobs = GLOB.alive_mob_list
-	var/target = null
-
-	for(var/mob/living/M in mobs)
-		if(!istype(M,/mob/living/carbon/human) || M.stat || isyautja(M)) mobs -= M
-
-
-	target = input("Please, select a contestant!", "Cake Time", null, null) as null|anything in mobs
-
-	if(!target)
-		return
-
-	to_chat(usr, "Your vote for [target] has been counted!")
-	SSticker.mode:supply_votes += target
-	voted_this_drop = TRUE
-	addtimer(CALLBACK(src, .proc/reset_vote), 3 MINUTES)
-
-
-/mob/dead/observer/proc/reset_vote()
-	voted_this_drop = FALSE
 
 
 /mob/dead/observer/verb/observe()

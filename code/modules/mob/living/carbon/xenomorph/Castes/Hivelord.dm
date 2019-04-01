@@ -81,7 +81,7 @@
 	spit_types = list(/datum/ammo/xeno/sticky)
 
 	// *** Pheromones *** //
-	aura_strength = 2.6
+	aura_strength = 2.5
 
 /datum/xeno_caste/hivelord/elder
 	upgrade_name = "Elder"
@@ -116,7 +116,7 @@
 	spit_types = list(/datum/ammo/xeno/sticky)
 
 	// *** Pheromones *** //
-	aura_strength = 2.9
+	aura_strength = 2.8
 
 /datum/xeno_caste/hivelord/ancient
 	upgrade_name = "Ancient"

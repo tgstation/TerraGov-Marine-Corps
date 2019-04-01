@@ -10,6 +10,7 @@ var/datum/mob_hud/huds = list(
 	MOB_HUD_XENO_INFECTION = new /datum/mob_hud/xeno_infection(), \
 	MOB_HUD_XENO_STATUS = new /datum/mob_hud/xeno(),
 	MOB_HUD_SQUAD = new /datum/mob_hud/squad(),
+	MOB_HUD_ORDER = new /datum/mob_hud/order(),
 	)
 
 /datum/mob_hud
@@ -118,6 +119,9 @@ var/datum/mob_hud/huds = list(
 
 /datum/mob_hud/squad
 	hud_icons = list(SQUAD_HUD)
+	
+/datum/mob_hud/order
+	hud_icons = list(ORDER_HUD)	
 
 
 
@@ -440,9 +444,9 @@ var/datum/mob_hud/huds = list(
 		if(I)
 			perpname = I.registered_name
 
-	for(var/datum/data/record/E in data_core.general)
+	for(var/datum/data/record/E in GLOB.datacore.general)
 		if(E.fields["name"] == perpname)
-			for(var/datum/data/record/R in data_core.security)
+			for(var/datum/data/record/R in GLOB.datacore.security)
 				if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
 					holder.icon_state = "hudwanted"
 					break
@@ -489,3 +493,31 @@ var/datum/mob_hud/huds = list(
 			IMG2.color = squad_clr
 			holder.overlays += IMG2
 	hud_list[SQUAD_HUD] = holder
+	
+	
+//Order HUD
+
+/mob/living/carbon/human/proc/hud_set_order()
+	var/image/holder = hud_list[ORDER_HUD]
+	holder.overlays.Cut()
+	holder.icon_state = "hudblank"
+	if(stat != DEAD)
+		var/tempname = ""
+		if(mobility_aura)
+			tempname += "move"
+		if(protection_aura)
+			tempname += "hold"
+		if(marksman_aura)
+			tempname += "focus"
+		if(tempname)
+			holder.icon_state = "hud[tempname]"
+
+		switch(command_aura)
+			if("move")
+				holder.overlays += image('icons/mob/hud.dmi',src, "hudmoveaura")
+			if("hold")
+				holder.overlays += image('icons/mob/hud.dmi',src, "hudholdaura")
+			if("focus")
+				holder.overlays += image('icons/mob/hud.dmi',src, "hudfocusaura")
+
+	hud_list[ORDER_HUD] = holder	

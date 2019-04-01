@@ -21,7 +21,7 @@
 	G.fields["religion"]	= "Unknown"
 	G.fields["photo_front"]	= front
 	G.fields["photo_side"]	= side
-	data_core.general += G
+	GLOB.datacore.general += G
 
 	qdel(dummy)
 	return G
@@ -37,7 +37,7 @@
 	R.fields["ma_crim"] = "None"
 	R.fields["ma_crim_d"] = "No major crime convictions."
 	R.fields["notes"] = "No notes."
-	data_core.security += R
+	GLOB.datacore.security += R
 	return R
 
 /proc/create_medical_record(var/mob/living/carbon/human/H)
@@ -58,5 +58,5 @@
 	M.fields["last_scan_result"]		= "No scan data on record"
 	M.fields["autodoc_data"] = list()
 	M.fields["autodoc_manual"] = list()
-	data_core.medical += M
+	GLOB.datacore.medical += M
 	return M

@@ -231,7 +231,10 @@
 	var/last_spray_used
 
 	//Larva Growth
-	var/larva_growth_used = 0
+	var/last_larva_growth_used = 0
+
+	//Neurotoxin sting
+	var/last_neurotoxin_sting = 0
 
 	//Notification spam controls
 	var/recent_notice = 0

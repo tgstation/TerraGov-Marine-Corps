@@ -1,6 +1,6 @@
 //////////
 //
-//	query				:	select_query | delete_query | update_query | call_query | explain | file
+//	query				:	select_query | delete_query | update_query | call_query | explain
 //	explain				:	'EXPLAIN' query
 //	select_query		:	'SELECT' object_selectors
 //	delete_query		:	'DELETE' object_selectors
@@ -15,8 +15,7 @@
 //
 //	from_item			:	'world' | expression
 //
-//	call_function		:	<function name> '(' [arguments] ')'
-//	arguments			:	expression [',' arguments]
+//	call_function		:	<function name> '(' [expression_list] ')'
 //
 //	object_type			:	<type path>
 //
@@ -26,12 +25,17 @@
 //
 //	bool_expression		:	expression comparitor expression  [bool_operator bool_expression]
 //	expression			:	( unary_expression | '(' expression ')' | value ) [binary_operator expression]
+//	expression_list		:	expression [',' expression_list]
 //	unary_expression	:	unary_operator ( unary_expression | value | '(' expression ')' )
+//
 //	comparitor			:	'=' | '==' | '!=' | '<>' | '<' | '<=' | '>' | '>='
-//	value				:	variable | string | number | 'null' | object_type
+//	value				:	variable | string | number | 'null' | object_type | array | selectors_array
 //	unary_operator		:	'!' | '-' | '~'
 //	binary_operator		:	comparitor | '+' | '-' | '/' | '*' | '&' | '|' | '^' | '%'
 //	bool_operator		:	'AND' | '&&' | 'OR' | '||'
+//
+//	array				:	'[' expression_list ']'
+//	selectors_array		:	'@[' object_selectors ']'
 //
 //	string				:	''' <some text> ''' | '"' <some text > '"'
 //	number				:	<some digits>
@@ -120,7 +124,7 @@
 	return i
 
 
-//query:	select_query | delete_query | update_query | file
+//query:	select_query | delete_query | update_query
 /datum/SDQL_parser/proc/query(i, list/node)
 	query_type = tokenl(i)
 
@@ -141,11 +145,6 @@
 			node += "explain"
 			node["explain"] = list()
 			query(i + 1, node["explain"])
-
-		if("file")
-			if(usr.client.holder)
-				usr.client.holder.marked_file = input("Select a file:", "File") as null|file
-
 
 //	select_query:	'SELECT' object_selectors
 /datum/SDQL_parser/proc/select_query(i, list/node)
@@ -426,8 +425,7 @@
 
 	return i + 1
 
-
-//array:	'[' expression, expression, ... ']'
+//array:	'[' expression_list ']'
 /datum/SDQL_parser/proc/array(var/i, var/list/node)
 	// Arrays get turned into this: list("[", list(exp_1a = exp_1b, ...), ...), "[" is to mark the next node as an array.
 	if(copytext(token(i), 1, 2) != "\[")
@@ -486,10 +484,27 @@
 
 		while(token(i) && token(i) != "]")
 
-		if(temp_expression_list)
+		if (temp_expression_list)
 			expression_list[++expression_list.len] = temp_expression_list
 
 	node[++node.len] = expression_list
+
+	return i + 1
+
+//selectors_array:	'@[' object_selectors ']'
+/datum/SDQL_parser/proc/selectors_array(var/i, var/list/node)
+	if(token(i) == "@\[")
+		node += token(i++)
+		if(token(i) != "]")
+			var/list/select = list()
+			i = object_selectors(i, select)
+			node[++node.len] = select
+			if(token(i) != "]")
+				parse_error("Expected ']' to close selector array, but found '[token(i)]'")
+		else
+			parse_error("Selector array expected a selector, but found nothing")
+	else
+		parse_error("Expected '@\[' but found '[token(i)]'")
 
 	return i + 1
 
@@ -597,7 +612,7 @@
 	return i + 1
 
 
-//value:	variable | string | number | 'null' | object_type
+//value:	variable | string | number | 'null' | object_type | array | selectors_array
 /datum/SDQL_parser/proc/value(i, list/node)
 	if(token(i) == "null")
 		node += "null"
@@ -612,6 +627,10 @@
 		i = string(i, node)
 	else if(copytext(token(i), 1, 2) == "\[") // Start a list.
 		i = array(i, node)
+
+	else if(copytext(token(i), 1, 3) == "@\[")
+		i = selectors_array(i, node)
+
 	else if(copytext(token(i), 1, 2) == "/")
 		i = object_type(i, node)
 	else

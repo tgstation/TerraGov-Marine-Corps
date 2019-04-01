@@ -100,16 +100,8 @@
 /obj/item/storage/box/disks
 	name = "Diskette Box"
 	icon_state = "disk_kit"
-
-/obj/item/storage/box/disks/New()
-	..()
-	new /obj/item/disk/data(src)
-	new /obj/item/disk/data(src)
-	new /obj/item/disk/data(src)
-	new /obj/item/disk/data(src)
-	new /obj/item/disk/data(src)
-	new /obj/item/disk/data(src)
-	new /obj/item/disk/data(src)
+	spawn_type = /obj/item/disk/data
+	spawn_number = 7
 
 /*
  *	Manual -- A big ol' manual.

@@ -18,6 +18,7 @@
 #define PHEROMONE_HUD		"14" //indicates which pheromone is active on a xeno.
 #define QUEEN_OVERWATCH_HUD	"15" //indicates which xeno the queen is overwatching.
 #define STATUS_HUD_OBSERVER_INFECTION "16" //gives observers the xeno larval stage
+#define ORDER_HUD "17" //shows what orders are applied to marines
 
 
 //data HUD (medhud, sechud) defines
@@ -29,3 +30,4 @@
 #define MOB_HUD_XENO_INFECTION		6
 #define MOB_HUD_XENO_STATUS			7
 #define MOB_HUD_SQUAD				8
+#define MOB_HUD_ORDER				9

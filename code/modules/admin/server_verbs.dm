@@ -13,8 +13,11 @@
 		return
 
 	var/message = FALSE
-	if(alert("Send the new round message?", "Message", "Yes", "No") == "Yes")
-		message = TRUE
+	switch(alert("Send the new round message?", "Message", "Yes", "No", "Cancel"))
+		if("Yes")
+			message = TRUE
+		if("Cancel")
+			return
 
 	to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by: [usr.key]</span>")
 

@@ -42,7 +42,7 @@
 	armor_deflection = 5
 
 	// *** Pheromones *** //
-	aura_strength = 1 //Carrier's pheromones are equivalent to Hivelord. Climbs 0.5 up to 2.5
+	aura_strength = 1.5
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Carrier Abilities *** //
@@ -80,7 +80,7 @@
 	armor_deflection = 10
 
 	// *** Pheromones *** //
-	aura_strength = 1.5
+	aura_strength = 2
 
 	// *** Carrier Abilities *** //
 	huggers_max = 9
@@ -117,7 +117,7 @@
 	armor_deflection = 10
 
 	// *** Pheromones *** //
-	aura_strength = 2
+	aura_strength = 2.3
 
 	// *** Carrier Abilities *** //
 	huggers_max = 10

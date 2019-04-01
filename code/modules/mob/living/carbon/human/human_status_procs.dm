@@ -60,3 +60,8 @@
 	if(HULK in mutations)
 		return
 	..()
+
+/mob/living/carbon/human/vomit()
+	if(species.species_flags & IS_SYNTHETIC)
+		return //Machines don't throw up.
+	return ..()

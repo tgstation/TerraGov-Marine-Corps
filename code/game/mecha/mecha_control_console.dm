@@ -120,12 +120,5 @@
 
 /obj/item/storage/box/mechabeacons
 	name = "Exosuit Tracking Beacons"
-	New()
-		..()
-		new /obj/item/mecha_parts/mecha_tracking(src)
-		new /obj/item/mecha_parts/mecha_tracking(src)
-		new /obj/item/mecha_parts/mecha_tracking(src)
-		new /obj/item/mecha_parts/mecha_tracking(src)
-		new /obj/item/mecha_parts/mecha_tracking(src)
-		new /obj/item/mecha_parts/mecha_tracking(src)
-		new /obj/item/mecha_parts/mecha_tracking(src)
+	spawn_type = /obj/item/mecha_parts/mecha_tracking
+	spawn_number = 7
