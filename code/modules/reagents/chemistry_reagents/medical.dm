@@ -125,7 +125,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.66
 	scannable = TRUE
 
-/datum/reagent/oxycodone/on_mob_life(mob/living/M)
+/datum/reagent/medicine/oxycodone/on_mob_life(mob/living/M)
 	M.reagent_pain_modifier += PAIN_REDUCTION_FULL
 	..()
 
