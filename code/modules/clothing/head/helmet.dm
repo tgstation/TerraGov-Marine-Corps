@@ -170,13 +170,13 @@
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "helmet"
-	armor = list(melee = 65, bullet = 35, laser = 30, energy = 20, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 65, bullet = 60, laser = 30, energy = 20, bomb = 25, bio = 0, rad = 0)
 	health = 5
 	var/helmet_overlays[]
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
 	var/flags_marine_helmet = HELMET_SQUAD_OVERLAY|HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
-	var/obj/item/storage/internal/pockets
+	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/marinehelmet
 	var/list/allowed_helmet_items = list(
 						/obj/item/tool/lighter/random = "helmet_lighter_",
 						/obj/item/tool/lighter/zippo = "helmet_lighter_zippo",
@@ -195,18 +195,19 @@
 						/obj/item/clothing/glasses/mgoggles = "goggles",
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
 
+/obj/item/storage/internal/marinehelmet
+	storage_slots = 2
+	max_w_class = 1
+	bypass_w_limit = list(
+		/obj/item/clothing/glasses, 
+		/obj/item/reagent_container/food/drinks/flask)
+	max_storage_space = 3
 
-/obj/item/clothing/head/helmet/marine/New(loc,expected_type 		= /obj/item/clothing/head/helmet/marine,
-	new_name[] 			= list(MAP_ICE_COLONY =  "\improper M10 pattern marine snow helmet"),
-	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	select_gamemode_skin(expected_type,null,new_name,new_protection)
-	..()
+/obj/item/clothing/head/helmet/marine/Initialize()
+	. = ..()
 	helmet_overlays = list("damage","band","item") //To make things simple.
-	pockets = new/obj/item/storage/internal(src)
-	pockets.storage_slots = 2
-	pockets.max_w_class = 1 //can hold tiny items only, EXCEPT for glasses & metal flask.
-	pockets.bypass_w_limit = list("/obj/item/clothing/glasses", "/obj/item/reagent_container/food/drinks/flask")
-	pockets.max_storage_space = 3
+	pockets = new pockets(src)
+
 
 /obj/item/clothing/head/helmet/marine/attack_hand(mob/user)
 	if (pockets.handle_attack_hand(user))
@@ -282,7 +283,7 @@
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
-	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
+	armor = list(melee = 75, bullet = 65, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 
 /obj/item/clothing/head/helmet/marine/leader/New(loc,expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper M11 pattern leader snow helmet"),
@@ -305,50 +306,36 @@
 	name = "\improper M3-S helmet"
 	icon_state = "scout_helmet"
 	desc = "A custom helmet designed for TGMC Scouts."
-	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
+	armor = list(melee = 75, bullet = 70, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-
-	New()
-		select_gamemode_skin(type)
-		..()
 
 /obj/item/clothing/head/helmet/marine/pyro
 	name = "\improper M35 helmet"
 	icon_state = "pyro_helmet"
 	desc = "A helmet designed for TGMC Pyrotechnicians. Contains heavy insulation, covered in nomex weave."
-	armor = list(melee = 85, bullet = 75, laser = 60, energy = 50, bomb = 50, bio = 10, rad = 10)
+	armor = list(melee = 85, bullet = 80, laser = 60, energy = 50, bomb = 50, bio = 10, rad = 10)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-
-	New()
-		select_gamemode_skin(type)
-		..()
 
 /obj/item/clothing/head/helmet/marine/pilot
 	name = "\improper M30 tactical helmet"
 	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is required to fly the Alamo and Normandy dropships manually and in safety."
 	icon_state = "helmetp"
-	armor = list(melee = 65, bullet = 50, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
+	armor = list(melee = 65, bullet = 65, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	flags_marine_helmet = NOFLAGS
-	New()
-		select_gamemode_skin(/obj/item/clothing/head/helmet/marine/pilot)
-		..()
 
 /obj/item/clothing/head/helmet/marine/tanker
 	name = "\improper M50 tanker helmet"
 	desc = "The lightweight M50 tanker helmet is designed for use by armored crewmen in the TGMC. It offers low weight protection, and allows agile movement inside the confines of an armored vehicle."
 	icon_state = "tanker_helmet"
-	armor = list(melee = 40, bullet = 40, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
+	armor = list(melee = 65, bullet = 65, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	flags_marine_helmet = NOFLAGS
-	New()
-		select_gamemode_skin(/obj/item/clothing/head/helmet/marine/tanker)
-		..()
 
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
@@ -467,10 +454,6 @@
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
-/obj/item/clothing/head/helmet/specrag/New()
-	select_gamemode_skin(type)
-	..()
-
 /obj/item/clothing/head/helmet/durag
 	name = "durag"
 	desc = "Good for keeping sweat out of your eyes"
@@ -485,17 +468,6 @@
 	name = "\improper M8 marksman cowl"
 	desc = "A cowl worn to conceal the face of a marksman in the jungle."
 	icon_state = "duragm"
-
-/obj/item/clothing/head/helmet/durag/jungle/New(loc,expected_type 	= type,
-	new_name[] 		= list(MAP_ICE_COLONY = "\improper M6 marksman hood"),
-	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	select_gamemode_skin(expected_type,,new_name,new_protection)
-	..()
-	switch(icon_state)
-		if("s_duragm")
-			desc = "A hood meant to protect the wearer from both the cold and the guise of the enemy in the tundra."
-			flags_inventory = BLOCKSHARPOBJ
-			flags_inv_hide = HIDEEARS|HIDEALLHAIR
 
 //===========================//HELGHAST - MERCENARY\\================================\\
 //=====================================================================\\

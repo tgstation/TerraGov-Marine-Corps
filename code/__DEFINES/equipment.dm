@@ -17,10 +17,9 @@
 #define ON_BORDER				(1<<2)		// 'border object'. item has priority to check when entering or leaving
 #define NOBLOODY				(1<<3)		// Don't want a blood overlay on this one.
 #define DIRLOCK					(1<<4)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
-#define RELAY_CLICK				(1<<5)		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
-#define INITIALIZED				(1<<6)  	//Whether /atom/Initialize() has already run for the object
-#define NODECONSTRUCT			(1<<7)
-#define OVERLAY_QUEUED			(1<<8)
+#define INITIALIZED				(1<<5)  	//Whether /atom/Initialize() has already run for the object
+#define NODECONSTRUCT			(1<<6)
+#define OVERLAY_QUEUED			(1<<7)
 
 //==========================================================================================
 
@@ -82,8 +81,16 @@
 #define NOPRESSUREDMAGE (1<<7) //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
 //SUITS AND HELMETS====================================================================================
 
+//vision obscuring facegear and etc.
+#define TINT_NONE 0
+#define TINT_MILD 1
+#define TINT_HEAVY 2
+#define TINT_BLIND 3
 
-
+//Inventory depth: limits how many nested storage items you can access directly.
+//1: stuff in mob, 2: stuff in backpack, 3: stuff in box in backpack, etc
+#define INVENTORY_DEPTH		4
+#define STORAGE_VIEW_DEPTH	3
 
 
 //===========================================================================================

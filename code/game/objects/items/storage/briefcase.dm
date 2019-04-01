@@ -11,9 +11,6 @@
 	max_w_class = 3
 	max_storage_space = 16
 
-/obj/item/storage/briefcase/New()
-	..()
-
 /obj/item/storage/briefcase/attack(mob/living/M as mob, mob/living/user as mob)
 	//..()
 

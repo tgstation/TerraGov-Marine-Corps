@@ -118,6 +118,9 @@
 
 
 /datum/preferences/proc/update_preview_icon()
+	if(!SSatoms.initialized)
+		return // clothing wont work properly
+		
 	// Set up the dummy for its photoshoot
 	var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 	copy_to(mannequin)

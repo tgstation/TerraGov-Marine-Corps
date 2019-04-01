@@ -28,20 +28,19 @@
 	icon_state = "M56D_case" // I guess a placeholder? Not actually going to show up ingame for now.
 	w_class = 5
 	storage_slots = 6
-	bypass_w_limit = list("/obj/item/device/m56d_gun",
-					"/obj/item/ammo_magazine/m56d",
-					"/obj/item/device/m56d_post",
-					)
+	bypass_w_limit = list(
+		/obj/item/device/m56d_gun,
+		/obj/item/ammo_magazine/m56d,
+		/obj/item/device/m56d_post)
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/device/m56d_gun(src) //gun itself
-			new /obj/item/ammo_magazine/m56d(src) //ammo for the gun
-			new /obj/item/device/m56d_post(src) //post for the gun
-			new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
-			new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
-			new /obj/item/ammo_magazine/m56d(src)
+/obj/item/storage/box/m56d_hmg/Initialize()
+	. = ..()
+	new /obj/item/device/m56d_gun(src) //gun itself
+	new /obj/item/ammo_magazine/m56d(src) //ammo for the gun
+	new /obj/item/device/m56d_post(src) //post for the gun
+	new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
+	new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
+	new /obj/item/ammo_magazine/m56d(src)
 
 // The actual gun itself.
 /obj/item/device/m56d_gun
@@ -53,8 +52,11 @@
 	icon_state = "M56D_gun_e"
 	var/rounds = 0 // How many rounds are in the weapon. This is useful if we break down our guns.
 
-	New()
-		update_icon()
+	
+/obj/item/device/m56d_gun/Initialize()
+	. = ..()
+	update_icon()
+
 
 /obj/item/device/m56d_gun/examine(mob/user as mob) //Let us see how much ammo we got in this thing.
 	. = ..()
@@ -496,8 +498,44 @@
 				user.set_interaction(src)
 
 
+/obj/machinery/m56d_hmg/InterceptClickOn(mob/user, params, atom/object)
+	if(is_bursting)
+		return TRUE
+	if(user.lying || !Adjacent(user) || user.is_mob_incapacitated())
+		user.unset_interaction()
+		return FALSE
+	if(user.get_active_held_item())
+		to_chat(usr, "<span class='warning'>You need a free hand to shoot the [src].</span>")
+		return TRUE
+	target = object
+	if(!istype(target))
+		return FALSE
+	if(isnull(operator.loc) || isnull(loc) || !z || !target?.z == z)
+		return FALSE
+	if(get_dist(target, loc) > 15)
+		return TRUE
+
+	var/list/pa = params2list(params)
+	if(pa.Find("ctrl"))
+		burst_fire = !burst_fire
+		burst_fire_toggled = TRUE
+
+	var/angle = get_dir(src,target)
+	//we can only fire in a 90 degree cone
+	if((dir & angle) && target.loc != loc && target.loc != operator.loc)
+		if(!rounds)
+			to_chat(user, "<span class='warning'><b>*click*</b></span>")
+			playsound(src, 'sound/weapons/gun_empty.ogg', 25, 1, 5)
+		else
+			process_shot()
+		return TRUE
+
+	if(burst_fire_toggled)
+		burst_fire = !burst_fire
+	return FALSE
+
+
 /obj/machinery/m56d_hmg/on_set_interaction(mob/user)
-	flags_atom |= RELAY_CLICK
 	user.client.change_view(view_tiles)
 	switch(dir)
 		if(NORTH)
@@ -514,13 +552,14 @@
 			user.client.pixel_y = 0
 	operator = user
 	user.verbs += /mob/living/proc/toogle_mg_burst_fire
+	user.client.click_intercept = src
 
 /obj/machinery/m56d_hmg/on_unset_interaction(mob/user)
-	flags_atom &= ~RELAY_CLICK
 	if(user.client)
 		user.client.change_view(world.view)
 		user.client.pixel_x = 0
 		user.client.pixel_y = 0
+		user.client.click_intercept = null
 	if(operator == user)
 		operator = null
 	user.verbs -= /mob/living/proc/toogle_mg_burst_fire

@@ -11,7 +11,7 @@
 	if(!query_poll_get.warn_execute())
 		qdel(query_poll_get)
 		return
-	var/output = "<div align='center'><B>Player polls</B><hr><table>"
+	var/output = "<div align='center'><table>"
 	var/i = 0
 	var/rs = REF(src)
 	while(query_poll_get.NextRow())
@@ -22,7 +22,9 @@
 	qdel(query_poll_get)
 	output += "</table>"
 	if(!QDELETED(src))
-		src << browse(output,"window=playerpolllist;size=500x300")
+		var/datum/browser/browser = new(src, "playerpolllist", "<div align='center'>Player polls</div>", 500, 300)
+		browser.set_content(output)
+		browser.open()
 
 
 /mob/new_player/proc/poll_player(pollid)

@@ -51,9 +51,6 @@
 		/obj/item/storage/large_holster/machete,
 		/obj/item/storage/belt/gun/m4a3,
 		/obj/item/storage/belt/gun/m44)
-	New()
-		select_gamemode_skin(/obj/item/clothing/suit/armor/vest/pilot)
-		..()
 
 /obj/item/clothing/suit/armor/vest/dutch
 	name = "armored jacket"

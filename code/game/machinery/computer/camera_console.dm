@@ -129,14 +129,6 @@
 		if(can_access_camera(jump_to))
 			switch_to_camera(user,jump_to)
 
-//Camera control: mouse.
-/obj/machinery/computer/security/clicked(var/mob/user, var/list/mods)
-	if (mods["ctrl"] && mods["middle"])
-		if (src == user.interactee)
-			jump_on_click(user, src)
-		return 1
-
-	..()
 
 /obj/machinery/computer/security/telescreen
 	name = "Telescreen"

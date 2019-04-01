@@ -8,10 +8,13 @@
 	w_class = 1
 	var/obj/item/implant/imp = null
 
+/obj/item/implanter/Initialize(mapload, ...)
+	. = ..()
+	if(imp)
+		imp = new imp()
+		update()
+
 /obj/item/implanter/proc/update()
-
-
-/obj/item/implanter/update()
 	if (src.imp)
 		src.icon_state = "implanter1"
 	else
@@ -54,34 +57,21 @@
 
 	return
 
-
+/obj/item/implanter/freedom
+	name = "implanter-freedom"
+	imp = /obj/item/implant/freedom
 
 /obj/item/implanter/loyalty
 	name = "implanter-loyalty"
-
-/obj/item/implanter/loyalty/New()
-	src.imp = new /obj/item/implant/loyalty( src )
-	..()
-	update()
-	return
+	imp = /obj/item/implant/loyalty
 
 /obj/item/implanter/explosive
 	name = "implanter (E)"
-
-/obj/item/implanter/explosive/New()
-	src.imp = new /obj/item/implant/explosive( src )
-	..()
-	update()
-	return
+	imp = /obj/item/implant/explosive
 
 /obj/item/implanter/adrenalin
 	name = "implanter-adrenalin"
-
-/obj/item/implanter/adrenalin/New()
-	src.imp = new /obj/item/implant/adrenalin(src)
-	..()
-	update()
-	return
+	imp = /obj/item/implant/adrenalin
 
 /obj/item/implanter/codex
 	name = "implanter (codex)"
@@ -90,12 +80,7 @@
 /obj/item/implanter/compressed
 	name = "implanter (C)"
 	icon_state = "cimplanter1"
-
-/obj/item/implanter/compressed/New()
-	imp = new /obj/item/implant/compressed( src )
-	..()
-	update()
-	return
+	imp = /obj/item/implant/compressed
 
 /obj/item/implanter/compressed/update()
 	if (imp)

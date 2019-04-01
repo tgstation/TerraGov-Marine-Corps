@@ -588,9 +588,13 @@ Defined in conflicts.dm of the #defines folder.
 	//icon_state = "sniperscope"
 	//attach_icon = "sniperscope_a"
 	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	zoom_offset = 5
+	zoom_viewsize = 7
+	zoom_accuracy = SCOPE_RAIL_MINI
 	flags_attach_features = ATTACH_ACTIVATION
 	attach_icon = ""
 	icon_state = ""
+
 
 /obj/item/attachable/scope/m42a
 	name = "m42a rail scope"
@@ -638,8 +642,6 @@ Defined in conflicts.dm of the #defines folder.
 	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
 	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
-
-	select_gamemode_skin(type)
 
 /obj/item/attachable/stock/tactical
 	name = "\improper MK221 tactical stock"
@@ -758,7 +760,13 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "vp70stock_a" // Thank you to Manezinho
 	pixel_shift_x = 39
 	pixel_shift_y = 11
-	var/obj/item/storage/internal/pockets
+	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/pockets/vp70holster
+
+/obj/item/storage/internal/pockets/vp70holster
+	storage_slots = 1
+	max_w_class = 1
+	bypass_w_limit = list(/obj/item/weapon/gun/pistol/vp70)
+	max_storage_space = 3
 
 /obj/item/attachable/stock/vp70/Initialize()
 	. = ..()
@@ -766,11 +774,7 @@ Defined in conflicts.dm of the #defines folder.
 	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
 	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
-	pockets = new/obj/item/storage/internal(src)
-	pockets.storage_slots = 1
-	pockets.max_w_class = 1
-	pockets.bypass_w_limit = list("/obj/item/weapon/gun/pistol/vp70")
-	pockets.max_storage_space = 3
+	pockets = new pockets(src)
 
 /obj/item/attachable/stock/vp70/attack_hand(mob/user)
 	if(loc == user && length(pockets.contents))

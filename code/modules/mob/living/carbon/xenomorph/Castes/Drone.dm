@@ -40,7 +40,7 @@
 	armor_deflection = 0
 
 	// *** Pheromones *** //
-	aura_strength = 0.5 //Drone's aura is the weakest. At the top of their evolution, it's equivalent to a Young Queen Climbs by 0.5 to 2
+	aura_strength = 1 //Drone's aura is the weakest. At the top of their evolution, it's equivalent to a Young Queen Climbs by 0.5 to 2
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 /datum/xeno_caste/drone/mature
@@ -73,7 +73,7 @@
 	armor_deflection = 5
 
 	// *** Pheromones *** //
-	aura_strength = 1
+	aura_strength = 1.5
 
 /datum/xeno_caste/drone/elite
 	upgrade_name = "Elite"
@@ -105,7 +105,7 @@
 	armor_deflection = 10
 
 	// *** Pheromones *** //
-	aura_strength = 1.5
+	aura_strength = 1.8
 
 /datum/xeno_caste/drone/ancient
 	upgrade_name = "Ancient"
@@ -151,7 +151,6 @@
 	pixel_x = -12
 	old_x = -12
 	pull_speed = -2
-	var/last_drone_sting = null
 	wound_type = "alien" //used to match appropriate wound overlays
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -162,9 +161,9 @@
 		/datum/action/xeno_action/activable/transfer_plasma,
 		/datum/action/xeno_action/activable/salvage_plasma,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
-		/datum/action/xeno_action/activable/drone_sting,
+		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/toggle_pheromones
 		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/vent_crawl,
+		/mob/living/carbon/Xenomorph/proc/vent_crawl
 		)
