@@ -13,3 +13,40 @@
 		return A.attackby(W,user)
 	else
 		return ..()
+
+
+/obj/effect/decal/cleanable/blood/splatter/animated
+	var/turf/target_turf
+	var/loc_last_process
+
+	
+/obj/effect/decal/cleanable/blood/splatter/animated/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
+	loc_last_process = loc
+
+	
+/obj/effect/decal/cleanable/blood/splatter/animated/Destroy()
+	animation_destruction_fade(src)
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+
+/obj/effect/decal/cleanable/blood/splatter/animated/process()
+	if(!target_turf || loc == target_turf)
+		return ..()
+
+	step_towards(src, target_turf)
+	if(loc == loc_last_process) target_turf = null
+	loc_last_process = loc
+
+	//Leaves drips.
+	if(!prob(50))
+		return
+
+	var/obj/effect/decal/cleanable/blood/drip/D = new (get_turf(src))
+	if(!prob(50))
+		return
+
+	D = new(get_turf(src))
+	D.blood_DNA = blood_DNA

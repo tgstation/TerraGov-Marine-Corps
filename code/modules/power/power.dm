@@ -360,3 +360,81 @@
 	for(var/obj/machinery/power/apc/APC in GLOB.apcs_list)
 		if(APC.area == src)
 			return APC
+
+
+/proc/power_failure(announce = TRUE)
+	var/list/skipped_areas = list(/area/turret_protected/ai)
+
+	for(var/obj/machinery/power/smes/S in GLOB.machines)
+		var/area/current_area = get_area(S)
+		if(current_area.type in skipped_areas || !is_mainship_level(S.z)) // Ship only
+			continue
+		S.charge = 0
+		S.output_level = 0
+		S.outputting = FALSE
+		S.update_icon()
+		S.power_change()
+
+	for(var/obj/machinery/power/apc/C in GLOB.machines)
+		if(!C.cell || !is_mainship_level(C.z))
+			continue		
+		C.cell.charge = 0
+
+	playsound_z(3, 'sound/effects/powerloss.ogg')
+
+	if(announce)
+		command_announcement.Announce("Abnormal activity detected in the ship power system. As a precaution, power must be shut down for an indefinite duration.", "Critical Power Failure", new_sound = 'sound/AI/poweroff.ogg')
+
+
+/proc/power_restore(announce = TRUE)
+	var/list/skipped_areas = list(/area/turret_protected/ai)
+
+	for(var/obj/machinery/power/smes/S in GLOB.machines)
+		var/area/current_area = get_area(S)
+		if(current_area.type in skipped_areas || !is_mainship_level(S.z))
+			continue
+		S.charge = S.capacity
+		S.output_level = S.output_level_max
+		S.outputting = TRUE
+		S.update_icon()
+		S.power_change()
+
+	for(var/obj/machinery/power/apc/C in GLOB.machines)
+		if(!C.cell || !is_mainship_level(C.z))
+			continue
+		C.cell.charge = C.cell.maxcharge
+
+
+	if(announce)
+		command_announcement.Announce("Power has been restored. Reason: Unknown.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')
+
+
+/proc/power_restore_quick(announce = TRUE)
+	for(var/obj/machinery/power/smes/S in GLOB.machines)
+		if(!is_mainship_level(S.z)) // Ship only
+			continue
+		S.charge = S.capacity
+		S.output_level = S.output_level_max
+		S.outputting = TRUE
+		S.update_icon()
+		S.power_change()
+
+	if(announce)
+		command_announcement.Announce("Power has been restored. Reason: Unknown.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')
+
+
+/proc/power_restore_everything(announce = TRUE)
+	for(var/obj/machinery/power/smes/S in GLOB.machines)
+		S.charge = S.capacity
+		S.output_level = S.output_level_max
+		S.outputting = TRUE
+		S.update_icon()
+		S.power_change()
+
+	for(var/obj/machinery/power/apc/C in GLOB.machines)
+		if(!C.cell)
+			continue
+		C.cell.charge = C.cell.maxcharge
+
+	if(announce)
+		command_announcement.Announce("Power has been restored. Reason: Unknown.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')

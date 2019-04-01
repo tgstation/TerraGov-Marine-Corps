@@ -178,3 +178,7 @@
 #define istimer(O) (istype(O, /obj/item/device/assembly/timer))
 
 #define iseffect(O) (istype(O, /obj/effect))
+
+
+//Gamemode
+#define isdistress(O) (istype(O, /datum/game_mode/distress))

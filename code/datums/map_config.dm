@@ -30,6 +30,9 @@
 		"whiteship" = "whiteship_box",
 		"emergency" = "emergency_box")
 
+	var/announce_text = ""
+
+
 /proc/load_map_config(filename = "data/next_map.json", default_to_box, delete_after, error_if_missing = TRUE)
 	var/datum/map_config/config = new
 	if (default_to_box)
@@ -116,6 +119,9 @@
 		return
 
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
+
+	if(json["announce_text"])
+		announce_text = replacetext(json["announce_text"], "###SHIPNAME###", CONFIG_GET(string/ship_name))
 
 	defaulted = FALSE
 	return TRUE
