@@ -567,9 +567,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(C && alert("They have a client attached, are you sure?", "Cryosleep", "Yes", "No") != "Yes")
 			return
 
-		var/turf/T = get_turf(M)
-		var/name = M.real_name
-		new /obj/machinery/cryopod/admin(T, M) //Initialize() will handle the despawning.
+		M.despawn()
 
 		var/lobby
 		if(C?.mob?.mind && alert("Do you also want to send them to the lobby?", "Cryosleep", "Yes", "No") == "Yes")

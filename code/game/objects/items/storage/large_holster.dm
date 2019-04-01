@@ -53,20 +53,14 @@
 	desc = "A large leather holster allowing the storage of an M37A2 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
 	icon_state = "m37_holster"
 	can_hold = list(
-		"/obj/item/weapon/gun/shotgun/pump",
-		"/obj/item/weapon/gun/shotgun/combat"
-		)
+		/obj/item/weapon/gun/shotgun/pump,
+		/obj/item/weapon/gun/shotgun/combat)
 
-/obj/item/storage/large_holster/m37/New()
-	select_gamemode_skin(/obj/item/storage/large_holster/m37)
-	base_icon = icon_state
-	..()
-
-
-/obj/item/storage/large_holster/m37/full/New()
-	..()
+/obj/item/storage/large_holster/m37/full/Initialize()
+	. = ..()
 	icon_state = "m37_holster_full"
 	new /obj/item/weapon/gun/shotgun/pump(src)
+	base_icon = icon_state
 
 /obj/item/storage/large_holster/machete
 	name = "\improper H5 pattern M2132 machete scabbard"
@@ -74,10 +68,10 @@
 	base_icon = "machete_holster"
 	icon_state = "machete_holster"
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
-	can_hold = list("/obj/item/weapon/claymore/mercsword/machete")
+	can_hold = list(/obj/item/weapon/claymore/mercsword/machete)
 
-/obj/item/storage/large_holster/machete/full/New()
-	..()
+/obj/item/storage/large_holster/machete/full/Initialize()
+	. = ..()
 	icon_state = "machete_holster_full"
 	new /obj/item/weapon/claymore/mercsword/machete(src)
 
@@ -89,10 +83,10 @@
 	force = 12
 	attack_verb = list("bludgeoned", "struck", "cracked")
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
-	can_hold = list("/obj/item/weapon/katana")
+	can_hold = list(/obj/item/weapon/katana)
 
-/obj/item/storage/large_holster/katana/full/New()
-	..()
+/obj/item/storage/large_holster/katana/full/Initialize()
+	. = ..()
 	icon_state = "katana_holster_full"
 	new /obj/item/weapon/katana(src)
 
@@ -104,7 +98,7 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	base_icon = "m39_holster"
 	flags_equip_slot = ITEM_SLOT_BELT
-	can_hold = list("/obj/item/weapon/gun/smg/m39")
+	can_hold = list(/obj/item/weapon/gun/smg/m39)
 
 /obj/item/storage/large_holster/m39/update_icon()
 	var/mob/user = loc
@@ -117,7 +111,7 @@
 		item_state = base_icon
 	if(istype(user)) user.update_inv_belt()
 
-/obj/item/storage/large_holster/m39/full/New()
-	..()
+/obj/item/storage/large_holster/m39/full/Initialize()
+	. = ..()
 	new /obj/item/weapon/gun/smg/m39(src)
 	update_icon()

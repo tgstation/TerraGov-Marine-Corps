@@ -244,8 +244,9 @@
 	if(job)
 		var/datum/job/J = SSjob.name_occupations[job]
 		J.current_positions--
-		if(J.title in JOBS_REGULAR_ALL)
-			SSticker.mode.latejoin_tally-- //Cryoing someone removes a player from the round, blocking further larva spawns until accounted for
+		if((J.title in JOBS_REGULAR_ALL) && isdistress(SSticker?.mode))
+			var/datum/game_mode/distress/D = SSticker.mode
+			D.latejoin_tally-- //Cryoing someone removes a player from the round, blocking further larva spawns until accounted for
 		if(J.title in JOBS_POLICE)
 			dept_console = CRYO_SEC
 		else if(J.title in JOBS_MEDICAL)
@@ -279,9 +280,15 @@
 	GLOB.cryoed_mob_list += data
 	GLOB.cryoed_mob_list[data] = list(real_name, job ? job : "Unassigned", gameTimestamp())
 
-	pod.announce.autosay("[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", "Hypersleep Storage System")
-	pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")
-	pod.occupant = null
+	var/obj/item/device/radio/intercom/radio
+	if(pod)
+		radio = pod.announce
+		pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")
+		pod.occupant = null
+	else
+		radio = new(src)
+	radio.autosay("[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", "Hypersleep Storage System")
+
 	qdel(src)
 
 /mob/living/carbon/human/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
@@ -497,18 +504,3 @@
 	occupant = null
 	stop_processing()
 	update_icon()
-
-/obj/machinery/cryopod/admin //Invisible admin magic.
-	name = "inconspicious bluespace hypersleep chamber."
-	desc = "A large automated capsule capable of putting anyone inside into 'hypersleep'. Enough said."
-	density = FALSE
-	time_till_despawn = 0 SECONDS
-	alpha = 0
-
-/obj/machinery/cryopod/admin/Initialize(mapload, mob/victim)
-	. = ..()
-	if(victim)
-		victim.forceMove(src)
-		occupant = victim
-		victim.despawn(src)
-		return INITIALIZE_HINT_QDEL

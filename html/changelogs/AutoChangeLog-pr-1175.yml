@@ -1,0 +1,4 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - imageadd: "Fixes revolver sprite"

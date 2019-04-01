@@ -27,24 +27,25 @@ SUBSYSTEM_DEF(machines)
 /datum/controller/subsystem/machines/stat_entry()
 	..("AA:[active_areas.len]|PN:[powernets.len]|PM:[processing_machines.len]")
 
-/datum/controller/subsystem/machines/fire(resumed = 0)
+/datum/controller/subsystem/machines/fire(resumed = FALSE)
 	if (!resumed)
 		for(var/datum/powernet/Powernet in powernets)
 			Powernet.reset() //reset the power state.
 		currentrunmachines = processing_machines.Copy()
 		currentrunareas = active_areas.Copy()
 
-	while (currentrunmachines.len)
-		var/obj/machinery/M = currentrunmachines[currentrunmachines.len]
-		currentrunmachines.len--
+	//cache for sanic speed (lists are references anyways)
+	var/list/currentrun = src.currentrunmachines
 
-		if (!M || M.gc_destroyed) // should never happen
-			processing_machines -= M
-			continue
-
-		M.process()
-
-		if (MC_TICK_CHECK)
+	var/seconds = wait * 0.1
+	while(length(currentrun))
+		var/obj/machinery/thing = currentrun[currentrun.len]
+		currentrun.len--
+		if(QDELETED(thing) || thing.process(seconds) == PROCESS_KILL)
+			processing_machines -= thing
+			if(!QDELETED(thing))
+				thing.datum_flags &= ~DF_ISPROCESSING
+		if(MC_TICK_CHECK)
 			return
 
 	while (currentrunareas.len)
