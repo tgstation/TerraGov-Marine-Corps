@@ -47,6 +47,7 @@
 #include "code\__DEFINES\objects.dm"
 #include "code\__DEFINES\pipe_construction.dm"
 #include "code\__DEFINES\preferences.dm"
+#include "code\__DEFINES\progress_display.dm"
 #include "code\__DEFINES\qdel.dm"
 #include "code\__DEFINES\reagents.dm"
 #include "code\__DEFINES\rust_g.dm"

@@ -561,7 +561,7 @@
 
 	visible_message("<span class='xenowarning'>\The [src] begins slowly lifting \the [victim] into the air.</span>", \
 	"<span class='xenowarning'>You begin focusing your anger as you slowly lift \the [victim] into the air.</span>")
-	if(do_mob(src, victim, 80, icon_display = USER_PROG_ICON_HOSTILE))
+	if(do_mob(src, victim, 80, icon_display = USER_ICON_HOSTILE))
 		visible_message("<span class='xenodanger'>\The [src] viciously smashes and wrenches \the [victim] apart!</span>", \
 		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!</span>")
 		emote("roar")
