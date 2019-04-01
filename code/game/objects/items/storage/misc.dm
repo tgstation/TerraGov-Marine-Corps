@@ -2,10 +2,10 @@
 	name = "pack of dice"
 	desc = "It's a small container with dice inside."
 
-	New()
-		..()
-		new /obj/item/toy/dice( src )
-		new /obj/item/toy/dice/d20( src )
+/obj/item/storage/pill_bottle/dice/Initialize()
+	. = ..()
+	new /obj/item/toy/dice( src )
+	new /obj/item/toy/dice/d20( src )
 
 /*
  * Donut Box
@@ -19,12 +19,12 @@
 	storage_slots = 6
 	var/startswith = 6
 	var/open = 0
-	can_hold = list("/obj/item/reagent_container/food/snacks/donut")
+	can_hold = list(/obj/item/reagent_container/food/snacks/donut)
 	foldable = /obj/item/stack/sheet/cardboard
 
-/obj/item/storage/donut_box/New()
-	..()
-	for(var/i=1; i <= startswith; i++)
+/obj/item/storage/donut_box/Initialize()
+	. = ..()
+	for(var/i in 1 to startswith)
 		new /obj/item/reagent_container/food/snacks/donut/normal(src)
 	update_icon()
 	return

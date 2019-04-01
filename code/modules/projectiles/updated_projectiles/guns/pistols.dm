@@ -57,10 +57,6 @@
 	current_mag = /obj/item/ammo_magazine/pistol
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
-/obj/item/weapon/gun/pistol/m4a3/Initialize()
-	. = ..()
-	select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3)
-
 /obj/item/weapon/gun/pistol/m4a3/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
@@ -74,10 +70,6 @@
 	desc = "An M4A3 Service Pistol, the standard issue sidearm of the TerraGov Marine Corps. Uses 9mm pistol rounds. This one has an ivory-colored grip and has a slide carefully polished yearly by a team of orphan children. Looks like it belongs to a low-ranking officer."
 	icon_state = "m4a3c"
 	item_state = "m4a3c"
-
-/obj/item/weapon/gun/pistol/m4a3/custom/Initialize()
-	. = ..()
-	select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3/custom)
 
 /obj/item/weapon/gun/pistol/m4a3/custom/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/vlow_fire_delay)
