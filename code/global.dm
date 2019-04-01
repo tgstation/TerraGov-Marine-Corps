@@ -1,9 +1,5 @@
 #define GAME_YEAR 2386
 
-var/global/obj/effect/datacore/GLOB.datacore = null
-
-		//items that ask to be called every cycle
-
 var/global/defer_powernet_rebuild = 0		// true if net rebuild will be called manually after an event
 
 var/global/list/global_map = null
