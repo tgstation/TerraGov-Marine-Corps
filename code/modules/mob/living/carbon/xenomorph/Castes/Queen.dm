@@ -634,21 +634,26 @@
 		return canmove
 
 /mob/living/carbon/Xenomorph/Queen/reset_view(atom/A)
-	if (client)
-		if(ovipositor && observed_xeno && !stat)
-			client.perspective = EYE_PERSPECTIVE
-			client.eye = observed_xeno
-		else
-			if (ismovableatom(A))
-				client.perspective = EYE_PERSPECTIVE
-				client.eye = A
-			else
-				if (isturf(loc))
-					client.eye = client.mob
-					client.perspective = MOB_PERSPECTIVE
-				else
-					client.perspective = EYE_PERSPECTIVE
-					client.eye = loc
+	if (!client)
+		return
+
+	if(ovipositor && observed_xeno && !stat)
+		client.perspective = EYE_PERSPECTIVE
+		client.eye = observed_xeno
+		return
+
+	if (ismovableatom(A))
+		client.perspective = EYE_PERSPECTIVE
+		client.eye = A
+		return
+
+	if (isturf(loc))
+		client.eye = client.mob
+		client.perspective = MOB_PERSPECTIVE
+		return
+
+	client.perspective = EYE_PERSPECTIVE
+	client.eye = loc
 
 /mob/living/carbon/Xenomorph/Queen/update_icons()
 	icon = initial(icon)
