@@ -33,6 +33,7 @@
 	title = "Guardsman"
 	comm_title = "Guard"
 	paygrade = "Guard"
+	outfit = /datum/outfit/job/imperial/guardsman
 
 /datum/outfit/job/imperial/guardsman
 	name = "Imperial Guardsman"
@@ -72,6 +73,7 @@
 	comm_title = "Sergeant"
 	skills_type = /datum/skills/imperial/SL
 	paygrade = "Sergeant"
+	outfit = /datum/outfit/job/imperial/sergeant
 
 /datum/outfit/job/imperial/sergeant // don't inherit guardsman equipment
 	name = "Guardsman Sergeant"
@@ -112,6 +114,7 @@
 	comm_title = "Medicae"
 	skills_type = /datum/skills/imperial/medicae
 	paygrade = "Medicae"
+	outfit = /datum/outfit/job/imperial/medicae
 
 /datum/outfit/job/imperial/medicae
 	name = "Guardsman Medicae"

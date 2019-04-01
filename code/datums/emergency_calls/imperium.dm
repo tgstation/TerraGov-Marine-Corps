@@ -43,6 +43,7 @@
 		var/datum/job/J = new /datum/job/imperial/guardsman/medicae
 		J.equip(H)
 		to_chat(H, "<span class='notice'>You are a medicae of the Imperial Guard, a medic.\nYou help fellow guardsmen to live, and if they cannot be saved, you end their suffering.</span><span class='danger'>FOR THE EMPEROR!</span>")
+		medics++
 		return
 	
 	var/datum/job/J = new /datum/job/imperial/guardsman
