@@ -209,10 +209,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	armor = list(melee = 50, bullet = 60, laser = 45, energy = 40, bomb = 40, bio = 15, rad = 15)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
-/obj/item/clothing/suit/storage/marine/leader/New(loc,expected_type = type, new_name[] = list(MAP_ICE_COLONY = "\improper B12 pattern leader snow armor"))
-	select_gamemode_skin(expected_type, new_name)
-	return ..()
-
 /obj/item/clothing/suit/storage/marine/MP
 	name = "\improper N2 pattern MA armor"
 	desc = "A standard TerraGov Navy N2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
