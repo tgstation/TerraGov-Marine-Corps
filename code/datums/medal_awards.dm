@@ -16,7 +16,7 @@ GLOBAL_LIST_EMPTY(medal_awards)
 /proc/give_medal_award(medal_location)
 	var/list/possible_recipients = list("Cancel")
 	var/list/listed_rcpt_ranks = list()
-	for(var/datum/data/record/t in data_core.general)
+	for(var/datum/data/record/t in GLOB.datacore.general)
 		var/rcpt_name = t.fields["name"]
 		listed_rcpt_ranks[rcpt_name] = t.fields["rank"]
 		possible_recipients += rcpt_name

@@ -332,27 +332,27 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 					S.count--
 				H.assigned_squad?.clean_marine_from_squad(H,TRUE) //Remove from squad recods, if any.
 
-			SSticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
+
+			if(isdistress(SSticker?.mode))
+				var/datum/game_mode/distress/D = SSticker.mode
+				D.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
 
 			//Handle job slot/tater cleanup.
 			if(occupant.mind?.assigned_role)
 				var/datum/job/J = SSjob.name_occupations[occupant.mind.assigned_role]
 				J.current_positions--
 
-			//Delete them from datacore.
-			if(PDA_Manifest.len)
-				PDA_Manifest.Cut()
-			for(var/datum/data/record/R in data_core.medical)
+			for(var/datum/data/record/R in GLOB.datacore.medical)
 				if((R.fields["name"] == occupant.real_name))
-					data_core.medical -= R
+					GLOB.datacore.medical -= R
 					qdel(R)
-			for(var/datum/data/record/T in data_core.security)
+			for(var/datum/data/record/T in GLOB.datacore.security)
 				if((T.fields["name"] == occupant.real_name))
-					data_core.security -= T
+					GLOB.datacore.security -= T
 					qdel(T)
-			for(var/datum/data/record/G in data_core.general)
+			for(var/datum/data/record/G in GLOB.datacore.general)
 				if((G.fields["name"] == occupant.real_name))
-					data_core.general -= G
+					GLOB.datacore.general -= G
 					qdel(G)
 
 			if(orient_right)

@@ -53,16 +53,8 @@
 	desc = "This box contains body bags."
 	icon_state = "bodybags"
 	w_class = 3
-/obj/item/storage/box/bodybags/New()
-	..()
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-
+	spawn_type = /obj/item/bodybag
+	spawn_number = 7
 
 /obj/structure/closet/bodybag
 	name = "body bag"
@@ -294,7 +286,7 @@
 		if(ishuman(stasis_mob))
 			if(hasHUD(user,"medical"))
 				var/mob/living/carbon/human/H = stasis_mob
-				for(var/datum/data/record/R in data_core.medical)
+				for(var/datum/data/record/R in GLOB.datacore.medical)
 					if (R.fields["name"] == H.real_name)
 						if(!(R.fields["last_scan_time"]))
 							to_chat(user, "<span class = 'deptradio'>No scan report on record</span>\n")
@@ -317,7 +309,7 @@
 				return
 			if(ishuman(stasis_mob))
 				var/mob/living/carbon/human/H = stasis_mob
-				for(var/datum/data/record/R in data_core.medical)
+				for(var/datum/data/record/R in GLOB.datacore.medical)
 					if (R.fields["name"] == H.real_name)
 						if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
 							usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")

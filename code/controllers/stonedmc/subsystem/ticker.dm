@@ -12,7 +12,6 @@ SUBSYSTEM_DEF(ticker)
 	var/start_immediately = FALSE //If true, there is no lobby phase, the game starts immediately.
 	var/setup_done = FALSE //All game setup done including mode post setup and
 
-	var/hide_mode = FALSE
 	var/datum/game_mode/mode = null
 
 	var/login_music							//Music played in pregame lobby
@@ -33,7 +32,6 @@ SUBSYSTEM_DEF(ticker)
 	var/round_start_time = 0
 	var/list/round_start_events
 	var/list/round_end_events
-	var/mode_result = "undefined"
 	var/end_state = "undefined"
 
 
@@ -47,24 +45,25 @@ SUBSYSTEM_DEF(ticker)
 	'sound/music/BloodUponTheRisers.ogg',
 	'sound/music/DawsonChristian.ogg')
 
-	start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 	return ..()
 
 
 /datum/controller/subsystem/ticker/fire()
 	switch(current_state)
 		if(GAME_STATE_STARTUP)
-			if(Master.initializations_finished_with_no_players_logged_in)
-				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
+			if(Master.initializations_finished_with_no_players_logged_in && !length(GLOB.clients))
+				return
+			start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C)
 			to_chat(world, "<span class='round_body'>Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!</span>")
 			to_chat(world, "<span class='role_body'>Please, setup your character and select ready. Game will start in [CONFIG_GET(number/lobby_countdown)] seconds.</span>")
 			current_state = GAME_STATE_PREGAME
 			fire()
+
 		if(GAME_STATE_PREGAME)
 			if(isnull(time_left))
-				time_left = max(0,start_at - world.time)
+				time_left = max(0, start_at - world.time)
 			if(start_immediately)
 				time_left = 0
 
@@ -81,10 +80,10 @@ SUBSYSTEM_DEF(ticker)
 
 		if(GAME_STATE_SETTING_UP)
 			if(!setup())
-				//setup failed
 				current_state = GAME_STATE_STARTUP
-				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 				time_left = null
+				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
+				start_immediately = FALSE
 				Master.SetRunLevel(RUNLEVEL_LOBBY)
 
 		if(GAME_STATE_PLAYING)
@@ -95,51 +94,26 @@ SUBSYSTEM_DEF(ticker)
 				GLOB.ooc_allowed = TRUE
 				GLOB.dooc_allowed = TRUE
 				mode.declare_completion(force_ending)
-				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "map", "SERVER"), 15 SECONDS)
-				addtimer(CALLBACK(src, .proc/Reboot), 16 SECONDS)
+				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "AUTOMATIC", "AUTOMATIC"), 1 MINUTES)
+				addtimer(CALLBACK(src, .proc/Reboot), 1 MINUTES)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 
 /datum/controller/subsystem/ticker/proc/setup()
 	to_chat(world, "<span class='boldnotice'><b>Enjoy the game!</b></span>")
 	var/init_start = world.timeofday
-		//Create and announce mode
-	var/list/datum/game_mode/runnable_modes
-	if(GLOB.master_mode == "random" || GLOB.master_mode == "secret")
-		runnable_modes = config.get_runnable_modes()
-
-		if(GLOB.master_mode == "secret")
-			hide_mode = 1
-			if(GLOB.secret_force_mode != "secret")
-				var/datum/game_mode/smode = config.pick_mode(GLOB.secret_force_mode)
-				if(!smode.can_start())
-					message_admins("<span class='danger'>Unable to force secret [GLOB.secret_force_mode]. [smode.required_players] players and [smode.required_enemies] eligible antagonists needed.</span>")
-				else
-					mode = smode
-
-		if(!mode)
-			if(!length(runnable_modes))
-				to_chat(world, "<b>Unable to choose playable game mode.</b> Reverting to pre-game lobby.")
-				return FALSE
-			mode = pickweight(runnable_modes)
-			if(!mode)	//too few roundtypes all run too recently
-				mode = pick(runnable_modes)
-
-	else
-		mode = config.pick_mode(GLOB.master_mode)
-		if(!mode.can_start())
-			to_chat(world, "<b>Unable to start [mode.name].</b> Not enough players, [mode.required_players] players and [mode.required_enemies] eligible antagonists needed. Reverting to pre-game lobby.")
-			qdel(mode)
-			mode = null
-			SSjob.ResetOccupations()
-			return FALSE
+	//Create and announce mode
+	mode = config.pick_mode(GLOB.master_mode)
+	if(!mode.can_start())
+		to_chat(world, "<b>Unable to start [mode.name].</b> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
+		QDEL_NULL(mode)
+		SSjob.ResetOccupations()
+		return FALSE
 
 	CHECK_TICK
-	//Configure mode and assign player to special mode stuff
-	var/can_continue = 0
-	can_continue = src.mode.pre_setup()		//Choose antagonists
+	var/can_continue = mode.pre_setup()
 	CHECK_TICK
-	SSjob.DivideOccupations() 				//Distribute jobs
+	SSjob.DivideOccupations() 
 	CHECK_TICK
 
 	if(!GLOB.Debug2)
@@ -152,14 +126,8 @@ SUBSYSTEM_DEF(ticker)
 		message_admins("<span class='notice'>DEBUG: Bypassing prestart checks...</span>")
 
 	CHECK_TICK
-	if(hide_mode)
-		var/list/modes = new
-		for (var/datum/game_mode/M in runnable_modes)
-			modes += M.name
-		modes = sortList(modes)
-		to_chat(world, "<b>The gamemode is: secret!\nPossibilities:</B> [english_list(modes)]")
-	else
-		mode.announce()
+
+	mode.announce()
 
 	if(CONFIG_GET(flag/autooocmute))
 		GLOB.ooc_allowed = TRUE
@@ -171,8 +139,6 @@ SUBSYSTEM_DEF(ticker)
 	reset_squads()
 	equip_characters()
 
-	data_core.manifest()
-
 	transfer_characters()	//transfer keys to the new mobs
 
 	for(var/I in round_start_events)
@@ -181,6 +147,8 @@ SUBSYSTEM_DEF(ticker)
 	LAZYCLEARLIST(round_start_events)
 
 	supply_controller.process()
+
+	GLOB.datacore.manifest()
 
 	log_world("Game start took [(world.timeofday - init_start) / 10]s")
 	round_start_time = world.time
@@ -294,7 +262,6 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/Recover()
 	current_state = SSticker.current_state
 	force_ending = SSticker.force_ending
-	hide_mode = SSticker.hide_mode
 	mode = SSticker.mode
 
 	login_music = SSticker.login_music

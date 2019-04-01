@@ -37,7 +37,7 @@
 	health = 35
 	see_in_dark = 8
 	flags_pass = PASSTABLE | PASSMOB
-	away_timer = 300
+	away_timer = XENO_AFK_TIMER
 	tier = 0  //Larva's don't count towards Pop limits
 	upgrade = -1
 	gib_chance = 25

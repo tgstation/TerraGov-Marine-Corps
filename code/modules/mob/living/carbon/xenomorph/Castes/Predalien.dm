@@ -84,17 +84,6 @@
 		announce_spawn()
 
 /mob/living/carbon/Xenomorph/Predalien/proc/announce_spawn()
-	set waitfor = 0
-	sleep(30)
-	if(!loc) return FALSE
-	if(length(SSticker?.mode?.predators))
-		var/datum/mind/M
-		for(var/i in SSticker.mode.predators)
-			M = i
-			if(M.current && M.current.stat != DEAD)
-				to_chat(M.current, "<span class='event_announcement'>An abomination to your people has been brought onto the world at [get_area(src)]! Hunt it down and destroy it!</span>")
-				M.current.emote("roar")
-
 	to_chat(src,  {"
 <span class='role_body'>|______________________|</span>
 <span class='role_header'>You are a predator-alien hybrid!</span>

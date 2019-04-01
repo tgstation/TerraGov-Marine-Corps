@@ -61,6 +61,10 @@
 
 	"SELECT /mob WHERE client MAP client WHERE holder MAP holder"
 
+	You can also generate a new list on the fly using a selector array. @[] will generate a list of objects based off the selector provided.
+
+	"SELECT /mob/living IN @[/area/crew_quarters/bar MAP contents]"
+
 	What if some dumbass admin spawned a bajillion spiders and you need to kill them all?
 	Oh yeah you'd rather not delete all the spiders in maintenace. Only that one room the spiders were
 	spawned in.
@@ -204,7 +208,7 @@
 			to_chat(usr, results[I])
 
 
-/world/proc/SDQL2_query(query_text, log_entry1, log_entry2)
+/world/proc/SDQL2_query(query_text, log_entry1, log_entry2, irc = FALSE)
 	var/query_log = "executed SDQL query(s): \"[query_text]\"."
 	message_admins("[log_entry1] [query_log]")
 	query_log = "[log_entry2] [query_log]"
@@ -212,6 +216,15 @@
 	NOTICE(query_log)
 
 	var/start_time_total = REALTIMEOFDAY
+
+	if(!irc && lowertext(query_text) == "file")
+		if(usr.client.holder)
+			var/file = input("Select a file:", "File") as null|file
+			if(!file)
+				return
+			usr.client.holder.marked_file = file
+			to_chat(usr, "<span class='notice'>File selected successfully.</span>")
+			return
 
 	if(!length(query_text))
 		return
@@ -239,6 +252,7 @@
 	var/objs_eligible = 0
 	var/selectors_used = FALSE
 	var/list/combined_refs = list()
+	var/list/combined_text = list()
 	do
 		CHECK_TICK
 		finished = TRUE
@@ -259,6 +273,7 @@
 					objs_eligible += islist(query.obj_count_eligible)? length(query.obj_count_eligible) : query.obj_count_eligible
 					selectors_used |= query.where_switched
 					combined_refs |= query.select_refs
+					combined_text |= query.select_text
 					running -= query
 					if(!CHECK_BITFIELD(query.options, SDQL2_OPTION_DO_NOT_AUTOGC))
 						QDEL_IN(query, 50)
@@ -269,9 +284,13 @@
 	while(!finished)
 
 	var/end_time_total = REALTIMEOFDAY - start_time_total
+	if(irc)
+		return list("SDQL query combined results: [query_text]",\
+			"SDQL query completed: [objs_all] objects selected by path, and [selectors_used ? objs_eligible : objs_all] objects executed on after WHERE filtering/MAPping if applicable.",\
+			"SDQL combined querys took [DisplayTimeText(end_time_total)] to complete.", combined_refs, combined_text)
 	return list("<span class='admin'>SDQL query combined results: [query_text]</span>",\
 		"<span class='admin'>SDQL query completed: [objs_all] objects selected by path, and [selectors_used ? objs_eligible : objs_all] objects executed on after WHERE filtering/MAPping if applicable.</span>",\
-		"<span class='admin'>SDQL combined querys took [DisplayTimeText(end_time_total)] to complete.</span>") + combined_refs
+		"<span class='admin'>SDQL combined querys took [DisplayTimeText(end_time_total)] to complete.</span>", combined_refs, combined_text)
 
 
 GLOBAL_LIST_INIT(sdql2_queries, GLOB.sdql2_queries || list())
@@ -552,6 +571,8 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 					objs[j] = SDQL_expression(x, expression)
 					SDQL2_TICK_CHECK
 					SDQL2_HALT_CHECK
+				if(length(objs) == 1 && islist(objs[1]))
+					objs = objs[1]
 
 			if ("where")
 				where_switched = TRUE
@@ -906,12 +927,27 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 				dummy[result] = assoc
 				result = dummy
 			val += result
+
+	else if(expression[i] == "@\[")
+		var/list/search_tree = expression[++i]
+		var/already_searching = (state == SDQL2_STATE_SEARCHING) //In case we nest, don't want to break out of the searching state until we're all done.
+
+		if(!already_searching)
+			state = SDQL2_STATE_SEARCHING
+
+		val = Search(search_tree)
+		SDQL2_STAGE_SWITCH_CHECK
+
+		if(!already_searching)
+			state = SDQL2_STATE_EXECUTING
+		else
+			state = SDQL2_STATE_SEARCHING
+
 	else
 		val = world.SDQL_var(object, expression, i, object, superuser, src)
 		i = expression.len
 
 	return list("val" = val, "i" = i)
-
 
 /proc/SDQL_parse(list/query_list)
 	var/datum/SDQL_parser/parser = new()
@@ -1080,7 +1116,8 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 					"=" = list("", "="),
 					"<" = list("", "=", ">"),
 					">" = list("", "="),
-					"!" = list("", "="))
+					"!" = list("", "="),
+					"@" = list("\["))
 
 	var/word = ""
 	var/list/query_list = list()

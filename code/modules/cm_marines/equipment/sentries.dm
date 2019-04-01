@@ -30,7 +30,7 @@
 					/obj/item/ammo_magazine/sentry,
 					)
 
-/obj/item/storage/box/sentry/New()
+/obj/item/storage/box/sentry/Initialize()
 	. = ..()
 	new /obj/item/device/turret_top(src)
 	new /obj/item/device/turret_tripod(src)
@@ -1237,7 +1237,7 @@
 	ammo = /datum/ammo/bullet/turret/mini //Similar to M39 AP rounds.
 	magazine_type = /obj/item/ammo_magazine/minisentry
 
-/obj/item/storage/box/sentry/New()
+/obj/item/storage/box/sentry/Initialize(mapload, ...)
 	. = ..()
 	update_icon()
 
@@ -1356,18 +1356,18 @@
 	icon_state = "sentry_case"
 	w_class = 5
 	storage_slots = 4
-	can_hold = list(/obj/item/device/marine_turret/mini, //gun itself
-					/obj/item/tool/wrench, //wrench to hold it down into the ground
-					/obj/item/tool/screwdriver, //screw the gun onto the post.
-					/obj/item/ammo_magazine/minisentry)
+	can_hold = list(
+		/obj/item/device/marine_turret/mini, //gun itself
+		/obj/item/tool/wrench, //wrench to hold it down into the ground
+		/obj/item/tool/screwdriver, //screw the gun onto the post.
+		/obj/item/ammo_magazine/minisentry)
 
-/obj/item/storage/box/minisentry/New()
+/obj/item/storage/box/minisentry/Initialize(mapload, ...)
 	. = ..()
-	spawn(1)
-		new /obj/item/device/marine_turret/mini(src) //gun itself
-		new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
-		new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
-		new /obj/item/ammo_magazine/minisentry(src)
+	new /obj/item/device/marine_turret/mini(src) //gun itself
+	new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
+	new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
+	new /obj/item/ammo_magazine/minisentry(src)
 
 /obj/machinery/marine_turret/proc/activate_turret()
 	if(!anchored)

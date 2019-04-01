@@ -52,7 +52,9 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	initialize_marine_armor()
 
-	callHook("startup")
+	load_mode()
+
+	radio_controller = new /datum/controller/radio()
 
 	if(byond_version < RECOMMENDED_VERSION)
 		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
@@ -164,11 +166,6 @@ var/world_topic_spam_protect_time = world.timeofday
 						to_chat(C, "<span class='warning'>You have been inactive for more than 10 minutes and have been disconnected.</span>")
 						qdel(C)
 #undef INACTIVITY_KICK
-
-
-/hook/startup/proc/loadMode()
-	world.load_mode()
-	return TRUE
 
 
 /world/proc/load_mode()

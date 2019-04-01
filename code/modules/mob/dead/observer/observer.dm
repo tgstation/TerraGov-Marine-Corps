@@ -27,8 +27,6 @@
 	universal_speak = TRUE
 	var/atom/movable/following = null
 
-	var/voted_this_drop = FALSE
-
 
 /mob/dead/observer/Initialize()
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
@@ -87,13 +85,15 @@
 				S.clean_marine_from_squad(H)
 
 		mind.transfer_to(target, TRUE)
-		target.fully_replace_character_name(real_name, target.real_name)
 
 		if(!ishuman(target) || !target.job)
+			target.fully_replace_character_name(real_name, target.real_name)
 			return
 
 		var/mob/living/carbon/human/H = target
 		H.set_rank(H.job)
+
+		target.fully_replace_character_name(real_name, target.real_name)
 
 		if(!H.assigned_squad)
 			return
@@ -630,7 +630,7 @@
 	set category = "Ghost"
 	set name = "View Crew Manifest"
 
-	var/dat = data_core.get_manifest()
+	var/dat = GLOB.datacore.get_manifest()
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
 	popup.set_content(dat)
@@ -642,11 +642,15 @@
 	set name = "Join as Xeno"
 	set desc = "Select an alive but logged-out Xenomorph to rejoin the game."
 
-	if(!client || !SSticker.mode.check_xeno_late_join(src))
+	if(!client)
 		return
 
 	if(!SSticker?.mode || SSticker.current_state < GAME_STATE_PLAYING)
 		to_chat(src, "<span class='warning'>The game hasn't started yet!</span>")
+		return
+
+	if(jobban_isbanned(src, ROLE_XENOMORPH) || is_banned_from(ckey, ROLE_XENOMORPH))
+		to_chat(src, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
 		return
 
 	var/choice = alert("Would you like to join as a larva or as a xeno?", "Join as Xeno", "Xeno", "Larva", "Cancel")
@@ -723,49 +727,6 @@
 
 	if(isobserver(ghostmob))
 		qdel(ghostmob)
-
-
-/mob/dead/observer/verb/drop_vote()
-	set category = "Ghost"
-	set name = "Hunter Games Vote"
-	set desc = "If it's on Hunter Games gamemode, vote on who gets a supply drop!"
-
-	if(!SSticker?.mode || SSticker.current_state < GAME_STATE_PLAYING)
-		to_chat(usr, "<span class='warning'>The game hasn't started yet!</span>")
-		return
-
-	if(!istype(SSticker.mode,/datum/game_mode/huntergames))
-		to_chat(usr, "Wrong game mode. You have to be observing a Hunter Games round.")
-		return
-
-	if(!waiting_for_drop_votes)
-		to_chat(usr, "There's no drop vote currently in progress. Wait for a supply drop to be announced!")
-		return
-
-	if(voted_this_drop)
-		to_chat(usr, "You voted for this one already. Only one please!")
-		return
-
-	var/list/mobs = GLOB.alive_mob_list
-	var/target = null
-
-	for(var/mob/living/M in mobs)
-		if(!istype(M,/mob/living/carbon/human) || M.stat || isyautja(M)) mobs -= M
-
-
-	target = input("Please, select a contestant!", "Cake Time", null, null) as null|anything in mobs
-
-	if(!target)
-		return
-
-	to_chat(usr, "Your vote for [target] has been counted!")
-	SSticker.mode:supply_votes += target
-	voted_this_drop = TRUE
-	addtimer(CALLBACK(src, .proc/reset_vote), 3 MINUTES)
-
-
-/mob/dead/observer/proc/reset_vote()
-	voted_this_drop = FALSE
 
 
 /mob/dead/observer/verb/observe()

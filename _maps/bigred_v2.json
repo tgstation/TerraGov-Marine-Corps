@@ -3,5 +3,6 @@
     "map_path": "map_files/BigRed_v2",
     "map_file": "BigRed_v2.dmm",
     "shuttles": {
-    }
+    },
+    "announce_text": "A second generation colony has had a beacon transmitting the same signal, nonstop. Attempts to hail the colony over comms have proved futile. Because the ###SHIPNAME### was at a nearby drydock, it has been dispatched to figure out what's wrong. TGMC, prepare to deploy!"
 }

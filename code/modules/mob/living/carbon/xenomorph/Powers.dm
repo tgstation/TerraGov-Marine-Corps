@@ -1506,8 +1506,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/defiler_count = 0
 	var/larva_list = ""
 	var/larva_count = 0
-	var/stored_larva_count = SSticker.mode.stored_larva
+	var/stored_larva_count = 0
 	var/leader_list = ""
+
+	if(isdistress(SSticker.mode))
+		var/datum/game_mode/distress/D = SSticker.mode
+		stored_larva_count = D.stored_larva
 
 	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
 		if(is_centcom_level(X.z))
