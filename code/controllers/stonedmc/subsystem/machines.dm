@@ -8,8 +8,6 @@ SUBSYSTEM_DEF(machines)
 	var/list/zlevel_cables = list() //up or down cables
 	var/list/currentrunareas = list()
 
-	var/alternate = FALSE
-
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()
 	fire()
