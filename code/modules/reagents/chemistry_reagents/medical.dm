@@ -115,7 +115,7 @@
 /datum/reagent/medicine/tramadol/overdose_crit_process(mob/living/M, alien)
 	M.apply_damage(3, TOX)
 
-/datum/reagent/oxycodone
+/datum/reagent/medicine/oxycodone
 	name = "Oxycodone"
 	id = "oxycodone"
 	description = "An effective and very addictive painkiller."
