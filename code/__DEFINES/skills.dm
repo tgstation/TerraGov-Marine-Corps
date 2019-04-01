@@ -142,9 +142,6 @@
 #define SKILL_PILOT_TRAINED		1 //Pilot
 
 
-//endurance skill TBD
-
-
 
 ////////////////////////////////////////////////
 
