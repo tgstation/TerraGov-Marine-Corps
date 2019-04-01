@@ -141,7 +141,7 @@
 
 	//makes order hud visible
 	var/datum/mob_hud/H = huds[MOB_HUD_ORDER]
-		H.add_hud_to(usr)
+	H.add_hud_to(usr)
 
 
 /mob/living/carbon/human/vv_get_dropdown()
