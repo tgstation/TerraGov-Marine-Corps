@@ -1,6 +1,10 @@
+/mob/living/carbon/proc/has_smoke_protection()
+	return FALSE
 
 /mob/living/carbon/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
+	if(!.)
+		return
 	if(S.smoke_traits & SMOKE_XENO && (stat == DEAD || (istype(buckled, /obj/structure/bed/nest) && status_flags & XENO_HOST)))
 		return
 	if(smoke_delay)
@@ -12,9 +16,6 @@
 		inhale_smoke(S)
 
 /mob/living/carbon/proc/inhale_smoke(obj/effect/particle_effect/smoke/S)
-	. = ..()
-	if(!.)
-		return
 	if(S.smoke_traits & SMOKE_COUGH && prob(30))
 		emote("cough")
 	else if(S.smoke_traits & SMOKE_GASP && prob(30))
@@ -24,7 +25,9 @@
 	if(S.smoke_traits & SMOKE_OXYLOSS)
 		adjustOxyLoss(4)
 	if(S.smoke_traits & SMOKE_SLEEP)
-		Sleeping(1)
+		drowsyness += 6
+		if(drowsyness >= 18)
+			Sleeping(5)
 	if(S.smoke_traits & SMOKE_BLISTERING)
 		adjustFireLoss(2)
 	if(S.smoke_traits & SMOKE_XENO_ACID)
@@ -47,7 +50,7 @@
 		if(prob(50) * protection)
 			to_chat(src, "<span class='danger'>Your skin feels like it is melting away!</span>")
 		adjustFireLoss(S.strength * rand(20, 23) * protection)
-	if(S.smoke_traits & SMOKE_XENO_NEURO && internal && !has_smoke_protection()) //either inhaled or this.
+	if(S.smoke_traits & SMOKE_XENO_NEURO && (internal || has_smoke_protection())) //either inhaled or this.
 		var/reagent_amount = 2 + S.strength
 		reagents.add_reagent("xeno_toxin", round(reagent_amount * protection, 0.1))
 		if(prob(20 * S.strength * protection))

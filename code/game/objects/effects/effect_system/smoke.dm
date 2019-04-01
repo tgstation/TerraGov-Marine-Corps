@@ -212,7 +212,7 @@
 /obj/effect/particle_effect/smoke/flashbang
 	name = "illumination"
 	lifetime = 2
-	opacity = 0
+	smoke_traits = NONE
 	icon_state = "sparks"
 	icon = 'icons/effects/effects.dmi'
 
