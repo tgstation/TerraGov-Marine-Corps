@@ -114,7 +114,7 @@
 	if(!A.is_injectable() && !ismob(A))
 		to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 		return
-	if(skilllock && user.mind?.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
+	if(skilllock && user.mind?.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_NOVICE)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use the [src].</span>")
 		if(!do_after(user, SKILL_TASK_EASY, TRUE, 5, BUSY_ICON_BUILD))

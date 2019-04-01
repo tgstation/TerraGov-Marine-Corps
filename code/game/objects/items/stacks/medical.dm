@@ -59,7 +59,7 @@
 		var/mob/living/carbon/human/H = M
 
 		if(user.mind && user.mind.cm_skills)
-			if(user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
+			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
 				if(!do_mob(user, M, 10, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 					return TRUE
 
@@ -109,7 +109,7 @@
 		var/mob/living/carbon/human/H = M
 
 		if(user.mind && user.mind.cm_skills)
-			if(user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
+			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
 				if(!do_mob(user, M, 10, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 					return TRUE
 
@@ -188,7 +188,7 @@
 
 		var/heal_amt = heal_brute
 		if(user.mind && user.mind.cm_skills)
-			if(user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC) //untrained marines have a hard time using it
+			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED) //untrained marines have a hard time using it
 				to_chat(user, "<span class='warning'>You start fumbling with [src].</span>")
 				if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 					return
@@ -246,7 +246,7 @@
 
 		var/heal_amt = heal_burn
 		if(user.mind && user.mind.cm_skills)
-			if(user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC) //untrained marines have a hard time using it
+			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED) //untrained marines have a hard time using it
 				to_chat(user, "<span class='warning'>You start fumbling with [src].</span>")
 				if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 					return
