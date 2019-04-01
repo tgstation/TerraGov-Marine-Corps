@@ -1476,16 +1476,6 @@
 	dir = 2
 	},
 /area/syndicate_station)
-"dN" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_container/glass/beaker/cryopredmix,
-/obj/item/reagent_container/glass/beaker/cryopredmix,
-/obj/item/reagent_container/glass/beaker/cryopredmix,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/syndicate_station)
 "dO" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/atmospherics/components/unary/portables_connector{
@@ -22519,7 +22509,7 @@ dr
 dw
 cK
 cK
-dN
+cP
 cf
 aa
 aa

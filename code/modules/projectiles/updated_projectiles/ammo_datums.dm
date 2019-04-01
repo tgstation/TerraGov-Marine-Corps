@@ -595,7 +595,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species && H.species.count_human) //no effect on synths or preds.
+		if(H.species?.count_human) //no effect on synths
 			H.apply_effects(6,8)
 		shake_camera(H, 2, 1)
 
