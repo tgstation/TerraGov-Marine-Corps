@@ -114,7 +114,7 @@
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade2, /datum/ammo/xeno/acid/heavy)
 
 	// *** Pheromones *** //
-	aura_strength = 4.2
+	aura_strength = 4
 
 /datum/xeno_caste/praetorian/ancient
 	upgrade_name = "Ancient"

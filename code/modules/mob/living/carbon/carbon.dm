@@ -160,19 +160,16 @@
 	if(selhand != src.hand)
 		swap_hand()
 
-/mob/living/carbon/proc/vomit()
 
-	var/mob/living/carbon/human/H = src
-	if(istype(H) && H.species.species_flags & IS_SYNTHETIC)
-		return //Machines don't throw up.
-
+/mob/living/carbon/vomit()
 	if(stat == DEAD) //Corpses don't puke
 		return
 
 	if(!lastpuke)
 		lastpuke = TRUE
 		to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
-		addtimer(CALLBACK(src, .do_vomit), 5 SECONDS)
+		addtimer(CALLBACK(src, .proc/do_vomit), 5 SECONDS)
+
 
 /mob/living/carbon/proc/do_vomit()
 	Stun(5)
@@ -185,7 +182,7 @@
 
 	nutrition = max(nutrition - 40, 0)
 	adjustToxLoss(-3)
-	addtimer(CALLBACK(src, .do_vomit_cooldown), 35 SECONDS) //wait 35 seconds before next volley
+	addtimer(CALLBACK(src, .proc/do_vomit_cooldown), 35 SECONDS) //wait 35 seconds before next volley
 
 /mob/living/carbon/proc/do_vomit_cooldown()
 	lastpuke = FALSE

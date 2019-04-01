@@ -10,9 +10,6 @@
 
 #define MAX_GEAR_COST 5 //Custom loadout point limit.
 
-//Number of marine players against which the Marine's gear scales
-#define MARINE_GEAR_SCALING_NORMAL 30
-
 #define BE_ALIEN		(1<<0)
 #define BE_QUEEN		(1<<1)
 #define BE_SURVIVOR		(1<<2)
@@ -26,8 +23,9 @@
 #define GHOST_HUD_SEC 	(1<<1)
 #define GHOST_HUD_SQUAD	(1<<2)
 #define GHOST_HUD_XENO	(1<<3)
+#define GHOST_HUD_ORDER	(1<<4)
 
-#define TOGGLES_GHOSTHUD_DEFAULT (GHOST_HUD_MED|GHOST_HUD_SQUAD|GHOST_HUD_XENO)
+#define TOGGLES_GHOSTHUD_DEFAULT (GHOST_HUD_MED|GHOST_HUD_SQUAD|GHOST_HUD_XENO|GHOST_HUD_ORDER)
 
 
 #define SOUND_ADMINHELP	(1<<0)

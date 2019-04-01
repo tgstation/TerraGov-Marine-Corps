@@ -24,4 +24,3 @@ endmap
 
 map prison_station_fop
 endmap
-

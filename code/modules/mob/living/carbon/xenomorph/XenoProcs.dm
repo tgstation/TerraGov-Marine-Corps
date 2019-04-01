@@ -3,15 +3,16 @@
 
 
 //Send a message to all xenos. Mostly used in the deathgasp display
-/proc/xeno_message(var/message = null, var/size = 3, var/hivenumber = XENO_HIVE_NORMAL)
+/proc/xeno_message(message, size = 3, hivenumber = XENO_HIVE_NORMAL)
 	if(!message)
 		return
 
-	if(length(SSticker?.mode?.xenomorphs)) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
-		for(var/datum/mind/L in SSticker.mode.xenomorphs)
-			var/mob/living/carbon/Xenomorph/M = L.current
-			if(M && istype(M) && !M.stat && M.client && hivenumber == M.hivenumber) //Only living and connected xenos
-				to_chat(M, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
+	for(var/x in GLOB.alive_xeno_list)
+		var/mob/living/carbon/Xenomorph/X = x
+		if(X.hivenumber != hivenumber)
+			continue
+		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
+
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
@@ -332,6 +333,9 @@
 		for(var/atom/movable/S in stomach_contents)
 			stomach_contents.Remove(S)
 			S.forceMove(get_turf(src))
+			if(isliving(S))
+				var/mob/living/M = S
+				M.adjust_blindness(-1)
 
 	if(contents.len) //Get rid of anything that may be stuck inside us as well
 		for(var/atom/movable/A in contents)

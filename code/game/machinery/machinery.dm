@@ -219,7 +219,7 @@ Class Procs:
 	if(A && A.master)
 		A.master.powerupdate = 1
 
-/obj/machinery/power_change()
+/obj/machinery/proc/power_change()
 	if(!powered(power_channel) && (machine_current_charge <= 0))
 		machine_stat |= NOPOWER
 	else
@@ -379,7 +379,7 @@ Class Procs:
 
 obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_implants)
 	var/datum/data/record/N = null
-	for(var/datum/data/record/R in data_core.medical)
+	for(var/datum/data/record/R in GLOB.datacore.medical)
 		if (R.fields["name"] == H.real_name)
 			N = R
 	if(isnull(N))
