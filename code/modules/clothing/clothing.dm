@@ -174,7 +174,6 @@
 	flags_armor_protection = HANDS
 	flags_equip_slot = ITEM_SLOT_GLOVES
 	attack_verb = list("challenged")
-	species_restricted = list("exclude","Yautja")
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/gloves.dmi')
 
 
@@ -210,8 +209,6 @@
 		clipped = 1
 		name = "mangled [name]"
 		desc = "[desc]<br>They have had the fingertips cut off of them."
-		if("exclude" in species_restricted)
-			species_restricted -= "Yautja"
 
 
 
@@ -254,7 +251,6 @@
 	flags_equip_slot = ITEM_SLOT_FEET
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
-	species_restricted = list("exclude","Yautja")
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/shoes.dmi')
 
 

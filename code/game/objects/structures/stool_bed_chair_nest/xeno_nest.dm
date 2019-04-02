@@ -105,10 +105,6 @@
 		to_chat(user, "<span class='warning'>Gross! You're not touching that stuff.</span>")
 		return
 
-	if(isyautja(M))
-		to_chat(user, "<span class='warning'>\The [M] seems to be wearing some kind of resin-resistant armor!</span>")
-		return
-
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.recently_unbuckled)

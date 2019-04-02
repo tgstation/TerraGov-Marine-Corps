@@ -386,10 +386,3 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 
 	SSevacuation.initiate_self_destruct(TRUE) //The round ends as soon as this happens, or it should.
 	return TRUE
-
-/obj/item/disk/nuclear/Destroy()
-	if(GLOB.yautja_teleport_loc.len > 0)
-		var/obj/D = new /obj/item/disk/nuclear(pick(GLOB.yautja_teleport_loc))
-		message_admins("[src] has been destroyed. Spawning [D] at [AREACOORD(D.loc)].")
-		log_game("[src] has been destroyed. Spawning [D] at [ADMIN_VERBOSEJMP(D.loc)].")
-	. = ..()

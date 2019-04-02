@@ -74,8 +74,6 @@
 #define ui_alien_oxygen "EAST-1:28,11:25"
 #define ui_alien_resist "EAST-4:20,1:5"
 
-#define ui_predator_power "EAST-1:28,9:13"
-
 //Middle right (status indicators)
 #define ui_nutrition "EAST-1:28,5:11"
 #define ui_temp "EAST-1:28,6:13"

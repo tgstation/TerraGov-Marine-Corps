@@ -23081,10 +23081,6 @@
 	dir = 9
 	},
 /area/ice_colony/underground/hangar)
-"bil" = (
-/obj/effect/landmark/pred_teleport_destination,
-/turf/open/snow/layer0,
-/area/ice_colony/exterior/surface/valley/south/excavation)
 "bim" = (
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "req_sec_storage";
@@ -73310,7 +73306,7 @@ bbX
 bbK
 bXq
 bhT
-bil
+bbK
 caB
 bbK
 bbK

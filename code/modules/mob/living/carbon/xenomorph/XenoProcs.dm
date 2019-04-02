@@ -264,20 +264,6 @@
 							throwing = FALSE //Reset throwing manually.
 							return FALSE
 
-						if(isyautja(H))
-							if(H.check_shields(0, "the pounce", 1))
-								visible_message("<span class='danger'>[H] blocks the pounce of [src] with the combistick!</span>",
-												"<span class='xenodanger'>[H] blocks your pouncing form with the combistick!</span>", null, 5)
-								KnockDown(5)
-								throwing = FALSE
-								return FALSE
-							else if(prob(75)) //Body slam the fuck out of xenos jumping at your front.
-								visible_message("<span class='danger'>[H] body slams [src]!</span>",
-												"<span class='xenodanger'>[H] body slams you!</span>", null, 5)
-								KnockDown(4)
-								throwing = FALSE
-								return FALSE
-
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
 									"<span class='xenodanger'>You pounce on [M]!</span>", null, 5)
 					M.KnockDown(1)
@@ -305,8 +291,6 @@
 				if(RAV_CHARGE_TYPE) //Ravagers plow straight through humans; we only stop on hitting a dense turf
 					return FALSE
 
-				if(4) //Predalien.
-					M.attack_alien(src) //Free hit/grab/tackle. Does not weaken, and it's just a regular slash if they choose to do that.
 		throwing = FALSE //Resert throwing since something was hit.
 		reset_movement()
 		return TRUE
