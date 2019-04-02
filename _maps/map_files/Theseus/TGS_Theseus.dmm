@@ -238,14 +238,9 @@
 	},
 /area/almayer/evacuation/pod7)
 "aaI" = (
-/obj/machinery/door/firedoor/theseus{
-	dir = 2
-	},
-/turf/open/floor/almayer{
-	tag = "icon-test_floor4";
-	icon_state = "test_floor4"
-	},
-/area/almayer/hallways/aft_hallway)
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
 "aaJ" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall13";
@@ -460,6 +455,10 @@
 	tag = "icon-red"
 	},
 /area/almayer/hallways/aft_hallway)
+"abo" = (
+/obj/structure/largecrate/random/barrel/white,
+/turf/open/floor/plating/plating_catwalk,
+/area/almayer/command/self_destruct)
 "abp" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall9";
@@ -506,6 +505,29 @@
 	},
 /turf/closed/wall/almayer,
 /area/almayer/hallways/aft_hallway)
+"abw" = (
+/obj/machinery/door/airlock/almayer/secure{
+	name = "\improper Self Destruct Control Room"
+	},
+/turf/open/floor/almayer,
+/area/almayer/command/self_destruct)
+"abx" = (
+/obj/machinery/status_display{
+	pixel_y = 30
+	},
+/turf/open/floor/almayer{
+	tag = "icon-orange (NORTH)";
+	icon_state = "orange";
+	dir = 1
+	},
+/area/almayer/command/self_destruct)
+"aby" = (
+/turf/open/floor/almayer{
+	tag = "icon-orange (NORTH)";
+	icon_state = "orange";
+	dir = 1
+	},
+/area/almayer/command/self_destruct)
 "abz" = (
 /obj/structure/cable{
 	d2 = 2;
@@ -516,6 +538,30 @@
 	},
 /turf/open/floor/grass,
 /area/almayer/living/starboard_garden)
+"abA" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/turf/open/floor/almayer{
+	tag = "icon-orange (NORTH)";
+	icon_state = "orange";
+	dir = 1
+	},
+/area/almayer/command/self_destruct)
+"abB" = (
+/obj/machinery/light/small,
+/turf/open/floor/plating/plating_catwalk,
+/area/almayer/command/self_destruct)
+"abC" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
 "abD" = (
 /obj/item/device/radio/intercom/general{
 	dir = 1
@@ -618,6 +664,15 @@
 "abV" = (
 /turf/closed/wall/almayer/outer,
 /area/almayer/living/commandbunks)
+"abW" = (
+/obj/structure/table/almayer,
+/obj/item/device/lightreplacer,
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
+"abX" = (
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
 "abY" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
@@ -629,6 +684,15 @@
 "aca" = (
 /turf/open/floor/grass,
 /area/almayer/living/starboard_garden)
+"acb" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/almayer,
+/area/almayer/command/self_destruct)
 "acc" = (
 /obj/machinery/light{
 	dir = 1
@@ -651,11 +715,46 @@
 "acg" = (
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/upper_hull)
+"ach" = (
+/obj/structure/window/framed/almayer/hull,
+/turf/open/floor/plating,
+/area/space)
+"aci" = (
+/obj/machinery/door/airlock/almayer/maint{
+	dir = 2;
+	req_access_txt = "0";
+	req_one_access_txt = "2;7"
+	},
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
+"acj" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/almayer,
+/obj/machinery/computer/emails,
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
 "acl" = (
 /obj/machinery/camera/autoname/almayer,
 /obj/machinery/light,
 /turf/open/floor/grass,
 /area/almayer/living/starboard_garden)
+"acn" = (
+/obj/structure/table/almayer,
+/obj/item/clipboard,
+/obj/item/paper,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
+"aco" = (
+/turf/open/floor/almayer{
+	tag = "icon-test_floor4";
+	icon_state = "test_floor4"
+	},
+/area/almayer/command/self_destruct)
 "acp" = (
 /turf/open/floor/wood,
 /area/almayer/living/officer_rnr)
@@ -899,6 +998,22 @@
 /obj/structure/bed/stool,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/starboard_garden)
+"acZ" = (
+/obj/machinery/door/poddoor/almayer{
+	dir = 4;
+	unacidable = 1
+	},
+/turf/open/floor/almayer,
+/area/almayer/command/self_destruct)
+"ada" = (
+/turf/open/floor/almayer{
+	tag = "icon-test_floor4";
+	icon_state = "test_floor4"
+	},
+/area/space)
+"adb" = (
+/turf/open/floor/almayer,
+/area/space)
 "adc" = (
 /obj/structure/table/almayer,
 /obj/structure/cable{
@@ -963,6 +1078,13 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/numbertwobunks)
+"adm" = (
+/obj/machinery/door/poddoor/almayer{
+	dir = 4;
+	unacidable = 1
+	},
+/turf/open/floor/almayer,
+/area/space)
 "adn" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hop,
@@ -982,6 +1104,21 @@
 "adq" = (
 /turf/closed/wall/almayer,
 /area/almayer/living/commandbunks)
+"adr" = (
+/obj/machinery/door/airlock/almayer/secure{
+	dir = 2;
+	name = "\improper Exterior Airlock";
+	req_access_txt = "0"
+	},
+/turf/open/floor/almayer,
+/area/almayer/command/self_destruct)
+"ads" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/window/framed/almayer,
+/turf/open/floor/plating,
+/area/almayer/command/self_destruct)
 "adt" = (
 /obj/structure/table/almayer,
 /obj/machinery/computer/card,
@@ -992,6 +1129,20 @@
 /obj/machinery/computer/security/almayer_network,
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
+"adv" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/almayer/command/self_destruct)
+"adw" = (
+/obj/machinery/light/small,
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25
+	},
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
 "adx" = (
 /turf/open/floor/almayer/mono,
 /area/almayer/living/starboard_garden)
@@ -1176,6 +1327,10 @@
 /obj/item/tool/pen/blue,
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
+"adU" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
 "adV" = (
 /obj/structure/bed/chair/comfy/black,
 /turf/open/floor/wood,
@@ -1224,6 +1379,20 @@
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/hallways/aft_hallway)
+"aed" = (
+/obj/machinery/power/apc/almayer/hardened{
+	dir = 4
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/almayer{
+	dir = 8;
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
+	},
+/area/almayer/command/self_destruct)
 "aee" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -1342,10 +1511,28 @@
 	},
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
+"aew" = (
+/obj/structure/prop/almayer/sensor_computer1{
+	name = "self destruct status computer"
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/almayer/command/self_destruct)
 "aex" = (
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
+"aey" = (
+/obj/structure/prop/almayer/sensor_computer2{
+	name = "self destruct regulator"
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/almayer/command/self_destruct)
 "aez" = (
 /obj/machinery/light{
 	dir = 4
@@ -1381,6 +1568,21 @@
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/hallways/aft_hallway)
+"aeF" = (
+/obj/structure/prop/almayer/sensor_computer3{
+	name = "tempature regulator"
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/almayer/command/self_destruct)
+"aeG" = (
+/turf/open/floor/almayer{
+	tag = "icon-orangecorner";
+	icon_state = "orangecorner"
+	},
+/area/almayer/command/self_destruct)
 "aeH" = (
 /obj/effect/landmark/shuttle_loc/marine_src/evacuation{
 	name = "2"
@@ -1567,6 +1769,42 @@
 	},
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
+"afh" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
+"afi" = (
+/obj/structure/table/almayer,
+/obj/item/device/binoculars,
+/obj/machinery/computer/security/almayer{
+	dir = 8;
+	name = "Ship Security Cameras";
+	network = list("almayer");
+	pixel_x = -17
+	},
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
+"afj" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
+"afk" = (
+/turf/open/floor/almayer{
+	dir = 4;
+	icon_state = "orange";
+	tag = "icon-orange"
+	},
+/area/almayer/command/self_destruct)
+"afl" = (
+/obj/structure/table/almayer,
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
 "afm" = (
 /obj/machinery/door/firedoor/theseus{
 	dir = 2
@@ -1576,6 +1814,27 @@
 	icon_state = "test_floor4"
 	},
 /area/almayer/hallways/aft_hallway)
+"afn" = (
+/obj/machinery/suit_storage_unit/carbon_unit,
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
+"afo" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
+"afp" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/almayer/command/self_destruct)
 "afq" = (
 /obj/machinery/light{
 	dir = 8
@@ -1586,6 +1845,12 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/officer_rnr)
+"afr" = (
+/obj/structure/table/almayer,
+/obj/item/paper_bin,
+/obj/item/tool/pen,
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
 "afs" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -1597,6 +1862,16 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/officer_rnr)
+"aft" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/security/almayer{
+	dir = 8;
+	name = "Ship Security Cameras";
+	network = list("almayer");
+	pixel_x = -17
+	},
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
 "afu" = (
 /turf/open/floor/almayer,
 /area/almayer/living/officer_rnr)
@@ -1815,6 +2090,16 @@
 	tag = "icon-orange"
 	},
 /area/almayer/hull/upper_hull)
+"afY" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25
+	},
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
 "afZ" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -1826,6 +2111,14 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/numbertwobunks)
+"aga" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/station_alert,
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/almayer/command/self_destruct)
 "agb" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1872,6 +2165,39 @@
 /mob/living/simple_animal/cat/Jones,
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
+"agi" = (
+/obj/structure/table/almayer,
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/almayer/command/self_destruct)
+"agj" = (
+/turf/open/floor/almayer{
+	tag = "icon-orangecorner (EAST)";
+	icon_state = "orangecorner";
+	dir = 4
+	},
+/area/almayer/command/self_destruct)
+"agk" = (
+/obj/machinery/door/airlock/almayer/secure{
+	dir = 2;
+	name = "\improper Exterior Airlock";
+	req_access_txt = "0"
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/almayer,
+/area/almayer/command/self_destruct)
+"agl" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/almayer,
+/obj/machinery/computer/atmos_alert,
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
 "agm" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/machinery/light,
@@ -1902,6 +2228,16 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/aft_hallway)
+"agr" = (
+/obj/structure/prop/almayer/mission_planning_system{
+	desc = "This gathers all information about the Self-Destruct and pools it into one repository.";
+	name = "self destruct information tower"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
 "ags" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -1910,6 +2246,42 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/starboard_garden)
+"agt" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/almayer/command/self_destruct)
+"agu" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25
+	},
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25
+	},
+/obj/structure/rack,
+/obj/item/device/lightreplacer,
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
+"agv" = (
+/obj/machinery/power/port_gen/pacman,
+/turf/open/floor/plating/plating_catwalk,
+/area/almayer/command/self_destruct)
+"agw" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/security/almayer,
+/turf/open/floor/almayer/mono,
+/area/almayer/command/self_destruct)
+"agx" = (
+/turf/open/floor/almayer{
+	dir = 2;
+	icon_state = "orange";
+	tag = "icon-orange (NORTH)"
+	},
+/area/almayer/command/self_destruct)
 "agy" = (
 /obj/structure/table/almayer,
 /obj/item/cell/high,
@@ -1926,6 +2298,19 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/almayer,
 /area/almayer/living/officer_rnr)
+"agA" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/almayer{
+	dir = 2;
+	icon_state = "orange";
+	tag = "icon-orange (NORTH)"
+	},
+/area/almayer/command/self_destruct)
 "agB" = (
 /obj/structure/table/almayer,
 /obj/item/tool/pen,
@@ -2185,6 +2570,15 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/numbertwobunks)
+"ahk" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "84"
+	},
+/area/shuttle/drop1/sulaco)
 "ahl" = (
 /obj/effect/landmark/start/marine/synthetic,
 /turf/open/floor/almayer{
@@ -2197,6 +2591,15 @@
 /obj/effect/landmark/start/marine/masteratarms,
 /turf/open/floor/carpet,
 /area/almayer/shipboard/brig)
+"ahn" = (
+/obj/effect/attach_point/electronics/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "85"
+	},
+/area/shuttle/drop1/sulaco)
 "aho" = (
 /obj/item/clothing/under/redpyjamas{
 	pixel_y = 5
@@ -2237,6 +2640,15 @@
 /obj/item/book/manual/marine_law,
 /turf/open/floor/carpet,
 /area/almayer/shipboard/brig)
+"ahs" = (
+/obj/effect/attach_point/electronics/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "90"
+	},
+/area/shuttle/drop1/sulaco)
 "aht" = (
 /obj/machinery/vending/engineering,
 /turf/open/floor/almayer{
@@ -2268,6 +2680,25 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/commandbunks)
+"ahx" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "91"
+	},
+/area/shuttle/drop1/sulaco)
+"ahy" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "61"
+	},
+/area/shuttle/drop1/sulaco)
 "ahz" = (
 /obj/structure/window/framed/almayer/hull,
 /turf/open/floor/plating,
@@ -2326,6 +2757,16 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/aft_hallway)
+"ahI" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 4;
+	icon_state = "equip_base_r_wing"
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "65"
+	},
+/area/shuttle/drop1/sulaco)
 "ahJ" = (
 /obj/structure/window/framed/almayer,
 /obj/structure/window/framed/almayer,
@@ -6488,33 +6929,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/almayer/mono,
 /area/almayer/command/self_destruct)
-"aqG" = (
-/obj/structure/prop/almayer/sensor_computer1{
-	name = "self destruct status computer"
-	},
-/turf/open/floor/almayer/mono,
-/area/almayer/command/self_destruct)
-"aqH" = (
-/obj/structure/prop/almayer/sensor_computer2{
-	name = "self destruct regulator"
-	},
-/turf/open/floor/almayer/mono,
-/area/almayer/command/self_destruct)
-"aqI" = (
-/obj/structure/prop/almayer/sensor_computer3{
-	name = "tempature regulator"
-	},
-/turf/open/floor/almayer/mono,
-/area/almayer/command/self_destruct)
-"aqJ" = (
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
-/obj/structure/table/almayer,
-/obj/item/paper_bin,
-/obj/item/tool/pen,
-/turf/open/floor/almayer/mono,
-/area/almayer/command/self_destruct)
 "aqK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -7277,33 +7691,6 @@
 /area/almayer/hull/upper_hull)
 "asv" = (
 /turf/closed/wall/almayer,
-/area/almayer/command/self_destruct)
-"asx" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/almayer/command/self_destruct)
-"asy" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/almayer/command/self_destruct)
-"asz" = (
-/obj/structure/table/almayer,
-/obj/item/clipboard,
-/obj/item/paper,
-/turf/open/floor/almayer/mono,
 /area/almayer/command/self_destruct)
 "asA" = (
 /turf/closed/wall/almayer/outer,
@@ -8091,15 +8478,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/command/self_destruct)
-"aum" = (
-/obj/machinery/door/airlock/almayer/secure{
-	name = "\improper Self Destruct Control Room"
-	},
-/turf/open/floor/almayer{
-	tag = "icon-sterile";
-	icon_state = "sterile"
-	},
-/area/almayer/command/self_destruct)
 "aun" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -8124,12 +8502,6 @@
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
-/area/almayer/command/self_destruct)
-"auq" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/almayer/mono,
 /area/almayer/command/self_destruct)
 "aur" = (
 /obj/machinery/light{
@@ -8946,11 +9318,6 @@
 	icon_state = "tcomms"
 	},
 /area/almayer/command/self_destruct)
-"awc" = (
-/obj/structure/table/almayer,
-/obj/item/tool/crowbar,
-/turf/open/floor/almayer/mono,
-/area/almayer/command/self_destruct)
 "awd" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/almayer{
@@ -9469,14 +9836,6 @@
 /obj/structure/window/framed/almayer,
 /turf/open/floor/plating,
 /area/almayer/command/self_destruct)
-"axs" = (
-/obj/machinery/door/airlock/almayer/secure{
-	dir = 2;
-	name = "\improper Exterior Airlock";
-	req_access_txt = "0"
-	},
-/turf/open/floor/almayer/mono,
-/area/almayer/command/self_destruct)
 "axt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9687,6 +10046,14 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/door/poddoor/almayer{
+	density = 0;
+	dir = 2;
+	icon_state = "pdoor0";
+	id = "CIC Lockdown";
+	name = "\improper Combat Information Center Blast Door";
+	opacity = 0
 	},
 /turf/open/floor/plating,
 /area/almayer/command/cic)
@@ -10447,6 +10814,12 @@
 /turf/open/floor/almayer,
 /area/almayer/command/self_destruct)
 "azk" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
@@ -13661,21 +14034,6 @@
 	icon_state = "tcomms"
 	},
 /area/almayer/engineering/upper_engineering)
-"aFr" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/almayer/command/self_destruct)
-"aFs" = (
-/obj/structure/table/almayer,
-/obj/item/paper_bin,
-/turf/open/floor/almayer/mono,
-/area/almayer/command/self_destruct)
 "aFt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -14547,15 +14905,6 @@
 /obj/machinery/light,
 /turf/open/floor/almayer/mono,
 /area/almayer/command/self_destruct)
-"aHm" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/table/almayer,
-/obj/item/folder/black,
-/obj/item/tool/pen,
-/turf/open/floor/almayer/mono,
-/area/almayer/command/self_destruct)
 "aHn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/firedoor/theseus{
@@ -15079,31 +15428,6 @@
 /obj/item/clothing/mask/gas,
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/upper_engineering)
-"aIt" = (
-/obj/structure/prop/almayer/mission_planning_system{
-	desc = "This gathers all information about the Self-Destruct and pools it into one repository.";
-	name = "self destruct information tower"
-	},
-/turf/open/floor/almayer/mono,
-/area/almayer/command/self_destruct)
-"aIu" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/almayer/command/self_destruct)
-"aIv" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/almayer/command/self_destruct)
 "aIw" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -15643,17 +15967,6 @@
 "aJM" = (
 /obj/machinery/light/small{
 	dir = 1
-	},
-/turf/open/floor/almayer/mono,
-/area/almayer/command/self_destruct)
-"aJO" = (
-/obj/structure/table/almayer,
-/obj/machinery/prop/almayer/computer,
-/turf/open/floor/almayer/mono,
-/area/almayer/command/self_destruct)
-"aJP" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/command/self_destruct)
@@ -17113,6 +17426,14 @@
 /obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
+/obj/machinery/door/poddoor/almayer{
+	density = 0;
+	dir = 2;
+	icon_state = "pdoor0";
+	id = "CIC Lockdown";
+	name = "\improper Combat Information Center Blast Door";
+	opacity = 0
+	},
 /turf/open/floor/almayer{
 	tag = "icon-sterile";
 	icon_state = "sterile"
@@ -17619,6 +17940,14 @@
 "aNF" = (
 /obj/structure/window/framed/almayer,
 /obj/machinery/door/firedoor/theseus,
+/obj/machinery/door/poddoor/almayer{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "CIC Lockdown";
+	name = "\improper Combat Information Center Blast Door";
+	opacity = 0
+	},
 /turf/open/floor/plating,
 /area/almayer/living/captain_mess)
 "aNG" = (
@@ -17634,6 +17963,14 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/door/poddoor/almayer{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "CIC Lockdown";
+	name = "\improper Combat Information Center Blast Door";
+	opacity = 0
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/captain_mess)
@@ -26308,15 +26645,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/hangar)
-"bjH" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "84"
-	},
-/area/shuttle/drop1/sulaco)
 "bjI" = (
 /obj/machinery/door/poddoor/almayer{
 	density = 0;
@@ -30357,15 +30685,6 @@
 	tag = "icon-sterile"
 	},
 /area/almayer/medical/lower_medical)
-"bsF" = (
-/obj/effect/attach_point/electronics/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "85"
-	},
-/area/shuttle/drop1/sulaco)
 "bsG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -30399,15 +30718,6 @@
 	tag = "icon-sterile_green_side"
 	},
 /area/almayer/medical/operating_room_one)
-"bsM" = (
-/obj/effect/attach_point/electronics/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "90"
-	},
-/area/shuttle/drop1/sulaco)
 "bsN" = (
 /obj/structure/barricade/metal{
 	dir = 8
@@ -31026,25 +31336,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
-"bul" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "91"
-	},
-/area/shuttle/drop1/sulaco)
-"bum" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "61"
-	},
-/area/shuttle/drop1/sulaco)
 "bun" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/almayer{
@@ -32380,16 +32671,6 @@
 	tag = "icon-sterile_green_side"
 	},
 /area/almayer/medical/surgery_hallway)
-"bxr" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 4;
-	icon_state = "equip_base_r_wing"
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "65"
-	},
-/area/shuttle/drop1/sulaco)
 "bxt" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -33232,16 +33513,6 @@
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,
-/area/almayer/living/briefing)
-"bzl" = (
-/obj/machinery/door/firedoor/theseus,
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
-/turf/open/floor/almayer{
-	tag = "icon-test_floor4";
-	icon_state = "test_floor4"
-	},
 /area/almayer/living/briefing)
 "bzm" = (
 /obj/structure/table/almayer,
@@ -47999,6 +48270,14 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/door/poddoor/almayer{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "CIC Lockdown";
+	name = "\improper Combat Information Center Blast Door";
+	opacity = 0
+	},
 /turf/open/floor/almayer,
 /area/almayer/living/captain_mess)
 "chl" = (
@@ -49128,6 +49407,26 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/shipboard/weapon_room)
+"ckj" = (
+/obj/machinery/door/airlock/almayer/command{
+	dir = 2
+	},
+/obj/machinery/door/firedoor/theseus{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/almayer{
+	density = 0;
+	dir = 2;
+	icon_state = "pdoor0";
+	id = "CIC Lockdown";
+	name = "\improper Combat Information Center Blast Door";
+	opacity = 0
+	},
+/turf/open/floor/almayer{
+	tag = "icon-sterile";
+	icon_state = "sterile"
+	},
+/area/almayer/command/cic)
 "ckm" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -50862,12 +51161,6 @@
 	icon_state = "cargo"
 	},
 /area/almayer/hull/upper_hull)
-"mER" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/almayer/mono,
-/area/almayer/command/self_destruct)
 "mGX" = (
 /turf/open/floor/almayer{
 	dir = 1;
@@ -50936,18 +51229,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/almayer,
 /area/almayer/shipboard/weapon_room)
-"nfT" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/almayer/command/self_destruct)
 "nlp" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4;
@@ -51024,16 +51305,18 @@
 	tag = "icon-red"
 	},
 /area/almayer/shipboard/weapon_room)
-"nUy" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
+"nUt" = (
+/obj/structure/window/framed/almayer,
+/obj/machinery/door/poddoor/almayer{
+	density = 0;
+	dir = 2;
+	icon_state = "pdoor0";
+	id = "CIC Lockdown";
+	name = "\improper Combat Information Center Blast Door";
+	opacity = 0
 	},
-/obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/almayer/command/self_destruct)
+/turf/open/floor/plating,
+/area/almayer/command/cic)
 "nVO" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -51344,6 +51627,13 @@
 /obj/item/storage/box/lights,
 /turf/open/floor/almayer,
 /area/almayer/hull/upper_hull)
+"qGP" = (
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/almayer/command/self_destruct)
 "qHr" = (
 /obj/machinery/door/airlock/almayer/command/CPToffice{
 	dir = 2
@@ -51433,27 +51723,22 @@
 	icon_state = "test_floor4"
 	},
 /area/almayer/hallways/stern_hallway)
+"rIr" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/almayer/command/self_destruct)
 "rIs" = (
 /obj/structure/closet,
 /obj/item/clothing/glasses/mgoggles,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/port_emb)
-"rMF" = (
-/obj/machinery/power/apc/almayer/hardened{
-	dir = 4
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/almayer/command/self_destruct)
 "rTf" = (
 /obj/structure/table/almayer,
 /turf/open/floor/almayer,
@@ -51494,25 +51779,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/command/cic)
-"spv" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/almayer/command/self_destruct)
-"syF" = (
-/obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/almayer/command/self_destruct)
 "sJO" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -51916,6 +52182,15 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/briefing)
+"wqY" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/almayer/command/self_destruct)
 "wtu" = (
 /obj/machinery/power/monitor,
 /obj/structure/cable{
@@ -70467,7 +70742,7 @@ anY
 alr
 alj
 alj
-aob
+nUt
 ajU
 ajU
 amH
@@ -70479,7 +70754,7 @@ aDf
 amH
 ajU
 aHB
-aob
+nUt
 alj
 alj
 cgW
@@ -70724,7 +70999,7 @@ anY
 als
 als
 als
-aqV
+ckj
 als
 alk
 alk
@@ -70993,7 +71268,7 @@ nDN
 nDN
 nDN
 nDN
-aob
+nUt
 nDN
 nDN
 chc
@@ -72652,7 +72927,7 @@ blA
 blA
 btZ
 bvv
-bum
+ahy
 cjV
 cjV
 cjV
@@ -72905,7 +73180,7 @@ bkY
 blA
 blA
 blA
-bjH
+ahk
 bsn
 bua
 bvw
@@ -73162,7 +73437,7 @@ bkZ
 blA
 blA
 blA
-bsF
+ahn
 bso
 bub
 bub
@@ -74704,7 +74979,7 @@ bkX
 blA
 blA
 blA
-bsM
+ahs
 bso
 bug
 bvz
@@ -74961,7 +75236,7 @@ bkY
 blA
 blA
 blA
-bul
+ahx
 bsu
 buh
 bvA
@@ -75222,7 +75497,7 @@ blA
 blA
 bui
 bvB
-bxr
+ahI
 cjW
 cjW
 cjW
@@ -88951,7 +89226,7 @@ aaq
 aas
 aas
 aas
-aaI
+afm
 aEJ
 aas
 aBF
@@ -108506,13 +108781,13 @@ aoX
 aoX
 asv
 aoY
-aoY
+aJQ
 asv
 azi
 aAX
 aCN
 asv
-aoY
+aaI
 aoY
 asv
 aoX
@@ -108760,19 +109035,19 @@ aaa
 aad
 anD
 aoY
-aqE
-asv
 aoY
+aci
 aoY
+adw
 asv
 azj
 aAY
 aCN
 asv
+afY
 aoY
+aci
 aoY
-asv
-aJM
 aoY
 anD
 aMu
@@ -109017,19 +109292,19 @@ aaa
 aad
 anD
 aoX
-aoX
+abB
 asv
 aoY
-aoY
+adU
 asv
 azi
 aAZ
 aCN
 asv
-aoY
+aJQ
 aoY
 asv
-aoX
+agt
 aoX
 anD
 aMu
@@ -110044,8 +110319,8 @@ aaa
 aaa
 aad
 anD
-aoY
-aoY
+aaI
+aqE
 asv
 aoY
 pNG
@@ -110057,8 +110332,8 @@ aup
 avY
 aoY
 asv
-aoY
-aoY
+aJM
+adU
 anD
 aMu
 aaa
@@ -110301,8 +110576,8 @@ aaa
 aaa
 aad
 anD
-anD
-anD
+asv
+asv
 asv
 auj
 pNG
@@ -110314,8 +110589,8 @@ awa
 avY
 aHj
 asv
-anD
-anD
+asv
+asv
 anD
 aMu
 aaa
@@ -110558,8 +110833,8 @@ aaa
 aaa
 aae
 anD
-aoY
-aoY
+aJQ
+abC
 asv
 aui
 avX
@@ -110571,8 +110846,8 @@ awa
 avX
 aHi
 asv
-aoY
-aoY
+agu
+aaI
 anD
 aMv
 aaa
@@ -110815,7 +111090,7 @@ aaa
 aaa
 aaa
 anD
-aoX
+abo
 aoX
 asv
 auk
@@ -110828,7 +111103,7 @@ awa
 avY
 aoY
 asv
-aoX
+agv
 aoX
 anD
 aaa
@@ -111330,8 +111605,8 @@ aaa
 aaa
 anD
 aoY
-mER
-asv
+aoY
+aoY
 aui
 avX
 lAe
@@ -111341,8 +111616,8 @@ lAe
 lAe
 avX
 aHi
-asv
-mER
+aoY
+aoY
 aoY
 anD
 aaa
@@ -111586,21 +111861,21 @@ aaa
 aaa
 aaa
 anD
-anD
-asv
-asv
+aAY
+aAY
+aAY
+aAZ
+aed
+afh
+afh
+afo
+aoY
 aoY
 hlj
-auq
-aoY
-pZA
-aoY
-auq
-hlj
-aoY
-asv
-asv
-anD
+aAZ
+aAY
+aAY
+aAY
 anD
 aaa
 aaa
@@ -111842,23 +112117,23 @@ aaa
 aaa
 aaa
 aaa
-aad
 anD
-aJO
-asv
-aum
+abw
 asv
 asv
-aup
-rMF
-aup
 asv
 asv
-aum
+axr
+axr
+axr
+axr
+axr
 asv
-aJO
+asv
+asv
+asv
+abw
 anD
-aMu
 aaa
 aaa
 aaa
@@ -112099,23 +112374,23 @@ aaa
 aaa
 aaa
 aaa
-aad
 anD
-aJP
-asx
 aAY
-spv
+abW
+acj
 asv
+aew
+afi
+afl
+afl
+afr
+aft
+aga
 asv
-asv
-asv
-asv
-aFr
+agl
+afl
 aAY
-aIu
-aJP
 anD
-aMu
 aaa
 aaa
 aaa
@@ -112356,23 +112631,23 @@ aaa
 aaa
 aaa
 aaa
-aad
 anD
-aoY
-asx
-aAY
-aIu
+abx
+abX
+afl
 axr
-awa
-awa
-awa
+aey
+afj
+wqY
+afp
+qGP
+abX
+agi
 axr
-syF
-aAY
-aIu
-aoY
+afl
+afj
+agx
 anD
-aMu
 aaa
 aaa
 aaa
@@ -112613,23 +112888,23 @@ aaa
 aaa
 aaa
 aaa
-aad
 anD
-aqJ
-asx
-aAY
-nfT
+aby
+aoY
+afr
 axr
 awa
+aoY
+wqY
 awa
+qGP
+aoY
 awa
 axr
-nUy
-aAY
-aIu
-aJQ
+afr
+aoY
+agx
 anD
-aMu
 aaa
 aaa
 aaa
@@ -112870,23 +113145,23 @@ aaa
 aaa
 aaa
 aaa
-aad
 anD
-aqG
-asx
-aAY
-aAY
-axs
+abA
+acb
+acb
+adr
+acb
+acb
 azk
 aBc
-azk
-axs
-aAY
-aAY
-aIu
-aoY
+rIr
+acb
+acb
+agk
+acb
+acb
+agA
 anD
-aMu
 aaa
 aaa
 aaa
@@ -113127,23 +113402,23 @@ aaa
 aaa
 aaa
 aaa
-aad
 anD
-aqH
-asy
-aup
-aup
+aby
+aoY
+aJQ
+ads
+awa
+aoY
+wqY
+awa
+qGP
+aoY
+awa
 axr
-awa
-awa
-awa
-axr
-aup
-aup
-aIv
+aoY
 aJR
+agx
 anD
-aMu
 aaa
 aaa
 aaa
@@ -113384,23 +113659,23 @@ aaa
 aaa
 aaa
 aaa
-aad
 anD
-aqI
-asz
-auq
-awc
+aAY
+aoY
+acn
 axr
-awa
+aeF
+aoY
+wqY
 aBe
+qGP
+aoY
 awa
 axr
-aFs
-aHm
-aIt
-aJO
+agr
+agw
+aAY
 anD
-aMu
 aaa
 aaa
 aaa
@@ -113641,23 +113916,23 @@ aaa
 aaa
 aaa
 aaa
-aad
 anD
+abw
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+abw
 anD
-anD
-anD
-anD
-anD
-anD
-anD
-anD
-anD
-anD
-anD
-anD
-anD
-anD
-aMu
 aaa
 aaa
 aaa
@@ -113898,23 +114173,23 @@ aaa
 aaa
 aaa
 aaa
-aad
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aMu
+anD
+aAY
+aoY
+aoX
+adv
+aoY
+aoY
+afn
+afn
+afn
+aoY
+aoY
+adv
+aoX
+aoY
+aAY
+anD
 aaa
 aaa
 aaa
@@ -114155,23 +114430,23 @@ aaa
 aaa
 aaa
 aaa
-aae
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aMv
+anD
+aAY
+aAY
+aco
+aco
+aeG
+afk
+afk
+afk
+afk
+afk
+agj
+aco
+aco
+aAY
+aAY
+anD
 aaa
 aaa
 aaa
@@ -114412,23 +114687,23 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+anD
+anD
+anD
+acZ
+acZ
+anD
+anD
+anD
+anD
+anD
+anD
+anD
+acZ
+acZ
+anD
+anD
+anD
 aaa
 aaa
 aaa
@@ -114671,19 +114946,19 @@ aaa
 aaa
 aaa
 aaa
+ach
+ada
+ada
+ach
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+ach
+ada
+ada
+ach
 aaa
 aaa
 aaa
@@ -114928,19 +115203,19 @@ aaa
 aaa
 aaa
 aaa
+ach
+adb
+adb
+ach
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+ach
+adb
+adb
+ach
 aaa
 aaa
 aaa
@@ -115185,19 +115460,19 @@ aaa
 aaa
 aaa
 aaa
+aVi
+adm
+adm
+aVi
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVi
+adm
+adm
+aVi
 aaa
 aaa
 aaa
