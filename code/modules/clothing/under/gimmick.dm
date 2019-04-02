@@ -97,7 +97,7 @@
 	desc = "The cold, unfeeling hands of the law."
 	icon_state = "robocop_gloves"
 	flags_atom = CONDUCT
-	armor = list(melee = 87, bullet = 87, laser = 87,energy = 87, bomb = 87, bio = 50, rad = 50)
+	armor = list("melee" = 87, "bullet" = 87, "laser" = 87, "energy" = 87, "bomb" = 87, "bio" = 50, "rad" = 50, "fire" = 87)
 
 /obj/item/clothing/head/helmet/gimmick/robocop
 	name = "polished metal helm"

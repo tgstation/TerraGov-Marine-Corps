@@ -7,7 +7,7 @@
 	flags_armor_protection = CHEST|ARMS
 	allowed = list(/obj/item/device/analyzer,/obj/item/stack/medical,/obj/item/dnainjector,/obj/item/reagent_container/dropper,/obj/item/reagent_container/syringe,/obj/item/reagent_container/hypospray,/obj/item/device/healthanalyzer,/obj/item/device/flashlight/pen,/obj/item/reagent_container/glass/bottle,/obj/item/reagent_container/glass/beaker,/obj/item/reagent_container/pill,/obj/item/storage/pill_bottle,/obj/item/paper)
 	permeability_coefficient = 0.6
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 50, "rad" = 0, "fire" = 0)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 	verb/toggle()
@@ -159,7 +159,7 @@
 	name = "Virologist labcoat"
 	desc = "A suit that protects against minor chemical spills. Offers slightly more protection against biohazards than the standard model. Has a green stripe on the shoulder."
 	icon_state = "labcoat_vir_open"
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 60, "rad" = 0, "fire" = 0)
 
 /obj/item/clothing/suit/storage/labcoat/science
 	name = "Scientist labcoat"

@@ -4,7 +4,7 @@
 	desc = "Standard Security gear. Protects the head from impacts."
 	icon_state = "helmet"
 	item_state = "helmet"
-	armor = list(melee = 50, bullet = 15, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list("melee" = 50, "bullet" = 15, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 10)
 	flags_atom = CONDUCT
 	flags_inventory = COVEREYES|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES
@@ -42,7 +42,7 @@
 	name = "Head of Security Hat"
 	desc = "The hat of the Head of Security. For showing the officers who's in charge."
 	icon_state = "hoscap"
-	armor = list(melee = 80, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 10, rad = 0)
+	armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 10)
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEARS
 	flags_armor_protection = 0
@@ -84,7 +84,7 @@
 	desc = "They're often used by highly trained Swat Members."
 	icon_state = "swat"
 	item_state = "swat"
-	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
+	armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25)
 	flags_inventory = COVEREYES|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES
 	flags_cold_protection = HEAD
@@ -99,7 +99,7 @@
 	flags_inventory = COVEREYES|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES
 	item_state = "thunderdome"
-	armor = list(melee = 80, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 10, rad = 0)
+	armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 10)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 1
@@ -121,7 +121,7 @@
 	flags_inventory = COVEREYES|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES
 	anti_hug = 1
-	armor = list(melee = 62, bullet = 50, laser = 50,energy = 35, bomb = 10, bio = 2, rad = 0)
+	armor = list("melee" = 62, "bullet" = 50, "laser" = 50, "energy" = 35, "bomb" = 10, "bio" = 2, "rad" = 0, "fire" = 35)
 	siemens_coefficient = 0.7
 
 //Non-hardsuit ERT helmets.
@@ -130,7 +130,7 @@
 	desc = "An in-atmosphere helmet worn by members of the Emergency Response Team. Protects the head from impacts."
 	icon_state = "erthelmet_cmd"
 	item_state = "syndicate-helm-green"
-	armor = list(melee = 62, bullet = 50, laser = 50,energy = 35, bomb = 10, bio = 2, rad = 0)
+	armor = list("melee" = 62, "bullet" = 50, "laser" = 50, "energy" = 35, "bomb" = 10, "bio" = 2, "rad" = 0, "fire" = 35)
 	anti_hug = 5
 
 //Commander
@@ -398,13 +398,13 @@
 	desc = "A standard Imperial Guard helmet that goes with the flak armour, it is also mass produced, and it can save your life, maybe."
 	icon_state = "guardhelm"
 	item_state = "guardhelm"
-	armor = list(melee = 70, bullet = 40, laser = 35, energy = 25, bomb = 30, bio = 0, rad = 0)
+	armor = list("melee" = 70, "bullet" = 40, "laser" = 35, "energy" = 25, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 25)
 
 /obj/item/clothing/head/helmet/marine/imperial/sergeant
 	name = "\improper Imperial Guard sergeant helmet"
 	desc = "A helmet that goes with the sergeant armour, unlike the flak variant, this one will actually protect you."
 	icon_state = "guardhelm"
-	armor = list(melee = 80, bullet = 80, laser = 80, energy = 80, bomb = 80, bio = 25, rad = 25)
+	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 25, "rad" = 25, "fire" = 80, "acid" = 80)
 	pockets = /obj/item/storage/internal/imperialhelmet
 
 /obj/item/storage/internal/imperialhelmet
@@ -415,20 +415,20 @@
 	name = "\improper Imperial Guard carapace helmet"
 	desc = "A helmet that goes with the heavy carapace armour, this is some serious protection."
 	icon_state = "guardvethelm"
-	armor = list(melee = 90, bullet = 90, laser = 90, energy = 90, bomb = 90, bio = 30, rad = 30)
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 30, "rad" = 30, "fire" = 90, "acid" = 90)
 
 /obj/item/clothing/head/helmet/marine/imperial/power
 	name = "\improper salvaged Space Marine helmet"
 	desc = "A helmet that goes with the Space Marine power armour, this one has been salvaged from the battlefield."
 	//icon_state
-	armor = list(melee = 75, bullet = 60, laser = 55, energy = 40, bomb = 45, bio = 15, rad = 15)
+	armor = list("melee" = 75, "bullet" = 60, "laser" = 55, "energy" = 40, "bomb" = 45, "bio" = 15, "rad" = 15, "fire" = 40, "acid" = 40)
 	pockets = /obj/item/storage/internal/imperialhelmet
 
 /obj/item/clothing/head/helmet/marine/imperial/power/astartes
 	name = "\improper Space Marine helmet"
 	desc = "You are intimidated by the appearance of the helmet. This is the helmet that goes with the powerful Space Marine power armour."
 	//icon_state
-	armor = list(melee = 95, bullet = 95, laser = 95, energy = 95, bomb = 95, bio = 95, rad = 95)
+	armor = list("melee" = 95, "bullet" = 95, "laser" = 95, "energy" = 95, "bomb" = 95, "bio" = 95, "rad" = 95, "fire" = 95, "acid" = 95)
 
 
 
@@ -437,7 +437,7 @@
 	name = "\improper Dutch's Dozen helmet"
 	desc = "A protective helmet worn by some seriously experienced mercs."
 	icon_state = "dutch_helmet"
-	armor = list(melee = 70, bullet = 70, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
+	armor = list("melee" = 70, "bullet" = 70, "laser" = 0, "energy" = 20, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 20)
 	flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
 
 /obj/item/clothing/head/helmet/marine/veteran/dutch/cap

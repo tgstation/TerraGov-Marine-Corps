@@ -153,7 +153,7 @@
 	rollable_sleeves = FALSE // don't disrespect the EMPEROR!
 	icon_state = "guardjumpsuit"
 	item_state = "guardjumpsuit"
-	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 10)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 /obj/item/clothing/under/marine/veteran
 	rollable_sleeves = FALSE
@@ -256,7 +256,7 @@
 	name = "colonial marshal uniform"
 	desc = "A blue shirt and tan trousers - the official uniform for a Colonial Marshal."
 	icon_state = "marshal"
-	armor = list(melee = 15, bullet = 15, laser = 15,energy = 5, bomb = 5, bio = 5, rad = 5)
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5)
 	has_sensor = 0
 
 

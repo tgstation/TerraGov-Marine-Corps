@@ -41,7 +41,7 @@
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "beret"
-	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20)
 
 
 /obj/item/clothing/head/tgmcberet/tan
@@ -55,7 +55,7 @@
 	name = "\improper Command Master at Arms beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."
 	icon_state = "beretwo"
-	armor = list(melee = 60, bullet = 80, laser = 80,energy = 20, bomb = 10, bio = 0, rad = 0)
+	armor = list("melee" = 60, "bullet" = 80, "laser" = 80, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20)
 
 
 /obj/item/clothing/head/tgmccap
@@ -64,7 +64,7 @@
 	icon_state = "cap"
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
-	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20)
 	var/flipped_cap = FALSE
 	var/base_cap_icon
 
@@ -146,7 +146,7 @@
 	name = "marine officer beret"
 	desc = "A beret with the TGMC insignia emblazoned on it. It radiates respect and authority."
 	icon_state = "hosberet"
-	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20)
 	flags_inventory = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/beret/marine/captain
