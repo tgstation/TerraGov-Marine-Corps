@@ -99,10 +99,10 @@
 					[pick("a subclass of mammal","a divergent abhuman species","an intelligent species of lemur","organic/cyborg hybrids")] turned up. Believed to have been brought in by \
 					[pick("alien smugglers","early colonists","syndicate raiders","unwitting tourists")], this is the first such specimen discovered in the wild."
 				else if(prob(50))
-					newMsg.body += "were attacked by a vicious [pick("nas'r","diyaab","samak","predator which has not yet been identified")]\
+					newMsg.body += "were attacked by a vicious [pick("nas'r","diyaab","samak")]\
 					. Officials urge caution, and locals are advised to stock up on armaments."
 				else
-					newMsg.body += "brought in an unusually [pick("valuable","rare","large","vicious","intelligent")] [pick("mammal","predator","farwa","samak")] for inspection \
+					newMsg.body += "brought in an unusually [pick("valuable","rare","large","vicious","intelligent")] [pick("mammal","farwa","samak")] for inspection \
 					[pick("today","yesterday","last week")]. Speculators suggest they may be tipped to break several records."
 
 			if(GOSSIP)

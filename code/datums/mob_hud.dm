@@ -85,10 +85,6 @@ var/datum/mob_hud/huds = list(
 //med hud used by medical hud glasses
 /datum/mob_hud/medical/advanced
 
-/datum/mob_hud/medical/advanced/add_to_single_hud(mob/user, mob/living/carbon/human/target)
-	if(!isyautjastrict(target)) //so you can't tell a pred's health with hud glasses.
-		return ..()
-
 //medical hud used by ghosts
 /datum/mob_hud/medical/observer
 	hud_icons = list(HEALTH_HUD, STATUS_HUD_OBSERVER_INFECTION, STATUS_HUD)

@@ -390,44 +390,6 @@
 	ManualFollow(target)
 
 
-/mob/dead/observer/verb/follow_pred()
-	set category = "Ghost"
-	set name = "Follow Predator"
-
-	var/list/preds = list()
-	var/list/names = list()
-	var/list/namecounts = list()
-
-	for(var/x in sortNames(GLOB.human_mob_list))
-		var/mob/M = x
-		if(!isyautja(M))
-			continue
-		var/name = M.name
-		if(name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if(M.real_name && M.real_name != M.name)
-			name += "as ([M.real_name])"
-		if(M.stat == DEAD)
-			name += " (dead)"
-
-		preds[name] = M
-
-	if(!length(preds))
-		to_chat(usr, "<span class='warning'>There are no predators at the moment.</span>")
-		return
-
-	var/selected = input("Please select a Predator:", "Follow Predator") as null|anything in preds
-	if(!selected)
-		return
-
-	var/mob/target = preds[selected]
-	ManualFollow(target)
-
-
 /mob/dead/observer/verb/follow_human()
 	set category = "Ghost"
 	set name = "Follow Living Human"
@@ -664,69 +626,6 @@
 			if(!mother)
 				return
 			SSticker.mode.spawn_larva(src, mother)
-
-
-/mob/dead/verb/join_as_hellhound()
-	set category = "Ghost"
-	set name = "Join as Hellhound"
-
-	var/mob/L = src
-
-	if(SSticker.current_state < GAME_STATE_PLAYING)
-		to_chat(usr, "<span class='warning'>The game hasn't started yet!</span>")
-		return
-
-	var/list/hellhound_list = list()
-
-	for(var/mob/living/carbon/hellhound/A in GLOB.alive_mob_list)
-		if(istype(A) && !A.client)
-			hellhound_list += A.real_name
-
-	if(!length(hellhound_list))
-		to_chat(usr, "<span class='warning'>There aren't any available Hellhounds.</span>")
-		return
-
-	var/choice = input("Pick a Hellhound:") as null|anything in hellhound_list
-	if(!choice)
-		return
-
-	for(var/mob/living/carbon/hellhound/X in GLOB.alive_mob_list)
-		if(choice == X.real_name)
-			L = X
-			break
-
-	if(!L || L.gc_destroyed)
-		to_chat(usr, "Not a valid mob!")
-		return
-
-	if(!istype(L, /mob/living/carbon/hellhound))
-		to_chat(usr, "<span class='warning'>That's not a Hellhound.</span>")
-		return
-
-	if(L.stat == DEAD)
-		to_chat(usr, "<span class='warning'>It's dead.</span>")
-		return
-
-	if(L.client)
-		to_chat(usr, "<span class='warning'>That player is still connected.</span>")
-		return
-
-	if(alert(usr, "Everything checks out. Are you sure you want to transfer yourself into this hellhound?", "Confirmation", "Yes", "No") != "Yes")
-		return
-
-		if(L.client || L.stat == DEAD)
-			to_chat(usr, "<span class='warning'>Oops. That mob can no longer be controlled. Sorry.</span>")
-			return
-
-	var/mob/ghostmob = usr.client.mob
-	log_admin("[key_name(usr)] has joined as a [L].")
-	message_admins("[ADMIN_TPMONTY(usr)] has joined as a [L].")
-	L.ckey = usr.ckey
-
-	L.client?.change_view(world.view)
-
-	if(isobserver(ghostmob))
-		qdel(ghostmob)
 
 
 /mob/dead/observer/verb/observe()

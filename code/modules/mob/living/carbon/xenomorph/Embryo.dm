@@ -139,10 +139,7 @@
 	//Spawn the larva.
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno
 
-	if(isyautja(affected_mob))
-		new_xeno = new /mob/living/carbon/Xenomorph/Larva/predalien(affected_mob)
-	else
-		new_xeno = new(affected_mob)
+	new_xeno = new(affected_mob)
 
 	new_xeno.hivenumber = hivenumber
 	new_xeno.update_icons()
@@ -185,10 +182,7 @@
 
 	victim.update_burst()
 
-	if(isyautja(victim))
-		victim.emote("roar")
-	else
-		victim.emote("scream")
+	victim.emote("scream")
 	if(istype(victim.loc, /obj/vehicle/multitile/root))
 		var/obj/vehicle/multitile/root/V = victim.loc
 		V.handle_player_exit(src)
@@ -209,7 +203,7 @@
 			H.internal_organs_by_name -= i
 			H.internal_organs -= O
 
-	victim.death() // Certain species were still surviving bursting (predators), DEFINITELY kill them this time.
+	victim.death() // Certain species were still surviving bursting, DEFINITELY kill them this time.
 	victim.chestburst = 2
 	victim.update_burst()
 	log_combat(src, src, "chestbursted as a [src].")

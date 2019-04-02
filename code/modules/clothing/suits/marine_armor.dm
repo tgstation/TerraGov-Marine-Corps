@@ -701,7 +701,59 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 
 
+//===========================//I.o.M\\================================
 
+/obj/item/clothing/suit/storage/marine/imperial
+	name = "\improper Imperial Guard flak armour"
+	desc = "A cheap, mass produced armour worn by the Imperial Guard, which are also cheap and mass produced. You can make out what appears to be <i>Cadia stands</i> carved into the armour."
+	icon_state = "guardarmor"
+	item_state = "guardarmor"
+	armor = list(melee = 70, bullet = 50, laser = 45, energy = 30, bomb = 35, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/marine/imperial/sergeant
+	// SL armour, better than flak, covers more
+	name = "\improper Imperial Guard sergeant armour"
+	desc = "A body armour that offers much better protection than the flak armour."
+	icon_state = "guardSLarmor"
+	item_state = "guardSLarmor"
+	armor = list(melee = 85, bullet = 85, laser = 85, energy = 85, bomb = 85, bio = 25, rad = 25)
+	brightness_on = 6 // better light
+	pockets = /obj/item/storage/internal/suit/imperial
+
+/obj/item/storage/internal/suit/imperial
+	storage_slots = 3
+	max_storage_space = 6
+
+/obj/item/clothing/suit/storage/marine/imperial/medicae
+	name = "\improper Imperial Guard medicae armour"
+	desc = "An armour worn by the medicae of the Imperial Guard."
+	icon_state = "guardmedicarmor"
+	item_state = "guardmedicarmor"
+
+/obj/item/clothing/suit/storage/marine/imperial/sergeant/veteran
+	name = "\improper Imperial Guard carapace armour"
+	desc = "A heavy full body armour that protects the wearer a lot more than the flak armour, also slows down considerably."
+	icon_state = "guardvetarmor"
+	item_state = "guardvetarmor"
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	armor = list(melee = 90, bullet = 90, laser = 90, energy = 90, bomb = 90, bio = 30, rad = 30)
+
+/obj/item/clothing/suit/storage/marine/imperial/power
+	// Should this maybe require recharging?
+	name = "\improper salvaged Space Marine power armour"
+	desc = "A power armour that was once broken, is functional once again. However this version isn't as powerful as the real power armour."
+	//icon_state
+	armor = list(melee = 75, bullet = 60, laser = 55, energy = 40, bomb = 45, bio = 15, rad = 15)
+	brightness_on = 6
+	pockets = /obj/item/storage/internal/suit/imperial
+
+/obj/item/clothing/suit/storage/marine/imperial/power/astartes
+	// This should either be admin only or only given to one person
+	name = "\improper Space Marine power armour"
+	desc = "You feel a chill running down your spine just looking at this. This is the power armour that the Space Marines wear themselves. The servos inside the power armour allow you to move at incredible speeds."
+	//icon_state
+	slowdown = SLOWDOWN_ARMOR_LIGHT // beefed up space marine inside an armor that boosts speed
+	armor = list(melee = 95, bullet = 95, laser = 95, energy = 95, bomb = 95, bio = 95, rad = 95)
 
 //===========================//U.P.P\\================================
 

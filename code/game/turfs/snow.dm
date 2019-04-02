@@ -73,7 +73,7 @@
 			var/mob/living/carbon/C = AM
 			var/slow_amount = 0.75
 			var/can_stuck = 1
-			if(isxeno(C)||isyautja(C))
+			if(isxeno(C))
 				slow_amount = 0.25
 				can_stuck = 0
 			C.next_move_slowdown += slow_amount * slayer

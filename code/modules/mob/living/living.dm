@@ -314,7 +314,7 @@
 	return FALSE
 
 /mob/living/carbon/human/ignore_pull_delay()
-	return isyautjastrict(src) //Predators aren't slowed when pulling their prey.
+	return FALSE
 
 /mob/living/is_injectable(allowmobs = TRUE)
 	return (allowmobs && can_inject())
@@ -336,7 +336,7 @@
 			now_pushing = 0
 			return
 
-		if(isxeno(L) && !isxenolarva(L)) //Handling pushing Xenos in general, but big Xenos and Preds can still push small Xenos
+		if(isxeno(L) && !isxenolarva(L)) //Handling pushing Xenos in general, but big Xenos can still push small Xenos
 			var/mob/living/carbon/Xenomorph/X = L
 			if((ishuman(src) && X.mob_size == MOB_SIZE_BIG) || (isxeno(src) && X.mob_size == MOB_SIZE_BIG))
 				if(!isxeno(src) && client)
