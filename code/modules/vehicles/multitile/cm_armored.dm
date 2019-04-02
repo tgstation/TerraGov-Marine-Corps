@@ -139,7 +139,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/slot = input("Select a slot.") in slots
 
 	var/obj/item/hardpoint/HP = hardpoints[slot]
-	if(!(HP?.health > 0))
+	if(!(HP?.health))
 		to_chat(usr, "<span class='warning'>That module is either missing or broken.</span>")
 		return
 
@@ -196,7 +196,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/list/slots = list()
 	for(var/slot in hardpoints)
 		var/obj/item/hardpoint/HP = hardpoints[slot]
-		if(!(HP?.health > 0))
+		if(!(HP?.health))
 			continue
 		if(!HP.is_activatable)
 			continue
@@ -235,13 +235,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	entrance.master = src
 	linked_objs[rel_pos] = entrance
 
-//Returns 1 or 0 if the slot in question has a broken installed hardpoint or not
-/obj/vehicle/multitile/root/cm_armored/proc/is_slot_damaged(slot)
-	var/obj/item/hardpoint/HP = hardpoints[slot]
-	if(!(HP?.health > 0))
-		return TRUE
-	return FALSE
-
 //Normal examine() but tells the player what is installed and if it's broken
 /obj/vehicle/multitile/root/cm_armored/examine(mob/user)
 	..()
@@ -250,8 +243,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		if(!HP)
 			to_chat(user, "There is nothing installed on the [i] hardpoint slot.")
 			continue
-		var/status = HP.health <= 0.1 ? "broken" : "functional"
-		var/span_class = HP.health <= 0.1 ? "<span class = 'danger'>" : "<span class = 'notice'>"
+		var/status = !HP.health  ? "broken" : "functional"
+		var/span_class = !HP.health ? "<span class = 'danger'>" : "<span class = 'notice'>"
 		if((user?.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer >= SKILL_ENGINEER_METAL) || isobserver(user))
 			switch(PERCENT(HP.health / HP.maxhealth))
 				if(0.1 to 33)
@@ -275,7 +268,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		var/obj/item/hardpoint/H = hardpoints[i]
 		if(!H)
 			continue
-		if(H.health <= 0)
+		if(!H.health)
 			H.remove_buff()
 		else
 			remove_person = FALSE //if something exists but isnt broken
@@ -306,12 +299,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	for(var/i in hardpoints)
 		var/obj/item/hardpoint/H = hardpoints[i]
 
-		if((i == HDPT_TREADS && !H) || (H && H.health <= 0)) //Treads not installed or broken
+		if((i == HDPT_TREADS && !H) || (H && !H.health)) //Treads not installed or broken
 			var/image/I = image(icon, icon_state = "damaged_hardpt_[i]")
 			overlays += I
-			continue
 
-		if(H)
+		else if(H)
 			var/image/I = H.get_icon_image(0, 0, dir)
 			overlays += I
 
@@ -419,7 +411,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
 		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
-		if(SP.health > 0)
+		if(SP.health)
 			damage = 60
 			tank_damage = 0
 
@@ -436,7 +428,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
 		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
-		if(SP.health > 0)
+		if(SP.health)
 			damage = 60
 			tank_damage = 0
 
@@ -454,7 +446,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
 		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
-		if(SP.health > 0)
+		if(SP.health)
 			damage = 60
 			tank_damage = 0
 
@@ -523,7 +515,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/root/cm_armored/proc/take_damage_type(damage, type, atom/attacker)
 	for(var/i in hardpoints)
 		var/obj/item/hardpoint/HP = hardpoints[i]
-		HP?.health = CLAMP(health - damage * dmg_distribs[i] * get_dmg_multi(type), 0, HP.maxhealth)
+		if(HP)
+			HP.health = CLAMP(HP.health - damage * dmg_distribs[i] * get_dmg_multi(type), 0, HP.maxhealth)
 
 	healthcheck()
 
@@ -876,7 +869,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(!istype(HP))
 		return
 	HP.owner = src
-	if(HP.health > 0)
+	if(HP.health)
 		HP.apply_buff()
 	HP.forceMove(src)
 
