@@ -79,17 +79,9 @@
 	else if(findtext(act, "tail"))
 		message = "<B>The [name]</B> swipes its tail."
 
-
-	var/predalien = FALSE
-	if(isxenopredalien(src))
-		predalien = TRUE
-
 	switch(act)
 		if("growl")
-			if(predalien)
-				playsound(loc, 'sound/voice/predalien_growl.ogg', 25, 1)
-			else
-				playsound(loc, "alien_growl", 15)
+			playsound(loc, "alien_growl", 15)
 		if("growl1")
 			playsound(loc, "sound/voice/alien_growl1.ogg", 15)
 		if("growl2")
@@ -97,63 +89,30 @@
 		if("growl3")
 			playsound(loc, "sound/voice/alien_growl3.ogg", 15)
 		if("hiss")
-			if(predalien)
-				playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
-			else
-				playsound(loc, "alien_hiss", 25)
+			playsound(loc, "alien_hiss", 25)
 		if("hiss1")
-			if(predalien)
-				playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
-			else
-				playsound(loc, "sound/voice/alien_hiss1.ogg", 25)
+			playsound(loc, "sound/voice/alien_hiss1.ogg", 25)
 		if("hiss2")
-			if(predalien)
-				playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
-			else
-				playsound(loc, "sound/voice/alien_hiss2.ogg", 25)
+			playsound(loc, "sound/voice/alien_hiss2.ogg", 25)
 		if("hiss3")
-			if(predalien)
-				playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
-			else
-				playsound(loc, "sound/voice/alien_hiss3.ogg", 25)
+			playsound(loc, "sound/voice/alien_hiss3.ogg", 25)
 		if("needhelp")
 			message = "<B>The [name]</B> needs help!"
 			playsound(loc, "alien_help", 25)
 		if("roar")
-			if(predalien)
-				playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
-			else
-				playsound(loc, "alien_roar", 40)
+			playsound(loc, "alien_roar", 40)
 		if("roar1")
-			if(predalien)
-				playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
-			else
-				playsound(loc, "sound/voice/alien_roar1.ogg", 40)
+			playsound(loc, "sound/voice/alien_roar1.ogg", 40)
 		if("roar2")
-			if(predalien)
-				playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
-			else
-				playsound(loc, "sound/voice/alien_roar2.ogg", 40)
+			playsound(loc, "sound/voice/alien_roar2.ogg", 40)
 		if("roar3")
-			if(predalien)
-				playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
-			else
-				playsound(loc, "sound/voice/alien_roar3.ogg", 40)
+			playsound(loc, "sound/voice/alien_roar3.ogg", 40)
 		if("roar4")
-			if(predalien)
-				playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
-			else
-				playsound(loc, "sound/voice/alien_roar4.ogg", 40)
+			playsound(loc, "sound/voice/alien_roar4.ogg", 40)
 		if("roar5")
-			if(predalien)
-				playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
-			else
-				playsound(loc, "sound/voice/alien_roar5.ogg", 40)
+			playsound(loc, "sound/voice/alien_roar5.ogg", 40)
 		if("roar6")
-			if(predalien)
-				playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
-			else
-				playsound(loc, "sound/voice/alien_roar6.ogg", 40)
+			playsound(loc, "sound/voice/alien_roar6.ogg", 40)
 		if("tail")
 			playsound(loc, "alien_tail_swipe", 40)
 		if("tail1")

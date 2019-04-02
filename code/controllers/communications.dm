@@ -102,7 +102,6 @@ On the map:
 
 //Misc channels
 var/const/SYND_FREQ 	= 1213
-var/const/YAUT_FREQ 	= 1214
 var/const/PMC_FREQ 		= 1235
 var/const/DUT_FREQ 		= 1340
 var/const/ERT_FREQ 		= 1342
@@ -136,7 +135,6 @@ var/const/CIV_COMM_FREQ = 1471
 var/list/radiochannels = list(
 	"Response Team" = ERT_FREQ,
 	"Syndicate" 	= SYND_FREQ,
-	"Yautja" 		= YAUT_FREQ,
 	"NT PMC" 		= PMC_FREQ,
 	"SpecOps" 		= DTH_FREQ,
 	"UPP" 			= RUS_FREQ,
@@ -162,7 +160,7 @@ var/list/radiochannels = list(
 )
 
 // central command channels, i.e deathsquid & response teams
-var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ)
+var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ)
 
 // Antag channels, i.e. Syndicate
 var/list/ANTAG_FREQS = list(SYND_FREQ, RUS_FREQ)

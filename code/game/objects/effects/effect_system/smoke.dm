@@ -171,13 +171,9 @@
 /obj/effect/particle_effect/smoke/tactical/proc/cloak_smoke_act(var/mob/living/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/clothing/gloves/yautja/Y = H.gloves
 		var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = H.back
 		if(H.back)
 			if(istype(S) && S.camo_active)
-				return
-		if(H.gloves)
-			if(istype(Y) && Y.cloaked)
 				return
 		return M.smokecloak_on()
 	return M.smokecloak_on()
@@ -310,8 +306,6 @@
 	..()
 	if(isxeno(M))
 		return
-	if(isyautja(M) && prob(75))
-		return
 	if(M.stat == DEAD)
 		return
 	if(istype(M.buckled, /obj/structure/bed/nest) && M.status_flags & XENO_HOST)
@@ -353,8 +347,6 @@
 /obj/effect/particle_effect/smoke/xeno_weak/affect(var/mob/living/carbon/M)
 	..()
 	if(isxeno(M))
-		return
-	if(isyautja(M) && prob(75))
 		return
 	if(M.stat == DEAD)
 		return

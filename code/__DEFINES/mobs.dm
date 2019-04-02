@@ -30,7 +30,6 @@
 
 
 #define LIVING_PERM_COEFF 0
-#define HELLHOUND_PERM_COEFF 0.5
 #define XENO_PERM_COEFF 0.8
 //=================================================
 
@@ -329,9 +328,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define IS_SKRELL 3
 #define IS_UNATHI 4
 #define IS_XENOS 5
-#define IS_YAUTJA 6
-#define IS_HORROR 7
-#define IS_MOTH 8
+#define IS_HORROR 6
+#define IS_MOTH 7
 //=================================================
 
 //Mob sizes

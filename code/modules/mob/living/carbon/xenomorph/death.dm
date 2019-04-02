@@ -41,10 +41,7 @@
 		hive.living_xeno_queen.set_queen_overwatch(src, TRUE)
 	if(queen_chosen_lead)
 		queen_chosen_lead = FALSE
-	if(isxenopredalien(src))
-		playsound(loc, 'sound/voice/predalien_death.ogg', 75, 1)
-	else
-		playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
+	playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
 	var/area/A = get_area(src)
 	if(hive.living_xeno_queen)
 		xeno_message("Hive: \The [src] has <b>died</b>[A? " at [sanitize(A.name)]":""]!", 3, hivenumber)

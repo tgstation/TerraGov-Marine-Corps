@@ -204,19 +204,9 @@
 		nutrition_icon.screen_loc = ui_nutrition
 		infodisplay += nutrition_icon
 
-	//Add predator icon.
-	if(hud_data.is_yautja)
-		pred_power_icon = new /obj/screen()
-		pred_power_icon.icon = 'icons/Predator/hud_icons.dmi'
-		pred_power_icon.icon_state = "powerbar10"
-		pred_power_icon.name = "bracer power stored"
-		pred_power_icon.screen_loc = ui_predator_power
-		infodisplay += pred_power_icon
-
-	else
-		//squad leader locator
-		SL_locator = new /obj/screen/SL_locator
-		infodisplay += SL_locator
+	//squad leader locator
+	SL_locator = new /obj/screen/SL_locator
+	infodisplay += SL_locator
 
 	use_attachment = new /obj/screen()
 	use_attachment.icon = ui_style

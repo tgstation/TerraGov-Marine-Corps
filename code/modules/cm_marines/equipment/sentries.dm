@@ -310,9 +310,6 @@
 	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/user as mob)
-	if(isyautja(user))
-		to_chat(user, "<span class='warning'>You punch [src] but nothing happens.</span>")
-		return
 	src.add_fingerprint(user)
 
 	if(!cell || cell.charge <= 0)
@@ -1123,10 +1120,6 @@
 
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
-
-	if(isyautja(user))
-		to_chat(user, "<span class='warning'>You punch [src] but nothing happens.</span>")
-		return
 	src.add_fingerprint(user)
 
 	if(!cell || cell.charge <= 0)

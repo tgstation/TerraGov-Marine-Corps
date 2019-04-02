@@ -268,13 +268,6 @@
 	else
 		jobs += "<td width='20%'><a href='?src=[ref];jobban=Synthetic;mob=[REF(M)]'>Synthetic</a></td>"
 
-	//Predator
-	if(jobban_isbanned(M, "Predator") || isbanned_dept)
-		jobs += "<td width='20%'><a href='?src=[ref];jobban=Predator;mob=[REF(M)]'><font color=red>Predator</font></a></td>"
-	else
-		jobs += "<td width='20%'><a href='?src=[ref];jobban=Predator;mob=[REF(M)]'>Predator</a></td>"
-
-
 	jobs += "</tr></table>"
 
 	body = "<body>[jobs]</body>"
@@ -488,13 +481,6 @@
 		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Synthetic;key=[key]'><font color=red>Synthetic</font></a></td>"
 	else
 		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Synthetic;key=[key]'>Synthetic</a></td>"
-
-	//Predator
-	if(jobban_key_isbanned(key, "Predator") || isbanned_dept)
-		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Predator;key=[key]'><font color=red>Predator</font></a></td>"
-	else
-		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Predator;key=[key]'>Predator</a></td>"
-
 
 	jobs += "</tr></table>"
 
