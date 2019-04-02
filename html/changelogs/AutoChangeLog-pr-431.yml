@@ -1,0 +1,5 @@
+author: "Ondrej008"
+delete-after: True
+changes: 
+  - rscadd: "Adds boots, helmets, armour, headset for the Imperial boys."
+  - rscadd: "Guardsmen ERT"

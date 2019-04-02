@@ -466,6 +466,7 @@
 
 /datum/skills/imperial
 	name = "Guardsman"
+
 	cqc = SKILL_CQC_TRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
 	
@@ -473,11 +474,11 @@
 	// shotguns too
 	firearms = SKILL_FIREARMS_TRAINED
 	rifles = SKILL_RIFLES_TRAINED
+  // smgs too
 
 /datum/skills/imperial/SL
 	name = "Guardsman Sergeant" // veteran guardsman, practically better in all
 	
-	// smgs too
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	smartgun = SKILL_SMART_USE // can use smartgun
 	spec_weapons = SKILL_SPEC_TRAINED
