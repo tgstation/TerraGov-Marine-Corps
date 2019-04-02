@@ -8,7 +8,9 @@
 		"energy" = "energy",
 		"bomb" = "explosions",
 		"bio" = "biohazards",
-		"rad" = "radiation"
+		"rad" = "radiation",
+		"fire" = "fire",
+		"acid" = "acid"
 		)
 
 var/list/string_part_flags = list("head" = HEAD,
@@ -55,28 +57,27 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 		armor_strings += general_entry.mechanics_text + "<br>"
 
 	for(var/armor_type in armour_to_descriptive_term)
-		if(armor[armor_type])
-			switch(armor[armor_type])
-				if(0)
-					armor_strings += "It provides no protection against [armour_to_descriptive_term[armor_type]]."
-				if(1 to 20)
-					armor_strings += "It barely protects against [armour_to_descriptive_term[armor_type]]."
-				if(21 to 30)
-					armor_strings += "It provides a very small defense against [armour_to_descriptive_term[armor_type]]."
-				if(31 to 40)
-					armor_strings += "It offers a small amount of protection against [armour_to_descriptive_term[armor_type]]."
-				if(41 to 50)
-					armor_strings += "It offers a moderate defense against [armour_to_descriptive_term[armor_type]]."
-				if(51 to 60)
-					armor_strings += "It provides a strong defense against [armour_to_descriptive_term[armor_type]]."
-				if(61 to 70)
-					armor_strings += "It is very strong against [armour_to_descriptive_term[armor_type]]."
-				if(71 to 80)
-					armor_strings += "This gives a very robust defense against [armour_to_descriptive_term[armor_type]]."
-				if(81 to 99)
-					armor_strings += "Wearing this would make you nigh-invulerable against [armour_to_descriptive_term[armor_type]]."
-				if(100 to INFINITY)
-					armor_strings += "You would have godly protection against [armour_to_descriptive_term[armor_type]] if you wore this."
+		switch(armor.getRating(armor_type)
+			if(0)
+				armor_strings += "It provides no protection against [armour_to_descriptive_term[armor_type]]."
+			if(1 to 20)
+				armor_strings += "It barely protects against [armour_to_descriptive_term[armor_type]]."
+			if(21 to 30)
+				armor_strings += "It provides a very small defense against [armour_to_descriptive_term[armor_type]]."
+			if(31 to 40)
+				armor_strings += "It offers a small amount of protection against [armour_to_descriptive_term[armor_type]]."
+			if(41 to 50)
+				armor_strings += "It offers a moderate defense against [armour_to_descriptive_term[armor_type]]."
+			if(51 to 60)
+				armor_strings += "It provides a strong defense against [armour_to_descriptive_term[armor_type]]."
+			if(61 to 70)
+				armor_strings += "It is very strong against [armour_to_descriptive_term[armor_type]]."
+			if(71 to 80)
+				armor_strings += "This gives a very robust defense against [armour_to_descriptive_term[armor_type]]."
+			if(81 to 99)
+				armor_strings += "Wearing this would make you nigh-invulerable against [armour_to_descriptive_term[armor_type]]."
+			if(100 to INFINITY)
+				armor_strings += "You would have godly protection against [armour_to_descriptive_term[armor_type]] if you wore this."
 
 	if(slowdown)
 		switch(slowdown)

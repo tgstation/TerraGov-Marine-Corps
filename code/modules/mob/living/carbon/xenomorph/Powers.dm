@@ -194,7 +194,7 @@
 		round_statistics.praetorian_spray_direct_hits++
 
 	acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
-	var/armor_block = run_armor_check("chest", "energy")
+	var/armor_block = run_armor_check("chest", "acid")
 	var/damage = rand(30,40) + (X.upgrade_as_number() * SPRAY_MOB_UPGRADE_BONUS)
 	apply_acid_spray_damage(damage, armor_block)
 	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
