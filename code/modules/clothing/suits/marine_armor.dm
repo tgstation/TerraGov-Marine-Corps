@@ -718,7 +718,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	item_state = "guardSLarmor"
 	armor = list(melee = 85, bullet = 85, laser = 85, energy = 85, bomb = 85, bio = 25, rad = 25)
 	brightness_on = 6 // better light
-  pockets = /obj/item/storage/internal/suit/imperial
+  	pockets = /obj/item/storage/internal/suit/imperial
 
 /obj/item/storage/internal/suit/imperial
 	storage_slots = 3
