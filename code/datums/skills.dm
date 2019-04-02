@@ -466,33 +466,34 @@
 
 /datum/skills/imperial
 	name = "Guardsman"
-
-/datum/skills/imperial/SL
-	name = "Guardsman Sergeant" // veteran guardsman, practically better in all
 	cqc = SKILL_CQC_TRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
 	
-	firearms = SKILL_FIREARMS_TRAINED
 	// guardsmen don't use pistol, so he doesn't have experience with them, unless they use boltpistols
 	// shotguns too
+	firearms = SKILL_FIREARMS_TRAINED
 	rifles = SKILL_RIFLES_TRAINED
+
+/datum/skills/imperial/SL
+	name = "Guardsman Sergeant" // veteran guardsman, practically better in all
+	
 	// smgs too
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	smartgun = SKILL_SMART_USE // can use smartgun
 	spec_weapons = SKILL_SPEC_TRAINED
 	
-	// normal SL skills
-	engineer = SKILL_ENGINEER_PLASTEEL
-	construction = SKILL_CONSTRUCTION_PLASTEEL
-	leadership = SKILL_LEAD_TRAINED
-	medical = SKILL_MEDICAL_CHEM
-	surgery = SKILL_SURGERY_AMATEUR
+	// higher SL skills
+	engineer = SKILL_ENGINEER_ENGI
+	construction = SKILL_CONSTRUCTION_ADVANCED
+	leadership = SKILL_LEAD_EXPERT
+	medical = SKILL_MEDICAL_MEDIC
+	surgery = SKILL_SURGERY_TRAINED
 
 /datum/skills/imperial/medicae
 	name = "Guardsman Medicae" // medic
-	
-	medical = SKILL_MEDICAL_MEDIC
-	surgery = SKILL_SURGERY_TRAINED
+	leadership = SKILL_LEAD_BEGINNER // normal medics have it
+	medical = SKILL_MEDICAL_DOCTOR // was told to add skills
+	surgery = SKILL_SURGERY_PROFESSIONAL
 
 /datum/skills/imperial/astartes
 	name = "Space Marine" // practically a god
