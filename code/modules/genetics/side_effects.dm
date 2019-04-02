@@ -43,7 +43,7 @@
 		if(!H.reagents.has_reagent("bicaridine"))
 			var/organ_name = pick("chest","l_arm","r_arm","r_leg","l_leg","head","groin")
 			var/datum/limb/E = H.get_limb(organ_name)
-			E.limb_take_damage(20, 0)
+			E.limb_take_damage(20)
 			E.fracture()
 
 /*/datum/genetics/side_effect/monkey

@@ -147,7 +147,7 @@
 				var/datum/limb/affecting = H.get_limb(pick("l_foot","r_foot","l_leg","r_leg","l_hand","r_hand","l_arm", "r_arm","head","chest","groin"))
 
 				if(affecting)
-					affecting.limb_take_damage(damage, 0)
+					affecting.limb_take_damage(damage)
 				else
 					H.adjustBruteLoss(damage)
 

@@ -531,13 +531,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return FALSE
 
 	if(L.limb_status & LIMB_ROBOT)
-		L.limb_take_damage(rand(30,40)) // just do more damage
+		L.limb_take_damage(rand(30, 40)) // just do more damage
 		visible_message("<span class='xenowarning'>You hear [M]'s [L.display_name] being pulled beyond its load limits!</span>", \
 		"<span class='xenowarning'>\The [M]'s [L.display_name] begins to tear apart!</span>")
 	else
 		visible_message("<span class='xenowarning'>You hear the bones in [M]'s [L.display_name] snap with a sickening crunch!</span>", \
 		"<span class='xenowarning'>\The [M]'s [L.display_name] bones snap with a satisfying crunch!</span>")
-		L.limb_take_damage(rand(15,25))
+		L.limb_take_damage(rand(15, 25))
 		L.fracture()
 	log_message(src, M, "ripped the [L.display_name] off", addition="1/2 progress")
 
