@@ -166,8 +166,8 @@
 
 
 /obj/machinery/door/ex_act(severity)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE)) return
-
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE)) 
+		return
 	switch(severity)
 		if(1.0)
 			qdel(src)

@@ -58,17 +58,17 @@
 /obj/proc/updateUsrDialog()
 	if(!CHECK_BITFIELD(obj_flags, IN_USE))
 		return
-	var/is_in_use = 0
+	var/is_in_use = FALSE
 	var/list/nearby = viewers(1, src)
 	for(var/mob/M in nearby)
 		if ((M.client && M.interactee == src))
-			is_in_use = 1
-			src.attack_hand(M)
+			is_in_use = TRUE
+			attack_hand(M)
 	if (isAI(usr) || iscyborg(usr))
 		if (!(usr in nearby))
 			if (usr.client && usr.interactee==src) // && M.interactee == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
-				is_in_use = 1
-				src.attack_ai(usr)
+				is_in_use = TRUE
+				attack_ai(usr)
 
 	// check for TK users
 
@@ -76,8 +76,8 @@
 		if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
 			if(!(usr in nearby))
 				if(usr.client && usr.interactee==src)
-					is_in_use = 1
-					src.attack_hand(usr)
+					is_in_use = TRUE
+					attack_hand(usr)
 	if(!is_in_use)
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 
@@ -86,11 +86,11 @@
 	if(!CHECK_BITFIELD(obj_flags, IN_USE))
 		return
 	var/list/nearby = viewers(1, src)
-	var/is_in_use = 0
+	var/is_in_use = FALSE
 	for(var/mob/M in nearby)
 		if ((M.client && M.interactee == src))
-			is_in_use = 1
-			src.interact(M)
+			is_in_use = TRUE
+			interact(M)
 	var/ai_in_use = AutoUpdateAI(src)
 
 	if(!ai_in_use && !is_in_use)
