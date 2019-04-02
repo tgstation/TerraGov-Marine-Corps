@@ -766,17 +766,6 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	to_chat(world, "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>")
 	#endif
 
-	//Any projectile can decloak a predator. It does defeat one free bullet though.
-	if(gloves)
-		var/obj/item/clothing/gloves/yautja/Y = gloves
-		if(istype(Y) && Y.cloaked)
-			if( P.ammo.flags_ammo_behavior & (AMMO_ROCKET|AMMO_ENERGY|AMMO_XENO_ACID) ) //<--- These will auto uncloak.
-				Y.decloak(src) //Continue on to damage.
-			else if(rand(0,100) < 20)
-				Y.decloak(src)
-				return //Absorb one free bullet.
-			//Else we're moving on to damage.
-
 	//Shields
 	if( !(P.ammo.flags_ammo_behavior & AMMO_ROCKET) ) //No, you can't block rockets.
 		if( P.dir == reverse_direction(dir) && check_shields(damage * 0.65, "[P]") && src != P.firer.sniper_target(src)) //Aimed sniper shots will ignore shields
@@ -835,7 +824,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )  //They can't be dead and damage must be inflicted (or it's a xeno toxin).
 		//Predators and synths are immune to these effects to cut down on the stun spam. This should later be moved to their apply_effects proc, but right now they're just humans.
-		if(!isyautjastrict(src) && !(species.species_flags & IS_SYNTHETIC))
+		if(!(species.species_flags & IS_SYNTHETIC))
 			apply_effects(arglist(P.ammo.debilitate))
 
 	bullet_message(P) //We still want this, regardless of whether or not the bullet did damage. For griefers and such.
@@ -1157,9 +1146,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		. -= round(max(30,(shooter_human.traumatic_shock) * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
 		if(shooter_human.stagger)
 			. -= 30 //Being staggered fucks your aim.
-		if(shooter_human.marskman_aura)
-			. += shooter_human.marskman_aura * 1.5 //Flat buff of 3 % accuracy per aura level
-			. += P.distance_travelled * 0.35 * shooter_human.marskman_aura //Flat buff to accuracy per tile travelled
+		if(shooter_human.marksman_aura)
+			. += shooter_human.marksman_aura * 1.5 //Flat buff of 3 % accuracy per aura level
+			. += P.distance_travelled * 0.35 * shooter_human.marksman_aura //Flat buff to accuracy per tile travelled
 
 
 /mob/living/carbon/human/get_projectile_hit_chance(obj/item/projectile/P)
