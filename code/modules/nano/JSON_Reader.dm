@@ -198,7 +198,7 @@
 		CRASH("Unterminated array.")
 
 
-/datum/json_reader/proc/die(json_token/T)
+/datum/json_reader/proc/die(datum/json_token/T)
 	if(!T)
 		T = JSON_GET_TOKEN(i)
 	CRASH("Unexpected token: [T.value].")
