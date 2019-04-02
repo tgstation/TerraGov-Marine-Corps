@@ -482,13 +482,13 @@
 	engineer = SKILL_ENGINEER_PLASTEEL
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_TRAINED
-	medical = SKILL_MEDICAL_CHEM
+	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
 
 /datum/skills/imperial/medicae
 	name = "Guardsman Medicae" // medic
 	
-	medical = SKILL_MEDICAL_MEDIC
+	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_TRAINED
 
 /datum/skills/imperial/astartes
@@ -509,7 +509,7 @@
 	engineer = SKILL_ENGINEER_PLASTEEL
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_TRAINED
-	medical = SKILL_MEDICAL_CHEM
+	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
 	powerloader = SKILL_POWERLOADER_DABBLING
 
@@ -518,5 +518,5 @@
 	cqc = 4 // below SKILL_CQC_MASTER, no define for it
 	melee_weapons = SKILL_MELEE_TRAINED
 	
-	medical = SKILL_MEDICAL_CMO
+	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
