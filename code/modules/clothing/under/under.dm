@@ -84,7 +84,7 @@
 		if ((flags_item & NODROP) || loc != usr)
 			return
 
-		if (!usr.is_mob_incapacitated() && !(usr.buckled && usr.lying))
+		if (!usr.incapacitated() && !(usr.buckled && usr.lying))
 			if(over_object)
 				switch(over_object.name)
 					if("r_hand")
@@ -114,7 +114,7 @@
 /obj/item/clothing/under/proc/set_sensors(mob/living/user)
 	if (!istype(user))
 		return
-	if (user.is_mob_incapacitated(TRUE))
+	if (user.incapacitated(TRUE))
 		return
 	if(has_sensor >= 2)
 		to_chat(user, "The sensors in [src] can't be modified.")

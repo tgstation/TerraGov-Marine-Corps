@@ -661,7 +661,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	if (!xeno_candidate || !xeno_candidate.client)
 		return FALSE
 
-	if(HS.living_xeno_queen?.is_mob_incapacitated(TRUE))
+	if(HS.living_xeno_queen?.incapacitated(TRUE))
 		to_chat(xeno_candidate, "<span class='warning'>Mother is not in a state to receive us.</span>")
 		return FALSE
 

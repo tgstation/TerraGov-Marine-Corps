@@ -159,7 +159,7 @@
 
 	//Check if you are being grabbed and if so attemps to break it
 	if(mob.pulledby)
-		if(mob.is_mob_incapacitated(TRUE))
+		if(mob.incapacitated(TRUE))
 			return
 		else if(mob.is_mob_restrained(0))
 			next_movement = world.time + 20 //to reduce the spam

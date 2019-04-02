@@ -437,7 +437,7 @@
 /obj/machinery/vending/Topic(href, href_list)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
-	if(usr.is_mob_incapacitated())
+	if(usr.incapacitated())
 		return
 
 	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))

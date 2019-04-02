@@ -75,7 +75,7 @@
 	set src in usr
 	if(!isliving(usr))
 		return
-	if(usr.is_mob_incapacitated())
+	if(usr.incapacitated())
 		return
 
 	flipped_cap = !flipped_cap

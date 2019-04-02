@@ -310,7 +310,7 @@
 	set category = "Object"
 	set src in usr
 
-	if(usr.is_mob_incapacitated() || usr != wearer || !ishuman(usr))
+	if(usr.incapacitated() || usr != wearer || !ishuman(usr))
 		return FALSE
 
 	handle_interface(usr)
@@ -331,7 +331,7 @@
 	. = ..()
 	if(.)
 		return
-	if(usr.is_mob_incapacitated() || usr != wearer || !ishuman(usr))
+	if(usr.incapacitated() || usr != wearer || !ishuman(usr))
 		return
 	if(usr.contents.Find(src) )
 		usr.set_interaction(src)

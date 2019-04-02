@@ -30,7 +30,7 @@
 		to_chat(src, "<span class='warning'>You are jobbanned from aliens and cannot evolve. How did you even become an alien?</span>")
 		return
 
-	if(is_mob_incapacitated(TRUE))
+	if(incapacitated(TRUE))
 		to_chat(src, "<span class='warning'>You can't evolve in your current state.</span>")
 		return
 
@@ -79,7 +79,7 @@
 	if(!isturf(loc)) //cdel'd or inside something
 		return
 
-	if(is_mob_incapacitated(TRUE))
+	if(incapacitated(TRUE))
 		to_chat(src, "<span class='warning'>You can't evolve in your current state.</span>")
 		return
 

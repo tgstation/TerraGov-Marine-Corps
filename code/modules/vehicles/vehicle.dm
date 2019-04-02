@@ -32,7 +32,7 @@
 	//spawn the cell you want in each vehicle
 
 /obj/vehicle/relaymove(mob/user, direction)
-	if(user.is_mob_incapacitated())
+	if(user.incapacitated())
 		return
 	if(world.time > l_move_time + move_delay)
 		if(on && powered && cell && cell.charge < charge_use)

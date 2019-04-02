@@ -119,7 +119,7 @@
 
 //Mouse drop another mob or self
 /obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
-	if(!istype(target) || target.anchored || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.is_mob_incapacitated(TRUE) || isAI(user) || target.mob_size >= MOB_SIZE_BIG)
+	if(!istype(target) || target.anchored || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.incapacitated(TRUE) || isAI(user) || target.mob_size >= MOB_SIZE_BIG)
 		return
 	if(isanimal(user) && target != user) return //Animals cannot put mobs other than themselves into disposal
 	add_fingerprint(user)
@@ -135,11 +135,11 @@
 	if(target_loc != target.loc)
 		return
 	if(target == user)
-		if(user.is_mob_incapacitated(TRUE)) return
+		if(user.incapacitated(TRUE)) return
 		user.visible_message("<span class='notice'>[user] climbs into [src].</span>",
 		"<span class ='notice'>You climb into [src].</span>")
 	else
-		if(user.is_mob_incapacitated()) return
+		if(user.incapacitated()) return
 		user.visible_message("<span class ='danger'>[user] stuffs [target] into [src]!</span>",
 		"<span class ='warning'>You stuff [target] into [src]!</span>")
 

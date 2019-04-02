@@ -4,7 +4,7 @@
 
 	if(!isliving(usr) || usr.next_move > world.time)
 		return
-	if(usr.is_mob_incapacitated(TRUE))
+	if(usr.incapacitated(TRUE))
 		to_chat(src, "<span class='warning'>You can't resist in your current state.</span>")
 		return
 	var/mob/living/L = usr
@@ -289,7 +289,7 @@
 	set name = "Rest"
 	set category = "IC"
 
-	if(is_mob_incapacitated(TRUE))
+	if(incapacitated(TRUE))
 		return
 
 	if(!resting)
@@ -308,7 +308,7 @@
 /mob/living/proc/get_up()
 	action_busy = FALSE
 	overlays -= get_busy_icon(BUSY_ICON_GENERIC)
-	if(!is_mob_incapacitated(TRUE))
+	if(!incapacitated(TRUE))
 		to_chat(src, "<span class='notice'>You get up.</span>")
 		resting = FALSE
 		update_canmove()

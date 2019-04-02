@@ -64,7 +64,7 @@
 	return attack_hand(M)
 
 /obj/structure/ladder/attack_hand(mob/user)
-	if(user.is_mob_incapacitated() || !Adjacent(user) || user.lying || user.buckled || user.anchored)
+	if(user.incapacitated() || !Adjacent(user) || user.lying || user.buckled || user.anchored)
 		return
 	var/ladder_dir_name
 	var/obj/structure/ladder/ladder_dest
@@ -89,7 +89,7 @@
 	add_fingerprint(user)
 	if(!do_after(user, 20, FALSE, 5, BUSY_ICON_GENERIC))
 		return
-	if(!user.is_mob_incapacitated() && get_dist(user, src) <= 1 && !user.lying && !user.anchored)
+	if(!user.incapacitated() && get_dist(user, src) <= 1 && !user.lying && !user.anchored)
 		user.trainteleport(ladder_dest.loc)
 		visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
 		user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
@@ -101,7 +101,7 @@
 
 /obj/structure/ladder/check_eye(mob/user)
 	//Are we capable of looking?
-	if(user.is_mob_incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying || !user.client)
+	if(user.incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying || !user.client)
 		user.unset_interaction()
 
 	//Are ladder cameras ok?
@@ -136,7 +136,7 @@
 //Peeking up/down
 /obj/structure/ladder/MouseDrop(over_object, src_location, over_location)
 	if((over_object == usr && (in_range(src, usr))))
-		if(isxenolarva(usr) || isobserver(usr) || usr.is_mob_incapacitated() || is_blind(usr) || usr.lying)
+		if(isxenolarva(usr) || isobserver(usr) || usr.incapacitated() || is_blind(usr) || usr.lying)
 			to_chat(usr, "You can't do that in your current state.")
 			return
 		if(is_watching)

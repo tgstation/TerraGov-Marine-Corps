@@ -27,7 +27,7 @@
 	core_name = "hypospray"
 
 /obj/item/reagent_container/hypospray/advanced/attack_self(mob/user)
-	if(user.is_mob_incapacitated() || !user.IsAdvancedToolUser())
+	if(user.incapacitated() || !user.IsAdvancedToolUser())
 		return FALSE
 
 	handle_interface(user)
@@ -124,7 +124,7 @@
 		var/mob/M = A
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
 			return
-		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.is_mob_incapacitated() && ((M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP)))
+		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && ((M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP)))
 			user.KnockDown(3)
 			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
 			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
@@ -227,7 +227,7 @@
 //Interface for the hypo
 /obj/item/reagent_container/hypospray/Topic(href, href_list)
 	//..()
-	if(usr.is_mob_incapacitated() || !usr.IsAdvancedToolUser())
+	if(usr.incapacitated() || !usr.IsAdvancedToolUser())
 		return
 	if(usr.contents.Find(src) )
 		usr.set_interaction(src)
@@ -268,7 +268,7 @@
 //Interface for the hypo
 /obj/item/reagent_container/hypospray/advanced/Topic(href, href_list)
 	//..()
-	if(usr.is_mob_incapacitated() || !usr.IsAdvancedToolUser())
+	if(usr.incapacitated() || !usr.IsAdvancedToolUser())
 		return
 	if(usr.contents.Find(src) )
 		usr.set_interaction(src)
