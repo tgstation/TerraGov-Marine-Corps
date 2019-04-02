@@ -459,8 +459,6 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define PLASMA_SALVAGE_AMOUNT 40
 #define PLASMA_SALVAGE_MULTIPLIER 0.5 // I'd not reccomend setting this higher than one.
 
-#define CRITICAL_HIT_DELAY 25
-
 #define XENO_LARVAL_ADVANCEMENT_COOLDOWN	15 SECONDS
 
 #define XENO_LARVAL_GROWTH_COOLDOWN			12 SECONDS
