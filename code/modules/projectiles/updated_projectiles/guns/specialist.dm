@@ -27,7 +27,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/targetmarker_on = FALSE
 	var/targetmarker_primed = FALSE
-	var/mob/living/laser_target = null
+	var/mob/living/carbon/laser_target = null
 	var/image/LT = null
 	var/obj/item/device/binoculars/tactical/integrated_laze = null
 	attachable_allowed = list(

@@ -6,64 +6,6 @@
 
 // check _DEFINES/projectiles.dm for some more defines
 
-// TESTING and DEBUGGING and PROFILING equipment
-
-/obj/machinery/pewpew
-	name = "pewpewpew"
-	use_power = NO_POWER_USE
-	var/ammo_left = 800
-	var/datum/ammo/ammo = new /datum/ammo/bullet/pistol
-
-/obj/machinery/pewpew/Initialize()
-	. = ..()
-	start_processing()
-
-/obj/machinery/pewpew/process()
-	if(ammo_left <= 0)
-		stop_processing()
-		return PROCESS_KILL
-	
-	var/obj/item/projectile/P = new /obj/item/projectile(loc)
-	P.generate_bullet(ammo)
-	P.fire_at(locate(x, y + 5, z), src, src, ammo.max_range, ammo.shell_speed)
-		
-	P = new /obj/item/projectile(loc)
-	P.generate_bullet(ammo)
-	P.fire_at(locate(x, y - 5, z), src, src, ammo.max_range, ammo.shell_speed)
-		
-	P = new /obj/item/projectile(loc)
-	P.generate_bullet(ammo)
-	P.fire_at(locate(x + 5, y, z), src, src, ammo.max_range, ammo.shell_speed)
-		
-	P = new /obj/item/projectile(loc)
-	P.generate_bullet(ammo)
-	P.fire_at(locate(x - 5, y, z), src, src, ammo.max_range, ammo.shell_speed)
-		
-	P = new /obj/item/projectile(loc)
-	P.generate_bullet(ammo)
-	P.fire_at(locate(x - 5, y - 5, z), src, src, ammo.max_range, ammo.shell_speed)
-		
-	P = new /obj/item/projectile(loc)
-	P.generate_bullet(ammo)
-	P.fire_at(locate(x - 5, y + 5, z), src, src, ammo.max_range, ammo.shell_speed)
-		
-	P = new /obj/item/projectile(loc)
-	P.generate_bullet(ammo)
-	P.fire_at(locate(x + 5, y + 5, z), src, src, ammo.max_range, ammo.shell_speed)
-		
-	P = new /obj/item/projectile(loc)
-	P.generate_bullet(ammo)
-	P.fire_at(locate(x + 5, y - 5, z), src, src, ammo.max_range, ammo.shell_speed)
-	ammo_left -= 8
-	
-	to_chat(world, "[ammo_left] left.")
-		
-
-/obj/machinery/pewpew/Destroy()
-	stop_processing()
-	return ..()
-
-
 /obj/item/projectile
 	name = "projectile"
 	icon = 'icons/obj/items/projectiles.dmi'
