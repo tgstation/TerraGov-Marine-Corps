@@ -801,8 +801,8 @@ and you're good to go.
 		return
 
 	user.visible_message("<span class = 'warning'>[user] pulls the trigger!</span>")
-	var/actual_sound = (active_attachable && active_attachable.fire_sound) ? active_attachable.fire_sound : fire_sound
-	var/sound_volume = (flags_gun_features & GUN_SILENCED && !active_attachable) ? 25 : 60
+	var/actual_sound = (active_attachable?.fire_sound) ? active_attachable.fire_sound : fire_sound
+	var/sound_volume = (CHECK_BITFIELD(flags_gun_features, GUN_SILENCED) && !active_attachable) ? 25 : 60
 	playsound(user, actual_sound, sound_volume, 1)
 	simulate_recoil(2, user)
 	var/obj/item/weapon/gun/revolver/current_revolver = src
