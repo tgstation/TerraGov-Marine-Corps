@@ -718,17 +718,17 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	item_state = "guardSLarmor"
 	armor = list(melee = 85, bullet = 85, laser = 85, energy = 85, bomb = 85, bio = 25, rad = 25)
 	brightness_on = 6 // better light
+	pockets = /obj/item/storage/internal/suit/imperial
+
+/obj/item/storage/internal/suit/imperial
+	storage_slots = 3
+	max_storage_space = 6
 
 /obj/item/clothing/suit/storage/marine/imperial/medicae
 	name = "\improper Imperial Guard medicae armour"
 	desc = "An armour worn by the medicae of the Imperial Guard."
 	icon_state = "guardmedicarmor"
 	item_state = "guardmedicarmor"
-
-/obj/item/clothing/suit/storage/marine/imperial/sergeant/Initialize()
-	. = ..()
-	pockets.storage_slots = 3
-	pockets.max_storage_space = 6
 
 /obj/item/clothing/suit/storage/marine/imperial/sergeant/veteran
 	name = "\improper Imperial Guard carapace armour"
@@ -745,11 +745,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	//icon_state
 	armor = list(melee = 75, bullet = 60, laser = 55, energy = 40, bomb = 45, bio = 15, rad = 15)
 	brightness_on = 6
-
-/obj/item/clothing/suit/storage/marine/imperial/power/Initialize()
-	. = ..()
-	pockets.storage_slots = 3
-	pockets.max_storage_space = 6
+	pockets = /obj/item/storage/internal/suit/imperial
 
 /obj/item/clothing/suit/storage/marine/imperial/power/astartes
 	// This should either be admin only or only given to one person

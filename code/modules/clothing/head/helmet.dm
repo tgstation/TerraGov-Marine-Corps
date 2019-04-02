@@ -405,12 +405,11 @@
 	desc = "A helmet that goes with the sergeant armour, unlike the flak variant, this one will actually protect you."
 	icon_state = "guardhelm"
 	armor = list(melee = 80, bullet = 80, laser = 80, energy = 80, bomb = 80, bio = 25, rad = 25)
+	pockets = /obj/item/storage/internal/imperialhelmet
 
-/obj/item/clothing/head/helmet/marine/imperial/sergeant/Initialize()
-	. = ..()
-	// bigger helm = bigger pocketti
-	pockets.max_w_class = 2
-	pockets.max_storage_space = 6
+/obj/item/storage/internal/imperialhelmet
+	max_w_class = 2
+	max_storage_space = 6
 
 /obj/item/clothing/head/helmet/marine/imperial/sergeant/veteran
 	name = "\improper Imperial Guard carapace helmet"
@@ -423,11 +422,7 @@
 	desc = "A helmet that goes with the Space Marine power armour, this one has been salvaged from the battlefield."
 	//icon_state
 	armor = list(melee = 75, bullet = 60, laser = 55, energy = 40, bomb = 45, bio = 15, rad = 15)
-
-/obj/item/clothing/head/helmet/marine/imperial/power/Initialize()
-	. = ..()
-	pockets.max_w_class = 2
-	pockets.max_storage_space = 6
+	pockets = /obj/item/storage/internal/imperialhelmet
 
 /obj/item/clothing/head/helmet/marine/imperial/power/astartes
 	name = "\improper Space Marine helmet"
