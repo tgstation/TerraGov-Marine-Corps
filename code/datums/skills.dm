@@ -461,3 +461,65 @@
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
+
+//======//I.o.M.\\======\\
+
+/datum/skills/imperial
+	name = "Guardsman"
+
+/datum/skills/imperial/SL
+	name = "Guardsman Sergeant" // veteran guardsman, practically better in all
+	cqc = SKILL_CQC_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	
+	firearms = SKILL_FIREARMS_TRAINED
+	// guardsmen don't use pistol, so he doesn't have experience with them, unless they use boltpistols
+	// shotguns too
+	rifles = SKILL_RIFLES_TRAINED
+	// smgs too
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	smartgun = SKILL_SMART_USE // can use smartgun
+	spec_weapons = SKILL_SPEC_TRAINED
+	
+	// normal SL skills
+	engineer = SKILL_ENGINEER_PLASTEEL
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	leadership = SKILL_LEAD_TRAINED
+	medical = SKILL_MEDICAL_CHEM
+	surgery = SKILL_SURGERY_AMATEUR
+
+/datum/skills/imperial/medicae
+	name = "Guardsman Medicae" // medic
+	
+	medical = SKILL_MEDICAL_MEDIC
+	surgery = SKILL_SURGERY_TRAINED
+
+/datum/skills/imperial/astartes
+	name = "Space Marine" // practically a god
+	cqc = SKILL_CQC_MASTER
+	melee_weapons = SKILL_MELEE_SUPER // chainswords are literally used about the same or more than their boltpistols
+
+	firearms = SKILL_FIREARMS_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	smartgun = SKILL_SMART_TRAINED
+	spec_weapons = SKILL_SPEC_TRAINED
+
+	//endurance = 0 - does nothing
+	engineer = SKILL_ENGINEER_PLASTEEL
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	leadership = SKILL_LEAD_TRAINED
+	medical = SKILL_MEDICAL_CHEM
+	surgery = SKILL_SURGERY_AMATEUR
+	powerloader = SKILL_POWERLOADER_DABBLING
+
+/datum/skills/imperial/astartes/apothecary
+	name = "Space Marine Apothecary" // a slightly less stronger space marine with medical skills
+	cqc = 4 // below SKILL_CQC_MASTER, no define for it
+	melee_weapons = SKILL_MELEE_TRAINED
+	
+	medical = SKILL_MEDICAL_CMO
+	surgery = SKILL_SURGERY_EXPERT

@@ -128,6 +128,12 @@
 	colour = "soghun"
 	key = "3"
 
+/datum/language/imperial
+	name = "Imperial"
+	desc = "English 2: Electric Boogaloo"
+	speech_verb = "says"
+	colour = "impradio" // same color is radio
+	key = "5"
 
 /datum/language/xenocommon
 	name = "Xenomorph"
@@ -238,7 +244,6 @@
 
 // Language handling.
 /mob/proc/add_language(var/language)
-
 	var/datum/language/new_language = GLOB.all_languages[language]
 
 	if(!istype(new_language) || new_language in languages)

@@ -145,6 +145,16 @@
 //=========================//RESPONDERS\\================================
 
 
+//=========================//Imperium\\==================================\\
+
+/obj/item/clothing/under/marine/imperial
+	name = "\improper Imperial uniform"
+	desc = "This uniform is given out to pretty much every soldier in the Imperium."
+	rollable_sleeves = FALSE // don't disrespect the EMPEROR!
+	icon_state = "guardjumpsuit"
+	item_state = "guardjumpsuit"
+	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 10)
+
 /obj/item/clothing/under/marine/veteran
 	rollable_sleeves = FALSE
 

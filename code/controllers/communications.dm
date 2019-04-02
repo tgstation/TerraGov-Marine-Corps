@@ -107,6 +107,7 @@ var/const/DUT_FREQ 		= 1340
 var/const/ERT_FREQ 		= 1342
 var/const/RUS_FREQ		= 1338
 var/const/DTH_FREQ 		= 1344
+var/const/IMP_FREQ		= 1337
 var/const/AI_FREQ 		= 1447
 
 //Ship department channels
@@ -138,6 +139,7 @@ var/list/radiochannels = list(
 	"SpecOps" 		= DTH_FREQ,
 	"UPP" 			= RUS_FREQ,
 	"Colonist"		= DUT_FREQ,
+	"Imperial"		= IMP_FREQ,
 
 	"Theseus"		= PUB_FREQ,
 	"Command"		= COMM_FREQ,
@@ -164,7 +166,7 @@ var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ)
 var/list/ANTAG_FREQS = list(SYND_FREQ, RUS_FREQ)
 
 //Depts - just used for colors in headset.dm
-var/list/DEPT_FREQS = list(MED_FREQ, ENG_FREQ, SEC_FREQ, ERT_FREQ, SYND_FREQ, DTH_FREQ, CIV_GEN_FREQ, CIV_COMM_FREQ, ALPHA_FREQ, BRAVO_FREQ,CHARLIE_FREQ, DELTA_FREQ, SUP_FREQ)
+var/list/DEPT_FREQS = list(MED_FREQ, ENG_FREQ, SEC_FREQ, ERT_FREQ, SYND_FREQ, DTH_FREQ, CIV_GEN_FREQ, CIV_COMM_FREQ, ALPHA_FREQ, BRAVO_FREQ,CHARLIE_FREQ, DELTA_FREQ, SUP_FREQ, IMP_FREQ)
 
 #define TRANSMISSION_WIRE	0
 #define TRANSMISSION_RADIO	1

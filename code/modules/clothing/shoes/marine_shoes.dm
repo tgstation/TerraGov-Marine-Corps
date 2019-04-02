@@ -6,7 +6,7 @@
 	icon_state = "marine"
 	item_state = "marine"
 	flags_armor_protection = FEET
-	armor = list(melee = 60, bullet = 40, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
+	armor = list(melee = 60, bullet = 40, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 0)
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
@@ -99,3 +99,17 @@
 	flags_heat_protection = FEET
 	siemens_coefficient = 0.2
 	unacidable = 1
+
+//=========//Imperium\\=========\\
+
+/obj/item/clothing/shoes/marine/imperial
+	name = "guardsmen combat boots"
+	desc = "A pair of boots issued to the Imperial Guard, just like anything else they use, they are mass produced."
+	//icon_state = ""
+	armor = list(melee = 65, bullet = 45, laser = 15, energy = 15, bomb = 15, bio = 15, rad = 0)
+
+/obj/item/clothing/shoes/marine/imperial/Initialize()
+	. = ..()
+	knife = new /obj/item/weapon/combat_knife
+	update_icon()
+	
