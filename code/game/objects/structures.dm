@@ -248,7 +248,7 @@
 		return FALSE
 	if(!Adjacent(user) || !isturf(user.loc))
 		return FALSE
-	if(user.is_mob_restrained() || user.buckled)
+	if(user.restrained() || user.buckled)
 		to_chat(user, "<span class='notice'>You need your hands and legs free for this.</span>")
 		return FALSE
 	if(user.incapacitated(TRUE) || user.lying)

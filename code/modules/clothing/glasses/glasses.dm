@@ -151,7 +151,7 @@
 	set name = "Adjust welding goggles"
 	set src in usr
 
-	if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
+	if(usr.canmove && !usr.stat && !usr.restrained())
 		if(active)
 			active = 0
 			flags_inventory &= ~COVEREYES

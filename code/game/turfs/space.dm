@@ -27,7 +27,7 @@
 	return src.attack_hand(user)
 
 /turf/open/space/attack_hand(mob/user)
-	if ((user.is_mob_restrained() || !( user.pulling )))
+	if ((user.restrained() || !( user.pulling )))
 		return
 	if (user.pulling.anchored || !isturf(user.pulling.loc))
 		return

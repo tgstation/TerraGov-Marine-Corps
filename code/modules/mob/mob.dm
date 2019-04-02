@@ -556,7 +556,7 @@
 	if(stat==2)						return 0
 	if(anchored)						return 0
 	if(monkeyizing)						return 0
-	if(is_mob_restrained())					return 0
+	if(restrained())					return 0
 	return 1
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
@@ -649,7 +649,7 @@ mob/proc/yank_out_object()
 		to_chat(usr, "You are unconcious and cannot do that!")
 		return
 
-	if(usr.is_mob_restrained())
+	if(usr.restrained())
 		to_chat(usr, "You are restrained and cannot do that!")
 		return
 

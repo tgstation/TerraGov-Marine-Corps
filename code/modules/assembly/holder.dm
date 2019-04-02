@@ -249,7 +249,7 @@
 	set category = "Object"
 	set src in usr
 
-	if ( !(usr.stat || usr.is_mob_restrained()) )
+	if ( !(usr.stat || usr.restrained()) )
 		var/obj/item/device/assembly_holder/holder
 		if(istype(src,/obj/item/explosive/grenade/chem_grenade))
 			var/obj/item/explosive/grenade/chem_grenade/gren = src
