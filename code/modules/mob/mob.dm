@@ -710,7 +710,7 @@ mob/proc/yank_out_object()
 
 		affected.implants -= selection
 		H.shock_stage+=20
-		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
+		affected.limb_take_damage((selection.w_class * 3), 0, FALSE, TRUE)
 
 		if(prob(selection.w_class * 5)) //I'M SO ANEMIC I COULD JUST -DIE-.
 			var/datum/wound/internal_bleeding/I = new (min(selection.w_class * 5, 15))

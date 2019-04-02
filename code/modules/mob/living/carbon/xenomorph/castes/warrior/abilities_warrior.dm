@@ -198,7 +198,7 @@
 		L.limb_status &= ~LIMB_SPLINTED
 		to_chat(src, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
 
-	L.take_damage(damage, 0, 0, 0, null, null, null, run_armor_check(target_zone))
+	L.limb_take_damage(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
 
 	adjust_stagger(3)
 	add_slowdown(3)
@@ -300,13 +300,13 @@
 		return FALSE
 
 	if(L.limb_status & LIMB_ROBOT)
-		L.take_damage(rand(30,40), 0, 0) // just do more damage
+		L.limb_take_damage(rand(30, 40)) // just do more damage
 		visible_message("<span class='xenowarning'>You hear [M]'s [L.display_name] being pulled beyond its load limits!</span>", \
 		"<span class='xenowarning'>\The [M]'s [L.display_name] begins to tear apart!</span>")
 	else
 		visible_message("<span class='xenowarning'>You hear the bones in [M]'s [L.display_name] snap with a sickening crunch!</span>", \
 		"<span class='xenowarning'>\The [M]'s [L.display_name] bones snap with a satisfying crunch!</span>")
-		L.take_damage(rand(15,25), 0, 0)
+		L.limb_take_damage(rand(15, 25))
 		L.fracture()
 	log_message(src, M, "ripped the [L.display_name] off", addition="1/2 progress")
 

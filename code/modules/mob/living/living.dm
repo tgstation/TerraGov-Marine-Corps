@@ -129,7 +129,7 @@
 		var/extradam = 0	//added to when organ is at max dam
 		for(var/datum/limb/affecting in H.limbs)
 			if(!affecting)	continue
-			if(affecting.take_damage(0, divided_damage+extradam))	//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
+			if(affecting.limb_take_damage(0, divided_damage + extradam))	//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
 				H.UpdateDamageIcon()
 		H.updatehealth()
 		return 1

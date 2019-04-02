@@ -36,7 +36,7 @@
 						affecting = H.get_limb(type)
 						H.Stun(3)
 			if(affecting)
-				if(affecting.take_damage(1, 0))
+				if(affecting.limb_take_damage(1, 0))
 					H.UpdateDamageIcon()
 				H.updatehealth()
 		else if(ismouse(target))
