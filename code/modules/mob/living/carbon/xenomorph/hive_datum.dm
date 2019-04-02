@@ -84,7 +84,7 @@
 			xenos += X
 	return xenos
 
-/datum/hive_status/proc/get_ssd_xenos(var/only_away=FALSE)
+/datum/hive_status/proc/get_ssd_xenos(only_away=FALSE)
 	var/list/xenos = list()
 	for(var/typepath in xenos_by_typepath)
 		for(var/i in xenos_by_typepath[typepath])
@@ -134,6 +134,7 @@
 
 	hive = HS
 	hivenumber = HS.hivenumber // just to be sure
+	generate_name()
 
 /mob/living/carbon/Xenomorph/Queen/add_to_hive(datum/hive_status/HS, force=FALSE) // override to ensure proper queen/hive behaviour
 	. = ..()
@@ -142,7 +143,6 @@
 	if(HS.living_xeno_queen) // theres already a queen
 		return
 	HS.living_xeno_queen = src
-	xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,HS.hivenumber)
 
 /mob/living/carbon/Xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE) // helper function to add by given hivenumber
 	if(!GLOB.hive_datums[hivenumber])
@@ -261,16 +261,21 @@
 /datum/hive_status/proc/update_queen()
 	if(living_xeno_queen)
 		return TRUE
+	var/announce = TRUE
+	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
+		announce = FALSE
 	for(var/i in xenos_by_typepath[/mob/living/carbon/Xenomorph/Queen])
 		var/mob/living/carbon/Xenomorph/Queen/Q = i
 		if(is_centcom_level(Q.z))
 			continue
 		living_xeno_queen = Q
-		xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
+		if(announce)
+			xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
 		update_leader_pheromones()
 		return TRUE
-	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3,TRUE)
-	xeno_message("<span class='xenoannounce'>The slashing of hosts is now permitted.</span>",2,TRUE)
+	if(announce)
+		xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3,TRUE)
+		xeno_message("<span class='xenoannounce'>The slashing of hosts is now permitted.</span>",2,TRUE)
 	slashing_allowed = XENO_SLASHING_ALLOWED
 	update_leader_pheromones()
 	start_queen_timer()
