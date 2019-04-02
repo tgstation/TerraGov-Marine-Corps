@@ -139,22 +139,6 @@
 
 			var/armor_block = run_armor_check(affecting, "melee")
 
-			if(isyautja(src) && check_zone(M.zone_selected) == "head")
-				if(istype(wear_mask, /obj/item/clothing/mask/gas/yautja))
-					var/knock_chance = 1
-					if(M.frenzy_aura > 0)
-						knock_chance += 2 * M.frenzy_aura
-					if(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
-						knock_chance += 2
-					knock_chance += min(round(damage * 0.25), 10) //Maximum of 15% chance.
-					if(prob(knock_chance))
-						playsound(loc, "alien_claw_metal", 25, 1)
-						M.visible_message("<span class='danger'>The [M] smashes off [src]'s [wear_mask.name]!</span>", \
-						"<span class='danger'>You smash off [src]'s [wear_mask.name]!</span>", null, 5)
-						dropItemToGround(wear_mask)
-						emote("roar")
-						return TRUE
-
 			//The normal attack proceeds
 			playsound(loc, attack_sound, 25, 1)
 			M.visible_message("[attack_message1]", \
@@ -195,9 +179,6 @@
 			M.process_rage_attack() //Process Ravager rage gains on attack
 
 		if(INTENT_DISARM)
-			if(M.legcuffed && isyautja(src))
-				to_chat(M, "<span class='xenodanger'>You don't have the dexterity to tackle the headhunter with that thing on your leg!</span>")
-				return FALSE
 			if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest)) //No more memeing nested and infected hosts
 				to_chat(M, "<span class='xenodanger'>You reconsider your mean-spirited bullying of the pregnant, secured host.</span>")
 				return FALSE

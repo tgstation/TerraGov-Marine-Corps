@@ -84,8 +84,7 @@ DEFINES in setup.dm, referenced here.
 	weapons. So long as the steps are followed, it will work without issue. Some guns ignore active attachables,
 	since they currently do not use them, but if that changes, the related procs must also change.
 
-	Energy guns, or guns that don't really use magazines, can gut this system a bit. You can see examples in
-	predator weapons or the taser.
+	Energy guns, or guns that don't really use magazines, can gut this system a bit. You can see examples in the taser.
 
 	Ammo is loaded dynamically based on parent type through a global list. It is located in global_lists.dm under
 	__HELPERS. So never create new() datums, as the datum should just be referenced through the global list instead.
@@ -105,7 +104,6 @@ DEFINES in setup.dm, referenced here.
 	Add more muzzle flashes and gun sounds. Energy weapons, spear launcher, and taser for example.
 	Add more guns, or unique guns. The framework should be there.
 	Add ping for energy guns like the taser and plasma caster.
-	Move pred check for damage effects into the actual predator files instead of the usual.
 	Move the mind checks for damage and stun to actual files, or rework it somehow.
 */
 

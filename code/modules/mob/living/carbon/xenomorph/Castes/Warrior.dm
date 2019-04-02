@@ -211,7 +211,7 @@
 		if(!isxeno(AM))
 			use_plasma(10)
 
-		if(!isxeno(L) && !isyautja(L))
+		if(!isxeno(L))
 			round_statistics.warrior_grabs++
 			grab_level = GRAB_NECK
 			L.drop_all_held_items()

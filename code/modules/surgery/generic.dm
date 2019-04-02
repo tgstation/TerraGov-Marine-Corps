@@ -20,8 +20,6 @@
 		return 1
 	if(affected.limb_status & LIMB_ROBOT)
 		return 0
-	if(isyautja(target) && !isyautja(user))
-		return 0
 	return 1
 
 
