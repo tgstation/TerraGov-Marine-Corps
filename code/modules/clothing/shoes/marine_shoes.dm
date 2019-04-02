@@ -106,7 +106,7 @@
 	name = "guardsmen combat boots"
 	desc = "A pair of boots issued to the Imperial Guard, just like anything else they use, they are mass produced."
 	//icon_state = ""
-	armor = list("melee" = 65, "bullet" = 45, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 0, "fire" = 15, "acid" = 15)
+	armor = list(melee = 65, bullet = 45, laser = 15, energy = 15, bomb = 15, bio = 15, rad = 0)
 
 /obj/item/clothing/shoes/marine/imperial/Initialize()
 	. = ..()
