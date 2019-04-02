@@ -1,4 +1,0 @@
-author: "Alterist"
-delete-after: True
-changes: 
-  - bugfix: "corrercts SD maint walls being outer walls to regular hull walls"
