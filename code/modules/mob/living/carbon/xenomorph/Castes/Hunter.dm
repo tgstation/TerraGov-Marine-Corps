@@ -1,13 +1,13 @@
 /datum/xeno_caste/hunter
 	caste_name = "Hunter"
 	display_name = "Hunter"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A fast, powerful front line combatant."
 
 	caste_type_path = /mob/living/carbon/Xenomorph/Hunter
 
-	tier = 2
-	upgrade = 0
+	tier = XENO_TIER_TWO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -44,10 +44,15 @@
 	charge_type = 2 //Pounce - Hunter
 	pounce_delay = 15 SECONDS
 
+/datum/xeno_caste/hunter/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
+
 /datum/xeno_caste/hunter/mature
 	upgrade_name = "Mature"
 	caste_desc = "A fast, powerful front line combatant. It looks a little more dangerous."
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -79,7 +84,7 @@
 /datum/xeno_caste/hunter/elder
 	upgrade_name = "Elder"
 	caste_desc = "A fast, powerful front line combatant. It looks pretty strong."
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 35
@@ -111,7 +116,7 @@
 /datum/xeno_caste/hunter/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "A fast, powerful front line combatant. It looks pretty strong."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "You are the epitome of the hunter. Few can stand against you in open combat."
 
 	// *** Melee Attacks *** //
@@ -150,8 +155,8 @@
 	health = 150
 	maxHealth = 150
 	plasma_stored = 50
-	tier = 2
-	upgrade = 0
+	tier = XENO_TIER_TWO
+	upgrade = XENO_UPGRADE_ZERO
 	var/stealth_delay = null
 	var/last_stealth = null
 	var/used_stealth = FALSE

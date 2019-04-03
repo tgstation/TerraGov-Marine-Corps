@@ -1184,7 +1184,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/item/projectile/P)
 
-	if(!istype(C) || C.stat == DEAD || (xeno_hivenumber(C) && xeno_hivenumber(C) == xeno_hivenumber(P.firer)) )
+	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
 		return
 
 	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest))
@@ -1271,7 +1271,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_resin(get_turf(M))
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
-		if( (xeno_hivenumber(C) && xeno_hivenumber(C) == xeno_hivenumber(P.firer) ) )
+		if(C.issamexenohive(P.firer))
 			return
 		C.add_slowdown(2) //slow em down
 		C.next_move_slowdown += 8 //really slow down their next move, as if they stepped in sticky doo doo
@@ -1308,7 +1308,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	added_spit_delay = 5
 	spit_cost = 75
-	armor_type = "energy"
+	armor_type = "acid"
 
 /datum/ammo/xeno/acid/New()
 	. = ..()
@@ -1394,19 +1394,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			return
 	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
-		smoke_system.amount = B.upgrade
+		smoke_system.amount = B.upgrade_as_number()
 	drop_nade(get_turf(P))
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/item/projectile/P)
 	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
-		smoke_system.amount = B.upgrade
+		smoke_system.amount = B.upgrade_as_number()
 	drop_nade(get_turf(P))
 
 /datum/ammo/xeno/boiler_gas/on_hit_turf(turf/T, obj/item/projectile/P)
 	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
-		smoke_system.amount = B.upgrade
+		smoke_system.amount = B.upgrade_as_number()
 	if(T.density && isturf(P.loc))
 		drop_nade(P.loc) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
 	else
@@ -1415,7 +1415,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/boiler_gas/do_at_max_range(obj/item/projectile/P)
 	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
-		smoke_system.amount = B.upgrade
+		smoke_system.amount = B.upgrade_as_number()
 	drop_nade(get_turf(P))
 
 /datum/ammo/xeno/boiler_gas/proc/set_xeno_smoke(obj/item/projectile/P)
@@ -1433,7 +1433,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sound_bounce	= "acid_bounce"
 	debilitate = list(1,1,0,0,1,1,0,0)
 	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR
-	armor_type = "energy"
+	armor_type = "acid"
 
 /datum/ammo/xeno/boiler_gas/corrosive/New()
 	..()
@@ -1483,7 +1483,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
-	armor_type = "energy"
+	armor_type = "fire"
 
 /datum/ammo/flamethrower/New()
 	..()

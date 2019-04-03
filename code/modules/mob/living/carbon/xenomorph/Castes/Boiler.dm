@@ -1,13 +1,13 @@
 /datum/xeno_caste/boiler
 	caste_name = "Boiler"
 	display_name = "Boiler"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "Gross!"
 
 	caste_type_path = /mob/living/carbon/Xenomorph/Boiler
 
-	tier = 3
-	upgrade = 0
+	tier = XENO_TIER_THREE
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -45,10 +45,15 @@
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
 	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
+/datum/xeno_caste/boiler/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
+
 /datum/xeno_caste/boiler/mature
 	upgrade_name = "Mature"
 	caste_desc = "Some sort of abomination. It looks a little more dangerous."
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 25
@@ -84,7 +89,7 @@
 /datum/xeno_caste/boiler/elder
 	upgrade_name = "Elder"
 	caste_desc = "Some sort of abomination. It looks pretty strong."
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -120,7 +125,7 @@
 /datum/xeno_caste/boiler/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "A devestating piece of alien artillery."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "You are the master of ranged artillery. Bring death from above."
 
 	// *** Melee Attacks *** //
@@ -163,8 +168,8 @@
 	pixel_x = -16
 	old_x = -16
 	mob_size = MOB_SIZE_BIG
-	tier = 3
-	upgrade = 0
+	tier = XENO_TIER_THREE
+	upgrade = XENO_UPGRADE_ZERO
 	gib_chance = 100
 	drag_delay = 6 //pulling a big dead xeno is hard
 	var/is_bombarding = 0

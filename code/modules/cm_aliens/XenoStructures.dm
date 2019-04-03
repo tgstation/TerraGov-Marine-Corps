@@ -458,8 +458,8 @@
 	var/status = EGG_GROWING
 	var/hivenumber = XENO_HIVE_NORMAL
 
-/obj/effect/alien/egg/New()
-	..()
+/obj/effect/alien/egg/Initialize()
+	. = ..()
 	if(hugger_type)
 		hugger = new hugger_type(src)
 		hugger.hivenumber = hivenumber
@@ -497,7 +497,7 @@
 	if(!istype(M))
 		return attack_hand(M)
 
-	if(M.hivenumber != hivenumber)
+	if(!issamexenohive(M))
 		M.animation_attack_on(src)
 		M.visible_message("<span class='xenowarning'>[M] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
 		Burst(TRUE)
@@ -556,10 +556,11 @@
 
 /obj/effect/alien/egg/update_icon()
 	overlays.Cut()
-	if(hivenumber && hivenumber <= hive_datum.len)
-		var/datum/hive_status/hive = hive_datum[hivenumber]
-		if(hive.color)
-			color = hive.color
+	if(hivenumber != XENO_HIVE_NORMAL && GLOB.hive_datums[hivenumber])
+		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+		color = hive.color
+	else
+		color = null
 	switch(status)
 		if(EGG_DESTROYED)
 			icon_state = "Egg Exploded"
@@ -749,8 +750,7 @@ TUNNEL
 
 	//Prevents using tunnels by the queen to bypass the fog.
 	if(SSticker?.mode && SSticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
-		var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
-		if(!hive.living_xeno_queen)
+		if(!M.hive.living_xeno_queen)
 			to_chat(M, "<span class='xenowarning'>There is no Queen. You must choose a queen first.</span>")
 			return FALSE
 		else if(isxenoqueen(M))

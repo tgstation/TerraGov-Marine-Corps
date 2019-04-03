@@ -61,7 +61,7 @@
 		msg += "[line]<br>"
 
 	if(check_rights(R_ADMIN, FALSE))
-		var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
+		var/datum/hive_status/hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		msg += "<b>Total Players: [length(Lines)]</b>"
 		msg += "<br><b>Observers: [count_observers] (Non-Admin: [count_nonadmin_observers])</b>"
 		msg += "<br><b>Humans: [count_humans]</b> <b>(Marines: ~[count_marine_humans])</b> <b>(Infected: [count_infectedhumans])</b><br>"

@@ -253,7 +253,7 @@
 
 		if(isxeno(L))
 			var/mob/living/carbon/Xenomorph/X = L
-			X.set_hive_number(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
+			X.transfer_to_hive(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
 
 		else if(ishuman(L))
 			var/mob/living/carbon/human/H = L
@@ -369,7 +369,7 @@
 	return FALSE
 
 
-/datum/game_mode/proc/spawn_larva(mob/xeno_candidate, mob/living/carbon/Xenomorph/Queen/mother)
+/datum/game_mode/proc/spawn_larva(mob/xeno_candidate)
 	to_chat(xeno_candidate, "<span class='warning'>This is unavailable in this gamemode.</span>")
 	return FALSE
 
@@ -383,25 +383,22 @@
 
 /datum/game_mode/proc/attempt_to_join_as_xeno(mob/xeno_candidate, instant_join = FALSE)
 	var/list/available_xenos = list()
-	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/Xenomorph/X = i
-		if(is_centcom_level(X.z))
-			continue
-		if(X.client)
-			continue
-		available_xenos["[X] - away for [X.away_timer]s"] = X
+	for(var/hive in GLOB.hive_datums)
+		var/datum/hive_status/HS = GLOB.hive_datums[hive]
+		available_xenos += HS.get_ssd_xenos(instant_join)
 
-	if(!length(available_xenos))
+	if(!available_xenos.len)
 		to_chat(xeno_candidate, "<span class='warning'>There aren't any available already living xenomorphs. You can try waiting for a larva to burst if you have the preference enabled.</span>")
 		return FALSE
 
-	var/pick = input("Available Xenomorphs") as null|anything in available_xenos
-	var/mob/living/carbon/Xenomorph/new_xeno = available_xenos[pick]
+	if(instant_join)
+		return pick(available_xenos) //Just picks something at random.
 
+	var/mob/living/carbon/Xenomorph/new_xeno = input("Available Xenomorphs") as null|anything in available_xenos
 	if(!istype(new_xeno) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!(new_xeno in GLOB.alive_xeno_list) || new_xeno.stat == DEAD)
+	if(new_xeno.stat == DEAD)
 		to_chat(xeno_candidate, "<span class='warning'>You cannot join if the xenomorph is dead.</span>")
 		return FALSE
 
