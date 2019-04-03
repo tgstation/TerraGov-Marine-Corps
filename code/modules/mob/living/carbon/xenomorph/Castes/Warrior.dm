@@ -1,11 +1,11 @@
 /datum/xeno_caste/warrior
 	caste_name = "Warrior"
 	display_name = "Warrior"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A powerful front line combatant."
 	caste_type_path = /mob/living/carbon/Xenomorph/Warrior
-	tier = 2
-	upgrade = 0
+	tier = XENO_TIER_TWO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -40,11 +40,16 @@
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
 
+/datum/xeno_caste/warrior/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
+
 /datum/xeno_caste/warrior/mature
 	upgrade_name = "Mature"
 	caste_desc = "An alien with an armored carapace. It looks a little more dangerous."
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 35
@@ -75,7 +80,7 @@
 	upgrade_name = "Elder"
 	caste_desc = "An alien with an armored carapace. It looks pretty strong."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40
@@ -107,7 +112,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "An hulking beast capable of effortlessly breaking and tearing through its enemies."
 	ancient_message = "None can stand before you. You will annihilate all weaklings who try."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 45
@@ -147,8 +152,8 @@
 	speed = -0.3
 	pixel_x = -16
 	old_x = -16
-	tier = 2
-	upgrade = 0
+	tier = XENO_TIER_TWO
+	upgrade = XENO_UPGRADE_ZERO
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
@@ -211,7 +216,7 @@
 		if(!isxeno(AM))
 			use_plasma(10)
 
-		if(!isxeno(L) && !isyautja(L))
+		if(!isxeno(L))
 			round_statistics.warrior_grabs++
 			grab_level = GRAB_NECK
 			L.drop_all_held_items()

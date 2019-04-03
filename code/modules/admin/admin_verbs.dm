@@ -1,6 +1,6 @@
 /datum/admins/proc/admin_ghost()
 	set category = "Admin"
-	set name = "Admin Ghost"
+	set name = "Aghost"
 	set desc = "Allows you to ghost and re-enter body at will."
 
 	if(!check_rights(R_ADMIN|R_MENTOR))
@@ -104,12 +104,12 @@
 	var/mob/M
 	switch(input("Change by:", "Change CKey") as null|anything in list("Key", "Mob"))
 		if("Key")
-			var/client/C = input("Please, select a key.", "Get Key") as null|anything in sortKey(GLOB.clients)
+			var/client/C = input("Please, select a key.", "Change CKey") as null|anything in sortKey(GLOB.clients)
 			if(!C)
 				return
 			M = C.mob
 		if("Mob")
-			var/mob/N = input("Please, select a mob.", "Get Mob") as null|anything in sortNames(GLOB.mob_list)
+			var/mob/N = input("Please, select a mob.", "Change CKey") as null|anything in sortNames(GLOB.mob_list)
 			if(!N)
 				return
 			M = N
@@ -272,7 +272,7 @@
 	S.put_marine_in_squad(H)
 
 	//Crew manifest
-	for(var/datum/data/record/t in data_core.general)
+	for(var/datum/data/record/t in GLOB.datacore.general)
 		if(t.fields["name"] == H.real_name)
 			t.fields["squad"] = S.name
 			break
@@ -1045,7 +1045,7 @@
 
 	if(irc)
 		to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]</span></font>")
-		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='red'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>IRC</i>: [keywordparsedmsg]</font>")
+		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>IRC</i>: [keywordparsedmsg]</font>")
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
 	else
 		if(check_other_rights(recipient, R_ADMIN, FALSE) || is_mentor(recipient))
@@ -1061,15 +1061,14 @@
 				window_flash(recipient)
 				window_flash(src)
 
-				var/interaction_message = "<font color='purple'>PM from-<b>[key_name(src, recipient, TRUE)]</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [keywordparsedmsg]</font>"
+				var/interaction_message = "<font color='#cea7f1'>PM from-<b>[key_name(src, recipient, TRUE)]</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [keywordparsedmsg]</font>"
 				admin_ticket_log(src, interaction_message)
 				if(recipient != src)
 					admin_ticket_log(recipient, interaction_message)
 
 			else //Recipient is a staff member, sender is not.
-				var/replymsg = "<font size='3' color='red'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>"
-				admin_ticket_log(src, replymsg)
-				to_chat(recipient, replymsg)
+				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
+				to_chat(recipient, "<font size='3' color='red'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 				window_flash(recipient)
 				to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[msg]</span></font>")
 
@@ -1099,7 +1098,7 @@
 					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg'))
 
 				window_flash(recipient)
-				admin_ticket_log(recipient, "<font color='blue'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
+				admin_ticket_log(recipient, "<font color='#a7f2ef'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
 
 
 			else		//neither are admins
@@ -1199,7 +1198,7 @@
 				AH.Reopen(TRUE)
 				AH.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
 				message_admins("IRC interaction by: [irc_tagged]")
-				return "Ticket #[ticket.id] successfully reopened"
+				return "Ticket #[id] successfully reopened"
 			if("list")
 				var/list/tickets = GLOB.ahelp_tickets.TicketsByCKey(target)
 				if(!length(tickets))
@@ -1237,7 +1236,7 @@
 	to_chat(C, "<font color='red'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>")
 	to_chat(C, "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
 
-	admin_ticket_log(C, "<font color='blue'>PM From [irc_tagged]: [msg]</font>")
+	admin_ticket_log(C, "<font color='#a7f2ef'>PM From [irc_tagged]: [msg]</font>")
 
 	//always play non-admin recipients the adminhelp sound
 	SEND_SOUND(C, 'sound/effects/adminhelp.ogg')

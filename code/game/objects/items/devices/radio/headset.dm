@@ -533,3 +533,10 @@
 	name = "Commando headset"
 	keyslot1 = new /obj/item/device/encryptionkey/commando
 	keyslot2 = new /obj/item/device/encryptionkey/mcom
+
+/obj/item/device/radio/headset/distress/imperial
+	name = "Imperial headset"
+	desc = "A headset used by Imperial soldiers. Use :h to talk on a private channel."
+	keyslot1 = new /obj/item/device/encryptionkey/imperial
+	//frequency = IMP_FREQ
+	//freerange = TRUE - this only allows MAIN freq not to fuck up

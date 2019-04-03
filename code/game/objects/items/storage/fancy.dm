@@ -17,24 +17,35 @@
 	icon_state = "donutbox6"
 	name = "donut box"
 	var/icon_type = "donut"
+	var/spawn_type
+	var/spawn_number
 
-	update_icon()
-		icon_state = "[icon_type]box[contents.len]"
+/obj/item/storage/fancy/Initialize(mapload, ...)
+	if(spawn_type)
+		can_hold = list(spawn_type) // must be set before parent init for typecacheof
+	. = ..()
+	if(spawn_type)
+		for(var/i in 1 to spawn_number)
+			new spawn_type(src)
 
-	remove_from_storage(obj/item/W, atom/new_location)
-		. = ..()
-		if(.)
-			update_icon()
+/obj/item/storage/fancy/update_icon()
+	icon_state = "[icon_type]box[length(contents)]"
+
+/obj/item/storage/fancy/remove_from_storage(obj/item/W, atom/new_location)
+	. = ..()
+	if(.)
+		update_icon()
 
 
-	examine(mob/user)
-		..()
-		if(contents.len <= 0)
-			to_chat(user, "There are no [src.icon_type]s left in the box.")
-		else if(contents.len == 1)
-			to_chat(user, "There is one [src.icon_type] left in the box.")
-		else
-			to_chat(user, "There are [src.contents.len] [src.icon_type]s in the box.")
+/obj/item/storage/fancy/examine(mob/user)
+	. = ..()
+	switch(length(contents))
+		if(0)
+			to_chat(user, "There are no [icon_type]s left in the box.")
+		if(1)
+			to_chat(user, "There is one [icon_type] left in the box.")
+		if(2 to INFINITY)
+			to_chat(user, "There are [length(contents)] [icon_type]s in the box.")
 
 
 /*
@@ -48,13 +59,8 @@
 	name = "egg box"
 	storage_slots = 12
 	max_storage_space = 24
-	can_hold = list("/obj/item/reagent_container/food/snacks/egg")
-
-/obj/item/storage/fancy/egg_box/New()
-	..()
-	for(var/i=1; i <= storage_slots; i++)
-		new /obj/item/reagent_container/food/snacks/egg(src)
-	return
+	spawn_type = /obj/item/reagent_container/food/snacks/egg
+	spawn_number = 12
 
 /*
  * Candle Box
@@ -70,13 +76,8 @@
 	storage_slots = 5
 	throwforce = 2
 	flags_equip_slot = ITEM_SLOT_BELT
-
-
-/obj/item/storage/fancy/candle_box/New()
-	..()
-	for(var/i=1; i <= storage_slots; i++)
-		new /obj/item/tool/candle(src)
-	return
+	spawn_type = /obj/item/tool/candle
+	spawn_number = 5
 
 /*
  * Crayon Box
@@ -90,12 +91,10 @@
 	w_class = 2.0
 	storage_slots = 6
 	icon_type = "crayon"
-	can_hold = list(
-		"/obj/item/toy/crayon"
-	)
+	can_hold = list(/obj/item/toy/crayon)
 
-/obj/item/storage/fancy/crayons/New()
-	..()
+/obj/item/storage/fancy/crayons/Initialize()
+	. = ..()
 	new /obj/item/toy/crayon/red(src)
 	new /obj/item/toy/crayon/orange(src)
 	new /obj/item/toy/crayon/yellow(src)
@@ -134,12 +133,14 @@
 	throwforce = 2
 	flags_equip_slot = ITEM_SLOT_BELT
 	storage_slots = 6
-	can_hold = list("/obj/item/clothing/mask/cigarette", "/obj/item/tool/lighter")
+	can_hold = list(
+		/obj/item/clothing/mask/cigarette, 
+		/obj/item/tool/lighter)
 	icon_type = "cigarette"
 
-/obj/item/storage/fancy/cigarettes/New()
+/obj/item/storage/fancy/cigarettes/Initialize(mapload, ...)
 	. = ..()
-	for(var/i = 1 to storage_slots)
+	for(var/i in 1 to storage_slots)
 		new /obj/item/clothing/mask/cigarette(src)
 
 /obj/item/storage/fancy/cigarettes/update_icon()
@@ -200,13 +201,9 @@
 	w_class = 2
 	flags_equip_slot = ITEM_SLOT_BELT
 	storage_slots = 7
-	can_hold = list("/obj/item/clothing/mask/cigarette/cigar")
+	spawn_type = /obj/item/clothing/mask/cigarette/cigar
+	spawn_number = 7
 	icon_type = "cigar"
-
-/obj/item/storage/fancy/cigar/New()
-	..()
-	for(var/i = 1 to storage_slots)
-		new /obj/item/clothing/mask/cigarette/cigar(src)
 
 /obj/item/storage/fancy/cigar/update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"
@@ -236,16 +233,11 @@
 	icon_type = "vial"
 	name = "vial storage box"
 	storage_slots = 6
-	can_hold = list("/obj/item/reagent_container/glass/beaker/vial")
+	spawn_type = /obj/item/reagent_container/glass/beaker/vial
+	spawn_number = 6
 
 /obj/item/storage/fancy/vials/prison
 	icon = 'icons/obj/machines/virology.dmi'
-
-/obj/item/storage/fancy/vials/New()
-	..()
-	for(var/i=1; i <= storage_slots; i++)
-		new /obj/item/reagent_container/glass/beaker/vial(src)
-	return
 
 /obj/item/storage/lockbox/vials
 	name = "secure vial storage box"
@@ -254,13 +246,13 @@
 	icon_state = "vialbox0"
 	item_state = "syringe_kit"
 	max_w_class = 3
-	can_hold = list("/obj/item/reagent_container/glass/beaker/vial")
+	can_hold = list(/obj/item/reagent_container/glass/beaker/vial)
 	max_storage_space = 14 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 6
 	req_access = list(ACCESS_MARINE_MEDBAY)
 
-/obj/item/storage/lockbox/vials/New()
-	..()
+/obj/item/storage/lockbox/vials/Initialize(mapload, ...)
+	. = ..()
 	update_icon()
 
 /obj/item/storage/lockbox/vials/update_icon(var/itemremoved = 0)

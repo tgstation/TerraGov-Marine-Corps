@@ -1,12 +1,12 @@
 /datum/xeno_caste/crusher
 	caste_name = "Crusher"
 	display_name = "Crusher"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A huge tanky xenomorph."
 	caste_type_path = /mob/living/carbon/Xenomorph/Crusher
 
-	tier = 3
-	upgrade = 0
+	tier = XENO_TIER_THREE
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -42,11 +42,16 @@
 
 	// *** Crusher Abilities *** //
 
+/datum/xeno_caste/crusher/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
+
 /datum/xeno_caste/crusher/mature
 	upgrade_name = "Mature"
 	caste_desc = "A huge tanky xenomorph. It looks a little more dangerous."
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -77,7 +82,7 @@
 	upgrade_name = "Elder"
 	caste_desc = "A huge tanky xenomorph. It looks pretty strong."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -108,7 +113,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "It always has the right of way."
 	ancient_message = "You are the physical manifestation of a Tank. Almost nothing can harm you."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 35
@@ -142,8 +147,8 @@
 	maxHealth = 300
 	plasma_stored = 200
 	speed = 0.1
-	tier = 3
-	upgrade = 0
+	tier = XENO_TIER_THREE
+	upgrade = XENO_UPGRADE_ZERO
 	drag_delay = 6 //pulling a big dead xeno is hard
 	xeno_explosion_resistance = 3 //no stuns from explosions, ignore damages except devastation range.
 	mob_size = MOB_SIZE_BIG
@@ -204,9 +209,9 @@
 			var/armor_block = M.run_armor_check("chest", "melee") * 0.5 //Only 50% armor applies vs stomp brute damage
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				H.take_overall_damage(rand(damage), null, 0, 0, 0, armor_block) //Armour functions against this.
+				H.take_overall_damage(damage, null, 0, 0, 0, armor_block) //Armour functions against this.
 			else
-				M.take_overall_damage(rand(damage), 0, null, armor_block) //Armour functions against this.
+				M.take_overall_damage(damage, 0, null, armor_block) //Armour functions against this.
 			to_chat(M, "<span class='highdanger'>You are stomped on by [src]!</span>")
 			shake_camera(M, 3, 3)
 		else
@@ -443,7 +448,7 @@
 /mob/living/carbon/Xenomorph/charge_act(mob/living/carbon/Xenomorph/X)
 	if(X.charge_speed > X.charge_speed_buildup * X.charge_turfs_to_charge)
 		playsound(loc, "punch", 25, 1)
-		if(hivenumber != X.hivenumber)
+		if(!issamexenohive(X))
 			log_combat(X, src, "xeno charged")
 			apply_damage(X.charge_speed * 20, BRUTE) // half damage to avoid sillyness
 		if(anchored) //Ovipositor queen can't be pushed

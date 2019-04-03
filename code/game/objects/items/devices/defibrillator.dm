@@ -57,10 +57,10 @@
 
 	//Job knowledge requirement
 	if (istype(user))
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-			var/fumbling_time = SKILL_TASK_AVERAGE - ( SKILL_TASK_VERY_EASY * ( SKILL_MEDICAL_MEDIC - user.mind.cm_skills.medical ) ) // 3 seconds with medical skill, 5 without
+			var/fumbling_time = SKILL_TASK_AVERAGE - ( SKILL_TASK_VERY_EASY * ( SKILL_MEDICAL_PRACTICED - user.mind.cm_skills.medical ) ) // 3 seconds with medical skill, 5 without
 			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 
 	defib_cooldown = world.time + 20 //2 seconds cooldown every time the defib is toggled
@@ -100,15 +100,15 @@
 
 	//job knowledge requirement
 	if(user.mind && user.mind.cm_skills)
-		if(user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
+		if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-			var/fumbling_time = SKILL_TASK_AVERAGE - ( SKILL_TASK_VERY_EASY * ( SKILL_MEDICAL_MEDIC - user.mind.cm_skills.medical ) ) // 3 seconds with medical skill, 5 without
+			var/fumbling_time = SKILL_TASK_AVERAGE - ( SKILL_TASK_VERY_EASY * ( SKILL_MEDICAL_PRACTICED - user.mind.cm_skills.medical ) ) // 3 seconds with medical skill, 5 without
 			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		else
 			defib_heal_amt *= user.mind.cm_skills.medical*0.5 //more healing power when used by a doctor (this means non-trained don't heal)
 
-	if(!ishuman(H) || isyautja(H))
+	if(!ishuman(H))
 		to_chat(user, "<span class='warning'>You can't defibrilate [H]. You don't even know where to put the paddles!</span>")
 		return
 	if(!ready)

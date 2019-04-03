@@ -3,5 +3,6 @@
     "map_path": "map_files/Prison_Station_FOP",
     "map_file": "Prison_Station_FOP.dmm",
     "shuttles": {
-    }
+    },
+    "announce_text": "A Nanotrasen maximum security prison has activated its distress signal. The ###SHIPNAME### is swiftly cruising through space, and nearing the vicinity of the prison station. TGMC, get moving!"
 }

@@ -703,7 +703,7 @@ var/global/list/damage_icon_parts = list()
 					switch(S.color)
 						if(1 to 4) standing.overlays += leader? armormarkings_sql[S.color] : armormarkings[S.color]
 
-			if(marine_armor.armor_overlays.len)
+			if(length(marine_armor.armor_overlays))
 				var/image/I
 				for(var/i in marine_armor.armor_overlays)
 					I = marine_armor.armor_overlays[i]

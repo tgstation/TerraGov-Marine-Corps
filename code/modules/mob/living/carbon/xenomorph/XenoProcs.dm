@@ -1,89 +1,86 @@
-//Xenomorph General Procs And Functions
-//LAST EDIT: APOPHIS 22MAY16
-
-
-//Send a message to all xenos. Mostly used in the deathgasp display
-/proc/xeno_message(var/message = null, var/size = 3, var/hivenumber = XENO_HIVE_NORMAL)
+//Send a message to all xenos.
+/proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL)
 	if(!message)
 		return
 
-	if(length(SSticker?.mode?.xenomorphs)) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
-		for(var/datum/mind/L in SSticker.mode.xenomorphs)
-			var/mob/living/carbon/Xenomorph/M = L.current
-			if(M && istype(M) && !M.stat && M.client && hivenumber == M.hivenumber) //Only living and connected xenos
-				to_chat(M, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
+	if(!GLOB.hive_datums[hivenumber])
+		CRASH("xeno_message called with invalid hivenumber")
+
+	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
+	HS.xeno_message(message, size)
+
+/mob/living/carbon/Xenomorph/proc/upgrade_possible()
+	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_THREE)
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
 /mob/living/carbon/Xenomorph/Stat()
 	. = ..()
 
-	if(statpanel("Stats"))
-		var/datum/hive_status/hive
-		if(hivenumber && hivenumber <= hive_datum.len)
-			hive = hive_datum[hivenumber]
+	if(!statpanel("Stats"))
+		return
 
-			if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
-				stat(null, "Evolve Progress (FINISHED)")
-			else if(!hive.living_xeno_queen)
-				stat(null, "Evolve Progress (HALTED - NO QUEEN)")
-			else
-				stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
+	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
+		stat(null, "Evolve Progress (FINISHED)")
+	else if(!hive.living_xeno_queen)
+		stat(null, "Evolve Progress (HALTED - NO QUEEN)")
+	else
+		stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
 
-			if(upgrade != -1 && upgrade != 3) //upgrade possible
-				stat(null, "Upgrade Progress: [upgrade_stored]/[xeno_caste.upgrade_threshold]")
-			else //Upgrade process finished or impossible
-				stat(null, "Upgrade Progress (FINISHED)")
+	if(upgrade_possible()) 
+		stat(null, "Upgrade Progress: [upgrade_stored]/[xeno_caste.upgrade_threshold]")
+	else //Upgrade process finished or impossible
+		stat(null, "Upgrade Progress (FINISHED)")
 
-			if(xeno_caste.plasma_max > 0)
-				if(isxenosilicon(src))
-					stat(null, "Charge: [plasma_stored]/[xeno_caste.plasma_max]")
-				else
-					stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
+	if(xeno_caste.plasma_max > 0)
+		if(isxenosilicon(src))
+			stat(null, "Charge: [plasma_stored]/[xeno_caste.plasma_max]")
+		else
+			stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
 
-			if(hivenumber != XENO_HIVE_CORRUPTED)
-				if(hive.slashing_allowed == 1)
-					stat(null,"Slashing of hosts is currently: PERMITTED.")
-				else if(hive.slashing_allowed == 2)
-					stat(null,"Slashing of hosts is currently: LIMITED.")
-				else
-					stat(null,"Slashing of hosts is currently: FORBIDDEN.")
-			else
-				stat(null,"Slashing of hosts is decided by your masters.")
+	if(hivenumber != XENO_HIVE_CORRUPTED)
+		if(hive.slashing_allowed == XENO_SLASHING_ALLOWED)
+			stat(null,"Slashing of hosts is currently: PERMITTED.")
+		else if(hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
+			stat(null,"Slashing of hosts is currently: LIMITED.")
+		else
+			stat(null,"Slashing of hosts is currently: FORBIDDEN.")
+	else
+		stat(null,"Slashing of hosts is decided by your masters.")
 
-			//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
-			var/msg_holder = ""
-			if(frenzy_aura)
-				switch(frenzy_aura)
-					if(-INFINITY to 1.0) msg_holder = "very weak "
-					if(1.1 to 2.0) msg_holder = "weak "
-					if(2.1 to 2.9) msg_holder = ""
-					if(3.0 to 3.9) msg_holder = "strong "
-					if(4.0 to INFINITY) msg_holder = "very strong "
-				stat(null,"You are affected by a [msg_holder]FRENZY pheromone.")
-			if(warding_aura)
-				switch(warding_aura)
-					if(-INFINITY to 1.0) msg_holder = "very weak "
-					if(1.1 to 2.0) msg_holder = "weak "
-					if(2.1 to 2.9) msg_holder = ""
-					if(3.0 to 3.9) msg_holder = "strong "
-					if(4.0 to INFINITY) msg_holder = "very strong "
-				stat(null,"You are affected by a [msg_holder]WARDING pheromone.")
-			if(recovery_aura)
-				switch(recovery_aura)
-					if(-INFINITY to 1.0) msg_holder = "very weak "
-					if(1.1 to 2.0) msg_holder = "weak "
-					if(2.1 to 2.9) msg_holder = ""
-					if(3.0 to 3.9) msg_holder = "strong "
-					if(4.0 to INFINITY) msg_holder = "very strong "
-				stat(null,"You are affected by a [msg_holder]RECOVERY pheromone.")
+	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
+	var/msg_holder = ""
+	if(frenzy_aura)
+		switch(frenzy_aura)
+			if(-INFINITY to 1.0) msg_holder = "very weak "
+			if(1.1 to 2.0) msg_holder = "weak "
+			if(2.1 to 2.9) msg_holder = ""
+			if(3.0 to 3.9) msg_holder = "strong "
+			if(4.0 to INFINITY) msg_holder = "very strong "
+		stat(null,"You are affected by a [msg_holder]FRENZY pheromone.")
+	if(warding_aura)
+		switch(warding_aura)
+			if(-INFINITY to 1.0) msg_holder = "very weak "
+			if(1.1 to 2.0) msg_holder = "weak "
+			if(2.1 to 2.9) msg_holder = ""
+			if(3.0 to 3.9) msg_holder = "strong "
+			if(4.0 to INFINITY) msg_holder = "very strong "
+		stat(null,"You are affected by a [msg_holder]WARDING pheromone.")
+	if(recovery_aura)
+		switch(recovery_aura)
+			if(-INFINITY to 1.0) msg_holder = "very weak "
+			if(1.1 to 2.0) msg_holder = "weak "
+			if(2.1 to 2.9) msg_holder = ""
+			if(3.0 to 3.9) msg_holder = "strong "
+			if(4.0 to INFINITY) msg_holder = "very strong "
+		stat(null,"You are affected by a [msg_holder]RECOVERY pheromone.")
 
 
-			if(hivenumber != XENO_HIVE_CORRUPTED)
-				if(hive.hive_orders && hive.hive_orders != "")
-					stat(null,"Hive Orders: [hive.hive_orders]")
-			else
-				stat(null,"Hive Orders: Follow the instructions of your masters")
+	if(hivenumber != XENO_HIVE_CORRUPTED)
+		if(hive.hive_orders && hive.hive_orders != "")
+			stat(null,"Hive Orders: [hive.hive_orders]")
+	else
+		stat(null,"Hive Orders: Follow the instructions of your masters")
 
 
 //A simple handler for checking your state. Used in pretty much all the procs.
@@ -197,13 +194,12 @@
 		. -= round(rage * 0.012,0.01) //Ravagers gain 0.016 units of speed per unit of rage; min -0.012, max -0.6
 
 /mob/living/carbon/Xenomorph/proc/update_progression()
-	if(upgrade != -1 && upgrade != 3) //upgrade possible
+	if(upgrade_possible()) //upgrade possible
 		if(client && ckey) // pause for ssd/ghosted
-			var/datum/hive_status/hive = hive_datum[hivenumber]
-			if(!hive.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z)
+			if(!hive?.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z)
 				if(upgrade_stored >= xeno_caste.upgrade_threshold)
 					if(health == maxHealth && !is_mob_incapacitated() && !handcuffed && !legcuffed)
-						upgrade_xeno(upgrade+1)
+						upgrade_xeno(upgrade_next())
 				else
 					upgrade_stored = min(upgrade_stored + 1, xeno_caste.upgrade_threshold)
 
@@ -212,10 +208,7 @@
 		return
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		return
-	if(!hivenumber || hivenumber > hive_datum.len) //something broke
-		return
-	var/datum/hive_status/hive = hive_datum[hivenumber]
-	if(hive.living_xeno_queen)
+	if(hive?.living_xeno_queen)
 		evolution_stored++
 		if(evolution_stored == xeno_caste.evolution_threshold - 1)
 			to_chat(src, "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>")
@@ -263,20 +256,6 @@
 							throwing = FALSE //Reset throwing manually.
 							return FALSE
 
-						if(isyautja(H))
-							if(H.check_shields(0, "the pounce", 1))
-								visible_message("<span class='danger'>[H] blocks the pounce of [src] with the combistick!</span>",
-												"<span class='xenodanger'>[H] blocks your pouncing form with the combistick!</span>", null, 5)
-								KnockDown(5)
-								throwing = FALSE
-								return FALSE
-							else if(prob(75)) //Body slam the fuck out of xenos jumping at your front.
-								visible_message("<span class='danger'>[H] body slams [src]!</span>",
-												"<span class='xenodanger'>[H] body slams you!</span>", null, 5)
-								KnockDown(4)
-								throwing = FALSE
-								return FALSE
-
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
 									"<span class='xenodanger'>You pounce on [M]!</span>", null, 5)
 					M.KnockDown(1)
@@ -304,8 +283,6 @@
 				if(RAV_CHARGE_TYPE) //Ravagers plow straight through humans; we only stop on hitting a dense turf
 					return FALSE
 
-				if(4) //Predalien.
-					M.attack_alien(src) //Free hit/grab/tackle. Does not weaken, and it's just a regular slash if they choose to do that.
 		throwing = FALSE //Resert throwing since something was hit.
 		reset_movement()
 		return TRUE
@@ -523,7 +500,7 @@
 //When the Queen's pheromones are updated, or we add/remove a leader, update leader pheromones
 /mob/living/carbon/Xenomorph/proc/handle_xeno_leader_pheromones(var/mob/living/carbon/Xenomorph/Queen/Q)
 
-	if(!Q || !Q.anchored || !queen_chosen_lead || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
+	if(!Q || !Q.ovipositor || !queen_chosen_lead || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
 		leader_aura_strength = 0
 		leader_current_aura = ""
 		to_chat(src, "<span class='xenowarning'>Your pheromones wane. The Queen is no longer granting you her pheromones.</span>")
@@ -586,25 +563,11 @@
 	else
 		rage *= 0.5 //Halve rage instead of 0ing it out if we miss.
 
-/mob/living/carbon/Xenomorph/proc/set_hive_number(var/newhivenumber)
-	if(!newhivenumber)
-		return
-
-	hivenumber = newhivenumber
-
-	if(isxenolarva(src))
-		var/mob/living/carbon/Xenomorph/Larva/L = src
-		L.update_icons() // larva renaming done differently
-	else
-		generate_name()
-		update_living_queens()
-
-
 /mob/living/carbon/Xenomorph/Larva/death(gibbed, deathmessage)
 	log_admin("[key_name(src)] died as a Larva at [AREACOORD(src.loc)].")
 	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
 	return ..()
 
 /mob/living/carbon/Xenomorph/proc/handle_decay()
-	if(prob(7+(3*tier)+(3*upgrade))) // higher level xenos decay faster, higher plasma storage.
+	if(prob(7+(3*tier)+(3*upgrade_as_number()))) // higher level xenos decay faster, higher plasma storage.
 		use_plasma(min(rand(1,2), plasma_stored))

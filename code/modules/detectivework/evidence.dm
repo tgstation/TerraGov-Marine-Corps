@@ -100,15 +100,8 @@
 /obj/item/storage/box/evidence
 	name = "evidence bag box"
 	desc = "A box claiming to contain evidence bags."
-	New()
-		new /obj/item/evidencebag(src)
-		new /obj/item/evidencebag(src)
-		new /obj/item/evidencebag(src)
-		new /obj/item/evidencebag(src)
-		new /obj/item/evidencebag(src)
-		new /obj/item/evidencebag(src)
-		..()
-		return
+	spawn_type = /obj/item/evidencebag
+	spawn_number = 6
 
 /obj/item/f_card
 	name = "finger print card"

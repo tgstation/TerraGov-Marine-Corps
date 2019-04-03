@@ -1,6 +1,5 @@
 /mob/dead/observer/Login()
-	if(!client)
-		return
+	. = ..()
 
 	client.prefs.load_preferences()
 	ghost_medhud = client.prefs.ghost_hud & GHOST_HUD_MED
@@ -25,4 +24,5 @@
 		H = huds[MOB_HUD_ORDER]
 		H.add_hud_to(src)		
 
-	return ..()
+	GLOB.observer_list += src
+	

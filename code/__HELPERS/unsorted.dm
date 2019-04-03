@@ -267,8 +267,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 
 
-//This will update a mob's name, real_name, mind.name, data_core records, pda and id
-//Calling this proc without an oldname will only update the mob and skip updating the pda, id and records ~Carn
+//This will update a mob's name, real_name, mind.name, GLOB.datacore records and id
 /mob/proc/fully_replace_character_name(oldname, newname)
 	if(!newname)	
 		return FALSE
@@ -284,37 +283,22 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	if(dna)
 		dna.real_name = real_name
 
-	if(oldname)
-		//update the datacore records! This is goig to be a bit costly.
-		for(var/list/L in list(data_core.general,data_core.medical,data_core.security,data_core.locked))
-			for(var/datum/data/record/R in L)
-				if(R.fields["name"] == oldname)
-					R.fields["name"] = newname
-					break
+	return TRUE
 
-		//update our pda and id if we have them on our person
-		var/list/searching = GetAllContents(searchDepth = 3)
-		var/search_id = 1
-		var/search_pda = 1
 
-		for(var/A in searching)
-			if( search_id && istype(A,/obj/item/card/id) )
-				var/obj/item/card/id/ID = A
-				if(ID.registered_name == oldname)
-					ID.registered_name = newname
-					ID.name = "[newname]'s ID Card ([ID.assignment])"
-					if(!search_pda)	break
-					search_id = 0
+/mob/living/carbon/human/fully_replace_character_name(oldname, newname)
+	. = ..()
+	if(!.)
+		return FALSE
 
-			else if( search_pda && istype(A,/obj/item/device/pda) )
-				var/obj/item/device/pda/PDA = A
-				if(PDA.owner == oldname)
-					PDA.owner = newname
-					PDA.name = "PDA-[newname] ([PDA.ownjob])"
-					if(!search_id)	break
-					search_pda = 0
-	return 1
+	if(istype(wear_id))
+		var/obj/item/card/id/C = wear_id
+		C.update_label()
 
+	if(!GLOB.datacore.manifest_update(oldname, newname, job))
+		GLOB.datacore.manifest_inject(src)
+
+	return TRUE
 
 
 //Generalised helper proc for letting mobs rename themselves. Used to be clname() and ainame()
@@ -425,8 +409,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		moblist.Add(M)
 	for(var/mob/living/carbon/monkey/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/hellhound/M in sortmob)
-		moblist.Add(M)
 	for(var/mob/living/simple_animal/M in sortmob)
 		moblist.Add(M)
 	return moblist
@@ -440,20 +422,11 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		xenolist.Add(M)
 	return xenolist
 
-/proc/sortpreds()
-	var/list/predlist = list()
-	var/list/sortmob = sortNames(GLOB.mob_list)
-	for(var/mob/living/carbon/human/M in sortmob)
-		if(!M.client || !isyautjastrict(M))
-			continue
-		predlist.Add(M)
-	return predlist
-
 /proc/sorthumans()
 	var/list/humanlist = list()
 	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/human/M in sortmob)
-		if(!M.client || isyautjastrict(M))
+		if(!M.client)
 			continue
 		humanlist.Add(M)
 	return humanlist

@@ -102,12 +102,12 @@ On the map:
 
 //Misc channels
 var/const/SYND_FREQ 	= 1213
-var/const/YAUT_FREQ 	= 1214
 var/const/PMC_FREQ 		= 1235
 var/const/DUT_FREQ 		= 1340
 var/const/ERT_FREQ 		= 1342
 var/const/RUS_FREQ		= 1338
 var/const/DTH_FREQ 		= 1344
+var/const/IMP_FREQ		= 1337
 var/const/AI_FREQ 		= 1447
 
 //Ship department channels
@@ -135,11 +135,11 @@ var/const/CIV_COMM_FREQ = 1471
 var/list/radiochannels = list(
 	"Response Team" = ERT_FREQ,
 	"Syndicate" 	= SYND_FREQ,
-	"Yautja" 		= YAUT_FREQ,
 	"NT PMC" 		= PMC_FREQ,
 	"SpecOps" 		= DTH_FREQ,
 	"UPP" 			= RUS_FREQ,
 	"Colonist"		= DUT_FREQ,
+	"Imperial"		= IMP_FREQ,
 
 	"Theseus"		= PUB_FREQ,
 	"Command"		= COMM_FREQ,
@@ -160,13 +160,13 @@ var/list/radiochannels = list(
 )
 
 // central command channels, i.e deathsquid & response teams
-var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ)
+var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ)
 
 // Antag channels, i.e. Syndicate
 var/list/ANTAG_FREQS = list(SYND_FREQ, RUS_FREQ)
 
 //Depts - just used for colors in headset.dm
-var/list/DEPT_FREQS = list(MED_FREQ, ENG_FREQ, SEC_FREQ, ERT_FREQ, SYND_FREQ, DTH_FREQ, CIV_GEN_FREQ, CIV_COMM_FREQ, ALPHA_FREQ, BRAVO_FREQ,CHARLIE_FREQ, DELTA_FREQ, SUP_FREQ)
+var/list/DEPT_FREQS = list(MED_FREQ, ENG_FREQ, SEC_FREQ, ERT_FREQ, SYND_FREQ, DTH_FREQ, CIV_GEN_FREQ, CIV_COMM_FREQ, ALPHA_FREQ, BRAVO_FREQ,CHARLIE_FREQ, DELTA_FREQ, SUP_FREQ, IMP_FREQ)
 
 #define TRANSMISSION_WIRE	0
 #define TRANSMISSION_RADIO	1
@@ -191,9 +191,6 @@ var/const/RADIO_MAGNETS = "radio_magnet"
 
 var/global/datum/controller/radio/radio_controller
 
-/hook/startup/proc/createRadioController()
-	radio_controller = new /datum/controller/radio()
-	return 1
 
 //callback used by objects to react to incoming radio signals
 /obj/proc/receive_signal(datum/signal/signal, receive_method, receive_param)

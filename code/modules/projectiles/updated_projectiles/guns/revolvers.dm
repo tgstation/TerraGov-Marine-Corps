@@ -425,10 +425,6 @@
 	icon_state = "c_mateba"
 	item_state = "c_mateba"
 
-/obj/item/weapon/gun/revolver/mateba/cmateba/Initialize()
-	. = ..()
-	select_gamemode_skin(/obj/item/weapon/gun/revolver/mateba/cmateba)
-
 //-------------------------------------------------------
 //MARSHALS REVOLVER
 

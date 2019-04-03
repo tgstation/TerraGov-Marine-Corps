@@ -181,11 +181,50 @@
 
 
 /datum/admins/proc/subtle_message(var/mob/M in GLOB.player_list)
-	set category = "Fun"
+	set category = null
 	set name = "Subtle Message"
 
 	if(!check_rights(R_FUN|R_MENTOR))
 		return
+
+	var/msg = input("Subtle PM to [key_name(M)]:", "Subtle Message", "") as text
+
+	if(!M?.client || !msg)
+		return
+
+	if(check_rights(R_ADMIN, FALSE))
+		msg = noscript(msg)
+	else
+		msg = sanitize(msg)
+
+	to_chat(M, "<b>You hear a voice in your head... [msg]</b>")
+
+	admin_ticket_log(M, "[key_name_admin(usr)] used Subtle Message: [sanitize(msg)]")
+	log_admin("SubtleMessage: [key_name(usr)] to [key_name(M)]: [msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] used Subtle Message on [ADMIN_TPMONTY(M)]: [msg]")
+
+
+/datum/admins/proc/subtle_message_panel()
+	set category = "Fun"
+	set name = "Subtle Message Mob"
+
+	if(!check_rights(R_FUN|R_MENTOR))
+		return
+
+	var/mob/M
+	switch(input("Message by:", "Subtle Message") as null|anything in list("Key", "Mob"))
+		if("Key")
+			var/client/C = input("Please, select a key.", "Subtle Message") as null|anything in sortKey(GLOB.clients)
+			if(!C)
+				return
+			M = C.mob
+		if("Mob")
+			var/mob/N = input("Please, select a mob.", "Subtle Message") as null|anything in sortNames(GLOB.player_list)
+			if(!N)
+				return
+			M = N
+		else
+			return
 
 	var/msg = input("Subtle PM to [key_name(M)]:", "Subtle Message", "") as text
 
@@ -688,6 +727,8 @@
 				message_admins("[ADMIN_TPMONTY(usr)] has set the rank of mindless mob [ADMIN_TPMONTY(H)] to [newrank].")
 				return
 
+			H.set_rank(newrank)
+
 			log_admin("[key_name(usr)] has set the rank of [key_name(H)] to [newrank].")
 			message_admins("[ADMIN_TPMONTY(usr)] has set the rank of [ADMIN_TPMONTY(H)] to [newrank].")
 
@@ -1023,8 +1064,8 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	var/hivenumber_status = X.hivenumber
 
 	var/list/namelist = list()
-	for(var/Y in hive_datum)
-		var/datum/hive_status/H = Y
+	for(var/Y in GLOB.hive_datums)
+		var/datum/hive_status/H = GLOB.hive_datums[Y]
 		namelist += H.name
 
 	var/newhive = input(src, "Select a hive.", null, null) in namelist
@@ -1047,7 +1088,7 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	if(!istype(X) || X.gc_destroyed || !SSticker || X.hivenumber != hivenumber_status)
 		return
 
-	X.set_hive_number(newhivenumber)
+	X.transfer_to_hive(newhivenumber)
 
 	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] to [newhive].")

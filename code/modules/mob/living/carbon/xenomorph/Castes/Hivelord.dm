@@ -1,12 +1,11 @@
 /datum/xeno_caste/hivelord
 	caste_name = "Hivelord"
 	display_name = "Hivelord"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A builder of REALLY BIG hives."
 	caste_type_path = /mob/living/carbon/Xenomorph/Hivelord
-	tier = 2
-	upgrade = 0
-
+	tier = XENO_TIER_TWO
+	upgrade = XENO_UPGRADE_BASETYPE
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
 	melee_damage_upper = 20
@@ -48,10 +47,15 @@
 	aura_strength = 2 //Hivelord's aura is not extremely strong, but better than Drones.
 	aura_allowed = list("frenzy", "warding", "recovery")
 
+/datum/xeno_caste/hivelord/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
+
 /datum/xeno_caste/hivelord/mature
 	upgrade_name = "Mature"
 	caste_desc = "A builder of REALLY BIG hives. It looks a little more dangerous."
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
@@ -81,12 +85,12 @@
 	spit_types = list(/datum/ammo/xeno/sticky)
 
 	// *** Pheromones *** //
-	aura_strength = 2.6
+	aura_strength = 2.5
 
 /datum/xeno_caste/hivelord/elder
 	upgrade_name = "Elder"
 	caste_desc = "A builder of REALLY BIG hives. It looks pretty strong."
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
@@ -116,13 +120,13 @@
 	spit_types = list(/datum/ammo/xeno/sticky)
 
 	// *** Pheromones *** //
-	aura_strength = 2.9
+	aura_strength = 2.8
 
 /datum/xeno_caste/hivelord/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "An extreme construction machine. It seems to be building walls..."
 	ancient_message = "You are the builder of walls. Ensure that the marines are the ones who pay for them."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -169,8 +173,8 @@
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	var/speed_activated = 0
-	tier = 2
-	upgrade = 0
+	tier = XENO_TIER_TWO
+	upgrade = XENO_UPGRADE_ZERO
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,

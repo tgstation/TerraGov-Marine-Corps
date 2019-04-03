@@ -210,7 +210,7 @@ var/bomb_set
 	return
 
 obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
-	var/dat as text
+	var/dat
 	dat += "<B>Nuclear Fission Explosive</B><BR>\nNuclear Device Wires:</A><HR>"
 	for(var/wire in src.wires)
 		dat += text("[wire] Wire: <A href='?src=\ref[src];wire=[wire];act=wire'>[src.wires[wire] ? "Mend" : "Cut"]</A> <A href='?src=\ref[src];wire=[wire];act=pulse'>Pulse</A><BR>")
@@ -386,10 +386,3 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 
 	SSevacuation.initiate_self_destruct(TRUE) //The round ends as soon as this happens, or it should.
 	return TRUE
-
-/obj/item/disk/nuclear/Destroy()
-	if(GLOB.yautja_teleport_loc.len > 0)
-		var/obj/D = new /obj/item/disk/nuclear(pick(GLOB.yautja_teleport_loc))
-		message_admins("[src] has been destroyed. Spawning [D] at [AREACOORD(D.loc)].")
-		log_game("[src] has been destroyed. Spawning [D] at [ADMIN_VERBOSEJMP(D.loc)].")
-	. = ..()

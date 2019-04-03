@@ -1790,9 +1790,7 @@
 /turf/open/floor/engine,
 /area/sulaco/engineering/atmos)
 "eq" = (
-/turf/closed/wall/sulaco{
-	explosion_resistance = 100
-	},
+/turf/closed/wall/sulaco,
 /area/sulaco/engineering/atmos)
 "er" = (
 /obj/structure/table,

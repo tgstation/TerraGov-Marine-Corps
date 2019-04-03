@@ -42,7 +42,7 @@
 			var/bush_sound_prob = 60
 			if(istype(L, /mob/living/carbon/Xenomorph))
 				var/mob/living/carbon/Xenomorph/X = L
-				bush_sound_prob = X.tier * 20
+				bush_sound_prob = X.tier_as_number() * 20
 
 			if(prob(bush_sound_prob))
 				var/sound = pick('sound/effects/vegetation_walk_0.ogg','sound/effects/vegetation_walk_1.ogg','sound/effects/vegetation_walk_2.ogg')

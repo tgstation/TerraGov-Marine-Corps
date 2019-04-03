@@ -57,10 +57,6 @@
 	current_mag = /obj/item/ammo_magazine/pistol
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
-/obj/item/weapon/gun/pistol/m4a3/Initialize()
-	. = ..()
-	select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3)
-
 /obj/item/weapon/gun/pistol/m4a3/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
@@ -74,10 +70,6 @@
 	desc = "An M4A3 Service Pistol, the standard issue sidearm of the TerraGov Marine Corps. Uses 9mm pistol rounds. This one has an ivory-colored grip and has a slide carefully polished yearly by a team of orphan children. Looks like it belongs to a low-ranking officer."
 	icon_state = "m4a3c"
 	item_state = "m4a3c"
-
-/obj/item/weapon/gun/pistol/m4a3/custom/Initialize()
-	. = ..()
-	select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3/custom)
 
 /obj/item/weapon/gun/pistol/m4a3/custom/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/vlow_fire_delay)
@@ -500,3 +492,44 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
 	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+
+/obj/item/weapon/gun/pistol/knife
+	name = "\improper Knife"
+	desc = "There are a surprisingly large amount of attachment points on this.... knife."
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "elite_knife"
+	reload_sound = 'sound/weapons/flipblade.ogg'
+	cocked_sound = 'sound/weapons/gun_pistol_cocked.ogg'
+	origin_tech = "combat=3;materials=2"
+	matter = list("metal" = 2000)
+	flags_equip_slot = ITEM_SLOT_BELT
+	w_class = 3
+	force = 25
+	movement_acc_penalty_mult = 10
+	wield_delay = WIELD_DELAY_VERY_FAST 
+	fire_sound = 'sound/weapons/gun_servicepistol.ogg'
+	type_of_casings = "bullet"
+	gun_skill_category = GUN_SKILL_PISTOLS
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 14,"rail_x" = 9, "rail_y" = 17, "under_x" = 23, "under_y" = 11, "stock_x" = 23, "stock_y" = 10)
+	attachable_allowed = list(
+						/obj/item/attachable/quickfire,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/burstfire_assembly,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/stock/rifle,
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini)

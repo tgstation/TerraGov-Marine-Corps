@@ -85,10 +85,6 @@ var/datum/mob_hud/huds = list(
 //med hud used by medical hud glasses
 /datum/mob_hud/medical/advanced
 
-/datum/mob_hud/medical/advanced/add_to_single_hud(mob/user, mob/living/carbon/human/target)
-	if(!isyautjastrict(target)) //so you can't tell a pred's health with hud glasses.
-		return ..()
-
 //medical hud used by ghosts
 /datum/mob_hud/medical/observer
 	hud_icons = list(HEALTH_HUD, STATUS_HUD_OBSERVER_INFECTION, STATUS_HUD)
@@ -384,16 +380,14 @@ var/datum/mob_hud/huds = list(
 	holder.overlays.Cut()
 	holder.icon_state = "hudblank"
 	if(stat != DEAD)
-		if(hivenumber && hivenumber <= hive_datum.len)
-			var/datum/hive_status/hive = hive_datum[hivenumber]
-			if(hive.living_xeno_queen)
-				if(hive.living_xeno_queen.observed_xeno == src)
-					holder.icon_state = "queen_overwatch"
-				if(queen_chosen_lead)
-					var/image/I = image('icons/mob/hud.dmi',src, "hudxenoleader")
-					holder.overlays += I
-		if(upgrade)
-			var/image/J = image('icons/mob/hud.dmi',src, "hudxenoupgrade[upgrade]")
+		if(hive?.living_xeno_queen)
+			if(hive.living_xeno_queen.observed_xeno == src)
+				holder.icon_state = "queen_overwatch"
+			if(queen_chosen_lead)
+				var/image/I = image('icons/mob/hud.dmi',src, "hudxenoleader")
+				holder.overlays += I
+		if(upgrade_as_number() > 0) // theres only icons for 1 2 3, not for -1
+			var/image/J = image('icons/mob/hud.dmi',src, "hudxenoupgrade[upgrade_as_number()]")
 			holder.overlays += J
 	hud_list[QUEEN_OVERWATCH_HUD] = holder
 
@@ -444,9 +438,9 @@ var/datum/mob_hud/huds = list(
 		if(I)
 			perpname = I.registered_name
 
-	for(var/datum/data/record/E in data_core.general)
+	for(var/datum/data/record/E in GLOB.datacore.general)
 		if(E.fields["name"] == perpname)
-			for(var/datum/data/record/R in data_core.security)
+			for(var/datum/data/record/R in GLOB.datacore.security)
 				if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
 					holder.icon_state = "hudwanted"
 					break

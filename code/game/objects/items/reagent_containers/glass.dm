@@ -214,13 +214,6 @@
 	. = ..()
 	update_icon()
 
-/obj/item/reagent_container/glass/beaker/cryopredmix
-	list_reagents = list("cryoxadone" = 30, "clonexadone" = 30)
-
-/obj/item/reagent_container/glass/beaker/cryopredmix/New()
-	. = ..()
-	update_icon()
-
 /obj/item/reagent_container/glass/beaker/cryomix
 	list_reagents = list("cryoxadone" = 10, "clonexadone" = 10, "iron" = 10, "tricordrazine" = 10, "quickclot" = 5, "peridaxon" = 5, "dexalinplus" = 5, "spaceacillin" = 5)
 

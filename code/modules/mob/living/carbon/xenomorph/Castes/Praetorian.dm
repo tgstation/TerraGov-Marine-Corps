@@ -1,11 +1,11 @@
 /datum/xeno_caste/praetorian
 	caste_name = "Praetorian"
 	display_name = "Praetorian"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "Ptui!"
 	caste_type_path = /mob/living/carbon/Xenomorph/Praetorian
-	tier = 3
-	upgrade = 0
+	tier = XENO_TIER_THREE
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -46,10 +46,15 @@
 	aura_strength = 2.5 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
 	aura_allowed = list("frenzy", "warding", "recovery")
 
+/datum/xeno_caste/praetorian/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
+
 /datum/xeno_caste/praetorian/mature
 	upgrade_name = "Mature"
 	caste_desc = "A giant ranged monster. It looks a little more dangerous."
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40
@@ -84,7 +89,7 @@
 /datum/xeno_caste/praetorian/elder
 	upgrade_name = "Elder"
 	caste_desc = "A giant ranged monster. It looks pretty strong."
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 45
@@ -114,12 +119,12 @@
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade2, /datum/ammo/xeno/acid/heavy)
 
 	// *** Pheromones *** //
-	aura_strength = 4.2
+	aura_strength = 4
 
 /datum/xeno_caste/praetorian/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "Its mouth looks like a minigun."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "You are the strongest range fighter around. Your spit is devestating and you can fire nearly a constant stream."
 
 	// *** Melee Attacks *** //
@@ -163,8 +168,8 @@
 	old_x = -16
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
-	tier = 3
-	upgrade = 0
+	tier = XENO_TIER_THREE
+	upgrade = XENO_UPGRADE_ZERO
 	var/sticky_cooldown = 0
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

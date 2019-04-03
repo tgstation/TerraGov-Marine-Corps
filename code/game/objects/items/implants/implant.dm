@@ -333,7 +333,6 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 	implanted(mob/M)
 		if(!ishuman(M))	return
-		if(isyautja(M)) return
 		var/mob/living/carbon/human/H = M
 		to_chat(H, "<span class='notice'>You are now tagged as a NT loyalist and will be monitored by their central headquarters. You retain your free will and mental faculties.</span>")
 		return 1
@@ -417,8 +416,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 				STOP_PROCESSING(SSobj, src)
 			if ("emp")
 				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
-				var/name = prob(50) ? t.name : pick(teleportlocs)
-				a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm")
+				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm")
 				qdel(a)
 			else
 				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)

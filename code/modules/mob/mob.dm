@@ -544,6 +544,11 @@
 	//reset the pixel offsets to zero
 	is_floating = 0
 
+
+/mob/GenerateTag()
+	tag = "mob_[next_mob_id++]"
+
+
 // facing verbs
 /mob/proc/canface()
 	if(!canmove)						return 0
@@ -704,8 +709,7 @@ mob/proc/yank_out_object()
 			return
 
 		affected.implants -= selection
-		if(!isyautja(H))
-			H.shock_stage+=20
+		H.shock_stage+=20
 		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
 
 		if(prob(selection.w_class * 5)) //I'M SO ANEMIC I COULD JUST -DIE-.

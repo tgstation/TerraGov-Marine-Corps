@@ -4,8 +4,8 @@
 	upgrade_name = ""
 	caste_desc = "D'awwwww, so cute!"
 	caste_type_path = /mob/living/carbon/Xenomorph/Larva
-	tier = 0
-	upgrade = -1
+	tier = XENO_TIER_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 0
@@ -27,6 +27,9 @@
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_INNATE_HEALING|CASTE_DECAY_PROOF
 
+/datum/xeno_caste/larva/young
+	upgrade = XENO_UPGRADE_INVALID
+
 /mob/living/carbon/Xenomorph/Larva
 	caste_base_type = /mob/living/carbon/Xenomorph/Larva
 	speak_emote = list("hisses")
@@ -37,9 +40,9 @@
 	health = 35
 	see_in_dark = 8
 	flags_pass = PASSTABLE | PASSMOB
-	away_timer = 300
-	tier = 0  //Larva's don't count towards Pop limits
-	upgrade = -1
+	away_timer = XENO_AFK_TIMER
+	tier = XENO_TIER_ZERO  //Larva's don't count towards Pop limits
+	upgrade = XENO_UPGRADE_INVALID
 	gib_chance = 25
 	wound_type = "alien" //used to match appropriate wound overlays
 	actions = list(
@@ -50,14 +53,7 @@
 		/mob/living/carbon/Xenomorph/proc/vent_crawl
 		)
 
-/datum/xeno_caste/larva/predalien
-	caste_name = "Predalien Larva"
-	evolves_to = list(/mob/living/carbon/Xenomorph/Predalien)
-	caste_type_path = /mob/living/carbon/Xenomorph/Larva/predalien
-
-/mob/living/carbon/Xenomorph/Larva/predalien
-	icon_state = "Predalien Larva"
-	caste_base_type = /mob/living/carbon/Xenomorph/Larva/predalien
+	var/base_icon_state = "Larva"
 
 /mob/living/carbon/Xenomorph/Larva/UnarmedAttack(atom/A)
 	a_intent = INTENT_HELP //Forces help intent for all interactions.
@@ -78,60 +74,62 @@
 		if(locate(/obj/effect/alien/weeds) in loc)
 			amount_grown++ //Double growth on weeds.
 
-
-//Larva code is just a mess, so let's get it over with
-/mob/living/carbon/Xenomorph/Larva/update_icons()
-
+/mob/living/carbon/Xenomorph/Larva/generate_name()
 	var/progress = "" //Naming convention, three different names
-	var/state = "" //Icon convention, two different sprite sets
-
-	var/name_prefix = ""
-
-	var/datum/hive_status/hive
-	if(hivenumber && hivenumber <= hive_datum.len)
-		hive = hive_datum[hivenumber]
-	else
-		hivenumber = XENO_HIVE_NORMAL
-		hive = hive_datum[hivenumber]
-
-	name_prefix = hive.prefix
-	color = hive.color
-	if(name_prefix == "Corrupted ")
-		add_language("English")
-	else
-		remove_language("English") // its hacky doing it here sort of
 
 	switch(amount_grown)
 		if(0 to 49) //We're still bloody
 			progress = "Bloody "
-			state = "Bloody "
-		if(50 to 99)
-			progress = ""
-			state = ""
 		if(100 to INFINITY)
 			progress = "Mature "
 
-	name = "\improper [name_prefix][progress]Larva ([nicknumber])"
-
-	if(istype(src,/mob/living/carbon/Xenomorph/Larva/predalien)) state = "Predalien " //Sort of a hack.
+	name = "\improper [hive.prefix][progress]Larva ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name
 	if(mind)
 		mind.name = name //This gives them the proper name in deadchat if they explode on death. It's always the small things
 
+/mob/living/carbon/Xenomorph/Larva/update_icons()
+	generate_name()
+	
+	var/bloody = ""
+	if(amount_grown < 50)
+		bloody = "Bloody "
+
+	color = hive.color
+
 	if(stat == DEAD)
-		icon_state = "[state]Larva Dead"
+		icon_state = "[bloody][base_icon_state] Dead"
 	else if(handcuffed || legcuffed)
-		icon_state = "[state]Larva Cuff"
+		icon_state = "[bloody][base_icon_state] Cuff"
 
 	else if(lying)
 		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
-			icon_state = "[state]Larva Sleeping"
+			icon_state = "[bloody][base_icon_state] Sleeping"
 		else
-			icon_state = "[state]Larva Stunned"
+			icon_state = "[bloody][base_icon_state] Stunned"
 	else
-		icon_state = "[state]Larva"
+		icon_state = "[bloody][base_icon_state]"
+
+// predlarva dont have a bloody state
+/mob/living/carbon/Xenomorph/Larva/predalien/update_icons()
+	generate_name()
+
+	color = hive.color
+
+	if(stat == DEAD)
+		icon_state = "[base_icon_state] Dead"
+	else if(handcuffed || legcuffed)
+		icon_state = "[base_icon_state] Cuff"
+
+	else if(lying)
+		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
+			icon_state = "[base_icon_state] Sleeping"
+		else
+			icon_state = "[base_icon_state] Stunned"
+	else
+		icon_state = "[base_icon_state]"
 
 /mob/living/carbon/Xenomorph/Larva/start_pulling(atom/movable/AM)
 	return

@@ -43,7 +43,8 @@
 	else
 		output += "<a href='byond://?src=[REF(src)];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
 		output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join'>Join the TGMC!</A></p>"
-		output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
+		if(isdistress(SSticker.mode))
+			output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
 
 	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=observe'>Observe</A></p>"
 
@@ -81,10 +82,7 @@
 		return
 
 	if(statpanel("Stats"))
-		if(SSticker.hide_mode)
-			stat("Game Mode:", "TerraGov Marine Corps")
-		else
-			stat("Game Mode:", "[GLOB.master_mode]")
+		stat("Game Mode:", "[GLOB.master_mode]")
 
 		if(SSticker.current_state == GAME_STATE_PREGAME)
 			stat("Time To Start:", "[going ? SSticker.GetTimeLeft() : "(DELAYED)"]")
@@ -185,20 +183,20 @@
 				to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
 				return
 
+			if(jobban_isbanned(src, ROLE_XENOMORPH) || is_banned_from(ckey, ROLE_XENOMORPH))
+				to_chat(src, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
+				return
+
 			switch(alert("Would you like to try joining as a burrowed larva or as a living xenomorph?", "Select", "Burrowed Larva", "Living Xenomorph", "Cancel"))
 				if("Burrowed Larva")
-					if(SSticker.mode.check_xeno_late_join(src))
-						var/mob/living/carbon/Xenomorph/Queen/mother
-						mother = SSticker.mode.attempt_to_join_as_larva(src)
-						if(mother)
-							close_spawn_windows()
-							SSticker.mode.spawn_larva(src, mother)
+					if(SSticker.mode.attempt_to_join_as_larva(src))
+						close_spawn_windows()
+						SSticker.mode.spawn_larva(src)
 				if("Living Xenomorph")
-					if(SSticker.mode.check_xeno_late_join(src))
-						var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src, 0)
-						if(new_xeno)
-							close_spawn_windows(new_xeno)
-							SSticker.mode.transfer_xeno(src, new_xeno)
+					var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src, 0)
+					if(new_xeno)
+						close_spawn_windows(new_xeno)
+						SSticker.mode.transfer_xeno(src, new_xeno)
 
 
 		if("manifest")
@@ -327,17 +325,17 @@
 	if(job && !job.override_latejoin_spawn(character))
 		SSjob.SendToLateJoin(character)
 
-	data_core.manifest_inject(character)
+	GLOB.datacore.manifest_inject(character)
 	SSticker.minds += character.mind
-	SSticker.mode.latejoin_tally += 1
 
-	for(var/datum/squad/sq in SSjob.squads)
-		sq.max_engineers = engi_slot_formula(length(GLOB.clients))
-		sq.max_medics = medic_slot_formula(length(GLOB.clients))
+	if(isdistress(SSticker?.mode))
+		var/datum/game_mode/distress/D = SSticker.mode
+		D.latejoin_tally++
 
-	if(SSticker.mode.latejoin_larva_drop && SSticker.mode.latejoin_tally >= SSticker.mode.latejoin_larva_drop)
-		SSticker.mode.latejoin_tally -= SSticker.mode.latejoin_larva_drop
-		SSticker.mode.stored_larva++
+		if(D.latejoin_larva_drop && D.latejoin_tally >= D.latejoin_larva_drop)
+			D.latejoin_tally -= D.latejoin_larva_drop
+			var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+			HS.stored_larva++
 
 	qdel(src)
 
@@ -375,7 +373,7 @@
 
 
 /mob/new_player/proc/ViewManifest()
-	var/dat = data_core.get_manifest(OOC = 1)
+	var/dat = GLOB.datacore.get_manifest(ooc = TRUE)
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 400, 420)
 	popup.set_content(dat)

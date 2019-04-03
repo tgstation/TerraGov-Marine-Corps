@@ -23114,6 +23114,7 @@
 	dir = 9
 	},
 /area/ice_colony/underground/hangar)
+<<<<<<< HEAD
 "bil" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -23126,6 +23127,8 @@
 	},
 /turf/open/floor/animated/bcircuit,
 /area/ice_colony/underground/engineering/substation)
+=======
+>>>>>>> 55282c034c56a1aa6e5af38c3776f7e983383e86
 "bim" = (
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "req_sec_storage";

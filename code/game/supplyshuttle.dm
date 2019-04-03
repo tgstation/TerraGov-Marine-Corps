@@ -45,7 +45,6 @@ var/list/mechtoys = list(
 	density = 0
 	anchored = 1
 	layer = MOB_LAYER
-	explosion_resistance = 5
 
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)
 	if(istype(A) && A.checkpass(PASSGLASS))
@@ -179,7 +178,6 @@ var/list/mechtoys = list(
 
 			// Must be in a crate!
 			if(istype(MA,/obj/structure/closet/crate))
-				callHook("sell_crate", list(MA, area_shuttle))
 
 				points += points_per_crate
 				var/find_slip = 1

@@ -294,7 +294,7 @@ its easier to just keep the beam vertical.
 			else if(container_type & AMOUNT_SKILLCHECK)
 				if(isxeno(user))
 					return
-				if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_CHEM) // If they have no skillset(admin-spawn, etc), or are properly skilled.
+				if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_NOVICE) // If they have no skillset(admin-spawn, etc), or are properly skilled.
 					to_chat(user, "It contains:")
 					if(reagents.reagent_list.len)
 						for(var/datum/reagent/R in reagents.reagent_list)
@@ -332,6 +332,11 @@ its easier to just keep the beam vertical.
 	if (density)
 		AM.throwing = 0
 	return
+
+
+/atom/proc/GenerateTag()
+	return
+
 
 /atom/proc/add_hiddenprint(mob/living/M as mob)
 	if(isnull(M)) return
@@ -610,6 +615,9 @@ Proc for attack log creation, because really why not
 /atom/New(loc, ...)
 	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
 		GLOB._preloader.load(src)
+
+	if(datum_flags & DF_USE_TAG)
+		GenerateTag()
 
 	var/do_initialize = SSatoms.initialized
 	if(do_initialize != INITIALIZATION_INSSATOMS)
