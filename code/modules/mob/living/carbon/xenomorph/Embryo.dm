@@ -209,11 +209,6 @@
 	log_combat(src, src, "chestbursted as a [src].")
 	log_game("[key_name(src)] chestbursted as a [src] at [AREACOORD(src)].")
 
-	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
-	if((!key || !client) && is_ground_level(loc.z) && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL && hive.living_xeno_queen && hive.living_xeno_queen.z == loc.z)
-		visible_message("<span class='xenodanger'>[src] quickly burrows into the ground.</span>")
-		round_statistics.total_xenos_created-- // keep stats sane
-		if(isdistress(SSticker?.mode))
-			var/datum/game_mode/distress/D = SSticker.mode
-			D.stored_larva++
-		qdel(src)
+	if((locate(/obj/structure/bed/nest) in loc) && hive.living_xeno_queen?.z == loc.z)
+		burrow()
+		

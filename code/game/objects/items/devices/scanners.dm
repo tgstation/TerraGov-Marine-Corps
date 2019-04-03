@@ -79,7 +79,7 @@ REAGENT SCANNER
 	origin_tech = "magnets=1;biotech=1"
 	var/mode = 1
 	var/hud_mode = 1
-	var/skill_threshold = SKILL_MEDICAL_MEDIC
+	var/skill_threshold = SKILL_MEDICAL_PRACTICED
 
 /obj/item/device/healthanalyzer/attack(mob/living/carbon/M, mob/living/user) //Integrated analyzers don't need special training to be used quickly.
 	var/dat = ""
@@ -94,7 +94,7 @@ REAGENT SCANNER
 		return
 	if(!check_skill_level(skill_threshold, OBJ_SKILL_MEDICAL, user) )
 		to_chat(user, "<span class='warning'>You start fumbling around with [src]...</span>")
-		var/fduration = skill_delay(SKILL_TASK_AVERAGE, SKILL_MEDICAL_MEDIC, OBJ_SKILL_MEDICAL, user)
+		var/fduration = skill_delay(SKILL_TASK_AVERAGE, SKILL_MEDICAL_PRACTICED, OBJ_SKILL_MEDICAL, user)
 		if(!do_after(user, fduration, TRUE, 5, BUSY_ICON_FRIENDLY) || !user.Adjacent(M))
 			return
 	if(isxeno(M))
