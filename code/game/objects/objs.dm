@@ -295,8 +295,6 @@
 			return M.mind.cm_skills.surgery
 		if(OBJ_SKILL_PILOT)
 			return M.mind.cm_skills.pilot
-		if(OBJ_SKILL_ENDURANCE)
-			return M.mind.cm_skills.endurance
 		if(OBJ_SKILL_ENGINEER)
 			return M.mind.cm_skills.engineer
 		if(OBJ_SKILL_CONSTRUCTION)

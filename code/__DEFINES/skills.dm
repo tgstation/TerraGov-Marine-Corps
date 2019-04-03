@@ -73,12 +73,12 @@
 
 
 //medical skill
-#define SKILL_MEDICAL_DEFAULT	0
-#define SKILL_MEDICAL_CHEM		1 // recognizing chemicals, using autoinjectors & hyposprays with any chemicals (SL)
-#define SKILL_MEDICAL_MEDIC		2 //syringe use & defib use (Squad Corpsman)
-#define SKILL_MEDICAL_DOCTOR	3
-#define SKILL_MEDICAL_CMO		4
-#define SKILL_MEDICAL_MASTER	5
+#define SKILL_MEDICAL_UNTRAINED	0
+#define SKILL_MEDICAL_NOVICE	1 //Premed or paramedic. Recognizing chemicals. SL, survivors.
+#define SKILL_MEDICAL_PRACTICED	2 //Beginning intern, Squad Corpsman, IO.
+#define SKILL_MEDICAL_COMPETENT	3 //General practitioner. Survivor doc, early synth.
+#define SKILL_MEDICAL_EXPERT	4 //Surgeons. CMO, MO, synth.
+#define SKILL_MEDICAL_MASTER	5 //Modern-day Aesculapius. Spatial agent only now.
 //higher levels means faster syringe use and better defibrillation
 
 
@@ -140,9 +140,6 @@
 //pilot skill, hidden
 #define SKILL_PILOT_DEFAULT		0
 #define SKILL_PILOT_TRAINED		1 //Pilot
-
-
-//endurance skill TBD
 
 
 
