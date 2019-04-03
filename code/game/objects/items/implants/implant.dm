@@ -333,7 +333,6 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 	implanted(mob/M)
 		if(!ishuman(M))	return
-		if(isyautja(M)) return
 		var/mob/living/carbon/human/H = M
 		to_chat(H, "<span class='notice'>You are now tagged as a NT loyalist and will be monitored by their central headquarters. You retain your free will and mental faculties.</span>")
 		return 1

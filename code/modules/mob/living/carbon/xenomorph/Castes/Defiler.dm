@@ -1,11 +1,13 @@
 /datum/xeno_caste/defiler
 	caste_name = "Defiler"
 	display_name = "Defiler"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A frightening looking, bulky xeno that drips with suspect green fluids."
+
 	caste_type_path = /mob/living/carbon/Xenomorph/Defiler
-	tier = 3
-	upgrade = 0
+
+	tier = XENO_TIER_THREE
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -37,13 +39,18 @@
 
 	// *** Defiler Abilities *** //
 	bomb_strength = 1 //Used by the dispense neurogas power.
-	var/neuro_claws_amount = DEFILER_CLAW_AMOUNT
+	neuro_claws_amount = DEFILER_CLAW_AMOUNT
+
+/datum/xeno_caste/defiler/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/defiler/mature
 	upgrade_name = "Mature"
 	caste_desc = "A frightening looking, bulky xeno that drips with suspect green fluids. It looks a little more dangerous."
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 35
@@ -76,7 +83,7 @@
 	upgrade_name = "Elder"
 	caste_desc = "A frightening looking, bulky xeno that drips with suspect green fluids. It looks pretty strong."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40
@@ -109,7 +116,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "Being within mere eyeshot of this hulking, dripping monstrosity fills you with a deep, unshakeable sense of unease."
 	ancient_message = "You are the ultimate alien impregnator. You will infect the marines, see them burst open before you, and hear the gleeful screes of your larvae."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 45
@@ -151,8 +158,8 @@
 	pixel_x = -16
 	old_x = -16
 	wound_type = "defiler" //used to match appropriate wound overlays
-	tier = 3
-	upgrade = 0
+	tier = XENO_TIER_THREE
+	upgrade = XENO_UPGRADE_ZERO
 	var/datum/effect_system/smoke_spread/xeno/smoke_system = null
 	var/last_defiler_sting = null
 	var/last_emit_neurogas = null

@@ -173,7 +173,7 @@
 /obj/structure/acid_spray_act(mob/living/carbon/Xenomorph/X)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
-	health -= rand(40,60) + (X.upgrade * SPRAY_STRUCTURE_UPGRADE_BONUS)
+	health -= rand(40,60) + (X.upgrade_as_number() * SPRAY_STRUCTURE_UPGRADE_BONUS)
 	update_health(TRUE)
 	return TRUE // normal density flag
 
@@ -182,7 +182,7 @@
 	return FALSE // not normal density flag
 
 /obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/Xenomorph/X)
-	take_damage_type(rand(40,60) + (X.upgrade * SPRAY_STRUCTURE_UPGRADE_BONUS), "acid", src)
+	take_damage_type(rand(40,60) + (X.upgrade_as_number() * SPRAY_STRUCTURE_UPGRADE_BONUS), "acid", src)
 	healthcheck()
 	return TRUE
 
@@ -194,8 +194,8 @@
 		round_statistics.praetorian_spray_direct_hits++
 
 	acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
-	var/armor_block = run_armor_check("chest", "energy")
-	var/damage = rand(30,40) + (X.upgrade * SPRAY_MOB_UPGRADE_BONUS)
+	var/armor_block = run_armor_check("chest", "acid")
+	var/damage = rand(30,40) + (X.upgrade_as_number() * SPRAY_MOB_UPGRADE_BONUS)
 	apply_acid_spray_damage(damage, armor_block)
 	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
 
@@ -204,15 +204,10 @@
 
 /mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
 	take_overall_damage(null, damage, null, null, null, armor_block)
-	if(isyautja(src))
-		return
 	emote("scream")
 	KnockDown(1)
 
 /mob/living/carbon/Xenomorph/acid_spray_act(mob/living/carbon/Xenomorph/X)
-	return
-
-/mob/living/carbon/hellhound/acid_spray_act(mob/living/carbon/Xenomorph/X)
 	return
 
 GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/vehicle/multitile/root/cm_armored, /obj/structure/razorwire)))
@@ -423,7 +418,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		to_chat(src, "<span class='xenowarning'>You must gather your strength before punching.</span>")
 		return
 
-	if(xeno_hivenumber(M) == hivenumber)
+	if(issamexenohive(M))
 		return M.attack_alien() //harmless nibbling.
 
 	if (!check_plasma(20))
@@ -1466,153 +1461,89 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	else
 		check_hive_status(src)
 
+/proc/xeno_status_output(list/xenolist, can_overwatch = FALSE, ignore_leads = TRUE, user)
+	var/xenoinfo = ""
+	var/leadprefix = (ignore_leads?"":"<b>(-L-)</b>")
+	for(var/i in xenolist)
+		var/mob/living/carbon/Xenomorph/X = i
+		if(ignore_leads && X.queen_chosen_lead)
+			continue
+		if(can_overwatch)
+			xenoinfo += "<tr><td>[leadprefix]<a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
+		else
+			xenoinfo += "<tr><td>[leadprefix][X.name] "
+		if(!X.client)
+			xenoinfo += " <i>(SSD)</i>"
+		else if(X.client.prefs.xeno_name && X.client.prefs.xeno_name != "Undefined")
+			xenoinfo += "- [X.client.prefs.xeno_name]"
+
+		var/area/A = get_area(X)
+		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
+	
+	return xenoinfo
 
 /proc/check_hive_status(mob/living/carbon/Xenomorph/user, var/anchored = FALSE)
 	if(!SSticker)
 		return
 	var/dat = "<html><head><title>Hive Status</title></head><body>"
 
-	var/count = 0
-	var/queen_list = ""
-	//var/exotic_list = ""
-	//var/exotic_count = 0
-	var/boiler_list = ""
-	var/boiler_count = 0
-	var/crusher_list = ""
-	var/crusher_count = 0
-	var/praetorian_list = ""
-	var/praetorian_count = 0
-	var/ravager_list = ""
-	var/ravager_count = 0
-	var/carrier_list = ""
-	var/carrier_count = 0
-	var/hivelord_list = ""
-	var/hivelord_count = 0
-	var/warrior_list = ""
-	var/warrior_count = 0
-	var/hunter_list = ""
-	var/hunter_count = 0
-	var/spitter_list = ""
-	var/spitter_count = 0
-	var/drone_list = ""
-	var/drone_count = 0
-	var/runner_list = ""
-	var/runner_count = 0
-	var/sentinel_list = ""
-	var/sentinel_count = 0
-	var/defender_list = ""
-	var/defender_count = 0
-	var/defiler_list = ""
-	var/defiler_count = 0
-	var/larva_list = ""
-	var/larva_count = 0
-	var/stored_larva_count = 0
-	var/leader_list = ""
+	var/datum/hive_status/hive
+	if(istype(user) && user.hive)
+		hive = user.hive
+	else
+		hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 
-	if(isdistress(SSticker.mode))
-		var/datum/game_mode/distress/D = SSticker.mode
-		stored_larva_count = D.stored_larva
+	if(!hive)
+		CRASH("couldnt find a hive in check_hive_status")
 
-	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
-		if(is_centcom_level(X.z))
-			continue //don't show xenos in the thunderdome when admins test stuff.
-		if(istype(user)) // cover calling it without parameters
-			if(X.hivenumber != user.hivenumber)
-				continue // not our hive
-		var/area/A = get_area(X)
+	var/xenoinfo = ""
+	var/can_overwatch = FALSE
 
-		var/datum/hive_status/hive
-		if(X.hivenumber && X.hivenumber <= hive_datum.len)
-			hive = hive_datum[X.hivenumber]
-		else
-			X.hivenumber = XENO_HIVE_NORMAL
-			hive = hive_datum[X.hivenumber]
+	var/tier3counts = ""
+	var/tier2counts = ""
+	var/tier1counts = ""
 
-		var/leader = ""
+	if(isxenoqueen(user))
+		var/mob/living/carbon/Xenomorph/Queen/Q = user
+		if(Q.ovipositor)
+			can_overwatch = TRUE
 
-		if(X in hive.xeno_leader_list)
-			leader = "<b>(-L-)</b>"
+	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Queen], FALSE, TRUE)
 
-		var/xenoinfo
-		if(user && anchored && X != user)
-			xenoinfo = "<tr><td>[leader]<a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
-		else
-			xenoinfo = "<tr><td>[leader][X.name] "
-		if(!X.client)
-			xenoinfo += " <i>(SSD)</i>"
-		else if(X.client.prefs.xeno_name && X.client.prefs.xeno_name != "Undefined")
-			xenoinfo += "- [X.client.prefs.xeno_name]"
+	xenoinfo += xeno_status_output(hive.xeno_leader_list, can_overwatch, FALSE, user)
 
-		count++ //Dead players shouldn't be on this list
-		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
+	for(var/typepath in hive.xenos_by_typepath)
+		if(typepath == /mob/living/carbon/Xenomorph/Queen)
+			continue
+		var/mob/living/carbon/Xenomorph/T = typepath
+		var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[typepath][XENO_UPGRADE_BASETYPE]
+		if(XC.caste_flags & CASTE_HIDE_IN_STATUS)
+			continue
 
-		if(leader != "")
-			leader_list += xenoinfo
+		switch(initial(T.tier))
+			if(XENO_TIER_ZERO)
+				continue
+			if(XENO_TIER_THREE)
+				tier3counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
+			if(XENO_TIER_TWO)
+				tier2counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
+			if(XENO_TIER_ONE)
+				tier1counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
 
-		switch(X.xeno_caste.caste_name) // TODO: replace with typecache
-			if("Queen")
-				queen_list += xenoinfo
-			if("Boiler")
-				if(leader == "") boiler_list += xenoinfo
-				boiler_count++
-			if("Crusher")
-				if(leader == "") crusher_list += xenoinfo
-				crusher_count++
-			if("Praetorian")
-				if(leader == "") praetorian_list += xenoinfo
-				praetorian_count++
-			if("Ravager")
-				if(leader == "") ravager_list += xenoinfo
-				ravager_count++
-			if("Carrier")
-				if(leader == "") carrier_list += xenoinfo
-				carrier_count++
-			if("Hivelord")
-				if(leader == "") hivelord_list += xenoinfo
-				hivelord_count++
-			if ("Warrior")
-				if (leader == "")
-					warrior_list += xenoinfo
-				warrior_count++
-			if("Hunter")
-				if(leader == "") hunter_list += xenoinfo
-				hunter_count++
-			if("Spitter")
-				if(leader == "") spitter_list += xenoinfo
-				spitter_count++
-			if("Drone")
-				if(leader == "") drone_list += xenoinfo
-				drone_count++
-			if("Runner")
-				if(leader == "") runner_list += xenoinfo
-				runner_count++
-			if("Sentinel")
-				if(leader == "") sentinel_list += xenoinfo
-				sentinel_count++
-			if ("Defender")
-				if (leader == "")
-					defender_list += xenoinfo
-				defender_count++
-			if ("Defiler")
-				if (leader == "")
-					defiler_list += xenoinfo
-				defiler_count++
-			if("Bloody Larva") // all larva are caste = blood larva
-				if(leader == "") larva_list += xenoinfo
-				larva_count++
+		xenoinfo += xeno_status_output(hive.xenos_by_typepath[typepath], can_overwatch, TRUE, user)
 
-	dat += "<b>Total Living Sisters: [count]</b><BR>"
-	//if(exotic_count != 0) //Exotic Xenos in the Hive like Predalien or Xenoborg
-		//dat += "<b>Ultimate Tier:</b> [exotic_count] Sisters</b><BR>"
-	dat += "<b>Tier 3: [boiler_count + crusher_count + praetorian_count + ravager_count + defiler_count] Sisters</b> | Boilers: [boiler_count] | Crushers: [crusher_count] | Praetorians: [praetorian_count] | Ravagers: [ravager_count] | Defilers: [defiler_count]<BR>"
-	dat += "<b>Tier 2: [carrier_count + hivelord_count + hunter_count + spitter_count + warrior_count] Sisters</b> | Carriers: [carrier_count] | Hivelords: [hivelord_count] | Warriors: [warrior_count] | Hunters: [hunter_count] | Spitters: [spitter_count]<BR>"
-	dat += "<b>Tier 1: [drone_count + runner_count + sentinel_count + defender_count] Sisters</b> | Drones: [drone_count] | Runners: [runner_count] | Sentinels: [sentinel_count] | Defenders: [defender_count]<BR>"
-	dat += "<b>Larvas: [larva_count] Sisters<BR>"
-	if(istype(user)) // cover calling it without parameters
-		if(user.hivenumber == XENO_HIVE_NORMAL)
-			dat += "<b>Burrowed Larva: [stored_larva_count] Sisters<BR>"
+	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Larva], can_overwatch, TRUE, user)
+
+	dat += "<b>Total Living Sisters: [hive.get_total_xeno_number()]</b><BR>"
+	dat += "<b>Tier 3: [length(hive.xenos_by_tier[XENO_TIER_THREE])] Sisters</b>[tier3counts]<BR>"
+	dat += "<b>Tier 2: [length(hive.xenos_by_tier[XENO_TIER_TWO])] Sisters</b>[tier2counts]<BR>"
+	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
+	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Larva])] Sisters<BR>"
+	if(hive.hivenumber == XENO_HIVE_NORMAL)
+		var/datum/hive_status/normal/HN = hive
+		dat += "<b>Burrowed Larva: [HN.stored_larva] Sisters<BR>"
 	dat += "<table cellspacing=4>"
-	dat += queen_list + leader_list + boiler_list + crusher_list + praetorian_list + ravager_list + defiler_list + carrier_list + hivelord_list + warrior_list + hunter_list + spitter_list + drone_list + runner_list + sentinel_list + defender_list + larva_list
+	dat += xenoinfo
 	dat += "</table></body>"
 	usr << browse(dat, "window=roundstatus;size=600x600")
 

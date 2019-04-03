@@ -302,7 +302,7 @@ datum/effect_system/smoke_spread/tactical
 	if(C.internal || C.has_smoke_protection())
 		return
 	if(!length(smoked_mobs))
-		addtimer(CALLBACK(src, .proc/chemical_effect), 1)
+		addtimer(CALLBACK(src, .proc/chemical_effect), 4)
 	for(var/obj/effect/particle_effect/smoke/chem/S in current_cloud)
 		LAZYADD(smoked_mobs, C)
 

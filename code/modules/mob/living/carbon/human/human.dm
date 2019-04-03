@@ -137,7 +137,7 @@
 		dna.real_name = real_name
 
 	prev_gender = gender // Debug for plural genders
-	
+
 
 	//makes order hud visible
 	var/datum/mob_hud/H = huds[MOB_HUD_ORDER]
@@ -1497,11 +1497,8 @@
 	. = ..()
 
 /mob/living/carbon/human/smokecloak_on()
-	var/obj/item/clothing/gloves/yautja/Y = gloves
 	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back
 	if(istype(S) && S.camo_active)
-		return FALSE
-	if(istype(Y) && Y.cloaked)
 		return FALSE
 	return ..()
 

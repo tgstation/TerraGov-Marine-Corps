@@ -12,11 +12,10 @@
 	var/smartgun = SKILL_SMART_DEFAULT
 	var/spec_weapons = SKILL_SPEC_DEFAULT
 
-	var/endurance = 0
 	var/engineer = SKILL_ENGINEER_DEFAULT
 	var/construction = SKILL_CONSTRUCTION_DEFAULT
 	var/leadership = SKILL_LEAD_NOVICE
-	var/medical = SKILL_MEDICAL_DEFAULT
+	var/medical = SKILL_MEDICAL_UNTRAINED
 	var/surgery = SKILL_SURGERY_DEFAULT
 	var/pilot = SKILL_PILOT_DEFAULT
 	var/police = SKILL_POLICE_DEFAULT
@@ -48,16 +47,16 @@
 	name = "Survivor"
 	engineer = SKILL_ENGINEER_ENGI //to hack airlocks so they're never stuck in a room.
 	construction = SKILL_CONSTRUCTION_METAL
-	medical = SKILL_MEDICAL_CHEM
+	medical = SKILL_MEDICAL_NOVICE
 
 /datum/skills/civilian/survivor/doctor
 	name = "Survivor Doctor"
-	medical = SKILL_MEDICAL_DOCTOR
+	medical = SKILL_MEDICAL_COMPETENT
 	surgery = SKILL_SURGERY_EXPERT
 
 /datum/skills/civilian/survivor/scientist
 	name = "Survivor Scientist"
-	medical = SKILL_MEDICAL_MEDIC
+	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_PROFESSIONAL
 
 /datum/skills/civilian/survivor/chef
@@ -103,7 +102,7 @@
 /datum/skills/combat_medic
 	name = "Combat Medic"
 	leadership = SKILL_LEAD_BEGINNER
-	medical = SKILL_MEDICAL_MEDIC
+	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_TRAINED
 
 /datum/skills/combat_medic/crafty
@@ -111,25 +110,23 @@
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL
 
-
 /datum/skills/doctor
 	name = "Doctor"
 	cqc = SKILL_CQC_WEAK
 	firearms = SKILL_FIREARMS_UNTRAINED
-	medical = SKILL_MEDICAL_DOCTOR
-	melee_weapons = SKILL_MELEE_WEAK
+	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
+	melee_weapons = SKILL_MELEE_WEAK
 
 /datum/skills/CMO
 	name = "CMO"
 	cqc = SKILL_CQC_WEAK
 	firearms = SKILL_FIREARMS_UNTRAINED
 	leadership = SKILL_LEAD_TRAINED
-	medical = SKILL_MEDICAL_CMO
+	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
 	melee_weapons = SKILL_MELEE_WEAK
 	police = SKILL_POLICE_FLASH
-
 
 /datum/skills/synthetic
 	name = "Synthetic"
@@ -138,7 +135,7 @@
 	firearms = SKILL_FIREARMS_TRAINED
 	smartgun = SKILL_SMART_TRAINED
 	spec_weapons = SKILL_SPEC_TRAINED
-	medical = SKILL_MEDICAL_CMO
+	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
 	pilot = SKILL_PILOT_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED
@@ -157,7 +154,7 @@
 	firearms = SKILL_FIREARMS_TRAINED
 	smartgun = SKILL_SMART_TRAINED
 	spec_weapons = SKILL_SPEC_TRAINED
-	medical = SKILL_MEDICAL_DOCTOR
+	medical = SKILL_MEDICAL_COMPETENT
 	surgery = SKILL_SURGERY_PROFESSIONAL
 	melee_weapons = SKILL_MELEE_SUPER
 	pilot = SKILL_PILOT_TRAINED
@@ -172,7 +169,7 @@
 	construction = SKILL_CONSTRUCTION_ADVANCED
 	smartgun = SKILL_SMART_TRAINED
 	leadership = SKILL_LEAD_MASTER
-	medical = SKILL_MEDICAL_MEDIC
+	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
 	police = SKILL_POLICE_FLASH
 	powerloader = SKILL_POWERLOADER_TRAINED
@@ -183,7 +180,7 @@
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	smartgun = SKILL_SMART_TRAINED
 	leadership = SKILL_LEAD_MASTER
-	medical = SKILL_MEDICAL_MEDIC
+	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_TRAINED
@@ -197,7 +194,7 @@
 	name = "Intelligence Officer"
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_EXPERT
-	medical = SKILL_MEDICAL_MEDIC
+	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
 
 /datum/skills/pilot
@@ -266,7 +263,7 @@
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	engineer = SKILL_ENGINEER_PLASTEEL
 	leadership = SKILL_LEAD_TRAINED
-	medical = SKILL_MEDICAL_CHEM
+	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
 
 
@@ -274,7 +271,7 @@
 /datum/skills/SL/upp
 	name = "UPP Leader"
 	firearms = SKILL_FIREARMS_TRAINED
-	medical = SKILL_MEDICAL_MEDIC
+	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
 	pistols = SKILL_PISTOLS_TRAINED
 	smgs = SKILL_SMGS_TRAINED
@@ -351,7 +348,7 @@
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	firearms = SKILL_FIREARMS_TRAINED
 	leadership = SKILL_LEAD_BEGINNER
-	medical = SKILL_MEDICAL_CHEM
+	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
 	melee_weapons = SKILL_MELEE_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED
@@ -363,7 +360,7 @@
 
 /datum/skills/commando/medic
 	name = "Commando Medic"
-	medical = SKILL_MEDICAL_MEDIC
+	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_TRAINED
 
 /datum/skills/commando/leader
@@ -375,7 +372,7 @@
 	cqc = SKILL_CQC_MASTER
 	smartgun = SKILL_SMART_TRAINED
 	spec_weapons = SKILL_SPEC_TRAINED
-	medical = SKILL_MEDICAL_MEDIC
+	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_TRAINED
 
 
@@ -387,7 +384,7 @@
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	firearms = SKILL_FIREARMS_TRAINED
 	leadership = SKILL_LEAD_BEGINNER
-	medical = SKILL_MEDICAL_CHEM
+	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
 	melee_weapons = SKILL_MELEE_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED
@@ -409,7 +406,7 @@
 	engineer = SKILL_ENGINEER_MT
 	construction = SKILL_CONSTRUCTION_ADVANCED
 	leadership = SKILL_LEAD_BEGINNER
-	medical = SKILL_MEDICAL_CHEM
+	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
 	powerloader = SKILL_POWERLOADER_TRAINED
 
@@ -418,7 +415,7 @@
 	name = "Admiral"
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_MASTER
-	medical = SKILL_MEDICAL_MEDIC
+	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
 	police = SKILL_POLICE_FLASH
 	powerloader = SKILL_POWERLOADER_TRAINED
@@ -429,7 +426,7 @@
 	cqc = SKILL_CQC_MASTER
 	construction = SKILL_CONSTRUCTION_METAL
 	leadership = SKILL_LEAD_BEGINNER
-	medical = SKILL_MEDICAL_CHEM
+	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
 	melee_weapons = SKILL_MELEE_SUPER
 
@@ -447,7 +444,7 @@
 	firearms = SKILL_FIREARMS_TRAINED
 	smartgun = SKILL_SMART_TRAINED
 	spec_weapons = SKILL_SPEC_TRAINED
-	medical = SKILL_MEDICAL_CMO
+	medical = SKILL_MEDICAL_MASTER
 	cqc = SKILL_CQC_MASTER
 	surgery = SKILL_SURGERY_EXPERT
 	melee_weapons = SKILL_MELEE_SUPER
@@ -461,3 +458,65 @@
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
+
+//======//I.o.M.\\======\\
+
+/datum/skills/imperial
+	name = "Guardsman"
+
+/datum/skills/imperial/SL
+	name = "Guardsman Sergeant" // veteran guardsman, practically better in all
+	cqc = SKILL_CQC_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	
+	firearms = SKILL_FIREARMS_TRAINED
+	// guardsmen don't use pistol, so he doesn't have experience with them, unless they use boltpistols
+	// shotguns too
+	rifles = SKILL_RIFLES_TRAINED
+	// smgs too
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	smartgun = SKILL_SMART_USE // can use smartgun
+	spec_weapons = SKILL_SPEC_TRAINED
+	
+	// normal SL skills
+	engineer = SKILL_ENGINEER_PLASTEEL
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	leadership = SKILL_LEAD_TRAINED
+	medical = SKILL_MEDICAL_NOVICE
+	surgery = SKILL_SURGERY_AMATEUR
+
+/datum/skills/imperial/medicae
+	name = "Guardsman Medicae" // medic
+	
+	medical = SKILL_MEDICAL_PRACTICED
+	surgery = SKILL_SURGERY_TRAINED
+
+/datum/skills/imperial/astartes
+	name = "Space Marine" // practically a god
+	cqc = SKILL_CQC_MASTER
+	melee_weapons = SKILL_MELEE_SUPER // chainswords are literally used about the same or more than their boltpistols
+
+	firearms = SKILL_FIREARMS_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	smartgun = SKILL_SMART_TRAINED
+	spec_weapons = SKILL_SPEC_TRAINED
+
+	//endurance = 0 - does nothing
+	engineer = SKILL_ENGINEER_PLASTEEL
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	leadership = SKILL_LEAD_TRAINED
+	medical = SKILL_MEDICAL_NOVICE
+	surgery = SKILL_SURGERY_AMATEUR
+	powerloader = SKILL_POWERLOADER_DABBLING
+
+/datum/skills/imperial/astartes/apothecary
+	name = "Space Marine Apothecary" // a slightly less stronger space marine with medical skills
+	cqc = 4 // below SKILL_CQC_MASTER, no define for it
+	melee_weapons = SKILL_MELEE_TRAINED
+	
+	medical = SKILL_MEDICAL_EXPERT
+	surgery = SKILL_SURGERY_EXPERT

@@ -43,7 +43,6 @@ By design, d1 is the smallest direction and d2 is the highest
 	var/cable_color = "red"
 	var/id //used for up/down cables
 	//var/obj/machinery/power/breakerbox/breaker_box
-	explosion_resistance = 150 //Fixes ground map stuff. Can't have them blow up all the time.
 
 
 

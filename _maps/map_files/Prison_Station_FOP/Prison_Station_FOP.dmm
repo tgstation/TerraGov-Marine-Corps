@@ -3581,10 +3581,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
-"akm" = (
-/obj/effect/landmark/pred_teleport_destination,
-/turf/open/floor/plating,
-/area/prison/cellblock/maxsec/north)
 "akn" = (
 /obj/machinery/light{
 	dir = 4
@@ -11701,10 +11697,6 @@
 /area/prison/chapel)
 "aCD" = (
 /obj/item/paper/prison_station/chapel_program,
-/turf/open/floor/carpet,
-/area/prison/chapel)
-"aCE" = (
-/obj/effect/landmark/pred_teleport_destination,
 /turf/open/floor/carpet,
 /area/prison/chapel)
 "aCF" = (
@@ -39914,7 +39906,6 @@
 /area/prison/quarters/security)
 "bKN" = (
 /obj/machinery/telecomms/relay/preset/station{
-	explosion_resistance = 100;
 	idle_power_usage = 0;
 	listening_level = 1;
 	unacidable = 1;
@@ -48550,10 +48541,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/mediumsec/north)
-"ceg" = (
-/obj/effect/landmark/pred_teleport_destination,
-/turf/open/floor/wood,
-/area/prison/library)
 "ceh" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/plating,
@@ -54260,8 +54247,7 @@
 /area/prison/pirate)
 "crm" = (
 /obj/machinery/computer/communications{
-	icon_state = "commb";
-	
+	icon_state = "commb"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
@@ -54269,8 +54255,7 @@
 /area/prison/pirate)
 "crn" = (
 /obj/machinery/computer/communications{
-	icon_state = "commb";
-	
+	icon_state = "commb"
 	},
 /obj/structure/table/reinforced,
 /turf/open/shuttle,
@@ -57944,7 +57929,6 @@
 /area/prison/cellblock/mediumsec/south)
 "czq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/pred_teleport_destination,
 /turf/open/floor/prison/yellow{
 	dir = 4
 	},
@@ -88399,7 +88383,7 @@ ayH
 azO
 ayH
 azB
-aCE
+aCC
 aCC
 ayH
 azB
@@ -90424,7 +90408,7 @@ ags
 ags
 ahN
 ajP
-akm
+acO
 akJ
 alc
 alr
@@ -100038,7 +100022,7 @@ bRv
 bRv
 cbq
 bRv
-ceg
+bRv
 cfr
 bPX
 cht
