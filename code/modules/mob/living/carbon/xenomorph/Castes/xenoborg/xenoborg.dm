@@ -28,6 +28,7 @@
 		..()
 		add_language("English")
 		add_language("Xenomorph") //xenocommon
+		add_language("Hivemind") //hivemind
 
 /mob/living/carbon/Xenomorph/Xenoborg/handle_living_plasma_updates()
 	return

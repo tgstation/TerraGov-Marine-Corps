@@ -11,8 +11,6 @@
 	var/mob/living/carbon/Xenomorph/Xenoborg/X = owner
 	X.fire_cannon(A)
 
-		add_language("Hivemind") //hivemind
-
 /mob/living/carbon/Xenomorph/Xenoborg/proc/fire_cannon(atom/T)
 	if(!T)
 		return
