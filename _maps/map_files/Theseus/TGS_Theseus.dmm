@@ -238,8 +238,14 @@
 	},
 /area/almayer/evacuation/pod7)
 "aaI" = (
-/turf/open/floor/almayer/mono,
-/area/almayer/squads/alpha)
+/obj/machinery/door/firedoor/theseus{
+	dir = 2
+	},
+/turf/open/floor/almayer{
+	tag = "icon-test_floor4";
+	icon_state = "test_floor4"
+	},
+/area/almayer/hallways/aft_hallway)
 "aaJ" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall13";
@@ -455,7 +461,6 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "abo" = (
-/obj/machinery/computer/cryopod/alpha,
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/alpha)
 "abp" = (
@@ -505,21 +510,16 @@
 /turf/closed/wall/almayer,
 /area/almayer/hallways/aft_hallway)
 "abw" = (
+/obj/machinery/computer/cryopod/alpha,
 /turf/open/floor/almayer/mono,
-/area/almayer/squads/bravo)
+/area/almayer/squads/alpha)
 "abx" = (
-/obj/machinery/computer/cryopod/bravo,
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/bravo)
 "aby" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "84"
-	},
-/area/shuttle/drop1/sulaco)
+/obj/machinery/computer/cryopod/bravo,
+/turf/open/floor/almayer/mono,
+/area/almayer/squads/bravo)
 "abz" = (
 /obj/structure/cable{
 	d2 = 2;
@@ -531,12 +531,12 @@
 /turf/open/floor/grass,
 /area/almayer/living/starboard_garden)
 "abA" = (
-/obj/effect/attach_point/electronics/dropship1{
+/obj/effect/attach_point/weapon/dropship1{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /turf/closed/shuttle/dropship1/transparent{
-	icon_state = "85"
+	icon_state = "84"
 	},
 /area/shuttle/drop1/sulaco)
 "abB" = (
@@ -545,16 +545,16 @@
 	},
 /turf/open/floor/plating,
 /turf/closed/shuttle/dropship1/transparent{
-	icon_state = "90"
+	icon_state = "85"
 	},
 /area/shuttle/drop1/sulaco)
 "abC" = (
-/obj/effect/attach_point/weapon/dropship1{
+/obj/effect/attach_point/electronics/dropship1{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /turf/closed/shuttle/dropship1/transparent{
-	icon_state = "91"
+	icon_state = "90"
 	},
 /area/shuttle/drop1/sulaco)
 "abD" = (
@@ -661,22 +661,21 @@
 /area/almayer/living/commandbunks)
 "abW" = (
 /obj/effect/attach_point/weapon/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "91"
+	},
+/area/shuttle/drop1/sulaco)
+"abX" = (
+/obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
 	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating,
 /turf/closed/shuttle/dropship1/transparent{
 	icon_state = "61"
-	},
-/area/shuttle/drop1/sulaco)
-"abX" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 4;
-	icon_state = "equip_base_r_wing"
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "65"
 	},
 /area/shuttle/drop1/sulaco)
 "abY" = (
@@ -691,8 +690,15 @@
 /turf/open/floor/grass,
 /area/almayer/living/starboard_garden)
 "acb" = (
-/turf/open/floor/almayer/mono,
-/area/almayer/squads/charlie)
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 4;
+	icon_state = "equip_base_r_wing"
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "65"
+	},
+/area/shuttle/drop1/sulaco)
 "acc" = (
 /obj/machinery/light{
 	dir = 1
@@ -716,13 +722,16 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/upper_hull)
 "ach" = (
-/obj/machinery/computer/cryopod/charlie,
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/charlie)
 "aci" = (
+/obj/machinery/computer/cryopod/charlie,
+/turf/open/floor/almayer/mono,
+/area/almayer/squads/charlie)
+"acj" = (
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/delta)
-"acj" = (
+"ack" = (
 /obj/machinery/computer/cryopod/delta,
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/delta)
@@ -21925,6 +21934,15 @@
 	icon_state = "red"
 	},
 /area/almayer/squads/alpha)
+"aZl" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
+	},
+/area/almayer/squads/alpha)
 "aZm" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -23272,6 +23290,16 @@
 	dir = 1;
 	icon_state = "orange";
 	tag = "icon-orange"
+	},
+/area/almayer/squads/bravo)
+"bcw" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	dir = 1;
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
 	},
 /area/almayer/squads/bravo)
 "bcx" = (
@@ -44524,6 +44552,15 @@
 	icon_state = "emerald"
 	},
 /area/almayer/squads/charlie)
+"bZi" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
+	},
+/area/almayer/squads/charlie)
 "bZj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -45774,6 +45811,16 @@
 	dir = 1;
 	icon_state = "blue";
 	tag = "icon-blue"
+	},
+/area/almayer/squads/delta)
+"cch" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	dir = 1;
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
 	},
 /area/almayer/squads/delta)
 "cci" = (
@@ -72614,7 +72661,7 @@ blA
 blA
 btZ
 bvv
-abW
+abX
 cjV
 cjV
 cjV
@@ -72867,7 +72914,7 @@ bkY
 blA
 blA
 blA
-aby
+abA
 bsn
 bua
 bvw
@@ -73124,7 +73171,7 @@ bkZ
 blA
 blA
 blA
-abA
+abB
 bso
 bub
 bub
@@ -74666,7 +74713,7 @@ bkX
 blA
 blA
 blA
-abB
+abC
 bso
 bug
 bvz
@@ -74923,7 +74970,7 @@ bkY
 blA
 blA
 blA
-abC
+abW
 bsu
 buh
 bvA
@@ -75184,7 +75231,7 @@ blA
 blA
 bui
 bvB
-abX
+acb
 cjW
 cjW
 cjW
@@ -88913,7 +88960,7 @@ aaq
 aas
 aas
 aas
-afm
+aaI
 aEJ
 aas
 aBF
@@ -90070,9 +90117,9 @@ aXb
 aXV
 aXd
 aZk
-aaI
+abo
 aWH
-abw
+abx
 bcv
 bdo
 bdq
@@ -90114,9 +90161,9 @@ bVU
 bWS
 bVW
 bZh
-acb
+ach
 bSQ
-aci
+acj
 ccg
 ccQ
 ccS
@@ -90326,11 +90373,11 @@ aWJ
 aXb
 aXV
 aXd
-aZk
+aZl
 aZK
 aWH
 baY
-bcv
+bcw
 bdo
 bdq
 bfB
@@ -90370,11 +90417,11 @@ bUs
 bVU
 bWS
 bVW
-bZh
+bZi
 bZS
 bSQ
 cbq
-ccg
+cch
 ccQ
 ccS
 cdN
@@ -90584,9 +90631,9 @@ aXc
 aXW
 aYH
 aZk
-abo
+abw
 aWH
-abx
+aby
 bcv
 bdp
 bex
@@ -90628,9 +90675,9 @@ bVV
 bWT
 bXP
 bZh
-ach
+aci
 bSQ
-acj
+ack
 ccg
 ccR
 cdy
