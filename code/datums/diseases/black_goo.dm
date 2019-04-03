@@ -180,7 +180,7 @@
 	name = "strange canister"
 	desc = "A strange looking metal container."
 	storage_slots = 3
-	can_hold = list("/obj/item/reagent_container/food/drinks/bottle/black_goo")
+	can_hold = list(/obj/item/reagent_container/food/drinks/bottle/black_goo)
 
 
 	examine(mob/user)
@@ -193,11 +193,10 @@
 			to_chat(user, "There are [src.contents.len] bottles inside the container.")
 
 
-/obj/item/storage/fancy/blackgoo/New()
-	..()
-	for(var/i=1; i <= storage_slots; i++)
+/obj/item/storage/fancy/blackgoo/Initialize(mapload, ...)
+	. = ..()
+	for(var/i in 1 to storage_slots)
 		new /obj/item/reagent_container/food/drinks/bottle/black_goo(src)
-	return
 
 //zombie ice-proofing
 /obj/item/clothing/mask/rebreather/scarf/zombie

@@ -112,21 +112,6 @@
 	GLOB.surv_spawn += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/start/pred_spawn/Initialize()
-	. = ..()
-	GLOB.pred_spawn += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/start/pred_spawn/elder/Initialize()
-	. = ..()
-	GLOB.pred_elder_spawn += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/pred_teleport_destination/Initialize()
-	. = ..()
-	GLOB.yautja_teleport_loc += loc
-	return INITIALIZE_HINT_QDEL
-
 /obj/effect/landmark/monkey_spawn/Initialize() // unused but i won't remove the landmarks for these yet
 	. = ..()
 	return INITIALIZE_HINT_QDEL

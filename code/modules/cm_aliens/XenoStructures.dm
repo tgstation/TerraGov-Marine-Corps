@@ -200,7 +200,7 @@
 	return ..()
 
 /obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
-	if(!iscarbon(AM) || !hugger || isyautja(AM))
+	if(!iscarbon(AM) || !hugger)
 		return
 	var/mob/living/carbon/C = AM
 	if(C.can_be_facehugged(hugger))
@@ -629,7 +629,7 @@
 	Burst(TRUE)
 
 /obj/effect/alien/egg/HasProximity(atom/movable/AM)
-	if((status != EGG_GROWN) || QDELETED(hugger) || !iscarbon(AM) || isyautja(AM)) //Predators are too stealthy to trigger eggs to burst.
+	if((status != EGG_GROWN) || QDELETED(hugger) || !iscarbon(AM))
 		return FALSE
 	var/mob/living/carbon/C = AM
 	if(!C.can_be_facehugged(hugger))

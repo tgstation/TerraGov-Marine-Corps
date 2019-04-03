@@ -57,27 +57,27 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/brightness_on = 5 //Average attachable pocket light
 	var/flashlight_cooldown = 0 //Cooldown for toggling the light
 	var/locate_cooldown = 0 //Cooldown for SL locator
-	var/armor_overlays[]
+	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
 	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
 	w_class = 5
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
+	pockets = /obj/item/storage/internal/suit/marine
 
-/obj/item/clothing/suit/storage/marine/New(loc, expected_type = /obj/item/clothing/suit/storage/marine, new_name[] = list(MAP_ICE_COLONY = "\improper M3 pattern marine snow armor"))
-	select_gamemode_skin(expected_type,,new_name)
+/obj/item/storage/internal/suit/marine
+	bypass_w_limit = list(
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/cell/lasgun
+	 )
+	max_storage_space = 6
+
+/obj/item/clothing/suit/storage/marine/Initialize()
 	. = ..()
 	armor_overlays = list("lamp") //Just one for now, can add more later.
 	update_icon()
-	pockets.max_w_class = 2 //Can contain small items AND rifle magazines.
-	pockets.bypass_w_limit = list(
-		"/obj/item/ammo_magazine/rifle",
-		"/obj/item/ammo_magazine/smg",
-		"/obj/item/ammo_magazine/sniper",
-		"/obj/item/cell/lasgun",
-	 )
-	pockets.max_storage_space = 6
-
 
 /obj/item/clothing/suit/storage/marine/update_icon(mob/user)
 	var/image/I
@@ -180,13 +180,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/obj/item/weapon/gun/current_gun
 	var/sheatheSound = 'sound/weapons/gun_pistol_sheathe.ogg'
 	var/drawSound = 'sound/weapons/gun_pistol_draw.ogg'
+	pockets = /obj/item/storage/internal/suit/marine/M3IS
 
-/obj/item/clothing/suit/storage/marine/M3IS/New(loc, expected_type = /obj/item/clothing/suit/storage/marine, new_name[] = list(MAP_ICE_COLONY = "\improper M3 pattern marine snow armor"))
-	. = ..()
-	pockets.bypass_w_limit = list()
-	pockets.storage_slots = null
-	pockets.max_w_class = 3 //Can fit larger items
-	pockets.max_storage_space = 14
+/obj/item/storage/internal/suit/marine/M3IS
+	bypass_w_limit = list()
+	storage_slots = null
+	max_storage_space = 14
+	max_w_class = 3 //Can fit larger items
 
 /obj/item/clothing/suit/storage/marine/M3E
 	name = "\improper M3-E pattern marine armor"
@@ -239,11 +239,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M3 pattern officer armor"
 	desc = "A well-crafted suit of M3 Pattern Armor typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field"
 
-/obj/item/clothing/suit/storage/marine/MP/RO/New()
-	select_gamemode_skin(/obj/item/clothing/suit/storage/marine/MP/RO)
-	..()
-
-
 /obj/item/clothing/suit/storage/marine/smartgunner
 	name = "M56 combat harness"
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories."
@@ -262,11 +257,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 					/obj/item/weapon/gun/smartgun,
 					/obj/item/storage/sparepouch)
 
-/obj/item/clothing/suit/storage/marine/smartgunner/New()
-	select_gamemode_skin(/obj/item/clothing/suit/storage/marine/smartgunner)
-	..()
-
-
 /obj/item/clothing/suit/storage/marine/smartgunner/fancy
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories. This luxury model appears to belong to the CO. You feel like you probably could get fired for touching this.."
 	icon_state = "8fancy"
@@ -278,18 +268,10 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	icon_state = "7"
 	armor = list(melee = 50, bullet = 60, laser = 45, energy = 40, bomb = 40, bio = 15, rad = 15)
 
-	New(loc,expected_type 	= type,
-		new_name[] 		= list(MAP_ICE_COLONY = "\improper B12 pattern leader snow armor"))
-		..(loc,expected_type,new_name)
-
 /obj/item/clothing/suit/storage/marine/M3P/tanker
 	name = "\improper M3 pattern tanker armor"
 	desc = "A modified and refashioned suit of M3 Pattern armor designed to be worn by the loader of a TGMC vehicle crew. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
 	icon_state = "tanker"
-
-	New()
-		select_gamemode_skin(type)
-		..()
 
 //===========================SPECIALIST================================
 
@@ -316,11 +298,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	supporting_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT) //B18 effectively stabilizes these.
 	unacidable = TRUE
 
-	New(loc,expected_type 	= type,
-		new_name[] 		= list(MAP_ICE_COLONY = "\improper B18 defensive snow armor"))
-		..(loc,expected_type,new_name)
-
-/obj/item/clothing/suit/storage/marine/specialist/New()
+/obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
 	B18_analyzer = new /obj/item/device/healthanalyzer/integrated
 
@@ -615,21 +593,12 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun/launcher/rocket)
 
-	New()
-		select_gamemode_skin(type)
-		..()
-
 /obj/item/clothing/suit/storage/marine/M3S
 	name = "\improper M3-S light armor"
 	desc = "A custom set of M3 armor designed for TGMC Scouts."
 	icon_state = "scout_armor"
 	armor = list(melee = 65, bullet = 80, laser = 40, energy = 25, bomb = 35, bio = 10, rad = 10)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-
-	New()
-		select_gamemode_skin(type)
-		..()
-
 
 /obj/item/clothing/suit/storage/marine/M35
 	name = "\improper M35 armor"
@@ -641,21 +610,12 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET
 
-	New()
-		select_gamemode_skin(type)
-		..()
-
-
 /obj/item/clothing/suit/storage/marine/sniper
 	name = "\improper M3 pattern recon armor"
 	desc = "A custom modified set of M3 armor designed for recon missions."
 	icon_state = "marine_sniper"
 	armor = list(melee = 65, bullet = 70, laser = 40, energy = 25, bomb = 30, bio = 10, rad = 10)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-
-	New(loc,expected_type 	= type,
-		new_name[] 		= list(MAP_ICE_COLONY = "\improper M3 pattern sniper snow armor"))
-		..(loc,expected_type,,new_name)
 
 /obj/item/clothing/suit/storage/marine/sniper/jungle
 	name = "\improper M3 pattern marksman armor"
@@ -664,11 +624,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
 	flags_heat_protection = CHEST|GROIN|LEGS|ARMS
-
-	New(loc,expected_type 	= type,
-		new_name[] 		= list(MAP_ICE_COLONY = "\improper M3 pattern marksman snow armor"))
-		..(loc,expected_type,,new_name)
-
 
 //=============================//PMCS\\==================================
 
@@ -746,7 +701,59 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 
 
+//===========================//I.o.M\\================================
 
+/obj/item/clothing/suit/storage/marine/imperial
+	name = "\improper Imperial Guard flak armour"
+	desc = "A cheap, mass produced armour worn by the Imperial Guard, which are also cheap and mass produced. You can make out what appears to be <i>Cadia stands</i> carved into the armour."
+	icon_state = "guardarmor"
+	item_state = "guardarmor"
+	armor = list(melee = 70, bullet = 50, laser = 45, energy = 30, bomb = 35, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/marine/imperial/sergeant
+	// SL armour, better than flak, covers more
+	name = "\improper Imperial Guard sergeant armour"
+	desc = "A body armour that offers much better protection than the flak armour."
+	icon_state = "guardSLarmor"
+	item_state = "guardSLarmor"
+	armor = list(melee = 85, bullet = 85, laser = 85, energy = 85, bomb = 85, bio = 25, rad = 25)
+	brightness_on = 6 // better light
+	pockets = /obj/item/storage/internal/suit/imperial
+
+/obj/item/storage/internal/suit/imperial
+	storage_slots = 3
+	max_storage_space = 6
+
+/obj/item/clothing/suit/storage/marine/imperial/medicae
+	name = "\improper Imperial Guard medicae armour"
+	desc = "An armour worn by the medicae of the Imperial Guard."
+	icon_state = "guardmedicarmor"
+	item_state = "guardmedicarmor"
+
+/obj/item/clothing/suit/storage/marine/imperial/sergeant/veteran
+	name = "\improper Imperial Guard carapace armour"
+	desc = "A heavy full body armour that protects the wearer a lot more than the flak armour, also slows down considerably."
+	icon_state = "guardvetarmor"
+	item_state = "guardvetarmor"
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	armor = list(melee = 90, bullet = 90, laser = 90, energy = 90, bomb = 90, bio = 30, rad = 30)
+
+/obj/item/clothing/suit/storage/marine/imperial/power
+	// Should this maybe require recharging?
+	name = "\improper salvaged Space Marine power armour"
+	desc = "A power armour that was once broken, is functional once again. However this version isn't as powerful as the real power armour."
+	//icon_state
+	armor = list(melee = 75, bullet = 60, laser = 55, energy = 40, bomb = 45, bio = 15, rad = 15)
+	brightness_on = 6
+	pockets = /obj/item/storage/internal/suit/imperial
+
+/obj/item/clothing/suit/storage/marine/imperial/power/astartes
+	// This should either be admin only or only given to one person
+	name = "\improper Space Marine power armour"
+	desc = "You feel a chill running down your spine just looking at this. This is the power armour that the Space Marines wear themselves. The servos inside the power armour allow you to move at incredible speeds."
+	//icon_state
+	slowdown = SLOWDOWN_ARMOR_LIGHT // beefed up space marine inside an armor that boosts speed
+	armor = list(melee = 95, bullet = 95, laser = 95, energy = 95, bomb = 95, bio = 95, rad = 95)
 
 //===========================//U.P.P\\================================
 
@@ -779,8 +786,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	actions_types = list(/datum/action/item_action/toggle)
 	var/flags_faction_armor = ARMOR_LAMP_OVERLAY
 
-/obj/item/clothing/suit/storage/faction/New()
-	..()
+/obj/item/clothing/suit/storage/faction/Initialize(mapload, ...)
+	. = ..()
 	armor_overlays = list("lamp")
 	update_icon()
 

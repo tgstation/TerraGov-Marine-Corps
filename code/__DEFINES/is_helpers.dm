@@ -44,8 +44,6 @@
 #define isvoxarmalis(H) (is_species(H, /datum/species/vox/armalis))
 #define isIPC(H) (is_species(H, /datum/species/machine))
 #define issynth(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/early_synthetic))
-#define isyautja(H) (is_species(H, /datum/species/yautja) || ishellhound(H))
-#define isyautjastrict(H) (is_species(H, /datum/species/yautja))
 #define ismoth(H) (is_species(H, /datum/species/moth))
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
 
@@ -63,8 +61,6 @@
 #define ismonkeyunathi(M) (istype(M, /mob/living/carbon/monkey/unathi))
 #define ismonkeyyiren(M) (istype(M, /mob/living/carbon/monkey/yiren))
 
-#define ishellhound(A) (istype(A, /mob/living/carbon/hellhound))
-
 #define isxeno(A) (istype(A, /mob/living/carbon/Xenomorph))
 
 //Xeno castes
@@ -81,10 +77,7 @@
 #define isxenospitter(A) (istype(A, /mob/living/carbon/Xenomorph/Spitter))
 #define isxenosentinel(A) (istype(A, /mob/living/carbon/Xenomorph/Sentinel))
 #define isxenowarrior(A) (istype(A, /mob/living/carbon/Xenomorph/Warrior))
-#define isxenopredalien(A) (istype(A, /mob/living/carbon/Xenomorph/Predalien))
 #define isxenolarva(A) (istype(A, /mob/living/carbon/Xenomorph/Larva))
-#define isxenolarvastrict(A) (istype(A, /mob/living/carbon/Xenomorph/Larva) && !istype(A, /mob/living/carbon/Xenomorph/Larva/predalien))
-#define isxenolarvapredalien(A) (istype(A, /mob/living/carbon/Xenomorph/Larva/predalien))
 #define isxenoqueen(A) (istype(A, /mob/living/carbon/Xenomorph/Queen))
 #define isxenoborg(A) (istype(A, /mob/living/carbon/Xenomorph/Xenoborg))
 
@@ -178,3 +171,7 @@
 #define istimer(O) (istype(O, /obj/item/device/assembly/timer))
 
 #define iseffect(O) (istype(O, /obj/effect))
+
+
+//Gamemode
+#define isdistress(O) (istype(O, /datum/game_mode/distress))

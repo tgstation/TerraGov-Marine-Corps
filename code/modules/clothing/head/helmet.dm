@@ -176,7 +176,7 @@
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
 	var/flags_marine_helmet = HELMET_SQUAD_OVERLAY|HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
-	var/obj/item/storage/internal/pockets
+	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/marinehelmet
 	var/list/allowed_helmet_items = list(
 						/obj/item/tool/lighter/random = "helmet_lighter_",
 						/obj/item/tool/lighter/zippo = "helmet_lighter_zippo",
@@ -195,18 +195,19 @@
 						/obj/item/clothing/glasses/mgoggles = "goggles",
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
 
+/obj/item/storage/internal/marinehelmet
+	storage_slots = 2
+	max_w_class = 1
+	bypass_w_limit = list(
+		/obj/item/clothing/glasses, 
+		/obj/item/reagent_container/food/drinks/flask)
+	max_storage_space = 3
 
-/obj/item/clothing/head/helmet/marine/New(loc,expected_type 		= /obj/item/clothing/head/helmet/marine,
-	new_name[] 			= list(MAP_ICE_COLONY =  "\improper M10 pattern marine snow helmet"),
-	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	select_gamemode_skin(expected_type,null,new_name,new_protection)
-	..()
+/obj/item/clothing/head/helmet/marine/Initialize()
+	. = ..()
 	helmet_overlays = list("damage","band","item") //To make things simple.
-	pockets = new/obj/item/storage/internal(src)
-	pockets.storage_slots = 2
-	pockets.max_w_class = 1 //can hold tiny items only, EXCEPT for glasses & metal flask.
-	pockets.bypass_w_limit = list("/obj/item/clothing/glasses", "/obj/item/reagent_container/food/drinks/flask")
-	pockets.max_storage_space = 3
+	pockets = new pockets(src)
+
 
 /obj/item/clothing/head/helmet/marine/attack_hand(mob/user)
 	if (pockets.handle_attack_hand(user))
@@ -308,10 +309,6 @@
 	armor = list(melee = 75, bullet = 70, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
-	New()
-		select_gamemode_skin(type)
-		..()
-
 /obj/item/clothing/head/helmet/marine/pyro
 	name = "\improper M35 helmet"
 	icon_state = "pyro_helmet"
@@ -319,10 +316,6 @@
 	armor = list(melee = 85, bullet = 80, laser = 60, energy = 50, bomb = 50, bio = 10, rad = 10)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-
-	New()
-		select_gamemode_skin(type)
-		..()
 
 /obj/item/clothing/head/helmet/marine/pilot
 	name = "\improper M30 tactical helmet"
@@ -333,9 +326,6 @@
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	flags_marine_helmet = NOFLAGS
-	New()
-		select_gamemode_skin(/obj/item/clothing/head/helmet/marine/pilot)
-		..()
 
 /obj/item/clothing/head/helmet/marine/tanker
 	name = "\improper M50 tanker helmet"
@@ -346,9 +336,6 @@
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	flags_marine_helmet = NOFLAGS
-	New()
-		select_gamemode_skin(/obj/item/clothing/head/helmet/marine/tanker)
-		..()
 
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
@@ -403,6 +390,48 @@
 
 //==========================//DISTRESS\\=================================\\
 //=======================================================================\\
+
+//=========================//Imperium\\==================================\\
+
+/obj/item/clothing/head/helmet/marine/imperial
+	name = "\improper Imperial Guard flak helmet"
+	desc = "A standard Imperial Guard helmet that goes with the flak armour, it is also mass produced, and it can save your life, maybe."
+	icon_state = "guardhelm"
+	item_state = "guardhelm"
+	armor = list(melee = 70, bullet = 40, laser = 35, energy = 25, bomb = 30, bio = 0, rad = 0)
+
+/obj/item/clothing/head/helmet/marine/imperial/sergeant
+	name = "\improper Imperial Guard sergeant helmet"
+	desc = "A helmet that goes with the sergeant armour, unlike the flak variant, this one will actually protect you."
+	icon_state = "guardhelm"
+	armor = list(melee = 80, bullet = 80, laser = 80, energy = 80, bomb = 80, bio = 25, rad = 25)
+	pockets = /obj/item/storage/internal/imperialhelmet
+
+/obj/item/storage/internal/imperialhelmet
+	max_w_class = 2
+	max_storage_space = 6
+
+/obj/item/clothing/head/helmet/marine/imperial/sergeant/veteran
+	name = "\improper Imperial Guard carapace helmet"
+	desc = "A helmet that goes with the heavy carapace armour, this is some serious protection."
+	icon_state = "guardvethelm"
+	armor = list(melee = 90, bullet = 90, laser = 90, energy = 90, bomb = 90, bio = 30, rad = 30)
+
+/obj/item/clothing/head/helmet/marine/imperial/power
+	name = "\improper salvaged Space Marine helmet"
+	desc = "A helmet that goes with the Space Marine power armour, this one has been salvaged from the battlefield."
+	//icon_state
+	armor = list(melee = 75, bullet = 60, laser = 55, energy = 40, bomb = 45, bio = 15, rad = 15)
+	pockets = /obj/item/storage/internal/imperialhelmet
+
+/obj/item/clothing/head/helmet/marine/imperial/power/astartes
+	name = "\improper Space Marine helmet"
+	desc = "You are intimidated by the appearance of the helmet. This is the helmet that goes with the powerful Space Marine power armour."
+	//icon_state
+	armor = list(melee = 95, bullet = 95, laser = 95, energy = 95, bomb = 95, bio = 95, rad = 95)
+
+
+
 
 /obj/item/clothing/head/helmet/marine/veteran/dutch
 	name = "\improper Dutch's Dozen helmet"
@@ -467,10 +496,6 @@
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
-/obj/item/clothing/head/helmet/specrag/New()
-	select_gamemode_skin(type)
-	..()
-
 /obj/item/clothing/head/helmet/durag
 	name = "durag"
 	desc = "Good for keeping sweat out of your eyes"
@@ -485,17 +510,6 @@
 	name = "\improper M8 marksman cowl"
 	desc = "A cowl worn to conceal the face of a marksman in the jungle."
 	icon_state = "duragm"
-
-/obj/item/clothing/head/helmet/durag/jungle/New(loc,expected_type 	= type,
-	new_name[] 		= list(MAP_ICE_COLONY = "\improper M6 marksman hood"),
-	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	select_gamemode_skin(expected_type,,new_name,new_protection)
-	..()
-	switch(icon_state)
-		if("s_duragm")
-			desc = "A hood meant to protect the wearer from both the cold and the guise of the enemy in the tundra."
-			flags_inventory = BLOCKSHARPOBJ
-			flags_inv_hide = HIDEEARS|HIDEALLHAIR
 
 //===========================//HELGHAST - MERCENARY\\================================\\
 //=====================================================================\\

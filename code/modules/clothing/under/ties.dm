@@ -386,13 +386,14 @@
 	desc = "Used to hold things when you don't have enough hands."
 	icon_state = "webbing"
 	w_class = 3
-	var/slots = 3
-	var/obj/item/storage/internal/hold
+	var/obj/item/storage/internal/hold = /obj/item/storage/internal/tie
 
-/obj/item/clothing/tie/storage/New()
-	..()
-	hold = new/obj/item/storage/internal(src)
-	hold.storage_slots = slots
+/obj/item/storage/internal/tie
+	storage_slots = 3
+
+/obj/item/clothing/tie/storage/Initialize()
+	. = ..()
+	hold = new hold(src)
 
 /obj/item/clothing/tie/storage/Destroy()
 	if(hold)
@@ -474,55 +475,63 @@
 	name = "webbing"
 	desc = "A sturdy mess of synthcotton belts and buckles, ready to share your burden."
 	icon_state = "webbing"
-	slots = 3
+	hold = /obj/item/storage/internal/tie/webbing
 
-/obj/item/clothing/tie/storage/webbing/New()
-	..()
-	hold.bypass_w_limit = list(
-		"/obj/item/ammo_magazine/rifle",
-		"/obj/item/ammo_magazine/smg",
-		"/obj/item/ammo_magazine/sniper",
-		"/obj/item/cell/lasgun",
+/obj/item/storage/internal/tie/webbing
+	bypass_w_limit = list(
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/cell/lasgun,
 		 )
 
 /obj/item/clothing/tie/storage/black_vest
 	name = "black webbing vest"
 	desc = "Robust black synthcotton vest with lots of pockets to hold whatever you need, but cannot hold in hands."
 	icon_state = "vest_black"
-	slots = 5
+	hold = /obj/item/storage/internal/tie/vest
+
+/obj/item/storage/internal/tie/vest
+	storage_slots = 5
 
 /obj/item/clothing/tie/storage/brown_vest
 	name = "brown webbing vest"
 	desc = "Worn brownish synthcotton vest with lots of pockets to unload your hands."
 	icon_state = "vest_brown"
-	slots = 5
+	hold = /obj/item/storage/internal/tie/vest
 
 /obj/item/clothing/tie/storage/white_vest
 	name = "white webbing vest"
 	desc = "A clean white Nylon vest with large pockets specially designed for medical supplies"
 	icon_state = "vest_white"
-	slots = 8
+	hold = /obj/item/storage/internal/tie/white_vest
 
-/obj/item/clothing/tie/storage/white_vest/New()
-	. = ..()
-	hold.can_hold = list("/obj/item/tool/surgery", "/obj/item/stack/medical/advanced/bruise_pack", "/obj/item/stack/medical/advanced/ointment", "/obj/item/stack/nanopaste")
-
+/obj/item/storage/internal/tie/white_vest
+	storage_slots = 8
+	can_hold = list(
+		/obj/item/tool/surgery, 
+		/obj/item/stack/medical/advanced/bruise_pack, 
+		/obj/item/stack/medical/advanced/ointment, 
+		/obj/item/stack/nanopaste)
 
 /obj/item/clothing/tie/storage/knifeharness
 	name = "decorated harness"
 	desc = "A heavily decorated harness of sinew and leather with two knife-loops."
 	icon_state = "unathiharness2"
-	slots = 2
+	hold = /obj/item/storage/internal/tie/knifeharness
 
-/obj/item/clothing/tie/storage/knifeharness/New()
-	..()
-	hold.max_storage_space = 4
-	hold.can_hold = list("/obj/item/weapon/unathiknife",\
-	"/obj/item/tool/kitchen/utensil/knife",\
-	"/obj/item/tool/kitchen/utensil/pknife",\
-	"/obj/item/tool/kitchen/knife",\
-	"/obj/item/tool/kitchen/knife/ritual")
+/obj/item/storage/internal/tie/knifeharness
+	storage_slots = 2
+	max_storage_space = 4
+	can_hold = list(
+		/obj/item/weapon/unathiknife,
+		/obj/item/tool/kitchen/utensil/knife,
+		/obj/item/tool/kitchen/utensil/pknife,
+		/obj/item/tool/kitchen/knife,
+		/obj/item/tool/kitchen/knife/ritual)
 
+/obj/item/clothing/tie/storage/knifeharness/Initialize()
+	. = ..()
 	new /obj/item/weapon/unathiknife(hold)
 	new /obj/item/weapon/unathiknife(hold)
 
@@ -599,12 +608,12 @@
 /obj/item/storage/box/holobadge
 	name = "holobadge box"
 	desc = "A box claiming to contain holobadges."
-	New()
-		new /obj/item/clothing/tie/holobadge(src)
-		new /obj/item/clothing/tie/holobadge(src)
-		new /obj/item/clothing/tie/holobadge(src)
-		new /obj/item/clothing/tie/holobadge(src)
-		new /obj/item/clothing/tie/holobadge/cord(src)
-		new /obj/item/clothing/tie/holobadge/cord(src)
-		..()
-		return
+
+/obj/item/storage/box/holobadge/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/tie/holobadge(src)
+	new /obj/item/clothing/tie/holobadge(src)
+	new /obj/item/clothing/tie/holobadge(src)
+	new /obj/item/clothing/tie/holobadge(src)
+	new /obj/item/clothing/tie/holobadge/cord(src)
+	new /obj/item/clothing/tie/holobadge/cord(src)

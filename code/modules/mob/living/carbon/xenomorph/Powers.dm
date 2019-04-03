@@ -204,15 +204,10 @@
 
 /mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
 	take_overall_damage(null, damage, null, null, null, armor_block)
-	if(isyautja(src))
-		return
 	emote("scream")
 	KnockDown(1)
 
 /mob/living/carbon/Xenomorph/acid_spray_act(mob/living/carbon/Xenomorph/X)
-	return
-
-/mob/living/carbon/hellhound/acid_spray_act(mob/living/carbon/Xenomorph/X)
 	return
 
 GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/vehicle/multitile/root/cm_armored, /obj/structure/razorwire)))
@@ -1506,8 +1501,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/defiler_count = 0
 	var/larva_list = ""
 	var/larva_count = 0
-	var/stored_larva_count = SSticker.mode.stored_larva
+	var/stored_larva_count = 0
 	var/leader_list = ""
+
+	if(isdistress(SSticker.mode))
+		var/datum/game_mode/distress/D = SSticker.mode
+		stored_larva_count = D.stored_larva
 
 	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
 		if(is_centcom_level(X.z))
@@ -1598,8 +1597,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 				larva_count++
 
 	dat += "<b>Total Living Sisters: [count]</b><BR>"
-	//if(exotic_count != 0) //Exotic Xenos in the Hive like Predalien or Xenoborg
-		//dat += "<b>Ultimate Tier:</b> [exotic_count] Sisters</b><BR>"
 	dat += "<b>Tier 3: [boiler_count + crusher_count + praetorian_count + ravager_count + defiler_count] Sisters</b> | Boilers: [boiler_count] | Crushers: [crusher_count] | Praetorians: [praetorian_count] | Ravagers: [ravager_count] | Defilers: [defiler_count]<BR>"
 	dat += "<b>Tier 2: [carrier_count + hivelord_count + hunter_count + spitter_count + warrior_count] Sisters</b> | Carriers: [carrier_count] | Hivelords: [hivelord_count] | Warriors: [warrior_count] | Hunters: [hunter_count] | Spitters: [spitter_count]<BR>"
 	dat += "<b>Tier 1: [drone_count + runner_count + sentinel_count + defender_count] Sisters</b> | Drones: [drone_count] | Runners: [runner_count] | Sentinels: [sentinel_count] | Defenders: [defender_count]<BR>"

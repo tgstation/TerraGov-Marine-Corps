@@ -3,15 +3,16 @@
 
 
 //Send a message to all xenos. Mostly used in the deathgasp display
-/proc/xeno_message(var/message = null, var/size = 3, var/hivenumber = XENO_HIVE_NORMAL)
+/proc/xeno_message(message, size = 3, hivenumber = XENO_HIVE_NORMAL)
 	if(!message)
 		return
 
-	if(length(SSticker?.mode?.xenomorphs)) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
-		for(var/datum/mind/L in SSticker.mode.xenomorphs)
-			var/mob/living/carbon/Xenomorph/M = L.current
-			if(M && istype(M) && !M.stat && M.client && hivenumber == M.hivenumber) //Only living and connected xenos
-				to_chat(M, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
+	for(var/x in GLOB.alive_xeno_list)
+		var/mob/living/carbon/Xenomorph/X = x
+		if(X.hivenumber != hivenumber)
+			continue
+		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
+
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
@@ -263,20 +264,6 @@
 							throwing = FALSE //Reset throwing manually.
 							return FALSE
 
-						if(isyautja(H))
-							if(H.check_shields(0, "the pounce", 1))
-								visible_message("<span class='danger'>[H] blocks the pounce of [src] with the combistick!</span>",
-												"<span class='xenodanger'>[H] blocks your pouncing form with the combistick!</span>", null, 5)
-								KnockDown(5)
-								throwing = FALSE
-								return FALSE
-							else if(prob(75)) //Body slam the fuck out of xenos jumping at your front.
-								visible_message("<span class='danger'>[H] body slams [src]!</span>",
-												"<span class='xenodanger'>[H] body slams you!</span>", null, 5)
-								KnockDown(4)
-								throwing = FALSE
-								return FALSE
-
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
 									"<span class='xenodanger'>You pounce on [M]!</span>", null, 5)
 					M.KnockDown(1)
@@ -304,8 +291,6 @@
 				if(RAV_CHARGE_TYPE) //Ravagers plow straight through humans; we only stop on hitting a dense turf
 					return FALSE
 
-				if(4) //Predalien.
-					M.attack_alien(src) //Free hit/grab/tackle. Does not weaken, and it's just a regular slash if they choose to do that.
 		throwing = FALSE //Resert throwing since something was hit.
 		reset_movement()
 		return TRUE

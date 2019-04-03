@@ -135,7 +135,7 @@
 			if(hivenumber == M.hivenumber)
 				switch(M.tier)
 					if(0)
-						if(isxenolarvastrict(M))
+						if(isxenolarva(M))
 							if(M.client && M.ckey)
 								potential_queens++
 						continue

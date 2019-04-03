@@ -1,5 +1,0 @@
-author: "JJRcop"
-delete-after: True
-changes: 
-  - rscadd: "SDQL2 now features a list constructor that takes a selector query."
-  - tweak: "The MAP statement will unwrap lone lists that are the only result. This means the parent query begins directly iterating over the list rather than a list that contains the list."

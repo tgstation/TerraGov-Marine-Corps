@@ -400,29 +400,6 @@
 		if(F.id == shuttle_tag)
 			F.turn_off()
 
-	// sanity checking
-	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
-	var/list/left_behind = list()
-	var/list/with_queen = list()
-	for(var/mob/living/carbon/Xenomorph/xeno in GLOB.alive_xeno_list)
-		if(xeno.hivenumber != XENO_HIVE_NORMAL) continue
-		if(xeno.loc.z == hive.living_xeno_queen.loc.z || is_mainship_or_low_orbit_level(xeno.loc.z)) // yes loc because of vent crawling, xeno must be with queen or on round end Z levels
-			with_queen += xeno
-		else
-			left_behind += xeno
-	if(with_queen.len > left_behind.len) // to stop solo-suiciding by queens
-		SSticker.mode.stored_larva = 0
-		for(var/mob/living/carbon/Xenomorph/about_to_die in left_behind)
-			to_chat(about_to_die, "<span class='xenoannounce'>The Queen has left without you, you quickly find a hiding place to enter hibernation as you lose touch with the hive mind.</span>")
-			qdel(about_to_die) // just delete them
-	for(var/mob/living/carbon/potential_host in GLOB.alive_mob_list)
-		if(!is_ground_level(potential_host.loc?.z)) continue // ground level
-		if(potential_host.status_flags & XENO_HOST) // a host
-			for(var/obj/item/alien_embryo/embryo in potential_host)
-				qdel(embryo)
-			for(var/mob/living/carbon/Xenomorph/Larva/larva in potential_host)
-				qdel(larva)
-
 	sleep(travel_time) //Wait while we fly, but give extra time for crashing announcements etc
 
 	//This is where things change and shit gets real

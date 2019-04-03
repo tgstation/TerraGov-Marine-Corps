@@ -40,7 +40,7 @@
 	if (shocked)
 		shock(user,50)
 	if(opened)
-		var/dat as text
+		var/dat
 		dat += "[src.name] Wires:<BR>"
 		for(var/wire in src.wires)
 			dat += text("[wire] Wire: <A href='?src=\ref[src];wire=[wire];cut=1'>[src.wires[wire] ? "Mend" : "Cut"]</A> <A href='?src=\ref[src];wire=[wire];pulse=1'>Pulse</A><BR>")
