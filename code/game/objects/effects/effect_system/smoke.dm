@@ -289,6 +289,10 @@ datum/effect_system/smoke_spread/tactical
 		neighbor.chemical_effect()
 	return ..()
 
+/obj/effect/particle_effect/smoke/chem/kill_smoke()
+	LAZYCLEARLIST(smoked_mobs)
+	return ..()
+
 /obj/effect/particle_effect/smoke/chem/apply_smoke_effect(turf/T)
 	. = ..()
 	for(var/mob/living/carbon/C in T)
