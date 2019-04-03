@@ -1,13 +1,13 @@
 /datum/xeno_caste/carrier
 	caste_name = "Carrier"
 	display_name = "Carrier"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A carrier of huggies."
 
 	caste_type_path = /mob/living/carbon/Xenomorph/Carrier
 
-	tier = 2
-	upgrade = 0
+	tier = XENO_TIER_TWO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -50,11 +50,16 @@
 	hugger_delay = 2.5 SECONDS
 	eggs_max = 3
 
+/datum/xeno_caste/carrier/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
+
 /datum/xeno_caste/carrier/mature
 	upgrade_name = "Mature"
 	caste_desc = "A portable Love transport. It looks a little more dangerous."
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 25
@@ -91,7 +96,7 @@
 	upgrade_name = "Elite"
 	caste_desc = "A portable Love transport. It looks pretty strong."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -127,7 +132,7 @@
 /datum/xeno_caste/carrier/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "It's literally crawling with 11 huggers."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "You are the master of huggers. Throw them like baseballs at the marines!"
 
 	// *** Melee Attacks *** //
@@ -179,8 +184,8 @@
 	var/used_spawn_facehugger = FALSE
 	var/last_spawn_facehugger
 	var/cooldown_spawn_facehugger = 100 //10 seconds; keeping this as a var for now as I may have it adjust with upgrade level
-	tier = 2
-	upgrade = 0
+	tier = XENO_TIER_TWO
+	upgrade = XENO_UPGRADE_ZERO
 	pixel_x = -16 //Needed for 2x2
 	old_x = -16
 
@@ -250,7 +255,7 @@
 	if(istype(T, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/F = T
 		if(isturf(F.loc) && Adjacent(F))
-			if(F.hivenumber != hivenumber)
+			if(!issamexenohive(F))
 				to_chat(src, "<span class='warning'>That facehugger is tainted!</span>")
 				dropItemToGround(F)
 				return
@@ -287,11 +292,11 @@
 	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/Carrier/proc/store_egg(obj/item/xeno_egg/E)
+	if(!issamexenohive(E))
+		to_chat(src, "<span class='warning'>That egg is tainted!</span>")
+		return
 	if(eggs_cur >= xeno_caste.eggs_max)
 		to_chat(src, "<span class='warning'>You can't carry more eggs on you.</span>")
-		return
-	if(E.hivenumber != hivenumber)
-		to_chat(src, "<span class='warning'>That egg is tainted!</span>")
 		return
 	eggs_cur++
 	to_chat(src, "<span class='notice'>You store the egg and carry it for safekeeping. Now sheltering: [eggs_cur] / [xeno_caste.eggs_max].</span>")

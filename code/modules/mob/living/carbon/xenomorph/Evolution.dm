@@ -14,11 +14,6 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
-	var/tierA = 0 //Tier 1
-	var/tierB = 0 //Tier 2
-	var/tierC = 0 //Tier 3
-	var/potential_queens = 0
-
 	if(is_ventcrawling)
 		to_chat(src, "<span class='warning'>This place is too constraining to evolve.</span>")
 		return
@@ -66,7 +61,7 @@
 
 	var/list/castes_to_pick = list()
 	for(var/type in xeno_caste.evolves_to)
-		var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][1]
+		var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
 		castes_to_pick += Z.caste_name
 	var/castepick = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in castes_to_pick
 	if(!castepick) //Changed my mind
@@ -74,7 +69,7 @@
 
 	var/new_caste_type
 	for(var/type in xeno_caste.evolves_to)
-		if(castepick == GLOB.xeno_caste_datums[type][1].caste_name)
+		if(castepick == GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE].caste_name)
 			new_caste_type = type
 
 	if(!new_caste_type)
@@ -88,16 +83,14 @@
 		to_chat(src, "<span class='warning'>You can't evolve in your current state.</span>")
 		return
 
-	var/datum/hive_status/hive
-	if(hivenumber && hivenumber <= length(hive_datum))
-		hive = hive_datum[hivenumber]
-	else
-		hivenumber = XENO_HIVE_NORMAL
-		hive = hive_datum[hivenumber]
-
 	if(handcuffed || legcuffed)
 		to_chat(src, "<span class='warning'>The restraints are too restricting to allow you to evolve.</span>")
 		return
+
+	// used below
+	var/tierones
+	var/tiertwos
+	var/tierthrees
 
 	if(new_caste_type == /mob/living/carbon/Xenomorph/Queen) //Special case for dealing with queenae
 		if(jobban_isbanned(src, "Queen"))
@@ -129,33 +122,16 @@
 				new_caste_type = /mob/living/carbon/Xenomorph/Queen/Zeta
 
 	else
-		//This will build a list of ALL the current Xenos and their Tiers, then use that to calculate if they can evolve or not.
-		//Should count mindless as well so people don't cheat
-		for(var/mob/living/carbon/Xenomorph/M in GLOB.alive_xeno_list)
-			if(hivenumber == M.hivenumber)
-				switch(M.tier)
-					if(0)
-						if(isxenolarva(M))
-							if(M.client && M.ckey)
-								potential_queens++
-						continue
-					if(1)
-						tierA++
-						if(isxenodrone(M))
-							if(M.client && M.ckey)
-								potential_queens++
-					if(2)
-						tierB++
-					if(3)
-						tierC++
-					else
-						to_chat(src, "<span class='warning'>You shouldn't see this. If you do, bug repot it! (Error XE01).</span>")
+		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Drone])
 
-						continue
-		if((tier == 1 && TO_XENO_TIER_2_FORMULA(tierA, tierB, tierC))
+		tierones = length(hive.xenos_by_tier[XENO_TIER_ONE])
+		tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
+		tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
+
+		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(tier == 2 && TO_XENO_TIER_3_FORMULA(tierA, tierB, tierC))
+		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 			return
 		else if(!hive.living_xeno_queen && potential_queens == 1 && isxenolarva(src) && new_caste_type != /mob/living/carbon/Xenomorph/Drone)
@@ -182,10 +158,14 @@
 		to_chat(src, "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>")
 		return
 
-	if((tier == 1 && TO_XENO_TIER_2_FORMULA(tierA, tierB, tierC))
+	tierones = length(hive.xenos_by_tier[XENO_TIER_ONE])
+	tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
+	tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
+
+	if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierones, tiertwos, tierthrees))
 		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
 		return
-	else if(tier == 2 && TO_XENO_TIER_3_FORMULA(tierA, tierB, tierC))
+	else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierones, tiertwos, tierthrees))
 		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 3.</span>")
 		return
 
@@ -214,6 +194,7 @@
 	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
 	new_xeno.nicknumber = nicknumber
 	new_xeno.hivenumber = hivenumber
+	new_xeno.transfer_to_hive(hivenumber)
 	generate_name()
 
 	if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though

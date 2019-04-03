@@ -22,4 +22,7 @@
 		H.add_hud_to(src)
 	if(ghost_orderhud)
 		H = huds[MOB_HUD_ORDER]
-		H.add_hud_to(src)
+		H.add_hud_to(src)		
+
+	GLOB.observer_list += src
+	

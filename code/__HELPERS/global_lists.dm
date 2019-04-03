@@ -97,9 +97,12 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 	for(var/X in subtypesof(/datum/xeno_caste))
 		var/datum/xeno_caste/C = new X
 		if(!(C.caste_type_path in GLOB.xeno_caste_datums))
-			GLOB.xeno_caste_datums[C.caste_type_path] = list(1,2,3,4)
-		var/upgrade_level = CLAMP(C.upgrade + 1, 1, 4)
-		GLOB.xeno_caste_datums[C.caste_type_path][upgrade_level] = C
+			GLOB.xeno_caste_datums[C.caste_type_path] = list()
+		GLOB.xeno_caste_datums[C.caste_type_path][C.upgrade] = C
+
+	for(var/H in subtypesof(/datum/hive_status))
+		var/datum/hive_status/HS = new H
+		GLOB.hive_datums[HS.hivenumber] = HS
 
 	return 1
 

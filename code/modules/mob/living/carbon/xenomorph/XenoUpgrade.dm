@@ -1,5 +1,8 @@
 
 /mob/living/carbon/Xenomorph/proc/upgrade_xeno(newlevel)
+	if(!(newlevel in (GLOB.xenoupgradetiers - XENO_UPGRADE_BASETYPE - XENO_UPGRADE_INVALID)))
+		return // smelly badmins
+	hive.upgrade_xeno(src, upgrade, newlevel)
 	upgrade = newlevel
 	upgrade_stored = 0
 	visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
@@ -9,15 +12,15 @@
 
 	switch(upgrade)
 		//FIRST UPGRADE
-		if(1)
+		if(XENO_UPGRADE_ONE)
 			to_chat(src, "<span class='xenodanger'>You feel a bit stronger.</span>")
 
 		//SECOND UPGRADE
-		if(2)
+		if(XENO_UPGRADE_TWO)
 			to_chat(src, "<span class='xenodanger'>You feel a whole lot stronger.</span>")
 
 		//Final UPGRADE
-		if(3)
+		if(XENO_UPGRADE_THREE)
 			to_chat(src, "<span class='xenoannounce'>[xeno_caste.ancient_message]</span>")
 
 	generate_name() //Give them a new name now
@@ -31,140 +34,140 @@
 
 //Tiered spawns.
 /mob/living/carbon/Xenomorph/Runner/mature
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 /mob/living/carbon/Xenomorph/Runner/elder
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/Runner/ancient
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 /mob/living/carbon/Xenomorph/Drone/mature
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 /mob/living/carbon/Xenomorph/Drone/elder
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/Drone/ancient
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 /mob/living/carbon/Xenomorph/Carrier/mature
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 /mob/living/carbon/Xenomorph/Carrier/elder
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/Carrier/ancient
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 /mob/living/carbon/Xenomorph/Hivelord/mature
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 /mob/living/carbon/Xenomorph/Hivelord/elder
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/Hivelord/ancient
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 /mob/living/carbon/Xenomorph/Praetorian/mature
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 /mob/living/carbon/Xenomorph/Praetorian/elder
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/Praetorian/ancient
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 /mob/living/carbon/Xenomorph/Ravager/mature
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 /mob/living/carbon/Xenomorph/Ravager/elder
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/Ravager/ancient
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 /mob/living/carbon/Xenomorph/Sentinel/mature
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 /mob/living/carbon/Xenomorph/Sentinel/elder
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/Sentinel/ancient
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 /mob/living/carbon/Xenomorph/Spitter/mature
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 /mob/living/carbon/Xenomorph/Spitter/elder
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/Spitter/ancient
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 /mob/living/carbon/Xenomorph/Hunter/mature
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 /mob/living/carbon/Xenomorph/Hunter/elder
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/Hunter/ancient
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 /mob/living/carbon/Xenomorph/Queen/mature
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 /mob/living/carbon/Xenomorph/Queen/elder
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/Queen/ancient
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 /mob/living/carbon/Xenomorph/Crusher/mature
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 /mob/living/carbon/Xenomorph/Crusher/elder
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/Crusher/ancient
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 /mob/living/carbon/Xenomorph/Boiler/mature
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 /mob/living/carbon/Xenomorph/Boiler/elder
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/Boiler/ancient
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 
 
 /mob/living/carbon/Xenomorph/Defender/mature
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 /mob/living/carbon/Xenomorph/Defender/elder
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/Defender/ancient
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 
 /mob/living/carbon/Xenomorph/Warrior/mature
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 /mob/living/carbon/Xenomorph/Warrior/elder
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/Warrior/ancient
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 
 /mob/living/carbon/Xenomorph/Defiler/mature
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 /mob/living/carbon/Xenomorph/Defiler/elder
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/Xenomorph/Defiler/ancient
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE

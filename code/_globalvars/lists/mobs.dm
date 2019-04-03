@@ -12,6 +12,7 @@ GLOBAL_LIST_EMPTY(stealthminID)						//reference list with IDs that store ckeys,
 GLOBAL_LIST_EMPTY(player_list)				//all mobs **with clients attached**.
 GLOBAL_LIST_EMPTY(mob_list)					//all mobs, including clientless
 GLOBAL_LIST_EMPTY(mob_directory)			//mob_id -> mob
+GLOBAL_LIST_EMPTY(observer_list)			//all /mob/dead/observer
 GLOBAL_LIST_EMPTY(xeno_mob_list)			//all /mob/living/carbon/Xenomorph
 GLOBAL_LIST_EMPTY(alive_xeno_list)			//as above except stat != DEAD
 GLOBAL_LIST_EMPTY(dead_xeno_list)
@@ -48,6 +49,7 @@ GLOBAL_LIST_EMPTY(latejoin_ai_cores)
 
 GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 
+GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 
 /proc/update_config_movespeed_type_lookup(update_mobs = TRUE)
 	return

@@ -24,7 +24,7 @@
 	icon_state = "pmc_mask"
 	anti_hug = 3
 	tint = TINT_NONE
-	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 5, "acid" = 5)
 	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
@@ -50,7 +50,7 @@
 	desc = "A modernised version of the classic design, this mask will not only filter out phoron but it can also be connected to an air supply."
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
-	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 75, rad = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 2, "energy" = 2, "bomb" = 0, "bio" = 75, "rad" = 0, "fire" = 2, "acid" = 2)
 	flags_armor_protection = HEAD|FACE
 
 /obj/item/clothing/mask/gas/swat

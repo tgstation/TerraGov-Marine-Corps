@@ -72,7 +72,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(gear && istype(gear ,/obj/item/clothing))
 			var/obj/item/clothing/C = gear
 			if(C.flags_armor_protection & def_zone?.body_part)
-				protection += C.armor[type]
+				protection += C.armor.getRating(type)
 	return protection
 
 /mob/living/carbon/human/proc/check_head_coverage()

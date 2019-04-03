@@ -47,7 +47,7 @@
 	name = "bomb hood"
 	desc = "Use in case of bomb."
 	icon_state = "bombsuit"
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 100, bio = 0, rad = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEFACE|HIDEMASK|HIDEEARS|HIDEALLHAIR
 	flags_armor_protection = HEAD|FACE|EYES
@@ -63,7 +63,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	slowdown = 2
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 100, bio = 0, rad = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	flags_inv_hide = HIDEJUMPSUIT|HIDETAIL
 	flags_heat_protection = CHEST|GROIN
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
@@ -91,7 +91,7 @@
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEFACE|HIDEMASK|HIDEEARS|HIDEALLHAIR
 	flags_armor_protection = HEAD|FACE|EYES
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 100)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 60, "rad" = 100, "fire" = 0, "acid" = 0)
 
 
 /obj/item/clothing/suit/radiation
@@ -105,5 +105,5 @@
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
 	allowed = list(/obj/item/device/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/clothing/head/radiation,/obj/item/clothing/mask/gas)
 	slowdown = 1.5
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 100)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 60, "rad" = 100, "fire" = 0, "acid" = 0)
 	flags_inv_hide = HIDEJUMPSUIT|HIDETAIL
