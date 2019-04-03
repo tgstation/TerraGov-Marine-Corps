@@ -3573,7 +3573,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
-<<<<<<< HEAD
 "akm" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
@@ -3582,8 +3581,6 @@
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/research_medbay)
-=======
->>>>>>> 55282c034c56a1aa6e5af38c3776f7e983383e86
 "akn" = (
 /obj/machinery/light{
 	dir = 4
@@ -11708,7 +11705,6 @@
 /obj/item/paper/prison_station/chapel_program,
 /turf/open/floor/carpet,
 /area/prison/chapel)
-<<<<<<< HEAD
 "aCE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -11722,8 +11718,6 @@
 	},
 /turf/open/floor/freezer,
 /area/prison/toilet/research)
-=======
->>>>>>> 55282c034c56a1aa6e5af38c3776f7e983383e86
 "aCF" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
@@ -48468,7 +48462,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/mediumsec/north)
-<<<<<<< HEAD
 "ceg" = (
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -48479,8 +48472,6 @@
 	},
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/highsec_medsec)
-=======
->>>>>>> 55282c034c56a1aa6e5af38c3776f7e983383e86
 "ceh" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/plating,
@@ -90184,11 +90175,9 @@ ags
 ags
 ags
 ahN
-<<<<<<< HEAD
 ajx
-=======
 ajP
->>>>>>> 55282c034c56a1aa6e5af38c3776f7e983383e86
+akm
 acO
 akJ
 alc

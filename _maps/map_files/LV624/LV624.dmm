@@ -1644,7 +1644,6 @@
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand6)
-<<<<<<< HEAD
 "afW" = (
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -1655,8 +1654,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
-=======
->>>>>>> 55282c034c56a1aa6e5af38c3776f7e983383e86
 "afX" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 4
@@ -1685,7 +1682,6 @@
 /obj/item/stack/sheet/wood,
 /turf/open/floor,
 /area/lv624/ground/sand6)
-<<<<<<< HEAD
 "agc" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable/yellow{
@@ -1696,8 +1692,6 @@
 	dir = 1
 	},
 /area/lv624/lazarus/chapel)
-=======
->>>>>>> 55282c034c56a1aa6e5af38c3776f7e983383e86
 "agd" = (
 /obj/structure/table,
 /turf/open/floor/tile/whiteyellow/full,

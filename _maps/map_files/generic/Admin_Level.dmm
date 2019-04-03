@@ -1083,7 +1083,6 @@
 	dir = 2
 	},
 /area/syndicate_station)
-<<<<<<< HEAD
 "cS" = (
 /obj/structure/closet/walllocker/medical_wall/full{
 	icon_state = "medical_wall";
@@ -1093,8 +1092,6 @@
 	icon_state = "panelscorched"
 	},
 /area/deathmatch)
-=======
->>>>>>> 55282c034c56a1aa6e5af38c3776f7e983383e86
 "cV" = (
 /obj/structure/bed/alien,
 /turf/open/floor/holofloor{

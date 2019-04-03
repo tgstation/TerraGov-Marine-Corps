@@ -1895,7 +1895,6 @@
 	},
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
-<<<<<<< HEAD
 "afh" = (
 /obj/machinery/alarm,
 /obj/structure/table/almayer,
@@ -1990,8 +1989,6 @@
 /obj/machinery/alarm,
 /turf/open/floor/almayer,
 /area/almayer/command/self_destruct)
-=======
->>>>>>> 55282c034c56a1aa6e5af38c3776f7e983383e86
 "afq" = (
 /obj/machinery/light{
 	dir = 8
