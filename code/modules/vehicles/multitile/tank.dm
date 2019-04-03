@@ -31,8 +31,8 @@
 	spawn_dir = EAST
 	var/list/spawn_hardpoints = list()
 
-/obj/effect/multitile_spawner/cm_armored/tank/New()
-
+/obj/effect/multitile_spawner/cm_armored/tank/Initialize()
+	. = ..()
 	var/obj/vehicle/multitile/root/cm_armored/tank/R = new(loc)
 	R.setDir(EAST)
 
@@ -57,7 +57,7 @@
 		R.add_hardpoint(new hardpoint_path)
 	R.healthcheck()
 
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 //Spawns a tank that has a bunch of broken hardpoints
 /obj/effect/multitile_spawner/cm_armored/tank/decrepit

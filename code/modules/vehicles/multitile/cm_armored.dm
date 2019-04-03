@@ -7,12 +7,12 @@
 #define HDPT_TREADS "treads"
 
 //Percentages of what hardpoints take what damage, e.g. armor takes 37.5% of the damage
-var/list/armorvic_dmg_distributions = list(
+GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	HDPT_PRIMARY = 0.15,
 	HDPT_SECDGUN = 0.125,
 	HDPT_SUPPORT = 0.075,
 	HDPT_ARMOR = 0.5,
-	HDPT_TREADS = 0.15)
+	HDPT_TREADS = 0.15))
 
 //Currently unused, I thought I was gonna need to fuck with stuff but we good
 /*
@@ -303,7 +303,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			var/image/I = image(icon, icon_state = "damaged_hardpt_[i]")
 			overlays += I
 
-		else if(H)
+		if(H)
 			var/image/I = H.get_icon_image(0, 0, dir)
 			overlays += I
 
@@ -619,7 +619,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 //Redistributes damage ratios based off of what things are attached (no armor means the armor doesn't mitigate any damage)
 /obj/vehicle/multitile/root/cm_armored/proc/update_damage_distribs()
-	dmg_distribs = armorvic_dmg_distributions.Copy() //Assume full installs
+	dmg_distribs = GLOB.armorvic_dmg_distributions.Copy() //Assume full installs
 	for(var/slot in hardpoints)
 		var/obj/item/hardpoint/HP = hardpoints[slot]
 		if(!HP)

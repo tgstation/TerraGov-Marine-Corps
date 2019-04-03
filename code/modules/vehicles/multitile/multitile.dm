@@ -192,7 +192,8 @@ Vehicles are placed on the map by a spawner or admin verb
 	setDir(old_dir) //Preserve the direction you're facing when moving backwards
 	return TRUE
 
-/obj/vehicle/multitile/root/New()
+/obj/vehicle/multitile/root/Initialize()
+	. = ..()
 	var/datum/coords/C = new
 	C.x_pos = 0
 	C.y_pos = 0

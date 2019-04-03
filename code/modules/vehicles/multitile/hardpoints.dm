@@ -155,7 +155,7 @@ Currently only has the tank hardpoints
 	else if(new_dir in list(EAST, WEST))
 		icon_suffix = "EW"
 
-	if(health <= 0)
+	if(!health)
 		icon_state_suffix = "1"
 
 	return image(icon = "[disp_icon]_[icon_suffix]", icon_state = "[disp_icon_state]_[icon_state_suffix]", pixel_x = x_offset, pixel_y = y_offset)
@@ -236,7 +236,7 @@ Currently only has the tank hardpoints
 	if(world.time < next_use)
 		to_chat(usr, "<span class='warning'>This module is not ready to be used yet.</span>")
 		return FALSE
-	if(health <= 0)
+	if(!health)
 		to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
 		return FALSE
 	return TRUE
@@ -321,7 +321,7 @@ Currently only has the tank hardpoints
 	if(world.time < next_use)
 		to_chat(usr, "<span class='warning'>This module is not ready to be used yet.</span>")
 		return FALSE
-	if(health <= 0)
+	if(!health)
 		to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
 		return FALSE
 	return TRUE
@@ -396,7 +396,7 @@ Currently only has the tank hardpoints
 	if(world.time < next_use)
 		to_chat(usr, "<span class='warning'>This module is not ready to be used yet.</span>")
 		return FALSE
-	if(health <= 0)
+	if(!health)
 		to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
 		return FALSE
 	return TRUE
@@ -444,7 +444,7 @@ Currently only has the tank hardpoints
 	if(world.time < next_use)
 		to_chat(usr, "<span class='warning'>This module is not ready to be used yet.</span>")
 		return FALSE
-	if(health <= 0)
+	if(!health)
 		to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
 		return FALSE
 	return TRUE
@@ -514,7 +514,7 @@ Currently only has the tank hardpoints
 	if(world.time < next_use)
 		to_chat(usr, "<span class='warning'>This module is not ready to be used yet.</span>")
 		return FALSE
-	if(health <= 0)
+	if(!health)
 		to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
 		return FALSE
 	return TRUE
@@ -562,7 +562,7 @@ Currently only has the tank hardpoints
 	if(world.time < next_use)
 		to_chat(usr, "<span class='warning'>This module is not ready to be used yet.</span>")
 		return FALSE
-	if(health <= 0)
+	if(!health)
 		to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
 		return FALSE
 	return TRUE
@@ -623,7 +623,7 @@ Currently only has the tank hardpoints
 	if(world.time < next_use)
 		to_chat(usr, "<span class='warning'>This module is not ready to be used yet.</span>")
 		return FALSE
-	if(health <= 0)
+	if(!health)
 		to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
 		return FALSE
 	return TRUE
@@ -656,7 +656,7 @@ Currently only has the tank hardpoints
 	else if(new_dir in list(EAST, WEST))
 		icon_suffix = "EW"
 
-	if(health <= 0)
+	if(!health)
 		icon_state_suffix = "1"
 	else if(!(ammo?.current_rounds > 0))
 		icon_state_suffix = "2"
