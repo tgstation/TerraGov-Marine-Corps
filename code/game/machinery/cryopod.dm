@@ -247,6 +247,8 @@
 		if((J.title in JOBS_REGULAR_ALL) && isdistress(SSticker?.mode))
 			var/datum/game_mode/distress/D = SSticker.mode
 			D.latejoin_tally-- //Cryoing someone removes a player from the round, blocking further larva spawns until accounted for
+		if(J.flag & SQUAD_SPECIALIST && specset && !available_specialist_sets.Find(specset))
+			available_specialist_sets += specset //we make the set this specialist took if any available again
 		if(J.title in JOBS_POLICE)
 			dept_console = CRYO_SEC
 		else if(J.title in JOBS_MEDICAL)
@@ -293,8 +295,7 @@
 
 /mob/living/carbon/human/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
 	if(assigned_squad)
-		var/datum/squad/S = assigned_squad
-		switch(S.id)
+		switch(assigned_squad.id)
 			if(ALPHA_SQUAD)
 				dept_console = CRYO_ALPHA
 			if(BRAVO_SQUAD)
@@ -306,19 +307,17 @@
 		if(job)
 			var/datum/job/J = SSjob.name_occupations[job]
 			if(J.flag & SQUAD_ENGINEER)
-				S.num_engineers--
+				assigned_squad.num_engineers--
 			if(J.flag & SQUAD_CORPSMAN)
-				S.num_medics--
+				assigned_squad.num_medics--
 			if(J.flag & SQUAD_SPECIALIST)
-				S.num_specialists--
-				if(specset && !available_specialist_sets.Find(specset))
-					available_specialist_sets += specset //we make the set this specialist took if any available again
+				assigned_squad.num_specialists--
 			if(J.flag & SQUAD_SMARTGUNNER)
-				S.num_smartgun--
+				assigned_squad.num_smartgun--
 			if(J.flag & SQUAD_LEADER)
-				S.num_leaders--
-		S.count--
-		S.clean_marine_from_squad(src, TRUE) //Remove from squad recods, if any.
+				assigned_squad.num_leaders--
+		assigned_squad.count--
+		assigned_squad.clean_marine_from_squad(src, TRUE) //Remove from squad recods, if any.
 
 	. = ..()
 
