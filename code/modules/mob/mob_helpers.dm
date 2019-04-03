@@ -10,12 +10,6 @@ proc/is_blind(A)
 		return M.eye_blind
 	return FALSE
 
-proc/xeno_hivenumber(A)
-	if(isxeno(A))
-		var/mob/living/carbon/Xenomorph/X = A
-		return X.hivenumber
-	return FALSE
-
 /proc/isxenosilicon(A)
 	if(isxeno(A))
 		var/mob/living/carbon/Xenomorph/X = A

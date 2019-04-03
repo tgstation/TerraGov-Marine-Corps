@@ -1167,6 +1167,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\emote.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Evolution.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Facehuggers.dm"
+#include "code\modules\mob\living\carbon\xenomorph\hive_datum.dm"
 #include "code\modules\mob\living\carbon\xenomorph\life.dm"
 #include "code\modules\mob\living\carbon\xenomorph\login.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Powers.dm"

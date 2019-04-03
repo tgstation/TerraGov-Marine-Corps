@@ -37,11 +37,6 @@
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 		if(INTENT_HARM)
-			var/datum/hive_status/hive
-			if(M.hivenumber && M.hivenumber <= hive_datum.len)
-				hive = hive_datum[M.hivenumber]
-			else return
-
 			if(stat == DEAD)
 				if(luminosity > 0)
 					playsound(loc, "alien_claw_metal", 25, 1)
@@ -52,16 +47,16 @@
 					to_chat(M, "<span class='warning'>[src] is dead, why would you want to touch it?</span>")
 				return FALSE
 
-			if(!hive.slashing_allowed && !(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
+			if(!M.hive.slashing_allowed && !(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 				to_chat(M, "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>")
 				return FALSE
 
 			if(!(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
-				if(hive.slashing_allowed == 2)
+				if(M.hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
 					if(status_flags & XENO_HOST)
 						for(var/obj/item/alien_embryo/embryo in src)
-							if(embryo.hivenumber == M.hivenumber)
-								to_chat(M, "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>")
+							if(embryo.issamexenohive(M))
+								to_chat(M, "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is an embryo inside!</span>")
 								return FALSE
 
 					if(M.health > round(M.maxHealth * 0.66)) //Note : Under 66 % health
@@ -70,7 +65,7 @@
 
 				else if(istype(buckled, /obj/structure/bed/nest) && (status_flags & XENO_HOST))
 					for(var/obj/item/alien_embryo/embryo in src)
-						if(embryo.hivenumber == M.hivenumber)
+						if(embryo.issamexenohive(M))
 							to_chat(M, "<span class='warning'>You should not harm this host! It has a sister inside.</span>")
 							return FALSE
 
@@ -271,21 +266,16 @@
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 		if(INTENT_HARM)
-			if(isxeno(src) && xeno_hivenumber(src) == M.hivenumber)
+			if(isxeno(src) && issamexenohive(M))
 				M.visible_message("<span class='warning'>\The [M] nibbles [src].</span>", \
 				"<span class='warning'>You nibble [src].</span>", null, 5)
 				return TRUE
 
-			var/datum/hive_status/hive
-			if(M.hivenumber && M.hivenumber <= hive_datum.len)
-				hive = hive_datum[M.hivenumber]
-			else return
-
 			if(!(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
-				if(hive.slashing_allowed == 2)
+				if(M.hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
 					if(status_flags & XENO_HOST)
 						for(var/obj/item/alien_embryo/embryo in src)
-							if(embryo.hivenumber == M.hivenumber)
+							if(embryo.issamexenohive(M))
 								to_chat(M, "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>")
 								return FALSE
 
@@ -295,7 +285,7 @@
 
 				else if(istype(buckled, /obj/structure/bed/nest) && (status_flags & XENO_HOST))
 					for(var/obj/item/alien_embryo/embryo in src)
-						if(embryo.hivenumber == M.hivenumber)
+						if(embryo.issamexenohive(M))
 							to_chat(M, "<span class='warning'>You should not harm this host! It has a sister inside.</span>")
 							return FALSE
 
