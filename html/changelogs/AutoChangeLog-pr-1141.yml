@@ -1,0 +1,4 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - balance: "SL armor is now lighter, this means that SLs should now be able to keep up with all members of their squad"
