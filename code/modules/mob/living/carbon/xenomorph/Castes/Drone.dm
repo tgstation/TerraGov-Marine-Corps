@@ -1,12 +1,12 @@
 /datum/xeno_caste/drone
 	caste_name = "Drone"
 	display_name = "Drone"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A builder of hives. Only drones may evolve into Queens."
 	caste_type_path = /mob/living/carbon/Xenomorph/Drone
 
-	tier = 1
-	upgrade = 0
+	tier = XENO_TIER_ONE
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 12
@@ -43,11 +43,16 @@
 	aura_strength = 1 //Drone's aura is the weakest. At the top of their evolution, it's equivalent to a Young Queen Climbs by 0.5 to 2
 	aura_allowed = list("frenzy", "warding", "recovery")
 
+/datum/xeno_caste/drone/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
+
 /datum/xeno_caste/drone/mature
 	upgrade_name = "Mature"
 	caste_desc = "The workhorse of the hive. It looks a little more dangerous."
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
@@ -79,7 +84,7 @@
 	upgrade_name = "Elite"
 	caste_desc = "The workhorse of the hive. It looks a little more dangerous."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
@@ -111,7 +116,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "A very mean architect."
 	ancient_message = "You are the ultimate worker of the Hive. Time to clock in, and clock the tallhosts out."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -145,8 +150,8 @@
 	health = 120
 	maxHealth = 120
 	plasma_stored = 350
-	tier = 1
-	upgrade = 0
+	tier = XENO_TIER_ONE
+	upgrade = XENO_UPGRADE_ZERO
 	speed = -0.8
 	pixel_x = -12
 	old_x = -12

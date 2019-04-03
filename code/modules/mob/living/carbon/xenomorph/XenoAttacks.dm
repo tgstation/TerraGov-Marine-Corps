@@ -129,7 +129,7 @@
 
 			if(INTENT_HARM)//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
 				M.animation_attack_on(src)
-				if(hivenumber == M.hivenumber)
+				if(issamexenohive(M))
 					M.visible_message("<span class='warning'>\The [M] nibbles \the [src].</span>", \
 					"<span class='warning'>You nibble \the [src].</span>", null, 5)
 					return 1

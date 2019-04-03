@@ -6,7 +6,6 @@
 /area
 	var/global/global_uid = 0
 	var/uid
-	var/can_hellhound_enter = 1
 	var/ceiling = CEILING_NONE //the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()
 	var/fake_zlevel // for multilevel maps in the same z level
 	var/gas_type = GAS_TYPE_AIR

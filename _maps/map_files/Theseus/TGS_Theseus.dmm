@@ -1642,15 +1642,6 @@
 	},
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
-"afm" = (
-/obj/machinery/door/firedoor/theseus{
-	dir = 2
-	},
-/turf/open/floor/almayer{
-	tag = "icon-test_floor4";
-	icon_state = "test_floor4"
-	},
-/area/almayer/hallways/aft_hallway)
 "afq" = (
 /obj/machinery/light{
 	dir = 8
@@ -33232,16 +33223,6 @@
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,
-/area/almayer/living/briefing)
-"bzl" = (
-/obj/machinery/door/firedoor/theseus,
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
-/turf/open/floor/almayer{
-	tag = "icon-test_floor4";
-	icon_state = "test_floor4"
-	},
 /area/almayer/living/briefing)
 "bzm" = (
 /obj/structure/table/almayer,
@@ -80206,7 +80187,7 @@ aap
 adA
 aea
 aea
-afm
+aaI
 ago
 ahG
 akg
@@ -80234,7 +80215,7 @@ hjx
 aOL
 ago
 ahG
-afm
+aaI
 aea
 aea
 ciu
@@ -80463,7 +80444,7 @@ acX
 adB
 aeb
 aeb
-afm
+aaI
 agp
 agp
 aiR
@@ -80491,7 +80472,7 @@ aNR
 adB
 agp
 agp
-afm
+aaI
 aeb
 aeb
 civ
@@ -110282,8 +110263,8 @@ aaa
 aaa
 aad
 anD
-anD
-anD
+asv
+asv
 asv
 auj
 pNG
@@ -110295,8 +110276,8 @@ awa
 avY
 aHj
 asv
-anD
-anD
+asv
+asv
 anD
 aMu
 aaa

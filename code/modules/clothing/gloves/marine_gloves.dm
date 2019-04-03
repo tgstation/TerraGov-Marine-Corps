@@ -15,7 +15,7 @@
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_armor_protection = HANDS
-	armor = list(melee = 60, bullet = 40, laser = 30,energy = 20, bomb = 30, bio = 10, rad = 10)
+	armor = list("melee" = 60, "bullet" = 40, "laser" = 30, "energy" = 20, "bomb" = 30, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 
 /obj/item/clothing/gloves/marine/alpha
 	name = "alpha squad gloves"
@@ -92,7 +92,7 @@
 	desc = "A pair of heavily armored gloves."
 	icon_state = "black"
 	item_state = "bgloves"
-	armor = list(melee = 80, bullet = 95, laser = 80, energy = 80, bomb = 80, bio = 20, rad = 20)
+	armor = list("melee" = 80, "bullet" = 95, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 20, "rad" = 20, "fire" = 80, "acid" = 80)
 	unacidable = 1
 
 /obj/item/clothing/gloves/marine/veteran/PMC
@@ -101,12 +101,12 @@
 	icon_state = "black"
 	item_state = "bgloves"
 	siemens_coefficient = 0
-	armor = list(melee = 60, bullet = 60, laser = 35, energy = 30, bomb = 30, bio = 15, rad = 15)
+	armor = list("melee" = 60, "bullet" = 60, "laser" = 35, "energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 15, "fire" = 30, "acid" = 30)
 
 /obj/item/clothing/gloves/marine/veteran/PMC/commando
 	name = "\improper PMC commando gloves"
 	desc = "A pair of heavily armored, insulated, acid-resistant gloves."
 	icon_state = "brown"
 	item_state = "browngloves"
-	armor = list(melee = 90, bullet = 120, laser = 100, energy = 90, bomb = 50, bio = 30, rad = 30)
+	armor = list("melee" = 90, "bullet" = 120, "laser" = 100, "energy" = 90, "bomb" = 50, "bio" = 30, "rad" = 30, "fire" = 90, "acid" = 90)
 	unacidable = 1

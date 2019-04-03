@@ -312,8 +312,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob)
 			if("moth")
 				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
-			if("yautja")
-				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Yautja")
 
 		log_admin("[key_name(oldusr)] has transformed [key_name(newmob)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
 		message_admins("[delmob ? key_name_admin(oldusr) : ADMIN_TPMONTY(oldusr)] has transformed [ADMIN_TPMONTY(newmob)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
