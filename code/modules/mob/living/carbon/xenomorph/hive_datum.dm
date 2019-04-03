@@ -437,6 +437,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/corrupted/can_xeno_message()
 	return TRUE // can always talk in hivemind
 
+/mob/living/carbon/Xenomorph/Queen/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
 // ***************************************
 // *********** Misc Xenos
 // ***************************************
@@ -446,17 +449,26 @@ to_chat will check for valid clients itself already so no need to double check f
 	prefix = "Alpha "
 	color = "#cccc00"
 
+/mob/living/carbon/Xenomorph/Queen/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
 /datum/hive_status/beta
 	name = "Beta"
 	hivenumber = XENO_HIVE_BETA
 	prefix = "Beta "
 	color = "#9999ff"
 
+/mob/living/carbon/Xenomorph/Queen/Beta
+	hivenumber = XENO_HIVE_BETA
+
 /datum/hive_status/zeta
 	name = "Zeta"
 	hivenumber = XENO_HIVE_ZETA
 	prefix = "Zeta "
 	color = "#606060"
+
+/mob/living/carbon/Xenomorph/Queen/Zeta
+	hivenumber = XENO_HIVE_ZETA
 
 // ***************************************
 // *********** Xeno hive compare helpers

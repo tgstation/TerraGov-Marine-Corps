@@ -160,38 +160,8 @@
 					handle_momentum()
 
 //Stealth handling
-/mob/living/carbon/Xenomorph/Hunter/movement_delay()
-	. = ..()
-	if(stealth)
-		handle_stealth_movement()
 
 
-
-/mob/living/carbon/Xenomorph/Hunter/proc/handle_stealth_movement()
-	//Initial stealth
-	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
-		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
-		return
-	//Stationary stealth
-	else if(last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
-		alpha = HUNTER_STEALTH_STILL_ALPHA //95% invisible
-	//Walking stealth
-	else if(m_intent == MOVE_INTENT_WALK)
-		alpha = HUNTER_STEALTH_WALK_ALPHA //80% invisible
-		use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN * 0.5)
-	//Running stealth
-	else
-		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
-		use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN * 0.5)
-	if(!plasma_stored)
-		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
-		cancel_stealth()
-
-/mob/living/carbon/Xenomorph/Ravager/movement_delay()
-	. = ..()
-
-	if(rage)
-		. -= round(rage * 0.012,0.01) //Ravagers gain 0.016 units of speed per unit of rage; min -0.012, max -0.6
 
 /mob/living/carbon/Xenomorph/proc/update_progression()
 	if(upgrade_possible()) //upgrade possible
@@ -523,50 +493,11 @@
 /mob/living/carbon/Xenomorph/proc/stealth_router(code = 0)
 	return FALSE
 
-/mob/living/carbon/Xenomorph/Hunter/stealth_router(code = 0)
-	switch(code)
-		if(HANDLE_STEALTH_CHECK)
-			if(stealth)
-				return TRUE
-			else
-				return FALSE
-		if(HANDLE_STEALTH_CODE_CANCEL)
-			cancel_stealth()
-		if(HANDLE_SNEAK_ATTACK_CHECK)
-			if(can_sneak_attack)
-				return TRUE
-			else
-				return FALSE
-
 /mob/living/carbon/Xenomorph/proc/neuroclaw_router()
 	return
 
-/mob/living/carbon/Xenomorph/Defiler/neuroclaw_router(mob/living/carbon/human/H)
-	if(!check_plasma(50) || !neuro_claws || !H)
-		return
-	use_plasma(50)
-	H.reagents.add_reagent("xeno_toxin", neuro_claws_dose)
-	to_chat(src, "<span class='xenowarning'>Your claw spines inject your victim with neurotoxin!</span>")
-
 /mob/living/carbon/Xenomorph/proc/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
 	return FALSE
-
-/mob/living/carbon/Xenomorph/Ravager/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
-	if(hit)
-		var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.04) ) //+4% bonus damage per point of Rage.relative to base melee damage.
-		M.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
-		var/target_turf = get_step_away(src,M,rand(1,3)) //This is where we blast our target
-		target_turf =  get_step_rand(target_turf) //Scatter
-		throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, M)
-		M.KnockDown(1)
-		rage = 0
-	else
-		rage *= 0.5 //Halve rage instead of 0ing it out if we miss.
-
-/mob/living/carbon/Xenomorph/Larva/death(gibbed, deathmessage)
-	log_admin("[key_name(src)] died as a Larva at [AREACOORD(src.loc)].")
-	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
-	return ..()
 
 /mob/living/carbon/Xenomorph/proc/handle_decay()
 	if(prob(7+(3*tier)+(3*upgrade_as_number()))) // higher level xenos decay faster, higher plasma storage.

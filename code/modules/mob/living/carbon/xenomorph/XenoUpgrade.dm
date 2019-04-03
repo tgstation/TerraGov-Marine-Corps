@@ -141,8 +141,6 @@
 /mob/living/carbon/Xenomorph/Boiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-
-
 /mob/living/carbon/Xenomorph/Defender/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -152,7 +150,6 @@
 /mob/living/carbon/Xenomorph/Defender/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-
 /mob/living/carbon/Xenomorph/Warrior/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -161,7 +158,6 @@
 
 /mob/living/carbon/Xenomorph/Warrior/ancient
 	upgrade = XENO_UPGRADE_THREE
-
 
 /mob/living/carbon/Xenomorph/Defiler/mature
 	upgrade = XENO_UPGRADE_ONE

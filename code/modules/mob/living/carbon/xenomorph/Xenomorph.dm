@@ -68,10 +68,6 @@
 	health = maxHealth
 	speed = xeno_caste.speed
 
-/mob/living/carbon/Xenomorph/Defiler/set_datum()
-	. = ..()
-	neuro_claws_dose = xeno_caste.neuro_claws_amount
-
 /mob/living/carbon/Xenomorph/proc/generate_nicknumber()
 	//We don't have a nicknumber yet, assign one to stick with us
 	if(!nicknumber)
