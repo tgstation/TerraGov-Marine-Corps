@@ -128,7 +128,7 @@
 
 /obj/item/clothing/head/headband/snake
 	name = "headband"
-	desc = "A replica of the headband of a legendary soldier. Sadly it doesn't offer infinite ammo"
+	desc = "A replica of the headband of a legendary soldier. Sadly it doesn't offer infinite ammo. Yet."
 	icon_state = "headband_snake"
 
 
