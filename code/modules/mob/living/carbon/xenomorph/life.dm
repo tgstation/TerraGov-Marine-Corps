@@ -156,8 +156,8 @@
 	var/turf/T = loc
 	if(!T || !istype(T))
 		return
-	var/datum/hive_status/hive = hive_datum[hivenumber]
-	if(!hive.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z) //if there is a queen, it must be in the same z-level
+
+	if(!hive?.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z) //if there is a queen, it must be in the same z-level
 		if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
 			if(lying || resting)
 				heal_wounds(XENO_RESTING_HEAL)
@@ -225,10 +225,8 @@
 		plasma_stored += xeno_caste.plasma_gain * modifier
 		if(recovery_aura)
 			plasma_stored += round(xeno_caste.plasma_gain * recovery_aura * 0.25 * modifier) //Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
-	else
-		var/datum/hive_status/hive = hive_datum[hivenumber]
-		if(!hive.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z) //We only regenerate plasma off weeds while on the same Z level as the queen; if one's alive
-			plasma_stored++
+	else if(!hive?.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z) //We only regenerate plasma off weeds while on the same Z level as the queen; if one's alive
+		plasma_stored++
 	if(plasma_stored > xeno_caste.plasma_max)
 		plasma_stored = xeno_caste.plasma_max
 	else if(plasma_stored < 0)
@@ -264,7 +262,7 @@
 				phero_center = Q.observed_xeno
 			var/pheromone_range = round(6 + xeno_caste.aura_strength * 2)
 			for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, phero_center)) //Goes from 8 for Queen to 16 for Ancient Queen
-				if(Z.stat != DEAD && hivenumber == Z.hivenumber && !Z.on_fire)
+				if(Z.stat != DEAD && issamexenohive(Z) && !Z.on_fire)
 					switch(current_aura)
 						if("frenzy")
 							if(xeno_caste.aura_strength > Z.frenzy_new)
@@ -278,7 +276,7 @@
 		else
 			var/pheromone_range = round(6 + xeno_caste.aura_strength * 2)
 			for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
-				if(Z.stat != DEAD && hivenumber == Z.hivenumber && !Z.on_fire)
+				if(Z.stat != DEAD && issamexenohive(Z) && !Z.on_fire)
 					switch(current_aura)
 						if("frenzy")
 							if(xeno_caste.aura_strength > Z.frenzy_new)
@@ -292,7 +290,7 @@
 	if(leader_current_aura && !stat && !on_fire)
 		var/pheromone_range = round(6 + leader_aura_strength * 2)
 		for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
-			if(Z.stat != DEAD && hivenumber == Z.hivenumber && !Z.on_fire)
+			if(Z.stat != DEAD && issamexenohive(Z) && !Z.on_fire)
 				switch(leader_current_aura)
 					if("frenzy")
 						if(leader_aura_strength > Z.frenzy_new)
@@ -440,13 +438,7 @@
 	if(!hud_used || !hud_used.locate_leader)
 		return
 
-	var/datum/hive_status/hive
-	if(hivenumber && hivenumber <= hive_datum.len)
-		hive = hive_datum[hivenumber]
-	else
-		return
-
-	if(!hive.living_xeno_queen || xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
+	if(!hive?.living_xeno_queen || xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
 		hud_used.locate_leader.icon_state = "trackoff"
 		return
 

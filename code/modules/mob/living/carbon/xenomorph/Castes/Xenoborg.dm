@@ -5,8 +5,8 @@
 	caste_desc = "Oh dear god!"
 	caste_type_path = /mob/living/carbon/Xenomorph/Xenoborg
 
-	tier = 0
-	upgrade = 0
+	tier = XENO_TIER_ZERO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 24
@@ -26,7 +26,7 @@
 	max_health = 300
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_ROBOTIC|CASTE_FIRE_IMMUNE|CASTE_DECAY_PROOF
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_ROBOTIC|CASTE_FIRE_IMMUNE|CASTE_DECAY_PROOF|CASTE_HIDE_IN_STATUS
 
 	// *** Defense *** //
 	armor_deflection = 90 //Chance of deflecting projectiles.
@@ -34,6 +34,9 @@
 	// *** Ranged Attack *** //
 	charge_type = 1 //Pounce
 	pounce_delay = 4 SECONDS
+
+/datum/xeno_caste/xenoborg/young
+	upgrade = XENO_UPGRADE_INVALID
 
 /mob/living/carbon/Xenomorph/Xenoborg
 	caste_base_type = /mob/living/carbon/Xenomorph/Xenoborg

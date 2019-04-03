@@ -19679,10 +19679,6 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
-"bic" = (
-/obj/effect/landmark/pred_teleport_destination,
-/turf/open/mars/random/sand,
-/area/bigredv2/outside/se)
 "bid" = (
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 4
@@ -23426,10 +23422,6 @@
 /obj/effect/landmark/random_item/crap,
 /turf/open/mars/random/cave,
 /area/bigredv2/outside/se)
-"bvw" = (
-/obj/effect/landmark/pred_teleport_destination,
-/turf/open/mars/random/cave,
-/area/bigredv2/outside/sw)
 "bvy" = (
 /obj/item/device/multitool,
 /turf/open/floor/plating,
@@ -39595,7 +39587,7 @@ bmd
 buk
 buk
 buk
-bvw
+buk
 buk
 buk
 buk
@@ -62346,7 +62338,7 @@ bfx
 bes
 bes
 bes
-bic
+bes
 bes
 bes
 aac

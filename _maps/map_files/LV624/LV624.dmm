@@ -1571,13 +1571,6 @@
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand6)
-"afW" = (
-/obj/structure/table,
-/obj/item/weapon/harpoon/yautja{
-	name = "Alien Harpoon"
-	},
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/ground/sand6)
 "afX" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 4
@@ -1605,11 +1598,6 @@
 "agb" = (
 /obj/item/stack/sheet/wood,
 /turf/open/floor,
-/area/lv624/ground/sand6)
-"agc" = (
-/obj/structure/table,
-/obj/item/legcuffs/yautja/ancient,
-/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand6)
 "agd" = (
 /obj/structure/table,
@@ -19588,10 +19576,6 @@
 /obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/gm/dirt,
 /area/lv624/ground/jungle1)
-"bpd" = (
-/obj/effect/landmark/pred_teleport_destination,
-/turf/open/gm/grass,
-/area/lv624/ground/jungle1)
 "bpe" = (
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/jungle3)
@@ -20501,10 +20485,6 @@
 /obj/structure/jungle/planttop1,
 /turf/open/gm/grass,
 /area/lv624/ground/jungle3)
-"bsm" = (
-/obj/effect/landmark/pred_teleport_destination,
-/turf/open/gm/grass,
-/area/lv624/ground/jungle3)
 "bsn" = (
 /obj/structure/sign/electricshock{
 	dir = 1
@@ -20527,7 +20507,6 @@
 /area/lv624/ground/jungle2)
 "bsr" = (
 /obj/machinery/telecomms/relay/preset/station{
-	explosion_resistance = 100;
 	idle_power_usage = 0;
 	listening_level = 1;
 	unacidable = 1;
@@ -20535,13 +20514,13 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/relay)
-"tPp" = (
+"bHX" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/gm/dirtgrassborder2/corner{
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
-"wTt" = (
+"ncP" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/gm/coast{
 	dir = 1
@@ -24398,7 +24377,7 @@ bnC
 bck
 bpY
 bch
-bsm
+bch
 bch
 bcg
 aab
@@ -39478,7 +39457,7 @@ aqs
 ajz
 ajz
 apD
-wTt
+ncP
 arU
 arV
 arW
@@ -50274,7 +50253,7 @@ apD
 aqI
 ajA
 ald
-tPp
+bHX
 atW
 atX
 arW
@@ -56662,7 +56641,7 @@ aey
 aft
 afA
 aft
-agc
+agd
 afA
 aft
 agH
@@ -59237,7 +59216,7 @@ afA
 aey
 afV
 aey
-afW
+agd
 aey
 ahh
 ahh
@@ -60002,8 +59981,8 @@ aft
 aft
 acI
 acI
-afW
-agc
+agd
+agd
 afA
 aft
 aey
@@ -62684,7 +62663,7 @@ bdk
 bdk
 bdi
 bdh
-bpd
+bdh
 bdh
 bdh
 bdh

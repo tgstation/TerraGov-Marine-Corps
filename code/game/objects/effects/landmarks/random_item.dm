@@ -6,13 +6,11 @@
 								150; /obj/item/weapon/claymore/mercsword, \
 								125; /obj/item/weapon/twohanded/fireaxe, \
 								100; /obj/item/storage/backpack/commando, \
-								100; /obj/item/storage/backpack/yautja, \
 								100; /obj/item/storage/belt/knifepouch, \
 								100; /obj/item/storage/belt/utility/full, \
 								100; /obj/item/clothing/tie/storage/webbing, \
 								100; /obj/item/weapon/claymore, \
 								100; /obj/item/weapon/katana, \
-								100; /obj/item/weapon/harpoon/yautja, \
 								100; /obj/item/device/binoculars, \
 								100; /obj/item/explosive/grenade/frag, \
 								100; /obj/item/explosive/grenade/incendiary, \
@@ -22,8 +20,7 @@
 								50; /obj/item/weapon/shield/riot, \
 								50; /obj/item/storage/firstaid/regular, \
 								50; /obj/item/storage/firstaid/fire, \
-								25; /obj/item/explosive/grenade/flashbang, \
-								25; /obj/item/legcuffs/yautja)
+								25; /obj/item/explosive/grenade/flashbang)
 
 #define HUNTER_OKAY_ITEM  pick(\
 								400; /obj/item/weapon/twohanded/spear, \

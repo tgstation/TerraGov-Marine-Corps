@@ -114,7 +114,7 @@
 	if(!A.is_injectable() && !ismob(A))
 		to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 		return
-	if(skilllock && user.mind?.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
+	if(skilllock && user.mind?.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_NOVICE)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use the [src].</span>")
 		if(!do_after(user, SKILL_TASK_EASY, TRUE, 5, BUSY_ICON_BUILD))
@@ -124,7 +124,7 @@
 		var/mob/M = A
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
 			return
-		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isyautjastrict(M))) // preds have null skills
+		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.is_mob_incapacitated() && ((M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP)))
 			user.KnockDown(3)
 			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
 			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")

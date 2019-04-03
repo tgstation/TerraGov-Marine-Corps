@@ -1,11 +1,11 @@
 /datum/xeno_caste/ravager
 	caste_name = "Ravager"
 	display_name = "Ravager"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A brutal, devastating front-line attacker."
 	caste_type_path = /mob/living/carbon/Xenomorph/Ravager
-	tier = 3
-	upgrade = 0
+	tier = XENO_TIER_THREE
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40
@@ -41,11 +41,16 @@
 	// *** Ranged Attack *** //
 	charge_type = 3 //Claw at end of charge
 
+/datum/xeno_caste/ravager/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
+
 /datum/xeno_caste/ravager/mature
 	upgrade_name = "Mature"
 	caste_desc = "A brutal, devastating front-line attacker. It looks a little more dangerous."
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 50
@@ -76,7 +81,7 @@
 	upgrade_name = "Elder"
 	caste_desc = "A brutal, devastating front-line attacker. It looks pretty strong."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 55
@@ -107,7 +112,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "As I walk through the valley of the shadow of death."
 	ancient_message = "You are death incarnate. All will tremble before you."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 60
@@ -146,8 +151,8 @@
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	xeno_explosion_resistance = 1 //can't be gibbed from explosions
-	tier = 3
-	upgrade = 0
+	tier = XENO_TIER_THREE
+	upgrade = XENO_UPGRADE_ZERO
 	pixel_x = -16
 	old_x = -16
 	//Ravager vars
@@ -217,8 +222,8 @@
 	display_name = "Ravenger"
 	upgrade_name = ""
 	caste_type_path = /mob/living/carbon/Xenomorph/Ravager/ravenger
-	tier = 3
-	upgrade = 3
+	tier = XENO_TIER_THREE
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 70
@@ -240,7 +245,7 @@
 	hardcore = TRUE
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_HIDE_IN_STATUS
 
 	// *** Defense *** //
 	armor_deflection = 20
@@ -250,11 +255,14 @@
 	// *** Ranged Attack *** //
 	charge_type = 3 //Claw at end of charge
 
+/datum/xeno_caste/ravager/ravenger/young
+	upgrade = XENO_UPGRADE_THREE
+
 /mob/living/carbon/Xenomorph/Ravager/ravenger
 	caste_base_type = /mob/living/carbon/Xenomorph/Ravager/ravenger
 	desc = "It's a goddamn dragon! Run! RUUUUN!"
 	plasma_stored = 200
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 	var/used_fire_breath = 0
 	actions = list(
 		/datum/action/xeno_action/activable/breathe_fire,

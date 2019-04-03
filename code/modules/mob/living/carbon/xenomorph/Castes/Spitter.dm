@@ -1,11 +1,11 @@
 /datum/xeno_caste/spitter
 	caste_name = "Spitter"
 	display_name = "Spitter"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "Ptui!"
 	caste_type_path = /mob/living/carbon/Xenomorph/Spitter
-	tier = 2
-	upgrade = 0
+	tier = XENO_TIER_TWO
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 18
@@ -43,11 +43,16 @@
 
 	acid_delay = 30 SECONDS //30 second delay on acid spray.
 
+/datum/xeno_caste/spitter/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
+
 /datum/xeno_caste/spitter/mature
 	upgrade_name = "Mature"
 	caste_desc = "A ranged damage dealer. It looks a little more dangerous."
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 25
@@ -81,7 +86,7 @@
 	upgrade_name = "Elder"
 	caste_desc = "A ranged damage dealer. It looks pretty strong."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 28
@@ -115,7 +120,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "A ranged destruction machine."
 	ancient_message = "You are a master of ranged stuns and damage. Go fourth and generate salt."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -157,8 +162,8 @@
 	speed = -0.5
 	pixel_x = -12
 	old_x = -12
-	tier = 2
-	upgrade = 0
+	tier = XENO_TIER_TWO
+	upgrade = XENO_UPGRADE_ZERO
 	acid_cooldown = 0
 	wound_type = "alien" //used to match appropriate wound overlays
 

@@ -1,11 +1,11 @@
 /datum/xeno_caste/runner
 	caste_name = "Runner"
 	display_name = "Runner"
-	upgrade_name = "Young"
+	upgrade_name = ""
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
 	caste_type_path = /mob/living/carbon/Xenomorph/Runner
-	tier = 1
-	upgrade = 0
+	tier = XENO_TIER_ONE
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 10
@@ -43,11 +43,16 @@
 	charge_type = 1 //Pounce - Runner
 	pounce_delay = 3.5 SECONDS
 
+/datum/xeno_caste/runner/young
+	upgrade_name = "Young"
+
+	upgrade = XENO_UPGRADE_ZERO
+
 /datum/xeno_caste/runner/mature
 	upgrade_name = "Mature"
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks a little more dangerous."
 
-	upgrade = 1
+	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -81,7 +86,7 @@
 	upgrade_name = "Elder"
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks pretty strong."
 
-	upgrade = 2
+	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
@@ -115,7 +120,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "Not what you want to run into in a dark alley. It looks fucking deadly."
 	ancient_message = "You are the fastest assassin of all time. Your speed is unmatched."
-	upgrade = 3
+	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 25
@@ -156,8 +161,8 @@
 	plasma_stored = 50
 	speed = -1.8
 	flags_pass = PASSTABLE
-	tier = 1
-	upgrade = 0
+	tier = XENO_TIER_ONE
+	upgrade = XENO_UPGRADE_ZERO
 	pixel_x = -16  //Needed for 2x2
 	old_x = -16
 	wound_type = "runner" //used to match appropriate wound overlays
