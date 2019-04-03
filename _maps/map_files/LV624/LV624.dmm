@@ -1645,12 +1645,15 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand6)
 "afW" = (
-/obj/structure/table,
-/obj/item/weapon/harpoon/yautja{
-	name = "Alien Harpoon"
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/ground/sand6)
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
 "afX" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 4
@@ -1680,10 +1683,15 @@
 /turf/open/floor,
 /area/lv624/ground/sand6)
 "agc" = (
-/obj/structure/table,
-/obj/item/legcuffs/yautja/ancient,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/ground/sand6)
+/obj/machinery/power/apc/drained,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/tile/chapel{
+	dir = 1
+	},
+/area/lv624/lazarus/chapel)
 "agd" = (
 /obj/structure/table,
 /turf/open/floor/tile/whiteyellow/full,
@@ -1937,14 +1945,12 @@
 /area/lv624/ground/sand2)
 "ahe" = (
 /obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage)
+/obj/machinery/power/apc/drained,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
 "ahf" = (
 /turf/closed/mineral,
 /area/lv624/ground/sand3)
@@ -2239,15 +2245,15 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/sand3)
 "ain" = (
-/obj/machinery/power/apc/drained,
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
 /obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/turf/open/floor/tile/chapel{
-	dir = 1
-	},
-/area/lv624/lazarus/chapel)
+/turf/open/floor/freezer,
+/area/lv624/lazarus/toilet)
 "aio" = (
 /obj/structure/mineral_door/resin,
 /turf/open/gm/dirt,
@@ -2297,27 +2303,26 @@
 /turf/open/gm/river,
 /area/lv624/ground/river3)
 "aiy" = (
+/obj/machinery/power/apc/drained,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/drained,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/quart)
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/main_hall)
 "aiz" = (
 /obj/structure/jungle/vines/heavy,
 /turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "aiA" = (
+/obj/structure/jungle/vines,
+/obj/machinery/power/apc,
 /obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/turf/open/floor/freezer,
-/area/lv624/lazarus/toilet)
+/turf/open/gm/grass/grass2,
+/area/lv624/lazarus/atmos)
 "aiB" = (
 /turf/open/floor/plating/warning{
 	dir = 8
@@ -2388,23 +2393,6 @@
 	},
 /area/lv624/ground/sand2)
 "aiN" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/main_hall)
-"aiO" = (
-/obj/structure/jungle/vines,
-/obj/machinery/power/apc,
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/open/gm/grass/grass2,
-/area/lv624/lazarus/atmos)
-"aiP" = (
 /obj/machinery/power/apc,
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -2412,7 +2400,7 @@
 	},
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
-"aiQ" = (
+"aiO" = (
 /obj/machinery/power/apc,
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -2422,7 +2410,7 @@
 	icon_state = "red"
 	},
 /area/lv624/lazarus/security)
-"aiR" = (
+"aiP" = (
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -2432,7 +2420,7 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/armory)
-"aiS" = (
+"aiQ" = (
 /obj/machinery/power/apc,
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -2440,6 +2428,24 @@
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
+"aiR" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/tile/bar,
+/area/lv624/lazarus/canteen)
+"aiS" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/open/floor/grimy,
+/area/lv624/lazarus/captain)
 "aiT" = (
 /turf/open/gm/coast/corner2{
 	dir = 2
@@ -2719,13 +2725,15 @@
 /turf/open/gm/river,
 /area/lv624/ground/river3)
 "ajV" = (
-/obj/structure/cable/yellow,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/power/apc/drained{
-	dir = 4
+/obj/machinery/power/apc/drained,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/turf/open/floor/tile/bar,
-/area/lv624/lazarus/canteen)
+/turf/open/floor/tile/brown{
+	dir = 9
+	},
+/area/lv624/lazarus/comms)
 "ajW" = (
 /obj/structure/jungle/vines/heavy,
 /obj/structure/jungle/vines/heavy,
@@ -2798,15 +2806,13 @@
 /turf/open/gm/river,
 /area/lv624/ground/river3)
 "akk" = (
+/obj/machinery/power/apc,
 /obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/turf/open/floor/grimy,
-/area/lv624/lazarus/captain)
+/turf/open/floor/freezer,
+/area/lv624/lazarus/kitchen)
 "akl" = (
 /turf/open/gm/coast/corner,
 /area/lv624/ground/sand8)
@@ -2840,38 +2846,6 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/sand8)
 "aks" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/open/floor/tile/brown{
-	dir = 9
-	},
-/area/lv624/lazarus/comms)
-"akt" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
-/turf/open/gm/river,
-/area/lv624/ground/river3)
-"aku" = (
-/obj/structure/flora/grass/green,
-/turf/open/gm/river,
-/area/lv624/ground/river3)
-"akv" = (
-/obj/machinery/power/apc,
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/open/floor/freezer,
-/area/lv624/lazarus/kitchen)
-"akw" = (
-/obj/structure/jungle/vines/heavy,
-/obj/structure/jungle/plantbot1/alien,
-/turf/open/gm/river,
-/area/lv624/ground/river3)
-"akx" = (
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -2885,6 +2859,28 @@
 /obj/machinery/power/apc/hyper,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
+"akt" = (
+/obj/structure/jungle/vines,
+/obj/structure/jungle/vines/heavy,
+/turf/open/gm/river,
+/area/lv624/ground/river3)
+"aku" = (
+/obj/structure/flora/grass/green,
+/turf/open/gm/river,
+/area/lv624/ground/river3)
+"akv" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
+"akw" = (
+/obj/structure/jungle/vines/heavy,
+/obj/structure/jungle/plantbot1/alien,
+/turf/open/gm/river,
+/area/lv624/ground/river3)
 "aky" = (
 /obj/structure/inflatable,
 /turf/open/gm/dirt,
@@ -2979,14 +2975,6 @@
 	dir = 4
 	},
 /area/lv624/ground/river3)
-"akR" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "akT" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/plantbot1/alien,
@@ -19556,10 +19544,6 @@
 /obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/gm/dirt,
 /area/lv624/ground/jungle1)
-"bpd" = (
-/obj/effect/landmark/pred_teleport_destination,
-/turf/open/gm/grass,
-/area/lv624/ground/jungle1)
 "bpe" = (
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/jungle3)
@@ -20469,10 +20453,6 @@
 /obj/structure/jungle/planttop1,
 /turf/open/gm/grass,
 /area/lv624/ground/jungle3)
-"bsm" = (
-/obj/effect/landmark/pred_teleport_destination,
-/turf/open/gm/grass,
-/area/lv624/ground/jungle3)
 "bsn" = (
 /obj/structure/sign/electricshock{
 	dir = 1
@@ -20495,7 +20475,6 @@
 /area/lv624/ground/jungle2)
 "bsr" = (
 /obj/machinery/telecomms/relay/preset/station{
-	explosion_resistance = 100;
 	idle_power_usage = 0;
 	listening_level = 1;
 	unacidable = 1;
@@ -20503,13 +20482,13 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/relay)
-"tPp" = (
+"bHX" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/gm/dirtgrassborder2/corner{
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
-"wTt" = (
+"ncP" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/gm/coast{
 	dir = 1
@@ -24366,7 +24345,7 @@ bnC
 bck
 bpY
 bch
-bsm
+bch
 bch
 bcg
 aab
@@ -29753,7 +29732,7 @@ bcg
 bcg
 bla
 bla
-akx
+aks
 bmZ
 bnI
 bos
@@ -34879,7 +34858,7 @@ awV
 aZP
 baH
 aZd
-aiP
+aiN
 bcv
 bdB
 aZd
@@ -39446,7 +39425,7 @@ aqs
 ajz
 ajz
 apD
-wTt
+ncP
 arU
 arV
 arW
@@ -40288,7 +40267,7 @@ bia
 biU
 bjG
 bjF
-aks
+ajV
 blM
 bnN
 bjF
@@ -44129,7 +44108,7 @@ aSg
 aGn
 aZo
 baf
-aiO
+aiA
 bbv
 bbQ
 bcH
@@ -44146,7 +44125,7 @@ bkC
 blm
 blU
 bkA
-akR
+akv
 bnS
 boK
 bpM
@@ -47220,7 +47199,7 @@ bcM
 bdN
 bev
 bfo
-aiR
+aiP
 bbV
 bhu
 bim
@@ -47481,7 +47460,7 @@ ayC
 bbV
 azh
 bin
-akk
+aiS
 bhv
 bhv
 blp
@@ -47977,7 +47956,7 @@ aTI
 aUj
 aUP
 aVu
-aiA
+ain
 aWL
 aXn
 aTH
@@ -49516,14 +49495,14 @@ aPl
 aSn
 aSZ
 aNy
-ain
+agc
 aUU
 aVy
 aWe
 aWN
 aWN
 aWN
-aiN
+aiy
 aYF
 bcR
 bbc
@@ -49531,7 +49510,7 @@ aXt
 bbW
 bbX
 bbW
-aiQ
+aiO
 axK
 bgM
 bbW
@@ -49792,7 +49771,7 @@ axr
 axY
 bgn
 bbW
-aiS
+aiQ
 biu
 bjl
 bjP
@@ -50242,7 +50221,7 @@ apD
 aqI
 ajA
 ald
-tPp
+bHX
 atW
 atX
 arW
@@ -52624,7 +52603,7 @@ biy
 bjp
 bjU
 bdV
-akv
+akk
 bmh
 bmT
 bnB
@@ -53114,7 +53093,7 @@ aQq
 aSr
 aTg
 aTL
-aiy
+ahe
 aVa
 aAy
 aVH
@@ -54161,7 +54140,7 @@ bdc
 bdc
 bdc
 bdc
-ajV
+aiR
 biB
 bdb
 bjZ
@@ -55682,7 +55661,7 @@ aHz
 aRm
 aRN
 aSx
-ahe
+afW
 aDL
 aDL
 aDL
@@ -56630,7 +56609,7 @@ aey
 aft
 afA
 aft
-agc
+agd
 afA
 aft
 agH
@@ -59205,7 +59184,7 @@ afA
 aey
 afV
 aey
-afW
+agd
 aey
 ahh
 ahh
@@ -59970,8 +59949,8 @@ aft
 aft
 acI
 acI
-afW
-agc
+agd
+agd
 afA
 aft
 aey
@@ -62652,7 +62631,7 @@ bdk
 bdk
 bdi
 bdh
-bpd
+bdh
 bdh
 bdh
 bdh

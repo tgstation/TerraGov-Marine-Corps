@@ -594,19 +594,15 @@
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
 "acl" = (
-/obj/structure/table,
-/obj/item/storage/box/lightstick,
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
 /obj/structure/cable{
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor/tile/dark/yellow2{
-	dir = 4
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
-/area/ice_colony/surface/engineering/electric)
+/turf/open/floor/plating/icefloor,
+/area/ice_colony/surface/requesitions)
 "acm" = (
 /turf/closed/ice_rock/northWall,
 /area/ice_colony/exterior/surface/cliff)
@@ -674,19 +670,10 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/engineering/electric)
 "acA" = (
-/obj/structure/table,
-/obj/item/tool/taperoll/engineering,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool,
-/obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/open/floor/tile/dark/yellow2{
-	dir = 1
-	},
-/area/ice_colony/surface/engineering/tool)
+/obj/structure/largecrate/random,
+/obj/machinery/light,
+/turf/open/floor/plating/icefloor,
+/area/ice_colony/surface/requesitions)
 "acB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
@@ -806,16 +793,19 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
 "acV" = (
-/obj/machinery/light,
+/obj/structure/table,
+/obj/item/storage/box/lightstick,
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
 /obj/structure/cable{
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/drained{
-	dir = 1
+/turf/open/floor/tile/dark/yellow2{
+	dir = 4
 	},
-/turf/open/floor/plating/icefloor,
-/area/ice_colony/surface/requesitions)
+/area/ice_colony/surface/engineering/electric)
 "acW" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 4
@@ -876,18 +866,19 @@
 	},
 /area/ice_colony/surface/engineering/tool)
 "adg" = (
+/obj/structure/table,
+/obj/item/tool/taperoll/engineering,
+/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/tool,
+/obj/machinery/power/apc/drained,
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/drained,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
-/area/ice_colony/surface/engineering)
+/area/ice_colony/surface/engineering/tool)
 "adh" = (
 /turf/closed/ice_rock/corners{
 	dir = 6
@@ -1168,7 +1159,6 @@
 /area/ice_colony/exterior/surface/valley/northwest)
 "adY" = (
 /obj/machinery/telecomms/relay/preset/ice_colony{
-	explosion_resistance = 100;
 	idle_power_usage = 0;
 	listening_level = 1;
 	name = "Telecommunication Relay Tower"
@@ -1681,18 +1671,18 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "afv" = (
-/obj/structure/table,
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
 /obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/turf/open/floor/tile/dark/yellow2{
+/obj/machinery/power/apc/drained,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/area/ice_colony/surface/engineering/generator)
+/turf/open/floor/tile/dark/yellow2{
+	dir = 1
+	},
+/area/ice_colony/surface/engineering)
 "afw" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -1951,15 +1941,18 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "agb" = (
-/obj/machinery/power/apc/drained,
+/obj/structure/table,
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
 /obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
+	d2 = 8;
+	icon_state = "0-8"
 	},
 /turf/open/floor/tile/dark/yellow2{
-	dir = 1
+	dir = 4
 	},
-/area/ice_colony/surface/substation/smes)
+/area/ice_colony/surface/engineering/generator)
 "agc" = (
 /obj/effect/turf_overlay/icerock,
 /turf/closed/ice_rock/westWall,
@@ -3575,13 +3568,15 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation/smes)
 "ajO" = (
+/obj/machinery/power/apc/drained,
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/drained,
-/turf/open/floor/freezer,
-/area/ice_colony/surface/dorms/restroom_w)
+/turf/open/floor/tile/dark/yellow2{
+	dir = 1
+	},
+/area/ice_colony/surface/substation/smes)
 "ajP" = (
 /obj/effect/turf_overlay/icerock{
 	dir = 1
@@ -4024,19 +4019,15 @@
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor/freezer,
-/area/ice_colony/surface/dorms/restroom_e)
+/area/ice_colony/surface/dorms/restroom_w)
 "akZ" = (
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/ice_colony/surface/tcomms)
+/obj/machinery/power/apc/drained,
+/turf/open/floor/freezer,
+/area/ice_colony/surface/dorms/restroom_e)
 "ala" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/machinery/light{
@@ -4190,15 +4181,17 @@
 	},
 /area/ice_colony/surface/substation)
 "alx" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
 /obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
+	icon_state = "0-4";
+	d2 = 4
 	},
-/obj/machinery/power/apc/drained,
-/turf/open/floor/tile/dark/yellow2{
-	dir = 1
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
 	},
-/area/ice_colony/surface/substation)
+/area/ice_colony/surface/tcomms)
 "aly" = (
 /obj/machinery/light{
 	dir = 4
@@ -4276,13 +4269,15 @@
 	},
 /area/ice_colony/surface/hydroponics/north)
 "alN" = (
-/obj/machinery/power/apc/drained,
 /obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/turf/open/floor/plating,
-/area/ice_colony/surface/mining)
+/obj/machinery/power/apc/drained,
+/turf/open/floor/tile/dark/yellow2{
+	dir = 1
+	},
+/area/ice_colony/surface/substation)
 "alO" = (
 /obj/structure/rack,
 /obj/item/tool/shovel/snow{
@@ -4412,17 +4407,13 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/mining)
 "amj" = (
-/obj/structure/table,
+/obj/machinery/power/apc/drained,
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/item/storage/bag/plants,
-/obj/machinery/power/apc/drained,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 5
-	},
-/area/ice_colony/surface/hydroponics/north)
+/turf/open/floor/plating,
+/area/ice_colony/surface/mining)
 "amk" = (
 /turf/open/floor/plating,
 /area/ice_colony/surface/mining)
@@ -4579,12 +4570,15 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/north)
 "amF" = (
-/obj/structure/closet/wardrobe/green,
-/obj/machinery/firealarm{
-	dir = 8
+/obj/structure/table,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
 	},
+/obj/item/storage/bag/plants,
+/obj/machinery/power/apc/drained,
 /turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 4
+	dir = 5
 	},
 /area/ice_colony/surface/hydroponics/north)
 "amG" = (
@@ -4927,11 +4921,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/north)
 "any" = (
-/obj/machinery/vending/tool,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/alarm{
+/obj/structure/closet/wardrobe/green,
+/obj/machinery/firealarm{
 	dir = 8
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -5097,7 +5088,10 @@
 	},
 /area/ice_colony/surface/hydroponics/north)
 "anW" = (
-/obj/structure/closet/wardrobe/green,
+/obj/machinery/vending/tool,
+/obj/machinery/alarm{
+	dir = 8
+	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
@@ -5945,17 +5939,14 @@
 	},
 /area/ice_colony/surface/clinic/treatment)
 "apV" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
+/obj/structure/closet/wardrobe/green,
+/obj/machinery/light{
+	dir = 4
 	},
-/obj/item/storage/toolbox/emergency,
-/obj/structure/table,
-/turf/open/floor/tile/red/whitered{
-	dir = 1
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 4
 	},
-/area/ice_colony/surface/clinic/treatment)
+/area/ice_colony/surface/hydroponics/north)
 "apW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/red/whitered/corner{
@@ -6016,20 +6007,17 @@
 	},
 /area/ice_colony/surface/clinic/storage)
 "aqh" = (
+/obj/machinery/power/apc/drained,
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/drained,
+/obj/item/storage/toolbox/emergency,
 /obj/structure/table,
-/obj/machinery/alarm{
-	dir = 4
+/turf/open/floor/tile/red/whitered{
+	dir = 1
 	},
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 9
-	},
-/area/ice_colony/surface/dorms)
+/area/ice_colony/surface/clinic/treatment)
 "aqi" = (
 /obj/structure/table,
 /obj/item/storage/box/masks,
@@ -6077,14 +6065,20 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "aqo" = (
-/obj/machinery/firealarm{
-	dir = 8
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/obj/structure/closet/secure_closet/personal/patient,
-/turf/open/floor/tile/red/whitered{
+/obj/machinery/power/apc/drained,
+/obj/structure/table,
+/obj/machinery/alarm{
 	dir = 4
 	},
-/area/ice_colony/surface/clinic/treatment)
+/obj/effect/landmark/random_item/crap,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 9
+	},
+/area/ice_colony/surface/dorms)
 "aqp" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -6161,6 +6155,15 @@
 	},
 /area/ice_colony/surface/dorms)
 "aqy" = (
+/obj/machinery/firealarm{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/personal/patient,
+/turf/open/floor/tile/red/whitered{
+	dir = 4
+	},
+/area/ice_colony/surface/clinic/treatment)
+"aqz" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/toxin{
@@ -6176,15 +6179,6 @@
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/storage)
-"aqz" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/firealarm{
-	dir = 8
-	},
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 4
-	},
-/area/ice_colony/surface/dorms)
 "aqA" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/end{
@@ -6500,15 +6494,14 @@
 	},
 /area/ice_colony/exterior/surface/valley/northeast)
 "arg" = (
-/obj/structure/table,
-/obj/item/device/defibrillator,
+/obj/structure/disposalpipe/segment,
 /obj/machinery/firealarm{
 	dir = 8
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
-/area/ice_colony/surface/clinic/storage)
+/area/ice_colony/surface/dorms)
 "arh" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
@@ -7139,14 +7132,14 @@
 /area/ice_colony/surface/clinic/lobby)
 "asK" = (
 /obj/structure/table,
-/obj/item/folder/white,
+/obj/item/device/defibrillator,
 /obj/machinery/firealarm{
 	dir = 8
 	},
 /turf/open/floor/tile/red/whitered{
-	dir = 5
+	dir = 4
 	},
-/area/ice_colony/surface/clinic/lobby)
+/area/ice_colony/surface/clinic/storage)
 "asL" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
@@ -7712,12 +7705,13 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/lobby)
 "aug" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
-	dir = 1
+/obj/structure/table,
+/obj/item/folder/white,
+/obj/machinery/firealarm{
+	dir = 8
 	},
 /turf/open/floor/tile/red/whitered{
-	dir = 2
+	dir = 5
 	},
 /area/ice_colony/surface/clinic/lobby)
 "auh" = (
@@ -7808,16 +7802,14 @@
 	},
 /area/ice_colony/surface/hydroponics/lobby)
 "aur" = (
-/obj/structure/bed/chair{
-	dir = 8
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
-/obj/machinery/firealarm{
-	dir = 8
+/turf/open/floor/tile/red/whitered{
+	dir = 2
 	},
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 4
-	},
-/area/ice_colony/surface/hydroponics/lobby)
+/area/ice_colony/surface/clinic/lobby)
 "aus" = (
 /obj/structure/fence,
 /turf/open/snow/layer2,
@@ -8004,17 +7996,13 @@
 /area/ice_colony/surface/dorms)
 "auP" = (
 /obj/structure/bed/chair{
-	dir = 4
+	dir = 8
 	},
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+/obj/machinery/firealarm{
+	dir = 8
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 8
+	dir = 4
 	},
 /area/ice_colony/surface/hydroponics/lobby)
 "auQ" = (
@@ -8908,16 +8896,20 @@
 /turf/open/gm/grass,
 /area/ice_colony/surface/hydroponics/lobby)
 "axc" = (
-/obj/machinery/power/apc/drained,
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
 /obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
+	icon_state = "0-4";
+	d2 = 4
 	},
-/obj/structure/closet/crate/trashcart,
-/turf/open/floor/tile/dark/brown2{
-	dir = 1
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 8
 	},
-/area/ice_colony/surface/dorms/lavatory)
+/area/ice_colony/surface/hydroponics/lobby)
 "axd" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -9087,10 +9079,11 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor/tile/darkgreen/darkgreen2{
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
-/area/ice_colony/surface/dorms/canteen)
+/area/ice_colony/surface/dorms/lavatory)
 "axz" = (
 /obj/structure/closet/cabinet,
 /obj/item/storage/toolbox/emergency,
@@ -9432,11 +9425,13 @@
 	},
 /area/ice_colony/surface/dorms/lavatory)
 "ayA" = (
-/obj/machinery/firealarm{
-	dir = 8
+/obj/machinery/power/apc/drained,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 4
+	dir = 1
 	},
 /area/ice_colony/surface/dorms/canteen)
 "ayB" = (
@@ -9462,15 +9457,13 @@
 	},
 /area/ice_colony/surface/dorms/canteen)
 "ayF" = (
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
+/obj/machinery/firealarm{
+	dir = 8
 	},
-/obj/machinery/power/apc/drained,
-/turf/open/floor/tile/dark/brown2{
-	dir = 1
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 4
 	},
-/area/ice_colony/surface/garage/one)
+/area/ice_colony/surface/dorms/canteen)
 "ayG" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -9710,7 +9703,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
-/area/ice_colony/surface/garage/two)
+/area/ice_colony/surface/garage/one)
 "azl" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -9767,16 +9760,15 @@
 	},
 /area/ice_colony/surface/dorms)
 "azr" = (
-/obj/structure/closet/crate/hydroponics,
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/drained,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 5
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
 	},
-/area/ice_colony/surface/hydroponics/south)
+/area/ice_colony/surface/garage/two)
 "azs" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -9977,20 +9969,12 @@
 	},
 /area/ice_colony/surface/garage/one)
 "azW" = (
-/obj/structure/disposalpipe/segment/corner{
-	dir = 2
-	},
-/obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/open/floor/tile/dark/yellow2{
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/area/ice_colony/surface/garage/repair)
+/turf/open/floor/tile/dark/brown2,
+/area/ice_colony/surface/disposals)
 "azX" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark/brown2{
@@ -10255,16 +10239,16 @@
 	},
 /area/ice_colony/surface/garage/two)
 "aAN" = (
-/obj/structure/closet/secure_closet/security,
-/obj/machinery/power/apc/drained,
+/obj/structure/closet/crate/hydroponics,
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor/tile/dark/red2{
-	dir = 1
+/obj/machinery/power/apc/drained,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 5
 	},
-/area/ice_colony/surface/command/checkpoint)
+/area/ice_colony/surface/hydroponics/south)
 "aAO" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark/brown2{
@@ -10307,12 +10291,20 @@
 	},
 /area/ice_colony/surface/garage/one)
 "aAV" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
+	},
+/obj/structure/table,
+/obj/effect/spawner/random/tool,
+/obj/machinery/power/apc/drained,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
-/turf/open/floor/tile/dark/brown2,
-/area/ice_colony/surface/disposals)
+/area/ice_colony/surface/garage/repair)
 "aAW" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/two)
@@ -10867,13 +10859,14 @@
 	},
 /area/ice_colony/surface/garage/repair)
 "aCj" = (
-/obj/machinery/firealarm{
-	icon_state = "fire0";
-	dir = 4
+/obj/structure/closet/secure_closet/security,
+/obj/machinery/power/apc/drained,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/obj/item/weapon/gun/energy/taser,
 /turf/open/floor/tile/dark/red2{
-	dir = 8
+	dir = 1
 	},
 /area/ice_colony/surface/command/checkpoint)
 "aCk" = (
@@ -11025,8 +11018,8 @@
 /area/ice_colony/surface/command/control/office)
 "aCG" = (
 /obj/structure/closet/wardrobe/green,
-/obj/machinery/firealarm{
-	dir = 8
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
@@ -11192,17 +11185,14 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control/office)
 "aDd" = (
-/obj/machinery/power/apc/drained{
+/obj/machinery/vending/tool,
+/obj/machinery/alarm{
 	dir = 8
 	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/open/floor/tile/dark/blue2{
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
-/area/ice_colony/surface/command/control/office)
+/area/ice_colony/surface/hydroponics/south)
 "aDe" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/wood,
@@ -11355,22 +11345,14 @@
 	},
 /area/ice_colony/surface/hydroponics/south)
 "aDx" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/firealarm{
+	dir = 4
+	},
+/obj/item/weapon/gun/energy/taser,
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 6
-	},
-/area/ice_colony/surface/command/control/office)
+/area/ice_colony/surface/command/checkpoint)
 "aDy" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
@@ -11402,14 +11384,14 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
 "aDC" = (
+/obj/structure/closet/wardrobe/green,
 /obj/machinery/firealarm{
-	icon_state = "fire0";
-	dir = 4
-	},
-/turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
-/area/ice_colony/surface/command/control)
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 4
+	},
+/area/ice_colony/surface/hydroponics/south)
 "aDD" = (
 /turf/open/floor/tile/dark/red2{
 	dir = 4
@@ -11778,16 +11760,17 @@
 	},
 /area/ice_colony/surface/command/control/office)
 "aEu" = (
-/obj/structure/largecrate/random,
-/obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/turf/open/floor/tile/vault{
+/obj/machinery/power/apc/drained{
 	dir = 8
 	},
-/area/ice_colony/surface/storage_unit/power)
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/ice_colony/surface/command/control/office)
 "aEv" = (
 /obj/machinery/space_heater,
 /turf/open/floor/tile/dark/brown2{
@@ -11823,16 +11806,22 @@
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
 "aEB" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/power/apc/drained,
 /obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/turf/open/floor/wood,
-/area/ice_colony/surface/command/crisis)
+/obj/machinery/firealarm{
+	dir = 8
+	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/ice_colony/surface/command/control/office)
 "aEC" = (
 /turf/closed/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -11847,11 +11836,13 @@
 	},
 /area/ice_colony/surface/hydroponics/south)
 "aEF" = (
-/obj/structure/closet/wardrobe/green,
-/turf/open/floor/tile/darkgreen/darkgreen2{
+/obj/machinery/firealarm{
 	dir = 4
 	},
-/area/ice_colony/surface/hydroponics/south)
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/ice_colony/surface/command/control)
 "aEG" = (
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/command/control)
@@ -12450,17 +12441,17 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/south)
 "aGh" = (
-/obj/machinery/vending/tool,
-/obj/machinery/light{
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/alarm{
-	dir = 8
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 4
+/turf/open/floor/tile/dark/blue2{
+	dir = 2
 	},
-/area/ice_colony/surface/hydroponics/south)
+/area/ice_colony/surface/command/control)
 "aGi" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -12541,15 +12532,16 @@
 	},
 /area/ice_colony/surface/hydroponics/south)
 "aGv" = (
-/obj/structure/closet/secure_closet/guncabinet,
-/obj/machinery/firealarm{
-	icon_state = "fire0";
-	dir = 4
+/obj/structure/largecrate/random,
+/obj/machinery/power/apc/drained,
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
 	},
-/obj/item/weapon/gun/pistol/highpower,
-/obj/item/ammo_magazine/pistol/highpower,
-/turf/open/floor/wood,
-/area/ice_colony/surface/command/crisis)
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/ice_colony/surface/storage_unit/power)
 "aGw" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12635,13 +12627,16 @@
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
 "aGF" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/power/apc/drained,
 /obj/structure/cable{
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/drained,
-/turf/open/floor/tile/dark,
-/area/ice_colony/underground/westroadtunnel)
+/turf/open/floor/wood,
+/area/ice_colony/surface/command/crisis)
 "aGG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -12983,12 +12978,14 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aHn" = (
+/obj/structure/closet/secure_closet/guncabinet,
 /obj/machinery/firealarm{
-	icon_state = "fire0";
 	dir = 4
 	},
+/obj/item/weapon/gun/pistol/highpower,
+/obj/item/ammo_magazine/pistol/highpower,
 /turf/open/floor/wood,
-/area/ice_colony/surface/command/control/pv1)
+/area/ice_colony/surface/command/crisis)
 "aHo" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -13044,17 +13041,13 @@
 	},
 /area/ice_colony/surface/command/control)
 "aHu" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
-/area/ice_colony/surface/command/control)
+/obj/machinery/power/apc/drained,
+/turf/open/floor/tile/dark,
+/area/ice_colony/underground/westroadtunnel)
 "aHv" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -13109,11 +13102,10 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "aHB" = (
 /obj/machinery/firealarm{
-	icon_state = "fire0";
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/ice_colony/surface/command/control/pv2)
+/area/ice_colony/surface/command/control/pv1)
 "aHC" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -13810,17 +13802,6 @@
 /turf/closed/ice/corner,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aJD" = (
-/obj/effect/landmark/random_item/crap,
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/obj/machinery/power/apc/drained,
-/turf/open/floor/tile/vault{
-	dir = 8
-	},
-/area/ice_colony/surface/storage_unit/telecomms)
-"aJE" = (
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -13833,6 +13814,12 @@
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/control/pv1)
+"aJE" = (
+/obj/machinery/firealarm{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ice_colony/surface/command/control/pv2)
 "aJF" = (
 /obj/machinery/light,
 /obj/structure/cable{
@@ -13886,18 +13873,6 @@
 /turf/closed/ice/thin/single,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aJO" = (
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/ice_colony/underground/responsehangar)
-"aJP" = (
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -13910,6 +13885,17 @@
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/control/pv2)
+"aJP" = (
+/obj/effect/landmark/random_item/crap,
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/power/apc/drained,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/ice_colony/surface/storage_unit/telecomms)
 "aJQ" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/corner{
@@ -14646,20 +14632,15 @@
 	},
 /area/ice_colony/surface/hangar/checkpoint)
 "aLX" = (
-/obj/structure/table/reinforced,
-/obj/item/clipboard,
-/obj/item/folder/red{
-	pixel_x = -3;
-	pixel_y = 2
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
-/obj/item/folder/red{
-	pixel_x = 4;
-	pixel_y = -2
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/obj/item/tool/stamp,
-/obj/machinery/alarm,
 /turf/open/floor/tile/dark/red2{
-	dir = 5
+	dir = 8
 	},
 /area/ice_colony/underground/responsehangar)
 "aLY" = (
@@ -15196,17 +15177,16 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/checkpoint)
 "aNs" = (
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/machinery/camera/autoname{
+	dir = 2
 	},
-/obj/machinery/power/apc/drained{
-	dir = 8
+/obj/machinery/power/apc,
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
 	},
-/turf/open/floor/tile/dark/red2{
-	dir = 4
-	},
-/area/ice_colony/underground/responsehangar)
+/turf/open/floor/tile/dark,
+/area/ice_colony/surface/hangar/checkpoint)
 "aNt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -15249,17 +15229,22 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/mining)
 "aNA" = (
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+/obj/structure/table/reinforced,
+/obj/item/clipboard,
+/obj/item/folder/red{
+	pixel_x = -3;
+	pixel_y = 2
 	},
-/obj/machinery/power/apc/drained{
-	dir = 1
+/obj/item/folder/red{
+	pixel_x = 4;
+	pixel_y = -2
 	},
-/turf/open/floor/tile/vault{
-	dir = 8
+/obj/item/tool/stamp,
+/obj/machinery/alarm,
+/turf/open/floor/tile/dark/red2{
+	dir = 5
 	},
-/area/ice_colony/surface/storage_unit/research)
+/area/ice_colony/underground/responsehangar)
 "aNB" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -15545,13 +15530,17 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aOs" = (
-/obj/structure/cable,
-/obj/machinery/processor,
-/obj/machinery/power/apc/drained{
-	dir = 1
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/turf/open/floor/freezer,
-/area/ice_colony/surface/bar/canteen)
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
+/area/ice_colony/underground/responsehangar)
 "aOt" = (
 /obj/item/lightstick/anchored,
 /turf/open/snow/layer1,
@@ -15730,19 +15719,6 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aOQ" = (
-/obj/machinery/camera/autoname{
-	dir = 2
-	},
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/turf/open/floor/tile/dark,
-/area/ice_colony/surface/hangar/checkpoint)
-"aOR" = (
 /obj/structure/closet/secure_closet/security,
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
@@ -15753,6 +15729,16 @@
 	dir = 1
 	},
 /area/ice_colony/surface/hangar/checkpoint)
+"aOR" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
+	},
+/area/ice_colony/surface/research)
 "aOS" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/tile/dark/red2{
@@ -16454,15 +16440,17 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/alpha)
 "aQI" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
 	},
-/turf/open/floor/tile/dark/purple2{
+/obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/area/ice_colony/surface/research)
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/ice_colony/surface/storage_unit/research)
 "aQJ" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
@@ -16601,15 +16589,18 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aQZ" = (
+/obj/machinery/power/apc/drained,
 /obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/drained{
-	dir = 1
+/obj/machinery/firealarm{
+	dir = 4
 	},
-/turf/open/floor/wood,
-/area/ice_colony/surface/bar/bar)
+/turf/open/floor/tile/dark/brown2{
+	dir = 9
+	},
+/area/ice_colony/surface/hangar/beta)
 "aRa" = (
 /obj/structure/sink{
 	dir = 1
@@ -16725,26 +16716,21 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aRm" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/machinery/firealarm{
-	icon_state = "fire0";
 	dir = 4
 	},
-/turf/open/floor/tile/dark/brown2{
-	dir = 9
-	},
-/area/ice_colony/surface/hangar/beta)
+/obj/machinery/vending/dinnerware,
+/obj/machinery/light,
+/turf/open/floor/freezer,
+/area/ice_colony/surface/bar/canteen)
 "aRn" = (
 /obj/structure/cable,
+/obj/machinery/processor,
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor/tile/dark/yellow2,
-/area/ice_colony/surface/research/tech_storage)
+/turf/open/floor/freezer,
+/area/ice_colony/surface/bar/canteen)
 "aRo" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 2
@@ -16853,14 +16839,18 @@
 /turf/open/shuttle/plating,
 /area/ice_colony/surface/hangar/beta)
 "aRG" = (
-/obj/machinery/firealarm{
-	icon_state = "fire0";
-	dir = 4
+/obj/structure/table/woodentable,
+/obj/machinery/chem_dispenser/beer,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/obj/machinery/vending/dinnerware,
-/obj/machinery/light,
-/turf/open/floor/freezer,
-/area/ice_colony/surface/bar/canteen)
+/obj/machinery/alarm{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ice_colony/surface/bar/bar)
 "aRH" = (
 /obj/machinery/light,
 /obj/item/weapon/gun/pistol/holdout,
@@ -17082,14 +17072,11 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aSc" = (
-/obj/structure/table/woodentable,
-/obj/machinery/chem_dispenser/beer,
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/obj/machinery/alarm{
+/obj/machinery/power/apc/drained{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -18808,7 +18795,6 @@
 	dir = 1
 	},
 /obj/machinery/firealarm{
-	icon_state = "fire0";
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -19003,10 +18989,12 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aWS" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/obj/machinery/alarm,
-/turf/open/floor/freezer,
-/area/ice_colony/underground/requesition/storage)
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/yellow2,
+/area/ice_colony/surface/research/tech_storage)
 "aWT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/junction,
@@ -19660,12 +19648,10 @@
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aYN" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/purple2,
-/area/ice_colony/surface/excavation)
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/machinery/alarm,
+/turf/open/floor/freezer,
+/area/ice_colony/underground/requesition/storage)
 "aYO" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
@@ -22287,17 +22273,12 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/requesition/lobby)
 "bfT" = (
-/obj/structure/bed/chair{
-	dir = 4
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
-/obj/machinery/firealarm{
-	icon_state = "fire0";
-	dir = 4
-	},
-/turf/open/floor/tile/dark/brown2{
-	dir = 8
-	},
-/area/ice_colony/underground/requesition/lobby)
+/turf/open/floor/tile/dark/purple2,
+/area/ice_colony/surface/excavation)
 "bfU" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -22874,12 +22855,16 @@
 	},
 /area/ice_colony/surface/excavation)
 "bhB" = (
-/obj/structure/cable/yellow,
-/obj/machinery/power/apc/drained{
-	dir = 1
+/obj/structure/bed/chair{
+	dir = 4
 	},
-/turf/open/floor/tile/dark/brown2,
-/area/ice_colony/underground/requesition/sec_storage)
+/obj/machinery/firealarm{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/ice_colony/underground/requesition/lobby)
 "bhC" = (
 /turf/open/floor/tile/dark/purple2,
 /area/ice_colony/surface/excavation)
@@ -22945,12 +22930,12 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "bhM" = (
-/obj/machinery/alarm,
-/obj/machinery/power/port_gen/pacman,
-/turf/open/floor/tile/dark/yellow2{
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/area/ice_colony/underground/engineering)
+/turf/open/floor/tile/dark/brown2,
+/area/ice_colony/underground/requesition/sec_storage)
 "bhN" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/end{
@@ -23130,9 +23115,17 @@
 	},
 /area/ice_colony/underground/hangar)
 "bil" = (
-/obj/effect/landmark/pred_teleport_destination,
-/turf/open/snow/layer0,
-/area/ice_colony/exterior/surface/valley/south/excavation)
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/turf/open/floor/animated/bcircuit,
+/area/ice_colony/underground/engineering/substation)
 "bim" = (
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "req_sec_storage";
@@ -23553,15 +23546,12 @@
 	},
 /area/ice_colony/underground/requesition/sec_storage)
 "bjl" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
+/obj/machinery/alarm,
+/obj/machinery/power/port_gen/pacman,
+/turf/open/floor/tile/dark/yellow2{
+	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/open/floor/carpet,
-/area/ice_colony/underground/crew/chapel)
+/area/ice_colony/underground/engineering)
 "bjm" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/sec_storage)
@@ -24088,17 +24078,15 @@
 	},
 /area/ice_colony/surface/storage_unit/power)
 "bkQ" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable,
 /obj/machinery/power/apc/drained{
-	dir = 1
+	dir = 8
 	},
-/turf/open/floor/animated/bcircuit,
-/area/ice_colony/underground/engineering/substation)
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/open/floor/carpet,
+/area/ice_colony/underground/crew/chapel)
 "bkR" = (
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/chapel)
@@ -24712,7 +24700,6 @@
 /area/ice_colony/underground/crew/chapel)
 "bmy" = (
 /obj/machinery/firealarm{
-	icon_state = "fire0";
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -24736,7 +24723,6 @@
 /area/ice_colony/underground/crew/chapel)
 "bmD" = (
 /obj/machinery/firealarm{
-	icon_state = "fire0";
 	dir = 4
 	},
 /obj/structure/curtain/black,
@@ -25298,7 +25284,6 @@
 /area/ice_colony/underground/hallway/north_west)
 "boe" = (
 /obj/machinery/firealarm{
-	icon_state = "fire0";
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -25488,11 +25473,14 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "boG" = (
-/obj/structure/closet/walllocker/hydrant,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 1
+/obj/machinery/light{
+	dir = 8
 	},
-/area/ice_colony/underground/hallway/north_west)
+/obj/machinery/alarm,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 9
+	},
+/area/ice_colony/underground/crew/bball)
 "boH" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -25541,14 +25529,18 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/morgue)
 "boO" = (
-/obj/structure/closet/walllocker/hydrant,
-/obj/machinery/light{
-	dir = 1
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/lowcharge{
+	icon_state = "apc0";
+	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 1
+	dir = 8
 	},
-/area/ice_colony/underground/hallway/south_east)
+/area/ice_colony/underground/crew/bball)
 "boP" = (
 /obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/floor/tile/dark2,
@@ -25602,14 +25594,11 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "boX" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/alarm,
+/obj/structure/closet/walllocker/hydrant/full,
 /turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 9
+	dir = 1
 	},
-/area/ice_colony/underground/crew/bball)
+/area/ice_colony/underground/hallway/north_west)
 "boY" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -25644,18 +25633,17 @@
 	},
 /area/ice_colony/underground/hallway/south_east)
 "bpd" = (
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc/lowcharge{
-	icon_state = "apc0";
-	dir = 4
-	},
-/turf/open/floor/tile/darkgreen/darkgreen2{
+/obj/machinery/power/apc/drained{
 	dir = 8
 	},
-/area/ice_colony/underground/crew/bball)
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/open/floor/tile/red/whitered{
+	dir = 4
+	},
+/area/ice_colony/underground/medical/or)
 "bpe" = (
 /obj/structure/rack,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25924,14 +25912,11 @@
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/open/floor/tile/red/whitered{
+/obj/structure/cable/yellow,
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/ice_colony/underground/medical/or)
+/area/ice_colony/underground/reception/checkpoint_north)
 "bpR" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -26052,14 +26037,13 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/responsehangar)
 "bqe" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/obj/structure/cable/yellow,
-/turf/open/floor/tile/dark/red2{
+/obj/machinery/firealarm{
 	dir = 4
 	},
-/area/ice_colony/underground/reception/checkpoint_north)
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 8
+	},
+/area/ice_colony/underground/crew/bball)
 "bqf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -26113,14 +26097,15 @@
 	},
 /area/ice_colony/underground/engineering)
 "bqn" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	on = 1
+	},
 /obj/machinery/firealarm{
-	icon_state = "fire0";
-	dir = 4
+	dir = 1
 	},
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 8
-	},
-/area/ice_colony/underground/crew/bball)
+/turf/open/floor/tile/dark/red2,
+/area/ice_colony/underground/reception/checkpoint_north)
 "bqo" = (
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
@@ -26185,16 +26170,16 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "bqw" = (
-/obj/machinery/firealarm{
-	icon_state = "fire0";
-	dir = 1
+/obj/machinery/power/apc/drained,
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
 	},
-/turf/open/floor/tile/dark/red2,
-/area/ice_colony/underground/reception/checkpoint_north)
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/engineering)
 "bqx" = (
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/underground/hallway/south_east)
@@ -26220,16 +26205,14 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "bqA" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/structure/flora/pottedplant,
+/obj/machinery/firealarm{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 10
 	},
-/turf/open/floor/plating,
-/area/ice_colony/underground/maintenance/engineering)
+/area/ice_colony/underground/medical/lobby)
 "bqB" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -26256,14 +26239,14 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "bqE" = (
-/obj/structure/closet/walllocker/hydrant{
-	icon_state = "hydrant";
-	dir = 4
+/obj/structure/closet/walllocker/hydrant/full,
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 8
+	dir = 1
 	},
-/area/ice_colony/underground/hallway/north_west)
+/area/ice_colony/underground/hallway/south_east)
 "bqF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -26419,14 +26402,11 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/underground/engineering)
 "brg" = (
-/obj/structure/flora/pottedplant,
-/obj/machinery/firealarm{
-	icon_state = "fire0";
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 10
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/underground/medical/lobby)
 "brh" = (
 /turf/closed/wall/r_wall,
@@ -26673,19 +26653,14 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "brQ" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/closet/walllocker/hydrant,
-/turf/open/floor/tile/red/whitered{
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/area/ice_colony/underground/medical/hallway)
+/turf/open/floor/tile/red/whitered{
+	dir = 2
+	},
+/area/ice_colony/underground/medical/treatment)
 "brR" = (
 /obj/structure/bed/chair,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -27663,15 +27638,14 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/marshal)
 "buy" = (
+/obj/structure/cable/yellow,
 /obj/machinery/power/apc/drained{
-	dir = 4
+	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
+/turf/open/floor/tile/red/whitered{
+	dir = 2
 	},
-/turf/open/floor/plating,
-/area/ice_colony/underground/maintenance/central)
+/area/ice_colony/underground/medical/hallway)
 "buz" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -27937,11 +27911,15 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/lobby)
 "bvh" = (
-/obj/machinery/alarm,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 1
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
-/area/ice_colony/underground/crew/canteen)
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/central)
 "bvi" = (
 /turf/open/floor/tile/red/whitered{
 	dir = 4
@@ -28703,12 +28681,14 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "bwX" = (
-/obj/structure/bed/chair,
-/obj/machinery/alarm,
-/turf/open/floor/tile/dark/red2{
-	dir = 1
+/obj/structure/closet/walllocker/hydrant/full{
+	icon_state = "hydrant";
+	dir = 4
 	},
-/area/ice_colony/underground/security/hallway)
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 8
+	},
+/area/ice_colony/underground/hallway/north_west)
 "bwY" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -28905,11 +28885,11 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
 "bxy" = (
-/obj/structure/closet/walllocker/hydrant,
-/turf/open/floor/tile/dark/red2{
+/obj/machinery/alarm,
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
-/area/ice_colony/underground/security/hallway)
+/area/ice_colony/underground/crew/canteen)
 "bxz" = (
 /obj/machinery/alarm{
 	dir = 1
@@ -28938,8 +28918,10 @@
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor/tile/darkgreen/darkgreen2,
-/area/ice_colony/underground/medical/lobby)
+/turf/open/floor/tile/red/whitered{
+	dir = 2
+	},
+/area/ice_colony/underground/medical/storage)
 "bxD" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 4
@@ -28972,17 +28954,12 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bxG" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
+/obj/structure/bed/chair,
+/obj/machinery/alarm,
+/turf/open/floor/tile/dark/red2{
+	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
-	},
-/area/ice_colony/underground/command/center)
+/area/ice_colony/underground/security/hallway)
 "bxH" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -29141,14 +29118,17 @@
 	},
 /area/ice_colony/underground/medical/treatment)
 "byb" = (
-/obj/structure/cable/yellow,
 /obj/machinery/power/apc/drained{
-	dir = 1
+	dir = 8
 	},
-/turf/open/floor/tile/red/whitered{
-	dir = 2
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/area/ice_colony/underground/medical/treatment)
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/ice_colony/underground/command/center)
 "byc" = (
 /turf/open/ice,
 /area/ice_colony/underground/maintenance/engineering)
@@ -29331,14 +29311,15 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/engineering)
 "byy" = (
-/obj/structure/cable/yellow,
-/obj/machinery/power/apc/drained{
+/obj/machinery/power/apc/drained,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
-/area/ice_colony/underground/medical/hallway)
+/area/ice_colony/underground/security/interrogation)
 "byz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -29397,13 +29378,13 @@
 "byD" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/turf/open/floor/tile/dark/red2{
+/turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
-/area/ice_colony/underground/security/interrogation)
+/area/ice_colony/underground/storage/highsec)
 "byE" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -29473,15 +29454,17 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
 "byM" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/machinery/firealarm{
+	dir = 8
+	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
 	},
 /turf/open/floor/tile/dark/blue2{
-	dir = 1
+	dir = 6
 	},
-/area/ice_colony/underground/storage/highsec)
+/area/ice_colony/underground/command/center)
 "byN" = (
 /obj/machinery/firealarm{
 	dir = 2
@@ -29535,17 +29518,12 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "byW" = (
-/obj/machinery/firealarm{
-	dir = 8
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 6
-	},
-/area/ice_colony/underground/command/center)
+/turf/open/floor/tile/darkgreen/darkgreen2,
+/area/ice_colony/underground/crew/canteen)
 "byX" = (
 /obj/machinery/firealarm{
 	dir = 2
@@ -29554,7 +29532,6 @@
 /area/ice_colony/underground/security/marshal)
 "byY" = (
 /obj/machinery/firealarm{
-	icon_state = "fire0";
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -30057,7 +30034,6 @@
 /area/ice_colony/underground/medical/storage)
 "bAu" = (
 /obj/machinery/firealarm{
-	icon_state = "fire0";
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -30220,14 +30196,14 @@
 	},
 /area/ice_colony/underground/medical/storage)
 "bAS" = (
-/obj/structure/cable/yellow,
-/obj/machinery/power/apc/drained{
-	dir = 1
+/obj/structure/bed/chair/comfy/brown,
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
 	},
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
-/area/ice_colony/underground/medical/storage)
+/obj/machinery/power/apc/drained,
+/turf/open/floor/wood,
+/area/ice_colony/underground/command/pv2)
 "bAT" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/tile/red/whitered{
@@ -30373,14 +30349,13 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bBo" = (
-/obj/structure/bed/chair/comfy/brown,
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/machinery/power/apc/drained,
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
 /turf/open/floor/wood,
-/area/ice_colony/underground/command/pv2)
+/area/ice_colony/underground/crew/dorm_l)
 "bBp" = (
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
@@ -30953,7 +30928,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/wood,
-/area/ice_colony/underground/crew/dorm_l)
+/area/ice_colony/underground/crew/dorm_r)
 "bCA" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -31135,13 +31110,14 @@
 	},
 /area/ice_colony/underground/security/interrogation)
 "bCW" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/machinery/firealarm{
+	dir = 4
 	},
-/turf/open/floor/wood,
-/area/ice_colony/underground/crew/dorm_r)
+/obj/structure/table/reinforced,
+/turf/open/floor/tile/dark/blue2{
+	dir = 10
+	},
+/area/ice_colony/underground/storage/highsec)
 "bCX" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/evidence,
@@ -31206,15 +31182,22 @@
 	},
 /area/ice_colony/underground/command/center)
 "bDh" = (
-/obj/machinery/firealarm{
-	icon_state = "fire0";
-	dir = 4
-	},
 /obj/structure/table/reinforced,
-/turf/open/floor/tile/dark/blue2{
-	dir = 10
+/obj/item/clipboard,
+/obj/item/folder/red{
+	pixel_x = -3;
+	pixel_y = 2
 	},
-/area/ice_colony/underground/storage/highsec)
+/obj/item/folder/red{
+	pixel_x = 4;
+	pixel_y = -2
+	},
+/obj/item/tool/stamp,
+/obj/machinery/alarm,
+/turf/open/floor/tile/dark/red2{
+	dir = 5
+	},
+/area/ice_colony/underground/security/hallway)
 "bDi" = (
 /obj/machinery/door_control{
 	id = "westhangar";
@@ -31249,22 +31232,20 @@
 	},
 /area/ice_colony/underground/storage/highsec)
 "bDm" = (
-/obj/structure/table/reinforced,
-/obj/item/clipboard,
-/obj/item/folder/red{
-	pixel_x = -3;
-	pixel_y = 2
+/obj/structure/bed/chair{
+	dir = 1
 	},
-/obj/item/folder/red{
-	pixel_x = 4;
-	pixel_y = -2
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
-/obj/item/tool/stamp,
-/obj/machinery/alarm,
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
-/area/ice_colony/underground/security/hallway)
+/area/ice_colony/underground/security/backroom)
 "bDn" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/tile/dark/blue2{
@@ -31322,20 +31303,19 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bDu" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/obj/machinery/power/apc/drained{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
+	d1 = 4;
 	d2 = 8;
-	icon_state = "0-8"
+	icon_state = "4-8"
 	},
-/turf/open/floor/tile/dark/red2{
-	dir = 5
+/obj/structure/closet/walllocker/hydrant/full,
+/turf/open/floor/tile/red/whitered{
+	dir = 1
 	},
-/area/ice_colony/underground/security/backroom)
+/area/ice_colony/underground/medical/hallway)
 "bDv" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/tile/dark/red2{
@@ -31533,12 +31513,17 @@
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/underground/crew/canteen)
 "bDZ" = (
-/obj/structure/cable/yellow,
-/obj/machinery/power/apc/drained{
-	dir = 1
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/turf/open/floor/tile/darkgreen/darkgreen2,
-/area/ice_colony/underground/crew/canteen)
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
+/area/ice_colony/underground/security/hallway)
 "bEa" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 6
@@ -31823,18 +31808,6 @@
 	},
 /area/ice_colony/underground/command/center)
 "bEO" = (
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/red2{
-	dir = 4
-	},
-/area/ice_colony/underground/security/hallway)
-"bEP" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -31844,6 +31817,17 @@
 	dir = 1
 	},
 /area/ice_colony/underground/storage)
+"bEP" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/closet/secure_closet/security,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 5
+	},
+/area/ice_colony/underground/command/checkpoint)
 "bEQ" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
@@ -31855,21 +31839,21 @@
 	},
 /area/ice_colony/surface/excavationbarracks)
 "bER" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/closet/secure_closet/security,
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
+/obj/structure/disposalpipe/segment,
+/obj/machinery/firealarm{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
+/area/ice_colony/underground/security/hallway)
+"bES" = (
+/obj/machinery/firealarm{
+	dir = 4
 	},
 /turf/open/floor/tile/dark/red2{
-	dir = 5
-	},
-/area/ice_colony/underground/command/checkpoint)
-"bES" = (
-/obj/structure/bed/chair,
-/obj/structure/closet/walllocker/hydrant,
-/turf/open/floor/tile/dark/blue2{
-	dir = 1
+	dir = 8
 	},
 /area/ice_colony/underground/command/checkpoint)
 "bET" = (
@@ -31903,15 +31887,15 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_r)
 "bEY" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/firealarm{
-	dir = 8
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/power/apc/drained,
 /turf/open/floor/tile/dark/red2{
-	dir = 4
+	dir = 1
 	},
-/area/ice_colony/underground/security/hallway)
+/area/ice_colony/underground/security)
 "bEZ" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/tile/dark/red2{
@@ -31966,14 +31950,20 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bFh" = (
+/obj/structure/table,
+/obj/item/cell/high/empty,
+/obj/machinery/cell_charger,
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
 /obj/machinery/firealarm{
-	icon_state = "fire0";
 	dir = 4
 	},
-/turf/open/floor/tile/dark/red2{
-	dir = 8
+/turf/open/floor/tile/dark/yellow2{
+	dir = 10
 	},
-/area/ice_colony/underground/command/checkpoint)
+/area/ice_colony/underground/storage)
 "bFi" = (
 /obj/structure/table/reinforced,
 /obj/item/circuitboard/machine/smes,
@@ -32059,15 +32049,11 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_l)
 "bFv" = (
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc/drained,
-/turf/open/floor/tile/dark/red2{
+/obj/machinery/firealarm{
 	dir = 1
 	},
-/area/ice_colony/underground/security)
+/turf/open/floor/wood,
+/area/ice_colony/underground/crew/dorm_l)
 "bFw" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 2
@@ -32186,21 +32172,11 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bFN" = (
-/obj/structure/table,
-/obj/item/cell/high/empty,
-/obj/machinery/cell_charger,
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/machinery/firealarm{
-	icon_state = "fire0";
-	dir = 4
+	dir = 1
 	},
-/turf/open/floor/tile/dark/yellow2{
-	dir = 10
-	},
-/area/ice_colony/underground/storage)
+/turf/open/floor/wood,
+/area/ice_colony/underground/crew/dorm_r)
 "bFO" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -32328,12 +32304,16 @@
 	},
 /area/ice_colony/underground/security/backroom)
 "bGc" = (
-/obj/machinery/firealarm{
-	icon_state = "fire0";
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/alarm,
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
-/turf/open/floor/wood,
-/area/ice_colony/underground/crew/dorm_l)
+/area/ice_colony/underground/hallway/south_east)
 "bGd" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/tile/dark/red2{
@@ -32399,12 +32379,20 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/hallway)
 "bGj" = (
-/obj/machinery/firealarm{
-	icon_state = "fire0";
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/power/apc/drained,
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
-/turf/open/floor/wood,
-/area/ice_colony/underground/crew/dorm_r)
+/area/ice_colony/underground/hallway/south_east)
 "bGk" = (
 /obj/structure/table,
 /obj/item/inflatable,
@@ -32482,16 +32470,13 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/storage)
 "bGs" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
-/obj/structure/closet/walllocker/hydrant,
-/turf/open/floor/tile/dark/yellow2{
-	dir = 1
-	},
-/area/ice_colony/underground/hallway/south_east)
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/east)
 "bGt" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark/yellow2{
@@ -32514,15 +32499,14 @@
 /area/ice_colony/exterior/underground/caves)
 "bGx" = (
 /obj/structure/cable/yellow{
-	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "0-8"
 	},
-/obj/machinery/alarm,
-/turf/open/floor/tile/darkgreen/darkgreen2{
+/obj/machinery/power/apc/drained,
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/ice_colony/underground/hallway/south_east)
+/area/ice_colony/underground/security/armory)
 "bGy" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/dark/blue2{
@@ -32635,20 +32619,14 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_r)
 "bGR" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/structure/closet/secure_closet/security,
+/obj/machinery/light{
+	dir = 4
 	},
-/obj/machinery/power/apc/drained,
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
+/turf/open/floor/tile/dark/red2{
+	dir = 5
 	},
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 1
-	},
-/area/ice_colony/underground/hallway/south_east)
+/area/ice_colony/underground/security/armory)
 "bGS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -32755,13 +32733,15 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bHg" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/power/apc/drained{
-	dir = 8
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/obj/structure/cable/yellow,
-/turf/open/floor/plating,
-/area/ice_colony/underground/maintenance/east)
+/obj/machinery/power/apc/drained,
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
+/area/ice_colony/underground/security/brig)
 "bHh" = (
 /obj/structure/table,
 /obj/item/storage/box/lightstick,
@@ -32909,14 +32889,11 @@
 	},
 /area/ice_colony/underground/command/checkpoint)
 "bHz" = (
-/obj/structure/closet/walllocker/hydrant{
-	icon_state = "hydrant";
-	dir = 4
+/obj/structure/closet/walllocker/hydrant/full,
+/turf/open/floor/tile/dark/red2{
+	dir = 1
 	},
-/turf/open/floor/tile/dark/purple2{
-	dir = 8
-	},
-/area/ice_colony/underground/hallway/north_west)
+/area/ice_colony/underground/security/hallway)
 "bHA" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark/blue2{
@@ -32947,15 +32924,14 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bHE" = (
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/machinery/alarm,
+/obj/machinery/firealarm{
+	dir = 8
 	},
-/obj/machinery/power/apc/drained,
 /turf/open/floor/tile/dark/red2{
-	dir = 1
+	dir = 5
 	},
-/area/ice_colony/underground/security/armory)
+/area/ice_colony/underground/security/brig)
 "bHF" = (
 /obj/structure/filingcabinet/security,
 /turf/open/floor/tile/dark/red2{
@@ -33008,15 +32984,14 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/storage)
 "bHN" = (
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/structure/closet/secure_closet/security,
+/obj/machinery/firealarm{
+	dir = 8
 	},
-/obj/machinery/power/apc/drained,
 /turf/open/floor/tile/dark/red2{
-	dir = 1
+	dir = 4
 	},
-/area/ice_colony/underground/security/brig)
+/area/ice_colony/underground/security/armory)
 "bHO" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -33337,14 +33312,15 @@
 	},
 /area/ice_colony/underground/security)
 "bIx" = (
-/obj/machinery/alarm,
-/obj/machinery/firealarm{
-	dir = 8
+/obj/machinery/power/apc/drained,
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/turf/open/floor/tile/dark/red2{
-	dir = 5
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
 	},
-/area/ice_colony/underground/security/brig)
+/area/ice_colony/underground/crew/disposals)
 "bIy" = (
 /turf/closed/ice/junction,
 /area/ice_colony/exterior/underground/caves)
@@ -33359,17 +33335,11 @@
 /turf/open/snow/layer0,
 /area/ice_colony/surface/excavationbarracks)
 "bIB" = (
-/obj/structure/closet/secure_closet/security,
-/obj/machinery/light{
-	dir = 4
+/obj/machinery/alarm,
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
 	},
-/obj/machinery/firealarm{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/red2{
-	dir = 4
-	},
-/area/ice_colony/underground/security/armory)
+/area/ice_colony/underground/crew/disposals)
 "bIC" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -33602,11 +33572,15 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_l)
 "bJg" = (
-/obj/machinery/firealarm,
-/turf/open/floor/tile/dark/brown2{
-	dir = 1
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
-/area/ice_colony/underground/crew/disposals)
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/open/floor/wood,
+/area/ice_colony/underground/crew/leisure)
 "bJh" = (
 /obj/structure/bed,
 /turf/open/floor/wood,
@@ -33618,15 +33592,11 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_r)
 "bJj" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/open/floor/tile/dark/brown2{
+/obj/machinery/firealarm{
 	dir = 1
 	},
-/area/ice_colony/underground/crew/disposals)
+/turf/open/floor/wood,
+/area/ice_colony/underground/crew/leisure)
 "bJk" = (
 /turf/closed/ice_rock/single,
 /area/ice_colony/exterior/underground/caves/open)
@@ -33995,11 +33965,12 @@
 	},
 /area/ice_colony/underground/medical/hallway)
 "bJT" = (
-/obj/machinery/alarm,
-/turf/open/floor/tile/dark/brown2{
+/obj/structure/bed/chair,
+/obj/structure/closet/walllocker/hydrant/full,
+/turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
-/area/ice_colony/underground/crew/disposals)
+/area/ice_colony/underground/command/checkpoint)
 "bJU" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -34183,15 +34154,11 @@
 /turf/open/floor/tile/dark/red2,
 /area/ice_colony/underground/security)
 "bKq" = (
-/obj/machinery/power/apc/drained{
-	dir = 4
+/obj/machinery/firealarm{
+	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/turf/open/floor/wood,
-/area/ice_colony/underground/crew/leisure)
+/turf/open/floor/tile/dark/brown2,
+/area/ice_colony/underground/crew/lavatory)
 "bKr" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark/red2,
@@ -34206,12 +34173,16 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/security/backroom)
 "bKu" = (
-/obj/machinery/firealarm{
-	icon_state = "fire0";
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/closet/walllocker/hydrant/full,
+/turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
-/turf/open/floor/wood,
-/area/ice_colony/underground/crew/leisure)
+/area/ice_colony/underground/hallway/south_east)
 "bKv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -34338,11 +34309,12 @@
 	},
 /area/ice_colony/underground/security/armory)
 "bKL" = (
-/obj/structure/closet/secure_closet/security,
-/turf/open/floor/tile/dark/red2{
-	dir = 5
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
-/area/ice_colony/underground/security/armory)
+/turf/open/floor/tile/dark/brown2,
+/area/ice_colony/underground/crew/lavatory)
 "bKM" = (
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
@@ -34376,13 +34348,6 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/brig)
 "bKR" = (
-/obj/machinery/firealarm{
-	icon_state = "fire0";
-	dir = 1
-	},
-/turf/open/floor/tile/dark/brown2,
-/area/ice_colony/underground/crew/lavatory)
-"bKS" = (
 /obj/structure/table,
 /obj/item/tool/stamp{
 	tag = "icon-stamp-ce";
@@ -34393,6 +34358,15 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/reception)
+"bKS" = (
+/obj/structure/closet/walllocker/hydrant/full{
+	icon_state = "hydrant";
+	dir = 4
+	},
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
+	},
+/area/ice_colony/underground/hallway/north_west)
 "bKT" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/tile/dark/purple2{
@@ -34418,13 +34392,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
-"bKY" = (
-/obj/structure/cable/yellow,
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/brown2,
-/area/ice_colony/underground/crew/lavatory)
 "bKZ" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/dark/red2{
@@ -34828,6 +34795,14 @@
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/tile/dark/brown2{
 	dir = 9
+	},
+/area/ice_colony/underground/crew/disposals)
+"bMa" = (
+/obj/machinery/firealarm{
+	dir = 2
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
 	},
 /area/ice_colony/underground/crew/disposals)
 "bMb" = (
@@ -44296,7 +44271,7 @@ aaJ
 aaJ
 aym
 bUI
-akZ
+alx
 aoe
 asg
 asg
@@ -46190,7 +46165,7 @@ bmU
 bmU
 bnV
 bdb
-aWS
+aYN
 bcH
 bKP
 bcH
@@ -46983,7 +46958,7 @@ bjo
 bjo
 bjo
 bjo
-bhB
+bhM
 biy
 blG
 bms
@@ -48006,7 +47981,7 @@ bdL
 bhY
 biB
 biN
-bfT
+bhB
 bjB
 bjJ
 bjW
@@ -48388,7 +48363,7 @@ abT
 abB
 abB
 abB
-acV
+acl
 acY
 abT
 adp
@@ -48547,7 +48522,7 @@ bnN
 bkq
 bkq
 bkq
-bqE
+bwX
 bkq
 bkq
 bkq
@@ -48574,7 +48549,7 @@ cdc
 bkr
 bJv
 bDQ
-bHz
+bKS
 bKC
 bKT
 bkW
@@ -48645,7 +48620,7 @@ aby
 aby
 abB
 abB
-aby
+acA
 acY
 abB
 abB
@@ -50091,7 +50066,7 @@ bvW
 bwD
 bvW
 bvW
-brg
+bqA
 bqX
 byr
 bzc
@@ -50107,13 +50082,13 @@ bDd
 bDR
 bEm
 bEz
-bDh
+bCW
 bCu
 bGk
 bHh
 bHI
 bHI
-bFN
+bFh
 bHi
 bLt
 bMc
@@ -50862,10 +50837,10 @@ buJ
 buJ
 buJ
 bxj
-bxC
+brg
 bqX
 bJP
-byy
+buy
 byP
 bzW
 bzz
@@ -51383,7 +51358,7 @@ bze
 bzA
 bzY
 bAx
-bAS
+bxC
 byP
 buL
 btm
@@ -51645,13 +51620,13 @@ byP
 buL
 btm
 bCu
-byM
+byD
 bDE
 bDE
 bDE
 bFl
 bCu
-bEP
+bEO
 bHk
 bHM
 bHM
@@ -52073,7 +52048,7 @@ aJL
 aJL
 aJL
 aLM
-aQI
+aOR
 bkm
 bvU
 aPl
@@ -52128,7 +52103,7 @@ bkR
 bkR
 blC
 blU
-bjl
+bkQ
 bmY
 blO
 bps
@@ -52390,7 +52365,7 @@ bkE
 boM
 bkE
 bkE
-boG
+boX
 bkr
 byE
 bqq
@@ -52406,7 +52381,7 @@ bwm
 bvi
 bxM
 bqX
-brQ
+bDu
 bzd
 byP
 bzn
@@ -52942,12 +52917,12 @@ bIL
 bHi
 bHi
 bHi
-bGs
+bKu
 buW
 bMA
 bKW
 bNt
-bJg
+bMa
 bMZ
 bPd
 bPM
@@ -53061,7 +53036,7 @@ asO
 ati
 awB
 awS
-auP
+axc
 ath
 ath
 avB
@@ -53118,7 +53093,7 @@ aWP
 aXj
 aXj
 aXU
-aRn
+aWS
 aUZ
 aJL
 aJL
@@ -53461,7 +53436,7 @@ bMg
 bpu
 bKW
 bNt
-bJj
+bIx
 bNb
 bPd
 bPM
@@ -53718,7 +53693,7 @@ bMc
 bpu
 bKW
 bNt
-bJT
+bIB
 bNb
 bPd
 bUt
@@ -53966,7 +53941,7 @@ bFr
 bGB
 bGu
 cad
-bFh
+bES
 bHY
 bII
 bGB
@@ -54461,7 +54436,7 @@ bwL
 bwL
 bxk
 bwL
-byb
+brQ
 bqZ
 btm
 buL
@@ -54478,7 +54453,7 @@ bzG
 bEI
 bFw
 bGB
-bER
+bEP
 bHm
 bHm
 bIa
@@ -55265,7 +55240,7 @@ bOL
 bOL
 bOL
 bOL
-bKR
+bKq
 bNv
 bQn
 bPg
@@ -55610,7 +55585,7 @@ aaI
 abL
 abL
 aif
-amj
+amF
 amf
 amE
 anx
@@ -55641,7 +55616,7 @@ abL
 abL
 abL
 ayp
-azr
+aAN
 aEf
 aEf
 aGg
@@ -55869,9 +55844,9 @@ abL
 aif
 aif
 amg
-amF
 any
 anW
+apV
 aot
 aif
 aif
@@ -55883,12 +55858,12 @@ atL
 avp
 atl
 atl
-aur
+auP
 asR
 avi
 avQ
 awq
-aur
+auP
 atl
 atl
 alL
@@ -55900,9 +55875,9 @@ abL
 ayp
 ayp
 aEg
-aEF
-aGh
 aCG
+aDd
+aDC
 aHi
 ayp
 ayp
@@ -56534,7 +56509,7 @@ bzG
 bAY
 bFw
 bGB
-bES
+bJT
 bGF
 bGF
 bTy
@@ -56550,7 +56525,7 @@ bOL
 bOL
 bOt
 bOW
-bKY
+bKL
 bNv
 bQm
 bPg
@@ -56766,7 +56741,7 @@ bkr
 bsq
 brK
 btG
-bpQ
+bpd
 bvd
 bvM
 bwp
@@ -56784,8 +56759,8 @@ bAj
 bAj
 bBt
 bAj
-bxG
-byW
+byb
+byM
 bDH
 bEE
 bEN
@@ -56957,7 +56932,7 @@ aMb
 aMa
 aMa
 aMa
-aNA
+aQI
 aLA
 aMG
 aMG
@@ -58566,7 +58541,7 @@ bqr
 bsR
 btM
 buu
-bqw
+bqn
 bsQ
 bws
 bwx
@@ -58844,7 +58819,7 @@ byp
 buL
 bBV
 bEH
-bBo
+bAS
 bFG
 bGL
 bGM
@@ -59079,7 +59054,7 @@ bod
 bqQ
 bsS
 bsD
-bqe
+bpQ
 bvl
 bsQ
 bwr
@@ -59591,9 +59566,9 @@ bpu
 bCC
 brS
 brh
-boX
-bpd
-bqn
+boG
+boO
+bqe
 btX
 btX
 btX
@@ -60117,7 +60092,7 @@ bxr
 brh
 buL
 byq
-buy
+bvh
 byU
 byp
 bSb
@@ -60282,7 +60257,7 @@ aRZ
 aac
 aar
 aYW
-aGF
+aHu
 bdq
 aYW
 aac
@@ -60914,7 +60889,7 @@ bUK
 bpu
 bqx
 bNB
-bKq
+bJg
 bNk
 bNP
 bOu
@@ -61385,7 +61360,7 @@ bmG
 bkZ
 bpR
 bkI
-boO
+bqE
 bpu
 bEd
 brV
@@ -61414,14 +61389,14 @@ byI
 byI
 byI
 bEJ
-bCz
+bBo
 bFt
 bFt
 bFt
 bFt
 bFt
 bFt
-bGc
+bFv
 bEJ
 bLF
 bMc
@@ -62332,11 +62307,11 @@ aEp
 aFD
 aEH
 aGi
-aDC
+aEF
 aHk
 aGL
 aHW
-aGv
+aHn
 aNC
 aOi
 aII
@@ -62945,7 +62920,7 @@ brh
 bJB
 bys
 byI
-bvh
+bxy
 bAd
 bAK
 bBb
@@ -62954,16 +62929,16 @@ bAd
 bCF
 bCS
 bDC
-bDZ
+byW
 bEK
-bCW
+bCz
 bEW
 bEW
 bEW
 bEW
 bEW
 bEW
-bGj
+bFN
 bEK
 bLJ
 bMc
@@ -62974,7 +62949,7 @@ bOn
 cdu
 bPl
 bOn
-bKu
+bJj
 bNA
 bRt
 bQr
@@ -63222,7 +63197,7 @@ bFI
 bFV
 bJh
 bEK
-bGx
+bGc
 bMc
 bpu
 bqx
@@ -63313,7 +63288,7 @@ abL
 abL
 aax
 akC
-ajO
+akY
 aln
 aln
 amu
@@ -63345,7 +63320,7 @@ arQ
 arQ
 asu
 axl
-axc
+axy
 ayv
 ayv
 ayv
@@ -63479,7 +63454,7 @@ bEK
 bEK
 bEK
 bEK
-bGR
+bGj
 bMc
 bpu
 bqx
@@ -64096,7 +64071,7 @@ apK
 aNH
 avv
 arD
-aqh
+aqo
 aqO
 arn
 arW
@@ -64707,7 +64682,7 @@ bck
 beg
 beN
 beN
-aYN
+bfT
 bci
 bSE
 bbJ
@@ -64903,9 +64878,9 @@ aFL
 aEL
 aFp
 aGK
-aHu
+aGh
 aGL
-aEB
+aGF
 aHh
 aHh
 aHh
@@ -65154,8 +65129,8 @@ aBc
 aBy
 aCf
 aCF
-aDd
-aDx
+aEu
+aEB
 aFM
 aEM
 aFq
@@ -65265,7 +65240,7 @@ bBk
 bQI
 bCm
 bFD
-byD
+byy
 bDJ
 bEc
 bDN
@@ -65546,7 +65521,7 @@ bRu
 bOy
 bPh
 bPU
-bKS
+bKR
 bQs
 bQv
 bjZ
@@ -65667,7 +65642,7 @@ aBp
 aBd
 aCC
 aRb
-aCj
+aDx
 aDX
 aEw
 aBd
@@ -65679,7 +65654,7 @@ aHM
 aId
 aIy
 aIX
-aHn
+aHB
 aIP
 aCX
 aCX
@@ -65746,7 +65721,7 @@ bSV
 bSY
 bsw
 btR
-bkQ
+bil
 btz
 bnL
 box
@@ -65792,7 +65767,7 @@ bCJ
 bCJ
 bCJ
 bTF
-bHg
+bGs
 bCJ
 bTN
 bTR
@@ -65896,7 +65871,7 @@ atb
 axJ
 arD
 aqc
-aqz
+arg
 aqW
 art
 arF
@@ -65922,7 +65897,7 @@ axQ
 apC
 aBp
 aBd
-aAN
+aCj
 aDf
 aCg
 aDY
@@ -65936,7 +65911,7 @@ aHM
 aIe
 aIz
 aIY
-aJE
+aJD
 aIP
 aBG
 aBG
@@ -66172,7 +66147,7 @@ aAI
 arQ
 ast
 axQ
-axy
+ayA
 azh
 azP
 aAq
@@ -66212,7 +66187,7 @@ aLz
 aOy
 aPw
 aQc
-aRG
+aRm
 aKw
 aTe
 bax
@@ -66654,7 +66629,7 @@ abL
 aax
 aij
 akD
-akY
+akZ
 alo
 alo
 amx
@@ -66726,7 +66701,7 @@ aNL
 aOB
 aPy
 aQe
-aOs
+aRn
 aKw
 aTf
 aNZ
@@ -66803,7 +66778,7 @@ bzv
 bzM
 byQ
 byk
-bwX
+bxG
 bQI
 bCm
 bCL
@@ -66813,7 +66788,7 @@ bRX
 bDN
 bFa
 bFK
-bDu
+bDm
 bGY
 bHB
 bKt
@@ -66964,7 +66939,7 @@ aHO
 aIh
 aIB
 aJe
-aHB
+aJE
 aHQ
 aCX
 aBG
@@ -67221,7 +67196,7 @@ aHO
 aIi
 aIC
 aJh
-aJP
+aJO
 aHQ
 aCX
 aBG
@@ -67317,7 +67292,7 @@ byQ
 byQ
 byQ
 byk
-bxy
+bHz
 bQI
 bCm
 bFD
@@ -67593,7 +67568,7 @@ bJp
 bNr
 bKk
 bOV
-bHE
+bGx
 bPW
 bQF
 bMP
@@ -67715,7 +67690,7 @@ arQ
 ast
 axQ
 aHL
-ayA
+ayF
 aAd
 axQ
 apC
@@ -67843,7 +67818,7 @@ bCN
 bCN
 bGf
 bHb
-bEY
+bER
 bHV
 bIm
 bJq
@@ -68364,8 +68339,8 @@ bJr
 bNr
 bKn
 bOV
-bKL
-bIB
+bGR
+bHN
 bLR
 bOV
 bNC
@@ -68782,7 +68757,7 @@ aNN
 aOI
 aPz
 aQi
-aSc
+aRG
 aKy
 aTk
 aTQ
@@ -68868,8 +68843,8 @@ bCI
 bCI
 bCI
 bDx
-bDm
-bEO
+bDh
+bDZ
 bHf
 bHF
 bMs
@@ -69039,7 +69014,7 @@ aMN
 aOJ
 aPA
 aNj
-aQZ
+aSc
 aKy
 aTo
 aTS
@@ -69087,7 +69062,7 @@ bqP
 bsf
 bsf
 bnk
-bhM
+bjl
 box
 box
 bpo
@@ -69130,7 +69105,7 @@ bDx
 bDx
 bDx
 bMs
-bFv
+bEY
 bXw
 bNr
 bKl
@@ -70389,7 +70364,7 @@ bsf
 bsf
 bsf
 bqP
-bqA
+bqw
 bPi
 bqP
 bqP
@@ -70420,7 +70395,7 @@ bNr
 bJY
 bKr
 bOX
-bHN
+bHg
 bLi
 bLX
 bMQ
@@ -70677,7 +70652,7 @@ bNs
 bJZ
 bKs
 bOX
-bIx
+bHE
 bLi
 bLY
 bOX
@@ -71575,7 +71550,7 @@ aij
 abL
 abL
 azR
-azW
+aAV
 aCQ
 aCQ
 aDI
@@ -73189,7 +73164,7 @@ bbX
 bbK
 bXq
 bhT
-bil
+bbK
 caB
 bbK
 bbK
@@ -73886,7 +73861,7 @@ ayb
 abL
 abL
 azD
-ayF
+azk
 aAT
 aCv
 aBS
@@ -75895,7 +75870,7 @@ adf
 adN
 aex
 aed
-adg
+afv
 afI
 agh
 agx
@@ -76148,7 +76123,7 @@ acz
 acz
 acz
 aec
-acA
+adg
 adO
 aey
 aeV
@@ -77227,7 +77202,7 @@ ayf
 abL
 abL
 azE
-azk
+azr
 aBZ
 aBZ
 aCU
@@ -77510,9 +77485,9 @@ aKh
 aOd
 aKt
 aKt
-aOQ
+aNs
 aKh
-aOR
+aOQ
 aME
 aKj
 aNn
@@ -77716,7 +77691,7 @@ aou
 apb
 aou
 aou
-apV
+aqh
 aqv
 aqD
 arY
@@ -78231,7 +78206,7 @@ apn
 apd
 apd
 apL
-aqo
+aqy
 aqF
 ard
 ard
@@ -78458,7 +78433,7 @@ abb
 acz
 acz
 adi
-acl
+acV
 acN
 acT
 aei
@@ -79012,7 +78987,7 @@ asG
 asJ
 atB
 auc
-aug
+aur
 asA
 abL
 abL
@@ -79259,14 +79234,14 @@ aoP
 aps
 apN
 aqk
-aqy
+aqz
 ary
 arz
 arz
 ase
 asr
 aqe
-asK
+aug
 atc
 atF
 auh
@@ -79318,7 +79293,7 @@ aMr
 aKj
 aOW
 aOj
-aRm
+aQZ
 aRv
 aRv
 aTu
@@ -79775,7 +79750,7 @@ aob
 aqk
 aqj
 aqH
-arg
+asK
 arB
 asa
 asB
@@ -80008,7 +79983,7 @@ aeh
 aeS
 afm
 afz
-afv
+agb
 agq
 agO
 aeh
@@ -83664,7 +83639,7 @@ aui
 awx
 aGq
 aGq
-aEu
+aGv
 aMj
 aIn
 aIn
@@ -83870,11 +83845,11 @@ ahw
 ait
 ahw
 ahw
-agb
+ajO
 akk
 aky
 ahw
-alx
+alN
 ama
 ama
 ama
@@ -85725,7 +85700,7 @@ aUr
 bly
 aKk
 aKk
-aJD
+aJP
 aKk
 aKk
 aui
@@ -87250,7 +87225,7 @@ azc
 azB
 aAh
 aAh
-aAV
+azW
 awP
 awL
 awx
@@ -88038,7 +88013,7 @@ aJG
 aUA
 aUA
 aUA
-aJO
+aLX
 blZ
 bmV
 bMj
@@ -89015,7 +88990,7 @@ aae
 aaP
 aba
 alE
-alN
+amj
 amK
 amK
 aLR
@@ -91895,8 +91870,8 @@ aac
 aac
 aae
 aHY
-aLX
-aNs
+aNA
+aOs
 bvD
 bLD
 aGB

@@ -151,14 +151,15 @@
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "aw" = (
-/obj/machinery/power/apc{
-	dir = 4
+/obj/structure/bed,
+/obj/effect/landmark{
+	icon_state = "x3";
+	name = "whiskey_outpost_marine"
 	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+/obj/structure/closet/walllocker/hydrant,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
 	},
-/turf/open/floor,
 /area/whiskey_outpost)
 "ax" = (
 /obj/machinery/vending/snack,
@@ -207,15 +208,14 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "aE" = (
-/obj/structure/bed,
-/obj/effect/landmark{
-	icon_state = "x3";
-	name = "whiskey_outpost_marine"
-	},
-/obj/structure/closet/walllocker/hydrant,
-/turf/open/floor/tile/red/redtaupe{
+/obj/machinery/power/apc{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/open/floor,
 /area/whiskey_outpost)
 "aF" = (
 /obj/structure/cable{
@@ -14041,7 +14041,7 @@ aa
 ab
 ac
 ap
-aw
+aE
 ac
 aU
 bh
@@ -17257,7 +17257,7 @@ ab
 ak
 aQ
 bd
-aE
+aw
 bH
 bH
 bH
@@ -17266,7 +17266,7 @@ bd
 ct
 aQ
 bd
-aE
+aw
 bH
 bH
 bH
