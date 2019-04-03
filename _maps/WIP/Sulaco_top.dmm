@@ -3278,7 +3278,8 @@
 /obj/machinery/driver_button{
 	id = "enginecore";
 	name = "Emergency Core Eject";
-	pixel_x = 30req_access_txt = "6";
+	pixel_x = 30;
+	req_access_txt = "6";
 	req_one_access_txt = "0"
 	},
 /obj/effect/decal/warning_stripes{
@@ -4318,7 +4319,8 @@
 /obj/machinery/door_control{
 	id = "ROlobby1";
 	name = "RO Line 1 Shutters";
-	pixel_x = -30req_one_access_txt = "1;21"
+	pixel_x = -30;
+	req_one_access_txt = "1;21"
 	},
 /obj/machinery/flasher_button{
 	id = "req";
@@ -14472,7 +14474,8 @@
 	id = "engine_electrical_maintenance";
 	name = "Door Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = -30req_access_txt = "7";
+	pixel_x = -30;
+	req_access_txt = "7";
 	specialfunctions = 4
 	},
 /obj/structure/cable{
@@ -15779,7 +15782,8 @@
 	desc = "A remote control-switch for opening the engines blast doors.";
 	id = "EngineRads";
 	name = "Radiation Collector Access";
-	pixel_x = 30req_access_txt = "7"
+	pixel_x = 30;
+	req_access_txt = "7"
 	},
 /obj/structure/rack,
 /obj/item/tank/phoron,

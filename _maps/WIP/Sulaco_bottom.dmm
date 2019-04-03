@@ -3741,7 +3741,8 @@
 /area/sulaco/maintenance/lower_maint)
 "ij" = (
 /obj/structure/ladder{
-	height = 1id = "engi"
+	height = 1;
+	id = "engi"
 	},
 /turf/open/floor{
 	icon_state = "vault";
