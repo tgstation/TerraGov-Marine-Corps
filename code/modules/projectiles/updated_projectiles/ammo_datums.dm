@@ -1308,7 +1308,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	added_spit_delay = 5
 	spit_cost = 75
-	armor_type = "energy"
+	armor_type = "acid"
 
 /datum/ammo/xeno/acid/New()
 	. = ..()
@@ -1433,7 +1433,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sound_bounce	= "acid_bounce"
 	debilitate = list(1,1,0,0,1,1,0,0)
 	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR
-	armor_type = "energy"
+	armor_type = "acid"
 
 /datum/ammo/xeno/boiler_gas/corrosive/New()
 	..()
@@ -1483,7 +1483,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
-	armor_type = "energy"
+	armor_type = "fire"
 
 /datum/ammo/flamethrower/New()
 	..()

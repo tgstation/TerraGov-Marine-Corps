@@ -7,7 +7,6 @@
 /area/space)
 "c" = (
 /obj/machinery/telecomms/relay/preset/station{
-	explosion_resistance = 100;
 	idle_power_usage = 0;
 	listening_level = 1;
 	unacidable = 1;
