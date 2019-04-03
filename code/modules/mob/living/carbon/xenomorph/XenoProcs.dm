@@ -1,3 +1,100 @@
+/mob/living/carbon/Xenomorph/verb/hive_status()
+	set name = "Hive Status"
+	set desc = "Check the status of your current hive."
+	set category = "Alien"
+
+	if(isxenoqueen(src) && anchored)
+		check_hive_status(src, anchored)
+	else
+		check_hive_status(src)
+
+/proc/xeno_status_output(list/xenolist, can_overwatch = FALSE, ignore_leads = TRUE, user)
+	var/xenoinfo = ""
+	var/leadprefix = (ignore_leads?"":"<b>(-L-)</b>")
+	for(var/i in xenolist)
+		var/mob/living/carbon/Xenomorph/X = i
+		if(ignore_leads && X.queen_chosen_lead)
+			continue
+		if(can_overwatch)
+			xenoinfo += "<tr><td>[leadprefix]<a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
+		else
+			xenoinfo += "<tr><td>[leadprefix][X.name] "
+		if(!X.client)
+			xenoinfo += " <i>(SSD)</i>"
+		else if(X.client.prefs.xeno_name && X.client.prefs.xeno_name != "Undefined")
+			xenoinfo += "- [X.client.prefs.xeno_name]"
+
+		var/area/A = get_area(X)
+		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
+	
+	return xenoinfo
+
+/proc/check_hive_status(mob/living/carbon/Xenomorph/user, var/anchored = FALSE)
+	if(!SSticker)
+		return
+	var/dat = "<html><head><title>Hive Status</title></head><body>"
+
+	var/datum/hive_status/hive
+	if(istype(user) && user.hive)
+		hive = user.hive
+	else
+		hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+
+	if(!hive)
+		CRASH("couldnt find a hive in check_hive_status")
+
+	var/xenoinfo = ""
+	var/can_overwatch = FALSE
+
+	var/tier3counts = ""
+	var/tier2counts = ""
+	var/tier1counts = ""
+
+	if(isxenoqueen(user))
+		var/mob/living/carbon/Xenomorph/Queen/Q = user
+		if(Q.ovipositor)
+			can_overwatch = TRUE
+
+	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Queen], FALSE, TRUE)
+
+	xenoinfo += xeno_status_output(hive.xeno_leader_list, can_overwatch, FALSE, user)
+
+	for(var/typepath in hive.xenos_by_typepath)
+		if(typepath == /mob/living/carbon/Xenomorph/Queen)
+			continue
+		var/mob/living/carbon/Xenomorph/T = typepath
+		var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[typepath][XENO_UPGRADE_BASETYPE]
+		if(XC.caste_flags & CASTE_HIDE_IN_STATUS)
+			continue
+
+		switch(initial(T.tier))
+			if(XENO_TIER_ZERO)
+				continue
+			if(XENO_TIER_THREE)
+				tier3counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
+			if(XENO_TIER_TWO)
+				tier2counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
+			if(XENO_TIER_ONE)
+				tier1counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
+
+		xenoinfo += xeno_status_output(hive.xenos_by_typepath[typepath], can_overwatch, TRUE, user)
+
+	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Larva], can_overwatch, TRUE, user)
+
+	dat += "<b>Total Living Sisters: [hive.get_total_xeno_number()]</b><BR>"
+	dat += "<b>Tier 3: [length(hive.xenos_by_tier[XENO_TIER_THREE])] Sisters</b>[tier3counts]<BR>"
+	dat += "<b>Tier 2: [length(hive.xenos_by_tier[XENO_TIER_TWO])] Sisters</b>[tier2counts]<BR>"
+	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
+	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Larva])] Sisters<BR>"
+	if(hive.hivenumber == XENO_HIVE_NORMAL)
+		var/datum/hive_status/normal/HN = hive
+		dat += "<b>Burrowed Larva: [HN.stored_larva] Sisters<BR>"
+	dat += "<table cellspacing=4>"
+	dat += xenoinfo
+	dat += "</table></body>"
+	usr << browse(dat, "window=roundstatus;size=600x600")
+
+
 //Send a message to all xenos.
 /proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL)
 	if(!message)
