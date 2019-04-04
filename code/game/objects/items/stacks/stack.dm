@@ -45,7 +45,7 @@
 		if(67 to 100)
 			new_w_class = full_w_class
 		else
-			stack_trace("[src] tried to update_weight() with [src.amount] amount and [src.max_amount] max_amount.")
+			stack_trace("[src] tried to update_weight() with [amount] amount and [max_amount] max_amount.")
 	if(new_w_class != w_class)
 		w_class = new_w_class
 		loc.recalculate_storage_space() //No need to do icon updates if there are no changes.
@@ -150,7 +150,7 @@
 
 	if(href_list["make"])
 		if(amount < 1)
-			stack_trace("[src] tried to \"make\" in Topic() with [src.amount] amount.")
+			stack_trace("[src] tried to \"make\" in Topic() with [amount] amount.")
 			qdel(src) //Never should happen
 
 		var/list/recipes_list = recipes
@@ -273,10 +273,11 @@
 
 /obj/item/stack/proc/add_to_stacks(mob/user)
 	for(var/obj/item/stack/S in get_turf(user))
-		if(S.merge_type == merge_type)
-			merge(S)
-			if(QDELETED(src))
-				return
+		if(S.merge_type != merge_type)
+			continue
+		merge(S)
+		if(QDELETED(src))
+			return
 
 
 /obj/item/stack/proc/merge(obj/item/stack/S) //Merge src into S, as much as possible
@@ -292,7 +293,7 @@
 /obj/item/stack/Crossed(obj/item/stack/S)
 	if(istype(S, merge_type) && !S.throwing && loc.allows_stack_merging(S))
 		merge(S)
-	. = ..()
+	return ..()
 
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
@@ -300,8 +301,7 @@
 	add_fingerprint(user)
 	if(user.get_inactive_held_item() == src)
 		return change_stack(user, 1)
-	else
-		. = ..()
+	return ..()
 
 
 /obj/item/stack/AltClick(mob/user)
