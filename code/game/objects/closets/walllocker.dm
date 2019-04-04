@@ -18,10 +18,10 @@
 	if(ndir)
 		dir = ndir
 	switch(dir)
-		if(SOUTH)
-			pixel_y = 32
 		if(NORTH)
 			pixel_y = -32
+		if(SOUTH)
+			pixel_y = 32
 		if(EAST)
 			pixel_x = -32
 		if(WEST)
