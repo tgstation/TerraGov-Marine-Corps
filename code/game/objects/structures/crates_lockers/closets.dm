@@ -7,6 +7,7 @@
 	layer = BELOW_OBJ_LAYER
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
+	var/overlay_welded = "welded"
 	var/opened = FALSE
 	var/welded = FALSE
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
@@ -328,7 +329,7 @@
 	if(!opened)
 		icon_state = icon_closed
 		if(welded)
-			overlays += "welded"
+			overlays += image(icon, overlay_welded)
 	else
 		icon_state = icon_opened
 
