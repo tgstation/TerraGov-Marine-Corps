@@ -10,7 +10,7 @@
 
 /datum/action/xeno_action/xeno_resting/action_activate()
 	owner.lay_down()
-	return ..()
+	return succeed_activate()
 
 // Regurgitate
 /datum/action/xeno_action/regurgitate
@@ -23,6 +23,7 @@
 	. = ..()
 	var/mob/living/carbon/C = owner
 	if(!length(C.stomach_contents))
+		to_chat(C, "<span class='warning'>There's nothing in your belly that needs regurgitating.</span>")
 		return FALSE
 
 /datum/action/xeno_action/regurgitate/action_activate()
@@ -37,55 +38,49 @@
 
 	C.visible_message("<span class='xenowarning'>\The [C] hurls out the contents of their stomach!</span>", \
 	"<span class='xenowarning'>You hurl out the contents of your stomach!</span>", null, 5)
+	return succeed_activate()
 
 // ***************************************
 // *********** Drone-y abilities
 // ***************************************
 /datum/action/xeno_action/plant_weeds
-	name = "Plant Weeds (75)"
+	name = "Plant Weeds"
 	action_icon_state = "plant_weeds"
 	plasma_cost = 75
 	mechanics_text = "Plant a weed node (purple sac) on your tile."
 
 /datum/action/xeno_action/plant_weeds/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state())
-		return
-
-	var/turf/T = X.loc
-
-	if(!istype(T))
-		to_chat(X, "<span class='warning'>You can't do that here.</span>")
-		return
+	var/turf/T = owner.loc
 
 	if(!T.is_weedable())
 		to_chat(X, "<span class='warning'>Bad place for a garden!</span>")
-		return
+		return fail_activate()
 
 	if(locate(/obj/effect/alien/weeds/node) in T)
 		to_chat(X, "<span class='warning'>There's a pod here already!</span>")
-		return
+		return fail_activate()
 
-	if(X.check_plasma(75))
-		X.use_plasma(75)
-		X.visible_message("<span class='xenonotice'>\The [X] regurgitates a pulsating node and plants it on the ground!</span>", \
+	owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a pulsating node and plants it on the ground!</span>", \
 		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>", null, 5)
-		var/obj/effect/alien/weeds/node/N = new (X.loc, src, X)
-		X.transfer_fingerprints_to(N)
-		playsound(X.loc, "alien_resin_build", 25)
-		round_statistics.weeds_planted++
+	var/obj/effect/alien/weeds/node/N = new (owner.loc, src, owner)
+	owner.transfer_fingerprints_to(N)
+	playsound(owner.loc, "alien_resin_build", 25)
+	round_statistics.weeds_planted++
+	return succeed_activate()
 
 // Choose Resin
 /datum/action/xeno_action/choose_resin
 	name = "Choose Resin Structure"
 	action_icon_state = "resin wall"
 	mechanics_text = "Selects which structure you will build with the (secrete resin) ability."
-	plasma_cost = 0
+
+/datum/action/xeno_action/choose_resin/update_button_icon()
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, X.selected_resin)
+	return ..()
 
 /datum/action/xeno_action/choose_resin/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state())
-		return
 	switch(X.selected_resin)
 		if("resin door")
 			X.selected_resin = "resin wall"
@@ -96,21 +91,18 @@
 		if("sticky resin")
 			X.selected_resin = "resin door"
 		else
-			return //something went wrong
+			return fail_activate() //something went wrong
 
 	to_chat(X, "<span class='notice'>You will now build <b>[X.selected_resin]\s</b> when secreting resin.</span>")
-	//update the button's overlay with new choice
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, X.selected_resin)
-
+	return succeed_activate()
 
 // Secrete Resin
 /datum/action/xeno_action/activable/secrete_resin
-	name = "Secrete Resin (75)"
+	name = "Secrete Resin"
 	action_icon_state = "secrete_resin"
 	mechanics_text = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	ability_name = "secrete resin"
-	var/resin_plasma_cost = 75
+	plasma_cost = 75
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner

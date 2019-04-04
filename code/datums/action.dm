@@ -106,13 +106,14 @@
 
 
 
-#define XACT_USE_INCAP		(1 << 0)
-#define XACT_USE_LYING		(1 << 1)
-#define XACT_USE_BUCKLED	(1 << 2)
-#define XACT_USE_STAGGERED	(1 << 3)
-#define XACT_USE_FORTIFIED	(1 << 4)
-#define XACT_USE_CRESTED	(1 << 5)
-#define XACT_USE_NOTTURF	(1 << 6)
+#define XACT_USE_INCAP		(1 << 0) // ignore incapacitated
+#define XACT_USE_LYING		(1 << 1) // ignore lying down
+#define XACT_USE_BUCKLED	(1 << 2) // ignore buckled
+#define XACT_USE_STAGGERED	(1 << 3) // ignore staggered
+#define XACT_USE_FORTIFIED	(1 << 4) // ignore fortified
+#define XACT_USE_CRESTED	(1 << 5) // ignore being in crest defense
+#define XACT_USE_NOTTURF	(1 << 6) // ignore not being on a turf (like in a vent)
+#define XACT_USE_BUSY		(1 << 7) // ignore being in a do_after or similar
 
 /datum/action/xeno_action
 	var/action_icon_state
@@ -123,41 +124,71 @@
 
 /datum/action/xeno_action/New(Target)
 	..()
+	if(plasma_cost)
+		name = "[name] ([plasma_cost])"
 	button.overlays += image('icons/mob/actions.dmi', button, action_icon_state)
 
-/datum/action/xeno_action/can_use_action()
+/datum/action/xeno_action/can_use_action(silent = FALSE)
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X)
 		return FALSE
 
 	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_INCAP) && X.incapacitated())
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do this while incapacitated!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_LYING) && X.lying)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do this while lying down!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_BUCKLED) && X.buckled)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do this while buckled!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_STAGGERED) && X.stagger)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do this while staggered!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_FORTIFIED) && X.fortify)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do this while fortified!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_CRESTED) && X.crest_defense)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do this while in crest defense!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_NOTTURF) && !isturf(X.loc))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do this here!</span>")
+		return FALSE
+
+	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_BUSY) && X.action_busy)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You're busy doing something right now'!</span>")
 		return FALSE
 
 	if(X.plasma_stored < plasma_cost)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You don't have enough plasma to do this!</span>")
 		return FALSE
 
 	return TRUE
 
-/datum/action/xeno_action/action_activate()
-	owner.update_action_buttons()
+/datum/action/xeno_action/fail_activate()
+	update_action_button_icons()
+
+/datum/action/xeno_action/proc/succeed_activate()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(plasma_cost)
+		X.use_plasma(plasma_cost)
+	else // use_plasma already calls update_action_button_icons()
+		update_action_button_icons()
 
 //checks if the linked ability is on some cooldown.
 //The action can still be activated by clicking the button
@@ -169,7 +200,7 @@
 	return
 
 /datum/action/xeno_action/update_button_icon()
-	if(!can_use_action())
+	if(!can_use_action(TRUE))
 		button.color = rgb(128,0,0,128)
 	else if(!action_cooldown_check())
 		button.color = rgb(240,180,0,200)
@@ -213,6 +244,10 @@
 //the thing to do when the selected action ability is selected and triggered by middle_click
 /datum/action/xeno_action/activable/proc/use_ability(atom/A)
 	return
+
+//override this 
+/datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE)
+	return can_use_action(silent)
 
 /datum/action/xeno_action/activable/proc/on_activation()
 	return

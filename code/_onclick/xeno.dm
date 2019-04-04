@@ -44,14 +44,16 @@
 	. = ..()
 	if(!middle_mouse_toggle || !selected_ability)
 		return
-	selected_ability.use_ability(A)
+	if(selected_ability.can_use_ability(A))
+		selected_ability.use_ability(A)
 
 
 /mob/living/carbon/Xenomorph/ShiftClickOn(atom/A)
 	. = ..()
 	if(!selected_ability || middle_mouse_toggle)
 		return
-	selected_ability.use_ability(A)
+	if(selected_ability.can_use_ability(A))
+		selected_ability.use_ability(A)
 
 
 

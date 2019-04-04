@@ -2,8 +2,7 @@
 // *********** Resin building
 // ***************************************
 /datum/action/xeno_action/activable/secrete_resin/hivelord
-	name = "Secrete Resin (100)"
-	resin_plasma_cost = 100
+	plasma_cost = 100
 
 // ***************************************
 // *********** Resin walker
