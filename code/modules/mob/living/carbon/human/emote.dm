@@ -86,7 +86,7 @@
 		if("dab")
 			if(!CONFIG_GET(flag/fun_allowed)) //fun_allowed is in the config folder. change it in game by Debug>debug controllers> ctrl+f fun_allowed.
 				return
-			if(is_mob_incapacitated())
+			if(incapacitated())
 				to_chat(src, "You cannot dab in your current state.")
 				return
 			var/datum/limb/l_arm/A = get_limb("l_arm")

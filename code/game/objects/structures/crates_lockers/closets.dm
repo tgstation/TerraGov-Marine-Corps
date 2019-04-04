@@ -250,7 +250,7 @@
 		return
 	if(!isturf(O.loc))
 		return
-	if(user.is_mob_incapacitated())
+	if(user.incapacitated())
 		return
 	if(O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1)
 		return
@@ -277,7 +277,7 @@
 /obj/structure/closet/relaymove(mob/user)
 	if(!isturf(loc))
 		return
-	if(user.is_mob_incapacitated(TRUE))
+	if(user.incapacitated(TRUE))
 		return
 	user.next_move = world.time + 5
 

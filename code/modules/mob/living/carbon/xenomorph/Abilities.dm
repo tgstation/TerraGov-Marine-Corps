@@ -41,7 +41,7 @@
 /datum/action/xeno_action/xeno_resting/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
 
-	if (!X || X.is_mob_incapacitated(1) || X.buckled || X.fortify || X.crest_defense)
+	if (!X || X.incapacitated(1) || X.buckled || X.fortify || X.crest_defense)
 		return
 
 	return TRUE
@@ -413,7 +413,7 @@
 
 /datum/action/xeno_action/pheromones/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(X.is_mob_incapacitated() || X.lying || X.buckled)
+	if(X.incapacitated() || X.lying || X.buckled)
 		return FALSE
 	return TRUE
 
@@ -508,7 +508,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 
 /datum/action/xeno_action/toggle_long_range/can_use_action()
 	var/mob/living/carbon/Xenomorph/Boiler/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (X.is_zoomed || X.plasma_stored >= plasma_cost) && !X.stagger)
+	if(X && !X.incapacitated() && !X.lying && !X.buckled && (X.is_zoomed || X.plasma_stored >= plasma_cost) && !X.stagger)
 		return TRUE
 
 /datum/action/xeno_action/toggle_long_range/action_activate()
@@ -692,7 +692,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 
 /datum/action/xeno_action/toggle_speed/can_use_action()
 	var/mob/living/carbon/Xenomorph/Hivelord/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (X.speed_activated || X.plasma_stored >= plasma_cost) && !X.stagger)
+	if(X && !X.incapacitated() && !X.lying && !X.buckled && (X.speed_activated || X.plasma_stored >= plasma_cost) && !X.stagger)
 		return TRUE
 
 /datum/action/xeno_action/toggle_speed/action_activate()

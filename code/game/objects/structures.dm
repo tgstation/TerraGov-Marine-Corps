@@ -251,7 +251,7 @@
 	if(user.is_mob_restrained() || user.buckled)
 		to_chat(user, "<span class='notice'>You need your hands and legs free for this.</span>")
 		return FALSE
-	if(user.is_mob_incapacitated(TRUE) || user.lying)
+	if(user.incapacitated(TRUE) || user.lying)
 		return FALSE
 	if(issilicon(user))
 		to_chat(user, "<span class='notice'>You need hands for this.</span>")

@@ -148,7 +148,7 @@
 /obj/machinery/marine_selector/Topic(href, href_list)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
-	if(usr.is_mob_incapacitated())
+	if(usr.incapacitated())
 		return
 
 	if (in_range(src, usr) && isturf(loc) && ishuman(usr))

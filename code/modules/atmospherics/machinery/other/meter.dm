@@ -105,7 +105,7 @@
 /obj/machinery/meter/attackby(obj/item/W, mob/living/user)
 	if(!istype(user))
 		return FALSE
-	if(user.is_mob_incapacitated())
+	if(user.incapacitated())
 		return FALSE
 	if(iswrench(W))
 		. = wrench_act(user, W)

@@ -432,7 +432,7 @@
 	if(!Adjacent(usr)) return
 	if(!ishuman(M) && !ismonkey(M)) return
 	if(!ishuman(src) && !ismonkey(src)) return
-	if(M.lying || M.is_mob_incapacitated())
+	if(M.lying || M.incapacitated())
 		return
 	show_inv(M)
 
@@ -448,7 +448,7 @@
 	if (AM.anchored || AM.throwing)
 		return
 
-	if(throwing || is_mob_incapacitated())
+	if(throwing || incapacitated())
 		return
 
 	if(pulling)

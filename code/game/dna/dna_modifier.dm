@@ -67,7 +67,7 @@
 	return 0
 
 /obj/machinery/dna_scannernew/relaymove(mob/user as mob)
-	if(user.is_mob_incapacitated(TRUE)) return
+	if(user.incapacitated(TRUE)) return
 	go_out()
 
 

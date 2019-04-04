@@ -85,7 +85,7 @@
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/Xenomorph/proc/check_state()
-	if(is_mob_incapacitated() || lying || buckled)
+	if(incapacitated() || lying || buckled)
 		to_chat(src, "<span class='warning'>You cannot do this in your current state.</span>")
 		return 0
 	return 1
@@ -198,7 +198,7 @@
 		if(client && ckey) // pause for ssd/ghosted
 			if(!hive?.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z)
 				if(upgrade_stored >= xeno_caste.upgrade_threshold)
-					if(health == maxHealth && !is_mob_incapacitated() && !handcuffed && !legcuffed)
+					if(health == maxHealth && !incapacitated() && !handcuffed && !legcuffed)
 						upgrade_xeno(upgrade_next())
 				else
 					upgrade_stored = min(upgrade_stored + 1, xeno_caste.upgrade_threshold)

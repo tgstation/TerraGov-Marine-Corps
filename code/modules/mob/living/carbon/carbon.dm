@@ -18,7 +18,7 @@
 			germ_level++
 
 /mob/living/carbon/relaymove(mob/user, direction)
-	if(user.is_mob_incapacitated(TRUE)) return
+	if(user.incapacitated(TRUE)) return
 	if(user in src.stomach_contents)
 		if(user.client)
 			user.client.next_movement = world.time + 20

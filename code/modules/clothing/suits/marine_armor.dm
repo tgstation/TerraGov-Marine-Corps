@@ -470,7 +470,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	set category = "B18 Armor"
 	set src in usr
 
-	if(usr.is_mob_incapacitated() || usr != wearer )
+	if(usr.incapacitated() || usr != wearer )
 		return 0
 
 	if(B18_automed_on)
@@ -484,7 +484,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	set category = "B18 Armor"
 	set src in usr
 
-	if(usr.is_mob_incapacitated() || usr != wearer )
+	if(usr.incapacitated() || usr != wearer )
 		return 0
 
 	B18_analyzer.attack(usr, usr, TRUE)
@@ -494,7 +494,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	set category = "B18 Armor"
 	set src in usr
 
-	if(usr.is_mob_incapacitated() || usr != wearer )
+	if(usr.incapacitated() || usr != wearer )
 		return 0
 
 	handle_interface(usr)
@@ -536,7 +536,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 //Interface for the B18
 /obj/item/clothing/suit/storage/marine/specialist/Topic(href, href_list)
 	//..()
-	if(usr.is_mob_incapacitated() || usr != wearer || !usr.IsAdvancedToolUser())
+	if(usr.incapacitated() || usr != wearer || !usr.IsAdvancedToolUser())
 		return
 	if(usr.contents.Find(src) )
 		usr.set_interaction(src)
