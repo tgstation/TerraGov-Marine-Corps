@@ -646,7 +646,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		handle_ammomag_attackby(AM, user)
 
 	else if(iswelder(O) || iswrench(O)) //Are we trying to repair stuff?
-		handle_hardpoint_repair(O, user)
+		handle_hardpoint_repair(user)
 		update_damage_distribs()
 
 	else if(iscrowbar(O)) //Are we trying to remove stuff?
@@ -658,7 +658,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			take_damage_type(O.force * 0.05, "blunt", user) //Melee weapons from people do very little damage
 
 
-/obj/vehicle/multitile/root/cm_armored/proc/handle_hardpoint_repair(obj/item/O, mob/user)
+/obj/vehicle/multitile/root/cm_armored/proc/handle_hardpoint_repair(mob/user)
 
 	//Need to the what the hell you're doing
 	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
@@ -670,7 +670,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	//Pick what to repair
 	var/slot = input("Select a slot to try and repair") in hardpoints
-	if(!Adjacent(user) || !iswelder(O) || !iswrench(O))
+	var/item/I = user.get_active_held_item()
+	if(!Adjacent(user) || (iswelder(I) && !iswrench(I)))
 		return
 
 	var/obj/item/hardpoint/old = hardpoints[slot] //Is there something there already?
@@ -688,10 +689,10 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	switch(slot)
 		if(HDPT_PRIMARY)
 			num_delays = 5
-			if(!iswelder(O))
+			if(!iswelder(I))
 				to_chat(user, "<span class='warning'>That's the wrong tool. Use a welder.</span>")
 				return
-			var/obj/item/tool/weldingtool/WT = O
+			var/obj/item/tool/weldingtool/WT = I
 			if(!WT.isOn())
 				to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
 				return
@@ -699,32 +700,32 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 		if(HDPT_SECDGUN)
 			num_delays = 3
-			if(!iswrench(O))
+			if(!iswrench(I))
 				to_chat(user, "<span class='warning'>That's the wrong tool. Use a wrench.</span>")
 				return
 
 		if(HDPT_SUPPORT)
 			num_delays = 2
-			if(!iswrench(O))
+			if(!iswrench(I))
 				to_chat(user, "<span class='warning'>That's the wrong tool. Use a wrench.</span>")
 				return
 
 		if(HDPT_ARMOR)
 			num_delays = 10
-			if(!iswelder(O))
+			if(!iswelder(I))
 				to_chat(user, "<span class='warning'>That's the wrong tool. Use a welder.</span>")
 				return
-			var/obj/item/tool/weldingtool/WT = O
+			var/obj/item/tool/weldingtool/WT = I
 			if(!WT.isOn())
 				to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
 				return
 			WT.remove_fuel(num_delays, user)
 
 		if(HDPT_TREADS)
-			if(!iswelder(O))
+			if(!iswelder(I))
 				to_chat(user, "<span class='warning'>That's the wrong tool. Use a welder.</span>")
 				return
-			var/obj/item/tool/weldingtool/WT = O
+			var/obj/item/tool/weldingtool/WT = I
 			if(!WT.isOn())
 				to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
 				return
