@@ -238,10 +238,6 @@
 /mob/living/carbon/Xenomorph/proc/process_rage_attack()
 	return FALSE
 
-/mob/living/carbon/Xenomorph/Ravager/process_rage_attack()
-	rage += RAV_RAGE_ON_HIT
-	last_rage = world.time //We incremented rage, so bookmark this.
-
 
 //Every other type of nonhuman mob
 /mob/living/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)

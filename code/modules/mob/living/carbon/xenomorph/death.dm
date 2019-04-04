@@ -64,19 +64,6 @@
 
 	..(1)
 
-/mob/living/carbon/Xenomorph/Hunter/gib()
-
-	var/obj/effect/decal/remains/xeno/remains = new(get_turf(src))
-	remains.icon = icon
-	remains.pixel_x = pixel_x //For 2x2.
-
-	remains.icon_state = "Hunter Gibs"
-
-	check_blood_splash(35, BURN, 65, 2) //Some testing numbers. 35 burn, 65 chance.
-
-	return ..()
-
-
 /mob/living/carbon/Xenomorph/gib_animation()
 	var/to_flick = "gibbed-a"
 	if(isxenorunner(src))
@@ -85,15 +72,8 @@
 		to_flick = "larva_gib"
 	new /obj/effect/overlay/temp/gib_animation/xeno(loc, src, to_flick, icon)
 
-
-/mob/living/carbon/Xenomorph/Hunter/gib_animation()
-	new /obj/effect/overlay/temp/gib_animation/xeno(loc, src, "Hunter Gibbed", icon)
-
-
 /mob/living/carbon/Xenomorph/spawn_gibs()
 	xgibs(get_turf(src))
-
-
 
 /mob/living/carbon/Xenomorph/dust_animation()
 	new /obj/effect/overlay/temp/dust_animation(loc, src, "dust-a")

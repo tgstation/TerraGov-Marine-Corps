@@ -31,26 +31,6 @@
 	update_action_button_icons()
 	update_icons()
 
-/mob/living/carbon/Xenomorph/Ravager/handle_status_effects()
-	if(rage) //Rage increases speed, attack speed, armor and fire resistance, and stun/knockdown recovery; speed is handled under movement_delay() in XenoProcs.dm
-		if(world.time > last_rage + 30) //Decrement Rage if it's been more than 3 seconds since we last raged.
-			rage = CLAMP(rage - 5,0,50) //Rage declines over time.
-		AdjustStunned( round(-rage * 0.1,0.01) ) //Recover 0.1 more stun stacks per unit of rage; min 0.1, max 5
-		AdjustKnockeddown( round(-rage * 0.1, 0.01 ) ) //Recover 0.1 more knockdown stacks per unit of rage; min 0.1, max 5
-		adjust_slowdown( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
-		adjust_stagger( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
-		rage_resist = CLAMP(1-round(rage * 0.014,0.01),0.3,1) //+1.4% damage resist per point of rage, max 70%
-		fire_resist_modifier = CLAMP(round(rage * -0.01,0.01),-0.5,0) //+1% fire resistance per stack of rage, max +50%; initial resist is 50%
-		attack_delay = initial(attack_delay) - round(rage * 0.05,0.01) //-0.05 attack delay to a maximum reduction of -2.5
-	return ..()
-
-/mob/living/carbon/Xenomorph/Runner/handle_status_effects()
-	if(hit_and_run)
-		var/last_move = last_move_intent - 10
-		if(last_move && last_move < world.time - 5) //If we haven't moved in the last 500 ms, we lose our bonus
-			hit_and_run = 1
-	return ..()
-
 /mob/living/carbon/Xenomorph/update_stat()
 
 	update_cloak()
@@ -87,55 +67,13 @@
 				M.KnockDown(3)
 	return TRUE
 
-/mob/living/carbon/Xenomorph/Defender/update_stat()
-	. = ..()
-	if(stat != CONSCIOUS && fortify == TRUE)
-		fortify_off() //Fortify prevents dragging due to the anchor component.
 
-/mob/living/carbon/Xenomorph/Hunter/proc/handle_stealth()
-	if(!stealth_router(HANDLE_STEALTH_CHECK))
-		return
-	if(stat != CONSCIOUS || stealth == FALSE || lying || resting) //Can't stealth while unconscious/resting
-		cancel_stealth()
-		return
-	//Initial stealth
-	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
-		alpha = HUNTER_STEALTH_RUN_ALPHA
-		return
-	//Stationary stealth
-	else if(last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
-		alpha = HUNTER_STEALTH_STILL_ALPHA
-	//Walking stealth
-	else if(m_intent == MOVE_INTENT_WALK)
-		alpha = HUNTER_STEALTH_WALK_ALPHA
-	//Running stealth
-	else
-		alpha = HUNTER_STEALTH_RUN_ALPHA
-	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
-	if(!plasma_stored)
-		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
-		cancel_stealth()
-
-
-/mob/living/carbon/Xenomorph/Runner/update_stat()
-	. = ..()
-	if(stat != CONSCIOUS && layer != initial(layer))
-		layer = MOB_LAYER
-
-/mob/living/carbon/Xenomorph/Boiler/update_stat()
-	. = ..()
-	if(stat == CONSCIOUS)
-		see_in_dark = 20
 
 /mob/living/carbon/Xenomorph/handle_status_effects()
 	. = ..()
 	handle_stagger() // 1 each time
 	handle_slowdown() // 0.4 each time
 	handle_halloss() // 3 each time
-
-/mob/living/carbon/Xenomorph/Hunter/handle_status_effects()
-	. = ..()
-	handle_stealth()
 
 /mob/living/carbon/Xenomorph/handle_fire()
 	. = ..()
@@ -180,9 +118,7 @@
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount)
 
-/mob/living/carbon/Xenomorph/Xenoborg/handle_living_health_updates()
-	updatehealth()
-	return
+
 
 /mob/living/carbon/Xenomorph/proc/handle_living_plasma_updates()
 	var/turf/T = loc
@@ -207,46 +143,6 @@
 			to_chat(src, "<span class='warning'>You have run out of plasma and stopped emitting pheromones.</span>")
 
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
-
-/mob/living/carbon/Xenomorph/Hunter/handle_living_plasma_updates()
-	var/turf/T = loc
-	if(!T || !istype(T))
-		return
-	if(current_aura)
-		plasma_stored -= 5
-	if(plasma_stored == xeno_caste.plasma_max)
-		return
-	var/modifier = 1
-	if(stealth && last_move_intent > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
-		modifier = 0.0
-	else
-		modifier = 0.5
-	if(locate(/obj/effect/alien/weeds) in T)
-		plasma_stored += xeno_caste.plasma_gain * modifier
-		if(recovery_aura)
-			plasma_stored += round(xeno_caste.plasma_gain * recovery_aura * 0.25 * modifier) //Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
-	else if(!hive?.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z) //We only regenerate plasma off weeds while on the same Z level as the queen; if one's alive
-		plasma_stored++
-	if(plasma_stored > xeno_caste.plasma_max)
-		plasma_stored = xeno_caste.plasma_max
-	else if(plasma_stored < 0)
-		plasma_stored = 0
-		if(current_aura)
-			current_aura = null
-			to_chat(src, "<span class='warning'>You have ran out of plasma and stopped emitting pheromones.</span>")
-
-	hud_set_plasma() //update plasma amount on the plasma mob_hud
-
-/mob/living/carbon/Xenomorph/Hivelord/handle_living_plasma_updates()
-	if(speed_activated)
-		plasma_stored -= 30
-		if(plasma_stored < 0)
-			speed_activated = FALSE
-			to_chat(src, "<span class='warning'>You feel dizzy as the world slows down.</span>")
-	..()
-
-/mob/living/carbon/Xenomorph/Xenoborg/handle_living_plasma_updates()
-	return
 
 /mob/living/carbon/Xenomorph/proc/handle_aura_emiter()
 	//Rollercoaster of fucking stupid because Xeno life ticks aren't synchronised properly and values reset just after being applied
