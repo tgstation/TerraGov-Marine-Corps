@@ -260,7 +260,7 @@
 		for(var/mob/O in viewers(world.view, user))
 			O.show_message(text("<span class='danger'>[user] stabs [target] in \the [hit_area] with [src.name]!</span>"), 1)
 
-		if(affecting.take_damage(3))
+		if(affecting.take_damage_limb(3))
 			target:UpdateDamageIcon()
 
 	else
