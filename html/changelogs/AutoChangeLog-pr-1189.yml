@@ -1,4 +1,0 @@
-author: "spookydonut"
-delete-after: True
-changes: 
-  - bugfix: "Pointblank attacks with guns without ammo no longer does double damage"
