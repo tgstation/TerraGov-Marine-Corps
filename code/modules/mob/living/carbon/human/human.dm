@@ -1683,7 +1683,7 @@
 
 
 /mob/living/carbon/human/canUseTopic(atom/movable/M)
-	if(is_mob_incapacitated())
+	if(incapacitated())
 		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
 		return FALSE
 	if(!in_range(M, src))
