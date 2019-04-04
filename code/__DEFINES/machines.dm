@@ -73,14 +73,6 @@
 #define APC_UPOVERLAY_CELL_IN (1<<14)
 #define APC_UPOVERLAY_BLUESCREEN (1<<15)
 
-//update_state
-#define UPSTATE_OPENED1 (1<<0)
-#define UPSTATE_OPENED2 (1<<1)
-#define UPSTATE_MAINT (1<<2)
-#define UPSTATE_BROKE (1<<3)
-#define UPSTATE_WIREEXP (1<<4)
-#define UPSTATE_ALLGOOD (1<<5)
-
 #define APC_WIRE_IDSCAN      (1<<0)
 #define APC_WIRE_MAIN_POWER1 (1<<1)
 #define APC_WIRE_MAIN_POWER2 (1<<2)
