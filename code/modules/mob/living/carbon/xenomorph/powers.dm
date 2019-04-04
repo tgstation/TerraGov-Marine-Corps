@@ -797,44 +797,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	update_action_button_icons()
 
 
-/mob/living/carbon/Xenomorph/proc/larval_growth_sting(mob/living/carbon/C)
 
-	if(!check_state())
-		return
-
-	if(!(C?.can_sting()))
-		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
-		return
-
-	if(world.time < last_larva_growth_used + XENO_LARVAL_GROWTH_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='warning'>You are not ready to sting again. Your sting will be ready in [(last_larva_growth_used + XENO_LARVAL_GROWTH_COOLDOWN - world.time) * 0.1] seconds.</span>")
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='warning'>You try to sting but are too disoriented!</span>")
-		return
-
-	if(!Adjacent(C))
-		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
-			to_chat(src, "<span class='warning'>You can't reach this target!</span>")
-			recent_notice = world.time //anti-notice spam
-		return
-
-	if(!check_plasma(150))
-		return
-	last_larva_growth_used = world.time
-	use_plasma(150)
-
-	round_statistics.larval_growth_stings++
-
-	addtimer(CALLBACK(src, .larval_growth_sting_cooldown), XENO_LARVAL_GROWTH_COOLDOWN)
-	recurring_injection(C, "xeno_growthtoxin", XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
-
-
-/mob/living/carbon/Xenomorph/proc/larval_growth_sting_cooldown()
-	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(src, "<span class='xenodanger'>You feel your growth toxin glands refill. You can use Growth Sting again.</span>")
-	update_action_button_icons()
 
 
 /atom/proc/can_sting()

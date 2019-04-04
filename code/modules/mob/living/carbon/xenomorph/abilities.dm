@@ -21,6 +21,8 @@
 
 /datum/action/xeno_action/regurgitate/can_use_action()
 	. = ..()
+	if(!.)
+		return FALSE
 	var/mob/living/carbon/C = owner
 	if(!length(C.stomach_contents))
 		to_chat(C, "<span class='warning'>There's nothing in your belly that needs regurgitating.</span>")
@@ -280,54 +282,41 @@
 
 /datum/action/xeno_action/activable/transfer_plasma/can_use_ability(atom/A, silent = FALSE)
 	. = ..()
-	if(!isxeno(A) || A = owner || !owner.)
+	if(!.)
+		return FALSE
+
+	if(!isxeno(A) || A == owner || !owner.issamexenohive(A))
+		return FALSE
+
+	if(get_dist(owner, target) > max_range)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You need to be closer to [target].</span>")
+		return FALSE
 
 /datum/action/xeno_action/activable/transfer_plasma/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!isxeno(A) || !check_state() || A == src)
-		return
-
 	var/mob/living/carbon/Xenomorph/target = A
 
-	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>You can't transfer plasma from here!</span>")
-		return
-
-	if(get_dist(src, target) > max_range)
-		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
-		return
-
-	to_chat(src, "<span class='notice'>You start focusing your plasma towards [target].</span>")
+	to_chat(X, "<span class='notice'>You start focusing your plasma towards [target].</span>")
 	if(!do_after(src, transfer_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
-		return
+		return fail_activate()
 
-	if(!check_state())
-		return
+	if(!can_use_ability(A))
+		return fail_activate()
 
-	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>You can't transfer plasma from here!</span>")
-		return
-
-	if(get_dist(src, target) > max_range)
-		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>Your muscles fail to respond as you try to shake up the shock!</span>")
-		return
-
-	if(plasma_stored < amount)
-		amount = plasma_stored //Just use all of it
+	var/amount = plasma_transfer_amount
+	if(X.plasma_stored < plasma_transfer_amount)
+		amount = X.plasma_stored //Just use all of it
 
 	if(target.plasma_stored >= target.xeno_caste.plasma_max)
-		to_chat(src, "<span class='xenowarning'>[target] already has full plasma.</span>")
+		to_chat(X, "<span class='xenowarning'>[target] already has full plasma.</span>")
 		return
 
-	use_plasma(amount)
+	X.use_plasma(amount)
 	target.gain_plasma(amount)
-	to_chat(target, "<span class='xenowarning'>[src] has transfered [amount] units of plasma to you. You now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
-	to_chat(src, "<span class='xenowarning'>You have transferred [amount] units of plasma to [target]. You now have [plasma_stored]/[xeno_caste.plasma_max].</span>")
-	playsound(src, "alien_drool", 25)
+	to_chat(target, "<span class='xenowarning'>[X] has transfered [amount] units of plasma to you. You now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
+	to_chat(X, "<span class='xenowarning'>You have transferred [amount] units of plasma to [target]. You now have [X.plasma_stored]/[X.xeno_caste.plasma_max].</span>")
+	playsound(X, "alien_drool", 25)
 
 //Xeno Larval Growth Sting
 /datum/action/xeno_action/activable/larval_growth_sting
@@ -335,15 +324,50 @@
 	action_icon_state = "drone_sting"
 	mechanics_text = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
 	ability_name = "larval growth sting"
+	plasma_cost = 150
+
+/datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
+	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	to_chat(owner, "<span class='xenodanger'>You feel your growth toxin glands refill. You can use Growth Sting again.</span>")
+	on_cooldown = FALSE
+	return ..()
+
+/datum/action/xeno_action/activable/larval_growth_sting/can_use_ability(atom/A, silent = FALSE)
+	. = ..()
+	if(!.)
+		return FALSE
+	
+	if(!A?.can_sting())
+		if(!silent)
+			to_chat(owner, "<span class='warning'>Your sting won't affect this target!</span>")
+		return FALSE
+
+	if(!owner.Adjacent(A))
+		var/mob/living/carbon/Xenomorph/X = owner
+		if(!silent && world.time > (X.recent_notice + X.notice_delay))
+			to_chat(X, "<span class='warning'>You can't reach this target!</span>")
+			X.recent_notice = world.time //anti-notice spam
+		return FALSE
+
+	var/mob/living/carbon/C = A
+	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
+		if(!silent)
+			to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
+		return FALSE
+
+/datum/action/xeno_action/activable/larval_growth_sting/cooldown_remaining()
+	return (last_use + XENO_LARVAL_GROWTH_COOLDOWN - world.time) * 0.1
 
 /datum/action/xeno_action/activable/larval_growth_sting/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.larval_growth_sting(A)
 
-/datum/action/xeno_action/activable/larval_growth_sting/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(world.time >= X.last_larva_growth_used + XENO_LARVAL_GROWTH_COOLDOWN)
-		return TRUE
+	last_use = world.time
+	succeed_activate()
+
+	round_statistics.larval_growth_stings++
+
+	addtimer(CALLBACK(src, .proc/on_cooldown_finish), XENO_LARVAL_GROWTH_COOLDOWN)
+	X.recurring_injection(A, "xeno_growthtoxin", XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
 
 // ***************************************
 // *********** Spitter-y abilities

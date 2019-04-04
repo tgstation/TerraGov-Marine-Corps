@@ -121,6 +121,7 @@
 	var/mechanics_text = "This ability not found in codex." //codex. If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
 	var/use_state_flags = NONE // bypass use limitations checked by can_use_action()
 	var/on_cooldown
+	var/last_use
 
 /datum/action/xeno_action/New(Target)
 	..()
@@ -131,6 +132,11 @@
 /datum/action/xeno_action/can_use_action(silent = FALSE)
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X)
+		return FALSE
+
+	if(!action_cooldown_check())
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't use [name] yet, wait [cooldown_remaining()] seconds!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_INCAP) && X.incapacitated())
@@ -193,11 +199,14 @@
 //checks if the linked ability is on some cooldown.
 //The action can still be activated by clicking the button
 /datum/action/xeno_action/proc/action_cooldown_check()
-	return TRUE
+	return !on_cooldown
+
+/datum/action/xeno_action/proc/cooldown_remaining()
+	return ""
 
 //override this for cooldown completion.
 /datum/action/xeno_action/proc/on_cooldown_finish()
-	return
+	update_button_icon()
 
 /datum/action/xeno_action/update_button_icon()
 	if(!can_use_action(TRUE))
