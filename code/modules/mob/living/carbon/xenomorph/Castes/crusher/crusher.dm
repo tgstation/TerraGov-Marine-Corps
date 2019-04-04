@@ -30,8 +30,17 @@
 		/datum/action/xeno_action/activable/cresttoss,
 		)
 
+/mob/living/carbon/Xenomorph/Crusher/add_slowdown(amount)
+	if(charge_speed > charge_speed_max * 0.5) //If we're over half the max charge speed, we're immune to slowdown.
+		return FALSE
+	slowdown = adjust_slowdown(amount*XENO_SLOWDOWN_REGEN)
+	return slowdown
 
-
+/mob/living/carbon/Xenomorph/Crusher/adjust_stagger(amount)
+	if(amount > 0 && (charge_speed > charge_speed_max * 0.5) ) //If we're over half the max charge speed, we don't accumulate more stagger stacks.
+		return FALSE
+	stagger = max(stagger + amount,0)
+	return stagger 
 
 //The atom collided with is passed to this proc, all types of collisions are dealt with here.
 //The atom does not tell the Crusher how to handle a collision, the Crusher is an independant
