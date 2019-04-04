@@ -87,7 +87,7 @@
 
 	visible_message("<span class='xenonotice'>[src] begins digging out a tunnel entrance.</span>", \
 	"<span class='xenonotice'>You begin digging out a tunnel entrance.</span>", null, 5)
-	if(!do_after(src, 100, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(src, HIVELORD_TUNNEL_DIG_TIME, TRUE, 5, BUSY_ICON_BUILD))
 		to_chat(src, "<span class='warning'>Your tunnel caves in as you stop digging it.</span>")
 		return
 	if(!check_plasma(200))
@@ -96,19 +96,41 @@
 		visible_message("<span class='xenonotice'>\The [src] digs out a tunnel entrance.</span>", \
 		"<span class='xenonotice'>You dig out the first entrance to your tunnel.</span>", null, 5)
 		start_dig = new /obj/structure/tunnel(T)
+		start_dig.creator = src
 	else
 		to_chat(src, "<span class='xenonotice'>You dig your tunnel all the way to the original entrance, connecting both entrances!</span>")
 		var/obj/structure/tunnel/newt = new /obj/structure/tunnel(T)
 		newt.other = start_dig
+		newt.creator = src
+
+		if(newt.y != newt.other.y)
+			start_dig = newt
+			to_chat(src, "<span class='xenonotice'>The first tunnel of this set has been destroyed as it cannot connect to this tunnel.</span>")
+			newt.other.health = 0
+			newt.other.healthcheck()
+			newt.other = null
+			return
+
 		start_dig.other = newt //Link the two together
 		start_dig = null //Now clear it
+
+		tunnels.Add(newt)
+		tunnels.Add(newt.other)
+
 		tunnel_delay = TRUE
-		addtimer(CALLBACK(src, .tunnel_cooldown), 2400)
+		addtimer(CALLBACK(src, .tunnel_cooldown), HIVELORD_TUNNEL_COOLDOWN)
+
+		to_chat(src, "<span class='xenonotice'>You dig your tunnel all the way to the original entrance, connecting both entrances! You now have [tunnels.len * 0.5] of [HIVELORD_TUNNEL_SET_LIMIT] tunnel sets.</span>")
 
 		var/msg = copytext(sanitize(input("Add a description to the tunnel:", "Tunnel Description") as text|null), 1, MAX_MESSAGE_LEN)
-		if(msg)
-			newt.other.tunnel_desc = msg
-			newt.tunnel_desc = msg
+		newt.other.tunnel_desc = "[get_area(newt.other)] (X: [newt.other.x], Y: [newt.other.y]) [msg]"
+		newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y]) [msg]"
+
+		if(length(tunnels) * 0.5 > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
+			var/obj/structure/tunnel/old_tunnel = tunnels[1]
+			old_tunnel.health = 0
+			old_tunnel.healthcheck()
+			to_chat(src, "<span class='xenodanger'>Having exceeding your tunnel set limit, your oldest tunnel set has collapsed.</span>")
 
 	use_plasma(200)
 	playsound(loc, 'sound/weapons/pierce.ogg', 25, 1)
