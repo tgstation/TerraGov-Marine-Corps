@@ -390,5 +390,5 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		if(!target_zone || rand(40))
 			target_zone = "chest"
 		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE))
-		var/armor_block = L.run_armor_check(target_zone, "fire")
+			var/armor_block = L.run_armor_check(target_zone, "fire")
 			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, armor_block) //Do more damage if launched from a proper launcher and active
