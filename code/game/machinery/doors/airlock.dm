@@ -731,7 +731,7 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/Topic(href, href_list, var/nowindow = 0)
 	if(!nowindow)
 		..()
-	if(usr.stat || usr.is_mob_restrained()|| usr.mob_size == MOB_SIZE_SMALL)
+	if(usr.stat || usr.restrained()|| usr.mob_size == MOB_SIZE_SMALL)
 		return
 	add_fingerprint(usr)
 	if(href_list["close"])

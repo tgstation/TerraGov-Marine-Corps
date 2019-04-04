@@ -18,7 +18,7 @@
 	return 0*/
 
 /obj/machinery/bodyscanner/relaymove(mob/user)
-	if(user.is_mob_incapacitated(TRUE)) return
+	if(user.incapacitated(TRUE)) return
 	go_out()
 
 

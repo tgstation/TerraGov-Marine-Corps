@@ -44,7 +44,7 @@ Frequency:
 
 /obj/item/device/locator/Topic(href, href_list)
 	..()
-	if (usr.stat || usr.is_mob_restrained())
+	if (usr.stat || usr.restrained())
 		return
 	var/turf/current_location = get_turf(usr)//What turf is the user on?
 	if(!current_location|| is_centcom_level(current_location.z))//If turf was not found or they're on z level 2.
@@ -154,7 +154,7 @@ Frequency:
 	if(turfs.len)
 		L["None (Dangerous)"] = pick(turfs)
 	var/t1 = input(user, "Please select a teleporter to lock in on.", "Hand Teleporter") in L
-	if ((user.get_active_held_item() != src || user.stat || user.is_mob_restrained()))
+	if ((user.get_active_held_item() != src || user.stat || user.restrained()))
 		return
 	var/count = 0	//num of portals from this teleport in the world
 	for(var/obj/effect/portal/PO in GLOB.effect_list)

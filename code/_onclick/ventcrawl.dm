@@ -28,7 +28,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 		pipe = pipes[1]
 	else
 		pipe = input("Crawl Through Vent", "Pick a pipe") as null|anything in pipes
-	if(!is_mob_incapacitated() && pipe)
+	if(!incapacitated() && pipe)
 		return pipe
 
 

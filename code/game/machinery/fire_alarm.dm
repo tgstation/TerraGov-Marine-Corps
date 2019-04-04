@@ -7,7 +7,7 @@ FIRE ALARM
 /obj/machinery/firealarm
 	name = "fire alarm"
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
-	icon = 'icons/obj/monitors.dmi'
+	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "fire0"
 	var/detecting = 1.0
 	var/working = 1.0
@@ -24,42 +24,44 @@ FIRE ALARM
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 
-
-/obj/machinery/firealarm/Initialize()
+/obj/machinery/firealarm/Initialize(mapload, direction, building)
 	. = ..()
 
-	switch(dir)
-		if(NORTH) 
-			pixel_y = 24
-		if(SOUTH) 
-			pixel_y = -24
-		if(EAST) 
-			pixel_x = 24
-		if(WEST) 
-			pixel_x = -24
+	if(direction)
+		setDir(direction)
 
+	if(building)
+		buildstage = 0
+		wiresexposed = TRUE
+
+	switch(dir)
+		if(NORTH)
+			pixel_y = -32
+		if(SOUTH)
+			pixel_y = 32
+		if(EAST)
+			pixel_x = -32
+		if(WEST)
+			pixel_x = 32
+
+	update_icon()
+	start_processing()
 
 /obj/machinery/firealarm/update_icon()
+	overlays.Cut()
+	icon_state = "fire1"
 
-	if(wiresexposed)
-		switch(buildstage)
-			if(2)
-				icon_state="fire_b2"
-			if(1)
-				icon_state="fire_b1"
-			if(0)
-				icon_state="fire_b0"
-
+	if(wiresexposed || (machine_stat & BROKEN))
+		overlays += image(icon, "fire_ob[buildstage]")
 		return
 
-	if(machine_stat & BROKEN)
-		icon_state = "firex"
-	else if(machine_stat & NOPOWER)
-		icon_state = "firep"
-	else if(!src.detecting)
-		icon_state = "fire1"
-	else
-		icon_state = "fire0"
+	if(!(machine_stat & NOPOWER))
+		var/alert = (is_mainship_level(z)) ? get_security_level() : "green"
+		overlays += image(icon, "fire_o[alert]")
+		var/area/A = get_area(src)
+		if(A?.flags_alarm_state & ALARM_WARNING_FIRE)
+			icon_state = "fire0"
+			overlays += image(icon, "fire_o1")
 
 /obj/machinery/firealarm/fire_act(temperature, volume)
 	if(src.detecting)
@@ -253,48 +255,18 @@ FIRE ALARM
 	return
 
 /obj/machinery/firealarm/proc/reset()
-	if (!( src.working ))
+	if (!working)
 		return
-	var/area/A = src.loc
-	A = A.loc
-	if (!( istype(A, /area) ))
-		return
-	A.firereset()
+	var/area/A = get_area(src)
+	A?.firereset()
 	update_icon()
 	return
 
 /obj/machinery/firealarm/proc/alarm()
-	if (!( src.working ))
+	if (!working)
 		return
-	var/area/A = src.loc
-	A = A.loc
-	if (!( istype(A, /area) ))
-		return
-	A.firealert()
+	var/area/A = get_area(src)
+	A?.firealert()
 	update_icon()
 	//playsound(src.loc, 'sound/ambience/signal.ogg', 50, 0)
 	return
-
-/obj/machinery/firealarm/New(loc, dir, building)
-	..()
-
-	if(loc)
-		src.loc = loc
-
-	if(dir)
-		setDir(dir)
-
-	if(building)
-		buildstage = 0
-		wiresexposed = 1
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
-		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
-
-	if(is_ground_level(z))
-		if(security_level)
-			src.overlays += image('icons/obj/monitors.dmi', "overlay_[get_security_level()]")
-		else
-			src.overlays += image('icons/obj/monitors.dmi', "overlay_green")
-
-	update_icon()
-	start_processing()

@@ -232,9 +232,7 @@
 
 			if(affecting)
 				to_chat(M, "<span class='danger'>You land heavily on your [affecting.display_name]!</span>")
-				affecting.take_damage(damage, 0)
-				if(affecting.parent)
-					affecting.parent.add_autopsy_data("Misadventure", damage)
+				affecting.take_damage_limb(damage)
 			else
 				to_chat(H, "<span class='danger'>You land heavily!</span>")
 				H.apply_damage(damage, BRUTE)
@@ -248,10 +246,10 @@
 		return FALSE
 	if(!Adjacent(user) || !isturf(user.loc))
 		return FALSE
-	if(user.is_mob_restrained() || user.buckled)
+	if(user.restrained() || user.buckled)
 		to_chat(user, "<span class='notice'>You need your hands and legs free for this.</span>")
 		return FALSE
-	if(user.is_mob_incapacitated(TRUE) || user.lying)
+	if(user.incapacitated(TRUE) || user.lying)
 		return FALSE
 	if(issilicon(user))
 		to_chat(user, "<span class='notice'>You need hands for this.</span>")

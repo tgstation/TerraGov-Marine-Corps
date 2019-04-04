@@ -41,7 +41,7 @@
 	
 	var/mob/living/carbon/user = usr
 
-	if(!istype(user) || !isturf(user.loc) || user.is_mob_incapacitated())
+	if(!istype(user) || !isturf(user.loc) || user.incapacitated())
 		return FALSE
 
 	if(!CONFIG_GET(flag/unlimited_rotate_speed))

@@ -43,7 +43,7 @@
 	if(world.time <= usr.next_move)
 		return TRUE
 
-	if(usr.is_mob_incapacitated(TRUE))
+	if(usr.incapacitated(TRUE))
 		return TRUE
 
 	if(istype(usr.loc,/obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
@@ -126,7 +126,7 @@
 		return
 
 	var/mob/living/carbon/C = usr
-	if(C.is_mob_incapacitated())
+	if(C.incapacitated())
 		return
 
 	if(C.internal)

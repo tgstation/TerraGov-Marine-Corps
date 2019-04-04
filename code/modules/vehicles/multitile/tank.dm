@@ -105,7 +105,7 @@
 	set category = "Vehicle"
 	set src in view(0)
 
-	if(usr.is_mob_incapacitated())
+	if(usr.incapacitated())
 		return
 
 	var/wannabe_trucker = (usr == gunner) ? TRUE : FALSE
@@ -121,7 +121,7 @@
 
 	var/player = wannabe_trucker ? gunner : driver
 	var/challenger = wannabe_trucker ? driver : gunner
-	if(QDELETED(user) || user.is_mob_incapacitated() || player != user)
+	if(QDELETED(user) || user.incapacitated() || player != user)
 		return
 
 	if(challenger)
@@ -141,7 +141,7 @@
 	if(!M.IsAdvancedToolUser())
 		to_chat(M, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
-	return !M.is_mob_incapacitated()
+	return !M.incapacitated()
 
 /obj/vehicle/multitile/root/cm_armored/tank/handle_harm_attack(mob/M, mob/occupant)
 	. = ..()
@@ -237,7 +237,7 @@
 	if(!forced)
 		occupant_exiting = null
 
-	if(!M || get_turf(M) != get_turf(src) || (M.is_mob_incapacitated() && !forced))
+	if(!M || get_turf(M) != get_turf(src) || (M.incapacitated() && !forced))
 		return
 
 	var/turf/T = get_turf(entrance)
@@ -265,7 +265,7 @@
 
 //No one but the driver can drive
 /obj/vehicle/multitile/root/cm_armored/tank/relaymove(mob/user, direction)
-	if(user != driver || user.is_mob_incapacitated())
+	if(user != driver || user.incapacitated())
 		return
 
 	. = ..(user, direction)
@@ -295,7 +295,7 @@
 //No one but the driver can turn
 /obj/vehicle/multitile/root/cm_armored/tank/try_rotate(deg, mob/user, force = FALSE)
 
-	if(user != driver || user.is_mob_incapacitated())
+	if(user != driver || user.incapacitated())
 		return
 
 	. = ..(deg, user, force)

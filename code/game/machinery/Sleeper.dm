@@ -125,7 +125,7 @@
 		return FALSE
 	if(!usr)
 		return FALSE
-	if(usr.is_mob_incapacitated() || !usr.IsAdvancedToolUser())
+	if(usr.incapacitated() || !usr.IsAdvancedToolUser())
 		return FALSE
 	var/mob/living/carbon/human/user = usr
 	if(get_dist(src, user) > 1)

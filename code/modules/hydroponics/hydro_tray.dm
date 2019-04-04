@@ -718,7 +718,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(!usr || usr.stat || usr.is_mob_restrained())
+	if(!usr || usr.stat || usr.restrained())
 		return
 
 	closed_system = !closed_system

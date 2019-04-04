@@ -147,9 +147,7 @@
 				var/datum/limb/affecting = H.get_limb(pick("l_foot","r_foot","l_leg","r_leg","l_hand","r_hand","l_arm", "r_arm","head","chest","groin"))
 
 				if(affecting)
-					affecting.take_damage(damage, 0)
-					if(affecting.parent)
-						affecting.parent.add_autopsy_data("[plant_damage_noun]", damage)
+					affecting.take_damage_limb(damage)
 				else
 					H.adjustBruteLoss(damage)
 
