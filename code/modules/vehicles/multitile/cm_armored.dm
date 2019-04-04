@@ -646,7 +646,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		handle_ammomag_attackby(AM, user)
 
 	else if(iswelder(O) || iswrench(O)) //Are we trying to repair stuff?
-		handle_hardpoint_repair(user)
+		handle_hardpoint_repair(O, user)
 		update_damage_distribs()
 
 	else if(iscrowbar(O)) //Are we trying to remove stuff?
@@ -658,7 +658,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			take_damage_type(O.force * 0.05, "blunt", user) //Melee weapons from people do very little damage
 
 
-/obj/vehicle/multitile/root/cm_armored/proc/handle_hardpoint_repair(mob/user)
+/obj/vehicle/multitile/root/cm_armored/proc/handle_hardpoint_repair(obj/item/O, mob/user)
 
 	//Need to the what the hell you're doing
 	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
@@ -670,7 +670,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	//Pick what to repair
 	var/slot = input("Select a slot to try and repair") in hardpoints
-	var/item/I = user.get_active_held_item()
+	var/obj/item/I = user.get_active_held_item()
 	if(!Adjacent(user) || (iswelder(I) && !iswrench(I)))
 		return
 
