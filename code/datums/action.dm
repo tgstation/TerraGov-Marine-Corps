@@ -122,6 +122,7 @@
 	var/use_state_flags = NONE // bypass use limitations checked by can_use_action()
 	var/on_cooldown
 	var/last_use
+	var/cooldown_timer
 
 /datum/action/xeno_action/New(Target)
 	..()
@@ -201,8 +202,14 @@
 /datum/action/xeno_action/proc/action_cooldown_check()
 	return !on_cooldown
 
+/datum/action/xeno_action/proc/add_cooldown()
+	if(!length(active_timers)) // stop doubling up
+		last_use = world.time
+		on_cooldown = TRUE
+		addtimer(CALLBACK(src, .proc/on_cooldown_finish), cooldown_timer)
+
 /datum/action/xeno_action/proc/cooldown_remaining()
-	return ""
+	return (last_use + cooldown_timer - world.time) * 0.1
 
 //override this for cooldown completion.
 /datum/action/xeno_action/proc/on_cooldown_finish()

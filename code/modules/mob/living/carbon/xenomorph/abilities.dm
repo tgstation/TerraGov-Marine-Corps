@@ -325,6 +325,7 @@
 	mechanics_text = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
 	ability_name = "larval growth sting"
 	plasma_cost = 150
+	cooldown_timer = XENO_LARVAL_GROWTH_COOLDOWN
 
 /datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -357,23 +358,15 @@
 			to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return FALSE
 
-/datum/action/xeno_action/activable/larval_growth_sting/cooldown_remaining()
-	return (last_use + XENO_LARVAL_GROWTH_COOLDOWN - world.time) * 0.1
-
 /datum/action/xeno_action/activable/larval_growth_sting/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
 
-	last_use = world.time
-	on_cooldown = TRUE
 	succeed_activate()
 
 	round_statistics.larval_growth_stings++
 
 	add_cooldown()
 	X.recurring_injection(A, "xeno_growthtoxin", XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
-
-/datum/action/xeno_action/activable/larval_growth_sting/proc/add_cooldown()
-	addtimer(CALLBACK(src, .proc/on_cooldown_finish), XENO_LARVAL_GROWTH_COOLDOWN)
 
 // ***************************************
 // *********** Spitter-y abilities
@@ -383,7 +376,7 @@
 	name = "Toggle Spit Type"
 	action_icon_state = "shift_spit_neurotoxin"
 	mechanics_text = "Switch from neurotoxin to acid spit."
-	plasma_cost = 0
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY
 
 /datum/action/xeno_action/shift_spits/update_button_icon()
 	var/mob/living/carbon/Xenomorph/X = owner
@@ -392,8 +385,6 @@
 
 /datum/action/xeno_action/shift_spits/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state())
-		return
 	for(var/i in 1 to X.xeno_caste.spit_types.len)
 		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
 			if(i == X.xeno_caste.spit_types.len)
@@ -402,8 +393,7 @@
 				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
 			break
 	to_chat(X, "<span class='notice'>You will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>")
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
+	update_button_icon()
 
 // Corrosive Acid
 /datum/action/xeno_action/activable/corrosive_acid
