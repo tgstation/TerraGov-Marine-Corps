@@ -315,7 +315,7 @@
 	set category = "Object"
 	set name = "Toggle Open"
 
-	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
+	if(!usr.canmove || usr.stat || usr.restrained())
 		return
 
 	if(ishuman(usr))

@@ -13,7 +13,7 @@
 		set category = "Object"
 		set name = "Access Computer's Internals"
 		set src in oview(1)
-		if(get_dist(src, usr) > 1 || usr.is_mob_restrained() || usr.lying || usr.stat || issilicon(usr))
+		if(get_dist(src, usr) > 1 || usr.restrained() || usr.lying || usr.stat || issilicon(usr))
 			return
 
 		opened = !opened

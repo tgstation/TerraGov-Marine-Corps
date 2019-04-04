@@ -237,7 +237,7 @@
 	playing = 0
 
 /obj/item/device/violin/attack_self(mob/user as mob)
-	if(!isliving(user) || user.stat || user.is_mob_restrained() || user.lying)	return
+	if(!isliving(user) || user.stat || user.restrained() || user.lying)	return
 	user.set_interaction(src)
 
 	var/dat = "<HEAD><TITLE>Violin</TITLE></HEAD><BODY>"
@@ -290,7 +290,7 @@
 
 /obj/item/device/violin/Topic(href, href_list)
 
-	if(!in_range(src, usr) || issilicon(usr) || !isliving(usr) || !usr.canmove || usr.is_mob_restrained())
+	if(!in_range(src, usr) || issilicon(usr) || !isliving(usr) || !usr.canmove || usr.restrained())
 		usr << browse(null, "window=violin;size=700x300")
 		onclose(usr, "violin")
 		return

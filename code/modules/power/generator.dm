@@ -154,7 +154,7 @@
 	set name = "Rotate Generator (Clockwise)"
 	set src in view(1)
 
-	if (usr.stat || usr.is_mob_restrained()  || anchored)
+	if (usr.stat || usr.restrained()  || anchored)
 		return
 
 	setDir(turn(src.dir, 90))
@@ -164,7 +164,7 @@
 	set name = "Rotate Generator (Counterclockwise)"
 	set src in view(1)
 
-	if (usr.stat || usr.is_mob_restrained()  || anchored)
+	if (usr.stat || usr.restrained()  || anchored)
 		return
 
 	setDir(turn(src.dir, -90))
