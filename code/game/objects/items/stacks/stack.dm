@@ -48,7 +48,7 @@
 			stack_trace("[src] tried to update_weight() with [amount] amount and [max_amount] max_amount.")
 	if(new_w_class != w_class)
 		w_class = new_w_class
-		loc.recalculate_storage_space() //No need to do icon updates if there are no changes.
+		loc?.recalculate_storage_space() //No need to do icon updates if there are no changes.
 
 
 /obj/item/stack/update_icon()
