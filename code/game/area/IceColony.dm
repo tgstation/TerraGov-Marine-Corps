@@ -451,6 +451,7 @@
 /area/ice_colony/surface/tcomms
 	name = "\improper Colony Telecommunications"
 	icon_state = "tcomsatcham"
+	requires_power = "FALSE"
 
 /*
  *  -------------------------
