@@ -401,12 +401,170 @@
 	action_icon_state = "corrosive_acid"
 	mechanics_text = "Cover an object with acid to slowly melt it. Takes a few seconds."
 	ability_name = "corrosive acid"
-	var/acid_plasma_cost = 100
+	plasma_cost = 100
 	var/acid_type = /obj/effect/xenomorph/acid
+
+/datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!owner.Adjacent(A))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>\The [A] is too far away.</span>")
+		return FALSE
+	if(isobj(A))
+		var/obj/O = A
+		if(CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+			if(!silent)
+				to_chat(owner, "<span class='warning'>You cannot dissolve \the [O].</span>")
+			return
+		if(O.acid_check(acid_type))
+			if(!silent)
+				to_chat(owner, "<span class='warning'>This object is already subject to a more or equally powerful acid.</span>")
+			return FALSE
+		if(istype(O, /obj/structure/window_frame))
+			var/obj/structure/window_frame/WF = O
+			if(WF.reinforced && acid_type != /obj/effect/xenomorph/acid/strong)
+				if(!silent)
+					to_chat(owner, "<span class='warning'>This [WF.name] is too tough to be melted by your weak acid.</span>")
+				return FALSE
+	else if(isturf(A))
+		var/turf/T = A
+		if(T.acid_check(acid_type))
+			if(!silent)
+				to_chat(owner, "<span class='warning'>This object is already subject to a more or equally powerful acid.</span>")
+			return FALSE
+		if(iswallturf(T))
+			var/turf/closed/wall/wall_target = T
+			if(wall_target.acided_hole)
+				if(!silent)
+					to_chat(owner, "<span class='warning'>[wall_target] is already weakened.</span>")
+				return FALSE
+
+/obj/proc/acid_check(obj/effect/xenomorph/acid/new_acid)
+	if(!new_acid)
+		return FALSE
+	if(!current_acid)
+		return TRUE
+
+	if(initial(new_acid.acid_strength) >= current_acid.acid_strength)
+		return FALSE
+	return TRUE
+
+/turf/proc/acid_check(obj/effect/xenomorph/acid/new_acid)
+	if(!new_acid)
+		return FALSE
+	if(!current_acid)
+		return TRUE
+
+	if(initial(new_acid.acid_strength) >= current_acid.acid_strength)
+		return FALSE
+	return TRUE
 
 /datum/action/xeno_action/activable/corrosive_acid/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.corrosive_acid(A, acid_type, acid_plasma_cost)
+
+	X.face_atom(A)
+
+	var/wait_time = 10
+
+	var/turf/T
+	var/obj/O
+
+	if(isobj(A))
+		O = A
+		if(O.density || istype(O, /obj/structure))
+			wait_time = 40 //dense objects are big, so takes longer to melt.
+
+	else if(isturf(A))
+		T = A
+		var/dissolvability = T.can_be_dissolved()
+		switch(dissolvability)
+			if(0)
+				to_chat(X, "<span class='warning'>You cannot dissolve \the [T].</span>")
+				return fail_activate()
+			if(1)
+				wait_time = 50
+			if(2)
+				if(acid_type != /obj/effect/xenomorph/acid/strong)
+					to_chat(X, "<span class='warning'>This [T.name] is too tough to be melted by your weak acid.</span>")
+					return fail_activate()
+				wait_time = 100
+			else
+				return fail_activate()
+		to_chat(X, "<span class='xenowarning'>You begin generating enough acid to melt through \the [T].</span>")
+	else
+		to_chat(X, "<span class='warning'>You cannot dissolve \the [A].</span>")
+		return fail_activate()
+
+	if(!do_after(X, wait_time, TRUE, 5, BUSY_ICON_HOSTILE))
+		return fail_activate()
+
+	if(!can_use_ability(A, TRUE))
+		return
+
+	var/obj/effect/xenomorph/acid/newacid = new acid_type(get_turf(O), O)
+
+	succeed_activate()
+
+	if(istype(A, /obj/vehicle/multitile/root/cm_armored))
+		var/obj/vehicle/multitile/root/cm_armored/R = A
+		R.take_damage_type( (1 / newacid.acid_strength) * 20, "acid", X)
+		X.visible_message("<span class='xenowarning'>\The [X] vomits globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!</span>", \
+			"<span class='xenowarning'>You vomit globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!</span>", null, 5)
+		playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
+		QDEL_IN(newacid, 20)
+		return TRUE
+
+	if(isturf(A))
+		newacid.icon_state += "_wall"
+		if(T.current_acid)
+			acid_progress_transfer(newacid, null, T)
+		T.current_acid = newacid
+
+	if(istype(A, /obj/structure) || istype(A, /obj/machinery)) //Always appears above machinery
+		newacid.layer = A.layer + 0.1
+		if(O.current_acid)
+			acid_progress_transfer(newacid, O)
+		O.current_acid = newacid
+
+	else if(istype(O)) //If not, appear on the floor or on an item
+		if(O.current_acid)
+			acid_progress_transfer(newacid, O)
+		newacid.layer = LOWER_ITEM_LAYER //below any item, above BELOW_OBJ_LAYER (smartfridge)
+		O.current_acid = newacid
+	else
+		return fail_activate()
+
+	newacid.name = newacid.name + " (on [A.name])" //Identify what the acid is on
+	newacid.add_hiddenprint(X)
+
+	if(!isturf(A))
+		log_combat(X, A, "spat on", addition="with corrosive acid")
+		msg_admin_attack("[X.name] ([X.ckey]) spat acid on [A].")
+	X.visible_message("<span class='xenowarning'>\The [X] vomits globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!</span>", \
+	"<span class='xenowarning'>You vomit globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!</span>", null, 5)
+	playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
+
+/datum/action/xeno_action/activable/corrosive_acid/proc/acid_progress_transfer(acid_type, obj/O, turf/T)
+	if(!O && !T)
+		return
+
+	var/obj/effect/xenomorph/acid/new_acid = acid_type
+
+	var/obj/effect/xenomorph/acid/current_acid
+
+	if(T)
+		current_acid = T.current_acid
+
+	else if(O)
+		current_acid = O.current_acid
+
+	if(!current_acid) //Sanity check. No acid
+		return
+	new_acid.ticks = current_acid.ticks //Inherit the old acid's progress
+	qdel(current_acid)
+
 
 /datum/action/xeno_action/activable/spray_acid
 	name = "Spray Acid"

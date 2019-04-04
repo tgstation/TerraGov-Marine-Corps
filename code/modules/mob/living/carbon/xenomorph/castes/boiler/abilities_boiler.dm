@@ -54,7 +54,7 @@
 
 /datum/action/xeno_action/activable/corrosive_acid/Boiler
 	name = "Corrosive Acid (200)"
-	acid_plasma_cost = 200
+	plasma_cost = 200
 	acid_type = /obj/effect/xenomorph/acid/strong
 
 // ***************************************
