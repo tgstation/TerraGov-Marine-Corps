@@ -20,7 +20,6 @@
 	icon_state = "band"
 	flags_inv_hide = HIDETOPHAIR
 
-
 /obj/item/clothing/head/tgmcbandana/tan
 	icon_state = "band2"
 
@@ -43,18 +42,22 @@
 	icon_state = "beret"
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
 
-
 /obj/item/clothing/head/tgmcberet/tan
 	icon_state = "berettan"
 
 /obj/item/clothing/head/tgmcberet/red
 	icon_state = "beretred"
 
-
 /obj/item/clothing/head/tgmcberet/wo
 	name = "\improper Command Master at Arms beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."
 	icon_state = "beretwo"
+	armor = list("melee" = 60, "bullet" = 80, "laser" = 80, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
+
+/obj/item/clothing/head/tgmcberet/fc
+	name = "\improper Field Commander beret"
+	desc = "A beret with the field commander insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
+	icon_state = "beretfc"
 	armor = list("melee" = 60, "bullet" = 80, "laser" = 80, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
 
 
@@ -75,7 +78,7 @@
 	set src in usr
 	if(!isliving(usr))
 		return
-	if(usr.is_mob_incapacitated())
+	if(usr.incapacitated())
 		return
 
 	flipped_cap = !flipped_cap
@@ -93,7 +96,6 @@
 	name = "\improper TGMC officer cap"
 	desc = "A hat usually worn by officers in the TGMC. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "rocap"
-
 
 /obj/item/clothing/head/tgmccap/req
 	name = "\improper TGMC requisition cap"
@@ -122,9 +124,13 @@
 /obj/item/clothing/head/headband/rambo
 	name = "headband"
 	desc = "It flutters in the face of the wind, defiant and unrestrained, like the man who wears it."
-	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "headband_rambo"
-	sprite_sheet_id = 0
+
+/obj/item/clothing/head/headband/snake
+	name = "headband"
+	desc = "A replica of the headband of a legendary soldier. Sadly it doesn't offer infinite ammo. Yet."
+	icon_state = "headband_snake"
+
 
 /obj/item/clothing/head/headset
 	name = "\improper TGMC headset"
@@ -140,8 +146,8 @@
 
 
 //============================//BERETS\\=================================\\
-//=======================================================================\\
 //Berets have armor, so they have their own category. PMC caps are helmets, so they're in helmets.dm.
+
 /obj/item/clothing/head/beret/marine
 	name = "marine officer beret"
 	desc = "A beret with the TGMC insignia emblazoned on it. It radiates respect and authority."

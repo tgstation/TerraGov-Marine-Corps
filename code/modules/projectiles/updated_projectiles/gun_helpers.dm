@@ -310,7 +310,7 @@ should be alright.
 /obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
 	if(istype(dropping, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = dropping
-		if(!istype(user) || user.is_mob_incapacitated(TRUE))
+		if(!istype(user) || user.incapacitated(TRUE))
 			return
 		if(src != user.r_hand && src != user.l_hand)
 			to_chat(user, "<span class='warning'>[src] must be in your hand to do that.</span>")
@@ -499,7 +499,7 @@ should be alright.
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this.</span>")
 		return
 
-	if( user.is_mob_incapacitated() || !isturf(user.loc))
+	if( user.incapacitated() || !isturf(user.loc))
 		to_chat(user, "<span class='warning'>You can't do this right now.</span>")
 		return
 

@@ -110,7 +110,7 @@
 /obj/item/device/portable_vendor/Topic(href, href_list)
 	if(broken)
 		return
-	if(usr.is_mob_incapacitated())
+	if(usr.incapacitated())
 		return
 
 	if (in_range(src, usr) && ishuman(usr))

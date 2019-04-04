@@ -804,7 +804,7 @@
 
 // player on mulebot attempted to move
 /obj/machinery/bot/mulebot/relaymove(mob/user)
-	if(user.is_mob_incapacitated(TRUE)) return
+	if(user.incapacitated(TRUE)) return
 	if(load == user)
 		unload(0)
 

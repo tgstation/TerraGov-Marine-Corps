@@ -164,7 +164,7 @@
 		unset_interaction()
 		src << browse(null, t1)
 	if (href_list["item"])
-		if(!usr.is_mob_incapacitated() && in_range(src, usr))
+		if(!usr.incapacitated() && in_range(src, usr))
 			if(!usr.action_busy)
 				var/slot = text2num(href_list["item"])
 				var/obj/item/what = get_item_by_slot(slot)

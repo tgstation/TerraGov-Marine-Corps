@@ -462,7 +462,7 @@
 	if(!ishuman(usr))
 		return
 	var/mob/living/carbon/human/user = usr //this is us
-	if(user.is_mob_incapacitated())
+	if(user.incapacitated())
 		return
 	src.add_fingerprint(usr)
 	if((over_object == user && (in_range(src, user) || locate(src) in user))) //Make sure its on ourselves
@@ -501,7 +501,7 @@
 /obj/machinery/m56d_hmg/InterceptClickOn(mob/user, params, atom/object)
 	if(is_bursting)
 		return TRUE
-	if(user.lying || !Adjacent(user) || user.is_mob_incapacitated())
+	if(user.lying || !Adjacent(user) || user.incapacitated())
 		user.unset_interaction()
 		return FALSE
 	if(user.get_active_held_item())
@@ -565,14 +565,14 @@
 	user.verbs -= /mob/living/proc/toogle_mg_burst_fire
 
 /obj/machinery/m56d_hmg/check_eye(mob/user)
-	if(user.lying || !Adjacent(user) || user.is_mob_incapacitated() || !user.client)
+	if(user.lying || !Adjacent(user) || user.incapacitated() || !user.client)
 		user.unset_interaction()
 
 /mob/living/proc/toogle_mg_burst_fire(obj/machinery/m56d_hmg/MG in list(interactee))
 	set name = "Toggle MG Burst Fire"
 	set category = "Weapons"
 
-	if(!is_mob_incapacitated() && MG.operator == src)
+	if(!incapacitated() && MG.operator == src)
 		MG.burst_fire = !MG.burst_fire
 		to_chat(src, "<span class='notice'>You set [MG] to [MG.burst_fire ? "burst fire" : "single fire"] mode.</span>")
 		playsound(loc, 'sound/items/Deconstruct.ogg',25,1)

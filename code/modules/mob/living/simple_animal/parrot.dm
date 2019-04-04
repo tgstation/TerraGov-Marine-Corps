@@ -131,7 +131,7 @@
 /mob/living/simple_animal/parrot/Topic(href, href_list)
 
 	//Can the usr physically do this?
-	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !in_range(loc, usr))
+	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 		return
 
 	//Is the usr's mob type able to do this?

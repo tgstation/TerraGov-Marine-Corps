@@ -64,7 +64,7 @@
 
 		if("clap")
 			m_type = EMOTE_AUDIBLE
-			if(is_mob_restrained() || audio_emote_cooldown(player_caused))
+			if(restrained() || audio_emote_cooldown(player_caused))
 				return
 			message = "<B>[comm_paygrade][src]</B> claps."
 			playsound(src.loc, 'sound/misc/clap.ogg', 25, 0)
@@ -86,7 +86,7 @@
 		if("dab")
 			if(!CONFIG_GET(flag/fun_allowed)) //fun_allowed is in the config folder. change it in game by Debug>debug controllers> ctrl+f fun_allowed.
 				return
-			if(is_mob_incapacitated())
+			if(incapacitated())
 				to_chat(src, "You cannot dab in your current state.")
 				return
 			var/datum/limb/l_arm/A = get_limb("l_arm")
@@ -148,7 +148,7 @@
 
 		if("golfclap")
 			m_type = EMOTE_AUDIBLE
-			if(is_mob_restrained() || audio_emote_cooldown(player_caused))
+			if(restrained() || audio_emote_cooldown(player_caused))
 				return
 			message = "<B>[comm_paygrade][src]</B> claps, clearly unimpressed."
 			playsound(src.loc, 'sound/misc/golfclap.ogg', 25, 0)
@@ -164,14 +164,14 @@
 				message = "<B>[comm_paygrade][src]</B> makes a noise."
 
 		if("handshake")
-			if(!is_mob_restrained() && !(r_hand && l_hand) && param)
-				if(H.canmove && H.r_hand && !H.is_mob_restrained())
+			if(!restrained() && !(r_hand && l_hand) && param)
+				if(H.canmove && H.r_hand && !H.restrained())
 					message = "<B>[comm_paygrade][src]</B> shakes hands with [H]."
 				else
 					message = "<B>[comm_paygrade][src]</B> holds out [p_their()] hand to [H]."
 
 		if("hug")
-			if(!is_mob_restrained())
+			if(!restrained())
 				if(param)
 					message = "<B>[comm_paygrade][src]</B> hugs [H]."
 				else
@@ -269,7 +269,7 @@
 				message = "<B>[comm_paygrade][src]</B> makes a weak noise."
 
 		if("signal")
-			if(is_mob_restrained())
+			if(restrained())
 				return
 			var/t1 = round(text2num(param))
 			if(isnum(t1))
@@ -299,7 +299,7 @@
 			message = "<B>[comm_paygrade][src]</B> twitches."
 
 		if("wave")
-			if(is_mob_restrained())
+			if(restrained())
 				return
 			message = "<B>[comm_paygrade][src]</B> waves."
 

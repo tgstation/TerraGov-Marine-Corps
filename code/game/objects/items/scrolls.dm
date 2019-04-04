@@ -24,7 +24,7 @@
 
 /obj/item/teleportation_scroll/Topic(href, href_list)
 	..()
-	if (usr.stat || usr.is_mob_restrained() || src.loc != usr)
+	if (usr.stat || usr.restrained() || src.loc != usr)
 		return
 	var/mob/living/carbon/human/H = usr
 	if (!ishuman(H))
@@ -43,7 +43,7 @@
 	if(!thearea)
 		return
 
-	if (user.stat || user.is_mob_restrained())
+	if (user.stat || user.restrained())
 		return
 	if(!((user == loc || (in_range(src, user) && istype(src.loc, /turf)))))
 		return
