@@ -219,7 +219,7 @@ Class Procs:
 	if(A && A.master)
 		A.master.powerupdate = 1
 
-/obj/machinery/power_change()
+/obj/machinery/proc/power_change()
 	if(!powered(power_channel) && (machine_current_charge <= 0))
 		machine_stat |= NOPOWER
 	else
@@ -262,7 +262,7 @@ Class Procs:
 	..()
 	if(inoperable())
 		return 1
-	if(usr.is_mob_restrained() || usr.lying || usr.stat)
+	if(usr.restrained() || usr.lying || usr.stat)
 		return 1
 	if (!ishuman(usr) && !ismonkey(usr) && !issilicon(usr) && !isxeno(usr))
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")

@@ -3,6 +3,8 @@
 	//Used to store information about the contents of the object.
 	var/list/matter
 
+	var/datum/armor/armor
+
 	var/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
 	var/crit_fail = 0
@@ -15,14 +17,19 @@
 	var/buckle_lying = FALSE //Is the mob buckled in a lying position
 	var/can_buckle = FALSE
 
-	var/explosion_resistance = 0
-
 	var/igniting = FALSE	//Whether it ignites on impact
 	var/item_fire_stacks = 0	//How many fire stacks it applies
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
-/obj/New()
-	..()
+/obj/Initialize()
+	. = ..()
+	if (islist(armor))
+		armor = getArmor(arglist(armor))
+	else if (!armor)
+		armor = getArmor()
+	else if (!istype(armor, /datum/armor))
+		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
+
 	GLOB.object_list += src
 
 /obj/Destroy()
@@ -167,7 +174,7 @@
 
 //trying to buckle a mob
 /obj/proc/buckle_mob(mob/M, mob/user)
-	if ( !ismob(M) || (get_dist(src, user) > 1) || user.is_mob_restrained() || user.lying || user.stat || buckled_mob || M.buckled )
+	if ( !ismob(M) || (get_dist(src, user) > 1) || user.restrained() || user.lying || user.stat || buckled_mob || M.buckled )
 		return
 
 	if (M.mob_size > MOB_SIZE_HUMAN)
@@ -288,8 +295,6 @@
 			return M.mind.cm_skills.surgery
 		if(OBJ_SKILL_PILOT)
 			return M.mind.cm_skills.pilot
-		if(OBJ_SKILL_ENDURANCE)
-			return M.mind.cm_skills.endurance
 		if(OBJ_SKILL_ENGINEER)
 			return M.mind.cm_skills.engineer
 		if(OBJ_SKILL_CONSTRUCTION)

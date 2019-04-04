@@ -74,3 +74,55 @@
 
 		spawn(20)
 			loc = null
+
+
+
+/obj/effect/rune/attunement
+	l_color = "#ff0000"
+	luminosity = 5
+
+
+/obj/effect/rune/attunement/Destroy()
+	SetLuminosity(0)
+	return ..()
+
+
+/obj/effect/forcefield
+	anchored = TRUE
+	opacity = FALSE
+	density = TRUE
+
+
+/obj/effect/forcefield/fog
+	name = "dense fog"
+	desc = "It looks way too dangerous to traverse. Best wait until it has cleared up."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "smoke"
+	opacity = TRUE
+
+
+/obj/effect/forcefield/fog/Initialize()
+	. = ..()
+	dir  = pick(CARDINAL_DIRS)
+	GLOB.fog_blockers += src
+
+
+/obj/effect/forcefield/fog/Destroy()
+	GLOB.fog_blockers -= src
+	return ..()
+
+
+/obj/effect/forcefield/fog/attack_hand(mob/M)
+	to_chat(M, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
+
+
+/obj/effect/forcefield/fog/attack_alien(M)
+	return attack_hand(M)
+
+
+/obj/effect/forcefield/fog/attack_paw(M)
+	return attack_hand(M)
+
+
+/obj/effect/forcefield/fog/attack_animal(M)
+	return attack_hand(M)

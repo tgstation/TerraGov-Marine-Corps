@@ -1,6 +1,6 @@
 
 /obj/item/clothing/under/gimmick
-	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 10)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	has_sensor = 0
 	displays_id = 0
 
@@ -21,7 +21,7 @@
 	desc = "A killer fashion statement."
 	icon_state = "jason_jacket"
 	item_state = "jason_jacket"
-	armor = list(melee = 13, bullet = 13, laser = 13, energy = 13, bomb = 13, bio = 13, rad = 13)
+	armor = list("melee" = 13, "bullet" = 13, "laser" = 13, "energy" = 13, "bomb" = 13, "bio" = 13, "rad" = 13, "fire" = 13, "acid" = 13)
 
 //RAMBO
 /obj/item/clothing/under/gimmick/rambo
@@ -65,7 +65,7 @@
 	flags_armor_protection = CHEST
 	flags_cold_protection = CHEST
 	flags_heat_protection = CHEST
-	armor = list(melee = 45, bullet = 45, laser = 35, energy = 25, bomb = 25, bio = 0, rad = 0)
+	armor = list("melee" = 45, "bullet" = 45, "laser" = 35, "energy" = 25, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 25)
 	allowed = list(
 			/obj/item/weapon/gun,
 			/obj/item/device/flashlight,
@@ -89,7 +89,7 @@
 	name = "polished metal boots"
 	desc = "The perfect size to stomp on the scum of Detroit."
 	icon_state = "robocop_shoes"
-	armor = list(melee = 87, bullet = 87, laser = 87, energy = 87, bomb = 87, bio = 50, rad = 50)
+	armor = list("melee" = 87, "bullet" = 87, "laser" = 87, "energy" = 87, "bomb" = 87, "bio" = 50, "rad" = 50, "fire" = 87, "acid" = 87)
 	flags_inventory = CONDUCT|NOSLIPPING
 
 /obj/item/clothing/gloves/gimmick/robocop
@@ -97,14 +97,14 @@
 	desc = "The cold, unfeeling hands of the law."
 	icon_state = "robocop_gloves"
 	flags_atom = CONDUCT
-	armor = list(melee = 87, bullet = 87, laser = 87,energy = 87, bomb = 87, bio = 50, rad = 50)
+	armor = list("melee" = 87, "bullet" = 87, "laser" = 87, "energy" = 87, "bomb" = 87, "bio" = 50, "rad" = 50, "fire" = 87, "acid" = 87)
 
 /obj/item/clothing/head/helmet/gimmick/robocop
 	name = "polished metal helm"
 	desc = "The impersonal face of the law. Constructed from titanium and laminated with kevlar."
 	icon_state = "robocop_helmet"
 	item_state = "robocop_helmet"
-	armor = list(melee = 87, bullet = 87, laser = 87, energy = 87, bomb = 87, bio = 50, rad = 50)
+	armor = list("melee" = 87, "bullet" = 87, "laser" = 87, "energy" = 87, "bomb" = 87, "bio" = 50, "rad" = 50, "fire" = 87, "acid" = 87)
 	flags_inventory = COVEREYES|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDETOPHAIR
 	anti_hug = 100
@@ -121,7 +121,7 @@
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/weapon/gun/pistol/auto9)
-	armor = list(melee = 87, bullet = 87, laser = 87, energy = 87, bomb = 87, bio = 50, rad = 50)
+	armor = list("melee" = 87, "bullet" = 87, "laser" = 87, "energy" = 87, "bomb" = 87, "bio" = 50, "rad" = 50, "fire" = 87, "acid" = 87)
 
 //LUKE
 /obj/item/clothing/under/gimmick/skywalker

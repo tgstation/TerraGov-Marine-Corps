@@ -25,16 +25,6 @@
 
 
 
-/obj/item/storage/belt/soulstone
-	name = "soul stone belt"
-	desc = "Designed for ease of access to the shards during a fight, as to not let a single enemy spirit slip away"
-	icon_state = "soulstonebelt"
-	item_state = "soulstonebelt"
-	storage_slots = 6
-	can_hold = list(
-		"/obj/item/device/soulstone"
-		)
-
 
 /obj/item/storage/belt/champion
 	name = "championship belt"
@@ -43,7 +33,7 @@
 	item_state = "champion"
 	storage_slots = 1
 	can_hold = list(
-		"/obj/item/clothing/mask/luchador"
+		/obj/item/clothing/mask/luchador
 		)
 
 
@@ -61,21 +51,21 @@
 	icon_state = "utilitybelt"
 	item_state = "utility"
 	can_hold = list(
-		"/obj/item/tool/crowbar",
-		"/obj/item/tool/screwdriver",
-		"/obj/item/tool/weldingtool",
-		"/obj/item/tool/wirecutters",
-		"/obj/item/tool/wrench",
-		"/obj/item/device/multitool",
-		"/obj/item/device/flashlight",
-		"/obj/item/stack/cable_coil",
-		"/obj/item/device/t_scanner",
-		"/obj/item/device/analyzer",
-		"/obj/item/tool/taperoll/engineering")
+		/obj/item/tool/crowbar,
+		/obj/item/tool/screwdriver,
+		/obj/item/tool/weldingtool,
+		/obj/item/tool/wirecutters,
+		/obj/item/tool/wrench,
+		/obj/item/device/multitool,
+		/obj/item/device/flashlight,
+		/obj/item/stack/cable_coil,
+		/obj/item/device/t_scanner,
+		/obj/item/device/analyzer,
+		/obj/item/tool/taperoll/engineering)
 
 
-/obj/item/storage/belt/utility/full/New()
-	..()
+/obj/item/storage/belt/utility/full/Initialize()
+	. = ..()
 	new /obj/item/tool/screwdriver(src)
 	new /obj/item/tool/wrench(src)
 	new /obj/item/tool/weldingtool(src)
@@ -85,8 +75,8 @@
 	new /obj/item/device/multitool(src)
 
 
-/obj/item/storage/belt/utility/atmostech/New()
-	..()
+/obj/item/storage/belt/utility/atmostech/Initialize()
+	. = ..()
 	new /obj/item/tool/screwdriver(src)
 	new /obj/item/tool/wrench(src)
 	new /obj/item/tool/weldingtool(src)
@@ -104,34 +94,33 @@
 	max_storage_space = 29
 
 	can_hold = list(
-		"/obj/item/device/healthanalyzer",
-		"/obj/item/dnainjector",
-		"/obj/item/reagent_container/dropper",
-		"/obj/item/reagent_container/glass/beaker",
-		"/obj/item/reagent_container/glass/bottle",
-		"/obj/item/reagent_container/pill",
-		"/obj/item/reagent_container/syringe",
-		"/obj/item/tool/lighter",
-		"/obj/item/storage/fancy/cigarettes",
-		"/obj/item/storage/pill_bottle",
-		"/obj/item/stack/medical",
-		"/obj/item/device/flashlight/pen",
-		"/obj/item/clothing/mask/surgical",
-		"/obj/item/clothing/gloves/latex",
-		"/obj/item/storage/syringe_case",
-		"/obj/item/ammo_magazine/pistol",
-		"/obj/item/ammo_magazine/revolver",
-		"/obj/item/ammo_magazine/handful",
-		"/obj/item/device/flashlight/flare",
-		"/obj/item/explosive/grenade/flare",
-	    "/obj/item/reagent_container/hypospray",
-	    "/obj/item/bodybag",
-	    "/obj/item/device/defibrillator",
-	    "/obj/item/roller"
-	)
+		/obj/item/device/healthanalyzer,
+		/obj/item/dnainjector,
+		/obj/item/reagent_container/dropper,
+		/obj/item/reagent_container/glass/beaker,
+		/obj/item/reagent_container/glass/bottle,
+		/obj/item/reagent_container/pill,
+		/obj/item/reagent_container/syringe,
+		/obj/item/tool/lighter,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/storage/pill_bottle,
+		/obj/item/stack/medical,
+		/obj/item/device/flashlight/pen,
+		/obj/item/clothing/mask/surgical,
+		/obj/item/clothing/gloves/latex,
+		/obj/item/storage/syringe_case,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/handful,
+		/obj/item/device/flashlight/flare,
+		/obj/item/explosive/grenade/flare,
+		/obj/item/reagent_container/hypospray,
+	    /obj/item/bodybag,
+	    /obj/item/device/defibrillator,
+		/obj/item/roller)
 
-/obj/item/storage/belt/medical/New()
-	..()
+/obj/item/storage/belt/medical/Initialize()
+	. = ..()
 	new /obj/item/device/defibrillator(src)
 	new /obj/item/bodybag/cryobag(src)
 	new /obj/item/roller(src)
@@ -157,17 +146,17 @@
 	max_storage_space = 42
 	max_w_class = 2
 	can_hold = list(
-		"/obj/item/reagent_container/glass/bottle",
-		"/obj/item/reagent_container/pill",
-		"/obj/item/reagent_container/syringe",
-		"/obj/item/storage/pill_bottle",
-		"/obj/item/clothing/gloves/latex",
-		"/obj/item/reagent_container/hypospray/autoinjector",
-		"/obj/item/stack/medical"
+		/obj/item/reagent_container/glass/bottle,
+		/obj/item/reagent_container/pill,
+		/obj/item/reagent_container/syringe,
+		/obj/item/storage/pill_bottle,
+		/obj/item/clothing/gloves/latex,
+		/obj/item/reagent_container/hypospray/autoinjector,
+		/obj/item/stack/medical
 	)
 
-/obj/item/storage/belt/combatLifesaver/New()  //The belt, with all it's magic inside!
-	..()
+/obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
+	. = ..()
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
@@ -204,25 +193,25 @@
 	max_w_class = 3
 	max_storage_space = 21
 	can_hold = list(
-		"/obj/item/explosive/grenade/flashbang",
-		"/obj/item/explosive/grenade/chem_grenade/teargas",
-		"/obj/item/reagent_container/spray/pepper",
-		"/obj/item/handcuffs",
-		"/obj/item/device/flash",
-		"/obj/item/clothing/glasses",
-		"/obj/item/ammo_magazine/pistol",
-		"/obj/item/ammo_magazine/handful",
-		"/obj/item/reagent_container/food/snacks/donut",
-		"/obj/item/weapon/baton",
-		"/obj/item/weapon/gun/energy/taser",
-		"/obj/item/tool/lighter/zippo",
-		"/obj/item/cigpacket",
-		"/obj/item/clothing/glasses/hud/security",
-		"/obj/item/device/flashlight",
-		"/obj/item/device/pda",
-		"/obj/item/device/radio/headset",
-		"/obj/item/weapon",
-		"/obj/item/tool/taperoll/police"
+		/obj/item/explosive/grenade/flashbang,
+		/obj/item/explosive/grenade/chem_grenade/teargas,
+		/obj/item/reagent_container/spray/pepper,
+		/obj/item/handcuffs,
+		/obj/item/device/flash,
+		/obj/item/clothing/glasses,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/handful,
+		/obj/item/reagent_container/food/snacks/donut,
+		/obj/item/weapon/baton,
+		/obj/item/weapon/gun/energy/taser,
+		/obj/item/tool/lighter/zippo,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/clothing/glasses/hud/security,
+		/obj/item/device/flashlight,
+		/obj/item/device/pda,
+		/obj/item/device/radio/headset,
+		/obj/item/weapon,
+		/obj/item/tool/taperoll/police
 		)
 
 
@@ -245,8 +234,8 @@
 	max_storage_space = 30
 
 
-/obj/item/storage/belt/security/MP/full/New()
-	..()
+/obj/item/storage/belt/security/MP/full/Initialize()
+	. = ..()
 	new /obj/item/weapon/gun/energy/taser(src)
 	new /obj/item/device/flash(src)
 	new /obj/item/weapon/baton(src)
@@ -263,39 +252,30 @@
 	max_w_class = 3
 	max_storage_space = 15
 	can_hold = list(
-		"/obj/item/weapon/combat_knife",
-		"/obj/item/device/flashlight/flare",
-		"/obj/item/explosive/grenade/flare",
-		"/obj/item/ammo_magazine/rifle",
-		"/obj/item/cell/lasgun",
-		"/obj/item/ammo_magazine/smg",
-		"/obj/item/ammo_magazine/pistol",
-		"/obj/item/ammo_magazine/revolver",
-		"/obj/item/ammo_magazine/sniper",
-		"/obj/item/ammo_magazine/handful",
-		"/obj/item/flareround_s",
-		"/obj/item/flareround_sp",
-		"/obj/item/explosive/grenade",
-		"/obj/item/explosive/mine",
-		"/obj/item/reagent_container/food/snacks"
+		/obj/item/weapon/combat_knife,
+		/obj/item/device/flashlight/flare,
+		/obj/item/explosive/grenade/flare,
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/cell/lasgun,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/handful,
+		/obj/item/explosive/grenade,
+		/obj/item/explosive/mine,
+		/obj/item/reagent_container/food/snacks
 		)
-	var/has_gamemode_skin = TRUE //whether it has a sprite for each gamemode.
-
-	New()
-		if(has_gamemode_skin)
-			select_gamemode_skin(type)
-		..()
 
 /obj/item/storage/belt/marine/upp
 	name = "\improper Type 41 pattern load rig"
 	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
 	icon_state = "upp_belt"
 	item_state = "upp_belt"
-	has_gamemode_skin = FALSE
 
 //version full of type 71 mags
-/obj/item/storage/belt/marine/upp/full/New()
-	..()
+/obj/item/storage/belt/marine/upp/full/Initialize()
+	. = ..()
 	new /obj/item/ammo_magazine/rifle/type71(src)
 	new /obj/item/ammo_magazine/rifle/type71(src)
 	new /obj/item/ammo_magazine/rifle/type71(src)
@@ -312,11 +292,7 @@
 	storage_slots = 10
 	max_w_class = 2
 	max_storage_space = 20
-	can_hold = list("/obj/item/ammo_magazine/handful")
-
-/obj/item/storage/belt/shotgun/New()
-	select_gamemode_skin(type)
-	..()
+	can_hold = list(/obj/item/ammo_magazine/handful)
 
 /obj/item/storage/belt/shotgun/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/ammo_magazine/shotgun))
@@ -351,17 +327,17 @@
 	max_w_class = 1
 	max_storage_space = 6
 
-	can_hold=list("/obj/item/weapon/throwing_knife")
-	New()
-		select_gamemode_skin(type)
-		..()
-		item_state = "marinebelt" //PLACEHOLDER. Override, since it has no unique state.
-		new /obj/item/weapon/throwing_knife(src)
-		new /obj/item/weapon/throwing_knife(src)
-		new /obj/item/weapon/throwing_knife(src)
-		new /obj/item/weapon/throwing_knife(src)
-		new /obj/item/weapon/throwing_knife(src)
-		new /obj/item/weapon/throwing_knife(src)
+	can_hold = list(/obj/item/weapon/throwing_knife)
+
+/obj/item/storage/belt/knifepouch/Initialize()
+	. = ..()
+	item_state = "marinebelt" //PLACEHOLDER. Override, since it has no unique state.
+	new /obj/item/weapon/throwing_knife(src)
+	new /obj/item/weapon/throwing_knife(src)
+	new /obj/item/weapon/throwing_knife(src)
+	new /obj/item/weapon/throwing_knife(src)
+	new /obj/item/weapon/throwing_knife(src)
+	new /obj/item/weapon/throwing_knife(src)
 
 /obj/item/storage/belt/grenade
 	name="\improper M276 pattern M40 HEDP rig"
@@ -372,7 +348,7 @@
 	storage_slots = 8
 	max_w_class = 3
 	max_storage_space = 24
-	can_hold = list("/obj/item/explosive/grenade")
+	can_hold = list(/obj/item/explosive/grenade)
 
 
 /obj/item/storage/belt/grenade/standard/Initialize()
@@ -391,7 +367,7 @@
 	storage_slots = 16
 	max_w_class = 3
 	max_storage_space = 48
-	can_hold = list("/obj/item/explosive/grenade")
+	can_hold = list(/obj/item/explosive/grenade)
 
 /obj/item/storage/belt/grenade/b18/Initialize()
 	. = ..()
@@ -444,8 +420,8 @@
 	var/sheatheSound = 'sound/weapons/gun_pistol_sheathe.ogg'
 	var/drawSound = 'sound/weapons/gun_pistol_draw.ogg'
 	can_hold = list(
-		"/obj/item/weapon/gun/pistol",
-		"/obj/item/ammo_magazine/pistol"
+		/obj/item/weapon/gun/pistol,
+		/obj/item/ammo_magazine/pistol
 		)
 
 /obj/item/storage/belt/gun/Destroy()
@@ -513,16 +489,12 @@
 	name = "\improper M276 pattern M4A3 holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
-		"/obj/item/weapon/gun/pistol",
-		"/obj/item/ammo_magazine/pistol"
+		/obj/item/weapon/gun/pistol,
+		/obj/item/ammo_magazine/pistol
 		)
 
-	New()
-		select_gamemode_skin(type)
-		..()
-
-/obj/item/storage/belt/gun/m4a3/full/New()
-	..()
+/obj/item/storage/belt/gun/m4a3/full/Initialize()
+	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m4a3(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
@@ -530,8 +502,8 @@
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/captain/New()
-	..()
+/obj/item/storage/belt/gun/m4a3/captain/Initialize()
+	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m4a3/custom(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
@@ -539,7 +511,7 @@
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/fieldcommander/New()
+/obj/item/storage/belt/gun/m4a3/fieldcommander/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m1911/custom(src)
 	new /obj/item/ammo_magazine/pistol/m1911(src)
@@ -548,8 +520,8 @@
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/vp70/New()
-	..()
+/obj/item/storage/belt/gun/m4a3/vp70/Initialize()
+	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
@@ -557,8 +529,8 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/vp78/New()
-	..()
+/obj/item/storage/belt/gun/m4a3/vp78/Initialize()
+	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
@@ -572,15 +544,12 @@
 	icon_state = "m44_holster"
 	item_state = "m44_holster"
 	can_hold = list(
-		"/obj/item/weapon/gun/revolver",
-		"/obj/item/ammo_magazine/revolver"
+		/obj/item/weapon/gun/revolver,
+		/obj/item/ammo_magazine/revolver
 		)
-	New()
-		..()
-		select_gamemode_skin(type)
 
-/obj/item/storage/belt/gun/m44/full/New()
-	..()
+/obj/item/storage/belt/gun/m44/full/Initialize()
+	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/m44(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
@@ -594,12 +563,12 @@
 	icon_state = "mateba_holster"
 	item_state = "mateba_holster"
 	can_hold = list(
-		"/obj/item/weapon/gun/revolver/mateba",
-		"/obj/item/ammo_magazine/revolver/mateba"
+		/obj/item/weapon/gun/revolver/mateba,
+		/obj/item/ammo_magazine/revolver/mateba
 		)
 
-/obj/item/storage/belt/gun/mateba/full/New()
-	..()
+/obj/item/storage/belt/gun/mateba/full/Initialize()
+	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
@@ -610,12 +579,9 @@
 /obj/item/storage/belt/gun/mateba/cmateba
 	icon_state = "c_mateba_holster"
 	item_state = "c_mateba_holster"
-	New()
-		..()
-		select_gamemode_skin(type)
 
-/obj/item/storage/belt/gun/mateba/cmateba/full/New()
-	..()
+/obj/item/storage/belt/gun/mateba/cmateba/full/Initialize()
+	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/cmateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
@@ -623,8 +589,8 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/mateba/admiral/New()
-	..()
+/obj/item/storage/belt/gun/mateba/admiral/Initialize()
+	. = ..()
 	icon_state = "a_mateba_holster"
 	item_state = "a_mateba_holster"
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/admiral(src)
@@ -640,13 +606,13 @@
 	icon_state = "korovin_holster"
 	item_state = "korovin_holster"
 	can_hold = list(
-		"/obj/item/weapon/gun/pistol/c99",
-		"/obj/item/ammo_magazine/pistol/c99",
-		"/obj/item/ammo_magazine/pistol/c99t"
+		/obj/item/weapon/gun/pistol/c99,
+		/obj/item/ammo_magazine/pistol/c99,
+		/obj/item/ammo_magazine/pistol/c99t
 		)
 
-/obj/item/storage/belt/gun/korovin/standard/New()
-	..()
+/obj/item/storage/belt/gun/korovin/standard/Initialize()
+	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/upp(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
@@ -654,8 +620,8 @@
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/korovin/tranq/New()
-	..()
+/obj/item/storage/belt/gun/korovin/tranq/Initialize()
+	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/upp/tranq(src)
 	new /obj/item/ammo_magazine/pistol/c99t(src)
 	new /obj/item/ammo_magazine/pistol/c99t(src)

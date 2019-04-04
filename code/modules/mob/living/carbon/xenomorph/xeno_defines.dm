@@ -8,8 +8,8 @@
 
 	var/ancient_message = ""
 
-	var/tier = 0
-	var/upgrade = 0
+	var/tier = XENO_TIER_ZERO
+	var/upgrade = XENO_UPGRADE_ZERO
 
 	var/language = "Xenomorph"
 
@@ -29,7 +29,7 @@
 	// *** RNG Attacks *** //
 	var/bite_chance = 5 //Chance of doing a special bite attack in place of a claw. Set to 0 to disable.
 	var/tail_chance = 10 //Chance of doing a special tail attack in place of a claw. Set to 0 to disable.
-	var/rng_min_interval = 7 SECONDS // 7 seconds
+	var/rng_min_interval = 3 SECONDS //Prevents further critical hits until this much time elapses
 
 	// *** Speed *** //
 	var/speed = 1
@@ -95,7 +95,39 @@
 	// *** Queen Abilities *** //
 	var/queen_leader_limit = 0 //Amount of leaders allowed
 
+	// *** Defiler Abilities *** //
+	var/neuro_claws_amount
+
 /mob/living/carbon/Xenomorph
+	name = "Drone"
+	desc = "What the hell is THAT?"
+	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon_state = "Drone Walking"
+	voice_name = "xenomorph"
+	speak_emote = list("hisses")
+	melee_damage_lower = 5
+	melee_damage_upper = 10 //Arbitrary damage values
+	attacktext = "claws"
+	attack_sound = null
+	friendly = "nuzzles"
+	wall_smash = FALSE
+	universal_understand = FALSE
+	universal_speak = FALSE
+	health = 5
+	maxHealth = 5
+	rotate_on_lying = FALSE
+	mob_size = MOB_SIZE_XENO
+	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
+	see_in_dark = 8
+	see_infrared = TRUE
+	see_invisible = SEE_INVISIBLE_MINIMUM
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
+	unacidable = TRUE
+	var/hivenumber = XENO_HIVE_NORMAL
+
+	var/datum/hive_status/hive
+
+	var/list/overlays_standing[X_TOTAL_LAYERS]
 	var/datum/xeno_caste/xeno_caste
 	var/caste_base_type
 	var/language = "Xenomorph"
@@ -113,7 +145,7 @@
 	var/evolution_stored = 0 //How much evolution they have stored
 
 	var/upgrade_stored = 0 //How much upgrade points they have stored.
-	var/upgrade = -1  //This will track their upgrade level. -1 means cannot upgrade
+	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level. 
 	var/gib_chance = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
 	var/critical_proc = 0
 	var/critical_delay = 25
@@ -149,7 +181,7 @@
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
 	var/speed = -0.5 //Regular xeno speed modifier. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	var/speed_modifier = 0 //Speed bonus/penalties. Positive makes you go slower.
-	var/tier = 1 //This will track their "tier" to restrict/limit evolutions
+	var/tier = XENO_TIER_ONE //This will track their "tier" to restrict/limit evolutions
 
 	var/emotedown = 0
 
@@ -245,41 +277,3 @@
 	var/wound_type = "ravager" //used to match appropriate wound overlays
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
-
-/datum/hive_status
-	var/name = "Normal"
-	var/hivenumber = XENO_HIVE_NORMAL
-	var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen
-	var/slashing_allowed = 1 //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
-	var/queen_time = QUEEN_DEATH_TIMER //5 minutes between queen deaths
-	var/xeno_queen_timer
-	var/hive_orders = "" //What orders should the hive have
-	var/color = null
-	var/prefix = ""
-	var/list/xeno_leader_list = list()
-
-/datum/hive_status/corrupted
-	name = "Corrupted"
-	hivenumber = XENO_HIVE_CORRUPTED
-	prefix = "Corrupted "
-	color = "#00ff80"
-
-/datum/hive_status/alpha
-	name = "Alpha"
-	hivenumber = XENO_HIVE_ALPHA
-	prefix = "Alpha "
-	color = "#cccc00"
-
-/datum/hive_status/beta
-	name = "Beta"
-	hivenumber = XENO_HIVE_BETA
-	prefix = "Beta "
-	color = "#9999ff"
-
-/datum/hive_status/zeta
-	name = "Zeta"
-	hivenumber = XENO_HIVE_ZETA
-	prefix = "Zeta "
-	color = "#606060"
-
-var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_status/corrupted(), new /datum/hive_status/alpha(), new /datum/hive_status/beta(), new /datum/hive_status/zeta())

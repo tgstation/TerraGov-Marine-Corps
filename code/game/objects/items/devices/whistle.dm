@@ -40,7 +40,7 @@
 /obj/item/device/whistle/MouseDrop(obj/over_object as obj)
 	if(ishuman(usr) || ismonkey(usr) || iscyborg(usr))
 
-		if(!usr.is_mob_restrained() && !usr.stat && usr.wear_mask == src)
+		if(!usr.restrained() && !usr.stat && usr.wear_mask == src)
 			switch(over_object.name)
 				if("r_hand")
 					usr.dropItemToGround(src)

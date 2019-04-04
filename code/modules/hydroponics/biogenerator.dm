@@ -204,7 +204,7 @@
 
 /obj/machinery/biogenerator/Topic(href, href_list)
 	if(machine_stat & BROKEN) return
-	if(usr.stat || usr.is_mob_restrained()) return
+	if(usr.stat || usr.restrained()) return
 	if(!in_range(src, usr)) return
 
 	usr.set_interaction(src)

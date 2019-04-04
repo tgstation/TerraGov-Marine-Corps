@@ -425,7 +425,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	if(!ishuman(over_object))
 		return
 	var/mob/living/carbon/human/H = over_object
-	if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && H.put_in_hands(src))
+	if(H == usr && !H.incapacitated() && Adjacent(H) && H.put_in_hands(src))
 		icon_state = initial(icon_state)
 
 
@@ -461,7 +461,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	if(!ishuman(over_object))
 		return
 	var/mob/living/carbon/human/H = over_object
-	if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && H.put_in_hands(src))
+	if(H == usr && !H.incapacitated() && Adjacent(H) && H.put_in_hands(src))
 		icon_state = initial(icon_state)
 
 /obj/item/ammo_magazine/shotgunbox/examine(mob/user)

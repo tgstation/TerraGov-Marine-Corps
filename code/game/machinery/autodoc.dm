@@ -620,7 +620,7 @@
 	set name = "Eject Med-Pod"
 	set category = "Object"
 	set src in oview(1)
-	if(usr.is_mob_incapacitated())
+	if(usr.incapacitated())
 		return // nooooooooooo
 	if(locked && !allowed(usr)) //Check access if locked.
 		to_chat(usr, "<span class='warning'>Access denied.</span>")
@@ -663,7 +663,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.is_mob_incapacitated() || !ishuman(usr))
+	if(usr.incapacitated() || !ishuman(usr))
 		return
 
 	if(occupant)

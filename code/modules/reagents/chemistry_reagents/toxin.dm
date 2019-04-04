@@ -435,7 +435,7 @@
 				var/mob/living/carbon/human/H = M
 				var/datum/limb/affecting = H.get_limb("head")
 				if(affecting)
-					if(affecting.take_damage(4*toxpwr, 2*toxpwr))
+					if(affecting.take_damage_limb(4 * toxpwr, 2 * toxpwr))
 						H.UpdateDamageIcon()
 					if(prob(meltprob)) //Applies disfigurement
 						if(!(H.species && (H.species.species_flags & NO_PAIN)))

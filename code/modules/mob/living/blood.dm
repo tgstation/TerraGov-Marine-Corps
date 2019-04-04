@@ -358,8 +358,6 @@
 /mob/living/carbon/human/get_blood_id()
 	if((NO_BLOOD in species.species_flags))
 		return
-	if(isyautjastrict(src))
-		return "greenblood"
 	if(issynth(src))
 		return "whiteblood"
 	if(iszombie(src))

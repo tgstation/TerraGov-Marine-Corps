@@ -308,7 +308,7 @@ var/list/ai_verbs_default = list(
 		return
 	user.reset_view(camera)
 
-/mob/living/silicon/ai/is_mob_restrained()
+/mob/living/silicon/ai/restrained()
 	return 0
 
 /mob/living/silicon/ai/emp_act(severity)

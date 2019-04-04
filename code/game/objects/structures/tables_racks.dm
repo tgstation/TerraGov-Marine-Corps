@@ -314,16 +314,6 @@
 	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
 		return
 
-	if(istype(W, /obj/item/weapon/wristblades))
-		if(rand(0, 2) == 0)
-			playsound(src.loc, 'sound/weapons/wristblades_hit.ogg', 25, 1)
-			user.visible_message("<span class='danger'>[user] slices [src] apart!",
-			"<span class='danger'>You slice [src] apart!")
-			destroy_structure()
-		else
-			to_chat(user, "<span class='warning'>You slice at the table, but only claw it up a little.</span>")
-		return
-
 	user.transferItemToLoc(W, loc)
 
 

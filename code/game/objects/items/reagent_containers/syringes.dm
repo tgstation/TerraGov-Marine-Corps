@@ -67,7 +67,7 @@
 		if((CLUMSY in user.mutations) && prob(50))
 			target = user
 		var/mob/M = target
-		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isyautja(M))) // preds have null skills
+		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && (M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP))
 			user.KnockDown(3)
 			log_combat(M, user, "blocked", addition="using their cqc skill (syringe injection)")
 			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
@@ -260,7 +260,7 @@
 		for(var/mob/O in viewers(world.view, user))
 			O.show_message(text("<span class='danger'>[user] stabs [target] in \the [hit_area] with [src.name]!</span>"), 1)
 
-		if(affecting.take_damage(3))
+		if(affecting.take_damage_limb(3))
 			target:UpdateDamageIcon()
 
 	else

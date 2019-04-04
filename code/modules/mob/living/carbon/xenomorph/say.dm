@@ -63,8 +63,6 @@
 			var/noise = pick('sound/machines/ping.ogg','sound/machines/twobeep.ogg')
 			verb = pick("beeps", "buzzes", "pings")
 			playsound(src.loc, noise, 25, 1)
-		else if(isxenopredalien(src))
-			playsound(loc, 'sound/voice/predalien_click.ogg', 25, 1)
 		else
 			playsound(loc, "alien_talk", 25, 1)
 		..(message, speaking, verb, null, null, message_range, null)
@@ -76,42 +74,51 @@
 		return TRUE
 	return ..()
 
-//General proc for hivemind. Lame, but effective.
-/mob/living/carbon/Xenomorph/proc/hivemind_talk(var/message)
+/mob/living/carbon/Xenomorph/proc/hivemind_name()
+	return "<span class='game say'>Hivemind, <span class='name'>[name]</span>"
+
+/mob/living/carbon/Xenomorph/Queen/hivemind_name()
+	return "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span>"
+
+/mob/living/carbon/Xenomorph/proc/hivemind_end()
+	return ""
+
+/mob/living/carbon/Xenomorph/Queen/hivemind_end()
+	return "</font>"
+
+/mob/living/carbon/Xenomorph/proc/render_hivemind_message(message)
+	return message
+
+/mob/living/carbon/Xenomorph/proc/hivemind_talk(message)
 	if(!message || src.stat)
 		return
-	var/datum/hive_status/hive
-	if(hivenumber && hivenumber <= hive_datum.len)
-		hive = hive_datum[hivenumber]
-	else
+	if(!hive)
 		return
-	if(!hive.living_xeno_queen && hive.xeno_queen_timer > QUEEN_DEATH_TIMER*0.5 && hivenumber == 1)
+
+	if(!hive.living_xeno_queen && hive.xeno_queen_timer > QUEEN_DEATH_TIMER*0.5 && hivenumber == XENO_HIVE_NORMAL)
 		to_chat(src, "<span class='warning'>The Queen is dead. The hivemind is weakened. Despair!</span>")
 		return
-	var/rendered
-	if(isxenoqueen(src))
-		rendered = "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> hisses, '[message]'</span></span></i></font>"
-	else if(isxenosilicon(src))
-		var/message_b = pick("high-pitched blast of static","series of pings","long string of numbers","loud, mechanical squeal", "series of beeps")
-		rendered = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> emits a [message_b]!</span></i>"
-	else
-		rendered = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> hisses, '[message]'</span></span></i>"
+
+	message = render_hivemind_message(message)
+
 	log_talk(message, LOG_HIVEMIND)
-	var/track = ""
-	var/ghostrend
-	for(var/mob/S in GLOB.player_list)
-		if(isnull(S) || (!isxeno(S) && S.stat != DEAD) || istype(S, /mob/new_player))
+
+	
+
+	for(var/i in GLOB.observer_list)
+		var/mob/dead/observer/S = i
+		if(!S?.client?.prefs || !(S.client.prefs.toggles_chat & CHAT_GHOSTHIVEMIND))
 			continue
-		if(istype(S, /mob/dead/observer))
-			if(S.client?.prefs && S.client.prefs.toggles_chat & CHAT_GHOSTHIVEMIND)
-				track = "(<a href='byond://?src=\ref[S];track=\ref[src]'>follow</a>)"
-				if(isxenoqueen(src))
-					ghostrend = "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> [track]<span class='message'> hisses, '[message]'</span></span></i></font>"
-				else
-					ghostrend = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> [track]<span class='message'> hisses, '[message]'</span></span></i>"
-				S.show_message(ghostrend, 2)
-		else if(S != src && S == hive.living_xeno_queen && hive.living_xeno_queen.ovipositor)
-			var/queenrend = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> (<a href='byond://?src=\ref[S];queentrack=\ref[src]'>watch</a>)<span class='message'> hisses, '[message]'</span></span></i>"
-			S.show_message(queenrend, 2)
-		else if(hivenumber == xeno_hivenumber(S))
-			S.show_message(rendered, 2)
+		var/track = "(<a href='byond://?src=\ref[S];track=\ref[src]'>follow</a>)"
+		S.show_message("[hivemind_name()] [track] <span class='message'>hisses, '[message]'</span></span></i>[hivemind_end()]", 2)
+
+	hive.hive_mind_message(src, message)
+
+/mob/living/carbon/Xenomorph/proc/receive_hivemind_message(mob/living/carbon/Xenomorph/X, message)
+	show_message("[X.hivemind_name()] <span class='message'>hisses, '[message]'</span></span></i>[hivemind_end()]", 2)
+
+/mob/living/carbon/Xenomorph/Queen/receive_hivemind_message(mob/living/carbon/Xenomorph/X, message)
+	if(ovipositor && X != src)
+		show_message("[X.hivemind_name()] (<a href='byond://?src=\ref[src];queentrack=\ref[X]'>watch</a>)<span class='message'>hisses, '[message]'</span></span></i>[hivemind_end()]", 2)
+	else
+		return ..()

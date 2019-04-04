@@ -118,7 +118,7 @@
 
 //Mouse drop another mob or self
 /obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
-	if(!istype(target) || target.anchored || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.is_mob_incapacitated(TRUE) || isAI(user) || target.mob_size >= MOB_SIZE_BIG)
+	if(!istype(target) || target.anchored || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.incapacitated(TRUE) || isAI(user) || target.mob_size >= MOB_SIZE_BIG)
 		return
 	if(isanimal(user) && target != user) return //Animals cannot put mobs other than themselves into disposal
 	add_fingerprint(user)
@@ -126,7 +126,7 @@
 	if(target == user)
 		visible_message("<span class='notice'>[user] starts climbing into the disposal.</span>")
 	else
-		if(user.is_mob_restrained()) return //can't stuff someone other than you if restrained.
+		if(user.restrained()) return //can't stuff someone other than you if restrained.
 		visible_message("<span class ='warning'>[user] starts stuffing [target] into the disposal.</span>")
 	if(!do_after(user, 40, FALSE, target))
 		return
@@ -236,7 +236,7 @@
 	add_fingerprint(usr)
 	if(machine_stat & BROKEN)
 		return
-	if(usr.stat || usr.is_mob_restrained() || flushing)
+	if(usr.stat || usr.restrained() || flushing)
 		return
 	if(in_range(src, usr) && istype(src.loc, /turf))
 		usr.set_interaction(src)

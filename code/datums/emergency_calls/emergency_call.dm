@@ -12,7 +12,7 @@
 //The distress call parent.
 /datum/emergency_call
 	var/name = ""
-	var/mob_max = 20
+	var/mob_max = 10
 	var/mob_min = 1
 	var/dispatch_message = "An encrypted signal has been received from a nearby vessel. Stand by." //Message displayed to marines once the signal is finalized.
 	var/objectives = "" //Objectives to display to the members.
@@ -83,7 +83,17 @@
 	if(SSticker?.mode?.waiting_for_candidates) //It's already been activated
 		return FALSE
 
-	picked_call.mob_max = rand(5, 15)
+	if(istype(src, /datum/game_mode/distress) ) //If we're fighting benos
+		var/list/total_count = count_humans_and_xenos()
+		var/xenos = total_count[2]
+		var/humans = total_count[1]
+
+		var/reinforcements = CLAMP( ( xenos - humans / max(1, CONFIG_GET(number/xeno_coefficient) ) ) * CONFIG_GET(number/xeno_coefficient), picked_call.mob_min, 15) //We get the difference per the ideal human to xeno ratio, and the current xeno count, then multiply it by the xeno coefficient
+
+		picked_call.mob_max = round(rand(reinforcements * 0.9, reinforcements * 1.1)) //Keep that RNG low
+
+	else
+		picked_call.mob_max = rand(5, 15) //Default otherwise
 
 	picked_call.activate()
 
@@ -115,7 +125,7 @@
 		usr.mind.current = usr
 
 	if(usr.mind.key != usr.key) //This can happen when admin-switching people into afking people, leading to runtime errors for a clientless key.
-		usr.mind.key = usr.key 
+		usr.mind.key = usr.key
 
 	if(usr.mind in distress.candidates)
 		to_chat(usr, "<span class='warning'>You are already a candidate for this emergency response team.</span>")
@@ -211,16 +221,16 @@
 				return
 
 			candidates = list() //Blank out the candidates list for next time.
-			
+
 			spawn(COOLDOWN_COMM_REQUEST)
 				SSticker.mode.on_distress_cooldown = FALSE
 
 
 /datum/emergency_call/proc/add_candidate(var/mob/M)
-	if(!M.client) 
+	if(!M.client)
 		return FALSE  //Not connected
 
-	if(M.mind && M.mind in candidates) 
+	if(M.mind && M.mind in candidates)
 		return FALSE  //Already there.
 
 	if(M.stat != DEAD)

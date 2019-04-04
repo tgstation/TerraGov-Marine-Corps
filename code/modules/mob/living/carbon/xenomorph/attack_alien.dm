@@ -37,11 +37,6 @@
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 		if(INTENT_HARM)
-			var/datum/hive_status/hive
-			if(M.hivenumber && M.hivenumber <= hive_datum.len)
-				hive = hive_datum[M.hivenumber]
-			else return
-
 			if(stat == DEAD)
 				if(luminosity > 0)
 					playsound(loc, "alien_claw_metal", 25, 1)
@@ -52,16 +47,16 @@
 					to_chat(M, "<span class='warning'>[src] is dead, why would you want to touch it?</span>")
 				return FALSE
 
-			if(!hive.slashing_allowed && !(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
+			if(!M.hive.slashing_allowed && !(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 				to_chat(M, "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>")
 				return FALSE
 
 			if(!(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
-				if(hive.slashing_allowed == 2)
+				if(M.hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
 					if(status_flags & XENO_HOST)
 						for(var/obj/item/alien_embryo/embryo in src)
-							if(embryo.hivenumber == M.hivenumber)
-								to_chat(M, "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>")
+							if(embryo.issamexenohive(M))
+								to_chat(M, "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is an embryo inside!</span>")
 								return FALSE
 
 					if(M.health > round(M.maxHealth * 0.66)) //Note : Under 66 % health
@@ -70,7 +65,7 @@
 
 				else if(istype(buckled, /obj/structure/bed/nest) && (status_flags & XENO_HOST))
 					for(var/obj/item/alien_embryo/embryo in src)
-						if(embryo.hivenumber == M.hivenumber)
+						if(embryo.issamexenohive(M))
 							to_chat(M, "<span class='warning'>You should not harm this host! It has a sister inside.</span>")
 							return FALSE
 
@@ -101,10 +96,10 @@
 				attack_message2 = "<span class='danger'>You viciously rend \the [src] with your teeth!</span>"
 				log = "bit"
 				M.critical_proc = TRUE
-				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), CRITICAL_HIT_DELAY)
+				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), M.xeno_caste.rng_min_interval)
 
 			//Check for a special bite attack
-			if(prob(M.xeno_caste.bite_chance) && !M.critical_proc && !no_crit && !M.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
+			if(prob(M.xeno_caste.tail_chance) && !M.critical_proc && !no_crit && !M.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
 				damage *= 1.25
 				attack_flick = "tail"
 				attack_sound = 'sound/weapons/alien_tail_attack.ogg'
@@ -112,7 +107,7 @@
 				attack_message2 = "<span class='danger'>You violently impale \the [src] with your tail!</span>"
 				log = "tail-stabbed"
 				M.critical_proc = TRUE
-				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), CRITICAL_HIT_DELAY)
+				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), M.xeno_caste.rng_min_interval)
 
 			//Somehow we will deal no damage on this attack
 			if(!damage)
@@ -138,22 +133,6 @@
 				affecting = get_limb("chest") //Gotta have a torso?!
 
 			var/armor_block = run_armor_check(affecting, "melee")
-
-			if(isyautja(src) && check_zone(M.zone_selected) == "head")
-				if(istype(wear_mask, /obj/item/clothing/mask/gas/yautja))
-					var/knock_chance = 1
-					if(M.frenzy_aura > 0)
-						knock_chance += 2 * M.frenzy_aura
-					if(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
-						knock_chance += 2
-					knock_chance += min(round(damage * 0.25), 10) //Maximum of 15% chance.
-					if(prob(knock_chance))
-						playsound(loc, "alien_claw_metal", 25, 1)
-						M.visible_message("<span class='danger'>The [M] smashes off [src]'s [wear_mask.name]!</span>", \
-						"<span class='danger'>You smash off [src]'s [wear_mask.name]!</span>", null, 5)
-						dropItemToGround(wear_mask)
-						emote("roar")
-						return TRUE
 
 			//The normal attack proceeds
 			playsound(loc, attack_sound, 25, 1)
@@ -195,9 +174,6 @@
 			M.process_rage_attack() //Process Ravager rage gains on attack
 
 		if(INTENT_DISARM)
-			if(M.legcuffed && isyautja(src))
-				to_chat(M, "<span class='xenodanger'>You don't have the dexterity to tackle the headhunter with that thing on your leg!</span>")
-				return FALSE
 			if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest)) //No more memeing nested and infected hosts
 				to_chat(M, "<span class='xenodanger'>You reconsider your mean-spirited bullying of the pregnant, secured host.</span>")
 				return FALSE
@@ -262,10 +238,6 @@
 /mob/living/carbon/Xenomorph/proc/process_rage_attack()
 	return FALSE
 
-/mob/living/carbon/Xenomorph/Ravager/process_rage_attack()
-	rage += RAV_RAGE_ON_HIT
-	last_rage = world.time //We incremented rage, so bookmark this.
-
 
 //Every other type of nonhuman mob
 /mob/living/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
@@ -290,21 +262,16 @@
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 		if(INTENT_HARM)
-			if(isxeno(src) && xeno_hivenumber(src) == M.hivenumber)
+			if(isxeno(src) && issamexenohive(M))
 				M.visible_message("<span class='warning'>\The [M] nibbles [src].</span>", \
 				"<span class='warning'>You nibble [src].</span>", null, 5)
 				return TRUE
 
-			var/datum/hive_status/hive
-			if(M.hivenumber && M.hivenumber <= hive_datum.len)
-				hive = hive_datum[M.hivenumber]
-			else return
-
 			if(!(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
-				if(hive.slashing_allowed == 2)
+				if(M.hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
 					if(status_flags & XENO_HOST)
 						for(var/obj/item/alien_embryo/embryo in src)
-							if(embryo.hivenumber == M.hivenumber)
+							if(embryo.issamexenohive(M))
 								to_chat(M, "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>")
 								return FALSE
 
@@ -314,7 +281,7 @@
 
 				else if(istype(buckled, /obj/structure/bed/nest) && (status_flags & XENO_HOST))
 					for(var/obj/item/alien_embryo/embryo in src)
-						if(embryo.hivenumber == M.hivenumber)
+						if(embryo.issamexenohive(M))
 							to_chat(M, "<span class='warning'>You should not harm this host! It has a sister inside.</span>")
 							return FALSE
 

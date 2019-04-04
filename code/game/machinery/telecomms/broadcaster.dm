@@ -314,6 +314,10 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		// centcomm channels (deathsquid and ert)
 		else if (display_freq in CENT_FREQS)
 			part_a = "<span class='centradio'><span class='name'>"
+		
+		// imperial channel
+		else if (display_freq == IMP_FREQ)
+			part_a = "<span class='impradio'><span class='name'>"
 
 		// command channel
 		else if (display_freq == COMM_FREQ)

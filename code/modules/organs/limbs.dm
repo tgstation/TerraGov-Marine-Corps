@@ -22,10 +22,6 @@
 
 	var/min_broken_damage = 30
 
-	var/list/datum/autopsy_data/autopsy_data = list()
-	var/list/trace_chemicals = list() // traces of chemicals in the organ,
-									  // links chemical IDs to number of ticks for which they'll stay in the blood
-
 	var/datum/limb/parent
 	var/list/datum/limb/children
 
@@ -95,32 +91,6 @@
 		germ_level -= 2 //at germ_level == 1000, this will cure the infection in 5 minutes
 
 
-
-
-
-//Autopsy stuff
-
-//Handles chem traces
-/mob/living/carbon/human/proc/handle_trace_chems()
-	//New are added for reagents to random organs.
-	for(var/datum/reagent/A in reagents.reagent_list)
-		var/datum/limb/O = pick(limbs)
-		O.trace_chemicals[A.name] = 100
-
-//Adds autopsy data for used_weapon.
-/datum/limb/proc/add_autopsy_data(var/used_weapon, var/damage)
-	var/datum/autopsy_data/W = autopsy_data[used_weapon]
-	if(!W)
-		W = new()
-		W.weapon = used_weapon
-		autopsy_data[used_weapon] = W
-
-	W.hits += 1
-	W.damage += damage
-	W.time_inflicted = world.time
-
-
-
 /****************************************************
 			   DAMAGE PROCS
 ****************************************************/
@@ -136,9 +106,9 @@
 	if(prob(probability))
 		droplimb()
 	else
-		take_damage(damage, 0, 1, 1, used_weapon = "EMP")
+		take_damage_limb(damage, 0, TRUE, TRUE)
 
-/datum/limb/proc/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), no_limb_loss, blocked = 0)
+/datum/limb/proc/take_damage_limb(brute, burn, sharp, edge, blocked = 0, list/forbidden_limbs = list())
 	if(blocked >= 1) //Complete negation
 		return 0
 
@@ -177,8 +147,6 @@
 	if(limb_status & LIMB_BROKEN && prob(40) && brute)
 		if(!(owner.species && (owner.species.species_flags & NO_PAIN)))
 			owner.emote("scream") //Getting hit on broken hand hurts
-	if(used_weapon)
-		add_autopsy_data("[used_weapon]", brute + burn)
 
 	var/can_cut = (prob(brute*2) || sharp) && !(limb_status & LIMB_ROBOT)
 	// If the limbs can break, make sure we don't exceed the maximum damage a limb can take before breaking
@@ -223,12 +191,12 @@
 				possible_points += parent
 			if(children)
 				possible_points += children
-			if(forbidden_limbs.len)
+			if(length(forbidden_limbs))
 				possible_points -= forbidden_limbs
 			if(possible_points.len)
 				//And pass the damage around, but not the chance to cut the limb off.
 				var/datum/limb/target = pick(possible_points)
-				target.take_damage(remain_brute, remain_burn, sharp, edge, used_weapon, forbidden_limbs + src, TRUE)
+				target.take_damage_limb(remain_brute, remain_burn, sharp, edge, blocked, forbidden_limbs + src)
 
 
 	//Sync the organ's damage with its wounds
@@ -236,7 +204,7 @@
 
 	//If limb took enough damage, try to cut or tear it off
 
-	if(body_part == CHEST || body_part == GROIN || no_limb_loss)
+	if(body_part == CHEST || body_part == GROIN)
 		owner.updatehealth()
 		return update_icon()
 	var/obj/item/clothing/worn_helmet = owner.head
@@ -386,13 +354,6 @@ This function completely restores a damaged organ to perfect condition.
 	// Process wounds, doing healing etc. Only do this every few ticks to save processing power
 	if(owner.life_tick % wound_update_accuracy == 0)
 		update_wounds()
-
-	//Chem traces slowly vanish
-	if(owner.life_tick % 10 == 0)
-		for(var/chemID in trace_chemicals)
-			trace_chemicals[chemID] = trace_chemicals[chemID] - 1
-			if(trace_chemicals[chemID] <= 0)
-				trace_chemicals.Remove(chemID)
 
 	//Bone fracurtes
 	if(CONFIG_GET(flag/bones_can_break) && brute_dam > min_broken_damage * CONFIG_GET(number/organ_health_multiplier) && !(limb_status & LIMB_ROBOT))
@@ -1176,7 +1137,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		. = new /icon(race_icon, "[icon_name]_[g]")
 */
 
-/datum/limb/head/take_damage(brute, burn, sharp, edge, used_weapon, list/forbidden_limbs = list(), no_limb_loss, blocked = 0)
+/datum/limb/head/take_damage_limb(brute, burn, sharp, edge, blocked = 0, list/forbidden_limbs = list())
 	. = ..()
 	if (!disfigured)
 		if (brute_dam > 40)

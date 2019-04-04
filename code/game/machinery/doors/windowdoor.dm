@@ -10,7 +10,7 @@
 	flags_atom = ON_BORDER
 	opacity = FALSE
 	var/obj/item/circuitboard/airlock/electronics = null
-	explosion_resistance = 5
+	armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
 	air_properties_vary_with_direction = 1
 
 /obj/machinery/door/window/New()
@@ -83,7 +83,6 @@
 	src.icon_state = text("[]open", src.base_state)
 	sleep(10)
 
-	explosion_resistance = FALSE
 	src.density = FALSE
 
 	if(operating == 1) //emag again
@@ -99,7 +98,6 @@
 	src.icon_state = src.base_state
 
 	src.density = TRUE
-	explosion_resistance = initial(explosion_resistance)
 
 	sleep(10)
 

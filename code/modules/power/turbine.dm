@@ -170,7 +170,7 @@
 	..()
 	if(machine_stat & BROKEN)
 		return
-	if (usr.is_mob_incapacitated(TRUE))
+	if (usr.incapacitated(TRUE))
 		return
 
 	if(!ishuman(usr))

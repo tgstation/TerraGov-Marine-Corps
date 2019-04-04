@@ -72,16 +72,16 @@
 			H.emote("pain")
 			H.next_move_slowdown += slow_amt
 			var/datum/limb/affecting = H.get_limb("l_foot")
-			armor_block = H.run_armor_check(affecting, "energy")
-			if(istype(affecting) && affecting.take_damage(null, rand(14, 18), null, null, null, null, null, armor_block))
+			armor_block = H.run_armor_check(affecting, "acid")
+			if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block))
 				H.UpdateDamageIcon()
 			affecting = H.get_limb("r_foot")
-			armor_block = H.run_armor_check(affecting, "energy")
-			if(istype(affecting) && affecting.take_damage(null, rand(14, 18), null, null, null, null, null, armor_block))
+			armor_block = H.run_armor_check(affecting, "acid")
+			if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block))
 				H.UpdateDamageIcon()
 			H.updatehealth()
 		else
-			armor_block = H.run_armor_check("chest", "energy")
+			armor_block = H.run_armor_check("chest", "acid")
 			H.take_overall_damage(null, rand(12, 14), null, null, null, armor_block) //This is ticking damage!
 			to_chat(H, "<span class='danger'>You are scalded by the burning acid!</span>")
 

@@ -11,13 +11,12 @@
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
 
-	open(var/mob/user as mob)
-		if(!opened)
-			new /obj/item/clothing/glasses/night/m56_goggles(src)
-			new /obj/item/weapon/gun/smartgun(src)
-			new /obj/item/smartgun_powerpack(src)
-			new /obj/item/clothing/suit/storage/marine/smartgunner(src)
-		..()
+/obj/item/storage/box/m56_system/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/glasses/night/m56_goggles(src)
+	new /obj/item/weapon/gun/smartgun(src)
+	new /obj/item/smartgun_powerpack(src)
+	new /obj/item/clothing/suit/storage/marine/smartgunner(src)
 
 /obj/item/smartgun_powerpack
 	name = "\improper M56 powerpack"
@@ -33,9 +32,8 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	var/reloading = FALSE
 
-/obj/item/smartgun_powerpack/New()
+/obj/item/smartgun_powerpack/Initialize()
 	. = ..()
-	select_gamemode_skin(/obj/item/smartgun_powerpack)
 	pcell = new /obj/item/cell(src)
 
 /obj/item/smartgun_powerpack/attack_self(mob/user, automatic = FALSE)
@@ -175,12 +173,11 @@
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
 
-	open(var/mob/user as mob)
-		if(!opened)
-			new /obj/item/clothing/gloves/marine/specialist(src)
-			new /obj/item/clothing/suit/storage/marine/specialist(src)
-			new /obj/item/clothing/head/helmet/marine/specialist(src)
-		..()
+/obj/item/storage/box/heavy_armor/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/gloves/marine/specialist(src)
+	new /obj/item/clothing/suit/storage/marine/specialist(src)
+	new /obj/item/clothing/head/helmet/marine/specialist(src)
 
 /obj/item/storage/box/m42c_system
 	name = "\improper M42A scoped rifle system (recon set)"
@@ -193,33 +190,26 @@
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/clothing/suit/storage/marine/sniper(src)
-			new /obj/item/clothing/glasses/night/m42_night_goggles(src)
-			new /obj/item/ammo_magazine/sniper(src)
-			new /obj/item/ammo_magazine/sniper/incendiary(src)
-			new /obj/item/ammo_magazine/sniper/flak(src)
-			new /obj/item/device/binoculars/tactical(src)
-			new /obj/item/storage/backpack/marine/smock(src)
-			new /obj/item/weapon/gun/pistol/vp70(src)
-			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-			new /obj/item/bodybag/tarp(src)
-
-	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
-		if(!opened) //First time opening it, so add the round-specific items
-			if(SSmapping.config.map_name)
-				switch(SSmapping.config.map_name)
-					if(MAP_ICE_COLONY)
-						new /obj/item/clothing/head/helmet/marine(src)
-					else
-						new /obj/item/clothing/head/helmet/durag(src)
-						new /obj/item/facepaint/sniper(src)
-		..()
-
+/obj/item/storage/box/m42c_system/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/suit/storage/marine/sniper(src)
+	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
+	new /obj/item/ammo_magazine/sniper(src)
+	new /obj/item/ammo_magazine/sniper/incendiary(src)
+	new /obj/item/ammo_magazine/sniper/flak(src)
+	new /obj/item/device/binoculars/tactical(src)
+	new /obj/item/storage/backpack/marine/smock(src)
+	new /obj/item/weapon/gun/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+	new /obj/item/bodybag/tarp(src)
+	switch(SSmapping.config.map_name)
+		if(MAP_ICE_COLONY)
+			new /obj/item/clothing/head/helmet/marine(src)
+		else
+			new /obj/item/clothing/head/helmet/durag(src)
+			new /obj/item/facepaint/sniper(src)
 
 /obj/item/storage/box/m42c_system_Jungle
 	name = "\improper M42A scoped rifle system (marksman set)"
@@ -232,30 +222,24 @@
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/clothing/suit/storage/marine/sniper/jungle(src)
-			new /obj/item/clothing/glasses/m42_goggles(src)
-			new /obj/item/clothing/head/helmet/durag/jungle(src)
-			new /obj/item/ammo_magazine/sniper(src)
-			new /obj/item/ammo_magazine/sniper(src)
-			new /obj/item/ammo_magazine/sniper/incendiary(src)
-			new /obj/item/weapon/gun/rifle/sniper/M42A/jungle(src)
-
-	open(var/mob/user as mob)
-		if(!opened)
-			if(SSmapping.config.map_name)
-				switch(SSmapping.config.map_name)
-					if(MAP_ICE_COLONY)
-						new /obj/item/clothing/under/marine/sniper(src)
-						new /obj/item/storage/backpack/marine/satchel(src)
-						new /obj/item/bodybag/tarp/snow(src)
-					else
-						new /obj/item/facepaint/sniper(src)
-						new /obj/item/storage/backpack/marine/smock(src)
-						new /obj/item/bodybag/tarp(src)
-		..()
+/obj/item/storage/box/m42c_system_Jungle/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/suit/storage/marine/sniper/jungle(src)
+	new /obj/item/clothing/glasses/m42_goggles(src)
+	new /obj/item/clothing/head/helmet/durag/jungle(src)
+	new /obj/item/ammo_magazine/sniper(src)
+	new /obj/item/ammo_magazine/sniper(src)
+	new /obj/item/ammo_magazine/sniper/incendiary(src)
+	new /obj/item/weapon/gun/rifle/sniper/M42A/jungle(src)
+	switch(SSmapping.config.map_name)
+		if(MAP_ICE_COLONY)
+			new /obj/item/clothing/under/marine/sniper(src)
+			new /obj/item/storage/backpack/marine/satchel(src)
+			new /obj/item/bodybag/tarp/snow(src)
+		else
+			new /obj/item/facepaint/sniper(src)
+			new /obj/item/storage/backpack/marine/smock(src)
+			new /obj/item/bodybag/tarp(src)
 
 /obj/item/storage/box/grenade_system
 	name = "\improper M92 grenade launcher case"
@@ -268,11 +252,10 @@
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/weapon/gun/launcher/m92(src)
-			new /obj/item/storage/belt/grenade/b18(src)
+/obj/item/storage/box/grenade_system/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/weapon/gun/launcher/m92(src)
+	new /obj/item/storage/belt/grenade/b18(src)
 
 
 /obj/item/storage/box/rocket_system
@@ -286,15 +269,14 @@
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/weapon/gun/launcher/rocket(src)
-			new /obj/item/ammo_magazine/rocket(src)
-			new /obj/item/ammo_magazine/rocket(src)
-			new /obj/item/ammo_magazine/rocket/ap(src)
-			new /obj/item/ammo_magazine/rocket/ap(src)
-			new /obj/item/ammo_magazine/rocket/wp(src)
+/obj/item/storage/box/rocket_system/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/weapon/gun/launcher/rocket(src)
+	new /obj/item/ammo_magazine/rocket(src)
+	new /obj/item/ammo_magazine/rocket(src)
+	new /obj/item/ammo_magazine/rocket/ap(src)
+	new /obj/item/ammo_magazine/rocket/ap(src)
+	new /obj/item/ammo_magazine/rocket/wp(src)
 
 
 
@@ -318,25 +300,24 @@
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
 
-	New()
-		..()
-		spawn(1)
-			new	/obj/item/clothing/suit/storage/marine/M3T(src)
-			new /obj/item/clothing/head/helmet/marine(src)
-			new /obj/item/weapon/gun/launcher/rocket(src)
-			new /obj/item/ammo_magazine/rocket(src)
-			new /obj/item/ammo_magazine/rocket(src)
-			new /obj/item/ammo_magazine/rocket/ap(src)
-			new /obj/item/ammo_magazine/rocket/ap(src)
-			new /obj/item/ammo_magazine/rocket/wp(src)
-			new /obj/item/ammo_magazine/rocket/wp(src)
-			new /obj/item/explosive/mine(src)
-			new /obj/item/explosive/mine(src)
-			new /obj/item/device/radio/detpack(src)
-			new /obj/item/device/radio/detpack(src)
-			new /obj/item/device/radio/detpack(src)
-			new /obj/item/device/radio/detpack(src)
-			new /obj/item/device/assembly/signaler(src)
+/obj/item/storage/box/spec/demolitionist/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/suit/storage/marine/M3T(src)
+	new /obj/item/clothing/head/helmet/marine(src)
+	new /obj/item/weapon/gun/launcher/rocket(src)
+	new /obj/item/ammo_magazine/rocket(src)
+	new /obj/item/ammo_magazine/rocket(src)
+	new /obj/item/ammo_magazine/rocket/ap(src)
+	new /obj/item/ammo_magazine/rocket/ap(src)
+	new /obj/item/ammo_magazine/rocket/wp(src)
+	new /obj/item/ammo_magazine/rocket/wp(src)
+	new /obj/item/explosive/mine(src)
+	new /obj/item/explosive/mine(src)
+	new /obj/item/device/radio/detpack(src)
+	new /obj/item/device/radio/detpack(src)
+	new /obj/item/device/radio/detpack(src)
+	new /obj/item/device/radio/detpack(src)
+	new /obj/item/device/assembly/signaler(src)
 
 
 
@@ -352,38 +333,32 @@
 	foldable = null
 	spec_set = "sniper"
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/clothing/suit/storage/marine/sniper(src)
-			new /obj/item/clothing/glasses/night/m42_night_goggles(src)
-			new /obj/item/ammo_magazine/sniper(src)
-			new /obj/item/ammo_magazine/sniper(src)
-			new /obj/item/ammo_magazine/sniper/incendiary(src)
-			new /obj/item/ammo_magazine/sniper/incendiary(src)
-			new /obj/item/ammo_magazine/sniper/flak(src)
-			new /obj/item/ammo_magazine/sniper/flak(src)
-			new /obj/item/device/binoculars/tactical(src)
-			new /obj/item/weapon/gun/pistol/vp70(src)
-			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper(src)
-			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-			new /obj/item/explosive/grenade/cloakbomb(src)
-			new /obj/item/explosive/grenade/cloakbomb(src)
-			new /obj/item/explosive/grenade/cloakbomb(src)
-			new /obj/item/bodybag/tarp(src)
-
-	open(mob/user) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
-		if(!opened) //First time opening it, so add the round-specific items
-			if(SSmapping.config.map_name)
-				switch(SSmapping.config.map_name)
-					if(MAP_ICE_COLONY)
-						new /obj/item/clothing/head/helmet/marine(src)
-					else
-						new /obj/item/clothing/head/helmet/durag(src)
-						new /obj/item/facepaint/sniper(src)
-		..()
+/obj/item/storage/box/spec/sniper/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/suit/storage/marine/sniper(src)
+	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
+	new /obj/item/ammo_magazine/sniper(src)
+	new /obj/item/ammo_magazine/sniper(src)
+	new /obj/item/ammo_magazine/sniper/incendiary(src)
+	new /obj/item/ammo_magazine/sniper/incendiary(src)
+	new /obj/item/ammo_magazine/sniper/flak(src)
+	new /obj/item/ammo_magazine/sniper/flak(src)
+	new /obj/item/device/binoculars/tactical(src)
+	new /obj/item/weapon/gun/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper(src)
+	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/bodybag/tarp(src)
+	switch(SSmapping.config.map_name)
+		if(MAP_ICE_COLONY)
+			new /obj/item/clothing/head/helmet/marine(src)
+		else
+			new /obj/item/clothing/head/helmet/durag(src)
+			new /obj/item/facepaint/sniper(src)
 
 /obj/item/storage/box/spec/scout
 	name = "\improper Scout equipment"
@@ -397,31 +372,30 @@
 	foldable = null
 	spec_set = "scout battle rifle"
 
-/obj/item/storage/box/spec/scout/New()
+/obj/item/storage/box/spec/scout/Initialize(mapload, ...)
 	. = ..()
-	spawn(1)
-		new /obj/item/clothing/suit/storage/marine/M3S(src)
-		new /obj/item/clothing/head/helmet/marine/scout(src)
-		new /obj/item/clothing/glasses/night/M4RA(src)
-		new /obj/item/ammo_magazine/rifle/m4ra(src)
-		new /obj/item/ammo_magazine/rifle/m4ra(src)
-		new /obj/item/ammo_magazine/rifle/m4ra(src)
-		new /obj/item/ammo_magazine/rifle/m4ra(src)
-		new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
-		new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
-		new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
-		new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
-		new /obj/item/device/binoculars/tactical/scout(src)
-		new /obj/item/weapon/gun/pistol/vp70(src)
-		new /obj/item/ammo_magazine/pistol/vp70(src)
-		new /obj/item/ammo_magazine/pistol/vp70(src)
-		new /obj/item/weapon/gun/rifle/m4ra(src)
-		new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
-		new /obj/item/device/motiondetector/scout(src)
-		new /obj/item/explosive/grenade/cloakbomb(src)
-		new /obj/item/explosive/grenade/cloakbomb(src)
-		new /obj/item/explosive/grenade/cloakbomb(src)
-		new /obj/item/bodybag/tarp(src)
+	new /obj/item/clothing/suit/storage/marine/M3S(src)
+	new /obj/item/clothing/head/helmet/marine/scout(src)
+	new /obj/item/clothing/glasses/night/M4RA(src)
+	new /obj/item/ammo_magazine/rifle/m4ra(src)
+	new /obj/item/ammo_magazine/rifle/m4ra(src)
+	new /obj/item/ammo_magazine/rifle/m4ra(src)
+	new /obj/item/ammo_magazine/rifle/m4ra(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+	new /obj/item/device/binoculars/tactical/scout(src)
+	new /obj/item/weapon/gun/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/weapon/gun/rifle/m4ra(src)
+	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
+	new /obj/item/device/motiondetector/scout(src)
+	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/bodybag/tarp(src)
 
 
 /obj/item/storage/box/spec/scoutshotgun
@@ -436,24 +410,23 @@
 	foldable = null
 	spec_set = "scout shotgun"
 
-/obj/item/storage/box/spec/scoutshotgun/New()
+/obj/item/storage/box/spec/scoutshotgun/Initialize(mapload, ...)
 	. = ..()
-	spawn(1)
-		new /obj/item/clothing/suit/storage/marine/M3S(src)
-		new /obj/item/clothing/head/helmet/marine/scout(src)
-		new /obj/item/clothing/glasses/night/M4RA(src)
-		new /obj/item/device/binoculars/tactical/scout(src)
-		new /obj/item/weapon/gun/pistol/vp70(src)
-		new /obj/item/ammo_magazine/pistol/vp70(src)
-		new /obj/item/ammo_magazine/pistol/vp70(src)
-		new /obj/item/weapon/gun/shotgun/merc/scout(src)
-		new /obj/item/ammo_magazine/shotgun/incendiary(src)
-		new /obj/item/ammo_magazine/shotgun/incendiary(src)
-		new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
-		new /obj/item/device/motiondetector/scout(src)
-		new /obj/item/explosive/grenade/cloakbomb(src)
-		new /obj/item/explosive/grenade/cloakbomb(src)
-		new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/clothing/suit/storage/marine/M3S(src)
+	new /obj/item/clothing/head/helmet/marine/scout(src)
+	new /obj/item/clothing/glasses/night/M4RA(src)
+	new /obj/item/device/binoculars/tactical/scout(src)
+	new /obj/item/weapon/gun/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/weapon/gun/shotgun/merc/scout(src)
+	new /obj/item/ammo_magazine/shotgun/incendiary(src)
+	new /obj/item/ammo_magazine/shotgun/incendiary(src)
+	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
+	new /obj/item/device/motiondetector/scout(src)
+	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/explosive/grenade/cloakbomb(src)
 
 
 /obj/item/storage/box/spec/pyro
@@ -468,19 +441,17 @@
 	foldable = null
 	spec_set = "pyro"
 
-
-	New()
-		..()
-		spawn(1)
-			new /obj/item/clothing/suit/storage/marine/M35(src)
-			new /obj/item/clothing/head/helmet/marine/pyro(src)
-			new /obj/item/clothing/shoes/marine/pyro(src)
-			new /obj/item/storage/backpack/marine/engineerpack/flamethrower(src)
-			new /obj/item/weapon/gun/flamer/M240T(src)
-			new /obj/item/ammo_magazine/flamer_tank/large(src)
-			new /obj/item/ammo_magazine/flamer_tank/large(src)
-			new /obj/item/ammo_magazine/flamer_tank/large/B(src)
-			new /obj/item/ammo_magazine/flamer_tank/large/X(src)
+/obj/item/storage/box/spec/pyro/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/suit/storage/marine/M35(src)
+	new /obj/item/clothing/head/helmet/marine/pyro(src)
+	new /obj/item/clothing/shoes/marine/pyro(src)
+	new /obj/item/storage/backpack/marine/engineerpack/flamethrower(src)
+	new /obj/item/weapon/gun/flamer/M240T(src)
+	new /obj/item/ammo_magazine/flamer_tank/large(src)
+	new /obj/item/ammo_magazine/flamer_tank/large(src)
+	new /obj/item/ammo_magazine/flamer_tank/large/B(src)
+	new /obj/item/ammo_magazine/flamer_tank/large/X(src)
 
 
 
@@ -496,14 +467,13 @@
 	foldable = null
 	spec_set = "heavy gunner"
 
-/obj/item/storage/box/spec/heavy_grenadier/New()
-	..()
-	spawn(1)
-		new /obj/item/weapon/gun/launcher/m92(src)
-		new /obj/item/storage/belt/grenade/b18(src)
-		new /obj/item/clothing/gloves/marine/specialist(src)
-		new /obj/item/clothing/suit/storage/marine/specialist(src)
-		new /obj/item/clothing/head/helmet/marine/specialist(src)
+/obj/item/storage/box/spec/heavy_grenadier/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/weapon/gun/launcher/m92(src)
+	new /obj/item/storage/belt/grenade/b18(src)
+	new /obj/item/clothing/gloves/marine/specialist(src)
+	new /obj/item/clothing/suit/storage/marine/specialist(src)
+	new /obj/item/clothing/head/helmet/marine/specialist(src)
 
 
 /obj/item/storage/box/spec/heavy_gunner
@@ -518,16 +488,15 @@
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
 
-/obj/item/storage/box/spec/heavy_gunner/New()
-	..()
-	spawn(1)
-		new /obj/item/clothing/gloves/marine/specialist(src)
-		new /obj/item/clothing/suit/storage/marine/specialist(src)
-		new /obj/item/clothing/head/helmet/marine/specialist(src)
-		new /obj/item/weapon/gun/minigun(src)
-		new /obj/item/ammo_magazine/minigun(src)
-		new /obj/item/ammo_magazine/minigun(src)
-		new /obj/item/ammo_magazine/minigun(src)
+/obj/item/storage/box/spec/heavy_gunner/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/gloves/marine/specialist(src)
+	new /obj/item/clothing/suit/storage/marine/specialist(src)
+	new /obj/item/clothing/head/helmet/marine/specialist(src)
+	new /obj/item/weapon/gun/minigun(src)
+	new /obj/item/ammo_magazine/minigun(src)
+	new /obj/item/ammo_magazine/minigun(src)
+	new /obj/item/ammo_magazine/minigun(src)
 
 /obj/item/spec_kit //For events/WO, allowing the user to choose a specalist kit
 	name = "specialist kit"

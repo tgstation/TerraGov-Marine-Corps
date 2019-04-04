@@ -38,7 +38,7 @@
 	if(..())
 		return 1
 	var/mob/living/L = usr
-	if(!anchored || !istype(L) || L.is_mob_incapacitated() || !in_range(loc, usr))
+	if(!anchored || !istype(L) || L.incapacitated() || !in_range(loc, usr))
 		usr << browse(null, "window=pipedispenser")
 		return 1
 
@@ -124,7 +124,7 @@
 
 //Allow you to drag-drop disposal pipes and transit tubes into it
 /obj/machinery/pipedispenser/disposal/MouseDrop_T(obj/structure/pipe, mob/usr)
-	if(!usr.is_mob_incapacitated())
+	if(!usr.incapacitated())
 		return
 
 	if (!istype(pipe, /obj/structure/disposalconstruct))

@@ -23,9 +23,6 @@
 	var/fixed = 0 //If set to 1, can't unanchor and move the mortar, used for map spawns and WO
 
 /obj/structure/mortar/attack_hand(mob/user as mob)
-	if(isyautja(user))
-		to_chat(user, "<span class='warning'>You kick [src] but nothing happens.</span>")
-		return
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")

@@ -108,7 +108,7 @@ proc/age2agedescription(age)
 		if(uninterruptible)
 			continue
 
-		if(user.loc != user_loc || target.loc != target_loc || user.get_active_held_item() != holding || user.is_mob_incapacitated())
+		if(user.loc != user_loc || target.loc != target_loc || user.get_active_held_item() != holding || user.incapacitated())
 			. = FALSE
 			break
 	qdel(prog_bar)
@@ -135,7 +135,7 @@ proc/age2agedescription(age)
 	if(!user)
 		return FALSE
 
-	var/atom/Tloc = null
+	var/atom/Tloc
 	if(target && !isturf(target))
 		Tloc = target.loc
 
@@ -149,8 +149,9 @@ proc/age2agedescription(age)
 
 	delay *= user.do_after_coefficent()
 
+	var/atom/progtarget = target ? target : user
 	if(prog_bar)
-		prog_bar = new prog_bar(user, delay, target, icon_display)
+		prog_bar = new prog_bar(user, delay, progtarget, icon_display)
 
 	user.action_busy++
 	var/endtime = world.time + delay
@@ -160,15 +161,11 @@ proc/age2agedescription(age)
 		stoplag(1)
 		prog_bar?.update(world.time - starttime)
 
-		if(QDELETED(user) || user.stat || user.loc != Uloc || (extra_checks && !extra_checks.Invoke()))
+		if(QDELETED(user) || user.incapacitated(TRUE) || user.loc != Uloc || (extra_checks && !extra_checks.Invoke()))
 			. = FALSE
 			break
 
-		if(user.is_mob_incapacitated(TRUE))
-			. = FALSE
-			break
-
-		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
+		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target?.loc))
 			if(Uloc != Tloc || Tloc != user)
 				. = FALSE
 				break
@@ -176,10 +173,9 @@ proc/age2agedescription(age)
 		if(needhand)
 			//This might seem like an odd check, but you can still need a hand even when it's empty
 			//i.e the hand is used to pull some item/tool out of the construction
-			if(!holdingnull)
-				if(!holding)
-					. = FALSE
-					break
+			if(!holdingnull && !holding)
+				. = FALSE
+				break
 			if(user.get_active_held_item() != holding)
 				. = FALSE
 				break

@@ -39,7 +39,6 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/m42a, /obj/item/attachable/sniperbarrel)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Initialize()
-	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a"))
 	. = ..()
 	LT = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
 	integrated_laze = new(src)
@@ -348,7 +347,7 @@
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)

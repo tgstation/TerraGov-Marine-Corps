@@ -4,7 +4,7 @@
 
 	if(!isliving(usr) || usr.next_move > world.time)
 		return
-	if(usr.is_mob_incapacitated(TRUE))
+	if(usr.incapacitated(TRUE))
 		to_chat(src, "<span class='warning'>You can't resist in your current state.</span>")
 		return
 	var/mob/living/L = usr
@@ -32,7 +32,7 @@
 		return
 
 	//resisting grabs (as if it helps anyone...)
-	if(!is_mob_restrained(0) && pulledby)
+	if(!restrained(0) && pulledby)
 		visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
 		resist_grab()
 		return
@@ -275,7 +275,7 @@
 	set name = "Rest"
 	set category = "IC"
 
-	if(is_mob_incapacitated(TRUE))
+	if(incapacitated(TRUE))
 		return
 
 	if(!resting)
@@ -294,7 +294,7 @@
 /mob/living/proc/get_up(datum/progressbar/progbar)
 	action_busy--
 	qdel(progbar)
-	if(!is_mob_incapacitated(TRUE))
+	if(!incapacitated(TRUE))
 		to_chat(src, "<span class='notice'>You get up.</span>")
 		resting = FALSE
 		update_canmove()

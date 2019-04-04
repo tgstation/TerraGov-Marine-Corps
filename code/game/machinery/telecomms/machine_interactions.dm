@@ -415,6 +415,3 @@
 	if(issilicon(user) || in_range(user, src))
 		return 1
 	return 0
-
-#undef TELECOMM_Z
-#undef STATION_Z

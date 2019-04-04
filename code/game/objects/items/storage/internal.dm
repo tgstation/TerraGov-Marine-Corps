@@ -48,7 +48,7 @@
 		if(master_item.loc != user || (master_item.loc && master_item.loc.loc == user))
 			return 0
 
-		if(!user.is_mob_incapacitated())
+		if(!user.incapacitated())
 			switch(over_object.name)
 				if("r_hand")
 					if(master_item.time_to_unequip)
