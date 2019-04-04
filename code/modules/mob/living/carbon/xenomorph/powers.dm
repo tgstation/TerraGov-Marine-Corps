@@ -703,28 +703,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		M.acid_spray_act(src)
 
 
-/mob/living/carbon/Xenomorph/proc/larva_injection(mob/living/carbon/C, precheck = TRUE)
-	if(precheck && !(C?.can_sting()))
-		return FALSE
-	if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE) || !(C?.can_sting()))
-		return FALSE
-	if(stagger)
-		return FALSE
-	if(CHECK_BITFIELD(C.status_flags, XENO_HOST))
-		to_chat(src, "<span class='warning'>There is already a little one in this vessel!</span>")
-		return FALSE
-	face_atom(C)
-	animation_attack_on(C)
-	playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-	var/obj/item/alien_embryo/embryo = new(C)
-	embryo.hivenumber = hivenumber
-	round_statistics.now_pregnant++
-	to_chat(src, "<span class='xenodanger'>Your stinger successfully implants a larva into the host.</span>")
-	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
-	C.apply_damage(100, HALLOSS)
-	C.apply_damage(10, BRUTE, "chest")
-	C.emote("scream")
-	return TRUE
 
 /mob/living/carbon/Xenomorph/proc/recurring_injection(mob/living/carbon/C, toxin = "xeno_toxin", channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 3)
 	if(!(C?.can_sting()) || !toxin)

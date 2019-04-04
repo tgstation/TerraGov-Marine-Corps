@@ -337,6 +337,9 @@
 	if(!.)
 		return FALSE
 	
+	if(QDELETED(A))
+		return FALSE
+
 	if(!A?.can_sting())
 		if(!silent)
 			to_chat(owner, "<span class='warning'>Your sting won't affect this target!</span>")
@@ -362,12 +365,16 @@
 	var/mob/living/carbon/Xenomorph/X = owner
 
 	last_use = world.time
+	on_cooldown = TRUE
 	succeed_activate()
 
 	round_statistics.larval_growth_stings++
 
-	addtimer(CALLBACK(src, .proc/on_cooldown_finish), XENO_LARVAL_GROWTH_COOLDOWN)
+	add_cooldown()
 	X.recurring_injection(A, "xeno_growthtoxin", XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
+
+/datum/action/xeno_action/activable/larval_growth_sting/proc/add_cooldown()
+	addtimer(CALLBACK(src, .proc/on_cooldown_finish), XENO_LARVAL_GROWTH_COOLDOWN)
 
 // ***************************************
 // *********** Spitter-y abilities

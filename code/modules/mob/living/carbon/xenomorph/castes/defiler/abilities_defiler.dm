@@ -34,61 +34,52 @@
 // ***************************************
 // *********** Sting
 // ***************************************
-/datum/action/xeno_action/activable/defiler_sting
+/datum/action/xeno_action/activable/larval_growth_sting/defiler
 	name = "Defile"
 	action_icon_state = "defiler_sting"
 	mechanics_text = "Channel to inject an adjacent target with larval growth serum. At the end of the channel your target will be infected."
 	ability_name = "defiler sting"
+	plasma_cost = 150
 
-/datum/action/xeno_action/activable/defiler_sting/use_ability(atom/A)
+/datum/action/xeno_action/activable/larval_growth_sting/defiler/on_cooldown_finish()
+	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	to_chat(owner, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
+	on_cooldown = FALSE
+	return ..()
+
+/datum/action/xeno_action/activable/larval_growth_sting/defiler/cooldown_remaining()
+	return (last_use + DEFILER_STING_COOLDOWN - world.time) * 0.1
+
+/datum/action/xeno_action/activable/larval_growth_sting/defiler/add_cooldown()
+	if(!length(active_timers))
+		addtimer(CALLBACK(src, .proc/on_cooldown_finish), DEFILER_STING_COOLDOWN)
+
+/datum/action/xeno_action/activable/larval_growth_sting/defiler/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
-	X.defiler_sting(A)
-
-/datum/action/xeno_action/activable/defiler_sting/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Defiler/X = owner
-	if(world.time >= X.last_defiler_sting + DEFILER_STING_COOLDOWN)
-		return TRUE
-
-/mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting(mob/living/carbon/C)
-	if(!check_state() || QDELETED(C))
-		return
-
-	if(world.time < last_defiler_sting + DEFILER_STING_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='warning'>You are not ready to Defile again. It will be ready in [(last_defiler_sting + DEFILER_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='warning'>You try to sting but are too disoriented!</span>")
-		return
-
-	if(!Adjacent(C))
-		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
-			to_chat(src, "<span class='warning'>You can't reach this target!</span>")
-			recent_notice = world.time //anti-notice spam
-		return
-
-	if(!(C.can_sting()))
-		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
-		return
-
-	if(!check_plasma(150))
-		return
-	last_defiler_sting = world.time
-	use_plasma(150)
-
+	var/mob/living/carbon/C = A
+	if(locate(/obj/item/alien_embryo) in C) // already got one, stops doubling up
+		return ..()
+	if(!do_after(X, DEFILER_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+		return fail_activate()
+	if(!can_use_ability(A))
+		return fail_activate()
+	last_use = world.time
+	on_cooldown = TRUE
+	add_cooldown()
+	X.face_atom(C)
+	X.animation_attack_on(C)
+	playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+	var/obj/item/alien_embryo/embryo = new(C)
+	embryo.hivenumber = X.hivenumber
+	round_statistics.now_pregnant++
+	to_chat(X, "<span class='xenodanger'>Your stinger successfully implants a larva into the host.</span>")
+	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
+	C.apply_damage(100, HALLOSS)
+	C.apply_damage(10, BRUTE, "chest")
+	C.emote("scream")
 	round_statistics.defiler_defiler_stings++
-
-	addtimer(CALLBACK(src, .defiler_sting_cooldown), DEFILER_STING_COOLDOWN)
-
-	if(!CHECK_BITFIELD(C.status_flags, XENO_HOST))
-		larva_injection(C, FALSE)
-	larval_growth_sting(C)
-
-
-/mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting_cooldown()
-	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(src, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
-	update_action_button_icons()
+	succeed_activate()
+	return ..()
 
 // ***************************************
 // *********** Neurogas
