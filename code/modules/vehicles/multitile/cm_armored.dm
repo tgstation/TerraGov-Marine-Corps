@@ -245,7 +245,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			continue
 		var/status = !HP.health  ? "broken" : "functional"
 		var/span_class = !HP.health ? "<span class = 'danger'>" : "<span class = 'notice'>"
-		if((user?.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer >= SKILL_ENGINEER_METAL) || isobserver(user))
+		if((user?.mind?.cm_skills && user.mind.cm_skills.engineer >= SKILL_ENGINEER_METAL) || isobserver(user))
 			switch(PERCENT(HP.health / HP.maxhealth))
 				if(0.1 to 33)
 					status = "heavily damaged"
@@ -636,35 +636,32 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 //Special cases abound, handled below or in subclasses
 /obj/vehicle/multitile/root/cm_armored/attackby(obj/item/O, mob/user)
-	. = ..()
 
 	if(istype(O, /obj/item/hardpoint)) //Are we trying to install stuff?
 		var/obj/item/hardpoint/HP = O
 		install_hardpoint(HP, user)
-		return
 
-	if(istype(O, /obj/item/ammo_magazine)) //Are we trying to reload?
+	else if(istype(O, /obj/item/ammo_magazine)) //Are we trying to reload?
 		var/obj/item/ammo_magazine/AM = O
 		handle_ammomag_attackby(AM, user)
-		return
 
-	if(iswelder(O) || iswrench(O)) //Are we trying to repair stuff?
+	else if(iswelder(O) || iswrench(O)) //Are we trying to repair stuff?
 		handle_hardpoint_repair(O, user)
 		update_damage_distribs()
-		return
 
-	if(iscrowbar(O)) //Are we trying to remove stuff?
+	else if(iscrowbar(O)) //Are we trying to remove stuff?
 		uninstall_hardpoint(O, user)
-		return
 
-	if(!(O.flags_item & NOBLUDGEON))
-		take_damage_type(O.force * 0.05, "blunt", user) //Melee weapons from people do very little damage
+	else
+		. = ..()
+		if(!(O.flags_item & NOBLUDGEON))
+			take_damage_type(O.force * 0.05, "blunt", user) //Melee weapons from people do very little damage
 
 
 /obj/vehicle/multitile/root/cm_armored/proc/handle_hardpoint_repair(obj/item/O, mob/user)
 
 	//Need to the what the hell you're doing
-	if(user.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
+	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [O] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [O] on the [src].</span>")
 		var/fumbling_time = 50 * (SKILL_ENGINEER_MT - user.mind.cm_skills.engineer)
@@ -673,6 +670,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	//Pick what to repair
 	var/slot = input("Select a slot to try and repair") in hardpoints
+	if(!Adjacent(user) || !iswelder(O) || !iswrench(O))
+		return
 
 	var/obj/item/hardpoint/old = hardpoints[slot] //Is there something there already?
 
@@ -761,7 +760,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	//Instead of using MT skills for these procs and TC skills for operation
 	//Oh but wait then the MTs would be able to drive fuck that
 	var/slot = input("Select a slot to try and refill") in hardpoints
-
+	if(!Adjacent(user) || user.get_active_held_item() != AM)
+		return
 	var/obj/item/hardpoint/HP = hardpoints[slot]
 
 	if(!HP)
@@ -774,7 +774,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //Similar to repairing stuff, down to the time delay
 /obj/vehicle/multitile/root/cm_armored/proc/install_hardpoint(obj/item/hardpoint/HP, mob/user)
 
-	if(user.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
+	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [HP] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [HP] on the [src].</span>")
 		var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
@@ -821,7 +821,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //Again, similar to the above ones
 /obj/vehicle/multitile/root/cm_armored/proc/uninstall_hardpoint(obj/item/O, mob/user)
 
-	if(user.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
+	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [O] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [O] on the [src].</span>")
 		var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
@@ -829,6 +829,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			return
 
 	var/slot = input("Select a slot to try and remove") in hardpoints
+	if(!Adjacent(user) || !iscrowbar(user.get_active_held_item()))
+		return
 
 	var/obj/item/hardpoint/old = hardpoints[slot]
 

@@ -150,7 +150,6 @@
 	if(!occupant)
 		to_chat(M, "<span class='warning'>There is no one on that seat.</span>")
 		return
-	var/turf/hatch = get_step_towards(entrance.loc, src)
 	M.visible_message("<span class='warning'>[M] starts pulling [occupant] out of \the [src].</span>",
 	"<span class='warning'>You start pulling [occupant] out of \the [src]. (this will take a while...)</span>", null, 6)
 	var/fumbling_time = 20 SECONDS
@@ -158,7 +157,7 @@
 		fumbling_time -= 2 SECONDS * M.mind.cm_skills.police
 	if(M.mind?.cm_skills?.large_vehicle)
 		fumbling_time -= 2 SECONDS * M.mind.cm_skills.large_vehicle
-	if(!do_after(M, fumbling_time, TRUE, 5, BUSY_ICON_HOSTILE) || !M.Adjacent(hatch))
+	if(!do_after(M, fumbling_time, TRUE, 5, BUSY_ICON_HOSTILE) || !Adjacent(M))
 		return
 	exit_tank(occupant, TRUE, TRUE)
 	M.visible_message("<span class='warning'>[M] forcibly pulls [occupant] out of [src].</span>",
@@ -173,8 +172,7 @@
 		return
 
 	var/slot = input("Select a seat") in list("Driver", "Gunner")
-	var/turf/hatch = get_step_towards(entrance.loc, src)
-	if(!M.Adjacent(hatch))
+	if(!Adjacent(M))
 		return
 
 	var/occupant = (slot == "Driver") ? driver : gunner
@@ -196,15 +194,15 @@
 		to_chat(M, "<span class='warning'>You need your hands free to climb on [src].</span>")
 		return
 
-	if(!M.mind || !(!M.mind.cm_skills || M.mind.cm_skills.large_vehicle >= SKILL_LARGE_VEHICLE_TRAINED))
+	if(M.mind?.cm_skills && M.mind.cm_skills.large_vehicle < SKILL_LARGE_VEHICLE_TRAINED)
 		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into [src].</span>")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * M.mind.cm_skills.large_vehicle
-		if(!do_after(M, fumbling_time, TRUE, 5, BUSY_ICON_BUILD) || !M.Adjacent(hatch) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
+		if(!do_after(M, fumbling_time, TRUE, 5, BUSY_ICON_BUILD) || !Adjacent(M) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
 			return
 
 	to_chat(M, "<span class='notice'>You start climbing into [src].</span>")
-	if(!do_after(M, 10 SECONDS, TRUE, show_busy_icon = TRUE) || !M.Adjacent(hatch) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
+	if(!do_after(M, 10 SECONDS, TRUE, show_busy_icon = TRUE) || !Adjacent(M) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
 		return
 	if(occupant)
 		to_chat(M, "<span class='warning'>Someone got into the [lowertext(slot)]'s seat before you could.</span>")
@@ -328,8 +326,7 @@
 
 
 /obj/vehicle/multitile/root/cm_armored/proc/click_action(A, mob/user, params)
-	var/list/mods = params2list(params)
-	if(istype(A, /obj/screen) || A == src || mods["middle"] || mods["shift"] || mods["alt"])
+	if(istype(A, /obj/screen) || A == src)
 		return FALSE
 
 	if(!can_use_hp(user))
