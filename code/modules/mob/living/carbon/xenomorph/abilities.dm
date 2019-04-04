@@ -50,7 +50,7 @@
 	mechanics_text = "Plant a weed node (purple sac) on your tile."
 
 /datum/action/xeno_action/plant_weeds/action_activate()
-	var/turf/T = owner.loc
+	var/turf/T = get_turf(owner)
 
 	if(!T.is_weedable())
 		to_chat(owner, "<span class='warning'>Bad place for a garden!</span>")
@@ -78,13 +78,6 @@
 		/obj/structure/bed/nest,
 		/obj/effect/alien/resin/sticky,
 		/obj/structure/mineral_door/resin)
-
-/datum/action/xeno_action/choose_resin/hivelord
-	buildable_structures = list(
-		/turf/closed/wall/resin/thick,
-		/obj/structure/bed/nest,
-		/obj/effect/alien/resin/sticky,
-		/obj/structure/mineral_door/resin/thick)
 
 /datum/action/xeno_action/choose_resin/update_button_icon()
 	var/mob/living/carbon/Xenomorph/X = owner
@@ -114,40 +107,6 @@
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	build_resin(get_turf(owner))
-
-GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
-	/turf/closed/wall/resin,
-	/turf/closed/wall/resin/membrane,
-	/obj/structure/mineral_door/resin), FALSE, TRUE))
-
-/datum/action/xeno_action/activable/secrete_resin/hivelord/use_ability(atom/A)
-	if(get_dist(src,A) > 1)
-		return ..()
-
-	if(!is_type_in_typecache(A, GLOB.thickenable_resin))
-		return build_resin(get_turf(A))
-
-	if(istype(A, /turf/closed/wall/resin))
-		var/turf/closed/wall/resin/WR = A
-		var/oldname = WR.name
-		if(WR.thicken())
-			owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
-			"<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
-			playsound(owner.loc, "alien_resin_build", 25)
-			return succeed_activate()
-		to_chat(owner, "<span class='xenowarning'>[WR] can't be made thicker.</span>")
-		return fail_activate()
-
-	if(istype(A, /obj/structure/mineral_door/resin))
-		var/obj/structure/mineral_door/resin/DR = A
-		var/oldname = DR.name
-		if(DR.thicken())
-			owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
-				"<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
-			playsound(owner.loc, "alien_resin_build", 25)
-			return succeed_activate()
-		to_chat(owner, "<span class='xenowarning'>[DR] can't be made thicker.</span>")
-		return fail_activate()
 
 /datum/action/xeno_action/activable/secrete_resin/proc/build_resin(turf/T)
 	var/mob/living/carbon/Xenomorph/X = owner
@@ -244,7 +203,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	var/PheromonesOpen = FALSE //If the  pheromone choices buttons are already displayed or not
 
 /datum/action/xeno_action/toggle_pheromones/can_use_action()
-		return TRUE //No actual gameplay impact; should be able to collapse or open pheromone choices at any time
+	return TRUE //No actual gameplay impact; should be able to collapse or open pheromone choices at any time
 
 /datum/action/xeno_action/toggle_pheromones/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
@@ -266,19 +225,10 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	name = "SHOULD NOT EXIST"
 	plasma_cost = 30 //Base plasma cost for begin to emit pheromones
 	var/aura_type = null //String for aura to emit
-
-/datum/action/xeno_action/pheromones/can_use_action()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(X.incapacitated() || X.lying || X.buckled)
-		return FALSE
-	return TRUE
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY
 
 /datum/action/xeno_action/pheromones/action_activate() //Must pass the basic plasma cost; reduces copy pasta
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_plasma(plasma_cost))
-		to_chat(X, "<span class='xenowarning'>You need more than [plasma_cost] to emit this pheromone.</span>")
-		return FALSE
-
 	if(!aura_type)
 		return FALSE
 
@@ -286,36 +236,38 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
 		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
 		X.current_aura = null
+		if(isxenoqueen(X))
+			X.hive?.update_leader_pheromones()
+		return fail_activate() // dont use plasma
 
-	else
-		X.use_plasma(plasma_cost)
-		X.current_aura = aura_type
-		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
-		"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
-		playsound(X.loc, "alien_drool", 25)
+	X.current_aura = aura_type
+	X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
+	"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
+	playsound(X.loc, "alien_drool", 25)
 
 	if(isxenoqueen(X))
 		X.hive?.update_leader_pheromones()
 
-	return TRUE
+	return succeed_activate()
 
 /datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding
-	name = "Emit Recovery Pheromones (30)"
+	name = "Emit Recovery Pheromones"
 	action_icon_state = "emit_recovery"
 	mechanics_text = "Increases healing for yourself and nearby teammates."
 	aura_type = "recovery"
 
 /datum/action/xeno_action/pheromones/emit_warding
-	name = "Emit Warding Pheromones (30)"
+	name = "Emit Warding Pheromones"
 	action_icon_state = "emit_warding"
 	mechanics_text = "Increases armor for yourself and nearby teammates."
 	aura_type = "warding"
 
 /datum/action/xeno_action/pheromones/emit_frenzy
-	name = "Emit Frenzy Pheromones (30)"
+	name = "Emit Frenzy Pheromones"
 	action_icon_state = "emit_frenzy"
 	mechanics_text = "Increases damage for yourself and nearby teammates."
 	aura_type = "frenzy"
+
 
 /datum/action/xeno_action/activable/transfer_plasma
 	name = "Transfer Plasma"
@@ -326,14 +278,56 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	var/transfer_delay = 2 SECONDS
 	var/max_range = 2
 
+/datum/action/xeno_action/activable/transfer_plasma/can_use_ability(atom/A, silent = FALSE)
+	. = ..()
+	if(!isxeno(A) || A = owner || !owner.)
+
 /datum/action/xeno_action/activable/transfer_plasma/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.xeno_transfer_plasma(A, plasma_transfer_amount, transfer_delay, max_range)
+	if(!isxeno(A) || !check_state() || A == src)
+		return
 
-/datum/action/xeno_action/activable/transfer_plasma/improved
-	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 4
-	transfer_delay = 0.5 SECONDS
-	max_range = 7
+	var/mob/living/carbon/Xenomorph/target = A
+
+	if(!isturf(loc))
+		to_chat(src, "<span class='warning'>You can't transfer plasma from here!</span>")
+		return
+
+	if(get_dist(src, target) > max_range)
+		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
+		return
+
+	to_chat(src, "<span class='notice'>You start focusing your plasma towards [target].</span>")
+	if(!do_after(src, transfer_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
+		return
+
+	if(!check_state())
+		return
+
+	if(!isturf(loc))
+		to_chat(src, "<span class='warning'>You can't transfer plasma from here!</span>")
+		return
+
+	if(get_dist(src, target) > max_range)
+		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>Your muscles fail to respond as you try to shake up the shock!</span>")
+		return
+
+	if(plasma_stored < amount)
+		amount = plasma_stored //Just use all of it
+
+	if(target.plasma_stored >= target.xeno_caste.plasma_max)
+		to_chat(src, "<span class='xenowarning'>[target] already has full plasma.</span>")
+		return
+
+	use_plasma(amount)
+	target.gain_plasma(amount)
+	to_chat(target, "<span class='xenowarning'>[src] has transfered [amount] units of plasma to you. You now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
+	to_chat(src, "<span class='xenowarning'>You have transferred [amount] units of plasma to [target]. You now have [plasma_stored]/[xeno_caste.plasma_max].</span>")
+	playsound(src, "alien_drool", 25)
 
 //Xeno Larval Growth Sting
 /datum/action/xeno_action/activable/larval_growth_sting

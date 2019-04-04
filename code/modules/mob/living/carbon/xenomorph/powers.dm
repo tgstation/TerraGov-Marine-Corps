@@ -325,53 +325,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(pipe)
 		handle_ventcrawl(pipe)
 
-
-/mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount = 50, transfer_delay = 20, max_range = 2)
-	if(!isxeno(A) || !check_state() || A == src)
-		return
-
-	var/mob/living/carbon/Xenomorph/target = A
-
-	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>You can't transfer plasma from here!</span>")
-		return
-
-	if(get_dist(src, target) > max_range)
-		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
-		return
-
-	to_chat(src, "<span class='notice'>You start focusing your plasma towards [target].</span>")
-	if(!do_after(src, transfer_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
-		return
-
-	if(!check_state())
-		return
-
-	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>You can't transfer plasma from here!</span>")
-		return
-
-	if(get_dist(src, target) > max_range)
-		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>Your muscles fail to respond as you try to shake up the shock!</span>")
-		return
-
-	if(plasma_stored < amount)
-		amount = plasma_stored //Just use all of it
-
-	if(target.plasma_stored >= target.xeno_caste.plasma_max)
-		to_chat(src, "<span class='xenowarning'>[target] already has full plasma.</span>")
-		return
-
-	use_plasma(amount)
-	target.gain_plasma(amount)
-	to_chat(target, "<span class='xenowarning'>[src] has transfered [amount] units of plasma to you. You now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
-	to_chat(src, "<span class='xenowarning'>You have transferred [amount] units of plasma to [target]. You now have [plasma_stored]/[xeno_caste.plasma_max].</span>")
-	playsound(src, "alien_drool", 25)
-
 /mob/living/carbon/Xenomorph/proc/xeno_salvage_plasma(atom/A, amount, salvage_delay, max_range)
 	if(!isxeno(A) || !check_state() || A == src)
 		return

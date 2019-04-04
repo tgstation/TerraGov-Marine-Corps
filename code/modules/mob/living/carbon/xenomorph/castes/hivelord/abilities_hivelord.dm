@@ -1,8 +1,50 @@
 // ***************************************
 // *********** Resin building
 // ***************************************
+/datum/action/xeno_action/choose_resin/hivelord
+	buildable_structures = list(
+		/turf/closed/wall/resin/thick,
+		/obj/structure/bed/nest,
+		/obj/effect/alien/resin/sticky,
+		/obj/structure/mineral_door/resin/thick)
+
 /datum/action/xeno_action/activable/secrete_resin/hivelord
 	plasma_cost = 100
+
+GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
+	/turf/closed/wall/resin,
+	/turf/closed/wall/resin/membrane,
+	/obj/structure/mineral_door/resin), FALSE, TRUE))
+
+/datum/action/xeno_action/activable/secrete_resin/hivelord/use_ability(atom/A)
+	if(get_dist(src,A) > 1)
+		return ..()
+
+	if(!is_type_in_typecache(A, GLOB.thickenable_resin))
+		return build_resin(get_turf(A))
+
+	if(istype(A, /turf/closed/wall/resin))
+		var/turf/closed/wall/resin/WR = A
+		var/oldname = WR.name
+		if(WR.thicken())
+			owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
+			"<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
+			playsound(owner.loc, "alien_resin_build", 25)
+			return succeed_activate()
+		to_chat(owner, "<span class='xenowarning'>[WR] can't be made thicker.</span>")
+		return fail_activate()
+
+	if(istype(A, /obj/structure/mineral_door/resin))
+		var/obj/structure/mineral_door/resin/DR = A
+		var/oldname = DR.name
+		if(DR.thicken())
+			owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
+				"<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
+			playsound(owner.loc, "alien_resin_build", 25)
+			return succeed_activate()
+		to_chat(owner, "<span class='xenowarning'>[DR] can't be made thicker.</span>")
+		return fail_activate()
+	return fail_activate() //will never be reached but failsafe
 
 // ***************************************
 // *********** Resin walker
@@ -137,3 +179,11 @@
 /mob/living/carbon/Xenomorph/Hivelord/proc/tunnel_cooldown()
 	to_chat(src, "<span class='notice'>You are ready to dig a tunnel again.</span>")
 	tunnel_delay = FALSE
+
+// ***************************************
+// *********** plasma transfer
+// ***************************************
+/datum/action/xeno_action/activable/transfer_plasma/improved
+	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 4
+	transfer_delay = 0.5 SECONDS
+	max_range = 7
