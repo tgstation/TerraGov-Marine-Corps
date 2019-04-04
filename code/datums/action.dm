@@ -106,12 +106,20 @@
 
 
 
-
+#define XACT_USE_INCAP		(1 << 0)
+#define XACT_USE_LYING		(1 << 1)
+#define XACT_USE_BUCKLED	(1 << 2)
+#define XACT_USE_STAGGERED	(1 << 3)
+#define XACT_USE_FORTIFIED	(1 << 4)
+#define XACT_USE_CRESTED	(1 << 5)
+#define XACT_USE_NOTTURF	(1 << 6)
 
 /datum/action/xeno_action
 	var/action_icon_state
 	var/plasma_cost = 0
 	var/mechanics_text = "This ability not found in codex." //codex. If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
+	var/use_state_flags = NONE // bypass use limitations checked by can_use_action()
+	var/on_cooldown
 
 /datum/action/xeno_action/New(Target)
 	..()
@@ -119,14 +127,46 @@
 
 /datum/action/xeno_action/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(X && !X.incapacitated() && !X.lying && !X.buckled && X.plasma_stored >= plasma_cost && !X.stagger)
-		return TRUE
+	if(!X)
+		return FALSE
 
+	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_INCAP) && X.incapacitated())
+		return FALSE
+
+	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_LYING) && X.lying)
+		return FALSE
+
+	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_BUCKLED) && X.buckled)
+		return FALSE
+
+	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_STAGGERED) && X.stagger)
+		return FALSE
+
+	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_FORTIFIED) && X.fortify)
+		return FALSE
+
+	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_CRESTED) && X.crest_defense)
+		return FALSE
+
+	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_NOTTURF) && !isturf(X.loc))
+		return FALSE
+
+	if(X.plasma_stored < plasma_cost)
+		return FALSE
+
+	return TRUE
+
+/datum/action/xeno_action/action_activate()
+	owner.update_action_buttons()
 
 //checks if the linked ability is on some cooldown.
 //The action can still be activated by clicking the button
 /datum/action/xeno_action/proc/action_cooldown_check()
 	return TRUE
+
+//override this for cooldown completion.
+/datum/action/xeno_action/proc/on_cooldown_finish()
+	return
 
 /datum/action/xeno_action/update_button_icon()
 	if(!can_use_action())
@@ -145,7 +185,7 @@
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(plasma_cost)
 		if(!X.check_plasma(plasma_cost))
-			return
+			return ..()
 	if(X.selected_ability == src)
 		to_chat(X, "You will no longer use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"].")
 		button.icon_state = "template"
@@ -162,6 +202,7 @@
 		X.selected_ability.on_activation()
 	if(plasma_cost)
 		X.use_plasma(plasma_cost) //after on_activation so the button's appearance is updated correctly.
+	return ..()
 
 
 /datum/action/xeno_action/activable/remove_action(mob/living/carbon/Xenomorph/X)

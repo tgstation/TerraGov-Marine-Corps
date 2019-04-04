@@ -6,50 +6,37 @@
 	name = "Rest"
 	action_icon_state = "resting"
 	mechanics_text = "Rest on weeds to regenerate health and plasma."
-
-//resting action can be done even when lying down
-/datum/action/xeno_action/xeno_resting/can_use_action()
-	var/mob/living/carbon/Xenomorph/X = owner
-
-	if (!X || X.incapacitated(1) || X.buckled || X.fortify || X.crest_defense)
-		return
-
-	return TRUE
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/xeno_resting/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
-	X.lay_down()
-	X.update_action_buttons() //extra responsive, uh?
+	owner.lay_down()
+	return ..()
 
 // Regurgitate
 /datum/action/xeno_action/regurgitate
 	name = "Regurgitate"
 	action_icon_state = "regurgitate"
 	mechanics_text = "Vomit whatever you have devoured."
-	plasma_cost = 0
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED
+
+/datum/action/xeno_action/regurgitate/can_use_action()
+	. = ..()
+	var/mob/living/carbon/C = owner
+	if(!length(C.stomach_contents))
+		return FALSE
 
 /datum/action/xeno_action/regurgitate/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state())
-		return
+	var/mob/living/carbon/C = owner
+	for(var/mob/M in C.stomach_contents)
+		C.stomach_contents.Remove(M)
+		if(M.loc != C)
+			continue
+		M.forceMove(C.loc)
+		M.SetKnockeddown(1)
+		M.adjust_blindness(-1)
 
-	if(!isturf(X.loc))
-		to_chat(X, "<span class='warning'>You cannot regurgitate here.</span>")
-		return
-
-	if(X.stomach_contents.len)
-		for(var/mob/M in X.stomach_contents)
-			X.stomach_contents.Remove(M)
-			if(M.loc != X)
-				continue
-			M.forceMove(X.loc)
-			M.SetKnockeddown(1)
-			M.adjust_blindness(-1)
-
-		X.visible_message("<span class='xenowarning'>\The [X] hurls out the contents of their stomach!</span>", \
-		"<span class='xenowarning'>You hurl out the contents of your stomach!</span>", null, 5)
-	else
-		to_chat(X, "<span class='warning'>There's nothing in your belly that needs regurgitating.</span>")
+	C.visible_message("<span class='xenowarning'>\The [C] hurls out the contents of their stomach!</span>", \
+	"<span class='xenowarning'>You hurl out the contents of your stomach!</span>", null, 5)
 
 // ***************************************
 // *********** Drone-y abilities
