@@ -254,7 +254,7 @@
 
 	//Focus half the blast on one organ
 	var/datum/limb/take_blast = pick(limbs)
-	update |= take_blast.limb_take_damage(b_loss * 0.5, f_loss * 0.5)
+	update |= take_blast.take_damage_limb(b_loss * 0.5, f_loss * 0.5)
 
 	//Distribute the remaining half all limbs equally
 	b_loss *= 0.5
@@ -263,25 +263,25 @@
 	for(var/datum/limb/temp in limbs)
 		switch(temp.name)
 			if("head")
-				update |= temp.limb_take_damage(b_loss * 0.2, f_loss * 0.2)
+				update |= temp.take_damage_limb(b_loss * 0.2, f_loss * 0.2)
 			if("chest")
-				update |= temp.limb_take_damage(b_loss * 0.4, f_loss * 0.4)
+				update |= temp.take_damage_limb(b_loss * 0.4, f_loss * 0.4)
 			if("l_arm")
-				update |= temp.limb_take_damage(b_loss * 0.05, f_loss * 0.05)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("r_arm")
-				update |= temp.limb_take_damage(b_loss * 0.05, f_loss * 0.05)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("l_leg")
-				update |= temp.limb_take_damage(b_loss * 0.05, f_loss * 0.05)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("r_leg")
-				update |= temp.limb_take_damage(b_loss * 0.05, f_loss * 0.05)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("r_foot")
-				update |= temp.limb_take_damage(b_loss * 0.05, f_loss * 0.05)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("l_foot")
-				update |= temp.limb_take_damage(b_loss * 0.05, f_loss * 0.05)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("r_arm")
-				update |= temp.limb_take_damage(b_loss * 0.05, f_loss * 0.05)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("l_arm")
-				update |= temp.limb_take_damage(b_loss * 0.05, f_loss * 0.05)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 	if(update)	UpdateDamageIcon()
 	return 1
 
@@ -1264,7 +1264,7 @@
 						msg ="<span class='warning'>[O] in your [organ.display_name] twists painfully as you move.</span>"
 				to_chat(src, msg)
 
-				organ.limb_take_damage(rand(1, 2))
+				organ.take_damage_limb(rand(1, 2))
 				if(!(organ.limb_status & LIMB_ROBOT) && !(species.species_flags & NO_BLOOD)) //There is no blood in protheses.
 					organ.limb_status |= LIMB_BLEEDING
 					if(prob(10)) src.adjustToxLoss(1)

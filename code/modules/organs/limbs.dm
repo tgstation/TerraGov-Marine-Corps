@@ -106,9 +106,9 @@
 	if(prob(probability))
 		droplimb()
 	else
-		limb_take_damage(damage, 0, TRUE, TRUE)
+		take_damage_limb(damage, 0, TRUE, TRUE)
 
-/datum/limb/proc/limb_take_damage(brute, burn, sharp, edge, blocked = 0, list/forbidden_limbs = list())
+/datum/limb/proc/take_damage_limb(brute, burn, sharp, edge, blocked = 0, list/forbidden_limbs = list())
 	if(blocked >= 1) //Complete negation
 		return 0
 
@@ -196,7 +196,7 @@
 			if(possible_points.len)
 				//And pass the damage around, but not the chance to cut the limb off.
 				var/datum/limb/target = pick(possible_points)
-				target.limb_take_damage(remain_brute, remain_burn, sharp, edge, blocked, forbidden_limbs + src)
+				target.take_damage_limb(remain_brute, remain_burn, sharp, edge, blocked, forbidden_limbs + src)
 
 
 	//Sync the organ's damage with its wounds
@@ -1137,7 +1137,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		. = new /icon(race_icon, "[icon_name]_[g]")
 */
 
-/datum/limb/head/limb_take_damage(brute, burn, sharp, edge, blocked = 0, list/forbidden_limbs = list())
+/datum/limb/head/take_damage_limb(brute, burn, sharp, edge, blocked = 0, list/forbidden_limbs = list())
 	. = ..()
 	if (!disfigured)
 		if (brute_dam > 40)

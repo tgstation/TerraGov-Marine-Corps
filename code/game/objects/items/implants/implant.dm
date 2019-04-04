@@ -40,7 +40,7 @@
 	proc/meltdown()	//breaks it down, making implant unrecongizible
 		to_chat(imp_in, "<span class='warning'>You feel something melting inside [part ? "your [part.display_name]" : "you"]!</span>")
 		if(part)
-			part.limb_take_damage(0, 15)
+			part.take_damage_limb(0, 15)
 		else
 			var/mob/living/M = imp_in
 			M.apply_damage(15,BURN)

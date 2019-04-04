@@ -232,7 +232,7 @@
 
 			if(affecting)
 				to_chat(M, "<span class='danger'>You land heavily on your [affecting.display_name]!</span>")
-				affecting.limb_take_damage(damage)
+				affecting.take_damage_limb(damage)
 			else
 				to_chat(H, "<span class='danger'>You land heavily!</span>")
 				H.apply_damage(damage, BRUTE)

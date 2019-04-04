@@ -77,7 +77,7 @@
 					if(affecting.limb_status & LIMB_ROBOT)
 						return
 					H.KnockDown(3)
-					if(affecting.limb_take_damage(5))
+					if(affecting.take_damage_limb(5))
 						H.UpdateDamageIcon()
 					H.updatehealth()
 	..()
