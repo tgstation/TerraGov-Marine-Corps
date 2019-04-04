@@ -146,12 +146,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		var/datum/admin_help/AH = I
 		if(AH.tier == TICKET_MENTOR && check_rights(R_ADMIN|R_MENTOR, FALSE))
 			if(AH.initiator)
-				stat("#[AH.id]. Mentor. [AH.initiator_key_name]:", AH.statclick.update())
+				stat("\[[AH.marked ? "X" : " "]\] #[AH.id]. Mentor. [AH.initiator_key_name]:", AH.statclick.update())
 			else
 				++num_mentors_disconnected
 		else if(AH.tier == TICKET_ADMIN && check_rights(R_ADMIN, FALSE))
 			if(AH.initiator)
-				stat("#[AH.id]. Admin. [AH.initiator_key_name]:", AH.statclick.update())
+				stat("\[[AH.marked ? "X" : " "]\] #[AH.id]. Admin. [AH.initiator_key_name]:", AH.statclick.update())
 			else
 				++num_admins_disconnected
 	if(check_rights(R_ADMIN, FALSE) && (num_admins_disconnected || num_mentors_disconnected))
