@@ -329,7 +329,6 @@
 /datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
 	to_chat(owner, "<span class='xenodanger'>You feel your growth toxin glands refill. You can use Growth Sting again.</span>")
-	on_cooldown = FALSE
 	return ..()
 
 /datum/action/xeno_action/activable/larval_growth_sting/can_use_ability(atom/A, silent = FALSE)

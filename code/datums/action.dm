@@ -206,6 +206,7 @@
 
 //override this for cooldown completion.
 /datum/action/xeno_action/proc/on_cooldown_finish()
+	on_cooldown = FALSE
 	update_button_icon()
 
 /datum/action/xeno_action/update_button_icon()

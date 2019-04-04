@@ -44,7 +44,6 @@
 /datum/action/xeno_action/activable/larval_growth_sting/defiler/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
 	to_chat(owner, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
-	on_cooldown = FALSE
 	return ..()
 
 /datum/action/xeno_action/activable/larval_growth_sting/defiler/cooldown_remaining()
@@ -89,86 +88,69 @@
 	action_icon_state = "emit_neurogas"
 	mechanics_text = "Channel for 3 seconds to emit a cloud of noxious smoke that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
 	ability_name = "emit neurogas"
+	plasma_cost = 200
 
-/datum/action/xeno_action/activable/emit_neurogas/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Defiler/X = owner
-	if(world.time >= X.last_emit_neurogas + DEFILER_GAS_COOLDOWN)
-		return TRUE
+/datum/action/xeno_action/activable/emit_neurogas/cooldown_remaining()
+	return (last_use + DEFILER_GAS_COOLDOWN - world.time) * 0.1
+
+/datum/action/xeno_action/activable/emit_neurogas/on_cooldown_finish()
+	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
+	to_chat(owner, "<span class='xenodanger'>You feel your dorsal vents bristle with neurotoxic gas. You can use Emit Neurogas again.</span>")
+	return ..()
 
 /datum/action/xeno_action/activable/emit_neurogas/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
-	X.emit_neurogas()
-
-/mob/living/carbon/Xenomorph/Defiler/proc/emit_neurogas()
-
-	if(!check_state())
-		return
-
-	if(world.time < last_emit_neurogas + DEFILER_GAS_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='xenodanger'>You are not ready to emit neurogas again. This ability will be ready in [(last_emit_neurogas + DEFILER_GAS_COOLDOWN - world.time) * 0.1] seconds.</span>")
-		return FALSE
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
-		return
-
-	if(!check_plasma(200))
-		return
 
 	//give them fair warning
-	visible_message("<span class='danger'>Tufts of smoke begin to billow from [src]!</span>", \
+	X.visible_message("<span class='danger'>Tufts of smoke begin to billow from [X.]!</span>", \
 	"<span class='xenodanger'>Your dorsal vents widen, preparing to emit neurogas. Keep still!</span>")
 
-	emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
-	use_plasma(200)
-	icon_state = "Defiler Power Up"
+	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
+	succeed_activate()
+	X.icon_state = "Defiler Power Up"
 
-	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
-		smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
-		smoke_system.set_up(1, get_turf(src))
-		to_chat(src, "<span class='xenodanger'>You abort emitting neurogas, your expended plasma resulting in only a feeble wisp.</span>")
-		emitting_gas = FALSE
-		icon_state = "Defiler Running"
-		return
-	emitting_gas = FALSE
-	icon_state = "Defiler Running"
+	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+		X.smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
+		X.smoke_system.set_up(1, get_turf(src))
+		to_chat(X, "<span class='xenodanger'>You abort emitting neurogas, your expended plasma resulting in only a feeble wisp.</span>")
+		X.emitting_gas = FALSE
+		X.icon_state = "Defiler Running"
+		return fail_activate()
+	X.emitting_gas = FALSE
+	X.icon_state = "Defiler Running"
 
-	addtimer(CALLBACK(src, .defiler_gas_cooldown), DEFILER_GAS_COOLDOWN)
+	addtimer(CALLBACK(src, .proc/on_cooldown_finish), DEFILER_GAS_COOLDOWN)
 
-	last_emit_neurogas = world.time
+	last_use = world.time
 
-	if(stagger) //If we got staggered, return
-		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
-		return
+	if(X.stagger) //If we got staggered, return
+		to_chat(X, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
+		return fail_activate()
 
 	round_statistics.defiler_neurogas_uses++
 
-	visible_message("<span class='xenodanger'>[src] emits a noxious gas!</span>", \
+	X.visible_message("<span class='xenodanger'>[X] emits a noxious gas!</span>", \
 	"<span class='xenodanger'>You emit neurogas!</span>")
 	dispense_gas()
 
-/mob/living/carbon/Xenomorph/Defiler/proc/defiler_gas_cooldown()
-	playsound(loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
-	to_chat(src, "<span class='xenodanger'>You feel your dorsal vents bristle with neurotoxic gas. You can use Emit Neurogas again.</span>")
-	update_action_button_icons()
-
-/mob/living/carbon/Xenomorph/Defiler/proc/dispense_gas(count = 3)
+/datum/action/xeno_action/activable/emit_neurogas/proc/dispense_gas(count = 3)
+	var/mob/living/carbon/Xenomorph/Defiler/X = owner
 	set waitfor = FALSE
 	while(count)
-		if(stagger) //If we got staggered, return
-			to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
+		if(X.stagger) //If we got staggered, return
+			to_chat(X, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
 			return
-		if(stunned || knocked_down)
-			to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are disabled!</span>")
+		if(X.stunned || X.knocked_down)
+			to_chat(X, "<span class='xenowarning'>You try to emit neurogas but are disabled!</span>")
 			return
-		playsound(loc, 'sound/effects/smoke.ogg', 25)
-		var/turf/T = get_turf(src)
-		smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
+		var/turf/T = get_turf(X)
+		playsound(T, 'sound/effects/smoke.ogg', 25)
+		X.smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
 		if(count > 1)
-			smoke_system.set_up(2, T)
+			X.smoke_system.set_up(2, T)
 		else //last emission is larger
-			smoke_system.set_up(3, T)
-		smoke_system.start()
+			X.smoke_system.set_up(3, T)
+		X.smoke_system.start()
 		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
 		count = max(0,count - 1)
 		sleep(DEFILER_GAS_DELAY)
