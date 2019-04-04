@@ -379,6 +379,30 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 /turf/closed/wall/is_weedable()
 	return !is_type_in_typecache(get_area(src), GLOB.unweedable_areas) //so we can spawn weeds on the walls
 
+/turf/proc/check_alien_construction(var/mob/living/L)
+	var/has_obstacle
+	for(var/obj/O in contents)
+		if(istype(O, /obj/item/clothing/mask/facehugger))
+			to_chat(L, "<span class='warning'>There is a little one here already. Best move it.</span>")
+			return FALSE
+		if(istype(O, /obj/effect/alien/egg))
+			to_chat(L, "<span class='warning'>There's already an egg.</span>")
+			return FALSE
+		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin))
+			has_obstacle = TRUE
+			break
+		if(istype(O, /obj/structure/ladder))
+			has_obstacle = TRUE
+			break
+		if(istype(O, /obj/structure/bed))
+			if(istype(O, /obj/structure/bed/chair/dropship/passenger))
+				var/obj/structure/bed/chair/dropship/passenger/P = O
+				if(P.chair_state != DROPSHIP_CHAIR_BROKEN)
+					has_obstacle = TRUE
+					break
+			else
+				has_obstacle = TRUE
+				break
 
 /turf/proc/check_alien_construction(mob/living/L)
 	var/has_obstacle

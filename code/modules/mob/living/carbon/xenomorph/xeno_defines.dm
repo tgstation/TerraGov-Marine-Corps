@@ -188,7 +188,7 @@
 	var/emotedown = 0
 
 	var/datum/action/xeno_action/activable/selected_ability
-	var/selected_resin = "resin wall" //which resin structure to build when we secrete resin
+	var/selected_resin = /obj/structure/bed/nest //which resin structure to build when we secrete resin
 
 	//Naming variables
 	var/nicknumber = 0 //The number after the name. Saved right here so it transfers between castes.

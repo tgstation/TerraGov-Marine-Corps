@@ -53,11 +53,11 @@
 	var/turf/T = owner.loc
 
 	if(!T.is_weedable())
-		to_chat(X, "<span class='warning'>Bad place for a garden!</span>")
+		to_chat(owner, "<span class='warning'>Bad place for a garden!</span>")
 		return fail_activate()
 
 	if(locate(/obj/effect/alien/weeds/node) in T)
-		to_chat(X, "<span class='warning'>There's a pod here already!</span>")
+		to_chat(owner, "<span class='warning'>There's a pod here already!</span>")
 		return fail_activate()
 
 	owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a pulsating node and plants it on the ground!</span>", \
@@ -73,27 +73,35 @@
 	name = "Choose Resin Structure"
 	action_icon_state = "resin wall"
 	mechanics_text = "Selects which structure you will build with the (secrete resin) ability."
+	var/list/buildable_structures = list(
+		/turf/closed/wall/resin,
+		/obj/structure/bed/nest,
+		/obj/effect/alien/resin/sticky,
+		/obj/structure/mineral_door/resin)
+
+/datum/action/xeno_action/choose_resin/hivelord
+	buildable_structures = list(
+		/turf/closed/wall/resin/thick,
+		/obj/structure/bed/nest,
+		/obj/effect/alien/resin/sticky,
+		/obj/structure/mineral_door/resin/thick)
 
 /datum/action/xeno_action/choose_resin/update_button_icon()
+	var/mob/living/carbon/Xenomorph/X = owner
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, X.selected_resin)
 	return ..()
 
 /datum/action/xeno_action/choose_resin/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	switch(X.selected_resin)
-		if("resin door")
-			X.selected_resin = "resin wall"
-		if("resin wall")
-			X.selected_resin = "resin nest"
-		if("resin nest")
-			X.selected_resin = "sticky resin"
-		if("sticky resin")
-			X.selected_resin = "resin door"
-		else
-			return fail_activate() //something went wrong
+	var/i = buildable_structures.Find(X.selected_resin)
+	if(length(buildable_structures) == i)
+		X.selected_resin = buildable_structures[1]
+	else
+		X.selected_resin = buildable_structures[i+1]
 
-	to_chat(X, "<span class='notice'>You will now build <b>[X.selected_resin]\s</b> when secreting resin.</span>")
+	var/atom/A = X.selected_resin
+	to_chat(X, "<span class='notice'>You will now build <b>[initial(A.name)]\s</b> when secreting resin.</span>")
 	return succeed_activate()
 
 // Secrete Resin
@@ -105,8 +113,128 @@
 	plasma_cost = 75
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
+	build_resin(get_turf(owner))
+
+GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
+	/turf/closed/wall/resin,
+	/turf/closed/wall/resin/membrane,
+	/obj/structure/mineral_door/resin), FALSE, TRUE))
+
+/datum/action/xeno_action/activable/secrete_resin/hivelord/use_ability(atom/A)
+	if(get_dist(src,A) > 1)
+		return ..()
+
+	if(!is_type_in_typecache(A, GLOB.thickenable_resin))
+		return build_resin(get_turf(A))
+
+	if(istype(A, /turf/closed/wall/resin))
+		var/turf/closed/wall/resin/WR = A
+		var/oldname = WR.name
+		if(WR.thicken())
+			owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
+			"<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
+			playsound(owner.loc, "alien_resin_build", 25)
+			return succeed_activate()
+		to_chat(owner, "<span class='xenowarning'>[WR] can't be made thicker.</span>")
+		return fail_activate()
+
+	if(istype(A, /obj/structure/mineral_door/resin))
+		var/obj/structure/mineral_door/resin/DR = A
+		var/oldname = DR.name
+		if(DR.thicken())
+			owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
+				"<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
+			playsound(owner.loc, "alien_resin_build", 25)
+			return succeed_activate()
+		to_chat(owner, "<span class='xenowarning'>[DR] can't be made thicker.</span>")
+		return fail_activate()
+
+/datum/action/xeno_action/activable/secrete_resin/proc/build_resin(turf/T)
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.build_resin(A, resin_plasma_cost)
+	var/mob/living/carbon/Xenomorph/blocker = locate() in T
+	if(blocker && blocker != X && blocker.stat != DEAD)
+		to_chat(X, "<span class='warning'>Can't do that with [blocker] in the way!</span>")
+		return fail_activate()
+
+	if(!T.is_weedable())
+		to_chat(X, "<span class='warning'>You can't do that here.</span>")
+		return fail_activate()
+
+	var/obj/effect/alien/weeds/alien_weeds = locate() in T
+
+	if(!alien_weeds)
+		to_chat(X, "<span class='warning'>You can only shape on weeds. Find some resin before you start building!</span>")
+		return fail_activate()
+
+	if(!T.check_alien_construction(X))
+		return fail_activate()
+
+	if(X.selected_resin == /obj/structure/mineral_door/resin)
+		var/wall_support = FALSE
+		for(var/D in cardinal)
+			var/turf/TS = get_step(T,D)
+			if(TS)
+				if(TS.density)
+					wall_support = TRUE
+					break
+				else if(locate(/obj/structure/mineral_door/resin) in TS)
+					wall_support = TRUE
+					break
+		if(!wall_support)
+			to_chat(X, "<span class='warning'>Resin doors need a wall or resin door next to them to stand up.</span>")
+			return fail_activate()
+
+	var/wait_time = 10 + 30 - max(0,(30*X.health/X.maxHealth)) //Between 1 and 4 seconds, depending on health.
+
+	if(!do_after(X, wait_time, TRUE, 5, BUSY_ICON_BUILD))
+		return fail_activate()
+
+	blocker = locate() in T
+	if(blocker && blocker != X && blocker.stat != DEAD)
+		return fail_activate()
+
+	if(!can_use_ability(T))
+		return fail_activate()
+
+	if(!T.is_weedable())
+		return fail_activate()
+
+	alien_weeds = locate() in T
+	if(!alien_weeds)
+		return fail_activate()
+
+	if(!T.check_alien_construction(X))
+		return fail_activate()
+
+	if(X.selected_resin == /obj/structure/mineral_door/resin)
+		var/wall_support = FALSE
+		for(var/D in cardinal)
+			var/turf/TS = get_step(T,D)
+			if(TS)
+				if(TS.density)
+					wall_support = TRUE
+					break
+				else if(locate(/obj/structure/mineral_door/resin) in TS)
+					wall_support = TRUE
+					break
+		if(!wall_support)
+			to_chat(X, "<span class='warning'>Resin doors need a wall or resin door next to them to stand up.</span>")
+			return fail_activate()
+	var/atom/AM = X.selected_resin
+	X.visible_message("<span class='xenonotice'>\The [X] regurgitates a thick substance and shapes it into \a [initial(AM.name)]!</span>", \
+	"<span class='xenonotice'>You regurgitate some resin and shape it into \a [initial(AM.name)].</span>", null, 5)
+	playsound(owner.loc, "alien_resin_build", 25)
+
+	var/atom/new_resin
+
+	if(istype(X.selected_resin, /turf/closed/wall/resin))
+		T.ChangeTurf(X.selected_resin)
+		new_resin = T
+	else
+		new_resin = new X.selected_resin(T)
+	new_resin.add_hiddenprint(X) //so admins know who placed it
+	succeed_activate()
+
 
 /datum/action/xeno_action/toggle_pheromones
 	name = "Open/Collapse Pheromone Options"
