@@ -1,6 +1,0 @@
-author: "by Surrealistik"
-delete-after: True
-changes: 
-  - tweak: "Slow stacks on laser targeted hits reduced by 1."
-  - balance: "Slow stacks overlap rather than stacking; when receiving slow stacks, the amount is set to the higher of current stacks and stacks to be added."
-  - balance: "Crusher is immune to receiving further slow and stagger stacks while at half its maximum charge speed or higher."
