@@ -2,7 +2,7 @@
 	set name = "quick-equip"
 	set hidden = TRUE
 
-	if(is_mob_incapacitated() || lying || istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored))
+	if(incapacitated() || lying || istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored))
 		return
 
 	var/obj/item/I = get_active_held_item()

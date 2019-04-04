@@ -127,7 +127,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(!istype(src.loc, /turf) || usr.stat || usr.is_mob_restrained() )
+	if(!istype(src.loc, /turf) || usr.stat || usr.restrained() )
 		return
 
 	var/turf/T = src.loc
@@ -239,7 +239,7 @@
 			if(!affected_limbs.Find(X.name) )
 				continue
 			armor_block = H.run_armor_check(X, "acid")
-			if(istype(X) && X.take_damage(null, rand(raw_damage * 0.75, raw_damage * 1.25), null, null, null, null, null, armor_block))
+			if(istype(X) && X.take_damage_limb(0, rand(raw_damage * 0.75, raw_damage * 1.25), FALSE, FALSE, armor_block))
 				H.UpdateDamageIcon()
 			limb_count++
 		H.updatehealth()
@@ -552,12 +552,12 @@
 
 	if(!(usr)) //BS12 EDIT
 		return
-	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !Adjacent(usr))
+	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
 	if((!iscarbon(usr)) || (isbrain(usr)))//Is humanoid, and is not a brain
 		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
 		return
-	if( usr.stat || usr.is_mob_restrained() )//Is not asleep/dead and is not restrained
+	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
 		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
 		return
 	if(src.anchored) //Object isn't anchored

@@ -40,7 +40,7 @@
 	set name = "Adjust welding mask"
 	set src in usr
 
-	if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
+	if(usr.canmove && !usr.stat && !usr.restrained())
 		if(up)
 			flags_inventory |= COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 			flags_inv_hide |= HIDEEARS|HIDEEYES|HIDEFACE

@@ -384,7 +384,7 @@
 	if(!istype(user))
 		return
 
-	if(get_dist(loc, user.loc) > 1 || user.is_mob_incapacitated())
+	if(get_dist(loc, user.loc) > 1 || user.incapacitated())
 		return
 
 	user.set_interaction(src)
@@ -517,7 +517,7 @@
 		manual_override = FALSE
 
 /obj/machinery/marine_turret/check_eye(mob/user)
-	if(user.is_mob_incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying || !user.client)
+	if(user.incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying || !user.client)
 		user.unset_interaction()
 
 /obj/machinery/marine_turret/attackby(var/obj/item/O as obj, mob/user as mob)

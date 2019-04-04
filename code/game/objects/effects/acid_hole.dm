@@ -59,7 +59,7 @@
 
 /obj/effect/acid_hole/proc/use_wall_hole(mob/user)
 
-	if(user.mob_size == MOB_SIZE_BIG || user.is_mob_incapacitated() || user.lying || user.buckled || user.anchored)
+	if(user.mob_size == MOB_SIZE_BIG || user.incapacitated() || user.lying || user.buckled || user.anchored)
 		return
 
 	var/mob_dir = get_dir(user, src)
@@ -93,7 +93,7 @@
 	to_chat(user, "<span class='notice'>You start crawling through the hole.</span>")
 
 	if(do_after(user, 15, FALSE, 5, BUSY_ICON_GENERIC))
-		if(!user.is_mob_incapacitated() && !user.lying && !user.buckled)
+		if(!user.incapacitated() && !user.lying && !user.buckled)
 			if (T.density)
 				return
 			for(var/obj/O in T)

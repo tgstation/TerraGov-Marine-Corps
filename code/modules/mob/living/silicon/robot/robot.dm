@@ -417,7 +417,7 @@ var/list/robot_verbs_default = list(
 		stat(null, text("Lights: [lights_on ? "ON" : "OFF"]"))
 
 
-/mob/living/silicon/robot/is_mob_restrained()
+/mob/living/silicon/robot/restrained()
 	return 0
 
 /mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj)

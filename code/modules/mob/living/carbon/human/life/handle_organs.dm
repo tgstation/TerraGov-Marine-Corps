@@ -26,8 +26,6 @@
 			if(overeatduration > 1)
 				overeatduration -= 2 //Doubled the unfat rate
 
-		handle_trace_chems()
-
 	else nutrition = 350 //synthetics are never hungry
 
 	var/leg_tally = 2

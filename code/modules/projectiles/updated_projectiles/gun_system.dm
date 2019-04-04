@@ -726,104 +726,117 @@ and you're good to go.
 	A.update_hud(user)
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
-	if(flags_gun_features & GUN_CAN_POINTBLANK) // If it can't point blank, you can't suicide and such.
-		if(M == user && user.zone_selected == "mouth")
-			if(able_to_fire(user))
-				flags_gun_features ^= GUN_CAN_POINTBLANK //If they try to click again, they're going to hit themselves.
-				M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
-				log_game("[key_name(user)] is trying to commit suicide.")
-				var/u = "[key_name(user)] is trying to commit suicide."
-				user.log_message(u, LOG_ATTACK, "red")
-				if(do_after(user, 40, TRUE, 5, BUSY_ICON_HOSTILE))
-					if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PROJECTILE))
-						active_attachable.activate_attachment(src, null, TRUE)//We're not firing off a nade into our mouth.
-					var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
-					if(projectile_to_fire) //We actually have a projectile, let's move on.
-						user.visible_message("<span class = 'warning'>[user] pulls the trigger!</span>")
-						var/actual_sound = (active_attachable && active_attachable.fire_sound) ? active_attachable.fire_sound : fire_sound
-						var/sound_volume = (flags_gun_features & GUN_SILENCED && !active_attachable) ? 25 : 60
-						playsound(user, actual_sound, sound_volume, 1)
-						simulate_recoil(2, user)
-						var/obj/item/weapon/gun/revolver/current_revolver = src
-						log_game("[key_name(user)] committed suicide with [src] at [AREACOORD(user.loc)].")
-						message_admins("[ADMIN_TPMONTY(user)] committed suicide with [src].")
-						if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
-							user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp = 1)
-							user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
-							user.death()
-							to_chat(user, "<span class='highdanger'>Your life flashes before you as your spirit is torn from your body!</span>")
-							user.ghostize(0) //No return.
-						else
-							if(projectile_to_fire.ammo.damage_type == HALLOSS)
-								to_chat(user, "<span class = 'notice'>Ow...</span>")
-								user.apply_effect(110, AGONY, 0)
-							else
-								user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [projectile_to_fire]", sharp = 1)
-								user.apply_damage(100, OXY)
-								if(ishuman(user) && user == M)
-									var/mob/living/carbon/human/HM = user
-									HM.undefibbable = TRUE //can't be defibbed back from self inflicted gunshot to head
-								user.death()
-						user.log_message("commited suicide with [src]", LOG_ATTACK, "red") //Apply the attack log.
-						last_fired = world.time
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.
+		return ..()
 
-						projectile_to_fire.play_damage_effect(user)
-						if(!delete_bullet(projectile_to_fire))
-							qdel(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.
+	if(!able_to_fire(user))
+		return ..()
 
-						reload_into_chamber(user) //Reload the sucker.
+	if(M != user && user.a_intent == INTENT_HARM)
+		if(!active_attachable && CHECK_BITFIELD(flags_gun_features, GUN_BURST_ON) && burst_amount > 1)
+			..()
+			Fire(M, user)
+			return TRUE
+		..()
+		DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
+		//Point blanking simulates firing the bullet proper but without actually firing it.
+		if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
+			active_attachable.activate_attachment(src, null, TRUE)//No way.
+		var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
+		if(!projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
+			return // no ..(), already invoked above
 
-					else
-						click_empty(user)//If there's no projectile, we can't do much.
-				else
-					M.visible_message("<span class='notice'>[user] decided life was worth living.</span>")
-				flags_gun_features ^= GUN_CAN_POINTBLANK //Reset this.
-			return
+		user.visible_message("<span class='danger'>[user] fires [src] point blank at [M]!</span>")
+		apply_bullet_effects(projectile_to_fire, user) //We add any damage effects that we need.
+		projectile_to_fire.setDir(get_dir(user, M))
+		projectile_to_fire.distance_travelled = get_dist(user, M)
+		simulate_recoil(1, user) // 1 is a scalar value not boolean
 
-		else if(user.a_intent == INTENT_HARM) //Point blanking doesn't actually fire the projectile. No reason to.
-			if(able_to_fire(user)) //If you can't fire the gun in the first place, we're just going to hit them with it.
-				if(!active_attachable && (flags_gun_features & GUN_BURST_ON) && burst_amount > 1)
-					..()
-					Fire(M, user)
-					return TRUE
-				else
-					..()
-					flags_gun_features &= ~GUN_BURST_FIRING
-					//Point blanking simulates firing the bullet proper but without actually firing it.
-					if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PROJECTILE))
-						active_attachable.activate_attachment(src, null, TRUE)//No way.
-					var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
-					if(projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
-						user.visible_message("<span class='danger'>[user] fires [src] point blank at [M]!</span>")
-						apply_bullet_effects(projectile_to_fire, user) //We add any damage effects that we need.
-						projectile_to_fire.setDir(get_dir(user, M))
-						projectile_to_fire.distance_travelled = get_dist(user, M)
-						simulate_recoil(1, user)
+		if(projectile_to_fire.ammo.bonus_projectiles_amount)
+			var/obj/item/projectile/BP
+			for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
+				BP = new /obj/item/projectile(M.loc)
+				BP.generate_bullet(GLOB.ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
+				BP.setDir(get_dir(user, M))
+				BP.distance_travelled = get_dist(user, M)
+				BP.ammo.on_hit_mob(M, BP)
+				M.bullet_act(BP)
+				qdel(BP)
 
-						if(projectile_to_fire.ammo.bonus_projectiles_amount)
-							var/obj/item/projectile/BP
-							for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
-								BP = new /obj/item/projectile(M.loc)
-								BP.generate_bullet(GLOB.ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
-								BP.setDir(get_dir(user, M))
-								BP.distance_travelled = get_dist(user, M)
-								BP.ammo.on_hit_mob(M, BP)
-								M.bullet_act(BP)
-								qdel(BP)
+		projectile_to_fire.ammo.on_hit_mob(M, projectile_to_fire)
+		M.bullet_act(projectile_to_fire)
+		last_fired = world.time
 
-						projectile_to_fire.ammo.on_hit_mob(M, projectile_to_fire)
-						M.bullet_act(projectile_to_fire)
-						last_fired = world.time
+		if(!delete_bullet(projectile_to_fire))
+			qdel(projectile_to_fire)
+		reload_into_chamber(user) //Reload into the chamber if the gun supports it.
+		if(user) //Update dat HUD
+			var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+			A.update_hud(user)
+		return TRUE
 
-						if(!delete_bullet(projectile_to_fire))
-							qdel(projectile_to_fire)
-						reload_into_chamber(user) //Reload into the chamber if the gun supports it.
-						if(user) //Update dat HUD
-							var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
-							A.update_hud(user)
-						return TRUE
 
-	return ..() //Pistolwhippin'
+	if(user.zone_selected != "mouth")
+		return ..()
+	
+	DISABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK) //If they try to click again, they're going to hit themselves.
+
+	M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
+	log_game("[key_name(user)] is trying to commit suicide.")
+	var/u = "[key_name(user)] is trying to commit suicide."
+	user.log_message(u, LOG_ATTACK, "red")
+
+	if(!do_after(user, 40, TRUE, 5, BUSY_ICON_HOSTILE))
+		M.visible_message("<span class='notice'>[user] decided life was worth living.</span>")
+		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
+		return
+
+	if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
+		active_attachable.activate_attachment(src, null, TRUE)//We're not firing off a nade into our mouth.
+	var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
+
+	if(!projectile_to_fire) //We actually have a projectile, let's move on.
+		click_empty(user)//If there's no projectile, we can't do much.
+		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
+		return
+
+	user.visible_message("<span class = 'warning'>[user] pulls the trigger!</span>")
+	var/actual_sound = (active_attachable?.fire_sound) ? active_attachable.fire_sound : fire_sound
+	var/sound_volume = (CHECK_BITFIELD(flags_gun_features, GUN_SILENCED) && !active_attachable) ? 25 : 60
+	playsound(user, actual_sound, sound_volume, 1)
+	simulate_recoil(2, user)
+	var/obj/item/weapon/gun/revolver/current_revolver = src
+	log_game("[key_name(user)] committed suicide with [src] at [AREACOORD(user.loc)].")
+	message_admins("[ADMIN_TPMONTY(user)] committed suicide with [src].")
+	if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
+		user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp = 1)
+		user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
+		user.death()
+		to_chat(user, "<span class='highdanger'>Your life flashes before you as your spirit is torn from your body!</span>")
+		user.ghostize(0) //No return.
+		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
+		return
+
+	if(projectile_to_fire.ammo.damage_type == HALLOSS)
+		to_chat(user, "<span class = 'notice'>Ow...</span>")
+		user.apply_effect(110, AGONY, 0)
+	else
+		user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [projectile_to_fire]", sharp = 1)
+		user.apply_damage(100, OXY)
+		if(ishuman(user) && user == M)
+			var/mob/living/carbon/human/HM = user
+			HM.undefibbable = TRUE //can't be defibbed back from self inflicted gunshot to head
+		user.death()
+
+	user.log_message("commited suicide with [src]", LOG_ATTACK, "red") //Apply the attack log.
+	last_fired = world.time
+
+	projectile_to_fire.play_damage_effect(user)
+	if(!delete_bullet(projectile_to_fire))
+		qdel(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.
+
+	reload_into_chamber(user) //Reload the sucker.
+	ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
 
 //----------------------------------------------------------
 				//							\\

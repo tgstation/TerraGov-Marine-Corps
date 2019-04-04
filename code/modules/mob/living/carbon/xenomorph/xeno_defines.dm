@@ -29,7 +29,7 @@
 	// *** RNG Attacks *** //
 	var/bite_chance = 5 //Chance of doing a special bite attack in place of a claw. Set to 0 to disable.
 	var/tail_chance = 10 //Chance of doing a special tail attack in place of a claw. Set to 0 to disable.
-	var/rng_min_interval = 7 SECONDS // 7 seconds
+	var/rng_min_interval = 3 SECONDS //Prevents further critical hits until this much time elapses
 
 	// *** Speed *** //
 	var/speed = 1

@@ -89,9 +89,6 @@
 /mob/living/carbon/Xenomorph/proc/render_hivemind_message(message)
 	return message
 
-/mob/living/carbon/Xenomorph/Xenoborg/render_hivemind_message(message)
-	return pick("high-pitched blast of static","series of pings","long string of numbers","loud, mechanical squeal", "series of beeps")
-
 /mob/living/carbon/Xenomorph/proc/hivemind_talk(message)
 	if(!message || src.stat)
 		return

@@ -96,10 +96,10 @@
 				attack_message2 = "<span class='danger'>You viciously rend \the [src] with your teeth!</span>"
 				log = "bit"
 				M.critical_proc = TRUE
-				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), CRITICAL_HIT_DELAY)
+				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), M.xeno_caste.rng_min_interval)
 
 			//Check for a special bite attack
-			if(prob(M.xeno_caste.bite_chance) && !M.critical_proc && !no_crit && !M.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
+			if(prob(M.xeno_caste.tail_chance) && !M.critical_proc && !no_crit && !M.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
 				damage *= 1.25
 				attack_flick = "tail"
 				attack_sound = 'sound/weapons/alien_tail_attack.ogg'
@@ -107,7 +107,7 @@
 				attack_message2 = "<span class='danger'>You violently impale \the [src] with your tail!</span>"
 				log = "tail-stabbed"
 				M.critical_proc = TRUE
-				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), CRITICAL_HIT_DELAY)
+				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), M.xeno_caste.rng_min_interval)
 
 			//Somehow we will deal no damage on this attack
 			if(!damage)
@@ -237,10 +237,6 @@
 
 /mob/living/carbon/Xenomorph/proc/process_rage_attack()
 	return FALSE
-
-/mob/living/carbon/Xenomorph/Ravager/process_rage_attack()
-	rage += RAV_RAGE_ON_HIT
-	last_rage = world.time //We incremented rage, so bookmark this.
 
 
 //Every other type of nonhuman mob

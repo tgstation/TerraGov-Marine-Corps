@@ -7,6 +7,7 @@
 	layer = BELOW_OBJ_LAYER
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
+	var/overlay_welded = "welded"
 	var/opened = FALSE
 	var/welded = FALSE
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
@@ -250,7 +251,7 @@
 		return
 	if(!isturf(O.loc))
 		return
-	if(user.is_mob_incapacitated())
+	if(user.incapacitated())
 		return
 	if(O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1)
 		return
@@ -277,7 +278,7 @@
 /obj/structure/closet/relaymove(mob/user)
 	if(!isturf(loc))
 		return
-	if(user.is_mob_incapacitated(TRUE))
+	if(user.incapacitated(TRUE))
 		return
 	user.next_move = world.time + 5
 
@@ -314,7 +315,7 @@
 	set category = "Object"
 	set name = "Toggle Open"
 
-	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
+	if(!usr.canmove || usr.stat || usr.restrained())
 		return
 
 	if(ishuman(usr))
@@ -328,7 +329,7 @@
 	if(!opened)
 		icon_state = icon_closed
 		if(welded)
-			overlays += "welded"
+			overlays += image(icon, overlay_welded)
 	else
 		icon_state = icon_opened
 

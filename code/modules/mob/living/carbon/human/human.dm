@@ -254,36 +254,34 @@
 
 	//Focus half the blast on one organ
 	var/datum/limb/take_blast = pick(limbs)
-	update |= take_blast.take_damage(b_loss * 0.5, f_loss * 0.5, used_weapon = "Explosive blast")
+	update |= take_blast.take_damage_limb(b_loss * 0.5, f_loss * 0.5)
 
 	//Distribute the remaining half all limbs equally
 	b_loss *= 0.5
 	f_loss *= 0.5
 
-	var/weapon_message = "Explosive Blast"
-
 	for(var/datum/limb/temp in limbs)
 		switch(temp.name)
 			if("head")
-				update |= temp.take_damage(b_loss * 0.2, f_loss * 0.2, used_weapon = weapon_message)
+				update |= temp.take_damage_limb(b_loss * 0.2, f_loss * 0.2)
 			if("chest")
-				update |= temp.take_damage(b_loss * 0.4, f_loss * 0.4, used_weapon = weapon_message)
+				update |= temp.take_damage_limb(b_loss * 0.4, f_loss * 0.4)
 			if("l_arm")
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("r_arm")
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("l_leg")
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("r_leg")
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("r_foot")
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("l_foot")
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("r_arm")
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("l_arm")
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
+				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 	if(update)	UpdateDamageIcon()
 	return 1
 
@@ -508,7 +506,7 @@
 
 	if (href_list["item"])
 		var/slot = text2num(href_list["item"])
-		if(!usr.is_mob_incapacitated() && Adjacent(usr))
+		if(!usr.incapacitated() && Adjacent(usr))
 			if(slot == SLOT_WEAR_ID)
 				if(istype(wear_id, /obj/item/card/id/dogtag))
 					var/obj/item/card/id/dogtag/DT = wear_id
@@ -665,14 +663,14 @@
 
 
 	if (href_list["squadfireteam"])
-		if(!usr.is_mob_incapacitated() && get_dist(usr, src) <= 7 && hasHUD(usr,"squadleader"))
+		if(!usr.incapacitated() && get_dist(usr, src) <= 7 && hasHUD(usr,"squadleader"))
 			var/mob/living/carbon/human/H = usr
 			if(mind)
 				var/obj/item/card/id/ID = get_idcard()
 				if(ID && (ID.rank in JOBS_MARINES))//still a marine, with an ID.
 					if(assigned_squad == H.assigned_squad) //still same squad
 						var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") as null|anything in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3")
-						if(H.is_mob_incapacitated() || get_dist(H, src) > 7 || !hasHUD(H,"squadleader")) return
+						if(H.incapacitated() || get_dist(H, src) > 7 || !hasHUD(H,"squadleader")) return
 						ID = get_idcard()
 						if(ID && ID.rank in JOBS_MARINES)//still a marine with an ID
 							if(assigned_squad == H.assigned_squad) //still same squad
@@ -794,7 +792,7 @@
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
 								var/t1 = copytext(sanitize(input("Add Comment:", "Sec. records", null, null)  as message),1,MAX_MESSAGE_LEN)
-								if ( !(t1) || usr.stat || usr.is_mob_restrained() || !(hasHUD(usr,"security")) )
+								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"security")) )
 									return
 								var/counter = 1
 								while(R.fields[text("com_[]", counter)])
@@ -921,7 +919,7 @@
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
 								var/t1 = copytext(sanitize(input("Add Comment:", "Med. records", null, null)  as message),1,MAX_MESSAGE_LEN)
-								if ( !(t1) || usr.stat || usr.is_mob_restrained() || !(hasHUD(usr,"medical")) )
+								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"medical")) )
 									return
 								var/counter = 1
 								while(R.fields[text("com_[]", counter)])
@@ -1266,7 +1264,7 @@
 						msg ="<span class='warning'>[O] in your [organ.display_name] twists painfully as you move.</span>"
 				to_chat(src, msg)
 
-				organ.take_damage(rand(1,2), 0, 0)
+				organ.take_damage_limb(rand(1, 2))
 				if(!(organ.limb_status & LIMB_ROBOT) && !(species.species_flags & NO_BLOOD)) //There is no blood in protheses.
 					organ.limb_status |= LIMB_BLEEDING
 					if(prob(10)) src.adjustToxLoss(1)
@@ -1278,7 +1276,7 @@
 	set src in view(1)
 	var/self = 0
 
-	if(usr.stat > 0 || usr.is_mob_restrained() || !isliving(usr)) return
+	if(usr.stat > 0 || usr.restrained() || !isliving(usr)) return
 
 	if(usr == src)
 		self = 1

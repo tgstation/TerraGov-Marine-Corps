@@ -36,7 +36,7 @@
 	H.visible_message(s, "<span class='warning'>You chew on your [O.display_name]!</span>")
 	H.log_message("[s] ([key_name(H)])", LOG_ATTACK)
 
-	if(O.take_damage(1,0,1,1,"teeth marks"))
+	if(O.take_damage_limb(1, 0, TRUE, TRUE))
 		H.UpdateDamageIcon()
 
 	last_chew = world.time

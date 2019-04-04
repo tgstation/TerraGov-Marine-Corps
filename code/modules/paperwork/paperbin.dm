@@ -13,7 +13,7 @@
 
 
 /obj/item/paper_bin/MouseDrop(atom/over_object)
-	if(over_object == usr && ishuman(usr) && !usr.is_mob_restrained() && !usr.stat && (loc == usr || in_range(src, usr)))
+	if(over_object == usr && ishuman(usr) && !usr.restrained() && !usr.stat && (loc == usr || in_range(src, usr)))
 		if(!usr.get_active_held_item())		//if active hand is empty
 			attack_hand(usr, 1, 1)
 

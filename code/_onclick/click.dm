@@ -82,7 +82,7 @@
 		CtrlClickOn(A)
 		return
 
-	if(is_mob_incapacitated(TRUE))
+	if(incapacitated(TRUE))
 		return
 
 	face_atom(A)
@@ -297,7 +297,7 @@
 
 
 /mob/living/carbon/human/CtrlClick(mob/user)
-	if(!ishuman(user) || !Adjacent(user) || user.is_mob_incapacitated())
+	if(!ishuman(user) || !Adjacent(user) || user.incapacitated())
 		return ..()
 
 	if(world.time < user.next_move)
