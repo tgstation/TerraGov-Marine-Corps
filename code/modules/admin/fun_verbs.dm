@@ -1017,7 +1017,7 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	message_admins("[ADMIN_TPMONTY(usr)] updated the appearance of [ADMIN_TPMONTY(H)].")
 
 
-/datum/admins/proc/offer(var/mob/M in GLOB.mob_list)
+/datum/admins/proc/offer(mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Offer Mob"
 
@@ -1030,18 +1030,13 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	var/mob/living/L = M
 
 	if(L.key || L.ckey)
-		if(alert("This mob has a player inside, are you sure you want to proceed?", "WARNING", "Yes", "No") != "Yes")
+		if(alert("This mob has a player inside, are you sure you want to proceed?", "Offer Mob", "Yes", "No") != "Yes")
 			return
-		L.taken = FALSE
-		var/mob/dead/observer/ghost = L.ghostize(FALSE)
-		if(ghost)
-			ghost.timeofdeath = world.time
-	else if(L.taken)
-		if(alert("This mob has been offered, are you sure you want to proceed?", "Warning", "Yes", "No") != "Yes")
+		L.ghostize(FALSE)
+	else if(L in GLOB.offered_mob_list)
+		if(alert("This mob has been offered, do you want to re-announce it?", "Offer Mob", "Yes", "No") != "Yes")
 			return
-		L.taken = FALSE
-
-	if(alert("Are you sure?", "Offer Mob", "Yes", "No") != "Yes")
+	else if(alert("Are you sure?", "Offer Mob", "Yes", "No") != "Yes")
 		return
 
 	L.offer_mob()

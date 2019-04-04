@@ -83,7 +83,8 @@
 		X.use_plasma(75)
 		X.visible_message("<span class='xenonotice'>\The [X] regurgitates a pulsating node and plants it on the ground!</span>", \
 		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>", null, 5)
-		new /obj/effect/alien/weeds/node(X.loc, src, X)
+		var/obj/effect/alien/weeds/node/N = new (X.loc, src, X)
+		X.transfer_fingerprints_to(N)
 		playsound(X.loc, "alien_resin_build", 25)
 		round_statistics.weeds_planted++
 

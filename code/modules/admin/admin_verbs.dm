@@ -298,7 +298,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has changed the squad of [ADMIN_TPMONTY(H)] to [S.name].")
 
 
-/datum/admins/proc/direct_control(var/mob/M in GLOB.mob_list)
+/datum/admins/proc/direct_control(mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Take Over"
 	set desc = "Rohesie's verb."
@@ -306,31 +306,27 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(istype(usr, /mob/new_player))
+	if(isnewplayer(usr))
 		return
 
 	var/replaced = FALSE
 	if(M.key)
-		if(usr.client.key == copytext(M.key,2))
+		if(usr.client.key == copytext(M.key, 2))
 			var/mob/dead/observer/ghost = usr
 			ghost.can_reenter_corpse = TRUE
 			ghost.reenter_corpse()
-			return
-		else if(alert("This mob is being controlled by [M.key], they will be made a ghost. Are you sure?",,"Yes","No") == "Yes")
+		else if(alert("This mob is being controlled by [M.key], they will be made a ghost. Are you sure?", "Take Over", "Yes", "No") == "Yes")
 			M.ghostize()
 			replaced = TRUE
-		else
-			return
+		return
 
 	var/log = "[key_name(usr)]"
-	var/message = "[ADMIN_TPMONTY(usr)]"
-	var/oldkey = "[M.key]"
-	M.key = usr.client.key
+	var/message = "[key_name_admin(usr)]"
 
-	M.client.change_view(world.view)
+	usr.mind.transfer_to(M, TRUE)
 
-	log_admin("[log] took over [M.name][replaced ? " replacing the previous owner [key_name(oldkey)]" : ""].")
-	message_admins("[message] took over [M.name][replaced ? " replacing the previous owner [key_name_admin(oldkey)]" : ""].")
+	log_admin("[log] took over [M.real_name][replaced ? " replacing the previous owner [key_name(M)]" : ""].")
+	message_admins("[message] took over [M.real_name][replaced ? " replacing the previous owner [ADMIN_TPMONTY(M)]" : ""].")
 
 
 /datum/admins/proc/logs_server()
@@ -1051,7 +1047,7 @@
 		if(check_other_rights(recipient, R_ADMIN, FALSE) || is_mentor(recipient))
 			if(check_rights(R_ADMIN, FALSE) || is_mentor(src)) //Both are staff
 				if(!current_ticket && !recipient.current_ticket)
-					if(check_other_rights(recipient, R_ADMIN, FALSE) && check_rights(R_ADMIN, FALSE))
+					if(check_other_rights(recipient, R_ADMIN, FALSE) || check_rights(R_ADMIN, FALSE))
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_ADMIN)
 					else
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_MENTOR)

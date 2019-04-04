@@ -94,7 +94,7 @@ SUBSYSTEM_DEF(ticker)
 				GLOB.ooc_allowed = TRUE
 				GLOB.dooc_allowed = TRUE
 				mode.declare_completion(force_ending)
-				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "AUTOMATIC", "AUTOMATIC"), 1 MINUTES)
+				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "map", "AUTOMATIC"), 1 MINUTES)
 				addtimer(CALLBACK(src, .proc/Reboot), 1 MINUTES)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 

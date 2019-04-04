@@ -77,29 +77,7 @@
 		log_admin("[key_name(usr)] has taken [key_name_admin(target)].")
 		message_admins("[ADMIN_TPMONTY(usr)] has taken [ADMIN_TPMONTY(target)].")
 
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
-			if(H.assigned_squad)
-				var/datum/squad/S = H.assigned_squad
-				S.clean_marine_from_squad(H)
-
-		mind.transfer_to(target, TRUE)
-
-		if(!ishuman(target) || !target.job)
-			target.fully_replace_character_name(real_name, target.real_name)
-			return
-
-		var/mob/living/carbon/human/H = target
-		H.set_rank(H.job)
-
-		target.fully_replace_character_name(real_name, target.real_name)
-
-		if(!H.assigned_squad)
-			return
-
-		var/datum/squad/S = H.assigned_squad
-		S.put_marine_in_squad(H)
-
+		target.take_over(src)
 
 
 
@@ -507,6 +485,18 @@
 
 	var/mob/target = mobs[selected]
 	ManualFollow(target)
+
+
+/mob/dead/observer/verb/offered_mobs()
+	set category = "Ghost"
+	set name = "Take Offered Mob"
+
+	if(!length(GLOB.offered_mob_list))
+		to_chat(src, "<span class='warning'>There are currently no mobs being offered.</span>")
+		return
+
+	var/mob/living/L = input("Choose which mob you want to take over.", "Take Offered Mob") as null|anything in sortNames(GLOB.offered_mob_list)
+	L.take_over(src)
 
 
 /mob/dead/observer/proc/ManualFollow(var/atom/movable/target)

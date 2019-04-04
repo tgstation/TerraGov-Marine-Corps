@@ -14,6 +14,9 @@ SUBSYSTEM_DEF(blackbox)
 
 	update_exp(10, FALSE)
 
+	if(!GLOB.round_id)
+		SSdbcore.SetRoundID()
+
 
 /datum/controller/subsystem/blackbox/vv_edit_var(var_name, var_value)
 	return FALSE

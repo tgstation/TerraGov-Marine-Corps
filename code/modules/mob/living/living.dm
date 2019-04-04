@@ -473,7 +473,9 @@
 
 
 /mob/living/proc/offer_mob()
-	for(var/mob/dead/observer/O in GLOB.dead_mob_list)
+	GLOB.offered_mob_list += src
+	for(var/i in GLOB.observer_list)
+		var/mob/dead/observer/O = i
 		to_chat(O, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] \[<a href='byond://?src=[REF(O)];claim=[REF(src)]'>CLAIM</a>\] \[<a href='byond://?src=[REF(O)];track=[REF(src)]'>FOLLOW</a>\]</span><hr><br>")
 
 
@@ -622,3 +624,9 @@ below 100 is not dizzy
 
 /mob/living/proc/vomit()
 	return
+
+
+/mob/living/proc/take_over(mob/M)
+	M.mind.transfer_to(src, TRUE)
+	fully_replace_character_name(real_name, M.real_name)
+	GLOB.offered_mob_list -= src
