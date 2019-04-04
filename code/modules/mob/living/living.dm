@@ -626,7 +626,20 @@ below 100 is not dizzy
 	return
 
 
-/mob/living/proc/take_over(mob/M)
+/mob/living/proc/take_over(mob/M, bypass)
+	if(!M.mind)
+		to_chat(M, "<span class='warning'>You don't have a mind.</span>")
+		return
+	if(!bypass && (key || ckey))
+		to_chat(M, "<span class='warning'>That mob has already been taken.</span>")
+		return
+	if(!bypass && job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
+		to_chat(M, "<span class='warning'>You are jobbanned from that job.</span>")
+		return
+
 	M.mind.transfer_to(src, TRUE)
 	fully_replace_character_name(real_name, M.real_name)
 	GLOB.offered_mob_list -= src
+
+	log_admin("[key_name(M)] has taken [key_name_admin(src)].")
+	message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")
