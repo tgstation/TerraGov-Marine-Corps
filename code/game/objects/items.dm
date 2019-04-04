@@ -21,7 +21,7 @@
 	var/heat_source = FALSE //whether this item is a source of heat, and how hot it is (in Kelvin).
 
 	var/hitsound = null
-	var/w_class = 3.0
+	var/w_class = WEIGHT_CLASS_NORMAL
 	var/storage_cost = null
 	var/flags_item = NOFLAGS	//flags for item stuff that isn't clothing/equipping specific.
 	var/flags_equip_slot = NOFLAGS		//This is used to determine on which slots an item can fit.

@@ -678,3 +678,14 @@
 /obj/item/storage/on_stored_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
 		remove_from_storage(AM)
+
+
+/obj/item/storage/allows_stack_merging(obj/item/stack/S)
+	return (is_type_in_typecache(S, bypass_w_limit) || initial(S.w_class) <= max_w_class)
+
+
+/obj/item/storage/recalculate_storage_space()
+	orient2hud()
+	for(var/X in can_see_content())
+		var/mob/M = X //There is no need to typecast here, really, but for clarity.
+		show_to(M)

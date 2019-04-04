@@ -12,7 +12,6 @@
 	throw_range = 20
 	attack_verb = list("hit", "whacked", "sliced")
 	max_amount = 20
-	stack_id = "barbed wire"
 
 //small stack
 /obj/item/stack/barbed_wire/small_stack
@@ -50,7 +49,7 @@
 	throw_range = 5
 	attack_verb = list("hit", "whacked", "sliced")
 	max_amount = 10
-	stack_id = "razor wire assembly"
+
 
 //small stack
 /obj/item/stack/razorwire/small_stack

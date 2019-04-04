@@ -679,3 +679,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	name = "Z-level baseturf placeholder"
 	desc = "Marker for z-level baseturf, usually resolves to space."
 	baseturfs = /turf/baseturf_bottom
+
+
+/turf/allows_stack_merging()
+	return TRUE //This is where we want for stack merging to happen.

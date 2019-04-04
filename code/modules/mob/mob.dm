@@ -726,6 +726,9 @@ mob/proc/yank_out_object()
 /mob/proc/can_inject()
 	return reagents
 
+/mob/proc/canUseTopic(atom/movable/M)
+	return FALSE
+
 /mob/proc/get_idcard(hand_first)
 	return
 
