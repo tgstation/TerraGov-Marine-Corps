@@ -82,7 +82,7 @@
 		if(observed_xeno.stat == DEAD || observed_xeno.gc_destroyed)
 			set_queen_overwatch(observed_xeno, TRUE)
 
-	if(!ovipositor || is_mob_incapacitated(TRUE))
+	if(!ovipositor || incapacitated(TRUE))
 		return
 
 	hive?.on_queen_life(src)

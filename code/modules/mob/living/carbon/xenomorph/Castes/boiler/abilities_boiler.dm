@@ -10,7 +10,7 @@
 
 /datum/action/xeno_action/toggle_long_range/can_use_action()
 	var/mob/living/carbon/Xenomorph/Boiler/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (X.is_zoomed || X.plasma_stored >= plasma_cost) && !X.stagger)
+	if(X && !X.incapacitated() && !X.lying && !X.buckled && (X.is_zoomed || X.plasma_stored >= plasma_cost) && !X.stagger)
 		return TRUE
 
 /datum/action/xeno_action/toggle_long_range/action_activate()
