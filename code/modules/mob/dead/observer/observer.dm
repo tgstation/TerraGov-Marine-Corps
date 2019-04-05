@@ -281,7 +281,7 @@
 	var/list/namecounts = list()
 
 	for(var/mob/dead/observer/O in sortNames(GLOB.dead_mob_list))
-		if(!O.client)
+		if(!O.client || !O.name)
 			continue
 		var/name = O.name
 		if(name in names)
@@ -366,7 +366,7 @@
 	var/list/namecounts = list()
 	for(var/x in sortNames(GLOB.alive_human_list))
 		var/mob/M = x
-		if(!ishumanbasic(M) && !issynth(M) || istype(M, /mob/living/carbon/human/dummy))
+		if(!ishumanbasic(M) && !issynth(M) || istype(M, /mob/living/carbon/human/dummy) || !M.name)
 			continue
 		var/name = M.name
 		if(name in names)
@@ -413,7 +413,7 @@
 
 	for(var/x in sortNames(GLOB.dead_mob_list))
 		var/mob/M = x
-		if(isobserver(M) || isnewplayer(M))
+		if(isobserver(M) || isnewplayer(M) || !M.name)
 			continue
 		var/name = M.name
 		if(name in names)
@@ -449,7 +449,7 @@
 
 	for(var/x in sortNames(GLOB.mob_list - GLOB.dead_mob_list - GLOB.alive_xeno_list))
 		var/mob/M = x
-		if(isobserver(M) || isnewplayer(M) || ishumanbasic(M))
+		if(isobserver(M) || isnewplayer(M) || ishumanbasic(M) || !M.name)
 			continue
 		var/name = M.name
 		if(name in names)

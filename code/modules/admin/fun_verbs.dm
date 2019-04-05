@@ -255,14 +255,14 @@
 
 /datum/admins/proc/custom_info()
 	set category = "Fun"
-	set name = "Change Custom Event"
+	set name = "Change Custom Info"
 
 	if(!check_rights(R_FUN))
 		return
 
-	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear"))
+	switch(input("Do you want to change or clear the custom info?", "Custom Info") as null|anything in list("Change", "Clear"))
 		if("Change")
-			GLOB.custom_info = input(usr, "Set the custom information players get on joining or via the OOC tab.",, GLOB.custom_info) as message|null
+			GLOB.custom_info = input(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom Info", GLOB.custom_info) as message|null
 
 			GLOB.custom_info = noscript(GLOB.custom_info)
 
@@ -284,8 +284,8 @@
 	set category = "OOC"
 	set name = "Custom Info"
 
-	if(!GLOB.custom_info || GLOB.custom_info == "")
-		to_chat(src, "<span class='notice'>There currently is no known custom information set.</span>")
+	if(!GLOB.custom_info)
+		to_chat(src, "<span class='notice'>There currently is no custom information set.</span>")
 		return
 
 	to_chat(src, "<h1 class='alert'>Custom Information</h1>")

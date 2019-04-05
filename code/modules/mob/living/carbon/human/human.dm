@@ -1738,6 +1738,9 @@
 
 	assigned_squad = S
 
+	if(!mind)
+		return FALSE
+
 	S.put_marine_in_squad(src)
 
 	var/datum/job/J = SSjob.GetJob(mind.assigned_role)

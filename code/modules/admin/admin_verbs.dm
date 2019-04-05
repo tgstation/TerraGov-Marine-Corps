@@ -374,7 +374,7 @@
 		var/list/choices = flist(path)
 		if(path != root)
 			choices.Insert(1, "/")
-		var/choice = input("Choose a folder to access:", "Download", null) as null|anything in choices
+		var/choice = input("Choose a folder to access:", "Server Logs", null) as null|anything in choices
 		switch(choice)
 			if(null)
 				return FALSE
@@ -385,10 +385,14 @@
 
 		if(copytext(path, -1, 0) != "/")		//didn't choose a directory, no need to iterate again
 			return FALSE
-		else if(alert("Is this the folder you want to download?:",, "Yes", "No") == "Yes")
-			break
-		else
-			continue
+
+		switch(alert("Is this the folder you want to download?:", "Server Logs", "Yes", "No", "Cancel"))
+			if("Yes")
+				break
+			if("No")
+				continue
+			if("Cancel")
+				return FALSE
 
 	return path
 
