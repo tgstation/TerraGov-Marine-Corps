@@ -767,7 +767,7 @@
 			message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank/skill change for [ADMIN_TPMONTY(H)].")
 
 
-/datum/admins/proc/select_equipment(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+/datum/admins/proc/select_equipment(mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Select Equipment"
 
@@ -815,14 +815,14 @@
 	set category = "Fun"
 	set name = "Change Squad"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_FUN))
 		return
 
-	if(!istype(H))
+	if(!istype(H) || !(H.job in JOBS_MARINES))
 		return
 
 	var/squad = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
-	if(!squad || !istype(H))
+	if(!squad || !istype(H) || !(H.job in JOBS_MARINES))
 		return
 
 	H.change_squad(squad)
@@ -1047,8 +1047,15 @@
 			return
 		L.ghostize(FALSE)
 	else if(L in GLOB.offered_mob_list)
-		if(alert("This mob has been offered, do you want to re-announce it?", "Offer Mob", "Yes", "No") != "Yes")
-			return
+		switch(alert("This mob has been offered, do you want to re-announce it?", "Offer Mob", "Yes", "Remove", "Cancel"))
+			if("Cancel")
+				return
+			if("Remove")
+				GLOB.offered_mob_list -= L
+				log_admin("[key_name(usr)] has removed offer of [key_name_admin(M)].")
+				message_admins("[ADMIN_TPMONTY(usr)] has removed offer of [ADMIN_TPMONTY(M)].")
+				return
+
 	else if(alert("Are you sure?", "Offer Mob", "Yes", "No") != "Yes")
 		return
 

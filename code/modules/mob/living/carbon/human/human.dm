@@ -1688,6 +1688,9 @@
 
 	GLOB.datacore.manifest_update(real_name, real_name, job)
 
+	if(assigned_squad)
+		change_squad(assigned_squad.name)
+
 	return TRUE
 
 
@@ -1734,18 +1737,17 @@
 
 	var/datum/squad/S = SSjob.squads[squad]
 
-	assigned_squad?.remove_marine_from_squad(src)
-
-	assigned_squad = S
-
-	if(!mind)
+	if(mind)
+		assigned_squad = null
+	else
+		assigned_squad = S
 		return FALSE
-
-	S.put_marine_in_squad(src)
 
 	var/datum/job/J = SSjob.GetJob(mind.assigned_role)
 	var/datum/outfit/job/O = new J.outfit
-	O.post_equip(src)
+	O.handle_id(src)
+
+	S.put_marine_in_squad(src)
 
 	//Crew manifest
 	for(var/i in GLOB.datacore.general)
@@ -1771,3 +1773,5 @@
 		update_icons()
 
 	hud_set_squad()
+
+	return TRUE
