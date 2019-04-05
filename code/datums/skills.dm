@@ -483,13 +483,13 @@
 	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_ADVANCED
 	leadership = SKILL_LEAD_EXPERT
-	medical = SKILL_MEDICAL_MEDIC
+	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_TRAINED
 
 /datum/skills/imperial/medicae
 	name = "Guardsman Medicae" // medic
 	leadership = SKILL_LEAD_BEGINNER // normal medics have it
-	medical = SKILL_MEDICAL_DOCTOR // was told to add skills
+	medical = SKILL_MEDICAL_COMPETENT // was told to add skills
 	surgery = SKILL_SURGERY_PROFESSIONAL
 
 /datum/skills/imperial/astartes
@@ -519,6 +519,6 @@
 	cqc = 4 // below SKILL_CQC_MASTER, no define for it
 	melee_weapons = SKILL_MELEE_TRAINED
 	
-	medical = SKILL_MEDICAL_CMO
+	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
 
