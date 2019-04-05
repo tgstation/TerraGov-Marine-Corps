@@ -319,48 +319,7 @@
 	return TRUE
 
 
-/mob/living/carbon/Xenomorph/proc/neurotoxin_sting(mob/living/carbon/C)
 
-	if(!check_state())
-		return
-
-	if(!(C?.can_sting()))
-		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
-		return
-
-	if(world.time < last_neurotoxin_sting + XENO_NEURO_STING_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='warning'>You are not ready to use the sting again. It will be ready in [(last_neurotoxin_sting + XENO_NEURO_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='warning'>You try to sting but are too disoriented!</span>")
-		return
-
-	if(!Adjacent(C))
-		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
-			to_chat(src, "<span class='warning'>You can't reach this target!</span>")
-			recent_notice = world.time //anti-notice spam
-		return
-
-	if (CHECK_BITFIELD(C.status_flags, XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
-		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
-		return
-
-	if(!check_plasma(150))
-		return
-	last_neurotoxin_sting = world.time
-	use_plasma(150)
-
-	round_statistics.sentinel_neurotoxin_stings++
-
-	addtimer(CALLBACK(src, .neurotoxin_sting_cooldown), XENO_NEURO_STING_COOLDOWN)
-	recurring_injection(C, "xeno_toxin", XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
-
-
-/mob/living/carbon/Xenomorph/proc/neurotoxin_sting_cooldown()
-	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(src, "<span class='xenodanger'>You feel your neurotoxin glands refill. You can use your Neurotoxin Sting again.</span>")
-	update_action_button_icons()
 
 
 

@@ -355,7 +355,7 @@
 	var/mob/living/carbon/C = A
 	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
 		if(!silent)
-			to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
+			to_chat(owner, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/larval_growth_sting/use_ability(atom/A)
@@ -646,12 +646,9 @@
 	name = "Hide"
 	action_icon_state = "xenohide"
 	mechanics_text = "Causes your sprite to hide behind certain objects and under tables. Not the same as stealth. Does not use plasma."
-	plasma_cost = 0
 
 /datum/action/xeno_action/xenohide/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state())
-		return
 	if(X.layer != XENO_HIDING_LAYER)
 		X.layer = XENO_HIDING_LAYER
 		to_chat(X, "<span class='notice'>You are now hiding.</span>")
@@ -666,15 +663,45 @@
 	action_icon_state = "neuro_sting"
 	mechanics_text = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	ability_name = "neurotoxin sting"
+	cooldown_timer = XENO_NEURO_STING_COOLDOWN
+	plasma_cost = 150
+
+/datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!A?.can_sting())
+		if(!silent)
+			to_chat(owner, "<span class='warning'>Your sting won't affect this target!</span>")
+		return FALSE
+	if(!owner.Adjacent(A))
+		var/mob/living/carbon/Xenomorph/X = owner
+		if(!silent && world.time > (X.recent_notice + X.notice_delay)) //anti-notice spam
+			to_chat(X, "<span class='warning'>You can't reach this target!</span>")
+			X.recent_notice = world.time //anti-notice spam
+		return FALSE
+	var/mob/living/carbon/C = A
+	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
+		return FALSE
+
+/datum/action/xeno_action/activable/neurotox_sting/on_cooldown_finish()
+	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	to_chat(owner, "<span class='xenodanger'>You feel your neurotoxin glands refill. You can use your Neurotoxin Sting again.</span>")
+	return ..()
 
 /datum/action/xeno_action/activable/neurotox_sting/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.neurotoxin_sting(A)
 
-/datum/action/xeno_action/activable/neurotox_sting/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(world.time >= X.last_neurotoxin_sting + XENO_NEURO_STING_COOLDOWN)
-		return TRUE
+	succeed_activate()
+
+	add_cooldown()
+
+	round_statistics.sentinel_neurotoxin_stings++
+
+	X.recurring_injection(A, "xeno_toxin", XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
 
 // ***************************************
 // *********** Pouncey abilities
