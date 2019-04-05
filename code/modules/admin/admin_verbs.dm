@@ -19,14 +19,14 @@
 
 	M.client.change_view(world.view)
 
-	var/msg = ADMIN_TPMONTY(M)
+	var/oldkey = M.key
 
 	M.ghostize(TRUE)
-	M.key = "@[M.key]"
+	M.key = "@[oldkey]"
 
-	log_admin("[key_name(M)] admin ghosted at [AREACOORD(M)].")
+	log_admin("[key_name(usr)] admin ghosted at [AREACOORD(usr)].")
 	if(M.stat != DEAD)
-		message_admins("[msg] admin ghosted.")
+		message_admins("[ADMIN_TPMONTY(usr)] admin ghosted.")
 
 
 /datum/admins/proc/invisimin()
@@ -263,56 +263,20 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!istype(H) || !H.mind?.assigned_role)
+	if(!istype(H))
 		return
 
-	if(!(H.mind.assigned_role in JOBS_MARINES))
+	var/squad = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
+	if(!squad || !istype(H))
 		return
 
-	var/squad = input("Choose the marine's new squad", "Change Squad") as null|anything in SSjob.squads
-	if(!squad)
-		return
+	H.change_squad(squad)
 
-	var/datum/squad/S = SSjob.squads[squad]
-	if(!S)
-		return
-
-	var/datum/job/J = SSjob.name_occupations[H.mind.assigned_role]
-	var/datum/outfit/job/O = new J.outfit
-	O.post_equip(H)
-
-	H.assigned_squad?.remove_marine_from_squad(H)
-
-	S.put_marine_in_squad(H)
-
-	//Crew manifest
-	for(var/datum/data/record/t in GLOB.datacore.general)
-		if(t.fields["name"] == H.real_name)
-			t.fields["squad"] = S.name
-			break
-
-	var/obj/item/card/id/ID = H.wear_id
-	ID.assigned_fireteam = 0
-
-	//Headset frequency.
-	if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
-		var/obj/item/device/radio/headset/almayer/marine/E = H.wear_ear
-		E.set_frequency(S.radio_freq)
-	else
-		if(H.wear_ear)
-			H.dropItemToGround(H.wear_ear)
-		var/obj/item/device/radio/headset/almayer/marine/E = new /obj/item/device/radio/headset/almayer/marine(H)
-		H.equip_to_slot_or_del(E, SLOT_EARS)
-		E.set_frequency(S.radio_freq)
-		H.update_icons()
-
-	H.hud_set_squad()
-
-	log_admin("[key_name(src)] has changed the squad of [key_name(H)] to [S.name].")
-	message_admins("[ADMIN_TPMONTY(usr)] has changed the squad of [ADMIN_TPMONTY(H)] to [S.name].")
+	log_admin("[key_name(src)] has changed the squad of [key_name(H)] to [squad].")
+	message_admins("[ADMIN_TPMONTY(usr)] has changed the squad of [ADMIN_TPMONTY(H)] to [squad].")
 
 
-/datum/admins/proc/direct_control(mob/M in GLOB.mob_list)
+/datum/admins/proc/direct_control(mob/M in GLOB.mob_living_list)
 	set category = "Admin"
 	set name = "Take Over"
 	set desc = "Rohesie's verb."
@@ -329,18 +293,20 @@
 			var/mob/dead/observer/ghost = usr
 			ghost.can_reenter_corpse = TRUE
 			ghost.reenter_corpse()
+			return
 		else if(alert("This mob is being controlled by [M.key], they will be made a ghost. Are you sure?", "Take Over", "Yes", "No") == "Yes")
 			M.ghostize()
 			replaced = TRUE
-		return
 
 	var/log = "[key_name(usr)]"
+	var/log2 = "[key_name(M)]"
 	var/message = "[key_name_admin(usr)]"
+	var/message2 = ADMIN_TPMONTY(M)
 
 	usr.mind.transfer_to(M, TRUE)
 
-	log_admin("[log] took over [M.real_name][replaced ? " replacing the previous owner [key_name(M)]" : ""].")
-	message_admins("[message] took over [M.real_name][replaced ? " replacing the previous owner [ADMIN_TPMONTY(M)]" : ""].")
+	log_admin("[log] took over [log2][replaced ? " replacing the previous owner" : ""].")
+	message_admins("[message] took over [message2][replaced ? " replacing the previous owner" : ""].")
 
 
 /datum/admins/proc/logs_server()

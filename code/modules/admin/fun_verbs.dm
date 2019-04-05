@@ -709,7 +709,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed the security level to code [sec_level].")
 
 
-/datum/admins/proc/select_rank(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+/datum/admins/proc/select_rank(mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Select Rank"
 
@@ -719,13 +719,7 @@
 	switch(alert("Modify the rank or give them a new one?", "Select Rank", "New Rank", "Modify", "Cancel"))
 		if("New Rank")
 			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(SSjob.name_occupations)
-			if(!newrank || !H)
-				return
-
-			if(!H.mind)
-				H.job = newrank
-				log_admin("[key_name(usr)] has set the rank of mindless mob [key_name(H)] to [newrank].")
-				message_admins("[ADMIN_TPMONTY(usr)] has set the rank of mindless mob [ADMIN_TPMONTY(H)] to [newrank].")
+			if(!newrank || !istype(H))
 				return
 
 			H.set_rank(newrank)

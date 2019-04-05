@@ -481,8 +481,13 @@
 		to_chat(src, "<span class='warning'>There are currently no mobs being offered.</span>")
 		return
 
-	var/mob/living/L = input("Choose which mob you want to take over.", "Take Offered Mob") as null|anything in sortNames(GLOB.offered_mob_list)
-	L.take_over(src)
+	var/mob/living/L = input("Choose which mob you want to take over.", "Offered Mob") as null|anything in sortNames(GLOB.offered_mob_list)
+
+	switch(alert("Take over mob named: [L.real_name][L.job ? " Job: [L.job]" : ""]", "Offered Mob", "Yes", "No", "Follow"))
+		if("Yes")
+			L.take_over(src)
+		if("Follow")
+			ManualFollow(L)
 
 
 /mob/dead/observer/proc/ManualFollow(var/atom/movable/target)

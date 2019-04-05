@@ -91,18 +91,17 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/x = text2num(href_list["X"])
 		var/y = text2num(href_list["Y"])
 		var/z = text2num(href_list["Z"])
+		var/client/C = usr.client
 
 		if(x == 0 && y == 0 && z == 0)
 			return
 
-		var/mob/M = usr
-
 		var/message
-		if(!isobserver(M))
+		if(!isobserver(usr))
 			admin_ghost()
 			message = TRUE
 
-		var/mob/dead/observer/O = usr
+		var/mob/dead/observer/O = C.mob
 		O.on_mob_jump()
 		var/turf/T = locate(x, y, z)
 		O.forceMove(T)
@@ -114,20 +113,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 	else if(href_list["observefollow"])
 		var/atom/movable/AM = locate(href_list["observefollow"])
-		var/mob/M = usr
+		var/client/C = usr.client
 
 		if(!ismovableatom(AM))
 			return
 
-		if(isnewplayer(M) || isnewplayer(AM))
+		if(isnewplayer(C.mob) || isnewplayer(AM))
 			return
 
 		var/message
-		if(!isobserver(M))
+		if(!isobserver(C.mob))
 			admin_ghost()
 			message = TRUE
 
-		var/mob/dead/observer/O = usr
+		var/mob/dead/observer/O = C.mob
 		O.on_mob_jump()
 		O.ManualFollow(AM)
 
@@ -138,17 +137,17 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 	else if(href_list["observejump"])
 		var/atom/movable/AM = locate(href_list["observejump"])
-		var/mob/M = usr
+		var/client/C = usr.client
 
-		if(isnewplayer(M) || isnewplayer(AM))
+		if(isnewplayer(usr) || isnewplayer(usr))
 			return
 
 		var/message
-		if(!isobserver(M))
+		if(!isobserver(usr))
 			admin_ghost()
 			message = TRUE
 
-		var/mob/dead/observer/O = usr
+		var/mob/dead/observer/O = C.mob
 		O.on_mob_jump()
 		O.forceMove(get_turf(AM))
 
@@ -460,23 +459,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		message_admins("[ADMIN_TPMONTY(usr)] has sent a randomized distress beacon early, requested by [ADMIN_TPMONTY(M)]")
 
 
-	else if(href_list["forcesay"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/mob/M = locate(href_list["forcesay"])
-		if(!ismob(M))
-			return
-
-		var/speech = input("What will [key_name(M)] say?", "Force say", "")
-		if(!speech)
-			return
-		M.say(speech)
-
-		log_admin("[key_name(usr)] forced [key_name(M)] to say: [speech]")
-		message_admins("[ADMIN_TPMONTY(usr)] forced [ADMIN_TPMONTY(M)] to say: [speech]")
-
-
 	else if(href_list["thunderdome"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -599,7 +581,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/mob/M = locate(href_list["jumpto"])
-		if(!istype(M))
+		if(!istype(M) || M == usr)
 			return
 
 		usr.forceMove(M.loc)
@@ -613,7 +595,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/mob/M = locate(href_list["getmob"])
-		if(!istype(M))
+		if(!istype(M)  || M == usr)
 			return
 
 		M.forceMove(usr.loc)
@@ -883,7 +865,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		for(var/mode in config.modes)
 			dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[config.mode_names[mode]]</a><br>"
 		dat += "<br>"
-		dat += "Now: [GLOB.master_mode]"
+		dat += "Now: [GLOB.master_mode]<br>"
 		dat += "Next Round: [trim(file2text("data/mode.txt"))]"
 
 		var/datum/browser/browser = new(usr, "change_mode", "<div align='center'>Change Gamemode</div>")

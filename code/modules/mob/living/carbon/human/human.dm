@@ -1657,11 +1657,14 @@
 
 
 /mob/living/carbon/human/proc/set_rank(rank)
+	if(!rank)
+		return FALSE
+
 	if(!mind)
 		job = rank
 		return FALSE
 
-	var/datum/job/J = SSjob.name_occupations[rank]
+	var/datum/job/J = SSjob.GetJob(rank)
 	if(!J)
 		return FALSE
 
@@ -1721,4 +1724,47 @@
 
 	fully_replace_character_name(real_name, M.real_name)
 
-	assigned_squad?.put_marine_in_squad(src)
+	if(assigned_squad)
+		change_squad(assigned_squad.name)
+
+
+/mob/living/carbon/human/proc/change_squad(squad)
+	if(!squad || !(job in JOBS_MARINES))
+		return FALSE
+
+	var/datum/squad/S = SSjob.squads[squad]
+
+	assigned_squad?.remove_marine_from_squad(src)
+
+	assigned_squad = S
+
+	S.put_marine_in_squad(src)
+
+	var/datum/job/J = SSjob.GetJob(mind.assigned_role)
+	var/datum/outfit/job/O = new J.outfit
+	O.post_equip(src)
+
+	//Crew manifest
+	for(var/i in GLOB.datacore.general)
+		var/datum/data/record/R = i
+		if(R.fields["name"] == real_name)
+			R.fields["squad"] = S.name
+			break
+
+	if(istype(wear_id, /obj/item/card/id))
+		var/obj/item/card/id/ID = wear_id
+		ID.assigned_fireteam = 0
+
+	//Headset frequency.
+	if(istype(wear_ear, /obj/item/device/radio/headset/almayer/marine))
+		var/obj/item/device/radio/headset/almayer/marine/E = wear_ear
+		E.set_frequency(S.radio_freq)
+	else
+		if(wear_ear)
+			dropItemToGround(wear_ear)
+		var/obj/item/device/radio/headset/almayer/marine/E = new
+		equip_to_slot_or_del(E, SLOT_EARS)
+		E.set_frequency(S.radio_freq)
+		update_icons()
+
+	hud_set_squad()

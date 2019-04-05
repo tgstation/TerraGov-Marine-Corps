@@ -468,7 +468,6 @@
 		body += {"<br><br>
 			<b>Other actions:</b>
 			<br>
-			<a href='?src=[ref];forcesay=[REF(M)]'>Forcesay</a> |
 			<a href='?src=[ref];thunderdome=[REF(M)]'>Thunderdome</a> |
 			<a href='?src=[ref];gib=[REF(M)]'>Gib</a>
 		"}
