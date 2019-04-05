@@ -565,7 +565,6 @@
 	new_acid.ticks = current_acid.ticks //Inherit the old acid's progress
 	qdel(current_acid)
 
-
 /datum/action/xeno_action/activable/spray_acid/can_use_ability(atom/A, silent)
 	. = ..()
 	if(!.)
@@ -582,85 +581,16 @@
 	to_chat(owner, "<span class='xenodanger'>You feel your acid glands refill. You can spray acid again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/spray_acid/cone
-	name = "Spray Acid Cone"
-	action_icon_state = "spray_acid"
-	mechanics_text = "Spray a cone of dangerous acid at your target."
-	ability_name = "spray acid"
-	plasma_cost = 200
-	cooldown_timer = 20 SECONDS
+/datum/action/xeno_action/activable/spray_acid/proc/acid_splat_turf(var/turf/T)
+	. = locate(/obj/effect/xenomorph/spray) in T
+	if(!.)
+		. = new /obj/effect/xenomorph/spray(T)
 
-/datum/action/xeno_action/activable/spray_acid/cone/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
-	var/turf/target
-
-	if (isturf(A))
-		target = A
-	else
-		target = get_turf(A)
-
-	if(!target || !istype(target)) //Something went horribly wrong. Clicked off edge of map probably
-		return
-
-	if(!do_after(X, 5, TRUE, 5, BUSY_ICON_HOSTILE))
-		return fail_activate()
-
-	if(!can_use_ability(A, TRUE))
-		return fail_activate()
-
-	round_statistics.praetorian_acid_sprays++
-
-	succeed_activate()
-
-	playsound(X.loc, 'sound/effects/refill.ogg', 25, 1)
-	X.visible_message("<span class='xenowarning'>\The [X] spews forth a wide cone of acid!</span>", \
-	"<span class='xenowarning'>You spew forth a cone of acid!</span>", null, 5)
-
-	X.speed += 2
-	do_acid_spray_cone(target)
-	add_cooldown()
-	addtimer(CALLBACK(X, .proc/speed_increase, 2), rand(20,30))
-
-/mob/living/carbon/Xenomorph/proc/speed_increase(var/amount)
-	speed -= amount
-
-/datum/action/xeno_action/activable/spray_acid/line
-	name = "Spray Acid"
-	action_icon_state = "spray_acid"
-	mechanics_text = "Spray a line of dangerous acid at your target."
-	ability_name = "spray acid"
-	plasma_cost = 250
-	cooldown_timer = 30 SECONDS
-
-/datum/action/xeno_action/activable/spray_acid/line/boiler
-	cooldown_timer = 9 SECONDS
-
-/datum/action/xeno_action/activable/spray_acid/line/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
-	var/turf/target
-
-	if(isturf(A))
-		target = A
-	else
-		target = get_turf(A)
-
-	if(!target || !istype(target)) //Something went horribly wrong. Clicked off edge of map probably
-		return
-
-	if(!do_after(X, 5, TRUE, 5, BUSY_ICON_HOSTILE, TRUE, TRUE))
-		return
-
-	if(!can_use_ability(A, TRUE))
-		return fail_activate()
-
-	succeed_activate()
-
-	playsound(X.loc, 'sound/effects/refill.ogg', 50, 1)
-	X.visible_message("<span class='xenowarning'>\The [X] spews forth a virulent spray of acid!</span>", \
-	"<span class='xenowarning'>You spew forth a spray of acid!</span>", null, 5)
-	var/turflist = getline(X, target)
-	spray_turfs(turflist)
-	add_cooldown()
+		for(var/i in T)
+			var/atom/A = i
+			if(!A)
+				continue
+			A.acid_spray_act(owner)
 
 
 

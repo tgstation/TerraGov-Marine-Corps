@@ -190,4 +190,5 @@
 // *********** Acid spray
 // ***************************************
 
-
+/datum/action/xeno_action/activable/spray_acid/line/boiler
+	cooldown_timer = 9 SECONDS
