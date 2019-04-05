@@ -483,7 +483,7 @@
 
 	var/mob/living/L = input("Choose which mob you want to take over.", "Offered Mob") as null|anything in sortNames(GLOB.offered_mob_list)
 
-	switch(alert("Take over mob named: [L.real_name][L.job ? " Job: [L.job]" : ""]", "Offered Mob", "Yes", "No", "Follow"))
+	switch(alert("Take over mob named: [L.real_name][L.job ? " | Job: [L.job]" : ""]", "Offered Mob", "Yes", "No", "Follow"))
 		if("Yes")
 			L.take_over(src)
 		if("Follow")
