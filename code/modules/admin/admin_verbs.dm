@@ -256,26 +256,6 @@
 			message_admins("[ADMIN_TPMONTY(usr)] has unslept everyone in view.")
 
 
-/datum/admins/proc/change_squad(mob/living/carbon/human/H in GLOB.human_mob_list)
-	set category = null
-	set name = "Change Squad"
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(!istype(H))
-		return
-
-	var/squad = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
-	if(!squad || !istype(H))
-		return
-
-	H.change_squad(squad)
-
-	log_admin("[key_name(src)] has changed the squad of [key_name(H)] to [squad].")
-	message_admins("[ADMIN_TPMONTY(usr)] has changed the squad of [ADMIN_TPMONTY(H)] to [squad].")
-
-
 /datum/admins/proc/direct_control(mob/M in GLOB.mob_living_list)
 	set category = "Admin"
 	set name = "Take Over"

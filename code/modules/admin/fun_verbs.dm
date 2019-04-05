@@ -811,7 +811,25 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(H)] to [istype(O) ? O.name : dresscode].")
 
 
-GLOBAL_LIST_EMPTY(custom_outfits)
+/datum/admins/proc/change_squad(mob/living/carbon/human/H in GLOB.human_mob_list)
+	set category = "Fun"
+	set name = "Change Squad"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	if(!istype(H))
+		return
+
+	var/squad = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
+	if(!squad || !istype(H))
+		return
+
+	H.change_squad(squad)
+
+	log_admin("[key_name(src)] has changed the squad of [key_name(H)] to [squad].")
+	message_admins("[ADMIN_TPMONTY(usr)] has changed the squad of [ADMIN_TPMONTY(H)] to [squad].")
+
 
 /datum/admins/proc/create_outfit()
 	set category = "Fun"
