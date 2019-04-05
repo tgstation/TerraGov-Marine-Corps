@@ -6,71 +6,60 @@
 	action_icon_state = "headbutt"
 	mechanics_text = "Charge a target up to 2 tiles away, knocking them away and down and disarming them."
 	ability_name = "headbutt"
+	plasma_cost = DEFENDER_HEADBUTT_COST
+	use_state_flags = XACT_USE_CRESTED
+	cooldown_timer = DEFENDER_HEADBUTT_COOLDOWN
+
+/datum/action/xeno_action/activable/headbutt/can_use_ability(atom/A, silent = FALSE)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!ishuman(A))
+		return FALSE
+	var/mob/living/carbon/human/H = A
+	if(H.stat == DEAD || (istype(H.buckled, /obj/structure/bed/nest) && CHECK_BITFIELD(H.status_flags, XENO_HOST)) )
+		return FALSE
+	var/mob/living/carbon/Xenomorph/Defender/X = owner
+	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>You don't have enough plasma, you need [(plasma_cost * 2) - X.plasma_stored] more plasma!</span>")
+		return FALSE
+	if(get_dist(X, H) > 2)
+		if(!silent && world.time > (X.recent_notice + X.notice_delay)) //anti-notice spam
+			to_chat(X, "<span class='xenowarning'>Your target is too far away!</span>")
+			X.recent_notice = world.time //anti-notice spam
+		return FALSE
+
+/datum/action/xeno_action/activable/headbutt/on_cooldown_finish()
+	to_chat(owner, "<span class='notice'>You gather enough strength to headbutt again.</span>")
+	return ..()
 
 /datum/action/xeno_action/activable/headbutt/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.headbutt(A)
 
-/mob/living/carbon/Xenomorph/proc/headbutt(var/mob/M)
-	if (!ishuman(M))
-		return
+	var/mob/living/carbon/human/H = A
 
-	if(M.stat == DEAD || (istype(M.buckled, /obj/structure/bed/nest) && M.status_flags & XENO_HOST) ) //No bullying the dead/secured hosts
-		return
-
-	if (fortify)
-		to_chat(src, "<span class='xenowarning'>You cannot use abilities while fortified.</span>")
-		return
-
-	if (!check_state())
-		return
-
-	if (used_headbutt)
-		to_chat(src, "<span class='xenowarning'>You must gather your strength before headbutting.</span>")
-		return
-
-	if (crest_defense) //We can now use crest defense, but the plasma cost is doubled.
-		if (!check_plasma(DEFENDER_HEADBUTT_COST * 2))
-			return
-	else if (!check_plasma(DEFENDER_HEADBUTT_COST))
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake up the shock!</span>")
-		return
-
-	var/mob/living/carbon/human/H = M
-
-	var/distance = get_dist(src, H)
-
-	if (distance > 2)
-		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
-			to_chat(src, "<span class='xenowarning'>Your target is too far away!</span>")
-
-			recent_notice = world.time //anti-notice spam
-		return
-
+	var/distance = get_dist(X, H)
 
 	if (distance > 1)
-		step_towards(src, H, 1)
+		step_towards(X, H, 1)
 
-	if (!Adjacent(H))
-		return
+	if (!X.Adjacent(H))
+		return fail_activate()
 
 	round_statistics.defender_headbutts++
 
-	visible_message("<span class='xenowarning'>\The [src] rams [H] with it's armored crest!</span>", \
+	X.visible_message("<span class='xenowarning'>\The [X] rams [H] with it's armored crest!</span>", \
 	"<span class='xenowarning'>You ram [H] with your armored crest!</span>")
 
-	used_headbutt = TRUE
-	if(crest_defense) //We can now use crest defense, but the plasma cost is doubled.
-		use_plasma(DEFENDER_HEADBUTT_COST * 2)
-	else
-		use_plasma(DEFENDER_HEADBUTT_COST)
+	succeed_activate()
+	if(X.crest_defense)
+		X.use_plasma(DEFENDER_HEADBUTT_COST)
+	add_cooldown()
 
-	face_atom(H) //Face towards the target so we don't look silly
+	X.face_atom(H) //Face towards the target so we don't look silly
 
-	var/damage = rand(xeno_caste.melee_damage_lower,xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(src)
+	var/damage = rand(X.xeno_caste.melee_damage_lower,X.xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(X)
 	damage *= (1 + distance * 0.25) //More distance = more momentum = stronger Headbutt.
 	var/affecting = H.get_limb(ran_zone(null, 0))
 	if(!affecting) //Still nothing??
@@ -80,12 +69,12 @@
 	H.apply_damage(damage, HALLOSS) //...But some sweet armour ignoring Halloss
 	shake_camera(H, 2, 1)
 
-	var/facing = get_dir(src, H)
+	var/facing = get_dir(X, H)
 	var/headbutt_distance = 3
-	var/turf/T = loc
-	var/turf/temp = loc
+	var/turf/T = X.loc
+	var/turf/temp = X.loc
 
-	for (var/x = 0, x < headbutt_distance, x++)
+	for (var/x in 0 to headbutt_distance)
 		temp = get_step(T, facing)
 		if (!temp)
 			break
@@ -94,12 +83,6 @@
 	H.throw_at(T, headbutt_distance, 1, src)
 	H.KnockDown(1, 1)
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
-	addtimer(CALLBACK(src, .headbutt_cooldown), DEFENDER_HEADBUTT_COOLDOWN)
-
-/mob/living/carbon/Xenomorph/proc/headbutt_cooldown()
-	used_headbutt = FALSE
-	to_chat(src, "<span class='notice'>You gather enough strength to headbutt again.</span>")
-	update_action_button_icons()
 
 // ***************************************
 // *********** Tail sweep
