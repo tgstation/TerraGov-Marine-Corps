@@ -1,57 +1,6 @@
-/mob/living/carbon/Xenomorph/proc/Pounce(atom/T)
-
-	if(!T || !check_state() || !check_plasma(10) || T.layer >= FLY_LAYER) //anything above that shouldn't be pounceable (hud stuff)
-		return
-
-	if(!isturf(loc))
-		to_chat(src, "<span class='xenowarning'>You can't pounce from here!</span>")
-		return
-
-	if(usedPounce)
-		to_chat(src, "<span class='xenowarning'>You must wait before pouncing.</span>")
-		return
-
-	if(legcuffed)
-		to_chat(src, "<span class='xenodanger'>You can't pounce with that thing on your leg!</span>")
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake up the shock!</span>")
-		return
-
-	if(layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
-		layer = MOB_LAYER
-
-	if(m_intent == "walk" && isxenohunter(src)) //Hunter that is currently using its stealth ability, need to unstealth him
-		m_intent = "run"
-		if(hud_used && hud_used.move_intent)
-			hud_used.move_intent.icon_state = "running"
-		update_icons()
-
-	visible_message("<span class='xenowarning'>\The [src] pounces at [T]!</span>", \
-	"<span class='xenowarning'>You pounce at [T]!</span>")
-	usedPounce = TRUE
-	flags_pass = PASSTABLE
-	use_plasma(10)
-	throw_at(T, 6, 2, src) //Victim, distance, speed
-	addtimer(CALLBACK(src, .reset_flags_pass), 6)
-	addtimer(CALLBACK(src, .reset_pounce_delay), xeno_caste.pounce_delay)
-
-	return TRUE
-
-/mob/living/carbon/Xenomorph/proc/reset_pounce_delay()
-	usedPounce = FALSE
-	to_chat(src, "<span class='xenodanger'>You're ready to pounce again.</span>")
-	update_action_button_icons()
-	playsound(src, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
-
-/mob/living/carbon/Xenomorph/proc/reset_flags_pass()
-	if(!xeno_caste.hardcore)
-		flags_pass = initial(flags_pass) //Reset the passtable.
-	else
-		flags_pass = NOFLAGS //Reset the passtable.
 
 
+// this mess will be fixed by obj damage refactor
 /atom/proc/acid_spray_act(mob/living/carbon/Xenomorph/X)
 	return TRUE
 
@@ -317,12 +266,6 @@
 			to_chat(src, "<span class='danger'>You sense the host is saturated with [body_tox.name].</span>")
 	while(i++ < count && do_after(src, channel_time, TRUE, 5, BUSY_ICON_HOSTILE))
 	return TRUE
-
-
-
-
-
-
 
 
 /atom/proc/can_sting()

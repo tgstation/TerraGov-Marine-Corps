@@ -63,3 +63,62 @@
 	playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	update_action_buttons()
 	
+// ***************************************
+// *********** Pouncey
+// ***************************************
+/datum/action/xeno_action/activable/pounce
+	name = "Pounce"
+	action_icon_state = "pounce"
+	mechanics_text = "Leap at your target, tackling and disarming them."
+	ability_name = "pounce"
+	plasma_cost = 10
+	var/range = 6
+
+/datum/action/xeno_action/activable/pounce/can_use_ability(atom/A, silent)
+	. = ..()
+	if(!.)
+		return FALSE
+	
+	if(!A || A.layer >= FLY_LAYER)
+		return FALSE
+
+/datum/action/xeno_action/activable/pounce/proc/prepare_to_pounce()
+	if(owner.layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
+		owner.layer = MOB_LAYER
+
+/datum/action/xeno_action/activable/pounce/proc/sneak_attack()
+	return
+
+/datum/action/xeno_action/activable/pounce/get_cooldown()
+	var/mob/living/carbon/Xenomorph/X = owner
+	return X.xeno_caste.pounce_delay
+
+/datum/action/xeno_action/activable/pounce/on_cooldown_finish()
+	to_chat(owner, "<span class='xenodanger'>You're ready to pounce again.</span>")
+	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	return ..()
+
+/datum/action/xeno_action/activable/pounce/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/X = owner
+
+	prepare_to_pounce()
+
+	X.visible_message("<span class='xenowarning'>\The [X] pounces at [A]!</span>", \
+	"<span class='xenowarning'>You pounce at [A]!</span>")
+
+	sneak_attack()
+
+	succeed_activate()
+	add_cooldown()
+	X.flags_pass = PASSTABLE
+	X.throw_at(A, range, 2, X) //Victim, distance, speed
+
+	addtimer(CALLBACK(X, /mob/living/carbon/Xenomorph/.proc/reset_flags_pass), 6)
+
+	return TRUE
+
+/mob/living/carbon/Xenomorph/proc/reset_flags_pass()
+	if(!xeno_caste.hardcore)
+		flags_pass = initial(flags_pass) //Reset the passtable.
+	else
+		flags_pass = NOFLAGS //Reset the passtable.

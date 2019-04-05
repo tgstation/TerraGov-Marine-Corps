@@ -703,24 +703,6 @@
 
 	X.recurring_injection(A, "xeno_toxin", XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
 
-// ***************************************
-// *********** Pouncey abilities
-// ***************************************
-// Pounce
-/datum/action/xeno_action/activable/pounce
-	name = "Pounce"
-	action_icon_state = "pounce"
-	mechanics_text = "Leap at your target, tackling and disarming them."
-	ability_name = "pounce"
-
-/datum/action/xeno_action/activable/pounce/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
-	X.Pounce(A)
-
-/datum/action/xeno_action/activable/pounce/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/X = owner
-	return !X.usedPounce
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 /mob/living/carbon/Xenomorph/proc/add_abilities()
