@@ -96,7 +96,7 @@
 	return
 
 GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/vehicle/multitile/root/cm_armored, /obj/structure/razorwire)))
-
+acid_spray_cone(
 /mob/living/carbon/Xenomorph/proc/do_acid_spray_cone(var/turf/T)
 	set waitfor = 0
 

@@ -69,7 +69,6 @@
 	var/pounce_delay = 4 SECONDS
 
 	var/acid_spray_range = 0
-	var/acid_spray_cooldown = 0
 
 	// *** Pheromones *** //
 	var/aura_strength = 0 //The strength of our aura. Zero means we can't emit one
