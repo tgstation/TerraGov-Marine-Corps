@@ -1,5 +1,0 @@
-author: "spookydonut"
-delete-after: True
-changes: 
-  - bugfix: "defilers can now vent crawl"
-  - bugfix: "drones evolving to queen should no longer get the incorrect failure message."
