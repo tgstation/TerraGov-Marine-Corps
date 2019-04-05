@@ -17,21 +17,22 @@
 		qdel(M)
 		return
 
-	if(istext(new_name))
-		M.name = new_name
-		M.real_name = new_name
-
 	if(dna)
 		M.dna = dna.Clone()
 
 	if(mind)
-		mind.name = M.real_name
 		mind.transfer_to(M, TRUE)
 	else
 		M.key = key
 		if(M.client) 
 			M.client.change_view(world.view)
-	
+
+	if(istext(new_name))
+		M.name = new_name
+		M.real_name = new_name
+		if(M.mind)
+			M.mind.name = new_name
+
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(subspecies)
@@ -56,6 +57,8 @@
 			H.ethnicity = H.client.prefs.ethnicity
 			H.body_type = H.client.prefs.body_type
 			H.flavor_text = H.client.prefs.flavor_text
+		if(H.mind)
+			H.mind.name = H.real_name
 		
 	if(delete_old_mob)
 		QDEL_IN(src, 1)
