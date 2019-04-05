@@ -1065,7 +1065,6 @@
 	w_class = 4
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "turret_off"
-	unacidable = 1
 	var/linked_turret = null
 	var/on = 0
 	var/mob/living/carbon/human/user = null
