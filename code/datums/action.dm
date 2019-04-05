@@ -234,6 +234,7 @@
 
 /datum/action/xeno_action/activable
 	var/ability_name
+	var/use_plasma_on_activate
 
 /datum/action/xeno_action/activable/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
@@ -254,7 +255,7 @@
 		button.icon_state = "template_on"
 		X.selected_ability = src
 		X.selected_ability.on_activation()
-	if(plasma_cost)
+	if(use_plasma_on_activate && plasma_cost)
 		X.use_plasma(plasma_cost) //after on_activation so the button's appearance is updated correctly.
 	return ..()
 

@@ -101,6 +101,8 @@
 /datum/action/xeno_action/activable/pounce/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>You're ready to pounce again.</span>")
 	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.usedPounce = FALSE
 	return ..()
 
 /datum/action/xeno_action/activable/pounce/use_ability(atom/A)
@@ -115,6 +117,7 @@
 
 	succeed_activate()
 	add_cooldown()
+	X.usedPounce = TRUE // this is needed for throwing code
 	X.flags_pass = PASSTABLE
 	X.throw_at(A, range, 2, X) //Victim, distance, speed
 
