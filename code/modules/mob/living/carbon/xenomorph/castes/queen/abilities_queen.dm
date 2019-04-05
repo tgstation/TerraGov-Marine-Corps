@@ -110,59 +110,44 @@
 // *********** Screech
 // ***************************************
 /datum/action/xeno_action/activable/screech
-	name = "Screech (250)"
+	name = "Screech"
 	action_icon_state = "screech"
 	mechanics_text = "A large area knockdown that causes pain and screen-shake."
 	ability_name = "screech"
+	plasma_cost = 250
+	cooldown_timer = 50 SECONDS
 
-/datum/action/xeno_action/activable/screech/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
-	return !X.has_screeched
+/datum/action/xeno_action/activable/screech/on_cooldown_finish()
+	to_chat(owner, "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>")
+	return ..()
 
 /datum/action/xeno_action/activable/screech/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
-	X.queen_screech()
-
-/mob/living/carbon/Xenomorph/Queen/proc/queen_screech()
-	if(!check_state())
-		return
-
-	if(has_screeched)
-		to_chat(src, "<span class='warning'>You are not ready to screech again.</span>")
-		return
-
-	if(!check_plasma(250))
-		return
 
 	//screech is so powerful it kills huggers in our hands
-	if(istype(r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = r_hand
+	if(istype(X.r_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = X.r_hand
 		if(FH.stat != DEAD)
 			FH.Die()
 
-	if(istype(l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = l_hand
+	if(istype(X.l_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = X.l_hand
 		if(FH.stat != DEAD)
 			FH.Die()
 
-	has_screeched = TRUE
-	use_plasma(250)
-	addtimer(CALLBACK(src, .screech_cooldown), 500)
-	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
-	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
+	succeed_activate()
+	add_cooldown()
+
+	playsound(X.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
+	X.visible_message("<span class='xenohighdanger'>\The [X] emits an ear-splitting guttural roar!</span>")
 	round_statistics.queen_screech++
-	create_shriekwave() //Adds the visual effect. Wom wom wom
+	X.create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
 	for(var/mob/living/L in range(world.view))
 		if(L.stat == DEAD)
 			continue
 		L.screech_act(src)
-
-/mob/living/carbon/Xenomorph/Queen/proc/screech_cooldown()
-	has_screeched = FALSE
-	to_chat(src, "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>")
-	update_action_buttons()
 
 // ***************************************
 // *********** Gut
