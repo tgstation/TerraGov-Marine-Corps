@@ -265,56 +265,6 @@
 		if(prob(50))
 			playsound(src, "alien_drool", 25)
 
-//Note: All the neurotoxin projectile items are stored in XenoProcs.dm
-/mob/living/carbon/Xenomorph/proc/xeno_spit(atom/T)
-
-	if(!check_state())
-		return
-
-	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>You can't spit from here!</span>")
-		return
-
-	if(has_spat > world.time)
-		to_chat(src, "<span class='warning'>You must wait for your spit glands to refill.</span>")
-		return
-
-	if(!check_plasma(ammo.spit_cost))
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>Your muscles fail to respond as you try to shake up the shock!</span>")
-		return
-
-	var/turf/current_turf = get_turf(src)
-
-	if(!current_turf)
-		return
-
-	visible_message("<span class='xenowarning'>\The [src] spits at \the [T]!</span>", \
-	"<span class='xenowarning'>You spit at \the [T]!</span>" )
-	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
-	playsound(src.loc, sound_to_play, 25, 1)
-
-	var/obj/item/projectile/A = new /obj/item/projectile(current_turf)
-	A.generate_bullet(ammo, ammo.damage * SPIT_UPGRADE_BONUS(src))
-	A.permutated += src
-	A.def_zone = get_limbzone_target()
-
-	A.fire_at(T, src, src, ammo.max_range, ammo.shell_speed)
-	has_spat = world.time + xeno_caste.spit_delay + ammo.added_spit_delay
-	use_plasma(ammo.spit_cost)
-	cooldown_notification(xeno_caste.spit_delay + ammo.added_spit_delay, "spit")
-
-	return TRUE
-
-/mob/living/carbon/Xenomorph/proc/cooldown_notification(cooldown, message)
-	set waitfor = 0
-	sleep(cooldown)
-	switch(message)
-		if("spit")
-			to_chat(src, "<span class='notice'>You feel your neurotoxin glands swell with ichor. You can spit again.</span>")
-	update_action_button_icons()
 
 
 /mob/living/carbon/Xenomorph/verb/toggle_xeno_mobhud()

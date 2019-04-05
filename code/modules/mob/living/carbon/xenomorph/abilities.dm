@@ -593,20 +593,54 @@
 			A.acid_spray_act(owner)
 
 
-
 /datum/action/xeno_action/activable/xeno_spit
 	name = "Xeno Spit"
 	action_icon_state = "xeno_spit"
 	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
 
+/datum/action/xeno_action/activable/xeno_spit/can_use_ability(atom/A, silent = FALSE)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(X.ammo?.spit_cost > X.plasma_stored)
+		if(!silent)
+			to_chat(src, "<span class='warning'>You need [X.ammo?.spit_cost - X.plasma_stored] more plasma!</span>")
+		return FALSE
+
+/datum/action/xeno_action/activable/xeno_spit/get_cooldown()
+	var/mob/living/carbon/Xenomorph/X = owner
+	return (X.xeno_caste.spit_delay + X.ammo?.added_spit_delay)
+
+/datum/action/xeno_action/activable/xeno_spit/on_cooldown_finish()
+	to_chat(src, "<span class='notice'>You feel your neurotoxin glands swell with ichor. You can spit again.</span>")
+	return ..()
+
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.xeno_spit(A)
 
-/datum/action/xeno_action/activable/xeno_spit/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(X.has_spat < world.time) return TRUE
+	var/turf/current_turf = get_turf(owner)
+
+	if(!current_turf)
+		return fail_activate()
+
+	X.visible_message("<span class='xenowarning'>\The [X] spits at \the [A]!</span>", \
+	"<span class='xenowarning'>You spit at \the [A]!</span>" )
+	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
+	playsound(X.loc, sound_to_play, 25, 1)
+
+	var/obj/item/projectile/newspit = new /obj/item/projectile(current_turf)
+	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X)) 
+	newspit.permutated += X
+	newspit.def_zone = X.get_limbzone_target()
+
+	newspit.fire_at(A, X, X, X.ammo.max_range, X.ammo.shell_speed)
+	
+	add_cooldown()
+
+	return succeed_activate()
+
 
 /datum/action/xeno_action/xenohide
 	name = "Hide"

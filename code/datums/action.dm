@@ -202,14 +202,20 @@
 /datum/action/xeno_action/proc/action_cooldown_check()
 	return !on_cooldown
 
+/datum/action/xeno_action/proc/get_cooldown()
+	return cooldown_timer
+
 /datum/action/xeno_action/proc/add_cooldown()
 	if(!length(active_timers)) // stop doubling up
 		last_use = world.time
 		on_cooldown = TRUE
-		addtimer(CALLBACK(src, .proc/on_cooldown_finish), cooldown_timer)
+		addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown())
 
 /datum/action/xeno_action/proc/cooldown_remaining()
-	return (last_use + cooldown_timer - world.time) * 0.1
+	for(var/i in active_timers)
+		var/datum/timedevent/timer = i
+		return (timer.timeToRun - world.time) * 0.1
+	return 0
 
 //override this for cooldown completion.
 /datum/action/xeno_action/proc/on_cooldown_finish()
