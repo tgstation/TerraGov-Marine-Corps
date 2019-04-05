@@ -251,11 +251,13 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/mob/M = locate(href_list["mob"])
+		var/client/C = usr.client
+		var/mob/oldusr = C.mob
 
-		if(!ismob(M) || M.gc_destroyed)
+		if(!istype(M))
 			return
 
-		var/delmob = FALSE
+		var/delmob
 		switch(alert("Delete old mob?", "Message", "Yes", "No", "Cancel"))
 			if("Cancel")
 				return
@@ -267,10 +269,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("Cancel")
 				return
 			if("Yes")
-				location = get_turf(usr)
+				location = get_turf(oldusr)
 
-		var/mob/oldusr = usr
 		var/mob/newmob
+
+		oldusr << browse(null, "window=player_panel_[key_name(M)]")
 
 		switch(href_list["transform"])
 			if("observer")
@@ -313,6 +316,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob)
 			if("moth")
 				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
+
+		C.holder.show_player_panel(newmob)
 
 		log_admin("[key_name(oldusr)] has transformed [key_name(newmob)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
 		message_admins("[delmob ? key_name_admin(oldusr) : ADMIN_TPMONTY(oldusr)] has transformed [ADMIN_TPMONTY(newmob)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
