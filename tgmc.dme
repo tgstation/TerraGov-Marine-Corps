@@ -135,7 +135,6 @@
 #include "code\controllers\stonedmc\subsystem\assets.dm"
 #include "code\controllers\stonedmc\subsystem\atoms.dm"
 #include "code\controllers\stonedmc\subsystem\blackbox.dm"
-#include "code\controllers\stonedmc\subsystem\chat.dm"
 #include "code\controllers\stonedmc\subsystem\codex.dm"
 #include "code\controllers\stonedmc\subsystem\dbcore.dm"
 #include "code\controllers\stonedmc\subsystem\direction.dm"

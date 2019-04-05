@@ -97,7 +97,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 	for(var/message in messageQueue)
 		// whitespace has already been handled by the original to_chat
-		to_chat_immediate(owner, message, handle_whitespace = FALSE)
+		to_chat(owner, message, handle_whitespace = FALSE)
 
 	messageQueue = null
 	sendClientData()
@@ -176,12 +176,12 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	log_world("\[[time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")]\] Client: [(src.owner.key ? src.owner.key : src.owner)] triggered JS error: [error]")
 
 //Global chat procs
-/proc/to_chat_immediate(target, message, handle_whitespace = TRUE)
+/proc/to_chat(target, message, handle_whitespace = TRUE)
 	if(!target || !message)
 		return
 
 	if(!istext(message))
-		stack_trace("to_chat_immediate called with invalid input type")
+		stack_trace("to_chat called with invalid input type")
 		return
 
 	if(target == world)
@@ -198,10 +198,16 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if(islist(target))
 		// Do the double-encoding outside the loop to save nanoseconds
 		var/twiceEncoded = url_encode(url_encode(message))
-		for(var/I in target)
-			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
+		for(var/i in target)
+			var/client/C
+			if(!istype(i, /client))
+				var/mob/M = i
+				C = M.client
+			else
+				C = i
 
 			if(!C)
+				stack_trace("to_chat conversion to client failed")
 				continue
 
 			//Send it to the old style output window.
@@ -217,9 +223,15 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 			C << output(twiceEncoded, "browseroutput:output")
 	else
-		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
+		var/client/C
+		if(!istype(target, /client))
+			var/mob/M = target
+			C = M.client
+		else
+			C = target
 
 		if(!C)
+			stack_trace("to_chat conversion to client failed")
 			return
 
 		//Send it to the old style output window.
@@ -235,10 +247,3 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 		// url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
 		C << output(url_encode(url_encode(message)), "browseroutput:output")
-
-
-/proc/to_chat(target, message, handle_whitespace = TRUE)
-	if(!SSchat)
-		to_chat_immediate(target, message, handle_whitespace)
-		return
-	SSchat.queue(target, message, handle_whitespace)

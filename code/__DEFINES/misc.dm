@@ -42,8 +42,6 @@
 #define MAP_MAXZ 6
 var/global/TAB = "&nbsp;&nbsp;&nbsp;&nbsp;"
 
-#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
-
 //world/proc/shelleo
 #define SHELLEO_ERRORLEVEL 1
 #define SHELLEO_STDOUT 2
