@@ -11,10 +11,6 @@
 	var/mob/living/carbon/Xenomorph/X = owner
 	X.headbutt(A)
 
-/datum/action/xeno_action/activable/headbutt/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/X = owner
-	return !X.used_headbutt
-
 /mob/living/carbon/Xenomorph/proc/headbutt(var/mob/M)
 	if (!ishuman(M))
 		return

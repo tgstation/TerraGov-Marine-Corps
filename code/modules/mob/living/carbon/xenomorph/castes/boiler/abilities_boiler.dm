@@ -8,11 +8,6 @@
 	mechanics_text = "Activates your weapon sight in the direction you are facing. Must remain stationary to use."
 	plasma_cost = 20
 
-/datum/action/xeno_action/toggle_long_range/can_use_action()
-	var/mob/living/carbon/Xenomorph/Boiler/X = owner
-	if(X && !X.incapacitated() && !X.lying && !X.buckled && (X.is_zoomed || X.plasma_stored >= plasma_cost) && !X.stagger)
-		return TRUE
-
 /datum/action/xeno_action/toggle_long_range/action_activate()
 	var/mob/living/carbon/Xenomorph/Boiler/X = owner
 	if(X.is_zoomed)
@@ -35,18 +30,26 @@
 	name = "Toggle Bombard Type"
 	action_icon_state = "toggle_bomb0"
 	mechanics_text = "Switches Boiler Bombard type between Corrosive Acid and Neurotoxin."
-	plasma_cost = 0
 
 /datum/action/xeno_action/toggle_bomb/action_activate()
 	var/mob/living/carbon/Xenomorph/Boiler/X = owner
 	to_chat(X, "<span class='notice'>You will now fire [X.ammo.type == /datum/ammo/xeno/boiler_gas ? "corrosive acid. This is lethal!" : "neurotoxic gas. This is nonlethal."]</span>")
-	button.overlays.Cut()
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
 		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb1")
 	else
 		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb0")
+	update_button_icon()
+
+/datum/action/xeno_action/toggle_bomb/update_button_icon()
+	var/mob/living/carbon/Xenomorph/Boiler/X = owner
+	button.overlays.Cut()
+	if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
+		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb1")
+	else
+		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb0")
+	return ..()
 
 // ***************************************
 // *********** Super strong acid
