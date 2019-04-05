@@ -99,55 +99,37 @@
 	name = "Second Wind"
 	action_icon_state = "second_wind"
 	mechanics_text = "A channeled ability to restore health that uses plasma and rage. Must stand still for it to work."
+	cooldown_timer = RAV_SECOND_WIND_COOLDOWN
+	var/last_rage = 0
+
+/datum/action/xeno_action/activable/second_wind/get_cooldown()
+	return cooldown_timer * round((1 - (last_rage * 0.015) ),0.01) 
+
+/datum/action/xeno_action/activable/second_wind/on_cooldown_finish()
+	to_chat(owner, "<span class='xenodanger'>You gather enough strength to use Second Wind again.</span>")
+	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+	return ..()
 
 /datum/action/xeno_action/activable/second_wind/action_activate(atom/A)
 	var/mob/living/carbon/Xenomorph/Ravager/X = owner
-	X.Second_Wind()
 
-/datum/action/xeno_action/activable/second_wind/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Ravager/X = owner
-	return !X.second_wind_used
-
-/mob/living/carbon/Xenomorph/Ravager/proc/Second_Wind()
-	if(!check_state())
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake off the shock!</span>")
-		return
-
-	if(second_wind_used)
-		to_chat(src, "<span class='xenowarning'>You must gather your strength before using Second Wind. Second Wind can be used in [(second_wind_delay - world.time) * 0.1] seconds.</span>")
-		return
-
-	to_chat(src, "<span class='xenodanger'>Your coursing adrenaline stimulates tissues into a spat of rapid regeneration...</span>")
-	var/current_rage = CLAMP(rage,0,RAVAGER_MAX_RAGE) //lock in the value at the time we use it; min 0, max 50.
-	do_jitter_animation(1000)
-	if(!do_after(src, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
-		return
-	do_jitter_animation(1000)
-	playsound(src, "sound/effects/alien_drool2.ogg", 50, 0)
-	to_chat(src, "<span class='xenodanger'>You recoup your health, your tapped rage restoring your body, flesh and chitin reknitting themselves...</span>")
-	adjustFireLoss(-CLAMP( (getFireLoss()) * (0.25 + current_rage * 0.015), 0, getFireLoss()) )//Restore HP equal to 25% + 1.5% of the difference between min and max health per rage
-	adjustBruteLoss(-CLAMP( (getBruteLoss()) * (0.25 + current_rage * 0.015), 0, getBruteLoss()) )//Restore HP equal to 25% + 1.5% of the difference between min and max health per rage
-	plasma_stored += CLAMP( (xeno_caste.plasma_max - plasma_stored) * (0.25 + current_rage * 0.015), 0, xeno_caste.plasma_max - plasma_stored) //Restore Plasma equal to 25% + 1.5% of the difference between min and max health per rage
-	updatehealth()
-	hud_set_plasma()
+	to_chat(X, "<span class='xenodanger'>Your coursing adrenaline stimulates tissues into a spat of rapid regeneration...</span>")
+	var/current_rage = CLAMP(X.rage,0,RAVAGER_MAX_RAGE) //lock in the value at the time we use it; min 0, max 50.
+	X.do_jitter_animation(1000)
+	if(!do_after(X, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
+		return fail_activate()
+	X.do_jitter_animation(1000)
+	playsound(X, "sound/effects/alien_drool2.ogg", 50, 0)
+	to_chat(X, "<span class='xenodanger'>You recoup your health, your tapped rage restoring your body, flesh and chitin reknitting themselves...</span>")
+	X.adjustFireLoss(-CLAMP( (X.getFireLoss()) * (0.25 + current_rage * 0.015), 0, X.getFireLoss()) )//Restore HP equal to 25% + 1.5% of the difference between min and max health per rage
+	X.adjustBruteLoss(-CLAMP( (X.getBruteLoss()) * (0.25 + current_rage * 0.015), 0, X.getBruteLoss()) )//Restore HP equal to 25% + 1.5% of the difference between min and max health per rage
+	X.plasma_stored += CLAMP( (X.xeno_caste.plasma_max - X.plasma_stored) * (0.25 + current_rage * 0.015), 0, X.xeno_caste.plasma_max - X.plasma_stored) //Restore Plasma equal to 25% + 1.5% of the difference between min and max health per rage
+	X.updatehealth()
+	X.hud_set_plasma()
 
 	round_statistics.ravager_second_winds++
 
-	second_wind_used = TRUE
+	last_rage = current_rage
+	add_cooldown()
 
-	var/cooldown = (RAV_SECOND_WIND_COOLDOWN * round((1 - (current_rage * 0.015) ),0.01) )
-
-	second_wind_delay = world.time + cooldown
-
-	addtimer(CALLBACK(src, .second_wind_cooldown), cooldown) //4 minute cooldown, minus 0.75 seconds per rage to minimum 60 seconds.
-
-	rage = 0
-
-/mob/living/carbon/Xenomorph/Ravager/proc/second_wind_cooldown()
-	second_wind_used = FALSE
-	to_chat(src, "<span class='xenodanger'>You gather enough strength to use Second Wind again.</span>")
-	playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
-	update_action_button_icons()
+	X.rage = 0
