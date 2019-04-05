@@ -14,6 +14,12 @@
 	var/mob/living/new_character	//for instant transfer once the round is set up
 
 
+/mob/new_player/Destroy()
+	if(ready)
+		GLOB.ready_players--
+	return ..()
+
+
 /mob/new_player/proc/version_check()
 	if(client.byond_version < world.byond_version)
 		to_chat(client, "<span class='warning'>Your version of Byond differs from the server (v[world.byond_version].[world.byond_build]). You may experience graphical glitches, crashes, or other errors. You will be disconnected until your version matches or exceeds the server version.<br> \
