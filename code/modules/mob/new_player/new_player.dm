@@ -14,16 +14,6 @@
 	var/mob/living/new_character	//for instant transfer once the round is set up
 
 
-/mob/new_player/Initialize()
-	GLOB.total_players++
-	return ..()
-
-
-/mob/new_player/Destroy()
-	GLOB.total_players--
-	return ..()
-
-
 /mob/new_player/proc/version_check()
 	if(client.byond_version < world.byond_version)
 		to_chat(client, "<span class='warning'>Your version of Byond differs from the server (v[world.byond_version].[world.byond_build]). You may experience graphical glitches, crashes, or other errors. You will be disconnected until your version matches or exceeds the server version.<br> \
@@ -86,7 +76,7 @@
 
 		if(SSticker.current_state == GAME_STATE_PREGAME)
 			stat("Time To Start:", "[SSticker.time_left < 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
-			stat("Players: [GLOB.total_players]", "Players Ready: [GLOB.ready_players]")
+			stat("Players: [length(GLOB.player_list)]", "Players Ready: [GLOB.ready_players]")
 			for(var/i in GLOB.player_list)
 				if(isnewplayer(i))
 					var/mob/new_player/N = i
