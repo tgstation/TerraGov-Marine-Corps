@@ -482,6 +482,9 @@
 		return
 
 	var/mob/living/L = input("Choose which mob you want to take over.", "Offered Mob") as null|anything in sortNames(GLOB.offered_mob_list)
+	if(!istype(L))
+		to_chat(src, "<span class='warning'>Mob already taken.</span>")
+		return
 
 	switch(alert("Take over mob named: [L.real_name][L.job ? " | Job: [L.job]" : ""]", "Offered Mob", "Yes", "No", "Follow"))
 		if("Yes")
