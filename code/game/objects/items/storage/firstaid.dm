@@ -127,6 +127,7 @@
 	name = "radiation first-aid kit"
 	desc = "Contains treatment for radiation exposure"
 	icon_state = "purplefirstaid"
+	item_state = "firstaid-rad"
 
 /obj/item/storage/firstaid/rad/fill_firstaid_kit()
 	new /obj/item/device/healthanalyzer(src)

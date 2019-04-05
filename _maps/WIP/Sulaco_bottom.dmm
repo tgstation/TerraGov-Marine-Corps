@@ -4601,8 +4601,7 @@
 /area/sulaco/telecomms)
 "jT" = (
 /obj/machinery/telecomms/processor/preset_one{
-	produces_heat = 0;
-	unacidable = 1
+	produces_heat = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
@@ -5228,22 +5227,19 @@
 /area/sulaco/telecomms)
 "lD" = (
 /obj/machinery/telecomms/relay/preset/telecomms{
-	listening_level = 6;
-	unacidable = 1
+	listening_level = 6
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "lE" = (
 /obj/machinery/telecomms/hub/preset{
-	produces_heat = 0;
-	unacidable = 1
+	produces_heat = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "lF" = (
 /obj/machinery/telecomms/relay/preset/telecomms{
-	listening_level = 4;
-	unacidable = 1
+	listening_level = 4
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
@@ -5327,8 +5323,7 @@
 /obj/machinery/power/smes/magical{
 	charge = 9e+006;
 	dir = 1;
-	name = "bottom level SMES unit";
-	unacidable = 1
+	name = "bottom level SMES unit"
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -5856,8 +5851,7 @@
 /area/sulaco/telecomms)
 "mS" = (
 /obj/machinery/r_n_d/server/core{
-	produces_heat = 0;
-	unacidable = 1
+	produces_heat = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
@@ -6149,15 +6143,11 @@
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
 "nJ" = (
-/obj/machinery/telecomms/broadcaster/preset_left{
-	unacidable = 1
-	},
+/obj/machinery/telecomms/broadcaster/preset_left,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "nK" = (
-/obj/machinery/telecomms/broadcaster/preset_right{
-	unacidable = 1
-	},
+/obj/machinery/telecomms/broadcaster/preset_right,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "nL" = (
@@ -6165,9 +6155,7 @@
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "nM" = (
-/obj/machinery/telecomms/receiver/preset{
-	unacidable = 1
-	},
+/obj/machinery/telecomms/receiver/preset,
 /obj/machinery/light/small,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)

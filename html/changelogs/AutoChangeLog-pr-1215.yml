@@ -1,0 +1,5 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "Fixes a missing inhand for oxygen first aid kits and some related pixel precision dilemmas."
+  - imageadd: "Adds an inhand for radiation first aid kits."

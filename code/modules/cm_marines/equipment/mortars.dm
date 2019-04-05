@@ -7,7 +7,7 @@
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_m402"
 	anchored = 1
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	density = 1
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	var/targ_x = 0 //Initial target coordinates
@@ -190,9 +190,6 @@
 			new /obj/item/mortar_kit(loc)
 			qdel(src)
 
-//Don't allow blowing those up, so Marine nades don't fuck them
-/obj/structure/mortar/ex_act(severity)
-	return
 
 /obj/structure/mortar/fixed
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire. This one is bolted and welded into the ground."
@@ -204,12 +201,9 @@
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first"
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_m402_carry"
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	w_class = 5 //No dumping this in a backpack. Carry it, fatso
 
-//Don't allow blowing those up, so Marine nades don't fuck them
-/obj/item/mortar_kit/ex_act(severity)
-	return
 
 /obj/item/mortar_kit/attack_self(mob/user)
 

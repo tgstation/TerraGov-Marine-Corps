@@ -331,21 +331,16 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return
 
 	var/mob/living/carbon/Xenomorph/target = A
-	var/energy = isxenosilicon(src) ? "charge" : "plasma"
 
 	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>You can't transfer [energy] from here!</span>")
-		return
-
-	if(isxenosilicon(src) != isxenosilicon(A))
-		to_chat(src, "<span class='warning'>[target]'s source of energy is incompatible with ours.</span>")
+		to_chat(src, "<span class='warning'>You can't transfer plasma from here!</span>")
 		return
 
 	if(get_dist(src, target) > max_range)
 		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
 		return
 
-	to_chat(src, "<span class='notice'>You start focusing your [energy] towards [target].</span>")
+	to_chat(src, "<span class='notice'>You start focusing your plasma towards [target].</span>")
 	if(!do_after(src, transfer_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
 		return
 
@@ -353,7 +348,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return
 
 	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>You can't transfer [energy] from here!</span>")
+		to_chat(src, "<span class='warning'>You can't transfer plasma from here!</span>")
 		return
 
 	if(get_dist(src, target) > max_range)
@@ -373,8 +368,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	use_plasma(amount)
 	target.gain_plasma(amount)
-	to_chat(target, "<span class='xenowarning'>[src] has transfered [amount] units of [energy] to you. You now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
-	to_chat(src, "<span class='xenowarning'>You have transferred [amount] units of [energy] to [target]. You now have [plasma_stored]/[xeno_caste.plasma_max].</span>")
+	to_chat(target, "<span class='xenowarning'>[src] has transfered [amount] units of plasma to you. You now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
+	to_chat(src, "<span class='xenowarning'>You have transferred [amount] units of plasma to [target]. You now have [plasma_stored]/[xeno_caste.plasma_max].</span>")
 	playsound(src, "alien_drool", 25)
 
 /mob/living/carbon/Xenomorph/proc/xeno_salvage_plasma(atom/A, amount, salvage_delay, max_range)
@@ -382,40 +377,35 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return
 
 	var/mob/living/carbon/Xenomorph/target = A
-	var/energy = isxenosilicon(src) ? "charge" : "plasma"
 
 	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>You can't salvage [energy] from here!</span>")
-		return
-
-	if(isxenosilicon(src) != isxenosilicon(A))
-		to_chat(src, "<span class='warning'>[target]'s source of energy is incompatible with ours.</span>")
+		to_chat(src, "<span class='warning'>You can't salvage plasma from here!</span>")
 		return
 
 	if(plasma_stored >= xeno_caste.plasma_max)
-		to_chat(src, "<span class='notice'>Your [energy] reserves are already at full capacity and can't hold any more.</span>")
+		to_chat(src, "<span class='notice'>Your plasma reserves are already at full capacity and can't hold any more.</span>")
 		return
 
 	if(target.stat != DEAD)
-		to_chat(src, "<span class='warning'>You can't steal [energy] from living sisters, ask for some to a drone or a hivelord instead!</span>")
+		to_chat(src, "<span class='warning'>You can't steal plasma from living sisters, ask for some to a drone or a hivelord instead!</span>")
 		return
 
 	if(get_dist(src, target) > max_range)
-		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
+		to_chat(src, "<span class='warning'>You need to be closer to plasma.</span>")
 		return
 
 	if(!(target.plasma_stored))
-		to_chat(src, "<span class='notice'>[target] doesn't have any [energy] left to salvage.</span>")
+		to_chat(src, "<span class='notice'>[target] doesn't have any plasma left to salvage.</span>")
 		return
 
-	to_chat(src, "<span class='notice'>You start salvaging [energy] from [target].</span>")
+	to_chat(src, "<span class='notice'>You start salvaging plasma from [target].</span>")
 
 	while(target.plasma_stored && plasma_stored >= xeno_caste.plasma_max)
 		if(!do_after(src, salvage_delay, TRUE, 5, BUSY_ICON_HOSTILE) || !check_state())
 			break
 
 		if(!isturf(loc))
-			to_chat(src, "<span class='warning'>You can't absorb [energy] from here!</span>")
+			to_chat(src, "<span class='warning'>You can't absorb plasma from here!</span>")
 			break
 
 		if(get_dist(src, target) > max_range)
@@ -432,7 +422,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		var/absorbed_amount = round(amount * PLASMA_SALVAGE_MULTIPLIER)
 		target.use_plasma(amount)
 		gain_plasma(absorbed_amount)
-		to_chat(src, "<span class='xenowarning'>You salvage [absorbed_amount] units of [energy] from [target]. You have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
+		to_chat(src, "<span class='xenowarning'>You salvage [absorbed_amount] units of plasma from [target]. You have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
 		if(prob(50))
 			playsound(src, "alien_drool", 25)
 
@@ -682,7 +672,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(current_acid && !acid_check(new_acid, current_acid) )
 			return
 
-		if(I.unacidable || istype(I, /obj/machinery/computer) || istype(I, /obj/effect)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
+		if(CHECK_MULTIPLE_BITFIELDS(I.resistance_flags, UNACIDABLE|INDESTRUCTIBLE)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
 			to_chat(src, "<span class='warning'>You cannot dissolve \the [I].</span>")
 			return
 		if(istype(O, /obj/structure/window_frame))

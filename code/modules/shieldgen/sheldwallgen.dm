@@ -231,7 +231,7 @@
 		icon_state = "shieldwall"
 		anchored = 1
 		density = 1
-		unacidable = 1
+		resistance_flags = UNACIDABLE
 		luminosity = 3
 		var/needs_power = 0
 		var/active = 1

@@ -5,7 +5,7 @@
 	icon = 'icons/turf/desertdam_map.dmi'
 	density = 0
 	anchored = 1
-	unacidable = 1 // can toggle it off anyway
+	resistance_flags = UNACIDABLE
 	layer = ABOVE_MOB_LAYER
 //loose sand overlay
 /obj/structure/desertdam/decals/loose_sand_overlay

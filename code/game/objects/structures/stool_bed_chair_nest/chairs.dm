@@ -178,7 +178,7 @@
 	var/image/chairbar = null
 	var/chair_state = DROPSHIP_CHAIR_UNFOLDED
 	buildstacktype = 0
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/is_animating = 0
 
 /obj/structure/bed/chair/dropship/passenger/CanPass(var/atom/movable/mover, var/turf/target, var/height = 0, var/air_group = 0)
@@ -188,9 +188,6 @@
 			fold_down(1)
 		return 0
 	return ..()
-
-/obj/structure/bed/chair/dropship/passenger/ex_act(severity)
-	return
 
 /obj/structure/bed/chair/dropship/passenger/New()
 	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")
@@ -293,5 +290,5 @@
 	desc = "A comfortable seat."
 	icon_state = "ob_chair"
 	buildstacktype = null
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 	dir = WEST
