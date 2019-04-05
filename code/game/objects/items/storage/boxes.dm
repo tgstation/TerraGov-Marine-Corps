@@ -359,10 +359,9 @@
 	max_storage_space = 50
 	spawn_type = /obj/item/explosive/grenade/frag
 	spawn_number = 25
-	var/nade_box_icon = "nade_placeholder"
 
 /obj/item/storage/box/nade_box/update_icon()
-	icon_state = nade_box_icon
+	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
 
@@ -371,7 +370,6 @@
 	desc = "A secure box holding 25 M07 training grenades. Harmless and reusable."
 	icon_state = "train_nade_placeholder"
 	spawn_type = /obj/item/explosive/grenade/frag/training
-	nade_box_icon = "train_nade_placeholder"
 
 /obj/item/storage/box/nade_box/HIDP
 	name = "\improper HIDP incendiary grenade box"
@@ -381,7 +379,6 @@
 	max_storage_space = 30
 	spawn_type = /obj/item/explosive/grenade/incendiary
 	spawn_number = 15
-	nade_box_icon = "HIDP_nade_placeholder"
 
 /obj/item/storage/box/nade_box/M15
 	name = "\improper M15 grenade box"
@@ -391,14 +388,12 @@
 	max_storage_space = 30
 	spawn_type = /obj/item/explosive/grenade/frag/m15
 	spawn_number = 15
-	nade_box_icon = "M15_nade_placeholder"
 
 /obj/item/storage/box/nade_box/tear_gas
 	name = "\improper M66 tear gas grenade box"
 	desc = "A secure box holding 25 M66 tear gas grenades. Used for riot control."
 	icon_state = "teargas_nade_placeholder"
 	spawn_type = /obj/item/explosive/grenade/chem_grenade/teargas
-	nade_box_icon = "teargas_nade_placeholder"
 
 /obj/item/storage/box/nade_box/impact
 	name = "\improper M40 IMDP grenade box"
