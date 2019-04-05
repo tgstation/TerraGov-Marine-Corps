@@ -52,10 +52,12 @@
 	if(L.client)
 		L.client.screen += button
 	L.update_action_buttons()
+	L.actions_by_path[type] = src
 
 /datum/action/proc/remove_action(mob/living/L)
 	if(L.client)
 		L.client.screen -= button
+	L.actions_by_path[type] = null
 	L.actions -= src
 	L.update_action_buttons()
 	owner = null
@@ -130,12 +132,12 @@
 		name = "[name] ([plasma_cost])"
 	button.overlays += image('icons/mob/actions.dmi', button, action_icon_state)
 
-/datum/action/xeno_action/can_use_action(silent = FALSE)
+/datum/action/xeno_action/can_use_action(silent = FALSE, ignore_cooldown = FALSE)
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X)
 		return FALSE
 
-	if(!action_cooldown_check())
+	if(!ignore_cooldown && !action_cooldown_check())
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You can't use [name] yet, wait [cooldown_remaining()] seconds!</span>")
 		return FALSE
@@ -201,6 +203,11 @@
 //The action can still be activated by clicking the button
 /datum/action/xeno_action/proc/action_cooldown_check()
 	return !on_cooldown
+
+/datum/action/xeno_action/proc/clear_cooldown()
+	for(var/timer in active_timers)
+		qdel(timer)
+		on_cooldown_finish()
 
 /datum/action/xeno_action/proc/get_cooldown()
 	return cooldown_timer
@@ -270,8 +277,8 @@
 	return
 
 //override this 
-/datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE)
-	return can_use_action(silent)
+/datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, ignore_cooldown = FALSE)
+	return can_use_action(silent, ignore_cooldown)
 
 /datum/action/xeno_action/activable/proc/on_activation()
 	return

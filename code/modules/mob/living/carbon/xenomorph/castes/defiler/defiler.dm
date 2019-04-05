@@ -13,9 +13,6 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	var/datum/effect_system/smoke_spread/smoke_system
-	var/last_defiler_sting = null
-	var/last_emit_neurogas = null
-	var/last_use_neuroclaws = null
 	var/neuro_claws = FALSE
 	var/emitting_gas = FALSE
 	var/neuro_claws_dose = DEFILER_CLAW_AMOUNT
