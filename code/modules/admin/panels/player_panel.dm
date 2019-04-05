@@ -375,10 +375,10 @@
 		body += " played by <b>[M.client]</b> "
 		body += " <a href='?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank : "Player"]</a>"
 
-	if(istype(M, /mob/new_player))
+	if(isnewplayer(M)))
 		body += " <b>Hasn't Entered Game</b> "
 	else
-		body += " <a href='?src=[ref];revive=[REF(M)]'>Heal</a> "
+		body += " <a href='?src=[ref];revive=[REF(M)]'>Heal</a> | <a href='?src=[ref];sleep=[REF(M)]'>Sleep</a>"
 
 	body += {"
 		<br><br>

@@ -134,23 +134,23 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed [M.name] ckey to [new_ckey].")
 
 
-/datum/admins/proc/rejuvenate(mob/living/M in GLOB.mob_living_list)
+/datum/admins/proc/rejuvenate(mob/living/L in GLOB.mob_living_list)
 	set category = null
 	set name = "Rejuvenate"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!istype(M))
+	if(!istype(L))
 		return
 
-	if(alert("Are you sure you want to rejuvenate [M]?", "Rejuvenate", "Yes", "No") != "Yes")
+	if(alert("Are you sure you want to rejuvenate [L]?", "Rejuvenate", "Yes", "No") != "Yes")
 		return
 
-	M.revive()
+	L.revive()
 
-	log_admin("[key_name(usr)] revived [key_name(M)].")
-	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(M)].")
+	log_admin("[key_name(usr)] revived [key_name(L)].")
+	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
 
 
 /datum/admins/proc/rejuvenate_panel()

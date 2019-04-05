@@ -327,9 +327,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/mob/living/L = locate(href_list["revive"])
+		var/mob/living/L = locate(href_list["revive"]) in GLOB.mob_living_list
 
 		if(!istype(L))
+			return
+
+		if(alert("Are you sure you want to rejuvenate [L]?", "Rejuvenate", "Yes", "No") != "Yes")
 			return
 
 		L.revive()
@@ -1631,3 +1634,23 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		log_admin("[key_name(usr)] changed the equipment of [key_name(H)] to [istype(O) ?  O.name : dresscode].")
 		message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(H)] to [istype(O) ? O.name : dresscode].")
+
+
+	else if(href_list["sleep"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/living/L = locate(href_list["sleep"]) in GLOB.mob_living_list
+
+		if(!istype(L))
+			return
+
+		if(L.sleeping > 0)
+			L.sleeping = 0
+		else if(alert("Are you sure you want to sleep [L]?", "Toggle Sleeping", "Yes", "No") != "Yes")
+			return
+		else
+			L.sleeping = 9999999
+
+		log_admin("[key_name(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(L)].")
