@@ -66,7 +66,7 @@
 		if(SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_FINISHED)
 			to_chat(usr, "<span class='danger'>[required_state_message] The round is not in the lobby or endgame state.</span>")
 			return
-		if((SSticker.current_state == GAME_STATE_PREGAME && SSticker.time_left != -1) || (SSticker.current_state == GAME_STATE_FINISHED && !SSticker.delay_end))
+		if((SSticker.current_state == GAME_STATE_PREGAME && SSticker.time_left > 0) || (SSticker.current_state == GAME_STATE_FINISHED && !SSticker.delay_end))
 			to_chat(usr, "<span class='danger'>[required_state_message] The round start/end is not delayed.</span>")
 			return
 

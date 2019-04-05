@@ -85,7 +85,7 @@
 		stat("Game Mode:", "[GLOB.master_mode]")
 
 		if(SSticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[SSticker.time_left != -1 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
+			stat("Time To Start:", "[SSticker.time_left < 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
 			stat("Players: [GLOB.total_players]", "Players Ready: [GLOB.ready_players]")
 			for(var/mob/new_player/player in GLOB.player_list)
 				stat("[player.key]", player.ready ? "Playing" : "")
