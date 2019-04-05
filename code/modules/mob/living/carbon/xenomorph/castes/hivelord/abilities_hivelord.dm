@@ -103,7 +103,7 @@
 		newt.other = start_dig
 		newt.creator = src
 
-		if(newt.y != newt.other.y)
+		if(newt.z != newt.other.z)
 			start_dig = newt
 			to_chat(src, "<span class='xenonotice'>The first tunnel of this set has been destroyed as it cannot connect to this tunnel.</span>")
 			newt.other.health = 0
