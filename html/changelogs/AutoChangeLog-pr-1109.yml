@@ -1,5 +1,0 @@
-author: "by Surrealistik"
-delete-after: True
-changes: 
-  - tweak: "Projectile speed parameters increased by +1 across the board (they will travel +1 tile per decisecond)."
-  - tweak: "Barrel Charger projectile speed adjustment increased from +1 to +2. Extended Barrel adjustment increased from +0.1 to +1. Suppressor adjustment decreased from -0.1 to -1."
