@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 		var/obj/structure/tunnel/old_tunnel = X.tunnels[1]
 		old_tunnel.obj_integrity = 0
 		old_tunnel.healthcheck()
-		to_chat(X., "<span class='xenodanger'>Having exceeding your tunnel set limit, your oldest tunnel set has collapsed.</span>")
+		to_chat(X, "<span class='xenodanger'>Having exceeding your tunnel set limit, your oldest tunnel set has collapsed.</span>")
 
 	succeed_activate()
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)

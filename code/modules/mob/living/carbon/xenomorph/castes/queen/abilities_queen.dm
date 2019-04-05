@@ -153,82 +153,72 @@
 // *********** Gut
 // ***************************************
 /datum/action/xeno_action/activable/gut
-	name = "Gut (200)"
+	name = "Gut"
 	action_icon_state = "gut"
 	ability_name = "gut"
+	plasma_cost = 200
 
-/datum/action/xeno_action/activable/gut/use_ability(atom/A)
+/datum/action/xeno_action/activable/gut/can_use_ability(atom/A, silent = FALSE)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
-	X.queen_gut(A)
-
-/mob/living/carbon/Xenomorph/Queen/proc/queen_gut(atom/A)
-
+	if(X.last_special > world.time)
+		return FALSE
 	if(!iscarbon(A))
-		return
-
+		return FALSE
+	if(!owner.Adjacent(A))
+		return FALSE
 	var/mob/living/carbon/victim = A
-
-	if(get_dist(src, victim) > 1)
-		return
-
-	if(!check_state())
-		return
-
-	if(last_special > world.time)
-		return
-
 	if(issynth(victim))
 		var/datum/limb/head/synthhead = victim.get_limb("head")
 		if(synthhead.limb_status & LIMB_DESTROYED)
-			return
-
+			return FALSE
 	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
 		var/mob/living/carbon/human/H = victim
-		if(H.status_flags & XENO_HOST)
+		if(CHECK_BITFIELD(H.status_flags, XENO_HOST))
 			if(victim.stat != DEAD) //Not dead yet.
-				to_chat(src, "<span class='xenowarning'>The host and child are still alive!</span>")
-				return
+				if(!silent)
+					to_chat(owner, "<span class='xenowarning'>The host and child are still alive!</span>")
+				return FALSE
 			else if(istype(H) && !H.check_tod()) //Dead, but the host can still hatch, possibly.
-				to_chat(src, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
-				return
+				if(!silent)
+					to_chat(owner, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
+				return FALSE
+	if(owner.issamexenohive(victim))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>")
+		return FALSE
 
-	if(isxeno(victim))
-		var/mob/living/carbon/Xenomorph/xeno = victim
-		if(hivenumber == xeno.hivenumber)
-			to_chat(src, "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>")
-			return
+/datum/action/xeno_action/activable/gut/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/victim = A
 
-	var/turf/cur_loc = victim.loc
-	if(!istype(cur_loc))
-		return
+	succeed_activate()
 
-	if(action_busy)
-		return
+	X.last_special = world.time + 5 SECONDS
 
-	if(!check_plasma(200))
-		return
-	use_plasma(200)
-	last_special = world.time + 50
-
-	visible_message("<span class='xenowarning'>\The [src] begins slowly lifting \the [victim] into the air.</span>", \
+	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
 	"<span class='xenowarning'>You begin focusing your anger as you slowly lift \the [victim] into the air.</span>")
-	if(do_mob(src, victim, 80, BUSY_ICON_HOSTILE))
-		if(!victim)
-			return
-		if(victim.loc != cur_loc)
-			return
-		visible_message("<span class='xenodanger'>\The [src] viciously smashes and wrenches \the [victim] apart!</span>", \
-		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!</span>")
-		emote("roar")
-		log_combat(victim, src, "gibbed")
-		victim.gib() //Splut
-		stop_pulling()
+	if(!do_mob(X, victim, 80, BUSY_ICON_HOSTILE))
+		return fail_activate()
+
+	if(!victim)
+		return FALSE
+	if(victim.loc != X.loc)
+		return FALSE
+	X.visible_message("<span class='xenodanger'>\The [X] viciously smashes and wrenches \the [victim] apart!</span>", \
+	"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!</span>")
+	X.emote("roar")
+	log_combat(victim, X, "gibbed")
+	victim.gib() //Splut
+	X.stop_pulling()
 
 // ***************************************
 // *********** Ovipositor
 // ***************************************
 /datum/action/xeno_action/grow_ovipositor
-	name = "Grow Ovipositor (700)"
+	name = "Grow Ovipositor"
 	action_icon_state = "grow_ovipositor"
 	mechanics_text = "Grow an ovipositor to lay eggs and access new abilities. Takes 20 seconds and you cannot move while on the ovipositor."
 	plasma_cost = 700
@@ -276,18 +266,14 @@
 	name = "Remove Eggsac"
 	action_icon_state = "grow_ovipositor"
 	mechanics_text = "Get off your ovipositor, causing it to collapse. You must grow a new one the next time you wish to reattach."
-	plasma_cost = 0
 
 /datum/action/xeno_action/remove_eggsac/action_activate()
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
-	if(!X.check_state())
-		return
 
-	if(X.action_busy) return
 	var/answer = alert(X, "Are you sure you want to remove your ovipositor? (5min cooldown to grow a new one)", , "Yes", "No")
 	if(answer != "Yes")
 		return
-	if(!X.check_state())
+	if(!can_use_action())
 		return
 	if(!X.ovipositor)
 		return
@@ -401,8 +387,6 @@
 
 /datum/action/xeno_action/watch_xeno/action_activate()
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
-	if(!X.check_state())
-		return
 	if(!X.hive)
 		return
 	var/list/possible_xenos = X.hive.get_watchable_xenos()
@@ -432,12 +416,9 @@
 /datum/action/xeno_action/psychic_whisper
 	name = "Psychic Whisper"
 	action_icon_state = "psychic_whisper"
-	plasma_cost = 0
 
 /datum/action/xeno_action/psychic_whisper/action_activate()
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
-	if(!X.check_state())
-		return
 	var/list/target_list = list()
 	for(var/mob/living/possible_target in view(7, X))
 		if(possible_target == X || !possible_target.client) continue

@@ -90,7 +90,7 @@
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
 
 	//give them fair warning
-	X.visible_message("<span class='danger'>Tufts of smoke begin to billow from [X.]!</span>", \
+	X.visible_message("<span class='danger'>Tufts of smoke begin to billow from [X]!</span>", \
 	"<span class='xenodanger'>Your dorsal vents widen, preparing to emit neurogas. Keep still!</span>")
 
 	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
