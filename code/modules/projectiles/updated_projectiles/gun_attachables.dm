@@ -349,7 +349,7 @@ Defined in conflicts.dm of the #defines folder.
 	. = ..()
 	accuracy_mod = -CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
 	damage_mod = CONFIG_GET(number/combat_define/hmed_hit_damage_mult)
-	attach_shell_speed_mod = CONFIG_GET(number/combat_define/slow_shell_speed) //increases projectile speed by +1
+	attach_shell_speed_mod = CONFIG_GET(number/combat_define/slow_shell_speed)
 	delay_mod = CONFIG_GET(number/combat_define/low_fire_delay)
 	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
 

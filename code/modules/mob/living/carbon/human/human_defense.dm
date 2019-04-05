@@ -265,7 +265,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks
-		if(O.igniting)
+		if(CHECK_BITFIELD(O.resistance_flags, ON_FIRE))
 			IgniteMob()
 
 		if(ismob(O.thrower))

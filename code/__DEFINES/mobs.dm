@@ -511,10 +511,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_FIRE_IMMUNE			(1<<5)
 #define CASTE_EVOLUTION_ALLOWED		(1<<6)
 #define CASTE_IS_INTELLIGENT		(1<<7)
-#define CASTE_IS_ROBOTIC			(1<<8)
-#define CASTE_DECAY_PROOF			(1<<9)
-#define CASTE_CAN_BE_LEADER			(1<<10)
-#define CASTE_HIDE_IN_STATUS		(1<<11)
+#define CASTE_DECAY_PROOF			(1<<8)
+#define CASTE_CAN_BE_LEADER			(1<<9)
+#define CASTE_HIDE_IN_STATUS		(1<<10)
 
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds

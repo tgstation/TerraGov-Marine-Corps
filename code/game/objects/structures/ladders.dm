@@ -8,7 +8,7 @@
 	var/obj/structure/ladder/down = null	//The ladder below this one
 	var/obj/structure/ladder/up = null		//The ladder above this one
 	anchored = 1
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	layer = LADDER_LAYER
 	var/is_watching = 0
 	var/obj/machinery/camera/cam
@@ -176,9 +176,6 @@
 
 /obj/structure/ladder/attack_robot(mob/user as mob)
 	return attack_hand(user)
-
-/obj/structure/ladder/ex_act(severity)
-	return
 
 //Throwing Shiet
 /obj/structure/ladder/attackby(obj/item/W, mob/user)

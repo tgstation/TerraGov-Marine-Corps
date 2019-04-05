@@ -128,7 +128,7 @@
 	if(target == user)
 		visible_message("<span class='notice'>[user] starts climbing into the disposal.</span>")
 	else
-		if(user.is_mob_restrained()) return //can't stuff someone other than you if restrained.
+		if(user.restrained()) return //can't stuff someone other than you if restrained.
 		visible_message("<span class ='warning'>[user] starts stuffing [target] into the disposal.</span>")
 	if(!do_after(user, 40, FALSE, 5, BUSY_ICON_HOSTILE))
 		return
@@ -242,7 +242,7 @@
 	add_fingerprint(usr)
 	if(machine_stat & BROKEN)
 		return
-	if(usr.stat || usr.is_mob_restrained() || flushing)
+	if(usr.stat || usr.restrained() || flushing)
 		return
 	if(in_range(src, usr) && istype(src.loc, /turf))
 		usr.set_interaction(src)
@@ -1379,7 +1379,7 @@
 /obj/structure/disposaloutlet/retrieval
 	name = "retrieval outlet"
 	desc = "An outlet for the pneumatic disposal system."
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 
 /obj/structure/disposaloutlet/retrieval/attackby(var/obj/item/I, var/mob/user)
 	return

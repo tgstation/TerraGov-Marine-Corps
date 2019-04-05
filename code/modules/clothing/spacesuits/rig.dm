@@ -412,7 +412,7 @@
 	icon_state = "rig0-wiz"
 	item_state = "wiz_helm"
 	rig_color = "wiz"
-	unacidable = 1 //No longer shall our kind be foiled by lone chemists with spray bottles!
+	resistance_flags = UNACIDABLE
 	armor = list("melee" = 40, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 35, "bio" = 100, "rad" = 60, "fire" = 20, "acid" = 20)
 	siemens_coefficient = 0.7
 	sprite_sheets_refit = null
@@ -425,7 +425,7 @@
 	item_state = "wiz_hardsuit"
 	slowdown = 1
 	w_class = 3
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 	armor = list("melee" = 40, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 35, "bio" = 100, "rad" = 60, "fire" = 20, "acid" = 20)
 	siemens_coefficient = 0.7
 	sprite_sheets_refit = null

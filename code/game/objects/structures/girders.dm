@@ -3,7 +3,6 @@
 	anchored = 1
 	density = 1
 	layer = OBJ_LAYER
-	unacidable = 0
 	var/state = 0
 	var/dismantlectr = 0
 	var/buildctr = 0
@@ -31,7 +30,7 @@
 	return 1
 
 /obj/structure/girder/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.mob_size != MOB_SIZE_BIG || unacidable)
+	if(M.mob_size != MOB_SIZE_BIG || CHECK_MULTIPLE_BITFIELDS(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		to_chat(M, "<span class='warning'>Your claws aren't sharp enough to damage \the [src].</span>")
 		return FALSE
 	else
@@ -261,13 +260,13 @@
 /obj/structure/girder/proc/update_state()
 	if (health <= 0)
 		icon_state = "[icon_state]_damaged"
-		unacidable = 1
+		ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
 		density = 0
 	else
 		var/underscore_position =  findtext(icon_state,"_")
 		var/new_state = copytext(icon_state, 1, underscore_position)
 		icon_state = new_state
-		unacidable = 0
+		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
 		density = 1
 	buildctr = 0
 	repair_state = 0

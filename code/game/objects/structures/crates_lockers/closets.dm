@@ -183,7 +183,7 @@
 		qdel(src)
 
 /obj/structure/closet/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent == INTENT_HARM && !unacidable)
+	if(M.a_intent == INTENT_HARM && !CHECK_MULTIPLE_BITFIELDS(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		M.animation_attack_on(src)
 		if(!opened && prob(70))
 			break_open()
@@ -315,7 +315,7 @@
 	set category = "Object"
 	set name = "Toggle Open"
 
-	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
+	if(!usr.canmove || usr.stat || usr.restrained())
 		return
 
 	if(ishuman(usr))

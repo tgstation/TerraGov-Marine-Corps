@@ -32,7 +32,7 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	var/area/area
 	var/areastring = null
 	var/obj/item/cell/cell
@@ -893,7 +893,7 @@
 		to_chat(user, "<span class='warning'>You don't have the dexterity to use [src]!</span>")
 		nanomanager.close_user_uis(user, src)
 		return 0
-	if(user.is_mob_restrained())
+	if(user.restrained())
 		to_chat(user, "<span class='warning'>You must have free hands to use [src].</span>")
 		return 0
 	if(user.lying)

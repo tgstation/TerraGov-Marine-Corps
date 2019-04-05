@@ -29,15 +29,14 @@
 
 
 /mob/dead/observer/Initialize()
+	. = ..()
+
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
 
 	stat = DEAD
 
-	Login()
-
-	return ..()
 
 /mob/dead/observer/Destroy()
 	unfollow()

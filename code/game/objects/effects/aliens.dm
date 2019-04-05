@@ -7,7 +7,6 @@
 	name = "alien thing"
 	desc = "You shouldn't be seeing this."
 	icon = 'icons/Xeno/effects.dmi'
-	unacidable = 1
 	layer = FLY_LAYER
 
 /obj/effect/xenomorph/splatter
@@ -73,11 +72,11 @@
 			H.next_move_slowdown += slow_amt
 			var/datum/limb/affecting = H.get_limb("l_foot")
 			armor_block = H.run_armor_check(affecting, "acid")
-			if(istype(affecting) && affecting.take_damage(null, rand(14, 18), null, null, null, null, null, armor_block))
+			if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block))
 				H.UpdateDamageIcon()
 			affecting = H.get_limb("r_foot")
 			armor_block = H.run_armor_check(affecting, "acid")
-			if(istype(affecting) && affecting.take_damage(null, rand(14, 18), null, null, null, null, null, armor_block))
+			if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block))
 				H.UpdateDamageIcon()
 			H.updatehealth()
 		else
@@ -105,7 +104,6 @@
 	density = 0
 	opacity = 0
 	anchored = 1
-	unacidable = 1
 	var/atom/acid_t
 	var/ticks = 0
 	var/acid_strength = 1 //100% speed, normal

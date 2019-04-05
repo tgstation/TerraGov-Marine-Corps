@@ -1,4 +1,0 @@
-author: "Jalordon"
-delete-after: True
-changes: 
-  - bugfix: "Xeno tail critical hits now use the proper config value, critical hit cooldown changed to 3 seconds from 2.5."

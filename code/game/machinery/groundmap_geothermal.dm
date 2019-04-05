@@ -10,7 +10,7 @@
 	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, then wirecutters, and then a wrench to repair it."
 	anchored = TRUE
 	density = TRUE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	var/power_gen_percent = 0 //100,000W at full capacity
 	var/power_generation_max = 100000 //Full capacity
 	var/buildstate = GEOTHERMAL_HEAVY_DAMAGE //What state of building it are we on, 0-3, 1 is "broken", the default
@@ -218,7 +218,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 0
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	var/list/floodlist = list() // This will save our list of floodlights on the map
 
 /obj/machinery/colony_floodlight_switch/Initialize()
@@ -288,7 +288,7 @@
 	anchored = TRUE
 	var/damaged = FALSE //Can be smashed by xenos
 	var/is_lit = FALSE //whether the floodlight is switched to on or off. Does not necessarily mean it emits light.
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	use_power = NO_POWER_USE //It's the switch that uses the actual power, not the lights
 	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 	var/lum_value = 7

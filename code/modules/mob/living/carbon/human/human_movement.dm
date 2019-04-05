@@ -135,7 +135,7 @@
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
 	//Can we act
-	if(is_mob_restrained())	return 0
+	if(restrained())	return 0
 
 	//Do we have a working jetpack
 	if(istype(back, /obj/item/tank/jetpack))
