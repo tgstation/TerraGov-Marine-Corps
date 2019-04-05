@@ -27,8 +27,7 @@ FLOOR SAFES
 	anchored = 1
 	density = 1
 	layer = BELOW_OBJ_LAYER
-	unacidable = 1
-
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/spawnkey = 1 //Spawn safe code on top of it?
 	var/open = 0		//is the safe open?
 	var/tumbler_1_pos	//the tumbler position- from 0 to 72
@@ -184,9 +183,6 @@ FLOOR SAFES
 		if(istype(I, /obj/item/clothing/tie/stethoscope))
 			to_chat(user, "Hold [I] in one of your hands while you manipulate the dial.")
 			return
-
-obj/structure/safe/ex_act(severity)
-	return
 
 //FLOOR SAFES
 /obj/structure/safe/floor

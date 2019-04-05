@@ -93,7 +93,7 @@
 	icon_state = "black"
 	item_state = "bgloves"
 	armor = list("melee" = 80, "bullet" = 95, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 20, "rad" = 20, "fire" = 80, "acid" = 80)
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/gloves/marine/veteran/PMC
 	name = "armored gloves"
@@ -109,4 +109,4 @@
 	icon_state = "brown"
 	item_state = "browngloves"
 	armor = list("melee" = 90, "bullet" = 120, "laser" = 100, "energy" = 90, "bomb" = 50, "bio" = 30, "rad" = 30, "fire" = 90, "acid" = 90)
-	unacidable = 1
+	resistance_flags = UNACIDABLE

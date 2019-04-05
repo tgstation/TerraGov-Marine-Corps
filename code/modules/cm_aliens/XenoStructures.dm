@@ -6,7 +6,6 @@
 	name = "alien thing"
 	desc = "theres something alien about this"
 	icon = 'icons/Xeno/Effects.dmi'
-	unacidable = TRUE
 	anchored = TRUE
 	var/health = 1
 	var/on_fire = FALSE
@@ -682,7 +681,7 @@ TUNNEL
 	density = 0
 	opacity = 0
 	anchored = 1
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 	layer = RESIN_STRUCTURE_LAYER
 
 	var/tunnel_desc = "" //description added by the hivelord.

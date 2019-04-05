@@ -67,7 +67,7 @@
 	item_state = "compression"
 	icon_state = "compression"
 	armor = list("melee" = 40, "bullet" = 45, "laser" = 40, "energy" = 55, "bomb" = 40, "bio" = 100, "rad" = 50, "fire" = 55, "acid" = 55)
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/suit/space/compression
 	name = "\improper MK.50 compression suit"
@@ -75,4 +75,4 @@
 	item_state = "compression"
 	icon_state = "compression"
 	armor = list("melee" = 50, "bullet" = 55, "laser" = 65, "energy" = 70, "bomb" = 65, "bio" = 100, "rad" = 70, "fire" = 70, "acid" = 70)
-	unacidable = 1
+	resistance_flags = UNACIDABLE

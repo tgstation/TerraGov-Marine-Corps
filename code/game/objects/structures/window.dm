@@ -522,7 +522,7 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	damageable = FALSE
 	deconstructable = FALSE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	health = 1000000 //Failsafe, shouldn't matter
 
 /obj/structure/window/framed/almayer/requisitions
@@ -565,7 +565,7 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	damageable = FALSE
 	deconstructable = FALSE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	health = 1000000 //Failsafe, shouldn't matter
 
 
@@ -656,5 +656,5 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	damageable = FALSE
 	deconstructable = FALSE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	health = 1000000 //Failsafe, shouldn't matter
