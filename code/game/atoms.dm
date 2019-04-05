@@ -361,17 +361,11 @@ its easier to just keep the beam vertical.
 			src.fingerprintslast = M.key
 	return
 
-/atom/proc/add_fingerprint(mob/living/M)
-	if(!istype(M)) 
-		return
-
-	if(isAI(M)) 
-		return
-
-	if(isnull(M.key)) 
-		return
-
-	if(ishuman(M))
+/atom/proc/add_fingerprint(mob/living/M as mob)
+	if(isnull(M)) return
+	if(isAI(M)) return
+	if(isnull(M.key)) return
+	if (ishuman(M))
 		//Add the list if it does not exist.
 		if(!fingerprintshidden)
 			fingerprintshidden = list()
@@ -469,7 +463,7 @@ its easier to just keep the beam vertical.
 	if(fingerprints && !fingerprints.len)
 		qdel(fingerprints)
 		fingerprints = null
-
+	return
 
 /atom/proc/transfer_fingerprints_to(var/atom/A)
 
