@@ -38,10 +38,10 @@
 	X.speed += 2
 	do_acid_spray_cone(target, X.xeno_caste.acid_spray_range)
 	add_cooldown()
-	addtimer(CALLBACK(X, /mob/living/carbon/Xenomorph/.proc/speed_increase, 2), rand(20,30))
+	addtimer(CALLBACK(X, /mob/living/carbon/Xenomorph/.proc/reset_speed), rand(20,30))
 
-/mob/living/carbon/Xenomorph/proc/speed_increase(var/amount)
-	speed -= amount
+/mob/living/carbon/Xenomorph/proc/reset_speed()
+	speed = xeno_caste.speed
 
 GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/vehicle/multitile/root/cm_armored, /obj/structure/razorwire)))
 
