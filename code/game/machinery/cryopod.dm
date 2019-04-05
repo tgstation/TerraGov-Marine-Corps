@@ -18,7 +18,8 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "cellconsole"
 	circuit = "/obj/item/circuitboard/computer/cryopodcontrol"
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	exproof = TRUE
+	unacidable = TRUE
 	var/cryotype = "REQ"
 	var/mode = null
 

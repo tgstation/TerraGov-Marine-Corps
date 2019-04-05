@@ -9,8 +9,11 @@
 	density = 1
 	opacity = 0
 	anchored = 1
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	unacidable = 1
 	layer = WINDOW_LAYER
+
+/obj/structure/shuttle/window/ex_act(severity)
+	return
 
 /obj/structure/shuttle/window/fire_act(exposed_temperature, exposed_volume)
 	return
@@ -19,7 +22,7 @@
 	name = "engine"
 	density = 1
 	anchored = 1.0
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	unacidable = 1
 
 /obj/structure/shuttle/engine/heater
 	name = "heater"

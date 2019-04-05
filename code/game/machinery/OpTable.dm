@@ -6,7 +6,7 @@
 	density = 1
 	layer = TABLE_LAYER
 	anchored = 1
-	resistance_flags = UNACIDABLE
+	unacidable = 1
 	use_power = 1
 	idle_power_usage = 1
 	active_power_usage = 5

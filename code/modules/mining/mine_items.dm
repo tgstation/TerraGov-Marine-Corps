@@ -4,5 +4,6 @@
 /obj/effect/light_emitter
 	name = "Light-emtter"
 	anchored = 1
+	unacidable = 1
 	luminosity = 8
 

@@ -3,7 +3,7 @@
 	use_power = FALSE
 	density = FALSE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	unacidable = TRUE
 	var/active_state = SELF_DESTRUCT_MACHINE_INACTIVE
 
 
@@ -16,6 +16,11 @@
 	GLOB.machines -= src
 	operator = null
 	return ..()
+
+
+/obj/machinery/self_destruct/ex_act(severity)
+	return FALSE
+
 
 /obj/machinery/self_destruct/attack_hand()
 	. = ..()

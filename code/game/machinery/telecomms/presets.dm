@@ -13,7 +13,7 @@
 	listen_same_level = TRUE
 
 /obj/machinery/telecomms/relay/preset/station/prison
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	unacidable = 1
 
 /obj/machinery/telecomms/relay/preset/ice_colony
 	icon = 'icons/obj/machines/comm_tower.dmi'
@@ -21,7 +21,7 @@
 	id = "Station Relay"
 	listen_same_level = TRUE
 	autolinkers = list("s_relay")
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	unacidable = 1
 
 	//We dont want anyone to mess with it
 	attackby()
@@ -256,7 +256,7 @@
 	idle_power_usage = 0
 	machinetype = 6
 	produces_heat = 0
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	unacidable = 1
 	var/intercept = 0 // if nonzero, broadcasts all messages to syndicate channel
 
 /obj/machinery/telecomms/allinone/interceptor

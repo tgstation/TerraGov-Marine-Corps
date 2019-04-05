@@ -38,7 +38,7 @@
 	density = 1
 	anchored = 0
 	luminosity = 4
-	resistance_flags = UNACIDABLE
+	unacidable = 1
 
 	var/gasefficency = 0.25
 

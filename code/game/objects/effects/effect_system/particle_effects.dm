@@ -6,6 +6,7 @@
 	name = "effect"
 	icon = 'icons/effects/effects.dmi'
 	mouse_opacity = 0
+	unacidable = 1//So effect are not targeted by alien acid.
 	flags_pass = PASSTABLE|PASSGRILLE|PASSMOB
 
 	//Fire

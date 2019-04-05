@@ -341,7 +341,7 @@
 
 /obj/on_set_interaction(mob/user)
 	..()
-	ENABLE_BITFIELD(obj_flags, IN_USE)
+	in_use = 1
 
 
 //things the user's machine must do just before we unset the user's machine.

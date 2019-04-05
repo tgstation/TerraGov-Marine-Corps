@@ -6,7 +6,8 @@
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "consoleright"
 	circuit = null
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	unacidable = TRUE
+	exproof = TRUE
 	var/shuttle_tag  // Used to know which shuttle we're linked to.
 	var/obj/structure/dropship_equipment/selected_equipment //the currently selected equipment installed on the shuttle this console controls.
 	var/list/shuttle_equipments = list() //list of the equipments on the shuttle this console controls

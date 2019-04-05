@@ -14,7 +14,7 @@
 	throwforce = 5.0
 	throw_range = 6
 	throw_speed = 3
-	resistance_flags = UNACIDABLE
+	unacidable = 1
 	flags_atom = CONDUCT
 
 	var/iff_signal = ACCESS_IFF_MARINE
@@ -153,7 +153,7 @@
 	anchored = 1
 	mouse_opacity = 0
 	invisibility = INVISIBILITY_MAXIMUM
-	resistance_flags = UNACIDABLE
+	unacidable = 1 //You never know
 	var/obj/item/explosive/mine/linked_claymore
 
 /obj/effect/mine_tripwire/Destroy()

@@ -10,7 +10,7 @@
 	level = 1
 	anchored = TRUE
 	layer = WIRE_TERMINAL_LAYER
-	resistance_flags = UNACIDABLE
+	unacidable = TRUE //so xenos can't melt visible SMES terminals on the planet to break the SMES
 	var/obj/machinery/power/master = null
 
 

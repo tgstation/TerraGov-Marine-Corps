@@ -860,7 +860,7 @@
 	icon = 'icons/effects/warning_stripes.dmi'
 	anchored = 1
 	density = 0
-	resistance_flags = UNACIDABLE
+	unacidable = 1
 	layer = ABOVE_TURF_LAYER
 	var/squad_name = "Alpha"
 	var/sending_package = 0

@@ -32,7 +32,7 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
-	resistance_flags = UNACIDABLE
+	unacidable = TRUE
 	var/area/area
 	var/areastring = null
 	var/obj/item/cell/cell

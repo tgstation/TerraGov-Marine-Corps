@@ -29,7 +29,7 @@
 	else
 		structure_strings += "You cannot break this structure."
 
-	if(CHECK_BITFIELD(resistance_flags, UNACIDABLE))
+	if(unacidable)
 		structure_strings += "You cannot melt this structure with acid."
 
 	if(length(parts) > 0)

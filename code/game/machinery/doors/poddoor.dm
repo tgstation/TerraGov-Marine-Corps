@@ -29,7 +29,7 @@
 	add_fingerprint(user)
 	if(!W.pry_capable)
 		return
-	if(density && (machine_stat & NOPOWER) && !operating && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+	if(density && (machine_stat & NOPOWER) && !operating && !unacidable)
 		spawn(0)
 			operating = 1
 			flick("pdoorc0", src)
@@ -388,27 +388,27 @@
 /obj/machinery/door/poddoor/filler_object
 	name = ""
 	icon_state = ""
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	unacidable = 1
 
 /obj/machinery/door/poddoor/four_tile_hor/secure
 	icon = 'icons/obj/doors/1x4blast_hor_secure.dmi'
 	openspeed = 17
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	unacidable = 1
 
 /obj/machinery/door/poddoor/four_tile_ver/secure
 	icon = 'icons/obj/doors/1x4blast_vert_secure.dmi'
 	openspeed = 17
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	unacidable = 1
 
 /obj/machinery/door/poddoor/two_tile_hor/secure
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 	openspeed = 17
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	unacidable = 1
 
 /obj/machinery/door/poddoor/two_tile_ver/secure
 	icon = 'icons/obj/doors/1x2blast_vert.dmi'
 	openspeed = 17
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	unacidable = 1
 
 
 

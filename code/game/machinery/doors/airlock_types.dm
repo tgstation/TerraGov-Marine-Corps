@@ -124,6 +124,7 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_research
 	glass = 1
+	heat_proof = 1
 
 /obj/machinery/door/airlock/glass_mining
 	name = "\improper Mining Airlock"
@@ -527,7 +528,7 @@
 	icon = 'icons/obj/doors/almayer/dropship1_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	id = "sh_dropship1"
 	openspeed = 4 //shorter open animation.
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	unacidable = TRUE
 	no_panel = TRUE
 	not_weldable = TRUE
 	destructible = FALSE
@@ -559,7 +560,7 @@
 	name = "\improper Cockpit"
 	req_access_txt = "22"
 	req_one_access_txt = "0"
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	unacidable = TRUE
 	no_panel = TRUE
 	not_weldable = TRUE
 	destructible = FALSE

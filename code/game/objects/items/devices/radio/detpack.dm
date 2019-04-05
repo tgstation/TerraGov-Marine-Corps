@@ -224,11 +224,11 @@
 /obj/item/device/radio/detpack/afterattack(atom/target, mob/user, flag)
 	if(!flag)
 		return FALSE
-	if(istype(target, /obj/item) || istype(target, /mob))
+	if(istype(target, /obj/structure/ladder) || istype(target, /obj/item) || istype(target, /mob))
 		return FALSE
-	if(isobj(target))
+	if(istype(target, /obj/effect) || istype(target, /obj/machinery))
 		var/obj/O = target
-		if(CHECK_MULTIPLE_BITFIELDS(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+		if(O.unacidable)
 			return FALSE
 	if(iswallturf(target))
 		var/turf/closed/wall/W = target

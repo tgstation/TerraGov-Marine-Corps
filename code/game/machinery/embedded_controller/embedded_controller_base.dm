@@ -51,7 +51,7 @@
 	var/frequency = 1379
 	var/radio_filter = null
 	var/datum/radio_frequency/radio_connection
-	resistance_flags = UNACIDABLE
+	unacidable = 1
 
 /obj/machinery/embedded_controller/radio/Initialize()
 	. = ..()

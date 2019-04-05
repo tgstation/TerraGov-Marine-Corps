@@ -5,7 +5,7 @@
 	desc = "A display case for prized possessions. It taunts you to kick it."
 	density = 1
 	anchored = 1
-	resistance_flags = UNACIDABLE
+	unacidable = 1//Dissolving the case would also delete the gun.
 	health = 30
 	var/occupied = 1
 	var/destroyed = 0

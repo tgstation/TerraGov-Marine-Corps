@@ -19301,7 +19301,8 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 4;
 	id = "secure_blast";
-	name = "\improper Secure Armory Blast Door"
+	name = "\improper Secure Armory Blast Door";
+	unacidable = 1
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
@@ -19641,7 +19642,8 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 4;
 	id = "secure_blast";
-	name = "\improper Secure Armory Blast Door"
+	name = "\improper Secure Armory Blast Door";
+	unacidable = 1
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -19666,7 +19668,8 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 4;
 	id = "secure_blast";
-	name = "\improper Secure Armory Blast Door"
+	name = "\improper Secure Armory Blast Door";
+	unacidable = 1
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -20474,6 +20477,7 @@
 /obj/machinery/telecomms/relay/preset/station{
 	idle_power_usage = 0;
 	listening_level = 1;
+	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor,

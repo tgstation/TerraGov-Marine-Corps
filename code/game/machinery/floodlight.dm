@@ -12,7 +12,7 @@
 	var/unlocked = 0
 	var/open = 0
 	var/brightness_on = 7		//can't remember what the maxed out value is
-	resistance_flags = UNACIDABLE
+	unacidable = 1
 
 /obj/machinery/floodlight/Initialize()
 	. = ..()
@@ -57,7 +57,7 @@
 		on = 0
 		to_chat(user, "<span class='notice'>You turn off the light.</span>")
 		SetLuminosity(0)
-		ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
+		unacidable = 1
 	else
 		if(!cell)
 			return
@@ -66,7 +66,7 @@
 		on = 1
 		to_chat(user, "<span class='notice'>You turn on the light.</span>")
 		SetLuminosity(brightness_on)
-		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
+		unacidable = 0
 
 	updateicon()
 
@@ -119,6 +119,7 @@
 	desc = "A powerful light stationed near landing zones to provide better visibility."
 	icon_state = "flood01"
 	on = 1
+	in_use = 1
 	luminosity = 5
 	use_power = 0
 

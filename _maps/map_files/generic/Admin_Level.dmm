@@ -2201,7 +2201,8 @@
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "generic_ert";
-	name = "\improper Security shutters"
+	name = "\improper Security shutters";
+	unacidable = 1
 	},
 /turf/open/floor/almayer,
 /area/centcom)
@@ -2219,7 +2220,8 @@
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "wy_ert";
-	name = "\improper Security shutters"
+	name = "\improper Security shutters";
+	unacidable = 1
 	},
 /turf/open/floor/almayer,
 /area/centcom)
@@ -2230,7 +2232,8 @@
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "upp_ert";
-	name = "\improper Security shutters"
+	name = "\improper Security shutters";
+	unacidable = 1
 	},
 /turf/open/floor/almayer,
 /area/centcom)
