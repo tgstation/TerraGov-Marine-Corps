@@ -54,7 +54,7 @@
 
 	succeed_activate()
 	if(X.crest_defense)
-		X.use_plasma(DEFENDER_HEADBUTT_COST)
+		X.use_plasma(plasma_cost)
 	add_cooldown()
 
 	X.face_atom(H) //Face towards the target so we don't look silly
@@ -92,50 +92,40 @@
 	action_icon_state = "tail_sweep"
 	mechanics_text = "Hit all adjacent units around you, knocking them away and down."
 	ability_name = "tail sweep"
+	plasma_cost = DEFENDER_TAILSWIPE_COST
+	use_state_flags = XACT_USE_CRESTED
+	cooldown_timer = DEFENDER_TAILSWIPE_COOLDOWN
+
+/datum/action/xeno_action/activable/tail_sweep/can_use_ability(atom/A, silent = FALSE)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>You don't have enough plasma, you need [(plasma_cost * 2) - X.plasma_stored] more plasma!</span>")
+		return FALSE
+
+/datum/action/xeno_action/activable/tail_sweep/on_cooldown_finish()
+	to_chat(src, "<span class='notice'>You gather enough strength to tail sweep again.</span>")
+	return ..()
 
 /datum/action/xeno_action/activable/tail_sweep/use_ability()
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.tail_sweep()
-
-/datum/action/xeno_action/activable/tail_sweep/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/X = owner
-	return !X.used_tail_sweep
-
-/mob/living/carbon/Xenomorph/proc/tail_sweep()
-	if (fortify)
-		to_chat(src, "<span class='xenowarning'>You cannot use abilities while fortified.</span>")
-		return
-
-	if (!check_state())
-		return
-
-	if (used_tail_sweep)
-		to_chat(src, "<span class='xenowarning'>You must gather your strength before tail sweeping.</span>")
-		return
-
-	if (crest_defense) //We can now use crest defense, but the plasma cost is doubled.
-		if (!check_plasma(DEFENDER_TAILSWIPE_COST * 2))
-			return
-	else if (!check_plasma(DEFENDER_TAILSWIPE_COST))
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake up the shock!</span>")
-		return
 
 	round_statistics.defender_tail_sweeps++
-	visible_message("<span class='xenowarning'>\The [src] sweeps it's tail in a wide circle!</span>", \
+	X.visible_message("<span class='xenowarning'>\The [X] sweeps it's tail in a wide circle!</span>", \
 	"<span class='xenowarning'>You sweep your tail in a wide circle!</span>")
 
-	spin_circle()
+	X.spin_circle()
 
 	var/sweep_range = 1
-	var/list/L = orange(sweep_range)		// Not actually the fruit
+	var/list/L = orange(sweep_range, X)		// Not actually the fruit
 
 	for (var/mob/living/carbon/human/H in L)
 		step_away(H, src, sweep_range, 2)
-		if(H.stat != DEAD && !(istype(H.buckled, /obj/structure/bed/nest) && H.status_flags & XENO_HOST) ) //No bully
-			var/damage = rand(xeno_caste.melee_damage_lower,xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(src)
+		if(H.stat != DEAD && !(istype(H.buckled, /obj/structure/bed/nest) && CHECK_BITFIELD(H.status_flags, XENO_HOST)) ) //No bully
+			var/damage = rand(X.xeno_caste.melee_damage_lower,X.xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(X)
 			var/affecting = H.get_limb(ran_zone(null, 0))
 			if(!affecting) //Still nothing??
 				affecting = H.get_limb("chest") //Gotta have a torso?!
@@ -146,20 +136,13 @@
 		round_statistics.defender_tail_sweep_hits++
 		shake_camera(H, 2, 1)
 
-		to_chat(H, "<span class='xenowarning'>You are struck by \the [src]'s tail sweep!</span>")
+		to_chat(H, "<span class='xenowarning'>You are struck by \the [X]'s tail sweep!</span>")
 		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
-	used_tail_sweep = TRUE
-	if(crest_defense) //We can now use crest defense, but the plasma cost is doubled.
-		use_plasma(DEFENDER_TAILSWIPE_COST * 2)
-	else
-		use_plasma(DEFENDER_TAILSWIPE_COST)
 
-	addtimer(CALLBACK(src, .tailswipe_cooldown), DEFENDER_TAILSWIPE_COOLDOWN)
-
-/mob/living/carbon/Xenomorph/proc/tailswipe_cooldown()
-	used_tail_sweep = FALSE
-	to_chat(src, "<span class='notice'>You gather enough strength to tail sweep again.</span>")
-	update_action_button_icons()
+	succeed_activate()
+	if(X.crest_defense)
+		X.use_plasma(plasma_cost)
+	add_cooldown()
 
 // ***************************************
 // *********** Crest defense

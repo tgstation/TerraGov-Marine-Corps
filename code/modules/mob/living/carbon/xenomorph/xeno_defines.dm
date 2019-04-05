@@ -151,8 +151,6 @@
 	var/critical_proc = 0
 	var/critical_delay = 25
 
-	var/has_spat = 0
-
 	var/has_screeched = 0
 	var/middle_mouse_toggle = TRUE //This toggles whether selected ability uses middle mouse clicking or shift clicking
 
@@ -238,13 +236,8 @@
 	var/fortify = 0
 	var/crest_defense = 0
 
-	var/used_headbutt = 0
-	var/used_tail_sweep = 0
 	var/used_crest_defense = 0
 	var/used_fortify = 0
-
-	//Praetorian vars
-	var/used_acid_spray = 0
 
 	//Runner vars
 	var/hit_and_run = 0 //If we have a value here, we get bonus damage in proportion to movement.
@@ -253,23 +246,15 @@
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
 	var/leader_current_aura = "" //Pheromone type inherited from Queen
 
-	var/acid_cooldown = 0
-
 	//Runner vars
 	var/savage = FALSE
 	var/savage_used = FALSE
 
 	//Hunter vars
 	var/sneak_bonus = 0.00
-
-	//Acid spray
-	var/last_spray_used
-
+	
 	//Larva Growth
 	var/last_larva_growth_used = 0
-
-	//Neurotoxin sting
-	var/last_neurotoxin_sting = 0
 
 	//Notification spam controls
 	var/recent_notice = 0
