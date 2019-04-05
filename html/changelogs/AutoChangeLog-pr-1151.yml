@@ -1,0 +1,8 @@
+author: "by Surrealistk"
+delete-after: True
+changes: 
+  - tweak: "Tunnel cooldown reduced from 4 minutes to 2. Tunnels are easier to destroy with grenades (2 frag grenades required). Tunnel travel time is now proportionate to distance between tunnels with a minimum travel time of 2 seconds, and a maximum of 4 or 6 for large Xenos."
+  - tweak: "If a tunnel is destroyed, its corresponding tunnel will also be destroyed."
+  - tweak: "Hivelords can dismantle their own tunnels by attacking them while on Harm intent."
+  - balance: "Hivelords may only have up to 4 tunnel sets in play at once (the current amount is displayed in the Status panel). Tunnel sets created beyond this amount will destroy the oldest tunnel set."
+  - tweak: "Increased slow down stacks from sticky spit hits."
