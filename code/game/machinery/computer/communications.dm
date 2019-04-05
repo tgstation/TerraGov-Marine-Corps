@@ -216,12 +216,12 @@
 						to_chat(C, "<span class='notice'><b><font color='purple'>DISTRESS:</font> [ADMIN_TPMONTY(usr)] has called a Distress Beacon. It will be sent in 60 seconds unless denied or sent early. (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];distress=[REF(usr)]'>SEND</A>) (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];deny=[REF(usr)]'>DENY</A>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];reply=[REF(usr)]'>REPLY</a>).</b></span>")
 				to_chat(usr, "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>")
 
-				distress_cancel = FALSE
+				SSticker.mode.distress_cancelled = FALSE
 				just_called = TRUE
 				spawn(1 MINUTES)
 					just_called = FALSE
 					cooldown_request = world.time
-					if(distress_cancel || SSticker.mode.on_distress_cooldown || SSticker.mode.waiting_for_candidates)
+					if(SSticker.mode.distress_cancelled || SSticker.mode.on_distress_cooldown || SSticker.mode.waiting_for_candidates)
 						return FALSE
 					else
 						SSticker.mode.activate_distress()

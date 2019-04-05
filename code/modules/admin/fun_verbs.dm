@@ -262,20 +262,20 @@
 
 	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear"))
 		if("Change")
-			custom_event_msg = input(usr, "Set the custom information players get on joining or via the OOC tab.",, custom_event_msg) as message|null
+			GLOB.custom_info = input(usr, "Set the custom information players get on joining or via the OOC tab.",, GLOB.custom_info) as message|null
 
-			custom_event_msg = noscript(custom_event_msg)
+			GLOB.custom_info = noscript(GLOB.custom_info)
 
-			if(!custom_event_msg)
+			if(!GLOB.custom_info)
 				return
 
 			to_chat(world, "<h1 class='alert'>Custom Information</h1>")
-			to_chat(world, "<span class='alert'>[custom_event_msg]</span>")
+			to_chat(world, "<span class='alert'>[GLOB.custom_info]</span>")
 
-			log_admin("[key_name(usr)] has changed the custom event text: [custom_event_msg]")
+			log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
 			message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
 		if("Clear")
-			custom_event_msg = null
+			GLOB.custom_info = null
 			log_admin("[key_name(usr)] has cleared the custom info.")
 			message_admins("[ADMIN_TPMONTY(usr)] has cleared the custom info.")
 
@@ -284,12 +284,12 @@
 	set category = "OOC"
 	set name = "Custom Info"
 
-	if(!custom_event_msg || custom_event_msg == "")
+	if(!GLOB.custom_info || GLOB.custom_info == "")
 		to_chat(src, "<span class='notice'>There currently is no known custom information set.</span>")
 		return
 
 	to_chat(src, "<h1 class='alert'>Custom Information</h1>")
-	to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
+	to_chat(src, "<span class='alert'>[GLOB.custom_info]</span>")
 
 
 /datum/admins/proc/sound_file(S as sound)
@@ -300,17 +300,18 @@
 	if(!check_rights(R_SOUND))
 		return
 
-	heard_midi = 0
+	var/heard_midi = 0
 	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
 	uploaded_sound.priority = 250
 
 
-	var/style = alert("Play sound globally or locally?", "Sound", "Global", "Local", "Cancel")
+	var/style = alert("Play sound globally or locally?", "Play Imported Sound", "Global", "Local", "Cancel")
 	switch(style)
 		if("Global")
-			for(var/mob/M in GLOB.player_list)
-				if(M.client.prefs.toggles_sound & SOUND_MIDI)
-					M << uploaded_sound
+			for(var/i in GLOB.clients)
+				var/client/C = i
+				if(C.prefs.toggles_sound & SOUND_MIDI)
+					SEND_SOUND(C, uploaded_sound)
 					heard_midi++
 		if("Local")
 			playsound(get_turf(usr), uploaded_sound, 50, 0)

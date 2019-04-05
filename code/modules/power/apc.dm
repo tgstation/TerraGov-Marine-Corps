@@ -1070,7 +1070,7 @@
 	else
 		main_status = APC_EXTERNAL_POWER_GOOD
 
-	if(debug)
+	if(GLOB.Debug2)
 		log_runtime( "Status: [main_status] - Excess: [excess] - Last Equip: [lastused_equip] - Last Light: [lastused_light]")
 
 		if(area.powerupdate)

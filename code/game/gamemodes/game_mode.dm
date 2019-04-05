@@ -11,6 +11,8 @@
 	var/flags_round_type = NOFLAGS
 	var/flags_landmarks = NOFLAGS
 
+	var/distress_cancelled = FALSE
+
 
 /datum/game_mode/New()
 	initialize_emergency_calls()

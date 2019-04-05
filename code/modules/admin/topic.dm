@@ -27,10 +27,11 @@
 	if(href_list["ahelp"])
 		var/ahelp_ref = href_list["ahelp"]
 		var/datum/admin_help/AH = locate(ahelp_ref)
-		if(AH)
-			AH.Action(href_list["ahelp_action"])
-		else
+		if(!AH)
 			to_chat(usr, "<span class='warning'>Ticket [ahelp_ref] has been deleted!</span>")
+			return
+
+		AH.Action(href_list["ahelp_action"])		
 
 
 	else if(href_list["ahelp_tickets"])
@@ -43,7 +44,7 @@
 
 		var/mob/M = locate(href_list["moreinfo"]) in GLOB.mob_list
 
-		if(!ismob(M))
+		if(!istype(M))
 			return
 
 		var/status
@@ -51,7 +52,7 @@
 
 		if(isliving(M))
 			var/mob/living/L = M
-			switch(M.stat)
+			switch(L.stat)
 				if(CONSCIOUS)
 					status = "Alive"
 				if(UNCONSCIOUS)
@@ -87,9 +88,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 
 	else if(href_list["observecoordjump"])
-		if(istype(usr, /mob/new_player))
-			return
-
 		var/x = text2num(href_list["X"])
 		var/y = text2num(href_list["Y"])
 		var/z = text2num(href_list["Z"])
@@ -97,59 +95,66 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(x == 0 && y == 0 && z == 0)
 			return
 
-		var/client/C = usr.client
+		var/mob/M = usr
 
-		if(!isobserver(usr))
+		var/message
+		if(!isobserver(M))
 			admin_ghost()
-			log_admin("[key_name(C.mob)] jumped to coordinates ([x], [y], [z]).")
-			message_admins("[ADMIN_TPMONTY(C.mob)] jumped to coordinates ([x], [y], [z]).")
+			message = TRUE
 
-		var/mob/dead/observer/M = C.mob
+		var/mob/dead/observer/O = usr
+		O.on_mob_jump()
+		var/turf/T = locate(x, y, z)
+		O.forceMove(T)
 
-		M.on_mob_jump()
-		M.x = x
-		M.y = y
-		M.z = z
-		M.forceMove(M.loc)
+		if(message)
+			log_admin("[key_name(O)] jumped to coordinates [AREACOORD(T)].")
+			message_admins("[ADMIN_TPMONTY(O)] jumped to coordinates [ADMIN_VERBOSEJMP(T)].")
 
 
 	else if(href_list["observefollow"])
 		var/atom/movable/AM = locate(href_list["observefollow"])
+		var/mob/M = usr
 
-		if(QDELETED(AM) || !ismovableatom(AM))
+		if(!ismovableatom(AM))
 			return
 
-		if(istype(usr, /mob/new_player) || istype(AM, /mob/new_player))
+		if(isnewplayer(M) || isnewplayer(AM))
 			return
 
-		var/client/C = usr.client
-
-		if(!isobserver(usr))
+		var/message
+		if(!isobserver(M))
 			admin_ghost()
-			log_admin("[key_name(C.mob)] jumped to follow [key_name(AM)].")
-			message_admins("[ADMIN_TPMONTY(C.mob)] jumped to follow [ADMIN_TPMONTY(AM)].")
+			message = TRUE
 
-		var/mob/dead/observer/ghost = C.mob
-		ghost.ManualFollow(AM)
+		var/mob/dead/observer/O = usr
+		O.on_mob_jump()
+		O.ManualFollow(AM)
+
+		if(message)
+			log_admin("[key_name(O)] jumped to follow [key_name(AM)].")
+			message_admins("[ADMIN_TPMONTY(O)] jumped to follow [ADMIN_TPMONTY(AM)].")
 
 
 	else if(href_list["observejump"])
 		var/atom/movable/AM = locate(href_list["observejump"])
+		var/mob/M = usr
 
-		if(istype(usr, /mob/new_player) || istype(AM, /mob/new_player))
+		if(isnewplayer(M) || isnewplayer(AM))
 			return
 
-		var/client/C = usr.client
-
-		if(!isobserver(usr))
+		var/message
+		if(!isobserver(M))
 			admin_ghost()
-			log_admin("[key_name(usr)] jumped to [key_name(AM)].")
-			message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_TPMONTY(AM)].")
+			message = TRUE
 
-		var/mob/dead/observer/M = C.mob
+		var/mob/dead/observer/O = usr
+		O.on_mob_jump()
+		O.forceMove(get_turf(AM))
 
-		M.on_mob_jump()
-		M.forceMove(AM.loc)
+		if(message)
+			log_admin("[key_name(O)] jumped to [key_name(AM)].")
+			message_admins("[ADMIN_TPMONTY(O)] jumped to [ADMIN_TPMONTY(AM)].")
 
 
 	else if(href_list["secrets"])
@@ -208,10 +213,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				return
 			if(alert(usr, "Are you sure you want to kick [key_name(M)]?", "Warning", "Yes", "No") != "Yes")
 				return
-			if(!M)
-				to_chat(usr, "<span class='warning'>Error: [M] no longer exists!</span>")
-				return
-			if(!M.client)
+			if(!M?.client)
 				to_chat(usr, "<span class='warning'>Error: [M] no longer has a client!</span>")
 				return
 			to_chat(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>")
@@ -227,7 +229,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/mob/M = locate(href_list["mute"])
 
-		if(!ismob(M))
+		if(!istype(M))
 			return
 
 		if(!M.client || !check_if_greater_rights_than(M.client))
@@ -327,6 +329,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		L.revive()
+
 		log_admin("[key_name(usr)] revived [key_name(L)].")
 		message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
 
@@ -436,7 +439,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!istype(M))
 			return
 
-		distress_cancel = TRUE
+		SSticker.mode.distress_cancelled = TRUE
 		command_announcement.Announce("The distress signal has been blocked, the launch tubes are now recalibrating.", "Distress Beacon")
 		log_game("[key_name(usr)] has denied a distress beacon, requested by [key_name(M)]")
 		message_admins("[ADMIN_TPMONTY(usr)] has denied a distress beacon, requested by [ADMIN_TPMONTY(M)]")
@@ -504,17 +507,17 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/mob/M = locate(href_list["gib"])
-		if(!ismob(M) || isobserver(M))
+		var/mob/living/L = locate(href_list["gib"])
+		if(!istype(L) || isobserver(L))
 			return
 
-		if(alert("Are you sure you want to gib [M]?", "Warning", "Yes", "No") != "Yes")
+		if(alert("Are you sure you want to gib [L]?", "Warning", "Yes", "No") != "Yes")
 			return
 
-		log_admin("[key_name(usr)] has gibbed [key_name(M)].")
-		message_admins("[ADMIN_TPMONTY(usr)] has gibbed [ADMIN_TPMONTY(M)].")
+		log_admin("[key_name(usr)] has gibbed [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has gibbed [ADMIN_TPMONTY(L)].")
 
-		M.gib()
+		L.gib()
 
 
 	else if(href_list["lobby"])
@@ -876,29 +879,34 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_SERVER))
 			return
 
-		if(SSticker?.mode)
-			return alert("The game has already started.")
-
-		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
+		var/dat = "<b>What mode do you wish to play?</b><br>"
 		for(var/mode in config.modes)
-			dat += {"<A href='?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[config.mode_names[mode]]</A><br>"}
-		dat += {"Now: [GLOB.master_mode]"}
-		usr << browse(dat, "window=c_mode")
+			dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[config.mode_names[mode]]</a><br>"
+		dat += "<br>"
+		dat += "Now: [GLOB.master_mode]"
+		dat += "Next Round: [trim(file2text("data/mode.txt"))]"
+
+		var/datum/browser/browser = new(usr, "change_mode", "<div align='center'>Change Gamemode</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
 
 
 	else if(href_list["changemode"])
 		if(!check_rights(R_SERVER))
 			return
 
-		if(SSticker?.mode)
-			return alert("The game has already started.")
+		var/new_mode = href_list["changemode"]
 
-		GLOB.master_mode = href_list["changemode"]
-
-		log_admin("[key_name(usr)] set the mode as [GLOB.master_mode].")
-		message_admins("[ADMIN_TPMONTY(usr)] set the mode as [GLOB.master_mode].")
-		to_chat(world, "<span class='boldnotice'>The mode is now: [GLOB.master_mode].</span>")
-		world.save_mode(GLOB.master_mode)
+		if(SSticker.mode)
+			world.save_mode(new_mode)
+			log_admin("[key_name(usr)] set the mode for next round to: [new_mode].")
+			message_admins("[ADMIN_TPMONTY(usr)] set the mode to: [new_mode].")
+		else
+			GLOB.master_mode = new_mode
+			to_chat(world, "<span class='boldnotice'>The mode is now: [GLOB.master_mode].</span>")
+			world.save_mode(GLOB.master_mode)
+			log_admin("[key_name(usr)] set the mode to: [GLOB.master_mode].")
+			message_admins("[ADMIN_TPMONTY(usr)] set the mode to: [GLOB.master_mode].")
 
 
 	if(href_list["evac_authority"])
@@ -1067,16 +1075,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		if(number == 1)
 			log_admin("[key_name(usr)] created a [english_list(paths)].")
-			for(var/path in paths)
-				if(ispath(path, /mob))
-					message_admins("[ADMIN_TPMONTY(usr)] created a [english_list(paths)].")
-					break
+			message_admins("[ADMIN_TPMONTY(usr)] created a [english_list(paths)].")
 		else
 			log_admin("[key_name(usr)] created [number]ea [english_list(paths)].")
-			for(var/path in paths)
-				if(ispath(path, /mob))
-					message_admins("[ADMIN_TPMONTY(usr)] created [number]ea [english_list(paths)].")
-					break
+			message_admins("[ADMIN_TPMONTY(usr)] created [number]ea [english_list(paths)].")
 
 
 	else if(href_list["admin_log"])
