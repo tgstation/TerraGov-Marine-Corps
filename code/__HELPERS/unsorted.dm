@@ -675,7 +675,7 @@ var/global/image/busy_indicator_hostile
 		if(user.get_active_held_item() != holding)
 			. = FALSE
 			break
-		if(user.is_mob_incapacitated(TRUE) || user.lying)
+		if(user.incapacitated(TRUE) || user.lying)
 			. = FALSE
 			break
 		if(selected_zone_check && cur_zone_sel != user.zone_selected)

@@ -599,7 +599,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 /mob/living/carbon/Xenomorph/bullet_act(obj/item/projectile/P)
 	if(!P || !istype(P))
 		return
-	if(xeno_hivenumber(src) && xeno_hivenumber(src) == xeno_hivenumber(P.firer)) //Aliens won't be harming allied aliens.
+	if(issamexenohive(P.firer)) //Aliens won't be harming allied aliens.
 		bullet_ping(P)
 		return
 

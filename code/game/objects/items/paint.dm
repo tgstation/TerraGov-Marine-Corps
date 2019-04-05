@@ -123,7 +123,7 @@ var/global/list/cached_icons = list()
 
 	attack_self(mob/user as mob)
 		var/t1 = input(user, "Please select a color:", "Locking Computer", null) in list( "red", "blue", "green", "yellow", "black", "white")
-		if ((user.get_active_held_item() != src || user.stat || user.is_mob_restrained()))
+		if ((user.get_active_held_item() != src || user.stat || user.restrained()))
 			return
 		switch(t1)
 			if("red")
@@ -171,66 +171,65 @@ var/global/list/cached_icons = list()
 		return
 */
 
-datum/reagent/paint
+/datum/reagent/paint
 	name = "Paint"
 	id = "paint_"
 	reagent_state = 2
 	color = "#808080"
 	description = "This paint will only adhere to floor tiles."
 
-	reaction_turf(var/turf/T, var/volume)
-		if(!istype(T) || isspaceturf(T))
-			return
-		T.color = color
+/datum/reagent/paint/reaction_turf(turf/T, volume)
+	if(!istype(T) || isspaceturf(T))
+		return
+	T.color = color
 
-	reaction_obj(var/obj/O, var/volume)
-		..()
-		if(istype(O,/obj/item/light_bulb))
-			O.color = color
+/datum/reagent/paint/reaction_obj(obj/O, volume)
+	. = ..()
+	if(istype(O,/obj/item/light_bulb))
+		O.color = color
 
-	red
-		name = "Red Paint"
-		id = "paint_red"
-		color = "#FE191A"
+/datum/reagent/paint/red
+	name = "Red Paint"
+	id = "paint_red"
+	color = "#FE191A"
 
-	green
-		name = "Green Paint"
-		color = "#18A31A"
-		id = "paint_green"
+/datum/reagent/paint/green
+	name = "Green Paint"
+	color = "#18A31A"
+	id = "paint_green"
 
-	blue
-		name = "Blue Paint"
-		color = "#247CFF"
-		id = "paint_blue"
+/datum/reagent/paint/blue
+	name = "Blue Paint"
+	color = "#247CFF"
+	id = "paint_blue"
 
-	yellow
-		name = "Yellow Paint"
-		color = "#FDFE7D"
-		id = "paint_yellow"
+/datum/reagent/paint/yellow
+	name = "Yellow Paint"
+	color = "#FDFE7D"
+	id = "paint_yellow"
 
-	violet
-		name = "Violet Paint"
-		color = "#CC0099"
-		id = "paint_violet"
+/datum/reagent/paint/violet
+	name = "Violet Paint"
+	color = "#CC0099"
+	id = "paint_violet"
 
-	black
-		name = "Black Paint"
-		color = "#333333"
-		id = "paint_black"
+/datum/reagent/paint/black
+	name = "Black Paint"
+	color = "#333333"
+	id = "paint_black"
 
-	white
-		name = "White Paint"
-		color = "#F0F8FF"
-		id = "paint_white"
+/datum/reagent/paint/white
+	name = "White Paint"
+	color = "#F0F8FF"
+	id = "paint_white"
 
-datum/reagent/paint_remover
+/datum/reagent/paint_remover
 	name = "Paint Remover"
 	id = "paint_remover"
 	description = "Paint remover is used to remove floor paint from floor tiles."
 	reagent_state = 2
 	color = "#808080"
 
-	reaction_turf(var/turf/T, var/volume)
-		if(istype(T) && T.icon != initial(T.icon))
-			T.icon = initial(T.icon)
-		return
+/datum/reagent/paint_remover/reaction_turf(turf/T, volume)
+	if(istype(T) && T.icon != initial(T.icon))
+		T.icon = initial(T.icon)

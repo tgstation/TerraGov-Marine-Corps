@@ -65,7 +65,7 @@
 	set category = "Object"
 	var/mob/M = usr
 
-	if(ishuman(M) && !M.is_mob_incapacitated())
+	if(ishuman(M) && !M.incapacitated())
 		if(!istype(usr.loc,/turf)) return
 		if(amount <= 14)
 			to_chat(usr, "<span class='warning'>You need at least 15 lengths to make restraints!</span>")

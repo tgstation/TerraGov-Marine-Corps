@@ -1064,8 +1064,8 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	var/hivenumber_status = X.hivenumber
 
 	var/list/namelist = list()
-	for(var/Y in hive_datum)
-		var/datum/hive_status/H = Y
+	for(var/Y in GLOB.hive_datums)
+		var/datum/hive_status/H = GLOB.hive_datums[Y]
 		namelist += H.name
 
 	var/newhive = input(src, "Select a hive.", null, null) in namelist
@@ -1088,7 +1088,7 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	if(!istype(X) || X.gc_destroyed || !SSticker || X.hivenumber != hivenumber_status)
 		return
 
-	X.set_hive_number(newhivenumber)
+	X.transfer_to_hive(newhivenumber)
 
 	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] to [newhive].")

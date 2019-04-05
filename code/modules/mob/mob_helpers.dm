@@ -10,12 +10,6 @@ proc/is_blind(A)
 		return M.eye_blind
 	return FALSE
 
-proc/xeno_hivenumber(A)
-	if(isxeno(A))
-		var/mob/living/carbon/Xenomorph/X = A
-		return X.hivenumber
-	return FALSE
-
 /proc/isxenosilicon(A)
 	if(isxeno(A))
 		var/mob/living/carbon/Xenomorph/X = A
@@ -359,11 +353,11 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return FALSE
 
 
-/mob/proc/is_mob_restrained()
+/mob/proc/restrained()
 	return
 
-/mob/proc/is_mob_incapacitated(ignore_restrained)
-	return (stat || stunned || knocked_down || knocked_out || (!ignore_restrained && is_mob_restrained()))
+/mob/proc/incapacitated(ignore_restrained)
+	return (stat || stunned || knocked_down || knocked_out || (!ignore_restrained && restrained()))
 
 /mob/proc/reagent_check(datum/reagent/R)
 	return 1

@@ -7,7 +7,7 @@
 	flags_heat_protection = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.90
 	flags_equip_slot = ITEM_SLOT_ICLOTHING
-	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	w_class = 3
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
 	var/sensor_mode = 3
@@ -84,7 +84,7 @@
 		if ((flags_item & NODROP) || loc != usr)
 			return
 
-		if (!usr.is_mob_incapacitated() && !(usr.buckled && usr.lying))
+		if (!usr.incapacitated() && !(usr.buckled && usr.lying))
 			if(over_object)
 				switch(over_object.name)
 					if("r_hand")
@@ -114,7 +114,7 @@
 /obj/item/clothing/under/proc/set_sensors(mob/living/user)
 	if (!istype(user))
 		return
-	if (user.is_mob_incapacitated(TRUE))
+	if (user.incapacitated(TRUE))
 		return
 	if(has_sensor >= 2)
 		to_chat(user, "The sensors in [src] can't be modified.")

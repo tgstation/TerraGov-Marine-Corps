@@ -622,10 +622,9 @@
 			if(new_xeno)
 				SSticker.mode.transfer_xeno(src, new_xeno)
 		if("Larva")
-			var/mob/living/carbon/Xenomorph/Queen/mother = SSticker.mode.attempt_to_join_as_larva(src)
-			if(!mother)
+			if(!SSticker.mode.attempt_to_join_as_larva(src))
 				return
-			SSticker.mode.spawn_larva(src, mother)
+			SSticker.mode.spawn_larva(src)
 
 
 /mob/dead/observer/verb/observe()

@@ -41,7 +41,7 @@
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
 			if(buckled_mob != user)
-				if(user.stat || user.lying || user.is_mob_restrained())
+				if(user.stat || user.lying || user.restrained())
 					return
 				buckled_mob.visible_message("<span class='notice'>\The [user] pulls \the [buckled_mob] free from \the [src]!</span>",\
 				"<span class='notice'>\The [user] pulls you free from \the [src].</span>",\
@@ -90,7 +90,7 @@
 
 /obj/structure/bed/nest/buckle_mob(mob/M as mob, mob/user as mob)
 
-	if(!ismob(M) || (get_dist(src, user) > 1) || (M.loc != loc) || user.is_mob_restrained() || user.stat || user.lying || M.buckled || !iscarbon(user))
+	if(!ismob(M) || (get_dist(src, user) > 1) || (M.loc != loc) || user.restrained() || user.stat || user.lying || M.buckled || !iscarbon(user))
 		return
 
 	if(buckled_mob)

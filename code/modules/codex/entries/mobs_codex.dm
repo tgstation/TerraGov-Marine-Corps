@@ -19,8 +19,8 @@
 
 	xeno_strings += "<br><U>Basic Statistics for this Xeno are as follows</U>:"
 
-	xeno_strings += "Name: '[name]'"
-	xeno_strings += "Tier: [tier]"
+	xeno_strings += "Name: '[xeno_caste.caste_name]'"
+	xeno_strings += "Tier: [tier_as_number()]"
 	xeno_strings += "Melee slash damage: between [xeno_caste.melee_damage_lower] and [xeno_caste.melee_damage_upper]"
 	xeno_strings += "Tackle damage: [xeno_caste.tackle_damage]"
 	switch(mob_size)
@@ -32,22 +32,12 @@
 	xeno_strings += "Armor: [xeno_caste.armor_deflection]"
 	xeno_strings += "Max plasma: [xeno_caste.plasma_max]"
 	xeno_strings += "Plasma gain: [xeno_caste.plasma_gain]"
-	switch(hivenumber)
-		if(XENO_HIVE_NORMAL)
-			xeno_strings += "Hive: Normal"
-		if(XENO_HIVE_CORRUPTED)
-			xeno_strings += "Hive: Corrupted"
-		if(XENO_HIVE_ALPHA)
-			xeno_strings += "Hive: Alpha"
-		if(XENO_HIVE_BETA)
-			xeno_strings += "Hive: Beta"
-		if(XENO_HIVE_ZETA)
-			xeno_strings += "Hive: Zeta"
+	xeno_strings += "Hive: [hive?.name]"
 
-	if(length(xeno_caste.evolves_to))
+	if(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED)
 		xeno_strings += "<br><U>This can evolve to</U>:"
 		for(var/type in xeno_caste.evolves_to)
-			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][1]
+			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
 			xeno_strings += "[Z.caste_name]"
 
 	if(length(actions))

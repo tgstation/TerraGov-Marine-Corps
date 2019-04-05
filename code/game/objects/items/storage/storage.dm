@@ -65,7 +65,7 @@
 		if(loc != usr || (loc && loc.loc == usr))
 			return
 
-		if(!usr.is_mob_restrained() && !usr.stat)
+		if(!usr.restrained() && !usr.stat)
 			switch(over_object.name)
 				if("r_hand")
 					usr.dropItemToGround(src)
@@ -256,7 +256,7 @@
 
 
 /obj/screen/storage/Click(location, control, params)
-	if(usr.is_mob_incapacitated(TRUE))
+	if(usr.incapacitated(TRUE))
 		return
 
 	if(istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
@@ -494,7 +494,7 @@
 
 /obj/item/storage/proc/quick_empty()
 
-	if((!ishuman(usr) && loc != usr) || usr.is_mob_restrained())
+	if((!ishuman(usr) && loc != usr) || usr.restrained())
 		return
 
 	var/turf/T = get_turf(src)

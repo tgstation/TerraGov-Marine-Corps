@@ -93,7 +93,7 @@
 
 /obj/item/device/transfer_valve/Topic(href, href_list)
 	..()
-	if ( usr.stat || usr.is_mob_restrained() )
+	if ( usr.stat || usr.restrained() )
 		return 0
 	if (src.loc != usr)
 		return 0

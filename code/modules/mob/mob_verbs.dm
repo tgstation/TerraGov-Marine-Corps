@@ -33,7 +33,7 @@
 	if(!A.mouse_opacity) //Can't click it? can't point at it.
 		return FALSE
 
-	if(is_mob_incapacitated() || (status_flags & FAKEDEATH)) //Incapacitated, can't point.
+	if(incapacitated() || (status_flags & FAKEDEATH)) //Incapacitated, can't point.
 		return FALSE
 
 	var/tile = get_turf(A)

@@ -5,7 +5,7 @@
 	item_state = "capspacehelmet"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Only for the most fashionable of military figureheads."
 	permeability_coefficient = 0.01
-	armor = list(melee = 65, bullet = 50, laser = 50,energy = 25, bomb = 50, bio = 100, rad = 50)
+	armor = list("melee" = 65, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 25, "acid" = 25)
 
 //Captain's space suit This is not the proper path but I don't currently know enough about how this all works to mess with it.
 /obj/item/clothing/suit/armor/captain
@@ -19,7 +19,7 @@
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun, /obj/item/ammo_magazine, /obj/item/weapon/baton,/obj/item/handcuffs)
 	slowdown = 1.5
-	armor = list(melee = 65, bullet = 50, laser = 50, energy = 25, bomb = 50, bio = 100, rad = 50)
+	armor = list("melee" = 65, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 25, "acid" = 25)
 	flags_inventory = NOPRESSUREDMAGE
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS

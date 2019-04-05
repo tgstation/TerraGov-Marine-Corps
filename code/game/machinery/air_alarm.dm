@@ -60,7 +60,7 @@
 
 /obj/machinery/alarm
 	name = "alarm"
-	icon = 'icons/obj/machines/monitors.dmi' // I made these really quickly because idk where they have their new air alarm ~Art
+	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "alarm0"
 	anchored = 1
 	use_power = 1
@@ -88,7 +88,7 @@
 	var/area/alarm_area
 	var/buildstage = 2 //2 is built, 1 is building, 0 is frame.
 
-	var/target_temperature = T0C+20
+	var/target_temperature = T20C
 	var/regulating_temperature = 0
 
 	var/datum/radio_frequency/radio_connection
@@ -108,15 +108,22 @@
 
 
 
-/obj/machinery/alarm/Initialize(loc, direction, building = FALSE)
+/obj/machinery/alarm/Initialize(mapload, direction, building = FALSE)
 	. = ..()
 
-	if(building)
-		if(loc)
-			src.loc = loc
+	if(direction)
+		setDir(direction)
+	switch(dir)
+		if(NORTH)
+			pixel_y = -32
+		if(SOUTH)
+			pixel_y = 32
+		if(EAST)
+			pixel_x = -32
+		if(WEST)
+			pixel_x = 32
 
-		if(direction)
-			setDir(direction)
+	if(building)
 		buildstage = 0
 		wiresexposed = TRUE
 
@@ -127,18 +134,7 @@
 	if(!master_is_operating())
 		elect_master()
 
-	switch(dir)
-		if(NORTH) 
-			pixel_y = 25
-		if(SOUTH) 
-			pixel_y = -25
-		if(EAST) 
-			pixel_x = 25
-		if(WEST) 
-			pixel_x = -25
-
 	start_processing()
-
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
@@ -246,6 +242,9 @@
 	return 0
 
 /obj/machinery/alarm/update_icon()
+	if(buildstage != 2)
+		icon_state = "alarm-b1"
+		return
 	if(wiresexposed)
 		icon_state = "alarmx"
 		return
@@ -257,13 +256,7 @@
 	if (alarm_area?.atmosalm)
 		icon_level = max(icon_level, 1)	//if there's an atmos alarm but everything is okay locally, no need to go past yellow
 
-	switch(icon_level)
-		if (0)
-			icon_state = "alarm0"
-		if (1)
-			icon_state = "alarm2" //yes, alarm2 is yellow alarm
-		if (2)
-			icon_state = "alarm1"
+	icon_state = "alarm[icon_level]"
 
 /obj/machinery/alarm/receive_signal(datum/signal/signal)
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -969,6 +962,7 @@ table tr:first-child th:first-child { border: none;}
 					to_chat(usr, "<span class='notice'>You cut last of wires inside [src]</span>")
 					update_icon()
 					buildstage = 1
+					update_icon()
 				return
 
 		else if (href_list["pulse"])
@@ -1081,27 +1075,26 @@ table tr:first-child th:first-child { border: none;}
 	if (buildstage < 1)
 		to_chat(user, "The circuit is missing.")
 
-
-
-
 /obj/machinery/alarm/monitor
-	apply_danger_level = 0
-	breach_detection = 0
-	post_alert = 0
+	apply_danger_level = FALSE
+	breach_detection = FALSE
+	post_alert = FALSE
 
-/obj/machinery/alarm/server/New()
-	..()
+/obj/machinery/alarm/server
 	req_one_access = list(ACCESS_CIVILIAN_ENGINEERING)
+	target_temperature = 90
+
+/obj/machinery/alarm/server/first_run()
+	alarm_area = get_area(src)
+	if (alarm_area.master)
+		alarm_area = alarm_area.master
+	area_uid = alarm_area.uid
+	if (name == "alarm")
+		name = "[alarm_area.name] Air Alarm"
+
 	TLV["oxygen"] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
 	TLV["carbon dioxide"] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
 	TLV["phoron"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
 	TLV["pressure"] =		list(0,ONE_ATMOSPHERE*0.10,ONE_ATMOSPHERE*1.40,ONE_ATMOSPHERE*1.60) /* kpa */
 	TLV["temperature"] =	list(20, 40, 140, 160) // K
-	target_temperature = 90
-
-
-//Theseus version
-/obj/machinery/alarm/almayer
-
-

@@ -150,7 +150,7 @@
 
 /obj/item/circuitboard/airlock/Topic(href, href_list)
 	. = ..()
-	if (usr.stat || usr.is_mob_restrained() || (!ishuman(usr) && !issilicon(usr)))
+	if (usr.stat || usr.restrained() || (!ishuman(usr) && !issilicon(usr)))
 		return
 	if (href_list["close"])
 		usr << browse(null, "window=airlock")

@@ -121,19 +121,19 @@ Vehicles are placed on the map by a spawner or admin verb
 	set name = "Exit Vehicle"
 	set src in view(0)
 
-	if(!usr.is_mob_incapacitated(TRUE))
+	if(!usr.incapacitated(TRUE))
 		handle_player_exit(usr)
 
 /obj/vehicle/multitile/root/proc/handle_player_exit(var/mob/M)
 	return
 
 /obj/vehicle/multitile/root/proc/handle_player_entrance(var/mob/M)
-	if(M.resting || M.buckled || M.is_mob_incapacitated())
+	if(M.resting || M.buckled || M.incapacitated())
 		return FALSE
 	return TRUE
 
 /obj/vehicle/multitile/root/proc/handle_harm_attack(var/mob/M)
-	if(M.resting || M.buckled || M.is_mob_incapacitated())
+	if(M.resting || M.buckled || M.incapacitated())
 		return FALSE
 	return TRUE
 

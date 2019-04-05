@@ -163,11 +163,41 @@ var/list/global_mutations = list() // list of hidden mutation things
 // =============================
 // hive types
 
-#define XENO_HIVE_NORMAL 1
-#define XENO_HIVE_CORRUPTED 2
-#define XENO_HIVE_ALPHA 3
-#define XENO_HIVE_BETA 4
-#define XENO_HIVE_ZETA 5
+#define XENO_HIVE_NONE "none"
+#define XENO_HIVE_NORMAL "normal"
+#define XENO_HIVE_CORRUPTED "corrupted"
+#define XENO_HIVE_ALPHA "alpha"
+#define XENO_HIVE_BETA "beta"
+#define XENO_HIVE_ZETA "zeta"
+
+// =============================
+// xeno tiers
+
+#define XENO_TIER_ZERO "zero" // god forgive me because i wont forgive myself
+#define XENO_TIER_ONE "one"
+#define XENO_TIER_TWO "two"
+#define XENO_TIER_THREE "three"
+#define XENO_TIER_FOUR "four"
+
+GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE, XENO_TIER_FOUR))
+
+// =============================
+// xeno upgrades
+
+#define XENO_UPGRADE_BASETYPE "basetype"
+#define XENO_UPGRADE_INVALID "invalid" // not applicable, the old -1
+#define XENO_UPGRADE_ZERO "zero"	// god forgive me again
+#define XENO_UPGRADE_ONE "one"
+#define XENO_UPGRADE_TWO "two"
+#define XENO_UPGRADE_THREE "three"
+
+GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE))
+
+// =============================
+// xeno slashing
+#define XENO_SLASHING_FORBIDDEN 0
+#define XENO_SLASHING_ALLOWED 1
+#define XENO_SLASHING_RESTRICTED 2
 
 //=================================================
 
@@ -449,17 +479,15 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define WARRIOR_AGILITY_ARMOR 30
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 
-#define SPIT_UPGRADE_BONUS ( max(0,upgrade) * 0.15 ) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
+#define SPIT_UPGRADE_BONUS ( max(0,upgrade_as_number()) * 0.15 ) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
 #define SPRAY_STRUCTURE_UPGRADE_BONUS 8
 #define SPRAY_MOB_UPGRADE_BONUS 4
 
-#define QUEEN_DEATH_LARVA_MULTIPLIER ( (upgrade+1) * 0.17) ) // 85/68/51/34 for ancient/elder emp/elder queen/queen
+#define QUEEN_DEATH_LARVA_MULTIPLIER 0.17 // 85/68/51/34 for ancient/elder emp/elder queen/queen
 
 #define PLASMA_TRANSFER_AMOUNT 50
 #define PLASMA_SALVAGE_AMOUNT 40
 #define PLASMA_SALVAGE_MULTIPLIER 0.5 // I'd not reccomend setting this higher than one.
-
-#define CRITICAL_HIT_DELAY 25
 
 #define XENO_LARVAL_ADVANCEMENT_COOLDOWN	15 SECONDS
 
@@ -486,6 +514,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CASTE_IS_ROBOTIC			(1<<8)
 #define CASTE_DECAY_PROOF			(1<<9)
 #define CASTE_CAN_BE_LEADER			(1<<10)
+#define CASTE_HIDE_IN_STATUS		(1<<11)
 
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
@@ -536,7 +565,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI	100
 #define CRUSHER_CHARGE_TANK_MULTI		100
 
-#define CRUSHER_STOMP_UPGRADE_BONUS ( 1 + upgrade * 0.05 )
+#define CRUSHER_STOMP_UPGRADE_BONUS ( 1 + upgrade_as_number() * 0.05 )
 
 //carrier defines
 

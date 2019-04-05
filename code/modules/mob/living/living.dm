@@ -349,7 +349,7 @@
 			if(X.mob_size == MOB_SIZE_BIG)
 				L.do_bump_delay = 1
 
-		if(L.pulledby && L.pulledby != src && L.is_mob_restrained())
+		if(L.pulledby && L.pulledby != src && L.restrained())
 			if(!(world.time % 5))
 				to_chat(src, "<span class='warning'>[L] is restrained, you cannot push past.</span>")
 			now_pushing = 0
@@ -358,7 +358,7 @@
  		if(L.pulling)
  			if(ismob(L.pulling))
  				var/mob/P = L.pulling
- 				if(P.is_mob_restrained())
+ 				if(P.restrained())
  					if(!(world.time % 5))
  						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
 					now_pushing = 0
@@ -385,7 +385,7 @@
 			if(L.pulledby == src && a_intent == INTENT_GRAB)
 				mob_swap = 1
 			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-			else if((L.is_mob_restrained() || L.a_intent == INTENT_HELP) && (is_mob_restrained() || a_intent == INTENT_HELP))
+			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP))
 				mob_swap = 1
 			if(mob_swap)
 				//switch our position with L

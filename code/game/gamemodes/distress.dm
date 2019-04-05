@@ -17,7 +17,6 @@
 
 	var/list/xenomorphs = list()
 	var/datum/mind/queen
-	var/stored_larva 		= 0
 	var/latejoin_tally		= 0
 	var/latejoin_larva_drop = 0
 	var/queen_death_countdown = 0
@@ -167,7 +166,8 @@
 			new /mob/living/carbon/Xenomorph/Larva(pick(GLOB.xeno_spawn))
 
 	else if(length(xenomorphs) < xeno_starting_num)
-		stored_larva += xeno_starting_num - length(xenomorphs)
+		var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
+		HN.stored_larva += xeno_starting_num - length(xenomorphs)
 
 	return TRUE
 
@@ -619,10 +619,8 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 	log_admin("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""].")
 
-	for(var/i in GLOB.dead_mob_list)
+	for(var/i in GLOB.observer_list)
 		var/mob/M = i
-		if(isnewplayer(M))
-			continue
 		to_chat(M, "<h2 class='alert'>Detailed Information</h2>")
 		to_chat(M, {"<span class='alert'>[numXenosPlanet] xeno\s on the planet, including [numLarvaPlanet] larva.
 [numXenosShip] xeno\s on the ship, including [numLarvaShip] larva.
@@ -635,7 +633,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 
 /datum/game_mode/distress/check_queen_status(queen_time)
-	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
+	var/datum/hive_status/hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	hive.xeno_queen_timer = queen_time
 	queen_death_countdown = 0
 	if(!(flags_round_type & MODE_INFESTATION))
@@ -651,31 +649,19 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 
 /datum/game_mode/distress/attempt_to_join_as_larva(mob/xeno_candidate)
-	if(!stored_larva)
+	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	if(!HS.stored_larva)
 		to_chat(xeno_candidate, "<span class='warning'>There are no burrowed larvas.</span>")
 		return FALSE
-	var/available_queens[] = list()
 
-	for(var/mob/living/carbon/Xenomorph/Queen/Q in GLOB.alive_xeno_list)
-		if(is_centcom_level(Q.z))
-			continue
-		if(!Q.ovipositor || Q.is_mob_incapacitated(TRUE))
-			continue
-		available_queens += Q
-
-	if(!length(available_queens))
+	if(!HS.living_xeno_queen?.ovipositor)
 		to_chat(xeno_candidate, "<span class='warning'>There are no mothers with an ovipositor deployed.</span>")
 		return FALSE
 
-	var/mob/living/carbon/Xenomorph/Queen/mother = input("Available Mothers") as null|anything in available_queens
-	if(!istype(mother) || !xeno_candidate?.client)
+	if (!xeno_candidate || !xeno_candidate.client)
 		return FALSE
 
-	if(!stored_larva)
-		to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
-		return FALSE
-
-	if(!mother.ovipositor || mother.is_mob_incapacitated(TRUE))
+	if(HS.living_xeno_queen?.incapacitated(TRUE))
 		to_chat(xeno_candidate, "<span class='warning'>Mother is not in a state to receive us.</span>")
 		return FALSE
 
@@ -684,25 +670,26 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			DEATHTIME_MESSAGE(xeno_candidate)
 			return FALSE
 
-	return mother
+	return HS.living_xeno_queen
 
 
-/datum/game_mode/distress/spawn_larva(mob/xeno_candidate, mob/living/carbon/Xenomorph/Queen/mother)
+/datum/game_mode/distress/spawn_larva(mob/xeno_candidate)
+	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(!xeno_candidate?.mind)
 		return FALSE
 
-	if(!stored_larva || !istype(mother))
+	if(!HS.stored_larva || !istype(HS.living_xeno_queen))
 		to_chat(xeno_candidate, "<span class='warning'>Something went awry. Can't spawn at the moment.</span>")
-		CRASH("Failed to spawn larva through latejoin.")
+		return FALSE
 
-	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(mother.loc)
+	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(HS.living_xeno_queen.loc)
 	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 	"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
 
 	xeno_candidate.mind.transfer_to(new_xeno, TRUE)
 	SEND_SOUND(new_xeno, 'sound/effects/xeno_newlarva.ogg')
 	to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
-	stored_larva--
+	HS.stored_larva--
 
 	log_admin("[key_name(new_xeno)] has joined as [new_xeno].")
 	message_admins("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")

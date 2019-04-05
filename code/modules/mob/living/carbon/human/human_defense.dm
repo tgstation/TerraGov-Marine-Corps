@@ -72,7 +72,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(gear && istype(gear ,/obj/item/clothing))
 			var/obj/item/clothing/C = gear
 			if(C.flags_armor_protection & def_zone?.body_part)
-				protection += C.armor[type]
+				protection += C.armor.getRating(type)
 	return protection
 
 /mob/living/carbon/human/proc/check_head_coverage()
@@ -194,7 +194,7 @@ Contains most of the procs that are called when a mob is attacked by something
 						update_inv_glasses(0)
 
 			if("chest")//Easier to score a stun but lasts less time
-				if(prob((I.force + 10)) && !is_mob_incapacitated())
+				if(prob((I.force + 10)) && !incapacitated())
 					apply_effect(6, WEAKEN, armor)
 					visible_message("<span class='danger'>[src] has been knocked down!</span>",
 									"<span class='danger'>You have been knocked down!</span>", null, 5)
@@ -218,7 +218,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/obj/O = AM
 
 		if(in_throw_mode && !get_active_held_item() && speed <= 5)	//empty active hand and we're in throw mode
-			if(!is_mob_incapacitated())
+			if(!incapacitated())
 				if(isturf(O.loc))
 					if(put_in_active_hand(O))
 						visible_message("<span class='warning'>[src] catches [O]!</span>", null, null, 5)

@@ -36,7 +36,7 @@
 	var/flags_armor_protection = NOFLAGS //see setup.dm for appropriate bit flags
 	var/flags_heat_protection = NOFLAGS //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
 	var/flags_cold_protection = NOFLAGS //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
-	var/list/armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by flags_heat_protection flags
 	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by flags_cold_protection flags
 
@@ -127,7 +127,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(!istype(src.loc, /turf) || usr.stat || usr.is_mob_restrained() )
+	if(!istype(src.loc, /turf) || usr.stat || usr.restrained() )
 		return
 
 	var/turf/T = src.loc
@@ -238,7 +238,7 @@
 				break
 			if(!affected_limbs.Find(X.name) )
 				continue
-			armor_block = H.run_armor_check(X, "energy")
+			armor_block = H.run_armor_check(X, "acid")
 			if(istype(X) && X.take_damage(null, rand(raw_damage * 0.75, raw_damage * 1.25), null, null, null, null, null, armor_block))
 				H.UpdateDamageIcon()
 			limb_count++
@@ -552,12 +552,12 @@
 
 	if(!(usr)) //BS12 EDIT
 		return
-	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !Adjacent(usr))
+	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
 	if((!iscarbon(usr)) || (isbrain(usr)))//Is humanoid, and is not a brain
 		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
 		return
-	if( usr.stat || usr.is_mob_restrained() )//Is not asleep/dead and is not restrained
+	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
 		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
 		return
 	if(src.anchored) //Object isn't anchored

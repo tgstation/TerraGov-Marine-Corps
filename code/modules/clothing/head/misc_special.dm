@@ -18,7 +18,7 @@
 	item_state = "welding"
 	matter = list("metal" = 3000, "glass" = 1000)
 	var/up = 0
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	flags_atom = CONDUCT
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE
@@ -40,7 +40,7 @@
 	set name = "Adjust welding mask"
 	set src in usr
 
-	if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
+	if(usr.canmove && !usr.stat && !usr.restrained())
 		if(up)
 			flags_inventory |= COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 			flags_inv_hide |= HIDEEARS|HIDEEYES|HIDEFACE

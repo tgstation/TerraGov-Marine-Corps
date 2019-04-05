@@ -95,7 +95,7 @@
 /obj/machinery/power/geothermal/attack_hand(mob/user as mob)
 	if(!anchored) //Shouldn't actually be possible
 		return FALSE
-	if(user.is_mob_incapacitated())
+	if(user.incapacitated())
 		return FALSE
 	if(!ishuman(user))
 		to_chat(user, "<span class='warning'>You have no idea how to use that.</span>")
