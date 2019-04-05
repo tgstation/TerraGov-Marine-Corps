@@ -3,7 +3,8 @@
 /datum/progressbar
 	var/goal = 1
 	var/image/bar
-	var/bar_tag = 0
+	var/interval = 5
+	var/bar_tag = 1
 	var/datum/progressicon/prog_display
 	var/shown = 0
 	var/mob/user
@@ -16,15 +17,14 @@
 		EXCEPTION("Invalid target given")
 	if (goal_number)
 		goal = goal_number
-	if(!isnull(bar_tag))
-		bar = image('icons/effects/progressbar.dmi', target, "prog_bar_[bar_tag]_0", HUD_LAYER)
-		bar.plane = ABOVE_HUD_PLANE
-		bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	user = U
 	if(user)
 		client = user.client
 
-	if(bar)
+	if(!isnull(bar_tag))
+		bar = image('icons/effects/progressbar.dmi', target, "prog_bar_[bar_tag]_0", HUD_LAYER)
+		bar.plane = ABOVE_HUD_PLANE
+		bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 		LAZYINITLIST(user.progressbars)
 		LAZYINITLIST(user.progressbars[bar.loc])
 		var/list/bars = user.progressbars[bar.loc]
@@ -36,15 +36,19 @@
 		prog_display = new new_display
 
 /datum/progressbar/proc/update(progress)
-	if (!user?.client)
+	if(!bar)
+		return
+	if (!(user?.client))
 		shown = FALSE
 		return
 	if (user.client != client)
-		client?.images -= bar
-		user.client?.images += bar
+		if(client)
+			client.images -= bar
+		if(user.client)
+			user.client.images += bar
 
 	progress = CLAMP(progress, 0, goal)
-	bar.icon_state = "prog_bar_[bar_tag]_[round(((progress / goal) * 100), 5)]"
+	bar.icon_state = "prog_bar_[bar_tag]_[round(((progress / goal) * 100), interval)]"
 	if (!shown)
 		user.client.images += bar
 		shown = TRUE
@@ -54,20 +58,22 @@
 	bar.pixel_y -= PROGRESSBAR_HEIGHT
 
 /datum/progressbar/Destroy()
-	for(var/I in user.progressbars[bar.loc])
-		var/datum/progressbar/P = I
-		if(P != src && P.listindex > listindex)
-			P.shiftDown()
+	if(bar)
+		for(var/I in user.progressbars[bar.loc])
+			var/datum/progressbar/P = I
+			if(P != src && P.listindex > listindex)
+				P.shiftDown()
 
-	var/list/bars = user.progressbars[bar.loc]
-	bars.Remove(src)
-	if(!length(bars))
-		LAZYREMOVE(user.progressbars, bar.loc)
+		var/list/bars = user.progressbars[bar.loc]
+		bars.Remove(src)
+		if(!length(bars))
+			LAZYREMOVE(user.progressbars, bar.loc)
 
-	client?.images -= bar
-	qdel(bar)
+		if(client)
+			client.images -= bar
+		qdel(bar)
 
-	QDEL_NULL(prog_display)
+	qdel(prog_display)
 
 	return ..()
 
