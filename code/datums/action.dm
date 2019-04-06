@@ -108,16 +108,18 @@
 
 
 
-#define XACT_USE_INCAP		(1 << 0) // ignore incapacitated
-#define XACT_USE_LYING		(1 << 1) // ignore lying down
-#define XACT_USE_BUCKLED	(1 << 2) // ignore buckled
-#define XACT_USE_STAGGERED	(1 << 3) // ignore staggered
-#define XACT_USE_FORTIFIED	(1 << 4) // ignore fortified
-#define XACT_USE_CRESTED	(1 << 5) // ignore being in crest defense
-#define XACT_USE_NOTTURF	(1 << 6) // ignore not being on a turf (like in a vent)
-#define XACT_USE_BUSY		(1 << 7) // ignore being in a do_after or similar
-#define XACT_USE_AGILITY	(1 << 8) // ignore agility mode
-#define XACT_TARGET_SELF	(1 << 9) // allow self-targetting
+#define XACT_USE_INCAP			(1 << 0) // ignore incapacitated
+#define XACT_USE_LYING			(1 << 1) // ignore lying down
+#define XACT_USE_BUCKLED		(1 << 2) // ignore buckled
+#define XACT_USE_STAGGERED		(1 << 3) // ignore staggered
+#define XACT_USE_FORTIFIED		(1 << 4) // ignore fortified
+#define XACT_USE_CRESTED		(1 << 5) // ignore being in crest defense
+#define XACT_USE_NOTTURF		(1 << 6) // ignore not being on a turf (like in a vent)
+#define XACT_USE_BUSY			(1 << 7) // ignore being in a do_after or similar
+#define XACT_USE_AGILITY		(1 << 8) // ignore agility mode
+#define XACT_TARGET_SELF		(1 << 9) // allow self-targetting
+#define XACT_IGNORE_PLASMA		(1 << 10) // ignore plasma cost
+#define XACT_IGNORE_COOLDOWN	(1 << 11) // ignore cooldown
 
 /datum/action/xeno_action
 	var/action_icon_state
@@ -134,62 +136,63 @@
 		name = "[name] ([plasma_cost])"
 	button.overlays += image('icons/mob/actions.dmi', button, action_icon_state)
 
-/datum/action/xeno_action/can_use_action(silent = FALSE, ignore_cooldown = FALSE)
+/datum/action/xeno_action/can_use_action(silent = FALSE, override_flags)
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X)
 		return FALSE
+	var/flags_to_check = use_state_flags|override_flags
 
-	if(!ignore_cooldown && !action_cooldown_check())
+	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You can't use [name] yet, wait [cooldown_remaining()] seconds!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_INCAP) && X.incapacitated())
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_INCAP) && X.incapacitated())
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You can't do this while incapacitated!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_LYING) && X.lying)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_LYING) && X.lying)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You can't do this while lying down!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_BUCKLED) && X.buckled)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_BUCKLED) && X.buckled)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You can't do this while buckled!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_STAGGERED) && X.stagger)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_STAGGERED) && X.stagger)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You can't do this while staggered!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_FORTIFIED) && X.fortify)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_FORTIFIED) && X.fortify)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You can't do this while fortified!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_CRESTED) && X.crest_defense)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_CRESTED) && X.crest_defense)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You can't do this while in crest defense!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_NOTTURF) && !isturf(X.loc))
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_NOTTURF) && !isturf(X.loc))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You can't do this here!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_BUSY) && X.action_busy)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_BUSY) && X.action_busy)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You're busy doing something right now!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_AGILITY) && X.agility)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_AGILITY) && X.agility)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You can't do that in agility mode!</span>")
 		return FALSE
 
-	if(X.plasma_stored < plasma_cost)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You don't have enough plasma to do this!</span>")
 		return FALSE
@@ -284,11 +287,19 @@
 	return
 
 //override this 
-/datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, ignore_cooldown = FALSE)
-	if(!CHECK_BITFIELD(use_state_flags, XACT_TARGET_SELF) && A == owner)
+/datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, override_flags)
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(X.selected_ability != src)
 		return FALSE
 
-	return can_use_action(silent, ignore_cooldown)
+	. = can_use_action(silent, override_flags)
+	var/flags_to_check = use_state_flags|override_flags
+
+	if(!CHECK_BITFIELD(flags_to_check, XACT_TARGET_SELF) && A == owner)
+		return FALSE
+
+/datum/action/xeno_action/activable/proc/can_activate()
+	return TRUE
 
 /datum/action/xeno_action/activable/proc/on_activation()
 	return

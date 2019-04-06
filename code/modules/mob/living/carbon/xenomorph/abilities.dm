@@ -280,7 +280,7 @@
 	var/transfer_delay = 2 SECONDS
 	var/max_range = 2
 
-/datum/action/xeno_action/activable/transfer_plasma/can_use_ability(atom/A, silent = FALSE)
+/datum/action/xeno_action/activable/transfer_plasma/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -332,7 +332,7 @@
 	to_chat(owner, "<span class='xenodanger'>You feel your growth toxin glands refill. You can use Growth Sting again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/larval_growth_sting/can_use_ability(atom/A, silent = FALSE)
+/datum/action/xeno_action/activable/larval_growth_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -565,7 +565,7 @@
 	new_acid.ticks = current_acid.ticks //Inherit the old acid's progress
 	qdel(current_acid)
 
-/datum/action/xeno_action/activable/spray_acid/can_use_ability(atom/A, silent)
+/datum/action/xeno_action/activable/spray_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -599,7 +599,7 @@
 	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
 
-/datum/action/xeno_action/activable/xeno_spit/can_use_ability(atom/A, silent = FALSE)
+/datum/action/xeno_action/activable/xeno_spit/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -666,7 +666,7 @@
 	cooldown_timer = XENO_NEURO_STING_COOLDOWN
 	plasma_cost = 150
 
-/datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE)
+/datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE

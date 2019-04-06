@@ -11,7 +11,7 @@
 	var/mob/living/carbon/Xenomorph/Carrier/X = owner
 	return X.xeno_caste.hugger_delay
 
-/datum/action/xeno_action/activable/throw_hugger/can_use_ability(atom/A, silent = FALSE, ignore_cooldown = TRUE) // true
+/datum/action/xeno_action/activable/throw_hugger/can_use_ability(atom/A, silent = FALSE, override_flags = XACT_IGNORE_COOLDOWN) // true
 	. = ..()
 	if(!.)
 		return FALSE

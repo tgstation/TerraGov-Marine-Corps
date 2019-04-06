@@ -79,7 +79,7 @@
 	plasma_cost = 10
 	var/range = 6
 
-/datum/action/xeno_action/activable/pounce/can_use_ability(atom/A, silent)
+/datum/action/xeno_action/activable/pounce/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE

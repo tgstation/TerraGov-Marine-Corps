@@ -9,7 +9,7 @@
 	cooldown_timer = RAV_CHARGECOOLDOWN
 	plasma_cost = 80
 
-/datum/action/xeno_action/activable/charge/can_use_ability(atom/A, silent = FALSE)
+/datum/action/xeno_action/activable/charge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE

@@ -151,7 +151,6 @@
 	var/critical_proc = 0
 	var/critical_delay = 25
 
-	var/has_screeched = 0
 	var/middle_mouse_toggle = TRUE //This toggles whether selected ability uses middle mouse clicking or shift clicking
 
 	var/armor_bonus = 0 //Extra chance of deflecting projectiles due to temporary effects
@@ -162,7 +161,6 @@
 	var/xeno_explosion_resistance = 0 //0 to 3. how explosions affects the xeno, can it stun it, etc...
 
 	var/obj/structure/tunnel/start_dig = null
-	var/tunnel_delay = 0
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 	var/pslash_delay = 0
 
@@ -176,7 +174,6 @@
 
 	var/is_zoomed = 0
 	var/zoom_turf = null
-	var/autopsied = 0
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
 	var/speed = -0.5 //Regular xeno speed modifier. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	var/speed_modifier = 0 //Speed bonus/penalties. Positive makes you go slower.
@@ -228,8 +225,6 @@
 	var/ripping_limb = 0
 
 	var/used_lunge = 0
-	var/used_fling = 0
-	var/used_punch = 0
 
 	// Defender vars
 	var/fortify = 0
@@ -258,8 +253,6 @@
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices
-
-	var/cresttoss_used = FALSE
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
 

@@ -43,7 +43,7 @@
 	plasma_cost = 10
 	cooldown_timer = WARRIOR_LUNGE_COOLDOWN
 
-/datum/action/xeno_action/activable/lunge/can_use_ability(atom/A, silent = FALSE, ignore_cooldown = FALSE)
+/datum/action/xeno_action/activable/lunge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -93,7 +93,7 @@
 	to_chat(owner, "<span class='notice'>You gather enough strength to fling something again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/fling/can_use_ability(atom/A, silent = FALSE, ignore_cooldown = FALSE)
+/datum/action/xeno_action/activable/fling/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -149,7 +149,7 @@
 	to_chat(src, "<span class='notice'>You gather enough strength to punch again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/punch/can_use_ability(atom/A, silent = FALSE, ignore_cooldown = FALSE)
+/datum/action/xeno_action/activable/punch/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE

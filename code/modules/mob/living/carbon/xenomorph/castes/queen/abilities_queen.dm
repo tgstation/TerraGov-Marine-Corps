@@ -158,7 +158,7 @@
 	ability_name = "gut"
 	plasma_cost = 200
 
-/datum/action/xeno_action/activable/gut/can_use_ability(atom/A, silent = FALSE)
+/datum/action/xeno_action/activable/gut/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE

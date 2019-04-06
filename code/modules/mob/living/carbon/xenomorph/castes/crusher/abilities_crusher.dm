@@ -76,7 +76,7 @@
 	playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 
-/datum/action/xeno_action/activable/cresttoss/can_use_ability(atom/A, silent = FALSE, ignore_cooldown = FALSE)
+/datum/action/xeno_action/activable/cresttoss/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE

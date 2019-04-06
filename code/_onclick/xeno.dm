@@ -55,20 +55,6 @@
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
 
-
-
-/mob/living/carbon/Xenomorph/Boiler/ClickOn(atom/A, params)
-	. = ..()
-	if(!is_bombarding)
-		return
-	if(isturf(A))
-		bomb_turf(A)
-	else
-		bomb_turf(get_turf(A))
-	if(client)
-		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
-
-
 /mob/living/carbon/Xenomorph/Crusher/ClickOn(atom/A, params)
 	. = ..()
 	if(!is_charging)

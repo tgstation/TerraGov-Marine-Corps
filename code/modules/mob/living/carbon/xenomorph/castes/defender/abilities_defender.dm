@@ -10,7 +10,7 @@
 	use_state_flags = XACT_USE_CRESTED
 	cooldown_timer = DEFENDER_HEADBUTT_COOLDOWN
 
-/datum/action/xeno_action/activable/headbutt/can_use_ability(atom/A, silent = FALSE)
+/datum/action/xeno_action/activable/headbutt/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -96,7 +96,7 @@
 	use_state_flags = XACT_USE_CRESTED
 	cooldown_timer = DEFENDER_TAILSWIPE_COOLDOWN
 
-/datum/action/xeno_action/activable/tail_sweep/can_use_ability(atom/A, silent = FALSE)
+/datum/action/xeno_action/activable/tail_sweep/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
