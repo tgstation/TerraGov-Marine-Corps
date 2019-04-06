@@ -108,7 +108,8 @@
 			if(X.pulling == pulled && !pulled.buckled && pulled.stat != DEAD && !X.stomach_contents.len) //make sure you've still got them in your claws, and alive
 				X.visible_message("<span class='warning'>[X] devours [pulled]!</span>", \
 				"<span class='warning'>You devour [pulled]!</span>", null, 5)
-				X.devour_timer = world.time + 50 SECONDS + rand(0, 20 SECONDS) // 50-70 seconds
+				var/DT = pulled.client ? 50 SECONDS + rand(0, 20 SECONDS) : 3 MINUTES // 50-70 seconds if there's a client, three minutes otherwise
+				X.devour_timer = world.time + DT
 
 				//IMPORTANT CODER NOTE: Due to us using the old lighting engine, we need to hacky hack hard to get this working properly
 				//So we're just going to get the lights out of here by forceMoving them to a far-away place
