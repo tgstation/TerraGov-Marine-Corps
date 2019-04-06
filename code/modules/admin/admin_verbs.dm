@@ -982,7 +982,8 @@
 
 		if(!recipient)
 			if(holder)
-				to_chat(src, "<span class='warning'>Error: Client not found.</span>")
+				to_chat(src, "<span class='warning'>Error: Client not found Here's your message, copy-paste it if needed:</span>")
+				to_chat(src, "<span class='notice'>[msg]</span>")
 			else
 				current_ticket.MessageNoRecipient(msg)
 			return
