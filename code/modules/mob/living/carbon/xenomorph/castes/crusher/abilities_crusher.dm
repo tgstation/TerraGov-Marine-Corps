@@ -2,54 +2,31 @@
 // *********** Stomp
 // ***************************************
 /datum/action/xeno_action/activable/stomp
-	name = "Stomp (50)"
+	name = "Stomp"
 	action_icon_state = "stomp"
 	mechanics_text = "Knocks all adjacent targets away and down."
 	ability_name = "stomp"
-
-/datum/action/xeno_action/activable/stomp/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Crusher/X = owner
-	if(world.time >= X.has_screeched + CRUSHER_STOMP_COOLDOWN)
-		return TRUE
+	plasma_cost = 80
+	cooldown_timer = CRUSHER_STOMP_COOLDOWN
 
 /datum/action/xeno_action/activable/stomp/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Crusher/X = owner
-	X.stomp()
-
-/mob/living/carbon/Xenomorph/Crusher/proc/stomp()
-
-	if(!check_state()) return
-
-	if(world.time < has_screeched + CRUSHER_STOMP_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='xenowarning'>You are not ready to stomp again.</span>")
-		return FALSE
-
-	if(legcuffed)
-		to_chat(src, "<span class='xenodanger'>You can't rear up to stomp with that thing on your leg!</span>")
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>You try to stomp but are unable as you fail to shake off the shock!</span>")
-		return
-
-	if(!check_plasma(80))
-		return
-	has_screeched = world.time
-	use_plasma(80)
+	succeed_activate()
+	add_cooldown()
 
 	round_statistics.crusher_stomps++
 
-	playsound(loc, 'sound/effects/bang.ogg', 25, 0)
-	visible_message("<span class='xenodanger'>[src] smashes into the ground!</span>", \
+	playsound(X.loc, 'sound/effects/bang.ogg', 25, 0)
+	X.visible_message("<span class='xenodanger'>[X] smashes into the ground!</span>", \
 	"<span class='xenodanger'>You smash into the ground!</span>")
-	create_stomp() //Adds the visual effect. Wom wom wom
+	X.create_stomp() //Adds the visual effect. Wom wom wom
 
-	for(var/mob/living/M in range(2,loc))
-		if(isxeno(M) || M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)))
+	for(var/mob/living/M in range(2,X.loc))
+		if(isxeno(M) || M.stat == DEAD || (CHECK_BITFIELD(M.status_flags, XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)))
 			continue
-		var/distance = get_dist(M, loc)
-		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(src)) / max(1,distance + 1)
-		damage += FRENZY_DAMAGE_BONUS(src)
+		var/distance = get_dist(M, X)
+		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(X)) / max(1,distance + 1)
+		damage += FRENZY_DAMAGE_BONUS(X)
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			round_statistics.crusher_stomp_victims++
 			var/armor_block = M.run_armor_check("chest", "melee") * 0.5 //Only 50% armor applies vs stomp brute damage
@@ -58,12 +35,12 @@
 				H.take_overall_damage(damage, null, 0, 0, 0, armor_block) //Armour functions against this.
 			else
 				M.take_overall_damage(damage, 0, null, armor_block) //Armour functions against this.
-			to_chat(M, "<span class='highdanger'>You are stomped on by [src]!</span>")
+			to_chat(M, "<span class='highdanger'>You are stomped on by [X]!</span>")
 			shake_camera(M, 3, 3)
 		else
-			step_away(M, src, 1) //Knock away
+			step_away(M, X, 1) //Knock away
 			shake_camera(M, 2, 2)
-			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [src]'s stomp!</span>")
+			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [X]'s stomp!</span>")
 		if(distance < 2) //If we're beside or adjacent to the Crusher, we get knocked down.
 			M.KnockDown(1)
 		else
