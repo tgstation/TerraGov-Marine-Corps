@@ -1683,13 +1683,12 @@
 
 
 /mob/living/carbon/human/take_over(mob/M)
-	assigned_squad?.clean_marine_from_squad(src)
+	if(assigned_squad)
+		assigned_squad.clean_marine_from_squad(src)
 
 	. = ..()
 
 	set_rank(job)
-
-	fully_replace_character_name(real_name, M.real_name)
 
 	if(assigned_squad)
 		change_squad(assigned_squad.name)
