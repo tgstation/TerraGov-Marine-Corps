@@ -359,14 +359,11 @@
 	max_storage_space = 50
 	spawn_type = /obj/item/explosive/grenade/frag
 	spawn_number = 25
-	var/nade_box_icon
 
 /obj/item/storage/box/nade_box/update_icon()
-	if(!contents.len)
-		icon_state = "[nade_box_icon]_e"
-	else
-		icon_state = nade_box_icon
-
+	icon_state = initial(icon_state)
+	if(!length(contents))
+		icon_state += "_e"
 
 /obj/item/storage/box/nade_box/training
 	name = "\improper M07 training grenade box"
