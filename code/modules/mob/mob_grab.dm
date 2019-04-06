@@ -120,7 +120,7 @@
 
 				//Then, we place the mob where it ought to be
 				X.stomach_contents.Add(pulled)
-				pulled.KnockDown(X.devour_timer)
+				pulled.KnockDown(360)
 				pulled.blind_eyes(1)
 				pulled.forceMove(X)
 				if(ishuman(pulled)) //Check for camera; if we have one, turn it off.
