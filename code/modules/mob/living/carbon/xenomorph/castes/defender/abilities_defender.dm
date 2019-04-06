@@ -152,60 +152,52 @@
 	action_icon_state = "crest_defense"
 	mechanics_text = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
 	ability_name = "toggle crest defense"
+	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
+	cooldown_timer = DEFENDER_CREST_DEFENSE_COOLDOWN
+
+/datum/action/xeno_action/activable/toggle_crest_defense/on_cooldown_finish()
+	var/mob/living/carbon/Xenomorph/Defender/X = owner
+	to_chat(X, "<span class='notice'>You can [X.crest_defense ? "raise" : "lower"] your crest.</span>")
+	return ..()
 
 /datum/action/xeno_action/activable/toggle_crest_defense/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
-	X.toggle_crest_defense()
+	var/mob/living/carbon/Xenomorph/Defender/X = owner
 
-/datum/action/xeno_action/activable/toggle_crest_defense/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/X = owner
-	return !X.used_crest_defense
+	if(X.crest_defense)
+		X.set_crest_defense(FALSE)
+		add_cooldown()
+		return succeed_activate()
 
-/mob/living/carbon/Xenomorph/proc/toggle_crest_defense()
+	var/was_fortified = X.fortify
+	if(X.fortify)
+		var/datum/action/xeno_action/FT = X.actions_by_path[/datum/action/xeno_action/activable/fortify]
+		if(FT.on_cooldown)
+			to_chat(src, "<span class='xenowarning'>You cannot yet untuck yourself!</span>")
+			return fail_activate()
+		X.set_fortify(FALSE, TRUE)
+		FT.add_cooldown()
+		to_chat(X, "<span class='xenowarning'>You carefully untuck, keeping your crest lowered.</span>")
 
-	if (!check_state())
-		return
+	X.set_crest_defense(TRUE, was_fortified)
+	add_cooldown()
+	return succeed_activate()
 
-	if (used_crest_defense)
-		return
-
-	crest_defense = !crest_defense
-	used_crest_defense = TRUE
-
-	if (crest_defense)
-		if(fortify)
-			if(!used_fortify)
-				toggle_crest_defense()
-				to_chat(src, "<span class='xenowarning'>You carefully untuck, keeping your crest lowered.</span>")
-				fortify = FALSE
-				fortify_off()
-			else
-				to_chat(src, "<span class='xenowarning'>You cannot yet untuck yourself!</span>")
-				crest_defense = !crest_defense
-				used_crest_defense = FALSE
-				return
-		else
+/mob/living/carbon/Xenomorph/Defender/proc/set_crest_defense(on, silent = FALSE)
+	if(on)
+		if(!silent)
 			to_chat(src, "<span class='xenowarning'>You tuck yourself into a defensive stance.</span>")
 		round_statistics.defender_crest_lowerings++
-		armor_bonus += xeno_caste.crest_defense_armor
 		xeno_explosion_resistance = 2
-		speed_modifier += DEFENDER_CRESTDEFENSE_SLOWDOWN	// This is actually a slowdown but speed is dumb
-		update_icons()
-		addtimer(CALLBACK(src, .crest_defense_cooldown), DEFENDER_CREST_DEFENSE_COOLDOWN)
-		return
-
-	round_statistics.defender_crest_raises++
-	to_chat(src, "<span class='xenowarning'>You raise your crest.</span>")
-	armor_bonus -= xeno_caste.crest_defense_armor
-	xeno_explosion_resistance = 0
-	speed_modifier -= DEFENDER_CRESTDEFENSE_SLOWDOWN
+		armor_bonus += xeno_caste.crest_defense_armor
+		speed_modifier += DEFENDER_CRESTDEFENSE_SLOWDOWN
+	else
+		if(!silent)
+			to_chat(src, "<span class='xenowarning'>You raise your crest.</span>")
+		round_statistics.defender_crest_raises++
+		xeno_explosion_resistance = 0
+		armor_bonus -= xeno_caste.crest_defense_armor
+		speed_modifier -= DEFENDER_CRESTDEFENSE_SLOWDOWN
 	update_icons()
-	addtimer(CALLBACK(src, .crest_defense_cooldown), DEFENDER_CREST_DEFENSE_COOLDOWN)
-
-/mob/living/carbon/Xenomorph/proc/crest_defense_cooldown()
-	used_crest_defense = FALSE
-	to_chat(src, "<span class='notice'>You can [crest_defense ? "raise" : "lower"] your crest.</span>")
-	update_action_button_icons()
 
 // ***************************************
 // *********** Fortify
@@ -215,65 +207,51 @@
 	action_icon_state = "fortify"	// TODO
 	mechanics_text = "Plant yourself for a large defensive boost."
 	ability_name = "fortify"
-	use_state_flags = XACT_USE_FORTIFIED
+	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
+	cooldown_timer = DEFENDER_FORTIFY_COOLDOWN
+
+/datum/action/xeno_action/activable/fortify/on_cooldown_finish()
+	var/mob/living/carbon/Xenomorph/X = owner
+	to_chat(X, "<span class='notice'>You can [X.fortify ? "stand up" : "fortify"] again.</span>")
+	return ..()
 
 /datum/action/xeno_action/activable/fortify/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
-	X.fortify()
+	var/mob/living/carbon/Xenomorph/Defender/X = owner
 
-/datum/action/xeno_action/activable/fortify/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/X = owner
-	return !X.used_fortify
+	if(X.fortify)
+		X.set_fortify(FALSE)
+		add_cooldown()
+		return succeed_activate()
 
-/mob/living/carbon/Xenomorph/proc/fortify()
-	if (!check_state())
-		return
+	var/was_crested = X.crest_defense
+	if(X.crest_defense)
+		var/datum/action/xeno_action/CD = X.actions_by_path[/datum/action/xeno_action/activable/toggle_crest_defense]
+		if(CD.on_cooldown)
+			to_chat(X, "<span class='xenowarning'>You cannot yet transition to a defensive stance!</span>")
+			return fail_activate()
+		X.set_crest_defense(FALSE, TRUE)
+		CD.add_cooldown()
+		to_chat(X, "<span class='xenowarning'>You tuck your lowered crest into yourself.</span>")
+	
+	X.set_fortify(TRUE, was_crested)
+	add_cooldown()
+	return succeed_activate()
 
-	if (used_fortify)
-		return
-
+/mob/living/carbon/Xenomorph/Defender/proc/set_fortify(on, silent = FALSE)
 	round_statistics.defender_fortifiy_toggles++
-
-	fortify = !fortify
-	used_fortify = TRUE
-
-	if (fortify)
-		if (crest_defense)
-			if(!used_crest_defense)
-				toggle_crest_defense()
-				to_chat(src, "<span class='xenowarning'>You tuck your lowered crest into yourself.</span>")
-			else
-				to_chat(src, "<span class='xenowarning'>You cannot yet transition to a defensive stance!</span>")
-				fortify = !fortify
-				used_fortify = FALSE
-				return
-		else
+	if(on)
+		if(!silent)
 			to_chat(src, "<span class='xenowarning'>You tuck yourself into a defensive stance.</span>")
 		armor_bonus += xeno_caste.fortify_armor
 		xeno_explosion_resistance = 3
-		set_frozen(TRUE)
-		anchored = TRUE
-		update_canmove()
-		update_icons()
-		addtimer(CALLBACK(src, .fortify_cooldown), DEFENDER_FORTIFY_COOLDOWN)
-		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
-		return
-
-	fortify_off()
-	addtimer(CALLBACK(src, .fortify_cooldown), DEFENDER_FORTIFY_COOLDOWN)
-
-/mob/living/carbon/Xenomorph/proc/fortify_off()
-	to_chat(src, "<span class='xenowarning'>You resume your normal stance.</span>")
-	armor_bonus -= xeno_caste.fortify_armor
-	xeno_explosion_resistance = 0
-	fortify = FALSE
-	set_frozen(FALSE)
-	anchored = FALSE
+	else
+		if(!silent)
+			to_chat(src, "<span class='xenowarning'>You resume your normal stance.</span>")
+		armor_bonus -= xeno_caste.fortify_armor
+		xeno_explosion_resistance = 0
+	fortify = on
+	set_frozen(on)
+	anchored = on
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
 	update_canmove()
 	update_icons()
-
-/mob/living/carbon/Xenomorph/proc/fortify_cooldown()
-	used_fortify = FALSE
-	to_chat(src, "<span class='notice'>You can [fortify ? "stand up" : "fortify"] again.</span>")
-	update_action_button_icons()

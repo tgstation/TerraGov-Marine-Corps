@@ -230,9 +230,6 @@
 	var/fortify = 0
 	var/crest_defense = 0
 
-	var/used_crest_defense = 0
-	var/used_fortify = 0
-
 	//Runner vars
 	var/hit_and_run = 0 //If we have a value here, we get bonus damage in proportion to movement.
 
