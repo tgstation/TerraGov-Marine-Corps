@@ -377,6 +377,44 @@
 
 
 
+/turf/proc/check_alien_construction(mob/living/L)
+	var/has_obstacle
+	for(var/obj/O in contents)
+		if(istype(O, /obj/item/clothing/mask/facehugger))
+			to_chat(L, "<span class='warning'>There is a little one here already. Best move it.</span>")
+			return FALSE
+		if(istype(O, /obj/effect/alien/egg))
+			to_chat(L, "<span class='warning'>There's already an egg.</span>")
+			return FALSE
+		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin))
+			has_obstacle = TRUE
+			break
+		if(istype(O, /obj/structure/ladder))
+			has_obstacle = TRUE
+			break
+		if(istype(O, /obj/structure/bed))
+			if(istype(O, /obj/structure/bed/chair/dropship/passenger))
+				var/obj/structure/bed/chair/dropship/passenger/P = O
+				if(P.chair_state != DROPSHIP_CHAIR_BROKEN)
+					has_obstacle = TRUE
+					break
+			else
+				has_obstacle = TRUE
+				break
+
+		if(O.density && !(O.flags_atom & ON_BORDER))
+			has_obstacle = TRUE
+			break
+
+	if(density || has_obstacle)
+		to_chat(L, "<span class='warning'>There's something built here already.</span>")
+		return FALSE
+	return TRUE
+
+/turf/closed/check_alien_construction(mob/living/L)
+	to_chat(L, "<span class='warning'>There's something built here already.</span>")
+	return FALSE
+
 /turf/proc/can_dig_xeno_tunnel()
 	return FALSE
 

@@ -163,7 +163,7 @@
 		to_chat(X, "<span class='warning'>You can only shape on weeds. Find some resin before you start building!</span>")
 		return
 
-	if(!X.check_alien_construction(T))
+	if(!T.check_alien_construction(X))
 		return
 
 	X.use_plasma(plasma_cost)

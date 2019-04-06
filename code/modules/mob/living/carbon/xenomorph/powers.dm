@@ -551,7 +551,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		to_chat(src, "<span class='warning'>You can only shape on weeds. Find some resin before you start building!</span>")
 		return
 
-	if(!check_alien_construction(current_turf))
+	if(!current_turf.check_alien_construction(src))
 		return
 
 	if(selected_resin == "resin door")
@@ -594,7 +594,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(!alien_weeds)
 		return
 
-	if(!check_alien_construction(current_turf))
+	if(!current_turf.check_alien_construction(src))
 		return
 
 	if(selected_resin == "resin door")

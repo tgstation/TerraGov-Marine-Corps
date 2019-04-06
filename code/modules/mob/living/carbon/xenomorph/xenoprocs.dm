@@ -429,41 +429,6 @@
 	client.pixel_x = 0
 	client.pixel_y = 0
 
-/mob/living/carbon/Xenomorph/proc/check_alien_construction(var/turf/current_turf)
-	var/has_obstacle
-	for(var/obj/O in current_turf)
-		if(istype(O, /obj/item/clothing/mask/facehugger))
-			to_chat(src, "<span class='warning'>There is a little one here already. Best move it.</span>")
-			return
-		if(istype(O, /obj/effect/alien/egg))
-			to_chat(src, "<span class='warning'>There's already an egg.</span>")
-			return
-		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin))
-			has_obstacle = TRUE
-			break
-		if(istype(O, /obj/structure/ladder))
-			has_obstacle = TRUE
-			break
-		if(istype(O, /obj/structure/bed))
-			if(istype(O, /obj/structure/bed/chair/dropship/passenger))
-				var/obj/structure/bed/chair/dropship/passenger/P = O
-				if(P.chair_state != DROPSHIP_CHAIR_BROKEN)
-					has_obstacle = TRUE
-					break
-			else
-				has_obstacle = TRUE
-				break
-
-		if(O.density && !(O.flags_atom & ON_BORDER))
-			has_obstacle = TRUE
-			break
-
-	if(current_turf.density || has_obstacle)
-		to_chat(src, "<span class='warning'>There's something built here already.</span>")
-		return
-
-	return 1
-
 /mob/living/carbon/Xenomorph/drop_held_item()
 	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(istype(F))
