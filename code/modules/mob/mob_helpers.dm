@@ -10,13 +10,6 @@ proc/is_blind(A)
 		return M.eye_blind
 	return FALSE
 
-/proc/isxenosilicon(A)
-	if(isxeno(A))
-		var/mob/living/carbon/Xenomorph/X = A
-		if(X.xeno_caste.caste_flags & CASTE_IS_ROBOTIC)
-			return TRUE
-	return FALSE
-
 proc/hasorgans(A)
 	return ishuman(A)
 

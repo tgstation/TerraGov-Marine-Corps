@@ -13,10 +13,9 @@
 	var/list/allowed_containers = list(/obj/item/reagent_container/glass/beaker, /obj/item/reagent_container/glass/bottle)
 	var/affected_area = 3
 
-/obj/item/explosive/grenade/chem_grenade/New()
-	var/datum/reagents/R = new/datum/reagents(1000)
-	reagents = R
-	R.my_atom = src
+/obj/item/explosive/grenade/chem_grenade/Initialize(mapload, ...)
+	. = ..()
+	create_reagents(1000)
 
 /obj/item/explosive/grenade/chem_grenade/attack_self(mob/user as mob)
 	if(stage <= 1)

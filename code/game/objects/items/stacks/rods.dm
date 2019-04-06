@@ -68,16 +68,18 @@
 			else
 				return 1
 
-	if(user.action_busy)
-		return
-	if(get_amount() < 4)
-		to_chat(user, "<span class='notice'>You need at least four rods to do this.</span>")
-		return
-	to_chat(usr, "<span class='notice'>Assembling grille...</span>")
-	if (!do_after(usr, 20, TRUE))
-		return
-	var/obj/structure/grille/F = new /obj/structure/grille (usr.loc)
-	to_chat(usr, "<span class='notice'>You assemble a grille</span>")
-	F.add_fingerprint(usr)
-	use(4)
+	else if(!CHECK_BITFIELD(obj_flags, IN_USE))
+		if(amount < 4)
+			to_chat(user, "<span class='notice'>You need at least four rods to do this.</span>")
+			return
+		to_chat(usr, "<span class='notice'>Assembling grille...</span>")
+		ENABLE_BITFIELD(obj_flags, IN_USE)
+		if (!do_after(usr, 20, TRUE, icon_display = USER_ICON_BUILD))
+			DISABLE_BITFIELD(obj_flags, IN_USE)
+			return
+		var/obj/structure/grille/F = new /obj/structure/grille/ ( usr.loc )
+		to_chat(usr, "<span class='notice'>You assemble a grille</span>")
+		DISABLE_BITFIELD(obj_flags, IN_USE)
+		F.add_fingerprint(usr)
+		use(4)
 	return

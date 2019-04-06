@@ -395,6 +395,24 @@
 /turf/open/mars/can_dig_xeno_tunnel()
 	return TRUE
 
+/turf/open/floor/can_dig_xeno_tunnel()
+	return TRUE
+
+/turf/open/floor/plating/catwalk/can_dig_xeno_tunnel()
+	return FALSE
+
+/turf/open/floor/almayer/research/containment/can_dig_xeno_tunnel()
+	return FALSE
+
+/turf/open/jungle/can_dig_xeno_tunnel()
+	return TRUE
+
+/turf/open/jungle/impenetrable/can_dig_xeno_tunnel()
+	return FALSE
+
+/turf/open/jungle/water/can_dig_xeno_tunnel()
+	return FALSE
+
 /turf/open/floor/prison/can_dig_xeno_tunnel()
 	return TRUE
 

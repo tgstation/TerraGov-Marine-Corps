@@ -96,14 +96,14 @@
 	if (!isobj(A))
 		to_chat(usr, "Doesn't work that way...")
 		return
-	if (A.unacidable == 1)
+	if (CHECK_MULTIPLE_BITFIELDS(A.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		to_chat(usr, "It's already resistant to acid...")
 		return
 	if (istype(A, /obj/machinery/door))
 		to_chat(usr, "It doesn't work on doors...")
 		return
 	to_chat(usr, "You spray [A] with the Anti-Acid spray making it unacidable...")
-	A.unacidable = 1
+	ENABLE_BITFIELD(A.resistance_flags, UNACIDABLE)
 	user.temporarilyRemoveItemFromInventory(src)
 	qdel(src)
 	..()

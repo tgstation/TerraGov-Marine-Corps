@@ -7,7 +7,7 @@
 	icon_state = "nest"
 	buckling_y = 6
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	health = 100
 	var/on_fire = 0
 	var/resisting = 0

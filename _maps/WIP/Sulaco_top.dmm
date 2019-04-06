@@ -2564,8 +2564,7 @@
 /obj/structure/window/reinforced{
 	dir = 5;
 	health = 4000;
-	name = "ultra-strong window";
-	unacidable = 1
+	name = "ultra-strong window"
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -2578,8 +2577,7 @@
 /obj/structure/window/reinforced{
 	dir = 5;
 	health = 4000;
-	name = "ultra-strong window";
-	unacidable = 1
+	name = "ultra-strong window"
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -2591,8 +2589,7 @@
 /obj/structure/window/reinforced{
 	dir = 5;
 	health = 4000;
-	name = "ultra-strong window";
-	unacidable = 1
+	name = "ultra-strong window"
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -2603,8 +2600,7 @@
 /obj/structure/window/reinforced{
 	dir = 5;
 	health = 4000;
-	name = "ultra-strong window";
-	unacidable = 1
+	name = "ultra-strong window"
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -5121,8 +5117,7 @@
 /obj/structure/window/reinforced{
 	dir = 5;
 	health = 4000;
-	name = "ultra-strong window";
-	unacidable = 1
+	name = "ultra-strong window"
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -11667,8 +11662,7 @@
 /obj/structure/window/reinforced{
 	dir = 5;
 	health = 4000;
-	name = "ultra-strong window";
-	unacidable = 1
+	name = "ultra-strong window"
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine)
@@ -15348,8 +15342,7 @@
 	dir = 4;
 	input_level_max = 15000;
 	name = "Bridge Power Substation";
-	output_level_max = 15000;
-	unacidable = 1
+	output_level_max = 15000
 	},
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -16920,8 +16913,7 @@
 /obj/structure/window/reinforced{
 	dir = 5;
 	health = 4000;
-	name = "ultra-strong window";
-	unacidable = 1
+	name = "ultra-strong window"
 	},
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 8
@@ -17409,8 +17401,7 @@
 /obj/structure/window/reinforced{
 	dir = 5;
 	health = 4000;
-	name = "ultra-strong window";
-	unacidable = 1
+	name = "ultra-strong window"
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine)
@@ -17841,8 +17832,7 @@
 /obj/structure/window/reinforced{
 	dir = 5;
 	health = 4000;
-	name = "ultra-strong window";
-	unacidable = 1
+	name = "ultra-strong window"
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine)

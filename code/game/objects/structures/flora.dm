@@ -444,7 +444,7 @@
 	icon = 'icons/turf/ground_map.dmi'
 	density = 0
 	anchored = 1
-	unacidable = 1 // can toggle it off anyway
+	resistance_flags = UNACIDABLE
 	layer = ABOVE_MOB_LAYER
 
 /obj/structure/jungle/shrub

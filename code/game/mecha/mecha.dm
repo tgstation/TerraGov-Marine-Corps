@@ -13,7 +13,7 @@
 	density = TRUE //Dense. To raise the heat.
 	opacity = TRUE ///opaque. Menacing.
 	anchored = TRUE //no pulling around.
-	unacidable = TRUE //and no deleting hoomans inside
+	resistance_flags = UNACIDABLE
 	layer = LYING_MOB_LAYER //so ejected occupant lying down don't appear behind the mech
 	infra_luminosity = 15 //byond implementation is bugged.
 	var/initial_icon = null //Mech type for resetting icon. Only used for reskinning kits (see custom items)

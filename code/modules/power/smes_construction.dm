@@ -11,7 +11,7 @@
 	var/cur_coils = 1 			// Current amount of installed coils
 	var/safeties_enabled = TRUE	// If 0 modifications can be done without discharging the SMES, at risk of critical failure.
 	var/failing = FALSE			// If 1 critical failure has occured and SMES explosion is imminent.
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 
 /obj/machinery/power/smes/buildable/empty
 	charge = 0

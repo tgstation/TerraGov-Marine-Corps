@@ -130,10 +130,7 @@
 		stat(null, "Upgrade Progress (FINISHED)")
 
 	if(xeno_caste.plasma_max > 0)
-		if(isxenosilicon(src))
-			stat(null, "Charge: [plasma_stored]/[xeno_caste.plasma_max]")
-		else
-			stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
+		stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
 
 	if(hivenumber != XENO_HIVE_CORRUPTED)
 		if(hive.slashing_allowed == XENO_SLASHING_ALLOWED)
@@ -195,10 +192,7 @@
 
 	if(value)
 		if(plasma_stored < value)
-			if(isxenosilicon(src))
-				to_chat(src, "<span class='warning'>Beep. You do not have enough charge to do this. You require [value] charge but have only [plasma_stored] stored.</span>")
-			else
-				to_chat(src, "<span class='warning'>You do not have enough plasma to do this. You require [value] plasma but have only [plasma_stored] stored.</span>")
+			to_chat(src, "<span class='warning'>You do not have enough plasma to do this. You require [value] plasma but have only [plasma_stored] stored.</span>")
 			return 0
 	return 1
 
@@ -342,8 +336,7 @@
 							M.adjust_stagger(3)
 							M.add_slowdown(1)
 							to_chat(src, "<span class='xenodanger'>Pouncing from the shadows, you stagger your victim.</span>")
-					if(!isxenosilicon(src))
-						playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
+					playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
 					addtimer(CALLBACK(src, .proc/reset_movement), xeno_caste.charge_type == 1 ? 5 : 15)
 					stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 

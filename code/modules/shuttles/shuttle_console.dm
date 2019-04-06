@@ -359,10 +359,6 @@
 	visible_message("[Proj] ricochets off [src]!")
 	return 0
 
-/obj/machinery/computer/shuttle_control/ex_act(severity)
-	if(unacidable)
-		return //unacidable shuttle consoles are also immune to explosions.
-	..()
 
 
 
@@ -375,8 +371,7 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
 
-	unacidable = 1
-	exproof = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 
 /obj/machinery/computer/shuttle_control/dropship1/Initialize()
@@ -396,8 +391,7 @@
 	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
-	unacidable = 1
-	exproof = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
 
 /obj/machinery/computer/shuttle_control/dropship2/Initialize()
@@ -419,8 +413,7 @@
 	name = "Elevator Console"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "supply"
-	unacidable = 1
-	exproof = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	density = 1
 	req_access = null
 	shuttle_tag = "Hangar"
@@ -429,9 +422,7 @@
 	name = "Elevator Console"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
-	unacidable = 1
-	exproof = 1
-	density = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_access = null
 	shuttle_tag = "Maintenance"
 
@@ -442,8 +433,7 @@
 	name = "Elevator Console"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "elevator_screen"
-	unacidable = 1
-	exproof = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	density = 0
 	req_access = null
 

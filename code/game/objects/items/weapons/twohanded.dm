@@ -236,7 +236,7 @@
 	flags_item = NOSHIELD|TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 	attack_speed = 12 //Default is 7.
 
 /obj/item/weapon/twohanded/glaive/damaged

@@ -27,7 +27,7 @@
 	icon_state = ""
 	mouse_opacity = 0
 	network = list("laser targets")
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/camera/laser_cam/New(loc, laser_name)
 	. = ..()
@@ -35,19 +35,13 @@
 		var/area/A = get_area(src)
 		c_tag = "[laser_name] ([A.name])"
 
-/obj/machinery/camera/laser_cam/emp_act(severity)
-	return //immune to EMPs, just in case
-
-/obj/machinery/camera/laser_cam/ex_act()
-	return
-
 /obj/machinery/camera/beacon_cam
 	name = "beacon camera"
 	invuln = TRUE
 	icon_state = ""
 	mouse_opacity = 0
 	network = list("supply beacons")
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/camera/beacon_cam/bomb
 	network = list("bomb beacons")

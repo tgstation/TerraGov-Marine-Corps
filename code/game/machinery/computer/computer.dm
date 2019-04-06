@@ -9,7 +9,7 @@
 	active_power_usage = 300
 	var/circuit = null //The path to the circuit board type. If circuit==null, the computer can't be disassembled.
 	var/processing = 0
-	var/exproof = 0
+	resistance_flags = UNACIDABLE
 
 /obj/machinery/computer/Initialize()
 	. = ..()
@@ -27,8 +27,8 @@
 
 
 /obj/machinery/computer/ex_act(severity)
-	if(exproof)
-		return
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return FALSE
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -50,7 +50,7 @@
 	return
 
 /obj/machinery/computer/bullet_act(var/obj/item/projectile/Proj)
-	if(exproof)
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		visible_message("[Proj] ricochets off [src]!")
 		return 0
 	else

@@ -9,7 +9,6 @@
 /obj/machinery/telecomms/relay/preset/station{
 	idle_power_usage = 0;
 	listening_level = 1;
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor,
