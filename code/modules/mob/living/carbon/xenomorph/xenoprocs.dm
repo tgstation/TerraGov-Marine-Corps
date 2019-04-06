@@ -371,6 +371,7 @@
 			S.forceMove(get_turf(src))
 			if(isliving(S))
 				var/mob/living/M = S
+				M.SetKnockeddown(1)
 				M.adjust_blindness(-1)
 
 	if(contents.len) //Get rid of anything that may be stuck inside us as well

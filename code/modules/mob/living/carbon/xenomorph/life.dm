@@ -64,7 +64,7 @@
 				if(M.loc != src)
 					continue
 				M.forceMove(loc)
-				M.KnockDown(3)
+				M.SetKnockeddown(1)
 	return TRUE
 
 
