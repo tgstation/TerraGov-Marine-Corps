@@ -46,7 +46,7 @@
 GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/vehicle/multitile/root/cm_armored, /obj/structure/razorwire)))
 
 /datum/action/xeno_action/activable/spray_acid/cone/proc/do_acid_spray_cone(turf/T, range)
-	set waitfor = 0
+	set waitfor = FALSE
 
 	var/facing = get_cardinal_dir(owner, T)
 	owner.setDir(facing)

@@ -78,8 +78,8 @@
 
 /datum/action/xeno_action/activable/pounce/hunter/prepare_to_pounce()
 	. = ..()
-	if(owner.m_intent == "walk") //Hunter that is currently using its stealth ability, need to unstealth him
-		owner.m_intent = "run"
+	if(owner.m_intent == MOVE_INTENT_WALK) //Hunter that is currently using its stealth ability, need to unstealth him
+		owner.m_intent = MOVE_INTENT_RUN
 		if(owner.hud_used?.move_intent)
 			owner.hud_used.move_intent.icon_state = "running"
 		owner.update_icons()

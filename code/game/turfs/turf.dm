@@ -379,7 +379,7 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 /turf/closed/wall/is_weedable()
 	return !is_type_in_typecache(get_area(src), GLOB.unweedable_areas) //so we can spawn weeds on the walls
 
-/turf/proc/check_alien_construction(var/mob/living/L)
+/turf/proc/check_alien_construction(mob/living/L)
 	var/has_obstacle
 	for(var/obj/O in contents)
 		if(istype(O, /obj/item/clothing/mask/facehugger))
