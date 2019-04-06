@@ -672,7 +672,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(current_acid && !acid_check(new_acid, current_acid) )
 			return
 
-		if(CHECK_MULTIPLE_BITFIELDS(I.resistance_flags, UNACIDABLE|INDESTRUCTIBLE)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
+		if(CHECK_BITFIELD(I.resistance_flags, UNACIDABLE|INDESTRUCTIBLE)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
 			to_chat(src, "<span class='warning'>You cannot dissolve \the [I].</span>")
 			return
 		if(istype(O, /obj/structure/window_frame))

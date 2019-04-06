@@ -43,7 +43,7 @@
 		return FALSE
 	if(isobj(target))
 		var/obj/O = target
-		if(CHECK_MULTIPLE_BITFIELDS(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+		if(CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 			return FALSE
 	if(iswallturf(target))
 		var/turf/closed/wall/W = target

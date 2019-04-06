@@ -78,7 +78,7 @@
 		if(!action_checks(target)) return
 		if(isobj(target))
 			var/obj/target_obj = target
-			if(CHECK_MULTIPLE_BITFIELDS(target_obj.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+			if(CHECK_BITFIELD(target_obj.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 				return
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
@@ -109,7 +109,7 @@
 		if(!action_checks(target)) return
 		if(isobj(target))
 			var/obj/target_obj = target
-			if(CHECK_MULTIPLE_BITFIELDS(target_obj.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+			if(CHECK_BITFIELD(target_obj.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 				return
 		set_ready_state(0)
 		chassis.use_power(energy_drain)

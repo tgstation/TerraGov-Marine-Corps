@@ -394,7 +394,7 @@
 			var/mob/living/carbon/human/H = M
 
 			if(H.head)
-				if(prob(meltprob) && !CHECK_MULTIPLE_BITFIELDS(H.head.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+				if(prob(meltprob) && !CHECK_BITFIELD(H.head.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 					to_chat(H, "<span class='danger'>Your headgear melts away but protects you from the acid!</span>")
 					qdel(H.head)
 					H.update_inv_head(0)
@@ -404,7 +404,7 @@
 				return
 
 			if(H.wear_mask)
-				if(prob(meltprob) && !CHECK_MULTIPLE_BITFIELDS(H.wear_mask.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+				if(prob(meltprob) && !CHECK_BITFIELD(H.wear_mask.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 					to_chat(H, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
 					qdel(H.wear_mask)
 					H.update_inv_wear_mask(0)
@@ -414,7 +414,7 @@
 				return
 
 			if(H.glasses) //Doesn't protect you from the acid but can melt anyways!
-				if(prob(meltprob) && !CHECK_MULTIPLE_BITFIELDS(H.glasses.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+				if(prob(meltprob) && !CHECK_BITFIELD(H.glasses.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 					to_chat(H, "<span class='danger'>Your glasses melts away!</span>")
 					qdel(H.glasses)
 					H.update_inv_glasses(0)
@@ -422,7 +422,7 @@
 		else if(ismonkey(M))
 			var/mob/living/carbon/monkey/MK = M
 			if(MK.wear_mask)
-				if(!CHECK_MULTIPLE_BITFIELDS(MK.wear_mask.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+				if(!CHECK_BITFIELD(MK.wear_mask.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 					to_chat(MK, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
 					qdel(MK.wear_mask)
 					MK.update_inv_wear_mask(0)
@@ -450,7 +450,7 @@
 
 /datum/reagent/toxin/acid/reaction_obj(var/obj/O, var/volume)
 	if((istype(O,/obj/item) || istype(O,/obj/effect/glowshroom)) && prob(meltprob * 3))
-		if(!CHECK_MULTIPLE_BITFIELDS(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+		if(!CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 			var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 			I.desc = "Looks like this was \an [O] some time ago."
 			for(var/mob/M in viewers(5, O))
