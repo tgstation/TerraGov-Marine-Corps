@@ -105,7 +105,8 @@
 		qdel(attack_icon)
 		attack_icon = null
 	GLOB.mob_living_list -= src
-	. = ..()
+	GLOB.offered_mob_list -= src
+	return ..()
 
 
 
