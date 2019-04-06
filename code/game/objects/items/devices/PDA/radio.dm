@@ -16,7 +16,7 @@
 	proc/post_signal(var/freq, var/key, var/value, var/key2, var/value2, var/key3, var/value3, s_filter)
 
 		//to_chat(world, "Post: [freq]: [key]=[value], [key2]=[value2]")
-		var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
+		var/datum/radio_frequency/frequency = SSradio.return_frequency(freq)
 
 		if(!frequency) return
 
@@ -46,8 +46,8 @@
 	New()
 		..()
 		spawn(5)
-			if(radio_controller)
-				radio_controller.add_object(src, control_freq, filter = RADIO_SECBOT)
+			if(SSradio)
+				SSradio.add_object(src, control_freq, filter = RADIO_SECBOT)
 
 	// receive radio signals
 	// can detect bot status signals
@@ -112,9 +112,9 @@
 	New()
 		..()
 		spawn(5)
-			if(radio_controller)
-				radio_controller.add_object(src, control_freq, filter = RADIO_MULEBOT)
-				radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
+			if(SSradio)
+				SSradio.add_object(src, control_freq, filter = RADIO_MULEBOT)
+				SSradio.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
 				spawn(10)
 					post_signal(beacon_freq, "findbeacon", "delivery", s_filter = RADIO_NAVBEACONS)
 
@@ -218,9 +218,9 @@
 		set_frequency(frequency)
 
 	proc/set_frequency(new_frequency)
-		radio_controller.remove_object(src, frequency)
+		SSradio.remove_object(src, frequency)
 		frequency = new_frequency
-		radio_connection = radio_controller.add_object(src, frequency)
+		radio_connection = SSradio.add_object(src, frequency)
 
 	proc/send_signal(message="ACTIVATE")
 

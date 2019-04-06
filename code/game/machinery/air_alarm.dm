@@ -311,9 +311,9 @@
 		send_signal(id_tag, list("status") )
 
 /obj/machinery/alarm/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_TO_AIRALARM)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_TO_AIRALARM)
 
 /obj/machinery/alarm/proc/send_signal(var/target, var/list/command)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
 	if(!radio_connection)
@@ -380,7 +380,7 @@
 	if(!post_alert)
 		return
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(alarm_frequency)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(alarm_frequency)
 	if(!frequency)
 		return
 
