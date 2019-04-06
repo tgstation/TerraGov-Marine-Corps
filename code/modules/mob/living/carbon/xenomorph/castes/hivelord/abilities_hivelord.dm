@@ -50,12 +50,12 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 // *********** Resin walker
 // ***************************************
 /datum/action/xeno_action/toggle_speed
-	name = "Resin Walker (50)"
+	name = "Resin Walker"
 	action_icon_state = "toggle_speed"
 	mechanics_text = "Move faster on resin."
 	plasma_cost = 50
 
-/datum/action/xeno_action/toggle_speed/can_use_action(silent = FALSE)
+/datum/action/xeno_action/toggle_speed/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/mob/living/carbon/Xenomorph/Hivelord/X = owner
 	if(X.speed_activated)
@@ -76,13 +76,13 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 // *********** Tunnel
 // ***************************************
 /datum/action/xeno_action/build_tunnel
-	name = "Dig Tunnel (200)"
+	name = "Dig Tunnel"
 	action_icon_state = "build_tunnel"
 	mechanics_text = "Create a tunnel entrance. Use again to create the tunnel exit."
 	plasma_cost = 200
 	cooldown_timer = HIVELORD_TUNNEL_COOLDOWN
 
-/datum/action/xeno_action/build_tunnel/can_use_action(silent = FALSE)
+/datum/action/xeno_action/build_tunnel/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE

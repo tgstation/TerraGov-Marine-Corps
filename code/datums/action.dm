@@ -129,6 +129,7 @@
 	var/on_cooldown
 	var/last_use
 	var/cooldown_timer
+	var/ability_name
 
 /datum/action/xeno_action/New(Target)
 	..()
@@ -144,7 +145,7 @@
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You can't use [name] yet, wait [cooldown_remaining()] seconds!</span>")
+			to_chat(owner, "<span class='warning'>You can't use [ability_name] yet, wait [cooldown_remaining()] seconds!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_INCAP) && X.incapacitated())
@@ -250,7 +251,6 @@
 
 
 /datum/action/xeno_action/activable
-	var/ability_name
 	var/use_plasma_on_activate
 
 /datum/action/xeno_action/activable/action_activate()

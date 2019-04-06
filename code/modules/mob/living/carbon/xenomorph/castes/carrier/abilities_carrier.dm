@@ -133,7 +133,7 @@
 	mechanics_text = "Place a hole on weeds that can be filled with a hugger. Activates when a marine steps on it."
 	plasma_cost = 200
 
-/datum/action/xeno_action/place_trap/can_use_action(silent = FALSE)
+/datum/action/xeno_action/place_trap/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
@@ -174,7 +174,7 @@
 	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 
-/datum/action/xeno_action/spawn_hugger/can_use_action(silent = FALSE)
+/datum/action/xeno_action/spawn_hugger/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE

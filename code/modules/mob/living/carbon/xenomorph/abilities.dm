@@ -19,13 +19,14 @@
 	mechanics_text = "Vomit whatever you have devoured."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED
 
-/datum/action/xeno_action/regurgitate/can_use_action()
+/datum/action/xeno_action/regurgitate/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/C = owner
 	if(!length(C.stomach_contents))
-		to_chat(C, "<span class='warning'>There's nothing in your belly that needs regurgitating.</span>")
+		if(!silent)
+			to_chat(C, "<span class='warning'>There's nothing in your belly that needs regurgitating.</span>")
 		return FALSE
 
 /datum/action/xeno_action/regurgitate/action_activate()

@@ -215,6 +215,7 @@
 	action_icon_state = "fortify"	// TODO
 	mechanics_text = "Plant yourself for a large defensive boost."
 	ability_name = "fortify"
+	use_state_flags = XACT_USE_FORTIFIED
 
 /datum/action/xeno_action/activable/fortify/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
