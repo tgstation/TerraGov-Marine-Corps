@@ -446,9 +446,6 @@ log transactions
 			var/obj/item/card/id/I
 			if(istype(human_user.wear_id, /obj/item/card/id) )
 				I = human_user.wear_id
-			else if(istype(human_user.wear_id, /obj/item/device/pda) )
-				var/obj/item/device/pda/P = human_user.wear_id
-				I = P.id
 			if(I)
 				authenticated_account = attempt_account_access(I.associated_account_number)
 				if(authenticated_account)

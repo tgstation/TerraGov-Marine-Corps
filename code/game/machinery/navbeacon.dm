@@ -111,7 +111,7 @@
 
 			updateicon()
 
-		else if (istype(I, /obj/item/card/id)||istype(I, /obj/item/device/pda))
+		else if (istype(I, /obj/item/card/id))
 			if(open)
 				if (src.allowed(user))
 					src.locked = !src.locked

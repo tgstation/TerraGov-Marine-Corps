@@ -208,7 +208,6 @@
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/clothing/glasses/hud/security,
 		/obj/item/device/flashlight,
-		/obj/item/device/pda,
 		/obj/item/device/radio/headset,
 		/obj/item/weapon,
 		/obj/item/tool/taperoll/police
