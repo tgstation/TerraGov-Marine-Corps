@@ -336,12 +336,15 @@
 
 
 
-
+GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
+	/area/shuttle/drop1/lz1,
+	/area/shuttle/drop2/lz2,
+	/area/sulaco/hangar)))
 
 //Check if you can plant weeds on that turf.
 //Does NOT return a message, just a 0 or 1.
 /turf/proc/is_weedable()
-	return !density
+	return !density && !is_type_in_typecache(get_area(src), GLOB.unweedable_areas)
 
 /turf/open/space/is_weedable()
 	return FALSE
@@ -359,22 +362,17 @@
 	return FALSE
 
 /turf/open/snow/is_weedable()
-	return !slayer
-
-/turf/open/mars/is_weedable()
-	return TRUE
+	return !slayer && ..()
 
 
 /turf/open/floor/plating/plating_catwalk/is_weedable() //covered catwalks are unweedable
+	. = ..()
 	if(covered)
 		return FALSE
-	else
-		return TRUE
 
 
 /turf/closed/wall/is_weedable()
-	return TRUE //so we can spawn weeds on the walls
-
+	return !is_type_in_typecache(get_area(src), GLOB.unweedable_areas) //so we can spawn weeds on the walls
 
 
 /turf/proc/can_dig_xeno_tunnel()
