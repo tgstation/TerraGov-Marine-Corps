@@ -211,6 +211,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 
 	SSmachines.makepowernets()
+
 	log_admin("[key_name(usr)] has remade the powernet. makepowernets() called.")
 	message_admins("[ADMIN_TPMONTY(usr)] has remade the powernets. makepowernets() called.")
 
@@ -295,7 +296,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[ADMIN_TPMONTY(usr)] is debugging the [choice] list.")
 
 
-/datum/admins/proc/spawn_atom(var/object as text)
+/datum/admins/proc/spawn_atom(object as text)
 	set category = "Debug"
 	set name = "Spawn"
 	set desc = "Spawn an atom."
@@ -341,7 +342,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	if(alert(src, "Are you sure you want to delete: [O]?",, "Yes", "No") != "Yes")
+	if(alert(src, "Are you sure you want to delete: [O]?", "Delete", "Yes", "No") != "Yes")
 		return
 
 	var/turf/T = get_turf(O)
@@ -350,38 +351,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[ADMIN_TPMONTY(usr)] deleted [O] at [ADMIN_VERBOSEJMP(T)].")
 
 	qdel(O)
-
-
-/datum/admins/proc/fix_next_move()
-	set category = "Debug"
-	set name = "Fix Next Move"
-
-	var/largest_move_time = 0
-	var/largest_click_time = 0
-	var/mob/largest_move_mob = null
-	var/mob/largest_click_mob = null
-	for(var/mob/M in GLOB.mob_list)
-		if(!M.client)
-			continue
-		if(M.next_move >= largest_move_time)
-			largest_move_mob = M
-			if(M.next_move > world.time)
-				largest_move_time = M.next_move - world.time
-			else
-				largest_move_time = 1
-		if(M.next_click >= largest_click_time)
-			largest_click_mob = M
-			if(M.next_click > world.time)
-				largest_click_time = M.next_click - world.time
-			else
-				largest_click_time = 0
-		M.next_move = 1
-		M.next_click = 0
-
-	log_admin("[key_name(usr)] tried to fix next move: largest_next_move = [largest_move_time] | mob = [largest_move_mob] | next_click = [largest_click_time] | largest_click_mob = [largest_click_mob] | world.time = [world.time].")
-	message_admins("[ADMIN_TPMONTY(largest_move_mob)] had the largest move delay with [largest_move_time] frames / [largest_move_time / 10] seconds.")
-	message_admins("[ADMIN_TPMONTY(largest_click_mob)] had the largest click delay with [largest_click_time] frames / [largest_click_time / 10] seconds.")
-	message_admins("[ADMIN_TPMONTY(usr)] tried to unfreeze everyone at: world.time = [world.time].")
 
 
 /datum/admins/proc/restart_controller(controller in list("Master", "Failsafe"))

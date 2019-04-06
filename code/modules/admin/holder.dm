@@ -261,7 +261,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/toggle_sleep,
 	/datum/admins/proc/toggle_sleep_panel,
 	/datum/admins/proc/toggle_sleep_area,
-	/datum/admins/proc/change_squad,
 	/datum/admins/proc/direct_control,
 	/datum/admins/proc/logs_server,
 	/datum/admins/proc/logs_current,
@@ -333,7 +332,6 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/generate_powernets,
 	/datum/admins/proc/debug_mob_lists,
 	/datum/admins/proc/delete_atom,
-	/datum/admins/proc/fix_next_move,
 	/datum/admins/proc/restart_controller,
 	/datum/admins/proc/check_contents,
 	/datum/admins/proc/SDQL2_query,
@@ -355,6 +353,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	return list(
 	/datum/admins/proc/select_rank,
 	/datum/admins/proc/select_equipment,
+	/datum/admins/proc/change_squad,
 	/datum/admins/proc/set_view_range,
 	/datum/admins/proc/emp,
 	/datum/admins/proc/queen_report,
