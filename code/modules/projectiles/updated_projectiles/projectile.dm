@@ -81,7 +81,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(S.smoke_traits & SMOKE_NERF_BEAM && ammo.flags_ammo_behavior & AMMO_ENERGY)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_NERF_BEAM) && ammo.flags_ammo_behavior & AMMO_ENERGY)
 		damage -= max(damage - ammo.damage * 0.5, 0)
 
 /obj/item/projectile/ex_act()
@@ -431,7 +431,7 @@
 		if(shooter_human.stagger)
 			. -= 30 //Being staggered fucks your aim.
 		if(shooter_human.marksman_aura) // Accuracy bonus from active focus order: flat bonus + bonus per tile traveled
-			. += shooter_human.marksman_aura * CONFIG_GET(number/combat_define/focus_base_bonus) 
+			. += shooter_human.marksman_aura * CONFIG_GET(number/combat_define/focus_base_bonus)
 			. += P.distance_travelled * shooter_human.marksman_aura * CONFIG_GET(number/combat_define/focus_per_tile_bonus)
 
 

@@ -295,7 +295,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(S.smoke_traits & SMOKE_XENO_ACID)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
 		health -= base_acid_damage * S.strength
 		update_health()
 

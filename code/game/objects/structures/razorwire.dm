@@ -300,6 +300,6 @@
 	. = ..()
 	if(!.)
 		return
-	if(S.smoke_traits & SMOKE_XENO_ACID)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
 		health -= 2 * S.strength
 		update_health()

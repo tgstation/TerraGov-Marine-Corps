@@ -187,9 +187,9 @@
 /mob/living/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
-		if(S.smoke_traits & SMOKE_CAMO)
+		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
 			smokecloak_off()
-		return FALSE
+		return
 
-	if(S.smoke_traits & SMOKE_CAMO)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
 		smokecloak_on()

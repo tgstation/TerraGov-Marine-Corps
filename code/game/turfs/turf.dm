@@ -124,7 +124,12 @@
 			M.make_floating(0)
 	..()
 
-
+/turf/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
+		S.reagents?.reaction(src, VAPOR, S.fraction)
 
 /turf/proc/is_plating()
 	return FALSE

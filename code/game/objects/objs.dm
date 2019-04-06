@@ -242,7 +242,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(S.smoke_traits & SMOKE_CHEM)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		var/turf/T = get_turf(src)
 		if(!(T?.intact_tile) || level != 1) //not hidden under the floor
 			S.reagents?.reaction(src, VAPOR, S.fraction)

@@ -508,7 +508,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	. = ..()
 	if(!.)
 		return
-	if(S.smoke_traits & SMOKE_XENO_ACID)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
 		var/obj/vehicle/multitile/root/cm_armored/T = root
 		T.take_damage_type(30, "acid")
 
