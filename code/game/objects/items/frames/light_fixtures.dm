@@ -39,9 +39,7 @@
 		if("tube")
 			newlight = new /obj/machinery/light_construct(constrloc)
 	newlight.setDir(constrdir)
-	newlight.fingerprints = src.fingerprints
-	newlight.fingerprintshidden = src.fingerprintshidden
-	newlight.fingerprintslast = src.fingerprintslast
+	transfer_fingerprints_to(newlight)
 
 	usr.visible_message("[usr.name] attaches [src] to the wall.", \
 		"You attach [src] to the wall.")
