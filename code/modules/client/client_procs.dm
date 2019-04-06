@@ -133,7 +133,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		return null
 
 
-	if(!guests_allowed && IsGuestKey(key))
+	if(!GLOB.guests_allowed && IsGuestKey(key))
 		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.", "Guest", "OK")
 		qdel(src)
 		return
@@ -192,15 +192,11 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		addtimer(CALLBACK(src, qdel(src), 2 SECONDS))
 		return
 
-	if(custom_event_msg && custom_event_msg != "")
-		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
-		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
-		to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
+	if(GLOB.custom_info)
+		to_chat(src, "<h1 class='alert'>Custom Information</h1>")
+		to_chat(src, "<h2 class='alert'>The following custom information has been set for this round:</h2>")
+		to_chat(src, "<span class='alert'>[GLOB.custom_info]</span>")
 		to_chat(src, "<br>")
-
-	if((world.address == address || !address) && !host)
-		host = key
-		world.update_status()
 
 	preload_rsc = GLOB.external_rsc_url
 

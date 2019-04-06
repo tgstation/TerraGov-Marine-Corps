@@ -255,27 +255,27 @@
 
 /datum/admins/proc/custom_info()
 	set category = "Fun"
-	set name = "Change Custom Event"
+	set name = "Change Custom Info"
 
 	if(!check_rights(R_FUN))
 		return
 
-	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear"))
+	switch(input("Do you want to change or clear the custom info?", "Custom Info") as null|anything in list("Change", "Clear"))
 		if("Change")
-			custom_event_msg = input(usr, "Set the custom information players get on joining or via the OOC tab.",, custom_event_msg) as message|null
+			GLOB.custom_info = input(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom Info", GLOB.custom_info) as message|null
 
-			custom_event_msg = noscript(custom_event_msg)
+			GLOB.custom_info = noscript(GLOB.custom_info)
 
-			if(!custom_event_msg)
+			if(!GLOB.custom_info)
 				return
 
 			to_chat(world, "<h1 class='alert'>Custom Information</h1>")
-			to_chat(world, "<span class='alert'>[custom_event_msg]</span>")
+			to_chat(world, "<span class='alert'>[GLOB.custom_info]</span>")
 
-			log_admin("[key_name(usr)] has changed the custom event text: [custom_event_msg]")
+			log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
 			message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
 		if("Clear")
-			custom_event_msg = null
+			GLOB.custom_info = null
 			log_admin("[key_name(usr)] has cleared the custom info.")
 			message_admins("[ADMIN_TPMONTY(usr)] has cleared the custom info.")
 
@@ -284,12 +284,12 @@
 	set category = "OOC"
 	set name = "Custom Info"
 
-	if(!custom_event_msg || custom_event_msg == "")
-		to_chat(src, "<span class='notice'>There currently is no known custom information set.</span>")
+	if(!GLOB.custom_info)
+		to_chat(src, "<span class='notice'>There currently is no custom information set.</span>")
 		return
 
 	to_chat(src, "<h1 class='alert'>Custom Information</h1>")
-	to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
+	to_chat(src, "<span class='alert'>[GLOB.custom_info]</span>")
 
 
 /datum/admins/proc/sound_file(S as sound)
@@ -300,17 +300,18 @@
 	if(!check_rights(R_SOUND))
 		return
 
-	heard_midi = 0
+	var/heard_midi = 0
 	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
 	uploaded_sound.priority = 250
 
 
-	var/style = alert("Play sound globally or locally?", "Sound", "Global", "Local", "Cancel")
+	var/style = alert("Play sound globally or locally?", "Play Imported Sound", "Global", "Local", "Cancel")
 	switch(style)
 		if("Global")
-			for(var/mob/M in GLOB.player_list)
-				if(M.client.prefs.toggles_sound & SOUND_MIDI)
-					M << uploaded_sound
+			for(var/i in GLOB.clients)
+				var/client/C = i
+				if(C.prefs.toggles_sound & SOUND_MIDI)
+					SEND_SOUND(C, uploaded_sound)
 					heard_midi++
 		if("Local")
 			playsound(get_turf(usr), uploaded_sound, 50, 0)
@@ -708,7 +709,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed the security level to code [sec_level].")
 
 
-/datum/admins/proc/select_rank(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+/datum/admins/proc/select_rank(mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Select Rank"
 
@@ -718,13 +719,7 @@
 	switch(alert("Modify the rank or give them a new one?", "Select Rank", "New Rank", "Modify", "Cancel"))
 		if("New Rank")
 			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(SSjob.name_occupations)
-			if(!newrank || !H)
-				return
-
-			if(!H.mind)
-				H.job = newrank
-				log_admin("[key_name(usr)] has set the rank of mindless mob [key_name(H)] to [newrank].")
-				message_admins("[ADMIN_TPMONTY(usr)] has set the rank of mindless mob [ADMIN_TPMONTY(H)] to [newrank].")
+			if(!newrank || !istype(H))
 				return
 
 			H.set_rank(newrank)
@@ -772,7 +767,7 @@
 			message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank/skill change for [ADMIN_TPMONTY(H)].")
 
 
-/datum/admins/proc/select_equipment(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+/datum/admins/proc/select_equipment(mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Select Equipment"
 
@@ -816,7 +811,25 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(H)] to [istype(O) ? O.name : dresscode].")
 
 
-GLOBAL_LIST_EMPTY(custom_outfits)
+/datum/admins/proc/change_squad(mob/living/carbon/human/H in GLOB.human_mob_list)
+	set category = "Fun"
+	set name = "Change Squad"
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(!istype(H) || !(H.job in JOBS_MARINES))
+		return
+
+	var/squad = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
+	if(!squad || !istype(H) || !(H.job in JOBS_MARINES))
+		return
+
+	H.change_squad(squad)
+
+	log_admin("[key_name(src)] has changed the squad of [key_name(H)] to [squad].")
+	message_admins("[ADMIN_TPMONTY(usr)] has changed the squad of [ADMIN_TPMONTY(H)] to [squad].")
+
 
 /datum/admins/proc/create_outfit()
 	set category = "Fun"
@@ -1017,7 +1030,7 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	message_admins("[ADMIN_TPMONTY(usr)] updated the appearance of [ADMIN_TPMONTY(H)].")
 
 
-/datum/admins/proc/offer(var/mob/M in GLOB.mob_list)
+/datum/admins/proc/offer(mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Offer Mob"
 
@@ -1030,18 +1043,20 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	var/mob/living/L = M
 
 	if(L.key || L.ckey)
-		if(alert("This mob has a player inside, are you sure you want to proceed?", "WARNING", "Yes", "No") != "Yes")
+		if(alert("This mob has a player inside, are you sure you want to proceed?", "Offer Mob", "Yes", "No") != "Yes")
 			return
-		L.taken = FALSE
-		var/mob/dead/observer/ghost = L.ghostize(FALSE)
-		if(ghost)
-			ghost.timeofdeath = world.time
-	else if(L.taken)
-		if(alert("This mob has been offered, are you sure you want to proceed?", "Warning", "Yes", "No") != "Yes")
-			return
-		L.taken = FALSE
+		L.ghostize(FALSE)
+	else if(L in GLOB.offered_mob_list)
+		switch(alert("This mob has been offered, do you want to re-announce it?", "Offer Mob", "Yes", "Remove", "Cancel"))
+			if("Cancel")
+				return
+			if("Remove")
+				GLOB.offered_mob_list -= L
+				log_admin("[key_name(usr)] has removed offer of [key_name_admin(M)].")
+				message_admins("[ADMIN_TPMONTY(usr)] has removed offer of [ADMIN_TPMONTY(M)].")
+				return
 
-	if(alert("Are you sure?", "Offer Mob", "Yes", "No") != "Yes")
+	else if(alert("Are you sure?", "Offer Mob", "Yes", "No") != "Yes")
 		return
 
 	L.offer_mob()

@@ -1,5 +1,3 @@
-//Admin perms are in global.dm.
-
 #define DEBUG 0
 
 //Game defining directives.
@@ -143,6 +141,8 @@ var/list/accessable_z_levels = list("1" = 10, "3" = 10, "4" = 10, "5" = 70)
 
 // Default preferences
 #define DEFAULT_SPECIES "Human"
+
+#define GAME_YEAR 2386
 
 
 #define MAX_MESSAGE_LEN 1024

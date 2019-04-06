@@ -4,7 +4,6 @@ GLOBAL_VAR_INIT(CELLRATE, 0.002)     // Multiplier for watts per tick <> cell st
 GLOBAL_VAR_INIT(CHARGELEVEL, 0.0005) // Cap for how fast cells charge, as a percentage-per-tick (0.01 means cellcharge is capped to 1% per second)
 
 GLOBAL_VAR_INIT(ready_players, 0)
-GLOBAL_VAR_INIT(total_players, 0)
 
 GLOBAL_VAR_INIT(TAB, "&nbsp;&nbsp;&nbsp;&nbsp;")
 
