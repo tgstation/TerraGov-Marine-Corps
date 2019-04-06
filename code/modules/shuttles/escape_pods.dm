@@ -208,13 +208,11 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 //This controller goes on the escape pod itself.
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod
 	name = "escape pod controller"
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/datum/computer/file/embedded_program/docking/simple/escape_pod/evacuation_program //Runs the doors and states.
 	//door_tag is the tag for the pod door.
 	//id_tag is the generic connection tag.
 	//TODO make sure you can't C4 this.
-
-	ex_act(severity) return FALSE
 
 	ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 		var/launch_status[] = evacuation_program.check_launch_status()
@@ -286,13 +284,10 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 /obj/machinery/cryopod/evacuation
 	machine_stat = MACHINE_DO_NOT_PROCESS
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	time_till_despawn = INFINITY //near infinite so despawn never occurs.
 	var/being_forced = FALSE //Simple variable to prevent sound spam.
 	var/datum/computer/file/embedded_program/docking/simple/escape_pod/evacuation_program
-
-/obj/machinery/cryopod/evacuation/ex_act(severity)
-	return FALSE
 
 /obj/machinery/cryopod/evacuation/attackby(obj/item/grab/G, mob/user)
 	if(istype(G))
@@ -331,8 +326,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 /obj/machinery/door/airlock/evacuation
 	name = "\improper Evacuation Airlock"
 	icon = 'icons/obj/doors/almayer/pod_doors.dmi'
-	heat_proof = 1
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/door/airlock/evacuation/Initialize()
 	. = ..()

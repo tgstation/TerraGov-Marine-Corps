@@ -170,7 +170,7 @@
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear
 	opacity = TRUE
 	width = 3
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	no_panel = TRUE
 	not_weldable = TRUE
 	destructible = FALSE

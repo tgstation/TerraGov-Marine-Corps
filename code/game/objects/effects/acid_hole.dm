@@ -4,7 +4,7 @@
 	icon = 'icons/effects/new_acid.dmi'
 	icon_state = "hole_0"
 	anchored = 1
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	layer = LOWER_ITEM_LAYER
 	var/turf/closed/wall/holed_wall
 
@@ -28,8 +28,6 @@
 		holed_wall = null
 	. = ..()
 
-/obj/effect/acid_hole/ex_act(severity)
-	return
 
 /obj/effect/acid_hole/fire_act()
 	return

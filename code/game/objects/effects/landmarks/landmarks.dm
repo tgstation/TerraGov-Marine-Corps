@@ -3,7 +3,7 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
 	anchored = TRUE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	layer = MID_LANDMARK_LAYER
 	invisibility = INVISIBILITY_ABSTRACT
 
