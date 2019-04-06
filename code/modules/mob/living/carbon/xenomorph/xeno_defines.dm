@@ -230,7 +230,6 @@
 	var/used_lunge = 0
 	var/used_fling = 0
 	var/used_punch = 0
-	var/used_toggle_agility = 0
 
 	// Defender vars
 	var/fortify = 0

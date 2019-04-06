@@ -29,7 +29,7 @@
 		button.overlays += image('icons/mob/actions.dmi', button, "savage_on")
 	return ..()
 
-/mob/living/carbon/Xenomorph/proc/Savage(var/mob/living/carbon/M)
+/mob/living/carbon/Xenomorph/proc/Savage(mob/living/carbon/M)
 
 	if(!check_state())
 		return

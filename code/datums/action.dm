@@ -116,6 +116,8 @@
 #define XACT_USE_CRESTED	(1 << 5) // ignore being in crest defense
 #define XACT_USE_NOTTURF	(1 << 6) // ignore not being on a turf (like in a vent)
 #define XACT_USE_BUSY		(1 << 7) // ignore being in a do_after or similar
+#define XACT_USE_AGILITY	(1 << 8) // ignore agility mode
+#define XACT_TARGET_SELF	(1 << 9) // allow self-targetting
 
 /datum/action/xeno_action
 	var/action_icon_state
@@ -179,7 +181,12 @@
 
 	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_BUSY) && X.action_busy)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You're busy doing something right now'!</span>")
+			to_chat(owner, "<span class='warning'>You're busy doing something right now!</span>")
+		return FALSE
+
+	if(!CHECK_BITFIELD(use_state_flags, XACT_USE_AGILITY) && X.agility)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do that in agility mode!</span>")
 		return FALSE
 
 	if(X.plasma_stored < plasma_cost)
@@ -278,6 +285,9 @@
 
 //override this 
 /datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, ignore_cooldown = FALSE)
+	if(!CHECK_BITFIELD(use_state_flags, XACT_TARGET_SELF) && A == owner)
+		return FALSE
+
 	return can_use_action(silent, ignore_cooldown)
 
 /datum/action/xeno_action/activable/proc/on_activation()
