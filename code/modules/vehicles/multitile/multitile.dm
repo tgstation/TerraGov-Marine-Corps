@@ -32,8 +32,8 @@ Vehicles are placed on the map by a spawner or admin verb
 	var/obj/vehicle/multitile/root/master
 	invisibility = INVISIBILITY_MAXIMUM
 
-/obj/effect/multitile_entrance/Destroy()
-	if(!override)
+/obj/effect/multitile_entrance/Destroy(force = FALSE)
+	if(!force)
 		return QDEL_HINT_LETMELIVE
 	return ..()
 
