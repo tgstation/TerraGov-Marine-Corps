@@ -69,6 +69,9 @@ GLOBAL_PROTECT(exp_to_update)
 	return_text += "<UL>"
 	var/list/exp_data = list()
 	for(var/category in SSjob.name_occupations)
+		var/datum/job/J = category
+		if(!(J.title in JOBS_REGULAR_ALL))
+			continue
 		if(play_records[category])
 			exp_data[category] = text2num(play_records[category])
 		else
@@ -89,8 +92,6 @@ GLOBAL_PROTECT(exp_to_update)
 
 	for(var/dep in exp_data)
 		if(exp_data[dep] <= 0)
-			continue
-		if(!(dep in JOBS_REGULAR_ALL))
 			continue
 		if(exp_data[EXP_TYPE_LIVING] > 0 && (dep == EXP_TYPE_GHOST || dep == EXP_TYPE_LIVING))
 			var/percentage = num2text(round(exp_data[dep] / (exp_data[EXP_TYPE_LIVING] + exp_data[EXP_TYPE_GHOST])  * 100))
