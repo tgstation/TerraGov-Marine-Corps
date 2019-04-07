@@ -684,7 +684,7 @@
 
 	var/mob/M = usr
 
-	var/choice = input("What size explosion would you like to produce?", "Drop Bomb") in list("CANCEL", "Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
+	var/choice = input("What size explosion would you like to produce?", "Drop Bomb") as null|anything in list("CANCEL", "Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
 	switch(choice)
 		if("CANCEL")
 			return
@@ -1102,7 +1102,7 @@
 		var/datum/hive_status/H = GLOB.hive_datums[Y]
 		namelist += H.name
 
-	var/newhive = input(usr, "Select a hive.", "Change Hivenumber") in namelist
+	var/newhive = input(usr, "Select a hive.", "Change Hivenumber") as null|anything in namelist
 	if(!newhive)
 		return
 
