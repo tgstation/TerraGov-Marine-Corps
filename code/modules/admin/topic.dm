@@ -1039,7 +1039,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		if(target)
 			for(var/path in paths)
-				for(var/i in 0 to number)
+				for(var/i in 1 to number)
 					if(path in typesof(/turf))
 						var/turf/O = target
 						var/turf/N = O.ChangeTurf(path)
