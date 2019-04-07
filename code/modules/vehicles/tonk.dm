@@ -8,7 +8,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 /atom
 	var/tank_crash_damage = 10  //Arbitrary number. Set this to whatever you want with extra walltypes
 
-/atom/tank_act(var/obj/vehicle/tonk/victim)
+/atom/proc/tank_act(var/obj/vehicle/tonk/victim)
 	visible_message("[victim] CRASHES INTO [src]")
 	victim.health -= tank_crash_damage
 	qdel(src)
@@ -142,7 +142,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		to_chat(user, "You are unable to enter [src] because all of its seats are occupied!")
 		return ..()
 	if(user in operators)
-		to_chat(user, "You're already in [src] you dolt.")
+		exit_tank(user)
 		return
 	var/position = alert("What seat would you like to enter?.",name,"pilot","gunner") //God I wish I had radials to work with
 	if(!position)
@@ -188,6 +188,18 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 			user.forceMove(src)
 			gunner = user
 			operators += user
+
+/obj/vehicle/tonk/proc/exit_tank(var/mob/user) //By this point, we've checked that the seats are actually empty, so we won't need to do that again HOPEFULLY
+	if(!user)
+		return //Something fucked up. Whoops!
+	if(user == pilot)
+		user.forceMove(get_turf(src))
+		pilot = null
+		operators -= user
+	if(user == gunner)
+		user.forceMove(get_turf(src))
+		gunner = null
+		operators -= user
 
 /obj/vehicle/tonk/relaymove(mob/user, direction)
 	if(user.incapacitated() || user != pilot)
@@ -280,6 +292,13 @@ This handles stuff like swapping seats, pulling people out of the tank, all that
 
 */
 
+/obj/vehicle/tonk/verb/exit_tank_verb()
+	set name = "Exit tank"
+	set category = "Vehicle"
+	set src in view(0)
+	if(usr)
+		exit_tank(usr)
+
 /obj/vehicle/tonk/verb/switch_seats()
 	set name = "Swap Seats"
 	set category = "Vehicle"
@@ -313,14 +332,13 @@ This handles stuff like swapping seats, pulling people out of the tank, all that
 	pilot = wannabe_trucker ? user : null
 	gunner = wannabe_trucker ? null : user
 
-/obj/vehicle/multitile/root/cm_armored/tank/handle_harm_attack(mob/M, mob/occupant)
-	. = ..()
-	if(!.)
-		return
+/obj/vehicle/tonk/proc/handle_harm_attack(mob/M, mob/occupant)
+	if(M.resting || M.buckled || M.incapacitated())
+		return FALSE
 	if(!occupant)
 		to_chat(M, "<span class='warning'>There is no one on that seat.</span>")
 		return
-	var/turf/hatch = get_step_towards(entrance.loc, src)
+	var/turf/hatch = get_turf(src)
 	M.visible_message("<span class='warning'>[M] starts pulling [occupant] out of \the [src].</span>",
 	"<span class='warning'>You start pulling [occupant] out of \the [src]. (this will take a while...)</span>", null, 6)
 	var/fumbling_time = 20 SECONDS
@@ -330,7 +348,7 @@ This handles stuff like swapping seats, pulling people out of the tank, all that
 		fumbling_time -= 2 SECONDS * M.mind.cm_skills.large_vehicle
 	if(!do_after(M, fumbling_time, TRUE, 5, BUSY_ICON_HOSTILE) || !M.Adjacent(hatch))
 		return
-	exit_tank(occupant, TRUE, TRUE)
+	exit_tank(occupant)
 	M.visible_message("<span class='warning'>[M] forcibly pulls [occupant] out of [src].</span>",
 					"<span class='notice'>you forcibly pull [occupant] out of [src].</span>", null, 6)
 	occupant.KnockDown(4)
