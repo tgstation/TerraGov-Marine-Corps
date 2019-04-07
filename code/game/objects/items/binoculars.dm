@@ -3,7 +3,7 @@
 	name = "binoculars"
 	desc = "A pair of binoculars."
 	icon_state = "binoculars"
-
+	flags_item = ITEM_ZOOM_NIGHTVISION
 	flags_atom = CONDUCT
 	force = 5.0
 	w_class = 2.0
@@ -11,9 +11,15 @@
 	throw_range = 15
 	throw_speed = 3
 
-	//matter = list("metal" = 50,"glass" = 50)
+
+/obj/item/binoculars/on_unset_interaction(mob/user)
+	unzoom(user)
+
 
 /obj/item/binoculars/attack_self(mob/user)
+	if(CHECK_BITFIELD(flags_item, ITEM_ZOOMED))
+		user.unset_interaction()
+		return
 	zoom(user, 11, 12)
 
 
@@ -63,7 +69,6 @@
 
 /obj/item/binoculars/tactical/on_unset_interaction(mob/user)
 	. = ..()
-	user.reset_client_sight()
 	if(laser)
 		qdel(laser)
 	if(coord)
@@ -90,7 +95,7 @@
 		to_chat(user, "These binoculars only have one mode.")
 		return
 
-	if(!zoomed)
+	if(!CHECK_BITFIELD(flags_item, ITEM_ZOOMED))
 		mode = !mode
 		to_chat(user, "<span class='notice'>You switch [src] to [mode? "range finder" : "CAS marking" ] mode.</span>")
 		update_icon()

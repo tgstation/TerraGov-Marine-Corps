@@ -38,6 +38,8 @@
 #define TWOHANDED				(1<<4)	// The item is twohanded.
 #define WIELDED					(1<<5)	// The item is wielded with both hands.
 #define	ITEM_ABSTRACT			(1<<6)	//The item is abstract (grab, powerloader_clamp, etc)
+#define	ITEM_ZOOMED				(1<<7)	// Actively being used to zoom. For scoped guns and binoculars.
+#define ITEM_ZOOM_NIGHTVISION	(1<<8)	// While zooming this grants nightvision.
 
 //==========================================================================================
 

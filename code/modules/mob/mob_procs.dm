@@ -8,11 +8,8 @@
 #define TILESIZE 32
 
 
-/mob/proc/regenerate_client_sight()
-
-
 /mob/proc/reset_client_sight()
-    see_in_dark = initial(see_in_dark)
+    see_in_dark = initial(see_in_dark) + see_in_dark_modifier
     see_invisible = see_in_dark > 2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
     if(!client)
         reset_client_sight_no_client() //Preserve the values in case they return.
@@ -31,9 +28,23 @@
     client_vars[CLIENT_CLICK_INTERCEPT_INDEX] = null
 
 
-/mob/proc/set_client_sight(viewsize, tileoffset)
-    see_in_dark = viewsize + tileoffset + 1 //That extra one so they can see the edge of the screen.
-    see_invisible = min(see_invisible, SEE_INVISIBLE_OBSERVER_NOLIGHTING)
+/mob/proc/regenerate_client_sight()
+    for(var/i in client_vars)
+        switch(i)
+            if(CLIENT_VIEW_INDEX)
+                client.view = client_vars[CLIENT_VIEW_INDEX]
+            if(CLIENT_PIXEL_X_INDEX)
+                client.pixel_x = client_vars[CLIENT_PIXEL_X_INDEX]
+            if(CLIENT_PIXEL_Y_INDEX)
+                client.pixel_y = client_vars[CLIENT_PIXEL_Y_INDEX]
+            if(CLIENT_CLICK_INTERCEPT_INDEX)
+                client.click_intercept = client_vars[CLIENT_CLICK_INTERCEPT_INDEX]
+
+
+/mob/proc/set_client_sight(viewsize, tileoffset, darkvision)
+    if(darkvision)
+        see_in_dark = max(viewsize + tileoffset + 1, see_in_dark + see_in_dark_modifier) //That extra one so they can see the edge of the screen.
+        see_invisible = min(see_invisible, SEE_INVISIBLE_OBSERVER_NOLIGHTING)
     if(!client)
         set_client_sight_no_client(viewsize, tileoffset)
         return
@@ -125,9 +136,24 @@
 /mob/living/carbon/Xenomorph/Queen/reset_view_no_client(atom/A)
 	if(ovipositor && observed_xeno && !stat)
 		client_vars[CLIENT_PERSPECTIVE_INDEX] = EYE_PERSPECTIVE
-        client_vars[CLIENT_EYE_INDEX] = observed_xeno
+		client_vars[CLIENT_EYE_INDEX] = observed_xeno
 	else
 		return ..()
+
+
+/mob/proc/add_see_invisible(see_invisible_change)
+	see_invisible_modifiers.Add(see_invisible_change)
+	for(var/i in see_invisible_modifiers)
+		if(i < see_invisible)
+			see_invisible = i
+
+
+/mob/proc/remove_see_invisible(see_invisible_change)
+	see_invisible_modifiers.Remove(see_invisible_change)
+	see_invisible = initial(see_invisible)
+	for(var/i in see_invisible_modifiers)
+		if(i < see_invisible)
+			see_invisible = i
 
 
 //==//==//
@@ -151,6 +177,12 @@
             if(CLIENT_CLICK_INTERCEPT_INDEX)
                 client.click_intercept = client_vars[CLIENT_CLICK_INTERCEPT_INDEX]
 
+
+//==//==//
+
+
+/mob/proc/update_sight()
+	return
 
 
 #undef CLIENT_VIEW_INDEX

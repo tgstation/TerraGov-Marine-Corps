@@ -735,10 +735,7 @@
 		T.mind.transfer_to(new_xeno)
 	else
 		new_xeno.key = T.key
-		if(new_xeno.client)
-			new_xeno.client.change_view(world.view)
-			new_xeno.client.pixel_x = 0
-			new_xeno.client.pixel_y = 0
+		new_xeno.reset_client_sight()
 
 	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
 	new_xeno.nicknumber = T.nicknumber

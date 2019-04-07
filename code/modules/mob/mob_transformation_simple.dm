@@ -24,8 +24,7 @@
 		mind.transfer_to(M, TRUE)
 	else
 		M.key = key
-		if(M.client) 
-			M.client.change_view(world.view)
+		M.reset_client_sight()
 
 	if(istext(new_name))
 		M.name = new_name

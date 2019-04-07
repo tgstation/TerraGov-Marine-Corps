@@ -7,7 +7,6 @@
 	datum_flags = DF_USE_TAG
 	var/datum/mind/mind
 	var/list/client_vars = list()
-	var/obj/item/zoom
 
 	var/datum/click_intercept
 
@@ -185,6 +184,8 @@
 
 	var/accuracy_modifier = 0 //Applies a penalty or bonus to projectile accuracy in projectile.dm
 	var/scatter_modifier = 0 //Applies a penalty or bonus to scatter probability in gun_system.dm
+	var/see_in_dark_modifier = 0 //Somthing has modified the basic sight of this mob.
+	var/list/see_invisible_modifiers = list()
 
 	var/list/fullscreens = list()
 

@@ -535,8 +535,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		M.client.screen.Cut()
 		NP.key = M.key
 		NP.name = M.key
-		if(NP.client)
-			NP.client.change_view(world.view)
+		NP.reset_client_sight()
 		if(isobserver(M))
 			qdel(M)
 		else

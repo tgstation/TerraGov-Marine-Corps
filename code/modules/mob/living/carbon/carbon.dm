@@ -127,14 +127,15 @@
 
 /mob/living/carbon/proc/swap_hand()
 	var/obj/item/wielded_item = get_active_held_item()
-	if(wielded_item && (wielded_item.flags_item & WIELDED)) //this segment checks if the item in your hand is twohanded.
-		var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_held_item()
-		if(offhand && (offhand.flags_item & WIELDED))
-			to_chat(src, "<span class='warning'>Your other hand is too busy holding \the [offhand.name]</span>")
-			return
-		else wielded_item.unwield(src) //Get rid of it.
-	if(wielded_item && wielded_item.zoomed) //Adding this here while we're at it
-		wielded_item.zoom(src)
+	if(wielded_item)
+		if(CHECK_BITFIELD(wielded_item.flags_item, WIELDED)) //this segment checks if the item in your hand is twohanded.
+			var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_held_item()
+			if(offhand && (offhand.flags_item & WIELDED))
+				to_chat(src, "<span class='warning'>Your other hand is too busy holding \the [offhand.name]</span>")
+				return
+			else wielded_item.unwield(src) //Get rid of it.
+		if(CHECK_BITFIELD(wielded_item.flags_item, ITEM_ZOOMED)) //Adding this here while we're at it
+			unset_interaction()
 	hand = !hand
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		if(hand)	//This being 1 means the left hand is in use

@@ -397,8 +397,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
 			new_xeno.key = picked
 
-			if(new_xeno.client)
-				new_xeno.client.change_view(world.view)
+			new_xeno.reset_client_sight()
 
 			to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
 			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))

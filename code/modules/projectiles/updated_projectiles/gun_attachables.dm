@@ -79,10 +79,11 @@ Defined in conflicts.dm of the #defines folder.
 	var/current_rounds 	= 0 //How much it has.
 	var/max_rounds 		= 0 //How much ammo it can store
 	var/max_range		= 0
-	var/attach_applied = FALSE //Prevents it from getting picked up after being attached
+	var/obj/item/weapon/gun/attached_to //The gun we are attached to.
 
 	var/attachment_action_type
 	var/scope_zoom_mod = FALSE //codex
+
 
 
 /obj/item/attachable/attackby(obj/item/I, mob/user)
@@ -97,17 +98,16 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/attack_hand(var/mob/user as mob)
-	if(src.attach_applied == TRUE)
+	if(attached_to) //Already attached to something. Abort.
 		return
-	else
-		..()
+	return ..()
 
 
 
 /obj/item/attachable/proc/Attach(obj/item/weapon/gun/G)
 	if(!istype(G))
 		return //Guns only
-	attach_applied = TRUE
+	attached_to = G
 
 	/*
 	This does not check if the attachment can be removed.
@@ -177,8 +177,6 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/proc/Detach(obj/item/weapon/gun/G)
 	if(!istype(G))
 		return //Guns only
-	attach_applied = FALSE
-
 
 	if(flags_attach_features & ATTACH_ACTIVATION)
 		activate_attachment(G, null, TRUE)
@@ -188,8 +186,6 @@ Defined in conflicts.dm of the #defines folder.
 		if("muzzle") 	G.muzzle = null
 		if("under")		G.under = null
 		if("stock")		G.stock = null
-
-
 
 	G.accuracy_mult		-= accuracy_mod
 	G.accuracy_mult_unwielded -= accuracy_unwielded_mod
@@ -227,8 +223,7 @@ Defined in conflicts.dm of the #defines folder.
 	//G.flags_gun_features &= ~GUN_FLASHLIGHT_ON
 
 	loc = get_turf(G)
-
-
+	attached_to = null //Remove the gun reference when the process is over.
 
 
 /obj/item/attachable/ui_action_click(mob/living/user, obj/item/weapon/gun/G)
@@ -554,17 +549,31 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/scope/activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
 	if(turn_off)
-		if(G.zoomed)
-			G.zoom(user, zoom_offset, zoom_viewsize)
+		if(CHECK_BITFIELD(flags_item, ITEM_ZOOMED))
+			user.unset_interaction()
 		return TRUE
 
-	if(!G.zoomed && !(G.flags_item & WIELDED))
+	if(!CHECK_BITFIELD(G.flags_item, WIELDED))
 		if(user)
 			to_chat(user, "<span class='warning'>You must hold [G] with two hands to use [src].</span>")
 		return FALSE
-	else
-		G.zoom(user, zoom_offset, zoom_viewsize)
+	
+	zoom(user, zoom_offset, zoom_viewsize, CHECK_BITFIELD(flags_item, ITEM_ZOOM_NIGHTVISION))
 	return TRUE
+
+
+/obj/item/attachable/scope/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //this is so the accuracy modifiers for the scopes apply correctly
+	. = ..()
+	attached_to.accuracy_mod += zoom_accuracy
+
+
+/obj/item/attachable/scope/unzoom(mob/living/user) //this is so the accuracy modifiers for the scopes remove correctly
+	attached_to.accuracy_mod -= zoom_accuracy
+	return ..()
+
+
+/obj/item/attachable/scope/on_unset_interaction(mob/user)
+	unzoom(user)
 
 
 /obj/item/attachable/scope/mini
@@ -1350,13 +1359,3 @@ Defined in conflicts.dm of the #defines folder.
 		var/datum/action/A = X
 		A.update_button_icon()
 	return TRUE
-
-
-/obj/item/weapon/gun/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //this is so the accuracy modifiers for the scopes apply correctly
-	. = ..()
-	if(istype(rail,/obj/item/attachable/scope))
-		var/obj/item/attachable/scope/S = rail
-		if(zoomed)
-			S.accuracy_mod = S.zoom_accuracy
-		else
-			S.accuracy_mod = 0

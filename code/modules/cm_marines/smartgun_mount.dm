@@ -555,11 +555,7 @@
 	user.client.click_intercept = src
 
 /obj/machinery/m56d_hmg/on_unset_interaction(mob/user)
-	if(user.client)
-		user.client.change_view(world.view)
-		user.client.pixel_x = 0
-		user.client.pixel_y = 0
-		user.client.click_intercept = null
+	user.reset_client_sight()
 	if(operator == user)
 		operator = null
 	user.verbs -= /mob/living/proc/toogle_mg_burst_fire

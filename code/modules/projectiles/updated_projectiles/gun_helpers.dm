@@ -539,7 +539,7 @@ should be alright.
 	if(usr.action_busy)
 		return
 
-	if(zoomed)
+	if(CHECK_BITFIELD(flags_item, ITEM_ZOOMED))
 		to_chat(usr, "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>")
 		return
 
@@ -577,7 +577,7 @@ should be alright.
 	if(usr.action_busy)
 		return
 
-	if(zoomed)
+	if(CHECK_BITFIELD(flags_item, ITEM_ZOOMED))
 		return
 
 	if(A != rail && A != muzzle && A != under && A != stock)
@@ -604,7 +604,7 @@ should be alright.
 	if(!(A.flags_attach_features & ATTACH_REMOVABLE))
 		return
 
-	if(zoomed)
+	if(CHECK_BITFIELD(flags_item, ITEM_ZOOMED))
 		return
 
 	usr.visible_message("<span class='notice'>[usr] strips [A] from [src].</span>",

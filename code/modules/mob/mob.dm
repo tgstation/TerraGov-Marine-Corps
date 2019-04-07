@@ -190,8 +190,8 @@
 					W.flags_item |= NODROP
 				if(W.loc == start_loc && get_active_held_item() != W)
 					//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
-					if(W.zoomed)
-						W.zoom(src)
+					if(CHECK_BITFIELD(W.flags_item, ITEM_ZOOMED))
+						unset_interaction()
 					if(W.flags_item & TWOHANDED)
 						W.unwield(src)
 		return TRUE
@@ -201,8 +201,8 @@
 			W.flags_item |= NODROP
 		if(W.loc == start_loc && get_active_held_item() != W)
 			//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
-			if(W.zoomed)
-				W.zoom(src)
+			if(CHECK_BITFIELD(W.flags_item, ITEM_ZOOMED))
+				unset_interaction()
 			if(W.flags_item & TWOHANDED)
 				W.unwield(src)
 		return TRUE

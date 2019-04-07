@@ -54,8 +54,6 @@
 
 	var/list/allowed = null //suit storage stuff.
 	var/obj/item/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
-	var/zoomdevicename = null //name used for message when binoculars/scope is used
-	var/zoomed = FALSE //TRUE if item is actively being used to zoom. For scoped guns and binoculars.
 
 	var/list/uniform_restricted //Need to wear this uniform to equip this
 
@@ -209,10 +207,9 @@
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
-/obj/item/proc/dropped(mob/user as mob)
-	if(user && user.client) //Dropped when disconnected, whoops
-		if(zoomed) //binoculars, scope, etc
-			zoom(user, 11, 12)
+/obj/item/proc/dropped(mob/user)
+	if(user && CHECK_BITFIELD(flags_item, ITEM_ZOOMED)) //Dropped when disconnected, whoops
+		user.unset_interaction()
 
 	for(var/X in actions)
 		var/datum/action/A = X
@@ -621,48 +618,55 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!user)
 		return
 
-	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
-	if(user.zoom != src)
-		to_chat(user, "<span class='warning'>You are already looking through \the [zoom_device].</span>")
+	if(user.interactee && user.interactee != src) //The user is already zooming through something else.
+		to_chat(user, "<span class='warning'>You are already looking through [user.interactee].</span>")
 		return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
+
+	if(CHECK_BITFIELD(flags_item, ITEM_ZOOMED)) //If we are already zoomed out, unzoom.
+		user.unset_interaction()
+		return
+
 	if(is_blind(user))
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
 		return
 	if(!user.IsAdvancedToolUser())
-		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
+		to_chat(user, "<span class='warning'>You do not have the dexterity to use [src].</span>")
 		return
 
-	if(zoomed) //If we are zoomed out, reset that parameter.
-		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
-		"<span class='notice'>You look up from [zoom_device].</span>")
-		zoomed = FALSE
-		user.zoom_cooldown = world.time + ZOOM_COOLDOWN
+	if(user.get_total_tint() >= TINT_HEAVY)
+		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through [src].</span>")
+		return
+
+	if(world.time <= user.zoom_cooldown) //If we are spamming the zoom, cut it out
+		return
+
+	user.zoom_cooldown = world.time + ZOOM_COOLDOWN
+
+	user.visible_message("<span class='notice'>[user] peers through [src].</span>",
+	"<span class='notice'>You peer through [src].</span>")
+	ENABLE_BITFIELD(flags_item, ITEM_ZOOMED)
+
+	user.set_client_sight(viewsize, tileoffset, CHECK_BITFIELD(flags_item, ITEM_ZOOM_NIGHTVISION))
+
+	if(user.interactee != src)
 		user.unset_interaction()
+
+	user.set_interaction(src)
+
+
+/obj/item/proc/unzoom(mob/living/user) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+	if(!user)
 		return
 
-	else //Otherwise we want to zoom in.
-		if(user.get_total_tint() >= TINT_HEAVY)
-			to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
-			return
-		if(user.get_active_held_item() != src)
-			to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
-			return
-		if(world.time <= user.zoom_cooldown) //If we are spamming the zoom, cut it out
-			return
-		user.zoom_cooldown = world.time + ZOOM_COOLDOWN
-
-		user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
-		"<span class='notice'>You peer through \the [zoom_device].</span>")
-		zoomed = TRUE
-
-		user.set_client_sight(viewsize, tileoffset)
-
-		if(user.interactee != src)
-			user.unset_interaction()
-
-		if(!istype(src, /obj/item/attachable/scope))
-			user.set_interaction(src)
-
+	if(CHECK_BITFIELD(flags_item, ITEM_ZOOMED)) //If we are zoomed out, reset that parameter.
+		user.visible_message("<span class='notice'>[user] looks up from [src].</span>",
+		"<span class='notice'>You look up from [src].</span>")
+	
+	DISABLE_BITFIELD(flags_item, ITEM_ZOOMED)
+	user.reset_client_sight()
+	user.zoom_cooldown = world.time + ZOOM_COOLDOWN
+	
+	
 
 /obj/item/proc/eyecheck(mob/user)
 	if(!ishuman(user))

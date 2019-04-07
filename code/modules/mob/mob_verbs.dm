@@ -124,8 +124,7 @@
 		return
 
 	M.key = key
-	if(M.client)
-		M.client.change_view(world.view)
+	M.reset_client_sight()
 	return
 
 

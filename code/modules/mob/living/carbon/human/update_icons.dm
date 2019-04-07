@@ -554,6 +554,7 @@ var/global/list/damage_icon_parts = list()
 
 		apply_overlay(GLASSES_LAYER)
 
+
 /mob/living/carbon/human/update_inv_ears()
 	remove_overlay(EARS_LAYER)
 	if(wear_ear)

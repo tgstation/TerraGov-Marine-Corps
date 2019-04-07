@@ -282,7 +282,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	var/mob/living/carbon/human/wearer = null
 	var/B18_burn_cooldown = null
 	var/B18_oxy_cooldown = null
 	var/B18_brute_cooldown = null

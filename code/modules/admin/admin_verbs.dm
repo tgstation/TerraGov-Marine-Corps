@@ -17,7 +17,7 @@
 		ghost.reenter_corpse()
 		return
 
-	M.client.change_view(world.view)
+	M.reset_client_sight()
 
 	var/oldkey = M.key
 
@@ -93,8 +93,7 @@
 
 	M.ghostize(FALSE)
 	M.ckey = ckey(new_ckey)
-	if(M.client)
-		M.client.change_view(world.view)
+	M.reset_client_sight()
 
 	log_admin("[key_name(usr)] changed [M.name] ckey to [new_ckey].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed [M.name] ckey to [new_ckey].")

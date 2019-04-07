@@ -118,9 +118,10 @@
 
 	H.loc = picked
 
+	H.reset_client_sight()
+
 	if(H.client)
 		H.name = H.client.prefs.real_name
-		H.client.change_view(world.view)
 
 	if(!H.mind)
 		H.mind = new /datum/mind(H.key)

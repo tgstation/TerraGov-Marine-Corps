@@ -152,9 +152,8 @@
 	// If mob moves while zoomed in with device, unzoom them.
 	if(view != world.view || pixel_x || pixel_y)
 		for(var/obj/item/item in mob.contents)
-			if(item.zoomed)
-				item.zoom(mob)
-				click_intercept = null
+			if(CHECK_BITFIELD(item.flags_item, ITEM_ZOOMED))
+				mob.unset_interaction()
 				break
 
 	//Check if you are being grabbed and if so attemps to break it

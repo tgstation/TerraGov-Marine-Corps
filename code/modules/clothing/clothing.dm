@@ -1,6 +1,7 @@
 /obj/item/clothing
 	name = "clothing"
 	var/list/species_restricted = null //Only these species can wear this kit.
+	var/mob/living/carbon/wearer
 
 	/*
 		Sprites used when the clothing item is refit. This is done by setting icon_override.
@@ -95,6 +96,16 @@
 		icon = sprite_sheets_obj[target_species]
 	else
 		icon = initial(icon)
+
+
+/obj/item/clothing/equipped(mob/user)
+	wearer = user
+	return ..()
+
+
+/obj/item/clothing/dropped(mob/user)
+	. = ..()
+	wearer = null
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects

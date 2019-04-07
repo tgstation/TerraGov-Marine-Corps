@@ -329,8 +329,7 @@
 
 /mob/proc/unset_interaction()
 	if(interactee)
-		if(istype(interactee))
-			interactee.on_unset_interaction(src)
+		interactee.on_unset_interaction(src)
 		interactee = null
 
 

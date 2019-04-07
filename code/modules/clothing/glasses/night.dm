@@ -7,7 +7,7 @@
 	icon_state = "night"
 	item_state = "glasses"
 	origin_tech = "magnets=2"
-	darkness_view = 7
+	glass_see_in_dark_modifier = 7
 	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING // Needed for no darkness overlay
 	fullscreen_vision = /obj/screen/fullscreen/nvg
 
@@ -18,7 +18,7 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
-	darkness_view = 13
+	glass_see_in_dark_modifier = 13
 	toggleable = TRUE
 	fullscreen_vision = null
 	actions_types = list(/datum/action/item_action/toggle)
@@ -30,7 +30,7 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
-	darkness_view = 24
+	glass_see_in_dark_modifier = 24
 	toggleable = TRUE
 	fullscreen_vision = null
 	actions_types = list(/datum/action/item_action/toggle)
@@ -49,7 +49,7 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
-	darkness_view = 8
+	glass_see_in_dark_modifier = 8
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
 	fullscreen_vision = null //Nulled out due to general dislike for the overlay.

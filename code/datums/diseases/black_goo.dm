@@ -167,7 +167,7 @@
 	icon = null
 	w_class = 2.0
 	vision_flags = SEE_MOBS
-	darkness_view = 7
+	glass_see_in_dark_modifier = 7
 	flags_item = NODROP|DELONDROP
 	fullscreen_vision = /obj/screen/fullscreen/nvg
 

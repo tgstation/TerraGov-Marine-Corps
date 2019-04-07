@@ -392,10 +392,10 @@
 
 
 
-/mob/living/carbon/Xenomorph/proc/zoom_in(var/tileoffset = 5, var/viewsize = 12)
+/mob/living/carbon/Xenomorph/proc/zoom_in(tileoffset = 5, viewsize = 12)
 	if(stat || resting)
 		if(is_zoomed)
-			is_zoomed = 0
+			is_zoomed = FALSE
 			zoom_out()
 			return
 		return
@@ -404,31 +404,17 @@
 	if(!client)
 		return
 	zoom_turf = get_turf(src)
-	is_zoomed = 1
-	client.change_view(viewsize)
-	var/viewoffset = 32 * tileoffset
-	switch(dir)
-		if(NORTH)
-			client.pixel_x = 0
-			client.pixel_y = viewoffset
-		if(SOUTH)
-			client.pixel_x = 0
-			client.pixel_y = -viewoffset
-		if(EAST)
-			client.pixel_x = viewoffset
-			client.pixel_y = 0
-		if(WEST)
-			client.pixel_x = -viewoffset
-			client.pixel_y = 0
+	is_zoomed = TRUE
+	set_client_sight(viewsize, tileoffset, TRUE)
+
 
 /mob/living/carbon/Xenomorph/proc/zoom_out()
-	is_zoomed = 0
+	is_zoomed = FALSE
 	zoom_turf = null
 	if(!client)
 		return
-	client.change_view(world.view)
-	client.pixel_x = 0
-	client.pixel_y = 0
+	reset_client_sight()
+
 
 /mob/living/carbon/Xenomorph/drop_held_item()
 	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()

@@ -50,12 +50,9 @@
 	dizziness = 0
 	jitteriness = 0
 
-	if(client)
-		client.change_view(world.view) //just so we never get stuck with a large view somehow
+	reset_client_sight()
 
 	hide_fullscreens()
-
-	update_sight()
 
 	drop_r_hand()
 	drop_l_hand()

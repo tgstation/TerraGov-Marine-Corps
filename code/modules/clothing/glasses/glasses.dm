@@ -3,13 +3,13 @@
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
 	w_class = 2.0
-	var/vision_flags = 0
-	var/darkness_view = 0//Base human is 2
+	var/vision_flags = NOFLAGS
+	var/glass_see_in_dark_modifier = 0//Base human is 2
 	var/see_invisible = 0
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/eyes.dmi')
 	var/prescription = 0
-	var/toggleable = 0
-	var/active = 1
+	var/toggleable = FALSE
+	var/active = TRUE
 	flags_inventory = COVEREYES
 	flags_equip_slot = ITEM_SLOT_EYES
 	flags_armor_protection = EYES
@@ -23,27 +23,60 @@
 		M.update_inv_glasses()
 
 
+/obj/item/clothing/glasses/proc/activate_optical_matrix(mob/user)
+	if(vision_flags)
+		ENABLE_BITFIELD(user.sight, vision_flags)
+	if(glass_see_in_dark_modifier)
+		wearer.see_in_dark_modifier += glass_see_in_dark_modifier
+	if(see_invisible)
+		user.add_see_invisible(see_invisible)
+	if(tint)
+		wearer.update_tint()
+	if(fullscreen_vision)
+		user.overlay_fullscreen("glasses_vision", fullscreen_vision)
+	wearer.update_inv_glasses()
+
+
+/obj/item/clothing/glasses/proc/deactivate_optical_matrix(mob/user)
+	if(vision_flags)
+		DISABLE_BITFIELD(user.sight, vision_flags)
+	if(glass_see_in_dark_modifier)
+		wearer.see_in_dark_modifier -= glass_see_in_dark_modifier
+	if(see_invisible)
+		user.remove_see_invisible(see_invisible)
+	if(tint)
+		wearer.update_tint()
+	if(fullscreen_vision)
+		user.clear_fullscreen("glasses_vision", 0)
+	wearer.update_inv_glasses()
+
+
 /obj/item/clothing/glasses/attack_self(mob/user)
-	if(toggleable)
-		if(active)
-			active = 0
-			icon_state = deactive_state
-			user.update_inv_glasses()
-			to_chat(user, "You deactivate the optical matrix on [src].")
-		else
-			active = 1
-			icon_state = initial(icon_state)
-			user.update_inv_glasses()
-			to_chat(user, "You activate the optical matrix on [src].")
+	if(!toggleable)
+		return
 
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.glasses == src)
-				H.update_tint()
-				H.update_sight()
+	if(active)
+		active = FALSE
+		icon_state = deactive_state
+		activate_optical_matrix(user)
+		to_chat(user, "You deactivate the optical matrix on [src].")
+	else
+		active = TRUE
+		icon_state = initial(icon_state)
+		deactivate_optical_matrix(user)
+		to_chat(user, "You activate the optical matrix on [src].")
 
-		update_action_button_icons()
+	update_action_button_icons()
 
+
+/obj/item/clothing/glasses/equipped(mob/user)
+	. = ..()
+	activate_optical_matrix(user)
+
+
+/obj/item/clothing/glasses/dropped(mob/user)
+	deactivate_optical_matrix(user)
+	return ..()
 
 
 /obj/item/clothing/glasses/science
@@ -116,18 +149,6 @@
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
 	prescription = 1
-
-/obj/item/clothing/glasses/m42_goggles
-	name = "\improper M42 scout sight"
-	desc = "A headset and goggles system for the M42 Scout Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
-	icon = 'icons/obj/clothing/glasses.dmi'
-	icon_state = "m56_goggles"
-	deactive_state = "m56_goggles_0"
-	vision_flags = SEE_TURFS
-	toggleable = 1
-	actions_types = list(/datum/action/item_action/toggle)
-
-
 
 //welding goggles
 

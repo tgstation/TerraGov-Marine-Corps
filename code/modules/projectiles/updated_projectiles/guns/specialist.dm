@@ -23,7 +23,6 @@
 	current_mag = /obj/item/ammo_magazine/sniper
 	force = 12
 	wield_delay = 12 //Ends up being 1.6 seconds due to scope
-	zoomdevicename = "scope"
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/targetmarker_on = FALSE
 	var/targetmarker_primed = FALSE
@@ -122,7 +121,7 @@
 	. = ..()
 
 /obj/item/weapon/gun/rifle/sniper/M42A/process()
-	if(!zoomed)
+	if(!CHECK_BITFIELD(flags_item, ITEM_ZOOMED))
 		laser_off()
 		return
 	var/mob/living/user = loc
@@ -140,7 +139,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	. = ..()
-	if(!zoomed && (targetmarker_on || targetmarker_primed) )
+	if(!CHECK_BITFIELD(flags_item, ITEM_ZOOMED) && (targetmarker_on || targetmarker_primed) )
 		laser_off(user)
 
 /atom/proc/sniper_target(atom/A)
@@ -155,7 +154,7 @@
 		return TRUE
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user)
-	if(!zoomed) //Can only use and prime the laser targeter when zoomed.
+	if(!CHECK_BITFIELD(flags_item, ITEM_ZOOMED)) //Can only use and prime the laser targeter when zoomed.
 		to_chat(user, "<span class='warning'>You must be zoomed in to use your target marker!</span>")
 		return
 	targetmarker_primed = TRUE //We prime the target laser
@@ -202,7 +201,6 @@
 	fire_sound = 'sound/weapons/sniper_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/elite
 	force = 17
-	zoomdevicename = "scope"
 	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
