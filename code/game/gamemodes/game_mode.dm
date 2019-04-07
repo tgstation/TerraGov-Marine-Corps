@@ -218,6 +218,8 @@
 
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
+		if(isnewplayer(M))
+			continue
 		if(!(M.client?.prefs?.be_special & BE_DEATHMATCH))
 			continue
 
