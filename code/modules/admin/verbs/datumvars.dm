@@ -1059,8 +1059,8 @@
 			if(!check_rights(R_FUN))
 				return
 
-			var/mob/living/carbon/M = locate(href_list["addlanguage"])
-			if(!istype(M))
+			var/mob/living/L = locate(href_list["addlanguage"])
+			if(!istype(L))
 				to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
 				return
 
@@ -1069,45 +1069,45 @@
 			if(!new_language)
 				return
 
-			if(!M)
-				to_chat(usr, "Mob doesn't exist anymore")
+			if(!L)
+				to_chat(usr, "<span class='warning'>Mob doesn't exist anymore.</span>")
 				return
 
-			if(M.add_language(new_language))
-				log_admin("[key_name(usr)] has added [new_language] to [key_name(M)].")
-				message_admins("[ADMIN_TPMONTY(usr)] has added [new_language] to [ADMIN_TPMONTY(M)].")
+			if(L.add_language(new_language))
+				log_admin("[key_name(usr)] has added [new_language] to [key_name(L)].")
+				message_admins("[ADMIN_TPMONTY(usr)] has added [new_language] to [ADMIN_TPMONTY(L)].")
 			else
-				to_chat(usr, "Mob already knows that language.")
+				to_chat(usr, "<span class='warning'>Mob already knows that language.</span>")
 
 
 		else if(href_list["remlanguage"])
 			if(!check_rights(R_FUN))
 				return
 
-			var/mob/living/carbon/M = locate(href_list["remlanguage"])
-			if(!istype(M))
+			var/mob/living/L = locate(href_list["remlanguage"])
+			if(!istype(L))
 
 				return
 
-			if(!length(M.languages))
-				to_chat(usr, "This mob knows no languages.")
+			if(!length(L.languages))
+				to_chat(usr, "<span class='warning'>This mob knows no languages.</span>")
 				return
 
-			var/datum/language/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in M.languages
+			var/datum/language/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in L.languages
 
 			if(!rem_language)
 				return
 
-			if(!M)
-				to_chat(usr, "Mob doesn't exist anymore")
+			if(!L)
+				to_chat(usr, "<span class='warning'>Mob doesn't exist anymore.</span>")
 				return
 
-			if(M.remove_language(rem_language.name))
-				to_chat(usr, "Removed [rem_language] from [M].")
-				log_admin("[key_name(usr)] has removed [rem_language] from [key_name(M)].")
-				message_admins("[ADMIN_TPMONTY(usr)] has removed [rem_language] from [ADMIN_TPMONTY(M)].")
+			if(L.remove_language(rem_language.name))
+				to_chat(usr, "Removed [rem_language] from [L].")
+				log_admin("[key_name(usr)] has removed [rem_language] from [key_name(L)].")
+				message_admins("[ADMIN_TPMONTY(usr)] has removed [rem_language] from [ADMIN_TPMONTY(L)].")
 			else
-				to_chat(usr, "Mob doesn't know that language.")
+				to_chat(usr, "<span class='warning'>Mob doesn't know that language.</span>")
 
 
 		else if(href_list["purrbation"])

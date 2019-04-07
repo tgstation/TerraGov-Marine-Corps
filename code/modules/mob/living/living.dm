@@ -270,7 +270,11 @@
 		s_active.close(src)
 
 
-
+/mob/living/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Add Language"] = "?_src_=vars;[HrefToken()];addlanguage=[REF(src)]"
+	.["Remove Language"] = "?_src_=vars;[HrefToken()];remlanguage=[REF(src)]"
 
 
 /mob/proc/resist_grab(moving_resist)

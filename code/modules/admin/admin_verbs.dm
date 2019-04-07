@@ -269,7 +269,7 @@
 
 	var/replaced = FALSE
 	if(M.key)
-		if(usr.client.key == copytext(M.key, 2))
+		if(isobserver(usr) && usr.client.key == copytext(M.key, 2))
 			var/mob/dead/observer/ghost = usr
 			ghost.can_reenter_corpse = TRUE
 			ghost.reenter_corpse()
@@ -492,7 +492,7 @@
 
 	var/datum/browser/browser = new(usr, "invidual_logging_[key_name(M)]", "<div align='center'>Logs</div>", 700, 550)
 	browser.set_content(dat)
-	browser.open()
+	browser.open(FALSE)
 
 
 /datum/admins/proc/individual_logging_panel_link(mob/M, log_type, log_src, label, selected_src, selected_type)
