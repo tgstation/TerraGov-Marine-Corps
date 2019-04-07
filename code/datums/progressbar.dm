@@ -3,8 +3,12 @@
 /datum/progressbar
 	var/goal = 1
 	var/image/bar
+	var/image/bar_bg
+	var/image/bar_frame
 	var/interval = 5
+	var/frame_tag = 1
 	var/bar_tag = 1
+	var/bg_tag = 1
 	var/datum/progressicon/prog_display
 	var/shown = 0
 	var/mob/user
@@ -22,15 +26,26 @@
 		client = user.client
 
 	if(!isnull(bar_tag))
-		bar = image('icons/effects/progressbar.dmi', target, "prog_bar_[bar_tag]_0", HUD_LAYER)
+		bar = image('icons/effects/progressbar.dmi', target, "prog_bar_[bar_tag]_0", PROG_BAR_LAYER)
 		bar.plane = ABOVE_HUD_PLANE
 		bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 		LAZYINITLIST(user.progressbars)
 		LAZYINITLIST(user.progressbars[bar.loc])
 		var/list/bars = user.progressbars[bar.loc]
 		bars.Add(src)
-		listindex = length(bars)
-		bar.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1))
+		listindex = LAZYLEN(bars)
+		var/prog_height = (PROGRESSBAR_HEIGHT * (listindex - 1))
+		bar.pixel_y = 32 + prog_height
+		if(!isnull(frame_tag))
+			bar_frame = image('icons/effects/progressbar.dmi', target, "prog_bar_[bar_tag]_frame", PROG_BAR_FRAME_LAYER)
+			bar_frame.plane = ABOVE_HUD_PLANE
+			bar_frame.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+			bar_frame.pixel_y = 32 + prog_height
+		if(!isnull(bg_tag))
+			bar_bg = image('icons/effects/progressbar.dmi', target, "prog_bar_[bar_tag]_bg", PROG_BAR_BG_LAYER)
+			bar_bg.plane = ABOVE_HUD_PLANE
+			bar_bg.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+			bar_bg.pixel_y = 32 + prog_height
 
 	if(new_display)
 		prog_display = new new_display
@@ -44,34 +59,49 @@
 	if (user.client != client)
 		if(client)
 			client.images -= bar
+			client.images -= bar_frame
+			client.images -= bar_bg
 		if(user.client)
 			user.client.images += bar
+			user.client.images += bar_frame
+			user.client.images += bar_bg
 
 	progress = CLAMP(progress, 0, goal)
 	bar.icon_state = "prog_bar_[bar_tag]_[round(((progress / goal) * 100), interval)]"
 	if (!shown)
 		user.client.images += bar
+		user.client.images += bar_frame
+		user.client.images += bar_bg
 		shown = TRUE
 
 /datum/progressbar/proc/shiftDown()
 	--listindex
 	bar.pixel_y -= PROGRESSBAR_HEIGHT
+	if(bar_frame)
+		bar_frame.pixel_y -= PROGRESSBAR_HEIGHT
+	if(bar_bg)
+		bar_bg.pixel_y -= PROGRESSBAR_HEIGHT
 
 /datum/progressbar/Destroy()
 	if(bar)
-		for(var/I in user.progressbars[bar.loc])
-			var/datum/progressbar/P = I
-			if(P != src && P.listindex > listindex)
-				P.shiftDown()
-
-		var/list/bars = user.progressbars[bar.loc]
-		bars.Remove(src)
-		if(!length(bars))
-			LAZYREMOVE(user.progressbars, bar.loc)
+		if(!QDELETED(user))
+			if(!QDELETED(target))
+				for(var/I in user.progressbars[bar.loc])
+					var/datum/progressbar/P = I
+					if(P != src && P.listindex > listindex)
+						P.shiftDown()
+			var/list/bars = user.progressbars[bar.loc]
+			bars.Remove(src)
+			if(!LAZYLEN(bars))
+				LAZYREMOVE(user.progressbars, bar.loc)
 
 		if(client)
 			client.images -= bar
+			client.images -= bar_frame
+			client.images -= bar_bg
 		qdel(bar)
+		qdel(bar_frame)
+		qdel(bar_bg)
 
 	qdel(prog_display)
 
@@ -103,7 +133,7 @@
 		QDEL_NULL(display)
 		return ..()
 	display_owner.display_icons[display_tag]--
-	if(!length(display_owner.display_icons[display_tag]))
+	if(!LAZYLEN(display_owner.display_icons[display_tag]))
 		display_owner.cut_overlay(display, TRUE)
 		QDEL_NULL(display)
 	return ..()
