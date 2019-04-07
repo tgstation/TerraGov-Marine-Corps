@@ -378,7 +378,7 @@
 	if(isnewplayer(M))
 		body += " <b>Hasn't Entered Game</b> "
 	else
-		body += " <a href='?src=[ref];revive=[REF(M)]'>Heal</a> | <a href='?src=[ref];sleep=[REF(M)]'>Sleep</a>"
+		body += " | <a href='?src=[ref];revive=[REF(M)]'>Heal</a> | <a href='?src=[ref];sleep=[REF(M)]'>Sleep</a>"
 
 	body += {"
 		<br><br>

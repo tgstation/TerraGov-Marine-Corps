@@ -54,9 +54,9 @@
 
 	var/msg = "<br><h2 class='alert'>[customname]</h2><br><span class='warning'>[input]</span><br><br>"
 
-	for(var/mob/M in GLOB.player_list)
-		if(isxeno(M) || isobserver(M))
-			to_chat(M, msg)
+	for(var/i in (GLOB.xeno_mob_list + GLOB.observer_list))
+		var/mob/M = i
+		to_chat(M, msg)
 
 	log_admin("[key_name(usr)] created a Queen Mother report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] created a Queen Mother report.")
@@ -85,25 +85,41 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/input = input("This should be a message from the ship's AI.",, "") as message|null
+	var/input = input("This should be a message from the ship's AI.", "AI Report") as message|null
 	if(!input)
 		return
 
-	if(alert(usr, "Do you want to use the ship AI to say the message or a global marine announcement?",, "Ship", "Global") == "Ship")
-		if(!ai_system.Announce(input))
-			return
-	else
-		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = 'sound/misc/interference.ogg')
+	var/glob
+	switch(alert(usr, "Do you want to use the ship AI to say the message or a global marine announcement?", "AI Report", "Ship", "Global", "Cancel"))
+		if("Ship")
+			glob = 0
+		if("Global")
+			glob = 1
+		else
+			return		
 
-	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
+	var/paper
+	switch(alert(usr, "Do you want to print out a paper at the communications consoles?", "AI Report", "Yes", "No", "Cancel"))
+		if("Yes")
+			paper = TRUE
+		if("Cancel")
+			return
+
+	if(glob)
+		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = "sound/misc/interference.ogg")
+	else
+		ai_system.Announce(input)
+
+	if(paper)
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
-			if(!(C.machine_stat & (BROKEN|NOPOWER)))
-				var/obj/item/paper/P = new /obj/item/paper(C.loc)
-				P.name = "'[MAIN_AI_SYSTEM] Update.'"
-				P.info = input
-				P.update_icon()
-				C.messagetitle.Add("[MAIN_AI_SYSTEM] Update")
-				C.messagetext.Add(P.info)
+			if(C.machine_stat & (BROKEN|NOPOWER))
+				continue
+			var/obj/item/paper/P = new /obj/item/paper(C.loc)
+			P.name = "'[MAIN_AI_SYSTEM] Update.'"
+			P.info = input
+			P.update_icon()
+			C.messagetitle.Add("[MAIN_AI_SYSTEM] Update")
+			C.messagetext.Add(P.info)
 
 	log_admin("[key_name(usr)] has created an AI report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] has created an AI report: [input]")

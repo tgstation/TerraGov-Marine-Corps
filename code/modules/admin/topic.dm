@@ -991,17 +991,17 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			paths += path
 
 		if(!paths)
-			alert("The path list you sent is empty.")
+			to_chat(usr, "<span class='warning'>The path list you sent is empty.</span>")
 			return
 		if(length(paths) > 5)
-			alert("Select fewer object types, (max 5).")
+			to_chat(usr, "<span class='warning'>Select fewer object types, (max 5).</span>")
 			return
 
 		var/list/offset = splittext(href_list["offset"],",")
 		var/number = CLAMP(text2num(href_list["object_count"]), 1, 100)
-		var/X = offset.len > 0 ? text2num(offset[1]) : 0
-		var/Y = offset.len > 1 ? text2num(offset[2]) : 0
-		var/Z = offset.len > 2 ? text2num(offset[3]) : 0
+		var/X = length(offset) > 0 ? text2num(offset[1]) : 0
+		var/Y = length(offset) > 1 ? text2num(offset[2]) : 0
+		var/Z = length(offset) > 2 ? text2num(offset[3]) : 0
 		var/obj_dir = text2num(href_list["object_dir"])
 		if(obj_dir && !(obj_dir in list(1,2,4,8,5,6,9,10)))
 			obj_dir = null
@@ -1017,29 +1017,29 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		switch(where)
 			if("inhand")
 				if(!iscarbon(usr))
-					to_chat(usr, "Can only spawn in hand when you're a carbon mob or cyborg.")
+					to_chat(usr, "Can only spawn in hand when you're a carbon mob.")
 					where = "onfloor"
 				target = usr
 
 			if("onfloor", "frompod")
 				switch(href_list["offset_type"])
 					if("absolute")
-						target = locate(0 + X,0 + Y,0 + Z)
+						target = locate(0 + X, 0 + Y, 0 + Z)
 					if("relative")
-						target = locate(loc.x + X,loc.y + Y,loc.z + Z)
+						target = locate(loc.x + X, loc.y + Y, loc.z + Z)
 			if("inmarked")
 				if(!marked_datum)
-					to_chat(usr, "You don't have any object marked. Abandoning spawn.")
+					to_chat(usr, "<span class='warning'>You don't have any object marked. Abandoning spawn.</span>")
 					return
 				else if(!istype(marked_datum, /atom))
-					to_chat(usr, "The object you have marked cannot be used as a target. Target must be of type /atom. Abandoning spawn.")
+					to_chat(usr, "<span class='warning'>The object you have marked cannot be used as a target. Target must be of type /atom.</span>")
 					return
 				else
 					target = marked_datum
 
 		if(target)
 			for(var/path in paths)
-				for (var/i = 0; i < number; i++)
+				for(var/i in 0 to number)
 					if(path in typesof(/turf))
 						var/turf/O = target
 						var/turf/N = O.ChangeTurf(path)
@@ -1062,13 +1062,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 								var/obj/item/I = O
 								L.put_in_hands(I)
 
-
-		if(number == 1)
-			log_admin("[key_name(usr)] created a [english_list(paths)].")
-			message_admins("[ADMIN_TPMONTY(usr)] created a [english_list(paths)].")
-		else
-			log_admin("[key_name(usr)] created [number]ea [english_list(paths)].")
-			message_admins("[ADMIN_TPMONTY(usr)] created [number]ea [english_list(paths)].")
+		log_admin("[key_name(usr)] created [number] [english_list(paths)].")
+		message_admins("[ADMIN_TPMONTY(usr)] created [number] [english_list(paths)].")
 
 
 	else if(href_list["admin_log"])
