@@ -241,7 +241,7 @@
 		if(leaping && M.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
 			if(!Attach(M))
 				GoIdle()
-				return
+			return
 		else
 			step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
 			addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS)
@@ -338,7 +338,6 @@
 
 	if(M.status_flags & XENO_HOST || isxeno(M))
 		return FALSE
-	M.visible_message("<span class='danger'>[src] leaps at [M]'s face!</span>")
 
 	if(isxeno(loc)) //Being carried? Drop it
 		var/mob/living/carbon/Xenomorph/X = loc
@@ -346,7 +345,7 @@
 		X.update_icons()
 
 	if(M.in_throw_mode && M.dir != dir && !M.incapacitated() && !M.get_active_held_item())
-		var/catch_chance = 40
+		var/catch_chance = 50
 		if(M.dir == reverse_dir[dir])
 			catch_chance += 20
 		if(M.lying)
@@ -356,7 +355,7 @@
 			catch_chance  -= 25
 
 		if(prob(catch_chance))
-			M.visible_message("<span class='notice'>[M] snatches [src] out of the air and [pickweight("clobbers" = 30, "kills" = 30, "squashes" = 25, "dunks" = 10, "dribbles" = 5)] it!")
+			M.visible_message("<span class='notice'>[M] snatches [src] out of the air and [pickweight(list("clobbers" = 30, "kills" = 30, "squashes" = 25, "dunks" = 10, "dribbles" = 5))] it!")
 			Die()
 			return TRUE
 
