@@ -20,7 +20,6 @@
 	var/glass = 0
 	var/normalspeed = 1
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
-	var/heat_proof = 0 // For glass airlocks/opacity firedoors
 	var/air_properties_vary_with_direction = 0
 	var/turf/filler //Fixes double door opacity issue
 
@@ -167,8 +166,8 @@
 
 
 /obj/machinery/door/ex_act(severity)
-	if(unacidable) return
-
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE)) 
+		return
 	switch(severity)
 		if(1.0)
 			qdel(src)

@@ -799,10 +799,10 @@
 									counter++
 								if(istype(usr,/mob/living/carbon/human))
 									var/mob/living/carbon/human/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
+									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]")
 								if(istype(usr,/mob/living/silicon/robot))
 									var/mob/living/silicon/robot/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
+									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]")
 
 	if (href_list["medical"])
 		if(hasHUD(usr,"medical"))
@@ -926,10 +926,10 @@
 									counter++
 								if(istype(usr,/mob/living/carbon/human))
 									var/mob/living/carbon/human/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
+									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]")
 								if(istype(usr,/mob/living/silicon/robot))
 									var/mob/living/silicon/robot/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
+									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]")
 
 	if (href_list["medholocard"])
 		if(!species?.count_human)
@@ -1657,11 +1657,14 @@
 
 
 /mob/living/carbon/human/proc/set_rank(rank)
+	if(!rank)
+		return FALSE
+
 	if(!mind)
 		job = rank
 		return FALSE
 
-	var/datum/job/J = SSjob.name_occupations[rank]
+	var/datum/job/J = SSjob.GetJob(rank)
 	if(!J)
 		return FALSE
 
@@ -1684,6 +1687,9 @@
 	O.handle_id(src)
 
 	GLOB.datacore.manifest_update(real_name, real_name, job)
+
+	if(assigned_squad)
+		change_squad(assigned_squad.name)
 
 	return TRUE
 
@@ -1708,5 +1714,64 @@
 	var/datum/outfit/O = new outfits[equipment]
 	delete_equipment(TRUE)
 	equipOutfit(O, FALSE)
+
+	return TRUE
+
+
+/mob/living/carbon/human/take_over(mob/M)
+	assigned_squad?.clean_marine_from_squad(src)
+
+	. = ..()
+
+	set_rank(job)
+
+	fully_replace_character_name(real_name, M.real_name)
+
+	if(assigned_squad)
+		change_squad(assigned_squad.name)
+
+
+/mob/living/carbon/human/proc/change_squad(squad)
+	if(!squad || !(job in JOBS_MARINES))
+		return FALSE
+
+	var/datum/squad/S = SSjob.squads[squad]
+
+	if(mind)
+		assigned_squad = null
+	else
+		assigned_squad = S
+		return FALSE
+
+	var/datum/job/J = SSjob.GetJob(mind.assigned_role)
+	var/datum/outfit/job/O = new J.outfit
+	O.handle_id(src)
+
+	S.put_marine_in_squad(src)
+
+	//Crew manifest
+	for(var/i in GLOB.datacore.general)
+		var/datum/data/record/R = i
+		if(R.fields["name"] == real_name)
+			R.fields["squad"] = S.name
+			break
+
+	if(istype(wear_id, /obj/item/card/id))
+		var/obj/item/card/id/ID = wear_id
+		ID.assigned_fireteam = 0
+
+	//Headset frequency.
+	if(istype(wear_ear, /obj/item/device/radio/headset/almayer/marine))
+		var/obj/item/device/radio/headset/almayer/marine/E = wear_ear
+		E.set_frequency(S.radio_freq)
+	else
+		if(wear_ear)
+			dropItemToGround(wear_ear)
+		var/obj/item/device/radio/headset/almayer/marine/E = new
+		equip_to_slot_or_del(E, SLOT_EARS)
+		E.set_frequency(S.radio_freq)
+		update_icons()
+
+	hud_set_squad()
 
 	return TRUE

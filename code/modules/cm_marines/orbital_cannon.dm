@@ -17,7 +17,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/obj/structure/orbital_tray/tray
 	var/chambered_tray = FALSE
 	var/loaded_tray = FALSE
@@ -44,8 +44,6 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 
 
-/obj/structure/orbital_cannon/ex_act()
-	return
 
 /obj/structure/orbital_cannon/bullet_act()
 	return
@@ -246,7 +244,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	layer = LADDER_LAYER + 0.01
 	bound_width = 64
 	bound_height = 32
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	pixel_y = -9
 	pixel_x = -6
 	var/obj/structure/ob_ammo/warhead/warhead
@@ -264,8 +262,6 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	. = ..()
 
 
-/obj/structure/orbital_tray/ex_act()
-	return
 
 /obj/structure/orbital_tray/bullet_act()
 	return
@@ -532,7 +528,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/cannon_busy = FALSE
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
 	var/obj/structure/ship_ammo/heavygun/highvelocity/rail_gun_ammo
@@ -562,8 +558,6 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	rail_gun_ammo.detonate_on(target)
 	cannon_busy = FALSE
 
-/obj/structure/ship_rail_gun/ex_act()
-	return
 
 /obj/structure/ship_rail_gun/bullet_act()
 	return

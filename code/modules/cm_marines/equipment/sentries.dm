@@ -41,7 +41,7 @@
 /obj/item/device/turret_top
 	name = "\improper UA 571-C turret"
 	desc = "The turret part of an automated sentry turret."
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	w_class = 5
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_head"
@@ -50,7 +50,7 @@
 /obj/item/device/turret_tripod
 	name = "\improper UA 571-C turret tripod"
 	desc = "The tripod part of an automated sentry turret. You should deploy it first."
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	w_class = 5
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod_folded"
@@ -87,7 +87,7 @@
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod"
 	anchored = FALSE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
@@ -209,7 +209,7 @@
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_base"
 	anchored = TRUE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
@@ -1065,7 +1065,6 @@
 	w_class = 4
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "turret_off"
-	unacidable = 1
 	var/linked_turret = null
 	var/on = 0
 	var/mob/living/carbon/human/user = null

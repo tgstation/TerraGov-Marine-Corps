@@ -11,78 +11,65 @@
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
 	desc = "A remote control for a door."
-	anchored = 1.0    		// can't pick it up
-	density = 0       		// can walk through it.
-	var/open = 0			// If door should be open.
+	anchored = TRUE
+	density = FALSE
+	var/open = FALSE		// If door is open.
 	var/id = null     		// id of door it controls.
-	var/picture_state		// icon_state of alert picture, if not displaying text/numbers
 	var/list/obj/machinery/targets = list()
 
-	maptext_height = 26
-	maptext_width = 32
-
-/obj/machinery/door_display/New()
+/obj/machinery/door_display/Initialize()
 	..()
+	return INITIALIZE_HINT_LATELOAD
 
-	spawn(20)
-		for(var/obj/machinery/door/D in GLOB.machines)
-			if (D.id == id)
-				targets += D
+/obj/machinery/door_display/LateInitialize()
+	for(var/obj/machinery/door/D in GLOB.machines)
+		if (D.id == id)
+			targets += D
 
-		if(targets.len == 0)
-			machine_stat |= BROKEN
-		update_icon()
-	start_processing()
-	return
-
-// Display process loop.
-/obj/machinery/door_display/process()
-
-	if(machine_stat & (NOPOWER|BROKEN))	return
-
-	updateUsrDialog()
+	if(!length(targets))
+		machine_stat |= BROKEN
 	update_icon()
-
-	return
-
 
 // has the door power situation changed, if so update icon.
 /obj/machinery/door_display/power_change()
 	..()
 	update_icon()
-	return
-
 
 // open/closedoor checks if door_display has power, if so it checks if the
 // linked door is open/closed (by density) then opens it/closes it.
 
 // Opens and locks doors, power check
 /obj/machinery/door_display/proc/open_door()
-	if(machine_stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))
+		return FALSE
 
 	for(var/obj/machinery/door/D in targets)
-		if(!D.density)	continue
-		spawn(0)
-			D.open()
+		if(!D.density)
+			continue
+		D.open()
 
-	return 1
+	open = TRUE
+
+	return TRUE
 
 
 // Closes and unlocks doors, power check
 /obj/machinery/door_display/proc/close_door()
-	if(machine_stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))
+		return FALSE
 
 	for(var/obj/machinery/door/D in targets)
-		if(D.density)	continue
-		spawn(0)
-			D.close()
+		if(D.density)
+			continue
+		D.close()
 
-	return 1
+	open = FALSE
+
+	return TRUE
 
 // Allows AIs to use door_display, see human attack_hand function below
 /obj/machinery/door_display/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
-
 
 // Allows humans to use door_display
 // Opens dialog window when someone clicks on door timer
@@ -93,9 +80,9 @@
 
 	user.set_interaction(src)
 
-	user << browse(display_contents(user), "window=computer;size=400x500")
-	onclose(user, "computer")
-	return
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Door controls</div>", 300, 240)
+	popup.set_content(display_contents(user))
+	popup.open(FALSE)
 
 /obj/machinery/door_display/proc/display_contents(var/mob/user as mob)
 	var/data = "<HTML><BODY><TT>"
@@ -103,7 +90,6 @@
 	data += "<HR>Linked Door:</hr>"
 	data += " <b> [id]</b><br/>"
 
-	// Open/Close Door
 	if (open)
 		data += "<a href='?src=\ref[src];open=0'>Close Door</a><br/>"
 	else
@@ -116,112 +102,66 @@
 
 	return data
 
-// Function for using door_data dialog input, checks if user has permission
-// href_list to
-//  "open" open/close door
-// Also updates dialog window and display icon.
 /obj/machinery/door_display/Topic(href, href_list)
 	if(..())
-		return 0
+		return FALSE
 	if(!allowed(usr))
-		return 0
+		return FALSE
 
 	usr.set_interaction(src)
 
 	if(href_list["open"])
-		open = text2num(href_list["open"])
-
 		if (open)
-			open_door()
-		else
 			close_door()
+		else
+			open_door()
+		update_icon()
 
-	src.add_fingerprint(usr)
-	src.updateUsrDialog()
-	src.update_icon()
+	add_fingerprint(usr)
+	updateUsrDialog()
 
-	return 1
+	return TRUE
 
 
 //icon update function
 // if NOPOWER, display blank
 // if BROKEN, display blue screen of death icon AI uses
 /obj/machinery/door_display/update_icon()
+	cut_overlays()
 	if (machine_stat & (NOPOWER))
-		icon_state = "frame"
 		return
 	if (machine_stat & (BROKEN))
-		set_picture("ai_bsod")
+		add_overlay("ai_bsod")
 		return
-
-	var/display
-	if (open)
-		display = "OPEN"
+	if(open)
+		add_overlay("open")
 	else
-		display = "CLOSED"
-
-	update_display(display)
-	return
-
-
-// Adds an icon in case the screen is broken/off, stolen from status_display.dm
-/obj/machinery/door_display/proc/set_picture(var/state)
-	picture_state = state
-	overlays.Cut()
-	overlays += image('icons/obj/status_display.dmi', icon_state = picture_state)
-
-
-//Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
-// Stolen from status_display
-/obj/machinery/door_display/proc/update_display(var/text)
-	var/new_text = {"<div style="font-size:'5pt'; color:'#09f'; font:'Arial Black'; text-align:center;" valign="top">[text]</div>"}
-	if(maptext != new_text)
-		maptext = new_text
-
-
-//Actual string input to icon display for loop, with 5 pixel x offsets for each letter.
-//Stolen from status_display
-/obj/machinery/door_display/proc/texticon(var/tn, var/px = 0, var/py = 0)
-	var/image/I = image('icons/obj/status_display.dmi', "blank")
-	var/len = lentext(tn)
-
-	for(var/d = 1 to len)
-		var/char = copytext(tn, len-d+1, len-d+2)
-		if(char == " ")
-			continue
-		var/image/ID = image('icons/obj/status_display.dmi', icon_state = char)
-		ID.pixel_x = -(d - 1) * 5 + px
-		ID.pixel_y = py
-		I.overlays += ID
-	return I
+		add_overlay("closed")
 
 //************ RESEARCH DOORS ****************\\
 // Research cells have flashers and shutters/pod doors.
 /obj/machinery/door_display/research_cell
-	var/open_shutter = 0
+	var/open_shutter = FALSE
 
-/obj/machinery/door_display/research_cell/New()
+/obj/machinery/door_display/research_cell/LateInitialize()
 	..()
-	spawn(20)
-		for(var/obj/machinery/flasher/F in GLOB.machines)
-			if (F.id == id)
-				targets += F
+	for(var/obj/machinery/flasher/F in GLOB.machines)
+		if(F.id == id)
+			targets += F
 
 /obj/machinery/door_display/research_cell/display_contents(var/mob/user as mob)
-	var/data = "<HTML><BODY><TT>"
 
-	data += "<HR>Linked Door:</hr>"
-	data += " <b> [id]</b><br/>"
-	data += "<br/>"
+	var/data = "<hr>Linked Door:</hr>"
+	data += " <b> [id]</b><br/><br/>"
 
-	// Open/Close Shutter
-	if (open_shutter)
+	if(open_shutter)
 		data += "<a href='?src=\ref[src];shutter=0; open=0'>Close Shutter</a><br/>"
 	else
 		data += "<a href='?src=\ref[src];shutter=1'>Open Shutter</a><br/>"
 
-	// Open/Close Door
-	if (open_shutter)
+	if(!open_shutter)
+		data += "<span class='linkOff'>Open Door</span><br/>"
+	else
 		if (open)
 			data += "<a href='?src=\ref[src];open=0'>Close Door</a><br/>"
 		else
@@ -229,90 +169,90 @@
 
 	data += "<br/>"
 
-	// Mounted flash controls
 	for(var/obj/machinery/flasher/F in targets)
-		if(F.last_flash && (F.last_flash + 150) > world.time)
-			data += "<br/><A href='?src=\ref[src];fc=1'>Flash Charging</A>"
+		if(F.last_flash + 150 > world.time)
+			data += "<span class='linkOff'>Flash Charging</span>"
 		else
-			data += "<br/><A href='?src=\ref[src];fc=1'>Activate Flash</A>"
+			data += "<a href='?src=\ref[src];flasher=1'>Activate Flash</a>"
 
 	data += "<br/>"
 
-	data += "<br/><a href='?src=\ref[user];mach_close=computer'>Close Display</a>"
-	data += "</TT></BODY></HTML>"
+	data += "<a href='?src=\ref[user];mach_close=computer'>Close Display</a>"
 
 	return data
 
-// "fc" activates flasher
-// "shutter" opens/closes the shutter.
-
 /obj/machinery/door_display/research_cell/Topic(href, href_list)
-	if (!..())
-		return 0
+	if(!..())
+		return FALSE
 
-	if (href_list["fc"])
+	if(href_list["flasher"]) //flashing timer is checked in the /flash proc, so the href is safe
 		for(var/obj/machinery/flasher/F in targets)
 			F.flash()
 
 	if(href_list["shutter"])
-		open_shutter = text2num(href_list["shutter"])
-		open = text2num(href_list["open"])
-
 		if (open_shutter)
-			open_shutter()
-		else
 			close_door()
 			close_shutter()
+		else
+			open_shutter()
+		update_icon()
+
 
 	add_fingerprint(usr)
 	updateUsrDialog()
-	update_icon()
 
-	return 1
+	return TRUE
 
-
-// Opens and locks doors, power check
 /obj/machinery/door_display/research_cell/open_door()
-	if(machine_stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))
+		return FALSE
 
 	for(var/obj/machinery/door/airlock/D in targets)
-		if(!D.density) continue
-		spawn(0)
-			D.unlock()
-			D.open()
+		if(!D.density)
+			continue
+		D.unlock()
+		D.open()
 
-	return 1
+	open = TRUE
 
-// Closes and unlocks doors, power check
+	return TRUE
+
 /obj/machinery/door_display/research_cell/close_door()
-	if(machine_stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))
+		return FALSE
 
 	for(var/obj/machinery/door/airlock/D in targets)
-		if(D.density)	continue
-		spawn(0)
-			D.close()
-			D.lock()
+		if(D.density)
+			continue
+		D.close()
+		D.lock()
 
-	return 1
+	open = FALSE
 
-// Opens and locks doors, power check
+	return TRUE
+
 /obj/machinery/door_display/research_cell/proc/open_shutter()
-	if(machine_stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))
+		return FALSE
 
 	for(var/obj/machinery/door/poddoor/D in targets)
-		if(!D.density) continue
-		spawn(0)
-			D.open()
+		if(!D.density)
+			continue
+		D.open()
 
-	return 1
+	open_shutter = TRUE
 
-// Closes and unlocks doors, power check
+	return TRUE
+
 /obj/machinery/door_display/research_cell/proc/close_shutter()
-	if(machine_stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))
+		return FALSE
 
 	for(var/obj/machinery/door/poddoor/D in targets)
-		if(D.density)	continue
-		spawn(0)
-			D.close()
+		if(D.density)
+			continue
+		D.close()
 
-	return 1
+	open_shutter = FALSE
+
+	return TRUE

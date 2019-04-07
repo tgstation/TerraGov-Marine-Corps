@@ -37,8 +37,7 @@
 
 	generate_nicknumber()
 
-	//Mind has to be transferred! Hopefully this will give it enough time to do so.
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/.proc/generate_name), 6)
+	generate_name()
 
 	regenerate_icons()
 
@@ -86,7 +85,8 @@
 
 	//Update linked data so they show up properly
 	real_name = name
-	if(mind) mind.name = name //This gives them the proper name in deadchat if they explode on death. It's always the small things
+	if(mind) 
+		mind.name = name
 
 /mob/living/carbon/Xenomorph/proc/tier_as_number()
 	switch(tier)

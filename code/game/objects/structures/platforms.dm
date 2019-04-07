@@ -14,7 +14,7 @@
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	breakable = FALSE
 	flags_atom = ON_BORDER
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 
 /obj/structure/platform/New()
 	var/image/I = image(icon, src, "platform_overlay", LADDER_LAYER, dir)//ladder layer puts us just above weeds.
@@ -64,7 +64,7 @@ obj/structure/platform_decoration
 	layer = 3.5
 	breakable = FALSE
 	flags_atom = ON_BORDER
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 
 /obj/structure/platform_decoration/New()
 	switch(dir)

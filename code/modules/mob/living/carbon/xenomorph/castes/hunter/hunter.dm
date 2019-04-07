@@ -14,7 +14,6 @@
 	var/used_stealth = FALSE
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
-	wound_type = "alien" //used to match appropriate wound overlays
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
@@ -143,19 +142,9 @@
 
 	return ..()
 
-/mob/living/carbon/Xenomorph/Hunter/update_wounds()
-	remove_overlay(X_WOUND_LAYER)
-	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
-		var/image/I
-		if(resting)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[wound_type]_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || stat == DEAD)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[wound_type]_wounded_sleeping", "layer"=-X_WOUND_LAYER)
-		else
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[wound_type]_wounded", "layer"=-X_WOUND_LAYER)
-		I.alpha = src.alpha
-		overlays_standing[X_WOUND_LAYER] = I
-		apply_overlay(X_WOUND_LAYER)
+/mob/living/carbon/Xenomorph/Hunter/apply_alpha_channel(var/image/I)
+	I.alpha = src.alpha
+	return I
 
 /mob/living/carbon/Xenomorph/Hunter/gib_animation()
 	new /obj/effect/overlay/temp/gib_animation/xeno(loc, src, "Hunter Gibbed", icon)

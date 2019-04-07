@@ -31,22 +31,14 @@
 						speaking = L
 						break
 
-		if(!isxenosilicon(src))
-			if(isnull(speaking) || speaking.key != "a") //Not hivemind? Then default to xenocommon. BRUTE FORCE YO
-				for(var/datum/language/L in languages)
-					if(L.key == "x")
-						verb = L.speech_verb
-						speaking = L
-						forced = 1
-						break
-		else
-			if(!speaking || isnull(speaking))
-				for(var/datum/language/L in languages)
-					if(L.key == "0")
-						verb = L.speech_verb
-						speaking = L
-						forced = 1
-						break
+		if(isnull(speaking) || speaking.key != "a") //Not hivemind? Then default to xenocommon. BRUTE FORCE YO
+			for(var/datum/language/L in languages)
+				if(L.key == "x")
+					verb = L.speech_verb
+					speaking = L
+					forced = 1
+					break
+
 	else
 		message = trim(copytext(message,2))
 
@@ -59,12 +51,7 @@
 		return
 
 	if(forced)
-		if(isxenosilicon(src))
-			var/noise = pick('sound/machines/ping.ogg','sound/machines/twobeep.ogg')
-			verb = pick("beeps", "buzzes", "pings")
-			playsound(src.loc, noise, 25, 1)
-		else
-			playsound(loc, "alien_talk", 25, 1)
+		playsound(loc, "alien_talk", 25, 1)
 		..(message, speaking, verb, null, null, message_range, null)
 	else
 		hivemind_talk(message)

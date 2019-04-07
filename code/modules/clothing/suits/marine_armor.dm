@@ -293,7 +293,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/B18_automed_pain = 70
 	var/obj/item/device/healthanalyzer/integrated/B18_analyzer = null
 	supporting_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT) //B18 effectively stabilizes these.
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
@@ -673,7 +673,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	icon_state = "commando_armor"
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	armor = list("melee" = 90, "bullet" = 120, "laser" = 100, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 
 //===========================//DISTRESS\\================================
 

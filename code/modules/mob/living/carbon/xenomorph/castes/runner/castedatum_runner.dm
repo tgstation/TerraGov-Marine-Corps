@@ -121,6 +121,7 @@
 	caste_desc = "Not what you want to run into in a dark alley. It looks fucking deadly."
 	ancient_message = "You are the fastest assassin of all time. Your speed is unmatched."
 	upgrade = XENO_UPGRADE_THREE
+	wound_type = "runner" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 25

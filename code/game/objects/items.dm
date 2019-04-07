@@ -101,6 +101,8 @@
 
 
 /obj/item/ex_act(severity)
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return
 	switch(severity)
 		if(1)
 			qdel(src)

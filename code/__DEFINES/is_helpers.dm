@@ -79,7 +79,6 @@
 #define isxenowarrior(A) (istype(A, /mob/living/carbon/Xenomorph/Warrior))
 #define isxenolarva(A) (istype(A, /mob/living/carbon/Xenomorph/Larva))
 #define isxenoqueen(A) (istype(A, /mob/living/carbon/Xenomorph/Queen))
-#define isxenoborg(A) (istype(A, /mob/living/carbon/Xenomorph/Xenoborg))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))

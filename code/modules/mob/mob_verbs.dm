@@ -76,7 +76,7 @@
 
 
 
-/mob/verb/abandon_mob()
+/mob/verb/respawn()
 	set name = "Respawn"
 	set category = "OOC"
 
@@ -99,8 +99,8 @@
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 		to_chat(usr, "You have been dead for[pluralcheck] [deathtimeseconds] seconds.")
 
-		if(deathtime < (respawntime * 600) && !check_rights(R_ADMIN, FALSE))
-			to_chat(usr, "You must wait [respawntime] minutes to respawn!")
+		if(deathtime < (GLOB.respawntime * 600) && !check_rights(R_ADMIN, FALSE))
+			to_chat(usr, "You must wait [GLOB.respawntime] minutes to respawn!")
 			return
 		else
 			to_chat(usr, "You can respawn now, enjoy your new life!")

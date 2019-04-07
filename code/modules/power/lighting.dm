@@ -728,11 +728,7 @@
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	unacidable = TRUE
-
-//Don't allow blowing those up, so Marine nades don't fuck them
-/obj/machinery/landinglight/ex_act(severity)
-	return
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/landinglight/New()
 	turn_off()

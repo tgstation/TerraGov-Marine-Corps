@@ -172,9 +172,9 @@ var/global/normal_ooc_colour = "#002eb8"
 	set name = "MOTD"
 	set category = "OOC"
 	set desc ="Check the Message of the Day"
-	var/join_motd = file2text("config/motd.txt")
-	if(join_motd)
-		to_chat(src, "<span class='motd'>[join_motd]</span>")
+
+	if(GLOB.motd)
+		to_chat(src, "<span class='motd'>[GLOB.motd]</span>")
 	else
 		to_chat(src, "<span class='warning'>The motd is not set in the server configuration.</span>")
 

@@ -8,6 +8,7 @@
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
+	wound_type = "defiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -32,7 +33,7 @@
 	deevolves_to = /mob/living/carbon/Xenomorph/Carrier
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_VENT_CRAWL
 
 	// *** Defense *** //
 	armor_deflection = 30

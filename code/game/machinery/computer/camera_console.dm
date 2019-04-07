@@ -197,8 +197,7 @@
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "consoleleft"
 	circuit = null
-	unacidable = TRUE
-	exproof = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 
 /obj/machinery/computer/security/dropship/one

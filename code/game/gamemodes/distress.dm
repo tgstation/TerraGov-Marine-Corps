@@ -155,6 +155,8 @@
 		new_xeno.assigned_role = "Xenomorph"
 		xenomorphs += new_xeno
 		possible_xenomorphs -= new_xeno
+		if(length(xenomorphs) >= xeno_starting_num)
+			break
 
 	if(!length(xenomorphs))
 		return FALSE
@@ -203,6 +205,8 @@
 			continue
 		new_survivor.assigned_role = "Survivor"
 		survivors += new_survivor
+		if(length(survivors) >= surv_starting_num)
+			break
 
 	if(!length(survivors))
 		return FALSE

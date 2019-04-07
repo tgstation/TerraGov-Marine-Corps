@@ -1,6 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - imageadd: "Added directional sprites for several wall objects, such as APC and alarms."
-  - rscadd: "Fire alarms' color display will change accordingly to the alert level now."
-  - bugfix: "Fixes mobs/objects with larger sprites being possibly seen over an opaque atom if standing by its corners. (e.g. an alien queen behind a wall)."

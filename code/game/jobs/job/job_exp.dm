@@ -74,7 +74,7 @@ GLOBAL_PROTECT(exp_to_update)
 		else
 			exp_data[category] = 0
 	for(var/category in GLOB.exp_specialmap)
-		if(category == EXP_TYPE_SPECIAL || category == EXP_TYPE_XENO)
+		if(category == EXP_TYPE_SPECIAL)
 			if(GLOB.exp_specialmap[category])
 				for(var/innercat in GLOB.exp_specialmap[category])
 					if(play_records[innercat])

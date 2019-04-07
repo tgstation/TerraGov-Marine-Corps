@@ -3,7 +3,7 @@
 	use_power = FALSE
 	density = FALSE
 	anchored = TRUE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/active_state = SELF_DESTRUCT_MACHINE_INACTIVE
 
 
@@ -16,11 +16,6 @@
 	GLOB.machines -= src
 	operator = null
 	return ..()
-
-
-/obj/machinery/self_destruct/ex_act(severity)
-	return FALSE
-
 
 /obj/machinery/self_destruct/attack_hand()
 	. = ..()
@@ -61,7 +56,7 @@
 	. = ..()
 	if(.)
 		return TRUE
-	if(!SSevacuation)
+	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 	switch(href_list["command"])
 		if("dest_start")

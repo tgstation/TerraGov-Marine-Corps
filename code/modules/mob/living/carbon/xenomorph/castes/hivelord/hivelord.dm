@@ -15,6 +15,7 @@
 	var/speed_activated = 0
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
+	var/list/tunnels = list() //list of active tunnels
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
@@ -56,3 +57,9 @@
 			speed_activated = FALSE
 			to_chat(src, "<span class='warning'>You feel dizzy as the world slows down.</span>")
 	..()
+
+/mob/living/carbon/Xenomorph/Hivelord/Stat()
+	. = ..()
+
+	if(statpanel("Stats"))
+		stat(null, "Active Tunnel Sets: [tunnels.len * 0.5] / [HIVELORD_TUNNEL_SET_LIMIT]")

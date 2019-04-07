@@ -1,12 +1,3 @@
-GLOBAL_LIST_EMPTY(admin_datums)
-GLOBAL_PROTECT(admin_datums)
-GLOBAL_LIST_EMPTY(protected_admins)
-GLOBAL_PROTECT(protected_admins)
-
-GLOBAL_VAR_INIT(href_token, GenerateToken())
-GLOBAL_PROTECT(href_token)
-
-
 /datum/admins
 	var/datum/admin_rank/rank
 
@@ -270,7 +261,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/toggle_sleep,
 	/datum/admins/proc/toggle_sleep_panel,
 	/datum/admins/proc/toggle_sleep_area,
-	/datum/admins/proc/change_squad,
 	/datum/admins/proc/direct_control,
 	/datum/admins/proc/logs_server,
 	/datum/admins/proc/logs_current,
@@ -342,7 +332,6 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/generate_powernets,
 	/datum/admins/proc/debug_mob_lists,
 	/datum/admins/proc/delete_atom,
-	/datum/admins/proc/fix_next_move,
 	/datum/admins/proc/restart_controller,
 	/datum/admins/proc/check_contents,
 	/datum/admins/proc/SDQL2_query,
@@ -364,6 +353,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	return list(
 	/datum/admins/proc/select_rank,
 	/datum/admins/proc/select_equipment,
+	/datum/admins/proc/change_squad,
 	/datum/admins/proc/set_view_range,
 	/datum/admins/proc/emp,
 	/datum/admins/proc/queen_report,

@@ -356,29 +356,29 @@
 	browser.open()
 
 
-/datum/admins/proc/show_player_panel(var/mob/M in GLOB.mob_list)
+/datum/admins/proc/show_player_panel(mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Show Player Panel"
 
 	if(!check_rights(R_ADMIN))
 		return
 
+	if(!istype(M))
+		return
+
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 	var/body
-
-	if(!M?.name)
-		message_admins("[M] has no name or is null! Here's a VV: [ADMIN_VV(M)]")
 
 	body += "<b>[M.name]</b>"
 
 	if(M.client)
 		body += " played by <b>[M.client]</b> "
-		body += " <a href='?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank : "Player"]</A>"
+		body += " <a href='?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank : "Player"]</a>"
 
-	if(istype(M, /mob/new_player))
-		body += " <B>Hasn't Entered Game</B> "
+	if(isnewplayer(M))
+		body += " <b>Hasn't Entered Game</b> "
 	else
-		body += " \[<a href='?src=[ref];revive=[REF(M)]'>Heal</a>\] "
+		body += " <a href='?src=[ref];revive=[REF(M)]'>Heal</a> | <a href='?src=[ref];sleep=[REF(M)]'>Sleep</a>"
 
 	body += {"
 		<br><br>
@@ -400,7 +400,7 @@
 	body += "<a href='?src=[ref];kick=[REF(M)]'>Kick</a> | "
 		
 	if(M.client)
-		body += "<a href='?src=[ref];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</A> | "
+		body += "<a href='?src=[ref];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</a> | "
 	else
 		body += "<a href='?src=[ref];newbankey=[M.key]'>Ban</a> |"
 
@@ -421,7 +421,7 @@
 			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY) ? "#ff5e5e" : "white"]'>PRAY</font></a> |
 			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP) ? "#ff5e5e" : "white"]'>ADMINHELP</font></a> |
 			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT) ? "#ff5e5e" : "white"]'>DEADCHAT</font></a>
-			(<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL) ? "#ff5e5e" : "white"]'>\[toggle all\]</font></a>)
+			(<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL) ? "#ff5e5e" : "white"]'>ALL</font></a>)
 		"}
 
 	body += {"
@@ -464,14 +464,16 @@
 	"}
 
 
-	if(!istype(M, /mob/new_player))
+	if(!isnewplayer(M))
 		body += {"<br><br>
 			<b>Other actions:</b>
 			<br>
-			<a href='?src=[ref];forcesay=[REF(M)]'>Forcesay</a> |
 			<a href='?src=[ref];thunderdome=[REF(M)]'>Thunderdome</a> |
-			<a href='?src=[ref];gib=[REF(M)]'>Gib</a>
-		"}
+			<a href='?src=[ref];gib=[REF(M)]'>Gib</a>"}
+		if(ishuman(M))
+			body += "| <a href='?src=[ref];setrank=[REF(M)]'>Select Rank</a> | "
+			body += "<a href='?src=[ref];setequipment=[REF(M)]'>Select Equipment</a> | "
+			body += "<a href='?src=[ref];setsquad=[REF(M)]'>Select Squad</a>"
 
 	log_admin("[key_name(usr)] opened the player panel of [key_name(M)].")
 
