@@ -1062,7 +1062,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 								var/obj/item/I = O
 								L.put_in_hands(I)
 
-		log_admin("[key_name(usr)] created [number] [english_list(paths)].")
+		log_admin("[key_name(usr)] created [number] [english_list(paths)] at [AREACOORD(usr.loc)].")
 		message_admins("[ADMIN_TPMONTY(usr)] created [number] [english_list(paths)].")
 
 

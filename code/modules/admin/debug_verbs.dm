@@ -320,7 +320,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		new chosen(usr.loc)
 
 	log_admin("[key_name(usr)] spawned [chosen] at [AREACOORD(usr.loc)].")
-	message_admins("[ADMIN_TPMONTY(usr)] spawned [chosen] at [ADMIN_VERBOSEJMP(usr.loc)].")
+	message_admins("[ADMIN_TPMONTY(usr)] spawned [chosen].")
 
 
 /datum/admins/proc/delete_atom(atom/O as obj|mob|turf in world)
