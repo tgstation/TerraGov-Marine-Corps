@@ -109,7 +109,7 @@
 /mob/living/carbon/Xenomorph/Queen/Bump(atom/A, yes)
 	set waitfor = 0
 
-	//if(charge_speed < charge_speed_buildup * charge_turfs_to_charge || !is_charging) return ..()
+	//if(charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE || !is_charging) return ..()
 
 	if(stat || !A || !istype(A) || A == src || !yes) return FALSE
 
@@ -195,7 +195,7 @@
 			icon_state = "Queen Knocked Down"
 	else
 		if(m_intent == MOVE_INTENT_RUN)
-			/*if(charge_speed > charge_speed_buildup * charge_turfs_to_charge) //Let it build up a bit so we're not changing icons every single turf
+			/*if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE) //Let it build up a bit so we're not changing icons every single turf
 				icon_state = "Queen Charging"
 			else*/
 			icon_state = "Queen Running"

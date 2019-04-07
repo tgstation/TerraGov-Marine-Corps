@@ -442,7 +442,7 @@
 //This is depricated. Use handle_collision() for all future speed changes. ~Bmc777
 /mob/living/carbon/Xenomorph/proc/stop_momentum(direction, stunned)
 	if(!lastturf) return FALSE //Not charging.
-	if(charge_speed > charge_speed_buildup * charge_turfs_to_charge) //Message now happens without a stun condition
+	if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE) //Message now happens without a stun condition
 		visible_message("<span class='danger'>[src] skids to a halt!</span>",
 		"<span class='xenowarning'>You skid to a halt.</span>", null, 5)
 	last_charge_move = 0 //Always reset last charge tally
@@ -482,7 +482,7 @@
 		stop_momentum(charge_dir)
 		return FALSE
 
-	if(pulling && charge_speed > charge_speed_buildup) stop_pulling()
+	if(pulling && charge_speed > CHARGE_SPEED_BUILDUP) stop_pulling()
 
 	if(plasma_stored > 5) plasma_stored -= round(charge_speed) //Eats up plasma the faster you go, up to 0.5 per tile at max speed
 	else
@@ -491,19 +491,19 @@
 
 	last_charge_move = world.time //Index the world time to the last charge move
 
-	if(charge_speed < charge_speed_max)
-		charge_speed += charge_speed_buildup //Speed increases each step taken. Caps out at 14 tiles
-		if(charge_speed == charge_speed_max) //Should only fire once due to above instruction
+	if(charge_speed < CHARGE_SPEED_MAX)
+		charge_speed += CHARGE_SPEED_BUILDUP //Speed increases each step taken. Caps out at 14 tiles
+		if(charge_speed == CHARGE_SPEED_MAX) //Should only fire once due to above instruction
 			if(!charge_roar)
 				emote("roar")
 				charge_roar = 1
 
 	noise_timer = noise_timer ? --noise_timer : 3
 
-	if(noise_timer == 3 && charge_speed > charge_speed_buildup * charge_turfs_to_charge)
+	if(noise_timer == 3 && charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 		playsound(loc, "alien_charge", 50)
 
-	if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
+	if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 
 		for(var/mob/living/carbon/M in loc)
 			if(M.lying && !isxeno(M) && M.stat != DEAD && !(M.status_flags & XENO_HOST && istype(M.buckled, /obj/structure/bed/nest)))

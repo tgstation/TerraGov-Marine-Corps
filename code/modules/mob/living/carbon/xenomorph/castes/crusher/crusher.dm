@@ -30,13 +30,13 @@
 		)
 
 /mob/living/carbon/Xenomorph/Crusher/add_slowdown(amount)
-	if(charge_speed > charge_speed_max * 0.5) //If we're over half the max charge speed, we're immune to slowdown.
+	if(charge_speed > CHARGE_SPEED_MAX * 0.5) //If we're over half the max charge speed, we're immune to slowdown.
 		return FALSE
 	slowdown = adjust_slowdown(amount*XENO_SLOWDOWN_REGEN)
 	return slowdown
 
 /mob/living/carbon/Xenomorph/Crusher/adjust_stagger(amount)
-	if(amount > 0 && (charge_speed > charge_speed_max * 0.5) ) //If we're over half the max charge speed, we don't accumulate more stagger stacks.
+	if(amount > 0 && (charge_speed > CHARGE_SPEED_MAX * 0.5) ) //If we're over half the max charge speed, we don't accumulate more stagger stacks.
 		return FALSE
 	stagger = max(stagger + amount,0)
 	return stagger 
@@ -51,7 +51,7 @@
 	//Barricade collision
 	if(istype(target, /obj/structure/barricade))
 		var/obj/structure/barricade/B = target
-		if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
+		if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 			visible_message("<span class='danger'>[src] rams into [B] and skids to a halt!</span>",
 			"<span class='xenowarning'>You ram into [B] and skid to a halt!</span>")
 			flags_pass = 0
@@ -66,11 +66,11 @@
 	//Razorwire collision
 	if(istype(target, /obj/structure/razorwire))
 		var/obj/structure/razorwire/B = target
-		if(charge_speed >= charge_speed_max) //plows right through
+		if(charge_speed >= CHARGE_SPEED_MAX) //plows right through
 			flags_pass |= PASSTABLE
 			update_icons()
 			return TRUE
-		else if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
+		else if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 			visible_message("<span class='danger'>[src] rams into [B] and skids to a halt!</span>",
 			"<span class='xenowarning'>You ram into [B] and skid to a halt!</span>")
 			flags_pass &= ~PASSTABLE
@@ -82,7 +82,7 @@
 
 	if(istype(target, /obj/vehicle/multitile/hitbox))
 		var/obj/vehicle/multitile/hitbox/H = target
-		if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
+		if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 			visible_message("<span class='danger'>[src] rams into [H.root] and skids to a halt!</span>",
 			"<span class='xenowarning'>You ram into [H.root] and skid to a halt!</span>")
 			flags_pass = 0
@@ -106,7 +106,7 @@
 			return FALSE
 
 		if(anchored)
-			if(X.charge_speed < X.charge_speed_buildup * X.charge_turfs_to_charge)
+			if(X.charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 				X.stop_momentum(X.charge_dir)
 				return FALSE
 			else
@@ -116,9 +116,9 @@
 					var/turf/T = get_turf(src)
 					for(var/atom/movable/S in contents) S.loc = T
 				qdel(src)
-				X.charge_speed -= X.charge_speed_buildup * 3 //Lose three turfs worth of speed
+				X.charge_speed -= CHARGE_SPEED_BUILDUP * 3 //Lose three turfs worth of speed
 		else
-			if(X.charge_speed > X.charge_speed_buildup * X.charge_turfs_to_charge)
+			if(X.charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 				if(buckled_mob)
 					unbuckle()
 				X.visible_message("<span class='warning'>[X] knocks [src] aside.</span>!",
@@ -126,7 +126,7 @@
 				playsound(loc, "punch", 25, 1)
 				X.diagonal_step(src, X.dir) //Occasionally fling it diagonally.
 				step_away(src, X, min(round(X.charge_speed) + 1, 3))
-				X.charge_speed -= X.charge_speed_buildup * 2 //Lose two turfs worth of speed
+				X.charge_speed -= CHARGE_SPEED_BUILDUP * 2 //Lose two turfs worth of speed
 			else
 				X.stop_momentum(X.charge_dir)
 				return FALSE
@@ -146,13 +146,13 @@
 	if(CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		X.stop_momentum(X.charge_dir)
 		return FALSE
-	if(X.charge_speed < X.charge_speed_buildup * X.charge_turfs_to_charge)
+	if(X.charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 		X.stop_momentum(X.charge_dir)
 		return FALSE
 	health -= X.charge_speed * 80 //Should generally smash it unless not moving very fast.
 	healthcheck(user = X)
 
-	X.charge_speed -= X.charge_speed_buildup * 2 //Lose two turfs worth of speed
+	X.charge_speed -= CHARGE_SPEED_BUILDUP * 2 //Lose two turfs worth of speed
 
 	return TRUE
 
@@ -160,18 +160,18 @@
 	if(CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		X.stop_momentum(X.charge_dir)
 		return FALSE
-	if(X.charge_speed < X.charge_speed_buildup * X.charge_turfs_to_charge)
+	if(X.charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 		X.stop_momentum(X.charge_dir)
 		return FALSE
 	health -= X.charge_speed * 40 //Usually knocks it down.
 	healthcheck()
 
-	X.charge_speed -= X.charge_speed_buildup //Lose one turf worth of speed
+	X.charge_speed -= CHARGE_SPEED_BUILDUP //Lose one turf worth of speed
 
 	return TRUE
 
 /obj/machinery/vending/charge_act(mob/living/carbon/Xenomorph/X)
-	if(X.charge_speed > X.charge_speed_max/2) //Halfway to full speed or more
+	if(X.charge_speed > CHARGE_SPEED_MAX/2) //Halfway to full speed or more
 		if(CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 			X.stop_momentum(X.charge_dir, TRUE)
 			return FALSE
@@ -182,7 +182,7 @@
 		X.diagonal_step(src, X.dir, 50) //Occasionally fling it diagonally.
 		step_away(src, X)
 		step_away(src, X)
-		X.charge_speed -= X.charge_speed_buildup * 2 //Lose two turfs worth of speed
+		X.charge_speed -= CHARGE_SPEED_BUILDUP * 2 //Lose two turfs worth of speed
 		return TRUE
 	else
 		X.stop_momentum(X.charge_dir)
@@ -192,24 +192,24 @@
 	if(CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		X.stop_momentum(X.charge_dir, TRUE)
 		return FALSE
-	if(X.charge_speed < X.charge_speed_buildup * X.charge_turfs_to_charge)
+	if(X.charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 		X.stop_momentum(X.charge_dir)
 		return FALSE
 	take_damage(X.charge_speed * 80)
 	X.visible_message("<span class='danger'>[X] rams [src]!</span>",
 	"<span class='xenodanger'>You ram [src]!</span>")
 	playsound(loc, "punch", 25, 1)
-	if(X.charge_speed > X.charge_speed_max/2) //Halfway to full speed or more
+	if(X.charge_speed > CHARGE_SPEED_MAX/2) //Halfway to full speed or more
 		X.diagonal_step(src, X.dir, 50) //Occasionally fling it diagonally.
 		step_away(src, X)
-		X.charge_speed -= X.charge_speed_buildup * 3 //Lose three turfs worth of speed
+		X.charge_speed -= CHARGE_SPEED_BUILDUP * 3 //Lose three turfs worth of speed
 	return TRUE
 
 /obj/machinery/marine_turret/charge_act(mob/living/carbon/Xenomorph/X)
 	if(CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		X.stop_momentum(X.charge_dir, TRUE)
 		return FALSE
-	if(X.charge_speed < X.charge_speed_buildup * X.charge_turfs_to_charge)
+	if(X.charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 		X.stop_momentum(X.charge_dir)
 		return FALSE
 	X.visible_message("<span class='danger'>[X] rams [src]!</span>",
@@ -219,17 +219,17 @@
 	on = 0
 	update_icon()
 	update_health(X.charge_speed * 20)
-	X.charge_speed -= X.charge_speed_buildup * 3 //Lose three turfs worth of speed
+	X.charge_speed -= CHARGE_SPEED_BUILDUP * 3 //Lose three turfs worth of speed
 	return TRUE
 
 /obj/structure/mineral_door/resin/charge_act(mob/living/carbon/Xenomorph/X)
 	TryToSwitchState(X)
 
-	if(X.charge_speed < X.charge_speed_buildup * X.charge_turfs_to_charge)
+	if(X.charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 		X.stop_momentum(X.charge_dir)
 		return FALSE
 	else
-		X.charge_speed -= X.charge_speed_buildup * 2 //Lose two turfs worth of speed
+		X.charge_speed -= CHARGE_SPEED_BUILDUP * 2 //Lose two turfs worth of speed
 		return TRUE
 
 /obj/structure/table/charge_act(mob/living/carbon/Xenomorph/X)
@@ -238,7 +238,7 @@
 
 /mob/living/carbon/charge_act(mob/living/carbon/Xenomorph/X)
 	. = ..()
-	if(. && X.charge_speed > X.charge_speed_buildup * X.charge_turfs_to_charge)
+	if(. && X.charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 		playsound(loc, "punch", 25, 1)
 		if(stat == DEAD)
 			var/count = 0
@@ -247,7 +247,7 @@
 				if(C.stat == DEAD)
 					count++
 			if(count)
-				X.charge_speed -= X.charge_speed_buildup / (count * 2) // half normal slowdown regardless of number of corpses.
+				X.charge_speed -= CHARGE_SPEED_BUILDUP / (count * 2) // half normal slowdown regardless of number of corpses.
 		else if(!(status_flags & XENO_HOST) && !istype(buckled, /obj/structure/bed/nest))
 			log_combat(X, src, "xeno charged")
 			apply_damage(X.charge_speed * 40, BRUTE)
@@ -257,12 +257,12 @@
 		animation_flash_color(src)
 		X.diagonal_step(src, X.dir) //Occasionally fling it diagonally.
 		step_away(src, X, round(X.charge_speed))
-		X.charge_speed -= X.charge_speed_buildup //Lose one turf worth of speed
+		X.charge_speed -= CHARGE_SPEED_BUILDUP //Lose one turf worth of speed
 		return TRUE
 
 //Special override case.
 /mob/living/carbon/Xenomorph/charge_act(mob/living/carbon/Xenomorph/X)
-	if(X.charge_speed > X.charge_speed_buildup * X.charge_turfs_to_charge)
+	if(X.charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 		playsound(loc, "punch", 25, 1)
 		if(!issamexenohive(X))
 			log_combat(X, src, "xeno charged")
@@ -272,7 +272,7 @@
 			return TRUE
 		diagonal_step(src, X.dir, 100)
 		step_away(src, X)
-		X.charge_speed -= X.charge_speed_buildup * 2 //Lose two turfs worth of speed
+		X.charge_speed -= CHARGE_SPEED_BUILDUP * 2 //Lose two turfs worth of speed
 		return TRUE
 	else
 		X.stop_momentum(X.charge_dir)
@@ -281,7 +281,7 @@
 /turf/charge_act(mob/living/carbon/Xenomorph/X)
 	. = ..()
 	if(. && density) //We don't care if it's non dense.
-		if(X.charge_speed < X.charge_speed_max)
+		if(X.charge_speed < CHARGE_SPEED_MAX)
 			X.stop_momentum(X.charge_dir)
 			return FALSE
 		else
@@ -293,7 +293,7 @@
 /mob/living/carbon/Xenomorph/Crusher/Bump(atom/A, yes)
 	set waitfor = 0
 
-	if(charge_speed < charge_speed_buildup * charge_turfs_to_charge || !is_charging) return ..()
+	if(charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE || !is_charging) return ..()
 
 	if(stat || !A || !istype(A) || A == src || !yes) return FALSE
 
@@ -332,7 +332,7 @@
 			icon_state = "Crusher Knocked Down"
 	else
 		if(m_intent == MOVE_INTENT_RUN)
-			if(charge_speed > charge_speed_buildup * charge_turfs_to_charge) //Let it build up a bit so we're not changing icons every single turf
+			if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE) //Let it build up a bit so we're not changing icons every single turf
 				icon_state = "Crusher Charging"
 			else
 				icon_state = "Crusher Running"
