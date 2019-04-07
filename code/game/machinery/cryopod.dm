@@ -220,7 +220,7 @@
 	icon_state = "body_scanner_[occupied][mirror]"
 
 /obj/machinery/cryopod/process()
-	if(!occupant)
+	if(QDELETED(occupant))
 		stop_processing()
 		update_icon()
 		return
@@ -341,13 +341,15 @@
 	return items
 
 /obj/item/storage/store_in_cryo(list/items)
-	for(var/obj/item/I in src)
+	for(var/O in src)
+		var/obj/item/I = O
 		remove_from_storage(I, loc)
 		items = I.store_in_cryo(items)
 	return ..()
 
 /obj/item/clothing/suit/storage/store_in_cryo(list/items)
-	for(var/obj/item/I in pockets)
+	for(var/O in pockets)
+		var/obj/item/I = O
 		pockets.remove_from_storage(I, loc)
 		items = I.store_in_cryo(items)
 	return ..()
@@ -367,7 +369,8 @@
 	return ..()
 
 /obj/item/clothing/tie/storage/store_in_cryo(list/items)
-	for(var/obj/item/I in hold)
+	for(var/O in hold)
+		var/obj/item/I = O
 		hold.remove_from_storage(I, loc)
 		items = I.store_in_cryo(items)
 	return ..()
@@ -379,63 +382,38 @@
 		update_icon()
 
 /obj/machinery/cryopod/attackby(obj/item/W, mob/living/user)
+	if(!istype(W, /obj/item/grab))
+		return ..()
+	if(isxeno(user))
+		return
+	var/obj/item/grab/G = W
+	if(!isliving(G.grabbed_thing))
+		return
+	if(!QDELETED(occupant))
+		to_chat(user, "<span class='warning'>[src] is occupied.</span>")
+		return
 
-	if(istype(W, /obj/item/grab))
-		if(isxeno(user))
-			return
-		var/obj/item/grab/G = W
-		if(occupant)
-			to_chat(user, "<span class='warning'>[src] is occupied.</span>")
-			return
+	var/willing = FALSE //We don't want to allow people to be forced into despawning.
+	var/mob/living/M = G.grabbed_thing
 
-		if(!isliving(G.grabbed_thing))
-			return
+	if(M.stat == DEAD) //This mob is dead
+		to_chat(user, "<span class='warning'>[src] immediately rejects [M]. [M.p_they(TRUE)] passed away!</span>")
+		return
 
-		var/willing = FALSE //We don't want to allow people to be forced into despawning.
-		var/mob/living/M = G.grabbed_thing
+	if(!(ishuman(M) || ismonkey(M)))
+		to_chat(user, "<span class='warning'>There is no way [src] will accept [M]!</span>")
+		return
 
-		if(M.stat == DEAD) //This mob is dead
-			to_chat(user, "<span class='warning'>[src] immediately rejects [M]. \He passed away!</span>")
-			return
-
-		if(!(ishuman(M) || ismonkey(M)))
-			to_chat(user, "<span class='warning'>There is no way [src] will accept [M]!</span>")
-			return
-
-		if(M.client)
-			if(alert(M,"Would you like to enter cryosleep?", , "Yes", "No") == "Yes")
-				if(!M || !G?.grabbed_thing)
-					return
-				willing = TRUE
-		else
+	if(M.client)
+		if(alert(M,"Would you like to enter cryosleep?", , "Yes", "No") == "Yes")
+			if(QDELETED(M) || !(G?.grabbed_thing == M))
+				return
 			willing = TRUE
+	else
+		willing = TRUE
 
-		if(willing)
-
-			visible_message("<span class='notice'>[user] starts putting [M] into [src].</span>",
-			"<span class='notice'>You start putting [M] into [src].</span>")
-
-			if(!do_after(user, 20, TRUE, 5, BUSY_ICON_GENERIC))
-				return
-			if(!M || !G?.grabbed_thing)
-				return
-			if(occupant)
-				to_chat(user, "<span class='warning'>[src] is occupied.</span>")
-				return
-			M.forceMove(src)
-			occupant = M
-			update_icon()
-
-			to_chat(M, "<span class='notice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
-			to_chat(M, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
-			start_processing()
-			time_entered = world.time
-
-			log_admin("[key_name(M)] has entered a stasis pod.")
-			message_admins("[ADMIN_TPMONTY(M)] has entered a stasis pod.")
-
-			//Despawning occurs when process() is called with an occupant without a client.
-			add_fingerprint(M)
+	if(willing)
+		climb_in(M, user)
 
 /obj/machinery/cryopod/verb/eject()
 
@@ -458,46 +436,58 @@
 	if(usr.stat != CONSCIOUS || !(ishuman(usr) || ismonkey(usr)))
 		return
 
-	if(occupant)
+	if(!QDELETED(occupant))
 		to_chat(usr, "<span class='warning'>[src] is occupied.</span>")
 		return
 
 	climb_in(usr)
 
-/obj/machinery/cryopod/proc/climb_in(mob/user)
-	usr.visible_message("<span class='notice'>[usr] starts climbing into [src].</span>",
-	"<span class='notice'>You start climbing into [src].</span>")
+/obj/machinery/cryopod/proc/climb_in(mob/user, mob/helper)
+	if(helper)
+		helper.visible_message("<span class='notice'>[helper] starts putting [user] into [src].</span>",
+		"<span class='notice'>You start putting [user] into [src].</span>")
+	else
+		user.visible_message("<span class='notice'>[user] starts climbing into [src].</span>",
+		"<span class='notice'>You start climbing into [src].</span>")
 
-	if(!do_after(usr, 20, FALSE, 5, BUSY_ICON_GENERIC))
+	var/mob/doafterman = helper ? helper : user
+	if(!do_after(doafterman, 20, FALSE, 5, BUSY_ICON_GENERIC))
 		return
 
-	if(!usr?.client)
+	if(helper)
+		var/obj/item/grab/G = helper.get_active_held_item()
+		if(!istype(G) || !G.grabbed_thing != user)
+			return
+	else if(!user?.client)
 		return
 
-	if(occupant)
-		to_chat(usr, "<span class='warning'>[src] is occupied.</span>")
+	if(!QDELETED(occupant))
+		to_chat(doafterman, "<span class='warning'>[src] is occupied.</span>")
 		return
 
-	usr.forceMove(src)
-	occupant = usr
+	user.forceMove(src)
+	occupant = user
 	update_icon()
 
-	to_chat(usr, "<span class='notice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
-	to_chat(usr, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
+	to_chat(user, "<span class='notice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
+	to_chat(user, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
 	time_entered = world.time
 	start_processing()
-	add_fingerprint(usr)
+	log_admin("[key_name(user)] has entered a stasis pod.")
+	message_admins("[ADMIN_TPMONTY(user)] has entered a stasis pod.")
+	add_fingerprint(user)
 
 /obj/machinery/cryopod/proc/go_out()
 
-	if(!occupant)
+	if(QDELETED(occupant))
 		return
 
 	//Eject any items that aren't meant to be in the pod.
 	var/list/items = contents - announce
 
-	for(var/atom/movable/A in items)
-		occupant.forceMove(get_turf(src))
+	for(var/I in items)
+		var/atom/movable/A = I
+		A.forceMove(get_turf(src))
 
 	occupant = null
 	stop_processing()
