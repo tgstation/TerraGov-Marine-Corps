@@ -1388,10 +1388,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	return ..()
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/M, obj/item/projectile/P)
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
-			return
 	drop_nade(get_turf(P), P.firer)
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/item/projectile/P)
