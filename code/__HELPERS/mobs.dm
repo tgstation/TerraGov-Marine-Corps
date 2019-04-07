@@ -83,7 +83,7 @@ proc/age2agedescription(age)
 		if(70 to INFINITY)	return "elderly"
 		else				return "unknown"
 
-/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = FALSE, datum/progressbar/prog_bar = PROG_BAR_GENERIC, datum/progressicon/icon_display, datum/callback/extra_checks)
+/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = FALSE, datum/progressbar/prog_bar = PROGRESS_GENERIC, datum/progressicon/icon_display, datum/callback/extra_checks)
 	if(!user || !target)
 		return FALSE
 	var/user_loc = user.loc
@@ -131,7 +131,7 @@ proc/age2agedescription(age)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, delay, needhand = TRUE, atom/target, datum/progressbar/prog_bar = PROG_BAR_GENERIC, datum/progressicon/icon_display, datum/callback/extra_checks)
+/proc/do_after(mob/user, delay, needhand = TRUE, atom/target, datum/progressbar/prog_bar = PROGRESS_GENERIC, datum/progressicon/icon_display, datum/callback/extra_checks)
 	if(!user)
 		return FALSE
 
