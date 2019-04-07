@@ -80,6 +80,8 @@
 	dat += "<br><table cellspacing=5><tr><td><B>Survivors</B></td><td></td><td></td></tr>"
 	for(var/i in GLOB.human_mob_list)
 		var/mob/living/carbon/human/H = i
+		if(!(H.mind?.assigned_role == "Survivor"))
+			continue
 		dat += "<tr><td><a href='?priv_msg=[REF(H)]'>[H.real_name]</a>[H.client ? "" : " <i>(logged out)</i>"][H.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 		dat += "<td>[get_area(get_turf(H))]</td>"
 		dat += "<td><a href='?src=[ref];playerpanel=[REF(H)]'>PP</A></td></TR>"
