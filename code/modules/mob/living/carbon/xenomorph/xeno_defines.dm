@@ -10,7 +10,7 @@
 
 	var/tier = XENO_TIER_ZERO
 	var/upgrade = XENO_UPGRADE_ZERO
-
+	var/wound_type = "ravager" //used to match appropriate wound overlays
 	var/language = "Xenomorph"
 
 	// *** Melee Attacks *** //
@@ -273,7 +273,5 @@
 	var/notice_delay = 20 //2 second between notices
 
 	var/cresttoss_used = FALSE
-
-	var/wound_type = "ravager" //used to match appropriate wound overlays
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning

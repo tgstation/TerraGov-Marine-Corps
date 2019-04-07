@@ -13,7 +13,6 @@
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
 	acid_cooldown = 0
-	wound_type = "alien" //used to match appropriate wound overlays
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
