@@ -355,7 +355,7 @@
 		if(M.get_inactive_held_item())
 			catch_chance  -= 25
 
-		if(prob(catch_chance)) //Not facing away
+		if(prob(catch_chance))
 			M.visible_message("<span class='notice'>[M] snatches [src] out of the air and [pickweight("clobbers" = 30, "kills" = 30, "squashes" = 25, "dunks" = 10, "dribbles" = 5)] it!")
 			Die()
 			return TRUE
