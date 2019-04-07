@@ -15,9 +15,9 @@ Currently only has the tank hardpoints
 	health = 100
 	w_class = 15
 
+	var/obj/item/ammo_magazine/tank/ammo
 	//If we use ammo, put it here
-	var/obj/item/ammo_magazine/tank/ammo = null
-	var/obj/item/ammo_magazine/tank/starter_ammo = null
+	var/obj/item/ammo_magazine/tank/starter_ammo
 
 	//Strings, used to get the overlay for the armored vic
 	var/disp_icon //This also differentiates tank vs apc vs other

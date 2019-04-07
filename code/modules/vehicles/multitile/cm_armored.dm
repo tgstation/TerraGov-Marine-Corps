@@ -84,7 +84,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		var/obj/O = linked_objs[i]
 		if(O == src)
 			continue
-		qdel(O, 1) //Delete all of the hitboxes etc
+		qdel(O, TRUE) //Delete all of the hitboxes etc
 
 	return ..()
 

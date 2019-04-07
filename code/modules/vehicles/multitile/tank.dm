@@ -15,7 +15,7 @@
 	var/mob/gunner
 	var/mob/driver
 
-	var/occupant_exiting = null
+	var/mob/occupant_exiting
 	var/next_sound_play = 0
 
 	var/is_zoomed = FALSE
