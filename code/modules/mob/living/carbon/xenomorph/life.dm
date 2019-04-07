@@ -386,7 +386,7 @@
 	return slowdown
 
 /mob/living/carbon/Xenomorph/Crusher/add_slowdown(amount)
-	if(charge_speed > charge_speed_max * 0.5) //If we're over half the max charge speed, we're immune to slowdown.
+	if(charge_speed > CHARGE_SPEED_MAX * 0.5) //If we're over half the max charge speed, we're immune to slowdown.
 		return FALSE
 	slowdown = adjust_slowdown(amount*XENO_SLOWDOWN_REGEN)
 	return slowdown
@@ -396,7 +396,7 @@
 		adjustHalLoss(XENO_HALOSS_REGEN)
 
 /mob/living/carbon/Xenomorph/Crusher/adjust_stagger(amount)
-	if(amount > 0 && (charge_speed > charge_speed_max * 0.5) ) //If we're over half the max charge speed, we don't accumulate more stagger stacks.
+	if(amount > 0 && (charge_speed > CHARGE_SPEED_MAX * 0.5) ) //If we're over half the max charge speed, we don't accumulate more stagger stacks.
 		return FALSE
 	stagger = max(stagger + amount,0)
 	return stagger

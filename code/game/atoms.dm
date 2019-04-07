@@ -465,7 +465,6 @@ its easier to just keep the beam vertical.
 		fingerprints = null
 	return
 
-
 /atom/proc/transfer_fingerprints_to(var/atom/A)
 
 	if(!istype(A.fingerprints,/list))

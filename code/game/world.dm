@@ -140,12 +140,13 @@ var/world_topic_spam_protect_time = world.timeofday
 	return handler.TryRun(input)
 
 
-/world/Reboot(ping = FALSE)
+/world/Reboot(ping)
 	if(ping)
 		send2update(CONFIG_GET(string/restart_message))
-	send2update("Map: [SSmapping?.next_map_config?.map_name] | Last Round End State: [SSticker?.mode?.round_finished]")
+		send2update("Round ID [GLOB.round_id] finished | Next Map: [SSmapping?.next_map_config?.map_name] | Round End State: [SSticker?.mode?.round_finished] | Players: [length(GLOB.clients)]")
 	TgsReboot()
-	for(var/client/C in GLOB.clients)
+	for(var/i in GLOB.clients)
+		var/client/C = i
 		if(CONFIG_GET(string/server))
 			C << link("byond://[CONFIG_GET(string/server)]")
 	return ..()

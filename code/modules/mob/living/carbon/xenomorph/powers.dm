@@ -540,18 +540,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		to_chat(src, "<span class='warning'>You can't do that here.</span>")
 		return
 
-	var/area/AR = get_area(current_turf)
-	if(istype(AR,/area/shuttle/drop1/lz1) || istype(AR,/area/shuttle/drop2/lz2) || istype(AR,/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
-		to_chat(src, "<span class='warning'>You sense this is not a suitable area for expanding the hive.</span>")
-		return
-
 	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
 
 	if(!alien_weeds)
 		to_chat(src, "<span class='warning'>You can only shape on weeds. Find some resin before you start building!</span>")
 		return
 
-	if(!check_alien_construction(current_turf))
+	if(!current_turf.check_alien_construction(src))
 		return
 
 	if(selected_resin == "resin door")
@@ -586,15 +581,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(!istype(current_turf) || !current_turf.is_weedable())
 		return
 
-	AR = get_area(current_turf)
-	if(istype(AR,/area/shuttle/drop1/lz1 || istype(AR,/area/shuttle/drop2/lz2)) || istype(AR,/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
-		return
-
 	alien_weeds = locate() in current_turf
 	if(!alien_weeds)
 		return
 
-	if(!check_alien_construction(current_turf))
+	if(!current_turf.check_alien_construction(src))
 		return
 
 	if(selected_resin == "resin door")
@@ -672,7 +663,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(current_acid && !acid_check(new_acid, current_acid) )
 			return
 
-		if(CHECK_MULTIPLE_BITFIELDS(I.resistance_flags, UNACIDABLE|INDESTRUCTIBLE)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
+		if(CHECK_BITFIELD(I.resistance_flags, UNACIDABLE|INDESTRUCTIBLE)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
 			to_chat(src, "<span class='warning'>You cannot dissolve \the [I].</span>")
 			return
 		if(istype(O, /obj/structure/window_frame))

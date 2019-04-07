@@ -56,7 +56,7 @@
 	. = ..()
 	if(.)
 		return TRUE
-	if(!SSevacuation)
+	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 	switch(href_list["command"])
 		if("dest_start")

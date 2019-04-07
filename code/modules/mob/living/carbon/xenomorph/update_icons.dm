@@ -130,18 +130,20 @@
 		overlays_standing[X_FIRE_LAYER] = I
 		apply_overlay(X_FIRE_LAYER)
 
+/mob/living/carbon/Xenomorph/proc/apply_alpha_channel(var/image/I)
+	return I
 
 /mob/living/carbon/Xenomorph/proc/update_wounds()
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
 		if(resting)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[wound_type]_wounded_resting", "layer"=-X_WOUND_LAYER)
+			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[xeno_caste.wound_type]_wounded_resting", "layer"=-X_WOUND_LAYER)
 		else if(sleeping || stat == DEAD)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[wound_type]_wounded_sleeping", "layer"=-X_WOUND_LAYER)
+			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[xeno_caste.wound_type]_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[wound_type]_wounded", "layer"=-X_WOUND_LAYER)
-
+			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[xeno_caste.wound_type]_wounded", "layer"=-X_WOUND_LAYER)
+		I = apply_alpha_channel(I)
 		overlays_standing[X_WOUND_LAYER] = I
 		apply_overlay(X_WOUND_LAYER)
 

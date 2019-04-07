@@ -516,7 +516,7 @@
 	var/who = clients_online.Join(", ")
 	var/adminwho = admins_online.Join(", ")
 	var/kn = key_name(usr)
-	var/kna = key_name_admin(usr)
+	var/kna = ADMIN_TPMONTY(usr)
 	var/sql_ban
 	for(var/role in roles_to_ban)
 		sql_ban += list(list("bantime" = "NOW()",
@@ -692,7 +692,7 @@
 	var/admin_ip = sanitizeSQL(usr.client.address)
 	var/admin_cid = sanitizeSQL(usr.client.computer_id)
 	var/kn = key_name(usr)
-	var/kna = key_name_admin(usr)
+	var/kna = ADMIN_TPMONTY(usr)
 	var/datum/DBQuery/query_unban = SSdbcore.NewQuery("UPDATE [format_table_name("ban")] SET unbanned_datetime = NOW(), unbanned_ckey = '[admin_ckey]', unbanned_ip = INET_ATON('[admin_ip]'), unbanned_computerid = '[admin_cid]', unbanned_round_id = '[GLOB.round_id]' WHERE id = [ban_id]")
 	if(!query_unban.warn_execute())
 		qdel(query_unban)
@@ -768,7 +768,7 @@
 		interval = "MINUTE"
 	reason = sanitizeSQL(reason)
 	var/kn = key_name(usr)
-	var/kna = key_name_admin(usr)
+	var/kna = ADMIN_TPMONTY(usr)
 	var/list/changes_text= list()
 	var/list/changes_keys = list()
 	for(var/i in changes)

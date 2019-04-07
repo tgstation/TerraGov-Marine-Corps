@@ -62,44 +62,8 @@
 		if(!istype(target))
 			to_chat(usr, "<span class='warning'>Invalid target.</span>")
 			return
-		if(!mind)
-			to_chat(usr, "<span class='warning'>You don't have a mind.</span>")
-			return
-		if(target.taken || target.key || target.ckey)
-			to_chat(usr, "<span class='warning'>That mob has already been taken.</span>")
-			return
-		if(target.job && (is_banned_from(ckey, target.job) || jobban_isbanned(src, target.job)))
-			to_chat(usr, "<span class='warning'>You are jobbanned from that job.</span>")
-			return
 
-		target.taken = TRUE
-
-		log_admin("[key_name(usr)] has taken [key_name_admin(target)].")
-		message_admins("[ADMIN_TPMONTY(usr)] has taken [ADMIN_TPMONTY(target)].")
-
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
-			if(H.assigned_squad)
-				var/datum/squad/S = H.assigned_squad
-				S.clean_marine_from_squad(H)
-
-		mind.transfer_to(target, TRUE)
-
-		if(!ishuman(target) || !target.job)
-			target.fully_replace_character_name(real_name, target.real_name)
-			return
-
-		var/mob/living/carbon/human/H = target
-		H.set_rank(H.job)
-
-		target.fully_replace_character_name(real_name, target.real_name)
-
-		if(!H.assigned_squad)
-			return
-
-		var/datum/squad/S = H.assigned_squad
-		S.put_marine_in_squad(H)
-
+		target.take_over(src)
 
 
 
@@ -317,7 +281,7 @@
 	var/list/namecounts = list()
 
 	for(var/mob/dead/observer/O in sortNames(GLOB.dead_mob_list))
-		if(!O.client)
+		if(!O.client || !O.name)
 			continue
 		var/name = O.name
 		if(name in names)
@@ -402,7 +366,7 @@
 	var/list/namecounts = list()
 	for(var/x in sortNames(GLOB.alive_human_list))
 		var/mob/M = x
-		if(!ishumanbasic(M) && !issynth(M) || istype(M, /mob/living/carbon/human/dummy))
+		if(!ishumanbasic(M) && !issynth(M) || istype(M, /mob/living/carbon/human/dummy) || !M.name)
 			continue
 		var/name = M.name
 		if(name in names)
@@ -449,7 +413,7 @@
 
 	for(var/x in sortNames(GLOB.dead_mob_list))
 		var/mob/M = x
-		if(isobserver(M) || isnewplayer(M))
+		if(isobserver(M) || isnewplayer(M) || !M.name)
 			continue
 		var/name = M.name
 		if(name in names)
@@ -485,7 +449,7 @@
 
 	for(var/x in sortNames(GLOB.mob_list - GLOB.dead_mob_list - GLOB.alive_xeno_list))
 		var/mob/M = x
-		if(isobserver(M) || isnewplayer(M) || ishumanbasic(M))
+		if(isobserver(M) || isnewplayer(M) || ishumanbasic(M) || !M.name)
 			continue
 		var/name = M.name
 		if(name in names)
@@ -507,6 +471,26 @@
 
 	var/mob/target = mobs[selected]
 	ManualFollow(target)
+
+
+/mob/dead/observer/verb/offered_mobs()
+	set category = "Ghost"
+	set name = "Take Offered Mob"
+
+	if(!length(GLOB.offered_mob_list))
+		to_chat(src, "<span class='warning'>There are currently no mobs being offered.</span>")
+		return
+
+	var/mob/living/L = input("Choose which mob you want to take over.", "Offered Mob") as null|anything in sortNames(GLOB.offered_mob_list)
+	if(!istype(L))
+		to_chat(src, "<span class='warning'>Mob already taken.</span>")
+		return
+
+	switch(alert("Take over mob named: [L.real_name][L.job ? " | Job: [L.job]" : ""]", "Offered Mob", "Yes", "No", "Follow"))
+		if("Yes")
+			L.take_over(src)
+		if("Follow")
+			ManualFollow(L)
 
 
 /mob/dead/observer/proc/ManualFollow(var/atom/movable/target)

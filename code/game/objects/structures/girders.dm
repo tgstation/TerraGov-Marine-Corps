@@ -30,7 +30,7 @@
 	return 1
 
 /obj/structure/girder/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.mob_size != MOB_SIZE_BIG || CHECK_MULTIPLE_BITFIELDS(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+	if(M.mob_size != MOB_SIZE_BIG || CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		to_chat(M, "<span class='warning'>Your claws aren't sharp enough to damage \the [src].</span>")
 		return FALSE
 	else

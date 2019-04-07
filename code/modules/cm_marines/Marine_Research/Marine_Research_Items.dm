@@ -96,7 +96,7 @@
 	if (!isobj(A))
 		to_chat(usr, "Doesn't work that way...")
 		return
-	if (CHECK_MULTIPLE_BITFIELDS(A.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+	if (CHECK_BITFIELD(A.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		to_chat(usr, "It's already resistant to acid...")
 		return
 	if (istype(A, /obj/machinery/door))
