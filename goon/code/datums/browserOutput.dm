@@ -160,8 +160,8 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 					break
 
 			if(length(found))
-				message_admins("[key_name(owner)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
-				log_admin_private("[ADMIN_TPMONTY(owner.mob)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
+				log_admin_private("[key_name(owner)] has a cookie from a banned account (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
+				message_admins("<font color='red'><b>Notice: </b></font><font color='blue'>[ADMIN_TPMONTY(owner.mob)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])</font>")
 
 	cookieSent = TRUE
 
