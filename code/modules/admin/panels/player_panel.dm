@@ -314,7 +314,7 @@
 		if(!M.ckey)
 			continue
 
-		dat += "<tr><td>[(M.client ? "[M.client]" : "No client")]</td>"
+		dat += "<tr><td>[(M.key ? "[M.key]" : "No Key")]</td>"
 		dat += "<td><a href='?priv_msg=[M.ckey]'>[M.name]</a></td>"
 		if(isAI(M))
 			dat += "<td>aI</td>"
