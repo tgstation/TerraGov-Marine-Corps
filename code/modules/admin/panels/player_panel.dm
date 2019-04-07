@@ -402,7 +402,7 @@
 	if(M.client)
 		body += "<a href='?src=[ref];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</a> | "
 	else
-		body += "<a href='?src=[ref];newbankey=[M.key]'>Ban</a> |"
+		body += "<a href='?src=[ref];newbankey=[M.key]'>Ban</a> | "
 
 	body += "<a href='?src=[ref];showmessageckey=[M.ckey]'>Notes</a> | "
 	body += "<a href='?src=[ref];cryo=[REF(M)]'>Cryo</a>"

@@ -559,7 +559,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/turf/T = get_turf(M)
-		var/name = M.real_name
+		var/old_name = M.real_name
 		var/obj/machinery/cryopod/P = new(T)
 		P.density = FALSE
 		P.alpha = 0
@@ -580,8 +580,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if(isobserver(N))
 				qdel(N)
 
-		log_admin("[key_name(usr)] has cryo'd [C ? key_name(C) : name][lobby ? " sending them to the lobby" : ""].")
-		message_admins("[ADMIN_TPMONTY(usr)] has cryo'd [C ? key_name_admin(C) : name] [lobby ? " sending them to the lobby" : ""].")
+		log_admin("[key_name(usr)] has cryo'd [C ? key_name(C) : old_name][lobby ? " sending them to the lobby" : ""].")
+		message_admins("[ADMIN_TPMONTY(usr)] has cryo'd [C ? key_name_admin(C) : old_name] [lobby ? " sending them to the lobby" : ""].")
 
 
 	else if(href_list["jumpto"])
