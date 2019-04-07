@@ -1414,7 +1414,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/slot = href_list["addjobslot"]
 
 		var/datum/job/J = SSjob.name_occupations[slot]
-		J.spawn_positions++
+		J.total_positions++
 
 		usr.client.holder.job_slots()
 
@@ -1429,7 +1429,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/slot = href_list["filljobslot"]
 
 		var/datum/job/J = SSjob.name_occupations[slot]
-		if(J.current_positions >= J.spawn_positions)
+		if(J.current_positions >= J.total_positions)
 			to_chat(usr, "<span class='warning'>Filling would cause an overflow. Please add more slots first.</span>")
 			return
 		J.current_positions++
@@ -1465,10 +1465,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/slot = href_list["removejobslot"]
 
 		var/datum/job/J = SSjob.name_occupations[slot]
-		if(J.spawn_positions <= 0 || (J.spawn_positions - 1) < J.current_positions)
+		if(J.total_positions <= 0 || (J.total_positions - 1) < J.current_positions)
 			to_chat(usr, "<span class='warning'>Cannot remove more job slots.</span>")
 			return
-		J.spawn_positions--
+		J.total_positions--
 
 		usr.client.holder.job_slots()
 
@@ -1483,7 +1483,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/slot = href_list["unlimitjobslot"]
 
 		var/datum/job/J = SSjob.name_occupations[slot]
-		J.spawn_positions = -1
+		J.total_positions = -1
 
 		usr.client.holder.job_slots()
 
@@ -1498,7 +1498,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/slot = href_list["limitjobslot"]
 
 		var/datum/job/J = SSjob.name_occupations[slot]
-		J.spawn_positions = J.current_positions
+		J.total_positions = J.current_positions
 
 		usr.client.holder.job_slots()
 
