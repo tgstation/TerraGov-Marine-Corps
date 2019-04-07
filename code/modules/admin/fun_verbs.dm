@@ -91,11 +91,9 @@
 
 	var/glob
 	switch(alert(usr, "Do you want to use the ship AI to say the message or a global marine announcement?", "AI Report", "Ship", "Global", "Cancel"))
-		if("Ship")
-			glob = 0
 		if("Global")
-			glob = 1
-		else
+			glob = TRUE
+		if("Cancel")
 			return		
 
 	var/paper
