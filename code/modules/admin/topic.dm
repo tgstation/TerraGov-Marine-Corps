@@ -733,7 +733,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		send_fax(usr, null, dep, subject, fax_message, TRUE)
 
 		log_admin("[key_name(usr)] replied to a fax message from [key_name(sender)].")
-		message_staff("[key_name_admin(usr)] replied to a fax message from [key_name_admin(sender)].")
+		message_staff("[ADMIN_TPMONTY(usr)] replied to a fax message from [ismob(sender) ? ADMIN_TPMONTY(sender) : key_name_admin(sender)].")
 
 
 	else if(href_list["faxview"])
