@@ -41,8 +41,8 @@
 
 	src.locked = 0 // Start unlocked so roboticist can set them to patrol.
 
-	if(radio_controller)
-		radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
+	if(SSradio)
+		SSradio.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
 
 	start_processing()
 
@@ -185,7 +185,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 			return
 
 		if (!patrol_path || patrol_path.len < 1)
-			var/datum/radio_frequency/frequency = radio_controller.return_frequency(beacon_freq)
+			var/datum/radio_frequency/frequency = SSradio.return_frequency(beacon_freq)
 
 			if(!frequency) return
 

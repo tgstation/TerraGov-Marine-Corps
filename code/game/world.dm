@@ -54,7 +54,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	load_mode()
 
-	radio_controller = new /datum/controller/radio()
+	SSradio = new /datum/controller/radio()
 
 	if(byond_version < RECOMMENDED_VERSION)
 		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
