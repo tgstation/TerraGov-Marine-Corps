@@ -8,20 +8,18 @@
 #define TILESIZE 32
 
 
-/mob/proc/update_see_in_dark()
-    see_in_dark = initial(see_in_dark) + see_in_dark_modifier
+/mob/proc/update_see_in_dark(choose_minium_value = FALSE)
+    var/modifier = 0
+    if(choose_minium_value)
+        for(var/i in see_in_dark_modifiers)
+            if(i < modifier)
+                modifier = i
+    else
+        for(var/i in see_in_dark_modifiers)
+            if(i > modifier)
+                modifier = i
+    see_in_dark = initial(see_in_dark) + modifier
 
-
-/mob/proc/add_see_in_dark_modifier(value)
-    if(value <= 0)
-        return
-    see_in_dark_modifier += value
-
-
-/mob/proc/remove_see_in_dark_modifier(value)
-    if(value >= 0)
-        return
-    see_in_dark_modifier -= value
 
 /mob/proc/reset_client_sight()
     update_see_in_dark()

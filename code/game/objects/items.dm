@@ -60,8 +60,9 @@
 	var/time_to_equip = 0 // set to ticks it takes to equip a worn suit.
 	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
 
-
 	var/reach = 1
+
+	var/item_zoomed = 0 //Just how zoomed this item is (tileoffset + viewsize).
 
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
@@ -648,9 +649,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	user.set_client_sight(viewsize, tileoffset)
 
+	item_zoomed = viewsize + tileoffset + 1 //+1 to see the edge of the screen
+
 	if(CHECK_BITFIELD(flags_item, ITEM_ZOOM_NIGHTVISION))
 		user.add_see_invisible(SEE_INVISIBLE_OBSERVER_NOLIGHTING)
-		user.add_see_in_dark_modifier(viewsize + tileoffset + 1)
+		user.see_in_dark_modifiers.Add(item_zoomed)
 		user.update_see_in_dark()
 
 	if(user.interactee != src)
@@ -669,6 +672,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	
 	if(CHECK_BITFIELD(flags_item, ITEM_ZOOM_NIGHTVISION))
 		user.remove_see_invisible(SEE_INVISIBLE_OBSERVER_NOLIGHTING)
+		user.see_in_dark_modifiers.Remove(item_zoomed)
+		user.update_see_in_dark()
+
+	item_zoomed = 0
 
 	DISABLE_BITFIELD(flags_item, ITEM_ZOOMED)
 	user.reset_client_sight()

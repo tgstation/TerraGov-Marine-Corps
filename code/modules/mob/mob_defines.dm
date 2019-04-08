@@ -184,7 +184,7 @@
 
 	var/accuracy_modifier = 0 //Applies a penalty or bonus to projectile accuracy in projectile.dm
 	var/scatter_modifier = 0 //Applies a penalty or bonus to scatter probability in gun_system.dm
-	var/see_in_dark_modifier = 0 //Somthing has modified the basic sight of this mob.
+	var/list/see_in_dark_modifiers = list() //Somthing has modified the basic sight of this mob.
 	var/list/see_invisible_modifiers = list()
 
 	var/list/fullscreens = list()

@@ -42,7 +42,7 @@
 		if(vision_flags)
 			ENABLE_BITFIELD(user.sight, vision_flags)
 		if(glasses_see_in_dark_modifier)
-			wearer.see_in_dark_modifier += glasses_see_in_dark_modifier
+			wearer.see_in_dark_modifiers.Add(glasses_see_in_dark_modifier)
 			wearer.update_see_in_dark()
 		if(glasses_see_invisible_modifier)
 			wearer.add_see_invisible(glasses_see_invisible_modifier)
@@ -55,7 +55,7 @@
 		if(vision_flags)
 			DISABLE_BITFIELD(user.sight, vision_flags)
 		if(glasses_see_in_dark_modifier)
-			wearer.see_in_dark_modifier -= glasses_see_in_dark_modifier
+			wearer.see_in_dark_modifiers.Remove(glasses_see_in_dark_modifier)
 			wearer.update_see_in_dark()
 		if(glasses_see_invisible_modifier)
 			wearer.remove_see_invisible(glasses_see_invisible_modifier)

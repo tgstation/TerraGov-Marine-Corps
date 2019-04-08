@@ -381,11 +381,11 @@
 /mob/living/carbon/Xenomorph/proc/toggle_nightvision()
 	if(see_invisible == SEE_INVISIBLE_MINIMUM)
 		see_invisible = SEE_INVISIBLE_LEVEL_TWO //Turn it off.
-		see_in_dark_modifier -= 6
-		update_see_in_dark()
+		see_in_dark_modifiers.Add(-6)
+		update_see_in_dark(TRUE)
 	else
 		see_invisible = SEE_INVISIBLE_MINIMUM
-		see_in_dark_modifier += 6
+		see_in_dark_modifiers.Remove(-6)
 		update_see_in_dark()
 
 
@@ -403,7 +403,7 @@
 		return
 	zoom_turf = get_turf(src)
 	is_zoomed = TRUE
-	add_see_in_dark_modifier(viewsize + tileoffset + 1)
+	see_in_dark_modifiers.Add(viewsize + tileoffset + 1)
 	update_see_in_dark()
 	set_client_sight(viewsize, tileoffset)
 
@@ -413,7 +413,7 @@
 	zoom_turf = null
 	if(!client)
 		return
-	see_in_dark_modifier = 0
+	see_in_dark_modifiers.Cut()
 	update_see_in_dark()
 	reset_client_sight()
 
