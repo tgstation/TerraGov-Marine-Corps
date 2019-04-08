@@ -155,10 +155,10 @@
 
 	if(!do_after(X, 50, FALSE, 5, BUSY_ICON_HOSTILE))
 		to_chat(X, "<span class='warning'>You decide not to launch any acid.</span>")
-		return
+		return fail_activate()
 
 	if(!can_use_ability(target, FALSE, XACT_IGNORE_PLASMA))
-		fail_activate()
+		return fail_activate()
 
 	X.visible_message("<span class='xenowarning'>\The [X] launches a huge glob of acid hurling into the distance!</span>", \
 	"<span class='xenowarning'>You launch a huge glob of acid hurling into the distance!</span>", null, 5)
