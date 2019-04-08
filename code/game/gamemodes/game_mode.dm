@@ -11,6 +11,8 @@
 	var/flags_round_type = NOFLAGS
 	var/flags_landmarks = NOFLAGS
 
+	var/distress_cancelled = FALSE
+
 
 /datum/game_mode/New()
 	initialize_emergency_calls()
@@ -216,6 +218,8 @@
 
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
+		if(isnewplayer(M))
+			continue
 		if(!(M.client?.prefs?.be_special & BE_DEATHMATCH))
 			continue
 
@@ -375,7 +379,6 @@
 
 /datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/Xenomorph/X)
 	xeno_candidate.mind.transfer_to(X, TRUE)
-	message_admins("[key_name(xeno_candidate)] has joined as [key_name(X)].")
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
 	if(X.is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
 		X.add_ventcrawl(X.loc)

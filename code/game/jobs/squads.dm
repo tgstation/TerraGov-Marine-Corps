@@ -78,8 +78,8 @@
 	radio_freq = DELTA_FREQ
 
 
-/datum/squad/proc/put_marine_in_squad(var/mob/living/carbon/human/H)
-	if(!H || !istype(H,/mob/living/carbon/human))
+/datum/squad/proc/put_marine_in_squad(mob/living/carbon/human/H)
+	if(!istype(H))
 		return FALSE
 	if(!usable)
 		return FALSE
@@ -147,8 +147,7 @@
 		return FALSE
 
 	C.access -= access
-	C.assignment = H.mind.assigned_role
-	C.name = "[C.registered_name]'s ID Card ([C.assignment])"
+	C.update_label()
 
 	count--
 	marines_list -= H
@@ -178,7 +177,7 @@
 
 
 //proc used by human dispose to clean the mob from squad lists
-/datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe = FALSE)
+/datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe)
 	if(!H.assigned_squad || !(H in marines_list))
 		return FALSE
 	SSdirection.stop_tracking(tracking_id, H)// failsafe

@@ -55,7 +55,7 @@
 	qdel(src)
 
 /obj/item/xeno_egg/proc/plant_egg(mob/living/carbon/Xenomorph/user, turf/T)
-	if(!user.check_alien_construction(T))
+	if(!T.check_alien_construction(user))
 		return
 	if(!user.check_plasma(30))
 		return
@@ -67,7 +67,7 @@
 	var/plant_time = 35
 	if(!isxenodrone(user))
 		plant_time = 25
-	if(!do_after(user, plant_time, TRUE, T, extra_checks = CALLBACK(user, /mob/living/carbon/Xenomorph/proc/check_alien_construction, T)))
+	if(!do_after(user, plant_time, TRUE, T, extra_checks = CALLBACK(T, /turf/proc/check_alien_construction, user)))
 		return
 	if(!user.check_plasma(30))
 		return

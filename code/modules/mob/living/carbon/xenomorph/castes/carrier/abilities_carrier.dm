@@ -152,18 +152,13 @@
 		to_chat(X, "<span class='warning'>You can't do that here.</span>")
 		return
 
-	var/area/AR = get_area(T)
-	if(istype(AR,/area/shuttle/drop1/lz1) || istype(AR,/area/shuttle/drop2/lz2) || istype(AR,/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
-		to_chat(X, "<span class='warning'>You sense this is not a suitable area for expanding the hive.</span>")
-		return
-
 	var/obj/effect/alien/weeds/alien_weeds = locate() in T
 
 	if(!alien_weeds)
 		to_chat(X, "<span class='warning'>You can only shape on weeds. Find some resin before you start building!</span>")
 		return
 
-	if(!X.check_alien_construction(T))
+	if(!T.check_alien_construction(X))
 		return
 
 	X.use_plasma(plasma_cost)

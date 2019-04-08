@@ -8,6 +8,7 @@
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
+	wound_type = "defiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30

@@ -26,3 +26,5 @@
 
 	GLOB.observer_list += src
 	
+	if(length(GLOB.offered_mob_list))
+		to_chat(src, "<span class='boldnotice'>There's mobs available for taking! Ghost > Take Offered Mob</span>")

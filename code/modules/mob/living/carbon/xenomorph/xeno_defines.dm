@@ -10,7 +10,7 @@
 
 	var/tier = XENO_TIER_ZERO
 	var/upgrade = XENO_UPGRADE_ZERO
-
+	var/wound_type = "ravager" //used to match appropriate wound overlays
 	var/language = "Xenomorph"
 
 	// *** Melee Attacks *** //
@@ -217,9 +217,6 @@
 
 	//New variables for how charges work, max speed, speed buildup, all that jazz
 	var/charge_speed = 0 //Modifier on base move delay as charge builds up
-	var/charge_speed_max = 2.1 //Can only gain this much speed before capping
-	var/charge_speed_buildup = 0.15 //POSITIVE amount of speed built up during a charge each step
-	var/charge_turfs_to_charge = 5 //Amount of turfs to build up before a charge begins
 	var/charge_roar = 0 //Did we roar in our charge yet ?
 
 	//Pounce vars
@@ -273,7 +270,5 @@
 	var/notice_delay = 20 //2 second between notices
 
 	var/cresttoss_used = FALSE
-
-	var/wound_type = "ravager" //used to match appropriate wound overlays
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning

@@ -36,7 +36,7 @@
 				supply_controller.stat_entry()
 				shuttle_controller.stat_entry()
 				lighting_controller.stat_entry()
-				radio_controller.stat_entry()
+				SSradio.stat_entry()
 				stat(null)
 				if(Master)
 					Master.stat_entry()

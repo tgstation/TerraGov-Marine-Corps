@@ -1,5 +1,3 @@
-#define GAME_YEAR 2386
-
 var/global/defer_powernet_rebuild = FALSE		// true if net rebuild will be called manually after an event
 
 var/global/list/global_map = null
@@ -53,32 +51,6 @@ var/NOPRINTSBLOCK = 0
 var/SHOCKIMMUNITYBLOCK = 0
 var/SMALLSIZEBLOCK = 0
 
-var/skipupdate = 0
-	///////////////
-var/eventchance = 10 //% per 5 mins
-var/event = 0
-var/hadevent = 0
-var/blobevent = 0
-	///////////////
-
-var/diaryofmeanpeople = null
-var/game_year = GAME_YEAR
-
-var/datum/air_tunnel/air_tunnel1/SS13_airtunnel = null
-var/going = 1.0
-
-var/datum/engine_eject/engine_eject_control = null
-var/host = null
-var/dna_ident = 1
-var/guests_allowed = 0
-var/shuttle_frozen = 0
-var/shuttle_left = 0
-var/midi_playing = 0
-var/heard_midi = 0
-var/total_silenced = 0
-var/respawntime = 15
-
-var/list/jobMax = list()
 var/list/bombers = list(  )
 var/list/lastsignalers = list(	)	//keeps last 100 signals here in format: "[src] used \ref[src] @ location [src.loc]: [freq]/[code]"
 var/list/lawchanges = list(  ) //Stores who uploaded laws to which silicon-based lifeform, and what the law was
@@ -93,20 +65,7 @@ var/list/reverse_dir = list(2, 1, 3, 8, 10, 9, 11, 4, 6, 5, 7, 12, 14, 13, 15, 3
 
 var/datum/sun/sun = null
 
-
-var/Debug = 0	// global debug switch
-var/Debug2 = 0
-
-var/datum/debug/debugobj
-
 var/datum/moduletypes/mods = new()
-
-var/wavesecret = 0
-var/gravity_is_on = 1
-
-var/shuttlecoming = 0
-
-var/join_motd = null
 
 // nanomanager, the manager for Nano UIs
 var/datum/nanomanager/nanomanager = new()
@@ -119,8 +78,6 @@ var/list/APCWireColorToFlag = RandomAPCWires()
 var/list/APCIndexToFlag
 var/list/APCIndexToWireColor
 var/list/APCWireColorToIndex
-// Optimization for the APCS, this list contains every APC, faster to search through it then the old method was.
-var/list/apcs_list = list()
 // *******
 var/list/BorgWireColorToFlag = RandomBorgWires()
 var/list/BorgIndexToFlag
@@ -131,18 +88,5 @@ var/list/AAlarmIndexToFlag
 var/list/AAlarmIndexToWireColor
 var/list/AAlarmWireColorToIndex
 
-#define SPEED_OF_LIGHT 3e8 //not exact but hey!
-#define SPEED_OF_LIGHT_SQ 9e+16
-#define FIRE_DAMAGE_MODIFIER 0.0215 //Higher values result in more external fire damage to the skin (default 0.0215)
-#define AIR_DAMAGE_MODIFIER 2.025 //More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
-
-
-// For FTP requests. (i.e. downloading runtime logs.)
-// However it'd be ok to use for accessing attack logs and such too, which are even laggier.
-var/fileaccess_timer = 0
-var/custom_event_msg = null
-
 // Reference list for disposal sort junctions. Filled up by sorting junction's New()
 /var/list/tagger_locations = list()
-
-var/distress_cancel = 0

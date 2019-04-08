@@ -94,7 +94,7 @@ SUBSYSTEM_DEF(ticker)
 				GLOB.ooc_allowed = TRUE
 				GLOB.dooc_allowed = TRUE
 				mode.declare_completion(force_ending)
-				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "AUTOMATIC", "AUTOMATIC"), 1 MINUTES)
+				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "map", "SERVER"), 1 MINUTES)
 				addtimer(CALLBACK(src, .proc/Reboot), 1 MINUTES)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
@@ -299,7 +299,7 @@ SUBSYSTEM_DEF(ticker)
 	if(mode)
 		GLOB.master_mode = mode
 	else
-		GLOB.master_mode = "extended"
+		GLOB.master_mode = "Extended"
 	log_game("Saved mode is '[GLOB.master_mode]'")
 
 

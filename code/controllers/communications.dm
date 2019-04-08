@@ -1,7 +1,7 @@
 /*
   HOW IT WORKS
 
-  The radio_controller is a global object maintaining all radio transmissions, think about it as about "ether".
+  The SSradio is a global object maintaining all radio transmissions, think about it as about "ether".
   Note that walkie-talkie, intercoms and headsets handle transmission using nonstandard way.
   procs:
 
@@ -189,7 +189,7 @@ var/const/RADIO_SECBOT = "radio_secbot"
 var/const/RADIO_MULEBOT = "radio_mulebot"
 var/const/RADIO_MAGNETS = "radio_magnet"
 
-var/global/datum/controller/radio/radio_controller
+var/global/datum/controller/radio/SSradio
 
 
 //callback used by objects to react to incoming radio signals

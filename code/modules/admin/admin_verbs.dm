@@ -8,23 +8,25 @@
 
 	var/mob/M = usr
 
-	if(istype(M, /mob/new_player))
+	if(isnewplayer(M))
 		return
 
-	if(istype(M, /mob/dead/observer))
+	if(isobserver(M))
 		var/mob/dead/observer/ghost = M
 		ghost.can_reenter_corpse = TRUE
 		ghost.reenter_corpse()
 		return
 
-	usr.client.change_view(world.view)
-	var/msg = usr.client.key
-	log_admin("[key_name(usr)] admin ghosted.")
+	M.client.change_view(world.view)
+
+	var/oldkey = M.key
+
+	M.ghostize(TRUE)
+	M.key = "@[oldkey]"
+
+	log_admin("[key_name(usr)] admin ghosted at [AREACOORD(usr)].")
 	if(M.stat != DEAD)
 		message_admins("[ADMIN_TPMONTY(usr)] admin ghosted.")
-	M.ghostize(TRUE)
-	if(M && !M.key)
-		M.key = "@[msg]"
 
 
 /datum/admins/proc/invisimin()
@@ -41,13 +43,15 @@
 		M.invisibility = initial(M.invisibility)
 		M.alpha = initial(M.alpha)
 		M.add_to_all_mob_huds()
+		M.name = M.real_name
 	else
 		M.invisibility = INVISIBILITY_MAXIMUM
 		M.alpha = 0
 		M.remove_from_all_mob_huds()
+		M.name = null
 
-	log_admin("[key_name(usr)] has [(M.invisibility == INVISIBILITY_MAXIMUM) ? "enabled" : "disabled"] invisimin.")
-	message_admins("[ADMIN_TPMONTY(usr)] has [(M.invisibility == INVISIBILITY_MAXIMUM) ? "enabled" : "disabled"] invisimin.")
+	log_admin("[key_name(M)] has [(M.invisibility == INVISIBILITY_MAXIMUM) ? "enabled" : "disabled"] invisimin.")
+	message_admins("[ADMIN_TPMONTY(M)] has [(M.invisibility == INVISIBILITY_MAXIMUM) ? "enabled" : "disabled"] invisimin.")
 
 
 /datum/admins/proc/stealth_mode()
@@ -58,19 +62,21 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(usr.client.holder.fakekey)
-		usr.client.holder.fakekey = null
+	var/mob/M = usr
+
+	if(M.client.holder.fakekey)
+		M.client.holder.fakekey = null
 	else
-		var/new_key = ckeyEx(input("Enter your desired display name.",, usr.client.key) as text|null)
+		var/new_key = ckeyEx(input("Enter your desired display name.", "Stealth Mode", M.client.key) as text|null)
 		if(!new_key)
 			return
 		if(length(new_key) >= 26)
 			new_key = copytext(new_key, 1, 26)
-		usr.client.holder.fakekey = new_key
-		usr.client.create_stealth_key()
+		M.client.holder.fakekey = new_key
+		M.client.create_stealth_key()
 
-	log_admin("[key_name(usr)] has turned stealth mode [usr.client.holder.fakekey ? "on - [usr.client.holder.fakekey]" : "off"].")
-	message_admins("[ADMIN_TPMONTY(usr)] has turned stealth mode [usr.client.holder.fakekey ? "on - [usr.client.holder.fakekey]" : "off"].")
+	log_admin("[key_name(M)] has turned stealth mode [M.client.holder.fakekey ? "on - [M.client.holder.fakekey]" : "off"].")
+	message_admins("[ADMIN_TPMONTY(M)] has turned stealth mode [M.client.holder.fakekey ? "on - [M.client.holder.fakekey]" : "off"].")
 
 
 /datum/admins/proc/change_key(mob/M in GLOB.alive_mob_list)
@@ -80,13 +86,13 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/new_ckey = input("Enter new ckey:", "CKey") as null|text
+	var/new_ckey = input("Enter new ckey:", "Change CKey") as null|text
 
 	if(!new_ckey)
 		return
 
 	M.ghostize(FALSE)
-	M.ckey = new_ckey
+	M.ckey = ckey(new_ckey)
 	if(M.client)
 		M.client.change_view(world.view)
 
@@ -128,20 +134,23 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed [M.name] ckey to [new_ckey].")
 
 
-/datum/admins/proc/rejuvenate(mob/living/M as mob in GLOB.mob_living_list)
+/datum/admins/proc/rejuvenate(mob/living/L in GLOB.mob_living_list)
 	set category = null
 	set name = "Rejuvenate"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!istype(M))
+	if(!istype(L))
 		return
 
-	M.revive()
+	if(alert("Are you sure you want to rejuvenate [L]?", "Rejuvenate", "Yes", "No") != "Yes")
+		return
 
-	log_admin("[key_name(usr)] revived [key_name(M)].")
-	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(M)].")
+	L.revive()
+
+	log_admin("[key_name(usr)] revived [key_name(L)].")
+	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
 
 
 /datum/admins/proc/rejuvenate_panel()
@@ -169,13 +178,16 @@
 	if(!istype(M))
 		return
 
+	if(alert("Are you sure you want to rejuvenate [M]?", "Rejuvenate", "Yes", "No") != "Yes")
+		return
+
 	M.revive()
 
 	log_admin("[key_name(usr)] revived [key_name(M)].")
 	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(M)].")
 
 
-/datum/admins/proc/toggle_sleep(var/mob/living/M in GLOB.mob_living_list)
+/datum/admins/proc/toggle_sleep(mob/living/M in GLOB.mob_living_list)
 	set category = null
 	set name = "Toggle Sleeping"
 
@@ -184,6 +196,8 @@
 
 	if(M.sleeping > 0)
 		M.sleeping = 0
+	else if(alert("Are you sure you want to sleep [M]?", "Toggle Sleeping", "Yes", "No") != "Yes")
+		return
 	else
 		M.sleeping = 9999999
 
@@ -206,7 +220,7 @@
 				return
 			M = C.mob
 		if("Mob")
-			var/mob/N = input("Please, select a mob.", "Toggle Sleeping") as null|anything in sortNames(GLOB.mob_list)
+			var/mob/living/N = input("Please, select a mob.", "Toggle Sleeping") as null|anything in sortNames(GLOB.mob_living_list)
 			if(!N)
 				return
 			M = N
@@ -242,63 +256,7 @@
 			message_admins("[ADMIN_TPMONTY(usr)] has unslept everyone in view.")
 
 
-/datum/admins/proc/change_squad(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-	set category = null
-	set name = "Change Squad"
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(!istype(H) || !SSticker || !H.mind?.assigned_role)
-		return
-
-	if(!(H.mind.assigned_role in JOBS_MARINES))
-		return
-
-	var/squad = input("Choose the marine's new squad", "Change Squad") as null|anything in SSjob.squads
-	if(!squad)
-		return
-
-	var/datum/squad/S = SSjob.squads[squad]
-	if(!S)
-		return
-
-	var/datum/job/J = SSjob.name_occupations[H.mind.assigned_role]
-	var/datum/outfit/job/O = new J.outfit
-	O.post_equip(H)
-
-	H.assigned_squad?.remove_marine_from_squad(H)
-
-	S.put_marine_in_squad(H)
-
-	//Crew manifest
-	for(var/datum/data/record/t in GLOB.datacore.general)
-		if(t.fields["name"] == H.real_name)
-			t.fields["squad"] = S.name
-			break
-
-	var/obj/item/card/id/ID = H.wear_id
-	ID.assigned_fireteam = 0
-
-	//Headset frequency.
-	if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
-		var/obj/item/device/radio/headset/almayer/marine/E = H.wear_ear
-		E.set_frequency(S.radio_freq)
-	else
-		if(H.wear_ear)
-			H.dropItemToGround(H.wear_ear)
-		var/obj/item/device/radio/headset/almayer/marine/E = new /obj/item/device/radio/headset/almayer/marine(H)
-		H.equip_to_slot_or_del(E, SLOT_EARS)
-		E.set_frequency(S.radio_freq)
-		H.update_icons()
-
-	H.hud_set_squad()
-
-	log_admin("[key_name(src)] has changed the squad of [key_name(H)] to [S.name].")
-	message_admins("[ADMIN_TPMONTY(usr)] has changed the squad of [ADMIN_TPMONTY(H)] to [S.name].")
-
-
-/datum/admins/proc/direct_control(var/mob/M in GLOB.mob_list)
+/datum/admins/proc/direct_control(mob/M in GLOB.mob_living_list)
 	set category = "Admin"
 	set name = "Take Over"
 	set desc = "Rohesie's verb."
@@ -306,31 +264,29 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(istype(usr, /mob/new_player))
+	if(isnewplayer(usr))
 		return
 
 	var/replaced = FALSE
 	if(M.key)
-		if(usr.client.key == copytext(M.key,2))
+		if(usr.client.key == copytext(M.key, 2))
 			var/mob/dead/observer/ghost = usr
 			ghost.can_reenter_corpse = TRUE
 			ghost.reenter_corpse()
 			return
-		else if(alert("This mob is being controlled by [M.key], they will be made a ghost. Are you sure?",,"Yes","No") == "Yes")
+		else if(alert("This mob is being controlled by [M.key], they will be made a ghost. Are you sure?", "Take Over", "Yes", "No") == "Yes")
 			M.ghostize()
 			replaced = TRUE
-		else
-			return
 
 	var/log = "[key_name(usr)]"
-	var/message = "[ADMIN_TPMONTY(usr)]"
-	var/oldkey = "[M.key]"
-	M.key = usr.client.key
+	var/log2 = "[key_name(M)]"
+	var/message = "[key_name_admin(usr)]"
+	var/message2 = ADMIN_TPMONTY(M)
 
-	M.client.change_view(world.view)
+	usr.mind.transfer_to(M, TRUE)
 
-	log_admin("[log] took over [M.name][replaced ? " replacing the previous owner [key_name(oldkey)]" : ""].")
-	message_admins("[message] took over [M.name][replaced ? " replacing the previous owner [key_name_admin(oldkey)]" : ""].")
+	log_admin("[log] took over [log2][replaced ? " replacing the previous owner" : ""].")
+	message_admins("[message] took over [message2][replaced ? " replacing the previous owner" : ""].")
 
 
 /datum/admins/proc/logs_server()
@@ -418,7 +374,7 @@
 		var/list/choices = flist(path)
 		if(path != root)
 			choices.Insert(1, "/")
-		var/choice = input("Choose a folder to access:", "Download", null) as null|anything in choices
+		var/choice = input("Choose a folder to access:", "Server Logs", null) as null|anything in choices
 		switch(choice)
 			if(null)
 				return FALSE
@@ -429,10 +385,14 @@
 
 		if(copytext(path, -1, 0) != "/")		//didn't choose a directory, no need to iterate again
 			return FALSE
-		else if(alert("Is this the folder you want to download?:",, "Yes", "No") == "Yes")
-			break
-		else
-			continue
+
+		switch(alert("Is this the folder you want to download?:", "Server Logs", "Yes", "No", "Cancel"))
+			if("Yes")
+				break
+			if("No")
+				continue
+			if("Cancel")
+				return FALSE
 
 	return path
 
@@ -472,7 +432,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!M || !ismob(M))
+	if(!istype(M))
 		return
 
 	var/ntype = text2num(type)
@@ -615,10 +575,6 @@
 		to_chat(src, "<span class='warning'>You must be an observer to use dsay.</span>")
 		return
 
-	if(usr.client.prefs.muted & MUTE_DEADCHAT)
-		to_chat(src, "<span class='warning'>You cannot send DSAY messages (muted).</span>")
-		return
-
 	if(!(prefs.toggles_chat & CHAT_DEAD))
 		to_chat(src, "<span class='warning'>You have deadchat muted.</span>")
 		return
@@ -634,7 +590,8 @@
 	log_dsay("[key_name(src)]: [msg]")
 	msg = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[holder.fakekey ? "" : "([holder.rank.name]) "][holder.fakekey ? "Administrator" : key]</span> says, \"<span class='message'>[msg]</span>\"</span>"
 
-	for(var/client/C in GLOB.clients)
+	for(var/i in GLOB.clients)
+		var/client/C = i
 		if(istype(C.mob, /mob/new_player))
 			continue
 
@@ -788,7 +745,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] teleported [ADMIN_TPMONTY(M)] to [ADMIN_VERBOSEJMP(target)].")
 
 
-/datum/admins/proc/jump_area(var/area/A in return_sorted_areas())
+/datum/admins/proc/jump_area(area/A in return_sorted_areas())
 	set category = null
 	set name = "Jump to Area"
 
@@ -805,7 +762,7 @@
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(M)].")
 
 
-/datum/admins/proc/jump_turf(var/turf/T in GLOB.turfs)
+/datum/admins/proc/jump_turf(turf/T in GLOB.turfs)
 	set category = null
 	set name = "Jump to Turf"
 
@@ -893,7 +850,7 @@
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_TPMONTY(T)].")
 
 
-/client/proc/private_message_context(var/mob/M in GLOB.mob_list)
+/client/proc/private_message_context(mob/M in GLOB.player_list)
 	set category = null
 	set name = "Private Message"
 
@@ -1051,7 +1008,7 @@
 		if(check_other_rights(recipient, R_ADMIN, FALSE) || is_mentor(recipient))
 			if(check_rights(R_ADMIN, FALSE) || is_mentor(src)) //Both are staff
 				if(!current_ticket && !recipient.current_ticket)
-					if(check_other_rights(recipient, R_ADMIN, FALSE) && check_rights(R_ADMIN, FALSE))
+					if(check_other_rights(recipient, R_ADMIN, FALSE) || check_rights(R_ADMIN, FALSE))
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_ADMIN)
 					else
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_MENTOR)
@@ -1248,10 +1205,10 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/client/C in GLOB.clients)
-		if(!ishuman(C.mob))
+	for(var/i in GLOB.alive_human_list)
+		var/mob/living/carbon/human/H = i
+		if(!H.client)
 			continue
-		var/mob/living/carbon/human/H = C.mob
 		H.forceMove(get_turf(usr))
 
 
@@ -1259,10 +1216,10 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/client/C in GLOB.clients)
-		if(!isxeno(C.mob))
+	for(var/i in GLOB.alive_xeno_list)
+		var/mob/living/carbon/Xenomorph/X = i
+		if(!X.client)
 			continue
-		var/mob/living/carbon/Xenomorph/X = C.mob
 		X.forceMove(get_turf(usr))
 
 
@@ -1270,22 +1227,22 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/client/C in GLOB.clients)
-		if(isobserver(C.mob) || isnewplayer(C.mob))
+	for(var/i in GLOB.alive_mob_list)
+		var/mob/living/L = i
+		if(!L.client)
 			continue
-		var/mob/M = C.mob
-		M.forceMove(get_turf(usr))
+		L.forceMove(get_turf(usr))
 
 
 /datum/admins/proc/rejuv_all()
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/client/C in GLOB.clients)
-		if(!isliving(C.mob))
+	for(var/i in GLOB.mob_living_list)
+		var/mob/living/L = i
+		if(!L.client)
 			continue
-		var/mob/living/M = C.mob
-		M.revive()
+		L.revive()
 
 
 /datum/admins/proc/remove_from_tank()

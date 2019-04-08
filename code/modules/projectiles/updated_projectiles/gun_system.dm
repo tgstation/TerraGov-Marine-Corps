@@ -984,13 +984,13 @@ and you're good to go.
 				if(bullets_fired == 1)
 					user.visible_message(
 					"<span class='danger'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
-					"<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0,current_mag.current_rounds - ammo_per_shot)]</b>/[current_mag.max_rounds]" : ""]</span>", \
+					"<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0, current_mag.current_rounds)]</b>/[current_mag.max_rounds]" : ""]</span>", \
 					"<span class='warning'>You hear a [istype(projectile_to_fire.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!</span>", 4
 					)
 			else
 				playsound(user, actual_sound, 25)
 				if(bullets_fired == 1)
-					to_chat(user, "<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0,current_mag.current_rounds - ammo_per_shot)]</b>/[current_mag.max_rounds]" : ""]</span>")
+					to_chat(user, "<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0, current_mag.current_rounds)]</b>/[current_mag.max_rounds]" : ""]</span>")
 
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.damage = round(projectile_to_fire.damage * damage_mult) 		// Apply gun damage multiplier to projectile damage

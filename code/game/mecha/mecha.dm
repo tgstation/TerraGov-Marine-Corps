@@ -629,15 +629,12 @@
 			else
 				to_chat(user, "You were unable to attach [W] to [src]")
 		return
-	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/card/id))
 		if(add_req_access || maint_access)
 			if(internals_access_allowed(usr))
 				var/obj/item/card/id/id_card
 				if(istype(W, /obj/item/card/id))
 					id_card = W
-				else
-					var/obj/item/device/pda/pda = W
-					id_card = pda.id
 				output_maintenance_dialog(id_card, user)
 				return
 			else
@@ -1111,9 +1108,6 @@
 		return 1
 	if(!access_list.len) //no requirements
 		return 1
-	if(istype(I, /obj/item/device/pda))
-		var/obj/item/device/pda/pda = I
-		I = pda.id
 	if(!istype(I) || !I.access) //not ID or no access
 		return 0
 	if(access_list==src.operation_req_access)
@@ -1278,7 +1272,7 @@
 /obj/mecha/proc/get_log_html()
 	var/output = "<html><head><title>[src.name] Log</title></head><body style='font: 13px 'Courier', monospace;'>"
 	for(var/list/entry in log)
-		output += {"<div style='font-weight: bold;'>[time2text(entry["time"],"DDD MMM DD hh:mm:ss")] [game_year]</div>
+		output += {"<div style='font-weight: bold;'>[time2text(entry["time"],"DDD MMM DD hh:mm:ss")] [GAME_YEAR]</div>
 						<div style='margin-left:15px; margin-bottom:10px;'>[entry["message"]]</div>
 						"}
 	output += "</body></html>"

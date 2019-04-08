@@ -625,7 +625,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 		var/mob/living/carbon/Xenomorph/Crusher/C = A
 
-		if(C.charge_speed < C.charge_speed_max/(1.1)) //Arbitrary ratio here, might want to apply a linear transformation instead
+		if(C.charge_speed < CHARGE_SPEED_MAX/(1.1)) //Arbitrary ratio here, might want to apply a linear transformation instead
 			return
 
 		take_damage_type(C.charge_speed * CRUSHER_CHARGE_TANK_MULTI, "blunt", C)

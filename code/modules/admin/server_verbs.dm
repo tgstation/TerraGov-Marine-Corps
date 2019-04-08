@@ -35,6 +35,7 @@
 
 	var/static/shuttingdown = null
 	var/static/timeouts = list()
+
 	if(!CONFIG_GET(flag/allow_shutdown))
 		to_chat(usr, "<span class='danger'>This has not been enabled by the server operator.</span>")
 		return
@@ -65,12 +66,12 @@
 		if(SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_FINISHED)
 			to_chat(usr, "<span class='danger'>[required_state_message] The round is not in the lobby or endgame state.</span>")
 			return
-		if((SSticker.current_state == GAME_STATE_PREGAME && going) || (SSticker.current_state == GAME_STATE_FINISHED && !SSticker.delay_end))
+		if((SSticker.current_state == GAME_STATE_PREGAME && SSticker.time_left > 0) || (SSticker.current_state == GAME_STATE_FINISHED && !SSticker.delay_end))
 			to_chat(usr, "<span class='danger'>[required_state_message] The round start/end is not delayed.</span>")
 			return
 
 	to_chat(usr, "<span class='danger'>Alert: Delayed confirmation required. You will be asked to confirm again in 30 seconds.</span>")
-	message_admins("[ADMIN_TPMONTY(usr)] Is considering shutting down the server. Admins with +server may abort this by pressing the shutdown server button again.")
+	message_admins("[ADMIN_TPMONTY(usr)] initiated the shutdown process. You may abort this by pressing the shutdown server button again.")
 	shuttingdown = usr.ckey
 
 	sleep(30 SECONDS)
@@ -89,7 +90,7 @@
 		return
 
 	to_chat(world, "<span class='danger'>Server shutting down in 30 seconds!</span> <span class='notice'>Initiated by: [usr.key]</span>")
-	message_admins("[ADMIN_TPMONTY(usr)] Is shutting down the server. Admins with +server may abort this by pressing the shutdown server button again within 30 seconds.")
+	message_admins("[ADMIN_TPMONTY(usr)] is shutting down the server. You may abort this by pressing the shutdown server button again within 30 seconds.")
 
 	sleep(31 SECONDS) //to give the admins that final second to hit the confirm button on the cancel prompt.
 
@@ -156,9 +157,6 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!config)
-		return
-
 	if(CONFIG_GET(flag/looc_enabled))
 		CONFIG_SET(flag/looc_enabled, FALSE)
 		to_chat(world, "<span class='boldnotice'>LOOC channel has been enabled!</span>")
@@ -217,16 +215,18 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!SSticker.current_state == GAME_STATE_PREGAME && !SSticker.current_state == GAME_STATE_STARTUP)
+	if(!SSticker.current_state != GAME_STATE_PREGAME)
+		to_chat(usr, "<span class='warning'>The round cannot be started early in this state.</span>")
 		return
 
-	if(alert("Are you sure you want to start the round early?", "Confirmation","Yes","No") != "Yes")
-		return
-
-	SSticker.start_immediately = TRUE
-
-	log_admin("[key_name(usr)] has started the game early[SSticker.current_state == GAME_STATE_STARTUP ? ". The game is still setting up, but the round will be started as soon as possible" : ""].")
-	message_admins("[ADMIN_TPMONTY(usr)] has started the game early[SSticker.current_state == GAME_STATE_STARTUP ? ". The game is still setting up, but the round will be started as soon as possible" : ""].")
+	if(SSticker.start_immediately)
+		SSticker.start_immediately = FALSE
+		log_admin("[key_name(usr)] has cancelled the early round start.")
+		message_admins("[ADMIN_TPMONTY(usr)] has cancelled the early round start.")
+	else if(alert("Are you sure you want to start the round early?", "Start Round", "Yes", "No") == "Yes")
+		SSticker.start_immediately = TRUE
+		log_admin("[key_name(usr)] has started the round early[SSticker.current_state == GAME_STATE_STARTUP ? ". The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again." : ""].")
+		message_admins("[ADMIN_TPMONTY(usr)] has started the round early[SSticker.current_state == GAME_STATE_STARTUP ? ". The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again." : ""].")
 
 
 /datum/admins/proc/toggle_join()
@@ -278,10 +278,10 @@
 	if(time < 0)
 		return
 
-	respawntime = time
+	GLOB.respawntime = time
 
-	log_admin("[key_name(usr)] set the respawn time to [respawntime] minutes.")
-	message_admins("[ADMIN_TPMONTY(usr)] set the respawn time to [respawntime] minutes.")
+	log_admin("[key_name(usr)] set the respawn time to [GLOB.respawntime] minutes.")
+	message_admins("[ADMIN_TPMONTY(usr)] set the respawn time to [GLOB.respawntime] minutes.")
 
 
 /datum/admins/proc/end_round()
@@ -295,10 +295,10 @@
 	if(!SSticker?.mode)
 		return
 
-	if(alert("Are you sure you want to end the round?", "Confirmation", "Yes","No") != "Yes")
+	if(alert("Are you sure you want to end the round?", "Confirmation", "Yes", "No") != "Yes")
 		return
 
-	SSticker.mode.round_finished = MODE_INFESTATION_M_MINOR
+	SSticker.mode.round_finished = "Admin Intervention"
 
 	log_admin("[key_name(usr)] has made the round end early.")
 	message_admins("[ADMIN_TPMONTY(usr)] has made the round end early.")
@@ -320,15 +320,13 @@
 	if(isnull(newtime))
 		return
 
-	newtime = newtime*10
+	newtime = newtime * 10
 	SSticker.SetTimeLeft(newtime)
 	if(newtime < 0)
-		going = FALSE
 		to_chat(world, "<span class='boldnotice'>The game start has been delayed.</span>")
 		log_admin("[key_name(usr)] delayed the round start.")
 		message_admins("[ADMIN_TPMONTY(usr)] delayed the round start.")
 	else
-		going = TRUE
 		to_chat(world, "<span class='boldnotice'>The game will start in [DisplayTimeText(newtime)].</span>")
 		log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 		message_admins("[ADMIN_TPMONTY(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")

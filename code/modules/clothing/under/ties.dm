@@ -581,15 +581,12 @@
 			to_chat(user, "<span class='warning'>You swipe [O] and crack the holobadge security checks.</span>")
 			return
 
-	else if(istype(O, /obj/item/card/id) || istype(O, /obj/item/device/pda))
+	else if(istype(O, /obj/item/card/id))
 
 		var/obj/item/card/id/id_card = null
 
 		if(istype(O, /obj/item/card/id))
 			id_card = O
-		else
-			var/obj/item/device/pda/pda = O
-			id_card = pda.id
 
 		if(ACCESS_MARINE_BRIG in id_card.access || emagged)
 			to_chat(user, "You imprint your ID details onto the badge.")

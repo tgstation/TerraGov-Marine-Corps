@@ -1,16 +1,9 @@
-GLOBAL_LIST_EMPTY(admin_ranks)
-GLOBAL_PROTECT(admin_ranks)
-
-GLOBAL_LIST_EMPTY(protected_ranks)
-GLOBAL_PROTECT(protected_ranks)
-
-
 /datum/admin_rank
 	var/name = "NoRank"
-	var/rights = null
-	var/exclude_rights = 0
-	var/include_rights = 0
-	var/can_edit_rights = 0
+	var/rights
+	var/exclude_rights = NOFLAGS
+	var/include_rights = NOFLAGS
+	var/can_edit_rights = NOFLAGS
 
 
 /datum/admin_rank/New(init_name, init_rights, init_exclude_rights, init_edit_rights)
