@@ -62,7 +62,7 @@
 
 	var/reach = 1
 
-	var/item_zoomed = 0 //Just how zoomed this item is (tileoffset + viewsize).
+	var/item_zoomed = 0 //Just how zoomed this item is.
 
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
@@ -209,7 +209,7 @@
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
 /obj/item/proc/dropped(mob/user)
-	if(user && CHECK_BITFIELD(flags_item, ITEM_ZOOMED)) //Dropped when disconnected, whoops
+	if(user && CHECK_BITFIELD(flags_item, ITEM_ZOOMED))
 		user.unset_interaction()
 
 	for(var/X in actions)
@@ -662,11 +662,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	user.set_interaction(src)
 
 
-/obj/item/proc/unzoom(mob/living/user) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+/obj/item/proc/unzoom(mob/living/user)
 	if(!user)
 		return
 
-	if(CHECK_BITFIELD(flags_item, ITEM_ZOOMED)) //If we are zoomed out, reset that parameter.
+	if(CHECK_BITFIELD(flags_item, ITEM_ZOOMED))
 		user.visible_message("<span class='notice'>[user] looks up from [src].</span>",
 		"<span class='notice'>You look up from [src].</span>")
 	

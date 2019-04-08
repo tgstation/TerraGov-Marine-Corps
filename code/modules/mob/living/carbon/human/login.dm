@@ -1,3 +1,3 @@
 /mob/living/carbon/human/Login()
-	. = ..()
-	species?.handle_login_special(src)
+	..()
+	if(species) species.handle_login_special(src)
