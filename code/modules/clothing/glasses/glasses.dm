@@ -23,7 +23,7 @@
 		M.update_inv_glasses()
 
 
-/obj/item/clothing/glasses/proc/activate_optical_matrix(mob/user)
+/obj/item/clothing/glasses/proc/activate_goggles(mob/user)
 	if(active)
 		return
 	active = TRUE
@@ -31,13 +31,13 @@
 	to_chat(user, "You activate the optical matrix on [src].")
 
 
-/obj/item/clothing/glasses/proc/deactivate_optical_matrix(mob/user)
+/obj/item/clothing/glasses/proc/deactivate_goggles(mob/user)
 	active = FALSE
 	icon_state = deactive_state
 	to_chat(user, "You deactivate the optical matrix on [src].")
 
 
-/obj/item/clothing/glasses/proc/update_optical_matrix(mob/user)
+/obj/item/clothing/glasses/proc/update_goggles(mob/user)
 	if(active)
 		if(vision_flags)
 			ENABLE_BITFIELD(user.sight, vision_flags)
@@ -46,8 +46,6 @@
 			wearer.update_see_in_dark()
 		if(glasses_see_invisible_modifier)
 			wearer.add_see_invisible(glasses_see_invisible_modifier)
-		if(tint)
-			wearer.update_tint()
 		if(fullscreen_vision)
 			user.overlay_fullscreen("glasses_vision", fullscreen_vision)
 		wearer.update_inv_glasses()
@@ -59,47 +57,52 @@
 			wearer.update_see_in_dark()
 		if(glasses_see_invisible_modifier)
 			wearer.remove_see_invisible(glasses_see_invisible_modifier)
-		if(tint)
-			wearer.update_tint()
 		if(fullscreen_vision)
 			user.clear_fullscreen("glasses_vision", 0)
 		wearer.update_inv_glasses()
+	if(tint)
+		wearer.update_tint()
 
 
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(!toggleable)
 		return
-
 	if(active)
-		deactivate_optical_matrix(user)
+		deactivate_goggles(user)
 	else
-		activate_optical_matrix(user)
+		activate_goggles(user)
 	if(wearer)
-		update_optical_matrix(wearer)
+		update_goggles(wearer)
+
 	update_action_button_icons()
 
 
 /obj/item/clothing/glasses/equipped(mob/user, slot)
 	. = ..()
-	if(slot != SLOT_GLASSES || !toggleable)
+	if(slot != SLOT_GLASSES)
+		return
+	update_icon()
+	if(!toggleable)
 		return
 	wearer = user
 	if(active)
-		icon_state = initial(icon_state)
-		update_optical_matrix(wearer)
+		update_goggles(wearer)
 		return
-	activate_optical_matrix()
-	update_optical_matrix(wearer)
 
 
 /obj/item/clothing/glasses/dropped(mob/user)
 	. = ..()
 	if(!toggleable)
 		return
-	deactivate_optical_matrix()
-	update_optical_matrix(wearer)
+	if(active)
+		deactivate_goggles()
+		update_goggles(wearer)
 	wearer = null
-	
+
+
+/obj/item/clothing/glasses/update_icon()
+	icon_state = initial(icon_state)
+
 
 /obj/item/clothing/glasses/science
 	name = "science goggles"
@@ -182,6 +185,7 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEYES
+	toggleable = TRUE
 	eye_protection = 2
 	tint = TINT_HEAVY
 
@@ -189,40 +193,53 @@
 	toggle()
 
 
+/obj/item/clothing/glasses/welding/activate_goggles(mob/user)
+	active = TRUE
+	ENABLE_BITFIELD(flags_inventory, COVEREYES)
+	ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+	ENABLE_BITFIELD(flags_armor_protection, EYES)
+	eye_protection = initial(eye_protection)
+	tint = initial(tint)
+	to_chat(user, "You flip [src] down to protect your eyes.")
+
+
+/obj/item/clothing/glasses/welding/deactivate_goggles(mob/user)
+	active = FALSE
+	DISABLE_BITFIELD(flags_inventory, COVEREYES)
+	DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+	DISABLE_BITFIELD(flags_armor_protection, EYES)
+	eye_protection = 0
+	tint = TINT_NONE
+	to_chat(user, "You push [src] up out of your face.")
+
+
 /obj/item/clothing/glasses/welding/verb/toggle()
 	set category = "Object"
 	set name = "Adjust welding goggles"
 	set src in usr
 
-	if(usr.canmove && !usr.stat && !usr.restrained())
-		if(active)
-			active = 0
-			flags_inventory &= ~COVEREYES
-			flags_inv_hide &= ~HIDEEYES
-			flags_armor_protection &= ~EYES
-			icon_state = "[initial(icon_state)]up"
-			eye_protection = 0
-			tint = TINT_NONE
-			to_chat(usr, "You push [src] up out of your face.")
-		else
-			active = 1
-			flags_inventory |= COVEREYES
-			flags_inv_hide |= HIDEEYES
-			flags_armor_protection |= EYES
-			icon_state = initial(icon_state)
-			eye_protection = initial(eye_protection)
-			tint = initial(tint)
-			to_chat(usr, "You flip [src] down to protect your eyes.")
+	var/mob/living/user = usr
+
+	if(!istype(user) || user.incapacitated())
+		return
+	
+	if(active)
+		deactivate_goggles(user)
+	else
+		activate_goggles(user)
+
+	update_icon()
+	
+	if(wearer)
+		update_goggles(wearer)
+
+	update_clothing_icon()
+
+	update_action_button_icons()
 
 
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.glasses == src)
-				H.update_tint()
-
-		update_clothing_icon()
-
-		update_action_button_icons()
+/obj/item/clothing/glasses/welding/update_icon()
+	icon_state = active ? initial(icon_state) : "[initial(icon_state)]up"
 
 
 /obj/item/clothing/glasses/welding/superior
