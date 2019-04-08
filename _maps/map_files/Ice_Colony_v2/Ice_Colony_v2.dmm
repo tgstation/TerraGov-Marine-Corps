@@ -22764,9 +22764,6 @@
 	dir = 4
 	},
 /area/ice_colony/underground/requesition)
-"bhn" = (
-/turf/closed/wall/r_wall,
-/area/ice_colony/underground/requesition/lobby)
 "bho" = (
 /obj/structure/sign/electricshock,
 /turf/closed/wall/r_wall,
@@ -23151,10 +23148,6 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
 "bip" = (
-/obj/machinery/requests_console{
-	tag = "icon-req_comp_open";
-	icon_state = "req_comp_open"
-	},
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/requesition/lobby)
 "biq" = (
@@ -48739,12 +48732,12 @@ bdL
 bgA
 bgM
 bpW
-bhn
+bip
 bfR
 bfR
 bfR
 bfR
-bhn
+bip
 biS
 bjp
 bjC
@@ -49253,7 +49246,7 @@ bdL
 bgC
 bgC
 bqa
-bhn
+bip
 bew
 bgx
 bgx
@@ -49767,12 +49760,12 @@ bgh
 bgD
 bDP
 bhh
-bhn
+bip
 bfY
 bgz
 bhi
 bie
-bhn
+bip
 biU
 bjt
 bjE
@@ -50024,18 +50017,18 @@ bdg
 bdg
 bdg
 bdg
-bhn
-bhn
-bhn
-bhn
-bhn
-bhn
-bhn
+bip
+bip
+bip
+bip
+bip
+bip
+bip
 bju
-bhn
-bhn
-bhn
-bhn
+bip
+bip
+bip
+bip
 bkC
 bln
 bkR
