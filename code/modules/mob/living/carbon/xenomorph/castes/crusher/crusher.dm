@@ -322,23 +322,9 @@
 		adjustBruteLoss(rand(200, 300))
 		updatehealth()
 
-/mob/living/carbon/Xenomorph/Crusher/update_icons()
-	if(stat == DEAD)
-		icon_state = "Crusher Dead"
-	else if(lying)
-		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
-			icon_state = "Crusher Sleeping"
-		else
-			icon_state = "Crusher Knocked Down"
-	else
-		if(m_intent == MOVE_INTENT_RUN)
-			if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE) //Let it build up a bit so we're not changing icons every single turf
-				icon_state = "Crusher Charging"
-			else
-				icon_state = "Crusher Running"
-
-		else
-			icon_state = "Crusher Walking"
-
-	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
-	update_wounds()
+/mob/living/carbon/Xenomorph/Crusher/handle_special_state()
+	if(m_intent == MOVE_INTENT_RUN)
+		if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE) //Let it build up a bit so we're not changing icons every single turf
+			icon_state = "Crusher Charging"
+			return TRUE
+	return FALSE

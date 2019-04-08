@@ -24,16 +24,18 @@
 		overlays -= overlays_standing[cache_index]
 		overlays_standing[cache_index] = null
 
+/mob/living/carbon/Xenomorph/proc/handle_special_state()
+	return FALSE
+
 /mob/living/carbon/Xenomorph/update_icons()
 	if(stat == DEAD)
 		icon_state = "[xeno_caste.caste_name] Dead"
 	else if(lying)
 		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
 			icon_state = "[xeno_caste.caste_name] Sleeping"
-
 		else
 			icon_state = "[xeno_caste.caste_name] Knocked Down"
-	else
+	else if(!handle_special_state())
 		if(m_intent == MOVE_INTENT_RUN)
 			icon_state = "[xeno_caste.caste_name] Running"
 		else

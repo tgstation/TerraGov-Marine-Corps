@@ -62,7 +62,6 @@ GLOBAL_LIST_INIT(cryoed_item_list, list(CRYO_ALPHA = list(), CRYO_BRAVO = list()
 GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 	/obj/item/clothing/mask/cigarette,
 	/obj/item/clothing/glasses/sunglasses/fake,
-	/obj/item/device/pda,
 	/obj/item/clothing/glasses/mgoggles,
 	/obj/item/clothing/head/tgmcberet,
 	/obj/item/clothing/head/headband,
@@ -81,6 +80,7 @@ GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 
 GLOBAL_LIST_INIT(do_not_preserve_empty, typecacheof(list(
 	/obj/item/storage/backpack/marine/satchel,
+	/obj/item/storage/belt/security/MP,
 	/obj/item/storage/backpack/marine/satchel/corpsman,
 	/obj/item/storage/backpack/marine/satchel/tech,
 	/obj/item/storage/backpack/marine/standard), only_root_path = TRUE))

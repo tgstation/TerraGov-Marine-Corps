@@ -17516,18 +17516,6 @@
 	},
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
-"bjq" = (
-/obj/machinery/requests_console{
-	pixel_x = 30
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/freezer,
-/area/lv624/lazarus/kitchen)
 "bjr" = (
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/tile/bar,
@@ -53110,7 +53098,7 @@ bfy
 bgX
 beL
 biA
-bjq
+bjW
 bjW
 bkP
 bjW

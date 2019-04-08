@@ -36,13 +36,13 @@
 		leader = H
 		var/datum/job/J = new /datum/job/imperial/guardsman/sergeant
 		J.equip(H)
-		to_chat(H, "<span class='notice'>You are a veteran of the Imperial Guard, a sergeant.\nYou lead your men to battle, and have fought many times.</span><span class='danger'>FOR THE EMPEROR!</span>")
+		to_chat(H, "<span class='notice'>You are a veteran of the Imperial Guard, a sergeant.\nYou lead your men to battle, and have fought many times.</span> <span class='danger'>FOR THE EMPEROR!</span>")
 		return
 	
 	if(medics < max_medics)
 		var/datum/job/J = new /datum/job/imperial/guardsman/medicae
 		J.equip(H)
-		to_chat(H, "<span class='notice'>You are a medicae of the Imperial Guard, a medic.\nYou help fellow guardsmen to live, and if they cannot be saved, you end their suffering.</span><span class='danger'>FOR THE EMPEROR!</span>")
+		to_chat(H, "<span class='notice'>You are a medicae of the Imperial Guard, a medic.\nYou help fellow guardsmen to live, and if they cannot be saved, you end their suffering.</span> <span class='danger'>FOR THE EMPEROR!</span>")
 		medics++
 		return
 	

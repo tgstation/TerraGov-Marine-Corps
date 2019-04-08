@@ -29,8 +29,8 @@
 		hide(T.intact_tile)
 
 		spawn(5)	// must wait for map loading to finish
-			if(radio_controller)
-				radio_controller.add_object(src, freq, RADIO_NAVBEACONS)
+			if(SSradio)
+				SSradio.add_object(src, freq, RADIO_NAVBEACONS)
 
 	// set the transponder codes assoc list from codes_txt
 	proc/set_codes()
@@ -84,7 +84,7 @@
 
 	proc/post_signal()
 
-		var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
+		var/datum/radio_frequency/frequency = SSradio.return_frequency(freq)
 
 		if(!frequency) return
 
@@ -111,7 +111,7 @@
 
 			updateicon()
 
-		else if (istype(I, /obj/item/card/id)||istype(I, /obj/item/device/pda))
+		else if (istype(I, /obj/item/card/id))
 			if(open)
 				if (src.allowed(user))
 					src.locked = !src.locked

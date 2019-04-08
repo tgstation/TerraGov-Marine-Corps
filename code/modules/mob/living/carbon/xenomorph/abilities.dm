@@ -43,7 +43,7 @@
 			if(M.loc != X)
 				continue
 			M.forceMove(X.loc)
-			M.KnockDown(1)
+			M.SetKnockeddown(1)
 			M.adjust_blindness(-1)
 
 		X.visible_message("<span class='xenowarning'>\The [X] hurls out the contents of their stomach!</span>", \
