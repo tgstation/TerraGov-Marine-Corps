@@ -4,8 +4,8 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	w_class = 2.0
 	var/vision_flags = NOFLAGS
-	var/glass_see_in_dark_modifier = 0//Base human is 2
-	var/see_invisible = 0
+	var/glasses_see_in_dark_modifier = 0//Base human is 2
+	var/glasses_see_invisible_modifier = 0
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/eyes.dmi')
 	var/prescription = 0
 	var/toggleable = FALSE
@@ -41,10 +41,11 @@
 	if(active)
 		if(vision_flags)
 			ENABLE_BITFIELD(user.sight, vision_flags)
-		if(glass_see_in_dark_modifier)
-			wearer.see_in_dark_modifier += glass_see_in_dark_modifier
-		if(see_invisible)
-			user.add_see_invisible(see_invisible)
+		if(glasses_see_in_dark_modifier)
+			wearer.see_in_dark_modifier += glasses_see_in_dark_modifier
+			wearer.update_see_in_dark()
+		if(glasses_see_invisible_modifier)
+			wearer.add_see_invisible(glasses_see_invisible_modifier)
 		if(tint)
 			wearer.update_tint()
 		if(fullscreen_vision)
@@ -53,10 +54,11 @@
 	else
 		if(vision_flags)
 			DISABLE_BITFIELD(user.sight, vision_flags)
-		if(glass_see_in_dark_modifier)
-			wearer.see_in_dark_modifier -= glass_see_in_dark_modifier
-		if(see_invisible)
-			user.remove_see_invisible(see_invisible)
+		if(glasses_see_in_dark_modifier)
+			wearer.see_in_dark_modifier -= glasses_see_in_dark_modifier
+			wearer.update_see_in_dark()
+		if(glasses_see_invisible_modifier)
+			wearer.remove_see_invisible(glasses_see_invisible_modifier)
 		if(tint)
 			wearer.update_tint()
 		if(fullscreen_vision)
@@ -83,6 +85,8 @@
 		return
 	wearer = user
 	if(active)
+		icon_state = initial(icon_state)
+		update_optical_matrix(wearer)
 		return
 	activate_optical_matrix()
 	update_optical_matrix(wearer)

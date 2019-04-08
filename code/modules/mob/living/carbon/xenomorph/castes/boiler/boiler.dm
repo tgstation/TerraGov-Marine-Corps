@@ -38,7 +38,6 @@
 	SetLuminosity(BOILER_LUMINOSITY)
 	smoke = new /datum/effect_system/smoke_spread/xeno_acid
 	smoke.attach(src)
-	see_in_dark = 20
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
 
 /mob/living/carbon/Xenomorph/Boiler/Destroy()
@@ -47,11 +46,3 @@
 		qdel(smoke)
 		smoke = null
 	return ..()
-
-// ***************************************
-// *********** Life overrides
-// ***************************************
-/mob/living/carbon/Xenomorph/Boiler/update_stat()
-	. = ..()
-	if(stat == CONSCIOUS)
-		see_in_dark = 20

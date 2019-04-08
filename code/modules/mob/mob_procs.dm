@@ -8,8 +8,23 @@
 #define TILESIZE 32
 
 
-/mob/proc/reset_client_sight()
+/mob/proc/update_see_in_dark()
     see_in_dark = initial(see_in_dark) + see_in_dark_modifier
+
+
+/mob/proc/add_see_in_dark_modifier(value)
+    if(value <= 0)
+        return
+    see_in_dark_modifier += value
+
+
+/mob/proc/remove_see_in_dark_modifier(value)
+    if(value >= 0)
+        return
+    see_in_dark_modifier -= value
+
+/mob/proc/reset_client_sight()
+    update_see_in_dark()
     if(!client)
         reset_client_sight_no_client() //Preserve the values in case they return.
         return
@@ -40,9 +55,7 @@
                 client.click_intercept = client_vars[CLIENT_CLICK_INTERCEPT_INDEX]
 
 
-/mob/proc/set_client_sight(viewsize, tileoffset, darkvision)
-    if(darkvision)
-        see_in_dark = max(viewsize + tileoffset + 1, see_in_dark + see_in_dark_modifier) //That extra one so they can see the edge of the screen.
+/mob/proc/set_client_sight(viewsize, tileoffset)
     if(!client)
         set_client_sight_no_client(viewsize, tileoffset)
         return
@@ -152,31 +165,6 @@
 	for(var/i in see_invisible_modifiers)
 		if(i < see_invisible)
 			see_invisible = i
-
-
-//==//==//
-
-/mob/proc/save_client_sight()
-    client_vars[CLIENT_VIEW_INDEX] = client.view
-    client_vars[CLIENT_PIXEL_X_INDEX] = client.pixel_x
-    client_vars[CLIENT_PIXEL_Y_INDEX] = client.pixel_y
-    client_vars[CLIENT_CLICK_INTERCEPT_INDEX] = client.click_intercept
-
-
-/mob/proc/load_client_sight()
-    for(var/i in client_vars)
-        switch(i)
-            if(CLIENT_VIEW_INDEX)
-                client.view = client_vars[CLIENT_VIEW_INDEX]
-            if(CLIENT_PIXEL_X_INDEX)
-                client.pixel_x = client_vars[CLIENT_PIXEL_X_INDEX]
-            if(CLIENT_PIXEL_Y_INDEX)
-                client.pixel_y = client_vars[CLIENT_PIXEL_Y_INDEX]
-            if(CLIENT_CLICK_INTERCEPT_INDEX)
-                client.click_intercept = client_vars[CLIENT_CLICK_INTERCEPT_INDEX]
-
-
-//==//==//
 
 
 /mob/proc/update_sight()

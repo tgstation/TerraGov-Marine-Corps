@@ -50,10 +50,8 @@
 
 	if(knocked_out || sleeping || health < 0)
 		stat = UNCONSCIOUS
-		see_in_dark = 5
 	else
 		stat = CONSCIOUS
-		see_in_dark = 8
 	update_canmove()
 
 	//Deal with devoured things and people

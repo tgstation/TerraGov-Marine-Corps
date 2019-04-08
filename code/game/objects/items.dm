@@ -646,10 +646,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	"<span class='notice'>You peer through [src].</span>")
 	ENABLE_BITFIELD(flags_item, ITEM_ZOOMED)
 
-	user.set_client_sight(viewsize, tileoffset, CHECK_BITFIELD(flags_item, ITEM_ZOOM_NIGHTVISION))
+	user.set_client_sight(viewsize, tileoffset)
 
 	if(CHECK_BITFIELD(flags_item, ITEM_ZOOM_NIGHTVISION))
 		user.add_see_invisible(SEE_INVISIBLE_OBSERVER_NOLIGHTING)
+		user.add_see_in_dark_modifier(viewsize + tileoffset + 1)
+		user.update_see_in_dark()
 
 	if(user.interactee != src)
 		user.unset_interaction()

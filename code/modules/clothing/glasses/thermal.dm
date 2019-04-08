@@ -9,7 +9,7 @@
 	origin_tech = "magnets=3"
 	toggleable = 1
 	vision_flags = SEE_MOBS
-	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
+	glasses_see_invisible_modifier = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 	eye_protection = -1
 	deactive_state = "goggles_off"
 	fullscreen_vision = /obj/screen/fullscreen/thermal
