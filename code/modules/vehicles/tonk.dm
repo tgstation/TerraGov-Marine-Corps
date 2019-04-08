@@ -5,15 +5,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 */
 
 //generic component stuff
-/atom
-	var/tank_crash_damage = 10  //Arbitrary number. Set this to whatever you want with extra walltypes
 
-/atom/proc/tank_act(var/obj/vehicle/tonk/victim)
-	visible_message("[victim] CRASHES INTO [src]")
-	victim.health -= tank_crash_damage
-	qdel(src)
-
-/obj/item/weapon/tank_weapon //These are really just proof of concept weapons. You'll probably want to adapt them to use the hardpoint crap that CM has.
+/obj/item/tank_weapon //These are really just proof of concept weapons. You'll probably want to adapt them to use the hardpoint crap that CM has.
 	name = "TGS 4 main tank cannon"
 	desc = "A gun that works about 50% of the time, but at least it's open source! It fires tank shells."
 	icon = 'icons/obj/hardpoint_modules.dmi'
@@ -25,7 +18,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	var/cooldown = 60 //6 second weapons cooldown
 	var/lastfired = 0 //When were we last shot?
 
-/obj/item/weapon/tank_weapon/minigun
+/obj/item/tank_weapon/minigun
 	name = "TGS 3 XENOCRUSHER tank machine gun"
 	desc = "A much better gun that shits out bullets at ridiculous speeds, don't get in its way!"
 	icon = 'icons/obj/hardpoint_modules.dmi'
@@ -34,17 +27,12 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	fire_sounds = list('sound/weapons/tank_minigun_loop.ogg')
 	cooldown = 2 //Minimal cooldown
 
-/obj/item/weapon/tank_weapon/Initialize()
-	. = ..()
-
-/obj/item/weapon/tank_weapon/proc/fire(var/atom/T,var/mob/user)
+/obj/item/tank_weapon/proc/fire(var/atom/T,var/mob/user)
 	if(!can_fire(T))
-		return
+		return FALSE
 	if(ammo.current_rounds <= 0)
 		return FALSE
 	if(world.time < lastfired + cooldown)
-		if(owner.gunner)
-			return FALSE
 		return FALSE
 	lastfired = world.time
 	var/obj/item/projectile/P = new
@@ -57,14 +45,13 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	ammo.current_rounds--
 	return TRUE
 
-/obj/item/weapon/tank_weapon/proc/can_fire(var/turf/T)
-	if(T in orange(owner, 2))
-		if(owner.gunner)
-			to_chat(owner.gunner, "Firing your main gun here could damage the tank!")
-			return FALSE
+/obj/item/tank_weapon/proc/can_fire(var/turf/T)
+	if(get_dist(T, src) <= 3 && owner.gunner)
+		to_chat(owner.gunner, "Firing your main gun here could damage the tank!")
+		return FALSE
 	return TRUE
 
-/obj/item/weapon/tank_weapon/minigun/can_fire(var/turf/T)
+/obj/item/tank_weapon/minigun/can_fire(var/turf/T)
 	return TRUE //No loc check here
 
 /obj/vehicle/tonk
@@ -72,7 +59,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	desc = "A gigantic wall of metal designed for maximum beno destruction. Click it with an open hand to enter as a pilot or a gunner."
 	icon = 'icons/obj/tonk.dmi'
 	icon_state = "tank"
-	layer = 3
+	layer = OBJ_LAYER
 	bound_width = 128
 	bound_height = 128
 	anchored = FALSE
@@ -87,8 +74,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	var/obj/turret_overlay/turret_overlay //Allows for independantly swivelling guns, wow!
 	var/obj/turret_overlay/minigun/minigun_overlay
 	var/max_health = 300 //i dunno what a good number for this is, change this maintainers!
-	var/obj/item/weapon/tank_weapon/main_cannon //What we use to shoot big shells
-	var/obj/item/weapon/tank_weapon/minigun/minigun //What we use to shoot mini shells ((rapidfire xenocrusher 6000))
+	var/obj/item/tank_weapon/main_cannon //What we use to shoot big shells
+	var/obj/item/tank_weapon/minigun/minigun //What we use to shoot mini shells ((rapidfire xenocrusher 6000))
 	var/main_cannon_dir = null //So that the guns swivel independantly
 	var/minigun_dir = null
 	var/firing = FALSE //Used in autofire
@@ -96,10 +83,10 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 
 /obj/turret_overlay
 	name = "Tank gun turret"
-	desc = "Big fucking tonk gun oh lawd he comin"
+	desc = "The shooty bit on a tank."
 	icon = 'icons/obj/tonk_gun.dmi'
 	icon_state = "turret"
-	layer = 3.1
+	layer = ABOVE_OBJ_LAYER
 	animate_movement = TRUE //So it doesnt just ping back and forth and look all stupid
 	mouse_opacity = FALSE //It's an overlay
 
@@ -179,15 +166,13 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 /obj/vehicle/tonk/proc/enter(var/mob/user, var/position) //By this point, we've checked that the seats are actually empty, so we won't need to do that again HOPEFULLY
 	if(!user || !position)
 		return //Something fucked up. Whoops!
+	user.forceMove(src)
+	operators += user
 	switch(position)
 		if("pilot")
-			user.forceMove(src)
 			pilot = user
-			operators += user
 		if("gunner")
-			user.forceMove(src)
 			gunner = user
-			operators += user
 
 /obj/vehicle/tonk/proc/exit_tank(var/mob/user) //By this point, we've checked that the seats are actually empty, so we won't need to do that again HOPEFULLY
 	if(!user)
@@ -203,18 +188,20 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 
 /obj/vehicle/tonk/relaymove(mob/user, direction)
 	if(user.incapacitated() || user != pilot)
-		to_chat(user, "Youre not the pilot fucking idiot.")
+		to_chat(user, "You can't reach the gas pedal from down here, maybe try manning the driver's seat?")
 		return
 	if(world.time > l_move_time + move_delay)
 		. = step(src, direction)
 	update_icon()
 
-/obj/vehicle/tonk/Bump(atom/unluckyfuck, yes)
+/obj/vehicle/tonk/Bump(atom/A, yes)
 	. = ..()
-	unluckyfuck.tank_act(src) //You poor motherfucker
-
-/obj/vehicle/tonk/Bumped(atom/unluckyfuck, yes)
-	return FALSE //Tonk BIG, THOG SAY NOT MOVE TONK WHEN BUMPED
+	var/facing = get_dir(src, A)
+	var/turf/temp = loc
+	var/turf/T = loc
+	A.tank_collision(src, facing, T, temp)
+	if(isliving(A) && pilot)
+		log_attack("[pilot] drove over [A] with [src]")
 
 /client/MouseDown(object, location, control, params)
 	. = ..()
@@ -247,9 +234,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	handle_fire(A)
 
 /obj/vehicle/tonk/proc/handle_fire(var/atom/A)
-	if(!minigun)
-		if(gunner)
-			to_chat(gunner, "You haven't installed a minigun on this tank you fucking idiot")
+	if(!minigun && gunner)
+		to_chat(gunner, "[src]'s minigun hardpoint spins pathetically. Maybe you should install a minigun on this tank?")
 		return FALSE
 	firing = TRUE //This is used to start a while loop to autofire
 	playsound(get_turf(src), 'sound/weapons/tank_minigun_start.ogg', 60, 1)
@@ -260,9 +246,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 			update_icon()
 
 /obj/vehicle/tonk/proc/handle_fire_main(var/atom/A) //This is used to shoot your big ass tank cannon, rather than your small MG
-	if(!main_cannon)
-		if(gunner)
-			to_chat(gunner, "You haven't installed a main cannon on this tank you fucking idiot")
+	if(!main_cannon && gunner)
+		to_chat(gunner, "You look at the stump where [src]'s tank barrel should be and sigh.'")
 		return FALSE
 	firing = TRUE
 	while(firing)
@@ -352,3 +337,14 @@ This handles stuff like swapping seats, pulling people out of the tank, all that
 	M.visible_message("<span class='warning'>[M] forcibly pulls [occupant] out of [src].</span>",
 					"<span class='notice'>you forcibly pull [occupant] out of [src].</span>", null, 6)
 	occupant.KnockDown(4)
+
+/obj/vehicle/tonk/Bumped(var/atom/A, yes)
+	..()
+	if(istype(A, /mob/living/carbon/Xenomorph/Crusher))
+
+		var/mob/living/carbon/Xenomorph/Crusher/C = A
+
+		if(C.charge_speed < C.charge_speed_max/(1.1)) //Arbitrary ratio here, might want to apply a linear transformation instead
+			return
+
+		take_damage(C.charge_speed * CRUSHER_CHARGE_TANK_MULTI)

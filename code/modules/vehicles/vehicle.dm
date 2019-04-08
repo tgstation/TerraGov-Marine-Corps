@@ -250,3 +250,8 @@
 //-------------------------------------------------------
 /obj/vehicle/proc/update_stats()
 	return
+
+/obj/vehicle/proc/take_damage(var/damage)
+	if(damage)
+		health -= damage
+		healthcheck()

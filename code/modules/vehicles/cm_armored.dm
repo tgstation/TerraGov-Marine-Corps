@@ -322,13 +322,15 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			var/image/I = image(icon, icon_state = "damaged_hardpt_[i]")
 			overlays += I
 
+/obj/vehicle
+	var/lastsound = 0
+
 //Hitboxes but with new names
 /obj/vehicle/multitile/hitbox/cm_armored
 	name = "Armored Vehicle"
 	desc = "Get inside to operate the vehicle."
 	luminosity = 7
 	throwpass = 1 //You can lob nades over tanks, and there's some dumb check somewhere that requires this
-	var/lastsound = 0
 
 //If something want to delete this, it's probably either an admin or the shuttle
 //If it's an admin, they want to disable this
@@ -356,7 +358,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /atom/proc/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	return
 
-/mob/living/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+/mob/living/tank_collision(obj/vehicle/C, facing, turf/T, turf/temp)
 	if(stat == DEAD) //We don't care about the dead
 		return
 	if(loc == C.loc) // treaded over.
@@ -383,13 +385,15 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			KnockDown(1)
 		apply_damage(rand(10, 15), BRUTE)
 		visible_message("<span class='danger'>[C] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[C] violently bumps into you!</span>")
-	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
-	var/list/slots = CA.get_activatable_hardpoints()
-	for(var/slot in slots)
-		var/obj/item/hardpoint/H = CA.hardpoints[slot]
-		H?.livingmob_interact(src)
+	if(istype(C, /obj/vehicle/multitile/hitbox/cm_armored))
+		var/obj/vehicle/multitile/hitbox/cm_armored/CC = C
+		var/obj/vehicle/multitile/root/cm_armored/CA = CC.root
+		var/list/slots = CA.get_activatable_hardpoints()
+		for(var/slot in slots)
+			var/obj/item/hardpoint/H = CA.hardpoints[slot]
+			H?.livingmob_interact(src)
 
-/mob/living/carbon/Xenomorph/Queen/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+/mob/living/carbon/Xenomorph/Queen/tank_collision(obj/vehicle/C, facing, turf/T, turf/temp)
 	if(lying || loc == C.loc)
 		return ..()
 	temp = get_step(T, facing)
@@ -398,7 +402,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	throw_at(T, 2, 2, C, 0)
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
 
-/mob/living/carbon/Xenomorph/Crusher/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+/mob/living/carbon/Xenomorph/Crusher/tank_collision(obj/vehicle/C, facing, turf/T, turf/temp)
 	if(lying || loc == C.loc)
 		return ..()
 	temp = get_step(T, facing)
@@ -407,71 +411,78 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	throw_at(T, 2, 2, C, 0)
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
 
-/mob/living/carbon/Xenomorph/Larva/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+/mob/living/carbon/Xenomorph/Larva/tank_collision(obj/vehicle/C, facing, turf/T, turf/temp)
 	if(loc == C.loc) // treaded over.
 		if(!knocked_down)
 			KnockDown(1)
 		apply_damage(rand(5, 7.5), BRUTE)
 		return
-	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
-	var/list/slots = CA.get_activatable_hardpoints()
-	for(var/slot in slots)
-		var/obj/item/hardpoint/H = CA.hardpoints[slot]
-		H?.livingmob_interact(src)
+	if(istype(C, /obj/vehicle/multitile/hitbox/cm_armored))
+		var/obj/vehicle/multitile/hitbox/cm_armored/armored = C
+		var/obj/vehicle/multitile/root/cm_armored/CA = armored.root
+		var/list/slots = CA.get_activatable_hardpoints()
+		for(var/slot in slots)
+			var/obj/item/hardpoint/H = CA.hardpoints[slot]
+			H?.livingmob_interact(src)
 
-/turf/closed/wall/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
-	var/obj/vehicle/multitile/root/cm_armored/tank/CA = C.root
+/turf/closed/wall/tank_collision(obj/vehicle/C, facing, turf/T, turf/temp)
 	var/damage = 30
 	var/tank_damage = 2
-
-	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
-		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
-		if(SP.health > 0)
-			damage = 60
-			tank_damage = 0
-
+	if(istype(C, /obj/vehicle/multitile/hitbox/cm_armored))
+		var/obj/vehicle/multitile/hitbox/cm_armored/CC = C
+		var/obj/vehicle/multitile/root/cm_armored/tank/CA = CC.root
+		if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
+			var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
+			if(SP.health > 0)
+				damage = 60
+				tank_damage = 0
+		CA.take_damage_type(tank_damage, "blunt", src)
+	else
+		C.take_damage(damage)
 	take_damage(damage)
-	CA.take_damage_type(tank_damage, "blunt", src)
 	if(world.time > C.lastsound + 1 SECONDS)
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		C.lastsound = world.time
 
-/obj/machinery/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
-	var/obj/vehicle/multitile/root/cm_armored/tank/CA = C.root
+/obj/machinery/tank_collision(obj/vehicle/C, facing, turf/T, turf/temp)
 	var/damage = 30
 	var/tank_damage = 2
-
-	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
-		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
-		if(SP.health > 0)
-			damage = 60
-			tank_damage = 0
-
+	if(istype(C, /obj/vehicle/multitile/hitbox/cm_armored))
+		var/obj/vehicle/multitile/hitbox/cm_armored/CC = C
+		var/obj/vehicle/multitile/root/cm_armored/tank/CA = CC.root
+		if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
+			var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
+			if(SP.health > 0)
+				damage = 60
+				tank_damage = 0
+		CA.take_damage_type(tank_damage, "blunt", src)
+	else
+		C.take_damage(damage)
 	take_damage(damage)
-	CA.take_damage_type(tank_damage, "blunt", src)
 	if(world.time > C.lastsound + 1 SECONDS)
-		visible_message("<span class='danger'>[C.root] rams into \the [src]!</span>")
+		visible_message("<span class='danger'>[C] rams into \the [src]!</span>")
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		C.lastsound = world.time
 
 /obj/structure/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
-	var/obj/vehicle/multitile/root/cm_armored/tank/CA = C.root
 	var/damage = 30
 	var/tank_damage = 2
-
-	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
-		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
-		if(SP.health > 0)
-			damage = 60
-			tank_damage = 0
-
+	if(istype(C, /obj/vehicle/multitile/hitbox/cm_armored))
+		var/obj/vehicle/multitile/hitbox/cm_armored/CC = C
+		var/obj/vehicle/multitile/root/cm_armored/tank/CA = CC.root
+		if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
+			var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
+			if(SP.health > 0)
+				damage = 60
+				tank_damage = 0
+		CA.take_damage_type(tank_damage, "blunt", src)
+	else
+		C.take_damage(damage)
 	take_damage(damage)
-	CA.take_damage_type(tank_damage, "blunt", src)
 	if(world.time > C.lastsound + 1 SECONDS)
 		visible_message("<span class='danger'>[C.root] crushes \the [src]!</span>")
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		C.lastsound = world.time
-
 
 /obj/vehicle/multitile/hitbox/cm_armored/Move(atom/A, direction)
 
