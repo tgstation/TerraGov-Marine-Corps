@@ -511,10 +511,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_FIRE_IMMUNE			(1<<5)
 #define CASTE_EVOLUTION_ALLOWED		(1<<6)
 #define CASTE_IS_INTELLIGENT		(1<<7)
-#define CASTE_IS_ROBOTIC			(1<<8)
-#define CASTE_DECAY_PROOF			(1<<9)
-#define CASTE_CAN_BE_LEADER			(1<<10)
-#define CASTE_HIDE_IN_STATUS		(1<<11)
+#define CASTE_DECAY_PROOF			(1<<8)
+#define CASTE_CAN_BE_LEADER			(1<<9)
+#define CASTE_HIDE_IN_STATUS		(1<<10)
 
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
@@ -567,6 +566,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define CRUSHER_STOMP_UPGRADE_BONUS ( 1 + upgrade_as_number() * 0.05 )
 
+#define CHARGE_TURFS_TO_CHARGE			5		//Amount of turfs to build up before a charge begins
+#define CHARGE_SPEED_BUILDUP			0.15 	//POSITIVE amount of speed built up during a charge each step
+#define CHARGE_SPEED_MAX				2.1 	//Can only gain this much speed before capping
+
 //carrier defines
 
 #define CARRIER_SPAWN_HUGGER_COST 100
@@ -596,6 +599,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Boiler defines
 
 #define BOILER_LUMINOSITY					3
+
+//Hivelord defines
+
+#define HIVELORD_TUNNEL_DISMANTLE_TIME			3 SECONDS
+#define HIVELORD_TUNNEL_MIN_TRAVEL_TIME			2 SECONDS
+#define HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME	4 SECONDS
+#define HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME	6 SECONDS
+#define HIVELORD_TUNNEL_DIG_TIME				10 SECONDS
+#define HIVELORD_TUNNEL_SET_LIMIT				4
+#define HIVELORD_TUNNEL_COOLDOWN				120 SECONDS
 
 //misc
 

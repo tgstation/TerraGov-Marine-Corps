@@ -8,16 +8,18 @@
 	var/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
 	var/crit_fail = 0
-	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
 	animate_movement = 2
 	var/throwforce = 1
-	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 
 	var/mob/living/buckled_mob
 	var/buckle_lying = FALSE //Is the mob buckled in a lying position
 	var/can_buckle = FALSE
 
-	var/igniting = FALSE	//Whether it ignites on impact
+	var/explosion_resistance = 0
+
+	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
+	var/obj_flags
+
 	var/item_fire_stacks = 0	//How many fire stacks it applies
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
@@ -36,6 +38,11 @@
 	. = ..()
 	GLOB.object_list -= src
 
+/obj/ex_act()
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return
+	return ..()
+
 /obj/proc/add_initial_reagents()
 	if(reagents && list_reagents)
 		reagents.add_reagent_list(list_reagents)
@@ -49,42 +56,45 @@
 
 
 /obj/proc/updateUsrDialog()
-	if(in_use)
-		var/is_in_use = 0
-		var/list/nearby = viewers(1, src)
-		for(var/mob/M in nearby)
-			if ((M.client && M.interactee == src))
-				is_in_use = 1
-				src.attack_hand(M)
-		if (isAI(usr) || iscyborg(usr))
-			if (!(usr in nearby))
-				if (usr.client && usr.interactee==src) // && M.interactee == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
-					is_in_use = 1
-					src.attack_ai(usr)
+	if(!CHECK_BITFIELD(obj_flags, IN_USE))
+		return
+	var/is_in_use = FALSE
+	var/list/nearby = viewers(1, src)
+	for(var/mob/M in nearby)
+		if ((M.client && M.interactee == src))
+			is_in_use = TRUE
+			attack_hand(M)
+	if (isAI(usr) || iscyborg(usr))
+		if (!(usr in nearby))
+			if (usr.client && usr.interactee==src) // && M.interactee == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
+				is_in_use = TRUE
+				attack_ai(usr)
 
-		// check for TK users
+	// check for TK users
 
-		if (ishuman(usr))
-			if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
-				if(!(usr in nearby))
-					if(usr.client && usr.interactee==src)
-						is_in_use = 1
-						src.attack_hand(usr)
-		in_use = is_in_use
+	if (ishuman(usr))
+		if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
+			if(!(usr in nearby))
+				if(usr.client && usr.interactee==src)
+					is_in_use = TRUE
+					attack_hand(usr)
+	if(!is_in_use)
+		DISABLE_BITFIELD(obj_flags, IN_USE)
 
 /obj/proc/updateDialog()
 	// Check that people are actually using the machine. If not, don't update anymore.
-	if(in_use)
-		var/list/nearby = viewers(1, src)
-		var/is_in_use = 0
-		for(var/mob/M in nearby)
-			if ((M.client && M.interactee == src))
-				is_in_use = 1
-				src.interact(M)
-		var/ai_in_use = AutoUpdateAI(src)
+	if(!CHECK_BITFIELD(obj_flags, IN_USE))
+		return
+	var/list/nearby = viewers(1, src)
+	var/is_in_use = FALSE
+	for(var/mob/M in nearby)
+		if ((M.client && M.interactee == src))
+			is_in_use = TRUE
+			interact(M)
+	var/ai_in_use = AutoUpdateAI(src)
 
-		if(!ai_in_use && !is_in_use)
-			in_use = 0
+	if(!ai_in_use && !is_in_use)
+		DISABLE_BITFIELD(obj_flags, IN_USE)
 
 /obj/proc/interact(mob/user)
 	return

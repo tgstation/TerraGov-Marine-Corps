@@ -32,7 +32,7 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	var/area/area
 	var/areastring = null
 	var/obj/item/cell/cell
@@ -438,7 +438,7 @@
 			"<span class='notice'>You [panel_open ? "expose" : "unexpose"] [src]'s wiring.</span>")
 			update_icon()
 
-	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda)) //Trying to unlock the interface with an ID card
+	else if(istype(W, /obj/item/card/id)) //Trying to unlock the interface with an ID card
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out where to swipe [W] on [src].</span>",
 			"<span class='notice'>You fumble around figuring out where to swipe [W] on [src].</span>")
@@ -1070,7 +1070,7 @@
 	else
 		main_status = APC_EXTERNAL_POWER_GOOD
 
-	if(debug)
+	if(GLOB.Debug2)
 		log_runtime( "Status: [main_status] - Excess: [excess] - Last Equip: [lastused_equip] - Last Light: [lastused_light]")
 
 		if(area.powerupdate)

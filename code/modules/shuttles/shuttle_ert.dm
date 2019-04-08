@@ -89,7 +89,7 @@
 /obj/machinery/computer/shuttle_control/ert
 	icon_state = "syndishuttle"
 	shuttle_tag = "Distress"
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/computer/shuttle_control/ert/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
 	var/data[0]

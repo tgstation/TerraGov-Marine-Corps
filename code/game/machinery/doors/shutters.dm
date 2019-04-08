@@ -18,7 +18,7 @@
 	add_fingerprint(user)
 	if(!C.pry_capable)
 		return
-	else if(!unacidable && istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+	else if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE) && istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
 		var/obj/item/tool/pickaxe/plasmacutter/P = C
 		if(!P.start_cut(user, name, src))
 			return
@@ -27,7 +27,7 @@
 			qdel()
 		return
 
-	if(density && (machine_stat & NOPOWER) && !operating && !unacidable)
+	if(density && (machine_stat & NOPOWER) && !operating && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		operating = 1
 		spawn(-1)
 			flick("shutterc0", src)
@@ -95,22 +95,19 @@
 	name = "Transit shutters"
 	desc = "Safety shutters to prevent dangerous depressurization during flight"
 	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
-	unacidable = 1
-
-	ex_act(severity) //immune to explosions
-		return
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/door/poddoor/shutters/almayer/open
 	density = FALSE
 	opacity = FALSE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	layer = PODDOOR_OPEN_LAYER
 	icon_state = "shutter0"
 
 /obj/machinery/door/poddoor/shutters/transit/open
 	density = FALSE
 	opacity = FALSE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	layer = PODDOOR_OPEN_LAYER
 	icon_state = "shutter0"
 
@@ -118,9 +115,7 @@
 	name = "pressure shutters"
 	density = 0
 	opacity = 0
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	icon_state = "shutter0"
 	open_layer = PODDOOR_CLOSED_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER
-	ex_act(severity)
-		return

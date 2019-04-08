@@ -14214,8 +14214,7 @@
 	locked = 1;
 	name = "\improper Underground Maintenance";
 	req_access_txt = "100";
-	req_one_access_txt = "0";
-	unacidable = 1
+	req_one_access_txt = "0"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -21297,8 +21296,7 @@
 	locked = 1;
 	name = "\improper Underground Maintenance";
 	req_access_txt = "100";
-	req_one_access_txt = "0";
-	unacidable = 1
+	req_one_access_txt = "0"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -21830,8 +21828,7 @@
 	locked = 1;
 	name = "\improper Underground Maintenance";
 	req_access_txt = "100";
-	req_one_access_txt = "0";
-	unacidable = 1
+	req_one_access_txt = "0"
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/hangar)
@@ -22767,9 +22764,6 @@
 	dir = 4
 	},
 /area/ice_colony/underground/requesition)
-"bhn" = (
-/turf/closed/wall/r_wall,
-/area/ice_colony/underground/requesition/lobby)
 "bho" = (
 /obj/structure/sign/electricshock,
 /turf/closed/wall/r_wall,
@@ -23154,10 +23148,6 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
 "bip" = (
-/obj/machinery/requests_console{
-	tag = "icon-req_comp_open";
-	icon_state = "req_comp_open"
-	},
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/requesition/lobby)
 "biq" = (
@@ -23658,8 +23648,7 @@
 	locked = 1;
 	name = "\improper Underground Maintenance";
 	req_access_txt = "100";
-	req_one_access_txt = "0";
-	unacidable = 1
+	req_one_access_txt = "0"
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/hangar)
@@ -36668,8 +36657,7 @@
 	locked = 1;
 	name = "\improper Underground Maintenance";
 	req_access_txt = "100";
-	req_one_access_txt = "0";
-	unacidable = 1
+	req_one_access_txt = "0"
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/hallway/north_west)
@@ -38106,8 +38094,7 @@
 	level = 1;
 	listening_level = 1;
 	name = "Alien Mainframe";
-	network = "ALIEN";
-	unacidable = 1
+	network = "ALIEN"
 	},
 /turf/open/floor,
 /area/ice_colony/surface/tcomms)
@@ -48745,12 +48732,12 @@ bdL
 bgA
 bgM
 bpW
-bhn
+bip
 bfR
 bfR
 bfR
 bfR
-bhn
+bip
 biS
 bjp
 bjC
@@ -49259,7 +49246,7 @@ bdL
 bgC
 bgC
 bqa
-bhn
+bip
 bew
 bgx
 bgx
@@ -49773,12 +49760,12 @@ bgh
 bgD
 bDP
 bhh
-bhn
+bip
 bfY
 bgz
 bhi
 bie
-bhn
+bip
 biU
 bjt
 bjE
@@ -50030,18 +50017,18 @@ bdg
 bdg
 bdg
 bdg
-bhn
-bhn
-bhn
-bhn
-bhn
-bhn
-bhn
+bip
+bip
+bip
+bip
+bip
+bip
+bip
 bju
-bhn
-bhn
-bhn
-bhn
+bip
+bip
+bip
+bip
 bkC
 bln
 bkR

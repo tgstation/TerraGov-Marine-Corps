@@ -130,10 +130,7 @@
 		stat(null, "Upgrade Progress (FINISHED)")
 
 	if(xeno_caste.plasma_max > 0)
-		if(isxenosilicon(src))
-			stat(null, "Charge: [plasma_stored]/[xeno_caste.plasma_max]")
-		else
-			stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
+		stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
 
 	if(hivenumber != XENO_HIVE_CORRUPTED)
 		if(hive.slashing_allowed == XENO_SLASHING_ALLOWED)
@@ -195,10 +192,7 @@
 
 	if(value)
 		if(plasma_stored < value)
-			if(isxenosilicon(src))
-				to_chat(src, "<span class='warning'>Beep. You do not have enough charge to do this. You require [value] charge but have only [plasma_stored] stored.</span>")
-			else
-				to_chat(src, "<span class='warning'>You do not have enough plasma to do this. You require [value] plasma but have only [plasma_stored] stored.</span>")
+			to_chat(src, "<span class='warning'>You do not have enough plasma to do this. You require [value] plasma but have only [plasma_stored] stored.</span>")
 			return 0
 	return 1
 
@@ -342,8 +336,7 @@
 							M.adjust_stagger(3)
 							M.add_slowdown(1)
 							to_chat(src, "<span class='xenodanger'>Pouncing from the shadows, you stagger your victim.</span>")
-					if(!isxenosilicon(src))
-						playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
+					playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
 					addtimer(CALLBACK(src, .proc/reset_movement), xeno_caste.charge_type == 1 ? 5 : 15)
 					stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
@@ -378,6 +371,7 @@
 			S.forceMove(get_turf(src))
 			if(isliving(S))
 				var/mob/living/M = S
+				M.SetKnockeddown(1)
 				M.adjust_blindness(-1)
 
 	if(contents.len) //Get rid of anything that may be stuck inside us as well
@@ -436,41 +430,6 @@
 	client.pixel_x = 0
 	client.pixel_y = 0
 
-/mob/living/carbon/Xenomorph/proc/check_alien_construction(var/turf/current_turf)
-	var/has_obstacle
-	for(var/obj/O in current_turf)
-		if(istype(O, /obj/item/clothing/mask/facehugger))
-			to_chat(src, "<span class='warning'>There is a little one here already. Best move it.</span>")
-			return
-		if(istype(O, /obj/effect/alien/egg))
-			to_chat(src, "<span class='warning'>There's already an egg.</span>")
-			return
-		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin))
-			has_obstacle = TRUE
-			break
-		if(istype(O, /obj/structure/ladder))
-			has_obstacle = TRUE
-			break
-		if(istype(O, /obj/structure/bed))
-			if(istype(O, /obj/structure/bed/chair/dropship/passenger))
-				var/obj/structure/bed/chair/dropship/passenger/P = O
-				if(P.chair_state != DROPSHIP_CHAIR_BROKEN)
-					has_obstacle = TRUE
-					break
-			else
-				has_obstacle = TRUE
-				break
-
-		if(O.density && !(O.flags_atom & ON_BORDER))
-			has_obstacle = TRUE
-			break
-
-	if(current_turf.density || has_obstacle)
-		to_chat(src, "<span class='warning'>There's something built here already.</span>")
-		return
-
-	return 1
-
 /mob/living/carbon/Xenomorph/drop_held_item()
 	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(istype(F))
@@ -484,7 +443,7 @@
 //This is depricated. Use handle_collision() for all future speed changes. ~Bmc777
 /mob/living/carbon/Xenomorph/proc/stop_momentum(direction, stunned)
 	if(!lastturf) return FALSE //Not charging.
-	if(charge_speed > charge_speed_buildup * charge_turfs_to_charge) //Message now happens without a stun condition
+	if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE) //Message now happens without a stun condition
 		visible_message("<span class='danger'>[src] skids to a halt!</span>",
 		"<span class='xenowarning'>You skid to a halt.</span>", null, 5)
 	last_charge_move = 0 //Always reset last charge tally
@@ -524,7 +483,7 @@
 		stop_momentum(charge_dir)
 		return FALSE
 
-	if(pulling && charge_speed > charge_speed_buildup) stop_pulling()
+	if(pulling && charge_speed > CHARGE_SPEED_BUILDUP) stop_pulling()
 
 	if(plasma_stored > 5) plasma_stored -= round(charge_speed) //Eats up plasma the faster you go, up to 0.5 per tile at max speed
 	else
@@ -533,19 +492,19 @@
 
 	last_charge_move = world.time //Index the world time to the last charge move
 
-	if(charge_speed < charge_speed_max)
-		charge_speed += charge_speed_buildup //Speed increases each step taken. Caps out at 14 tiles
-		if(charge_speed == charge_speed_max) //Should only fire once due to above instruction
+	if(charge_speed < CHARGE_SPEED_MAX)
+		charge_speed += CHARGE_SPEED_BUILDUP //Speed increases each step taken. Caps out at 14 tiles
+		if(charge_speed == CHARGE_SPEED_MAX) //Should only fire once due to above instruction
 			if(!charge_roar)
 				emote("roar")
 				charge_roar = 1
 
 	noise_timer = noise_timer ? --noise_timer : 3
 
-	if(noise_timer == 3 && charge_speed > charge_speed_buildup * charge_turfs_to_charge)
+	if(noise_timer == 3 && charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 		playsound(loc, "alien_charge", 50)
 
-	if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
+	if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 
 		for(var/mob/living/carbon/M in loc)
 			if(M.lying && !isxeno(M) && M.stat != DEAD && !(M.status_flags & XENO_HOST && istype(M.buckled, /obj/structure/bed/nest)))

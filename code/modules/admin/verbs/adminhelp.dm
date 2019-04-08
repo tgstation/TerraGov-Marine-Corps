@@ -94,11 +94,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if(AH.tier == TICKET_MENTOR && check_rights(R_ADMIN|R_MENTOR, FALSE))
 			if(!AH.initiator)
 				dat += "\[DC\]"
-			dat += "<span class='adminnotice'><span class='adminhelp'>#[AH.id] Mentor Ticket</span>: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
+			dat += "<span class='adminnotice'><span class='adminhelp'>\[[AH.marked ? "X" : "  "]\] #[AH.id] Mentor Ticket</span>: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 		else if(AH.tier == TICKET_ADMIN && check_rights(R_ADMIN, FALSE))
 			if(!AH.initiator)
 				dat += "\[DC\]"
-			dat += "<span class='adminnotice'><span class='adminhelp'>#[AH.id] Admin Ticket</span>: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
+			dat += "<span class='adminnotice'><span class='adminhelp'>\[[AH.marked ? "X" : "  "]\] #[AH.id] Admin Ticket</span>: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 
 	var/datum/browser/browser = new(usr, "ahelp_list[state]", "<div align='center'>[title]</div>", 600, 480)
 	browser.set_content(dat)
@@ -146,12 +146,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		var/datum/admin_help/AH = I
 		if(AH.tier == TICKET_MENTOR && check_rights(R_ADMIN|R_MENTOR, FALSE))
 			if(AH.initiator)
-				stat("#[AH.id]. Mentor. [AH.initiator_key_name]:", AH.statclick.update())
+				stat("\[[AH.marked ? "X" : "  "]\] #[AH.id]. Mentor. [AH.initiator_key_name]:", AH.statclick.update())
 			else
 				++num_mentors_disconnected
 		else if(AH.tier == TICKET_ADMIN && check_rights(R_ADMIN, FALSE))
 			if(AH.initiator)
-				stat("#[AH.id]. Admin. [AH.initiator_key_name]:", AH.statclick.update())
+				stat("\[[AH.marked ? "X" : "  "]\] #[AH.id]. Admin. [AH.initiator_key_name]:", AH.statclick.update())
 			else
 				++num_admins_disconnected
 	if(check_rights(R_ADMIN, FALSE) && (num_admins_disconnected || num_mentors_disconnected))

@@ -176,7 +176,7 @@
 	return
 
 /obj/machinery/bot/medbot/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
+	if (istype(W, /obj/item/card/id))
 		if (src.allowed(user) && !open && !emagged)
 			src.locked = !src.locked
 			to_chat(user, "<span class='notice'>Controls are now [src.locked ? "locked." : "unlocked."]</span>")

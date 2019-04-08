@@ -105,7 +105,8 @@
 		qdel(attack_icon)
 		attack_icon = null
 	GLOB.mob_living_list -= src
-	. = ..()
+	GLOB.offered_mob_list -= src
+	return ..()
 
 
 
@@ -473,7 +474,9 @@
 
 
 /mob/living/proc/offer_mob()
-	for(var/mob/dead/observer/O in GLOB.dead_mob_list)
+	GLOB.offered_mob_list += src
+	for(var/i in GLOB.observer_list)
+		var/mob/dead/observer/O = i
 		to_chat(O, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] \[<a href='byond://?src=[REF(O)];claim=[REF(src)]'>CLAIM</a>\] \[<a href='byond://?src=[REF(O)];track=[REF(src)]'>FOLLOW</a>\]</span><hr><br>")
 
 
@@ -622,3 +625,22 @@ below 100 is not dizzy
 
 /mob/living/proc/vomit()
 	return
+
+
+/mob/living/proc/take_over(mob/M, bypass)
+	if(!M.mind)
+		to_chat(M, "<span class='warning'>You don't have a mind.</span>")
+		return
+	if(!bypass && (key || ckey))
+		to_chat(M, "<span class='warning'>That mob has already been taken.</span>")
+		return
+	if(!bypass && job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
+		to_chat(M, "<span class='warning'>You are jobbanned from that job.</span>")
+		return
+
+	M.mind.transfer_to(src, TRUE)
+	fully_replace_character_name(M.real_name, real_name)
+	GLOB.offered_mob_list -= src
+
+	log_admin("[key_name(M)] has taken [key_name_admin(src)].")
+	message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")

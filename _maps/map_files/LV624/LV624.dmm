@@ -17516,18 +17516,6 @@
 	},
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
-"bjq" = (
-/obj/machinery/requests_console{
-	pixel_x = 30
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/freezer,
-/area/lv624/lazarus/kitchen)
 "bjr" = (
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/tile/bar,
@@ -19301,8 +19289,7 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 4;
 	id = "secure_blast";
-	name = "\improper Secure Armory Blast Door";
-	unacidable = 1
+	name = "\improper Secure Armory Blast Door"
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
@@ -19642,8 +19629,7 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 4;
 	id = "secure_blast";
-	name = "\improper Secure Armory Blast Door";
-	unacidable = 1
+	name = "\improper Secure Armory Blast Door"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -19668,8 +19654,7 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 4;
 	id = "secure_blast";
-	name = "\improper Secure Armory Blast Door";
-	unacidable = 1
+	name = "\improper Secure Armory Blast Door"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -20477,7 +20462,6 @@
 /obj/machinery/telecomms/relay/preset/station{
 	idle_power_usage = 0;
 	listening_level = 1;
-	unacidable = 1;
 	use_power = 0
 	},
 /turf/open/floor,
@@ -53114,7 +53098,7 @@ bfy
 bgX
 beL
 biA
-bjq
+bjW
 bjW
 bkP
 bjW

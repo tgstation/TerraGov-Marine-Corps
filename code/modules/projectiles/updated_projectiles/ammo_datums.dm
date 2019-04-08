@@ -1273,7 +1273,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/mob/living/carbon/C = M
 		if(C.issamexenohive(P.firer))
 			return
-		C.add_slowdown(2) //slow em down
+		C.add_slowdown(3) //slow em down
 		C.next_move_slowdown += 8 //really slow down their next move, as if they stepped in sticky doo doo
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/O,obj/item/projectile/P)

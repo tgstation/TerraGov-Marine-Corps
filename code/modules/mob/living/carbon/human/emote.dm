@@ -271,7 +271,7 @@
 		if("signal")
 			if(restrained())
 				return
-			var/t1 = round(text2num(param))
+			var/t1 = CLAMP(round(text2num(param)), 1, 10)
 			if(isnum(t1))
 				if(t1 <= 5 && (!r_hand || !l_hand))
 					message = "<B>[comm_paygrade][src]</B> raises [t1] finger\s."

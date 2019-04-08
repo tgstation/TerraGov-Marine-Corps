@@ -18,8 +18,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "cellconsole"
 	circuit = "/obj/item/circuitboard/computer/cryopodcontrol"
-	exproof = TRUE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/cryotype = "REQ"
 	var/mode = null
 
@@ -224,7 +223,6 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 
 			var/list/deleteall = list(/obj/item/clothing/mask/cigarette, \
 			/obj/item/clothing/glasses/sunglasses, \
-			/obj/item/device/pda, \
 			/obj/item/clothing/glasses/mgoggles, \
 			/obj/item/clothing/head/tgmcberet/red, \
 			/obj/item/clothing/gloves/black, \

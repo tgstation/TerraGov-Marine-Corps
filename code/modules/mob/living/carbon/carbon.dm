@@ -39,6 +39,8 @@
 		stomach_contents.Remove(A)
 		A.forceMove(loc)
 		if(ismob(A))
+			var/mob/M = A
+			M.SetKnockeddown(1)
 			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
 
 	. = ..()

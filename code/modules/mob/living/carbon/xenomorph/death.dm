@@ -3,7 +3,7 @@
 	playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
 
 /mob/living/carbon/Xenomorph/death(gibbed)
-	var/msg = isxenosilicon(src) ? "begins to shudder, and the lights go out in its eyes as it lies still." : "lets out a waning guttural screech, green blood bubbling from its maw."
+	var/msg = "lets out a waning guttural screech, green blood bubbling from its maw."
 	. = ..(gibbed,msg)
 	if(!.) return //If they're already dead, it will return.
 

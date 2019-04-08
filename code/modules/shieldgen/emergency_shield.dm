@@ -6,7 +6,7 @@
 	density = 1
 	opacity = 0
 	anchored = 1
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 	var/const/max_health = 200
 	var/health = max_health //The shield can only take so much beating (prevents perma-prisons)
 	var/shield_generate_power = 7500	//how much power we use when regenerating
@@ -308,7 +308,7 @@
 			anchored = 1
 
 
-	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))
+	else if(istype(W, /obj/item/card/id))
 		if(src.allowed(user))
 			src.locked = !src.locked
 			to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")

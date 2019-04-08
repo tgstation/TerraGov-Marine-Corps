@@ -36,7 +36,7 @@
 /obj/item/clothing/head/helmet/augment/alien
 	name = "alien mask"
 	desc = "Part of a strange alien mask. It loosely fits on a human, but just barely."
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/head/helmet/HoS
 	name = "Head of Security Hat"
@@ -294,7 +294,7 @@
 	name = "\improper B18 helmet"
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
 	armor = list("melee" = 95, "bullet" = 105, "laser" = 75, "energy" = 65, "bomb" = 70, "bio" = 15, "rad" = 15, "fire" = 65, "acid" = 65)
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 	anti_hug = 6
 
 /obj/item/clothing/head/helmet/marine/specialist/New(loc,expected_type 		= type,
@@ -386,7 +386,7 @@
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 
 //==========================//DISTRESS\\=================================\\
 //=======================================================================\\
@@ -398,13 +398,13 @@
 	desc = "A standard Imperial Guard helmet that goes with the flak armour, it is also mass produced, and it can save your life, maybe."
 	icon_state = "guardhelm"
 	item_state = "guardhelm"
-	armor = list("melee" = 70, "bullet" = 40, "laser" = 35, "energy" = 25, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 25)
+	armor = list("melee" = 85, "bullet" = 75, "laser" = 70, "energy" = 70, "bomb" = 60, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 25)
 
 /obj/item/clothing/head/helmet/marine/imperial/sergeant
 	name = "\improper Imperial Guard sergeant helmet"
 	desc = "A helmet that goes with the sergeant armour, unlike the flak variant, this one will actually protect you."
 	icon_state = "guardhelm"
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 25, "rad" = 25, "fire" = 80, "acid" = 80)
+	armor = list("melee" = 85, "bullet" = 85, "laser" = 85, "energy" = 85, "bomb" = 85, "bio" = 25, "rad" = 25, "fire" = 80, "acid" = 80)
 	pockets = /obj/item/storage/internal/imperialhelmet
 
 /obj/item/storage/internal/imperialhelmet
@@ -479,7 +479,7 @@
 	sprite_sheet_id = 1
 	icon_state = "upp_helmet_heavy"
 	armor = list("melee" = 90, "bullet" = 85, "laser" = 60, "energy" = 65, "bomb" = 85, "bio" = 5, "rad" = 5, "fire" = 65, "acid" = 65)
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 	anti_hug = 3
 
 

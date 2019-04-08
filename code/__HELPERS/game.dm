@@ -28,11 +28,12 @@
 		return T
 
 /proc/get_adjacent_open_turfs(atom/center)
-	. = list(get_open_turf_in_dir(center, NORTH),
-			get_open_turf_in_dir(center, SOUTH),
-			get_open_turf_in_dir(center, EAST),
-			get_open_turf_in_dir(center, WEST))
-	listclearnulls(.)
+	. = list()
+	for(var/i in GLOB.cardinals)
+		var/turf/open/T = get_step(center, i)
+		if(!istype(T))
+			continue
+		. += T
 
 // Like view but bypasses luminosity check
 

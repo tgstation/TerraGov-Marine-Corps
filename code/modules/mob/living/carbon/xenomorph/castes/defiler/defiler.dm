@@ -10,7 +10,6 @@
 	speed = -1
 	pixel_x = -16
 	old_x = -16
-	wound_type = "defiler" //used to match appropriate wound overlays
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	var/datum/effect_system/smoke_spread/smoke_system = null

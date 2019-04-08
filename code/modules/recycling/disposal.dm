@@ -1379,7 +1379,7 @@
 /obj/structure/disposaloutlet/retrieval
 	name = "retrieval outlet"
 	desc = "An outlet for the pneumatic disposal system."
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 
 /obj/structure/disposaloutlet/retrieval/attackby(var/obj/item/I, var/mob/user)
 	return
