@@ -24,31 +24,44 @@
 
 
 /obj/item/clothing/glasses/proc/activate_optical_matrix(mob/user)
-	if(vision_flags)
-		ENABLE_BITFIELD(user.sight, vision_flags)
-	if(glass_see_in_dark_modifier)
-		wearer.see_in_dark_modifier += glass_see_in_dark_modifier
-	if(see_invisible)
-		user.add_see_invisible(see_invisible)
-	if(tint)
-		wearer.update_tint()
-	if(fullscreen_vision)
-		user.overlay_fullscreen("glasses_vision", fullscreen_vision)
-	wearer.update_inv_glasses()
+	if(active)
+		return
+	active = TRUE
+	icon_state = initial(icon_state)
+	to_chat(user, "You activate the optical matrix on [src].")
 
 
 /obj/item/clothing/glasses/proc/deactivate_optical_matrix(mob/user)
-	if(vision_flags)
-		DISABLE_BITFIELD(user.sight, vision_flags)
-	if(glass_see_in_dark_modifier)
-		wearer.see_in_dark_modifier -= glass_see_in_dark_modifier
-	if(see_invisible)
-		user.remove_see_invisible(see_invisible)
-	if(tint)
-		wearer.update_tint()
-	if(fullscreen_vision)
-		user.clear_fullscreen("glasses_vision", 0)
-	wearer.update_inv_glasses()
+	active = FALSE
+	icon_state = deactive_state
+	to_chat(user, "You deactivate the optical matrix on [src].")
+
+
+/obj/item/clothing/glasses/proc/update_optical_matrix(mob/user)
+	if(active)
+		if(vision_flags)
+			ENABLE_BITFIELD(user.sight, vision_flags)
+		if(glass_see_in_dark_modifier)
+			wearer.see_in_dark_modifier += glass_see_in_dark_modifier
+		if(see_invisible)
+			user.add_see_invisible(see_invisible)
+		if(tint)
+			wearer.update_tint()
+		if(fullscreen_vision)
+			user.overlay_fullscreen("glasses_vision", fullscreen_vision)
+		wearer.update_inv_glasses()
+	else
+		if(vision_flags)
+			DISABLE_BITFIELD(user.sight, vision_flags)
+		if(glass_see_in_dark_modifier)
+			wearer.see_in_dark_modifier -= glass_see_in_dark_modifier
+		if(see_invisible)
+			user.remove_see_invisible(see_invisible)
+		if(tint)
+			wearer.update_tint()
+		if(fullscreen_vision)
+			user.clear_fullscreen("glasses_vision", 0)
+		wearer.update_inv_glasses()
 
 
 /obj/item/clothing/glasses/attack_self(mob/user)
@@ -56,28 +69,33 @@
 		return
 
 	if(active)
-		active = FALSE
-		icon_state = deactive_state
-		activate_optical_matrix(user)
-		to_chat(user, "You deactivate the optical matrix on [src].")
-	else
-		active = TRUE
-		icon_state = initial(icon_state)
 		deactivate_optical_matrix(user)
-		to_chat(user, "You activate the optical matrix on [src].")
-
+	else
+		activate_optical_matrix(user)
+	if(wearer)
+		update_optical_matrix(wearer)
 	update_action_button_icons()
 
 
-/obj/item/clothing/glasses/equipped(mob/user)
+/obj/item/clothing/glasses/equipped(mob/user, slot)
 	. = ..()
-	activate_optical_matrix(user)
+	if(slot != SLOT_GLASSES || !toggleable)
+		return
+	wearer = user
+	if(active)
+		return
+	activate_optical_matrix()
+	update_optical_matrix(wearer)
 
 
 /obj/item/clothing/glasses/dropped(mob/user)
-	deactivate_optical_matrix(user)
-	return ..()
-
+	. = ..()
+	if(!toggleable)
+		return
+	deactivate_optical_matrix()
+	update_optical_matrix(wearer)
+	wearer = null
+	
 
 /obj/item/clothing/glasses/science
 	name = "science goggles"

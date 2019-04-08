@@ -648,6 +648,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	user.set_client_sight(viewsize, tileoffset, CHECK_BITFIELD(flags_item, ITEM_ZOOM_NIGHTVISION))
 
+	if(CHECK_BITFIELD(flags_item, ITEM_ZOOM_NIGHTVISION))
+		user.add_see_invisible(SEE_INVISIBLE_OBSERVER_NOLIGHTING)
+
 	if(user.interactee != src)
 		user.unset_interaction()
 
@@ -662,6 +665,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("<span class='notice'>[user] looks up from [src].</span>",
 		"<span class='notice'>You look up from [src].</span>")
 	
+	if(CHECK_BITFIELD(flags_item, ITEM_ZOOM_NIGHTVISION))
+		user.remove_see_invisible(SEE_INVISIBLE_OBSERVER_NOLIGHTING)
+
 	DISABLE_BITFIELD(flags_item, ITEM_ZOOMED)
 	user.reset_client_sight()
 	user.zoom_cooldown = world.time + ZOOM_COOLDOWN

@@ -133,7 +133,7 @@
 			if(offhand && (offhand.flags_item & WIELDED))
 				to_chat(src, "<span class='warning'>Your other hand is too busy holding \the [offhand.name]</span>")
 				return
-			else wielded_item.unwield(src) //Get rid of it.
+			wielded_item.unwield(src) //Get rid of it.
 		if(CHECK_BITFIELD(wielded_item.flags_item, ITEM_ZOOMED)) //Adding this here while we're at it
 			unset_interaction()
 	hand = !hand

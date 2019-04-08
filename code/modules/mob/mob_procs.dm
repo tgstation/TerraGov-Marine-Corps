@@ -10,7 +10,6 @@
 
 /mob/proc/reset_client_sight()
     see_in_dark = initial(see_in_dark) + see_in_dark_modifier
-    see_invisible = see_in_dark > 2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
     if(!client)
         reset_client_sight_no_client() //Preserve the values in case they return.
         return
@@ -44,7 +43,6 @@
 /mob/proc/set_client_sight(viewsize, tileoffset, darkvision)
     if(darkvision)
         see_in_dark = max(viewsize + tileoffset + 1, see_in_dark + see_in_dark_modifier) //That extra one so they can see the edge of the screen.
-        see_invisible = min(see_invisible, SEE_INVISIBLE_OBSERVER_NOLIGHTING)
     if(!client)
         set_client_sight_no_client(viewsize, tileoffset)
         return

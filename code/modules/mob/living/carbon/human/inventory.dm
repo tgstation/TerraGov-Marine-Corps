@@ -171,6 +171,7 @@
 		update_inv_gloves()
 	else if (I == glasses)
 		glasses = null
+		update_inv_glasses()
 	else if (I == wear_ear)
 		wear_ear = null
 		update_inv_ears()

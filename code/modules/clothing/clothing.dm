@@ -98,15 +98,6 @@
 		icon = initial(icon)
 
 
-/obj/item/clothing/equipped(mob/user)
-	wearer = user
-	return ..()
-
-
-/obj/item/clothing/dropped(mob/user)
-	. = ..()
-	wearer = null
-
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
 /obj/item/clothing/ears
