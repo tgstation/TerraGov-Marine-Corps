@@ -324,7 +324,7 @@
 
 /mob/living/carbon/Xenomorph/Crusher/handle_special_state()
 	if(m_intent == MOVE_INTENT_RUN)
-		if(charge_speed > charge_speed_buildup * charge_turfs_to_charge) //Let it build up a bit so we're not changing icons every single turf
+		if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE) //Let it build up a bit so we're not changing icons every single turf
 			icon_state = "Crusher Charging"
 			return TRUE
 	return FALSE
