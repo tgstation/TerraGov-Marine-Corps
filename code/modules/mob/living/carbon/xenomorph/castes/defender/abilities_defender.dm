@@ -74,9 +74,7 @@
 
 	face_atom(H) //Face towards the target so we don't look silly
 
-	var/damage = rand(xeno_caste.melee_damage_lower,xeno_caste.melee_damage_upper)
-	if(frenzy_aura > 0)
-		damage += (frenzy_aura * 2)
+	var/damage = rand(xeno_caste.melee_damage_lower,xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(src)
 	damage *= (1 + distance * 0.25) //More distance = more momentum = stronger Headbutt.
 	var/affecting = H.get_limb(ran_zone(null, 0))
 	if(!affecting) //Still nothing??
@@ -158,9 +156,7 @@
 	for (var/mob/living/carbon/human/H in L)
 		step_away(H, src, sweep_range, 2)
 		if(H.stat != DEAD && !(istype(H.buckled, /obj/structure/bed/nest) && H.status_flags & XENO_HOST) ) //No bully
-			var/damage = rand(xeno_caste.melee_damage_lower,xeno_caste.melee_damage_upper)
-			if(frenzy_aura > 0)
-				damage += (frenzy_aura * 2)
+			var/damage = rand(xeno_caste.melee_damage_lower,xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(src)
 			var/affecting = H.get_limb(ran_zone(null, 0))
 			if(!affecting) //Still nothing??
 				affecting = H.get_limb("chest") //Gotta have a torso?!
