@@ -568,7 +568,7 @@
 		if(do_after(user, work_time, TRUE, src))
 			user.visible_message("<span class='notice'>[user] secures [src] to the ground.</span>",
 			"<span class='notice'>You secure [src] to the ground.</span>")
-			anchored = 1
+			anchored = TRUE
 			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		return
 

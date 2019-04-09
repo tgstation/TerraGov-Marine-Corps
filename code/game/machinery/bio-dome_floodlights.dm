@@ -145,7 +145,7 @@
 			user.visible_message("<span class='danger'>[user] starts to slash and claw away at [src]!</span>",
 			"<span class='danger'>You start slashing and clawing at [src]!</span>")
 			if(do_after(user, 50, TRUE, src) && !damaged) //Not when it's already damaged.
-				damaged = FALSE
+				damaged = TRUE
 				SetLuminosity(0)
 				user.visible_message("<span class='danger'>[user] slashes up [src]!</span>",
 				"<span class='danger'>You slash up [src]!</span>")

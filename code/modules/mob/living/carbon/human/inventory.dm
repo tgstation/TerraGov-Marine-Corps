@@ -487,7 +487,7 @@
 			return
 		visible_message("<span class='notice'>[src] tries to put [I] on [M].</span>", null, 5)
 		if(do_mob(src, M, HUMAN_STRIP_DELAY, icon_display = TARGET_ICON_GENERIC))
-			if(!M.get_item_by_slot(slot_to_process) && Adjacent(M))
+			if(!M.get_item_by_slot(slot_to_process))
 				if(I.mob_can_equip(M, slot_to_process, TRUE))//Placing an item on the mob
 					dropItemToGround(I)
 					if(!QDELETED(I)) //Might be self-deleted?

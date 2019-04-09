@@ -1074,7 +1074,7 @@ About the new airlock wires panel:
 			if (istype(da, /obj/structure/door_assembly/multi_tile))
 				da.setDir(dir)
 
-			da.anchored = 1
+			da.anchored = TRUE
 			if(mineral)
 				da.glass = mineral
 			//else if(glass)

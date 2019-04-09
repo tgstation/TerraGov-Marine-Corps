@@ -486,7 +486,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	if(!do_after(usr, 20, FALSE, src))
 		return
 
-	if(!usr || !usr.client)
+	if(!usr.client)
 		return
 
 	if(occupant)
