@@ -42,7 +42,7 @@
 
 	mobility_new = 0
 	protection_new = 0
-	marskman_new = 0
+	marksman_new = 0
 	aura_recovery_multiplier = 0
 
 	//Natural recovery; enhanced by hold/protection aura.
