@@ -4,8 +4,8 @@
 #define MIN_IMPREGNATION_TIME 10 SECONDS //Time it takes to impregnate someone
 #define MAX_IMPREGNATION_TIME 15 SECONDS
 
-#define MIN_ACTIVE_TIME 3 SECONDS //Time between being dropped and going idle
-#define MAX_ACTIVE_TIME 5 SECONDS
+#define MIN_ACTIVE_TIME 4 SECONDS //Time between being dropped and going idle
+#define MAX_ACTIVE_TIME 6 SECONDS
 
 /obj/item/clothing/mask/facehugger
 	name = "alien"
