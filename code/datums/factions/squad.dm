@@ -1,5 +1,6 @@
 /datum/squad
 	var/name = ""
+	var/id
 	var/list/has_special_roles = list()
 	var/datum/special_role/default_role
 
@@ -7,6 +8,7 @@
 	var/ideal_size
 
 	var/tracking_target
+	var/mob/living/squad_leader
 
 	var/list/special_roles = list()
 	var/list/special_roles_by_assigned_role = list() // datums sorted by assigned_role
@@ -65,6 +67,11 @@
 			return special_roles[tracking_target][1]
 		return null
 	return tracking_target
+
+/datum/squad/proc/get_all_members()
+	. = list()
+	for(var/t in special_roles)
+		. += special_roles[t]
 
 /datum/squad/proc/get_total_members()
 	. = 0

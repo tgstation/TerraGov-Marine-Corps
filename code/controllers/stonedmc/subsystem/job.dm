@@ -97,6 +97,95 @@ SUBSYSTEM_DEF(job)
 	JobDebug("AR has failed, Player: [player], Mind: [player?.mind], Rank: [rank]")
 	return FALSE
 
+/proc/handle_squad(mob/M, rank, latejoin = FALSE)
+	var/strict = FALSE
+	var/datum/squad/P = SSjob.squads[M.client.prefs.preferred_squad]
+	var/datum/squad/R = SSjob.squads[pick(SSjob.squads)]
+	if(M.client?.prefs?.be_special && (M.client.prefs.be_special & BE_SQUAD_STRICT))
+		strict = TRUE
+	switch(rank)
+		if("Squad Marine")
+			if(P && P.assign(M, rank))
+				return TRUE
+			else if(R.assign(M, rank))
+				return TRUE
+		if("Squad Engineer")
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				if(P && P == S && S.assign(M, rank))
+					return TRUE
+			if(strict && !latejoin)
+				return FALSE
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				else if(S.assign(M, rank))
+					return TRUE
+		if("Squad Corpsman")
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				if(P && P == S && S.assign(M, rank))
+					return TRUE
+			if(strict && !latejoin)
+				return FALSE
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				else if(S.assign(M, rank))
+					return TRUE
+		if("Squad Smartgunner")
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				if(P && P == S && S.assign(M, rank))
+					return TRUE
+			if(strict && !latejoin)
+				return FALSE
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				else if(S.assign(M, rank))
+					return TRUE
+		if("Squad Specialist")
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				if(P && P == S && S.assign(M, rank))
+					return TRUE
+			if(strict && !latejoin)
+				return FALSE
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				else if(S.assign(M, rank))
+					return TRUE
+		if("Squad Leader")
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				if(P && P == S && S.assign(M, rank))
+					return TRUE
+			if(strict && !latejoin)
+				return FALSE
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				else if(S.assign(M, rank))
+					return TRUE
+	return FALSE
+
 /datum/controller/subsystem/job/proc/GiveRandomJob(mob/new_player/player)
 	JobDebug("GRJ Giving random job, Player: [player]")
 	. = FALSE
