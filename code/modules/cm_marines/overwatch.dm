@@ -511,7 +511,7 @@
 		return B?.beacon_cam
 
 /obj/machinery/computer/overwatch/proc/send_to_squads(txt)
-	for(Var/datum/squad/marine/S in squads)
+	for(var/datum/squad/marine/S in squads)
 		S.message_squad(txt)
 
 /obj/machinery/computer/overwatch/proc/handle_bombard()
@@ -574,7 +574,7 @@
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No squad selected!</span>")
 		return
 	var/sl_candidates = list()
-	for(var/mob/living/carbon/human/H in current_squad.marines_list)
+	for(var/mob/living/carbon/human/H in current_squad.get_all_members())
 		if(istype(H) && H.stat != DEAD && H.mind && !jobban_isbanned(H, "Squad Leader") && !is_banned_from(H.ckey, "Squad Leader"))
 			sl_candidates += H
 	var/new_lead = input(usr, "Choose a new Squad Leader") as null|anything in sl_candidates
@@ -631,7 +631,7 @@
 	if(!current_squad)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No squad selected!</span>")
 		return
-	var/mob/living/carbon/human/wanted_marine = input(usr, "Report a marine for insubordination") as null|anything in current_squad.marines_list
+	var/mob/living/carbon/human/wanted_marine = input(usr, "Report a marine for insubordination") as null|anything in current_squad.get_all_members()
 	if(!wanted_marine) return
 	if(!istype(wanted_marine))//gibbed/deleted, all we have is a name.
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[wanted_marine] is missing in action.</span>")
@@ -659,7 +659,7 @@
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No squad selected!</span>")
 		return
 	var/datum/squad/S = current_squad
-	var/mob/living/carbon/human/transfer_marine = input(usr, "Choose marine to transfer") as null|anything in current_squad.marines_list
+	var/mob/living/carbon/human/transfer_marine = input(usr, "Choose marine to transfer") as null|anything in current_squad.get_all_members()
 	if(!transfer_marine)
 		return
 	if(S != current_squad)
@@ -791,7 +791,7 @@
 	current_squad.sbeacon.visible_message("[icon2html(current_squad.sbeacon, viewers(current_squad.sbeacon))] <span class='boldnotice'>The [current_squad.sbeacon.name] begins to beep!</span>")
 	addtimer(CALLBACK(src, .proc/fire_supplydrop, current_squad, supplies, x_offset, y_offset), 10 SECONDS)
 
-/obj/machinery/computer/overwatch/proc/fire_supplydrop(datum/squad/S, list/supplies, x_offset, y_offset)
+/obj/machinery/computer/overwatch/proc/fire_supplydrop(datum/squad/marine/S, list/supplies, x_offset, y_offset)
 	if(QDELETED(S.sbeacon))
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Launch aborted! Supply beacon signal lost.</span>")
 		busy = FALSE
@@ -870,7 +870,7 @@
 	w_class = 2
 	var/activated = 0
 	var/activation_time = 60
-	var/datum/squad/squad = null
+	var/datum/squad/marine/squad = null
 	var/icon_activated = "motion2"
 	var/obj/machinery/camera/beacon_cam = null
 
@@ -1150,7 +1150,7 @@
 	if(current_squad.squad_leader)
 		var/turf/SL_turf = get_turf(current_squad.squad_leader)
 		SL_z = SL_turf?.z
-	for(var/mob/living/carbon/human/H in current_squad.marines_list)
+	for(var/mob/living/carbon/human/H in current_squad.get_all_members())
 		var/mob_name = "unknown"
 		var/mob_state = ""
 		var/role = "unknown"
