@@ -78,6 +78,12 @@
 	radio_freq = DELTA_FREQ
 
 
+/datum/squad/proc/get_all_members()
+	return marines_list
+
+/datum/squad/proc/get_total_members()
+	return length(marines_list)
+
 /datum/squad/proc/put_marine_in_squad(mob/living/carbon/human/H)
 	if(!istype(H))
 		return FALSE
@@ -231,6 +237,32 @@
 	old_lead.update_inv_head() //updating marine helmet leader overlays
 	old_lead.update_inv_wear_suit()
 	to_chat(old_lead, "<font size='3' color='blue'>You're no longer the Squad Leader for [src]!</font>")
+
+/datum/squad/proc/format_message(message, mob/living/carbon/human/sender)
+	var/nametext = ""
+	var/text = copytext(sanitize(message), 1, MAX_MESSAGE_LEN)
+	if(ishuman(sender))
+		var/obj/item/card/id/ID = sender.get_idcard()
+		nametext = "[ID?.rank] [sender.name] transmits: "
+		text = "<font size='3'><b>[text]<b></font>"
+	return "[nametext][text]"
+
+/datum/squad/proc/message_squad(message, mob/living/carbon/human/sender)
+	var/text = "<font color='blue'><B>\[Overwatch\]:</b> [format_message(message, sender)]</font>"
+	for(var/mob/living/L in marines_list)
+		message_member(L, text, sender)
+
+/datum/squad/proc/message_leader(message, mob/living/carbon/human/sender)
+	if(!squad_leader || squad_leader.stat || !squad_leader.client)
+		return FALSE
+	return message_member(squad_leader, "<font color='blue'><B>\[SL Overwatch\]:</b> [format_message(message, sender)]</font>", sender)
+
+/datum/squad/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
+	if(!target.client)
+		return
+	if(sender)
+		SEND_SOUND(squad_leader, sound('sound/effects/radiostatic.ogg'))
+	to_chat(target, message)
 
 
 /datum/squad/proc/check_entry(rank)
