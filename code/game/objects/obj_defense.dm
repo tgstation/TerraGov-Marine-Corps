@@ -70,32 +70,9 @@
 /obj/bullet_act(obj/item/projectile/P)
 	. = ..()
 	playsound(src, P.hitsound, 50, 1)
-	visible_message("<span class='danger'>[src] is hit by \a [P]!</span>", null, null, COMBAT_MESSAGE_RANGE)
+	visible_message("<span class='danger'>[src] is hit by \a [P]!</span>", null, null, 3)
 	if(!QDELETED(src)) //Bullet on_hit effect might have already destroyed this object
 		take_damage(P.damage, P.damage_type, P.flag, 0, turn(P.dir, 180), P.armour_penetration)
-
-/obj/proc/hulk_damage()
-	return 150 //the damage hulks do on punches to this object, is affected by melee armor
-
-/obj/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
-	if(user.a_intent == INTENT_HARM)
-		..(user, 1)
-		visible_message("<span class='danger'>[user] smashes [src]!</span>", null, null, COMBAT_MESSAGE_RANGE)
-		if(density)
-			playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
-			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced="hulk")
-		else
-			playsound(src, 'sound/effects/bang.ogg', 50, 1)
-		take_damage(hulk_damage(), BRUTE, "melee", 0, get_dir(src, user))
-		return 1
-	return 0
-
-/obj/blob_act(obj/structure/blob/B)
-	if(isturf(loc))
-		var/turf/T = loc
-		if(T.intact && level == 1) //the blob doesn't destroy thing below the floor
-			return
-	take_damage(400, BRUTE, "melee", 0, get_dir(src, B))
 
 /obj/proc/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, armor_penetration = 0) //used by attack_alien, attack_animal, and attack_slime
 	user.do_attack_animation(src)
@@ -121,22 +98,6 @@
 		if(. && !play_soundeffect)
 			playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
 
-/obj/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
-	return TRUE
-
-/obj/move_crushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
-	collision_damage(pusher, force, direction)
-	return TRUE
-
-/obj/proc/collision_damage(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
-	var/amt = max(0, ((force - (move_resist * MOVE_FORCE_CRUSH_RATIO)) / (move_resist * MOVE_FORCE_CRUSH_RATIO)) * 10)
-	take_damage(amt, BRUTE)
-
-/obj/attack_slime(mob/living/simple_animal/slime/user)
-	if(!user.is_adult)
-		return
-	attack_generic(user, rand(10, 15), "melee", 1)
-
 /obj/mech_melee_attack(obj/mecha/M)
 	M.do_attack_animation(src)
 	var/play_soundeffect = 0
@@ -155,99 +116,12 @@
 				return 0
 			else
 				return 0
-	visible_message("<span class='danger'>[M.name] has hit [src].</span>", null, null, COMBAT_MESSAGE_RANGE)
+	visible_message("<span class='danger'>[M.name] has hit [src].</span>", null, null, 3)
 	return take_damage(M.force*3, mech_damtype, "melee", play_soundeffect, get_dir(src, M)) // multiplied by 3 so we can hit objs hard but not be overpowered against mobs.
-
-/obj/singularity_act()
-	ex_act(EXPLODE_DEVASTATE)
-	if(src && !QDELETED(src))
-		qdel(src)
-	return 2
-
-
-///// ACID
-
-GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/effects/effects.dmi', "acid"))
-
-//the obj's reaction when touched by acid
-/obj/acid_act(acidpwr, acid_volume)
-	if(!(resistance_flags & UNACIDABLE) && acid_volume)
-
-		if(!acid_level)
-			SSacid.processing[src] = src
-			add_overlay(GLOB.acid_overlay, TRUE)
-		var/acid_cap = acidpwr * 300 //so we cannot use huge amounts of weak acids to do as well as strong acids.
-		if(acid_level < acid_cap)
-			acid_level = min(acid_level + acidpwr * acid_volume, acid_cap)
-		return 1
-
-//the proc called by the acid subsystem to process the acid that's on the obj
-/obj/proc/acid_processing()
-	. = 1
-	if(!(resistance_flags & ACID_PROOF))
-		for(var/armour_value in armor)
-			if(armour_value != "acid" && armour_value != "fire")
-				armor = armor.modifyAllRatings(0 - round(sqrt(acid_level)*0.1))
-		if(prob(33))
-			playsound(loc, 'sound/items/welder.ogg', 150, 1)
-		take_damage(min(1 + round(sqrt(acid_level)*0.3), 300), BURN, "acid", 0)
-
-	acid_level = max(acid_level - (5 + 3*round(sqrt(acid_level))), 0)
-	if(!acid_level)
-		return 0
-
-//called when the obj is destroyed by acid.
-/obj/proc/acid_melt()
-	SSacid.processing -= src
-	deconstruct(FALSE)
-
-//// FIRE
-
-/obj/fire_act(exposed_temperature, exposed_volume)
-	if(isturf(loc))
-		var/turf/T = loc
-		if(T.intact && level == 1) //fire can't damage things hidden below the floor.
-			return
-	if(exposed_temperature && !(resistance_flags & FIRE_PROOF))
-		take_damage(CLAMP(0.02 * exposed_temperature, 0, 20), BURN, "fire", 0)
-	if(!(resistance_flags & ON_FIRE) && (resistance_flags & FLAMMABLE) && !(resistance_flags & FIRE_PROOF))
-		resistance_flags |= ON_FIRE
-		SSfire_burning.processing[src] = src
-		add_overlay(GLOB.fire_overlay, TRUE)
-		return 1
-
-//called when the obj is destroyed by fire
-/obj/proc/burn()
-	if(resistance_flags & ON_FIRE)
-		SSfire_burning.processing -= src
-	deconstruct(FALSE)
-
-/obj/proc/extinguish()
-	if(resistance_flags & ON_FIRE)
-		resistance_flags &= ~ON_FIRE
-		cut_overlay(GLOB.fire_overlay, TRUE)
-		SSfire_burning.processing -= src
-
-/obj/proc/tesla_act(power, tesla_flags, shocked_targets)
-	obj_flags |= BEING_SHOCKED
-	var/power_bounced = power / 2
-	tesla_zap(src, 3, power_bounced, tesla_flags, shocked_targets)
-	addtimer(CALLBACK(src, .proc/reset_shocked), 10)
-
-//The surgeon general warns that being buckled to certain objects receiving powerful shocks is greatly hazardous to your health
-//Only tesla coils and grounding rods currently call this because mobs are already targeted over all other objects, but this might be useful for more things later.
-/obj/proc/tesla_buckle_check(var/strength)
-	if(has_buckled_mobs())
-		for(var/m in buckled_mobs)
-			var/mob/living/buckled_mob = m
-			buckled_mob.electrocute_act((CLAMP(round(strength/400), 10, 90) + rand(-5, 5)), src, tesla_shock = 1)
-
-/obj/proc/reset_shocked()
-	obj_flags &= ~BEING_SHOCKED
 
 //the obj is deconstructed into pieces, whether through careful disassembly or when destroyed.
 /obj/proc/deconstruct(disassembled = TRUE)
-	SEND_SIGNAL(src, COMSIG_OBJ_DECONSTRUCT, disassembled)
+	//SEND_SIGNAL(src, COMSIG_OBJ_DECONSTRUCT, disassembled)
 	qdel(src)
 
 //what happens when the obj's health is below integrity_failure level.
@@ -256,12 +130,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 
 //what happens when the obj's integrity reaches zero.
 /obj/proc/obj_destruction(damage_flag)
-	if(damage_flag == "acid")
-		acid_melt()
-	else if(damage_flag == "fire")
-		burn()
-	else
-		deconstruct(FALSE)
+	deconstruct(FALSE)
 
 //changes max_integrity while retaining current health percentage
 //returns TRUE if the obj broke, FALSE otherwise
