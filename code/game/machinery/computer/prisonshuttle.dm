@@ -44,7 +44,7 @@ var/prison_shuttle_timeleft = 0
 			for (var/obj/C in src)
 				C.loc = loc
 			A.circuit = M
-			A.anchored = 1
+			A.anchored = TRUE
 
 			if (machine_stat & BROKEN)
 				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
