@@ -206,7 +206,7 @@
 	if(C.can_be_facehugged(hugger))
 		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
-		C.KnockDown(1)
+		C.KnockDown(3)
 		if(!QDELETED(linked_carrier))
 			if(linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
 				var/area/A = get_area(src)
@@ -216,7 +216,8 @@
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
 	hugger.forceMove(loc)
-	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger.proc/fast_activate, TRUE), 1.5 SECONDS)
+	stasis = FALSE
+	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger.proc/fast_activate), 1.5 SECONDS)
 	icon_state = "trap0"
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null
