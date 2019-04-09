@@ -1,7 +1,3 @@
-#define SPECIAL_ROLE_UNLIMITED -1
-#define SPECIAL_ROLE_DYNAMIC -2
-#define SPECIAL_ROLE_UNIQUE -3
-
 /datum/special_role
 	var/name = ""
 	var/role_limit = SPECIAL_ROLE_UNLIMITED

@@ -16,6 +16,14 @@
 	default_role = /datum/special_role/squad_marine
 
 	ideal_size = 20
+	
+	var/color = 0 //Color for helmets, etc.
+	var/mob/living/carbon/human/overwatch_officer
+	var/obj/item/device/squad_beacon/sbeacon = null
+	var/obj/structure/supply_drop/drop_pad = null
+
+	var/list/squad_orbital_beacons = list()
+	var/list/squad_laser_targets = list()
 
 /datum/special_role/squad_leader
 	name = "Squad Leader"

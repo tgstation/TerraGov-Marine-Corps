@@ -11,6 +11,8 @@
 	var/list/special_roles = list()
 	var/list/special_roles_by_assigned_role = list() // datums sorted by assigned_role
 
+	var/radio_freq
+
 /datum/squad/New(datum/faction/F, name)
 	. = ..()
 	faction = F
@@ -30,7 +32,7 @@
 	return can_be_added_by_assigned_role(L.mind.assigned_role)
 
 /datum/squad/proc/can_be_added_by_assigned_role(assigned_role)
-	var/datum/special_role/SR = special_roles_by_assigned_role[L.mind.assigned_role]
+	var/datum/special_role/SR = special_roles_by_assigned_role[assigned_role]
 	if(!SR)
 		return FALSE // not a role that can be in this squad
 	if(SR.get_limit() >= length(special_roles[SR.type]))
@@ -44,6 +46,18 @@
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		H.assigned_squad = src
+	return TRUE
+
+/datum/squad/proc/remove_from_squad(mob/living/L)
+	var/datum/special_role/SR = special_roles_by_assigned_role[L.mind.assigned_role]
+	if(!SR)
+		return FALSE
+	special_roles[SR.type] -= L
+	L.mind.assigned_squad = null
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		H.assigned_squad = null
+	return TRUE
 
 /datum/squad/proc/get_tracking_object() // return a /mob or /turf or /obj based on the /datum/squad/var/tracking_target
 	if(istype(tracking_target, /datum/special_role))
@@ -58,7 +72,8 @@
 		. += length(special_roles[t])
 
 /datum/squad/proc/update_dynamic_limit(playercount)
+	var/total = get_total_members()
 	for(var/t in has_special_roles)
 		var/datum/special_role/S = has_special_roles[t]
-		S.update_dynamic_limit(playercount, squadcount)
+		S.update_dynamic_limit(playercount, total)
 

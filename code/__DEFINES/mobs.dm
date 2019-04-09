@@ -627,3 +627,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 
 #define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.
+
+#define SPECIAL_ROLE_UNLIMITED -1
+#define SPECIAL_ROLE_DYNAMIC -2
+#define SPECIAL_ROLE_UNIQUE -3
