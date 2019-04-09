@@ -103,7 +103,7 @@ var/global/economy_init = 0
 
 	create_station_account()
 
-	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [game_year]"
+	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [GAME_YEAR]"
 
 	economy_init = 1
 	return 1
@@ -113,7 +113,7 @@ var/global/economy_init = 0
 		next_account_number = rand(111111, 999999)
 
 		station_account = new()
-		station_account.owner_name = "[station_name()] Station Account"
+		station_account.owner_name = "[CONFIG_GET(string/ship_name)] Central Account"
 		station_account.account_number = rand(111111, 999999)
 		station_account.remote_access_pin = rand(1111, 111111)
 		station_account.money = 75000

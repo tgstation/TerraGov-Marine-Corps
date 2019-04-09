@@ -22,7 +22,7 @@
 
 	if(statpanel("Stats"))
 		stat("Operation Time: [worldtime2text()]")
-		stat("The current map is: [SSmapping.config.map_name]")
+		stat("The current map is: [SSmapping.config?.map_name ? SSmapping.config.map_name : "Loading..."]")
 
 
 	if(client?.holder?.rank?.rights)
@@ -36,7 +36,7 @@
 				supply_controller.stat_entry()
 				shuttle_controller.stat_entry()
 				lighting_controller.stat_entry()
-				radio_controller.stat_entry()
+				SSradio.stat_entry()
 				stat(null)
 				if(Master)
 					Master.stat_entry()
@@ -53,11 +53,31 @@
 		if(client.holder.rank.rights & (R_ADMIN|R_MENTOR))
 			if(statpanel("Tickets"))
 				GLOB.ahelp_tickets.stat_entry()
+		if(length(GLOB.sdql2_queries))
+			if(statpanel("SDQL2"))
+				stat("Access Global SDQL2 List", GLOB.sdql2_vv_statobj)
+				for(var/i in GLOB.sdql2_queries)
+					var/datum/SDQL2_query/Q = i
+					Q.generate_stat()
 
 
-	if(length(tile_contents))
-		if(statpanel("Tile Contents"))
-			stat(tile_contents)
+	if(listed_turf && client)
+		if(!TurfAdjacent(listed_turf))
+			listed_turf = null
+		else
+			statpanel(listed_turf.name, null, listed_turf)
+			var/list/overrides = list()
+			for(var/image/I in client.images)
+				if(I.loc && I.loc.loc == listed_turf && I.override)
+					overrides += I.loc
+			for(var/atom/A in listed_turf)
+				if(!A.mouse_opacity)
+					continue
+				if(A.invisibility > see_invisible)
+					continue
+				if(length(overrides) && (A in overrides))
+					continue
+				statpanel(listed_turf.name, null, A)
 
 
 /mob/proc/prepare_huds()
@@ -238,7 +258,7 @@
 		if(!U.hastie)
 			return FALSE
 		var/obj/item/clothing/tie/storage/T = U.hastie
-		if(!T.hold)
+		if(!istype(T) || !T.hold)
 			return FALSE
 		var/obj/item/storage/internal/S = T.hold
 		if(!length(S.contents))
@@ -412,7 +432,7 @@
 	if(!Adjacent(usr)) return
 	if(!ishuman(M) && !ismonkey(M)) return
 	if(!ishuman(src) && !ismonkey(src)) return
-	if(M.lying || M.is_mob_incapacitated())
+	if(M.lying || M.incapacitated())
 		return
 	show_inv(M)
 
@@ -422,13 +442,13 @@
 	return
 
 /mob/living/start_pulling(atom/movable/AM, lunge, no_msg)
-	if ( !AM || !usr || src==AM || !isturf(loc) || !isturf(AM.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if(!AM || !usr || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
 	if (AM.anchored || AM.throwing)
 		return
 
-	if(throwing || is_mob_incapacitated())
+	if(throwing || incapacitated())
 		return
 
 	if(pulling)
@@ -457,6 +477,8 @@
 	G.grabbed_thing = AM
 	if(!put_in_hands(G)) //placing the grab in hand failed, grab is dropped, deleted, and we stop pulling automatically.
 		return
+
+	changeNext_move(CLICK_CD_RANGE)
 
 	if(M)
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
@@ -522,6 +544,11 @@
 	//reset the pixel offsets to zero
 	is_floating = 0
 
+
+/mob/GenerateTag()
+	tag = "mob_[next_mob_id++]"
+
+
 // facing verbs
 /mob/proc/canface()
 	if(!canmove)						return 0
@@ -529,7 +556,7 @@
 	if(stat==2)						return 0
 	if(anchored)						return 0
 	if(monkeyizing)						return 0
-	if(is_mob_restrained())					return 0
+	if(restrained())					return 0
 	return 1
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
@@ -622,7 +649,7 @@ mob/proc/yank_out_object()
 		to_chat(usr, "You are unconcious and cannot do that!")
 		return
 
-	if(usr.is_mob_restrained())
+	if(usr.restrained())
 		to_chat(usr, "You are restrained and cannot do that!")
 		return
 
@@ -682,9 +709,8 @@ mob/proc/yank_out_object()
 			return
 
 		affected.implants -= selection
-		if(!isyautja(H))
-			H.shock_stage+=20
-		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
+		H.shock_stage+=20
+		affected.take_damage_limb((selection.w_class * 3), 0, FALSE, TRUE)
 
 		if(prob(selection.w_class * 5)) //I'M SO ANEMIC I COULD JUST -DIE-.
 			var/datum/wound/internal_bleeding/I = new (min(selection.w_class * 5, 15))
@@ -701,6 +727,9 @@ mob/proc/yank_out_object()
 /mob/proc/update_stat()
 	return
 
+/mob/proc/can_inject()
+	return reagents
+
 /mob/proc/get_idcard(hand_first)
 	return
 
@@ -709,9 +738,6 @@ mob/proc/yank_out_object()
 
 /mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
-
-/mob/proc/TurfAdjacent(var/turf/T)
-	return ( get_dist(T,src) <= 1 )
 
 /mob/on_stored_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
@@ -800,8 +826,24 @@ mob/proc/yank_out_object()
 	return TRUE
 
 
-/mob/proc/remove_emote_overlay(var/image/overlay_to_remove)
-	overlays -= overlay_to_remove
+/mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
+	var/viewers = viewers()
+	for(var/mob/M in viewers)
+		if(!isobserver(M) && (M.stat != CONSCIOUS || isdeaf(M)))
+			continue
+		SEND_IMAGE(M, emote_overlay)
+
+	if(remove_delay)
+		addtimer(CALLBACK(src, .proc/remove_emote_overlay, client, emote_overlay, viewers), remove_delay)
+
+
+/mob/proc/remove_emote_overlay(client/C, image/emote_overlay, list/viewers)
+	if(C)
+		C.images -= emote_overlay
+	for(var/mob/M in viewers)
+		if(M.client)
+			M.client.images -= emote_overlay
+	qdel(emote_overlay)
 
 
 /mob/proc/audio_emote_cooldown(player_caused)

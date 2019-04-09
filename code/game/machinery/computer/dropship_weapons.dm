@@ -6,8 +6,7 @@
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "consoleright"
 	circuit = null
-	unacidable = TRUE
-	exproof = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/shuttle_tag  // Used to know which shuttle we're linked to.
 	var/obj/structure/dropship_equipment/selected_equipment //the currently selected equipment installed on the shuttle this console controls.
 	var/list/shuttle_equipments = list() //list of the equipments on the shuttle this console controls
@@ -148,14 +147,14 @@
 	name = "\improper 'Alamo' weapons controls"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
 
-/obj/machinery/computer/dropship_weapons/dropship1/New()
-	..()
-	shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
+/obj/machinery/computer/dropship_weapons/dropship1/Initialize()
+	. = ..()
+	shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/machinery/computer/dropship_weapons/dropship2
 	name = "\improper 'Normandy' weapons controls"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
 
-/obj/machinery/computer/dropship_weapons/dropship2/New()
-	..()
-	shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
+/obj/machinery/computer/dropship_weapons/dropship2/Initialize()
+	. = ..()
+	shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"

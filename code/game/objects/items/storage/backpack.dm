@@ -190,10 +190,9 @@
 	storage_slots = null
 	max_storage_space = 15
 
-/obj/item/storage/backpack/satchel/withwallet
-	New()
-		..()
-		new /obj/item/storage/wallet/random( src )
+/obj/item/storage/backpack/satchel/withwallet/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/storage/wallet/random( src )
 
 /obj/item/storage/backpack/satchel/norm
 	name = "satchel"
@@ -282,12 +281,6 @@
 	name = "\improper lightweight IMP backpack"
 	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield."
 	icon_state = "marinepack"
-	var/has_gamemode_skin = TRUE
-
-	New()
-		if(has_gamemode_skin)
-			select_gamemode_skin(type)
-		..()
 
 /obj/item/storage/backpack/marine/standard
 	name = "\improper lightweight IMP backpack"
@@ -300,7 +293,7 @@
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
 	var/icon_skin
 
-/obj/item/storage/backpack/marine/corpsman/New()
+/obj/item/storage/backpack/marine/corpsman/Initialize(mapload, ...)
 	. = ..()
 	cell = new (src)
 	icon_skin = icon_state
@@ -377,16 +370,16 @@
 	name = "\improper TGMC technician backpack"
 	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
 	icon_state = "marinepackt"
-	bypass_w_limit = list("/obj/item/device/m56d_gun",
-					"/obj/item/ammo_magazine/m56d",
-					"/obj/item/device/m56d_post",
-					"/obj/item/device/turret_top",
-					"/obj/item/ammo_magazine/sentry",
-					"/obj/item/ammo_magazine/minisentry",
-					"/obj/item/device/marine_turret/mini",
-					"/obj/item/stack/razorwire",
-					"/obj/item/stack/sandbags"
-					)
+	bypass_w_limit = list(
+		/obj/item/device/m56d_gun,
+		/obj/item/ammo_magazine/m56d,
+		/obj/item/device/m56d_post,
+		/obj/item/device/turret_top,
+		/obj/item/ammo_magazine/sentry,
+		/obj/item/ammo_magazine/minisentry,
+		/obj/item/device/marine_turret/mini,
+		/obj/item/stack/razorwire,
+		/obj/item/stack/sandbags)
 
 /obj/item/storage/backpack/marine/satchel
 	name = "\improper TGMC satchel"
@@ -420,7 +413,6 @@
 	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard TGMC ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments."
 	icon_state = "scout_cloak"
 	uniform_restricted = list(/obj/item/clothing/suit/storage/marine/M3S) //Need to wear Scout armor to equip this.
-	has_gamemode_skin = FALSE //same sprite for all gamemode.
 	var/camo_active = 0
 	var/camo_active_timer = 0
 	var/camo_cooldown_timer = null
@@ -453,7 +445,7 @@
 	camouflage()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camouflage()
-	if (!usr || usr.is_mob_incapacitated(TRUE))
+	if (!usr || usr.incapacitated(TRUE))
 		return
 
 	var/mob/living/carbon/human/M = usr
@@ -638,15 +630,14 @@
 	icon_state = "engineerpack"
 	var/max_fuel = 260
 	storage_slots = null
-	has_gamemode_skin = FALSE //same sprites for all gamemodes
 	max_storage_space = 15
 
-/obj/item/storage/backpack/marine/engineerpack/New()
+/obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
 	R.my_atom = src
 	R.add_reagent("fuel", max_fuel)
-	..()
 
 
 /obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/W, mob/living/user)
@@ -699,17 +690,25 @@
 
 
 /obj/item/storage/backpack/marine/engineerpack/flamethrower/attackby(obj/item/W, mob/living/user)
-	if (istype(W, /obj/item/ammo_magazine/flamer_tank))
-		var/obj/item/ammo_magazine/flamer_tank/large/FTL = W
-		if(!FTL.current_rounds && reagents.total_volume)
-			var/fuel_available = reagents.total_volume < FTL.max_rounds ? reagents.total_volume : FTL.max_rounds
-			reagents.remove_reagent("fuel", fuel_available)
-			FTL.current_rounds = fuel_available
-			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-			FTL.caliber = "UT-Napthal Fuel"
-			to_chat(user, "<span class='notice'>You refill [FTL] with [lowertext(FTL.caliber)].</span>")
-			FTL.update_icon()
-	. = ..()
+	if(!istype(W, /obj/item/ammo_magazine/flamer_tank))
+		return ..()
+	var/obj/item/ammo_magazine/flamer_tank/FTL = W
+	if(FTL.default_ammo != /datum/ammo/flamethrower)
+		return ..()
+	if(FTL.max_rounds == FTL.current_rounds)
+		return ..()
+	if(reagents.total_volume <= 0)
+		to_chat(user, "<span class='warning'>You try to refill \the [FTL] but \the [src] fuel reserve is empty.</span>")
+		return ..()
+	var/fuel_refill = FTL.max_rounds - FTL.current_rounds
+	if(reagents.total_volume < fuel_refill)
+		fuel_refill = reagents.total_volume
+	reagents.remove_reagent("fuel", fuel_refill)
+	FTL.current_rounds = FTL.current_rounds + fuel_refill
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	to_chat(user, "<span class='notice'>You refill [FTL] with UT-Napthal Fuel as you place it inside of \the [src].</span>")
+	FTL.update_icon()
+
 
 /obj/item/storage/backpack/lightpack
 	name = "\improper lightweight combat pack"

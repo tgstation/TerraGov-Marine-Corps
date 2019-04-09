@@ -39,8 +39,8 @@
 
 	proc/meltdown()	//breaks it down, making implant unrecongizible
 		to_chat(imp_in, "<span class='warning'>You feel something melting inside [part ? "your [part.display_name]" : "you"]!</span>")
-		if (part)
-			part.take_damage(burn = 15, used_weapon = "Electronics meltdown")
+		if(part)
+			part.take_damage_limb(0, 15)
 		else
 			var/mob/living/M = imp_in
 			M.apply_damage(15,BURN)
@@ -333,7 +333,6 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 	implanted(mob/M)
 		if(!ishuman(M))	return
-		if(isyautja(M)) return
 		var/mob/living/carbon/human/H = M
 		to_chat(H, "<span class='notice'>You are now tagged as a NT loyalist and will be monitored by their central headquarters. You retain your free will and mental faculties.</span>")
 		return 1
@@ -417,8 +416,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 				STOP_PROCESSING(SSobj, src)
 			if ("emp")
 				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
-				var/name = prob(50) ? t.name : pick(teleportlocs)
-				a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm")
+				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm")
 				qdel(a)
 			else
 				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)

@@ -36,7 +36,7 @@
 	var/flags_armor_protection = NOFLAGS //see setup.dm for appropriate bit flags
 	var/flags_heat_protection = NOFLAGS //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
 	var/flags_cold_protection = NOFLAGS //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
-	var/list/armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by flags_heat_protection flags
 	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by flags_cold_protection flags
 
@@ -60,6 +60,8 @@
 	var/time_to_equip = 0 // set to ticks it takes to equip a worn suit.
 	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
 
+
+	var/reach = 1
 
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
@@ -99,6 +101,8 @@
 
 
 /obj/item/ex_act(severity)
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return
 	switch(severity)
 		if(1)
 			qdel(src)
@@ -125,7 +129,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(!istype(src.loc, /turf) || usr.stat || usr.is_mob_restrained() )
+	if(!istype(src.loc, /turf) || usr.stat || usr.restrained() )
 		return
 
 	var/turf/T = src.loc
@@ -133,31 +137,6 @@
 	src.loc = null
 
 	src.loc = T
-
-/*Global item proc for all of your unique item skin needs. Works with any
-item, and will change the skin to whatever you specify here. You can also
-manually override the icon with a unique skin if wanted, for the outlier
-cases. Override_icon_state should be a list.*/
-/obj/item/proc/select_gamemode_skin(expected_type, list/override_icon_state, override_name, list/override_protection)
-	return
-	/*if(type == expected_type)
-		var/new_icon_state
-		var/new_name
-		var/new_protection
-		if(override_icon_state && override_icon_state.len) new_icon_state = override_icon_state[map_tag]
-		if(override_name) new_name = override_name[map_tag]
-		if(override_protection && override_protection.len) new_protection = override_protection[map_tag]
-		switch(map_tag)
-			if(MAP_ICE_COLONY) //Can easily add other states if needed.
-				icon_state = new_icon_state ? new_icon_state : "s_" + icon_state
-				if(new_name) name = new_name
-				if(new_protection) min_cold_protection_temperature = new_protection
-			if(MAP_WHISKEY_OUTPOST) //Can easily add other states if needed.
-				icon_state = new_icon_state ? new_icon_state : "d_" + icon_state
-				if(new_name) name = new_name
-				if(new_protection) min_cold_protection_temperature = new_protection
-
-		item_state = icon_state*/
 
 /obj/item/attack_hand(mob/user as mob)
 	if (!user)
@@ -237,6 +216,8 @@ cases. Override_icon_state should be a list.*/
 		var/datum/action/A = X
 		A.remove_action(user)
 
+	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
+
 	if(flags_item & DELONDROP)
 		qdel(src)
 
@@ -259,13 +240,14 @@ cases. Override_icon_state should be a list.*/
 				break
 			if(!affected_limbs.Find(X.name) )
 				continue
-			armor_block = H.run_armor_check(X, "energy")
-			if(istype(X) && X.take_damage(null, rand(raw_damage * 0.75, raw_damage * 1.25), null, null, null, null, null, armor_block))
+			armor_block = H.run_armor_check(X, "acid")
+			if(istype(X) && X.take_damage_limb(0, rand(raw_damage * 0.75, raw_damage * 1.25), FALSE, FALSE, armor_block))
 				H.UpdateDamageIcon()
 			limb_count++
 		H.updatehealth()
 		qdel(current_acid)
 		current_acid = null
+	user.changeNext_move(CLICK_CD_RAPID)
 	return
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
@@ -286,6 +268,7 @@ cases. Override_icon_state should be a list.*/
 // for items that can be placed in multiple slots
 // note this isn't called during the initial dressing of a player
 /obj/item/proc/equipped(mob/user, slot)
+	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
 	for(var/X in actions)
 		var/datum/action/A = X
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
@@ -428,7 +411,7 @@ cases. Override_icon_state should be a list.*/
 					if(warning)
 						to_chat(usr, "You somehow have a suit with no defined allowed items for suit storage, stop that.")
 					return FALSE
-				if( istype(src, /obj/item/device/pda) || istype(src, /obj/item/tool/pen) || is_type_in_list(src, H.wear_suit.allowed) )
+				if(istype(src, /obj/item/tool/pen) || is_type_in_list(src, H.wear_suit.allowed) )
 					return TRUE
 				return FALSE
 			if(SLOT_HANDCUFFED)
@@ -571,12 +554,12 @@ cases. Override_icon_state should be a list.*/
 
 	if(!(usr)) //BS12 EDIT
 		return
-	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !Adjacent(usr))
+	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
 	if((!iscarbon(usr)) || (isbrain(usr)))//Is humanoid, and is not a brain
 		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
 		return
-	if( usr.stat || usr.is_mob_restrained() )//Is not asleep/dead and is not restrained
+	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
 		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
 		return
 	if(src.anchored) //Object isn't anchored
@@ -636,7 +619,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!user)
 		return
 	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
-	var/mob/living/carbon/human/H = user
 
 	for(var/obj/item/I in user.contents)
 		if(I.zoom && I != src)
@@ -647,8 +629,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
 	else if(!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
-	else if(!zoom && user.client && H.tinttotal >= 2)
-		to_chat(user, "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>")
+	else if(!zoom && user.get_total_tint() >= TINT_HEAVY)
+		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
 	else if(!zoom && user.get_active_held_item() != src)
 		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
 	else if(zoom) //If we are zoomed out, reset that parameter.
@@ -656,6 +638,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = !zoom
 		user.zoom_cooldown = world.time + 20
+		if(user.client.click_intercept)
+			user.client.click_intercept = null
 	else //Otherwise we want to zoom in.
 		if(world.time <= user.zoom_cooldown) //If we are spamming the zoom, cut it out
 			return

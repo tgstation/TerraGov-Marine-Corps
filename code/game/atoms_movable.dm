@@ -15,6 +15,7 @@
 	var/mob/pulledby = null
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 								// and if yes, are we doing the first or second move.
+	appearance_flags = TILE_BOUND|PIXEL_SCALE
 
 	var/list/mob/dead/observer/followers = list()
 
@@ -90,7 +91,7 @@
 /atom/movable/Bump(atom/A, yes) //yes arg is to distinguish our calls of this proc from the calls native from byond.
 	if(throwing)
 		throw_impact(A)
-
+	SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A)
 	spawn( 0 )
 		if ((A && yes))
 			A.last_bumped = world.time
@@ -98,6 +99,12 @@
 		return
 	..()
 	return
+
+
+//oldloc = old location on atom, inserted when forceMove is called and ONLY when forceMove is called!
+/atom/movable/Crossed(atom/movable/AM, oldloc)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, AM)
+
 
 /atom/movable/proc/Moved(atom/OldLoc,Dir)
 	if(isturf(loc))
@@ -157,6 +164,8 @@
 			if(istype(src,/mob/living))
 				var/mob/living/M = src
 				M.turf_collision(T, speed)
+
+	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
 
 //decided whether a movable atom being thrown can pass through the turf it is in.
 /atom/movable/proc/hit_check(var/speed)
@@ -332,7 +341,7 @@
 
 /obj/on_set_interaction(mob/user)
 	..()
-	in_use = 1
+	ENABLE_BITFIELD(obj_flags, IN_USE)
 
 
 //things the user's machine must do just before we unset the user's machine.

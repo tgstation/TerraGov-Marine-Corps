@@ -2,7 +2,7 @@
 	set name = "quick-equip"
 	set hidden = TRUE
 
-	if(is_mob_incapacitated() || lying || istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored))
+	if(incapacitated() || lying || istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored))
 		return
 
 	var/obj/item/I = get_active_held_item()
@@ -212,12 +212,7 @@
 		update_inv_ears()
 	if(I.flags_inv_hide & HIDEEYES)
 		update_inv_glasses()
-	if(!equipping && internal)
-		if(hud_used && hud_used.internals)
-			hud_used.internals.icon_state = "internal0"
-		internal = null
-	update_tint()
-	update_inv_wear_mask()
+	return ..()
 
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
@@ -260,7 +255,6 @@
 			W.equipped(src, slot)
 			sec_hud_set_ID()
 			wear_mask_update(W, TRUE)
-			update_inv_wear_mask()
 		if(SLOT_HANDCUFFED)
 			handcuffed = W
 			handcuff_update()
@@ -512,9 +506,9 @@
 	else
 		O = outfit
 		if(!istype(O))
-			return 0
+			return FALSE
 	if(!O)
-		return 0
+		return FALSE
 
 	return O.equip(src, visualsOnly)
 

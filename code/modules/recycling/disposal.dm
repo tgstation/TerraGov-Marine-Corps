@@ -119,7 +119,7 @@
 
 //Mouse drop another mob or self
 /obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
-	if(!istype(target) || target.anchored || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.is_mob_incapacitated(TRUE) || isAI(user) || target.mob_size >= MOB_SIZE_BIG)
+	if(!istype(target) || target.anchored || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.incapacitated(TRUE) || isAI(user) || target.mob_size >= MOB_SIZE_BIG)
 		return
 	if(isanimal(user) && target != user) return //Animals cannot put mobs other than themselves into disposal
 	add_fingerprint(user)
@@ -128,18 +128,18 @@
 	if(target == user)
 		visible_message("<span class='notice'>[user] starts climbing into the disposal.</span>")
 	else
-		if(user.is_mob_restrained()) return //can't stuff someone other than you if restrained.
+		if(user.restrained()) return //can't stuff someone other than you if restrained.
 		visible_message("<span class ='warning'>[user] starts stuffing [target] into the disposal.</span>")
 	if(!do_after(user, 40, FALSE, 5, BUSY_ICON_HOSTILE))
 		return
 	if(target_loc != target.loc)
 		return
 	if(target == user)
-		if(user.is_mob_incapacitated(TRUE)) return
+		if(user.incapacitated(TRUE)) return
 		user.visible_message("<span class='notice'>[user] climbs into [src].</span>",
 		"<span class ='notice'>You climb into [src].</span>")
 	else
-		if(user.is_mob_incapacitated()) return
+		if(user.incapacitated()) return
 		user.visible_message("<span class ='danger'>[user] stuffs [target] into [src]!</span>",
 		"<span class ='warning'>You stuff [target] into [src]!</span>")
 
@@ -242,7 +242,7 @@
 	add_fingerprint(usr)
 	if(machine_stat & BROKEN)
 		return
-	if(usr.stat || usr.is_mob_restrained() || flushing)
+	if(usr.stat || usr.restrained() || flushing)
 		return
 	if(in_range(src, usr) && istype(src.loc, /turf))
 		usr.set_interaction(src)
@@ -341,7 +341,6 @@
 		if(contents.len)
 			if(mode == 2)
 				spawn(0)
-					feedback_inc("disposal_auto_flush", 1)
 					flush()
 		flush_count = 0
 
@@ -476,6 +475,7 @@
 	//Note AM since can contain mobs or objs
 	for(var/atom/movable/AM in D)
 		AM.loc = src
+		SEND_SIGNAL(AM, COMSIG_MOVABLE_DISPOSING, src, D)
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
 			if(FAT in H.mutations) //Is a human and fat?
@@ -601,7 +601,7 @@
 	level = 1			//Underfloor only
 	var/dpdir = 0		//Bitmask of pipe directions
 	dir = 0				//dir will contain dominant direction for junction pipes
-	var/health = 10 	//Health points 0-10
+	health = 10 	//Health points 0-10
 	layer = DISPOSAL_PIPE_LAYER //Slightly lower than wires and other pipes
 	var/base_icon_state	//Initial icon state on map
 
@@ -1379,7 +1379,7 @@
 /obj/structure/disposaloutlet/retrieval
 	name = "retrieval outlet"
 	desc = "An outlet for the pneumatic disposal system."
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 
 /obj/structure/disposaloutlet/retrieval/attackby(var/obj/item/I, var/mob/user)
 	return

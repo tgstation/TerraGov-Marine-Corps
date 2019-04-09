@@ -43,6 +43,8 @@
 	if(!proximity)
 		return
 
+	user.changeNext_move(CLICK_CD_RAPID)
+
 	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
 		if(!is_drainable())
 			to_chat(user, "<span class='warning'>take [src]'s lid off first!</span>")
@@ -209,13 +211,6 @@
 	list_reagents = list("cryoxadone" = 30)
 
 /obj/item/reagent_container/glass/beaker/cryoxadone/New()
-	. = ..()
-	update_icon()
-
-/obj/item/reagent_container/glass/beaker/cryopredmix
-	list_reagents = list("cryoxadone" = 30, "clonexadone" = 30)
-
-/obj/item/reagent_container/glass/beaker/cryopredmix/New()
 	. = ..()
 	update_icon()
 

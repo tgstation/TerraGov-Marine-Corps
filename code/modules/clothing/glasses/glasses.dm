@@ -140,7 +140,7 @@
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEYES
 	eye_protection = 2
-	tint = 2
+	tint = TINT_HEAVY
 
 /obj/item/clothing/glasses/welding/attack_self()
 	toggle()
@@ -151,7 +151,7 @@
 	set name = "Adjust welding goggles"
 	set src in usr
 
-	if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
+	if(usr.canmove && !usr.stat && !usr.restrained())
 		if(active)
 			active = 0
 			flags_inventory &= ~COVEREYES
@@ -159,7 +159,7 @@
 			flags_armor_protection &= ~EYES
 			icon_state = "[initial(icon_state)]up"
 			eye_protection = 0
-			tint = 0
+			tint = TINT_NONE
 			to_chat(usr, "You push [src] up out of your face.")
 		else
 			active = 1
@@ -187,7 +187,7 @@
 	desc = "Welding goggles made from more expensive materials, strangely smells like potatoes."
 	icon_state = "rwelding-g"
 	item_state = "rwelding-g"
-	tint = 1
+	tint = TINT_MILD
 
 
 
@@ -198,7 +198,7 @@
 	name = "sunglasses"
 	icon_state = "sun"
 	item_state = "sunglasses"
-	darkness_view = -1
+	tint = TINT_MILD
 	eye_protection = 1
 
 /obj/item/clothing/glasses/sunglasses/blindfold
@@ -206,7 +206,7 @@
 	desc = "Covers the eyes, preventing sight."
 	icon_state = "blindfold"
 	item_state = "blindfold"
-	tint = 3
+	tint = TINT_BLIND
 	eye_protection = 2
 
 /obj/item/clothing/glasses/sunglasses/prescription
@@ -224,6 +224,7 @@
 
 /obj/item/clothing/glasses/sunglasses/fake
 	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
+	tint = TINT_NONE
 	eye_protection = 0
 
 /obj/item/clothing/glasses/sunglasses/fake/prescription

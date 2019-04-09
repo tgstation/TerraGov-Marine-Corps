@@ -113,7 +113,7 @@
 
 // attack with hand, move pulled object onto conveyor
 /obj/machinery/conveyor/attack_hand(mob/user as mob)
-	if ((!( user.canmove ) || user.is_mob_restrained() || !( user.pulling )))
+	if ((!( user.canmove ) || user.restrained() || !( user.pulling )))
 		return
 	if (user.pulling.anchored)
 		return

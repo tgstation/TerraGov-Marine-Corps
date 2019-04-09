@@ -34,9 +34,9 @@ log transactions
 	var/view_screen = NO_SCREEN
 	var/datum/effect_system/spark_spread/spark_system
 
-/obj/machinery/atm/New()
-	..()
-	machine_id = "[station_name()] RT #[num_financial_terminals++]"
+/obj/machinery/atm/Initialize()
+	. = ..()
+	machine_id = "RT #[num_financial_terminals++]"
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -446,9 +446,6 @@ log transactions
 			var/obj/item/card/id/I
 			if(istype(human_user.wear_id, /obj/item/card/id) )
 				I = human_user.wear_id
-			else if(istype(human_user.wear_id, /obj/item/device/pda) )
-				var/obj/item/device/pda/P = human_user.wear_id
-				I = P.id
 			if(I)
 				authenticated_account = attempt_account_access(I.associated_account_number)
 				if(authenticated_account)

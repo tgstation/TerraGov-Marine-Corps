@@ -20,7 +20,7 @@
 	spawn(1)
 		// Fill the object up with the appropriate reagents.
 		if(!isnull(plantname))
-			var/datum/seed/S = seed_types[plantname]
+			var/datum/seed/S = GLOB.seed_types[plantname]
 			if(!S || !S.chems)
 				return
 
@@ -111,7 +111,7 @@
 		if(ishuman(user))
 			var/organ = ((user.hand ? "l_":"r_") + "arm")
 			var/datum/limb/affecting = user.get_limb(organ)
-			if(affecting.take_damage(0,force))
+			if(affecting.take_damage_limb(0, force))
 				user.UpdateDamageIcon()
 		else
 			user.take_limb_damage(0,force)

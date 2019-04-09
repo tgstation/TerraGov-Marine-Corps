@@ -4,7 +4,7 @@
 	name = "Egg Sac"
 	icon = 'icons/Xeno/Ovipositor.dmi'
 	icon_state = "ovipositor"
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 	var/begin_decay_time = 0
 	var/health = 50
 	var/decay_ready = 0

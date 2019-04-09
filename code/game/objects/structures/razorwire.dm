@@ -14,7 +14,7 @@
 	var/sheet_type = /obj/item/stack/barbed_wire
 	var/sheet_type2 = /obj/item/stack/rods
 	var/table_prefix = "" //used in update_icon()
-	var/health = RAZORWIRE_MAX_HEALTH
+	health = RAZORWIRE_MAX_HEALTH
 	var/soak = 5
 
 /obj/structure/razorwire/proc/destroyed(deconstruct = FALSE)
@@ -222,14 +222,14 @@
 
 		var/mob/living/carbon/Xenomorph/Crusher/C = A
 
-		if(C.charge_speed < C.charge_speed_max * 0.5)
+		if(C.charge_speed < CHARGE_SPEED_MAX * 0.5)
 			return
 
 		health -= C.charge_speed * CRUSHER_CHARGE_RAZORWIRE_MULTI
 
 
 		var/def_zone = ran_zone()
-		if(C.charge_speed >= C.charge_speed_max)
+		if(C.charge_speed >= CHARGE_SPEED_MAX)
 			C.visible_message("<span class='danger'>[C] plows through the barbed wire!</span>",
 			"<span class='danger'>You plow through the barbed wire!</span>", null, 5)
 
@@ -270,7 +270,7 @@
 			razorwire_tangle(C)
 	return ..()
 
-/obj/structure/razorwire/proc/update_health(nomessage)
+/obj/structure/razorwire/update_health(nomessage)
 	health = CLAMP(health, 0, RAZORWIRE_MAX_HEALTH)
 
 	if(!health)

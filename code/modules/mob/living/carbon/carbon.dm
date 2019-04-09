@@ -18,7 +18,7 @@
 			germ_level++
 
 /mob/living/carbon/relaymove(mob/user, direction)
-	if(user.is_mob_incapacitated(TRUE)) return
+	if(user.incapacitated(TRUE)) return
 	if(user in src.stomach_contents)
 		if(user.client)
 			user.client.next_movement = world.time + 20
@@ -39,6 +39,8 @@
 		stomach_contents.Remove(A)
 		A.forceMove(loc)
 		if(ismob(A))
+			var/mob/M = A
+			M.SetKnockeddown(1)
 			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
 
 	. = ..()
@@ -160,19 +162,16 @@
 	if(selhand != src.hand)
 		swap_hand()
 
-/mob/living/carbon/proc/vomit()
 
-	var/mob/living/carbon/human/H = src
-	if(istype(H) && H.species.species_flags & IS_SYNTHETIC)
-		return //Machines don't throw up.
-
+/mob/living/carbon/vomit()
 	if(stat == DEAD) //Corpses don't puke
 		return
 
 	if(!lastpuke)
 		lastpuke = TRUE
 		to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
-		addtimer(CALLBACK(src, .do_vomit), 5 SECONDS)
+		addtimer(CALLBACK(src, .proc/do_vomit), 5 SECONDS)
+
 
 /mob/living/carbon/proc/do_vomit()
 	Stun(5)
@@ -185,7 +184,7 @@
 
 	nutrition = max(nutrition - 40, 0)
 	adjustToxLoss(-3)
-	addtimer(CALLBACK(src, .do_vomit_cooldown), 35 SECONDS) //wait 35 seconds before next volley
+	addtimer(CALLBACK(src, .proc/do_vomit_cooldown), 35 SECONDS) //wait 35 seconds before next volley
 
 /mob/living/carbon/proc/do_vomit_cooldown()
 	lastpuke = FALSE

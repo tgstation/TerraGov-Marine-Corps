@@ -17,10 +17,9 @@
 #define ON_BORDER				(1<<2)		// 'border object'. item has priority to check when entering or leaving
 #define NOBLOODY				(1<<3)		// Don't want a blood overlay on this one.
 #define DIRLOCK					(1<<4)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
-#define RELAY_CLICK				(1<<5)		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
-#define INITIALIZED				(1<<6)  	//Whether /atom/Initialize() has already run for the object
-#define NODECONSTRUCT			(1<<7)
-#define OVERLAY_QUEUED			(1<<8)
+#define INITIALIZED				(1<<5)  	//Whether /atom/Initialize() has already run for the object
+#define NODECONSTRUCT			(1<<6)
+#define OVERLAY_QUEUED			(1<<7)
 
 //==========================================================================================
 
@@ -82,8 +81,16 @@
 #define NOPRESSUREDMAGE (1<<7) //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
 //SUITS AND HELMETS====================================================================================
 
+//vision obscuring facegear and etc.
+#define TINT_NONE 0
+#define TINT_MILD 1
+#define TINT_HEAVY 2
+#define TINT_BLIND 3
 
-
+//Inventory depth: limits how many nested storage items you can access directly.
+//1: stuff in mob, 2: stuff in backpack, 3: stuff in box in backpack, etc
+#define INVENTORY_DEPTH		4
+#define STORAGE_VIEW_DEPTH	3
 
 
 //===========================================================================================
@@ -232,22 +239,22 @@
 //=================================================
 
 //=================================================
-#define SPACE_HELMET_min_cold_protection_temperature 	2.0 //what min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.
-#define SPACE_SUIT_min_cold_protection_temperature 		2.0 //what min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.
-#define SPACE_SUIT_max_heat_protection_temperature 		5000	//These need better heat protect, but not as good heat protect as firesuits.
-#define FIRESUIT_max_heat_protection_temperature 		30000 //what max_heat_protection_temperature is set to for firesuit quality headwear. MUST NOT BE 0.
-#define FIRE_HELMET_max_heat_protection_temperature 	30000 //for fire helmet quality items (red and white hardhats)
-#define HELMET_min_cold_protection_temperature 			200	//For normal helmets
-#define HELMET_max_heat_protection_temperature 			600	//For normal helmets
-#define ARMOR_min_cold_protection_temperature 			200	//For armor
-#define ARMOR_max_heat_protection_temperature 			600	//For armor
+#define SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE 	2.0 //what min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.
+#define SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE 		2.0 //what min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.
+#define SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE 		5000	//These need better heat protect, but not as good heat protect as firesuits.
+#define FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE 		30000 //what max_heat_protection_temperature is set to for firesuit quality headwear. MUST NOT BE 0.
+#define FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 	30000 //for fire helmet quality items (red and white hardhats)
+#define HELMET_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For normal helmets
+#define HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For normal helmets
+#define ARMOR_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For armor
+#define ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For armor
 
-#define GLOVES_min_cold_protection_temperature 			200	//For some gloves (black and)
-#define GLOVES_max_heat_protection_temperature 			650	//For some gloves
-#define SHOE_min_cold_protection_temperature 			200	//For gloves
-#define SHOE_max_heat_protection_temperature 			650	//For gloves
+#define GLOVES_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For some gloves (black and)
+#define GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE 			650	//For some gloves
+#define SHOE_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For gloves
+#define SHOE_MAX_HEAT_PROTECTION_TEMPERATURE 			650	//For gloves
 
-#define ICE_PLANET_min_cold_protection_temperature 		200 //For the ice planet map protection from the elements.
+#define ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE 		200 //For the ice planet map protection from the elements.
 //=================================================
 
 //ITEM INVENTORY WEIGHT, FOR w_class

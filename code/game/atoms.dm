@@ -294,7 +294,7 @@ its easier to just keep the beam vertical.
 			else if(container_type & AMOUNT_SKILLCHECK)
 				if(isxeno(user))
 					return
-				if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_CHEM) // If they have no skillset(admin-spawn, etc), or are properly skilled.
+				if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_NOVICE) // If they have no skillset(admin-spawn, etc), or are properly skilled.
 					to_chat(user, "It contains:")
 					if(reagents.reagent_list.len)
 						for(var/datum/reagent/R in reagents.reagent_list)
@@ -332,6 +332,11 @@ its easier to just keep the beam vertical.
 	if (density)
 		AM.throwing = 0
 	return
+
+
+/atom/proc/GenerateTag()
+	return
+
 
 /atom/proc/add_hiddenprint(mob/living/M as mob)
 	if(isnull(M)) return
@@ -459,7 +464,6 @@ its easier to just keep the beam vertical.
 		qdel(fingerprints)
 		fingerprints = null
 	return
-
 
 /atom/proc/transfer_fingerprints_to(var/atom/A)
 
@@ -611,6 +615,9 @@ Proc for attack log creation, because really why not
 	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
 		GLOB._preloader.load(src)
 
+	if(datum_flags & DF_USE_TAG)
+		GenerateTag()
+
 	var/do_initialize = SSatoms.initialized
 	if(do_initialize != INITIALIZATION_INSSATOMS)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
@@ -693,9 +700,11 @@ Proc for attack log creation, because really why not
 
 	return INITIALIZE_HINT_NORMAL
 
+
 //called if Initialize returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize()
 	return
+
 
 //called when the turf the atom resides on is ChangeTurfed
 /atom/proc/HandleTurfChange(turf/T)
@@ -705,6 +714,7 @@ Proc for attack log creation, because really why not
 
 //Hook for running code when a dir change occurs
 /atom/proc/setDir(newdir)
+	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, newdir)
 	dir = newdir
 
 
@@ -716,3 +726,17 @@ Proc for attack log creation, because really why not
 		.["Jump to"] = "?_src_=holder;[HrefToken()];observecoordjump=1;X=[curturf.x];Y=[curturf.y];Z=[curturf.z]"
 	.["Modify Transform"] = "?_src_=vars;[HrefToken()];modtransform=[REF(src)]"
 	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"
+
+
+/atom/Entered(atom/movable/AM, atom/oldLoc)
+	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, oldLoc)
+
+
+/atom/Exit(atom/movable/AM, atom/newLoc)
+	. = ..()
+	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, newLoc) & COMPONENT_ATOM_BLOCK_EXIT)
+		return FALSE
+
+
+/atom/Exited(atom/movable/AM, atom/newLoc)
+	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, newLoc)

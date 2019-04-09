@@ -7,8 +7,8 @@
 	anchored = TRUE
 	flags_atom = CONDUCT
 	layer = OBJ_LAYER
-	explosion_resistance = 5
-	var/health = 10
+	armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
+	health = 10
 	var/destroyed = FALSE
 
 /obj/structure/grille/broken

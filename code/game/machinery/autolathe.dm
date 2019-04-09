@@ -399,8 +399,3 @@
 			S.amount = round(stored_material[mat] / S.perunit)
 			S.loc = loc
 	..()
-
-/obj/machinery/autolathe/yautja
-	name = "\improper yautja autolathe"
-	desc = "It produces items using metal and glass."
-	icon = 'icons/obj/machines/predautolathe.dmi'

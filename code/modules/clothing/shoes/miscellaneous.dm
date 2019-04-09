@@ -1,3 +1,7 @@
+/obj/item/clothing/shoes/proc/step_action() //this was made to rewrite clown shoes squeaking
+	SEND_SIGNAL(src, COMSIG_SHOES_STEP_ACTION)
+
+
 /obj/item/clothing/shoes/syndigaloshes
 	desc = "A pair of brown shoes. They seem to have extra grip."
 	name = "brown shoes"
@@ -18,7 +22,7 @@
 	name = "\improper SWAT shoes"
 	desc = "When you want to turn up the heat."
 	icon_state = "swat"
-	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
+	armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25, "acid" = 25)
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
@@ -26,14 +30,14 @@
 	name = "combat boots"
 	desc = "When you REALLY want to turn up the heat"
 	icon_state = "swat"
-	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
+	armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25, "acid" = 25)
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
 	flags_cold_protection = FEET
-	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_heat_protection = FEET
-	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/shoes/space_ninja
 	name = "ninja shoes"
@@ -41,13 +45,13 @@
 	icon_state = "s-ninja"
 	permeability_coefficient = 0.01
 	flags_inventory = NOSLIPPING
-	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 15)
 	siemens_coefficient = 0.2
 
 	flags_cold_protection = FEET
-	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_heat_protection = FEET
-	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = null
 
 /obj/item/clothing/shoes/sandal
@@ -77,9 +81,14 @@
 	name = "clown shoes"
 	icon_state = "clown"
 	item_state = "clown_shoes"
-	slowdown = SHOES_SLOWDOWN+1
-	var/footstep = 1	//used for squeeks whilst walking
+	slowdown = SHOES_SLOWDOWN + 1
 	species_restricted = null
+
+
+/obj/item/clothing/shoes/clown_shoes/Initialize()
+	. = ..()
+	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg', 'sound/effects/clownstep2.ogg'), 50)
+
 
 /obj/item/clothing/shoes/jackboots
 	name = "jackboots"
@@ -96,9 +105,9 @@
 	siemens_coefficient = 0.7
 
 	flags_cold_protection = FEET
-	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_heat_protection = FEET
-	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = null
 
 /obj/item/clothing/shoes/cyborg
@@ -142,6 +151,6 @@
 	siemens_coefficient = 0.6
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
-	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
-	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 

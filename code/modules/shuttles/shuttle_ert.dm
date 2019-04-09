@@ -89,7 +89,7 @@
 /obj/machinery/computer/shuttle_control/ert
 	icon_state = "syndishuttle"
 	shuttle_tag = "Distress"
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/computer/shuttle_control/ert/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
 	var/data[0]
@@ -160,7 +160,7 @@
 			var/dock_list = list("Port", "Starboard", "Aft")
 			if(MS.use_umbilical)
 				dock_list = list("Port Hangar", "Starboard Hangar")
-			var/dock_name = input("Where on the [MAIN_SHIP_NAME] should the shuttle dock?", "Select a docking zone:") as null|anything in dock_list
+			var/dock_name = input("Where on the [CONFIG_GET(string/ship_name)] should the shuttle dock?", "Select a docking zone:") as null|anything in dock_list
 			if(MS.moving_status != SHUTTLE_IDLE || !is_centcom_level(z))
 				return
 			switch(dock_name)
@@ -182,7 +182,7 @@
 			for(var/area/A in all_areas)
 				if(A.type == dock_id)
 					MS.area_station = A
-					to_chat(usr, "<span class='warning'>You set the docking area on the [MAIN_SHIP_NAME] to \"[dock_name]\".</span>")
+					to_chat(usr, "<span class='warning'>You set the docking area on the [CONFIG_GET(string/ship_name)] to \"[dock_name]\".</span>")
 					break
 
 		ui_interact(usr)

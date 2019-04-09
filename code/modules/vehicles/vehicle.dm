@@ -32,7 +32,7 @@
 	//spawn the cell you want in each vehicle
 
 /obj/vehicle/relaymove(mob/user, direction)
-	if(user.is_mob_incapacitated())
+	if(user.incapacitated())
 		return
 	if(world.time > l_move_time + move_delay)
 		if(on && powered && cell && cell.charge < charge_use)
@@ -43,6 +43,7 @@
 			. = step(src, direction)
 
 /obj/vehicle/attackby(obj/item/W, mob/user)
+	. = ..()
 
 	if(isscrewdriver(W))
 		if(!locked)
@@ -76,8 +77,7 @@
 		playsound(src.loc, "smash.ogg", 25, 1)
 		user.visible_message("<span class='danger'>[user] hits [src] with [W].</span>","<span class='danger'>You hit [src] with [W].</span>")
 		healthcheck()
-	else
-		..()
+
 
 /obj/vehicle/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.a_intent == INTENT_HARM)

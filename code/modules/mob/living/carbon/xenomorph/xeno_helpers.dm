@@ -9,23 +9,23 @@
 	return TRUE
 
 
-/mob/living/carbon/Xenomorph/can_inject()
+/mob/living/carbon/Xenomorph/can_inject(mob/user, error_msg, target_zone, penetrate_thick = FALSE)
 	return FALSE
 
 
 
 
 //These don't do much currently. Or anything? Only around for legacy code.
-/mob/living/carbon/Xenomorph/is_mob_restrained()
+/mob/living/carbon/Xenomorph/restrained()
 	return FALSE
 
 
 /mob/living/carbon/Xenomorph/a_select_zone(input as text, screen_num as null|num)
-	screen_num = 9
+	screen_num = 8
 	return ..()
 
 
 /mob/living/carbon/Xenomorph/toggle_move_intent(screen_num as null|num)
-	screen_num = 3
+	screen_num = 2
 	. = ..()
 	update_icons()

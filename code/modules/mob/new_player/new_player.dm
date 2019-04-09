@@ -14,13 +14,9 @@
 	var/mob/living/new_character	//for instant transfer once the round is set up
 
 
-/mob/new_player/Initialize()
-	GLOB.total_players++
-	return ..()
-
-
 /mob/new_player/Destroy()
-	GLOB.total_players--
+	if(ready)
+		GLOB.ready_players--
 	return ..()
 
 
@@ -43,9 +39,29 @@
 	else
 		output += "<a href='byond://?src=[REF(src)];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
 		output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join'>Join the TGMC!</A></p>"
-		output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
+		if(isdistress(SSticker.mode))
+			output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
 
 	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=observe'>Observe</A></p>"
+
+	if(!IsGuestKey(key))
+		if(SSdbcore.Connect())
+			var/isadmin = FALSE
+			if(check_rights(R_ADMIN, FALSE))
+				isadmin = TRUE
+			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(ckey)]\")")
+			if(query_get_new_polls.Execute())
+				var/newpoll = FALSE
+				if(query_get_new_polls.NextRow())
+					newpoll = TRUE
+
+				if(newpoll)
+					output += "<p><b><a href='byond://?src=[REF(src)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+				else
+					output += "<p><a href='byond://?src=[REF(src)];showpoll=1'>Show Player Polls</A></p>"
+			qdel(query_get_new_polls)
+			if(QDELETED(src))
+				return
 
 	output += "</div>"
 
@@ -62,16 +78,18 @@
 		return
 
 	if(statpanel("Stats"))
-		if(SSticker.hide_mode)
-			stat("Game Mode:", "TerraGov Marine Corps")
-		else
-			stat("Game Mode:", "[GLOB.master_mode]")
+		stat("Game Mode:", "[GLOB.master_mode]")
 
 		if(SSticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[going ? SSticker.GetTimeLeft() : "(DELAYED)"]")
-			stat("Players: [GLOB.total_players]", "Players Ready: [GLOB.ready_players]")
-			for(var/mob/new_player/player in GLOB.player_list)
-				stat("[player.key]", player.ready ? "Playing" : "")
+			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
+			stat("Players: [length(GLOB.player_list)]", "Players Ready: [GLOB.ready_players]")
+			for(var/i in GLOB.player_list)
+				if(isnewplayer(i))
+					var/mob/new_player/N = i
+					stat("[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key]", N.ready ? "Playing" : "")
+				else if(isobserver(i))
+					var/mob/dead/observer/O = i
+					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
 
 /mob/new_player/Topic(href, href_list[])
 	if(!client)
@@ -134,10 +152,10 @@
 
 				if(is_banned_from(ckey, "Appearance") || !client?.prefs)
 					species = GLOB.all_species[DEFAULT_SPECIES]
-					species.random_name()
+					observer.real_name = species.random_name()
 				else if(client.prefs)
 					if(client.prefs.random_name)
-						client.prefs.real_name = species.random_name(client.prefs.gender)
+						observer.real_name = species.random_name(client.prefs.gender)
 					else
 						observer.real_name = client.prefs.real_name
 				else
@@ -166,25 +184,24 @@
 				to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
 				return
 
+			if(jobban_isbanned(src, ROLE_XENOMORPH) || is_banned_from(ckey, ROLE_XENOMORPH))
+				to_chat(src, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
+				return
+
 			switch(alert("Would you like to try joining as a burrowed larva or as a living xenomorph?", "Select", "Burrowed Larva", "Living Xenomorph", "Cancel"))
 				if("Burrowed Larva")
-					if(SSticker.mode.check_xeno_late_join(src))
-						var/mob/living/carbon/Xenomorph/Queen/mother
-						mother = SSticker.mode.attempt_to_join_as_larva(src)
-						if(mother)
-							close_spawn_windows()
-							SSticker.mode.spawn_larva(src, mother)
+					if(SSticker.mode.attempt_to_join_as_larva(src))
+						close_spawn_windows()
+						SSticker.mode.spawn_larva(src)
 				if("Living Xenomorph")
-					if(SSticker.mode.check_xeno_late_join(src))
-						var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src, 0)
-						if(new_xeno)
-							close_spawn_windows(new_xeno)
-							SSticker.mode.transfer_xeno(src, new_xeno)
+					var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src, 0)
+					if(new_xeno)
+						close_spawn_windows(new_xeno)
+						SSticker.mode.transfer_xeno(src, new_xeno)
 
 
 		if("manifest")
 			ViewManifest()
-
 
 
 		if("SelectedJob")
@@ -193,6 +210,90 @@
 				return
 
 			AttemptLateSpawn(href_list["job_selected"])
+
+
+	if(href_list["showpoll"])
+		handle_player_polling()
+		return
+
+	if(href_list["pollid"])
+		var/pollid = href_list["pollid"]
+		if(istext(pollid))
+			pollid = text2num(pollid)
+		if(isnum(pollid) && ISINTEGER(pollid))
+			poll_player(pollid)
+		return
+
+	if(href_list["votepollid"] && href_list["votetype"])
+		var/pollid = text2num(href_list["votepollid"])
+		var/votetype = href_list["votetype"]
+		//lets take data from the user to decide what kind of poll this is, without validating it
+		//what could go wrong
+		switch(votetype)
+			if(POLLTYPE_OPTION)
+				var/optionid = text2num(href_list["voteoptionid"])
+				if(vote_on_poll(pollid, optionid))
+					to_chat(usr, "<span class='notice'>Vote successful.</span>")
+				else
+					to_chat(usr, "<span class='danger'>Vote failed, please try again or contact an administrator.</span>")
+			if(POLLTYPE_TEXT)
+				var/replytext = href_list["replytext"]
+				if(log_text_poll_reply(pollid, replytext))
+					to_chat(usr, "<span class='notice'>Feedback logging successful.</span>")
+				else
+					to_chat(usr, "<span class='danger'>Feedback logging failed, please try again or contact an administrator.</span>")
+			if(POLLTYPE_RATING)
+				var/id_min = text2num(href_list["minid"])
+				var/id_max = text2num(href_list["maxid"])
+
+				if((id_max - id_min) > 100)	//Basic exploit prevention
+					to_chat(usr, "The option ID difference is too big. Please contact administration or the database admin.")
+					return
+
+				for(var/optionid = id_min; optionid <= id_max; optionid++)
+					if(!isnull(href_list["o[optionid]"]))	//Test if this optionid was replied to
+						var/rating
+						if(href_list["o[optionid]"] == "abstain")
+							rating = null
+						else
+							rating = text2num(href_list["o[optionid]"])
+							if(!isnum(rating) || !ISINTEGER(rating))
+								return
+
+						if(!vote_on_numval_poll(pollid, optionid, rating))
+							to_chat(usr, "<span class='danger'>Vote failed, please try again or contact an administrator.</span>")
+							return
+				to_chat(usr, "<span class='notice'>Vote successful.</span>")
+			if(POLLTYPE_MULTI)
+				var/id_min = text2num(href_list["minoptionid"])
+				var/id_max = text2num(href_list["maxoptionid"])
+
+				if((id_max - id_min) > 100)	//Basic exploit prevention
+					to_chat(usr, "The option ID difference is too big. Please contact administration or the database admin.")
+					return
+
+				for(var/optionid = id_min; optionid <= id_max; optionid++)
+					if(!isnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
+						var/i = vote_on_multi_poll(pollid, optionid)
+						switch(i)
+							if(0)
+								continue
+							if(1)
+								to_chat(usr, "<span class='danger'>Vote failed, please try again or contact an administrator.</span>")
+								return
+							if(2)
+								to_chat(usr, "<span class='danger'>Maximum replies reached.</span>")
+								break
+				to_chat(usr, "<span class='notice'>Vote successful.</span>")
+			if(POLLTYPE_IRV)
+				if(!href_list["IRVdata"])
+					to_chat(src, "<span class='danger'>No ordering data found. Please try again or contact an administrator.</span>")
+					return
+				var/list/votelist = splittext(href_list["IRVdata"], ",")
+				if(!vote_on_irv_poll(pollid, votelist))
+					to_chat(src, "<span class='danger'>Vote failed, please try again or contact an administrator.</span>")
+					return
+				to_chat(src, "<span class='notice'>Vote successful.</span>")
 
 
 /mob/new_player/proc/AttemptLateSpawn(rank)
@@ -225,17 +326,17 @@
 	if(job && !job.override_latejoin_spawn(character))
 		SSjob.SendToLateJoin(character)
 
-	data_core.manifest_inject(character)
+	GLOB.datacore.manifest_inject(character)
 	SSticker.minds += character.mind
-	SSticker.mode.latejoin_tally += 1
 
-	for(var/datum/squad/sq in SSjob.squads)
-		sq.max_engineers = engi_slot_formula(length(GLOB.clients))
-		sq.max_medics = medic_slot_formula(length(GLOB.clients))
+	if(isdistress(SSticker?.mode))
+		var/datum/game_mode/distress/D = SSticker.mode
+		D.latejoin_tally++
 
-	if(SSticker.mode.latejoin_larva_drop && SSticker.mode.latejoin_tally >= SSticker.mode.latejoin_larva_drop)
-		SSticker.mode.latejoin_tally -= SSticker.mode.latejoin_larva_drop
-		SSticker.mode.stored_larva++
+		if(D.latejoin_larva_drop && D.latejoin_tally >= D.latejoin_larva_drop)
+			D.latejoin_tally -= D.latejoin_larva_drop
+			var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+			HS.stored_larva++
 
 	qdel(src)
 
@@ -244,12 +345,12 @@
 	var/dat = "<html><body><center>"
 	dat += "Round Duration: [worldtime2text()]<br>"
 
-	if(EvacuationAuthority)
-		switch(EvacuationAuthority.evac_status)
+	if(SSevacuation)
+		switch(SSevacuation.evac_status)
 			if(EVACUATION_STATUS_INITIATING)
-				dat += "<font color='red'><b>The [MAIN_SHIP_NAME] is being evacuated.</b></font><br>"
+				dat += "<font color='red'><b>The [CONFIG_GET(string/ship_name)] is being evacuated.</b></font><br>"
 			if(EVACUATION_STATUS_COMPLETE)
-				dat += "<font color='red'>The [MAIN_SHIP_NAME] has undergone evacuation.</font><br>"
+				dat += "<font color='red'>The [CONFIG_GET(string/ship_name)] has undergone evacuation.</font><br>"
 
 	dat += "Choose from the following open positions:<br>"
 	var/datum/job/J
@@ -273,7 +374,7 @@
 
 
 /mob/new_player/proc/ViewManifest()
-	var/dat = data_core.get_manifest(OOC = 1)
+	var/dat = GLOB.datacore.get_manifest(ooc = TRUE)
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 400, 420)
 	popup.set_content(dat)

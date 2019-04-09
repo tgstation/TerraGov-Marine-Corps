@@ -125,49 +125,55 @@
 	opacity = 0
 	alpha = 145
 
+
 /obj/effect/particle_effect/smoke/tactical/New(loc, oldamount)
-	..()
+	. = ..()
 	for(var/mob/living/M in get_turf(src))
 		affect(M)
+
 
 /obj/effect/particle_effect/smoke/tactical/Move()
-	..()
+	. = ..()
 	for(var/mob/living/M in get_turf(src))
 		affect(M)
 
+
 /obj/effect/particle_effect/smoke/tactical/process()
-	.=..()
+	. = ..()
 	for(var/mob/living/M in get_turf(src))
 		affect(M)
+
 
 /obj/effect/particle_effect/smoke/tactical/Destroy()
 	for(var/mob/living/M in get_turf(src))
 		uncloak_smoke_act(M)
-	..()
+	return ..()
+
 
 /obj/effect/particle_effect/smoke/tactical/affect(var/mob/living/M)
-	if(istype(M))
-		cloak_smoke_act(M)
+	cloak_smoke_act(M)
 
-/obj/effect/particle_effect/smoke/tactical/Crossed(atom/movable/M)
-	..()
-	if(isliving(M))
-		affect(M)
 
-/obj/effect/particle_effect/smoke/tactical/Uncrossed(var/mob/living/M)
-	..()
-	uncloak_smoke_act(M)
+/obj/effect/particle_effect/smoke/tactical/Crossed(atom/movable/AM)
+	. = ..()
+	if(!isliving(AM))
+		return
+	affect(AM)
+
+
+/obj/effect/particle_effect/smoke/tactical/Uncrossed(atom/movable/AM)
+	. = ..()
+	if(!isliving(AM))
+		return
+	uncloak_smoke_act(AM)
+
 
 /obj/effect/particle_effect/smoke/tactical/proc/cloak_smoke_act(var/mob/living/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/clothing/gloves/yautja/Y = H.gloves
 		var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = H.back
 		if(H.back)
 			if(istype(S) && S.camo_active)
-				return
-		if(H.gloves)
-			if(istype(Y) && Y.cloaked)
 				return
 		return M.smokecloak_on()
 	return M.smokecloak_on()
@@ -300,8 +306,6 @@
 	..()
 	if(isxeno(M))
 		return
-	if(isyautja(M) && prob(75))
-		return
 	if(M.stat == DEAD)
 		return
 	if(istype(M.buckled, /obj/structure/bed/nest) && M.status_flags & XENO_HOST)
@@ -343,8 +347,6 @@
 /obj/effect/particle_effect/smoke/xeno_weak/affect(var/mob/living/carbon/M)
 	..()
 	if(isxeno(M))
-		return
-	if(isyautja(M) && prob(75))
 		return
 	if(M.stat == DEAD)
 		return

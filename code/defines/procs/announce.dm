@@ -44,8 +44,8 @@
 /datum/announcement/proc/Announce(message as text, new_title = "", new_sound = null, do_newscast = newscast, to_xenos = FALSE, admin = FALSE)
 	if(!message)
 		return
-	var/tmp/message_title = new_title ? new_title : title
-	var/tmp/message_sound = new_sound ? sound(new_sound) : sound
+	var/message_title = new_title ? new_title : title
+	var/message_sound = new_sound ? sound(new_sound) : sound
 
 	if(admin)
 		message = noscript(message)
@@ -105,7 +105,7 @@
 	for(var/mob/M in GLOB.player_list)
 		if(istype(M,/mob/living/carbon/Xenomorph))
 			continue
-		if(!istype(M,/mob/new_player) && !isdeaf(M) && !isyautja(M))
+		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			to_chat(M, command)
 
 /datum/announcement/priority/security/Message(message as text, message_title as text, var/to_xenos = 0)

@@ -2,8 +2,8 @@
 /obj/item/clothing/head/helmet/space/skrell
 	name = "Skrellian helmet"
 	desc = "Smoothly contoured and polished to a shine. Still looks like a fishbowl."
-	armor = list(melee = 20, bullet = 20, laser = 50,energy = 50, bomb = 50, bio = 100, rad = 100)
-	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 50, "acid" = 50)
+	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list("Skrell","Human")
 
 /obj/item/clothing/head/helmet/space/skrell/white
@@ -15,10 +15,10 @@
 /obj/item/clothing/suit/space/skrell
 	name = "Skrellian hardsuit"
 	desc = "Seems like a wetsuit with reinforced plating seamlessly attached to it. Very chic."
-	armor = list(melee = 20, bullet = 20, laser = 50,energy = 50, bomb = 50, bio = 100, rad = 100)
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 50, "acid" = 50)
 	allowed = list(/obj/item/device/flashlight,/obj/item/tank,/obj/item/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/tool/pickaxe, /obj/item/device/rcd)
 	flags_heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
+	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list("Skrell","Human")
 
 /obj/item/clothing/suit/space/skrell/white
@@ -29,9 +29,9 @@
 
 //Unathi space gear. Huge and restrictive.
 /obj/item/clothing/head/helmet/space/unathi
-	armor = list(melee = 40, bullet = 30, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 50)
+	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 15, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 15, "acid" = 15)
 	flags_heat_protection = HEAD
-	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
+	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	var/up = 0 //So Unathi helmets play nicely with the weldervision check.
 	species_restricted = list("Unathi")
 
@@ -41,10 +41,10 @@
 	icon_state = "unathi_helm_cheap"
 
 /obj/item/clothing/suit/space/unathi
-	armor = list(melee = 40, bullet = 30, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 50)
+	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 15, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 15, "acid" = 15)
 	allowed = list(/obj/item/device/flashlight,/obj/item/tank,/obj/item/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/tool/pickaxe, /obj/item/device/rcd)
 	flags_heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
+	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list("Unathi")
 
 /obj/item/clothing/suit/space/unathi/rig_cheap
@@ -71,10 +71,10 @@
 	w_class = 3
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/weapon/energy/sword,/obj/item/handcuffs,/obj/item/tank)
 	slowdown = 2
-	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 15)
 	siemens_coefficient = 0.6
 	flags_heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
+	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list("Vox", "Vox Armalis")
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/suit.dmi',
@@ -82,7 +82,7 @@
 		)
 
 /obj/item/clothing/head/helmet/space/vox
-	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 15)
 	siemens_coefficient = 0.6
 	flags_inventory = COVEREYES|NOPRESSUREDMAGE
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE

@@ -52,12 +52,24 @@
 /obj/structure/morgue/attack_hand(mob/user)
 	toggle_morgue(user)
 
+/atom/movable/proc/can_be_morgue_trayed()
+	return TRUE
+
+/mob/living/can_be_morgue_trayed()
+	return stat == DEAD
+
+/obj/structure/closet/bodybag/can_be_morgue_trayed()
+	. = ..()
+	for(var/atom/movable/AM in contents)
+		if(!AM.can_be_morgue_trayed())
+			return FALSE
+
 /obj/structure/morgue/proc/toggle_morgue(mob/user)
 	add_fingerprint(user)
 	if(!connected) return
 	if(morgue_open)
 		for(var/atom/movable/A in connected.loc)
-			if(!A.anchored)
+			if(!A.anchored && A.can_be_morgue_trayed())
 				A.forceMove(src)
 		connected.loc = src
 	else
@@ -92,7 +104,7 @@
 		. = ..()
 
 /obj/structure/morgue/relaymove(mob/user)
-	if(user.is_mob_incapacitated(TRUE))
+	if(user.incapacitated(TRUE))
 		return
 	toggle_morgue(user)
 
@@ -134,7 +146,7 @@
 		return
 	if (!ismob(O) && !istype(O, /obj/structure/closet/bodybag))
 		return
-	if (!istype(user) || user.is_mob_incapacitated())
+	if (!istype(user) || user.incapacitated())
 		return
 	O.forceMove(loc)
 	if (user != O)
@@ -247,7 +259,7 @@
 
 /obj/structure/morgue/sarcophagus
     name = "sarcophagus"
-    desc = "Used to store predators."
+    desc = "Used to store mummies."
     icon_state = "sarcophagus1"
     morgue_type = "sarcophagus"
     tray_path = /obj/structure/morgue_tray/sarcophagus

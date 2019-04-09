@@ -8,7 +8,7 @@
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
-	var/health = 15
+	health = 15
 	var/state = 2
 	var/reinf = FALSE
 	var/basestate = "window"
@@ -258,10 +258,8 @@
 
 
 /obj/structure/window/proc/disassemble_window()
-	if(reinf)
-		new /obj/item/stack/sheet/glass/reinforced(loc, 2)
-	else
-		new /obj/item/stack/sheet/glass/reinforced(loc, 2)
+	var/obj/item/stack/sheet/glass/reinforced/R = new (loc, 2)
+	transfer_fingerprints_to(R)
 	qdel(src)
 
 
@@ -482,21 +480,25 @@
 /obj/structure/window/framed/disassemble_window()
 	if(window_frame)
 		var/obj/structure/window_frame/WF = new window_frame(loc)
+		transfer_fingerprints_to(WF)
 		WF.icon_state = "[WF.basestate][junction]_frame"
 		WF.setDir(dir)
-	..()
+	return ..()
+
 
 /obj/structure/window/framed/shatter_window(create_debris)
 	if(window_frame)
 		var/obj/structure/window_frame/new_window_frame = new window_frame(loc, TRUE)
+		transfer_fingerprints_to(new_window_frame)
 		new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
 		new_window_frame.setDir(dir)
-	..()
+	return ..()
 
 
 /obj/structure/window/framed/proc/drop_window_frame()
 	if(window_frame)
 		var/obj/structure/window_frame/new_window_frame = new window_frame(loc, TRUE)
+		transfer_fingerprints_to(new_window_frame)
 		new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
 		new_window_frame.setDir(dir)
 	qdel(src)
@@ -522,7 +524,7 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	damageable = FALSE
 	deconstructable = FALSE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	health = 1000000 //Failsafe, shouldn't matter
 
 /obj/structure/window/framed/almayer/requisitions
@@ -565,7 +567,7 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	damageable = FALSE
 	deconstructable = FALSE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	health = 1000000 //Failsafe, shouldn't matter
 
 
@@ -656,5 +658,5 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	damageable = FALSE
 	deconstructable = FALSE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	health = 1000000 //Failsafe, shouldn't matter

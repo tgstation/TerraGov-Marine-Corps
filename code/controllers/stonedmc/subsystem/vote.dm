@@ -142,7 +142,7 @@ SUBSYSTEM_DEF(vote)
 
 /datum/controller/subsystem/vote/proc/submit_vote(vote)
 	if(mode)
-		if(CONFIG_GET(flag/no_dead_vote) && usr.stat == DEAD && !check_other_rights(usr.client., R_ADMIN, FALSE))
+		if(CONFIG_GET(flag/no_dead_vote) && usr.stat == DEAD && !check_other_rights(usr.client, R_ADMIN, FALSE))
 			return FALSE
 		if(!(usr.ckey in voted))
 			if(vote && 1 <= vote && vote <= length(choices))
@@ -162,12 +162,12 @@ SUBSYSTEM_DEF(vote)
 
 			var/admin = FALSE
 			var/ckey = ckey(initiator_key)
-			if(GLOB.admin_datums[ckey])
+			if(GLOB.admin_datums[ckey] || initiator_key == "SERVER")
 				admin = TRUE
 
 			if(next_allowed_time > world.time && !admin)
 				to_chat(usr, "<span class='warning'>A vote was initiated recently, you must wait [DisplayTimeText(next_allowed_time-world.time)] before a new vote can be started!</span>")
-				return 0
+				return FALSE
 
 		reset()
 		switch(vote_type)
@@ -178,6 +178,9 @@ SUBSYSTEM_DEF(vote)
 			if("map")
 				var/list/maps = list()
 				for(var/i in config.maplist)
+					var/datum/map_config/VM = config.maplist[i]
+					if(!VM.voteweight)
+						continue
 					maps += i
 				choices.Add(maps)
 			if("custom")

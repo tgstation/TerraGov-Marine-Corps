@@ -117,7 +117,7 @@
 		var/datum/limb/O = X
 		if(O.name == organ_name)
 			if(amount > 0)
-				O.take_damage(amount, 0, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
+				O.take_damage_limb(amount, 0, is_sharp(damage_source), has_edge(damage_source))
 			else
 				//if you don't want to heal robot limbs, they you will have to check that yourself before using this proc.
 				O.heal_damage(-amount, 0, internal=0, robo_repair=(O.limb_status & LIMB_ROBOT))
@@ -133,7 +133,7 @@
 		var/datum/limb/O = X
 		if(O.name == organ_name)
 			if(amount > 0)
-				O.take_damage(0, amount, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
+				O.take_damage_limb(0, amount, is_sharp(damage_source), has_edge(damage_source))
 			else
 				//if you don't want to heal robot limbs, they you will have to check that yourself before using this proc.
 				O.heal_damage(0, -amount, internal=0, robo_repair=(O.limb_status & LIMB_ROBOT))
@@ -254,7 +254,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	var/list/datum/limb/parts = get_damageable_limbs()
 	if(!parts.len)	return
 	var/datum/limb/picked = pick(parts)
-	if(picked.take_damage(brute,burn,sharp,edge))
+	if(picked.take_damage_limb(brute, burn, sharp, edge))
 		UpdateDamageIcon()
 
 	if(brute)
@@ -317,7 +317,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		var/brute_was = picked.brute_dam
 		var/burn_was = picked.burn_dam
 
-		update |= picked.take_damage(brute,burn,sharp,edge,used_weapon)
+		update |= picked.take_damage_limb(brute, burn, sharp, edge)
 		brute	-= (picked.brute_dam - brute_was)
 		burn	-= (picked.burn_dam - burn_was)
 
@@ -407,13 +407,13 @@ This function restores all limbs.
 			damageoverlaytemp = 20
 			if(species && species.brute_mod)
 				damage = damage*species.brute_mod
-			if(organ.take_damage(damage, 0, sharp, edge, used_weapon))
+			if(organ.take_damage_limb(damage, 0, sharp, edge))
 				UpdateDamageIcon()
 		if(BURN)
 			damageoverlaytemp = 20
 			if(species && species.burn_mod)
 				damage = damage*species.burn_mod
-			if(organ.take_damage(0, damage, sharp, edge, used_weapon))
+			if(organ.take_damage_limb(0, damage, sharp, edge))
 				UpdateDamageIcon()
 
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().

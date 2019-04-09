@@ -71,7 +71,7 @@
 	Topic(href, href_list)
 		..()
 
-		if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !in_range(loc, usr))
+		if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 			usr << browse(null, "window=radio")
 			onclose(usr, "radio")
 			return
@@ -141,13 +141,13 @@
 
 
 	proc/set_frequency(new_frequency)
-		if(!radio_controller)
+		if(!SSradio)
 			sleep(20)
-		if(!radio_controller)
+		if(!SSradio)
 			return
-		radio_controller.remove_object(src, frequency)
+		SSradio.remove_object(src, frequency)
 		frequency = new_frequency
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+		radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
 		return
 
 	process()

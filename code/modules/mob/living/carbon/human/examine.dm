@@ -474,9 +474,9 @@
 			perpname = name
 
 		if(perpname)
-			for (var/datum/data/record/E in data_core.general)
+			for (var/datum/data/record/E in GLOB.datacore.general)
 				if(E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.security)
+					for (var/datum/data/record/R in GLOB.datacore.security)
 						if(R.fields["id"] == E.fields["id"])
 							criminal = R.fields["criminal"]
 
@@ -497,9 +497,9 @@
 		else
 			perpname = src.name
 
-		for (var/datum/data/record/E in data_core.general)
+		for (var/datum/data/record/E in GLOB.datacore.general)
 			if (E.fields["name"] == perpname)
-				for (var/datum/data/record/R in data_core.general)
+				for (var/datum/data/record/R in GLOB.datacore.general)
 					if (R.fields["id"] == E.fields["id"])
 						medical = R.fields["p_stat"]
 		msg += "<span class = 'deptradio'>Physical status:</span> <a href='?src=\ref[src];medical=1'>\[[medical]\]</a>\n"
@@ -511,7 +511,7 @@
 
 		// scan reports
 		var/datum/data/record/N = null
-		for(var/datum/data/record/R in data_core.medical)
+		for(var/datum/data/record/R in GLOB.datacore.medical)
 			if (R.fields["name"] == real_name)
 				N = R
 				break
@@ -540,7 +540,7 @@
 	to_chat(user, msg)
 
 /mob/living/carbon/human/proc/take_pulse(mob/user)
-	if(!user || !src || !Adjacent(user) || user.is_mob_incapacitated())
+	if(!user || !src || !Adjacent(user) || user.incapacitated())
 		return
 	var/pulse_taken = get_pulse(GETPULSE_HAND)
 	if(pulse_taken == PULSE_NONE)

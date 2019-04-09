@@ -49,7 +49,7 @@
 	if(_directory)
 		directory = _directory
 	if(entries)
-		CRASH("[THIS_PROC_TYPE_WEIRD] called more than once!")
+		CRASH("/datum/controller/configuration/Load() called more than once!")
 	InitEntries()
 	LoadModes()
 	if(fexists("[directory]/config.txt") && LoadEntries("config.txt") <= 1)
@@ -260,8 +260,8 @@
 
 
 /datum/controller/configuration/proc/LoadMOTD()
-	join_motd = file2text("[directory]/motd.txt")
-	join_motd += "<br><br><span class='tip'>[pick(ALLTIPS)]<br></span>"
+	GLOB.motd = file2text("[directory]/motd.txt")
+	GLOB.motd += "<br><br><span class='tip'>[pick(ALLTIPS)]<br></span>"
 
 	/*
 	var/tm_info = GLOB.revdata.GetTestMergeInfo()

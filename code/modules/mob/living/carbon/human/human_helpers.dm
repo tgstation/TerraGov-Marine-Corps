@@ -159,21 +159,25 @@
 	for(var/datum/limb/L in limbs)
 		L.icon_name = get_limb_icon_name(species, b_icon, gender, L.display_name, e_icon)
 
-/mob/living/carbon/human/can_inject(var/mob/user, var/error_msg, var/target_zone)
-	. = 1
+/mob/living/carbon/human/can_inject(mob/user, error_msg, target_zone, penetrate_thick = FALSE)
+	. = reagents
+
+	if(!.) //yikes
+		return
 
 	if(!user)
 		target_zone = pick("chest","chest","chest","left leg","right leg","left arm", "right arm", "head")
 	else if(!target_zone)
 		target_zone = user.zone_selected
 
-	switch(target_zone)
-		if("head")
-			if(head && head.flags_inventory & BLOCKSHARPOBJ)
-				. = 0
-		else
-			if(wear_suit && wear_suit.flags_inventory & BLOCKSHARPOBJ)
-				. = 0
+	if(!penetrate_thick)
+		switch(target_zone)
+			if("head")
+				if(head?.flags_inventory & BLOCKSHARPOBJ)
+					. = FALSE
+			else
+				if(wear_suit?.flags_inventory & BLOCKSHARPOBJ)
+					. = FALSE
 	if(!. && error_msg && user)
  		// Might need re-wording.
 		to_chat(user, "<span class='alert'>There is no exposed flesh or thin material [target_zone == "head" ? "on their head" : "on their body"] to inject into.</span>")
@@ -198,12 +202,13 @@
 		return FALSE
 	if(!species.has_organ["eyes"]) //can see through other means
 		return TRUE
-	if(has_eyes())
-		if(tinttotal < 3)
-			return TRUE
-	return FALSE
+	if(!has_eyes())
+		return FALSE
+	if(get_total_tint() >= TINT_HEAVY)
+		return FALSE
+	return TRUE
 
-/mob/living/carbon/human/is_mob_restrained(var/check_grab = 1)
+/mob/living/carbon/human/restrained(var/check_grab = 1)
 	if(check_grab && pulledby && pulledby.grab_level >= GRAB_NECK)
 		return 1
 	if (handcuffed)
@@ -276,7 +281,7 @@ mob/living/carbon/human/get_standard_bodytemperature()
 
 
 /mob/living/carbon/human/toggle_move_intent(screen_num as null|num)
-	screen_num = 10
+	screen_num = 9
 	if(legcuffed)
 		to_chat(src, "<span class='notice'>You are legcuffed! You cannot run until you get [legcuffed] removed!</span>")
 		m_intent = MOVE_INTENT_WALK

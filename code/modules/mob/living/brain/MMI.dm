@@ -51,11 +51,9 @@
 
 			locked = 1
 
-			feedback_inc("cyborg_mmis_filled",1)
-
 			return
 
-		if((istype(O,/obj/item/card/id)||istype(O,/obj/item/device/pda)) && brainmob)
+		if(istype(O,/obj/item/card/id) && brainmob)
 			if(allowed(user))
 				locked = !locked
 				to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the brain holder.</span>")

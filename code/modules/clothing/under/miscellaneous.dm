@@ -88,7 +88,7 @@
 	permeability_coefficient = 0.02
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS //Needs gloves and shoes with cold protection to be fully protected.
-	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/under/acj
 	name = "administrative cybernetic jumpsuit"
@@ -98,9 +98,9 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	armor = list(melee = 100, bullet = 100, laser = 100,energy = 100, bomb = 100, bio = 100, rad = 100)
+	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
 
 /obj/item/clothing/under/owl
@@ -377,11 +377,11 @@
 	desc = "Created by an unknown corporation for high risk missions, made with several layers of a unknown nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them."
 	icon_state = "pilot_spec"
 	item_state = "pilot_spec"
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	armor = list(melee = 70, bullet = 70, laser = 70, energy = 70, bomb = 70, bio = 70, rad = 70)
+	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 70, "bomb" = 70, "bio" = 70, "rad" = 70, "fire" = 70, "acid" = 70)
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
-	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
 	slowdown= -1
 	gas_transfer_coefficient = 0.01

@@ -76,7 +76,7 @@ Instead of being uniform, it starts out a littler slower, goes fast in the middl
 	animate(A, pixel_x = x_o+rand(-x_n, x_n), pixel_y = y_o+rand(-y_n, y_n), time = speed, easing = ELASTIC_EASING|EASE_IN)
 	animate(pixel_x = x_o, pixel_y = y_o, time = speed, easing = CIRCULAR_EASING|EASE_OUT)
 
-//Basic megaman-like animation. No bells or whistles, but looks nice. Could work for Predator relay device, for example.
+//Basic megaman-like animation. No bells or whistles, but looks nice.
 proc/animation_teleport_quick_out(atom/A, speed = 10)
 	animate(A, transform = matrix(0, 4, MATRIX_SCALE), alpha = 0, time = speed, easing = BACK_EASING)
 	return speed

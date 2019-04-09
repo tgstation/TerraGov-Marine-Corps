@@ -26,7 +26,7 @@
 	flags_inv_hide = NOFLAGS
 	flags_armor_protection = 0
 	flags_cold_protection = HEAD
-	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
+	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
 	flags_armor_protection = 0
 
@@ -112,7 +112,7 @@
 	desc = "Someone who wears this will look very smart."
 	icon_state = "detective"
 	allowed = list(/obj/item/reagent_container/food/snacks/candy_corn, /obj/item/tool/pen)
-	armor = list(melee = 50, bullet = 5, laser = 25,energy = 10, bomb = 0, bio = 0, rad = 0)
+	armor = list("melee" = 50, "bullet" = 5, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	siemens_coefficient = 0.9
 	flags_armor_protection = 0
 

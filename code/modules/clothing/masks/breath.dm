@@ -20,7 +20,7 @@
 		set name = "Adjust mask"
 		set src in usr
 
-		if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
+		if(usr.canmove && !usr.stat && !usr.restrained())
 			if(!src.hanging)
 				src.hanging = !src.hanging
 				gas_transfer_coefficient = 1 //gas is now escaping to the turf and vice versa
@@ -65,4 +65,4 @@
 	flags_inventory = COVERMOUTH|ALLOWREBREATH
 	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	flags_cold_protection = HEAD
-	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE

@@ -82,7 +82,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "album"
 	item_state = "briefcase"
-	can_hold = list("/obj/item/photo",)
+	can_hold = list(/obj/item/photo)
 
 /obj/item/storage/photo_album/MouseDrop(obj/over_object as obj)
 
@@ -91,7 +91,7 @@
 		if(!( istype(over_object, /obj/screen) ))
 			return ..()
 		playsound(loc, "rustle", 15, 1, 6)
-		if((!( M.is_mob_restrained() ) && !( M.stat ) && M.back == src))
+		if((!( M.restrained() ) && !( M.stat ) && M.back == src))
 			switch(over_object.name)
 				if("r_hand")
 					M.dropItemToGround(src)

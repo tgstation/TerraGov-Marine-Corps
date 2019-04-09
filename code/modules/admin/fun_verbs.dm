@@ -127,10 +127,10 @@
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
 			if(!(C.machine_stat & (BROKEN|NOPOWER)))
 				var/obj/item/paper/P = new /obj/item/paper(C.loc)
-				P.name = "'[command_name()] Update.'"
+				P.name = "'[CONFIG_GET(string/ship_name)] Update.'"
 				P.info = input
 				P.update_icon()
-				C.messagetitle.Add("[command_name()] Update")
+				C.messagetitle.Add("[CONFIG_GET(string/ship_name)] Update")
 				C.messagetext.Add(P.info)
 
 	switch(alert("Should this be announced to the general population?", "Announce", "Yes", "No", "Cancel"))
@@ -181,11 +181,50 @@
 
 
 /datum/admins/proc/subtle_message(var/mob/M in GLOB.player_list)
-	set category = "Fun"
+	set category = null
 	set name = "Subtle Message"
 
 	if(!check_rights(R_FUN|R_MENTOR))
 		return
+
+	var/msg = input("Subtle PM to [key_name(M)]:", "Subtle Message", "") as text
+
+	if(!M?.client || !msg)
+		return
+
+	if(check_rights(R_ADMIN, FALSE))
+		msg = noscript(msg)
+	else
+		msg = sanitize(msg)
+
+	to_chat(M, "<b>You hear a voice in your head... [msg]</b>")
+
+	admin_ticket_log(M, "[key_name_admin(usr)] used Subtle Message: [sanitize(msg)]")
+	log_admin("SubtleMessage: [key_name(usr)] to [key_name(M)]: [msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] used Subtle Message on [ADMIN_TPMONTY(M)]: [msg]")
+
+
+/datum/admins/proc/subtle_message_panel()
+	set category = "Fun"
+	set name = "Subtle Message Mob"
+
+	if(!check_rights(R_FUN|R_MENTOR))
+		return
+
+	var/mob/M
+	switch(input("Message by:", "Subtle Message") as null|anything in list("Key", "Mob"))
+		if("Key")
+			var/client/C = input("Please, select a key.", "Subtle Message") as null|anything in sortKey(GLOB.clients)
+			if(!C)
+				return
+			M = C.mob
+		if("Mob")
+			var/mob/N = input("Please, select a mob.", "Subtle Message") as null|anything in sortNames(GLOB.player_list)
+			if(!N)
+				return
+			M = N
+		else
+			return
 
 	var/msg = input("Subtle PM to [key_name(M)]:", "Subtle Message", "") as text
 
@@ -216,27 +255,27 @@
 
 /datum/admins/proc/custom_info()
 	set category = "Fun"
-	set name = "Change Custom Event"
+	set name = "Change Custom Info"
 
 	if(!check_rights(R_FUN))
 		return
 
-	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear"))
+	switch(input("Do you want to change or clear the custom info?", "Custom Info") as null|anything in list("Change", "Clear"))
 		if("Change")
-			custom_event_msg = input(usr, "Set the custom information players get on joining or via the OOC tab.",, custom_event_msg) as message|null
+			GLOB.custom_info = input(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom Info", GLOB.custom_info) as message|null
 
-			custom_event_msg = noscript(custom_event_msg)
+			GLOB.custom_info = noscript(GLOB.custom_info)
 
-			if(!custom_event_msg)
+			if(!GLOB.custom_info)
 				return
 
 			to_chat(world, "<h1 class='alert'>Custom Information</h1>")
-			to_chat(world, "<span class='alert'>[custom_event_msg]</span>")
+			to_chat(world, "<span class='alert'>[GLOB.custom_info]</span>")
 
-			log_admin("[key_name(usr)] has changed the custom event text: [custom_event_msg]")
+			log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
 			message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
 		if("Clear")
-			custom_event_msg = null
+			GLOB.custom_info = null
 			log_admin("[key_name(usr)] has cleared the custom info.")
 			message_admins("[ADMIN_TPMONTY(usr)] has cleared the custom info.")
 
@@ -245,12 +284,12 @@
 	set category = "OOC"
 	set name = "Custom Info"
 
-	if(!custom_event_msg || custom_event_msg == "")
-		to_chat(src, "<span class='notice'>There currently is no known custom information set.</span>")
+	if(!GLOB.custom_info)
+		to_chat(src, "<span class='notice'>There currently is no custom information set.</span>")
 		return
 
 	to_chat(src, "<h1 class='alert'>Custom Information</h1>")
-	to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
+	to_chat(src, "<span class='alert'>[GLOB.custom_info]</span>")
 
 
 /datum/admins/proc/sound_file(S as sound)
@@ -261,17 +300,18 @@
 	if(!check_rights(R_SOUND))
 		return
 
-	heard_midi = 0
+	var/heard_midi = 0
 	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
 	uploaded_sound.priority = 250
 
 
-	var/style = alert("Play sound globally or locally?", "Sound", "Global", "Local", "Cancel")
+	var/style = alert("Play sound globally or locally?", "Play Imported Sound", "Global", "Local", "Cancel")
 	switch(style)
 		if("Global")
-			for(var/mob/M in GLOB.player_list)
-				if(M.client.prefs.toggles_sound & SOUND_MIDI)
-					M << uploaded_sound
+			for(var/i in GLOB.clients)
+				var/client/C = i
+				if(C.prefs.toggles_sound & SOUND_MIDI)
+					SEND_SOUND(C, uploaded_sound)
 					heard_midi++
 		if("Local")
 			playsound(get_turf(usr), uploaded_sound, 50, 0)
@@ -301,7 +341,7 @@
 		return
 
 	var/web_sound_url = ""
-	var/pitch
+	var/list/music_extra_data = list()
 	var/title
 	var/show = FALSE
 	if(length(web_sound_input))
@@ -325,6 +365,8 @@
 			if(data["url"])
 				web_sound_url = data["url"]
 				title = "[data["title"]]"
+				music_extra_data["start"] = data["start_time"]
+				music_extra_data["end"] = data["end_time"]
 				var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "Yes", "No", "Cancel")
 				switch(res)
 					if("Yes")
@@ -361,7 +403,7 @@
 			if(!C?.prefs)
 				continue
 			if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-				C.chatOutput.sendMusic(web_sound_url, pitch)
+				C.chatOutput.sendMusic(web_sound_url, music_extra_data)
 				if(show)
 					to_chat(C, "<span class='boldnotice'>An admin played: [show]</span>")
 
@@ -505,7 +547,7 @@
 		else
 			return
 
-	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[MAIN_SHIP_NAME + " " + tag]
+	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[CONFIG_GET(string/ship_name) + " " + tag]
 
 	if(!dropship)
 		return
@@ -551,7 +593,7 @@
 	var/dock_list = list("Port", "Starboard", "Aft")
 	if(shuttle.use_umbilical)
 		dock_list = list("Port Hangar", "Starboard Hangar")
-	var/dock_name = input("Where on the [MAIN_SHIP_NAME] should the shuttle dock?", "Select a docking zone:") as null|anything in dock_list
+	var/dock_name = input("Where on the [CONFIG_GET(string/ship_name)] should the shuttle dock?", "Select a docking zone:") as null|anything in dock_list
 	switch(dock_name)
 		if("Port")
 			dock_id = /area/shuttle/distress/arrive_2
@@ -667,7 +709,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed the security level to code [sec_level].")
 
 
-/datum/admins/proc/select_rank(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+/datum/admins/proc/select_rank(mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Select Rank"
 
@@ -677,38 +719,16 @@
 	switch(alert("Modify the rank or give them a new one?", "Select Rank", "New Rank", "Modify", "Cancel"))
 		if("New Rank")
 			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(SSjob.name_occupations)
-			if(!newrank)
+			if(!newrank || !istype(H))
 				return
 
-			if(!H?.mind)
-				return
-
-			var/datum/job/J = SSjob.name_occupations[newrank]
-			var/datum/outfit/job/O = new J.outfit
-			var/id = O.id ? O.id : /obj/item/card/id
-			var/obj/item/card/id/I = new id
-			var/datum/skills/L = new J.skills_type
-			H.mind.cm_skills = L
-			H.mind.comm_title = J.comm_title
-
-			if(H.wear_id)
-				qdel(H.wear_id)
-
-			H.job = newrank
-			H.faction = J.faction
-
-			H.equip_to_slot_or_del(I, SLOT_WEAR_ID)
-
-			SSjob.AssignRole(H, newrank)
-			O.post_equip(H)
+			H.set_rank(newrank)
 
 			log_admin("[key_name(usr)] has set the rank of [key_name(H)] to [newrank].")
 			message_admins("[ADMIN_TPMONTY(usr)] has set the rank of [ADMIN_TPMONTY(H)] to [newrank].")
 
 		if("Modify")
 			var/obj/item/card/id/I = H.wear_id
-			if(!istype(I))
-				H.wear_id = new /obj/item/card/id(H)
 			switch(input("What do you want to edit?") as null|anything in list("Comms Title - \[Engineering (Title)]", "Chat Title - Title John Doe screams!", "ID title - Jane Doe's ID Card (Title)", "Registered Name - Jane Doe's ID Card", "Skills"))
 				if("Comms Title - \[Engineering (Title)]")
 					var/commtitle = input("Write the custom title appearing in the comms: Comms Title - \[Engineering (Title)]", "Comms Title") as null|text
@@ -717,26 +737,20 @@
 					H.mind.comm_title = commtitle
 				if("Chat Title - Title John Doe screams!")
 					var/chattitle = input("Write the custom title appearing in all chats: Title Jane Doe screams!", "Chat Title") as null|text
-					if(chattitle || !H)
+					if(chattitle || !H || !istype(I))
 						return
-					if(!istype(I) || I != H.wear_id)
-						H.wear_id = new /obj/item/card/id(H)
 					I.paygrade = chattitle
 					I.update_label()
 				if("ID title - Jane Doe's ID Card (Title)")
 					var/idtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID Title") as null|text
-					if(!H || I != H.wear_id)
+					if(!idtitle || !H || !istype(I))
 						return
-					if(!istype(I) || I != H.wear_id)
-						H.wear_id = new /obj/item/card/id(H)
 					I.assignment = idtitle
 					I.update_label()
 				if("Registered Name - Jane Doe's ID Card")
 					var/regname = input("Write the name appearing on the ID itself: Jane Doe's ID Card", "Registered Name") as null|text
-					if(!H || I != H.wear_id)
+					if(!H || I != H.wear_id || !istype(I))
 						return
-					if(!istype(I) || I != H.wear_id)
-						H.wear_id = new /obj/item/card/id(H)
 					I.registered_name = regname
 					I.update_label()
 				if("Skills")
@@ -753,28 +767,18 @@
 			message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank/skill change for [ADMIN_TPMONTY(H)].")
 
 
-/datum/admins/proc/select_equipment(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+/datum/admins/proc/select_equipment(mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Select Equipment"
 
 	if(!check_rights(R_FUN))
 		return
 
-	var/list/outfits = list("Naked", "Custom", "As Job...")
-	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job)
-	for(var/path in paths)
-		var/datum/outfit/O = path
-		if(initial(O.can_be_admin_equipped))
-			outfits[initial(O.name)] = path
-
-	var/dresscode = input("Please select an outfit.", "Select Equipment") as null|anything in list("-- Naked", "-- Job", "-- Custom")
-	if(isnull(dresscode))
+	var/dresscode = input("Please select an outfit.", "Select Equipment") as null|anything in list("{Naked}", "{Job}", "{Custom}")
+	if(!dresscode)
 		return
 
-	if(outfits[dresscode])
-		dresscode = outfits[dresscode]
-
-	if(dresscode == "-- Job")
+	if(dresscode == "{Job}")
 		var/list/job_paths = subtypesof(/datum/outfit/job)
 		var/list/job_outfits = list()
 		for(var/path in job_paths)
@@ -784,26 +788,22 @@
 
 		dresscode = input("Select job equipment", "Select Equipment") as null|anything in sortList(job_outfits)
 		dresscode = job_outfits[dresscode]
-		if(isnull(dresscode))
-			return
 
-	if(dresscode == "-- Custom")
+	else if(dresscode == "{Custom}")
 		var/list/custom_names = list()
 		for(var/datum/outfit/D in GLOB.custom_outfits)
 			custom_names[D.name] = D
 		var/selected_name = input("Select outfit", "Select Equipment") as null|anything in sortList(custom_names)
 		dresscode = custom_names[selected_name]
-		if(isnull(dresscode))
-			return
 
 	if(!dresscode)
 		return
 
 	var/datum/outfit/O
 	H.delete_equipment(TRUE)
-	if(dresscode != "-- Naked")
+	if(dresscode != "{Naked}")
 		O = new dresscode
-		H.equipOutfit(O, TRUE)
+		H.equipOutfit(O, FALSE)
 
 	H.regenerate_icons()
 
@@ -811,7 +811,25 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(H)] to [istype(O) ? O.name : dresscode].")
 
 
-GLOBAL_LIST_EMPTY(custom_outfits)
+/datum/admins/proc/change_squad(mob/living/carbon/human/H in GLOB.human_mob_list)
+	set category = "Fun"
+	set name = "Change Squad"
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(!istype(H) || !(H.job in JOBS_MARINES))
+		return
+
+	var/squad = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
+	if(!squad || !istype(H) || !(H.job in JOBS_MARINES))
+		return
+
+	H.change_squad(squad)
+
+	log_admin("[key_name(src)] has changed the squad of [key_name(H)] to [squad].")
+	message_admins("[ADMIN_TPMONTY(usr)] has changed the squad of [ADMIN_TPMONTY(H)] to [squad].")
+
 
 /datum/admins/proc/create_outfit()
 	set category = "Fun"
@@ -1012,7 +1030,7 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	message_admins("[ADMIN_TPMONTY(usr)] updated the appearance of [ADMIN_TPMONTY(H)].")
 
 
-/datum/admins/proc/offer(var/mob/M in GLOB.mob_list)
+/datum/admins/proc/offer(mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Offer Mob"
 
@@ -1025,22 +1043,23 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	var/mob/living/L = M
 
 	if(L.key || L.ckey)
-		if(alert("This mob has a player inside, are you sure you want to proceed?", "WARNING", "Yes", "No") != "Yes")
+		if(alert("This mob has a player inside, are you sure you want to proceed?", "Offer Mob", "Yes", "No") != "Yes")
 			return
-		L.taken = FALSE
-		var/mob/dead/observer/ghost = L.ghostize(FALSE)
-		if(ghost)
-			ghost.timeofdeath = world.time
-	else if(L.taken)
-		if(alert("This mob has been offered, are you sure you want to proceed?", "Warning", "Yes", "No") != "Yes")
-			return
-		L.taken = FALSE
+		L.ghostize(FALSE)
+	else if(L in GLOB.offered_mob_list)
+		switch(alert("This mob has been offered, do you want to re-announce it?", "Offer Mob", "Yes", "Remove", "Cancel"))
+			if("Cancel")
+				return
+			if("Remove")
+				GLOB.offered_mob_list -= L
+				log_admin("[key_name(usr)] has removed offer of [key_name_admin(M)].")
+				message_admins("[ADMIN_TPMONTY(usr)] has removed offer of [ADMIN_TPMONTY(M)].")
+				return
 
-	if(alert("Are you sure?", "Offer Mob", "Yes", "No") != "Yes")
+	else if(alert("Are you sure?", "Offer Mob", "Yes", "No") != "Yes")
 		return
-	for(var/i in GLOB.dead_mob_list)
-		var/mob/dead/D = i
-		to_chat(D, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [L.name] \[<a href='byond://?src=[REF(D)];claim=[REF(L)]'>CLAIM</a>\]</span><hr><br>")
+
+	L.offer_mob()
 
 	log_admin("[key_name(usr)] has offered [key_name_admin(M)].")
 	message_admins("[ADMIN_TPMONTY(usr)] has offered [ADMIN_TPMONTY(M)].")
@@ -1060,8 +1079,8 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	var/hivenumber_status = X.hivenumber
 
 	var/list/namelist = list()
-	for(var/Y in hive_datum)
-		var/datum/hive_status/H = Y
+	for(var/Y in GLOB.hive_datums)
+		var/datum/hive_status/H = GLOB.hive_datums[Y]
 		namelist += H.name
 
 	var/newhive = input(src, "Select a hive.", null, null) in namelist
@@ -1084,7 +1103,7 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	if(!istype(X) || X.gc_destroyed || !SSticker || X.hivenumber != hivenumber_status)
 		return
 
-	X.set_hive_number(newhivenumber)
+	X.transfer_to_hive(newhivenumber)
 
 	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] to [newhive].")
@@ -1137,3 +1156,13 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 
 	log_admin("[key_name(usr)] has possessed [O] ([O.type]).")
 	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]).")
+
+
+/client/proc/toggle_buildmode()
+	set category = "Fun"
+	set name = "Toggle Build Mode"
+
+	if(!check_rights(R_FUN))
+		return
+
+	togglebuildmode(usr)

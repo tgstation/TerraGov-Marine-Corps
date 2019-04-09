@@ -4,9 +4,9 @@
 	icon_state = "captain"
 	item_state = "egloves"
 	flags_cold_protection = HANDS
-	min_cold_protection_temperature = GLOVES_min_cold_protection_temperature
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_heat_protection = HANDS
-	max_heat_protection_temperature = GLOVES_max_heat_protection_temperature
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/gloves/cyborg
 	desc = "beep boop borp"
@@ -24,9 +24,9 @@
 	permeability_coefficient = 0.05
 
 	flags_cold_protection = HANDS
-	min_cold_protection_temperature = GLOVES_min_cold_protection_temperature
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_heat_protection = HANDS
-	max_heat_protection_temperature = GLOVES_max_heat_protection_temperature
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/gloves/combat //Combined effect of SWAT gloves and insulated gloves
 	desc = "These tactical gloves are somewhat fire and impact resistant."
@@ -36,9 +36,9 @@
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	flags_cold_protection = HANDS
-	min_cold_protection_temperature = GLOVES_min_cold_protection_temperature
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_heat_protection = HANDS
-	max_heat_protection_temperature = GLOVES_max_heat_protection_temperature
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/gloves/latex
 	name = "latex gloves"

@@ -351,7 +351,7 @@
 			switch(z_hidden) 
 				if(HIDE_NONE)
 					z_hidden = HIDE_ON_SHIP
-					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [MAIN_SHIP_NAME] are now hidden.</span>")
+					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [CONFIG_GET(string/ship_name)] are now hidden.</span>")
 				if(HIDE_ON_SHIP)
 					z_hidden = HIDE_ON_GROUND
 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the ground are now hidden.</span>")
@@ -484,7 +484,7 @@
 
 
 /obj/machinery/computer/overwatch/check_eye(mob/user)
-	if(user.is_mob_incapacitated(TRUE) || get_dist(user, src) > 1 || is_blind(user)) //user can't see - not sure why canmove is here.
+	if(user.incapacitated(TRUE) || get_dist(user, src) > 1 || is_blind(user)) //user can't see - not sure why canmove is here.
 		user.unset_interaction()
 	else if(!cam || !cam.can_use()) //camera doesn't work, is no longer selected or is gone
 		user.unset_interaction()
@@ -592,7 +592,7 @@
 /obj/machinery/computer/overwatch/proc/do_shake_camera()
 	for(var/mob/living/carbon/H in GLOB.alive_mob_list)
 		if(is_mainship_level(H.z) && !H.stat) //TGS Theseus decks.
-			to_chat(H, "<span class='warning'>The deck of the [MAIN_SHIP_NAME] shudders as the orbital cannons open fire on the colony.</span>")
+			to_chat(H, "<span class='warning'>The deck of the [CONFIG_GET(string/ship_name)] shudders as the orbital cannons open fire on the colony.</span>")
 			if(H.client)
 				shake_camera(H, 10, 1)
 
@@ -666,9 +666,9 @@
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[wanted_marine] is missing in action.</span>")
 		return
 
-	for (var/datum/data/record/E in data_core.general)
+	for (var/datum/data/record/E in GLOB.datacore.general)
 		if(E.fields["name"] == wanted_marine.real_name)
-			for (var/datum/data/record/R in data_core.security)
+			for (var/datum/data/record/R in GLOB.datacore.security)
 				if (R.fields["id"] == E.fields["id"])
 					if(!findtext(R.fields["ma_crim"],"Insubordination."))
 						R.fields["criminal"] = "*Arrest*"
@@ -748,7 +748,7 @@
 	old_squad.remove_marine_from_squad(transfer_marine)
 	new_squad.put_marine_in_squad(transfer_marine)
 
-	for(var/datum/data/record/t in data_core.general) //we update the crew manifest
+	for(var/datum/data/record/t in GLOB.datacore.general) //we update the crew manifest
 		if(t.fields["name"] == transfer_marine.real_name)
 			t.fields["squad"] = new_squad.name
 			break
@@ -860,7 +860,7 @@
 	icon = 'icons/effects/warning_stripes.dmi'
 	anchored = 1
 	density = 0
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 	layer = ABOVE_TURF_LAYER
 	var/squad_name = "Alpha"
 	var/sending_package = 0
@@ -1097,23 +1097,20 @@
 	var/message = ""
 	switch(command_aura)
 		if("move")
-			var/image/move = image('icons/mob/talk.dmi', icon_state = "order_move")
-			overlays += move
+			var/image/move = image('icons/mob/talk.dmi', src, icon_state = "order_move")
 			message = pick(";GET MOVING!", ";GO, GO, GO!", ";WE ARE ON THE MOVE!", ";MOVE IT!", ";DOUBLE TIME!")
 			say(message)
-			addtimer(CALLBACK(src, .proc/remove_emote_overlay, move), 5 SECONDS)
+			add_emote_overlay(move)
 		if("hold")
-			var/image/hold = image('icons/mob/talk.dmi', icon_state = "order_hold")
-			overlays += hold
+			var/image/hold = image('icons/mob/talk.dmi', src, icon_state = "order_hold")
 			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!")
 			say(message)
-			addtimer(CALLBACK(src, .proc/remove_emote_overlay, hold), 5 SECONDS)
+			add_emote_overlay(hold)
 		if("focus")
-			var/image/focus = image('icons/mob/talk.dmi', icon_state = "order_focus")
-			overlays += focus
+			var/image/focus = image('icons/mob/talk.dmi', src, icon_state = "order_focus")
 			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
 			say(message)
-			addtimer(CALLBACK(src, .proc/remove_emote_overlay, focus), 5 SECONDS)
+			add_emote_overlay(focus)
 	update_action_buttons()
 
 

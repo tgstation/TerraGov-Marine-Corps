@@ -102,10 +102,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 					target.apply_effects(0,1) //Smaller ones just get shaken.
 					to_chat(target, "<span class='xenodanger'>You are shaken by the sudden impact!</span>")
 				else
-					if(!isyautja(M)) //Not predators.
-						var/mob/living/target = M
-						target.apply_effects(1,2) //Humans get stunned a bit.
-						to_chat(target, "<span class='highdanger'>The blast knocks you off your feet!</span>")
+					var/mob/living/target = M
+					target.apply_effects(1,2) //Humans get stunned a bit.
+					to_chat(target, "<span class='highdanger'>The blast knocks you off your feet!</span>")
 			step_away(M,P)
 
 	proc/staggerstun(mob/M, obj/item/projectile/P, var/max_range = 2, var/stun = 0, var/weaken = 1, var/stagger = 2, var/slowdown = 1, var/knockback = 1, var/shake = 1, var/soft_size_threshold = 3, var/hard_size_threshold = 2)
@@ -135,7 +134,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 				impact_message += "<span class='warning'>You are shaken by the sudden impact!</span>"
 
 		//Check for and apply hard CC.
-		if(((isyautja(M) || M.mob_size == MOB_SIZE_BIG) && hard_size_threshold > 2) || (M.mob_size == MOB_SIZE_XENO && hard_size_threshold > 1) || (ishuman(M) && hard_size_threshold > 0))
+		if(( M.mob_size == MOB_SIZE_BIG && hard_size_threshold > 2) || (M.mob_size == MOB_SIZE_XENO && hard_size_threshold > 1) || (ishuman(M) && hard_size_threshold > 0))
 			var/mob/living/L = M
 			if(!M.stunned && !M.knocked_down) //Prevent chain stunning.
 				L.apply_effects(stun,weaken)
@@ -213,7 +212,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	//This is sort of a workaround for now. There are better ways of doing this ~N.
 	proc/stun_living(mob/living/target, obj/item/projectile/P) //Taser proc to stun folks.
 		if(istype(target))
-			if( isyautja(target) || isxeno(target) )
+			if(isxeno(target))
 				return //Not on aliens.
 			target.apply_effects(12,20)
 
@@ -594,7 +593,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species && H.species.count_human) //no effect on synths or preds.
+		if(H.species?.count_human) //no effect on synths
 			H.apply_effects(6,8)
 		shake_camera(H, 2, 1)
 
@@ -723,7 +722,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SKIPS_HUMANS
-	accurate_range_min = 10
+	accurate_range_min = 5
 
 /datum/ammo/bullet/sniper/New()
 	..()
@@ -804,11 +803,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC
 	icon_state 	= "bullet"
 
-/datum/ammo/bullet/smartgun/lethal/New()
-	..()
-	damage = CONFIG_GET(number/combat_define/low_hit_damage)
-	penetration = CONFIG_GET(number/combat_define/mlow_armor_penetration)
-
 /datum/ammo/bullet/smartgun/dirty
 	name = "irradiated smartgun bullet"
 	hud_state = "smartgun_radioactive"
@@ -861,8 +855,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/turret/mini/New()
 	. = ..()
-	damage = CONFIG_GET(number/combat_define/hlow_hit_damage) //35
-	penetration= CONFIG_GET(number/combat_define/low_armor_penetration) //20
+	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/mlow_armor_penetration)
 
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
@@ -1104,100 +1098,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/taser/on_hit_mob(mob/M, obj/item/projectile/P)
 	stun_living(M,P)
 
-/datum/ammo/energy/yautja/
-	hud_state_empty = "battery_empty"
-
-/datum/ammo/energy/yautja/New()
-	..()
-	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
-	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
-
-
-/datum/ammo/energy/yautja/pistol
-	name = "plasma pistol bolt"
-	icon_state = "ion"
-	hud_state = "plasma_pistol"
-	flags_ammo_behavior = AMMO_ENERGY
-/datum/ammo/energy/yautja/pistol/New()
-	..()
-	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
-	shell_speed = CONFIG_GET(number/combat_define/reg_shell_speed)
-
-/datum/ammo/energy/yautja/caster/bolt
-	name = "plasma bolt"
-	icon_state = "ion"
-	hud_state = "plasma"
-	debilitate = list(2,2,0,0,0,1,0,0)
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST
-
-/datum/ammo/energy/yautja/caster/bolt/New()
-	..()
-	damage = CONFIG_GET(number/combat_define/base_hit_damage)
-
-/datum/ammo/energy/yautja/caster/blast
-	name = "plasma blast"
-	icon_state = "pulse1"
-	hud_state = "plasma_blast"
-
-/datum/ammo/energy/yautja/caster/blast/New()
-	..()
-	damage = CONFIG_GET(number/combat_define/low_hit_damage)
-	shell_speed = CONFIG_GET(number/combat_define/ultra_shell_speed)
-
-/datum/ammo/energy/yautja/caster/sphere
-	name = "plasma eradication sphere"
-	icon_state = "bluespace"
-	hud_state = "plasma_sphere"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_EXPLOSIVE
-
-/datum/ammo/energy/yautja/caster/sphere/New()
-	..()
-	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
-	shell_speed = CONFIG_GET(number/combat_define/super_shell_speed)
-
-/datum/ammo/energy/yautja/caster/sphere/on_hit_mob(mob/M,obj/item/projectile/P)
-	explosion(get_turf(P.loc), -1, -1, 2, 2)
-
-/datum/ammo/energy/yautja/caster/sphere/on_hit_turf(turf/T,obj/item/projectile/P)
-	explosion(T, -1, -1, 2, 2)
-
-/datum/ammo/energy/yautja/caster/sphere/on_hit_obj(obj/O,obj/item/projectile/P)
-	explosion(get_turf(P.loc), -1, -1, 2, 2)
-
-/datum/ammo/energy/yautja/rifle
-
-/datum/ammo/energy/yautja/rifle/New()
-	..()
-	damage = CONFIG_GET(number/combat_define/base_hit_damage)
-
-/datum/ammo/energy/yautja/rifle/on_hit_mob(mob/M,obj/item/projectile/P)
-	if(P.damage > 25)
-		knockback(M,P)
-		playsound(M.loc, 'sound/weapons/pulse.ogg', 25, 1)
-
-/datum/ammo/energy/yautja/rifle/on_hit_turf(turf/T,obj/item/projectile/P)
-	if(P.damage > 25)
-		explosion(T, -1, -1, 2, -1)
-
-/datum/ammo/energy/yautja/rifle/on_hit_obj(obj/O,obj/item/projectile/P)
-	if(P.damage > 25)
-		explosion(get_turf(P), -1, -1, 2, -1)
-
-/datum/ammo/energy/yautja/rifle/bolt
-	name = "plasma rifle bolt"
-	icon_state = "ion"
-	hud_state = "plasma_rifle"
-	debilitate = list(0,2,0,0,0,0,0,0)
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST
-
-/datum/ammo/energy/yautja/rifle/blast
-	name = "plasma rifle blast"
-	icon_state = "bluespace"
-	hud_state = "plasma_rifle_blast"
-
-/datum/ammo/energy/yautja/rifle/blast/New()
-	..()
-	shell_speed = CONFIG_GET(number/combat_define/super_shell_speed)
 
 /datum/ammo/energy/lasgun
 	name = "laser bolt"
@@ -1282,7 +1182,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/item/projectile/P)
 
-	if(!istype(C) || C.stat == DEAD || (xeno_hivenumber(C) && xeno_hivenumber(C) == xeno_hivenumber(P.firer)) )
+	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
 		return
 
 	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest))
@@ -1369,9 +1269,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_resin(get_turf(M))
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
-		if( (xeno_hivenumber(C) && xeno_hivenumber(C) == xeno_hivenumber(P.firer) ) )
+		if(C.issamexenohive(P.firer))
 			return
-		C.add_slowdown(2) //slow em down
+		C.add_slowdown(3) //slow em down
 		C.next_move_slowdown += 8 //really slow down their next move, as if they stepped in sticky doo doo
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/O,obj/item/projectile/P)
@@ -1406,7 +1306,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	added_spit_delay = 5
 	spit_cost = 75
-	armor_type = "energy"
+	armor_type = "acid"
 
 /datum/ammo/xeno/acid/New()
 	. = ..()
@@ -1492,19 +1392,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			return
 	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
-		smoke_system.amount = B.upgrade
+		smoke_system.amount = B.upgrade_as_number()
 	drop_nade(get_turf(P))
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/item/projectile/P)
 	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
-		smoke_system.amount = B.upgrade
+		smoke_system.amount = B.upgrade_as_number()
 	drop_nade(get_turf(P))
 
 /datum/ammo/xeno/boiler_gas/on_hit_turf(turf/T, obj/item/projectile/P)
 	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
-		smoke_system.amount = B.upgrade
+		smoke_system.amount = B.upgrade_as_number()
 	if(T.density && isturf(P.loc))
 		drop_nade(P.loc) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
 	else
@@ -1513,7 +1413,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/boiler_gas/do_at_max_range(obj/item/projectile/P)
 	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
-		smoke_system.amount = B.upgrade
+		smoke_system.amount = B.upgrade_as_number()
 	drop_nade(get_turf(P))
 
 /datum/ammo/xeno/boiler_gas/proc/set_xeno_smoke(obj/item/projectile/P)
@@ -1531,7 +1431,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sound_bounce	= "acid_bounce"
 	debilitate = list(1,1,0,0,1,1,0,0)
 	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR
-	armor_type = "energy"
+	armor_type = "acid"
 
 /datum/ammo/xeno/boiler_gas/corrosive/New()
 	..()
@@ -1581,7 +1481,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
-	armor_type = "energy"
+	armor_type = "fire"
 
 /datum/ammo/flamethrower/New()
 	..()

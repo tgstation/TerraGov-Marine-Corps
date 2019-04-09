@@ -38,7 +38,7 @@
 	density = 1
 	anchored = 0
 	luminosity = 4
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 
 	var/gasefficency = 0.25
 
@@ -325,9 +325,7 @@
 
 /obj/machinery/power/supermatter/proc/supermatter_pull()
 
-	//following is adapted from singulo code
-	if(defer_powernet_rebuild != 2)
-		defer_powernet_rebuild = 1
+	defer_powernet_rebuild = TRUE
 	// Let's just make this one loop.
 	for(var/atom/X in orange(pull_radius,src))
 		// Movable atoms only
@@ -354,6 +352,5 @@
 				step_towards(H,src) //step twice
 				step_towards(H,src)
 
-	if(defer_powernet_rebuild != 2)
-		defer_powernet_rebuild = 0
+	defer_powernet_rebuild = FALSE
 	return

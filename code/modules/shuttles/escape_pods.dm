@@ -15,8 +15,6 @@ with the original.*/
 /datum/shuttle/ferry/marine/evacuation_pod
 	location = 0
 	warmup_time = 5
-	shuttle_tag = "TGS Theseus Evac"
-	info_tag = "TGS Theseus Evac"
 	sound_target = 18
 	sound_misc = 'sound/effects/escape_pod_launch.ogg'
 	var/static/passengers = 0 //How many living escape on the shuttle. Does not count simple animals.
@@ -39,7 +37,7 @@ with the original.*/
 		process_state = WAIT_LAUNCH
 
 	can_launch() //Cannot launch it early before the evacuation takes place proper, and the pod must be ready. Cannot be delayed, broken, launching, or otherwise.
-		if(..() && EvacuationAuthority.evac_status >= EVACUATION_STATUS_INITIATING)
+		if(..() && SSevacuation.evac_status >= EVACUATION_STATUS_INITIATING)
 			switch(evacuation_program.dock_state)
 				if(STATE_READY) return TRUE
 				if(STATE_DELAYED)
@@ -49,13 +47,20 @@ with the original.*/
 
 	//The pod can be delayed until after the automatic launch.
 	can_cancel()
-		. = (EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY && (evacuation_program.dock_state in STATE_READY to STATE_DELAYED)) //Must be evac time and the pod can't be launching/launched.
+		. = (SSevacuation.evac_status > EVACUATION_STATUS_STANDING_BY && (evacuation_program.dock_state in STATE_READY to STATE_DELAYED)) //Must be evac time and the pod can't be launching/launched.
 
 	short_jump()
 		. = ..()
 		evacuation_program.dock_state = STATE_LAUNCHED
 		spawn(10)
-			check_passengers("<br><br><span class='centerbold'><big>You have successfully left the [MAIN_SHIP_NAME]. You may now ghost and observe the rest of the round.</big></span><br>")
+			check_passengers("<br><br><span class='centerbold'><big>You have successfully left the [CONFIG_GET(string/ship_name)]. You may now ghost and observe the rest of the round.</big></span><br>")
+
+
+/datum/shuttle/ferry/marine/evacuation_pod/New()
+	. = ..()
+	shuttle_tag = "[CONFIG_GET(string/ship_name)] Evac"
+	info_tag = "[CONFIG_GET(string/ship_name)] Evac"
+
 
 /*
 This processes tags and connections dynamically, so you do not need to modify or pregenerate linked objects.
@@ -203,13 +208,11 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 //This controller goes on the escape pod itself.
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod
 	name = "escape pod controller"
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/datum/computer/file/embedded_program/docking/simple/escape_pod/evacuation_program //Runs the doors and states.
 	//door_tag is the tag for the pod door.
 	//id_tag is the generic connection tag.
 	//TODO make sure you can't C4 this.
-
-	ex_act(severity) return FALSE
 
 	ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 		var/launch_status[] = evacuation_program.check_launch_status()
@@ -281,12 +284,10 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 /obj/machinery/cryopod/evacuation
 	machine_stat = MACHINE_DO_NOT_PROCESS
-	unacidable = 1
-	time_till_despawn = 6000000 //near infinite so despawn never occurs.
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	time_till_despawn = INFINITY //near infinite so despawn never occurs.
 	var/being_forced = 0 //Simple variable to prevent sound spam.
 	var/datum/computer/file/embedded_program/docking/simple/escape_pod/evacuation_program
-
-	ex_act(severity) return FALSE
 
 	attackby(obj/item/grab/G, mob/user)
 		if(istype(G))
@@ -316,7 +317,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 		set category = "Object"
 		set src in oview(1)
 
-		if(!occupant || !usr.stat || usr.is_mob_restrained()) return FALSE
+		if(!occupant || !usr.stat || usr.restrained()) return FALSE
 
 		if(occupant) //Once you're in, you cannot exit, and outside forces cannot eject you.
 			//The occupant is actually automatically ejected once the evac is canceled.
@@ -338,7 +339,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 		var/mob/living/carbon/human/user = usr
 
-		if(!istype(user) || user.stat || user.is_mob_restrained()) return FALSE
+		if(!istype(user) || user.stat || user.restrained()) return FALSE
 
 		if(being_forced)
 			to_chat(user, "<span class='warning'>You can't enter when it's being forced open!</span>")
@@ -389,8 +390,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 /obj/machinery/door/airlock/evacuation
 	name = "\improper Evacuation Airlock"
 	icon = 'icons/obj/doors/almayer/pod_doors.dmi'
-	heat_proof = 1
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/door/airlock/evacuation/Initialize()
 	. = ..()

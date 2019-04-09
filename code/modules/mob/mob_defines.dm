@@ -4,8 +4,12 @@
 	density = 1
 	layer = MOB_LAYER
 	animate_movement = 2
-//	flags = NOREACT
+	datum_flags = DF_USE_TAG
 	var/datum/mind/mind
+
+	var/datum/click_intercept
+
+	var/static/next_mob_id = 0
 
 	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
 	var/obj/screen/hands = null //robot
@@ -63,6 +67,8 @@
 
 	var/timeofdeath = 0.0//Living
 
+	var/turf/listed_turf = null	//the current turf being examined in the stat panel
+
 	var/bodytemperature = 310.055	//98.7 F
 	var/old_x = 0
 	var/old_y = 0
@@ -94,6 +100,14 @@
 	var/obj/item/storage/s_active = null//Carbon
 	var/obj/item/clothing/mask/wear_mask = null//Carbon
 
+	// 1 decisecond click delay (above and beyond mob/next_move)
+	//This is mainly modified by click code, to modify click delays elsewhere, use next_move and changeNext_move()
+	var/next_click	= 0
+
+	// THESE DO NOT EFFECT THE BASE 1 DECISECOND DELAY OF NEXT_CLICK
+	var/next_move_adjust = 0 //Amount to adjust action/click delays by, + or -
+	var/next_move_modifier = 1 //Value to multiply action/click delays by
+
 	var/datum/hud/hud_used = null
 
 	var/grab_level = GRAB_PASSIVE //if we're pulling a mob, tells us how aggressive our grab is.
@@ -101,6 +115,9 @@
 	var/list/mapobjs = list()
 
 	var/in_throw_mode = 0
+
+	var/canEnterVentWith = "/obj/item/implant=0&/obj/item/clothing/mask/facehugger=0&/obj/item/device/radio/borg=0&/obj/machinery/camera=0&/obj/item/verbs=0" // Vent crawling whitelisted items, whoo
+
 
 	var/coughedtime = null
 
@@ -149,9 +166,6 @@
 
 	var/immune_to_ssd = 0
 
-	var/list/tile_contents = list()  //the contents of the turf being examined in the stat panel
-	var/tile_contents_change = 0
-
 	//Emotes
 	var/audio_emote_time = 1
 
@@ -175,3 +189,7 @@
 	var/list/light_sources = list()
 
 	var/notransform
+
+	var/typing
+	var/last_typed
+	var/last_typed_time

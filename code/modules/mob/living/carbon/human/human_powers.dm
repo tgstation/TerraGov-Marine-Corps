@@ -9,7 +9,7 @@
 	if(last_special > world.time)
 		return
 
-	if(is_mob_incapacitated() || lying || buckled)
+	if(incapacitated() || lying || buckled)
 		to_chat(src, "You cannot tackle someone in your current state.")
 		return
 
@@ -28,7 +28,7 @@
 	if(last_special > world.time)
 		return
 
-	if(is_mob_incapacitated() || lying || buckled)
+	if(incapacitated() || lying || buckled)
 		to_chat(src, "You cannot tackle in your current state.")
 		return
 
@@ -57,7 +57,7 @@
 	if(last_special > world.time)
 		return
 
-	if(is_mob_incapacitated() || lying || buckled)
+	if(incapacitated() || lying || buckled)
 		to_chat(src, "You cannot leap in your current state.")
 		return
 
@@ -76,7 +76,7 @@
 	if(last_special > world.time)
 		return
 
-	if(is_mob_incapacitated() || lying || buckled)
+	if(incapacitated() || lying || buckled)
 		to_chat(src, "You cannot leap in your current state.")
 		return
 
@@ -110,7 +110,7 @@
 	if(last_special > world.time)
 		return
 
-	if(is_mob_incapacitated(TRUE) || lying)
+	if(incapacitated(TRUE) || lying)
 		to_chat(src, "<span class='warning'>You cannot do that in your current state.</span>")
 		return
 

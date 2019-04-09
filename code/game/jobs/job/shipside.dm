@@ -25,7 +25,7 @@
 
 /datum/job/command/captain/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"As the captain of the [MAIN_SHIP_NAME] you are held by higher standard and are expected to act competently.
+	to_chat(M, {"As the captain of the [CONFIG_GET(string/ship_name)] you are held by higher standard and are expected to act competently.
 While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
@@ -43,7 +43,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
 	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
-	head = /obj/item/clothing/head/cmberet/tan
+	head = /obj/item/clothing/head/tgmcberet/tan
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/device/binoculars/tactical
 	back = /obj/item/storage/backpack/marine/satchel
@@ -81,7 +81,8 @@ Make the TGMC proud!"})
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
 	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner/fancy
 	shoes = /obj/item/clothing/shoes/marine
-	head = /obj/item/clothing/head/cmcap
+	gloves = /obj/item/clothing/gloves/black
+	head = /obj/item/clothing/head/tgmcberet/fc
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/device/megaphone
 	back = /obj/item/smartgun_powerpack/fancy
@@ -119,7 +120,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	ears = /obj/item/device/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
 	shoes = /obj/item/clothing/shoes/marine
-	head = /obj/item/clothing/head/cmcap/ro
+	head = /obj/item/clothing/head/tgmccap/ro
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/device/binoculars/tactical
 	back = /obj/item/storage/backpack/marine/satchel
@@ -243,7 +244,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	shoes = /obj/item/clothing/shoes/marine
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	gloves = /obj/item/clothing/gloves/black
-	head = /obj/item/clothing/head/cmberet/red
+	head = /obj/item/clothing/head/tgmcberet/red
 	r_store = /obj/item/storage/pouch/general/medium
 	back = /obj/item/storage/backpack/satchel/sec
 
@@ -284,7 +285,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	shoes = /obj/item/clothing/shoes/marine
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	gloves = /obj/item/clothing/gloves/black
-	head = /obj/item/clothing/head/cmberet/wo
+	head = /obj/item/clothing/head/tgmcberet/wo
 	r_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/security
 
@@ -371,7 +372,7 @@ A happy ship is a well-functioning ship."})
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/yellow
-	head = /obj/item/clothing/head/cmcap/req
+	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/marine/satchel
 
@@ -412,7 +413,7 @@ Start with the ship's engine, and don't forget radiation equipment."})
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/yellow
 	glasses = /obj/item/clothing/glasses/welding
-	head = /obj/item/clothing/head/cmcap/req
+	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/medium
 	back = /obj/item/storage/backpack/marine/satchel
 

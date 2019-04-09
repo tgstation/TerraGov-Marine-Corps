@@ -30,7 +30,6 @@
 
 
 #define LIVING_PERM_COEFF 0
-#define HELLHOUND_PERM_COEFF 0.5
 #define XENO_PERM_COEFF 0.8
 //=================================================
 
@@ -164,11 +163,41 @@ var/list/global_mutations = list() // list of hidden mutation things
 // =============================
 // hive types
 
-#define XENO_HIVE_NORMAL 1
-#define XENO_HIVE_CORRUPTED 2
-#define XENO_HIVE_ALPHA 3
-#define XENO_HIVE_BETA 4
-#define XENO_HIVE_ZETA 5
+#define XENO_HIVE_NONE "none"
+#define XENO_HIVE_NORMAL "normal"
+#define XENO_HIVE_CORRUPTED "corrupted"
+#define XENO_HIVE_ALPHA "alpha"
+#define XENO_HIVE_BETA "beta"
+#define XENO_HIVE_ZETA "zeta"
+
+// =============================
+// xeno tiers
+
+#define XENO_TIER_ZERO "zero" // god forgive me because i wont forgive myself
+#define XENO_TIER_ONE "one"
+#define XENO_TIER_TWO "two"
+#define XENO_TIER_THREE "three"
+#define XENO_TIER_FOUR "four"
+
+GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE, XENO_TIER_FOUR))
+
+// =============================
+// xeno upgrades
+
+#define XENO_UPGRADE_BASETYPE "basetype"
+#define XENO_UPGRADE_INVALID "invalid" // not applicable, the old -1
+#define XENO_UPGRADE_ZERO "zero"	// god forgive me again
+#define XENO_UPGRADE_ONE "one"
+#define XENO_UPGRADE_TWO "two"
+#define XENO_UPGRADE_THREE "three"
+
+GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE))
+
+// =============================
+// xeno slashing
+#define XENO_SLASHING_FORBIDDEN 0
+#define XENO_SLASHING_ALLOWED 1
+#define XENO_SLASHING_RESTRICTED 2
 
 //=================================================
 
@@ -329,9 +358,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define IS_SKRELL 3
 #define IS_UNATHI 4
 #define IS_XENOS 5
-#define IS_YAUTJA 6
-#define IS_HORROR 7
-#define IS_MOTH 8
+#define IS_HORROR 6
+#define IS_MOTH 7
 //=================================================
 
 //Mob sizes
@@ -440,21 +468,9 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 #define ANTI_CHAINSTUN_TICKS	2
 
-//Hunter Defines
-#define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
-#define HUNTER_STEALTH_WALK_PLASMADRAIN			2
-#define HUNTER_STEALTH_RUN_PLASMADRAIN			5
-#define HUNTER_STEALTH_STILL_ALPHA				25 //90% transparency
-#define HUNTER_STEALTH_WALK_ALPHA				38 //85% transparency
-#define HUNTER_STEALTH_RUN_ALPHA				128 //50% transparency
-#define HUNTER_STEALTH_STEALTH_DELAY			30 //3 seconds before 95% stealth
-#define HUNTER_STEALTH_INITIAL_DELAY			20 //2 seconds before we can increase stealth
-#define HUNTER_POUNCE_SNEAKATTACK_DELAY 		30 //3 seconds before we can sneak attack
-#define HANDLE_STEALTH_CHECK				1
-#define HANDLE_STEALTH_CODE_CANCEL		2
-#define HANDLE_SNEAK_ATTACK_CHECK		3
+//Xeno Defines
 
-// xeno defines
+#define FRENZY_DAMAGE_BONUS(Xenomorph) ((Xenomorph.frenzy_aura * 2))
 
 #define XENO_SLOWDOWN_REGEN 0.4
 #define XENO_HALOSS_REGEN 3
@@ -465,14 +481,59 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define WARRIOR_AGILITY_ARMOR 30
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 
+#define SPIT_UPGRADE_BONUS ( max(0,upgrade_as_number()) * 0.15 ) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
+#define SPRAY_STRUCTURE_UPGRADE_BONUS 8
+#define SPRAY_MOB_UPGRADE_BONUS 4
+
+#define QUEEN_DEATH_LARVA_MULTIPLIER 0.17 // 85/68/51/34 for ancient/elder emp/elder queen/queen
+
 #define PLASMA_TRANSFER_AMOUNT 50
 #define PLASMA_SALVAGE_AMOUNT 40
 #define PLASMA_SALVAGE_MULTIPLIER 0.5 // I'd not reccomend setting this higher than one.
 
-#define CRITICAL_HIT_DELAY 25
+#define XENO_LARVAL_ADVANCEMENT_COOLDOWN	15 SECONDS
+
+#define XENO_LARVAL_GROWTH_COOLDOWN			12 SECONDS
+#define XENO_LARVAL_AMOUNT_RECURRING		10
+#define XENO_LARVAL_CHANNEL_TIME			1.5 SECONDS
+
+#define XENO_NEURO_STING_COOLDOWN			12 SECONDS
+#define XENO_NEURO_AMOUNT_RECURRING			15
+#define XENO_NEURO_CHANNEL_TIME				1.5 SECONDS
+
+#define CANNOT_HOLD_EGGS 0
+#define CAN_HOLD_TWO_HANDS 1
+#define CAN_HOLD_ONE_HAND 2
+
+#define CASTE_CAN_HOLD_FACEHUGGERS 	(1<<0)
+#define CASTE_CAN_VENT_CRAWL		(1<<1)
+#define CASTE_CAN_BE_QUEEN_HEALED	(1<<2)
+#define CASTE_CAN_BE_GIVEN_PLASMA	(1<<3)
+#define CASTE_INNATE_HEALING		(1<<4)
+#define CASTE_FIRE_IMMUNE			(1<<5)
+#define CASTE_EVOLUTION_ALLOWED		(1<<6)
+#define CASTE_IS_INTELLIGENT		(1<<7)
+#define CASTE_DECAY_PROOF			(1<<8)
+#define CASTE_CAN_BE_LEADER			(1<<9)
+#define CASTE_HIDE_IN_STATUS		(1<<10)
+
+//Hunter Defines
+#define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
+#define HUNTER_STEALTH_WALK_PLASMADRAIN			2
+#define HUNTER_STEALTH_RUN_PLASMADRAIN			5
+#define HUNTER_STEALTH_STILL_ALPHA				25 //90% transparency
+#define HUNTER_STEALTH_WALK_ALPHA				38 //85% transparency
+#define HUNTER_STEALTH_RUN_ALPHA				128 //50% transparency
+#define HUNTER_STEALTH_STEALTH_DELAY			30 //3 seconds before 95% stealth
+#define HUNTER_STEALTH_INITIAL_DELAY			20 //2 seconds before we can increase stealth
+#define HUNTER_POUNCE_SNEAKATTACK_DELAY 		30 //3 seconds before we can sneak attack
+#define HANDLE_STEALTH_CHECK					1
+#define HANDLE_STEALTH_CODE_CANCEL				2
+#define HANDLE_SNEAK_ATTACK_CHECK				3
 
 //Ravager defines:
 #define RAVAGER_MAX_RAGE 50
+#define RAV_RAGE_ON_HIT					7.5 //+7.5 rage whenever we slash
 #define RAV_CHARGESPEED					100
 #define RAV_CHARGESTRENGTH				3
 #define RAV_CHARGEDISTANCE				7
@@ -480,6 +541,9 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define RAV_CHARGE_TYPE					3
 #define RAV_SECOND_WIND_COOLDOWN		240 SECONDS
 #define RAV_RAVAGE_COOLDOWN				10 SECONDS
+#define RAV_RAVAGE_DAMAGE_MULITPLIER	0.25 //+25% +3% bonus damage per point of Rage.relative to base melee damage.
+#define RAV_RAVAGE_RAGE_MULITPLIER		0.03 //+25% +3% bonus damage per point of Rage.relative to base melee damage.
+#define RAV_DAMAGE_RAGE_MULITPLIER		0.25  //Gain Rage stacks equal to 25% of damage received.
 #define RAV_HANDLE_CHARGE				1
 
 //defender defines
@@ -502,6 +566,12 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI	100
 #define CRUSHER_CHARGE_TANK_MULTI		100
 
+#define CRUSHER_STOMP_UPGRADE_BONUS ( 1 + upgrade_as_number() * 0.05 )
+
+#define CHARGE_TURFS_TO_CHARGE			5		//Amount of turfs to build up before a charge begins
+#define CHARGE_SPEED_BUILDUP			0.15 	//POSITIVE amount of speed built up during a charge each step
+#define CHARGE_SPEED_MAX				2.1 	//Can only gain this much speed before capping
+
 //carrier defines
 
 #define CARRIER_SPAWN_HUGGER_COST 100
@@ -515,15 +585,6 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define WARRIOR_FLING_COOLDOWN 6 SECONDS
 #define WARRIOR_AGILITY_COOLDOWN 0.5 SECONDS
 
-
-//sentinel defines
-
-#define SENTINEL_STING_COOLDOWN				30 SECONDS
-#define SENTINEL_STING_INJECT_DELAY			1.5 SECONDS
-#define SENTINEL_STING_AMOUNT_INITIAL		15
-#define SENTINEL_STING_AMOUNT_RECURRING		10
-#define SENTINEL_STING_CHANNEL_TIME			1.5 SECONDS
-
 //Defiler defines
 
 #define DEFILER_STING_COOLDOWN				20 SECONDS
@@ -532,46 +593,31 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 #define DEFILER_GAS_CHANNEL_TIME			2 SECONDS
 #define DEFILER_GAS_DELAY					1 SECONDS
-#define DEFILER_GAS_CLOUD_COUNT				2
 #define DEFILER_STING_CHANNEL_TIME			1.5 SECONDS
 #define DEFILER_CLAW_AMOUNT					6.5
-#define DEFILER_STING_AMOUNT_INITIAL		15
 #define DEFILER_STING_AMOUNT_RECURRING		10
-#define DEFILER_STING_GROWTH_AMOUNT			30
 #define GROWTH_TOXIN_METARATE		0.2
-
-//Drone defines
-
-#define DRONE_STING_COOLDOWN				20 SECONDS
-#define DRONE_STING_AMOUNT_INITIAL			15
-#define DRONE_STING_AMOUNT_RECURRING		10
-#define DRONE_STING_CHANNEL_TIME			1.5 SECONDS
 
 //Boiler defines
 
 #define BOILER_LUMINOSITY					3
 
-#define CANNOT_HOLD_EGGS 0
-#define CAN_HOLD_TWO_HANDS 1
-#define CAN_HOLD_ONE_HAND 2
+//Hivelord defines
 
-#define CASTE_CAN_HOLD_FACEHUGGERS 	(1<<0)
-#define CASTE_CAN_VENT_CRAWL		(1<<1)
-#define CASTE_CAN_BE_QUEEN_HEALED	(1<<2)
-#define CASTE_CAN_BE_GIVEN_PLASMA	(1<<3)
-#define CASTE_INNATE_HEALING		(1<<4)
-#define CASTE_FIRE_IMMUNE			(1<<5)
-#define CASTE_EVOLUTION_ALLOWED		(1<<6)
-#define CASTE_IS_INTELLIGENT		(1<<7)
-#define CASTE_IS_ROBOTIC			(1<<8)
-#define CASTE_DECAY_PROOF			(1<<9)
-#define CASTE_CAN_BE_LEADER			(1<<10)
+#define HIVELORD_TUNNEL_DISMANTLE_TIME			3 SECONDS
+#define HIVELORD_TUNNEL_MIN_TRAVEL_TIME			2 SECONDS
+#define HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME	4 SECONDS
+#define HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME	6 SECONDS
+#define HIVELORD_TUNNEL_DIG_TIME				10 SECONDS
+#define HIVELORD_TUNNEL_SET_LIMIT				4
+#define HIVELORD_TUNNEL_COOLDOWN				120 SECONDS
 
 //misc
 
 #define STANDARD_SLOWDOWN_REGEN 0.3
 
 #define HYPERVENE_REMOVAL_AMOUNT	8
+
 // Squad ID defines moved from game\jobs\job\squad.dm
 #define NO_SQUAD 0
 #define ALPHA_SQUAD 1
@@ -584,3 +630,6 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define TRACK_BRAVO_SQUAD "bravo"
 #define TRACK_CHARLIE_SQUAD "charlie"
 #define TRACK_DELTA_SQUAD "delta"
+
+
+#define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.

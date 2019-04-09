@@ -728,11 +728,7 @@
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	unacidable = TRUE
-
-//Don't allow blowing those up, so Marine nades don't fuck them
-/obj/machinery/landinglight/ex_act(severity)
-	return
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/landinglight/New()
 	turn_off()
@@ -742,10 +738,18 @@
 	SetLuminosity(0)
 
 /obj/machinery/landinglight/ds1
-	id = "TGS Theseus Dropship 1" // ID for landing zone
+	
+
+/obj/machinery/landinglight/ds1/New()
+	. = ..()
+	id = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/machinery/landinglight/ds2
-	id = "TGS Theseus Dropship 2" // ID for landing zone
+
+
+/obj/machinery/landinglight/ds2/New()
+	. = ..()
+	id = "[CONFIG_GET(string/ship_name)] Dropship 2" // ID for landing zone
 
 /obj/machinery/landinglight/proc/turn_on()
 	icon_state = "landingstripe0"

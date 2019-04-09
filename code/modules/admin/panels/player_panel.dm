@@ -38,15 +38,11 @@
 								}
 								var ltd = tr.getElementsByTagName("td");
 								var td = ltd\[0\];
-								var lsearch = td.getElementsByTagName("b");
+								var lsearch = td.getElementsByClassName("filter_data");
 								var search = lsearch\[0\];
-								//var inner_span = li.getElementsByTagName("span")\[1\] //Should only ever contain one element.
-								//document.write("<p>"+search.innerText+"<br>"+filter+"<br>"+search.innerText.indexOf(filter))
 								if ( search.innerText.toLowerCase().indexOf(filter) == -1 )
 								{
-									//document.write("a");
-									//ltr.removeChild(tr);
-									td.innerHTML = "";
+									tr.innerHTML = "";
 									i--;
 								}
 							}catch(err) {   }
@@ -58,10 +54,9 @@
 					var debug = document.getElementById("debug");
 
 					locked_tabs = new Array();
-
 				}
 
-				function expand(id,job,name,real_name,key,ip,ref){
+				function expand(id,job,name,real_name,old_names,key,ip,ref){
 
 					clearAll();
 
@@ -72,7 +67,7 @@
 
 					body += "</td><td align='center'>";
 
-					body += "<font size='2'>"+job+" "+name+"<br>Real name "+real_name+"<br>Played by "+key+" ("+ip+")</font>"
+					body += "<font size='2'>"+job+" "+name+"<br>Real name "+real_name+"<br>Played by "+key+" ("+ip+")<br>Old names: "+old_names+"</font>";
 
 					body += "</td><td align='center'>";
 
@@ -83,8 +78,8 @@
 					body += "<a href='?_src_=holder;[HrefToken()];observejump="+ref+"'>JMP</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];observefollow="+ref+"'>FLW</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];individuallog="+ref+"'>LOGS</a><br>"
-					body += "</td></tr></table>";
 
+					body += "</td></tr></table>";
 
 					span.innerHTML = body
 				}
@@ -96,7 +91,7 @@
 
 						var id = span.getAttribute("id");
 
-						if(!(id.indexOf("item")==0))
+						if(!id || !(id.indexOf("item")==0))
 							continue;
 
 						var pass = 1;
@@ -141,9 +136,6 @@
 					locked_tabs.push(id);
 					var notice_span = document.getElementById(notice_span_id);
 					notice_span.innerHTML = "<font color='#bc3c3c'>Locked</font> ";
-					//link.setAttribute("onClick","attempt('"+id+"','"+link_id+"','"+notice_span_id+"');");
-					//document.write("removeFromLocked('"+id+"','"+link_id+"','"+notice_span_id+"')");
-					//document.write("aa - "+link.getAttribute("onClick"));
 				}
 
 				function attempt(ab){
@@ -166,8 +158,6 @@
 					locked_tabs\[index\] = "";
 					var notice_span = document.getElementById(notice_span_id);
 					notice_span.innerHTML = "";
-					//var link = document.getElementById(link_id);
-					//link.setAttribute("onClick","addToLocked('"+id+"','"+link_id+"','"+notice_span_id+"')");
 				}
 
 				function selectTextField(){
@@ -211,88 +201,83 @@
 
 	var/i = 1
 	for(var/mob/M in sortmobs())
-		if(M.ckey && M.client)
+		if(!M.ckey || !M.client)
+			continue
 
-			var/color = "#494949"
-			if(i % 2 == 0)
-				color = "#595959"
+		var/color = "#494949"
+		if(i % 2 == 0)
+			color = "#595959"
 
-			var/M_job = ""
+		var/M_job = ""
 
-			if(isliving(M))
-
-				if(iscarbon(M)) //Carbon stuff
-					if(ishuman(M))
-						M_job = M.job
-					else if(ismonkey(M))
-						M_job = "Monkey"
-					else if(isxeno(M))
-						if(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined")
-							M_job = "Xenomorph - [M.client.prefs.xeno_name]"
-						else
-							M_job = "Xenomorph"
+		if(isliving(M))
+			if(iscarbon(M)) //Carbon stuff
+				if(ishuman(M))
+					M_job = M.job
+				else if(ismonkey(M))
+					M_job = "Monkey"
+				else if(isxeno(M))
+					if(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined")
+						M_job = "Xenomorph - [M.client.prefs.xeno_name]"
 					else
-						M_job = "Carbon-based"
-
-				else if(issilicon(M)) //silicon
-					if(isAI(M))
-						M_job = "AI"
-					else if(iscyborg(M))
-						M_job = "Cyborg"
-					else
-						M_job = "Silicon-based"
-
-				else if(isanimal(M)) //simple animals
-					if(iscorgi(M))
-						M_job = "Corgi"
-					else
-						M_job = "animal"
-
+						M_job = "Xenomorph"
 				else
-					M_job = "Living"
+					M_job = "Carbon-based"
 
-			else if(istype(M,/mob/new_player))
-				M_job = "New player"
+			else if(issilicon(M)) //silicon
+				if(isAI(M))
+					M_job = "AI"
+				else if(iscyborg(M))
+					M_job = "Cyborg"
+				else
+					M_job = "Silicon"
 
-			else if(isobserver(M))
-				M_job = "Ghost"
+			else if(isanimal(M)) //simple animals
+				if(iscorgi(M))
+					M_job = "Corgi"
+				else
+					M_job = "Animal"
 
-			M_job = oldreplacetext(M_job, "'", "")
-			M_job = oldreplacetext(M_job, "\"", "")
-			M_job = oldreplacetext(M_job, "\\", "")
+			else
+				M_job = "Living"
 
-			var/M_name = M.name
-			M_name = oldreplacetext(M_name, "'", "")
-			M_name = oldreplacetext(M_name, "\"", "")
-			M_name = oldreplacetext(M_name, "\\", "")
-			var/M_rname = M.real_name
-			M_rname = oldreplacetext(M_rname, "'", "")
-			M_rname = oldreplacetext(M_rname, "\"", "")
-			M_rname = oldreplacetext(M_rname, "\\", "")
+		else if(istype(M,/mob/new_player))
+			M_job = "New player"
 
-			var/M_key = M.key
-			M_key = oldreplacetext(M_key, "'", "")
-			M_key = oldreplacetext(M_key, "\"", "")
-			M_key = oldreplacetext(M_key, "\\", "")
+		else if(isobserver(M))
+			M_job = "Ghost"
 
-			//output for each mob
-			dat += {"
+		M_job = html_encode(M_job)
+		var/M_name = html_encode(M.name)
+		var/M_rname = html_encode(M.real_name)
+		var/M_key = html_encode(M.key)
 
-				<tr id='data[i]' name='[i]' onClick="addToLocked('item[i]','data[i]','notice_span[i]')">
-					<td align='center' bgcolor='[color]'>
-						<span id='notice_span[i]'></span>
-						<a id='link[i]'
-						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[M_key]","[M.lastKnownIP]","[REF(M)]")'
-						>
-						<b id='search[i]' style='font-weight:normal'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
-						</a>
-						<br><span id='item[i]'></span>
+		var/previous_names = ""
+		var/datum/player_details/P = GLOB.player_details[M.ckey]
+		if(P)
+			previous_names = P.played_names.Join(", ")
+		previous_names = html_encode(previous_names)
+
+		//output for each mob
+		dat += {"
+
+			<tr id='data[i]' name='[i]' onClick="addToLocked('item[i]','data[i]','notice_span[i]')">
+				<td align='center' bgcolor='[color]'>
+					<span id='notice_span[i]'></span>
+					<a id='link[i]'
+					onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[previous_names]","[M_key]","[M.lastKnownIP]","[REF(M)]")'
+					>
+					<b id='search[i]' style='font-weight:normal'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
+					<span hidden class='filter_data'>[M_name] [M_rname] [M_key] [M_job] [previous_names]</span>
+					</a>
+					<br><span id='item[i]'></span>
 					</td>
 				</tr>
+			</tr>
 
-			"}
+		"}
 
-			i++
+		i++
 
 
 	//player table ending
@@ -371,29 +356,29 @@
 	browser.open()
 
 
-/datum/admins/proc/show_player_panel(var/mob/M in GLOB.mob_list)
+/datum/admins/proc/show_player_panel(mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Show Player Panel"
 
 	if(!check_rights(R_ADMIN))
 		return
 
+	if(!istype(M))
+		return
+
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 	var/body
-
-	if(!M?.name)
-		message_admins("[M] has no name or is null! Here's a VV: [ADMIN_VV(M)]")
 
 	body += "<b>[M.name]</b>"
 
 	if(M.client)
 		body += " played by <b>[M.client]</b> "
-		body += " <a href='?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank : "Player"]</A>"
+		body += " <a href='?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank : "Player"]</a>"
 
-	if(istype(M, /mob/new_player))
-		body += " <B>Hasn't Entered Game</B> "
+	if(isnewplayer(M))
+		body += " <b>Hasn't Entered Game</b> "
 	else
-		body += " \[<a href='?src=[ref];revive=[REF(M)]'>Heal</a>\] "
+		body += " <a href='?src=[ref];revive=[REF(M)]'>Heal</a> | <a href='?src=[ref];sleep=[REF(M)]'>Sleep</a>"
 
 	body += {"
 		<br><br>
@@ -415,7 +400,7 @@
 	body += "<a href='?src=[ref];kick=[REF(M)]'>Kick</a> | "
 		
 	if(M.client)
-		body += "<a href='?src=[ref];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</A> | "
+		body += "<a href='?src=[ref];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</a> | "
 	else
 		body += "<a href='?src=[ref];newbankey=[M.key]'>Ban</a> |"
 
@@ -436,7 +421,7 @@
 			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY) ? "#ff5e5e" : "white"]'>PRAY</font></a> |
 			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP) ? "#ff5e5e" : "white"]'>ADMINHELP</font></a> |
 			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT) ? "#ff5e5e" : "white"]'>DEADCHAT</font></a>
-			(<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL) ? "#ff5e5e" : "white"]'>\[toggle all\]</font></a>)
+			(<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL) ? "#ff5e5e" : "white"]'>ALL</font></a>)
 		"}
 
 	body += {"
@@ -453,8 +438,7 @@
 		 Observer: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a>
 		<br> Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
 		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
-		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a> |
-		<a href='?src=[ref];transform=yautja;mob=[REF(M)]'>Yautja</a>
+		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a>
 		<br> Alien Tier 0:
 		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a>
 		<br> Alien Tier 1:
@@ -480,14 +464,16 @@
 	"}
 
 
-	if(!istype(M, /mob/new_player))
+	if(!isnewplayer(M))
 		body += {"<br><br>
 			<b>Other actions:</b>
 			<br>
-			<a href='?src=[ref];forcesay=[REF(M)]'>Forcesay</a> |
 			<a href='?src=[ref];thunderdome=[REF(M)]'>Thunderdome</a> |
-			<a href='?src=[ref];gib=[REF(M)]'>Gib</a>
-		"}
+			<a href='?src=[ref];gib=[REF(M)]'>Gib</a>"}
+		if(ishuman(M))
+			body += "| <a href='?src=[ref];setrank=[REF(M)]'>Select Rank</a> | "
+			body += "<a href='?src=[ref];setequipment=[REF(M)]'>Select Equipment</a> | "
+			body += "<a href='?src=[ref];setsquad=[REF(M)]'>Select Squad</a>"
 
 	log_admin("[key_name(usr)] opened the player panel of [key_name(M)].")
 

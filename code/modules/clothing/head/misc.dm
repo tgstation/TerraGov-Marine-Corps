@@ -153,7 +153,7 @@
 	icon_state = "hgpiratecap"
 	item_state = "hgpiratecap"
 	flags_armor_protection = 0
-	armor = list(melee = 50, bullet = 80, laser = 50,energy = 10, bomb = 50, bio = 0, rad = 0)
+	armor = list("melee" = 50, "bullet" = 80, "laser" = 50, "energy" = 10, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 
 /obj/item/clothing/head/bandana
 	name = "pirate bandana"
@@ -243,12 +243,6 @@
 	siemens_coefficient = 2.0
 	flags_armor_protection = HEAD|FACE|EYES
 	anti_hug = 10 //Lel
-
-/obj/item/clothing/head/boonie
-	name = "Boonie Hat"
-	desc = "The pinnacle of tacticool technology."
-	icon_state = "booniehat"
-	item_state = "booniehat"
 
 /obj/item/clothing/head/white_dress
 	name = "White Dress Hat" 

@@ -51,7 +51,7 @@
 
 
 			for(var/ch_name in channels)
-				radio_controller.remove_object(src, radiochannels[ch_name])
+				SSradio.remove_object(src, radiochannels[ch_name])
 				secure_radio_connections[ch_name] = null
 
 
@@ -163,13 +163,13 @@
 
 
 	for (var/ch_name in channels)
-		if(!radio_controller)
-			sleep(30) // Waiting for the radio_controller to be created.
-		if(!radio_controller)
+		if(!SSradio)
+			sleep(30) // Waiting for the SSradio to be created.
+		if(!SSradio)
 			src.name = "broken radio headset"
 			return
 
-		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 
 
@@ -310,7 +310,7 @@
 	set category = "Object"
 	set src in usr
 
-	if(usr.is_mob_incapacitated() || usr != wearer || !ishuman(usr))
+	if(usr.incapacitated() || usr != wearer || !ishuman(usr))
 		return FALSE
 
 	handle_interface(usr)
@@ -331,7 +331,7 @@
 	. = ..()
 	if(.)
 		return
-	if(usr.is_mob_incapacitated() || usr != wearer || !ishuman(usr))
+	if(usr.incapacitated() || usr != wearer || !ishuman(usr))
 		return
 	if(usr.contents.Find(src) )
 		usr.set_interaction(src)
@@ -533,3 +533,10 @@
 	name = "Commando headset"
 	keyslot1 = new /obj/item/device/encryptionkey/commando
 	keyslot2 = new /obj/item/device/encryptionkey/mcom
+
+/obj/item/device/radio/headset/distress/imperial
+	name = "Imperial headset"
+	desc = "A headset used by Imperial soldiers. Use :h to talk on a private channel."
+	keyslot1 = new /obj/item/device/encryptionkey/imperial
+	//frequency = IMP_FREQ
+	//freerange = TRUE - this only allows MAIN freq not to fuck up

@@ -95,7 +95,7 @@
 			M.flick_attack_overlay(src, "punch")
 
 			var/max_dmg = 5
-			if(M.mind. && M.mind.cm_skills)
+			if(M.mind && M.mind.cm_skills)
 				max_dmg += M.mind.cm_skills.cqc
 			var/damage = rand(0, max_dmg)
 			if(!damage)

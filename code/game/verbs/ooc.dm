@@ -147,16 +147,18 @@ var/global/normal_ooc_colour = "#002eb8"
 
 	if(admin && isobserver(mob))
 		message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [usr.client.holder.fakekey ? "Administrator" : usr.client.key]: <span class='message'>[msg]</span></span></font>"
-		usr.visible_message(message, message, message)
+		for(var/mob/M in range(mob))
+			to_chat(M, message)
 	else
 		message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [mob.name]: <span class='message'>[msg]</span></span></font>"
-		mob.visible_message(message, message)
+		for(var/mob/M in range(mob))
+			to_chat(M, message)
 
 	for(var/client/C in GLOB.admins)
-		if(!check_other_rights(C, R_ADMIN, FALSE))
+		if(!check_other_rights(C, R_ADMIN, FALSE) || C.mob == mob)
 			continue
 		if(C.prefs.toggles_chat & CHAT_LOOC)
-			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [key_name(mob)]</span>: <span class='message'>[msg]</span></span></font>")
+			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [ADMIN_TPMONTY(mob)]</span>: <span class='message'>[msg]</span></span></font>")
 
 
 /client/verb/setup_character()
@@ -170,9 +172,9 @@ var/global/normal_ooc_colour = "#002eb8"
 	set name = "MOTD"
 	set category = "OOC"
 	set desc ="Check the Message of the Day"
-	var/join_motd = file2text("config/motd.txt")
-	if(join_motd)
-		to_chat(src, "<span class='motd'>[join_motd]</span>")
+
+	if(GLOB.motd)
+		to_chat(src, "<span class='motd'>[GLOB.motd]</span>")
 	else
 		to_chat(src, "<span class='warning'>The motd is not set in the server configuration.</span>")
 

@@ -133,10 +133,14 @@
 			R.category=CAT_NORMAL
 			product_records += R
 
+		if(ispath(typepath, /obj/item/seeds))
+			var/obj/item/seeds/S = typepath
+			var/datum/seed/SD = GLOB.seed_types[initial(S.seed_type)]
+			R.product_name = "packet of [SD.seed_name] [SD.seed_noun]"
+			continue
+
 		R.product_name = initial(temp_path.name)
 
-//		to_chat(world, "Added: [R.product_name]] - [R.amount] - [R.product_path]")
-	return
 
 /obj/machinery/vending/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(tipped_level)
@@ -433,7 +437,7 @@
 /obj/machinery/vending/Topic(href, href_list)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
-	if(usr.is_mob_incapacitated())
+	if(usr.incapacitated())
 		return
 
 	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
@@ -596,7 +600,7 @@
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
-	if(user.stat || user.is_mob_restrained() || user.lying)
+	if(user.stat || user.restrained() || user.lying)
 		return
 
 	if(get_dist(user, src) > 1 || get_dist(src, A) > 1)

@@ -245,7 +245,7 @@
 
 /obj/item/device/motiondetector/Topic(href, href_list)
 	//..()
-	if(usr.stat || usr.is_mob_restrained())
+	if(usr.stat || usr.restrained())
 		return
 	if(ishuman(usr) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf))))
 		usr.set_interaction(src)

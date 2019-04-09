@@ -8,7 +8,8 @@
 	throwforce = 2.0
 	w_class = 4.0
 
-/obj/item/moneybag/attack_hand(user as mob)
+/obj/item/moneybag/attack_hand(mob/user)
+	. = ..()
 	var/amt_gold = 0
 	var/amt_silver = 0
 	var/amt_diamond = 0
@@ -88,8 +89,8 @@
 
 /obj/item/moneybag/vault
 
-/obj/item/moneybag/vault/New()
-	..()
+/obj/item/moneybag/vault/Initialize(mapload, ...)
+	. = ..()
 	new /obj/item/coin/silver(src)
 	new /obj/item/coin/silver(src)
 	new /obj/item/coin/silver(src)

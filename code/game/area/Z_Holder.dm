@@ -19,7 +19,7 @@
 	var/Sulaco = 0 //Set true if this is a deck of the Sulaco.
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "relay"
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 	anchored = 1
 
 /obj/item/z_holder/LV624   //Zlayer 1

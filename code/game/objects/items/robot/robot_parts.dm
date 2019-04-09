@@ -97,7 +97,6 @@
 	if(src.l_arm && src.r_arm)
 		if(src.l_leg && src.r_leg)
 			if(src.chest && src.head)
-				feedback_inc("cyborg_frames_built",1)
 				return 1
 	return 0
 
@@ -195,8 +194,6 @@
 				cell_component.wrapped = O.cell
 				cell_component.installed = 1
 
-			feedback_inc("cyborg_birth",1)
-			callHook("borgify", list(O))
 			O.Namepick()
 
 			qdel(src)

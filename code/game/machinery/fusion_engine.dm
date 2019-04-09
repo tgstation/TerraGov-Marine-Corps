@@ -11,7 +11,7 @@
 	icon = 'icons/Marine/fusion_eng.dmi'
 	icon_state = "off"
 	desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat."
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	anchored = TRUE
 	density = TRUE
 
@@ -136,7 +136,7 @@
 			to_chat(user, "<span class='warning'>The [src] needs to be turned off first.</span>")
 			return TRUE
 		if(!fusion_cell)
-			if(user.transferItemToLoc(O, src.))
+			if(user.transferItemToLoc(O, src))
 				fusion_cell = O
 				update_icon()
 				to_chat(user, "<span class='notice'>You load the [src] with the [O].</span>")

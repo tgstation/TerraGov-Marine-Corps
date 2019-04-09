@@ -55,7 +55,7 @@
 
 /obj/machinery/vending/assist
 	products = list(	/obj/item/device/assembly/prox_sensor = 5,/obj/item/device/assembly/igniter = 3,/obj/item/device/assembly/signaler = 4,
-						/obj/item/tool/wirecutters = 1, /obj/item/cartridge/signal = 4)
+						/obj/item/tool/wirecutters = 1)
 	contraband = list(/obj/item/device/flashlight = 5,/obj/item/device/assembly/timer = 2)
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
 
@@ -123,17 +123,6 @@
 					/obj/item/reagent_container/food/drinks/cans/waterbottle = 2,
 					/obj/item/reagent_container/food/drinks/cans/cola = 10)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
-
-//This one's from bay12
-/obj/machinery/vending/cart
-	name = "PTech"
-	desc = "Cartridges for PDAs."
-	//product_slogans = "Carts to go!"
-	icon_state = "cart"
-	icon_deny = "cart-deny"
-	products = list(/obj/item/cartridge/medical = 10,/obj/item/cartridge/engineering = 10,/obj/item/cartridge/security = 10,
-					/obj/item/cartridge/janitor = 10,/obj/item/cartridge/signal/science = 10,/obj/item/device/pda/heads = 10,
-					/obj/item/cartridge/captain = 3,/obj/item/cartridge/quartermaster = 10)
 
 
 /obj/machinery/vending/cigarette

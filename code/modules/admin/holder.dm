@@ -1,12 +1,3 @@
-GLOBAL_LIST_EMPTY(admin_datums)
-GLOBAL_PROTECT(admin_datums)
-GLOBAL_LIST_EMPTY(protected_admins)
-GLOBAL_PROTECT(protected_admins)
-
-GLOBAL_VAR_INIT(href_token, GenerateToken())
-GLOBAL_PROTECT(href_token)
-
-
 /datum/admins
 	var/datum/admin_rank/rank
 
@@ -16,6 +7,7 @@ GLOBAL_PROTECT(href_token)
 	var/fakekey			= null
 
 	var/datum/marked_datum
+	var/marked_file
 
 	var/href_token
 
@@ -244,19 +236,15 @@ GLOBAL_PROTECT(href_token)
 	return FALSE
 
 
-GLOBAL_PROTECT(admin_verbs_default)
-GLOBAL_LIST_INIT(admin_verbs_default, world.AVdefault())
 /world/proc/AVdefault()
 	return list(
 	/client/proc/deadmin
 	)
+GLOBAL_LIST_INIT(admin_verbs_default, world.AVdefault())
+GLOBAL_PROTECT(admin_verbs_default)
 
-GLOBAL_PROTECT(admin_verbs_admin)
-GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 /world/proc/AVadmin()
 	return list(
-	/client/proc/private_message_panel,
-	/client/proc/private_message_context,
 	/datum/admins/proc/show_player_panel,
 	/datum/admins/proc/pref_attack_logs,
 	/datum/admins/proc/pref_ff_attack_logs,
@@ -273,7 +261,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/toggle_sleep,
 	/datum/admins/proc/toggle_sleep_panel,
 	/datum/admins/proc/toggle_sleep_area,
-	/datum/admins/proc/change_squad,
 	/datum/admins/proc/direct_control,
 	/datum/admins/proc/logs_server,
 	/datum/admins/proc/logs_current,
@@ -286,8 +273,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/jump_coord,
 	/datum/admins/proc/jump_mob,
 	/datum/admins/proc/jump_key,
-	/datum/admins/proc/msay,
-	/datum/admins/proc/dsay,
 	/datum/admins/proc/player_panel,
 	/datum/admins/proc/player_panel_extended,
 	/datum/admins/proc/secrets_panel,
@@ -297,26 +282,31 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/job_slots,
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
-	/datum/admins/proc/mcdb
+	/datum/admins/proc/mcdb,
+	/client/proc/private_message_panel,
+	/client/proc/private_message_context,
+	/client/proc/msay,
+	/client/proc/dsay
 	)
+GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
+GLOBAL_PROTECT(admin_verbs_admin)
 
-GLOBAL_PROTECT(admin_verbs_mentor)
-GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 /world/proc/AVmentor()
 	return list(
-	/datum/admins/proc/msay,
-	/datum/admins/proc/dsay,
 	/datum/admins/proc/admin_ghost,
 	/datum/admins/proc/subtle_message,
+	/datum/admins/proc/subtle_message_panel,
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
 	/client/proc/private_message_panel,
-	/client/proc/private_message_context
+	/client/proc/private_message_context,
+	/client/proc/msay,
+	/client/proc/dsay
 	)
+GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
+GLOBAL_PROTECT(admin_verbs_mentor)
 
-GLOBAL_PROTECT(admin_verbs_ban)
-GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
 /world/proc/AVban()
 	return list(
 	/datum/admins/proc/ban_panel,
@@ -324,16 +314,16 @@ GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
 	/datum/admins/proc/unban_panel,
 	/datum/admins/proc/note_panel
 	)
+GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
+GLOBAL_PROTECT(admin_verbs_ban)
 
-GLOBAL_PROTECT(admin_verbs_asay)
-GLOBAL_LIST_INIT(admin_verbs_asay, world.AVasay())
 /world/proc/AVasay()
 	return list(
-	/datum/admins/proc/asay
+	/client/proc/asay
 	)
+GLOBAL_LIST_INIT(admin_verbs_asay, world.AVasay())
+GLOBAL_PROTECT(admin_verbs_asay)
 
-GLOBAL_PROTECT(admin_verbs_debug)
-GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 /world/proc/AVdebug()
 	return list(
 	/datum/admins/proc/proccall_advanced,
@@ -342,24 +332,28 @@ GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 	/datum/admins/proc/generate_powernets,
 	/datum/admins/proc/debug_mob_lists,
 	/datum/admins/proc/delete_atom,
-	/datum/admins/proc/fix_next_move,
 	/datum/admins/proc/restart_controller,
-	/datum/admins/proc/check_contents
+	/datum/admins/proc/check_contents,
+	/datum/admins/proc/SDQL2_query,
+	/datum/admins/proc/map_template_load,
+	/datum/admins/proc/map_template_upload,
+	/datum/admins/proc/reestablish_db_connection
 	)
+GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
+GLOBAL_PROTECT(admin_verbs_debug)
 
-GLOBAL_PROTECT(admin_verbs_varedit)
-GLOBAL_LIST_INIT(admin_verbs_varedit, world.AVvaredit())
 /world/proc/AVvaredit()
 	return list(
 	/client/proc/debug_variables
 	)
+GLOBAL_LIST_INIT(admin_verbs_varedit, world.AVvaredit())
+GLOBAL_PROTECT(admin_verbs_varedit)
 
-GLOBAL_PROTECT(admin_verbs_fun)
-GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 /world/proc/AVfun()
 	return list(
 	/datum/admins/proc/select_rank,
 	/datum/admins/proc/select_equipment,
+	/datum/admins/proc/change_squad,
 	/datum/admins/proc/set_view_range,
 	/datum/admins/proc/emp,
 	/datum/admins/proc/queen_report,
@@ -369,6 +363,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/narrate_global,
 	/datum/admins/proc/narage_direct,
 	/datum/admins/proc/subtle_message,
+	/datum/admins/proc/subtle_message_panel,
 	/datum/admins/proc/award_medal,
 	/datum/admins/proc/custom_info,
 	/datum/admins/proc/announce,
@@ -385,11 +380,11 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/possess,
 	/datum/admins/proc/release,
-	/client/proc/build_mode
+	/client/proc/toggle_buildmode
 	)
+GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
+GLOBAL_PROTECT(admin_verbs_fun)
 
-GLOBAL_PROTECT(admin_verbs_server)
-GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 /world/proc/AVserver()
 	return list(
 	/datum/admins/proc/restart,
@@ -411,24 +406,24 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 	/datum/admins/proc/map_random,
 	/datum/admins/proc/map_change
 	)
+GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
+GLOBAL_PROTECT(admin_verbs_server)
 
-
-GLOBAL_PROTECT(admin_verbs_permissions)
-GLOBAL_LIST_INIT(admin_verbs_permissions, world.AVpermissions())
 /world/proc/AVpermissions()
 	return list(
-	/datum/admins/proc/permissions_panel
+	/datum/admins/proc/permissions_panel,
+	/datum/admins/proc/create_poll
 	)
+GLOBAL_LIST_INIT(admin_verbs_permissions, world.AVpermissions())
+GLOBAL_PROTECT(admin_verbs_permissions)
 
-GLOBAL_PROTECT(admin_verbs_color)
-GLOBAL_LIST_INIT(admin_verbs_color, world.AVcolor())
 /world/proc/AVcolor()
 	return list(
 
 	)
+GLOBAL_LIST_INIT(admin_verbs_color, world.AVcolor())
+GLOBAL_PROTECT(admin_verbs_color)
 
-GLOBAL_PROTECT(admin_verbs_sound)
-GLOBAL_LIST_INIT(admin_verbs_sound, world.AVsound())
 /world/proc/AVsound()
 	return list(
 	/datum/admins/proc/sound_file,
@@ -436,14 +431,15 @@ GLOBAL_LIST_INIT(admin_verbs_sound, world.AVsound())
 	/datum/admins/proc/sound_stop,
 	/datum/admins/proc/music_stop
 	)
+GLOBAL_LIST_INIT(admin_verbs_sound, world.AVsound())
+GLOBAL_PROTECT(admin_verbs_sound)
 
-GLOBAL_PROTECT(admin_verbs_spawn)
-GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 /world/proc/AVspawn()
 	return list(
 	/datum/admins/proc/spawn_atom
 	)
-
+GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
+GLOBAL_PROTECT(admin_verbs_spawn)
 
 /client/proc/add_admin_verbs()
 	if(holder)

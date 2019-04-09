@@ -112,10 +112,9 @@
 
 // this function displays the shuttles ETA in the status panel if the shuttle has been called
 /mob/living/silicon/proc/show_emergency_shuttle_eta()
-	if(EvacuationAuthority)
-		var/eta_status = EvacuationAuthority.get_status_panel_eta()
-		if(eta_status)
-			stat(null, eta_status)
+	var/eta_status = SSevacuation?.get_status_panel_eta()
+	if(eta_status)
+		stat("Evacuation in:", eta_status)
 
 
 // This adds the basic clock, shuttle recall timer, and malf_ai info to all silicon lifeforms
@@ -130,8 +129,8 @@
 // this function displays the stations manifest in a separate window
 /mob/living/silicon/proc/show_station_manifest()
 	var/dat
-	if(data_core)
-		dat += data_core.get_manifest(1) // make it monochrome
+	if(GLOB.datacore)
+		dat += GLOB.datacore.get_manifest(1) // make it monochrome
 
 	var/datum/browser/popup = new(src, "airoster", "<div align='center'>Crew Manifest</div>")
 	popup.set_content(dat)
@@ -139,10 +138,10 @@
 	onclose(src, "airoster")
 
 //can't inject synths
-/mob/living/silicon/can_inject(var/mob/user, var/error_msg)
-	if(error_msg)
+/mob/living/silicon/can_inject(mob/user, error_msg, target_zone, penetrate_thick = FALSE)
+	if(user && error_msg)
 		to_chat(user, "<span class='alert'>The armoured plating is too tough.</span>")
-	return 0
+	return FALSE
 
 
 //Silicon mob language procs

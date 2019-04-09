@@ -100,7 +100,7 @@ macro "macro"
 		command = "Activate-Held-Object"
 	elem 
 		name = "F1"
-		command = "adminhelp"
+		command = "choosehelp"
 	elem 
 		name = "CTRL+SHIFT+F1+REP"
 		command = ".options"
@@ -303,7 +303,7 @@ macro "hotkeymode"
 		command = "a-select-zone \"head\""
 	elem 
 		name = "F1"
-		command = "adminhelp"
+		command = "choosehelp"
 	elem 
 		name = "CTRL+SHIFT+F1+REP"
 		command = ".options"
@@ -423,8 +423,8 @@ menu "menu"
 		command = ""
 		saved-params = "is-checked"
 	elem 
-		name = "&Admin help\tF1"
-		command = "adminhelp"
+		name = "&Request Help\tF1"
+		command = "choosehelp"
 		category = "&Help"
 		saved-params = "is-checked"
 	elem 
@@ -658,7 +658,7 @@ window "mainwindow"
 		anchor2 = none
 		saved-params = ""
 		text = "Hotkey Toggle"
-		command = ".winset \"mainwindow.macro!=macro ? mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true : mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
+		command = ".winset \"mainwindow.macro!=macro ? mainwindow.macro=macro hotkey_toggle.is-checked=false input.background-color=#d3b5b5 input.focus=true : mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true input.background-color=#f0f0f0 mapwindow.map.focus=true\""
 		button-type = pushbox
 	elem "mainvsplit"
 		type = CHILD
