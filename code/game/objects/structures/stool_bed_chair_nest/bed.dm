@@ -121,7 +121,7 @@ obj/structure/bed/Destroy()
 	if(foldabletype && !buckled_mob && !buckled_bodybag)
 		if(ishuman(over_object))
 			var/mob/living/carbon/human/H = over_object
-			if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && in_range(src, over_object))
+			if(H == usr && !H.incapacitated() && Adjacent(H) && in_range(src, over_object))
 				var/obj/item/I = new foldabletype(get_turf(src))
 				H.put_in_hands(I)
 				if(istype(I,/obj/item/roller/medevac)) //We need to preserve key variables like linked beacons and cooldowns.

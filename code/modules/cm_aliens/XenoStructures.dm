@@ -6,7 +6,6 @@
 	name = "alien thing"
 	desc = "theres something alien about this"
 	icon = 'icons/Xeno/Effects.dmi'
-	unacidable = TRUE
 	anchored = TRUE
 	var/health = 1
 	var/on_fire = FALSE
@@ -201,7 +200,7 @@
 	return ..()
 
 /obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
-	if(!iscarbon(AM) || !hugger || isyautja(AM))
+	if(!iscarbon(AM) || !hugger)
 		return
 	var/mob/living/carbon/C = AM
 	if(C.can_be_facehugged(hugger))
@@ -459,8 +458,8 @@
 	var/status = EGG_GROWING
 	var/hivenumber = XENO_HIVE_NORMAL
 
-/obj/effect/alien/egg/New()
-	..()
+/obj/effect/alien/egg/Initialize()
+	. = ..()
 	if(hugger_type)
 		hugger = new hugger_type(src)
 		hugger.hivenumber = hivenumber
@@ -498,7 +497,7 @@
 	if(!istype(M))
 		return attack_hand(M)
 
-	if(M.hivenumber != hivenumber)
+	if(!issamexenohive(M))
 		M.animation_attack_on(src)
 		M.visible_message("<span class='xenowarning'>[M] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
 		Burst(TRUE)
@@ -557,10 +556,11 @@
 
 /obj/effect/alien/egg/update_icon()
 	overlays.Cut()
-	if(hivenumber && hivenumber <= hive_datum.len)
-		var/datum/hive_status/hive = hive_datum[hivenumber]
-		if(hive.color)
-			color = hive.color
+	if(hivenumber != XENO_HIVE_NORMAL && GLOB.hive_datums[hivenumber])
+		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+		color = hive.color
+	else
+		color = null
 	switch(status)
 		if(EGG_DESTROYED)
 			icon_state = "Egg Exploded"
@@ -631,7 +631,7 @@
 	Burst(TRUE)
 
 /obj/effect/alien/egg/HasProximity(atom/movable/AM)
-	if((status != EGG_GROWN) || QDELETED(hugger) || !iscarbon(AM) || isyautja(AM)) //Predators are too stealthy to trigger eggs to burst.
+	if((status != EGG_GROWN) || QDELETED(hugger) || !iscarbon(AM))
 		return FALSE
 	var/mob/living/carbon/C = AM
 	if(!C.can_be_facehugged(hugger))
@@ -666,9 +666,7 @@
 
 
 /*
-
 TUNNEL
-
 */
 
 
@@ -681,12 +679,13 @@ TUNNEL
 	density = 0
 	opacity = 0
 	anchored = 1
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 	layer = RESIN_STRUCTURE_LAYER
 
 	var/tunnel_desc = "" //description added by the hivelord.
 
 	health = 140
+	var/mob/living/carbon/Xenomorph/Hivelord/creator = null
 	var/obj/structure/tunnel/other = null
 	var/id = null //For mapping
 
@@ -696,11 +695,12 @@ TUNNEL
 
 
 /obj/structure/tunnel/Destroy()
-	GLOB.xeno_tunnels -= src
-	if(other)
-		other.other = null
-		other = null
-	. = ..()
+    GLOB.xeno_tunnels -= src
+    creator.tunnels -= src
+    if(other)
+        other.other = null
+        qdel(other)
+    . = ..()
 
 /obj/structure/tunnel/examine(mob/user)
 	..()
@@ -730,14 +730,11 @@ TUNNEL
 /obj/structure/tunnel/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			health -= 200
+			health -= 210
 		if(2.0)
-			health -= 120
+			health -= 140
 		if(3.0)
-			if(prob(50))
-				health -= 50
-			else
-				health -= 25
+			health -= 70
 	healthcheck()
 
 /obj/structure/tunnel/attackby(obj/item/W as obj, mob/user as mob)
@@ -749,10 +746,16 @@ TUNNEL
 	if(!istype(M) || M.stat || M.lying)
 		return
 
+	if(M.a_intent == INTENT_HARM && M == creator)
+		to_chat(M, "<span class='xenowarning'>You begin filling in your tunnel...</span>")
+		if(do_after(M, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, 5, BUSY_ICON_HOSTILE))
+			health = 0
+			healthcheck()
+		return
+
 	//Prevents using tunnels by the queen to bypass the fog.
 	if(SSticker?.mode && SSticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
-		var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
-		if(!hive.living_xeno_queen)
+		if(!M.hive.living_xeno_queen)
 			to_chat(M, "<span class='xenowarning'>There is no Queen. You must choose a queen first.</span>")
 			return FALSE
 		else if(isxenoqueen(M))
@@ -763,26 +766,24 @@ TUNNEL
 		to_chat(M, "<span class='xenowarning'>You can't climb through a tunnel while immobile.</span>")
 		return FALSE
 
-	var/tunnel_time = 40
-
-	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take WAY longer
-		tunnel_time = 120
-
-	if(isxenolarva(M)) //Larva can zip through near-instantly, they are wormlike after all
-		tunnel_time = 5
-
 	if(!other || !isturf(other.loc))
 		to_chat(M, "<span class='warning'>\The [src] doesn't seem to lead anywhere.</span>")
 		return
 
+	var/distance = get_dist( get_turf(src), get_turf(other) )
+	var/tunnel_time = CLAMP(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME)
 	var/area/A = get_area(other)
 
-	if(tunnel_time <= 50)
-		M.visible_message("<span class='xenonotice'>\The [M] begins crawling down into \the [src].</span>", \
-		"<span class='xenonotice'>You begin crawling down into \the [src] to <b>[A.name]</b>.</span>")
-	else
+	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take longer
+		tunnel_time = CLAMP(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME)
 		M.visible_message("<span class='xenonotice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
-		"<span class='xenonotice'>You begin heaving your monstrous bulk into \the [src] to <b>[A.name]</b>.</span>")
+		"<span class='xenonotice'>You begin heaving your monstrous bulk into \the [src] to <b>[A.name] (X: [A.x], Y: [A.y])</b>.</span>")
+	else
+		M.visible_message("<span class='xenonotice'>\The [M] begins crawling down into \the [src].</span>", \
+		"<span class='xenonotice'>You begin crawling down into \the [src] to <b>[A.name] (X: [A.x], Y: [A.y])</b>.</span>")
+
+	if(isxenolarva(M)) //Larva can zip through near-instantly, they are wormlike after all
+		tunnel_time = 5
 
 	if(do_after(M, tunnel_time, FALSE, 5, BUSY_ICON_GENERIC))
 		if(other && isturf(other.loc)) //Make sure the end tunnel is still there

@@ -67,8 +67,6 @@
 
 	var/icon/stand_icon = null
 
-	var/tinttotal = 0
-
 	var/voice = ""	//Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
 
 	var/speech_problem_flag = 0
@@ -105,11 +103,11 @@
 
 	var/mobility_aura = 0
 	var/protection_aura = 0
-	var/marskman_aura = 0
+	var/marksman_aura = 0
 
 	var/mobility_new = 0
 	var/protection_new = 0
-	var/marskman_new = 0
+	var/marksman_new = 0
 	var/aura_recovery_multiplier = 0
 
 	var/temporary_slowdown = 0 //Stacking slowdown caused from effects, currently used by neurotoxin gas

@@ -53,6 +53,8 @@
 	var/in_stasis = FALSE //Is the mob in stasis bag?
 	var/metabolism_efficiency = 1 //more or less efficiency to metabolize helpful/harmful reagents and (TODO) regulate body temperature..
 
+	var/tinttotal = TINT_NONE
+
 	//Speech
 	var/stuttering = 0
 	var/slurring = 0
@@ -87,5 +89,3 @@
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
 
 	var/ventcrawl_message_busy
-
-	var/taken = FALSE

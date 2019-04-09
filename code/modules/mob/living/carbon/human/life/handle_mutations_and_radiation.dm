@@ -56,6 +56,3 @@
 		if(damage)
 			adjustToxLoss(damage * RADIATION_SPEED_COEFFICIENT)
 			//updatehealth() moved to Life()
-			if(limbs.len)
-				var/datum/limb/O = pick(limbs)
-				O.add_autopsy_data("Radiation Poisoning", damage)

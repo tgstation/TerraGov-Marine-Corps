@@ -42,13 +42,13 @@
 	var/list/datum/radio_frequency/secure_radio_connections = new
 
 	proc/set_frequency(new_frequency)
-		radio_controller.remove_object(src, frequency)
+		SSradio.remove_object(src, frequency)
 		frequency = new_frequency
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+		radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
 
 /obj/item/device/radio/Initialize()
 	. = ..()
-	if(!radio_controller)
+	if(!SSradio)
 		return
 	if(freerange)
 		if(frequency < 1200 || frequency > 1600)
@@ -61,7 +61,7 @@
 	set_frequency(frequency)
 
 	for (var/ch_name in channels)
-		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 
 /obj/item/device/radio/attack_self(mob/user as mob)
@@ -282,7 +282,10 @@
 		jobname = "Unknown"
 		voicemask = 1
 
-
+	if(iscarbon(M.loc))
+		var/mob/living/carbon/C = M.loc
+		if(M in C.stomach_contents)
+			message = Gibberish(message, 100)
 
   /* ###### Radio headsets can only broadcast through subspace ###### */
 
@@ -524,7 +527,7 @@
 
 
 			for(var/ch_name in channels)
-				radio_controller.remove_object(src, radiochannels[ch_name])
+				SSradio.remove_object(src, radiochannels[ch_name])
 				secure_radio_connections[ch_name] = null
 
 
@@ -577,13 +580,13 @@
 
 
 	for (var/ch_name in src.channels)
-		if(!radio_controller)
-			sleep(30) // Waiting for the radio_controller to be created.
-		if(!radio_controller)
+		if(!SSradio)
+			sleep(30) // Waiting for the SSradio to be created.
+		if(!SSradio)
 			src.name = "broken radio"
 			return
 
-		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 	return
 
@@ -638,14 +641,14 @@
 
 
 /obj/item/device/radio/proc/config(op)
-	if(radio_controller)
+	if(SSradio)
 		for (var/ch_name in channels)
-			radio_controller.remove_object(src, radiochannels[ch_name])
+			SSradio.remove_object(src, radiochannels[ch_name])
 	secure_radio_connections = new
 	channels = op
-	if(radio_controller)
+	if(SSradio)
 		for (var/ch_name in op)
-			secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+			secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 	return
 
 /obj/item/device/radio/off

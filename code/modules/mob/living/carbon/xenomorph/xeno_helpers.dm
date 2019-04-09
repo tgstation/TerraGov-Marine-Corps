@@ -16,7 +16,7 @@
 
 
 //These don't do much currently. Or anything? Only around for legacy code.
-/mob/living/carbon/Xenomorph/is_mob_restrained()
+/mob/living/carbon/Xenomorph/restrained()
 	return FALSE
 
 

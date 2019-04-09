@@ -174,7 +174,7 @@
 /datum/reagent/space_drugs/on_mob_life(mob/living/M)
 	M.set_drugginess(15)
 	if(isturf(M.loc) && !isspaceturf(M.loc))
-		if(M.canmove && !M.is_mob_restrained())
+		if(M.canmove && !M.restrained())
 			if(prob(10))
 				step(M, pick(cardinal))
 	if(prob(7))
@@ -287,7 +287,7 @@
 	taste_multi = 0
 
 /datum/reagent/mercury/on_mob_life(mob/living/M)
-	if(M.canmove && !M.is_mob_restrained() && !isspaceturf(M.loc))
+	if(M.canmove && !M.restrained() && !isspaceturf(M.loc))
 		step(M, pick(cardinal))
 	if(prob(5))
 		M.emote(pick("twitch","drool","moan"))
@@ -385,7 +385,7 @@
 	taste_description = "metal"
 
 /datum/reagent/lithium/on_mob_life(mob/living/M)
-	if(M.canmove && !M.is_mob_restrained() && !isspaceturf(M.loc))
+	if(M.canmove && !M.restrained() && !isspaceturf(M.loc))
 		step(M, pick(cardinal))
 	if(prob(5))
 		M.emote(pick("twitch","drool","moan"))

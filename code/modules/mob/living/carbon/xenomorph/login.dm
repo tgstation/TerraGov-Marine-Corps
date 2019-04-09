@@ -1,3 +1,8 @@
 /mob/living/carbon/Xenomorph/Login()
-	..()
-	if(SSticker?.mode) SSticker.mode.xenomorphs |= mind
+	. = ..()
+
+	if(!isdistress(SSticker.mode))
+		return 
+
+	var/datum/game_mode/distress/D = SSticker.mode
+	D.xenomorphs |= mind

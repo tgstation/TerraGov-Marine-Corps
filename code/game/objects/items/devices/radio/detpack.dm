@@ -131,7 +131,7 @@
 
 /obj/item/device/radio/detpack/Topic(href, href_list)
 	//..()
-	if(usr.stat || usr.is_mob_restrained())
+	if(usr.stat || usr.restrained())
 		return
 	if((ishuman(usr) && usr.contents.Find(src)) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf))))
 		usr.set_interaction(src)
@@ -224,11 +224,11 @@
 /obj/item/device/radio/detpack/afterattack(atom/target, mob/user, flag)
 	if(!flag)
 		return FALSE
-	if(istype(target, /obj/structure/ladder) || istype(target, /obj/item) || istype(target, /mob))
+	if(istype(target, /obj/item) || istype(target, /mob))
 		return FALSE
-	if(istype(target, /obj/effect) || istype(target, /obj/machinery))
+	if(isobj(target))
 		var/obj/O = target
-		if(O.unacidable)
+		if(CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 			return FALSE
 	if(iswallturf(target))
 		var/turf/closed/wall/W = target

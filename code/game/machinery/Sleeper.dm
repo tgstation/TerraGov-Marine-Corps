@@ -125,7 +125,7 @@
 		return FALSE
 	if(!usr)
 		return FALSE
-	if(usr.is_mob_incapacitated() || !usr.IsAdvancedToolUser())
+	if(usr.incapacitated() || !usr.IsAdvancedToolUser())
 		return FALSE
 	var/mob/living/carbon/human/user = usr
 	if(get_dist(src, user) > 1)
@@ -213,7 +213,7 @@
 		to_chat(user, "<span class='notice'>It contains: [occupant].[feedback]</span>")
 		return
 	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in data_core.medical)
+	for(var/datum/data/record/R in GLOB.datacore.medical)
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(!(R.fields["last_scan_time"]))
@@ -233,7 +233,7 @@
 	if(!ishuman(occupant))
 		return
 	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in data_core.medical)
+	for(var/datum/data/record/R in GLOB.datacore.medical)
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])

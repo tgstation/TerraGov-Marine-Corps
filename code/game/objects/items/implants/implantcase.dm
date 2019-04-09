@@ -11,6 +11,12 @@
 	w_class = 1.0
 	var/obj/item/implant/imp = null
 
+/obj/item/implantcase/Initialize(mapload, ...)
+	. = ..()
+	if(imp)
+		imp = new imp(src)
+		update()
+
 /obj/item/implantcase/proc/update()
 	if (imp)
 		icon_state = "implantcase-[imp.implant_color]"
@@ -65,96 +71,52 @@
 	name = "glass case - 'Tracking'"
 	desc = "A case containing a tracking implant."
 	icon_state = "implantcase-b"
-
-/obj/item/implantcase/tracking/New()
-	imp = new /obj/item/implant/tracking( src )
-	..()
-	return
-
+	imp = /obj/item/implant/tracking
 
 /obj/item/implantcase/explosive
 	name = "glass case - 'Explosive'"
 	desc = "A case containing an explosive implant."
 	icon_state = "implantcase-r"
-
-/obj/item/implantcase/explosive/New()
-	imp = new /obj/item/implant/explosive( src )
-	..()
-	return
-
+	imp = /obj/item/implant/explosive
 
 /obj/item/implantcase/chem
 	name = "glass case - 'Chem'"
 	desc = "A case containing a chemical implant."
 	icon_state = "implantcase-b"
-
-/obj/item/implantcase/chem/New()
-	imp = new /obj/item/implant/chem( src )
-	..()
-	return
-
+	imp = /obj/item/implant/chem
 
 /obj/item/implantcase/loyalty
 	name = "glass case - 'Loyalty'"
 	desc = "A case containing a loyalty implant."
 	icon_state = "implantcase-r"
-
-/obj/item/implantcase/loyalty/New()
-	imp = new /obj/item/implant/loyalty( src )
-	..()
-	return
-
+	imp = /obj/item/implant/loyalty
 
 /obj/item/implantcase/death_alarm
 	name = "glass case - 'Death Alarm'"
 	desc = "A case containing a death alarm implant."
 	icon_state = "implantcase-b"
-
-/obj/item/implantcase/death_alarm/New()
-	imp = new /obj/item/implant/death_alarm( src )
-	..()
-	return
-
+	imp = /obj/item/implant/death_alarm
 
 /obj/item/implantcase/freedom
 	name = "glass case - 'Freedom'"
 	desc = "A case containing a freedom implant."
 	icon_state = "implantcase-r"
-
-/obj/item/implantcase/freedom/New()
-	imp = new /obj/item/implant/freedom( src )
-	..()
-	return
-
+	imp = /obj/item/implant/freedom
 
 /obj/item/implantcase/adrenalin
 	name = "glass case - 'Adrenalin'"
 	desc = "A case containing an adrenalin implant."
 	icon_state = "implantcase-b"
-
-/obj/item/implantcase/adrenalin/New()
-	imp = new /obj/item/implant/adrenalin( src )
-	..()
-	return
-
+	imp = /obj/item/implant/adrenalin
 
 /obj/item/implantcase/dexplosive
 	name = "glass case - 'Explosive'"
 	desc = "A case containing an explosive."
 	icon_state = "implantcase-r"
-
-/obj/item/implantcase/dexplosive/New()
-	imp = new /obj/item/implant/dexplosive( src )
-	..()
-	return
-
+	imp = /obj/item/implant/dexplosive
 
 /obj/item/implantcase/health
 	name = "glass case - 'Health'"
 	desc = "A case containing a health tracking implant."
 	icon_state = "implantcase-b"
-
-/obj/item/implantcase/health/New()
-	imp = new /obj/item/implant/health( src )
-	..()
-	return
+	imp = /obj/item/implant/health

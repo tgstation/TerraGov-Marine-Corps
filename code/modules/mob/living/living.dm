@@ -105,7 +105,8 @@
 		qdel(attack_icon)
 		attack_icon = null
 	GLOB.mob_living_list -= src
-	. = ..()
+	GLOB.offered_mob_list -= src
+	return ..()
 
 
 
@@ -129,7 +130,7 @@
 		var/extradam = 0	//added to when organ is at max dam
 		for(var/datum/limb/affecting in H.limbs)
 			if(!affecting)	continue
-			if(affecting.take_damage(0, divided_damage+extradam))	//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
+			if(affecting.take_damage_limb(0, divided_damage + extradam))	//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
 				H.UpdateDamageIcon()
 		H.updatehealth()
 		return 1
@@ -314,7 +315,7 @@
 	return FALSE
 
 /mob/living/carbon/human/ignore_pull_delay()
-	return isyautjastrict(src) //Predators aren't slowed when pulling their prey.
+	return FALSE
 
 /mob/living/is_injectable(allowmobs = TRUE)
 	return (allowmobs && can_inject())
@@ -336,7 +337,7 @@
 			now_pushing = 0
 			return
 
-		if(isxeno(L) && !isxenolarva(L)) //Handling pushing Xenos in general, but big Xenos and Preds can still push small Xenos
+		if(isxeno(L) && !isxenolarva(L)) //Handling pushing Xenos in general, but big Xenos can still push small Xenos
 			var/mob/living/carbon/Xenomorph/X = L
 			if((ishuman(src) && X.mob_size == MOB_SIZE_BIG) || (isxeno(src) && X.mob_size == MOB_SIZE_BIG))
 				if(!isxeno(src) && client)
@@ -349,7 +350,7 @@
 			if(X.mob_size == MOB_SIZE_BIG)
 				L.do_bump_delay = 1
 
-		if(L.pulledby && L.pulledby != src && L.is_mob_restrained())
+		if(L.pulledby && L.pulledby != src && L.restrained())
 			if(!(world.time % 5))
 				to_chat(src, "<span class='warning'>[L] is restrained, you cannot push past.</span>")
 			now_pushing = 0
@@ -358,7 +359,7 @@
  		if(L.pulling)
  			if(ismob(L.pulling))
  				var/mob/P = L.pulling
- 				if(P.is_mob_restrained())
+ 				if(P.restrained())
  					if(!(world.time % 5))
  						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
 					now_pushing = 0
@@ -385,7 +386,7 @@
 			if(L.pulledby == src && a_intent == INTENT_GRAB)
 				mob_swap = 1
 			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-			else if((L.is_mob_restrained() || L.a_intent == INTENT_HELP) && (is_mob_restrained() || a_intent == INTENT_HELP))
+			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP))
 				mob_swap = 1
 			if(mob_swap)
 				//switch our position with L
@@ -473,7 +474,9 @@
 
 
 /mob/living/proc/offer_mob()
-	for(var/mob/dead/observer/O in GLOB.dead_mob_list)
+	GLOB.offered_mob_list += src
+	for(var/i in GLOB.observer_list)
+		var/mob/dead/observer/O = i
 		to_chat(O, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] \[<a href='byond://?src=[REF(O)];claim=[REF(src)]'>CLAIM</a>\] \[<a href='byond://?src=[REF(O)];track=[REF(src)]'>FOLLOW</a>\]</span><hr><br>")
 
 
@@ -491,6 +494,26 @@
 
 /mob/living/proc/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
 	return FALSE
+
+/mob/living/update_tint()
+	tinttotal = get_total_tint()
+	if(tinttotal >= TINT_BLIND)
+		blind_eyes(1)
+		return TRUE
+	else if(eye_blind == 1)
+		adjust_blindness(-1)
+	if(tinttotal == TINT_HEAVY)
+		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, 2)
+		return TRUE
+	else
+		clear_fullscreen("tint", 0)
+		return FALSE
+
+/mob/living/proc/get_total_tint()
+	if(iscarbon(loc))
+		var/mob/living/carbon/C = loc
+		if(src in C.stomach_contents)
+			. = TINT_BLIND
 
 /mob/living/proc/smokecloak_on()
 
@@ -602,3 +625,22 @@ below 100 is not dizzy
 
 /mob/living/proc/vomit()
 	return
+
+
+/mob/living/proc/take_over(mob/M, bypass)
+	if(!M.mind)
+		to_chat(M, "<span class='warning'>You don't have a mind.</span>")
+		return
+	if(!bypass && (key || ckey))
+		to_chat(M, "<span class='warning'>That mob has already been taken.</span>")
+		return
+	if(!bypass && job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
+		to_chat(M, "<span class='warning'>You are jobbanned from that job.</span>")
+		return
+
+	M.mind.transfer_to(src, TRUE)
+	fully_replace_character_name(M.real_name, real_name)
+	GLOB.offered_mob_list -= src
+
+	log_admin("[key_name(M)] has taken [key_name_admin(src)].")
+	message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")

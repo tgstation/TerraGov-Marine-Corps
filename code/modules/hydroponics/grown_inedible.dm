@@ -111,7 +111,7 @@
 		if(ishuman(user))
 			var/organ = ((user.hand ? "l_":"r_") + "arm")
 			var/datum/limb/affecting = user.get_limb(organ)
-			if(affecting.take_damage(0,force))
+			if(affecting.take_damage_limb(0, force))
 				user.UpdateDamageIcon()
 		else
 			user.take_limb_damage(0,force)

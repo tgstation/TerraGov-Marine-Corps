@@ -81,7 +81,8 @@ Make the TGMC proud!"})
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
 	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner/fancy
 	shoes = /obj/item/clothing/shoes/marine
-	head = /obj/item/clothing/head/tgmccap
+	gloves = /obj/item/clothing/gloves/black
+	head = /obj/item/clothing/head/tgmcberet/fc
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/device/megaphone
 	back = /obj/item/smartgun_powerpack/fancy

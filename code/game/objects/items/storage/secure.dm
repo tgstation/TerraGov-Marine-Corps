@@ -100,7 +100,7 @@
 
 	Topic(href, href_list)
 		..()
-		if ((usr.stat || usr.is_mob_restrained()) || (get_dist(src, usr) > 1))
+		if ((usr.stat || usr.restrained()) || (get_dist(src, usr) > 1))
 			return
 		if (href_list["type"])
 			if (href_list["type"] == "E")
@@ -213,16 +213,12 @@
 	max_w_class = 8
 	anchored = 1.0
 	density = 0
-	cant_hold = list("/obj/item/storage/secure/briefcase")
+	cant_hold = list(/obj/item/storage/secure/briefcase)
 
-	New()
-		..()
-		new /obj/item/paper(src)
-		new /obj/item/tool/pen(src)
+/obj/item/storage/secure/safe/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/paper(src)
+	new /obj/item/tool/pen(src)
 
-	attack_hand(mob/user as mob)
-		return attack_self(user)
-
-/obj/item/storage/secure/safe/HoS/New()
-	..()
-	//new /obj/item/storage/lockbox/clusterbang(src) This item is currently broken... and probably shouldnt exist to begin with (even though it's cool)
+/obj/item/storage/secure/safe/attack_hand(mob/user as mob)
+	return attack_self(user)

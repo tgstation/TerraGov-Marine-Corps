@@ -277,7 +277,7 @@
 /obj/item/paper/proc/burnpaper(obj/item/P, mob/user)
 	var/class = "<span class='warning'>"
 
-	if(P.heat_source >= 400 && !user.is_mob_restrained())
+	if(P.heat_source >= 400 && !user.restrained())
 		if(istype(P, /obj/item/tool/lighter/zippo))
 			class = "<span class='rose'>"
 
@@ -301,7 +301,7 @@
 
 /obj/item/paper/Topic(href, href_list)
 	..()
-	if(!usr || (usr.stat || usr.is_mob_restrained()))
+	if(!usr || (usr.stat || usr.restrained()))
 		return
 
 	if(href_list["write"])
@@ -377,7 +377,8 @@
 		stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the [P.name].</i>"
 
 		var/image/stampoverlay = image('icons/obj/items/paper.dmi')
-		var/{x; y;}
+		var/x
+		var/y
 		if(istype(P, /obj/item/tool/stamp/captain) || istype(P, /obj/item/tool/stamp/centcomm))
 			x = rand(-2, 0)
 			y = rand(-1, 2)

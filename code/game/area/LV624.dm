@@ -194,12 +194,10 @@
 /area/lv624/lazarus/hallway_one
 	name = "\improper Hallway"
 	icon_state = "green"
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/hallway_two
 	name = "\improper Hallway"
 	icon_state = "purple"
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/medbay
 	name = "\improper Medbay"
@@ -212,73 +210,59 @@
 /area/lv624/lazarus/security
 	name = "\improper Security"
 	icon_state = "security"
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/captain
 	name = "\improper Commandant's Quarters"
 	icon_state = "captain"
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/hop
 	name = "\improper Head of Personnel's Office"
 	icon_state = "head_quarters"
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/kitchen
 	name = "\improper Kitchen"
 	icon_state = "kitchen"
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/canteen
 	name = "\improper Canteen"
 	icon_state = "cafeteria"
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/main_hall
 	name = "\improper Main Hallway"
 	icon_state = "hallC1"
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/main_hall
 	name = "\improper Main Hallway"
 	icon_state = "hallC1"
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/toilet
 	name = "\improper Dormitory Toilet"
 	icon_state = "toilet"
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/chapel
 	name = "\improper Chapel"
 	icon_state = "chapel"
 	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg')
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/toilet
 	name = "\improper Dormitory Toilet"
 	icon_state = "toilet"
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/sleep_male
 	name = "\improper Male Dorm"
 	icon_state = "Sleep"
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/sleep_female
 	name = "\improper Female Dorm"
 	icon_state = "Sleep"
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/quart
 	name = "\improper Quartermasters"
 	icon_state = "quart"
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/quartstorage
 	name = "\improper Cargo Bay"
 	icon_state = "quartstorage"
-	can_hellhound_enter = 0
 
 /area/lv624/lazarus/quartstorage/outdoors
 	name = "\improper Cargo Bay Area"

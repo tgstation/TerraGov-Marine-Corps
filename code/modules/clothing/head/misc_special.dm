@@ -18,7 +18,7 @@
 	item_state = "welding"
 	matter = list("metal" = 3000, "glass" = 1000)
 	var/up = 0
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	flags_atom = CONDUCT
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE
@@ -28,7 +28,7 @@
 	w_class = 3
 	anti_hug = 2
 	eye_protection = 2
-	tint = 2
+	tint = TINT_HEAVY
 	var/hug_memory = 0 //Variable to hold the "memory" of how many anti-hugs remain.  Because people were abusing the fuck out of it.
 
 /obj/item/clothing/head/welding/attack_self()
@@ -40,7 +40,7 @@
 	set name = "Adjust welding mask"
 	set src in usr
 
-	if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
+	if(usr.canmove && !usr.stat && !usr.restrained())
 		if(up)
 			flags_inventory |= COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 			flags_inv_hide |= HIDEEARS|HIDEEYES|HIDEFACE
@@ -54,7 +54,7 @@
 			flags_inv_hide &= ~(HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[initial(icon_state)]up"
 			eye_protection = 0
-			tint = 0
+			tint = TINT_NONE
 			to_chat(usr, "You push the [src] up out of your face.")
 			hug_memory = anti_hug
 			anti_hug = 0
@@ -162,9 +162,9 @@
 	var/icon/earbit = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kittyinner")
 
 /obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user, remove = FALSE)
-	if(!istype(user)) 
+	if(!istype(user))
 		return
-	
+
 	ears = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kitty")
 	ears.Blend(rgb(user.r_hair, user.g_hair, user.b_hair), ICON_ADD)
 	ears.Blend(earbit, ICON_OVERLAY)

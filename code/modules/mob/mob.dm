@@ -36,7 +36,7 @@
 				supply_controller.stat_entry()
 				shuttle_controller.stat_entry()
 				lighting_controller.stat_entry()
-				radio_controller.stat_entry()
+				SSradio.stat_entry()
 				stat(null)
 				if(Master)
 					Master.stat_entry()
@@ -432,7 +432,7 @@
 	if(!Adjacent(usr)) return
 	if(!ishuman(M) && !ismonkey(M)) return
 	if(!ishuman(src) && !ismonkey(src)) return
-	if(M.lying || M.is_mob_incapacitated())
+	if(M.lying || M.incapacitated())
 		return
 	show_inv(M)
 
@@ -448,7 +448,7 @@
 	if (AM.anchored || AM.throwing)
 		return
 
-	if(throwing || is_mob_incapacitated())
+	if(throwing || incapacitated())
 		return
 
 	if(pulling)
@@ -544,6 +544,11 @@
 	//reset the pixel offsets to zero
 	is_floating = 0
 
+
+/mob/GenerateTag()
+	tag = "mob_[next_mob_id++]"
+
+
 // facing verbs
 /mob/proc/canface()
 	if(!canmove)						return 0
@@ -551,7 +556,7 @@
 	if(stat==2)						return 0
 	if(anchored)						return 0
 	if(monkeyizing)						return 0
-	if(is_mob_restrained())					return 0
+	if(restrained())					return 0
 	return 1
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
@@ -644,7 +649,7 @@ mob/proc/yank_out_object()
 		to_chat(usr, "You are unconcious and cannot do that!")
 		return
 
-	if(usr.is_mob_restrained())
+	if(usr.restrained())
 		to_chat(usr, "You are restrained and cannot do that!")
 		return
 
@@ -704,9 +709,8 @@ mob/proc/yank_out_object()
 			return
 
 		affected.implants -= selection
-		if(!isyautja(H))
-			H.shock_stage+=20
-		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
+		H.shock_stage+=20
+		affected.take_damage_limb((selection.w_class * 3), 0, FALSE, TRUE)
 
 		if(prob(selection.w_class * 5)) //I'M SO ANEMIC I COULD JUST -DIE-.
 			var/datum/wound/internal_bleeding/I = new (min(selection.w_class * 5, 15))

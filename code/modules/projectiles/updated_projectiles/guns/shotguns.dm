@@ -210,6 +210,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/combat
 	name = "\improper MK221 tactical shotgun"
 	desc = "The Nanotrasen MK221 Shotgun, a semi-automatic shotgun with a quick fire rate."
+	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "mk221"
 	item_state = "mk221"
 	origin_tech = "combat=5;materials=4"
@@ -247,7 +248,8 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/double
 	name = "double barrel shotgun"
-	desc = "A double barreled shotgun of archaic, but sturdy design. Uses 12 Gauge slugs, but can only hold 2 at a time."
+	desc = "A double barreled shotgun of archaic, but sturdy design. Uses 12 Gauge Special slugs, but can only hold 2 at a time."
+	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "dshotgun"
 	item_state = "dshotgun"
 	max_shells = 2 //codex
@@ -404,10 +406,6 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/stock/shotgun)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
-
-/obj/item/weapon/gun/shotgun/pump/Initialize()
-	. = ..()
-	select_gamemode_skin(/obj/item/weapon/gun/shotgun/pump)
 
 /obj/item/weapon/gun/shotgun/pump/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 5

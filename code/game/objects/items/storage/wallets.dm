@@ -5,25 +5,25 @@
 	icon_state = "wallet"
 	w_class = 1
 	can_hold = list(
-		"/obj/item/spacecash",
-		"/obj/item/card",
-		"/obj/item/clothing/mask/cigarette",
-		"/obj/item/device/flashlight/pen",
-		"/obj/item/seeds",
-		"/obj/item/stack/medical",
-		"/obj/item/toy/crayon",
-		"/obj/item/coin",
-		"/obj/item/toy/dice",
-		"/obj/item/disk",
-		"/obj/item/implanter",
-		"/obj/item/tool/lighter",
-		"/obj/item/tool/match",
-		"/obj/item/paper",
-		"/obj/item/tool/pen",
-		"/obj/item/photo",
-		"/obj/item/reagent_container/dropper",
-		"/obj/item/tool/screwdriver",
-		"/obj/item/tool/stamp")
+		/obj/item/spacecash,
+		/obj/item/card,
+		/obj/item/clothing/mask/cigarette,
+		/obj/item/device/flashlight/pen,
+		/obj/item/seeds,
+		/obj/item/stack/medical,
+		/obj/item/toy/crayon,
+		/obj/item/coin,
+		/obj/item/toy/dice,
+		/obj/item/disk,
+		/obj/item/implanter,
+		/obj/item/tool/lighter,
+		/obj/item/tool/match,
+		/obj/item/paper,
+		/obj/item/tool/pen,
+		/obj/item/photo,
+		/obj/item/reagent_container/dropper,
+		/obj/item/tool/screwdriver,
+		/obj/item/tool/stamp)
 	flags_equip_slot = ITEM_SLOT_ID
 
 	var/obj/item/card/id/front_id = null

@@ -11,7 +11,7 @@
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
 	var/id = ""
-
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
 	var/secondsElectrified = 0
 	var/visible = 1
 	var/p_open = 0
@@ -20,7 +20,6 @@
 	var/glass = 0
 	var/normalspeed = 1
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
-	var/heat_proof = 0 // For glass airlocks/opacity firedoors
 	var/air_properties_vary_with_direction = 0
 	var/turf/filler //Fixes double door opacity issue
 
@@ -33,11 +32,9 @@
 		. = ..()
 		if(density)
 			layer = closed_layer
-			explosion_resistance = initial(explosion_resistance)
 			update_flags_heat_protection(get_turf(src))
 		else
 			layer = open_layer
-			explosion_resistance = 0
 
 		handle_multidoor()
 
@@ -70,7 +67,7 @@
 		var/mob/M = AM
 		if(world.time - M.last_bumped <= openspeed) return	//Can bump-open one airlock per second. This is to prevent shock spam.
 		M.last_bumped = world.time
-		if(!M.is_mob_restrained() && M.mob_size > MOB_SIZE_SMALL)
+		if(!M.restrained() && M.mob_size > MOB_SIZE_SMALL)
 			bumpopen(M)
 		return
 
@@ -169,8 +166,8 @@
 
 
 /obj/machinery/door/ex_act(severity)
-	if(unacidable) return
-
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE)) 
+		return
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -222,7 +219,6 @@
 	sleep(openspeed)
 	src.layer = open_layer
 	src.density = 0
-	explosion_resistance = 0
 	update_icon()
 	SetOpacity(0)
 	if (filler)
@@ -246,7 +242,6 @@
 	operating = 1
 
 	src.density = 1
-	explosion_resistance = initial(explosion_resistance)
 	src.layer = closed_layer
 	do_animate("closing")
 	sleep(openspeed)

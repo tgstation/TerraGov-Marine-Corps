@@ -38,11 +38,11 @@
 			return custom_emote(m_type, message, player_caused)
 
 		if("sign")
-			if (!src.is_mob_restrained())
+			if (!src.restrained())
 				message = text("<B>The monkey</B> signs[].", (text2num(param) ? text(" the number []", text2num(param)) : null))
 				m_type = 1
 		if("scratch")
-			if (!src.is_mob_restrained())
+			if (!src.restrained())
 				message = "<B>The [src.name]</B> scratches."
 				m_type = 1
 		if("whimper")
@@ -66,7 +66,7 @@
 			message = "<B>The [src.name]</B> drools."
 			m_type = 1
 		if("paw")
-			if (!src.is_mob_restrained())
+			if (!src.restrained())
 				message = "<B>The [src.name]</B> flails his paw."
 				m_type = 1
 		if("scretch")
@@ -95,11 +95,11 @@
 			message = "<B>The [src.name]</B> twitches violently."
 			m_type = 1
 		if("dance")
-			if (!src.is_mob_restrained())
+			if (!src.restrained())
 				message = "<B>The [src.name]</B> dances around happily."
 				m_type = 1
 		if("roll")
-			if (!src.is_mob_restrained())
+			if (!src.restrained())
 				message = "<B>The [src.name]</B> rolls."
 				m_type = 1
 		if("shake")

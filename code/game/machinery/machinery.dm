@@ -124,7 +124,7 @@ Class Procs:
 
 /obj/machinery/attackby(obj/item/C as obj, mob/user as mob)
 	. = ..()
-	if(istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !unacidable)
+	if(istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		var/obj/item/tool/pickaxe/plasmacutter/P = C
 		if(!P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
 			return
@@ -182,6 +182,8 @@ Class Procs:
 	return PROCESS_KILL
 
 /obj/machinery/emp_act(severity)
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return FALSE
 	if(use_power && machine_stat == 0)
 		use_power(7500/severity)
 	new /obj/effect/overlay/temp/emp_sparks (loc)
@@ -189,6 +191,8 @@ Class Procs:
 
 
 /obj/machinery/ex_act(severity)
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return FALSE
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -219,7 +223,7 @@ Class Procs:
 	if(A && A.master)
 		A.master.powerupdate = 1
 
-/obj/machinery/power_change()
+/obj/machinery/proc/power_change()
 	if(!powered(power_channel) && (machine_current_charge <= 0))
 		machine_stat |= NOPOWER
 	else
@@ -262,7 +266,7 @@ Class Procs:
 	..()
 	if(inoperable())
 		return 1
-	if(usr.is_mob_restrained() || usr.lying || usr.stat)
+	if(usr.restrained() || usr.lying || usr.stat)
 		return 1
 	if (!ishuman(usr) && !ismonkey(usr) && !issilicon(usr) && !isxeno(usr))
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
@@ -379,7 +383,7 @@ Class Procs:
 
 obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_implants)
 	var/datum/data/record/N = null
-	for(var/datum/data/record/R in data_core.medical)
+	for(var/datum/data/record/R in GLOB.datacore.medical)
 		if (R.fields["name"] == H.real_name)
 			N = R
 	if(isnull(N))

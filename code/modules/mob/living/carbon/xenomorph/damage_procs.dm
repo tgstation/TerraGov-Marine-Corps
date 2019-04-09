@@ -147,16 +147,6 @@
 /mob/living/carbon/Xenomorph/proc/process_rage_damage(damage)
 	return damage
 
-/mob/living/carbon/Xenomorph/Ravager/process_rage_damage(damage)
-	if(damage < 1 || world.time < last_damage)
-		return damage
-	rage += round(damage * RAV_DAMAGE_RAGE_MULITPLIER)
-	last_rage = world.time //We incremented rage, so bookmark this.
-	last_damage = world.time + 2 //Limit how often this proc can trigger; once per 0.2 seconds
-	damage *= rage_resist //reduce damage by rage resist %
-	rage_resist = CLAMP(1-round(rage * 0.014,0.01),0.3,1) //Update rage resistance _after_ we take damage
-	return damage
-
 /mob/living/carbon/Xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)
 		return FALSE
@@ -188,8 +178,6 @@
 			splash_chance = 80 - (i * 5)
 			if(victim.loc == loc) splash_chance += 30 //Same tile? BURN
 			splash_chance += distance * -15
-			if(isyautjastrict(victim))
-				splash_chance -= 70 //Preds know to avoid the splashback.
 
 			if(splash_chance > 0 && prob(splash_chance)) //Success!
 				i++

@@ -9,7 +9,6 @@
 	anchored = 1
 	density = 0
 	layer = TURF_LAYER
-	unacidable = 1
 	health = 1
 
 /obj/effect/alien/weeds/healthcheck()
@@ -44,8 +43,7 @@
 /obj/effect/alien/weeds/Crossed(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		if(!isyautjastrict(H)) //predators are immune to weed slowdown effect
-			H.next_move_slowdown += 1
+		H.next_move_slowdown += 1
 
 
 /obj/effect/alien/weeds/proc/weed_expand(obj/effect/alien/weeds/node/node)
@@ -69,7 +67,8 @@
 				continue
 
 			if(iswallturf(T))
-				new /obj/effect/alien/weeds/weedwall(T)
+				var/obj/effect/alien/weeds/weedwall/WW = new (T)
+				transfer_fingerprints_to(WW)
 				continue
 
 			if (istype(T.loc, /area/arrival))
@@ -77,16 +76,18 @@
 
 			for (var/obj/O in T)
 				if(istype(O, /obj/structure/window/framed))
-					new /obj/effect/alien/weeds/weedwall/window(T)
+					var/obj/effect/alien/weeds/weedwall/window/WN = new (T)
+					transfer_fingerprints_to(WN)
 					continue direction_loop
 				else if(istype(O, /obj/structure/window_frame))
-					new /obj/effect/alien/weeds/weedwall/frame(T)
+					var/obj/effect/alien/weeds/weedwall/frame/F = new (T)
+					transfer_fingerprints_to(F)
 					continue direction_loop
 				else if(istype(O, /obj/machinery/door) && O.density && (!(O.flags_atom & ON_BORDER) || O.dir != dirn))
 					continue direction_loop
 
-			new /obj/effect/alien/weeds(T, node)
-
+			var/obj/effect/alien/weeds/S = new (T, node)
+			transfer_fingerprints_to(S)
 
 /obj/effect/alien/weeds/proc/update_neighbours(turf/U)
 	if(!U)
