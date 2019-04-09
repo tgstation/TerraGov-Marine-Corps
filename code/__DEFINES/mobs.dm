@@ -463,6 +463,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Xeno Defines
 
+#define FRENZY_DAMAGE_BONUS(Xenomorph) ((Xenomorph.frenzy_aura * 2))
+
 #define XENO_SLOWDOWN_REGEN 0.4
 #define XENO_HALOSS_REGEN 3
 #define QUEEN_DEATH_TIMER 300 // 5 minutes
