@@ -641,10 +641,9 @@ About the new airlock wires panel:
 		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
 		return FALSE
 	if(density) //Make sure it's still closed
-		spawn(0)
-			open(1)
-			M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
-			"<span class='danger'>You pry \the [src] open.</span>", null, 5)
+		open(1)
+		M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
+		"<span class='danger'>You pry \the [src] open.</span>", null, 5)
 
 /obj/machinery/door/airlock/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
 	for(var/atom/movable/AM in get_turf(src))

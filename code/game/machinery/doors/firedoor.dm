@@ -148,10 +148,9 @@
 		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
 		return FALSE
 	if(density) //Make sure it's still closed
-		spawn(0)
-			open(1)
-			M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
-			"<span class='danger'>You pry \the [src] open.</span>", null, 5)
+		open(1)
+		M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
+		"<span class='danger'>You pry \the [src] open.</span>", null, 5)
 
 /obj/machinery/door/firedoor/attack_hand(mob/user as mob)
 	add_fingerprint(user)

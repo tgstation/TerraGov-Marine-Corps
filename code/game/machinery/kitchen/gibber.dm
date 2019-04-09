@@ -101,7 +101,7 @@
 
 	user.visible_message("<span class='danger'>[user] starts to put [M] into the gibber!</span>")
 	src.add_fingerprint(user)
-	if(!do_after(user, 30, TRUE, G.grabbed_thing) || QDELETED(src) || occupant)
+	if(!do_after(user, 30, TRUE, M) || QDELETED(src) || occupant)
 		return FALSE
 	user.visible_message("<span class='danger'>[user] stuffs [M] into the gibber!</span>")
 	M.forceMove(src)
