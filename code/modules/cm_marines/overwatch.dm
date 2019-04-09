@@ -1118,29 +1118,75 @@
 	name = "Issue Order"
 	skill_name = "leadership"
 	skill_min = SKILL_LEAD_TRAINED
-
-/datum/action/skill/issue_order/New()
-	return ..(/obj/item/device/megaphone)
+	var/order_type = null
 
 /datum/action/skill/issue_order/action_activate()
 	var/mob/living/carbon/human/human = owner
 	if(istype(human))
-		human.issue_order()
+		human.issue_order(order_type)
 
 /datum/action/skill/issue_order/update_button_icon()
 	var/mob/living/carbon/human/human = owner
 	if(!istype(human))
 		return
-
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/order_icons.dmi', icon_state = "[order_type]")
+	
 	if(human.command_aura_cooldown > 0)
 		button.color = rgb(255,0,0,255)
 	else
 		button.color = rgb(255,255,255,255)
+		
+/datum/action/skill/issue_order/move
+	name = "Issue Move Order"
+	order_type = "move"
+		
+/datum/action/skill/issue_order/hold
+	name = "Issue Hold Order"
+	order_type = "hold"
 
+/datum/action/skill/issue_order/focus
+	name = "Issue Focus Order"
+	order_type = "focus"
+
+
+
+/datum/action/skill/toggle_orders
+	name = "Show/Hide Order Options"
+	skill_name = "leadership"
+	skill_min = SKILL_LEAD_TRAINED	
+	var/orders_visible = TRUE	
+	
+/datum/action/skill/toggle_orders/New()
+	return ..(/obj/item/device/megaphone)	
+	
+/datum/action/skill/toggle_orders/action_activate()
+	var/mob/living/carbon/human/H = owner
+	if(!istype(H))
+		return
+	if(orders_visible)
+		orders_visible = FALSE
+		for(var/datum/action/skill/path in owner.actions)
+			if(istype(path, /datum/action/skill/issue_order))
+				path.remove_action(H)
+	else
+		orders_visible = TRUE
+		var/list/subtypeactions = subtypesof(/datum/action/skill/issue_order)
+		for(var/path in subtypeactions)
+			var/datum/action/skill/issue_order/A = new path()
+			A.give_action(H)	
+	
+	
 /mob/living/carbon/human/Initialize()
 	. = ..()
-	var/datum/action/skill/issue_order/issue_order_action = new
-	issue_order_action.give_action(src)
+	var/datum/action/skill/toggle_orders/toggle_orders_action = new
+	toggle_orders_action.give_action(src)
+	var/datum/action/skill/issue_order/move/issue_order_move = new
+	issue_order_move.give_action(src)
+	var/datum/action/skill/issue_order/hold/issue_order_hold = new
+	issue_order_hold.give_action(src)
+	var/datum/action/skill/issue_order/focus/issue_order_focus = new
+	issue_order_focus.give_action(src)
 
 /obj/machinery/computer/overwatch/proc/get_squad_by_id(id)
 	if(!squads || !length(squads))
