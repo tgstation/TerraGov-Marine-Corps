@@ -462,7 +462,7 @@ var/datum/mob_hud/huds = list(
 	holder.icon_state = "hudblank"
 	holder.overlays.Cut()
 	if(assigned_squad)
-		var/squad_clr = squad_colors[assigned_squad.color]
+		var/squad_clr = assigned_squad.color
 		var/marine_rk
 		var/obj/item/card/id/I = get_idcard()
 		var/_role
