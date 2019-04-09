@@ -32,6 +32,12 @@
 	if(stealth)
 		handle_stealth_movement()
 
+/mob/living/carbon/Xenomorph/Hunter/Stat()
+	. = ..()
+
+	if(statpanel("Stats"))
+		stat(null, "Sneak Attack Multiplier: [sneak_bonus] / [HUNTER_SNEAKATTACK_MAX_MULTIPLIER]")
+
 // ***************************************
 // *********** Stealth overrides
 // ***************************************
@@ -47,10 +53,15 @@
 	else if(m_intent == MOVE_INTENT_WALK)
 		alpha = HUNTER_STEALTH_WALK_ALPHA //80% invisible
 		use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN * 0.5)
+		if(sneak_bonus < HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
+			sneak_bonus = round(min(sneak_bonus + HUNTER_SNEAKATTACK_WALK_INCREASE, 3.5), 0.01) //Recover sneak attack multiplier rapidly
+			if(sneak_bonus >= HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
+				to_chat(src, "<span class='xenodanger'>Your sneak attack is now at maximum power.</span>")
 	//Running stealth
 	else
 		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
 		use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN * 0.5)
+		sneak_bonus = round(max(sneak_bonus - HUNTER_SNEAKATTACK_RUN_REDUCTION, 1.25), 0.01) //Rapidly lose sneak attack damage while running and stealthed
 	if(!plasma_stored)
 		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
