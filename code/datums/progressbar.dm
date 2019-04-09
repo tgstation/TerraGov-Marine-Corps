@@ -143,9 +143,18 @@
 /datum/progressbar/mono
 	bar_tag = PROG_BAR_GRAYSCALE
 
-/image/progress/bar/gray
+/image/progress/bar/mono
 	icon_state = "prog_bar_3"
 
+/datum/progressbar/brass
+	bar_tag = PROG_BAR_BRASS
+	frame_tag = PROG_FRAME_BRASS
+
+/image/progress/bar/mono/brass
+	color = "#FFDF28"
+
+/image/progress/frame/brass
+	color = "#FAE48C"
 
 /datum/progressicon
 	var/image/progress/display/display

@@ -5,17 +5,20 @@
 #define PROGRESS_GENERIC		/datum/progressbar
 #define PROGRESS_BATTERY		/datum/progressbar/battery
 #define PROGRESS_TRAFFIC		/datum/progresbar/traffic
+#define PROGRESS_BRASS			/datum/progressbar/brass
 
 #define PROG_BG_GENERIC			/image/progress/bg
 
 #define PROG_FRAME_GENERIC		/image/progress/frame
 #define PROG_FRAME_BATTERY		/image/progress/frame/battery
 #define PROG_FRAME_TRAFFIC		/image/progress/frame/traffic
+#define PROG_FRAME_BRASS		/image/progress/frame/brass
 
 #define PROG_BAR_GENERIC		/image/progress/bar
 #define PROG_BAR_BATTERY		/image/progress/bar/battery
 #define PROG_BAR_TRAFFIC		/image/progress/bar/traffic
-#define PROG_BAR_GRAYSCALE		/image/progress/bar/gray
+#define PROG_BAR_GRAYSCALE		/image/progress/bar/mono
+#define PROG_BAR_BRASS			/image/progress/bar/mono/brass
 
 //busy icons defines
 
