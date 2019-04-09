@@ -236,7 +236,7 @@
 		var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
 		if(!do_after(user, duration_time, FALSE, src))
 			return FALSE
-		if(!PC.linked_powerloader?.buckled_mob == user || PC.loaded)
+		if(!(PC.linked_powerloader?.buckled_mob == user) || PC.loaded)
 			return FALSE
 		forceMove(PC.linked_powerloader)
 		PC.loaded = src
