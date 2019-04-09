@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(factions)
+
 //Preferences stuff
 GLOBAL_LIST_EMPTY(ethnicities_list)
 GLOBAL_LIST_EMPTY(body_types_list)

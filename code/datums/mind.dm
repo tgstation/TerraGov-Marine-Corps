@@ -34,7 +34,7 @@
 	var/memory
 
 	var/assigned_role
-	var/assigned_squad
+	var/datum/squad/assigned_squad
 	var/comm_title
 
 	var/datum/skills/cm_skills //the knowledge you have about certain abilities and actions (e.g. do you how to do surgery?)
