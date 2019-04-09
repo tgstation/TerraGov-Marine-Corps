@@ -474,7 +474,13 @@
 	if(burn_lvl)
 		burnlevel = burn_lvl
 	if(fire_stacks || fire_damage)
-		apply_initial_damage(fire_stacks, fire_damage)
+		for(var/mob/living/C in get_turf(src))
+			C.flamer_fire_act(fire_stacks)
+
+			var/armor_block = C.run_armor_check("chest", "energy")
+			C.apply_damage(fire_damage, BURN, null, armor_block)
+			if(C.IgniteMob())
+				C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
 	START_PROCESSING(SSobj, src)
 
@@ -482,18 +488,6 @@
 	SetLuminosity(0)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
-
-/obj/flamer_fire/proc/apply_initial_damage(fire_stacks, fire_damage)
-	var/turf/T = get_turf(src)
-
-	for(var/mob/living/C in T)
-		if(C.fire_immune)
-			continue
-
-		C.flamer_fire_act(fire_stacks,100)
-		var/armor_block = C.run_armor_check("chest", "energy")
-		C.apply_damage(fire_damage, BURN, null, armor_block)
-		C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
 /obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
 	if(istype(M))
@@ -506,10 +500,14 @@
 			show_message(text("Your suit protects you from most of the flames."), 1)
 			return CLAMP(. * 1.5, 0.75, 1) //Min 75% resist, max 100%
 
+/mob/living/carbon/Xenomorph/run_armor_check(def_zone = null, attack_flag = "melee")
+	if(attack_flag == "fire" && (xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
+		return 1
+	. = ..()
+
+
 // override this proc to give different walking-over-fire effects
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
-	if(fire_immune) // this is a /mob/living var that xenos use but humans dont
-		return
 	adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 	if (prob(firelevel + 2*fire_stacks)) //the more soaked in fire you are, the likelier to be ignited
 		IgniteMob()

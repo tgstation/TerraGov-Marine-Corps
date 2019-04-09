@@ -80,7 +80,6 @@
 
 	var/no_stun = FALSE
 
-	var/fire_immune = FALSE
 	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
 
 	var/entangle_delay = null
