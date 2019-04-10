@@ -35,7 +35,7 @@
 /client/Click(object, location, control, params)
 	if(!control)
 		return
-	. = ..()
+	return ..()
 
 /*
 	Standard mob ClickOn()
