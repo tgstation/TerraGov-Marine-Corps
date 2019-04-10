@@ -138,7 +138,7 @@
 	else
 		switch(build_step)
 			if(0)
-				if(istype(W, /obj/item/device/healthanalyzer))
+				if(istype(W, /obj/item/healthanalyzer))
 					user.drop_held_item()
 					qdel(W)
 					src.build_step++

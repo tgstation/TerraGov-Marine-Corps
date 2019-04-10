@@ -10,7 +10,7 @@ obj/machinery/recharger
 	active_power_usage = 15000	//15 kW
 	var/obj/item/charging = null
 	var/percent_charge_complete = 0
-	var/list/allowed_devices = list(/obj/item/weapon/baton, /obj/item/cell, /obj/item/weapon/gun/energy/taser, /obj/item/device/defibrillator)
+	var/list/allowed_devices = list(/obj/item/weapon/baton, /obj/item/cell, /obj/item/weapon/gun/energy/taser, /obj/item/defibrillator)
 
 obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
 	if(istype(user,/mob/living/silicon))
@@ -29,8 +29,8 @@ obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
 		if(!isarea(a) || (a.power_equip == 0 && !a.unlimited_power))
 			to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the item!</span>")
 			return
-		if(istype(G, /obj/item/device/defibrillator))
-			var/obj/item/device/defibrillator/D = G
+		if(istype(G, /obj/item/defibrillator))
+			var/obj/item/defibrillator/D = G
 			if(D.ready)
 				to_chat(user, "<span class='warning'>It won't fit, put the paddles back into [D] first!</span>")
 				return
@@ -105,8 +105,8 @@ obj/machinery/recharger/process()
 				update_icon()
 			return
 
-		if(istype(charging, /obj/item/device/defibrillator))
-			var/obj/item/device/defibrillator/D = charging
+		if(istype(charging, /obj/item/defibrillator))
+			var/obj/item/defibrillator/D = charging
 			if(!D.dcell.fully_charged())
 				D.dcell.give(active_power_usage*GLOB.CELLRATE)
 				percent_charge_complete = D.dcell.percent()
@@ -132,8 +132,8 @@ obj/machinery/recharger/process()
 			return
 
 		/* Disable defib recharging
-		if(istype(charging, /obj/item/device/defibrillator))
-			var/obj/item/device/defibrillator/D = charging
+		if(istype(charging, /obj/item/defibrillator))
+			var/obj/item/defibrillator/D = charging
 			if(D.dcell)
 				if(!D.dcell.fully_charged())
 					icon_state = icon_state_charging

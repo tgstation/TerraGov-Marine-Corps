@@ -458,7 +458,7 @@
 						/obj/item/explosive/grenade/smokebomb = round(scale * 5),
 						/obj/item/explosive/grenade/cloakbomb = round(scale * 3),
 						/obj/item/storage/box/m94 = round(scale * 30),
-						/obj/item/device/flashlight/combat = round(scale * 5),
+						/obj/item/flashlight/combat = round(scale * 5),
 						/obj/item/clothing/mask/gas = round(scale * 10)
 						)
 

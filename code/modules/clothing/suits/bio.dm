@@ -20,7 +20,7 @@
 	permeability_coefficient = 0.01
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	slowdown = 1.0
-	allowed = list(/obj/item/tank/emergency_oxygen,/obj/item/tool/pen,/obj/item/device/flashlight/pen)
+	allowed = list(/obj/item/tank/emergency_oxygen,/obj/item/tool/pen,/obj/item/flashlight/pen)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 20, "fire" = 0, "acid" = 0)
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	siemens_coefficient = 0.9

@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-/obj/item/device/mmi
+/obj/item/mmi
 	name = "Man-Machine Interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
 	icon = 'icons/obj/items/assemblies.dmi'
@@ -96,12 +96,12 @@
 			locked = 1
 			return
 
-/obj/item/device/mmi/radio_enabled
+/obj/item/mmi/radio_enabled
 	name = "Radio-enabled Man-Machine Interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio."
 	origin_tech = "biotech=4"
 
-	var/obj/item/device/radio/radio = null//Let's give it a radio.
+	var/obj/item/radio/radio = null//Let's give it a radio.
 
 	New()
 		..()
@@ -135,7 +135,7 @@
 			radio.listening = radio.listening==1 ? 0 : 1
 			to_chat(brainmob, "<span class='notice'>Radio is [radio.listening==1 ? "now" : "no longer"] receiving broadcast.</span>")
 
-/obj/item/device/mmi/emp_act(severity)
+/obj/item/mmi/emp_act(severity)
 	if(!brainmob)
 		return
 	else

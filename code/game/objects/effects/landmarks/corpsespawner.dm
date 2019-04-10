@@ -124,7 +124,7 @@
 	corpsesuit = /obj/item/clothing/suit/armor/vest
 	corpseshoes = /obj/item/clothing/shoes/swat
 	corpsegloves = /obj/item/clothing/gloves/swat
-	corpseradio = /obj/item/device/radio/headset
+	corpseradio = /obj/item/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas
 	corpsehelmet = /obj/item/clothing/head/helmet/swat
 	corpseback = /obj/item/storage/backpack
@@ -140,7 +140,7 @@
 	corpsesuit = /obj/item/clothing/suit/space/rig/syndi
 	corpseshoes = /obj/item/clothing/shoes/swat
 	corpsegloves = /obj/item/clothing/gloves/swat
-	corpseradio = /obj/item/device/radio/headset
+	corpseradio = /obj/item/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas/syndicate
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/syndi
 	corpseback = /obj/item/tank/jetpack/oxygen
@@ -157,7 +157,7 @@
 	corpsesuit = /obj/item/clothing/suit/armor/vest
 	corpseshoes = /obj/item/clothing/shoes/swat
 	corpsegloves = /obj/item/clothing/gloves/swat
-	corpseradio = /obj/item/device/radio/headset
+	corpseradio = /obj/item/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas
 	corpsehelmet = /obj/item/clothing/head/helmet/swat
 	corpseback = /obj/item/storage/backpack
@@ -217,7 +217,7 @@
 	corpseuniform = /obj/item/clothing/under/colonist
 	corpsesuit = /obj/item/clothing/suit/storage/labcoat
 	corpseback = /obj/item/storage/backpack/corpsman
-	corpsepocket1 = /obj/item/device/flashlight/pen
+	corpsepocket1 = /obj/item/flashlight/pen
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpseid = 1
 	corpseidjob = "Medical Doctor"

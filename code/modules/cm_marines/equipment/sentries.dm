@@ -24,21 +24,21 @@
 	storage_slots = 4
 	max_storage_space = 16
 	bypass_w_limit = list(
-					/obj/item/device/turret_top,
-					/obj/item/device/turret_tripod,
+					/obj/item/turret_top,
+					/obj/item/turret_tripod,
 					/obj/item/cell,
 					/obj/item/ammo_magazine/sentry,
 					)
 
 /obj/item/storage/box/sentry/Initialize()
 	. = ..()
-	new /obj/item/device/turret_top(src)
-	new /obj/item/device/turret_tripod(src)
+	new /obj/item/turret_top(src)
+	new /obj/item/turret_tripod(src)
 	new /obj/item/cell/high(src)
 	new /obj/item/ammo_magazine/sentry(src)
 
 
-/obj/item/device/turret_top
+/obj/item/turret_top
 	name = "\improper UA 571-C turret"
 	desc = "The turret part of an automated sentry turret."
 	resistance_flags = UNACIDABLE
@@ -47,7 +47,7 @@
 	icon_state = "sentry_head"
 
 
-/obj/item/device/turret_tripod
+/obj/item/turret_tripod
 	name = "\improper UA 571-C turret tripod"
 	desc = "The tripod part of an automated sentry turret. You should deploy it first."
 	resistance_flags = UNACIDABLE
@@ -55,7 +55,7 @@
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod_folded"
 
-/obj/item/device/turret_tripod/attack_self(mob/user)
+/obj/item/turret_tripod/attack_self(mob/user)
 	if(!ishuman(user))
 		return
 	var/turf/target = get_step(user.loc,user.dir)
@@ -125,7 +125,7 @@
 		return
 	user.visible_message("<span class='notice'>[user] folds up and retrieves \the [src].</span>",
 	"<span class='notice'>You fold up and retrieve \the [src].</span>")
-	var/obj/item/device/turret_tripod/T = new(loc)
+	var/obj/item/turret_tripod/T = new(loc)
 	user.put_in_hands(T)
 	qdel(src)
 
@@ -151,8 +151,8 @@
 				anchored = TRUE
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			return
-	else if(istype(O, /obj/item/device/turret_top))
-		var/obj/item/device/turret_top/I = O
+	else if(istype(O, /obj/item/turret_top))
+		var/obj/item/turret_top/I = O
 		if(!anchored)
 			to_chat(user, "<span class='warning'>You must wrench \the [src] to the ground first!</span>")
 		else if(has_top)
@@ -197,7 +197,7 @@
 				"<span class='notice'>You remove the turret top from \the [src].</span>")
 				has_top = FALSE
 				icon_state = "sentry_tripod"
-				new /obj/item/device/turret_top(loc)
+				new /obj/item/turret_top(loc)
 				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 	else
 		return ..()
@@ -1257,7 +1257,7 @@
 	if(!src || !Adjacent(user))//Check if we got exploded
 		return
 	to_chat(user, "<span class='notice'>You fold up and retrieve [src].</span>")
-	var/obj/item/device/marine_turret/mini/P = new(loc)
+	var/obj/item/marine_turret/mini/P = new(loc)
 	user.put_in_hands(P)
 	P.health = health //track the health
 	qdel(src)
@@ -1297,7 +1297,7 @@
 		stop_processing()
 
 
-/obj/item/device/marine_turret/mini
+/obj/item/marine_turret/mini
 	name = "\improper UA-580 Point Defense Sentry (Folded)"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 500-round drum magazine. It is currently folded up."
 	icon = 'icons/Marine/miniturret.dmi'
@@ -1307,7 +1307,7 @@
 	health = 155 //We keep track of this when folding up the sentry.
 	flags_equip_slot = ITEM_SLOT_BACK
 
-/obj/item/device/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
+/obj/item/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
 	if(!ishuman(usr))
 		return
 	var/turf/target = get_step(user.loc,user.dir)
@@ -1349,14 +1349,14 @@
 	w_class = 5
 	storage_slots = 4
 	can_hold = list(
-		/obj/item/device/marine_turret/mini, //gun itself
+		/obj/item/marine_turret/mini, //gun itself
 		/obj/item/tool/wrench, //wrench to hold it down into the ground
 		/obj/item/tool/screwdriver, //screw the gun onto the post.
 		/obj/item/ammo_magazine/minisentry)
 
 /obj/item/storage/box/minisentry/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/device/marine_turret/mini(src) //gun itself
+	new /obj/item/marine_turret/mini(src) //gun itself
 	new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
 	new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
 	new /obj/item/ammo_magazine/minisentry(src)
