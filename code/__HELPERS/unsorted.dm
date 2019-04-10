@@ -275,6 +275,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	log_played_names(ckey, newname)
 
 	real_name = newname
+	voice_name = newname
 	name = newname
 	if(mind)
 		mind.name = newname

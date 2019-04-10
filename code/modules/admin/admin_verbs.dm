@@ -269,7 +269,7 @@
 
 	var/replaced = FALSE
 	if(M.key)
-		if(usr.client.key == copytext(M.key, 2))
+		if(isobserver(usr) && usr.client.key == copytext(M.key, 2))
 			var/mob/dead/observer/ghost = usr
 			ghost.can_reenter_corpse = TRUE
 			ghost.reenter_corpse()
@@ -284,6 +284,7 @@
 	var/message2 = ADMIN_TPMONTY(M)
 
 	usr.mind.transfer_to(M, TRUE)
+	usr.fully_replace_character_name(usr.real_name, M.real_name)
 
 	log_admin("[log] took over [log2][replaced ? " replacing the previous owner" : ""].")
 	message_admins("[message] took over [message2][replaced ? " replacing the previous owner" : ""].")
@@ -350,7 +351,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] accessed file: [path].")
 
 
-/datum/admins/proc/recursive_download(var/folder)
+/datum/admins/proc/recursive_download(folder)
 	if(!check_rights(R_ASAY))
 		return
 
@@ -374,7 +375,7 @@
 		var/list/choices = flist(path)
 		if(path != root)
 			choices.Insert(1, "/")
-		var/choice = input("Choose a folder to access:", "Server Logs", null) as null|anything in choices
+		var/choice = input("Choose a folder to access:", "Server Logs") as null|anything in choices
 		switch(choice)
 			if(null)
 				return FALSE
@@ -397,7 +398,7 @@
 	return path
 
 
-/datum/admins/proc/browse_files(root = "data/logs/", max_iterations = 20 , list/valid_extensions = list("txt", "log", "htm", "html"))
+/datum/admins/proc/browse_files(root = "data/logs/", max_iterations = 20, list/valid_extensions = list("txt", "log", "htm", "html"))
 	if(!check_rights(R_ASAY))
 		return
 
@@ -491,7 +492,7 @@
 
 	var/datum/browser/browser = new(usr, "invidual_logging_[key_name(M)]", "<div align='center'>Logs</div>", 700, 550)
 	browser.set_content(dat)
-	browser.open()
+	browser.open(FALSE)
 
 
 /datum/admins/proc/individual_logging_panel_link(mob/M, log_type, log_src, label, selected_src, selected_type)
@@ -617,7 +618,9 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(istype(usr, /mob/new_player))
+	var/mob/N = usr
+
+	if(isnewplayer(N))
 		return
 
 	var/turf/target
@@ -646,8 +649,6 @@
 	if(!istype(target))
 		return
 
-	var/mob/N = usr
-
 	N.on_mob_jump()
 	N.forceMove(target)
 
@@ -663,7 +664,9 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(istype(usr, /mob/new_player))
+	var/mob/N = usr
+
+	if(isnewplayer(N))
 		return
 
 	var/mob/M
@@ -674,17 +677,16 @@
 				return
 			M = C.mob
 		if("Mob")
-			var/mob/N = input("Please, select a mob.", "Get Mob") as null|anything in sortNames(GLOB.mob_list)
-			if(!N)
+			var/mob/W = input("Please, select a mob.", "Get Mob") as null|anything in sortNames(GLOB.mob_list)
+			if(!W)
 				return
-			M = N
+			M = W
 		else
 			return
 
 	if(!istype(M))
 		return
 
-	var/mob/N = usr
 	var/turf/T = get_turf(N)
 
 	M.on_mob_jump()
@@ -785,7 +787,7 @@
 	set category = null
 	set name = "Jump to Coordinate"
 
-	if(!check_rights(R_ADMIN) && is_mentor(src))
+	if(!check_rights(R_ADMIN))
 		return
 
 	var/mob/M = usr
@@ -980,9 +982,10 @@
 			to_chat(src, "<span class='warning'>You are unable to use admin PMs (muted).</span>")
 			return
 
-		if(!recipient)
+		if(!recipient && !irc)
 			if(holder)
-				to_chat(src, "<span class='warning'>Error: Client not found.</span>")
+				to_chat(src, "<br><span class='boldnotice'>Client not found. Here's your message, copy-paste it if needed:</span>")
+				to_chat(src, "<span class='notice'>[msg]</span><br>")
 			else
 				current_ticket.MessageNoRecipient(msg)
 			return
@@ -1112,31 +1115,31 @@
 			if("close")
 				if(ticket)
 					ticket.Close(FALSE, TRUE)
-					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [irc_tagged].</font>")
 					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully closed"
 			if("resolve")
 				if(ticket)
 					ticket.Resolve(FALSE, TRUE)
-					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [irc_tagged].</font>")
 					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully resolved"
 			if("icissue")
 				if(ticket)
 					ticket.ICIssue(TRUE)
-					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [irc_tagged].</font>")
 					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully marked as IC issue"
 			if("reject")
 				if(ticket)
 					ticket.Reject(TRUE)
-					ticket.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [irc_tagged].</font>")
 					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully rejected"
 			if("tier")
 				if(ticket)
 					ticket.Tier(TRUE)
-					ticket.AddInteraction("<font color='red'>IRC interaction by: [sender].</font>")
+					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [sender].</font>")
 					message_admins("IRC interaction by: [irc_tagged]")
 					return "Ticket #[ticket.id] successfully tiered"
 			if("reopen")
@@ -1153,7 +1156,7 @@
 				if(AH.initiator_ckey != target)
 					return "Error: Ticket #[id] belongs to [AH.initiator_ckey]"
 				AH.Reopen(TRUE)
-				AH.AddInteraction("<font color='red'>IRC interaction by: [irc_tagged].</font>")
+				AH.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [irc_tagged].</font>")
 				message_admins("IRC interaction by: [irc_tagged]")
 				return "Ticket #[id] successfully reopened"
 			if("list")

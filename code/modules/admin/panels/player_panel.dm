@@ -314,7 +314,7 @@
 		if(!M.ckey)
 			continue
 
-		dat += "<tr><td>[(M.client ? "[M.client]" : "No client")]</td>"
+		dat += "<tr><td>[(M.key ? "[M.key]" : "No Key")]</td>"
 		dat += "<td><a href='?priv_msg=[M.ckey]'>[M.name]</a></td>"
 		if(isAI(M))
 			dat += "<td>aI</td>"
@@ -378,7 +378,7 @@
 	if(isnewplayer(M))
 		body += " <b>Hasn't Entered Game</b> "
 	else
-		body += " <a href='?src=[ref];revive=[REF(M)]'>Heal</a> | <a href='?src=[ref];sleep=[REF(M)]'>Sleep</a>"
+		body += " | <a href='?src=[ref];revive=[REF(M)]'>Heal</a> | <a href='?src=[ref];sleep=[REF(M)]'>Sleep</a>"
 
 	body += {"
 		<br><br>
@@ -402,7 +402,7 @@
 	if(M.client)
 		body += "<a href='?src=[ref];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</a> | "
 	else
-		body += "<a href='?src=[ref];newbankey=[M.key]'>Ban</a> |"
+		body += "<a href='?src=[ref];newbankey=[M.key]'>Ban</a> | "
 
 	body += "<a href='?src=[ref];showmessageckey=[M.ckey]'>Notes</a> | "
 	body += "<a href='?src=[ref];cryo=[REF(M)]'>Cryo</a>"
