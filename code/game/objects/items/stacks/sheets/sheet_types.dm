@@ -150,6 +150,10 @@ var/global/list/datum/stack_recipe/wood_recipes = list ( \
 	origin_tech = "materials=1;biotech=1"
 
 
+/obj/item/stack/sheet/wood/large_stack
+	amount = 50
+
+
 /obj/item/stack/sheet/wood/cyborg
 	name = "wooden plank"
 	desc = "One can only guess that this is a bunch of wood."

@@ -139,6 +139,10 @@
 	return 0
 
 
+/obj/item/stack/sheet/glass/large_stack
+	amount = 50
+
+
 /*
  * Reinforced glass sheets
  */

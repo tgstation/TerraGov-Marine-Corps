@@ -26,7 +26,7 @@
 		amount = new_amount
 	while(amount > max_amount)
 		amount -= max_amount
-		new type(loc, max_amount, FALSE)
+		new type(loc, max_amount)
 	if(!merge_type)
 		merge_type = type
 	update_weight()
