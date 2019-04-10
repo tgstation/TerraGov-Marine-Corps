@@ -142,28 +142,26 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	ehjax_send(data = data)
 
 //Called by client, sent data to investigate (cookie history so far)
-/datum/chatOutput/proc/analyzeClientData(cookie = "")
+/datum/chatOutput/proc/analyzeClientData(cookie)
 	if(!cookie)
 		return
 
 	if(cookie != "none")
 		var/list/connData = json_decode(cookie)
-		if (connData && islist(connData) && connData.len > 0 && connData["connData"])
-			connectionHistory = connData["connData"] //lol fuck
+		if(length(connData) && connData["connData"])
+			connectionHistory = connData["connData"]
 			var/list/found = new()
 			for(var/i in connectionHistory.len to 1 step -1)
-				var/list/row = src.connectionHistory[i]
-				if (!row || row.len < 3 || (!row["ckey"] || !row["compid"] || !row["ip"])) //Passed malformed history object
+				var/list/row = connectionHistory[i]
+				if(!row || length(row) < 3 || (!row["ckey"] || !row["compid"] || !row["ip"])) //Passed malformed history object
 					return
-				if (world.IsBanned(row["ckey"], row["compid"], row["ip"]))
+				if(world.IsBanned(row["ckey"], row["compid"], row["ip"]))
 					found = row
 					break
 
-			//Uh oh this fucker has a history of playing on a banned account!!
-			if (found.len > 0)
-				//TODO: add a new evasion ban for the CURRENT client details, using the matched row details
-				message_admins("[key_name(src.owner)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
-				log_admin_private("[key_name(owner)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
+			if(length(found))
+				log_admin_private("[key_name(owner)] has a cookie from a banned account (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
+				message_admins("<font color='red'><b>Notice: </b></font><font color='blue'>[ADMIN_TPMONTY(owner.mob)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])</font>")
 
 	cookieSent = TRUE
 

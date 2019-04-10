@@ -497,15 +497,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 				if(WR.walltype == "resin")
 					visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and thickens [WR].</span>", \
 					"<span class='xenonotice'>You regurgitate some resin and thicken [WR].</span>", null, 5)
-					var/prev_oldturf = WR.oldTurf
-					WR.ChangeTurf(/turf/closed/wall/resin/thick)
-					WR.oldTurf = prev_oldturf
+					WR.thicken()
 					use_plasma(resin_plasma_cost)
 					playsound(loc, "alien_resin_build", 25)
 				else if(WR.walltype == "membrane")
-					var/prev_oldturf = WR.oldTurf
-					WR.ChangeTurf(/turf/closed/wall/resin/membrane/thick)
-					WR.oldTurf = prev_oldturf
+					WR.thicken()
 					use_plasma(resin_plasma_cost)
 					playsound(loc, "alien_resin_build", 25)
 				else
@@ -515,11 +511,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			else if(istype(A, /obj/structure/mineral_door/resin))
 				var/obj/structure/mineral_door/resin/DR = A
 				if(DR.hardness == 1.5) //non thickened
-					var/oldloc = DR.loc
 					visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and thickens [DR].</span>", \
 						"<span class='xenonotice'>You regurgitate some resin and thicken [DR].</span>", null, 5)
-					qdel(DR)
-					new /obj/structure/mineral_door/resin/thick (oldloc)
+					DR.thicken()
 					playsound(loc, "alien_resin_build", 25)
 					use_plasma(resin_plasma_cost)
 				else
