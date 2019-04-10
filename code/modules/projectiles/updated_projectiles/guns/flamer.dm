@@ -503,7 +503,7 @@
 /mob/living/carbon/Xenomorph/run_armor_check(def_zone = null, attack_flag = "melee")
 	if(attack_flag == "fire" && (xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
 		return 1
-	. = ..()
+	return ..()
 
 
 // override this proc to give different walking-over-fire effects
