@@ -3,7 +3,6 @@
 	selection_color = "#ddddff"
 	supervisors = "the acting captain"
 	faction = "Marine"
-	spawn_positions = 1
 	total_positions = 1
 
 
@@ -96,7 +95,6 @@ Make the TGMC proud!"})
 	comm_title = "IO"
 	flag = SHIP_SO
 	prefflag = PREF_JOB_SO
-	spawn_positions = 4
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
@@ -133,7 +131,6 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	comm_title = "PO"
 	flag = SHIP_PO
 	prefflag = PREF_JOB_PO
-	spawn_positions = 4
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
@@ -173,7 +170,6 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	comm_title = "TC"
 	flag = SHIP_TC
 	prefflag = PREF_JOB_TC
-	spawn_positions = 2
 	total_positions = 2
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK)
@@ -213,7 +209,6 @@ You could use MTs help to repair and replace hardpoints."})
 	comm_title = "MA"
 	flag = SHIP_MP
 	prefflag = PREF_JOB_MP
-	spawn_positions = 5
 	total_positions = 5
 	selection_color = "#ffdddd"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
@@ -294,7 +289,6 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 /datum/job/logistics
 	department_flag = J_FLAG_SHIP
 	supervisors = "the acting captain"
-	spawn_positions = 1
 	total_positions = 1
 	faction = "Marine"
 
@@ -384,7 +378,6 @@ A happy ship is a well-functioning ship."})
 	paygrade = "PO"
 	flag = SHIP_MT
 	prefflag = PREF_JOB_MT
-	spawn_positions = 4
 	total_positions = 4
 	supervisors = "the chief ship engineer"
 	selection_color = "#fff5cc"
@@ -426,7 +419,6 @@ Start with the ship's engine, and don't forget radiation equipment."})
 	comm_title = "CT"
 	flag = SHIP_CT
 	prefflag = PREF_JOB_CT
-	spawn_positions = 2
 	total_positions = 2
 	supervisors = "the requisitions officer"
 	selection_color = "#BAAFD9"
@@ -472,7 +464,6 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 	paygrade = "O3"
 	flag = SHIP_CMO
 	prefflag = PREF_JOB_CMO
-	spawn_positions = 1
 	total_positions = 1
 	supervisors = "the acting captain"
 	selection_color = "#99FF99"
@@ -517,7 +508,6 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	paygrade = "O1"
 	flag = SHIP_DOCTOR
 	prefflag = PREF_JOB_DOCTOR
-	spawn_positions = 6
 	total_positions = 6
 	supervisors = "the chief medical officer"
 	selection_color = "#BBFFBB"
@@ -558,7 +548,6 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	title = "Medical Researcher"
 	comm_title = "Rsr"
 	paygrade = "CD"
-	spawn_positions = 2
 	total_positions = 2
 	supervisors = "the NT corporate office"
 	selection_color = "#BBFFBB"
@@ -600,7 +589,6 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 
 /datum/job/civilian
 	department_flag = J_FLAG_SHIP
-	spawn_positions = 1
 	total_positions = 1
 	faction = "Marine"
 

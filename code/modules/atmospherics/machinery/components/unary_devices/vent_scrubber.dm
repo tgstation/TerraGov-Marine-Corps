@@ -279,6 +279,7 @@
 	return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/welder_act(mob/living/user, obj/item/W)
+	add_fingerprint(user)
 	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(1, user))

@@ -34,7 +34,6 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/department_flag = NOFLAGS
 	var/prefflag = NOFLAGS
 
-	var/spawn_positions = 0
 	var/total_positions = 0
 	var/current_positions = 0
 
