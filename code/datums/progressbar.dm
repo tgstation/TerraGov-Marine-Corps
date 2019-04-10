@@ -154,7 +154,7 @@
 	color = "#FFDF28"
 
 /image/progress/frame/brass
-	color = "#FAE48C"
+	icon_state = "prog_bar_4_frame"
 
 /datum/progressicon
 	var/image/progress/display/display
