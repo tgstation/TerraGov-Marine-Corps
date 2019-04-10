@@ -289,9 +289,15 @@
 			visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
 			client.next_movement = world.time + (10*pulledby.grab_level) + client.move_delay
 	else
+		grab_resist_level = 0 //zero it out.
 		pulledby.stop_pulling()
 		return TRUE
 
+/mob/living/stop_pulling()
+	if(isliving(pulling))
+		var/mob/living/L = pulling
+		L.grab_resist_level = 0 //zero it out
+	..()
 
 /mob/living/movement_delay()
 

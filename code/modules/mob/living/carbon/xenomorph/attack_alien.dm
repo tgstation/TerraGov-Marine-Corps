@@ -235,7 +235,7 @@
 
 			tackle_pain = M.hit_and_run_bonus(tackle_pain) //Apply Runner hit and run bonus damage if applicable
 
-			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.4) //Only half armour applies vs tackle
+			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * XENO_TACKLE_ARMOR_PEN)
 			updatehealth()
 			updateshock()
 			var/throttle_message = "<span class='danger'>\The [M] throttles [src]!</span>"
