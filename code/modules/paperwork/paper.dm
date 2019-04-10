@@ -129,7 +129,7 @@
 	var/laststart = 1
 	var/textindex = 1
 	var/spam_protection = 100
-	while(1) // I know this can cause infinite loops and fuck up the whole server, but the if(istart==0) should be safe as fuck
+	while(locid < 15) // I know this can cause infinite loops and fuck up the whole server, but the if(istart==0) should be safe as fuck
 		var/istart = 0
 		spam_protection--
 		if(spam_protection <= 0)
@@ -241,7 +241,7 @@
 
 //Count the fields
 	var/laststart = 1
-	while(1)
+	while(fields < 15)
 		var/i = findtext(t, "<span class=\"paper_field\">", laststart)
 		if(i==0)
 			break

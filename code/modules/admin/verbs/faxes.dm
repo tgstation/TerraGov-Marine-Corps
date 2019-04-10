@@ -5,6 +5,7 @@ GLOBAL_LIST_EMPTY(faxes)
 	var/mob/sender
 	var/obj/machinery/faxmachine/sendmachine
 	var/department
+	var/faxmachine_department
 	var/title
 	var/message
 	var/senttime
@@ -14,11 +15,14 @@ GLOBAL_LIST_EMPTY(faxes)
 
 /proc/send_fax(mob/sender, sendmachine, department, title, message, admin)
 	var/datum/fax/F = new
+	var/obj/machinery/faxmachine/SM = sendmachine
 	if(admin)
 		F.sender = sender.client
 	else
 		F.sender = sender
-	F.sendmachine = sendmachine
+	F.sendmachine = SM
+	if(SM)
+		F.faxmachine_department = SM.department
 	F.department = department
 	F.title = title
 	F.message = message
@@ -27,20 +31,20 @@ GLOBAL_LIST_EMPTY(faxes)
 
 	GLOB.faxes[F] = F
 
-	log_admin("[key_name(sender)] sent a fax, department: [department], titled [title] with message: [message]")
+	log_admin("[key_name(sender)] sent a fax. | Adressed to: [department][SM?.department ? " | From: [SM.department]" : ""] | Titled: [title] | Message: [message]")
 
-	if(sendmachine)
+	if(SM)
 		for(var/client/C in GLOB.admins)
 			if(check_other_rights(C, R_ADMIN, FALSE))
-				to_chat(C, "<span class='notice'><b><font color='#1F66A0'>FAX: </font>[ADMIN_FULLMONTY(sender)]:</b> Receiving '[title]' from [department] <b>(<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxreply=[REF(F)]]'>REPLY</a>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxview=[REF(F)]'>VIEW</a>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxmark=[REF(F)]]'>MARK</a>)</b></span>")
+				to_chat(C, "<span class='notice'><b><font color='#1F66A0'>FAX: </font>[ADMIN_FULLMONTY(sender)]:</b> Adressed to: [department][SM?.department ? " | From: [SM.department]" : ""] | Titled: [title] <b>(<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxreply=[REF(F)]]'>REPLY</a>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxview=[REF(F)]'>VIEW</a>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxmark=[REF(F)]]'>MARK</a>)</b></span>")
 				C << 'sound/effects/sos-morse-code.ogg'
 			else
-				to_chat(C, "<span class='notice'><b><font color='#1F66A0'>FAX: </font>[key_name(sender)]:</b> Receiving '[title]' from [department] <b>(<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxreply=[REF(F)]]'>REPLY</a>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxview=[REF(F)]'>VIEW</a>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxmark=[REF(F)]]'>MARK</a>)</b></span>")
+				to_chat(C, "<span class='notice'><b><font color='#1F66A0'>FAX: </font>[key_name(sender)]:</b> Adressed to: [department][SM?.department ? " | From: [SM.department]" : ""] | Titled: [title] <b>(<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxreply=[REF(F)]]'>REPLY</a>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxview=[REF(F)]'>VIEW</a>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxmark=[REF(F)]]'>MARK</a>)</b></span>")
 				C << 'sound/effects/sos-morse-code.ogg'
 
 	for(var/x in GLOB.faxmachines)
 		var/obj/machinery/faxmachine/FM = x
-		if(FM == sendmachine)
+		if(FM == SM)
 			continue
 		if(FM.department != department)
 			continue
@@ -78,12 +82,12 @@ GLOBAL_LIST_EMPTY(faxes)
 	for(var/i in GLOB.faxes)
 		var/datum/fax/F = i
 		if(F.admin)
-			dat += "(STAFF) Fax titled '[F.title]', department: [F.department], sent by [key_name_admin(F.sender)] at [F.senttime] - "
-			dat += "[check_rights(R_ADMIN, FALSE) ? "[ADMIN_PP(F.sender)] " : ""](<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(F)]'>VIEW</a>)"
+			dat += "(STAFF) [F.senttime] | Title: '[F.title]' | Addressed to: [F.department]<br>"
+			dat += "Sender: [key_name_admin(F.sender)] [check_rights(R_ADMIN, FALSE) ? "[ADMIN_PP(F.sender)] " : ""](<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(F)]'>VIEW</a>)"
 		else
-			dat += "[F.marked ? "(MARKED BY [F.marked] " : ""]Fax titled '[F.title]', department: [F.department], sent by [key_name_admin(F.sender)] at [F.senttime] - "
-			dat += "[check_rights(R_ADMIN, FALSE) ? "[ADMIN_PP(F.sender)] " : ""][ADMIN_SM(F.sender)] (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxreply=[REF(F)]'>REPLY</a>) (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(F)]'>VIEW</a>) (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxmark=[REF(F)]'>MARK</a>)"
-		dat += "<br>"
+			dat += "[F.marked ? "(MARKED BY [F.marked] " : "(UNMARKED)"] [F.senttime] | Title: [F.title] | Addressed to: [F.department][F.faxmachine_department ? " | From: [F.faxmachine_department]" : ""]<br>"
+			dat += "Sender: [key_name_admin(F.sender)] [check_rights(R_ADMIN, FALSE) ? "[ADMIN_PP(F.sender)] " : ""][ADMIN_SM(F.sender)] (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxreply=[REF(F)]'>REPLY</a>) (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(F)]'>VIEW</a>) (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxmark=[REF(F)]'>MARK</a>)"
+		dat += "<hr>"
 
 	dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxcreate=[REF(usr)]'>CREATE NEW FAX</a>"
 

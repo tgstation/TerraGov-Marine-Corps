@@ -25,26 +25,14 @@
 // ***************************************
 // *********** Icon
 // ***************************************
-/mob/living/carbon/Xenomorph/Defender/update_icons()
-	if (stat == DEAD)
-		icon_state = "Defender Dead"
-	else if (lying)
-		if ((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
-			icon_state = "Defender Sleeping"
-		else
-			icon_state = "Defender Knocked Down"
-	else if (fortify)
+/mob/living/carbon/Xenomorph/Defender/handle_special_state()
+	if(fortify)
 		icon_state = "Defender Fortify"
-	else if (crest_defense)
+		return TRUE
+	if(crest_defense)
 		icon_state = "Defender Crest"
-	else
-		if (m_intent == MOVE_INTENT_RUN)
-			icon_state = "Defender Running"
-		else
-			icon_state = "Defender Walking"
-
-	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
-	update_wounds()
+		return TRUE
+	return FALSE
 
 // ***************************************
 // *********** Life overrides

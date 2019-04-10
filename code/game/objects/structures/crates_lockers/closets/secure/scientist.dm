@@ -42,7 +42,6 @@
 		new /obj/item/clothing/under/rank/research_director/rdalt(src)
 		new /obj/item/clothing/under/rank/research_director/dress_rd(src)
 		new /obj/item/clothing/suit/storage/labcoat(src)
-		new /obj/item/cartridge/rd(src)
 		new /obj/item/clothing/shoes/white(src)
 		new /obj/item/clothing/shoes/leather(src)
 		new /obj/item/clothing/gloves/latex(src)

@@ -13,11 +13,6 @@ obj/machinery/door/airlock/proc/can_radio()
 		return 0
 	return 1
 
-obj/machinery/door/airlock/process()
-	..()
-	if (arePowerSystemsOn())
-		execute_current_command()
-
 obj/machinery/door/airlock/receive_signal(datum/signal/signal)
 	if (!arePowerSystemsOn()) return //no power
 
@@ -130,17 +125,16 @@ obj/machinery/door/airlock/Bumped(atom/AM)
 	return
 
 obj/machinery/door/airlock/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	if(new_frequency)
 		frequency = new_frequency
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
+		radio_connection = SSradio.add_object(src, frequency, RADIO_AIRLOCK)
 
 
 obj/machinery/door/airlock/Initialize()
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
-	start_processing()
 	update_icon()
 
 obj/machinery/airlock_sensor
@@ -201,9 +195,9 @@ obj/machinery/airlock_sensor/process()
 			update_icon()
 
 obj/machinery/airlock_sensor/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_AIRLOCK)
 
 obj/machinery/airlock_sensor/Initialize()
 	. = ..()
@@ -244,7 +238,7 @@ obj/machinery/access_button/update_icon()
 
 obj/machinery/access_button/attackby(obj/item/I as obj, mob/user as mob)
 	//Swiping ID on the access button
-	if (istype(I, /obj/item/card/id) || istype(I, /obj/item/device/pda))
+	if (istype(I, /obj/item/card/id))
 		attack_hand(user)
 		return
 	..()
@@ -265,9 +259,9 @@ obj/machinery/access_button/attack_hand(mob/user)
 
 
 obj/machinery/access_button/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_AIRLOCK)
 
 
 obj/machinery/access_button/Initialize()

@@ -215,7 +215,7 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!SSticker.current_state != GAME_STATE_PREGAME)
+	if(SSticker?.current_state != GAME_STATE_PREGAME)
 		to_chat(usr, "<span class='warning'>The round cannot be started early in this state.</span>")
 		return
 

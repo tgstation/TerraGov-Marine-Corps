@@ -39,6 +39,8 @@
 		stomach_contents.Remove(A)
 		A.forceMove(loc)
 		if(ismob(A))
+			var/mob/M = A
+			M.SetKnockeddown(1)
 			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
 
 	. = ..()
@@ -407,6 +409,4 @@
 	. = ..()
 	. += "---"
 	. -= "Update Icon"
-	.["Add Language"] = "?_src_=vars;[HrefToken()];addlanguage=[REF(src)]"
-	.["Remove Language"] = "?_src_=vars;[HrefToken()];remlanguage=[REF(src)]"
 	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
