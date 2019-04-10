@@ -417,11 +417,16 @@
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
 /obj/item/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
-	if(!istype(W)) return 0
+	if(!istype(W))
+		return FALSE
 
 	for(var/mob/M in can_see_content())
-		if(M.client)
-			M.client.screen -= W
+		if(!M.client)
+			continue
+		M.client.screen -= W
+
+	if(QDELETED(W))
+		return TRUE
 
 	if(new_location)
 		if(ismob(new_location))
@@ -441,7 +446,7 @@
 	W.on_exit_storage(src)
 	update_icon()
 	W.mouse_opacity = initial(W.mouse_opacity)
-	return 1
+	return TRUE
 
 //This proc is called when you want to place an item into the storage item.
 /obj/item/storage/attackby(obj/item/W, mob/user)
