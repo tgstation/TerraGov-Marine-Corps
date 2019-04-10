@@ -20,12 +20,7 @@
 	var/area/A = isarea(X) ? X : get_area(X)
 	if(!A)
 		return null
-	return format_text ? format_text(A.name) : A.name
-
-/proc/get_open_turf_in_dir(atom/center, dir)
-	var/turf/open/T = get_step(center, dir)
-	if(istype(T))
-		return T
+	return format_text ? format_text(A.name) : A.name0
 
 /proc/get_adjacent_open_turfs(atom/center)
 	. = list()
