@@ -477,7 +477,7 @@
 		for(var/mob/living/C in get_turf(src))
 			C.flamer_fire_act(fire_stacks)
 
-			var/armor_block = C.run_armor_check("chest", "energy")
+			var/armor_block = C.run_armor_check("chest", "fire")
 			C.apply_damage(fire_damage, BURN, null, armor_block)
 			if(C.IgniteMob())
 				C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
