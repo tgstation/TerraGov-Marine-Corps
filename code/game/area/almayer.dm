@@ -346,6 +346,11 @@
 	icon_state = "medical"
 	fake_zlevel = 2 // lowerdeck
 
+/area/almayer/squads/general
+	name = "\improper Squad Preparation"
+	icon_state = "Squad Prep"
+	fake_zlevel = 2 // lowerdeck
+
 /area/almayer/squads/alpha
 	name = "\improper Squad Alpha Preparation"
 	icon_state = "alpha"
