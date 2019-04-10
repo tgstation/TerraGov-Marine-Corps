@@ -20,7 +20,7 @@
 	var/area/A = isarea(X) ? X : get_area(X)
 	if(!A)
 		return null
-	return format_text ? format_text(A.name) : A.name0
+	return format_text ? format_text(A.name) : A.name
 
 /proc/get_adjacent_open_turfs(atom/center)
 	. = list()
