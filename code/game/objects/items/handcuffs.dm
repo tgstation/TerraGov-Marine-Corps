@@ -81,6 +81,7 @@
 	name = "cable restraints"
 	desc = "Looks like some cables tied together. Could be used to tie something up."
 	icon_state = "cuff_white"
+	item_state = "handcuff"
 	breakouttime = 300 //Deciseconds = 30s
 	cuff_sound = 'sound/weapons/cablecuff.ogg'
 
@@ -144,7 +145,11 @@
 				C.handcuff_update()
 
 
-
+/obj/item/handcuffs/fuzzy
+	name = "fuzzy cuffs"
+	desc = "Use this to keep your partner in line."
+	icon_state = "fuzzycuff"
+	item_state = "fuzzycuff"
 
 
 /obj/item/restraints
