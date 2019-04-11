@@ -183,6 +183,7 @@
 	return succeed_activate()
 
 /mob/living/carbon/Xenomorph/Defender/proc/set_crest_defense(on, silent = FALSE)
+	crest_defense = on
 	if(on)
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>You tuck yourself into a defensive stance.</span>")

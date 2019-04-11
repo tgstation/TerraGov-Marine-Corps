@@ -84,8 +84,9 @@
 
 /datum/action/xeno_action/choose_resin/update_button_icon()
 	var/mob/living/carbon/Xenomorph/X = owner
+	var/atom/A = X.selected_resin
 	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, X.selected_resin)
+	button.overlays += image('icons/mob/actions.dmi', button, initial(A.name))
 	return ..()
 
 /datum/action/xeno_action/choose_resin/action_activate()
@@ -444,9 +445,9 @@
 
 /obj/proc/acid_check(obj/effect/xenomorph/acid/new_acid)
 	if(!new_acid)
-		return FALSE
-	if(!current_acid)
 		return TRUE
+	if(!current_acid)
+		return FALSE
 
 	if(initial(new_acid.acid_strength) >= current_acid.acid_strength)
 		return FALSE
@@ -454,9 +455,9 @@
 
 /turf/proc/acid_check(obj/effect/xenomorph/acid/new_acid)
 	if(!new_acid)
-		return FALSE
-	if(!current_acid)
 		return TRUE
+	if(!current_acid)
+		return FALSE
 
 	if(initial(new_acid.acid_strength) >= current_acid.acid_strength)
 		return FALSE

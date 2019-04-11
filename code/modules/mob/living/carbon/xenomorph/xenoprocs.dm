@@ -636,7 +636,7 @@
 		return
 
 	if(get_dist(src, target) > max_range)
-		to_chat(src, "<span class='warning'>You need to be closer to plasma.</span>")
+		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
 		return
 
 	if(!(target.plasma_stored))

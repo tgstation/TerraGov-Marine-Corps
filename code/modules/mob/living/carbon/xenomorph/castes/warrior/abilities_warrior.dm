@@ -129,7 +129,7 @@
 		if (!temp)
 			break
 		T = temp
-
+	X.animation_attack_on(H)
 	H.throw_at(T, fling_distance, 1, X, 1)
 
 	add_cooldown()
@@ -176,7 +176,7 @@
 	playsound(M, S, 50, 1)
 
 	M.punch_act(X, damage, target_zone)
-
+	X.animation_attack_on(M)
 	shake_camera(M, 2, 1)
 	step_away(M, X, 2)
 
