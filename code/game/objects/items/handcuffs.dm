@@ -67,6 +67,7 @@
 	desc = "Single-use plastic zip tie handcuffs."
 	w_class = 1
 	icon_state = "cuff_zip"
+	item_state = "handcuff"
 	breakouttime = 600 //Deciseconds = 60s
 	cuff_sound = 'sound/weapons/cablecuff.ogg'
 	cuff_delay = 20
@@ -81,6 +82,7 @@
 	name = "cable restraints"
 	desc = "Looks like some cables tied together. Could be used to tie something up."
 	icon_state = "cuff_white"
+	item_state = "handcuff"
 	breakouttime = 300 //Deciseconds = 30s
 	cuff_sound = 'sound/weapons/cablecuff.ogg'
 
