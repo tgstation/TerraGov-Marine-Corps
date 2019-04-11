@@ -124,7 +124,7 @@
 	var/turf/T = X.loc
 	var/turf/temp = X.loc
 
-	for (var/x in 0 to fling_distance)
+	for (var/x in 1 to fling_distance)
 		temp = get_step(T, facing)
 		if (!temp)
 			break

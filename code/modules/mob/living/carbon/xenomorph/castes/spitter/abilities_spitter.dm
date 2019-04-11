@@ -11,14 +11,9 @@
 
 /datum/action/xeno_action/activable/spray_acid/line/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	var/turf/target
+	var/turf/target = get_turf(A)
 
-	if(isturf(A))
-		target = A
-	else
-		target = get_turf(A)
-
-	if(!target || !istype(target)) //Something went horribly wrong. Clicked off edge of map probably
+	if(!istype(target)) //Something went horribly wrong. Clicked off edge of map probably
 		return
 
 	if(!do_after(X, 5, TRUE, 5, BUSY_ICON_HOSTILE, TRUE, TRUE))

@@ -11,14 +11,9 @@
 
 /datum/action/xeno_action/activable/spray_acid/cone/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	var/turf/target
+	var/turf/target = get_turf(A)
 
-	if (isturf(A))
-		target = A
-	else
-		target = get_turf(A)
-
-	if(!target || !istype(target)) //Something went horribly wrong. Clicked off edge of map probably
+	if(!istype(target)) //Something went horribly wrong. Clicked off edge of map probably
 		return
 
 	if(!do_after(X, 5, TRUE, 5, BUSY_ICON_HOSTILE))
@@ -52,7 +47,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	owner.setDir(facing)
 
 	T = get_turf(owner)
-	for (var/i in 0 to range)
+	for (var/i in 1 to range)
 
 		var/turf/next_T = get_step(T, facing)
 
@@ -92,7 +87,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/normal_density_flag = 0
 	var/inverse_normal_density_flag = 0
 
-	for (var/i = 0, i < distance, i++)
+	for (var/i in 1 to distance)
 		if (normal_density_flag && inverse_normal_density_flag)
 			return
 

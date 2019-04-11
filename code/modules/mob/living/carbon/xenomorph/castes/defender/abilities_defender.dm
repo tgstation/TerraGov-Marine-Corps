@@ -74,7 +74,7 @@
 	var/turf/T = X.loc
 	var/turf/temp = X.loc
 
-	for (var/x in 0 to headbutt_distance)
+	for (var/x in 1 to headbutt_distance)
 		temp = get_step(T, facing)
 		if (!temp)
 			break
