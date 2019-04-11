@@ -130,12 +130,15 @@
 	var/last_use
 	var/cooldown_timer
 	var/ability_name
+	var/image/cooldown_image
 
 /datum/action/xeno_action/New(Target)
-	..()
+	. = ..()
 	if(plasma_cost)
 		name = "[name] ([plasma_cost])"
 	button.overlays += image('icons/mob/actions.dmi', button, action_icon_state)
+	cooldown_image = image('icons/mob/mob.dmi', null, "busy_clock_old")
+	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
 
 /datum/action/xeno_action/can_use_action(silent = FALSE, override_flags)
 	var/mob/living/carbon/Xenomorph/X = owner
@@ -207,8 +210,6 @@
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(plasma_cost)
 		X.use_plasma(plasma_cost)
-	else // use_plasma already calls update_action_button_icons()
-		X.update_action_button_icons()
 
 //checks if the linked ability is on some cooldown.
 //The action can still be activated by clicking the button
@@ -228,6 +229,8 @@
 		last_use = world.time
 		on_cooldown = TRUE
 		addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown())
+		button.overlays += cooldown_image
+		update_button_icon()
 
 /datum/action/xeno_action/proc/cooldown_remaining()
 	for(var/i in active_timers)
@@ -238,6 +241,7 @@
 //override this for cooldown completion.
 /datum/action/xeno_action/proc/on_cooldown_finish()
 	on_cooldown = FALSE
+	button.overlays -= cooldown_image
 	update_button_icon()
 
 /datum/action/xeno_action/update_button_icon()
