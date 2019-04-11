@@ -219,7 +219,7 @@
 		t = oldreplacetext(t, "\[/grid\]", "</td></tr></table>")
 		t = oldreplacetext(t, "\[row\]", "</td><tr>")
 		t = oldreplacetext(t, "\[cell\]", "<td>")
-		t = oldreplacetext(t, "\[logo\]", "<img src = wylogo.png>")
+		t = oldreplacetext(t, "\[logo\]", "<img src = 'ntlogo.png'>")
 
 		t = "<font face=\"[deffont]\" color=[P ? P.colour : "black"]>[t]</font>"
 	else // If it is a crayon, and he still tries to use these, make them empty!
