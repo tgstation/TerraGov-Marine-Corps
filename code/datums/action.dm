@@ -241,36 +241,45 @@
 	update_button_icon()
 
 /datum/action/xeno_action/update_button_icon()
-	if(!can_use_action(TRUE))
-		button.color = rgb(128,0,0,128)
+	if(!can_use_action(TRUE, XACT_IGNORE_COOLDOWN))
+		button.color = "#80000080" // rgb(128,0,0,128)
 	else if(!action_cooldown_check())
-		button.color = rgb(240,180,0,200)
+		button.color = "#f0b400c8" // rgb(240,180,0,200)
 	else
-		button.color = rgb(255,255,255,255)
+		button.color = "#ffffffff" // rgb(255,255,255,255)
 
 
 
 /datum/action/xeno_action/activable
+	var/image/selected_frame
+
+/datum/action/xeno_action/activable/New()
+	. = ..()
+	selected_frame = image('icons/mob/actions.dmi', null, "selected_frame")
+	selected_frame.appearance_flags = RESET_COLOR
+
+/datum/action/xeno_action/activable/proc/deselect()
+	var/mob/living/carbon/Xenomorph/X = owner
+	button.overlays -= selected_frame
+	X.selected_ability = null
+	on_deactivation()
+
+/datum/action/xeno_action/activable/proc/select()
+	var/mob/living/carbon/Xenomorph/X = owner
+	button.overlays += selected_frame
+	X.selected_ability = src
+	on_activation()
 
 /datum/action/xeno_action/activable/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(plasma_cost)
-		if(!X.check_plasma(plasma_cost))
-			return ..()
 	if(X.selected_ability == src)
 		to_chat(X, "You will no longer use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"].")
-		button.icon_state = "template"
-		X.selected_ability.on_deactivation()
-		X.selected_ability = null
+		deselect()
 	else
 		to_chat(X, "You will now use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"].")
 		if(X.selected_ability)
-			X.selected_ability.button.icon_state = "template"
-			X.selected_ability.on_deactivation()
-			X.selected_ability = null
-		button.icon_state = "template_on"
-		X.selected_ability = src
-		X.selected_ability.on_activation()
+			X.selected_ability.deselect()
+		select()
 	return ..()
 
 
@@ -283,6 +292,11 @@
 /datum/action/xeno_action/activable/proc/use_ability(atom/A)
 	return
 
+/datum/action/xeno_action/activable/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+	if(selecting)
+		return ..(silent, XACT_IGNORE_COOLDOWN|XACT_IGNORE_PLASMA|XACT_USE_STAGGERED)
+	return ..()
+	
 //override this 
 /datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/mob/living/carbon/Xenomorph/X = owner

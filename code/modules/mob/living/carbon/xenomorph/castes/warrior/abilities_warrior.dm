@@ -130,6 +130,7 @@
 			break
 		T = temp
 	X.animation_attack_on(H)
+	X.flick_attack_overlay(H, "disarm")
 	H.throw_at(T, fling_distance, 1, X, 1)
 
 	add_cooldown()
@@ -177,6 +178,7 @@
 
 	M.punch_act(X, damage, target_zone)
 	X.animation_attack_on(M)
+	X.flick_attack_overlay(M, "punch")
 	shake_camera(M, 2, 1)
 	step_away(M, X, 2)
 
