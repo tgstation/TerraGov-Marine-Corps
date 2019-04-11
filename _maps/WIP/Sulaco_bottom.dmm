@@ -956,7 +956,7 @@
 	},
 /area/sulaco/research)
 "cr" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -996,7 +996,7 @@
 /obj/item/storage/box/pillbottles,
 /obj/item/storage/box/pillbottles,
 /obj/structure/table,
-/obj/item/device/mass_spectrometer,
+/obj/item/mass_spectrometer,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -1310,7 +1310,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/item/reagent_container/glass/beaker/large,
 /obj/item/tool/hand_labeler,
-/obj/item/device/autopsy_scanner,
+/obj/item/autopsy_scanner,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -1367,7 +1367,7 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -1569,7 +1569,7 @@
 	
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -1818,7 +1818,7 @@
 /area/sulaco/research)
 "ei" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -2023,7 +2023,7 @@
 /obj/structure/window/reinforced,
 /obj/item/paper_bin,
 /obj/item/tool/pen,
-/obj/item/device/autopsy_scanner,
+/obj/item/autopsy_scanner,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -2033,7 +2033,7 @@
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/item/clothing/tie/stethoscope,
-/obj/item/device/autopsy_scanner,
+/obj/item/autopsy_scanner,
 /obj/item/storage/box/monkeycubes,
 /turf/open/floor{
 	icon_state = "white"
@@ -2061,7 +2061,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -2532,8 +2532,8 @@
 /area/sulaco/maintenance/lower_maint)
 "fP" = (
 /obj/structure/rack,
-/obj/item/device/assembly/prox_sensor,
-/obj/item/device/assembly/prox_sensor,
+/obj/item/assembly/prox_sensor,
+/obj/item/assembly/prox_sensor,
 /obj/structure/closet/walllocker/emerglocker,
 /turf/open/floor{
 	icon_state = "vault"
@@ -2817,7 +2817,7 @@
 	dir = 6
 	},
 /obj/structure/rack,
-/obj/item/device/assembly/voice,
+/obj/item/assembly/voice,
 /turf/open/floor{
 	icon_state = "vault"
 	},
@@ -2840,7 +2840,7 @@
 /area/sulaco/maintenance/lower_maint)
 "gx" = (
 /obj/structure/rack,
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /turf/open/floor{
 	icon_state = "vault"
 	},
@@ -3305,7 +3305,7 @@
 /area/sulaco/maintenance/lower_maint)
 "hs" = (
 /obj/structure/table,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor{
 	icon_state = "vault"
 	},
@@ -3521,7 +3521,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -4521,9 +4521,9 @@
 	dir = 4
 	},
 /obj/structure/rack,
-/obj/item/device/assembly/timer,
-/obj/item/device/assembly/timer,
-/obj/item/device/assembly/timer,
+/obj/item/assembly/timer,
+/obj/item/assembly/timer,
+/obj/item/assembly/timer,
 /turf/open/floor{
 	icon_state = "vault"
 	},
@@ -4839,8 +4839,8 @@
 /area/sulaco/maintenance/lower_maint)
 "kD" = (
 /obj/structure/rack,
-/obj/item/device/assembly/infra,
-/obj/item/device/assembly/infra,
+/obj/item/assembly/infra,
+/obj/item/assembly/infra,
 /turf/open/floor{
 	icon_state = "vault"
 	},
@@ -4855,7 +4855,7 @@
 /area/sulaco/maintenance/lower_maint)
 "kF" = (
 /obj/structure/rack,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /obj/machinery/door_control{
 	id = "eastblast";
 	name = "Observation Windows";
@@ -5002,7 +5002,7 @@
 /area/sulaco/liaison)
 "kX" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
@@ -5023,7 +5023,7 @@
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "kZ" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -5164,9 +5164,9 @@
 /area/sulaco/hangar/two)
 "lv" = (
 /obj/structure/rack,
-/obj/item/device/assembly/igniter,
-/obj/item/device/assembly/igniter,
-/obj/item/device/assembly/igniter,
+/obj/item/assembly/igniter,
+/obj/item/assembly/igniter,
+/obj/item/assembly/igniter,
 /turf/open/floor{
 	icon_state = "vault"
 	},
@@ -5199,16 +5199,16 @@
 /area/sulaco/maintenance/lower_maint)
 "lz" = (
 /obj/structure/rack,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
 "lA" = (
 /obj/structure/rack,
-/obj/item/device/assembly/signaler,
-/obj/item/device/assembly/signaler,
-/obj/item/device/assembly/signaler,
+/obj/item/assembly/signaler,
+/obj/item/assembly/signaler,
+/obj/item/assembly/signaler,
 /turf/open/floor{
 	icon_state = "vault"
 	},
@@ -5578,7 +5578,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -5666,7 +5666,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -6176,8 +6176,8 @@
 /area/sulaco/telecomms/office)
 "nP" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp,
-/obj/item/device/multitool,
+/obj/item/flashlight/lamp,
+/obj/item/multitool,
 /turf/open/floor{
 	icon_state = "dark"
 	},
@@ -6228,7 +6228,7 @@
 /obj/structure/table/woodentable,
 /obj/item/tool/lighter/zippo,
 /obj/item/cell/hyper,
-/obj/item/device/camera,
+/obj/item/camera,
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
 "nX" = (
@@ -6521,8 +6521,8 @@
 /obj/structure/table/woodentable,
 /obj/item/book/manual/security_space_law,
 /obj/item/tool/crowbar,
-/obj/item/device/multitool,
-/obj/item/device/radio/intercom{
+/obj/item/multitool,
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -6618,7 +6618,7 @@
 /obj/item/storage/lockbox/loyalty{
 	req_access = list(200)
 	},
-/obj/item/device/radio,
+/obj/item/radio,
 /obj/item/storage/briefcase,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
@@ -6638,7 +6638,7 @@
 /area/sulaco/liaison/quarters)
 "pb" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
