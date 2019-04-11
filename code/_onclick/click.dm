@@ -32,6 +32,11 @@
 		usr.MouseWheelOn(src, delta_x, delta_y, params)
 
 
+/client/Click(object, location, control, params)
+	if(!control)
+		return
+	return ..()
+
 /*
 	Standard mob ClickOn()
 	Handles exceptions: Buildmode, middle click, modified clicks, mech actions
