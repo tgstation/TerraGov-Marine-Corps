@@ -16,7 +16,7 @@
 	name = "Skrellian hardsuit"
 	desc = "Seems like a wetsuit with reinforced plating seamlessly attached to it. Very chic."
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 50, "acid" = 50)
-	allowed = list(/obj/item/device/flashlight,/obj/item/tank,/obj/item/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/tool/pickaxe, /obj/item/device/rcd)
+	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/storage/bag/ore,/obj/item/t_scanner,/obj/item/tool/pickaxe, /obj/item/rcd)
 	flags_heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list("Skrell","Human")
@@ -42,7 +42,7 @@
 
 /obj/item/clothing/suit/space/unathi
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 15, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 15, "acid" = 15)
-	allowed = list(/obj/item/device/flashlight,/obj/item/tank,/obj/item/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/tool/pickaxe, /obj/item/device/rcd)
+	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/storage/bag/ore,/obj/item/t_scanner,/obj/item/tool/pickaxe, /obj/item/rcd)
 	flags_heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list("Unathi")

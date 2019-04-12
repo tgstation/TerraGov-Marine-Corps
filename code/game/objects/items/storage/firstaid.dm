@@ -52,7 +52,7 @@
 	possible_icons_full = list("ointment","firefirstaid")
 
 /obj/item/storage/firstaid/fire/fill_firstaid_kit()
-	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
@@ -65,7 +65,7 @@
 	icon_state = "firstaid"
 
 /obj/item/storage/firstaid/regular/fill_firstaid_kit()
-	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
 	new /obj/item/stack/medical/bruise_pack(src)
 	new /obj/item/stack/medical/ointment(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(src)
@@ -82,7 +82,7 @@
 	possible_icons_full = list("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
 
 /obj/item/storage/firstaid/toxin/fill_firstaid_kit()
-	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/hypervene(src)
@@ -98,7 +98,7 @@
 	item_state = "firstaid-o2"
 
 /obj/item/storage/firstaid/o2/fill_firstaid_kit()
-	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/dexalin(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/dexalinplus(src)
@@ -114,7 +114,7 @@
 	item_state = "firstaid-advanced"
 
 /obj/item/storage/firstaid/adv/fill_firstaid_kit()
-	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
@@ -130,7 +130,7 @@
 	item_state = "firstaid-rad"
 
 /obj/item/storage/firstaid/rad/fill_firstaid_kit()
-	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/russianRed(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(src)

@@ -31,8 +31,8 @@
 		if (0)
 			var/obj/item/assembly/r_i_ptank/R = new /obj/item/assembly/r_i_ptank(src.loc)
 			var/obj/item/tank/phoron/p3 = new /obj/item/tank/phoron(R)
-			var/obj/item/device/radio/signaler/p1 = new /obj/item/device/radio/signaler(R)
-			var/obj/item/device/igniter/p2 = new /obj/item/device/igniter(R)
+			var/obj/item/radio/signaler/p1 = new /obj/item/radio/signaler(R)
+			var/obj/item/igniter/p2 = new /obj/item/igniter(R)
 			R.part1 = p1
 			R.part2 = p2
 			R.part3 = p3
@@ -48,8 +48,8 @@
 		if (1)
 			var/obj/item/assembly/m_i_ptank/R = new /obj/item/assembly/m_i_ptank(src.loc)
 			var/obj/item/tank/phoron/p3 = new /obj/item/tank/phoron(R)
-			var/obj/item/device/prox_sensor/p1 = new /obj/item/device/prox_sensor(R)
-			var/obj/item/device/igniter/p2 = new /obj/item/device/igniter(R)
+			var/obj/item/prox_sensor/p1 = new /obj/item/prox_sensor(R)
+			var/obj/item/igniter/p2 = new /obj/item/igniter(R)
 			R.part1 = p1
 			R.part2 = p2
 			R.part3 = p3
@@ -70,8 +70,8 @@
 		if (2)
 			var/obj/item/assembly/t_i_ptank/R = new /obj/item/assembly/t_i_ptank(src.loc)
 			var/obj/item/tank/phoron/p3 = new /obj/item/tank/phoron(R)
-			var/obj/item/device/timer/p1 = new /obj/item/device/timer(R)
-			var/obj/item/device/igniter/p2 = new /obj/item/device/igniter(R)
+			var/obj/item/timer/p1 = new /obj/item/timer(R)
+			var/obj/item/igniter/p2 = new /obj/item/igniter(R)
 			R.part1 = p1
 			R.part2 = p2
 			R.part3 = p3
@@ -86,8 +86,8 @@
 		if(3)
 			var/obj/item/clothing/suit/armor/a_i_a_ptank/R = new /obj/item/clothing/suit/armor/a_i_a_ptank(src.loc)
 			var/obj/item/tank/phoron/p4 = new /obj/item/tank/phoron(R)
-			var/obj/item/device/healthanalyzer/p1 = new /obj/item/device/healthanalyzer(R)
-			var/obj/item/device/igniter/p2 = new /obj/item/device/igniter(R)
+			var/obj/item/healthanalyzer/p1 = new /obj/item/healthanalyzer(R)
+			var/obj/item/igniter/p2 = new /obj/item/igniter(R)
 			var/obj/item/clothing/suit/armor/vest/p3 = new /obj/item/clothing/suit/armor/vest(R)
 			R.part1 = p1
 			R.part2 = p2
@@ -126,7 +126,7 @@
 /obj/effect/spawner/newbomb/New()
 	..()
 
-	var/obj/item/device/transfer_valve/V = new(src.loc)
+	var/obj/item/transfer_valve/V = new(src.loc)
 	var/obj/item/tank/phoron/PT = new(V)
 	var/obj/item/tank/oxygen/OT = new(V)
 
@@ -136,23 +136,23 @@
 	PT.master = V
 	OT.master = V
 
-	var/obj/item/device/assembly/S
+	var/obj/item/assembly/S
 
 	switch (src.btype)
 		// radio
 		if (0)
 
-			S = new/obj/item/device/assembly/signaler(V)
+			S = new/obj/item/assembly/signaler(V)
 
 		// proximity
 		if (1)
 
-			S = new/obj/item/device/assembly/prox_sensor(V)
+			S = new/obj/item/assembly/prox_sensor(V)
 
 		// timer
 		if (2)
 
-			S = new/obj/item/device/assembly/timer(V)
+			S = new/obj/item/assembly/timer(V)
 
 
 	V.attached_device = S

@@ -51,7 +51,7 @@
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 
 	var/list/allowed = null //suit storage stuff.
-	var/obj/item/device/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
+	var/obj/item/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
 	var/zoom = FALSE //TRUE if item is actively being used to zoom. For scoped guns and binoculars.
 

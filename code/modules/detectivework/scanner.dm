@@ -1,4 +1,4 @@
-/obj/item/device/detective_scanner
+/obj/item/detective_scanner
 	name = "forensic scanner"
 	desc = "Used to scan objects for DNA and fingerprints."
 	icon_state = "forensic1"
@@ -9,7 +9,7 @@
 	flags_item = NOBLUDGEON
 	flags_equip_slot = ITEM_SLOT_BELT
 
-/obj/item/device/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	if (!ishuman(M))
 		to_chat(user, "<span class='warning'>[M] is not human and cannot have the fingerprints.</span>")
 		flick("forensic0",src)
@@ -33,7 +33,7 @@
 				to_chat(user, "<span class='notice'>Blood type: [M.blood_DNA[blood]]\nDNA: [blood]</span>")
 	return
 
-/obj/item/device/detective_scanner/afterattack(atom/A as obj|turf, mob/user, proximity)
+/obj/item/detective_scanner/afterattack(atom/A as obj|turf, mob/user, proximity)
 	if(!proximity) return
 	if(ismob(A))
 		return
@@ -111,7 +111,7 @@
 	flick("forensic2",src)
 	return 0
 
-/obj/item/device/detective_scanner/proc/add_data(atom/A as mob|obj|turf|area)
+/obj/item/detective_scanner/proc/add_data(atom/A as mob|obj|turf|area)
 	var/datum/data/record/forensic/old = stored["\ref [A]"]
 	var/datum/data/record/forensic/fresh = new(A)
 

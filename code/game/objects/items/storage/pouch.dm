@@ -53,7 +53,7 @@
 	draw_mode = 0
 
 /obj/item/storage/pouch/general/large/command
-	fill_type = /obj/item/device/binoculars/tactical
+	fill_type = /obj/item/binoculars/tactical
 	fill_number = 1
 
 /obj/item/storage/pouch/bayonet
@@ -82,7 +82,7 @@
 	storage_slots = 6
 	max_w_class = 3
 	can_hold = list(
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/reagent_container/pill,
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/stack/sheet/metal,
@@ -91,7 +91,7 @@
 
 /obj/item/storage/pouch/survival/full/Initialize()
 	. = ..()
-	new /obj/item/device/flashlight(src)
+	new /obj/item/flashlight(src)
 	new /obj/item/reagent_container/pill/tramadol(src)
 	new /obj/item/stack/medical/bruise_pack(src, 3)
 	new /obj/item/stack/sheet/metal(src, 40)
@@ -239,8 +239,8 @@
 		/obj/item/explosive/grenade,
 		/obj/item/storage/box/explosive_mines,
 		/obj/item/ammo_magazine/rocket,
-		/obj/item/device/radio/detpack,
-		/obj/item/device/assembly/signaler)
+		/obj/item/radio/detpack,
+		/obj/item/assembly/signaler)
 
 /obj/item/storage/pouch/explosive/full
 	fill_type = /obj/item/explosive/grenade/frag
@@ -257,14 +257,14 @@
 	storage_slots = 3
 
 	can_hold = list(
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/reagent_container/dropper,
 		/obj/item/reagent_container/pill,
 		/obj/item/reagent_container/glass/bottle,
 		/obj/item/reagent_container/syringe,
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
-		/obj/item/device/flashlight/pen,
+		/obj/item/flashlight/pen,
 	    /obj/item/reagent_container/hypospray)
 
 /obj/item/storage/pouch/medical/full/Initialize()
@@ -326,7 +326,7 @@
 	draw_mode = 1
 	icon_state = "flare"
 	can_hold = list(
-		/obj/item/device/flashlight/flare,
+		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare)
 
 /obj/item/storage/pouch/flare/attackby(obj/item/W, mob/user)
@@ -362,7 +362,7 @@
 	icon_state = "radio"
 	draw_mode = 1
 	desc = "It can contain two handheld radios."
-	can_hold = list(/obj/item/device/radio)
+	can_hold = list(/obj/item/radio)
 
 
 /obj/item/storage/pouch/field_pouch
@@ -373,23 +373,23 @@
 	draw_mode = 1
 	desc = "It can contain a motion detector, signaller, beacons, maps, flares, radios and other handy battlefield communication and detection devices."
 	can_hold = list(
-		/obj/item/device/motiondetector,
-		/obj/item/device/radio,
-		/obj/item/device/assembly/signaler,
-		/obj/item/device/megaphone,
-		/obj/item/device/flashlight,
-		/obj/item/device/whistle,
-		/obj/item/device/binoculars,
+		/obj/item/motiondetector,
+		/obj/item/radio,
+		/obj/item/assembly/signaler,
+		/obj/item/megaphone,
+		/obj/item/flashlight,
+		/obj/item/whistle,
+		/obj/item/binoculars,
 		/obj/item/map/current_map,
-		/obj/item/device/squad_beacon)
+		/obj/item/squad_beacon)
 
 /obj/item/storage/pouch/field_pouch/full/Initialize()
 	. = ..()
-	new /obj/item/device/motiondetector (src)
-	new /obj/item/device/whistle (src)
-	new /obj/item/device/radio (src)
+	new /obj/item/motiondetector (src)
+	new /obj/item/whistle (src)
+	new /obj/item/radio (src)
 	new /obj/item/map/current_map (src)
-	new /obj/item/device/binoculars/tactical (src)
+	new /obj/item/binoculars/tactical (src)
 
 
 /obj/item/storage/pouch/electronics
@@ -440,7 +440,7 @@
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/crowbar,
 		/obj/item/tool/weldingtool,
-		/obj/item/device/multitool,
+		/obj/item/multitool,
 		/obj/item/tool/wrench,
 		/obj/item/stack/cable_coil,
 		/obj/item/tool/extinguisher/mini)
@@ -449,7 +449,7 @@
 	. = ..()
 	new /obj/item/tool/screwdriver (src)
 	new /obj/item/tool/wirecutters (src)
-	new /obj/item/device/multitool (src)
+	new /obj/item/multitool (src)
 	new /obj/item/tool/wrench (src)
 	new /obj/item/tool/crowbar (src)
 
