@@ -474,11 +474,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define WARRIOR_AGILITY_ARMOR 30
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 
-#define SPIT_UPGRADE_BONUS ( max(0,upgrade_as_number()) * 0.15 ) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
-#define SPRAY_STRUCTURE_UPGRADE_BONUS 8
-#define SPRAY_MOB_UPGRADE_BONUS 4
+#define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
+#define SPRAY_STRUCTURE_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 8 ))
+#define SPRAY_MOB_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 4 ))
 
-#define QUEEN_DEATH_LARVA_MULTIPLIER 0.17 // 85/68/51/34 for ancient/elder emp/elder queen/queen
+#define QUEEN_DEATH_LARVA_MULTIPLIER(Xenomorph) ((Xenomorph.upgrade_as_number() + 1) * 0.17)) // 85/68/51/34 for ancient/elder emp/elder queen/queen
 
 #define PLASMA_TRANSFER_AMOUNT 50
 #define PLASMA_SALVAGE_AMOUNT 40
@@ -559,7 +559,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI	100
 #define CRUSHER_CHARGE_TANK_MULTI		100
 
-#define CRUSHER_STOMP_UPGRADE_BONUS ( 1 + upgrade_as_number() * 0.05 )
+#define CRUSHER_STOMP_UPGRADE_BONUS(Xenomorph) (( ( 1 + Xenomorph.upgrade_as_number() ) * 0.05 ))
 
 #define CHARGE_TURFS_TO_CHARGE			5		//Amount of turfs to build up before a charge begins
 #define CHARGE_SPEED_BUILDUP			0.15 	//POSITIVE amount of speed built up during a charge each step
