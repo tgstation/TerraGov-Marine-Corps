@@ -203,7 +203,7 @@
 	var/orient_right = FALSE // Flips the sprite.
 	var/time_till_despawn = 10 MINUTES
 	var/time_entered
-	var/obj/item/device/radio/intercom/announce //Intercom for cryo announcements
+	var/obj/item/radio/intercom/announce //Intercom for cryo announcements
 
 /obj/machinery/cryopod/right
 	orient_right = TRUE
@@ -281,7 +281,7 @@
 	GLOB.cryoed_mob_list += data
 	GLOB.cryoed_mob_list[data] = list(real_name, job ? job : "Unassigned", gameTimestamp())
 
-	var/obj/item/device/radio/intercom/radio
+	var/obj/item/radio/intercom/radio
 	if(pod)
 		radio = pod.announce
 		pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")

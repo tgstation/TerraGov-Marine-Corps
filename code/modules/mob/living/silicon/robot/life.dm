@@ -187,7 +187,7 @@
 	if (client)
 		client.screen -= contents
 		for(var/obj/I in contents)
-			if(I && !(istype(I,/obj/item/cell) || istype(I,/obj/item/device/radio)  || istype(I,/obj/machinery/camera) || istype(I,/obj/item/device/mmi)))
+			if(I && !(istype(I,/obj/item/cell) || istype(I,/obj/item/radio)  || istype(I,/obj/machinery/camera) || istype(I,/obj/item/mmi)))
 				client.screen += I
 	if(module_state_1)
 		module_state_1:screen_loc = ui_inv1

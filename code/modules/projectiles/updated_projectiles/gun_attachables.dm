@@ -494,7 +494,7 @@ Defined in conflicts.dm of the #defines folder.
 			S.remove_from_storage(src)
 		if(loc == user)
 			user.temporarilyRemoveItemFromInventory(src)
-		var/obj/item/device/flashlight/F = new(user)
+		var/obj/item/flashlight/F = new(user)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		qdel(src) //Delete da old flashlight
 	else

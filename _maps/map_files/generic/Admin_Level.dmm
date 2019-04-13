@@ -142,7 +142,7 @@
 	},
 /area/tdome/tdomeobserve)
 "av" = (
-/obj/item/device/camera,
+/obj/item/camera,
 /turf/open/floor{
 	icon_state = "redbluefull";
 	dir = 8
@@ -997,7 +997,7 @@
 /area/syndicate_station)
 "cH" = (
 /obj/structure/rack,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/open/floor/tile/lightred/full,
 /area/syndicate_station)
 "cI" = (
@@ -1007,8 +1007,8 @@
 /area/syndicate_station)
 "cJ" = (
 /obj/structure/rack,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
@@ -1038,7 +1038,7 @@
 /area/syndicate_station)
 "cN" = (
 /obj/structure/rack,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
@@ -1046,7 +1046,7 @@
 /area/syndicate_station)
 "cO" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
@@ -1064,8 +1064,8 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
@@ -2665,8 +2665,8 @@
 /area/syndicate_station)
 "gE" = (
 /obj/structure/table/reinforced,
-/obj/item/device/assembly/voice,
-/obj/item/device/assembly/voice,
+/obj/item/assembly/voice,
+/obj/item/assembly/voice,
 /obj/item/weapon/baton/cattleprod,
 /obj/item/weapon/baton/cattleprod,
 /turf/open/floor/holofloor{
@@ -3089,7 +3089,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/distress_item,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -3136,7 +3136,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/distress_pmcitem,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -3183,7 +3183,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/distress_uppitem,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -4029,7 +4029,7 @@
 /area/shuttle/distress/start_big)
 "kz" = (
 /obj/structure/table/almayer,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -4286,7 +4286,7 @@
 /area/shuttle/distress/start_big)
 "le" = (
 /obj/structure/table/almayer,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/open/floor/carpet/edge2{
 	dir = 6
 	},
@@ -4311,7 +4311,7 @@
 /area/shuttle/distress/start_big)
 "lh" = (
 /obj/machinery/vending/engivend,
-/obj/item/device/radio/intercom/general{
+/obj/item/radio/intercom/general{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -4358,7 +4358,7 @@
 "lm" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -5179,9 +5179,9 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
+/obj/item/radio,
+/obj/item/radio,
+/obj/item/radio,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -6498,7 +6498,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "re" = (
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/floor,
 /area/deathmatch)
 "rf" = (

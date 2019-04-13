@@ -59,7 +59,7 @@
 	sleep(2)
 	new /obj/item/clothing/suit/fire/firefighter(src)
 	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/device/flashlight(src)
+	new /obj/item/flashlight(src)
 	new /obj/item/tank/oxygen/red(src)
 	new /obj/item/tool/extinguisher(src)
 	new /obj/item/clothing/head/hardhat/red(src)

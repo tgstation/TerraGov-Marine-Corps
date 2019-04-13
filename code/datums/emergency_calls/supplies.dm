@@ -23,9 +23,9 @@
 						list(/obj/item/explosive/plastique, \
 							/obj/item/explosive/plastique, \
 							/obj/item/explosive/plastique, \
-							/obj/item/device/radio/detpack, \
-							/obj/item/device/radio/detpack, \
-							/obj/item/device/assembly/signaler \
+							/obj/item/radio/detpack, \
+							/obj/item/radio/detpack, \
+							/obj/item/assembly/signaler \
 							), \
 						list(/obj/item/weapon/gun/rifle/m41a, \
 							/obj/item/weapon/gun/rifle/m41a, \

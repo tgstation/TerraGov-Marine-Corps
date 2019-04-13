@@ -10,7 +10,7 @@
 		new /obj/item/storage/backpack(src)
 	else
 		new /obj/item/storage/backpack/satchel/norm(src)
-	new /obj/item/device/radio/headset( src )
+	new /obj/item/radio/headset( src )
 
 /obj/structure/closet/secure_closet/personal/patient
 	name = "patient's closet"
@@ -45,7 +45,7 @@
 	. = ..()
 	contents = list()
 	new /obj/item/storage/backpack/satchel( src )
-	new /obj/item/device/radio/headset( src )
+	new /obj/item/radio/headset( src )
 
 /obj/structure/closet/secure_closet/personal/attackby(obj/item/W as obj, mob/user as mob)
 	if (src.opened)

@@ -12,7 +12,7 @@
 	var/obj/item/storage/bag/trash/mybag
 	var/obj/item/tool/mop/mymop
 	var/obj/item/reagent_container/spray/myspray
-	var/obj/item/device/lightreplacer/myreplacer
+	var/obj/item/lightreplacer/myreplacer
 	var/obj/item/reagent_container/glass/bucket/janibucket/mybucket
 	var/signs = 0	//maximum capacity hardcoded below
 
@@ -64,7 +64,7 @@
 		updateUsrDialog()
 		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
 
-	else if(istype(I, /obj/item/device/lightreplacer) && !myreplacer)
+	else if(istype(I, /obj/item/lightreplacer) && !myreplacer)
 		user.drop_held_item()
 		myreplacer = I
 		I.loc = src

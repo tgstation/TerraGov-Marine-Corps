@@ -71,7 +71,7 @@ GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 	/obj/item/weapon/baton,
 	/obj/item/weapon/gun/energy/taser,
 	/obj/item/clothing/glasses/sunglasses/sechud,
-	/obj/item/device/radio/headset/almayer,
+	/obj/item/radio/headset/almayer,
 	/obj/item/card/id,
 	/obj/item/clothing/under/marine,
 	/obj/item/clothing/shoes/marine,
