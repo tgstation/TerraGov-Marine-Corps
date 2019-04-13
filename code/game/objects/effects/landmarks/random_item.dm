@@ -11,11 +11,11 @@
 								100; /obj/item/clothing/tie/storage/webbing, \
 								100; /obj/item/weapon/claymore, \
 								100; /obj/item/weapon/katana, \
-								100; /obj/item/device/binoculars, \
+								100; /obj/item/binoculars, \
 								100; /obj/item/explosive/grenade/frag, \
 								100; /obj/item/explosive/grenade/incendiary, \
 								75; /obj/item/storage/box/wy_mre, \
-								50; /obj/item/device/flash, \
+								50; /obj/item/flash, \
 								50; /obj/item/explosive/plastique, \
 								50; /obj/item/weapon/shield/riot, \
 								50; /obj/item/storage/firstaid/regular, \
@@ -38,15 +38,15 @@
 								100; /obj/item/tool/wirecutters, \
 								100; /obj/item/tool/weldingtool, \
 								100; /obj/item/tool/wrench, \
-								100; /obj/item/device/multitool, \
+								100; /obj/item/multitool, \
 								100; /obj/item/storage/backpack, \
 								100; /obj/item/storage/backpack/cultpack, \
 								100; /obj/item/storage/backpack/satchel, \
 								100; /obj/item/clothing/suit/storage/CMB, \
 								75; /obj/item/storage/pill_bottle/tramadol, \
 								75; /obj/item/weapon/combat_knife, \
-								75; /obj/item/device/flashlight, \
-								75; /obj/item/device/flashlight/combat, \
+								75; /obj/item/flashlight, \
+								75; /obj/item/flashlight/combat, \
 								75; /obj/item/stack/medical/bruise_pack, \
 								75; /obj/item/stack/medical/ointment, \
 								75; /obj/item/reagent_container/food/snacks/donkpocket, \

@@ -58,7 +58,7 @@
 /obj/structure/acid_spray_act(mob/living/carbon/Xenomorph/X)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
-	health -= rand(40,60) + (X.upgrade_as_number() * SPRAY_STRUCTURE_UPGRADE_BONUS)
+	health -= rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X)
 	update_health(TRUE)
 	return TRUE // normal density flag
 
@@ -67,7 +67,7 @@
 	return FALSE // not normal density flag
 
 /obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/Xenomorph/X)
-	take_damage_type(rand(40,60) + (X.upgrade_as_number() * SPRAY_STRUCTURE_UPGRADE_BONUS), "acid", src)
+	take_damage_type(rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X), "acid", src)
 	healthcheck()
 	return TRUE
 
@@ -80,7 +80,7 @@
 
 	acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
 	var/armor_block = run_armor_check("chest", "acid")
-	var/damage = rand(30,40) + (X.upgrade_as_number() * SPRAY_MOB_UPGRADE_BONUS)
+	var/damage = rand(30,40) + SPRAY_MOB_UPGRADE_BONUS(X)
 	apply_acid_spray_damage(damage, armor_block)
 	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
 
@@ -458,7 +458,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	playsound(src.loc, sound_to_play, 25, 1)
 
 	var/obj/item/projectile/A = new /obj/item/projectile(current_turf)
-	A.generate_bullet(ammo, ammo.damage * SPIT_UPGRADE_BONUS) 
+	A.generate_bullet(ammo, ammo.damage * SPIT_UPGRADE_BONUS(src)) 
 	A.permutated += src
 	A.def_zone = get_limbzone_target()
 
@@ -497,15 +497,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 				if(WR.walltype == "resin")
 					visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and thickens [WR].</span>", \
 					"<span class='xenonotice'>You regurgitate some resin and thicken [WR].</span>", null, 5)
-					var/prev_oldturf = WR.oldTurf
-					WR.ChangeTurf(/turf/closed/wall/resin/thick)
-					WR.oldTurf = prev_oldturf
+					WR.thicken()
 					use_plasma(resin_plasma_cost)
 					playsound(loc, "alien_resin_build", 25)
 				else if(WR.walltype == "membrane")
-					var/prev_oldturf = WR.oldTurf
-					WR.ChangeTurf(/turf/closed/wall/resin/membrane/thick)
-					WR.oldTurf = prev_oldturf
+					WR.thicken()
 					use_plasma(resin_plasma_cost)
 					playsound(loc, "alien_resin_build", 25)
 				else
@@ -515,11 +511,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			else if(istype(A, /obj/structure/mineral_door/resin))
 				var/obj/structure/mineral_door/resin/DR = A
 				if(DR.hardness == 1.5) //non thickened
-					var/oldloc = DR.loc
 					visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and thickens [DR].</span>", \
 						"<span class='xenonotice'>You regurgitate some resin and thicken [DR].</span>", null, 5)
-					qdel(DR)
-					new /obj/structure/mineral_door/resin/thick (oldloc)
+					DR.thicken()
 					playsound(loc, "alien_resin_build", 25)
 					use_plasma(resin_plasma_cost)
 				else

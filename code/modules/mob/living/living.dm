@@ -270,7 +270,11 @@
 		s_active.close(src)
 
 
-
+/mob/living/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Add Language"] = "?_src_=vars;[HrefToken()];addlanguage=[REF(src)]"
+	.["Remove Language"] = "?_src_=vars;[HrefToken()];remlanguage=[REF(src)]"
 
 
 /mob/proc/resist_grab(moving_resist)
@@ -630,17 +634,17 @@ below 100 is not dizzy
 /mob/living/proc/take_over(mob/M, bypass)
 	if(!M.mind)
 		to_chat(M, "<span class='warning'>You don't have a mind.</span>")
-		return
+		return FALSE
 	if(!bypass && (key || ckey))
 		to_chat(M, "<span class='warning'>That mob has already been taken.</span>")
-		return
+		return FALSE
 	if(!bypass && job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
 		to_chat(M, "<span class='warning'>You are jobbanned from that job.</span>")
-		return
-
-	M.mind.transfer_to(src, TRUE)
-	fully_replace_character_name(M.real_name, real_name)
-	GLOB.offered_mob_list -= src
+		return FALSE
 
 	log_admin("[key_name(M)] has taken [key_name_admin(src)].")
 	message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")
+
+	M.mind.transfer_to(src, TRUE)
+	M.fully_replace_character_name(M.real_name, real_name)
+	GLOB.offered_mob_list -= src

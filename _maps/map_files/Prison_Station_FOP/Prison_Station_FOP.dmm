@@ -1923,7 +1923,7 @@
 /area/prison/research/secret/testing)
 "agc" = (
 /obj/structure/table/reinforced,
-/obj/item/device/autopsy_scanner,
+/obj/item/autopsy_scanner,
 /turf/open/floor/prison/whitepurple/full,
 /area/prison/research/secret/testing)
 "agd" = (
@@ -6115,7 +6115,7 @@
 /area/prison/research/secret/dissection)
 "apW" = (
 /obj/structure/table/reinforced,
-/obj/item/device/autopsy_scanner{
+/obj/item/autopsy_scanner{
 	pixel_y = 8
 	},
 /obj/item/paper_bin{
@@ -8358,7 +8358,7 @@
 /area/prison/medbay)
 "auS" = (
 /obj/structure/table/reinforced,
-/obj/item/device/defibrillator,
+/obj/item/defibrillator,
 /turf/open/floor/prison/whitegreen/full,
 /area/prison/medbay)
 "auT" = (
@@ -8903,7 +8903,7 @@
 /area/prison/hangar_storage/research)
 "awi" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/wood,
@@ -9885,7 +9885,7 @@
 /area/prison/chapel)
 "ayC" = (
 /obj/structure/closet,
-/obj/item/device/flashlight/lamp/menorah,
+/obj/item/flashlight/lamp/menorah,
 /turf/open/floor/wood,
 /area/prison/chapel)
 "ayD" = (
@@ -12430,11 +12430,11 @@
 	pixel_x = 12;
 	pixel_y = 8
 	},
-/obj/item/device/taperecorder{
+/obj/item/taperecorder{
 	pixel_x = 1;
 	pixel_y = 3
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	frequency = 1463;
 	pixel_x = 28;
 	pixel_y = -28
@@ -12589,7 +12589,7 @@
 /area/prison/quarters/research)
 "aEC" = (
 /obj/structure/table,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/wood,
@@ -12828,7 +12828,7 @@
 /area/prison/security/checkpoint/maxsec)
 "aFn" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -13321,13 +13321,13 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/wood,
 /area/prison/chapel)
 "aGt" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	frequency = 1463;
 	pixel_x = 28;
 	pixel_y = 21
@@ -14590,7 +14590,7 @@
 /area/prison/medbay)
 "aJc" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/whitegreen/full,
@@ -16507,7 +16507,7 @@
 /area/prison/quarters/research)
 "aMR" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/carpet,
@@ -17000,7 +17000,7 @@
 /area/prison/security/monitoring/lowsec/ne)
 "aOi" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -19227,7 +19227,7 @@
 /area/prison/security/checkpoint/highsec/n)
 "aTe" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -21308,7 +21308,7 @@
 /area/prison/hangar/main)
 "aXv" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/wood,
@@ -22628,7 +22628,7 @@
 /area/prison/command/quarters)
 "baB" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/carpet,
@@ -23515,7 +23515,7 @@
 /area/prison/residential/central)
 "bcR" = (
 /obj/structure/table,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/blue/full,
@@ -25317,7 +25317,7 @@
 /area/prison/security/monitoring/highsec)
 "bgB" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /obj/machinery/light{
@@ -27245,7 +27245,7 @@
 /area/prison/security/checkpoint/vip)
 "bkf" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -34271,7 +34271,7 @@
 /area/prison/visitation)
 "bzc" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -35141,7 +35141,7 @@
 /area/prison/security/checkpoint/highsec/s)
 "bBc" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/trim/red{
@@ -36332,7 +36332,7 @@
 /area/prison/security/checkpoint/highsec/s)
 "bDJ" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/trim/red{
@@ -38479,7 +38479,7 @@
 /turf/open/floor/prison,
 /area/prison/maintenance/hangar_barracks)
 "bIb" = (
-/obj/item/device/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor/prison,
 /area/prison/maintenance/hangar_barracks)
 "bIc" = (
@@ -38502,7 +38502,7 @@
 /area/prison/maintenance/hangar_barracks)
 "bIf" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/wood,
@@ -39378,7 +39378,7 @@
 /area/prison/security/checkpoint/highsec/s)
 "bJM" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -42774,7 +42774,7 @@
 "bRG" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/extinguisher,
-/obj/item/device/assembly/infra,
+/obj/item/assembly/infra,
 /obj/effect/spawner/random/powercell,
 /turf/open/floor/prison,
 /area/prison/engineering)
@@ -43524,8 +43524,8 @@
 	icon_state = "1-4"
 	},
 /obj/structure/table/reinforced,
-/obj/item/device/assembly/timer,
-/obj/item/device/assembly/voice,
+/obj/item/assembly/timer,
+/obj/item/assembly/voice,
 /obj/item/tool/crowbar,
 /turf/open/floor/prison,
 /area/prison/engineering)
@@ -43984,7 +43984,7 @@
 /area/prison/security/checkpoint/medsec)
 "bUq" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -44091,7 +44091,7 @@
 /area/prison/library)
 "bUD" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/wood,
@@ -46519,7 +46519,7 @@
 "cat" = (
 /obj/effect/spawner/random/toolbox,
 /obj/structure/table/reinforced,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor/prison,
 /area/prison/engineering)
 "cau" = (
@@ -46696,7 +46696,7 @@
 /area/prison/security)
 "caM" = (
 /obj/structure/table/reinforced,
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /turf/open/floor/prison/darkred/full,
 /area/prison/security)
 "caN" = (
@@ -46736,7 +46736,7 @@
 /area/prison/security/head)
 "caT" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/carpet,
@@ -47110,7 +47110,7 @@
 "cbI" = (
 /obj/structure/table/reinforced,
 /obj/item/folder,
-/obj/item/device/assembly/signaler,
+/obj/item/assembly/signaler,
 /turf/open/floor/prison,
 /area/prison/engineering)
 "cbJ" = (
@@ -49250,12 +49250,12 @@
 /area/prison/security)
 "cfO" = (
 /obj/structure/table/woodentable,
-/obj/item/device/megaphone,
+/obj/item/megaphone,
 /turf/open/floor/prison,
 /area/prison/security/head)
 "cfP" = (
 /obj/structure/table/woodentable,
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /turf/open/floor/prison,
 /area/prison/security/head)
 "cfQ" = (
@@ -50418,7 +50418,7 @@
 /area/prison/cellblock/protective)
 "ciQ" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison,
@@ -51008,7 +51008,7 @@
 /area/prison/security/head)
 "ckh" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -52054,7 +52054,7 @@
 /area/prison/security/monitoring/protective)
 "cmu" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -53766,7 +53766,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/item/device/radio/electropack,
+/obj/item/radio/electropack,
 /obj/item/clothing/head/helmet,
 /turf/open/floor/prison,
 /area/prison/execution)
@@ -54257,7 +54257,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/disposal)
 "crG" = (
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /obj/structure/table/reinforced,
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -54274,7 +54274,7 @@
 	},
 /area/prison/execution)
 "crI" = (
-/obj/item/device/assembly/signaler{
+/obj/item/assembly/signaler{
 	code = 2;
 	frequency = 1449
 	},
@@ -54326,7 +54326,7 @@
 	},
 /area/prison/pirate)
 "crP" = (
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor/carpet,
 /area/prison/pirate)
 "crQ" = (
@@ -55344,7 +55344,7 @@
 /area/prison/pirate)
 "cuj" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/carpet,
@@ -55877,7 +55877,7 @@
 /area/prison/pirate)
 "cvp" = (
 /obj/structure/table/reinforced,
-/obj/item/device/defibrillator,
+/obj/item/defibrillator,
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/plating,
 /area/prison/pirate)
@@ -57724,7 +57724,7 @@
 /area/prison/security/monitoring/medsec/south)
 "czz" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/trim/red{

@@ -282,6 +282,12 @@
 			new /obj/effect/alien/weeds(loc)
 	..()
 
+/obj/structure/mineral_door/resin/proc/thicken()
+	var/oldloc = loc
+	qdel(src)
+	new /obj/structure/mineral_door/resin/thick(oldloc)
+	return TRUE
+
 /obj/structure/mineral_door/resin/attack_paw(mob/user as mob)
 	if(user.a_intent == INTENT_HARM)
 		user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
@@ -431,6 +437,8 @@
 	health = 160
 	hardness = 2.0
 
+/obj/structure/mineral_door/resin/thick/thicken()
+	return FALSE
 
 /*
  * Egg

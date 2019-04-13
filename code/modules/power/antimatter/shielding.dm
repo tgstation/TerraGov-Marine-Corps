@@ -179,7 +179,7 @@ proc/cardinalrange(var/center)
 
 
 
-/obj/item/device/am_shielding_container
+/obj/item/am_shielding_container
 	name = "packaged antimatter reactor section"
 	desc = "A small storage unit containing an antimatter reactor section.  To use place near an antimatter control unit or deployed antimatter reactor section and use a multitool to activate this package."
 	icon = 'icons/obj/machines/antimatter.dmi'
@@ -192,7 +192,7 @@ proc/cardinalrange(var/center)
 	throw_range = 2
 	matter = list("metal" = 100, "waste" = 2000)
 
-/obj/item/device/am_shielding_container/attackby(var/obj/item/I, var/mob/user)
+/obj/item/am_shielding_container/attackby(var/obj/item/I, var/mob/user)
 	if(ismultitool(I) && isturf(loc))
 		new/obj/machinery/am_shielding(src.loc)
 		qdel(src)

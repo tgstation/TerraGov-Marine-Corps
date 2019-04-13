@@ -134,7 +134,7 @@
 
 	H.equip_to_slot_or_del(new hunter_body(H), SLOT_W_UNIFORM)
 	H.equip_to_slot_or_del(new hunter_feet(H), SLOT_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/flashlight/flare(H), SLOT_L_STORE)
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general(H), SLOT_R_STORE)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar(H), SLOT_IN_R_POUCH)
 

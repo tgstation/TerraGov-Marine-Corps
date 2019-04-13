@@ -51,7 +51,7 @@
 	allowed_tools = list(
 	/obj/item/tool/surgery/FixOVein = 100,         \
 	/obj/item/stack/cable_coil = 75,         \
-	/obj/item/device/assembly/mousetrap = 10
+	/obj/item/assembly/mousetrap = 10
 	)
 
 	min_duration = 60

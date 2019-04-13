@@ -357,7 +357,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(!stored_larva) // no larva to deal with
 		return ..()
 
-	stored_larva = round(stored_larva * ((Q.upgrade_as_number() + 1) * QUEEN_DEATH_LARVA_MULTIPLIER))
+	stored_larva = round(stored_larva * QUEEN_DEATH_LARVA_MULTIPLIER(Q)
 
 	if(isdistress(SSticker?.mode))
 		INVOKE_ASYNC(src, .proc/unbury_all_larva) // this is potentially a lot of calls so do it async
