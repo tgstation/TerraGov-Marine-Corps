@@ -17,7 +17,7 @@
 
 /datum/autolathe/recipe/flashlight
 	name = "flashlight"
-	path = /obj/item/device/flashlight
+	path = /obj/item/flashlight
 	category = "General"
 
 /datum/autolathe/recipe/extinguisher
@@ -32,12 +32,12 @@
 
 /datum/autolathe/recipe/multitool
 	name = "multitool"
-	path = /obj/item/device/multitool
+	path = /obj/item/multitool
 	category = "Tools"
 
 /datum/autolathe/recipe/t_scanner
 	name = "T-ray scanner"
-	path = /obj/item/device/t_scanner
+	path = /obj/item/t_scanner
 	category = "Tools"
 
 /datum/autolathe/recipe/weldertool
@@ -62,12 +62,12 @@
 
 /datum/autolathe/recipe/radio_headset
 	name = "radio headset"
-	path = /obj/item/device/radio/headset
+	path = /obj/item/radio/headset
 	category = "General"
 
 /datum/autolathe/recipe/radio_bounced
 	name = "station bounced radio"
-	path = /obj/item/device/radio/off
+	path = /obj/item/radio/off
 	category = "General"
 
 /datum/autolathe/recipe/weldermask
@@ -106,7 +106,7 @@
 
 /datum/autolathe/recipe/taperecorder
 	name = "tape recorder"
-	path = /obj/item/device/taperecorder
+	path = /obj/item/taperecorder
 	category = "General"
 
 /datum/autolathe/recipe/airlockmodule
@@ -221,27 +221,27 @@
 
 /datum/autolathe/recipe/igniter
 	name = "igniter"
-	path = /obj/item/device/assembly/igniter
+	path = /obj/item/assembly/igniter
 	category = "Devices and Components"
 
 /datum/autolathe/recipe/signaler
 	name = "signaler"
-	path = /obj/item/device/assembly/signaler
+	path = /obj/item/assembly/signaler
 	category = "Devices and Components"
 
 /datum/autolathe/recipe/sensor_infra
 	name = "infrared sensor"
-	path = /obj/item/device/assembly/infra
+	path = /obj/item/assembly/infra
 	category = "Devices and Components"
 
 /datum/autolathe/recipe/timer
 	name = "timer"
-	path = /obj/item/device/assembly/timer
+	path = /obj/item/assembly/timer
 	category = "Devices and Components"
 
 /datum/autolathe/recipe/sensor_prox
 	name = "proximity sensor"
-	path = /obj/item/device/assembly/prox_sensor
+	path = /obj/item/assembly/prox_sensor
 	category = "Devices and Components"
 
 /datum/autolathe/recipe/tube
@@ -296,13 +296,13 @@
 
 /datum/autolathe/recipe/rcd
 	name = "rapid construction device"
-	path = /obj/item/device/rcd
+	path = /obj/item/rcd
 	hidden = 1
 	category = "Engineering"
 */
 /datum/autolathe/recipe/electropack
 	name = "electropack"
-	path = /obj/item/device/radio/electropack
+	path = /obj/item/radio/electropack
 	hidden = 1
 	category = "Devices and Components"
 

@@ -2177,7 +2177,7 @@
 /obj/structure/table/reinforced/flipped{
 	dir = 1
 	},
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
 "aib" = (
@@ -2206,7 +2206,7 @@
 	},
 /area/lv624/ground/sand8)
 "aie" = (
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
 "aif" = (
@@ -3007,7 +3007,7 @@
 /turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "akY" = (
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "akZ" = (
@@ -3321,7 +3321,7 @@
 	},
 /area/lv624/ground/sand8)
 "amf" = (
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
@@ -4209,7 +4209,7 @@
 	pixel_x = -7
 	},
 /obj/item/clothing/head/boonie,
-/obj/item/device/binoculars,
+/obj/item/binoculars,
 /turf/open/floor/wood,
 /area/lv624/ground/jungle8)
 "aoX" = (
@@ -4331,7 +4331,7 @@
 /turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle8)
 "apy" = (
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /turf/open/gm/dirt,
 /area/lv624/ground/sand4)
 "apz" = (
@@ -4659,7 +4659,7 @@
 	},
 /area/lv624/ground/jungle8)
 "aqU" = (
-/obj/item/device/flashlight/flare,
+/obj/item/flashlight/flare,
 /turf/open/gm/dirt,
 /area/lv624/ground/jungle8)
 "aqV" = (
@@ -6007,11 +6007,11 @@
 /area/lv624/lazarus/hydroponics)
 "aww" = (
 /obj/structure/table,
-/obj/item/device/analyzer/plant_analyzer{
+/obj/item/analyzer/plant_analyzer{
 	pixel_x = 2;
 	pixel_y = 1
 	},
-/obj/item/device/analyzer/plant_analyzer,
+/obj/item/analyzer/plant_analyzer,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 9
 	},
@@ -6100,7 +6100,7 @@
 /obj/item/stack/rods{
 	amount = 40
 	},
-/obj/item/device/autopsy_scanner,
+/obj/item/autopsy_scanner,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -7661,7 +7661,7 @@
 /area/lv624/lazarus/medbay)
 "aBS" = (
 /obj/item/reagent_container/spray,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /obj/structure/table,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
@@ -9062,8 +9062,8 @@
 /area/lv624/lazarus/quartstorage)
 "aIg" = (
 /obj/structure/rack,
-/obj/item/device/multitool,
-/obj/item/device/multitool,
+/obj/item/multitool,
+/obj/item/multitool,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "aIh" = (
@@ -10237,7 +10237,7 @@
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aMe" = (
-/obj/item/device/multitool,
+/obj/item/multitool,
 /obj/structure/extinguisher_cabinet{
 	dir = 1
 	},
@@ -12011,7 +12011,7 @@
 /area/lv624/lazarus/quartstorage)
 "aRO" = (
 /obj/structure/rack,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "aRP" = (
@@ -12362,7 +12362,7 @@
 /area/lv624/lazarus/sleep_male)
 "aST" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /obj/structure/table,
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
@@ -12460,7 +12460,7 @@
 /area/lv624/lazarus/sleep_female)
 "aTe" = (
 /obj/structure/closet/open,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /obj/item/clothing/under/colonist,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -12471,7 +12471,7 @@
 /area/lv624/lazarus/sleep_female)
 "aTf" = (
 /obj/structure/closet,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /obj/item/clothing/shoes/centcom,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -12515,7 +12515,7 @@
 /area/lv624/lazarus/sleep_female)
 "aTk" = (
 /obj/structure/table,
-/obj/item/device/megaphone,
+/obj/item/megaphone,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -14255,7 +14255,7 @@
 /area/lv624/lazarus/internal_affairs)
 "aZi" = (
 /obj/structure/table/woodentable,
-/obj/item/device/megaphone,
+/obj/item/megaphone,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "aZj" = (
@@ -15530,7 +15530,7 @@
 	},
 /area/lv624/lazarus/security)
 "bcP" = (
-/obj/item/device/flash,
+/obj/item/flash,
 /obj/structure/table/reinforced,
 /obj/item/explosive/grenade/flashbang{
 	pixel_x = 7;
@@ -15569,7 +15569,7 @@
 /area/lv624/lazarus/main_hall)
 "bcS" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/tile/red/redtaupecorner{
@@ -15775,7 +15775,7 @@
 	},
 /area/lv624/lazarus/internal_affairs)
 "bdA" = (
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /obj/item/ammo_magazine/smg/mp5,
 /turf/open/floor{
 	dir = 8;
@@ -16345,7 +16345,7 @@
 /area/lv624/lazarus/internal_affairs)
 "bfl" = (
 /obj/structure/table/woodentable,
-/obj/item/device/pinpointer,
+/obj/item/pinpointer,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "bfn" = (
@@ -16563,7 +16563,7 @@
 /area/lv624/lazarus/internal_affairs)
 "bfX" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "bfY" = (
@@ -16765,7 +16765,7 @@
 /obj/structure/table/reinforced,
 /obj/item/clothing/under/CM_uniform,
 /obj/item/clothing/suit/armor/det_suit,
-/obj/item/device/binoculars,
+/obj/item/binoculars,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 1
 	},
@@ -17053,26 +17053,26 @@
 /area/lv624/lazarus/comms)
 "bhW" = (
 /obj/structure/table,
-/obj/item/device/mmi/radio_enabled,
+/obj/item/mmi/radio_enabled,
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bhX" = (
 /obj/structure/table,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bhY" = (
 /obj/structure/table,
-/obj/item/device/radio/headset{
+/obj/item/radio/headset{
 	frequency = 1469;
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/device/radio/headset{
+/obj/item/radio/headset{
 	frequency = 1469
 	},
 /obj/machinery/light{
@@ -17084,7 +17084,7 @@
 /area/lv624/lazarus/comms)
 "bhZ" = (
 /obj/structure/table,
-/obj/item/device/radio/off{
+/obj/item/radio/off{
 	frequency = 1469
 	},
 /obj/machinery/light{
@@ -17096,7 +17096,7 @@
 /area/lv624/lazarus/comms)
 "bia" = (
 /obj/structure/table,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
@@ -17819,7 +17819,7 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle3)
 "bkr" = (
-/obj/item/device/multitool,
+/obj/item/multitool,
 /obj/structure/rack,
 /turf/open/floor/tile/brown{
 	dir = 9
@@ -17932,7 +17932,7 @@
 /area/lv624/lazarus/captain)
 "bkH" = (
 /obj/structure/table/woodentable,
-/obj/item/device/megaphone,
+/obj/item/megaphone,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bkI" = (
@@ -18951,7 +18951,7 @@
 /area/lv624/lazarus/hop)
 "bnw" = (
 /obj/structure/table/woodentable,
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bnx" = (
@@ -19450,13 +19450,13 @@
 "boM" = (
 /obj/structure/table/reinforced,
 /obj/item/folder,
-/obj/item/device/assembly/signaler,
-/obj/item/device/radio,
+/obj/item/assembly/signaler,
+/obj/item/radio,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "boN" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /obj/effect/spawner/random/tool,
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/tile/dark,
@@ -19694,7 +19694,7 @@
 /area/lv624/lazarus/comms)
 "bpB" = (
 /obj/structure/table,
-/obj/item/device/radio/off{
+/obj/item/radio/off{
 	frequency = 1469
 	},
 /turf/open/floor/tile/brown{
@@ -19711,7 +19711,7 @@
 /area/lv624/lazarus/comms)
 "bpD" = (
 /obj/structure/table,
-/obj/item/device/radio/off{
+/obj/item/radio/off{
 	frequency = 1469
 	},
 /obj/item/tool/crowbar,
@@ -20227,9 +20227,9 @@
 "brB" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/lighter,
-/obj/item/device/analyzer,
-/obj/item/device/multitool,
-/obj/item/device/assembly/prox_sensor,
+/obj/item/analyzer,
+/obj/item/multitool,
+/obj/item/assembly/prox_sensor,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "brC" = (
@@ -20268,9 +20268,9 @@
 /area/lv624/ground/jungle1)
 "brJ" = (
 /obj/structure/rack,
-/obj/item/device/radio,
+/obj/item/radio,
 /obj/machinery/light,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

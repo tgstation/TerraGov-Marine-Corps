@@ -22,8 +22,8 @@
 		return
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/device/destTagger))
-			var/obj/item/device/destTagger/O = W
+		if(istype(W, /obj/item/destTagger))
+			var/obj/item/destTagger/O = W
 			if(O.currTag)
 				if(src.sortTag != O.currTag)
 					to_chat(user, "<span class='notice'>You have labeled the destination as [O.currTag].</span>")
@@ -130,8 +130,8 @@
 		return
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/device/destTagger))
-			var/obj/item/device/destTagger/O = W
+		if(istype(W, /obj/item/destTagger))
+			var/obj/item/destTagger/O = W
 			if(O.currTag)
 				if(src.sortTag != O.currTag)
 					to_chat(user, "<span class='notice'>You have labeled the destination as [O.currTag].</span>")
@@ -306,7 +306,7 @@
 			to_chat(user, "<span class='notice'>There are [amount] units of package wrap left!</span>")
 
 
-/obj/item/device/destTagger
+/obj/item/destTagger
 	name = "destination tagger"
 	desc = "Used to set the destination of properly wrapped packages."
 	icon_state = "dest_tagger"

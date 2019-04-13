@@ -126,8 +126,8 @@
 				pulled.forceMove(X)
 				if(ishuman(pulled)) //Check for camera; if we have one, turn it off.
 					var/mob/living/carbon/human/H = pulled
-					if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
-						var/obj/item/device/radio/headset/almayer/marine/R = H.wear_ear
+					if(istype(H.wear_ear, /obj/item/radio/headset/almayer/marine))
+						var/obj/item/radio/headset/almayer/marine/R = H.wear_ear
 						if(R.camera.status)
 							R.camera.status = FALSE //Turn camera off.
 							to_chat(H, "<span class='danger'>Your headset camera flickers off as you are devoured; you'll need to reactivate it by rebooting your headset HUD!<span>")

@@ -18,8 +18,8 @@
 							/obj/item/tool/lighter/zippo			= 2,
 							/obj/item/tool/weldingtool					= 1,
 							/obj/item/storage/box/uscm_mre			= 2,
-							/obj/item/device/camera				        	= 2,
-							/obj/item/device/camera_film					= 4,
+							/obj/item/camera				        	= 2,
+							/obj/item/camera_film					= 4,
 							/obj/item/cell/crap/empty				= 3,
 							/obj/item/tool/hand_labeler					= 1
 							)

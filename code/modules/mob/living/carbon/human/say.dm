@@ -65,19 +65,19 @@
 	switch (message_mode)
 		if("headset")
 			message_mode = null
-			if(wear_ear && istype(wear_ear,/obj/item/device/radio))
-				var/obj/item/device/radio/R = wear_ear
+			if(wear_ear && istype(wear_ear,/obj/item/radio))
+				var/obj/item/radio/R = wear_ear
 				used_radios += R
 		if("intercom")
 			message_mode = null
-			for(var/obj/item/device/radio/intercom/I in view(1))
+			for(var/obj/item/radio/intercom/I in view(1))
 				used_radios += I
 		if("whisper")
 			whisper_say(message, speaking, alt_name)
 			return
 		else
 			if(message_mode)
-				if(wear_ear && istype(wear_ear,/obj/item/device/radio))
+				if(wear_ear && istype(wear_ear,/obj/item/radio))
 					used_radios += wear_ear
 
 	if(species.speech_sounds && prob(species.speech_chance))
@@ -101,7 +101,7 @@
 
 		log_talk("([message_mode]):[message]", LOG_TELECOMMS)
 
-	for(var/obj/item/device/radio/R in used_radios)
+	for(var/obj/item/radio/R in used_radios)
 		spawn(0)
 			R.talk_into(src,message, message_mode, verb, speaking)
 

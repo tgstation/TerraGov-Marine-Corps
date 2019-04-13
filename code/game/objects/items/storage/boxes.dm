@@ -121,7 +121,7 @@
 		new /obj/item/implantcase/tracking(src)
 	new /obj/item/implanter(src)
 	new /obj/item/implantpad(src)
-	new /obj/item/device/locator(src)
+	new /obj/item/locator(src)
 
 /obj/item/storage/box/chemimp
 	name = "boxed chemical implant kit"
@@ -229,7 +229,7 @@
 	name = "box of Pest-B-Gon mousetraps"
 	desc = "<B><FONT color='red'>WARNING:</FONT></B> <I>Keep out of reach of children</I>."
 	icon_state = "mousetraps"
-	spawn_type = /obj/item/device/assembly/mousetrap
+	spawn_type = /obj/item/assembly/mousetrap
 	spawn_number = 6
 
 /obj/item/storage/box/pillbottles

@@ -133,7 +133,7 @@
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
-	var/obj/item/device/multitool/P = get_multitool(user)
+	var/obj/item/multitool/P = get_multitool(user)
 
 	user.set_interaction(src)
 	var/dat
@@ -213,7 +213,7 @@
 
 /obj/machinery/telecomms/proc/get_multitool(mob/user as mob)
 
-	var/obj/item/device/multitool/P = null
+	var/obj/item/multitool/P = null
 	// Let's double check
 	if(!issilicon(user) && ismultitool(user.get_active_held_item()))
 		P = user.get_active_held_item()
@@ -309,7 +309,7 @@
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
-	var/obj/item/device/multitool/P = get_multitool(usr)
+	var/obj/item/multitool/P = get_multitool(usr)
 
 	if(href_list["input"])
 		switch(href_list["input"])

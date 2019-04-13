@@ -9,7 +9,7 @@
 	if(camera)
 		camera.status = 0
 	if(module)
-		var/obj/item/device/gripper/G = locate(/obj/item/device/gripper) in module
+		var/obj/item/gripper/G = locate(/obj/item/gripper) in module
 		if(G) G.drop_item()
 	remove_robot_verbs()
 	..(gibbed,"is destroyed!")
