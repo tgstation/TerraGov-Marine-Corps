@@ -590,8 +590,10 @@ Proc for attack log creation, because really why not
 	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, newLoc)
 
 
-/atom/proc/allows_stack_merging()
-	return FALSE //Things shouldn't mix in just any place.
+// Stacks and storage redefined procs.
+
+/atom/proc/max_stack_merging(obj/item/stack/S)
+	return FALSE //But if they do, limit is not an issue.
 
 /atom/proc/recalculate_storage_space()
 	return //Nothing to see here.

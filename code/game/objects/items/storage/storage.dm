@@ -685,8 +685,16 @@
 		remove_from_storage(AM)
 
 
-/obj/item/storage/allows_stack_merging(obj/item/stack/S)
-	return (is_type_in_typecache(S, bypass_w_limit) || initial(S.w_class) <= max_w_class)
+/obj/item/storage/max_stack_merging(obj/item/stack/S)
+	if(is_type_in_typecache(S, bypass_w_limit))
+		return FALSE //No need for limits if we can bypass it.
+	var/weight_diff = initial(S.w_class) - max_w_class
+	if(weight_diff <= 0)
+		return FALSE //Nor if the limit is not higher than what we have.
+	var/max_amt = round((S.max_amount / STACK_WEIGHT_STEPS) * (STACK_WEIGHT_STEPS - weight_diff)) //How much we can fill per weight step times the valid steps.
+	if(max_amt <= 0 || max_amt > S.max_amount)
+		stack_trace("[src] tried to max_stack_merging([S]) with [max_w_class] max_w_class and [weight_diff] weight_diff, resulting in [max_amt] max_amt.")
+	return max_amt
 
 
 /obj/item/storage/recalculate_storage_space()

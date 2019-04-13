@@ -74,6 +74,7 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 	throwforce = 14.0
 	flags_atom = CONDUCT
 	origin_tech = "materials=1"
+	merge_type = /obj/item/stack/sheet/metal
 
 
 /obj/item/stack/sheet/metal/small_stack
@@ -109,6 +110,7 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
 	throwforce = 15.0
 	flags_atom = CONDUCT
 	origin_tech = "materials=2"
+	merge_type = /obj/item/stack/sheet/plasteel
 
 
 /obj/item/stack/sheet/plasteel/New(var/loc, var/amount=null)
@@ -148,6 +150,7 @@ var/global/list/datum/stack_recipe/wood_recipes = list ( \
 	singular_name = "wood plank"
 	icon_state = "sheet-wood"
 	origin_tech = "materials=1;biotech=1"
+	merge_type = /obj/item/stack/sheet/wood
 
 
 /obj/item/stack/sheet/wood/large_stack

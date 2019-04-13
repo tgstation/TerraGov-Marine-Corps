@@ -5,6 +5,8 @@
  * 		Recipe list datum
  */
 
+#define STACK_WEIGHT_STEPS 3 //Currently weight updates in 3 intervals
+
 /*
  * Stacks
  */
@@ -37,7 +39,7 @@
 	var/percent = round((amount * 100) / max_amount)
 	var/full_w_class = initial(w_class)
 	var/new_w_class
-	switch(percent)
+	switch(percent) //Currently 3 steps as defined by STACK_WEIGHT_STEPS
 		if(0 to 33)
 			new_w_class = CLAMP(full_w_class-2, WEIGHT_CLASS_TINY, full_w_class)
 		if(34 to 66)
@@ -283,7 +285,8 @@
 /obj/item/stack/proc/merge(obj/item/stack/S) //Merge src into S, as much as possible
 	if(QDELETED(S) || QDELETED(src) || S == src) //amusingly this can cause a stack to consume itself, let's not allow that.
 		return
-	var/transfer = min(get_amount(), S.max_amount - S.amount)
+	var/max_transfer = loc.max_stack_merging(S) //We don't want to bypass the max size the container allows.
+	var/transfer = min(get_amount(), (max_transfer ? max_transfer : S.max_amount) - S.amount)
 	transfer_fingerprints_to(S)
 	S.add(transfer)
 	use(transfer)
@@ -291,7 +294,7 @@
 
 
 /obj/item/stack/Crossed(obj/item/stack/S)
-	if(istype(S, merge_type) && !S.throwing && loc.allows_stack_merging(S))
+	if(istype(S, merge_type) && !S.throwing)
 		merge(S)
 	return ..()
 

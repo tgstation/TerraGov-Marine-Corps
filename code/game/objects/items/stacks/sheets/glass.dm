@@ -17,6 +17,7 @@
 	icon_state = "sheet-glass"
 	matter = list("glass" = 3750)
 	origin_tech = "materials=1"
+	merge_type = /obj/item/stack/sheet/glass
 
 	var/created_window = /obj/structure/window
 	var/is_reinforced = 0

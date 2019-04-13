@@ -131,17 +131,21 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "phorontech=2;materials=2"
 	perunit = 2000
 	sheettype = "phoron"
+	merge_type = /obj/item/stack/sheet/mineral/phoron
 
 
 /obj/item/stack/sheet/mineral/phoron/New()
 	..()
 	// recipes = phoron_recipes // Disabled phoron doors
 
+
 /obj/item/stack/sheet/mineral/phoron/small_stack
 	amount = 10
 
+
 /obj/item/stack/sheet/mineral/phoron/medium_stack
 	amount = 30
+
 
 /obj/item/stack/sheet/mineral/plastic
 	name = "Plastic"

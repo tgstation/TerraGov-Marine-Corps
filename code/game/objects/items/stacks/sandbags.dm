@@ -65,6 +65,7 @@
 	throw_range = 20
 	max_amount = 25
 	attack_verb = list("hit", "bludgeoned", "whacked")
+	merge_type = /obj/item/stack/sandbags
 
 
 /obj/item/stack/sandbags/large_stack
