@@ -115,30 +115,33 @@
 		if (on)
 			to_chat(user, "You switch on the [src].")
 
-/obj/item/suit_cooling_unit/attackby(obj/item/W as obj, mob/user as mob)
-	if (isscrewdriver(W))
+/obj/item/suit_cooling_unit/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(isscrewdriver(I))
+		cover_open = !cover_open
 		if(cover_open)
-			cover_open = 0
-			to_chat(user, "You screw the panel into place.")
-		else
-			cover_open = 1
 			to_chat(user, "You unscrew the panel.")
-		updateicon()
-		return
+		else
+			to_chat(user, "You screw the panel into place.")
 
-	if (istype(W, /obj/item/cell))
-		if(cover_open)
-			if(cell)
-				to_chat(user, "There is a [cell] already installed here.")
-			else
-				if(user.drop_held_item())
-					W.forceMove(src)
-					cell = W
-					to_chat(user, "You insert the [cell].")
-		updateicon()
-		return
+	else if(istype(I, /obj/item/cell))
+		if(!cover_open)
+			return
 
-	return ..()
+		if(cell)
+			to_chat(user, "There is a [cell] already installed here.")
+			return
+
+		if(!user.drop_held_item())
+			return
+
+		I.forceMove(src)
+		cell = I
+		to_chat(user, "You insert the [cell].")
+		
+	updateicon()
+
 
 /obj/item/suit_cooling_unit/proc/updateicon()
 	if (cover_open)

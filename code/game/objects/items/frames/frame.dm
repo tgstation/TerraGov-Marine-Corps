@@ -16,10 +16,11 @@
 	icon_state = "apc_frame"
 	flags_atom = CONDUCT
 
-/obj/item/frame/apc/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if (iswrench(W))
-		new /obj/item/stack/sheet/metal( get_turf(src.loc), 2 )
+/obj/item/frame/apc/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswrench(I))
+		new /obj/item/stack/sheet/metal(loc, 2)
 		qdel(src)
 
 /obj/item/frame/apc/proc/try_build(turf/on_wall)

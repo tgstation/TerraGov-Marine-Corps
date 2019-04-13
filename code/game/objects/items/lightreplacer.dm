@@ -66,35 +66,39 @@
 	..()
 	to_chat(user, "It has [uses] lights remaining.")
 
-/obj/item/lightreplacer/attackby(obj/item/W, mob/user)
-	if(istype(W,  /obj/item/card/emag) && emagged == 0)
+/obj/item/lightreplacer/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I,  /obj/item/card/emag) && !emagged)
 		Emag()
-		return
 
-	if(istype(W, /obj/item/stack/sheet/glass))
-		var/obj/item/stack/sheet/glass/G = W
+	else if(istype(I, /obj/item/stack/sheet/glass))
+		var/obj/item/stack/sheet/glass/G = I
 		if(uses >= max_uses)
-			to_chat(user, "<span class='warning'>[src.name] is full.")
+			to_chat(user, "<span class='warning'>[src] is full.")
 			return
-		else if(G.use(1))
-			AddUses(5)
-			to_chat(user, "<span class='notice'>You insert a piece of glass into the [src.name]. You have [uses] lights remaining.</span>")
-			return
-		else
-			to_chat(user, "<span class='warning'>You need one sheet of glass to replace lights.</span>")
 
-	if(istype(W, /obj/item/light_bulb))
-		var/obj/item/light_bulb/L = W
-		if(L.status == 0) // LIGHT OKAY
-			if(uses < max_uses)
-				AddUses(1)
-				to_chat(user, "You insert the [L.name] into the [src.name]. You have [uses] lights remaining.")
-				user.drop_held_item()
-				qdel(L)
-				return
-		else
+		if(!G.use(1))
+			to_chat(user, "<span class='warning'>You need one sheet of glass to replace lights.</span>")
+			return
+
+		AddUses(5)
+		to_chat(user, "<span class='notice'>You insert a piece of glass into \the [src]. You have [uses] lights remaining.</span>")
+
+	else if(istype(I, /obj/item/light_bulb))
+		var/obj/item/light_bulb/L = I
+		if(!L.status)
 			to_chat(user, "You need a working light.")
 			return
+
+		if(uses >= max_uses)
+			to_chat(user, "<span class='warning'>[src] is full.")
+			return
+
+		AddUses(1)
+		to_chat(user, "You insert \the [L] into \the [src]. You have [uses] lights remaining.")
+		user.drop_held_item()
+		qdel(L)
 
 
 /obj/item/lightreplacer/attack_self(mob/user)

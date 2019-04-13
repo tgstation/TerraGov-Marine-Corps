@@ -17,33 +17,36 @@
 	attack_verb = list("slammed", "bashed", "battered", "bludgeoned", "thrashed", "whacked")
 	var/table_type = /obj/structure/table //what type of table it creates when assembled
 
-/obj/item/frame/table/attackby(obj/item/W, mob/user)
+/obj/item/frame/table/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	..()
-	if(iswrench(W))
+	if(iswrench(I))
 		new /obj/item/stack/sheet/metal(user.loc)
 		qdel(src)
 
-	if(istype(W, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = W
-		if(R.use(4))
-			new /obj/item/frame/table/reinforced(get_turf(src))
-			to_chat(user, "<span class='notice'>You reinforce [src].</span>")
-			user.temporarilyRemoveItemFromInventory(src)
-			qdel(src)
-		else
+	else if(istype(I, /obj/item/stack/rods))
+		var/obj/item/stack/rods/R = I
+		if(!R.use(4))
 			to_chat(user, "<span class='warning'>You need at least four rods to reinforce [src].</span>")
+			return
 
-	if(istype(W, /obj/item/stack/sheet/wood))
-		var/obj/item/stack/sheet/wood/S = W
-		if(S.use(2))
-			new /obj/item/frame/table/wood(get_turf(src))
-			new /obj/item/stack/sheet/metal(get_turf(src))
-			to_chat(user, "<span class='notice'>You replace the metal parts of [src].</span>")
-			user.temporarilyRemoveItemFromInventory(src)
-			qdel(src)
-		else
+		new /obj/item/frame/table/reinforced(loc)
+		to_chat(user, "<span class='notice'>You reinforce [src].</span>")
+		user.temporarilyRemoveItemFromInventory(src)
+		qdel(src)
+
+	else if(istype(I, /obj/item/stack/sheet/wood))
+		var/obj/item/stack/sheet/wood/S = I
+
+		if(!S.use(2))
 			to_chat(user, "<span class='warning'>You need at least two wood sheets to swap the metal parts of [src].</span>")
+			return
+
+		new /obj/item/frame/table/wood(loc)
+		new /obj/item/stack/sheet/metal(loc)
+		to_chat(user, "<span class='notice'>You replace the metal parts of [src].</span>")
+		user.temporarilyRemoveItemFromInventory(src)
+		qdel(src)
 
 /obj/item/frame/table/attack_self(mob/user)
 
@@ -70,11 +73,12 @@
 	matter = list("metal" = 15000) //A reinforced table. Two sheets of metal and four rods
 	table_type = /obj/structure/table/reinforced
 
-/obj/item/frame/table/reinforced/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/frame/table/reinforced/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(iswrench(W))
-		new /obj/item/stack/sheet/metal(get_turf(src))
-		new /obj/item/stack/rods(get_turf(src))
+	if(iswrench(I))
+		new /obj/item/stack/sheet/metal(loc)
+		new /obj/item/stack/rods(loc)
 		qdel(src)
 
 /*
@@ -88,18 +92,21 @@
 	flags_atom = null
 	table_type = /obj/structure/table/woodentable
 
-/obj/item/frame/table/wood/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/frame/table/wood/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(iswrench(W))
+	if(iswrench(I))
 		new /obj/item/stack/sheet/wood(get_turf(src))
 		qdel(src)
 
-	if(istype(W, /obj/item/stack/tile/carpet))
-		var/obj/item/stack/tile/carpet/C = W
-		if(C.use(1))
-			to_chat(user, "<span class='notice'>You put a layer of carpet on [src].</span>")
-			new /obj/item/frame/table/gambling(get_turf(src))
-			qdel(src)
+	else if(istype(I, /obj/item/stack/tile/carpet))
+		var/obj/item/stack/tile/carpet/C = I
+		if(!C.use(1))
+			return
+
+		to_chat(user, "<span class='notice'>You put a layer of carpet on [src].</span>")
+		new /obj/item/frame/table/gambling(get_turf(src))
+		qdel(src)
 
 /*
  * Gambling Table Parts
@@ -112,17 +119,18 @@
 	flags_atom = null
 	table_type = /obj/structure/table/gamblingtable
 
-/obj/item/frame/table/gambling/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/frame/table/gambling/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(iswrench(W))
-		new /obj/item/stack/sheet/wood(get_turf(src))
-		new /obj/item/stack/tile/carpet(get_turf(src))
+	if(iswrench(I))
+		new /obj/item/stack/sheet/wood(loc)
+		new /obj/item/stack/tile/carpet(loc)
 		qdel(src)
 
-	if(iscrowbar(W))
+	else if(iscrowbar(I))
 		to_chat(user, "<span class='notice'>You pry the carpet out of [src].</span>")
-		new /obj/item/stack/tile/carpet(get_turf(src))
-		new /obj/item/frame/table/wood(get_turf(src))
+		new /obj/item/stack/tile/carpet(loc)
+		new /obj/item/frame/table/wood(loc)
 		qdel(src)
 
 
@@ -143,10 +151,11 @@
 	matter = list("metal" = 3750)
 
 
-/obj/item/frame/rack/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if(iswrench(W))
-		new /obj/item/stack/sheet/metal(get_turf(src))
+/obj/item/frame/rack/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswrench(I))
+		new /obj/item/stack/sheet/metal(loc)
 		qdel(src)
 
 /obj/item/frame/rack/attack_self(mob/user as mob)

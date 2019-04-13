@@ -74,6 +74,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 				return
 			keyslot2 = I
 
+			I.forceMove(src)
+			keyslot2 = I
 
 		recalculateChannels()
 	else
