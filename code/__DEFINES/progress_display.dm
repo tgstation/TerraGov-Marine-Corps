@@ -1,6 +1,7 @@
 //progress bar defines
 
 #define PROGRESSBAR_HEIGHT 6
+#define PROGRESSBAR_ANIMATION_TIME 5
 
 #define PROGRESS_GENERIC		/datum/progressbar
 #define PROGRESS_BATTERY		/datum/progressbar/battery

@@ -1,5 +1,6 @@
 /datum/progressbar
 	var/goal = 1
+	var/last_progress = 0
 	var/bar_tag = PROG_BAR_GENERIC
 	var/bg_tag = PROG_BG_GENERIC
 	var/frame_tag = PROG_FRAME_GENERIC
@@ -31,14 +32,12 @@
 	var/list/bars = user.progressbars[bar.loc]
 	bars.Add(src)
 	listindex = LAZYLEN(bars)
-	var/prog_height = (PROGRESSBAR_HEIGHT * (listindex - 1))
-	bar.pixel_y += prog_height
+	bar.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 2))
 	if(frame_tag)
-		frame = new frame_tag(target)
-		frame.pixel_y += prog_height
+		frame = new frame_tag(bar)
 	if(bg_tag)
-		bg = new bg_tag(target)
-		bg.pixel_y += prog_height
+		bg = new bg_tag(bar)
+	animate(bar, pixel_y = bar.pixel_y + (PROGRESSBAR_HEIGHT * (listindex - 1)), alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 
 /datum/progressbar/proc/update(progress)
 	if(!bar)
@@ -49,30 +48,22 @@
 	if (user.client != client)
 		if(client)
 			client.images -= bar
-			client.images -= frame
-			client.images -= bg
 		if(user.client)
 			user.client.images += bar
-			user.client.images += frame
-			user.client.images += bg
 	progress = CLAMP(progress, 0, goal)
 	bar.update_icon(progress, goal)
 	if (!shown)
 		user.client.images += bar
-		user.client.images += frame
-		user.client.images += bg
 		shown = TRUE
 
 /datum/progressbar/proc/shiftDown()
 	--listindex
-	bar.pixel_y -= PROGRESSBAR_HEIGHT
-	if(frame)
-		frame.pixel_y -= PROGRESSBAR_HEIGHT
-	if(bg)
-		bg.pixel_y -= PROGRESSBAR_HEIGHT
+	animate(bar, pixel_y = bar.pixel_y - PROGRESSBAR_HEIGHT, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 
 /datum/progressbar/Destroy()
 	if(bar)
+		if(last_progress != goal)
+			bar.icon_state = "[initial(bar.icon_state)]_fail"
 		if(!QDELETED(user))
 			if(!QDELETED(bar.loc))
 				for(var/I in user.progressbars[bar.loc])
@@ -83,14 +74,7 @@
 			bars.Remove(src)
 			if(!LAZYLEN(bars))
 				LAZYREMOVE(user.progressbars, bar.loc)
-
-		if(client)
-			client.images -= bar
-			client.images -= frame
-			client.images -= bg
-		qdel(bar)
-		qdel(frame)
-		qdel(bg)
+		INVOKE_ASYNC(bar, /image/progress/proc/fade_out, frame, bg)
 
 	qdel(prog_display)
 
@@ -99,12 +83,23 @@
 /image/progress
 	icon = 'icons/effects/progressbar.dmi'
 	plane = ABOVE_HUD_PLANE
-	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	pixel_y = 32
+	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA|KEEP_TOGETHER
+
+/image/progress/proc/fade_out(client, bar_bg, bar_frame)
+	animate(src, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+	addtimer(CALLBACK(src, .proc/letsdeleteourself, client, bar_bg, bar_frame), PROGRESSBAR_ANIMATION_TIME + 1)
+
+/image/progress/proc/letsdeleteourself(client/client, bar_bg, bar_frame)
+	if(client)
+		client.images -= src
+	qdel(bar_bg)
+	qdel(bar_frame)
+	qdel(src)
 
 /image/progress/bar
 	icon_state = "prog_bar_1"
 	layer = LAYER_PROGBAR
+	alpha = 0
 	var/interval = 5
 
 /image/progress/bar/proc/update_icon(progress, goal)
