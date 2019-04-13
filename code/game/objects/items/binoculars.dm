@@ -17,7 +17,7 @@
 
 
 /obj/item/binoculars/attack_self(mob/user)
-	if(CHECK_BITFIELD(flags_item, ITEM_ZOOMED))
+	if(item_zoomed)
 		user.unset_interaction()
 		return
 	zoom(user, 11, 12)
@@ -95,7 +95,7 @@
 		to_chat(user, "These binoculars only have one mode.")
 		return
 
-	if(!CHECK_BITFIELD(flags_item, ITEM_ZOOMED))
+	if(!item_zoomed)
 		mode = !mode
 		to_chat(user, "<span class='notice'>You switch [src] to [mode? "range finder" : "CAS marking" ] mode.</span>")
 		update_icon()

@@ -549,7 +549,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/scope/activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
 	if(turn_off)
-		if(CHECK_BITFIELD(flags_item, ITEM_ZOOMED))
+		if(item_zoomed)
 			user.unset_interaction()
 		return TRUE
 

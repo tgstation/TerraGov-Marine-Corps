@@ -291,7 +291,7 @@
 
 	if((flags_item|TWOHANDED|WIELDED) != flags_item)
 		return //Have to be actually a twohander and wielded.
-	if(CHECK_BITFIELD(flags_item, ITEM_ZOOMED))
+	if(item_zoomed)
 		user.unset_interaction()
 	flags_item ^= WIELDED
 	name 	    = copytext(name, 1, -10)

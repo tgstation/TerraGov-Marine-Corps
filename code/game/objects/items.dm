@@ -209,7 +209,7 @@
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
 /obj/item/proc/dropped(mob/user)
-	if(user && CHECK_BITFIELD(flags_item, ITEM_ZOOMED))
+	if(user && item_zoomed)
 		user.unset_interaction()
 
 	for(var/X in actions)
@@ -623,7 +623,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, "<span class='warning'>You are already looking through [user.interactee].</span>")
 		return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
 
-	if(CHECK_BITFIELD(flags_item, ITEM_ZOOMED)) //If we are already zoomed out, unzoom.
+	if(item_zoomed) //If we are already zoomed out, unzoom.
 		user.unset_interaction()
 		return
 
@@ -645,7 +645,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	user.visible_message("<span class='notice'>[user] peers through [src].</span>",
 	"<span class='notice'>You peer through [src].</span>")
-	ENABLE_BITFIELD(flags_item, ITEM_ZOOMED)
 
 	user.set_client_sight(viewsize, tileoffset)
 
@@ -666,7 +665,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!user)
 		return
 
-	if(CHECK_BITFIELD(flags_item, ITEM_ZOOMED))
+	if(item_zoomed)
 		user.visible_message("<span class='notice'>[user] looks up from [src].</span>",
 		"<span class='notice'>You look up from [src].</span>")
 	
@@ -677,7 +676,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	item_zoomed = 0
 
-	DISABLE_BITFIELD(flags_item, ITEM_ZOOMED)
 	user.reset_client_sight()
 	user.zoom_cooldown = world.time + ZOOM_COOLDOWN
 	
