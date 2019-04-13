@@ -329,28 +329,34 @@
 		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare)
 
-/obj/item/storage/pouch/flare/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/storage/box/m94))
-		var/obj/item/storage/box/m94/M = W
-		if(M.contents.len)
-			if(contents.len < storage_slots)
-				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, W))
-					return
-				for(var/obj/item/I in M)
-					if(contents.len < storage_slots)
-						M.remove_from_storage(I)
-						handle_item_insertion(I, 1, user) //quiet insertion
-					else
-						break
-				playsound(user.loc, "rustle", 15, 1, 6)
-			else
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else
+
+/obj/item/storage/pouch/flare/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/storage/box/m94))
+		var/obj/item/storage/box/m94/M = I
+		if(!length(M.contents))
 			to_chat(user, "<span class='warning'>[M] is empty.</span>")
+			return
+
+		if(length(contents) >= storage_slots)
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			return
+
+		to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
+
+		if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+			return
+
+		for(var/obj/item/IM in M)
+			if(length(contents) >= storage_slots)
+				break
+
+			M.remove_from_storage(IM)
+			handle_item_insertion(IM, TRUE, user)
+
+		playsound(user.loc, "rustle", 15, 1, 6)
 		return TRUE
-	else
-		return ..()
 
 /obj/item/storage/pouch/flare/full
 	fill_type = /obj/item/explosive/grenade/flare
@@ -461,24 +467,31 @@
 	draw_mode = 0
 	can_hold = list(/obj/item/ammo_magazine/handful)
 
-/obj/item/storage/pouch/shotgun/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/ammo_magazine/shotgun))
-		var/obj/item/ammo_magazine/shotgun/M = W
-		if(M.current_rounds)
-			if(contents.len < storage_slots)
-				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, src))
-					return
-				for(var/x = 1 to (storage_slots - contents.len))
-					var/cont = handle_item_insertion(M.create_handful(), 1, user)
-					if(!cont)
-						break
-				playsound(user.loc, "rustle", 15, 1, 6)
-				to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
-			else
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else
+
+/obj/item/storage/pouch/shotgun/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/ammo_magazine/shotgun))
+		var/obj/item/ammo_magazine/shotgun/M = I
+
+		if(!M.current_rounds)
 			to_chat(user, "<span class='warning'>[M] is empty.</span>")
+			return
+
+		if(length(contents) >= storage_slots)
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			return
+
+		to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
+		
+		if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+			return
+
+		for(var/x in 1 to (storage_slots - length(contents)))
+			if(!handle_item_insertion(M.create_handful(), 1, user))
+				break
+
+		playsound(user.loc, "rustle", 15, 1, 6)
+		to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
+
 		return TRUE
-	else
-		return ..()

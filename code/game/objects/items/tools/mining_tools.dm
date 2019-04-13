@@ -275,18 +275,21 @@
 	SetLuminosity(0)
 	return ..()
 
-/obj/item/tool/pickaxe/plasmacutter/attackby(obj/item/W, mob/user)
-	if(!istype(W, /obj/item/cell))
-		return ..()
-	if(user.drop_held_item())
-		W.loc = src
+/obj/item/tool/pickaxe/plasmacutter/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/cell))
+		if(!user.drop_held_item())
+			return
+
+		I.forceMove(src)
 		var/replace_install = "You replace the cell in [src]"
 		if(!cell)
 			replace_install = "You install a cell in [src]"
 		else
 			cell.updateicon()
 			user.put_in_hands(cell)
-		cell = W
+		cell = I
 		to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 		playsound(user, 'sound/weapons/gun_rifle_reload.ogg', 25, 1, 5)
 		update_plasmacutter()

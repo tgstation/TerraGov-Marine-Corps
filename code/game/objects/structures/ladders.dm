@@ -177,42 +177,52 @@
 	return attack_hand(user)
 
 //Throwing Shiet
-/obj/structure/ladder/attackby(obj/item/W, mob/user)
-	//Throwing Grenades
-	if(istype(W,/obj/item/explosive/grenade))
-		var/obj/item/explosive/grenade/G = W
+/obj/structure/ladder/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/explosive/grenade))
+		var/obj/item/explosive/grenade/G = I
 		var/ladder_dir_name
 		var/obj/structure/ladder/ladder_dest
+
 		if(up && down)
 			ladder_dir_name = alert("Throw up or down?", "Ladder", "Up", "Down", "Cancel")
 			if(ladder_dir_name == "Cancel")
 				return
 			ladder_dir_name = lowertext(ladder_dir_name)
-			if(ladder_dir_name == "up") ladder_dest = up
-			else ladder_dest = down
+			if(ladder_dir_name == "up")
+				ladder_dest = up
+			else 
+				ladder_dest = down
+
 		else if(up)
 			ladder_dir_name = "up"
 			ladder_dest = up
+
 		else if(down)
 			ladder_dir_name = "down"
 			ladder_dest = down
-		else return //just in case
+		else 
+			return
 
 		user.visible_message("<span class='warning'>[user] takes position to throw [G] [ladder_dir_name] [src].</span>",
 		"<span class='warning'>You take position to throw [G] [ladder_dir_name] [src].</span>")
-		if(do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
-			user.visible_message("<span class='warning'>[user] throws [G] [ladder_dir_name] [src]!</span>",
-			"<span class='warning'>You throw [G] [ladder_dir_name] [src]</span>")
-			user.drop_held_item()
-			G.forceMove(ladder_dest.loc)
-			G.setDir(pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
-			step_away(G, src, rand(1, 5))
-			if(!G.active)
-				G.activate(user)
 
-	//Throwing Flares and flashlights
-	else if(istype(W,/obj/item/flashlight))
-		var/obj/item/flashlight/F = W
+		if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
+			return
+
+		user.visible_message("<span class='warning'>[user] throws [G] [ladder_dir_name] [src]!</span>",
+		"<span class='warning'>You throw [G] [ladder_dir_name] [src]</span>")
+		user.drop_held_item()
+		G.forceMove(ladder_dest.loc)
+		G.setDir(pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		step_away(G, src, rand(1, 5))
+
+		if(!G.active)
+			G.activate(user)
+
+	else if(istype(I, /obj/item/flashlight))
+		var/obj/item/flashlight/F = I
 		var/ladder_dir_name
 		var/obj/structure/ladder/ladder_dest
 		if(up && down)
@@ -220,24 +230,31 @@
 			if(ladder_dir_name == "Cancel")
 				return
 			ladder_dir_name = lowertext(ladder_dir_name)
-			if(ladder_dir_name == "up") ladder_dest = up
-			else ladder_dest = down
+			if(ladder_dir_name == "up") 
+				ladder_dest = up
+			else 
+				ladder_dest = down
 		else if(up)
 			ladder_dir_name = "up"
 			ladder_dest = up
 		else if(down)
 			ladder_dir_name = "down"
 			ladder_dest = down
-		else return //just in case
+		else 
+			return //just in case
 
 		user.visible_message("<span class='warning'>[user] takes position to throw [F] [ladder_dir_name] [src].</span>",
 		"<span class='warning'>You take position to throw [F] [ladder_dir_name] [src].</span>")
-		if(do_after(user, 10, TRUE, src, BUSY_ICON_GENERIC))
-			user.visible_message("<span class='warning'>[user] throws [F] [ladder_dir_name] [src]!</span>",
-			"<span class='warning'>You throw [F] [ladder_dir_name] [src]</span>")
-			user.drop_held_item()
-			F.forceMove(ladder_dest.loc)
-			F.setDir(pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
-			step_away(F,src,rand(1, 5))
+
+		if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
+			return
+
+		user.visible_message("<span class='warning'>[user] throws [F] [ladder_dir_name] [src]!</span>",
+		"<span class='warning'>You throw [F] [ladder_dir_name] [src]</span>")
+		user.drop_held_item()
+		F.forceMove(ladder_dest.loc)
+		F.setDir(pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		step_away(F, src, rand(1, 5))
+
 	else
 		return attack_hand(user)

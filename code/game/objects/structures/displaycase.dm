@@ -53,11 +53,12 @@
 	return
 
 
-/obj/structure/displaycase/attackby(obj/item/W as obj, mob/user as mob)
-	src.obj_integrity -= W.force
-	src.healthcheck()
-	..()
-	return
+/obj/structure/displaycase/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	obj_integrity -= I.force
+	healthcheck()
+
 
 /obj/structure/displaycase/attack_paw(mob/user as mob)
 	return src.attack_hand(user)

@@ -34,47 +34,6 @@
 	attack_paw(mob/user as mob)
 		return attack_hand(user)
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		if(locked)
-			if(istype(W, /obj/item/card/emag) && !emagged)
-				emagged = 1
-				src.overlays += image('icons/obj/items/storage/storage.dmi', icon_sparking)
-				sleep(6)
-				src.overlays = null
-				overlays += image('icons/obj/items/storage/storage.dmi', icon_locking)
-				locked = 0
-				to_chat(user, "You short out the lock on [src].")
-				return
-
-			if (isscrewdriver(W))
-				if (do_after(user, 20, TRUE, src))
-					src.open =! src.open
-					user.show_message(text("<span class='notice'> You [] the service panel.</span>", (src.open ? "open" : "close")))
-				return
-			if (ismultitool(W) && (src.open == 1)&& (!src.l_hacking))
-				user.show_message(text("<span class='warning'> Now attempting to reset internal memory, please hold.</span>"), 1)
-				src.l_hacking = 1
-				if (do_after(usr, 100, TRUE, src))
-					if (prob(40))
-						src.l_setshort = 1
-						src.l_set = 0
-						user.show_message(text("<span class='warning'> Internal memory reset.  Please give it a few seconds to reinitialize.</span>"), 1)
-						sleep(80)
-						src.l_setshort = 0
-						src.l_hacking = 0
-					else
-						user.show_message(text("<span class='warning'> Unable to reset internal memory.</span>"), 1)
-						src.l_hacking = 0
-				else	src.l_hacking = 0
-				return
-			//At this point you have exhausted all the special things to do when locked
-			// ... but it's still locked.
-			return
-
-		// -> storage/attackby() what with handle insertion, etc
-		..()
-
-
 	MouseDrop(over_object, src_location, over_location)
 		if (locked)
 			src.add_fingerprint(usr)
@@ -130,6 +89,46 @@
 					src.attack_self(M)
 				return
 		return
+
+
+/obj/item/storage/secure/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(!locked)
+		return
+
+	else if(istype(I, /obj/item/card/emag) && !emagged)
+		emagged = TRUE
+		flick(src, icon_sparking)
+		overlays += image('icons/obj/items/storage/storage.dmi', icon_locking)
+		locked = FALSE
+		to_chat(user, "You short out the lock on [src].")
+
+	else if(isscrewdriver(I))
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+			return
+
+		open = !open
+		user.show_message("<span class='notice'> You [open ? "open" : "close"] the service panel.</span>")
+
+	else if(ismultitool(I) && open && !l_hacking)
+		user.show_message("<span class='warning'> Now attempting to reset internal memory, please hold.</span>")
+		l_hacking = TRUE
+		if(!do_after(user, 100, TRUE, src, BUSY_ICON_BUILD))
+			return
+
+		if(!prob(40))
+			user.show_message(text("<span class='warning'> Unable to reset internal memory.</span>"), 1)
+			l_hacking = FALSE
+			return
+
+		l_setshort = TRUE
+		l_set = FALSE
+		user.show_message("<span class='warning'> Internal memory reset.  Please give it a few seconds to reinitialize.</span>")
+		sleep(80)
+		l_setshort = FALSE
+		l_hacking = FALSE
+
 
 // -----------------------------
 //        Secure Briefcase
