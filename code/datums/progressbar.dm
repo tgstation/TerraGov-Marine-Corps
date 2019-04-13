@@ -26,18 +26,20 @@
 		prog_display = new (U, target, new_display)
 	if(!bar_tag)
 		return
-	bar = new bar_tag(target)
+	bar = new bar_tag(loc = target) // Image/New() args override the parent, thank you Byond.
 	LAZYINITLIST(user.progressbars)
 	LAZYINITLIST(user.progressbars[bar.loc])
 	var/list/bars = user.progressbars[bar.loc]
-	bars.Add(src)
 	listindex = LAZYLEN(bars)
-	bar.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 2))
+	bar.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1))
+	bars.Add(src)
 	if(frame_tag)
-		frame = new frame_tag(bar)
+		frame = new frame_tag
+		bar.overlays += frame_tag
 	if(bg_tag)
-		bg = new bg_tag(bar)
-	animate(bar, pixel_y = bar.pixel_y + (PROGRESSBAR_HEIGHT * (listindex - 1)), alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
+		bg = new bg_tag
+		bar.underlays += bg_tag
+	animate(bar, pixel_y = bar.pixel_y + PROGRESSBAR_HEIGHT, alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 
 /datum/progressbar/proc/update(progress)
 	if(!bar)
@@ -50,7 +52,9 @@
 			client.images -= bar
 		if(user.client)
 			user.client.images += bar
+			client = user.client
 	progress = CLAMP(progress, 0, goal)
+	last_progress = progress
 	bar.update_icon(progress, goal)
 	if (!shown)
 		user.client.images += bar
@@ -74,7 +78,7 @@
 			bars.Remove(src)
 			if(!LAZYLEN(bars))
 				LAZYREMOVE(user.progressbars, bar.loc)
-		INVOKE_ASYNC(bar, /image/progress/proc/fade_out, frame, bg)
+		INVOKE_ASYNC(bar, /image/progress/proc/fade_out, client, frame, bg)
 
 	qdel(prog_display)
 
@@ -83,7 +87,7 @@
 /image/progress
 	icon = 'icons/effects/progressbar.dmi'
 	plane = ABOVE_HUD_PLANE
-	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA|KEEP_TOGETHER
+	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 
 /image/progress/proc/fade_out(client, bar_bg, bar_frame)
 	animate(src, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
@@ -98,7 +102,7 @@
 
 /image/progress/bar
 	icon_state = "prog_bar_1"
-	layer = LAYER_PROGBAR
+	layer = HUD_LAYER
 	alpha = 0
 	var/interval = 5
 
@@ -107,11 +111,12 @@
 
 /image/progress/bg
 	icon_state = "prog_bar_1_bg"
-	layer = LAYER_PROGBAR_BG
+	appearance_flags = APPEARANCE_UI
 
 /image/progress/frame
 	icon_state = "prog_bar_1_frame"
-	layer = LAYER_PROGBAR_FRAME
+	appearance_flags = APPEARANCE_UI
+
 
 /datum/progressbar/battery
 	bar_tag = PROG_BAR_BATTERY

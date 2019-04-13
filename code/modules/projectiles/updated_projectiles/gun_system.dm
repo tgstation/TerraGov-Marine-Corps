@@ -257,7 +257,7 @@
 	item_state += "_w"
 	update_slowdown()
 	place_offhand(user, initial(name))
-	wield_time = world.time + wield_delay
+	wield_time = wield_delay
 	//slower or faster wield delay depending on skill.
 	if(user.mind && user.mind.cm_skills)
 		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
@@ -778,7 +778,7 @@ and you're good to go.
 
 	if(user.zone_selected != "mouth")
 		return ..()
-	
+
 	DISABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK) //If they try to click again, they're going to hit themselves.
 
 	M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")

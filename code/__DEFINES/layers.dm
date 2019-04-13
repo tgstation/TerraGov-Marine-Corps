@@ -147,10 +147,6 @@
 #define HUD_PLANE 21
 #define HUD_LAYER 21
 
-#define LAYER_PROGBAR_BG	 21.1
-#define LAYER_PROGBAR		 21.2
-#define LAYER_PROGBAR_FRAME	 21.3
-
 #define ABOVE_HUD_PLANE 22
 #define ABOVE_HUD_LAYER 22
 
