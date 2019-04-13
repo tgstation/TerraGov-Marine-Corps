@@ -1158,7 +1158,7 @@
 	var/orders_visible = TRUE	
 	
 /datum/action/skill/toggle_orders/New()
-	return ..(/obj/item/device/megaphone)	
+	return ..(/obj/item/megaphone)	
 	
 /datum/action/skill/toggle_orders/action_activate()
 	var/mob/living/carbon/human/H = owner
