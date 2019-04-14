@@ -203,7 +203,7 @@
 	SStitle.splash_turf = src
 	if(SStitle.icon)
 		icon = SStitle.icon
-	..()
+	return ..()
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
