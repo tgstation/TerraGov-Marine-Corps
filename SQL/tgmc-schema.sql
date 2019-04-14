@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `death` (
   `server_ip` int(10) unsigned NOT NULL,
   `server_port` smallint(5) unsigned NOT NULL,
   `round_id` int(11) NOT NULL,
-  `timeofdeath` datetime NOT NULL COMMENT 'Time of death',
+  `tod` datetime NOT NULL COMMENT 'Time of death',
   `job` varchar(32) NOT NULL,
   `special` varchar(32) DEFAULT NULL,
   `name` varchar(96) NOT NULL,

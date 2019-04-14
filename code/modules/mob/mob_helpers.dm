@@ -272,7 +272,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 /mob/proc/abiotic(full_body)
-	if(full_body && ((src.l_hand && !( src.l_hand.flags_item & ITEM_ABSTRACT )) || (src.r_hand && !( src.r_hand.flags_item & ITEM_ABSTRACT ))))
+	if(full_body && ((l_hand && !( l_hand.flags_item & ITEM_ABSTRACT )) || (r_hand && !( r_hand.flags_item & ITEM_ABSTRACT ))))
 		return TRUE
 
 	if((src.l_hand && !( src.l_hand.flags_item & ITEM_ABSTRACT )) || (src.r_hand && !( src.r_hand.flags_item & ITEM_ABSTRACT )))

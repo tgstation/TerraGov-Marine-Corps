@@ -230,7 +230,7 @@ var/list/diseases = subtypesof(/datum/disease)
 			return
 
 	else
-		if(src.resistances.Find(virus.type))
+		if(resistances.Find(virus.type))
 			//to_chat(world, "Normal virus and resisted")
 			return
 
@@ -238,16 +238,17 @@ var/list/diseases = subtypesof(/datum/disease)
 		return
 
 	if(force_species_check)
-		var/fail = 1
+		var/fail = TRUE
 		if(ishuman(src))
 			var/mob/living/carbon/human/H = src
 			for(var/vuln_species in virus.affected_species)
 				if(H.species.name == vuln_species)
-					fail = 0
+					fail = FALSE
 					break
-		if(fail) return
+		if(fail)
+			return
 
-	if(skip_this == 1)
+	if(skip_this == TRUE)
 		//to_chat(world, "infectin")
 		//if(src.virus)				< -- this used to replace the current disease. Not anymore!
 			//src.virus.cure(0)
