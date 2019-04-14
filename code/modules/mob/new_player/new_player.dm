@@ -158,7 +158,7 @@
 
 
 	if(href_list["late_join_xeno"])
-		if(!SSticker || !SSticker.IsRoundInProgress())
+		if(!SSticker?.IsRoundInProgress())
 			to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
 			return
 
