@@ -341,7 +341,7 @@
 		to_chat(usr, "<span class='warning'>Selected job is not available.<span>")
 		return FALSE
 
-	if(!SSticker || !SSticker.IsRoundInProgress())
+	if(!SSticker?.IsRoundInProgress())
 		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<span>")
 		return FALSE
 
