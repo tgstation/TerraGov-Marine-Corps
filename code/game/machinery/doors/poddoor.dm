@@ -291,7 +291,8 @@
 		f1.SetOpacity(opacity)
 		f2.SetOpacity(opacity)
 
-	Destroy()
+	
+/obj/machinery/door/poddoor/two_tile_hor/Destroy()
 		qdel(f1)
 		f1 = null
 		qdel(f2)
@@ -312,7 +313,8 @@
 		f1.SetOpacity(opacity)
 		f2.SetOpacity(opacity)
 
-	Destroy()
+	
+/obj/machinery/door/poddoor/two_tile_ver/Destroy()
 		qdel(f1)
 		f1 = null
 		qdel(f2)
@@ -342,7 +344,8 @@
 		f4.SetOpacity(opacity)
 		f3.SetOpacity(opacity)
 
-	Destroy()
+	
+/obj/machinery/door/poddoor/four_tile_hor/Destroy()
 		qdel(f1)
 		f1 = null
 		qdel(f2)
@@ -376,7 +379,8 @@
 		f4.SetOpacity(opacity)
 		f3.SetOpacity(opacity)
 
-	Destroy()
+	
+/obj/machinery/door/poddoor/four_tile_ver/Destroy()
 		qdel(f1)
 		f1 = null
 		qdel(f2)
