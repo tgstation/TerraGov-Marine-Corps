@@ -317,7 +317,7 @@
 	observer.key = key
 	observer.client = client
 	//observer.set_ghost_appearance()
-	if(observer.client && observer.client.prefs)
+	if(observer.client?.prefs)
 		if(!observer.client.prefs.real_name)
 			var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 			//what is the probability of this happening anyways
