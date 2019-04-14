@@ -339,7 +339,7 @@
 		f4.density = density
 		f1.SetOpacity(opacity)
 		f2.SetOpacity(opacity)
-		f4.SetOpacity(opacnity)
+		f4.SetOpacity(opacity)
 		f3.SetOpacity(opacity)
 
 	Destroy()
