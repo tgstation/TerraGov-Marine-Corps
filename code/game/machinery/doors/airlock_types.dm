@@ -502,7 +502,7 @@
 	icon = 'icons/obj/doors/almayer/dropship1_pilot.dmi'
 	name = "\improper Cockpit"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
-	req_one_access = list()
+	req_one_access = null
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	no_panel = TRUE
 	not_weldable = TRUE
