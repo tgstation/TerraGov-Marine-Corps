@@ -326,7 +326,6 @@
 	var/obj/machinery/door/poddoor/filler_object/f4
 	icon = 'icons/obj/doors/1x4blast_hor.dmi'
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	width = 4
 
 	Initialize()
 		..()
