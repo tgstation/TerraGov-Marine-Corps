@@ -264,7 +264,6 @@
 /obj/machinery/door/airlock/almayer/maint
 	name = "\improper Maintenance Hatch"
 	icon = 'icons/obj/doors/almayer/maintdoor.dmi'
-	req_access = null
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING)
 
 /obj/machinery/door/airlock/almayer/engineering
@@ -272,7 +271,6 @@
 	icon = 'icons/obj/doors/almayer/engidoor.dmi'
 	opacity = FALSE
 	glass = TRUE
-	req_access = null
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING)
 
 /obj/machinery/door/airlock/almayer/engineering/CSEoffice
@@ -282,7 +280,6 @@
 /obj/machinery/door/airlock/almayer/medical
 	name = "\improper Medical Airlock"
 	icon = 'icons/obj/doors/almayer/medidoor.dmi'
-	req_access = null
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_BRIDGE)
 
 /obj/machinery/door/airlock/almayer/medical/glass
@@ -290,7 +287,6 @@
 	icon = 'icons/obj/doors/almayer/medidoor_glass.dmi'
 	opacity = FALSE
 	glass = TRUE
-	req_access = null
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_BRIDGE)
 
 /obj/machinery/door/airlock/almayer/research
@@ -321,7 +317,6 @@
 /obj/machinery/door/airlock/almayer/marine/requisitions
 	name = "\improper Requisitions Bay"
 	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
-	req_access = null
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
 	opacity = FALSE
 	glass = TRUE
@@ -502,7 +497,6 @@
 	icon = 'icons/obj/doors/almayer/dropship1_pilot.dmi'
 	name = "\improper Cockpit"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
-	req_one_access = null
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	no_panel = TRUE
 	not_weldable = TRUE
