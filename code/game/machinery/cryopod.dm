@@ -393,7 +393,6 @@
 		to_chat(user, "<span class='warning'>[src] is occupied.</span>")
 		return
 
-	var/willing = FALSE //We don't want to allow people to be forced into despawning.
 	var/mob/living/M = G.grabbed_thing
 
 	if(M.stat == DEAD) //This mob is dead
@@ -408,12 +407,10 @@
 		if(alert(M,"Would you like to enter cryosleep?", , "Yes", "No") == "Yes")
 			if(QDELETED(M) || !(G?.grabbed_thing == M))
 				return
-			willing = TRUE
-	else
-		willing = TRUE
+		else
+			return
 
-	if(willing)
-		climb_in(M, user)
+	climb_in(M, user)
 
 /obj/machinery/cryopod/verb/eject()
 
@@ -421,7 +418,7 @@
 	set category = "Object"
 	set src in view(0)
 
-	if(usr.stat != CONSCIOUS || usr.loc != src)
+	if(usr.incapacitated(TRUE) || usr.loc != src)
 		return
 
 	go_out()
@@ -451,14 +448,14 @@
 		"<span class='notice'>You start climbing into [src].</span>")
 
 	var/mob/doafterman = helper ? helper : user
-	if(!do_after(doafterman, 20, FALSE, 5, BUSY_ICON_GENERIC))
+	if(!do_after(doafterman, 20, TRUE, 5, BUSY_ICON_GENERIC))
 		return
 
 	if(helper)
 		var/obj/item/grab/G = helper.get_active_held_item()
-		if(!istype(G) || !G.grabbed_thing != user)
+		if(!istype(G) || G.grabbed_thing != user)
 			return
-	else if(!user?.client)
+	else if(!(user?.client))
 		return
 
 	if(!QDELETED(occupant))
