@@ -282,7 +282,7 @@
 	var/obj/machinery/door/poddoor/filler_object/f2
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 
-	New()
+	Initialize()
 		..()
 		f1 = new/obj/machinery/door/poddoor/filler_object (loc)
 		f2 = new/obj/machinery/door/poddoor/filler_object (get_step(src,EAST))
@@ -303,7 +303,7 @@
 	var/obj/machinery/door/poddoor/filler_object/f2
 	icon = 'icons/obj/doors/1x2blast_vert.dmi'
 
-	New()
+	Initialize()
 		..()
 		f1 = new/obj/machinery/door/poddoor/filler_object (loc)
 		f2 = new/obj/machinery/door/poddoor/filler_object (get_step(src,NORTH))
@@ -325,8 +325,10 @@
 	var/obj/machinery/door/poddoor/filler_object/f3
 	var/obj/machinery/door/poddoor/filler_object/f4
 	icon = 'icons/obj/doors/1x4blast_hor.dmi'
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	width = 4
 
-	New()
+	Initialize()
 		..()
 		f1 = new/obj/machinery/door/poddoor/filler_object (loc)
 		f2 = new/obj/machinery/door/poddoor/filler_object (get_step(f1,EAST))
@@ -360,7 +362,7 @@
 	icon = 'icons/obj/doors/1x4blast_vert.dmi'
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
-	New()
+	Initialize()
 		..()
 		f1 = new/obj/machinery/door/poddoor/filler_object (loc)
 		f2 = new/obj/machinery/door/poddoor/filler_object (get_step(f1,NORTH))
