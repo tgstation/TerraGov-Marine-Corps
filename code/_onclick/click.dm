@@ -100,6 +100,11 @@
 		N.click_action(A, src, params)
 		return
 
+	if(restrained())
+		changeNext_move(CLICK_CD_HANDCUFFED)
+		RestrainedClickOn(A)
+		return
+
 	if(in_throw_mode)
 		throw_item(A)
 		return
