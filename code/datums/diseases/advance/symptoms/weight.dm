@@ -27,7 +27,7 @@ Bonus
 /datum/symptom/weight_gain/Activate(var/datum/disease/advance/A)
 	..()
 	if(prob(SYMPTOM_ACTIVATION_PROB))
-		var/mob/living/M = A.affected_mob
+		var/mob/living/carbon/M = A.affected_mob
 		switch(A.stage)
 			if(1, 2, 3, 4)
 				to_chat(M, "<span class='notice'>[pick("You feel blubbery.", "You feel full.")]</span>")
@@ -68,7 +68,7 @@ Bonus
 /datum/symptom/weight_loss/Activate(var/datum/disease/advance/A)
 	..()
 	if(prob(SYMPTOM_ACTIVATION_PROB))
-		var/mob/living/M = A.affected_mob
+		var/mob/living/carbon/M = A.affected_mob
 		switch(A.stage)
 			if(1, 2, 3, 4)
 				to_chat(M, "<span class='notice'>[pick("You feel hungry.", "You crave for food.")]</span>")
@@ -110,7 +110,7 @@ Bonus
 /datum/symptom/weight_loss/Activate(var/datum/disease/advance/A)
 	..()
 	if(prob(SYMPTOM_ACTIVATION_PROB))
-		var/mob/living/M = A.affected_mob
+		var/mob/living/carbon/M = A.affected_mob
 		switch(A.stage)
 			if(4, 5)
 				M.overeatduration = 0

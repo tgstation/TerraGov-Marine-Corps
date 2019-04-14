@@ -4,7 +4,7 @@
 // connected: Machine we're in, type unchecked so I doubt it's used beyond monkeying
 // flags: See below, bitfield.
 #define MUTCHK_FORCED        1
-/proc/domutcheck(var/mob/living/M, var/connected=null, var/flags=0)
+/proc/domutcheck(mob/living/carbon/M, connected, flags)
 	for(var/datum/dna/gene/gene in dna_genes)
 		if(!M || !M.dna)
 			return
@@ -32,11 +32,19 @@
 //				testing("[gene.name] activated!")
 				gene.activate(M,connected,flags)
 				if(M)
-					M.active_genes |= gene.type
+					domutcheck_toggle_gene(M, gene, TRUE)
 			// If Gene is NOT active:
 			else
 //				testing("[gene.name] deactivated!")
 				gene.deactivate(M,connected,flags)
 				if(M)
-					M.active_genes -= gene.type
+					domutcheck_toggle_gene(M, gene, FALSE)
 
+
+/proc/domutcheck_toggle_gene(mob/living/carbon/M, datum/dna/gene/gene, activate)
+	if(isnull(M.active_genes))
+		M.active_genes = list() // Just to avoid initializing this unused var. To be removed, this whole thing.
+	if(activate)
+		M.active_genes |= gene.type
+	else
+		M.active_genes -= gene.type

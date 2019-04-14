@@ -363,12 +363,13 @@
 			to_chat(L, "<span class='notice'>It must have some kind of special lock...</span>")
 			return FALSE
 
-	if(scan_dna)
+	if(scan_dna && (iscarbon(L)))
+		var/mob/living/carbon/C = L
 		if(!req_dna)
-			if(!input_dna(L))
+			if(!input_dna(C))
 				return FALSE
-		else if(!L.dna || L.dna.unique_enzymes != req_dna)
-			to_chat(L, "<span class='notice'>It must have some kind of special lock...</span>")
+		else if(!C.dna || C.dna.unique_enzymes != req_dna)
+			to_chat(C, "<span class='notice'>It must have some kind of special lock...</span>")
 			return FALSE
 
 	return TRUE
@@ -381,7 +382,7 @@
 	if(scan(user))
 		return ..()
 
-/obj/item/storage/pill_bottle/restricted/proc/input_dna(mob/living/M)
+/obj/item/storage/pill_bottle/restricted/proc/input_dna(mob/living/carbon/M)
 	if(M.dna?.unique_enzymes)
 		to_chat(M, "<span class='warning'>You feel a tiny prick as you open \the [src].</span>")
 		req_dna = M.dna.unique_enzymes

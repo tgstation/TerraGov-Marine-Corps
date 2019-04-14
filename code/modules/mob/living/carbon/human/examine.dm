@@ -456,9 +456,6 @@
 
 	for(var/implant in get_visible_implants(0))
 		msg += "<span class='warning'><b>[t_He] has \a [implant] sticking out of [t_his] flesh!</span>\n"
-	if(digitalcamo)
-		msg += "[t_He] [t_is] repulsively uncanny!\n"
-
 
 	if(hasHUD(user,"security"))
 		var/perpname = "wot"

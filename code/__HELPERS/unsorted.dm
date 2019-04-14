@@ -281,11 +281,17 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		mind.name = newname
 		if(mind.key)
 			log_played_names(mind.key, newname) //Just in case the mind is unsynced at the moment.
-	if(dna)
-		dna.real_name = real_name
 
 	return TRUE
 
+/mob/living/carbon/human/fully_replace_character_name(oldname, newname)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(dna)
+		dna.real_name = real_name
+	return TRUE
+	
 
 /mob/living/carbon/human/fully_replace_character_name(oldname, newname)
 	. = ..()
