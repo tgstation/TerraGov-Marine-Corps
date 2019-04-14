@@ -22,12 +22,14 @@
 	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
 	return FALSE
 
-/obj/structure/largecrate/attackby(obj/item/W as obj, mob/user as mob)
-	if(iscrowbar(W))
+/obj/structure/largecrate/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iscrowbar(I))
 		new /obj/item/stack/sheet/wood(src)
 		var/turf/T = get_turf(src)
 		for(var/obj/O in contents)
-			O.loc = T
+			O.forceMove(T)
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
 							 "<span class='notice'>You pry open \the [src].</span>", \
 							 "<span class='notice'>You hear splitting wood.</span>")
@@ -41,40 +43,43 @@
 /obj/structure/largecrate/lisa
 	icon_state = "lisacrate"
 
-/obj/structure/largecrate/lisa/attackby(obj/item/W as obj, mob/user as mob)	//ugly but oh well
-	if(iscrowbar(W))
+/obj/structure/largecrate/lisa/attackby(obj/item/I, mob/user, params)	//ugly but oh well
+	. = ..()
+
+	if(iscrowbar(I))
 		new /mob/living/simple_animal/corgi/Lisa(loc)
-	..()
 
 /obj/structure/largecrate/cow
 	name = "cow crate"
 	icon_state = "lisacrate"
 
-/obj/structure/largecrate/cow/attackby(obj/item/W as obj, mob/user as mob)
-	if(iscrowbar(W))
+/obj/structure/largecrate/cow/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iscrowbar(I))
 		new /mob/living/simple_animal/cow(loc)
-	..()
 
 /obj/structure/largecrate/goat
 	name = "goat crate"
 	icon_state = "lisacrate"
 
-/obj/structure/largecrate/goat/attackby(obj/item/W as obj, mob/user as mob)
-	if(iscrowbar(W))
+/obj/structure/largecrate/goat/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iscrowbar(I))
 		new /mob/living/simple_animal/hostile/retaliate/goat(loc)
-	..()
 
 /obj/structure/largecrate/chick
 	name = "chicken crate"
 	icon_state = "lisacrate"
 
-/obj/structure/largecrate/chick/attackby(obj/item/W as obj, mob/user as mob)
-	if(iscrowbar(W))
-		var/num = rand(4, 6)
-		for(var/i = 0, i < num, i++)
-			new /mob/living/simple_animal/chick(loc)
-	..()
+/obj/structure/largecrate/chick/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
+	if(iscrowbar(I))
+		var/num = rand(4, 6)
+		for(var/i in 1 to num)
+			new /mob/living/simple_animal/chick(loc)
 
 
 ///////////CM largecrates ///////////////////////
@@ -132,21 +137,26 @@
 	desc = "Two small black storage cases."
 	icon_state = "case_small"
 
-/obj/structure/largecrate/random/barrel/attackby(obj/item/tool/weldingtool/W, mob/user as mob)
-	if(istype(W) && W.isOn())
-		if(do_after(user, 50, TRUE, src, BUSY_ICON_GENERIC, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
-			new /obj/item/stack/sheet/metal/small_stack(src)
-			W.remove_fuel(1,user)
-			var/turf/T = get_turf(src)
-			for(var/obj/O in contents)
-				O.loc = T
-			user.visible_message("<span class='notice'>[user] welds \the [src] open.</span>", \
-								 "<span class='notice'>You weld open \the [src].</span>", \
-								 "<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
-			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			qdel(src)
-		else
-			return FALSE
+
+/obj/structure/largecrate/random/barrel/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
+		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
+			return
+
+		new /obj/item/stack/sheet/metal/small_stack(src)
+		WT.remove_fuel(1,user)
+		var/turf/T = get_turf(src)
+		for(var/obj/O in contents)
+			O.forceMove(T)
+		user.visible_message("<span class='notice'>[user] welds \the [src] open.</span>", \
+							 "<span class='notice'>You weld open \the [src].</span>", \
+							 "<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
+		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		qdel(src)
+
 	else
 		return attack_hand(user)
 
@@ -204,20 +214,24 @@
 	icon_state = "secure_crate_strapped"
 	var/strapped = 1
 
-/obj/structure/largecrate/random/secure/attackby(var/obj/item/W as obj, var/mob/user as mob)
-	if (!strapped)
-		return ..()
+/obj/structure/largecrate/random/secure/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if (!W.sharp)
+	if(!strapped)
+		return
+
+	else if(!I.sharp)
 		return attack_hand(user)
 
 	to_chat(user, "<span class='notice'>You begin to cut the straps off \the [src]...</span>")
 
-	if (do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
-		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>You cut the straps away.</span>")
-		icon_state = "secure_crate"
-		strapped = 0
+	if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+	to_chat(user, "<span class='notice'>You cut the straps away.</span>")
+	icon_state = "secure_crate"
+	strapped = FALSE
 
 /obj/structure/largecrate/random/barrel/attack_hand(mob/user)
 	to_chat(user, "<span class='notice'>You need something sharp to cut off the straps.</span>")

@@ -70,29 +70,34 @@
 	else
 		to_chat(user, "<span class='notice'>Access Denied</span>")
 
-/obj/structure/closet/secure_closet/attackby(obj/item/W, mob/living/user)
-	if(src.opened)
-		if(istype(W, /obj/item/grab))
-			var/obj/item/grab/G = W
-			if(G.grabbed_thing)
-				if(src.large)
-					src.MouseDrop_T(G.grabbed_thing, user)	//act like they were dragged onto the closet
-				else
-					to_chat(user, "<span class='notice'>The locker is too small to stuff [W:affecting] into!</span>")
-			return
+/obj/structure/closet/secure_closet/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(opened)
+		if(istype(I, /obj/item/grab))
+			var/obj/item/grab/G = I
+			if(!G.grabbed_thing)
+				return
+
+			if(!large)
+				to_chat(user, "<span class='notice'>The locker is too small to stuff [G.grabbed_thing] into!</span>")
+				return
+				
+			MouseDrop_T(G.grabbed_thing, user)	//act like they were dragged onto the closet
+
 		user.drop_held_item()
-		if(W)
-			W.loc = src.loc
-	else if(istype(W, /obj/item/card/emag))
-		if(broken) return
-		broken = 1
-		locked = 0
+		I.forceMove(src)
+
+	else if(istype(I, /obj/item/card/emag))
+		if(broken) 
+			return
+		broken = TRUE
+		locked = FALSE
 		desc = "It appears to be broken."
 		icon_state = icon_off
 		flick(icon_broken, src)
-		user.visible_message("<span class='warning'>\the [src] has been broken by [user] with \the [W]!</span>", "<span class='notice'>You break \the [src]'s with \the [W]!</span>", "You hear a faint electrical spark.", 3)
-	else if(istype(W,/obj/item/packageWrap) || istype(W,/obj/item/tool/weldingtool) || user.a_intent == INTENT_HARM)
-		return ..()
+		visible_message("<span class='warning'>The locker has been broken by [user] with an electromagnetic card!</span>", "You hear a faint electrical spark.")
+	
 	else
 		togglelock(user)
 

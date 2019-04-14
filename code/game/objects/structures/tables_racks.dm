@@ -270,49 +270,55 @@
 	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-/obj/structure/table/attackby(obj/item/W, mob/user)
-	if(!W)
-		return
-	if(istype(W, /obj/item/grab) && get_dist(src, user) <= 1)
+/obj/structure/table/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
 		if(isxeno(user))
 			return
-		var/obj/item/grab/G = W
-		if(isliving(G.grabbed_thing))
-			var/mob/living/M = G.grabbed_thing
-			if(user.a_intent == INTENT_HARM)
-				if(user.grab_level > GRAB_AGGRESSIVE)
-					if (prob(15))	M.KnockDown(5)
-					M.apply_damage(8, def_zone = "head")
-					user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
-					"<span class='danger'>You slam [M]'s face against [src]!</span>")
-					log_admin("[key_name(usr)] slams [key_name(M)]'s face' against \the [src].")
-					log_combat(user, M, "slammed", "", "against \the [src]")
-					msg_admin_attack("[key_name(usr)] slammed [key_name(M)]'s face' against \the [src].")
-					playsound(src.loc, 'sound/weapons/tablehit1.ogg', 25, 1)
-				else
-					to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
-					return
-			else if(user.grab_level >= GRAB_AGGRESSIVE)
-				M.forceMove(loc)
-				M.KnockDown(5)
-				user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
-				"<span class='danger'>You throw [M] on [src].</span>")
-		return
 
-	if(iswrench(W))
+		var/obj/item/grab/G = I
+		if(!isliving(G.grabbed_thing))
+			return
+
+		var/mob/living/M = G.grabbed_thing
+		if(user.a_intent == INTENT_HARM)
+			if(user.grab_level <= GRAB_AGGRESSIVE)
+				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+				return
+
+			if(prob(15))	
+				M.KnockDown(5)
+			M.apply_damage(8, def_zone = "head")
+			user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
+			"<span class='danger'>You slam [M]'s face against [src]!</span>")
+			log_admin("[key_name(user)] slams [key_name(M)]'s face' against \the [src].")
+			log_combat(user, M, "slammed", "", "against \the [src]")
+			msg_admin_attack("[key_name(user)] slammed [key_name(M)]'s face' against \the [src].")
+			playsound(loc, 'sound/weapons/tablehit1.ogg', 25, 1)
+
+		else if(user.grab_level >= GRAB_AGGRESSIVE)
+			M.forceMove(loc)
+			M.KnockDown(5)
+			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
+			"<span class='danger'>You throw [M] on [src].</span>")
+
+	else if(iswrench(I))
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user,50, TRUE, src, BUSY_ICON_BUILD))
-			user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
-			"<span class='notice'>You disassemble [src].</span>")
-			destroy_structure(1)
+
+		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
+			return
+
+		user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
+		"<span class='notice'>You disassemble [src].</span>")
+		destroy_structure(1)
+
+	else if((I.flags_item & ITEM_ABSTRACT))
 		return
 
-	if((W.flags_item & ITEM_ABSTRACT))
-		return
-
-	user.transferItemToLoc(W, loc)
+	user.transferItemToLoc(I, loc)
 
 
 /obj/structure/table/proc/straight_table_check(var/direction)
@@ -485,33 +491,42 @@
 /obj/structure/table/reinforced/flip(var/direction)
 	return FALSE //No, just no. It's a full desk, you can't flip that
 
-/obj/structure/table/reinforced/attackby(obj/item/W as obj, mob/user as mob)
-	if (iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
-		if(WT.remove_fuel(0, user))
-			if(status == 2)
-				user.visible_message("<span class='notice'>[user] starts weakening [src].</span>",
-				"<span class='notice'>You start weakening [src]</span>")
-				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-				if (do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
-					user.visible_message("<span class='notice'>[user] weakens [src].</span>",
-					"<span class='notice'>You weaken [src]</span>")
-					status = 1
-			else
-				user.visible_message("<span class='notice'>[user] starts welding [src] back together.</span>",
-				"<span class='notice'>You start welding [src] back together.</span>")
-				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-				if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
-					user.visible_message("<span class='notice'>[user] welds [src] back together.</span>",
-					"<span class='notice'>You weld [src] back together.</span>")
-					status = 2
-			return
-		return
 
-	if(iswrench(W))
-		if(status == 2)
+/obj/structure/table/reinforced/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
+		if(!WT.remove_fuel(0, user))
 			return
-	..()
+
+		if(status == 2)
+			user.visible_message("<span class='notice'>[user] starts weakening [src].</span>",
+			"<span class='notice'>You start weakening [src]</span>")
+			playsound(loc, 'sound/items/Welder.ogg', 25, 1)
+			if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
+				return
+
+			if(!WT.isOn())
+				return
+
+			user.visible_message("<span class='notice'>[user] weakens [src].</span>",
+			"<span class='notice'>You weaken [src]</span>")
+			status = 1
+		else
+			user.visible_message("<span class='notice'>[user] starts welding [src] back together.</span>",
+			"<span class='notice'>You start welding [src] back together.</span>")
+			playsound(loc, 'sound/items/Welder.ogg', 25, 1)
+			if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
+				return
+
+			if(!WT.isOn())
+				return
+
+			user.visible_message("<span class='notice'>[user] welds [src] back together.</span>",
+			"<span class='notice'>You weld [src] back together.</span>")
+			status = 2
+
 
 /obj/structure/table/reinforced/prison
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
@@ -569,14 +584,18 @@
 	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-/obj/structure/rack/attackby(obj/item/W, mob/user)
-	if(iswrench(W))
+/obj/structure/rack/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswrench(I))
 		destroy_structure(1)
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+
+	else if((I.flags_item & ITEM_ABSTRACT))
 		return
-	if((W.flags_item & ITEM_ABSTRACT))
-		return
-	user.transferItemToLoc(W, loc)
+
+	else
+		user.transferItemToLoc(I, loc)
 
 
 /obj/structure/rack/Crossed(atom/movable/O)
