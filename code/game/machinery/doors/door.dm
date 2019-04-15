@@ -16,8 +16,11 @@
 	var/p_open = FALSE
 	var/operating = FALSE
 	var/autoclose = FALSE
-	var/glass = 0
+	var/glass = FALSE
 	var/normalspeed = TRUE
+	var/locked = FALSE
+	var/welded = FALSE
+	var/not_weldable = FALSE // stops people welding the door if true
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
 	var/air_properties_vary_with_direction = FALSE
 	var/list/fillers
@@ -257,13 +260,11 @@
 /obj/machinery/door/proc/requiresID()
 	return TRUE
 
-
 /obj/machinery/door/proc/update_flags_heat_protection(var/turf/source)
 
 
 /obj/machinery/door/proc/autoclose()
-	var/obj/machinery/door/airlock/A = src
-	if(!A.density && !A.operating && !A.locked && !A.welded && A.autoclose)
+	if(!density && !operating && !locked && !welded && autoclose)
 		close()
 
 /obj/machinery/door/Move(new_loc, new_dir)
