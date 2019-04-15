@@ -282,7 +282,7 @@
 	var/obj/machinery/door/poddoor/filler_object/f2
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 
-	/obj/machinery/door/poddoor/two_tile_hor/Initialize()
+/obj/machinery/door/poddoor/two_tile_hor/Initialize()
 		..()
 		f1 = new/obj/machinery/door/poddoor/filler_object (loc)
 		f2 = new/obj/machinery/door/poddoor/filler_object (get_step(src,EAST))
