@@ -282,8 +282,8 @@
 	var/obj/machinery/door/poddoor/filler_object/f2
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 
-/obj/machinery/door/poddoor/two_tile_hor/Initialize()
-		. = ..()
+	/obj/machinery/door/poddoor/two_tile_hor/Initialize()
+		..()
 		f1 = new/obj/machinery/door/poddoor/filler_object (loc)
 		f2 = new/obj/machinery/door/poddoor/filler_object (get_step(src,EAST))
 		f1.density = density
@@ -291,8 +291,7 @@
 		f1.SetOpacity(opacity)
 		f2.SetOpacity(opacity)
 
-	
-/obj/machinery/door/poddoor/two_tile_hor/Destroy()
+	/obj/machinery/door/poddoor/two_tile_hor/Destroy()
 		qdel(f1)
 		f1 = null
 		qdel(f2)
@@ -304,8 +303,8 @@
 	var/obj/machinery/door/poddoor/filler_object/f2
 	icon = 'icons/obj/doors/1x2blast_vert.dmi'
 
-/obj/machinery/door/poddoor/two_tile_ver/Initialize()
-	. = ..()
+	/obj/machinery/door/poddoor/two_tile_ver/Initialize()
+		..()
 		f1 = new/obj/machinery/door/poddoor/filler_object (loc)
 		f2 = new/obj/machinery/door/poddoor/filler_object (get_step(src,NORTH))
 		f1.density = density
@@ -313,8 +312,7 @@
 		f1.SetOpacity(opacity)
 		f2.SetOpacity(opacity)
 
-	
-/obj/machinery/door/poddoor/two_tile_ver/Destroy()
+	/obj/machinery/door/poddoor/two_tile_ver/Destroy()
 		qdel(f1)
 		f1 = null
 		qdel(f2)
@@ -327,7 +325,6 @@
 	var/obj/machinery/door/poddoor/filler_object/f3
 	var/obj/machinery/door/poddoor/filler_object/f4
 	icon = 'icons/obj/doors/1x4blast_hor.dmi'
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 	/obj/machinery/door/poddoor/four_tile_hor/Initialize()
 		..()
@@ -344,8 +341,7 @@
 		f4.SetOpacity(opacity)
 		f3.SetOpacity(opacity)
 
-	
-/obj/machinery/door/poddoor/four_tile_hor/Destroy()
+	/obj/machinery/door/poddoor/four_tile_hor/Destroy()
 		qdel(f1)
 		f1 = null
 		qdel(f2)
@@ -379,8 +375,7 @@
 		f4.SetOpacity(opacity)
 		f3.SetOpacity(opacity)
 
-	
-/obj/machinery/door/poddoor/four_tile_ver/Destroy()
+	/obj/machinery/door/poddoor/four_tile_ver/Destroy()
 		qdel(f1)
 		f1 = null
 		qdel(f2)
