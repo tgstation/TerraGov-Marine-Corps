@@ -15,3 +15,4 @@
 /area/bunker
 	name = "\improper Hideout"
 	icon_state = "construction"
+	ceiling = CEILING_UNDERGROUND_METAL
