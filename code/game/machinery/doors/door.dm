@@ -1,4 +1,3 @@
-
 /obj/machinery/door
 	name = "\improper Door"
 	desc = "It opens and closes."
@@ -60,7 +59,9 @@
 		fillers += new /obj/effect/opacifier(T, opacity)
 
 /obj/machinery/door/Bumped(atom/AM)
-	if(p_open || operating) return
+	if(p_open || operating)
+		return
+
 	if(ismob(AM))
 		var/mob/M = AM
 		if(world.time - M.last_bumped <= openspeed) return	//Can bump-open one airlock per second. This is to prevent shock spam.
@@ -96,15 +97,19 @@
 	return !density
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
-	if(operating)	return
-	src.add_fingerprint(user)
+	if(operating)
+		return
+
+	add_fingerprint(user)
+
 	if(!src.requiresID())
 		user = null
 
 	if(density)
-		if(allowed(user))	open()
-		else				flick("door_deny", src)
-	return
+		if(allowed(user))
+			open()
+		else
+			flick("door_deny", src)
 
 /obj/machinery/door/attack_ai(mob/user)
 	return src.attack_hand(user)
@@ -146,11 +151,10 @@
 			flick("door_spark", src)
 			sleep(6)
 			open()
-			operating = -1
-		return 1
+		return TRUE
 	else if(!(I.flags_item & NOBLUDGEON))
 		try_to_activate_door(user)
-		return 1
+		return TRUE
 
 /obj/machinery/door/emp_act(severity)
 	if(prob(20/severity) && (istype(src,/obj/machinery/door/airlock) || istype(src,/obj/machinery/door/window)) )
@@ -177,7 +181,6 @@
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(2, 1, src)
 				s.start()
-	return
 
 
 /obj/machinery/door/update_icon()
@@ -185,8 +188,6 @@
 		icon_state = "door1"
 	else
 		icon_state = "door0"
-	return
-
 
 /obj/machinery/door/proc/do_animate(animation)
 	switch(animation)
@@ -202,7 +203,6 @@
 				flick("doorc1", src)
 		if("deny")
 			flick("door_deny", src)
-	return
 
 
 /obj/machinery/door/proc/open()
@@ -229,12 +229,8 @@
 	if(operating)
 		operating = FALSE
 
-	if(autoclose  && normalspeed)
-		spawn(150 + openspeed)
-			autoclose()
-	if(autoclose && !normalspeed)
-		spawn(5)
-			autoclose()
+	if(autoclose)
+		addtimer(CALLBACK(src, .proc/autoclose), normalspeed ? 150 + openspeed : 5)
 
 	return TRUE
 
@@ -242,7 +238,8 @@
 /obj/machinery/door/proc/close()
 	if(density)
 		return TRUE
-	if(operating > 0 || !loc)	return
+	if(operating > 0 || !loc)
+		return
 	operating = TRUE
 
 	density = TRUE
@@ -256,7 +253,6 @@
 			var/obj/effect/opacifier/O = t
 			O.SetOpacity(TRUE)
 	operating = FALSE
-	return
 
 /obj/machinery/door/proc/requiresID()
 	return TRUE
@@ -269,7 +265,6 @@
 	var/obj/machinery/door/airlock/A = src
 	if(!A.density && !A.operating && !A.locked && !A.welded && A.autoclose)
 		close()
-	return
 
 /obj/machinery/door/Move(new_loc, new_dir)
 	. = ..()
