@@ -3048,7 +3048,7 @@
 /area/bigredv2/outside/marshal_office)
 "aji" = (
 /obj/structure/table,
-/obj/item/explosive/grenade/flashbang,
+/obj/item/grenade/flashbang,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ajj" = (
@@ -5962,7 +5962,7 @@
 /area/bigredv2/outside/medical)
 "arO" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/explosive/grenade/chem_grenade/large,
+/obj/item/grenade/chem_grenade/large,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/outside/medical)
 "arP" = (

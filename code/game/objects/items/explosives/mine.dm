@@ -3,7 +3,7 @@
 ///***MINES***///
 //Mines have an invisible "tripwire" atom that explodes when crossed
 //Stepping directly on the mine will also blow it up
-/obj/item/explosive/mine
+/obj/item/mine
 	name = "\improper M20 Claymore anti-personnel mine"
 	desc = "The M20 Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps."
 	icon = 'icons/obj/items/grenade.dmi'
@@ -30,21 +30,21 @@
 	ex_act() trigger_explosion() //We don't care about how strong the explosion was.
 	emp_act() trigger_explosion() //Same here. Don't care about the effect strength.
 
-/obj/item/explosive/mine/Destroy()
+/obj/item/mine/Destroy()
 	if(tripwire)
 		qdel(tripwire)
 		tripwire = null
 	. = ..()
 
-/obj/item/explosive/mine/pmc
+/obj/item/mine/pmc
 	name = "\improper M20P Claymore anti-personnel mine"
 	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the NT PMC forces."
 	icon_state = "m20p"
 	iff_signal = ACCESS_IFF_PMC
 
 //Arming
-/obj/item/explosive/mine/attack_self(mob/living/user)
-	if(locate(/obj/item/explosive/mine) in get_turf(src))
+/obj/item/mine/attack_self(mob/living/user)
+	if(locate(/obj/item/mine) in get_turf(src))
 		to_chat(user, "<span class='warning'>There already is a mine at this position!</span>")
 		return
 
@@ -76,7 +76,7 @@
 		tripwire.linked_claymore = src
 
 //Disarming
-/obj/item/explosive/mine/attackby(obj/item/W, mob/user)
+/obj/item/mine/attackby(obj/item/W, mob/user)
 	if(ismultitool(W))
 		if(anchored)
 			user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
@@ -95,13 +95,13 @@
 				tripwire = null
 
 //Mine can also be triggered if you "cross right in front of it" (same tile)
-/obj/item/explosive/mine/Crossed(atom/A)
+/obj/item/mine/Crossed(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(!L.lying)//so dragged corpses don't trigger mines.
 			Bumped(A)
 
-/obj/item/explosive/mine/Bumped(mob/living/carbon/human/H)
+/obj/item/mine/Bumped(mob/living/carbon/human/H)
 	if(!armed || triggered) return
 
 	if((istype(H) && H.get_target_lock(iff_signal)) || iscyborg(H)) return
@@ -115,7 +115,7 @@
 	trigger_explosion()
 
 //Note : May not be actual explosion depending on linked method
-/obj/item/explosive/mine/proc/trigger_explosion()
+/obj/item/mine/proc/trigger_explosion()
 	set waitfor = 0
 
 	switch(trigger_type)
@@ -124,7 +124,7 @@
 				explosion(tripwire.loc, -1, -1, 2)
 				qdel(src)
 
-/obj/item/explosive/mine/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/item/mine/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(triggered) //Mine is already set to go off
 		return
 
@@ -142,7 +142,7 @@
 		tripwire.forceMove(step_direction)
 	trigger_explosion()
 
-/obj/item/explosive/mine/flamer_fire_act() //adding mine explosions
+/obj/item/mine/flamer_fire_act() //adding mine explosions
 	var/turf/T = loc
 	qdel(src)
 	explosion(T, -1, -1, 2)
@@ -154,7 +154,7 @@
 	mouse_opacity = 0
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = UNACIDABLE
-	var/obj/item/explosive/mine/linked_claymore
+	var/obj/item/mine/linked_claymore
 
 /obj/effect/mine_tripwire/Destroy()
 	if(linked_claymore)

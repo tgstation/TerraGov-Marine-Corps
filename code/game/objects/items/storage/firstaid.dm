@@ -16,7 +16,7 @@
 	throw_range = 8
 	cant_hold = list(
 		/obj/item/ammo_magazine,
-		/obj/item/explosive/grenade)
+		/obj/item/grenade)
 	var/empty = FALSE //whether the kit starts empty
 	var/icon_full //icon state to use when kit is full
 	var/possible_icons_full

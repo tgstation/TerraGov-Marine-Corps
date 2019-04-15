@@ -47,8 +47,8 @@
 	return TRUE
 
 /obj/item/weapon/gun/flare/attackby(obj/item/I, mob/user)
-	if(istype(I,/obj/item/explosive/grenade/flare))
-		var/obj/item/explosive/grenade/flare = I
+	if(istype(I,/obj/item/grenade/flare))
+		var/obj/item/grenade/flare = I
 		if(num_flares >= max_flares)
 			to_chat(user, "It's already full.")
 			return
@@ -64,7 +64,7 @@
 
 /obj/item/weapon/gun/flare/unload(mob/user)
 	if(num_flares)
-		var/obj/item/explosive/grenade/flare/new_flare = new()
+		var/obj/item/grenade/flare/new_flare = new()
 		if(user)
 			user.put_in_hands(new_flare)
 		else

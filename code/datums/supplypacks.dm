@@ -460,12 +460,12 @@ WEAPONS
 	name = "surplus explosives crate (claymore mine x4, M40 HIDP x2, M40 HEDP x2, M15 HE x2)"
 	contains = list(
 					/obj/item/storage/box/explosive_mines,
-					/obj/item/explosive/grenade/frag,
-					/obj/item/explosive/grenade/frag,
-					/obj/item/explosive/grenade/incendiary,
-					/obj/item/explosive/grenade/incendiary,
-					/obj/item/explosive/grenade/frag/m15,
-					/obj/item/explosive/grenade/frag/m15
+					/obj/item/grenade/frag,
+					/obj/item/grenade/frag,
+					/obj/item/grenade/incendiary,
+					/obj/item/grenade/incendiary,
+					/obj/item/grenade/frag/m15,
+					/obj/item/grenade/frag/m15
 					)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/explosives
@@ -486,11 +486,11 @@ WEAPONS
 /datum/supply_packs/explosives_m15
 	name = "M15 high explosive grenades crate (x5)"
 	contains = list(
-					/obj/item/explosive/grenade/frag/m15,
-					/obj/item/explosive/grenade/frag/m15,
-					/obj/item/explosive/grenade/frag/m15,
-					/obj/item/explosive/grenade/frag/m15,
-					/obj/item/explosive/grenade/frag/m15
+					/obj/item/grenade/frag/m15,
+					/obj/item/grenade/frag/m15,
+					/obj/item/grenade/frag/m15,
+					/obj/item/grenade/frag/m15,
+					/obj/item/grenade/frag/m15
 					)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/explosives
@@ -500,11 +500,11 @@ WEAPONS
 /datum/supply_packs/explosives_incendiary
 	name = "M40 HIDP incendiary grenades crate (x5)"
 	contains = list(
-					/obj/item/explosive/grenade/incendiary,
-					/obj/item/explosive/grenade/incendiary,
-					/obj/item/explosive/grenade/incendiary,
-					/obj/item/explosive/grenade/incendiary,
-					/obj/item/explosive/grenade/incendiary
+					/obj/item/grenade/incendiary,
+					/obj/item/grenade/incendiary,
+					/obj/item/grenade/incendiary,
+					/obj/item/grenade/incendiary,
+					/obj/item/grenade/incendiary
 					)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/explosives
@@ -514,11 +514,11 @@ WEAPONS
 /datum/supply_packs/explosives_M40_HEDP
 	name = "M40 HEDP high explosive grenades crate (x5)"
 	contains = list(
-					/obj/item/explosive/grenade/frag,
-					/obj/item/explosive/grenade/frag,
-					/obj/item/explosive/grenade/frag,
-					/obj/item/explosive/grenade/frag,
-					/obj/item/explosive/grenade/frag
+					/obj/item/grenade/frag,
+					/obj/item/grenade/frag,
+					/obj/item/grenade/frag,
+					/obj/item/grenade/frag,
+					/obj/item/grenade/frag
 					)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate/explosives
@@ -528,11 +528,11 @@ WEAPONS
 /datum/supply_packs/explosives_M40_IMDP
 	name = "M40 IMDP impact grenades crate (x5)"
 	contains = list(
-					/obj/item/explosive/grenade/impact,
-					/obj/item/explosive/grenade/impact,
-					/obj/item/explosive/grenade/impact,
-					/obj/item/explosive/grenade/impact,
-					/obj/item/explosive/grenade/impact,
+					/obj/item/grenade/impact,
+					/obj/item/grenade/impact,
+					/obj/item/grenade/impact,
+					/obj/item/grenade/impact,
+					/obj/item/grenade/impact,
 					)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate/explosives
@@ -583,11 +583,11 @@ WEAPONS
 /datum/supply_packs/plastique
 	name = "plastic explosives crate (x5)"
 	contains = list(
-					/obj/item/explosive/plastique,
-					/obj/item/explosive/plastique,
-					/obj/item/explosive/plastique,
-					/obj/item/explosive/plastique,
-					/obj/item/explosive/plastique
+					/obj/item/plastique,
+					/obj/item/plastique,
+					/obj/item/plastique,
+					/obj/item/plastique,
+					/obj/item/plastique
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/explosives
@@ -2673,9 +2673,9 @@ SUPPLIES
 					/obj/item/storage/bag/trash,
 					/obj/item/reagent_container/spray/cleaner,
 					/obj/item/reagent_container/glass/rag,
-					/obj/item/explosive/grenade/chem_grenade/cleaner,
-					/obj/item/explosive/grenade/chem_grenade/cleaner,
-					/obj/item/explosive/grenade/chem_grenade/cleaner,
+					/obj/item/grenade/chem_grenade/cleaner,
+					/obj/item/grenade/chem_grenade/cleaner,
+					/obj/item/grenade/chem_grenade/cleaner,
 					/obj/structure/mopbucket,
 					/obj/item/paper/janitor
 					)

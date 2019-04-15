@@ -56,7 +56,7 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 		new/datum/stack_recipe("multi-tile airlock assembly", /obj/structure/door_assembly/multi_tile, 4, time = 50, one_per_turf = 1, on_floor = 1, skill_req = SKILL_CONSTRUCTION_MASTER), \
 		), 4), \
 	null, \
-	new/datum/stack_recipe("grenade casing", /obj/item/explosive/grenade/chem_grenade), \
+	new/datum/stack_recipe("grenade casing", /obj/item/grenade/chem_grenade), \
 	new/datum/stack_recipe("light fixture frame", /obj/item/frame/light_fixture, 2), \
 	new/datum/stack_recipe("small light fixture frame", /obj/item/frame/light_fixture/small, 1), \
 	null, \

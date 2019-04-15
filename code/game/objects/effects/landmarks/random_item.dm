@@ -12,15 +12,15 @@
 								100; /obj/item/weapon/claymore, \
 								100; /obj/item/weapon/katana, \
 								100; /obj/item/binoculars, \
-								100; /obj/item/explosive/grenade/frag, \
-								100; /obj/item/explosive/grenade/incendiary, \
+								100; /obj/item/grenade/frag, \
+								100; /obj/item/grenade/incendiary, \
 								75; /obj/item/storage/box/wy_mre, \
 								50; /obj/item/flash, \
-								50; /obj/item/explosive/plastique, \
+								50; /obj/item/plastique, \
 								50; /obj/item/weapon/shield/riot, \
 								50; /obj/item/storage/firstaid/regular, \
 								50; /obj/item/storage/firstaid/fire, \
-								25; /obj/item/explosive/grenade/flashbang)
+								25; /obj/item/grenade/flashbang)
 
 #define HUNTER_OKAY_ITEM  pick(\
 								400; /obj/item/weapon/twohanded/spear, \
@@ -28,7 +28,7 @@
 								300; /obj/item/tool/hatchet, \
 								200; /obj/item/weapon/baseballbat, \
 								200; /obj/item/weapon/throwing_knife, \
-								250; /obj/item/explosive/grenade/flare, \
+								250; /obj/item/grenade/flare, \
 								100; /obj/item/weapon/baseballbat/metal, \
 								100; /obj/item/weapon/butterfly, \
 								100; /obj/item/weapon/harpoon, \
@@ -52,8 +52,8 @@
 								75; /obj/item/reagent_container/food/snacks/donkpocket, \
 								75; /obj/item/clothing/gloves/brown, \
 								50; /obj/item/weapon/katana/replica, \
-								50; /obj/item/explosive/grenade/smokebomb, \
-								50; /obj/item/explosive/grenade/empgrenade, \
+								50; /obj/item/grenade/smokebomb, \
+								50; /obj/item/grenade/empgrenade, \
 								25; /obj/item/bananapeel, \
 								25; /obj/item/tool/soap)
 

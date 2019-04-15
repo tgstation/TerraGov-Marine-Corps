@@ -1574,13 +1574,6 @@
 "afL" = (
 /turf/open/desertdam/river/toxic/deep_water_toxic,
 /area/desert_dam/interior/caves/northern_caves)
-"afM" = (
-/obj/structure/table,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
-/area/desert_dam/interior/caves/northern_caves)
 "afN" = (
 /obj/effect/decal/remains/xeno,
 /turf/open/desertdam/cave/inner_cave_floor{
@@ -1589,9 +1582,6 @@
 /area/desert_dam/interior/caves/northern_caves)
 "afO" = (
 /obj/structure/table,
-/obj/item/weapon/harpoon/yautja{
-	name = "Alien Harpoon"
-	},
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -1632,7 +1622,7 @@
 /area/desert_dam/interior/caves/northern_caves)
 "afU" = (
 /obj/structure/table,
-/obj/item/legcuffs/yautja{
+/obj/item/legcuffs/beartrap{
 	desc = "A bizarre alien device used for trapping and killing prey.";
 	name = "Alien Mine"
 	},
@@ -2031,7 +2021,7 @@
 /area/desert_dam/building/lab_northwest/dormitory)
 "ahl" = (
 /obj/structure/table/holotable/wood,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/desert_dam/building/lab_northwest/dormitory)
 "ahm" = (
@@ -3538,8 +3528,8 @@
 /area/desert_dam/interior/lab_northeast/biology)
 "alh" = (
 /obj/structure/table/reinforced,
-/obj/item/device/defibrillator,
-/obj/item/device/defibrillator,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
 /turf/open/floor{
 	tag = "icon-darkpurple2 (EAST)";
 	icon_state = "darkpurple2";
@@ -6668,7 +6658,7 @@
 /area/desert_dam/interior/lab_northeast/excavation)
 "asx" = (
 /obj/structure/table,
-/obj/item/device/reagent_scanner,
+/obj/item/reagent_scanner,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "darkpurple2";
@@ -7551,7 +7541,7 @@
 /area/desert_dam/interior/lab_northeast/xenobiology)
 "auy" = (
 /obj/structure/rack,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /obj/item/storage/belt/utility/full,
 /turf/open/floor{
 	tag = "icon-darkpurple2";
@@ -7560,8 +7550,8 @@
 /area/desert_dam/interior/lab_northeast/excavation)
 "auz" = (
 /obj/structure/rack,
-/obj/item/device/flashlight,
-/obj/item/device/t_scanner,
+/obj/item/flashlight,
+/obj/item/t_scanner,
 /turf/open/floor{
 	tag = "icon-darkpurple2 (EAST)";
 	icon_state = "darkpurple2";
@@ -7898,7 +7888,7 @@
 /area/desert_dam/interior/lab_northeast/xenobiology)
 "avf" = (
 /obj/structure/rack,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /obj/item/tool/hand_labeler,
 /turf/open/floor{
 	tag = "icon-darkpurple2 (EAST)";
@@ -17072,7 +17062,7 @@
 /area/desert_dam/building/administration/office)
 "aRy" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /obj/item/tool/pen/blue{
 	pixel_x = 5
 	},
@@ -24138,7 +24128,7 @@
 /area/desert_dam/interior/dam_interior/smes_main)
 "bhX" = (
 /obj/structure/closet/radiation,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	frequency = 1469;
@@ -24228,7 +24218,7 @@
 /area/desert_dam/building/mining/foremans_office)
 "bii" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	on = 0
 	},
 /turf/open/floor/carpet,
@@ -25425,10 +25415,10 @@
 /area/desert_dam/interior/dam_interior/engine_west_wing)
 "bkA" = (
 /obj/structure/table,
-/obj/item/device/assembly/igniter,
-/obj/item/device/assembly/igniter,
-/obj/item/device/assembly/igniter,
-/obj/item/device/assembly/signaler,
+/obj/item/assembly/igniter,
+/obj/item/assembly/igniter,
+/obj/item/assembly/igniter,
+/obj/item/assembly/signaler,
 /obj/item/circuitboard/airlock,
 /turf/open/floor{
 	tag = "icon-darkyellow2 (NORTH)";
@@ -25438,8 +25428,8 @@
 /area/desert_dam/interior/dam_interior/engine_west_wing)
 "bkB" = (
 /obj/structure/table,
-/obj/item/device/assembly/infra,
-/obj/item/device/assembly/voice,
+/obj/item/assembly/infra,
+/obj/item/assembly/voice,
 /turf/open/floor{
 	tag = "icon-darkyellow2 (NORTHEAST)";
 	icon_state = "darkyellow2";
@@ -25927,9 +25917,9 @@
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
 "blG" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/chem_grenade/metalfoam,
-/obj/item/explosive/grenade/chem_grenade/metalfoam,
-/obj/item/device/flashlight,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/flashlight,
 /turf/open/floor{
 	tag = "icon-darkyellow2 (NORTHWEST)";
 	icon_state = "darkyellow2";
@@ -26044,8 +26034,8 @@
 /area/desert_dam/interior/dam_interior/engine_room)
 "blS" = (
 /obj/structure/table,
-/obj/item/device/flashlight/flare,
-/obj/item/device/radio,
+/obj/item/flashlight/flare,
+/obj/item/radio,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "darkyellow2";
@@ -26439,7 +26429,7 @@
 "bmH" = (
 /obj/structure/table,
 /obj/item/tool/crowbar/red,
-/obj/item/device/flash,
+/obj/item/flash,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "darkyellow2";
@@ -26872,7 +26862,7 @@
 /area/desert_dam/interior/dam_interior/control_room)
 "bnF" = (
 /obj/structure/table,
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /turf/open/floor{
 	tag = "icon-darkyellow2 (NORTH)";
 	icon_state = "darkyellow2";
@@ -31652,7 +31642,7 @@
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "bwX" = (
 /obj/structure/table/reinforced,
-/obj/item/device/lightreplacer,
+/obj/item/lightreplacer,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "darkyellow2";
@@ -31680,7 +31670,7 @@
 "bxa" = (
 /obj/effect/spawner/random/toolbox,
 /obj/structure/table/reinforced,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "bxb" = (
@@ -31693,7 +31683,7 @@
 "bxc" = (
 /obj/structure/table/reinforced,
 /obj/item/folder,
-/obj/item/device/assembly/signaler,
+/obj/item/assembly/signaler,
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "bxd" = (
@@ -32044,7 +32034,7 @@
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "bxR" = (
 /obj/structure/table/reinforced,
-/obj/item/device/radio,
+/obj/item/radio,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2.4
@@ -32435,7 +32425,7 @@
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "byN" = (
 /obj/structure/table/reinforced,
-/obj/item/device/assembly/prox_sensor,
+/obj/item/assembly/prox_sensor,
 /turf/open/floor{
 	tag = "icon-darkyellow2 (EAST)";
 	icon_state = "darkyellow2";
@@ -32737,7 +32727,7 @@
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "bzx" = (
 /obj/structure/table/reinforced,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/floor{
 	dir = 6;
 	icon_state = "darkyellow2";
@@ -33238,7 +33228,7 @@
 /area/desert_dam/interior/dam_interior/office)
 "bAP" = (
 /obj/structure/table,
-/obj/item/device/radio,
+/obj/item/radio,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
 	on = 1
@@ -36630,8 +36620,8 @@
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "bIc" = (
 /obj/structure/rack,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight/flare,
+/obj/item/flashlight,
+/obj/item/flashlight/flare,
 /turf/open/floor{
 	tag = "icon-darkbrown2 (NORTH)";
 	icon_state = "darkbrown2";
@@ -37400,7 +37390,7 @@
 /area/desert_dam/interior/dam_interior/disposals)
 "bJQ" = (
 /obj/structure/table,
-/obj/item/device/lightreplacer,
+/obj/item/lightreplacer,
 /obj/item/clothing/mask/rebreather,
 /turf/open/floor{
 	tag = "icon-darkbrown2 (EAST)";
@@ -37651,8 +37641,8 @@
 /area/desert_dam/interior/dam_interior/disposals)
 "bKu" = (
 /obj/structure/table,
-/obj/item/device/radio,
-/obj/item/device/radio,
+/obj/item/radio,
+/obj/item/radio,
 /obj/item/storage/toolbox/emergency,
 /turf/open/floor{
 	tag = "icon-darkbrown2 (EAST)";
@@ -40578,7 +40568,7 @@
 /area/desert_dam/building/medical/west_wing_hallway)
 "bRB" = (
 /obj/structure/table,
-/obj/item/device/autopsy_scanner,
+/obj/item/autopsy_scanner,
 /turf/open/floor{
 	icon_state = "freezerfloor"
 	},
@@ -40690,7 +40680,7 @@
 /area/desert_dam/exterior/valley/valley_south_west)
 "bRP" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/open/floor{
 	tag = "icon-whitered (WEST)";
 	icon_state = "whitered";
@@ -42621,8 +42611,8 @@
 /area/desert_dam/building/telecommunication)
 "bWi" = (
 /obj/structure/table,
-/obj/item/device/radio,
-/obj/item/device/radio{
+/obj/item/radio,
+/obj/item/radio{
 	pixel_x = 3;
 	pixel_y = 2
 	},
@@ -42639,7 +42629,7 @@
 /area/desert_dam/building/telecommunication_platform)
 "bWk" = (
 /obj/structure/table,
-/obj/item/device/radio{
+/obj/item/radio{
 	pixel_x = 3;
 	pixel_y = 2
 	},
@@ -42647,7 +42637,7 @@
 /area/desert_dam/building/telecommunication_platform)
 "bWl" = (
 /obj/structure/table,
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /turf/open/floor/plating,
 /area/desert_dam/building/telecommunication_platform)
 "bWm" = (
@@ -42908,7 +42898,7 @@
 /area/desert_dam/building/telecommunication)
 "bWT" = (
 /obj/structure/table,
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /turf/open/floor{
 	tag = "icon-darkyellow2 (EAST)";
 	icon_state = "darkyellow2";
@@ -43055,8 +43045,8 @@
 /area/desert_dam/building/medical/surgury_observation)
 "bXm" = (
 /obj/structure/table/reinforced,
-/obj/item/device/healthanalyzer,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
+/obj/item/healthanalyzer,
 /obj/structure/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -43240,7 +43230,7 @@
 /area/desert_dam/building/telecommunication)
 "bXJ" = (
 /obj/structure/table,
-/obj/item/device/encryptionkey,
+/obj/item/encryptionkey,
 /turf/open/floor{
 	tag = "icon-darkyellow2 (EAST)";
 	icon_state = "darkyellow2";
@@ -43564,8 +43554,8 @@
 /area/desert_dam/building/telecommunication)
 "bYt" = (
 /obj/structure/table,
-/obj/item/device/radio,
-/obj/item/device/radio{
+/obj/item/radio,
+/obj/item/radio{
 	pixel_x = 3;
 	pixel_y = 2
 	},
@@ -44188,7 +44178,7 @@
 /turf/open/desertdam/desert,
 /area/desert_dam/exterior/valley/valley_south_west)
 "bZG" = (
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "darkyellow2";
@@ -44731,7 +44721,7 @@
 /area/desert_dam/building/telecommunication)
 "caQ" = (
 /obj/structure/table,
-/obj/item/device/encryptionkey,
+/obj/item/encryptionkey,
 /turf/open/floor{
 	tag = "icon-darkyellowcorners2 (WEST)";
 	icon_state = "darkyellowcorners2";
@@ -45886,7 +45876,7 @@
 	},
 /area/desert_dam/building/medical/emergency_room)
 "cdz" = (
-/obj/item/device/defibrillator,
+/obj/item/defibrillator,
 /obj/structure/table,
 /turf/open/floor{
 	tag = "icon-whitered (SOUTHWEST)";
@@ -47726,9 +47716,9 @@
 /area/desert_dam/building/medical/emergency_room)
 "chf" = (
 /obj/structure/table/reinforced,
-/obj/item/device/defibrillator,
-/obj/item/device/defibrillator,
-/obj/item/device/defibrillator,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
 /turf/open/floor{
 	tag = "icon-whitegreen";
 	icon_state = "whitegreen";
@@ -48609,7 +48599,7 @@
 /area/desert_dam/building/library/studyroom)
 "cjq" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	on = 0
 	},
 /turf/open/floor/carpet,
@@ -49216,7 +49206,7 @@
 /area/desert_dam/building/medical/treatment_room)
 "ckG" = (
 /obj/structure/table/reinforced,
-/obj/item/device/defibrillator,
+/obj/item/defibrillator,
 /turf/open/floor{
 	tag = "icon-whitegreen";
 	icon_state = "whitegreen";
@@ -56216,7 +56206,7 @@
 /area/desert_dam/building/security/detective)
 "cAS" = (
 /obj/structure/table/woodentable,
-/obj/item/device/detective_scanner,
+/obj/item/detective_scanner,
 /turf/open/floor{
 	icon_state = "grimy"
 	},
@@ -58362,7 +58352,7 @@
 /area/desert_dam/building/security/observation)
 "cFS" = (
 /obj/structure/table,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor{
 	icon_state = "dark"
 	},
@@ -58517,7 +58507,7 @@
 /area/desert_dam/exterior/valley/valley_south_west)
 "cGj" = (
 /obj/structure/table,
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /turf/open/floor{
 	icon_state = "dark"
 	},
@@ -58682,7 +58672,7 @@
 /area/desert_dam/building/security/evidence)
 "cGD" = (
 /obj/structure/table/reinforced,
-/obj/item/device/detective_scanner,
+/obj/item/detective_scanner,
 /turf/open/floor{
 	icon_state = "dark"
 	},
@@ -58703,7 +58693,7 @@
 /area/desert_dam/building/security/holding)
 "cGG" = (
 /obj/structure/table,
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /obj/item/clothing/glasses/sunglasses,
 /turf/open/floor{
 	icon_state = "red"
@@ -59522,7 +59512,7 @@
 /area/desert_dam/building/security/staffroom)
 "cIq" = (
 /obj/structure/table,
-/obj/item/explosive/grenade/flashbang,
+/obj/item/grenade/flashbang,
 /turf/open/floor,
 /area/desert_dam/building/security/staffroom)
 "cIr" = (
@@ -61162,8 +61152,8 @@
 /area/desert_dam/building/security/armory)
 "cMp" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/incendiary,
-/obj/item/explosive/grenade/incendiary{
+/obj/item/grenade/incendiary,
+/obj/item/grenade/incendiary{
 	pixel_x = -4;
 	pixel_y = -2
 	},
@@ -61174,7 +61164,7 @@
 /area/desert_dam/building/security/armory)
 "cMq" = (
 /obj/structure/rack,
-/obj/item/explosive/plastique,
+/obj/item/plastique,
 /turf/open/floor{
 	tag = "icon-dark2";
 	icon_state = "dark2"
@@ -64501,7 +64491,7 @@
 	},
 /area/space)
 "cXy" = (
-/obj/item/device/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor{
 	icon_state = "dark"
 	},
@@ -64539,7 +64529,7 @@
 /area/space)
 "cXC" = (
 /obj/structure/table,
-/obj/item/device/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor{
 	icon_state = "dark"
 	},
@@ -111593,7 +111583,7 @@ afF
 afF
 afF
 afH
-afM
+afO
 afK
 afK
 afK
@@ -111995,7 +111985,7 @@ afF
 afF
 afF
 afH
-afM
+afO
 afK
 afK
 afK
@@ -112805,7 +112795,7 @@ afK
 afK
 afH
 afK
-afM
+afO
 afO
 afJ
 afJ
@@ -113200,7 +113190,7 @@ afF
 afF
 afF
 afH
-afM
+afO
 afK
 afK
 afK
@@ -113602,7 +113592,7 @@ afF
 afF
 afF
 afH
-afM
+afO
 afK
 afY
 afK
@@ -114004,7 +113994,7 @@ afF
 afF
 afF
 afH
-afM
+afO
 afK
 afK
 afK
@@ -114406,7 +114396,7 @@ afF
 afF
 afF
 afI
-afM
+afO
 afK
 afK
 afK
@@ -116016,7 +116006,7 @@ afF
 afH
 afO
 afU
-afM
+afO
 afK
 afK
 afK

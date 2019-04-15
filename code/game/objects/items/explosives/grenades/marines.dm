@@ -1,6 +1,6 @@
 
 ///***GRENADES***///
-/obj/item/explosive/grenade/frag
+/obj/item/grenade/frag
 	name = "\improper M40 HEDP grenade"
 	desc = "A small, but deceptively strong fragmentation grenade that has been phasing out the M15 Fragmentation Grenades. Capable of being loaded in the M92 Launcher, or thrown by hand."
 	icon_state = "grenade"
@@ -8,20 +8,20 @@
 	item_state = "grenade"
 	underslug_launchable = TRUE
 
-/obj/item/explosive/grenade/frag/prime()
+/obj/item/grenade/frag/prime()
 	spawn(0)
 		explosion(loc, -1, -1, 3)
 		qdel(src)
 	return
 
-/obj/item/explosive/grenade/frag/flamer_fire_act()
+/obj/item/grenade/frag/flamer_fire_act()
 	var/turf/T = loc
 	qdel(src)
 	explosion(T, -1, -1, 3)
 
 
 
-/obj/item/explosive/grenade/frag/training
+/obj/item/grenade/frag/training
 	name = "M07 training grenade"
 	desc = "A harmless reusable version of the M40 HEDP, used for training. Capable of being loaded in the M92 Launcher, or thrown by hand."
 	icon_state = "training_grenade"
@@ -29,7 +29,7 @@
 	hud_state = "grenade_dummy"
 	dangerous = FALSE
 
-/obj/item/explosive/grenade/frag/training/prime()
+/obj/item/grenade/frag/training/prime()
 	spawn(0)
 		playsound(loc, 'sound/items/detector.ogg', 80, 0, 7)
 		active = 0 //so we can reuse it
@@ -39,26 +39,26 @@
 		throw_range = initial(throw_range)
 
 
-/obj/item/explosive/grenade/frag/training/flamer_fire_act()
+/obj/item/grenade/frag/training/flamer_fire_act()
 	return
 
 
 
-/obj/item/explosive/grenade/frag/PMC
+/obj/item/grenade/frag/PMC
 	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_pmc"
 	item_state = "grenade_ex"
 	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
 
-/obj/item/explosive/grenade/frag/PMC/prime()
+/obj/item/grenade/frag/PMC/prime()
 	spawn(0)
 		explosion(loc, -1, -1, 4)
 		qdel(src)
 	return
 
 
-/obj/item/explosive/grenade/frag/m15
+/obj/item/grenade/frag/m15
 	name = "\improper M15 fragmentation grenade"
 	desc = "An outdated TGMC Fragmentation Grenade. With decades of service in the TGMC, the old M15 Fragmentation Grenade is slowly being replaced with the slightly safer M40 HEDP. It is set to detonate in 4 seconds."
 	icon_state = "grenade_ex"
@@ -66,14 +66,14 @@
 	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
 
-/obj/item/explosive/grenade/frag/m15/prime()
+/obj/item/grenade/frag/m15/prime()
 	spawn(0)
 		explosion(loc, -1, -1, 4)
 		qdel(src)
 	return
 
 
-/obj/item/explosive/grenade/frag/stick
+/obj/item/grenade/frag/stick
 	name = "\improper Webley Mk15 stick grenade"
 	desc = "A fragmentation grenade produced in the colonies, most commonly using old designs and schematics. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_stick"
@@ -86,14 +86,14 @@
 	throw_range = 7
 	underslug_launchable = FALSE
 
-/obj/item/explosive/grenade/frag/stick/prime()
+/obj/item/grenade/frag/stick/prime()
 	spawn(0)
 		explosion(src.loc,-1,-1,3)
 		del(src)
 	return
 
 
-/obj/item/explosive/grenade/frag/upp
+/obj/item/grenade/frag/upp
 	name = "\improper Type 5 shrapnel grenade"
 	desc = "A fragmentation grenade found within the ranks of the UPP. Designed to explode into shrapnel and rupture the bodies of opponents. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_upp"
@@ -103,14 +103,14 @@
 	throw_range = 6
 	underslug_launchable = FALSE
 
-/obj/item/explosive/grenade/frag/upp/prime()
+/obj/item/grenade/frag/upp/prime()
 	spawn(0)
 		explosion(src.loc,-1,-1,3)
 		del(src)
 	return
 
 
-/obj/item/explosive/grenade/incendiary
+/obj/item/grenade/incendiary
 	name = "\improper M40 HIDP incendiary grenade"
 	desc = "The M40 HIDP is a small, but deceptively strong incendiary grenade. It is set to detonate in 4 seconds."
 	icon_state = "grenade_fire"
@@ -119,7 +119,7 @@
 	hud_state = "grenade_fire"
 	underslug_launchable = TRUE
 
-/obj/item/explosive/grenade/incendiary/prime()
+/obj/item/grenade/incendiary/prime()
 	spawn(0)
 		flame_radius(2, get_turf(src))
 		playsound(src.loc, 'sound/weapons/gun_flamethrower2.ogg', 35, 1, 4)
@@ -141,7 +141,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		new /obj/flamer_fire(IT, rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, 0, burn_damage, fire_stacks)
 
 
-/obj/item/explosive/grenade/incendiary/molotov
+/obj/item/grenade/incendiary/molotov
 	name = "\improper improvised firebomb"
 	desc = "A potent, improvised firebomb, coupled with a pinch of gunpowder. Cheap, very effective, and deadly in confined spaces. Commonly found in the hands of rebels and terrorists. It can be difficult to predict how many seconds you have before it goes off, so be careful. Chances are, it might explode in your face."
 	icon_state = "molotov"
@@ -149,11 +149,11 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	arm_sound = 'sound/items/Welder2.ogg'
 	underslug_launchable = FALSE
 
-/obj/item/explosive/grenade/incendiary/molotov/New()
+/obj/item/grenade/incendiary/molotov/New()
 	det_time = rand(10,40)//Adds some risk to using this thing.
 	return ..()
 
-/obj/item/explosive/grenade/incendiary/molotov/prime()
+/obj/item/grenade/incendiary/molotov/prime()
 	spawn(0)
 		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, 1, 4)
 		flame_radius(2, get_turf(src))
@@ -162,7 +162,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	return
 
 
-/obj/item/explosive/grenade/smokebomb
+/obj/item/grenade/smokebomb
 	name = "\improper M40 HSDP smoke grenade"
 	desc = "The M40 HSDP is a small, but powerful smoke grenade. Based off the same platform as the M40 HEDP. It is set to detonate in 2 seconds."
 	icon_state = "grenade_smoke"
@@ -173,19 +173,19 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	dangerous = FALSE
 	var/datum/effect_system/smoke_spread/bad/smoke
 
-/obj/item/explosive/grenade/smokebomb/New()
+/obj/item/grenade/smokebomb/New()
 	. = ..()
 	smoke = new /datum/effect_system/smoke_spread/bad
 	smoke.attach(src)
 
-/obj/item/explosive/grenade/smokebomb/prime()
+/obj/item/grenade/smokebomb/prime()
 	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(3, 0, usr.loc, null, 6)
 	smoke.start()
 	qdel(src)
 
 
-/obj/item/explosive/grenade/cloakbomb
+/obj/item/grenade/cloakbomb
 	name = "\improper M40-2 SCDP smoke grenade"
 	desc = "A sophisticated version of the M40 HSDP with an improved smoke screen payload, currently being field-tested in the TGMC. It's set to detonate in 2 seconds."
 	icon_state = "grenade_cloak"
@@ -196,19 +196,19 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/tactical/smoke
 
-/obj/item/explosive/grenade/cloakbomb/New()
+/obj/item/grenade/cloakbomb/New()
 	. = ..()
 	smoke = new /datum/effect_system/smoke_spread/tactical
 	smoke.attach(src)
 
-/obj/item/explosive/grenade/cloakbomb/prime()
+/obj/item/grenade/cloakbomb/prime()
 	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(3, 0, usr.loc, null, 7)
 	smoke.start()
 	qdel(src)
 
 
-/obj/item/explosive/grenade/phosphorus
+/obj/item/grenade/phosphorus
 	name = "\improper M40 HPDP grenade"
 	desc = "The M40 HPDP is a small, but powerful phosphorus grenade. It is set to detonate in 2 seconds."
 	icon_state = "grenade_phos"
@@ -219,25 +219,25 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
 	dangerous = 1
 
-/obj/item/explosive/grenade/phosphorus/New()
+/obj/item/grenade/phosphorus/New()
 	. = ..()
 	smoke = new /datum/effect_system/smoke_spread/phosphorus
 	smoke.attach(src)
 
-/obj/item/explosive/grenade/phosphorus/prime()
+/obj/item/grenade/phosphorus/prime()
 	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(3, 0, usr.loc)
 	smoke.start()
 	qdel(src)
 
 
-/obj/item/explosive/grenade/phosphorus/upp
+/obj/item/grenade/phosphorus/upp
 	name = "\improper Type 8 WP grenade"
 	desc = "A deadly gas grenade found within the ranks of the UPP. Designed to spill white phosporus on the target. It explodes 2 seconds after the pin has been pulled."
 	icon_state = "grenade_upp_wp"
 	item_state = "grenade_upp_wp"
 
-/obj/item/explosive/grenade/impact
+/obj/item/grenade/impact
 	name = "\improper M40 IMDP grenade"
 	desc = "A high explosive contact detonation munition utilizing the standard DP canister chassis. Has a focused blast specialized for door breaching and combating emplacements and light armoured vehicles. WARNING: Handthrowing does not result in sufficient force to trigger impact detonators."
 	icon_state = "grenade_impact"
@@ -247,25 +247,25 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	dangerous = TRUE
 	underslug_launchable = TRUE
 
-/obj/item/explosive/grenade/impact/prime()
+/obj/item/grenade/impact/prime()
 	spawn(0)
 		explosion(loc, -1, -1, 1, 2)
 		qdel(src)
 	return
 
-/obj/item/explosive/grenade/impact/flamer_fire_act()
+/obj/item/grenade/impact/flamer_fire_act()
 	var/turf/T = loc
 	qdel(src)
 	explosion(T, -1, -1, 1, 2)
 
-/obj/item/explosive/grenade/impact/throw_impact(atom/hit_atom, speed)
+/obj/item/grenade/impact/throw_impact(atom/hit_atom, speed)
 	. = ..()
 	if(launched && active && !istype(hit_atom, /turf/open)) //Only contact det if active, we actually hit something, and we're fired from a grenade launcher.
 		explosion(loc, -1, -1, 1, 2)
 		qdel(src)
 
 
-/obj/item/explosive/grenade/flare
+/obj/item/grenade/flare
 	name = "\improper M40 FLDP grenade"
 	desc = "A TGMC standard issue flare utilizing the standard DP canister chassis. Capable of being loaded in the M92 Launcher, or thrown by hand."
 	icon_state = "flare_grenade"
@@ -277,19 +277,19 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	hud_state = "grenade_frag"
 	var/fuel = 0
 
-/obj/item/explosive/grenade/flare/New()
+/obj/item/grenade/flare/New()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 	return ..()
 
-/obj/item/explosive/grenade/flare/flamer_fire_act()
+/obj/item/grenade/flare/flamer_fire_act()
 	if(!active)
 		turn_on()
 
-/obj/item/explosive/grenade/flare/Destroy()
+/obj/item/grenade/flare/Destroy()
 	turn_off()
 	. = ..()
 
-/obj/item/explosive/grenade/flare/process()
+/obj/item/grenade/flare/process()
 	fuel = max(fuel - 1, 0)
 	if(!fuel || !active)
 		turn_off()
@@ -297,7 +297,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 			icon_state = "[initial(icon_state)]-empty"
 		STOP_PROCESSING(SSobj, src)
 
-/obj/item/explosive/grenade/flare/proc/turn_off()
+/obj/item/grenade/flare/proc/turn_off()
 	fuel = 0
 	icon_state = "[initial(icon_state)]-empty"
 	heat_source = 0
@@ -310,7 +310,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	//message_admins("TOGGLE FLARE LIGHT DEBUG 1: fuel: [fuel] loc: [loc]")
 	STOP_PROCESSING(SSobj, src)
 
-/obj/item/explosive/grenade/flare/proc/turn_on()
+/obj/item/grenade/flare/proc/turn_on()
 	active = TRUE
 	force = 5
 	throwforce = 10
@@ -321,7 +321,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	update_brightness()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/explosive/grenade/flare/attack_self(mob/user)
+/obj/item/grenade/flare/attack_self(mob/user)
 
 	// Usual checks
 	if(!fuel)
@@ -334,11 +334,11 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You depress the ignition button, activating it!</span>")
 	turn_on(user)
 
-/obj/item/explosive/grenade/flare/activate(mob/user)
+/obj/item/grenade/flare/activate(mob/user)
 	if(!active)
 		turn_on(user)
 
-/obj/item/explosive/grenade/flare/on/New()
+/obj/item/grenade/flare/on/New()
 
 	. = ..()
 	active = TRUE
@@ -351,7 +351,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	damtype = "fire"
 	START_PROCESSING(SSobj, src)
 
-/obj/item/explosive/grenade/flare/proc/update_brightness(mob/user)
+/obj/item/grenade/flare/proc/update_brightness(mob/user)
 	if(!user && ismob(loc))
 		user = loc
 	if(active && fuel > 0)
@@ -369,19 +369,19 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		else if(isturf(loc))
 			SetLuminosity(0)
 
-/obj/item/explosive/grenade/flare/pickup(mob/user)
+/obj/item/grenade/flare/pickup(mob/user)
 	if(active && loc != user)
 		user.SetLuminosity(FLARE_BRIGHTNESS)
 		SetLuminosity(0)
 	return ..()
 
-/obj/item/explosive/grenade/flare/dropped(mob/user)
+/obj/item/grenade/flare/dropped(mob/user)
 	if(active && loc != user)
 		user.SetLuminosity(-FLARE_BRIGHTNESS)
 		SetLuminosity(FLARE_BRIGHTNESS)
 	return ..()
 
-/obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
+/obj/item/grenade/flare/throw_impact(atom/hit_atom, speed)
 	. = ..()
 	if(isliving(hit_atom) && active)
 		var/mob/living/L = hit_atom

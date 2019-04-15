@@ -340,8 +340,8 @@
 /area/ice_colony/exterior/surface/landing_pad2)
 "abp" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/chem_grenade/metalfoam,
-/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
 /obj/item/flashlight,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
@@ -3665,8 +3665,8 @@
 /area/ice_colony/surface/engineering)
 "akb" = (
 /obj/structure/table/reinforced,
-/obj/item/explosive/grenade/chem_grenade/metalfoam,
-/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
@@ -6149,7 +6149,7 @@
 /obj/item/tool/shovel/snow,
 /obj/item/tool/shovel/snow,
 /obj/item/tool/shovel/snow,
-/obj/item/explosive/plastique,
+/obj/item/plastique,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -21666,7 +21666,7 @@
 /obj/item/ammo_rcd,
 /obj/item/ammo_rcd,
 /obj/item/ammo_rcd,
-/obj/item/explosive/plastique,
+/obj/item/plastique,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -35553,8 +35553,8 @@
 /area/ice_colony/underground/security/armory)
 "bOd" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/incendiary,
-/obj/item/explosive/grenade/incendiary{
+/obj/item/grenade/incendiary,
+/obj/item/grenade/incendiary{
 	pixel_x = -4;
 	pixel_y = -2
 	},
@@ -35562,7 +35562,7 @@
 /area/ice_colony/underground/security/armory)
 "bOe" = (
 /obj/structure/rack,
-/obj/item/explosive/plastique,
+/obj/item/plastique,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/armory)
 "bOf" = (
@@ -35952,7 +35952,7 @@
 /area/ice_colony/underground/maintenance/engineering)
 "bPj" = (
 /obj/structure/rack,
-/obj/item/explosive/plastique,
+/obj/item/plastique,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},

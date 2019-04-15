@@ -34,8 +34,8 @@
 
 /datum/outfit/job/freelancer/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/stick, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/stick, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
@@ -87,8 +87,8 @@
 
 /datum/outfit/job/freelancer/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/stick, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/stick, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
@@ -146,8 +146,8 @@
 
 /datum/outfit/job/freelancer/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/stick, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/stick, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)

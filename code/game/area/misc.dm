@@ -11,3 +11,7 @@
 	power_equip = 0
 	power_environ = 0
 	ambience = list('sound/ambience/ambispace.ogg')
+
+/area/bunker
+	name = "\improper Hideout"
+	icon_state = "construction"

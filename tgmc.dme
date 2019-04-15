@@ -571,7 +571,6 @@
 #include "code\game\objects\items\circuitboards\machine.dm"
 #include "code\game\objects\items\circuitboards\mecha.dm"
 #include "code\game\objects\items\circuitboards\robot_modules.dm"
-#include "code\game\objects\items\explosives\explosive.dm"
 #include "code\game\objects\items\explosives\mine.dm"
 #include "code\game\objects\items\explosives\plastique.dm"
 #include "code\game\objects\items\explosives\grenades\chem_grenade.dm"

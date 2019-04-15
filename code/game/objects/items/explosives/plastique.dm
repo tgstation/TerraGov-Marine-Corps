@@ -1,4 +1,4 @@
-/obj/item/explosive/plastique
+/obj/item/plastique
 	name = "plastic explosives"
 	desc = "Used to put holes in specific areas without too much extra hole."
 	gender = PLURAL
@@ -11,11 +11,11 @@
 	var/timer = 10
 	var/atom/plant_target = null //which atom the plstique explosive is planted on
 
-/obj/item/explosive/plastique/Destroy()
+/obj/item/plastique/Destroy()
 	plant_target = null
 	. = ..()
 
-/obj/item/explosive/plastique/attack_self(mob/user)
+/obj/item/plastique/attack_self(mob/user)
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
@@ -30,7 +30,7 @@
 	timer = newtime
 	to_chat(user, "Timer set for [timer] seconds.")
 
-/obj/item/explosive/plastique/afterattack(atom/target, mob/user, flag)
+/obj/item/plastique/afterattack(atom/target, mob/user, flag)
 	if(!flag)
 		return FALSE
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
@@ -94,5 +94,5 @@
 					plant_target.overlays -= image('icons/obj/items/assemblies.dmi', "plastic-explosive_set_armed")
 			qdel(src)
 
-/obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return

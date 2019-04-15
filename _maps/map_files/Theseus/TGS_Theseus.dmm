@@ -10284,7 +10284,7 @@
 	req_one_access_txt = "14;3"
 	},
 /obj/item/weapon/gun/flamer,
-/obj/item/explosive/grenade/incendiary,
+/obj/item/grenade/incendiary,
 /turf/open/floor/almayer{
 	tag = "icon-sterile_green_corner (NORTH)";
 	icon_state = "sterile_green_corner";
@@ -14048,7 +14048,7 @@
 	req_one_access_txt = "14;3"
 	},
 /obj/item/weapon/gun/flamer,
-/obj/item/explosive/grenade/incendiary,
+/obj/item/grenade/incendiary,
 /turf/open/floor/almayer{
 	dir = 8;
 	icon_state = "sterile_green_corner";
@@ -26033,9 +26033,9 @@
 /area/almayer/shipboard/firing_range)
 "bhi" = (
 /obj/structure/table/almayer,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
+/obj/item/grenade/frag/training,
+/obj/item/grenade/frag/training,
+/obj/item/grenade/frag/training,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/firing_range)
 "bhj" = (

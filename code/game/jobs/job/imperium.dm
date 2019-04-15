@@ -9,7 +9,7 @@
 /datum/outfit/job/imperial
 	name = "Imperial Standard"
 	jobtype = /datum/job/imperial
-	
+
 	id = /obj/item/card/id
 	//belt =
 	ears = /obj/item/radio/headset/distress/imperial
@@ -38,7 +38,7 @@
 /datum/outfit/job/imperial/guardsman
 	name = "Imperial Guardsman"
 	jobtype = /datum/job/imperial/guardsman
-	
+
 	belt = /obj/item/storage/belt/marine
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial
 	head = /obj/item/clothing/head/helmet/marine/imperial
@@ -48,22 +48,22 @@
 
 /datum/outfit/job/imperial/guardsman/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	
+
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
-	
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
-	
+
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/incendiary, SLOT_IN_SUIT)
+
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_BACKPACK)
-	
+
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BELT)
-	
+
 	var/obj/item/weapon/gun/energy/lasgun/M43/G = new /obj/item/weapon/gun/energy/lasgun/M43(H)
 	G.reload(H, new /obj/item/cell/lasgun/M43(G)) // starts out full
 	H.equip_to_slot_or_del(G, SLOT_S_STORE)
@@ -78,33 +78,33 @@
 /datum/outfit/job/imperial/sergeant // don't inherit guardsman equipment
 	name = "Guardsman Sergeant"
 	jobtype = /datum/job/imperial/guardsman/sergeant
-	
+
 	belt = /obj/item/storage/belt/marine
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial/sergeant
 	head = /obj/item/clothing/head/helmet/marine/imperial/sergeant
 	r_store = /obj/item/storage/pouch/explosive/upp
 	l_store = /obj/item/storage/pouch/field_pouch/full
 	back = /obj/item/storage/backpack/lightpack
-	
+
 /datum/outfit/job/imperial/sergeant/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	
+
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
-	
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
-	
+
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/incendiary, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/incendiary, SLOT_IN_SUIT)
+
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_BACKPACK)
-	
+
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43/highcap, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43/highcap, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43/highcap, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43/highcap, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43/highcap, SLOT_IN_BELT)
-	
+
 	var/obj/item/weapon/gun/energy/lasgun/M43/G = new /obj/item/weapon/gun/energy/lasgun/M43(H)
 	G.reload(H, new /obj/item/cell/lasgun/M43/highcap(G)) // starts out reloaded
 	H.equip_to_slot_or_del(G, SLOT_S_STORE)
@@ -130,15 +130,15 @@
 
 /datum/outfit/job/imperial/medicae/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	
+
 	H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv, SLOT_IN_L_POUCH)
-	
+
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
-	
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
-	
+
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/incendiary, SLOT_IN_SUIT)
+
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BACKPACK)
@@ -147,7 +147,7 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
-	
+
 	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/zoom, SLOT_IN_BELT) // closest thing to combat performance drugs
 
 	var/obj/item/weapon/gun/energy/lasgun/M43/G = new /obj/item/weapon/gun/energy/lasgun/M43(H)

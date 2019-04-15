@@ -17,7 +17,7 @@
 					e.amount *= 0.5
 			if(e.start()) //Gets rid of doubling down on explosives for gameplay purposes. Hacky, but enough for now.
 			//Should be removed when we actually balance out chemistry.
-				var/obj/item/explosive/grenade/g
+				var/obj/item/grenade/g
 				var/obj/item/storage/s
 				for(g in location) qdel(g) //Grab anything on our turf/something.
 				if(istype(location, /obj/item/storage) || ismob(location)) //If we're in a bag or person.

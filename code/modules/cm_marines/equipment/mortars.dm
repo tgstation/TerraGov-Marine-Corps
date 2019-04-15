@@ -291,7 +291,7 @@
 /obj/item/mortal_shell/flash/detonate(var/turf/T)
 
 	explosion(T, 0, 1, 2, 7)
-	var/obj/item/explosive/grenade/flashbang/flash = new(T)
+	var/obj/item/grenade/flashbang/flash = new(T)
 	flash.icon_state = ""
 	flash.prime()
 

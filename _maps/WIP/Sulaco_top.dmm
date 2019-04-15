@@ -1790,8 +1790,19 @@
 /turf/open/floor/engine,
 /area/sulaco/engineering/atmos)
 "eq" = (
-/turf/closed/wall/sulaco,
-/area/sulaco/engineering/atmos)
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor{
+	icon_state = "white"
+	},
+/turf/closed/shuttle{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/sulaco/cryosleep)
 "er" = (
 /obj/structure/table,
 /obj/item/tool/surgery/bonesetter,
@@ -2525,7 +2536,6 @@
 	icon_state = "table"
 	},
 /obj/item/clothing/glasses/meson,
-/obj/item/paper/monitorkey,
 /obj/item/tool/pen,
 /obj/item/storage/briefcase/inflatable,
 /turf/open/floor{
@@ -4143,9 +4153,9 @@
 /area/sulaco/medbay/storage2)
 "iG" = (
 /obj/structure/table,
-/obj/item/explosive/grenade/chem_grenade/cleaner,
-/obj/item/explosive/grenade/chem_grenade/cleaner,
-/obj/item/explosive/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -5753,19 +5763,12 @@
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
 "lJ" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor{
-	icon_state = "white"
-	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor,
 /turf/closed/shuttle{
-	dir = 1;
 	icon_state = "diagonalWall3"
 	},
-/area/sulaco/cryosleep)
+/area/sulaco/briefing)
 "lK" = (
 /obj/structure/table,
 /obj/item/tool/surgery/cautery,
@@ -6152,9 +6155,15 @@
 	},
 /area/sulaco/cryosleep)
 "mt" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = 30
+	},
 /turf/open/floor,
 /turf/closed/shuttle{
+	dir = 4;
 	icon_state = "diagonalWall3"
 	},
 /area/sulaco/briefing)
@@ -6811,10 +6820,9 @@
 	},
 /turf/open/floor,
 /turf/closed/shuttle{
-	dir = 4;
 	icon_state = "diagonalWall3"
 	},
-/area/sulaco/briefing)
+/area/sulaco/hallway/central_hall2)
 "nB" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -8213,17 +8221,14 @@
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "qy" = (
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 30
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 10
 	},
 /turf/open/floor,
 /turf/closed/shuttle{
 	icon_state = "diagonalWall3"
 	},
-/area/sulaco/hallway/central_hall2)
+/area/sulaco/marine)
 "qz" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -11565,10 +11570,10 @@
 /area/sulaco/engineering)
 "wo" = (
 /obj/structure/table/reinforced,
-/obj/item/explosive/grenade/chem_grenade/metalfoam,
-/obj/item/explosive/grenade/chem_grenade/metalfoam,
-/obj/item/explosive/grenade/chem_grenade/metalfoam,
-/obj/item/explosive/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
 /obj/item/tool/crowbar,
 /obj/machinery/camera/autoname,
 /obj/item/storage/firstaid/toxin,
@@ -16492,14 +16497,18 @@
 	},
 /area/sulaco/brig)
 "EL" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 10
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor,
 /turf/closed/shuttle{
 	icon_state = "diagonalWall3"
 	},
-/area/sulaco/marine)
+/area/sulaco/hallway/central_hall3)
 "EM" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall/sulaco,
@@ -16793,20 +16802,6 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
-"Fo" = (
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_x = 28;
-	
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor,
-/turf/closed/shuttle{
-	icon_state = "diagonalWall3"
-	},
-/area/sulaco/hallway/central_hall3)
 "Fp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -56106,7 +56101,7 @@ av
 ns
 ns
 ns
-qy
+nA
 tZ
 vG
 xj
@@ -58159,7 +58154,7 @@ jW
 kW
 aV
 kZ
-nA
+mt
 pV
 ru
 oJ
@@ -59957,7 +59952,7 @@ gF
 gF
 lb
 lb
-mt
+lJ
 oL
 qb
 rA
@@ -60213,7 +60208,7 @@ hJ
 iu
 jf
 lc
-lJ
+eq
 nB
 nM
 qc
@@ -66138,7 +66133,7 @@ Ax
 Ax
 CY
 DW
-EL
+qy
 Gu
 Hg
 Is
@@ -69738,7 +69733,7 @@ Ca
 zp
 Fw
 zo
-Fo
+EL
 Cc
 Js
 wd
@@ -74854,7 +74849,7 @@ aa
 aa
 aa
 aa
-eq
+ie
 fh
 fY
 hi
@@ -75111,7 +75106,7 @@ aa
 aa
 aa
 aa
-eq
+ie
 fb
 fY
 hj
@@ -75368,7 +75363,7 @@ aa
 aa
 aa
 aa
-eq
+ie
 fj
 fZ
 hk
@@ -75625,7 +75620,7 @@ aa
 aa
 aa
 aa
-eq
+ie
 fj
 dz
 hl
@@ -75883,7 +75878,7 @@ aa
 aa
 aa
 dA
-eq
+ie
 dz
 hm
 ij

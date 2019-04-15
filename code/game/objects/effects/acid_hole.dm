@@ -117,8 +117,8 @@
 	var/turf/Target = get_step(src, crawl_dir)
 
 	//Throwing Grenades
-	if(istype(W,/obj/item/explosive/grenade))
-		var/obj/item/explosive/grenade/G = W
+	if(istype(W,/obj/item/grenade))
+		var/obj/item/grenade/G = W
 
 		if(!Target ||Target.density)
 			to_chat(user, "<span class='warning'>This hole leads nowhere!</span>")

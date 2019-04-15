@@ -1540,7 +1540,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(get_turf(P))
 
 /datum/ammo/flare/proc/drop_nade(var/turf/T)
-	var/obj/item/explosive/grenade/flare/G = new (T)
+	var/obj/item/grenade/flare/G = new (T)
 	G.visible_message("<span class='warning'>\A [G] bursts into brilliant light nearby!</span>")
 	G.turn_on()
 
@@ -1564,7 +1564,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "grenade shell"
 	ping = null
 	damage_type = BRUTE
-	var/nade_type = /obj/item/explosive/grenade/frag
+	var/nade_type = /obj/item/grenade/frag
 	icon_state = "grenade"
 	armor_type = "bomb"
 
@@ -1587,12 +1587,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(get_turf(P))
 
 /datum/ammo/grenade_container/proc/drop_nade(var/turf/T)
-	var/obj/item/explosive/grenade/G = new nade_type(T)
+	var/obj/item/grenade/G = new nade_type(T)
 	G.visible_message("<span class='warning'>\A [G] lands on [T]!</span>")
 	G.det_time = 10
 	G.activate()
 
 /datum/ammo/grenade_container/smoke
 	name = "smoke grenade shell"
-	nade_type = /obj/item/explosive/grenade/smokebomb
+	nade_type = /obj/item/grenade/smokebomb
 	icon_state = "smoke_shell"

@@ -35,8 +35,8 @@
 
 /datum/outfit/job/upp/commando/stanard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/upp, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/upp, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/upp, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/upp, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/small_stack, SLOT_IN_BACKPACK)
@@ -45,13 +45,13 @@
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/grenade/phosphorus/upp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/grenade/phosphorus/upp, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/chameleon, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/plastique, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/plastique, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 
@@ -87,8 +87,8 @@
 
 /datum/outfit/job/upp/commando/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/upp, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/upp, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/upp, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/upp, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/healthanalyzer, SLOT_IN_BACKPACK)
@@ -98,8 +98,8 @@
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/grenade/phosphorus/upp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/grenade/phosphorus/upp, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/chameleon, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71, SLOT_IN_BACKPACK)
@@ -140,8 +140,8 @@
 
 /datum/outfit/job/upp/commando/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/upp, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/upp, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/upp, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/upp, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
@@ -153,8 +153,8 @@
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/grenade/phosphorus/upp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/grenade/phosphorus/upp, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/small_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/chameleon, SLOT_IN_BACKPACK)

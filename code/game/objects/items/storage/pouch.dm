@@ -60,8 +60,8 @@
 	name = "bayonet sheath"
 	desc = "A pouch for your knives."
 	can_hold = list(
-		/obj/item/weapon/combat_knife, 
-		/obj/item/weapon/throwing_knife, 
+		/obj/item/weapon/combat_knife,
+		/obj/item/weapon/throwing_knife,
 		/obj/item/attachable/bayonet)
 	icon_state = "bayonet"
 	storage_slots = 3
@@ -234,20 +234,20 @@
 	storage_slots = 4
 	max_w_class = 3
 	can_hold = list(
-		/obj/item/explosive/plastique,
-		/obj/item/explosive/mine,
-		/obj/item/explosive/grenade,
+		/obj/item/plastique,
+		/obj/item/mine,
+		/obj/item/grenade,
 		/obj/item/storage/box/explosive_mines,
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/radio/detpack,
 		/obj/item/assembly/signaler)
 
 /obj/item/storage/pouch/explosive/full
-	fill_type = /obj/item/explosive/grenade/frag
+	fill_type = /obj/item/grenade/frag
 	fill_number = 3
 
 /obj/item/storage/pouch/explosive/upp
-	fill_type = /obj/item/explosive/plastique
+	fill_type = /obj/item/plastique
 	fill_number = 3
 
 /obj/item/storage/pouch/medical
@@ -314,7 +314,7 @@
 	icon_state = "document"
 	storage_slots = 7
 	can_hold = list(
-		/obj/item/paper, 
+		/obj/item/paper,
 		/obj/item/clipboard)
 
 
@@ -327,7 +327,7 @@
 	icon_state = "flare"
 	can_hold = list(
 		/obj/item/flashlight/flare,
-		/obj/item/explosive/grenade/flare)
+		/obj/item/grenade/flare)
 
 /obj/item/storage/pouch/flare/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/storage/box/m94))
@@ -353,7 +353,7 @@
 		return ..()
 
 /obj/item/storage/pouch/flare/full
-	fill_type = /obj/item/explosive/grenade/flare
+	fill_type = /obj/item/grenade/flare
 	fill_number = 5
 
 /obj/item/storage/pouch/radio

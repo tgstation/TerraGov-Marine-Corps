@@ -70,7 +70,7 @@
 		/obj/item/tool/soap/deluxe,
 		/obj/item/tool/pickaxe/silver,
 		/obj/item/tool/pen/invisible,
-		/obj/item/explosive/grenade/smokebomb,
+		/obj/item/grenade/smokebomb,
 		/obj/item/corncob,
 		/obj/item/contraband/poster,
 		/obj/item/book/manual/barman_recipes,

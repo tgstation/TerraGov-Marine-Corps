@@ -823,13 +823,13 @@
 							list("Sandbags x25", 10, /obj/item/stack/sandbags_empty/half, null, "orange"),
 							list("Plasma cutter", 20, /obj/item/tool/pickaxe/plasmacutter, null, "black"),
 							list("UA-580 point defense sentry kit", 26, /obj/item/storage/box/minisentry, null, "black"),
-							list("Plastique explosive", 3, /obj/item/explosive/plastique, null, "black"),
+							list("Plastique explosive", 3, /obj/item/plastique, null, "black"),
 							list("Detonation pack", 5, /obj/item/radio/detpack, null, "black"),
 							list("Entrenching tool", 1, /obj/item/tool/shovel/etool, null, "black"),
 							list("Range Finder", 10, /obj/item/binoculars/tactical/range, null, "black"),
 							list("High capacity powercell", 1, /obj/item/cell/high, null, "black"),
 							list("M20 mine box", 18, /obj/item/storage/box/explosive_mines, null, "black"),
-							list("Incendiary grenade", 6, /obj/item/explosive/grenade/incendiary, null, "black"),
+							list("Incendiary grenade", 6, /obj/item/grenade/incendiary, null, "black"),
 							list("Multitool", 1, /obj/item/multitool, null, "black"),
 							list("General circuit board", 1, /obj/item/circuitboard/general, null, "black"),
 							list("Signaler (for detpacks)", 1, /obj/item/assembly/signaler, null, "black"),
@@ -974,13 +974,13 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 							list("Orbital beacon", 15, /obj/item/squad_beacon/bomb, null, "black"),
 							list("Entrenching tool", 1, /obj/item/tool/shovel/etool, null, "black"),
 							list("Sandbags x25", 10, /obj/item/stack/sandbags_empty/half, null, "black"),
-							list("Plastique explosive", 3, /obj/item/explosive/plastique, null, "black"),
+							list("Plastique explosive", 3, /obj/item/plastique, null, "black"),
 							list("Detonation pack", 5, /obj/item/radio/detpack, null, "black"),
-							list("Smoke grenade", 2, /obj/item/explosive/grenade/smokebomb, null, "black"),
-							list("Cloak grenade", 3, /obj/item/explosive/grenade/cloakbomb, null, "black"),
-							list("M40 HIDP incendiary grenade", 3, /obj/item/explosive/grenade/incendiary, null, "black"),
-							list("M40 HEDP grenade", 3, /obj/item/explosive/grenade/frag, null, "black"),
-							list("M40 IMDP grenade", 3, /obj/item/explosive/grenade/impact, null, "black"),
+							list("Smoke grenade", 2, /obj/item/grenade/smokebomb, null, "black"),
+							list("Cloak grenade", 3, /obj/item/grenade/cloakbomb, null, "black"),
+							list("M40 HIDP incendiary grenade", 3, /obj/item/grenade/incendiary, null, "black"),
+							list("M40 HEDP grenade", 3, /obj/item/grenade/frag, null, "black"),
+							list("M40 IMDP grenade", 3, /obj/item/grenade/impact, null, "black"),
 							list("M41AE2 heavy pulse rifle", 12, /obj/item/weapon/gun/rifle/lmg, null, "orange"),
 							list("M41AE2 magazine", 4, /obj/item/ammo_magazine/rifle/lmg, null, "black"),
 							list("Flamethrower", 12, /obj/item/weapon/gun/flamer, null, "orange"),
@@ -1101,7 +1101,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 
 /obj/effect/essentials_set/engi
 	spawned_gear_list = list(
-						/obj/item/explosive/plastique,
+						/obj/item/plastique,
 						/obj/item/stack/sandbags_empty = 25,
 						/obj/item/stack/sheet/metal/small_stack,
 						/obj/item/cell/high,
@@ -1114,7 +1114,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 
 /obj/effect/essentials_set/leader
 	spawned_gear_list = list(
-						/obj/item/explosive/plastique,
+						/obj/item/plastique,
 						/obj/item/squad_beacon,
 						/obj/item/squad_beacon,
 						/obj/item/squad_beacon/bomb,

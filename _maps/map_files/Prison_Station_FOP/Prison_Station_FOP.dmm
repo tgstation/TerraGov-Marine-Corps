@@ -51862,22 +51862,22 @@
 /area/prison/security/armory/riot)
 "clT" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/smokebomb,
-/obj/item/explosive/grenade/smokebomb,
-/obj/item/explosive/grenade/smokebomb,
-/obj/item/explosive/grenade/smokebomb,
-/obj/item/explosive/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
 /turf/open/floor/prison,
 /area/prison/security/armory/riot)
 "clU" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/frag/m15,
-/obj/item/explosive/grenade/frag/m15,
+/obj/item/grenade/frag/m15,
+/obj/item/grenade/frag/m15,
 /turf/open/floor/prison,
 /area/prison/security/armory/lethal)
 "clV" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/frag/m15,
+/obj/item/grenade/frag/m15,
 /turf/open/floor/prison,
 /area/prison/security/armory/lethal)
 "clW" = (
@@ -52503,10 +52503,10 @@
 /area/prison/security/armory/riot)
 "cnw" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/incendiary,
-/obj/item/explosive/grenade/incendiary,
-/obj/item/explosive/grenade/incendiary,
-/obj/item/explosive/grenade/incendiary,
+/obj/item/grenade/incendiary,
+/obj/item/grenade/incendiary,
+/obj/item/grenade/incendiary,
+/obj/item/grenade/incendiary,
 /turf/open/floor/prison,
 /area/prison/security/armory/lethal)
 "cnx" = (
@@ -90303,8 +90303,6 @@ aab
 aab
 aab
 acD
-aab
-aab
 aab
 aab
 aab

@@ -916,7 +916,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 
-/obj/item/attachable/attached_gun/grenade/reload_attachment(obj/item/explosive/grenade/G, mob/user)
+/obj/item/attachable/attached_gun/grenade/reload_attachment(obj/item/grenade/G, mob/user)
 	if(!istype(G))
 		to_chat(user, "<span class='warning'>[src] doesn't accept that type of grenade.</span>")
 		return
@@ -945,7 +945,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/attached_gun/grenade/proc/prime_grenade(atom/target, obj/item/weapon/gun/gun, mob/living/user)
 	set waitfor = FALSE
 	var/nade_type = loaded_grenades[1]
-	var/obj/item/explosive/grenade/frag/G = new nade_type (get_turf(gun))
+	var/obj/item/grenade/frag/G = new nade_type (get_turf(gun))
 	playsound(user.loc, fire_sound, 50, 1)
 	log_explosion("[key_name(user)] fired a grenade [G] from [src] at [AREACOORD(user.loc)].")
 	log_combat(user, src, "fired a grenade [G] from")

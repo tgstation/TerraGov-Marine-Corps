@@ -1272,8 +1272,8 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/table,
 /obj/item/clipboard,
-/obj/item/explosive/grenade/chem_grenade/large,
-/obj/item/explosive/grenade/chem_grenade/large,
+/obj/item/grenade/chem_grenade/large,
+/obj/item/grenade/chem_grenade/large,
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	dir = 4
@@ -1565,8 +1565,7 @@
 "dD" = (
 /obj/structure/table,
 /obj/machinery/light{
-	dir = 8;
-	
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/item/taperecorder,
@@ -1976,11 +1975,11 @@
 	},
 /obj/structure/rack,
 /obj/item/weapon/gun/launcher/m92,
-/obj/item/explosive/grenade/frag,
-/obj/item/explosive/grenade/frag,
-/obj/item/explosive/grenade/frag,
-/obj/item/explosive/grenade/frag,
-/obj/item/explosive/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
 /obj/item/ammo_magazine/rifle/lmg,
 /obj/item/weapon/gun/rifle/lmg,
 /turf/open/floor{
@@ -4883,8 +4882,20 @@
 /turf/open/floor/plating,
 /area/sulaco/telecomms)
 "kI" = (
-/turf/open/floor/engine/vacuum,
-/area/sulaco/telecomms)
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/sulaco/hangar)
 "kJ" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/engine/vacuum,
@@ -5843,10 +5854,6 @@
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "mR" = (
-/obj/machinery/message_server{
-	icon_state = "server-on";
-	name = "M.O.T.H.E.R. Control Box"
-	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "mS" = (
@@ -5861,14 +5868,6 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"mU" = (
-/obj/machinery/computer/message_monitor{
-	req_one_access_txt = "19;200"
-	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
-/area/sulaco/telecomms/office)
 "mV" = (
 /turf/open/floor{
 	icon_state = "dark"
@@ -6449,21 +6448,6 @@
 "oD" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
-/area/sulaco/hangar)
-"oE" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
 /area/sulaco/hangar)
 "oF" = (
 /obj/structure/closet/crate/secure/loot,
@@ -32979,11 +32963,11 @@ hy
 ip
 iT
 jN
-kI
+mR
 lC
 mi
 mQ
-kI
+mR
 nJ
 iT
 aa
@@ -33236,11 +33220,11 @@ hz
 iq
 iT
 jO
-kI
-kI
-kI
-kI
-kI
+mR
+mR
+mR
+mR
+mR
 nK
 iT
 aa
@@ -33493,11 +33477,11 @@ hA
 ir
 iT
 jP
-kI
-lD
-kI
 mR
-kI
+lD
+mR
+mR
+mR
 nL
 iT
 aa
@@ -33750,11 +33734,11 @@ hA
 is
 iT
 jQ
-kI
+mR
 lE
-kI
+mR
 mS
-kI
+mR
 nM
 iT
 jM
@@ -34008,11 +33992,11 @@ it
 iT
 iT
 kJ
-kI
-kI
-kI
-kI
-kI
+mR
+mR
+mR
+mR
+mR
 iT
 nw
 jM
@@ -34264,12 +34248,12 @@ hA
 iu
 iU
 jR
-kI
-kI
-kI
-kI
-kI
-kI
+mR
+mR
+mR
+mR
+mR
+mR
 iT
 nw
 nw
@@ -34526,7 +34510,7 @@ lF
 mj
 mT
 nr
-kI
+mR
 oj
 nV
 nw
@@ -35035,10 +35019,10 @@ hE
 ir
 iW
 jU
-kI
+mR
 lG
 mk
-mU
+mV
 ns
 nN
 iZ
@@ -35292,7 +35276,7 @@ hD
 ir
 iW
 jV
-kI
+mR
 lG
 ml
 mV
@@ -43781,7 +43765,7 @@ nC
 og
 af
 af
-oE
+kI
 ae
 pe
 pe

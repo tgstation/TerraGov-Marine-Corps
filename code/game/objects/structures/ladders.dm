@@ -180,8 +180,8 @@
 //Throwing Shiet
 /obj/structure/ladder/attackby(obj/item/W, mob/user)
 	//Throwing Grenades
-	if(istype(W,/obj/item/explosive/grenade))
-		var/obj/item/explosive/grenade/G = W
+	if(istype(W,/obj/item/grenade))
+		var/obj/item/grenade/G = W
 		var/ladder_dir_name
 		var/obj/structure/ladder/ladder_dest
 		if(up && down)

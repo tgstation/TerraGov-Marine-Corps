@@ -1,4 +1,4 @@
-/obj/item/explosive/grenade/chem_grenade
+/obj/item/grenade/chem_grenade
 	name = "Grenade Casing"
 	icon_state = "chemg"
 	item_state = "flashbang"
@@ -13,11 +13,11 @@
 	var/list/allowed_containers = list(/obj/item/reagent_container/glass/beaker, /obj/item/reagent_container/glass/bottle)
 	var/affected_area = 3
 
-/obj/item/explosive/grenade/chem_grenade/Initialize(mapload, ...)
+/obj/item/grenade/chem_grenade/Initialize(mapload, ...)
 	. = ..()
 	create_reagents(1000)
 
-/obj/item/explosive/grenade/chem_grenade/attack_self(mob/user as mob)
+/obj/item/grenade/chem_grenade/attack_self(mob/user as mob)
 	if(stage <= 1)
 		if(detonator)
 			detonator.detached()
@@ -34,7 +34,7 @@
 	else
 		..()
 
-/obj/item/explosive/grenade/chem_grenade/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/grenade/chem_grenade/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(istype(W,/obj/item/assembly_holder) && (!stage || stage==1) && path != 2)
 		var/obj/item/assembly_holder/det = W
@@ -94,12 +94,12 @@
 			else
 				to_chat(user, "<span class='warning'>\the [W] is empty.</span>")
 
-/obj/item/explosive/grenade/chem_grenade/examine(mob/user)
+/obj/item/grenade/chem_grenade/examine(mob/user)
 	..()
 	if(detonator)
 		to_chat(user, "With attached [detonator.name]")
 
-/obj/item/explosive/grenade/chem_grenade/activate(mob/user as mob)
+/obj/item/grenade/chem_grenade/activate(mob/user as mob)
 	if(active) return
 
 	if(detonator)
@@ -117,11 +117,11 @@
 
 	return
 
-/obj/item/explosive/grenade/chem_grenade/proc/primed(var/primed = 1)
+/obj/item/grenade/chem_grenade/proc/primed(var/primed = 1)
 	if(active)
 		icon_state = initial(icon_state) + (primed?"_primed":"_active")
 
-/obj/item/explosive/grenade/chem_grenade/prime()
+/obj/item/grenade/chem_grenade/prime()
 	if(!stage || stage<2) return
 
 	//if(prob(reliability))
@@ -161,7 +161,7 @@
 			qdel(src)	   //correctly before deleting the grenade.
 
 
-/obj/item/explosive/grenade/chem_grenade/large
+/obj/item/grenade/chem_grenade/large
 	name = "Large Chem Grenade"
 	desc = "An oversized grenade that affects a larger area."
 	icon_state = "large_grenade"
@@ -170,14 +170,14 @@
 	affected_area = 4
 
 
-/obj/item/explosive/grenade/chem_grenade/metalfoam
+/obj/item/grenade/chem_grenade/metalfoam
 	name = "Metal-Foam Grenade"
 	desc = "Used for emergency sealing of air breaches."
 	dangerous = FALSE
 	path = 1
 	stage = 2
 
-/obj/item/explosive/grenade/chem_grenade/metalfoam/New()
+/obj/item/grenade/chem_grenade/metalfoam/New()
 	..()
 	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_container/glass/beaker/B2 = new(src)
@@ -193,13 +193,13 @@
 	icon_state = initial(icon_state) +"_locked"
 
 
-/obj/item/explosive/grenade/chem_grenade/incendiary
+/obj/item/grenade/chem_grenade/incendiary
 	name = "Incendiary Grenade"
 	desc = "Used for clearing rooms of living things."
 	path = 1
 	stage = 2
 
-/obj/item/explosive/grenade/chem_grenade/incendiary/New()
+/obj/item/grenade/chem_grenade/incendiary/New()
 	..()
 	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_container/glass/beaker/B2 = new(src)
@@ -217,14 +217,14 @@
 	icon_state = initial(icon_state) +"_locked"
 
 
-/obj/item/explosive/grenade/chem_grenade/antiweed
+/obj/item/grenade/chem_grenade/antiweed
 	name = "weedkiller grenade"
 	desc = "Used for purging large areas of invasive plant species. Contents under pressure. Do not directly inhale contents."
 	dangerous = FALSE
 	path = 1
 	stage = 2
 
-/obj/item/explosive/grenade/chem_grenade/antiweed/New()
+/obj/item/grenade/chem_grenade/antiweed/New()
 	..()
 	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_container/glass/beaker/B2 = new(src)
@@ -241,14 +241,14 @@
 	icon_state = initial(icon_state) +"_locked"
 
 
-/obj/item/explosive/grenade/chem_grenade/cleaner
+/obj/item/grenade/chem_grenade/cleaner
 	name = "cleaner grenade"
 	desc = "BLAM!-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
 	dangerous = FALSE
 	stage = 2
 	path = 1
 
-/obj/item/explosive/grenade/chem_grenade/cleaner/New()
+/obj/item/grenade/chem_grenade/cleaner/New()
 	..()
 	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_container/glass/beaker/B2 = new(src)
@@ -266,12 +266,12 @@
 
 
 
-/obj/item/explosive/grenade/chem_grenade/teargas
+/obj/item/grenade/chem_grenade/teargas
 	name = "\improper M66 teargas grenade"
 	desc = "Tear gas grenade used for nonlethal riot control. Please wear adequate gas protection."
 	stage = 2
 
-/obj/item/explosive/grenade/chem_grenade/teargas/New()
+/obj/item/grenade/chem_grenade/teargas/New()
 	..()
 	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_container/glass/beaker/B2 = new(src)
@@ -289,7 +289,7 @@
 	icon_state = initial(icon_state) +"_locked"
 
 
-/obj/item/explosive/grenade/chem_grenade/teargas/attack_self(mob/user)
+/obj/item/grenade/chem_grenade/teargas/attack_self(mob/user)
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return

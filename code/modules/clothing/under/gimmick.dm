@@ -72,7 +72,7 @@
 			/obj/item/ammo_magazine/,
 			/obj/item/storage/fancy/cigarettes,
 			/obj/item/tool/lighter,
-			/obj/item/explosive/grenade,
+			/obj/item/grenade,
 			/obj/item/binoculars,
 			/obj/item/weapon/combat_knife,
 			/obj/item/storage/sparepouch,

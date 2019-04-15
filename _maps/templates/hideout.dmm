@@ -1,19 +1,144 @@
-"a" = (/turf/closed/wall/r_wall/chigusa,/area/shipyard/bunker/administration)
-"b" = (/turf/open/floor/vault,/area/shipyard/bunker/administration)
-"c" = (/obj/machinery/door/airlock/vault,/turf/open/floor/vault,/area/shipyard/bunker/administration)
-"d" = (/obj/machinery/power/apc/supercharged{dir = 1},/turf/open/floor/vault,/area/shipyard/bunker/administration)
-"e" = (/obj/machinery/alarm{dir = 1},/turf/open/floor/vault,/area/shipyard/bunker/administration)
-"f" = (/obj/machinery/firealarm{dir = 1},/turf/open/floor/vault,/area/shipyard/bunker/administration)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall/r_wall/chigusa,
+/area/bunker)
+"b" = (
+/turf/open/floor/vault,
+/area/bunker)
+"c" = (
+/obj/machinery/door/airlock/vault,
+/turf/open/floor/vault,
+/area/bunker)
+"d" = (
+/obj/machinery/power/apc/hyper,
+/turf/open/floor/vault,
+/area/bunker)
+"e" = (
+/obj/machinery/alarm,
+/turf/open/floor/vault,
+/area/bunker)
+"f" = (
+/obj/machinery/firealarm,
+/turf/open/floor/vault,
+/area/bunker)
 
 (1,1,1) = {"
-aaaaaaaaaa
-adefbbbbba
-abbbbbbbba
-abbbbbbbba
-abbbbbbbba
-abbbbbbbba
-abbbbbbbba
-abbbbbbbba
-abbbbbbbba
-aaaaccaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+d
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+e
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(4,1,1) = {"
+a
+f
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(5,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+c
+"}
+(6,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+c
+"}
+(7,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(9,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

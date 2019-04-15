@@ -102,7 +102,7 @@
 						/obj/item/tool/crowbar,
 						/obj/item/flashlight,
 						/obj/item/reagent_container/food/snacks/donkpocket,
-						/obj/item/explosive/grenade/smokebomb,
+						/obj/item/grenade/smokebomb,
 						/obj/item/circuitboard/airlock,
 						/obj/item/assembly/igniter,
 						/obj/item/tool/weldingtool,
@@ -240,7 +240,7 @@
 					/obj/item/weapon/gun/pistol/m4a3/custom = /obj/item/ammo_magazine/pistol/incendiary,
 					/obj/item/weapon/gun/rifle/m41aMK1 = /obj/item/ammo_magazine/rifle/m41aMK1,
 					/obj/item/weapon/gun/rifle/lmg = /obj/item/ammo_magazine/rifle/lmg,
-					/obj/item/weapon/gun/launcher/m81 = /obj/item/explosive/grenade/phosphorus
+					/obj/item/weapon/gun/launcher/m81 = /obj/item/grenade/phosphorus
 					)
 
 /obj/structure/largecrate/guns/New()

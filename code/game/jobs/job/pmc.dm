@@ -35,8 +35,8 @@
 
 /datum/outfit/job/pmc/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/PMC, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/PMC, SLOT_IN_SUIT)
 
 
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
@@ -80,15 +80,15 @@
 
 /datum/outfit/job/pmc/gunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/PMC, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/PMC, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_HEAD)
 
 	H.equip_to_slot_or_del(new /obj/item/handcuffs, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/mine/pmc, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/mine/pmc, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/plastique, SLOT_IN_R_POUCH)
 
 
 //PMC Sniper
@@ -122,8 +122,8 @@
 
 /datum/outfit/job/pmc/sniper/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/PMC, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/PMC, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_HEAD)
@@ -166,8 +166,8 @@
 
 /datum/outfit/job/pmc/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/PMC, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/grenade/frag/PMC, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_HEAD)
@@ -177,4 +177,4 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/baton, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/handcuffs, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/plastique, SLOT_IN_BACKPACK)

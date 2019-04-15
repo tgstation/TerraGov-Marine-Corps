@@ -76,4 +76,4 @@
 
 	New()
 		..()
-		new /obj/item/explosive/grenade/flashbang/clusterbang(src)
+		new /obj/item/grenade/flashbang/clusterbang(src)

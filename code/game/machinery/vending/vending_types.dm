@@ -246,7 +246,7 @@
 	req_access_txt = "3"
 	products = list(/obj/item/handcuffs = 8,
 					/obj/item/handcuffs/zip = 10,
-					/obj/item/explosive/grenade/flashbang = 4,
+					/obj/item/grenade/flashbang = 4,
 					/obj/item/flash = 5,
 					/obj/item/reagent_container/food/snacks/donut/normal = 12,
 					/obj/item/storage/box/evidence = 6,
@@ -399,7 +399,7 @@
 			R.amount = amount
 			R.price = price
 
-			if(ispath(typepath,/obj/item/weapon/gun) || ispath(typepath,/obj/item/ammo_magazine) || ispath(typepath,/obj/item/explosive/grenade) || ispath(typepath,/obj/item/weapon/gun/flamer) || ispath(typepath,/obj/item/storage) )
+			if(ispath(typepath,/obj/item/weapon/gun) || ispath(typepath,/obj/item/ammo_magazine) || ispath(typepath,/obj/item/grenade) || ispath(typepath,/obj/item/weapon/gun/flamer) || ispath(typepath,/obj/item/storage) )
 				R.display_color = "black"
 //			else if(ispath(typepath,/obj/item/clothing) || ispath(typepath,/obj/item/storage))
 //				R.display_color = "green"

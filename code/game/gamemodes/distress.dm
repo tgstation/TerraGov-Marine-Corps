@@ -451,12 +451,12 @@
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 20),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 10),
 						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 10),
-						/obj/item/explosive/mine = round(scale * 2),
+						/obj/item/mine = round(scale * 2),
 						/obj/item/storage/box/nade_box = round(scale * 2),
-						/obj/item/explosive/grenade/frag/m15 = round(scale * 2),
-						/obj/item/explosive/grenade/incendiary = round(scale * 4),
-						/obj/item/explosive/grenade/smokebomb = round(scale * 5),
-						/obj/item/explosive/grenade/cloakbomb = round(scale * 3),
+						/obj/item/grenade/frag/m15 = round(scale * 2),
+						/obj/item/grenade/incendiary = round(scale * 4),
+						/obj/item/grenade/smokebomb = round(scale * 5),
+						/obj/item/grenade/cloakbomb = round(scale * 3),
 						/obj/item/storage/box/m94 = round(scale * 30),
 						/obj/item/flashlight/combat = round(scale * 5),
 						/obj/item/clothing/mask/gas = round(scale * 10)
@@ -615,7 +615,7 @@
 	var/input = {"Bioscan complete.
 
 Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[xenoLocationS ? " including one in [xenoLocationS]" : ""] and [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[numXenosPlanetr > 0 && xenoLocationP ? ", including one in [xenoLocationP]":""]."}
-	
+
 	command_announcement.Announce(input, name, new_sound = 'sound/AI/bioscan.ogg')
 
 	log_admin("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""].")

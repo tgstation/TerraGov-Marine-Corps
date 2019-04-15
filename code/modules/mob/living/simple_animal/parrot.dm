@@ -656,8 +656,8 @@
 		return 0
 
 	if(!drop_gently)
-		if(istype(held_item, /obj/item/explosive/grenade))
-			var/obj/item/explosive/grenade/G = held_item
+		if(istype(held_item, /obj/item/grenade))
+			var/obj/item/grenade/G = held_item
 			G.loc = src.loc
 			G.prime()
 			to_chat(src, "You let go of the [held_item]!")

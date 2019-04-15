@@ -23,7 +23,7 @@
 
 			if("guns")
 				new /obj/item/card/emag(src)
-				new /obj/item/explosive/plastique(src)
+				new /obj/item/plastique(src)
 				return
 
 			if("murder")

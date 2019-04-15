@@ -472,7 +472,7 @@
 /obj/item/weapon/gun/launcher/m92/Initialize()
 	. = ..()
 	for(var/i in 1 to 6)
-		grenades += new /obj/item/explosive/grenade/frag(src)
+		grenades += new /obj/item/grenade/frag(src)
 
 /obj/item/weapon/gun/launcher/m92/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/tacshottie_fire_delay)
@@ -490,7 +490,7 @@
 
 
 /obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user)
-	if((istype(I, /obj/item/explosive/grenade)))
+	if((istype(I, /obj/item/grenade)))
 		if(grenades.len < max_grenades)
 			if(user.transferItemToLoc(I, src))
 				grenades += I
@@ -532,7 +532,7 @@
 
 /obj/item/weapon/gun/launcher/m92/unload(mob/user)
 	if(grenades.len)
-		var/obj/item/explosive/grenade/nade = grenades[grenades.len] //Grab the last one.
+		var/obj/item/grenade/nade = grenades[grenades.len] //Grab the last one.
 		if(user)
 			user.put_in_hands(nade)
 			playsound(user, unload_sound, 25, 1)
@@ -549,7 +549,7 @@
 	for(var/mob/O in viewers(world.view, user))
 		O.show_message(text("<span class='danger'>[] fired a grenade!</span>", user), 1)
 	to_chat(user, "<span class='warning'>You fire the grenade launcher!</span>")
-	var/obj/item/explosive/grenade/F = grenades[1]
+	var/obj/item/grenade/F = grenades[1]
 	grenades -= F
 	F.loc = user.loc
 	F.throw_range = 20
@@ -595,7 +595,7 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
 	attachable_allowed = list()
 	var/grenade
-	var/grenade_type_allowed = /obj/item/explosive/grenade
+	var/grenade_type_allowed = /obj/item/grenade
 	var/riot_version
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
@@ -603,9 +603,9 @@
 	. = ..()
 	if(!spawn_empty)
 		if(riot_version)
-			grenade = new /obj/item/explosive/grenade/chem_grenade/teargas(src)
+			grenade = new /obj/item/grenade/chem_grenade/teargas(src)
 		else
-			grenade = new /obj/item/explosive/grenade/frag(src)
+			grenade = new /obj/item/grenade/frag(src)
 
 /obj/item/weapon/gun/launcher/m81/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 1.5
@@ -621,7 +621,7 @@
 
 
 /obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user)
-	if((istype(I, /obj/item/explosive/grenade)))
+	if((istype(I, /obj/item/grenade)))
 		if((istype(I, grenade_type_allowed)))
 			if(!grenade)
 				if(user.transferItemToLoc(I, src))
@@ -658,7 +658,7 @@
 
 /obj/item/weapon/gun/launcher/m81/unload(mob/user)
 	if(grenade)
-		var/obj/item/explosive/grenade/nade = grenade
+		var/obj/item/grenade/nade = grenade
 		if(user)
 			user.put_in_hands(nade)
 			playsound(user, unload_sound, 25, 1)
@@ -673,7 +673,7 @@
 	last_fired = world.time
 	user.visible_message("<span class='danger'>[user] fired a grenade!</span>", \
 						 "<span class='warning'>You fire the grenade launcher!</span>")
-	var/obj/item/explosive/grenade/F = grenade
+	var/obj/item/grenade/F = grenade
 	grenade = null
 	F.loc = user.loc
 	F.throw_range = 20
@@ -693,7 +693,7 @@
 /obj/item/weapon/gun/launcher/m81/riot
 	name = "\improper M81 riot grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by the TerraGov Marine Corps Military Police during riots."
-	grenade_type_allowed = /obj/item/explosive/grenade/chem_grenade
+	grenade_type_allowed = /obj/item/grenade/chem_grenade
 	riot_version = TRUE
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_POLICE|GUN_WIELDED_FIRING_ONLY
 	req_access = list(ACCESS_MARINE_BRIG)

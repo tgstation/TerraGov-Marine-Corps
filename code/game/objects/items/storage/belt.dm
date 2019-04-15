@@ -113,7 +113,7 @@
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/handful,
 		/obj/item/flashlight/flare,
-		/obj/item/explosive/grenade/flare,
+		/obj/item/grenade/flare,
 		/obj/item/reagent_container/hypospray,
 	    /obj/item/bodybag,
 	    /obj/item/defibrillator,
@@ -193,8 +193,8 @@
 	max_w_class = 3
 	max_storage_space = 21
 	can_hold = list(
-		/obj/item/explosive/grenade/flashbang,
-		/obj/item/explosive/grenade/chem_grenade/teargas,
+		/obj/item/grenade/flashbang,
+		/obj/item/grenade/chem_grenade/teargas,
 		/obj/item/reagent_container/spray/pepper,
 		/obj/item/handcuffs,
 		/obj/item/flash,
@@ -253,7 +253,7 @@
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/flashlight/flare,
-		/obj/item/explosive/grenade/flare,
+		/obj/item/grenade/flare,
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/cell/lasgun,
 		/obj/item/ammo_magazine/smg,
@@ -261,8 +261,8 @@
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
-		/obj/item/explosive/grenade,
-		/obj/item/explosive/mine,
+		/obj/item/grenade,
+		/obj/item/mine,
 		/obj/item/reagent_container/food/snacks
 		)
 
@@ -347,45 +347,45 @@
 	storage_slots = 8
 	max_w_class = 3
 	max_storage_space = 24
-	can_hold = list(/obj/item/explosive/grenade)
+	can_hold = list(/obj/item/grenade)
 
 
 /obj/item/storage/belt/grenade/standard/Initialize()
 	. = ..()
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/grenade/incendiary(src)
+	new /obj/item/grenade/incendiary(src)
+	new /obj/item/grenade/incendiary(src)
+	new /obj/item/grenade/incendiary(src)
+	new /obj/item/grenade/frag(src)
+	new /obj/item/grenade/frag(src)
+	new /obj/item/grenade/frag(src)
+	new /obj/item/grenade/frag(src)
 
 /obj/item/storage/belt/grenade/b18
 	w_class = 4
 	storage_slots = 16
 	max_w_class = 3
 	max_storage_space = 48
-	can_hold = list(/obj/item/explosive/grenade)
+	can_hold = list(/obj/item/grenade)
 
 /obj/item/storage/belt/grenade/b18/Initialize()
 	. = ..()
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/grenade/incendiary(src)
+	new /obj/item/grenade/incendiary(src)
+	new /obj/item/grenade/incendiary(src)
+	new /obj/item/grenade/incendiary(src)
+	new /obj/item/grenade/incendiary(src)
+	new /obj/item/grenade/incendiary(src)
+	new /obj/item/grenade/incendiary(src)
+	new /obj/item/grenade/incendiary(src)
+	new /obj/item/grenade/frag(src)
+	new /obj/item/grenade/frag(src)
+	new /obj/item/grenade/frag(src)
+	new /obj/item/grenade/frag(src)
+	new /obj/item/grenade/frag(src)
+	new /obj/item/grenade/frag(src)
+	new /obj/item/grenade/frag(src)
+	new /obj/item/grenade/frag(src)
 
 /obj/item/storage/sparepouch
 	name="\improper G8 general utility pouch"

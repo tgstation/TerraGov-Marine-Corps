@@ -137,7 +137,7 @@
 		dna.real_name = real_name
 
 	prev_gender = gender // Debug for plural genders
-	
+
 
 	//makes order hud visible
 	var/datum/mob_hud/H = huds[MOB_HUD_ORDER]
@@ -1484,7 +1484,7 @@
 			if(F.on)
 				goes_out++
 			F.turn_off(src)
-		for(var/obj/item/explosive/grenade/flare/FL in contents)
+		for(var/obj/item/grenade/flare/FL in contents)
 			if(FL.active)
 				goes_out++
 			FL.turn_off(src)

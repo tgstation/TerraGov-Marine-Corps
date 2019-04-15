@@ -1551,7 +1551,7 @@ datum/design/large_grenade
 	build_type = PROTOLATHE
 	materials = list("$metal" = 3000)
 	reliability_base = 79
-	build_path = "/obj/item/explosive/grenade/chem_grenade/large"
+	build_path = "/obj/item/grenade/chem_grenade/large"
 /*
 datum/design/smg
 	name = "Submachine Gun"

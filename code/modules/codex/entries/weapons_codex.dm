@@ -35,7 +35,7 @@
 		attach_strings += "This needs to be activated to be used."
 
 	if(flags_attach_features & ATTACH_RELOADABLE)
-		attach_strings += "This can be reloaded with the appropriate ammunition."	
+		attach_strings += "This can be reloaded with the appropriate ammunition."
 
 	attach_strings += "<br><U>Always on modifications</U>:<br>"
 
@@ -110,5 +110,5 @@
 	putting it inside a weapon recharger."
 
 /datum/codex_entry/mines
-	associated_paths = list(/obj/item/explosive/mine)
+	associated_paths = list(/obj/item/mine)
 	mechanics_text = "Claymores are best used in tandem with sentry guns that can shoot enemies which trip them, and ambushing marines concealed by tarps or cloaking devices."

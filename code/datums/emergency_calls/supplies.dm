@@ -20,9 +20,9 @@
 							/obj/item/ammo_magazine/shotgun/incendiary, \
 							/obj/item/ammo_magazine/shotgun/incendiary \
 							), \
-						list(/obj/item/explosive/plastique, \
-							/obj/item/explosive/plastique, \
-							/obj/item/explosive/plastique, \
+						list(/obj/item/plastique, \
+							/obj/item/plastique, \
+							/obj/item/plastique, \
 							/obj/item/radio/detpack, \
 							/obj/item/radio/detpack, \
 							/obj/item/assembly/signaler \
@@ -48,7 +48,7 @@
 /datum/emergency_call/supplies/spawn_items()
 	var/turf/drop_spawn
 	var/total = rand(3,6)
-	
+
 	for(var/i = 1 to total)
 		drop_spawn = get_spawn_point(1)
 

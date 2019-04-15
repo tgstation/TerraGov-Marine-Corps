@@ -1,4 +1,4 @@
-/obj/item/explosive/grenade
+/obj/item/grenade
 	name = "grenade"
 	desc = "A hand held grenade, with an adjustable timer."
 	w_class = 2.0
@@ -21,11 +21,11 @@
 	var/hud_state_empty = "grenade_empty"
 
 
-/obj/item/explosive/grenade/New()
+/obj/item/grenade/New()
 	. = ..()
 	det_time = rand(det_time - 10, det_time + 10)
 
-/obj/item/explosive/grenade/attack_self(mob/user)
+/obj/item/grenade/attack_self(mob/user)
 	if(active)
 		return
 
@@ -61,7 +61,7 @@
 			C.throw_mode_on()
 
 
-/obj/item/explosive/grenade/proc/activate(mob/user as mob)
+/obj/item/grenade/proc/activate(mob/user as mob)
 	if(active)
 		return
 
@@ -79,17 +79,17 @@
 		prime()
 		return
 
-/obj/item/explosive/grenade/proc/updateicon()
+/obj/item/grenade/proc/updateicon()
 	if(dangerous)
 		overlays+=new/obj/effect/overlay/danger
 		dangerous = 0
 	return
 
 
-/obj/item/explosive/grenade/proc/prime()
+/obj/item/grenade/proc/prime()
 
 
-/obj/item/explosive/grenade/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/grenade/attackby(obj/item/W as obj, mob/user as mob)
 	if(isscrewdriver(W))
 		switch(det_time)
 			if ("1")
@@ -108,10 +108,10 @@
 	..()
 	return
 
-/obj/item/explosive/grenade/attack_hand()
+/obj/item/grenade/attack_hand()
 	walk(src, null, null)
 	..()
 	return
 
-/obj/item/explosive/grenade/attack_paw(mob/user as mob)
+/obj/item/grenade/attack_paw(mob/user as mob)
 	return attack_hand(user)

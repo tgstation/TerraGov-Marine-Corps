@@ -216,9 +216,9 @@
 		to_chat(usr, "<span class='warning'>You have nothing to drop!</span>")
 		return 0
 
-	if(istype(held_item, /obj/item/explosive/grenade))
+	if(istype(held_item, /obj/item/grenade))
 		visible_message("<span class='warning'> [src] launches \the [held_item]!</span>", "<span class='warning'> You launch \the [held_item]!</span>", "You hear a skittering noise and a thump!")
-		var/obj/item/explosive/grenade/G = held_item
+		var/obj/item/grenade/G = held_item
 		G.forceMove(loc)
 		G.prime()
 		held_item = null
