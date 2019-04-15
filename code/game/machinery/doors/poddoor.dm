@@ -305,7 +305,7 @@
 	icon = 'icons/obj/doors/1x2blast_vert.dmi'
 
 	/obj/machinery/door/poddoor/two_tile_ver/Initialize()
-		..()
+	. = ..()
 		f1 = new/obj/machinery/door/poddoor/filler_object (loc)
 		f2 = new/obj/machinery/door/poddoor/filler_object (get_step(src,NORTH))
 		f1.density = density
