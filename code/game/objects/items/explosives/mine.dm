@@ -110,7 +110,6 @@
 	"<span class='danger'>[icon2html(src, viewers(H))] The [name] clicks as you move in front of it.</span>", \
 	"<span class='danger'>You hear a click.</span>")
 
-	triggered = TRUE
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
 
@@ -118,6 +117,7 @@
 /obj/item/explosive/mine/proc/trigger_explosion()
 	if(triggered)
 		return
+	triggered = TRUE
 	switch(trigger_type)
 		if("explosive")
 			explosion(tripwire ? tripwire.loc : loc, -1, -1, 2)
@@ -134,7 +134,6 @@
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
 
 	//We move the tripwire randomly in either of the four cardinal directions
-	triggered = TRUE
 	if(tripwire)
 		var/direction = pick(cardinal)
 		var/step_direction = get_step(src, direction)
