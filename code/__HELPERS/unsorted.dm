@@ -284,19 +284,14 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return TRUE
 
-/mob/living/carbon/human/fully_replace_character_name(oldname, newname)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(dna)
-		dna.real_name = real_name
-	return TRUE
-	
 
 /mob/living/carbon/human/fully_replace_character_name(oldname, newname)
 	. = ..()
 	if(!.)
 		return FALSE
+
+	if(dna)
+		dna.real_name = real_name
 
 	if(istype(wear_id))
 		var/obj/item/card/id/C = wear_id
