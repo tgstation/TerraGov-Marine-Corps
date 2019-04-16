@@ -56,3 +56,4 @@ var/datum/round_statistics/round_statistics = new()
 	var/defiler_neurogas_uses = 0
 	var/larval_growth_stings = 0
 	var/drone_salvage_plasma = 0
+	var/boiler_emitacidsmoke_uses = 0

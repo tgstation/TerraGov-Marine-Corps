@@ -600,6 +600,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Boiler defines
 
+#define BOILER_GAS_COOLDOWN					60 SECONDS
+#define BOILER_GAS_CHANNEL_TIME				0.5 SECONDS
+#define BOILER_GAS_DELAY					1 SECONDS
+#define BOILER_GAS_CLOUD_COUNT				2
 #define BOILER_LUMINOSITY					3
 
 //Hivelord defines

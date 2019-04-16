@@ -19,6 +19,9 @@
 	var/bomb_cooldown = 0
 	var/datum/effect_system/smoke_spread/xeno_acid/smoke
 	var/turf/bomb_turf = null
+	var/emitting_gas = FALSE
+	var/last_emit_acidgas = null
+	var/datum/effect_system/smoke_spread/smoke_system = null
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -28,6 +31,7 @@
 		/datum/action/xeno_action/toggle_long_range,
 		/datum/action/xeno_action/toggle_bomb,
 		/datum/action/xeno_action/activable/spray_acid,
+		/datum/action/xeno_action/activable/emit_acidgas
 		)
 
 // ***************************************

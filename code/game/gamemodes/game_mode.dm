@@ -102,7 +102,7 @@
 		if(!(player.client?.prefs?.be_special & role) || !player.ready)
 			continue
 		else if(jobban_isbanned(player, roletext) || is_banned_from(player.ckey, roletext))
-			continue	
+			continue
 		log_game("[key_name(player)] had [roletext] enabled, so we are drafting them.")
 		candidates += player.mind
 
@@ -143,7 +143,7 @@
 				msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (Dead)<br>"
 		else if(!D.can_reenter_corpse)
 			msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<b>Ghosted</b>)<br>"
-				
+
 
 	msg += "<hr>"
 
@@ -239,7 +239,7 @@
 			if(!length(spawns))
 				to_chat(world, "<br><br><h1><span class='danger'>End of Round Deathmatch initialization failed, please do not grief.</span></h1><br><br>")
 				return
-			
+
 			picked = pick(spawns)
 			spawns -= picked
 
@@ -250,7 +250,7 @@
 
 		if(!L.mind)
 			M.mind.transfer_to(L, TRUE)
-			
+
 		L.mind.bypass_ff = TRUE
 		L.forceMove(picked)
 		L.revive()
@@ -288,7 +288,7 @@
 		var/datum/recipient_awards/RA = GLOB.medal_awards[recipient]
 		for(var/i in 1 to length(RA.medal_names))
 			dat += "<br><b>[RA.recipient_rank] [recipient]</b> is awarded [RA.posthumous[i] ? "posthumously " : ""]the <span class='boldnotice'>[RA.medal_names[i]]</span>: \'<i>[RA.medal_citations[i]]</i>\'."
-	
+
 	to_chat(world, dat)
 
 
@@ -328,6 +328,8 @@
 		dat += "[round_statistics.defiler_defiler_stings] number of times Defilers stung."
 	if(round_statistics.defiler_neurogas_uses)
 		dat += "[round_statistics.defiler_neurogas_uses] number of times Defilers vented neurogas."
+	if(round_statistics.boiler_emitacidsmoke_uses)
+		dat += "[round_statistics.boiler_emitacidsmoke_uses] number of times Boilers vented acid gas."
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
 		if(player?.client?.prefs?.toggles_chat & CHAT_STATISTICS)

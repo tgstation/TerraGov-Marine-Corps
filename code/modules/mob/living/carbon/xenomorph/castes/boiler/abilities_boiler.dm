@@ -185,7 +185,8 @@
 	bomb_cooldown = FALSE
 	to_chat(src, "<span class='notice'>You feel your toxin glands swell. You are able to bombard an area again.</span>")
 	update_action_button_icons()
-	
+
+
 // ***************************************
 // *********** Acid spray
 // ***************************************
@@ -246,3 +247,88 @@
 	to_chat(src, "<span class='xenodanger'>You feel your acid glands refill. You can spray acid again.</span>")
 	update_action_buttons()
 
+
+// ***************************************
+// *********** Emit Acid
+// ***************************************
+
+//Boiler Emit Acidgas
+/datum/action/xeno_action/activable/emit_acidgas
+	name = "Emit Acid"
+	action_icon_state = "emit_neurogas2"
+	ability_name = "emit acidgas"
+
+/datum/action/xeno_action/activable/emit_acidgas/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Boiler/X = owner
+	if(world.time >= X.last_emit_acidgas + BOILER_GAS_COOLDOWN)
+		return TRUE
+
+/datum/action/xeno_action/activable/emit_acidgas/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Boiler/X = owner
+	X.emit_acidgas()
+
+/mob/living/carbon/Xenomorph/Boiler/proc/emit_acidgas()
+
+	if(!check_state())
+		return
+
+	if(world.time < last_emit_acidgas + BOILER_GAS_COOLDOWN) //Sure, let's use this.
+		to_chat(src, "<span class='xenodanger'>You are not ready to emit acid gas again. This ability will be ready in [(last_emit_acidgas + BOILER_GAS_COOLDOWN - world.time) * 0.1] seconds.</span>")
+		return FALSE
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>You try to emit acid gas but are staggered!</span>")
+		return
+
+	if(!check_plasma(200))
+		return
+
+	//give them fair warning
+	visible_message("<span class='danger'>Tufts of caustic smoke begin to billow from [src]!</span>", \
+	"<span class='xenodanger'>Caustic gas begins to billow from your mouth as you prepare to emit acid smoke. Keep still!</span>")
+
+	use_plasma(200)
+
+	anchored = TRUE //We gain bump movement immunity while we're emitting gas.
+	if(!do_after(src, BOILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+		smoke_system = new /datum/effect_system/smoke_spread/xeno_acid()
+		smoke_system.amount = 1
+		smoke_system.set_up(1, 0, get_turf(src))
+		to_chat(src, "<span class='xenodanger'>You abort emitting acid smoke, your expended plasma resulting in only a feeble wisp.</span>")
+		anchored = FALSE
+		return
+
+	anchored = FALSE
+
+	addtimer(CALLBACK(src, .boiler_gas_cooldown), BOILER_GAS_COOLDOWN)
+
+	last_emit_acidgas = world.time
+
+	round_statistics.boiler_emitacidsmoke_uses++
+
+	visible_message("<span class='xenodanger'>[src] emits a caustic gas!</span>", \
+	"<span class='xenodanger'>You emit caustic smoke!</span>")
+	dispense_gas()
+
+/mob/living/carbon/Xenomorph/Boiler/proc/boiler_gas_cooldown()
+	playsound(loc, 'sound/effects/xeno_newlarva.ogg', 25, 0)
+	to_chat(src, "<span class='xenodanger'>You feel your dorsal vents bristle with acid gas. You can use Emit Acid Smoke again.</span>")
+	update_action_button_icons()
+
+/mob/living/carbon/Xenomorph/Boiler/proc/dispense_gas(count = 1)
+	set waitfor = FALSE
+	for(var/i = 1 to count)
+		if(stagger) //If we got staggered, return
+			to_chat(src, "<span class='xenowarning'>You try to emit caustic gas but are staggered!</span>")
+			return
+		if(stunned || knocked_down)
+			to_chat(src, "<span class='xenowarning'>You try to emit caustic gas but are disabled!</span>")
+			return
+		playsound(loc, 'sound/effects/smoke.ogg', 25)
+		var/turf/T = get_turf(src)
+		smoke_system = new /datum/effect_system/smoke_spread/xeno_acid()
+		smoke_system.amount = 1 + upgrade
+		smoke_system.set_up(4, 0, T, null, 6)
+		smoke_system.start()
+		T.visible_message("<span class='danger'>Caustic smoke billows from the glowing xenomorph!</span>")
+		sleep(BOILER_GAS_DELAY)
