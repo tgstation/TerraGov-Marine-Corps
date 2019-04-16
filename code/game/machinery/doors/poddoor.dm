@@ -291,10 +291,8 @@
 	f2.SetOpacity(opacity)
 
 /obj/machinery/door/poddoor/two_tile_hor/Destroy()
-	qdel(f1)
-	f1 = null
-	qdel(f2)
-	f2 = null
+	QDEL_NULL(f1)
+	QDEL_NULL(f2)
 	return ..()
 
 /obj/machinery/door/poddoor/two_tile_ver
@@ -312,10 +310,8 @@
 	f2.SetOpacity(opacity)
 
 /obj/machinery/door/poddoor/two_tile_ver/Destroy()
-	qdel(f1)
-	f1 = null
-	qdel(f2)
-	f2 = null
+	QDEL_NULL(f1)
+	QDEL_NULL(f2)
 	return ..()
 
 /obj/machinery/door/poddoor/four_tile_hor
@@ -341,14 +337,10 @@
 	f3.SetOpacity(opacity)
 
 /obj/machinery/door/poddoor/four_tile_hor/Destroy()
-	qdel(f1)
-	f1 = null
-	qdel(f2)
-	f2 = null
-	qdel(f3)
-	f3 = null
-	qdel(f4)
-	f4 = null
+	QDEL_NULL(f1)
+	QDEL_NULL(f2)
+	QDEL_NULL(f3)
+	QDEL_NULL(f4)
 	return ..()
 
 /obj/machinery/door/poddoor/four_tile_ver
@@ -375,14 +367,10 @@
 	f3.SetOpacity(opacity)
 
 /obj/machinery/door/poddoor/four_tile_ver/Destroy()
-	qdel(f1)
-	f1 = null
-	qdel(f2)
-	f2 = null
-	qdel(f3)
-	f3 = null
-	qdel(f4)
-	f4 = null
+	QDEL_NULL(f1)
+	QDEL_NULL(f2)
+	QDEL_NULL(f3)
+	QDEL_NULL(f4)
 	return ..()
 
 /obj/machinery/door/poddoor/filler_object
