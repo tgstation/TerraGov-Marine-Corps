@@ -272,3 +272,5 @@
 	var/cresttoss_used = FALSE
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	away_time = -XENO_AFK_TIMER //Xenos start grabbable. This is reset on Login()

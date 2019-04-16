@@ -171,8 +171,6 @@
 
 	var/list/active_genes=list()
 
-	var/away_timer = 0 //How long the player has been disconnected
-
 	var/recently_pointed_to = 0 //used as cooldown for the pointing verb.
 
 	var/list/image/hud_list //This mob's HUD (med/sec, etc) images. Associative list.
