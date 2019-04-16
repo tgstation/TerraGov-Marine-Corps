@@ -123,6 +123,7 @@
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
 	unacidable = TRUE
+	away_time = -XENO_AFK_TIMER //Xenos start grabbable. This is reset on Login()
 	var/hivenumber = XENO_HIVE_NORMAL
 
 	var/datum/hive_status/hive
@@ -272,5 +273,3 @@
 	var/cresttoss_used = FALSE
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
-
-	away_time = -XENO_AFK_TIMER //Xenos start grabbable. This is reset on Login()
