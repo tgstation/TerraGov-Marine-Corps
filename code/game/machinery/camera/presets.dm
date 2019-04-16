@@ -27,7 +27,7 @@
 	icon_state = ""
 	mouse_opacity = 0
 	network = list("laser targets")
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/camera/laser_cam/New(loc, laser_name)
 	. = ..()
@@ -35,19 +35,13 @@
 		var/area/A = get_area(src)
 		c_tag = "[laser_name] ([A.name])"
 
-/obj/machinery/camera/laser_cam/emp_act(severity)
-	return //immune to EMPs, just in case
-
-/obj/machinery/camera/laser_cam/ex_act()
-	return
-
 /obj/machinery/camera/beacon_cam
 	name = "beacon camera"
 	invuln = TRUE
 	icon_state = ""
 	mouse_opacity = 0
 	network = list("supply beacons")
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/camera/beacon_cam/bomb
 	network = list("bomb beacons")
@@ -127,7 +121,7 @@
 	return null
 
 /obj/machinery/camera/proc/isMotion()
-	var/O = locate(/obj/item/device/assembly/prox_sensor) in assembly.upgrades
+	var/O = locate(/obj/item/assembly/prox_sensor) in assembly.upgrades
 	return O
 
 // UPGRADE PROCS
@@ -142,7 +136,7 @@
 
 // If you are upgrading Motion, and it isn't in the camera's New(), add it to the machines list.
 /obj/machinery/camera/proc/upgradeMotion()
-	assembly.upgrades.Add(new /obj/item/device/assembly/prox_sensor(assembly))
+	assembly.upgrades.Add(new /obj/item/assembly/prox_sensor(assembly))
 	setPowerUsage()
 
 /obj/machinery/camera/proc/setPowerUsage()

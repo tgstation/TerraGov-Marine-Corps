@@ -175,8 +175,8 @@
 	//ID
 	if(wear_id)
 		/*var/id
-		if(istype(wear_id, /obj/item/device/pda))
-			var/obj/item/device/pda/pda = wear_id
+		if(istype(wear_id, /obj/item/pda))
+			var/obj/item/pda/pda = wear_id
 			id = pda.owner
 		else if(istype(wear_id, /obj/item/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
 			var/obj/item/card/id/idcard = wear_id
@@ -491,8 +491,8 @@
 		if(wear_id)
 			if(istype(wear_id,/obj/item/card/id))
 				perpname = wear_id:registered_name
-			else if(istype(wear_id,/obj/item/device/pda))
-				var/obj/item/device/pda/tempPda = wear_id
+			else if(istype(wear_id,/obj/item/pda))
+				var/obj/item/pda/tempPda = wear_id
 				perpname = tempPda.owner
 		else
 			perpname = src.name
@@ -540,7 +540,7 @@
 	to_chat(user, msg)
 
 /mob/living/carbon/human/proc/take_pulse(mob/user)
-	if(!user || !src || !Adjacent(user) || user.is_mob_incapacitated())
+	if(!user || !src || !Adjacent(user) || user.incapacitated())
 		return
 	var/pulse_taken = get_pulse(GETPULSE_HAND)
 	if(pulse_taken == PULSE_NONE)
@@ -560,7 +560,7 @@
 			if("medical")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
 			if("squadleader")
-				return H.mind && H.assigned_squad && H.assigned_squad.squad_leader == H && istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine)
+				return H.mind && H.assigned_squad && H.assigned_squad.squad_leader == H && istype(H.wear_ear, /obj/item/radio/headset/almayer/marine)
 			else
 				return 0
 	else if(iscyborg(M))

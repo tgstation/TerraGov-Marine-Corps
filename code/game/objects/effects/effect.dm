@@ -1,5 +1,5 @@
 /obj/effect
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 
 
 /obj/effect/Initialize()

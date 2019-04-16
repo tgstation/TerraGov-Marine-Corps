@@ -77,7 +77,7 @@
 	icon_state = "weldtank"
 	list_reagents = list("fuel" = 1000)
 	var/modded = FALSE
-	var/obj/item/device/assembly_holder/rig = null
+	var/obj/item/assembly_holder/rig = null
 	var/exploding = FALSE
 
 
@@ -106,20 +106,20 @@
 		user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
 		"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 		modded = !modded
-	if(modded)
-		message_admins("[ADMIN_TPMONTY(usr)] opened fueltank at [ADMIN_VERBOSEJMP(loc)], leaking fuel.")
-		log_game("[key_name(usr)] opened fueltank at [AREACOORD(loc)], leaking fuel.")
-		leak_fuel(amount_per_transfer_from_this)
+		if(modded)
+			message_admins("[ADMIN_TPMONTY(usr)] opened fueltank at [ADMIN_VERBOSEJMP(loc)], leaking fuel.")
+			log_game("[key_name(usr)] opened fueltank at [AREACOORD(loc)], leaking fuel.")
+			leak_fuel(amount_per_transfer_from_this)
 		return
-	if(istype(I,/obj/item/device/assembly_holder))
+	if(istype(I,/obj/item/assembly_holder))
 		if(rig)
 			to_chat(user, "<span class='warning'>There is another device in the way.</span>")
 			return
 		user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_HOSTILE) && !rig)
 			user.visible_message("<span class='notice'>[user] rigs [I] to \the [src].</span>", "<span class='notice'>You rig [I] to \the [src].</span>")
-			var/obj/item/device/assembly_holder/H = I
-			if (istype(H.a_left,/obj/item/device/assembly/igniter) || istype(H.a_right,/obj/item/device/assembly/igniter))
+			var/obj/item/assembly_holder/H = I
+			if (istype(H.a_left,/obj/item/assembly/igniter) || istype(H.a_right,/obj/item/assembly/igniter))
 				message_admins("[ADMIN_TPMONTY(usr)] rigged fueltank at [ADMIN_VERBOSEJMP(loc)] for explosion.")
 				log_game("[key_name(user)] rigged fueltank at [AREACOORD(loc)] for explosion.")
 			rig = I
@@ -203,16 +203,6 @@
 /obj/structure/reagent_dispensers/fueltank/flamer_fire_act()
 	explode()
 
-/obj/structure/reagent_dispensers/peppertank
-	name = "pepper spray refiller"
-	desc = "Refill pepper spray canisters."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "peppertank"
-	anchored = 1
-	density = 0
-	amount_per_transfer_from_this = 45
-	list_reagents = list("condensedcapsaicin" = 1000)
-
 /obj/structure/reagent_dispensers/water_cooler
 	name = "water cooler"
 	desc = "A machine that dispenses water to drink."
@@ -232,11 +222,41 @@
 	icon_state = "beertankTEMP"
 	list_reagents = list("beer" = 1000)
 
-/obj/structure/reagent_dispensers/virusfood
+
+/obj/structure/reagent_dispensers/wallmounted
+	icon = 'icons/obj/wallframes.dmi'
+	icon_state = "generic_tank"
+	anchored = TRUE
+	density = FALSE
+
+/obj/structure/reagent_dispensers/wallmounted/Initialize(mapload, ndir)
+	. = ..()
+	if(ndir)
+		dir = ndir
+	switch(dir)
+		if(NORTH)
+			pixel_y = -32
+		if(SOUTH)
+			pixel_y = 32
+		if(EAST)
+			pixel_x = -32
+		if(WEST)
+			pixel_x = 32
+
+/obj/structure/reagent_dispensers/wallmounted/peppertank
+	name = "pepper spray refiller"
+	desc = "Refill pepper spray canisters."
+	icon_state = "peppertank"
+	amount_per_transfer_from_this = 45
+	list_reagents = list("condensedcapsaicin" = 1000)
+
+/obj/structure/reagent_dispensers/wallmounted/peppertank/New()
+	. = ..()
+	if(prob(1))
+		desc = "IT'S PEPPER TIME, BITCH!"
+
+/obj/structure/reagent_dispensers/wallmounted/virusfood
 	name = "virus food dispenser"
 	desc = "A dispenser of virus food."
-	icon = 'icons/obj/objects.dmi'
 	icon_state = "virusfoodtank"
-	anchored = 1
-	density = 0
 	list_reagents = list("virusfood" = 1000)

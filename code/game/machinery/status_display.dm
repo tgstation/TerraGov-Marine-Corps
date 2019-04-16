@@ -43,18 +43,10 @@
 /obj/machinery/status_display/Initialize()
 	. = ..()
 	set_picture("default")
-	start_processing()
 
 	switch(dir)
 		if(NORTH)
 			pixel_y = 32
-
-// timed process
-/obj/machinery/status_display/process()
-	if(machine_stat & NOPOWER)
-		remove_display()
-		return
-	update()
 
 /obj/machinery/status_display/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))

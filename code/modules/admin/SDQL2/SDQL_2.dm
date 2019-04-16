@@ -61,6 +61,10 @@
 
 	"SELECT /mob WHERE client MAP client WHERE holder MAP holder"
 
+	You can also generate a new list on the fly using a selector array. @[] will generate a list of objects based off the selector provided.
+
+	"SELECT /mob/living IN @[/area/crew_quarters/bar MAP contents]"
+
 	What if some dumbass admin spawned a bajillion spiders and you need to kill them all?
 	Oh yeah you'd rather not delete all the spiders in maintenace. Only that one room the spiders were
 	spawned in.
@@ -567,6 +571,8 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 					objs[j] = SDQL_expression(x, expression)
 					SDQL2_TICK_CHECK
 					SDQL2_HALT_CHECK
+				if(length(objs) == 1 && islist(objs[1]))
+					objs = objs[1]
 
 			if ("where")
 				where_switched = TRUE
@@ -921,12 +927,27 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 				dummy[result] = assoc
 				result = dummy
 			val += result
+
+	else if(expression[i] == "@\[")
+		var/list/search_tree = expression[++i]
+		var/already_searching = (state == SDQL2_STATE_SEARCHING) //In case we nest, don't want to break out of the searching state until we're all done.
+
+		if(!already_searching)
+			state = SDQL2_STATE_SEARCHING
+
+		val = Search(search_tree)
+		SDQL2_STAGE_SWITCH_CHECK
+
+		if(!already_searching)
+			state = SDQL2_STATE_EXECUTING
+		else
+			state = SDQL2_STATE_SEARCHING
+
 	else
 		val = world.SDQL_var(object, expression, i, object, superuser, src)
 		i = expression.len
 
 	return list("val" = val, "i" = i)
-
 
 /proc/SDQL_parse(list/query_list)
 	var/datum/SDQL_parser/parser = new()
@@ -1065,8 +1086,6 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 				v = SSshuttle
 			if("SSmapping")
 				v = SSmapping
-			if("SSevents")
-				v = SSevents
 			//End
 			else
 				return null
@@ -1095,7 +1114,8 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 					"=" = list("", "="),
 					"<" = list("", "=", ">"),
 					">" = list("", "="),
-					"!" = list("", "="))
+					"!" = list("", "="),
+					"@" = list("\["))
 
 	var/word = ""
 	var/list/query_list = list()

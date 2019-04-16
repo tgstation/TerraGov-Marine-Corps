@@ -3,7 +3,7 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
 	anchored = TRUE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	layer = MID_LANDMARK_LAYER
 	invisibility = INVISIBILITY_ABSTRACT
 
@@ -109,21 +109,6 @@
 /obj/effect/landmark/start/surv_spawn/Initialize()
 	. = ..()
 	GLOB.surv_spawn += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/start/pred_spawn/Initialize()
-	. = ..()
-	GLOB.pred_spawn += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/start/pred_spawn/elder/Initialize()
-	. = ..()
-	GLOB.pred_elder_spawn += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/pred_teleport_destination/Initialize()
-	. = ..()
-	GLOB.yautja_teleport_loc += loc
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/monkey_spawn/Initialize() // unused but i won't remove the landmarks for these yet

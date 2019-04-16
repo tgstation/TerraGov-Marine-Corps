@@ -372,6 +372,12 @@
 /turf/closed/wall/resin/flamer_fire_act()
 	take_damage(50)
 
+/turf/closed/wall/resin/proc/thicken()
+	var/prev_oldturf = oldTurf
+	ChangeTurf(/turf/closed/wall/resin/thick)
+	oldTurf = prev_oldturf
+	return TRUE
+
 //this one is only for map use
 /turf/closed/wall/resin/ondirt
 	oldTurf = "/turf/open/gm/dirt"
@@ -383,6 +389,9 @@
 	icon_state = "thickresin0"
 	walltype = "thickresin"
 
+/turf/closed/wall/resin/thick/thicken()
+	return FALSE
+
 /turf/closed/wall/resin/membrane
 	name = "resin membrane"
 	desc = "Weird slime translucent enough to let light pass through."
@@ -391,6 +400,11 @@
 	damage_cap = 120
 	opacity = 0
 	alpha = 180
+
+/turf/closed/wall/resin/membrane/thicken()
+	var/prev_oldturf = oldTurf
+	ChangeTurf(/turf/closed/wall/resin/membrane/thick)
+	oldTurf = prev_oldturf
 
 //this one is only for map use
 /turf/closed/wall/resin/membrane/ondirt

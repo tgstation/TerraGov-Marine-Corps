@@ -7,7 +7,7 @@
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_m402"
 	anchored = 1
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	density = 1
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	var/targ_x = 0 //Initial target coordinates
@@ -23,9 +23,6 @@
 	var/fixed = 0 //If set to 1, can't unanchor and move the mortar, used for map spawns and WO
 
 /obj/structure/mortar/attack_hand(mob/user as mob)
-	if(isyautja(user))
-		to_chat(user, "<span class='warning'>You kick [src] but nothing happens.</span>")
-		return
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
@@ -193,9 +190,6 @@
 			new /obj/item/mortar_kit(loc)
 			qdel(src)
 
-//Don't allow blowing those up, so Marine nades don't fuck them
-/obj/structure/mortar/ex_act(severity)
-	return
 
 /obj/structure/mortar/fixed
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire. This one is bolted and welded into the ground."
@@ -207,12 +201,9 @@
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first"
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_m402_carry"
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	w_class = 5 //No dumping this in a backpack. Carry it, fatso
 
-//Don't allow blowing those up, so Marine nades don't fuck them
-/obj/item/mortar_kit/ex_act(severity)
-	return
 
 /obj/item/mortar_kit/attack_self(mob/user)
 
@@ -312,12 +303,12 @@
 /obj/item/mortal_shell/flare/detonate(var/turf/T)
 
 	//TODO: Add flare sound
-	new /obj/item/device/flashlight/flare/on/illumination(T)
+	new /obj/item/flashlight/flare/on/illumination(T)
 	playsound(T, 'sound/weapons/gun_flare.ogg', 50, 1, 4)
 
 //Special flare subtype for the illumination flare shell
 //Acts like a flare, just even stronger, and set length
-/obj/item/device/flashlight/flare/on/illumination
+/obj/item/flashlight/flare/on/illumination
 
 	name = "illumination flare"
 	desc = "It's really bright, and unreachable."
@@ -331,12 +322,12 @@
 		..()
 		fuel = rand(400, 500) // Half the duration of a flare, but justified since it's invincible
 
-/obj/item/device/flashlight/flare/on/illumination/turn_off()
+/obj/item/flashlight/flare/on/illumination/turn_off()
 
 	..()
 	qdel(src)
 
-/obj/item/device/flashlight/flare/on/illumination/ex_act(severity)
+/obj/item/flashlight/flare/on/illumination/ex_act(severity)
 
 	return //Nope
 
@@ -385,6 +376,6 @@
 	new /obj/item/mortal_shell/flare(src)
 	new /obj/item/mortal_shell/smoke(src)
 	new /obj/item/mortal_shell/smoke(src)
-	new /obj/item/device/encryptionkey/engi(src)
-	new /obj/item/device/encryptionkey/engi(src)
-	new /obj/item/device/binoculars/tactical/range(src)
+	new /obj/item/encryptionkey/engi(src)
+	new /obj/item/encryptionkey/engi(src)
+	new /obj/item/binoculars/tactical/range(src)

@@ -31,10 +31,10 @@
 	if(wear_suit)
 		reducible_tally += wear_suit.slowdown
 
-	if(shock_stage >= 10 && !isyautja(src))
+	if(shock_stage >= 10)
 		reducible_tally += 3
 
-	if(bodytemperature < species.cold_level_1 && !isyautja(src))
+	if(bodytemperature < species.cold_level_1)
 		reducible_tally += 2 //Major slowdown if you're freezing
 
 	if(temporary_slowdown)
@@ -135,7 +135,7 @@
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
 	//Can we act
-	if(is_mob_restrained())	return 0
+	if(restrained())	return 0
 
 	//Do we have a working jetpack
 	if(istype(back, /obj/item/tank/jetpack))

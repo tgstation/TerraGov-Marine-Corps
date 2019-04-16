@@ -4,7 +4,6 @@
 
 /obj/item/implant
 	name = "implant"
-	icon = 'icons/obj/items/devices.dmi'
 	icon_state = "implant"
 	var/implanted = null
 	var/mob/imp_in = null
@@ -39,8 +38,8 @@
 
 	proc/meltdown()	//breaks it down, making implant unrecongizible
 		to_chat(imp_in, "<span class='warning'>You feel something melting inside [part ? "your [part.display_name]" : "you"]!</span>")
-		if (part)
-			part.take_damage(burn = 15, used_weapon = "Electronics meltdown")
+		if(part)
+			part.take_damage_limb(0, 15)
 		else
 			var/mob/living/M = imp_in
 			M.apply_damage(15,BURN)
@@ -333,7 +332,6 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 	implanted(mob/M)
 		if(!ishuman(M))	return
-		if(isyautja(M)) return
 		var/mob/living/carbon/human/H = M
 		to_chat(H, "<span class='notice'>You are now tagged as a NT loyalist and will be monitored by their central headquarters. You retain your free will and mental faculties.</span>")
 		return 1
@@ -407,7 +405,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		var/area/t = get_area(M)
 		switch (cause)
 			if("death")
-				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
+				var/obj/item/radio/headset/a = new /obj/item/radio/headset(null)
 				if(istype(t, /area/syndicate_station) || istype(t, /area/syndicate_mothership) || istype(t, /area/shuttle/syndicate_elite) )
 					//give the syndies a bit of stealth
 					a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm")
@@ -416,11 +414,11 @@ the implant may become unstable and either pre-maturely inject the subject or si
 				qdel(a)
 				STOP_PROCESSING(SSobj, src)
 			if ("emp")
-				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
+				var/obj/item/radio/headset/a = new /obj/item/radio/headset(null)
 				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm")
 				qdel(a)
 			else
-				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
+				var/obj/item/radio/headset/a = new /obj/item/radio/headset(null)
 				a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm")
 				qdel(a)
 				STOP_PROCESSING(SSobj, src)

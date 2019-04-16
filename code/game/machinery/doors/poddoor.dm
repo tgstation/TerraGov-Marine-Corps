@@ -6,7 +6,7 @@
 	icon_state = "pdoor1"
 	id = 1.0
 	dir = 1
-	explosion_resistance = 25
+	armor = list("melee" = 50, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
 	layer = PODDOOR_OPEN_LAYER
 	open_layer = PODDOOR_OPEN_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER
@@ -29,7 +29,7 @@
 	add_fingerprint(user)
 	if(!W.pry_capable)
 		return
-	if(density && (machine_stat & NOPOWER) && !operating && !unacidable)
+	if(density && (machine_stat & NOPOWER) && !operating && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		spawn(0)
 			operating = 1
 			flick("pdoorc0", src)
@@ -358,6 +358,7 @@
 	var/obj/machinery/door/poddoor/filler_object/f3
 	var/obj/machinery/door/poddoor/filler_object/f4
 	icon = 'icons/obj/doors/1x4blast_vert.dmi'
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 	New()
 		..()
@@ -388,27 +389,27 @@
 /obj/machinery/door/poddoor/filler_object
 	name = ""
 	icon_state = ""
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/door/poddoor/four_tile_hor/secure
 	icon = 'icons/obj/doors/1x4blast_hor_secure.dmi'
 	openspeed = 17
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/door/poddoor/four_tile_ver/secure
 	icon = 'icons/obj/doors/1x4blast_vert_secure.dmi'
 	openspeed = 17
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/door/poddoor/two_tile_hor/secure
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 	openspeed = 17
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/door/poddoor/two_tile_ver/secure
 	icon = 'icons/obj/doors/1x2blast_vert.dmi'
 	openspeed = 17
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 
 

@@ -104,7 +104,7 @@
 		. = ..()
 
 /obj/structure/morgue/relaymove(mob/user)
-	if(user.is_mob_incapacitated(TRUE))
+	if(user.incapacitated(TRUE))
 		return
 	toggle_morgue(user)
 
@@ -146,7 +146,7 @@
 		return
 	if (!ismob(O) && !istype(O, /obj/structure/closet/bodybag))
 		return
-	if (!istype(user) || user.is_mob_incapacitated())
+	if (!istype(user) || user.incapacitated())
 		return
 	O.forceMove(loc)
 	if (user != O)
@@ -259,7 +259,7 @@
 
 /obj/structure/morgue/sarcophagus
     name = "sarcophagus"
-    desc = "Used to store predators."
+    desc = "Used to store mummies."
     icon_state = "sarcophagus1"
     morgue_type = "sarcophagus"
     tray_path = /obj/structure/morgue_tray/sarcophagus

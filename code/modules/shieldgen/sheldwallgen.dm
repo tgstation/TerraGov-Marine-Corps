@@ -181,7 +181,7 @@
 			src.anchored = 0
 			return
 
-	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/card/id))
 		if (src.allowed(user))
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
@@ -231,7 +231,7 @@
 		icon_state = "shieldwall"
 		anchored = 1
 		density = 1
-		unacidable = 1
+		resistance_flags = UNACIDABLE
 		luminosity = 3
 		var/needs_power = 0
 		var/active = 1

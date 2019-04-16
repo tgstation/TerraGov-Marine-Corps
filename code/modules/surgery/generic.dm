@@ -20,8 +20,6 @@
 		return 1
 	if(affected.limb_status & LIMB_ROBOT)
 		return 0
-	if(isyautja(target) && !isyautja(user))
-		return 0
 	return 1
 
 
@@ -148,7 +146,7 @@
 	allowed_tools = list(
 	/obj/item/tool/surgery/hemostat = 100,         \
 	/obj/item/stack/cable_coil = 75,         \
-	/obj/item/device/assembly/mousetrap = 20
+	/obj/item/assembly/mousetrap = 20
 	)
 
 	min_duration = 40

@@ -36,18 +36,18 @@
 					/obj/item/tool/weldingtool,\
 					/obj/item/tool/crowbar,\
 					/obj/item/tool/wrench,\
-					/obj/item/device/flashlight)
+					/obj/item/flashlight)
 
 
 /obj/effect/spawner/random/technology_scanner
 	name = "Random Scanner"
 	desc = "This is a random technology scanner."
-	icon = 'icons/obj/items/devices.dmi'
+	icon = 'icons/obj/items/items.dmi'
 	icon_state = "atmos"
 	item_to_spawn()
-		return pick(prob(5);/obj/item/device/t_scanner,\
-					prob(2);/obj/item/device/radio,\
-					prob(5);/obj/item/device/analyzer)
+		return pick(prob(5);/obj/item/t_scanner,\
+					prob(2);/obj/item/radio,\
+					prob(5);/obj/item/analyzer)
 
 
 /obj/effect/spawner/random/powercell
@@ -69,10 +69,10 @@
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "signaller"
 	item_to_spawn()
-		return pick(/obj/item/device/assembly/igniter,\
-					/obj/item/device/assembly/prox_sensor,\
-					/obj/item/device/assembly/signaler,\
-					/obj/item/device/multitool)
+		return pick(/obj/item/assembly/igniter,\
+					/obj/item/assembly/prox_sensor,\
+					/obj/item/assembly/signaler,\
+					/obj/item/multitool)
 
 
 /obj/effect/spawner/random/toolbox

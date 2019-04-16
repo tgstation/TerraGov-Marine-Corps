@@ -7,7 +7,7 @@
 	icon_state = "Contain_F"
 	anchored = 1
 	density = 0
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	use_power = 0
 	luminosity = 4
 	var/obj/machinery/field_generator/FG1 = null
@@ -28,9 +28,6 @@
 	else
 		shock(user)
 		return 1
-
-/obj/machinery/containment_field/ex_act(severity)
-	return 0
 
 /obj/machinery/containment_field/HasProximity(atom/movable/AM as mob|obj)
 	if(istype(AM,/mob/living/silicon) && prob(40))

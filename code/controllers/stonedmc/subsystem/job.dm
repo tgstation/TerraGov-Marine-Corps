@@ -86,13 +86,10 @@ SUBSYSTEM_DEF(job)
 			else
 				JobDebug("Failed to assign marine role to a squad. Player: [player.key] Rank: [rank]")
 				return FALSE
-		var/position_limit = job.total_positions
-		if(!latejoin)
-			position_limit = job.spawn_positions
 		player.mind.assigned_role = rank
 		unassigned -= player
 		job.current_positions++
-		JobDebug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
+		JobDebug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[job.total_positions]")
 		return TRUE
 	JobDebug("AR has failed, Player: [player], Mind: [player?.mind], Rank: [rank]")
 	return FALSE
@@ -101,7 +98,7 @@ SUBSYSTEM_DEF(job)
 	JobDebug("GRJ Giving random job, Player: [player]")
 	. = FALSE
 	for(var/datum/job/job in shuffle(occupations))
-		if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
+		if((job.current_positions < job.total_positions) || job.total_positions == -1)
 			JobDebug("GRJ Random job given, Player: [player], Job: [job]")
 			if(AssignRole(player, job.title))
 				return TRUE
@@ -156,7 +153,7 @@ SUBSYSTEM_DEF(job)
 				// If the player wants that job on this level, then try give it to him.
 				if(player.client.prefs.GetJobDepartment(job, level) & job.prefflag)
 					// If the job isn't filled
-					if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
+					if((job.current_positions < job.total_positions) || job.total_positions == -1)
 						JobDebug("DO pass, Trying to assign Player: [player], Level:[level], Job:[job.title]")
 						if(AssignRole(player, job.title))
 							break
@@ -286,7 +283,6 @@ SUBSYSTEM_DEF(job)
 	if(!istype(newjob))
 		return
 	newjob.total_positions = J.total_positions
-	newjob.spawn_positions = J.spawn_positions
 	newjob.current_positions = J.current_positions
 
 

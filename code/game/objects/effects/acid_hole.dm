@@ -4,7 +4,7 @@
 	icon = 'icons/effects/new_acid.dmi'
 	icon_state = "hole_0"
 	anchored = 1
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	layer = LOWER_ITEM_LAYER
 	var/turf/closed/wall/holed_wall
 
@@ -28,8 +28,6 @@
 		holed_wall = null
 	. = ..()
 
-/obj/effect/acid_hole/ex_act(severity)
-	return
 
 /obj/effect/acid_hole/fire_act()
 	return
@@ -59,7 +57,7 @@
 
 /obj/effect/acid_hole/proc/use_wall_hole(mob/user)
 
-	if(user.mob_size == MOB_SIZE_BIG || user.is_mob_incapacitated() || user.lying || user.buckled || user.anchored)
+	if(user.mob_size == MOB_SIZE_BIG || user.incapacitated() || user.lying || user.buckled || user.anchored)
 		return
 
 	var/mob_dir = get_dir(user, src)
@@ -93,7 +91,7 @@
 	to_chat(user, "<span class='notice'>You start crawling through the hole.</span>")
 
 	if(do_after(user, 15, FALSE, 5, BUSY_ICON_GENERIC))
-		if(!user.is_mob_incapacitated() && !user.lying && !user.buckled)
+		if(!user.incapacitated() && !user.lying && !user.buckled)
 			if (T.density)
 				return
 			for(var/obj/O in T)
@@ -141,8 +139,8 @@
 		return
 
 	//Throwing Flares and flashlights
-	else if(istype(W,/obj/item/device/flashlight))
-		var/obj/item/device/flashlight/F = W
+	else if(istype(W,/obj/item/flashlight))
+		var/obj/item/flashlight/F = W
 
 		if(!Target ||Target.density)
 			to_chat(user, "<span class='warning'>This hole leads nowhere!</span>")

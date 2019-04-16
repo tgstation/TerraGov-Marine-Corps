@@ -222,14 +222,14 @@
 
 		var/mob/living/carbon/Xenomorph/Crusher/C = A
 
-		if(C.charge_speed < C.charge_speed_max * 0.5)
+		if(C.charge_speed < CHARGE_SPEED_MAX * 0.5)
 			return
 
 		health -= C.charge_speed * CRUSHER_CHARGE_RAZORWIRE_MULTI
 
 
 		var/def_zone = ran_zone()
-		if(C.charge_speed >= C.charge_speed_max)
+		if(C.charge_speed >= CHARGE_SPEED_MAX)
 			C.visible_message("<span class='danger'>[C] plows through the barbed wire!</span>",
 			"<span class='danger'>You plow through the barbed wire!</span>", null, 5)
 

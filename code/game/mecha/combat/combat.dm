@@ -49,9 +49,9 @@
 					switch(damtype)
 						if("brute")
 							H.KnockOut(1)
-							update |= temp.take_damage(rand(force/2, force), 0)
+							update |= temp.take_damage_limb(rand(force/2, force), 0)
 						if("fire")
-							update |= temp.take_damage(0, rand(force/2, force))
+							update |= temp.take_damage_limb(0, rand(force/2, force))
 						if("tox")
 							if(H.reagents)
 								if(H.reagents.get_reagent_amount("carpotoxin") + force < force*2)
@@ -246,7 +246,7 @@
 	else
 		return 0
 
-/obj/mecha/combat/mmi_moved_inside(var/obj/item/device/mmi/mmi_as_oc as obj,mob/user as mob)
+/obj/mecha/combat/mmi_moved_inside(var/obj/item/mmi/mmi_as_oc as obj,mob/user as mob)
 	if(..())
 		if(occupant.client)
 			occupant.client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")

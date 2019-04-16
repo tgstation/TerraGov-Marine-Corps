@@ -54,9 +54,9 @@
 
 	var/msg = "<br><h2 class='alert'>[customname]</h2><br><span class='warning'>[input]</span><br><br>"
 
-	for(var/mob/M in GLOB.player_list)
-		if(isxeno(M) || isobserver(M))
-			to_chat(M, msg)
+	for(var/i in (GLOB.xeno_mob_list + GLOB.observer_list))
+		var/mob/M = i
+		to_chat(M, msg)
 
 	log_admin("[key_name(usr)] created a Queen Mother report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] created a Queen Mother report.")
@@ -85,25 +85,39 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/input = input("This should be a message from the ship's AI.",, "") as message|null
+	var/input = input("This should be a message from the ship's AI.", "AI Report") as message|null
 	if(!input)
 		return
 
-	if(alert(usr, "Do you want to use the ship AI to say the message or a global marine announcement?",, "Ship", "Global") == "Ship")
-		if(!ai_system.Announce(input))
-			return
-	else
-		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = 'sound/misc/interference.ogg')
+	var/glob
+	switch(alert(usr, "Do you want to use the ship AI to say the message or a global marine announcement?", "AI Report", "Ship", "Global", "Cancel"))
+		if("Global")
+			glob = TRUE
+		if("Cancel")
+			return		
 
-	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
+	var/paper
+	switch(alert(usr, "Do you want to print out a paper at the communications consoles?", "AI Report", "Yes", "No", "Cancel"))
+		if("Yes")
+			paper = TRUE
+		if("Cancel")
+			return
+
+	if(glob)
+		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = "sound/misc/interference.ogg")
+	else
+		ai_system.Announce(input)
+
+	if(paper)
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
-			if(!(C.machine_stat & (BROKEN|NOPOWER)))
-				var/obj/item/paper/P = new /obj/item/paper(C.loc)
-				P.name = "'[MAIN_AI_SYSTEM] Update.'"
-				P.info = input
-				P.update_icon()
-				C.messagetitle.Add("[MAIN_AI_SYSTEM] Update")
-				C.messagetext.Add(P.info)
+			if(C.machine_stat & (BROKEN|NOPOWER))
+				continue
+			var/obj/item/paper/P = new /obj/item/paper(C.loc)
+			P.name = "'[MAIN_AI_SYSTEM] Update.'"
+			P.info = input
+			P.update_icon()
+			C.messagetitle.Add("[MAIN_AI_SYSTEM] Update")
+			C.messagetext.Add(P.info)
 
 	log_admin("[key_name(usr)] has created an AI report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] has created an AI report: [input]")
@@ -255,27 +269,27 @@
 
 /datum/admins/proc/custom_info()
 	set category = "Fun"
-	set name = "Change Custom Event"
+	set name = "Change Custom Info"
 
 	if(!check_rights(R_FUN))
 		return
 
-	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear"))
+	switch(input("Do you want to change or clear the custom info?", "Custom Info") as null|anything in list("Change", "Clear"))
 		if("Change")
-			custom_event_msg = input(usr, "Set the custom information players get on joining or via the OOC tab.",, custom_event_msg) as message|null
+			GLOB.custom_info = input(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom Info", GLOB.custom_info) as message|null
 
-			custom_event_msg = noscript(custom_event_msg)
+			GLOB.custom_info = noscript(GLOB.custom_info)
 
-			if(!custom_event_msg)
+			if(!GLOB.custom_info)
 				return
 
 			to_chat(world, "<h1 class='alert'>Custom Information</h1>")
-			to_chat(world, "<span class='alert'>[custom_event_msg]</span>")
+			to_chat(world, "<span class='alert'>[GLOB.custom_info]</span>")
 
-			log_admin("[key_name(usr)] has changed the custom event text: [custom_event_msg]")
+			log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
 			message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
 		if("Clear")
-			custom_event_msg = null
+			GLOB.custom_info = null
 			log_admin("[key_name(usr)] has cleared the custom info.")
 			message_admins("[ADMIN_TPMONTY(usr)] has cleared the custom info.")
 
@@ -284,12 +298,12 @@
 	set category = "OOC"
 	set name = "Custom Info"
 
-	if(!custom_event_msg || custom_event_msg == "")
-		to_chat(src, "<span class='notice'>There currently is no known custom information set.</span>")
+	if(!GLOB.custom_info)
+		to_chat(src, "<span class='notice'>There currently is no custom information set.</span>")
 		return
 
 	to_chat(src, "<h1 class='alert'>Custom Information</h1>")
-	to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
+	to_chat(src, "<span class='alert'>[GLOB.custom_info]</span>")
 
 
 /datum/admins/proc/sound_file(S as sound)
@@ -300,17 +314,18 @@
 	if(!check_rights(R_SOUND))
 		return
 
-	heard_midi = 0
+	var/heard_midi = 0
 	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
 	uploaded_sound.priority = 250
 
 
-	var/style = alert("Play sound globally or locally?", "Sound", "Global", "Local", "Cancel")
+	var/style = alert("Play sound globally or locally?", "Play Imported Sound", "Global", "Local", "Cancel")
 	switch(style)
 		if("Global")
-			for(var/mob/M in GLOB.player_list)
-				if(M.client.prefs.toggles_sound & SOUND_MIDI)
-					M << uploaded_sound
+			for(var/i in GLOB.clients)
+				var/client/C = i
+				if(C.prefs.toggles_sound & SOUND_MIDI)
+					SEND_SOUND(C, uploaded_sound)
 					heard_midi++
 		if("Local")
 			playsound(get_turf(usr), uploaded_sound, 50, 0)
@@ -630,7 +645,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] force launched a distress shuttle: [tag] to: [dock_name].")
 
 
-/datum/admins/proc/object_sound(atom/O as obj in world)
+/datum/admins/proc/object_sound(atom/O as obj)
 	set category = null
 	set name = "Object Sound"
 
@@ -640,11 +655,11 @@
 	if(!O)
 		return
 
-	var/message = input("What do you want the message to be?") as text|null
+	var/message = input("What do you want the message to be?", "Object Sound") as text|null
 	if(!message)
 		return
 
-	var/method = input("What do you want the verb to be? Make sure to include s.") as text|null
+	var/method = input("What do you want the verb to be? Make sure to include s if applicable.", "Object Sound") as text|null
 	if(!method)
 		return
 
@@ -667,8 +682,7 @@
 
 	var/mob/M = usr
 
-	var/list/choices = list("CANCEL", "Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
-	var/choice = input("What size explosion would you like to produce?") in choices
+	var/choice = input("What size explosion would you like to produce?", "Drop Bomb") as null|anything in list("CANCEL", "Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
 	switch(choice)
 		if("CANCEL")
 			return
@@ -686,6 +700,8 @@
 			if(isnull(devastation_range) || isnull(heavy_impact_range) || isnull(light_impact_range) || isnull(flash_range))
 				return
 			explosion(M.loc, devastation_range, heavy_impact_range, light_impact_range, flash_range)
+		else
+			return
 
 	log_admin("[key_name(usr)] dropped a bomb at [AREACOORD(M.loc)].")
 	message_admins("[ADMIN_TPMONTY(usr)] dropped a bomb at [ADMIN_VERBOSEJMP(M.loc)].")
@@ -698,8 +714,11 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green", "blue", "red", "delta") - get_security_level())
-	if(!sec_level || alert("Switch from code [get_security_level()] to code [sec_level]?", "Change security level?", "Yes", "No") != "Yes")
+	var/sec_level = input(usr, "It's currently code [get_security_level()]. Choose the new security level.", "Set Security Level") as null|anything in (list("green", "blue", "red", "delta") - get_security_level())
+	if(!sec_level)
+		return
+
+	if(alert("Switch from code [get_security_level()] to code [sec_level]?", "Set Security Level", "Yes", "No") != "Yes")
 		return
 
 	set_security_level(sec_level)
@@ -708,7 +727,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed the security level to code [sec_level].")
 
 
-/datum/admins/proc/select_rank(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+/datum/admins/proc/select_rank(mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Select Rank"
 
@@ -718,13 +737,7 @@
 	switch(alert("Modify the rank or give them a new one?", "Select Rank", "New Rank", "Modify", "Cancel"))
 		if("New Rank")
 			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(SSjob.name_occupations)
-			if(!newrank || !H)
-				return
-
-			if(!H.mind)
-				H.job = newrank
-				log_admin("[key_name(usr)] has set the rank of mindless mob [key_name(H)] to [newrank].")
-				message_admins("[ADMIN_TPMONTY(usr)] has set the rank of mindless mob [ADMIN_TPMONTY(H)] to [newrank].")
+			if(!newrank || !istype(H))
 				return
 
 			H.set_rank(newrank)
@@ -772,7 +785,7 @@
 			message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank/skill change for [ADMIN_TPMONTY(H)].")
 
 
-/datum/admins/proc/select_equipment(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+/datum/admins/proc/select_equipment(mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Select Equipment"
 
@@ -816,7 +829,25 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(H)] to [istype(O) ? O.name : dresscode].")
 
 
-GLOBAL_LIST_EMPTY(custom_outfits)
+/datum/admins/proc/change_squad(mob/living/carbon/human/H in GLOB.human_mob_list)
+	set category = "Fun"
+	set name = "Change Squad"
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(!istype(H) || !(H.job in JOBS_MARINES))
+		return
+
+	var/squad = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
+	if(!squad || !istype(H) || !(H.job in JOBS_MARINES))
+		return
+
+	H.change_squad(squad)
+
+	log_admin("[key_name(src)] has changed the squad of [key_name(H)] to [squad].")
+	message_admins("[ADMIN_TPMONTY(usr)] has changed the squad of [ADMIN_TPMONTY(H)] to [squad].")
+
 
 /datum/admins/proc/create_outfit()
 	set category = "Fun"
@@ -825,9 +856,7 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	if(!check_rights(R_FUN))
 		return
 
-	var/dat = {"
-	<html><head><title>Create Outfit</title></head><body>
-	<div>Input typepaths and watch the magic happen.</div>
+	var/dat = {"<div>Input typepaths and watch the magic happen.</div>
 	<form name="outfit" action="byond://?src=[REF(usr.client.holder)];[HrefToken()]" method="get">
 	<input type="hidden" name="src" value="[REF(usr.client.holder)];[HrefToken()]">
 	[HrefTokenFormField()]
@@ -937,10 +966,11 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	</table>
 	<br>
 	<input type="submit" value="Save">
-	</form></body></html>
-	"}
+	</form>"}
 
-	usr << browse(dat, "window=dressup;size=550x600")
+	var/datum/browser/browser = new(usr, "create_outfit", "<div align='center'>Create Outfit</div>", 550, 600)
+	browser.set_content(dat)
+	browser.open()
 
 
 /datum/admins/proc/edit_appearance(mob/living/carbon/human/H in GLOB.human_mob_list)
@@ -1017,7 +1047,7 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	message_admins("[ADMIN_TPMONTY(usr)] updated the appearance of [ADMIN_TPMONTY(H)].")
 
 
-/datum/admins/proc/offer(var/mob/M in GLOB.mob_list)
+/datum/admins/proc/offer(mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Offer Mob"
 
@@ -1030,18 +1060,20 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	var/mob/living/L = M
 
 	if(L.key || L.ckey)
-		if(alert("This mob has a player inside, are you sure you want to proceed?", "WARNING", "Yes", "No") != "Yes")
+		if(alert("This mob has a player inside, are you sure you want to proceed?", "Offer Mob", "Yes", "No") != "Yes")
 			return
-		L.taken = FALSE
-		var/mob/dead/observer/ghost = L.ghostize(FALSE)
-		if(ghost)
-			ghost.timeofdeath = world.time
-	else if(L.taken)
-		if(alert("This mob has been offered, are you sure you want to proceed?", "Warning", "Yes", "No") != "Yes")
-			return
-		L.taken = FALSE
+		L.ghostize(FALSE)
+	else if(L in GLOB.offered_mob_list)
+		switch(alert("This mob has been offered, do you want to re-announce it?", "Offer Mob", "Yes", "Remove", "Cancel"))
+			if("Cancel")
+				return
+			if("Remove")
+				GLOB.offered_mob_list -= L
+				log_admin("[key_name(usr)] has removed offer of [key_name_admin(M)].")
+				message_admins("[ADMIN_TPMONTY(usr)] has removed offer of [ADMIN_TPMONTY(M)].")
+				return
 
-	if(alert("Are you sure?", "Offer Mob", "Yes", "No") != "Yes")
+	else if(alert("Are you sure?", "Offer Mob", "Yes", "No") != "Yes")
 		return
 
 	L.offer_mob()
@@ -1064,11 +1096,13 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	var/hivenumber_status = X.hivenumber
 
 	var/list/namelist = list()
-	for(var/Y in hive_datum)
-		var/datum/hive_status/H = Y
+	for(var/Y in GLOB.hive_datums)
+		var/datum/hive_status/H = GLOB.hive_datums[Y]
 		namelist += H.name
 
-	var/newhive = input(src, "Select a hive.", null, null) in namelist
+	var/newhive = input(usr, "Select a hive.", "Change Hivenumber") as null|anything in namelist
+	if(!newhive)
+		return
 
 	var/newhivenumber
 	switch(newhive)
@@ -1088,9 +1122,9 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	if(!istype(X) || X.gc_destroyed || !SSticker || X.hivenumber != hivenumber_status)
 		return
 
-	X.set_hive_number(newhivenumber)
+	X.transfer_to_hive(newhivenumber)
 
-	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
+	log_admin("[key_name(usr)] changed hivenumber of [X] to [newhive].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] to [newhive].")
 
 

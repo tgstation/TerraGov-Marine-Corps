@@ -275,6 +275,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	log_played_names(ckey, newname)
 
 	real_name = newname
+	voice_name = newname
 	name = newname
 	if(mind)
 		mind.name = newname
@@ -409,8 +410,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		moblist.Add(M)
 	for(var/mob/living/carbon/monkey/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/hellhound/M in sortmob)
-		moblist.Add(M)
 	for(var/mob/living/simple_animal/M in sortmob)
 		moblist.Add(M)
 	return moblist
@@ -424,20 +423,11 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		xenolist.Add(M)
 	return xenolist
 
-/proc/sortpreds()
-	var/list/predlist = list()
-	var/list/sortmob = sortNames(GLOB.mob_list)
-	for(var/mob/living/carbon/human/M in sortmob)
-		if(!M.client || !isyautjastrict(M))
-			continue
-		predlist.Add(M)
-	return predlist
-
 /proc/sorthumans()
 	var/list/humanlist = list()
 	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/human/M in sortmob)
-		if(!M.client || isyautjastrict(M))
+		if(!M.client)
 			continue
 		humanlist.Add(M)
 	return humanlist
@@ -686,7 +676,7 @@ var/global/image/busy_indicator_hostile
 		if(user.get_active_held_item() != holding)
 			. = FALSE
 			break
-		if(user.is_mob_incapacitated(TRUE) || user.lying)
+		if(user.incapacitated(TRUE) || user.lying)
 			. = FALSE
 			break
 		if(selected_zone_check && cur_zone_sel != user.zone_selected)
@@ -1181,7 +1171,7 @@ var/global/list/common_tools = list(
 /obj/item/tool/weldingtool,
 /obj/item/tool/screwdriver,
 /obj/item/tool/wirecutters,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /obj/item/tool/crowbar)
 
 /proc/istool(O)
@@ -1277,7 +1267,7 @@ proc/is_hot(obj/item/I)
 Checks if that loc and dir has a item on the wall
 */
 var/list/WALLITEMS = list(
-	"/obj/machinery/power/apc", "/obj/machinery/alarm", "/obj/item/device/radio/intercom",
+	"/obj/machinery/power/apc", "/obj/machinery/alarm", "/obj/item/radio/intercom",
 	"/obj/structure/extinguisher_cabinet", "/obj/structure/reagent_dispensers/peppertank",
 	"/obj/machinery/status_display", "/obj/machinery/requests_console", "/obj/machinery/light_switch", "/obj/effect/sign",
 	"/obj/machinery/newscaster", "/obj/machinery/firealarm", "/obj/structure/noticeboard", "/obj/machinery/door_control",

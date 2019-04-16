@@ -32,7 +32,7 @@
 	var/primary_objective = null //Text strings
 	var/secondary_objective = null
 
-	var/obj/item/device/squad_beacon/sbeacon = null
+	var/obj/item/squad_beacon/sbeacon = null
 	var/obj/structure/supply_drop/drop_pad = null
 
 	var/list/squad_orbital_beacons = list()
@@ -78,8 +78,8 @@
 	radio_freq = DELTA_FREQ
 
 
-/datum/squad/proc/put_marine_in_squad(var/mob/living/carbon/human/H)
-	if(!H || !istype(H,/mob/living/carbon/human))
+/datum/squad/proc/put_marine_in_squad(mob/living/carbon/human/H)
+	if(!istype(H))
 		return FALSE
 	if(!usable)
 		return FALSE
@@ -122,8 +122,8 @@
 	marines_list += H
 	H.assigned_squad = src //Add them to the squad
 
-	if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer)) // they've been transferred
-		var/obj/item/device/radio/headset/almayer/headset = H.wear_ear
+	if(istype(H.wear_ear, /obj/item/radio/headset/almayer)) // they've been transferred
+		var/obj/item/radio/headset/almayer/headset = H.wear_ear
 		if(headset.sl_direction)
 			SSdirection.start_tracking(tracking_id, H)
 
@@ -147,8 +147,7 @@
 		return FALSE
 
 	C.access -= access
-	C.assignment = H.mind.assigned_role
-	C.name = "[C.registered_name]'s ID Card ([C.assignment])"
+	C.update_label()
 
 	count--
 	marines_list -= H
@@ -178,7 +177,7 @@
 
 
 //proc used by human dispose to clean the mob from squad lists
-/datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe = FALSE)
+/datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe)
 	if(!H.assigned_squad || !(H in marines_list))
 		return FALSE
 	SSdirection.stop_tracking(tracking_id, H)// failsafe
@@ -213,15 +212,15 @@
 		old_lead.update_action_buttons()
 
 	if(!old_lead.mind || old_lead.mind.assigned_role != "Squad Leader" || !leader_killed)
-		if(istype(old_lead.wear_ear, /obj/item/device/radio/headset/almayer/marine))
-			var/obj/item/device/radio/headset/almayer/marine/R = old_lead.wear_ear
-			if(istype(R.keyslot1, /obj/item/device/encryptionkey/squadlead))
+		if(istype(old_lead.wear_ear, /obj/item/radio/headset/almayer/marine))
+			var/obj/item/radio/headset/almayer/marine/R = old_lead.wear_ear
+			if(istype(R.keyslot1, /obj/item/encryptionkey/squadlead))
 				qdel(R.keyslot1)
 				R.keyslot1 = null
-			else if(istype(R.keyslot2, /obj/item/device/encryptionkey/squadlead))
+			else if(istype(R.keyslot2, /obj/item/encryptionkey/squadlead))
 				qdel(R.keyslot2)
 				R.keyslot2 = null
-			else if(istype(R.keyslot3, /obj/item/device/encryptionkey/squadlead))
+			else if(istype(R.keyslot3, /obj/item/encryptionkey/squadlead))
 				qdel(R.keyslot3)
 				R.keyslot3 = null
 			R.recalculateChannels()

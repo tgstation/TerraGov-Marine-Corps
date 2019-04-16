@@ -21,7 +21,6 @@
 	var/obj/screen/alien_plasma_display
 	var/obj/screen/locate_leader
 	var/obj/screen/SL_locator
-	var/obj/screen/pred_power_icon
 
 	var/obj/screen/module_store_icon
 
@@ -100,7 +99,6 @@
 	move_intent = null
 	alien_plasma_display = null
 	locate_leader = null
-	pred_power_icon = null
 
 	module_store_icon = null
 

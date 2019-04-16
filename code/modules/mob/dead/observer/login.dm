@@ -22,4 +22,9 @@
 		H.add_hud_to(src)
 	if(ghost_orderhud)
 		H = huds[MOB_HUD_ORDER]
-		H.add_hud_to(src)
+		H.add_hud_to(src)		
+
+	GLOB.observer_list += src
+	
+	if(length(GLOB.offered_mob_list))
+		to_chat(src, "<span class='boldnotice'>There's mobs available for taking! Ghost > Take Offered Mob</span>")

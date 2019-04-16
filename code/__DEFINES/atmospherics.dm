@@ -43,6 +43,10 @@
 #define MIN_TOXIN_DAMAGE 1	//This and MAX_TOXIN_DAMAGE are for when a mob breathes poisonous air
 #define MAX_TOXIN_DAMAGE 10	//This and MIN_TOXIN_DAMAGE are for when a mob breathes poisonous air
 
+#define SPEED_OF_LIGHT 3e8 //not exact but hey!
+#define SPEED_OF_LIGHT_SQ 9e+16
+#define FIRE_DAMAGE_MODIFIER 0.0215 //Higher values result in more external fire damage to the skin (default 0.0215)
+#define AIR_DAMAGE_MODIFIER 2.025 //More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
 
 #define SOUND_MINIMUM_PRESSURE 10
 

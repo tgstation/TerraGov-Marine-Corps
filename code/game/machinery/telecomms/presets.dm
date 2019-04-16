@@ -13,7 +13,7 @@
 	listen_same_level = TRUE
 
 /obj/machinery/telecomms/relay/preset/station/prison
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/telecomms/relay/preset/ice_colony
 	icon = 'icons/obj/machines/comm_tower.dmi'
@@ -21,7 +21,7 @@
 	id = "Station Relay"
 	listen_same_level = TRUE
 	autolinkers = list("s_relay")
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 	//We dont want anyone to mess with it
 	attackby()
@@ -94,7 +94,7 @@
 	network = "tcommsat"
 	produces_heat = 0
 	autolinkers = list("receiverCent")
-	freq_listening = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ)
+	freq_listening = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, IMP_FREQ)
 
 
 //Buses
@@ -131,7 +131,7 @@
 /obj/machinery/telecomms/bus/preset_cent
 	id = "CentComm Bus"
 	network = "tcommsat"
-	freq_listening = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ)
+	freq_listening = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, IMP_FREQ)
 	produces_heat = 0
 	autolinkers = list("processorCent", "centcomm")
 
@@ -213,7 +213,7 @@
 
 /obj/machinery/telecomms/server/presets/centcomm
 	id = "CentComm Server"
-	freq_listening = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ)
+	freq_listening = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, IMP_FREQ)
 	produces_heat = 0
 	autolinkers = list("centcomm")
 
@@ -256,7 +256,7 @@
 	idle_power_usage = 0
 	machinetype = 6
 	produces_heat = 0
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/intercept = 0 // if nonzero, broadcasts all messages to syndicate channel
 
 /obj/machinery/telecomms/allinone/interceptor

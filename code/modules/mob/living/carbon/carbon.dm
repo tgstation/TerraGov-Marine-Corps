@@ -18,7 +18,7 @@
 			germ_level++
 
 /mob/living/carbon/relaymove(mob/user, direction)
-	if(user.is_mob_incapacitated(TRUE)) return
+	if(user.incapacitated(TRUE)) return
 	if(user in src.stomach_contents)
 		if(user.client)
 			user.client.next_movement = world.time + 20
@@ -39,6 +39,8 @@
 		stomach_contents.Remove(A)
 		A.forceMove(loc)
 		if(ismob(A))
+			var/mob/M = A
+			M.SetKnockeddown(1)
 			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
 
 	. = ..()
@@ -407,6 +409,4 @@
 	. = ..()
 	. += "---"
 	. -= "Update Icon"
-	.["Add Language"] = "?_src_=vars;[HrefToken()];addlanguage=[REF(src)]"
-	.["Remove Language"] = "?_src_=vars;[HrefToken()];remlanguage=[REF(src)]"
 	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"

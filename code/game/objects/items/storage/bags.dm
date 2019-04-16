@@ -36,7 +36,7 @@
 	max_w_class = 2
 	storage_slots = 21
 	can_hold = list() // any
-	cant_hold = list("/obj/item/disk/nuclear")
+	cant_hold = list(/obj/item/disk/nuclear)
 
 /obj/item/storage/bag/trash/update_icon()
 	if(contents.len == 0)
@@ -63,7 +63,7 @@
 	max_w_class = 2
 	storage_slots = 21
 	can_hold = list() // any
-	cant_hold = list("/obj/item/disk/nuclear")
+	cant_hold = list(/obj/item/disk/nuclear)
 
 // -----------------------------
 //        Mining Satchel
@@ -79,7 +79,7 @@
 	storage_slots = 50
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * ore.w_class
 	max_w_class = 3
-	can_hold = list("/obj/item/ore")
+	can_hold = list(/obj/item/ore)
 
 
 // -----------------------------
@@ -94,7 +94,10 @@
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * plants.w_class
 	max_w_class = 3
 	w_class = 2
-	can_hold = list("/obj/item/reagent_container/food/snacks/grown","/obj/item/seeds","/obj/item/grown")
+	can_hold = list(
+		/obj/item/reagent_container/food/snacks/grown,
+		/obj/item/seeds,
+		/obj/item/grown)
 
 
 // -----------------------------
@@ -113,11 +116,6 @@
 	w_class = 3
 
 	allow_quick_empty = 1 // this function is superceded
-
-/obj/item/storage/bag/sheetsnatcher/New()
-	..()
-	//verbs -= /obj/item/storage/verb/quick_empty
-	//verbs += /obj/item/storage/bag/sheetsnatcher/quick_empty
 
 /obj/item/storage/bag/sheetsnatcher/can_be_inserted(obj/item/W as obj, stop_messages = 0)
 	if(!istype(W,/obj/item/stack/sheet) || istype(W,/obj/item/stack/sheet/mineral/sandstone) || istype(W,/obj/item/stack/sheet/wood))
@@ -251,4 +249,6 @@
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * cash.w_class
 	max_w_class = 3
 	w_class = 2
-	can_hold = list("/obj/item/coin","/obj/item/spacecash")
+	can_hold = list(
+		/obj/item/coin,
+		/obj/item/spacecash)

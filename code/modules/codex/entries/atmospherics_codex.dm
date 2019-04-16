@@ -161,7 +161,7 @@
 	excess (atmospheric) pipes into the dispenser, as well.  The dispenser requires electricity to function."
 
 /datum/codex_entry/transfer_valve
-	associated_paths = list(/obj/item/device/transfer_valve)
+	associated_paths = list(/obj/item/transfer_valve)
 	mechanics_text = "This machine is used to merge the contents of two different gas tanks. Plug the tanks into the transfer, then open the valve to mix them together. You can also attach various assembly devices to trigger this process."
 	antag_text = "With a tank of hot phoron and cold oxygen, this benign little atmospheric device becomes an incredibly deadly bomb. You don't want to be anywhere near it when it goes off."
 

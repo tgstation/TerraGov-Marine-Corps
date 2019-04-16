@@ -18,8 +18,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "cellconsole"
 	circuit = "/obj/item/circuitboard/computer/cryopodcontrol"
-	exproof = TRUE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/cryotype = "REQ"
 	var/mode = null
 
@@ -174,7 +173,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	var/orient_right = null // Flips the sprite.
 	var/time_till_despawn = 6000 //10 minutes-ish safe period before being despawned.
 	var/time_entered = 0 //Used to keep track of the safe period.
-	var/obj/item/device/radio/intercom/announce //Intercom for cryo announcements
+	var/obj/item/radio/intercom/announce //Intercom for cryo announcements
 
 /obj/machinery/cryopod/right
 	orient_right = 1
@@ -182,7 +181,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 
 /obj/machinery/cryopod/New()
 
-	announce = new /obj/item/device/radio/intercom(src)
+	announce = new /obj/item/radio/intercom(src)
 
 	if(orient_right)
 		icon_state = "body_scanner_0-r"
@@ -224,14 +223,13 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 
 			var/list/deleteall = list(/obj/item/clothing/mask/cigarette, \
 			/obj/item/clothing/glasses/sunglasses, \
-			/obj/item/device/pda, \
 			/obj/item/clothing/glasses/mgoggles, \
 			/obj/item/clothing/head/tgmcberet/red, \
 			/obj/item/clothing/gloves/black, \
 			/obj/item/weapon/baton, \
 			/obj/item/weapon/gun/energy/taser, \
 			/obj/item/clothing/glasses/sunglasses/sechud, \
-			/obj/item/device/radio/headset/almayer, \
+			/obj/item/radio/headset/almayer, \
 			/obj/item/card/id, \
 			/obj/item/clothing/under/marine, \
 			/obj/item/clothing/shoes/marine, \
@@ -332,7 +330,10 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 					S.count--
 				H.assigned_squad?.clean_marine_from_squad(H,TRUE) //Remove from squad recods, if any.
 
-			SSticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
+
+			if(isdistress(SSticker?.mode))
+				var/datum/game_mode/distress/D = SSticker.mode
+				D.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
 
 			//Handle job slot/tater cleanup.
 			if(occupant.mind?.assigned_role)

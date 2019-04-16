@@ -15,7 +15,6 @@
 
 	var/mob/living/new_character	//for instant transfer once the round is set up
 
-
 /mob/new_player/Initialize()
 	if(client && SSticker.state == GAME_STATE_STARTUP)
 		var/obj/screen/splash/S = new(client, TRUE, TRUE)
@@ -24,9 +23,9 @@
 	GLOB.total_players++
 	return ..()
 
-
 /mob/new_player/Destroy()
-	GLOB.total_players--
+	if(ready)
+		GLOB.ready_players--
 	return ..()
 
 
@@ -51,9 +50,11 @@
 			if(PLAYER_READY_TO_OBSERVE)
 				output += "<p>\[ [LINKIFY_READY("Ready", PLAYER_READY_TO_PLAY)] | [LINKIFY_READY("Not Ready", PLAYER_NOT_READY)] | <b> Observe </b> \]</p>"
 	else
+
 		output += "<p><a href='byond://?src=[REF(src)];manifest=1'>View the Crew Manifest</A></p>"
 		output += "<p><a href='byond://?src=[REF(src)];late_join=1'>Join the TGMC!</A></p>"
-		output += "<p><a href='byond://?src=[REF(src)];late_join_xeno=1'>Join the Hive!</A></p>"
+    if(isdistress(SSticker.mode))
+   		output += "<p><a href='byond://?src=[REF(src)];late_join_xeno=1'>Join the Hive!</A></p>"
 		output += "<p>[LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)]</p>"
 
 	if(!IsGuestKey(key))
@@ -90,16 +91,18 @@
 		return
 
 	if(statpanel("Stats"))
-		if(SSticker.hide_mode)
-			stat("Game Mode:", "TerraGov Marine Corps")
-		else
-			stat("Game Mode:", "[GLOB.master_mode]")
+		stat("Game Mode:", "[GLOB.master_mode]")
 
 		if(SSticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[going ? SSticker.GetTimeLeft() : "(DELAYED)"]")
-			stat("Players: [GLOB.total_players]", "Players Ready: [GLOB.ready_players]")
-			for(var/mob/new_player/player in GLOB.player_list)
-				stat("[player.key]", player.ready ? "Playing" : "")
+			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
+			stat("Players: [length(GLOB.player_list)]", "Players Ready: [GLOB.ready_players]")
+			for(var/i in GLOB.player_list)
+				if(isnewplayer(i))
+					var/mob/new_player/N = i
+					stat("[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key]", N.ready ? "Playing" : "")
+				else if(isobserver(i))
+					var/mob/dead/observer/O = i
+					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
 
 /mob/new_player/Topic(href, href_list[])
 	if(src != usr)
@@ -161,7 +164,11 @@
 		if(!SSticker?.IsRoundInProgress())
 			to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
 			return
-
+ 
+		if(jobban_isbanned(src, ROLE_XENOMORPH) || is_banned_from(ckey, ROLE_XENOMORPH))
+			to_chat(src, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
+			return
+      
 		switch(alert("Would you like to try joining as a burrowed larva or as a living xenomorph?", "Select", "Burrowed Larva", "Living Xenomorph", "Cancel"))
 			if("Burrowed Larva")
 				if(SSticker.mode.check_xeno_late_join(src))
@@ -183,7 +190,6 @@
 		ViewManifest()
 
 	if(href_list["SelectedJob"])
-
 		if(!GLOB.enter_allowed)
 			to_chat(usr, "<span class='notice'>There is an administrative lock on entering the game!</span>")
 			return
@@ -371,15 +377,15 @@
 
 	GLOB.datacore.manifest_inject(character)
 	SSticker.minds += character.mind
-	SSticker.mode.latejoin_tally += 1
 
-	for(var/datum/squad/sq in SSjob.squads)
-		sq.max_engineers = engi_slot_formula(length(GLOB.clients))
-		sq.max_medics = medic_slot_formula(length(GLOB.clients))
+	if(isdistress(SSticker?.mode))
+		var/datum/game_mode/distress/D = SSticker.mode
+		D.latejoin_tally++
 
-	if(SSticker.mode.latejoin_larva_drop && SSticker.mode.latejoin_tally >= SSticker.mode.latejoin_larva_drop)
-		SSticker.mode.latejoin_tally -= SSticker.mode.latejoin_larva_drop
-		SSticker.mode.stored_larva++
+		if(D.latejoin_larva_drop && D.latejoin_tally >= D.latejoin_larva_drop)
+			D.latejoin_tally -= D.latejoin_larva_drop
+			var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+			HS.stored_larva++
 
 	qdel(src)
 
@@ -401,7 +407,7 @@
 		J = i
 		if(!(J.title in JOBS_REGULAR_ALL))
 			continue
-		if((J.current_positions >= J.spawn_positions) && J.spawn_positions != -1)
+		if((J.current_positions >= J.total_positions) && J.total_positions != -1)
 			continue
 		var/active = 0
 		//Only players with the job assigned and AFK for less than 10 minutes count as active

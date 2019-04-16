@@ -110,10 +110,6 @@
 					var/obj/item/card/id/I = H.wear_id
 					crewmemberData["name"] = I.name
 					crewmemberData["rank"] = I.rank
-				else if(H.wear_id && istype(H.wear_id, /obj/item/device/pda) )
-					var/obj/item/device/pda/P = H.wear_id
-					crewmemberData["name"] = (P.id ? P.id.name : "Unknown")
-					crewmemberData["rank"] = (P.id ? P.id.rank : "Unknown")
 
 				var/area/A = get_area(H)
 				crewmemberData["area"] = sanitize(A.name)
@@ -154,7 +150,6 @@
 /obj/machinery/computer/crew/proc/scan()
 	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 		if(!H || !istype(H)) continue
-		if(isyautja(H)) continue
 		var/obj/item/clothing/under/C = H.w_uniform
 		if(!C || !istype(C)) continue
 		if(C.has_sensor && H.mind)

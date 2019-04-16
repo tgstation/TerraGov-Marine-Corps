@@ -26,10 +26,6 @@
 				if(announce)
 					command_announcement.Announce("Attention: Security level lowered to GREEN - all clear.", "Priority Alert", no_sound ? null : 'sound/AI/code_green.ogg')
 				security_level = SEC_LEVEL_GREEN
-				for(var/obj/machinery/firealarm/FA in GLOB.machines)
-					if(is_mainship_level(FA.z))
-						FA.overlays = list()
-						FA.overlays += image('icons/obj/monitors.dmi', "overlay_green")
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
 					if(is_mainship_level(SD.z))
 						SD.set_picture("default")
@@ -41,10 +37,6 @@
 					if(announce)
 						command_announcement.Announce("Attention: Security level lowered to BLUE - potentially hostile activity on board.", "Priority Alert", no_sound ? null : 'sound/AI/code_blue_lowered.ogg')
 				security_level = SEC_LEVEL_BLUE
-				for(var/obj/machinery/firealarm/FA in GLOB.machines)
-					if(is_mainship_level(FA.z))
-						FA.overlays = list()
-						FA.overlays += image('icons/obj/monitors.dmi', "overlay_blue")
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
 					if(is_mainship_level(SD.z))
 						SD.set_picture("default")
@@ -65,10 +57,6 @@
 
 				security_level = SEC_LEVEL_RED
 
-				for(var/obj/machinery/firealarm/FA in GLOB.machines)
-					if(is_mainship_level(FA.z))
-						FA.overlays = list()
-						FA.overlays += image('icons/obj/monitors.dmi', "overlay_red")
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
 					if(is_mainship_level(SD.z))
 						SD.set_picture("redalert")
@@ -80,13 +68,13 @@
 					for(var/obj/machinery/door/poddoor/shutters/almayer/D in GLOB.machines)
 						if(D.id == "sd_lockdown")
 							D.open()
-				for(var/obj/machinery/firealarm/FA in GLOB.machines)
-					if(is_mainship_level(FA.z))
-						FA.overlays = list()
-						FA.overlays += image('icons/obj/monitors.dmi', "overlay_delta")
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
 					if(is_mainship_level(SD.z))
 						SD.set_picture("redalert")
+
+		for(var/obj/machinery/firealarm/FA in GLOB.machines)
+			if(is_mainship_level(FA.z))
+				FA.update_icon()
 	else
 		return
 

@@ -21,7 +21,7 @@
 	if(iscarbon(O))
 		var/mob/living/carbon/C = O
 		if(C.pulledby)
-			if(!C.is_mob_incapacitated() && target == locate(x-1,y,z))
+			if(!C.incapacitated() && target == locate(x-1,y,z))
 				return 0
 	return 1
 

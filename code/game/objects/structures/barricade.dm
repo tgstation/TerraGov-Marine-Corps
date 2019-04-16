@@ -64,7 +64,7 @@
 
 		var/mob/living/carbon/Xenomorph/Crusher/C = A
 
-		if(C.charge_speed < C.charge_speed_max * 0.5)
+		if(C.charge_speed < CHARGE_SPEED_MAX * 0.5)
 			return
 
 		if(crusher_resistant)

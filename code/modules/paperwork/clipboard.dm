@@ -20,7 +20,7 @@
 		if(!(istype(over_object, /obj/screen) ))
 			return ..()
 
-		if(!M.is_mob_restrained() && !M.stat)
+		if(!M.restrained() && !M.stat)
 			switch(over_object.name)
 				if("r_hand")
 					M.dropItemToGround(src)
@@ -84,7 +84,7 @@
 
 /obj/item/clipboard/Topic(href, href_list)
 	..()
-	if((usr.stat || usr.is_mob_restrained()))
+	if((usr.stat || usr.restrained()))
 		return
 
 	if(src.loc == usr)

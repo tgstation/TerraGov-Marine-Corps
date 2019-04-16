@@ -142,7 +142,7 @@
 	},
 /area/tdome/tdomeobserve)
 "av" = (
-/obj/item/device/camera,
+/obj/item/camera,
 /turf/open/floor{
 	icon_state = "redbluefull";
 	dir = 8
@@ -299,6 +299,12 @@
 	},
 /turf/open/space/transit/north/shuttlespace_ns12,
 /area/space)
+"aV" = (
+/obj/structure/closet/walllocker/medical_wall/full,
+/turf/open/floor{
+	icon_state = "panelscorched"
+	},
+/area/deathmatch)
 "aW" = (
 /obj/machinery/camera{
 	pixel_x = 10;
@@ -453,6 +459,10 @@
 /obj/item/tool/extinguisher,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"bq" = (
+/obj/structure/closet/walllocker/hydrant/full,
+/turf/open/shuttle/brig,
+/area/deathmatch)
 "br" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -468,6 +478,13 @@
 /obj/machinery/computer/security/telescreen,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"bu" = (
+/obj/structure/closet/walllocker/hydrant/full{
+	icon_state = "hydrant";
+	dir = 1
+	},
+/turf/open/shuttle/brig,
+/area/deathmatch)
 "bv" = (
 /obj/item/tool/wrench,
 /turf/open/floor/tile/red/yellowfull,
@@ -749,13 +766,13 @@
 /area/space)
 "cf" = (
 /turf/closed/wall/r_wall/dense,
-/area/yautja)
+/area/syndicate_station)
 "cg" = (
 /turf/closed/shuttle{
 	icon_state = "pwall";
 	dir = 1
 	},
-/area/yautja)
+/area/syndicate_station)
 "ch" = (
 /turf/open/space/transit/north/shuttlespace_ns4,
 /area/almayer/evacuation/stranded/pod3)
@@ -775,7 +792,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cm" = (
 /obj/structure/shuttle/engine/heater{
 	tag = "icon-heater (NORTH)";
@@ -786,16 +803,16 @@
 	dir = 1
 	},
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cn" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "co" = (
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cp" = (
 /obj/machinery/light/small{
 	tag = "icon-bulb1 (EAST)";
@@ -803,11 +820,11 @@
 	dir = 4
 	},
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cq" = (
 /obj/machinery/light/small,
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cr" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -815,7 +832,7 @@
 	icon_state = "2-4"
 	},
 /turf/closed/wall/r_wall/dense,
-/area/yautja)
+/area/syndicate_station)
 "cs" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -828,7 +845,7 @@
 	icon_state = "4-8"
 	},
 /turf/closed/wall/r_wall/dense,
-/area/yautja)
+/area/syndicate_station)
 "ct" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -836,13 +853,13 @@
 	icon_state = "2-8"
 	},
 /turf/closed/wall/r_wall/dense,
-/area/yautja)
+/area/syndicate_station)
 "cu" = (
 /obj/machinery/door/airlock/secure{
 	name = "Storage Chamber"
 	},
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cv" = (
 /obj/machinery/power/smes/magical{
 	capacity = 9e+008;
@@ -852,7 +869,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cw" = (
 /obj/machinery/power/apc/almayer{
 	dir = 1
@@ -864,7 +881,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cx" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light/small{
@@ -873,11 +890,11 @@
 	dir = 1
 	},
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cy" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cz" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
@@ -952,7 +969,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cE" = (
 /obj/machinery/power/terminal{
 	tag = "icon-term (NORTH)";
@@ -960,7 +977,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cF" = (
 /obj/structure/shuttle/engine/heater{
 	tag = "icon-heater (NORTH)";
@@ -973,41 +990,41 @@
 	dir = 1
 	},
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cG" = (
 /obj/structure/ore_box,
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cH" = (
 /obj/structure/rack,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cI" = (
 /obj/structure/rack,
 /obj/item/weapon/twohanded/spear,
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "cJ" = (
 /obj/structure/rack,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "cK" = (
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "cL" = (
 /turf/open/shuttle{
 	icon_state = "floor6"
 	},
-/area/yautja)
+/area/syndicate_station)
 "cM" = (
 /obj/machinery/light/small{
 	tag = "icon-bulb1 (NORTH)";
@@ -1018,43 +1035,42 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "cN" = (
 /obj/structure/rack,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "cO" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "cP" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/backpack/yautja,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "cQ" = (
 /obj/structure/rack,
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "cR" = (
 /obj/structure/rack,
 /obj/machinery/light/small{
@@ -1066,42 +1082,23 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
-"cT" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_container/hypospray/autoinjector/yautja,
-/obj/item/reagent_container/hypospray/autoinjector/yautja,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
+/area/syndicate_station)
+"cS" = (
+/obj/structure/closet/walllocker/medical_wall/full{
+	icon_state = "medical_wall";
+	dir = 1
 	},
-/area/yautja)
-"cU" = (
-/obj/structure/table/reinforced,
-/obj/item/weapon/yautja_knife,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
+/turf/open/floor{
+	icon_state = "panelscorched"
 	},
-/area/yautja)
+/area/deathmatch)
 "cV" = (
 /obj/structure/bed/alien,
-/obj/effect/landmark/start/pred_spawn/elder,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
-"cW" = (
-/obj/structure/table/reinforced,
-/obj/item/tool/surgery/retractor/predatorretractor,
-/obj/item/tool/surgery/circular_saw/predatorbonesaw,
-/obj/item/tool/surgery/cautery/predatorcautery,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
+/area/syndicate_station)
 "cX" = (
 /obj/machinery/light/small{
 	tag = "icon-bulb1 (NORTH)";
@@ -1113,17 +1110,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
-"cY" = (
-/obj/structure/table/reinforced,
-/obj/item/tool/surgery/bonegel/predatorbonegel,
-/obj/item/tool/surgery/hemostat/predatorhemostat,
-/obj/item/tool/surgery/bonesetter/predatorbonesetter,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
+/area/syndicate_station)
 "cZ" = (
 /obj/structure/table/reinforced,
 /obj/item/tank/anesthetic,
@@ -1132,15 +1119,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
-"da" = (
-/obj/structure/bed/alien,
-/obj/effect/landmark/start/pred_spawn,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
+/area/syndicate_station)
 "db" = (
 /obj/structure/rack,
 /obj/item/storage/box/lights/bulbs,
@@ -1149,7 +1128,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dc" = (
 /obj/machinery/light/small{
 	tag = "icon-bulb1 (WEST)";
@@ -1160,7 +1139,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dd" = (
 /obj/machinery/light/small{
 	tag = "icon-bulb1 (EAST)";
@@ -1171,14 +1150,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
-"de" = (
-/obj/structure/bed/alien,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
+/area/syndicate_station)
 "df" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -1189,7 +1161,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dg" = (
 /turf/open/space/transit/north/shuttlespace_ns4,
 /area/almayer/evacuation/stranded/pod9)
@@ -1199,16 +1171,6 @@
 "di" = (
 /turf/open/space/transit/north/shuttlespace_ns4,
 /area/almayer/evacuation/stranded/pod11)
-"dj" = (
-/obj/structure/table/reinforced,
-/obj/item/tool/surgery/surgicaldrill/predatorsurgicaldrill,
-/obj/item/tool/surgery/scalpel/predatorscalpel,
-/obj/item/tool/surgery/FixOVein/predatorFixOVein,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
 "dk" = (
 /obj/machinery/door/airlock/secure{
 	name = "\improper Operation Room"
@@ -1217,7 +1179,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dl" = (
 /obj/machinery/door/airlock/secure{
 	name = "Youngblood Quarters"
@@ -1226,7 +1188,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dm" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1235,7 +1197,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dn" = (
 /obj/machinery/door/airlock/secure{
 	name = "Elder Quarters"
@@ -1244,7 +1206,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "do" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -1263,15 +1225,14 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dp" = (
 /obj/structure/rack,
-/obj/item/storage/backpack/yautja,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dq" = (
 /obj/machinery/door/airlock/secure{
 	name = "\improper Houndmaster's Quarters"
@@ -1280,14 +1241,14 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dr" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "ds" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	dir = 2
@@ -1296,12 +1257,12 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dt" = (
 /obj/structure/rack,
 /obj/item/reagent_container/food/snacks/meat,
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "du" = (
 /obj/structure/rack,
 /obj/item/reagent_container/food/snacks/meat,
@@ -1310,7 +1271,7 @@
 	pixel_y = -5
 	},
 /turf/open/floor/tile/lightred/full,
-/area/yautja)
+/area/syndicate_station)
 "dv" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
@@ -1319,21 +1280,21 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dw" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dx" = (
 /obj/machinery/atmospherics/pipe/manifold4w/general/visible,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dy" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
@@ -1347,7 +1308,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dz" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/medical/splint{
@@ -1366,7 +1327,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dA" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/medical/bruise_pack/tajaran{
@@ -1379,7 +1340,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dB" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/southleft,
@@ -1394,7 +1355,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dC" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
@@ -1433,14 +1394,14 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dF" = (
 /obj/machinery/door/airlock/secure,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dG" = (
 /obj/machinery/light/small{
 	tag = "icon-bulb1 (EAST)";
@@ -1461,7 +1422,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dH" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
@@ -1486,7 +1447,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dJ" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
@@ -1500,7 +1461,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dK" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1516,7 +1477,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dL" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/medical/bruise_pack/tajaran{
@@ -1532,7 +1493,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dM" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/wrench,
@@ -1540,17 +1501,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
-"dN" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_container/glass/beaker/cryopredmix,
-/obj/item/reagent_container/glass/beaker/cryopredmix,
-/obj/item/reagent_container/glass/beaker/cryopredmix,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
+/area/syndicate_station)
 "dO" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/atmospherics/components/unary/portables_connector{
@@ -1560,14 +1511,14 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dP" = (
 /obj/machinery/light/small,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dQ" = (
 /turf/open/space,
 /area/shuttle/distress/transit_upp)
@@ -1579,14 +1530,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
-"dS" = (
-/obj/machinery/autolathe/yautja,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
+/area/syndicate_station)
 "dT" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/plasteel{
@@ -1616,7 +1560,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dU" = (
 /obj/machinery/door/airlock/secure{
 	name = "\improper Hellhound Quarters"
@@ -1625,13 +1569,13 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "dV" = (
 /obj/machinery/light/small,
 /turf/open/shuttle{
 	icon_state = "floor6"
 	},
-/area/yautja)
+/area/syndicate_station)
 "dW" = (
 /obj/structure/table,
 /obj/machinery/light,
@@ -1656,7 +1600,6 @@
 	},
 /area/centcom)
 "dZ" = (
-/obj/item/clothing/mask/gas/yautja,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -1665,15 +1608,12 @@
 	dir = 2
 	},
 /obj/structure/table/reinforced,
-/obj/item/clothing/suit/armor/yautja,
-/obj/item/clothing/shoes/yautja,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "ea" = (
-/obj/item/clothing/mask/gas/yautja,
 /obj/structure/window/reinforced{
 	dir = 8;
 	health = 80
@@ -1686,15 +1626,12 @@
 	dir = 2
 	},
 /obj/structure/table/reinforced,
-/obj/item/clothing/suit/armor/yautja,
-/obj/item/clothing/shoes/yautja,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "eb" = (
-/obj/item/clothing/mask/gas/yautja,
 /obj/structure/window/reinforced{
 	dir = 8;
 	health = 80
@@ -1704,23 +1641,20 @@
 	dir = 2
 	},
 /obj/structure/table/reinforced,
-/obj/item/clothing/suit/armor/yautja,
-/obj/item/clothing/shoes/yautja,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "ec" = (
-/obj/effect/step_trigger/teleporter/yautja_ship,
 /turf/open/floor/light,
-/area/yautja)
+/area/syndicate_station)
 "ed" = (
 /obj/structure/shuttle/window,
 /turf/open/shuttle{
 	icon_state = "floor6"
 	},
-/area/yautja)
+/area/syndicate_station)
 "ee" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/helmet/space/vox/pressure{
@@ -1734,7 +1668,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "ef" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/twohanded/dualsaber,
@@ -1750,7 +1684,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "eg" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/katana,
@@ -1766,7 +1700,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "eh" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -1785,7 +1719,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "ei" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -1801,7 +1735,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "ej" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/supply/dock)
@@ -1811,7 +1745,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "el" = (
 /turf/open/floor/plating{
 	tag = "icon-test_floor5";
@@ -1820,7 +1754,6 @@
 /area/supply/dock)
 "em" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/mask/gas/yautja,
 /obj/structure/window/reinforced{
 	dir = 8;
 	health = 80
@@ -1829,13 +1762,11 @@
 	icon_state = "right";
 	dir = 2
 	},
-/obj/item/clothing/suit/armor/yautja,
-/obj/item/clothing/shoes/yautja,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "en" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Airlock Out"
@@ -1844,7 +1775,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "eo" = (
 /turf/open/floor/almayer,
 /area/centcom)
@@ -1853,35 +1784,13 @@
 	name = "reinforced hull"
 	},
 /area/centcom/control)
-"eq" = (
-/obj/item/legcuffs/yautja,
-/obj/item/legcuffs/yautja,
-/obj/item/legcuffs/yautja,
-/obj/item/legcuffs/yautja,
-/obj/item/legcuffs/yautja,
-/obj/item/legcuffs/yautja,
-/obj/item/legcuffs/yautja,
-/obj/structure/rack,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
 "er" = (
 /obj/structure/xenoautopsy/tank,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
-"es" = (
-/obj/structure/rack,
-/obj/item/device/encryptionkey/yautja,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
+/area/syndicate_station)
 "et" = (
 /obj/structure/rack,
 /obj/item/reagent_container/food/snacks/meat,
@@ -1893,14 +1802,14 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "eu" = (
 /obj/structure/xenoautopsy/tank/hugger,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "ev" = (
 /obj/machinery/door/airlock/almayer/generic,
 /obj/machinery/door/poddoor/shutters/transit/open{
@@ -1937,23 +1846,13 @@
 	},
 /turf/open/floor/almayer,
 /area/centcom/control)
-"ez" = (
-/obj/structure/rack,
-/obj/item/explosive/grenade/spawnergrenade/smartdisc,
-/obj/item/explosive/grenade/spawnergrenade/smartdisc,
-/obj/item/explosive/grenade/spawnergrenade/smartdisc,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
 "eA" = (
 /obj/structure/xenoautopsy/tank/alien,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "eB" = (
 /obj/structure/rack,
 /obj/item/reagent_container/food/snacks/meat,
@@ -1966,7 +1865,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "eC" = (
 /obj/structure/rack,
 /obj/item/reagent_container/food/snacks/xenomeat,
@@ -1977,14 +1876,14 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "eD" = (
 /obj/structure/xenoautopsy/tank/larva,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "eE" = (
 /obj/machinery/computer/rdservercontrol{
 	badmin = 1;
@@ -2017,8 +1916,6 @@
 /area/shuttle/distress/transit_big)
 "eK" = (
 /obj/structure/rack,
-/obj/item/weapon/yautja_knife,
-/obj/item/reagent_container/hypospray/autoinjector/yautja,
 /obj/machinery/light/small{
 	tag = "icon-bulb1 (WEST)";
 	icon_state = "bulb1";
@@ -2028,21 +1925,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
-"eL" = (
-/obj/structure/rack,
-/obj/item/weapon/yautja_knife,
-/obj/item/reagent_container/hypospray/autoinjector/yautja,
-/obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
-	icon_state = "bulb1";
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
+/area/syndicate_station)
 "eM" = (
 /obj/structure/xenoautopsy/tank,
 /obj/machinery/light/small{
@@ -2052,7 +1935,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "eN" = (
 /obj/structure/rack,
 /obj/item/reagent_container/food/snacks/meat,
@@ -2060,7 +1943,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "eO" = (
 /obj/structure/rack,
 /obj/item/reagent_container/food/snacks/meat,
@@ -2072,7 +1955,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "eP" = (
 /obj/structure/xenoautopsy/tank,
 /obj/machinery/light/small{
@@ -2084,37 +1967,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
-"eQ" = (
-/obj/structure/rack,
-/obj/item/weapon/harpoon/yautja{
-	pixel_y = -2
-	},
-/obj/item/weapon/harpoon/yautja,
-/obj/item/weapon/harpoon/yautja,
-/obj/item/weapon/harpoon/yautja,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
-"eR" = (
-/obj/structure/rack,
-/obj/item/weapon/harpoon/yautja{
-	pixel_x = -4;
-	pixel_y = -3
-	},
-/obj/item/weapon/harpoon/yautja{
-	pixel_x = 4;
-	pixel_y = 6
-	},
-/obj/item/weapon/harpoon/yautja,
-/obj/item/weapon/harpoon/yautja,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
+/area/syndicate_station)
 "eS" = (
 /obj/machinery/door/airlock/secure{
 	name = "Central Chamber"
@@ -2122,7 +1975,7 @@
 /turf/open/shuttle{
 	icon_state = "floor6"
 	},
-/area/yautja)
+/area/syndicate_station)
 "eT" = (
 /obj/structure/table/almayer,
 /obj/machinery/computer/squad_changer,
@@ -2177,7 +2030,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "fd" = (
 /obj/machinery/door/airlock/almayer/engineering{
 	name = "\improper Server Room"
@@ -2272,7 +2125,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "fq" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/warning_stripes,
@@ -2284,7 +2137,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "fr" = (
 /obj/machinery/telecomms/receiver/preset_cent,
 /turf/open/floor/almayer{
@@ -2348,8 +2201,7 @@
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "generic_ert";
-	name = "\improper Security shutters";
-	unacidable = 1
+	name = "\improper Security shutters"
 	},
 /turf/open/floor/almayer,
 /area/centcom)
@@ -2367,8 +2219,7 @@
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "wy_ert";
-	name = "\improper Security shutters";
-	unacidable = 1
+	name = "\improper Security shutters"
 	},
 /turf/open/floor/almayer,
 /area/centcom)
@@ -2379,8 +2230,7 @@
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "upp_ert";
-	name = "\improper Security shutters";
-	unacidable = 1
+	name = "\improper Security shutters"
 	},
 /turf/open/floor/almayer,
 /area/centcom)
@@ -2399,7 +2249,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "fF" = (
 /turf/open/floor/almayer,
 /area/centcom/ferry)
@@ -2512,14 +2362,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
-"fT" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
+/area/syndicate_station)
 "fU" = (
 /obj/structure/bed/chair/wood/wings{
 	tag = "icon-wooden_chair_wings (WEST)";
@@ -2530,7 +2373,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "fV" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/warning_stripes,
@@ -2551,7 +2394,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "fW" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/ferry)
@@ -2589,7 +2432,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gb" = (
 /obj/machinery/door/airlock/secure{
 	name = "Trophy Room"
@@ -2598,7 +2441,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gc" = (
 /turf/open/floor/almayer{
 	tag = "icon-orangecorner (WEST)";
@@ -2704,7 +2547,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gs" = (
 /obj/machinery/hologram/holopad,
 /turf/open/floor/almayer,
@@ -2725,7 +2568,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gu" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/warning_stripes,
@@ -2741,7 +2584,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gv" = (
 /turf/open/floor/almayer{
 	tag = "icon-blue (EAST)";
@@ -2776,7 +2619,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gA" = (
 /obj/item/reagent_container/food/snacks/stew,
 /obj/structure/table/reinforced,
@@ -2784,7 +2627,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gB" = (
 /obj/item/reagent_container/food/snacks/stew,
 /obj/structure/table/reinforced,
@@ -2797,7 +2640,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gC" = (
 /obj/machinery/door/airlock/secure{
 	name = "Practice Chamber"
@@ -2805,7 +2648,7 @@
 /turf/open/shuttle{
 	icon_state = "floor6"
 	},
-/area/yautja)
+/area/syndicate_station)
 "gD" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -2819,18 +2662,18 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gE" = (
 /obj/structure/table/reinforced,
-/obj/item/device/assembly/voice,
-/obj/item/device/assembly/voice,
+/obj/item/assembly/voice,
+/obj/item/assembly/voice,
 /obj/item/weapon/baton/cattleprod,
 /obj/item/weapon/baton/cattleprod,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gF" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/mask/muzzle,
@@ -2842,7 +2685,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gG" = (
 /obj/machinery/door/airlock/freezer{
 	name = "\improper Cooler Room"
@@ -2851,7 +2694,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gH" = (
 /obj/structure/window/reinforced{
 	dir = 5;
@@ -2862,7 +2705,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gI" = (
 /obj/machinery/door/airlock/glass{
 	id = "Prisoner Cell 1";
@@ -2872,13 +2715,13 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gJ" = (
 /obj/machinery/door_display/research_cell{
 	id = "Prisoner Cell 1"
 	},
 /turf/closed/wall/r_wall/dense,
-/area/yautja)
+/area/syndicate_station)
 "gK" = (
 /obj/machinery/door/airlock/glass{
 	id = "Prisoner Cell 2";
@@ -2888,13 +2731,13 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gL" = (
 /obj/machinery/door_display/research_cell{
 	id = "Prisoner Cell 2"
 	},
 /turf/closed/wall/r_wall/dense,
-/area/yautja)
+/area/syndicate_station)
 "gM" = (
 /obj/machinery/door/airlock/glass{
 	id = "Prisoner Cell 3";
@@ -2904,20 +2747,20 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gN" = (
 /obj/machinery/door_display/research_cell{
 	id = "Prisoner Cell 3"
 	},
 /turf/closed/wall/r_wall/dense,
-/area/yautja)
+/area/syndicate_station)
 "gO" = (
 /obj/structure/closet,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gP" = (
 /obj/machinery/door/airlock/secure{
 	name = "\improper Feeder Room"
@@ -2926,7 +2769,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gQ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light/small{
@@ -2938,7 +2781,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gR" = (
 /obj/machinery/door/airlock/secure{
 	name = "\improper Feed Hall"
@@ -2947,7 +2790,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gS" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -2956,7 +2799,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gT" = (
 /obj/machinery/door/airlock/secure{
 	name = "\improper Containment Cells"
@@ -2964,7 +2807,7 @@
 /turf/open/shuttle{
 	icon_state = "floor6"
 	},
-/area/yautja)
+/area/syndicate_station)
 "gU" = (
 /obj/machinery/door/airlock/secure{
 	name = "\improper Wargear Storage"
@@ -2973,7 +2816,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gV" = (
 /obj/machinery/light/small{
 	tag = "icon-bulb1 (EAST)";
@@ -2991,7 +2834,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gW" = (
 /obj/structure/closet/crate/bravo,
 /turf/open/floor/almayer{
@@ -3007,7 +2850,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "gY" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan20"
@@ -3059,7 +2902,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "hi" = (
 /obj/machinery/light/small,
 /obj/structure/kitchenspike,
@@ -3067,7 +2910,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "hj" = (
 /obj/machinery/door/airlock/glass{
 	id = "Prisoner Cell 4";
@@ -3077,13 +2920,13 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "hk" = (
 /obj/machinery/door_display/research_cell{
 	id = "Prisoner Cell 4"
 	},
 /turf/closed/wall/r_wall/dense,
-/area/yautja)
+/area/syndicate_station)
 "hl" = (
 /obj/machinery/door/airlock/glass{
 	id = "Prisoner Cell 5";
@@ -3093,13 +2936,13 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "hm" = (
 /obj/machinery/door_display/research_cell{
 	id = "Prisoner Cell 5"
 	},
 /turf/closed/wall/r_wall/dense,
-/area/yautja)
+/area/syndicate_station)
 "hn" = (
 /obj/machinery/door/airlock/glass{
 	id = "Prisoner Cell 6";
@@ -3109,13 +2952,13 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "ho" = (
 /obj/machinery/door_display/research_cell{
 	id = "Prisoner Cell 6"
 	},
 /turf/closed/wall/r_wall/dense,
-/area/yautja)
+/area/syndicate_station)
 "hp" = (
 /turf/closed/wall/indestructible,
 /area/start)
@@ -3246,7 +3089,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/distress_item,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -3293,7 +3136,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/distress_pmcitem,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -3340,7 +3183,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/distress_uppitem,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -3385,7 +3228,7 @@
 /turf/open/shuttle{
 	icon_state = "floor6"
 	},
-/area/yautja)
+/area/syndicate_station)
 "ij" = (
 /obj/structure/table/reinforced,
 /obj/item/handcuffs,
@@ -3398,7 +3241,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "ik" = (
 /obj/structure/table/reinforced,
 /obj/item/legcuffs,
@@ -3411,7 +3254,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "il" = (
 /obj/effect/landmark/prisonwarp,
 /turf/open/floor/plating,
@@ -3581,7 +3424,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "iJ" = (
 /obj/machinery/door/airlock/secure{
 	name = "\improper Fore Rooms"
@@ -3589,7 +3432,7 @@
 /turf/open/shuttle{
 	icon_state = "floor6"
 	},
-/area/yautja)
+/area/syndicate_station)
 "iK" = (
 /obj/structure/table/reinforced,
 /obj/item/XenoBio/Blood,
@@ -3598,7 +3441,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "iL" = (
 /obj/structure/table/reinforced,
 /obj/item/XenoItem,
@@ -3606,7 +3449,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "iM" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -3617,7 +3460,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "iN" = (
 /obj/effect/alien/egg,
 /obj/machinery/light/small{
@@ -3629,7 +3472,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "iO" = (
 /obj/structure/bed,
 /turf/open/floor{
@@ -3683,7 +3526,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "iY" = (
 /obj/structure/table/reinforced,
 /obj/item/XenoBio/Resin,
@@ -3692,7 +3535,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "iZ" = (
 /obj/machinery/door/window/southleft,
 /obj/machinery/door/window/southleft{
@@ -3704,7 +3547,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "ja" = (
 /turf/open/floor{
 	icon_state = "floorscorched1"
@@ -3740,7 +3583,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "jg" = (
 /obj/machinery/door/airlock/secure{
 	name = "\improper Growth and Research Chamber"
@@ -3749,7 +3592,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "jh" = (
 /obj/machinery/door/airlock/external{
 	name = "\improper Airlock"
@@ -3758,7 +3601,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "ji" = (
 /obj/effect/landmark/newplayer_start,
 /turf/open/floor,
@@ -3863,7 +3706,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "jx" = (
 /obj/effect/alien/egg,
 /obj/machinery/light/small,
@@ -3871,7 +3714,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "jy" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan_leftengine"
@@ -4027,7 +3870,7 @@
 	health = 80
 	},
 /turf/open/floor/plating,
-/area/yautja)
+/area/syndicate_station)
 "ka" = (
 /obj/structure/bed/chair/wood/normal{
 	icon_state = "echair0"
@@ -4036,7 +3879,7 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "kb" = (
 /turf/closed/shuttle/ert{
 	icon_state = "leftengine_1";
@@ -4166,14 +4009,14 @@
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "kw" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
 	},
-/area/yautja)
+/area/syndicate_station)
 "kx" = (
 /turf/closed/wall/indestructible/splashscreen,
 /area/start)
@@ -4186,7 +4029,7 @@
 /area/shuttle/distress/start_big)
 "kz" = (
 /obj/structure/table/almayer,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -4443,7 +4286,7 @@
 /area/shuttle/distress/start_big)
 "le" = (
 /obj/structure/table/almayer,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/open/floor/carpet/edge2{
 	dir = 6
 	},
@@ -4468,7 +4311,7 @@
 /area/shuttle/distress/start_big)
 "lh" = (
 /obj/machinery/vending/engivend,
-/obj/item/device/radio/intercom/general{
+/obj/item/radio/intercom/general{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -4515,7 +4358,7 @@
 "lm" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -5336,9 +5179,9 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
+/obj/item/radio,
+/obj/item/radio,
+/obj/item/radio,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -6336,14 +6179,6 @@
 	dir = 4
 	},
 /area/deathmatch)
-"pN" = (
-/obj/structure/closet/medical_wall{
-	pixel_y = 32
-	},
-/turf/open/floor{
-	icon_state = "panelscorched"
-	},
-/area/deathmatch)
 "pO" = (
 /obj/structure/largecrate/guns/merc,
 /obj/item/tool/crowbar,
@@ -6371,12 +6206,6 @@
 /area/deathmatch)
 "pU" = (
 /turf/open/gm/dirtgrassborder2/corner,
-/area/deathmatch)
-"pV" = (
-/obj/structure/closet/hydrant{
-	pixel_y = 32
-	},
-/turf/open/shuttle/brig,
 /area/deathmatch)
 "pW" = (
 /obj/structure/closet,
@@ -6646,20 +6475,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor,
 /area/deathmatch)
-"qY" = (
-/obj/structure/closet/hydrant{
-	pixel_y = -32
-	},
-/turf/open/shuttle/brig,
-/area/deathmatch)
-"qZ" = (
-/obj/structure/closet/medical_wall{
-	pixel_y = -32
-	},
-/turf/open/floor{
-	icon_state = "panelscorched"
-	},
-/area/deathmatch)
 "ra" = (
 /obj/structure/table,
 /obj/item/clothing/under/marine/veteran/freelancer,
@@ -6683,7 +6498,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "re" = (
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/floor,
 /area/deathmatch)
 "rf" = (
@@ -22689,7 +22504,7 @@ dr
 dw
 cK
 cK
-dN
+cP
 cf
 aa
 aa
@@ -23291,13 +23106,13 @@ aa
 aa
 cf
 cf
-dj
+cP
 cf
-de
+cV
 dz
 cK
 dK
-de
+cV
 cf
 cK
 cK
@@ -23442,7 +23257,7 @@ aa
 aa
 aa
 cf
-cW
+cP
 cK
 cf
 cK
@@ -23746,7 +23561,7 @@ aa
 aa
 aa
 cf
-cY
+cP
 cK
 cf
 cK
@@ -23901,11 +23716,11 @@ cf
 cZ
 dd
 cf
-de
+cV
 dA
 dG
 dL
-de
+cV
 cf
 cK
 cL
@@ -23913,10 +23728,10 @@ cf
 cf
 cf
 cf
-eq
-ez
+dp
+dp
 eK
-eQ
+dp
 cf
 cK
 cK
@@ -24084,7 +23899,7 @@ cK
 gP
 cK
 fE
-fT
+cP
 gr
 cK
 cf
@@ -24202,13 +24017,13 @@ cf
 cf
 cf
 cO
-da
+cV
 cK
 cK
 dm
 cK
 cK
-da
+cV
 cO
 cf
 cK
@@ -24224,9 +24039,9 @@ cK
 cf
 cK
 fE
-fT
-fT
-fT
+cP
+cP
+cP
 gr
 cK
 cf
@@ -24236,7 +24051,7 @@ cK
 cf
 cK
 fE
-fT
+cP
 gr
 cK
 cf
@@ -24376,19 +24191,19 @@ cK
 fc
 cK
 fE
-fT
+cP
 cK
-fT
+cP
 gr
 dP
 cf
 gB
 cK
 cK
-fT
+cP
 cK
 fE
-fT
+cP
 gr
 dP
 cf
@@ -24528,19 +24343,19 @@ cK
 cf
 cK
 fE
-fT
-fT
-fT
+cP
+cP
+cP
 gr
 cK
 cf
 gA
 cK
 cK
-fT
+cP
 cK
 fE
-fT
+cP
 gr
 cK
 cf
@@ -24689,10 +24504,10 @@ cf
 gA
 cK
 cK
-fT
+cP
 cK
 fE
-fT
+cP
 gr
 cK
 cf
@@ -24810,13 +24625,13 @@ co
 co
 cf
 cO
-da
+cV
 cK
 cK
 dd
 cK
 cK
-da
+cV
 cO
 cf
 cK
@@ -24825,10 +24640,10 @@ cf
 cf
 cf
 cf
-eq
-ez
-eL
-eR
+dp
+dp
+cR
+dp
 cf
 cK
 dd
@@ -24841,10 +24656,10 @@ cf
 gA
 cK
 cK
-fT
+cP
 cK
 fE
-fT
+cP
 gr
 cK
 cf
@@ -25122,7 +24937,7 @@ cK
 cf
 cf
 cf
-dS
+cK
 cK
 cL
 cf
@@ -27089,7 +26904,7 @@ cm
 co
 cq
 cf
-cT
+cP
 cK
 cK
 cK
@@ -27097,7 +26912,7 @@ cf
 cK
 cK
 cK
-cT
+cP
 cf
 cK
 cL
@@ -27241,7 +27056,7 @@ cl
 co
 co
 cf
-cU
+cP
 cK
 cK
 do
@@ -27249,7 +27064,7 @@ cf
 dB
 cK
 cK
-cU
+cP
 cf
 cK
 cL
@@ -27257,7 +27072,7 @@ cf
 ef
 cK
 cK
-es
+dp
 eB
 eN
 cK
@@ -27457,7 +27272,7 @@ pG
 pH
 pC
 pC
-pN
+aV
 pH
 pk
 pH
@@ -27633,7 +27448,7 @@ pH
 pH
 pH
 pH
-qY
+bu
 pC
 pt
 pt
@@ -27850,7 +27665,7 @@ aa
 aa
 aa
 cf
-de
+cV
 cK
 cf
 co
@@ -28065,7 +27880,7 @@ pI
 pH
 pC
 pC
-pV
+bq
 pH
 pH
 ql
@@ -28241,7 +28056,7 @@ pH
 pH
 pH
 pH
-qZ
+cS
 pC
 pt
 pt

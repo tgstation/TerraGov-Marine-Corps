@@ -1,4 +1,4 @@
-/obj/item/device/assembly/timer
+/obj/item/assembly/timer
 	name = "timer"
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	icon_state = "timer"
@@ -84,7 +84,7 @@
 
 	Topic(href, href_list)
 		..()
-		if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !in_range(loc, usr))
+		if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 			usr << browse(null, "window=timer")
 			onclose(usr, "timer")
 			return

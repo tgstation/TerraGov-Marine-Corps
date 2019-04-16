@@ -10,8 +10,7 @@ GLOBAL_LIST_INIT(exp_jobsmap, list(
 
 GLOBAL_LIST_INIT(exp_specialmap, list(
 	EXP_TYPE_LIVING = list(),
-	EXP_TYPE_XENO = list(ROLE_XENOMORPH, ROLE_XENO_QUEEN),
-	EXP_TYPE_SPECIAL = list(ROLE_SURVIVOR),
+	EXP_TYPE_SPECIAL = list(ROLE_SURVIVOR, ROLE_XENOMORPH, ROLE_XENO_QUEEN),
 	EXP_TYPE_GHOST = list()
 ))
 GLOBAL_PROTECT(exp_jobsmap)
@@ -35,7 +34,6 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/department_flag = NOFLAGS
 	var/prefflag = NOFLAGS
 
-	var/spawn_positions = 0
 	var/total_positions = 0
 	var/current_positions = 0
 

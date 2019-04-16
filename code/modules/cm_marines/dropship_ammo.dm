@@ -371,11 +371,11 @@
 			S.set_up(1,0,T,null)
 			S.start()
 		spawn(10)
-			new/obj/item/device/flashlight/flare/on/cas(T)
+			new/obj/item/flashlight/flare/on/cas(T)
 		if(!ammo_count && loc)
 			qdel(src) //deleted after last minirocket is fired and impact the ground.
 
-/obj/item/device/flashlight/flare/on/cas
+/obj/item/flashlight/flare/on/cas
 	name = "illumination flare"
 	desc = "Report this if you actually see this FUCK"
 	icon_state = "" //No sprite
@@ -383,7 +383,7 @@
 	mouse_opacity = 0
 	brightness_on = 7 //Magnesium/sodium fires (White star) really are bright
 
-/obj/item/device/flashlight/flare/on/cas/New()
+/obj/item/flashlight/flare/on/cas/New()
 	..()
 	var/turf/T = get_turf(src)
 	fuel = rand(700, 900) // About the same burn time as a flare, considering it requires it's own CAS run.

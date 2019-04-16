@@ -27,10 +27,11 @@
 	if(href_list["ahelp"])
 		var/ahelp_ref = href_list["ahelp"]
 		var/datum/admin_help/AH = locate(ahelp_ref)
-		if(AH)
-			AH.Action(href_list["ahelp_action"])
-		else
+		if(!AH)
 			to_chat(usr, "<span class='warning'>Ticket [ahelp_ref] has been deleted!</span>")
+			return
+
+		AH.Action(href_list["ahelp_action"])		
 
 
 	else if(href_list["ahelp_tickets"])
@@ -43,7 +44,7 @@
 
 		var/mob/M = locate(href_list["moreinfo"]) in GLOB.mob_list
 
-		if(!ismob(M))
+		if(!istype(M))
 			return
 
 		var/status
@@ -51,7 +52,7 @@
 
 		if(isliving(M))
 			var/mob/living/L = M
-			switch(M.stat)
+			switch(L.stat)
 				if(CONSCIOUS)
 					status = "Alive"
 				if(UNCONSCIOUS)
@@ -87,69 +88,72 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 
 	else if(href_list["observecoordjump"])
-		if(istype(usr, /mob/new_player))
-			return
-
 		var/x = text2num(href_list["X"])
 		var/y = text2num(href_list["Y"])
 		var/z = text2num(href_list["Z"])
+		var/client/C = usr.client
 
 		if(x == 0 && y == 0 && z == 0)
 			return
 
-		var/client/C = usr.client
-
+		var/message
 		if(!isobserver(usr))
 			admin_ghost()
-			log_admin("[key_name(C.mob)] jumped to coordinates ([x], [y], [z]).")
-			message_admins("[ADMIN_TPMONTY(C.mob)] jumped to coordinates ([x], [y], [z]).")
+			message = TRUE
 
-		var/mob/dead/observer/M = C.mob
+		var/mob/dead/observer/O = C.mob
+		O.on_mob_jump()
+		var/turf/T = locate(x, y, z)
+		O.forceMove(T)
 
-		M.on_mob_jump()
-		M.x = x
-		M.y = y
-		M.z = z
-		M.forceMove(M.loc)
+		if(message)
+			log_admin("[key_name(O)] jumped to coordinates [AREACOORD(T)].")
+			message_admins("[ADMIN_TPMONTY(O)] jumped to coordinates [ADMIN_VERBOSEJMP(T)].")
 
 
 	else if(href_list["observefollow"])
 		var/atom/movable/AM = locate(href_list["observefollow"])
-
-		if(QDELETED(AM) || !ismovableatom(AM))
-			return
-
-		if(istype(usr, /mob/new_player) || istype(AM, /mob/new_player))
-			return
-
 		var/client/C = usr.client
 
-		if(!isobserver(usr))
-			admin_ghost()
-			log_admin("[key_name(C.mob)] jumped to follow [key_name(AM)].")
-			message_admins("[ADMIN_TPMONTY(C.mob)] jumped to follow [ADMIN_TPMONTY(AM)].")
+		if(!ismovableatom(AM))
+			return
 
-		var/mob/dead/observer/ghost = C.mob
-		ghost.ManualFollow(AM)
+		if(isnewplayer(C.mob) || isnewplayer(AM))
+			return
+
+		var/message
+		if(!isobserver(C.mob))
+			admin_ghost()
+			message = TRUE
+
+		var/mob/dead/observer/O = C.mob
+		O.on_mob_jump()
+		O.ManualFollow(AM)
+
+		if(message)
+			log_admin("[key_name(O)] jumped to follow [key_name(AM)].")
+			message_admins("[ADMIN_TPMONTY(O)] jumped to follow [ADMIN_TPMONTY(AM)].")
 
 
 	else if(href_list["observejump"])
 		var/atom/movable/AM = locate(href_list["observejump"])
-
-		if(istype(usr, /mob/new_player) || istype(AM, /mob/new_player))
-			return
-
 		var/client/C = usr.client
 
+		if(isnewplayer(usr) || isnewplayer(usr))
+			return
+
+		var/message
 		if(!isobserver(usr))
 			admin_ghost()
-			log_admin("[key_name(usr)] jumped to [key_name(AM)].")
-			message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_TPMONTY(AM)].")
+			message = TRUE
 
-		var/mob/dead/observer/M = C.mob
+		var/mob/dead/observer/O = C.mob
+		O.on_mob_jump()
+		O.forceMove(get_turf(AM))
 
-		M.on_mob_jump()
-		M.forceMove(AM.loc)
+		if(message)
+			log_admin("[key_name(O)] jumped to [key_name(AM)].")
+			message_admins("[ADMIN_TPMONTY(O)] jumped to [ADMIN_TPMONTY(AM)].")
 
 
 	else if(href_list["secrets"])
@@ -208,10 +212,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				return
 			if(alert(usr, "Are you sure you want to kick [key_name(M)]?", "Warning", "Yes", "No") != "Yes")
 				return
-			if(!M)
-				to_chat(usr, "<span class='warning'>Error: [M] no longer exists!</span>")
-				return
-			if(!M.client)
+			if(!M?.client)
 				to_chat(usr, "<span class='warning'>Error: [M] no longer has a client!</span>")
 				return
 			to_chat(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>")
@@ -227,7 +228,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/mob/M = locate(href_list["mute"])
 
-		if(!ismob(M))
+		if(!istype(M))
 			return
 
 		if(!M.client || !check_if_greater_rights_than(M.client))
@@ -250,11 +251,13 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/mob/M = locate(href_list["mob"])
+		var/client/C = usr.client
+		var/mob/oldusr = C.mob
 
-		if(!ismob(M) || M.gc_destroyed)
+		if(!istype(M))
 			return
 
-		var/delmob = FALSE
+		var/delmob
 		switch(alert("Delete old mob?", "Message", "Yes", "No", "Cancel"))
 			if("Cancel")
 				return
@@ -266,10 +269,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("Cancel")
 				return
 			if("Yes")
-				location = get_turf(usr)
+				location = get_turf(oldusr)
 
-		var/mob/oldusr = usr
 		var/mob/newmob
+
+		oldusr << browse(null, "window=player_panel_[key_name(M)]")
 
 		switch(href_list["transform"])
 			if("observer")
@@ -312,8 +316,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob)
 			if("moth")
 				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
-			if("yautja")
-				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Yautja")
+
+		C.holder.show_player_panel(newmob)
 
 		log_admin("[key_name(oldusr)] has transformed [key_name(newmob)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
 		message_admins("[delmob ? key_name_admin(oldusr) : ADMIN_TPMONTY(oldusr)] has transformed [ADMIN_TPMONTY(newmob)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
@@ -323,12 +327,16 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/mob/living/L = locate(href_list["revive"])
+		var/mob/living/L = locate(href_list["revive"]) in GLOB.mob_living_list
 
 		if(!istype(L))
 			return
 
+		if(alert("Are you sure you want to rejuvenate [L]?", "Rejuvenate", "Yes", "No") != "Yes")
+			return
+
 		L.revive()
+
 		log_admin("[key_name(usr)] revived [key_name(L)].")
 		message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
 
@@ -438,7 +446,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!istype(M))
 			return
 
-		distress_cancel = TRUE
+		SSticker.mode.distress_cancelled = TRUE
 		command_announcement.Announce("The distress signal has been blocked, the launch tubes are now recalibrating.", "Distress Beacon")
 		log_game("[key_name(usr)] has denied a distress beacon, requested by [key_name(M)]")
 		message_admins("[ADMIN_TPMONTY(usr)] has denied a distress beacon, requested by [ADMIN_TPMONTY(M)]")
@@ -457,23 +465,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		log_game("[key_name(usr)] has sent a randomized distress beacon early, requested by [key_name(M)]")
 		message_admins("[ADMIN_TPMONTY(usr)] has sent a randomized distress beacon early, requested by [ADMIN_TPMONTY(M)]")
-
-
-	else if(href_list["forcesay"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/mob/M = locate(href_list["forcesay"])
-		if(!ismob(M))
-			return
-
-		var/speech = input("What will [key_name(M)] say?", "Force say", "")
-		if(!speech)
-			return
-		M.say(speech)
-
-		log_admin("[key_name(usr)] forced [key_name(M)] to say: [speech]")
-		message_admins("[ADMIN_TPMONTY(usr)] forced [ADMIN_TPMONTY(M)] to say: [speech]")
 
 
 	else if(href_list["thunderdome"])
@@ -506,17 +497,17 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/mob/M = locate(href_list["gib"])
-		if(!ismob(M) || isobserver(M))
+		var/mob/living/L = locate(href_list["gib"])
+		if(!istype(L) || isobserver(L))
 			return
 
-		if(alert("Are you sure you want to gib [M]?", "Warning", "Yes", "No") != "Yes")
+		if(alert("Are you sure you want to gib [L]?", "Warning", "Yes", "No") != "Yes")
 			return
 
-		log_admin("[key_name(usr)] has gibbed [key_name(M)].")
-		message_admins("[ADMIN_TPMONTY(usr)] has gibbed [ADMIN_TPMONTY(M)].")
+		log_admin("[key_name(usr)] has gibbed [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has gibbed [ADMIN_TPMONTY(L)].")
 
-		M.gib()
+		L.gib()
 
 
 	else if(href_list["lobby"])
@@ -568,7 +559,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/turf/T = get_turf(M)
-		var/name = M.real_name
+		var/old_name = M.real_name
 		var/obj/machinery/cryopod/P = new(T)
 		P.density = FALSE
 		P.alpha = 0
@@ -589,8 +580,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if(isobserver(N))
 				qdel(N)
 
-		log_admin("[key_name(usr)] has cryo'd [C ? key_name(C) : name][lobby ? " sending them to the lobby" : ""].")
-		message_admins("[ADMIN_TPMONTY(usr)] has cryo'd [C ? key_name_admin(C) : name] [lobby ? " sending them to the lobby" : ""].")
+		log_admin("[key_name(usr)] has cryo'd [C ? key_name(C) : old_name][lobby ? " sending them to the lobby" : ""].")
+		message_admins("[ADMIN_TPMONTY(usr)] has cryo'd [C ? key_name_admin(C) : old_name] [lobby ? " sending them to the lobby" : ""].")
 
 
 	else if(href_list["jumpto"])
@@ -598,7 +589,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/mob/M = locate(href_list["jumpto"])
-		if(!istype(M))
+		if(!istype(M) || M == usr)
 			return
 
 		usr.forceMove(M.loc)
@@ -612,7 +603,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/mob/M = locate(href_list["getmob"])
-		if(!istype(M))
+		if(!istype(M)  || M == usr)
 			return
 
 		M.forceMove(usr.loc)
@@ -742,7 +733,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		send_fax(usr, null, dep, subject, fax_message, TRUE)
 
 		log_admin("[key_name(usr)] replied to a fax message from [key_name(sender)].")
-		message_staff("[key_name_admin(usr)] replied to a fax message from [key_name_admin(sender)].")
+		message_staff("[ADMIN_TPMONTY(usr)] replied to a fax message from [ismob(sender) ? ADMIN_TPMONTY(sender) : key_name_admin(sender)].")
 
 
 	else if(href_list["faxview"])
@@ -878,29 +869,34 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_SERVER))
 			return
 
-		if(SSticker?.mode)
-			return alert("The game has already started.")
-
-		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
+		var/dat = "<b>What mode do you wish to play?</b><br>"
 		for(var/mode in config.modes)
-			dat += {"<A href='?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[config.mode_names[mode]]</A><br>"}
-		dat += {"Now: [GLOB.master_mode]"}
-		usr << browse(dat, "window=c_mode")
+			dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[config.mode_names[mode]]</a><br>"
+		dat += "<br>"
+		dat += "Now: [GLOB.master_mode]<br>"
+		dat += "Next Round: [trim(file2text("data/mode.txt"))]"
+
+		var/datum/browser/browser = new(usr, "change_mode", "<div align='center'>Change Gamemode</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
 
 
 	else if(href_list["changemode"])
 		if(!check_rights(R_SERVER))
 			return
 
-		if(SSticker?.mode)
-			return alert("The game has already started.")
+		var/new_mode = href_list["changemode"]
 
-		GLOB.master_mode = href_list["changemode"]
-
-		log_admin("[key_name(usr)] set the mode as [GLOB.master_mode].")
-		message_admins("[ADMIN_TPMONTY(usr)] set the mode as [GLOB.master_mode].")
-		to_chat(world, "<span class='boldnotice'>The mode is now: [GLOB.master_mode].</span>")
-		world.save_mode(GLOB.master_mode)
+		if(SSticker.mode)
+			world.save_mode(new_mode)
+			log_admin("[key_name(usr)] set the mode for next round to: [new_mode].")
+			message_admins("[ADMIN_TPMONTY(usr)] set the mode to: [new_mode].")
+		else
+			GLOB.master_mode = new_mode
+			to_chat(world, "<span class='boldnotice'>The mode is now: [GLOB.master_mode].</span>")
+			world.save_mode(GLOB.master_mode)
+			log_admin("[key_name(usr)] set the mode to: [GLOB.master_mode].")
+			message_admins("[ADMIN_TPMONTY(usr)] set the mode to: [GLOB.master_mode].")
 
 
 	if(href_list["evac_authority"])
@@ -995,17 +991,17 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			paths += path
 
 		if(!paths)
-			alert("The path list you sent is empty.")
+			to_chat(usr, "<span class='warning'>The path list you sent is empty.</span>")
 			return
 		if(length(paths) > 5)
-			alert("Select fewer object types, (max 5).")
+			to_chat(usr, "<span class='warning'>Select fewer object types, (max 5).</span>")
 			return
 
 		var/list/offset = splittext(href_list["offset"],",")
 		var/number = CLAMP(text2num(href_list["object_count"]), 1, 100)
-		var/X = offset.len > 0 ? text2num(offset[1]) : 0
-		var/Y = offset.len > 1 ? text2num(offset[2]) : 0
-		var/Z = offset.len > 2 ? text2num(offset[3]) : 0
+		var/X = length(offset) > 0 ? text2num(offset[1]) : 0
+		var/Y = length(offset) > 1 ? text2num(offset[2]) : 0
+		var/Z = length(offset) > 2 ? text2num(offset[3]) : 0
 		var/obj_dir = text2num(href_list["object_dir"])
 		if(obj_dir && !(obj_dir in list(1,2,4,8,5,6,9,10)))
 			obj_dir = null
@@ -1021,29 +1017,29 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		switch(where)
 			if("inhand")
 				if(!iscarbon(usr))
-					to_chat(usr, "Can only spawn in hand when you're a carbon mob or cyborg.")
+					to_chat(usr, "Can only spawn in hand when you're a carbon mob.")
 					where = "onfloor"
 				target = usr
 
 			if("onfloor", "frompod")
 				switch(href_list["offset_type"])
 					if("absolute")
-						target = locate(0 + X,0 + Y,0 + Z)
+						target = locate(0 + X, 0 + Y, 0 + Z)
 					if("relative")
-						target = locate(loc.x + X,loc.y + Y,loc.z + Z)
+						target = locate(loc.x + X, loc.y + Y, loc.z + Z)
 			if("inmarked")
 				if(!marked_datum)
-					to_chat(usr, "You don't have any object marked. Abandoning spawn.")
+					to_chat(usr, "<span class='warning'>You don't have any object marked. Abandoning spawn.</span>")
 					return
 				else if(!istype(marked_datum, /atom))
-					to_chat(usr, "The object you have marked cannot be used as a target. Target must be of type /atom. Abandoning spawn.")
+					to_chat(usr, "<span class='warning'>The object you have marked cannot be used as a target. Target must be of type /atom.</span>")
 					return
 				else
 					target = marked_datum
 
 		if(target)
 			for(var/path in paths)
-				for (var/i = 0; i < number; i++)
+				for(var/i in 1 to number)
 					if(path in typesof(/turf))
 						var/turf/O = target
 						var/turf/N = O.ChangeTurf(path)
@@ -1066,19 +1062,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 								var/obj/item/I = O
 								L.put_in_hands(I)
 
-
-		if(number == 1)
-			log_admin("[key_name(usr)] created a [english_list(paths)].")
-			for(var/path in paths)
-				if(ispath(path, /mob))
-					message_admins("[ADMIN_TPMONTY(usr)] created a [english_list(paths)].")
-					break
-		else
-			log_admin("[key_name(usr)] created [number]ea [english_list(paths)].")
-			for(var/path in paths)
-				if(ispath(path, /mob))
-					message_admins("[ADMIN_TPMONTY(usr)] created [number]ea [english_list(paths)].")
-					break
+		log_admin("[key_name(usr)] created [number] [english_list(paths)] at [AREACOORD(usr.loc)].")
+		message_admins("[ADMIN_TPMONTY(usr)] created [number] [english_list(paths)] at [ADMIN_VERBOSEJMP(usr.loc)].")
 
 
 	else if(href_list["admin_log"])
@@ -1519,3 +1504,148 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		log_admin("[key_name(src)] has limited the [slot] job.")
 		message_admins("[ADMIN_TPMONTY(usr)] has limited the [slot] job.")
+
+
+	else if(href_list["setsquad"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["setsquad"])
+
+		if(!istype(H) || !(H.job in JOBS_MARINES))
+			return
+
+		var/squad = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
+		if(!squad || !istype(H) || !(H.job in JOBS_MARINES))
+			return
+
+		H.change_squad(squad)
+
+		log_admin("[key_name(src)] has changed the squad of [key_name(H)] to [squad].")
+		message_admins("[ADMIN_TPMONTY(usr)] has changed the squad of [ADMIN_TPMONTY(H)] to [squad].")
+
+
+	else if(href_list["setrank"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["setrank"])
+
+		if(!istype(H))
+			return
+
+		switch(alert("Modify the rank or give them a new one?", "Select Rank", "New Rank", "Modify", "Cancel"))
+			if("New Rank")
+				var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(SSjob.name_occupations)
+				if(!newrank || !istype(H))
+					return
+
+				H.set_rank(newrank)
+
+				log_admin("[key_name(usr)] has set the rank of [key_name(H)] to [newrank].")
+				message_admins("[ADMIN_TPMONTY(usr)] has set the rank of [ADMIN_TPMONTY(H)] to [newrank].")
+
+			if("Modify")
+				var/obj/item/card/id/I = H.wear_id
+				switch(input("What do you want to edit?") as null|anything in list("Comms Title - \[Engineering (Title)]", "Chat Title - Title John Doe screams!", "ID title - Jane Doe's ID Card (Title)", "Registered Name - Jane Doe's ID Card", "Skills"))
+					if("Comms Title - \[Engineering (Title)]")
+						var/commtitle = input("Write the custom title appearing in the comms: Comms Title - \[Engineering (Title)]", "Comms Title") as null|text
+						if(!commtitle || !H?.mind)
+							return
+						H.mind.comm_title = commtitle
+					if("Chat Title - Title John Doe screams!")
+						var/chattitle = input("Write the custom title appearing in all chats: Title Jane Doe screams!", "Chat Title") as null|text
+						if(chattitle || !H || !istype(I))
+							return
+						I.paygrade = chattitle
+						I.update_label()
+					if("ID title - Jane Doe's ID Card (Title)")
+						var/idtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID Title") as null|text
+						if(!idtitle || !H || !istype(I))
+							return
+						I.assignment = idtitle
+						I.update_label()
+					if("Registered Name - Jane Doe's ID Card")
+						var/regname = input("Write the name appearing on the ID itself: Jane Doe's ID Card", "Registered Name") as null|text
+						if(!H || I != H.wear_id || !istype(I))
+							return
+						I.registered_name = regname
+						I.update_label()
+					if("Skills")
+						var/newskillset = input("Select a skillset", "Skill Set") as null|anything in sortList(SSjob.name_occupations)
+						if(!newskillset || !H?.mind)
+							return
+						var/datum/job/J = SSjob.name_occupations[newskillset]
+						var/datum/skills/S = new J.skills_type()
+						H.mind.cm_skills = S
+					else
+						return
+
+				log_admin("[key_name(usr)] has made a custom rank/skill change for [key_name(H)].")
+				message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank/skill change for [ADMIN_TPMONTY(H)].")
+
+
+	else if(href_list["setequipment"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["setequipment"])
+
+		if(!istype(H))
+			return
+
+		var/dresscode = input("Please select an outfit.", "Select Equipment") as null|anything in list("{Naked}", "{Job}", "{Custom}")
+		if(!dresscode)
+			return
+
+		if(dresscode == "{Job}")
+			var/list/job_paths = subtypesof(/datum/outfit/job)
+			var/list/job_outfits = list()
+			for(var/path in job_paths)
+				var/datum/outfit/O = path
+				if(initial(O.can_be_admin_equipped))
+					job_outfits[initial(O.name)] = path
+
+			dresscode = input("Select job equipment", "Select Equipment") as null|anything in sortList(job_outfits)
+			dresscode = job_outfits[dresscode]
+
+		else if(dresscode == "{Custom}")
+			var/list/custom_names = list()
+			for(var/datum/outfit/D in GLOB.custom_outfits)
+				custom_names[D.name] = D
+			var/selected_name = input("Select outfit", "Select Equipment") as null|anything in sortList(custom_names)
+			dresscode = custom_names[selected_name]
+
+		if(!dresscode)
+			return
+
+		var/datum/outfit/O
+		H.delete_equipment(TRUE)
+		if(dresscode != "{Naked}")
+			O = new dresscode
+			H.equipOutfit(O, FALSE)
+
+		H.regenerate_icons()
+
+		log_admin("[key_name(usr)] changed the equipment of [key_name(H)] to [istype(O) ?  O.name : dresscode].")
+		message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(H)] to [istype(O) ? O.name : dresscode].")
+
+
+	else if(href_list["sleep"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/living/L = locate(href_list["sleep"]) in GLOB.mob_living_list
+
+		if(!istype(L))
+			return
+
+		if(L.sleeping > 0)
+			L.sleeping = 0
+		else if(alert("Are you sure you want to sleep [L]?", "Toggle Sleeping", "Yes", "No") != "Yes")
+			return
+		else
+			L.sleeping = 9999999
+
+		log_admin("[key_name(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(L)].")
