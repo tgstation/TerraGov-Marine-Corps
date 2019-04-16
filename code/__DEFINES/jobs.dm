@@ -190,3 +190,13 @@
 #define EXP_TYPE_SPECIAL		"Special"
 #define EXP_TYPE_GHOST			"Ghost"
 #define EXP_TYPE_ADMIN			"Admin"
+
+// hypersleep bay flags
+#define CRYO_MED		"Medical"
+#define CRYO_SEC		"Security"
+#define CRYO_ENGI		"Engineering"
+#define CRYO_REQ		"Requisitions"
+#define CRYO_ALPHA		"Alpha Squad"
+#define CRYO_BRAVO		"Bravo Squad"
+#define CRYO_CHARLIE	"Charlie Squad"
+#define CRYO_DELTA		"Delta Squad"

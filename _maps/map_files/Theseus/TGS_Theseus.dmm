@@ -7875,14 +7875,8 @@
 	},
 /area/almayer/medical/upper_medical)
 "arF" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "84"
-	},
-/area/shuttle/drop1/sulaco)
+/turf/open/floor/almayer/mono,
+/area/almayer/squads/alpha)
 "arG" = (
 /obj/structure/window/framed/almayer/white,
 /obj/machinery/door/firedoor/theseus,
@@ -7914,14 +7908,9 @@
 	},
 /area/almayer/medical/medical_science)
 "arJ" = (
-/obj/effect/attach_point/electronics/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "85"
-	},
-/area/shuttle/drop1/sulaco)
+/obj/machinery/computer/cryopod/alpha,
+/turf/open/floor/almayer/mono,
+/area/almayer/squads/alpha)
 "arK" = (
 /obj/machinery/bioprinter{
 	stored_metal = 1000
@@ -8234,14 +8223,8 @@
 /turf/closed/wall/almayer,
 /area/almayer/command/self_destruct)
 "asw" = (
-/obj/effect/attach_point/electronics/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "90"
-	},
-/area/shuttle/drop1/sulaco)
+/turf/open/floor/almayer/mono,
+/area/almayer/squads/bravo)
 "asx" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -8582,14 +8565,9 @@
 	},
 /area/almayer/command/cic)
 "atk" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "91"
-	},
-/area/shuttle/drop1/sulaco)
+/obj/machinery/computer/cryopod/bravo,
+/turf/open/floor/almayer/mono,
+/area/almayer/squads/bravo)
 "atl" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/almayer{
@@ -10401,25 +10379,35 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/upper_engineering)
 "awV" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "61"
+/obj/machinery/computer/cryopod/brig{
+	icon_state = "cellconsole";
+	dir = 8
 	},
-/area/shuttle/drop1/sulaco)
+/turf/open/floor/almayer{
+	dir = 10;
+	icon_state = "red";
+	tag = "icon-red"
+	},
+/area/almayer/shipboard/brig)
 "awW" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 4;
-	icon_state = "equip_base_r_wing"
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "65"
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
 	},
-/area/shuttle/drop1/sulaco)
+/turf/open/floor/almayer{
+	tag = "icon-red";
+	icon_state = "red"
+	},
+/area/almayer/shipboard/brig)
 "awX" = (
 /obj/structure/closet/toolcloset,
 /turf/open/floor/almayer{
@@ -12794,20 +12782,14 @@
 	},
 /area/almayer/shipboard/brig)
 "aBo" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 4
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "84"
 	},
-/turf/open/floor/almayer{
-	dir = 10;
-	icon_state = "red";
-	tag = "icon-red"
-	},
-/area/almayer/shipboard/brig)
+/area/shuttle/drop1/sulaco)
 "aBp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -15786,6 +15768,15 @@
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
+"aGT" = (
+/obj/effect/attach_point/electronics/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "85"
+	},
+/area/shuttle/drop1/sulaco)
 "aGU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/almayer,
@@ -15838,6 +15829,15 @@
 	tag = "icon-orange"
 	},
 /area/almayer/engineering/upper_engineering)
+"aHc" = (
+/obj/effect/attach_point/electronics/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "90"
+	},
+/area/shuttle/drop1/sulaco)
 "aHd" = (
 /obj/structure/flora/pottedplant{
 	tag = "icon-plant-10";
@@ -15884,6 +15884,25 @@
 /obj/machinery/light,
 /turf/open/floor/almayer/mono,
 /area/almayer/command/self_destruct)
+"aHk" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "91"
+	},
+/area/shuttle/drop1/sulaco)
+"aHl" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "61"
+	},
+/area/shuttle/drop1/sulaco)
 "aHm" = (
 /obj/machinery/light{
 	dir = 4
@@ -15903,6 +15922,9 @@
 	icon_state = "redcorner"
 	},
 /area/almayer/shipboard/brig_cells)
+"aHo" = (
+/turf/open/floor/almayer/mono,
+/area/almayer/squads/charlie)
 "aHp" = (
 /obj/structure/window/framed/almayer,
 /turf/open/floor/plating,
@@ -16117,6 +16139,10 @@
 /obj/structure/closet/crate/freezer,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/captain_mess)
+"aHJ" = (
+/obj/machinery/computer/cryopod/charlie,
+/turf/open/floor/almayer/mono,
+/area/almayer/squads/charlie)
 "aHK" = (
 /obj/structure/window/framed/almayer/white,
 /obj/machinery/door/firedoor/theseus{
@@ -16326,6 +16352,9 @@
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/command/telecomms)
+"aIg" = (
+/turf/open/floor/almayer/mono,
+/area/almayer/squads/delta)
 "aIh" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -16511,6 +16540,10 @@
 	tag = "icon-red"
 	},
 /area/almayer/hallways/aft_hallway)
+"aIE" = (
+/obj/machinery/computer/cryopod/delta,
+/turf/open/floor/almayer/mono,
+/area/almayer/squads/delta)
 "aIF" = (
 /obj/machinery/body_scanconsole,
 /obj/machinery/vending/wallmed1{
@@ -16565,6 +16598,16 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig_cells)
+"aIK" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 4;
+	icon_state = "equip_base_r_wing"
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "65"
+	},
+/area/shuttle/drop1/sulaco)
 "aIL" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/almayer{
@@ -59587,7 +59630,7 @@ asD
 auA
 cgz
 azm
-aBo
+awV
 asB
 aEw
 ahd
@@ -59844,7 +59887,7 @@ asD
 auG
 awk
 azn
-aBp
+awW
 asB
 aEw
 cfV
@@ -72303,7 +72346,7 @@ blA
 blA
 btZ
 bvv
-awV
+aHl
 cjV
 cjV
 cjV
@@ -72556,7 +72599,7 @@ bkY
 blA
 blA
 blA
-arF
+aBo
 bsn
 bua
 bvw
@@ -72813,7 +72856,7 @@ bkZ
 blA
 blA
 blA
-arJ
+aGT
 bso
 bub
 bub
@@ -74355,7 +74398,7 @@ bkX
 blA
 blA
 blA
-asw
+aHc
 bso
 bug
 bvz
@@ -74612,7 +74655,7 @@ bkY
 blA
 blA
 blA
-atk
+aHk
 bsu
 buh
 bvA
@@ -74873,7 +74916,7 @@ blA
 blA
 bui
 bvB
-awW
+aIK
 cjW
 cjW
 cjW
@@ -89759,9 +89802,9 @@ aXb
 aXV
 aXd
 aZk
-aZJ
+arF
 aWH
-baX
+asw
 bcv
 bdo
 bdq
@@ -89803,9 +89846,9 @@ bVU
 bWS
 bVW
 bZh
-bZR
+aHo
 bSQ
-cbp
+aIg
 ccg
 ccQ
 ccS
@@ -90273,9 +90316,9 @@ aXc
 aXW
 aYH
 aZk
-aZL
+arJ
 aWH
-baZ
+atk
 bcv
 bdp
 bex
@@ -90317,9 +90360,9 @@ bVV
 bWT
 bXP
 bZh
-bZT
+aHJ
 bSQ
-cbr
+aIE
 ccg
 ccR
 cdy
@@ -90530,9 +90573,9 @@ aWH
 aWH
 aXV
 aZk
-aZM
+aZJ
 aWH
-bba
+baX
 bcv
 bdq
 baV
@@ -90574,9 +90617,9 @@ bSQ
 bSQ
 bWS
 bZh
-bZU
+bZR
 bSQ
-cbs
+cbp
 ccg
 ccS
 cbn
