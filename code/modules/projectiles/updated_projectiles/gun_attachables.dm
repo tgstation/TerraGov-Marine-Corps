@@ -558,11 +558,11 @@ Defined in conflicts.dm of the #defines folder.
 			to_chat(user, "<span class='warning'>You must hold [G] with two hands to use [src].</span>")
 		return FALSE
 	
-	zoom(user, zoom_offset, zoom_viewsize, CHECK_BITFIELD(flags_item, ITEM_ZOOM_NIGHTVISION))
+	zoom(user, zoom_viewsize, zoom_offset, CHECK_BITFIELD(flags_item, ITEM_ZOOM_NIGHTVISION))
 	return TRUE
 
 
-/obj/item/attachable/scope/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //this is so the accuracy modifiers for the scopes apply correctly
+/obj/item/attachable/scope/zoom(mob/living/user, viewsize = 12, tileoffset = 11) //this is so the accuracy modifiers for the scopes apply correctly
 	. = ..()
 	attached_to.accuracy_mod += zoom_accuracy
 

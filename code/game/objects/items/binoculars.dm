@@ -20,7 +20,7 @@
 	if(item_zoomed)
 		user.unset_interaction()
 		return
-	zoom(user, 11, 12)
+	zoom(user, 12, 11)
 
 
 /obj/item/binoculars/tactical

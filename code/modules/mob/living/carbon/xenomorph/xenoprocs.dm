@@ -389,35 +389,6 @@
 		update_see_in_dark()
 
 
-
-/mob/living/carbon/Xenomorph/proc/zoom_in(tileoffset = 5, viewsize = 12)
-	if(stat || resting)
-		if(is_zoomed)
-			is_zoomed = FALSE
-			zoom_out()
-			return
-		return
-	if(is_zoomed)
-		return
-	if(!client)
-		return
-	zoom_turf = get_turf(src)
-	is_zoomed = TRUE
-	see_in_dark_modifiers.Add(viewsize + tileoffset + 1)
-	update_see_in_dark()
-	set_client_sight(viewsize, tileoffset)
-
-
-/mob/living/carbon/Xenomorph/proc/zoom_out()
-	is_zoomed = FALSE
-	zoom_turf = null
-	if(!client)
-		return
-	see_in_dark_modifiers.Cut()
-	update_see_in_dark()
-	reset_client_sight()
-
-
 /mob/living/carbon/Xenomorph/drop_held_item()
 	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(istype(F))

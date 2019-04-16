@@ -196,3 +196,6 @@
 	var/typing
 	var/last_typed
 	var/last_typed_time
+
+	var/is_zoomed = 0
+	var/zoom_turf

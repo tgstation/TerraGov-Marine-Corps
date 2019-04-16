@@ -504,7 +504,7 @@
 	if(X.is_zoomed)
 		X.zoom_out()
 	else
-		X.zoom_in(0, 12)
+		X.zoom_in(12, 0)
 
 // ***************************************
 // *********** Set leader

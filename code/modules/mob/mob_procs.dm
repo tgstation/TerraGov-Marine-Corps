@@ -169,6 +169,40 @@
 	return
 
 
+/mob/proc/zoom_in(viewsize = 12, tileoffset = 11)
+	set_client_sight(viewsize, tileoffset)
+    is_zoomed = TRUE
+    zoom_turf = get_turf(src)
+
+
+/mob/living/carbon/Xenomorph/zoom_in(viewsize = 12, tileoffset = 5)
+	if(stat || resting)
+		if(is_zoomed)
+			is_zoomed = FALSE
+			zoom_out()
+			return
+		return
+	if(is_zoomed)
+		return
+	if(!client)
+		return
+	see_in_dark_modifiers.Add(viewsize + tileoffset + 1)
+	update_see_in_dark()
+	return ..()
+
+
+/mob/proc/zoom_out()
+    reset_client_sight()
+	is_zoomed = FALSE
+	zoom_turf = null
+
+
+/mob/living/carbon/Xenomorph/zoom_out()
+	see_in_dark_modifiers.Cut()
+	update_see_in_dark()
+	return ..()
+
+
 #undef CLIENT_VIEW_INDEX
 #undef CLIENT_PIXEL_X_INDEX
 #undef CLIENT_PIXEL_Y_INDEX

@@ -615,7 +615,7 @@ modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
 
-/obj/item/proc/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+/obj/item/proc/zoom(mob/living/user, viewsize = 12, tileoffset = 11) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	if(!user)
 		return
 
@@ -646,7 +646,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	user.visible_message("<span class='notice'>[user] peers through [src].</span>",
 	"<span class='notice'>You peer through [src].</span>")
 
-	user.set_client_sight(viewsize, tileoffset)
+	user.zoom_in(viewsize, tileoffset)
 
 	item_zoomed = viewsize + tileoffset + 1 //+1 to see the edge of the screen
 
@@ -676,7 +676,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	item_zoomed = 0
 
-	user.reset_client_sight()
+	user.zoom_out()
 	user.zoom_cooldown = world.time + ZOOM_COOLDOWN
 	
 	

@@ -151,7 +151,7 @@
 			smoke_ready = 1
 	return
 
-/obj/mecha/combat/marauder/verb/zoom()
+/obj/mecha/combat/marauder/verb/mecha_zoom()
 	set category = "Exosuit Interface"
 	set name = "Zoom"
 	set src = usr.loc
@@ -207,5 +207,5 @@
 	if (href_list["smoke"])
 		src.smoke()
 	if (href_list["toggle_zoom"])
-		src.zoom()
+		src.mecha_zoom()
 	return
