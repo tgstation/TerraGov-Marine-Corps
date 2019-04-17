@@ -9,6 +9,8 @@ FIRE ALARM
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "fire0"
+	pixel_x = -16
+	pixel_y = -16
 	var/detecting = 1.0
 	var/working = 1.0
 	var/time = 10.0
@@ -36,13 +38,13 @@ FIRE ALARM
 
 	switch(dir)
 		if(NORTH)
-			pixel_y = -32
+			pixel_y -= 32
 		if(SOUTH)
-			pixel_y = 32
+			pixel_y += 32
 		if(EAST)
-			pixel_x = -32
+			pixel_x -= 32
 		if(WEST)
-			pixel_x = 32
+			pixel_x += 32
 
 	update_icon()
 
