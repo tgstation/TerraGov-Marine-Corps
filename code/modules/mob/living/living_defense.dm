@@ -122,7 +122,7 @@
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
-	if(!processing)
+	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
