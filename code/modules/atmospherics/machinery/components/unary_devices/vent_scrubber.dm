@@ -279,6 +279,7 @@
 	return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/welder_act(mob/living/user, obj/item/W)
+	add_fingerprint(user)
 	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(1, user))
@@ -330,6 +331,11 @@
 	pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
 	pipe_vision_img.plane = ABOVE_HUD_PLANE
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 100, 1)
+
+
+/obj/machinery/atmospherics/components/unary/vent_scrubber/AltClick(mob/user)
+	user.handle_ventcrawl(src)
+
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on
 	on = TRUE

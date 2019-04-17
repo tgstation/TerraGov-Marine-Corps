@@ -226,12 +226,6 @@
 		if(ishuman(C))
 			var/mob/living/carbon/human/H = AM
 			cleanup(H)
-			if(H.gloves && rand(0,100) < 60)
-				if(istype(H.gloves,/obj/item/clothing/gloves/yautja))
-					var/obj/item/clothing/gloves/yautja/Y = H.gloves
-					if(Y && istype(Y) && Y.cloaked)
-						to_chat(H, "<span class='warning'> Your bracers hiss and spark as they short out!</span>")
-						Y.decloak(H)
 
 		else if(isxeno(C))
 			river_slowdown = 1.3

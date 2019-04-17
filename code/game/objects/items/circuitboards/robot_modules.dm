@@ -19,8 +19,8 @@
 
 
 	New()
-//		src.modules += new /obj/item/device/flashlight(src) // Replaced by verb and integrated light which uses power.
-		src.modules += new /obj/item/device/flash(src)
+//		src.modules += new /obj/item/flashlight(src) // Replaced by verb and integrated light which uses power.
+		src.modules += new /obj/item/flash(src)
 		src.emag = new /obj/item/toy/sword(src)
 		src.emag.name = "Placeholder Emag Item"
 //		src.jetpack = new /obj/item/toy/sword(src)
@@ -67,12 +67,12 @@
 	name = "standard robot module"
 
 	New()
-		src.modules += new /obj/item/device/flashlight(src)
-		src.modules += new /obj/item/device/flash(src)
+		src.modules += new /obj/item/flashlight(src)
+		src.modules += new /obj/item/flash(src)
 		src.modules += new /obj/item/tool/extinguisher(src)
 		src.modules += new /obj/item/tool/wrench(src)
 		src.modules += new /obj/item/tool/crowbar(src)
-		src.modules += new /obj/item/device/healthanalyzer(src)
+		src.modules += new /obj/item/healthanalyzer(src)
 		src.modules += new /obj/item/robot/stun(src)
 		src.emag = new /obj/item/weapon/energy/sword(src)
 		return
@@ -85,9 +85,9 @@
 		)
 
 	New()
-		src.modules += new /obj/item/device/flashlight(src)
-		src.modules += new /obj/item/device/flash(src)
-		src.modules += new /obj/item/device/healthanalyzer(src)
+		src.modules += new /obj/item/flashlight(src)
+		src.modules += new /obj/item/flash(src)
+		src.modules += new /obj/item/healthanalyzer(src)
 		src.modules += new /obj/item/reagent_container/borghypo(src)
 		src.modules += new /obj/item/tool/surgery/scalpel(src)
 		src.modules += new /obj/item/tool/surgery/hemostat(src)
@@ -126,11 +126,11 @@
 		)
 
 	New()
-		src.modules += new /obj/item/device/flashlight(src)
-		src.modules += new /obj/item/device/flash(src)
+		src.modules += new /obj/item/flashlight(src)
+		src.modules += new /obj/item/flash(src)
 		src.modules += new /obj/item/robot/sight/hud/med(src)
-		src.modules += new /obj/item/device/healthanalyzer(src)
-		src.modules += new /obj/item/device/reagent_scanner/adv(src)
+		src.modules += new /obj/item/healthanalyzer(src)
+		src.modules += new /obj/item/reagent_scanner/adv(src)
 		src.modules += new /obj/item/roller_holder(src)
 		src.modules += new /obj/item/stack/medical/ointment(src)
 		src.modules += new /obj/item/stack/medical/advanced/bruise_pack(src)
@@ -181,23 +181,23 @@
 		)
 
 	New()
-		src.modules += new /obj/item/device/flashlight(src)
-		src.modules += new /obj/item/device/flash(src)
+		src.modules += new /obj/item/flashlight(src)
+		src.modules += new /obj/item/flash(src)
 		src.modules += new /obj/item/robot/sight/meson(src)
 		src.modules += new /obj/item/tool/extinguisher(src)
-		src.modules += new /obj/item/device/rcd/borg(src)
+		src.modules += new /obj/item/rcd/borg(src)
 		src.modules += new /obj/item/tool/weldingtool/largetank(src)
 		src.modules += new /obj/item/tool/screwdriver(src)
 		src.modules += new /obj/item/tool/wrench(src)
 		src.modules += new /obj/item/tool/crowbar(src)
 		src.modules += new /obj/item/tool/wirecutters(src)
-		src.modules += new /obj/item/device/multitool(src)
-		src.modules += new /obj/item/device/t_scanner(src)
-		src.modules += new /obj/item/device/analyzer(src)
+		src.modules += new /obj/item/multitool(src)
+		src.modules += new /obj/item/t_scanner(src)
+		src.modules += new /obj/item/analyzer(src)
 		src.modules += new /obj/item/tool/taperoll/engineering(src)
-		src.modules += new /obj/item/device/gripper(src)
-		src.modules += new /obj/item/device/matter_decompiler(src)
-		src.modules += new /obj/item/device/lightreplacer(src)
+		src.modules += new /obj/item/gripper(src)
+		src.modules += new /obj/item/matter_decompiler(src)
+		src.modules += new /obj/item/lightreplacer(src)
 		src.modules += new /obj/item/robot/stun(src)
 
 		for(var/T in stacktypes)
@@ -208,7 +208,7 @@
 		return
 
 /obj/item/circuitboard/robot_module/engineering/respawn_consumable(var/mob/living/silicon/robot/R)
-	var/obj/item/device/lightreplacer/L = locate() in src.modules
+	var/obj/item/lightreplacer/L = locate() in src.modules
 	L.uses = L.max_uses
 
 	..()
@@ -217,8 +217,8 @@
 	name = "security robot module"
 
 	New()
-		src.modules += new /obj/item/device/flashlight(src)
-		src.modules += new /obj/item/device/flash(src)
+		src.modules += new /obj/item/flashlight(src)
+		src.modules += new /obj/item/flash(src)
 		src.modules += new /obj/item/robot/sight/hud/sec(src)
 		src.modules += new /obj/item/handcuffs/cyborg(src)
 		src.modules += new /obj/item/robot/stun(src)
@@ -229,7 +229,7 @@
 		return
 
 	respawn_consumable(var/mob/living/silicon/robot/R)
-		var/obj/item/device/flash/F = locate() in src.modules
+		var/obj/item/flash/F = locate() in src.modules
 		if(F.broken)
 			F.broken = 0
 			F.times_used = 0
@@ -247,12 +247,12 @@
 	name = "janitorial robot module"
 
 	New()
-		src.modules += new /obj/item/device/flashlight(src)
-		src.modules += new /obj/item/device/flash(src)
+		src.modules += new /obj/item/flashlight(src)
+		src.modules += new /obj/item/flash(src)
 		src.modules += new /obj/item/tool/soap/nanotrasen(src)
 		src.modules += new /obj/item/storage/bag/trash(src)
 		src.modules += new /obj/item/tool/mop(src)
-		src.modules += new /obj/item/device/lightreplacer(src)
+		src.modules += new /obj/item/lightreplacer(src)
 		src.modules += new /obj/item/tool/crowbar(src)
 		src.modules += new /obj/item/robot/stun(src)
 		src.emag = new /obj/item/reagent_container/spray(src)
@@ -262,7 +262,7 @@
 		return
 
 	respawn_consumable(var/mob/living/silicon/robot/R)
-		var/obj/item/device/lightreplacer/LR = locate() in src.modules
+		var/obj/item/lightreplacer/LR = locate() in src.modules
 		LR.Charge(R)
 		if(src.emag)
 			var/obj/item/reagent_container/spray/S = src.emag
@@ -272,14 +272,14 @@
 	name = "service robot module"
 
 	New()
-		src.modules += new /obj/item/device/flashlight(src)
-		src.modules += new /obj/item/device/flash(src)
+		src.modules += new /obj/item/flashlight(src)
+		src.modules += new /obj/item/flash(src)
 		src.modules += new /obj/item/reagent_container/food/drinks/cans/beer(src)
 		src.modules += new /obj/item/reagent_container/food/condiment/enzyme(src)
 		src.modules += new /obj/item/tool/crowbar(src)
 		src.modules += new /obj/item/robot/stun(src)
 
-		var/obj/item/device/rsf/M = new /obj/item/device/rsf(src)
+		var/obj/item/rsf/M = new /obj/item/rsf(src)
 		M.stored_matter = 30
 		src.modules += M
 
@@ -322,8 +322,8 @@
 	name = "syndicate robot module"
 
 	New()
-		src.modules += new /obj/item/device/flashlight(src)
-		src.modules += new /obj/item/device/flash(src)
+		src.modules += new /obj/item/flashlight(src)
+		src.modules += new /obj/item/flash(src)
 		src.modules += new /obj/item/weapon/energy/sword(src)
 //		src.modules += new /obj/item/weapon/gun/energy/pulse_rifle/destroyer(src)
 		src.modules += new /obj/item/card/emag(src)
@@ -349,10 +349,10 @@
 		src.modules += new /obj/item/tool/wrench(src)
 		src.modules += new /obj/item/tool/crowbar(src)
 		src.modules += new /obj/item/tool/wirecutters(src)
-		src.modules += new /obj/item/device/multitool(src)
-		src.modules += new /obj/item/device/lightreplacer(src)
-		src.modules += new /obj/item/device/gripper(src)
-		src.modules += new /obj/item/device/matter_decompiler(src)
+		src.modules += new /obj/item/multitool(src)
+		src.modules += new /obj/item/lightreplacer(src)
+		src.modules += new /obj/item/gripper(src)
+		src.modules += new /obj/item/matter_decompiler(src)
 		src.modules += new /obj/item/reagent_container/spray/cleaner/drone(src)
 
 		src.emag = new /obj/item/tool/pickaxe/plasmacutter(src)
@@ -372,7 +372,7 @@
 		var/obj/item/reagent_container/spray/cleaner/C = locate() in src.modules
 		C.reagents.add_reagent("cleaner", 3)
 
-		var/obj/item/device/lightreplacer/LR = locate() in src.modules
+		var/obj/item/lightreplacer/LR = locate() in src.modules
 		LR.Charge(R)
 
 		..()

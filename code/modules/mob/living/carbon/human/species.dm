@@ -722,64 +722,6 @@
 	return ..()
 
 
-/datum/species/yautja
-	name = "Yautja"
-	name_plural = "Yautja"
-	icobase = 'icons/mob/human_races/r_predator.dmi'
-	deform = 'icons/mob/human_races/r_predator.dmi'
-	brute_mod = 0.33 //Beefy!
-	burn_mod = 0.65
-	reagent_tag = IS_YAUTJA
-	species_flags = HAS_SKIN_COLOR|NO_PAIN|NO_SCAN|NO_POISON|NO_OVERDOSE
-	language = "Sainja" //"Warrior"
-	default_language = "Sainja"
-	unarmed_type = /datum/unarmed_attack/punch/strong
-	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
-	blood_color = "#20d450"
-	flesh_color = "#907E4A"
-	speech_sounds = list('sound/voice/pred_click1.ogg', 'sound/voice/pred_click2.ogg')
-	speech_chance = 100
-	hud_type = /datum/hud_data/yautja
-	death_message = "clicks in agony and falls still, motionless and completely lifeless..."
-	darksight = 5
-	slowdown = -0.5
-
-	heat_level_1 = 500
-	heat_level_2 = 700
-	heat_level_3 = 1000
-
-	inherent_verbs = list(
-		/mob/living/carbon/human/proc/pred_buy,
-		/mob/living/carbon/human/proc/butcher
-		)
-
-	knock_down_reduction = 4
-	stun_reduction = 4
-	knock_out_reduction = 2
-
-
-/datum/species/yautja/post_species_loss(mob/living/carbon/human/H)
-	var/datum/mob_hud/medical/advanced/A = huds[MOB_HUD_MEDICAL_ADVANCED]
-	A.add_to_hud(H)
-	H.dna.b_type = pick("A+","A-","B+","B-","O-","O+","AB+","AB-")
-
-/datum/species/yautja/handle_post_spawn(var/mob/living/carbon/human/H)
-	//Spawn them some equipment
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(H), SLOT_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yautja(H), SLOT_GLOVES)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(H), SLOT_EARS)
-	H.equip_to_slot_or_del(new /obj/item/weapon/yautja_knife(H), SLOT_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/device/yautja_teleporter(H),SLOT_L_STORE)
-
-	H.universal_understand = 1
-
-	H.dna.b_type = "Y*"
-
-	var/datum/mob_hud/medical/advanced/A = huds[MOB_HUD_MEDICAL_ADVANCED]
-	A.remove_from_hud(H)
-
-	return ..()
-
 // Called when using the shredding behavior.
 /datum/species/proc/can_shred(var/mob/living/carbon/human/H)
 
@@ -806,7 +748,7 @@
 	var/edge = 0
 
 /datum/unarmed_attack/proc/is_usable(var/mob/living/carbon/human/user)
-	if(user.is_mob_restrained())
+	if(user.restrained())
 		return 0
 
 	// Check if they have a functioning hand.
@@ -872,7 +814,6 @@
 	var/has_throw = 1     // Set to draw throw button.
 	var/has_resist = 1    // Set to draw resist button.
 	var/has_internals = 1 // Set to draw the internals toggle button.
-	var/is_yautja = 0
 	var/list/equip_slots = list() // Checked by mob_can_equip().
 
 	// Contains information on the position and tag for all inventory slots

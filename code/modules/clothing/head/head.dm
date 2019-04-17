@@ -7,13 +7,12 @@
 	var/anti_hug = 0
 
 /obj/item/clothing/head/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
+	if (ismob(loc))
+		var/mob/M = loc
 		M.update_inv_head()
 
 
-
-/obj/item/clothing/head/cmbandana
+/obj/item/clothing/head/tgmcbandana
 	name = "\improper TGMC bandana"
 	desc = "Typically worn by heavy-weapon operators, mercenaries and scouts, the bandana serves as a lightweight and comfortable hat. Comes in two stylish colors."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
@@ -21,11 +20,7 @@
 	icon_state = "band"
 	flags_inv_hide = HIDETOPHAIR
 
-/obj/item/clothing/head/cmbandana/New()
-	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_band") )
-	..()
-
-/obj/item/clothing/head/cmbandana/tan
+/obj/item/clothing/head/tgmcbandana/tan
 	icon_state = "band2"
 
 
@@ -36,90 +31,55 @@
 	sprite_sheet_id = 1
 	icon_state = "beanie_cargo"
 	flags_inv_hide = HIDETOPHAIR
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 15, "acid" = 15)
 
 
-/obj/item/clothing/head/cmberet
+/obj/item/clothing/head/tgmcberet
 	name = "\improper TGMC beret"
 	desc = "A hat typically worn by the field-officers of the TGMC. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "beret"
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
 
-/obj/item/clothing/head/cmberet/New()
-	select_gamemode_skin(/obj/item/clothing/head/cmberet, list(MAP_ICE_COLONY = "s_beret"))
-	..()
-
-/obj/item/clothing/head/cmberet/tan
+/obj/item/clothing/head/tgmcberet/tan
 	icon_state = "berettan"
 
-/obj/item/clothing/head/cmberet/tan/New()
-	select_gamemode_skin(/obj/item/clothing/head/cmberet/tan)
-	..()
-
-/obj/item/clothing/head/cmberet/red
+/obj/item/clothing/head/tgmcberet/red
 	icon_state = "beretred"
 
-/obj/item/clothing/head/cmberet/wo
+/obj/item/clothing/head/tgmcberet/wo
 	name = "\improper Command Master at Arms beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."
 	icon_state = "beretwo"
+	armor = list("melee" = 60, "bullet" = 80, "laser" = 80, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
 
-/obj/item/clothing/head/headband
-	name = "\improper TGMC headband"
-	desc = "A rag typically worn by the less-orthodox weapons operators in the TGMC. While it offers no protection, it is certainly comfortable to wear compared to the standard helmet. Comes in two stylish colors."
-	icon = 'icons/obj/clothing/cm_hats.dmi'
-	sprite_sheet_id = 1
-	icon_state = "headband"
+/obj/item/clothing/head/tgmcberet/fc
+	name = "\improper Field Commander beret"
+	desc = "A beret with the field commander insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
+	icon_state = "beretfc"
+	armor = list("melee" = 60, "bullet" = 80, "laser" = 80, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
 
-/obj/item/clothing/head/headband/New()
-	select_gamemode_skin(type, list(MAP_ICE_COLONY = "ushanka") )
-	..()
-	switch(icon_state)
-		if("ushanka") //Weird case, since the item basically transforms into another item.
-			name = "\improper TGMC ushanka"
-			desc = "Worn during cold operations by idiots."
-			flags_cold_protection = HEAD
-			min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-			flags_inventory = BLOCKSHARPOBJ
-			flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
-/obj/item/clothing/head/headband/red
-	icon_state = "headbandred"
-
-/obj/item/clothing/head/headband/rambo
-	name = "headband"
-	desc = "It flutters in the face of the wind, defiant and unrestrained, like the man who wears it."
-	icon = 'icons/obj/clothing/hats.dmi'
-	icon_state = "headband_rambo"
-	sprite_sheet_id = 0
-
-/obj/item/clothing/head/headset
-	name = "\improper TGMC headset"
-	desc = "A headset typically found in use by radio-operators and officers. This one appears to be malfunctioning."
-	icon_state = "headset"
-	icon = 'icons/obj/clothing/cm_hats.dmi'
-	sprite_sheet_id = 1
-
-/obj/item/clothing/head/cmcap
+/obj/item/clothing/head/tgmccap
 	name = "\improper TGMC cap"
 	desc = "A casual cap occasionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "cap"
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
 	var/flipped_cap = FALSE
 	var/base_cap_icon
 
-/obj/item/clothing/head/cmcap/New()
-	select_gamemode_skin(/obj/item/clothing/head/cmcap)
-	base_cap_icon = icon_state
-	..()
 
-/obj/item/clothing/head/cmcap/verb/fliphat()
+/obj/item/clothing/head/tgmccap/verb/fliphat()
 	set name = "Flip hat"
 	set category = "Object"
 	set src in usr
-	if(!isliving(usr)) return
-	if(usr.is_mob_incapacitated()) return
+	if(!isliving(usr))
+		return
+	if(usr.incapacitated())
+		return
 
 	flipped_cap = !flipped_cap
 	if(flipped_cap)
@@ -131,20 +91,53 @@
 
 	update_clothing_icon()
 
-/obj/item/clothing/head/cmcap/ro
+
+/obj/item/clothing/head/tgmccap/ro
 	name = "\improper TGMC officer cap"
 	desc = "A hat usually worn by officers in the TGMC. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "rocap"
 
-/obj/item/clothing/head/cmcap/ro/New()
-	select_gamemode_skin(/obj/item/clothing/head/cmcap/ro)
-	..()
-
-
-/obj/item/clothing/head/cmcap/req
+/obj/item/clothing/head/tgmccap/req
 	name = "\improper TGMC requisition cap"
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
 	icon_state = "cargocap"
+
+
+/obj/item/clothing/head/boonie
+	name = "Boonie Hat"
+	desc = "The pinnacle of tacticool technology."
+	icon_state = "booniehat"
+	item_state = "booniehat"
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 15, "acid" = 15)
+
+
+/obj/item/clothing/head/headband
+	name = "\improper TGMC headband"
+	desc = "A rag typically worn by the less-orthodox weapons operators in the TGMC. While it offers no protection, it is certainly comfortable to wear compared to the standard helmet. Comes in two stylish colors."
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
+	icon_state = "headband"
+
+/obj/item/clothing/head/headband/red
+	icon_state = "headbandred"
+
+/obj/item/clothing/head/headband/rambo
+	name = "headband"
+	desc = "It flutters in the face of the wind, defiant and unrestrained, like the man who wears it."
+	icon_state = "headband_rambo"
+
+/obj/item/clothing/head/headband/snake
+	name = "headband"
+	desc = "A replica of the headband of a legendary soldier. Sadly it doesn't offer infinite ammo. Yet."
+	icon_state = "headband_snake"
+
+
+/obj/item/clothing/head/headset
+	name = "\improper TGMC headset"
+	desc = "A headset typically found in use by radio-operators and officers. This one appears to be malfunctioning."
+	icon_state = "headset"
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	sprite_sheet_id = 1
 
 /obj/item/clothing/head/cmo
 	name = "\improper Chief Medical hat"
@@ -153,13 +146,13 @@
 
 
 //============================//BERETS\\=================================\\
-//=======================================================================\\
 //Berets have armor, so they have their own category. PMC caps are helmets, so they're in helmets.dm.
+
 /obj/item/clothing/head/beret/marine
 	name = "marine officer beret"
 	desc = "A beret with the TGMC insignia emblazoned on it. It radiates respect and authority."
 	icon_state = "hosberet"
-	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
 	flags_inventory = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/beret/marine/captain
@@ -194,7 +187,7 @@
 	desc = "Perfect for winter in Siberia, da?"
 	icon_state = "ushankadown"
 	item_state = "ushankadown"
-	armor = list(melee = 35, bullet = 35, laser = 20, energy = 10, bomb = 10, bio = 0, rad = 0)
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 20, "energy" = 10, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
@@ -219,7 +212,7 @@
 	siemens_coefficient = 2.0
 	anti_hug = 4
 	flags_armor_protection = HEAD|CHEST|ARMS
-	armor = list(melee = 90, bullet = 70, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
+	armor = list("melee" = 90, "bullet" = 70, "laser" = 45, "energy" = 55, "bomb" = 45, "bio" = 10, "rad" = 10, "fire" = 55, "acid" = 55)
 	flags_cold_protection = HEAD|CHEST|ARMS
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
@@ -235,7 +228,7 @@
 	siemens_coefficient = 2.0
 	//anti_hug = 2
 	flags_armor_protection = HEAD
-	armor = list(melee = 50, bullet = 50, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 45, "energy" = 55, "bomb" = 45, "bio" = 10, "rad" = 10, "fire" = 55, "acid" = 55)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
@@ -253,7 +246,7 @@
 	icon_state = "freelancer_cap"
 	siemens_coefficient = 2.0
 	flags_armor_protection = HEAD
-	armor = list(melee = 50, bullet = 50, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 45, "energy" = 55, "bomb" = 45, "bio" = 10, "rad" = 10, "fire" = 55, "acid" = 55)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
@@ -271,7 +264,7 @@
 	icon_state = "rebel_hood"
 	siemens_coefficient = 2.0
 	flags_armor_protection = HEAD|CHEST
-	armor = list(melee = 30, bullet = 30, laser = 45, energy = 35, bomb = 45, bio = 20, rad = 30)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 45, "energy" = 35, "bomb" = 45, "bio" = 20, "rad" = 30, "fire" = 35, "acid" = 35)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
@@ -283,7 +276,7 @@
 	icon_state = "admiral_helmet"
 	siemens_coefficient = 2.0
 	flags_armor_protection = HEAD
-	armor = list(melee = 60, bullet = 60, laser = 45, energy = 55, bomb = 55, bio = 10, rad = 10)
+	armor = list("melee" = 60, "bullet" = 60, "laser" = 45, "energy" = 55, "bomb" = 55, "bio" = 10, "rad" = 10, "fire" = 55, "acid" = 55)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ

@@ -80,7 +80,7 @@
 		new /obj/item/clothing/suit/surgical(src)
 		new /obj/item/clothing/tie/storage/white_vest(src)
 		if(is_mainship_level(z))
-			new /obj/item/device/radio/headset/almayer/doc(src)
+			new /obj/item/radio/headset/almayer/doc(src)
 		return
 
 /obj/structure/closet/secure_closet/medical3/colony
@@ -108,10 +108,9 @@
 		new /obj/item/clothing/suit/storage/labcoat(src)
 		new /obj/item/clothing/mask/surgical(src)
 		new /obj/item/clothing/mask/breath(src)
-		new /obj/item/device/radio/headset/almayer/cmo(src)
+		new /obj/item/radio/headset/almayer/cmo(src)
 		new /obj/item/reagent_container/hypospray/advanced/tricordrazine(src)
-		new /obj/item/device/flash(src)
-		new /obj/item/cartridge/cmo(src)
+		new /obj/item/flash(src)
 		new /obj/item/storage/pouch/medical(src)
 		new /obj/item/storage/pouch/syringe(src)
 		new /obj/item/storage/pouch/medkit(src)
@@ -129,10 +128,10 @@
 	New()
 		..()
 		sleep(2)
-		new /obj/item/device/assembly/signaler(src)
-		new /obj/item/device/radio/electropack(src)
-		new /obj/item/device/radio/electropack(src)
-		new /obj/item/device/radio/electropack(src)
+		new /obj/item/assembly/signaler(src)
+		new /obj/item/radio/electropack(src)
+		new /obj/item/radio/electropack(src)
+		new /obj/item/radio/electropack(src)
 		return
 
 
@@ -158,28 +157,3 @@
 /obj/structure/closet/secure_closet/chemical/colony
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 
-/obj/structure/closet/secure_closet/medical_wall
-	name = "first aid closet"
-	desc = "It's a secure wall-mounted storage unit for first aid supplies."
-	icon_state = "medical_wall_locked"
-	icon_closed = "medical_wall_unlocked"
-	icon_locked = "medical_wall_locked"
-	icon_opened = "medical_wall_open"
-	icon_broken = "medical_wall_spark"
-	icon_off = "medical_wall_off"
-	anchored = 1
-	density = 0
-	wall_mounted = 1
-	req_access = list(ACCESS_MARINE_MEDBAY)
-
-/obj/structure/closet/secure_closet/medical_wall/update_icon()
-	if(broken)
-		icon_state = icon_broken
-	else
-		if(!opened)
-			if(locked)
-				icon_state = icon_locked
-			else
-				icon_state = icon_closed
-		else
-			icon_state = icon_opened

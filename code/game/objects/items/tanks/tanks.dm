@@ -50,7 +50,7 @@
 /obj/item/tank/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
-	if ((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
+	if ((istype(W, /obj/item/analyzer)) && get_dist(user, src) <= 1)
 		for (var/mob/O in viewers(user, null))
 			to_chat(O, "<span class='warning'>[user] has used [W] on [icon2html(src, user)] [src]</span>")
 
@@ -110,7 +110,7 @@
 
 /obj/item/tank/Topic(href, href_list)
 	..()
-	if (usr.stat|| usr.is_mob_restrained())
+	if (usr.stat|| usr.restrained())
 		return 0
 	if (src.loc != usr)
 		return 0

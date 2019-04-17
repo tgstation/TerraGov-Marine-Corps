@@ -95,7 +95,7 @@ Buildable meters
 
 	var/mob/living/L = usr
 
-	if ( L.is_mob_incapacitated() )
+	if ( L.incapacitated() )
 		return
 
 	do_a_flip()
@@ -134,7 +134,7 @@ Buildable meters
 /obj/item/pipe/attackby(obj/item/W, mob/living/user)
 	if(!istype(user))
 		return FALSE
-	if(user.is_mob_incapacitated())
+	if(user.incapacitated())
 		return FALSE
 	if(iswrench(W))
 		. = wrench_act(user, W)
@@ -201,7 +201,7 @@ Buildable meters
 /obj/item/pipe_meter/attackby(obj/item/W, mob/living/user)
 	if(!istype(user))
 		return FALSE
-	if(user.is_mob_incapacitated())
+	if(user.incapacitated())
 		return FALSE
 	if(iswrench(W))
 		. = wrench_act(user, W)

@@ -14,14 +14,15 @@
 	w_class = 4
 	throw_speed = 2
 	throw_range = 8
-	cant_hold = list("/obj/item/ammo_magazine",
-						"/obj/item/explosive/grenade")
+	cant_hold = list(
+		/obj/item/ammo_magazine,
+		/obj/item/explosive/grenade)
 	var/empty = FALSE //whether the kit starts empty
 	var/icon_full //icon state to use when kit is full
 	var/possible_icons_full
 
-/obj/item/storage/firstaid/New()
-	..()
+/obj/item/storage/firstaid/Initialize(mapload, ...)
+	. = ..()
 	if(possible_icons_full)
 		icon_state = pick(possible_icons_full)
 	icon_full = icon_state
@@ -51,7 +52,7 @@
 	possible_icons_full = list("ointment","firefirstaid")
 
 /obj/item/storage/firstaid/fire/fill_firstaid_kit()
-	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
@@ -64,7 +65,7 @@
 	icon_state = "firstaid"
 
 /obj/item/storage/firstaid/regular/fill_firstaid_kit()
-	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
 	new /obj/item/stack/medical/bruise_pack(src)
 	new /obj/item/stack/medical/ointment(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(src)
@@ -81,7 +82,7 @@
 	possible_icons_full = list("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
 
 /obj/item/storage/firstaid/toxin/fill_firstaid_kit()
-	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/hypervene(src)
@@ -97,7 +98,7 @@
 	item_state = "firstaid-o2"
 
 /obj/item/storage/firstaid/o2/fill_firstaid_kit()
-	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/dexalin(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/dexalinplus(src)
@@ -113,7 +114,7 @@
 	item_state = "firstaid-advanced"
 
 /obj/item/storage/firstaid/adv/fill_firstaid_kit()
-	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
@@ -126,9 +127,10 @@
 	name = "radiation first-aid kit"
 	desc = "Contains treatment for radiation exposure"
 	icon_state = "purplefirstaid"
+	item_state = "firstaid-rad"
 
 /obj/item/storage/firstaid/rad/fill_firstaid_kit()
-	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/russianRed(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(src)
@@ -150,36 +152,41 @@
 	throw_range = 8
 	storage_slots = 3
 	w_class = 2.0
-	can_hold = list("/obj/item/reagent_container/pill","/obj/item/reagent_container/glass/bottle","/obj/item/paper","/obj/item/reagent_container/syringe","/obj/item/reagent_container/hypospray/autoinjector")
+	can_hold = list(
+		/obj/item/reagent_container/pill,
+		/obj/item/reagent_container/glass/bottle,
+		/obj/item/paper,
+		/obj/item/reagent_container/syringe,
+		/obj/item/reagent_container/hypospray/autoinjector)
 
 /obj/item/storage/syringe_case/regular
 
-/obj/item/storage/syringe_case/regular/New()
-	..()
+/obj/item/storage/syringe_case/regular/Initialize(mapload, ...)
+	. = ..()
 	new /obj/item/reagent_container/syringe(src)
 	new /obj/item/reagent_container/glass/bottle/inaprovaline(src)
 	new /obj/item/reagent_container/glass/bottle/tricordrazine(src)
 
 /obj/item/storage/syringe_case/burn
 
-/obj/item/storage/syringe_case/burn/New()
-	..()
+/obj/item/storage/syringe_case/burn/Initialize(mapload, ...)
+	. = ..()
 	new /obj/item/reagent_container/syringe(src)
 	new /obj/item/reagent_container/glass/bottle/kelotane(src)
 	new /obj/item/reagent_container/glass/bottle/dermaline(src)
 
 /obj/item/storage/syringe_case/tox
 
-/obj/item/storage/syringe_case/tox/New()
-	..()
+/obj/item/storage/syringe_case/tox/Initialize(mapload, ...)
+	. = ..()
 	new /obj/item/reagent_container/syringe(src)
 	new /obj/item/reagent_container/glass/bottle/dylovene(src)
 	new /obj/item/reagent_container/glass/bottle/hypervene(src)
 
 /obj/item/storage/syringe_case/oxy
 
-/obj/item/storage/syringe_case/oxy/New()
-	..()
+/obj/item/storage/syringe_case/oxy/Initialize(mapload, ...)
+	. = ..()
 	new /obj/item/reagent_container/syringe(src)
 	new /obj/item/reagent_container/glass/bottle/inaprovaline(src)
 	new /obj/item/reagent_container/glass/bottle/dexalin(src)
@@ -196,7 +203,10 @@
 	icon = 'icons/obj/items/chemistry.dmi'
 	item_state = "contsolid"
 	w_class = 2.0
-	can_hold = list("/obj/item/reagent_container/pill","/obj/item/toy/dice","/obj/item/paper")
+	can_hold = list(
+		/obj/item/reagent_container/pill,
+		/obj/item/toy/dice,
+		/obj/item/paper)
 	allow_quick_gather = 1
 	use_to_pickup = 1
 	storage_slots = null
@@ -204,10 +214,10 @@
 	max_storage_space = 16
 	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
 
-/obj/item/storage/pill_bottle/New()
-	..()
+/obj/item/storage/pill_bottle/Initialize(mapload, ...)
+	. = ..()
 	if(pill_type_to_fill)
-		for(var/i=1 to max_storage_space)
+		for(var/i in 1 to max_storage_space)
 			new pill_type_to_fill(src)
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)

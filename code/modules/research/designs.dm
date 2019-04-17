@@ -555,7 +555,7 @@ datum/design/intellicard
 	req_tech = list("programming" = 4, "materials" = 4)
 	build_type = PROTOLATHE
 	materials = list("$glass" = 1000, "$gold" = 200)
-	build_path = "/obj/item/device/aicard"
+	build_path = "/obj/item/aicard"
 
 ///////////////////////////////////
 //////////Mecha Module Disks///////
@@ -1138,7 +1138,7 @@ datum/design/light_replacer
 	req_tech = list("magnets" = 3, "materials" = 4)
 	build_type = PROTOLATHE
 	materials = list("$metal" = 1500, "$silver" = 150, "$glass" = 3000)
-	build_path = "/obj/item/device/lightreplacer"
+	build_path = "/obj/item/lightreplacer"
 
 ////////////////////////////////////////
 //////////////MISC Boards///////////////
@@ -1281,7 +1281,7 @@ datum/design/mass_spectrometer
 	build_type = PROTOLATHE
 	materials = list("$metal" = 30, "$glass" = 20)
 	reliability_base = 76
-	build_path = "/obj/item/device/mass_spectrometer"
+	build_path = "/obj/item/mass_spectrometer"
 
 datum/design/adv_mass_spectrometer
 	name = "Advanced Mass-Spectrometer"
@@ -1291,7 +1291,7 @@ datum/design/adv_mass_spectrometer
 	build_type = PROTOLATHE
 	materials = list("$metal" = 30, "$glass" = 20)
 	reliability_base = 74
-	build_path = "/obj/item/device/mass_spectrometer/adv"
+	build_path = "/obj/item/mass_spectrometer/adv"
 
 datum/design/reagent_scanner
 	name = "Reagent Scanner"
@@ -1301,7 +1301,7 @@ datum/design/reagent_scanner
 	build_type = PROTOLATHE
 	materials = list("$metal" = 30, "$glass" = 20)
 	reliability_base = 76
-	build_path = "/obj/item/device/reagent_scanner"
+	build_path = "/obj/item/reagent_scanner"
 
 datum/design/adv_reagent_scanner
 	name = "Advanced Reagent Scanner"
@@ -1311,7 +1311,7 @@ datum/design/adv_reagent_scanner
 	build_type = PROTOLATHE
 	materials = list("$metal" = 30, "$glass" = 20)
 	reliability_base = 74
-	build_path = "/obj/item/device/reagent_scanner/adv"
+	build_path = "/obj/item/reagent_scanner/adv"
 /*
 datum/design/mmi
 	name = "Man-Machine Interface"
@@ -1321,7 +1321,7 @@ datum/design/mmi
 	build_type = PROTOLATHE|MECHFAB
 	materials = list("$metal" = 1000, "$glass" = 500)
 	reliability_base = 76
-	build_path = "/obj/item/device/mmi"
+	build_path = "/obj/item/mmi"
 	category = "Misc"
 
 datum/design/mmi_radio
@@ -1332,7 +1332,7 @@ datum/design/mmi_radio
 	build_type = PROTOLATHE|MECHFAB
 	materials = list("$metal" = 1200, "$glass" = 500)
 	reliability_base = 74
-	build_path = "/obj/item/device/mmi/radio_enabled"
+	build_path = "/obj/item/mmi/radio_enabled"
 	category = "Misc"
 */
 datum/design/synthetic_flash
@@ -1343,7 +1343,7 @@ datum/design/synthetic_flash
 	build_type = MECHFAB
 	materials = list("$metal" = 750, "$glass" = 750)
 	reliability_base = 76
-	build_path = "/obj/item/device/flash/synthetic"
+	build_path = "/obj/item/flash/synthetic"
 	category = "Misc"
 
 datum/design/nanopaste
@@ -1660,7 +1660,7 @@ datum/design/beacon
 	req_tech = list("bluespace" = 1)
 	build_type = PROTOLATHE
 	materials = list ("$metal" = 20, "$glass" = 10)
-	build_path = "/obj/item/device/radio/beacon"
+	build_path = "/obj/item/radio/beacon"
 
 datum/design/bag_holding
 	name = "Bag of Holding"
@@ -1760,7 +1760,7 @@ datum/design/binaryencrypt
 	req_tech = list("syndicate" = 2)
 	build_type = PROTOLATHE
 	materials = list("$metal" = 300, "$glass" = 300)
-	build_path = "/obj/item/device/encryptionkey/binary"
+	build_path = "/obj/item/encryptionkey/binary"
 datum/design/pda
 	name = "PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
@@ -1768,7 +1768,7 @@ datum/design/pda
 	req_tech = list("engineering" = 2, "powerstorage" = 3)
 	build_type = PROTOLATHE
 	materials = list("$metal" = 50, "$glass" = 50)
-	build_path = "/obj/item/device/pda"
+	build_path = "/obj/item/pda"
 datum/design/cart_basic
 	name = "Generic Cartridge"
 	desc = "A data cartridge for portable microcomputers."

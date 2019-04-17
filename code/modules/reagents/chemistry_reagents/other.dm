@@ -174,7 +174,7 @@
 /datum/reagent/space_drugs/on_mob_life(mob/living/M)
 	M.set_drugginess(15)
 	if(isturf(M.loc) && !isspaceturf(M.loc))
-		if(M.canmove && !M.is_mob_restrained())
+		if(M.canmove && !M.restrained())
 			if(prob(10))
 				step(M, pick(cardinal))
 	if(prob(7))
@@ -287,7 +287,7 @@
 	taste_multi = 0
 
 /datum/reagent/mercury/on_mob_life(mob/living/M)
-	if(M.canmove && !M.is_mob_restrained() && !isspaceturf(M.loc))
+	if(M.canmove && !M.restrained() && !isspaceturf(M.loc))
 		step(M, pick(cardinal))
 	if(prob(5))
 		M.emote(pick("twitch","drool","moan"))
@@ -385,7 +385,7 @@
 	taste_description = "metal"
 
 /datum/reagent/lithium/on_mob_life(mob/living/M)
-	if(M.canmove && !M.is_mob_restrained() && !isspaceturf(M.loc))
+	if(M.canmove && !M.restrained() && !isspaceturf(M.loc))
 		step(M, pick(cardinal))
 	if(prob(5))
 		M.emote(pick("twitch","drool","moan"))
@@ -813,17 +813,15 @@
 		M.stunned += 1.1
 		M.KnockDown(1.1)
 
-/datum/reagent/xeno_neurotoxin/overdose_process(mob/living/M)
-	M.adjustOxyLoss(min(2,volume * 0.1 * REM)) //Overdose starts applying more oxy damage
 
-/datum/reagent/xeno_neurotoxin/overdose_crit_process(mob/living/carbon/M)
-	M.adjustOxyLoss(min(4,volume * 0.2 * REM)) //Overdose starts applying more oxy damage
-	M.Losebreath(10) //Can't breathe; for punishing the bullies
-	M.Jitter(6) //Lets Xenos know they're ODing and should probably stop.
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(prob(10))
-			H.vomit()
+/datum/reagent/xeno_neurotoxin/overdose_process(mob/living/M)
+	M.adjustOxyLoss(5) //Overdose starts applying more oxy damage
+	M.Jitter(4) //Lets Xenos know they're ODing and should probably stop.
+
+
+/datum/reagent/xeno_neurotoxin/overdose_crit_process(mob/living/M)
+	M.Losebreath(2) //Can't breathe; for punishing the bullies
+
 
 /datum/reagent/xeno_growthtoxin
 	name = "Larval Accelerant"
@@ -836,8 +834,11 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
+
 /datum/reagent/xeno_growthtoxin/overdose_process(mob/living/M)
-	M.adjustOxyLoss(1) //Overdose starts applying more oxy damage
+	M.adjustOxyLoss(3)
+	M.Jitter(4) //Lets Xenos know they're ODing and should probably stop.
+
 
 /datum/reagent/xeno_growthtoxin/overdose_crit_process(mob/living/M)
-	M.adjustOxyLoss(2) //Overdose starts applying more oxy damage
+	M.Losebreath(2) //Can't breathe; for punishing the bullies.

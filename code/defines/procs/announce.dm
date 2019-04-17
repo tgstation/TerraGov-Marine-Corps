@@ -105,7 +105,7 @@
 	for(var/mob/M in GLOB.player_list)
 		if(istype(M,/mob/living/carbon/Xenomorph))
 			continue
-		if(!istype(M,/mob/new_player) && !isdeaf(M) && !isyautja(M))
+		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			to_chat(M, command)
 
 /datum/announcement/priority/security/Message(message as text, message_title as text, var/to_xenos = 0)

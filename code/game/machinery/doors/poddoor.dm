@@ -6,18 +6,17 @@
 	icon_state = "pdoor1"
 	id = 1.0
 	dir = 1
-	explosion_resistance = 25
+	armor = list("melee" = 50, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
 	layer = PODDOOR_OPEN_LAYER
 	open_layer = PODDOOR_OPEN_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER
 
-/obj/machinery/door/poddoor/New()
-	..()
+/obj/machinery/door/poddoor/Initialize()
+	. = ..()
 	if(density)
 		layer = PODDOOR_CLOSED_LAYER //to override door.New() proc
 	else
 		layer = PODDOOR_OPEN_LAYER
-	return
 
 /obj/machinery/door/poddoor/Bumped(atom/AM)
 	if(!density)
@@ -29,7 +28,7 @@
 	add_fingerprint(user)
 	if(!W.pry_capable)
 		return
-	if(density && (machine_stat & NOPOWER) && !operating && !unacidable)
+	if(density && (machine_stat & NOPOWER) && !operating && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		spawn(0)
 			operating = 1
 			flick("pdoorc0", src)
@@ -282,42 +281,38 @@
 	var/obj/machinery/door/poddoor/filler_object/f2
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 
-	New()
-		..()
-		f1 = new/obj/machinery/door/poddoor/filler_object (loc)
-		f2 = new/obj/machinery/door/poddoor/filler_object (get_step(src,EAST))
-		f1.density = density
-		f2.density = density
-		f1.SetOpacity(opacity)
-		f2.SetOpacity(opacity)
+/obj/machinery/door/poddoor/two_tile_hor/Initialize()
+	. = ..()
+	f1 = new/obj/machinery/door/poddoor/filler_object (loc)
+	f2 = new/obj/machinery/door/poddoor/filler_object (get_step(src,EAST))
+	f1.density = density
+	f2.density = density
+	f1.SetOpacity(opacity)
+	f2.SetOpacity(opacity)
 
-	Destroy()
-		qdel(f1)
-		f1 = null
-		qdel(f2)
-		f2 = null
-		. = ..()
+/obj/machinery/door/poddoor/two_tile_hor/Destroy()
+	QDEL_NULL(f1)
+	QDEL_NULL(f2)
+	return ..()
 
 /obj/machinery/door/poddoor/two_tile_ver
 	var/obj/machinery/door/poddoor/filler_object/f1
 	var/obj/machinery/door/poddoor/filler_object/f2
 	icon = 'icons/obj/doors/1x2blast_vert.dmi'
 
-	New()
-		..()
-		f1 = new/obj/machinery/door/poddoor/filler_object (loc)
-		f2 = new/obj/machinery/door/poddoor/filler_object (get_step(src,NORTH))
-		f1.density = density
-		f2.density = density
-		f1.SetOpacity(opacity)
-		f2.SetOpacity(opacity)
+/obj/machinery/door/poddoor/two_tile_ver/Initialize()
+	. = ..()
+	f1 = new/obj/machinery/door/poddoor/filler_object (loc)
+	f2 = new/obj/machinery/door/poddoor/filler_object (get_step(src,NORTH))
+	f1.density = density
+	f2.density = density
+	f1.SetOpacity(opacity)
+	f2.SetOpacity(opacity)
 
-	Destroy()
-		qdel(f1)
-		f1 = null
-		qdel(f2)
-		f2 = null
-		. = ..()
+/obj/machinery/door/poddoor/two_tile_ver/Destroy()
+	QDEL_NULL(f1)
+	QDEL_NULL(f2)
+	return ..()
 
 /obj/machinery/door/poddoor/four_tile_hor
 	var/obj/machinery/door/poddoor/filler_object/f1
@@ -326,31 +321,27 @@
 	var/obj/machinery/door/poddoor/filler_object/f4
 	icon = 'icons/obj/doors/1x4blast_hor.dmi'
 
-	New()
-		..()
-		f1 = new/obj/machinery/door/poddoor/filler_object (loc)
-		f2 = new/obj/machinery/door/poddoor/filler_object (get_step(f1,EAST))
-		f3 = new/obj/machinery/door/poddoor/filler_object (get_step(f2,EAST))
-		f4 = new/obj/machinery/door/poddoor/filler_object (get_step(f3,EAST))
-		f1.density = density
-		f2.density = density
-		f3.density = density
-		f4.density = density
-		f1.SetOpacity(opacity)
-		f2.SetOpacity(opacity)
-		f4.SetOpacity(opacity)
-		f3.SetOpacity(opacity)
+/obj/machinery/door/poddoor/four_tile_hor/Initialize()
+	. = ..()
+	f1 = new/obj/machinery/door/poddoor/filler_object (loc)
+	f2 = new/obj/machinery/door/poddoor/filler_object (get_step(f1,EAST))
+	f3 = new/obj/machinery/door/poddoor/filler_object (get_step(f2,EAST))
+	f4 = new/obj/machinery/door/poddoor/filler_object (get_step(f3,EAST))
+	f1.density = density
+	f2.density = density
+	f3.density = density
+	f4.density = density
+	f1.SetOpacity(opacity)
+	f2.SetOpacity(opacity)
+	f4.SetOpacity(opacity)
+	f3.SetOpacity(opacity)
 
-	Destroy()
-		qdel(f1)
-		f1 = null
-		qdel(f2)
-		f2 = null
-		qdel(f3)
-		f3 = null
-		qdel(f4)
-		f4 = null
-		. = ..()
+/obj/machinery/door/poddoor/four_tile_hor/Destroy()
+	QDEL_NULL(f1)
+	QDEL_NULL(f2)
+	QDEL_NULL(f3)
+	QDEL_NULL(f4)
+	return ..()
 
 /obj/machinery/door/poddoor/four_tile_ver
 	var/obj/machinery/door/poddoor/filler_object/f1
@@ -358,57 +349,54 @@
 	var/obj/machinery/door/poddoor/filler_object/f3
 	var/obj/machinery/door/poddoor/filler_object/f4
 	icon = 'icons/obj/doors/1x4blast_vert.dmi'
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
-	New()
-		..()
-		f1 = new/obj/machinery/door/poddoor/filler_object (loc)
-		f2 = new/obj/machinery/door/poddoor/filler_object (get_step(f1,NORTH))
-		f3 = new/obj/machinery/door/poddoor/filler_object (get_step(f2,NORTH))
-		f4 = new/obj/machinery/door/poddoor/filler_object (get_step(f3,NORTH))
-		f1.density = density
-		f2.density = density
-		f3.density = density
-		f4.density = density
-		f1.SetOpacity(opacity)
-		f2.SetOpacity(opacity)
-		f4.SetOpacity(opacity)
-		f3.SetOpacity(opacity)
+/obj/machinery/door/poddoor/four_tile_ver/Initialize()
+	. = ..()
+	f1 = new/obj/machinery/door/poddoor/filler_object (loc)
+	f2 = new/obj/machinery/door/poddoor/filler_object (get_step(f1,NORTH))
+	f3 = new/obj/machinery/door/poddoor/filler_object (get_step(f2,NORTH))
+	f4 = new/obj/machinery/door/poddoor/filler_object (get_step(f3,NORTH))
+	f1.density = density
+	f2.density = density
+	f3.density = density
+	f4.density = density
+	f1.SetOpacity(opacity)
+	f2.SetOpacity(opacity)
+	f4.SetOpacity(opacity)
+	f3.SetOpacity(opacity)
 
-	Destroy()
-		qdel(f1)
-		f1 = null
-		qdel(f2)
-		f2 = null
-		qdel(f3)
-		f3 = null
-		qdel(f4)
-		f4 = null
-		. = ..()
+/obj/machinery/door/poddoor/four_tile_ver/Destroy()
+	QDEL_NULL(f1)
+	QDEL_NULL(f2)
+	QDEL_NULL(f3)
+	QDEL_NULL(f4)
+	return ..()
 
 /obj/machinery/door/poddoor/filler_object
 	name = ""
 	icon_state = ""
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/door/poddoor/four_tile_hor/secure
 	icon = 'icons/obj/doors/1x4blast_hor_secure.dmi'
 	openspeed = 17
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/door/poddoor/four_tile_ver/secure
 	icon = 'icons/obj/doors/1x4blast_vert_secure.dmi'
 	openspeed = 17
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/door/poddoor/two_tile_hor/secure
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 	openspeed = 17
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/door/poddoor/two_tile_ver/secure
 	icon = 'icons/obj/doors/1x2blast_vert.dmi'
 	openspeed = 17
-	unacidable = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 
 

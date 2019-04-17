@@ -35,36 +35,6 @@
 
 	return heard
 
-/proc/circlerange(center=usr,radius=3)
-
-	var/turf/centerturf = get_turf(center)
-	var/list/turfs = new/list()
-	var/rsq = radius * (radius+0.5)
-
-	for(var/atom/T in range(radius, centerturf))
-		var/dx = T.x - centerturf.x
-		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
-			turfs += T
-
-	//turfs += centerturf
-	return turfs
-
-/proc/circleview(center=usr,radius=3)
-
-	var/turf/centerturf = get_turf(center)
-	var/list/atoms = new/list()
-	var/rsq = radius * (radius+0.5)
-
-	for(var/atom/A in view(radius, centerturf))
-		var/dx = A.x - centerturf.x
-		var/dy = A.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
-			atoms += A
-
-	//turfs += centerturf
-	return atoms
-
 /proc/trange(rad = 0, turf/centre = null) //alternative to range (ONLY processes turfs and thus less intensive)
 	if(!centre)
 		return
@@ -80,43 +50,6 @@
 	var/dist = sqrt(dx**2 + dy**2)
 
 	return dist
-
-/proc/circlerangeturfs(center=usr,radius=3)
-
-	var/turf/centerturf = get_turf(center)
-	var/list/turfs = new/list()
-	var/rsq = radius * (radius+0.5)
-
-	for(var/turf/T in range(radius, centerturf))
-		var/dx = T.x - centerturf.x
-		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
-			turfs += T
-	return turfs
-
-/proc/circleviewturfs(center=usr,radius=3)		//Is there even a diffrence between this proc and circlerangeturfs()?
-
-	var/turf/centerturf = get_turf(center)
-	var/list/turfs = new/list()
-	var/rsq = radius * (radius+0.5)
-
-	for(var/turf/T in view(radius, centerturf))
-		var/dx = T.x - centerturf.x
-		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
-			turfs += T
-	return turfs
-
-/proc/diamondturfs(center=usr, radius=3, check_view=FALSE)
-	var/turf/centerturf = get_turf(center)
-	if(radius < 0 || !centerturf)
-		return
-
-	var/list/turfs = list()
-	for(var/turf/T in check_view ? view(radius, centerturf) : range(radius, centerturf))
-		if(abs(T.x - centerturf.x) + abs(T.y - centerturf.y) <= radius)
-			turfs += T
-	. = turfs
 
 //var/debug_mob = 0
 
@@ -141,7 +74,7 @@
 			L |= M
 			//log_world("[recursion_limit] = [M] - [get_turf(M)] - ([M.x], [M.y], [M.z])")
 
-		else if(include_radio && istype(A, /obj/item/device/radio))
+		else if(include_radio && istype(A, /obj/item/radio))
 			if(sight_check && !isInSight(A, O))
 				continue
 			L |= A
@@ -170,7 +103,7 @@
 			if(M.client)
 				hear += M
 			//log_world("Start = [M] - [get_turf(M)] - ([M.x], [M.y], [M.z])")
-		else if(istype(A, /obj/item/device/radio))
+		else if(istype(A, /obj/item/radio))
 			hear += A
 
 		if(isobj(A) || ismob(A))
@@ -179,17 +112,17 @@
 	return hear
 
 
-/proc/get_mobs_in_radio_ranges(var/list/obj/item/device/radio/radios)
+/proc/get_mobs_in_radio_ranges(var/list/obj/item/radio/radios)
 
 	set background = 1
 
 	. = list()
 	// Returns a list of mobs who can hear any of the radios given in @radios
 	var/list/speaker_coverage = list()
-	for(var/obj/item/device/radio/R in radios)
+	for(var/obj/item/radio/R in radios)
 		if(R)
 			//Cyborg checks. Receiving message uses a bit of cyborg's charge.
-			var/obj/item/device/radio/borg/BR = R
+			var/obj/item/radio/borg/BR = R
 			if(istype(BR) && BR.myborg)
 				var/mob/living/silicon/robot/borg = BR.myborg
 				var/datum/robot_component/CO = borg.get_component("radio")

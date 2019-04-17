@@ -25,7 +25,7 @@
 
 /obj/item/legcuffs/beartrap/attack_self(mob/user as mob)
 	..()
-	if(ishuman(user) && !user.stat && !user.is_mob_restrained())
+	if(ishuman(user) && !user.stat && !user.restrained())
 		armed = !armed
 		icon_state = "beartrap[armed]"
 		to_chat(user, "<span class='notice'>[src] is now [armed ? "armed" : "disarmed"]</span>")
@@ -56,74 +56,3 @@
 					var/mob/living/simple_animal/SA = AM
 					SA.health -= 20
 	..()
-
-
-
-
-
-//PREDATOR LEGCUFFS
-
-/obj/item/legcuffs/yautja
-	name = "hunting trap"
-	throw_speed = 2
-	throw_range = 2
-	icon = 'icons/obj/items/predator.dmi'
-	icon_state = "yauttrap0"
-	desc = "A bizarre Yautja device used for trapping and killing prey."
-	var/armed = 0
-	breakouttime = 600 // 1 minute
-	layer = LOWER_ITEM_LAYER
-
-	dropped(var/mob/living/carbon/human/mob) //Changes to "camouflaged" icons based on where it was dropped.
-		if(armed)
-			if(isturf(mob.loc))
-				if(istype(mob.loc,/turf/open/gm/dirt))
-					icon_state = "yauttrapdirt"
-				else if (istype(mob.loc,/turf/open/gm/grass))
-					icon_state = "yauttrapgrass"
-				else
-					icon_state = "yauttrap1"
-		..()
-
-/obj/item/legcuffs/yautja/attack_self(mob/user as mob)
-	..()
-	if(ishuman(user) && !user.stat && !user.is_mob_restrained())
-		armed = !armed
-		icon_state = "yauttrap[armed]"
-		to_chat(user, "<span class='notice'>[src] is now [armed ? "armed" : "disarmed"].</span>")
-
-/obj/item/legcuffs/yautja/Crossed(atom/movable/AM)
-	if(armed)
-		if(ismob(AM))
-			var/mob/M = AM
-			if(!M.buckled)
-				if(iscarbon(AM))
-					if(isturf(src.loc))
-						var/mob/living/carbon/H = AM
-						if(isyautja(H))
-							to_chat(H, "<span class='notice'>You carefully avoid stepping on the trap.</span>")
-							return
-						if(H.m_intent == MOVE_INTENT_RUN)
-							armed = 0
-							icon_state = "yauttrap0"
-							H.legcuffed = src
-							src.loc = H
-							H.legcuff_update()
-							playsound(H,'sound/weapons/tablehit1.ogg', 25, 1)
-							to_chat(H, "[icon2html(src, H)] <span class='warning'> <B>You step on \the [src]!</B></span>")
-							H.KnockDown(4)
-							if(ishuman(H))
-								H.emote("pain")
-							for(var/mob/O in viewers(H, null))
-								if(O == H)
-									continue
-								O.show_message("<span class='warning'>[icon2html(src, O)] <B>[H] steps on [src].</B></span>", 1)
-				if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
-					armed = 0
-					var/mob/living/simple_animal/SA = AM
-					SA.health -= 20
-	..()
-
-/obj/item/legcuffs/yautja/ancient
-	name = "Alien Mine"
-	desc = "A bizarre alien device used for trapping and killing prey."

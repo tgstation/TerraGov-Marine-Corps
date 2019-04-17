@@ -98,7 +98,7 @@
 		var/turf/curturf = get_turf(teleatom)
 		var/area/destarea = get_area(destination)
 		if(precision)
-			var/list/posturfs = circlerangeturfs(destination,precision)
+			var/list/posturfs = filled_circle_turfs(destination,precision)
 			destturf = safepick(posturfs)
 		else
 			destturf = get_turf(destination)

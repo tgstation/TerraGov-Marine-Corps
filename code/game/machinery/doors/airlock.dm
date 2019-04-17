@@ -76,7 +76,6 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door_closed"
 	power_channel = ENVIRON
-	explosion_resistance = 15
 
 	var/aiControlDisabled = 0 //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
 	var/hackProof = 0 // if 1, this door can't be hacked by the AI
@@ -732,7 +731,7 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/Topic(href, href_list, var/nowindow = 0)
 	if(!nowindow)
 		..()
-	if(usr.stat || usr.is_mob_restrained()|| usr.mob_size == MOB_SIZE_SMALL)
+	if(usr.stat || usr.restrained()|| usr.mob_size == MOB_SIZE_SMALL)
 		return
 	add_fingerprint(usr)
 	if(href_list["close"])
@@ -769,13 +768,13 @@ About the new airlock wires panel:
 				src.pulse(t1)
 		else if(href_list["signaler"])
 			var/wirenum = text2num(href_list["signaler"])
-			if(!istype(usr.get_active_held_item(), /obj/item/device/assembly/signaler))
+			if(!istype(usr.get_active_held_item(), /obj/item/assembly/signaler))
 				to_chat(usr, "You need a signaller!")
 				return
 			if(src.isWireColorCut(wirenum))
 				to_chat(usr, "You can't attach a signaller to a cut wire.")
 				return
-			var/obj/item/device/assembly/signaler/R = usr.get_active_held_item()
+			var/obj/item/assembly/signaler/R = usr.get_active_held_item()
 			if(R.secured)
 				to_chat(usr, "This radio can't be attached!")
 				return
@@ -789,7 +788,7 @@ About the new airlock wires panel:
 			if(!(src.signalers[wirenum]))
 				to_chat(usr, "There's no signaller attached to that wire!")
 				return
-			var/obj/item/device/assembly/signaler/R = src.signalers[wirenum]
+			var/obj/item/assembly/signaler/R = src.signalers[wirenum]
 			R.loc = usr.loc
 			R.airlock_wire = null
 			src.signalers[wirenum] = null
@@ -1058,7 +1057,7 @@ About the new airlock wires panel:
 		return src.attack_hand(user)
 	else if(ismultitool(C))
 		return src.attack_hand(user)
-	else if(istype(C, /obj/item/device/assembly/signaler))
+	else if(istype(C, /obj/item/assembly/signaler))
 		return src.attack_hand(user)
 	else if(C.pry_capable)
 		if(C.pry_capable == IS_PRY_CAPABLE_CROWBAR && src.p_open && (operating == -1 || (density && welded && operating != 1 && !src.arePowerSystemsOn() && !src.locked)) )

@@ -15,6 +15,7 @@
 	var/mob/pulledby = null
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 								// and if yes, are we doing the first or second move.
+	appearance_flags = TILE_BOUND|PIXEL_SCALE
 
 	var/list/mob/dead/observer/followers = list()
 
@@ -340,7 +341,7 @@
 
 /obj/on_set_interaction(mob/user)
 	..()
-	in_use = 1
+	ENABLE_BITFIELD(obj_flags, IN_USE)
 
 
 //things the user's machine must do just before we unset the user's machine.

@@ -1,6 +1,5 @@
 /obj/effect/overlay
 	name = "overlay"
-	unacidable = 1
 	var/i_attached//Added for possible image attachments to objects. For hallucinations and the like.
 
 /obj/effect/overlay/beam//Not actually a projectile, just an effect.
@@ -82,7 +81,7 @@
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target_coordinate"
 	effect_duration = 600
-	var/obj/item/device/binoculars/tactical/source_binoc
+	var/obj/item/binoculars/tactical/source_binoc
 
 /obj/effect/overlay/temp/laser_coordinate/Destroy()
 	if(source_binoc)
@@ -101,7 +100,7 @@
 	icon_state = "laser_target2"
 	effect_duration = 600
 	var/target_id
-	var/obj/item/device/binoculars/tactical/source_binoc
+	var/obj/item/binoculars/tactical/source_binoc
 	var/obj/machinery/camera/laser_cam/linked_cam
 	var/datum/squad/squad
 

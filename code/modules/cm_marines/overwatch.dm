@@ -137,7 +137,7 @@
 						dat += "<span class='warning'>None</span><br>"
 					dat += "<B>[current_squad.name] Beacon Targets:</b><br>"
 					if(active_orbital_beacons.len)
-						for(var/obj/item/device/squad_beacon/bomb/OB in current_squad.squad_orbital_beacons)
+						for(var/obj/item/squad_beacon/bomb/OB in current_squad.squad_orbital_beacons)
 							if(!istype(OB))
 								continue
 							dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=\ref[OB];selected_target=\ref[OB]'>[OB.name]</a><br>"
@@ -457,7 +457,7 @@
 					dat += "<span class='warning'>None</span><br>"
 				dat += "<B>Beacon Targets:</b><br>"
 				if(active_orbital_beacons.len)
-					for(var/obj/item/device/squad_beacon/bomb/OB in active_orbital_beacons)
+					for(var/obj/item/squad_beacon/bomb/OB in active_orbital_beacons)
 						if(!istype(OB))
 							continue
 						dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=\ref[OB];selected_target=\ref[OB]'>[OB.name]</a><br>"
@@ -484,7 +484,7 @@
 
 
 /obj/machinery/computer/overwatch/check_eye(mob/user)
-	if(user.is_mob_incapacitated(TRUE) || get_dist(user, src) > 1 || is_blind(user)) //user can't see - not sure why canmove is here.
+	if(user.incapacitated(TRUE) || get_dist(user, src) > 1 || is_blind(user)) //user can't see - not sure why canmove is here.
 		user.unset_interaction()
 	else if(!cam || !cam.can_use()) //camera doesn't work, is no longer selected or is gone
 		user.unset_interaction()
@@ -501,12 +501,12 @@
 		return
 	var/mob/living/carbon/human/H = cam_target
 	if(istype(H) && current_squad)
-		var/obj/item/device/radio/headset/almayer/helm = H.wear_ear
+		var/obj/item/radio/headset/almayer/helm = H.wear_ear
 		return helm?.camera
 	var/obj/effect/overlay/temp/laser_target/LT = cam_target
 	if(istype(LT))
 		return LT?.linked_cam
-	var/obj/item/device/squad_beacon/B = cam_target
+	var/obj/item/squad_beacon/B = cam_target
 	if(istype(B))
 		return B?.beacon_cam
 
@@ -638,14 +638,14 @@
 		H.mind.cm_skills.leadership = max(SKILL_LEAD_TRAINED, H.mind.cm_skills.leadership)
 		H.update_action_buttons()
 
-	if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
-		var/obj/item/device/radio/headset/almayer/marine/R = H.wear_ear
+	if(istype(H.wear_ear, /obj/item/radio/headset/almayer/marine))
+		var/obj/item/radio/headset/almayer/marine/R = H.wear_ear
 		if(!R.keyslot1)
-			R.keyslot1 = new /obj/item/device/encryptionkey/squadlead (src)
+			R.keyslot1 = new /obj/item/encryptionkey/squadlead (src)
 		else if(!R.keyslot2)
-			R.keyslot2 = new /obj/item/device/encryptionkey/squadlead (src)
+			R.keyslot2 = new /obj/item/encryptionkey/squadlead (src)
 		else if(!R.keyslot3)
-			R.keyslot3 = new /obj/item/device/encryptionkey/squadlead (src)
+			R.keyslot3 = new /obj/item/encryptionkey/squadlead (src)
 		R.recalculateChannels()
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/ID = H.wear_id
@@ -666,9 +666,9 @@
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[wanted_marine] is missing in action.</span>")
 		return
 
-	for (var/datum/data/record/E in data_core.general)
+	for (var/datum/data/record/E in GLOB.datacore.general)
 		if(E.fields["name"] == wanted_marine.real_name)
-			for (var/datum/data/record/R in data_core.security)
+			for (var/datum/data/record/R in GLOB.datacore.security)
 				if (R.fields["id"] == E.fields["id"])
 					if(!findtext(R.fields["ma_crim"],"Insubordination."))
 						R.fields["criminal"] = "*Arrest*"
@@ -748,7 +748,7 @@
 	old_squad.remove_marine_from_squad(transfer_marine)
 	new_squad.put_marine_in_squad(transfer_marine)
 
-	for(var/datum/data/record/t in data_core.general) //we update the crew manifest
+	for(var/datum/data/record/t in GLOB.datacore.general) //we update the crew manifest
 		if(t.fields["name"] == transfer_marine.real_name)
 			t.fields["squad"] = new_squad.name
 			break
@@ -757,8 +757,8 @@
 	ID.assigned_fireteam = 0 //reset fireteam assignment
 
 	//Changes headset frequency to match new squad
-	var/obj/item/device/radio/headset/almayer/marine/H = transfer_marine.wear_ear
-	if(istype(H, /obj/item/device/radio/headset/almayer/marine))
+	var/obj/item/radio/headset/almayer/marine/H = transfer_marine.wear_ear
+	if(istype(H, /obj/item/radio/headset/almayer/marine))
 		H.set_frequency(new_squad.radio_freq)
 
 	transfer_marine.hud_set_squad()
@@ -860,7 +860,7 @@
 	icon = 'icons/effects/warning_stripes.dmi'
 	anchored = 1
 	density = 0
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 	layer = ABOVE_TURF_LAYER
 	var/squad_name = "Alpha"
 	var/sending_package = 0
@@ -892,7 +892,7 @@
 	icon_state = "deltadrop"
 	squad_name = "Delta"
 
-/obj/item/device/squad_beacon
+/obj/item/squad_beacon
 	name = "squad supply beacon"
 	desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for a supply drop."
 	icon_state = "motion0"
@@ -903,7 +903,7 @@
 	var/icon_activated = "motion2"
 	var/obj/machinery/camera/beacon_cam = null
 
-/obj/item/device/squad_beacon/Destroy()
+/obj/item/squad_beacon/Destroy()
 	if(src in active_orbital_beacons)
 		active_orbital_beacons -= src
 	if(squad)
@@ -918,7 +918,7 @@
 	SetLuminosity(0)
 	return ..()
 
-/obj/item/device/squad_beacon/attack_self(mob/user)
+/obj/item/squad_beacon/attack_self(mob/user)
 	if(activated)
 		to_chat(user, "<span class='warning'>It's already been activated. Just leave it.</span>")
 		return
@@ -961,7 +961,7 @@
 		user.visible_message("[user] activates [src]",
 		"You activate [src]")
 
-/obj/item/device/squad_beacon/bomb
+/obj/item/squad_beacon/bomb
 	name = "orbital beacon"
 	desc = "A bulky device that fires a beam up to an orbiting vessel to send local coordinates."
 	icon_state = "motion4"
@@ -969,7 +969,7 @@
 	activation_time = 80
 	icon_activated = "motion1"
 
-/obj/item/device/squad_beacon/bomb/attack_self(mob/living/carbon/human/H)
+/obj/item/squad_beacon/bomb/attack_self(mob/living/carbon/human/H)
 	if(!istype(H))
 		return
 	if(!H.mind)
@@ -977,7 +977,7 @@
 		return
 	activate(H)
 
-/obj/item/device/squad_beacon/bomb/attack_hand(mob/living/carbon/human/H)
+/obj/item/squad_beacon/bomb/attack_hand(mob/living/carbon/human/H)
 	if(!istype(H))
 		return ..()
 	if(!H.mind)
@@ -988,7 +988,7 @@
 	else
 		return ..()
 
-/obj/item/device/squad_beacon/bomb/proc/activate(mob/living/carbon/human/H)
+/obj/item/squad_beacon/bomb/proc/activate(mob/living/carbon/human/H)
 	if(!is_ground_level(H.z))
 		to_chat(H, "<span class='warning'>You have to be on the planet to use this or it won't transmit.</span>")
 		return
@@ -1027,7 +1027,7 @@
 		H.visible_message("[H] activates [src]",
 		"You activate [src]")
 
-/obj/item/device/squad_beacon/bomb/proc/deactivate(mob/living/carbon/human/H)
+/obj/item/squad_beacon/bomb/proc/deactivate(mob/living/carbon/human/H)
 	var/delay = activation_time * 0.5 //Half as long as setting it up.
 	if(H.mind.cm_skills)
 		delay = max(10, delay - 20 * H.mind.cm_skills.leadership)
@@ -1120,7 +1120,7 @@
 	skill_min = SKILL_LEAD_TRAINED
 
 /datum/action/skill/issue_order/New()
-	return ..(/obj/item/device/megaphone)
+	return ..(/obj/item/megaphone)
 
 /datum/action/skill/issue_order/action_activate()
 	var/mob/living/carbon/human/human = owner

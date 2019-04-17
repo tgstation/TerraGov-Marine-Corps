@@ -11,7 +11,7 @@
 	var/speak_exclamation = "declares"
 	var/speak_query = "queries"
 	var/pose //Yes, now AIs can pose too.
-	var/obj/item/device/camera/siliconcam/aiCamera = null //photography
+	var/obj/item/camera/siliconcam/aiCamera = null //photography
 	var/local_transmit //If set, can only speak to others of the same type within a short range.
 
 	var/med_hud = MOB_HUD_MEDICAL_ADVANCED //Determines the med hud to use
@@ -129,8 +129,8 @@
 // this function displays the stations manifest in a separate window
 /mob/living/silicon/proc/show_station_manifest()
 	var/dat
-	if(data_core)
-		dat += data_core.get_manifest(1) // make it monochrome
+	if(GLOB.datacore)
+		dat += GLOB.datacore.get_manifest(1) // make it monochrome
 
 	var/datum/browser/popup = new(src, "airoster", "<div align='center'>Crew Manifest</div>")
 	popup.set_content(dat)

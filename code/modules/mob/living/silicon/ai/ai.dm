@@ -56,9 +56,8 @@ var/list/ai_verbs_default = list(
 	var/ioncheck[1]
 	var/lawchannel = "Common" // Default channel on which to state laws
 	var/icon/holo_icon//Default is assigned when AI is created.
-	var/obj/item/device/pda/ai/aiPDA = null
-	var/obj/item/device/multitool/aiMulti = null
-	var/obj/item/device/radio/headset/ai_integrated/aiRadio = null
+	var/obj/item/multitool/aiMulti = null
+	var/obj/item/radio/headset/ai_integrated/aiRadio = null
 //Hud stuff
 
 	//MALFUNCTION
@@ -86,7 +85,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/remove_ai_verbs()
 	src.verbs -= ai_verbs_default
 
-/mob/living/silicon/ai/Initialize(loc, var/datum/ai_laws/L, var/obj/item/device/mmi/B, var/safety = 0)
+/mob/living/silicon/ai/Initialize(loc, var/datum/ai_laws/L, var/obj/item/mmi/B, var/safety = 0)
 	announcement = new()
 	announcement.title = "A.I. Announcement"
 	announcement.announcement_type = "A.I. Announcement"
@@ -102,7 +101,6 @@ var/list/ai_verbs_default = list(
 				possibleNames -= pickedName
 				pickedName = null
 
-	aiPDA = new/obj/item/device/pda/ai(src)
 	SetName(pickedName)
 	anchored = 1
 	canmove = 0
@@ -120,7 +118,7 @@ var/list/ai_verbs_default = list(
 	aiMulti = new(src)
 	aiRadio = new(src)
 	aiRadio.myAi = src
-	aiCamera = new/obj/item/device/camera/siliconcam/ai_camera(src)
+	aiCamera = new/obj/item/camera/siliconcam/ai_camera(src)
 
 	if (istype(loc, /turf))
 		add_ai_verbs(src)
@@ -170,12 +168,6 @@ var/list/ai_verbs_default = list(
 	announcement.announcer = pickedName
 	if(eyeobj)
 		eyeobj.name = "[pickedName] (AI Eye)"
-
-	// Set ai pda name
-	if(aiPDA)
-		aiPDA.ownjob = "AI"
-		aiPDA.owner = pickedName
-		aiPDA.name = pickedName + " (" + aiPDA.ownjob + ")"
 
 /*
 	The AI Power supply is a dummy object used for powering the AI since only machinery should be using power.
@@ -308,7 +300,7 @@ var/list/ai_verbs_default = list(
 		return
 	user.reset_view(camera)
 
-/mob/living/silicon/ai/is_mob_restrained()
+/mob/living/silicon/ai/restrained()
 	return 0
 
 /mob/living/silicon/ai/emp_act(severity)
@@ -520,7 +512,7 @@ var/list/ai_verbs_default = list(
 
 		var/personnel_list[] = list()
 
-		for(var/datum/data/record/t in data_core.locked)//Look in data core locked.
+		for(var/datum/data/record/t in GLOB.datacore.general)//Look in data core locked.
 			personnel_list["[t.fields["name"]]: [t.fields["rank"]]"] = t.fields["image"]//Pull names, rank, and image.
 
 		if(personnel_list.len)

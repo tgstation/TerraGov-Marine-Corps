@@ -134,10 +134,9 @@
 
 
 	// OTHER
-	else if ((istype(W, /obj/item/paper) || istype(W, /obj/item/device/pda)) && isliving(user))
+	else if (istype(W, /obj/item/paper) && isliving(user))
 		var/mob/living/U = user
 		var/obj/item/paper/X = null
-		var/obj/item/device/pda/P = null
 
 		var/itemname = ""
 		var/info = ""
@@ -145,10 +144,7 @@
 			X = W
 			itemname = X.name
 			info = X.info
-		else
-			P = W
-			itemname = P.name
-			info = P.notehtml
+
 		to_chat(U, "You hold \a [itemname] up to the camera ...")
 		for(var/mob/living/silicon/ai/O in GLOB.ai_list)
 			if(!O.client)
@@ -164,7 +160,7 @@
 				if (S.current == src)
 					to_chat(O, "[U] holds \a [itemname] up to one of the cameras ...")
 					O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
-	else if (istype(W, /obj/item/device/camera_bug))
+	else if (istype(W, /obj/item/camera_bug))
 		if (!src.can_use())
 			to_chat(user, "<span class='notice'>Camera non-functional</span>")
 			return

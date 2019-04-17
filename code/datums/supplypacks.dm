@@ -62,8 +62,8 @@ OPERATIONS
 /datum/supply_packs/beacons_supply
 	name = "supply beacons crate (x2)"
 	contains = list(
-			/obj/item/device/squad_beacon,
-			/obj/item/device/squad_beacon
+			/obj/item/squad_beacon,
+			/obj/item/squad_beacon
 			)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate
@@ -73,8 +73,8 @@ OPERATIONS
 /datum/supply_packs/beacons_orbital
 	name = "orbital beacons crate (x2)"
 	contains = list(
-					/obj/item/device/squad_beacon/bomb,
-					/obj/item/device/squad_beacon/bomb
+					/obj/item/squad_beacon/bomb,
+					/obj/item/squad_beacon/bomb
 					)
 	cost = RO_PRICE_PRICY
 	containertype = /obj/structure/closet/crate
@@ -84,7 +84,7 @@ OPERATIONS
 /datum/supply_packs/binoculars_regular
 	name = "binoculars crate (x1)"
 	contains = list(
-					/obj/item/device/binoculars
+					/obj/item/binoculars
 					)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
@@ -94,7 +94,7 @@ OPERATIONS
 /datum/supply_packs/binoculars_tatical
 	name = "tactical binoculars crate (x1)"
 	contains = list(
-					/obj/item/device/binoculars/tactical
+					/obj/item/binoculars/tactical
 					)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate
@@ -273,7 +273,7 @@ WEAPONS
 	contains = list(
 					/obj/item/storage/box/sentry
 					)
-	cost = RO_PRICE_VERY_PRICY
+	cost = RO_PRICE_MAX_PRICY
 	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper sentry crate"
 	group = "Weapons"
@@ -607,15 +607,15 @@ WEAPONS
 /datum/supply_packs/detpack
 	name = "detpack explosives crate (x6)"
 	contains = list(
-					/obj/item/device/radio/detpack,
-					/obj/item/device/radio/detpack,
-					/obj/item/device/radio/detpack,
-					/obj/item/device/radio/detpack,
-					/obj/item/device/radio/detpack,
-					/obj/item/device/radio/detpack,
-					/obj/item/device/assembly/signaler,
-					/obj/item/device/assembly/signaler,
-					/obj/item/device/assembly/signaler,
+					/obj/item/radio/detpack,
+					/obj/item/radio/detpack,
+					/obj/item/radio/detpack,
+					/obj/item/radio/detpack,
+					/obj/item/radio/detpack,
+					/obj/item/radio/detpack,
+					/obj/item/assembly/signaler,
+					/obj/item/assembly/signaler,
+					/obj/item/assembly/signaler,
 					)
 	cost = RO_PRICE_KINDA_PRICY
 	containertype = /obj/structure/closet/crate/explosives
@@ -2371,7 +2371,7 @@ MEDICAL
 	name = "medvac system crate (medvac stretcher and beacon)"
 	contains = list(
 					/obj/item/roller/medevac,
-					/obj/item/device/medevac_beacon
+					/obj/item/medevac_beacon
 					)
 	cost = RO_PRICE_VERY_PRICY
 	containertype = /obj/structure/closet/crate/secure/surgery
@@ -2548,7 +2548,7 @@ ENGINEERING
 					/obj/item/circuitboard/general,
 					/obj/item/circuitboard/general,
 					/obj/item/circuitboard/general,
-					/obj/item/device/multitool
+					/obj/item/multitool
 					)
 
 /*******************************************************************************
@@ -2562,15 +2562,15 @@ SCIENCE
 					/obj/item/tank/phoron,
 					/obj/item/tank/phoron,
 					/obj/item/tank/phoron,
-					/obj/item/device/assembly/igniter,
-					/obj/item/device/assembly/igniter,
-					/obj/item/device/assembly/igniter,
-					/obj/item/device/assembly/prox_sensor,
-					/obj/item/device/assembly/prox_sensor,
-					/obj/item/device/assembly/prox_sensor,
-					/obj/item/device/assembly/timer,
-					/obj/item/device/assembly/timer,
-					/obj/item/device/assembly/timer
+					/obj/item/assembly/igniter,
+					/obj/item/assembly/igniter,
+					/obj/item/assembly/igniter,
+					/obj/item/assembly/prox_sensor,
+					/obj/item/assembly/prox_sensor,
+					/obj/item/assembly/prox_sensor,
+					/obj/item/assembly/timer,
+					/obj/item/assembly/timer,
+					/obj/item/assembly/timer
 					)
 	cost = RO_PRICE_PRICY
 	containertype = /obj/structure/closet/crate/secure/phoron

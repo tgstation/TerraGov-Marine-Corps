@@ -53,8 +53,8 @@ var/list/department_radio_keys = list(
 
 	var/mob/living/carbon/human/H = src
 	if (H.wear_ear)
-		var/obj/item/device/radio/headset/dongle
-		if(istype(H.wear_ear,/obj/item/device/radio/headset))
+		var/obj/item/radio/headset/dongle
+		if(istype(H.wear_ear,/obj/item/radio/headset))
 			dongle = H.wear_ear
 		if(!istype(dongle)) return
 		if(dongle.translate_binary) return 1

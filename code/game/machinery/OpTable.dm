@@ -6,7 +6,7 @@
 	density = 1
 	layer = TABLE_LAYER
 	anchored = 1
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 	use_power = 1
 	idle_power_usage = 1
 	active_power_usage = 5
@@ -185,7 +185,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat || !ishuman(usr) || usr.is_mob_restrained() || !check_table(usr))
+	if(usr.stat || !ishuman(usr) || usr.restrained() || !check_table(usr))
 		return
 
 	take_victim(usr,usr)

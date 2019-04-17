@@ -221,7 +221,6 @@
 
 /obj/item/weapon/twohanded/glaive
 	name = "war glaive"
-	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "glaive"
 	item_state = "glaive"
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
@@ -237,7 +236,7 @@
 	flags_item = NOSHIELD|TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
-	unacidable = 1
+	resistance_flags = UNACIDABLE
 	attack_speed = 12 //Default is 7.
 
 /obj/item/weapon/twohanded/glaive/damaged

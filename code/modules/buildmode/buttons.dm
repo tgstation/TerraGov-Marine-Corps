@@ -21,10 +21,12 @@
 	screen_loc = "NORTH,WEST"
 
 
-/obj/screen/buildmode/mode/clicked(mob/user, list/mods)
-	if(mods.Find("left"))
+/obj/screen/buildmode/mode/Click(location, control, params)
+	var/list/pa = params2list(params)
+
+	if(pa.Find("left"))
 		bd.toggle_modeswitch()
-	else if(mods.Find("right"))
+	else if(pa.Find("right"))
 		bd.mode.change_settings(usr.client)
 	update_icon()
 	return TRUE
@@ -40,7 +42,7 @@
 	name = "Buildmode Help"
 
 
-/obj/screen/buildmode/help/clicked()
+/obj/screen/buildmode/help/Click()
 	bd.mode.show_help(usr.client)
 	return TRUE
 
@@ -56,7 +58,7 @@
 	return
 
 
-/obj/screen/buildmode/bdir/clicked()
+/obj/screen/buildmode/bdir/Click()
 	bd.toggle_dirswitch()
 	update_icon()
 	return TRUE
@@ -74,7 +76,7 @@
 	return ..(bld)
 
 
-/obj/screen/buildmode/modeswitch/clicked()
+/obj/screen/buildmode/modeswitch/Click()
 	bd.change_mode(modetype)
 	return TRUE
 
@@ -90,7 +92,7 @@
 	return ..(bld)
 
 
-/obj/screen/buildmode/dirswitch/clicked()
+/obj/screen/buildmode/dirswitch/Click()
 	bd.change_dir(dir)
 	return TRUE
 
@@ -101,6 +103,6 @@
 	name = "Quit Buildmode"
 
 
-/obj/screen/buildmode/quit/clicked()
+/obj/screen/buildmode/quit/Click()
 	bd.quit()
 	return TRUE

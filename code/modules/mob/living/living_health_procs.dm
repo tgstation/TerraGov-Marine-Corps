@@ -79,6 +79,15 @@
 mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	return
 
+/mob/living/proc/Losebreath(amount, forced = FALSE)
+	return
+
+/mob/living/proc/adjust_Losebreath(amount, forced = FALSE)
+	return
+
+/mob/living/proc/set_Losebreath(amount, forced = FALSE)
+	return
+
 
 
 
@@ -211,4 +220,5 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	plasma_stored = xeno_caste.plasma_max
 	stagger = 0
 	slowdown = 0
+	hive?.on_xeno_revive(src)
 	return ..()

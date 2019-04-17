@@ -96,7 +96,7 @@
 	set hidden = 1
 	if(!iscarbon(mob))
 		return
-	if (!mob.stat && isturf(mob.loc) && !mob.is_mob_restrained())
+	if (!mob.stat && isturf(mob.loc) && !mob.restrained())
 		mob:toggle_throw_mode()
 	else
 		return
@@ -154,13 +154,14 @@
 		for(var/obj/item/item in mob.contents)
 			if(item.zoom)
 				item.zoom(mob)
+				click_intercept = null
 				break
 
 	//Check if you are being grabbed and if so attemps to break it
 	if(mob.pulledby)
-		if(mob.is_mob_incapacitated(TRUE))
+		if(mob.incapacitated(TRUE))
 			return
-		else if(mob.is_mob_restrained(0))
+		else if(mob.restrained(0))
 			next_movement = world.time + 20 //to reduce the spam
 			to_chat(src, "<span class='warning'>You're restrained! You can't move!</span>")
 			return
@@ -195,9 +196,6 @@
 		else
 			. = ..()
 
-			if (mob.tile_contents)
-				mob.tile_contents = list()
-
 		moving = 0
 		next_movement = start_move_time + move_delay
 		return .
@@ -223,7 +221,7 @@
 	else
 		make_floating(1)
 
-	if(is_mob_restrained()) //Check to see if we can do things
+	if(restrained()) //Check to see if we can do things
 		return 0
 
 	//Check to see if we slipped

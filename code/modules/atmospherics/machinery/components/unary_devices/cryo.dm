@@ -6,7 +6,7 @@
 	icon_state = "cell-off"
 	density = TRUE
 	//max_integrity = 350
-	//armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 30, "acid" = 30)
 	layer = ABOVE_WINDOW_LAYER
 	//state_open = FALSE
 	//circuit = /obj/item/circuitboard/machine/cryo_tube
@@ -309,8 +309,8 @@
 			user.visible_message("[user] adds \a [W] to \the [src]!", "You add \a [W] to \the [src]!")
 		return
 
-	else if(istype(W, /obj/item/device/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
-		var/obj/item/device/healthanalyzer/J = W
+	else if(istype(W, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
+		var/obj/item/healthanalyzer/J = W
 		J.attack(occupant, user)
 		return
 
@@ -390,7 +390,7 @@
 	if(!ishuman(occupant))
 		return
 	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in data_core.medical)
+	for(var/datum/data/record/R in GLOB.datacore.medical)
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])

@@ -10,8 +10,7 @@ GLOBAL_LIST_INIT(exp_jobsmap, list(
 
 GLOBAL_LIST_INIT(exp_specialmap, list(
 	EXP_TYPE_LIVING = list(),
-	EXP_TYPE_XENO = list(ROLE_XENOMORPH, ROLE_XENO_QUEEN),
-	EXP_TYPE_SPECIAL = list(ROLE_SURVIVOR),
+	EXP_TYPE_SPECIAL = list(ROLE_SURVIVOR, ROLE_XENOMORPH, ROLE_XENO_QUEEN),
 	EXP_TYPE_GHOST = list()
 ))
 GLOBAL_PROTECT(exp_jobsmap)
@@ -35,7 +34,6 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/department_flag = NOFLAGS
 	var/prefflag = NOFLAGS
 
-	var/spawn_positions = 0
 	var/total_positions = 0
 	var/current_positions = 0
 
@@ -167,6 +165,10 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(visualsOnly)
 		return
 
+	handle_id(H)
+
+
+/datum/outfit/job/proc/handle_id(mob/living/carbon/human/H)
 	var/datum/job/J = SSjob.GetJobType(jobtype)
 	if(!J)
 		J = SSjob.GetJob(H.job)
@@ -182,11 +184,12 @@ GLOBAL_PROTECT(exp_specialmap)
 		C.update_label()
 		H.sec_hud_set_ID()
 
-		if(H.mind.initial_account)
+		if(H.mind?.initial_account)
 			C.associated_account_number = H.mind.initial_account.account_number
 
 	H.name = H.get_visible_name()
 	H.hud_set_squad()
+	H.update_action_buttons()
 
 
 /proc/guest_jobbans(var/job)

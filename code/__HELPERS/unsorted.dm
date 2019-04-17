@@ -267,8 +267,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 
 
-//This will update a mob's name, real_name, mind.name, data_core records, pda and id
-//Calling this proc without an oldname will only update the mob and skip updating the pda, id and records ~Carn
+//This will update a mob's name, real_name, mind.name, GLOB.datacore records and id
 /mob/proc/fully_replace_character_name(oldname, newname)
 	if(!newname)	
 		return FALSE
@@ -276,6 +275,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	log_played_names(ckey, newname)
 
 	real_name = newname
+	voice_name = newname
 	name = newname
 	if(mind)
 		mind.name = newname
@@ -284,37 +284,22 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	if(dna)
 		dna.real_name = real_name
 
-	if(oldname)
-		//update the datacore records! This is goig to be a bit costly.
-		for(var/list/L in list(data_core.general,data_core.medical,data_core.security,data_core.locked))
-			for(var/datum/data/record/R in L)
-				if(R.fields["name"] == oldname)
-					R.fields["name"] = newname
-					break
+	return TRUE
 
-		//update our pda and id if we have them on our person
-		var/list/searching = GetAllContents(searchDepth = 3)
-		var/search_id = 1
-		var/search_pda = 1
 
-		for(var/A in searching)
-			if( search_id && istype(A,/obj/item/card/id) )
-				var/obj/item/card/id/ID = A
-				if(ID.registered_name == oldname)
-					ID.registered_name = newname
-					ID.name = "[newname]'s ID Card ([ID.assignment])"
-					if(!search_pda)	break
-					search_id = 0
+/mob/living/carbon/human/fully_replace_character_name(oldname, newname)
+	. = ..()
+	if(!.)
+		return FALSE
 
-			else if( search_pda && istype(A,/obj/item/device/pda) )
-				var/obj/item/device/pda/PDA = A
-				if(PDA.owner == oldname)
-					PDA.owner = newname
-					PDA.name = "PDA-[newname] ([PDA.ownjob])"
-					if(!search_id)	break
-					search_pda = 0
-	return 1
+	if(istype(wear_id))
+		var/obj/item/card/id/C = wear_id
+		C.update_label()
 
+	if(!GLOB.datacore.manifest_update(oldname, newname, job))
+		GLOB.datacore.manifest_inject(src)
+
+	return TRUE
 
 
 //Generalised helper proc for letting mobs rename themselves. Used to be clname() and ainame()
@@ -425,8 +410,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		moblist.Add(M)
 	for(var/mob/living/carbon/monkey/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/hellhound/M in sortmob)
-		moblist.Add(M)
 	for(var/mob/living/simple_animal/M in sortmob)
 		moblist.Add(M)
 	return moblist
@@ -440,20 +423,11 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		xenolist.Add(M)
 	return xenolist
 
-/proc/sortpreds()
-	var/list/predlist = list()
-	var/list/sortmob = sortNames(GLOB.mob_list)
-	for(var/mob/living/carbon/human/M in sortmob)
-		if(!M.client || !isyautjastrict(M))
-			continue
-		predlist.Add(M)
-	return predlist
-
 /proc/sorthumans()
 	var/list/humanlist = list()
 	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/human/M in sortmob)
-		if(!M.client || isyautjastrict(M))
+		if(!M.client)
 			continue
 		humanlist.Add(M)
 	return humanlist
@@ -702,7 +676,7 @@ var/global/image/busy_indicator_hostile
 		if(user.get_active_held_item() != holding)
 			. = FALSE
 			break
-		if(user.is_mob_incapacitated(TRUE) || user.lying)
+		if(user.incapacitated(TRUE) || user.lying)
 			. = FALSE
 			break
 		if(selected_zone_check && cur_zone_sel != user.zone_selected)
@@ -1197,7 +1171,7 @@ var/global/list/common_tools = list(
 /obj/item/tool/weldingtool,
 /obj/item/tool/screwdriver,
 /obj/item/tool/wirecutters,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /obj/item/tool/crowbar)
 
 /proc/istool(O)
@@ -1220,6 +1194,21 @@ proc/is_hot(obj/item/I)
 	if (!istype(I)) return 0
 	if (I.edge) return 1
 	return 0
+
+/proc/params2turf(scr_loc, turf/origin, client/C)
+	if(!scr_loc)
+		return null
+	var/tX = splittext(scr_loc, ",")
+	var/tY = splittext(tX[2], ":")
+	var/tZ = origin.z
+	tY = tY[1]
+	tX = splittext(tX[1], ":")
+	tX = tX[1]
+	var/list/actual_view = getviewsize(C ? C.view : world.view)
+	tX = CLAMP(origin.x + text2num(tX) - round(actual_view[1] / 2) - 1, 1, world.maxx)
+	tY = CLAMP(origin.y + text2num(tY) - round(actual_view[2] / 2) - 1, 1, world.maxy)
+	return locate(tX, tY, tZ)
+
 
 //Returns 1 if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.
 /proc/can_puncture(obj/item/W)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
@@ -1278,7 +1267,7 @@ proc/is_hot(obj/item/I)
 Checks if that loc and dir has a item on the wall
 */
 var/list/WALLITEMS = list(
-	"/obj/machinery/power/apc", "/obj/machinery/alarm", "/obj/item/device/radio/intercom",
+	"/obj/machinery/power/apc", "/obj/machinery/alarm", "/obj/item/radio/intercom",
 	"/obj/structure/extinguisher_cabinet", "/obj/structure/reagent_dispensers/peppertank",
 	"/obj/machinery/status_display", "/obj/machinery/requests_console", "/obj/machinery/light_switch", "/obj/effect/sign",
 	"/obj/machinery/newscaster", "/obj/machinery/firealarm", "/obj/structure/noticeboard", "/obj/machinery/door_control",

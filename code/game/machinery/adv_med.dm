@@ -18,7 +18,7 @@
 	return 0*/
 
 /obj/machinery/bodyscanner/relaymove(mob/user)
-	if(user.is_mob_incapacitated(TRUE)) return
+	if(user.incapacitated(TRUE)) return
 	go_out()
 
 
@@ -73,8 +73,8 @@
 	go_out()
 
 /obj/machinery/bodyscanner/attackby(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/device/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out; this is here mainly for consistency's sake.
-		var/obj/item/device/healthanalyzer/J = I
+	if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out; this is here mainly for consistency's sake.
+		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 		return
 	var/mob/M
@@ -272,7 +272,7 @@
 		to_chat(user, "<span class='notice'>It contains: [occupant].</span>")
 		return
 	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in data_core.medical) //Again, for consistency with other medical machines/devices
+	for(var/datum/data/record/R in GLOB.datacore.medical) //Again, for consistency with other medical machines/devices
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(!(R.fields["last_scan_time"]))

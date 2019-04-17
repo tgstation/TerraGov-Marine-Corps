@@ -1,4 +1,4 @@
-/obj/item/device/assembly/mousetrap
+/obj/item/assembly/mousetrap
 	name = "mousetrap"
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
 	icon_state = "mousetrap"
@@ -36,7 +36,7 @@
 						affecting = H.get_limb(type)
 						H.Stun(3)
 			if(affecting)
-				if(affecting.take_damage(1, 0))
+				if(affecting.take_damage_limb(1))
 					H.UpdateDamageIcon()
 				H.updatehealth()
 		else if(ismouse(target))
@@ -111,12 +111,12 @@
 		triggered(null)
 
 
-/obj/item/device/assembly/mousetrap/armed
+/obj/item/assembly/mousetrap/armed
 	icon_state = "mousetraparmed"
 	armed = 1
 
 
-/obj/item/device/assembly/mousetrap/verb/hide_under()
+/obj/item/assembly/mousetrap/verb/hide_under()
 	set src in oview(1)
 	set name = "Hide"
 	set category = "Object"

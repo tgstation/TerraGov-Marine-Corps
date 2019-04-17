@@ -298,7 +298,7 @@
 /obj/machinery/power/smes/Topic(href, href_list)
 	..()
 
-	if (usr.stat || usr.is_mob_restrained() )
+	if (usr.stat || usr.restrained() )
 		return
 
 //to_chat(world, "[href] ; [href_list[href]]")

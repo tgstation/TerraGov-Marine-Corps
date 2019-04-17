@@ -24,38 +24,38 @@
 	storage_slots = 4
 	max_storage_space = 16
 	bypass_w_limit = list(
-					/obj/item/device/turret_top,
-					/obj/item/device/turret_tripod,
+					/obj/item/turret_top,
+					/obj/item/turret_tripod,
 					/obj/item/cell,
 					/obj/item/ammo_magazine/sentry,
 					)
 
-/obj/item/storage/box/sentry/New()
+/obj/item/storage/box/sentry/Initialize()
 	. = ..()
-	new /obj/item/device/turret_top(src)
-	new /obj/item/device/turret_tripod(src)
+	new /obj/item/turret_top(src)
+	new /obj/item/turret_tripod(src)
 	new /obj/item/cell/high(src)
 	new /obj/item/ammo_magazine/sentry(src)
 
 
-/obj/item/device/turret_top
+/obj/item/turret_top
 	name = "\improper UA 571-C turret"
 	desc = "The turret part of an automated sentry turret."
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	w_class = 5
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_head"
 
 
-/obj/item/device/turret_tripod
+/obj/item/turret_tripod
 	name = "\improper UA 571-C turret tripod"
 	desc = "The tripod part of an automated sentry turret. You should deploy it first."
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	w_class = 5
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod_folded"
 
-/obj/item/device/turret_tripod/attack_self(mob/user)
+/obj/item/turret_tripod/attack_self(mob/user)
 	if(!ishuman(user))
 		return
 	var/turf/target = get_step(user.loc,user.dir)
@@ -87,11 +87,10 @@
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod"
 	anchored = FALSE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
-	flags_atom = RELAY_CLICK
 	var/has_top = FALSE
 
 /obj/machinery/turret_tripod_deployed/examine(mob/user as mob)
@@ -126,7 +125,7 @@
 		return
 	user.visible_message("<span class='notice'>[user] folds up and retrieves \the [src].</span>",
 	"<span class='notice'>You fold up and retrieve \the [src].</span>")
-	var/obj/item/device/turret_tripod/T = new(loc)
+	var/obj/item/turret_tripod/T = new(loc)
 	user.put_in_hands(T)
 	qdel(src)
 
@@ -152,8 +151,8 @@
 				anchored = TRUE
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			return
-	else if(istype(O, /obj/item/device/turret_top))
-		var/obj/item/device/turret_top/I = O
+	else if(istype(O, /obj/item/turret_top))
+		var/obj/item/turret_top/I = O
 		if(!anchored)
 			to_chat(user, "<span class='warning'>You must wrench \the [src] to the ground first!</span>")
 		else if(has_top)
@@ -198,7 +197,7 @@
 				"<span class='notice'>You remove the turret top from \the [src].</span>")
 				has_top = FALSE
 				icon_state = "sentry_tripod"
-				new /obj/item/device/turret_top(loc)
+				new /obj/item/turret_top(loc)
 				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 	else
 		return ..()
@@ -210,11 +209,10 @@
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_base"
 	anchored = TRUE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
-	flags_atom = RELAY_CLICK
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	var/iff_signal = ACCESS_IFF_MARINE
 	var/safety_off = FALSE
@@ -312,9 +310,6 @@
 	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/user as mob)
-	if(isyautja(user))
-		to_chat(user, "<span class='warning'>You punch [src] but nothing happens.</span>")
-		return
 	src.add_fingerprint(user)
 
 	if(!cell || cell.charge <= 0)
@@ -389,7 +384,7 @@
 	if(!istype(user))
 		return
 
-	if(get_dist(loc, user.loc) > 1 || user.is_mob_incapacitated())
+	if(get_dist(loc, user.loc) > 1 || user.incapacitated())
 		return
 
 	user.set_interaction(src)
@@ -522,7 +517,7 @@
 		manual_override = FALSE
 
 /obj/machinery/marine_turret/check_eye(mob/user)
-	if(user.is_mob_incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying || !user.client)
+	if(user.incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying || !user.client)
 		user.unset_interaction()
 
 /obj/machinery/marine_turret/attackby(var/obj/item/O as obj, mob/user as mob)
@@ -953,7 +948,7 @@
 				var/scatter_chance = in_chamber.ammo.scatter
 				var/burst_value = CLAMP(burst_size - 1, 1, 5)
 				scatter_chance += (burst_value * burst_value * 2)
-				in_chamber.accuracy = round(in_chamber.accuracy - (burst_value * burst_value), 0.01) //Accuracy penalty scales with burst count.
+				in_chamber.accuracy = round(in_chamber.accuracy - (burst_value * burst_value * 1.2), 0.01) //Accuracy penalty scales with burst count.
 
 				if (prob(scatter_chance))
 					var/scatter_x = rand(-1, 1)
@@ -1070,7 +1065,6 @@
 	w_class = 4
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "turret_off"
-	unacidable = 1
 	var/linked_turret = null
 	var/on = 0
 	var/mob/living/carbon/human/user = null
@@ -1125,10 +1119,6 @@
 
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
-
-	if(isyautja(user))
-		to_chat(user, "<span class='warning'>You punch [src] but nothing happens.</span>")
-		return
 	src.add_fingerprint(user)
 
 	if(!cell || cell.charge <= 0)
@@ -1235,11 +1225,11 @@
 	rounds = 500
 	rounds_max = 500
 	knockdown_threshold = 70 //lighter, not as well secured.
-	work_time = 20 //significantly faster than the big sentry
+	work_time = 10 //significantly faster than the big sentry
 	ammo = /datum/ammo/bullet/turret/mini //Similar to M39 AP rounds.
 	magazine_type = /obj/item/ammo_magazine/minisentry
 
-/obj/item/storage/box/sentry/New()
+/obj/item/storage/box/sentry/Initialize(mapload, ...)
 	. = ..()
 	update_icon()
 
@@ -1251,8 +1241,9 @@
 		return
 
 	if(anchored)
-		to_chat(user, "<span class='warning'>You must unanchor [src] to retrieve it!</span>")
-		return
+		to_chat(user, "<span class='warning'>The [src] disengages its anchor bolts as you initiate the retrieval process.</span>")
+		anchored = FALSE
+		update_icon()
 
 	if(on)
 		to_chat(user, "<span class='warning'>You depower [src] to facilitate its retrieval.</span>")
@@ -1261,12 +1252,12 @@
 
 	user.visible_message("<span class='notice'>[user] begins to fold up and retrieve [src].</span>",
 	"<span class='notice'>You begin to fold up and retrieve [src].</span>")
-	if(!do_after(user, work_time * 1.5, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(user, work_time * 3, TRUE, 5, BUSY_ICON_BUILD))
 		return
-	if(!src || on || anchored || !Adjacent(user))//Check if we got exploded
+	if(!src || !Adjacent(user))//Check if we got exploded
 		return
 	to_chat(user, "<span class='notice'>You fold up and retrieve [src].</span>")
-	var/obj/item/device/marine_turret/mini/P = new(loc)
+	var/obj/item/marine_turret/mini/P = new(loc)
 	user.put_in_hands(P)
 	P.health = health //track the health
 	qdel(src)
@@ -1306,7 +1297,7 @@
 		stop_processing()
 
 
-/obj/item/device/marine_turret/mini
+/obj/item/marine_turret/mini
 	name = "\improper UA-580 Point Defense Sentry (Folded)"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 500-round drum magazine. It is currently folded up."
 	icon = 'icons/Marine/miniturret.dmi'
@@ -1316,7 +1307,7 @@
 	health = 155 //We keep track of this when folding up the sentry.
 	flags_equip_slot = ITEM_SLOT_BACK
 
-/obj/item/device/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
+/obj/item/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
 	if(!ishuman(usr))
 		return
 	var/turf/target = get_step(user.loc,user.dir)
@@ -1332,10 +1323,11 @@
 		var/obj/machinery/marine_turret/mini/M = new /obj/machinery/marine_turret/mini(target)
 		M.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] deploys [M].</span>",
-		"<span class='notice'>You deploy [M].</span>")
+		"<span class='notice'>You deploy [M]. The [M]'s securing bolts automatically anchor it to the ground.</span>")
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
 		M.health = health
-		M.update_icon()
+		M.anchored = TRUE
+		M.activate_turret()
 		qdel(src)
 
 /obj/item/ammo_magazine/minisentry
@@ -1356,17 +1348,28 @@
 	icon_state = "sentry_case"
 	w_class = 5
 	storage_slots = 4
-	can_hold = list(/obj/item/device/marine_turret/mini, //gun itself
-					/obj/item/tool/wrench, //wrench to hold it down into the ground
-					/obj/item/tool/screwdriver, //screw the gun onto the post.
-					/obj/item/ammo_magazine/minisentry)
+	can_hold = list(
+		/obj/item/marine_turret/mini, //gun itself
+		/obj/item/tool/wrench, //wrench to hold it down into the ground
+		/obj/item/tool/screwdriver, //screw the gun onto the post.
+		/obj/item/ammo_magazine/minisentry)
 
-/obj/item/storage/box/minisentry/New()
+/obj/item/storage/box/minisentry/Initialize(mapload, ...)
 	. = ..()
-	spawn(1)
-		new /obj/item/device/marine_turret/mini(src) //gun itself
-		new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
-		new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
-		new /obj/item/ammo_magazine/minisentry(src)
+	new /obj/item/marine_turret/mini(src) //gun itself
+	new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
+	new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
+	new /obj/item/ammo_magazine/minisentry(src)
 
-
+/obj/machinery/marine_turret/proc/activate_turret()
+	if(!anchored)
+		return FALSE
+	target = null
+	on = TRUE
+	SetLuminosity(7)
+	if(!camera)
+		camera = new /obj/machinery/camera(src)
+		camera.network = list("military")
+		camera.c_tag = src.name
+	update_icon()
+	return TRUE

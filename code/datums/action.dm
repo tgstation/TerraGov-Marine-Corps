@@ -87,7 +87,7 @@
 		I.ui_action_click(owner, holder_item)
 
 /datum/action/item_action/can_use_action()
-	if(owner && !owner.is_mob_incapacitated() && !owner.lying)
+	if(owner && !owner.incapacitated() && !owner.lying)
 		return TRUE
 
 /datum/action/item_action/update_button_icon()
@@ -111,6 +111,7 @@
 /datum/action/xeno_action
 	var/action_icon_state
 	var/plasma_cost = 0
+	var/mechanics_text = "This ability not found in codex." //codex. If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
 
 /datum/action/xeno_action/New(Target)
 	..()
@@ -118,7 +119,7 @@
 
 /datum/action/xeno_action/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && X.plasma_stored >= plasma_cost && !X.stagger)
+	if(X && !X.incapacitated() && !X.lying && !X.buckled && X.plasma_stored >= plasma_cost && !X.stagger)
 		return TRUE
 
 

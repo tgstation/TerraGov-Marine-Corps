@@ -150,7 +150,7 @@
 
 /obj/item/circuitboard/airlock/Topic(href, href_list)
 	. = ..()
-	if (usr.stat || usr.is_mob_restrained() || (!ishuman(usr) && !issilicon(usr)))
+	if (usr.stat || usr.restrained() || (!ishuman(usr) && !issilicon(usr)))
 		return
 	if (href_list["close"])
 		usr << browse(null, "window=airlock")
@@ -162,9 +162,6 @@
 			src.last_configurator = usr.name
 		else
 			var/obj/item/I = usr.get_active_held_item()
-			if (istype(I, /obj/item/device/pda))
-				var/obj/item/device/pda/pda = I
-				I = pda.id
 			if (I && src.check_access(I))
 				src.locked = 0
 				src.last_configurator = I:registered_name

@@ -103,7 +103,7 @@ var/global/economy_init = 0
 
 	create_station_account()
 
-	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [game_year]"
+	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [GAME_YEAR]"
 
 	economy_init = 1
 	return 1
