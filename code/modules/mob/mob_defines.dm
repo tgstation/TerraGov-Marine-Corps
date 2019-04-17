@@ -22,8 +22,6 @@
 	*/
 	var/zone_selected = "chest"
 
-	var/processing = TRUE
-
 	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 	var/damageoverlaytemp = 0
 	var/computer_id = null //to track the players
