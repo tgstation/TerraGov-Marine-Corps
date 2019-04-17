@@ -262,7 +262,6 @@
 
 /obj/machinery/door/proc/update_flags_heat_protection(var/turf/source)
 
-
 /obj/machinery/door/proc/autoclose()
 	if(!density && !operating && !locked && !welded && autoclose)
 		close()
@@ -271,10 +270,13 @@
 	. = ..()
 
 	if(width > 1)
+		var/turf/T = get_turf(src)
+		var/expansion_dir = initial(dir)
+
 		for(var/t in fillers)
-			qdel(t)
-		fillers.Cut()
-		handle_multidoor()
+			var/obj/effect/opacifier/O = t
+			T = get_step(T,expansion_dir)
+			O.loc = T
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'
