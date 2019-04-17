@@ -3,14 +3,14 @@
 	GLOB.mob_list -= src
 	GLOB.dead_mob_list -= src
 	GLOB.alive_mob_list -= src
-	STOP_PROCESSING(SSmob, src)
+	STOP_PROCESSING(SSmobs, src)
 	ghostize()
 	clear_fullscreens()
 	return ..()
 
 /mob/Initialize()
 	GLOB.mob_list += src
-	START_PROCESSING(SSmob, src)
+	START_PROCESSING(SSmobs, src)
 	if(stat == DEAD)
 		GLOB.dead_mob_list += src
 	else

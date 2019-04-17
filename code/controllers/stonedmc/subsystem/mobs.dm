@@ -17,7 +17,9 @@ SUBSYSTEM_DEF(mobs)
 /datum/controller/subsystem/mobs/proc/stop_processing(mob/M)
 	if(!M.processing)
 		return
-	M.ExtinguishMob()
+	if(isliving(M))
+		var/mob/living/L = M
+		L.ExtinguishMob()
 	M.processing = FALSE
 	STOP_PROCESSING(src, M)
 

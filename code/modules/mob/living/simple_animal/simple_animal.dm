@@ -92,7 +92,7 @@
 
 	//Health
 	if(stat == DEAD)
-		SSmob.stop_processing(src)
+		SSmobs.stop_processing(src)
 		return FALSE
 
 	//Movement

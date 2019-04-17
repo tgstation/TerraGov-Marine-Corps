@@ -14,7 +14,7 @@
 		if(plasma_stored && !(xeno_caste.caste_flags & CASTE_DECAY_PROOF))
 			handle_decay()
 		else
-			SSmob.stop_processing(src)
+			SSmobs.stop_processing(src)
 		return
 	if(stat == UNCONSCIOUS)
 		if(is_zoomed)
