@@ -65,7 +65,7 @@
 
 
 /obj/item/stack/Destroy()
-	if (usr && usr.interactee == src)
+	if(usr && usr.interactee == src)
 		usr << browse(null, "window=stack")
 	return ..()
 
@@ -147,9 +147,8 @@
 	if(href_list["sublist"] && !href_list["make"])
 		interact(usr, text2num(href_list["sublist"]))
 	if(href_list["make"])
-		if(get_amount() < 1)
-			qdel(src)
-
+		if(zero_amount())
+			return
 		var/list/recipes_list = recipes
 		if(href_list["sublist"])
 			var/datum/stack_recipe_list/srl = recipes_list[text2num(href_list["sublist"])]
@@ -191,16 +190,16 @@
 			O.setDir(usr.dir)
 		use(R.req_amount * multiplier)
 
-		if (QDELETED(O))
+		if(QDELETED(O))
 			return //It's a stack and has already been merged
 
-		if (isitem(O))
+		if(isitem(O))
 			usr.put_in_hands(O)
 		O.add_fingerprint(usr)
 
 		//BubbleWrap - so newly formed boxes are empty
-		if ( istype(O, /obj/item/storage) )
-			for (var/obj/item/I in O)
+		if(istype(O, /obj/item/storage))
+			for(var/obj/item/I in O)
 				qdel(I)
 		//BubbleWrap END
 
