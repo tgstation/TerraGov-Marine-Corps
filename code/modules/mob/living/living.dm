@@ -1,6 +1,4 @@
-/mob/living/Life()
-	. = ..()
-
+/mob/living/proc/Life()
 	if(stat != DEAD)
 
 		handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc

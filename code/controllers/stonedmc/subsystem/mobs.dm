@@ -14,20 +14,18 @@ SUBSYSTEM_DEF(mobs)
 /datum/controller/subsystem/mobs/stat_entry()
 	..("P:[length(processing)]")
 
-/datum/controller/subsystem/mobs/proc/stop_processing(mob/M)
-	if(!M.processing)
+/datum/controller/subsystem/mobs/proc/stop_processing(mob/living/L)
+	if(!L.processing)
 		return
-	if(isliving(M))
-		var/mob/living/L = M
-		L.ExtinguishMob()
-	M.processing = FALSE
-	STOP_PROCESSING(src, M)
+	L.ExtinguishMob()
+	L.processing = FALSE
+	STOP_PROCESSING(src, L)
 
-/datum/controller/subsystem/mobs/proc/start_processing(mob/M)
-	if(M.processing)
+/datum/controller/subsystem/mobs/proc/start_processing(mob/living/L)
+	if(L.processing)
 		return
-	M.processing = TRUE
-	START_PROCESSING(src, M)
+	L.processing = TRUE
+	START_PROCESSING(src, L)
 
 /datum/controller/subsystem/mobs/proc/MaxZChanged()
 	if (!islist(clients_by_zlevel))
@@ -48,11 +46,11 @@ SUBSYSTEM_DEF(mobs)
 	var/list/currentrun = src.currentrun
 	var/times_fired = src.times_fired
 	while(currentrun.len)
-		var/mob/M = currentrun[currentrun.len]
+		var/mob/living/L = currentrun[currentrun.len]
 		currentrun.len--
-		if(M)
-			M.Life(seconds, times_fired)
+		if(L)
+			L.Life(seconds, times_fired)
 		else
-			processing.Remove(M)
+			processing.Remove(L)
 		if (MC_TICK_CHECK)
 			return

@@ -1,5 +1,6 @@
 /mob/living/silicon/ai/Life()
 	if (stat == DEAD)
+		SSmobs.stop_processing(src)
 		return
 	else //I'm not removing that shitton of tabs, unneeded as they are. -- Urist
 		//Being dead doesn't mean your temperature never changes
