@@ -91,10 +91,13 @@
 			var/mob/living/carbon/Xenomorph/X = i
 			if(is_centcom_level(X.z))
 				continue
-			if(!X.client)
-				if(only_away && X.away_timer < XENO_AFK_TIMER)
-					continue
-				xenos += X
+			if(X.client)
+				continue
+			if(!X.away_time) //To prevent adminghosted xenos to be snatched.
+				continue
+			if(only_away && world.time - X.away_time < XENO_AFK_TIMER)
+				continue
+			xenos += X
 	return xenos
 
 // ***************************************
