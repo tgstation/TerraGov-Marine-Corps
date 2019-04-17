@@ -54,7 +54,7 @@
 		output += "<p><a href='byond://?src=[REF(src)];manifest=1'>View the Crew Manifest</A></p>"
 		output += "<p><a href='byond://?src=[REF(src)];late_join=1'>Join the TGMC!</A></p>"
 		if(isdistress(SSticker.mode))
-   			output += "<p><a href='byond://?src=[REF(src)];late_join_xeno=1'>Join the Hive!</A></p>"
+			output += "<p><a href='byond://?src=[REF(src)];late_join_xeno=1'>Join the Hive!</A></p>"
 		output += "<p>[LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)]</p>"
 
 	if(!IsGuestKey(key))
