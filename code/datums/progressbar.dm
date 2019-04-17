@@ -26,12 +26,17 @@
 		prog_display = new (U, target, new_display)
 	if(!bar_tag)
 		return
-	bar = new bar_tag(loc = target) // Image/New() args override the parent, thank you Byond.
+	bar = new bar_tag(loc = target) // Image/New() args override the parent, thanks Byond.
 	LAZYINITLIST(user.progressbars)
 	LAZYINITLIST(user.progressbars[bar.loc])
+	LAZYINITLIST(user.progbar_towers)
 	var/list/bars = user.progressbars[bar.loc]
 	listindex = LAZYLEN(bars)
-	bar.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1))
+	var/tower_height = user.progbar_towers[bar.loc]
+	var/datum/progressbar/floor_below = bars[listindex]
+	var/elevation = floor_below ? floor_below.bar.height : PROGRESSBAR_STANDARD_HEIGHT
+	bar.pixel_y += 32 + tower_height - elevation
+	tower_height += bar.height
 	bars.Add(src)
 	if(frame_tag)
 		frame = new frame_tag
@@ -39,7 +44,7 @@
 	if(bg_tag)
 		bg = new bg_tag
 		bar.underlays += bg_tag
-	animate(bar, pixel_y = bar.pixel_y + PROGRESSBAR_HEIGHT, alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
+	animate(bar, pixel_y = bar.pixel_y + elevation, alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 
 /datum/progressbar/proc/update(progress)
 	if(!bar)
@@ -60,24 +65,28 @@
 		user.client.images += bar
 		shown = TRUE
 
-/datum/progressbar/proc/shiftDown()
+/datum/progressbar/proc/shiftDown(height)
 	--listindex
-	animate(bar, pixel_y = bar.pixel_y - PROGRESSBAR_HEIGHT, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
+	animate(bar, pixel_y = bar.pixel_y - height, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 
 /datum/progressbar/Destroy()
 	if(bar)
-		if(last_progress != goal)
+		if(last_progress && last_progress != goal)
 			bar.icon_state = "[initial(bar.icon_state)]_fail"
 		if(!QDELETED(user))
 			if(!QDELETED(bar.loc))
 				for(var/I in user.progressbars[bar.loc])
 					var/datum/progressbar/P = I
 					if(P != src && P.listindex > listindex)
-						P.shiftDown()
+						P.shiftDown(bar.height)
 			var/list/bars = user.progressbars[bar.loc]
+			var/tower_height = user.progbar_towers[bar.loc]
 			bars.Remove(src)
 			if(!LAZYLEN(bars))
 				LAZYREMOVE(user.progressbars, bar.loc)
+			tower_height -= bar.height
+			if(tower_height <= 0)
+				LAZYREMOVE(user.progbar_towers, bar.loc)
 		INVOKE_ASYNC(bar, /image/progress/proc/fade_out, client, frame, bg)
 
 	qdel(prog_display)
@@ -105,6 +114,7 @@
 	layer = HUD_LAYER
 	alpha = 0
 	var/interval = 5
+	var/height = PROGRESSBAR_STANDARD_HEIGHT
 
 /image/progress/bar/proc/update_icon(progress, goal)
 	icon_state = "[initial(icon_state)]_[round(((progress / goal) * 100), interval)]"
@@ -155,6 +165,25 @@
 
 /image/progress/frame/brass
 	icon_state = "prog_bar_4_frame"
+
+/datum/progressbar/clock
+	bar_tag = PROG_BAR_CLOCK
+	frame_tag = PROG_FRAME_CLOCK
+	bg_tag = PROG_BG_CLOCK
+
+/image/progress/bar/clock
+	icon_state = "prog_bar_5"
+	interval = 4
+	height = 12
+
+/image/progress/frame/clock
+	icon_state = "prog_bar_5_frame"
+
+/image/progress/bg/clock
+	icon_state = "prog_bar_2_bg"
+
+/image/progress/bar/clock/mono
+	icon_state = "prog_bar_4"
 
 /datum/progressicon
 	var/image/progress/display/display
