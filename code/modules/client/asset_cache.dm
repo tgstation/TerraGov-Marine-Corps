@@ -516,3 +516,8 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"minor_button.png" = 'html/minor_button.png',
 		"none_button.png" = 'html/none_button.png',
 	)
+	
+/datum/asset/simple/logo
+	assets = list(
+		"ntlogo.png"	= 'html/ntlogo.png'
+	)

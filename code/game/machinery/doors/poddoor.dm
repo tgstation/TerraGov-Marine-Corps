@@ -50,22 +50,25 @@
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 	dir = EAST
 	width = 2
-
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/door/poddoor/two_tile_ver
 	icon = 'icons/obj/doors/1x2blast_vert.dmi'
 	dir = NORTH
 	width = 2
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/door/poddoor/four_tile_hor
 	icon = 'icons/obj/doors/1x4blast_hor.dmi'
 	dir = EAST
 	width = 4
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/door/poddoor/four_tile_ver
 	icon = 'icons/obj/doors/1x4blast_vert.dmi'
 	dir = NORTH
 	width = 4
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/door/poddoor/four_tile_hor/secure
 	icon = 'icons/obj/doors/1x4blast_hor_secure.dmi'

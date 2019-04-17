@@ -217,17 +217,17 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/ammo_magazine/,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/weapon/baton,
 		/obj/item/handcuffs,
 		/obj/item/explosive/grenade,
-		/obj/item/device/binoculars,
+		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/storage/sparepouch,
-		/obj/item/device/hailer,
+		/obj/item/hailer,
 		/obj/item/storage/belt/gun)
 
 /obj/item/clothing/suit/storage/marine/MP/WO
@@ -259,7 +259,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	armor = list("melee" = 55, "bullet" = 75, "laser" = 35, "energy" = 35, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 35, "acid" = 35)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/tank/emergency_oxygen,
-					/obj/item/device/flashlight,
+					/obj/item/flashlight,
 					/obj/item/ammo_magazine,
 					/obj/item/explosive/mine,
 					/obj/item/weapon/combat_knife,
@@ -291,13 +291,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/B18_automed_on = TRUE
 	var/B18_automed_damage = 50
 	var/B18_automed_pain = 70
-	var/obj/item/device/healthanalyzer/integrated/B18_analyzer = null
+	var/obj/item/healthanalyzer/integrated/B18_analyzer = null
 	supporting_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT) //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
-	B18_analyzer = new /obj/item/device/healthanalyzer/integrated
+	B18_analyzer = new /obj/item/healthanalyzer/integrated
 
 /obj/item/clothing/suit/storage/marine/specialist/examine(mob/user)
 	. = ..()
@@ -631,7 +631,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/ammo_magazine/,
 		/obj/item/weapon/baton,
 		/obj/item/handcuffs,
@@ -765,10 +765,10 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	allowed = list(/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/ammo_magazine,
 		/obj/item/explosive/grenade,
-		/obj/item/device/binoculars,
+		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/storage/sparepouch,
 		/obj/item/storage/large_holster/machete)
@@ -907,10 +907,10 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 60, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
 	allowed = list(/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/ammo_magazine,
 		/obj/item/explosive/grenade,
-		/obj/item/device/binoculars,
+		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/storage/sparepouch,
 		/obj/item/storage/large_holster/machete,
@@ -942,7 +942,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/ammo_magazine/,
 		/obj/item/weapon/baton,
 		/obj/item/handcuffs,
@@ -961,7 +961,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/ammo_magazine/,
 		/obj/item/weapon/baton,
 		/obj/item/handcuffs,
@@ -980,7 +980,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/ammo_magazine/,
 		/obj/item/weapon/baton,
 		/obj/item/handcuffs,

@@ -10,7 +10,7 @@
 		return
 	last_irc_check = rtod
 	var/server = CONFIG_GET(string/server)
-	return "[GLOB.round_id ? "Round #[GLOB.round_id]: " : ""][length(GLOB.clients)] players on [SSmapping.config.map_name], Mode: [GLOB.master_mode]; Round [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "Active" : "Finishing") : "Starting"] -- [server ? server : "<byond://[world.internet_address]:[world.port]>"]" 
+	return "[GLOB.round_id ? "Round: #[GLOB.round_id] | " : ""]Players: [length(GLOB.clients)] | Map: [SSmapping.config.map_name] | Mode: [GLOB.master_mode] | Round Status: [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "Active" : "Finishing") : "Starting"] | Link: [server ? server : "<byond://[world.internet_address]:[world.port]>"]" 
 
 
 /datum/tgs_chat_command/ahelp
@@ -33,8 +33,7 @@
 		else
 			return "Ticket #[id] not found!"
 	var/res = IrcPm(target, all_params.Join(" "), sender.friendly_name)
-	if(res != "Message Successful")
-		return res
+	return res
 
 
 /datum/tgs_chat_command/namecheck

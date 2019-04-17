@@ -349,7 +349,7 @@ proc/check_panel(mob/M)
 		qdel(O)
 	return
 
-var/list/non_fakeattack_weapons = list(/obj/item/device/aicard,\
+var/list/non_fakeattack_weapons = list(/obj/item/aicard,\
 	/obj/item/clothing/shoes/magboots, /obj/item/blueprints, /obj/item/disk/nuclear,\
 	/obj/item/clothing/suit/space/uscm, /obj/item/tank)
 
