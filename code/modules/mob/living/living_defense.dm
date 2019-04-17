@@ -122,6 +122,8 @@
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
+	if(!processing)
+		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
 		to_chat(src, "<span class='danger'>You are on fire! Use Resist to put yourself out!</span>")
