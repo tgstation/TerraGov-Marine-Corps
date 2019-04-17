@@ -1,6 +1,4 @@
 /mob/living/Logout()
-	if(client)
-		away_time = world.time //If there's a client still attached, the client disconnected instead of transferring to another mob.
 	..()
 	if (mind)
 		if(!key)	//key and mind have become seperated.

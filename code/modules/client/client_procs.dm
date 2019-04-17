@@ -259,7 +259,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 /client/Del()
 	if(isliving(mob))
 		var/mob/living/L = mob
-		L.away_time = world.time //If this works the referenced lied. Wake up sheeple!
+		L.away_time = world.time //Would handle it through Logout(), but despite what the reference says, client is no longer there by then.
 	if(holder)
 		if(check_rights(R_ADMIN, FALSE))
 			message_admins("Admin logout: [key_name(src)].")
