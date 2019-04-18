@@ -60,7 +60,7 @@
 /datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = FALSE)
 	if(current)	// remove ourself from our old body's mind variable
 		current.mind = null
-
+		current.set_away_time()
 	if(key)
 		if(new_character.key != key)					//if we're transferring into a body with a key associated which is not ours
 			new_character.ghostize(TRUE)						//we'll need to ghostize so that key isn't mobless.

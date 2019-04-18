@@ -3,7 +3,7 @@
 /turf/closed/wall,
 /area/space)
 "aab" = (
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "aac" = (
 /turf/open/floor/prison/darkred/corners,
@@ -81,13 +81,13 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "aav" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "aaw" = (
 /turf/open/floor,
@@ -239,20 +239,20 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 9
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "aba" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "abb" = (
 /obj/effect/decal/warning_stripes{
 	tag = "icon-SW-in";
 	icon_state = "SW-in"
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "abc" = (
 /obj/machinery/door_control/timed_automatic{
@@ -377,17 +377,17 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "abD" = (
 /obj/effect/decal/warning_stripes,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "abE" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "abF" = (
 /turf/open/floor/prison/trim/red{
@@ -510,19 +510,19 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 10
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "ach" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "aci" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 6
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "acj" = (
 /turf/open/floor/prison/darkred/corners{
@@ -618,13 +618,13 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "acC" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "acD" = (
 /obj/effect/step_trigger/teleporter/random{
@@ -636,7 +636,7 @@
 	teleport_z = 4;
 	teleport_z_offset = 4
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "acE" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
@@ -1104,7 +1104,7 @@
 /area/prison/research/secret/testing)
 "adO" = (
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "adP" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -1448,7 +1448,7 @@
 	dir = 8
 	},
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/prison/research/secret/testing)
 "aeK" = (
 /obj/structure/bed,
@@ -3841,7 +3841,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
 "akJ" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber,
+/obj/effect/landmark/corpsespawner/prison_security,
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
 "akK" = (
@@ -4007,14 +4007,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
-"alc" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/prison/darkred/full,
-/area/prison/cellblock/maxsec/north)
 "ald" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -4122,10 +4114,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/darkred/full,
-/area/prison/cellblock/maxsec/north)
-"alr" = (
-/obj/effect/landmark/corpsespawner/prison_security,
-/turf/open/floor/plating,
 /area/prison/cellblock/maxsec/north)
 "als" = (
 /obj/machinery/light{
@@ -6405,7 +6393,7 @@
 	dir = 1
 	},
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/prison/research/secret/bioengineering)
 "aqL" = (
 /obj/machinery/light/small{
@@ -10829,7 +10817,7 @@
 /area/prison/residential/north)
 "aAO" = (
 /obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/prison/cellblock/maxsec/north)
 "aAP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -27351,7 +27339,7 @@
 "bkq" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bkr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -31557,7 +31545,7 @@
 "btd" = (
 /obj/structure/monorail,
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bte" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -35046,7 +35034,7 @@
 "bAP" = (
 /obj/structure/grille,
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bAQ" = (
 /obj/machinery/alarm,
@@ -36288,7 +36276,7 @@
 /area/prison/monorail/west)
 "bDE" = (
 /obj/structure/monorail,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bDF" = (
 /obj/machinery/light{
@@ -38092,7 +38080,7 @@
 "bHd" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bHe" = (
 /obj/structure/cable{
@@ -40754,7 +40742,7 @@
 /obj/structure/lattice,
 /obj/structure/monorail,
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bMW" = (
 /obj/machinery/light{
@@ -41447,7 +41435,7 @@
 /area/prison/toilet/security)
 "bOt" = (
 /obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/prison/residential/south)
 "bOu" = (
 /obj/effect/alien/weeds/node,
@@ -41840,7 +41828,7 @@
 /obj/structure/monorail{
 	dir = 6
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bPl" = (
 /obj/structure/table/reinforced,
@@ -42365,13 +42353,13 @@
 /obj/structure/monorail{
 	dir = 9
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bQD" = (
 /obj/structure/monorail{
 	dir = 5
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bQE" = (
 /obj/machinery/washing_machine,
@@ -43866,7 +43854,7 @@
 /obj/structure/monorail{
 	dir = 10
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bUh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -45838,7 +45826,7 @@
 "bYF" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/prison/disposal)
 "bYG" = (
 /obj/structure/disposaloutlet,
@@ -45846,7 +45834,7 @@
 	dir = 1
 	},
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/prison/disposal)
 "bYH" = (
 /obj/structure/cable{
@@ -47530,7 +47518,7 @@
 	dir = 4
 	},
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "ccA" = (
 /obj/structure/sink{
@@ -52569,7 +52557,7 @@
 /obj/structure/monorail{
 	dir = 4
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "cnD" = (
 /obj/machinery/disposal/deliveryChute{
@@ -52577,7 +52565,7 @@
 	},
 /obj/structure/lattice,
 /obj/structure/disposalpipe/trunk,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "cnE" = (
 /obj/machinery/light{
@@ -54540,7 +54528,7 @@
 	},
 /obj/structure/lattice,
 /obj/structure/disposalpipe/segment,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "cst" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -54746,7 +54734,7 @@
 	dir = 6
 	},
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "csS" = (
 /obj/structure/table/reinforced,
@@ -55115,7 +55103,7 @@
 	},
 /obj/structure/lattice,
 /obj/structure/disposalpipe/segment,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "ctz" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -55135,7 +55123,7 @@
 	dir = 1
 	},
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "ctC" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
@@ -55261,7 +55249,7 @@
 /area/prison/cellblock/mediumsec/south)
 "ctW" = (
 /obj/structure/shuttle/engine/propulsion,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/prison/pirate)
 "ctX" = (
 /turf/open/floor/prison/yellow/corner,
@@ -55318,7 +55306,7 @@
 /area/prison/cellblock/mediumsec/east)
 "cuf" = (
 /obj/item/stack/sheet/metal,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "cug" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -89348,10 +89336,10 @@ ags
 ags
 ahN
 ajN
-acO
+ajN
 akH
 ala
-acO
+ajN
 ajN
 aff
 akV
@@ -90119,12 +90107,10 @@ ags
 ags
 ahN
 ajx
-ajP
-akm
-acO
+ajN
+ajN
+acS
 akJ
-alc
-alr
 ajN
 aff
 akV
@@ -90304,7 +90290,7 @@ aab
 aab
 acD
 aab
-aab
+acD
 aab
 aab
 aab
