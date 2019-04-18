@@ -43,7 +43,7 @@
 	name = "Alpha"
 	id = ALPHA_SQUAD
 	tracking_id = TRACK_ALPHA_SQUAD
-	color = 1
+	color = "#e61919" // rgb(230,25,25)
 	access = list(ACCESS_MARINE_ALPHA)
 	usable = TRUE
 	radio_freq = ALPHA_FREQ
@@ -53,7 +53,7 @@
 	name = "Bravo"
 	id = BRAVO_SQUAD
 	tracking_id = TRACK_BRAVO_SQUAD
-	color = 2
+	color = "#ffc32d" // rgb(255,195,45)
 	access = list(ACCESS_MARINE_BRAVO)
 	usable = 1
 	radio_freq = BRAVO_FREQ
@@ -63,7 +63,7 @@
 	name = "Charlie"
 	id = CHARLIE_SQUAD
 	tracking_id = TRACK_CHARLIE_SQUAD
-	color = 3
+	color = "#c864c8" // rgb(200,100,200)
 	access = list(ACCESS_MARINE_CHARLIE)
 	usable = TRUE
 	radio_freq = CHARLIE_FREQ
@@ -72,11 +72,31 @@
 	name = "Delta"
 	id = DELTA_SQUAD
 	tracking_id = TRACK_DELTA_SQUAD
-	color = 4
+	color = "#4148c8" // rgb(65,72,200)
 	access = list(ACCESS_MARINE_DELTA)
 	usable = TRUE
 	radio_freq = DELTA_FREQ
 
+GLOBAL_LIST_EMPTY(armormarkings)
+GLOBAL_LIST_EMPTY(armormarkings_sl)
+GLOBAL_LIST_EMPTY(helmetmarkings)
+GLOBAL_LIST_EMPTY(helmetmarkings_sl)
+
+/datum/squad/New()
+	. = ..()
+	var/image/armor = image('icons/mob/suit_1.dmi',icon_state = "std-armor")
+	var/image/armorsl = image('icons/mob/suit_1.dmi',icon_state = "sql-armor")
+	armor.color = color
+	armorsl.color = color
+	GLOB.armormarkings[type] = armor
+	GLOB.armormarkings_sl[type] = armorsl
+
+	var/image/helmet = image('icons/mob/head_1.dmi',icon_state = "std-helmet")
+	var/image/helmetsl = image('icons/mob/head_1.dmi',icon_state = "sql-helmet")
+	helmet.color = color
+	helmetsl.color = color
+	GLOB.helmetmarkings[type] = helmet
+	GLOB.helmetmarkings_sl[type] = helmetsl
 
 /datum/squad/proc/get_all_members()
 	return marines_list
