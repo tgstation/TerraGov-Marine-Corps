@@ -162,7 +162,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				log_admin("[key_name(usr)] broke all lights.")
 				message_admins("[ADMIN_TPMONTY(usr)] broke all lights.")
 				for(var/obj/machinery/power/apc/apc in GLOB.machines)
-					apc.overload_lighting()
+					apc.break_lights()
 			if("whiteout")
 				log_admin("[key_name(usr)] fixed all lights.")
 				message_admins("[ADMIN_TPMONTY(usr)] fixed all lights.")
