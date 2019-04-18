@@ -76,6 +76,7 @@
 		icon_state = "mw"
 		broken = 0
 		dirty = 0
+		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 
 	else if(broken > 2)
 		to_chat(user, "<span class='warning'>It's broken!</span>")
@@ -132,7 +133,9 @@
 	else if(istype(I, /obj/item/grab))
 		return TRUE
 
-	to_chat(user, "<span class='warning'>You have no idea what you can cook with this [I].</span>")
+	else
+		to_chat(user, "<span class='warning'>You have no idea what you can cook with this [I].</span>")
+		
 	updateUsrDialog()
 	return TRUE
 

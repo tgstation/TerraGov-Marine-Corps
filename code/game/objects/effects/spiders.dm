@@ -23,7 +23,7 @@
 /obj/effect/spider/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	visible_message("<span class='danger'>[user] has [pick(I.attack_verb)] with \the [I].</span>")
+	visible_message("<span class='danger'>[user] has [pick(I.attack_verb)] [src] with \the [I].</span>")
 
 	var/damage = I.force / 4
 

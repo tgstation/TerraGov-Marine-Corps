@@ -422,6 +422,7 @@ var/global/list/holodeck_programs = list(
 
 /obj/structure/holohoop/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	
 	if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
 		var/obj/item/grab/G = I
 		if(!ismob(G.grabbed_thing))

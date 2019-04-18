@@ -74,6 +74,7 @@
 				to_chat(user, "<span class='notice'>You unfasten the circuit board.</span>")
 				state = 1
 				icon_state = "1"
+
 			else if(iscablecoil(I))
 				var/obj/item/stack/cable_coil/C = I
 				if(C.get_amount() < 5)
@@ -119,6 +120,7 @@
 				state = 3
 				icon_state = "3"
 				new /obj/item/stack/sheet/glass(loc, 2)
+
 			else if(isscrewdriver(I))
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You connect the monitor.</span>")

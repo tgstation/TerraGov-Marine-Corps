@@ -525,20 +525,14 @@
 /obj/machinery/door/airlock/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/clothing/mask/cigarette))
-		if(!isElectrified())
-			return
-
+	if(istype(I, /obj/item/clothing/mask/cigarette) && isElectrified())
 		var/obj/item/clothing/mask/cigarette/L = I
 		L.light("<span class='notice'>[user] lights their [L] on an electrical arc from the [src]")
 
-	if(!issilicon(user))
-		if(!isElectrified())
-			return
-
+	else if(!issilicon(user) && isElectrified())
 		shock(user, 75)
 
-	else if(iswelder(I) && !operating && density)
+	if(iswelder(I) && !operating && density)
 		var/obj/item/tool/weldingtool/W = I
 
 		if(not_weldable)

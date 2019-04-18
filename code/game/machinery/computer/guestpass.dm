@@ -60,6 +60,7 @@
 
 /obj/machinery/computer/guestpass/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	
 	if(istype(I, /obj/item/card/id))
 		if(giver)
 			to_chat(user, "<span class='warning'>There is already ID card inside.</span>")

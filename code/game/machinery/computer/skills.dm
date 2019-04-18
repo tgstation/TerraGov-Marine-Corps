@@ -24,6 +24,7 @@
 
 /obj/machinery/computer/skills/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	
 	if(istype(I, /obj/item/card/id) && !scan)
 		if(!user.drop_held_item())
 			return

@@ -151,9 +151,6 @@
 			sleep(6)
 			open()
 		return TRUE
-	else if(!(I.flags_item & NOBLUDGEON))
-		try_to_activate_door(user)
-		return TRUE
 
 /obj/machinery/door/emp_act(severity)
 	if(prob(20/severity) && (istype(src,/obj/machinery/door/airlock) || istype(src,/obj/machinery/door/window)) )

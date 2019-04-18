@@ -95,6 +95,7 @@
 
 /obj/machinery/computer/attackby(obj/item/I, mob/user, params)
 	. = ..()
+
 	if(isscrewdriver(I) && circuit)
 		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
@@ -132,7 +133,8 @@
 	else if(isxeno(user))
 		return attack_alien(user)
 
-	return attack_hand(user)
+	else
+		return attack_hand(user)
 
 
 /obj/machinery/computer/attack_hand()

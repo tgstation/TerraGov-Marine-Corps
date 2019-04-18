@@ -11,6 +11,7 @@
 
 
 /obj/structure/AIcore/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	switch(state)
 		if(0)
 			if(iswrench(I))
