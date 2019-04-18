@@ -776,7 +776,9 @@
 		to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
 		return
 
-	var/obj/item/grab/G = I
+	if(!istype(I, /obj/item/grab))
+		return
+
 	var/mob/M
 	if(ismob(G.grabbed_thing))
 		M = G.grabbed_thing

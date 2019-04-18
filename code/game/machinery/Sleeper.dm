@@ -291,18 +291,15 @@
 	else if(!istype(I, /obj/item/grab))
 		return
 
-	if(isxeno(user))
+	else if(isxeno(user))
+		return
+
+	else if(occupant)
+		to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
 		return
 
 	var/obj/item/grab/G = I
 	if(!ismob(G.grabbed_thing))
-		return
-
-	if(occupant)
-		to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
-		return
-
-	if(!G || !G.grabbed_thing)
 		return
 
 	var/mob/M = G.grabbed_thing

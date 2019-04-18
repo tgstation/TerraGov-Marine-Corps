@@ -81,7 +81,7 @@
 		if(crayon)
 			return
 
-		if(!user.transferItemToLoc(crayon, src))
+		if(!user.transferItemToLoc(Iw, src))
 			return
 
 		crayon = I

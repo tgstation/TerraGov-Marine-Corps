@@ -213,7 +213,7 @@
 		if(M.buckled)
 			to_chat(user, "<span class='warning'>Unbuckle first!</span>")
 			return
-	else if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
+	else if(istype(G.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
 		if(!C.stasis_mob)
 			return
@@ -221,7 +221,8 @@
 		C.open()
 		user.stop_pulling()
 		user.start_pulling(M)
-	else
+
+	if(!M)
 		return
 
 	take_victim(M, user)

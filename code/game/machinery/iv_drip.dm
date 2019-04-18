@@ -61,6 +61,7 @@
 
 /obj/machinery/iv_drip/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	
 	if(istype(I, /obj/item/reagent_container))
 		if(beaker)
 			to_chat(user, "<span class='warning'>There is already a reagent container loaded!</span>")

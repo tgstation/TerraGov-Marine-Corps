@@ -90,11 +90,11 @@
 /obj/machinery/bot/mulebot/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I,/obj/item/card/emag))
+	if(istype(I, /obj/item/card/emag))
 		locked = !locked
 		to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the mulebot's controls!</span>")
 		flick("mulebot-emagged", src)
-		playsound(src.loc, 'sound/effects/sparks1.ogg', 25, 0)
+		playsound(loc, 'sound/effects/sparks1.ogg', 25, 0)
 
 	else if(istype(I, /obj/item/cell) && open && !cell)
 		var/obj/item/cell/C = I
@@ -104,35 +104,21 @@
 		cell = C
 		updateDialog()
 
-	else if(isscrewdriver(I))
-		if(locked)
-			to_chat(user, "<span class='notice'>The maintenance hatch cannot be opened or closed while the controls are locked.</span>")
+	else if(iswrench(I))
+		if(obj_integrity >= max_integrity)
+			to_chat(user, "<span class='notice'>[src] does not need a repair!</span>")
 			return
 
-		open = !open
-		if(open)
-			visible_message("[user] opens the maintenance hatch of [src]", "<span class='notice'> You open [src]'s maintenance hatch.</span>")
-			on = FALSE
-			icon_state = "mulebot-hatch"
-		else
-			visible_message("[user] closes the maintenance hatch of [src]", "<span class='notice'> You close [src]'s maintenance hatch.</span>")
-			icon_state = "mulebot0"
-
-		updateDialog()
-
-	else if(iswrench(I))
-		if(obj_integrity < max_integrity)
-			obj_integrity = min(max_integrity, obj_integrity + 25)
-			user.visible_message("<span class='warning'> [user] repairs [src]!</span>", "<span class='notice'> You repair [src]!</span>")
-		else
-			to_chat(user, "<span class='notice'>[src] does not need a repair!</span>")
+		obj_integrity = min(max_integrity, obj_integrity + 25)
+		user.visible_message("<span class='warning'> [user] repairs [src]!</span>", "<span class='notice'> You repair [src]!</span>")
 
 	else if(load && ismob(load))  // chance to knock off rider
-		if(prob(1 + I.force * 2))
-			unload(0)
-			user.visible_message("<span class='warning'> [user] knocks [load] off [src] with \the [I]!</span>", "<span class='warning'> You knock [load] off [src] with \the [I]!</span>")
-		else
+		if(!prob(1 + I.force * 2))
 			to_chat(user, "You hit [src] with \the [I] but to no effect.")
+			return
+
+		unload(0)
+		user.visible_message("<span class='warning'> [user] knocks [load] off [src] with \the [I]!</span>", "<span class='warning'> You knock [load] off [src] with \the [I]!</span>")
 
 
 /obj/machinery/bot/mulebot/ex_act(var/severity)

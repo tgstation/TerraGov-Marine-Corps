@@ -72,9 +72,11 @@
 
 /obj/machinery/sparker/attackby(obj/item/I, mob/user, params)
 	. = ..()
+
 	if(istype(I, /obj/item/detective_scanner))
 		return
-	if(isscrewdriver(I))
+
+	else if(isscrewdriver(I))
 		disable = !disable
 		if(disable)
 			user.visible_message("<span class='warning'> [user] has disabled the [src]!</span>", "<span class='warning'> You disable the connection to the [src].</span>")
