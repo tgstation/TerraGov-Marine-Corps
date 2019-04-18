@@ -174,38 +174,35 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/bot/medbot/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/card/id))
-		if (src.allowed(user) && !open && !emagged)
-			src.locked = !src.locked
-			to_chat(user, "<span class='notice'>Controls are now [src.locked ? "locked." : "unlocked."]</span>")
-			src.updateUsrDialog()
-		else
-			if(emagged)
-				to_chat(user, "<span class='warning'>ERROR</span>")
-			if(open)
-				to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
-			else
-				to_chat(user, "<span class='warning'>Access denied.</span>")
+/obj/machinery/bot/medbot/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	else if (istype(W, /obj/item/reagent_container/glass))
-		if(src.locked)
+	if(istype(I, /obj/item/card/id))
+		if(allowed(user) && !open && !emagged)
+			locked = !locked
+			to_chat(user, "<span class='notice'>Controls are now [src.locked ? "locked." : "unlocked."]</span>")
+			updateUsrDialog()
+		else if(emagged)
+			to_chat(user, "<span class='warning'>ERROR</span>")
+		else if(open)
+			to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
+		else
+			to_chat(user, "<span class='warning'>Access denied.</span>")
+
+	else if(istype(I, /obj/item/reagent_container/glass))
+		if(locked)
 			to_chat(user, "<span class='notice'>You cannot insert a beaker because the panel is locked.</span>")
 			return
-		if(!isnull(src.reagent_glass))
+		if(!isnull(reagent_glass))
 			to_chat(user, "<span class='notice'>There is already a beaker loaded.</span>")
 			return
+		if(user.transferItemToLoc(I, src))
+			reagent_glass = I
+			to_chat(user, "<span class='notice'>You insert [I].</span>")
+			updateUsrDialog()
 
-		if(user.transferItemToLoc(W, src))
-			reagent_glass = W
-			to_chat(user, "<span class='notice'>You insert [W].</span>")
-			src.updateUsrDialog()
-		return
-
-	else
-		..()
-		if (obj_integrity < max_integrity && !isscrewdriver(W) && W.force)
-			step_to(src, (get_step_away(src,user)))
+	if(obj_integrity < max_integrity && !isscrewdriver(I) && I.force)
+		step_to(src, (get_step_away(src, user)))
 
 /obj/machinery/bot/medbot/Emag(mob/user as mob)
 	..()
@@ -506,26 +503,25 @@
  *	Medbot Assembly -- Can be made out of all three medkits.
  */
 
-/obj/item/storage/firstaid/attackby(var/obj/item/robot_parts/S, mob/user as mob)
-
-	if ((!istype(S, /obj/item/robot_parts/l_arm)) && (!istype(S, /obj/item/robot_parts/r_arm)))
-		..()
-		return
+/obj/item/storage/firstaid/attackby(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/robot_parts/l_arm) || !istype(I, /obj/item/robot_parts/r_arm))
+		return ..()
 
 	//Making a medibot!
-	if(src.contents.len >= 1)
+	if(length(contents) >= 1)
 		to_chat(user, "<span class='notice'>You need to empty [src] out first.</span>")
 		return
 
-	var/obj/item/frame/firstaid_arm_assembly/A = new /obj/item/frame/firstaid_arm_assembly
-	if(istype(src,/obj/item/storage/firstaid/fire))
+	var/obj/item/frame/firstaid_arm_assembly/A = new
+
+	if(istype(src, /obj/item/storage/firstaid/fire))
 		A.skin = "ointment"
-	else if(istype(src,/obj/item/storage/firstaid/toxin))
+	else if(istype(src, /obj/item/storage/firstaid/toxin))
 		A.skin = "tox"
-	else if(istype(src,/obj/item/storage/firstaid/o2))
+	else if(istype(src, /obj/item/storage/firstaid/o2))
 		A.skin = "o2"
 
-	qdel(S)
+	qdel(I)
 	user.put_in_hands(A)
 	to_chat(user, "<span class='notice'>You add the robot arm to the first aid kit.</span>")
 	user.temporarilyRemoveItemFromInventory(src)

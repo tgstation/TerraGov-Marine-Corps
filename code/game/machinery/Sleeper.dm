@@ -269,49 +269,56 @@
 	updateUsrDialog()
 
 
-/obj/machinery/sleeper/attackby(var/obj/item/W, var/mob/living/user)
-	if(istype(W, /obj/item/reagent_container/glass))
-		if(!beaker)
-			if(user.transferItemToLoc(W, src))
-				beaker = W
-				user.visible_message("[user] adds \a [W] to \the [src]!", "You add \a [W] to \the [src]!")
-				updateUsrDialog()
-			return
-		else
+/obj/machinery/sleeper/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/reagent_container/glass))
+		if(beaker)
 			to_chat(user, "<span class='warning'>The sleeper has a beaker already.</span>")
 			return
 
-	else if(istype(W, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
-		var/obj/item/healthanalyzer/J = W
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		beaker = I
+		user.visible_message("[user] adds \a [I] to \the [src]!", "You add \a [I] to \the [src]!")
+		updateUsrDialog()
+
+	else if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
+		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
+
+	else if(!istype(I, /obj/item/grab))
 		return
 
-	else if(istype(W, /obj/item/grab))
-		if(isxeno(user))
-			return
-		var/obj/item/grab/G = W
-		if(!ismob(G.grabbed_thing))
-			return
+	if(isxeno(user))
+		return
 
-		if(occupant)
-			to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
-			return
+	var/obj/item/grab/G = I
+	if(!ismob(G.grabbed_thing))
+		return
 
-		if(!G || !G.grabbed_thing)
-			return
-		var/mob/M = G.grabbed_thing
-		if(!M.forceMove(src))
-			return
-		visible_message("[user] puts [M.name] into the sleeper.", 3)
-		update_use_power(2)
-		occupant = M
-		start_processing()
-		connected.start_processing()
+	if(occupant)
+		to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
+		return
+
+	if(!G || !G.grabbed_thing)
+		return
+
+	var/mob/M = G.grabbed_thing
+	if(!M.forceMove(src))
+		return
+
+	visible_message("[user] puts [M] into the sleeper.", 3)
+	update_use_power(2)
+	occupant = M
+	start_processing()
+	connected.start_processing()
+
+	if(orient == "RIGHT")
+		icon_state = "sleeper_1-r"
+	else
 		icon_state = "sleeper_1"
-		if(orient == "RIGHT")
-			icon_state = "sleeper_1-r"
-
-		add_fingerprint(user)
 
 
 /obj/machinery/sleeper/ex_act(severity)
