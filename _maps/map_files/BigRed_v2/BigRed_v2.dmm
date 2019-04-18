@@ -1263,7 +1263,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aeb" = (
-/obj/item/device/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aec" = (
@@ -1293,7 +1293,7 @@
 /area/bigredv2/outside/telecomm)
 "aef" = (
 /obj/structure/table,
-/obj/item/device/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aeg" = (
@@ -1803,7 +1803,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "afD" = (
-/obj/item/device/mass_spectrometer/adv,
+/obj/item/mass_spectrometer/adv,
 /obj/structure/foamedmetal,
 /turf/open/floor/tile/whiteyellow{
 	dir = 2
@@ -2923,7 +2923,7 @@
 /area/bigredv2/outside/marshal_office)
 "aiN" = (
 /obj/structure/table,
-/obj/item/device/detective_scanner,
+/obj/item/detective_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "aiO" = (
@@ -3188,7 +3188,7 @@
 /area/bigredv2/outside/marshal_office)
 "ajC" = (
 /obj/structure/table,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor/animated/bcircuit,
 /area/bigredv2/outside/marshal_office)
 "ajD" = (
@@ -3425,7 +3425,7 @@
 /area/bigredv2/outside/marshal_office)
 "akg" = (
 /obj/structure/table,
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "akh" = (
@@ -3480,7 +3480,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "ako" = (
-/obj/item/device/detective_scanner,
+/obj/item/detective_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "akp" = (
@@ -3619,7 +3619,7 @@
 /area/bigredv2/caves/lambda_lab)
 "akJ" = (
 /obj/structure/table,
-/obj/item/device/analyzer/plant_analyzer,
+/obj/item/analyzer/plant_analyzer,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4507,12 +4507,12 @@
 "anr" = (
 /obj/effect/decal/cleanable/mucus,
 /obj/structure/table,
-/obj/item/device/mass_spectrometer/adv,
+/obj/item/mass_spectrometer/adv,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "ans" = (
 /obj/structure/table/reinforced,
-/obj/item/device/mass_spectrometer/adv,
+/obj/item/mass_spectrometer/adv,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
@@ -4869,7 +4869,7 @@
 /area/bigredv2/outside/marshal_office)
 "aom" = (
 /obj/structure/table/woodentable,
-/obj/item/device/camera,
+/obj/item/camera,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aon" = (
@@ -5084,7 +5084,7 @@
 /area/bigredv2/outside/marshal_office)
 "aoX" = (
 /obj/structure/table/woodentable,
-/obj/item/device/camera_film,
+/obj/item/camera_film,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aoY" = (
@@ -5595,7 +5595,7 @@
 /area/bigredv2/outside/medical)
 "aqC" = (
 /obj/structure/table,
-/obj/item/device/autopsy_scanner,
+/obj/item/autopsy_scanner,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "aqD" = (
@@ -5706,7 +5706,7 @@
 "aqX" = (
 /obj/structure/closet/crate/freezer/rations,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "aqY" = (
@@ -5723,7 +5723,7 @@
 /area/bigredv2/caves/lambda_lab)
 "ara" = (
 /obj/structure/table/holotable/wood,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "arc" = (
@@ -6024,7 +6024,7 @@
 /area/bigredv2/outside/medical)
 "arW" = (
 /obj/structure/table,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "arX" = (
@@ -6032,7 +6032,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/device/defibrillator,
+/obj/item/defibrillator,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "arY" = (
@@ -6120,7 +6120,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "asm" = (
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/open/mars/random/sand,
 /area/bigredv2/outside/ne)
 "asn" = (
@@ -6198,7 +6198,7 @@
 	},
 /area/bigredv2/outside/medical)
 "asz" = (
-/obj/item/device/reagent_scanner,
+/obj/item/reagent_scanner,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -6348,7 +6348,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	frequency = 150;
 	name = "Safe-Room intercom";
@@ -6378,7 +6378,7 @@
 /obj/item/storage/firstaid/o2,
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/rad,
-/obj/item/device/radio/marine,
+/obj/item/radio/marine,
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "atg" = (
@@ -6725,7 +6725,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "auj" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	frequency = 150;
 	name = "Safe-Room intercom";
 	dir = 1
@@ -7175,7 +7175,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "avq" = (
-/obj/item/device/violin,
+/obj/item/violin,
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
@@ -7772,7 +7772,7 @@
 /area/bigredv2/outside/dorms)
 "axb" = (
 /obj/structure/table,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "axd" = (
@@ -8381,7 +8381,7 @@
 /area/bigredv2/caves/lambda_lab)
 "azh" = (
 /obj/structure/table,
-/obj/item/device/laptop,
+/obj/item/laptop,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
@@ -9151,7 +9151,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "aBf" = (
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 2
 	},
@@ -9301,7 +9301,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aBB" = (
-/obj/item/device/multitool,
+/obj/item/multitool,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -9398,7 +9398,7 @@
 /area/bigredv2/outside/medical)
 "aBN" = (
 /obj/structure/table,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /obj/item/reagent_container/spray/cleaner,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
@@ -9412,7 +9412,7 @@
 "aBP" = (
 /obj/structure/table,
 /obj/item/storage/box/gloves,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 2
 	},
@@ -10328,7 +10328,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "aEz" = (
@@ -10748,7 +10748,7 @@
 /area/bigredv2/outside/medical)
 "aFJ" = (
 /obj/structure/table/reinforced,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "aFK" = (
@@ -10814,7 +10814,7 @@
 /area/bigredv2/outside/dorms)
 "aFT" = (
 /obj/structure/table/woodentable,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aFU" = (
@@ -13885,7 +13885,7 @@
 /area/bigredv2/outside/admin_building)
 "aOH" = (
 /obj/structure/table,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /obj/structure/window/reinforced{
 	dir = 4;
 	health = 80
@@ -13935,7 +13935,7 @@
 /area/bigredv2/outside/admin_building)
 "aOP" = (
 /obj/structure/table/woodentable,
-/obj/item/device/binoculars,
+/obj/item/binoculars,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aOQ" = (
@@ -14500,7 +14500,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "aQU" = (
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aQV" = (
@@ -15125,12 +15125,12 @@
 /area/bigredv2/outside/general_store)
 "aSL" = (
 /obj/structure/table,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aSM" = (
 /obj/structure/table,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aSO" = (
@@ -15575,7 +15575,7 @@
 /area/bigredv2/outside/admin_building)
 "aUg" = (
 /obj/structure/table/woodentable,
-/obj/item/device/camera,
+/obj/item/camera,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aUh" = (
@@ -15888,7 +15888,7 @@
 /area/bigredv2/outside/general_store)
 "aVa" = (
 /obj/structure/table,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aVb" = (
@@ -16398,7 +16398,7 @@
 /area/bigredv2/outside/admin_building)
 "aWH" = (
 /obj/structure/table/woodentable,
-/obj/item/device/pinpointer,
+/obj/item/pinpointer,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aWI" = (
@@ -17457,7 +17457,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "bad" = (
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "bae" = (
@@ -17512,7 +17512,7 @@
 /area/bigredv2/outside/chapel)
 "ban" = (
 /obj/structure/table/woodentable,
-/obj/item/device/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -18084,7 +18084,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bcB" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	frequency = 1469;
@@ -18478,7 +18478,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/admin_building)
 "bdT" = (
-/obj/item/device/mass_spectrometer,
+/obj/item/mass_spectrometer,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "bdU" = (
@@ -18589,7 +18589,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "bem" = (
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "ben" = (
@@ -19301,7 +19301,7 @@
 /area/bigredv2/outside/office_complex)
 "bgK" = (
 /obj/structure/table,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bgL" = (
@@ -19532,7 +19532,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bhH" = (
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /obj/item/reagent_container/spray/cleaner,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -19975,7 +19975,7 @@
 /area/bigredv2/outside/cargo)
 "biL" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/device/megaphone,
+/obj/item/megaphone,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "biN" = (
@@ -20601,7 +20601,7 @@
 /area/bigredv2/outside/cargo)
 "blf" = (
 /obj/structure/table,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "blg" = (
@@ -21193,7 +21193,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bno" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/device/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bnp" = (
@@ -21899,12 +21899,12 @@
 /area/bigredv2/outside/engineering)
 "bpD" = (
 /obj/structure/rack,
-/obj/item/device/camera_film,
+/obj/item/camera_film,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bpE" = (
 /obj/structure/rack,
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bpG" = (
@@ -22513,7 +22513,7 @@
 "brq" = (
 /obj/structure/table,
 /obj/item/tool/lighter/random,
-/obj/item/device/lightreplacer,
+/obj/item/lightreplacer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bru" = (
@@ -23005,7 +23005,7 @@
 /area/bigredv2/outside/engineering)
 "btt" = (
 /obj/structure/table,
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "btu" = (
@@ -23428,7 +23428,7 @@
 /turf/open/mars/random/cave,
 /area/bigredv2/outside/se)
 "bvy" = (
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "bvz" = (
@@ -25249,7 +25249,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCD" = (
 /obj/structure/table,
-/obj/item/device/mass_spectrometer/adv,
+/obj/item/mass_spectrometer/adv,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -26179,7 +26179,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "hcr" = (
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "hcH" = (
@@ -26386,7 +26386,7 @@
 /area/bigredv2/outside/c)
 "kOq" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/device/lightreplacer,
+/obj/item/lightreplacer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "kQy" = (

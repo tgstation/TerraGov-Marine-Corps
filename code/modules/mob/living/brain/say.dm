@@ -4,7 +4,7 @@
 		return
 
 	if(stat != DEAD)
-		if(!(container && (istype(container, /obj/item/device/mmi) || istype(container, /obj/item/limb/head/synth))))
+		if(!(container && (istype(container, /obj/item/mmi) || istype(container, /obj/item/limb/head/synth))))
 			return //No MMI or synthetic head, can't speak.
 
 		if(prob(emp_damage*4))
@@ -12,8 +12,8 @@
 				return
 			else
 				message = Gibberish(message, (emp_damage*6))//scrambles the message, gets worse when emp_damage is higher
-		if(istype(container, /obj/item/device/mmi/radio_enabled))
-			var/obj/item/device/mmi/radio_enabled/R = container
+		if(istype(container, /obj/item/mmi/radio_enabled))
+			var/obj/item/mmi/radio_enabled/R = container
 			if(R.radio)
 				spawn(0) R.radio.hear_talk(src, sanitize(message))
 		..()

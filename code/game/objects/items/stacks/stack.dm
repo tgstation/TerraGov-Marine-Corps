@@ -230,12 +230,11 @@
 			break
 
 /obj/item/stack/attack_hand(mob/user as mob)
+	add_fingerprint(user)
 	if (user.get_inactive_held_item() == src)
 		var/obj/item/stack/F = new src.type(user, 1)
-		F.copy_evidences(src)
+		transfer_fingerprints_to(F)
 		user.put_in_hands(F)
-		src.add_fingerprint(user)
-		F.add_fingerprint(user)
 		use(1)
 		if (src && usr.interactee==src)
 			spawn(0) src.interact(usr)
@@ -264,13 +263,6 @@
 			return TRUE
 
 	return ..()
-
-/obj/item/stack/proc/copy_evidences(obj/item/stack/from as obj)
-	src.blood_DNA = from.blood_DNA
-	src.fingerprints  = from.fingerprints
-	src.fingerprintshidden  = from.fingerprintshidden
-	src.fingerprintslast  = from.fingerprintslast
-	//TODO bloody overlay
 
 /*
  * Recipe datum

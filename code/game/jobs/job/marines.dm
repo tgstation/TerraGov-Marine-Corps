@@ -13,7 +13,7 @@
 	if(!L.mind?.assigned_squad)
 		return
 	var/datum/squad/S = L.mind.assigned_squad
-	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[squad_colors[S.color]]>[lowertext(S.name)] squad</font></b>.
+	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[S.color]>[lowertext(S.name)] squad</font></b>.
 Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."})
 
 

@@ -89,3 +89,5 @@
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
 
 	var/ventcrawl_message_busy
+
+	var/away_time = 0 //When the player has disconnected.

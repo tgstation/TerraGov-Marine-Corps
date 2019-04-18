@@ -558,16 +558,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(C && alert("They have a client attached, are you sure?", "Cryosleep", "Yes", "No") != "Yes")
 			return
 
-		var/turf/T = get_turf(M)
 		var/old_name = M.real_name
-		var/obj/machinery/cryopod/P = new(T)
-		P.density = FALSE
-		P.alpha = 0
-		P.name = null
-		P.occupant = M
-		P.time_till_despawn = 0
-		P.process()
-		qdel(P)
+		M.despawn()
 
 		var/lobby
 		if(C?.mob?.mind && alert("Do you also want to send them to the lobby?", "Cryosleep", "Yes", "No") == "Yes")
@@ -947,7 +939,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(!SSevacuation.cancel_self_destruct(TRUE))
 					to_chat(usr, "<span class='warning'>You are unable to cancel the self-destruct right now!</span>")
 					return
-					
+
 				log_admin("[key_name(usr)] canceled the self-destruct system.")
 				message_admins("[ADMIN_TPMONTY(usr)] canceled the self-destruct system.")
 
@@ -1106,7 +1098,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/datum/browser/browser = new(usr, "msay_log", "<div align='center'>Msay Log</div>")
 		browser.set_content(dat)
 		browser.open(FALSE)
-		
+
 
 	else if(href_list["ffattack_log"])
 		if(!check_rights(R_ADMIN))

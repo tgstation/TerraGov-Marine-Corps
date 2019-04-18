@@ -202,12 +202,12 @@
 		used = CB.used
 
 /obj/structure/closet/bodybag/cryobag/attackby(obj/item/I, mob/living/user)
-	if(!istype(I, /obj/item/device/healthanalyzer))
+	if(!istype(I, /obj/item/healthanalyzer))
 		return
 	if(!stasis_mob)
 		to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
 		return
-	var/obj/item/device/healthanalyzer/J = I
+	var/obj/item/healthanalyzer/J = I
 	J.attack(stasis_mob, user) // yes this is awful -spookydonut
 	return
 

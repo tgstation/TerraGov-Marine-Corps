@@ -1,4 +1,4 @@
-/obj/item/device/detective_scanner
+/obj/item/detective_scanner
 	name = "forensic scanner"
 	desc = "Used to scan objects for DNA and fingerprints."
 	icon_state = "forensic1"
@@ -9,7 +9,7 @@
 	flags_item = NOBLUDGEON
 	flags_equip_slot = ITEM_SLOT_BELT
 
-/obj/item/device/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	if (!ishuman(M))
 		to_chat(user, "<span class='warning'>[M] is not human and cannot have the fingerprints.</span>")
 		flick("forensic0",src)
@@ -33,7 +33,7 @@
 				to_chat(user, "<span class='notice'>Blood type: [M.blood_DNA[blood]]\nDNA: [blood]</span>")
 	return
 
-/obj/item/device/detective_scanner/afterattack(atom/A as obj|turf, mob/user, proximity)
+/obj/item/detective_scanner/afterattack(atom/A as obj|turf, mob/user, proximity)
 	if(!proximity) return
 	if(ismob(A))
 		return
@@ -51,6 +51,7 @@
 
 	add_fingerprint(user)
 
+	var/fingerprints = A.return_fingerprints()
 
 	//General
 	if(istype(A,/turf)) //Due to making blood invisible to the cursor, we need to make sure it scans it here.
@@ -65,7 +66,7 @@
 						to_chat(user, "<span class='notice'>Object already in internal memory. Consolidating data...</span>")
 						flick("forensic2",src)
 				return
-	if ((!A.fingerprints || !A.fingerprints.len) && !A.suit_fibers && !A.blood_DNA)
+	if (!fingerprints && !A.suit_fibers && !A.blood_DNA)
 		user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
 		"<span class='warning'>Unable to locate any fingerprints, materials, fibers, or blood on [A]!</span>",\
 		"You hear a faint hum of electrical equipment.")
@@ -78,12 +79,12 @@
 		return
 
 	//PRINTS
-	if(A.fingerprints && A.fingerprints.len)
-		to_chat(user, "<span class='notice'>Isolated [A.fingerprints.len] fingerprints:</span>")
+	if(fingerprints)
+		to_chat(user, "<span class='notice'>Isolated [length(fingerprints)] fingerprints:</span>")
 		to_chat(user, "Data Stored: Scan with Hi-Res Forensic Scanner to retrieve.</span>")
 		var/list/complete_prints = list()
-		for(var/i in A.fingerprints)
-			var/print = A.fingerprints[i]
+		for(var/i in fingerprints)
+			var/print = fingerprints[i]
 			if(stringpercent(print) <= FINGERPRINT_COMPLETE)
 				complete_prints += print
 		if(complete_prints.len < 1)
@@ -111,7 +112,7 @@
 	flick("forensic2",src)
 	return 0
 
-/obj/item/device/detective_scanner/proc/add_data(atom/A as mob|obj|turf|area)
+/obj/item/detective_scanner/proc/add_data(atom/A as mob|obj|turf|area)
 	var/datum/data/record/forensic/old = stored["\ref [A]"]
 	var/datum/data/record/forensic/fresh = new(A)
 

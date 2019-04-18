@@ -167,9 +167,9 @@
 /area/whiskey_outpost)
 "ay" = (
 /obj/structure/table,
-/obj/item/device/binoculars,
-/obj/item/device/binoculars,
-/obj/item/device/binoculars,
+/obj/item/binoculars,
+/obj/item/binoculars,
+/obj/item/binoculars,
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "az" = (
@@ -287,7 +287,7 @@
 /area/whiskey_outpost)
 "aP" = (
 /obj/structure/table,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "aQ" = (
@@ -567,12 +567,12 @@
 /area/whiskey_outpost)
 "bD" = (
 /obj/structure/table,
-/obj/item/device/healthanalyzer,
-/obj/item/device/healthanalyzer,
-/obj/item/device/healthanalyzer,
-/obj/item/device/healthanalyzer,
-/obj/item/device/healthanalyzer,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
+/obj/item/healthanalyzer,
+/obj/item/healthanalyzer,
+/obj/item/healthanalyzer,
+/obj/item/healthanalyzer,
+/obj/item/healthanalyzer,
 /obj/item/reagent_container/spray/cleaner,
 /obj/item/reagent_container/spray/cleaner,
 /obj/item/reagent_container/spray/cleaner,
@@ -962,10 +962,10 @@
 /obj/item/storage/pill_bottle/peridaxon{
 	pixel_y = 10
 	},
-/obj/item/device/defibrillator,
-/obj/item/device/defibrillator,
-/obj/item/device/defibrillator,
-/obj/item/device/defibrillator,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -3783,8 +3783,8 @@
 /area/whiskey_outpost)
 "jY" = (
 /obj/item/storage/box/sentry,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -3797,8 +3797,8 @@
 	req_access_txt = "0"
 	},
 /obj/item/storage/box/sentry,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2

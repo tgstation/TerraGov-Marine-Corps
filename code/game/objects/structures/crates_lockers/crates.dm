@@ -38,7 +38,7 @@
 	if(!can_open())
 		return 0
 
-	if(rigged && locate(/obj/item/device/radio/electropack) in src)
+	if(rigged && locate(/obj/item/radio/electropack) in src)
 		if(isliving(usr))
 			var/mob/living/L = usr
 			if(L.electrocute_act(17, src))
@@ -99,7 +99,7 @@
 			user  << "<span class='notice'>You rig [src].</span>"
 			rigged = 1
 			return
-	else if(istype(W, /obj/item/device/radio/electropack))
+	else if(istype(W, /obj/item/radio/electropack))
 		if(rigged)
 			user  << "<span class='notice'>You attach [W] to [src].</span>"
 			user.drop_held_item()
@@ -254,7 +254,7 @@
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
-	new /obj/item/device/rcd(src)
+	new /obj/item/rcd(src)
 
 /obj/structure/closet/crate/solar
 	name = "Solar Pack crate"
