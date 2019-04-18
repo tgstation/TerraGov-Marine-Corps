@@ -78,9 +78,9 @@
 	radio_freq = DELTA_FREQ
 
 GLOBAL_LIST_EMPTY(armormarkings)
-GLOBAL_LIST_EMPTY(armormarkings_sql)
+GLOBAL_LIST_EMPTY(armormarkings_sl)
 GLOBAL_LIST_EMPTY(helmetmarkings)
-GLOBAL_LIST_EMPTY(helmetmarkings_sql)
+GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 /datum/squad/New()
 	. = ..()
@@ -89,14 +89,14 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sql)
 	armor.color = color
 	armorsl.color = color
 	GLOB.armormarkings[type] = armor
-	GLOB.armormarkings_sql[type] = armorsl
+	GLOB.armormarkings_sl[type] = armorsl
 
 	var/image/helmet = image('icons/mob/head_1.dmi',icon_state = "std-helmet")
 	var/image/helmetsl = image('icons/mob/head_1.dmi',icon_state = "sql-helmet")
 	helmet.color = color
 	helmetsl.color = color
 	GLOB.helmetmarkings[type] = helmet
-	GLOB.helmetmarkings_sql[type] = helmetsl
+	GLOB.helmetmarkings_sl[type] = helmetsl
 
 /datum/squad/proc/put_marine_in_squad(mob/living/carbon/human/H)
 	if(!istype(H))

@@ -641,7 +641,7 @@ var/global/list/damage_icon_parts = list()
 					var/datum/squad/S = assigned_squad
 					var/leader = S.squad_leader == src
 					if(GLOB.helmetmarkings[S.type]) // just assume if it exists for both
-						standing.overlays += leader? GLOB.helmetmarkings_sql[S.type] : GLOB.helmetmarkings[S.type]
+						standing.overlays += leader? GLOB.helmetmarkings_sl[S.type] : GLOB.helmetmarkings[S.type]
 
 			var/image/I
 			for(var/i in marine_helmet.helmet_overlays)
@@ -701,7 +701,7 @@ var/global/list/damage_icon_parts = list()
 					var/datum/squad/S = assigned_squad
 					var/leader = S.squad_leader == src
 					if(GLOB.armormarkings[S.type])
-						standing.overlays += leader? GLOB.armormarkings_sql[S.type] : GLOB.armormarkings[S.type]
+						standing.overlays += leader? GLOB.armormarkings_sl[S.type] : GLOB.armormarkings[S.type]
 
 			if(length(marine_armor.armor_overlays))
 				var/image/I
