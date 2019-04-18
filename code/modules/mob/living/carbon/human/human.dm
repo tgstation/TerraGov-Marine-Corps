@@ -1682,11 +1682,11 @@
 	return TRUE
 
 
-/mob/living/carbon/human/canUseTopic(atom/movable/M)
+/mob/living/carbon/human/canUseTopic(atom/movable/AM)
 	if(incapacitated())
 		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
 		return FALSE
-	if(!in_range(M, src))
+	if(!in_range(AM, src))
 		to_chat(src, "<span class='warning'>You are too far away!</span>")
 		return FALSE
 	return TRUE
