@@ -259,13 +259,11 @@
 	spawn_number = 14
 
 /obj/item/storage/box/matches/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
 	if(istype(I, /obj/item/tool/match))
 		var/obj/item/tool/match/M = I
 
 		if(M.heat_source || M.burnt)
-			return TRUE
+			return ..()
 
 		if(prob(50))
 			playsound(loc, 'sound/items/matchstick_lit.ogg', 15, 1)
@@ -273,6 +271,8 @@
 		else
 			playsound(loc, 'sound/items/matchstick_hit.ogg', 15, 1)
 		return TRUE
+	else
+		return ..()
 
 /obj/item/storage/box/autoinjectors
 	name = "box of injectors"

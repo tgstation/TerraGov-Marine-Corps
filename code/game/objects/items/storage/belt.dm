@@ -295,8 +295,6 @@
 
 
 /obj/item/storage/belt/shotgun/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
 	if(istype(I, /obj/item/ammo_magazine/shotgun))
 		var/obj/item/ammo_magazine/shotgun/M = I
 		if(!M.current_rounds)
@@ -320,6 +318,9 @@
 		playsound(user.loc, "rustle", 15, 1, 6)
 		to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
 		return TRUE
+
+	else
+		return ..()
 
 
 /obj/item/storage/belt/knifepouch

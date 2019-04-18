@@ -20,6 +20,7 @@
 	merge_type = /obj/item/stack/sheet/glass
 
 	var/created_window = /obj/structure/window
+	var/reinforced_type = /obj/item/stack/sheet/glass/reinforced
 	var/is_reinforced = 0
 	var/list/construction_options = list("One Direction", "Full Window")
 
@@ -53,7 +54,7 @@
 			to_chat(user, "<span class='warning'>You need one rod and one sheet of glass to make reinforced glass.</span>")
 			return
 
-		var/obj/item/stack/sheet/glass/reinforced/RG = new(user.loc)
+		var/obj/item/stack/sheet/glass/RG = new reinforced_type(user.loc)
 		RG.add_to_stacks(user)
 		use(1)
 		V.use(1)
@@ -173,19 +174,8 @@
 	matter = list("glass" = 7500)
 	origin_tech = "materials=3;phorontech=2"
 	created_window = /obj/structure/window/phoronbasic
+	reinforced_type = /obj/item/stack/sheet/glass/phoronrglass
 
-/obj/item/stack/sheet/glass/phoronglass/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/stack/rods))
-		var/obj/item/stack/rods/V  = I
-		var/obj/item/stack/sheet/glass/phoronrglass/RG = new (user.loc)
-		RG.add_to_stacks(user)
-		V.use(1)
-		use(1)
-
-		if(!src && !RG)
-			user.put_in_hands(RG)
 /*
  * Reinforced phoron glass sheets
  */

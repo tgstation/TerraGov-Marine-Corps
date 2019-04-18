@@ -92,10 +92,8 @@
 
 
 /obj/item/storage/secure/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
 	if(!locked)
-		return
+		return ..()
 
 	else if(istype(I, /obj/item/card/emag) && !emagged)
 		emagged = TRUE

@@ -331,8 +331,6 @@
 
 
 /obj/item/storage/pouch/flare/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
 	if(istype(I, /obj/item/storage/box/m94))
 		var/obj/item/storage/box/m94/M = I
 		if(!length(M.contents))
@@ -357,6 +355,8 @@
 
 		playsound(user.loc, "rustle", 15, 1, 6)
 		return TRUE
+	else
+		return ..()
 
 /obj/item/storage/pouch/flare/full
 	fill_type = /obj/item/explosive/grenade/flare
@@ -469,8 +469,6 @@
 
 
 /obj/item/storage/pouch/shotgun/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
 	if(istype(I, /obj/item/ammo_magazine/shotgun))
 		var/obj/item/ammo_magazine/shotgun/M = I
 
@@ -495,3 +493,6 @@
 		to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
 
 		return TRUE
+
+	else
+		return ..()

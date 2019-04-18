@@ -635,15 +635,13 @@
 
 
 /obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/T = I
 		if(T.welding)
 			to_chat(user, "<span class='warning'>That was close! However you realized you had the welder on and prevented disaster.</span>")
 			return
 		if(T.get_fuel() == T.max_fuel || !reagents.total_volume)
-			return
+			return ..()
 
 		reagents.trans_to(I, T.max_fuel)
 		to_chat(user, "<span class='notice'>Welder refilled!</span>")
@@ -652,7 +650,7 @@
 	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
 		var/obj/item/ammo_magazine/flamer_tank/FT = I
 		if(FT.current_rounds || !reagents.total_volume)
-			return
+			return ..()
 
 		var/fuel_available = reagents.total_volume < FT.max_rounds ? reagents.total_volume : FT.max_rounds
 		reagents.remove_reagent("fuel", fuel_available)
@@ -661,6 +659,9 @@
 		FT.caliber = "Fuel"
 		to_chat(user, "<span class='notice'>You refill [FT] with [lowertext(FT.caliber)].</span>")
 		FT.update_icon()
+
+	else
+		return ..()
 
 /obj/item/storage/backpack/marine/engineerpack/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) // this replaces and improves the get_dist(src,O) <= 1 checks used previously
@@ -688,17 +689,15 @@
 
 
 /obj/item/storage/backpack/marine/engineerpack/flamethrower/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
 	if(istype(I, /obj/item/ammo_magazine/flamer_tank))
 		var/obj/item/ammo_magazine/flamer_tank/FTL = I
 		if(FTL.default_ammo != /datum/ammo/flamethrower)
-			return
+			return ..()
 		if(FTL.max_rounds == FTL.current_rounds)
-			return
+			return ..()
 		if(reagents.total_volume <= 0)
 			to_chat(user, "<span class='warning'>You try to refill \the [FTL] but \the [src] fuel reserve is empty.</span>")
-			return
+			return ..()
 		var/fuel_refill = FTL.max_rounds - FTL.current_rounds
 		if(reagents.total_volume < fuel_refill)
 			fuel_refill = reagents.total_volume
@@ -707,6 +706,9 @@
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		to_chat(user, "<span class='notice'>You refill [FTL] with UT-Napthal Fuel as you place it inside of \the [src].</span>")
 		FTL.update_icon()
+
+	else
+		return ..()
 
 
 /obj/item/storage/backpack/lightpack
