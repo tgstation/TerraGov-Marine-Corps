@@ -240,10 +240,6 @@
 			switchcount++
 			if(rigged)
 				if(status == LIGHT_OK && trigger)
-
-					log_admin("Rigged light explosion, last touched by [key_name(fingerprintslast)].")
-					message_admins("Rigged light explosion, last touched by [key_name_admin(fingerprintslast)].")
-
 					explode()
 			else if( prob( min(60, switchcount*switchcount*0.01) ) )
 				if(status == LIGHT_OK && trigger)
@@ -318,10 +314,6 @@
 					qdel(L)
 
 					if(on && rigged)
-
-						log_admin("Rigged light explosion, last touched by [key_name(fingerprintslast)].")
-						message_admins("Rigged light explosion, last touched by [key_name_admin(fingerprintslast)].")
-
 						explode()
 			else
 				to_chat(user, "This type of light requires a [fitting].")
@@ -366,9 +358,7 @@
 					newlight.icon_state = "bulb-construct-stage2"
 			newlight.setDir(dir)
 			newlight.stage = 2
-			newlight.fingerprints = src.fingerprints
-			newlight.fingerprintshidden = src.fingerprintshidden
-			newlight.fingerprintslast = src.fingerprintslast
+			transfer_fingerprints_to(newlight)
 			qdel(src)
 			return
 
