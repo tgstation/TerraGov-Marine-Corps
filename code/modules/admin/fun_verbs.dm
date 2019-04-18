@@ -26,13 +26,16 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/heavy = input("Range of heavy pulse.", text("Input")) as num|null
-	if(heavy < 0)
+	var/heavy = input("Range of heavy pulse.", "EM Pulse") as num|null
+	if(isnull(heavy))
 		return
 
-	var/light = input("Range of light pulse.", text("Input")) as num|null
-	if(light < 0)
+	var/light = input("Range of light pulse.", "EM Pulse") as num|null
+	if(isnull(light))
 		return
+
+	heavy = CLAMP(heavy, 0, 10000)
+	light = CLAMP(light, 0, 10000)
 
 	empulse(usr, heavy, light)
 
@@ -171,7 +174,7 @@
 	if(!msg)
 		return
 
-	to_chat(world, "[msg]")
+	to_chat(world, msg)
 
 	log_admin("GlobalNarrate: [key_name(usr)] : [msg]")
 	message_admins("[ADMIN_TPMONTY(usr)] used Global Narrate: [msg]")
@@ -194,7 +197,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] used Direct Narrate on [ADMIN_TPMONTY(M)]: [msg]")
 
 
-/datum/admins/proc/subtle_message(var/mob/M in GLOB.player_list)
+/datum/admins/proc/subtle_message(mob/M in GLOB.player_list)
 	set category = null
 	set name = "Subtle Message"
 
@@ -680,31 +683,33 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/mob/M = usr
-
 	var/choice = input("What size explosion would you like to produce?", "Drop Bomb") as null|anything in list("CANCEL", "Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
 	switch(choice)
 		if("CANCEL")
 			return
 		if("Small Bomb")
-			explosion(M.loc, 1, 2, 3, 3)
+			explosion(usr.loc, 1, 2, 3, 3)
 		if("Medium Bomb")
-			explosion(M.loc, 2, 3, 4, 4)
+			explosion(usr.loc, 2, 3, 4, 4)
 		if("Big Bomb")
-			explosion(M.loc, 3, 5, 7, 5)
+			explosion(usr.loc, 3, 5, 7, 5)
 		if("Custom Bomb")
-			var/devastation_range = input("Devastation range (in tiles):") as null|num
-			var/heavy_impact_range = input("Heavy impact range (in tiles):") as null|num
-			var/light_impact_range = input("Light impact range (in tiles):") as null|num
-			var/flash_range = input("Flash range (in tiles):") as null|num
+			var/devastation_range = input("Devastation range (in tiles):", "Drop Bomb") as null|num
+			var/heavy_impact_range = input("Heavy impact range (in tiles):", "Drop Bomb") as null|num
+			var/light_impact_range = input("Light impact range (in tiles):", "Drop Bomb") as null|num
+			var/flash_range = input("Flash range (in tiles):", "Drop Bomb") as null|num
 			if(isnull(devastation_range) || isnull(heavy_impact_range) || isnull(light_impact_range) || isnull(flash_range))
 				return
-			explosion(M.loc, devastation_range, heavy_impact_range, light_impact_range, flash_range)
+			devastation_range = CLAMP(devastation_range, -1, 10000)
+			heavy_impact_range = CLAMP(heavy_impact_range, -1, 10000)
+			light_impact_range = CLAMP(light_impact_range, -1, 10000)
+			flash_range = CLAMP(flash_range, -1, 10000)
+			explosion(usr.loc, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 		else
 			return
 
-	log_admin("[key_name(usr)] dropped a bomb at [AREACOORD(M.loc)].")
-	message_admins("[ADMIN_TPMONTY(usr)] dropped a bomb at [ADMIN_VERBOSEJMP(M.loc)].")
+	log_admin("[key_name(usr)] dropped a bomb at [AREACOORD(usr.loc)].")
+	message_admins("[ADMIN_TPMONTY(usr)] dropped a bomb at [ADMIN_VERBOSEJMP(usr.loc)].")
 
 
 /datum/admins/proc/change_security_level()
@@ -983,55 +988,59 @@
 	if(!istype(H))
 		return
 
-	switch(input("What do you want to edit?") as null|anything in list("Hair Style", "Hair Color", "Facial Hair Style", "Facial Hair Color", "Eye Color", "Body Color", "Gender", "Ethnicity"))
+	var/modification = input("What do you want to edit?", "Edit Appearance") as null|anything in list("Hair Style", "Hair Color", "Facial Hair Style", "Facial Hair Color", "Eye Color", "Body Color", "Gender", "Ethnicity")
+	switch(modification)
 		if("Hair Style")
-			var/new_hstyle = input("Select a hair style") as null|anything in GLOB.hair_styles_list
+			var/new_hstyle = input("Select a hair style", "Edit Appearance") as null|anything in sortNames(GLOB.hair_styles_list)
 			if(!new_hstyle || !istype(H))
 				return
 			H.h_style = new_hstyle
 		if("Hair Color")
-			var/new_hair = input("Select hair color.") as color
+			var/new_hair = input("Select hair color.", "Edit Appearance") as color
 			if(!new_hair || !istype(H))
 				return
 			H.r_hair = hex2num(copytext(new_hair, 2, 4))
 			H.g_hair = hex2num(copytext(new_hair, 4, 6))
 			H.b_hair = hex2num(copytext(new_hair, 6, 8))
 		if("Facial Hair Style")
-			var/new_fstyle = input("Select a facial hair style")  as null|anything in GLOB.facial_hair_styles_list
+			var/new_fstyle = input("Select a facial hair style", "Edit Appearance") as null|anything in sortNames(GLOB.facial_hair_styles_list)
 			if(!new_fstyle || !istype(H))
 				return
 			H.f_style = new_fstyle
 		if("Facial Hair Color")
-			var/new_facial = input("Please select facial hair color.") as color
+			var/new_facial = input("Please select facial hair color.", "Edit Appearance") as color
 			if(!new_facial || !istype(H))
 				return
 			H.r_facial = hex2num(copytext(new_facial, 2, 4))
 			H.g_facial = hex2num(copytext(new_facial, 4, 6))
 			H.b_facial = hex2num(copytext(new_facial, 6, 8))
 		if("Eye Color")
-			var/new_eyes = input("Please select eye color.", "Character Generation") as color
+			var/new_eyes = input("Please select eye color.", "Edit Appearance") as color
 			if(!new_eyes || !istype(H))
 				return
 			H.r_eyes = hex2num(copytext(new_eyes, 2, 4))
 			H.g_eyes = hex2num(copytext(new_eyes, 4, 6))
 			H.b_eyes = hex2num(copytext(new_eyes, 6, 8))
 		if("Body Color")
-			var/new_skin = input("Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Character Generation") as color
+			var/new_skin = input("Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Edit Appearance") as color
 			if(!new_skin || !istype(H))
 				return
 			H.r_skin = hex2num(copytext(new_skin, 2, 4))
 			H.g_skin = hex2num(copytext(new_skin, 4, 6))
 			H.b_skin = hex2num(copytext(new_skin, 6, 8))
 		if("Gender")
-			var/new_gender = alert("Please select gender.",, "Male", "Female")
+			var/new_gender = alert("Please select gender.", "Edit Appearance", "Male", "Female", "Cancel")
 			if(!new_gender || !istype(H))
 				return
-			if(new_gender == "Male")
-				H.gender = MALE
-			else
-				H.gender = FEMALE
+			switch(new_gender)
+				if("Male")
+					H.gender = MALE
+				if("Female")
+					H.gender = FEMALE
+				else
+					return
 		if("Ethnicity")
-			var/new_ethnicity = input("Please select the ethnicity") as null|anything in GLOB.ethnicities_list
+			var/new_ethnicity = input("Please select the ethnicity") as null|anything in sortNames(GLOB.ethnicities_list)
 			if(!new_ethnicity || !istype(H))
 				return
 			H.ethnicity = new_ethnicity
@@ -1043,8 +1052,8 @@
 	H.regenerate_icons()
 	H.check_dna(H)
 
-	log_admin("[key_name(usr)] updated the appearance of [key_name(H)].")
-	message_admins("[ADMIN_TPMONTY(usr)] updated the appearance of [ADMIN_TPMONTY(H)].")
+	log_admin("[key_name(usr)] updated the [modification] of [key_name(H)].")
+	message_admins("[ADMIN_TPMONTY(usr)] updated the [modification] of [ADMIN_TPMONTY(H)].")
 
 
 /datum/admins/proc/offer(mob/M in GLOB.mob_list)
@@ -1073,7 +1082,7 @@
 				message_admins("[ADMIN_TPMONTY(usr)] has removed offer of [ADMIN_TPMONTY(M)].")
 				return
 
-	else if(alert("Are you sure?", "Offer Mob", "Yes", "No") != "Yes")
+	else if(alert("Are you sure you want to offer this mob?", "Offer Mob", "Yes", "No") != "Yes")
 		return
 
 	L.offer_mob()
@@ -1100,7 +1109,7 @@
 		var/datum/hive_status/H = GLOB.hive_datums[Y]
 		namelist += H.name
 
-	var/newhive = input(usr, "Select a hive.", "Change Hivenumber") as null|anything in namelist
+	var/newhive = input("Select a hive.", "Change Hivenumber") as null|anything in namelist
 	if(!newhive)
 		return
 
@@ -1119,13 +1128,13 @@
 		else
 			return
 
-	if(!istype(X) || X.gc_destroyed || !SSticker || X.hivenumber != hivenumber_status)
+	if(!istype(X) || X.hivenumber != hivenumber_status)
 		return
 
 	X.transfer_to_hive(newhivenumber)
 
-	log_admin("[key_name(usr)] changed hivenumber of [X] to [newhive].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] to [newhive].")
+	log_admin("[key_name(usr)] changed hivenumber of [X] from [hivenumber_status] to [newhive].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] from [hivenumber_status] to [newhive].")
 
 
 /datum/admins/proc/release(obj/O in GLOB.object_list)

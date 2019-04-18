@@ -79,59 +79,85 @@
 	message_admins("[ADMIN_TPMONTY(M)] has turned stealth mode [M.client.holder.fakekey ? "on - [M.client.holder.fakekey]" : "off"].")
 
 
-/datum/admins/proc/change_key(mob/M in GLOB.alive_mob_list)
+/datum/admins/proc/give_mob(mob/living/L in GLOB.mob_living_list)
 	set category = null
-	set name = "Change CKey"
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	var/new_ckey = input("Enter new ckey:", "Change CKey") as null|text
-
-	if(!new_ckey)
-		return
-
-	M.ghostize(FALSE)
-	M.ckey = ckey(new_ckey)
-	if(M.client)
-		M.client.change_view(world.view)
-
-	log_admin("[key_name(usr)] changed [M.name] ckey to [new_ckey].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed [M.name] ckey to [new_ckey].")
-
-
-/datum/admins/proc/change_key_panel()
-	set category = "Admin"
-	set name = "Change CKey Mob"
+	set name = "Give Mob"
 
 	if(!check_rights(R_ADMIN))
 		return
 
 	var/mob/M
-	switch(input("Change by:", "Change CKey") as null|anything in list("Key", "Mob"))
+	switch(input("Who do you want to give it to:", "Give Mob") as null|anything in list("Key", "Mob"))
 		if("Key")
-			var/client/C = input("Please, select a key.", "Change CKey") as null|anything in sortKey(GLOB.clients)
+			var/client/C = input("Please, select a key.", "Give Mob") as null|anything in sortKey(GLOB.clients)
 			if(!C)
 				return
 			M = C.mob
 		if("Mob")
-			var/mob/N = input("Please, select a mob.", "Change CKey") as null|anything in sortNames(GLOB.mob_list)
+			var/mob/N = input("Please, select a mob.", "Give Mob") as null|anything in sortNames(GLOB.mob_list)
 			if(!N)
 				return
 			M = N
+
+	if(isliving(M) && M.client && alert("[key_name(M)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
+		return
+
+	if(!istype(L))
+		return
+
+	log_admin("[key_name(usr)] gave [key_name(L)] to [key_name(M)].")
+	message_admins("[ADMIN_TPMONTY(usr)] gave [ADMIN_TPMONTY(L)] to [ADMIN_TPMONTY(M)].")
+
+	L.take_over(M, TRUE)
+
+
+/datum/admins/proc/give_mob_panel()
+	set category = "Admin"
+	set name = "Give  Mob"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/mob/living/L
+	switch(input("Who do you want to give:", "Give Mob") as null|anything in list("Key", "Mob"))
+		if("Key")
+			var/client/C = input("Please, select a key.", "Give Mob") as null|anything in sortKey(GLOB.clients)
+			if(!C || !isliving(C.mob))
+				return
+			L = C.mob
+		if("Mob")
+			var/mob/N = input("Please, select a mob.", "Give Mob") as null|anything in sortNames(GLOB.mob_living_list)
+			if(!N)
+				return
+			L = N
 		else
 			return
 
-	var/new_ckey = input("Enter new CKey:", "CKey") as null|text
-	if(!new_ckey)
+	var/mob/N
+	switch(input("Who do you want to give it to:", "Give Mob") as null|anything in list("Key", "Mob"))
+		if("Key")
+			var/client/C = input("Please, select a key.", "Give Mob") as null|anything in sortKey(GLOB.clients)
+			if(!C)
+				return
+			N = C.mob
+		if("Mob")
+			var/mob/M = input("Please, select a mob.", "Give Mob") as null|anything in sortNames(GLOB.mob_list)
+			if(!M)
+				return
+			N = M
+		else
+			return
+
+	if(isliving(N) && N.client && alert("[key_name(N)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
 		return
 
-	M.ghostize(FALSE)
-	M.ckey = ckey(new_ckey)
-	M.client?.change_view(world.view)
+	if(!istype(L))
+		return
 
-	log_admin("[key_name(usr)] changed [M.name] ckey to [new_ckey].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed [M.name] ckey to [new_ckey].")
+	log_admin("[key_name(usr)] gave [key_name(L)] to [key_name(N)].")
+	message_admins("[ADMIN_TPMONTY(usr)] gave [ADMIN_TPMONTY(L)] to [ADMIN_TPMONTY(N)].")
+
+	L.take_over(N, TRUE)
 
 
 /datum/admins/proc/rejuvenate(mob/living/L in GLOB.mob_living_list)
@@ -144,7 +170,7 @@
 	if(!istype(L))
 		return
 
-	if(alert("Are you sure you want to rejuvenate [L]?", "Rejuvenate", "Yes", "No") != "Yes")
+	if(alert("Are you sure you want to rejuvenate [key_name(L)]?", "Rejuvenate", "Yes", "No") != "Yes")
 		return
 
 	L.revive()
@@ -160,31 +186,31 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/living/M
+	var/mob/living/L
 	switch(input("Rejuvenate by:", "Rejuvenate") as null|anything in list("Key", "Mob"))
 		if("Key")
 			var/client/C = input("Please, select a key.", "Rejuvenate") as null|anything in sortKey(GLOB.clients)
-			if(!C)
+			if(!C || !isliving(C.mob))
 				return
-			M = C.mob
+			L = C.mob
 		if("Mob")
 			var/mob/N = input("Please, select a mob.", "Rejuvenate") as null|anything in sortNames(GLOB.mob_living_list)
 			if(!N)
 				return
-			M = N
+			L = N
 		else
 			return
 
-	if(!istype(M))
+	if(!istype(L))
 		return
 
-	if(alert("Are you sure you want to rejuvenate [M]?", "Rejuvenate", "Yes", "No") != "Yes")
+	if(alert("Are you sure you want to rejuvenate [key_name(L)]?", "Rejuvenate", "Yes", "No") != "Yes")
 		return
 
-	M.revive()
+	L.revive()
 
-	log_admin("[key_name(usr)] revived [key_name(M)].")
-	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(M)].")
+	log_admin("[key_name(usr)] revived [key_name(L)].")
+	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
 
 
 /datum/admins/proc/toggle_sleep(mob/living/M in GLOB.mob_living_list)
@@ -212,28 +238,31 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/M
+	var/mob/living/L
 	switch(input("Toggle sleeping by:", "Toggle Sleeping") as null|anything in list("Key", "Mob"))
 		if("Key")
 			var/client/C = input("Please, select a key.", "Toggle Sleeping") as null|anything in sortKey(GLOB.clients)
-			if(!C)
+			if(!C || !isliving(C.mob))
 				return
-			M = C.mob
+			L = C.mob
 		if("Mob")
 			var/mob/living/N = input("Please, select a mob.", "Toggle Sleeping") as null|anything in sortNames(GLOB.mob_living_list)
 			if(!N)
 				return
-			M = N
+			L = N
 		else
 			return
 
-	if(M.sleeping > 0)
-		M.sleeping = 0
-	else
-		M.sleeping = 9999999
+	if(!istype(L))
+		return
 
-	log_admin("[key_name(usr)] has [M.sleeping ? "enabled" : "disabled"] sleeping on [key_name(M)].")
-	message_admins("[ADMIN_TPMONTY(usr)] has [M.sleeping ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(M)].")
+	if(L.sleeping > 0)
+		L.sleeping = 0
+	else
+		L.sleeping = 9999999
+
+	log_admin("[key_name(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [key_name(L)].")
+	message_admins("[ADMIN_TPMONTY(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(L)].")
 
 
 /datum/admins/proc/toggle_sleep_area()
@@ -245,18 +274,18 @@
 
 	switch(alert("Sleep or unsleep everyone?", , "Sleep", "Unsleep", "Cancel"))
 		if("Sleep")
-			for(var/mob/living/M in view())
-				M.sleeping = 9999999
+			for(var/mob/living/L in view())
+				L.sleeping = 9999999
 			log_admin("[key_name(usr)] has slept everyone in view.")
 			message_admins("[ADMIN_TPMONTY(usr)] has slept everyone in view.")
 		if("Unsleep")
-			for(var/mob/living/M in view())
-				M.sleeping = 0
+			for(var/mob/living/L in view())
+				L.sleeping = 0
 			log_admin("[key_name(usr)] has unslept everyone in view.")
 			message_admins("[ADMIN_TPMONTY(usr)] has unslept everyone in view.")
 
 
-/datum/admins/proc/direct_control(mob/M in GLOB.mob_living_list)
+/datum/admins/proc/direct_control(mob/living/L in GLOB.mob_living_list)
 	set category = "Admin"
 	set name = "Take Over"
 	set desc = "Rohesie's verb."
@@ -268,23 +297,25 @@
 		return
 
 	var/replaced = FALSE
-	if(M.key)
-		if(isobserver(usr) && usr.client.key == copytext(M.key, 2))
+	if(L.key)
+		if(isobserver(usr) && usr.client.key == copytext(L.key, 2))
 			var/mob/dead/observer/ghost = usr
 			ghost.can_reenter_corpse = TRUE
 			ghost.reenter_corpse()
 			return
-		else if(alert("This mob is being controlled by [M.key], they will be made a ghost. Are you sure?", "Take Over", "Yes", "No") == "Yes")
-			M.ghostize()
-			replaced = TRUE
+		else if(alert("This mob is being controlled by [L.key], they will be made a ghost. Are you sure?", "Take Over", "Yes", "No") != "Yes")
+			return
+
+		L.ghostize()
+		replaced = TRUE
 
 	var/log = "[key_name(usr)]"
-	var/log2 = "[key_name(M)]"
+	var/log2 = "[key_name(L)]"
 	var/message = "[key_name_admin(usr)]"
-	var/message2 = ADMIN_TPMONTY(M)
+	var/message2 = ADMIN_TPMONTY(L)
 
-	usr.mind.transfer_to(M, TRUE)
-	usr.fully_replace_character_name(usr.real_name, M.real_name)
+	usr.mind.transfer_to(L, TRUE)
+	L.fully_replace_character_name(usr.real_name, L.real_name)
 
 	log_admin("[log] took over [log2][replaced ? " replacing the previous owner" : ""].")
 	message_admins("[message] took over [message2][replaced ? " replacing the previous owner" : ""].")
