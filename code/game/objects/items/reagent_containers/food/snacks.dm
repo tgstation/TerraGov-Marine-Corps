@@ -185,7 +185,7 @@
 
 		to_chat(user, "<span class='warning'>You slip [I] inside [src].</span>")
 
-	else if(!isturf(loc) || !istype(loc, /obj/structure/table) || istype(loc, /obj/machinery/optable) || istype(loc, /obj/item/tool/kitchen/tray))
+	else if(!isturf(loc) || !(locate(/obj/structure/table) in loc) || !istype(loc, /obj/item/tool/kitchen/tray))
 		to_chat(user, "<span class='warning'>You cannot slice [src] here! You need a table or at least a tray to do it.</span>")
 
 	else if(I.sharp == IS_SHARP_ITEM_ACCURATE || I.sharp == IS_SHARP_ITEM_BIG)

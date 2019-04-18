@@ -16,12 +16,13 @@
 	flags_atom = CONDUCT
 	attack_verb = list("slammed", "bashed", "battered", "bludgeoned", "thrashed", "whacked")
 	var/table_type = /obj/structure/table //what type of table it creates when assembled
+	var/deconstruct_type = /obj/item/stack/sheet/metal
 
 /obj/item/frame/table/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(iswrench(I))
-		new /obj/item/stack/sheet/metal(user.loc)
+		new deconstruct_type(loc)
 		qdel(src)
 
 	else if(istype(I, /obj/item/stack/rods))
@@ -73,13 +74,6 @@
 	matter = list("metal" = 15000) //A reinforced table. Two sheets of metal and four rods
 	table_type = /obj/structure/table/reinforced
 
-/obj/item/frame/table/reinforced/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(iswrench(I))
-		new /obj/item/stack/sheet/metal(loc)
-		new /obj/item/stack/rods(loc)
-		qdel(src)
 
 /*
  * Wooden Table Parts
@@ -91,15 +85,12 @@
 	icon_state = "wood_tableparts"
 	flags_atom = null
 	table_type = /obj/structure/table/woodentable
+	deconstruct_type = /obj/item/stack/sheet/wood
 
 /obj/item/frame/table/wood/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(I))
-		new /obj/item/stack/sheet/wood(get_turf(src))
-		qdel(src)
-
-	else if(istype(I, /obj/item/stack/tile/carpet))
+	if(istype(I, /obj/item/stack/tile/carpet))
 		var/obj/item/stack/tile/carpet/C = I
 		if(!C.use(1))
 			return
@@ -118,16 +109,12 @@
 	icon_state = "gamble_tableparts"
 	flags_atom = null
 	table_type = /obj/structure/table/gamblingtable
+	deconstruct_type = /obj/item/stack/sheet/wood
 
 /obj/item/frame/table/gambling/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(iswrench(I))
-		new /obj/item/stack/sheet/wood(loc)
-		new /obj/item/stack/tile/carpet(loc)
-		qdel(src)
-
-	else if(iscrowbar(I))
+	if(iscrowbar(I))
 		to_chat(user, "<span class='notice'>You pry the carpet out of [src].</span>")
 		new /obj/item/stack/tile/carpet(loc)
 		new /obj/item/frame/table/wood(loc)

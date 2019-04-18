@@ -87,7 +87,7 @@
 
 	else if(istype(I, /obj/item/light_bulb))
 		var/obj/item/light_bulb/L = I
-		if(!L.status)
+		if(L.status)
 			to_chat(user, "You need a working light.")
 			return
 

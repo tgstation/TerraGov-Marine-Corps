@@ -68,7 +68,7 @@
 /obj/item/radio/detpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(ismultitool(I))
+	if(ismultitool(I) && armed)
 		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
