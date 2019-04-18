@@ -109,7 +109,7 @@
 			log_game("[key_name(usr)] opened fueltank at [AREACOORD(loc)], leaking fuel.")
 			leak_fuel(amount_per_transfer_from_this)
 
-	else if(istype(I,/obj/item/assembly_holder))
+	else if(istype(I, /obj/item/assembly_holder))
 		if(rig)
 			to_chat(user, "<span class='warning'>There is another device in the way.</span>")
 			return

@@ -323,6 +323,7 @@
 			if(AM.density)
 				to_chat(user, "<span class='warning'>You can't open the crate here, [AM] blocks the way.</span>")
 				return
+		return TRUE
 	return ..()
 
 
@@ -332,6 +333,8 @@
 
 /obj/structure/largecrate/machine/autodoc/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(!.)
+		return
 	
 	if(iscrowbar(I))
 		var/turf/T = get_turf(loc)
@@ -350,6 +353,8 @@
 
 /obj/structure/largecrate/supply/machine/bodyscanner/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(!.)
+		return
 
 	if(iscrowbar(I))
 		var/turf/T = get_turf(loc)
@@ -367,6 +372,8 @@
 
 /obj/structure/largecrate/machine/sleeper/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(!.)
+		return
 
 	if(iscrowbar(I))
 		var/turf/T = get_turf(loc)

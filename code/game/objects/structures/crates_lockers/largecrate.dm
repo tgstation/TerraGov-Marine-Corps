@@ -3,8 +3,10 @@
 	desc = "A hefty wooden crate."
 	icon = 'icons/obj/structures/crates.dmi'
 	icon_state = "densecrate"
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
+	var/spawn_type
+	var/spawn_amount
 
 /obj/structure/largecrate/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
@@ -28,8 +30,10 @@
 	if(iscrowbar(I))
 		new /obj/item/stack/sheet/wood(src)
 		var/turf/T = get_turf(src)
-		for(var/obj/O in contents)
-			O.forceMove(T)
+		if(!spawn_type || !spawn_amount)
+			return
+		for(var/i in 1 to spawn_amount)
+			new spawn_type(T)
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
 							 "<span class='notice'>You pry open \the [src].</span>", \
 							 "<span class='notice'>You hear splitting wood.</span>")
@@ -42,44 +46,26 @@
 
 /obj/structure/largecrate/lisa
 	icon_state = "lisacrate"
+	spawn_type = /mob/living/simple_animal/corgi/Lisa
 
-/obj/structure/largecrate/lisa/attackby(obj/item/I, mob/user, params)	//ugly but oh well
-	. = ..()
-
-	if(iscrowbar(I))
-		new /mob/living/simple_animal/corgi/Lisa(loc)
 
 /obj/structure/largecrate/cow
 	name = "cow crate"
 	icon_state = "lisacrate"
+	spawn_type = /mob/living/simple_animal/cow
 
-/obj/structure/largecrate/cow/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(iscrowbar(I))
-		new /mob/living/simple_animal/cow(loc)
 
 /obj/structure/largecrate/goat
 	name = "goat crate"
 	icon_state = "lisacrate"
+	spawn_type = /mob/living/simple_animal/hostile/retaliate/goat
 
-/obj/structure/largecrate/goat/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(iscrowbar(I))
-		new /mob/living/simple_animal/hostile/retaliate/goat(loc)
 
 /obj/structure/largecrate/chick
 	name = "chicken crate"
 	icon_state = "lisacrate"
-
-/obj/structure/largecrate/chick/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(iscrowbar(I))
-		var/num = rand(4, 6)
-		for(var/i in 1 to num)
-			new /mob/living/simple_animal/chick(loc)
+	spawn_type = /mob/living/simple_animal/chick
+	spawn_amount = 4
 
 
 ///////////CM largecrates ///////////////////////
@@ -147,7 +133,7 @@
 			return
 
 		new /obj/item/stack/sheet/metal/small_stack(src)
-		WT.remove_fuel(1,user)
+		WT.remove_fuel(1, user)
 		var/turf/T = get_turf(src)
 		for(var/obj/O in contents)
 			O.forceMove(T)

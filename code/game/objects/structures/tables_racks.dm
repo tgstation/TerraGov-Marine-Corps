@@ -303,7 +303,7 @@
 			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
 			"<span class='danger'>You throw [M] on [src].</span>")
 
-	else if(iswrench(I))
+	else if(iswrench(I) && !reinforced)
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
 

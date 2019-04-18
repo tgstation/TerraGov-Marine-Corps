@@ -73,22 +73,7 @@
 /obj/structure/closet/secure_closet/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(opened)
-		if(istype(I, /obj/item/grab))
-			var/obj/item/grab/G = I
-			if(!G.grabbed_thing)
-				return
-
-			if(!large)
-				to_chat(user, "<span class='notice'>The locker is too small to stuff [G.grabbed_thing] into!</span>")
-				return
-				
-			MouseDrop_T(G.grabbed_thing, user)	//act like they were dragged onto the closet
-
-		user.drop_held_item()
-		I.forceMove(src)
-
-	else if(istype(I, /obj/item/card/emag))
+	if(istype(I, /obj/item/card/emag))
 		if(broken) 
 			return
 		broken = TRUE

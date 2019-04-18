@@ -93,18 +93,19 @@
 			msg_admin_attack("[key_name(user)] slammed [key_name(GM)] into the \the [src].")
 			GM.apply_damage(8, BRUTE)
 
-	if(cistern)
+	else if(cistern && !issilicon(user)) //STOP PUTTING YOUR MODULES IN THE TOILET.
 		if(I.w_class > 3)
 			to_chat(user, "<span class='notice'>\The [I] does not fit.</span>")
 			return
+
 		if(w_items + I.w_class > 5)
 			to_chat(user, "<span class='notice'>The cistern is full.</span>")
 			return
+			
 		user.drop_held_item()
 		I.forceMove(src)
 		w_items += I.w_class
 		to_chat(user, "You carefully place \the [I] into the cistern.")
-		return
 
 
 

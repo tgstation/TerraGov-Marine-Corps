@@ -126,6 +126,7 @@
 			M.KnockDown(5)
 			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
 			"<span class='danger'>You throw [M] on [src].</span>")
+		return
 
 	else if(iswirecutter(I))
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",

@@ -85,16 +85,7 @@
 /obj/structure/closet/crate/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(I.flags_item & ITEM_ABSTRACT) 
-		return
-
-	else if(opened)
-		user.transferItemToLoc(I, loc)
-
-	else if(istype(I, /obj/item/packageWrap))
-		return
-
-	else if(iscablecoil(I))
+	if(iscablecoil(I))
 		var/obj/item/stack/cable_coil/C = I
 		if(rigged)
 			to_chat(user, "<span class='notice'>[src] is already rigged!</span>")
@@ -121,8 +112,6 @@
 		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 		rigged = FALSE
 
-	else 
-		return attack_hand(user)
 
 /obj/structure/closet/crate/ex_act(severity)
 	switch(severity)
