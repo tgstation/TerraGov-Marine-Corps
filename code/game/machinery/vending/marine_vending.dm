@@ -549,8 +549,8 @@
 	desc = "A marine engineering system vendor"
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(ACCESS_MARINE_ENGPREP)
-	icon_state = "tool"
-	icon_deny = "tool-deny"
+	icon_state = "engiprep"
+	icon_deny = "engiprep-deny"
 	wrenchable = FALSE
 	tokensupport = TOKEN_ENGI
 
