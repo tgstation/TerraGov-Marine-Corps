@@ -501,13 +501,13 @@
 /mob/living/carbon/human/get_camera(current_squad)
 	if(!current_squad)
 		return FALSE
-	var/obj/item/device/radio/headset/almayer/helm = wear_ear
+	var/obj/item/radio/headset/almayer/helm = wear_ear
 	return helm?.camera
 
 /obj/effect/overlay/temp/laser_target/get_camera()
 	return linked_cam
 
-/obj/item/device/squad_beacon/get_camera()
+/obj/item/squad_beacon/get_camera()
 	return beacon_cam
 
 /obj/machinery/computer/overwatch/proc/send_to_squads(txt)
