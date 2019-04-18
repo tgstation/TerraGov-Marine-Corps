@@ -93,39 +93,47 @@
 	return text
 
 
-/obj/machinery/computer/attackby(obj/item/I, mob/user)
+/obj/machinery/computer/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	if(isscrewdriver(I) && circuit)
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-				return FALSE
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-		if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
-			var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-			var/obj/item/circuitboard/computer/M = new circuit( A )
-			A.circuit = M
-			A.anchored = 1
-			for (var/obj/C in src)
-				C.loc = src.loc
-			if (src.machine_stat & BROKEN)
-				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
-				new /obj/item/shard( src.loc )
-				A.state = 3
-				A.icon_state = "3"
-			else
-				to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
-				A.state = 4
-				A.icon_state = "4"
-			M.deconstruct(src)
-			qdel(src)
-	else
-		if(isxeno(user))
-			src.attack_alien(user)
+				return
+				
+		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
-		src.attack_hand(user)
-	return
+
+		var/obj/structure/computerframe/A = new(loc)
+		var/obj/item/circuitboard/computer/M = new circuit(A)
+		A.circuit = M
+		A.anchored = TRUE
+
+		for(var/obj/C in src)
+			C.forceMove(loc)
+
+		if(machine_stat & BROKEN)
+			to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
+			new /obj/item/shard(loc)
+			A.state = 3
+			A.icon_state = "3"
+		else
+			to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
+			A.state = 4
+			A.icon_state = "4"
+			
+		M.deconstruct(src)
+		qdel(src)
+
+	else if(isxeno(user))
+		return attack_alien(user)
+
+	return attack_hand(user)
+
 
 /obj/machinery/computer/attack_hand()
 	. = ..()

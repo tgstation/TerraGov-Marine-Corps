@@ -11,15 +11,14 @@
 	src.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-empty")
 
 
-/obj/machinery/computer/aifixer/attackby(I as obj, user as mob)
+/obj/machinery/computer/aifixer/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(machine_stat & (NOPOWER|BROKEN))
+		to_chat(user, "This terminal isn't functioning right now, get it working!")
+		return
 	if(istype(I, /obj/item/aicard))
-		if(machine_stat & (NOPOWER|BROKEN))
-			to_chat(user, "This terminal isn't functioning right now, get it working!")
-			return
-		I:transfer_ai("AIFIXER","AICARD",src,user)
-
-	..()
-	return
+		var/obj/item/aicard/AI = I
+		AI.transfer_ai("AIFIXER", "AICARD", src, user)
 
 /obj/machinery/computer/aifixer/attack_ai(var/mob/user as mob)
 	return attack_hand(user)

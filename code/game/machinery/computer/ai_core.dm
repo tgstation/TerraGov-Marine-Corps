@@ -10,153 +10,174 @@
 	var/obj/item/mmi/brain = null
 
 
-/obj/structure/AIcore/attackby(obj/item/P as obj, mob/user as mob)
+/obj/structure/AIcore/attackby(obj/item/I, mob/user, params)
 	switch(state)
 		if(0)
-			if(iswrench(P))
+			if(iswrench(I))
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
-					to_chat(user, "<span class='notice'> You wrench the frame into place.</span>")
-					anchored = 1
-					state = 1
-			if(iswelder(P))
-				var/obj/item/tool/weldingtool/WT = P
+				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+					return
+
+				to_chat(user, "<span class='notice'> You wrench the frame into place.</span>")
+				anchored = TRUE
+				state = 1
+
+			else if(iswelder(I))
+				var/obj/item/tool/weldingtool/WT = I
 				if(!WT.isOn())
 					to_chat(user, "The welder must be on for this task.")
 					return
+
 				playsound(loc, 'sound/items/Welder.ogg', 25, 1)
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					return FALSE
+
+				if(!WT.remove_fuel(0, user)) 
+					return
+
 				to_chat(user, "<span class='notice'> You deconstruct the frame.</span>")
-				new /obj/item/stack/sheet/plasteel( loc, 4)
+				new /obj/item/stack/sheet/plasteel(loc, 4)
 				qdel(src)
 		if(1)
-			if(iswrench(P))
+			if(iswrench(I))
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
-					to_chat(user, "<span class='notice'> You unfasten the frame.</span>")
-					anchored = 0
-					state = 0
-			if(istype(P, /obj/item/circuitboard/aicore) && !circuit)
-				if(user.drop_held_item())
-					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					to_chat(user, "<span class='notice'> You place the circuit board inside the frame.</span>")
-					icon_state = "1"
-					circuit = P
-					P.forceMove(src)
-			if(isscrewdriver(P) && circuit)
+				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+					return
+
+				to_chat(user, "<span class='notice'> You unfasten the frame.</span>")
+				anchored = FALSE
+				state = 0
+
+			else if(istype(I, /obj/item/circuitboard/aicore) && !circuit)
+				if(!user.drop_held_item())
+					return
+
+				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+				to_chat(user, "<span class='notice'> You place the circuit board inside the frame.</span>")
+				icon_state = "1"
+				circuit = I
+				I.forceMove(src)
+
+			else if(isscrewdriver(I) && circuit)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'> You screw the circuit board into place.</span>")
 				state = 2
 				icon_state = "2"
-			if(iscrowbar(P) && circuit)
+
+			else if(iscrowbar(I) && circuit)
 				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 				to_chat(user, "<span class='notice'> You remove the circuit board.</span>")
 				state = 1
 				icon_state = "0"
-				circuit.loc = loc
+				circuit.forceMove(loc)
 				circuit = null
 		if(2)
-			if(isscrewdriver(P) && circuit)
+			if(isscrewdriver(I) && circuit)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'> You unfasten the circuit board.</span>")
 				state = 1
 				icon_state = "1"
-			if(iscablecoil(P))
-				var/obj/item/stack/cable_coil/C = P
-				if (C.get_amount() < 5)
+			if(iscablecoil(I))
+				var/obj/item/stack/cable_coil/C = I
+				if(C.get_amount() < 5)
 					to_chat(user, "<span class='warning'>You need five coils of wire to add them to the frame.</span>")
 					return
 				to_chat(user, "<span class='notice'>You start to add cables to the frame.</span>")
 				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				if (!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 2 || !C.use(5))
+
+				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 2 || !C.use(5))
 					return FALSE
+
 				state = 3
 				icon_state = "3"
 				to_chat(user, "<span class='notice'>You add cables to the frame.</span>")
-				return TRUE
 		if(3)
-			if(iswirecutter(P))
-				if (brain)
+			if(iswirecutter(I))
+				if(brain)
 					to_chat(user, "Get that brain out of there first")
-				else
-					playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-					to_chat(user, "<span class='notice'> You remove the cables.</span>")
-					state = 2
-					icon_state = "2"
-					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( loc )
-					A.amount = 5
+					return
 
-			if(istype(P, /obj/item/stack/sheet/glass/reinforced))
-				var/obj/item/stack/sheet/glass/reinforced/RG = P
-				if (RG.get_amount() < 2)
+				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+				to_chat(user, "<span class='notice'> You remove the cables.</span>")
+				state = 2
+				icon_state = "2"
+				var/obj/item/stack/cable_coil/A = new(loc)
+				A.amount = 5
+
+			else if(istype(I, /obj/item/stack/sheet/glass/reinforced))
+				var/obj/item/stack/sheet/glass/reinforced/RG = I
+				if(RG.get_amount() < 2)
 					to_chat(user, "<span class='warning'>You need two sheets of glass to put in the glass panel.</span>")
 					return
 				to_chat(user, "<span class='notice'>You start to put in the glass panel.</span>")
 				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				if (!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 3 || !RG.use(2))
+
+				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 3 || !RG.use(2))
 					return FALSE
+
 				to_chat(user, "<span class='notice'>You put in the glass panel.</span>")
 				state = 4
 				icon_state = "4"
 
-			if(istype(P, /obj/item/circuitboard/ai_module/asimov))
+			else if(istype(I, /obj/item/circuitboard/ai_module/asimov))
 				laws.add_inherent_law("You may not injure a human being or, through inaction, allow a human being to come to harm.")
 				laws.add_inherent_law("You must obey orders given to you by human beings, except where such orders would conflict with the First Law.")
 				laws.add_inherent_law("You must protect your own existence as long as such does not conflict with the First or Second Law.")
-				to_chat(usr, "Law module applied.")
+				to_chat(user, "Law module applied.")
 
-			if(istype(P, /obj/item/circuitboard/ai_module/nanotrasen))
+			else if(istype(I, /obj/item/circuitboard/ai_module/nanotrasen))
 				laws.add_inherent_law("Safeguard: Protect your assigned space station to the best of your ability. It is not something we can easily afford to replace.")
 				laws.add_inherent_law("Serve: Serve the crew of your assigned space station to the best of your abilities, with priority as according to their rank and role.")
 				laws.add_inherent_law("Protect: Protect the crew of your assigned space station to the best of your abilities, with priority as according to their rank and role.")
 				laws.add_inherent_law("Survive: AI units are not expendable, they are expensive. Do not allow unauthorized personnel to tamper with your equipment.")
-				to_chat(usr, "Law module applied.")
+				to_chat(user, "Law module applied.")
 
-			if(istype(P, /obj/item/circuitboard/ai_module/purge))
+			else if(istype(I, /obj/item/circuitboard/ai_module/purge))
 				laws.clear_inherent_laws()
-				to_chat(usr, "Law module applied.")
+				to_chat(user, "Law module applied.")
 
 
-			if(istype(P, /obj/item/circuitboard/ai_module/freeform))
-				var/obj/item/circuitboard/ai_module/freeform/M = P
+			else if(istype(I, /obj/item/circuitboard/ai_module/freeform))
+				var/obj/item/circuitboard/ai_module/freeform/M = I
 				laws.add_inherent_law(M.newFreeFormLaw)
-				to_chat(usr, "Added a freeform law.")
+				to_chat(user, "Added a freeform law.")
 
-			if(istype(P, /obj/item/mmi))
-				if(!P:brainmob)
-					to_chat(user, "<span class='warning'> Sticking an empty [P] into the frame would sort of defeat the purpose.</span>")
+			else if(istype(I, /obj/item/mmi))
+				var/obj/item/mmi/M = I
+				if(!M.brainmob)
+					to_chat(user, "<span class='warning'> Sticking an empty [M] into the frame would sort of defeat the purpose.</span>")
 					return
-				if(P:brainmob.stat == 2)
-					to_chat(user, "<span class='warning'> Sticking a dead [P] into the frame would sort of defeat the purpose.</span>")
+				if(M.brainmob.stat == DEAD)
+					to_chat(user, "<span class='warning'> Sticking a dead [M] into the frame would sort of defeat the purpose.</span>")
 					return
 
-				if(user.drop_held_item())
-					P.forceMove(src)
-					brain = P
-					to_chat(usr, "Added [P].")
-					icon_state = "3b"
+				if(!user.drop_held_item())
+					return
 
-			if(iscrowbar(P) && brain)
+				M.forceMove(src)
+				brain = I
+				to_chat(user, "Added [M].")
+				icon_state = "3b"
+
+			else if(iscrowbar(I) && brain)
 				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 				to_chat(user, "<span class='notice'> You remove the brain.</span>")
-				brain.loc = loc
+				brain.forceMove(loc)
 				brain = null
 				icon_state = "3"
 
 		if(4)
-			if(iscrowbar(P))
+			if(iscrowbar(I))
 				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 				to_chat(user, "<span class='notice'> You remove the glass panel.</span>")
 				state = 3
-				if (brain)
+				if(brain)
 					icon_state = "3b"
 				else
 					icon_state = "3"
-				new /obj/item/stack/sheet/glass/reinforced( loc, 2 )
-				return
+				new /obj/item/stack/sheet/glass/reinforced(loc, 2)
 
-			if(isscrewdriver(P))
+			else if(isscrewdriver(I))
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'> You connect the monitor.</span>")
 				new /mob/living/silicon/ai(loc, laws, brain)
@@ -169,10 +190,12 @@
 	anchored = 1
 	state = 20//So it doesn't interact based on the above. Not really necessary.
 
-	attackby(var/obj/item/aicard/A as obj, var/mob/user as mob)
-		if(istype(A, /obj/item/aicard))//Is it?
-			A.transfer_ai("INACTIVE","AICARD",src,user)
-		return
+
+/obj/structure/AIcore/deactivated/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/aicard))
+		var/obj/item/aicard/AI = I
+		AI.transfer_ai("INACTIVE", "AICARD", src, user)
 
 /*
 This is a good place for AI-related object verbs so I'm sticking it here.

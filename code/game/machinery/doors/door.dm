@@ -142,7 +142,9 @@
 		flick("door_deny", src)
 
 
-/obj/machinery/door/attackby(obj/item/I, mob/user)
+/obj/machinery/door/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/card/emag))
 		if(!operating && density && operable())
 			flick("door_spark", src)

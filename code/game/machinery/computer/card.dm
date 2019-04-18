@@ -53,18 +53,27 @@
 		to_chat(usr, "There is nothing to remove from the console.")
 	return
 
-/obj/machinery/computer/card/attackby(obj/item/card/id/id_card, mob/user)
-	if(!istype(id_card))
-		return ..()
+/obj/machinery/computer/card/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(!scan && ACCESS_MARINE_LOGISTICS in id_card.access)
-		if(user.drop_held_item())
-			id_card.forceMove(src)
-			scan = id_card
+	if(!istype(I, /obj/item/card/id))
+		return
+
+	var/obj/item/card/id/C = I
+
+	if(!scan && ACCESS_MARINE_LOGISTICS in C.access)
+		if(!user.drop_held_item())
+			return
+
+		C.forceMove(src)
+		scan = C
+
 	else if(!modify)
-		if(user.drop_held_item())
-			id_card.forceMove(src)
-			modify = id_card
+		if(!user.drop_held_item())
+			return
+
+		C.forceMove(src)
+		modify = C
 
 	SSnano.update_uis(src)
 	attack_hand(user)
