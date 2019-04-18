@@ -19,13 +19,14 @@
 	if(!W.pry_capable)
 		return
 	if(density && (machine_stat & NOPOWER) && !operating && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		spawn(0)
-			operating = TRUE
-			sleep(15)
-			open()
-			density = FALSE
-			operating = FALSE
-			update_icon()
+		operating = TRUE
+		addtimer(CALLBACK(src, .proc/pry_open), 15)
+
+/obj/machinery/door/poddoor/proc/pry_open()
+	open()
+	density = FALSE
+	operating = FALSE
+	update_icon()
 
 
 /obj/machinery/door/poddoor/try_to_activate_door(mob/user)
