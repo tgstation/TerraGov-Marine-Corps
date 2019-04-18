@@ -779,6 +779,8 @@
 	if(!istype(I, /obj/item/grab))
 		return
 
+	var/obj/item/grab/G = I
+
 	var/mob/M
 	if(ismob(G.grabbed_thing))
 		M = G.grabbed_thing

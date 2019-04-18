@@ -198,7 +198,7 @@
 
 /obj/machinery/driver_button/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	s
+
 	if(istype(I, /obj/item/detective_scanner))
 		return
 	else
