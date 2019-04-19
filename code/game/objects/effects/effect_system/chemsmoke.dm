@@ -77,13 +77,8 @@
 	if(contained)
 		contained = "\[[contained]\]"
 
-	if(carry.my_atom.fingerprintslast)
-		var/mob/M = get_mob_by_key(carry.my_atom.fingerprintslast)
-		log_game("A chemical smoke reaction has taken place in [AREACOORD(location)] [contained]. Last associated key is [key_name(M)].")
-		message_admins("A chemical smoke reaction has taken place in [ADMIN_VERBOSEJMP(location)] [contained]. Last associated mob is [ADMIN_TPMONTY(M)].")
-	else
-		log_game("A chemical smoke reaction has taken place in [AREACOORD(location)] [contained]. No associated key.")
-		message_admins("A chemical smoke reaction has taken place in [ADMIN_VERBOSEJMP(location)] [contained]. No associated key.")
+	log_game("A chemical smoke reaction has taken place in [AREACOORD(location)] [contained].")
+	message_admins("A chemical smoke reaction has taken place in [ADMIN_VERBOSEJMP(location)] [contained].")
 
 //------------------------------------------
 //Runs the chem smoke effect

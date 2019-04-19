@@ -1,28 +1,3 @@
-var/list/armormarkings = list()
-var/list/armormarkings_sql = list()
-var/list/helmetmarkings = list()
-var/list/helmetmarkings_sql = list()
-var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), rgb(65,72,200))
-
-/proc/initialize_marine_armor()
-	var/i
-	for(i=1, i<5, i++)
-		var/image/armor
-		var/image/helmet
-		armor = image('icons/mob/suit_1.dmi',icon_state = "std-armor")
-		armor.color = squad_colors[i]
-		armormarkings += armor
-		armor = image('icons/mob/suit_1.dmi',icon_state = "sql-armor")
-		armor.color = squad_colors[i]
-		armormarkings_sql += armor
-
-		helmet = image('icons/mob/head_1.dmi',icon_state = "std-helmet")
-		helmet.color = squad_colors[i]
-		helmetmarkings += helmet
-		helmet = image('icons/mob/head_1.dmi',icon_state = "sql-helmet")
-		helmet.color = squad_colors[i]
-		helmetmarkings_sql += helmet
-
 // MARINE STORAGE ARMOR
 
 /obj/item/clothing/suit/storage/marine

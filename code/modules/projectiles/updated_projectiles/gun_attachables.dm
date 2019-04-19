@@ -1074,10 +1074,7 @@ Defined in conflicts.dm of the #defines folder.
 	if(!istype(T))
 		return
 
-	for(var/obj/flamer_fire/F in T) // No stacking flames!
-		qdel(F)
-
-	new/obj/flamer_fire(T)
+	T.ignite()
 
 	var/fire_mod
 	for(var/mob/living/carbon/M in T) //Deal bonus damage if someone's caught directly in initial stream

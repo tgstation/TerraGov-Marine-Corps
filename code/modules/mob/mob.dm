@@ -148,10 +148,6 @@
 	next_move_slowdown = 0
 
 /mob/proc/Life()
-	if(client == null)
-		away_timer++
-	else
-		away_timer = 0
 	return
 
 //This proc is called whenever someone clicks an inventory ui slot.
