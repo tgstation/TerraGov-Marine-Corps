@@ -219,9 +219,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	proc/drop_flame(turf/T) // ~Art updated fire 20JAN17
 		if(!istype(T))
 			return
-		for(var/obj/flamer_fire/F in T) // No stacking flames!
-			qdel(F)
-		new /obj/flamer_fire(T, 20, 20)
+		T.ignite(20, 20)
 
 
 /*
