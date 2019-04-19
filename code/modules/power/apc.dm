@@ -1248,11 +1248,12 @@
 		INVOKE_ASYNC(src, .proc/break_lights)
 
 /obj/machinery/power/apc/proc/break_lights()
-	for(var/obj/machinery/light/L in area.related)
-		L.on = TRUE
-		L.broken()
-		L.on = FALSE
-		stoplag()
+	for(var/a in area.related)
+		var/area/A = a
+		for(var/obj/machinery/light/L in A)
+			L.broken()
+			L.on = FALSE
+			stoplag()
 
 /obj/machinery/power/apc/disconnect_terminal()
 	if(terminal)
