@@ -458,7 +458,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	playsound(src.loc, sound_to_play, 25, 1)
 
 	var/obj/item/projectile/A = new /obj/item/projectile(current_turf)
-	A.generate_bullet(ammo, ammo.damage * SPIT_UPGRADE_BONUS(src)) 
+	A.generate_bullet(ammo, ammo.damage * SPIT_UPGRADE_BONUS(src))
 	A.permutated += src
 	A.def_zone = get_limbzone_target()
 
@@ -962,10 +962,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			recent_notice = world.time //anti-notice spam
 		return
 
-	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
-		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
-		return
-
 	if(!check_plasma(150))
 		return
 	last_neurotoxin_sting = world.time
@@ -1006,10 +1002,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			recent_notice = world.time //anti-notice spam
 		return
 
-	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
-		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
-		return
-
 	if(!check_plasma(150))
 		return
 	last_larva_growth_used = world.time
@@ -1030,20 +1022,20 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /atom/proc/can_sting()
 	return FALSE
 
-/mob/living/carbon/monkey/can_sting()
-	if(stat != DEAD)
-		return TRUE
-	return FALSE
+/mob/living/carbon/can_sting()
+	if(stat == DEAD || M.status_flags & (GODMODE|XENO_HOST))
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/can_sting()
-	if(stat != DEAD)
-		return TRUE
-	return FALSE
+	. = ..()
+	if(!(.))
+		return FALSE
+	if(species.flags & IS_SYNTHETIC)
+		return FALSE
+	return TRUE
 
-/mob/living/carbon/human/species/machine/can_sting()
-	return FALSE
-
-/mob/living/carbon/human/species/synthetic/can_sting()
+/mob/living/carbon/Xenomorph/can_sting()
 	return FALSE
 
 /mob/living/carbon/Xenomorph/proc/hit_and_run_bonus(damage)

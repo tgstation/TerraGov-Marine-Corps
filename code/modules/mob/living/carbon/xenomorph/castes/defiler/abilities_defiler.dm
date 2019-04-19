@@ -71,10 +71,6 @@
 			recent_notice = world.time //anti-notice spam
 		return
 
-	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
-		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
-		return
-
 	if(!check_plasma(150))
 		return
 	last_defiler_sting = world.time
@@ -86,7 +82,7 @@
 
 	larva_injection(C)
 	larval_growth_sting(C)
-	
+
 
 /mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting_cooldown()
 	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
