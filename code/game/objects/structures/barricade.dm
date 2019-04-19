@@ -744,21 +744,22 @@
 		if(!WT.remove_fuel(0, user))
 			return FALSE
 
-			user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
-			"<span class='notice'>You begin repairing the damage to [src].</span>")
-			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-			busy = TRUE
 
-			if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY))
-				busy = FALSE
-				return
+		user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
+		"<span class='notice'>You begin repairing the damage to [src].</span>")
+		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		busy = TRUE
 
+		if(!do_after(user, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
 			busy = FALSE
-			user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
-			"<span class='notice'>You repair [src].</span>")
-			obj_integrity += 150
-			update_health()
-			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+			return
+
+		busy = FALSE
+		user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
+		"<span class='notice'>You repair [src].</span>")
+		obj_integrity += 150
+		update_health()
+		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 
 	switch(build_state)
 		if(2) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
