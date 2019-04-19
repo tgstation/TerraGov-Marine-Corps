@@ -257,6 +257,9 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 //  DISCONNECT  //
 //////////////////
 /client/Del()
+	if(isliving(mob))
+		var/mob/living/L = mob
+		L.away_time = world.time
 	if(holder)
 		if(check_rights(R_ADMIN, FALSE))
 			message_admins("Admin logout: [key_name(src)].")

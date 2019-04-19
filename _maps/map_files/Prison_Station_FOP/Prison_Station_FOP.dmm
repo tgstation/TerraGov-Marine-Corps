@@ -3,7 +3,7 @@
 /turf/closed/wall,
 /area/space)
 "aab" = (
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "aac" = (
 /turf/open/floor/prison/darkred/corners,
@@ -81,13 +81,13 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "aav" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "aaw" = (
 /turf/open/floor,
@@ -239,20 +239,20 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 9
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "aba" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "abb" = (
 /obj/effect/decal/warning_stripes{
 	tag = "icon-SW-in";
 	icon_state = "SW-in"
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "abc" = (
 /obj/machinery/door_control/timed_automatic{
@@ -377,17 +377,17 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "abD" = (
 /obj/effect/decal/warning_stripes,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "abE" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "abF" = (
 /turf/open/floor/prison/trim/red{
@@ -510,19 +510,19 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 10
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "ach" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "aci" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 6
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "acj" = (
 /turf/open/floor/prison/darkred/corners{
@@ -618,13 +618,13 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "acC" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "acD" = (
 /obj/effect/step_trigger/teleporter/random{
@@ -636,7 +636,7 @@
 	teleport_z = 4;
 	teleport_z_offset = 4
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "acE" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
@@ -1104,7 +1104,7 @@
 /area/prison/research/secret/testing)
 "adO" = (
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "adP" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -1448,7 +1448,7 @@
 	dir = 8
 	},
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/prison/research/secret/testing)
 "aeK" = (
 /obj/structure/bed,
@@ -1923,7 +1923,7 @@
 /area/prison/research/secret/testing)
 "agc" = (
 /obj/structure/table/reinforced,
-/obj/item/device/autopsy_scanner,
+/obj/item/autopsy_scanner,
 /turf/open/floor/prison/whitepurple/full,
 /area/prison/research/secret/testing)
 "agd" = (
@@ -3841,7 +3841,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
 "akJ" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber,
+/obj/effect/landmark/corpsespawner/prison_security,
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
 "akK" = (
@@ -4007,14 +4007,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
-"alc" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/prison/darkred/full,
-/area/prison/cellblock/maxsec/north)
 "ald" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -4122,10 +4114,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/darkred/full,
-/area/prison/cellblock/maxsec/north)
-"alr" = (
-/obj/effect/landmark/corpsespawner/prison_security,
-/turf/open/floor/plating,
 /area/prison/cellblock/maxsec/north)
 "als" = (
 /obj/machinery/light{
@@ -6115,7 +6103,7 @@
 /area/prison/research/secret/dissection)
 "apW" = (
 /obj/structure/table/reinforced,
-/obj/item/device/autopsy_scanner{
+/obj/item/autopsy_scanner{
 	pixel_y = 8
 	},
 /obj/item/paper_bin{
@@ -6405,7 +6393,7 @@
 	dir = 1
 	},
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/prison/research/secret/bioengineering)
 "aqL" = (
 /obj/machinery/light/small{
@@ -8358,7 +8346,7 @@
 /area/prison/medbay)
 "auS" = (
 /obj/structure/table/reinforced,
-/obj/item/device/defibrillator,
+/obj/item/defibrillator,
 /turf/open/floor/prison/whitegreen/full,
 /area/prison/medbay)
 "auT" = (
@@ -8903,7 +8891,7 @@
 /area/prison/hangar_storage/research)
 "awi" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/wood,
@@ -9885,7 +9873,7 @@
 /area/prison/chapel)
 "ayC" = (
 /obj/structure/closet,
-/obj/item/device/flashlight/lamp/menorah,
+/obj/item/flashlight/lamp/menorah,
 /turf/open/floor/wood,
 /area/prison/chapel)
 "ayD" = (
@@ -10829,7 +10817,7 @@
 /area/prison/residential/north)
 "aAO" = (
 /obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/prison/cellblock/maxsec/north)
 "aAP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -12430,11 +12418,11 @@
 	pixel_x = 12;
 	pixel_y = 8
 	},
-/obj/item/device/taperecorder{
+/obj/item/taperecorder{
 	pixel_x = 1;
 	pixel_y = 3
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	frequency = 1463;
 	pixel_x = 28;
 	pixel_y = -28
@@ -12589,7 +12577,7 @@
 /area/prison/quarters/research)
 "aEC" = (
 /obj/structure/table,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/wood,
@@ -12828,7 +12816,7 @@
 /area/prison/security/checkpoint/maxsec)
 "aFn" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -13321,13 +13309,13 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/wood,
 /area/prison/chapel)
 "aGt" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	frequency = 1463;
 	pixel_x = 28;
 	pixel_y = 21
@@ -14590,7 +14578,7 @@
 /area/prison/medbay)
 "aJc" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/whitegreen/full,
@@ -16507,7 +16495,7 @@
 /area/prison/quarters/research)
 "aMR" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/carpet,
@@ -17000,7 +16988,7 @@
 /area/prison/security/monitoring/lowsec/ne)
 "aOi" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -19227,7 +19215,7 @@
 /area/prison/security/checkpoint/highsec/n)
 "aTe" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -21308,7 +21296,7 @@
 /area/prison/hangar/main)
 "aXv" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/wood,
@@ -22628,7 +22616,7 @@
 /area/prison/command/quarters)
 "baB" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/carpet,
@@ -23515,7 +23503,7 @@
 /area/prison/residential/central)
 "bcR" = (
 /obj/structure/table,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/blue/full,
@@ -25317,7 +25305,7 @@
 /area/prison/security/monitoring/highsec)
 "bgB" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /obj/machinery/light{
@@ -27245,7 +27233,7 @@
 /area/prison/security/checkpoint/vip)
 "bkf" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -27351,7 +27339,7 @@
 "bkq" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bkr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -31557,7 +31545,7 @@
 "btd" = (
 /obj/structure/monorail,
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bte" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -34271,7 +34259,7 @@
 /area/prison/visitation)
 "bzc" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -35046,7 +35034,7 @@
 "bAP" = (
 /obj/structure/grille,
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bAQ" = (
 /obj/machinery/alarm,
@@ -35141,7 +35129,7 @@
 /area/prison/security/checkpoint/highsec/s)
 "bBc" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/trim/red{
@@ -36288,7 +36276,7 @@
 /area/prison/monorail/west)
 "bDE" = (
 /obj/structure/monorail,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bDF" = (
 /obj/machinery/light{
@@ -36332,7 +36320,7 @@
 /area/prison/security/checkpoint/highsec/s)
 "bDJ" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/trim/red{
@@ -38092,7 +38080,7 @@
 "bHd" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bHe" = (
 /obj/structure/cable{
@@ -38479,7 +38467,7 @@
 /turf/open/floor/prison,
 /area/prison/maintenance/hangar_barracks)
 "bIb" = (
-/obj/item/device/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor/prison,
 /area/prison/maintenance/hangar_barracks)
 "bIc" = (
@@ -38502,7 +38490,7 @@
 /area/prison/maintenance/hangar_barracks)
 "bIf" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/wood,
@@ -39378,7 +39366,7 @@
 /area/prison/security/checkpoint/highsec/s)
 "bJM" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -40754,7 +40742,7 @@
 /obj/structure/lattice,
 /obj/structure/monorail,
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bMW" = (
 /obj/machinery/light{
@@ -41447,7 +41435,7 @@
 /area/prison/toilet/security)
 "bOt" = (
 /obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/prison/residential/south)
 "bOu" = (
 /obj/effect/alien/weeds/node,
@@ -41840,7 +41828,7 @@
 /obj/structure/monorail{
 	dir = 6
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bPl" = (
 /obj/structure/table/reinforced,
@@ -42365,13 +42353,13 @@
 /obj/structure/monorail{
 	dir = 9
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bQD" = (
 /obj/structure/monorail{
 	dir = 5
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bQE" = (
 /obj/machinery/washing_machine,
@@ -42774,7 +42762,7 @@
 "bRG" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/extinguisher,
-/obj/item/device/assembly/infra,
+/obj/item/assembly/infra,
 /obj/effect/spawner/random/powercell,
 /turf/open/floor/prison,
 /area/prison/engineering)
@@ -43524,8 +43512,8 @@
 	icon_state = "1-4"
 	},
 /obj/structure/table/reinforced,
-/obj/item/device/assembly/timer,
-/obj/item/device/assembly/voice,
+/obj/item/assembly/timer,
+/obj/item/assembly/voice,
 /obj/item/tool/crowbar,
 /turf/open/floor/prison,
 /area/prison/engineering)
@@ -43866,7 +43854,7 @@
 /obj/structure/monorail{
 	dir = 10
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "bUh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -43984,7 +43972,7 @@
 /area/prison/security/checkpoint/medsec)
 "bUq" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -44091,7 +44079,7 @@
 /area/prison/library)
 "bUD" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/wood,
@@ -45838,7 +45826,7 @@
 "bYF" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/prison/disposal)
 "bYG" = (
 /obj/structure/disposaloutlet,
@@ -45846,7 +45834,7 @@
 	dir = 1
 	},
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/prison/disposal)
 "bYH" = (
 /obj/structure/cable{
@@ -46519,7 +46507,7 @@
 "cat" = (
 /obj/effect/spawner/random/toolbox,
 /obj/structure/table/reinforced,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor/prison,
 /area/prison/engineering)
 "cau" = (
@@ -46696,7 +46684,7 @@
 /area/prison/security)
 "caM" = (
 /obj/structure/table/reinforced,
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /turf/open/floor/prison/darkred/full,
 /area/prison/security)
 "caN" = (
@@ -46736,7 +46724,7 @@
 /area/prison/security/head)
 "caT" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/carpet,
@@ -47110,7 +47098,7 @@
 "cbI" = (
 /obj/structure/table/reinforced,
 /obj/item/folder,
-/obj/item/device/assembly/signaler,
+/obj/item/assembly/signaler,
 /turf/open/floor/prison,
 /area/prison/engineering)
 "cbJ" = (
@@ -47530,7 +47518,7 @@
 	dir = 4
 	},
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "ccA" = (
 /obj/structure/sink{
@@ -49250,12 +49238,12 @@
 /area/prison/security)
 "cfO" = (
 /obj/structure/table/woodentable,
-/obj/item/device/megaphone,
+/obj/item/megaphone,
 /turf/open/floor/prison,
 /area/prison/security/head)
 "cfP" = (
 /obj/structure/table/woodentable,
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /turf/open/floor/prison,
 /area/prison/security/head)
 "cfQ" = (
@@ -50418,7 +50406,7 @@
 /area/prison/cellblock/protective)
 "ciQ" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison,
@@ -51008,7 +50996,7 @@
 /area/prison/security/head)
 "ckh" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -52054,7 +52042,7 @@
 /area/prison/security/monitoring/protective)
 "cmu" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -52569,7 +52557,7 @@
 /obj/structure/monorail{
 	dir = 4
 	},
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "cnD" = (
 /obj/machinery/disposal/deliveryChute{
@@ -52577,7 +52565,7 @@
 	},
 /obj/structure/lattice,
 /obj/structure/disposalpipe/trunk,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "cnE" = (
 /obj/machinery/light{
@@ -53766,7 +53754,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/item/device/radio/electropack,
+/obj/item/radio/electropack,
 /obj/item/clothing/head/helmet,
 /turf/open/floor/prison,
 /area/prison/execution)
@@ -54257,7 +54245,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/disposal)
 "crG" = (
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /obj/structure/table/reinforced,
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -54274,7 +54262,7 @@
 	},
 /area/prison/execution)
 "crI" = (
-/obj/item/device/assembly/signaler{
+/obj/item/assembly/signaler{
 	code = 2;
 	frequency = 1449
 	},
@@ -54326,7 +54314,7 @@
 	},
 /area/prison/pirate)
 "crP" = (
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor/carpet,
 /area/prison/pirate)
 "crQ" = (
@@ -54540,7 +54528,7 @@
 	},
 /obj/structure/lattice,
 /obj/structure/disposalpipe/segment,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "cst" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -54746,7 +54734,7 @@
 	dir = 6
 	},
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "csS" = (
 /obj/structure/table/reinforced,
@@ -55115,7 +55103,7 @@
 	},
 /obj/structure/lattice,
 /obj/structure/disposalpipe/segment,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "ctz" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -55135,7 +55123,7 @@
 	dir = 1
 	},
 /obj/structure/lattice,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "ctC" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
@@ -55261,7 +55249,7 @@
 /area/prison/cellblock/mediumsec/south)
 "ctW" = (
 /obj/structure/shuttle/engine/propulsion,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/prison/pirate)
 "ctX" = (
 /turf/open/floor/prison/yellow/corner,
@@ -55318,7 +55306,7 @@
 /area/prison/cellblock/mediumsec/east)
 "cuf" = (
 /obj/item/stack/sheet/metal,
-/turf/open/nostromowater,
+/turf/open/beach/water,
 /area/space)
 "cug" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -55344,7 +55332,7 @@
 /area/prison/pirate)
 "cuj" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/carpet,
@@ -55877,7 +55865,7 @@
 /area/prison/pirate)
 "cvp" = (
 /obj/structure/table/reinforced,
-/obj/item/device/defibrillator,
+/obj/item/defibrillator,
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/plating,
 /area/prison/pirate)
@@ -57724,7 +57712,7 @@
 /area/prison/security/monitoring/medsec/south)
 "czz" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	on = 0
 	},
 /turf/open/floor/prison/trim/red{
@@ -89348,10 +89336,10 @@ ags
 ags
 ahN
 ajN
-acO
+ajN
 akH
 ala
-acO
+ajN
 ajN
 aff
 akV
@@ -90119,12 +90107,10 @@ ags
 ags
 ahN
 ajx
-ajP
-akm
-acO
+ajN
+ajN
+acS
 akJ
-alc
-alr
 ajN
 aff
 akV
@@ -90304,7 +90290,7 @@ aab
 aab
 acD
 aab
-aab
+acD
 aab
 aab
 aab

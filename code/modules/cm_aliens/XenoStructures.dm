@@ -145,7 +145,7 @@
 /obj/effect/alien/resin/sticky/thin
 	name = "thin sticky resin"
 	desc = "A thin layer of disgusting sticky slime."
-	health = 7
+	health = 6
 	slow_amt = 4
 
 
@@ -281,6 +281,12 @@
 		if(!locate(/obj/effect/alien/weeds) in loc)
 			new /obj/effect/alien/weeds(loc)
 	..()
+
+/obj/structure/mineral_door/resin/proc/thicken()
+	var/oldloc = loc
+	qdel(src)
+	new /obj/structure/mineral_door/resin/thick(oldloc)
+	return TRUE
 
 /obj/structure/mineral_door/resin/attack_paw(mob/user as mob)
 	if(user.a_intent == INTENT_HARM)
@@ -431,6 +437,8 @@
 	health = 160
 	hardness = 2.0
 
+/obj/structure/mineral_door/resin/thick/thicken()
+	return FALSE
 
 /*
  * Egg

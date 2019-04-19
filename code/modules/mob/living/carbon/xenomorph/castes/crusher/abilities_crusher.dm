@@ -48,9 +48,8 @@
 		if(isxeno(M) || M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)))
 			continue
 		var/distance = get_dist(M, loc)
-		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS) / max(1,distance + 1)
-		if(frenzy_aura > 0)
-			damage *= (1 + round(frenzy_aura * 0.1,0.01)) //+10% per level of Frenzy
+		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(src)) / max(1,distance + 1)
+		damage += FRENZY_DAMAGE_BONUS(src)
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			round_statistics.crusher_stomp_victims++
 			var/armor_block = M.run_armor_check("chest", "melee") * 0.5 //Only 50% armor applies vs stomp brute damage
@@ -179,8 +178,7 @@
 	//Handle the damage
 	if(!istype(X) || hivenumber != X.hivenumber) //Friendly xenos don't take damage.
 		var/damage = toss_distance * 5
-		if(frenzy_aura)
-			damage *= (1 + round(frenzy_aura * 0.1,0.01)) //+10% damage per level of frenzy
+		damage += FRENZY_DAMAGE_BONUS(src)
 		var/armor_block = M.run_armor_check("chest", "melee")
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M

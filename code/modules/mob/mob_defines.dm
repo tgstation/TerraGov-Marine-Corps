@@ -116,7 +116,7 @@
 
 	var/in_throw_mode = 0
 
-	var/canEnterVentWith = "/obj/item/implant=0&/obj/item/clothing/mask/facehugger=0&/obj/item/device/radio/borg=0&/obj/machinery/camera=0&/obj/item/verbs=0" // Vent crawling whitelisted items, whoo
+	var/canEnterVentWith = "/obj/item/implant=0&/obj/item/clothing/mask/facehugger=0&/obj/item/radio/borg=0&/obj/machinery/camera=0&/obj/item/verbs=0" // Vent crawling whitelisted items, whoo
 
 
 	var/smoke_delay = FALSE
@@ -170,8 +170,6 @@
 	var/audio_emote_time = 1
 
 	var/list/active_genes=list()
-
-	var/away_timer = 0 //How long the player has been disconnected
 
 	var/recently_pointed_to = 0 //used as cooldown for the pointing verb.
 

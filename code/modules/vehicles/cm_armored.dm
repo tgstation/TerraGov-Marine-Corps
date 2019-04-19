@@ -580,11 +580,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		handle_player_entrance(M) //will call the get out of tank proc on its own
 		return
 
-	var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + dam_bonus
-
-	//Frenzy auras stack in a way, then the raw value is multipled by two to get the additive modifier
-	if(M.frenzy_aura > 0)
-		damage += (M.frenzy_aura * 2)
+	var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + dam_bonus + FRENZY_DAMAGE_BONUS(M)
 
 	M.animation_attack_on(src)
 

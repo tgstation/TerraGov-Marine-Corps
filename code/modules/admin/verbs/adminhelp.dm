@@ -966,7 +966,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 							if(!ai_found && isAI(found))
 								ai_found = 1
 							founds += "Name: [found.name]([found.real_name]) Key: [found.key] Ckey: [found.ckey] "
-							msg += "[original_word]<font size='1' color='black'>(<A HREF='?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(found)]'>?</A>|<A HREF='?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(found)]'>FLW</A>)</font> "
+							msg += "[original_word]<font size='1'>(<A HREF='?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(found)]'>?</A>|<A HREF='?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(found)]'>FLW</A>)</font> "
 							continue
 		msg += "[original_word] "
 	if(irc)

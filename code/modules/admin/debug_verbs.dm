@@ -220,7 +220,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set category = "Debug"
 	set name = "Debug Mob Lists"
 
-	var/dat = "<html><head><title>"
+	var/dat
 
 	var/choice = input("Which list?") as null|anything in list("Players", "Admins", "Clients", "Mobs", "Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
 	if(!choice)
@@ -228,69 +228,57 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	switch(choice)
 		if("Players")
-			dat += "Players</title></head><body>"
 			for(var/i in GLOB.player_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Admins")
-			dat += "Admins</title></head><body>"
 			for(var/i in GLOB.admins)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Clients")
-			dat += "Clients</title></head><body>"
 			for(var/i in GLOB.clients)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Mobs")
-			dat += "Mobs</title></head><body>"
 			for(var/i in GLOB.mob_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Living Mobs")
-			dat += "Living Mobs</title></head><body>"
 			for(var/i in GLOB.alive_mob_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Dead Mobs")
-			dat += "Dead Mobs</title></head><body>"
 			for(var/i in GLOB.dead_mob_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Xenos")
-			dat += "Xenos</title></head><body>"
 			for(var/i in GLOB.xeno_mob_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Alive Xenos")
-			dat += "Alive Xenos</title></head><body>"
 			for(var/i in GLOB.alive_xeno_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Dead Xenos")
-			dat += "Dead Xenos</title></head><body>"
 			for(var/i in GLOB.dead_xeno_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Humans")
-			dat += "Humans</title></head><body>"
 			for(var/i in GLOB.human_mob_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Alive Humans")
-			dat += "Alive Humans</title></head><body>"
 			for(var/i in GLOB.alive_human_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Dead Humans")
-			dat += "Dead Humans</title></head><body>"
-			for(var/i in GLOB.player_list)
+			for(var/i in GLOB.dead_human_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 
-	dat += "</body></html>"
-
-	usr << browse(dat, "window=moblists")
+	var/datum/browser/browser = new(usr, "moblists", "<div align='center'>[choice]</div>")
+	browser.set_content(dat)
+	browser.open(FALSE)
 
 	log_admin("[key_name(usr)] is debugging the [choice] list.")
 	message_admins("[ADMIN_TPMONTY(usr)] is debugging the [choice] list.")

@@ -13,11 +13,6 @@ obj/machinery/door/airlock/proc/can_radio()
 		return 0
 	return 1
 
-obj/machinery/door/airlock/process()
-	..()
-	if (arePowerSystemsOn())
-		execute_current_command()
-
 obj/machinery/door/airlock/receive_signal(datum/signal/signal)
 	if (!arePowerSystemsOn()) return //no power
 
@@ -140,7 +135,6 @@ obj/machinery/door/airlock/Initialize()
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
-	start_processing()
 	update_icon()
 
 obj/machinery/airlock_sensor

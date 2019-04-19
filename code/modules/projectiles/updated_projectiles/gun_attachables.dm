@@ -494,7 +494,7 @@ Defined in conflicts.dm of the #defines folder.
 			S.remove_from_storage(src)
 		if(loc == user)
 			user.temporarilyRemoveItemFromInventory(src)
-		var/obj/item/device/flashlight/F = new(user)
+		var/obj/item/flashlight/F = new(user)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		qdel(src) //Delete da old flashlight
 	else
@@ -1074,10 +1074,7 @@ Defined in conflicts.dm of the #defines folder.
 	if(!istype(T))
 		return
 
-	for(var/obj/flamer_fire/F in T) // No stacking flames!
-		qdel(F)
-
-	new/obj/flamer_fire(T)
+	T.ignite()
 
 	var/fire_mod
 	for(var/mob/living/carbon/M in T) //Deal bonus damage if someone's caught directly in initial stream

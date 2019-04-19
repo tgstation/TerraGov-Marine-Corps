@@ -68,12 +68,12 @@
 	armor = list("melee" = 45, "bullet" = 45, "laser" = 35, "energy" = 25, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 25)
 	allowed = list(
 			/obj/item/weapon/gun,
-			/obj/item/device/flashlight,
+			/obj/item/flashlight,
 			/obj/item/ammo_magazine/,
 			/obj/item/storage/fancy/cigarettes,
 			/obj/item/tool/lighter,
 			/obj/item/explosive/grenade,
-			/obj/item/device/binoculars,
+			/obj/item/binoculars,
 			/obj/item/weapon/combat_knife,
 			/obj/item/storage/sparepouch,
 			/obj/item/storage/large_holster/machete)

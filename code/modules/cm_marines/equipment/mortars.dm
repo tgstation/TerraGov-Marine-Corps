@@ -303,12 +303,12 @@
 /obj/item/mortal_shell/flare/detonate(var/turf/T)
 
 	//TODO: Add flare sound
-	new /obj/item/device/flashlight/flare/on/illumination(T)
+	new /obj/item/flashlight/flare/on/illumination(T)
 	playsound(T, 'sound/weapons/gun_flare.ogg', 50, 1, 4)
 
 //Special flare subtype for the illumination flare shell
 //Acts like a flare, just even stronger, and set length
-/obj/item/device/flashlight/flare/on/illumination
+/obj/item/flashlight/flare/on/illumination
 
 	name = "illumination flare"
 	desc = "It's really bright, and unreachable."
@@ -322,12 +322,12 @@
 		..()
 		fuel = rand(400, 500) // Half the duration of a flare, but justified since it's invincible
 
-/obj/item/device/flashlight/flare/on/illumination/turn_off()
+/obj/item/flashlight/flare/on/illumination/turn_off()
 
 	..()
 	qdel(src)
 
-/obj/item/device/flashlight/flare/on/illumination/ex_act(severity)
+/obj/item/flashlight/flare/on/illumination/ex_act(severity)
 
 	return //Nope
 
@@ -376,6 +376,6 @@
 	new /obj/item/mortal_shell/flare(src)
 	new /obj/item/mortal_shell/smoke(src)
 	new /obj/item/mortal_shell/smoke(src)
-	new /obj/item/device/encryptionkey/engi(src)
-	new /obj/item/device/encryptionkey/engi(src)
-	new /obj/item/device/binoculars/tactical/range(src)
+	new /obj/item/encryptionkey/engi(src)
+	new /obj/item/encryptionkey/engi(src)
+	new /obj/item/binoculars/tactical/range(src)

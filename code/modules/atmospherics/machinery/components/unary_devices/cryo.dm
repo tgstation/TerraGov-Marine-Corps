@@ -309,8 +309,8 @@
 			user.visible_message("[user] adds \a [W] to \the [src]!", "You add \a [W] to \the [src]!")
 		return
 
-	else if(istype(W, /obj/item/device/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
-		var/obj/item/device/healthanalyzer/J = W
+	else if(istype(W, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
+		var/obj/item/healthanalyzer/J = W
 		J.attack(occupant, user)
 		return
 

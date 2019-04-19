@@ -35,6 +35,8 @@
 	GLOB.object_list += src
 
 /obj/Destroy()
+	if(buckled_mob)
+		unbuckle()
 	. = ..()
 	GLOB.object_list -= src
 
@@ -115,10 +117,6 @@
 
 /obj/proc/hear_talk(mob/M, text)
 	return
-
-/obj/Destroy()
-	if(buckled_mob) unbuckle()
-	. = ..()
 
 /obj/attack_paw(mob/user)
 	if(can_buckle) return src.attack_hand(user)

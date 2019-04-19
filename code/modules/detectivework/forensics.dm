@@ -44,7 +44,7 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 	uid = "\ref [A]"
 	fields["name"] = sanitize(A.name)
 	fields["area"] = sanitize("[get_area(A)]")
-	fields["fprints"] = A.fingerprints ? A.fingerprints.Copy() : list()
+	fields["fprints"] = A.return_fingerprints()
 	fields["fibers"] = A.suit_fibers ? A.suit_fibers.Copy() : list()
 	fields["blood"] = A.blood_DNA ? A.blood_DNA.Copy() : list()
 	fields["time"] = world.time
@@ -71,3 +71,41 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 
 	fields["area"] = other.fields["area"]
 	fields["time"] = other.fields["time"]
+
+
+/atom/proc/add_fingerprint(mob/M, ignoregloves = FALSE)
+	var/datum/component/forensics/D = AddComponent(/datum/component/forensics)
+	. = D.add_fingerprint(M, ignoregloves)
+
+
+/atom/proc/add_fingerprint_list(list/fingerprints)
+	if(length(fingerprints))
+		. = AddComponent(/datum/component/forensics, fingerprints)
+
+
+/atom/proc/add_hiddenprint_list(list/hiddenprints)
+	if(length(hiddenprints))
+		. = AddComponent(/datum/component/forensics, null, hiddenprints)
+
+
+/atom/proc/add_hiddenprint(mob/M)
+	var/datum/component/forensics/D = AddComponent(/datum/component/forensics)
+	. = D.add_hiddenprint(M)
+
+
+/atom/proc/return_fingerprints()
+	GET_COMPONENT(D, /datum/component/forensics)
+	if(D)
+		. = D.fingerprints
+
+
+/atom/proc/return_hiddenprints()
+	GET_COMPONENT(D, /datum/component/forensics)
+	if(D)
+		. = D.hiddenprints
+
+
+/atom/proc/transfer_fingerprints_to(atom/A)
+	A.add_fingerprint_list(return_fingerprints())
+	A.add_hiddenprint_list(return_hiddenprints())
+	A.fingerprintslast = fingerprintslast

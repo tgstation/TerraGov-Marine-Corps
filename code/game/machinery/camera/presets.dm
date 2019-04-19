@@ -121,7 +121,7 @@
 	return null
 
 /obj/machinery/camera/proc/isMotion()
-	var/O = locate(/obj/item/device/assembly/prox_sensor) in assembly.upgrades
+	var/O = locate(/obj/item/assembly/prox_sensor) in assembly.upgrades
 	return O
 
 // UPGRADE PROCS
@@ -136,7 +136,7 @@
 
 // If you are upgrading Motion, and it isn't in the camera's New(), add it to the machines list.
 /obj/machinery/camera/proc/upgradeMotion()
-	assembly.upgrades.Add(new /obj/item/device/assembly/prox_sensor(assembly))
+	assembly.upgrades.Add(new /obj/item/assembly/prox_sensor(assembly))
 	setPowerUsage()
 
 /obj/machinery/camera/proc/setPowerUsage()

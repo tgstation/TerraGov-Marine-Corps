@@ -122,7 +122,7 @@
 			if(!istype(usr,/mob/living/silicon)) return
 			if(toner >= 5)
 				var/mob/living/silicon/tempAI = usr
-				var/obj/item/device/camera/siliconcam/camera = tempAI.aiCamera
+				var/obj/item/camera/siliconcam/camera = tempAI.aiCamera
 
 				if(!camera)
 					return
@@ -166,7 +166,7 @@
 					to_chat(user, "<span class='notice'>You insert the bundle into \the [src].</span>")
 					flick("bigscanner1", src)
 					updateUsrDialog()
-		else if(istype(O, /obj/item/device/toner))
+		else if(istype(O, /obj/item/toner))
 			if(toner == 0)
 				if(user.temporarilyRemoveItemFromInventory(O))
 					qdel(O)
@@ -269,6 +269,6 @@
 	return p
 
 
-/obj/item/device/toner
+/obj/item/toner
 	name = "toner cartridge"
 	icon_state = "tonercartridge"

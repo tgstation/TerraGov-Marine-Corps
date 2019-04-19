@@ -184,9 +184,7 @@
 			continue
 		if(istype(T,/turf/open/space))
 			continue
-		for(var/obj/flamer_fire/F in T) // No stacking flames!
-			qdel(F)
-		new /obj/flamer_fire(T, 5 + rand(0,11))
+		T.ignite(5 + rand(0,11))
 
 
 /datum/chemical_reaction/chemsmoke

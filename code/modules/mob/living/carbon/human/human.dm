@@ -1486,7 +1486,7 @@
 			if(G.turn_off_light(src))
 				light_off++
 	if(flares)
-		for(var/obj/item/device/flashlight/flare/F in contents)
+		for(var/obj/item/flashlight/flare/F in contents)
 			if(F.on)
 				goes_out++
 			F.turn_off(src)
@@ -1498,8 +1498,8 @@
 		for(var/obj/item/clothing/head/hardhat/H in contents)
 			if(H.turn_off_light(src))
 				light_off++
-		for(var/obj/item/device/flashlight/L in contents)
-			if(istype(L, /obj/item/device/flashlight/flare))
+		for(var/obj/item/flashlight/L in contents)
+			if(istype(L, /obj/item/flashlight/flare))
 				continue
 			if(L.turn_off_light(src))
 				light_off++
@@ -1689,13 +1689,12 @@
 
 
 /mob/living/carbon/human/take_over(mob/M)
-	assigned_squad?.clean_marine_from_squad(src)
+	if(assigned_squad)
+		assigned_squad.clean_marine_from_squad(src)
 
 	. = ..()
 
 	set_rank(job)
-
-	fully_replace_character_name(real_name, M.real_name)
 
 	if(assigned_squad)
 		change_squad(assigned_squad.name)
@@ -1731,13 +1730,13 @@
 		ID.assigned_fireteam = 0
 
 	//Headset frequency.
-	if(istype(wear_ear, /obj/item/device/radio/headset/almayer/marine))
-		var/obj/item/device/radio/headset/almayer/marine/E = wear_ear
+	if(istype(wear_ear, /obj/item/radio/headset/almayer/marine))
+		var/obj/item/radio/headset/almayer/marine/E = wear_ear
 		E.set_frequency(S.radio_freq)
 	else
 		if(wear_ear)
 			dropItemToGround(wear_ear)
-		var/obj/item/device/radio/headset/almayer/marine/E = new
+		var/obj/item/radio/headset/almayer/marine/E = new
 		equip_to_slot_or_del(E, SLOT_EARS)
 		E.set_frequency(S.radio_freq)
 		update_icons()
