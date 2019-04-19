@@ -602,7 +602,7 @@ below 100 is not dizzy
 	if(!M.mind)
 		to_chat(M, "<span class='warning'>You don't have a mind.</span>")
 		return FALSE
-	if(!bypass && (key || ckey))
+	if(!bypass && client)
 		to_chat(M, "<span class='warning'>That mob has already been taken.</span>")
 		return FALSE
 	if(!bypass && job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))

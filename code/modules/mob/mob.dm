@@ -334,6 +334,12 @@
 	return 1
 
 
+/mob/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Player Panel"] = "?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
+
+
 /mob/proc/update_flavor_text()
 	set src in usr
 	if(usr != src)

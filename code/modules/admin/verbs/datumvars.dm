@@ -227,7 +227,7 @@
 		formatted_type = null
 
 	var/marked
-	if(holder && holder.marked_datum && holder.marked_datum == D)
+	if(holder?.marked_datum && holder.marked_datum == D)
 		marked = VV_MSG_MARKED
 	var/varedited_line = ""
 	if(!islist && (D.datum_flags & DF_VAR_EDITED))
@@ -1214,3 +1214,14 @@
 		AM.update_icon()
 
 		log_admin("[key_name(usr)] updated the icon of [AM].")
+
+
+	else if(href_list["playerpanel"])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/mob/M = locate(href_list["playerpanel"])
+		if(!istype(M))
+			return
+
+		usr.client.holder.show_player_panel(M)

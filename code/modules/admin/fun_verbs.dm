@@ -1068,7 +1068,7 @@
 
 	var/mob/living/L = M
 
-	if(L.key || L.ckey)
+	if(L.client)
 		if(alert("This mob has a player inside, are you sure you want to proceed?", "Offer Mob", "Yes", "No") != "Yes")
 			return
 		L.ghostize(FALSE)
@@ -1083,6 +1083,9 @@
 				return
 
 	else if(alert("Are you sure you want to offer this mob?", "Offer Mob", "Yes", "No") != "Yes")
+		return
+
+	if(!istype(L))
 		return
 
 	L.offer_mob()

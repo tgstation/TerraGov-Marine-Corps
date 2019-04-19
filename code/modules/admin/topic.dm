@@ -1641,3 +1641,38 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		log_admin("[key_name(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [key_name(L)].")
 		message_admins("[ADMIN_TPMONTY(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(L)].")
+
+
+	else if(href_list["offer"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/living/L = locate(href_list["offer"]) in GLOB.mob_living_list
+
+		if(!istype(L))
+			return
+
+		if(L.client)
+			if(alert("This mob has a player inside, are you sure you want to proceed?", "Offer Mob", "Yes", "No") != "Yes")
+				return
+			L.ghostize(FALSE)
+		else if(L in GLOB.offered_mob_list)
+			switch(alert("This mob has been offered, do you want to re-announce it?", "Offer Mob", "Yes", "Remove", "Cancel"))
+				if("Cancel")
+					return
+				if("Remove")
+					GLOB.offered_mob_list -= L
+					log_admin("[key_name(usr)] has removed offer of [key_name_admin(M)].")
+					message_admins("[ADMIN_TPMONTY(usr)] has removed offer of [ADMIN_TPMONTY(M)].")
+					return
+
+		else if(alert("Are you sure you want to offer this mob?", "Offer Mob", "Yes", "No") != "Yes")
+			return
+
+		if(!istype(L))
+			return
+
+		L.offer_mob()
+
+		log_admin("[key_name(usr)] has offered [key_name_admin(M)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has offered [ADMIN_TPMONTY(M)].")
