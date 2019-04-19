@@ -470,7 +470,8 @@
 			<br>
 			<a href='?src=[ref];thunderdome=[REF(M)]'>Thunderdome</a> |
 			<a href='?src=[ref];gib=[REF(M)]'>Gib</a> |
-			<a href='?src=[ref];offer=[REF(M)]'>Offer Mob</a>"}
+			<a href='?src=[ref];offer=[REF(M)]'>Offer Mob</a> |
+			<a href='?src=[ref];give=[REF(M)]'>Give Mob</a>"}
 		if(ishuman(M))
 			body += "| <a href='?src=[ref];setrank=[REF(M)]'>Select Rank</a> | "
 			body += "<a href='?src=[ref];setequipment=[REF(M)]'>Select Equipment</a> | "

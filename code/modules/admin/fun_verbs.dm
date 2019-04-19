@@ -1056,17 +1056,12 @@
 	message_admins("[ADMIN_TPMONTY(usr)] updated the [modification] of [ADMIN_TPMONTY(H)].")
 
 
-/datum/admins/proc/offer(mob/M in GLOB.mob_list)
+/datum/admins/proc/offer(mob/living/L in GLOB.mob_living_list)
 	set category = "Fun"
 	set name = "Offer Mob"
 
 	if(!check_rights(R_FUN))
 		return
-
-	if(!isliving(M))
-		return
-
-	var/mob/living/L = M
 
 	if(L.client)
 		if(alert("This mob has a player inside, are you sure you want to proceed?", "Offer Mob", "Yes", "No") != "Yes")
@@ -1078,8 +1073,8 @@
 				return
 			if("Remove")
 				GLOB.offered_mob_list -= L
-				log_admin("[key_name(usr)] has removed offer of [key_name_admin(M)].")
-				message_admins("[ADMIN_TPMONTY(usr)] has removed offer of [ADMIN_TPMONTY(M)].")
+				log_admin("[key_name(usr)] has removed offer of [key_name_admin(L)].")
+				message_admins("[ADMIN_TPMONTY(usr)] has removed offer of [ADMIN_TPMONTY(L)].")
 				return
 
 	else if(alert("Are you sure you want to offer this mob?", "Offer Mob", "Yes", "No") != "Yes")
@@ -1090,8 +1085,8 @@
 
 	L.offer_mob()
 
-	log_admin("[key_name(usr)] has offered [key_name_admin(M)].")
-	message_admins("[ADMIN_TPMONTY(usr)] has offered [ADMIN_TPMONTY(M)].")
+	log_admin("[key_name(usr)] has offered [key_name_admin(L)].")
+	message_admins("[ADMIN_TPMONTY(usr)] has offered [ADMIN_TPMONTY(L)].")
 
 
 /datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.xeno_mob_list)
