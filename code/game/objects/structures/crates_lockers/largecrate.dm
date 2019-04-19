@@ -30,10 +30,11 @@
 	if(iscrowbar(I))
 		new /obj/item/stack/sheet/wood(src)
 		var/turf/T = get_turf(src)
-		if(!spawn_type || !spawn_amount)
-			return
-		for(var/i in 1 to spawn_amount)
-			new spawn_type(T)
+		if(spawn_type && spawn_amount)
+			for(var/i in 1 to spawn_amount)
+				new spawn_type(T)
+		for(var/obj/O in contents)
+			O.forceMove(loc)
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
 							 "<span class='notice'>You pry open \the [src].</span>", \
 							 "<span class='notice'>You hear splitting wood.</span>")
