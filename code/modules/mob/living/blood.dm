@@ -360,8 +360,6 @@
 		return
 	if(issynth(src))
 		return "whiteblood"
-	if(iszombie(src))
-		return "greyblood"
 	return "blood"
 
 /mob/living/simple_animal/mouse/get_blood_id()

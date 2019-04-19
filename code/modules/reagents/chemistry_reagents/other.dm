@@ -761,29 +761,6 @@
 /datum/reagent/consumable/lipozine/overdose_crit_process(mob/living/M, alien)
 	M.apply_damages(1, 3, 1)
 
-/datum/reagent/blackgoo
-	name = "Black goo"
-	id = "blackgoo"
-	description = "A strange dark liquid of unknown origin and effect."
-	reagent_state = LIQUID
-	color = "#222222"
-	custom_metabolism = INFINITY //disappears immediately
-	taste_description = "mud"
-
-/datum/reagent/blackgoo/reaction_mob(mob/M, method=TOUCH, reac_volume)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.species.count_human)
-			H.contract_disease(new /datum/disease/black_goo)
-
-/datum/reagent/blackgoo/reaction_turf(turf/T, volume)
-	if(!istype(T))
-		return
-	if(volume < 3)
-		return
-	if(!(locate(/obj/effect/decal/cleanable/blackgoo) in T))
-		new /obj/effect/decal/cleanable/blackgoo(T)
-
 /datum/reagent/xeno_neurotoxin
 	name = "Neurotoxin"
 	id = "xeno_toxin"

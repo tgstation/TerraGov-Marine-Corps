@@ -6,7 +6,7 @@
 	icon_state = "body_m_s"
 	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, STATUS_HUD_OBSERVER_INFECTION, ORDER_HUD)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
-	var/regenZ = 1 //Temp zombie thing until I write a better method ~Apop
+
 
 /mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/lay_down
