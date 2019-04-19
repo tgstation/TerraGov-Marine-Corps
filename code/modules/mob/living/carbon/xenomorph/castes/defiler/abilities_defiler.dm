@@ -50,7 +50,7 @@
 		return TRUE
 
 /mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting(mob/living/carbon/C)
-	if(!check_state() || !C?.can_sting())
+	if(!check_state() || !(C?.can_sting()))
 		return
 
 	if(world.time < last_defiler_sting + DEFILER_STING_COOLDOWN) //Sure, let's use this.
@@ -59,10 +59,6 @@
 
 	if(stagger)
 		to_chat(src, "<span class='warning'>You try to sting but are too disoriented!</span>")
-		return
-
-	if(!C.can_sting())
-		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
 		return
 
 	if(!Adjacent(C))
@@ -80,7 +76,8 @@
 
 	addtimer(CALLBACK(src, .defiler_sting_cooldown), DEFILER_STING_COOLDOWN)
 
-	larva_injection(C)
+	if(!CHECK_BITFIELD(C.status_flags, XENO_HOST))
+		larva_injection(C, FALSE)
 	larval_growth_sting(C)
 
 
