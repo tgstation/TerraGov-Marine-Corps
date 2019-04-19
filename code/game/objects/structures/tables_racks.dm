@@ -318,7 +318,8 @@
 	else if((I.flags_item & ITEM_ABSTRACT))
 		return
 
-	user.transferItemToLoc(I, loc)
+	else
+		user.transferItemToLoc(I, loc)
 
 
 /obj/structure/table/proc/straight_table_check(var/direction)
