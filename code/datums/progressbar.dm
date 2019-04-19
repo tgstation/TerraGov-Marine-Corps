@@ -4,16 +4,16 @@
 	var/bar_tag = PROG_BAR_GENERIC
 	var/bg_tag = PROG_BG_GENERIC
 	var/frame_tag = PROG_FRAME_GENERIC
-	var/image/progress/bar/bar
-	var/image/progress/bg/bg
-	var/image/progress/frame/frame
+	var/image/mutable_appearance/progress/bar/bar
+	var/image/mutable_appearance/progress/bg/bg
+	var/image/mutable_appearance/progress/frame/frame
 	var/datum/progressicon/prog_display
 	var/shown = FALSE
 	var/mob/user
 	var/client/client
 	var/listindex
 
-/datum/progressbar/New(mob/U, goal_number, atom/target, image/progress/display/new_display)
+/datum/progressbar/New(mob/U, goal_number, atom/target, image/mutable_appearance/progress/display/new_display)
 	. = ..()
 	if (!istype(target))
 		EXCEPTION("Invalid target given")
@@ -26,7 +26,8 @@
 		prog_display = new (U, target, new_display)
 	if(!bar_tag)
 		return
-	bar = new bar_tag(loc = target) // Image/New() args override the parent, thanks Byond.
+	bar = new bar_tag ()
+	bar.loc = target
 	LAZYINITLIST(user.progressbars)
 	LAZYINITLIST(user.progressbars[bar.loc])
 	LAZYINITLIST(user.progbar_towers)
@@ -87,43 +88,43 @@
 			tower_height -= bar.height
 			if(tower_height <= 0)
 				LAZYREMOVE(user.progbar_towers, bar.loc)
-		INVOKE_ASYNC(bar, /image/progress/proc/fade_out, client, frame, bg)
+		INVOKE_ASYNC(bar, /image/mutable_appearance/progress/proc/fade_out, client, frame, bg)
 
 	qdel(prog_display)
 
 	return ..()
 
-/image/progress
+/image/mutable_appearance/progress
 	icon = 'icons/effects/progressbar.dmi'
 	plane = ABOVE_HUD_PLANE
 	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 
-/image/progress/proc/fade_out(client, bar_bg, bar_frame)
+/image/mutable_appearance/progress/proc/fade_out(client, bar_bg, bar_frame)
 	animate(src, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
 	addtimer(CALLBACK(src, .proc/letsdeleteourself, client, bar_bg, bar_frame), PROGRESSBAR_ANIMATION_TIME + 1)
 
-/image/progress/proc/letsdeleteourself(client/client, bar_bg, bar_frame)
+/image/mutable_appearance/progress/proc/letsdeleteourself(client/client, bar_bg, bar_frame)
 	if(client)
 		client.images -= src
 	qdel(bar_bg)
 	qdel(bar_frame)
 	qdel(src)
 
-/image/progress/bar
+/image/mutable_appearance/progress/bar
 	icon_state = "prog_bar_1"
 	layer = HUD_LAYER
 	alpha = 0
 	var/interval = 5
 	var/height = PROGRESSBAR_STANDARD_HEIGHT
 
-/image/progress/bar/proc/update_icon(progress, goal)
+/image/mutable_appearance/progress/bar/proc/update_icon(progress, goal)
 	icon_state = "[initial(icon_state)]_[round(((progress / goal) * 100), interval)]"
 
-/image/progress/bg
+/image/mutable_appearance/progress/bg
 	icon_state = "prog_bar_1_bg"
 	appearance_flags = APPEARANCE_UI
 
-/image/progress/frame
+/image/mutable_appearance/progress/frame
 	icon_state = "prog_bar_1_frame"
 	appearance_flags = APPEARANCE_UI
 
@@ -132,38 +133,38 @@
 	bar_tag = PROG_BAR_BATTERY
 	frame_tag = PROG_FRAME_BATTERY
 
-/image/progress/bar/battery
+/image/mutable_appearance/progress/bar/battery
 	icon_state = "prog_bar_2"
 	interval = 10
 
-/image/progress/frame/battery
+/image/mutable_appearance/progress/frame/battery
 	icon_state = "prog_bar_2_frame"
 
 /datum/progressbar/traffic
 	bar_tag = PROG_BAR_TRAFFIC
 	frame_tag = PROG_FRAME_TRAFFIC
 
-/image/progress/bar/traffic
+/image/mutable_appearance/progress/bar/traffic
 	icon_state = "prog_bar_2"
 	interval = 25
 
-/image/progress/frame/traffic
+/image/mutable_appearance/progress/frame/traffic
 	icon_state = "prog_bar_3_frame"
 
 /datum/progressbar/mono
 	bar_tag = PROG_BAR_GRAYSCALE
 
-/image/progress/bar/mono
+/image/mutable_appearance/progress/bar/mono
 	icon_state = "prog_bar_3"
 
 /datum/progressbar/brass
 	bar_tag = PROG_BAR_BRASS
 	frame_tag = PROG_FRAME_BRASS
 
-/image/progress/bar/mono/brass
+/image/mutable_appearance/progress/bar/mono/brass
 	color = "#FFDF28"
 
-/image/progress/frame/brass
+/image/mutable_appearance/progress/frame/brass
 	icon_state = "prog_bar_4_frame"
 
 /datum/progressbar/clock
@@ -171,26 +172,26 @@
 	frame_tag = PROG_FRAME_CLOCK
 	bg_tag = PROG_BG_CLOCK
 
-/image/progress/bar/clock
+/image/mutable_appearance/progress/bar/clock
 	icon_state = "prog_bar_5"
 	interval = 4
 	height = 12
 
-/image/progress/frame/clock
+/image/mutable_appearance/progress/frame/clock
 	icon_state = "prog_bar_5_frame"
 
-/image/progress/bg/clock
+/image/mutable_appearance/progress/bg/clock
 	icon_state = "prog_bar_2_bg"
 
-/image/progress/bar/clock/mono
+/image/mutable_appearance/progress/bar/clock/mono
 	icon_state = "prog_bar_4"
 
 /datum/progressicon
-	var/image/progress/display/display
+	var/image/mutable_appearance/progress/display/display
 	var/itag
 	var/atom/target
 
-/datum/progressicon/New(mob/user, atom/target, image/progress/display/new_display)
+/datum/progressicon/New(mob/user, atom/target, image/mutable_appearance/progress/display/new_display)
 	. = ..()
 	display = new_display
 	target = initial(display.owner) == DISPLAY_ICON_TARG ? target : user
@@ -212,53 +213,53 @@
 	return ..()
 
 
-/image/progress/display
+/image/mutable_appearance/progress/display
 	icon = 'icons/effects/progressicons.dmi'
 	icon_state = "busy_generic"
 	plane = FLY_LAYER
 	var/owner = DISPLAY_ICON_USER
 	var/icontag = "generic"
 
-/image/progress/display/New()
+/image/mutable_appearance/progress/display/New()
 	. = ..()
 	icon_state = "busy_[icontag]"
 
-/image/progress/display/target
+/image/mutable_appearance/progress/display/target
 	owner = DISPLAY_ICON_TARG
 
-/image/progress/display/medical
+/image/mutable_appearance/progress/display/medical
 	icontag = "medical"
 	pixel_y = 0
 
-/image/progress/display/medical/target
+/image/mutable_appearance/progress/display/medical/target
 	owner = DISPLAY_ICON_TARG
 
-/image/progress/display/construction
+/image/mutable_appearance/progress/display/construction
 	icontag = "build"
 
-/image/progress/display/construction/target
+/image/mutable_appearance/progress/display/construction/target
 	owner = DISPLAY_ICON_TARG
 
-/image/progress/display/friendly
+/image/mutable_appearance/progress/display/friendly
 	icontag = "friendly"
 
-/image/progress/display/friendly/target
+/image/mutable_appearance/progress/display/friendly/target
 	owner = DISPLAY_ICON_TARG
 
-/image/progress/display/hostile
+/image/mutable_appearance/progress/display/hostile
 	icontag = "hostile"
 
-/image/progress/display/hostile/target
+/image/mutable_appearance/progress/display/hostile/target
 	owner = DISPLAY_ICON_TARG
 
-/image/progress/display/clock
+/image/mutable_appearance/progress/display/clock
 	icontag = "clock"
 
-/image/progress/display/clock/target
+/image/mutable_appearance/progress/display/clock/target
 	owner = DISPLAY_ICON_TARG
 
-/image/progress/display/bar
+/image/mutable_appearance/progress/display/bar
 	icontag = "bar"
 
-/image/progress/display/bar/target
+/image/mutable_appearance/progress/display/bar/target
 	owner = DISPLAY_ICON_TARG
