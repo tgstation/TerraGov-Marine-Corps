@@ -123,3 +123,15 @@
 
 /obj/effect/forcefield/fog/attack_animal(M)
 	return attack_hand(M)
+
+//used to control opacity of multitiles doors
+/obj/effect/opacifier
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	resistance_flags = UNACIDABLE | INDESTRUCTIBLE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/opacifier/Initialize(mapload, initial_opacity)
+	. = ..()
+	SetOpacity(initial_opacity)
