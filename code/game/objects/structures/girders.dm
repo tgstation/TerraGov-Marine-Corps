@@ -123,7 +123,7 @@
 			var/old_buildctr = buildctr
 
 			var/obj/item/stack/sheet/S = W
-			if(S.stack_id == "metal")
+			if(istype(S, /obj/item/stack/sheet/metal))
 				if (anchored)
 					if(S.get_amount() < 1) return ..()
 					to_chat(user, "<span class='notice'>Now adding plating...</span>")
@@ -133,7 +133,7 @@
 							to_chat(user, "<span class='notice'>You added the plating!</span>")
 							buildctr++
 					return
-			else if(S.stack_id == "plasteel")
+			else if(istype(S, /obj/item/stack/sheet/plasteel))
 				if (anchored)
 					to_chat(user, "<span class='notice'>It doesn't look like the plasteel will do anything. Try metal.</span>")
 					return

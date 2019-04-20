@@ -106,7 +106,7 @@
 	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, AM)
 
 
-/atom/movable/proc/Moved(atom/OldLoc,Dir)
+/atom/movable/proc/Moved(atom/OldLoc)
 	if(isturf(loc))
 		if(opacity)
 			OldLoc.UpdateAffectingLights()
@@ -117,30 +117,45 @@
 		var/mob/dead/observer/F = _F
 		F.loc = loc
 
+
 /atom/movable/proc/forceMove(atom/destination)
 	if(destination)
-		if(pulledby)
-			pulledby.stop_pulling()
-		var/oldLoc
-		if(loc)
-			oldLoc = loc
-			loc.Exited(src)
-		loc = destination
-		loc.Entered(src)
-		var/area/old_area
-		if(oldLoc)
-			old_area = get_area(oldLoc)
-		var/area/new_area = get_area(destination)
-		if(new_area && old_area != new_area)
-			new_area.Entered(src)
-		for(var/atom/movable/AM in destination)
-			if(AM == src)
-				continue
-			AM.Crossed(src)
-		if(oldLoc)
-			Moved(oldLoc,dir)
-		return 1
-	return 0
+		return doMove(destination)
+	else
+		CRASH("No valid destination passed into forceMove")
+
+
+/atom/movable/proc/doMove(atom/destination)
+	if(!destination)
+		return FALSE
+	if(pulledby)
+		pulledby.stop_pulling()
+	var/atom/oldloc = loc
+	var/area/old_area = get_area(oldloc)
+	var/area/destarea = get_area(destination)
+
+	loc = destination
+
+	if(oldloc == destination)
+		Moved(oldloc)
+		return TRUE
+
+	if(oldloc)
+		oldloc.Exited(src, destination)
+		if(old_area && old_area != destarea)
+			old_area.Exited(src, destination)
+	for(var/atom/movable/AM in oldloc)
+		AM.Uncrossed(src)
+	destination.Entered(src, oldloc)
+	if(destarea && old_area != destarea)
+		destarea.Entered(src, oldloc)
+
+	for(var/atom/movable/AM in destination)
+		if(AM == src)
+			continue
+		AM.Crossed(src, oldloc)
+	Moved(oldloc)
+	return TRUE
 
 
 //called when src is thrown into hit_atom

@@ -1013,8 +1013,6 @@
 	var/door_locked = 1
 	salvageable = 0
 
-/obj/item/mecha_parts/mecha_equipment/tool/passenger/allow_drop()
-	return 0
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/destroy_mecha()
 	for(var/atom/movable/AM in src)
