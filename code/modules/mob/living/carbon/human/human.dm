@@ -1709,9 +1709,7 @@
 
 	var/datum/squad/S = SSjob.squads[squad]
 
-	if(mind)
-		assigned_squad = null
-	else
+	if(!mind)
 		assigned_squad = S
 		return FALSE
 
