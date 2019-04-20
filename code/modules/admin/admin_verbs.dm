@@ -122,7 +122,7 @@
 	switch(input("Who do you want to give:", "Give Mob") as null|anything in list("Key", "Mob"))
 		if("Key")
 			var/client/C = input("Please, select a key.", "Give Mob") as null|anything in sortKey(GLOB.clients)
-			if(!C || !isliving(C.mob))
+			if(!isliving(C?.mob))
 				return
 			L = C.mob
 		if("Mob")
