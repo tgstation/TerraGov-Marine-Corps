@@ -86,7 +86,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/M
+	var/mob/M_recipient
 	switch(input("Who do you want to give it to:", "Give Mob") as null|anything in list("Key", "Mob"))
 		if("Key")
 			var/client/C = input("Please, select a key.", "Give Mob") as null|anything in sortKey(GLOB.clients)
