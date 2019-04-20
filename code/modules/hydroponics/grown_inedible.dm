@@ -48,20 +48,15 @@
 	origin_tech = "materials=1"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		if(W.sharp == IS_SHARP_ITEM_BIG)
-			user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
-			for(var/i=0,i<2,i++)
-				var/obj/item/stack/sheet/wood/NG = new (user.loc)
-				for (var/obj/item/stack/sheet/wood/G in user.loc)
-					if(G==NG)
-						continue
-					if(G.amount>=G.max_amount)
-						continue
-					G.attackby(NG, user)
-					to_chat(usr, "You add the newly-formed wood to the stack. It now contains [NG.amount] planks.")
-			qdel(src)
-			return
+
+/obj/item/grown/log/attackby(obj/item/W, mob/user)
+	if(W.sharp != IS_SHARP_ITEM_BIG)
+		return
+	user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
+	var/obj/item/stack/sheet/wood/NG = new(user.loc, 2)
+	NG.add_to_stacks(user)
+	qdel(src)
+
 
 /obj/item/grown/sunflower // FLOWER POWER!
 	plantname = "sunflowers"

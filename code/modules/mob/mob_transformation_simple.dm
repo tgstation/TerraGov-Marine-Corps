@@ -17,9 +17,6 @@
 		qdel(M)
 		return
 
-	if(dna)
-		M.dna = dna.Clone()
-
 	if(mind)
 		mind.transfer_to(M, TRUE)
 	else
