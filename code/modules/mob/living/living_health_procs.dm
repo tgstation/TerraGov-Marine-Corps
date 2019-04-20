@@ -188,6 +188,8 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		on_revive()
 		timeofdeath = 0
 
+	SSmobs.start_processing(src)
+
 	// restore us to conciousness
 	stat = CONSCIOUS
 	updatehealth()

@@ -92,7 +92,8 @@
 
 	//Health
 	if(stat == DEAD)
-		return 0
+		SSmobs.stop_processing(src)
+		return FALSE
 
 	//Movement
 	if(!client && !stop_automated_movement && wander && !anchored)

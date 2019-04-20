@@ -147,9 +147,6 @@
 	. += next_move_slowdown
 	next_move_slowdown = 0
 
-/mob/proc/Life()
-	return
-
 //This proc is called whenever someone clicks an inventory ui slot.
 /mob/proc/attack_ui(slot)
 	var/obj/item/W = get_active_held_item()
