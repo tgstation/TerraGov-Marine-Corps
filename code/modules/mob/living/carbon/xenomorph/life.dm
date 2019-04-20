@@ -311,7 +311,7 @@
 			if(client && !client.adminobs)
 				reset_view(null)
 
-	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
+	if(stat == CONSCIOUS && life_tick % QUEEN_LOCATOR_DELAY == 0) //expensive and we don't want it firing every tick
 		queen_locator()
 
 	return TRUE
