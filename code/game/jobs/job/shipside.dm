@@ -38,13 +38,13 @@ Godspeed, captain! And remember, you are not above the law."})
 
 	id = /obj/item/card/id/gold
 	belt = /obj/item/storage/belt/gun/mateba/cmateba/full
-	ears = /obj/item/device/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
 	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
 	head = /obj/item/clothing/head/tgmcberet/tan
 	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/device/binoculars/tactical
+	l_store = /obj/item/binoculars/tactical
 	back = /obj/item/storage/backpack/marine/satchel
 
 
@@ -76,14 +76,14 @@ Make the TGMC proud!"})
 
 	id = /obj/item/card/id/dogtag
 	belt = /obj/item/storage/belt/gun/m4a3/fieldcommander/
-	ears = /obj/item/device/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
 	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner/fancy
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/tgmcberet/fc
 	r_store = /obj/item/storage/pouch/general/large/command
-	l_store = /obj/item/device/megaphone
+	l_store = /obj/item/megaphone
 	back = /obj/item/smartgun_powerpack/fancy
 	suit_store = /obj/item/weapon/gun/smartgun
 
@@ -115,12 +115,12 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/captain
-	ears = /obj/item/device/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
 	shoes = /obj/item/clothing/shoes/marine
 	head = /obj/item/clothing/head/tgmccap/ro
 	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/device/binoculars/tactical
+	l_store = /obj/item/binoculars/tactical
 	back = /obj/item/storage/backpack/marine/satchel
 
 
@@ -152,7 +152,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/vp70
-	ears = /obj/item/device/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
 	wear_suit = /obj/item/clothing/suit/armor/vest/pilot
 	shoes = /obj/item/clothing/shoes/marine
@@ -192,7 +192,7 @@ You could use MTs help to repair and replace hardpoints."})
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/vp70
-	ears = /obj/item/device/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/tanker
 	wear_suit = /obj/item/clothing/suit/storage/marine/M3P/tanker
 	shoes = /obj/item/clothing/shoes/marine
@@ -233,7 +233,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/security/MP/full
-	ears = /obj/item/device/radio/headset/almayer/mmpo
+	ears = /obj/item/radio/headset/almayer/mmpo
 	w_uniform = /obj/item/clothing/under/marine/mp
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
@@ -274,7 +274,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/security/MP/full
-	ears = /obj/item/device/radio/headset/almayer/cmpcom
+	ears = /obj/item/radio/headset/almayer/cmpcom
 	w_uniform = /obj/item/clothing/under/marine/officer/warrant
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
@@ -321,7 +321,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/utility/full
-	ears = /obj/item/device/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/ce
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
@@ -361,7 +361,7 @@ A happy ship is a well-functioning ship."})
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m44/full
-	ears = /obj/item/device/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/rank/ro_suit
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
@@ -400,7 +400,7 @@ Start with the ship's engine, and don't forget radiation equipment."})
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/utility/full
-	ears = /obj/item/device/radio/headset/almayer/mt
+	ears = /obj/item/radio/headset/almayer/mt
 	w_uniform = /obj/item/clothing/under/marine/officer/engi
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
@@ -442,7 +442,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/clothing/tie/holster/m4a3
-	ears = /obj/item/device/radio/headset/almayer/ct
+	ears = /obj/item/radio/headset/almayer/ct
 	w_uniform = /obj/item/clothing/under/rank/cargotech
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
@@ -487,7 +487,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
-	ears = /obj/item/device/radio/headset/almayer/cmo
+	ears = /obj/item/radio/headset/almayer/cmo
 	w_uniform = /obj/item/clothing/under/rank/medical/green
 	wear_suit = /obj/item/clothing/suit/storage/labcoat
 	shoes = /obj/item/clothing/shoes/white
@@ -495,7 +495,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/green
-	suit_store = /obj/item/device/flashlight/pen
+	suit_store = /obj/item/flashlight/pen
 	r_store = /obj/item/storage/pouch/medkit/full
 	l_store = /obj/item/storage/pouch/medical/full
 	back = /obj/item/storage/backpack/marine/satchel
@@ -531,7 +531,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
-	ears = /obj/item/device/radio/headset/almayer/doc
+	ears = /obj/item/radio/headset/almayer/doc
 	w_uniform = /obj/item/clothing/under/rank/medical/green
 	shoes = /obj/item/clothing/shoes/white
 	gloves = /obj/item/clothing/gloves/latex
@@ -574,14 +574,14 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
-	ears = /obj/item/device/radio/headset/almayer/doc
+	ears = /obj/item/radio/headset/almayer/doc
 	w_uniform = /obj/item/clothing/under/marine/officer/researcher
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/researcher
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
-	suit_store = /obj/item/device/flashlight/pen
+	suit_store = /obj/item/flashlight/pen
 	r_store = /obj/item/storage/pouch/medkit/full
 	l_store = /obj/item/storage/pouch/medical/full
 	back = /obj/item/storage/backpack/marine/satchel
@@ -622,7 +622,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	jobtype = /datum/job/civilian/liaison
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/device/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/liaison_suit
 	shoes = /obj/item/clothing/shoes/laceup
 	back = /obj/item/storage/backpack/marine/satchel
@@ -677,7 +677,7 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 
 	id = /obj/item/card/id/gold
 	belt = /obj/item/storage/belt/utility/full
-	ears = /obj/item/device/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/rank/synthetic
 	shoes = /obj/item/clothing/shoes/white
 	gloves = /obj/item/clothing/gloves/yellow

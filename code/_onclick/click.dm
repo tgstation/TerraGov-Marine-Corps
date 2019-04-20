@@ -32,6 +32,11 @@
 		usr.MouseWheelOn(src, delta_x, delta_y, params)
 
 
+/client/Click(object, location, control, params)
+	if(!control)
+		return
+	return ..()
+
 /*
 	Standard mob ClickOn()
 	Handles exceptions: Buildmode, middle click, modified clicks, mech actions
@@ -40,10 +45,10 @@
 	check whether you're adjacent to the target, then pass off the click to whoever
 	is receiving it.
 	The most common are:
-	* mob/UnarmedAttack(atom,adjacent) - used here only when adjacent, with no item in hand; in the case of humans, checks gloves
-	* atom/attackby(item,user) - used only when adjacent
-	* item/afterattack(atom,user,adjacent,params) - used both ranged and adjacent
-	* mob/RangedAttack(atom,params) - used only ranged, only used for tk and laser eyes but could be changed
+	* mob/UnarmedAttack(atom, adjacent) - used here only when adjacent, with no item in hand; in the case of humans, checks gloves
+	* atom/attackby(item, user, params) - used only when adjacent
+	* item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent when not handled by attackby
+	* mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
 */
 /mob/proc/ClickOn(atom/A, params)
 	if(world.time <= next_click)
@@ -95,6 +100,11 @@
 		N.click_action(A, src, params)
 		return
 
+	if(restrained())
+		changeNext_move(CLICK_CD_HANDCUFFED)
+		RestrainedClickOn(A)
+		return
+
 	if(in_throw_mode)
 		throw_item(A)
 		return
@@ -111,8 +121,8 @@
 	//User itself, current loc, and user inventory
 	if(A in DirectAccess())
 		if(W)
-			if(!A.attackby(W, src))
-				W.afterattack(A, src, params)
+			if(!A.attackby(W, src, params))
+				W.afterattack(A, src, TRUE, params)
 		else
 			UnarmedAttack(A)
 		return
@@ -124,15 +134,18 @@
 	//Standard reach turf to turf or reaching inside storage
 	if(CanReach(A, W))
 		if(W)
-			if(!A.attackby(W, src))
-				W.afterattack(A, src, params)
+			if(!A.attackby(W, src, params))
+				W.afterattack(A, src, TRUE, params)
 		else
 			UnarmedAttack(A, 1)
 	else
 		if(W)
-			if(A.Adjacent(src))
-				A.attackby(W, src)
-			W.afterattack(A, src, FALSE, params)
+			var/attack
+			var/proximity = A.Adjacent(src)
+			if(proximity && A.attackby(W, src, params))
+				attack = TRUE
+			if(!attack)
+				W.afterattack(A, src, proximity, params)
 		else
 			if(A.Adjacent(src))
 				A.attack_hand(src)

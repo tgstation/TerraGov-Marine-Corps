@@ -155,7 +155,7 @@ var/list/mechtoys = list(
 				return 1
 		if(istype(A,/obj/item/disk/nuclear))
 			return 1
-		if(istype(A,/obj/item/device/radio/beacon))
+		if(istype(A,/obj/item/radio/beacon))
 			return 1
 		if(istype(A,/obj/item/stack/sheet/mineral/phoron))
 			return 1

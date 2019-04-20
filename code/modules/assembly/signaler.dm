@@ -1,4 +1,4 @@
-/obj/item/device/assembly/signaler
+/obj/item/assembly/signaler
 	name = "remote signaling device"
 	desc = "Used to remotely activate devices."
 	icon_state = "signaller"
@@ -108,7 +108,7 @@
 		radio_connection.post_signal(src, signal)
 		return
 /*
-		for(var/obj/item/device/assembly/signaler/S in item_list)
+		for(var/obj/item/assembly/signaler/S in item_list)
 			if(!S)	continue
 			if(S == src)	continue
 			if((S.frequency == src.frequency) && (S.code == src.code))

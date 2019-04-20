@@ -1171,7 +1171,7 @@ var/global/list/common_tools = list(
 /obj/item/tool/weldingtool,
 /obj/item/tool/screwdriver,
 /obj/item/tool/wirecutters,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /obj/item/tool/crowbar)
 
 /proc/istool(O)
@@ -1267,7 +1267,7 @@ proc/is_hot(obj/item/I)
 Checks if that loc and dir has a item on the wall
 */
 var/list/WALLITEMS = list(
-	"/obj/machinery/power/apc", "/obj/machinery/alarm", "/obj/item/device/radio/intercom",
+	"/obj/machinery/power/apc", "/obj/machinery/alarm", "/obj/item/radio/intercom",
 	"/obj/structure/extinguisher_cabinet", "/obj/structure/reagent_dispensers/peppertank",
 	"/obj/machinery/status_display", "/obj/machinery/requests_console", "/obj/machinery/light_switch", "/obj/effect/sign",
 	"/obj/machinery/newscaster", "/obj/machinery/firealarm", "/obj/structure/noticeboard", "/obj/machinery/door_control",

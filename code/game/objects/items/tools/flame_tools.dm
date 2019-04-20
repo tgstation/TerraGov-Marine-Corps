@@ -214,8 +214,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(Z.heat_source)
 			light("<span class='rose'>With a flick of their wrist, [user] lights their [name] with [W].</span>")
 
-	else if(istype(W, /obj/item/device/flashlight/flare))
-		var/obj/item/device/flashlight/flare/FL = W
+	else if(istype(W, /obj/item/flashlight/flare))
+		var/obj/item/flashlight/flare/FL = W
 		if(FL.heat_source)
 			light("<span class='notice'>[user] lights their [name] with [W].</span>")
 
@@ -239,7 +239,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(S.active)
 			light("<span class='warning'>[user] swings their [W], barely missing their nose. They light their [name] in the process.</span>")
 
-	else if(istype(W, /obj/item/device/assembly/igniter))
+	else if(istype(W, /obj/item/assembly/igniter))
 		light("<span class='notice'>[user] fiddles with [W], and manages to light their [name].</span>")
 
 	else if(istype(W, /obj/item/attachable/attached_gun/flamer))

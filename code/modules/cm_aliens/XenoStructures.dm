@@ -144,7 +144,7 @@
 /obj/effect/alien/resin/sticky/thin
 	name = "thin sticky resin"
 	desc = "A thin layer of disgusting sticky slime."
-	health = 7
+	health = 6
 	slow_amt = 4
 
 

@@ -8,7 +8,7 @@
 	var/stage = 0
 	var/state = 0
 	var/path = 0
-	var/obj/item/device/assembly_holder/detonator = null
+	var/obj/item/assembly_holder/detonator = null
 	var/list/beakers = new/list()
 	var/list/allowed_containers = list(/obj/item/reagent_container/glass/beaker, /obj/item/reagent_container/glass/bottle)
 	var/affected_area = 3
@@ -36,8 +36,8 @@
 
 /obj/item/explosive/grenade/chem_grenade/attackby(obj/item/W as obj, mob/user as mob)
 
-	if(istype(W,/obj/item/device/assembly_holder) && (!stage || stage==1) && path != 2)
-		var/obj/item/device/assembly_holder/det = W
+	if(istype(W,/obj/item/assembly_holder) && (!stage || stage==1) && path != 2)
+		var/obj/item/assembly_holder/det = W
 		if(istype(det.a_left,det.a_right.type) || (!isigniter(det.a_left) && !isigniter(det.a_right)))
 			to_chat(user, "<span class='warning'>Assembly must contain one igniter.</span>")
 			return
@@ -186,7 +186,7 @@
 	B2.reagents.add_reagent("foaming_agent", 10)
 	B2.reagents.add_reagent("pacid", 10)
 
-	detonator = new/obj/item/device/assembly_holder/timer_igniter(src)
+	detonator = new/obj/item/assembly_holder/timer_igniter(src)
 
 	beakers += B1
 	beakers += B2
@@ -210,7 +210,7 @@
 	B2.reagents.add_reagent("sacid", 15)
 	B1.reagents.add_reagent("fuel",20)
 
-	detonator = new/obj/item/device/assembly_holder/timer_igniter(src)
+	detonator = new/obj/item/assembly_holder/timer_igniter(src)
 
 	beakers += B1
 	beakers += B2
@@ -234,7 +234,7 @@
 	B2.reagents.add_reagent("phosphorus", 25)
 	B2.reagents.add_reagent("sugar", 25)
 
-	detonator = new/obj/item/device/assembly_holder/timer_igniter(src)
+	detonator = new/obj/item/assembly_holder/timer_igniter(src)
 
 	beakers += B1
 	beakers += B2
@@ -257,7 +257,7 @@
 	B2.reagents.add_reagent("water", 40)
 	B2.reagents.add_reagent("cleaner", 10)
 
-	detonator = new/obj/item/device/assembly_holder/timer_igniter(src)
+	detonator = new/obj/item/assembly_holder/timer_igniter(src)
 
 	beakers += B1
 	beakers += B2
@@ -281,7 +281,7 @@
 	B2.reagents.add_reagent("phosphorus", 25)
 	B2.reagents.add_reagent("sugar", 25)
 
-	detonator = new/obj/item/device/assembly_holder/timer_igniter(src, 2) //~4 second timer
+	detonator = new/obj/item/assembly_holder/timer_igniter(src, 2) //~4 second timer
 
 	beakers += B1
 	beakers += B2

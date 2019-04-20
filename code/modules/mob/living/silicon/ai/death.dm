@@ -35,7 +35,7 @@
 	for(var/obj/machinery/ai_status_display/O in GLOB.machines)
 		spawn( 0 )
 		O.mode = 2
-		if (istype(loc, /obj/item/device/aicard))
+		if (istype(loc, /obj/item/aicard))
 			loc.icon_state = "aicard-404"
 
 	return ..(gibbed,"gives one shrill beep before falling lifeless.")

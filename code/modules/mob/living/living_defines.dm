@@ -80,7 +80,6 @@
 
 	var/no_stun = FALSE
 
-	var/fire_immune = FALSE
 	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
 
 	var/entangle_delay = null
@@ -89,3 +88,5 @@
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
 
 	var/ventcrawl_message_busy
+
+	var/away_time = 0 //When the player has disconnected.
