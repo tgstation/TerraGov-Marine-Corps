@@ -1562,9 +1562,26 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/mob/living/L = locate(href_list["offer"]) in GLOB.mob_living_list
+		var/mob/living/L = locate(href_list["give"]) in GLOB.mob_living_list
 
 		if(!istype(L))
 			return
 
 		usr.client.holder.give_mob(L)
+
+
+	else if(href_list["playtime"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/client/C = locate(href_list["playtime"]) in GLOB.clients
+
+		if(!istype(C))
+			return
+
+		var/list/body = list()
+		body += C.get_exp_report()
+
+		var/datum/browser/popup = new(src, "playerplaytime[C.key]", "<div align='center'>Playtime for [C.key]</div>", 550, 615)
+		popup.set_content(body.Join())
+		popup.open(FALSE)

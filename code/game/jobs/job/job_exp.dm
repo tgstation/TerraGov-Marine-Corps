@@ -95,7 +95,7 @@ GLOBAL_PROTECT(exp_to_update)
 		if(exp_data[EXP_TYPE_LIVING] > 0 && (dep == EXP_TYPE_GHOST || dep == EXP_TYPE_LIVING))
 			var/percentage = num2text(round(exp_data[dep] / (exp_data[EXP_TYPE_LIVING] + exp_data[EXP_TYPE_GHOST])  * 100))
 			return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] ([percentage]%) total.</LI>"
-		else if(exp_data[EXP_TYPE_LIVING] > 0)
+		else if(exp_data[EXP_TYPE_LIVING] > 0 && dep != EXP_TYPE_ADMIN)
 			var/percentage = num2text(round(exp_data[dep] / exp_data[EXP_TYPE_LIVING] * 100))
 			return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] ([percentage]%) while alive.</LI>"
 		else
