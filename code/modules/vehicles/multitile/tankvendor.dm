@@ -242,8 +242,8 @@
 		if(H.ammo)
 			H.ammo.current_rounds = H.ammo.max_rounds
 			H.ammo.update_icon()
-		else
-			H.ammo = initial(H.starter_ammo)
+		else if(H.starter_ammo)
+			H.ammo = new H.starter_ammo
 	else if(istype(loaded_mod, /obj/item/ammo_magazine/tank))
 		var/obj/item/ammo_magazine/tank/A = loaded_mod
 		A.current_rounds = A.max_rounds
