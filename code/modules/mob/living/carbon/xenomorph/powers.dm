@@ -1027,7 +1027,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	return FALSE
 
 /mob/living/carbon/can_sting()
-	if(stat == DEAD || status_flags & GODMODE)
+	if(stat == DEAD || CHECK_BITFIELD(status_flags, GODMODE))
 		return FALSE
 	return TRUE
 
@@ -1035,7 +1035,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	. = ..()
 	if(!(.))
 		return FALSE
-	if(species.species_flags & IS_SYNTHETIC)
+	if(CHECK_BITFIELD(species.species_flags, IS_SYNTHETIC))
 		return FALSE
 	return TRUE
 

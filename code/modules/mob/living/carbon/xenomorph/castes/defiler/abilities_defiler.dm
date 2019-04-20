@@ -50,7 +50,7 @@
 		return TRUE
 
 /mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting(mob/living/carbon/C)
-	if(!check_state() || !(C?.can_sting()))
+	if(!check_state() || QDELETED(C))
 		return
 
 	if(world.time < last_defiler_sting + DEFILER_STING_COOLDOWN) //Sure, let's use this.
@@ -65,6 +65,10 @@
 		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
 			to_chat(src, "<span class='warning'>You can't reach this target!</span>")
 			recent_notice = world.time //anti-notice spam
+		return
+
+	if(!(C?.can_sting()))
+		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
 		return
 
 	if(!check_plasma(150))
