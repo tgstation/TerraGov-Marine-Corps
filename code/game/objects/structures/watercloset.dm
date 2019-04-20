@@ -62,36 +62,38 @@
 			return
 		var/obj/item/grab/G = I
 
-		if(!isliving(G.grabbed_thing))
+		if(!iscarbon(G.grabbed_thing))
 			return
 
-		var/mob/living/GM = G.grabbed_thing
+		var/mob/living/carbon/C = G.grabbed_thing
 
 		if(user.grab_level <= GRAB_PASSIVE)
 			to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
 			return
 
-		if(!GM.loc == get_turf(src))
-			to_chat(user, "<span class='notice'>[GM] needs to be on the toilet.</span>")
+		if(!C.loc == get_turf(src))
+			to_chat(user, "<span class='notice'>[C] needs to be on the toilet.</span>")
 			return
 
 		if(open && !swirlie)
-			user.visible_message("<span class='danger'>[user] starts to give [GM] a swirlie!</span>", "<span class='notice'>You start to give [GM] a swirlie!</span>")
-			swirlie = GM
-			if(!do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE))
+			user.visible_message("<span class='danger'>[user] starts to give [C] a swirlie!</span>", "<span class='notice'>You start to give [C] a swirlie!</span>")
+			swirlie = C
+			if(!do_after(user, 30, TRUE, 5, BUSY_ICON_HOSTILE))
 				return
 
-			user.visible_message("<span class='danger'>[user] gives [GM] a swirlie!</span>", "<span class='notice'>You give [GM] a swirlie!</span>", "You hear a toilet flushing.")
-			log_admin("[key_name(user)] gives [key_name(GM)] a swirlie.")
-			log_combat(user, GM, "given a swirlie")
-			msg_admin_attack("[key_name(user)] gave [key_name(GM)] a swirlie.")
+			user.visible_message("<span class='danger'>[user] gives [C] a swirlie!</span>", "<span class='notice'>You give [C] a swirlie!</span>", "You hear a toilet flushing.")
+			log_admin("[key_name(user)] gives [key_name(C)] a swirlie.")
+			log_combat(user, C, "given a swirlie")
+			msg_admin_attack("[key_name(user)] gave [key_name(C)] a swirlie.")
+			if(!C.internal)
+				C.adjustOxyLoss(5)
 			swirlie = null
 		else
-			user.visible_message("<span class='danger'>[user] slams [GM] into the [src]!</span>", "<span class='notice'>You slam [GM] into the [src]!</span>")
-			log_admin("[key_name(user)] slams [key_name(GM)] into the \the [src].")
-			log_combat(user, GM, "slammed", "", "into the \the [src]")
-			msg_admin_attack("[key_name(user)] slammed [key_name(GM)] into the \the [src].")
-			GM.apply_damage(8, BRUTE)
+			user.visible_message("<span class='danger'>[user] slams [C] into the [src]!</span>", "<span class='notice'>You slam [C] into the [src]!</span>")
+			log_admin("[key_name(user)] slams [key_name(C)] into the \the [src].")
+			log_combat(user, C, "slammed", "", "into the \the [src]")
+			msg_admin_attack("[key_name(user)] slammed [key_name(C)] into the \the [src].")
+			C.apply_damage(8, BRUTE)
 
 	else if(cistern && !issilicon(user)) //STOP PUTTING YOUR MODULES IN THE TOILET.
 		if(I.w_class > 3)
