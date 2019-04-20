@@ -232,10 +232,13 @@
 	QDEL_NULL(loaded_mod)
 	set_busy(TRUE, 10 SECONDS)
 
-/obj/machinery/tank_part_fabricator/proc/restore_tank_part()
+/obj/machinery/tank_part_fabricator/proc/restore_tank_part(mob/user)
 	if(machine_stat & (NOPOWER|BROKEN) || busy || QDELETED(loaded_mod))
 		return
-	tank_points -= calculate_repair_price()
+	var/cost = calculate_repair_price()
+	if(tank_points < cost)
+		to_chat(user, "<span class='warning'>You don't have enough points to repair that.</span>")
+	tank_points -= cost
 	if(istype(loaded_mod, /obj/item/hardpoint))
 		var/obj/item/hardpoint/H = loaded_mod
 		H.health = H.maxhealth
@@ -282,7 +285,7 @@
 		refund_tank_part()
 
 	if(href_list["restore"])
-		restore_tank_part()
+		restore_tank_part(usr)
 
 	if(href_list["screen"])
 		screen = text2num(href_list["screen"])
