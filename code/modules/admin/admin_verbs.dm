@@ -213,22 +213,22 @@
 	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
 
 
-/datum/admins/proc/toggle_sleep(mob/living/M in GLOB.mob_living_list)
+/datum/admins/proc/toggle_sleep(mob/living/L in GLOB.mob_living_list)
 	set category = null
 	set name = "Toggle Sleeping"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(M.sleeping > 0)
-		M.sleeping = 0
-	else if(alert("Are you sure you want to sleep [M]?", "Toggle Sleeping", "Yes", "No") != "Yes")
+	if(L.sleeping > 0)
+		L.sleeping = 0
+	else if(alert("Are you sure you want to sleep [key_name(L)]?", "Toggle Sleeping", "Yes", "No") != "Yes")
 		return
 	else
-		M.sleeping = 9999999
+		L.sleeping = 9999999
 
-	log_admin("[key_name(usr)] has [M.sleeping ? "enabled" : "disabled"] sleeping on [key_name(M)].")
-	message_admins("[ADMIN_TPMONTY(usr)] has [M.sleeping ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(M)].")
+	log_admin("[key_name(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [key_name(L)].")
+	message_admins("[ADMIN_TPMONTY(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(L)].")
 
 
 /datum/admins/proc/toggle_sleep_panel()

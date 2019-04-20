@@ -1504,17 +1504,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/mob/living/carbon/human/H = locate(href_list["setsquad"])
 
-		if(!istype(H) || !(H.job in JOBS_MARINES))
+		if(!istype(H))
 			return
 
-		var/squad = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
-		if(!squad || !istype(H) || !(H.job in JOBS_MARINES))
-			return
-
-		H.change_squad(squad)
-
-		log_admin("[key_name(src)] has changed the squad of [key_name(H)] to [squad].")
-		message_admins("[ADMIN_TPMONTY(usr)] has changed the squad of [ADMIN_TPMONTY(H)] to [squad].")
+		usr.client.holder.change_squad(H)
 
 
 	else if(href_list["setrank"])
@@ -1526,55 +1519,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!istype(H))
 			return
 
-		switch(alert("Modify the rank or give them a new one?", "Select Rank", "New Rank", "Modify", "Cancel"))
-			if("New Rank")
-				var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(SSjob.name_occupations)
-				if(!newrank || !istype(H))
-					return
-
-				H.set_rank(newrank)
-
-				log_admin("[key_name(usr)] has set the rank of [key_name(H)] to [newrank].")
-				message_admins("[ADMIN_TPMONTY(usr)] has set the rank of [ADMIN_TPMONTY(H)] to [newrank].")
-
-			if("Modify")
-				var/obj/item/card/id/I = H.wear_id
-				switch(input("What do you want to edit?") as null|anything in list("Comms Title - \[Engineering (Title)]", "Chat Title - Title John Doe screams!", "ID title - Jane Doe's ID Card (Title)", "Registered Name - Jane Doe's ID Card", "Skills"))
-					if("Comms Title - \[Engineering (Title)]")
-						var/commtitle = input("Write the custom title appearing in the comms: Comms Title - \[Engineering (Title)]", "Comms Title") as null|text
-						if(!commtitle || !H?.mind)
-							return
-						H.mind.comm_title = commtitle
-					if("Chat Title - Title John Doe screams!")
-						var/chattitle = input("Write the custom title appearing in all chats: Title Jane Doe screams!", "Chat Title") as null|text
-						if(chattitle || !H || !istype(I))
-							return
-						I.paygrade = chattitle
-						I.update_label()
-					if("ID title - Jane Doe's ID Card (Title)")
-						var/idtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID Title") as null|text
-						if(!idtitle || !H || !istype(I))
-							return
-						I.assignment = idtitle
-						I.update_label()
-					if("Registered Name - Jane Doe's ID Card")
-						var/regname = input("Write the name appearing on the ID itself: Jane Doe's ID Card", "Registered Name") as null|text
-						if(!H || I != H.wear_id || !istype(I))
-							return
-						I.registered_name = regname
-						I.update_label()
-					if("Skills")
-						var/newskillset = input("Select a skillset", "Skill Set") as null|anything in sortList(SSjob.name_occupations)
-						if(!newskillset || !H?.mind)
-							return
-						var/datum/job/J = SSjob.name_occupations[newskillset]
-						var/datum/skills/S = new J.skills_type()
-						H.mind.cm_skills = S
-					else
-						return
-
-				log_admin("[key_name(usr)] has made a custom rank/skill change for [key_name(H)].")
-				message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank/skill change for [ADMIN_TPMONTY(H)].")
+		usr.client.holder.select_rank(H)
 
 
 	else if(href_list["setequipment"])
@@ -1586,41 +1531,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!istype(H))
 			return
 
-		var/dresscode = input("Please select an outfit.", "Select Equipment") as null|anything in list("{Naked}", "{Job}", "{Custom}")
-		if(!dresscode)
-			return
-
-		if(dresscode == "{Job}")
-			var/list/job_paths = subtypesof(/datum/outfit/job)
-			var/list/job_outfits = list()
-			for(var/path in job_paths)
-				var/datum/outfit/O = path
-				if(initial(O.can_be_admin_equipped))
-					job_outfits[initial(O.name)] = path
-
-			dresscode = input("Select job equipment", "Select Equipment") as null|anything in sortList(job_outfits)
-			dresscode = job_outfits[dresscode]
-
-		else if(dresscode == "{Custom}")
-			var/list/custom_names = list()
-			for(var/datum/outfit/D in GLOB.custom_outfits)
-				custom_names[D.name] = D
-			var/selected_name = input("Select outfit", "Select Equipment") as null|anything in sortList(custom_names)
-			dresscode = custom_names[selected_name]
-
-		if(!dresscode)
-			return
-
-		var/datum/outfit/O
-		H.delete_equipment(TRUE)
-		if(dresscode != "{Naked}")
-			O = new dresscode
-			H.equipOutfit(O, FALSE)
-
-		H.regenerate_icons()
-
-		log_admin("[key_name(usr)] changed the equipment of [key_name(H)] to [istype(O) ?  O.name : dresscode].")
-		message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(H)] to [istype(O) ? O.name : dresscode].")
+		usr.client.holder.select_equipment(H)
 
 
 	else if(href_list["sleep"])
@@ -1632,15 +1543,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!istype(L))
 			return
 
-		if(L.sleeping > 0)
-			L.sleeping = 0
-		else if(alert("Are you sure you want to sleep [L]?", "Toggle Sleeping", "Yes", "No") != "Yes")
-			return
-		else
-			L.sleeping = 9999999
-
-		log_admin("[key_name(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [key_name(L)].")
-		message_admins("[ADMIN_TPMONTY(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(L)].")
+		usr.client.holder.toggle_sleep(L)
 
 
 	else if(href_list["offer"])
