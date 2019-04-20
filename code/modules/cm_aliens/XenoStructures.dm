@@ -204,19 +204,20 @@
 		return
 	var/mob/living/carbon/C = AM
 	if(C.can_be_facehugged(hugger))
+		playsound(loc, 'sound/effects/alien_resin_break1.ogg', 25)
 		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
-		C.KnockDown(1)
-		if(!QDELETED(linked_carrier))
-			if(linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
-				var/area/A = get_area(src)
-				if(A)
-					to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
+		C.KnockDown(2)
+		if(!QDELETED(linked_carrier) && linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
+			var/area/A = get_area(src)
+			if(A)
+				to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
 		drop_hugger()
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
 	hugger.forceMove(loc)
-	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger.proc/fast_activate, TRUE), 1.5 SECONDS)
+	hugger.stasis = FALSE
+	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger.proc/fast_activate), 1.5 SECONDS)
 	icon_state = "trap0"
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null

@@ -76,16 +76,6 @@
 /mob/dead/CanPass(atom/movable/mover, turf/target)
 	return TRUE
 
-
-/mob/dead/observer/Life()
-	. = ..()
-	if(!loc)
-		return FALSE
-	if(!client)
-		return FALSE
-	return TRUE
-
-
 /mob/proc/ghostize(var/can_reenter_corpse = TRUE)
 	if(!key)
 		return FALSE

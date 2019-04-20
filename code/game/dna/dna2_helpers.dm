@@ -21,27 +21,27 @@
 	return BOUNDS
 
 // Give Random Bad Mutation to M
-/proc/randmutb(var/mob/living/M)
+/proc/randmutb(mob/living/carbon/M)
 	if(!M) return
 	M.dna.check_integrity()
 	var/block = pick(GLASSESBLOCK,COUGHBLOCK,FAKEBLOCK,NERVOUSBLOCK,CLUMSYBLOCK,TWITCHBLOCK,HEADACHEBLOCK,BLINDBLOCK,DEAFBLOCK,HALLUCINATIONBLOCK)
 	M.dna.SetSEState(block, 1)
 
 // Give Random Good Mutation to M
-/proc/randmutg(var/mob/living/M)
+/proc/randmutg(mob/living/carbon/M)
 	if(!M) return
 	M.dna.check_integrity()
 	var/block = pick(HULKBLOCK,XRAYBLOCK,FIREBLOCK,TELEBLOCK,NOBREATHBLOCK,REMOTEVIEWBLOCK,REGENERATEBLOCK,INCREASERUNBLOCK,REMOTETALKBLOCK,MORPHBLOCK,BLENDBLOCK,NOPRINTSBLOCK,SHOCKIMMUNITYBLOCK,SMALLSIZEBLOCK)
 	M.dna.SetSEState(block, 1)
 
 // Random Appearance Mutation
-/proc/randmuti(var/mob/living/M)
+/proc/randmuti(mob/living/carbon/M)
 	if(!M) return
 	M.dna.check_integrity()
 	M.dna.SetUIValue(rand(1,DNA_UI_LENGTH),rand(1,4095))
 
 // Scramble UI or SE.
-/proc/scramble(var/UI, var/mob/M, var/prob)
+/proc/scramble(UI, mob/living/carbon/M, prob)
 	if(!M)	return
 	M.dna.check_integrity()
 	if(UI)
@@ -124,7 +124,7 @@
 // Use mob.UpdateAppearance() instead.
 
 // Simpler. Don't specify UI in order for the mob to use its own.
-/mob/proc/UpdateAppearance(var/list/UI=null)
+/mob/living/carbon/proc/UpdateAppearance(var/list/UI=null)
 	if(ishuman(src))
 		if(UI!=null)
 			src.dna.UI=UI

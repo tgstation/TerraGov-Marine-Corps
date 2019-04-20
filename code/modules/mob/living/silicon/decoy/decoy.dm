@@ -22,6 +22,7 @@
 
 /mob/living/silicon/decoy/Life()
 	if(stat == DEAD)
+		SSmobs.stop_processing(src)
 		return FALSE
 	if(health <= get_death_threshold() && stat != DEAD)
 		death(FALSE, "<b>\The [name]</b> sparks up and falls silent...")

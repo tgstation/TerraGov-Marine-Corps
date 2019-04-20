@@ -195,7 +195,7 @@
 					to_chat(usr, "System Reset completed")
 					resetting = 0
 
-/obj/item/tool/surgery/NTautopsy/attack(mob/living/carbon/Xenomorph/T as mob, mob/living/user as mob)
+/obj/item/tool/surgery/NTautopsy/attack(mob/living/carbon/Xenomorph/T, mob/living/user)
 /*	set category = "Autopsy"
 	set name = "Perform Alien Autopsy"
 	set src in usr*/

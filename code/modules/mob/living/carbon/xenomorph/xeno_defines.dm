@@ -276,3 +276,5 @@
 
 	//Ensure we only check for new candidates for ssd xenos once.
 	var/away_ssd_checked = FALSE
+  
+	var/butchery_progress = 0
