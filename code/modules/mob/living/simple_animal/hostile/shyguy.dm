@@ -490,9 +490,3 @@
 	visible_message("<span class='danger'>[src] is staggered by the explosion!</span>")
 	adjustBruteLoss(damage)
 	return 1
-
-/mob/living/simple_animal/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
-	..()
-	if(O.force)
-		visible_message("<span class='danger'>[src] is staggered by [O]!</span>")
-		adjustBruteLoss(O.force)
