@@ -79,36 +79,36 @@
 	message_admins("[ADMIN_TPMONTY(M)] has turned stealth mode [M.client.holder.fakekey ? "on - [M.client.holder.fakekey]" : "off"].")
 
 
-/datum/admins/proc/give_mob(mob/living/L_given in GLOB.mob_living_list)
+/datum/admins/proc/give_mob(mob/living/LGIVE in GLOB.mob_living_list)
 	set category = null
 	set name = "Give Mob"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/M_recipient
+	var/mob/MREC
 	switch(input("Who do you want to give it to:", "Give Mob") as null|anything in list("Key", "Mob"))
 		if("Key")
 			var/client/C = input("Please, select a key.", "Give Mob") as null|anything in sortKey(GLOB.clients)
 			if(!C)
 				return
-			M = C.mob
+			MREC = C.mob
 		if("Mob")
 			var/mob/N = input("Please, select a mob.", "Give Mob") as null|anything in sortNames(GLOB.mob_list)
 			if(!N)
 				return
-			M = N
+			MREC = N
 
-	if(isliving(M) && M.client && alert("[key_name(M)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
+	if(isliving(MREC) && MREC.client && alert("[key_name(MREC)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
 		return
 
-	if(!istype(L))
+	if(!istype(LGIVE))
 		return
 
-	log_admin("[key_name(usr)] gave [key_name(L)] to [key_name(M)].")
-	message_admins("[ADMIN_TPMONTY(usr)] gave [ADMIN_TPMONTY(L)] to [ADMIN_TPMONTY(M)].")
+	log_admin("[key_name(usr)] gave [key_name(LGIVE)] to [key_name(MREC)].")
+	message_admins("[ADMIN_TPMONTY(usr)] gave [ADMIN_TPMONTY(LGIVE)] to [ADMIN_TPMONTY(MREC)].")
 
-	L.take_over(M, TRUE)
+	LGIVE.take_over(MREC, TRUE)
 
 
 /datum/admins/proc/give_mob_panel()
@@ -118,46 +118,46 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/living/L_given
+	var/mob/living/LGIVE
 	switch(input("Who do you want to give:", "Give Mob") as null|anything in list("Key", "Mob"))
 		if("Key")
 			var/client/C = input("Please, select a key.", "Give Mob") as null|anything in sortKey(GLOB.clients)
 			if(!isliving(C?.mob))
 				return
-			L = C.mob
+			LGIVE = C.mob
 		if("Mob")
 			var/mob/N = input("Please, select a mob.", "Give Mob") as null|anything in sortNames(GLOB.mob_living_list)
 			if(!N)
 				return
-			L = N
+			LGIVE = N
 		else
 			return
 
-	var/mob/N_recipient
+	var/mob/NREC
 	switch(input("Who do you want to give it to:", "Give Mob") as null|anything in list("Key", "Mob"))
 		if("Key")
 			var/client/C = input("Please, select a key.", "Give Mob") as null|anything in sortKey(GLOB.clients)
 			if(!C)
 				return
-			N = C.mob
+			NREC = C.mob
 		if("Mob")
 			var/mob/M = input("Please, select a mob.", "Give Mob") as null|anything in sortNames(GLOB.mob_list)
 			if(!M)
 				return
-			N = M
+			NREC = M
 		else
 			return
 
-	if(isliving(N) && N.client && alert("[key_name(N)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
+	if(isliving(NREC) && NREC.client && alert("[key_name(NREC)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
 		return
 
-	if(!istype(L))
+	if(!istype(LGIVE))
 		return
 
-	log_admin("[key_name(usr)] gave [key_name(L)] to [key_name(N)].")
-	message_admins("[ADMIN_TPMONTY(usr)] gave [ADMIN_TPMONTY(L)] to [ADMIN_TPMONTY(N)].")
+	log_admin("[key_name(usr)] gave [key_name(LGIVE)] to [key_name(NREC)].")
+	message_admins("[ADMIN_TPMONTY(usr)] gave [ADMIN_TPMONTY(LGIVE)] to [ADMIN_TPMONTY(NREC)].")
 
-	L.take_over(N, TRUE)
+	LGIVE.take_over(NREC, TRUE)
 
 
 /datum/admins/proc/rejuvenate(mob/living/L in GLOB.mob_living_list)

@@ -1067,6 +1067,7 @@
 		if(alert("This mob has a player inside, are you sure you want to proceed?", "Offer Mob", "Yes", "No") != "Yes")
 			return
 		L.ghostize(FALSE)
+		
 	else if(L in GLOB.offered_mob_list)
 		switch(alert("This mob has been offered, do you want to re-announce it?", "Offer Mob", "Yes", "Remove", "Cancel"))
 			if("Cancel")
