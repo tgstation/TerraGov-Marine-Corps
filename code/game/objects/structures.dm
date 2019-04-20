@@ -2,7 +2,6 @@
 	icon = 'icons/obj/structures/structures.dmi'
 	var/climbable
 	var/climb_delay = 50
-	var/breakable = TRUE
 	var/parts
 	var/flags_barrier = 0
 	anchored = TRUE
@@ -32,16 +31,17 @@
 	return
 
 /obj/structure/attack_hand(mob/user)
-	..()
-	if(breakable)
-		if(HULK in user.mutations)
-			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-			visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
-			destroy_structure()
+	. = ..()
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return
+	if(HULK in user.mutations)
+		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+		visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
+		destroy_structure()
 
 /obj/structure/attackby(obj/item/C as obj, mob/user as mob)
 	. = ..()
-	if(istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && breakable && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+	if(istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		var/obj/item/tool/pickaxe/plasmacutter/P = C
 		if(!P.start_cut(user, name, src))
 			return
@@ -55,13 +55,13 @@
 	return FALSE
 
 /obj/structure/attack_animal(mob/living/user)
-	if(breakable)
-		if(user.wall_smash)
-			visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
-			destroy_structure()
+	. = ..()
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE) && user.wall_smash)
+		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
+		destroy_structure()
 
 /obj/structure/attack_paw(mob/user)
-	if(breakable)
+	if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		attack_hand(user)
 
 /obj/structure/attack_tk()
@@ -261,10 +261,7 @@
 
 //Damage
 /obj/structure/proc/take_damage(dam)
-	if(!breakable)
-		return
-
-	if(!dam)
+	if(!dam || CHECK_MULTIPLE_BITFIELDS(resistance_flags, INDESTRUCTIBLE|UNACIDABLE))
 		return
 
 	damage = max(0, damage + dam)

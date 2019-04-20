@@ -24,7 +24,7 @@
 	if(can_buckle)
 		structure_strings += "You can buckle someone or yourself to this structure. <br>Click the structure or press 'resist' to unbuckle."
 
-	if(breakable)
+	if(!CHECK_MULTIPLE_BITFIELDS(resistance_flags, INDESTRUCTIBLE))
 		structure_strings += "You can break this structure."
 	else
 		structure_strings += "You cannot break this structure."

@@ -368,7 +368,7 @@
 	name = "\improper Bravo Squad Leader Preparations"
 	req_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRAVO)
 	req_one_access = null
-	
+
 /obj/machinery/door/airlock/almayer/marine/bravo/spec
 	name = "\improper Bravo Squad Specialist Preparations"
 	req_access = list(ACCESS_MARINE_SPECPREP, ACCESS_MARINE_BRAVO)
@@ -388,7 +388,7 @@
 	name = "\improper Bravo Squad Smartgunner Preparations"
 	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_BRAVO)
 	req_one_access = null
-	
+
 /obj/machinery/door/airlock/almayer/marine/charlie
 	name = "\improper Charlie Squad Preparations"
 	icon = 'icons/obj/doors/almayer/prepdoor_charlie.dmi'
@@ -469,7 +469,6 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	no_panel = TRUE
 	not_weldable = TRUE
-	destructible = FALSE
 
 /obj/machinery/door/airlock/dropship_hatch/ex_act(severity)
 	return
@@ -500,7 +499,6 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	no_panel = TRUE
 	not_weldable = TRUE
-	destructible = FALSE
 
 /obj/machinery/door/airlock/hatch/cockpit/two
 	icon = 'icons/obj/doors/almayer/dropship2_pilot.dmi'

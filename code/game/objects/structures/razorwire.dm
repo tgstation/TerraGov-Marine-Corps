@@ -9,7 +9,6 @@
 	layer = ABOVE_OBJ_LAYER
 	throwpass = TRUE	//You can throw objects over this
 	climbable = TRUE
-	breakable = TRUE
 	var/list/entangled_list = list()
 	var/sheet_type = /obj/item/stack/barbed_wire
 	var/sheet_type2 = /obj/item/stack/rods
