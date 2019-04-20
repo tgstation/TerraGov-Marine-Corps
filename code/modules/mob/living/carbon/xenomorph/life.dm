@@ -31,7 +31,8 @@
 	update_action_button_icons()
 	update_icons()
 
-	if (world.time - away_time > XENO_AFK_TIMER)
+	if (!away_ssd_checked && world.time - away_time > XENO_AFK_TIMER)
+		away_ssd_checked = TRUE
 		handle_afk_takeover()
 
 /mob/living/carbon/Xenomorph/update_stat()

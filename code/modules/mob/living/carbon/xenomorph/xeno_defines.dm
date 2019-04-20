@@ -273,3 +273,6 @@
 	var/cresttoss_used = FALSE
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	//Ensure we only check for new candidates for ssd xenos once.
+	var/away_ssd_checked = FALSE
