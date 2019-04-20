@@ -398,7 +398,7 @@
 		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"
 		
 	if(M.client)
-		body += "<a href='?src=[ref];playtime=[M.client]'>Playtime</a> | "
+		body += "<a href='?src=[ref];playtime=[REF(M)]'>Playtime</a> | "
 		body += "<a href='?src=[ref];kick=[REF(M)]'>Kick</a> | "
 		body += "<a href='?src=[ref];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</a> | "
 	else

@@ -1574,7 +1574,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/client/C = locate(href_list["playtime"]) in GLOB.clients
+		var/mob/M = locate(href_list["playtime"]) in GLOB.mob_list
+		var/client/C = M.client
 
 		if(!istype(C))
 			return
