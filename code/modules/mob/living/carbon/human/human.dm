@@ -1709,9 +1709,10 @@
 	if(!mind)
 		assigned_squad = S
 		return FALSE
-		
+
 	else if(assigned_squad)
 		assigned_squad.clean_marine_from_squad(src)
+		assigned_squad = null
 
 	var/datum/job/J = SSjob.GetJob(mind.assigned_role)
 	var/datum/outfit/job/O = new J.outfit
