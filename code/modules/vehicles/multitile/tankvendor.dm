@@ -22,8 +22,10 @@
 	. = ..()
 	update_icon()
 
-/obj/machinery/tank_part_fabricator/proc/set_busy(business = TRUE)
+/obj/machinery/tank_part_fabricator/proc/set_busy(business = TRUE, timer)
 	busy = business
+	if(timer)
+		addtimer(CALLBACK(src, .proc/set_busy, !business), timer)
 	update_icon()
 	updateUsrDialog()
 
@@ -228,8 +230,7 @@
 	tank_points += calculate_mod_value()
 	visible_message("<span class='notice'>[src] starts disassembling [loaded_mod].</span>")
 	QDEL_NULL(loaded_mod)
-	set_busy()
-	addtimer(CALLBACK(src, .proc/set_busy, FALSE), 10 SECONDS)
+	set_busy(TRUE, 10 SECONDS)
 
 /obj/machinery/tank_part_fabricator/proc/restore_tank_part()
 	if(machine_stat & (NOPOWER|BROKEN) || busy || QDELETED(loaded_mod))
@@ -242,12 +243,11 @@
 			H.ammo.current_rounds = H.ammo.max_rounds
 			H.ammo.update_icon()
 		else
-			H.ammo = new H.starter_ammo
+			H.ammo = initial(H.starter_ammo)
 	else if(istype(loaded_mod, /obj/item/ammo_magazine/tank))
 		var/obj/item/ammo_magazine/tank/A = loaded_mod
 		A.current_rounds = A.max_rounds
-	set_busy()
-	addtimer(CALLBACK(src, .proc/set_busy, FALSE), 6 SECONDS)
+	set_busy(TRUE, 6 SECONDS)
 
 /obj/machinery/tank_part_fabricator/Topic(href, href_list)
 	. =..()
