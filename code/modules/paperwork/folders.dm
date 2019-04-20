@@ -55,7 +55,7 @@
 
 	else if(istype(I, /obj/item/tool/pen))
 		var/n_name = copytext(sanitize(input(user, "What would you like to label the folder?", "Folder Labelling", null) as null|text), 1, MAX_NAME_LEN)
-		if(!loc != user || user.stat != CONSCIOUS)
+		if(loc != user || user.stat != CONSCIOUS)
 			return
 
 		name = "folder[(n_name ? "- '[n_name]'" : "")]"
