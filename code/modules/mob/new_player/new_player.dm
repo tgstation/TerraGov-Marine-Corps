@@ -326,7 +326,7 @@
 	if(job && !job.override_latejoin_spawn(character))
 		SSjob.SendToLateJoin(character)
 
-	GLOB.datacore.manifest_inject(character)
+	GLOB.crew_datacore.manifest_inject(character)
 	SSticker.minds += character.mind
 
 	if(isdistress(SSticker?.mode))
@@ -374,7 +374,7 @@
 
 
 /mob/new_player/proc/ViewManifest()
-	var/dat = GLOB.datacore.get_manifest(ooc = TRUE)
+	var/dat = GLOB.crew_datacore.get_manifest(ooc = TRUE)
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 400, 420)
 	popup.set_content(dat)

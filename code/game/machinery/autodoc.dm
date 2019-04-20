@@ -244,7 +244,7 @@
 
 	var/mob/living/carbon/human/H = M
 	var/datum/data/record/N = null
-	for(var/datum/data/record/R in GLOB.datacore.medical)
+	for(var/datum/data/record/R in GLOB.crew_datacore.medical)
 		if (R.fields["name"] == H.real_name)
 			N = R
 	if(isnull(N))
@@ -903,7 +903,7 @@
 			var/list/surgeryqueue = list()
 
 			var/datum/data/record/N = null
-			for(var/datum/data/record/R in GLOB.datacore.medical)
+			for(var/datum/data/record/R in GLOB.crew_datacore.medical)
 				if (R.fields["name"] == connected.occupant.real_name)
 					N = R
 			if(isnull(N))
@@ -1037,7 +1037,7 @@
 		if(connected.occupant && ishuman(connected.occupant))
 			// manual surgery handling
 			var/datum/data/record/N = null
-			for(var/datum/data/record/R in GLOB.datacore.medical)
+			for(var/datum/data/record/R in GLOB.crew_datacore.medical)
 				if (R.fields["name"] == connected.occupant.real_name)
 					N = R
 			if(isnull(N))
@@ -1227,7 +1227,7 @@
 		to_chat(user, "<span class='notice'>It contains: [occupant].[active]</span>")
 		return
 	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.datacore.medical)
+	for(var/datum/data/record/R in GLOB.crew_datacore.medical)
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(!(R.fields["last_scan_time"]))
@@ -1247,7 +1247,7 @@
 	if(!ishuman(occupant))
 		return
 	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.datacore.medical)
+	for(var/datum/data/record/R in GLOB.crew_datacore.medical)
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])

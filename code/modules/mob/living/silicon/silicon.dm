@@ -129,8 +129,8 @@
 // this function displays the stations manifest in a separate window
 /mob/living/silicon/proc/show_station_manifest()
 	var/dat
-	if(GLOB.datacore)
-		dat += GLOB.datacore.get_manifest(1) // make it monochrome
+	if(GLOB.crew_datacore)
+		dat += GLOB.crew_datacore.get_manifest(1) // make it monochrome
 
 	var/datum/browser/popup = new(src, "airoster", "<div align='center'>Crew Manifest</div>")
 	popup.set_content(dat)

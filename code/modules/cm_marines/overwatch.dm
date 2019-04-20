@@ -348,7 +348,7 @@
 			else
 				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Dead marines are now shown again.</span>")
 		if("choose_z")
-			switch(z_hidden) 
+			switch(z_hidden)
 				if(HIDE_NONE)
 					z_hidden = HIDE_ON_SHIP
 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [CONFIG_GET(string/ship_name)] are now hidden.</span>")
@@ -630,9 +630,9 @@
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[wanted_marine] is missing in action.</span>")
 		return
 
-	for (var/datum/data/record/E in GLOB.datacore.general)
+	for (var/datum/data/record/E in GLOB.crew_datacore.general)
 		if(E.fields["name"] == wanted_marine.real_name)
-			for (var/datum/data/record/R in GLOB.datacore.security)
+			for (var/datum/data/record/R in GLOB.crew_datacore.security)
 				if (R.fields["id"] == E.fields["id"])
 					if(!findtext(R.fields["ma_crim"],"Insubordination."))
 						R.fields["criminal"] = "*Arrest*"
@@ -712,7 +712,7 @@
 	old_squad.remove_marine_from_squad(transfer_marine)
 	new_squad.put_marine_in_squad(transfer_marine)
 
-	for(var/datum/data/record/t in GLOB.datacore.general) //we update the crew manifest
+	for(var/datum/data/record/t in GLOB.crew_datacore.general) //we update the crew manifest
 		if(t.fields["name"] == transfer_marine.real_name)
 			t.fields["squad"] = new_squad.name
 			break
@@ -1095,16 +1095,16 @@
 		return
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/order_icons.dmi', icon_state = "[order_type]")
-	
+
 	if(human.command_aura_cooldown > 0)
 		button.color = rgb(255,0,0,255)
 	else
 		button.color = rgb(255,255,255,255)
-		
+
 /datum/action/skill/issue_order/move
 	name = "Issue Move Order"
 	order_type = "move"
-		
+
 /datum/action/skill/issue_order/hold
 	name = "Issue Hold Order"
 	order_type = "hold"
@@ -1118,12 +1118,12 @@
 /datum/action/skill/toggle_orders
 	name = "Show/Hide Order Options"
 	skill_name = "leadership"
-	skill_min = SKILL_LEAD_TRAINED	
-	var/orders_visible = TRUE	
-	
+	skill_min = SKILL_LEAD_TRAINED
+	var/orders_visible = TRUE
+
 /datum/action/skill/toggle_orders/New()
-	return ..(/obj/item/megaphone)	
-	
+	return ..(/obj/item/megaphone)
+
 /datum/action/skill/toggle_orders/action_activate()
 	var/mob/living/carbon/human/H = owner
 	if(!istype(H))
@@ -1138,9 +1138,9 @@
 		var/list/subtypeactions = subtypesof(/datum/action/skill/issue_order)
 		for(var/path in subtypeactions)
 			var/datum/action/skill/issue_order/A = new path()
-			A.give_action(H)	
-	
-	
+			A.give_action(H)
+
+
 /mob/living/carbon/human/Initialize()
 	. = ..()
 	var/datum/action/skill/toggle_orders/toggle_orders_action = new

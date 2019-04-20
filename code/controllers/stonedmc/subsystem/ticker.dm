@@ -113,7 +113,7 @@ SUBSYSTEM_DEF(ticker)
 	CHECK_TICK
 	var/can_continue = mode.pre_setup()
 	CHECK_TICK
-	SSjob.DivideOccupations() 
+	SSjob.DivideOccupations()
 	CHECK_TICK
 
 	if(!GLOB.Debug2)
@@ -147,8 +147,9 @@ SUBSYSTEM_DEF(ticker)
 	LAZYCLEARLIST(round_start_events)
 
 	supply_controller.process()
-
-	GLOB.datacore.manifest()
+	for(var/A in GLOB.datacores_list)
+		var/datum/datacore/D = A
+		D.manifest()
 
 	log_world("Game start took [(world.timeofday - init_start) / 10]s")
 	round_start_time = world.time

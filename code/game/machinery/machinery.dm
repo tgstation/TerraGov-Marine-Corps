@@ -383,7 +383,7 @@ Class Procs:
 
 obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_implants)
 	var/datum/data/record/N = null
-	for(var/datum/data/record/R in GLOB.datacore.medical)
+	for(var/datum/data/record/R in GLOB.crew_datacore.medical)
 		if (R.fields["name"] == H.real_name)
 			N = R
 	if(isnull(N))

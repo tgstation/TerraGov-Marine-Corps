@@ -96,78 +96,110 @@
 				icon_state = initial(icon_state)
 
 
-/*
- * Security Record Cabinets
- */
-/obj/structure/filingcabinet/security
-	var/virgin = 1
+#define CABINET_DATACORE_CREW	1
+#define CABINET_DATACORE_COLONY	2
+
+#define CAT_SECURITY	(1<<0)
+#define CAT_MEDICAL		(1<<1)
+
+/obj/structure/filingcabinet/records
+	desc = "A large cabinet with drawers, commonly used to store records of each crewmember."
+	var/datum/datacore/core
+	var/init_datacore
+	var/records_flags
+
+/obj/structure/filingcabinet/records/Initialize(mapload)
+	. = ..()
+	switch(init_datacore)
+		if(CABINET_DATACORE_CREW)
+			core = GLOB.crew_datacore
+		if(CABINET_DATACORE_COLONY)
+			core = GLOB.colony_datacore
+	if(!core)
+		if(is_ground_level(z))
+			core = GLOB.colony_datacore
+		else if(is_mainship_or_low_orbit_level(z))
+			core = GLOB.crew_datacore
+	if(core)
+		GLOB.records_cabinets[core] += src
+	if(!mapload)
+		populate()
+
+/obj/structure/filingcabinet/records/Destroy()
+	GLOB.records_cabinets[core] -= src
+	return ..()
+
+/obj/structure/filingcabinet/records/proc/populate()
+	for(var/datum/data/record/G in core.general)
+		sort_record(G)
+		CHECK_TICK
+
+/obj/structure/filingcabinet/records/proc/sort_record(datum/data/record/G, datum/data/record/M, datum/data/record/S)
+	if(!core || !G)
+		return
+	var/list/papers
+	if(!M && records_flags & CAT_MEDICAL)
+		M = find_record("name", G.fields["name"], core.medical)
+		if(M)
+			papers += M
+			papers[M] = CAT_MEDICAL
+	if(!S && records_flags & CAT_SECURITY)
+		S = find_record("name", G.fields["name"], core.security)
+		if(S)
+			papers += S
+			papers[S] = CAT_SECURITY
+	var/obj/item/folder/F
+	if(length(papers) > 1)
+		F = new (src)
+			F.name = "folder - '[G.fields["name"]]'"
+	for(var/R in papers)
+		add_record(G, R, papers[R], F)
 
 
-/obj/structure/filingcabinet/security/proc/populate()
-	if(virgin)
-		for(var/datum/data/record/G in GLOB.datacore.general)
-			var/datum/data/record/S
-			for(var/datum/data/record/R in GLOB.datacore.security)
-				if((R.fields["name"] == G.fields["name"] || R.fields["id"] == G.fields["id"]))
-					S = R
-					break
-			if(S)
-				var/obj/item/paper/P = new /obj/item/paper(src)
-				P.info = "<CENTER><B>Security Record</B></CENTER><BR>"
-				P.info += "Name: [G.fields["name"]] ID: [G.fields["id"]]<BR>\nSex: [G.fields["sex"]]<BR>\nAge: [G.fields["age"]]<BR>\nFingerprint: [G.fields["fingerprint"]]<BR>\nPhysical Status: [G.fields["p_stat"]]<BR>\nMental Status: [G.fields["m_stat"]]<BR>"
-				P.info += "<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nCriminal Status: [S.fields["criminal"]]<BR>\n<BR>\nMinor Crimes: [S.fields["mi_crim"]]<BR>\nDetails: [S.fields["mi_crim_d"]]<BR>\n<BR>\nMajor Crimes: [S.fields["ma_crim"]]<BR>\nDetails: [S.fields["ma_crim_d"]]<BR>\n<BR>\nImportant Notes:<BR>\n\t[S.fields["notes"]]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
-				var/counter = 1
-				while(S.fields["com_[counter]"])
-					P.info += "[S.fields["com_[counter]"]]<BR>"
-					counter++
-				P.info += "</TT>"
-				P.name = "Security Record ([G.fields["name"]])"
-			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
-						//before the records have been generated, so we do this inside the loop.
-	..()
+/obj/structure/filingcabinet/records/proc/add_record(datum/data/record/G, datum/data/record/R, category, obj/item/folder/F)
+	if(!G || !R || !category)
+		return
+	var/obj/item/paper/P = new (F ? F : src)
+	switch(category)
+		if(CAT_MEDICAL)
+			P.name = "paper - '[G.fields["name"]] (Medical)'"
+			P.info = "<CENTER><B>Medical Record</B></CENTER><BR>"
+			P.info += "Name: [G.fields["name"]] ID: [G.fields["id"]]<BR>\nSex: [G.fields["sex"]]<BR>\nAge: [G.fields["age"]]<BR>\nFingerprint: [G.fields["fingerprint"]]<BR>\nPhysical Status: [G.fields["p_stat"]]<BR>\nMental Status: [G.fields["m_stat"]]<BR>"
+			P.info += "<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: [R.fields["b_type"]]<BR>\nDNA: [R.fields["b_dna"]]<BR>\n<BR>\nMinor Disabilities: [R.fields["mi_dis"]]<BR>\nDetails: [R.fields["mi_dis_d"]]<BR>\n<BR>\nMajor Disabilities: [R.fields["ma_dis"]]<BR>\nDetails: [R.fields["ma_dis_d"]]<BR>\n<BR>\nAllergies: [R.fields["alg"]]<BR>\nDetails: [R.fields["alg_d"]]<BR>\n<BR>\nCurrent Diseases: [R.fields["cdi"]] (per disease info placed in log/comment section)<BR>\nDetails: [R.fields["cdi_d"]]<BR>\n<BR>\nImportant Notes:<BR>\n\t[R.fields["notes"]]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
+		if(CAT_SECURITY)
+			P.name = "paper - '[G.fields["name"]] (Security)'"
+			P.info = "<CENTER><B>Security Record</B></CENTER><BR>"
+			P.info += "Name: [G.fields["name"]] ID: [G.fields["id"]]<BR>\nSex: [G.fields["sex"]]<BR>\nAge: [G.fields["age"]]<BR>\nFingerprint: [G.fields["fingerprint"]]<BR>\nPhysical Status: [G.fields["p_stat"]]<BR>\nMental Status: [G.fields["m_stat"]]<BR>"
+			P.info += "<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nCriminal Status: [R.fields["criminal"]]<BR>\n<BR>\nMinor Crimes: [R.fields["mi_crim"]]<BR>\nDetails: [R.fields["mi_crim_d"]]<BR>\n<BR>\nMajor Crimes: [R.fields["ma_crim"]]<BR>\nDetails: [R.fields["ma_crim_d"]]<BR>\n<BR>\nImportant Notes:<BR>\n\t[R.fields["notes"]]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
+	comment_field(R, P)
 
-/obj/structure/filingcabinet/security/attack_hand()
-	populate()
-	..()
+/obj/structure/filingcabinet/records/proc/comment_field(datum/data/record/R, obj/item/paper/P)
+	var/counter = 1
+	while(R.fields["com_[counter]"])
+		P.info += "[R.fields["com_[counter]"]]<BR>"
+		counter++
+	P.info += "</TT>"
 
-/obj/structure/filingcabinet/security/attack_tk()
-	populate()
-	..()
+/obj/structure/filingcabinet/records/security
+	records_flags = CAT_SECURITY
 
-/*
- * Medical Record Cabinets
- */
-/obj/structure/filingcabinet/medical
-	var/virgin = 1
+/obj/structure/filingcabinet/records/security/crew
+	init_datacore = CABINET_DATACORE_CREW
 
-/obj/structure/filingcabinet/medical/proc/populate()
-	if(virgin)
-		for(var/datum/data/record/G in GLOB.datacore.general)
-			var/datum/data/record/M
-			for(var/datum/data/record/R in GLOB.datacore.medical)
-				if((R.fields["name"] == G.fields["name"] || R.fields["id"] == G.fields["id"]))
-					M = R
-					break
-			if(M)
-				var/obj/item/paper/P = new /obj/item/paper(src)
-				P.info = "<CENTER><B>Medical Record</B></CENTER><BR>"
-				P.info += "Name: [G.fields["name"]] ID: [G.fields["id"]]<BR>\nSex: [G.fields["sex"]]<BR>\nAge: [G.fields["age"]]<BR>\nFingerprint: [G.fields["fingerprint"]]<BR>\nPhysical Status: [G.fields["p_stat"]]<BR>\nMental Status: [G.fields["m_stat"]]<BR>"
+/obj/structure/filingcabinet/records/security/colony
+	init_datacore = CABINET_DATACORE_COLONY
 
-				P.info += "<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: [M.fields["b_type"]]<BR>\nDNA: [M.fields["b_dna"]]<BR>\n<BR>\nMinor Disabilities: [M.fields["mi_dis"]]<BR>\nDetails: [M.fields["mi_dis_d"]]<BR>\n<BR>\nMajor Disabilities: [M.fields["ma_dis"]]<BR>\nDetails: [M.fields["ma_dis_d"]]<BR>\n<BR>\nAllergies: [M.fields["alg"]]<BR>\nDetails: [M.fields["alg_d"]]<BR>\n<BR>\nCurrent Diseases: [M.fields["cdi"]] (per disease info placed in log/comment section)<BR>\nDetails: [M.fields["cdi_d"]]<BR>\n<BR>\nImportant Notes:<BR>\n\t[M.fields["notes"]]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
-				var/counter = 1
-				while(M.fields["com_[counter]"])
-					P.info += "[M.fields["com_[counter]"]]<BR>"
-					counter++
-				P.info += "</TT>"
-				P.name = "Medical Record ([G.fields["name"]])"
-			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
-						//before the records have been generated, so we do this inside the loop.
-	..()
+/obj/structure/filingcabinet/records/medical
+	records_flags = CAT_MEDICAL
 
-/obj/structure/filingcabinet/medical/attack_hand()
-	populate()
-	..()
+/obj/structure/filingcabinet/records/medical/crew
+	init_datacore = CABINET_DATACORE_CREW
 
-/obj/structure/filingcabinet/medical/attack_tk()
-	populate()
-	..()
+/obj/structure/filingcabinet/records/medical/colony
+	init_datacore = CABINET_DATACORE_COLONY
+
+#undef CABINET_DATACORE_COLONY
+#undef CABINET_DATACORE_CREW
+
+#undef CAT_SECURITY
+#undef CAT_MEDICAL

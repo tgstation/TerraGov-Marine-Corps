@@ -11,3 +11,8 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars, list("tag", "datum_components", "area
 	"parent", "parent_type", "verbs", "ckey", "key", "power_supply", "reagents", "stat", "x", "y", "z", "contents", \
 	"group", "atmos_adjacent_turfs", "comp_lookup", "boxes", "click_border_start","storage_start", "storage_continue",\
 	"storage_end", "closer", "stored_start", "stored_continue", "stored_end", "click_border_end", "opened"))
+
+GLOBAL_LIST_EMPTY(datacores_list)
+
+GLOBAL_DATUM_INIT(crew_datacore, /datum/datacore/crew, new)
+GLOBAL_DATUM_INIT(colony_datacore, /datum/datacore/colony, new)

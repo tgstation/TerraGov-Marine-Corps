@@ -390,7 +390,7 @@
 	if(!ishuman(occupant))
 		return
 	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.datacore.medical)
+	for(var/datum/data/record/R in GLOB.crew_datacore.medical)
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])

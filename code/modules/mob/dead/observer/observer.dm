@@ -267,8 +267,8 @@
 			ghost_orderhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 			client.prefs.ghost_hud ^= GHOST_HUD_ORDER
 			client.prefs.save_preferences()
-			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_orderhud ? "Enabled" : "Disabled"]</span>")			
-		
+			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_orderhud ? "Enabled" : "Disabled"]</span>")
+
 
 
 /mob/dead/observer/verb/teleport(var/area/A in return_sorted_areas())
@@ -589,7 +589,7 @@
 	set category = "Ghost"
 	set name = "View Crew Manifest"
 
-	var/dat = GLOB.datacore.get_manifest()
+	var/dat = GLOB.crew_datacore.get_manifest()
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
 	popup.set_content(dat)

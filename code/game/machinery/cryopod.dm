@@ -260,19 +260,7 @@
 		stored_items.Add(W.store_in_cryo())
 	GLOB.cryoed_item_list[dept_console].Add(stored_items)
 
-
-	for(var/datum/data/record/R in GLOB.datacore.medical)
-		if((R.fields["name"] == real_name))
-			GLOB.datacore.medical -= R
-			qdel(R)
-	for(var/datum/data/record/T in GLOB.datacore.security)
-		if((T.fields["name"] == real_name))
-			GLOB.datacore.security -= T
-			qdel(T)
-	for(var/datum/data/record/G in GLOB.datacore.general)
-		if((G.fields["name"] == real_name))
-			GLOB.datacore.general -= G
-			qdel(G)
+	GLOB.crew_datacore.remove_from_datacore(src)
 
 	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
 

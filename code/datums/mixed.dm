@@ -18,12 +18,6 @@
 	name = "id changer"
 
 
-/datum/data/record
-	name = "record"
-	size = 5.0
-	var/list/fields = list(  )
-
-
 /datum/data/text
 	name = "text"
 	var/data = null

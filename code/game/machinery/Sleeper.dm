@@ -190,7 +190,7 @@
 	beaker = new /obj/item/reagent_container/glass/beaker/large()
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
-		
+
 /obj/machinery/sleeper/Destroy()
 	occupant?.in_stasis = FALSE //clean up; end stasis; remove from processing
 	occupant = null
@@ -213,7 +213,7 @@
 		to_chat(user, "<span class='notice'>It contains: [occupant].[feedback]</span>")
 		return
 	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.datacore.medical)
+	for(var/datum/data/record/R in GLOB.crew_datacore.medical)
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(!(R.fields["last_scan_time"]))
@@ -233,7 +233,7 @@
 	if(!ishuman(occupant))
 		return
 	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.datacore.medical)
+	for(var/datum/data/record/R in GLOB.crew_datacore.medical)
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])

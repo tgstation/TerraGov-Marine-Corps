@@ -115,9 +115,9 @@ var/datum/mob_hud/huds = list(
 
 /datum/mob_hud/squad
 	hud_icons = list(SQUAD_HUD)
-	
+
 /datum/mob_hud/order
-	hud_icons = list(ORDER_HUD)	
+	hud_icons = list(ORDER_HUD)
 
 
 
@@ -438,9 +438,9 @@ var/datum/mob_hud/huds = list(
 		if(I)
 			perpname = I.registered_name
 
-	for(var/datum/data/record/E in GLOB.datacore.general)
+	for(var/datum/data/record/E in GLOB.crew_datacore.general)
 		if(E.fields["name"] == perpname)
-			for(var/datum/data/record/R in GLOB.datacore.security)
+			for(var/datum/data/record/R in GLOB.crew_datacore.security)
 				if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
 					holder.icon_state = "hudwanted"
 					break
@@ -487,8 +487,8 @@ var/datum/mob_hud/huds = list(
 			IMG2.color = squad_clr
 			holder.overlays += IMG2
 	hud_list[SQUAD_HUD] = holder
-	
-	
+
+
 //Order HUD
 
 /mob/living/carbon/human/proc/hud_set_order()
@@ -514,4 +514,4 @@ var/datum/mob_hud/huds = list(
 			if("focus")
 				holder.overlays += image('icons/mob/hud.dmi',src, "hudfocusaura")
 
-	hud_list[ORDER_HUD] = holder	
+	hud_list[ORDER_HUD] = holder
