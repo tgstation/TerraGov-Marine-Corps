@@ -200,7 +200,7 @@
 		anes_tank = I
 		to_chat(user, "<span class='notice'>You connect \the [anes_tank] to \the [src].</span>")
 
-	else if(!istype(I, /obj/item/grab))
+	if(!istype(I, /obj/item/grab))
 		return
 
 	var/obj/item/grab/G = I
