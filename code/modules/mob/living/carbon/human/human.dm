@@ -1692,9 +1692,6 @@
 	return TRUE
 
 /mob/living/carbon/human/take_over(mob/M)
-	if(assigned_squad)
-		assigned_squad.clean_marine_from_squad(src)
-
 	. = ..()
 
 	set_rank(job)
@@ -1712,6 +1709,9 @@
 	if(!mind)
 		assigned_squad = S
 		return FALSE
+		
+	else if(assigned_squad)
+		assigned_squad.clean_marine_from_squad(src)
 
 	var/datum/job/J = SSjob.GetJob(mind.assigned_role)
 	var/datum/outfit/job/O = new J.outfit
