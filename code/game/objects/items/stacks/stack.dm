@@ -218,7 +218,7 @@
 		return FALSE
 	if(R.on_floor)
 		if(isspaceturf(T))
-			to_chat(usr, "<span class='warning'>\The [R.title] must be constructed a solid floor!</span>")
+			to_chat(usr, "<span class='warning'>\The [R.title] must be constructed on a solid floor!</span>")
 			return FALSE
 		for(var/obj/AM in T)
 			if(istype(AM,/obj/structure/grille))
