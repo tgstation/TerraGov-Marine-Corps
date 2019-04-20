@@ -8,7 +8,7 @@
 	if(monkeyizing || !loc)
 		return
 
-	..()
+	. = ..()
 
 	if(stat == DEAD) //Dead, nothing else to do but this.
 		if(plasma_stored && !(xeno_caste.caste_flags & CASTE_DECAY_PROOF))

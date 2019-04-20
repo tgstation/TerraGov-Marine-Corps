@@ -3,6 +3,10 @@
 	set invisibility = 0
 	set background = 1
 
+	//TODO: seperate this out
+	//update the current life tick, can be used to e.g. only do something every 4 ticks
+	life_tick++
+
 	if(stat != DEAD) //Chemicals in body and some other stuff.
 		handle_organs()
 

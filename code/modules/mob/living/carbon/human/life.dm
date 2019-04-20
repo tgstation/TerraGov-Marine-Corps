@@ -7,14 +7,9 @@
 	if(!loc) //Fixing a null error that occurs when the mob isn't found in the world -- TLE
 		return
 
-	..()
+	. = ..()
 
 	fire_alert = 0 //Reset this here, because both breathe() and handle_environment() have a chance to set it.
-
-
-	//TODO: seperate this out
-	//update the current life tick, can be used to e.g. only do something every 4 ticks
-	life_tick++
 
 	voice = GetVoice()
 	if(stat == DEAD && iszombie(src) && regenZ)

@@ -5,9 +5,8 @@
 	if (update_muts)
 		update_muts=0
 		domutcheck(src,null,MUTCHK_FORCED)
-	..()
 
-	life_tick++
+	. = ..()
 
 	if (stat != DEAD)
 
