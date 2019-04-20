@@ -27,7 +27,7 @@
 	if(machine_max_charge)
 		machinery_strings += "It can hold [machine_max_charge] power in it's internal buffer."
 
-	if(!CHECK_MULTIPLE_BITFIELDS(resistance_flags, INDESTRUCTIBLE))
+	if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		machinery_strings += "This can be destroyed."
 
 	if(wrenchable == TRUE)

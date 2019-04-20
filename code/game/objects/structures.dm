@@ -261,7 +261,7 @@
 
 //Damage
 /obj/structure/proc/take_damage(dam)
-	if(!dam || CHECK_MULTIPLE_BITFIELDS(resistance_flags, INDESTRUCTIBLE|UNACIDABLE))
+	if(!dam || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE|UNACIDABLE))
 		return
 
 	damage = max(0, damage + dam)
