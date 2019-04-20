@@ -11,4 +11,3 @@
 	throw_range = 6
 	flags_atom = CONDUCT
 	max_amount = 60
-	stack_id = "catwalk"

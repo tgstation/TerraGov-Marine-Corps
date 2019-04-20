@@ -12,7 +12,7 @@
 
 	var/code = 2
 
-/obj/item/radio/electropack/attack_hand(mob/user as mob)
+/obj/item/radio/electropack/attack_hand(mob/living/carbon/user)
 	if(src == user.back)
 		to_chat(user, "<span class='notice'>You need help taking this off!</span>")
 		return

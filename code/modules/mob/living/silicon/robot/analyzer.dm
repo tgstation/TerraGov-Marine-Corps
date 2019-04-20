@@ -36,8 +36,8 @@
 	user.show_message("<span class='notice'> Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "fully disabled" : "[M.health]% functional"]</span>")
 	user.show_message("\t Key: <font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>", 1)
 	user.show_message("\t Damage Specifics: <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font>")
-	if(M.tod && M.stat == DEAD)
-		user.show_message("<span class='notice'> Time of Disable: [M.tod]</span>")
+	if(M.timeofdeath && M.stat == DEAD)
+		user.show_message("<span class='notice'> Time of Disable: [M.timeofdeath]</span>")
 
 	if (iscyborg(M))
 		var/mob/living/silicon/robot/H = M

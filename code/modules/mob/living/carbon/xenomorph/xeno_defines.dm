@@ -273,3 +273,5 @@
 	var/cresttoss_used = FALSE
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	var/butchery_progress = 0

@@ -65,21 +65,9 @@
 	sleeping = max(sleeping + amount,0)
 	return
 
-/mob/proc/Resting(amount)
-	resting = max(max(resting,amount),0)
-	return
-
 /mob/proc/set_frozen(freeze = TRUE)
 	frozen = freeze
 	return TRUE
-
-/mob/proc/SetResting(amount)
-	resting = max(amount,0)
-	return
-
-/mob/proc/AdjustResting(amount)
-	resting = max(resting + amount,0)
-	return
 
 /mob/proc/adjust_drugginess(amount)
 	return

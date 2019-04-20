@@ -356,7 +356,7 @@
 	to_chat(user, "[current_mag?.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]")
 	to_chat(user, "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"].")
 
-/obj/item/weapon/gun/smartgun/unique_action(mob/user)
+/obj/item/weapon/gun/smartgun/unique_action(mob/living/carbon/user)
 	var/obj/item/smartgun_powerpack/power_pack = user.back
 	if(istype(power_pack))
 		power_pack.attack_self(user)
@@ -375,7 +375,7 @@
 //	if(active_attachable) active_attachable = null
 	return ready_in_chamber()
 
-/obj/item/weapon/gun/smartgun/reload_into_chamber(mob/user)
+/obj/item/weapon/gun/smartgun/reload_into_chamber(mob/living/carbon/user)
 	var/obj/item/smartgun_powerpack/power_pack = user.back
 	if(!istype(power_pack))
 		return current_mag.current_rounds
