@@ -46,6 +46,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 
 	if(shocked)
 		shock(user,50)
+		return TRUE
 
 	else if(I.is_open_container())
 		return TRUE
@@ -61,6 +62,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 		else
 			icon_state = "protolathe"
 			to_chat(user, "You close the maintenance hatch of [src].")
+		return TRUE
 
 	else if(opened)
 		if(!iscrowbar(I))
@@ -90,7 +92,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 		return TRUE
 
 	else if(disabled)
-		return
+		return TRUE
 
 	else if(!linked_console)
 		to_chat(user, "\The Nanotrasen Brand Bioprinter(TM) must be linked to an R&D console first!")
@@ -113,7 +115,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 
 	if(!do_after(user, 16, TRUE, src))
 		busy = FALSE
-		return
+		return TRUE
 
 	to_chat(user, "<span class='notice'>You add a [I] to the [src].</span>")
 	icon_state = "protolathe"

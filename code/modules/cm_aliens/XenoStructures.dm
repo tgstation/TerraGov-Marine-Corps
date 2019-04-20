@@ -615,7 +615,7 @@
 
 	var/mob/living/L = user
 	L.animation_attack_on(src)
-	visible_message("<span class='danger'>\The [src] has been [pick(I.attack_verb)] with \the [I] by [user].</span>")
+	visible_message("<span class='danger'>\The [src] has been [length(I.attack_verb) ? pick(I.attack_verb) : "attacked"] with \the [I] by [user].</span>")
 	var/damage = I.force
 	if(I.w_class < 4 || !I.sharp || I.force < 20) //only big strong sharp weapon are adequate
 		damage /= 4
