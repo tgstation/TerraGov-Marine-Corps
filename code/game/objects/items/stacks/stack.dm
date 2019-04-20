@@ -22,7 +22,7 @@
 	origin_tech = "materials=1"
 
 
-/obj/item/stack/New(loc, new_amount)
+/obj/item/stack/Initialize(loc, new_amount)
 	. = ..()
 	if(new_amount)
 		amount = new_amount
