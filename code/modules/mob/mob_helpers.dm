@@ -271,14 +271,21 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return FALSE
 
 
-/mob/proc/abiotic(var/full_body = 0)
-	if(full_body && ((src.l_hand && !( src.l_hand.flags_item & ITEM_ABSTRACT )) || (src.r_hand && !( src.r_hand.flags_item & ITEM_ABSTRACT )) || (src.back || src.wear_mask)))
+/mob/proc/abiotic(full_body)
+	if(full_body && ((l_hand && !( l_hand.flags_item & ITEM_ABSTRACT )) || (r_hand && !( r_hand.flags_item & ITEM_ABSTRACT ))))
 		return TRUE
 
 	if((src.l_hand && !( src.l_hand.flags_item & ITEM_ABSTRACT )) || (src.r_hand && !( src.r_hand.flags_item & ITEM_ABSTRACT )))
 		return TRUE
 
 	return FALSE
+
+
+/mob/living/carbon/abiotic(full_body)
+	if(full_body && (back || wear_mask))
+		return TRUE
+	return ..()
+
 
 //converts intent-strings into numbers and back
 /proc/intent_numeric(argument)

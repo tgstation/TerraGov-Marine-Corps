@@ -13,11 +13,4 @@
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
 		apply_damage(damage, BRUTE, affecting, run_armor_check(affecting, "melee"))
-
-		for(var/datum/disease/D in M.viruses)
-			if(istype(D, /datum/disease/jungle_fever))
-				var/mob/living/carbon/human/H = src
-				src = null
-				src = H.monkeyize()
-				contract_disease(D,1,0)
 	return

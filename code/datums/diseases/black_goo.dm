@@ -124,7 +124,7 @@
 				user.show_message(text("<span class='green'> <B>You sense your target is infected</B></span>"))
 				return
 			if(prob(75))
-				M.contract_disease(new /datum/disease/black_goo)
+				H.contract_disease(new /datum/disease/black_goo)
 				user.show_message(text("<span class='green'> <B>You sense your target is now infected</B></span>"))
 
 

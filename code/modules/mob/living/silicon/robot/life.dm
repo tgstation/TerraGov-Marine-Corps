@@ -2,10 +2,7 @@
 	set invisibility = 0
 	set background = 1
 
-	if (monkeyizing)
-		return
-
-	..()
+	. = ..()
 
 	//Status updates, death etc.
 	clamp_values()

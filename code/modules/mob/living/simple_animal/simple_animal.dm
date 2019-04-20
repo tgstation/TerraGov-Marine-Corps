@@ -85,7 +85,7 @@
 	. = ..()
 	icon_state = icon_living
 	density = initial(density)
-	SetResting(FALSE)
+	resting = FALSE
 
 /mob/living/simple_animal/Life()
 	..()
@@ -219,7 +219,7 @@
 	health = 0
 	icon_state = icon_dead
 	density = FALSE
-	SetResting(TRUE)
+	resting = TRUE
 
 
 /mob/living/simple_animal/gib()
