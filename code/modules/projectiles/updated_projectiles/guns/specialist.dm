@@ -489,20 +489,22 @@
 	to_chat(user, "<span class='notice'> It is loaded with <b>[length(grenades)] / [max_grenades]</b> grenades.</span>")
 
 
-/obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user)
-	if((istype(I, /obj/item/explosive/grenade)))
-		if(grenades.len < max_grenades)
-			if(user.transferItemToLoc(I, src))
-				grenades += I
-				playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
-				to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
-				to_chat(user, "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>")
-		else
+/obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/explosive/grenade))
+		if(length(grenades) >= max_grenades)
 			to_chat(user, "<span class='warning'>The grenade launcher cannot hold more grenades!</span>")
+			return
 
-	else if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user))
-			attach_to_gun(user,I)
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		grenades += I
+		playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
+		to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
+		to_chat(user, "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>")
+
+	else if(istype(I, /obj/item/attachable) && check_inactive_hand(user))
+		attach_to_gun(user, I)
 
 
 /obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
@@ -620,20 +622,24 @@
 	to_chat(user, "<span class='notice'> It is loaded with a grenade.</span>")
 
 
-/obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user)
-	if((istype(I, /obj/item/explosive/grenade)))
-		if((istype(I, grenade_type_allowed)))
-			if(!grenade)
-				if(user.transferItemToLoc(I, src))
-					grenade = I
-					to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
-			else
-				to_chat(user, "<span class='warning'>The grenade launcher cannot hold more grenades!</span>")
-		else
+/obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/explosive/grenade))
+		if(!istype(I, grenade_type_allowed))
 			to_chat(user, "<span class='warning'>[src] can't use this type of grenade!</span>")
+			return
 
-	else if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user)) attach_to_gun(user,I)
+		if(grenade)
+			to_chat(user, "<span class='warning'>The grenade launcher cannot hold more grenades!</span>")
+			return
+
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		grenade = I
+		to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
+
+	else if(istype(I, /obj/item/attachable) && check_inactive_hand(user))
+		attach_to_gun(user, I)
 
 
 /obj/item/weapon/gun/launcher/m81/afterattack(atom/target, mob/user, flag)

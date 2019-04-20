@@ -334,15 +334,14 @@
 	ui_interact(usr)
 
 
-/obj/machinery/computer/shuttle_control/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/computer/shuttle_control/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if (istype(W, /obj/item/card/emag))
-		src.req_access = list()
-		src.req_one_access = list()
-		hacked = 1
-		to_chat(usr, "You short out the console's ID checking system. It's now available to everyone!")
-	else
-		..()
+	if(istype(I, /obj/item/card/emag))
+		req_access = list()
+		req_one_access = list()
+		hacked = TRUE
+		to_chat(user, "You short out the console's ID checking system. It's now available to everyone!")
 
 /obj/machinery/computer/shuttle_control/attack_alien(mob/living/carbon/xenomorph/M)
 	var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]

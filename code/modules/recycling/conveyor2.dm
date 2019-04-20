@@ -101,14 +101,20 @@
 				break
 
 // attack with item, place item on conveyor
-/obj/machinery/conveyor/attackby(var/obj/item/I, mob/user)
+/obj/machinery/conveyor/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(!istype(I, /obj/item/grab))
+		return
+
 	var/obj/item/grab/G = I
-	if(istype(G))	// handle grabbed mob
-		if(ismob(G.grabbed_thing))
-			var/mob/GM = G.grabbed_thing
-			step(GM, get_dir(GM, src))
-			return
-	user.transferItemToLoc(I, loc)
+	
+	if(ismob(G.grabbed_thing))
+		var/mob/GM = G.grabbed_thing
+		step(GM, get_dir(GM, src))
+
+	else
+		user.transferItemToLoc(I, loc)
 
 // attack with hand, move pulled object onto conveyor
 /obj/machinery/conveyor/attack_hand(mob/user as mob)

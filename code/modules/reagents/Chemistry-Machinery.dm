@@ -150,17 +150,23 @@
 	attack_hand(usr)
 	return TRUE // update UIs attached to this object
 
-/obj/machinery/chem_dispenser/attackby(var/obj/item/reagent_container/B as obj, var/mob/user as mob)
-	if(src.beaker)
+/obj/machinery/chem_dispenser/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(beaker)
 		to_chat(user, "Something is already loaded into the machine.")
 		return
-	if(istype(B, /obj/item/reagent_container) && B.is_open_container())
-		if(user.transferItemToLoc(B, src))
-			beaker =  B
-			to_chat(user, "You set [B] on the machine.")
-			SSnano.update_uis(src) // update all UIs attached to src
-	else if (istype(B, /obj/item/reagent_container/glass))
-		to_chat(user, "Take the lid off [B] first.")
+		
+	else if(istype(I, /obj/item/reagent_container) && I.is_open_container())
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		beaker =  I
+		to_chat(user, "You set [I] on the machine.")
+		SSnano.update_uis(src) // update all UIs attached to src
+	
+	else if(istype(I, /obj/item/reagent_container/glass))
+		to_chat(user, "Take the lid off [I] first.")
 
 /obj/machinery/chem_dispenser/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -188,20 +194,17 @@
 	max_energy = 100
 	dispensable_reagents = list("water","ice","coffee","cream","tea","icetea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","watermelonjuice")
 
-/obj/machinery/chem_dispenser/soda/attackby(var/obj/item/B as obj, var/mob/user as mob)
-	..()
-	if(ismultitool(B))
-		if(hackedcheck == 0)
-			to_chat(user, "You change the mode from 'McNano' to 'Pizza King'.")
-			dispensable_reagents += list("thirteenloko","grapesoda")
-			hackedcheck = 1
-			return
+/obj/machinery/chem_dispenser/soda/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
+	if(ismultitool(I))
+		hackedcheck = !hackedcheck
+		if(hackedcheck)
+			to_chat(user, "You change the mode from 'McNano' to 'Pizza King'.")
+			dispensable_reagents += list("thirteenloko", "grapesoda")
 		else
 			to_chat(user, "You change the mode from 'Pizza King' to 'McNano'.")
-			dispensable_reagents -= list("thirteenloko","grapesoda")
-			hackedcheck = 0
-			return
+			dispensable_reagents -= list("thirteenloko", "grapesoda")
 
 /obj/machinery/chem_dispenser/beer
 	icon_state = "booze_dispenser"
@@ -214,21 +217,17 @@
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	dispensable_reagents = list("lemon_lime","sugar","orangejuice","limejuice","sodawater","tonic","beer","kahlua","whiskey","sake","wine","vodka","gin","rum","tequila","vermouth","cognac","ale","mead")
 
-/obj/machinery/chem_dispenser/beer/attackby(var/obj/item/B as obj, var/mob/user as mob)
-	..()
+/obj/machinery/chem_dispenser/beer/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(ismultitool(B))
-		if(hackedcheck == 0)
+	if(ismultitool(I))
+		hackedcheck = !hackedcheck
+		if(hackedcheck)
 			to_chat(user, "You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes.")
-			dispensable_reagents += list("goldschlager","patron","watermelonjuice","berryjuice")
-			hackedcheck = 1
-			return
-
+			dispensable_reagents += list("goldschlager", "patron", "watermelonjuice", "berryjuice")
 		else
 			to_chat(user, "You re-enable the 'nanotrasen-are-cheap-bastards' lock, disabling hidden and very expensive boozes.")
-			dispensable_reagents -= list("goldschlager","patron","watermelonjuice","berryjuice")
-			hackedcheck = 0
-			return
+			dispensable_reagents -= list("goldschlager", "patron", "watermelonjuice", "berryjuice")
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -270,7 +269,9 @@
 				qdel(src)
 				return
 
-/obj/machinery/chem_master/attackby(obj/item/I as obj, mob/living/user as mob)
+/obj/machinery/chem_master/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I,/obj/item/reagent_container) && I.is_open_container())
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
@@ -280,11 +281,11 @@
 		to_chat(user, "<span class='notice'>You add the beaker to the machine!</span>")
 		updateUsrDialog()
 		icon_state = "mixer1"
-	else if (istype(I,/obj/item/reagent_container/glass))
+	
+	else if(istype(I,/obj/item/reagent_container/glass))
 		to_chat(user, "<span class='warning'>Take off the lid first.</span>")
 
 	else if(istype(I, /obj/item/storage/pill_bottle))
-
 		if(loaded_pill_bottle)
 			to_chat(user, "<span class='warning'>A pill bottle is already loaded into the machine.</span>")
 			return
@@ -293,7 +294,6 @@
 		user.transferItemToLoc(I, src)
 		to_chat(user, "<span class='notice'>You add the pill bottle into the dispenser slot!</span>")
 		updateUsrDialog()
-	return
 
 /obj/machinery/chem_master/proc/transfer_chemicals(var/obj/dest, var/obj/source, var/amount, var/reagent_id)
 	if(istype(source))
@@ -857,10 +857,13 @@
 	onclose(user, "pandemic")
 
 
-/obj/machinery/computer/pandemic/attackby(obj/item/I, mob/living/user)
+/obj/machinery/computer/pandemic/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/reagent_container) && I.is_open_container())
 		if(machine_stat & (NOPOWER|BROKEN))
 			return
+
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
@@ -871,9 +874,6 @@
 		updateUsrDialog()
 		icon_state = "mixer1"
 
-	else
-		..()
-	return
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 /obj/machinery/reagentgrinder
@@ -944,47 +944,44 @@
 	return
 
 
-/obj/machinery/reagentgrinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/reagentgrinder/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-
-	if (istype(O,/obj/item/reagent_container) && O.is_open_container())
-
-		if (beaker)
+	if(istype(I, /obj/item/reagent_container) && I.is_open_container())
+		if(beaker)
 			return TRUE
-		else
-			beaker =  O
-			user.transferItemToLoc(O, src)
-			update_icon()
-			updateUsrDialog()
-			return FALSE
 
-	if(holdingitems && holdingitems.len >= limit)
-		to_chat(usr, "The machine cannot hold anymore items.")
+		beaker =  I
+		user.transferItemToLoc(I, src)
+		update_icon()
+		updateUsrDialog()
+		return FALSE
+
+	else if(length(holdingitems) >= limit)
+		to_chat(user, "The machine cannot hold anymore items.")
 		return TRUE
 
-	//Fill machine with the plantbag!
-	if(istype(O, /obj/item/storage/bag/plants))
-
-		for (var/obj/item/reagent_container/food/snacks/grown/G in O.contents)
-			O.contents -= G
-			G.loc = src
+	else if(istype(I, /obj/item/storage/bag/plants))
+		for(var/obj/item/reagent_container/food/snacks/grown/G in I.contents)
+			I.contents -= G
+			G.forceMove(src)
 			holdingitems += G
-			if(holdingitems && holdingitems.len >= limit) //Sanity checking so the blender doesn't overfill
+			if(length(holdingitems) >= limit)
 				to_chat(user, "You fill the All-In-One grinder to the brim.")
 				break
 
-		if(!O.contents.len)
+		if(!length(I.contents))
 			to_chat(user, "You empty the plant bag into the All-In-One grinder.")
 
-		src.updateUsrDialog()
+		updateUsrDialog()
 		return FALSE
 
-	if (!is_type_in_list(O, blend_items) && !is_type_in_list(O, juice_items))
+	else if(!is_type_in_list(I, blend_items) && !is_type_in_list(I, juice_items))
 		to_chat(user, "Cannot refine into a reagent.")
 		return TRUE
 
-	user.transferItemToLoc(O, src)
-	holdingitems += O
+	user.transferItemToLoc(I, src)
+	holdingitems += I
 	updateUsrDialog()
 	return FALSE
 
