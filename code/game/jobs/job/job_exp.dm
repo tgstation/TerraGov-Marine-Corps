@@ -190,6 +190,11 @@ GLOBAL_PROTECT(exp_to_update)
 		return -1
 	var/list/play_records = list()
 
+	if(holder && !holder.deadmined)
+		play_records[EXP_TYPE_ADMIN] += minutes
+		if(announce_changes)
+			to_chat(src,"<span class='notice'>You got: [minutes] Admin EXP!</span>")
+
 	if(isliving(mob))
 		if(mob.stat != DEAD)
 			var/rolefound = FALSE
@@ -213,14 +218,9 @@ GLOBAL_PROTECT(exp_to_update)
 			if(!rolefound)
 				play_records["Unknown"] += minutes
 		else
-			if(holder && !holder.deadmined)
-				play_records[EXP_TYPE_ADMIN] += minutes
-				if(announce_changes)
-					to_chat(src,"<span class='notice'>You got: [minutes] Admin EXP!</span>")
-			else
-				play_records[EXP_TYPE_GHOST] += minutes
-				if(announce_changes)
-					to_chat(src,"<span class='notice'>You got: [minutes] Ghost EXP!</span>")
+			play_records[EXP_TYPE_GHOST] += minutes
+			if(announce_changes)
+				to_chat(src,"<span class='notice'>You got: [minutes] Ghost EXP!</span>")
 	else if(isobserver(mob))
 		play_records[EXP_TYPE_GHOST] += minutes
 		if(announce_changes)
