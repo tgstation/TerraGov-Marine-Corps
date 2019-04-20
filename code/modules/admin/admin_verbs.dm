@@ -79,7 +79,7 @@
 	message_admins("[ADMIN_TPMONTY(M)] has turned stealth mode [M.client.holder.fakekey ? "on - [M.client.holder.fakekey]" : "off"].")
 
 
-/datum/admins/proc/give_mob(mob/living/L in GLOB.mob_living_list)
+/datum/admins/proc/give_mob(mob/living/L_given in GLOB.mob_living_list)
 	set category = null
 	set name = "Give Mob"
 
