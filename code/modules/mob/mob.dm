@@ -3,6 +3,7 @@
 	GLOB.mob_list -= src
 	GLOB.dead_mob_list -= src
 	GLOB.alive_mob_list -= src
+	GLOB.offered_mob_list -= src
 	ghostize()
 	clear_fullscreens()
 	return ..()

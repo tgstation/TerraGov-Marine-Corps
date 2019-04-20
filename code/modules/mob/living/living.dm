@@ -608,6 +608,9 @@ below 100 is not dizzy
 	if(!bypass && job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
 		to_chat(M, "<span class='warning'>You are jobbanned from that job.</span>")
 		return FALSE
+	if(!bypass && stat == DEAD)
+		to_chat(M, "<span class='warning'>That mob has died.</span>")
+		return FALSE
 
 	if(!bypass)
 		log_admin("[key_name(M)] has taken [key_name_admin(src)].")
@@ -616,6 +619,7 @@ below 100 is not dizzy
 	M.mind.transfer_to(src, TRUE)
 	fully_replace_character_name(M.real_name, real_name)
 	GLOB.offered_mob_list -= src
+	return TRUE
 
 
 /mob/living/update_canmove()
