@@ -105,33 +105,10 @@
 			obj_integrity -= 15
 			to_chat(user, "<span class='notice'>You unfasten a bolt from the girder!</span>")
 
-			var/obj/item/stack/sheet/S = I
-			if(istype(S, /obj/item/stack/sheet/metal))
-				if(!anchored)
-					return
-
-				if(S.get_amount() < 1) 
-					return
-
-				to_chat(user, "<span class='notice'>Now adding plating...</span>")
-				
-				var/old_buildctr = buildctr
-				if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD) || buildctr != old_buildctr || !S.use(1))
-					return
-
-				to_chat(user, "<span class='notice'>You added the plating!</span>")
-				buildctr++
-
-			else if(istype(S, /obj/item/stack/sheet/plasteel))
-				if(!anchored)
-					return
-
-				to_chat(user, "<span class='notice'>It doesn't look like the plasteel will do anything. Try metal.</span>")
-
 	else if(isscrewdriver(I) && state == 2 && istype(src, /obj/structure/girder/reinforced))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>Now unsecuring support struts</span>")
-		if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, "<span class='notice'>You unsecured the support struts!</span>")
@@ -141,7 +118,7 @@
 		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>Now removing support struts</span>")
 		
-		if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, "<span class='notice'>You removed the support struts!</span>")
@@ -160,7 +137,7 @@
 		qdel(src)
 
 	else if(istype(I, /obj/item/stack/sheet) && buildctr % 2 == 0)
-		if(istype(get_area(loc),/area/shuttle || istype(get_area(loc),/area/sulaco/hangar)))
+		if(istype(get_area(loc), /area/shuttle || istype(get_area(loc), /area/sulaco/hangar)))
 			to_chat(user, "<span class='warning'>No. This area is needed for the dropships and personnel.</span>")
 			return
 
@@ -173,10 +150,10 @@
 
 			if(S.get_amount() < 1) 
 				return
-
+				
 			to_chat(user, "<span class='notice'>Now adding plating...</span>")
-
-			if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
+				
+			if(!do_after(user,60, TRUE, 5, BUSY_ICON_BUILD))
 				return
 
 			if(buildctr != old_buildctr) 
@@ -188,7 +165,8 @@
 			to_chat(user, "<span class='notice'>You added the plating!</span>")
 			buildctr++
 
-		if(istype(S, /obj/item/stack/sheet/plasteel && anchored))
+
+		else if(istype(S, /obj/item/stack/sheet/plasteel) && anchored)
 			to_chat(user, "<span class='notice'>It doesn't look like the plasteel will do anything. Try metal.</span>")
 			return
 
@@ -204,10 +182,12 @@
 			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				return
 
-			if(!src || buildctr != old_buildctr || S.amount < 2) 
+			if(!src || buildctr != old_buildctr) 
 				return
 
-			S.use(2)
+			if(!S.use(2))
+				return
+				
 			to_chat(user, "<span class='notice'>You added the plating!</span>")
 			var/turf/Tsrc = get_turf(src)
 			Tsrc.ChangeTurf(text2path("/turf/closed/wall/mineral/[M]"))
