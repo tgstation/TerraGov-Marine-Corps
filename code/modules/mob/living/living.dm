@@ -606,6 +606,7 @@ below 100 is not dizzy
 	if(!bypass)
 		if(client)
 			to_chat(M, "<span class='warning'>That mob has already been taken.</span>")
+			GLOB.offered_mob_list -= src
 			return FALSE
 
 		if(job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
@@ -614,6 +615,7 @@ below 100 is not dizzy
 
 		if(stat == DEAD)
 			to_chat(M, "<span class='warning'>That mob has died.</span>")
+			GLOB.offered_mob_list -= src
 			return FALSE
 
 		log_admin("[key_name(M)] has taken [key_name_admin(src)].")
