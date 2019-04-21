@@ -261,5 +261,5 @@
 	return TRUE
 
 
-/mob/living/carbon/Xenomorph/screech_act(mob/Q)
+/mob/living/carbon/Xenomorph/screech_act(mob/living/carbon/Xenomorph/Queen/Q)
 	shake_camera(src, 10, 1)
