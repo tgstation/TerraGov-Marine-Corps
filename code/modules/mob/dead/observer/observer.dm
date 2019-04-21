@@ -144,7 +144,6 @@
 
 /mob/living/carbon/Xenomorph/set_away_time()
 	away_time = -XENO_AFK_TIMER //Xenos who force-ghost can be immediately taken by observers.
-	away_ssd_checked = FALSE
 
 
 /mob/dead/observer/proc/unfollow()
