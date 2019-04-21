@@ -13,7 +13,7 @@
 
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
-					/obj/item/weapon/gun/pistol/m4a3 = 25,
+					/obj/item/weapon/gun/pistol/m4a3 = 25
 					/obj/item/weapon/gun/revolver/m44 = 5,
 					/obj/item/weapon/gun/smg/m39 = 20,
 					/obj/item/weapon/gun/rifle/m41a = 25,
