@@ -579,7 +579,7 @@
 	set category = "Ghost"
 	set name = "View Crew Manifest"
 
-	var/dat = GLOB.crew_datacore.get_manifest()
+	var/dat = GLOB.crew_datacore.get_manifest(ooc = TRUE)
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
 	popup.set_content(dat)
