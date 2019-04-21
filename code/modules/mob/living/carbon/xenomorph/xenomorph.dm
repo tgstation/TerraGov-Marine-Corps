@@ -259,7 +259,3 @@
 
 /mob/living/carbon/Xenomorph/reagent_check(datum/reagent/R) //For the time being they can't metabolize chemicals.
 	return TRUE
-
-
-/mob/living/carbon/Xenomorph/screech_act(mob/living/carbon/Xenomorph/Queen/Q)
-	shake_camera(src, 1 SECONDS, 1)

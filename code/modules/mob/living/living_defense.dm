@@ -185,3 +185,6 @@
 	IgniteMob()
 
 //Mobs on Fire end
+// When they are affected by a queens screech
+/mob/living/proc/screech_act(mob/living/carbon/Xenomorph/Queen/Q)
+	return

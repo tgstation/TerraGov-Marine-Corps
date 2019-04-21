@@ -616,10 +616,6 @@ below 100 is not dizzy
 	M.fully_replace_character_name(M.real_name, real_name)
 	GLOB.offered_mob_list -= src
 
-// When they are affected by a queens screech
-/mob/living/proc/screech_act(mob/living/carbon/Xenomorph/Queen/Q)
-	return
-
 /mob/living/update_canmove()
 
 	var/laid_down = (stat || knocked_down || knocked_out || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_level >= GRAB_NECK))
