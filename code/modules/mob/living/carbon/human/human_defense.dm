@@ -117,6 +117,16 @@ Contains most of the procs that are called when a mob is attacked by something
 			I.emp_act(severity)
 	..()
 
+/mob/living/carbon/human/has_smoke_protection()
+	if(istype(wear_mask) && wear_mask.flags_inventory & BLOCKGASEFFECT)
+		return TRUE
+	if(istype(glasses) && glasses.flags_inventory & BLOCKGASEFFECT)
+		return TRUE
+	if(head && istype(head, /obj/item/clothing))
+		var/obj/item/clothing/CH = head
+		if(CH.flags_inventory & BLOCKGASEFFECT)
+			return TRUE
+	return ..()
 
 //Returns 1 if the attack hit, 0 if it missed.
 /mob/living/carbon/human/proc/attacked_by(var/obj/item/I, var/mob/living/user, var/def_zone)

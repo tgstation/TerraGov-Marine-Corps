@@ -320,8 +320,8 @@
 			P.set_up(4, 0, impact)
 			P.start()
 			spawn(5)
-				var/datum/effect_system/smoke_spread/S = new/datum/effect_system/smoke_spread()
-				S.set_up(1,0,impact,null)
+				var/datum/effect_system/smoke_spread/S = new
+				S.set_up(1, impact)
 				S.start()
 			if(!ammo_count && loc)
 				qdel(src) //deleted after last minirocket is fired and impact the ground.
@@ -361,8 +361,8 @@
 		P.set_up(4, 0, T)
 		P.start()
 		spawn(5)
-			var/datum/effect_system/smoke_spread/S = new/datum/effect_system/smoke_spread()
-			S.set_up(1,0,T,null)
+			var/datum/effect_system/smoke_spread/S = new
+			S.set_up(1,T)
 			S.start()
 		spawn(10)
 			new/obj/item/flashlight/flare/on/cas(T)

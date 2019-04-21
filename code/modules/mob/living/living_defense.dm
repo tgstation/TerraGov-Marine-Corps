@@ -185,3 +185,13 @@
 	IgniteMob()
 
 //Mobs on Fire end
+
+/mob/living/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+			smokecloak_off()
+		return
+
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+		smokecloak_on()
