@@ -254,22 +254,6 @@ What a mess.*/
 					active1 = R
 					screen = 3
 
-/*			if ("Search Fingerprints")
-				var/t1 = input("Search String: (Fingerprint)", "Secure. records", null, null)  as text
-				if ((!( t1 ) || usr.stat || !( authenticated ) || usr.restrained() || (!in_range(src, usr)) && (!issilicon(usr))))
-					return
-				active1 = null
-				t1 = lowertext(t1)
-				for(var/datum/data/record/R in GLOB.crew_datacore.general)
-					if (lowertext(R.fields["fingerprint"]) == t1)
-						active1 = R
-				if (!( active1 ))
-					temp = text("Could not locate record [].", t1)
-				else
-					for(var/datum/data/record/E in GLOB.crew_datacore.security)
-						if ((E.fields["name"] == active1.fields["name"] || E.fields["id"] == active1.fields["id"]))
-					screen = 3	*/
-
 			if ("Print Record")
 				if (!( printing ))
 					printing = 1
@@ -293,9 +277,7 @@ What a mess.*/
 				temp += "<a href='?src=\ref[src];choice=Clear Screen'>No</a>"
 
 			if ("Purge All Records")
-				for(var/datum/data/record/R in GLOB.crew_datacore.security)
-					GLOB.crew_datacore.security -= R
-					qdel(R)
+				QDEL_LIST(GLOB.crew_datacore.security)
 				temp = "All Employment records deleted."
 
 			if ("Delete Record (ALL)")
@@ -371,13 +353,9 @@ What a mess.*/
 
 					if ("Delete Record (ALL) Execute")
 						if (active1)
-							for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-								if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
-									GLOB.crew_datacore.medical -= R
-									qdel(R)
-								else
-							qdel(active1)
-							active1 = null
+							var/datum/data/record/R = find_record("id", active1.fields["id"], GLOB.crew_datacore.medical)
+							GLOB.crew_datacore.remove_record(R, GLOB.crew_datacore.medical)
+							QDEL_NULL(active1)
 					else
 						temp = "This function does not appear to be working at the moment. Our apologies."
 
@@ -387,9 +365,7 @@ What a mess.*/
 
 /obj/machinery/computer/skills/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
-		return
-
+		return ..()
 	for(var/datum/data/record/R in GLOB.crew_datacore.security)
 		if(prob(10/severity))
 			switch(rand(1,6))
@@ -405,11 +381,6 @@ What a mess.*/
 					R.fields["p_stat"] = pick("*Unconcious*", "Active", "Physically Unfit")
 				if(6)
 					R.fields["m_stat"] = pick("*Insane*", "*Unstable*", "*Watch*", "Stable")
-			continue
-
 		else if(prob(1))
-			GLOB.crew_datacore.security -= R
-			qdel(R)
-			continue
-
-	..(severity)
+			GLOB.crew_datacore.remove_record(R, GLOB.crew_datacore.security)
+	return ..()

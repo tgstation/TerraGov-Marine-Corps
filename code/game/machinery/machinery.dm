@@ -381,18 +381,15 @@ Class Procs:
 	qdel(src)
 	return 1
 
-obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_implants)
-	var/datum/data/record/N = null
-	for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-		if (R.fields["name"] == H.real_name)
-			N = R
-	if(isnull(N))
-		N = create_medical_record(H)
+/obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, list/known_implants)
+	var/datum/data/record/R = find_record("name", H.real_name, GLOB.crew_datacore.medical)
+	if(!R)
+		R = create_medical_record(H)
 	var/list/od = get_occupant_data(H)
 	dat = format_occupant_data(od, H, known_implants)
-	N.fields["last_scan_time"] = od["stationtime"]
-	N.fields["last_scan_result"] = dat
-	N.fields["autodoc_data"] = generate_autodoc_surgery_list(H)
+	R.fields["last_scan_time"] = od["stationtime"]
+	R.fields["last_scan_result"] = dat
+	R.fields["autodoc_data"] = generate_autodoc_surgery_list(H)
 	visible_message("<span class='notice'>\The [src] pings as it stores the scan report of [H.real_name]</span>")
 	playsound(src.loc, 'sound/machines/ping.ogg', 25, 1)
 	return dat

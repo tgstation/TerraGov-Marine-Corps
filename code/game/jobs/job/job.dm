@@ -107,6 +107,25 @@ GLOBAL_PROTECT(exp_specialmap)
 	else
 		. = access.Copy()
 
+/datum/job/proc/get_datacore()
+	switch(flag)
+		if(J_FLAG_SHIP|J_FLAG_MARINE)
+			return GLOB.crew_datacore
+		if(J_FLAG_SURVIVOR)
+			return GLOB.colony_datacore
+
+/datum/job/proc/add_to_datacore(mob/M)
+	var/datum/datacore/D = get_datacore()
+	D?.manifest_inject(M)
+
+/datum/job/proc/update_to_datacore(mob/M, newname)
+	var/datum/datacore/D = get_datacore()
+	if(D && !D.manifest_update(M.real_name, newname, title))
+		D.manifest_inject(src)
+
+/datum/job/proc/remove_from_datacore(mob/M)
+	var/datum/datacore/D = get_datacore()
+	D?.manifest_eject(M)
 
 /datum/job/proc/announce_head(var/mob/living/carbon/human/H, var/channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	return FALSE

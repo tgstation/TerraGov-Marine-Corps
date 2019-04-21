@@ -61,8 +61,7 @@
 
 		dat += "<h4>Crew Manifest</h4>"
 		dat += "Entries cannot be modified from this terminal.<br><br>"
-		if(GLOB.crew_datacore)
-			dat += GLOB.crew_datacore.get_manifest(0) // make it monochrome
+		dat += GLOB.crew_datacore.get_manifest()
 		dat += "<br>"
 		dat += "<a href='?src=\ref[src];choice=print'>Print</a><br>"
 		dat += "<br>"
@@ -227,7 +226,7 @@
 	switch(href_list["choice"])
 		if ("modify")
 			if (modify)
-				GLOB.crew_datacore.manifest_modify(modify.registered_name, modify.assignment)
+				GLOB.crew_datacore.manifest_update(null, null, modify.assignment, modify.assignment, "name", modify.registered_name)
 				modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
 				if(ishuman(usr))
 					modify.loc = usr.loc
@@ -345,8 +344,7 @@
 
 				var/t1 = "<h4>Crew Manifest</h4>"
 				t1 += "<br>"
-				if(GLOB.crew_datacore)
-					t1 += GLOB.crew_datacore.get_manifest(0) // make it monochrome
+				t1 += GLOB.crew_datacore.get_manifest() // make it monochrome
 
 				P.info = t1
 				P.name = "paper- 'Crew Manifest'"

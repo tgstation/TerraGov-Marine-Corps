@@ -669,234 +669,149 @@
 
 
 	if (href_list["criminal"])
-		if(hasHUD(usr,"security"))
-
-			var/modified = 0
-			var/perpname = "wot"
-			if(wear_id)
-				var/obj/item/card/id/I = wear_id.GetID()
-				if(I)
-					perpname = I.registered_name
-				else
-					perpname = name
-			else
-				perpname = name
-
-			if(perpname)
-				for (var/datum/data/record/E in GLOB.crew_datacore.general)
-					if (E.fields["name"] == perpname)
-						for (var/datum/data/record/R in GLOB.crew_datacore.security)
-							if (R.fields["id"] == E.fields["id"])
-
-								var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Incarcerated", "Released", "Cancel")
-
-								if(hasHUD(usr, "security"))
-									if(setcriminal != "Cancel")
-										R.fields["criminal"] = setcriminal
-										modified = 1
-										sec_hud_set_security_status()
-
-
-			if(!modified)
-				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
+		if(!hasHUD(usr,"security"))
+			return
+		var/perpname = get_visible_name()
+		var/datum/data/record/R = find_record("name", perpname, GLOB.crew_datacore.security)
+		if(R)
+			var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Incarcerated", "Released", "Cancel")
+			if(hasHUD(usr, "security") && setcriminal != "Cancel")
+				R.fields["criminal"] = setcriminal
+				sec_hud_set_security_status()
+		else
+			to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
 
 	if (href_list["secrecord"])
-		if(hasHUD(usr,"security"))
-			var/perpname = "wot"
-			var/read = 0
-
-			if(wear_id)
-				if(istype(wear_id,/obj/item/card/id))
-					perpname = wear_id:registered_name
-			else
-				perpname = src.name
-			for (var/datum/data/record/E in GLOB.crew_datacore.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in GLOB.crew_datacore.security)
-						if (R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr,"security"))
-								to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]")
-								to_chat(usr, "<b>Minor Crimes:</b> [R.fields["mi_crim"]]")
-								to_chat(usr, "<b>Details:</b> [R.fields["mi_crim_d"]]")
-								to_chat(usr, "<b>Major Crimes:</b> [R.fields["ma_crim"]]")
-								to_chat(usr, "<b>Details:</b> [R.fields["ma_crim_d"]]")
-								to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
-								to_chat(usr, "<a href='?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>")
-								read = 1
-
-			if(!read)
-				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
+		if(!hasHUD(usr,"security"))
+			return
+		var/perpname = get_visible_name()
+		var/datum/data/record/R = find_record("name", perpname, GLOB.crew_datacore.security)
+		if(R)
+			var/dat = "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]"
+			dat += "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]"
+			dat += "<b>Minor Crimes:</b> [R.fields["mi_crim"]]"
+			dat += "<b>Details:</b> [R.fields["mi_crim_d"]]"
+			dat += "<b>Major Crimes:</b> [R.fields["ma_crim"]]"
+			dat += "<b>Details:</b> [R.fields["ma_crim_d"]]"
+			dat += "<b>Notes:</b> [R.fields["notes"]]"
+			dat += "<a href='?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>"
+			to_chat(usr, dat)
+		else
+			to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
 
 	if (href_list["secrecordComment"])
-		if(hasHUD(usr,"security"))
-			var/perpname = "wot"
-			var/read = 0
-
-			if(wear_id)
-				if(istype(wear_id,/obj/item/card/id))
-					perpname = wear_id:registered_name
-			else
-				perpname = src.name
-			for (var/datum/data/record/E in GLOB.crew_datacore.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in GLOB.crew_datacore.security)
-						if (R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr,"security"))
-								read = 1
-								var/counter = 1
-								while(R.fields[text("com_[]", counter)])
-									to_chat(usr, text("[]", R.fields[text("com_[]", counter)]))
-									counter++
-								if (counter == 1)
-									to_chat(usr, "No comment found")
-								to_chat(usr, "<a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>")
-
-			if(!read)
-				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
+		if(!hasHUD(usr,"security"))
+			return
+		var/perpname = get_visible_name()
+		var/datum/data/record/R = find_record("name", perpname, GLOB.crew_datacore.security)
+		if(R)
+			var/counter = 1
+			var/dat
+			while(R.fields["com_[counter]"])
+				dat += "[R.fields["com_[counter++]"]]\n"
+			if (counter == 1)
+				dat += "No comment found"
+			dat += "<a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>"
+			to_chat(usr, dat)
+		else
+			to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
 
 	if (href_list["secrecordadd"])
-		if(hasHUD(usr,"security"))
-			var/perpname = "wot"
-			if(wear_id)
-				if(istype(wear_id,/obj/item/card/id))
-					perpname = wear_id:registered_name
-			else
-				perpname = src.name
-			for (var/datum/data/record/E in GLOB.crew_datacore.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in GLOB.crew_datacore.security)
-						if (R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr,"security"))
-								var/t1 = copytext(sanitize(input("Add Comment:", "Sec. records", null, null)  as message),1,MAX_MESSAGE_LEN)
-								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"security")) )
-									return
-								var/counter = 1
-								while(R.fields[text("com_[]", counter)])
-									counter++
-								if(istype(usr,/mob/living/carbon/human))
-									var/mob/living/carbon/human/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]")
-								if(istype(usr,/mob/living/silicon/robot))
-									var/mob/living/silicon/robot/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]")
+		if(!hasHUD(usr,"security"))
+			return
+		var/perpname = get_visible_name()
+		var/datum/data/record/R = find_record("name", perpname, GLOB.crew_datacore.security)
+		if(R)
+			var/t1 = copytext(sanitize(input("Add Comment:", "Sec. records", null, null)  as message),1,MAX_MESSAGE_LEN)
+			if ( !(t1) || usr.incapacitated() || !(hasHUD(usr,"security")) )
+				return
+			var/counter = 1
+			while(R.fields["com_[counter]"])
+				counter++
+			if(iscyborg(usr))
+				var/mob/living/carbon/human/U = usr
+				R.fields["com_[counter]"] = "Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]"
+			if(iscyborg(usr))
+				var/mob/living/silicon/robot/U = usr
+				R.fields["com_[counter]"] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]")
 
 	if (href_list["medical"])
-		if(hasHUD(usr,"medical"))
-			var/perpname = "wot"
-			var/modified = 0
-
-			if(wear_id)
-				if(istype(wear_id,/obj/item/card/id))
-					perpname = wear_id:registered_name
-			else
-				perpname = src.name
-
-			for (var/datum/data/record/E in GLOB.crew_datacore.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in GLOB.crew_datacore.general)
-						if (R.fields["id"] == E.fields["id"])
-
-							var/setmedical = input(usr, "Specify a new medical status for this person.", "Medical HUD", R.fields["p_stat"]) in list("*SSD*", "*Deceased*", "Physically Unfit", "Active", "Disabled", "Cancel")
-
-							if(hasHUD(usr,"medical"))
-								if(setmedical != "Cancel")
-									R.fields["p_stat"] = setmedical
-									modified = 1
-
-									spawn()
-										if(istype(usr,/mob/living/carbon/human))
-											var/mob/living/carbon/human/U = usr
-											U.handle_regular_hud_updates()
-										if(istype(usr,/mob/living/silicon/robot))
-											var/mob/living/silicon/robot/U = usr
-											U.handle_regular_hud_updates()
-
-			if(!modified)
-				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
+		if(!hasHUD(usr,"medical"))
+			return
+		var/perpname = get_visible_name()
+		var/datum/data/record/R = find_record("name", perpname, GLOB.crew_datacore.general)
+		if(R)
+			var/setmedical = input(usr, "Specify a new medical status for this person.", "Medical HUD", R.fields["p_stat"]) in list("*SSD*", "*Deceased*", "Physically Unfit", "Active", "Disabled", "Cancel")
+			if(!hasHUD(usr,"medical") || setmedical == "Cancel")
+				return
+			R.fields["p_stat"] = setmedical
+			if(istype(usr,/mob/living/carbon/human))
+				var/mob/living/carbon/human/U = usr
+				U.handle_regular_hud_updates()
+			if(istype(usr,/mob/living/silicon/robot))
+				var/mob/living/silicon/robot/U = usr
+				U.handle_regular_hud_updates()
+		else
+			to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
 
 	if (href_list["medrecord"])
-		if(hasHUD(usr,"medical"))
-			var/perpname = "wot"
-			var/read = 0
-
-			if(wear_id)
-				if(istype(wear_id,/obj/item/card/id))
-					perpname = wear_id:registered_name
-			else
-				perpname = src.name
-			for (var/datum/data/record/E in GLOB.crew_datacore.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in GLOB.crew_datacore.medical)
-						if (R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr,"medical"))
-								to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]")
-								to_chat(usr, "<b>DNA:</b> [R.fields["b_dna"]]")
-								to_chat(usr, "<b>Minor Disabilities:</b> [R.fields["mi_dis"]]")
-								to_chat(usr, "<b>Details:</b> [R.fields["mi_dis_d"]]")
-								to_chat(usr, "<b>Major Disabilities:</b> [R.fields["ma_dis"]]")
-								to_chat(usr, "<b>Details:</b> [R.fields["ma_dis_d"]]")
-								to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
-								to_chat(usr, "<a href='?src=\ref[src];medrecordComment=`'>\[View Comment Log\]</a>")
-								read = 1
-
-			if(!read)
-				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
+		if(!hasHUD(usr,"medical"))
+			return
+		var/perpname = get_visible_name()
+		var/datum/data/record/R = find_record("name", perpname, GLOB.crew_datacore.medical)
+		if(R)
+			var/dat = "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]"
+			dat += "<b>DNA:</b> [R.fields["b_dna"]]"
+			dat += "<b>Minor Disabilities:</b> [R.fields["mi_dis"]]"
+			dat += "<b>Details:</b> [R.fields["mi_dis_d"]]"
+			dat += "<b>Major Disabilities:</b> [R.fields["ma_dis"]]"
+			dat += "<b>Details:</b> [R.fields["ma_dis_d"]]"
+			dat += "<b>Notes:</b> [R.fields["notes"]]"
+			dat += "<a href='?src=\ref[src];medrecordComment=`'>\[View Comment Log\]</a>"
+			to_chat(usr, dat)
+		else
+			to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
 
 	if (href_list["medrecordComment"])
-		if(hasHUD(usr,"medical"))
-			var/perpname = "wot"
-			var/read = 0
-
-			if(wear_id)
-				if(istype(wear_id,/obj/item/card/id))
-					perpname = wear_id:registered_name
-			else
-				perpname = src.name
-			for (var/datum/data/record/E in GLOB.crew_datacore.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in GLOB.crew_datacore.medical)
-						if (R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr,"medical"))
-								read = 1
-								var/counter = 1
-								while(R.fields[text("com_[]", counter)])
-									to_chat(usr, text("[]", R.fields[text("com_[]", counter)]))
-									counter++
-								if (counter == 1)
-									to_chat(usr, "No comment found")
-								to_chat(usr, "<a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>")
-
-			if(!read)
-				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
+		if(!hasHUD(usr,"medical"))
+			return
+		var/perpname = get_visible_name()
+		var/datum/data/record/R = find_record("name", perpname, GLOB.crew_datacore.medical)
+		if(R)
+			var/counter = 1
+			var/dat
+			while(R.fields["com_[counter]"])
+				dat += "[R.fields["com_[counter++]"]]\n"
+			if (counter == 1)
+				dat += "No comment found"
+			dat += "<a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>"
+			to_chat(usr, dat)
+		else
+			to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
 
 	if (href_list["medrecordadd"])
-		if(hasHUD(usr,"medical"))
-			var/perpname = "wot"
-			if(wear_id)
-				if(istype(wear_id,/obj/item/card/id))
-					perpname = wear_id:registered_name
-			else
-				perpname = src.name
-			for (var/datum/data/record/E in GLOB.crew_datacore.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in GLOB.crew_datacore.medical)
-						if (R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr,"medical"))
-								var/t1 = copytext(sanitize(input("Add Comment:", "Med. records", null, null)  as message),1,MAX_MESSAGE_LEN)
-								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"medical")) )
-									return
-								var/counter = 1
-								while(R.fields[text("com_[]", counter)])
-									counter++
-								if(istype(usr,/mob/living/carbon/human))
-									var/mob/living/carbon/human/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]")
-								if(istype(usr,/mob/living/silicon/robot))
-									var/mob/living/silicon/robot/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]")
+		if(!hasHUD(usr,"medical"))
+			return
+		var/perpname = get_visible_name()
+		var/datum/data/record/R = find_record("name", perpname, GLOB.crew_datacore.medical)
+		if(R)
+			var/t1 = copytext(sanitize(input("Add Comment:", "Med. records", null, null)  as message),1,MAX_MESSAGE_LEN)
+			if (!t1 || usr.incapacitated() || !hasHUD(usr,"medical"))
+				return
+			var/counter = 1
+			while(R.fields["com_[counter]"])
+				counter++
+			if(iscyborg(usr))
+				var/mob/living/carbon/human/U = usr
+				R.fields["com_[counter]"] = "Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]"
+			if(iscyborg(usr))
+				var/mob/living/silicon/robot/U = usr
+				R.fields["com_[counter]"] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]")
 
 	if (href_list["medholocard"])
-		if(!species?.count_human)
+		if(!hasHUD(usr,"medical"))
+			return
+		if(!(species?.count_human))
 			to_chat(usr, "<span class='warning'>Triage holocards only works on organic humanoid entities.</span>")
 			return
 		var/newcolor = input("Choose a triage holo card to add to the patient:", "Triage holo card", null, null) in list("black", "red", "orange", "none")
@@ -916,19 +831,18 @@
 		update_targeted()
 
 	if (href_list["scanreport"])
-		if(hasHUD(usr,"medical"))
-			if(!ishuman(src))
-				to_chat(usr, "<span class='warning'>This only works on humanoids.</span>")
-				return
-			if(get_dist(usr, src) > 7)
-				to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
-				return
-
-			for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-				if (R.fields["name"] == real_name)
-					if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-						usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
-					break
+		if(!hasHUD(usr,"medical"))
+			return
+		if(!(species?.count_human))
+			to_chat(usr, "<span class='warning'>This only works on humanoids.</span>")
+			return
+		if(get_dist(usr, src) > 7)
+			to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
+			return
+		var/perpname = get_visible_name()
+		var/datum/data/record/R = find_record("name", perpname, GLOB.crew_datacore.medical)
+		if(R && R.fields["last_scan_time"] && R.fields["last_scan_result"])
+			usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
 
 	if (href_list["lookitem"])
 		var/obj/item/I = locate(href_list["lookitem"])
@@ -1650,7 +1564,7 @@
 	SSjob.AssignRole(src, rank)
 	O.handle_id(src)
 
-	GLOB.crew_datacore.manifest_update(real_name, real_name, job)
+	J.update_to_datacore(src)
 
 	if(assigned_squad)
 		change_squad(assigned_squad.name)
@@ -1713,11 +1627,9 @@
 	S.put_marine_in_squad(src)
 
 	//Crew manifest
-	for(var/i in GLOB.crew_datacore.general)
-		var/datum/data/record/R = i
-		if(R.fields["name"] == real_name)
-			R.fields["squad"] = S.name
-			break
+	var/datum/data/record/R = find_record("name", real_name, GLOB.crew_datacore.general)
+	if(R)
+		R.fields["squad"] = S.name
 
 	if(istype(wear_id, /obj/item/card/id))
 		var/obj/item/card/id/ID = wear_id

@@ -213,14 +213,11 @@
 		to_chat(user, "<span class='notice'>It contains: [occupant].[feedback]</span>")
 		return
 	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-		if (!R.fields["name"] == H.real_name)
-			continue
-		if(!(R.fields["last_scan_time"]))
-			to_chat(user, "<span class = 'deptradio'>No scan report on record</span>\n")
-		else
-			to_chat(user, "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[feedback]</a></span>\n")
-		break
+	var/datum/data/record/R = find_record("name", H.real_name, GLOB.crew_datacore.medical)
+	if(!(R?.fields["last_scan_time"]))
+		to_chat(user, "<span class = 'deptradio'>No scan report on record</span>\n")
+	else
+		to_chat(user, "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[feedback]</a></span>\n")
 
 /obj/machinery/sleeper/Topic(href, href_list)
 	if (!href_list["scanreport"])
@@ -233,12 +230,9 @@
 	if(!ishuman(occupant))
 		return
 	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-		if (!R.fields["name"] == H.real_name)
-			continue
-		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-			usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
-		break
+	var/datum/data/record/R = find_record("name", H.real_name, GLOB.crew_datacore.medical)
+	if(R && R.fields["last_scan_time"] && R.fields["last_scan_result"])
+		usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
 
 
 /obj/machinery/sleeper/allow_drop()

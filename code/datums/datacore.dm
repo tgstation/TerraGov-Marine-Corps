@@ -3,15 +3,6 @@
 	var/list/medical = list()
 	var/list/general = list()
 	var/list/security = list()
-	var/job_filter
-
-/datum/datacore/New()
-	. = ..()
-	GLOB.datacores_list += src
-
-/datum/datacore/Destroy()
-	GLOB.datacores_list -= src
-	return ..()
 
 /datum/data/record
 	name = "record"
@@ -25,63 +16,53 @@
 		holder = nholder
 
 /datum/data/record/Destroy()
-	holder?.remove_single_record(src)
+	holder?.remove_record(src)
 	return ..()
 
 /datum/datacore/proc/manifest()
-	LAZYCLEARLIST(medical)
-	LAZYCLEARLIST(general)
-	LAZYCLEARLIST(security)
-	for(var/M in GLOB.human_mob_list)
-		var/mob/living/carbon/human/H = M
-		var/datum/job/J = SSjob.name_occupations[H.job]
-		if(job_filter && !CHECK_BITFIELD(J.flag, job_filter))
-			continue
-		CHECK_TICK
-		manifest_inject(H)
+	delete_manifest()
 
-/datum/datacore/proc/manifest_update(oldname, newname, rank, mob/living/L, list/records)
-	. = FALSE
-	var/fingerprint = L ? md5(L.dna.uni_identity) : null
-	if(!records)
-		LAZYINITLIST(records)
-		records[1] = general
-		records[2] = medical
-		records[3] = security
-	for(var/a in records)
-		var/list/R = a
-		var/datum/data/record/foundrecord = find_record(L ? "fingerprint" : "name", L ? fingerprint : oldname, R)
-		if(foundrecord)
-			if(foundrecord.fields["rank"] && foundrecord.fields["real_rank"])
-				foundrecord.fields["rank"] = rank
-				foundrecord.fields["real_rank"] = rank
-			foundrecord.fields["name"] = newname
+/datum/datacore/proc/delete_manifest()
+	QDEL_LIST(general)
+	QDEL_LIST(medical)
+	QDEL_LIST(security)
+
+/datum/datacore/proc/manifest_update(oldname, newname, assignment, rank, field, value)
+	var/datum/data/record/R = find_record(field ? field : "name", value ? value : oldname, general)
+	if(!R)
+		return FALSE
+	if(assignment)
+		R.fields["rank"] = assignment
+	if(rank)
+		R.fields["real_rank"] = rank
+	if(newname)
+		R.fields["name"] = newname
+	return TRUE
+
+/datum/datacore/proc/update_multiple_records(field, oldvalue, newvalue, ...)
+	var/list/lrecords = args.Copy(4)
+	for(var/A in lrecords)
+		var/list/L = A
+		var/datum/data/record/R = find_record(field, oldvalue, L)
+		if(R)
+			R.fields[field] = newvalue
 			. = TRUE
 
-/datum/datacore/proc/manifest_modify(name, assignment, rank, mob/living/L)
-	var/datum/data/record/foundrecord = find_record(L ? "fingerprint" : "name", L ? md5(L.dna.uni_identity) : name, general)
-	if(foundrecord)
-		foundrecord.fields["rank"] = assignment
-		foundrecord.fields["real_rank"] = rank
-
-/datum/datacore/proc/remove_from_datacore(mob/living/L, delete = TRUE)
+/datum/datacore/proc/manifest_eject(mob/living/L, delete = TRUE)
 	if(!L)
 		return
-	var/datum/data/record/G = find_record("fingerprint", md5(L.dna.uni_identity), general)
+	var/rID = L.dna?.unique_enzymes ? L.dna.unique_enzymes : null
+	var/datum/data/record/G = find_record(rID ? "id" : "name", rID ? rID : L.real_name, general)
 	if(!G)
 		return
-	var/id_string = G.fields["id"]
-	remove_single_record(G, general)
-	var/datum/data/record/S = find_record("id", id_string, security)
-	remove_single_record(S, security)
-	var/datum/data/record/M = find_record("id", id_string, medical)
-	remove_single_record(M, medical)
-	if(delete)
-		qdel(G)
-		qdel(S)
-		qdel(M)
+	rID = G.fields["id"]
+	remove_record(G, general, delete)
+	var/datum/data/record/S = find_record("id", rID, security)
+	remove_record(S, security, delete)
+	var/datum/data/record/M = find_record("id", rID, medical)
+	remove_record(M, medical, delete)
 
-/datum/datacore/proc/remove_single_record(datum/data/record/R, list/L, delete = TRUE)
+/datum/datacore/proc/remove_record(datum/data/record/R, list/L, delete = TRUE)
 	if(!R)
 		return
 	if(!L)
@@ -93,6 +74,8 @@
 			general -= src
 	else
 		L -= R
+	if(delete)
+		qdel(R)
 
 /datum/datacore/proc/get_manifest(monochrome, OOC)
 	. = {"
@@ -127,8 +110,7 @@
 	else
 		assignment = "Unassigned"
 
-	var/static/record_id_num = 1001
-	var/id = num2hex(record_id_num++,6)
+	var/id = NEW_DATACORE_ID
 
 	var/icon/front = new(get_id_photo(H), dir = SOUTH)
 	var/icon/side = new(get_id_photo(H), dir = WEST)
@@ -155,7 +137,7 @@
 		G.fields["notes"] = H.gen_record
 	else
 		G.fields["notes"] = "No notes found."
-	general += G
+	LAZYADD(general, G)
 
 	//Medical Record
 	var/datum/data/record/M = new(src)
@@ -171,7 +153,7 @@
 	M.fields["alg_d"]		= "No allergies have been detected in this patient."
 	M.fields["cdi"]			= "None"
 	M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
-	M.fields["last_scan_time"]		= null
+	M.fields["last_scan_time"]	= null
 	M.fields["last_scan_result"]		= "No scan data on record" // body scanner results
 	M.fields["autodoc_data"] = list()
 	M.fields["autodoc_manual"] = list()
@@ -179,7 +161,7 @@
 		M.fields["notes"] = H.med_record
 	else
 		M.fields["notes"] = "No notes found."
-	medical += M
+	LAZYADD(medical, M)
 
 	//Security Record
 	var/datum/data/record/S = new(src)
@@ -195,14 +177,12 @@
 		S.fields["notes"] = H.sec_record
 	else
 		S.fields["notes"] = "No notes."
-	security += S
+	LAZYADD(security, S)
 
 	record_paperwork(G, M, S)
 
 /datum/datacore/proc/record_paperwork(datum/data/record/G, datum/data/record/M, datum/data/record/S)
-	for(var/A in GLOB.records_cabinets[src])
-		var/obj/structure/filingcabinet/records/R = A
-		R.sort_record(G, M, S)
+	return
 
 /proc/get_id_photo(mob/living/carbon/human/H, client/C, show_directions = list(SOUTH))
 	var/datum/job/J = SSjob.GetJob(H.mind.assigned_role)
@@ -213,9 +193,21 @@
 		P = C.prefs
 	return get_flat_human_icon(null, J, P, DUMMY_HUMAN_SLOT_MANIFEST, show_directions)
 
-
 /datum/datacore/crew
-	job_filter = J_FLAG_SHIP|J_FLAG_MARINE
+
+/datum/datacore/crew/record_paperwork(datum/data/record/G, datum/data/record/M, datum/data/record/S)
+	for(var/A in GLOB.records_cabinets[GLOB.crew_datacore])
+		var/obj/structure/filingcabinet/records/R = A
+		R.sort_record(G, M, S)
+
+/datum/datacore/colony/manifest()
+	. = ..()
+	for(var/var/mob/living/carbon/human/H in GLOB.player_list)
+		CHECK_TICK
+		var/datum/job/J = SSjob.name_occupations[H.job]
+		if(!J || J.get_datacore() != GLOB.crew_datacore)
+			continue
+		manifest_inject(H)
 
 /datum/datacore/crew/get_crewlist(OOC)
 	var/list/eng = list()
@@ -300,7 +292,20 @@
 
 
 /datum/datacore/colony
-	job_filter = J_FLAG_SURVIVOR
+
+/datum/datacore/colony/record_paperwork(datum/data/record/G, datum/data/record/M, datum/data/record/S)
+	for(var/A in GLOB.records_cabinets[GLOB.colony_datacore])
+		var/obj/structure/filingcabinet/records/R = A
+		R.sort_record(G, M, S)
+
+/datum/datacore/colony/manifest()
+	. = ..()
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		CHECK_TICK
+		var/datum/job/J = SSjob.name_occupations[H.job]
+		if(!J || J.get_datacore() != GLOB.colony_datacore)
+			continue
+		manifest_inject(H)
 
 /datum/datacore/colony/get_crewlist(OOC)
 	var/list/survivors = list()

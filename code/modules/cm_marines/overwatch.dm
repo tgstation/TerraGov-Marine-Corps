@@ -625,25 +625,21 @@
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No squad selected!</span>")
 		return
 	var/mob/living/carbon/human/wanted_marine = input(usr, "Report a marine for insubordination") as null|anything in current_squad.get_all_members()
-	if(!wanted_marine) return
+	if(!wanted_marine)
+		return
 	if(!istype(wanted_marine))//gibbed/deleted, all we have is a name.
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[wanted_marine] is missing in action.</span>")
 		return
 
-	for (var/datum/data/record/E in GLOB.crew_datacore.general)
-		if(E.fields["name"] == wanted_marine.real_name)
-			for (var/datum/data/record/R in GLOB.crew_datacore.security)
-				if (R.fields["id"] == E.fields["id"])
-					if(!findtext(R.fields["ma_crim"],"Insubordination."))
-						R.fields["criminal"] = "*Arrest*"
-						if(R.fields["ma_crim"] == "None")
-							R.fields["ma_crim"]	= "Insubordination."
-						else
-							R.fields["ma_crim"] += "Insubordination."
-						state("<span class='boldnotice'>[wanted_marine] has been reported for insubordination. Logging to enlistment file.</span>")
-						to_chat(wanted_marine, "[icon2html(src, wanted_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been reported for insubordination by your overwatch officer.</font>")
-						wanted_marine.sec_hud_set_security_status()
-					return
+	var/datum/data/record/R = find_record("name", wanted_marine.real_name, GLOB.crew_datacore.security)
+	if(!R && !findtext(R.fields["ma_crim"],"Insubordination."))
+		return
+	if(!findtext(R.fields["ma_crim"],"Insubordination."))
+		R.fields["criminal"] = "*Arrest*"
+		R.fields["ma_crim"] += "Insubordination."
+		state("<span class='boldnotice'>[wanted_marine] has been reported for insubordination. Logging to enlistment file.</span>")
+		to_chat(wanted_marine, "[icon2html(src, wanted_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been reported for insubordination by your overwatch officer.</font>")
+		wanted_marine.sec_hud_set_security_status()
 
 /obj/machinery/computer/overwatch/proc/transfer_squad()
 	if(!usr || usr != operator)
@@ -712,10 +708,9 @@
 	old_squad.remove_marine_from_squad(transfer_marine)
 	new_squad.put_marine_in_squad(transfer_marine)
 
-	for(var/datum/data/record/t in GLOB.crew_datacore.general) //we update the crew manifest
-		if(t.fields["name"] == transfer_marine.real_name)
-			t.fields["squad"] = new_squad.name
-			break
+	var/datum/data/record/R = find_record("name", transfer_marine.real_name, GLOB.crew_datacore.general) //we update the crew manifest
+	if(R)
+		R.fields["squad"] = new_squad.name
 
 	var/obj/item/card/id/ID = transfer_marine.wear_id
 	ID.assigned_fireteam = 0 //reset fireteam assignment

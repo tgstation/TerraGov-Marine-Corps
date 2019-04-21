@@ -390,12 +390,9 @@
 	if(!ishuman(occupant))
 		return
 	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-		if (!R.fields["name"] == H.real_name)
-			continue
-		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-			usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
-		break
+	var/datum/data/record/R = find_record("name", H.real_name, GLOB.crew_datacore.medical)
+	if(R && R.fields["last_scan_time"] && R.fields["last_scan_result"])
+		usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attack_hand(mob/user)
 	ui_interact(user)

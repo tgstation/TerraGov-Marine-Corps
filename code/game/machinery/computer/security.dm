@@ -91,9 +91,9 @@
 					if(!isnull(GLOB.crew_datacore.general))
 						for(var/datum/data/record/R in sortRecord(GLOB.crew_datacore.general, sortBy, order))
 							var/crimstat = ""
-							for(var/datum/data/record/E in GLOB.crew_datacore.security)
-								if ((E.fields["name"] == R.fields["name"] && E.fields["id"] == R.fields["id"]))
-									crimstat = E.fields["criminal"]
+							var/datum/data/record/E = find_record("id", R.fields["id"], GLOB.crew_datacore.security)
+							if(E)
+								crimstat = E.fields["criminal"]
 							var/background
 							switch(crimstat)
 								if("*Arrest*")
@@ -315,9 +315,9 @@ What a mess.*/
 				if (!( GLOB.crew_datacore.general.Find(R) ))
 					temp = "Record Not Found!"
 				else
-					for(var/datum/data/record/E in GLOB.crew_datacore.security)
-						if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
-							S = E
+					var/datum/data/record/E = find_record("id", R.fields["name"], GLOB.crew_datacore.security)
+					if(E)
+						S = E
 					active1 = R
 					active2 = S
 					screen = 3
@@ -329,15 +329,14 @@ What a mess.*/
 				active1 = null
 				active2 = null
 				t1 = lowertext(t1)
-				for(var/datum/data/record/R in GLOB.crew_datacore.general)
-					if (lowertext(R.fields["fingerprint"]) == t1)
-						active1 = R
+				var/datum/data/record/R = find_record("fingerprint", t1, GLOB.crew_datacore.general)
+					active1 = R
 				if (!( active1 ))
 					temp = text("Could not locate record [].", t1)
 				else
-					for(var/datum/data/record/E in GLOB.crew_datacore.security)
-						if ((E.fields["name"] == active1.fields["name"] || E.fields["id"] == active1.fields["id"]))
-							active2 = E
+					var/datum/data/record/E = find_record("id", active1.fields["id"], GLOB.crew_datacore.security)
+					if(E)
+						active2 = E
 					screen = 3	*/
 
 			if ("Print Record")
@@ -377,9 +376,7 @@ What a mess.*/
 				temp += "<a href='?src=\ref[src];choice=Clear Screen'>No</a>"
 
 			if ("Purge All Records")
-				for(var/datum/data/record/R in GLOB.crew_datacore.security)
-					GLOB.crew_datacore.security -= R
-					qdel(R)
+				QDEL_LIST(GLOB.crew_datacore.security)
 				temp = "All Security records deleted."
 
 			if ("Add Entry")
@@ -554,16 +551,10 @@ What a mess.*/
 
 					if ("Delete Record (ALL) Execute")
 						if (active1)
-							for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-								if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
-									GLOB.crew_datacore.medical -= R
-									qdel(R)
-								else
-							qdel(active1)
-							active1 = null
-						if (active2)
-							qdel(active2)
-							active2 = null
+							var/datum/data/record/R = find_record("id", active1.fields["id"], GLOB.crew_datacore.medical)
+							GLOB.crew_datacore.remove_record(R, GLOB.crew_datacore.medical)
+							QDEL_NULL(active1)
+							QDEL_NULL(active2)
 					else
 						temp = "This function does not appear to be working at the moment. Our apologies."
 
@@ -586,9 +577,7 @@ What a mess.*/
 
 /obj/machinery/computer/secure_data/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
-		return
-
+		return ..()
 	for(var/datum/data/record/R in GLOB.crew_datacore.security)
 		if(prob(10/severity))
 			switch(rand(1,6))
@@ -604,14 +593,9 @@ What a mess.*/
 					R.fields["p_stat"] = pick("*Unconcious*", "Active", "Physically Unfit")
 				if(6)
 					R.fields["m_stat"] = pick("*Insane*", "*Unstable*", "*Watch*", "Stable")
-			continue
-
 		else if(prob(1))
-			GLOB.crew_datacore.security -= R
-			qdel(R)
-			continue
-
-	..(severity)
+			GLOB.crew_datacore.remove_record(R, GLOB.crew_datacore.security)
+	return ..()
 
 /obj/machinery/computer/secure_data/detective_computer
 	icon = 'icons/obj/machines/computer.dmi'

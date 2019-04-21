@@ -243,13 +243,10 @@
 		return
 
 	var/mob/living/carbon/human/H = M
-	var/datum/data/record/N = null
-	for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-		if (R.fields["name"] == H.real_name)
-			N = R
-	if(isnull(N))
+	var/datum/data/record/N = find_record("b_dna", H.real_name, GLOB.crew_datacore.medical)
+	if(!N)
 		visible_message("\ [src] buzzes: No records found for occupant.")
-		src.go_out(AUTODOC_NOTICE_NO_RECORD) //kick them out too.
+		go_out(AUTODOC_NOTICE_NO_RECORD) //kick them out too.
 		return
 
 	var/list/surgery_todo_list
@@ -902,23 +899,20 @@
 
 			var/list/surgeryqueue = list()
 
-			var/datum/data/record/N = null
-			for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-				if (R.fields["name"] == connected.occupant.real_name)
-					N = R
-			if(isnull(N))
-				N = create_medical_record(connected.occupant)
+			var/datum/data/record/R = find_record("name", connected.occupant.real_name, GLOB.crew_datacore.medical)
+			if(!R)
+				R = create_medical_record(connected.occupant, GLOB.crew_datacore.medical)
 
 			if(connected.automaticmode)
-				var/list/autosurgeries = N.fields["autodoc_data"]
+				var/list/autosurgeries = R.fields["autodoc_data"]
 				if(autosurgeries.len)
 					dat += "<span class='danger'>Automatic Mode Ready.</span><br>"
 				else
 
 					dat += "<span class='danger'>Automatic Mode Unavaliable, Scan Patient First.</span><br>"
 			else
-				if(!isnull(N.fields["autodoc_manual"]))
-					for(var/datum/autodoc_surgery/A in N.fields["autodoc_manual"])
+				if(!isnull(R.fields["autodoc_manual"]))
+					for(var/datum/autodoc_surgery/A in R.fields["autodoc_manual"])
 						switch(A.type_of_surgery)
 							if(EXTERNAL_SURGERY)
 								switch(A.surgery_procedure)
@@ -1036,34 +1030,31 @@
 
 		if(connected.occupant && ishuman(connected.occupant))
 			// manual surgery handling
-			var/datum/data/record/N = null
-			for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-				if (R.fields["name"] == connected.occupant.real_name)
-					N = R
-			if(isnull(N))
-				N = create_medical_record(connected.occupant)
+			var/datum/data/record/R = find_record("name", connected.occupant.real_name, GLOB.crew_datacore.medical)
+			if(!R)
+				R = create_medical_record(connected.occupant, GLOB.crew_datacore.medical)
 
 			var/needed = 0 // this is to stop someone just choosing everything
 			if(href_list["brute"])
-				N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BRUTE)
+				R.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BRUTE)
 				updateUsrDialog()
 			if(href_list["burn"])
-				N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BURN)
+				R.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BURN)
 				updateUsrDialog()
 			if(href_list["toxin"])
-				N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_TOXIN)
+				R.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_TOXIN)
 				updateUsrDialog()
 			if(href_list["dialysis"])
-				N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_DIALYSIS)
+				R.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_DIALYSIS)
 				updateUsrDialog()
 			if(href_list["blood"])
-				N.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BLOOD)
+				R.fields["autodoc_manual"] += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BLOOD)
 				updateUsrDialog()
 			if(href_list["organgerms"])
-				N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_GERMS)
+				R.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_GERMS)
 				updateUsrDialog()
 			if(href_list["eyes"])
-				N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_EYES,0,connected.occupant.internal_organs_by_name["eyes"])
+				R.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_EYES,0,connected.occupant.internal_organs_by_name["eyes"])
 				updateUsrDialog()
 			if(href_list["organdamage"])
 				for(var/datum/limb/L in connected.occupant.limbs)
@@ -1073,10 +1064,10 @@
 								// we can't deal with these
 								continue
 							if(I.damage > 0)
-								N.fields["autodoc_manual"] += create_autodoc_surgery(L,ORGAN_SURGERY,ADSURGERY_DAMAGE,0,I)
+								R.fields["autodoc_manual"] += create_autodoc_surgery(L,ORGAN_SURGERY,ADSURGERY_DAMAGE,0,I)
 								needed++
 				if(!needed)
-					N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_DAMAGE,1)
+					R.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_DAMAGE,1)
 				updateUsrDialog()
 
 			if(href_list["internal"])
@@ -1084,21 +1075,21 @@
 					if(L)
 						for(var/datum/wound/W in L.wounds)
 							if(W.internal)
-								N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
+								R.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
 								needed++
 								break
 				if(!needed)
-					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_INTERNAL,1)
+					R.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_INTERNAL,1)
 				updateUsrDialog()
 
 			if(href_list["broken"])
 				for(var/datum/limb/L in connected.occupant.limbs)
 					if(L)
 						if(L.limb_status & LIMB_BROKEN)
-							N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_BROKEN)
+							R.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_BROKEN)
 							needed++
 				if(!needed)
-					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_BROKEN,1)
+					R.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_BROKEN,1)
 				updateUsrDialog()
 
 			if(href_list["missing"])
@@ -1106,20 +1097,20 @@
 					if(L)
 						if(L.limb_status & LIMB_DESTROYED)
 							if(!(L.parent.limb_status & LIMB_DESTROYED) && L.body_part != HEAD)
-								N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_MISSING)
+								R.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_MISSING)
 								needed++
 				if(!needed)
-					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_MISSING,1)
+					R.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_MISSING,1)
 				updateUsrDialog()
 
 			if(href_list["necro"])
 				for(var/datum/limb/L in connected.occupant.limbs)
 					if(L)
 						if(L.limb_status & LIMB_NECROTIZED)
-							N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_NECRO)
+							R.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_NECRO)
 							needed++
 				if(!needed)
-					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_NECRO,1)
+					R.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_NECRO,1)
 				updateUsrDialog()
 
 			if(href_list["shrapnel"])
@@ -1131,19 +1122,19 @@
 						if(L.implants.len)
 							for(var/I in L.implants)
 								if(!is_type_in_list(I,known_implants))
-									N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_SHRAPNEL)
+									R.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_SHRAPNEL)
 									needed++
 									if(L.body_part == CHEST)
 										skip_embryo_check = TRUE
 						if(A && L.body_part == CHEST && !skip_embryo_check) //If we're not already doing a shrapnel removal surgery of the chest proceed.
-							N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_SHRAPNEL)
+							R.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_SHRAPNEL)
 							needed++
 
 				if(!needed)
-					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_SHRAPNEL,1)
+					R.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_SHRAPNEL,1)
 				updateUsrDialog()
 			if(href_list["limbgerm"])
-				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_GERM)
+				R.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_GERM)
 				updateUsrDialog()
 
 			if(href_list["facial"])
@@ -1152,9 +1143,9 @@
 						if(istype(L,/datum/limb/head))
 							var/datum/limb/head/J = L
 							if(J.disfigured || J.face_surgery_stage)
-								N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_FACIAL)
+								R.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_FACIAL)
 							else
-								N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_FACIAL,1)
+								R.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_FACIAL,1)
 							updateUsrDialog()
 							break
 
@@ -1162,15 +1153,15 @@
 				for(var/datum/limb/L in connected.occupant.limbs)
 					if(L)
 						if(L.surgery_open_stage)
-							N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_OPEN)
+							R.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_OPEN)
 							needed++
 				if(href_list["open"])
-					N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_OPEN,1)
+					R.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_OPEN,1)
 				updateUsrDialog()
 
 			// The rest
 			if(href_list["clear"])
-				N.fields["autodoc_manual"] = list()
+				R.fields["autodoc_manual"] = list()
 				updateUsrDialog()
 		if(href_list["locktoggle"]) //Toggle the autodoc lock on/off if we have authorization.
 			if(allowed(usr))
@@ -1227,14 +1218,11 @@
 		to_chat(user, "<span class='notice'>It contains: [occupant].[active]</span>")
 		return
 	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-		if (!R.fields["name"] == H.real_name)
-			continue
-		if(!(R.fields["last_scan_time"]))
-			to_chat(user, "<span class = 'deptradio'>No scan report on record</span>\n")
-		else
-			to_chat(user, "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[active]</a></span>\n")
-		break
+	var/datum/data/record/R = find_record("name", H.real_name, GLOB.crew_datacore.medical)
+	if(!(R?.fields["last_scan_time"]))
+		to_chat(user, "<span class = 'deptradio'>No scan report on record</span>\n")
+	else
+		to_chat(user, "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[active]</a></span>\n")
 
 /obj/machinery/autodoc/Topic(href, href_list)
 	if (!href_list["scanreport"])
@@ -1247,9 +1235,6 @@
 	if(!ishuman(occupant))
 		return
 	var/mob/living/carbon/human/H = occupant
-	for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-		if (!R.fields["name"] == H.real_name)
-			continue
-		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-			usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
-		break
+	var/datum/data/record/R = find_record("name", H.real_name, GLOB.crew_datacore.medical)
+	if(R && R.fields["last_scan_time"] && R.fields["last_scan_result"])
+		usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")

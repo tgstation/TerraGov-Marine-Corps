@@ -474,11 +474,9 @@
 			perpname = name
 
 		if(perpname)
-			for (var/datum/data/record/E in GLOB.crew_datacore.general)
-				if(E.fields["name"] == perpname)
-					for (var/datum/data/record/R in GLOB.crew_datacore.security)
-						if(R.fields["id"] == E.fields["id"])
-							criminal = R.fields["criminal"]
+			var/datum/data/record/R = find_record("name", perpname, GLOB.crew_datacore.security)
+			if(R)
+				criminal = R.fields["criminal"]
 
 			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a>\n"
 			msg += "<span class = 'deptradio'>Security records:</span> <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>\n"
@@ -497,11 +495,9 @@
 		else
 			perpname = src.name
 
-		for (var/datum/data/record/E in GLOB.crew_datacore.general)
-			if (E.fields["name"] == perpname)
-				for (var/datum/data/record/R in GLOB.crew_datacore.general)
-					if (R.fields["id"] == E.fields["id"])
-						medical = R.fields["p_stat"]
+		var/datum/data/record/R = find_record("name", perpname, GLOB.crew_datacore.medical)
+		if(R)
+			medical = R.fields["p_stat"]
 		msg += "<span class = 'deptradio'>Physical status:</span> <a href='?src=\ref[src];medical=1'>\[[medical]\]</a>\n"
 		msg += "<span class = 'deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>\n"
 */
@@ -510,16 +506,11 @@
 		msg += "<span class = 'deptradio'>Triage holo card:</span> <a href='?src=\ref[src];medholocard=1'>\[[cardcolor]\]</a> - "
 
 		// scan reports
-		var/datum/data/record/N = null
-		for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-			if (R.fields["name"] == real_name)
-				N = R
-				break
-		if(!isnull(N))
-			if(!(N.fields["last_scan_time"]))
-				msg += "<span class = 'deptradio'>No scan report on record</span>\n"
-			else
-				msg += "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [N.fields["last_scan_time"]]</a></span>\n"
+		var/datum/data/record/R = find_record("name", real_name, GLOB.crew_datacore.medical)
+		if(!(R?.fields["last_scan_time"]))
+			msg += "<span class = 'deptradio'>No scan report on record</span>\n"
+		else
+			msg += "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [R.fields["last_scan_time"]]</a></span>\n"
 
 
 	if(hasHUD(user,"squadleader"))

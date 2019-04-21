@@ -243,6 +243,7 @@
 	if(job)
 		var/datum/job/J = SSjob.name_occupations[job]
 		J.current_positions--
+		J.remove_from_datacore(src)
 		if((J.title in JOBS_REGULAR_ALL) && isdistress(SSticker?.mode))
 			var/datum/game_mode/distress/D = SSticker.mode
 			D.latejoin_tally-- //Cryoing someone removes a player from the round, blocking further larva spawns until accounted for
@@ -259,8 +260,6 @@
 	for(var/obj/item/W in src)
 		stored_items.Add(W.store_in_cryo())
 	GLOB.cryoed_item_list[dept_console].Add(stored_items)
-
-	GLOB.crew_datacore.remove_from_datacore(src)
 
 	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
 

@@ -147,9 +147,11 @@ SUBSYSTEM_DEF(ticker)
 	LAZYCLEARLIST(round_start_events)
 
 	supply_controller.process()
-	for(var/A in GLOB.datacores_list)
-		var/datum/datacore/D = A
-		D.manifest()
+	for(var/A in GLOB.player_list)
+		var/mob/M = A
+		var/datum/job/J = SSjob.name_occupations[M.job]
+		J?.add_to_datacore(M)
+		CHECK_TICK
 
 	log_world("Game start took [(world.timeofday - init_start) / 10]s")
 	round_start_time = world.time

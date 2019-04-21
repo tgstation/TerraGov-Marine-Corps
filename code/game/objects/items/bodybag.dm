@@ -281,25 +281,23 @@
 		open()
 
 /obj/structure/closet/bodybag/cryobag/examine(mob/living/user)
-	..()
-	if(stasis_mob)
-		if(ishuman(stasis_mob))
-			if(hasHUD(user,"medical"))
-				var/mob/living/carbon/human/H = stasis_mob
-				for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-					if (R.fields["name"] == H.real_name)
-						if(!(R.fields["last_scan_time"]))
-							to_chat(user, "<span class = 'deptradio'>No scan report on record</span>\n")
-						else
-							to_chat(user, "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [R.fields["last_scan_time"]]</a></span>\n")
-						break
-
-
-
+	. = ..()
+	var/dat
+	if(ishuman(stasis_mob) && hasHUD(user, "medical"))
+		var/mob/living/carbon/human/H = stasis_mob
+		var/datum/data/record/R = find_record("name", H.real_name, GLOB.crew_datacore.medical)
+		if(!(R?.fields["last_scan_time"]))
+			dat += "<span class = 'deptradio'>No scan report on record</span>\n"
+		else
+			dat += "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [R.fields["last_scan_time"]]</a></span>\n"
 	switch(used)
-		if(0 to 600) to_chat(user, "It looks new.")
-		if(601 to 1200) to_chat(user, "It looks a bit used.")
-		if(1201 to 1800) to_chat(user, "It looks really used.")
+		if(0 to 600)
+			dat += "It looks new."
+		if(601 to 1200)
+			dat += "It looks a bit used."
+		if(1201 to 1800)
+			dat += "It looks really used."
+	to_chat(user, dat)
 
 /obj/structure/closet/bodybag/cryobag/Topic(href, href_list)
 	if (href_list["scanreport"])
@@ -309,12 +307,9 @@
 				return
 			if(ishuman(stasis_mob))
 				var/mob/living/carbon/human/H = stasis_mob
-				for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-					if (R.fields["name"] == H.real_name)
-						if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-							usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
-						break
-
+				var/datum/data/record/R = find_record("name", H.real_name, GLOB.crew_datacore.medical)
+				if(R && R.fields["last_scan_time"] && R.fields["last_scan_result"])
+					usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
 
 
 /obj/item/trash/used_stasis_bag

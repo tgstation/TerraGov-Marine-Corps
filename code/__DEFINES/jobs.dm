@@ -200,3 +200,7 @@
 #define CRYO_BRAVO		"Bravo Squad"
 #define CRYO_CHARLIE	"Charlie Squad"
 #define CRYO_DELTA		"Delta Squad"
+
+// Datacore
+var/static/datacore_record_id = 1001
+#define NEW_DATACORE_ID (num2hex(datacore_record_id++, 6))

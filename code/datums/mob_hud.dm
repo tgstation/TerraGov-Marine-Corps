@@ -438,18 +438,19 @@ var/datum/mob_hud/huds = list(
 		if(I)
 			perpname = I.registered_name
 
-	for(var/datum/data/record/E in GLOB.crew_datacore.general)
-		if(E.fields["name"] == perpname)
-			for(var/datum/data/record/R in GLOB.crew_datacore.security)
-				if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
-					holder.icon_state = "hudwanted"
-					break
-				else if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "Incarcerated"))
-					holder.icon_state = "hudprisoner"
-					break
-				else if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "Released"))
-					holder.icon_state = "hudreleased"
-					break
+	var/datum/data/record/E = find_record("name", perpname, GLOB.crew_datacore.general)
+	if(!E)
+		return
+	var/datum/data/record/R = find_record("id", E.fields["id"], GLOB.crew_datacore.security)
+	if(!R)
+		return
+	switch(R.fields["criminal"])
+		if("*Arrest*")
+			holder.icon_state = "hudwanted"
+		if("Incarcerated")
+			holder.icon_state = "hudprisoner"
+		if("Released")
+			holder.icon_state = "hudreleased"
 
 
 //Squad HUD

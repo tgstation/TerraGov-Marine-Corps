@@ -219,9 +219,7 @@
 				src.temp = text("Are you sure you wish to delete all records?<br>\n\t<A href='?src=\ref[];temp=1;del_all2=1'>Yes</A><br>\n\t<A href='?src=\ref[];temp=1'>No</A><br>", src, src)
 
 			if (href_list["del_all2"])
-				for(var/datum/data/record/R in GLOB.crew_datacore.medical)
-					GLOB.crew_datacore.medical -= R
-					qdel(R)
+				QDEL_LIST(GLOB.crew_datacore.medical)
 					//Foreach goto(494)
 				src.temp = "All records deleted."
 
@@ -380,11 +378,9 @@
 				if (!( GLOB.crew_datacore.general.Find(R) ))
 					src.temp = "Record Not Found!"
 					return
-				for(var/datum/data/record/E in GLOB.crew_datacore.medical)
-					if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
-						M = E
-					else
-						//Foreach continue //goto(2540)
+				var/datum/data/record/E = find_record("id", R.fields["id"], GLOB.crew_datacore.medical)
+				if(E)
+					M = E
 				src.active1 = R
 				src.active2 = M
 				src.screen = 4
@@ -406,7 +402,7 @@
 					R.fields["cdi"] = "None"
 					R.fields["cdi_d"] = "No diseases have been diagnosed at the moment."
 					R.fields["notes"] = "No notes."
-					GLOB.crew_datacore.medical += R
+					LAZYADD(GLOB.crew_datacore.medical, R)
 					src.active2 = R
 					src.screen = 4
 
@@ -441,11 +437,9 @@
 				if (!( src.active2 ))
 					src.temp = text("Could not locate record [].", t1)
 				else
-					for(var/datum/data/record/E in GLOB.crew_datacore.general)
-						if ((E.fields["name"] == src.active2.fields["name"] || E.fields["id"] == src.active2.fields["id"]))
-							src.active1 = E
-						else
-							//Foreach continue //goto(3334)
+					var/datum/data/record/E = find_record("id", active2.fields["id"], GLOB.crew_datacore.general)
+					if (E)
+						active1 = E
 					src.screen = 4
 
 			if (href_list["print_p"])
@@ -483,9 +477,7 @@
 
 /obj/machinery/computer/med_data/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
-		return
-
+		return ..()
 	for(var/datum/data/record/R in GLOB.crew_datacore.medical)
 		if(prob(10/severity))
 			switch(rand(1,6))
@@ -501,14 +493,9 @@
 					R.fields["p_stat"] = pick("*SSD*", "Active", "Physically Unfit", "Disabled")
 				if(6)
 					R.fields["m_stat"] = pick("*Insane*", "*Unstable*", "*Watch*", "Stable")
-			continue
-
 		else if(prob(1))
-			GLOB.crew_datacore.medical -= R
-			qdel(R)
-			continue
-
-	..(severity)
+			GLOB.crew_datacore.remove_record(R, GLOB.crew_datacore.medical)
+	return ..()
 
 
 /obj/machinery/computer/med_data/laptop

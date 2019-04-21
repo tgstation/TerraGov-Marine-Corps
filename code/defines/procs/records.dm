@@ -1,4 +1,4 @@
-/proc/CreateGeneralRecord()
+/proc/CreateGeneralRecord(list/L)
 	var/mob/living/carbon/human/dummy = new()
 	dummy.mind = new()
 	var/icon/front = new(get_id_photo(dummy), dir = SOUTH)
@@ -21,12 +21,11 @@
 	G.fields["religion"]	= "Unknown"
 	G.fields["photo_front"]	= front
 	G.fields["photo_side"]	= side
-	GLOB.crew_datacore.general += G
-
+	L += G
 	qdel(dummy)
 	return G
 
-/proc/CreateSecurityRecord(var/name as text, var/id as text)
+/proc/CreateSecurityRecord(name, id, list/L)
 	var/datum/data/record/R = new /datum/data/record()
 	R.fields["name"] = name
 	R.fields["id"] = id
@@ -37,10 +36,10 @@
 	R.fields["ma_crim"] = "None"
 	R.fields["ma_crim_d"] = "No major crime convictions."
 	R.fields["notes"] = "No notes."
-	GLOB.crew_datacore.security += R
+	L += R
 	return R
 
-/proc/create_medical_record(var/mob/living/carbon/human/H)
+/proc/create_medical_record(mob/living/carbon/human/H, list/L)
 	var/datum/data/record/M = new /datum/data/record()
 	M.fields["id"]			= null
 	M.fields["name"]		= H.real_name
@@ -58,5 +57,5 @@
 	M.fields["last_scan_result"]		= "No scan data on record"
 	M.fields["autodoc_data"] = list()
 	M.fields["autodoc_manual"] = list()
-	GLOB.crew_datacore.medical += M
+	L += M
 	return M

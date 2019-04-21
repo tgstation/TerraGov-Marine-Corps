@@ -267,7 +267,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 
 
-//This will update a mob's name, real_name, mind.name, GLOB.crew_datacore records and id
+//This will update a mob's name, real_name, mind.name, datacore records and id
 /mob/proc/fully_replace_character_name(oldname, newname)
 	if(!newname)
 		return FALSE
@@ -296,8 +296,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		var/obj/item/card/id/C = wear_id
 		C.update_label()
 
-	if(!GLOB.crew_datacore.manifest_update(oldname, newname, job))
-		GLOB.crew_datacore.manifest_inject(src)
+	var/datum/job/J = SSjob.name_occupations[job]
+	J?.update_to_datacore()
 
 	return TRUE
 
