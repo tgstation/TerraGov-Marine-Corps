@@ -264,6 +264,7 @@
 			return
 
 	if(!istype(L))
+		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")</span>")
 		return
 
 	if(L.sleeping > 0)
