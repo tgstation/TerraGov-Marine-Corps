@@ -101,7 +101,7 @@
 
 	var/canEnterVentWith = "/obj/item/implant=0&/obj/item/clothing/mask/facehugger=0&/obj/item/radio/borg=0&/obj/machinery/camera=0&/obj/item/verbs=0" // Vent crawling whitelisted items, whoo
 
-	var/coughedtime
+	var/smoke_delay = FALSE
 
 	var/inertia_dir = 0
 

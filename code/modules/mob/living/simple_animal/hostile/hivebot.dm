@@ -74,8 +74,8 @@
 
 	New()
 		..()
-		var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
-		smoke.set_up(2, 0, src.loc)
+		var/datum/effect_system/smoke_spread/smoke = new
+		smoke.set_up(2, loc)
 		smoke.start()
 		visible_message("<span class='danger'>The [src] warps in!</span>")
 		playsound(src.loc, 'sound/effects/EMPulse.ogg', 25, 1)
