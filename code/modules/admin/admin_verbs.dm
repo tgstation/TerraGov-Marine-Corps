@@ -152,6 +152,7 @@
 		return
 
 	if(!istype(LGIVE))
+		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 
 	log_admin("[key_name(usr)] gave [key_name(LGIVE)] to [key_name(NREC)].")
