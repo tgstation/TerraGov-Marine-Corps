@@ -3,6 +3,9 @@
 #define XENO_STANDING_HEAL 0.2
 #define XENO_CRIT_DAMAGE 5
 
+#define XENO_HUD_ICON_BUCKETS 17  // +1 to the number of icons you to represent health / plasma
+
+
 /mob/living/carbon/Xenomorph/Life()
 
 	if(monkeyizing || !loc)
@@ -216,100 +219,26 @@
 		return FALSE
 	if(hud_used && hud_used.healths)
 		if(stat != DEAD)
-			switch(round(health * 100 / maxHealth)) //Maxhealth should never be zero or this will generate runtimes.
-				if(100 to INFINITY)
-					hud_used.healths.icon_state = "health_full"
-				if(94 to 99)
-					hud_used.healths.icon_state = "health_16"
-				if(88 to 93)
-					hud_used.healths.icon_state = "health_15"
-				if(82 to 87)
-					hud_used.healths.icon_state = "health_14"
-				if(76 to 81)
-					hud_used.healths.icon_state = "health_13"
-				if(70 to 75)
-					hud_used.healths.icon_state = "health_12"
-				if(64 to 69)
-					hud_used.healths.icon_state = "health_11"
-				if(58 to 63)
-					hud_used.healths.icon_state = "health_10"
-				if(52 to 57)
-					hud_used.healths.icon_state = "health_9"
-				if(46 to 51)
-					hud_used.healths.icon_state = "health_8"
-				if(40 to 45)
-					hud_used.healths.icon_state = "health_7"
-				if(34 to 39)
-					hud_used.healths.icon_state = "health_6"
-				if(28 to 33)
-					hud_used.healths.icon_state = "health_5"
-				if(22 to 27)
-					hud_used.healths.icon_state = "health_4"
-				if(16 to 21)
-					hud_used.healths.icon_state = "health_3"
-				if(10 to 15)
-					hud_used.healths.icon_state = "health_2"
-				if(4 to 9)
-					hud_used.healths.icon_state = "health_1"
-				if(0 to 3)
-					hud_used.healths.icon_state = "health_0"
-				else
-					hud_used.healths.icon_state = "health_critical"
+			if(maxHealth)
+				var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, maxHealth, health, 0, list("full", "critical"))
+				hud_used.healths.icon_state = "health_[bucket]"
 		else
 			hud_used.healths.icon_state = "health_dead"
 
 	if(hud_used && hud_used.alien_plasma_display)
 		if(stat != DEAD)
-			if(xeno_caste.plasma_max) //No divide by zeros please
-				switch(round(plasma_stored * 100 / xeno_caste.plasma_max))
-					if(100 to INFINITY)
-						hud_used.alien_plasma_display.icon_state = "power_display_full"
-					if(94 to 99)
-						hud_used.alien_plasma_display.icon_state = "power_display_16"
-					if(88 to 93)
-						hud_used.alien_plasma_display.icon_state = "power_display_15"
-					if(82 to 87)
-						hud_used.alien_plasma_display.icon_state = "power_display_14"
-					if(76 to 81)
-						hud_used.alien_plasma_display.icon_state = "power_display_13"
-					if(70 to 75)
-						hud_used.alien_plasma_display.icon_state = "power_display_12"
-					if(64 to 69)
-						hud_used.alien_plasma_display.icon_state = "power_display_11"
-					if(58 to 63)
-						hud_used.alien_plasma_display.icon_state = "power_display_10"
-					if(52 to 57)
-						hud_used.alien_plasma_display.icon_state = "power_display_9"
-					if(46 to 51)
-						hud_used.alien_plasma_display.icon_state = "power_display_8"
-					if(40 to 45)
-						hud_used.alien_plasma_display.icon_state = "power_display_7"
-					if(34 to 39)
-						hud_used.alien_plasma_display.icon_state = "power_display_6"
-					if(28 to 33)
-						hud_used.alien_plasma_display.icon_state = "power_display_5"
-					if(22 to 27)
-						hud_used.alien_plasma_display.icon_state = "power_display_4"
-					if(16 to 21)
-						hud_used.alien_plasma_display.icon_state = "power_display_3"
-					if(10 to 15)
-						hud_used.alien_plasma_display.icon_state = "power_display_2"
-					if(4 to 9)
-						hud_used.alien_plasma_display.icon_state = "power_display_1"
-					if(0 to 3)
-						hud_used.alien_plasma_display.icon_state = "power_display_0"
-					else
-						hud_used.alien_plasma_display.icon_state = "power_display_empty"
-			else
-				hud_used.alien_plasma_display.icon_state = "power_display_empty"
+			if (xeno_caste.plasma_max)
+				var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, xeno_caste.plasma_max, plasma_stored, 0, list("full", "empty"))
+				message_admins("Bucket size [bucket]")
+				hud_used.alien_plasma_display.icon_state = "power_display_[bucket]"
 		else
 			hud_used.alien_plasma_display.icon_state = "power_display_empty"
 
-		if(interactee)
-			interactee.check_eye(src)
-		else
-			if(client && !client.adminobs)
-				reset_view(null)
+	if(interactee)
+		interactee.check_eye(src)
+	else
+		if(!client.adminobs)
+			reset_view(null)
 
 	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
 		queen_locator()
