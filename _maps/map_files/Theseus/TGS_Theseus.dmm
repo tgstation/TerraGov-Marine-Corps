@@ -50265,9 +50265,7 @@
 /area/almayer/living/bridgebunks)
 "knI" = (
 /obj/machinery/vending/marineFood,
-/obj/machinery/alarm{
-	step_y = 0
-	},
+/obj/machinery/alarm,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cafeteria_port)
 "kqP" = (
