@@ -1222,7 +1222,7 @@
 
 		var/mob/M = locate(href_list["playerpanel"])
 		if(!istype(M))
-			to_chat(usr,"<span class='warning'>Mob reference gone or no longer valid.</span>")
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
 		usr.client.holder.show_player_panel(M)

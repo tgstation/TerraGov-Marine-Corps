@@ -123,8 +123,7 @@
 	switch(input("Who do you want to give:", "Give Mob") as null|anything in list("Key", "Mob"))
 		if("Key")
 			var/client/C = input("Please, select a key.", "Give Mob") as null|anything in sortKey(GLOB.clients)
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
-		return
+			if(!isliving(C?.mob))
 				return
 			LGIVE = C.mob
 		if("Mob")
@@ -264,7 +263,7 @@
 			return
 
 	if(!istype(L))
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")</span>")
+		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 
 	if(L.sleeping > 0)
