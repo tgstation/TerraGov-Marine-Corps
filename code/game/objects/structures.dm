@@ -30,14 +30,13 @@
 /obj/structure/proc/update_health()
 	return
 
-/obj/structure/attack_hand(mob/user)
-	. = ..()
+/obj/structure/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
-	if(HULK in user.mutations)
-		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-		visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
-		destroy_structure()
+	. = ..()
+	user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+	visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
+	destroy_structure()
 
 /obj/structure/attackby(obj/item/C as obj, mob/user as mob)
 	. = ..()

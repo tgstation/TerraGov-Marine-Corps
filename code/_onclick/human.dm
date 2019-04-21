@@ -57,6 +57,9 @@
 		return
 
 	changeNext_move(CLICK_CD_MELEE)
+	if(HULK in mutations)
+		A.attack_hulk(src, 1)
+		return
 	A.attack_hand(src)
 
 

@@ -80,6 +80,17 @@
 	health -= damage_dealt
 	healthcheck()
 
+/obj/structure/grille/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
+	if(shock(user, 70))
+		return
+	. = ..()
+	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
+	health -= 10
+	user.visible_message("<span class='warning'>[user] mangles [src].</span>", \
+				"<span class='warning'>You mangle [src].</span>", \
+				"You hear twisting metal.")
+	healthcheck()
+
 /obj/structure/grille/attack_hand(mob/user as mob)
 
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
@@ -101,10 +112,7 @@
 	if(shock(user, 70))
 		return
 
-	if(HULK in user.mutations)
-		damage_dealt += 5
-	else
-		damage_dealt += 1
+	damage_dealt += 1
 
 	health -= damage_dealt
 	healthcheck()

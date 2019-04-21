@@ -286,20 +286,22 @@
 
 
 //Interactions
-/turf/closed/wall/attack_paw(mob/user as mob)
-	if((HULK in user.mutations))
-		if(prob(40))
-			user.visible_message("<span class='danger'>[user] smashes through [src].</span>",
-			"<span class='danger'>You smash through the wall.</span>")
-			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
-			dismantle_wall(1)
-			return
-		else
-			user.visible_message("<span class='warning'>[user] punches [src].</span>",
-			"<span class='warning'>You punch the wall.</span>")
-			take_damage(rand(25, 75))
-			return
+/turf/closed/wall/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
+	if(hull)
+		return
+	. = ..()
+	if(prob(40))
+		user.visible_message("<span class='danger'>[user] smashes through [src].</span>",
+		"<span class='danger'>You smash through the wall.</span>")
+		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
+		dismantle_wall(1)
+		return
 
+	user.visible_message("<span class='warning'>[user] punches [src].</span>",
+	"<span class='warning'>You punch the wall.</span>")
+	take_damage(rand(25, 75))
+
+/turf/closed/wall/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
 
@@ -319,23 +321,6 @@
 				"<span class='warning'>You smash against the wall.</span>")
 				take_damage(rand(25, 75))
 				return
-
-/turf/closed/wall/attack_hand(mob/user as mob)
-	if(HULK in user.mutations)
-		if((prob(40)) && !hull)
-			user.visible_message("<span class='danger'>[user] smashes through [src].</span>",
-			"<span class='danger'>You smash through [src].</span>")
-			usr.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
-			dismantle_wall(1)
-			return
-		else
-			user.visible_message("<span class='warning'>[user] punches [src].</span>",
-			"<span class='warning'>You punch [src].</span>")
-			take_damage(rand(25, 75))
-			return
-
-	add_fingerprint(user)
-
 
 
 /turf/closed/wall/attackby(obj/item/W, mob/user)

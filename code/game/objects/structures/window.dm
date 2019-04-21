@@ -118,16 +118,18 @@
 	else
 		attack_generic(M, M.xeno_caste.melee_damage_lower)
 
+/obj/structure/window/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
+	. = ..()
+	user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
+	if(damageable) //Possible to destroy
+		user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
+		health -= 500
+	healthcheck(1, 1, 1, user)
+
 /obj/structure/window/attack_hand(mob/user as mob)
 	add_fingerprint(user)
-	if(HULK in user.mutations)
-		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
-		if(damageable) //Possible to destroy
-			user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
-			health -= 500
-		healthcheck(1, 1, 1, user)
 
-	else if(user.a_intent == INTENT_HARM)
+	if(user.a_intent == INTENT_HARM)
 
 		if(istype(user,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user

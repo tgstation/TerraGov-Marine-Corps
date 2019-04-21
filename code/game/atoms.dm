@@ -337,6 +337,12 @@ its easier to just keep the beam vertical.
 /atom/proc/GenerateTag()
 	return
 
+/atom/proc/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
+	//SEND_SIGNAL(src, COMSIG_ATOM_HULK_ATTACK, user)
+	if(does_attack_animation)
+		user.changeNext_move(CLICK_CD_MELEE)
+		log_combat(user, src, "punched", "hulk powers")
+		user.animation_attack_on(src)
 
 /atom/proc/add_vomit_floor(mob/living/carbon/M, var/toxvomit = 0)
 	return

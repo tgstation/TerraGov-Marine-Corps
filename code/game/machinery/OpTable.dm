@@ -46,12 +46,13 @@
 		else
 	return
 
+/obj/machinery/optable/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
+	. = ..()
+	to_chat(usr, text("<span class='notice'> You destroy the operating table.</span>"))
+	visible_message("<span class='warning'> [usr] destroys the operating table!</span>")
+	qdel(src)
+
 /obj/machinery/optable/attack_paw(mob/user as mob)
-	if ((HULK in usr.mutations))
-		to_chat(usr, text("<span class='notice'> You destroy the operating table.</span>"))
-		visible_message("<span class='warning'> [usr] destroys the operating table!</span>")
-		src.density = 0
-		qdel(src)
 	if (!( locate(/obj/machinery/optable, user.loc) ))
 		step(user, get_dir(user, src))
 		if (user.loc == src.loc)
@@ -67,12 +68,6 @@
 		to_chat(user, "<span class='information'>It has an [anes_tank] connected with the gauge showing [round(anes_tank.pressure,0.1)] kPa.</span>")
 
 /obj/machinery/optable/attack_hand(mob/living/user)
-	if (HULK in usr.mutations)
-		to_chat(usr, text("<span class='notice'> You destroy the table.</span>"))
-		visible_message("<span class='warning'> [usr] destroys the operating table!</span>")
-		src.density = 0
-		qdel(src)
-		return
 	if(buckled_mob)
 		unbuckle(user)
 		return

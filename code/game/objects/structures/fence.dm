@@ -59,14 +59,15 @@
 	health = max(0, health - tforce)
 	healthcheck()
 
-/obj/structure/fence/attack_hand(mob/user as mob)
-	if(HULK in user.mutations)
-		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
-		user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
-		health -= 100
-		healthcheck(1, 1, user)
+/obj/structure/fence/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
+	. = ..()
+	user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
+	user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
+	health -= 100
+	healthcheck(1, 1, user)
 
-	else if(ishuman(user) && user.a_intent == INTENT_HARM)
+/obj/structure/fence/attack_hand(mob/user as mob)
+	if(ishuman(user) && user.a_intent == INTENT_HARM)
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			attack_generic(H, 25)

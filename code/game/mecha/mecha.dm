@@ -409,6 +409,12 @@
 		M.visible_message("<span class='warning'>[M] slashes [src]'s armor to no effect!</span>", \
 		"<span class='danger'>You slash [src]'s armor to no effect!</span>", null, 5)
 
+/obj/mecha/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
+	. = ..()
+	take_damage(15)
+	check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
+	user.visible_message("<font color='red'><b>[user] hits [src.name], doing some damage.</b></font>", "<font color='red'><b>You hit [src.name] with all your might. The metal creaks and bends.</b></font>")
+
 /obj/mecha/attack_hand(mob/user as mob)
 	src.log_message("Attack by hand/paw. Attacker - [user].", color="red")
 
@@ -431,10 +437,6 @@
 			user.visible_message("<font color='red'><b>[user] hits [src.name]. Nothing happens</b></font>","<font color='red'><b>You hit [src.name] with no visible effect.</b></font>")
 			src.log_append_to_last("Armor saved.")
 		return
-	else if ((HULK in user.mutations) && !prob(src.deflect_chance))
-		src.take_damage(15)
-		src.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
-		user.visible_message("<font color='red'><b>[user] hits [src.name], doing some damage.</b></font>", "<font color='red'><b>You hit [src.name] with all your might. The metal creaks and bends.</b></font>")
 	else
 		user.visible_message("<font color='red'><b>[user] hits [src.name]. Nothing happens</b></font>","<font color='red'><b>You hit [src.name] with no visible effect.</b></font>")
 		src.log_append_to_last("Armor saved.")
