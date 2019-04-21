@@ -104,9 +104,8 @@
 	src.operating = 0
 	return TRUE
 
-/obj/machinery/door/window/take_damage(var/damage)
-	src.obj_integrity = max(0, src.obj_integrity - damage)
-	if (src.obj_integrity <= 0)
+/obj/machinery/door/window/deconstruct(disassembled = TRUE)
+	if(!disassembled)
 		var/obj/item/shard/S = new(loc)
 		transfer_fingerprints_to(S)
 		var/obj/item/stack/cable_coil/CC = new(loc)
@@ -130,44 +129,45 @@
 		if(operating == -1)
 			ae.icon_state = "door_electronics_smoked"
 			operating = 0
-		src.density = FALSE
-		qdel(src)
-		return
-
-/obj/machinery/door/window/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.ammo.damage)
-		take_damage(round(Proj.ammo.damage / 2))
-	return TRUE
-
-//When an object is thrown at the window
-/obj/machinery/door/window/hitby(AM as mob|obj)
-
-	..()
-	visible_message("<span class='danger'>The glass door was hit by [AM].</span>", 1)
-	var/tforce = 0
-	if(ismob(AM))
-		tforce = 40
 	else
-		tforce = AM:throwforce
-	playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-	take_damage(tforce)
-	//..() //Does this really need to be here twice? The parent proc doesn't even do anything yet. - Nodrak
-	return
+		var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)
+		if (istype(src, /obj/machinery/door/window/brigdoor))
+			wa.secure = "secure_"
+			wa.name = "Secure Wired Windoor Assembly"
+		else
+			wa.name = "Wired Windoor Assembly"
+		if (src.base_state == "right" || src.base_state == "rightsecure")
+			wa.facing = "r"
+		wa.setDir(dir)
+		wa.state = "02"
+		wa.update_icon()
 
+		var/obj/item/circuitboard/airlock/ae
+		if(!electronics)
+			ae = new/obj/item/circuitboard/airlock( src.loc )
+			if(!src.req_access)
+				src.check_access()
+			if(src.req_access.len)
+				ae.conf_access = src.req_access
+			else if (src.req_one_access.len)
+				ae.conf_access = src.req_one_access
+				ae.one_access = TRUE
+		else
+			ae = electronics
+			electronics = null
+			ae.loc = src.loc
+		ae.icon_state = "door_electronics_smoked"
+
+		operating = 0
+
+	return ..()
+
+/obj/machinery/door/window/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+	if(damage_type == BRUTE)
+		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 
 /obj/machinery/door/window/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
-
-//Slashing windoors
-/obj/machinery/door/window/attack_alien(mob/living/carbon/Xenomorph/M)
-	M.animation_attack_on(src)
-	playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-	M.visible_message("<span class='danger'>[M] smashes against [src]!</span>", \
-	"<span class='danger'>You smash against [src]!</span>", null, 5)
-	var/damage = 25
-	if(M.mob_size == MOB_SIZE_BIG)
-		damage = 40
-	take_damage(damage)
 
 /obj/machinery/door/window/attack_hand(mob/user)
 	if(istype(user,/mob/living/carbon/human))
@@ -200,46 +200,10 @@
 		if (do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
 			to_chat(user, "<span class='notice'>You removed the windoor electronics!</span>")
 
-			var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)
-			if (istype(src, /obj/machinery/door/window/brigdoor))
-				wa.secure = "secure_"
-				wa.name = "Secure Wired Windoor Assembly"
-			else
-				wa.name = "Wired Windoor Assembly"
-			if (src.base_state == "right" || src.base_state == "rightsecure")
-				wa.facing = "r"
-			wa.setDir(dir)
-			wa.state = "02"
-			wa.update_icon()
-
-			var/obj/item/circuitboard/airlock/ae
-			if(!electronics)
-				ae = new/obj/item/circuitboard/airlock( src.loc )
-				if(!src.req_access)
-					src.check_access()
-				if(src.req_access.len)
-					ae.conf_access = src.req_access
-				else if (src.req_one_access.len)
-					ae.conf_access = src.req_one_access
-					ae.one_access = TRUE
-			else
-				ae = electronics
-				electronics = null
-				ae.loc = src.loc
-			ae.icon_state = "door_electronics_smoked"
-
-			operating = 0
-			qdel(src)
-			return
+			return deconstruct(TRUE)
 
 	if(!(I.flags_item & NOBLUDGEON) && I.force && density) //trying to smash windoor with item
-		var/aforce = I.force
-		user.changeNext_move(I.attack_speed)
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-		visible_message("<span class='danger'>[src] was hit by [I].</span>")
-		if(I.damtype == BRUTE || I.damtype == BURN)
-			take_damage(aforce)
-		return TRUE
+		return ..()
 	else
 		return try_to_activate_door(user)
 

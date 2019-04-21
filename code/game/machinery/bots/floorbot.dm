@@ -337,34 +337,31 @@
 	else
 		src.icon_state = "floorbot[src.on]e"
 
-/obj/machinery/bot/floorbot/explode()
-	src.on = 0
-	src.visible_message("<span class='danger'>[src] blows apart!</span>", 1)
-	var/turf/Tsec = get_turf(src)
+/obj/machinery/bot/floorbot/deconstruct(disassembled = TRUE)
+	visible_message("<span class='danger'>[src] blows apart!</span>", 1)
 
-	var/obj/item/storage/toolbox/mechanical/N = new /obj/item/storage/toolbox/mechanical(Tsec)
+	var/obj/item/storage/toolbox/mechanical/N = new /obj/item/storage/toolbox/mechanical(loc)
 	N.contents = list()
 
-	new /obj/item/assembly/prox_sensor(Tsec)
+	new /obj/item/assembly/prox_sensor(loc)
 
 	if (prob(50))
-		new /obj/item/robot_parts/l_arm(Tsec)
+		new /obj/item/robot_parts/l_arm(loc)
 
 	while (amount)//Dumps the tiles into the appropriate sized stacks
 		if(amount >= 16)
-			var/obj/item/stack/tile/plasteel/T = new (Tsec)
+			var/obj/item/stack/tile/plasteel/T = new (loc)
 			T.amount = 16
 			amount -= 16
 		else
-			var/obj/item/stack/tile/plasteel/T = new (Tsec)
+			var/obj/item/stack/tile/plasteel/T = new (loc)
 			T.amount = src.amount
 			amount = 0
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
-	return
+	return ..()
 
 
 /obj/item/storage/toolbox/mechanical/attackby(var/obj/item/stack/tile/plasteel/T, mob/user as mob)

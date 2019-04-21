@@ -296,20 +296,17 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 		anchored = 0
 		target = null
 
-/obj/machinery/bot/cleanbot/explode()
-	src.on = 0
-	src.visible_message("<span class='danger'>[src] blows apart!</span>", 1)
-	var/turf/Tsec = get_turf(src)
+/obj/machinery/bot/cleanbot/deconstruct(disassembled = TRUE)
+	visible_message("<span class='danger'>[src] blows apart!</span>", 1)
 
-	new /obj/item/reagent_container/glass/bucket(Tsec)
+	new /obj/item/reagent_container/glass/bucket(loc)
 
-	new /obj/item/assembly/prox_sensor(Tsec)
+	new /obj/item/assembly/prox_sensor(loc)
 
 	if (prob(50))
-		new /obj/item/robot_parts/l_arm(Tsec)
+		new /obj/item/robot_parts/l_arm(loc)
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
-	return
+	return ..()

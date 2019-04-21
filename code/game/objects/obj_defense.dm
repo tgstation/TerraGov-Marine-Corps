@@ -81,7 +81,7 @@
 
 /obj/attack_alien(mob/living/carbon/Xenomorph/user)
 	if(attack_generic(user, 60, BRUTE, "melee", 0))
-		playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
+		playsound(loc, "alien_claw_metal", 25, 1)
 
 /obj/attack_animal(mob/living/simple_animal/M)
 	if(!M.melee_damage_upper && !M.obj_damage)

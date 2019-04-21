@@ -25,13 +25,6 @@
 	on = FALSE
 	SetLuminosity(0)
 
-/obj/machinery/bot/proc/explode()
-	qdel(src)
-
-/obj/machinery/bot/proc/healthcheck()
-	if(obj_integrity <= 0)
-		explode()
-
 /obj/machinery/bot/Destroy()
 	SetLuminosity(0)
 	. = ..()
@@ -56,30 +49,6 @@
 		else
 			to_chat(user, "<span class='danger'>[src]'s parts look very loose!</span>")
 
-/obj/machinery/bot/attack_animal(var/mob/living/simple_animal/M as mob)
-	if(M.melee_damage_upper == 0)
-		return
-	obj_integrity -= M.melee_damage_upper
-	visible_message("<span class='danger'>[M] has [M.attacktext] [src]!</span>")
-	log_combat(M, src, "attacked")
-	if(prob(10))
-		new /obj/effect/decal/cleanable/blood/oil(src.loc)
-	healthcheck()
-
-/obj/machinery/bot/attack_alien(mob/living/carbon/Xenomorph/M)
-	M.animation_attack_on(src)
-	obj_integrity -= rand(15, 30)
-	if(obj_integrity <= 0)
-		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
-		"<span class='danger'>You slice [src] apart!</span>", null, 5)
-	else
-		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
-		"<span class='danger'>You slash [src]!</span>", null, 5)
-	playsound(loc, "alien_claw_metal", 25, 1)
-	if(prob(10))
-		new /obj/effect/decal/cleanable/blood/oil(src.loc)
-	healthcheck()
-
 /obj/machinery/bot/attackby(obj/item/W as obj, mob/user as mob)
 	if(isscrewdriver(W))
 		if(!locked)
@@ -97,36 +66,7 @@
 	else if (istype(W, /obj/item/card/emag) && emagged < 2)
 		Emag(user)
 	else
-		if(hasvar(W,"force") && hasvar(W,"damtype"))
-			switch(W.damtype)
-				if("fire")
-					src.obj_integrity -= W.force * fire_dam_coeff
-				if("brute")
-					src.obj_integrity -= W.force * brute_dam_coeff
-			..()
-			healthcheck()
-		else
-			..()
-
-/obj/machinery/bot/bullet_act(var/obj/item/projectile/Proj)
-	obj_integrity -= Proj.ammo.damage
-	..()
-	healthcheck()
-	return TRUE
-
-/obj/machinery/bot/ex_act(severity)
-	switch(severity)
-		if(1)
-			explode()
-		if(2)
-			obj_integrity -= rand(5, 10)*fire_dam_coeff
-			obj_integrity -= rand(10, 20)*brute_dam_coeff
-			healthcheck()
-		if(3)
-			if(prob(50))
-				obj_integrity -= rand(1, 5)*fire_dam_coeff
-				obj_integrity -= rand(1, 5)*brute_dam_coeff
-				healthcheck()
+		return ..()
 
 /obj/machinery/bot/emp_act(severity)
 	var/was_on = on

@@ -75,26 +75,8 @@
 				return
 			return
 		else
-			switch(W.damtype)
-				if("fire")
-					src.obj_integrity -= W.force * 0.75
-				if("brute")
-					src.obj_integrity -= W.force * 0.5
-				else
-			if (src.obj_integrity <= 0)
-				src.explode()
-			..()
+			return ..()
 
-	ex_act(severity)
-		switch(severity)
-			if(1.0)
-				src.explode()
-				return
-			if(2.0)
-				src.obj_integrity -= 25
-				if (src.obj_integrity <= 0)
-					src.explode()
-				return
 	emp_act(severity)
 		if(machine_stat & (BROKEN|NOPOWER))
 			return
@@ -111,18 +93,14 @@
 		else
 			return 0
 
-	proc/explode()
+/obj/machinery/deployable/barrier/deconstruct(disassembled = TRUE)
+	visible_message("<span class='danger'>[src] blows apart!</span>")
 
-		visible_message("<span class='danger'>[src] blows apart!</span>")
-		var/turf/Tsec = get_turf(src)
+	new /obj/item/stack/rods(loc)
 
-	/*	var/obj/item/stack/rods/ =*/
-		new /obj/item/stack/rods(Tsec)
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(3, 1, src)
+	s.start()
 
-		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-		s.set_up(3, 1, src)
-		s.start()
-
-		explosion(src.loc,-1,-1,0)
-		if(src)
-			qdel(src)
+	explosion(loc,-1,-1,0)
+	return ..()

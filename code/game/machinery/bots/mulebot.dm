@@ -183,8 +183,7 @@
 			wires &= ~index
 		else
 			wires |= index
-	..()
-	return 1
+	return ..()
 
 
 /obj/machinery/bot/mulebot/attack_ai(var/mob/user)
@@ -938,16 +937,15 @@
 	..()
 
 
-/obj/machinery/bot/mulebot/explode()
-	src.visible_message("<span class='danger'>[src] blows apart!</span>", 1)
-	var/turf/Tsec = get_turf(src)
+/obj/machinery/bot/mulebot/deconstruct(disassembled = TRUE)
+	visible_message("<span class='danger'>[src] blows apart!</span>", 1)
 
-	new /obj/item/assembly/prox_sensor(Tsec)
-	new /obj/item/stack/rods(Tsec)
-	new /obj/item/stack/rods(Tsec)
-	new /obj/item/stack/cable_coil/cut(Tsec)
+	new /obj/item/assembly/prox_sensor(loc)
+	new /obj/item/stack/rods(loc)
+	new /obj/item/stack/rods(loc)
+	new /obj/item/stack/cable_coil/cut(loc)
 	if (cell)
-		cell.loc = Tsec
+		cell.forceMove(loc)
 		cell.update_icon()
 		cell = null
 
@@ -955,6 +953,6 @@
 	s.set_up(3, 1, src)
 	s.start()
 
-	new /obj/effect/decal/cleanable/blood/oil(src.loc)
+	new /obj/effect/decal/cleanable/blood/oil(loc)
 	unload(0)
-	qdel(src)
+	return ..()

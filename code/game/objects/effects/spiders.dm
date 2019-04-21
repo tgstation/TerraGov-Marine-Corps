@@ -7,47 +7,6 @@
 	density = 0
 	max_integrity = 15
 
-//similar to weeds, but only barfed out by nurses manually
-/obj/effect/spider/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			qdel(src)
-		if(2.0)
-			if (prob(50))
-				qdel(src)
-		if(3.0)
-			if (prob(5))
-				qdel(src)
-	return
-
-/obj/effect/spider/attackby(var/obj/item/W, var/mob/user)
-	if(W.attack_verb.len)
-		visible_message("<span class='danger'>\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
-	else
-		visible_message("<span class='danger'>\The [src] have been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
-
-	var/damage = W.force / 4.0
-
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
-
-		if(WT.remove_fuel(0, user))
-			damage = 15
-			playsound(loc, 'sound/items/Welder.ogg', 25, 1)
-
-	obj_integrity -= damage
-	healthcheck()
-
-/obj/effect/spider/bullet_act(var/obj/item/projectile/Proj)
-	..()
-	obj_integrity -= Proj.ammo.damage
-	healthcheck()
-	return 1
-
-/obj/effect/spider/proc/healthcheck()
-	if(obj_integrity <= 0)
-		qdel(src)
-
 /obj/effect/spider/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
 		obj_integrity -= 5
@@ -112,14 +71,10 @@
 	else
 		..()
 
-/obj/effect/spider/spiderling/proc/die()
+/obj/effect/spider/spiderling/deconstruct(disassembled = TRUE)
 	visible_message("<span class='alert'>[src] dies!</span>")
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
-	qdel(src)
-
-/obj/effect/spider/spiderling/healthcheck()
-	if(obj_integrity <= 0)
-		die()
+	return ..()
 
 /obj/effect/spider/spiderling/process()
 	if(travelling_in_vent)

@@ -294,6 +294,7 @@
 	var/lum_value = 7
 	var/repair_state = FLOODLIGHT_REPAIR_FINE
 	max_integrity = 120
+	integrity_failure = 1 // not truthy
 
 /obj/machinery/colony_floodlight/Destroy()
 	toggle_light(SWITCH_OFF)
@@ -315,31 +316,28 @@
 /obj/machinery/colony_floodlight/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
 	M.visible_message("[M] starts biting [src]!","In a rage, you start biting [src], but with no effect!", null, 5)
 
-/obj/machinery/colony_floodlight/proc/breakdown()
+/obj/machinery/colony_floodlight/obj_break(damage_flag)
 	playsound(src, "shatter", 70, 1)
 	damaged = TRUE
 	repair_state = FLOODLIGHT_REPAIR_WELD
 	toggle_light(SWITCH_OFF)
 
+/obj/machinery/colony_floodlight/obj_destruction(damage_flag)
+	panel_open = TRUE
+	playsound(loc, 'sound/items/trayhit2.ogg', 25, 1)
+	update_icon()
+
 /obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(!is_lit)
 		to_chat(M, "Why bother? It's just some weird metal thing.")
 		return FALSE
-	else if(damaged)
+	else if(obj_integrity < integrity_failure)
 		to_chat(M, "It's already damaged.")
 		return FALSE
 	else if(panel_open)
-		breakdown()
+		obj_break()
 	else
-		M.animation_attack_on(src)
-		M.visible_message("[M] slashes away at [src]!","You slash and claw at the bright light!", null, null, 5)
-		obj_integrity  = max(obj_integrity - rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper), 0)
-		if(!obj_integrity)
-			panel_open = TRUE
-			playsound(loc, 'sound/items/trayhit2.ogg', 25, 1)
-			update_icon()
-		else
-			playsound(loc, "alien_claw_metal", 25, 1)
+		return ..()
 
 /obj/machinery/colony_floodlight/attackby(obj/item/I, mob/user)
 	if(isscrewdriver(I))
@@ -357,7 +355,7 @@
 			anchored = !anchored
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			return FALSE*/
-	else if(damaged)
+	else if(obj_integrity < integrity_failure)
 		if(iswelder(I))
 			var/obj/item/tool/weldingtool/WT = I
 
