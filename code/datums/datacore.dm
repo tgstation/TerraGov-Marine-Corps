@@ -51,15 +51,13 @@
 /datum/datacore/proc/manifest_eject(mob/living/L, delete = TRUE)
 	if(!L)
 		return
-	var/rID = L.dna?.unique_enzymes ? L.dna.unique_enzymes : null
-	var/datum/data/record/G = find_record(rID ? "id" : "name", rID ? rID : L.real_name, general)
+	var/datum/data/record/G = find_record("name", L.real_name, general)
 	if(!G)
 		return
-	rID = G.fields["id"]
 	remove_record(G, general, delete)
-	var/datum/data/record/S = find_record("id", rID, security)
+	var/datum/data/record/S = find_record("id", L.real_name, security)
 	remove_record(S, security, delete)
-	var/datum/data/record/M = find_record("id", rID, medical)
+	var/datum/data/record/M = find_record("id", L.real_name, medical)
 	remove_record(M, medical, delete)
 
 /datum/datacore/proc/remove_record(datum/data/record/R, list/L, delete = TRUE)
@@ -88,7 +86,7 @@
 		.manifest tr.alt td {[monochrome?"border-top-width: 2px":"background-color: #DEF"]}
 	</style></head>
 	<table class="manifest" width='350px'>
-	<tr class='head'><th>Name</th><th>Rank</th></tr>
+	<tr class='head'><th>Name</th><th>Rank</th><th>Activity</th></tr>
 	"}
 	. += get_crewlist(OOC)
 	. += "</table>"
