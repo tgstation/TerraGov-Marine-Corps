@@ -155,6 +155,8 @@
 	//stop_momentum(charge_dir) //Screech kills a charge
 
 	for(var/mob/living/L in range(world.view))
+		if(L.stat == DEAD)
+			continue
 		L.screech_act(src)
 
 /mob/living/carbon/Xenomorph/Queen/proc/screech_cooldown()
