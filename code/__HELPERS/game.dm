@@ -1,5 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-#define DEATHTIME_XENO_REQUIREMENT 3000
+#define DEATHTIME_XENO_REQUIREMENT 5 MINUTES
 
 /proc/dopage(src,target)
 	var/href_list
