@@ -242,7 +242,10 @@
 	switch(input("Toggle sleeping by:", "Toggle Sleeping") as null|anything in list("Key", "Mob"))
 		if("Key")
 			var/client/C = input("Please, select a key.", "Toggle Sleeping") as null|anything in sortKey(GLOB.clients)
-			if(!isliving(C?.mob))
+			if(!C)
+				return
+			if(!isliving(C.mob))
+				to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 				return
 			L = C.mob
 		if("Mob")
