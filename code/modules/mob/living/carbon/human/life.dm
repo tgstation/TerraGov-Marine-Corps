@@ -20,7 +20,6 @@
 	if(stat == DEAD)
 		if(!check_tod())
 			SSmobs.stop_processing(src)
-		return
 	//No need to update all of these procs if the guy is dead.
 
 	if(!in_stasis)
