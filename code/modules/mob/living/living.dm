@@ -602,17 +602,20 @@ below 100 is not dizzy
 	if(!M.mind)
 		to_chat(M, "<span class='warning'>You don't have a mind.</span>")
 		return FALSE
-	if(!bypass && client)
-		to_chat(M, "<span class='warning'>That mob has already been taken.</span>")
-		return FALSE
-	if(!bypass && job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
-		to_chat(M, "<span class='warning'>You are jobbanned from that job.</span>")
-		return FALSE
-	if(!bypass && stat == DEAD)
-		to_chat(M, "<span class='warning'>That mob has died.</span>")
-		return FALSE
 
 	if(!bypass)
+		if(client)
+			to_chat(M, "<span class='warning'>That mob has already been taken.</span>")
+			return FALSE
+
+		if(job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
+			to_chat(M, "<span class='warning'>You are jobbanned from that role.</span>")
+			return FALSE
+
+		if(stat == DEAD)
+			to_chat(M, "<span class='warning'>That mob has died.</span>")
+			return FALSE
+
 		log_admin("[key_name(M)] has taken [key_name_admin(src)].")
 		message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")
 
