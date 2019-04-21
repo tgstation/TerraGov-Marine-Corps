@@ -1505,6 +1505,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/mob/living/carbon/human/H = locate(href_list["setsquad"])
 
 		if(!istype(H))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
 		usr.client.holder.change_squad(H)
