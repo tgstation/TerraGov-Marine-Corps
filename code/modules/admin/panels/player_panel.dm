@@ -56,7 +56,7 @@
 					locked_tabs = new Array();
 				}
 
-				function expand(id,job,name,real_name,old_names,key,ip,ref){
+				function expand(id, job, name, real_name, old_names, key, ip, cid, ref){
 
 					clearAll();
 
@@ -65,9 +65,9 @@
 
 					body = "<table><tr><td>";
 
-					body += "</td><td align='center'>";
+					body += "</td><td align='left'>";
 
-					body += "<font size='2'>"+job+" "+name+"<br>Real name "+real_name+"<br>Played by "+key+" ("+ip+")<br>Old names: "+old_names+"</font>";
+					body += "<font size='2'>"+job+" - "+name+"<br>Real name: "+real_name+"<br>"+key+" ("+ip+", "+cid+")<br>Old names: "+old_names+"</font>";
 
 					body += "</td><td align='center'>";
 
@@ -265,14 +265,13 @@
 				<td align='center' bgcolor='[color]'>
 					<span id='notice_span[i]'></span>
 					<a id='link[i]'
-					onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[previous_names]","[M_key]","[M.lastKnownIP]","[REF(M)]")'
+					onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[previous_names]","[M_key]","[M.lastKnownIP]","[M.computer_id]","[REF(M)]")'
 					>
 					<b id='search[i]' style='font-weight:normal'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
 					<span hidden class='filter_data'>[M_name] [M_rname] [M_key] [M_job] [previous_names]</span>
 					</a>
 					<br><span id='item[i]'></span>
-					</td>
-				</tr>
+				</td>
 			</tr>
 
 		"}
