@@ -202,6 +202,7 @@
 			return
 
 	if(!istype(L))
+		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 
 	if(alert("Are you sure you want to rejuvenate [key_name(L)]?", "Rejuvenate", "Yes", "No") != "Yes")
