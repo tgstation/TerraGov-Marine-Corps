@@ -154,8 +154,8 @@
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
-	for(var/mob/M in range(world.view))
-		M.screech_act(src)
+	for(var/mob/living/L in range(world.view))
+		L.screech_act(src)
 
 /mob/living/carbon/Xenomorph/Queen/proc/screech_cooldown()
 	has_screeched = FALSE

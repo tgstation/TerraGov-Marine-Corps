@@ -854,7 +854,3 @@ mob/proc/yank_out_object()
 			to_chat(usr, "<span class='notice'>You just did an audible emote. Wait a while.</span>")
 			return TRUE
 	return FALSE
-
-// When they are affected by a queens screech
-/mob/proc/screech_act(mob/Q)
-	return

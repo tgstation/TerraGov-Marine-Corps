@@ -262,4 +262,4 @@
 
 
 /mob/living/carbon/Xenomorph/screech_act(mob/living/carbon/Xenomorph/Queen/Q)
-	shake_camera(src, 10, 1)
+	shake_camera(src, 1 SECONDS, 1)
