@@ -139,7 +139,7 @@
 		dna.real_name = real_name
 
 	prev_gender = gender // Debug for plural genders
-	
+
 
 	//makes order hud visible
 	var/datum/mob_hud/H = huds[MOB_HUD_ORDER]
@@ -1461,6 +1461,12 @@
 	if(shoes && !override_noslip) // && (shoes.flags_inventory & NOSLIPPING)) // no more slipping if you have shoes on. -spookydonut
 		return FALSE
 	. = ..()
+
+/mob/living/carbon/human/smokecloak_on()
+	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back
+	if(istype(S) && S.camo_active)
+		return FALSE
+	return ..()
 
 /mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
 	if(luminosity <= 0)

@@ -77,6 +77,12 @@
 	if(AM && !AM in permutated)
 		scan_a_turf(get_turf(AM))
 
+/obj/item/projectile/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_NERF_BEAM) && ammo.flags_ammo_behavior & AMMO_ENERGY)
+		damage -= max(damage - ammo.damage * 0.5, 0)
 
 /obj/item/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0, reagent_multiplier = 0)
 	ammo 		= ammo_datum
@@ -422,7 +428,7 @@
 		if(shooter_human.stagger)
 			. -= 30 //Being staggered fucks your aim.
 		if(shooter_human.marksman_aura) // Accuracy bonus from active focus order: flat bonus + bonus per tile traveled
-			. += shooter_human.marksman_aura * CONFIG_GET(number/combat_define/focus_base_bonus) 
+			. += shooter_human.marksman_aura * CONFIG_GET(number/combat_define/focus_base_bonus)
 			. += P.distance_travelled * shooter_human.marksman_aura * CONFIG_GET(number/combat_define/focus_per_tile_bonus)
 
 

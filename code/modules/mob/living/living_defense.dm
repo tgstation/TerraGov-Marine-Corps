@@ -188,3 +188,13 @@
 // When they are affected by a queens screech
 /mob/living/proc/screech_act(mob/living/carbon/Xenomorph/Queen/Q)
 	return
+
+/mob/living/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+			smokecloak_off()
+		return
+
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+		smokecloak_on()

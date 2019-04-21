@@ -34,7 +34,7 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 
 	var/sparks_spread = 0
 	var/sparks_amt = 0 //cropped at 10
-	var/smoke_spread = 0 //1 - harmless, 2 - harmful
+	var/smoke_spread
 	var/smoke_amt = 0 //smoke radius. cropped at 10
 
 	var/critfailchance = 0
@@ -174,14 +174,9 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 			sparks.set_up(sparks_amt, 0, location) //no idea what the 0 is
 			sparks.start()
 		if(smoke_spread)
-			if(smoke_spread == 1)
-				var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
-				smoke.set_up(smoke_amt, 0, location) //no idea what the 0 is
-				smoke.start()
-			else if(smoke_spread == 2)
-				var/datum/effect_system/smoke_spread/bad/smoke = new /datum/effect_system/smoke_spread/bad()
-				smoke.set_up(smoke_amt, 0, location) //no idea what the 0 is
-				smoke.start()
+			var/datum/effect_system/smoke_spread/smoke = new smoke_spread
+			smoke.set_up(smoke_amt, location)
+			smoke.start()
 
 /obj/effect/proc_holder/spell/proc/cast(list/targets)
 	return
