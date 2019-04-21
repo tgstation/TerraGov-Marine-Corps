@@ -494,6 +494,14 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/hitbox/cm_armored/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus)
 	return root.attack_alien(M, dam_bonus)
 
+/obj/vehicle/multitile/hitbox/cm_armored/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
+		var/obj/vehicle/multitile/root/cm_armored/T = root
+		T.take_damage_type(30, "acid")
+
 //A bit icky, but basically if you're adjacent to the tank hitbox, you are then adjacent to the root object
 /obj/vehicle/multitile/root/cm_armored/Adjacent(atom/A)
 	for(var/i in linked_objs)
