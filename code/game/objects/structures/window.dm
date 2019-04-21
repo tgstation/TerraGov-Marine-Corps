@@ -19,49 +19,30 @@
 	var/damageable = TRUE
 	var/deconstructable = TRUE
 
-//create_debris creates debris like shards and rods. This also includes the window frame for explosions
-//If an user is passed, it will create a "user smashes through the window" message. AM is the item that hits
-//Please only fire this after a hit
-/obj/structure/window/proc/healthcheck(make_hit_sound = 1, make_shatter_sound = 1, create_debris = 1, mob/user, atom/movable/AM)
-
-	if(!damageable)
-		if(make_hit_sound) //We'll still make the noise for immersion's sake
-			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
-		return
-	if(obj_integrity <= 0)
-		if(user)
-			user.visible_message("<span class='danger'>[user] smashes through [src][AM ? " with [AM]":""]!</span>")
-		if(make_shatter_sound)
-			playsound(src, "shatter", 50, 1)
-		shatter_window(create_debris)
+/obj/structure/window/deconstruct(disassembled = TRUE)
+	if(disassembled)
+		var/obj/item/stack/sheet/glass/reinforced/R = new (loc, 2)
+		transfer_fingerprints_to(R)
 	else
-		if(make_hit_sound)
-			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
+		var/atom/A = new shardtype(loc)
+		transfer_fingerprints_to(A)
+		if(is_full_window())
+			new shardtype(loc)
+		if(reinf)
+			var/obj/item/stack/rods/R = new(loc)
+			transfer_fingerprints_to(R)
+	return ..()
 
-/obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/window/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+	if(damage_type == BRUTE)
+		playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
+
+/obj/structure/window/bullet_act(obj/item/projectile/P)
 	//Tasers and the like should not damage windows.
-	if(Proj.ammo.damage_type == HALLOSS || Proj.damage <= 0 || Proj.ammo.flags_ammo_behavior == AMMO_ENERGY)
+	if(P.ammo.damage_type == HALLOSS || P.damage <= 0 || P.ammo.flags_ammo_behavior == AMMO_ENERGY)
 		return FALSE
 
-	if(damageable) //Possible to destroy
-		obj_integrity -= Proj.damage
-	..()
-	healthcheck()
-	return TRUE
-
-/obj/structure/window/ex_act(severity)
-	if(!damageable) //Impossible to destroy
-		return
-	switch(severity)
-		if(1)
-			obj_integrity -= rand(125, 250)
-			healthcheck(0, 1, 0)
-		if(2)
-			obj_integrity -= rand(75, 125)
-			healthcheck(0, 1)
-		if(3)
-			obj_integrity -= rand(25, 75)
-			healthcheck(0, 1)
+	. = ..()
 
 //TODO: Make full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point
@@ -87,36 +68,14 @@
 		return FALSE
 	return TRUE
 
-/obj/structure/window/hitby(AM as mob|obj)
-	..()
-	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
-	var/tforce = 0
-	if(ismob(AM))
-		tforce = 40
-	else if(isobj(AM))
-		var/obj/item/I = AM
-		tforce = I.throwforce
-	if(reinf) tforce *= 0.25
-	if(damageable) //Possible to destroy
-		obj_integrity = max(0, obj_integrity - tforce)
-		if(obj_integrity <= 7 && !reinf && !static_frame)
-			anchored = FALSE
-			update_nearby_icons()
-			step(src, get_dir(AM, src))
-	healthcheck()
-
-/obj/structure/window/attack_tk(mob/user as mob)
-	user.visible_message("<span class='notice'>Something knocks on [src].</span>")
-	playsound(loc, 'sound/effects/glassknock.ogg', 15, 1)
-
 /obj/structure/window/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.a_intent == INTENT_HELP)
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 25, 1)
 		M.visible_message("<span class='warning'>\The [M] creepily taps on [src] with its huge claw.</span>", \
 		"<span class='warning'>You creepily tap on [src].</span>", \
 		"<span class='warning'>You hear a glass tapping sound.</span>", 5)
-	else
-		attack_generic(M, M.xeno_caste.melee_damage_lower)
+		return
+	return ..()
 
 /obj/structure/window/attack_hand(mob/user as mob)
 	add_fingerprint(user)
@@ -500,7 +459,7 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
 	icon_state = "alm_rwindow0"
 	basestate = "alm_rwindow"
-	max_integrity = 100 //Was 600
+	max_integrity = 100
 	reinf = TRUE
 	dir = 5
 	window_frame = /obj/structure/window_frame/almayer
