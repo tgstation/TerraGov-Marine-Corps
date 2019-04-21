@@ -259,3 +259,7 @@
 
 /mob/living/carbon/Xenomorph/reagent_check(datum/reagent/R) //For the time being they can't metabolize chemicals.
 	return TRUE
+
+/mob/living/carbon/Xenomorph/begin_away()
+	..()
+	addtimer(CALLBACK(src, .proc/handle_afk_takeover), XENO_AFK_TIMER)

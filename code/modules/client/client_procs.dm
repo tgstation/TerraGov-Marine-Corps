@@ -259,9 +259,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 /client/Del()
 	if(isliving(mob))
 		var/mob/living/L = mob
-		L.away_time = world.time
-		if (isxeno(L))
-			addtimer(CALLBACK(L, /mob/living/carbon/Xenomorph/proc/handle_afk_takeover), XENO_AFK_TIMER)
+		L.begin_away()
 	if(holder)
 		if(check_rights(R_ADMIN, FALSE))
 			message_admins("Admin logout: [key_name(src)].")
