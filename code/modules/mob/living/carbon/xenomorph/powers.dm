@@ -1033,7 +1033,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /mob/living/carbon/human/can_sting()
 	. = ..()
-	if(!(.))
+	if(!.)
 		return FALSE
 	if(CHECK_BITFIELD(species.species_flags, IS_SYNTHETIC))
 		return FALSE
