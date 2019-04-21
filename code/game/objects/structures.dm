@@ -8,7 +8,6 @@
 
 	var/damage = 0
 	var/damage_cap = 500 //The point where things start breaking down.
-	var/health
 
 /obj/structure/New()
 	..()
