@@ -229,7 +229,6 @@
 		if(stat != DEAD)
 			if (xeno_caste.plasma_max)
 				var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, xeno_caste.plasma_max, plasma_stored, 0, list("full", "empty"))
-				message_admins("Bucket size [bucket]")
 				hud_used.alien_plasma_display.icon_state = "power_display_[bucket]"
 		else
 			hud_used.alien_plasma_display.icon_state = "power_display_empty"
