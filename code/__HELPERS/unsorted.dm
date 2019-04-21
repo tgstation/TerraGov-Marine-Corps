@@ -1509,7 +1509,7 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	return "[round((powerused * 0.000000001),0.0001)] GW"
 
 // Bucket a value within boundary
-/proc/get_bucket(var/bucket_size, var/max, var/current, var/min = 0, var/list/boundary_terms = list())
+/proc/get_bucket(bucket_size, max, current, min = 0, list/boundary_terms)
 	if (length(boundary_terms) == 2)
 		if (current >= max) 
 			return boundary_terms[1]
