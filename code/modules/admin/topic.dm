@@ -1585,6 +1585,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/list/body = list()
 		body += C.get_exp_report()
 
-		var/datum/browser/popup = new(src, "playerplaytime[C.key]", "<div align='center'>Playtime for [C.key]</div>", 550, 615)
+		var/datum/browser/popup = new(usr, "playtime_[C.key]", "<div align='center'>Playtime for [C.key]</div>", 550, 615)
 		popup.set_content(body.Join())
 		popup.open(FALSE)
