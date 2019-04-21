@@ -1675,9 +1675,11 @@
 	if(!(equipment in outfits))
 		return FALSE
 
-	var/datum/outfit/O = new outfits[equipment]
+	var/outfit_type = outfits[equipment]
+	var/datum/outfit/O = new outfit_type
 	delete_equipment(TRUE)
 	equipOutfit(O, FALSE)
+	regenerate_icons()
 
 	return TRUE
 
