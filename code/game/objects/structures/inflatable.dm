@@ -78,16 +78,6 @@
 	add_fingerprint(user)
 	return
 
-
-/obj/structure/inflatable/proc/attack_generic(mob/living/user, damage = 0)	//used by attack_animal
-	obj_integrity -= damage
-	user.animation_attack_on(src)
-	if(obj_integrity <= 0)
-		user.visible_message("<span class='danger'>[user] tears open [src]!</span>")
-		deflate(1)
-	else	//for nicer text~
-		user.visible_message("<span class='danger'>[user] tears at [src]!</span>")
-
 /obj/structure/inflatable/attack_animal(mob/user as mob)
 	if(!isanimal(user)) return
 	var/mob/living/simple_animal/M = user

@@ -47,6 +47,11 @@
 	var/speed = 0 //LETS SEE IF I CAN SET SPEEDS FOR SIMPLE MOBS WITHOUT DESTROYING EVERYTHING. Higher speed is slower, negative speed is faster
 
 	//LETTING SIMPLE ANIMALS ATTACK? WHAT COULD GO WRONG. Defaults to zero so Ian can still be cuddly
+	var/obj_damage = 0 //how much damage this simple animal does to objects, if any
+	var/armour_penetration = 0 //How much armour they ignore, as a flat reduction from the targets armour value
+	var/melee_damage_type = BRUTE //Damage type of a simple mob's melee attack, should it do damage.
+	var/environment_smash = ENVIRONMENT_SMASH_NONE //Set to 1 to allow breaking of crates,lockers,racks,tables; 2 for walls; 3 for Rwalls
+
 	melee_damage_lower = 0
 	melee_damage_upper = 0
 	attacktext = "attacks"

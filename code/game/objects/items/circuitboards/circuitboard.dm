@@ -48,10 +48,10 @@
 
 //Called when a computer is deconstructed to produce a circuitboard.
 //Only used by computers, as other machines store their circuitboard instance.
-/obj/item/circuitboard/proc/deconstruct(var/obj/machinery/M)
-	if (istype(M, build_path))
-		return 1
-	return 0
+///obj/item/circuitboard/proc/deconstruct(var/obj/machinery/M) //todo:fix this xyzzy
+//	if (istype(M, build_path))
+//		return 1
+//	return 0
 
 
 

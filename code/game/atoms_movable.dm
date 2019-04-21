@@ -16,6 +16,7 @@
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 								// and if yes, are we doing the first or second move.
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
+	var/throwforce = 1
 
 	var/initial_language_holder = /datum/language_holder
 	var/datum/language_holder/language_holder

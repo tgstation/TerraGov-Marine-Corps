@@ -111,12 +111,12 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	return ..() // then go ahead and delete the cable
 
-/obj/structure/cable/proc/deconstruct(disassembled = TRUE)
+/obj/structure/cable/deconstruct(disassembled = TRUE)
 	if(d1 == UP_OR_DOWN || d2 == UP_OR_DOWN)
 		return
 	var/turf/T = loc
 	stored.forceMove(T)
-	qdel(src)
+	return ..()
 
 ///////////////////////////////////
 // General procedures
