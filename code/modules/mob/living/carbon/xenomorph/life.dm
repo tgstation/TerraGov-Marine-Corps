@@ -405,7 +405,7 @@
 	return stagger
 
 /mob/living/carbon/Xenomorph/proc/handle_afk_takeover()
-	if (world.time - away_time < XENO_AFK_TIMER)
+	if (client || world.time - away_time < XENO_AFK_TIMER)
 		return
 
 	var/picked = get_alien_candidate()
