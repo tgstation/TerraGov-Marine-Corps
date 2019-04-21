@@ -504,8 +504,8 @@
 	hold = /obj/item/storage/internal/tie/vest
 
 /obj/item/clothing/tie/storage/white_vest
-	name = "white webbing vest"
-	desc = "A clean white Nylon vest with large pockets specially designed for medical supplies"
+	name = "surgical vest"
+	desc = "A clean white Nylon vest with large pockets specially designed for holding surgical supplies."
 	icon_state = "vest_white"
 	hold = /obj/item/storage/internal/tie/white_vest
 
@@ -513,9 +513,31 @@
 	storage_slots = 8
 	can_hold = list(
 		/obj/item/tool/surgery, 
-		/obj/item/stack/medical/advanced/bruise_pack, 
-		/obj/item/stack/medical/advanced/ointment, 
+		/obj/item/stack/medical/advanced, 
+		/obj/item/clothing/mask/surgical,
+		/obj/item/clothing/gloves/latex,
 		/obj/item/stack/nanopaste)
+
+/obj/item/storage/internal/tie/white_vest/medic
+	name = "corpsman webbing"
+	desc = "A clean white Nylon vest with large pockets specially designed for holding common medical supplies."
+	hold = /obj/item/storage/internal/tie/white_vest/medic
+
+	/obj/item/storage/internal/tie/white_vest/medic
+	storage_slots = 6 //one more than the brown webbing but you lose out on being able to hold non-medic stuff
+	can_hold = list(
+	/obj/item/stack/medical,
+	/obj/item/healthanalyzer,
+	/obj/item/reagent_container/dropper,
+	/obj/item/reagent_container/glass/beaker,
+	/obj/item/reagent_container/glass/bottle,
+	/obj/item/reagent_container/pill,
+	/obj/item/reagent_container/syringe,
+	/obj/item/storage/pill_bottle,
+	/obj/item/reagent_container/hypospray,
+	/obj/item/bodybag,
+	/obj/item/roller,
+	/obj/item/clothing/glasses/hud/health)
 
 /obj/item/clothing/tie/storage/knifeharness
 	name = "decorated harness"
