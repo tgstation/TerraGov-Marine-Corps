@@ -17,6 +17,8 @@
 		//effects of being grabbed aggressively by another mob
 		if(pulledby && pulledby.grab_level)
 			handle_grabbed()
+	else
+		SSmobs.stop_processing(src)
 
 	//Handle temperature/pressure differences between body and environment
 	handle_environment()

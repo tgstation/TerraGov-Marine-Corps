@@ -157,8 +157,6 @@
 	else
 		//copied from human_defense.dm - human defence code should really be refactored some time.
 		if (ishuman(L))
-			user.lastattacked = L	//are these used at all, if we have logs?
-			L.lastattacker = user
 
 			if (user != L) // Attacking yourself can't miss
 				target_zone = get_zone_with_miss_chance(user.zone_selected, L)
