@@ -30,8 +30,6 @@
 		structure_strings += "You cannot set this structure on fire."
 	if(CHECK_BITFIELD(resistance_flags, FLAMMABLE))
 		structure_strings += "This structure can be set on fire."
-	if(CHECK_BITFIELD(resistance_flags, ON_FIRE))
-		structure_strings += "This structure is currently on fire."				
 	if(CHECK_BITFIELD(resistance_flags, UNACIDABLE))
 		structure_strings += "Acid does not stick to or affect this structure at all."
 	if(CHECK_BITFIELD(resistance_flags, ACID_PROOF))
