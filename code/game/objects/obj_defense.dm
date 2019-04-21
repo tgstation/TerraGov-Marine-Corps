@@ -72,14 +72,14 @@
 	playsound(src, P.hitsound, 50, 1)
 	visible_message("<span class='danger'>[src] is hit by \a [P]!</span>", null, null, 3)
 	if(!QDELETED(src)) //Bullet on_hit effect might have already destroyed this object
-		take_damage(P.damage, P.damage_type, P.flag, 0, turn(P.dir, 180), P.armour_penetration)
+		take_damage(P.damage, P.ammo.damage_type, P.armor_type, 0, turn(P.dir, 180), P.ammo.penetration)
 
 /obj/proc/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, armor_penetration = 0) //used by attack_alien, attack_animal, and attack_slime
-	user.do_attack_animation(src)
+	user.animation_attack_on(src)
 	user.changeNext_move(CLICK_CD_MELEE)
 	return take_damage(damage_amount, damage_type, damage_flag, sound_effect, get_dir(src, user), armor_penetration)
 
-/obj/attack_alien(mob/living/carbon/alien/humanoid/user)
+/obj/attack_alien(mob/living/carbon/Xenomorph/user)
 	if(attack_generic(user, 60, BRUTE, "melee", 0))
 		playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
 
@@ -98,30 +98,9 @@
 		if(. && !play_soundeffect)
 			playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
 
-/obj/mech_melee_attack(obj/mecha/M)
-	M.do_attack_animation(src)
-	var/play_soundeffect = 0
-	var/mech_damtype = M.damtype
-	if(M.selected)
-		mech_damtype = M.selected.damtype
-		play_soundeffect = 1
-	else
-		switch(M.damtype)
-			if(BRUTE)
-				playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
-			if(BURN)
-				playsound(src, 'sound/items/welder.ogg', 50, 1)
-			if(TOX)
-				playsound(src, 'sound/effects/spray2.ogg', 50, 1)
-				return 0
-			else
-				return 0
-	visible_message("<span class='danger'>[M.name] has hit [src].</span>", null, null, 3)
-	return take_damage(M.force*3, mech_damtype, "melee", play_soundeffect, get_dir(src, M)) // multiplied by 3 so we can hit objs hard but not be overpowered against mobs.
-
 //the obj is deconstructed into pieces, whether through careful disassembly or when destroyed.
 /obj/proc/deconstruct(disassembled = TRUE)
-	//SEND_SIGNAL(src, COMSIG_OBJ_DECONSTRUCT, disassembled)
+	SEND_SIGNAL(src, COMSIG_OBJ_DECONSTRUCT, disassembled)
 	qdel(src)
 
 //what happens when the obj's health is below integrity_failure level.

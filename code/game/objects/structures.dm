@@ -256,14 +256,10 @@
 
 
 //Damage
-/obj/structure/proc/take_damage(dam)
-	if(!dam || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE|UNACIDABLE))
-		return
+/obj/structure/obj_destruction(damage_flag)
+	playsound(src, 'sound/effects/metal_crash.ogg', 35)
+	return ..()
 
-	obj_integrity = max(0, obj_integrity - dam)
-
-	if(obj_integrity <= 0)
-		playsound(src, 'sound/effects/metal_crash.ogg', 35)
-		qdel(src)
-	else
-		update_icon()
+/obj/structure/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
+	. = ..()
+	update_icon()

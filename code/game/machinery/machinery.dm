@@ -160,9 +160,6 @@ Class Procs:
 /obj/machinery/proc/is_operational()
 	return !(machine_stat & (NOPOWER|BROKEN|MAINT))
 
-/obj/machinery/proc/deconstruct()
-	return
-
 //called on machinery construction (i.e from frame to machinery) but not on initialization
 /obj/machinery/proc/on_construction()
 	return
@@ -601,14 +598,10 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 
 
 //Damage
-/obj/machinery/proc/take_damage(dam)
-	if(!dam || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE|UNACIDABLE))
-		return
+/obj/machinery/obj_destruction(damage_flag)
+	playsound(src, 'sound/effects/metal_crash.ogg', 35)
+	return ..()
 
-	damage = max(0, damage + dam)
-
-	if(damage >= damage_cap)
-		playsound(src, 'sound/effects/metal_crash.ogg', 35)
-		qdel(src)
-	else
-		update_icon()
+/obj/machinery/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
+	. = ..()
+	update_icon()

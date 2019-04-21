@@ -154,14 +154,6 @@
 /obj/structure/window/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-//Used by attack_animal
-/obj/structure/window/proc/attack_generic(mob/living/user, damage = 0)
-	if(damageable) //Possible to destroy
-		obj_integrity -= damage
-	user.animation_attack_on(src)
-	user.visible_message("<span class='danger'>[user] smashes into [src]!</span>")
-	healthcheck(1, 1, 1, user)
-
 /obj/structure/window/attack_animal(mob/user as mob)
 	if(!isanimal(user))
 		return
