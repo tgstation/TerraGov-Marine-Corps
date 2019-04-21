@@ -3,8 +3,7 @@
 #define XENO_STANDING_HEAL 0.2
 #define XENO_CRIT_DAMAGE 5
 
-#define XENO_HUD_ICON_BUCKETS 17  // +1 to the number of icons you to represent health / plasma
-
+#define XENO_HUD_ICON_BUCKETS 16  // should equal the number of icons you use to represent health / plasma (from 0 -> X)
 
 /mob/living/carbon/Xenomorph/Life()
 
