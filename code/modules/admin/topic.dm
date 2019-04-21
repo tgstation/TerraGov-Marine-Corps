@@ -1541,6 +1541,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/mob/living/L = locate(href_list["sleep"]) in GLOB.mob_living_list
 
 		if(!istype(L))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
 		usr.client.holder.toggle_sleep(L)
