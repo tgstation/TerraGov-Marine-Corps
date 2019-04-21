@@ -396,10 +396,10 @@
 
 	if(M.mind?.assigned_role)
 		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"
-
-	body += "<a href='?src=[ref];kick=[REF(M)]'>Kick</a> | "
 		
 	if(M.client)
+		body += "<a href='?src=[ref];playtime=[REF(M)]'>Playtime</a> | "
+		body += "<a href='?src=[ref];kick=[REF(M)]'>Kick</a> | "
 		body += "<a href='?src=[ref];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</a> | "
 	else
 		body += "<a href='?src=[ref];newbankey=[M.key]'>Ban</a> | "
@@ -470,6 +470,11 @@
 			<br>
 			<a href='?src=[ref];thunderdome=[REF(M)]'>Thunderdome</a> |
 			<a href='?src=[ref];gib=[REF(M)]'>Gib</a>"}
+		
+		if(isliving(M))
+			body += "| <a href='?src=[ref];offer=[REF(M)]'>Offer Mob</a> | "
+			body += "<a href='?src=[ref];give=[REF(M)]'>Give Mob</a>"
+
 		if(ishuman(M))
 			body += "| <a href='?src=[ref];setrank=[REF(M)]'>Select Rank</a> | "
 			body += "<a href='?src=[ref];setequipment=[REF(M)]'>Select Equipment</a> | "
