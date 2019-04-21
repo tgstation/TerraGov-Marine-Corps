@@ -1128,6 +1128,8 @@
 			return
 
 	if(!istype(X) || X.hivenumber != hivenumber_status)
+		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+		return
 		return
 
 	X.transfer_to_hive(newhivenumber)
