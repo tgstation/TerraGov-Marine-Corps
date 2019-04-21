@@ -17,7 +17,8 @@
 	icon_state = "sheet-glass"
 	matter = list("glass" = 3750)
 	origin_tech = "materials=1"
-	stack_id = "glass sheet"
+	merge_type = /obj/item/stack/sheet/glass
+
 	var/created_window = /obj/structure/window
 	var/is_reinforced = 0
 	var/list/construction_options = list("One Direction", "Full Window")
@@ -25,12 +26,7 @@
 /obj/item/stack/sheet/glass/cyborg
 	matter = null
 
-/obj/item/stack/sheet/glass/attack_self(mob/user as mob)
-
-	if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGER BUILDING
-		to_chat(usr, "<span class='warning'>No. This area is needed for the dropships and personnel.</span>")
-		return
-
+/obj/item/stack/sheet/glass/attack_self(mob/user)
 	construct_window(user)
 
 /obj/item/stack/sheet/glass/attackby(obj/item/W, mob/user)
@@ -139,6 +135,10 @@
 	return 0
 
 
+/obj/item/stack/sheet/glass/large_stack
+	amount = 50
+
+
 /*
  * Reinforced glass sheets
  */
@@ -147,7 +147,7 @@
 	desc = "Reinforced glass is made out of squares of regular silicate glass layered on a metallic rod matrice. This glass is more resistant to direct impacts, even if it may crack."
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
-	stack_id = "reinf glass sheet"
+
 
 	matter = list("metal" = 1875,"glass" = 3750)
 	origin_tech = "materials=2"

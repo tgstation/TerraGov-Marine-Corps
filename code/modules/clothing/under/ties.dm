@@ -482,8 +482,9 @@
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
-		/obj/item/cell/lasgun,
-		 )
+		/obj/item/cell/lasgun)
+	cant_hold = list(
+		/obj/item/stack)
 
 /obj/item/clothing/tie/storage/black_vest
 	name = "black webbing vest"
@@ -493,6 +494,8 @@
 
 /obj/item/storage/internal/tie/vest
 	storage_slots = 5
+	cant_hold = list(
+		/obj/item/stack)
 
 /obj/item/clothing/tie/storage/brown_vest
 	name = "brown webbing vest"

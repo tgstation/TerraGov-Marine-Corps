@@ -235,10 +235,6 @@
 		usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
 
 
-/obj/machinery/sleeper/allow_drop()
-	return 0
-
-
 /obj/machinery/sleeper/on_stored_atom_del(atom/movable/AM)
 	if(AM == beaker)
 		beaker = null

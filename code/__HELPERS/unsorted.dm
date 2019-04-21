@@ -281,8 +281,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		mind.name = newname
 		if(mind.key)
 			log_played_names(mind.key, newname) //Just in case the mind is unsynced at the moment.
-	if(dna)
-		dna.real_name = real_name
 
 	return TRUE
 
@@ -291,6 +289,9 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	. = ..()
 	if(!.)
 		return FALSE
+
+	if(dna)
+		dna.real_name = real_name
 
 	if(istype(wear_id))
 		var/obj/item/card/id/C = wear_id
