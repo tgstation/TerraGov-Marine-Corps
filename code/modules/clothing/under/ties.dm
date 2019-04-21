@@ -523,7 +523,7 @@
 	desc = "A clean white Nylon vest with large pockets specially designed for holding common medical supplies."
 	hold = /obj/item/storage/internal/tie/white_vest/medic
 
-	/obj/item/storage/internal/tie/white_vest/medic
+/obj/item/storage/internal/tie/white_vest/medic
 	storage_slots = 6 //one more than the brown webbing but you lose out on being able to hold non-medic stuff
 	can_hold = list(
 	/obj/item/stack/medical,
