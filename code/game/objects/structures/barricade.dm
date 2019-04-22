@@ -141,14 +141,6 @@
 		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 /obj/structure/barricade/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/zombie_claws))
-		user.visible_message("<span class='danger'>The zombie smashed at the [src.barricade_type] barricade!</span>",
-		"<span class='danger'>You smack the [src.barricade_type] barricade!</span>")
-		if(barricade_hitsound)
-			playsound(src, barricade_hitsound, 25, 1)
-		hit_barricade(W)
-		return
-
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
 		if(A.acid_t == src)
 			to_chat(user, "You can't get near that, it's melting!")
@@ -265,8 +257,6 @@
 	overlays += wired_overlay
 
 /obj/structure/barricade/proc/hit_barricade(obj/item/I)
-	if(istype(I, /obj/item/weapon/zombie_claws))
-		health -= I.force * 0.5
 	health -= I.force * 0.5
 	update_health()
 
