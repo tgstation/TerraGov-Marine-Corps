@@ -502,12 +502,12 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/between(var/low, var/middle, var/high)
 	return max(min(middle, high), low)
 
-proc/arctan(x)
+/proc/arctan(x)
 	var/y=arcsin(x/sqrt(1+x*x))
 	return y
 
 //returns random gauss number
-proc/GaussRand(var/sigma)
+/proc/GaussRand(var/sigma)
   var/x,y,rsq
   do
     x=2*rand()-1
@@ -517,10 +517,10 @@ proc/GaussRand(var/sigma)
   return sigma*y*sqrt(-2*log(rsq)/rsq)
 
 //returns random gauss number, rounded to 'roundto'
-proc/GaussRandRound(var/sigma,var/roundto)
+/proc/GaussRandRound(var/sigma,var/roundto)
 	return round(GaussRand(sigma),roundto)
 
-proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as text,sleeptime = 0,direction as num)
+/proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as text,sleeptime = 0,direction as num)
 //This proc throws up either an icon or an animation for a specified amount of time.
 //The variables should be apparent enough.
 	var/atom/movable/overlay/animation = new(location)
@@ -1090,13 +1090,13 @@ var/global/image/busy_indicator_hostile
 
 
 
-proc/get_cardinal_dir(atom/A, atom/B)
+/proc/get_cardinal_dir(atom/A, atom/B)
 	var/dx = abs(B.x - A.x)
 	var/dy = abs(B.y - A.y)
 	return get_dir(A, B) & (rand() * (dx+dy) < dy ? 3 : 12)
 
 //I dont understand the above proc so I'm writing my own shittier one
-proc/get_cardinal_dir2(var/atom/A, var/atom/B)
+/proc/get_cardinal_dir2(var/atom/A, var/atom/B)
 	var/dx = B.x - A.x
 	var/dy = B.y - A.y
 	if(abs(dx) > abs(dy))
@@ -1104,17 +1104,17 @@ proc/get_cardinal_dir2(var/atom/A, var/atom/B)
 	return (dy > 0) ? NORTH : SOUTH
 
 //Returns the 2 dirs perpendicular to the arg
-proc/get_perpen_dir(var/dir)
+/proc/get_perpen_dir(var/dir)
 	if(dir & (dir-1)) return 0 //diagonals
 	if(dir in list(EAST, WEST))
 		return list(SOUTH, NORTH)
 	else return list(EAST, WEST)
 
 //chances are 1:value. anyprob(1) will always return true
-proc/anyprob(value)
+/proc/anyprob(value)
 	return (rand(1,value)==value)
 
-proc/view_or_range(distance = world.view , center = usr , type)
+/proc/view_or_range(distance = world.view , center = usr , type)
 	switch(type)
 		if("view")
 			. = view(distance,center)
@@ -1122,7 +1122,7 @@ proc/view_or_range(distance = world.view , center = usr , type)
 			. = range(distance,center)
 	return
 
-proc/oview_or_orange(distance = world.view , center = usr , type)
+/proc/oview_or_orange(distance = world.view , center = usr , type)
 	switch(type)
 		if("view")
 			. = oview(distance,center)
@@ -1130,7 +1130,7 @@ proc/oview_or_orange(distance = world.view , center = usr , type)
 			. = orange(distance,center)
 	return
 
-proc/get_mob_with_client_list()
+/proc/get_mob_with_client_list()
 	var/list/mobs = list()
 	for(var/mob/M in GLOB.mob_list)
 		if (M.client)
@@ -1179,7 +1179,7 @@ var/global/list/common_tools = list(
 		return 1
 	return 0
 
-proc/is_hot(obj/item/I)
+/proc/is_hot(obj/item/I)
 	return I.heat_source
 
 //Whether or not the given item counts as sharp in terms of dealing damage
@@ -1461,7 +1461,7 @@ var/list/WALLITEMS = list(
 /proc/pass()
 	return
 
-proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
+/proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if (value == FALSE) //nothing should be calling us with a number, so this is safe
 		value = input("Enter type to find (blank for all, cancel to cancel)", "Search for type") as null|text
 		if (isnull(value))
@@ -1507,3 +1507,10 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	else if(powerused < 1000000000) //Less than a GW
 		return "[round((powerused * 0.000001),0.001)] MW"
 	return "[round((powerused * 0.000000001),0.0001)] GW"
+
+/proc/living_player_count()
+	var/living_player_count = 0
+	for(var/mob in GLOB.player_list)
+		if(mob in GLOB.alive_mob_list)
+			living_player_count += 1
+	return living_player_count

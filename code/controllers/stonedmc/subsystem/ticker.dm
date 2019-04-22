@@ -254,7 +254,7 @@ SUBSYSTEM_DEF(ticker)
 		return
 
 	queue_delay++
-	var/mob/dead/new_player/next_in_line = queued_players[1]
+	var/mob/new_player/next_in_line = queued_players[1]
 
 	switch(queue_delay)
 		if(5) //every 5 ticks check if there is a slot available
