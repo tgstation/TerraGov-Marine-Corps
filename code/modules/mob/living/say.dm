@@ -131,7 +131,7 @@ var/list/department_radio_keys = list(
 			if(O) //It's possible that it could be deleted in the meantime.
 				O.hear_talk(src, message, verb, language, italics)
 
-	return TRUE
+	return language
 
 
 /mob/living/proc/remove_speech_bubble(client/C, image/speech_bubble, list/listening)

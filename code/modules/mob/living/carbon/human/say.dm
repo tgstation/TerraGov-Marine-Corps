@@ -3,6 +3,8 @@
 	if(!.)
 		return
 
+	language = .
+
 	var/message_mode = parse_message_mode(message, "headset")
 	//parse the radio code and consume it
 	if(message_mode)
