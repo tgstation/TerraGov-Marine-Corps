@@ -21,7 +21,10 @@ SUBSYSTEM_DEF(direction)
 	var/list/currentrun
 
 /datum/controller/subsystem/direction/Initialize(start_timeofday)
-	leader_mapping = list(TRACK_ALPHA_SQUAD,TRACK_BRAVO_SQUAD,TRACK_CHARLIE_SQUAD,TRACK_DELTA_SQUAD)
+	leader_mapping = list(
+		TRACK_ALPHA_SQUAD,TRACK_BRAVO_SQUAD,TRACK_CHARLIE_SQUAD,TRACK_DELTA_SQUAD, // Squads
+		XENO_HIVE_NORMAL,XENO_HIVE_CORRUPTED,XENO_HIVE_ALPHA,XENO_HIVE_BETA,XENO_HIVE_ZETA // Hives
+	)
 	for(var/a in leader_mapping)
 		processing_mobs.Add(a)
 		processing_mobs[a] = list()
@@ -37,24 +40,24 @@ SUBSYSTEM_DEF(direction)
 	if(!resumed)
 		currentrun = deepCopyList(processing_mobs)
 
-	for(var/L in currentrun)
-		var/mob/living/carbon/human/H
-		if(iscarbon(leader_mapping[L]))
-			var/mob/living/carbon/C = leader_mapping[L]
-			while(currentrun[L].len)
-				H = currentrun[L][currentrun[L].len]
-				currentrun[L].len--
-				if(!H)
-					processing_mobs[L].Remove(H)
+	for(var/ID in currentrun)
+		var/mob/living/L
+		if(iscarbon(leader_mapping[ID]))
+			var/mob/living/SL = leader_mapping[ID]
+			while(currentrun[SL].len)
+				L = currentrun[SL][currentrun[SL].len]
+				currentrun[SL].len--
+				if(!L)
+					processing_mobs[SL].Remove(L)
 					continue
-				H.update_leader_tracking(C)
+				L.update_leader_tracking(SL)
 				if(MC_TICK_CHECK)
 					return
 		else
-			while(currentrun[L].len)
-				H = currentrun[L][currentrun[L].len]
-				currentrun[L].len--
-				H.clear_leader_tracking()
+			while(currentrun[ID].len)
+				L = currentrun[ID][currentrun[ID].len]
+				currentrun[ID].len--
+				L.clear_leader_tracking()
 				if(MC_TICK_CHECK)
 					return	
 

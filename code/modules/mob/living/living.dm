@@ -648,3 +648,9 @@ below 100 is not dizzy
 	M.mind.transfer_to(src, TRUE)
 	M.fully_replace_character_name(M.real_name, real_name)
 	GLOB.offered_mob_list -= src
+
+/mob/living/proc/update_leader_tracking(mob/living/L)
+	return
+
+/mob/living/proc/clear_leader_tracking()	
+	return
