@@ -602,19 +602,29 @@ below 100 is not dizzy
 	if(!M.mind)
 		to_chat(M, "<span class='warning'>You don't have a mind.</span>")
 		return FALSE
-	if(!bypass && (key || ckey))
-		to_chat(M, "<span class='warning'>That mob has already been taken.</span>")
-		return FALSE
-	if(!bypass && job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
-		to_chat(M, "<span class='warning'>You are jobbanned from that job.</span>")
-		return FALSE
 
-	log_admin("[key_name(M)] has taken [key_name_admin(src)].")
-	message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")
+	if(!bypass)
+		if(client)
+			to_chat(M, "<span class='warning'>That mob has already been taken.</span>")
+			GLOB.offered_mob_list -= src
+			return FALSE
+
+		if(job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
+			to_chat(M, "<span class='warning'>You are jobbanned from that role.</span>")
+			return FALSE
+
+		if(stat == DEAD)
+			to_chat(M, "<span class='warning'>That mob has died.</span>")
+			GLOB.offered_mob_list -= src
+			return FALSE
+
+		log_admin("[key_name(M)] has taken [key_name_admin(src)].")
+		message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")
 
 	M.mind.transfer_to(src, TRUE)
-	M.fully_replace_character_name(M.real_name, real_name)
+	fully_replace_character_name(M.real_name, real_name)
 	GLOB.offered_mob_list -= src
+	return TRUE
 
 
 /mob/living/update_canmove()

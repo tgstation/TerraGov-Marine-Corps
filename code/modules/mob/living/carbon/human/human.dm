@@ -1685,9 +1685,11 @@
 	if(!(equipment in outfits))
 		return FALSE
 
-	var/datum/outfit/O = new outfits[equipment]
+	var/outfit_type = outfits[equipment]
+	var/datum/outfit/O = new outfit_type
 	delete_equipment(TRUE)
 	equipOutfit(O, FALSE)
+	regenerate_icons()
 
 	return TRUE
 
@@ -1702,9 +1704,6 @@
 	return TRUE
 
 /mob/living/carbon/human/take_over(mob/M)
-	if(assigned_squad)
-		assigned_squad.clean_marine_from_squad(src)
-
 	. = ..()
 
 	set_rank(job)
@@ -1719,11 +1718,13 @@
 
 	var/datum/squad/S = SSjob.squads[squad]
 
-	if(mind)
-		assigned_squad = null
-	else
+	if(!mind)
 		assigned_squad = S
 		return FALSE
+
+	else if(assigned_squad)
+		assigned_squad.clean_marine_from_squad(src)
+		assigned_squad = null
 
 	var/datum/job/J = SSjob.GetJob(mind.assigned_role)
 	var/datum/outfit/job/O = new J.outfit
