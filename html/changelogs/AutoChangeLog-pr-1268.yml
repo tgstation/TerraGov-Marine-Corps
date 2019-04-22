@@ -1,0 +1,4 @@
+author: "KitKetKetrai"
+delete-after: True
+changes: 
+  - balance: "Acid spit is now cheaper. Praetorians can spit acid longer, whilst spitters get lower plasma and regen to compensate. This should make it easier for drones and hivelords to keep spitters topped off."
