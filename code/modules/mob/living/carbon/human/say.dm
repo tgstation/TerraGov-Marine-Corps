@@ -5,6 +5,13 @@
 
 	language = .
 
+	var/datum/language/message_language = get_message_language(message)
+	if(message_language)
+		message = copytext(message, 3)
+
+		if(findtext(message, " ", 1, 2))
+			message = copytext(message, 2)
+
 	var/message_mode = parse_message_mode(message, "headset")
 	//parse the radio code and consume it
 	if(message_mode)
