@@ -91,7 +91,8 @@ SUBSYSTEM_DEF(ticker)
 
 		if(GAME_STATE_PLAYING)
 			mode.process(wait * 0.1)
-
+			check_queue()
+			
 			if(!roundend_check_paused && mode.check_finished(force_ending) || force_ending)
 				current_state = GAME_STATE_FINISHED
 				GLOB.ooc_allowed = TRUE
@@ -247,6 +248,28 @@ SUBSYSTEM_DEF(ticker)
 	if(length(livings))
 		addtimer(CALLBACK(src, .proc/release_characters, livings), 30, TIMER_CLIENT_TIME)
 
+/datum/controller/subsystem/ticker/proc/check_queue()
+	var/hpc = CONFIG_GET(number/hard_popcap)
+	if(!queued_players.len || !hpc)
+		return
+
+	queue_delay++
+	var/mob/dead/new_player/next_in_line = queued_players[1]
+
+	switch(queue_delay)
+		if(5) //every 5 ticks check if there is a slot available
+			if(living_player_count() < hpc)
+				if(next_in_line && next_in_line.client)
+					to_chat(next_in_line, "<span class='userdanger'>A slot has opened! You have approximately 20 seconds to join. <a href='?src=[REF(next_in_line)];late_join=override'>\>\>Join Game\<\<</a></span>")
+					SEND_SOUND(next_in_line, sound('sound/misc/notice1.ogg'))
+					next_in_line.LateChoices()
+					return
+				queued_players -= next_in_line //Client disconnected, remove he
+			queue_delay = 0 //No vacancy: restart timer
+		if(25 to INFINITY)  //No response from the next in line when a vacancy exists, remove he
+			to_chat(next_in_line, "<span class='danger'>No response recieved. You have been removed from the line.</span>")
+			queued_players -= next_in_line
+			queue_delay = 0
 
 /datum/controller/subsystem/ticker/proc/release_characters(list/livings)
 	for(var/I in livings)
@@ -274,6 +297,9 @@ SUBSYSTEM_DEF(ticker)
 	delay_end = SSticker.delay_end
 
 	time_left = SSticker.time_left
+
+	queue_delay = SSticker.queue_delay
+	queued_players = SSticker.queued_players
 
 	switch(current_state)
 		if(GAME_STATE_SETTING_UP)
