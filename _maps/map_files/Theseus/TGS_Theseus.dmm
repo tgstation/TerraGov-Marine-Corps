@@ -14189,7 +14189,6 @@
 /area/almayer/engineering/upper_engineering)
 "aDZ" = (
 /obj/machinery/disposal,
-/obj/machinery/alarm,
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
@@ -50288,6 +50287,11 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/bridgebunks)
+"knI" = (
+/obj/machinery/vending/marineFood,
+/obj/machinery/alarm,
+/turf/open/floor/almayer/mono,
+/area/almayer/living/cafeteria_port)
 "kqP" = (
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 1;
@@ -98345,7 +98349,7 @@ bPG
 bQE
 bRl
 bRQ
-bSR
+knI
 bUI
 bWe
 bXc
