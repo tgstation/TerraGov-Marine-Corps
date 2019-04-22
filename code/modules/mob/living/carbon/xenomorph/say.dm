@@ -1,12 +1,12 @@
 /mob/living/carbon/Xenomorph/say(var/message)
 	var/verb = "says"
-	var/forced = 0
+	var/hivemind = FALSE
 	var/message_range = world.view
+	var/datum/language/language
 
-	if(client)
-		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, "<span class='warning'>You cannot speak in IC (Muted).</span>")
-			return
+	if(client?.prefs.muted & MUTE_IC)
+		to_chat(src, "<span class='warning'>You cannot speak in IC (Muted).</span>")
+		return
 
 	message =  trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 
@@ -19,47 +19,32 @@
 	if(copytext(message, 1, 2) == "*")
 		return emote(copytext(message, 2), EMOTE_AUDIBLE, null, TRUE)
 
-	var/datum/language/speaking = null
+	var/datum/language/message_language = get_message_language(message)
+	if(message_language)
+		// No, you cannot speak in xenocommon just because you know the key
+		if(can_speak_in_language(message_language))
+			language = message_language
+		message = copytext(message, 3)
 
-	if(copytext(message, 1, 2) != ";")
-		if(length(message) >= 2)
-			var/channel_prefix = copytext(message, 1, 3)
-			if(languages.len)
-				for(var/datum/language/L in languages)
-					if(lowertext(channel_prefix) == ":[L.key]" || lowertext(channel_prefix) == ".[L.key]")
-						verb = L.speech_verb
-						speaking = L
-						break
+		// Trim the space if they said ",0 I LOVE LANGUAGES"
+		if(findtext(message, " ", 1, 2))
+			message = copytext(message, 2)
 
-		if(isnull(speaking) || speaking.key != "a") //Not hivemind? Then default to xenocommon. BRUTE FORCE YO
-			for(var/datum/language/L in languages)
-				if(L.key == "x")
-					verb = L.speech_verb
-					speaking = L
-					forced = 1
-					break
 
-	else
-		message = trim(copytext(message,2))
-
-	if(speaking && !forced)
-		message = trim(copytext(message,3))
+	if(is_type_in_typecache(language, list(/datum/language/xenohivemind = TRUE)))
+		hivemind = TRUE
 
 	message = capitalize(trim_left(message))
 
 	if(!message || stat)
 		return
 
-	if(forced)
-		playsound(loc, "alien_talk", 25, 1)
-		..(message, speaking, verb, null, null, message_range, null)
-	else
+	if(hivemind)
 		hivemind_talk(message)
+	else
+		playsound(loc, "alien_talk", 25, 1)
+		return ..(message, language, verb, null, null, message_range, null)
 
-/mob/living/carbon/Xenomorph/say_understands(var/mob/other,var/datum/language/speaking = null)
-	if(isxeno(other))
-		return TRUE
-	return ..()
 
 /mob/living/carbon/Xenomorph/proc/hivemind_name()
 	return "<span class='game say'>Hivemind, <span class='name'>[name]</span>"

@@ -1041,20 +1041,18 @@
 		if(!istype(L))
 			return
 
-		var/new_language = input("Please choose a language to add.", "Language", null) as null|anything in GLOB.all_languages
-
+		var/new_language = input("Please choose a language to add.", "Language") as null|anything in GLOB.all_languages
 		if(!new_language)
 			return
 
-		if(!L)
+		if(!istype(L))
 			to_chat(usr, "<span class='warning'>Mob doesn't exist anymore.</span>")
 			return
 
-		if(L.add_language(new_language))
-			log_admin("[key_name(usr)] has added [new_language] to [key_name(L)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has added [new_language] to [ADMIN_TPMONTY(L)].")
-		else
-			to_chat(usr, "<span class='warning'>Mob already knows that language.</span>")
+		L.grant_language(new_language)
+
+		log_admin("[key_name(usr)] has added [new_language] to [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has added [new_language] to [ADMIN_TPMONTY(L)].")
 
 
 	else if(href_list["remlanguage"])
@@ -1063,14 +1061,13 @@
 
 		var/mob/living/L = locate(href_list["remlanguage"])
 		if(!istype(L))
-
 			return
 
-		if(!length(L.languages))
+		if(!length(L.language_holder.languages))
 			to_chat(usr, "<span class='warning'>This mob knows no languages.</span>")
 			return
 
-		var/datum/language/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in L.languages
+		var/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in L.language_holder.languages
 
 		if(!rem_language)
 			return
@@ -1079,12 +1076,10 @@
 			to_chat(usr, "<span class='warning'>Mob doesn't exist anymore.</span>")
 			return
 
-		if(L.remove_language(rem_language.name))
-			to_chat(usr, "Removed [rem_language] from [L].")
-			log_admin("[key_name(usr)] has removed [rem_language] from [key_name(L)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has removed [rem_language] from [ADMIN_TPMONTY(L)].")
-		else
-			to_chat(usr, "<span class='warning'>Mob doesn't know that language.</span>")
+		L.remove_language(rem_language)
+
+		log_admin("[key_name(usr)] has removed [rem_language] from [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has removed [rem_language] from [ADMIN_TPMONTY(L)].")
 
 
 	else if(href_list["purrbation"])
