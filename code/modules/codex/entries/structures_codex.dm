@@ -24,14 +24,23 @@
 	if(can_buckle)
 		structure_strings += "You can buckle someone or yourself to this structure. <br>Click the structure or press 'resist' to unbuckle."
 
-	if(breakable)
-		structure_strings += "You can break this structure."
-	else
-		structure_strings += "You cannot break this structure."
-
+	if(CHECK_BITFIELD(resistance_flags, LAVA_PROOF))
+		structure_strings += "This structure is Lava proof."
+	if(CHECK_BITFIELD(resistance_flags, FIRE_PROOF))
+		structure_strings += "You cannot set this structure on fire."
+	if(CHECK_BITFIELD(resistance_flags, FLAMMABLE))
+		structure_strings += "This structure can be set on fire."
 	if(CHECK_BITFIELD(resistance_flags, UNACIDABLE))
-		structure_strings += "You cannot melt this structure with acid."
-
+		structure_strings += "Acid does not stick to or affect this structure at all."
+	if(CHECK_BITFIELD(resistance_flags, ACID_PROOF))
+		structure_strings += "You can try but cannot melt this structure with acid."
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		structure_strings += "You cannot destroy this structure."
+	else
+		structure_strings += "You can destroy this structure."
+	if(CHECK_BITFIELD(resistance_flags, FREEZE_PROOF))
+		structure_strings += "You cannot freeze this structure."
+						
 	if(length(parts) > 0)
 		structure_strings += "<U>It is made from the following parts</U>:"
 		for(var/X in parts)
