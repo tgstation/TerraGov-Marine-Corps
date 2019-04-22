@@ -495,8 +495,7 @@
 		qdel(src)
 
 /mob/new_player/proc/ViewManifest()
-	var/dat = "<h4>Crew Manifest</h4>"
-	dat += GLOB.data_core.get_manifest(ooc = 1)
+	var/dat = GLOB.data_core.get_manifest(ooc = TRUE)
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 400, 420)
 	popup.set_content(dat)
