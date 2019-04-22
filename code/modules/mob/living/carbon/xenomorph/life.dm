@@ -407,7 +407,8 @@
 /mob/living/carbon/Xenomorph/proc/handle_afk_takeover()
 	if (client || world.time - away_time < XENO_AFK_TIMER)
 		return
-
+	if(stat != CONSCIOUS)
+		return
 	var/picked = get_alien_candidate()
 	if(!picked)	
 		return
