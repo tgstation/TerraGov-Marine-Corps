@@ -200,3 +200,11 @@
 #define CRYO_BRAVO		"Bravo Squad"
 #define CRYO_CHARLIE	"Charlie Squad"
 #define CRYO_DELTA		"Delta Squad"
+
+//used in new_player.dm
+#define JOB_AVAILABLE 0
+#define JOB_UNAVAILABLE_GENERIC 1
+#define JOB_UNAVAILABLE_BANNED 2
+#define JOB_UNAVAILABLE_PLAYTIME 3
+#define JOB_UNAVAILABLE_ACCOUNTAGE 4
+#define JOB_UNAVAILABLE_SLOTFULL 5

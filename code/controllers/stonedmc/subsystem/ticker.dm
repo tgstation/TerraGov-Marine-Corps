@@ -27,6 +27,9 @@ SUBSYSTEM_DEF(ticker)
 
 	var/gametime_offset = 432000			//Deciseconds to add to world.time for station time.
 
+	var/queue_delay = 0
+	var/list/queued_players = list()		//used for join queues when the server exceeds the hard population cap
+
 	var/roundend_check_paused = FALSE
 
 	var/round_start_time = 0

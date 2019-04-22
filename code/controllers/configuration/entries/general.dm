@@ -291,3 +291,25 @@ The default value assumes youtube-dl is in your system PATH
 */
 /datum/config_entry/string/invoke_youtubedl
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+
+/*popcap shit*/
+/datum/config_entry/number/soft_popcap
+	config_entry_value = null
+	min_val = 0
+
+/datum/config_entry/number/hard_popcap
+	config_entry_value = null
+	min_val = 0
+
+/datum/config_entry/number/extreme_popcap
+	config_entry_value = null
+	min_val = 0
+
+/datum/config_entry/string/soft_popcap_message
+	config_entry_value = "Be warned that the server is currently serving a high number of users, consider using alternative game servers."
+
+/datum/config_entry/string/hard_popcap_message
+	config_entry_value = "The server is currently serving a high number of users, You cannot currently join. You may wait for the number of living crew to decline, observe, or find alternative servers."
+
+/datum/config_entry/string/extreme_popcap_message
+	config_entry_value = "The server is currently serving a high number of users, find alternative servers."

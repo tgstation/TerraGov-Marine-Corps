@@ -2,7 +2,7 @@
 
 /mob/new_player
 	var/ready = PLAYER_NOT_READY
-	var/spawning = FALSE
+	var/spawning = FALSE	//Referenced when you want to delete the new_player later on in the code.
 	universal_speak = TRUE
 
 	invisibility = INVISIBILITY_MAXIMUM
@@ -11,7 +11,7 @@
 
 	density = FALSE
 	canmove = FALSE
-	anchored = TRUE
+	anchored = TRUE		//don't get pushed around
 
 	var/mob/living/new_character	//for instant transfer once the round is set up
 
@@ -20,14 +20,17 @@
 		var/obj/screen/splash/S = new(client, TRUE, TRUE)
 		S.Fade(TRUE)
 
-	GLOB.total_players++
-	return ..()
+	if(length(GLOB.newplayer_start))
+		forceMove(pick(GLOB.newplayer_start))
+	else
+		forceMove(locate(1,1,1))
+
+	. = ..()
 
 /mob/new_player/Destroy()
 	if(ready)
 		GLOB.ready_players--
 	return ..()
-
 
 /mob/new_player/proc/version_check()
 	if(client.byond_version < world.byond_version)
@@ -36,7 +39,6 @@
 		Other versions (search for [world.byond_build] or higher): http://www.byond.com/download/build/[world.byond_version]</span>")
 
 		qdel(client)
-
 
 /mob/new_player/proc/new_player_panel()
 	var/output = "<center><p><a href='byond://?src=[REF(src)];show_preferences=1'>Setup Character</A></p>"
@@ -50,7 +52,6 @@
 			if(PLAYER_READY_TO_OBSERVE)
 				output += "<p>\[ [LINKIFY_READY("Ready", PLAYER_READY_TO_PLAY)] | [LINKIFY_READY("Not Ready", PLAYER_NOT_READY)] | <b> Observe </b> \]</p>"
 	else
-
 		output += "<p><a href='byond://?src=[REF(src)];manifest=1'>View the Crew Manifest</A></p>"
 		output += "<p><a href='byond://?src=[REF(src)];late_join=1'>Join the TGMC!</A></p>"
 		if(isdistress(SSticker.mode))
@@ -83,7 +84,6 @@
 	popup.set_content(output)
 	popup.open(FALSE)
 
-
 /mob/new_player/Stat()
 	. = ..()
 
@@ -111,6 +111,15 @@
 	if(!client)
 		return FALSE
 
+	//Determines Relevent Population Cap
+	var/relevant_cap
+	var/hpc = CONFIG_GET(number/hard_popcap)
+	var/epc = CONFIG_GET(number/extreme_popcap)
+	if(hpc && epc)
+		relevant_cap = min(hpc, epc)
+	else
+		relevant_cap = max(hpc, epc)
+
 	if(href_list["show_preferences"])
 		client.prefs.ShowChoices(src)
 		return TRUE
@@ -122,7 +131,7 @@
 		//no longer is required
 		if(SSticker.current_state <= GAME_STATE_PREGAME)
 			ready = tready
-			if(ready)
+			if(ready)	//does ghosting a valid "ready?"
 				GLOB.ready_players++
 			else
 				GLOB.ready_players--
@@ -144,19 +153,20 @@
 		if(href_list["late_join"] == "override")
 			LateChoices()
 			return
+		
+		if(SSticker.queued_players.len || (relevant_cap && living_player_count() >= relevant_cap && !(ckey(key) in GLOB.admin_datums)))
+			to_chat(usr, "<span class='danger'>[CONFIG_GET(string/hard_popcap_message)]</span>")
 
-		//if(SSticker.queued_players.len || (relevant_cap && living_player_count() >= relevant_cap && !(ckey(key) in GLOB.admin_datums)))
-		//	to_chat(usr, "<span class='danger'>[CONFIG_GET(string/hard_popcap_message)]</span>")
-
-		//	var/queue_position = SSticker.queued_players.Find(usr)
-		//	if(queue_position == 1)
-		//		to_chat(usr, "<span class='notice'>You are next in line to join the game. You will be notified when a slot opens up.</span>")
-		//	else if(queue_position)
-		//		to_chat(usr, "<span class='notice'>There are [queue_position-1] players in front of you in the queue to join the game.</span>")
-		//	else
-		//		SSticker.queued_players += usr
-		//		to_chat(usr, "<span class='notice'>You have been added to the queue to join the game. Your position in queue is [SSticker.queued_players.len].</span>")
-		//	return   //soon(TM)
+			var/queue_position = SSticker.queued_players.Find(usr)
+			if(queue_position == 1)
+				to_chat(usr, "<span class='notice'>You are next in line to join the game. You will be notified when a slot opens up.</span>")
+			else if(queue_position)
+				to_chat(usr, "<span class='notice'>There are [queue_position-1] players in front of you in the queue to join the game.</span>")
+			else
+				SSticker.queued_players += usr
+				to_chat(usr, "<span class='notice'>You have been added to the queue to join the game. Your position in queue is [SSticker.queued_players.len].</span>")
+			return
+		
 		LateChoices()
 
 
@@ -171,19 +181,14 @@
       
 		switch(alert("Would you like to try joining as a burrowed larva or as a living xenomorph?", "Select", "Burrowed Larva", "Living Xenomorph", "Cancel"))
 			if("Burrowed Larva")
-				if(SSticker.mode.check_xeno_late_join(src))
-					var/mob/living/carbon/Xenomorph/Queen/mother
-					mother = SSticker.mode.attempt_to_join_as_larva(src)
-					if(mother)
-						close_spawn_windows()
-						SSticker.mode.spawn_larva(src, mother)
-
+				if(SSticker.mode.attempt_to_join_as_larva(src))
+					close_spawn_windows()
+					SSticker.mode.spawn_larva(src)
 			if("Living Xenomorph")
-				if(SSticker.mode.check_xeno_late_join(src))
-					var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src, 0)
-					if(new_xeno)
-						close_spawn_windows(new_xeno)
-						SSticker.mode.transfer_xeno(src, new_xeno)
+				var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src, 0)
+				if(new_xeno)
+					close_spawn_windows(new_xeno)
+					SSticker.mode.transfer_xeno(src, new_xeno)
 
 
 	if(href_list["manifest"])
@@ -193,12 +198,11 @@
 		if(!GLOB.enter_allowed)
 			to_chat(usr, "<span class='notice'>There is an administrative lock on entering the game!</span>")
 			return
-		/*
+
 		if(SSticker.queued_players.len && !(ckey(key) in GLOB.admin_datums))
 			if((living_player_count() >= relevant_cap) || (src != SSticker.queued_players[1]))
 				to_chat(usr, "<span class='warning'>Server is full.</span>")
 				return
-		*/
 
 		AttemptLateSpawn(href_list["SelectedJob"])
 		return
@@ -207,7 +211,6 @@
 		client.prefs.process_link(src, href_list)
 	else if(!href_list["late_join"])
 		new_player_panel()
-
 
 	if(href_list["showpoll"])
 		handle_player_polling()
@@ -292,9 +295,10 @@
 					return
 				to_chat(src, "<span class='notice'>Vote successful.</span>")
 
-
+//When you cop out of the round (NB: this HAS A SLEEP FOR PLAYER INPUT IN IT)
 /mob/new_player/proc/make_me_an_observer()
 	if(!SSticker || SSticker.current_state == GAME_STATE_STARTUP)
+		ready = PLAYER_NOT_READY //get out
 		to_chat(src, "<span class='warning'>The game is still setting up, please try again later.</span>")
 		return FALSE
 
@@ -333,18 +337,55 @@
 			observer.real_name = observer.client.prefs.real_name
 		observer.name = observer.real_name
 	observer.update_icon()
-	observer.alpha = 127
 	stop_lobby() //lettern, fix this
 	QDEL_NULL(mind)
 	qdel(src)
 	return TRUE
 
-/mob/new_player/proc/AttemptLateSpawn(rank)
-	if(src != usr)
-		return FALSE
+/proc/get_job_unavailable_error_message(retval, jobtitle)
+	switch(retval)
+		if(JOB_AVAILABLE)
+			return "[jobtitle] is available."
+		if(JOB_UNAVAILABLE_GENERIC)
+			return "[jobtitle] is unavailable."
+		if(JOB_UNAVAILABLE_BANNED)
+			return "You are currently banned from [jobtitle]."
+		if(JOB_UNAVAILABLE_PLAYTIME)
+			return "You do not have enough relevant playtime for [jobtitle]."
+		if(JOB_UNAVAILABLE_ACCOUNTAGE)
+			return "Your account is not old enough for [jobtitle]."
+		if(JOB_UNAVAILABLE_SLOTFULL)
+			return "[jobtitle] is already filled to capacity."
+	return "Error: Unknown job availability."
 
-	if(!IsJobAvailable(rank))
-		to_chat(usr, "<span class='warning'>Selected job is not available.<span>")
+/mob/new_player/proc/IsJobAvailable(rank, latejoin = FALSE)
+	var/datum/job/job = SSjob.GetJob(rank)
+	if(!job)
+		return JOB_UNAVAILABLE_GENERIC
+	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
+		for(var/datum/job/J in SSjob.occupations)
+			if(J && J.current_positions < J.total_positions && J.title != job.title)
+				return JOB_UNAVAILABLE_SLOTFULL
+
+	if(jobban_isbanned(src, rank))
+		return JOB_UNAVAILABLE_BANNED
+	if(is_banned_from(ckey, rank))
+		return JOB_UNAVAILABLE_BANNED
+	if(QDELETED(src))
+		return JOB_UNAVAILABLE_GENERIC
+	if(!job.player_old_enough(client))
+		return JOB_UNAVAILABLE_ACCOUNTAGE
+	if(job.required_playtime_remaining(client))
+		return JOB_UNAVAILABLE_PLAYTIME
+	if(latejoin && !job.special_check_latejoin(client))
+		return JOB_UNAVAILABLE_GENERIC
+
+	return JOB_AVAILABLE
+
+/mob/new_player/proc/AttemptLateSpawn(rank)
+	var/error = IsJobAvailable(rank)
+	if(error != JOB_AVAILABLE)
+		to_chat(src, "<span class='warning'>[get_job_unavailable_error_message(error, rank)]</span>")
 		return FALSE
 
 	if(!SSticker?.IsRoundInProgress())
@@ -362,11 +403,14 @@
 	close_spawn_windows()
 	spawning = TRUE
 
+	//Remove the player from the join queue if he was in one and reset the timer
+	SSticker.queued_players -= src
+	SSticker.queue_delay = 4
+
 	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
 	var/equip = SSjob.EquipRank(character, rank, TRUE)
 	if(isliving(equip))	//Borgs get borged in the equip, so we need to make sure we handle the new mob.
 		character = equip
-
 
 	var/datum/job/job = SSjob.GetJob(rank)
 
@@ -388,7 +432,6 @@
 			HS.stored_larva++
 
 	qdel(src)
-
 
 /mob/new_player/proc/LateChoices()
 	var/dat = "<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div><br>"
@@ -422,53 +465,6 @@
 	popup.set_content(dat)
 	popup.open(FALSE)
 
-
-/mob/new_player/proc/ViewManifest()
-	var/dat = GLOB.datacore.get_manifest(ooc = TRUE)
-
-	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 400, 420)
-	popup.set_content(dat)
-	popup.open(FALSE)
-
-
-/mob/new_player/Move()
-	return FALSE
-
-
-/mob/new_player/proc/close_spawn_windows()
-	src << browse(null, "window=latechoices") //closes late choices window
-	src << browse(null, "window=playersetup") //closes the player setup window
-	src << browse(null, "window=preferences") //closes job selection
-	src << browse(null, "window=mob_occupation")
-	stop_lobby()
-
-
-/mob/new_player/proc/stop_lobby() //lazyfix i know, will pr sound magic after this
-	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // Stops lobby music.
-
-
-/mob/new_player/get_species()
-	var/datum/species/chosen_species
-	if(client.prefs.species)
-		chosen_species = GLOB.all_species[client.prefs.species]
-	if(!chosen_species)
-		return "Human"
-	return chosen_species
-
-
-/mob/new_player/get_gender()
-	if(!client?.prefs)
-		. = ..()
-	return client.prefs.gender
-
-/mob/new_player/hear_say(message, verb = "says", datum/language/language = null, alt_name = "", italics = FALSE, mob/speaker = null)
-	return
-
-
-/mob/new_player/hear_radio(message, verb = "says", datum/language/language = null, part_a, part_b, mob/speaker = null, hard_to_hear = FALSE)
-	return
-
-
 /mob/new_player/proc/create_character(transfer_after)
 	spawning = TRUE
 	close_spawn_windows()
@@ -483,46 +479,57 @@
 			mind.late_joiner = TRUE
 		mind.active = FALSE					//we wish to transfer the key manually
 		mind.transfer_to(H)					//won't transfer key since the mind is not active
-
+	
+	H.name = real_name
 	. = H
 	new_character = .
 	if(transfer_after)
 		transfer_character()
 
-
 /mob/new_player/proc/transfer_character()
 	. = new_character
 	if(.)
 		new_character.key = key		//Manually transfer the key to log them in
+		stop_lobby()
 		new_character = null
 		qdel(src)
 
+/mob/new_player/proc/ViewManifest()
+	var/dat += "<h4>Crew Manifest</h4>"
+	dat += GLOB.data_core.get_manifest(ooc = 1)
 
-/mob/new_player/proc/IsJobAvailable(rank, latejoin = FALSE)
-	var/datum/job/job = SSjob.GetJob(rank)
-	if(!job)
-		return FALSE
-	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
-		for(var/datum/job/J in SSjob.occupations)
-			if(J && J.current_positions < J.total_positions && J.title != job.title)
-				return FALSE
+	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 400, 420)
+	popup.set_content(dat)
+	popup.open(FALSE)
 
-	if(jobban_isbanned(src, rank))
-		return FALSE
+/mob/new_player/Move()
+	return FALSE
 
-	if(is_banned_from(ckey, rank))
-		return FALSE
+/mob/new_player/proc/close_spawn_windows()
+	src << browse(null, "window=latechoices") //closes late choices window
+	src << browse(null, "window=playersetup") //closes the player setup window
+	src << browse(null, "window=preferences") //closes job selection
+	src << browse(null, "window=mob_occupation")
+	stop_lobby()
 
-	if(QDELETED(src))
-		return FALSE
+/mob/new_player/proc/stop_lobby() //lazyfix i know, will pr sound magic after this
+	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // Stops lobby music.
 
-	if(!job.player_old_enough(client))
-		return FALSE
+/mob/new_player/get_species()
+	var/datum/species/chosen_species
+	if(client.prefs.species)
+		chosen_species = GLOB.all_species[client.prefs.species]
+	if(!chosen_species)
+		return "Human"
+	return chosen_species
 
-	if(job.required_playtime_remaining(client))
-		return FALSE
+/mob/new_player/get_gender()
+	if(!client?.prefs)
+		. = ..()
+	return client.prefs.gender
 
-	if(latejoin && !job.special_check_latejoin(client))
-		return FALSE
+/mob/new_player/hear_say(message, verb = "says", datum/language/language = null, alt_name = "", italics = FALSE, mob/speaker = null)
+	return
 
-	return TRUE
+/mob/new_player/hear_radio(message, verb = "says", datum/language/language = null, part_a, part_b, mob/speaker = null, hard_to_hear = FALSE)
+	return
