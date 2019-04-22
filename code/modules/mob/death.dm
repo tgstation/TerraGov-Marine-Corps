@@ -68,6 +68,7 @@
 
 	GLOB.alive_mob_list -= src
 	GLOB.dead_mob_list |= src
+	GLOB.offered_mob_list -= src
 
 	med_hud_set_health()
 	med_hud_set_status()

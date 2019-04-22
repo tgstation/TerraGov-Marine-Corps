@@ -3,6 +3,7 @@
 	GLOB.mob_list -= src
 	GLOB.dead_mob_list -= src
 	GLOB.alive_mob_list -= src
+	GLOB.offered_mob_list -= src
 	ghostize()
 	clear_fullscreens()
 	return ..()
@@ -329,6 +330,12 @@
 		new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]", null, null, 5)
 	return 1
+
+
+/mob/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Player Panel"] = "?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
 
 
 /mob/proc/update_flavor_text()
