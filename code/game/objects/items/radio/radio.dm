@@ -186,7 +186,7 @@
 	var/mob/living/silicon/ai/A = new /mob/living/silicon/ai(src, null, null, 1)
 	Broadcast_Message(connection, A,
 						0, "*garbled automated announcement*", src,
-						message, from, "Automated Announcement", from, "synthesized voice",
+						message, from, "Automated Announcement", from, from,
 						4, 0, list(1), PUB_FREQ)
 	qdel(A)
 	return
