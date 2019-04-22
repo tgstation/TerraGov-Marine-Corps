@@ -1,3 +1,5 @@
+//#define DEBUG_HUMAN_ARMOR
+
 /mob/living/carbon/human
 	name = "unknown"
 	real_name = "unknown"
@@ -137,7 +139,7 @@
 		dna.real_name = real_name
 
 	prev_gender = gender // Debug for plural genders
-	
+
 
 	//makes order hud visible
 	var/datum/mob_hud/H = huds[MOB_HUD_ORDER]
@@ -212,8 +214,8 @@
 	var/armor = max(0, 1 - getarmor(null, "bomb"))
 	switch(severity)
 		if(1)
-			b_loss += rand(120, 160) * armor	//Probably instant death
-			f_loss += rand(120, 160) * armor	//Probably instant death
+			b_loss += rand(160, 200) * armor	//Probably instant death
+			f_loss += rand(160, 200) * armor	//Probably instant death
 
 			var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
 			throw_at(target, 200, 4)
@@ -227,8 +229,8 @@
 			KnockOut(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
 
 		if(2)
-			b_loss += rand(60, 80) * armor	//Ouchie time. Armor makes it survivable
-			f_loss += rand(60, 80) * armor	//Ouchie time. Armor makes it survivable
+			b_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
+			f_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 30 * armor
@@ -239,19 +241,21 @@
 			KnockDown(4 * armor)
 
 		if(3)
-			b_loss += rand(30, 40) * armor
-			f_loss += rand(30, 40) * armor
+			b_loss += (rand(40, 50) * armor)
+			f_loss += (rand(40, 50) * armor)
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 15 * armor
-				ear_deaf += 60 * armor
+				ear_damage += 10 * armor
+				ear_deaf += 30 * armor
 
 			adjust_stagger(3 * armor)
 			add_slowdown(round(3 * armor,0.1))
 			KnockDown(2 * armor)
 
 	var/update = 0
-
+	#ifdef DEBUG_HUMAN_ARMOR
+	to_chat(src, "DEBUG EX_ACT: armor: [armor], b_loss: [b_loss], f_loss: [f_loss]")
+	#endif
 	//Focus half the blast on one organ
 	var/datum/limb/take_blast = pick(limbs)
 	update |= take_blast.take_damage_limb(b_loss * 0.5, f_loss * 0.5)
@@ -1458,6 +1462,12 @@
 		return FALSE
 	. = ..()
 
+/mob/living/carbon/human/smokecloak_on()
+	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back
+	if(istype(S) && S.camo_active)
+		return FALSE
+	return ..()
+
 /mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
 	if(luminosity <= 0)
 		return FALSE
@@ -1480,7 +1490,7 @@
 			if(G.turn_off_light(src))
 				light_off++
 	if(flares)
-		for(var/obj/item/device/flashlight/flare/F in contents)
+		for(var/obj/item/flashlight/flare/F in contents)
 			if(F.on)
 				goes_out++
 			F.turn_off(src)
@@ -1492,8 +1502,8 @@
 		for(var/obj/item/clothing/head/hardhat/H in contents)
 			if(H.turn_off_light(src))
 				light_off++
-		for(var/obj/item/device/flashlight/L in contents)
-			if(istype(L, /obj/item/device/flashlight/flare))
+		for(var/obj/item/flashlight/L in contents)
+			if(istype(L, /obj/item/flashlight/flare))
 				continue
 			if(L.turn_off_light(src))
 				light_off++
@@ -1682,14 +1692,22 @@
 	return TRUE
 
 
+/mob/living/carbon/human/canUseTopic(atom/movable/AM)
+	if(incapacitated())
+		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
+		return FALSE
+	if(!in_range(AM, src))
+		to_chat(src, "<span class='warning'>You are too far away!</span>")
+		return FALSE
+	return TRUE
+
 /mob/living/carbon/human/take_over(mob/M)
-	assigned_squad?.clean_marine_from_squad(src)
+	if(assigned_squad)
+		assigned_squad.clean_marine_from_squad(src)
 
 	. = ..()
 
 	set_rank(job)
-
-	fully_replace_character_name(real_name, M.real_name)
 
 	if(assigned_squad)
 		change_squad(assigned_squad.name)
@@ -1725,13 +1743,13 @@
 		ID.assigned_fireteam = 0
 
 	//Headset frequency.
-	if(istype(wear_ear, /obj/item/device/radio/headset/almayer/marine))
-		var/obj/item/device/radio/headset/almayer/marine/E = wear_ear
+	if(istype(wear_ear, /obj/item/radio/headset/almayer/marine))
+		var/obj/item/radio/headset/almayer/marine/E = wear_ear
 		E.set_frequency(S.radio_freq)
 	else
 		if(wear_ear)
 			dropItemToGround(wear_ear)
-		var/obj/item/device/radio/headset/almayer/marine/E = new
+		var/obj/item/radio/headset/almayer/marine/E = new
 		equip_to_slot_or_del(E, SLOT_EARS)
 		E.set_frequency(S.radio_freq)
 		update_icons()

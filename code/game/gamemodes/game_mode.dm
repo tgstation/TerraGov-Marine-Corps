@@ -413,8 +413,8 @@
 		DEATHTIME_MESSAGE(xeno_candidate)
 		return FALSE
 
-	if(new_xeno.away_timer < XENO_AFK_TIMER) //We do not want to occupy them if they've only been gone for a little bit.
-		to_chat(xeno_candidate, "<span class='warning'>That player hasn't been away long enough. Please wait [XENO_AFK_TIMER - new_xeno.away_timer] second\s longer.</span>")
+	if(world.time - new_xeno.away_time < XENO_AFK_TIMER) //We do not want to occupy them if they've only been gone for a little bit.
+		to_chat(xeno_candidate, "<span class='warning'>That player hasn't been away long enough. Please wait [round((new_xeno.away_time + XENO_AFK_TIMER - world.time) * 0.1)] second\s longer.</span>")
 		return FALSE
 
 	return new_xeno

@@ -72,8 +72,10 @@
 						log_admin("[key_name(usr)] gives [key_name(GM)] a swirlie.")
 						log_combat(user, GM, "given a swirlie")
 						msg_admin_attack("[key_name(usr)] gave [key_name(GM)] a swirlie.")
-						if(!GM.internal)
-							GM.adjustOxyLoss(5)
+						if(iscarbon(GM))
+							var/mob/living/carbon/C = GM
+							if(!C.internal)
+								C.adjustOxyLoss(5)
 					swirlie = null
 				else
 					user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
@@ -167,7 +169,7 @@
 		stop_processing()
 
 /obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.type == /obj/item/device/analyzer)
+	if(I.type == /obj/item/analyzer)
 		to_chat(user, "<span class='notice'>The water temperature seems to be [watertemp].</span>")
 	if(iswrench(I))
 		to_chat(user, "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>")

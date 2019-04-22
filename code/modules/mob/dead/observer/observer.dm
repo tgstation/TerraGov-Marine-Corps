@@ -76,16 +76,6 @@
 /mob/dead/CanPass(atom/movable/mover, turf/target)
 	return TRUE
 
-
-/mob/dead/observer/Life()
-	. = ..()
-	if(!loc)
-		return FALSE
-	if(!client)
-		return FALSE
-	return TRUE
-
-
 /mob/proc/ghostize(var/can_reenter_corpse = TRUE)
 	if(!key)
 		return FALSE
@@ -129,7 +119,7 @@
 		ghost.name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 
 	if(!can_reenter_corpse)
-		away_timer = 5 MINUTES
+		set_away_time()
 
 	if(ghost.client)
 		ghost.client.change_view(world.view)
@@ -143,6 +133,17 @@
 	ghost.key = key
 
 	return ghost
+
+
+/mob/proc/set_away_time()
+	return
+
+/mob/living/set_away_time()
+	away_time = world.time //Generic way to handle away time, currently unused.
+
+
+/mob/living/carbon/Xenomorph/set_away_time()
+	away_time = -XENO_AFK_TIMER //Xenos who force-ghost can be immediately taken by observers.
 
 
 /mob/dead/observer/proc/unfollow()
@@ -482,6 +483,9 @@
 		return
 
 	var/mob/living/L = input("Choose which mob you want to take over.", "Offered Mob") as null|anything in sortNames(GLOB.offered_mob_list)
+	if(isnull(L))
+		return
+
 	if(!istype(L))
 		to_chat(src, "<span class='warning'>Mob already taken.</span>")
 		return

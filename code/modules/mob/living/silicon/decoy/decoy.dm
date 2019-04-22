@@ -17,11 +17,12 @@
 	density = TRUE //Do not want to see past it.
 	bound_height = 64 //putting this in so we can't walk through our machine.
 	bound_width = 96
-	var/obj/item/device/radio/headset/almayer/mcom/ai/ai_headset //The thing it speaks into.
+	var/obj/item/radio/headset/almayer/mcom/ai/ai_headset //The thing it speaks into.
 	var/sound/ai_sound //The lines that it plays when speaking.
 
 /mob/living/silicon/decoy/Life()
 	if(stat == DEAD)
+		SSmobs.stop_processing(src)
 		return FALSE
 	if(health <= get_death_threshold() && stat != DEAD)
 		death(FALSE, "<b>\The [name]</b> sparks up and falls silent...")

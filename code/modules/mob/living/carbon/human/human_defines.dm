@@ -1,6 +1,4 @@
 /mob/living/carbon/human
-	//CM XENO CUFF
-	var/xenoCuffed = 0
 	//Hair colour and style
 	var/r_hair = 0
 	var/g_hair = 0
@@ -29,10 +27,7 @@
 	//Species specific
 	var/moth_wings = "Plain"
 
-	var/size_multiplier = 1 //multiplier for the mob's icon size
-	var/icon_update = 1 //whether icon updating shall take place
-
-	var/lip_style = null	//no lipstick by default- arguably misleading, as it could be used for general makeup
+	var/lip_style		//no lipstick by default- arguably misleading, as it could be used for general makeup
 
 	var/age = 30		//Player's age (pure fluff)
 	var/b_type = "A+"	//Player's bloodtype
@@ -61,10 +56,6 @@
 	var/obj/item/l_store = null
 	var/obj/item/s_store = null
 
-	var/used_skillpoints = 0
-	var/skill_specialization = null
-	var/list/skills = null
-
 	var/icon/stand_icon = null
 
 	var/voice = ""	//Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
@@ -78,7 +69,7 @@
 
 	var/xylophone = 0 //For the spoooooooky xylophone cooldown
 
-	var/mob/remoteview_target = null
+	var/mob/remoteview_target
 
 	var/list/flavor_texts = list()
 	var/recently_unbuckled = 0
@@ -86,7 +77,7 @@
 
 	//Life variables
 
-	var/prev_gender = null // Debug for plural genders
+	var/prev_gender // Debug for plural genders
 
 	var/undefibbable = FALSE //whether the human is dead and past the defibbrillation period.
 
@@ -112,8 +103,13 @@
 
 	var/temporary_slowdown = 0 //Stacking slowdown caused from effects, currently used by neurotoxin gas
 
-	var/datum/squad/assigned_squad //the squad this human is assigned to
+	var/datum/squad/assigned_squad //the squad assigned to
 
 	var/cloaking = FALSE
 
 	var/image/SL_directional = null
+
+	var/last_chew = 0
+	var/damageoverlaytemp = 0
+
+	var/specset //Simple way to track which set has the player taken

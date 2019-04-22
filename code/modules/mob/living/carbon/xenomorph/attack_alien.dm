@@ -76,11 +76,7 @@
 				return FALSE
 
 			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-			var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + dam_bonus
-
-			//Frenzy auras stack in a way, then the raw value is multipled by two to get the additive modifier
-			if(M.frenzy_aura > 0)
-				damage += (M.frenzy_aura * 2)
+			var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + dam_bonus + FRENZY_DAMAGE_BONUS(M)
 
 			M.animation_attack_on(src)
 
@@ -312,11 +308,7 @@
 
 			// copypasted from attack_alien.dm
 			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-			var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
-
-			//Frenzy auras stack in a way, then the raw value is multipled by two to get the additive modifier
-			if(M.frenzy_aura > 0)
-				damage += (M.frenzy_aura * 2)
+			var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(M)
 
 			if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 				if(M.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //Pouncing prevents us from making a sneak attack for 4 seconds

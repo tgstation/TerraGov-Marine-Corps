@@ -139,8 +139,8 @@
 		return
 
 	//Throwing Flares and flashlights
-	else if(istype(W,/obj/item/device/flashlight))
-		var/obj/item/device/flashlight/F = W
+	else if(istype(W,/obj/item/flashlight))
+		var/obj/item/flashlight/F = W
 
 		if(!Target ||Target.density)
 			to_chat(user, "<span class='warning'>This hole leads nowhere!</span>")

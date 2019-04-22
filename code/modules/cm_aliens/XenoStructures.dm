@@ -14,33 +14,36 @@
 	if(health <= 0)
 		qdel(src)
 
-/obj/effect/alien/flamer_fire_act()
-	health -= 50
+/obj/effect/alien/proc/take_damage(amount)
+	health = max(0, health - amount)
 	healthcheck()
 
+/obj/effect/alien/Crossed(atom/movable/O)
+	. = ..()
+	if(!QDELETED(src) && istype(O, /obj/vehicle/multitile/hitbox/cm_armored))
+		tank_collision(O)
+
+/obj/effect/alien/flamer_fire_act()
+	take_damage(50)
+
 /obj/effect/alien/fire_act()
-	health -= 50
-	healthcheck()
+	take_damage(50)
 
 /obj/effect/alien/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.damtype == "fire")
-		health -= Proj.damage*2
+		take_damage(Proj.damage*2)
 	else
-		health -= Proj.damage*0.5
-	..()
-	healthcheck()
+		take_damage(Proj.damage*0.5)
 	return TRUE
 
 /obj/effect/alien/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			health -= 500
+			take_damage(500)
 		if(2.0)
-			health -= (rand(140, 300))
+			take_damage((rand(140, 300)))
 		if(3.0)
-			health -= (rand(50, 100))
-	healthcheck()
-	return
+			take_damage((rand(50, 100)))
 
 /*
  * Resin
@@ -66,8 +69,7 @@
 		playsound(loc, "alien_resin_move", 25)
 	else
 		playsound(loc, "alien_resin_break", 25)
-	health = max(0, health - tforce)
-	healthcheck()
+	take_damage(tforce)
 
 /obj/effect/alien/resin/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isxenolarva(M)) //Larvae can't do shit
@@ -78,8 +80,7 @@
 		playsound(loc, "alien_resin_move", 25)
 	else
 		playsound(loc, "alien_resin_break", 25)
-	health -= (M.melee_damage_upper + 50) //Beef up the damage a bit
-	healthcheck()
+	take_damage((M.melee_damage_upper + 50)) //Beef up the damage a bit
 
 /obj/effect/alien/resin/attack_animal(mob/living/M as mob)
 	M.visible_message("<span class='danger'>[M] tears \the [src]!</span>", \
@@ -88,8 +89,7 @@
 		playsound(loc, "alien_resin_move", 25)
 	else
 		playsound(loc, "alien_resin_break", 25)
-	health -= 40
-	healthcheck()
+	take_damage(40)
 
 /obj/effect/alien/resin/attack_hand()
 	to_chat(usr, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
@@ -114,12 +114,11 @@
 		else if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
 			multiplier *= 0.25
 		damage *= max(0,multiplier)
-		health -= max(0,round(damage))
+		take_damage(round(damage))
 		if(istype(src, /obj/effect/alien/resin/sticky))
 			playsound(loc, "alien_resin_move", 25)
 		else
 			playsound(loc, "alien_resin_break", 25)
-		healthcheck()
 	return ..()
 
 
@@ -145,7 +144,7 @@
 /obj/effect/alien/resin/sticky/thin
 	name = "thin sticky resin"
 	desc = "A thin layer of disgusting sticky slime."
-	health = 7
+	health = 6
 	slow_amt = 4
 
 
@@ -204,19 +203,20 @@
 		return
 	var/mob/living/carbon/C = AM
 	if(C.can_be_facehugged(hugger))
+		playsound(loc, 'sound/effects/alien_resin_break1.ogg', 25)
 		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
-		C.KnockDown(1)
-		if(!QDELETED(linked_carrier))
-			if(linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
-				var/area/A = get_area(src)
-				if(A)
-					to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
+		C.KnockDown(2)
+		if(!QDELETED(linked_carrier) && linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
+			var/area/A = get_area(src)
+			if(A)
+				to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
 		drop_hugger()
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
 	hugger.forceMove(loc)
-	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger.proc/fast_activate, TRUE), 1.5 SECONDS)
+	hugger.stasis = FALSE
+	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger.proc/fast_activate), 1.5 SECONDS)
 	icon_state = "trap0"
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null
@@ -281,6 +281,12 @@
 		if(!locate(/obj/effect/alien/weeds) in loc)
 			new /obj/effect/alien/weeds(loc)
 	..()
+
+/obj/structure/mineral_door/resin/proc/thicken()
+	var/oldloc = loc
+	qdel(src)
+	new /obj/structure/mineral_door/resin/thick(oldloc)
+	return TRUE
 
 /obj/structure/mineral_door/resin/attack_paw(mob/user as mob)
 	if(user.a_intent == INTENT_HARM)
@@ -431,6 +437,8 @@
 	health = 160
 	hardness = 2.0
 
+/obj/structure/mineral_door/resin/thick/thicken()
+	return FALSE
 
 /*
  * Egg
@@ -544,10 +552,10 @@
 	..()
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
 		return
-	health -= P.ammo.damage_type == BURN ? P.damage * 1.3 : P.damage
-	healthcheck()
 	P.ammo.on_hit_obj(src,P)
-	return 1
+	var/amount = P.ammo.damage_type == BURN ? P.damage * 1.3 : P.damage
+	take_damage(amount)
+	return TRUE
 
 /obj/effect/alien/egg/proc/update_status(new_stat)
 	if(new_stat)
@@ -616,8 +624,7 @@
 	else
 		playsound(src.loc, "alien_resin_break", 25)
 
-	health -= damage
-	healthcheck()
+	take_damage(damage)
 
 
 /obj/effect/alien/egg/healthcheck()

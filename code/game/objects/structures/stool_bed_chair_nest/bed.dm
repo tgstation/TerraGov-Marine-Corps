@@ -309,7 +309,7 @@ var/global/list/activated_medevac_stretchers = list()
 	base_bed_icon = "stretcher"
 	accepts_bodybag = TRUE
 	var/last_teleport = null
-	var/obj/item/device/medevac_beacon/linked_beacon = null
+	var/obj/item/medevac_beacon/linked_beacon = null
 	var/stretcher_activated
 	var/obj/structure/dropship_equipment/medevac_system/linked_medevac
 
@@ -474,20 +474,20 @@ var/global/list/activated_medevac_stretchers = list()
 	last_teleport = world.time + MEDEVAC_COOLDOWN
 
 /obj/structure/bed/medevac_stretcher/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/device/medevac_beacon))
-		var/obj/item/device/medevac_beacon/B = W
+	if(istype(W,/obj/item/medevac_beacon))
+		var/obj/item/medevac_beacon/B = W
 		linked_beacon = B
 		B.linked_bed = src
 		to_chat(user, "<span class='notice'><b>You link the medvac beacon to the medvac stretcher.</b></span>")
 		playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
 		return
-	else if(istype(W, /obj/item/device/healthanalyzer)) //Allows us to use the analyzer on the occupant without taking him out.
+	else if(istype(W, /obj/item/healthanalyzer)) //Allows us to use the analyzer on the occupant without taking him out.
 		var/mob/living/occupant
 		if(buckled_mob)
 			occupant = buckled_mob
 		else if(buckled_bodybag)
 			occupant = locate(/mob/living) in buckled_bodybag.contents
-		var/obj/item/device/healthanalyzer/J = W
+		var/obj/item/healthanalyzer/J = W
 		J.attack(occupant, user)
 		return
 	return ..()
@@ -522,7 +522,7 @@ var/global/list/activated_medevac_stretchers = list()
 	desc = "A collapsed medevac stretcher that can be carried around."
 	icon_state = "stretcher_folded"
 	var/last_teleport = null
-	var/obj/item/device/medevac_beacon/linked_beacon = null
+	var/obj/item/medevac_beacon/linked_beacon = null
 	rollertype = /obj/structure/bed/medevac_stretcher
 
 /obj/item/roller/medevac/attack_self(mob/user)
@@ -542,8 +542,8 @@ var/global/list/activated_medevac_stretchers = list()
 
 
 /obj/item/roller/medevac/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/device/medevac_beacon))
-		var/obj/item/device/medevac_beacon/B = W
+	if(istype(W,/obj/item/medevac_beacon))
+		var/obj/item/medevac_beacon/B = W
 		linked_beacon = B
 		B.linked_bed = src
 		to_chat(user, "<span class='notice'><b>You link the medvac beacon to the medvac stretcher.</b></span>")
@@ -551,10 +551,9 @@ var/global/list/activated_medevac_stretchers = list()
 		return
 	return ..()
 
-/obj/item/device/medevac_beacon
+/obj/item/medevac_beacon
 	name = "medevac beacon"
 	desc = "A specialized teleportation beacon that links with a medvac stretcher; provides the target destination for the stretcher's displacement field. WARNING: Must be in a powered area to function."
-	icon = 'icons/obj/items/devices.dmi'
 	icon_state = "med_beacon0"
 	var/planted = FALSE
 	var/locked = FALSE
@@ -563,7 +562,7 @@ var/global/list/activated_medevac_stretchers = list()
 	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_MEDBAY)
 
 
-/obj/item/device/medevac_beacon/examine(mob/user)
+/obj/item/medevac_beacon/examine(mob/user)
 	. = ..()
 	var/list/details = list()
 	if(!check_power())
@@ -585,14 +584,14 @@ var/global/list/activated_medevac_stretchers = list()
 
 	to_chat(user, "<span class='notice'>[details.Join(" ")]</span>")
 
-/obj/item/device/medevac_beacon/proc/medvac_alert(mob/M)
+/obj/item/medevac_beacon/proc/medvac_alert(mob/M)
 	playsound(loc, 'sound/machines/ping.ogg', 50, FALSE)
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Medevac Notification System")
 	AI.aiRadio.talk_into(AI,"Patient [M] has been tele-vaced to medvac beacon at: [get_area(src)]. Coordinates: (X: [src.x], Y: [src.y])","MedSci","announces")
 	qdel(AI)
 
-/obj/item/device/medevac_beacon/attack_self(mob/user)
+/obj/item/medevac_beacon/attack_self(mob/user)
 	if(locked)
 		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now.</span>")
 		return
@@ -603,7 +602,7 @@ var/global/list/activated_medevac_stretchers = list()
 	icon_state = "med_beacon1"
 	playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
 
-/obj/item/device/medevac_beacon/attack_hand(mob/user)
+/obj/item/medevac_beacon/attack_hand(mob/user)
 	if(locked)
 		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now.</span>")
 		return
@@ -615,7 +614,7 @@ var/global/list/activated_medevac_stretchers = list()
 		playsound(loc,'sound/machines/click.ogg', 25, FALSE)
 	return ..()
 
-/obj/item/device/medevac_beacon/attackby(var/obj/item/O as obj, mob/user as mob) //Corpsmen can lock their beacons.
+/obj/item/medevac_beacon/attackby(var/obj/item/O as obj, mob/user as mob) //Corpsmen can lock their beacons.
 	if(!ishuman(user))
 		return ..()
 
@@ -644,7 +643,7 @@ var/global/list/activated_medevac_stretchers = list()
 	return ..()
 
 
-/obj/item/device/medevac_beacon/proc/check_power()
+/obj/item/medevac_beacon/proc/check_power()
 	var/area/A = loc?.loc
 	if(!A || !isarea(A) || !A.master)
 		return FALSE

@@ -67,9 +67,6 @@
 	return 1
 
 
-/obj/machinery/recharge_station/allow_drop()
-	return 0
-
 /obj/machinery/recharge_station/examine(mob/user)
 	to_chat(user, "The charge meter reads: [round(chargepercentage())]%")
 

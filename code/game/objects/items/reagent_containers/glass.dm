@@ -104,7 +104,7 @@
 			return
 
 /obj/item/reagent_container/glass/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/pen) || istype(W, /obj/item/device/flashlight/pen))
+	if(istype(W, /obj/item/tool/pen) || istype(W, /obj/item/flashlight/pen))
 		var/tmp_label = sanitize(input(user, "Enter a label for [name]","Label", label_text))
 		if(length(tmp_label) > MAX_NAME_LEN)
 			to_chat(user, "<span class='warning'>The label can be at most [MAX_NAME_LEN] characters long.</span>")

@@ -215,7 +215,7 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!SSticker.current_state != GAME_STATE_PREGAME)
+	if(SSticker?.current_state != GAME_STATE_PREGAME)
 		to_chat(usr, "<span class='warning'>The round cannot be started early in this state.</span>")
 		return
 
@@ -280,8 +280,8 @@
 
 	GLOB.respawntime = time
 
-	log_admin("[key_name(usr)] set the respawn time to [GLOB.respawntime] minutes.")
-	message_admins("[ADMIN_TPMONTY(usr)] set the respawn time to [GLOB.respawntime] minutes.")
+	log_admin("[key_name(usr)] set the respawn time to [GLOB.respawntime * 0.1] seconds.")
+	message_admins("[ADMIN_TPMONTY(usr)] set the respawn time to [GLOB.respawntime * 0.1] seconds.")
 
 
 /datum/admins/proc/end_round()

@@ -90,7 +90,7 @@
 	var/list/L = list()
 	var/list/areaindex = list()
 
-	for(var/obj/item/device/radio/beacon/R in GLOB.item_list)
+	for(var/obj/item/radio/beacon/R in GLOB.item_list)
 		var/turf/T = get_turf(R)
 		if (!T)
 			continue

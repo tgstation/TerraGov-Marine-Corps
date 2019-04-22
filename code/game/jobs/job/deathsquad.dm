@@ -20,7 +20,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/mateba/admiral
-	ears = /obj/item/device/radio/headset/distress/commando
+	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC/commando
 	shoes = /obj/item/clothing/shoes/veteran/PMC/commando
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/PMC/commando
@@ -42,14 +42,14 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_HEAD)
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/detpack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/detpack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/detpack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/detpack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/assembly/signaler, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_BACKPACK)
 
 
 //Deathsquad Leader
@@ -66,7 +66,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/mateba/admiral
-	ears = /obj/item/device/radio/headset/distress/commando
+	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC/commando
 	shoes = /obj/item/clothing/shoes/veteran/PMC/commando
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/PMC/commando
@@ -93,11 +93,11 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4, SLOT_IN_R_POUCH)
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/detpack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/detpack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/detpack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/detpack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/assembly/signaler, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_BACKPACK)

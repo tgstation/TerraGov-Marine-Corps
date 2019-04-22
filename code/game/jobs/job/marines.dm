@@ -6,14 +6,14 @@
 	faction = "Marine"
 
 
-/datum/job/marine/after_spawn(mob/living/L, mob/M, latejoin = FALSE)
+/datum/job/marine/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
-	L.hud_set_squad()
-	L.nutrition = rand(60,250)
-	if(!L.mind?.assigned_squad)
+	C.hud_set_squad()
+	C.nutrition = rand(60,250)
+	if(!C.mind?.assigned_squad)
 		return
-	var/datum/squad/S = L.mind.assigned_squad
-	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[squad_colors[S.color]]>[lowertext(S.name)] squad</font></b>.
+	var/datum/squad/S = C.mind.assigned_squad
+	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[S.color]>[lowertext(S.name)] squad</font></b>.
 Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."})
 
 
@@ -29,7 +29,6 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	outfit = /datum/outfit/job/marine/standard
 	total_positions = -1
-	spawn_positions = -1
 
 
 /datum/job/marine/standard/radio_help_message(mob/M)
@@ -51,7 +50,6 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	title = "Squad Engineer"
 	paygrade = "E3"
 	comm_title = "Eng"
-	spawn_positions = 12
 	total_positions = 12
 	flag = SQUAD_ENGINEER
 	prefflag = PREF_JOB_SQENGINEER
@@ -81,7 +79,6 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	title = "Squad Corpsman"
 	paygrade = "Corp"
 	comm_title = "Med"
-	spawn_positions = 16
 	total_positions = 16
 	flag = SQUAD_CORPSMAN
 	prefflag = PREF_JOB_SQCORPSMAN
@@ -113,7 +110,6 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	comm_title = "SGnr"
 	flag = SQUAD_SMARTGUNNER
 	prefflag = PREF_JOB_SQSMARTGUNNER
-	spawn_positions = 4
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
@@ -142,7 +138,6 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	comm_title = "Spec"
 	flag = SQUAD_SPECIALIST
 	prefflag = PREF_JOB_SQSPECIALIST
-	spawn_positions = 4
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
@@ -173,7 +168,6 @@ You can serve a variety of roles, so choose carefully."})
 	comm_title = "SL"
 	flag = SQUAD_LEADER
 	prefflag = PREF_JOB_SQLEADER
-	spawn_positions = 4
 	total_positions = 4
 	supervisors = "the acting field commander"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)

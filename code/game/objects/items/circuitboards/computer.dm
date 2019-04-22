@@ -245,7 +245,7 @@
 
 
 /obj/item/circuitboard/computer/supplycomp/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I,/obj/item/device/multitool))
+	if(istype(I,/obj/item/multitool))
 		var/catastasis = src.contraband_enabled
 		var/opposite_catastasis
 		if(catastasis)
@@ -283,7 +283,7 @@
 			to_chat(user, "<span class='notice'>You [locked ? "" : "un"]lock the circuit controls.</span>")
 		else
 			to_chat(user, "<span class='warning'>Access denied.</span>")
-	else if(istype(I,/obj/item/device/multitool))
+	else if(istype(I,/obj/item/multitool))
 		if(locked)
 			to_chat(user, "<span class='warning'>Circuit controls are locked.</span>")
 			return

@@ -77,7 +77,7 @@
 	icon_state = "weldtank"
 	list_reagents = list("fuel" = 1000)
 	var/modded = FALSE
-	var/obj/item/device/assembly_holder/rig = null
+	var/obj/item/assembly_holder/rig = null
 	var/exploding = FALSE
 
 
@@ -111,15 +111,15 @@
 			log_game("[key_name(usr)] opened fueltank at [AREACOORD(loc)], leaking fuel.")
 			leak_fuel(amount_per_transfer_from_this)
 		return
-	if(istype(I,/obj/item/device/assembly_holder))
+	if(istype(I,/obj/item/assembly_holder))
 		if(rig)
 			to_chat(user, "<span class='warning'>There is another device in the way.</span>")
 			return
 		user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_HOSTILE) && !rig)
 			user.visible_message("<span class='notice'>[user] rigs [I] to \the [src].</span>", "<span class='notice'>You rig [I] to \the [src].</span>")
-			var/obj/item/device/assembly_holder/H = I
-			if (istype(H.a_left,/obj/item/device/assembly/igniter) || istype(H.a_right,/obj/item/device/assembly/igniter))
+			var/obj/item/assembly_holder/H = I
+			if (istype(H.a_left,/obj/item/assembly/igniter) || istype(H.a_right,/obj/item/assembly/igniter))
 				message_admins("[ADMIN_TPMONTY(usr)] rigged fueltank at [ADMIN_VERBOSEJMP(loc)] for explosion.")
 				log_game("[key_name(user)] rigged fueltank at [AREACOORD(loc)] for explosion.")
 			rig = I
@@ -226,6 +226,8 @@
 /obj/structure/reagent_dispensers/wallmounted
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "generic_tank"
+	pixel_x = -16
+	pixel_y = -16
 	anchored = TRUE
 	density = FALSE
 
@@ -235,13 +237,13 @@
 		dir = ndir
 	switch(dir)
 		if(NORTH)
-			pixel_y = -32
+			pixel_y -= 32
 		if(SOUTH)
-			pixel_y = 32
+			pixel_y += 32
 		if(EAST)
-			pixel_x = -32
+			pixel_x -= 32
 		if(WEST)
-			pixel_x = 32
+			pixel_x += 32
 
 /obj/structure/reagent_dispensers/wallmounted/peppertank
 	name = "pepper spray refiller"

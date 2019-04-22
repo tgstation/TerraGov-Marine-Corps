@@ -5,272 +5,329 @@
  * 		Recipe list datum
  */
 
+#define STACK_WEIGHT_STEPS 3 //Currently weight updates in 3 intervals
+
 /*
  * Stacks
  */
-
 /obj/item/stack
+	icon = 'icons/obj/stack_objects.dmi'
 	gender = PLURAL
-	origin_tech = "materials=1"
 	var/list/datum/stack_recipe/recipes
 	var/singular_name
 	var/amount = 1
-	var/max_amount //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
-	var/stack_id //used to determine if two stacks are of the same kind.
+	var/max_amount = 50 //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
+	var/merge_type // This path and its children should merge with this stack, defaults to src.type
+	var/number_of_extra_variants = 0 //Determines whether the item should update it's sprites based on amount.
+	origin_tech = "materials=1"
 
-/obj/item/stack/New(var/loc, var/amount = null)
-	..()
-	if(amount)
-		src.amount = amount
+
+/obj/item/stack/New(loc, new_amount)
+	. = ..()
+	if(new_amount)
+		amount = new_amount
+	while(amount > max_amount)
+		amount -= max_amount
+		new type(loc, max_amount)
+	if(!merge_type)
+		merge_type = type
+	update_weight()
+	update_icon()
+
+
+/obj/item/stack/proc/update_weight()
+	var/percent = round((amount * 100) / max_amount)
+	var/full_w_class = initial(w_class)
+	var/new_w_class
+	switch(percent) //Currently 3 steps as defined by STACK_WEIGHT_STEPS
+		if(0 to 33)
+			new_w_class = CLAMP(full_w_class-2, WEIGHT_CLASS_TINY, full_w_class)
+		if(34 to 66)
+			new_w_class = CLAMP(full_w_class-1, WEIGHT_CLASS_TINY, full_w_class)
+		if(67 to 100)
+			new_w_class = full_w_class
+		else
+			stack_trace("[src] tried to update_weight() with [amount] amount and [max_amount] max_amount.")
+	if(new_w_class != w_class)
+		w_class = new_w_class
+		loc?.recalculate_storage_space() //No need to do icon updates if there are no changes.
+
+
+/obj/item/stack/update_icon()
+	if(!number_of_extra_variants)
+		return
+	var/ratio = round((amount * (number_of_extra_variants + 1)) / max_amount)
+	if(ratio < 1)
+		icon_state = initial(icon_state)
+		return
+	ratio = min(ratio + 1, number_of_extra_variants + 1)
+	icon_state = "[initial(icon_state)]_[ratio]"
 
 
 /obj/item/stack/Destroy()
-	if (usr && usr.interactee == src)
+	if(usr && usr.interactee == src)
 		usr << browse(null, "window=stack")
-	. = ..()
+	return ..()
+
 
 /obj/item/stack/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "There are [amount] [singular_name]\s in the stack.")
 
-/obj/item/stack/attack_self(mob/user as mob)
-	list_recipes(user)
 
-/obj/item/stack/proc/list_recipes(mob/user as mob, recipes_sublist)
+/obj/item/stack/attack_self(mob/user)
+	interact(user)
+
+
+/obj/item/stack/interact(mob/user, sublist)
+	ui_interact(user, sublist)
+
+
+/obj/item/stack/ui_interact(mob/user, recipes_sublist)
+	. = ..()
 	if(!recipes)
 		return
-	if(!src || amount <= 0)
+	if(QDELETED(src) || get_amount() <= 0)
 		user << browse(null, "window=stack")
 	user.set_interaction(src) //for correct work of onclose
 	var/list/recipe_list = recipes
 	if(recipes_sublist && recipe_list[recipes_sublist] && istype(recipe_list[recipes_sublist], /datum/stack_recipe_list))
 		var/datum/stack_recipe_list/srl = recipe_list[recipes_sublist]
 		recipe_list = srl.recipes
-	var/t1 = text("<HTML><HEAD><title>Constructions from []</title></HEAD><body><TT>Amount Left: []<br>", src, src.amount)
-	for(var/i = 1; i <= recipe_list.len, i++)
+	var/t1 = "Amount Left: [get_amount()]<br>"
+	for(var/i in 1 to length(recipe_list))
 		var/E = recipe_list[i]
 		if(isnull(E))
 			t1 += "<hr>"
 			continue
-
 		if(i > 1 && !isnull(recipe_list[i-1]))
 			t1+="<br>"
 
 		if(istype(E, /datum/stack_recipe_list))
 			var/datum/stack_recipe_list/srl = E
-			if(src.amount >= srl.req_amount)
-				t1 += "<a href='?src=\ref[src];sublist=[i]'>[srl.title] ([srl.req_amount] [src.singular_name]\s)</a>"
-			else
-				t1 += "[srl.title] ([srl.req_amount] [src.singular_name]\s)<br>"
+			t1 += "<a href='?src=[REF(src)];sublist=[i]'>[srl.title]</a>"
 
 		if(istype(E, /datum/stack_recipe))
 			var/datum/stack_recipe/R = E
-			var/max_multiplier = round(src.amount / R.req_amount)
+			var/max_multiplier = round(get_amount() / R.req_amount)
 			var/title
-			var/can_build = 1
+			var/can_build = TRUE
 			can_build = can_build && (max_multiplier > 0)
+
 			if(R.res_amount > 1)
 				title += "[R.res_amount]x [R.title]\s"
 			else
 				title += "[R.title]"
-			title+= " ([R.req_amount] [src.singular_name]\s)"
+			title += " ([R.req_amount] [singular_name]\s)"
 			if(can_build)
-				t1 += text("<A href='?src=\ref[src];sublist=[recipes_sublist];make=[i];multiplier=1'>[title]</A>  ")
+				t1 += text("<A href='?src=[REF(src)];sublist=[recipes_sublist];make=[i];multiplier=1'>[title]</A>  ")
 			else
 				t1 += text("[]", title)
 				continue
-			if(R.max_res_amount>1 && max_multiplier > 1)
+			if(R.max_res_amount > 1 && max_multiplier > 1)
 				max_multiplier = min(max_multiplier, round(R.max_res_amount/R.res_amount))
 				t1 += " |"
-				var/list/multipliers = list(5, 10, 25)
-				for (var/n in multipliers)
-					if (max_multiplier>=n)
-						t1 += " <A href='?src=\ref[src];make=[i];multiplier=[n]'>[n*R.res_amount]x</A>"
+				var/list/multipliers = list(5,10,25)
+				for(var/n in multipliers)
+					if(max_multiplier >= n)
+						t1 += " <A href='?src=[REF(src)];make=[i];multiplier=[n]'>[n*R.res_amount]x</A>"
 				if(!(max_multiplier in multipliers))
-					t1 += " <A href='?src=\ref[src];make=[i];multiplier=[max_multiplier]'>[max_multiplier*R.res_amount]x</A>"
+					t1 += " <A href='?src=[REF(src)];make=[i];multiplier=[max_multiplier]'>[max_multiplier*R.res_amount]x</A>"
 
-	t1 += "</TT></body></HTML>"
-	user << browse(t1, "window=stack")
+	var/datum/browser/popup = new(user, "stack", name, 400, 400)
+	popup.set_content(t1)
+	popup.open(FALSE)
 	onclose(user, "stack")
-	return
+
 
 /obj/item/stack/Topic(href, href_list)
-	..()
-	if((usr.restrained() || usr.stat || usr.get_active_held_item() != src))
+	. = ..()
+	if(usr.incapacitated() || usr.get_active_held_item() != src)
 		return
-
 	if(href_list["sublist"] && !href_list["make"])
-		list_recipes(usr, text2num(href_list["sublist"]))
-
+		interact(usr, text2num(href_list["sublist"]))
 	if(href_list["make"])
-		if(amount < 1) qdel(src) //Never should happen
-
+		if(zero_amount())
+			return
 		var/list/recipes_list = recipes
 		if(href_list["sublist"])
 			var/datum/stack_recipe_list/srl = recipes_list[text2num(href_list["sublist"])]
 			recipes_list = srl.recipes
 		var/datum/stack_recipe/R = recipes_list[text2num(href_list["make"])]
 		var/multiplier = text2num(href_list["multiplier"])
-		if(!multiplier || (multiplier <= 0)) //href exploit protection
+		if(multiplier <= 0) //href protection
 			return
-		if(amount < R.req_amount * multiplier)
-			if(R.req_amount * multiplier > 1)
-				to_chat(usr, "<span class='warning'>You need more [name] to build \the [R.req_amount*multiplier] [R.title]\s!</span>")
+		if(!building_checks(R, multiplier))
+			return
+		if(usr.action_busy)
+			return
+		var/building_time = R.time
+		if(R.skill_req && usr.mind?.cm_skills?.construction < R.skill_req)
+			building_time += R.time * ( R.skill_req - usr.mind.cm_skills.construction ) * 0.5 // +50% time each skill point lacking.
+		if(building_time)
+			if(building_time > R.time)
+				usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to build \a [R.title].</span>",
+				"<span class='notice'>You fumble around figuring out how to build \a [R.title].</span>")
 			else
-				to_chat(usr, "<span class='warning'>You need more [name] to build \the [R.title]!</span>")
-			return
+				usr.visible_message("<span class='notice'>[usr] starts building \a [R.title].</span>",
+				"<span class='notice'>You start building \a [R.title]...</span>")
+			if(!do_after(usr, building_time, TRUE, 5, BUSY_ICON_BUILD))
+				return
+			if(!building_checks(R, multiplier))
+				return
 
-		if(istype(get_area(usr.loc), /area/sulaco/hangar))  //HANGAR BUILDING
-			to_chat(usr, "<span class='warning'>No. This area is needed for the dropships and personnel.</span>")
-			return
-		//1 is absolute one per tile, 2 is directional one per tile. Hacky way to get around it without adding more vars
-		if(R.one_per_turf)
-			if(R.one_per_turf == 1 && (locate(R.result_type) in usr.loc))
-				to_chat(usr, "<span class='warning'>There is already another [R.title] here!</span>")
+		var/obj/O
+		if(R.max_res_amount > 1) //Is it a stack?
+			O = new R.result_type(get_turf(usr), R.res_amount * multiplier)
+		else if(ispath(R.result_type, /turf))
+			var/turf/T = get_turf(usr)
+			if(!isturf(T))
 				return
-			for(var/obj/O in usr.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
-				if(O.density && !istype(O, R.result_type) && !((O.flags_atom & ON_BORDER) && R.one_per_turf == 2)) //Note: If no dense items, or if dense item, both it and result must be border tiles
-					to_chat(usr, "<span class='warning'>You need a clear, open area to build \a [R.title]!</span>")
-					return
-				if(R.one_per_turf == 2 && (O.flags_atom & ON_BORDER) && O.dir == usr.dir) //We check overlapping dir here. Doesn't have to be the same type
-					to_chat(usr, "<span class='warning'>There is already \a [O.name] in this direction!</span>")
-					return
-		if(R.on_floor && isopenturf(usr.loc))
-			var/turf/open/OT = usr.loc
-			if(!OT.allow_construction)
-				to_chat(usr, "<span class='warning'>\The [R.title] must be constructed on a proper surface!</span>")
-				return
-		if(R.time)
-			if(usr.action_busy) return
-			if(R.skill_req)
-				if(ishuman(usr) && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.construction < R.skill_req)
-					usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to build with [src].</span>",
-					"<span class='notice'>You fumble around figuring out how to build with [src].</span>")
-					var/fumbling_time = R.time * ( R.skill_req - usr.mind.cm_skills.construction )
-					if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-			usr.visible_message("<span class='notice'>[usr] starts assembling \a [R.title].</span>",
-			"<span class='notice'>You start assembling \a [R.title].</span>")
-			if(!do_after(usr, R.time, TRUE, 5, BUSY_ICON_BUILD))
-				return
-		//We want to check this again for girder stacking
-		if(R.one_per_turf == 1 && (locate(R.result_type) in usr.loc))
-			to_chat(usr, "<span class='warning'>There is already another [R.title] here!</span>")
-			return
-		for(var/obj/O in usr.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
-			if(O.density && !istype(O, R.result_type) && !((O.flags_atom & ON_BORDER) && R.one_per_turf == 2))
-				to_chat(usr, "<span class='warning'>You need a clear, open area to build \a [R.title]!</span>")
-				return
-			if(R.one_per_turf == 2 && (O.flags_atom & ON_BORDER) && O.dir == usr.dir)
-				to_chat(usr, "<span class='warning'>There is already \a [O.name] in this direction!</span>")
-				return
-		if(amount < R.req_amount * multiplier)
-			return
-		var/atom/O = new R.result_type(usr.loc)
-		usr.visible_message("<span class='notice'>[usr] assembles \a [O].</span>",
-		"<span class='notice'>You assemble \a [O].</span>")
-		O.setDir(usr.dir)
-		if(R.max_res_amount > 1)
-			var/obj/item/stack/new_item = O
-			new_item.amount = R.res_amount * multiplier
-			//new_item.add_to_stacks(usr)
-		amount -= R.req_amount * multiplier
-		if(amount <= 0)
-			var/oldsrc = src
-			src = null //dont kill proc after qdel()
-			usr.dropItemToGround(oldsrc)
-			qdel(oldsrc)
-			if(istype(O,/obj/item) && istype(usr,/mob/living/carbon))
-				usr.put_in_hands(O)
+			T.PlaceOnTop(R.result_type)
+		else
+			O = new R.result_type(get_turf(usr))
+		if(O)
+			O.setDir(usr.dir)
+		use(R.req_amount * multiplier)
+
+		if(QDELETED(O))
+			return //It's a stack and has already been merged
+
+		if(isitem(O))
+			usr.put_in_hands(O)
 		O.add_fingerprint(usr)
+
 		//BubbleWrap - so newly formed boxes are empty
 		if(istype(O, /obj/item/storage))
-			for (var/obj/item/I in O)
+			for(var/obj/item/I in O)
 				qdel(I)
 		//BubbleWrap END
-	if(src && usr.interactee == src) //do not reopen closed window
-		spawn()
-			interact(usr)
-			return
-	return
+
+
+/obj/item/stack/proc/building_checks(datum/stack_recipe/R, multiplier)
+	if (get_amount() < R.req_amount*multiplier)
+		if (R.req_amount*multiplier>1)
+			to_chat(usr, "<span class='warning'>You haven't got enough [src] to build \the [R.req_amount*multiplier] [R.title]\s!</span>")
+		else
+			to_chat(usr, "<span class='warning'>You haven't got enough [src] to build \the [R.title]!</span>")
+		return FALSE
+	var/turf/T = get_turf(usr)
+
+	if(R.one_per_turf && (locate(R.result_type) in T))
+		to_chat(usr, "<span class='warning'>There is another [R.title] here!</span>")
+		return FALSE
+	if(R.on_floor)
+		if(!isfloorturf(T))
+			to_chat(usr, "<span class='warning'>\The [R.title] must be constructed on the floor!</span>")
+			return FALSE
+		for(var/obj/AM in T)
+			if(istype(AM,/obj/structure/grille))
+				continue
+			if(istype(AM,/obj/structure/table))
+				continue
+			if(istype(AM,/obj/structure/window))
+				var/obj/structure/window/W = AM
+				if(!W.is_full_window() && W.dir != usr.dir)
+					continue
+			if(AM.density)
+				to_chat(usr, "<span class='warning'>Theres a [AM.name] here. You cant make a [R.title] here!</span>")
+				return FALSE
+	return TRUE
+
 
 /obj/item/stack/proc/use(used)
 	if(used > amount) //If it's larger than what we have, no go.
 		return FALSE
 	amount -= used
-	if(amount <= 0)
-		if(usr && loc == usr)
-			usr.temporarilyRemoveItemFromInventory(src)
-		qdel(src)
+	if(zero_amount())
+		return TRUE
 	update_icon()
+	update_weight()
 	return TRUE
 
-/obj/item/stack/proc/add(var/extra)
+
+/obj/item/stack/proc/zero_amount()
+	if(amount < 1)
+		qdel(src)
+		return TRUE
+	return FALSE
+
+
+/obj/item/stack/proc/add(extra)
 	if(amount + extra > max_amount)
 		return FALSE
-	else
-		amount += extra
+	amount += extra
+	update_icon()
+	update_weight()
 	return TRUE
+
 
 /obj/item/stack/proc/get_amount()
 	return amount
 
+
 /obj/item/stack/proc/add_to_stacks(mob/user)
-	var/obj/item/stack/oldsrc = src
-	src = null
-	for (var/obj/item/stack/item in user.loc)
-		if (item==oldsrc)
+	for(var/obj/item/stack/S in get_turf(user))
+		if(S.merge_type != merge_type)
 			continue
-		if (!istype(item, oldsrc.type))
-			continue
-		if (item.amount>=item.max_amount)
-			continue
-		oldsrc.attackby(item, user)
-		to_chat(user, "You add new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s.")
-		if(!oldsrc)
-			break
+		merge(S)
+		if(QDELETED(src))
+			return
 
-/obj/item/stack/attack_hand(mob/user as mob)
-	if (user.get_inactive_held_item() == src)
-		var/obj/item/stack/F = new src.type(user, 1)
-		F.copy_evidences(src)
-		user.put_in_hands(F)
-		src.add_fingerprint(user)
-		F.add_fingerprint(user)
-		use(1)
-		if (src && usr.interactee==src)
-			spawn(0) src.interact(usr)
-	else
-		..()
-	return
 
-/obj/item/stack/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if (istype(W, /obj/item/stack))
-		var/obj/item/stack/S = W
-		if(S.stack_id == stack_id) //same stack type
-			if (S.amount >= max_amount)
-				return 1
-			var/to_transfer
-			if (user.get_inactive_held_item()==src)
-				to_transfer = 1
-			else
-				to_transfer = min(src.amount, S.max_amount-S.amount)
-			S.add(to_transfer)
-			if (S && usr.interactee==S)
-				spawn(0) S.interact(usr)
-			src.use(to_transfer)
-			if (src && usr.interactee==src)
-				spawn(0) src.interact(usr)
-			return TRUE
+/obj/item/stack/proc/merge(obj/item/stack/S) //Merge src into S, as much as possible
+	if(QDELETED(S) || QDELETED(src) || S == src) //amusingly this can cause a stack to consume itself, let's not allow that.
+		return
+	var/max_transfer = loc.max_stack_merging(S) //We don't want to bypass the max size the container allows.
+	var/transfer = min(get_amount(), (max_transfer ? max_transfer : S.max_amount) - S.amount)
+	transfer_fingerprints_to(S)
+	S.add(transfer)
+	use(transfer)
+	return transfer
 
+
+/obj/item/stack/Crossed(obj/item/stack/S)
+	if(istype(S, merge_type) && !S.throwing)
+		merge(S)
 	return ..()
 
-/obj/item/stack/proc/copy_evidences(obj/item/stack/from as obj)
-	src.blood_DNA = from.blood_DNA
-	src.fingerprints  = from.fingerprints
-	src.fingerprintshidden  = from.fingerprintshidden
-	src.fingerprintslast  = from.fingerprintslast
-	//TODO bloody overlay
+
+//ATTACK HAND IGNORING PARENT RETURN VALUE
+/obj/item/stack/attack_hand(mob/user)
+	add_fingerprint(user)
+	if(user.get_inactive_held_item() == src)
+		return change_stack(user, 1)
+	return ..()
+
+
+/obj/item/stack/AltClick(mob/user)
+	if(!user.canUseTopic(src))
+		return ..() //Alt click on turf if not human or too far away.
+	var/stackmaterial = round(input(user,"How many sheets do you wish to take out of this stack? (Maximum  [get_amount()])") as null|num)
+	stackmaterial = min(get_amount(), stackmaterial) //The amount could have changed since the input started.
+	if(stackmaterial < 1 || !user.canUseTopic(src)) //In case we were transformed or moved away since the input started.
+		return
+	change_stack(user, stackmaterial)
+	to_chat(user, "<span class='notice'>You take [stackmaterial] sheets out of the stack</span>")
+
+
+/obj/item/stack/proc/change_stack(mob/user, new_amount)
+	if(amount < 1 || amount < new_amount)
+		stack_trace("[src] tried to change_stack() by [new_amount] amount for [user] user, while having [amount] amount itself.")
+		return
+	var/obj/item/stack/S = new type(user, new_amount)
+	transfer_fingerprints_to(S)
+	use(new_amount)
+	user.put_in_hands(S)
+
+
+/obj/item/stack/attackby(obj/item/I, mob/user)
+	if(istype(I, merge_type))
+		var/obj/item/stack/S = I
+		if(merge(S))
+			to_chat(user, "<span class='notice'>Your [S.name] stack now contains [S.get_amount()] [S.singular_name]\s.</span>")
+		return
+	return ..()
 
 /*
  * Recipe datum
@@ -282,11 +339,12 @@
 	var/res_amount = 1
 	var/max_res_amount = 1
 	var/time = 0
-	var/one_per_turf = 0
-	var/on_floor = 0
-	var/skill_req = 0 //whether only people with sufficient construction skill can build this.
+	var/one_per_turf = FALSE
+	var/on_floor = FALSE
+	var/skill_req = FALSE //whether only people with sufficient construction skill can build this.
 
-/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, one_per_turf = 0, on_floor = 0, skill_req = 0)
+
+/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, one_per_turf = FALSE, on_floor = FALSE, skill_req = FALSE)
 	src.title = title
 	src.result_type = result_type
 	src.req_amount = req_amount
@@ -302,9 +360,10 @@
  */
 /datum/stack_recipe_list
 	var/title = "ERROR"
-	var/list/recipes = null
+	var/list/recipes
 	var/req_amount = 1
-	New(title, recipes, req_amount = 1)
-		src.title = title
-		src.recipes = recipes
-		src.req_amount = req_amount
+
+/datum/stack_recipe_list/New(title, recipes, req_amount = 1)
+	src.title = title
+	src.recipes = recipes
+	src.req_amount = req_amount

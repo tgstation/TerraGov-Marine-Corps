@@ -29,7 +29,7 @@
 	var/targetmarker_primed = FALSE
 	var/mob/living/carbon/laser_target = null
 	var/image/LT = null
-	var/obj/item/device/binoculars/tactical/integrated_laze = null
+	var/obj/item/binoculars/tactical/integrated_laze = null
 	attachable_allowed = list(
                         /obj/item/attachable/bipod,
                         /obj/item/attachable/lasersight,
@@ -356,7 +356,7 @@
 	to_chat(user, "[current_mag?.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]")
 	to_chat(user, "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"].")
 
-/obj/item/weapon/gun/smartgun/unique_action(mob/user)
+/obj/item/weapon/gun/smartgun/unique_action(mob/living/carbon/user)
 	var/obj/item/smartgun_powerpack/power_pack = user.back
 	if(istype(power_pack))
 		power_pack.attack_self(user)
@@ -375,7 +375,7 @@
 //	if(active_attachable) active_attachable = null
 	return ready_in_chamber()
 
-/obj/item/weapon/gun/smartgun/reload_into_chamber(mob/user)
+/obj/item/weapon/gun/smartgun/reload_into_chamber(mob/living/carbon/user)
 	var/obj/item/smartgun_powerpack/power_pack = user.back
 	if(!istype(power_pack))
 		return current_mag.current_rounds
@@ -824,7 +824,7 @@
 /obj/item/weapon/gun/launcher/rocket/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
 
 	var/backblast_loc = get_turf(get_step(user.loc, turn(user.dir, 180)))
-	smoke.set_up(1, 0, backblast_loc, turn(user.dir, 180))
+	smoke.set_up(1, backblast_loc)
 	smoke.start()
 	for(var/mob/living/carbon/C in backblast_loc)
 		if(!C.lying) //Have to be standing up to get the fun stuff

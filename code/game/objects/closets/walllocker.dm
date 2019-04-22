@@ -3,7 +3,8 @@
 	desc = "A wall mounted storage locker."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "walllocker"
-	bound_height = 32
+	pixel_x = -16
+	pixel_y = -16
 	density = FALSE
 	anchored = TRUE
 	icon_closed = "walllocker"
@@ -19,13 +20,13 @@
 		dir = ndir
 	switch(dir)
 		if(NORTH)
-			pixel_y = -32
+			pixel_y -= 32
 		if(SOUTH)
-			pixel_y = 32
+			pixel_y += 32
 		if(EAST)
-			pixel_x = -32
+			pixel_x -= 32
 		if(WEST)
-			pixel_x = 32
+			pixel_x += 32
 
 /obj/structure/closet/walllocker/emerglocker //wall mounted emergency closet
 	name = "emergency locker"
@@ -59,7 +60,7 @@
 	sleep(2)
 	new /obj/item/clothing/suit/fire/firefighter(src)
 	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/device/flashlight(src)
+	new /obj/item/flashlight(src)
 	new /obj/item/tank/oxygen/red(src)
 	new /obj/item/tool/extinguisher(src)
 	new /obj/item/clothing/head/hardhat/red(src)
@@ -87,7 +88,8 @@
 	name = "secure wall locker"
 	desc = "It's an immobile card-locked storage unit."
 	icon = 'icons/obj/wallframes.dmi'
-	bound_height = 32
+	pixel_x = -16
+	pixel_y = -16
 	icon_state = "sec_locker1"
 	icon_closed = "secure"
 	icon_locked = "sec_locker1"
@@ -107,14 +109,14 @@
 	if(ndir)
 		dir = ndir
 	switch(dir)
-		if(SOUTH)
-			pixel_y = 32
 		if(NORTH)
-			pixel_y = -32
+			pixel_y -= 32
+		if(SOUTH)
+			pixel_y += 32
 		if(EAST)
-			pixel_x = -32
+			pixel_x -= 32
 		if(WEST)
-			pixel_x = 32
+			pixel_x += 32
 
 /obj/structure/closet/secure_closet/walllocker/medical
 	name = "first aid closet"
@@ -140,11 +142,15 @@
 	new /obj/item/reagent_container/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/oxycodone(src)
 
+///////////PERSONAL SECURE WALL LOCKER///////////////
+
 /obj/structure/closet/secure_closet/personal/walllocker // different path.
 	name = "personal wall locker"
 	desc = "It's a secure wall locker for personnel. The first card swiped gains control."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "sec_locker1"
+	pixel_x = -16
+	pixel_y = -16
 	icon_closed = "secure"
 	icon_locked = "sec_locker1"
 	icon_opened = "sec_locker_opened"
@@ -163,11 +169,11 @@
 	if(ndir)
 		dir = ndir
 	switch(dir)
-		if(SOUTH)
-			pixel_y = 32
 		if(NORTH)
-			pixel_y = -32
+			pixel_y -= 32
+		if(SOUTH)
+			pixel_y += 32
 		if(EAST)
-			pixel_x = -32
+			pixel_x -= 32
 		if(WEST)
-			pixel_x = 32
+			pixel_x += 32

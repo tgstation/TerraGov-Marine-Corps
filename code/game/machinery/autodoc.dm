@@ -162,8 +162,6 @@
 	A.organ_ref = organ_ref
 	return A
 
-/obj/machinery/autodoc/allow_drop()
-	return 0
 
 /proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 	if(!ishuman(M))
@@ -752,8 +750,8 @@
 		qdel(W)
 		return
 
-	if(istype(W, /obj/item/device/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
-		var/obj/item/device/healthanalyzer/J = W
+	if(istype(W, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
+		var/obj/item/healthanalyzer/J = W
 		J.attack(occupant, user)
 		return
 
