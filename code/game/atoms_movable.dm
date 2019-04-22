@@ -205,10 +205,6 @@
 	src.thrower = thrower
 	src.throw_source = get_turf(src)	//store the origin turf
 
-	if(usr)
-		if(HULK in usr.mutations)
-			src.throwing = 2 // really strong throw!
-
 	var/dist_x = abs(target.x - src.x)
 	var/dist_y = abs(target.y - src.y)
 
@@ -432,7 +428,6 @@
 /atom/movable/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	. -= "Jump to"
 	.["Follow"] = "?_src_=holder;[HrefToken()];observefollow=[REF(src)]"
 	.["Get"] = "?_src_=vars;[HrefToken()];getatom=[REF(src)]"
 	.["Send"] = "?_src_=vars;[HrefToken()];sendatom=[REF(src)]"

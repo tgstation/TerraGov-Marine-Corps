@@ -9,7 +9,7 @@
 	data = new/list("blood_DNA"=null,"blood_type"=null,"blood_colour"= "#A10808","viruses"=null,"resistances"=null, "trace_chem"=null)
 
 
-/datum/reagent/blood/reaction_mob(mob/M, method=TOUCH, volume)
+/datum/reagent/blood/reaction_mob(mob/living/carbon/M, method=TOUCH, volume)
 	var/datum/reagent/blood/self = src
 	src = null
 	if(self.data && self.data["viruses"])
@@ -73,7 +73,7 @@
 	taste_description = "slime"
 	color = "#C81040" // rgb: 200, 16, 64
 
-/datum/reagent/vaccine/reaction_mob(mob/M, method=TOUCH, volume)
+/datum/reagent/vaccine/reaction_mob(mob/living/carbon/M, method = TOUCH, volume)
 	var/datum/reagent/vaccine/self = src
 	src = null
 	if(self.data && method in list (INGEST, INJECT))
@@ -672,7 +672,7 @@
 	reagent_state = LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
 
-/datum/reagent/nanites/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
+/datum/reagent/nanites/reaction_mob(mob/living/carbon/M, method = TOUCH, volume)
 	if(method in list(INJECT, INGEST) || prob(10))
 		M.contract_disease(new /datum/disease/robotic_transformation(0),1)
 
@@ -684,7 +684,7 @@
 	color = "#535E66" // rgb: 83, 94, 102
 	taste_description = "sludge"
 
-/datum/reagent/xenomicrobes/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
+/datum/reagent/xenomicrobes/reaction_mob(mob/living/carbon/M, method = TOUCH, volume)
 	if(method in list(INJECT, INGEST) || prob(10))
 		M.contract_disease(new /datum/disease/xeno_transformation(0),1)
 
@@ -744,7 +744,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "bitterness"
 
-/datum/reagent/lipozine/on_mob_life(mob/living/M)
+/datum/reagent/lipozine/on_mob_life(mob/living/carbon/M)
 	if(M.nutrition < 50)
 		M.overeatduration = 0
 		M.nutrition -= 10
@@ -753,36 +753,13 @@
 	else
 		M.adjustToxLoss(1)
 
-/datum/reagent/consumable/lipozine/overdose_process(mob/living/M, alien)
+/datum/reagent/consumable/lipozine/overdose_process(mob/living/carbon/M, alien)
 	M.apply_damages(0, 1, 1)
 	if(M.nutrition < 100)
 		M.nutrition -= 10
 
 /datum/reagent/consumable/lipozine/overdose_crit_process(mob/living/M, alien)
 	M.apply_damages(1, 3, 1)
-
-/datum/reagent/blackgoo
-	name = "Black goo"
-	id = "blackgoo"
-	description = "A strange dark liquid of unknown origin and effect."
-	reagent_state = LIQUID
-	color = "#222222"
-	custom_metabolism = INFINITY //disappears immediately
-	taste_description = "mud"
-
-/datum/reagent/blackgoo/reaction_mob(mob/M, method=TOUCH, reac_volume)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.species.count_human)
-			H.contract_disease(new /datum/disease/black_goo)
-
-/datum/reagent/blackgoo/reaction_turf(turf/T, volume)
-	if(!istype(T))
-		return
-	if(volume < 3)
-		return
-	if(!(locate(/obj/effect/decal/cleanable/blackgoo) in T))
-		new /obj/effect/decal/cleanable/blackgoo(T)
 
 /datum/reagent/xeno_neurotoxin
 	name = "Neurotoxin"

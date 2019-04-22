@@ -69,7 +69,7 @@
 	color = "#973800" // rgb: 151, 56, 0
 	taste_description = "carrots"
 
-/datum/reagent/consumable/drink/carrotjuice/on_mob_life(mob/living/M)
+/datum/reagent/consumable/drink/carrotjuice/on_mob_life(mob/living/carbon/M)
 	M.adjust_blurriness(-1)
 	M.adjust_blindness(-1)
 	switch(current_cycle)

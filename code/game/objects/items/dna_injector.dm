@@ -63,9 +63,11 @@
 	else
 		return buf.dna.SetUIValue(real_block,val)
 
-/obj/item/dnainjector/proc/inject(mob/M as mob, mob/user as mob)
-	if(istype(M,/mob/living))
-		M.radiation += rand(5,20)
+/obj/item/dnainjector/proc/inject(mob/living/carbon/M, mob/user)
+	if(!istype(M))
+		return
+	
+	M.radiation += rand(5,20)
 
 	if (!(NOCLONE in M.mutations)) // prevents drained people from having their DNA changed
 		if (buf.types & DNA2_BUF_UI)

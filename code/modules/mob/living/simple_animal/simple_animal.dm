@@ -85,14 +85,15 @@
 	. = ..()
 	icon_state = icon_living
 	density = initial(density)
-	SetResting(FALSE)
+	resting = FALSE
 
 /mob/living/simple_animal/Life()
 	..()
 
 	//Health
 	if(stat == DEAD)
-		return 0
+		SSmobs.stop_processing(src)
+		return FALSE
 
 	//Movement
 	if(!client && !stop_automated_movement && wander && !anchored)
@@ -219,7 +220,7 @@
 	health = 0
 	icon_state = icon_dead
 	density = FALSE
-	SetResting(TRUE)
+	resting = TRUE
 
 
 /mob/living/simple_animal/gib()

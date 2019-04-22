@@ -961,7 +961,6 @@ and you're good to go.
 			gun_accuracy_mult += skill_accuracy * CONFIG_GET(number/combat_define/low_hit_accuracy_mult) // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
 
 	if(user) //The gun only messages when fired by a user.
-		gun_scatter += user.scatter_modifier //Any modifiers to scatter
 		projectile_to_fire.firer = user
 		if(iscarbon(user))
 			var/mob/living/carbon/C = user

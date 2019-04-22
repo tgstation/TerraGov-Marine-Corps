@@ -27,7 +27,7 @@
 /datum/dna/gene/disability/can_activate(var/mob/M,var/flags)
 	return 1 // Always set!
 
-/datum/dna/gene/disability/activate(var/mob/M, var/connected, var/flags)
+/datum/dna/gene/disability/activate(mob/living/carbon/M, connected, flags)
 	if(mutation && !(mutation in M.mutations))
 		M.mutations.Add(mutation)
 	if(disability)
@@ -37,7 +37,7 @@
 	if(activation_message)
 		to_chat(M, "<span class='warning'>[activation_message]</span>")
 
-/datum/dna/gene/disability/deactivate(var/mob/M, var/connected, var/flags)
+/datum/dna/gene/disability/deactivate(var/mob/living/carbon/M, connected, flags)
 	if(mutation && (mutation in M.mutations))
 		M.mutations.Remove(mutation)
 	if(disability)
