@@ -37,7 +37,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/sticky, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 3 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
@@ -79,7 +79,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade1, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/sticky, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 4
@@ -117,7 +117,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/sticky, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 4.7
@@ -155,11 +155,10 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade3, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/sticky, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 5
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 4
-	
