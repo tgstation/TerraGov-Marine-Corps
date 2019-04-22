@@ -745,7 +745,7 @@ table tr:first-child th:first-child { border: none;}
 				update_icon()
 				return
 
-			else if(panel_open && (ismultitool(I) || iswirecutter(I)))
+			else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (ismultitool(I) || iswirecutter(I)))
 				return attack_hand(user)
 
 			else if(istype(I, /obj/item/card/id))// trying to unlock the interface with an ID card

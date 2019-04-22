@@ -504,7 +504,7 @@
  */
 
 /obj/item/storage/firstaid/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/robot_parts/l_arm) || !istype(I, /obj/item/robot_parts/r_arm))
+	if(!istype(I, /obj/item/robot_parts/l_arm) && !istype(I, /obj/item/robot_parts/r_arm))
 		return ..()
 
 	//Making a medibot!

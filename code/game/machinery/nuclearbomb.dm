@@ -60,7 +60,7 @@ var/bomb_set
 			flick("nuclearbombc", src)
 
 	else if(iswirecutter(I) || ismultitool(I))
-		if(!opened)
+		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			return
 
 		nukehack_win(user)
@@ -115,20 +115,11 @@ var/bomb_set
 				return
 
 			var/obj/item/tool/weldingtool/WT = I
-			if(!WT.isOn()) 
-				return
-
-			if(WT.get_fuel() < 5) //Uses up 5 fuel.
-				to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
-				return
 
 			user.visible_message("<span class='notice'>[user] starts cutting apart the anchoring system sealant on [src].</span>",
 			"<span class='notice'>You start cutting apart the anchoring system's sealant with [I].</span>")
 
-			if(!do_after(user, 40, TRUE, 5, BUSY_ICON_GENERIC))
-				return
-
-			if(!src || !user || !WT.remove_fuel(5, user)) 
+			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(5, user))
 				return
 
 			user.visible_message("<span class='notice'>[user] cuts apart the anchoring system sealant on [src].</span>",
@@ -155,7 +146,7 @@ var/bomb_set
 			user.visible_message("<span class='notice'>[user] begins lifting [src] off of the anchors.",
 			"<span class='notice'>You begin lifting the device off the anchors...")
 			
-			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(5, user))
+			if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 				return
 
 			user.visible_message("<span class='notice'>[user] crowbars [src] off of the anchors. It can now be moved.",

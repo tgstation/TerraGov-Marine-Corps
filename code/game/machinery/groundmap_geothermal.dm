@@ -130,8 +130,7 @@
 /obj/machinery/power/geothermal/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(iswelder(I))
-		if(buildstate != GEOTHERMAL_HEAVY_DAMAGE && is_on)
-			return
+		var/obj/item/tool/weldingtool/WT = I
 		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
 			"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
@@ -139,7 +138,6 @@
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
 				return
 
-		var/obj/item/tool/weldingtool/WT = I
 		if(!WT.remove_fuel(1, user))
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
@@ -201,7 +199,6 @@
 		"<span class='notice'>You repair [src]'s tubing and plating.</span>")
 		update_icon()
 		return TRUE
->>>>>>> First batch of /attackby( changes
 
 /obj/machinery/power/geothermal/bigred //used on big red
 	name = "\improper Reactor Turbine"
