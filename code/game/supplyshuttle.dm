@@ -270,7 +270,6 @@ var/list/mechtoys = list(
 			for(var/typepath in contains)
 				if(!typepath)	continue
 				var/atom/B2 = new typepath(A)
-				if(SP.amount && B2:amount) B2:amount = SP.amount
 				slip.info += "<li>[B2.name]</li>" //add the item to the manifest
 
 			//manifest finalisation

@@ -1,6 +1,4 @@
-/mob/living/Life()
-	. = ..()
-
+/mob/living/proc/Life()
 	if(stat != DEAD)
 
 		handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
@@ -24,7 +22,6 @@
 	handle_stuttering()
 	handle_slurring()
 	handle_silent()
-	handle_disabilities()
 
 /mob/living/proc/handle_stunned()
 	if(stunned)
@@ -60,22 +57,6 @@
 		slurring = max(slurring-1, 0)
 	return slurring
 
-/mob/living/proc/handle_disabilities()
-	handle_impaired_vision()
-	handle_impaired_hearing()
-
-/mob/living/proc/handle_impaired_vision()
-	//Eyes
-	if(eye_blind)
-		adjust_blindness(-1)
-	if(eye_blurry)			//blurry eyes heal slowly
-		adjust_blurriness(-1)
-
-
-/mob/living/proc/handle_impaired_hearing()
-	//Ears
-	if(ear_damage < 100)
-		adjustEarDamage(-0.05, -1)	// having ear damage impairs the recovery of ear_deaf
 
 /mob/living/proc/handle_regular_hud_updates()
 	if(!client)
@@ -99,6 +80,7 @@
 	. = ..()
 	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
 	GLOB.mob_living_list += src
+	START_PROCESSING(SSmobs, src)
 
 /mob/living/Destroy()
 	if(attack_icon)
@@ -106,6 +88,7 @@
 		attack_icon = null
 	GLOB.mob_living_list -= src
 	GLOB.offered_mob_list -= src
+	STOP_PROCESSING(SSmobs, src)
 	return ..()
 
 
@@ -491,7 +474,7 @@
 /mob/proc/flash_eyes()
 	return
 
-/mob/living/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/living/carbon/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
 	if( bypass_checks || (get_eye_protection() < intensity && !(disabilities & BLIND)) )
 		overlay_fullscreen_timer(40, 20, "flash", type)
 		return TRUE
@@ -611,22 +594,6 @@ below 100 is not dizzy
 		A.update_button_icon()
 
 
-/mob/living/proc/equip_preference_gear(client/C)
-	if(!C?.prefs || !istype(back, /obj/item/storage/backpack))
-		return
-
-	var/datum/preferences/P = C.prefs
-	var/list/gear = P.gear
-
-	if(!length(gear))
-		return
-
-	for(var/i in GLOB.gear_datums)
-		var/datum/gear/G = GLOB.gear_datums[i]
-		if(!G || !gear.Find(i))
-			continue
-		equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
-
 /mob/living/proc/vomit()
 	return
 
@@ -648,3 +615,42 @@ below 100 is not dizzy
 	M.mind.transfer_to(src, TRUE)
 	M.fully_replace_character_name(M.real_name, real_name)
 	GLOB.offered_mob_list -= src
+
+
+/mob/living/update_canmove()
+
+	var/laid_down = (stat || knocked_down || knocked_out || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_level >= GRAB_NECK))
+
+	if(laid_down)
+		if(!lying)
+			lying = pick(90, 270)
+	else
+		lying = 0
+	if(buckled)
+		if(buckled.buckle_lying)
+			if(!lying)
+				lying = 90
+		else
+			lying = 0
+
+	canmove =  !(stunned || frozen || laid_down)
+
+	if(lying)
+		density = FALSE
+		drop_l_hand()
+		drop_r_hand()
+	else
+		density = TRUE
+
+	if(lying_prev != lying)
+		update_transform()
+		lying_prev = lying
+
+	if(lying)
+		if(layer == initial(layer)) //to avoid things like hiding larvas.
+			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
+	else
+		if(layer == LYING_MOB_LAYER)
+			layer = initial(layer)
+
+	return canmove

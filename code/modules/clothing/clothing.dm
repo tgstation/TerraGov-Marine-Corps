@@ -171,6 +171,7 @@
 	var/wired = 0
 	var/obj/item/cell/cell = 0
 	var/clipped = 0
+	var/transfer_prints = TRUE
 	flags_armor_protection = HANDS
 	flags_equip_slot = ITEM_SLOT_GLOVES
 	attack_verb = list("challenged")
@@ -218,7 +219,6 @@
 /obj/item/clothing/mask
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi'
-	flags_armor_protection = HEAD
 	flags_equip_slot = ITEM_SLOT_MASK
 	flags_armor_protection = FACE|EYES
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')

@@ -245,8 +245,7 @@
 	anti_hug = 10 //Lel
 
 /obj/item/clothing/head/white_dress
-	name = "White Dress Hat" 
+	name = "White Dress Hat"
 	desc = "The white dress hat for your dress uniform."
 	icon_state = "white_dress" //with thanks to Baystation12
 	item_state = "white_dress" //with thanks to Baystation12
-	

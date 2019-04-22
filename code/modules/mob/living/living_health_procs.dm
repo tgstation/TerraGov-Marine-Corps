@@ -171,10 +171,8 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 	// shut down ongoing problems
 	radiation = 0
-	nutrition = 400
 	bodytemperature = get_standard_bodytemperature()
 	sdisabilities = 0
-	disabilities = 0
 
 	// fix blindness and deafness
 	set_blindness(0, TRUE)
@@ -188,8 +186,9 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	// remove the character from the list of the dead
 	if(stat == DEAD)
 		on_revive()
-		tod = null
 		timeofdeath = 0
+
+	SSmobs.start_processing(src)
 
 	// restore us to conciousness
 	stat = CONSCIOUS
@@ -202,10 +201,12 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	reload_fullscreens()
 
 /mob/living/carbon/rejuvenate()
+	nutrition = 400
 	setHalLoss(0)
 	setTraumatic_Shock(0)
 	setShock_Stage(0)
 	drunkenness = 0
+	disabilities = 0
 	return ..()
 
 /mob/living/carbon/human/rejuvenate()
@@ -213,12 +214,13 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	reagents.clear_reagents() //and clear all reagents in them
 	undefibbable = FALSE
 	chestburst = 0
-	mutations.Remove(HUSK)
+	mutations?.Remove(HUSK)
 	return ..()
 
 /mob/living/carbon/Xenomorph/rejuvenate()
 	plasma_stored = xeno_caste.plasma_max
 	stagger = 0
 	slowdown = 0
-	hive?.on_xeno_revive(src)
+	if(stat == DEAD)
+		hive?.on_xeno_revive(src)
 	return ..()

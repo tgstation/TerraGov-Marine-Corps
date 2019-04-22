@@ -1,6 +1,4 @@
 
-
-
 //TANKS, HURRAY
 //Read the documentation in cm_armored.dm and multitile.dm before trying to decipher this stuff
 
@@ -17,7 +15,7 @@
 	var/mob/gunner
 	var/mob/driver
 
-	var/occupant_exiting = null
+	var/mob/occupant_exiting
 	var/next_sound_play = 0
 
 	var/is_zoomed = FALSE
@@ -33,9 +31,9 @@
 	spawn_dir = EAST
 	var/list/spawn_hardpoints = list()
 
-/obj/effect/multitile_spawner/cm_armored/tank/New()
-
-	var/obj/vehicle/multitile/root/cm_armored/tank/R = new(src.loc)
+/obj/effect/multitile_spawner/cm_armored/tank/Initialize()
+	. = ..()
+	var/obj/vehicle/multitile/root/cm_armored/tank/R = new(loc)
 	R.setDir(EAST)
 
 	var/datum/coords/dimensions = new
@@ -59,7 +57,7 @@
 		R.add_hardpoint(new hardpoint_path)
 	R.healthcheck()
 
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 //Spawns a tank that has a bunch of broken hardpoints
 /obj/effect/multitile_spawner/cm_armored/tank/decrepit
@@ -152,7 +150,6 @@
 	if(!occupant)
 		to_chat(M, "<span class='warning'>There is no one on that seat.</span>")
 		return
-	var/turf/hatch = get_step_towards(entrance.loc, src)
 	M.visible_message("<span class='warning'>[M] starts pulling [occupant] out of \the [src].</span>",
 	"<span class='warning'>You start pulling [occupant] out of \the [src]. (this will take a while...)</span>", null, 6)
 	var/fumbling_time = 20 SECONDS
@@ -160,7 +157,7 @@
 		fumbling_time -= 2 SECONDS * M.mind.cm_skills.police
 	if(M.mind?.cm_skills?.large_vehicle)
 		fumbling_time -= 2 SECONDS * M.mind.cm_skills.large_vehicle
-	if(!do_after(M, fumbling_time, TRUE, 5, BUSY_ICON_HOSTILE) || !M.Adjacent(hatch))
+	if(!do_after(M, fumbling_time, TRUE, 5, BUSY_ICON_HOSTILE) || !Adjacent(M))
 		return
 	exit_tank(occupant, TRUE, TRUE)
 	M.visible_message("<span class='warning'>[M] forcibly pulls [occupant] out of [src].</span>",
@@ -175,8 +172,7 @@
 		return
 
 	var/slot = input("Select a seat") in list("Driver", "Gunner")
-	var/turf/hatch = get_step_towards(entrance.loc, src)
-	if(!M.Adjacent(hatch))
+	if(!Adjacent(M))
 		return
 
 	var/occupant = (slot == "Driver") ? driver : gunner
@@ -198,15 +194,15 @@
 		to_chat(M, "<span class='warning'>You need your hands free to climb on [src].</span>")
 		return
 
-	if(!M.mind || !(!M.mind.cm_skills || M.mind.cm_skills.large_vehicle >= SKILL_LARGE_VEHICLE_TRAINED))
+	if(M.mind?.cm_skills && M.mind.cm_skills.large_vehicle < SKILL_LARGE_VEHICLE_TRAINED)
 		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into [src].</span>")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * M.mind.cm_skills.large_vehicle
-		if(!do_after(M, fumbling_time, TRUE, 5, BUSY_ICON_BUILD) || !M.Adjacent(hatch) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
+		if(!do_after(M, fumbling_time, TRUE, 5, BUSY_ICON_BUILD) || !Adjacent(M) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
 			return
 
 	to_chat(M, "<span class='notice'>You start climbing into [src].</span>")
-	if(!do_after(M, 10 SECONDS, TRUE, show_busy_icon = TRUE) || !M.Adjacent(hatch) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
+	if(!do_after(M, 10 SECONDS, TRUE, show_busy_icon = TRUE) || !Adjacent(M) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
 		return
 	if(occupant)
 		to_chat(M, "<span class='warning'>Someone got into the [lowertext(slot)]'s seat before you could.</span>")
@@ -229,7 +225,7 @@
 
 	if(!M.action_busy)
 		if(occupant_exiting)
-			to_chat(M, "<span class='notice'>Someone is already getting out of the vehicle.</span>")
+			to_chat(M, "<span class='notice'>Someone is already getting out of [src].</span>")
 			return
 		occupant_exiting = M
 
@@ -244,12 +240,19 @@
 	if(!M || get_turf(M) != get_turf(src) || (M.incapacitated() && !forced))
 		return
 
-	if(forced)
-		M.forceMove(get_turf(entrance))
-	else if(!M.Move(get_turf(entrance)))
-		if(!silent)
-			to_chat(M, "<span class='notice'>Something is blocking you from exiting.</span>")
-		return
+	var/turf/T = get_turf(entrance)
+	if(!forced)
+		if(!T.CanPass(M, T))
+			if(!silent)
+				to_chat(M, "<span class='notice'>Something is blocking you from exiting.</span>")
+			return
+		for(var/atom/A in T)
+			if(A.CanPass(M, T))
+				continue
+			if(!silent)
+				to_chat(M, "<span class='notice'>Something is blocking you from exiting.</span>")
+			return
+	M.forceMove(T)
 
 	if(M == gunner)
 		deactivate_all_hardpoints()
@@ -261,7 +264,7 @@
 		to_chat(M, "<span class='notice'>You climb out of [src].</span>")
 
 //No one but the driver can drive
-/obj/vehicle/multitile/root/cm_armored/tank/relaymove(var/mob/user, var/direction)
+/obj/vehicle/multitile/root/cm_armored/tank/relaymove(mob/user, direction)
 	if(user != driver || user.incapacitated())
 		return
 
@@ -273,7 +276,7 @@
 		var/obj/item/hardpoint/armor/snowplow/SP = hardpoints[HDPT_ARMOR]
 		if(SP.health > 0)
 			for(var/datum/coords/C in linked_objs)
-				var/turf/T = locate(src.x + C.x_pos, src.y + C.y_pos, src.z + C.z_pos)
+				var/turf/T = locate(x + C.x_pos, y + C.y_pos, z + C.z_pos)
 				if(!istype(T, /turf/open/snow)) continue
 				var/turf/open/snow/ST = T
 				if(!ST || !ST.slayer)
@@ -290,14 +293,14 @@
 		next_sound_play = world.time + 21
 
 //No one but the driver can turn
-/obj/vehicle/multitile/root/cm_armored/tank/try_rotate(var/deg, var/mob/user, var/force = 0)
+/obj/vehicle/multitile/root/cm_armored/tank/try_rotate(deg, mob/user, force = FALSE)
 
 	if(user != driver || user.incapacitated())
 		return
 
 	. = ..(deg, user, force)
 
-	if(. && istype(hardpoints[HDPT_SUPPORT], /obj/item/hardpoint/support/artillery_module) && gunner && gunner.client)
+	if(. && istype(hardpoints[HDPT_SUPPORT], /obj/item/hardpoint/support/artillery_module) && gunner?.client)
 		var/client/C = gunner.client
 		var/old_x = C.pixel_x
 		var/old_y = C.pixel_y
@@ -323,8 +326,7 @@
 
 
 /obj/vehicle/multitile/root/cm_armored/proc/click_action(A, mob/user, params)
-	var/list/mods = params2list(params)
-	if(istype(A, /obj/screen) || A == src || mods["middle"] || mods["shift"] || mods["alt"])
+	if(istype(A, /obj/screen) || A == src)
 		return FALSE
 
 	if(!can_use_hp(user))

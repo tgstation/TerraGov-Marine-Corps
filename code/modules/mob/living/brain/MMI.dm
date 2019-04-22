@@ -88,7 +88,6 @@
 			brainmob = new(src)
 			brainmob.name = H.real_name
 			brainmob.real_name = H.real_name
-			brainmob.dna = H.dna
 			brainmob.container = src
 
 			name = "Man-Machine Interface: [brainmob.real_name]"

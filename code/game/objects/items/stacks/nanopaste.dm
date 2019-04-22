@@ -8,7 +8,7 @@
 	amount = 10
 	max_amount = 10
 	w_class = 2
-	stack_id = "nanopaste"
+
 
 /obj/item/stack/nanopaste/attack(mob/living/M as mob, mob/user as mob)
 	if (!istype(M) || !istype(user))

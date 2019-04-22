@@ -11,3 +11,4 @@
 			remove_ventcrawl()
 			add_ventcrawl(A)
 
+	away_time = 0 //Reset away timer once back.

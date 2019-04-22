@@ -62,6 +62,8 @@
 	name = "alarm"
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "alarm0"
+	pixel_x = -16
+	pixel_y = -16
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 80
@@ -115,13 +117,13 @@
 		setDir(direction)
 	switch(dir)
 		if(NORTH)
-			pixel_y = -32
+			pixel_y -= 32
 		if(SOUTH)
-			pixel_y = 32
+			pixel_y += 32
 		if(EAST)
-			pixel_x = -32
+			pixel_x -= 32
 		if(WEST)
-			pixel_x = 32
+			pixel_x += 32
 
 	if(building)
 		buildstage = 0

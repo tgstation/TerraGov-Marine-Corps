@@ -7,7 +7,7 @@
 /datum/dna/gene/monkey/can_activate(var/mob/M,var/flags)
 	return ishuman(M) || istype(M,/mob/living/carbon/monkey)
 
-/datum/dna/gene/monkey/activate(var/mob/living/M, var/connected, var/flags)
+/datum/dna/gene/monkey/activate(mob/living/carbon/human/M, connected, flags)
 	if(!istype(M,/mob/living/carbon/human))
 		//testing("Cannot monkey-ify [M], type is [M.type].")
 		return
@@ -85,7 +85,7 @@
 	qdel(M)
 	return
 
-/datum/dna/gene/monkey/deactivate(var/mob/living/M, var/connected, var/flags)
+/datum/dna/gene/monkey/deactivate(mob/living/carbon/monkey/M, connected, flags)
 	if(!istype(M,/mob/living/carbon/monkey))
 		//testing("Cannot humanize [M], type is [M.type].")
 		return

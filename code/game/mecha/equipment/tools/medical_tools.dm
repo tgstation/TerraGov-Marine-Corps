@@ -21,8 +21,6 @@
 		pr_mech_sleeper.set_delay(equip_cooldown)
 		return
 
-	allow_drop()
-		return 0
 
 	destroy_mecha()
 		for(var/atom/movable/AM in src)
