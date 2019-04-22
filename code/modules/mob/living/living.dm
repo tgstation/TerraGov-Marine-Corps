@@ -622,8 +622,9 @@ below 100 is not dizzy
 		message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")
 
 	M.mind.transfer_to(src, TRUE)
-	M.fully_replace_character_name(M.real_name, real_name)
+	fully_replace_character_name(M.real_name, real_name)
 	GLOB.offered_mob_list -= src
+	return TRUE
 
 
 /mob/living/update_canmove()
