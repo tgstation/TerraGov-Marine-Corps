@@ -37582,7 +37582,7 @@
 /obj/machinery/door/airlock/almayer/maint{
 	dir = 2;
 	name = "\improper Hanger Control Room";
-	req_one_access = "0"
+	req_one_access = null
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
