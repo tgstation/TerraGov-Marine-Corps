@@ -18,9 +18,6 @@
 
 	voice = GetVoice()
 	if(stat == DEAD)
-		if(iszombie(src) && regenZ)
-			handle_organs()
-			return
 		if(!check_tod())
 			SSmobs.stop_processing(src)
 	//No need to update all of these procs if the guy is dead.

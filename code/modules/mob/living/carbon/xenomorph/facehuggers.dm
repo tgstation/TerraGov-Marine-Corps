@@ -304,8 +304,6 @@
 		return FALSE
 
 	if(!provoked)
-		if(iszombie(src))
-			return FALSE
 		if(species?.species_flags & IS_SYNTHETIC)
 			return FALSE
 
