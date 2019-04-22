@@ -1,5 +1,9 @@
 /mob/living/carbon/human/say(message, datum/language/language, verb = "says", alt_name = "", italics = FALSE, message_range = world.view, sound/speech_sound, sound_vol)
+	if(copytext(message, 1, 2) == "*")
+		return emote(copytext(message, 2), EMOTE_AUDIBLE, null, TRUE)
+
 	. = ..()
+	
 	if(!.)
 		return
 
