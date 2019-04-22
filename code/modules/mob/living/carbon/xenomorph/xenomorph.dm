@@ -261,5 +261,5 @@
 	return TRUE
 
 /mob/living/carbon/Xenomorph/begin_away()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/handle_afk_takeover), XENO_AFK_TIMER)
