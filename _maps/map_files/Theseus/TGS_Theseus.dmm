@@ -37576,16 +37576,15 @@
 	},
 /area/shuttle/drop2/sulaco)
 "bIg" = (
-/obj/machinery/door/airlock/almayer/security{
-	dir = 2;
-	name = "\improper Dropship Control Bubble";
-	req_access_txt = "0";
-	req_one_access_txt = "3;22"
-	},
 /obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
-/turf/open/floor/plating/plating_catwalk,
+/obj/machinery/door/airlock/almayer/maint{
+	dir = 2;
+	name = "\improper Hanger Control Room";
+	req_one_access = "0"
+	},
+/turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bIh" = (
 /obj/effect/attach_point/fuel/dropship1,
