@@ -60,6 +60,9 @@
 		var/mob/living/silicon/decoy/ship_ai/AI = speaker
 		sound_to_play = AI.ai_sound
 
+	if(!language)
+		language = GLOB.language_datum_instances[get_default_language()]
+
 	if(!can_speak_in_language(language))
 		if(istype(speaker,/mob/living/simple_animal))
 			var/mob/living/simple_animal/S = speaker

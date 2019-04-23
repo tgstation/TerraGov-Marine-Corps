@@ -135,3 +135,26 @@
 /datum/language_holder/universal/New()
 	. = ..()
 	grant_all_languages(omnitongue = TRUE)
+
+
+
+/mob/living/verb/language_menu()
+	set category = "IC"
+	set name = "Language Menu"
+
+	var/datum/language_holder/H = get_language_holder()
+	var/body = "<b>Known Languages:</b><br>"
+
+	for(var/i in H.languages)
+		var/datum/language/L = i
+		body += "[initial(L.name)] - Key: ,[initial(L.key)]"
+		if(H.selected_default_language == L)
+			body += " - Default"
+		else
+			body += " - <a href='?src=[REF(src)];default_language=[L]'>Set as Default</a>"
+		body += "<br>"
+		
+
+	var/datum/browser/popup = new(src, "languages", "<div align='center'>Language Menu</div>", 550, 615)
+	popup.set_content(body)
+	popup.open(FALSE)
