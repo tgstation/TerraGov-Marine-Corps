@@ -44,6 +44,7 @@
 			to_chat(src, "<span class='xenodanger'>You vanish into the shadows...</span>")
 			last_stealth = world.time
 			stealth = TRUE
+			RegisterSignal(src, COMSIG_XENO_ATTACK_DECLOAK, .proc/cancel_stealth)
 			handle_stealth()
 			addtimer(CALLBACK(src, .stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
 			addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
@@ -63,6 +64,7 @@
 		return
 	to_chat(src, "<span class='xenodanger'>You emerge from the shadows.</span>")
 	stealth = FALSE
+	UnregisterSignal(src, COMSIG_XENO_ATTACK_DECLOAK)
 	used_stealth = TRUE
 	can_sneak_attack = FALSE
 	alpha = 255 //no transparency/translucency

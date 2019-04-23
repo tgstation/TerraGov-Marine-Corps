@@ -136,8 +136,7 @@
 		"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 		M.apply_damage(10)
 	update_health(TRUE)
-	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+	SEND_SIGNAL(M, COMSIG_XENO_ATTACK_DECLOAK)
 
 /obj/structure/barricade/attackby(obj/item/W, mob/user)
 	for(var/obj/effect/xenomorph/acid/A in src.loc)

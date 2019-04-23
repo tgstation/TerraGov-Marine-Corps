@@ -338,7 +338,7 @@
 							to_chat(src, "<span class='xenodanger'>Pouncing from the shadows, you stagger your victim.</span>")
 					playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
 					addtimer(CALLBACK(src, .proc/reset_movement), xeno_caste.charge_type == 1 ? 5 : 15)
-					stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+					SEND_SIGNAL(M, COMSIG_XENO_ATTACK_DECLOAK)
 
 				if(RAV_CHARGE_TYPE) //Ravagers plow straight through humans; we only stop on hitting a dense turf
 					return FALSE

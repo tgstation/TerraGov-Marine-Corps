@@ -20,8 +20,7 @@
 		return FALSE
 
 	X.start_pulling(src)
-	if(X.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		X.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+	SEND_SIGNAL(M, COMSIG_XENO_ATTACK_DECLOAK)
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/Xenomorph/X)

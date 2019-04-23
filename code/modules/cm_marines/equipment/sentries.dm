@@ -832,8 +832,7 @@
 		if(!locate(/obj/effect/decal/cleanable/blood/oil) in loc)
 			new /obj/effect/decal/cleanable/blood/oil(loc)
 	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
-	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+	SEND_SIGNAL(M, COMSIG_XENO_ATTACK_DECLOAK)
 
 /obj/machinery/marine_turret/bullet_act(var/obj/item/projectile/Proj) //Nope.
 	visible_message("[src] is hit by the [Proj.name]!")

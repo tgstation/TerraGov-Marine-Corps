@@ -77,3 +77,6 @@
 #define COMSIG_MOB_CLICKON "mob_clickon"						//from base of mob/clickon(): (atom/A, params)
 	#define COMSIG_MOB_CANCEL_CLICKON 1
 #define COMSIG_MOB_ATTACK_RANGED "mob_attack_ranged"			//from base of mob/RangedAttack(): (atom/A, params)
+
+#define COMSIG_XENO_ATTACK_DECLOAK "xeno_attack_decloak"		//soon to be from the base of attack_alien(): ()
+#define COMSIG_XENO_ATTACK_SNEAK "xeno_attack_sneak"
