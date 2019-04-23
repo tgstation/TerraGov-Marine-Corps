@@ -174,3 +174,7 @@
 
 //Gamemode
 #define isdistress(O) (istype(O, /datum/game_mode/distress))
+
+
+// Admin
+#define isaghost(mob) ( copytext(mob.key, 1, 2) == "@" )

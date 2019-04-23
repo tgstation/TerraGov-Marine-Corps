@@ -245,7 +245,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 			continue
 
 		//Aghosted admins don't get picked
-		if(O.mind?.current && copytext(O.mind.current.key, 1, 2) == "@")
+		if(O.mind?.current && isaghost(O.mind.current))
 			continue
 
 		if(!picked)

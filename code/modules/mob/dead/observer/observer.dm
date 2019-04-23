@@ -384,7 +384,7 @@
 			if(M.client && M.client.is_afk())
 				name += " (AFK)"
 			else if(!M.client && (M.key || M.ckey))
-				if(copytext(M.key, 1, 2) == "@")
+				if(isaghost(M))
 					name += " (AGHOSTED)"
 				else
 					name += " (DC)"
