@@ -23,9 +23,6 @@
 			message = copytext(message, 2)	//it would be really nice if the parse procs could do this for us.
 		else
 			message = copytext(message, 3)
-	else
-		log_talk(message, LOG_SAY)
-
 
 	message = capitalize(trim(message))
 

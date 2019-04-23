@@ -113,6 +113,16 @@ var/list/department_radio_keys = list(
 		if(findtext(message, " ", 1, 2))
 			message = copytext(message, 2)
 
+	var/message_mode = parse_message_mode(message, "headset")
+	//parse the radio code and consume it
+	if(message_mode)
+		if(message_mode == "headset")
+			message = copytext(message, 2)	//it would be really nice if the parse procs could do this for us.
+		else
+			message = copytext(message, 3)
+	else
+		log_talk(message, LOG_SAY)
+
 	if(!language)
 		language = GLOB.language_datum_instances[get_default_language()]
 
