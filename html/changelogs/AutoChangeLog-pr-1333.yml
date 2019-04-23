@@ -1,0 +1,5 @@
+author: "Anonmare"
+delete-after: True
+changes: 
+  - rscadd: "Adds the corpsmen webbing, a vest with one extra slot but can't carry non-medical equipment."
+  - tweak: "Renames the white webbing vest to the surgical vest and allows it to carry surgical masks and gloves"
