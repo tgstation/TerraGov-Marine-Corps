@@ -409,6 +409,9 @@
 		return
 	if(stat != CONSCIOUS)
 		return
+	if(is_aghost)
+		return
+
 	var/picked = get_alien_candidate()
 	if(!picked)	
 		return

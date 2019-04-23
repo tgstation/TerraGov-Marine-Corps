@@ -206,6 +206,7 @@
 		return FALSE
 
 	mind.current.key = key
+	mind.current.is_aghost = FALSE // Handle when aghost return to their body
 	if(mind.current.client)
 		mind.current.client.change_view(world.view)
 	return TRUE

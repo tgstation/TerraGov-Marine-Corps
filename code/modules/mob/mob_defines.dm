@@ -154,3 +154,5 @@
 	var/track_blood = 0
 	var/list/feet_blood_DNA
 	var/feet_blood_color
+
+	var/is_aghost = FALSE // Whether the mob belongs to an admin ghost.
