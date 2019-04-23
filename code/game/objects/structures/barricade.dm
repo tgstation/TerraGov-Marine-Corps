@@ -68,12 +68,11 @@
 			return
 
 		if(crusher_resistant)
-			obj_integrity -= C.charge_speed * CRUSHER_CHARGE_BARRICADE_MULTI
-			update_health()
+			take_damage(C.charge_speed * CRUSHER_CHARGE_BARRICADE_MULTI, BRUTE, "melee")
 
 		else if(!C.stat)
 			visible_message("<span class='danger'>[C] smashes through [src]!</span>")
-			destroy_structure()
+			deconstruct(FALSE)
 
 /obj/structure/barricade/CheckExit(atom/movable/O, turf/target)
 	if(closed)
@@ -102,7 +101,7 @@
 
 	if(istype(mover, /obj/vehicle/multitile))
 		visible_message("<span class='danger'>[mover] drives over and destroys [src]!</span>")
-		destroy_structure(0)
+		deconstruct(FALSE)
 		return FALSE
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
@@ -120,24 +119,18 @@
 /obj/structure/barricade/attack_animal(mob/user as mob)
 	return attack_alien(user)
 
-/obj/structure/barricade/attack_alien(mob/living/carbon/Xenomorph/M)
-	M.animation_attack_on(src)
-	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
-	if(barricade_hitsound)
+/obj/structure/barricade/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+	if(damage_type == BRUTE && barricade_hitsound)
 		playsound(src, barricade_hitsound, 25, 1)
-	if(obj_integrity <= 0)
-		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
-		"<span class='danger'>You slice [src] apart!</span>", null, 5)
-	else
-		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
-		"<span class='danger'>You slash [src]!</span>", null, 5)
+
+/obj/structure/barricade/attack_generic(mob/living/user, damage_amount = 0, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, armor_penetration = 0) //used by attack_alien, attack_animal, and attack_slime
 	if(is_wired)
-		M.visible_message("<span class='danger'>The barbed wire slices into [M]!</span>",
+		user.visible_message("<span class='danger'>The barbed wire slices into [user]!</span>",
 		"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
-		M.apply_damage(10)
-	update_health(TRUE)
+		user.apply_damage(10)
 	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+	return ..()
 
 /obj/structure/barricade/attackby(obj/item/W, mob/user)
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
