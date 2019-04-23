@@ -419,5 +419,5 @@
 
 	SSticker.mode.transfer_xeno(xeno_candidate, src)
 
-	to_chat(src, "<span class='xenoannounce'>You are an old xenomorph re-awakened from a slumber!</span>")
+	to_chat(src, "<span class='xenoannounce'>You are an old xenomorph re-awakened from slumber!</span>")
 	SEND_SOUND(src, sound('sound/effects/xeno_newlarva.ogg'))
