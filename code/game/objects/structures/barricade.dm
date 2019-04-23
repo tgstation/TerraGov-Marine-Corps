@@ -192,31 +192,19 @@
 			playsound(src, barricade_hitsound, 25, 1)
 		hit_barricade(W)
 
-/obj/structure/barricade/destroy_structure(deconstruct)
-	if(deconstruct && is_wired)
+/obj/structure/barricade/deconstruct(disassembled = TRUE)
+	if(disassembled && is_wired)
 		new /obj/item/stack/barbed_wire(loc)
 	if(stack_type)
 		var/stack_amt
-		if(!deconstruct && destroyed_stack_amount)
+		if(!disassembled && destroyed_stack_amount)
 			stack_amt = destroyed_stack_amount
 		else
 			stack_amt = round(stack_amount * (obj_integrity/max_integrity)) //Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0
 
 		if(stack_amt)
 			new stack_type (loc, stack_amt)
-	qdel(src)
-
-/obj/structure/barricade/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			visible_message("<span class='danger'>[src] is blown apart!</span>")
-			qdel(src)
-			return
-		if(2.0)
-			obj_integrity -= rand(33, 66)
-		if(3.0)
-			obj_integrity -= rand(10, 33)
-	update_health()
+	return ..()
 
 /obj/structure/barricade/setDir(newdir)
 	. = ..()
