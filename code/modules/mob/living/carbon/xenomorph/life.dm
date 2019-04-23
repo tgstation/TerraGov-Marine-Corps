@@ -216,19 +216,28 @@
 /mob/living/carbon/Xenomorph/handle_regular_hud_updates()
 	if(!client)
 		return FALSE
+
+	// Sanity checks
+	if(!maxHealth)
+		stack_trace("[src] called handle_regular_hud_updates() while having [maxHealth] maxHealth.")
+		return
+	if(!xeno_caste.plasma_max)
+		stack_trace("[src] called handle_regular_hud_updates() while having [xeno_caste.plasma_max] xeno_caste.plasma_max.")
+		return
+
+	// Health Hud
 	if(hud_used && hud_used.healths)
 		if(stat != DEAD)
-			if(maxHealth)
-				var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, maxHealth, health, 0, list("full", "critical"))
-				hud_used.healths.icon_state = "health_[bucket]"
+			var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, maxHealth, health, 0, list("full", "critical"))
+			hud_used.healths.icon_state = "health_[bucket]"
 		else
 			hud_used.healths.icon_state = "health_dead"
 
+	// Plasma Hud
 	if(hud_used && hud_used.alien_plasma_display)
 		if(stat != DEAD)
-			if (xeno_caste.plasma_max)
-				var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, xeno_caste.plasma_max, plasma_stored, 0, list("full", "empty"))
-				hud_used.alien_plasma_display.icon_state = "power_display_[bucket]"
+			var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, xeno_caste.plasma_max, plasma_stored, 0, list("full", "empty"))
+			hud_used.alien_plasma_display.icon_state = "power_display_[bucket]"
 		else
 			hud_used.alien_plasma_display.icon_state = "power_display_empty"
 
