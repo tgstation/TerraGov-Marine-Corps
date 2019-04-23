@@ -29,6 +29,8 @@
 	desc = "A control terminal for the area electrical systems."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "apc0"
+	pixel_x = -16
+	pixel_y = -16
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
@@ -137,13 +139,13 @@
 
 	switch(dir)
 		if(NORTH)
-			pixel_y = -32
+			pixel_y -= 32
 		if(SOUTH)
-			pixel_y = 32
+			pixel_y += 32
 		if(EAST)
-			pixel_x = -32
+			pixel_x -= 32
 		if(WEST)
-			pixel_x = 32
+			pixel_x += 32
 
 	if(building)
 		var/area/A = get_area(src)
@@ -1024,8 +1026,8 @@
 				cell.corrupt()
 				emagged = TRUE
 				update_icon()
-				var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
-				smoke.set_up(1, 0, loc)
+				var/datum/effect_system/smoke_spread/smoke = new
+				smoke.set_up(1, loc)
 				smoke.attach(src)
 				smoke.start()
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread

@@ -200,7 +200,7 @@
 	held_item.loc = src.loc
 	held_item = null
 
-	robogibs(src.loc, viruses)
+	robogibs(loc)
 	qdel(src)
 
 //Cannibalized from the parrot mob. ~Zuhayr

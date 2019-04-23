@@ -162,8 +162,6 @@
 	A.organ_ref = organ_ref
 	return A
 
-/obj/machinery/autodoc/allow_drop()
-	return 0
 
 /proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 	if(!ishuman(M))

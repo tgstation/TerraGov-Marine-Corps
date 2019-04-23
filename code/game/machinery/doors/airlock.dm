@@ -82,8 +82,6 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	var/secondsMainPowerLost = 0 //The number of seconds until power is restored.
 	var/secondsBackupPowerLost = 0 //The number of seconds until power is restored.
 	var/spawnPowerRestoreRunning = 0
-	var/welded = null
-	var/locked = 0
 	var/lights = 1 // bolt lights show by default
 	var/wires = 4095
 	secondsElectrified = 0 //How many seconds remain until the door is no longer electrified. -1 if it is permanently electrified until someone fixes it.
@@ -107,7 +105,6 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	var/list/airlockIndexToWireColor
 	var/list/airlockWireColorToIndex
 	var/no_panel = 0 //the airlock has no panel that can be screwdrivered open
-	var/not_weldable = 0 // stops people welding the door if true
 	damage_cap = 3000
 
 	tiles_with = list(
@@ -983,22 +980,7 @@ About the new airlock wires panel:
 			if(shock(user, 75))
 				return
 	add_fingerprint(user)
-	if(istype(C, /obj/item/weapon/zombie_claws) && (src.welded || src.locked))
-		user.visible_message("<span class='notice'>[user] starts tearing into the door on the [src]!</span>", \
-			"<span class='notice'>You start prying your hand into the gaps of the door with your fingers... This will take about 30 seconds.</span>", \
-			"<span class='notice'>You hear tearing noises!</span>")
-		if(!do_after(user, 300, TRUE, src))
-			return FALSE
-		user.visible_message("<span class='notice'>[user] slams the door open [src]!</span>", \
-		"<span class='notice'>You slam the door open!</span>", \
-		"<span class='notice'>You hear metal screeching!</span>")
-		locked = FALSE
-		welded = FALSE
-		update_icon()
-		open()
-		locked = TRUE
-		return TRUE
-	if(istype(C, /obj/item/tool/pickaxe/plasmacutter) && !operating && density && !user.action_busy)
+	if((istype(C, /obj/item/tool/pickaxe/plasmacutter) && !operating && density && !user.action_busy))
 		var/obj/item/tool/pickaxe/plasmacutter/P = C
 
 		if(not_weldable)

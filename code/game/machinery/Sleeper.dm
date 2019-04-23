@@ -241,10 +241,6 @@
 		break
 
 
-/obj/machinery/sleeper/allow_drop()
-	return 0
-
-
 /obj/machinery/sleeper/on_stored_atom_del(atom/movable/AM)
 	if(AM == beaker)
 		beaker = null

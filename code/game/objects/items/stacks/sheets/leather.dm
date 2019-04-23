@@ -4,7 +4,7 @@
 	singular_name = "human skin piece"
 	icon_state = "sheet-hide"
 	origin_tech = ""
-	stack_id = "human skin"
+
 
 /obj/item/stack/sheet/animalhide/corgi
 	name = "corgi hide"
@@ -12,7 +12,7 @@
 	singular_name = "corgi hide piece"
 	icon_state = "sheet-corgi"
 	origin_tech = ""
-	stack_id = "corgi hide"
+
 
 /obj/item/stack/sheet/animalhide/cat
 	name = "cat hide"
@@ -20,7 +20,7 @@
 	singular_name = "cat hide piece"
 	icon_state = "sheet-cat"
 	origin_tech = ""
-	stack_id = "cat hide"
+
 
 /obj/item/stack/sheet/animalhide/monkey
 	name = "monkey hide"
@@ -28,7 +28,7 @@
 	singular_name = "monkey hide piece"
 	icon_state = "sheet-monkey"
 	origin_tech = ""
-	stack_id = "monkey hide"
+
 
 /obj/item/stack/sheet/animalhide/lizard
 	name = "lizard skin"
@@ -36,7 +36,7 @@
 	singular_name = "lizard skin piece"
 	icon_state = "sheet-lizard"
 	origin_tech = ""
-	stack_id = "lizard skin"
+
 
 /obj/item/stack/sheet/animalhide/xeno
 	name = "alien hide"
@@ -44,7 +44,7 @@
 	singular_name = "alien hide piece"
 	icon_state = "sheet-xeno"
 	origin_tech = ""
-	stack_id = "alien hide"
+
 
 //don't see anywhere else to put these, maybe together they could be used to make the xenos suit?
 /obj/item/stack/sheet/xenochitin
@@ -54,7 +54,7 @@
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "chitin"
 	origin_tech = ""
-	stack_id = "alien chitin"
+
 
 /obj/item/xenos_claw
 	name = "alien claw"
@@ -76,7 +76,7 @@
 	singular_name = "hairless hide piece"
 	icon_state = "sheet-hairlesshide"
 	origin_tech = ""
-	stack_id = "hairless hide"
+
 
 /obj/item/stack/sheet/wetleather
 	name = "wet leather"
@@ -84,7 +84,6 @@
 	singular_name = "wet leather piece"
 	icon_state = "sheet-wetleather"
 	origin_tech = ""
-	stack_id = "wet leather"
 	var/wetness = 30 //Reduced when exposed to high temperautres
 	var/drying_threshold_temperature = 500 //Kelvin to start drying
 
@@ -94,8 +93,6 @@
 	singular_name = "leather piece"
 	icon_state = "sheet-leather"
 	origin_tech = "materials=2"
-	stack_id = "leather"
-
 
 
 //Step one - dehairing.

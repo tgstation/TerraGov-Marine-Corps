@@ -72,8 +72,10 @@
 						log_admin("[key_name(usr)] gives [key_name(GM)] a swirlie.")
 						log_combat(user, GM, "given a swirlie")
 						msg_admin_attack("[key_name(usr)] gave [key_name(GM)] a swirlie.")
-						if(!GM.internal)
-							GM.adjustOxyLoss(5)
+						if(iscarbon(GM))
+							var/mob/living/carbon/C = GM
+							if(!C.internal)
+								C.adjustOxyLoss(5)
 					swirlie = null
 				else
 					user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")

@@ -902,6 +902,9 @@
 
 	if (usr.stat || !ishuman(usr))
 		return
+
+	var/mob/living/carbon/human/H = usr
+
 	src.log_message("[usr] tries to move in.")
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
@@ -919,7 +922,7 @@
 */
 	var/passed
 	if(src.dna)
-		if(usr.dna.unique_enzymes==src.dna)
+		if(H.dna.unique_enzymes == dna)
 			passed = 1
 	else if(src.operation_allowed(usr))
 		passed = 1
@@ -971,9 +974,6 @@
 		return 0
 	else if(occupant)
 		to_chat(user, "Occupant detected.")
-		return 0
-	else if(dna && dna!=mmi_as_oc.brainmob.dna.unique_enzymes)
-		to_chat(user, "Stop it!")
 		return 0
 	//Added a message here since people assume their first click failed or something./N
 //	to_chat(user, "Installing MMI, please stand by.")

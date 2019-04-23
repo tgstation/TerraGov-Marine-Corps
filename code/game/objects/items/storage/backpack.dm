@@ -452,9 +452,6 @@
 	if (!istype(M))
 		return
 
-	if(iszombie(M))
-		return
-
 	if (M.back != src)
 		to_chat(M, "<span class='warning'>You must be wearing the cloak to activate it!")
 		return

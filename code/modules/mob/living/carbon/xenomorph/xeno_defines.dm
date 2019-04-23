@@ -125,6 +125,7 @@
 	unacidable = TRUE
 	away_time = -XENO_AFK_TIMER //Xenos start grabbable. This is reset on Login()
 	var/hivenumber = XENO_HIVE_NORMAL
+	job = ROLE_XENOMORPH
 
 	var/datum/hive_status/hive
 
@@ -273,3 +274,5 @@
 	var/cresttoss_used = FALSE
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	var/butchery_progress = 0

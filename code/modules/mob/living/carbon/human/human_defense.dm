@@ -2,6 +2,8 @@
 Contains most of the procs that are called when a mob is attacked by something
 */
 
+//#define DEBUG_HUMAN_EXPLOSIONS
+
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 	var/datum/limb/affected = get_limb(check_zone(def_zone))
 	var/siemens_coeff = get_siemens_coefficient_organ(affected)
@@ -42,12 +44,16 @@ Contains most of the procs that are called when a mob is attacked by something
 		//If a specific bodypart is targetted, check how that bodypart is protected and return the value.
 
 	//If you don't specify a bodypart, it checks ALL your bodyparts for protection, and averages out the values
+	else
 		for(var/X in limbs)
 			var/datum/limb/E = X
 			var/weight = organ_rel_size[E.name]
 			armorval += getarmor_organ(E, type) * weight
 			total += weight
-	return (armorval/max(total, 1))
+			#ifdef DEBUG_HUMAN_EXPLOSIONS
+			to_chat(src, "DEBUG getarmor: total: [total], armorval: [armorval], weight: [weight], name: [E.name]")
+			#endif
+	return ( round(armorval/max(total, 1)*0.01,0.01) )
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(var/datum/limb/def_zone)
@@ -111,6 +117,16 @@ Contains most of the procs that are called when a mob is attacked by something
 			I.emp_act(severity)
 	..()
 
+/mob/living/carbon/human/has_smoke_protection()
+	if(istype(wear_mask) && wear_mask.flags_inventory & BLOCKGASEFFECT)
+		return TRUE
+	if(istype(glasses) && glasses.flags_inventory & BLOCKGASEFFECT)
+		return TRUE
+	if(head && istype(head, /obj/item/clothing))
+		var/obj/item/clothing/CH = head
+		if(CH.flags_inventory & BLOCKGASEFFECT)
+			return TRUE
+	return ..()
 
 //Returns 1 if the attack hit, 0 if it missed.
 /mob/living/carbon/human/proc/attacked_by(var/obj/item/I, var/mob/living/user, var/def_zone)

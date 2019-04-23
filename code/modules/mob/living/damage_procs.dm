@@ -22,7 +22,6 @@
 		if(BRUTE)
 			adjustBruteLoss(damage)
 		if(BURN)
-			if(COLD_RESISTANCE in mutations)	damage = 0
 			adjustFireLoss(damage)
 		if(TOX)
 			adjustToxLoss(damage)
