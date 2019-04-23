@@ -23,7 +23,6 @@
 
 	M.ghostize(TRUE)
 	M.key = "@[oldkey]"
-	M.is_aghost = TRUE
 
 	log_admin("[key_name(usr)] admin ghosted at [AREACOORD(usr)].")
 	if(M.stat != DEAD)
