@@ -1377,7 +1377,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/boiler_gas/New()
 	. = ..()
-	set_xeno_smoke()
 	accuracy_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
 	max_range = CONFIG_GET(number/combat_define/long_shell_range)
 
@@ -1398,10 +1397,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/boiler_gas/do_at_max_range(obj/item/projectile/P)
 	drop_nade(get_turf(P), P.firer)
 
-/datum/ammo/xeno/boiler_gas/proc/set_xeno_smoke(obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/proc/set_xeno_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
 
 /datum/ammo/xeno/boiler_gas/proc/drop_nade(turf/T, atom/firer, range = 1)
+	set_xeno_smoke()
 	if(isxeno(firer))
 		var/mob/living/carbon/Xenomorph/X = firer
 		smoke_system.strength = X.xeno_caste.bomb_strength
@@ -1429,7 +1429,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/M, obj/item/projectile/P)
 	burst(M,P,damage_type)
 
-/datum/ammo/xeno/boiler_gas/corrosive/set_xeno_smoke(obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/corrosive/set_xeno_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
 
 /*
