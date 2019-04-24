@@ -409,7 +409,7 @@
 		return
 	if(isaghost(src) && GLOB.directory[key]) // If aghosted, and admin still online
 		return
-	if(stat != CONSCIOUS)
+	if(stat == DEAD)
 		return
 
 	var/picked = get_alien_candidate()
