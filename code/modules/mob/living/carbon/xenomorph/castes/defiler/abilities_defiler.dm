@@ -67,7 +67,7 @@
 			recent_notice = world.time //anti-notice spam
 		return
 
-	if(!(C?.can_sting()))
+	if(!(C.can_sting()))
 		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
 		return
 
