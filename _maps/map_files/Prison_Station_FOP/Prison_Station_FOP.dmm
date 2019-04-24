@@ -11453,7 +11453,7 @@
 /area/prison/maintenance/staff_research)
 "aBX" = (
 /obj/structure/flora/ausbushes/brflowers,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/north)
 "aBY" = (
 /obj/effect/alien/weeds/node,
@@ -13079,13 +13079,13 @@
 /area/prison/residential/north)
 "aFY" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/north)
 "aFZ" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/north)
 "aGa" = (
 /turf/open/floor/prison{
@@ -14026,19 +14026,19 @@
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/maxsec)
 "aHM" = (
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/north)
 "aHN" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/north)
 "aHO" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/north)
 "aHP" = (
 /obj/structure/bed/chair/office/dark{
@@ -14347,7 +14347,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/north)
 "aIC" = (
 /turf/open/floor/prison{
@@ -15586,7 +15586,7 @@
 "aLd" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/machinery/light,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/north)
 "aLe" = (
 /turf/open/floor/prison/red{
@@ -15980,7 +15980,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/north)
 "aLN" = (
 /obj/structure/cable{
@@ -19134,7 +19134,7 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/north)
 "aSU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -19592,7 +19592,7 @@
 	req_one_access_txt = "0"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/gm/dirtgrassborder,
+/turf/open/floor/plating/ground/dirtgrassborder,
 /area/prison/residential/north)
 "aTZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -19628,7 +19628,7 @@
 	req_one_access_txt = "0"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/gm/dirtgrassborder,
+/turf/open/floor/plating/ground/dirtgrassborder,
 /area/prison/residential/north)
 "aUc" = (
 /obj/structure/toilet{
@@ -20589,19 +20589,19 @@
 /obj/effect/decal/woodsiding{
 	dir = 9
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "aVP" = (
 /obj/effect/decal/woodsiding{
 	dir = 1
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "aVQ" = (
 /obj/effect/decal/woodsiding{
 	dir = 5
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "aVR" = (
 /obj/machinery/light{
@@ -21143,7 +21143,7 @@
 /obj/effect/decal/woodsiding{
 	dir = 1
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "aXc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -23061,10 +23061,10 @@
 /area/prison/hangar/main)
 "bbG" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/hallway/entrance)
 "bbH" = (
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/hallway/entrance)
 "bbI" = (
 /obj/structure/bed/chair/comfy{
@@ -23485,7 +23485,7 @@
 /area/prison/hangar/civilian)
 "bcN" = (
 /obj/structure/flora/ausbushes/palebush,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/hallway/entrance)
 "bcO" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
@@ -24412,7 +24412,7 @@
 /obj/effect/decal/woodsiding{
 	dir = 1
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "beH" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
@@ -24512,7 +24512,7 @@
 /obj/effect/decal/woodsiding{
 	dir = 5
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "beR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -24520,7 +24520,7 @@
 /obj/effect/decal/woodsiding{
 	dir = 2
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "beS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -25092,19 +25092,19 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/central)
 "bgc" = (
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "bgd" = (
 /obj/effect/decal/woodsiding{
 	dir = 2
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "bge" = (
 /obj/effect/decal/woodsiding{
 	dir = 6
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "bgf" = (
 /obj/effect/decal/siding{
@@ -25735,7 +25735,7 @@
 /obj/effect/decal/woodsiding{
 	dir = 10
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "bhA" = (
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
@@ -25770,7 +25770,7 @@
 /obj/effect/decal/woodsiding{
 	dir = 8
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "bhE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -26008,7 +26008,7 @@
 /obj/effect/decal/woodsiding{
 	dir = 4
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "bhZ" = (
 /obj/structure/cable{
@@ -28413,7 +28413,7 @@
 /area/prison/yard)
 "bmE" = (
 /obj/structure/flora/ausbushes/sunnybush,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/hallway/entrance)
 "bmF" = (
 /turf/closed/wall/prison,
@@ -28602,7 +28602,7 @@
 /area/prison/residential/central)
 "bmZ" = (
 /obj/structure/flora/ausbushes/brflowers,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/hallway/entrance)
 "bna" = (
 /turf/open/floor/prison/whitegreen/full,
@@ -31230,7 +31230,7 @@
 /obj/effect/decal/woodsiding{
 	dir = 1
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "bso" = (
 /turf/open/floor/prison/marked,
@@ -41642,7 +41642,7 @@
 /obj/effect/decal/woodsiding{
 	dir = 2
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "bOQ" = (
 /obj/structure/sink{
@@ -42724,7 +42724,7 @@
 /obj/effect/decal/woodsiding{
 	dir = 2
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "bRC" = (
 /turf/closed/wall/prison,
@@ -42736,7 +42736,7 @@
 /obj/effect/decal/woodsiding{
 	dir = 6
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/prison/residential/central)
 "bRE" = (
 /obj/structure/cable{
