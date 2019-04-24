@@ -912,11 +912,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = CONFIG_GET(number/combat_define/max_armor_penetration)
 	shell_speed = CONFIG_GET(number/combat_define/slow_shell_speed)
 
-/datum/ammo/rocket/Destroy()
-	qdel(smoke)
-	smoke = null
-	. = ..()
-
 /datum/ammo/rocket/on_hit_mob(mob/M, obj/item/projectile/P)
 	explosion(get_turf(M), -1, 2, 4, 5)
 	smoke.set_up(1, get_turf(M))
@@ -1379,10 +1374,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	. = ..()
 	accuracy_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
 	max_range = CONFIG_GET(number/combat_define/long_shell_range)
-
-/datum/ammo/xeno/boiler_gas/Destroy()
-	QDEL_NULL(smoke_system)
-	return ..()
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/M, obj/item/projectile/P)
 	drop_nade(get_turf(P), P.firer)
