@@ -125,8 +125,6 @@
 			continue
 		if(M.invisibility)//cloaked
 			continue
-		if(M.digitalcamo)
-			continue
 
 		// Human check
 		var/human = 0
@@ -196,9 +194,6 @@
 			if (ishuman(target))
 				var/mob/living/carbon/human/H = target
 				if(H.wear_id && istype(H.wear_id.GetID(), /obj/item/card/id/syndicate))
-					U.ai_cancel_tracking(1)
-					return
-				if(H.digitalcamo)
 					U.ai_cancel_tracking(1)
 					return
 

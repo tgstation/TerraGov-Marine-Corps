@@ -122,15 +122,18 @@ directive is properly returned.
 		return flags & INSERT_CONTAINER
 */
 
-/atom/proc/allow_drop()
-	return 1
-
 
 /atom/proc/HasProximity(atom/movable/AM as mob|obj)
 	return
 
 /atom/proc/emp_act(var/severity)
 	return
+
+/atom/proc/effect_smoke(obj/effect/particle_effect/smoke/S)
+	if(S.lifetime < 1)
+		return FALSE
+	return TRUE
+
 
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
 	if(ispath(container))
@@ -591,3 +594,12 @@ Proc for attack log creation, because really why not
 
 /atom/Exited(atom/movable/AM, atom/newLoc)
 	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, newLoc)
+
+
+// Stacks and storage redefined procs.
+
+/atom/proc/max_stack_merging(obj/item/stack/S)
+	return FALSE //But if they do, limit is not an issue.
+
+/atom/proc/recalculate_storage_space()
+	return //Nothing to see here.

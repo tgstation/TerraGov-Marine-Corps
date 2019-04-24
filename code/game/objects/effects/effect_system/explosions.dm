@@ -133,6 +133,6 @@
 	P.set_up(10, 0, location)
 	P.start()
 	spawn(5)
-		var/datum/effect_system/smoke_spread/S = new/datum/effect_system/smoke_spread()
-		S.set_up(rand(0,3),0,location,null, rand(0,2))
+		var/datum/effect_system/smoke_spread/S = new
+		S.set_up(rand(0,3), location, rand(1,3))
 		S.start()

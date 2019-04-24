@@ -184,6 +184,7 @@
 
 	handle_stagger()
 	handle_slowdown()
+	handle_disabilities()
 
 
 /mob/living/carbon/proc/handle_stagger()
@@ -270,3 +271,22 @@
 		oxygen_alert = TRUE
 		return FALSE
 	return TRUE
+
+
+/mob/living/carbon/proc/handle_impaired_vision()
+	//Eyes
+	if(eye_blind)
+		adjust_blindness(-1)
+	if(eye_blurry)			//blurry eyes heal slowly
+		adjust_blurriness(-1)
+
+
+/mob/living/carbon/proc/handle_impaired_hearing()
+	//Ears
+	if(ear_damage < 100)
+		adjustEarDamage(-0.05, -1)	// having ear damage impairs the recovery of ear_deaf
+
+
+/mob/living/carbon/proc/handle_disabilities()
+	handle_impaired_vision()
+	handle_impaired_hearing()

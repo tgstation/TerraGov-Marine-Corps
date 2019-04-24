@@ -5,7 +5,6 @@
 	name = "empty sandbags"
 	desc = "Some empty sandbags, best to fill them up if you want to use them."
 	singular_name = "sandbag"
-	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "sandbag_stack"
 	w_class = 3.0
 	force = 2
@@ -14,7 +13,7 @@
 	throw_range = 20
 	max_amount = 50
 	attack_verb = list("hit", "bludgeoned", "whacked")
-	stack_id = "empty sandbags"
+
 
 /obj/item/stack/sandbags_empty/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/tool/shovel))
@@ -58,7 +57,6 @@
 	name = "sandbags"
 	desc = "Some bags filled with sand. For now, just cumbersome, but soon to be used for fortifications."
 	singular_name = "sandbag"
-	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "sandbag_pile"
 	w_class = 4.0
 	force = 9.0
@@ -67,7 +65,8 @@
 	throw_range = 20
 	max_amount = 25
 	attack_verb = list("hit", "bludgeoned", "whacked")
-	stack_id = "sandbags"
+	merge_type = /obj/item/stack/sandbags
+
 
 /obj/item/stack/sandbags/large_stack
 	amount = 25

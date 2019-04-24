@@ -74,7 +74,8 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 	throwforce = 14.0
 	flags_atom = CONDUCT
 	origin_tech = "materials=1"
-	stack_id = "metal"
+	merge_type = /obj/item/stack/sheet/metal
+
 
 /obj/item/stack/sheet/metal/small_stack
 	amount = 10
@@ -109,7 +110,8 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
 	throwforce = 15.0
 	flags_atom = CONDUCT
 	origin_tech = "materials=2"
-	stack_id = "plasteel"
+	merge_type = /obj/item/stack/sheet/plasteel
+
 
 /obj/item/stack/sheet/plasteel/New(var/loc, var/amount=null)
 	recipes = plasteel_recipes
@@ -148,7 +150,12 @@ var/global/list/datum/stack_recipe/wood_recipes = list ( \
 	singular_name = "wood plank"
 	icon_state = "sheet-wood"
 	origin_tech = "materials=1;biotech=1"
-	stack_id = "wood plank"
+	merge_type = /obj/item/stack/sheet/wood
+
+
+/obj/item/stack/sheet/wood/large_stack
+	amount = 50
+
 
 /obj/item/stack/sheet/wood/cyborg
 	name = "wooden plank"
@@ -169,7 +176,7 @@ var/global/list/datum/stack_recipe/wood_recipes = list ( \
 	singular_name = "cloth roll"
 	icon_state = "sheet-cloth"
 	origin_tech = "materials=2"
-	stack_id = "cloth"
+
 
 /*
  * Cardboard
@@ -200,7 +207,7 @@ var/global/list/datum/stack_recipe/cardboard_recipes = list ( \
 	singular_name = "cardboard sheet"
 	icon_state = "sheet-card"
 	origin_tech = "materials=1"
-	stack_id = "cardboard"
+
 
 /obj/item/stack/sheet/cardboard/New(var/loc, var/amount=null)
 		recipes = cardboard_recipes

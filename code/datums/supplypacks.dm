@@ -20,7 +20,6 @@ var/list/all_supply_groups = list("Operations", "Weapons", "Hardpoint Modules", 
 	var/name = null
 	var/list/contains = list()
 	var/manifest = ""
-	var/amount = null
 	var/cost = null
 	var/containertype = null
 	var/containername = null
@@ -2386,8 +2385,7 @@ ENGINEERING
 
 /datum/supply_packs/sandbags
 	name = "empty sandbags crate (x50)"
-	contains = list(/obj/item/stack/sandbags_empty)
-	amount = 50
+	contains = list(/obj/item/stack/sandbags_empty/full)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = "/obj/structure/closet/crate/supply"
 	containername = "\improper empty sandbags crate"
@@ -2395,8 +2393,7 @@ ENGINEERING
 
 /datum/supply_packs/metal50
 	name = "50 metal sheets (x50)"
-	contains = list(/obj/item/stack/sheet/metal)
-	amount = 50
+	contains = list(/obj/item/stack/sheet/metal/large_stack)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate/supply
 	containername = "\improper metal sheets crate"
@@ -2404,8 +2401,7 @@ ENGINEERING
 
 /datum/supply_packs/plas50
 	name = "plasteel sheets (x30)"
-	contains = list(/obj/item/stack/sheet/plasteel)
-	amount = 30
+	contains = list(/obj/item/stack/sheet/plasteel/medium_stack)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/supply
 	containername = "\improper plasteel sheets crate"
@@ -2413,8 +2409,7 @@ ENGINEERING
 
 /datum/supply_packs/glass50
 	name = "50 glass sheets (x50)"
-	contains = list(/obj/item/stack/sheet/glass)
-	amount = 50
+	contains = list(/obj/item/stack/sheet/glass/large_stack)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate/supply
 	containername = "\improper glass sheets crate"
@@ -2422,8 +2417,7 @@ ENGINEERING
 
 /datum/supply_packs/wood50
 	name = "wooden planks (x50)"
-	contains = list(/obj/item/stack/sheet/wood)
-	amount = 50
+	contains = list(/obj/item/stack/sheet/wood/large_stack)
 	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate/supply
 	containername = "\improper wooden planks crate"
