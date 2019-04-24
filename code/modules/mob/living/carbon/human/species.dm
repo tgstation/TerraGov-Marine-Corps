@@ -150,8 +150,11 @@
 
 
 /datum/species/proc/hug(var/mob/living/carbon/human/H,var/mob/living/target)
-
-	H.visible_message("<span class='notice'>[H] hugs [target] to make [target.p_them()] feel better!</span>", \
+	if(H.zone_selected == "head")
+		H.visible_message("<span class='notice'>[H] pats [target] on the head.</span>", \
+					"<span class='notice'>You pat [target] on the head.</span>", null, 4)	
+	else
+		H.visible_message("<span class='notice'>[H] hugs [target] to make [target.p_them()] feel better!</span>", \
 					"<span class='notice'>You hug [target] to make [target.p_them()] feel better!</span>", null, 4)
 
 /datum/species/proc/random_name(gender)
