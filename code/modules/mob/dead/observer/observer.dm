@@ -135,15 +135,19 @@
 	return ghost
 
 
-/mob/proc/set_away_time()
+/mob/proc/set_away_time(var/new_away)
 	return
 
-/mob/living/set_away_time()
+/mob/living/set_away_time(var/new_away = world.time)
+	if(!new_away)
+		return
 	away_time = world.time //Generic way to handle away time, currently unused.
 
 
-/mob/living/carbon/Xenomorph/set_away_time()
-	away_time = -XENO_AFK_TIMER //Xenos who force-ghost can be immediately taken by observers.
+/mob/living/carbon/Xenomorph/set_away_time(var/new_away = -XENO_AFK_TIMER)
+	if(!new_away)
+		return
+	away_time = new_away //Xenos who force-ghost can be immediately taken by observers.
 
 
 /mob/dead/observer/proc/unfollow()
