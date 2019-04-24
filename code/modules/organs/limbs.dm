@@ -53,6 +53,8 @@
 	var/vital //Lose a vital limb, die immediately.
 	var/germ_level = 0		// INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE
 
+	var/obj/item/limb/limb_object
+	var/obj/item/robot_parts/robot_object
 
 /datum/limb/New(datum/limb/P, mob/mob_owner)
 	if(P)
@@ -685,32 +687,21 @@ Note that amputating the affected organ does in fact remove the infection from t
 				owner.dropItemToGround(owner.head, null, TRUE)
 				owner.dropItemToGround(owner.wear_ear, null, TRUE)
 				owner.dropItemToGround(owner.wear_mask, null, TRUE)
-			if(ARM_RIGHT)
-				if(limb_status & LIMB_ROBOT) 	organ = new /obj/item/robot_parts/r_arm(owner.loc)
-				else 						organ = new /obj/item/limb/r_arm(owner.loc, owner)
-			if(ARM_LEFT)
-				if(limb_status & LIMB_ROBOT) 	organ = new /obj/item/robot_parts/l_arm(owner.loc)
-				else 						organ = new /obj/item/limb/l_arm(owner.loc, owner)
-			if(LEG_RIGHT)
-				if(limb_status & LIMB_ROBOT) 	organ = new /obj/item/robot_parts/r_leg(owner.loc)
-				else 						organ = new /obj/item/limb/r_leg(owner.loc, owner)
-			if(LEG_LEFT)
-				if(limb_status & LIMB_ROBOT) 	organ = new /obj/item/robot_parts/l_leg(owner.loc)
-				else 						organ = new /obj/item/limb/l_leg(owner.loc, owner)
 			if(HAND_RIGHT)
-				if(!(limb_status & LIMB_ROBOT)) organ= new /obj/item/limb/r_hand(owner.loc, owner)
 				owner.dropItemToGround(owner.gloves, null, TRUE)
 				owner.dropItemToGround(owner.r_hand, null, TRUE)
 			if(HAND_LEFT)
-				if(!(limb_status & LIMB_ROBOT)) organ= new /obj/item/limb/l_hand(owner.loc, owner)
 				owner.dropItemToGround(owner.gloves, null, TRUE)
 				owner.dropItemToGround(owner.l_hand, null, TRUE)
-			if(FOOT_RIGHT)
-				if(!(limb_status & LIMB_ROBOT)) organ= new /obj/item/limb/r_foot/(owner.loc, owner)
+			if(FOOT_RIGHT, FOOT_LEFT)
 				owner.dropItemToGround(owner.shoes, null, TRUE)
-			if(FOOT_LEFT)
-				if(!(limb_status & LIMB_ROBOT)) organ = new /obj/item/limb/l_foot(owner.loc, owner)
-				owner.dropItemToGround(owner.shoes, null, TRUE)
+
+		if(body_part != HEAD)
+			if(limb_status & LIMB_ROBOT) 	
+				if(robot_object)
+					organ = new robot_object(owner.loc)
+			else
+				organ = new limb_object(owner.loc, owner, brute_dam, burn_dam)
 
 		if(delete_limb)
 			qdel(organ)
@@ -1036,6 +1027,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_damage = 35
 	min_broken_damage = 30
 	body_part = ARM_LEFT
+	limb_object = /obj/item/limb/l_arm
+	robot_object = /obj/item/robot_parts/l_arm
 
 	process()
 		..()
@@ -1049,6 +1042,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	min_broken_damage = 30
 	body_part = LEG_LEFT
 	icon_position = LEFT
+	limb_object = /obj/item/limb/l_leg
+	robot_object = /obj/item/robot_parts/l_leg
 
 /datum/limb/r_arm
 	name = "r_arm"
@@ -1057,6 +1052,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_damage = 35
 	min_broken_damage = 30
 	body_part = ARM_RIGHT
+	limb_object = /obj/item/limb/r_arm
+	robot_object = /obj/item/robot_parts/r_arm
 
 	process()
 		..()
@@ -1070,6 +1067,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	min_broken_damage = 30
 	body_part = LEG_RIGHT
 	icon_position = RIGHT
+	limb_object = /obj/item/limb/r_leg
+	robot_object = /obj/item/robot_parts/r_leg
 
 /datum/limb/l_foot
 	name = "l_foot"
@@ -1079,6 +1078,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	min_broken_damage = 25
 	body_part = FOOT_LEFT
 	icon_position = LEFT
+	limb_object = /obj/item/limb/l_foot
 
 /datum/limb/r_foot
 	name = "r_foot"
@@ -1088,6 +1088,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	min_broken_damage = 25
 	body_part = FOOT_RIGHT
 	icon_position = RIGHT
+	limb_object = /obj/item/limb/r_foot
 
 /datum/limb/r_hand
 	name = "r_hand"
@@ -1096,6 +1097,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_damage = 30
 	min_broken_damage = 25
 	body_part = HAND_RIGHT
+	limb_object = /obj/item/limb/r_hand
 
 	process()
 		..()
@@ -1108,6 +1110,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_damage = 30
 	min_broken_damage = 25
 	body_part = HAND_LEFT
+	limb_object = /obj/item/limb/l_hand
 
 	process()
 		..()
@@ -1124,6 +1127,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	encased = "skull"
 	var/disfigured = 0 //whether the head is disfigured.
 	var/face_surgery_stage = 0
+	limb_object = /obj/item/limb/head
 
 /*
 /datum/limb/head/get_icon(var/icon/race_icon, var/icon/deform_icon)

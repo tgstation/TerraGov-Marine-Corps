@@ -1,8 +1,31 @@
+#define LIMB_REATTACH_TIME 15 MINUTES
 
-obj/item/limb
+/obj/item/limb
 	icon = 'icons/mob/human_races/r_human.dmi'
+	var/amputation_time
+	var/mob/living/carbon/human/owner
+	var/brute
+	var/burn
 
-obj/item/limb/New(loc, mob/living/carbon/human/H)
+/obj/item/limb/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(user == owner)
+		to_chat(user, "<span class='danger'>This is your [name]!</span>")
+	else if(user.Adjacent(owner))
+		to_chat(user, "<span class='warning'>This appears to belong to [owner]!</span>")
+	else
+		to_chat(user, "<span class='information'>You're not sure who this belongs to!</span>")
+	switch(amputation_time - world.time)
+		if(0 to LIMB_REATTACH_TIME)
+			to_chat(user, "<span class='information'>It looks freshly amputated!</span>")
+		if(LIMB_REATTACH_TIME to 2*LIMB_REATTACH_TIME)
+			to_chat(user, "<span class='warning'>It looks a bit pale!</span>")
+		if(2*LIMB_REATTACH_TIME to 3*LIMB_REATTACH_TIME)
+			to_chat(user, "<span class='danger'>It's grey and smells bad!</span>")
+		if(3*LIMB_REATTACH_TIME to INFINITY)
+			to_chat(user, "<span class='highdanger'>The smell is making you retch!</span>")
+
+/obj/item/limb/New(loc, mob/living/carbon/human/H, brute = 0, burn = 0)
 	..(loc)
 	if(!istype(H))
 		return
@@ -10,6 +33,11 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 		if(!blood_DNA)
 			blood_DNA = list()
 		blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
+
+	owner = H
+	amputation_time = world.time
+	src.brute = brute
+	src.burn = burn
 
 	//Forming icon for the limb
 
