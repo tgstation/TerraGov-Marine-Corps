@@ -1,0 +1,5 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - balance: "Removed some timegates on Prison, mostly ones near the research branch"
+  - bugfix: "Fixed some issues with doors with walls on Prison, removed a bunch of unnecessary wiring"
