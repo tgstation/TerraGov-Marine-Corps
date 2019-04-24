@@ -254,7 +254,7 @@
 		step(I, get_dir(I, src))
 
 /obj/structure/table/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
 	M.animation_attack_on(src)
 	if(sheet_type == /obj/item/stack/sheet/wood)
