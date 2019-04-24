@@ -20128,9 +20128,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "biR" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it..."
-	},
+/obj/structure/barricade/wooden/lv_snowflake,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "biV" = (
@@ -20746,16 +20744,12 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bli" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it..."
-	},
+/obj/structure/barricade/wooden/lv_snowflake,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "blj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it..."
-	},
+/obj/structure/barricade/wooden/lv_snowflake,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "blk" = (

@@ -397,7 +397,7 @@
 	can_wire = FALSE
 
 /obj/structure/barricade/wooden/lv_snowflake
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it..."
+	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the beams supporting it..."
 	max_integrity = 25000
 
 /obj/structure/barricade/wooden/attackby(obj/item/W as obj, mob/user as mob)
