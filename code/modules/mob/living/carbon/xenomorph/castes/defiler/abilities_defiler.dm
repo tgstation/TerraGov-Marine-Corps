@@ -15,7 +15,13 @@
 	if(world.time < X.last_use_neuroclaws + DEFILER_CLAWS_COOLDOWN)
 		return
 
-	X.neuro_claws = !X.neuro_claws
+	if(X.neuro_claws)
+		UnregisterSignal(X, COMSIG_XENO_HUMAN_SLASH)
+		X.neuro_claws = FALSE
+	else
+		RegisterSignal(X, COMSIG_XENO_HUMAN_SLASH, /mob/living/carbon/Xenomorph/Defiler/.proc/neuroclaw_slash)
+		X.neuro_claws = TRUE
+
 	X.last_use_neuroclaws = world.time
 	to_chat(X, "<span class='notice'>You [X.neuro_claws ? "extend" : "retract"] your claws' neuro spines.</span>")
 	button.overlays.Cut()

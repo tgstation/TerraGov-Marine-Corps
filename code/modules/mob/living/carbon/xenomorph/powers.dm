@@ -1041,7 +1041,3 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /mob/living/carbon/Xenomorph/can_sting()
 	return FALSE
-
-/mob/living/carbon/Xenomorph/proc/hit_and_run_bonus(damage)
-	return damage
-

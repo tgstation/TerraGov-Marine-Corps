@@ -6,11 +6,18 @@
 
 //#define DEBUG_ATTACK_ALIEN
 
+/mob/living/carbon/Xenomorph/proc/can_critical()
+	if(critical_proc)
+		return FALSE
+	return TRUE
+
+/mob/living/carbon/Xenomorph/Hunter/can_critical()
+	if(stealth)
+		return FALSE
+	return ..()
+
 /mob/living/carbon/Xenomorph/proc/reset_critical_hit()
 	critical_proc = FALSE
-
-/mob/living/carbon/Xenomorph/proc/process_rage_attack()
-	return FALSE
 
 /mob/living/proc/attack_alien_grab(mob/living/carbon/Xenomorph/X)
 	if(X == src || anchored || buckled)
@@ -20,7 +27,7 @@
 		return FALSE
 
 	X.start_pulling(src)
-	SEND_SIGNAL(M, COMSIG_XENO_ATTACK_DECLOAK)
+	SEND_SIGNAL(X, COMSIG_XENO_ATTACK_DECLOAK)
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/Xenomorph/X)
@@ -66,33 +73,20 @@
 		tackle_pain = tackle_pain * (1 + (0.05 * X.frenzy_aura))  //Halloss damage increased by 5% per rank of frenzy aura
 	if(protection_aura)
 		tackle_pain = tackle_pain * (1 - (0.10 + 0.05 * protection_aura))  //Halloss damage decreased by 10% + 5% per rank of protection aura
-	if(X.stealth_router(HANDLE_STEALTH_CHECK))
-		if(X.stealth_router(HANDLE_SNEAK_ATTACK_CHECK))
-			#ifdef DEBUG_ATTACK_ALIEN
-			to_chat(world, "DEBUG_ALIEN_ATTACK SNEAK ATTACK: target: [src] last_move_intent: [X.last_move_intent] world.time minus run delay: [world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY]")
-			#endif
-			var/staggerslow_stacks = 2
-			var/knockout_stacks = 1
-			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
-				tackle_pain *= 1.75 //Half the multiplier if running.
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \
-				"<span class='danger'>You strike [src] with vicious precision!</span>")
-			else
-				armor_block *= HUNTER_SNEAK_TACKLE_ARMOR_PEN //Tackle armor penetration heightened.
-				tackle_pain *= 3.5 //Massive damage on the sneak attack... hope you have armour.
-				staggerslow_stacks *= 2
-				knockout_stacks *= 2
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
-				"<span class='danger'>You strike [src] with deadly precision!</span>")
-			KnockOut(knockout_stacks)
-			adjust_stagger(staggerslow_stacks)
-			add_slowdown(staggerslow_stacks)
-		X.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
-	X.neuroclaw_router(src) //if we have neuroclaws...
+
+	var/list/modified_damage = list()
+	var/list/modified_armor = list()
+
+	SEND_SIGNAL(X, COMSIG_XENO_LIVING_SLASH, src, tackle_pain, modified_damage, armor_block, modified_armor, INTENT_DISARM)
+
+	for(var/i in modified_damage)
+		tackle_pain += i // add the bonus damages
+
+	for(var/j in modified_armor)
+		armor_block += j // remove the armor penetration
+
 	if(dam_bonus)
 		tackle_pain += dam_bonus
-
-	tackle_pain = X.hit_and_run_bonus(tackle_pain) //Apply Runner hit and run bonus damage if applicable
 
 	apply_damage(tackle_pain, HALLOSS, "chest", armor_block * XENO_TACKLE_ARMOR_PEN) //Only half armour applies vs tackle
 	updatehealth()
@@ -217,30 +211,17 @@
 
 	var/armor_block = run_armor_check(affecting, "melee")
 
-	if(X.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		if(X.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //Pouncing prevents us from making a sneak attack for 4 seconds
-			#ifdef DEBUG_ATTACK_ALIEN
-			to_chat(world, "DEBUG_ALIEN_ATTACK SNEAK ATTACK: target: [src] last_move_intent: [M.last_move_intent] world.time minus run delay: [world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY]")
-			#endif
-			var/staggerslow_stacks = 2
-			var/knockout_stacks = 1
-			damage *= X.sneak_bonus //Massive damage on the sneak attack... hope you have armour.
-			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
-			//...And we knock them out
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \
-				"<span class='danger'>You strike [src] with vicious precision!</span>")
-			else
-				armor_block *= HUNTER_SNEAK_SLASH_ARMOR_PEN //20% armor penetration
-				staggerslow_stacks *= 2
-				knockout_stacks *= 2
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
-				"<span class='danger'>You strike [src] with deadly precision!</span>")
-			KnockOut(knockout_stacks) //...And we knock 
-			adjust_stagger(staggerslow_stacks)
-			add_slowdown(staggerslow_stacks)
-		X.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+	var/list/modified_damage = list()
+	var/list/modified_armor = list()
 
-	damage = X.hit_and_run_bonus(damage) //Apply Runner hit and run bonus damage if applicable
+	SEND_SIGNAL(X, COMSIG_XENO_LIVING_SLASH, src, damage, modified_damage, armor_block, modified_armor, INTENT_HARM)
+
+	for(var/i in modified_damage)
+		damage += i // add the bonus damages
+
+	for(var/j in modified_armor)
+		armor_block += j // remove the armor penetration
+
 	apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
 	updatehealth()
 
@@ -280,9 +261,8 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	
-	X.neuroclaw_router(src) //if we have neuroclaws...
-	X.process_rage_attack() //Process Ravager rage gains on attack
+
+	SEND_SIGNAL(X, COMSIG_XENO_HUMAN_SLASH, src, INTENT_HARM)
 
 //Every other type of nonhuman mob
 /mob/living/attack_alien(mob/living/carbon/Xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)

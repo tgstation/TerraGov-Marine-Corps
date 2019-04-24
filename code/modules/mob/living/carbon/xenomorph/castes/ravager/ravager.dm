@@ -35,6 +35,13 @@
 		)
 
 // ***************************************
+// *********** Init
+// ***************************************
+/mob/living/carbon/Xenomorph/Ravager/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_XENO_HUMAN_SLASH, .proc/process_rage_attack)
+
+// ***************************************
 // *********** Mob overrides
 // ***************************************
 /mob/living/carbon/Xenomorph/Ravager/movement_delay()
@@ -105,7 +112,9 @@
 	else
 		rage *= 0.5 //Halve rage instead of 0ing it out if we miss.
 
-/mob/living/carbon/Xenomorph/Ravager/process_rage_attack()
+/mob/living/carbon/Xenomorph/Ravager/proc/process_rage_attack(mob/living/carbon/human/H, intent)
+	if(intent == INTENT_DISARM)
+		return
 	rage += RAV_RAGE_ON_HIT
 	last_rage = world.time //We incremented rage, so bookmark this.
 

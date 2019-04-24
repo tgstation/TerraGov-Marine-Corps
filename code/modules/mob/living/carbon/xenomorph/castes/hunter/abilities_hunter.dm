@@ -66,7 +66,7 @@
 	stealth = FALSE
 	UnregisterSignal(src, COMSIG_XENO_ATTACK_DECLOAK)
 	used_stealth = TRUE
-	can_sneak_attack = FALSE
+	disable_sneakattack()
 	alpha = 255 //no transparency/translucency
 	stealth_delay = world.time + HUNTER_STEALTH_COOLDOWN
 	addtimer(CALLBACK(src, .stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
@@ -109,7 +109,7 @@
 
 	if(can_sneak_attack) //If we could sneak attack, add a cooldown to sneak attack
 		to_chat(src, "<span class='xenodanger'>Your pounce has left you off-balance; you'll need to wait [HUNTER_POUNCE_SNEAKATTACK_DELAY*0.1] seconds before you can Sneak Attack again.</span>")
-		can_sneak_attack = FALSE
+		disable_sneakattack()
 		addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY)
 
 	usedPounce = TRUE
@@ -119,13 +119,15 @@
 	addtimer(CALLBACK(src, .proc/reset_flags_pass), 6)
 	addtimer(CALLBACK(src, .proc/reset_pounce_delay), xeno_caste.pounce_delay)
 
-
-
 	return TRUE
 
 /mob/living/carbon/Xenomorph/Hunter/proc/sneak_attack_cooldown()
+	if(!stealth)
+		disable_sneakattack() // stop this taking effect if we're not stealthed
+		return
 	if(can_sneak_attack)
 		return
+	RegisterSignal(src, COMSIG_XENO_LIVING_SLASH, .proc/sneak_attack_bonus)
 	can_sneak_attack = TRUE
 	to_chat(src, "<span class='xenodanger'>You're ready to use Sneak Attack while stealthed.</span>")
 	playsound(src, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)

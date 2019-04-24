@@ -114,7 +114,7 @@
 	if(damage > 12) //Light damage won't splash.
 		check_blood_splash(damage, damagetype, chancemod)
 		if(damage > 15)
-			SEND_SIGNAL(M, COMSIG_XENO_ATTACK_DECLOAK) //Any significant damage causes us to break stealth
+			SEND_SIGNAL(src, COMSIG_XENO_ATTACK_DECLOAK) //Any significant damage causes us to break stealth
 
 	if(stat == DEAD)
 		return FALSE

@@ -52,7 +52,7 @@
 // ***************************************
 // *********** Neuroclaws router
 // ***************************************
-/mob/living/carbon/Xenomorph/Defiler/neuroclaw_router(mob/living/carbon/human/H)
+/mob/living/carbon/Xenomorph/Defiler/proc/neuroclaw_slash(mob/living/carbon/human/H)
 	if(!check_plasma(50) || !neuro_claws || !H)
 		return
 	use_plasma(50)

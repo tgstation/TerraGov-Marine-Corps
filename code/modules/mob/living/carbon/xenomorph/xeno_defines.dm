@@ -260,9 +260,6 @@
 	var/savage = FALSE
 	var/savage_used = FALSE
 
-	//Hunter vars
-	var/sneak_bonus = 0.00
-
 	//Acid spray
 	var/last_spray_used
 

@@ -14,6 +14,7 @@
 	var/used_stealth = FALSE
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
+	var/sneak_bonus = 0
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
@@ -68,6 +69,12 @@
 
 /mob/living/carbon/Xenomorph/Hunter/handle_status_effects()
 	. = ..()
+	if(sneak_bonus < HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
+		if(last_move_intent < world.time - HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY || !stealth)
+			sneak_bonus = round(min(sneak_bonus + HUNTER_SNEAKATTACK_WALK_INCREASE, 3.5), 0.01) //Recover sneak attack multiplier rapidly when stationary or unstealthed
+
+		if(sneak_bonus >= HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
+			to_chat(src, "<span class='xenodanger'>Your sneak attack is now at maximum power.</span>")
 	handle_stealth()
 
 /mob/living/carbon/Xenomorph/Hunter/proc/handle_stealth()
@@ -93,6 +100,30 @@
 	if(!plasma_stored)
 		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
+
+/mob/living/carbon/Xenomorph/Hunter/proc/sneak_attack_bonus(mob/living/L, damage, list/modified_damage, armor_block, list/modified_armor)
+	#ifdef DEBUG_ATTACK_ALIEN
+	to_chat(world, "DEBUG_ALIEN_ATTACK SNEAK ATTACK: target: [L] last_move_intent: [last_move_intent] world.time minus run delay: [world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY]")
+	#endif
+	var/staggerslow_stacks = 2
+	var/knockout_stacks = 1
+	modified_damage += damage * (1 - sneak_bonus)
+	if(m_intent == MOVE_INTENT_RUN && ( last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
+		visible_message("<span class='danger'>\The [src] strikes [L] with vicious precision!</span>", \
+		"<span class='danger'>You strike [L] with vicious precision!</span>")
+	else
+		modified_armor += 0 - (armor_block * HUNTER_SNEAK_SLASH_ARMOR_PEN) // negative modifier
+		staggerslow_stacks *= 2
+		knockout_stacks *= 2
+		visible_message("<span class='danger'>\The [src] strikes [L] with deadly precision!</span>", \
+		"<span class='danger'>You strike [L] with deadly precision!</span>")
+	L.KnockOut(knockout_stacks)
+	L.adjust_stagger(staggerslow_stacks)
+	L.add_slowdown(staggerslow_stacks)
+
+/mob/living/carbon/Xenomorph/Hunter/proc/disable_sneakattack()
+	can_sneak_attack = FALSE
+	UnregisterSignal(src, COMSIG_XENO_LIVING_SLASH)
 
 /mob/living/carbon/Xenomorph/Hunter/stealth_router(code = 0)
 	switch(code)

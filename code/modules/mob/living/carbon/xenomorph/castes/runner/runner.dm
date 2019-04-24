@@ -26,9 +26,16 @@
 		)
 
 // ***************************************
+// *********** Init
+// ***************************************
+/mob/living/carbon/Xenomorph/Runner/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_XENO_LIVING_SLASH, .proc/hit_and_run_bonus)
+
+// ***************************************
 // *********** Life overrides
 // ***************************************
-/mob/living/carbon/Xenomorph/Runner/hit_and_run_bonus(damage)
+/mob/living/carbon/Xenomorph/Runner/proc/hit_and_run_bonus(mob/living/carbon/human/H, damage, modified_damage)
 	var/last_move = last_move_intent - 10
 	var/bonus
 	if(last_move && last_move < world.time - 5) //If we haven't moved in the last 500 ms, we lose our bonus
@@ -44,9 +51,9 @@
 		if(1.25 to 1.45)
 			visible_message("<span class='danger'>\The [src] strikes with vicious speed!</span>", \
 			"<span class='danger'>You strike with vicious speed!</span>")
-	damage *= bonus
+	modified_damage += (damage * (1 - bonus))
 	hit_and_run = 1 //reset the hit and run bonus
-	return damage
+	
 	
 /mob/living/carbon/Xenomorph/Runner/handle_status_effects()
 	if(hit_and_run)
