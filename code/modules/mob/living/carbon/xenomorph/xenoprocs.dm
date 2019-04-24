@@ -117,6 +117,9 @@
 	if(!statpanel("Stats"))
 		return
 
+	if(overhealth)
+		stat(null, "Overhealth: [overhealth]/[XENO_MAX_OVERHEALTH]")
+
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		stat(null, "Evolve Progress (FINISHED)")
 	else if(!hive.living_xeno_queen)

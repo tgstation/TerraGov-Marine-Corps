@@ -28,6 +28,7 @@
 		handle_aura_emiter()
 
 	handle_aura_receiver()
+	handle_overhealth()
 	handle_living_health_updates()
 	handle_living_plasma_updates()
 	update_action_button_icons()
@@ -120,7 +121,17 @@
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount)
 
+#define XENO_OVERHEALTH_PER_WARDING_LEVEL 25
+#define XENO_OVERHEALTH_DECAY_RATE 5
+#define XENO_OVERHEALTH_GEN_RATE 2.5
 
+#define XENO_MAX_OVERHEALTH ( ( warding_aura * XENO_OVERHEALTH_PER_WARDING_LEVEL ) )
+
+/mob/living/carbon/Xenomorph/proc/handle_overhealth()
+	if(overhealth > XENO_MAX_OVERHEALTH) // too much overhealth
+		overhealth = max(0, overhealth - XENO_OVERHEALTH_DECAY_RATE)
+	if(overhealth < XENO_MAX_OVERHEALTH) // not enough overhealth
+		overhealth = min(overhealth + XENO_OVERHEALTH_GEN_RATE, XENO_MAX_OVERHEALTH)
 
 /mob/living/carbon/Xenomorph/proc/handle_living_plasma_updates()
 	var/turf/T = loc
@@ -209,9 +220,6 @@
 	frenzy_new = 0
 	warding_new = 0
 	recovery_new = 0
-	armor_pheromone_bonus = 0
-	if(warding_aura > 0)
-		armor_pheromone_bonus = warding_aura * 3 //Bonus armor from pheromones, no matter what the armor was previously. Was 5
 
 /mob/living/carbon/Xenomorph/handle_regular_hud_updates()
 	if(!client)

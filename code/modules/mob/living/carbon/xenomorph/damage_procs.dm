@@ -121,6 +121,13 @@
 
 	damage = process_rage_damage(damage, src)
 
+	if(overhealth < damage)
+		damage -= overhealth
+		overhealth = 0
+	else
+		overhealth -= damage
+		damage = 0
+
 	switch(damagetype)
 		if(BRUTE)
 			adjustBruteLoss(damage, FALSE)

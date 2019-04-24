@@ -142,6 +142,8 @@
 	var/max_grown = 200
 	var/time_of_birth
 
+	var/overhealth = 0 // overhealth from warding
+
 	var/devour_timer = 0
 
 	var/evolution_stored = 0 //How much evolution they have stored
@@ -158,7 +160,6 @@
 	var/middle_mouse_toggle = TRUE //This toggles whether selected ability uses middle mouse clicking or shift clicking
 
 	var/armor_bonus = 0 //Extra chance of deflecting projectiles due to temporary effects
-	var/armor_pheromone_bonus = 0 //
 
 	var/fire_resist_modifier = 0
 
