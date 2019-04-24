@@ -52,8 +52,8 @@
 				M.visible_message("<span class='warning'>\The [M] pokes \the [src], but nothing happens.</span>", \
 				"<span class='warning'>You poke \the [src], but nothing happens.</span>", null, 5)
 			else
-				M.visible_message("<span class='warning'>\The [M] pokes \the [src].</span>", \
-				"<span class='warning'>You poke \the [src].</span>", null, 5)
+				M.visible_message("<span class='notice'>\The [M] pets \the [src].</span>", \
+					"<span class='notice'>You pet \the [src].</span>", null, 5)
 
 		if(INTENT_GRAB)
 			if(M == src || anchored)
