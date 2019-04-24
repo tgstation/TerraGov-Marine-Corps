@@ -68,6 +68,10 @@ var/list/department_radio_keys = list(
 		to_chat(src, "<span class='warning'>You cannot speak in IC (Muted).</span>")
 		return	
 
+	if(stat == DEAD)
+		say_dead(message)
+		return
+
 	var/turf/T = get_turf(src)
 
 
