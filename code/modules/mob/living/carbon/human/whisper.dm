@@ -35,6 +35,21 @@
 	var/watching_range = 5
 	var/italics = 1
 
+	// language comma detection.
+	var/datum/language/message_language = get_message_language(message)
+	if(message_language)
+		// No, you cannot speak in xenocommon just because you know the key
+		if(can_speak_in_language(message_language))
+			language =  GLOB.language_datum_instances[message_language]
+		message = copytext(message, 3)
+
+		// Trim the space if they said ",0 I LOVE LANGUAGES"
+		if(findtext(message, " ", 1, 2))
+			message = copytext(message, 2)
+
+	if(!language)
+		language = GLOB.language_datum_instances[get_default_language()]
+
 	if (speaking)
 		verb = speaking.get_spoken_verb(src) + pick(" quietly", " softly")
 
