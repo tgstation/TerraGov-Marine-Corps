@@ -1,0 +1,4 @@
+author: "Jalordon"
+delete-after: True
+changes: 
+  - tweak: "focus order's sprite is now a crosshair instead of a '!', and order issuers now use correctly sprited text bubbles."
