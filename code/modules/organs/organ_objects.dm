@@ -161,7 +161,7 @@
 		msg_admin_attack("[ADMIN_TPMONTY(usr)] removed a vital organ ([src]) from [ADMIN_TPMONTY(target)].")
 		target.death()
 
-/obj/item/organ/appendix/removed(var/mob/living/target,var/mob/living/user)
+/obj/item/organ/appendix/removed(mob/living/carbon/target, mob/living/carbon/user)
 
 	..()
 

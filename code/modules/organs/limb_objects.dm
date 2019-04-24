@@ -124,7 +124,6 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
-	brainmob.dna = H.dna.Clone()
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 	brainmob.container = src

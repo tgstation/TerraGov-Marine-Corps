@@ -74,7 +74,7 @@ obj/item/stack/sheet/mineral/iron
 	sheettype = "iron"
 	color = "#333333"
 	perunit = 3750
-	stack_id = "iron"
+
 
 obj/item/stack/sheet/mineral/iron/New()
 	..()
@@ -89,7 +89,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	throw_range = 5
 	origin_tech = "materials=1"
 	sheettype = "sandstone"
-	stack_id = "sandstone"
+
 
 /obj/item/stack/sheet/mineral/sandstone/New()
 	..()
@@ -103,7 +103,6 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "materials=6"
 	perunit = 3750
 	sheettype = "diamond"
-	stack_id = "diamond"
 
 
 /obj/item/stack/sheet/mineral/diamond/New()
@@ -118,7 +117,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "materials=5"
 	perunit = 2000
 	sheettype = "uranium"
-	stack_id = "uranium"
+
 
 /obj/item/stack/sheet/mineral/uranium/New()
 	..()
@@ -132,17 +131,21 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "phorontech=2;materials=2"
 	perunit = 2000
 	sheettype = "phoron"
-	stack_id = "phoron"
+	merge_type = /obj/item/stack/sheet/mineral/phoron
+
 
 /obj/item/stack/sheet/mineral/phoron/New()
 	..()
 	// recipes = phoron_recipes // Disabled phoron doors
 
+
 /obj/item/stack/sheet/mineral/phoron/small_stack
 	amount = 10
 
+
 /obj/item/stack/sheet/mineral/phoron/medium_stack
 	amount = 30
+
 
 /obj/item/stack/sheet/mineral/plastic
 	name = "Plastic"
@@ -151,7 +154,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	icon_state = "sheet-plastic"
 	origin_tech = "materials=3"
 	perunit = 2000
-	stack_id = "plastic"
+
 
 /obj/item/stack/sheet/mineral/plastic/New()
 	..()
@@ -172,7 +175,8 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "materials=4"
 	perunit = 2000
 	sheettype = "gold"
-	stack_id = "gold"
+	number_of_extra_variants = 2
+
 
 /obj/item/stack/sheet/mineral/gold/New()
 	..()
@@ -186,31 +190,25 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "materials=3"
 	perunit = 2000
 	sheettype = "silver"
-	stack_id = "silver"
+	number_of_extra_variants = 2
+
 
 /obj/item/stack/sheet/mineral/silver/New()
 	..()
 	recipes = silver_recipes
 
-/obj/item/stack/sheet/mineral/enruranium
-	name = "enriched uranium"
-	desc = "Enriched uranium rods are made out of around 3 to 5 percent of U-235 mixed with regular U-238. While nowhere near weapons-grade, it is good enough to be used in a fission engine."
-	singular_name = "enriched uranium rod"
-	icon_state = "sheet-enruranium"
-	origin_tech = "materials=5"
-	perunit = 1000
-	stack_id = "uranium"
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/sheet/mineral/platinum
 	name = "platinum"
 	desc = "Platinum is a transition metal. Relatively rare and pretty, it is used for its cosmetic value and chemical properties as a catalytic agent. It is also used in electrodes."
 	singular_name = "platinum ingot"
-	icon_state = "sheet-adamantine"
+	icon_state = "sheet-platinum"
 	origin_tech = "materials=2"
 	sheettype = "platinum"
 	perunit = 2000
-	stack_id = "platinum"
+	number_of_extra_variants = 2
+
 
 //Extremely valuable to Research.
 /obj/item/stack/sheet/mineral/mhydrogen
@@ -221,7 +219,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "materials=6;powerstorage=5;magnets=5"
 	sheettype = "mhydrogen"
 	perunit = 2000
-	stack_id = "mhydrogen"
+
 
 //Fuel for MRSPACMAN generator.
 /obj/item/stack/sheet/mineral/tritium
@@ -233,7 +231,7 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "materials=5"
 	color = "#777777"
 	perunit = 2000
-	stack_id = "tritium"
+
 
 /obj/item/stack/sheet/mineral/osmium
 	name = "osmium"
@@ -244,4 +242,3 @@ obj/item/stack/sheet/mineral/iron/New()
 	origin_tech = "materials=5"
 	color = "#9999FF"
 	perunit = 2000
-	stack_id = "osmium"

@@ -158,7 +158,6 @@
 	M.adjustOxyLoss(0.5*REM)
 	M.KnockDown(10)
 	M.silent = max(M.silent, 10)
-	M.tod = worldtime2text()
 	..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/M)

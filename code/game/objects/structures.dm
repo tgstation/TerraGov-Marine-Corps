@@ -41,14 +41,14 @@
 
 /obj/structure/attackby(obj/item/C as obj, mob/user as mob)
 	. = ..()
-	if(istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-		var/obj/item/tool/pickaxe/plasmacutter/P = C
-		if(!P.start_cut(user, name, src))
-			return
-		if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
-			P.cut_apart(user, name, src)
-			qdel(src)
+	if(!istype(C, /obj/item/tool/pickaxe/plasmacutter) || user.action_busy || CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		return
+	var/obj/item/tool/pickaxe/plasmacutter/P = C
+	if(!P.start_cut(user, name, src))
+		return
+	if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
+		P.cut_apart(user, name, src)
+		qdel(src)
 
 //Default "structure" proc. This should be overwritten by sub procs.
 /obj/structure/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -56,7 +56,7 @@
 
 /obj/structure/attack_animal(mob/living/user)
 	. = ..()
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE) && user.wall_smash)
+	if(user.wall_smash && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
 		destroy_structure()
 

@@ -1,68 +1,70 @@
-
 /obj/machinery/door
 	name = "\improper Door"
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door1"
-	anchored = 1
-	opacity = 1
-	density = 1
+	anchored = TRUE
+	opacity = TRUE
+	density = TRUE
 	layer = DOOR_OPEN_LAYER
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
-	var/id = ""
+	var/id
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
 	var/secondsElectrified = 0
-	var/visible = 1
-	var/p_open = 0
-	var/operating = 0
-	var/autoclose = 0
-	var/glass = 0
-	var/normalspeed = 1
+	var/visible = TRUE
+	var/p_open = FALSE
+	var/operating = FALSE
+	var/autoclose = FALSE
+	var/glass = FALSE
+	var/normalspeed = TRUE
+	var/locked = FALSE
+	var/welded = FALSE
+	var/not_weldable = FALSE // stops people welding the door if true
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
-	var/air_properties_vary_with_direction = 0
-	var/turf/filler //Fixes double door opacity issue
-
+	var/air_properties_vary_with_direction = FALSE
+	var/list/fillers
 
 	//Multi-tile doors
 	dir = EAST
 	var/width = 1
 
-	Initialize()
-		. = ..()
-		if(density)
-			layer = closed_layer
-			update_flags_heat_protection(get_turf(src))
-		else
-			layer = open_layer
+/obj/machinery/door/Initialize()
+	. = ..()
+	if(density)
+		layer = closed_layer
+		update_flags_heat_protection(get_turf(src))
+	else
+		layer = open_layer
 
+	if(width > 1)
 		handle_multidoor()
 
-	Destroy()
-		. = ..()
-		if(filler && width > 1)
-			filler.SetOpacity(0)// Ehh... let's hope there are no walls there. Must fix this
-			filler = null
-		density = 0
+/obj/machinery/door/Destroy()
+	. = ..()
+	for(var/o in fillers)
+		qdel(o)
+	density = FALSE
 
 /obj/machinery/door/proc/handle_multidoor()
-	if(width > 1)
-		if(dir in list(EAST, WEST))
-			bound_width = width * world.icon_size
-			bound_height = world.icon_size
-			filler = get_step(src,EAST)
-			filler.SetOpacity(opacity)
-		else
-			bound_width = world.icon_size
-			bound_height = width * world.icon_size
-			filler = get_step(src,NORTH)
-			filler.SetOpacity(opacity)
+	fillers = list()
 
-//process()
-	//return
+	if(dir in list(EAST, WEST))
+		bound_width = width * world.icon_size
+		bound_height = world.icon_size
+	else
+		bound_width = world.icon_size
+		bound_height = width * world.icon_size
+
+	var/turf/T = get_turf(src)
+	for(var/i = 2 to width)
+		T = get_step(T,dir)
+		fillers += new /obj/effect/opacifier(T, opacity)
 
 /obj/machinery/door/Bumped(atom/AM)
-	if(p_open || operating) return
+	if(p_open || operating)
+		return
+
 	if(ismob(AM))
 		var/mob/M = AM
 		if(world.time - M.last_bumped <= openspeed) return	//Can bump-open one airlock per second. This is to prevent shock spam.
@@ -98,15 +100,19 @@
 	return !density
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
-	if(operating)	return
-	src.add_fingerprint(user)
+	if(operating)
+		return
+
+	add_fingerprint(user)
+
 	if(!src.requiresID())
 		user = null
 
 	if(density)
-		if(allowed(user))	open()
-		else				flick("door_deny", src)
-	return
+		if(allowed(user))
+			open()
+		else
+			flick("door_deny", src)
 
 /obj/machinery/door/attack_ai(mob/user)
 	return src.attack_hand(user)
@@ -148,11 +154,10 @@
 			flick("door_spark", src)
 			sleep(6)
 			open()
-			operating = -1
-		return 1
+		return TRUE
 	else if(!(I.flags_item & NOBLUDGEON))
 		try_to_activate_door(user)
-		return 1
+		return TRUE
 
 /obj/machinery/door/emp_act(severity)
 	if(prob(20/severity) && (istype(src,/obj/machinery/door/airlock) || istype(src,/obj/machinery/door/window)) )
@@ -166,7 +171,7 @@
 
 
 /obj/machinery/door/ex_act(severity)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE)) 
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
 	switch(severity)
 		if(1.0)
@@ -179,7 +184,6 @@
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(2, 1, src)
 				s.start()
-	return
 
 
 /obj/machinery/door/update_icon()
@@ -187,8 +191,6 @@
 		icon_state = "door1"
 	else
 		icon_state = "door0"
-	return
-
 
 /obj/machinery/door/proc/do_animate(animation)
 	switch(animation)
@@ -204,82 +206,77 @@
 				flick("doorc1", src)
 		if("deny")
 			flick("door_deny", src)
-	return
 
 
 /obj/machinery/door/proc/open()
-	if(!density)		return 1
-	if(operating > 0 || !loc)	return
-	if(!SSticker)			return 0
-	if(!operating)		operating = 1
+	if(!density)
+		return TRUE
+	if(operating > 0 || !loc)
+		return
+	if(!SSticker)
+		return FALSE
+	if(!operating)
+		operating = TRUE
 
 	do_animate("opening")
 	icon_state = "door0"
-	src.SetOpacity(0)
+	SetOpacity(FALSE)
+	for(var/t in fillers)
+		var/obj/effect/opacifier/O = t
+		O.SetOpacity(FALSE)
 	sleep(openspeed)
-	src.layer = open_layer
-	src.density = 0
+	layer = open_layer
+	density = FALSE
 	update_icon()
-	SetOpacity(0)
-	if (filler)
-		filler.SetOpacity(0)
 
-	if(operating)	operating = 0
+	if(operating)
+		operating = FALSE
 
-	if(autoclose  && normalspeed)
-		spawn(150 + openspeed)
-			autoclose()
-	if(autoclose && !normalspeed)
-		spawn(5)
-			autoclose()
+	if(autoclose)
+		addtimer(CALLBACK(src, .proc/autoclose), normalspeed ? 150 + openspeed : 5)
 
-	return 1
+	return TRUE
 
 
 /obj/machinery/door/proc/close()
-	if(density)	return 1
-	if(operating > 0 || !loc)	return
-	operating = 1
+	if(density)
+		return TRUE
+	if(operating > 0 || !loc)
+		return
+	operating = TRUE
 
-	src.density = 1
-	src.layer = closed_layer
+	density = TRUE
+	layer = closed_layer
 	do_animate("closing")
 	sleep(openspeed)
 	update_icon()
 	if(visible && !glass)
-		SetOpacity(1)	//caaaaarn!
-		if (filler)
-			filler.SetOpacity(0)
-	operating = 0
-	return
+		SetOpacity(TRUE)	//caaaaarn!
+		for(var/t in fillers)
+			var/obj/effect/opacifier/O = t
+			O.SetOpacity(TRUE)
+	operating = FALSE
 
 /obj/machinery/door/proc/requiresID()
-	return 1
-
+	return TRUE
 
 /obj/machinery/door/proc/update_flags_heat_protection(var/turf/source)
 
-
 /obj/machinery/door/proc/autoclose()
-	var/obj/machinery/door/airlock/A = src
-	if(!A.density && !A.operating && !A.locked && !A.welded && A.autoclose)
+	if(!density && !operating && !locked && !welded && autoclose)
 		close()
-	return
 
 /obj/machinery/door/Move(new_loc, new_dir)
 	. = ..()
-	if(width > 1)
-		if(dir in list(EAST, WEST))
-			bound_width = width * world.icon_size
-			bound_height = world.icon_size
-			filler.SetOpacity(0)
-			filler = (get_step(src,EAST)) //Find new turf
-		else
-			bound_width = world.icon_size
-			bound_height = width * world.icon_size
-			filler.SetOpacity(0)
-			filler = (get_step(src,NORTH)) //Find new turf
 
+	if(width > 1)
+		var/turf/T = get_turf(src)
+		var/expansion_dir = initial(dir)
+
+		for(var/t in fillers)
+			var/obj/effect/opacifier/O = t
+			T = get_step(T,expansion_dir)
+			O.loc = T
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'

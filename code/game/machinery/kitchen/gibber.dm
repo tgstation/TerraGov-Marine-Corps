@@ -147,9 +147,10 @@
 	var/obj/item/reagent_container/food/snacks/meat/allmeat[totalslabs]
 
 	if( istype(src.occupant, /mob/living/carbon/human/) )
+		var/mob/living/carbon/human/H = occupant
 		var/sourcename = src.occupant.real_name
 		var/sourcejob = src.occupant.job
-		var/sourcenutriment = src.occupant.nutrition / 15
+		var/sourcenutriment = H.nutrition / 15
 		var/sourcetotalreagents = src.occupant.reagents.total_volume
 
 		for(var/i=1 to totalslabs)
@@ -170,8 +171,9 @@
 
 	else if( istype(src.occupant, /mob/living/carbon/) || istype(src.occupant, /mob/living/simple_animal/ ) )
 
+		var/mob/living/carbon/C = occupant
 		var/sourcename = src.occupant.name
-		var/sourcenutriment = src.occupant.nutrition / 15
+		var/sourcenutriment = C.nutrition / 15
 		var/sourcetotalreagents = 0
 
 		if( istype(src.occupant, /mob/living/carbon/monkey/) || istype(src.occupant, /mob/living/carbon/Xenomorph) ) // why are you gibbing aliens? oh well
@@ -181,7 +183,7 @@
 			totalslabs = 2
 		else
 			totalslabs = 1
-			sourcenutriment = src.occupant.nutrition / 30 // small animals don't have as much nutrition
+			sourcenutriment = C.nutrition / 30 // small animals don't have as much nutrition
 
 		for(var/i=1 to totalslabs)
 			var/obj/item/reagent_container/food/snacks/meat/newmeat = new

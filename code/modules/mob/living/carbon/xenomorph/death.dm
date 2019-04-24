@@ -50,7 +50,7 @@
 	if(isxenoboiler(src))
 		var/mob/living/carbon/Xenomorph/Boiler/B = src
 		visible_message("<span class='danger'>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</span>")
-		B.smoke.set_up(2, 0, get_turf(src))
+		B.smoke.set_up(2, get_turf(src))
 		B.smoke.start()
 		remains.icon_state = "gibbed-a-corpse"
 	else if(isxenorunner(src))

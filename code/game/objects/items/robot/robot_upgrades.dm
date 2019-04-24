@@ -140,15 +140,6 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 
-/obj/item/robot/upgrade/jetpack/action(var/mob/living/silicon/robot/R)
-	if(..()) return 0
-
-	R.module.modules += new/obj/item/tank/jetpack/carbondioxide
-	for(var/obj/item/tank/jetpack/carbondioxide in R.module.modules)
-		R.internal = src
-	//R.icon_state="Miner+j"
-	return 1
-
 
 /obj/item/robot/upgrade/syndicate/
 	name = "illegal equipment module"

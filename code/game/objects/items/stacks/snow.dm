@@ -5,7 +5,6 @@
 	name = "snow pile"
 	desc = "Some snow pile."
 	singular_name = "layer"
-	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "snow_stack"
 	w_class = 5
 	force = 2
@@ -13,7 +12,6 @@
 	throw_speed = 5
 	throw_range = 1
 	max_amount = 25
-	stack_id = "snow pile"
 
 
 /obj/item/stack/snow/attackby(obj/item/W, mob/user)

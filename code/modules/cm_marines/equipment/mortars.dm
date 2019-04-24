@@ -270,7 +270,7 @@
 
 	New()
 		..()
-		smoke = new /datum/effect_system/smoke_spread/bad
+		smoke = new
 		smoke.attach(src)
 
 /obj/item/mortal_shell/smoke/detonate(var/turf/T)
@@ -278,7 +278,7 @@
 	explosion(T, 0, 1, 2, 7)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	forceMove(T) //AAAAAAAA
-	smoke.set_up(6, 0, T, null, 6)
+	smoke.set_up(6, T, 7)
 	smoke.start()
 	smoke = null
 	qdel(src)

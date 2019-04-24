@@ -366,7 +366,7 @@
 
 /obj/machinery/door/airlock/almayer/marine/bravo/sl
 	name = "\improper Bravo Squad Leader Preparations"
-	req_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRAVO)
+	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_BRAVO)
 	req_one_access = null
 
 /obj/machinery/door/airlock/almayer/marine/bravo/spec

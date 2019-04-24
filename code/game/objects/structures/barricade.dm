@@ -15,6 +15,7 @@
 	health = 100 //Pretty tough. Changes sprites at 300 and 150
 	var/maxhealth = 100 //Basic code functions
 	var/crusher_resistant = TRUE //Whether a crusher can ram through it.
+	var/base_acid_damage = 2
 	var/barricade_resistance = 5 //How much force an item needs to even damage it at all.
 	var/barricade_hitsound
 
@@ -140,14 +141,6 @@
 		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 /obj/structure/barricade/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/zombie_claws))
-		user.visible_message("<span class='danger'>The zombie smashed at the [src.barricade_type] barricade!</span>",
-		"<span class='danger'>You smack the [src.barricade_type] barricade!</span>")
-		if(barricade_hitsound)
-			playsound(src, barricade_hitsound, 25, 1)
-		hit_barricade(W)
-		return
-
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
 		if(A.acid_t == src)
 			to_chat(user, "You can't get near that, it's melting!")
@@ -264,8 +257,6 @@
 	overlays += wired_overlay
 
 /obj/structure/barricade/proc/hit_barricade(obj/item/I)
-	if(istype(I, /obj/item/weapon/zombie_claws))
-		health -= I.force * 0.5
 	health -= I.force * 0.5
 	update_health()
 
@@ -290,9 +281,14 @@
 		if(75 to INFINITY) damage_state = 0
 
 
-/obj/structure/barricade/proc/acid_smoke_damage(var/obj/effect/particle_effect/smoke/S)
-	health -= 15
-	update_health()
+/obj/structure/barricade/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
+		health -= base_acid_damage * S.strength
+		update_health()
+
 
 /obj/structure/barricade/verb/rotate()
 	set name = "Rotate Barricade Counter-Clockwise"
@@ -443,6 +439,7 @@
 
 	update_health()
 	return TRUE
+
 
 /*----------------------*/
 // METAL

@@ -57,7 +57,7 @@
 	..()
 
 
-/mob/living/carbon/attack_hand(mob/M as mob)
+/mob/living/carbon/human/attack_hand(mob/living/carbon/M)
 	if(!iscarbon(M))
 		return
 
@@ -73,7 +73,7 @@
 	return
 
 
-/mob/living/carbon/attack_paw(mob/M as mob)
+/mob/living/carbon/attack_paw(mob/living/carbon/M)
 	if(!iscarbon(M))
 		return
 
@@ -312,6 +312,7 @@
 			inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 
+		playsound(src, 'sound/effects/throw.ogg', 50, 1)
 		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, spin_throw)
 
 /mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
@@ -410,3 +411,20 @@
 	. += "---"
 	. -= "Update Icon"
 	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
+
+
+/mob/living/carbon/proc/equip_preference_gear(client/C)
+	if(!C?.prefs || !istype(back, /obj/item/storage/backpack))
+		return
+
+	var/datum/preferences/P = C.prefs
+	var/list/gear = P.gear
+
+	if(!length(gear))
+		return
+
+	for(var/i in GLOB.gear_datums)
+		var/datum/gear/G = GLOB.gear_datums[i]
+		if(!G || !gear.Find(i))
+			continue
+		equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
