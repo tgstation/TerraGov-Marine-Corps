@@ -175,7 +175,7 @@
 
 //When adding a smoke_spread var which is possibly
 //going to be used multiple times to an atom,
-//be sure to set the first and only argument on FALSE.
+//be sure to set the only_once argument FALSE.
 /datum/effect_system/smoke_spread/New(atom/atom, only_once = TRUE)
 	. = ..()
 	single_use = only_once
