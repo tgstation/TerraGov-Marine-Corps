@@ -236,15 +236,16 @@
 	if(update & 2)
 		if(update_overlay & APC_UPOVERLAY_CELL_IN)
 			overlays += "apco-cell"
-		else if(update_overlay & APC_UPOVERLAY_BLUESCREEN)
-			overlays += image(icon, "apco-emag")
 		else if(update_overlay == UPSTATE_ALLGOOD)
-			overlays += image(icon, "apcox-[locked]")
-			overlays += image(icon, "apco3-[charging]")
-			var/operating = update_overlay & APC_UPOVERLAY_OPERATING
-			overlays += image(icon, "apco0-[operating ? equipment : 0]")
-			overlays += image(icon, "apco1-[operating ? lighting : 0]")
-			overlays += image(icon, "apco2-[operating ? environ : 0]")
+			if(update_overlay & APC_UPOVERLAY_BLUESCREEN)
+				overlays += image(icon, "apco-emag")
+			else
+				overlays += image(icon, "apcox-[locked]")
+				overlays += image(icon, "apco3-[charging]")
+				var/operating = update_overlay & APC_UPOVERLAY_OPERATING
+				overlays += image(icon, "apco0-[operating ? equipment : 0]")
+				overlays += image(icon, "apco1-[operating ? lighting : 0]")
+				overlays += image(icon, "apco2-[operating ? environ : 0]")
 
 /obj/machinery/power/apc/proc/check_updates()
 
