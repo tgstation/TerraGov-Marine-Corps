@@ -37579,10 +37579,8 @@
 /obj/machinery/door/firedoor/theseus{
 	dir = 2
 	},
-/obj/machinery/door/airlock/almayer/maint{
-	dir = 2;
-	name = "\improper Hanger Control Room";
-	req_one_access = null
+/obj/machinery/door/airlock/almayer/maint/hangar{
+	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
