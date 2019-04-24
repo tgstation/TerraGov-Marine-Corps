@@ -243,9 +243,8 @@
 
 	if(interactee)
 		interactee.check_eye(src)
-	else
-		if(!client.adminobs)
-			reset_view(null)
+	else if(!client.adminobs)
+		reset_view(null)
 
 	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
 		queen_locator()
