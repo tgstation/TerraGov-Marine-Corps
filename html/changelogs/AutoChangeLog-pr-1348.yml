@@ -1,0 +1,4 @@
+author: "MoXuT0"
+delete-after: True
+changes: 
+  - bugfix: "Fixed holsters having different colors in suit slot and added some missing ones."
