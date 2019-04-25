@@ -174,8 +174,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/smokebomb/New()
 	. = ..()
-	smoke = new
-	smoke.attach(src)
+	smoke = new(src)
 
 /obj/item/explosive/grenade/smokebomb/prime()
 	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
@@ -197,8 +196,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/cloakbomb/New()
 	. = ..()
-	smoke = new
-	smoke.attach(src)
+	smoke = new(src)
 
 /obj/item/explosive/grenade/cloakbomb/prime()
 	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
@@ -219,8 +217,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/phosphorus/New()
 	. = ..()
-	smoke = new
-	smoke.attach(src)
+	smoke = new(src)
 
 /obj/item/explosive/grenade/phosphorus/prime()
 	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
