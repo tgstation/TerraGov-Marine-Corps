@@ -24,7 +24,10 @@
 		// No, you cannot speak in xenocommon just because you know the key
 		if(can_speak_in_language(message_language))
 			language = message_language
-		message = copytext(message, 3)
+		if(copytext(message, 1, 2) == ";")
+			message = copytext(message, 2)
+		else
+			message = copytext(message, 3)
 
 		// Trim the space if they said ",0 I LOVE LANGUAGES"
 		if(findtext(message, " ", 1, 2))
@@ -94,3 +97,15 @@
 		show_message("[X.hivemind_name()] (<a href='byond://?src=\ref[src];queentrack=\ref[X]'>watch</a>)<span class='message'>hisses, '[message]'</span></span></i>[hivemind_end()]", 2)
 	else
 		return ..()
+
+
+/mob/living/carbon/Xenomorph/get_message_language(message)
+	if(copytext(message, 1, 2) == "," || copytext(message, 1, 2) == ".")
+		var/key = copytext(message, 2, 3)
+		for(var/ld in GLOB.all_languages)
+			var/datum/language/LD = ld
+			if(initial(LD.key) == key)
+				return LD
+	else if(copytext(message, 1, 2) == ";")
+		return GLOB.language_datum_instances[/datum/language/xenohivemind]
+	return null
