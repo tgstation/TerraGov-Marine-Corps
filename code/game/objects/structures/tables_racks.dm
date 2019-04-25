@@ -20,7 +20,6 @@
 	layer = TABLE_LAYER
 	throwpass = TRUE	//You can throw objects over this, despite it's density.")
 	climbable = TRUE
-	breakable = TRUE
 	parts = /obj/item/frame/table
 
 	var/sheet_type = /obj/item/stack/sheet/metal
@@ -255,22 +254,23 @@
 		step(I, get_dir(I, src))
 
 /obj/structure/table/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(breakable)
-		M.animation_attack_on(src)
-		if(sheet_type == /obj/item/stack/sheet/wood)
-			playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
-		else
-			playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-		health -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
-		if(health <= 0)
-			M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
-			"<span class='danger'>You slice [src] apart!</span>", null, 5)
-			destroy_structure()
-		else
-			M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
-			"<span class='danger'>You slash [src]!</span>", null, 5)
-		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return
+	M.animation_attack_on(src)
+	if(sheet_type == /obj/item/stack/sheet/wood)
+		playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
+	else
+		playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
+	health -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
+	if(health <= 0)
+		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+		"<span class='danger'>You slice [src] apart!</span>", null, 5)
+		destroy_structure()
+	else
+		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
+		"<span class='danger'>You slash [src]!</span>", null, 5)
+	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 /obj/structure/table/attackby(obj/item/W, mob/user)
 	if(!W)
@@ -545,7 +545,6 @@
 	layer = TABLE_LAYER
 	anchored = 1.0
 	throwpass = TRUE	//You can throw objects over this, despite it's density.
-	breakable = TRUE
 	climbable = TRUE
 	parts = /obj/item/frame/rack
 
