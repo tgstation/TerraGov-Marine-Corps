@@ -35,6 +35,8 @@
 		amount = range
 		addtimer(CALLBACK(src, /obj/effect/particle_effect/smoke.proc/spread_smoke), expansion_speed)
 	create_reagents(500)
+	if(CHECK_BITFIELD(smoke_traits, SMOKE_OPAQUE))
+		SetOpacity(TRUE)
 	START_PROCESSING(SSobj, src)
 
 /obj/effect/particle_effect/smoke/Destroy()
@@ -132,8 +134,6 @@
 		else
 			S.lifetime += rand(-1,1)
 	lifetime += rand(-1,1)
-	if(CHECK_BITFIELD(smoke_traits, SMOKE_OPAQUE))
-		SetOpacity(TRUE)
 
 	if(newsmokes.len)
 		addtimer(CALLBACK(src, .proc/spawn_smoke, newsmokes), expansion_speed) //the smoke spreads rapidly but not instantly
