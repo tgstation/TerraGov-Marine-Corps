@@ -6,6 +6,7 @@
 	var/mob/living/carbon/human/owner
 	var/brute
 	var/burn
+	var/datum/limb/attached_type
 
 /obj/item/limb/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -75,27 +76,35 @@
 /obj/item/limb/l_arm
 	name = "left arm"
 	icon_state = "l_arm"
+	attached_type = /datum/limb/l_arm
 /obj/item/limb/l_foot
 	name = "left foot"
 	icon_state = "l_foot"
+	attached_type = /datum/limb/l_foot
 /obj/item/limb/l_hand
 	name = "left hand"
 	icon_state = "l_hand"
+	attached_type = /datum/limb/l_hand
 /obj/item/limb/l_leg
 	name = "left leg"
 	icon_state = "l_leg"
+	attached_type = /datum/limb/l_leg
 /obj/item/limb/r_arm
 	name = "right arm"
 	icon_state = "r_arm"
+	attached_type = /datum/limb/r_arm
 /obj/item/limb/r_foot
 	name = "right foot"
 	icon_state = "r_foot"
+	attached_type = /datum/limb/r_foot
 /obj/item/limb/r_hand
 	name = "right hand"
 	icon_state = "r_hand"
+	attached_type = /datum/limb/r_hand
 /obj/item/limb/r_leg
 	name = "right leg"
 	icon_state = "r_leg"
+	attached_type = /datum/limb/r_leg
 
 /obj/item/limb/head
 	name = "head"

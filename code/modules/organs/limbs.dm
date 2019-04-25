@@ -36,6 +36,7 @@
 	var/limb_replacement_stage = 0
 	var/necro_surgery_stage = 0
 	var/cavity = 0
+	var/natural_replacement_state = 0
 
 	var/in_surgery_op = FALSE //whether someone is currently doing a surgery step to this limb
 	var/surgery_organ //name of the organ currently being surgically worked on (detach/remove/etc)
