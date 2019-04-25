@@ -1,0 +1,5 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "Fixes a couple old procs not respecting the INDESTRUCTIBLE and UNACIDABLE resistance flags.
+fix Fixes things going through prison hull windows frames and shutters."
