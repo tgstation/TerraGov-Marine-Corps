@@ -268,7 +268,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		// --- Can understand the speech ---
 
-		if (!M || R.say_understands(M))
+		if (!M)
 
 			// - Not human or wearing a voice mask -
 			if (!M || !ishuman(M) || vmask)
@@ -472,16 +472,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		// --- Can understand the speech ---
 
-		if (R.say_understands(M))
-
-			heard_normal += R
-
-		// --- Can't understand the speech ---
-
-		else
-			// - Just display a garbled message -
-
-			heard_garbled += R
+		heard_normal += R
 
 
   /* ###### Begin formatting and sending the message ###### */

@@ -414,13 +414,24 @@
 		unset_interaction()
 		src << browse(null, t1)
 
-	if(href_list["flavor_more"])
+	else if(href_list["flavor_more"])
 		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, oldreplacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
 		onclose(usr, "[name]")
-	if(href_list["flavor_change"])
+	else if(href_list["flavor_change"])
 		update_flavor_text()
-//	..()
-	return
+
+	else if(href_list["default_language"])
+		var/language = text2path(href_list["default_language"])
+		var/datum/language_holder/H = get_language_holder()
+
+		if(!H.has_language(language))
+			return
+
+		H.selected_default_language = language
+		if(isliving(src))
+			var/mob/living/L = src
+			L.language_menu()
+		
 
 
 /mob/MouseDrop(mob/M)
