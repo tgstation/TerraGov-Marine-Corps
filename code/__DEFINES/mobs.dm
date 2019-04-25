@@ -321,16 +321,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_PRINTING_TIME 550
 #define LIMB_METAL_AMOUNT 125
 
-//=================================================
-//language_flags
-#define WHITELISTED (1<<0)  		// Language is available if the speaker is whitelisted.
-#define RESTRICTED	(1<<1)   		// Language can only be accquired by spawning or an admin.
-#define NONVERBAL 	(1<<2)    		// Language has a significant non-verbal component. Speech is garbled without line-of-sight
-#define SIGNLANG 	(1<<3)     		// Language is completely non-verbal. Speech is displayed through emotes for those who can understand.
-#define HIVEMIND 	(1<<4)         // Broadcast to all mobs with this language.
-//=================================================
-
-
 #define EMOTE_VISIBLE  1
 #define EMOTE_AUDIBLE  2
 
@@ -417,12 +407,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SCANNER 1
 #define PANDEMIC 2
 
-
-//forcesay types
-#define SUDDEN 0
-#define GRADUAL 1
-#define PAINFUL 2
-#define EXTREMELY_PAINFUL 3
 
 // halloss defines
 

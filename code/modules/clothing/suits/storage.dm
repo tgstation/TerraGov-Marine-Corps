@@ -21,8 +21,8 @@
 	pockets.emp_act(severity)
 	return ..()
 
-/obj/item/clothing/suit/storage/hear_talk(mob/M, msg)
-	pockets.hear_talk(M, msg)
+/obj/item/clothing/suit/storage/hear_talk(mob/M, msg, verb = "says", datum/language/language)
+	pockets.hear_talk(M, msg, verb, language)
 	return ..()
 
 /obj/item/storage/internal/suit

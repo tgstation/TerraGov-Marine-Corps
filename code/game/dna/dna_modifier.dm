@@ -16,7 +16,6 @@
 	var/implant=null
 	var/ckey=null
 	var/mind=null
-	var/languages=null
 	var/list/flavor=null
 
 /datum/dna2/record/proc/GetData()

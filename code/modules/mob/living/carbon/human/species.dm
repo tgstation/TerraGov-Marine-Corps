@@ -27,7 +27,7 @@
 
 	var/language                  // Default racial language, if any.
 	// Default language is used when 'say' is used without modifiers.
-	var/default_language = "English"
+	var/default_language = /datum/language/common
 	var/speech_verb_override
 	var/secondary_langs = list()  // The names of secondary languages that are available to this species.
 	var/mutantrace                // Safeguard due to old code.
@@ -237,7 +237,7 @@
 /datum/species/human
 	name = "Human"
 	name_plural = "Humans"
-	language = "Sol Common"
+	language = /datum/language/common
 	primitive = /mob/living/carbon/monkey
 	unarmed_type = /datum/unarmed_attack/punch
 	species_flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
@@ -270,7 +270,6 @@
 /datum/species/human/spook
 	name = "Horror"
 	name_plural = "Horrors"
-	default_language = "Drrrrrrr"
 	icobase = 'icons/mob/human_races/r_spooker.dmi'
 	deform = 'icons/mob/human_races/r_spooker.dmi'
 	brute_mod = 0.15
@@ -310,7 +309,7 @@
 	name_plural = "Unathi"
 	icobase = 'icons/mob/human_races/r_lizard.dmi'
 	deform = 'icons/mob/human_races/r_def_lizard.dmi'
-	language = "Sinta'unathi"
+	language = /datum/language/unathi
 	tail = "sogtail"
 	unarmed_type = /datum/unarmed_attack/claws
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
@@ -339,7 +338,7 @@
 	name_plural = "Tajaran"
 	icobase = 'icons/mob/human_races/r_tajaran.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
-	language = "Siik'tajr"
+	language = /datum/language/tajaran
 	tail = "tajtail"
 	unarmed_type = /datum/unarmed_attack/claws
 	darksight = 8
@@ -364,7 +363,7 @@
 	name_plural = "Skrell"
 	icobase = 'icons/mob/human_races/r_skrell.dmi'
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
-	language = "Skrellian"
+	language = /datum/language/skrell
 	primitive = /mob/living/carbon/monkey/skrell
 	unarmed_type = /datum/unarmed_attack/punch
 
@@ -436,8 +435,7 @@
 	name_plural = "Vox"
 	icobase = 'icons/mob/human_races/r_vox.dmi'
 	deform = 'icons/mob/human_races/r_def_vox.dmi'
-	default_language = "Vox-pidgin"
-	language = "English"
+	language = /datum/language/vox
 	taste_sensitivity = TASTE_DULL
 	unarmed_type = /datum/unarmed_attack/claws/strong
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
@@ -527,7 +525,7 @@
 
 	icobase = 'icons/mob/human_races/r_machine.dmi'
 	deform = 'icons/mob/human_races/r_machine.dmi'
-	language = "Tradeband"
+	language = /datum/language/trader
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 2
 

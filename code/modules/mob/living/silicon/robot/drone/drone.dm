@@ -42,9 +42,6 @@
 
 
 	verbs += /mob/living/proc/hide
-	//remove_language("Robot Talk")
-	//add_language("Robot Talk", 1) // let them use this since we arent like regular ss13
-	add_language("Drone Talk", 1)
 
 	if(camera && "Robots" in camera.network)
 		camera.network.Add("Engineering")

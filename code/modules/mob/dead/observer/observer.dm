@@ -26,6 +26,7 @@
 
 	universal_speak = TRUE
 	var/atom/movable/following = null
+	initial_language_holder = /datum/language_holder/universal
 
 
 /mob/dead/observer/Initialize()

@@ -1,33 +1,25 @@
 // At minimum every mob has a hear_say proc.
 
-/mob/proc/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
+/mob/proc/hear_say(message, verb = "says", datum/language/language, alt_name = "", italics = FALSE, mob/speaker, sound/speech_sound, sound_vol)
 	if(!client)
 		return
 
-	if(sleeping || stat == 1)
+	if(sleeping || stat == UNCONSCIOUS)
 		hear_sleep(message)
 		return
 
 	var/style = "body"
 	var/comm_paygrade = ""
 
-	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
-	if (language && (language.language_flags & NONVERBAL))
-		if (!speaker || is_blind(src) || !(speaker.z == z && get_dist(speaker, src) <= world.view))
-			message = stars(message)
-
-	if(!say_understands(speaker,language))
+	if(!can_speak_in_language(language))
 		if(istype(speaker,/mob/living/simple_animal))
 			var/mob/living/simple_animal/S = speaker
 			if(S.speak.len)
 				message = pick(S.speak)
 			else
-				message = stars(message)
+				message = language.scramble(message)
 		else
-			message = stars(message)
-
-	if(language)
-		style = language.colour
+			message = language.scramble(message)
 
 	var/speaker_name = speaker.name
 	if(ishuman(speaker))
@@ -51,11 +43,10 @@
 
 
 /mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/vname ="", var/command = 0)
-
 	if(!client)
 		return
 
-	if(sleeping || stat==1) //If unconscious or sleeping
+	if(sleeping || stat == UNCONSCIOUS) //If unconscious or sleeping
 		hear_sleep(message)
 		return
 	var/comm_paygrade = ""
@@ -69,20 +60,15 @@
 		var/mob/living/silicon/decoy/ship_ai/AI = speaker
 		sound_to_play = AI.ai_sound
 
-	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
-	if (language && (language.language_flags & NONVERBAL))
-		if (!speaker || is_blind(speaker) || !(speaker in view(src)))
-			message = stars(message)
+	if(!language)
+		language = GLOB.language_datum_instances[get_default_language()]
 
-	if(!say_understands(speaker,language))
+	if(!can_speak_in_language(language))
 		if(istype(speaker,/mob/living/simple_animal))
 			var/mob/living/simple_animal/S = speaker
 			message = pick(S.speak)
 		else
-			message = stars(message)
-
-	if(language)
-		style = language.colour
+			message = language.scramble(message)
 
 	if(hard_to_hear)
 		message = stars(message)
@@ -176,7 +162,7 @@
 		var/mob/living/carbon/human/H = speaker
 		comm_paygrade = H.get_paygrade()
 
-	if(say_understands(speaker, language))
+	if(can_speak_in_language(language))
 		message = "<B>[comm_paygrade][src]</B> [verb], \"[message]\""
 	else
 		message = "<B>[comm_paygrade][src]</B> [verb]."
