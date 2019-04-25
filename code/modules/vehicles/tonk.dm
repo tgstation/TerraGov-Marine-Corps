@@ -55,17 +55,18 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	return TRUE //No loc check here
 
 /obj/vehicle/tonk
-	name = "MK-1 Benocrusher x10"
-	desc = "A gigantic wall of metal designed for maximum beno destruction. Click it with an open hand to enter as a pilot or a gunner."
+	name = "MK-1 aliensmasher x10"
+	desc = "A gigantic wall of metal designed for maximum Xeno destruction. Click it with an open hand to enter as a pilot or a gunner."
 	icon = 'icons/obj/tonk.dmi'
 	icon_state = "tank"
 	layer = OBJ_LAYER
 	bound_width = 128
 	bound_height = 128
+	pixel_x = -32
 	anchored = FALSE
 	can_buckle = FALSE
 	req_access = list(ACCESS_MARINE_TANK)
-	move_delay = 2
+	move_delay = 4
 	//Who's driving the tonk
 	var/mob/living/carbon/human/pilot
 	var/mob/living/carbon/human/gunner
@@ -78,8 +79,9 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	var/obj/item/tank_weapon/minigun/minigun //What we use to shoot mini shells ((rapidfire xenocrusher 6000))
 	var/main_cannon_dir = null //So that the guns swivel independantly
 	var/minigun_dir = null
-	var/firing = FALSE //Used in autofire
-	var/turf/stored_firing_turf = null
+	var/atom/firing_target = null //Shooting code, at whom are we firing?
+	var/firing_main_cannon = FALSE
+	var/firing_minigun = FALSE
 
 /obj/turret_overlay
 	name = "Tank gun turret"
@@ -92,7 +94,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 
 /obj/vehicle/tonk/Initialize()
 	. = ..()
-	turret_overlay = new(get_turf(src))
+	turret_overlay = new()
 	update_icon()
 	health = max_health
 	main_cannon = new(src) //Make our guns
@@ -114,15 +116,16 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	var/icon/I = icon(icon,icon_state,dir)
 	bound_width = I.Width() //Adjust the hitbox in case admins want to make an OMEGATONK
 	bound_height = I.Height()
+	vis_contents = null
 	if(!turret_overlay) //We have to do this because of BYOND's innate dir setting habits, in byond, if you have an overlay'd object its direction can ONLY be which way the source is facing. So, we improvise.. ((yes this is kinda shit))
 		return
 	if(main_cannon_dir)
 		turret_overlay.setDir(main_cannon_dir)
 		if(main_cannon_dir == WEST || main_cannon_dir == SOUTHWEST|| main_cannon_dir == NORTHWEST)
-			turret_overlay.pixel_x = -19
+			turret_overlay.pixel_x = pixel_x -19
 		else
-			turret_overlay.pixel_x = 0
-	turret_overlay.forceMove(get_turf(src))
+			turret_overlay.pixel_x = initial(turret_overlay.pixel_x)
+	vis_contents += turret_overlay
 
 /obj/vehicle/tonk/attack_hand(mob/user)
 	if(pilot && gunner)
@@ -237,31 +240,40 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	if(!minigun && gunner)
 		to_chat(gunner, "[src]'s minigun hardpoint spins pathetically. Maybe you should install a minigun on this tank?")
 		return FALSE
-	firing = TRUE //This is used to start a while loop to autofire
+	firing_target = A
 	playsound(get_turf(src), 'sound/weapons/tank_minigun_start.ogg', 60, 1)
-	while(firing) //We need MAXIMUM SPEED
-		stoplag(1)//Stop us from crashing the server
-		if(minigun.fire(A, gunner))
-			minigun_dir = get_dir(src, A) //Set the gun dir
-			update_icon()
+	firing_minigun = TRUE
+	START_PROCESSING(SSfastprocess, src)
 
 /obj/vehicle/tonk/proc/handle_fire_main(var/atom/A) //This is used to shoot your big ass tank cannon, rather than your small MG
 	if(!main_cannon && gunner)
 		to_chat(gunner, "You look at the stump where [src]'s tank barrel should be and sigh.'")
 		return FALSE
-	firing = TRUE
-	while(firing)
-		stoplag(2)
-		if(main_cannon.fire(A, gunner))
-			main_cannon_dir = get_dir(src, A)
+	firing_target = A
+	firing_main_cannon = TRUE
+	START_PROCESSING(SSfastprocess, src)
+
+/obj/vehicle/tonk/process()
+	if(firing_main_cannon && firing_target)
+		if(main_cannon.fire(firing_target, gunner))
+			main_cannon_dir = get_dir(src, firing_target)
+			update_icon()
+		else
+			stop_firing()
+	if(firing_minigun)
+		if(minigun.fire(firing_target, gunner))
+			minigun_dir = get_dir(src, firing_target) //Set the gun dir
 			update_icon()
 
 /obj/vehicle/tonk/proc/onMouseUp(var/atom/A, mob/user)
 	stop_firing()
 
 /obj/vehicle/tonk/proc/stop_firing()
-	firing = FALSE //Cancels the firing while loop
+	firing_target = null
+	firing_main_cannon = FALSE
+	firing_minigun = FALSE
 	update_icon(icon_state, "turret", "minigun") //Stop firing animation
+	STOP_PROCESSING(SSfastprocess,src)
 
 /*
 
