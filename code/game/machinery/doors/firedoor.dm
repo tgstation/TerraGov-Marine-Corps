@@ -62,7 +62,6 @@
 		if(istype(A) && !(A in areas_added))
 			A.all_doors.Add(src)
 			areas_added += A
-	start_processing()
 
 /obj/machinery/door/firedoor/Destroy()
 	for(var/area/A in areas_added)
@@ -253,33 +252,10 @@
 		if(blocked)
 			to_chat(user, "<span class='danger'>\The [src] is welded solid!</span>")
 			return
-	if(istype(C, /obj/item/weapon/zombie_claws))
-		if(operating)
-			return
-		user.visible_message("<span class='danger'>\The zombie starts to force \the [src] [density ? "open" : "closed"] with it's claws!!!</span>",\
-				"You start forcing \the [src] [density ? "open" : "closed"] with your claws!",\
-				"You hear metal strain.")
-		if(do_after(user,150, TRUE, 5, BUSY_ICON_HOSTILE))
-			user.visible_message("<span class='danger'>\The [user] forces \the [ blocked ? "welded" : "" ] [src] [density ? "open" : "closed"] with \a [C]!</span>",\
-			"You force \the [ blocked ? "welded" : "" ] [src] [density ? "open" : "closed"] with \the [C]!",\
-			"You hear metal strain and groan, and a door [density ? "opening" : "closing"].")
-			if(density)
-				spawn(0)
-					open(1)
-			else
-				spawn(0)
-					close()
-			return
+
 
 /obj/machinery/door/firedoor/try_to_activate_door(mob/user)
 	return
-
-// CHECK PRESSURE
-/obj/machinery/door/firedoor/process()
-	..()
-
-	if(density && next_process_time <= world.time)
-		next_process_time = world.time + 100		// 10 second delays between process updates
 
 
 /obj/machinery/door/firedoor/proc/latetoggle()

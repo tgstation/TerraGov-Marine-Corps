@@ -16,7 +16,6 @@
 	var/implant=null
 	var/ckey=null
 	var/mind=null
-	var/languages=null
 	var/list/flavor=null
 
 /datum/dna2/record/proc/GetData()
@@ -63,8 +62,6 @@
 	component_parts += new /obj/item/stack/cable_coil(src)
 	RefreshParts()
 
-/obj/machinery/dna_scannernew/allow_drop()
-	return 0
 
 /obj/machinery/dna_scannernew/relaymove(mob/user as mob)
 	if(user.incapacitated(TRUE)) return

@@ -56,11 +56,11 @@
 		/obj/item/tool/weldingtool,
 		/obj/item/tool/wirecutters,
 		/obj/item/tool/wrench,
-		/obj/item/device/multitool,
-		/obj/item/device/flashlight,
+		/obj/item/multitool,
+		/obj/item/flashlight,
 		/obj/item/stack/cable_coil,
-		/obj/item/device/t_scanner,
-		/obj/item/device/analyzer,
+		/obj/item/t_scanner,
+		/obj/item/analyzer,
 		/obj/item/tool/taperoll/engineering)
 
 
@@ -72,7 +72,7 @@
 	new /obj/item/tool/crowbar(src)
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
-	new /obj/item/device/multitool(src)
+	new /obj/item/multitool(src)
 
 
 /obj/item/storage/belt/utility/atmostech/Initialize()
@@ -82,7 +82,7 @@
 	new /obj/item/tool/weldingtool(src)
 	new /obj/item/tool/crowbar(src)
 	new /obj/item/tool/wirecutters(src)
-	new /obj/item/device/t_scanner(src)
+	new /obj/item/t_scanner(src)
 
 /obj/item/storage/belt/medical
 	name = "\improper M276 pattern medical storage rig"
@@ -94,7 +94,7 @@
 	max_storage_space = 29
 
 	can_hold = list(
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/dnainjector,
 		/obj/item/reagent_container/dropper,
 		/obj/item/reagent_container/glass/beaker,
@@ -105,23 +105,23 @@
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
-		/obj/item/device/flashlight/pen,
+		/obj/item/flashlight/pen,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/storage/syringe_case,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/handful,
-		/obj/item/device/flashlight/flare,
+		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/reagent_container/hypospray,
 	    /obj/item/bodybag,
-	    /obj/item/device/defibrillator,
+	    /obj/item/defibrillator,
 		/obj/item/roller)
 
 /obj/item/storage/belt/medical/Initialize()
 	. = ..()
-	new /obj/item/device/defibrillator(src)
+	new /obj/item/defibrillator(src)
 	new /obj/item/bodybag/cryobag(src)
 	new /obj/item/roller(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
@@ -134,7 +134,7 @@
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
-	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
 
 
 /obj/item/storage/belt/combatLifesaver
@@ -197,7 +197,7 @@
 		/obj/item/explosive/grenade/chem_grenade/teargas,
 		/obj/item/reagent_container/spray/pepper,
 		/obj/item/handcuffs,
-		/obj/item/device/flash,
+		/obj/item/flash,
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/ammo_magazine/handful,
@@ -207,9 +207,8 @@
 		/obj/item/tool/lighter/zippo,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/clothing/glasses/hud/security,
-		/obj/item/device/flashlight,
-		/obj/item/device/pda,
-		/obj/item/device/radio/headset,
+		/obj/item/flashlight,
+		/obj/item/radio/headset,
 		/obj/item/weapon,
 		/obj/item/tool/taperoll/police
 		)
@@ -237,7 +236,7 @@
 /obj/item/storage/belt/security/MP/full/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/energy/taser(src)
-	new /obj/item/device/flash(src)
+	new /obj/item/flash(src)
 	new /obj/item/weapon/baton(src)
 	new /obj/item/handcuffs(src)
 
@@ -253,7 +252,7 @@
 	max_storage_space = 15
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
-		/obj/item/device/flashlight/flare,
+		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/cell/lasgun,

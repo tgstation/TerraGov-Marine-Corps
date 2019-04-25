@@ -14,7 +14,6 @@
 	var/used_stealth = FALSE
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
-	wound_type = "alien" //used to match appropriate wound overlays
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
@@ -33,6 +32,12 @@
 	if(stealth)
 		handle_stealth_movement()
 
+/mob/living/carbon/Xenomorph/Hunter/Stat()
+	. = ..()
+
+	if(statpanel("Stats"))
+		stat(null, "Sneak Attack Multiplier: [sneak_bonus] / [HUNTER_SNEAKATTACK_MAX_MULTIPLIER]")
+
 // ***************************************
 // *********** Stealth overrides
 // ***************************************
@@ -48,10 +53,15 @@
 	else if(m_intent == MOVE_INTENT_WALK)
 		alpha = HUNTER_STEALTH_WALK_ALPHA //80% invisible
 		use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN * 0.5)
+		if(sneak_bonus < HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
+			sneak_bonus = round(min(sneak_bonus + HUNTER_SNEAKATTACK_WALK_INCREASE, 3.5), 0.01) //Recover sneak attack multiplier rapidly
+			if(sneak_bonus >= HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
+				to_chat(src, "<span class='xenodanger'>Your sneak attack is now at maximum power.</span>")
 	//Running stealth
 	else
 		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
 		use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN * 0.5)
+		sneak_bonus = round(max(sneak_bonus - HUNTER_SNEAKATTACK_RUN_REDUCTION, 1.25), 0.01) //Rapidly lose sneak attack damage while running and stealthed
 	if(!plasma_stored)
 		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
@@ -143,19 +153,9 @@
 
 	return ..()
 
-/mob/living/carbon/Xenomorph/Hunter/update_wounds()
-	remove_overlay(X_WOUND_LAYER)
-	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
-		var/image/I
-		if(resting)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[wound_type]_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || stat == DEAD)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[wound_type]_wounded_sleeping", "layer"=-X_WOUND_LAYER)
-		else
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[wound_type]_wounded", "layer"=-X_WOUND_LAYER)
-		I.alpha = src.alpha
-		overlays_standing[X_WOUND_LAYER] = I
-		apply_overlay(X_WOUND_LAYER)
+/mob/living/carbon/Xenomorph/Hunter/apply_alpha_channel(var/image/I)
+	I.alpha = src.alpha
+	return I
 
 /mob/living/carbon/Xenomorph/Hunter/gib_animation()
 	new /obj/effect/overlay/temp/gib_animation/xeno(loc, src, "Hunter Gibbed", icon)

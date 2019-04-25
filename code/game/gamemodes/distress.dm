@@ -16,7 +16,6 @@
 	var/bioscan_ongoing_interval = 20 MINUTES
 
 	var/list/xenomorphs = list()
-	var/datum/mind/queen
 	var/latejoin_tally		= 0
 	var/latejoin_larva_drop = 0
 	var/queen_death_countdown = 0
@@ -42,7 +41,7 @@
 
 	for(var/i in xenomorphs)
 		var/datum/mind/M = i
-		if(M == queen)
+		if(M.assigned_role == ROLE_XENO_QUEEN)
 			transform_queen(M)
 		else
 			transform_xeno(M)
@@ -152,7 +151,7 @@
 		var/datum/mind/new_xeno = i
 		if(new_xeno.assigned_role || jobban_isbanned(new_xeno.current, ROLE_XENOMORPH) || is_banned_from(new_xeno.current?.ckey, ROLE_XENOMORPH))
 			continue
-		new_xeno.assigned_role = "Xenomorph"
+		new_xeno.assigned_role = ROLE_XENOMORPH
 		xenomorphs += new_xeno
 		possible_xenomorphs -= new_xeno
 		if(length(xenomorphs) >= xeno_starting_num)
@@ -179,19 +178,17 @@
 	if(!length(possible_queens))
 		return FALSE
 
+	var/found = FALSE
 	for(var/i in possible_queens)
 		var/datum/mind/new_queen = i
 		if(new_queen.assigned_role || jobban_isbanned(new_queen.current, ROLE_XENO_QUEEN) || is_banned_from(new_queen.current?.ckey, ROLE_XENO_QUEEN))
 			continue
-		new_queen.assigned_role = "Queen"
-		queen = new_queen
+		new_queen.assigned_role = ROLE_XENO_QUEEN
 		xenomorphs += new_queen
+		found = TRUE
 		break
 
-	if(!queen)
-		return FALSE
-	
-	return TRUE
+	return found
 
 
 /datum/game_mode/distress/proc/initialize_survivor()
@@ -225,7 +222,7 @@
 
 	to_chat(X, "<B>You are now an alien!</B>")
 	to_chat(X, "<B>Your job is to spread the hive and protect the Queen. If there's no Queen, you can become the Queen yourself by evolving into a drone.</B>")
-	to_chat(X, "Talk in Hivemind using <strong>;</strong> (e.g. ';My life for the queen!')")
+	to_chat(X, "Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the queen!')")
 
 	X.update_icons()
 
@@ -241,7 +238,7 @@
 
 	to_chat(X, "<B>You are now the alien queen!</B>")
 	to_chat(X, "<B>Your job is to spread the hive.</B>")
-	to_chat(X, "Talk in Hivemind using <strong>;</strong> (e.g. ';My life for the hive!')")
+	to_chat(X, "Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the hive!')")
 
 	X.update_icons()
 
@@ -461,7 +458,7 @@
 						/obj/item/explosive/grenade/smokebomb = round(scale * 5),
 						/obj/item/explosive/grenade/cloakbomb = round(scale * 3),
 						/obj/item/storage/box/m94 = round(scale * 30),
-						/obj/item/device/flashlight/combat = round(scale * 5),
+						/obj/item/flashlight/combat = round(scale * 5),
 						/obj/item/clothing/mask/gas = round(scale * 10)
 						)
 
@@ -527,7 +524,7 @@
 
 	for(var/i in xenomorphs)
 		var/datum/mind/M = i
-		if(!M?.assigned_role || M.assigned_role != "Queen")
+		if(!M?.assigned_role || M.assigned_role != ROLE_XENO_QUEEN)
 			continue
 		dat += "<br>[M.key] was [M.current ? M.current : "Queen"] <span class='boldnotice'>([!M?.current?.stat ? "DIED": "SURVIVED"])</span>"
 

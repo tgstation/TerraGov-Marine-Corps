@@ -915,13 +915,7 @@ obj/item/newspaper/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(user,/mob/living/carbon/human))                       //User is a human
 		var/mob/living/carbon/human/human_user = user
 		if(human_user.wear_id)                                      //Newscaster scans you
-			if(istype(human_user.wear_id, /obj/item/device/pda) )	//autorecognition, woo!
-				var/obj/item/device/pda/P = human_user.wear_id
-				if(P.id)
-					src.scanned_user = "[P.id.registered_name] ([P.id.assignment])"
-				else
-					src.scanned_user = "Unknown"
-			else if(istype(human_user.wear_id, /obj/item/card/id) )
+			if(istype(human_user.wear_id, /obj/item/card/id) )
 				var/obj/item/card/id/ID = human_user.wear_id
 				src.scanned_user ="[ID.registered_name] ([ID.assignment])"
 			else

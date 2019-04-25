@@ -57,7 +57,7 @@
 			server = ssqlname
 	server = sanitizeSQL(server)
 	if(isnull(secret))
-		switch(alert("Hide note from being viewed by players?", "Secret note?","Yes","No","Cancel"))
+		switch(alert("Do you want to make the note secret? If not, the player will be informed about it.", "Secrecy", "Yes", "No", "Cancel"))
 			if("Yes")
 				secret = TRUE
 			if("No")
@@ -65,7 +65,7 @@
 			else
 				return
 	if(isnull(expiry))
-		if(alert(usr, "Set an expiry time? Expired messages are hidden like deleted ones.", "Expiry time?", "Yes", "No", "Cancel") == "Yes")
+		if(alert(usr, "Set an expiry time? Expired messages are hidden like deleted ones.", "Expiry time", "Yes", "No", "Cancel") == "Yes")
 			var/expire_time = input("Set expiry time for [type] as format YYYY-MM-DD HH:MM:SS. All times in server time. HH:MM:SS is optional and 24-hour. Must be later than current time for obvious reasons.", "Set expiry time", SQLtime()) as null|text
 			if(!expire_time)
 				return
@@ -94,15 +94,22 @@
 		qdel(query_create_message)
 		return
 	qdel(query_create_message)
-	if(logged)
-		log_admin_private(pm)
-		message_admins("[header]:<br>[text]")
-		admin_ticket_log(target_ckey, "<font color='blue'>[header]</font>")
-		admin_ticket_log(target_ckey, text)
-		if(browse)
-			browse_messages("[type]")
-		else
-			browse_messages(target_ckey = target_ckey, agegate = TRUE)
+	if(!logged)
+		return
+	log_admin_private(pm)
+	message_admins("[header]:<br>[text]")
+	admin_ticket_log(target_ckey, "<font color='#a7f2ef'>[header]</font>")
+	admin_ticket_log(target_ckey, text)
+	if(browse)
+		browse_messages("[type]")
+	else
+		browse_messages(target_ckey = target_ckey, agegate = TRUE)
+	if(secret)
+		return
+	var/client/C = GLOB.directory[target_ckey]
+	if(!istype(C))
+		return
+	to_chat(C, "<span class='boldannounce'>A note has been added to your account:</span><br><span class='danger'>[text]</span>")
 
 
 /proc/delete_message(message_id, logged = TRUE, browse)

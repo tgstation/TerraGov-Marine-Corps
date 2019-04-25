@@ -21,7 +21,7 @@
 	var/heat_source = FALSE //whether this item is a source of heat, and how hot it is (in Kelvin).
 
 	var/hitsound = null
-	var/w_class = 3.0
+	var/w_class = WEIGHT_CLASS_NORMAL
 	var/storage_cost = null
 	var/flags_item = NOFLAGS	//flags for item stuff that isn't clothing/equipping specific.
 	var/flags_equip_slot = NOFLAGS		//This is used to determine on which slots an item can fit.
@@ -33,7 +33,7 @@
 
 	var/obj/item/master = null
 
-	var/flags_armor_protection = NOFLAGS //see setup.dm for appropriate bit flags
+	var/flags_armor_protection = NONE //see setup.dm for appropriate bit flags
 	var/flags_heat_protection = NOFLAGS //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
 	var/flags_cold_protection = NOFLAGS //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
 
@@ -44,14 +44,13 @@
 	var/list/actions_types = list() //list of paths of action datums to give to the item on New().
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
-	var/body_parts_covered
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 
 	var/list/allowed = null //suit storage stuff.
-	var/obj/item/device/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
+	var/obj/item/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
 	var/zoom = FALSE //TRUE if item is actively being used to zoom. For scoped guns and binoculars.
 
@@ -411,7 +410,7 @@
 					if(warning)
 						to_chat(usr, "You somehow have a suit with no defined allowed items for suit storage, stop that.")
 					return FALSE
-				if( istype(src, /obj/item/device/pda) || istype(src, /obj/item/tool/pen) || is_type_in_list(src, H.wear_suit.allowed) )
+				if(istype(src, /obj/item/tool/pen) || is_type_in_list(src, H.wear_suit.allowed) )
 					return TRUE
 				return FALSE
 			if(SLOT_HANDCUFFED)

@@ -83,7 +83,7 @@ var/global/list/rad_collectors = list()
 		else
 			disconnect_from_network()
 		return 1
-	else if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
+	else if(istype(W, /obj/item/card/id))
 		if (src.allowed(user))
 			if(active)
 				src.locked = !src.locked

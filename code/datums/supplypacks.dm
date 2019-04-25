@@ -20,7 +20,6 @@ var/list/all_supply_groups = list("Operations", "Weapons", "Hardpoint Modules", 
 	var/name = null
 	var/list/contains = list()
 	var/manifest = ""
-	var/amount = null
 	var/cost = null
 	var/containertype = null
 	var/containername = null
@@ -62,8 +61,8 @@ OPERATIONS
 /datum/supply_packs/beacons_supply
 	name = "supply beacons crate (x2)"
 	contains = list(
-			/obj/item/device/squad_beacon,
-			/obj/item/device/squad_beacon
+			/obj/item/squad_beacon,
+			/obj/item/squad_beacon
 			)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate
@@ -73,8 +72,8 @@ OPERATIONS
 /datum/supply_packs/beacons_orbital
 	name = "orbital beacons crate (x2)"
 	contains = list(
-					/obj/item/device/squad_beacon/bomb,
-					/obj/item/device/squad_beacon/bomb
+					/obj/item/squad_beacon/bomb,
+					/obj/item/squad_beacon/bomb
 					)
 	cost = RO_PRICE_PRICY
 	containertype = /obj/structure/closet/crate
@@ -84,7 +83,7 @@ OPERATIONS
 /datum/supply_packs/binoculars_regular
 	name = "binoculars crate (x1)"
 	contains = list(
-					/obj/item/device/binoculars
+					/obj/item/binoculars
 					)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
@@ -94,7 +93,7 @@ OPERATIONS
 /datum/supply_packs/binoculars_tatical
 	name = "tactical binoculars crate (x1)"
 	contains = list(
-					/obj/item/device/binoculars/tactical
+					/obj/item/binoculars/tactical
 					)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate
@@ -607,15 +606,15 @@ WEAPONS
 /datum/supply_packs/detpack
 	name = "detpack explosives crate (x6)"
 	contains = list(
-					/obj/item/device/radio/detpack,
-					/obj/item/device/radio/detpack,
-					/obj/item/device/radio/detpack,
-					/obj/item/device/radio/detpack,
-					/obj/item/device/radio/detpack,
-					/obj/item/device/radio/detpack,
-					/obj/item/device/assembly/signaler,
-					/obj/item/device/assembly/signaler,
-					/obj/item/device/assembly/signaler,
+					/obj/item/radio/detpack,
+					/obj/item/radio/detpack,
+					/obj/item/radio/detpack,
+					/obj/item/radio/detpack,
+					/obj/item/radio/detpack,
+					/obj/item/radio/detpack,
+					/obj/item/assembly/signaler,
+					/obj/item/assembly/signaler,
+					/obj/item/assembly/signaler,
 					)
 	cost = RO_PRICE_KINDA_PRICY
 	containertype = /obj/structure/closet/crate/explosives
@@ -2371,7 +2370,7 @@ MEDICAL
 	name = "medvac system crate (medvac stretcher and beacon)"
 	contains = list(
 					/obj/item/roller/medevac,
-					/obj/item/device/medevac_beacon
+					/obj/item/medevac_beacon
 					)
 	cost = RO_PRICE_VERY_PRICY
 	containertype = /obj/structure/closet/crate/secure/surgery
@@ -2386,8 +2385,7 @@ ENGINEERING
 
 /datum/supply_packs/sandbags
 	name = "empty sandbags crate (x50)"
-	contains = list(/obj/item/stack/sandbags_empty)
-	amount = 50
+	contains = list(/obj/item/stack/sandbags_empty/full)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = "/obj/structure/closet/crate/supply"
 	containername = "\improper empty sandbags crate"
@@ -2395,8 +2393,7 @@ ENGINEERING
 
 /datum/supply_packs/metal50
 	name = "50 metal sheets (x50)"
-	contains = list(/obj/item/stack/sheet/metal)
-	amount = 50
+	contains = list(/obj/item/stack/sheet/metal/large_stack)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate/supply
 	containername = "\improper metal sheets crate"
@@ -2404,8 +2401,7 @@ ENGINEERING
 
 /datum/supply_packs/plas50
 	name = "plasteel sheets (x30)"
-	contains = list(/obj/item/stack/sheet/plasteel)
-	amount = 30
+	contains = list(/obj/item/stack/sheet/plasteel/medium_stack)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/supply
 	containername = "\improper plasteel sheets crate"
@@ -2413,8 +2409,7 @@ ENGINEERING
 
 /datum/supply_packs/glass50
 	name = "50 glass sheets (x50)"
-	contains = list(/obj/item/stack/sheet/glass)
-	amount = 50
+	contains = list(/obj/item/stack/sheet/glass/large_stack)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate/supply
 	containername = "\improper glass sheets crate"
@@ -2422,8 +2417,7 @@ ENGINEERING
 
 /datum/supply_packs/wood50
 	name = "wooden planks (x50)"
-	contains = list(/obj/item/stack/sheet/wood)
-	amount = 50
+	contains = list(/obj/item/stack/sheet/wood/large_stack)
 	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate/supply
 	containername = "\improper wooden planks crate"
@@ -2548,7 +2542,7 @@ ENGINEERING
 					/obj/item/circuitboard/general,
 					/obj/item/circuitboard/general,
 					/obj/item/circuitboard/general,
-					/obj/item/device/multitool
+					/obj/item/multitool
 					)
 
 /*******************************************************************************
@@ -2562,15 +2556,15 @@ SCIENCE
 					/obj/item/tank/phoron,
 					/obj/item/tank/phoron,
 					/obj/item/tank/phoron,
-					/obj/item/device/assembly/igniter,
-					/obj/item/device/assembly/igniter,
-					/obj/item/device/assembly/igniter,
-					/obj/item/device/assembly/prox_sensor,
-					/obj/item/device/assembly/prox_sensor,
-					/obj/item/device/assembly/prox_sensor,
-					/obj/item/device/assembly/timer,
-					/obj/item/device/assembly/timer,
-					/obj/item/device/assembly/timer
+					/obj/item/assembly/igniter,
+					/obj/item/assembly/igniter,
+					/obj/item/assembly/igniter,
+					/obj/item/assembly/prox_sensor,
+					/obj/item/assembly/prox_sensor,
+					/obj/item/assembly/prox_sensor,
+					/obj/item/assembly/timer,
+					/obj/item/assembly/timer,
+					/obj/item/assembly/timer
 					)
 	cost = RO_PRICE_PRICY
 	containertype = /obj/structure/closet/crate/secure/phoron

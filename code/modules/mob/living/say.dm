@@ -53,42 +53,32 @@ var/list/department_radio_keys = list(
 
 	var/mob/living/carbon/human/H = src
 	if (H.wear_ear)
-		var/obj/item/device/radio/headset/dongle
-		if(istype(H.wear_ear,/obj/item/device/radio/headset))
+		var/obj/item/radio/headset/dongle
+		if(istype(H.wear_ear,/obj/item/radio/headset))
 			dongle = H.wear_ear
 		if(!istype(dongle)) return
 		if(dongle.translate_binary) return 1
 
-/mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/italics=0, var/message_range = world.view, var/sound/speech_sound, var/sound_vol)
+
+/mob/living/say(message, datum/language/language, verb = "says", alt_name="", var/italics=0, var/message_range = world.view, var/sound/speech_sound, var/sound_vol)
+	if(!message)
+		return
+
+	if(client?.prefs.muted & MUTE_IC)
+		to_chat(src, "<span class='warning'>You cannot speak in IC (Muted).</span>")
+		return	
+
+	if(stat == DEAD)
+		say_dead(message)
+		return
 
 	var/turf/T = get_turf(src)
 
-	//handle nonverbal and sign languages here
-	if (speaking)
-		if (speaking.language_flags & NONVERBAL)
-			if (prob(30))
-				src.custom_emote(1, "[pick(speaking.signlang_verb)].")
-
-		if (speaking.language_flags & SIGNLANG)
-			say_signlang(message, pick(speaking.signlang_verb), speaking)
-			return TRUE
 
 	var/list/listening = list()
 	var/list/listening_obj = list()
 
 	if(T)
-		//make sure the air can transmit speech - speaker's side
-		/*
-		var/datum/gas_mixture/environment = T.return_air()
-		if(environment)
-			var/pressure = (environment)? environment.return_pressure() : 0
-			if(pressure < SOUND_MINIMUM_PRESSURE)
-				message_range = 1
-
-			if (pressure < ONE_ATMOSPHERE*0.4) //sound distortion pressure, to help clue people in that the air is thin, even if it isn't a vacuum yet
-				italics = 1
-				sound_vol *= 0.5 //muffle the sound a bit, so it's like we're actually talking through contact
-		*/
 		var/list/hear = hear(message_range, T)
 		var/list/hearturfs = list()
 
@@ -113,25 +103,49 @@ var/list/department_radio_keys = list(
 				listening |= M
 
 	var/speech_bubble_test = say_test(message)
-	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
+	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")
+
+	// language comma detection.
+	var/datum/language/message_language = get_message_language(message)
+	if(message_language)
+		// No, you cannot speak in xenocommon just because you know the key
+		if(can_speak_in_language(message_language))
+			language =  GLOB.language_datum_instances[message_language]
+		message = copytext(message, 3)
+
+		// Trim the space if they said ",0 I LOVE LANGUAGES"
+		if(findtext(message, " ", 1, 2))
+			message = copytext(message, 2)
+
+	var/message_mode = parse_message_mode(message, "headset")
+	//parse the radio code and consume it
+	if(message_mode)
+		if(message_mode == "headset")
+			message = copytext(message, 2)	//it would be really nice if the parse procs could do this for us.
+		else
+			message = copytext(message, 3)
+	else
+		log_talk(message, LOG_SAY)
+
+	if(!language)
+		language = GLOB.language_datum_instances[get_default_language()]
+
+	verb = language.get_spoken_verb(copytext(message, length(message)))
 
 	var/not_dead_speaker = (stat != DEAD)
 	for(var/mob/M in listening)
 		if(not_dead_speaker)
 			SEND_IMAGE(M, speech_bubble)
-		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
+		M.hear_say(message, verb, language, alt_name, italics, src, speech_sound, sound_vol)
 
 	addtimer(CALLBACK(src, .proc/remove_speech_bubble, client, speech_bubble, (not_dead_speaker ? listening : null)), 30)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
 			if(O) //It's possible that it could be deleted in the meantime.
-				O.hear_talk(src, message, verb, speaking, italics)
+				O.hear_talk(src, message, verb, language, italics)
 
-	if(!ishuman(src))
-		log_talk(message, LOG_SAY)
-
-	return TRUE
+	return language
 
 
 /mob/living/proc/remove_speech_bubble(client/C, image/speech_bubble, list/listening)
@@ -153,3 +167,13 @@ var/list/department_radio_keys = list(
 
 /mob/living/proc/GetVoice()
 	return name
+
+
+/mob/living/proc/get_message_language(message)
+	if(copytext(message, 1, 2) == ",")
+		var/key = copytext(message, 2, 3)
+		for(var/ld in GLOB.all_languages)
+			var/datum/language/LD = ld
+			if(initial(LD.key) == key)
+				return LD
+	return null

@@ -358,7 +358,7 @@
 		J = i
 		if(!(J.title in JOBS_REGULAR_ALL))
 			continue
-		if((J.current_positions >= J.spawn_positions) && J.spawn_positions != -1)
+		if((J.current_positions >= J.total_positions) && J.total_positions != -1)
 			continue
 		var/active = 0
 		//Only players with the job assigned and AFK for less than 10 minutes count as active

@@ -50,11 +50,9 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
 
-	initialize_marine_armor()
-
 	load_mode()
 
-	radio_controller = new /datum/controller/radio()
+	SSradio = new /datum/controller/radio()
 
 	if(byond_version < RECOMMENDED_VERSION)
 		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")

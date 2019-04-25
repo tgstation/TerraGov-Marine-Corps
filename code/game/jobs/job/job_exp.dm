@@ -69,6 +69,8 @@ GLOBAL_PROTECT(exp_to_update)
 	return_text += "<UL>"
 	var/list/exp_data = list()
 	for(var/category in SSjob.name_occupations)
+		if(!(category in JOBS_REGULAR_ALL))
+			continue
 		if(play_records[category])
 			exp_data[category] = text2num(play_records[category])
 		else
@@ -88,15 +90,16 @@ GLOBAL_PROTECT(exp_to_update)
 				exp_data[category] = 0
 
 	for(var/dep in exp_data)
-		if(exp_data[dep] > 0)
-			if(exp_data[EXP_TYPE_LIVING] > 0 && (dep == EXP_TYPE_GHOST || dep == EXP_TYPE_LIVING))
-				var/percentage = num2text(round(exp_data[dep] / (exp_data[EXP_TYPE_LIVING] + exp_data[EXP_TYPE_GHOST])  * 100))
-				return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] ([percentage]%) total.</LI>"
-			else if(exp_data[EXP_TYPE_LIVING] > 0)
-				var/percentage = num2text(round(exp_data[dep] / exp_data[EXP_TYPE_LIVING] * 100))
-				return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] ([percentage]%) while alive.</LI>"
-			else
-				return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] </LI>"
+		if(exp_data[dep] <= 0)
+			continue
+		if(exp_data[EXP_TYPE_LIVING] > 0 && (dep == EXP_TYPE_GHOST || dep == EXP_TYPE_LIVING))
+			var/percentage = num2text(round(exp_data[dep] / (exp_data[EXP_TYPE_LIVING] + exp_data[EXP_TYPE_GHOST])  * 100))
+			return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] ([percentage]%) total.</LI>"
+		else if(exp_data[EXP_TYPE_LIVING] > 0 && dep != EXP_TYPE_ADMIN)
+			var/percentage = num2text(round(exp_data[dep] / exp_data[EXP_TYPE_LIVING] * 100))
+			return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] ([percentage]%) while alive.</LI>"
+		else
+			return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] </LI>"
 	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(src, R_ADMIN, FALSE))
 		return_text += "<LI>Admin (all jobs auto-unlocked)</LI>"
 	return_text += "</UL>"
@@ -187,6 +190,11 @@ GLOBAL_PROTECT(exp_to_update)
 		return -1
 	var/list/play_records = list()
 
+	if(holder && !holder.deadmined)
+		play_records[EXP_TYPE_ADMIN] += minutes
+		if(announce_changes)
+			to_chat(src,"<span class='notice'>You got: [minutes] Admin EXP!</span>")
+
 	if(isliving(mob))
 		if(mob.stat != DEAD)
 			var/rolefound = FALSE
@@ -210,14 +218,9 @@ GLOBAL_PROTECT(exp_to_update)
 			if(!rolefound)
 				play_records["Unknown"] += minutes
 		else
-			if(holder && !holder.deadmined)
-				play_records[EXP_TYPE_ADMIN] += minutes
-				if(announce_changes)
-					to_chat(src,"<span class='notice'>You got: [minutes] Admin EXP!</span>")
-			else
-				play_records[EXP_TYPE_GHOST] += minutes
-				if(announce_changes)
-					to_chat(src,"<span class='notice'>You got: [minutes] Ghost EXP!</span>")
+			play_records[EXP_TYPE_GHOST] += minutes
+			if(announce_changes)
+				to_chat(src,"<span class='notice'>You got: [minutes] Ghost EXP!</span>")
 	else if(isobserver(mob))
 		play_records[EXP_TYPE_GHOST] += minutes
 		if(announce_changes)

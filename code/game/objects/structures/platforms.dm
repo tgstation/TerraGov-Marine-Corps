@@ -12,7 +12,6 @@
 	throwpass = TRUE //You can throw objects over this, despite its density.
 	layer = OBJ_LAYER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
-	breakable = FALSE
 	flags_atom = ON_BORDER
 	resistance_flags = UNACIDABLE
 
@@ -62,7 +61,6 @@ obj/structure/platform_decoration
 	density = 0
 	throwpass = TRUE
 	layer = 3.5
-	breakable = FALSE
 	flags_atom = ON_BORDER
 	resistance_flags = UNACIDABLE
 

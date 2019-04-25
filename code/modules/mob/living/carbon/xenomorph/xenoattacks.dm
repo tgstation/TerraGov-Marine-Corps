@@ -52,8 +52,8 @@
 				M.visible_message("<span class='warning'>\The [M] pokes \the [src], but nothing happens.</span>", \
 				"<span class='warning'>You poke \the [src], but nothing happens.</span>", null, 5)
 			else
-				M.visible_message("<span class='warning'>\The [M] pokes \the [src].</span>", \
-				"<span class='warning'>You poke \the [src].</span>", null, 5)
+				M.visible_message("<span class='notice'>\The [M] pets \the [src].</span>", \
+					"<span class='notice'>You pet \the [src].</span>", null, 5)
 
 		if(INTENT_GRAB)
 			if(M == src || anchored)
@@ -136,11 +136,7 @@
 				else
 					// copypasted from attack_alien.dm
 					//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-					var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
-
-					//Frenzy auras stack in a way, then the raw value is multipled by two to get the additive modifier
-					if(M.frenzy_aura > 0)
-						damage += (M.frenzy_aura * 2)
+					var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(M)
 
 					//Somehow we will deal no damage on this attack
 					if(!damage)

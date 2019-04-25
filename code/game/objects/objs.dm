@@ -35,6 +35,8 @@
 	GLOB.object_list += src
 
 /obj/Destroy()
+	if(buckled_mob)
+		unbuckle()
 	. = ..()
 	GLOB.object_list -= src
 
@@ -113,12 +115,8 @@
 	return
 
 
-/obj/proc/hear_talk(mob/M, text)
+/obj/proc/hear_talk(mob/M, msg, verb = "says", datum/language/language)
 	return
-
-/obj/Destroy()
-	if(buckled_mob) unbuckle()
-	. = ..()
 
 /obj/attack_paw(mob/user)
 	if(can_buckle) return src.attack_hand(user)
@@ -247,6 +245,15 @@
 	if(mover == buckled_mob) //can't collide with the thing you're buckled to
 		return TRUE
 	. = ..()
+
+/obj/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
+		var/turf/T = get_turf(src)
+		if(!(T?.intact_tile) || level != 1) //not hidden under the floor
+			S.reagents?.reaction(src, VAPOR, S.fraction)
 
 /obj/proc/check_skill_level(skill_threshold = 1, skill_type, mob/living/M) //used to calculate do-after delays
 	if(!skill_threshold) //autopass

@@ -93,7 +93,7 @@
 	var/tierthrees
 
 	if(new_caste_type == /mob/living/carbon/Xenomorph/Queen) //Special case for dealing with queenae
-		if(jobban_isbanned(src, "Queen"))
+		if(is_banned_from(ckey, ROLE_XENO_QUEEN) || jobban_isbanned(src, ROLE_XENO_QUEEN))
 			to_chat(src, "<span class='warning'>You are jobbanned from the Queen role.</span>")
 			return
 		if(xeno_caste.hardcore)
@@ -110,6 +110,9 @@
 		if(hivenumber == XENO_HIVE_NORMAL && SSticker?.mode && hive.xeno_queen_timer)
 			to_chat(src, "<span class='warning'>You must wait about [round(hive.xeno_queen_timer / 60)] minutes for the hive to recover from the previous Queen's death.<span>")
 			return
+
+		if(mind)
+			mind.assigned_role = ROLE_XENO_QUEEN
 
 		switch(hivenumber) // because it causes issues otherwise
 			if(XENO_HIVE_CORRUPTED)

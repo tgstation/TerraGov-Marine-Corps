@@ -11,7 +11,7 @@
 	var/speak_exclamation = "declares"
 	var/speak_query = "queries"
 	var/pose //Yes, now AIs can pose too.
-	var/obj/item/device/camera/siliconcam/aiCamera = null //photography
+	var/obj/item/camera/siliconcam/aiCamera = null //photography
 	var/local_transmit //If set, can only speak to others of the same type within a short range.
 
 	var/med_hud = MOB_HUD_MEDICAL_ADVANCED //Determines the med hud to use
@@ -21,7 +21,7 @@
 /mob/living/silicon/Initialize()
 	. = ..()
 	GLOB.silicon_mobs += src
-	add_language("English")
+	grant_language(/datum/language/common)
 
 /mob/living/silicon/Destroy()
 	GLOB.silicon_mobs -= src
@@ -142,39 +142,6 @@
 	if(user && error_msg)
 		to_chat(user, "<span class='alert'>The armoured plating is too tough.</span>")
 	return FALSE
-
-
-//Silicon mob language procs
-
-/mob/living/silicon/can_speak(datum/language/speaking)
-	return universal_speak || (speaking in src.speech_synthesizer_langs)	//need speech synthesizer support to vocalize a language
-
-/mob/living/silicon/add_language(var/language, var/can_speak=1)
-	if (..(language) && can_speak)
-		speech_synthesizer_langs.Add(GLOB.all_languages[language])
-		return 1
-
-/mob/living/silicon/remove_language(var/rem_language)
-	..(rem_language)
-
-	for (var/datum/language/L in speech_synthesizer_langs)
-		if (L.name == rem_language)
-			speech_synthesizer_langs -= L
-
-/mob/living/silicon/check_languages()
-	set name = "Check Known Languages"
-	set category = "IC"
-	set src = usr
-
-	var/dat
-
-	for(var/datum/language/L in languages)
-		dat += "<b>[L.name] (:[L.key])</b><br/>Speech Synthesizer: <i>[(L in speech_synthesizer_langs)? "YES":"NOT SUPPORTED"]</i><br/>[L.desc]<br/><br/>"
-
-	var/datum/browser/popup = new(src, "checklanguage", "<div align='center'>Known Languages</div>")
-	popup.set_content(dat)
-	popup.open(FALSE)
-
 
 
 /mob/living/silicon/proc/toggle_sensor_mode()

@@ -86,13 +86,10 @@ SUBSYSTEM_DEF(job)
 			else
 				JobDebug("Failed to assign marine role to a squad. Player: [player.key] Rank: [rank]")
 				return FALSE
-		var/position_limit = job.total_positions
-		if(!latejoin)
-			position_limit = job.spawn_positions
 		player.mind.assigned_role = rank
 		unassigned -= player
 		job.current_positions++
-		JobDebug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
+		JobDebug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[job.total_positions]")
 		return TRUE
 	JobDebug("AR has failed, Player: [player], Mind: [player?.mind], Rank: [rank]")
 	return FALSE
@@ -101,7 +98,7 @@ SUBSYSTEM_DEF(job)
 	JobDebug("GRJ Giving random job, Player: [player]")
 	. = FALSE
 	for(var/datum/job/job in shuffle(occupations))
-		if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
+		if((job.current_positions < job.total_positions) || job.total_positions == -1)
 			JobDebug("GRJ Random job given, Player: [player], Job: [job]")
 			if(AssignRole(player, job.title))
 				return TRUE
@@ -156,7 +153,7 @@ SUBSYSTEM_DEF(job)
 				// If the player wants that job on this level, then try give it to him.
 				if(player.client.prefs.GetJobDepartment(job, level) & job.prefflag)
 					// If the job isn't filled
-					if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
+					if((job.current_positions < job.total_positions) || job.total_positions == -1)
 						JobDebug("DO pass, Trying to assign Player: [player], Level:[level], Job:[job.title]")
 						if(AssignRole(player, job.title))
 							break
@@ -192,16 +189,16 @@ SUBSYSTEM_DEF(job)
 //Gives the player the stuff he should have with his rank
 /datum/controller/subsystem/job/proc/EquipRank(mob/M, rank, joined_late = FALSE)
 	var/mob/new_player/N
-	var/mob/living/H
+	var/mob/living/L
 	if(!joined_late)
 		N = M
-		H = N.new_character
+		L = N.new_character
 	else
-		H = M
+		L = M
 
 	var/datum/job/job = GetJob(rank)
 
-	H.job = rank
+	L.job = rank
 
 	//If we joined at roundstart we should be positioned at our workstation
 	if(!joined_late && job)
@@ -214,27 +211,28 @@ SUBSYSTEM_DEF(job)
 		if(length(GLOB.jobspawn_overrides[rank]))
 			S = pick(GLOB.jobspawn_overrides[rank])
 		if(S)
-			SendToAtom(H, S, buckle = FALSE)
+			SendToAtom(L, S, buckle = FALSE)
 		if(!S) //if there isn't a spawnpoint send them to latejoin, if there's no latejoin go yell at your mapper
 			log_world("Couldn't find a round start spawn point for [rank]")
-			SendToLateJoin(H)
+			SendToLateJoin(L)
 
-	if(job && H.mind)
-		H.mind.assigned_role = rank
-		var/new_mob = job.equip(H, null, null, joined_late , null, M.client)
+	if(job && L.mind)
+		L.mind.assigned_role = rank
+		var/new_mob = job.equip(L, null, null, joined_late , null, M.client)
 		if(ismob(new_mob))
-			H = new_mob
+			L = new_mob
 			if(!joined_late)
-				N.new_character = H
+				N.new_character = L
 			else
-				M = H
+				M = L
 		if(rank in JOBS_MARINES)
-			if(H.mind.assigned_squad)
-				var/datum/squad/S = H.mind.assigned_squad
-				S.put_marine_in_squad(H)
+			if(L.mind.assigned_squad)
+				var/datum/squad/S = L.mind.assigned_squad
+				S.put_marine_in_squad(L)
 			else
-				JobDebug("Failed to put marine role in squad. Player: [H.key] Rank: [rank]")
-	if(ishuman(H))
+				JobDebug("Failed to put marine role in squad. Player: [L.key] Rank: [rank]")
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
 		//Give them an account in the database.
 		var/datum/money_account/A = create_account(H.real_name, rand(50,500) * 10, null)
 		if(H.mind)
@@ -255,10 +253,10 @@ SUBSYSTEM_DEF(job)
 		job.radio_help_message(M)
 		if(job.req_admin_notify)
 			to_chat(M, "<span clas='danger'>You are playing a job that is important for game progression. If you have to disconnect, please head to hypersleep, if you can't make it there, notify the admins via adminhelp.</span>")
-	if(job && H)
-		job.after_spawn(H, M, joined_late) // note: this happens before the mob has a key! M will always have a client, H might not.
+	if(job && L)
+		job.after_spawn(L, M, joined_late) // note: this happens before the mob has a key! M will always have a client, H might not.
 
-	return H
+	return L
 
 
 /datum/controller/subsystem/job/proc/RejectPlayer(mob/new_player/player)
@@ -286,7 +284,6 @@ SUBSYSTEM_DEF(job)
 	if(!istype(newjob))
 		return
 	newjob.total_positions = J.total_positions
-	newjob.spawn_positions = J.spawn_positions
 	newjob.current_positions = J.current_positions
 
 

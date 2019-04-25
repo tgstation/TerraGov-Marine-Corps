@@ -155,7 +155,7 @@ var/list/mechtoys = list(
 				return 1
 		if(istype(A,/obj/item/disk/nuclear))
 			return 1
-		if(istype(A,/obj/item/device/radio/beacon))
+		if(istype(A,/obj/item/radio/beacon))
 			return 1
 		if(istype(A,/obj/item/stack/sheet/mineral/phoron))
 			return 1
@@ -270,7 +270,6 @@ var/list/mechtoys = list(
 			for(var/typepath in contains)
 				if(!typepath)	continue
 				var/atom/B2 = new typepath(A)
-				if(SP.amount && B2:amount) B2:amount = SP.amount
 				slip.info += "<li>[B2.name]</li>" //add the item to the manifest
 
 			//manifest finalisation
@@ -696,7 +695,7 @@ var/list/mechtoys = list(
 
 /obj/machinery/computer/supplycomp/proc/post_signal(var/command)
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
 
 	if(!frequency) return
 

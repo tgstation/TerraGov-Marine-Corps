@@ -56,7 +56,7 @@
 					locked_tabs = new Array();
 				}
 
-				function expand(id,job,name,real_name,old_names,key,ip,ref){
+				function expand(id, job, name, real_name, old_names, key, ip, cid, ref){
 
 					clearAll();
 
@@ -65,9 +65,9 @@
 
 					body = "<table><tr><td>";
 
-					body += "</td><td align='center'>";
+					body += "</td><td align='left'>";
 
-					body += "<font size='2'>"+job+" "+name+"<br>Real name "+real_name+"<br>Played by "+key+" ("+ip+")<br>Old names: "+old_names+"</font>";
+					body += "<font size='2'>"+job+" - "+name+"<br>Real name: "+real_name+"<br>"+key+" ("+ip+", "+cid+")<br>Old names: "+old_names+"</font>";
 
 					body += "</td><td align='center'>";
 
@@ -265,14 +265,13 @@
 				<td align='center' bgcolor='[color]'>
 					<span id='notice_span[i]'></span>
 					<a id='link[i]'
-					onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[previous_names]","[M_key]","[M.lastKnownIP]","[REF(M)]")'
+					onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[previous_names]","[M_key]","[M.lastKnownIP]","[M.computer_id]","[REF(M)]")'
 					>
 					<b id='search[i]' style='font-weight:normal'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
 					<span hidden class='filter_data'>[M_name] [M_rname] [M_key] [M_job] [previous_names]</span>
 					</a>
 					<br><span id='item[i]'></span>
-					</td>
-				</tr>
+				</td>
 			</tr>
 
 		"}
@@ -314,7 +313,7 @@
 		if(!M.ckey)
 			continue
 
-		dat += "<tr><td>[(M.client ? "[M.client]" : "No client")]</td>"
+		dat += "<tr><td>[(M.key ? "[M.key]" : "No Key")]</td>"
 		dat += "<td><a href='?priv_msg=[M.ckey]'>[M.name]</a></td>"
 		if(isAI(M))
 			dat += "<td>aI</td>"
@@ -378,7 +377,7 @@
 	if(isnewplayer(M))
 		body += " <b>Hasn't Entered Game</b> "
 	else
-		body += " <a href='?src=[ref];revive=[REF(M)]'>Heal</a> | <a href='?src=[ref];sleep=[REF(M)]'>Sleep</a>"
+		body += " | <a href='?src=[ref];revive=[REF(M)]'>Heal</a> | <a href='?src=[ref];sleep=[REF(M)]'>Sleep</a>"
 
 	body += {"
 		<br><br>
@@ -396,13 +395,13 @@
 
 	if(M.mind?.assigned_role)
 		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"
-
-	body += "<a href='?src=[ref];kick=[REF(M)]'>Kick</a> | "
 		
 	if(M.client)
+		body += "<a href='?src=[ref];playtime=[REF(M)]'>Playtime</a> | "
+		body += "<a href='?src=[ref];kick=[REF(M)]'>Kick</a> | "
 		body += "<a href='?src=[ref];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</a> | "
 	else
-		body += "<a href='?src=[ref];newbankey=[M.key]'>Ban</a> |"
+		body += "<a href='?src=[ref];newbankey=[M.key]'>Ban</a> | "
 
 	body += "<a href='?src=[ref];showmessageckey=[M.ckey]'>Notes</a> | "
 	body += "<a href='?src=[ref];cryo=[REF(M)]'>Cryo</a>"
@@ -470,6 +469,11 @@
 			<br>
 			<a href='?src=[ref];thunderdome=[REF(M)]'>Thunderdome</a> |
 			<a href='?src=[ref];gib=[REF(M)]'>Gib</a>"}
+
+		if(isliving(M))
+			body += "| <a href='?src=[ref];offer=[REF(M)]'>Offer Mob</a> | "
+			body += "<a href='?src=[ref];give=[REF(M)]'>Give Mob</a>"
+
 		if(ishuman(M))
 			body += "| <a href='?src=[ref];setrank=[REF(M)]'>Select Rank</a> | "
 			body += "<a href='?src=[ref];setequipment=[REF(M)]'>Select Equipment</a> | "

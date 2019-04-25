@@ -640,8 +640,8 @@ var/global/list/damage_icon_parts = list()
 				if(assigned_squad)
 					var/datum/squad/S = assigned_squad
 					var/leader = S.squad_leader == src
-					switch(S.color)
-						if(1 to 4) standing.overlays += leader? helmetmarkings_sql[S.color] : helmetmarkings[S.color]
+					if(GLOB.helmetmarkings[S.type]) // just assume if it exists for both
+						standing.overlays += leader? GLOB.helmetmarkings_sl[S.type] : GLOB.helmetmarkings[S.type]
 
 			var/image/I
 			for(var/i in marine_helmet.helmet_overlays)
@@ -700,8 +700,8 @@ var/global/list/damage_icon_parts = list()
 				if(assigned_squad)
 					var/datum/squad/S = assigned_squad
 					var/leader = S.squad_leader == src
-					switch(S.color)
-						if(1 to 4) standing.overlays += leader? armormarkings_sql[S.color] : armormarkings[S.color]
+					if(GLOB.armormarkings[S.type])
+						standing.overlays += leader? GLOB.armormarkings_sl[S.type] : GLOB.armormarkings[S.type]
 
 			if(length(marine_armor.armor_overlays))
 				var/image/I

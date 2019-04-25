@@ -60,13 +60,14 @@
 	files[fresh.uid] = fresh
 
 /obj/machinery/computer/forensic_scanning/proc/process_card(var/obj/item/f_card/card)
-	if(card.fingerprints)
+	var/fingerprints = card.return_fingerprints()
+	if(fingerprints)
 		to_chat(usr, "<span class='notice'>\The [src] sucks in \the [card] and whirrs, scanning it.</span>")
 		var/found = 0
 		for(var/id in files)
 			var/datum/data/record/forensic/rec = files[id]
 			var/list/prints = rec.fields["fprints"]
-			for(var/master_print in card.fingerprints)
+			for(var/master_print in fingerprints)
 				if(prints[master_print])
 					prints[master_print] = master_print
 					found = 1

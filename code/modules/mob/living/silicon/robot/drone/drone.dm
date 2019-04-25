@@ -24,7 +24,7 @@
 	var/obj/item/stack/sheet/wood/cyborg/stack_wood = null
 	var/obj/item/stack/sheet/glass/cyborg/stack_glass = null
 	var/obj/item/stack/sheet/mineral/plastic/cyborg/stack_plastic = null
-	var/obj/item/device/matter_decompiler/decompiler = null
+	var/obj/item/matter_decompiler/decompiler = null
 
 	//Used for self-mailing.
 	var/mail_destination = ""
@@ -42,9 +42,6 @@
 
 
 	verbs += /mob/living/proc/hide
-	//remove_language("Robot Talk")
-	//add_language("Robot Talk", 1) // let them use this since we arent like regular ss13
-	add_language("Drone Talk", 1)
 
 	if(camera && "Robots" in camera.network)
 		camera.network.Add("Engineering")
@@ -75,7 +72,7 @@
 	stack_plastic = locate(/obj/item/stack/sheet/mineral/plastic/cyborg) in src.module
 
 	//Grab decompiler.
-	decompiler = locate(/obj/item/device/matter_decompiler) in src.module
+	decompiler = locate(/obj/item/matter_decompiler) in src.module
 
 	//Some tidying-up.
 	flavor_text = "This is an XP-45 Engineering Drone, one of the many fancy things that come out of the Nanotrasen Research Department. It's designed to assist both ship repairs as well as ground missions. Shiny!"
@@ -85,7 +82,7 @@
 	laws = new /datum/ai_laws/drone()
 	connected_ai = null
 
-	aiCamera = new/obj/item/device/camera/siliconcam/drone_camera(src)
+	aiCamera = new/obj/item/camera/siliconcam/drone_camera(src)
 	playsound(src.loc, 'sound/machines/twobeep.ogg', 25, 0)
 
 //Redefining some robot procs...

@@ -285,7 +285,7 @@
 		to_chat(X, "<span class='xenowarning'>You need to be on resin to grow an ovipositor.</span>")
 		return
 
-	if(!X.check_alien_construction(current_turf))
+	if(!current_turf.check_alien_construction(X))
 		return
 
 	if(X.action_busy)

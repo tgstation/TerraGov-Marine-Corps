@@ -26,13 +26,16 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/heavy = input("Range of heavy pulse.", text("Input")) as num|null
-	if(heavy < 0)
+	var/heavy = input("Range of heavy pulse.", "EM Pulse") as num|null
+	if(isnull(heavy))
 		return
 
-	var/light = input("Range of light pulse.", text("Input")) as num|null
-	if(light < 0)
+	var/light = input("Range of light pulse.", "EM Pulse") as num|null
+	if(isnull(light))
 		return
+
+	heavy = CLAMP(heavy, 0, 10000)
+	light = CLAMP(light, 0, 10000)
 
 	empulse(usr, heavy, light)
 
@@ -54,9 +57,9 @@
 
 	var/msg = "<br><h2 class='alert'>[customname]</h2><br><span class='warning'>[input]</span><br><br>"
 
-	for(var/mob/M in GLOB.player_list)
-		if(isxeno(M) || isobserver(M))
-			to_chat(M, msg)
+	for(var/i in (GLOB.xeno_mob_list + GLOB.observer_list))
+		var/mob/M = i
+		to_chat(M, msg)
 
 	log_admin("[key_name(usr)] created a Queen Mother report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] created a Queen Mother report.")
@@ -85,25 +88,39 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/input = input("This should be a message from the ship's AI.",, "") as message|null
+	var/input = input("This should be a message from the ship's AI.", "AI Report") as message|null
 	if(!input)
 		return
 
-	if(alert(usr, "Do you want to use the ship AI to say the message or a global marine announcement?",, "Ship", "Global") == "Ship")
-		if(!ai_system.Announce(input))
-			return
-	else
-		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = 'sound/misc/interference.ogg')
+	var/glob
+	switch(alert(usr, "Do you want to use the ship AI to say the message or a global marine announcement?", "AI Report", "Ship", "Global", "Cancel"))
+		if("Global")
+			glob = TRUE
+		if("Cancel")
+			return		
 
-	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
+	var/paper
+	switch(alert(usr, "Do you want to print out a paper at the communications consoles?", "AI Report", "Yes", "No", "Cancel"))
+		if("Yes")
+			paper = TRUE
+		if("Cancel")
+			return
+
+	if(glob)
+		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = "sound/misc/interference.ogg")
+	else
+		ai_system.Announce(input)
+
+	if(paper)
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
-			if(!(C.machine_stat & (BROKEN|NOPOWER)))
-				var/obj/item/paper/P = new /obj/item/paper(C.loc)
-				P.name = "'[MAIN_AI_SYSTEM] Update.'"
-				P.info = input
-				P.update_icon()
-				C.messagetitle.Add("[MAIN_AI_SYSTEM] Update")
-				C.messagetext.Add(P.info)
+			if(C.machine_stat & (BROKEN|NOPOWER))
+				continue
+			var/obj/item/paper/P = new /obj/item/paper(C.loc)
+			P.name = "'[MAIN_AI_SYSTEM] Update.'"
+			P.info = input
+			P.update_icon()
+			C.messagetitle.Add("[MAIN_AI_SYSTEM] Update")
+			C.messagetext.Add(P.info)
 
 	log_admin("[key_name(usr)] has created an AI report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] has created an AI report: [input]")
@@ -157,7 +174,7 @@
 	if(!msg)
 		return
 
-	to_chat(world, "[msg]")
+	to_chat(world, msg)
 
 	log_admin("GlobalNarrate: [key_name(usr)] : [msg]")
 	message_admins("[ADMIN_TPMONTY(usr)] used Global Narrate: [msg]")
@@ -180,7 +197,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] used Direct Narrate on [ADMIN_TPMONTY(M)]: [msg]")
 
 
-/datum/admins/proc/subtle_message(var/mob/M in GLOB.player_list)
+/datum/admins/proc/subtle_message(mob/M in GLOB.player_list)
 	set category = null
 	set name = "Subtle Message"
 
@@ -631,7 +648,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] force launched a distress shuttle: [tag] to: [dock_name].")
 
 
-/datum/admins/proc/object_sound(atom/O as obj in world)
+/datum/admins/proc/object_sound(atom/O as obj)
 	set category = null
 	set name = "Object Sound"
 
@@ -641,11 +658,11 @@
 	if(!O)
 		return
 
-	var/message = input("What do you want the message to be?") as text|null
+	var/message = input("What do you want the message to be?", "Object Sound") as text|null
 	if(!message)
 		return
 
-	var/method = input("What do you want the verb to be? Make sure to include s.") as text|null
+	var/method = input("What do you want the verb to be? Make sure to include s if applicable.", "Object Sound") as text|null
 	if(!method)
 		return
 
@@ -666,30 +683,33 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/mob/M = usr
-
-	var/list/choices = list("CANCEL", "Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
-	var/choice = input("What size explosion would you like to produce?") in choices
+	var/choice = input("What size explosion would you like to produce?", "Drop Bomb") as null|anything in list("CANCEL", "Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
 	switch(choice)
 		if("CANCEL")
 			return
 		if("Small Bomb")
-			explosion(M.loc, 1, 2, 3, 3)
+			explosion(usr.loc, 1, 2, 3, 3)
 		if("Medium Bomb")
-			explosion(M.loc, 2, 3, 4, 4)
+			explosion(usr.loc, 2, 3, 4, 4)
 		if("Big Bomb")
-			explosion(M.loc, 3, 5, 7, 5)
+			explosion(usr.loc, 3, 5, 7, 5)
 		if("Custom Bomb")
-			var/devastation_range = input("Devastation range (in tiles):") as null|num
-			var/heavy_impact_range = input("Heavy impact range (in tiles):") as null|num
-			var/light_impact_range = input("Light impact range (in tiles):") as null|num
-			var/flash_range = input("Flash range (in tiles):") as null|num
+			var/devastation_range = input("Devastation range (in tiles):", "Drop Bomb") as null|num
+			var/heavy_impact_range = input("Heavy impact range (in tiles):", "Drop Bomb") as null|num
+			var/light_impact_range = input("Light impact range (in tiles):", "Drop Bomb") as null|num
+			var/flash_range = input("Flash range (in tiles):", "Drop Bomb") as null|num
 			if(isnull(devastation_range) || isnull(heavy_impact_range) || isnull(light_impact_range) || isnull(flash_range))
 				return
-			explosion(M.loc, devastation_range, heavy_impact_range, light_impact_range, flash_range)
+			devastation_range = CLAMP(devastation_range, -1, 10000)
+			heavy_impact_range = CLAMP(heavy_impact_range, -1, 10000)
+			light_impact_range = CLAMP(light_impact_range, -1, 10000)
+			flash_range = CLAMP(flash_range, -1, 10000)
+			explosion(usr.loc, devastation_range, heavy_impact_range, light_impact_range, flash_range)
+		else
+			return
 
-	log_admin("[key_name(usr)] dropped a bomb at [AREACOORD(M.loc)].")
-	message_admins("[ADMIN_TPMONTY(usr)] dropped a bomb at [ADMIN_VERBOSEJMP(M.loc)].")
+	log_admin("[key_name(usr)] dropped a bomb at [AREACOORD(usr.loc)].")
+	message_admins("[ADMIN_TPMONTY(usr)] dropped a bomb at [ADMIN_VERBOSEJMP(usr.loc)].")
 
 
 /datum/admins/proc/change_security_level()
@@ -699,8 +719,11 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green", "blue", "red", "delta") - get_security_level())
-	if(!sec_level || alert("Switch from code [get_security_level()] to code [sec_level]?", "Change security level?", "Yes", "No") != "Yes")
+	var/sec_level = input(usr, "It's currently code [get_security_level()]. Choose the new security level.", "Set Security Level") as null|anything in (list("green", "blue", "red", "delta") - get_security_level())
+	if(!sec_level)
+		return
+
+	if(alert("Switch from code [get_security_level()] to code [sec_level]?", "Set Security Level", "Yes", "No") != "Yes")
 		return
 
 	set_security_level(sec_level)
@@ -838,9 +861,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/dat = {"
-	<html><head><title>Create Outfit</title></head><body>
-	<div>Input typepaths and watch the magic happen.</div>
+	var/dat = {"<div>Input typepaths and watch the magic happen.</div>
 	<form name="outfit" action="byond://?src=[REF(usr.client.holder)];[HrefToken()]" method="get">
 	<input type="hidden" name="src" value="[REF(usr.client.holder)];[HrefToken()]">
 	[HrefTokenFormField()]
@@ -950,10 +971,11 @@
 	</table>
 	<br>
 	<input type="submit" value="Save">
-	</form></body></html>
-	"}
+	</form>"}
 
-	usr << browse(dat, "window=dressup;size=550x600")
+	var/datum/browser/browser = new(usr, "create_outfit", "<div align='center'>Create Outfit</div>", 550, 600)
+	browser.set_content(dat)
+	browser.open()
 
 
 /datum/admins/proc/edit_appearance(mob/living/carbon/human/H in GLOB.human_mob_list)
@@ -966,55 +988,59 @@
 	if(!istype(H))
 		return
 
-	switch(input("What do you want to edit?") as null|anything in list("Hair Style", "Hair Color", "Facial Hair Style", "Facial Hair Color", "Eye Color", "Body Color", "Gender", "Ethnicity"))
+	var/modification = input("What do you want to edit?", "Edit Appearance") as null|anything in list("Hair Style", "Hair Color", "Facial Hair Style", "Facial Hair Color", "Eye Color", "Body Color", "Gender", "Ethnicity")
+	switch(modification)
 		if("Hair Style")
-			var/new_hstyle = input("Select a hair style") as null|anything in GLOB.hair_styles_list
+			var/new_hstyle = input("Select a hair style", "Edit Appearance") as null|anything in sortNames(GLOB.hair_styles_list)
 			if(!new_hstyle || !istype(H))
 				return
 			H.h_style = new_hstyle
 		if("Hair Color")
-			var/new_hair = input("Select hair color.") as color
+			var/new_hair = input("Select hair color.", "Edit Appearance") as color
 			if(!new_hair || !istype(H))
 				return
 			H.r_hair = hex2num(copytext(new_hair, 2, 4))
 			H.g_hair = hex2num(copytext(new_hair, 4, 6))
 			H.b_hair = hex2num(copytext(new_hair, 6, 8))
 		if("Facial Hair Style")
-			var/new_fstyle = input("Select a facial hair style")  as null|anything in GLOB.facial_hair_styles_list
+			var/new_fstyle = input("Select a facial hair style", "Edit Appearance") as null|anything in sortNames(GLOB.facial_hair_styles_list)
 			if(!new_fstyle || !istype(H))
 				return
 			H.f_style = new_fstyle
 		if("Facial Hair Color")
-			var/new_facial = input("Please select facial hair color.") as color
+			var/new_facial = input("Please select facial hair color.", "Edit Appearance") as color
 			if(!new_facial || !istype(H))
 				return
 			H.r_facial = hex2num(copytext(new_facial, 2, 4))
 			H.g_facial = hex2num(copytext(new_facial, 4, 6))
 			H.b_facial = hex2num(copytext(new_facial, 6, 8))
 		if("Eye Color")
-			var/new_eyes = input("Please select eye color.", "Character Generation") as color
+			var/new_eyes = input("Please select eye color.", "Edit Appearance") as color
 			if(!new_eyes || !istype(H))
 				return
 			H.r_eyes = hex2num(copytext(new_eyes, 2, 4))
 			H.g_eyes = hex2num(copytext(new_eyes, 4, 6))
 			H.b_eyes = hex2num(copytext(new_eyes, 6, 8))
 		if("Body Color")
-			var/new_skin = input("Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Character Generation") as color
+			var/new_skin = input("Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Edit Appearance") as color
 			if(!new_skin || !istype(H))
 				return
 			H.r_skin = hex2num(copytext(new_skin, 2, 4))
 			H.g_skin = hex2num(copytext(new_skin, 4, 6))
 			H.b_skin = hex2num(copytext(new_skin, 6, 8))
 		if("Gender")
-			var/new_gender = alert("Please select gender.",, "Male", "Female")
+			var/new_gender = alert("Please select gender.", "Edit Appearance", "Male", "Female", "Cancel")
 			if(!new_gender || !istype(H))
 				return
-			if(new_gender == "Male")
-				H.gender = MALE
-			else
-				H.gender = FEMALE
+			switch(new_gender)
+				if("Male")
+					H.gender = MALE
+				if("Female")
+					H.gender = FEMALE
+				else
+					return
 		if("Ethnicity")
-			var/new_ethnicity = input("Please select the ethnicity") as null|anything in GLOB.ethnicities_list
+			var/new_ethnicity = input("Please select the ethnicity") as null|anything in sortNames(GLOB.ethnicities_list)
 			if(!new_ethnicity || !istype(H))
 				return
 			H.ethnicity = new_ethnicity
@@ -1026,43 +1052,43 @@
 	H.regenerate_icons()
 	H.check_dna(H)
 
-	log_admin("[key_name(usr)] updated the appearance of [key_name(H)].")
-	message_admins("[ADMIN_TPMONTY(usr)] updated the appearance of [ADMIN_TPMONTY(H)].")
+	log_admin("[key_name(usr)] updated the [modification] of [key_name(H)].")
+	message_admins("[ADMIN_TPMONTY(usr)] updated the [modification] of [ADMIN_TPMONTY(H)].")
 
 
-/datum/admins/proc/offer(mob/M in GLOB.mob_list)
+/datum/admins/proc/offer(mob/living/L in GLOB.mob_living_list)
 	set category = "Fun"
 	set name = "Offer Mob"
 
 	if(!check_rights(R_FUN))
 		return
 
-	if(!isliving(M))
-		return
-
-	var/mob/living/L = M
-
-	if(L.key || L.ckey)
+	if(L.client)
 		if(alert("This mob has a player inside, are you sure you want to proceed?", "Offer Mob", "Yes", "No") != "Yes")
 			return
 		L.ghostize(FALSE)
+		
 	else if(L in GLOB.offered_mob_list)
 		switch(alert("This mob has been offered, do you want to re-announce it?", "Offer Mob", "Yes", "Remove", "Cancel"))
 			if("Cancel")
 				return
 			if("Remove")
 				GLOB.offered_mob_list -= L
-				log_admin("[key_name(usr)] has removed offer of [key_name_admin(M)].")
-				message_admins("[ADMIN_TPMONTY(usr)] has removed offer of [ADMIN_TPMONTY(M)].")
+				log_admin("[key_name(usr)] has removed offer of [key_name_admin(L)].")
+				message_admins("[ADMIN_TPMONTY(usr)] has removed offer of [ADMIN_TPMONTY(L)].")
 				return
 
-	else if(alert("Are you sure?", "Offer Mob", "Yes", "No") != "Yes")
+	else if(alert("Are you sure you want to offer this mob?", "Offer Mob", "Yes", "No") != "Yes")
+		return
+
+	if(!istype(L))
+		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 
 	L.offer_mob()
 
-	log_admin("[key_name(usr)] has offered [key_name_admin(M)].")
-	message_admins("[ADMIN_TPMONTY(usr)] has offered [ADMIN_TPMONTY(M)].")
+	log_admin("[key_name(usr)] has offered [key_name_admin(L)].")
+	message_admins("[ADMIN_TPMONTY(usr)] has offered [ADMIN_TPMONTY(L)].")
 
 
 /datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.xeno_mob_list)
@@ -1083,7 +1109,9 @@
 		var/datum/hive_status/H = GLOB.hive_datums[Y]
 		namelist += H.name
 
-	var/newhive = input(src, "Select a hive.", null, null) in namelist
+	var/newhive = input("Select a hive.", "Change Hivenumber") as null|anything in namelist
+	if(!newhive)
+		return
 
 	var/newhivenumber
 	switch(newhive)
@@ -1100,13 +1128,15 @@
 		else
 			return
 
-	if(!istype(X) || X.gc_destroyed || !SSticker || X.hivenumber != hivenumber_status)
+	if(!istype(X) || X.hivenumber != hivenumber_status)
+		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+		return
 		return
 
 	X.transfer_to_hive(newhivenumber)
 
-	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] to [newhive].")
+	log_admin("[key_name(usr)] changed hivenumber of [X] from [hivenumber_status] to [newhive].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] from [hivenumber_status] to [newhive].")
 
 
 /datum/admins/proc/release(obj/O in GLOB.object_list)

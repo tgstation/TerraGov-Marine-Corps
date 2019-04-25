@@ -34,7 +34,7 @@ var/list/robot_verbs_default = list(
 	var/obj/module_state_2 = null
 	var/obj/module_state_3 = null
 
-	var/obj/item/device/radio/borg/radio = null
+	var/obj/item/radio/borg/radio = null
 	var/mob/living/silicon/ai/connected_ai = null
 	var/obj/item/cell/cell = null
 	var/obj/machinery/camera/camera = null
@@ -42,9 +42,9 @@ var/list/robot_verbs_default = list(
 	// Components are basically robot organs.
 	var/list/components = list()
 
-	var/obj/item/device/mmi/mmi = null
+	var/obj/item/mmi/mmi = null
 
-	var/obj/item/device/pda/ai/rbPDA = null
+	var/obj/item/pda/ai/rbPDA = null
 
 	var/opened = 0
 	var/emagged = 0
@@ -79,8 +79,6 @@ var/list/robot_verbs_default = list(
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-	add_language("Robot Talk", 1)
-
 	ident = rand(1, 999)
 	updatename("Default")
 	update_icons()
@@ -100,7 +98,7 @@ var/list/robot_verbs_default = list(
 		modtype = "Security"
 	init()
 
-	radio = new /obj/item/device/radio/borg(src)
+	radio = new /obj/item/radio/borg(src)
 	if(!scrambledcodes && !camera)
 		camera = new /obj/machinery/camera(src)
 		camera.c_tag = real_name
@@ -131,7 +129,7 @@ var/list/robot_verbs_default = list(
 	add_robot_verbs()
 
 /mob/living/silicon/robot/proc/init()
-	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
+	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
 	laws = new /datum/ai_laws/nanotrasen()
 	connected_ai = select_active_ai_with_fewest_borgs()
 	if(connected_ai)
@@ -144,11 +142,6 @@ var/list/robot_verbs_default = list(
 
 	// playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
 
-// setup the PDA and its name
-/mob/living/silicon/robot/proc/setup_PDA()
-	if (!rbPDA)
-		rbPDA = new/obj/item/device/pda/ai(src)
-	rbPDA.set_name_and_job(custom_name,"[modtype] [braintype]")
 
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 //Improved /N
@@ -228,9 +221,6 @@ var/list/robot_verbs_default = list(
 			module_sprites["Mop Gear Rex"] = "mopgearrex"
 			module_sprites["Drone"] = "drone-janitor"
 
-	//languages
-	module.add_languages(src)
-
 	hands.icon_state = lowertext(modtype)
 	updatename()
 
@@ -257,9 +247,6 @@ var/list/robot_verbs_default = list(
 	name = real_name
 	if(mind)
 		mind.name = changed_name
-
-	// if we've changed our name, we also need to update the display name for our PDA
-	setup_PDA()
 
 	//We also need to update name of internal camera.
 	if (camera)
@@ -595,13 +582,13 @@ var/list/robot_verbs_default = list(
 			to_chat(user, "Unable to locate a radio.")
 		update_icons()
 
-	else if(istype(W, /obj/item/device/encryptionkey/) && opened)
+	else if(istype(W, /obj/item/encryptionkey/) && opened)
 		if(radio)//sanityyyyyy
 			radio.attackby(W,user)//GTFO, you have your own procs
 		else
 			to_chat(user, "Unable to locate a radio.")
 
-	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
+	else if (istype(W, /obj/item/card/id))			// trying to unlock the interface with an ID card
 		if(emagged)//still allow them to open the cover
 			to_chat(user, "The interface seems slightly damaged")
 		if(opened)
@@ -689,7 +676,7 @@ var/list/robot_verbs_default = list(
 
 
 	else
-		if( !(istype(W, /obj/item/device/robotanalyzer) || istype(W, /obj/item/device/healthanalyzer)) )
+		if( !(istype(W, /obj/item/robotanalyzer) || istype(W, /obj/item/healthanalyzer)) )
 			spark_system.start()
 		return ..()
 

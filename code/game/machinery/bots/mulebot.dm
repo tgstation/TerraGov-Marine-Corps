@@ -78,9 +78,9 @@
 	cell.maxcharge = 2000
 	setup_wires()
 
-	if(radio_controller)
-		radio_controller.add_object(src, control_freq, filter = RADIO_MULEBOT)
-		radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
+	if(SSradio)
+		SSradio.add_object(src, control_freq, filter = RADIO_MULEBOT)
+		SSradio.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
 
 	var/count = 0
 	for(var/obj/machinery/bot/mulebot/other in GLOB.machines)
@@ -895,7 +895,7 @@
 	if(freq == control_freq && !(wires & wire_remote_tx))
 		return
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(freq)
 
 	if(!frequency) return
 
@@ -943,7 +943,7 @@
 	src.visible_message("<span class='danger'>[src] blows apart!</span>", 1)
 	var/turf/Tsec = get_turf(src)
 
-	new /obj/item/device/assembly/prox_sensor(Tsec)
+	new /obj/item/assembly/prox_sensor(Tsec)
 	new /obj/item/stack/rods(Tsec)
 	new /obj/item/stack/rods(Tsec)
 	new /obj/item/stack/cable_coil/cut(Tsec)

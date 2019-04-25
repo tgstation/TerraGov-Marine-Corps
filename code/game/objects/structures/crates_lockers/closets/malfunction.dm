@@ -14,4 +14,4 @@
 	new /obj/item/clothing/suit/space/uscm(src)
 	new /obj/item/tool/crowbar(src)
 	new /obj/item/cell(src)
-	new /obj/item/device/multitool(src)
+	new /obj/item/multitool(src)

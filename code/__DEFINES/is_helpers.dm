@@ -35,7 +35,6 @@
 #define ishuman(A) (istype(A, /mob/living/carbon/human))
 
 //Human sub-species
-#define iszombie(H) (is_species(H, /datum/species/zombie))
 #define ishorror(H) (is_species(H, datum/species/spook))
 #define isunathi(H) (is_species(H, /datum/species/unathi))
 #define istajaran(H) (is_species(H, /datum/species/tajaran))
@@ -134,7 +133,7 @@
 
 #define isscrewdriver(I) (istype(I, /obj/item/tool/screwdriver))
 
-#define ismultitool(I) (istype(I, /obj/item/device/multitool))
+#define ismultitool(I) (istype(I, /obj/item/multitool))
 
 #define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
 
@@ -157,17 +156,17 @@
 #define isidcard(A) (istype(A, /obj/item/card/id))
 
 //Assemblies
-#define isassembly(O) (istype(O, /obj/item/device/assembly))
+#define isassembly(O) (istype(O, /obj/item/assembly))
 
-#define isigniter(O) (istype(O, /obj/item/device/assembly/igniter))
+#define isigniter(O) (istype(O, /obj/item/assembly/igniter))
 
-#define isprox(O) (istype(O, /obj/item/device/assembly/prox_sensor))
+#define isprox(O) (istype(O, /obj/item/assembly/prox_sensor))
 
-#define issignaler(O) (istype(O, /obj/item/device/assembly/signaler))
+#define issignaler(O) (istype(O, /obj/item/assembly/signaler))
 
-#define isinfared(O) (istype(O, /obj/item/device/assembly/infra))
+#define isinfared(O) (istype(O, /obj/item/assembly/infra))
 
-#define istimer(O) (istype(O, /obj/item/device/assembly/timer))
+#define istimer(O) (istype(O, /obj/item/assembly/timer))
 
 #define iseffect(O) (istype(O, /obj/effect))
 

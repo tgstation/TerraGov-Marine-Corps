@@ -3,6 +3,7 @@
 	GLOB.mob_list -= src
 	GLOB.dead_mob_list -= src
 	GLOB.alive_mob_list -= src
+	GLOB.offered_mob_list -= src
 	ghostize()
 	clear_fullscreens()
 	return ..()
@@ -34,9 +35,9 @@
 				GLOB.stat_entry()
 				config.stat_entry()
 				supply_controller.stat_entry()
-				shuttle_controller.stat_entry()
+				shuttle_controller?.stat_entry()
 				lighting_controller.stat_entry()
-				radio_controller.stat_entry()
+				SSradio.stat_entry()
 				stat(null)
 				if(Master)
 					Master.stat_entry()
@@ -146,13 +147,6 @@
 /mob/proc/movement_delay()
 	. += next_move_slowdown
 	next_move_slowdown = 0
-
-/mob/proc/Life()
-	if(client == null)
-		away_timer++
-	else
-		away_timer = 0
-	return
 
 //This proc is called whenever someone clicks an inventory ui slot.
 /mob/proc/attack_ui(slot)
@@ -315,8 +309,6 @@
 	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=[SLOT_WEAR_MASK]'>[(wear_mask ? wear_mask : "Nothing")]</A>
 	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=[SLOT_L_HAND]'>[(l_hand ? l_hand  : "Nothing")]</A>
 	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=[SLOT_R_HAND]'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=\ref[src];item=[SLOT_BACK]'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
-	<BR>[(internal ? text("<A href='?src=\ref[src];item=internal'>Remove Internal</A>") : "")]
 	<BR><A href='?src=\ref[src];item=pockets'>Empty Pockets</A>
 	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>
 	<BR><A href='?src=\ref[user];mach_close=mob[name]'>Close</A>
@@ -338,6 +330,12 @@
 		new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]", null, null, 5)
 	return 1
+
+
+/mob/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Player Panel"] = "?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
 
 
 /mob/proc/update_flavor_text()
@@ -416,13 +414,24 @@
 		unset_interaction()
 		src << browse(null, t1)
 
-	if(href_list["flavor_more"])
+	else if(href_list["flavor_more"])
 		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, oldreplacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
 		onclose(usr, "[name]")
-	if(href_list["flavor_change"])
+	else if(href_list["flavor_change"])
 		update_flavor_text()
-//	..()
-	return
+
+	else if(href_list["default_language"])
+		var/language = text2path(href_list["default_language"])
+		var/datum/language_holder/H = get_language_holder()
+
+		if(!H.has_language(language))
+			return
+
+		H.selected_default_language = language
+		if(isliving(src))
+			var/mob/living/L = src
+			L.language_menu()
+		
 
 
 /mob/MouseDrop(mob/M)
@@ -555,48 +564,12 @@
 	if(client.moving)					return 0
 	if(stat==2)						return 0
 	if(anchored)						return 0
-	if(monkeyizing)						return 0
 	if(restrained())					return 0
 	return 1
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()
-
-	var/laid_down = (stat || knocked_down || knocked_out || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_level >= GRAB_NECK))
-
-	if(laid_down)
-		if(!lying)
-			lying = pick(90, 270)
-	else
-		lying = 0
-	if(buckled)
-		if(buckled.buckle_lying)
-			if(!lying)
-				lying = 90
-		else
-			lying = 0
-
-	canmove =  !(stunned || frozen || laid_down)
-
-	if(lying)
-		density = FALSE
-		drop_l_hand()
-		drop_r_hand()
-	else
-		density = TRUE
-
-	if(lying_prev != lying)
-		update_transform()
-		lying_prev = lying
-
-	if(lying)
-		if(layer == initial(layer)) //to avoid things like hiding larvas.
-			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
-	else
-		if(layer == LYING_MOB_LAYER)
-			layer = initial(layer)
-
-	return canmove
+	return
 
 
 /mob/proc/facedir(var/ndir)
@@ -729,6 +702,9 @@ mob/proc/yank_out_object()
 
 /mob/proc/can_inject()
 	return reagents
+
+/mob/proc/canUseTopic(atom/movable/AM)
+	return FALSE
 
 /mob/proc/get_idcard(hand_first)
 	return

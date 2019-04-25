@@ -59,21 +59,21 @@ var/list/global/base_miss_chance = list(
 )
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
-//Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
+//Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects. Totals 102; 2 added to chest for limb loops that don't count mouth/eyes.
 var/list/global/organ_rel_size = list(
-	"head" = 15,
-	"chest" = 70,
-	"groin" = 30,
-	"l_leg" = 25,
-	"r_leg" = 25,
-	"l_arm" = 25,
-	"r_arm" = 25,
-	"l_hand" = 7,
-	"r_hand" = 7,
-	"l_foot" = 10,
-	"r_foot" = 10,
-	"eyes" = 5,
-	"mouth" = 15,
+	"head" = 4,
+	"chest" = 32,
+	"groin" = 10,
+	"l_leg" = 12,
+	"r_leg" = 12,
+	"l_arm" = 9,
+	"r_arm" = 9,
+	"l_hand" = 3,
+	"r_hand" = 3,
+	"l_foot" = 3,
+	"r_foot" = 3,
+	"eyes" = 1,
+	"mouth" = 1,
 )
 
 /proc/check_zone(zone)
@@ -271,14 +271,21 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return FALSE
 
 
-/mob/proc/abiotic(var/full_body = 0)
-	if(full_body && ((src.l_hand && !( src.l_hand.flags_item & ITEM_ABSTRACT )) || (src.r_hand && !( src.r_hand.flags_item & ITEM_ABSTRACT )) || (src.back || src.wear_mask)))
+/mob/proc/abiotic(full_body)
+	if(full_body && ((l_hand && !( l_hand.flags_item & ITEM_ABSTRACT )) || (r_hand && !( r_hand.flags_item & ITEM_ABSTRACT ))))
 		return TRUE
 
 	if((src.l_hand && !( src.l_hand.flags_item & ITEM_ABSTRACT )) || (src.r_hand && !( src.r_hand.flags_item & ITEM_ABSTRACT )))
 		return TRUE
 
 	return FALSE
+
+
+/mob/living/carbon/abiotic(full_body)
+	if(full_body && (back || wear_mask))
+		return TRUE
+	return ..()
+
 
 //converts intent-strings into numbers and back
 /proc/intent_numeric(argument)

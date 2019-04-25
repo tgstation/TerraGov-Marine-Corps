@@ -53,6 +53,7 @@
 		threw_a_hugger = TRUE
 		update_action_button_icons()
 		dropItemToGround(F)
+		playsound(src, 'sound/effects/throw.ogg', 50, 1)
 		F.throw_at(T, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
 		"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")
@@ -152,18 +153,13 @@
 		to_chat(X, "<span class='warning'>You can't do that here.</span>")
 		return
 
-	var/area/AR = get_area(T)
-	if(istype(AR,/area/shuttle/drop1/lz1) || istype(AR,/area/shuttle/drop2/lz2) || istype(AR,/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
-		to_chat(X, "<span class='warning'>You sense this is not a suitable area for expanding the hive.</span>")
-		return
-
 	var/obj/effect/alien/weeds/alien_weeds = locate() in T
 
 	if(!alien_weeds)
 		to_chat(X, "<span class='warning'>You can only shape on weeds. Find some resin before you start building!</span>")
 		return
 
-	if(!X.check_alien_construction(T))
+	if(!T.check_alien_construction(X))
 		return
 
 	X.use_plasma(plasma_cost)
@@ -222,4 +218,3 @@
 	to_chat(src, "<span class='xenodanger'>You can now spawn another young one.</span>")
 	playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	update_action_buttons()
-	

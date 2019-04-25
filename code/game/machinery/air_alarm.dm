@@ -62,6 +62,8 @@
 	name = "alarm"
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "alarm0"
+	pixel_x = -16
+	pixel_y = -16
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 80
@@ -115,13 +117,13 @@
 		setDir(direction)
 	switch(dir)
 		if(NORTH)
-			pixel_y = -32
+			pixel_y -= 32
 		if(SOUTH)
-			pixel_y = 32
+			pixel_y += 32
 		if(EAST)
-			pixel_x = -32
+			pixel_x -= 32
 		if(WEST)
-			pixel_x = 32
+			pixel_x += 32
 
 	if(building)
 		buildstage = 0
@@ -133,8 +135,6 @@
 
 	if(!master_is_operating())
 		elect_master()
-
-	start_processing()
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
@@ -152,44 +152,6 @@
 	TLV["pressure"] =		list(ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*0.90,ONE_ATMOSPHERE*1.10,ONE_ATMOSPHERE*1.20) /* kpa */
 	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
 
-
-/obj/machinery/alarm/process()
-	if((machine_stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
-		return
-
-	var/turf/location = loc
-	if(!istype(location))	return//returns if loc is not simulated
-
-	var/old_level = danger_level
-	var/old_pressurelevel = pressure_dangerlevel
-	danger_level = overall_danger_level(location)
-
-	if (old_level != danger_level)
-		apply_danger_level(danger_level)
-
-	if (old_pressurelevel != pressure_dangerlevel)
-		if (breach_detected())
-		//	mode = AALARM_MODE_OFF
-			apply_mode()
-
-	if (mode==AALARM_MODE_CYCLE && location.return_pressure()<ONE_ATMOSPHERE*0.05)
-		mode=AALARM_MODE_FILL
-		apply_mode()
-
-	//atmos computer remote controll stuff
-	switch(rcon_setting)
-		if(RCON_NO)
-			remote_control = 0
-		if(RCON_AUTO)
-			if(danger_level == 2)
-				remote_control = 1
-			else
-				remote_control = 0
-		if(RCON_YES)
-			remote_control = 1
-
-	updateDialog()
-	return
 
 /obj/machinery/alarm/proc/handle_heating_cooling()
 	return
@@ -311,9 +273,9 @@
 		send_signal(id_tag, list("status") )
 
 /obj/machinery/alarm/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_TO_AIRALARM)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_TO_AIRALARM)
 
 /obj/machinery/alarm/proc/send_signal(var/target, var/list/command)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
 	if(!radio_connection)
@@ -380,7 +342,7 @@
 	if(!post_alert)
 		return
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(alarm_frequency)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(alarm_frequency)
 	if(!frequency)
 		return
 
@@ -1002,7 +964,7 @@ table tr:first-child th:first-child { border: none;}
 			if(wiresexposed && (ismultitool(W) || iswirecutter(W)))
 				return attack_hand(user)
 
-			if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
+			if(istype(W, /obj/item/card/id))// trying to unlock the interface with an ID card
 				if(machine_stat & (NOPOWER|BROKEN))
 					to_chat(user, "It does nothing")
 					return

@@ -17,6 +17,9 @@
 								// and if yes, are we doing the first or second move.
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
 
+	var/initial_language_holder = /datum/language_holder
+	var/datum/language_holder/language_holder
+
 	var/list/mob/dead/observer/followers = list()
 
 //===========================================================================
@@ -31,6 +34,8 @@
 
 	if(loc)
 		loc.on_stored_atom_del(src) //things that container need to do when a movable atom inside it is deleted
+
+	QDEL_NULL(language_holder)
 
 	. = ..()
 	loc = null //so we move into null space. Must be after ..() b/c atom's Dispose handles deleting our lighting stuff
@@ -106,7 +111,7 @@
 	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, AM)
 
 
-/atom/movable/proc/Moved(atom/OldLoc,Dir)
+/atom/movable/proc/Moved(atom/OldLoc)
 	if(isturf(loc))
 		if(opacity)
 			OldLoc.UpdateAffectingLights()
@@ -117,30 +122,45 @@
 		var/mob/dead/observer/F = _F
 		F.loc = loc
 
+
 /atom/movable/proc/forceMove(atom/destination)
 	if(destination)
-		if(pulledby)
-			pulledby.stop_pulling()
-		var/oldLoc
-		if(loc)
-			oldLoc = loc
-			loc.Exited(src)
-		loc = destination
-		loc.Entered(src)
-		var/area/old_area
-		if(oldLoc)
-			old_area = get_area(oldLoc)
-		var/area/new_area = get_area(destination)
-		if(new_area && old_area != new_area)
-			new_area.Entered(src)
-		for(var/atom/movable/AM in destination)
-			if(AM == src)
-				continue
-			AM.Crossed(src)
-		if(oldLoc)
-			Moved(oldLoc,dir)
-		return 1
-	return 0
+		return doMove(destination)
+	else
+		CRASH("No valid destination passed into forceMove")
+
+
+/atom/movable/proc/doMove(atom/destination)
+	if(!destination)
+		return FALSE
+	if(pulledby)
+		pulledby.stop_pulling()
+	var/atom/oldloc = loc
+	var/area/old_area = get_area(oldloc)
+	var/area/destarea = get_area(destination)
+
+	loc = destination
+
+	if(oldloc == destination)
+		Moved(oldloc)
+		return TRUE
+
+	if(oldloc)
+		oldloc.Exited(src, destination)
+		if(old_area && old_area != destarea)
+			old_area.Exited(src, destination)
+	for(var/atom/movable/AM in oldloc)
+		AM.Uncrossed(src)
+	destination.Entered(src, oldloc)
+	if(destarea && old_area != destarea)
+		destarea.Entered(src, oldloc)
+
+	for(var/atom/movable/AM in destination)
+		if(AM == src)
+			continue
+		AM.Crossed(src, oldloc)
+	Moved(oldloc)
+	return TRUE
 
 
 //called when src is thrown into hit_atom
@@ -189,10 +209,6 @@
 	src.throwing = 1
 	src.thrower = thrower
 	src.throw_source = get_turf(src)	//store the origin turf
-
-	if(usr)
-		if(HULK in usr.mutations)
-			src.throwing = 2 // really strong throw!
 
 	var/dist_x = abs(target.x - src.x)
 	var/dist_y = abs(target.y - src.y)
@@ -417,9 +433,103 @@
 /atom/movable/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	. -= "Jump to"
 	.["Follow"] = "?_src_=holder;[HrefToken()];observefollow=[REF(src)]"
 	.["Get"] = "?_src_=vars;[HrefToken()];getatom=[REF(src)]"
 	.["Send"] = "?_src_=vars;[HrefToken()];sendatom=[REF(src)]"
 	.["Delete All Instances"] = "?_src_=vars;[HrefToken()];delall=[REF(src)]"
 	.["Update Icon"] = "?_src_=vars;[HrefToken()];updateicon=[REF(src)]"
+
+
+/atom/movable/proc/get_language_holder(shadow = TRUE)
+	if(language_holder)
+		return language_holder
+	else
+		language_holder = new initial_language_holder(src)
+		return language_holder
+
+
+/atom/movable/proc/grant_language(datum/language/dt, body = FALSE)
+	var/datum/language_holder/H = get_language_holder(!body)
+	H.grant_language(dt, body)
+
+
+/atom/movable/proc/grant_all_languages(omnitongue = FALSE)
+	var/datum/language_holder/H = get_language_holder()
+	H.grant_all_languages(omnitongue)
+
+
+/atom/movable/proc/get_random_understood_language()
+	var/datum/language_holder/H = get_language_holder()
+	. = H.get_random_understood_language()
+
+
+/atom/movable/proc/remove_language(datum/language/dt, body = FALSE)
+	var/datum/language_holder/H = get_language_holder(!body)
+	H.remove_language(dt, body)
+
+
+/atom/movable/proc/remove_all_languages()
+	var/datum/language_holder/H = get_language_holder()
+	H.remove_all_languages()
+
+
+/atom/movable/proc/has_language(datum/language/dt)
+	var/datum/language_holder/H = get_language_holder()
+	. = H.has_language(dt)
+
+
+/atom/movable/proc/copy_known_languages_from(thing, replace = FALSE)
+	var/datum/language_holder/H = get_language_holder()
+	. = H.copy_known_languages_from(thing, replace)
+
+
+// Whether an AM can speak in a language or not, independent of whether
+// it KNOWS the language
+/atom/movable/proc/could_speak_in_language(datum/language/dt)
+	. = TRUE
+
+
+/atom/movable/proc/can_speak_in_language(datum/language/dt)
+	var/datum/language_holder/H = get_language_holder()
+
+	if(!H.has_language(dt))
+		return FALSE
+	else if(H.omnitongue)
+		return TRUE
+	else if(could_speak_in_language(dt) && (!H.only_speaks_language || H.only_speaks_language == dt))
+		return TRUE
+	else
+		return FALSE
+
+
+/atom/movable/proc/get_default_language()
+	// if no language is specified, and we want to say() something, which
+	// language do we use?
+	var/datum/language_holder/H = get_language_holder()
+
+	if(H.selected_default_language)
+		if(can_speak_in_language(H.selected_default_language))
+			return H.selected_default_language
+		else
+			H.selected_default_language = null
+
+
+	var/datum/language/chosen_langtype
+	var/highest_priority
+
+	for(var/lt in H.languages)
+		var/datum/language/langtype = lt
+		if(!can_speak_in_language(langtype))
+			continue
+
+		var/pri = initial(langtype.default_priority)
+		if(!highest_priority || (pri > highest_priority))
+			chosen_langtype = langtype
+			highest_priority = pri
+
+	H.selected_default_language = .
+	. = chosen_langtype
+
+
+/atom/movable/proc/can_speak()
+	return TRUE

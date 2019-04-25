@@ -10,7 +10,7 @@
 
 	var/tier = XENO_TIER_ZERO
 	var/upgrade = XENO_UPGRADE_ZERO
-
+	var/wound_type = "ravager" //used to match appropriate wound overlays
 	var/language = "Xenomorph"
 
 	// *** Melee Attacks *** //
@@ -123,7 +123,9 @@
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
 	unacidable = TRUE
+	away_time = -XENO_AFK_TIMER //Xenos start grabbable. This is reset on Login()
 	var/hivenumber = XENO_HIVE_NORMAL
+	job = ROLE_XENOMORPH
 
 	var/datum/hive_status/hive
 
@@ -145,7 +147,7 @@
 	var/evolution_stored = 0 //How much evolution they have stored
 
 	var/upgrade_stored = 0 //How much upgrade points they have stored.
-	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level. 
+	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
 	var/gib_chance = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
 	var/critical_proc = 0
 	var/critical_delay = 25
@@ -217,9 +219,6 @@
 
 	//New variables for how charges work, max speed, speed buildup, all that jazz
 	var/charge_speed = 0 //Modifier on base move delay as charge builds up
-	var/charge_speed_max = 2.1 //Can only gain this much speed before capping
-	var/charge_speed_buildup = 0.15 //POSITIVE amount of speed built up during a charge each step
-	var/charge_turfs_to_charge = 5 //Amount of turfs to build up before a charge begins
 	var/charge_roar = 0 //Did we roar in our charge yet ?
 
 	//Pounce vars
@@ -259,6 +258,9 @@
 	var/savage = FALSE
 	var/savage_used = FALSE
 
+	//Hunter vars
+	var/sneak_bonus = 0.00
+
 	//Acid spray
 	var/last_spray_used
 
@@ -274,6 +276,6 @@
 
 	var/cresttoss_used = FALSE
 
-	var/wound_type = "ravager" //used to match appropriate wound overlays
-
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	var/butchery_progress = 0

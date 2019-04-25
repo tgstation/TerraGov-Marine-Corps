@@ -12,7 +12,7 @@
 	
 	id = /obj/item/card/id
 	//belt =
-	ears = /obj/item/device/radio/headset/distress/imperial
+	ears = /obj/item/radio/headset/distress/imperial
 	w_uniform = /obj/item/clothing/under/marine/imperial
 	shoes = /obj/item/clothing/shoes/marine/imperial
 	//wear_suit =
@@ -27,7 +27,7 @@
 
 /datum/outfit/job/imperial/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.add_language("Imperial")
+	H.grant_language(/datum/language/imperial)
 
 /datum/job/imperial/guardsman
 	title = "Guardsman"
@@ -146,7 +146,7 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/defibrillator, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
 	
 	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/zoom, SLOT_IN_BELT) // closest thing to combat performance drugs
 

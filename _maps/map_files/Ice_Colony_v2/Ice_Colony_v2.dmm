@@ -175,10 +175,10 @@
 /area/ice_colony/surface/engineering/electric)
 "aaL" = (
 /obj/structure/table,
-/obj/item/device/assembly/igniter,
-/obj/item/device/assembly/igniter,
-/obj/item/device/assembly/igniter,
-/obj/item/device/assembly/signaler,
+/obj/item/assembly/igniter,
+/obj/item/assembly/igniter,
+/obj/item/assembly/igniter,
+/obj/item/assembly/signaler,
 /obj/item/circuitboard/airlock,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
@@ -186,16 +186,16 @@
 /area/ice_colony/surface/engineering/electric)
 "aaM" = (
 /obj/structure/table,
-/obj/item/device/assembly/prox_sensor,
-/obj/item/device/assembly/timer,
+/obj/item/assembly/prox_sensor,
+/obj/item/assembly/timer,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
 /area/ice_colony/surface/engineering/electric)
 "aaN" = (
 /obj/structure/table,
-/obj/item/device/assembly/infra,
-/obj/item/device/assembly/voice,
+/obj/item/assembly/infra,
+/obj/item/assembly/voice,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
@@ -342,7 +342,7 @@
 /obj/structure/rack,
 /obj/item/explosive/grenade/chem_grenade/metalfoam,
 /obj/item/explosive/grenade/chem_grenade/metalfoam,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
@@ -642,7 +642,7 @@
 "acu" = (
 /obj/structure/table,
 /obj/item/tool/crowbar/red,
-/obj/item/device/flash,
+/obj/item/flash,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
@@ -654,8 +654,8 @@
 /area/ice_colony/exterior/surface/cliff)
 "acw" = (
 /obj/structure/table,
-/obj/item/device/flashlight/flare,
-/obj/item/device/radio,
+/obj/item/flashlight/flare,
+/obj/item/radio,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/engineering/electric)
 "acx" = (
@@ -1927,7 +1927,7 @@
 	corpsemask = /obj/item/clothing/mask/rebreather;
 	corpsepocket1 = /obj/item/storage/pouch/general/medium;
 	corpsepocket2 = /obj/item/storage/pouch/electronics/full;
-	corpseradio = /obj/item/device/radio/headset;
+	corpseradio = /obj/item/radio/headset;
 	corpseshoes = /obj/item/clothing/shoes/snow;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
 	corpseuniform = /obj/item/clothing/under/rank/engineer;
@@ -3100,11 +3100,11 @@
 	pixel_y = 4
 	},
 /obj/effect/landmark/random_item/crap,
-/obj/item/device/flashlight/flare,
-/obj/item/device/flashlight/flare,
-/obj/item/device/flashlight/flare,
-/obj/item/device/flashlight/flare,
-/obj/item/device/flashlight/flare,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
@@ -3956,7 +3956,7 @@
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "akN" = (
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/northwest)
 "akO" = (
@@ -5282,7 +5282,7 @@
 /area/ice_colony/surface/mining)
 "aos" = (
 /obj/structure/table,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor,
 /area/ice_colony/surface/mining)
@@ -5779,7 +5779,7 @@
 /area/ice_colony/surface/clinic/treatment)
 "apA" = (
 /obj/structure/table/reinforced,
-/obj/item/device/defibrillator,
+/obj/item/defibrillator,
 /obj/item/reagent_container/spray/cleaner,
 /obj/item/reagent_container/spray/surgery{
 	pixel_x = 12;
@@ -7132,7 +7132,7 @@
 /area/ice_colony/surface/clinic/lobby)
 "asK" = (
 /obj/structure/table,
-/obj/item/device/defibrillator,
+/obj/item/defibrillator,
 /obj/machinery/firealarm{
 	dir = 8
 	},
@@ -7289,7 +7289,7 @@
 "atf" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /obj/item/storage/belt/utility,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -7459,7 +7459,7 @@
 	corpsebelt = /obj/item/storage/belt/medical;
 	corpsegloves = /obj/item/clothing/gloves/latex;
 	corpsepocket2 = /obj/item/storage/pouch/medkit/full;
-	corpseradio = /obj/item/device/radio/headset;
+	corpseradio = /obj/item/radio/headset;
 	corpseshoes = /obj/item/clothing/shoes/snow;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit/doctor;
 	name = "Dr. Micheal Hwang"
@@ -9365,8 +9365,8 @@
 /area/ice_colony/surface/hydroponics/south)
 "ayq" = (
 /obj/structure/table,
-/obj/item/device/analyzer,
-/obj/item/device/encryptionkey,
+/obj/item/analyzer,
+/obj/item/encryptionkey,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
@@ -10149,8 +10149,8 @@
 /area/ice_colony/surface/dorms/canteen)
 "aAy" = (
 /obj/structure/table,
-/obj/item/device/radio,
-/obj/item/device/radio,
+/obj/item/radio,
+/obj/item/radio,
 /obj/item/storage/toolbox/emergency,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -10265,7 +10265,7 @@
 /area/ice_colony/surface/disposals)
 "aAQ" = (
 /obj/structure/table,
-/obj/item/device/lightreplacer,
+/obj/item/lightreplacer,
 /obj/item/clothing/mask/rebreather,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/disposals)
@@ -10342,8 +10342,8 @@
 /area/ice_colony/surface/command/checkpoint)
 "aBe" = (
 /obj/structure/rack,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight/flare,
+/obj/item/flashlight,
+/obj/item/flashlight/flare,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -10762,7 +10762,7 @@
 /area/ice_colony/surface/garage/two)
 "aBW" = (
 /obj/structure/table,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -13605,13 +13605,13 @@
 /area/ice_colony/surface/command/crisis)
 "aIW" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aIX" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /obj/item/tool/pen/blue{
 	pixel_x = 5
 	},
@@ -13656,7 +13656,7 @@
 /area/ice_colony/surface/command/control/pv1)
 "aJe" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /obj/item/tool/pen/blue{
 	pixel_x = 5
 	},
@@ -13739,7 +13739,7 @@
 /area/ice_colony/surface/dorms)
 "aJq" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aJr" = (
@@ -13989,7 +13989,7 @@
 	},
 /area/ice_colony/exterior/surface/clearing/south)
 "aKd" = (
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aKe" = (
@@ -14003,7 +14003,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aKg" = (
-/obj/item/device/pinpointer,
+/obj/item/pinpointer,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aKh" = (
@@ -14569,7 +14569,7 @@
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack/satchel/norm;
 	corpsehelmet = /obj/item/clothing/head/hardhat/white;
-	corpseradio = /obj/item/device/radio/headset;
+	corpseradio = /obj/item/radio/headset;
 	corpseshoes = /obj/item/clothing/shoes/snow;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
 	corpseuniform = /obj/item/clothing/under/rank/miner;
@@ -16492,7 +16492,7 @@
 /area/ice_colony/surface/hangar/beta)
 "aQO" = (
 /obj/structure/table,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -17086,7 +17086,7 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "aSe" = (
 /obj/structure/table,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -17878,7 +17878,7 @@
 /area/ice_colony/surface/research/temporary)
 "aUf" = (
 /obj/structure/table,
-/obj/item/device/reagent_scanner,
+/obj/item/reagent_scanner,
 /obj/effect/landmark/random_item/good,
 /obj/machinery/light{
 	dir = 1
@@ -18685,7 +18685,7 @@
 /area/ice_colony/surface/hangar/alpha)
 "aWf" = (
 /obj/structure/table,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -19172,7 +19172,7 @@
 /area/ice_colony/surface/hangar/hallway)
 "aXs" = (
 /obj/structure/table,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -19805,7 +19805,7 @@
 /area/ice_colony/surface/hangar/hallway)
 "aZk" = (
 /obj/structure/table,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
@@ -20276,8 +20276,8 @@
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC;
 	corpsemask = /obj/item/clothing/mask/gas/PMC;
 	corpsepocket1 = /obj/item/storage/pouch/magazine/large/pmc_m39;
-	corpsepocket2 = /obj/item/device/flashlight;
-	corpseradio = /obj/item/device/radio/headset/distress/PMC;
+	corpsepocket2 = /obj/item/flashlight;
+	corpseradio = /obj/item/radio/headset/distress/PMC;
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC;
 	mobname = "Unknown";
 	name = "Unknown PMC"
@@ -20982,7 +20982,7 @@
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bcv" = (
 /obj/structure/table,
-/obj/item/device/camera,
+/obj/item/camera,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bcw" = (
@@ -21144,7 +21144,7 @@
 	corpsebelt = /obj/item/storage/belt/medical;
 	corpsegloves = /obj/item/clothing/gloves/latex;
 	corpsepocket2 = /obj/item/storage/pouch/medkit/full;
-	corpseradio = /obj/item/device/radio/headset;
+	corpseradio = /obj/item/radio/headset;
 	corpseshoes = /obj/item/clothing/shoes/snow;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit/doctor;
 	name = "Colonist Doctor"
@@ -21887,7 +21887,7 @@
 	corpsemask = /obj/item/clothing/mask/rebreather;
 	corpsepocket1 = /obj/item/storage/pouch/general/medium;
 	corpsepocket2 = /obj/item/storage/pouch/electronics/full;
-	corpseradio = /obj/item/device/radio/headset;
+	corpseradio = /obj/item/radio/headset;
 	corpseshoes = /obj/item/clothing/shoes/snow;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
 	corpseuniform = /obj/item/clothing/under/rank/engineer;
@@ -22187,7 +22187,7 @@
 /area/ice_colony/underground/hangar)
 "bfJ" = (
 /obj/structure/table,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -22389,7 +22389,7 @@
 /area/ice_colony/surface/excavation/storage)
 "bgn" = (
 /obj/structure/table,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -22764,9 +22764,6 @@
 	dir = 4
 	},
 /area/ice_colony/underground/requesition)
-"bhn" = (
-/turf/closed/wall/r_wall,
-/area/ice_colony/underground/requesition/lobby)
 "bho" = (
 /obj/structure/sign/electricshock,
 /turf/closed/wall/r_wall,
@@ -22882,7 +22879,7 @@
 /area/ice_colony/surface/excavation)
 "bhG" = (
 /obj/structure/table,
-/obj/item/device/reagent_scanner,
+/obj/item/reagent_scanner,
 /obj/machinery/light,
 /turf/open/floor/tile/dark/purple2,
 /area/ice_colony/surface/excavation)
@@ -23151,10 +23148,6 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
 "bip" = (
-/obj/machinery/requests_console{
-	tag = "icon-req_comp_open";
-	icon_state = "req_comp_open"
-	},
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/requesition/lobby)
 "biq" = (
@@ -23386,7 +23379,7 @@
 "biO" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -23506,7 +23499,7 @@
 /area/ice_colony/underground/hangar)
 "bjf" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -24369,7 +24362,7 @@
 /area/ice_colony/underground/maintenance/research)
 "blI" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "blJ" = (
@@ -24911,7 +24904,7 @@
 /area/ice_colony/underground/crew/chapel)
 "bnh" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/carpet,
 /area/ice_colony/underground/crew/chapel)
 "bni" = (
@@ -25782,7 +25775,7 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "bpB" = (
 /obj/structure/table,
-/obj/item/device/autopsy_scanner,
+/obj/item/autopsy_scanner,
 /obj/item/tool/surgery/scalpel,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/morgue)
@@ -25803,7 +25796,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "bpE" = (
 /obj/structure/table,
-/obj/item/device/camera,
+/obj/item/camera,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/morgue)
 "bpF" = (
@@ -26507,7 +26500,7 @@
 	},
 /obj/item/tool/pickaxe/drill,
 /obj/item/tool/shovel/snow,
-/obj/item/device/pinpointer{
+/obj/item/pinpointer{
 	pixel_x = 9;
 	pixel_y = 28
 	},
@@ -29632,7 +29625,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/detective)
 "bzm" = (
-/obj/item/device/defibrillator,
+/obj/item/defibrillator,
 /obj/structure/table,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
@@ -31262,7 +31255,7 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
@@ -31681,7 +31674,7 @@
 /area/ice_colony/underground/command/pv2)
 "bEt" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -31903,7 +31896,7 @@
 /area/ice_colony/underground/security/interrogation)
 "bFb" = (
 /obj/structure/table/reinforced,
-/obj/item/device/detective_scanner,
+/obj/item/detective_scanner,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
@@ -32083,7 +32076,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bFB" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /obj/item/tool/pen/blue{
 	pixel_x = 5
 	},
@@ -32108,7 +32101,7 @@
 /area/ice_colony/underground/command/pv1)
 "bFF" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /obj/item/tool/pen/blue{
 	pixel_x = 5
 	},
@@ -32857,7 +32850,7 @@
 /area/ice_colony/underground/hangar)
 "bHv" = (
 /obj/structure/table,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -32898,7 +32891,7 @@
 /area/ice_colony/underground/command/checkpoint)
 "bHB" = (
 /obj/structure/table,
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
@@ -34407,7 +34400,7 @@
 	on = 1
 	},
 /obj/effect/landmark/corpsespawner/miner{
-	corpseradio = /obj/item/device/radio/headset;
+	corpseradio = /obj/item/radio/headset;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit
 	},
 /turf/open/floor/freezer,
@@ -35119,7 +35112,7 @@
 	},
 /area/ice_colony/underground/security)
 "bMV" = (
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /obj/item/clothing/glasses/sunglasses,
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark/red2{
@@ -35144,7 +35137,7 @@
 /area/ice_colony/underground/security)
 "bMY" = (
 /obj/structure/table/reinforced,
-/obj/item/device/detective_scanner,
+/obj/item/detective_scanner,
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
@@ -35483,7 +35476,7 @@
 /area/ice_colony/underground/crew/disposals)
 "bNV" = (
 /obj/structure/rack,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /obj/item/tool/hand_labeler,
 /obj/machinery/light{
 	dir = 4
@@ -36068,12 +36061,12 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/underground/security/brig)
 "bPy" = (
 /obj/structure/table,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},
@@ -36892,7 +36885,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/table,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/interrogation)
 "bRV" = (
@@ -37327,7 +37320,7 @@
 	corpsemask = /obj/item/clothing/mask/rebreather;
 	corpsepocket1 = /obj/item/storage/pouch/general/medium;
 	corpsepocket2 = /obj/item/storage/pouch/electronics/full;
-	corpseradio = /obj/item/device/radio/headset;
+	corpseradio = /obj/item/radio/headset;
 	corpseshoes = /obj/item/clothing/shoes/snow;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
 	corpseuniform = /obj/item/clothing/under/rank/engineer;
@@ -37825,7 +37818,7 @@
 /area/ice_colony/surface/excavationbarracks)
 "bUx" = (
 /obj/structure/rack,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
@@ -37833,8 +37826,8 @@
 /area/ice_colony/underground/hallway/south_east)
 "bUy" = (
 /obj/structure/rack,
-/obj/item/device/flashlight,
-/obj/item/device/t_scanner,
+/obj/item/flashlight,
+/obj/item/t_scanner,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -37994,8 +37987,8 @@
 	corpsehelmet = null;
 	corpsemask = null;
 	corpsepocket1 = /obj/item/storage/pouch/magazine/large/pmc_m39;
-	corpsepocket2 = /obj/item/device/flashlight;
-	corpseradio = /obj/item/device/radio/headset/distress/PMC;
+	corpsepocket2 = /obj/item/flashlight;
+	corpseradio = /obj/item/radio/headset/distress/PMC;
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC;
 	mobname = "Unknown";
 	name = "Unknown PMC"
@@ -38075,7 +38068,7 @@
 /area/ice_colony/surface/tcomms)
 "bVe" = (
 /obj/structure/table,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/surface/tcomms)
 "bVf" = (
@@ -38781,11 +38774,11 @@
 	pixel_y = 1
 	},
 /obj/item/storage/belt/utility/full,
-/obj/item/device/analyzer{
+/obj/item/analyzer{
 	pixel_x = 6;
 	pixel_y = 3
 	},
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -38890,7 +38883,7 @@
 /area/ice_colony/surface/excavationbarracks)
 "bXk" = (
 /obj/structure/rack,
-/obj/item/device/pinpointer,
+/obj/item/pinpointer,
 /obj/item/storage/bag/ore,
 /obj/item/storage/bag/ore,
 /obj/item/storage/box/lightstick/red,
@@ -39128,7 +39121,7 @@
 /obj/structure/closet/cabinet,
 /obj/item/clothing/suit/storage/snow_suit,
 /obj/item/clothing/suit/storage/snow_suit,
-/obj/item/device/radio/headset,
+/obj/item/radio/headset,
 /obj/item/clothing/shoes/snow,
 /obj/item/clothing/shoes/snow,
 /obj/machinery/alarm{
@@ -40255,8 +40248,8 @@
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC;
 	corpsemask = /obj/item/clothing/mask/gas/PMC;
 	corpsepocket1 = /obj/item/storage/pouch/magazine/large/pmc_m39;
-	corpsepocket2 = /obj/item/device/flashlight;
-	corpseradio = /obj/item/device/radio/headset/distress/PMC;
+	corpsepocket2 = /obj/item/flashlight;
+	corpseradio = /obj/item/radio/headset/distress/PMC;
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC;
 	mobname = "Unknown";
 	name = "Unknown PMC"
@@ -40328,12 +40321,12 @@
 	mobname = "Unknown";
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC;
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC;
-	corpseradio = /obj/item/device/radio/headset/distress/PMC;
+	corpseradio = /obj/item/radio/headset/distress/PMC;
 	corpsemask = /obj/item/clothing/mask/gas/PMC;
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC;
 	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70;
 	corpsepocket1 = /obj/item/storage/pouch/magazine/large/pmc_m39;
-	corpsepocket2 = /obj/item/device/flashlight;
+	corpsepocket2 = /obj/item/flashlight;
 	corpseback = /obj/item/storage/backpack/satchel
 	},
 /obj/effect/decal/cleanable/blood,
@@ -40516,7 +40509,7 @@
 	corpsemask = /obj/item/clothing/mask/rebreather;
 	corpsepocket1 = /obj/item/storage/pouch/general/medium;
 	corpsepocket2 = /obj/item/storage/pouch/electronics/full;
-	corpseradio = /obj/item/device/radio/headset;
+	corpseradio = /obj/item/radio/headset;
 	corpseshoes = /obj/item/clothing/shoes/snow;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
 	corpseuniform = /obj/item/clothing/under/rank/engineer;
@@ -48739,12 +48732,12 @@ bdL
 bgA
 bgM
 bpW
-bhn
+bip
 bfR
 bfR
 bfR
 bfR
-bhn
+bip
 biS
 bjp
 bjC
@@ -49253,7 +49246,7 @@ bdL
 bgC
 bgC
 bqa
-bhn
+bip
 bew
 bgx
 bgx
@@ -49767,12 +49760,12 @@ bgh
 bgD
 bDP
 bhh
-bhn
+bip
 bfY
 bgz
 bhi
 bie
-bhn
+bip
 biU
 bjt
 bjE
@@ -50024,18 +50017,18 @@ bdg
 bdg
 bdg
 bdg
-bhn
-bhn
-bhn
-bhn
-bhn
-bhn
-bhn
+bip
+bip
+bip
+bip
+bip
+bip
+bip
 bju
-bhn
-bhn
-bhn
-bhn
+bip
+bip
+bip
+bip
 bkC
 bln
 bkR

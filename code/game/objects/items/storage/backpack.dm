@@ -339,9 +339,9 @@
 		icon_state += "_0"
 
 /obj/item/storage/backpack/marine/corpsman/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the defib/power cell onto the backpack will trigger its special functionality.
-	if(istype(W, /obj/item/device/defibrillator))
+	if(istype(W, /obj/item/defibrillator))
 		if(cell)
-			var/obj/item/device/defibrillator/D = W
+			var/obj/item/defibrillator/D = W
 			var/charge_difference = D.dcell.maxcharge - D.dcell.charge
 			if(charge_difference) //If the defib has less than max charge, recharge it.
 				use_charge(user, charge_difference) //consume an appropriate amount of charge
@@ -371,13 +371,13 @@
 	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
 	icon_state = "marinepackt"
 	bypass_w_limit = list(
-		/obj/item/device/m56d_gun,
+		/obj/item/m56d_gun,
 		/obj/item/ammo_magazine/m56d,
-		/obj/item/device/m56d_post,
-		/obj/item/device/turret_top,
+		/obj/item/m56d_post,
+		/obj/item/turret_top,
 		/obj/item/ammo_magazine/sentry,
 		/obj/item/ammo_magazine/minisentry,
-		/obj/item/device/marine_turret/mini,
+		/obj/item/marine_turret/mini,
 		/obj/item/stack/razorwire,
 		/obj/item/stack/sandbags)
 
@@ -450,9 +450,6 @@
 
 	var/mob/living/carbon/human/M = usr
 	if (!istype(M))
-		return
-
-	if(iszombie(M))
 		return
 
 	if (M.back != src)

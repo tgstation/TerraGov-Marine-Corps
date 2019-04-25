@@ -2,10 +2,7 @@
 	set invisibility = 0
 	set background = 1
 
-	if (monkeyizing)
-		return
-
-	..()
+	. = ..()
 
 	//Status updates, death etc.
 	clamp_values()
@@ -21,18 +18,21 @@
 	. = ..()
 	if(status_flags & GODMODE)
 		return
-	if(stat != DEAD)
-		if(health <= get_death_threshold())
-			death()
-			return
-		if(knocked_out || stunned || knocked_down || !has_power) //Stunned etc.
-			stat = UNCONSCIOUS
-			blind_eyes(1)
-		else
-			stat = CONSCIOUS
-			adjust_blindness(-1)
+	if(stat == DEAD)
+		SSmobs.stop_processing(src)
+		return FALSE
 
-		update_canmove()
+	if(health <= get_death_threshold())
+		death()
+		return
+	if(knocked_out || stunned || knocked_down || !has_power) //Stunned etc.
+		stat = UNCONSCIOUS
+		blind_eyes(1)
+	else
+		stat = CONSCIOUS
+		adjust_blindness(-1)
+
+	update_canmove()
 
 /mob/living/silicon/robot/proc/clamp_values()
 
@@ -187,7 +187,7 @@
 	if (client)
 		client.screen -= contents
 		for(var/obj/I in contents)
-			if(I && !(istype(I,/obj/item/cell) || istype(I,/obj/item/device/radio)  || istype(I,/obj/machinery/camera) || istype(I,/obj/item/device/mmi)))
+			if(I && !(istype(I,/obj/item/cell) || istype(I,/obj/item/radio)  || istype(I,/obj/machinery/camera) || istype(I,/obj/item/mmi)))
 				client.screen += I
 	if(module_state_1)
 		module_state_1:screen_loc = ui_inv1

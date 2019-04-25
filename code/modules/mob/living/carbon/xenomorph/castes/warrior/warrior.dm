@@ -24,24 +24,11 @@
 // ***************************************
 // *********** Icons
 // ***************************************
-/mob/living/carbon/Xenomorph/Warrior/update_icons()
-	if (stat == DEAD)
-		icon_state = "Warrior Dead"
-	else if (lying)
-		if ((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
-			icon_state = "Warrior Sleeping"
-		else
-			icon_state = "Warrior Knocked Down"
-	else if (agility)
+/mob/living/carbon/Xenomorph/Warrior/handle_special_state()
+	if(agility)
 		icon_state = "Warrior Agility"
-	else
-		if (m_intent == MOVE_INTENT_RUN)
-			icon_state = "Warrior Running"
-		else
-			icon_state = "Warrior Walking"
-
-	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
-	update_wounds()
+		return TRUE
+	return FALSE
 
 // ***************************************
 // *********** Mob overrides
@@ -52,6 +39,7 @@
 /mob/living/carbon/Xenomorph/Warrior/stop_pulling()
 	if(isliving(pulling))
 		var/mob/living/L = pulling
+		grab_resist_level = 0 //zero it out
 		L.SetStunned(0)
 	..()
 

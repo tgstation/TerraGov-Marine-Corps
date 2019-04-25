@@ -329,7 +329,7 @@ This handles stuff like swapping seats, pulling people out of the tank, all that
 	pilot = wannabe_trucker ? user : null
 	gunner = wannabe_trucker ? null : user
 
-/obj/vehicle/tonk/proc/handle_harm_attack(mob/M, mob/occupant)
+/obj/vehicle/tonk/proc/handle_harm_attack(mob/living/M, mob/occupant)
 	if(M.resting || M.buckled || M.incapacitated())
 		return FALSE
 	if(!occupant)
@@ -356,7 +356,7 @@ This handles stuff like swapping seats, pulling people out of the tank, all that
 
 		var/mob/living/carbon/Xenomorph/Crusher/C = A
 
-		if(C.charge_speed < C.charge_speed_max/(1.1)) //Arbitrary ratio here, might want to apply a linear transformation instead
+		if(C.charge_speed < CHARGE_SPEED_MAX/(1.1)) //Arbitrary ratio here, might want to apply a linear transformation instead
 			return
 
 		take_damage(C.charge_speed * CRUSHER_CHARGE_TANK_MULTI)

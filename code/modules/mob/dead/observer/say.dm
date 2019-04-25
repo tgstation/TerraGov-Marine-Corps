@@ -35,9 +35,6 @@
 	var/style = "body"
 	var/comm_paygrade = ""
 
-	if(language)
-		style = language.colour
-
 	var/speaker_name = speaker.name
 	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker

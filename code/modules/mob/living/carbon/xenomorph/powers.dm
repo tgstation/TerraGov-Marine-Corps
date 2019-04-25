@@ -58,7 +58,7 @@
 /obj/structure/acid_spray_act(mob/living/carbon/Xenomorph/X)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
-	health -= rand(40,60) + (X.upgrade_as_number() * SPRAY_STRUCTURE_UPGRADE_BONUS)
+	health -= rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X)
 	update_health(TRUE)
 	return TRUE // normal density flag
 
@@ -67,7 +67,7 @@
 	return FALSE // not normal density flag
 
 /obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/Xenomorph/X)
-	take_damage_type(rand(40,60) + (X.upgrade_as_number() * SPRAY_STRUCTURE_UPGRADE_BONUS), "acid", src)
+	take_damage_type(rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X), "acid", src)
 	healthcheck()
 	return TRUE
 
@@ -80,7 +80,7 @@
 
 	acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
 	var/armor_block = run_armor_check("chest", "acid")
-	var/damage = rand(30,40) + (X.upgrade_as_number() * SPRAY_MOB_UPGRADE_BONUS)
+	var/damage = rand(30,40) + SPRAY_MOB_UPGRADE_BONUS(X)
 	apply_acid_spray_damage(damage, armor_block)
 	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
 
@@ -458,7 +458,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	playsound(src.loc, sound_to_play, 25, 1)
 
 	var/obj/item/projectile/A = new /obj/item/projectile(current_turf)
-	A.generate_bullet(ammo, ammo.damage * SPIT_UPGRADE_BONUS) 
+	A.generate_bullet(ammo, ammo.damage * SPIT_UPGRADE_BONUS(src))
 	A.permutated += src
 	A.def_zone = get_limbzone_target()
 
@@ -497,15 +497,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 				if(WR.walltype == "resin")
 					visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and thickens [WR].</span>", \
 					"<span class='xenonotice'>You regurgitate some resin and thicken [WR].</span>", null, 5)
-					var/prev_oldturf = WR.oldTurf
-					WR.ChangeTurf(/turf/closed/wall/resin/thick)
-					WR.oldTurf = prev_oldturf
+					WR.thicken()
 					use_plasma(resin_plasma_cost)
 					playsound(loc, "alien_resin_build", 25)
 				else if(WR.walltype == "membrane")
-					var/prev_oldturf = WR.oldTurf
-					WR.ChangeTurf(/turf/closed/wall/resin/membrane/thick)
-					WR.oldTurf = prev_oldturf
+					WR.thicken()
 					use_plasma(resin_plasma_cost)
 					playsound(loc, "alien_resin_build", 25)
 				else
@@ -515,11 +511,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			else if(istype(A, /obj/structure/mineral_door/resin))
 				var/obj/structure/mineral_door/resin/DR = A
 				if(DR.hardness == 1.5) //non thickened
-					var/oldloc = DR.loc
 					visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and thickens [DR].</span>", \
 						"<span class='xenonotice'>You regurgitate some resin and thicken [DR].</span>", null, 5)
-					qdel(DR)
-					new /obj/structure/mineral_door/resin/thick (oldloc)
+					DR.thicken()
 					playsound(loc, "alien_resin_build", 25)
 					use_plasma(resin_plasma_cost)
 				else
@@ -540,18 +534,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		to_chat(src, "<span class='warning'>You can't do that here.</span>")
 		return
 
-	var/area/AR = get_area(current_turf)
-	if(istype(AR,/area/shuttle/drop1/lz1) || istype(AR,/area/shuttle/drop2/lz2) || istype(AR,/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
-		to_chat(src, "<span class='warning'>You sense this is not a suitable area for expanding the hive.</span>")
-		return
-
 	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
 
 	if(!alien_weeds)
 		to_chat(src, "<span class='warning'>You can only shape on weeds. Find some resin before you start building!</span>")
 		return
 
-	if(!check_alien_construction(current_turf))
+	if(!current_turf.check_alien_construction(src))
 		return
 
 	if(selected_resin == "resin door")
@@ -586,15 +575,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(!istype(current_turf) || !current_turf.is_weedable())
 		return
 
-	AR = get_area(current_turf)
-	if(istype(AR,/area/shuttle/drop1/lz1 || istype(AR,/area/shuttle/drop2/lz2)) || istype(AR,/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
-		return
-
 	alien_weeds = locate() in current_turf
 	if(!alien_weeds)
 		return
 
-	if(!check_alien_construction(current_turf))
+	if(!current_turf.check_alien_construction(src))
 		return
 
 	if(selected_resin == "resin door")
@@ -908,14 +893,14 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		M.acid_spray_act(src)
 
 
-/mob/living/carbon/Xenomorph/proc/larva_injection(mob/living/carbon/C)
-	if(!C?.can_sting())
+/mob/living/carbon/Xenomorph/proc/larva_injection(mob/living/carbon/C, precheck = TRUE)
+	if(precheck && !(C?.can_sting()))
 		return FALSE
-	if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+	if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE) || !(C?.can_sting()))
 		return FALSE
 	if(stagger)
 		return FALSE
-	if(locate(/obj/item/alien_embryo) in C) // already got one, stops doubling up
+	if(CHECK_BITFIELD(C.status_flags, XENO_HOST))
 		to_chat(src, "<span class='warning'>There is already a little one in this vessel!</span>")
 		return FALSE
 	face_atom(C)
@@ -932,7 +917,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	return TRUE
 
 /mob/living/carbon/Xenomorph/proc/recurring_injection(mob/living/carbon/C, toxin = "xeno_toxin", channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 3)
-	if(!C?.can_sting() || !toxin)
+	if(!(C?.can_sting()) || !toxin)
 		return FALSE
 	var/datum/reagent/body_tox
 	var/i = 1
@@ -959,7 +944,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(!check_state())
 		return
 
-	if(!C?.can_sting())
+	if(!(C?.can_sting()))
 		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
 		return
 
@@ -977,7 +962,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			recent_notice = world.time //anti-notice spam
 		return
 
-	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
+	if (CHECK_BITFIELD(C.status_flags, XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
 		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return
 
@@ -1003,7 +988,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(!check_state())
 		return
 
-	if(!C?.can_sting())
+	if(!(C?.can_sting()))
 		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
 		return
 
@@ -1019,10 +1004,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
 			to_chat(src, "<span class='warning'>You can't reach this target!</span>")
 			recent_notice = world.time //anti-notice spam
-		return
-
-	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
-		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return
 
 	if(!check_plasma(150))
@@ -1045,20 +1026,20 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /atom/proc/can_sting()
 	return FALSE
 
-/mob/living/carbon/monkey/can_sting()
-	if(stat != DEAD)
-		return TRUE
-	return FALSE
+/mob/living/carbon/can_sting()
+	if(stat == DEAD || CHECK_BITFIELD(status_flags, GODMODE))
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/can_sting()
-	if(stat != DEAD)
-		return TRUE
-	return FALSE
+	. = ..()
+	if(!.)
+		return FALSE
+	if(CHECK_BITFIELD(species.species_flags, IS_SYNTHETIC))
+		return FALSE
+	return TRUE
 
-/mob/living/carbon/human/species/machine/can_sting()
-	return FALSE
-
-/mob/living/carbon/human/species/synthetic/can_sting()
+/mob/living/carbon/Xenomorph/can_sting()
 	return FALSE
 
 /mob/living/carbon/Xenomorph/proc/hit_and_run_bonus(damage)

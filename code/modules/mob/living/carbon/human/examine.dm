@@ -175,8 +175,8 @@
 	//ID
 	if(wear_id)
 		/*var/id
-		if(istype(wear_id, /obj/item/device/pda))
-			var/obj/item/device/pda/pda = wear_id
+		if(istype(wear_id, /obj/item/pda))
+			var/obj/item/pda/pda = wear_id
 			id = pda.owner
 		else if(istype(wear_id, /obj/item/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
 			var/obj/item/card/id/idcard = wear_id
@@ -456,9 +456,6 @@
 
 	for(var/implant in get_visible_implants(0))
 		msg += "<span class='warning'><b>[t_He] has \a [implant] sticking out of [t_his] flesh!</span>\n"
-	if(digitalcamo)
-		msg += "[t_He] [t_is] repulsively uncanny!\n"
-
 
 	if(hasHUD(user,"security"))
 		var/perpname = "wot"
@@ -491,8 +488,8 @@
 		if(wear_id)
 			if(istype(wear_id,/obj/item/card/id))
 				perpname = wear_id:registered_name
-			else if(istype(wear_id,/obj/item/device/pda))
-				var/obj/item/device/pda/tempPda = wear_id
+			else if(istype(wear_id,/obj/item/pda))
+				var/obj/item/pda/tempPda = wear_id
 				perpname = tempPda.owner
 		else
 			perpname = src.name
@@ -560,7 +557,7 @@
 			if("medical")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
 			if("squadleader")
-				return H.mind && H.assigned_squad && H.assigned_squad.squad_leader == H && istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine)
+				return H.mind && H.assigned_squad && H.assigned_squad.squad_leader == H && istype(H.wear_ear, /obj/item/radio/headset/almayer/marine)
 			else
 				return 0
 	else if(iscyborg(M))

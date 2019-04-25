@@ -188,9 +188,7 @@
 		L.adjustFireLoss(120)
 		L.adjust_fire_stacks(20)
 		L.IgniteMob()
-	for(var/obj/flamer_fire/F in T) // No stacking flames!
-		qdel(F)
-	new/obj/flamer_fire(T, 5, 30) //short but intense
+	T.ignite(5, 30) //short but intense
 
 
 //Rockets
@@ -294,9 +292,7 @@
 		spawn(5)
 			explosion(impact,1,2,3,6,1,0) //relatively weak
 			for(var/turf/T in range(4,impact))
-				for(var/obj/flamer_fire/F in T) // No stacking flames!
-					qdel(F)
-				new/obj/flamer_fire(T, 60, 30) //cooking for a long time
+				T.ignite(60, 30) //cooking for a long time
 			qdel(src)
 
 
@@ -324,8 +320,8 @@
 			P.set_up(4, 0, impact)
 			P.start()
 			spawn(5)
-				var/datum/effect_system/smoke_spread/S = new/datum/effect_system/smoke_spread()
-				S.set_up(1,0,impact,null)
+				var/datum/effect_system/smoke_spread/S = new
+				S.set_up(1, impact)
 				S.start()
 			if(!ammo_count && loc)
 				qdel(src) //deleted after last minirocket is fired and impact the ground.
@@ -348,9 +344,7 @@
 	detonate_on(turf/impact)
 		..()
 		spawn(5)
-			for(var/obj/flamer_fire/F in impact) // No stacking flames!
-				qdel(F)
-			new/obj/flamer_fire(impact)
+			impact.ignite()
 
 /obj/structure/ship_ammo/minirocket/illumination
 	name = "illumination rocket-launched flare stack"
@@ -367,15 +361,15 @@
 		P.set_up(4, 0, T)
 		P.start()
 		spawn(5)
-			var/datum/effect_system/smoke_spread/S = new/datum/effect_system/smoke_spread()
-			S.set_up(1,0,T,null)
+			var/datum/effect_system/smoke_spread/S = new
+			S.set_up(1,T)
 			S.start()
 		spawn(10)
-			new/obj/item/device/flashlight/flare/on/cas(T)
+			new/obj/item/flashlight/flare/on/cas(T)
 		if(!ammo_count && loc)
 			qdel(src) //deleted after last minirocket is fired and impact the ground.
 
-/obj/item/device/flashlight/flare/on/cas
+/obj/item/flashlight/flare/on/cas
 	name = "illumination flare"
 	desc = "Report this if you actually see this FUCK"
 	icon_state = "" //No sprite
@@ -383,7 +377,7 @@
 	mouse_opacity = 0
 	brightness_on = 7 //Magnesium/sodium fires (White star) really are bright
 
-/obj/item/device/flashlight/flare/on/cas/New()
+/obj/item/flashlight/flare/on/cas/New()
 	..()
 	var/turf/T = get_turf(src)
 	fuel = rand(700, 900) // About the same burn time as a flare, considering it requires it's own CAS run.

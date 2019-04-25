@@ -9,6 +9,8 @@ FIRE ALARM
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "fire0"
+	pixel_x = -16
+	pixel_y = -16
 	var/detecting = 1.0
 	var/working = 1.0
 	var/time = 10.0
@@ -36,16 +38,15 @@ FIRE ALARM
 
 	switch(dir)
 		if(NORTH)
-			pixel_y = -32
+			pixel_y -= 32
 		if(SOUTH)
-			pixel_y = 32
+			pixel_y += 32
 		if(EAST)
-			pixel_x = -32
+			pixel_x -= 32
 		if(WEST)
-			pixel_x = 32
+			pixel_x += 32
 
 	update_icon()
-	start_processing()
 
 /obj/machinery/firealarm/update_icon()
 	overlays.Cut()
@@ -148,26 +149,6 @@ FIRE ALARM
 	..()
 	return
 
-/obj/machinery/firealarm/process()//Note: this processing was mostly phased out due to other code, and only runs when needed
-	if(machine_stat & (NOPOWER|BROKEN))
-		return
-
-	if(src.timing)
-		if(src.time > 0)
-			src.time = src.time - ((world.timeofday - last_process)/10)
-		else
-			src.alarm()
-			src.time = 0
-			src.timing = 0
-			//STOP_PROCESSING(SSobj, src) // uh what
-		src.updateDialog()
-	last_process = world.timeofday
-/*
-	if(locate(/obj/fire) in loc)
-		alarm()
-*/
-	return
-
 /obj/machinery/firealarm/power_change()
 	..()
 	spawn(rand(0,15))
@@ -240,7 +221,6 @@ FIRE ALARM
 		else if (href_list["time"])
 			src.timing = text2num(href_list["time"])
 			last_process = world.timeofday
-			//START_PROCESSING(SSobj, src)
 		else if (href_list["tp"])
 			var/tp = text2num(href_list["tp"])
 			src.time += tp

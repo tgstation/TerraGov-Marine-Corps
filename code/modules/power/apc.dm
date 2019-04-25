@@ -29,6 +29,8 @@
 	desc = "A control terminal for the area electrical systems."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "apc0"
+	pixel_x = -16
+	pixel_y = -16
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
@@ -137,13 +139,13 @@
 
 	switch(dir)
 		if(NORTH)
-			pixel_y = -32
+			pixel_y -= 32
 		if(SOUTH)
-			pixel_y = 32
+			pixel_y += 32
 		if(EAST)
-			pixel_x = -32
+			pixel_x -= 32
 		if(WEST)
-			pixel_x = 32
+			pixel_x += 32
 
 	if(building)
 		var/area/A = get_area(src)
@@ -438,7 +440,7 @@
 			"<span class='notice'>You [panel_open ? "expose" : "unexpose"] [src]'s wiring.</span>")
 			update_icon()
 
-	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda)) //Trying to unlock the interface with an ID card
+	else if(istype(W, /obj/item/card/id)) //Trying to unlock the interface with an ID card
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out where to swipe [W] on [src].</span>",
 			"<span class='notice'>You fumble around figuring out where to swipe [W] on [src].</span>")
@@ -1012,9 +1014,8 @@
 				cell.corrupt()
 				emagged = TRUE
 				update_icon()
-				var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
-				smoke.set_up(1, 0, loc)
-				smoke.attach(src)
+				var/datum/effect_system/smoke_spread/smoke = new(src)
+				smoke.set_up(1, loc)
 				smoke.start()
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(1, 1, src)
@@ -1248,11 +1249,12 @@
 		INVOKE_ASYNC(src, .proc/break_lights)
 
 /obj/machinery/power/apc/proc/break_lights()
-	for(var/obj/machinery/light/L in area.related)
-		L.on = TRUE
-		L.broken()
-		L.on = FALSE
-		stoplag()
+	for(var/a in area.related)
+		var/area/A = a
+		for(var/obj/machinery/light/L in A)
+			L.broken()
+			L.on = FALSE
+			stoplag()
 
 /obj/machinery/power/apc/disconnect_terminal()
 	if(terminal)

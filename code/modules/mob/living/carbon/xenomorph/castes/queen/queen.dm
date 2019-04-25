@@ -21,6 +21,7 @@
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
 	xeno_explosion_resistance = 3 //some resistance against explosion stuns.
+	job = ROLE_XENO_QUEEN
 
 	var/breathing_counter = 0
 	var/ovipositor = FALSE //whether the Queen is attached to an ovipositor
@@ -109,7 +110,7 @@
 /mob/living/carbon/Xenomorph/Queen/Bump(atom/A, yes)
 	set waitfor = 0
 
-	//if(charge_speed < charge_speed_buildup * charge_turfs_to_charge || !is_charging) return ..()
+	//if(charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE || !is_charging) return ..()
 
 	if(stat || !A || !istype(A) || A == src || !yes) return FALSE
 
@@ -181,29 +182,13 @@
 // ***************************************
 // *********** Icon
 // ***************************************
-/mob/living/carbon/Xenomorph/Queen/update_icons()
-	icon = initial(icon)
-	if(stat == DEAD)
-		icon_state = "Queen Dead"
-	else if(ovipositor)
+/mob/living/carbon/Xenomorph/Queen/handle_special_state()
+	if(ovipositor)
 		icon = 'icons/Xeno/Ovipositor.dmi'
 		icon_state = "Queen Ovipositor"
-	else if(lying)
-		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
-			icon_state = "Queen Sleeping"
-		else
-			icon_state = "Queen Knocked Down"
-	else
-		if(m_intent == MOVE_INTENT_RUN)
-			/*if(charge_speed > charge_speed_buildup * charge_turfs_to_charge) //Let it build up a bit so we're not changing icons every single turf
-				icon_state = "Queen Charging"
-			else*/
-			icon_state = "Queen Running"
-		else
-			icon_state = "Queen Walking"
-
-	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
-	update_wounds()
+		return TRUE
+	icon = initial(icon)
+	return FALSE
 
 /mob/living/carbon/Xenomorph/Queen/Topic(href, href_list)
 

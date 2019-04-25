@@ -22,6 +22,13 @@
 		return null
 	return format_text ? format_text(A.name) : A.name
 
+/proc/get_adjacent_open_turfs(atom/center)
+	. = list()
+	for(var/i in GLOB.cardinals)
+		var/turf/open/T = get_step(center, i)
+		if(!istype(T))
+			continue
+		. += T
 
 // Like view but bypasses luminosity check
 
@@ -74,7 +81,7 @@
 			L |= M
 			//log_world("[recursion_limit] = [M] - [get_turf(M)] - ([M.x], [M.y], [M.z])")
 
-		else if(include_radio && istype(A, /obj/item/device/radio))
+		else if(include_radio && istype(A, /obj/item/radio))
 			if(sight_check && !isInSight(A, O))
 				continue
 			L |= A
@@ -103,7 +110,7 @@
 			if(M.client)
 				hear += M
 			//log_world("Start = [M] - [get_turf(M)] - ([M.x], [M.y], [M.z])")
-		else if(istype(A, /obj/item/device/radio))
+		else if(istype(A, /obj/item/radio))
 			hear += A
 
 		if(isobj(A) || ismob(A))
@@ -112,17 +119,17 @@
 	return hear
 
 
-/proc/get_mobs_in_radio_ranges(var/list/obj/item/device/radio/radios)
+/proc/get_mobs_in_radio_ranges(var/list/obj/item/radio/radios)
 
 	set background = 1
 
 	. = list()
 	// Returns a list of mobs who can hear any of the radios given in @radios
 	var/list/speaker_coverage = list()
-	for(var/obj/item/device/radio/R in radios)
+	for(var/obj/item/radio/R in radios)
 		if(R)
 			//Cyborg checks. Receiving message uses a bit of cyborg's charge.
-			var/obj/item/device/radio/borg/BR = R
+			var/obj/item/radio/borg/BR = R
 			if(istype(BR) && BR.myborg)
 				var/mob/living/silicon/robot/borg = BR.myborg
 				var/datum/robot_component/CO = borg.get_component("radio")
@@ -348,7 +355,29 @@ datum/projectile_data
 	var/b = mixOneColor(weights, blues)
 	return rgb(r,g,b)
 
+/proc/mixOneColor(list/weight, list/color)
+	if (!weight || !color || length(weight) != length(color))
+		return FALSE
 
+	var/contents = length(weight)
+	var/i
+
+	//normalize weights
+	var/listsum = 0
+	for(i in 1 to contents)
+		listsum += weight[i]
+	for(i in 1 to contents)
+		weight[i] /= listsum
+
+	//mix them
+	var/mixedcolor = 0
+	for(i in 1 to contents)
+		mixedcolor += weight[i]*color[i]
+	mixedcolor = round(mixedcolor)
+
+	mixedcolor= CLAMP(mixedcolor, 0 ,255)
+
+	return mixedcolor
 
 /proc/convert_k2c(var/temp)
 	return ((temp - T0C))

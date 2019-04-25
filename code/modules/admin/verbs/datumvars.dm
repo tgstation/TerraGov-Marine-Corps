@@ -2,11 +2,14 @@
 #define VV_MSG_EDITED "<br><font size='1' color='red'><b>Var Edited</b></font>"
 #define VV_MSG_DELETED "<br><font size='1' color='red'><b>Deleted</b></font>"
 
+
 /datum/proc/CanProcCall(procname)
 	return TRUE
 
+
 /datum/proc/can_vv_get(var_name)
 	return TRUE
+
 
 /datum/proc/vv_edit_var(var_name, var_value) //called whenever a var is edited
 	if(var_name == NAMEOF(src, vars))
@@ -15,6 +18,7 @@
 	datum_flags |= DF_VAR_EDITED
 	return TRUE
 
+
 /datum/proc/vv_get_var(var_name)
 	switch(var_name)
 		if("vars")
@@ -22,7 +26,7 @@
 	return debug_variable(var_name, vars[var_name], 0, src)
 
 
-/proc/get_all_of_type(var/T, subtypes = TRUE)
+/proc/get_all_of_type(T, subtypes = TRUE)
 	var/list/typecache = list()
 	typecache[T] = 1
 	if(subtypes)
@@ -89,7 +93,7 @@
 			CHECK_TICK
 
 
-/proc/make_types_fancy(var/list/types)
+/proc/make_types_fancy(list/types)
 	if(ispath(types))
 		types = list(types)
 	. = list()
@@ -223,7 +227,7 @@
 		formatted_type = null
 
 	var/marked
-	if(holder && holder.marked_datum && holder.marked_datum == D)
+	if(holder?.marked_datum && holder.marked_datum == D)
 		marked = VV_MSG_MARKED
 	var/varedited_line = ""
 	if(!islist && (D.datum_flags & DF_VAR_EDITED))
@@ -603,12 +607,11 @@
 
 
 	else if(href_list["mark_object"])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 
 		var/datum/D = locate(href_list["mark_object"])
 		if(!istype(D))
-			to_chat(usr, "This can only be done to instances of type /datum")
 			return
 
 		if(holder.marked_datum)
@@ -618,7 +621,7 @@
 
 
 	else if(href_list["proc_call"])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 
 		var/T = locate(href_list["proc_call"])
@@ -633,7 +636,7 @@
 
 		var/datum/D = locate(href_list["delete"])
 		if(!istype(D))
-			to_chat(usr, "Unable to locate item!")
+			to_chat(usr, "<span class='warning'>Unable to locate item.</span>")
 		usr.client.holder.delete_atom(D)
 		if(isturf(D))  // show the turf that took its place
 			debug_variables(D)
@@ -645,7 +648,6 @@
 
 		var/mob/M = locate(href_list["regenerateicons"]) in GLOB.mob_list
 		if(!ismob(M))
-			to_chat(usr, "This can only be done to instances of type /mob")
 			return
 		M.regenerate_icons()
 
@@ -677,566 +679,545 @@
 		message_admins("[ADMIN_TPMONTY(usr)] showed [key_name_admin(C)] a <a href='?_src_=vars;[HrefToken(TRUE)];datumrefresh=[REF(thing)]'>VV window</a>.")
 
 
-	else if(check_rights(R_VAREDIT))
-		if(href_list["rename"])
-			if(!check_rights(NONE))
-				return
+	if(href_list["rename"])
+		if(!check_rights(R_DEBUG))
+			return
 
-			var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
-			if(!istype(M))
-				to_chat(usr, "This can only be used on instances of type /mob")
-				return
+		var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
+		if(!istype(M))
+			return
 
-			var/new_name = input(usr, "What would you like to name this mob?", "Input a name", M.real_name) as text
-			new_name = noscript(new_name)
-			if(!new_name || !M)
-				return
+		var/new_name = input(usr, "What would you like to name this mob?", "Input a name", M.real_name) as text
+		new_name = noscript(new_name)
+		if(!new_name || !M)
+			return
 
-			M.fully_replace_character_name(M.real_name, new_name)
-			vv_update_display(M, "name", new_name)
-			vv_update_display(M, "real_name", M.real_name || "No real name")
+		M.fully_replace_character_name(M.real_name, new_name)
 
-			message_admins("[ADMIN_TPMONTY(usr)] renamed [ADMIN_TPMONTY(M)] to [new_name].")
+		message_admins("[ADMIN_TPMONTY(usr)] renamed [ADMIN_TPMONTY(M)] to [new_name].")
 
 
-		else if(href_list["varnameedit"] && href_list["datumedit"])
-			if(!check_rights(NONE))
-				return
+	else if(href_list["varnameedit"] && href_list["datumedit"])
+		if(!check_rights(R_DEBUG))
+			return
 
-			var/datum/D = locate(href_list["datumedit"])
-			if(!istype(D, /datum))
-				to_chat(usr, "This can only be used on datums")
-				return
+		var/datum/D = locate(href_list["datumedit"])
+		if(!istype(D, /datum))
+			return
 
-			if(!modify_variables(D, href_list["varnameedit"], 1))
-				return
+		if(!modify_variables(D, href_list["varnameedit"], 1))
+			return
 
-			switch(href_list["varnameedit"])
-				if("name")
-					vv_update_display(D, "name", "[D]")
-				if("dir")
-					if(isatom(D))
-						var/dir = D.vars["dir"]
-						vv_update_display(D, "dir", dir2text(dir) || dir)
-				if("ckey")
-					if(isliving(D))
-						vv_update_display(D, "ckey", D.vars["ckey"] || "No ckey")
-				if("real_name")
-					if(isliving(D))
-						vv_update_display(D, "real_name", D.vars["real_name"] || "No real name")
+		switch(href_list["varnameedit"])
+			if("name")
+				vv_update_display(D, "name", "[D]")
+			if("dir")
+				if(isatom(D))
+					var/dir = D.vars["dir"]
+					vv_update_display(D, "dir", dir2text(dir) || dir)
+			if("ckey")
+				if(isliving(D))
+					vv_update_display(D, "ckey", D.vars["ckey"] || "No ckey")
+			if("real_name")
+				if(isliving(D))
+					vv_update_display(D, "real_name", D.vars["real_name"] || "No real name")
 
 
-		else if(href_list["varnamechange"] && href_list["datumchange"])
-			if(!check_rights(NONE))
-				return
+	else if(href_list["varnamechange"] && href_list["datumchange"])
+		if(!check_rights(R_DEBUG))
+			return
 
-			var/D = locate(href_list["datumchange"])
-			if(!istype(D, /datum))
-				to_chat(usr, "This can only be used on datums")
-				return
+		var/D = locate(href_list["datumchange"])
+		if(!istype(D, /datum))
+			return
 
-			modify_variables(D, href_list["varnamechange"], 0)
+		modify_variables(D, href_list["varnamechange"], 0)
 
 
-		else if(href_list["varnamemass"] && href_list["datummass"])
-			if(!check_rights(NONE))
-				return
+	else if(href_list["varnamemass"] && href_list["datummass"])
+		if(!check_rights(R_DEBUG))
+			return
 
-			var/datum/D = locate(href_list["datummass"])
-			if(!istype(D))
-				to_chat(usr, "This can only be used on instances of type /datum")
-				return
+		var/datum/D = locate(href_list["datummass"])
+		if(!istype(D))
+			return
 
-			mass_modify(D, href_list["varnamemass"])
+		mass_modify(D, href_list["varnamemass"])
 
 
-		else if(href_list["listedit"] && href_list["index"])
-			var/index = text2num(href_list["index"])
-			if(!index)
-				return
+	else if(href_list["listedit"] && href_list["index"])
+		var/index = text2num(href_list["index"])
+		if(!index)
+			return
 
-			var/list/L = locate(href_list["listedit"])
-			if(!istype(L))
-				to_chat(usr, "This can only be used on instances of type /list")
-				return
+		var/list/L = locate(href_list["listedit"])
+		if(!istype(L))
+			return
 
-			mod_list(L, null, "list", "contents", index, autodetect_class = TRUE)
+		mod_list(L, null, "list", "contents", index, autodetect_class = TRUE)
 
 
-		else if(href_list["listchange"] && href_list["index"])
-			var/index = text2num(href_list["index"])
-			if(!index)
-				return
+	else if(href_list["listchange"] && href_list["index"])
+		var/index = text2num(href_list["index"])
+		if(!index)
+			return
 
-			var/list/L = locate(href_list["listchange"])
-			if(!istype(L))
-				to_chat(usr, "This can only be used on instances of type /list")
-				return
+		var/list/L = locate(href_list["listchange"])
+		if(!istype(L))
+			return
 
-			mod_list(L, null, "list", "contents", index, autodetect_class = FALSE)
+		mod_list(L, null, "list", "contents", index, autodetect_class = FALSE)
 
 
-		else if(href_list["listremove"] && href_list["index"])
-			var/index = text2num(href_list["index"])
-			if(!index)
-				return
+	else if(href_list["listremove"] && href_list["index"])
+		var/index = text2num(href_list["index"])
+		if(!index)
+			return
 
-			var/list/L = locate(href_list["listremove"])
-			if(!istype(L))
-				to_chat(usr, "This can only be used on instances of type /list")
-				return
-
-			var/variable = L[index]
-			var/prompt = alert("Do you want to remove item number [index] from list?", "Confirm", "Yes", "No")
-			if(prompt != "Yes")
-				return
-
-			L.Cut(index, index + 1)
-
-			log_world("### ListVarEdit by [src]: /list's contents: REMOVED=[html_encode("[variable]")]")
-			log_admin("[key_name(src)] modified list's contents: REMOVED=[variable]")
-			message_admins("[ADMIN_TPMONTY(usr)] modified list's contents: REMOVED=[variable]")
-
-
-		else if(href_list["listadd"])
-			var/list/L = locate(href_list["listadd"])
-			if(!istype(L))
-				to_chat(usr, "This can only be used on instances of type /list")
-				return
-
-			mod_list_add(L, null, "list", "contents")
-
-
-		else if(href_list["listdupes"])
-			var/list/L = locate(href_list["listdupes"])
-			if(!istype(L))
-				to_chat(usr, "This can only be used on instances of type /list")
-				return
-
-			uniqueList_inplace(L)
-			log_world("### ListVarEdit by [src]: /list contents: CLEAR DUPES")
-			log_admin("[key_name(src)] modified list's contents: CLEAR DUPES")
-			message_admins("[ADMIN_TPMONTY(usr)] modified list's contents: CLEAR DUPES")
-
-
-		else if(href_list["listnulls"])
-			var/list/L = locate(href_list["listnulls"])
-			if(!istype(L))
-				to_chat(usr, "This can only be used on instances of type /list")
-				return
-
-			listclearnulls(L)
-			log_world("### ListVarEdit by [src]: /list contents: CLEAR NULLS")
-			log_admin("[key_name(src)] modified list's contents: CLEAR NULLS")
-			message_admins("[ADMIN_TPMONTY(usr)] modified list's contents: CLEAR NULLS")
-
-
-		else if(href_list["listlen"])
-			var/list/L = locate(href_list["listlen"])
-			if(!istype(L))
-				to_chat(usr, "This can only be used on instances of type /list")
-				return
-			var/value = vv_get_value(VV_NUM)
-			if(value["class"] != VV_NUM)
-				return
-
-			L.len = value["value"]
-			log_world("### ListVarEdit by [src]: /list len: [L.len]")
-			log_admin("[key_name(src)] modified list's len: [L.len]")
-			message_admins("[ADMIN_TPMONTY(usr)] modified list's len: [L.len]")
-
-
-		else if(href_list["listshuffle"])
-			var/list/L = locate(href_list["listshuffle"])
-			if(!istype(L))
-				to_chat(usr, "This can only be used on instances of type /list")
-				return
-
-			shuffle_inplace(L)
-			log_world("### ListVarEdit by [src]: /list contents: SHUFFLE")
-			log_admin("[key_name(src)] modified list's contents: SHUFFLE")
-			message_admins("[ADMIN_TPMONTY(usr)] modified list's contents: SHUFFLE")
-
-
-		else if(href_list["delall"])
-			if(!check_rights(R_DEBUG|R_SERVER))
-				return
-
-			var/obj/O = locate(href_list["delall"])
-			if(!isobj(O))
-				to_chat(usr, "This can only be used on instances of type /obj")
-				return
-
-			var/action_type = alert("Strict type ([O.type]) or type and all subtypes?", "Type", "Strict type", "Type and subtypes", "Cancel")
-			if(action_type == "Cancel" || !action_type)
-				return
-
-			if(alert("Are you really sure you want to delete all objects of type [O.type]?", "Warning", "Yes", "No") != "Yes")
-				return
-
-			if(alert("Second confirmation required. Delete?", "Warning", "Yes", "No") != "Yes")
-				return
-
-			var/O_type = O.type
-			var/i = 0
-			var/strict
-			switch(action_type)
-				if("Strict type")
-					strict = TRUE
-					for(var/obj/Obj in world)
-						if(Obj.type == O_type)
-							i++
-							qdel(Obj)
-						CHECK_TICK
-					if(!i)
-						to_chat(usr, "No objects of this type exist")
-						return
-				if("Type and subtypes")
-					for(var/obj/Obj in world)
-						if(istype(Obj,O_type))
-							i++
-							qdel(Obj)
-						CHECK_TICK
-					if(!i)
-						to_chat(usr, "No objects of this type exist")
-						return
-
-			log_admin("[key_name(usr)] deleted all objects of type[strict ? "" : " and subtypes"] of [O_type] ([i] objects deleted).")
-			message_admins("[ADMIN_TPMONTY(usr)] deleted all objects of type[strict ? "" : " and subtypes"] of [O_type] ([i] objects deleted).")
-
-
-		else if(href_list["addreagent"])
-			if(!check_rights(NONE))
-				return
-
-			var/atom/A = locate(href_list["addreagent"])
-
-			if(!A.reagents)
-				var/amount = input(usr, "Specify the reagent size of [A]", "Set Reagent Size", 50) as num
-				if(amount)
-					A.create_reagents(amount)
-
-			if(A.reagents)
-				var/chosen_id
-				var/list/reagent_options = sortList(chemical_reagents_list)
-				switch(alert(usr, "Choose a method.", "Add Reagents", "Enter ID", "Choose ID"))
-					if("Enter ID")
-						var/valid_id
-						while(!valid_id)
-							chosen_id = stripped_input(usr, "Enter the ID of the reagent you want to add.")
-							if(!chosen_id) //Get me out of here!
-								break
-							for(var/ID in reagent_options)
-								if(ID == chosen_id)
-									valid_id = TRUE
-							if(!valid_id)
-								to_chat(usr, "<span class='warning'>A reagent with that ID doesn't exist!</span>")
-					if("Choose ID")
-						chosen_id = input(usr, "Choose a reagent to add.", "Choose a reagent.") as null|anything in reagent_options
-				if(chosen_id)
-					var/amount = input(usr, "Choose the amount to add.", "Choose the amount.", A.reagents.maximum_volume) as num
-					if(amount)
-						A.reagents.add_reagent(chosen_id, amount)
-						log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to [A].")
-						message_admins("[ADMIN_TPMONTY(usr)] has added [amount] units of [chosen_id] to [A].")
-
-
-		else if(href_list["modtransform"])
-			if(!check_rights(R_DEBUG))
-				return
-
-			var/atom/A = locate(href_list["modtransform"])
-			if(!istype(A))
-				to_chat(usr, "This can only be done to atoms.")
-				return
-
-			var/result = input(usr, "Choose the transformation to apply","Transform Mod") as null|anything in list("Scale","Translate","Rotate")
-			var/matrix/M = A.transform
-			switch(result)
-				if("Scale")
-					var/x = input(usr, "Choose x mod","Transform Mod") as null|num
-					var/y = input(usr, "Choose y mod","Transform Mod") as null|num
-					if(x == 0 || y == 0)
-						if(alert("You've entered 0 as one of the values, are you sure?", "Warning", "Yes", "No") != "Yes")
-							return
-					if(!isnull(x) && !isnull(y))
-						A.transform = M.Scale(x,y)
-				if("Translate")
-					var/x = input(usr, "Choose x mod","Transform Mod") as null|num
-					var/y = input(usr, "Choose y mod","Transform Mod") as null|num
-					if(x == 0 || y == 0)
-						if(alert("You've entered 0 as one of the values, are you sure?", "Warning", "Yes", "No") != "Yes")
-							return
-					if(!isnull(x) && !isnull(y))
-						A.transform = M.Translate(x,y)
-				if("Rotate")
-					var/angle = input(usr, "Choose angle to rotate","Transform Mod") as null|num
-					if(angle == 0)
-						if(alert("You've entered 0 as one of the values, are you sure?", "Warning", "Yes", "No") != "Yes")
-							return
-					if(!isnull(angle))
-						A.transform = M.Turn(angle)
-
-			log_admin("[key_name(usr)] has used [result] transformation on [A].")
-			message_admins("[ADMIN_TPMONTY(usr)] has used [result] transformation on [A].")
-
-
-		else if(href_list["setspecies"])
-			if(!check_rights(R_FUN))
-				return
-
-			var/mob/living/carbon/human/H = locate(href_list["setspecies"]) in GLOB.mob_list
-			if(!istype(H))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
-				return
-
-			var/result = input(usr, "Please choose a new species","Species") as null|anything in GLOB.all_species
-
-			if(!H)
-				to_chat(usr, "Mob doesn't exist anymore")
-				return
-
-			if(!result)
-				return
-
-			H.set_species(result)
-			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [H] to [result].")
-
-			log_admin("[key_name(usr)] set the species of [key_name(H)] to [result].")
-			message_admins("[ADMIN_TPMONTY(usr)] set the species of [ADMIN_TPMONTY(H)] to [result].")
-
-
-		else if(href_list["adjustDamage"] && href_list["mobToDamage"])
-			if(!check_rights(R_FUN))
-				return
-
-			var/mob/living/L = locate(href_list["mobToDamage"]) in GLOB.mob_list
-			if(!istype(L))
-				return
-
-			var/Text = href_list["adjustDamage"]
-
-			var/amount =  input("Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0) as num
-
-			if(!L)
-				to_chat(usr, "Mob doesn't exist anymore")
-				return
-
-			var/newamt
-			switch(Text)
-				if("brute")
-					L.adjustBruteLoss(amount)
-					newamt = L.getBruteLoss()
-				if("fire")
-					L.adjustFireLoss(amount)
-					newamt = L.getFireLoss()
-				if("toxin")
-					L.adjustToxLoss(amount)
-					newamt = L.getToxLoss()
-				if("oxygen")
-					L.adjustOxyLoss(amount)
-					newamt = L.getOxyLoss()
-				if("brain")
-					L.adjustBrainLoss(amount)
-					newamt = L.getBrainLoss()
-				if("clone")
-					L.adjustCloneLoss(amount)
-					newamt = L.getCloneLoss()
-				else
-					to_chat(usr, "You caused an error. Text:[Text] Mob:[L]")
+		var/list/L = locate(href_list["listremove"])
+		if(!istype(L))
+			return
+
+		var/variable = L[index]
+		var/prompt = alert("Do you want to remove item number [index] from list?", "Confirm", "Yes", "No")
+		if(prompt != "Yes")
+			return
+
+		L.Cut(index, index + 1)
+
+		log_world("### ListVarEdit by [src]: /list's contents: REMOVED=[html_encode("[variable]")]")
+		log_admin("[key_name(src)] modified list's contents: REMOVED=[variable]")
+		message_admins("[ADMIN_TPMONTY(usr)] modified list's contents: REMOVED=[variable]")
+
+
+	else if(href_list["listadd"])
+		var/list/L = locate(href_list["listadd"])
+		if(!istype(L))
+			return
+
+		mod_list_add(L, null, "list", "contents")
+
+
+	else if(href_list["listdupes"])
+		var/list/L = locate(href_list["listdupes"])
+		if(!istype(L))
+			return
+
+		uniqueList_inplace(L)
+		log_world("### ListVarEdit by [src]: /list contents: CLEAR DUPES")
+		log_admin("[key_name(src)] modified list's contents: CLEAR DUPES")
+		message_admins("[ADMIN_TPMONTY(usr)] modified list's contents: CLEAR DUPES")
+
+
+	else if(href_list["listnulls"])
+		var/list/L = locate(href_list["listnulls"])
+		if(!istype(L))
+			return
+
+		listclearnulls(L)
+		log_world("### ListVarEdit by [src]: /list contents: CLEAR NULLS")
+		log_admin("[key_name(src)] modified list's contents: CLEAR NULLS")
+		message_admins("[ADMIN_TPMONTY(usr)] modified list's contents: CLEAR NULLS")
+
+
+	else if(href_list["listlen"])
+		var/list/L = locate(href_list["listlen"])
+		if(!istype(L))
+			return
+		var/value = vv_get_value(VV_NUM)
+		if(value["class"] != VV_NUM)
+			return
+
+		L.len = value["value"]
+		log_world("### ListVarEdit by [src]: /list len: [L.len]")
+		log_admin("[key_name(src)] modified list's len: [L.len]")
+		message_admins("[ADMIN_TPMONTY(usr)] modified list's len: [L.len]")
+
+
+	else if(href_list["listshuffle"])
+		var/list/L = locate(href_list["listshuffle"])
+		if(!istype(L))
+			return
+
+		shuffle_inplace(L)
+		log_world("### ListVarEdit by [src]: /list contents: SHUFFLE")
+		log_admin("[key_name(src)] modified list's contents: SHUFFLE")
+		message_admins("[ADMIN_TPMONTY(usr)] modified list's contents: SHUFFLE")
+
+
+	else if(href_list["delall"])
+		if(!check_rights(R_DEBUG|R_SERVER))
+			return
+
+		var/obj/O = locate(href_list["delall"])
+		if(!isobj(O))
+			return
+
+		var/action_type = alert("Strict type ([O.type]) or type and all subtypes?", "Type", "Strict type", "Type and subtypes", "Cancel")
+		if(action_type == "Cancel" || !action_type)
+			return
+
+		if(alert("Are you really sure you want to delete all objects of type [O.type]?", "Warning", "Yes", "No") != "Yes")
+			return
+
+		if(alert("Second confirmation required. Delete?", "Warning", "Yes", "No") != "Yes")
+			return
+
+		var/O_type = O.type
+		var/i = 0
+		var/strict
+		switch(action_type)
+			if("Strict type")
+				strict = TRUE
+				for(var/obj/Obj in world)
+					if(Obj.type == O_type)
+						i++
+						qdel(Obj)
+					CHECK_TICK
+				if(!i)
+					to_chat(usr, "No objects of this type exist")
+					return
+			if("Type and subtypes")
+				for(var/obj/Obj in world)
+					if(istype(Obj,O_type))
+						i++
+						qdel(Obj)
+					CHECK_TICK
+				if(!i)
+					to_chat(usr, "No objects of this type exist")
 					return
 
-			if(amount == 0)
-				return
-
-			vv_update_display(L, Text, "[newamt]")
-			admin_ticket_log(L, "<span class='notice'>[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]</span>")
-			log_admin("[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]")
-			message_admins("[ADMIN_TPMONTY(usr)] dealt [amount] amount of [Text] damage to [ADMIN_TPMONTY(L)]")
+		log_admin("[key_name(usr)] deleted all objects of type[strict ? "" : " and subtypes"] of [O_type] ([i] objects deleted).")
+		message_admins("[ADMIN_TPMONTY(usr)] deleted all objects of type[strict ? "" : " and subtypes"] of [O_type] ([i] objects deleted).")
 
 
-		else if(href_list["addlanguage"])
-			if(!check_rights(R_FUN))
-				return
+	else if(href_list["addreagent"])
+		if(!check_rights(R_FUN))
+			return
 
-			var/mob/living/carbon/M = locate(href_list["addlanguage"])
-			if(!istype(M))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
-				return
+		var/atom/A = locate(href_list["addreagent"])
 
-			var/new_language = input("Please choose a language to add.", "Language", null) as null|anything in GLOB.all_languages
+		if(!A.reagents)
+			var/amount = input(usr, "Specify the reagent size of [A]", "Set Reagent Size", 50) as num
+			if(amount)
+				A.create_reagents(amount)
 
-			if(!new_language)
-				return
-
-			if(!M)
-				to_chat(usr, "Mob doesn't exist anymore")
-				return
-
-			if(M.add_language(new_language))
-				log_admin("[key_name(usr)] has added [new_language] to [key_name(M)].")
-				message_admins("[ADMIN_TPMONTY(usr)] has added [new_language] to [ADMIN_TPMONTY(M)].")
-			else
-				to_chat(usr, "Mob already knows that language.")
-
-
-		else if(href_list["remlanguage"])
-			if(!check_rights(R_FUN))
-				return
-
-			var/mob/living/carbon/M = locate(href_list["remlanguage"])
-			if(!istype(M))
-
-				return
-
-			if(!length(M.languages))
-				to_chat(usr, "This mob knows no languages.")
-				return
-
-			var/datum/language/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in M.languages
-
-			if(!rem_language)
-				return
-
-			if(!M)
-				to_chat(usr, "Mob doesn't exist anymore")
-				return
-
-			if(M.remove_language(rem_language.name))
-				to_chat(usr, "Removed [rem_language] from [M].")
-				log_admin("[key_name(usr)] has removed [rem_language] from [key_name(M)].")
-				message_admins("[ADMIN_TPMONTY(usr)] has removed [rem_language] from [ADMIN_TPMONTY(M)].")
-			else
-				to_chat(usr, "Mob doesn't know that language.")
+		if(A.reagents)
+			var/chosen_id
+			var/list/reagent_options = sortList(chemical_reagents_list)
+			switch(alert(usr, "Choose a method.", "Add Reagents", "Enter ID", "Choose ID"))
+				if("Enter ID")
+					var/valid_id
+					while(!valid_id)
+						chosen_id = stripped_input(usr, "Enter the ID of the reagent you want to add.")
+						if(!chosen_id) //Get me out of here!
+							break
+						for(var/ID in reagent_options)
+							if(ID == chosen_id)
+								valid_id = TRUE
+						if(!valid_id)
+							to_chat(usr, "<span class='warning'>A reagent with that ID doesn't exist!</span>")
+				if("Choose ID")
+					chosen_id = input(usr, "Choose a reagent to add.", "Add Reagent") as null|anything in reagent_options
+			if(chosen_id)
+				var/amount = input(usr, "Choose the amount to add.", "Add Reagent", A.reagents.maximum_volume) as num
+				if(amount)
+					A.reagents.add_reagent(chosen_id, amount)
+					log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to [A].")
+					message_admins("[ADMIN_TPMONTY(usr)] has added [amount] units of [chosen_id] to [A].")
 
 
-		else if(href_list["purrbation"])
-			if(!check_rights(R_FUN))
-				return
+	else if(href_list["modtransform"])
+		if(!check_rights(R_DEBUG))
+			return
 
-			var/mob/living/carbon/human/H = locate(href_list["purrbation"])
-			if(!istype(H))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
-				return
+		var/atom/A = locate(href_list["modtransform"])
+		if(!istype(A))
+			return
 
-			if(istype(H.head, /obj/item/clothing/head/kitty))
-				qdel(H.head)
-				H.regenerate_icons()
-				log_admin("[key_name(usr)] has removed purrbation [key_name(H)].")
-				message_admins("[ADMIN_TPMONTY(usr)] has removed purrbation from [ADMIN_TPMONTY(H)].")
-			else
-				H.dropItemToGround(H.head)
-				H.head = new /obj/item/clothing/head/kitty(H)
-				H.regenerate_icons()
-				H.head.update_icon(H)
-				log_admin("[key_name(usr)] has purrbated [key_name(H)].")
-				message_admins("[ADMIN_TPMONTY(usr)] has purrbated [ADMIN_TPMONTY(H)].")
-
-
-		else if(href_list["getatom"])
-			if(!check_rights(R_DEBUG))
-				return
-
-			var/atom/movable/A = locate(href_list["getatom"])
-			if(!istype(A))
-				to_chat(usr, "This can only be done to instances of type /atom")
-				return
-
-			var/turf/T = get_turf(usr)
-			if(!istype(T))
-				return
-
-			A.forceMove(T)
-
-			log_admin("[key_name(usr)] has sent atom [A] to themselves.")
-			message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to themselves.")
-
-
-		else if(href_list["sendatom"])
-			if(!check_rights(R_DEBUG))
-				return
-
-			var/atom/movable/A = locate(href_list["sendatom"])
-			if(!istype(A))
-				to_chat(usr, "This can only be done to instances of type /atom")
-				return
-
-			var/atom/target
-
-			switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
-				if("Area")
-					var/area/AR = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
-					if(!AR || !A)
+		var/result = input(usr, "Choose the transformation to apply", "Modify Transform") as null|anything in list("Scale","Translate","Rotate")
+		var/matrix/M = A.transform
+		switch(result)
+			if("Scale")
+				var/x = input(usr, "Choose x mod", "Modify Transform") as null|num
+				var/y = input(usr, "Choose y mod", "Modify Transform") as null|num
+				if(x == 0 || y == 0)
+					if(alert("You've entered 0 as one of the values, are you sure?", "Modify Transform", "Yes", "No") != "Yes")
 						return
-					target = pick(get_area_turfs(AR))
-				if("Mob")
-					var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortList(GLOB.mob_list)
-					if(!N || !A)
+				if(!isnull(x) && !isnull(y))
+					A.transform = M.Scale(x,y)
+			if("Translate")
+				var/x = input(usr, "Choose x mod", "Modify Transform") as null|num
+				var/y = input(usr, "Choose y mod", "Modify Transform") as null|num
+				if(x == 0 && y == 0)
+					return
+				if(!isnull(x) && !isnull(y))
+					A.transform = M.Translate(x,y)
+			if("Rotate")
+				var/angle = input(usr, "Choose angle to rotate", "Modify Transform") as null|num
+				if(angle == 0)
+					if(alert("You've entered 0 as one of the values, are you sure?", "Warning", "Yes", "No") != "Yes")
 						return
-					target = get_turf(N)
-				if("Key")
-					var/client/C = input("Pick a key.", "Pick a key") as null|anything in sortKey(GLOB.clients)
-					if(!C || !A)
-						return
-					target = get_turf(C.mob)
-				if("Coords")
-					var/X = input("Select coordinate X", "Coordinate X") as null|num
-					var/Y = input("Select coordinate Y", "Coordinate Y") as null|num
-					var/Z = input("Select coordinate Z", "Coordinate Z") as null|num
-					if(isnull(X) || isnull(Y) || isnull(Z) || !A)
-						return
-					target = locate(X, Y, Z)
+				if(!isnull(angle))
+					A.transform = M.Turn(angle)
 
-			if(!target)
-				return
-
-			A.forceMove(target)
-
-			log_admin("[key_name(usr)] has sent atom [A] to [AREACOORD(target)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to [ADMIN_VERBOSEJMP(target)].")
+		log_admin("[key_name(usr)] has used [result] transformation on [A].")
+		message_admins("[ADMIN_TPMONTY(usr)] has used [result] transformation on [A].")
 
 
-		else if(href_list["copyoutfit"])
-			if(!check_rights(R_SPAWN))
-				return
-			var/mob/living/carbon/human/H = locate(href_list["copyoutfit"])
-			if(!istype(H))
-				return
-				
-			H.copy_outfit()
+	else if(href_list["setspecies"])
+		if(!check_rights(R_FUN))
+			return
 
-			log_admin("[key_name(usr)] copied the outfit of [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] copied the outfit of [ADMIN_TPMONTY(H)].")
+		var/mob/living/carbon/human/H = locate(href_list["setspecies"]) in GLOB.mob_list
+		if(!istype(H))
+			return
 
+		var/result = input(usr, "Please choose a new species","Species") as null|anything in GLOB.all_species
 
-		else if(href_list["dropeverything"])
-			if(!check_rights(R_DEBUG))
-				return
+		if(!H)
+			return
 
-			var/mob/living/carbon/human/H = locate(href_list["copyoutfit"])
-			if(!istype(H))
-				return
+		if(!result)
+			return
 
-			if(alert(usr, "Make [H] drop everything?", "Warning", "Yes", "No") != "Yes")
-				return
+		H.set_species(result)
+		admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [H] to [result].")
 
-			for(var/obj/item/W in H)
-				if(istype(W, /obj/item/alien_embryo))
-					continue
-				H.dropItemToGround(W)
-
-			log_admin("[key_name(usr)] made [key_name(H)] drop everything.")
-			message_admins("[ADMIN_TPMONTY(usr)] made [ADMIN_TPMONTY(H)] drop everything.")
+		log_admin("[key_name(usr)] set the species of [key_name(H)] to [result].")
+		message_admins("[ADMIN_TPMONTY(usr)] set the species of [ADMIN_TPMONTY(H)] to [result].")
 
 
-		else if(href_list["updateicon"])
-			if(!check_rights(R_DEBUG))
-				return
+	else if(href_list["adjustDamage"] && href_list["mobToDamage"])
+		if(!check_rights(R_FUN))
+			return
 
-			var/atom/movable/AM = locate(href_list["updateicon"])
-			if(!istype(AM))
-				return
+		var/mob/living/L = locate(href_list["mobToDamage"]) in GLOB.mob_list
+		if(!istype(L))
+			return
 
-			AM.update_icon()
+		var/Text = href_list["adjustDamage"]
 
-			log_admin("[key_name(usr)] updated the icon of [AM].")
+		var/amount =  input("Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0) as num
+
+		if(!L)
+			return
+
+		var/newamt
+		switch(Text)
+			if("brute")
+				L.adjustBruteLoss(amount)
+				newamt = L.getBruteLoss()
+			if("fire")
+				L.adjustFireLoss(amount)
+				newamt = L.getFireLoss()
+			if("toxin")
+				L.adjustToxLoss(amount)
+				newamt = L.getToxLoss()
+			if("oxygen")
+				L.adjustOxyLoss(amount)
+				newamt = L.getOxyLoss()
+			if("brain")
+				L.adjustBrainLoss(amount)
+				newamt = L.getBrainLoss()
+			if("clone")
+				L.adjustCloneLoss(amount)
+				newamt = L.getCloneLoss()
+
+		if(amount == 0)
+			return
+
+		vv_update_display(L, Text, "[newamt]")
+		admin_ticket_log(L, "<span class='notice'>[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]</span>")
+		log_admin("[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]")
+		message_admins("[ADMIN_TPMONTY(usr)] dealt [amount] amount of [Text] damage to [ADMIN_TPMONTY(L)]")
+
+
+	else if(href_list["addlanguage"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/L = locate(href_list["addlanguage"])
+		if(!istype(L))
+			return
+
+		var/new_language = input("Please choose a language to add.", "Language") as null|anything in GLOB.all_languages
+		if(!new_language)
+			return
+
+		if(!istype(L))
+			to_chat(usr, "<span class='warning'>Mob doesn't exist anymore.</span>")
+			return
+
+		L.grant_language(new_language)
+
+		log_admin("[key_name(usr)] has added [new_language] to [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has added [new_language] to [ADMIN_TPMONTY(L)].")
+
+
+	else if(href_list["remlanguage"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/L = locate(href_list["remlanguage"])
+		if(!istype(L))
+			return
+
+		if(!length(L.language_holder.languages))
+			to_chat(usr, "<span class='warning'>This mob knows no languages.</span>")
+			return
+
+		var/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in L.language_holder.languages
+
+		if(!rem_language)
+			return
+
+		if(!L)
+			to_chat(usr, "<span class='warning'>Mob doesn't exist anymore.</span>")
+			return
+
+		L.remove_language(rem_language)
+
+		log_admin("[key_name(usr)] has removed [rem_language] from [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has removed [rem_language] from [ADMIN_TPMONTY(L)].")
+
+
+	else if(href_list["purrbation"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["purrbation"])
+		if(!istype(H))
+			return
+
+		if(istype(H.head, /obj/item/clothing/head/kitty))
+			qdel(H.head)
+			H.regenerate_icons()
+			log_admin("[key_name(usr)] has removed purrbation [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] has removed purrbation from [ADMIN_TPMONTY(H)].")
+		else
+			H.dropItemToGround(H.head)
+			H.head = new /obj/item/clothing/head/kitty(H)
+			H.regenerate_icons()
+			H.head.update_icon(H)
+			log_admin("[key_name(usr)] has purrbated [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] has purrbated [ADMIN_TPMONTY(H)].")
+
+
+	else if(href_list["getatom"])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/atom/movable/A = locate(href_list["getatom"])
+		if(!istype(A))
+			return
+
+		var/turf/T = get_turf(usr)
+		if(!istype(T))
+			return
+
+		A.forceMove(T)
+
+		log_admin("[key_name(usr)] has sent atom [A] to themselves.")
+		message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to themselves.")
+
+
+	else if(href_list["sendatom"])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/atom/movable/A = locate(href_list["sendatom"])
+		if(!istype(A))
+			return
+
+		var/atom/target
+
+		switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
+			if("Area")
+				var/area/AR = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
+				if(!AR || !A)
+					return
+				target = pick(get_area_turfs(AR))
+			if("Mob")
+				var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortList(GLOB.mob_list)
+				if(!N || !A)
+					return
+				target = get_turf(N)
+			if("Key")
+				var/client/C = input("Pick a key.", "Pick a key") as null|anything in sortKey(GLOB.clients)
+				if(!C || !A)
+					return
+				target = get_turf(C.mob)
+			if("Coords")
+				var/X = input("Select coordinate X", "Coordinate X") as null|num
+				var/Y = input("Select coordinate Y", "Coordinate Y") as null|num
+				var/Z = input("Select coordinate Z", "Coordinate Z") as null|num
+				if(isnull(X) || isnull(Y) || isnull(Z) || !A)
+					return
+				target = locate(X, Y, Z)
+
+		if(!target)
+			return
+
+		A.forceMove(target)
+
+		log_admin("[key_name(usr)] has sent atom [A] to [AREACOORD(target)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to [ADMIN_VERBOSEJMP(target)].")
+
+
+	else if(href_list["copyoutfit"])
+		if(!check_rights(R_SPAWN))
+			return
+		var/mob/living/carbon/human/H = locate(href_list["copyoutfit"])
+		if(!istype(H))
+			return
+			
+		H.copy_outfit()
+
+		log_admin("[key_name(usr)] copied the outfit of [key_name(H)].")
+		message_admins("[ADMIN_TPMONTY(usr)] copied the outfit of [ADMIN_TPMONTY(H)].")
+
+
+	else if(href_list["dropeverything"])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["copyoutfit"])
+		if(!istype(H))
+			return
+
+		if(alert(usr, "Make [H] drop everything?", "Warning", "Yes", "No") != "Yes")
+			return
+
+		for(var/obj/item/W in H)
+			if(istype(W, /obj/item/alien_embryo))
+				continue
+			H.dropItemToGround(W)
+
+		log_admin("[key_name(usr)] made [key_name(H)] drop everything.")
+		message_admins("[ADMIN_TPMONTY(usr)] made [ADMIN_TPMONTY(H)] drop everything.")
+
+
+	else if(href_list["updateicon"])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/atom/movable/AM = locate(href_list["updateicon"])
+		if(!istype(AM))
+			return
+
+		AM.update_icon()
+
+		log_admin("[key_name(usr)] updated the icon of [AM].")
+
+
+	else if(href_list["playerpanel"])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/mob/M = locate(href_list["playerpanel"])
+		if(!istype(M))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		usr.client.holder.show_player_panel(M)

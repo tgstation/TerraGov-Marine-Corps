@@ -31,8 +31,8 @@
 	update_Login_details()
 	world.update_status()
 
-	client.images = null
-	client.screen = null				//remove hud items just in case
+	client.images = list()
+	client.screen = list()				//remove hud items just in case
 	if(!hud_used) 
 		create_hud()
 	if(hud_used) 

@@ -20,10 +20,9 @@
 		new /obj/item/clothing/head/helmet/cap(src)
 		new /obj/item/clothing/under/rank/captain(src)
 		new /obj/item/clothing/suit/armor/vest(src)
-		new /obj/item/cartridge/captain(src)
 		new /obj/item/clothing/head/helmet/swat(src)
 		new /obj/item/clothing/shoes/brown(src)
-//		new /obj/item/device/radio/headset/heads/captain(src)
+//		new /obj/item/radio/headset/heads/captain(src)
 		new /obj/item/clothing/gloves/captain(src)
 //		new /obj/item/weapon/gun/energy/gun(src)
 		new /obj/item/clothing/suit/armor/captain(src)
@@ -51,12 +50,11 @@
 		new /obj/item/clothing/glasses/sunglasses(src)
 		new /obj/item/clothing/suit/armor/vest(src)
 		new /obj/item/clothing/head/helmet(src)
-		new /obj/item/cartridge/hop(src)
-//		new /obj/item/device/radio/headset/heads/hop(src)
+//		new /obj/item/radio/headset/heads/hop(src)
 		new /obj/item/storage/box/ids(src)
 		new /obj/item/storage/box/ids( src )
 //		new /obj/item/weapon/gun/energy/gun(src)
-		new /obj/item/device/flash(src)
+		new /obj/item/flash(src)
 		return
 
 /obj/structure/closet/secure_closet/hop2
@@ -113,14 +111,13 @@
 		new /obj/item/clothing/suit/armor/hos/jensen(src)
 		new /obj/item/clothing/suit/armor/hos(src)
 		new /obj/item/clothing/head/helmet/HoS/dermal(src)
-		new /obj/item/cartridge/hos(src)
-//		new /obj/item/device/radio/headset/heads/hos(src)
+//		new /obj/item/radio/headset/heads/hos(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		new /obj/item/tool/taperoll/police(src)
 		new /obj/item/weapon/shield/riot(src)
 		new /obj/item/storage/box/flashbangs(src)
 		new /obj/item/storage/belt/security(src)
-		new /obj/item/device/flash(src)
+		new /obj/item/flash(src)
 		new /obj/item/weapon/baton/loaded(src)
 //		new /obj/item/weapon/gun/energy/gun(src)
 		new /obj/item/clothing/tie/holster/waist(src)
@@ -154,7 +151,7 @@
 		new /obj/item/clothing/suit/armor/vest/warden(src)
 		new /obj/item/clothing/head/helmet/warden(src)
 //		new /obj/item/cartridge/security(src)
-//		new /obj/item/device/radio/headset/headset_sec(src)
+//		new /obj/item/radio/headset/headset_sec(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		new /obj/item/tool/taperoll/police(src)
 		new /obj/item/storage/box/flashbangs(src)
@@ -206,16 +203,16 @@
 		new /obj/item/clothing/suit/armor/vest/security(src)
 		new /obj/item/clothing/head/helmet(src)
 //		new /obj/item/cartridge/security(src)
-//		new /obj/item/device/radio/headset/headset_sec(src)
+//		new /obj/item/radio/headset/headset_sec(src)
 		new /obj/item/storage/belt/security(src)
-		new /obj/item/device/flash(src)
+		new /obj/item/flash(src)
 		new /obj/item/reagent_container/spray/pepper(src)
 		new /obj/item/explosive/grenade/flashbang(src)
 		new /obj/item/weapon/baton/loaded(src)
 		new /obj/item/weapon/gun/energy/taser(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		new /obj/item/tool/taperoll/police(src)
-		new /obj/item/device/hailer(src)
+		new /obj/item/hailer(src)
 		new /obj/item/clothing/tie/storage/black_vest(src)
 		new /obj/item/clothing/head/soft/sec/corp(src)
 		new /obj/item/clothing/under/rank/security/corp(src)
@@ -227,7 +224,7 @@
 	New()
 		..()
 		new /obj/item/clothing/tie/armband/cargo(src)
-//		new /obj/item/device/encryptionkey/req(src)
+//		new /obj/item/encryptionkey/req(src)
 		return
 
 /obj/structure/closet/secure_closet/security/engine
@@ -235,7 +232,7 @@
 	New()
 		..()
 		new /obj/item/clothing/tie/armband/engine(src)
-		new /obj/item/device/encryptionkey/engi(src)
+		new /obj/item/encryptionkey/engi(src)
 		return
 
 /obj/structure/closet/secure_closet/security/science
@@ -243,7 +240,7 @@
 	New()
 		..()
 		new /obj/item/clothing/tie/armband/science(src)
-//		new /obj/item/device/encryptionkey/headset_sci(src)
+//		new /obj/item/encryptionkey/headset_sci(src)
 		return
 
 /obj/structure/closet/secure_closet/security/med
@@ -251,7 +248,7 @@
 	New()
 		..()
 		new /obj/item/clothing/tie/armband/medgreen(src)
-		new /obj/item/device/encryptionkey/med(src)
+		new /obj/item/encryptionkey/med(src)
 		return
 
 /obj/structure/closet/secure_closet/security_empty
@@ -294,8 +291,8 @@
 		new /obj/item/clothing/head/det_hat/black(src)
 		new /obj/item/clothing/shoes/brown(src)
 		new /obj/item/storage/box/evidence(src)
-//		new /obj/item/device/radio/headset/headset_sec(src)
-		new /obj/item/device/detective_scanner(src)
+//		new /obj/item/radio/headset/headset_sec(src)
+		new /obj/item/detective_scanner(src)
 		new /obj/item/clothing/suit/armor/det_suit(src)
 //		new /obj/item/ammo_magazine/c45r(src)
 //		new /obj/item/ammo_magazine/c45r(src)
@@ -340,7 +337,7 @@
 		..()
 		new /obj/item/clothing/under/color/orange(src)
 		new /obj/item/clothing/shoes/orange(src)
-		new /obj/item/device/radio/headset(src)
+		new /obj/item/radio/headset(src)
 		return
 
 

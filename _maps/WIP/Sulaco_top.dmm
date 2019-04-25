@@ -298,7 +298,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/structure/disposalpipe/trunk,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -365,7 +365,7 @@
 "bb" = (
 /obj/structure/table,
 /obj/item/stack/medical/ointment,
-/obj/item/device/flashlight/flare,
+/obj/item/flashlight/flare,
 /obj/structure/closet/walllocker/emerglocker{
 	dir = 8
 	},
@@ -478,8 +478,8 @@
 /area/sulaco/cryosleep)
 "bq" = (
 /obj/structure/table,
-/obj/item/device/lightreplacer,
-/obj/item/device/flashlight/flare,
+/obj/item/lightreplacer,
+/obj/item/flashlight/flare,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -508,7 +508,7 @@
 /area/sulaco/cryosleep)
 "bu" = (
 /obj/structure/table,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /obj/item/reagent_container/spray/cleaner,
 /obj/item/facepaint/brown,
 /turf/open/floor{
@@ -674,8 +674,8 @@
 /area/sulaco/cryosleep)
 "bT" = (
 /obj/structure/table,
-/obj/item/device/camera,
-/obj/item/device/flashlight/flare,
+/obj/item/camera,
+/obj/item/flashlight/flare,
 /obj/structure/closet/walllocker/emerglocker{
 	dir = 8
 	},
@@ -684,7 +684,7 @@
 	},
 /area/sulaco/cryosleep)
 "bU" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -987,7 +987,7 @@
 /area/sulaco/hub/top)
 "cA" = (
 /obj/structure/table,
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /obj/structure/closet/walllocker/emerglocker{
 	dir = 4
 	},
@@ -1137,7 +1137,7 @@
 	},
 /area/sulaco/medbay/surgery_one)
 "cS" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -1344,7 +1344,7 @@
 	dir = 8;
 	icon_state = "tube1"
 	},
-/obj/item/device/flashlight/flare,
+/obj/item/flashlight/flare,
 /obj/item/facepaint/brown,
 /turf/open/floor{
 	icon_state = "white"
@@ -1410,7 +1410,7 @@
 /area/sulaco/disposal)
 "dx" = (
 /obj/machinery/portable_atmospherics/canister/air,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -1861,7 +1861,7 @@
 	},
 /area/sulaco/medbay/west)
 "ey" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -2534,7 +2534,7 @@
 	},
 /area/sulaco/engineering/ce)
 "fS" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -3698,7 +3698,7 @@
 "hJ" = (
 /obj/structure/table,
 /obj/item/tool/crowbar,
-/obj/item/device/flashlight/flare,
+/obj/item/flashlight/flare,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "warnwhite"
@@ -3708,7 +3708,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -3837,7 +3837,7 @@
 	},
 /area/sulaco/cargo)
 "hZ" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -3953,7 +3953,7 @@
 	},
 /area/sulaco/medbay)
 "io" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -4022,7 +4022,7 @@
 	dir = 8;
 	icon_state = "tube1"
 	},
-/obj/item/device/camera,
+/obj/item/camera,
 /obj/structure/closet/walllocker/emerglocker{
 	dir = 4
 	},
@@ -4052,7 +4052,7 @@
 /area/sulaco/medbay)
 "ix" = (
 /obj/structure/bed/chair,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -4428,7 +4428,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/item/device/flashlight/flare,
+/obj/item/flashlight/flare,
 /obj/machinery/power/apc{
 	dir = 4
 	},
@@ -4490,12 +4490,12 @@
 	},
 /obj/machinery/cell_charger,
 /obj/machinery/cell_charger,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /obj/item/tool/wrench,
-/obj/item/device/multitool{
+/obj/item/multitool{
 	pixel_x = 5
 	},
-/obj/item/device/multitool{
+/obj/item/multitool{
 	pixel_x = 5
 	},
 /obj/machinery/light/small{
@@ -4879,10 +4879,10 @@
 /area/sulaco/medbay/storage2)
 "jV" = (
 /obj/structure/table,
-/obj/item/device/defibrillator,
-/obj/item/device/defibrillator,
-/obj/item/device/defibrillator,
-/obj/item/device/defibrillator,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
 /obj/item/storage/belt/medical,
 /obj/item/storage/belt/medical,
 /turf/open/floor{
@@ -4941,7 +4941,7 @@
 "kc" = (
 /obj/structure/table,
 /obj/item/tool/screwdriver,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "kd" = (
@@ -5441,7 +5441,7 @@
 /area/sulaco/briefing)
 "lc" = (
 /obj/structure/table,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -6067,7 +6067,7 @@
 /area/sulaco/engineering)
 "mj" = (
 /obj/structure/table,
-/obj/item/device/flashlight/flare,
+/obj/item/flashlight/flare,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "warnwhite"
@@ -6120,7 +6120,7 @@
 "mp" = (
 /obj/structure/table,
 /obj/item/stack/cable_coil,
-/obj/item/device/flashlight/flare,
+/obj/item/flashlight/flare,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "warnwhite"
@@ -6136,7 +6136,7 @@
 /area/sulaco/cryosleep)
 "mr" = (
 /obj/structure/table,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "warnwhite"
@@ -6223,8 +6223,8 @@
 	pixel_x = -3;
 	pixel_y = 7
 	},
-/obj/item/device/megaphone,
-/obj/item/device/radio/intercom{
+/obj/item/megaphone,
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -6410,7 +6410,7 @@
 	},
 /area/sulaco/engineering)
 "mR" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -6473,7 +6473,7 @@
 	name = "Quartermaster's stamp"
 	},
 /obj/item/clipboard,
-/obj/item/device/eftpos{
+/obj/item/eftpos{
 	eftpos_name = "Cargo Bay EFTPOS scanner"
 	},
 /obj/item/spacecash/c10,
@@ -6803,7 +6803,7 @@
 /turf/open/floor,
 /area/sulaco/briefing)
 "nA" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -7019,7 +7019,7 @@
 /turf/open/floor/plating,
 /area/sulaco/cargo)
 "nV" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -7234,7 +7234,7 @@
 /turf/open/floor,
 /area/sulaco/hallway/central_hall)
 "or" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -7393,7 +7393,7 @@
 /turf/open/floor,
 /area/sulaco/hallway/central_hall)
 "oN" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -7694,7 +7694,7 @@
 	},
 /area/sulaco/hallway/central_hall)
 "py" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -8130,7 +8130,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -8169,7 +8169,7 @@
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/tech_supply,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -8213,7 +8213,7 @@
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "qy" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -12903,7 +12903,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -14016,7 +14016,7 @@
 	},
 /area/sulaco/hallway/central_hall)
 "Ab" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -14281,7 +14281,7 @@
 	},
 /area/sulaco/engineering/storage)
 "AA" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -14442,7 +14442,7 @@
 	},
 /area/sulaco/engineering)
 "AP" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -14919,7 +14919,7 @@
 "BH" = (
 /obj/machinery/light,
 /obj/structure/table/reinforced,
-/obj/item/device/megaphone,
+/obj/item/megaphone,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -15093,7 +15093,7 @@
 /area/sulaco/engineering/storage)
 "Cb" = (
 /obj/machinery/shieldwallgen,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -15427,7 +15427,7 @@
 	},
 /obj/structure/rack,
 /obj/item/weapon/baton,
-/obj/item/device/hailer,
+/obj/item/hailer,
 /obj/machinery/power/apc{
 	dir = 8
 	},
@@ -15459,7 +15459,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -15579,7 +15579,7 @@
 /turf/open/floor,
 /area/sulaco/briefing)
 "CT" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -16315,7 +16315,7 @@
 /area/sulaco/engineering/engine)
 "Er" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
 "Es" = (
@@ -16376,9 +16376,9 @@
 /area/sulaco/brig)
 "Ez" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flash,
-/obj/item/device/flash,
-/obj/item/device/flash,
+/obj/item/flash,
+/obj/item/flash,
+/obj/item/flash,
 /obj/item/clothing/glasses/sunglasses,
 /turf/open/floor{
 	tag = "icon-floor4";
@@ -16472,7 +16472,7 @@
 /obj/structure/rack,
 /obj/item/weapon/baton,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/item/device/hailer,
+/obj/item/hailer,
 /turf/open/floor{
 	tag = "icon-floor4";
 	icon_state = "floor4"
@@ -16485,7 +16485,7 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
-/obj/item/device/hailer,
+/obj/item/hailer,
 /turf/open/floor{
 	tag = "icon-floor4";
 	icon_state = "floor4"
@@ -16528,7 +16528,7 @@
 	},
 /area/sulaco/maintenance/south_solar_maint)
 "EQ" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -16794,7 +16794,7 @@
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
 "Fo" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -16884,7 +16884,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -16986,7 +16986,7 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/obj/item/device/megaphone,
+/obj/item/megaphone,
 /obj/item/ammo_magazine/pistol/ap,
 /obj/item/ammo_magazine/pistol/ap,
 /turf/open/floor/wood,
@@ -17072,7 +17072,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/rack,
 /obj/item/weapon/baton,
-/obj/item/device/hailer,
+/obj/item/hailer,
 /turf/open/floor{
 	tag = "icon-floor4";
 	icon_state = "floor4"
@@ -17351,7 +17351,7 @@
 /turf/open/floor,
 /area/sulaco/marine)
 "Gv" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -17422,7 +17422,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
 /obj/item/storage/belt/champion,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -17466,7 +17466,7 @@
 /area/sulaco/bridge/maint)
 "GK" = (
 /obj/structure/table,
-/obj/item/device/t_scanner,
+/obj/item/t_scanner,
 /obj/item/tool/crowbar,
 /obj/item/tool/weldpack,
 /obj/item/tool/weldingtool,
@@ -17478,8 +17478,8 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/item/device/detective_scanner,
-/obj/item/device/detective_scanner,
+/obj/item/detective_scanner,
+/obj/item/detective_scanner,
 /obj/item/storage/box/gloves,
 /obj/item/storage/box/handcuffs,
 /obj/item/storage/box/evidence,
@@ -17673,7 +17673,7 @@
 	},
 /area/sulaco/marine/delta)
 "Ha" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -17713,7 +17713,7 @@
 /turf/open/floor,
 /area/sulaco/marine)
 "Hg" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -18020,7 +18020,7 @@
 	},
 /obj/structure/rack,
 /obj/item/weapon/baton,
-/obj/item/device/hailer,
+/obj/item/hailer,
 /turf/open/floor{
 	tag = "icon-floor4";
 	icon_state = "floor4"
@@ -19013,7 +19013,7 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -19384,7 +19384,7 @@
 "Kz" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /turf/open/floor{
 	tag = "icon-floor4";
 	icon_state = "floor4"
@@ -19604,7 +19604,7 @@
 	},
 /area/sulaco/marine/alpha)
 "KX" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -19869,7 +19869,7 @@
 	},
 /area/sulaco/marine/charlie)
 "Ls" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -19890,7 +19890,7 @@
 	},
 /area/sulaco/marine/bravo)
 "Lu" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -20798,7 +20798,7 @@
 	},
 /area/sulaco/brig)
 "Nt" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
