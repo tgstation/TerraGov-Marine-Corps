@@ -925,6 +925,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		face_atom(C)
 		if(stagger)
 			return FALSE
+		body_tox = C.reagents.get_reagent(toxin)
+		if(CHECK_BITFIELD(C.status_flags, XENO_HOST) && body_tox && body_tox.volume > body_tox.overdose_threshold)
+			to_chat(src, "<span class='warning'>You sense the infected host is saturated with [body_tox.name] and cease your attempt to inoculate it further to preserve the little one inside.</span>")
+			return FALSE
 		animation_attack_on(C)
 		playsound(C, 'sound/effects/spray3.ogg', 15, 1)
 		playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)

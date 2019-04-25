@@ -813,7 +813,7 @@
 
 
 /datum/reagent/xeno_growthtoxin/overdose_process(mob/living/M)
-	M.adjustOxyLoss(3)
+	M.adjustOxyLoss(2)
 	M.Jitter(4) //Lets Xenos know they're ODing and should probably stop.
 
 
