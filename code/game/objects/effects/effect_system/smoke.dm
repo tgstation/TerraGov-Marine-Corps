@@ -1,3 +1,4 @@
+
 /////////////////////////////////////////////
 //// SMOKE SYSTEMS
 /////////////////////////////////////////////
@@ -44,10 +45,10 @@
 		var/obj/effect/particle_effect/smoke/neighbor = pick(cloud.smokes - src)
 		neighbor.chemical_effect()
 	STOP_PROCESSING(SSobj, src)
-	LAZYREMOVE(cloud.smokes, src)
-	if(!LAZYLEN(cloud.smokes))
-		cloud.active = FALSE
-		qdel(cloud)
+	if(cloud)
+		LAZYREMOVE(cloud.smokes, src)
+		if(cloud.single_use && !LAZYLEN(cloud.smokes))
+			qdel(cloud)
 	return ..()
 
 /obj/effect/particle_effect/smoke/proc/kill_smoke()
@@ -170,11 +171,19 @@
 	var/lifetime
 	var/list/smokes
 	var/list/smoked_mobs
-	var/active = FALSE
+	var/single_use = TRUE
 
-//it's sometimes good practice to delete bound variables datum upon deletion, but doing so while this is active may foul things up.
+//When adding a smoke_spread var which is possibly
+//going to be used multiple times to an atom,
+//be sure to set the only_once argument FALSE.
+/datum/effect_system/smoke_spread/New(atom/atom, only_once = TRUE)
+	. = ..()
+	single_use = only_once
+
+//it's good practice to delete bound variables datum upon deletion, but doing so while active may foul things up.
 /datum/effect_system/smoke_spread/Destroy()
-	if(active)
+	if(LAZYLEN(smokes))
+		single_use = TRUE
 		return QDEL_HINT_LETMELIVE
 	return ..()
 
@@ -190,7 +199,6 @@
 /datum/effect_system/smoke_spread/start()
 	if(!QDELETED(holder))
 		location = get_turf(holder)
-	active = TRUE
 	new smoke_type(location, range, lifetime, src)
 
 /////////////////////////////////////////////
@@ -291,7 +299,6 @@ datum/effect_system/smoke_spread/tactical
 /datum/effect_system/smoke_spread/xeno/start()
 	if(!QDELETED(holder))
 		location = get_turf(holder)
-	active = TRUE
 	var/obj/effect/particle_effect/smoke/xeno/S = new smoke_type(location, range, lifetime, src)
 	S.strength = strength
 
@@ -352,7 +359,6 @@ datum/effect_system/smoke_spread/tactical
 	var/mixcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
 	if(!QDELETED(holder))
 		location = get_turf(holder)
-	active = TRUE
 	var/obj/effect/particle_effect/smoke/chem/S = new smoke_type(location, range, lifetime, src)
 
 	if(chemholder.reagents.total_volume > 1) // can't split 1 very well
