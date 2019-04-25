@@ -67,6 +67,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	can_buckle = FALSE
 	req_access = list(ACCESS_MARINE_TANK)
 	move_delay = 4
+	health = 500
+	maxhealth = 500
 	//Who's driving the tonk
 	var/mob/living/carbon/human/pilot
 	var/mob/living/carbon/human/gunner

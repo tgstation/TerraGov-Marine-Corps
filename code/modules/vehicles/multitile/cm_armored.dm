@@ -413,6 +413,10 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /turf/closed/wall/tank_collision(obj/vehicle/C, facing, turf/T, turf/temp)
 	var/damage = 30
 	var/tank_damage = 2
+	if(world.time > C.lastsound + 1 SECONDS)
+		visible_message("<span class='danger'>[C] rams into \the [src]!</span>")
+		playsound(src, 'sound/effects/metal_crash.ogg', 45)
+		C.lastsound = world.time
 	if(istype(C, /obj/vehicle/multitile/hitbox/cm_armored))
 		var/obj/vehicle/multitile/hitbox/cm_armored/CC = C
 		var/obj/vehicle/multitile/root/cm_armored/tank/CA = CC.root
@@ -423,15 +427,16 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 				tank_damage = 0
 		CA.take_damage_type(tank_damage, "blunt", src)
 	else
-		C.take_damage(damage)
+		C.take_damage(tank_damage)
 	take_damage(damage)
-	if(world.time > C.lastsound + 1 SECONDS)
-		playsound(src, 'sound/effects/metal_crash.ogg', 35)
-		C.lastsound = world.time
 
 /obj/machinery/tank_collision(obj/vehicle/C, facing, turf/T, turf/temp)
 	var/damage = 30
 	var/tank_damage = 2
+	if(world.time > C.lastsound + 1 SECONDS)
+		visible_message("<span class='danger'>[C] rams into \the [src]!</span>")
+		playsound(src, 'sound/effects/metal_crash.ogg', 45)
+		C.lastsound = world.time
 	if(istype(C, /obj/vehicle/multitile/hitbox/cm_armored))
 		var/obj/vehicle/multitile/hitbox/cm_armored/CC = C
 		var/obj/vehicle/multitile/root/cm_armored/tank/CA = CC.root
@@ -441,17 +446,17 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 				damage = 60
 				tank_damage = 0
 		CA.take_damage_type(tank_damage, "blunt", src)
-		if(world.time > C.lastsound + 1 SECONDS)
-			visible_message("<span class='danger'>[CA] rams into \the [src]!</span>")
-			playsound(src, 'sound/effects/metal_crash.ogg', 35)
-			C.lastsound = world.time
 	else
-		C.take_damage(damage)
+		C.take_damage(tank_damage)
 	take_damage(damage)
 
 /obj/structure/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	var/damage = 30
 	var/tank_damage = 2
+	if(world.time > C.lastsound + 1 SECONDS)
+		visible_message("<span class='danger'>[C] crushes \the [src]!</span>")
+		playsound(src, 'sound/effects/metal_crash.ogg', 45)
+		C.lastsound = world.time
 	if(istype(C, /obj/vehicle/multitile/hitbox/cm_armored))
 		var/obj/vehicle/multitile/hitbox/cm_armored/CC = C
 		var/obj/vehicle/multitile/root/cm_armored/tank/CA = CC.root
@@ -461,12 +466,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 				damage = 60
 				tank_damage = 0
 		CA.take_damage_type(tank_damage, "blunt", src)
-		if(world.time > C.lastsound + 1 SECONDS)
-			visible_message("<span class='danger'>[CA] crushes \the [src]!</span>")
-			playsound(src, 'sound/effects/metal_crash.ogg', 35)
-			C.lastsound = world.time
 	else
-		C.take_damage(damage)
+		C.take_damage(tank_damage)
 	take_damage(damage)
 
 /obj/effect/alien/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
