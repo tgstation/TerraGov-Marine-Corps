@@ -1,0 +1,5 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "fixes synthetics being stingable by defilers."
+  - bugfix: "fixing defilers being unable to use the larval growth serum on nested hosts."
