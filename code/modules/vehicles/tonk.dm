@@ -55,20 +55,19 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	return TRUE //No loc check here
 
 /obj/vehicle/tonk
-	name = "MK-1 aliensmasher x10"
+	name = "MK-1 'friendly fire' prototype tank"
 	desc = "A gigantic wall of metal designed for maximum Xeno destruction. Click it with an open hand to enter as a pilot or a gunner."
 	icon = 'icons/obj/tonk.dmi'
 	icon_state = "tank"
 	layer = OBJ_LAYER
 	bound_width = 128
 	bound_height = 128
-	pixel_x = -32
 	anchored = FALSE
 	can_buckle = FALSE
 	req_access = list(ACCESS_MARINE_TANK)
 	move_delay = 4
-	health = 500
-	maxhealth = 500
+	health = 600
+	maxhealth = 600
 	//Who's driving the tonk
 	var/mob/living/carbon/human/pilot
 	var/mob/living/carbon/human/gunner
@@ -76,7 +75,6 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	//Health and combat shit
 	var/obj/turret_overlay/turret_overlay //Allows for independantly swivelling guns, wow!
 	var/obj/turret_overlay/minigun/minigun_overlay
-	var/max_health = 300 //i dunno what a good number for this is, change this maintainers!
 	var/obj/item/tank_weapon/main_cannon //What we use to shoot big shells
 	var/obj/item/tank_weapon/minigun/minigun //What we use to shoot mini shells ((rapidfire xenocrusher 6000))
 	var/main_cannon_dir = null //So that the guns swivel independantly
@@ -84,6 +82,12 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	var/atom/firing_target = null //Shooting code, at whom are we firing?
 	var/firing_main_cannon = FALSE
 	var/firing_minigun = FALSE
+	var/last_drive_sound = 0 //Engine noises.
+
+/obj/vehicle/tonk/examine(mob/user)
+	. = ..()
+	to_chat(user, "<b>To fire its main cannon, <i>ctrl</i> click a tile</b>")
+	to_chat(user, "<b>To fire its minigun, click a tile</b>
 
 /obj/turret_overlay
 	name = "Tank gun turret"
@@ -113,6 +117,9 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 /obj/vehicle/tonk/Move()
 	. = ..()
 	update_icon()
+	if(world.time > last_drive_sound + 2 SECONDS)
+		playsound(src, 'sound/ambience/tank_driving.ogg', vol = 20, sound_range = 30)
+		last_drive_sound = world.time
 
 /obj/vehicle/tonk/update_icon() //To show damage, gun firing, whatever. We need to re apply the gun turret overlay.
 	var/icon/I = icon(icon,icon_state,dir)
@@ -126,7 +133,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		if(main_cannon_dir == WEST || main_cannon_dir == SOUTHWEST|| main_cannon_dir == NORTHWEST)
 			turret_overlay.pixel_x = pixel_x -19
 		else
-			turret_overlay.pixel_x = initial(turret_overlay.pixel_x)
+			turret_overlay.pixel_x = 0
 	vis_contents += turret_overlay
 
 /obj/vehicle/tonk/attack_hand(mob/user)
@@ -258,6 +265,11 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 /obj/vehicle/tonk/process()
 	if(firing_main_cannon && firing_target)
 		if(main_cannon.fire(firing_target, gunner))
+			if(main_cannon_dir != get_dir(src, firing_target)) //The turret has changed position, so we want it to play a swivelling noise.
+				if(world.time > lastsound + 4 SECONDS)
+					visible_message("<span class='danger'>[src] swings its turret round!</span>")
+					playsound(src, 'sound/effects/tankswivel.ogg', 80)
+					lastsound = world.time
 			main_cannon_dir = get_dir(src, firing_target)
 			update_icon()
 		else
