@@ -75,7 +75,7 @@
 	if(greaterform_type)
 		greaterform = new greaterform_type()
 
-		add_language(greaterform.language)
+		grant_language(greaterform.language)
 
 		cold_level_1 = null ? greaterform.cold_level_1 : cold_level_1
 		cold_level_2 = null ? greaterform.cold_level_2 : cold_level_2
@@ -337,6 +337,11 @@
 /mob/living/carbon/monkey/emp_act(severity)
 	if(wear_id) wear_id.emp_act(severity)
 	..()
+
+/mob/living/carbon/monkey/has_smoke_protection()
+	if(istype(wear_mask) && wear_mask.flags_inventory & BLOCKGASEFFECT)
+		return TRUE
+	return ..()
 
 /mob/living/carbon/monkey/ex_act(severity)
 	flash_eyes()

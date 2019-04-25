@@ -1014,9 +1014,8 @@
 				cell.corrupt()
 				emagged = TRUE
 				update_icon()
-				var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
-				smoke.set_up(1, 0, loc)
-				smoke.attach(src)
+				var/datum/effect_system/smoke_spread/smoke = new(src)
+				smoke.set_up(1, loc)
 				smoke.start()
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(1, 1, src)

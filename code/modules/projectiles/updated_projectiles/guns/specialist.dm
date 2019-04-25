@@ -724,15 +724,16 @@
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
 	reload_sound = 'sound/weapons/gun_mortar_reload.ogg'
-	var/datum/effect_system/smoke_spread/smoke
 	unload_sound = 'sound/weapons/gun_mortar_reload.ogg'
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	var/datum/effect_system/smoke_spread/smoke
 
-/obj/item/weapon/gun/launcher/rocket/Initialize()
+/obj/item/weapon/gun/launcher/rocket/Initialize(loc, spawn_empty)
 	. = ..()
-	smoke = new()
-	smoke.attach(src)
+	smoke = new(src, FALSE)
 
+/obj/item/weapon/gun/launcher/rocket/Destroy()
+	QDEL_NULL(smoke)
 
 /obj/item/weapon/gun/launcher/rocket/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(!able_to_fire(user))
@@ -824,7 +825,7 @@
 /obj/item/weapon/gun/launcher/rocket/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
 
 	var/backblast_loc = get_turf(get_step(user.loc, turn(user.dir, 180)))
-	smoke.set_up(1, 0, backblast_loc, turn(user.dir, 180))
+	smoke.set_up(1, backblast_loc)
 	smoke.start()
 	for(var/mob/living/carbon/C in backblast_loc)
 		if(!C.lying) //Have to be standing up to get the fun stuff

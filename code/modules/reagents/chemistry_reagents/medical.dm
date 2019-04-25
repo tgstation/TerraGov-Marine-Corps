@@ -991,17 +991,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	to_chat(M, "<span class='warning'>Your mind feels much less stable...</span>")
 	..()
 
-/datum/reagent/medicine/antized
-	name = "Anti-Zed"
-	id = "antiZed"
-	description = "Destroys the zombie virus in living humans and prevents regeneration for those who have already turned."
-	color = "#C8A5DC"
-	custom_metabolism = 0.01
-
-/datum/reagent/medicine/antized/on_mob_life(mob/living/carbon/human/M)
-	M.regenZ = 0
-	..()
-
 /datum/reagent/medicine/hypervene
 	name = "Hypervene"
 	id = "hypervene"

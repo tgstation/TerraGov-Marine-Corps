@@ -104,8 +104,7 @@
 		src.name = "body bag"
 		src.overlays.Cut()
 		return
-	else if(istype(W, /obj/item/weapon/zombie_claws))
-		open()
+
 
 /obj/structure/closet/bodybag/store_mobs(var/stored_units) // overriding this
 	var/list/dead_mobs = list()

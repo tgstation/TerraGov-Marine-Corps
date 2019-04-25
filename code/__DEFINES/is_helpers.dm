@@ -35,7 +35,6 @@
 #define ishuman(A) (istype(A, /mob/living/carbon/human))
 
 //Human sub-species
-#define iszombie(H) (is_species(H, /datum/species/zombie))
 #define ishorror(H) (is_species(H, datum/species/spook))
 #define isunathi(H) (is_species(H, /datum/species/unathi))
 #define istajaran(H) (is_species(H, /datum/species/tajaran))

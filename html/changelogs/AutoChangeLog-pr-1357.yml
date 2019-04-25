@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - bugfix: "Webbings can once again hold splints, kits and other stacks that are not razorwire, sheets, filled sandbags or snow."

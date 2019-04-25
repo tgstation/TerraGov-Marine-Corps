@@ -8,7 +8,7 @@
 	icon_state = "body_m_s"
 	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, STATUS_HUD_OBSERVER_INFECTION, ORDER_HUD)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
-	var/regenZ = 1 //Temp zombie thing until I write a better method ~Apop
+
 
 /mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/lay_down
@@ -139,7 +139,7 @@
 		dna.real_name = real_name
 
 	prev_gender = gender // Debug for plural genders
-	
+
 
 	//makes order hud visible
 	var/datum/mob_hud/H = huds[MOB_HUD_ORDER]
@@ -1322,10 +1322,10 @@
 	species.create_organs(src)
 
 	if(species.language)
-		add_language(species.language)
+		grant_language(species.language)
 
 	if(species.default_language)
-		add_language(species.default_language)
+		grant_language(species.default_language)
 
 	if(species.base_color && default_colour)
 		//Apply colour.
@@ -1461,6 +1461,12 @@
 	if(shoes && !override_noslip) // && (shoes.flags_inventory & NOSLIPPING)) // no more slipping if you have shoes on. -spookydonut
 		return FALSE
 	. = ..()
+
+/mob/living/carbon/human/smokecloak_on()
+	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back
+	if(istype(S) && S.camo_active)
+		return FALSE
+	return ..()
 
 /mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
 	if(luminosity <= 0)
@@ -1679,9 +1685,11 @@
 	if(!(equipment in outfits))
 		return FALSE
 
-	var/datum/outfit/O = new outfits[equipment]
+	var/outfit_type = outfits[equipment]
+	var/datum/outfit/O = new outfit_type
 	delete_equipment(TRUE)
 	equipOutfit(O, FALSE)
+	regenerate_icons()
 
 	return TRUE
 
@@ -1696,9 +1704,6 @@
 	return TRUE
 
 /mob/living/carbon/human/take_over(mob/M)
-	if(assigned_squad)
-		assigned_squad.clean_marine_from_squad(src)
-
 	. = ..()
 
 	set_rank(job)
@@ -1713,11 +1718,13 @@
 
 	var/datum/squad/S = SSjob.squads[squad]
 
-	if(mind)
-		assigned_squad = null
-	else
+	if(!mind)
 		assigned_squad = S
 		return FALSE
+
+	else if(assigned_squad)
+		assigned_squad.clean_marine_from_squad(src)
+		assigned_squad = null
 
 	var/datum/job/J = SSjob.GetJob(mind.assigned_role)
 	var/datum/outfit/job/O = new J.outfit

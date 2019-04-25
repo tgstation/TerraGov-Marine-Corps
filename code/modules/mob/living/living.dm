@@ -265,18 +265,26 @@
 
 /mob/living/resist_grab(moving_resist)
 	if(pulledby.grab_level)
-		if(prob(30/pulledby.grab_level))
+		grab_resist_level += 1
+		if(grab_resist_level > pulledby.grab_level)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
 			pulledby.stop_pulling()
-			return 1
+			grab_resist_level = 0 //zero it out.
+			return TRUE
 		if(moving_resist && client) //we resisted by trying to move
 			visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
 			client.next_movement = world.time + (10*pulledby.grab_level) + client.move_delay
 	else
+		grab_resist_level = 0 //zero it out.
 		pulledby.stop_pulling()
-		return 1
+		return TRUE
 
+/mob/living/stop_pulling()
+	if(isliving(pulling))
+		var/mob/living/L = pulling
+		L.grab_resist_level = 0 //zero it out
+	return ..()
 
 /mob/living/movement_delay()
 
@@ -602,19 +610,29 @@ below 100 is not dizzy
 	if(!M.mind)
 		to_chat(M, "<span class='warning'>You don't have a mind.</span>")
 		return FALSE
-	if(!bypass && (key || ckey))
-		to_chat(M, "<span class='warning'>That mob has already been taken.</span>")
-		return FALSE
-	if(!bypass && job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
-		to_chat(M, "<span class='warning'>You are jobbanned from that job.</span>")
-		return FALSE
 
-	log_admin("[key_name(M)] has taken [key_name_admin(src)].")
-	message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")
+	if(!bypass)
+		if(client)
+			to_chat(M, "<span class='warning'>That mob has already been taken.</span>")
+			GLOB.offered_mob_list -= src
+			return FALSE
+
+		if(job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
+			to_chat(M, "<span class='warning'>You are jobbanned from that role.</span>")
+			return FALSE
+
+		if(stat == DEAD)
+			to_chat(M, "<span class='warning'>That mob has died.</span>")
+			GLOB.offered_mob_list -= src
+			return FALSE
+
+		log_admin("[key_name(M)] has taken [key_name_admin(src)].")
+		message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")
 
 	M.mind.transfer_to(src, TRUE)
-	M.fully_replace_character_name(M.real_name, real_name)
+	fully_replace_character_name(M.real_name, real_name)
 	GLOB.offered_mob_list -= src
+	return TRUE
 
 
 /mob/living/update_canmove()

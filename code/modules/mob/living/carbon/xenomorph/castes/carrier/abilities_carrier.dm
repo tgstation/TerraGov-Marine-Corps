@@ -53,6 +53,7 @@
 		threw_a_hugger = TRUE
 		update_action_button_icons()
 		dropItemToGround(F)
+		playsound(src, 'sound/effects/throw.ogg', 50, 1)
 		F.throw_at(T, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
 		"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")
@@ -217,4 +218,3 @@
 	to_chat(src, "<span class='xenodanger'>You can now spawn another young one.</span>")
 	playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	update_action_buttons()
-	

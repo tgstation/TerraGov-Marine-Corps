@@ -63,7 +63,7 @@
 /datum/announcement/proc/Message(message as text, message_title as text, var/to_xenos = 0)
 	for(var/mob/M in GLOB.player_list)
 		if(!to_xenos)
-			if(isxeno(M) || iszombie(M)) //we reuse to_xenos arg for zombies
+			if(isxeno(M))
 				continue
 			if(ishuman(M)) //what xenos can't hear, the survivors on the ground can't either.
 				var/mob/living/carbon/human/H = M
@@ -78,7 +78,7 @@
 /datum/announcement/minor/Message(message as text, message_title as text, var/to_xenos = 0)
 	for(var/mob/M in GLOB.player_list)
 		if(!to_xenos)
-			if(isxeno(M) || iszombie(M)) //we reuse to_xenos arg for zombies
+			if(isxeno(M))
 				continue
 			if(ishuman(M)) //what xenos can't hear, the survivors on the ground can't either.
 				var/mob/living/carbon/human/H = M
