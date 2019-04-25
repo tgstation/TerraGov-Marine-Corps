@@ -372,10 +372,6 @@ Contains most of the procs that are called when a mob is attacked by something
 	shake_camera(src, 3 SECONDS, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
 	var/dist = get_dist(src, Q)
 
-	if(dist > 7)
-		stack_trace("[src] called `screech_act()` with [dist] dist to the source of the screech, [Q]")
-		return
-
 	var/reduction = max(1 - 0.1 * protection_aura, 0) //Hold orders will reduce the Halloss; 10% per rank.
 	var/halloss_damage = (max(0,140 - dist * 10)) * reduction //Max 130 beside Queen, 70 at the edge
 	var/stun_duration = max(0,1.1 - dist * 0.1) * reduction //Max 1 beside Queen, 0.4 at the edge.
