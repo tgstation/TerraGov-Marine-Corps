@@ -1,5 +1,0 @@
-author: "grinkgo"
-delete-after: True
-changes: 
-  - rscadd: "You can now headpat by using help intent on someone's head"
-  - tweak: "help intent on a xeno changed from \"poke\" to \"pet\""
