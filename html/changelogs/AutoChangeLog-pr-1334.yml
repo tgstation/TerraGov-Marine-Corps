@@ -1,0 +1,4 @@
+author: "Ketrai"
+delete-after: True
+changes: 
+  - balance: "Removes queen neurotoxin, adds queen sticky spit. Queen acid spit is now stronger."
