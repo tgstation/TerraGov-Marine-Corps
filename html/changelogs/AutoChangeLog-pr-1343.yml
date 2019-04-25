@@ -1,0 +1,4 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "Possibly fixes a runtime with boiler smokes cause projectiles live and die fast."
