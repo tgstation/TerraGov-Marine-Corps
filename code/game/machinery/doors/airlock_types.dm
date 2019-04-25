@@ -266,6 +266,10 @@
 	icon = 'icons/obj/doors/almayer/maintdoor.dmi'
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING)
 
+/obj/machinery/door/airlock/almayer/maint/hangar
+	name = "\improper Hangar Control Room"
+	req_one_access = list(ACCESS_MARINE_DROPSHIP)
+
 /obj/machinery/door/airlock/almayer/engineering
 	name = "\improper Engineering Airlock"
 	icon = 'icons/obj/doors/almayer/engidoor.dmi'
