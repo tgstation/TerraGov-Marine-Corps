@@ -39,6 +39,7 @@
 /mob/living/carbon/Xenomorph/Warrior/stop_pulling()
 	if(isliving(pulling))
 		var/mob/living/L = pulling
+		grab_resist_level = 0 //zero it out
 		L.SetStunned(0)
 	..()
 
