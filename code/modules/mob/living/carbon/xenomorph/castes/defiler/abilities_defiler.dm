@@ -50,7 +50,7 @@
 		return TRUE
 
 /mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting(mob/living/carbon/C)
-	if(!check_state() || !C?.can_sting())
+	if(!check_state() || QDELETED(C))
 		return
 
 	if(world.time < last_defiler_sting + DEFILER_STING_COOLDOWN) //Sure, let's use this.
@@ -61,18 +61,14 @@
 		to_chat(src, "<span class='warning'>You try to sting but are too disoriented!</span>")
 		return
 
-	if(!C.can_sting())
-		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
-		return
-
 	if(!Adjacent(C))
 		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
 			to_chat(src, "<span class='warning'>You can't reach this target!</span>")
 			recent_notice = world.time //anti-notice spam
 		return
 
-	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
-		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
+	if(!(C.can_sting()))
+		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
 		return
 
 	if(!check_plasma(150))
@@ -84,7 +80,8 @@
 
 	addtimer(CALLBACK(src, .defiler_sting_cooldown), DEFILER_STING_COOLDOWN)
 
-	larva_injection(C)
+	if(!CHECK_BITFIELD(C.status_flags, XENO_HOST))
+		larva_injection(C, FALSE)
 	larval_growth_sting(C)
 
 
