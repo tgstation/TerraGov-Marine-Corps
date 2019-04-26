@@ -26,12 +26,18 @@ SUBSYSTEM_DEF(weeds)
 			weed_nodes.Remove(N)
 			continue
 
-		// PROCESS N
-		for(var/turf/T in N.node_turfs) 
+		// PROCESS N in reverse order
+		for(var/X in N.node_turfs)
+			var/turf/T = X
 			if (locate(/obj/effect/alien/weeds) in T)
 				continue
-			new /obj/effect/alien/weeds(T)
-		// N.weed_expand(N)
+
+			for(var/direction in GLOB.cardinals) 
+				var/turf/AdjT = get_step(T, direction)
+
+				if (locate(/obj/effect/alien/weeds) in AdjT)
+					new /obj/effect/alien/weeds(T)
+					break
 
 		if(MC_TICK_CHECK)
 			return
@@ -54,8 +60,12 @@ SUBSYSTEM_DEF(weeds)
 	turfs_to_check += get_turf(N)
 	while (node_size > 0)
 		node_size--
-		for(var/turf/T in turfs_to_check)
-			for(var/turf/AdjT in T.AdjacentTurfs()) 
+		for(var/X in turfs_to_check)
+			var/turf/T = X
+
+			for(var/direction in GLOB.cardinals) 
+				var/turf/AdjT = get_step(T, direction)
+
 				if (AdjT == N) // Ignore the node
 					continue
 				if (AdjT in node_turfs) // Ignore existing weeds

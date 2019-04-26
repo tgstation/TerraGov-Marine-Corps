@@ -240,6 +240,8 @@
 	overlays += "weednode"
 	. = ..(loc, src)
 
+	// Generate our full graph before adding to the SS
+	generate_weed_graph()
 	SSweeds.add_node(src)
 	
 	if(X)
@@ -252,8 +254,10 @@
 	var/node_size = node_range
 	while (node_size > 0)
 		node_size--
-		for(var/turf/T in turfs_to_check)
-			for(var/turf/AdjT in T.AdjacentTurfs()) 
+		for(var/X in turfs_to_check)
+			var/turf/T = X
+			for(var/direction in GLOB.cardinals) 
+				var/turf/AdjT = get_step(T, direction)
 				if (AdjT == src) // Ignore the node
 					continue
 				if (AdjT in node_turfs) // Ignore existing weeds
@@ -261,5 +265,7 @@
 
 				turfs_to_check += AdjT
 				node_turfs += AdjT
+
+	reverseRange(node_turfs)
 
 #undef NODERANGE
