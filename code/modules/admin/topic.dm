@@ -1608,3 +1608,26 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		log_admin("[key_name(src)] gave [key_name(H)] a random name.")
 		message_admins("[ADMIN_TPMONTY(usr)] gave a [ADMIN_TPMONTY(H)] random name.")
+
+
+	else if(href_list["checkcontents"])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/mob/living/L = locate(href_list["checkcontents"]) in GLOB.mob_living_list
+		if(!istype(L))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		var/dat
+
+		for(var/i in L.get_contents())
+			var/atom/A = i
+			dat += "[A] [ADMIN_VV(A)]<br>"
+
+		var/datum/browser/popup = new(usr, "contents_[key_name(L)]", "<div align='center'>Contents of [key_name(L)]</div>")
+		popup.set_content(dat)
+		popup.open(FALSE)
+
+		log_admin("[key_name(usr)] checked the contents of [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] checked the contents of [ADMIN_TPMONTY(L)].")

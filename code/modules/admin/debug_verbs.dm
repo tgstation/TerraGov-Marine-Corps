@@ -370,38 +370,39 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!choice)
 		return
 
-	var/mob/M
+	var/mob/living/L
 	switch(choice)
 		if("Key")
 			var/selection = input("Please, select a key.", "Check Contents") as null|anything in sortKey(GLOB.clients)
 			if(!selection)
 				return
-			M = selection:mob
+			L = selection:mob
 		if("Cliented Mob")
 			var/selection = input("Please, select a cliented mob.", "Check Contents") as null|anything in sortNames(GLOB.player_list)
 			if(!selection)
 				return
-			M = selection
+			L = selection
 		if("Mob")
-			var/selection = input("Please, select a mob.", "Check Contents") as null|anything in sortNames(GLOB.mob_list)
+			var/selection = input("Please, select a mob.", "Check Contents") as null|anything in sortNames(GLOB.mob_living_list)
 			if(!selection)
 				return
-			M = selection
+			L = selection
 
-	if(!isliving(M))
+	if(!istype(L))
 		return
 
-	var/dat = "<b>Contents of [key_name(M)]:</b><hr>"
+	var/dat
 
-	var/list/L = M.get_contents()
-	for(var/i in L)
+	for(var/i in L.get_contents())
 		var/atom/A = i
 		dat += "[A] [ADMIN_VV(A)]<br>"
 
-	usr << browse(dat, "window=contents")
+	var/datum/browser/popup = new(usr, "contents_[key_name(L)]", "<div align='center'>Contents of [key_name(L)]</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 
-	log_admin("[key_name(usr)] checked the contents of [key_name(M)].")
-	message_admins("[ADMIN_TPMONTY(usr)] checked the contents of [ADMIN_TPMONTY(M)].")
+	log_admin("[key_name(usr)] checked the contents of [key_name(L)].")
+	message_admins("[ADMIN_TPMONTY(usr)] checked the contents of [ADMIN_TPMONTY(L)].")
 
 
 
