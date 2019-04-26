@@ -265,18 +265,26 @@
 
 /mob/living/resist_grab(moving_resist)
 	if(pulledby.grab_level)
-		if(prob(30/pulledby.grab_level))
+		grab_resist_level += 1
+		if(grab_resist_level > pulledby.grab_level)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
 			pulledby.stop_pulling()
-			return 1
+			grab_resist_level = 0 //zero it out.
+			return TRUE
 		if(moving_resist && client) //we resisted by trying to move
 			visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
 			client.next_movement = world.time + (10*pulledby.grab_level) + client.move_delay
 	else
+		grab_resist_level = 0 //zero it out.
 		pulledby.stop_pulling()
-		return 1
+		return TRUE
 
+/mob/living/stop_pulling()
+	if(isliving(pulling))
+		var/mob/living/L = pulling
+		L.grab_resist_level = 0 //zero it out
+	return ..()
 
 /mob/living/movement_delay()
 
@@ -664,7 +672,6 @@ below 100 is not dizzy
 			layer = initial(layer)
 
 	return canmove
-
 
 /mob/living/proc/update_leader_tracking(mob/living/L)
 	return

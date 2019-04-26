@@ -912,11 +912,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = CONFIG_GET(number/combat_define/max_armor_penetration)
 	shell_speed = CONFIG_GET(number/combat_define/slow_shell_speed)
 
-/datum/ammo/rocket/Destroy()
-	qdel(smoke)
-	smoke = null
-	. = ..()
-
 /datum/ammo/rocket/on_hit_mob(mob/M, obj/item/projectile/P)
 	explosion(get_turf(M), -1, 2, 4, 5)
 	smoke.set_up(1, get_turf(M))
@@ -1327,7 +1322,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
 	added_spit_delay = 8
-	spit_cost = 100
+	spit_cost = 75
 	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_EXPLOSIVE
 
 /datum/ammo/xeno/acid/heavy/New()
@@ -1377,13 +1372,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/boiler_gas/New()
 	. = ..()
-	set_xeno_smoke()
 	accuracy_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
 	max_range = CONFIG_GET(number/combat_define/long_shell_range)
-
-/datum/ammo/xeno/boiler_gas/Destroy()
-	QDEL_NULL(smoke_system)
-	return ..()
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/M, obj/item/projectile/P)
 	drop_nade(get_turf(P), P.firer)
@@ -1398,10 +1388,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/boiler_gas/do_at_max_range(obj/item/projectile/P)
 	drop_nade(get_turf(P), P.firer)
 
-/datum/ammo/xeno/boiler_gas/proc/set_xeno_smoke(obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/proc/set_xeno_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
 
 /datum/ammo/xeno/boiler_gas/proc/drop_nade(turf/T, atom/firer, range = 1)
+	set_xeno_smoke()
 	if(isxeno(firer))
 		var/mob/living/carbon/Xenomorph/X = firer
 		smoke_system.strength = X.xeno_caste.bomb_strength
@@ -1429,7 +1420,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/M, obj/item/projectile/P)
 	burst(M,P,damage_type)
 
-/datum/ammo/xeno/boiler_gas/corrosive/set_xeno_smoke(obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/corrosive/set_xeno_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
 
 /*

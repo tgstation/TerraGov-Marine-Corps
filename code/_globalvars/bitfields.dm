@@ -335,13 +335,6 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"IS_PLANT" = IS_PLANT,
 		"IS_SYNTHETIC" = IS_SYNTHETIC
 		),
-	"language_flags" = list(
-		"WHITELISTED" = WHITELISTED,
-		"RESTRICTED" = RESTRICTED,
-		"NONVERBAL" = NONVERBAL,
-		"SIGNLANG" = SIGNLANG,
-		"HIVEMIND" = HIVEMIND
-		),
 	"damagetype" = list(
 		"BRUTELOSS" = BRUTELOSS,
 		"FIRELOSS" = FIRELOSS,

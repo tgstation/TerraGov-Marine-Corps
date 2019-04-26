@@ -195,8 +195,7 @@
 /datum/chemical_reaction/chemsmoke/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/smoke_radius = round(sqrt(created_volume * 1.5), 1)
 	var/location = get_turf(holder.my_atom)
-	var/datum/effect_system/smoke_spread/chem/S = new
-	S.attach(location)
+	var/datum/effect_system/smoke_spread/chem/S = new(location)
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 	S?.set_up(holder, smoke_radius, location)
 	S?.start()

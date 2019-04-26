@@ -62,7 +62,7 @@
 		else
 			message = copytext(message, 3)
 
-	ai_headset.talk_into(src, message, message_mode, "states", languages[1])
+	ai_headset.talk_into(src, message, message_mode, "states", GLOB.all_languages[1])
 	return TRUE
 
 /mob/living/silicon/decoy/parse_message_mode(message)

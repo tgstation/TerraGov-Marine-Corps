@@ -27,7 +27,7 @@
 	if(machine_max_charge)
 		machinery_strings += "It can hold [machine_max_charge] power in it's internal buffer."
 
-	if(destructible)
+	if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		machinery_strings += "This can be destroyed."
 
 	if(wrenchable == TRUE)
@@ -77,49 +77,49 @@ proc/is_in_access_list(var/list/X)
 	if(ACCESS_MARINE_MEDBAY in X)
 		machinery_strings += "Marine Medbay"
 	if(ACCESS_MARINE_PREP in X)
-		machinery_strings += "Marine Prep"															
+		machinery_strings += "Marine Prep"
 	if(ACCESS_MARINE_MEDPREP in X)
-		machinery_strings += "Marine Medic Prep"															
+		machinery_strings += "Marine Medic Prep"
 	if(ACCESS_MARINE_ENGPREP in X)
-		machinery_strings += "Marine Engineer Prep"															
+		machinery_strings += "Marine Engineer Prep"
 	if(ACCESS_MARINE_LEADER in X)
-		machinery_strings += "Marine Squad Leader"															
+		machinery_strings += "Marine Squad Leader"
 	if(ACCESS_MARINE_SPECPREP in X)
-		machinery_strings += "Marine Specialist Prep"															
+		machinery_strings += "Marine Specialist Prep"
 	if(ACCESS_MARINE_RESEARCH in X)
-		machinery_strings += "Marine Research"															
+		machinery_strings += "Marine Research"
 	if(ACCESS_MARINE_SMARTPREP in X)
-		machinery_strings += "Marine Smartgunner Prep"															
+		machinery_strings += "Marine Smartgunner Prep"
 	if(ACCESS_MARINE_ALPHA in X)
-		machinery_strings += "Marine Alpha Squad"															
+		machinery_strings += "Marine Alpha Squad"
 	if(ACCESS_MARINE_BRAVO in X)
-		machinery_strings += "Marine Bravo Squad"															
+		machinery_strings += "Marine Bravo Squad"
 	if(ACCESS_MARINE_CHARLIE in X)
-		machinery_strings += "Marine Charlie Squad"															
+		machinery_strings += "Marine Charlie Squad"
 	if(ACCESS_MARINE_DELTA in X)
-		machinery_strings += "Marine Delta Squad"															
+		machinery_strings += "Marine Delta Squad"
 	if(ACCESS_MARINE_BRIDGE in X)
-		machinery_strings += "Marine Bridge"															
+		machinery_strings += "Marine Bridge"
 	if(ACCESS_MARINE_CHEMISTRY in X)
-		machinery_strings += "Marine Chemistry"															
+		machinery_strings += "Marine Chemistry"
 	if(ACCESS_MARINE_CARGO in X)
-		machinery_strings += "Marine Cargo"															
+		machinery_strings += "Marine Cargo"
 	if(ACCESS_MARINE_DROPSHIP in X)
-		machinery_strings += "Marine Dropship"															
+		machinery_strings += "Marine Dropship"
 	if(ACCESS_MARINE_PILOT in X)
-		machinery_strings += "Marine Pilot"															
+		machinery_strings += "Marine Pilot"
 	if(ACCESS_MARINE_WO in X)
-		machinery_strings += "Marine Warrent Officer"															
+		machinery_strings += "Marine Warrent Officer"
 	if(ACCESS_MARINE_RO in X)
-		machinery_strings += "Marine Requisitions Officer"															
+		machinery_strings += "Marine Requisitions Officer"
 	if(ACCESS_MARINE_TANK in X)
-		machinery_strings += "Marine Tank Driver"															
+		machinery_strings += "Marine Tank Driver"
 	if(ACCESS_CIVILIAN_PUBLIC in X)
-		machinery_strings += "Civilian Public"															
+		machinery_strings += "Civilian Public"
 	if(ACCESS_CIVILIAN_LOGISTICS in X)
-		machinery_strings += "Civilian Logistics"															
+		machinery_strings += "Civilian Logistics"
 	if(ACCESS_CIVILIAN_ENGINEERING in X)
-		machinery_strings += "Civilian Engineering"															
+		machinery_strings += "Civilian Engineering"
 	if(ACCESS_CIVILIAN_RESEARCH in X)
 		machinery_strings += "Civilian Research"
 	return machinery_strings

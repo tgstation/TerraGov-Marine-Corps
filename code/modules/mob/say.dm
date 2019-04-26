@@ -50,32 +50,6 @@
 		else if(check_other_rights(M.client, R_ADMIN, FALSE) && (M.client.prefs.toggles_chat & CHAT_DEAD)) // Show the message to admins/mods with deadchat toggled on
 			to_chat(M, rendered)
 
-
-/mob/proc/say_understands(var/mob/other, var/datum/language/speaking = null)
-	if(stat == DEAD)
-		return TRUE
-
-	else if(universal_speak || universal_understand)
-		return TRUE
-
-	if(!speaking)
-		if(!other)
-			return TRUE
-		else if(other.universal_speak)
-			return TRUE
-		else if(isAI(src))
-			return TRUE
-		else if(istype(other, type) || istype(src, other.type))
-			return TRUE
-		else
-			return FALSE
-
-	//Language check.
-	for(var/datum/language/L in languages)
-		if(speaking.name == L.name)
-			return TRUE
-	return FALSE
-
 /*
    ***Deprecated***
    let this be handled at the hear_say or hear_radio proc
@@ -126,16 +100,5 @@
 	if(length(message) >= 2)
 		var/channel_prefix = copytext(message, 1 ,3)
 		return department_radio_keys[channel_prefix]
-
-	return null
-
-//parses the language code (e.g. :j) from text, such as that supplied to say.
-//returns the language object only if the code corresponds to a language that src can speak, otherwise null.
-/mob/proc/parse_language(var/message)
-	if(length(message) >= 2)
-		var/language_prefix = lowertext(copytext(message, 1 ,3))
-		var/datum/language/L = GLOB.language_keys[language_prefix]
-		if(can_speak(L))
-			return L
 
 	return null

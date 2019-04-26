@@ -441,11 +441,11 @@ to_chat will check for valid clients itself already so no need to double check f
 // Make sure they can understand english
 /datum/hive_status/corrupted/post_add(mob/living/carbon/Xenomorph/X)
 	. = ..()
-	X.add_language("English")
+	X.grant_language(/datum/language/common)
 
 /datum/hive_status/corrupted/post_removal(mob/living/carbon/Xenomorph/X)
 	. = ..()
-	X.remove_language("English")
+	X.remove_language(/datum/language/common)
 
 /datum/hive_status/corrupted/can_xeno_message()
 	return TRUE // can always talk in hivemind

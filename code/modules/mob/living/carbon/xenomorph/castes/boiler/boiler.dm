@@ -36,14 +36,12 @@
 /mob/living/carbon/Xenomorph/Boiler/Initialize()
 	. = ..()
 	SetLuminosity(BOILER_LUMINOSITY)
-	smoke = new /datum/effect_system/smoke_spread/xeno/acid
-	smoke.attach(src)
+	smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
 	see_in_dark = 20
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
 
 /mob/living/carbon/Xenomorph/Boiler/Destroy()
 	SetLuminosity(-BOILER_LUMINOSITY)
-	QDEL_NULL(smoke)
 	return ..()
 
 // ***************************************

@@ -312,6 +312,7 @@
 			inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 
+		playsound(src, 'sound/effects/throw.ogg', 50, 1)
 		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, spin_throw)
 
 /mob/living/carbon/fire_act(exposed_temperature, exposed_volume)

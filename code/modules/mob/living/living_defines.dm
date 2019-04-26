@@ -85,4 +85,8 @@
 
 	var/ventcrawl_message_busy
 
+	var/grab_resist_level = 0 //Every time we try to resist a grab, we increment this by 1 until it exceeds the grab level, thereby breaking the grab.
+
+
+
 	var/away_time = 0 //When the player has disconnected.
