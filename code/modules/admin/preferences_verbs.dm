@@ -1,3 +1,10 @@
+/client/verb/setup_character()
+	set name = "Game Preferences"
+	set category = "Preferences"
+	set desc = "Allows you to access the Setup Character screen. Changes to your character won't take effect until next round, but other changes will."
+	prefs.ShowChoices(usr)
+
+
 /datum/admins/proc/pref_attack_logs()
 	set category = "Preferences"
 	set name = "Toggle Attack Log Messages"
