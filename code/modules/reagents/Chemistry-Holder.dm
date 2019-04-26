@@ -803,9 +803,9 @@
 	if(reagents)
 		qdel(reagents)
 	reagents = new (max_vol, new_flags)
+	reagents.my_atom = src
 	if(init_reagents)
 		reagents.add_reagent_list(init_reagents, data)
-	reagents.my_atom = src
 
 /proc/get_random_reagent_id() //Returns a random reagent ID minus blacklisted reagents
 	var/static/list/random_reagents = list()

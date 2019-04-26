@@ -29,12 +29,7 @@
 
 /obj/item/reagent_container/New()
 	. = ..()
-	create_reagents(volume, init_reagent_flags)
-	add_initial_reagents()
-
-/obj/item/reagent_container/proc/add_initial_reagents()
-	if(reagents && list_reagents)
-		reagents.add_reagent_list(list_reagents)
+	create_reagents(volume, init_reagent_flags, list_reagents)
 
 //returns a text listing the reagents (and their volume) in the atom. Used by Attack logs for reagents in pills
 /obj/item/reagent_container/proc/get_reagent_list_text()
