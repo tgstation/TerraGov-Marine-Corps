@@ -35,6 +35,6 @@
 #define NOPASS 			(1<<2)
 
 
-#define FOLLOW_LINK(observer, target) "<a href=?src=[REF(observer)];follow=[REF(target)]>(F)</a>"
+#define FOLLOW_LINK(observer, target) "<a href=?src=[REF(observer)];track=[REF(target)]>(F)</a>"
 #define TURF_LINK(observer, turfy) "<a href=?src=[REF(observer)];x=[turfy.x];y=[turfy.y];z=[turfy.z]>(T)</a>"
-#define FOLLOW_OR_TURF_LINK(observer, target, turfy) "<a href=?src=[REF(observer)];follow=[REF(target)];x=[turfy.x];y=[turfy.y];z=[turfy.z]>(F)</a>"
+#define FOLLOW_OR_TURF_LINK(observer, target, turfy) "<a href=?src=[REF(observer)];track=[REF(target)];x=[turfy.x];y=[turfy.y];z=[turfy.z]>(F)</a>"
