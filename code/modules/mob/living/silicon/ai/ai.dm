@@ -123,9 +123,6 @@ var/list/ai_verbs_default = list(
 	if (istype(loc, /turf))
 		add_ai_verbs(src)
 
-	//Languages
-	grant_language(/datum/language/common)
-
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
 			new/obj/structure/AIcore/deactivated(loc)//New empty terminal.

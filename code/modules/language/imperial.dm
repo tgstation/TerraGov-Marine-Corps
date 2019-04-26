@@ -2,3 +2,5 @@
 	name = "Imperial"
 	desc = "For the Emperor!"
 	key = "5"
+
+	icon_state = "galcom"
