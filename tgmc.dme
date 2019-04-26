@@ -1020,7 +1020,6 @@
 #include "code\modules\language\aphasia.dm"
 #include "code\modules\language\beachbum.dm"
 #include "code\modules\language\common.dm"
-#include "code\modules\language\draconic.dm"
 #include "code\modules\language\imperial.dm"
 #include "code\modules\language\language.dm"
 #include "code\modules\language\language_holder.dm"

@@ -52,7 +52,7 @@
 		if(isnewplayer(M))
 			continue
 
-		var/rendered = "[M != src ? FOLLOW_LINK(M, src) : ""]<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[message]\"</span></span>"
+		var/rendered = "[M != src ? FOLLOW_LINK(M, src) : ""] <span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[message]\"</span></span>"
 		if(M.client && M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD))
 			to_chat(M, rendered)
 
