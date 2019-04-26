@@ -1,4 +1,4 @@
-/mob/living/carbon/human/say_mod(input, message_mode)
+/mob/living/carbon/human/say_mod(input, message_mode, datum/language/language)
 	if(slurring)
 		return "slurs"
 	else

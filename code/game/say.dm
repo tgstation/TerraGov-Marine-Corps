@@ -83,10 +83,13 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return ""
 
 
-/atom/movable/proc/say_mod(input, message_mode)
+/atom/movable/proc/say_mod(input, message_mode, datum/language/language)
 	var/ending = copytext(input, length(input))
 	if(copytext(input, length(input) - 1) == "!!")
 		return verb_yell
+	else if(language)
+		var/datum/language/L = GLOB.language_datum_instances[language]
+		return L.get_spoken_verb(copytext(input, length(input)))
 	else if(ending == "?")
 		return verb_ask
 	else if(ending == "!")
@@ -95,7 +98,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		return verb_say
 
 
-/atom/movable/proc/say_quote(input, list/spans = list(), message_mode)
+/atom/movable/proc/say_quote(input, list/spans = list(), message_mode, datum/language/language)
 	if(!input)
 		input = "..."
 
@@ -103,24 +106,24 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		spans |= SPAN_YELL
 
 	var/spanned = attach_spans(input, spans)
-	return "[say_mod(input, message_mode)], \"[spanned]\""
+	return "[say_mod(input, message_mode, language)], \"[spanned]\""
 
 
 /atom/movable/proc/lang_treat(atom/movable/speaker, datum/language/language, raw_message, list/spans = list(), message_mode)
 	if(has_language(language))
 		var/atom/movable/AM = speaker.GetSource()
 		if(AM) //Basically means "if the speaker is virtual"
-			return AM.say_quote(raw_message, spans, message_mode)
+			return AM.say_quote(raw_message, spans, message_mode, language)
 		else
-			return speaker.say_quote(raw_message, spans, message_mode)
+			return speaker.say_quote(raw_message, spans, message_mode, language)
 	else if(language)
 		var/atom/movable/AM = speaker.GetSource()
 		var/datum/language/D = GLOB.language_datum_instances[language]
 		raw_message = D.scramble(raw_message)
 		if(AM)
-			return AM.say_quote(raw_message, spans, message_mode)
+			return AM.say_quote(raw_message, spans, message_mode, language)
 		else
-			return speaker.say_quote(raw_message, spans, message_mode)
+			return speaker.say_quote(raw_message, spans, message_mode, language)
 	else
 		return "makes a strange sound."
 

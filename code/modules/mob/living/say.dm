@@ -271,7 +271,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	return 0
 
 
-/mob/living/say_mod(input, message_mode)
+/mob/living/say_mod(input, message_mode, datum/language/language)
 	if(message_mode == MODE_WHISPER)
 		. = verb_whisper
 	else if(message_mode == MODE_WHISPER_CRIT)

@@ -6,5 +6,6 @@
 	exclaim_verb = "squeals"
 	key = "f"
 	syllables = list("meow", "hiss", "purr", "rowl")
+	space_chance = 100
 	
 	icon_state = "animal"
