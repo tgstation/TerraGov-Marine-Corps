@@ -13,9 +13,6 @@
 	if(SSmapping.config.map_name == MAP_WHISKEY_OUTPOST)
 		xeno_caste.hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
-	remove_language(/datum/language/common)
-	grant_language(/datum/language/xenocommon) //xenocommon
-	grant_language(/datum/language/xenohivemind) //hivemind
 	add_inherent_verbs()
 	add_abilities()
 

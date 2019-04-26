@@ -1,4 +1,4 @@
-/mob/living/brain/emote(var/act,var/m_type=1,var/message = null, player_caused)
+/mob/living/brain/emote(act, m_type = EMOTE_VISIBLE, message = null, player_caused = FALSE)
 	if(!(container && istype(container, /obj/item/mmi)))//No MMI, no emotes
 		return
 
