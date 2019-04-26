@@ -227,11 +227,11 @@
 	if(CHECK_BITFIELD(species_flags, NO_CHEM_METABOLIZATION)) //explicit
 		H.reagents.del_reagent(chem.id) //for the time being
 		return TRUE
-	if(CHECK_BITFIELD(species_flags, NO_POISON) && (istype(chem, /datum/reagent/toxin) || istype(chem, /datum/reagent/xeno_neurotoxin)))
-		H.reagents.remove_reagent(chem.id, chem.custom_metabolism * H.metabolism_efficiency) //By default it slowly disappears.
+	if(CHECK_BITFIELD(species_flags, NO_POISON) && istype(chem, /datum/reagent/toxin))
+		H.reagents.remove_reagent(chem.id, chem.custom_metabolism * H.metabolism_efficiency)
 		return TRUE
 	if(CHECK_BITFIELD(species_flags, NO_OVERDOSE)) //no stacking
-		if(chem.volume > chem.overdose_threshold)
+		if(chem.overdose_threshold && chem.volume > chem.overdose_threshold)
 			H.reagents.remove_reagent(chem.id, chem.volume - chem.overdose_threshold)
 	return FALSE
 

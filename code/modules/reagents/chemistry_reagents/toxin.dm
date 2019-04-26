@@ -13,7 +13,7 @@
 	taste_description = "bitterness"
 	taste_multi = 1.2
 
-/datum/reagent/toxin/on_mob_life(mob/living/L, alien)
+/datum/reagent/toxin/on_mob_life(mob/living/L, metabolism)
 	if(toxpwr)
 		L.adjustToxLoss(toxpwr*REM)
 	return ..()
@@ -42,7 +42,7 @@
 	toxpwr = 0
 	taste_description = "alchemy"
 
-/datum/reagent/toxin/sdtoxin/on_mob_life(mob/living/L, alien)
+/datum/reagent/toxin/sdtoxin/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(1)
 	return ..()
 
@@ -64,7 +64,7 @@
 	taste_description = "slime"
 	taste_multi = 0.9
 
-/datum/reagent/toxin/mutagen/on_mob_life(mob/living/L, alien)
+/datum/reagent/toxin/mutagen/on_mob_life(mob/living/L, metabolism)
 	L.apply_effect(10,IRRADIATE,0)
 	return ..()
 
@@ -75,7 +75,7 @@
 	color = "#E71B00" // rgb: 231, 27, 0
 	toxpwr = 3
 
-/datum/reagent/toxin/phoron/on_mob_life(mob/living/L, alien)
+/datum/reagent/toxin/phoron/on_mob_life(mob/living/L, metabolism)
 	holder.remove_reagent("inaprovaline", 2*REM)
 	return ..()
 
@@ -89,7 +89,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "acid"
 
-/datum/reagent/toxin/lexorin/on_mob_life(mob/living/L, alien)
+/datum/reagent/toxin/lexorin/on_mob_life(mob/living/L, metabolism)
 	if(prob(33))
 		L.take_limb_damage(1*REM, 0)
 	L.adjustOxyLoss(3)
@@ -97,10 +97,10 @@
 		L.emote("gasp")
 	return ..()
 
-/datum/reagent/toxin/lexorin/overdose_process(mob/living/L, alien)
+/datum/reagent/toxin/lexorin/overdose_process(mob/living/L, metabolism)
 	L.apply_damages(0, 1, 1) //Overdose starts getting bad
 
-/datum/reagent/toxin/lexorin/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/toxin/lexorin/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(1, 0, 1) //Overdose starts getting bad
 
 /datum/reagent/toxin/cyanide //Fast and Lethal
@@ -111,7 +111,7 @@
 	toxpwr = 3
 	custom_metabolism = 0.4
 
-/datum/reagent/toxin/cyanide/on_mob_life(mob/living/L, alien)
+/datum/reagent/toxin/cyanide/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(4*REM)
 	if(current_cycle > 10)
 		L.Sleeping(2)
@@ -125,7 +125,7 @@
 	toxpwr = 0
 	taste_description = "mint"
 
-/datum/reagent/toxin/minttoxin/on_mob_life(mob/living/L, alien)
+/datum/reagent/toxin/minttoxin/on_mob_life(mob/living/L, metabolism)
 	if(FAT in L.mutations)
 		L.gib()
 	else
@@ -148,17 +148,17 @@
 	toxpwr = 0.5
 	taste_description = "death"
 
-/datum/reagent/toxin/zombiepowder/on_mob_add(mob/living/L, alien)
+/datum/reagent/toxin/zombiepowder/on_mob_add(mob/living/L, metabolism)
 	return ..()
 	L.status_flags |= FAKEDEATH
 
-/datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, alien)
+/datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(0.5*REM)
 	L.KnockDown(10)
 	L.silent = max(L.silent, 10)
 	return ..()
 
-/datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, alien)
+/datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)
 	L.status_flags &= ~FAKEDEATH
 	return ..()
 
@@ -172,17 +172,17 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "sourness"
 
-/datum/reagent/toxin/mindbreaker/on_mob_life(mob/living/L, alien)
+/datum/reagent/toxin/mindbreaker/on_mob_life(mob/living/L, metabolism)
 	L.hallucination += 10
 	return ..()
 
-/datum/reagent/toxin/mindbreaker/overdose_process(mob/living/L, alien)
+/datum/reagent/toxin/mindbreaker/overdose_process(mob/living/L, metabolism)
 	L.adjustToxLoss(1)
 	L.Jitter(5)
 	if(prob(10) && !L.stat)
 		L.KnockOut(5)
 
-/datum/reagent/toxin/mindbreaker/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/toxin/mindbreaker/overdose_crit_process(mob/living/L, metabolism)
 	L.adjustToxLoss(1)
 	L.adjustBrainLoss(1, TRUE)
 	L.Jitter(5)
@@ -240,14 +240,13 @@
 			tray.check_level_sanity()
 			tray.update_icon()
 
-/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
+/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
 	. = ..()
-	if(!. || !ishuman(L))
+	if(!ishuman(L))
 		return
 	var/mob/living/carbon/human/H = L
-	if(H.dna)
-		if(H.species.species_flags & IS_PLANT) //plantmen take a LOT of damage
-			H.adjustToxLoss(10)
+	if(H.species.species_flags & IS_PLANT) //plantmen take a LOT of damage
+		H.adjustToxLoss(10 * touch_protection)
 
 /datum/reagent/toxin/sleeptoxin
 	name = "Soporific"
@@ -260,7 +259,7 @@
 	scannable = 1
 	taste_description = "cough syrup"
 
-/datum/reagent/toxin/sleeptoxin/on_mob_life(mob/living/L, alien)
+/datum/reagent/toxin/sleeptoxin/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 12)
 			if(prob(5))
@@ -277,10 +276,10 @@
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
 	return ..()
 
-/datum/reagent/toxin/sleeptoxin/overdose_process(mob/living/L, alien)
+/datum/reagent/toxin/sleeptoxin/overdose_process(mob/living/L, metabolism)
 	L.apply_damages(0, 0, 1, 2) //Overdose starts getting bad
 
-/datum/reagent/toxin/sleeptoxin/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/toxin/sleeptoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(0, 0, 1, 1) //Overdose starts getting bad
 
 /datum/reagent/toxin/chloralhydrate
@@ -294,7 +293,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 
-/datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/L, alien)
+/datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 20)
 			L.confused += 2
@@ -306,10 +305,10 @@
 			L.adjustToxLoss((current_cycle/2 - 50)*REM)
 	return ..()
 
-/datum/reagent/toxin/chloralhydrate/overdose_process(mob/living/L, alien)
+/datum/reagent/toxin/chloralhydrate/overdose_process(mob/living/L, metabolism)
 	L.apply_damages(0, 0, 1, 2) //Overdose starts getting bad
 
-/datum/reagent/toxin/chloralhydrate/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/toxin/chloralhydrate/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(0, 0, 0, 2) //Overdose starts getting bad
 
 /datum/reagent/toxin/potassium_chloride
@@ -321,7 +320,7 @@
 	toxpwr = 0
 	overdose_threshold = REAGENTS_OVERDOSE
 
-/datum/reagent/toxin/potassium_chloride/overdose_process(mob/living/L, alien)
+/datum/reagent/toxin/potassium_chloride/overdose_process(mob/living/L, metabolism)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.losebreath > 10)
@@ -341,7 +340,7 @@
 	color = "#FFFFFF" // rgb: 255,255,255
 	toxpwr = 2
 
-/datum/reagent/toxin/potassium_chlorophoride/on_mob_life(mob/living/L, alien)
+/datum/reagent/toxin/potassium_chlorophoride/on_mob_life(mob/living/L, metabolism)
 	if(L.stat != UNCONSCIOUS)
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
@@ -363,7 +362,7 @@
 	custom_metabolism = 0.5 // Sleep toxins should always be consumed pretty fast
 	taste_description = "piss water"
 
-/datum/reagent/toxin/beer2/on_mob_life(mob/living/L, alien)
+/datum/reagent/toxin/beer2/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 50)
 			L.Sleeping(5)
@@ -380,7 +379,7 @@
 	toxpwr = 0.2
 	taste_description = "plastic"
 
-/datum/reagent/toxin/plasticide/on_mob_life(mob/living/L, alien)
+/datum/reagent/toxin/plasticide/on_mob_life(mob/living/L, metabolism)
 	L.adjustToxLoss(0.2)
 	return ..()
 
@@ -394,13 +393,13 @@
 	var/meltprob = 10
 	taste_description = "acid"
 
-/datum/reagent/toxin/acid/on_mob_life(mob/living/L, alien)
+/datum/reagent/toxin/acid/on_mob_life(mob/living/L, metabolism)
 	L.take_limb_damage(0, 1*REM)
 	return ..()
 
-/datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
+/datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
 	. = ..()
-	if(!. || !(method in list(TOUCH, VAPOR, PATCH)))
+	if(!(method in list(TOUCH, VAPOR, PATCH)))
 		return
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
@@ -454,12 +453,12 @@
 				if(affecting.take_damage_limb(4 * toxpwr, 2 * toxpwr))
 					H.UpdateDamageIcon()
 				if(prob(meltprob)) //Applies disfigurement
-					if(!(H.species && (H.species.species_flags & NO_PAIN)))
+					if(!H.species || !CHECK_BITFIELD(H.species.species_flags, NO_PAIN))
 						H.emote("scream")
 					H.status_flags |= DISFIGURED
 					H.name = H.get_visible_name()
 		else
-			L.take_limb_damage(min(6*toxpwr, volume * toxpwr))
+			L.take_limb_damage(min(6*toxpwr, volume * toxpwr) * touch_protection)
 
 /datum/reagent/toxin/acid/reaction_obj(obj/O, volume)
 	if((istype(O,/obj/item) || istype(O,/obj/effect/glowshroom)) && prob(meltprob * 3))
@@ -478,6 +477,43 @@
 	meltprob = 30
 	taste_multi = 1.5
 
+/datum/reagent/toxin/xeno_neurotoxin
+	name = "Neurotoxin"
+	id = "xeno_toxin"
+	description = "A debilitating nerve toxin. Impedes motor control. Causes temporary blindness, hallucinations and deafness at higher doses."
+	reagent_state = LIQUID
+	color = "#CF3600" // rgb: 207, 54, 0
+	custom_metabolism = 1.2 // Fast meta rate.
+	overdose_threshold = REAGENTS_OVERDOSE
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
+	scannable = TRUE
+	toxpwr = 0
+
+
+/datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
+	var/halloss_damage = volume * 2 * REM
+	L.apply_damage(halloss_damage, HALLOSS) //1st level neurotoxin effects: halloss/pain
+	if(volume > 5) //2nd level neurotoxin effects: screen shake, drug overlay, stuttering, minor toxin damage
+		L.adjust_drugginess(1.1)
+		L.stuttering = max(L.stuttering, 1)
+	if(volume > 15) //3rd level neurotoxin effects: eye blur
+		L.blur_eyes(5)
+	if(volume > 20) //4th level neurotoxin effects: blindness, deafness
+		L.adjustEarDamage(0, 1)
+		L.blind_eyes(5)
+	if(volume > 25) //5th level neurotoxin effects: paralysis
+		L.KnockDown(1)
+	return ..()
+
+
+/datum/reagent/toxin/xeno_neurotoxin/overdose_process(mob/living/L, metabolism)
+	L.adjustOxyLoss(5) //Overdose starts applying more oxy damage
+	L.Jitter(4) //Lets Xenos know they're ODing and should probably stop.
+
+
+/datum/reagent/toxin/xeno_neurotoxin/overdose_crit_process(mob/living/L, metabolism)
+	L.Losebreath(2) //Can't breathe; for punishing the bullies
+
 /datum/reagent/toxin/xeno_growthtoxin
 	name = "Larval Accelerant"
 	id = "xeno_growthtoxin"
@@ -490,10 +526,20 @@
 	toxpwr = 0
 	scannable = TRUE
 
-/datum/reagent/toxin/xeno_growthtoxin/overdose_process(mob/living/L, alien)
-	L.adjustOxyLoss(3)
+/datum/reagent/toxin/xeno_growthtoxin/on_mob_life(mob/living/L)
+	if(L.getOxyLoss())
+		L.adjustOxyLoss(-REM)
+	if(L.getBruteLoss() || L.getFireLoss())
+		L.heal_limb_damage(REM, REM)
+	if(L.getToxLoss())
+		L.adjustToxLoss(-REM)
+	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
+	return ..()
+
+/datum/reagent/toxin/xeno_growthtoxin/overdose_process(mob/living/L, metabolism)
+	L.adjustOxyLoss(2)
 	L.Jitter(4)
 
-/datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.Losebreath(2)
 

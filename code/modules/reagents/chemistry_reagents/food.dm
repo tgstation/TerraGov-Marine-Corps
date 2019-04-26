@@ -14,7 +14,7 @@
 	var/targ_temp = BODYTEMP_NORMAL
 	taste_description = "generic food"
 
-/datum/reagent/consumable/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/on_mob_life(mob/living/L, metabolism)
 	current_cycle++
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -35,7 +35,7 @@
 	var/burn_heal = 0
 	var/blood_gain = 0.4
 
-/datum/reagent/consumable/nutriment/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/nutriment/on_mob_life(mob/living/L, metabolism)
 	if(prob(50))
 		L.heal_limb_damage(brute_heal,burn_heal)
 	if(iscarbon(L))
@@ -129,7 +129,7 @@
 	var/agony_start = 20
 	var/agony_amount = 2
 
-/datum/reagent/consumable/capsaicin/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/capsaicin/on_mob_life(mob/living/L, metabolism)
 	if(holder.has_reagent("frostoil"))
 		holder.remove_reagent("frostoil", 5)
 	if(ishuman(L))
@@ -160,12 +160,10 @@
 	agony_start = 3
 	agony_amount = 4
 
-/datum/reagent/consumable/capsaicin/condensed/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
+/datum/reagent/consumable/capsaicin/condensed/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
 	. = ..()
-	if(!.)
-		return
 	if(!(method in list(TOUCH, VAPOR)) || !ishuman(L))
-		return TRUE
+		return
 	var/mob/living/carbon/human/victim = L
 	var/mouth_covered = 0
 	var/eyes_covered = 0
@@ -234,7 +232,7 @@
 	targ_temp = - 50
 	adj_temp = 10
 
-/datum/reagent/consumable/frostoil/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/frostoil/on_mob_life(mob/living/L, metabolism)
 	if(prob(1))
 		L.emote("shiver")
 	if(holder.has_reagent("capsaicin"))
@@ -250,12 +248,12 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "salt"
 
-/datum/reagent/consumable/sodiumchloride/overdose_process(mob/living/L, alien)
+/datum/reagent/consumable/sodiumchloride/overdose_process(mob/living/L, metabolism)
 	L.confused = max(L.confused, 20)
 	if(prob(10))
 		L.emote(pick("sigh","grumble","frown"))
 
-/datum/reagent/consumable/sodiumchloride/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/consumable/sodiumchloride/overdose_crit_process(mob/living/L, metabolism)
 	L.Jitter(5) //Turn super salty
 	if(prob(10))
 		L.KnockDown(10)
@@ -296,7 +294,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "mushroom"
 
-/datum/reagent/consumable/psilocybin/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/psilocybin/on_mob_life(mob/living/L, metabolism)
 	L.druggy = max(L.druggy, 30)
 	switch(current_cycle)
 		if(1 to 5)
@@ -320,12 +318,12 @@
 				L.emote(pick("twitch","giggle"))
 	return ..()
 
-/datum/reagent/consumable/psilocybin/overdose_process(mob/living/L, alien)
+/datum/reagent/consumable/psilocybin/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 	if(prob(15))
 		L.KnockOut(5)
 
-/datum/reagent/consumable/psilocybin/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/consumable/psilocybin/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(2, TOX)
 	if(prob(60))
 		L.KnockOut(3)
@@ -362,10 +360,10 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "sweetness"
 
-/datum/reagent/consumable/enzyme/overdose_process(mob/living/L, alien)
+/datum/reagent/consumable/enzyme/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, BURN)
 
-/datum/reagent/consumable/enzyme/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/consumable/enzyme/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(2, BURN)
 
 /datum/reagent/consumable/dry_ramen
@@ -423,7 +421,7 @@
 	nutriment_factor = 15
 	taste_description = "sweetness"
 
-/datum/reagent/consumable/honey/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/honey/on_mob_life(mob/living/L, metabolism)
 	L.reagents.add_reagent("sugar",3)
 	L.adjustBruteLoss(-0,5 * REM, FALSE)
 	L.adjustFireLoss(-0,5 * REM, FALSE)

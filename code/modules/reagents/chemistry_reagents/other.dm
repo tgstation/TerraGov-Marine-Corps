@@ -9,7 +9,7 @@
 	data = new/list("blood_DNA"=null,"blood_type"=null,"blood_colour"= "#A10808","viruses"=null,"resistances"=null, "trace_chem"=null)
 
 
-/datum/reagent/blood/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
+/datum/reagent/blood/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
 	if(!iscarbon(L) || !data || !data["viruses"])
 		return
 	var/mob/living/carbon/C = L
@@ -23,19 +23,12 @@
 			C.contract_disease(D)
 
 /datum/reagent/blood/reaction_turf(turf/T, volume)//splash the blood all over the place
-	if(!(volume >= 3))
+	if(volume < 3)
 		return
 	var/list/L = list()
 	if(data["blood_DNA"])
 		L = list(data["blood_DNA"] = data["blood_type"])
 	T.add_blood(L , color)
-
-/datum/reagent/blood/yaut_blood
-	name = "Green Blood"
-	id = "greenblood"
-	description = "A thick green blood, definitely not human."
-	color = "#20d450"
-	taste_description = "eternal youth"
 
 /datum/reagent/blood/synth_blood
 	name = "Synthetic Blood"
@@ -43,13 +36,6 @@
 	color = "#EEEEEE"
 	taste_description = "sludge"
 	description = "A synthetic blood-like liquid used by all Synthetics."
-
-/datum/reagent/blood/zomb_blood
-	name = "Grey Blood"
-	id = "greyblood"
-	color = "#333333"
-	taste_description = "grossness"
-	description = "A greyish liquid with the same consistency as blood."
 
 /datum/reagent/blood/xeno_blood
 	name = "Acid Blood"
@@ -67,7 +53,7 @@
 	taste_description = "slime"
 	color = "#C81040" // rgb: 200, 16, 64
 
-/datum/reagent/vaccine/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
+/datum/reagent/vaccine/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
 	if(!iscarbon(L) || !data || (method in list(TOUCH, PATCH)))
 		return
 	var/mob/living/carbon/C = L
@@ -79,8 +65,7 @@
 				D.cure()
 		else if(D.type == data)
 			D.cure()
-
-	C.resistances += data
+	C.resistances |= data
 
 /datum/reagent/water
 	name = "Water"
@@ -101,12 +86,12 @@
 		if(!cube.package)
 			cube.Expand()
 
-/datum/reagent/water/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE) //Splashing people with water can help put them out!
+/datum/reagent/water/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0) //Splashing people with water can help put them out!
+	. = ..()
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(-(volume / 10))
 		if(L.fire_stacks <= 0)
 			L.ExtinguishMob()
-	return
 
 /datum/reagent/water/holywater
 	name = "Holy Water"
@@ -131,10 +116,10 @@
 	if(volume >= 1)
 		T.wet_floor(FLOOR_WET_LUBE)
 
-/datum/reagent/lube/overdose_process(mob/living/L, alien)
+/datum/reagent/lube/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(2, TOX)
 
-/datum/reagent/lube/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/lube/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(3, TOX)
 
 /datum/reagent/space_drugs
@@ -147,7 +132,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
-/datum/reagent/space_drugs/on_mob_life(mob/living/L, alien)
+/datum/reagent/space_drugs/on_mob_life(mob/living/L, metabolism)
 	L.set_drugginess(15)
 	if(prob(10) && !L.incapacitated(TRUE) && !L.pulledby && isfloorturf(L.loc))
 		step(L, pick(cardinal))
@@ -155,13 +140,13 @@
 		L.emote(pick("twitch","drool","moan","giggle"))
 	return ..()
 
-/datum/reagent/space_drugs/overdose_process(mob/living/L, alien)
+/datum/reagent/space_drugs/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(0.5, TOX)
 	if(prob(5) && !L.stat)
 		L.KnockOut(5)
 	L.hallucination += 2
 
-/datum/reagent/space_drugs/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/space_drugs/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 	if(prob(10) && !L.stat)
 		L.KnockOut(5)
@@ -177,18 +162,18 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "bitterness"
 
-/datum/reagent/serotrotium/on_mob_life(mob/living/L, alien)
+/datum/reagent/serotrotium/on_mob_life(mob/living/L, metabolism)
 	if(prob(7))
 		L.emote(pick("twitch","drool","moan","gasp","yawn"))
 	if(prob(2))
 		L.drowsyness += 5
 	return ..()
 
-/datum/reagent/serotrotium/overdose_process(mob/living/L, alien)
+/datum/reagent/serotrotium/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(0.3, TOX)
 	L.drowsyness = max(L.drowsyness, 5)
 
-/datum/reagent/serotrotium/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/serotrotium/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(0.7, TOX)
 	if(prob(10) && !L.stat)
 		L.Sleeping(30)
@@ -204,8 +189,8 @@
 
 	custom_metabolism = 0.01
 
-/datum/reagent/oxygen/on_mob_life(mob/living/L, alien)
-	if(alien & IS_VOX)
+/datum/reagent/oxygen/on_mob_life(mob/living/L, metabolism)
+	if(metabolism & IS_VOX)
 		L.adjustToxLoss(REAGENTS_METABOLISM)
 	return ..()
 
@@ -228,8 +213,8 @@
 
 	custom_metabolism = 0.01
 
-/datum/reagent/nitrogen/on_mob_life(mob/living/L, alien)
-	if(alien & IS_VOX)
+/datum/reagent/nitrogen/on_mob_life(mob/living/L, metabolism)
+	if(metabolism & IS_VOX)
 		L.adjustOxyLoss(-2*REM)
 	return ..()
 
@@ -259,7 +244,7 @@
 	color = "#484848" // rgb: 72, 72, 72
 	taste_multi = 0
 
-/datum/reagent/mercury/on_mob_life(mob/living/L, alien)
+/datum/reagent/mercury/on_mob_life(mob/living/L, metabolism)
 	if(!L.incapacitated(TRUE) && !L.pulledby && isfloorturf(L.loc))
 		step(L, pick(cardinal))
 	if(prob(5))
@@ -302,14 +287,14 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "chlorine"
 
-/datum/reagent/chlorine/on_mob_life(mob/living/L, alien)
+/datum/reagent/chlorine/on_mob_life(mob/living/L, metabolism)
 	L.take_limb_damage(REM, 0)
 	return ..()
 
-/datum/reagent/chlorine/overdose_process(mob/living/L, alien)
+/datum/reagent/chlorine/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 
-/datum/reagent/chlorine/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/chlorine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 
 /datum/reagent/fluorine
@@ -322,14 +307,14 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "acid"
 
-/datum/reagent/fluorine/on_mob_life(mob/living/L, alien)
+/datum/reagent/fluorine/on_mob_life(mob/living/L, metabolism)
 	L.adjustToxLoss(REM)
 	return ..()
 
-/datum/reagent/fluorine/overdose_process(mob/living/L, alien)
+/datum/reagent/fluorine/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 
-/datum/reagent/fluorine/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/fluorine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 
 /datum/reagent/sodium
@@ -358,17 +343,17 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "metal"
 
-/datum/reagent/lithium/on_mob_life(mob/living/L, alien)
+/datum/reagent/lithium/on_mob_life(mob/living/L, metabolism)
 	if(!L.incapacitated(TRUE) && !L.pulledby && isfloorturf(L.loc))
 		step(L, pick(cardinal))
 	if(prob(5))
 		L.emote(pick("twitch","drool","moan"))
 	return ..()
 
-/datum/reagent/lithium/overdose_process(mob/living/L, alien)
+/datum/reagent/lithium/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX) //Overdose starts getting bad
 
-/datum/reagent/lithium/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/lithium/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(2, TOX) //Overdose starts getting bad
 
 /datum/reagent/glycerol
@@ -396,7 +381,7 @@
 	color = "#C7C7C7" // rgb: 199,199,199
 	taste_description = "the colour blue and regret"
 
-/datum/reagent/radium/on_mob_life(mob/living/L, alien)
+/datum/reagent/radium/on_mob_life(mob/living/L, metabolism)
 	L.apply_effect(2*REM/L.metabolism_efficiency,IRRADIATE,0)
 	return ..()
 
@@ -420,7 +405,7 @@
 		W.thermite = TRUE
 		W.add_overlay(image('icons/effects/effects.dmi',icon_state = "#673910"))
 
-/datum/reagent/thermite/on_mob_life(mob/living/L, alien)
+/datum/reagent/thermite/on_mob_life(mob/living/L, metabolism)
 	L.adjustFireLoss(1)
 	return ..()
 
@@ -433,17 +418,17 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "iron"
 
-/datum/reagent/iron/on_mob_life(mob/living/L, alien)
+/datum/reagent/iron/on_mob_life(mob/living/L, metabolism)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.blood_volume < BLOOD_VOLUME_NORMAL)
 			C.blood_volume += 0.8
 	return ..()
 
-/datum/reagent/iron/overdose_process(mob/living/L, alien)
+/datum/reagent/iron/overdose_process(mob/living/L, metabolism)
 	L.apply_damages(1, 0, 1)
 
-/datum/reagent/iron/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/iron/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(1, 0, 1)
 
 /datum/reagent/gold
@@ -467,7 +452,7 @@
 	color = "#B8B8C0" // rgb: 184, 184, 192
 	taste_description = "the inside of a reactor"
 
-/datum/reagent/uranium/on_mob_life(mob/living/L, alien)
+/datum/reagent/uranium/on_mob_life(mob/living/L, metabolism)
 	L.apply_effect(1/L.metabolism_efficiency,IRRADIATE,0)
 	return ..()
 
@@ -510,18 +495,16 @@
 	L.adjustToxLoss(1)
 	return ..()
 
-/datum/reagent/fuel/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)//Splashing people with welding fuel to make them easy to ignite!
+/datum/reagent/fuel/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)//Splashing people with welding fuel to make them easy to ignite!
 	. = ..()
-	if(!.)
-		return
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(volume / 10)
 	return TRUE
 
-/datum/reagent/fuel/overdose_process(mob/living/L, alien)
+/datum/reagent/fuel/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 
-/datum/reagent/fuel/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/fuel/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 
 /datum/reagent/space_cleaner
@@ -547,10 +530,8 @@
 			reaction_obj(C, volume)
 			qdel(C)
 
-/datum/reagent/space_cleaner/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
+/datum/reagent/space_cleaner/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
 	. = ..()
-	if(!.)
-		return
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.r_hand)
@@ -579,10 +560,10 @@
 			return
 	L.clean_blood()
 
-/datum/reagent/space_cleaner/overdose_process(mob/living/L, alien)
+/datum/reagent/space_cleaner/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 
-/datum/reagent/space_cleaner/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/space_cleaner/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 
 /datum/reagent/cryptobiolin
@@ -595,15 +576,15 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
-/datum/reagent/cryptobiolin/on_mob_life(mob/living/L, alien)
+/datum/reagent/cryptobiolin/on_mob_life(mob/living/L, metabolism)
 	L.Dizzy(2)
 	L.confused = max(L.confused, 20)
 	return ..()
 
-/datum/reagent/cryptobiolin/overdose_process(mob/living/L, alien)
+/datum/reagent/cryptobiolin/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 
-/datum/reagent/cryptobiolin/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/cryptobiolin/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 
 /datum/reagent/impedrezene
@@ -616,7 +597,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
-/datum/reagent/impedrezene/on_mob_life(mob/living/L, alien)
+/datum/reagent/impedrezene/on_mob_life(mob/living/L, metabolism)
 	L.Jitter(-5)
 	if(prob(80))
 		L.adjustBrainLoss(2*REM, TRUE)
@@ -626,10 +607,10 @@
 		L.emote("drool")
 	return ..()
 
-/datum/reagent/impedrezene/overdose_process(mob/living/L, alien)
+/datum/reagent/impedrezene/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX) //Overdose starts getting bad
 
-/datum/reagent/impedrezene/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/impedrezene/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX) //Overdose starts getting bad
 
 
@@ -643,9 +624,9 @@
 	reagent_state = LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
 
-/datum/reagent/nanites/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
+/datum/reagent/nanites/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
 	if(!iscarbon(L))
-		return FALSE
+		return
 	var/mob/living/carbon/C = L
 	if(method in list(INJECT, INGEST) || prob(5 * volume))
 		C.contract_disease(new /datum/disease/robotic_transformation(FALSE), TRUE)
@@ -658,9 +639,9 @@
 	color = "#535E66" // rgb: 83, 94, 102
 	taste_description = "sludge"
 
-/datum/reagent/xenomicrobes/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
+/datum/reagent/xenomicrobes/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
 	if(!iscarbon(L))
-		return FALSE
+		return
 	var/mob/living/carbon/C = L
 	if(method in list(INJECT, INGEST) || prob(5 * volume))
 		C.contract_disease(new /datum/disease/xeno_transformation(FALSE), TRUE)
@@ -721,7 +702,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "bitterness"
 
-/datum/reagent/lipozine/on_mob_life(mob/living/L, alien)
+/datum/reagent/lipozine/on_mob_life(mob/living/L, metabolism)
 	if(!iscarbon(L))
 		return ..()
 	var/mob/living/carbon/C = L
@@ -734,49 +715,44 @@
 		C.adjustToxLoss(1)
 	return ..()
 
-/datum/reagent/consumable/lipozine/overdose_process(mob/living/L, alien)
+/datum/reagent/consumable/lipozine/overdose_process(mob/living/L, metabolism)
 	L.apply_damages(0, 1, 1)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.nutrition > 100)
 			C.nutrition -= 10
 
-/datum/reagent/consumable/lipozine/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/consumable/lipozine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(1, 3, 1)
 
-/datum/reagent/xeno_neurotoxin
-	name = "Neurotoxin"
-	id = "xeno_toxin"
-	description = "A debilitating nerve toxin. Impedes motor control. Causes temporary blindness, hallucinations and deafness at higher doses."
-	reagent_state = LIQUID
-	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = 1.50 // Fast meta rate.
-	overdose_threshold = REAGENTS_OVERDOSE
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
-	scannable = TRUE
-	taste_description = "bitterness"
+/datum/reagent/sterilizine
+	name = "Sterilizine"
+	id = "sterilizine"
+	description = "Sterilizes wounds in preparation for surgery."
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
 
-/datum/reagent/xeno_neurotoxin/on_mob_life(mob/living/L, alien)
-	var/halloss_damage = volume * 2 * REM
-	L.apply_damage(halloss_damage, HALLOSS) //1st level neurotoxin effects: halloss/pain
-	if(volume > 5) //2nd level neurotoxin effects: screen shake, drug overlay, stuttering, minor toxin damage
-		L.adjust_drugginess(1.1)
-		L.stuttering = max(L.stuttering, 1)
-	if(volume > 15) //3rd level neurotoxin effects: eye blur
-		L.blur_eyes(5)
-	if(volume > 20) //4th level neurotoxin effects: blindness, deafness
-		L.adjustEarDamage(0, 1)
-		L.blind_eyes(5)
-	if(volume > 25) //5th level neurotoxin effects: paralysis
-		L.KnockDown(1)
+/datum/reagent/sterilizine/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+	if(!(method in list(TOUCH, VAPOR, PATCH)))
+		return
+	L.germ_level -= min(volume * 20 * touch_protection, L.germ_level)
+	if((L.getFireLoss() > 30 || L.getBruteLoss() > 30) && prob(10)) // >Spraying space bleach on open wounds
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			if(C.species.species_flags & NO_PAIN)
+				return
+		if(show_message)
+			to_chat(L, "<span class='warning'>Your open wounds feel like they're on fire!</span>")
+		L.emote(pick("scream","pain","moan"))
+		L.flash_pain()
+		L.reagent_shock_modifier -= PAIN_REDUCTION_MEDIUM
+
+/datum/reagent/sterilizine/reaction_obj(obj/O, volume)
+	O.germ_level -= min(volume*20, O.germ_level)
+
+/datum/reagent/medicine/sterilizine/reaction_turf(turf/T, volume)
+	T.germ_level -= min(volume*20, T.germ_level)
+
+/datum/reagent/sterilizine/on_mob_life(mob/living/L, metabolism)
+	L.adjustToxLoss(2*REM)
 	return ..()
-
-
-/datum/reagent/xeno_neurotoxin/overdose_process(mob/living/L, alien)
-	L.adjustOxyLoss(5) //Overdose starts applying more oxy damage
-	L.Jitter(4) //Lets Xenos know they're ODing and should probably stop.
-
-
-/datum/reagent/xeno_neurotoxin/overdose_crit_process(mob/living/L, alien)
-	L.Losebreath(2) //Can't breathe; for punishing the bullies

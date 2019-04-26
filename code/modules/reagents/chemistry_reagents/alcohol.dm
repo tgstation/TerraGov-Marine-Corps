@@ -34,7 +34,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 101 and beyond: Lethally toxic - Swift death.
 */
 
-/datum/reagent/consumable/ethanol/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/ethanol/on_mob_life(mob/living/L, metabolism)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.drunkenness < volume * boozepwr * ALCOHOL_THRESHOLD_MODIFIER)
@@ -66,10 +66,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		else
 			to_chat(usr, "<span class='warning'>[O]'s ink is smeared by [name], but doesn't wash away!</span>")
 
-/datum/reagent/consumbale/ethanol/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
+/datum/reagent/consumbale/ethanol/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
 	. = ..()
-	if(!.)
-		return
 	if(method in list(TOUCH, VAPOR, PATCH))
 		L.adjust_fire_stacks(round(volume * 0.65))
 
@@ -97,7 +95,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "spiked latte"
 	boozepwr = 45
 
-/datum/reagent/consumable/ethanol/kahlua/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/ethanol/kahlua/on_mob_life(mob/living/L, metabolism)
 	L.Dizzy(-4)
 	L.drowsyness = max(L.drowsyness-2, 0)
 	L.AdjustSleeping(-3)
@@ -139,7 +137,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	adj_temp = 5
 	targ_temp = 305
 
-/datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/L, metabolism)
 	L.drowsyness = max(0,L.drowsyness-7)
 	L.AdjustSleeping(-40)
 	L.Jitter(5)
@@ -153,7 +151,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "grain alcohol"
 	boozepwr = 65
 
-/datum/reagent/consumable/ethanol/vodka/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/ethanol/vodka/on_mob_life(mob/living/L, metabolism)
 	L.radiation = max(L.radiation-1,0)
 	return ..()
 
@@ -247,7 +245,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "death and licorice"
 	boozepwr = 80
 
-/datum/reagent/consumable/ethanol/absinthe/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/ethanol/absinthe/on_mob_life(mob/living/L, metabolism)
 	if(prob(10))
 		L.hallucination += 4 //Reference to the urban myth
 	return ..()
@@ -260,7 +258,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "evil velvet"
 	boozepwr = 40
 
-/datum/reagent/consumable/ethanol/pwine/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/ethanol/pwine/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 19)
 			L.Jitter(2)
@@ -326,7 +324,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 35
 	taste_description = "salty sea water"
 
-/datum/reagent/consumable/ethanol/deadrum/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/ethanol/deadrum/on_mob_life(mob/living/L, metabolism)
 	L.Dizzy(5)
 	return ..()
 
@@ -430,7 +428,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 55
 
 
-/datum/reagent/consumable/ethanol/bloody_mary/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/ethanol/bloody_mary/on_mob_life(mob/living/L, metabolism)
 	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
 		L.blood_volume += 0.3 //Bloody Mary slowly restores blood loss.
 	return ..()
@@ -470,7 +468,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "JUSTICE"
 	boozepwr = 90 //THE FIST OF THE LAW IS STRONG AND HARD
 
-/datum/reagent/consumable/ethanol/beepsky_smash/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/ethanol/beepsky_smash/on_mob_life(mob/living/L, metabolism)
 	L.Stun(2)
 	return ..()
 
@@ -806,7 +804,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 59
 	taste_description = "a pencil eraser"
 
-/datum/reagent/consumable/ethanol/silencer/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/ethanol/silencer/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 50)
 			L.Dizzy(5)

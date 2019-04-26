@@ -34,17 +34,11 @@
 	. = ..()
 	holder = null
 
-/datum/reagent/proc/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
-	if(!istype(L))
-		return FALSE
-
-	if(method == VAPOR) //smoke, foam, spray
-		if(L.reagents)
-			var/modifier = CLAMP01(1 - touch_protection)
-			var/amount = round(volume * modifier, 0.1)
-			if(amount >= 0.5)
-				L.reagents.add_reagent(id, amount)
-	return TRUE
+/datum/reagent/proc/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+	if(method == VAPOR && L.reagents) //foam, spray
+		var/amount = round(volume * touch_protection, 0.1)
+		if(amount >= 0.5)
+			L.reagents.add_reagent(id, amount)
 
 /datum/reagent/proc/reaction_obj(obj/O, volume)
 	return
@@ -52,35 +46,35 @@
 /datum/reagent/proc/reaction_turf(turf/T, volume)
 	return
 
-/datum/reagent/proc/on_mob_life(mob/living/L, alien)
+/datum/reagent/proc/on_mob_life(mob/living/L, metabolism)
 	purge(L)
 	current_cycle++
 	holder.remove_reagent(id, custom_metabolism * L.metabolism_efficiency) //By default it slowly disappears.
 	return TRUE
 
 // Called when this reagent is first added to a mob
-/datum/reagent/proc/on_mob_add(mob/living/L, alien)
+/datum/reagent/proc/on_mob_add(mob/living/L, metabolism)
 	return
 
 // Called when this reagent is removed while inside a mob
-/datum/reagent/proc/on_mob_delete(mob/living/L, alien)
+/datum/reagent/proc/on_mob_delete(mob/living/L, metabolism)
 	return
 
 // Called if the reagent has passed the overdose threshold and is set to be triggering overdose effects
-/datum/reagent/proc/overdose_process(mob/living/L, alien)
+/datum/reagent/proc/overdose_process(mob/living/L, metabolism)
 	return
 
-/datum/reagent/proc/on_overdose_start(mob/living/L, alien)
+/datum/reagent/proc/on_overdose_start(mob/living/L, metabolism)
 	if(prob(30)) //placeholder vague feedback
 		to_chat(L, "<span class='notice'>You feel a little nauseous...</span>")
 	log_combat(L, L, "has been overdosed on [name].")
 	return
 
 // Similar to the above, but for CRITICAL overdose effects.
-/datum/reagent/proc/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/proc/overdose_crit_process(mob/living/L, metabolism)
 	return
 
-/datum/reagent/proc/on_overdose_crit_start(mob/living/L, alien)
+/datum/reagent/proc/on_overdose_crit_start(mob/living/L, metabolism)
 	log_combat(L, L, "has been critically overdosed on [name].")
 	to_chat(L, "<span class='danger'>You feel like you took too much of [name]!</span>")
 	return
@@ -103,22 +97,22 @@
 /datum/reagent/proc/on_ex_act(severity)
 	return
 
-/datum/reagent/proc/addiction_act_stage1(mob/living/L, alien)
+/datum/reagent/proc/addiction_act_stage1(mob/living/L, metabolism)
 	if(prob(30))
 		to_chat(L, "<span class='notice'>You feel like having some [name] right about now.</span>")
 	return
 
-/datum/reagent/proc/addiction_act_stage2(mob/living/L, alien)
+/datum/reagent/proc/addiction_act_stage2(mob/living/L, metabolism)
 	if(prob(30))
 		to_chat(L, "<span class='notice'>You feel like you need [name]. You just can't get enough.</span>")
 	return
 
-/datum/reagent/proc/addiction_act_stage3(mob/living/L, alien)
+/datum/reagent/proc/addiction_act_stage3(mob/living/L, metabolism)
 	if(prob(30))
 		to_chat(L, "<span class='danger'>You have an intense craving for [name].</span>")
 	return
 
-/datum/reagent/proc/addiction_act_stage4(mob/living/L, alien)
+/datum/reagent/proc/addiction_act_stage4(mob/living/L, metabolism)
 	if(prob(30))
 		to_chat(L, "<span class='boldannounce'>You're not feeling good at all! You really need some [name].</span>")
 	return
@@ -131,7 +125,7 @@
 
 	return rs.Join(" | ")
 
-/datum/reagent/proc/purge(mob/living/L, alien)
+/datum/reagent/proc/purge(mob/living/L, metabolism)
 	if(length(purge_list))
 		var/count = length(purge_list)
 		for(var/datum/reagent/R in L.reagents.reagent_list)
