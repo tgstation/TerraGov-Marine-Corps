@@ -812,6 +812,17 @@
 	scannable = TRUE
 
 
+/datum/reagent/xeno_growthtoxin/on_mob_life(mob/living/L)
+	if(L.getOxyLoss())
+		L.adjustOxyLoss(-REM)
+	if(L.getBruteLoss() || L.getFireLoss())
+		L.heal_limb_damage(REM, REM)
+	if(L.getToxLoss())
+		L.adjustToxLoss(-REM)
+	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
+	return ..()
+
+
 /datum/reagent/xeno_growthtoxin/overdose_process(mob/living/M)
 	M.adjustOxyLoss(2)
 	M.Jitter(4) //Lets Xenos know they're ODing and should probably stop.
