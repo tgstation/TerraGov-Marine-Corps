@@ -140,7 +140,7 @@
 	return
 
 /mob/living/set_away_time(new_away = world.time)
-	away_time = world.time //Generic way to handle away time, currently unused.
+	away_time = new_away //Generic way to handle away time, currently unused.
 
 
 /mob/living/carbon/Xenomorph/set_away_time(new_away = -XENO_AFK_TIMER)
