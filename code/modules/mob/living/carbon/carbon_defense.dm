@@ -60,4 +60,4 @@
 		if(prob(10 * S.strength * protection))
 			to_chat(src, "<span class='danger'>Your body goes numb where the gas touches it!</span>")
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
-		S.reagents?.reaction(src, VAPOR, S.fraction)
+		S.reagents?.reaction(src, TOUCH, S.fraction)
