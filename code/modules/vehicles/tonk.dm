@@ -171,7 +171,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	if(!M.mind || !(!M.mind.cm_skills || M.mind.cm_skills.large_vehicle >= SKILL_LARGE_VEHICLE_TRAINED))
 		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into [src].</span>")
-	var/time = 10 SECONDS - 2 SECONDS * M.mind.cm_skills.large_vehicle
+	var/time = 10 SECONDS - (2 SECONDS * M.mind.cm_skills.large_vehicle)
 	if(do_after(M, time, TRUE, 5, BUSY_ICON_BUILD) && M.Adjacent(src))
 		return TRUE
 
