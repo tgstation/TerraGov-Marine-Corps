@@ -12,7 +12,7 @@
 	possible_transfer_amounts = list(1,3,5,10,15)
 	volume = 60
 	possible_transfer_amounts = null
-	container_type = OPENCONTAINER
+	init_reagent_flags = OPENCONTAINER
 	flags_equip_slot = ITEM_SLOT_BELT
 	flags_item = NOBLUDGEON
 	w_class = 2.0
@@ -180,7 +180,7 @@
 
 /obj/item/reagent_container/hypospray/advanced
 	icon_state = "hypo"
-	container_type = REFILLABLE|DRAINABLE
+	init_reagent_flags = REFILLABLE|DRAINABLE
 	liquifier = TRUE
 
 /obj/item/reagent_container/hypospray/proc/handle_interface(mob/user, flag1)

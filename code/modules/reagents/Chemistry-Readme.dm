@@ -239,7 +239,7 @@ About the Tools:
 			'pouring' our reagents into something else.
 
 		atom/proc/is_open_container()
-			Checks atom/var/container_type & OPENCONTAINER.
+			Checks if the associated reagents exist and have the OPENCONTAINER bitfield enabled.
 			If this returns 1 , you can use syringes, beakers etc
 			to manipulate the contents of this object.
 			If it's 0, you'll need to write your own custom reagent

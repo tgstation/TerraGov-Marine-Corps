@@ -4,15 +4,12 @@
 	. = ..()
 
 	if(reagents && !(species.species_flags & NO_CHEM_METABOLIZATION))
-		if(species && species.has_organ["liver"])
+		if(species.has_organ["liver"])
 			var/datum/internal_organ/liver/L = internal_organs_by_name["liver"]
-			var/alien = (species && species.reagent_tag) ? species.reagent_tag : null
+			var/alien = species.reagent_tag
 			var/overdose = (species.species_flags & NO_OVERDOSE) ? FALSE : TRUE
 			if(!(status_flags & GODMODE)) //godmode doesn't work as intended anyway
-				if(L)
-					reagents.metabolize(src, alien, can_overdose = overdose)
-				else
-					reagents.metabolize(src, alien, can_overdose = FALSE, liverless=TRUE)
+				reagents.metabolize(src, alien, can_overdose = overdose, L ? FALSE : TRUE)
 
 	if(!(species.species_flags & IS_SYNTHETIC))
 		//Nutrition decrease

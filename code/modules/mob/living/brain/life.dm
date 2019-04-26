@@ -85,7 +85,7 @@
 	. = ..()
 
 	if(reagents)
-		reagents.metabolize(src, 0, can_overdose = TRUE)
+		reagents.metabolize(src, null, can_overdose = TRUE)
 
 	updatehealth()
 

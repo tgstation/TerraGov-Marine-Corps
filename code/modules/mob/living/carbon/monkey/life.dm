@@ -262,7 +262,7 @@
 /mob/living/carbon/monkey/handle_organs()
 	. = ..()
 	if(reagents && reagents.reagent_list.len)
-		reagents.metabolize(src, 0, can_overdose = TRUE)
+		reagents.metabolize(src, species.reagent_tag, can_overdose = TRUE)
 
 	return
 
