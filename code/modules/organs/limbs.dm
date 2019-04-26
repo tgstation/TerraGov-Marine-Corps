@@ -821,16 +821,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return
 
 /datum/limb/proc/robotize()
-	limb_status &= ~LIMB_BROKEN
-	limb_status &= ~LIMB_BLEEDING
-	limb_status &= ~LIMB_SPLINTED
-	limb_status &= ~LIMB_STABILIZED
-	limb_status &= ~LIMB_AMPUTATED
-	limb_status &= ~LIMB_DESTROYED
-	limb_status &= ~LIMB_NECROTIZED
-	limb_status &= ~LIMB_MUTATED
-	limb_status &= ~LIMB_REPAIRED
-	limb_status |= LIMB_ROBOT
+	wounds.Cut()
+	limb_status = LIMB_ROBOT
 
 	reset_limb_surgeries()
 
