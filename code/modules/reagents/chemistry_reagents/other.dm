@@ -9,7 +9,7 @@
 	data = new/list("blood_DNA"=null,"blood_type"=null,"blood_colour"= "#A10808","viruses"=null,"resistances"=null, "trace_chem"=null)
 
 
-/datum/reagent/blood/reaction_mob(mob/living/L, method = TOUCH, volume, alien)
+/datum/reagent/blood/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
 	if(!iscarbon(L) || !data || !data["viruses"])
 		return
 	var/mob/living/carbon/C = L
@@ -67,7 +67,7 @@
 	taste_description = "slime"
 	color = "#C81040" // rgb: 200, 16, 64
 
-/datum/reagent/vaccine/reaction_mob(mob/living/L, method = TOUCH, volume, alien)
+/datum/reagent/vaccine/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
 	if(!iscarbon(L) || !data || (method in list(TOUCH, PATCH)))
 		return
 	var/mob/living/carbon/C = L
@@ -101,7 +101,7 @@
 		if(!cube.package)
 			cube.Expand()
 
-/datum/reagent/water/reaction_mob(mob/living/L, method=TOUCH, volume, alien)//Splashing people with water can help put them out!
+/datum/reagent/water/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE) //Splashing people with water can help put them out!
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(-(volume / 10))
 		if(L.fire_stacks <= 0)
@@ -510,9 +510,13 @@
 	L.adjustToxLoss(1)
 	return ..()
 
-/datum/reagent/fuel/reaction_mob(mob/living/L, method = TOUCH, volume, alien)//Splashing people with welding fuel to make them easy to ignite!
+/datum/reagent/fuel/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)//Splashing people with welding fuel to make them easy to ignite!
+	. = ..()
+	if(!.)
+		return
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(volume / 10)
+	return TRUE
 
 /datum/reagent/fuel/overdose_process(mob/living/L, alien)
 	L.apply_damage(1, TOX)
@@ -543,8 +547,9 @@
 			reaction_obj(C, volume)
 			qdel(C)
 
-/datum/reagent/space_cleaner/reaction_mob(mob/living/L, method = TOUCH, volume, alien)
-	if(!(method in list(TOUCH, VAPOR, PATCH)))
+/datum/reagent/space_cleaner/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
+	. = ..()
+	if(!.)
 		return
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -638,9 +643,9 @@
 	reagent_state = LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
 
-/datum/reagent/nanites/reaction_mob(mob/living/L, method = TOUCH, volume, alien)
+/datum/reagent/nanites/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
 	if(!iscarbon(L))
-		return
+		return FALSE
 	var/mob/living/carbon/C = L
 	if(method in list(INJECT, INGEST) || prob(5 * volume))
 		C.contract_disease(new /datum/disease/robotic_transformation(FALSE), TRUE)
@@ -653,9 +658,9 @@
 	color = "#535E66" // rgb: 83, 94, 102
 	taste_description = "sludge"
 
-/datum/reagent/xenomicrobes/reaction_mob(mob/living/L, method = TOUCH, volume, alien)
+/datum/reagent/xenomicrobes/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
 	if(!iscarbon(L))
-		return
+		return FALSE
 	var/mob/living/carbon/C = L
 	if(method in list(INJECT, INGEST) || prob(5 * volume))
 		C.contract_disease(new /datum/disease/xeno_transformation(FALSE), TRUE)

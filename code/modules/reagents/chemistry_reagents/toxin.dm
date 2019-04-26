@@ -240,18 +240,14 @@
 			tray.check_level_sanity()
 			tray.update_icon()
 
-/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/L, method = TOUCH, volume, alien)
-	if(!iscarbon(L))
-		L.adjustToxLoss(2)
+/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
+	. = ..()
+	if(!. || !ishuman(L))
 		return
-	var/mob/living/carbon/C = L
-	if(!C.wear_mask) // If not wearing a mask
-		C.adjustToxLoss(2)
-	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
-		if(H.dna)
-			if(H.species.species_flags & IS_PLANT) //plantmen take a LOT of damage
-				H.adjustToxLoss(10)
+	var/mob/living/carbon/human/H = L
+	if(H.dna)
+		if(H.species.species_flags & IS_PLANT) //plantmen take a LOT of damage
+			H.adjustToxLoss(10)
 
 /datum/reagent/toxin/sleeptoxin
 	name = "Soporific"
@@ -402,35 +398,39 @@
 	L.take_limb_damage(0, 1*REM)
 	return ..()
 
-/datum/reagent/toxin/acid/reaction_mob(mob/living/L, method=TOUCH, volume, alien)
-	if(!method in list(TOUCH, VAPOR, PATCH))
+/datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
+	. = ..()
+	if(!. || !(method in list(TOUCH, VAPOR, PATCH)))
 		return
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 
 		if(H.head)
 			if(prob(meltprob) && !CHECK_BITFIELD(H.head.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-				to_chat(H, "<span class='danger'>Your headgear melts away but protects you from the acid!</span>")
+				if(show_message)
+					to_chat(H, "<span class='danger'>Your headgear melts away but protects you from the acid!</span>")
 				qdel(H.head)
 				H.update_inv_head(0)
 				H.update_hair(0)
-			else
+			else if(show_message)
 				to_chat(H, "<span class='warning'>Your headgear protects you from the acid.</span>")
 			return
 
 		if(H.wear_mask)
 			if(prob(meltprob) && !CHECK_BITFIELD(H.wear_mask.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-				to_chat(H, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
+				if(show_message)
+					to_chat(H, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
 				qdel(H.wear_mask)
 				H.update_inv_wear_mask(0)
 				H.update_hair(0)
-			else
+			else if(show_message)
 				to_chat(H, "<span class='warning'>Your mask protects you from the acid.</span>")
 			return
 
 		if(H.glasses) //Doesn't protect you from the acid but can melt anyways!
 			if(prob(meltprob) && !CHECK_BITFIELD(H.glasses.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-				to_chat(H, "<span class='danger'>Your glasses melts away!</span>")
+				if(show_message)
+					to_chat(H, "<span class='danger'>Your glasses melts away!</span>")
 				qdel(H.glasses)
 				H.update_inv_glasses(0)
 
@@ -438,10 +438,11 @@
 		var/mob/living/carbon/monkey/MK = L
 		if(MK.wear_mask)
 			if(!CHECK_BITFIELD(MK.wear_mask.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-				to_chat(MK, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
+				if(show_message)
+					to_chat(MK, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
 				qdel(MK.wear_mask)
 				MK.update_inv_wear_mask(0)
-			else
+			else if(show_message)
 				to_chat(MK, "<span class='warning'>Your mask protects you from the acid.</span>")
 			return
 

@@ -146,19 +146,23 @@
 	description = "Sterilizes wounds in preparation for surgery."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-/datum/reagent/medicine/sterilizine/reaction_mob(mob/living/L, method = TOUCH, volume, alien)
+/datum/reagent/medicine/sterilizine/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
+	if(!istype(L))
+		return FALSE
 	if(!(method in list(TOUCH, VAPOR, PATCH)))
-		return
+		return TRUE
 	L.germ_level -= min(volume*20, L.germ_level)
 	if((L.getFireLoss() > 30 || L.getBruteLoss() > 30) && prob(10)) // >Spraying space bleach on open wounds
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			if(C.species.species_flags & NO_PAIN)
 				return
-		to_chat(L, "<span class='warning'>Your open wounds feel like they're on fire!</span>")
+		if(show_message)
+			to_chat(L, "<span class='warning'>Your open wounds feel like they're on fire!</span>")
 		L.emote(pick("scream","pain","moan"))
 		L.flash_pain()
 		L.reagent_shock_modifier -= PAIN_REDUCTION_MEDIUM
+	return TRUE
 
 /datum/reagent/medicine/sterilizine/reaction_obj(obj/O, volume)
 	O.germ_level -= min(volume*20, O.germ_level)

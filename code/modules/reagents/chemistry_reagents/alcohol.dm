@@ -66,9 +66,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		else
 			to_chat(usr, "<span class='warning'>[O]'s ink is smeared by [name], but doesn't wash away!</span>")
 
-/datum/reagent/consumbale/ethanol/reaction_mob(mob/living/L, method=TOUCH, volume, alien)//Splashing people with ethanol isn't quite as good as fuel.
+/datum/reagent/consumbale/ethanol/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
+	. = ..()
+	if(!.)
+		return
 	if(method in list(TOUCH, VAPOR, PATCH))
-		L.adjust_fire_stacks(volume / 15)
+		L.adjust_fire_stacks(round(volume * 0.65))
 
 /datum/reagent/consumable/ethanol/beer
 	name = "Beer"

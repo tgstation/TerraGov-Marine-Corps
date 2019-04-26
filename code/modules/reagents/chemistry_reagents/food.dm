@@ -160,9 +160,12 @@
 	agony_start = 3
 	agony_amount = 4
 
-/datum/reagent/consumable/capsaicin/condensed/reaction_mob(mob/living/L, method=TOUCH, volume, alien)
-	if(!(method in list(TOUCH, VAPOR)) || !ishuman(L))
+/datum/reagent/consumable/capsaicin/condensed/reaction_mob(mob/living/L, method = TOUCH, volume, alien, show_message = TRUE, touch_protection = FALSE)
+	. = ..()
+	if(!.)
 		return
+	if(!(method in list(TOUCH, VAPOR)) || !ishuman(L))
+		return TRUE
 	var/mob/living/carbon/human/victim = L
 	var/mouth_covered = 0
 	var/eyes_covered = 0
@@ -186,10 +189,12 @@
 		if( !safe_thing )
 			safe_thing = victim.glasses
 	if( eyes_covered && mouth_covered )
-		to_chat(victim, "<span class='danger'>Your [safe_thing.name] protects you from the pepperspray!</span>")
+		if(show_message)
+			to_chat(victim, "<span class='danger'>Your [safe_thing.name] protects you from the pepperspray!</span>")
 		return
 	else if( mouth_covered )	// Reduced effects if partially protected
-		to_chat(victim, "<span class='danger'>Your [safe_thing] protect your face from the pepperspray!</span>")
+		if(show_message)
+			to_chat(victim, "<span class='danger'>Your [safe_thing] protect your face from the pepperspray!</span>")
 		victim.blur_eyes(15)
 		victim.blind_eyes(5)
 		victim.Stun(5)
@@ -198,7 +203,8 @@
 		//victim.drop_held_item()
 		return
 	else if( eyes_covered ) // Mouth cover is better than eye cover, except it's actually the opposite.
-		to_chat(victim, "<span class='danger'>Your [safe_thing] protects you from most of the pepperspray!</span>")
+		if(show_message)
+			to_chat(victim, "<span class='danger'>Your [safe_thing] protects you from most of the pepperspray!</span>")
 		if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
 			if(prob(10))
 				victim.Stun(1)
@@ -208,7 +214,8 @@
 		if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
 			if(prob(10))
 				victim.emote("scream")
-		to_chat(victim, "<span class='danger'>You're sprayed directly in the eyes with pepperspray!</span>")
+		if(show_message)
+			to_chat(victim, "<span class='danger'>You're sprayed directly in the eyes with pepperspray!</span>")
 		victim.blur_eyes(25)
 		victim.blind_eyes(10)
 		victim.Stun(5)
