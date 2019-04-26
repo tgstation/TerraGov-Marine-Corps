@@ -40,26 +40,47 @@ SUBSYSTEM_DEF(direction)
 	if(!resumed)
 		currentrun = deepCopyList(processing_mobs)
 
-	for(var/ID in currentrun)
+	for(var/squad_id in currentrun)
 		var/mob/living/L
-		if(iscarbon(leader_mapping[ID]))
-			var/mob/living/SL = leader_mapping[ID]
-			while(currentrun[SL].len)
-				L = currentrun[SL][currentrun[SL].len]
-				currentrun[SL].len--
-				if(!L)
-					processing_mobs[SL].Remove(L)
-					continue
-				L.update_leader_tracking(SL)
-				if(MC_TICK_CHECK)
-					return
-		else
-			while(currentrun[ID].len)
-				L = currentrun[ID][currentrun[ID].len]
-				currentrun[ID].len--
-				L.clear_leader_tracking()
-				if(MC_TICK_CHECK)
-					return	
+		var/mob/living/carbon/Xenomorph/X
+		var/mob/living/carbon/human/H
+		var/mob/living/SL = leader_mapping[squad_id]
+
+		if(QDELETED(SL) || !isliving(SL))
+			if (!clear_run(squad_id))
+				return
+
+		while(currentrun[squad_id].len)
+			L = currentrun[squad_id][currentrun[squad_id].len]
+			currentrun[squad_id].len--
+			if(QDELETED(L))
+				processing_mobs[squad_id].Remove(L)
+				continue
+			if (isxeno(L))
+				X = L
+				X.update_leader_tracking(SL)
+			else if (ishuman(L))
+				H = L
+				H.update_leader_tracking(SL)
+			if(MC_TICK_CHECK)
+				return
+
+/datum/controller/subsystem/direction/proc/clear_run(squad_id)
+	var/mob/living/L
+	var/mob/living/carbon/Xenomorph/X
+	var/mob/living/carbon/human/H
+	while(currentrun[squad_id].len)
+		L = currentrun[squad_id][currentrun[squad_id].len]
+		currentrun[squad_id].len--
+		if (isxeno(L))
+			X = L
+			X.clear_leader_tracking()
+		else if (ishuman(L))
+			H = L
+			H.clear_leader_tracking()
+		if(MC_TICK_CHECK)
+			return FALSE
+	return TRUE
 
 /datum/controller/subsystem/direction/proc/start_tracking(squad_id, mob/living/carbon/human/H)
 	if(!H)

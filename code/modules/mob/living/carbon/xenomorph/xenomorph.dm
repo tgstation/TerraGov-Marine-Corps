@@ -261,26 +261,32 @@
 	return TRUE
 
 /mob/living/carbon/Xenomorph/update_leader_tracking(mob/living/carbon/Xenomorph/X)
-
 	if(!hud_used || !hud_used.locate_leader)
 		return
 	var/obj/screen/LL_dir = hud_used.locate_leader
-
+	to_chat(world, "[src] has a hud")
 	if(!X || xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
+		to_chat(world, "[src] is not intelligent?")
 		LL_dir.icon_state = "trackoff"
 		return
 
+	to_chat(world, "[src] 1")
 	if(X.z != src.z || get_dist(src,X) < 1 || src == X)
+		to_chat(world, "[src] is too close or zelevel??")
 		LL_dir.icon_state = "trackondirect"
 	else
+		to_chat(world, "[src] 2")
+
 		var/area/A = get_area(src.loc)
 		var/area/QA = get_area(X.loc)
 		if(A.fake_zlevel == QA.fake_zlevel)
+			to_chat(world, "[src] is good?!?")
 			LL_dir.icon_state = "trackon"
-			LL_dir.transform = 0 //Reset and 0 out
-			LL_dir.transform = turn(LL_dir.transform, Get_Angle(src, X))
+			LL_dir.setDir(get_dir(src, X))
 		else
+			to_chat(world, "[src] is wrong zlevle?")
 			LL_dir.icon_state = "trackondirect"
+	to_chat(world, "[src] 9")
 
 
 /mob/living/carbon/Xenomorph/clear_leader_tracking()
