@@ -4,7 +4,6 @@
 	. = ..()
 	name = MAIN_AI_SYSTEM
 	desc = "This is the artificial intelligence system for the [CONFIG_GET(string/ship_name)]. Like many other military-grade AI systems, this one was manufactured by NanoTrasen."
-	ai_headset = new(src)
 
 
 //Should likely just replace this with an actual AI mob in the future. Might as well.
@@ -12,6 +11,7 @@
 	name = "AI"
 	icon = 'icons/Marine/ai.dmi'
 	icon_state = "hydra"
+	voice_name = "<font size=3><b>ARES v3.2</b></font>"
 	anchored = 1
 	canmove = FALSE
 	density = TRUE //Do not want to see past it.
@@ -19,6 +19,10 @@
 	bound_width = 96
 	var/obj/item/radio/headset/almayer/mcom/ai/ai_headset //The thing it speaks into.
 	var/sound/ai_sound //The lines that it plays when speaking.
+
+/mob/living/silicon/decoy/Initialize()
+	. = ..()
+	ai_headset = new(src)
 
 /mob/living/silicon/decoy/Life()
 	if(stat == DEAD)
@@ -60,8 +64,6 @@
 			message = copytext(message, 2)
 		if("broadcast")
 			message_mode = MODE_HEADSET
-		else
-			message = copytext(message, 3)
 
-	ai_headset.talk_into(src, message, message_mode, , GLOB.all_languages[1])
+	ai_headset.talk_into(src, message, message_mode)
 	return TRUE

@@ -38,8 +38,8 @@
 		var/mob/dead/observer/S = i
 		if(!S?.client?.prefs || !(S.client.prefs.toggles_chat & CHAT_GHOSTHIVEMIND))
 			continue
-		var/track = "(<a href='byond://?src=\ref[S];track=\ref[src]'>follow</a>)"
-		S.show_message("[hivemind_name()] [track] <span class='message'>hisses, '[message]'</span></span></i>[hivemind_end()]", 2)
+		var/track = FOLLOW_LINK(S, src)
+		S.show_message("[track] [hivemind_name()] <span class='message'>hisses, '[message]'</span></span></i>[hivemind_end()]", 2)
 
 	hive.hive_mind_message(src, message)
 
