@@ -388,6 +388,6 @@
 
 
 /mob/living/simple_animal/say_mod(input, message_mode)
-	if(length(speak_emote)
+	if(length(speak_emote))
 		verb_say = pick(speak_emote)
 	return ..()
