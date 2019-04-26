@@ -4,4 +4,4 @@
 	speech_verb = "warbles"
 	ask_verb = "warbles"
 	exclaim_verb = "warbles"
-	key = "k"
+	key = "l"
