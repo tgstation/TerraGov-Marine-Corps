@@ -8,10 +8,10 @@
 	reagent_state = LIQUID
 	taste_description = "bitterness"
 
-/datum/reagent/medicine/on_mob_life(mob/living/L, alien)
-	purge(L)
+/datum/reagent/medicine/on_mob_life(mob/living/carbon/M)
+	purge(M)
 	current_cycle++
-	holder.remove_reagent(id, custom_metabolism / L.metabolism_efficiency) //so far metabolism efficiency is fixed to 1, but medicine reagents last longer the better it is.
+	holder.remove_reagent(src.id, custom_metabolism / M.metabolism_efficiency) //so far metabolism efficiency is fixed to 1, but medicine reagents last longer the better it is.
 
 
 /datum/reagent/medicine/inaprovaline
@@ -23,28 +23,27 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
 	scannable = TRUE
 
-/datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/L, alien)
-	L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
-	if(alien & IS_VOX)
-		L.adjustToxLoss(REAGENTS_METABOLISM)
-	else if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		if(C.losebreath > 10)
-			C.set_Losebreath(10)
-	return ..()
+/datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/carbon/M, alien)
+	M.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
+	if(alien && alien == IS_VOX)
+		M.adjustToxLoss(REAGENTS_METABOLISM)
+	else
+		if(M.losebreath > 10)
+			M.set_Losebreath(10)
+	..()
 
-/datum/reagent/medicine/inaprovaline/overdose_process(mob/living/L, alien)
-	L.Jitter(5) //Overdose causes a spasm
-	L.KnockOut(20)
+/datum/reagent/medicine/inaprovaline/overdose_process(mob/living/M, alien)
+	M.Jitter(5) //Overdose causes a spasm
+	M.KnockOut(20)
 
-/datum/reagent/medicine/inaprovaline/overdose_crit_process(mob/living/L, alien)
-	L.drowsyness = max(L.drowsyness, 20)
-	if(ishuman(L)) //Critical overdose causes total blackout and heart damage. Too much stimulant
-		var/mob/living/carbon/human/H = L
+/datum/reagent/medicine/inaprovaline/overdose_crit_process(mob/living/M, alien)
+	M.drowsyness = max(M.drowsyness, 20)
+	if(ishuman(M)) //Critical overdose causes total blackout and heart damage. Too much stimulant
+		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		E.take_damage(0.5, TRUE)
-	if(prob(10))
-		L.emote(pick("twitch","blink_r","shiver"))
+		if(prob(10))
+			M.emote(pick("twitch","blink_r","shiver"))
 
 /datum/reagent/medicine/ryetalyn
 	name = "Ryetalyn"
@@ -55,26 +54,24 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
-/datum/reagent/medicine/ryetalyn/on_mob_life(mob/living/L, alien)
-	var/update = LAZYLEN(L.mutations)
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		C.disabilities = 0
-	L.mutations = list()
-	L.sdisabilities = 0
-	if(update && ishuman(L))
-		var/mob/living/carbon/human/H = L
+/datum/reagent/medicine/ryetalyn/on_mob_life(mob/living/carbon/M)
+	M.mutations = list()
+	M.disabilities = 0
+	M.sdisabilities = 0
+	// Might need to update appearance for hulk etc.
+	if(length(M.mutations))
+		var/mob/living/carbon/human/H = M
 		H.update_mutations()
-	return ..()
+	..()
 
-/datum/reagent/medicine/ryetalyn/overdose_process(mob/living/L, alien)
-	L.confused = max(L.confused, 20)
-	L.apply_damage(1, TOX)
+/datum/reagent/medicine/ryetalyn/overdose_process(mob/living/M, alien)
+	M.confused = max(M.confused, 20)
+	M.apply_damage(1, TOX)
 
-/datum/reagent/medicine/ryetalyn/overdose_crit_process(mob/living/L, alien)
+/datum/reagent/medicine/ryetalyn/overdose_crit_process(mob/living/M, alien)
 	if(prob(15))
-		L.KnockOut(15)
-	L.apply_damage(3, CLONE)
+		M.KnockOut(15)
+	M.apply_damage(3, CLONE)
 
 /datum/reagent/medicine/paracetamol
 	name = "Paracetamol"
@@ -86,16 +83,16 @@
 	overdose_threshold = REAGENTS_OVERDOSE*2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
 
-/datum/reagent/medicine/paracetamol/on_mob_life(mob/living/L, alien)
-	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
-	return ..()
+/datum/reagent/medicine/paracetamol/on_mob_life(mob/living/M)
+	M.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
+	..()
 
-/datum/reagent/paracetamol/overdose_process(mob/living/L, alien)
-	L.hallucination = max(L.hallucination, 2)
-	L.apply_damage(1, TOX)
+/datum/reagent/paracetamol/overdose_process(mob/living/M, alien)
+	M.hallucination = max(M.hallucination, 2)
+	M.apply_damage(1, TOX)
 
-/datum/reagent/paracetamol/overdose_crit_process(mob/living/L, alien)
-	L.apply_damage(3, TOX)
+/datum/reagent/paracetamol/overdose_crit_process(mob/living/M, alien)
+	M.apply_damage(3, TOX)
 
 /datum/reagent/medicine/tramadol
 	name = "Tramadol"
@@ -107,16 +104,16 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
-/datum/reagent/medicine/tramadol/on_mob_life(mob/living/L)
-	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
-	return ..()
+/datum/reagent/medicine/tramadol/on_mob_life(mob/living/M)
+	M.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
+	..()
 
-/datum/reagent/medicine/tramadol/overdose_process(mob/living/L, alien)
-	L.hallucination = max(L.hallucination, 2) //Hallucinations and tox damage
-	L.apply_damage(1, OXY)
+/datum/reagent/medicine/tramadol/overdose_process(mob/living/M, alien)
+	M.hallucination = max(M.hallucination, 2) //Hallucinations and tox damage
+	M.apply_damage(1, OXY)
 
-/datum/reagent/medicine/tramadol/overdose_crit_process(mob/living/L, alien)
-	L.apply_damage(3, TOX)
+/datum/reagent/medicine/tramadol/overdose_crit_process(mob/living/M, alien)
+	M.apply_damage(3, TOX)
 
 /datum/reagent/medicine/oxycodone
 	name = "Oxycodone"
@@ -128,17 +125,17 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.66
 	scannable = TRUE
 
-/datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, alien)
-	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
-	return ..()
+/datum/reagent/medicine/oxycodone/on_mob_life(mob/living/M)
+	M.reagent_pain_modifier += PAIN_REDUCTION_FULL
+	..()
 
-/datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, alien)
-	L.hallucination = max(L.hallucination, 3)
-	L.set_drugginess(10)
-	L.apply_damage(1, TOX)
+/datum/reagent/medicine/oxycodone/overdose_process(mob/living/M, alien)
+	M.hallucination = max(M.hallucination, 3)
+	M.set_drugginess(10)
+	M.apply_damage(1, TOX)
 
-/datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, alien)
-	L.apply_damage(3, TOX)
+/datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/M, alien)
+	M.apply_damage(3, TOX)
 
 /datum/reagent/medicine/sterilizine
 	name = "Sterilizine"
@@ -146,29 +143,23 @@
 	description = "Sterilizes wounds in preparation for surgery."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-/datum/reagent/medicine/sterilizine/reaction_mob(mob/living/L, method = TOUCH, volume, alien)
-	if(!(method in list(TOUCH, VAPOR, PATCH)))
-		return
-	L.germ_level -= min(volume*20, L.germ_level)
-	if((L.getFireLoss() > 30 || L.getBruteLoss() > 30) && prob(10)) // >Spraying space bleach on open wounds
-		if(iscarbon(L))
-			var/mob/living/carbon/C = L
-			if(C.species.species_flags & NO_PAIN)
-				return
-		to_chat(L, "<span class='warning'>Your open wounds feel like they're on fire!</span>")
-		L.emote(pick("scream","pain","moan"))
-		L.flash_pain()
-		L.reagent_shock_modifier -= PAIN_REDUCTION_MEDIUM
+/datum/reagent/medicine/sterilizine/reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)
+	if(method in list(TOUCH, VAPOR, PATCH))
+		M.germ_level -= min(volume*20, M.germ_level)
+		if((M.getFireLoss() > 30 || M.getBruteLoss() > 30) && prob(10)) // >Spraying space bleach on open wounds
+			to_chat(M, "<span class='warning'>Your open wounds feel like they're on fire!</span>")
+			M.emote(pick("scream","pain","moan"))
+			M.reagent_shock_modifier -= PAIN_REDUCTION_MEDIUM
 
-/datum/reagent/medicine/sterilizine/reaction_obj(obj/O, volume)
+/datum/reagent/medicine/sterilizine/reaction_obj(var/obj/O, var/volume)
 	O.germ_level -= min(volume*20, O.germ_level)
 
-/datum/reagent/medicine/sterilizine/reaction_turf(turf/T, volume)
+/datum/reagent/medicine/sterilizine/reaction_turf(var/turf/T, var/volume)
 	T.germ_level -= min(volume*20, T.germ_level)
 
-/datum/reagent/medicine/sterilizine/on_mob_life(mob/living/L, alien)
-	L.adjustToxLoss(2*REM)
-	return ..()
+/datum/reagent/medicine/sterilizine/on_mob_life(mob/living/M)
+	M.adjustToxLoss(2*REM)
+	..()
 
 /datum/reagent/medicine/leporazine
 	name = "Leporazine"
@@ -179,20 +170,20 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
-/datum/reagent/medicine/leporazine/on_mob_life(mob/living/L, alien)
-	var/target_temp = L.get_standard_bodytemperature()
-	if(L.bodytemperature > target_temp)
-		L.adjust_bodytemperature(-40 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
-	else if(L.bodytemperature < target_temp + 1)
-		L.adjust_bodytemperature(40 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, target_temp)
+/datum/reagent/medicine/leporazine/on_mob_life(mob/living/M)
+	var/target_temp = M.get_standard_bodytemperature()
+	if(M.bodytemperature > target_temp)
+		M.adjust_bodytemperature(-40 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
+	else if(M.bodytemperature < target_temp + 1)
+		M.adjust_bodytemperature(40 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, target_temp)
 	return ..()
 
-/datum/reagent/medicine/leporazine/overdose_process(mob/living/L, alien)
+/datum/reagent/medicine/leporazine/overdose_process(mob/living/M, alien)
 	if(prob(10))
-		L.KnockOut(15)
+		M.KnockOut(15)
 
-/datum/reagent/medicine/leporazine/overdose_crit_process(mob/living/L, alien)
-	L.drowsyness  = max(L.drowsyness, 30)
+/datum/reagent/medicine/leporazine/overdose_crit_process(mob/living/M, alien)
+	M.drowsyness  = max(M.drowsyness, 30)
 
 /datum/reagent/medicine/kelotane
 	name = "Kelotane"
@@ -203,15 +194,15 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
-/datum/reagent/medicine/kelotane/on_mob_life(mob/living/L, alien)
-	L.heal_limb_damage(0, 2 * REM)
-	return ..()
+/datum/reagent/medicine/kelotane/on_mob_life(var/mob/living/M)
+	M.heal_limb_damage(0, 2 * REM)
+	..()
 
-/datum/reagent/medicine/kelotane/overdose_process(mob/living/L, alien)
-	L.apply_damages(1, 0, 1)
+/datum/reagent/medicine/kelotane/overdose_process(mob/living/M, alien)
+	M.apply_damages(1, 0, 1)
 
-/datum/reagent/medicine/kelotane/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(2, 0, 2)
+/datum/reagent/medicine/kelotane/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(2, 0, 2)
 
 /datum/reagent/medicine/dermaline
 	name = "Dermaline"
@@ -222,15 +213,16 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = TRUE
 
-/datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, alien)
-	L.heal_limb_damage(0, 3 * REM)
-	return ..()
+/datum/reagent/medicine/dermaline/on_mob_life(mob/living/M, alien)
+	if(!alien)
+		M.heal_limb_damage(0, 3 * REM)
+	..()
 
-/datum/reagent/medicine/dermaline/overdose_process(mob/living/L, alien)
-	L.apply_damages(1, 0, 1)
+/datum/reagent/medicine/dermaline/overdose_process(mob/living/M, alien)
+	M.apply_damages(1, 0, 1)
 
-/datum/reagent/medicine/dermaline/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(3, 0, 3)
+/datum/reagent/medicine/dermaline/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(3, 0, 3)
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
@@ -241,19 +233,20 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
-/datum/reagent/medicine/dexalin/on_mob_life(mob/living/L,alien)
-	if(alien & IS_VOX)
-		L.adjustToxLoss(2*REM)
+/datum/reagent/medicine/dexalin/on_mob_life(mob/living/M,alien)
+	if(alien == IS_VOX)
+		M.adjustToxLoss(2*REM)
 	else
-		L.adjustOxyLoss(-2*REM)
+		M.adjustOxyLoss(-2*REM)
+
 	holder.remove_reagent("lexorin", 2 * REM)
-	return ..()
+	..()
 
-/datum/reagent/medicine/dexalin/overdose_process(mob/living/L, alien)
-	L.apply_damage(1, TOX)
+/datum/reagent/medicine/dexalin/overdose_process(mob/living/M, alien)
+	M.apply_damage(1, TOX)
 
-/datum/reagent/medicine/dexalin/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(2, 0, 2)
+/datum/reagent/medicine/dexalin/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(2, 0, 2)
 
 /datum/reagent/medicine/dexalinplus
 	name = "Dexalin Plus"
@@ -264,19 +257,19 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = TRUE
 
-/datum/reagent/medicine/dexalinplus/on_mob_life(mob/living/L,alien)
-	if(alien & IS_VOX)
-		L.adjustToxLoss(3*REM)
-	else
-		L.adjustOxyLoss(-L.getOxyLoss())
+/datum/reagent/medicine/dexalinplus/on_mob_life(mob/living/M,alien)
+	if(alien == IS_VOX)
+		M.adjustToxLoss(3*REM)
+	else if(!alien)
+		M.adjustOxyLoss(-M.getOxyLoss())
 	holder.remove_reagent("lexorin", 2*REM)
-	return ..()
+	..()
 
-/datum/reagent/medicine/dexalinplus/overdose_process(mob/living/L, alien)
-	L.apply_damage(1, TOX)
+/datum/reagent/medicine/dexalinplus/overdose_process(mob/living/M, alien)
+	M.apply_damage(1, TOX)
 
-/datum/reagent/medicine/dexalinplus/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(2, 0, 3)
+/datum/reagent/medicine/dexalinplus/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(2, 0, 3)
 
 /datum/reagent/medicine/tricordrazine
 	name = "Tricordrazine"
@@ -288,23 +281,24 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "grossness"
 
-/datum/reagent/medicine/tricordrazine/on_mob_life(mob/living/L, alien)
-	if(L.getOxyLoss())
-		L.adjustOxyLoss(-REM)
-	if(L.getBruteLoss() && prob(80))
-		L.heal_limb_damage(REM, 0)
-	if(L.getFireLoss() && prob(80))
-		L.heal_limb_damage(0, REM)
-	if(L.getToxLoss() && prob(80))
-		L.adjustToxLoss(-REM)
-	return ..()
+/datum/reagent/medicine/tricordrazine/on_mob_life(mob/living/M, alien)
+	if(!alien)
+		if(M.getOxyLoss())
+			M.adjustOxyLoss(-REM)
+		if(M.getBruteLoss() && prob(80))
+			M.heal_limb_damage(REM, 0)
+		if(M.getFireLoss() && prob(80))
+			M.heal_limb_damage(0, REM)
+		if(M.getToxLoss() && prob(80))
+			M.adjustToxLoss(-REM)
+	..()
 
-/datum/reagent/medicine/tricordrazine/overdose_process(mob/living/L, alien)
-	L.Jitter(5)
-	L.adjustBrainLoss(1, TRUE)
+/datum/reagent/medicine/tricordrazine/overdose_process(mob/living/M, alien)
+	M.Jitter(5)
+	M.adjustBrainLoss(1, TRUE)
 
-/datum/reagent/medicine/tricordrazine/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(3, 3, 3)
+/datum/reagent/medicine/tricordrazine/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(3, 3, 3)
 
 /datum/reagent/medicine/dylovene
 	name = "Dylovene"
@@ -316,25 +310,25 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "a roll of gauze"
 
-/datum/reagent/medicine/dylovene/on_mob_life(mob/living/L,alien)
-	L.reagents.remove_all_type(/datum/reagent/toxin, REM, 0, 1)
-	L.drowsyness = max(L.drowsyness- 2 * REM, 0)
-	L.hallucination = max(0, L.hallucination -  5 * REM)
-	L.adjustToxLoss(-2 * REM)
-	return ..()
+/datum/reagent/medicine/dylovene/on_mob_life(mob/living/M,alien)
+	if(!alien)
+		M.reagents.remove_all_type(/datum/reagent/toxin, REM, 0, 1)
+		M.drowsyness = max(M.drowsyness- 2 * REM, 0)
+		M.hallucination = max(0, M.hallucination -  5 * REM)
+		M.adjustToxLoss(-2 * REM)
+	..()
 
-/datum/reagent/medicine/dylovene/overdose_process(mob/living/L, alien)
-	if(!ishuman(L))
-		return
-	var/mob/living/carbon/human/H = L
-	var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
-	if(E)
-		E.take_damage(0.5, TRUE)
+/datum/reagent/medicine/dylovene/overdose_process(mob/living/carbon/M, alien)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+		if(E)
+			E.take_damage(0.5, TRUE)
 
-/datum/reagent/medicine/dylovene/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(2, 2) //Starts detoxing, hard
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
+/datum/reagent/medicine/dylovene/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(2, 2) //Starts detoxing, hard
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if(E)
 			E.take_damage(1.5, TRUE)
@@ -346,39 +340,36 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	taste_description = "badmins"
 
-/datum/reagent/medicine/adminordrazine/on_mob_life(mob/living/L, alien)
-	L.reagents.remove_all_type(/datum/reagent/toxin, 5*REM, 0, 1)
-	L.setCloneLoss(0)
-	L.setOxyLoss(0)
-	L.radiation = 0
-	L.heal_limb_damage(5,5)
-	L.adjustToxLoss(-5)
-	L.hallucination = 0
-	L.setBrainLoss(0)
-	L.sdisabilities = 0
-	L.set_blurriness(0, TRUE)
-	L.set_blindness(0, TRUE)
-	L.SetKnockeddown(0)
-	L.SetStunned(0)
-	L.SetKnockedout(0)
-	L.silent = 0
-	L.dizziness = 0
-	L.drowsyness = 0
-	L.stuttering = 0
-	L.confused = 0
-	L.SetSleeping(0)
-	L.jitteriness = 0
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		C.drunkenness = 0
-		C.disabilities = 0
-		for(var/A in C.viruses)
-			var/datum/disease/D = A
-			D.spread = "Remissive"
-			D.stage--
-			if(D.stage < 1)
-				D.cure()
-	return ..()
+/datum/reagent/medicine/adminordrazine/on_mob_life(mob/living/carbon/M)
+	M.reagents.remove_all_type(/datum/reagent/toxin, 5*REM, 0, 1)
+	M.setCloneLoss(0)
+	M.setOxyLoss(0)
+	M.radiation = 0
+	M.heal_limb_damage(5,5)
+	M.adjustToxLoss(-5)
+	M.hallucination = 0
+	M.setBrainLoss(0)
+	M.disabilities = 0
+	M.sdisabilities = 0
+	M.set_blurriness(0, TRUE)
+	M.set_blindness(0, TRUE)
+	M.SetKnockeddown(0)
+	M.SetStunned(0)
+	M.SetKnockedout(0)
+	M.silent = 0
+	M.dizziness = 0
+	M.drowsyness = 0
+	M.stuttering = 0
+	M.confused = 0
+	M.SetSleeping(0)
+	M.jitteriness = 0
+	M.drunkenness = 0
+	for(var/datum/disease/D in M.viruses)
+		D.spread = "Remissive"
+		D.stage--
+		if(D.stage < 1)
+			D.cure()
+	..()
 
 
 /datum/reagent/medicine/synaptizine
@@ -391,23 +382,23 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
 	scannable = TRUE
 
-datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, alien)
-	L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
-	L.drowsyness = max(L.drowsyness-5, 0)
-	L.AdjustKnockedout(-1)
-	L.AdjustStunned(-1)
-	L.AdjustKnockeddown(-1)
+datum/reagent/medicine/synaptizine/on_mob_life(mob/living/M)
+	M.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
+	M.drowsyness = max(M.drowsyness-5, 0)
+	M.AdjustKnockedout(-1)
+	M.AdjustStunned(-1)
+	M.AdjustKnockeddown(-1)
 	holder.remove_reagent("mindbreaker", 5)
-	L.hallucination = max(0, L.hallucination - 10)
+	M.hallucination = max(0, M.hallucination - 10)
 	if(prob(80))
-		L.adjustToxLoss(1)
-	return ..()
+		M.adjustToxLoss(1)
+	..()
 
-datum/reagent/medicine/synaptizine/overdose_process(mob/living/L, alien)
-	L.apply_damage(1, TOX)
+datum/reagent/medicine/synaptizine/overdose_process(mob/living/M, alien)
+	M.apply_damage(1, TOX)
 
-datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(1, 1, 1)
+datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(1, 1, 1)
 
 /datum/reagent/medicine/neuraline //injected by neurostimulator implant
 	name = "Neuraline"
@@ -415,31 +406,24 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	description = "A chemical cocktail tailored to enhance or dampen specific neural processes."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.4
-	overdose_threshold = 4
-	overdose_crit_threshold = 6
+	overdose_threshold = 2
+	overdose_crit_threshold = 3
 	scannable = FALSE
 
-/datum/reagent/medicine/neuraline/on_mob_life(mob/living/L)
-	L.reagent_shock_modifier += PAIN_REDUCTION_FULL
-	L.drowsyness = max(L.drowsyness-5, 0)
-	L.Dizzy(-5)
-	L.stuttering = max(L.stuttering-5, 0)
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		C.drunkenness = max(C.drunkenness-5, 0)
-	L.confused = max(L.confused-5, 0)
-	L.adjust_blurriness(-5)
-	L.AdjustKnockedout(-2)
-	L.AdjustStunned(-2)
-	L.AdjustKnockeddown(-1)
-	L.AdjustSleeping(-2)
-	return ..()
-
-/datum/reagent/medicine/neuraline/overdose_process(mob/living/L, alien)
-	L.adjustBrainLoss(2 * REM, TRUE)
-
-/datum/reagent/medicine/neuraline/overdose_crit_process(mob/living/L, alien)
-	L.adjustToxLoss(2 * REM)
+/datum/reagent/medicine/neuraline/on_mob_life(mob/living/M)
+	M.reagent_shock_modifier += PAIN_REDUCTION_FULL
+	M.drowsyness = max(M.drowsyness-5, 0)
+	M.Dizzy(-5)
+	M.stuttering = max(M.stuttering-5, 0)
+	var/mob/living/carbon/C = M
+	C.drunkenness = max(C.drunkenness-5, 0)
+	M.confused = max(M.confused-5, 0)
+	M.adjust_blurriness(-5)
+	M.AdjustKnockedout(-2)
+	M.AdjustStunned(-2)
+	M.AdjustKnockeddown(-1)
+	M.AdjustSleeping(-2)
+	..()
 
 /datum/reagent/medicine/hyronalin
 	name = "Hyronalin"
@@ -451,15 +435,15 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
-/datum/reagent/medicine/hyronalin/on_mob_life(mob/living/L, alien)
-	L.radiation = max(L.radiation-3*REM,0)
-	return ..()
+/datum/reagent/medicine/hyronalin/on_mob_life(var/mob/living/M as mob)
+	M.radiation = max(M.radiation-3*REM,0)
+	..()
 
-/datum/reagent/medicine/hyronalin/overdose_process(mob/living/L, alien)
-	L.apply_damage(2, TOX)
+/datum/reagent/medicine/hyronalin/overdose_process(mob/living/M, alien)
+	M.apply_damage(2, TOX)
 
-/datum/reagent/medicine/hyronalin/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(0, 1, 1)
+/datum/reagent/medicine/hyronalin/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(0, 1, 1)
 
 /datum/reagent/medicine/arithrazine
 	name = "Arithrazine"
@@ -470,18 +454,18 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 
-/datum/reagent/medicine/arithrazine/on_mob_life(mob/living/L)
-	L.radiation = max(L.radiation-7*REM,0)
-	L.adjustToxLoss(-1*REM)
+/datum/reagent/medicine/arithrazine/on_mob_life(mob/living/M)
+	M.radiation = max(M.radiation-7*REM,0)
+	M.adjustToxLoss(-1*REM)
 	if(prob(15))
-		L.take_limb_damage(1, 0)
-	return ..()
+		M.take_limb_damage(1, 0)
+	..()
 
-/datum/reagent/medicine/arithrazine/overdose_process(mob/living/L, alien)
-	L.apply_damage(1, TOX)
+/datum/reagent/medicine/arithrazine/overdose_process(mob/living/M, alien)
+	M.apply_damage(1, TOX)
 
-/datum/reagent/arithrazine/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(1, 1, 2)
+/datum/reagent/arithrazine/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(1, 1, 2)
 
 /datum/reagent/medicine/russianred
 	name = "Russian Red"
@@ -493,23 +477,21 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/3
 	scannable = TRUE
 
-/datum/reagent/medicine/russianred/on_mob_life(mob/living/L, alien)
-	L.radiation = max(L.radiation - 10 * REM, 0)
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		C.drunkenness = max(C.drunkenness - 2)
-	L.adjustToxLoss(-1*REM)
+/datum/reagent/medicine/russianred/on_mob_life(mob/living/carbon/M)
+	M.radiation = max(M.radiation - 10 * REM, 0)
+	M.drunkenness = max(M.drunkenness - 2)
+	M.adjustToxLoss(-1*REM)
 	if(prob(50))
-		L.take_limb_damage(3, 0)
-	return ..()
+		M.take_limb_damage(3, 0)
+	..()
 
-/datum/reagent/medicine/russianred/overdose_process(mob/living/L, alien)
-	L.apply_damages(1, 0, 0)
-	L.adjustBrainLoss(1, TRUE)
+/datum/reagent/medicine/russianred/overdose_process(mob/living/M, alien)
+	M.apply_damages(1, 0, 0)
+	M.adjustBrainLoss(1, TRUE)
 
-/datum/reagent/medicine/russianred/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(1, 2, 1)
-	L.adjustBrainLoss(1, TRUE)
+/datum/reagent/medicine/russianred/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(1, 2, 1)
+	M.adjustBrainLoss(1, TRUE)
 
 /datum/reagent/medicine/alkysine
 	name = "Alkysine"
@@ -521,16 +503,16 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
-/datum/reagent/medicine/alkysine/on_mob_life(mob/living/L, alien)
-	L.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
-	L.adjustBrainLoss(-3 * REM)
-	return ..()
+/datum/reagent/medicine/alkysine/on_mob_life(mob/living/M)
+	M.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
+	M.adjustBrainLoss(-3 * REM)
+	..()
 
-/datum/reagent/medicine/alkysine/overdose_process(mob/living/L, alien)
-	L.apply_damage(1, TOX)
+/datum/reagent/medicine/alkysine/overdose_process(mob/living/M, alien)
+	M.apply_damage(1, TOX)
 
-/datum/reagent/medicine/alkysine/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(0, 1, 1)
+/datum/reagent/medicine/alkysine/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(0, 1, 1)
 
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
@@ -542,21 +524,21 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	scannable = TRUE
 	taste_description = "dull toxin"
 
-/datum/reagent/medicine/imidazoline/on_mob_life(mob/living/L, alien)
-	L.adjust_blurriness(-5)
-	L.adjust_blindness(-5)
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
+/datum/reagent/medicine/imidazoline/on_mob_life(mob/living/M)
+	M.adjust_blurriness(-5)
+	M.adjust_blindness(-5)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if(E)
 			E.heal_damage(1)
-	return ..()
+	..()
 
-/datum/reagent/medicine/imidazoline/overdose_process(mob/living/L, alien)
-	L.apply_damage(2, TOX)
+/datum/reagent/medicine/imidazoline/overdose_process(mob/living/M, alien)
+	M.apply_damage(2, TOX)
 
-/datum/reagent/medicine/imidazoline/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(0, 1, 2)
+/datum/reagent/medicine/imidazoline/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(0, 1, 2)
 
 /datum/reagent/medicine/peridaxon
 	name = "Peridaxon"
@@ -568,22 +550,21 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	custom_metabolism = 0.05
 	scannable = TRUE
 
-/datum/reagent/medicine/peridaxon/on_mob_life(mob/living/L, alien)
-	if(!ishuman(L))
-		return ..()
-	var/mob/living/carbon/human/H = L
-	for(var/datum/internal_organ/I in H.internal_organs)
-		if(I.damage)
-			if(L.bodytemperature > 169 && I.damage > 5)
-				continue
-			I.heal_damage(1)
-	return ..()
+/datum/reagent/medicine/peridaxon/on_mob_life(mob/living/M)
+    if(ishuman(M))
+        var/mob/living/carbon/human/H = M
+        for(var/datum/internal_organ/I in H.internal_organs)
+            if(I.damage)
+                if(M.bodytemperature > 169 && I.damage > 5)
+                    continue
+                I.heal_damage(1)
+    return ..()
 
-/datum/reagent/medicine/peridaxon/overdose_process(mob/living/L, alien)
-	L.apply_damage(2, BRUTE)
+/datum/reagent/medicine/peridaxon/overdose_process(mob/living/M, alien)
+	M.apply_damage(2, BRUTE)
 
-/datum/reagent/peridaxon/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(1, 3, 3)
+/datum/reagent/peridaxon/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(1, 3, 3)
 
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
@@ -594,16 +575,16 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
-/datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, alien)
-	L.heal_limb_damage(2*REM,0)
-	return ..()
+/datum/reagent/medicine/bicaridine/on_mob_life(mob/living/M, alien)
+	M.heal_limb_damage(2*REM,0)
+	..()
 
 
-/datum/reagent/medicine/bicaridine/overdose_process(mob/living/L, alien)
-	L.apply_damage(1, BURN)
+/datum/reagent/medicine/bicaridine/overdose_process(mob/living/M, alien)
+	M.apply_damage(1, BURN)
 
-/datum/reagent/medicine/bicaridine/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(1, 3, 2)
+/datum/reagent/medicine/bicaridine/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(1, 3, 2)
 
 /datum/reagent/medicine/meralyne
 	name = "Meralyne"
@@ -614,16 +595,16 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
 
-/datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, alien)
-	L.heal_limb_damage(4 * REM, 0)
-	return ..()
+/datum/reagent/medicine/meralyne/on_mob_life(mob/living/M, alien)
+	. = ..()
+	M.heal_limb_damage(4 * REM, 0)
 
 
-/datum/reagent/medicine/meralyne/overdose_process(mob/living/L, alien)
-	L.apply_damage(2, BURN)
+/datum/reagent/medicine/meralyne/overdose_process(mob/living/M, alien)
+	M.apply_damage(2, BURN)
 
-/datum/reagent/medicine/meralyne/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(2, 6, 4)
+/datum/reagent/medicine/meralyne/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(2, 6, 4)
 
 /datum/reagent/medicine/quickclot
 	name = "Quick Clot"
@@ -635,10 +616,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	scannable = TRUE //scannable now.  HUZZAH.
 	custom_metabolism = 0.05
 
-/datum/reagent/medicine/quickclot/on_mob_life(mob/living/L, alien)
-	if(!ishuman(L) || L.bodytemperature > 169) //only heals IB at cryogenic temperatures.
+/datum/reagent/medicine/quickclot/on_mob_life(mob/living/M)
+	if(!ishuman(M) || M.bodytemperature > 169) //only heals IB at cryogenic temperatures.
 		return ..()
-	var/mob/living/carbon/human/H = L
+	var/mob/living/carbon/human/H = M
 	for(var/datum/limb/X in H.limbs)
 		for(var/datum/wound/W in X.wounds)
 			if(W.internal)
@@ -649,11 +630,11 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	return ..()
 
 
-/datum/reagent/medicine/quickclot/overdose_process(mob/living/L, alien)
-	L.apply_damage(2, BRUTE)
+/datum/reagent/medicine/quickclot/overdose_process(mob/living/M, alien)
+	M.apply_damage(2, BRUTE)
 
-/datum/reagent/medicine/quickclot/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(0, 2, 2)
+/datum/reagent/medicine/quickclot/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(0, 2, 2)
 
 /datum/reagent/medicine/hyperzine
 	name = "Hyperzine"
@@ -667,67 +648,65 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	purge_list = list() //Does this purge any specific chems?
 	purge_rate = 15 //rate at which it purges specific chems
 
-/datum/reagent/medicine/hyperzine/on_mob_delete(mob/living/L, alien)
+/datum/reagent/medicine/hyperzine/on_mob_delete(mob/living/M)
 	var/amount = current_cycle * 4
-	L.adjustOxyLoss(amount)
-	L.adjustHalLoss(amount)
-	if(L.stat == DEAD)
+	M.adjustOxyLoss(amount)
+	M.adjustHalLoss(amount)
+	if(M.stat == DEAD)
 		var/death_message = "<span class='danger'>Your body is unable to bear the strain. The last thing you feel, aside from crippling exhaustion, is an explosive pain in your chest as you drop dead. It's a sad thing your adventures have ended here!</span>"
-		if(iscarbon(L))
-			var/mob/living/carbon/C = L
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
 			if(C.species.species_flags & NO_PAIN)
 				death_message = "<span class='danger'>Your body is unable to bear the strain. The last thing you feel as you drop dead is utterly crippling exhaustion. It's a sad thing your adventures have ended here!</span>"
 
-		to_chat(L, "[death_message]")
+		to_chat(M, "[death_message]")
 	else
 		switch(amount)
-			if(4 to 20)
-				to_chat(L, "<span class='warning'>You feel a bit tired.</span>")
+			if(1 to 20)
+				to_chat(M, "<span class='warning'>You feel a bit tired.</span>")
 			if(21 to 50)
-				L.KnockDown(amount * 0.05)
-				to_chat(L, "<span class='danger'>You collapse as a sudden wave of fatigue washes over you.</span>")
+				M.KnockDown(amount * 0.05)
+				to_chat(M, "<span class='danger'>You collapse as a sudden wave of fatigue washes over you.</span>")
 			if(50 to INFINITY)
-				L.KnockOut(amount * 0.1)
-				to_chat(L, "<span class='danger'>Your world convulses as a wave of extreme fatigue washes over you!</span>") //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
+				M.KnockOut(amount * 0.1)
+				to_chat(M, "<span class='danger'>Your world convulses as a wave of extreme fatigue washes over you!</span>") //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
 
 	return ..()
 
-/datum/reagent/medicine/hyperzine/on_mob_add(mob/living/L, alien)
+/datum/reagent/medicine/hyperzine/on_mob_add(mob/living/L)
 	purge_list.Add(/datum/reagent/medicine/dexalinplus, /datum/reagent/medicine/peridaxon) //Rapidly purges chems that would offset the downsides
 	return ..()
 
-/datum/reagent/medicine/hyperzine/on_mob_life(mob/living/L, alien)
-	L.reagent_move_delay_modifier -= min(2.5, volume * 0.5)
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		C.nutrition = max(C.nutrition-(3 * REM * volume), 0) //Body burns through energy fast (also can't go under 0 nutrition)
+/datum/reagent/medicine/hyperzine/on_mob_life(mob/living/carbon/M)
+	M.reagent_move_delay_modifier -= min(2.5, volume * 0.5)
+	M.nutrition = max(M.nutrition-(3 * REM * volume), 0) //Body burns through energy fast (also can't go under 0 nutrition)
 	if(prob(1))
-		L.emote(pick("twitch","blink_r","shiver"))
-		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+		M.emote(pick("twitch","blink_r","shiver"))
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
 			var/datum/internal_organ/heart/F = H.internal_organs_by_name["heart"]
 			F.take_damage(1, TRUE)
 	return ..()
 
-/datum/reagent/medicine/hyperzine/overdose_process(mob/living/L, alien)
-	if(ishuman(L))
-		L.Jitter(5)
-		var/mob/living/carbon/human/H = L
+/datum/reagent/medicine/hyperzine/overdose_process(mob/living/M, alien)
+	if(ishuman(M))
+		M.Jitter(5)
+		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
 			E.take_damage(0.5, TRUE)
-	if(prob(10))
-		L.emote(pick("twitch", "blink_r", "shiver"))
+		if(prob(10))
+			M.emote(pick("twitch", "blink_r", "shiver"))
 
-/datum/reagent/medicine/hyperzine/overdose_crit_process(mob/living/L, alien)
-	if(ishuman(L))
-		L.Jitter(10)
-		var/mob/living/carbon/human/H = L
+/datum/reagent/medicine/hyperzine/overdose_crit_process(mob/living/M, alien)
+	if(ishuman(M))
+		M.Jitter(10)
+		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
 			E.take_damage(2, TRUE)
-	if(prob(25))
-		L.emote(pick("twitch", "blink_r", "shiver"))
+		if(prob(25))
+			M.emote(pick("twitch", "blink_r", "shiver"))
 
 /datum/reagent/medicine/ultrazine
 	name = "Ultrazine"
@@ -740,90 +719,89 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	addiction_threshold = 0.4 // Adios Addiction Virus
 	taste_multi = 2
 
-/datum/reagent/medicine/ultrazine/on_mob_life(mob/living/L, alien)
-	L.reagent_move_delay_modifier -= 2
+/datum/reagent/medicine/ultrazine/on_mob_life(mob/living/carbon/C)
+	C.reagent_move_delay_modifier -= 2
 	if(prob(50))
-		L.AdjustKnockeddown(-1)
-		L.AdjustStunned(-1)
-		L.AdjustKnockedout(-1)
-	L.adjustHalLoss(-2)
+		C.AdjustKnockeddown(-1)
+		C.AdjustStunned(-1)
+		C.AdjustKnockedout(-1)
+	C.adjustHalLoss(-2)
 	if(prob(2))
-		L.emote(pick("twitch","blink_r","shiver"))
+		C.emote(pick("twitch","blink_r","shiver"))
 	return ..()
 
-/datum/reagent/medicine/ultrazine/addiction_act_stage1(mob/living/L, alien)
+/datum/reagent/medicine/ultrazine/addiction_act_stage1(mob/living/carbon/C, alien)
 	if(prob(10))
-		to_chat(L, "<span class='notice'>[pick("You could use another hit.", "More of that would be nice.", "Another dose would help.", "One more dose wouldn't hurt", "Why not take one more?")]</span>")
+		to_chat(C, "<span class='notice'>[pick("You could use another hit.", "More of that would be nice.", "Another dose would help.", "One more dose wouldn't hurt", "Why not take one more?")]</span>")
 	if(prob(5))
-		L.emote(pick("twitch","blink_r","shiver"))
-		L.adjustHalLoss(20)
+		C.emote(pick("twitch","blink_r","shiver"))
+		C.adjustHalLoss(20)
 	if(prob(20))
-		L.hallucination += 10
+		C.hallucination += 10
+	return
 
-/datum/reagent/medicine/ultrazine/addiction_act_stage2(mob/living/L, alien)
+/datum/reagent/medicine/ultrazine/addiction_act_stage2(mob/living/carbon/C, alien)
 	if(prob(10))
-		to_chat(L, "<span class='warning'>[pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.")]</span>")
+		to_chat(C, "<span class='warning'>[pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.")]</span>")
 	if(prob(5))
-		L.custom_emote(EMOTE_VISIBLE, pick("winces slightly.", "grimaces."))
-		L.adjustHalLoss(35)
-		L.Stun(2)
+		C.emote("me",1, pick("winces slightly.", "grimaces."))
+		C.adjustHalLoss(35)
+		C.Stun(2)
 	if(prob(20))
-		L.hallucination += 15
-		L.confused += 3
+		C.hallucination += 15
+		C.confused += 3
+	return
 
 
-/datum/reagent/medicine/ultrazine/addiction_act_stage3(mob/living/L, alien)
+/datum/reagent/medicine/ultrazine/addiction_act_stage3(mob/living/carbon/C, alien)
 	if(prob(10))
-		to_chat(L, "<span class='warning'>[pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.")]</span>")
+		to_chat(C, "<span class='warning'>[pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.")]</span>")
 	if(prob(5))
-		L.custom_emote(EMOTE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
-		L.adjustHalLoss(50)
-		L.Stun(3)
+		C.emote("me",1, pick("winces.", "grimaces.", "groans!"))
+		C.adjustHalLoss(50)
+		C.Stun(3)
 	if(prob(20))
-		L.hallucination += 20
-		L.confused += 5
-		L.Dizzy(60)
-	L.adjustToxLoss(0.1)
-	L.adjustBrainLoss(0.1, TRUE)
+		C.hallucination += 20
+		C.confused += 5
+		C.Dizzy(60)
+	C.adjustToxLoss(0.1)
+	C.adjustBrainLoss(0.1, TRUE)
+	return
 
-/datum/reagent/medicine/ultrazine/addiction_act_stage4(mob/living/L, alien)
+/datum/reagent/medicine/ultrazine/addiction_act_stage4(mob/living/carbon/C, alien)
 	if(prob(10))
-		to_chat(L, "<span class='danger'>[pick("You need another dose, now. NOW.", "You can't stand it. You have to go back. You have to go back.", "You need more. YOU NEED MORE.", "MORE", "TAKE MORE.")]</span>")
+		to_chat(C, "<span class='danger'>[pick("You need another dose, now. NOW.", "You can't stand it. You have to go back. You have to go back.", "You need more. YOU NEED MORE.", "MORE", "TAKE MORE.")]</span>")
 	if(prob(5))
-		L.custom_emote(EMOTE_VISIBLE, pick("groans painfully!", "contorts with pain!"))
-		L.adjustHalLoss(65)
-		L.Stun(4)
-		L.do_jitter_animation(200)
+		C.emote("me",1, pick("groans painfully!", "contorts with pain!"))
+		C.adjustHalLoss(65)
+		C.Stun(4)
+		C.do_jitter_animation(200)
 	if(prob(20))
-		L.hallucination += 30
-		L.confused += 7
-		L.Dizzy(80)
-	L.adjustToxLoss(0.3)
-	L.adjustBrainLoss(0.1, TRUE)
-	if(prob(15) && ishuman(L))
-		var/mob/living/carbon/human/H = L
+		C.hallucination += 30
+		C.confused += 7
+		C.Dizzy(80)
+	C.adjustToxLoss(0.3)
+	C.adjustBrainLoss(0.1, TRUE)
+	if(prob(15) && ishuman(C))
+		var/mob/living/carbon/human/H = C
 		var/affected_organ = pick("heart","lungs","liver","kidneys")
 		var/datum/internal_organ/I =  H.internal_organs_by_name[affected_organ]
 		I.take_damage(2)
 	return
 
 
-/datum/reagent/medicine/ultrazine/overdose_process(mob/living/L, alien)
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
+/datum/reagent/medicine/ultrazine/overdose_process(mob/living/M, alien)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
 			E.take_damage(0.5, TRUE)
-	else
-		L.adjustToxLoss(0.5)
-	if(prob(10))
-		L.emote(pick("twitch", "blink_r", "shiver"))
+		if(prob(10))
+			M.emote(pick("twitch", "blink_r", "shiver"))
 
-/datum/reagent/medicine/ultrazine/overdose_crit_process(mob/living/L, alien)
-	if(!ishuman(L))
-		L.adjustToxLoss(1.5)
-	else
-		var/mob/living/carbon/human/H = L
+/datum/reagent/medicine/ultrazine/overdose_crit_process(mob/living/M, alien)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
 			E.take_damage(1.5, TRUE)
@@ -837,13 +815,13 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	scannable = TRUE
 	taste_description = "sludge"
 
-/datum/reagent/medicine/cryoxadone/on_mob_life(mob/living/L, alien)
-	if(L.bodytemperature < 170)
-		L.adjustCloneLoss(-1)
-		L.adjustOxyLoss(-1)
-		L.heal_limb_damage(1,1)
-		L.adjustToxLoss(-1)
-	return ..()
+/datum/reagent/medicine/cryoxadone/on_mob_life(mob/living/M)
+	if(M.bodytemperature < 170)
+		M.adjustCloneLoss(-1)
+		M.adjustOxyLoss(-1)
+		M.heal_limb_damage(1,1)
+		M.adjustToxLoss(-1)
+	..()
 
 /datum/reagent/medicine/clonexadone
 	name = "Clonexadone"
@@ -853,13 +831,13 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	scannable = TRUE
 	taste_description = "muscle"
 
-/datum/reagent/medicine/clonexadone/on_mob_life(mob/living/L, alien)
-	if(L.bodytemperature < 170)
-		L.adjustCloneLoss(-3)
-		L.adjustOxyLoss(-3)
-		L.heal_limb_damage(3,3)
-		L.adjustToxLoss(-3)
-	return ..()
+/datum/reagent/medicine/clonexadone/on_mob_life(mob/living/M)
+	if(M.bodytemperature < 170)
+		M.adjustCloneLoss(-3)
+		M.adjustOxyLoss(-3)
+		M.heal_limb_damage(3,3)
+		M.adjustToxLoss(-3)
+	..()
 
 /datum/reagent/medicine/rezadone
 	name = "Rezadone"
@@ -872,29 +850,29 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	scannable = TRUE
 	taste_description = "fish"
 
-/datum/reagent/medicine/clonexadone/on_mob_life(mob/living/L, alien)
+/datum/reagent/medicine/clonexadone/on_mob_life(mob/living/M)
 	switch(current_cycle)
 		if(1 to 15)
-			L.adjustCloneLoss(-1)
-			L.heal_limb_damage(1,1)
+			M.adjustCloneLoss(-1)
+			M.heal_limb_damage(1,1)
 		if(16 to 35)
-			L.adjustCloneLoss(-2)
-			L.heal_limb_damage(2,1)
-			L.status_flags &= ~DISFIGURED
-			if(ishuman(L))
-				var/mob/living/carbon/human/H = L
+			M.adjustCloneLoss(-2)
+			M.heal_limb_damage(2,1)
+			M.status_flags &= ~DISFIGURED
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
 				H.name = H.get_visible_name()
 		if(35 to INFINITY)
-			L.adjustToxLoss(1)
-			L.Dizzy(5)
-			L.Jitter(5)
-	return ..()
+			M.adjustToxLoss(1)
+			M.Dizzy(5)
+			M.Jitter(5)
+	..()
 
-/datum/reagent/medicine/rezadone/overdose_process(mob/living/L, alien)
-	L.apply_damage(1, TOX)
+/datum/reagent/medicine/rezadone/overdose_process(mob/living/M, alien)
+	M.apply_damage(1, TOX)
 
-/datum/reagent/medicine/rezadone/overdose_crit_process(mob/living/L, alien)
-	L.apply_damage(2, TOX)
+/datum/reagent/medicine/rezadone/overdose_crit_process(mob/living/M, alien)
+	M.apply_damage(2, TOX)
 
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
@@ -906,11 +884,11 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
-/datum/reagent/medicine/spaceacillin/overdose_process(mob/living/L, alien)
-	L.apply_damage(1, TOX)
+/datum/reagent/medicine/spaceacillin/overdose_process(mob/living/M, alien)
+	M.apply_damage(1, TOX)
 
-/datum/reagent/medicine/spaceacillin/overdose_crit_process(mob/living/L, alien)
-	L.apply_damage(2, TOX)
+/datum/reagent/medicine/spaceacillin/overdose_crit_process(mob/living/M, alien)
+	M.apply_damage(2, TOX)
 
 /datum/reagent/medicine/ethylredoxrazine	// FUCK YOU, ALCOHOL
 	name = "Ethylredoxrazine"
@@ -921,25 +899,25 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
-/datum/reagent/medicine/ethylredoxrazine/on_mob_life(mob/living/L, alien)
-	L.Dizzy(-1)
-	L.drowsyness = max(L.drowsyness-1, 0)
-	L.stuttering = max(L.stuttering-1, 0)
-	L.confused = max(L.confused-1, 0)
-	var/mob/living/carbon/C = L
+/datum/reagent/medicine/ethylredoxrazine/on_mob_life(mob/living/M)
+	M.Dizzy(-1)
+	M.drowsyness = max(M.drowsyness-1, 0)
+	M.stuttering = max(M.stuttering-1, 0)
+	M.confused = max(M.confused-1, 0)
+	var/mob/living/carbon/C = M
 	C.drunkenness = max(C.drunkenness-4, 0)
-	L.reagents.remove_all_type(/datum/reagent/consumable/ethanol, REM, 0, 1)
-	return ..()
+	M.reagents.remove_all_type(/datum/reagent/consumable/ethanol, REM, 0, 1)
+	..()
 
-/datum/reagent/medicine/ethylredoxrazine/overdose_process(mob/living/L, alien)
-	L.apply_damage(1, TOX)
+/datum/reagent/medicine/ethylredoxrazine/overdose_process(mob/living/M, alien)
+	M.apply_damage(1, TOX)
 
-/datum/reagent/medicine/ethylredoxrazine/overdose_crit_process(mob/living/L, alien)
-	L.apply_damage(2, TOX)
+/datum/reagent/medicine/ethylredoxrazine/overdose_crit_process(mob/living/M, alien)
+	M.apply_damage(2, TOX)
 
 ///////RP CHEMS///////
 
-#define ANTIDEPRESSANT_MESSAGE_DELAY 5 MINUTES
+#define ANTIDEPRESSANT_MESSAGE_DELAY 5*60*10
 
 /datum/reagent/medicine/antidepressant
 	name = "Antidepressant"
@@ -953,18 +931,18 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	color = "#C8A5DC"
 	custom_metabolism = 0.01
 
-/datum/reagent/medicine/antidepressant/methylphenidate/on_mob_add(mob/living/L, alien)
-	to_chat(L, "<span class='notice'>Your mind feels focused and undivided.</span>")
+/datum/reagent/medicine/antidepressant/methylphenidate/on_mob_add(mob/living/carbon/M)
+	to_chat(M, "<span class='notice'>Your mind feels focused and undivided.</span>")
 
-/datum/reagent/medicine/antidepressant/methylphenidate/on_mob_life(mob/living/L, alien)
+/datum/reagent/medicine/antidepressant/methylphenidate/on_mob_life(mob/living/carbon/M)
 	if(world.time > timer + ANTIDEPRESSANT_MESSAGE_DELAY)
 		timer = world.time
-		to_chat(L, "<span class='notice'>Your mind feels focused and undivided.</span>")
-	return ..()
+		to_chat(M, "<span class='notice'>Your mind feels focused and undivided.</span>")
+	..()
 
-/datum/reagent/medicine/antidepressant/methylphenidate/on_mob_delete(mob/living/L, alien)
-	to_chat(L, "<span class='warning'>You lose focus.</span>")
-	return ..()
+/datum/reagent/medicine/antidepressant/methylphenidate/on_mob_delete(mob/living/carbon/M)
+	to_chat(M, "<span class='warning'>You lose focus.</span>")
+	..()
 
 /datum/reagent/medicine/antidepressant/citalopram
 	name = "Citalopram"
@@ -973,19 +951,19 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	color = "#C8A5DC"
 	custom_metabolism = 0.01
 
-/datum/reagent/medicine/antidepressant/citalopram/on_mob_add(mob/living/L, alien)
-	to_chat(L, "<span class='notice'>Your mind feels stable.. a little stable.</span>")
-	return ..()
+/datum/reagent/medicine/antidepressant/citalopram/on_mob_add(mob/living/carbon/M)
+	to_chat(M, "<span class='notice'>Your mind feels stable.. a little stable.</span>")
+	..()
 
-/datum/reagent/medicine/antidepressant/citalopram/on_mob_life(mob/living/L, alien)
+/datum/reagent/medicine/antidepressant/citalopram/on_mob_life(mob/living/M)
 	if(world.time > timer + ANTIDEPRESSANT_MESSAGE_DELAY)
 		timer = world.time
-		to_chat(L, "<span class='notice'>Your mind feels stable.. a little stable.</span>")
-	return ..()
+		to_chat(M, "<span class='notice'>Your mind feels stable.. a little stable.</span>")
+	..()
 
-/datum/reagent/medicine/antidepressant/citalopram/on_mob_delete(mob/living/L, alien)
-	to_chat(L, "<span class='warning'>Your mind feels a little less stable...</span>")
-	return ..()
+/datum/reagent/medicine/antidepressant/citalopram/on_mob_delete(mob/living/carbon/M)
+	to_chat(M, "<span class='warning'>Your mind feels a little less stable...</span>")
+	..()
 
 
 /datum/reagent/medicine/antidepressant/paroxetine
@@ -995,23 +973,23 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	color = "#C8A5DC"
 	custom_metabolism = 0.01
 
-/datum/reagent/medicine/antidepressant/paroxetine/on_mob_add(mob/living/L, alien)
-	to_chat(L, "<span class='notice'>Your mind feels much more stable.</span>")
-	return ..()
+/datum/reagent/medicine/antidepressant/paroxetine/on_mob_add(mob/living/carbon/M)
+	to_chat(M, "<span class='notice'>Your mind feels much more stable.</span>")
+	..()
 
-/datum/reagent/medicine/antidepressant/paroxetine/on_mob_life(mob/living/L, alien)
+/datum/reagent/medicine/antidepressant/paroxetine/on_mob_life(mob/living/carbon/M)
 	if(world.time > timer + ANTIDEPRESSANT_MESSAGE_DELAY)
 		timer = world.time
 		if(prob(90))
-			to_chat(L, "<span class='notice'>Your mind feels much more stable.</span>")
+			to_chat(M, "<span class='notice'>Your mind feels much more stable.</span>")
 		else
-			to_chat(L, "<span class='warning'>Your mind breaks apart...</span>")
-			L.hallucination += 200
-	return ..()
+			to_chat(M, "<span class='warning'>Your mind breaks apart...</span>")
+			M.hallucination += 200
+	..()
 
-/datum/reagent/medicine/antidepressant/paroxetine/on_mob_delete(mob/living/L, alien)
-	to_chat(L, "<span class='warning'>Your mind feels much less stable...</span>")
-	return ..()
+/datum/reagent/medicine/antidepressant/paroxetine/on_mob_delete(mob/living/carbon/M)
+	to_chat(M, "<span class='warning'>Your mind feels much less stable...</span>")
+	..()
 
 /datum/reagent/medicine/hypervene
 	name = "Hypervene"
@@ -1025,25 +1003,35 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, alien)
 	taste_description = "punishment"
 	taste_multi = 8
 
-/datum/reagent/medicine/hypervene/on_mob_life(mob/living/L, alien)
-	for(var/datum/reagent/R in L.reagents.reagent_list)
+/datum/reagent/medicine/hypervene/on_mob_life(mob/living/M, alien)
+	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
-			L.reagents.remove_reagent(R.id,HYPERVENE_REMOVAL_AMOUNT * REM)
+			M.reagents.remove_reagent(R.id,HYPERVENE_REMOVAL_AMOUNT * REM)
 			if(R.id == "hyperzine")
 				R.current_cycle += HYPERVENE_REMOVAL_AMOUNT * REM * 1 / max(1,custom_metabolism) //Increment hyperzine's purge cycle in proportion to the amount removed.
-	L.reagent_shock_modifier -= PAIN_REDUCTION_HEAVY //Significant pain while metabolized.
-	if(prob(5)) //causes vomiting
-		L.vomit()
-	return ..()
+	M.reagent_shock_modifier -= PAIN_REDUCTION_HEAVY //Significant pain while metabolized.
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(prob(5)) //causes vomiting
+			H.vomit()
+	//M.adjustToxLoss(-4 * REM)
+	//M.radiation = max(M.radiation-8*REM,0)
+	..()
 
-/datum/reagent/medicine/hypervene/overdose_process(mob/living/L, alien)
-	L.apply_damages(1, 1) //Starts detoxing, hard
-	if(prob(10)) //heavy vomiting
-		L.vomit()
-	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY * 1.25//Massive pain.
+/datum/reagent/medicine/hypervene/overdose_process(mob/living/M, alien)
+	M.apply_damages(1, 1) //Starts detoxing, hard
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(prob(10)) //heavy vomiting
+			H.vomit()
+	if(ishuman(M))
+		M.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY * 1.25//Massive pain.
 
-/datum/reagent/medicine/hypervene/overdose_crit_process(mob/living/L, alien)
-	L.apply_damages(2, 2) //Starts detoxing, hard
-	if(prob(20)) //violent vomiting
-		L.vomit()
-	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL //Unlimited agony.
+/datum/reagent/medicine/hypervene/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(2, 2) //Starts detoxing, hard
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(prob(20)) //violent vomiting
+			H.vomit()
+	if(ishuman(M))
+		M.reagent_shock_modifier -= PAIN_REDUCTION_FULL //Unlimited agony.

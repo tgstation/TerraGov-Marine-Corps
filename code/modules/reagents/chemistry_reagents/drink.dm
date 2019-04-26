@@ -16,13 +16,13 @@
 	var/adj_drowsy = 0
 	var/adj_sleepy = 0
 
-/datum/reagent/consumable/drink/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/drink/on_mob_life(mob/living/M)
 	if(adj_dizzy != 0)
-		L.Dizzy(adj_dizzy)
+		M.Dizzy(adj_dizzy)
 	if(adj_drowsy != 0)
-		L.drowsyness = max(0,L.drowsyness + adj_drowsy)
+		M.drowsyness = max(0,M.drowsyness + adj_drowsy)
 	if(adj_sleepy != 0)
-		L.AdjustSleeping(adj_sleepy)
+		M.AdjustSleeping(adj_sleepy)
 	return ..()
 
 /datum/reagent/consumable/drink/orangejuice
@@ -32,9 +32,10 @@
 	color = "#E78108" // rgb: 231, 129, 8
 	taste_description = "oranges"
 
-/datum/reagent/consumable/drink/orangejuice/on_mob_life(mob/living/L, alien)
-	L.adjustOxyLoss(-0.3)
-	return ..()
+/datum/reagent/consumable/drink/orangejuice/on_mob_life(mob/living/M)
+	if(M.getOxyLoss() && prob(30))
+		M.adjustOxyLoss(-1)
+	..()
 
 /datum/reagent/consumable/drink/tomatojuice
 	name = "Tomato Juice"
@@ -43,9 +44,10 @@
 	color = "#731008" // rgb: 115, 16, 8
 	taste_description = "tomatoes"
 
-/datum/reagent/consumable/drink/tomatojuice/on_mob_life(mob/living/L, alien)
-	L.heal_limb_damage(0,0.2)
-	return ..()
+/datum/reagent/consumable/drink/tomatojuice/on_mob_life(mob/living/M)
+	if(M.getFireLoss() && prob(20))
+		M.heal_limb_damage(0,1)
+	..()
 
 
 /datum/reagent/consumable/drink/limejuice
@@ -55,9 +57,10 @@
 	color = "#365E30" // rgb: 54, 94, 48
 	taste_description = "unbearable sourness"
 
-/datum/reagent/consumable/drink/limejuice/on_mob_life(mob/living/L, alien)
-	L.adjustToxLoss(-0.2)
-	return ..()
+/datum/reagent/consumable/drink/limejuice/on_mob_life(mob/living/M)
+	if(M.getToxLoss() && prob(20))
+		M.adjustToxLoss(-1)
+	..()
 
 /datum/reagent/consumable/drink/carrotjuice
 	name = "Carrot juice"
@@ -66,16 +69,15 @@
 	color = "#973800" // rgb: 151, 56, 0
 	taste_description = "carrots"
 
-/datum/reagent/consumable/drink/carrotjuice/on_mob_life(mob/living/L, alien)
-	L.adjust_blurriness(-1)
-	L.adjust_blindness(-1)
+/datum/reagent/consumable/drink/carrotjuice/on_mob_life(mob/living/carbon/M)
+	M.adjust_blurriness(-1)
+	M.adjust_blindness(-1)
 	switch(current_cycle)
 		if(1 to 20)
 			//nothing
 		if(21 to INFINITY)
-			if(prob(current_cycle-10) && iscarbon(L))
-				var/mob/living/carbon/C = L
-				C.disabilities &= ~NEARSIGHTED
+			if(prob(current_cycle-10))
+				M.disabilities &= ~NEARSIGHTED
 	return ..()
 
 /datum/reagent/consumable/drink/berryjuice
@@ -122,9 +124,9 @@
 	color = "#863353" // rgb: 134, 51, 83
 	taste_description = "berries"
 
-/datum/reagent/consumable/drink/poisonberryjuice/on_mob_life(mob/living/L, alien)
-	L.adjustToxLoss(1)
-	return ..()
+/datum/reagent/consumable/drink/poisonberryjuice/on_mob_life(mob/living/M)
+	M.adjustToxLoss(1)
+	..()
 
 /datum/reagent/consumable/drink/watermelonjuice
 	name = "Watermelon Juice"
@@ -168,8 +170,9 @@
 	color = "#DFDFDF" // rgb: 223, 223, 223
 	taste_description = "milk"
 
-/datum/reagent/consumable/drink/milk/on_mob_life(mob/living/L, alien)
-	L.heal_limb_damage(0.2,0)
+/datum/reagent/consumable/drink/milk/on_mob_life(mob/living/M)
+	if(M.getBruteLoss() && prob(20))
+		M.heal_limb_damage(1,0)
 	if(holder.has_reagent("capsaicin"))
 		holder.remove_reagent("capsaicin", 2)
 	return ..()
@@ -218,31 +221,31 @@
 	adj_temp = 20
 	taste_description = "bitterness"
 
-/datum/reagent/consumable/drink/coffee/on_mob_life(mob/living/L, alien)
-	L.Jitter(2)
+/datum/reagent/consumable/drink/coffee/on_mob_life(mob/living/M)
+	M.Jitter(2)
 	if(adj_temp > 0 && holder.has_reagent("frostoil"))
 		holder.remove_reagent("frostoil", 5)
 	return ..()
 
-/datum/reagent/consumable/drink/coffee/overdose_process(mob/living/L, alien)
-	L.Jitter(5)
-	if(ishuman(L))
+/datum/reagent/consumable/drink/coffee/overdose_process(mob/living/M, alien)
+	M.Jitter(5)
+	if(ishuman(M))
 		if(prob(5))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/carbon/human/H = M
 			var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 			if(E)
 				E.take_damage(0.1, TRUE)
-			L.emote(pick("twitch", "blink_r", "shiver"))
+			M.emote(pick("twitch", "blink_r", "shiver"))
 
-/datum/reagent/consumable/drink/coffee/overdose_crit_process(mob/living/L, alien)
-	L.apply_damage(0.2, TOX)
-	L.Jitter(5)
-	if(prob(5) && L.stat != UNCONSCIOUS)
-		to_chat(L, "<span class='warning'>You spasm and pass out!</span>")
-		L.KnockOut(5)
-	if(ishuman(L))
+/datum/reagent/consumable/drink/coffee/overdose_crit_process(mob/living/M, alien)
+	M.apply_damage(0.2, TOX)
+	M.Jitter(5)
+	if(prob(5) && M.stat != UNCONSCIOUS)
+		to_chat(M, "<span class='warning'>You spasm and pass out!</span>")
+		M.KnockOut(5)
+	if(ishuman(M))
 		if(prob(5))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/carbon/human/H = M
 			var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 			if(E)
 				E.take_damage(0.1, TRUE)
@@ -265,9 +268,9 @@
 	adj_sleepy = 0
 	adj_temp = 5
 
-/datum/reagent/consumable/drink/coffee/soy_latte/on_mob_life(mob/living/L, alien)
-	if(prob(20))
-		L.heal_limb_damage(1,0)
+/datum/reagent/consumable/drink/coffee/soy_latte/on_mob_life(mob/living/M)
+	if(M.getBruteLoss() && prob(20))
+		M.heal_limb_damage(1,0)
 	return ..()
 
 /datum/reagent/consumable/drink/coffee/cafe_latte
@@ -279,8 +282,9 @@
 	adj_sleepy = 0
 	adj_temp = 5
 
-/datum/reagent/consumable/drink/coffee/cafe_latte/on_mob_life(mob/living/L, alien)
-	L.heal_limb_damage(0.2,0)
+/datum/reagent/consumable/drink/coffee/cafe_latte/on_mob_life(mob/living/M)
+	if(M.getBruteLoss() && prob(20))
+		M.heal_limb_damage(1,0)
 	return ..()
 
 /datum/reagent/consumable/drink/tea
@@ -295,8 +299,9 @@
 	adj_sleepy = -1
 	adj_temp = 10
 
-/datum/reagent/consumable/drink/tea/on_mob_life(mob/living/L, alien)
-	L.adjustToxLoss(-0.2)
+/datum/reagent/consumable/drink/tea/on_mob_life(mob/living/M)
+	if(M.getToxLoss() && prob(20))
+		M.adjustToxLoss(-1)
 	return ..()
 
 /datum/reagent/consumable/drink/tea/icetea
@@ -362,9 +367,9 @@
 	adj_drowsy = -10
 	adj_dizzy = 5
 
-/datum/reagent/consumable/drink/cold/nuka_cola/on_mob_life(mob/living/L, alien)
-	L.Jitter(10)
-	L.set_drugginess(30)
+/datum/reagent/consumable/drink/cold/nuka_cola/on_mob_life(mob/living/M)
+	M.Jitter(10)
+	M.set_drugginess(30)
 	return ..()
 
 /datum/reagent/consumable/drink/cold/spacemountainwind
@@ -433,9 +438,9 @@
 	adj_temp = - 9
 	targ_temp = BODYTEMP_NORMAL - 10
 
-/datum/reagent/consumable/drink/cold/milkshake/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/drink/cold/milkshake/on_mob_life(mob/living/M)
 	if(prob(1))
-		L.emote("shiver")
+		M.emote("shiver")
 	if(holder.has_reagent("capsaicin"))
 		holder.remove_reagent("capsaicin", 2)
 	return ..()
@@ -447,9 +452,9 @@
 	color = "#485000" // rgb:72, 080, 0
 	taste_description = "a bad night out"
 
-/datum/reagent/consumable/drink/cold/rewriter/on_mob_life(mob/living/L, alien)
-	L.Jitter(5)
-	return ..()
+/datum/reagent/consumable/drink/cold/rewriter/on_mob_life(mob/living/M)
+	M.Jitter(5)
+	..()
 
 /datum/reagent/consumable/drink/doctor_delight
 	name = "The Doctor's Delight"
@@ -460,13 +465,15 @@
 	nutriment_factor = - 1
 	adj_dizzy = - 10
 
-/datum/reagent/consumable/drink/doctor_delight/on_mob_life(mob/living/L, alien)
-	L.adjustBruteLoss(-0.5, 0)
-	L.adjustFireLoss(-0.5, 0)
-	L.adjustToxLoss(-0.5, 0)
-	L.adjustOxyLoss(-0.5, 0)
-	L.confused = max(L.confused - 5, 0)
+/datum/reagent/consumable/drink/doctor_delight/on_mob_life(mob/living/M)
+	M.adjustBruteLoss(-0.5, 0)
+	M.adjustFireLoss(-0.5, 0)
+	M.adjustToxLoss(-0.5, 0)
+	M.adjustOxyLoss(-0.5, 0)
+	M.confused = max(M.confused - 5, 0)
 	return ..()
+
+//////////////////////////////////////////////The ten friggen million reagents that get you drunk//////////////////////////////////////////////
 
 /datum/reagent/consumable/drink/atomicbomb
 	name = "Atomic Bomb"
@@ -476,18 +483,18 @@
 	adj_dizzy = 10
 	taste_description = "da bomb"
 
-/datum/reagent/consumable/drink/atomicbomb/on_mob_life(mob/living/L, alien)
-	L.set_drugginess(50)
-	L.confused += 2
-	L.slurring += 2
+/datum/reagent/consumable/drink/atomicbomb/on_mob_life(mob/living/M)
+	M.set_drugginess(50)
+	M.confused += 2
+	M.slurring += 2
 	switch(current_cycle)
 		if(40 to 49)
-			L.drowsyness += 2
+			M.drowsyness += 2
 		if(51 to 200)
-			L.Sleeping(3)
+			M.Sleeping(3)
 		if(201 to INFINITY)
-			L.Sleeping(3)
-			L.adjustToxLoss(2)
+			M.Sleeping(3)
+			M.adjustToxLoss(2)
 	return ..()
 
 /datum/reagent/consumable/drink/gargle_blaster
@@ -498,31 +505,31 @@
 	adj_dizzy = 6
 	taste_description = "your brains smashed out by a lemon wrapped around a gold brick"
 
-/datum/reagent/consumable/drink/gargle_blaster/on_mob_life(mob/living/L, alien)
+/datum/reagent/consumable/drink/gargle_blaster/on_mob_life(mob/living/carbon/M)
 	switch(current_cycle)
 		if(15 to 45)
-			L.slurring += 2
-			L.Jitter(2)
+			M.slurring += 2
+			M.Jitter(2)
 		if(46 to 65)
-			L.confused += 2
-			L.slurring += 2
-			L.Jitter(3)
+			M.confused += 2
+			M.slurring += 2
+			M.Jitter(3)
 		if(66 to 199)
-			L.set_drugginess(50)
+			M.set_drugginess(50)
 			if(prob(10))
-				L.vomit()
-			L.Jitter(4)
+				M.vomit()
+			M.Jitter(4)
 			if(prob(5))
-				L.Sleeping(8)
+				M.Sleeping(8)
 		if(200 to INFINITY)
-			L.set_drugginess(50)
-			L.confused += 2
-			L.slurring += 2
-			L.adjustToxLoss(2)
-			L.Jitter(5)
+			M.set_drugginess(50)
+			M.confused += 2
+			M.slurring += 2
+			M.adjustToxLoss(2)
+			M.Jitter(5)
 			if(prob(10))
-				L.vomit()
-			L.Sleeping(3)
+				M.vomit()
+			M.Sleeping(3)
 	return ..()
 
 /datum/reagent/consumable/drink/neurotoxin
@@ -533,21 +540,21 @@
 	adj_dizzy = 6
 	taste_description = "a numbing sensation"
 
-/datum/reagent/consumable/drink/neurotoxin/on_mob_life(mob/living/L, alien)
-	L.KnockDown(3)
+/datum/reagent/consumable/drink/neurotoxin/on_mob_life(mob/living/carbon/M)
+	M.KnockDown(3, 0)
 	switch(current_cycle)
 		if(15 to 35)
-			L.stuttering += 2
+			M.stuttering += 2
 		if(36 to 55)
-			L.stuttering +=2
-			L.confused += 2
+			M.stuttering +=2
+			M.confused += 2
 		if(56 to 200)
-			L.stuttering +=2
-			L.confused += 2
-			L.set_drugginess(30)
+			M.stuttering +=2
+			M.confused += 2
+			M.set_drugginess(30)
 		if(201 to INFINITY)
-			L.set_drugginess(30)
-			L.adjustToxLoss(2)
+			M.set_drugginess(30)
+			M.adjustToxLoss(2)
 	return ..()
 
 /datum/reagent/consumable/drink/hippies_delight
@@ -557,33 +564,34 @@
 	color = "#664300" // rgb: 102, 67, 0
 	taste_description = "giving peace a chance"
 
-/datum/reagent/consumable/drink/hippies_delight/on_mob_life(mob/living/L, alien)
-	L.slurring = max(L.slurring, 2)
+/datum/reagent/consumable/drink/hippies_delight/on_mob_life(mob/living/M)
+	if(!M.slurring)
+		M.slurring = 1
 	switch(current_cycle)
 		if(1 to 5)
-			L.Dizzy(10)
-			L.set_drugginess(30)
+			M.Dizzy(10)
+			M.set_drugginess(30)
 			if(prob(10))
-				L.emote(pick("twitch","giggle"))
+				M.emote(pick("twitch","giggle"))
 		if(6 to 10)
-			L.Dizzy(20)
-			L.Jitter(20)
-			L.set_drugginess(45)
+			M.Dizzy(20)
+			M.Jitter(20)
+			M.set_drugginess(45)
 			if(prob(20))
-				L.emote(pick("twitch","giggle"))
+				M.emote(pick("twitch","giggle"))
 		if(11 to 200)
-			L.Dizzy(40)
-			L.Jitter(40)
-			L.set_drugginess(60)
+			M.Dizzy(40)
+			M.Jitter(40)
+			M.set_drugginess(60)
 			if(prob(30))
-				L.emote(pick("twitch","giggle"))
+				M.emote(pick("twitch","giggle"))
 		if(201 to INFINITY)
-			L.stuttering = 1
-			L.Jitter(60)
-			L.Dizzy(60)
-			L.set_drugginess(75)
+			M.stuttering = 1
+			M.Jitter(60)
+			M.Dizzy(60)
+			M.set_drugginess(75)
 			if(prob(40))
-				L.emote(pick("twitch","giggle"))
+				M.emote(pick("twitch","giggle"))
 			if(prob(30))
-				L.adjustToxLoss(2)
+				M.adjustToxLoss(2)
 	return ..()
