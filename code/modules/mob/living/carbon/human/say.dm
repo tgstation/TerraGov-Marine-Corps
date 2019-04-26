@@ -63,8 +63,13 @@
 
 
 /mob/living/carbon/human/compose_job(atom/movable/speaker, message_langs, raw_message, radio_freq)
-	var/datum/job/J = SSjob.GetJob(mind ? mind.assigned_role : job)
+	if(!ishuman(speaker))
+		return ..()
+
+	var/mob/living/carbon/human/H = speaker
+
+	var/datum/job/J = SSjob.GetJob(H.mind ? H.mind.assigned_role : H.job)
 	if(!istype(J))
-		return
+		return ..()
 
 	return "[get_paygrades(J.paygrade, TRUE, gender)] "
