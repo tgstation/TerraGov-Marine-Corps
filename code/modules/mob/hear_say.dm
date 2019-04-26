@@ -1,4 +1,4 @@
-/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/vname ="", var/command = 0)
+/mob/proc/hear_radio(message, verb = "says", datum/language/language = null, part_a, part_b, mob/speaker = null, hard_to_hear = FALSE, vname = "", command = FALSE)
 	if(!client)
 		return
 
@@ -17,15 +17,14 @@
 		var/mob/living/silicon/decoy/ship_ai/AI = speaker
 		sound_to_play = AI.ai_sound
 
-	if(!language)
-		language = GLOB.language_datum_instances[get_default_language()]
+	var/datum/language/L
+	if(language)
+		L = GLOB.language_datum_instances[language]
+	else
+		L = GLOB.language_datum_instances[get_default_language()]
 
 	if(!can_speak_in_language(language))
-		if(istype(speaker,/mob/living/simple_animal))
-			var/mob/living/simple_animal/S = speaker
-			message = pick(S.speak)
-		else
-			message = language.scramble(message)
+		message = L.scramble(message)
 
 	if(hard_to_hear)
 		message = stars(message)
