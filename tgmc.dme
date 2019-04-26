@@ -1024,6 +1024,7 @@
 #include "code\modules\language\language.dm"
 #include "code\modules\language\language_holder.dm"
 #include "code\modules\language\monkey.dm"
+#include "code\modules\language\moth.dm"
 #include "code\modules\language\mushroom.dm"
 #include "code\modules\language\narsian.dm"
 #include "code\modules\language\piratespeak.dm"
