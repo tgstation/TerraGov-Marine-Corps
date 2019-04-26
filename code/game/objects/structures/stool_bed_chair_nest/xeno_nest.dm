@@ -55,7 +55,7 @@
 		playsound(loc, "alien_resin_move", 50)
 		if(ishuman(buckled_mob))
 			var/mob/living/carbon/human/H = buckled_mob
-			H.unbuckled_time = world.time
+			H.last_unbuckled = world.time
 		unbuckle()
 	else
 		if(buckled_mob.incapacitated(TRUE))
@@ -102,7 +102,7 @@
 		return
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.unbuckled_time + NEST_UNBUCKLED_COOLDOWN > world.time)
+		if(H.last_unbuckled + NEST_UNBUCKLED_COOLDOWN > world.time)
 			to_chat(user, "<span class='warning'>[H] was recently unbuckled. Wait a bit.</span>")
 			return
 		if(!H.lying)
