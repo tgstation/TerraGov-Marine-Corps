@@ -14,9 +14,6 @@
 	taste_multi = 1.2
 
 /datum/reagent/toxin/on_mob_life(mob/living/L, alien)
-	var/mob/living/carbon/human/H = L
-	if(H.species.species_flags & NO_POISON)
-		return FALSE //immunity to toxin reagents
 	if(toxpwr)
 		L.adjustToxLoss(toxpwr*REM)
 	return ..()
