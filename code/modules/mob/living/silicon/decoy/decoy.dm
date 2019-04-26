@@ -43,3 +43,25 @@
 	icon_state = "hydra-off"
 	sleep(20)
 	explosion(loc, -1, 0, 8, 12)
+
+
+/mob/living/silicon/decoy/say(message, new_sound) //General communication across the ship.
+	if(stat || !message)
+		return FALSE
+
+	ai_sound = new_sound ? new_sound : 'sound/misc/interference.ogg' //Remember the sound we need to play.
+
+	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+
+	var/message_mode = get_message_mode(message)
+
+	switch(message_mode)
+		if(MODE_HEADSET)
+			message = copytext(message, 2)
+		if("broadcast")
+			message_mode = MODE_HEADSET
+		else
+			message = copytext(message, 3)
+
+	ai_headset.talk_into(src, message, message_mode, , GLOB.all_languages[1])
+	return TRUE
