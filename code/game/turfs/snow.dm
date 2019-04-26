@@ -3,17 +3,16 @@
 
 //FLOORS-----------------------------------//
 //Snow Floor
-/turf/open/snow
+/turf/open/floor/plating/ground/snow
 	name = "snow layer"
 	icon = 'icons/turf/snow2.dmi'
 	icon_state = "snow_0"
-	is_groundmap_turf = TRUE
 
-/turf/open/snow/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/turf/open/floor/plating/ground/snow/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
 	return //Larvae can't do shit
 
 //Xenos digging up snow
-/turf/open/snow/attack_alien(mob/living/carbon/Xenomorph/M)
+/turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.a_intent == INTENT_GRAB)
 
 		if(!slayer)
@@ -36,7 +35,7 @@
 		update_icon(1, 0)
 
 	//PLACING/REMOVING/BUILDING
-/turf/open/snow/attackby(var/obj/item/I, var/mob/user)
+/turf/open/floor/plating/ground/snow/attackby(var/obj/item/I, var/mob/user)
 
 	//Light Stick
 	if(istype(I, /obj/item/lightstick))
@@ -63,11 +62,11 @@
 
 
 //Update icon and sides on start, but skip nearby check for turfs.
-/turf/open/snow/Initialize()
+/turf/open/floor/plating/ground/snow/Initialize()
 	. = ..()
 	update_icon(1,1)
 
-/turf/open/snow/Entered(atom/movable/AM)
+/turf/open/floor/plating/ground/snow/Entered(atom/movable/AM)
 	if(slayer > 0)
 		if(iscarbon(AM))
 			var/mob/living/carbon/C = AM
@@ -86,7 +85,7 @@
 
 
 //Update icon
-/turf/open/snow/update_icon(var/update_full, var/skip_sides)
+/turf/open/floor/plating/ground/snow/update_icon(var/update_full, var/skip_sides)
 	icon_state = "snow_[slayer]"
 	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 	switch(slayer)
@@ -104,7 +103,7 @@
 		var/turf/open/T
 		if(!skip_sides)
 			for(var/dirn in alldirs)
-				var/turf/open/snow/D = get_step(src,dirn)
+				var/turf/open/floor/plating/ground/snow/D = get_step(src,dirn)
 				if(istype(D))
 					//Update turfs that are near us, but only once
 					D.update_icon(1,1)
@@ -143,7 +142,7 @@
 
 
 //Explosion act
-/turf/open/snow/ex_act(severity)
+/turf/open/floor/plating/ground/snow/ex_act(severity)
 	switch(severity)
 		if(1)
 			if(slayer)
@@ -159,19 +158,19 @@
 				update_icon(1, 0)
 
 //SNOW LAYERS-----------------------------------//
-/turf/open/snow/layer0
+/turf/open/floor/plating/ground/snow/layer0
 	icon_state = "snow_0"
 	slayer = 0
 
-/turf/open/snow/layer1
+/turf/open/floor/plating/ground/snow/layer1
 	icon_state = "snow_1"
 	slayer = 1
 
-/turf/open/snow/layer2
+/turf/open/floor/plating/ground/snow/layer2
 	icon_state = "snow_2"
 	slayer = 2
 
-/turf/open/snow/layer3
+/turf/open/floor/plating/ground/snow/layer3
 	icon_state = "snow_3"
 	slayer = 3
 
