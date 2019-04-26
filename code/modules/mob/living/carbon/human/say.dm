@@ -41,16 +41,19 @@
 	switch(message_mode)
 		if(MODE_HEADSET)
 			if(wear_ear)
+				playsound(loc, 'sound/effects/radiostatic.ogg', 15, 1)
 				wear_ear.talk_into(src, message, , spans, language)
 			return ITALICS | REDUCE_RANGE
 
 		if(MODE_DEPARTMENT)
 			if(wear_ear)
+				playsound(loc, 'sound/effects/radiostatic.ogg', 15, 1)
 				wear_ear.talk_into(src, message, message_mode, spans, language)
 			return ITALICS | REDUCE_RANGE
 
 	if(message_mode in radiochannels)
 		if(wear_ear)
+			playsound(loc, 'sound/effects/radiostatic.ogg', 15, 1)
 			wear_ear.talk_into(src, message, message_mode, spans, language)
 			return ITALICS | REDUCE_RANGE
 
