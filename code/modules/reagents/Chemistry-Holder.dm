@@ -254,11 +254,13 @@
 	R.handle_reactions()
 	return amount
 
-/datum/reagents/proc/metabolize(mob/living/L, alien, can_overdose = FALSE , liverless = FALSE) //last two vars do nothing for the time being.
+/datum/reagents/proc/metabolize(mob/living/L, can_overdose = FALSE , liverless = FALSE) //last two vars do nothing for the time being.
 	var/list/cached_reagents = reagent_list
 	var/list/cached_addictions = addiction_list
+	var/quirks
 	if(L)
 		expose_temperature(L.bodytemperature, 0.25)
+		quirks = L.get_reagent_tags()
 	var/need_mob_update = 0
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
@@ -268,17 +270,18 @@
 			continue
 		if(!L)
 			L = R.holder.my_atom
+			quirks = L.get_reagent_tags()
 		if(R)
 			if(L.reagent_check(R) != 1)
 				if(can_overdose)
 					if(R.overdose_threshold)
 						if(R.volume >= R.overdose_threshold && !R.overdosed)
 							R.overdosed = 1
-							need_mob_update += R.on_overdose_start(L, alien)
+							need_mob_update += R.on_overdose_start(L, quirks)
 					if(R.overdose_crit_threshold)
 						if(R.volume >= R.overdose_crit_threshold && !R.overdosed_crit)
 							R.overdosed_crit = 1
-							need_mob_update += R.on_overdose_crit_start(L, alien)
+							need_mob_update += R.on_overdose_crit_start(L, quirks)
 					if(R.addiction_threshold)
 						if(R.volume >= R.addiction_threshold && !is_type_in_list(R, cached_addictions))
 							var/datum/reagent/new_reagent = new R.type()
@@ -288,15 +291,15 @@
 					if(R.volume <R.overdose_crit_threshold && R.overdosed_crit && R.overdose_crit_threshold)
 						R.overdosed_crit = 0
 					if(R.overdosed)
-						need_mob_update += R.overdose_process(L, alien) //Small OD
+						need_mob_update += R.overdose_process(L, quirks) //Small OD
 					if(R.overdosed_crit)
-						need_mob_update += R.overdose_crit_process(L, alien) //Big OD
+						need_mob_update += R.overdose_crit_process(L, quirks) //Big OD
 					if(is_type_in_list(R,cached_addictions))
 						for(var/addiction in cached_addictions)
 							var/datum/reagent/A = addiction
 							if(istype(R, A))
 								A.addiction_stage = -15 //you're satisfied for a good while
-				need_mob_update +=R.on_mob_life(L, alien)
+				need_mob_update +=R.on_mob_life(L, quirks)
 
 	if(can_overdose)
 		if(addiction_tick == 6)
@@ -307,13 +310,13 @@
 					R.addiction_stage++
 					switch(R.addiction_stage)
 						if(1 to 38)
-							need_mob_update += R.addiction_act_stage1(L, alien)
+							need_mob_update += R.addiction_act_stage1(L, quirks)
 						if(38 to 76)
-							need_mob_update += R.addiction_act_stage2(L, alien)
+							need_mob_update += R.addiction_act_stage2(L, quirks)
 						if(76 to 114)
-							need_mob_update += R.addiction_act_stage3(L, alien)
+							need_mob_update += R.addiction_act_stage3(L, quirks)
 						if(114 to 152)
-							need_mob_update += R.addiction_act_stage4(L, alien)
+							need_mob_update += R.addiction_act_stage4(L, quirks)
 						if(152 to INFINITY)
 							to_chat(L, "<span class='notice'>You feel like you've gotten over your need for [R.name].</span>")
 							cached_addictions.Remove(R)

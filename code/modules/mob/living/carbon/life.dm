@@ -4,7 +4,6 @@
 	set background = 1
 
 	if(stat != DEAD) //Chemicals in body and some other stuff.
-		handle_organs()
 
 		if((life_tick % CARBON_BREATH_DELAY == 0) || failed_last_breath) //First, resolve location and get a breath
 			breathe() //Only try to take a breath every 2 ticks, unless suffocating
@@ -64,11 +63,6 @@
 		stat = CONSCIOUS
 		adjust_blindness(-1)
 	update_canmove()
-
-/mob/living/proc/handle_organs()
-	reagent_move_delay_modifier = 0
-	reagent_shock_modifier = 0
-	reagent_pain_modifier = 0
 
 /mob/living/carbon/handle_status_effects()
 	. = ..()

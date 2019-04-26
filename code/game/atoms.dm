@@ -101,16 +101,16 @@ directive is properly returned.
 	return is_refillable() && is_drainable()
 
 /atom/proc/is_injectable(allowmobs = TRUE)
-	return reagents && (reagents.reagent_flags & (INJECTABLE | REFILLABLE))
+	return reagents && CHECK_BITFIELD(reagents.reagent_flags, INJECTABLE | REFILLABLE)
 
 /atom/proc/is_drawable(allowmobs = TRUE)
-	return reagents && (reagents.reagent_flags & (DRAWABLE | DRAINABLE))
+	return reagents && CHECK_BITFIELD(reagents.reagent_flags, DRAWABLE | DRAINABLE)
 
 /atom/proc/is_refillable()
-	return reagents && (reagents.reagent_flags & REFILLABLE)
+	return reagents && CHECK_BITFIELD(reagents.reagent_flags, REFILLABLE)
 
 /atom/proc/is_drainable()
-	return reagents && (reagents.reagent_flags & DRAINABLE)
+	return reagents && CHECK_BITFIELD(reagents.reagent_flags, DRAINABLE)
 
 /*//Convenience proc to see whether a container can be accessed in a certain way.
 
@@ -277,7 +277,7 @@ its easier to just keep the beam vertical.
 
 	if(get_dist(user,src) <= 2)
 		if(reagents)
-			if(reagents.reagent_flags & TRANSPARENT)
+			if(CHECK_BITFIELD(reagents.reagent_flags, TRANSPARENT))
 				to_chat(user, "It contains:")
 				if(reagents.reagent_list.len) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
 					var/total_volume = 0
@@ -286,12 +286,12 @@ its easier to just keep the beam vertical.
 					to_chat(user, "<span class='notice'>[total_volume] units of various reagents.</span>")
 				else
 					to_chat(user, "<span class='notice'>Nothing.")
-			else if(reagents.reagent_flags & AMOUNT_VISIBLE)
+			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_VISIBLE))
 				if(reagents.total_volume)
 					to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
 				else
 					to_chat(user, "<span class='warning'>It's empty.</span>")
-			else if(reagents.reagent_flags & AMOUNT_SKILLCHECK)
+			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
 				if(isxeno(user))
 					return
 				if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_NOVICE) // If they have no skillset(admin-spawn, etc), or are properly skilled.

@@ -3,13 +3,13 @@
 /mob/living/carbon/human/handle_organs()
 	. = ..()
 
-	if(reagents && !(species.species_flags & NO_CHEM_METABOLIZATION))
-		if(species.has_organ["liver"])
-			var/datum/internal_organ/liver/L = internal_organs_by_name["liver"]
-			var/alien = species.reagent_tag
-			var/overdose = (species.species_flags & NO_OVERDOSE) ? FALSE : TRUE
-			if(!(status_flags & GODMODE)) //godmode doesn't work as intended anyway
-				reagents.metabolize(src, alien, can_overdose = overdose, L ? FALSE : TRUE)
+	if(reagents && !CHECK_BITFIELD(species.species_flags, NO_CHEM_METABOLIZATION))
+		var/datum/internal_organ/liver/L
+		if(species?.has_organ["liver"])
+			L = internal_organs_by_name["liver"]
+		var/overdosable = CHECK_BITFIELD(species.species_flags, NO_OVERDOSE) ? FALSE : TRUE
+		if(!(status_flags & GODMODE)) //godmode doesn't work as intended anyway
+			reagents.metabolize(src, overdosable, L ? FALSE : TRUE)
 
 	if(!(species.species_flags & IS_SYNTHETIC))
 		//Nutrition decrease
