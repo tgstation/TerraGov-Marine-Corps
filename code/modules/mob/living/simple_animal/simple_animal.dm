@@ -385,3 +385,9 @@
 
 /mob/living/simple_animal/get_idcard(hand_first)
 	return access_card
+
+
+/mob/living/simple_animal/say_mod(input, message_mode)
+	if(length(speak_emote)
+		verb_say = pick(speak_emote)
+	return ..()
