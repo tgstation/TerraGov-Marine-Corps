@@ -31,40 +31,45 @@
 	var/leg_tally = 2
 
 	last_dam = getBruteLoss() + getFireLoss() + getToxLoss()
-	if(stat != DEAD) //Zombie calling this proc just for the chem.. *sigh*
-		//processing internal organs is pretty cheap, do that first.
-		for(var/datum/internal_organ/I in internal_organs)
-			I.process()
 
-		for(var/datum/limb/E in limbs)
-			if(!E)
-				continue
-			if(!E.need_process())
-				//bad_limbs -= E
-				continue
-			else
-				E.process()
+	//processing internal organs is pretty cheap, do that first.
+	for(var/datum/internal_organ/I in internal_organs)
+		I.process()
 
-				if (!lying && world.time - l_move_time < 15)
-					if(m_intent != MOVE_INTENT_WALK || pulledby) //Running around with fractured ribs won't do you any good; walking prevents worsening, unless you're being pulled around
-						if (E.is_broken() && E.internal_organs && prob(15))
-							var/datum/internal_organ/I = pick(E.internal_organs)
-							custom_pain("You feel broken bones moving in your [E.display_name]!", 1)
-							I.take_damage(rand(3,5))
+	for(var/datum/limb/E in limbs)
+		if(!E)
+			stack_trace("null in mob limb list")
+			continue
+		if(!E.need_process())
+			continue
+		else
+			E.process()
 
-					//Moving makes open wounds get infected much faster
-					if (E.wounds.len)
-						for(var/datum/wound/W in E.wounds)
-							if (W.infection_check())
-								W.germ_level += 1
+			if (!lying && world.time - l_move_time < 15)
+				if(m_intent != MOVE_INTENT_WALK || pulledby) //Running around with fractured ribs won't do you any good; walking prevents worsening, unless you're being pulled around
+					if (E.is_broken() && E.internal_organs && prob(15))
+						var/datum/internal_organ/I = pick(E.internal_organs)
+						custom_pain("You feel broken bones moving in your [E.display_name]!", 1)
+						I.take_damage(rand(3,5))
 
-				if(E.name in list("l_leg","l_foot","r_leg","r_foot") && !lying)
-					if (!E.is_usable() || E.is_malfunctioning() || ( E.is_broken() && !(E.limb_status & LIMB_SPLINTED) && !(E.limb_status & LIMB_STABILIZED) ) )
-						leg_tally--			// let it fail even if just foot&leg
+				//Moving makes open wounds get infected much faster
+				if (E.wounds.len)
+					for(var/datum/wound/W in E.wounds)
+						if (W.infection_check())
+							W.germ_level += 1
 
-		// standing is poor
-		if(leg_tally <= 0 && !knocked_out && !lying && prob(5))
-			if(!(species && (species.species_flags & NO_PAIN)))
-				emote("pain")
-			emote("collapse")
-			knocked_out = 10
+			if(E.name in list("l_leg","l_foot","r_leg","r_foot") && !lying)
+				if (!E.is_usable() || E.is_malfunctioning() || ( E.is_broken() && !(E.limb_status & LIMB_SPLINTED) && !(E.limb_status & LIMB_STABILIZED) ) )
+					leg_tally--			// let it fail even if just foot&leg
+
+	if (!lying && world.time - l_move_time < 15)
+		if(m_intent != MOVE_INTENT_WALK || pulledby)
+			SEND_SIGNAL(src, COMSIG_HUMAN_RUN_INJURY)
+		SEND_SIGNAL(src, COMSIG_HUMAN_MOVE_INJURY)
+
+	// standing is poor
+	if(leg_tally <= 0 && !knocked_out && !lying && prob(5))
+		if(!(species && (species.species_flags & NO_PAIN)))
+			emote("pain")
+		emote("collapse")
+		knocked_out = 10

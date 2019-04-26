@@ -28,6 +28,11 @@
 
 #define MIN_ANTIBIOTICS			0
 
+#define WOUND_BANDAGED 		(1 << 0)
+#define WOUND_CLAMPED 		(1 << 1)
+#define WOUND_SALVED 		(1 << 2)
+#define WOUND_DISINFECTED 	(1 << 3)
+#define WOUND_INTERNAL 		(1 << 4)
 
 #define LIVING_PERM_COEFF 0
 #define XENO_PERM_COEFF 0.8

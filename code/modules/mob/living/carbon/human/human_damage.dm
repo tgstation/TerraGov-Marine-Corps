@@ -8,6 +8,8 @@
 	var/total_burn	= 0
 	var/total_brute	= 0
 	for(var/datum/limb/O in limbs)	//hardcoded to streamline things a bit
+		if(CHECK_BITFIELD(O.limb_status, LIMB_DESTROYED))
+			continue
 		total_brute	+= O.brute_dam
 		total_burn	+= O.burn_dam
 

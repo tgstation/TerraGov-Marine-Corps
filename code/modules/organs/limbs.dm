@@ -242,6 +242,7 @@
 
 	if(internal)
 		limb_status &= ~LIMB_BROKEN
+		on_stabilized()
 		limb_status |= LIMB_REPAIRED
 		perma_injury = 0
 
@@ -261,6 +262,7 @@ This function completely restores a damaged organ to perfect condition.
 		limb_status = LIMB_ROBOT
 	else
 		limb_status = NOFLAGS
+	on_stabilized()
 	perma_injury = 0
 	brute_dam = 0
 	burn_dam = 0
@@ -498,6 +500,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		// wounds can disappear after 10 minutes at the earliest
 		if(W.damage <= 0 && W.created + 10 * 10 * 60 <= world.time)
 			wounds -= W
+			qdel(W)
 			continue
 			// let the GC handle the deletion of the wound
 
@@ -514,9 +517,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 				owner.blood_volume = max(0, owner.blood_volume - wound_update_accuracy * W.damage/40) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place.
 				if(prob(1 * wound_update_accuracy))
 					owner.custom_pain("You feel a stabbing pain in your [display_name]!", 1)
-
-		if(owner.reagents.get_reagent_amount("thwei") >= 0.05) //Note: This used to turn internal wounds into external wounds, for QC's effect
-			W.internal = 0
 
 		// slow healing
 		var/heal_amt = 0
@@ -743,64 +743,46 @@ Note that amputating the affected organ does in fact remove the infection from t
 		owner.dropItemToGround(owner.legcuffed)
 
 /datum/limb/proc/bandage()
-	var/rval = 0
 	limb_status &= ~LIMB_BLEEDING
 	for(var/datum/wound/W in wounds)
-		if(W.internal) continue
-		rval |= !W.bandaged
-		W.bandaged = 1
-	return rval
+		. |= W.bandage()
 
 /datum/limb/proc/is_bandaged()
 	if(!(surgery_open_stage == 0))
-		return 1
-	var/rval = 0
+		return TRUE
 	for(var/datum/wound/W in wounds)
-		if(W.internal) continue
-		rval |= !W.bandaged
-	return rval
+		if(CHECK_BITFIELD(W.wound_flags, WOUND_INTERNAL))
+			continue
+		. |= CHECK_BITFIELD(W.wound_flags, WOUND_BANDAGED)
 
 /datum/limb/proc/disinfect()
-	var/rval = 0
 	for(var/datum/wound/W in wounds)
-		if(W.internal) continue
-		rval |= !W.disinfected
-		W.disinfected = 1
-		W.germ_level = 0
-	return rval
+		. |= W.disinfect()
 
 /datum/limb/proc/is_disinfected()
 	if(!(surgery_open_stage == 0))
-		return 1
-	var/rval = 0
+		return TRUE
 	for(var/datum/wound/W in wounds)
-		if(W.internal) continue
-		rval |= !W.disinfected
-	return rval
+		if(CHECK_BITFIELD(W.wound_flags, WOUND_INTERNAL))
+			continue
+		. |= CHECK_BITFIELD(W.wound_flags, WOUND_DISINFECTED)
 
 /datum/limb/proc/clamp()
-	var/rval = 0
 	src.limb_status &= ~LIMB_BLEEDING
 	for(var/datum/wound/W in wounds)
-		if(W.internal) continue
-		rval |= !W.clamped
-		W.clamped = 1
-	return rval
+		. |= W.clamp()
 
 /datum/limb/proc/salve()
-	var/rval = 0
 	for(var/datum/wound/W in wounds)
-		rval |= !W.salved
-		W.salved = 1
-	return rval
+		. |= W.salve()
 
 /datum/limb/proc/is_salved()
 	if(!(surgery_open_stage == 0))
-		return 1
-	var/rval = FALSE
+		return TRUE
 	for(var/datum/wound/W in wounds)
-		rval |= !W.salved
-	return rval
+		if(CHECK_BITFIELD(W.wound_flags, WOUND_INTERNAL))
+			continue
+		. |= CHECK_BITFIELD(W.wound_flags, WOUND_SALVED)
 
 /datum/limb/proc/fracture()
 
@@ -816,7 +798,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(owner.species && !(owner.species.species_flags & NO_PAIN))
 		owner.emote("scream")
 
-	limb_status |= LIMB_BROKEN
+	on_broken()
 	limb_status &= ~LIMB_REPAIRED
 	broken_description = pick("broken","fracture","hairline fracture")
 	perma_injury = brute_dam
@@ -867,7 +849,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 	owner.update_body()
 
 /datum/limb/proc/get_damage()	//returns total damage
-	return max(brute_dam + burn_dam - perma_injury, perma_injury)	//could use health?
+	if(CHECK_BITFIELD(limb_status, LIMB_NECROTIZED|LIMB_DESTROYED))
+		return 0
+	var/dam = max(brute_dam + burn_dam - perma_injury, perma_injury)	//could use health?
+
+	if(CHECK_BITFIELD(limb_status, LIMB_BROKEN) && CHECK_BITFIELD(limb_status, LIMB_SPLINTED|LIMB_STABILIZED))
+		dam -= min_broken_damage //If they have a splinted body part, and it's broken, we want to subtract bone break damage.
+
+	return dam
 
 /datum/limb/proc/has_infected_wound()
 	for(var/datum/wound/W in wounds)
@@ -909,6 +898,20 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/is_broken()
 	return ((limb_status & LIMB_BROKEN) && !(limb_status & LIMB_SPLINTED) && !(limb_status & LIMB_STABILIZED))
+
+/datum/limb/proc/on_broken()
+	if(!internal_organs)
+		return
+	RegisterSignal(owner, COMSIG_HUMAN_RUN_INJURY, .proc/unstabilized_movement)
+
+/datum/limb/proc/on_stabilized()
+	UnregisterSignal(owner, COMSIG_HUMAN_RUN_INJURY)
+
+/datum/limb/proc/unstabilized_movement()
+	if(prob(15))
+		var/datum/internal_organ/I = pick(internal_organs)
+		owner.custom_pain("You feel broken bones moving in your [display_name]!", 1)
+		I.take_damage(rand(3,5))
 
 /datum/limb/proc/is_malfunctioning()
 	return ((limb_status & LIMB_ROBOT) && prob(brute_dam + burn_dam))
