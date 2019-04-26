@@ -1,0 +1,4 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - balance: "Reverts the way smoke opaqueness works to make smaller clouds decent at shrouding line of sight again."
