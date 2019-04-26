@@ -129,7 +129,6 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 	for(var/datum/surgery_step/S in surgery_steps)
 		//Check if tool is right or close enough, and the target mob valid, and if this step is possible
-		to_chat(world, "checking surgery [S.type]")
 		if(S.tool_quality(tool) && S.is_valid_target(M))
 			var/step_is_valid = S.can_use(user, M, user.zone_selected, tool, affected)
 			if(step_is_valid)

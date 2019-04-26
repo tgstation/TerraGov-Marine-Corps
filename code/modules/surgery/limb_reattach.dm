@@ -34,7 +34,7 @@
 	max_duration = ROBOLIMB_ATTACH_MAX_DURATION
 	reattach_step = 0
 
-/datum/surgery_step/limb/attach/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+/datum/surgery_step/limb_reattach/attach/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(!..())
 		return FALSE
 	var/obj/item/limb/p = tool
@@ -45,20 +45,49 @@
 		to_chat(world, "cant use3")
 		return FALSE
 
-/datum/surgery_step/limb/attach/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+/datum/surgery_step/limb_reattach/attach/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='notice'>[user] starts attaching \the [tool] where [target]'s [affected.display_name] used to be.</span>", \
 	"<span class='notice'>You start attaching \the [tool] where [target]'s [affected.display_name] used to be.</span>")
 
-/datum/surgery_step/limb/attach/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+/datum/surgery_step/limb_reattach/attach/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='notice'>[user] has attached \the [tool] where [target]'s [affected.display_name] used to be.</span>",	\
 	"<span class='notice'>You have attached \the [tool] where [target]'s [affected.display_name] used to be.</span>")
 
 	//Deal with the limb item properly
 	user.temporarilyRemoveItemFromInventory(tool)
 	qdel(tool)
+	affected.natural_replacement_state = 1
 
-/datum/surgery_step/limb/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+/datum/surgery_step/limb_reattach/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging nerves on [target]'s [affected.display_name]!</span>", \
 	"<span class='warning'>Your hand slips, damaging nerves on [target]'s [affected.display_name]!</span>")
 	target.apply_damage(10, BRUTE, affected, sharp = 1)
 	target.updatehealth()
+
+/datum/surgery_step/limb_reattach/pull
+	allowed_tools = list(
+	/obj/item/tool/surgery/hemostat = 100,         \
+	/obj/item/stack/cable_coil = 75,         \
+	/obj/item/assembly/mousetrap = 20
+	)
+
+	min_duration = 40
+	max_duration = 60
+	reattach_step = 1
+
+/datum/surgery_step/limb_reattach/pull/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message("<span class='notice'>[user] starts reattaching the nerves in [target]'s [affected.display_name] with \the [tool].</span>", \
+	"<span class='notice'>You start reattaching the nerves in [target]'s [affected.display_name] with \the [tool].</span>")
+	target.custom_pain("The pain in your [affected.display_name] is maddening!", 1)
+	..()
+
+/datum/surgery_step/limb_reattach/pull/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message("<span class='notice'>[user] reattaching the nerves in [target]'s [affected.display_name] with \the [tool].</span>",	\
+	"<span class='notice'>You reattaching the nerves in [target]'s [affected.display_name] with \the [tool].</span>")
+	
+
+/datum/surgery_step/limb_reattach/pull/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message("<span class='warning'>[user]'s hand slips, tearing blood vessals and causing massive bleeding in [target]'s [affected.display_name] with \the [tool]!</span>",	\
+	"<span class='warning'>Your hand slips, tearing blood vessels and causing massive bleeding in [target]'s [affected.display_name] with \the [tool]!</span>",)
+	affected.createwound(CUT, 10)
+	affected.update_wounds()
