@@ -16,7 +16,6 @@ SUBSYSTEM_DEF(direction)
 	// the purpose of separating these two things is it avoids having to do anything for mobs tracking a particular
 	//  leader when the leader changes, and its cached to avoid looking up via hive/squad datums.
 	// it's up to the user of this subsystem to remove themselves via the macros
-	// Though currently this doesn't support use for xenos.
 
 	var/list/currentrun
 
