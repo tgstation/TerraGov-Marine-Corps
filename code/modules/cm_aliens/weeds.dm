@@ -21,10 +21,10 @@
 
 	update_sprite()
 	update_neighbours()
-	if(node && node.loc && (get_dist(node, src) < node.node_range))
-		spawn(rand(150, 200))
-			if(loc && node && node.loc)
-				weed_expand(node)
+	// if(node && node.loc && (get_dist(node, src) < node.node_range))
+	// 	spawn(rand(150, 200))
+	// 		if(loc && node && node.loc)
+	// 			weed_expand(node)
 
 
 /obj/effect/alien/weeds/Destroy()
@@ -224,6 +224,8 @@
 	var/node_range = NODERANGE
 	health = 15
 
+	var/node_turfs = list() // list of all potential turfs that we can expand to
+
 
 /obj/effect/alien/weeds/node/update_icon()
 	overlays.Cut()
@@ -237,8 +239,27 @@
 
 	overlays += "weednode"
 	. = ..(loc, src)
+
+	SSweeds.add_node(src)
+	
 	if(X)
 		add_hiddenprint(X)
 
+
+/obj/effect/alien/weeds/node/proc/generate_weed_graph()
+	var/list/turfs_to_check = list()
+	turfs_to_check += get_turf(src)
+	var/node_size = node_range
+	while (node_size > 0)
+		node_size--
+		for(var/turf/T in turfs_to_check)
+			for(var/turf/AdjT in T.AdjacentTurfs()) 
+				if (AdjT == src) // Ignore the node
+					continue
+				if (AdjT in node_turfs) // Ignore existing weeds
+					continue
+
+				turfs_to_check += AdjT
+				node_turfs += AdjT
 
 #undef NODERANGE

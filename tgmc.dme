@@ -158,6 +158,7 @@
 #include "code\controllers\stonedmc\subsystem\time_track.dm"
 #include "code\controllers\stonedmc\subsystem\timer.dm"
 #include "code\controllers\stonedmc\subsystem\vote.dm"
+#include "code\controllers\stonedmc\subsystem\weeds.dm"
 #include "code\controllers\stonedmc\subsystem\processing\fastprocess.dm"
 #include "code\controllers\stonedmc\subsystem\processing\obj.dm"
 #include "code\controllers\stonedmc\subsystem\processing\processing.dm"
