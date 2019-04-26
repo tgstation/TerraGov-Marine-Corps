@@ -693,6 +693,8 @@
 			return
 
 		M.fully_replace_character_name(M.real_name, new_name)
+		vv_update_display(M, "name", new_name)
+		vv_update_display(M, "real_name", M.real_name || "No real name")
 
 		message_admins("[ADMIN_TPMONTY(usr)] renamed [ADMIN_TPMONTY(M)] to [new_name].")
 
@@ -963,6 +965,25 @@
 
 		log_admin("[key_name(usr)] has used [result] transformation on [A].")
 		message_admins("[ADMIN_TPMONTY(usr)] has used [result] transformation on [A].")
+
+	else if(href_list["rotatedatum"])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/atom/A = locate(href_list["rotatedatum"])
+		if(!istype(A))
+			to_chat(usr, "This can only be done to instances of type /atom")
+			return
+
+		switch(href_list["rotatedir"])
+			if("right")
+				A.setDir(turn(A.dir, -45))
+			if("left")
+				A.setDir(turn(A.dir, 45))
+
+		vv_update_display(A, "dir", dir2text(A.dir))
+
+		log_admin("[key_name(usr)] rotated [A].")
 
 
 	else if(href_list["setspecies"])
