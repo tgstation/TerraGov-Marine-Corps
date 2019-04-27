@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(weeds)
 	while(length(currentrun))
 		N = currentrun[currentrun.len]
 		currentrun.len--
-		if(!N)
+		if(QDELETED(N))
 			weed_nodes.Remove(N)
 			continue
 
