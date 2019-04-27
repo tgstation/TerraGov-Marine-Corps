@@ -47,49 +47,6 @@
 		H.next_move_slowdown += 1
 
 
-/obj/effect/alien/weeds/proc/weed_expand(obj/effect/alien/weeds/node/node)
-	var/turf/U = get_turf(src)
-
-	if(!istype(U))
-		return
-
-	direction_loop:
-		for (var/dirn in cardinal)
-			var/turf/T = get_step(src, dirn)
-
-			if (!istype(T))
-				continue
-
-			if (!T.is_weedable())
-				continue
-
-			var/obj/effect/alien/weeds/W = locate() in T
-			if (W)
-				continue
-
-			if(iswallturf(T))
-				var/obj/effect/alien/weeds/weedwall/WW = new (T)
-				transfer_fingerprints_to(WW)
-				continue
-
-			if (istype(T.loc, /area/arrival))
-				continue
-
-			for (var/obj/O in T)
-				if(istype(O, /obj/structure/window/framed))
-					var/obj/effect/alien/weeds/weedwall/window/WN = new (T)
-					transfer_fingerprints_to(WN)
-					continue direction_loop
-				else if(istype(O, /obj/structure/window_frame))
-					var/obj/effect/alien/weeds/weedwall/frame/F = new (T)
-					transfer_fingerprints_to(F)
-					continue direction_loop
-				else if(istype(O, /obj/machinery/door) && O.density && (!(O.flags_atom & ON_BORDER) || O.dir != dirn))
-					continue direction_loop
-
-			var/obj/effect/alien/weeds/S = new (T, node)
-			transfer_fingerprints_to(S)
-
 /obj/effect/alien/weeds/proc/update_neighbours(turf/U)
 	if(!U)
 		U = loc
