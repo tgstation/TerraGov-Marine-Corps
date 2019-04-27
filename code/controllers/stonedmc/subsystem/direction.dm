@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(direction)
 	return TRUE
 
 /datum/controller/subsystem/direction/proc/start_tracking(squad_id, mob/living/carbon/C)
-	if(!H)
+	if(!C)
 		stack_trace("SSdirection.start_tracking called with a null mob")
 		return FALSE
 	if(mobs_in_processing[C] == squad_id)
