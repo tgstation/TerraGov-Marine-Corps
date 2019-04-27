@@ -262,7 +262,7 @@
 	return TRUE
 
 /mob/living/carbon/Xenomorph/update_leader_tracking(mob/living/carbon/Xenomorph/X)
-	if(!hud_used || !hud_used.locate_leader)
+	if(!hud_used?.locate_leader)
 		return
 
 	var/obj/screen/LL_dir = hud_used.locate_leader
@@ -282,7 +282,7 @@
 			LL_dir.icon_state = "trackondirect"
 
 /mob/living/carbon/Xenomorph/clear_leader_tracking()
-	if(!hud_used || !hud_used.locate_leader)
+	if(!hud_used?.locate_leader)
 		return
 
 	var/obj/screen/LL_dir = hud_used.locate_leader
