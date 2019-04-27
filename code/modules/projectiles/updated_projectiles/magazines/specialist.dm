@@ -8,7 +8,7 @@
 	caliber = "10x28mm"
 	icon_state = "m42c"
 	w_class = 3
-	max_rounds = 15
+	max_rounds = 18
 	default_ammo = /datum/ammo/bullet/sniper
 	gun_type = /obj/item/weapon/gun/rifle/sniper/M42A
 

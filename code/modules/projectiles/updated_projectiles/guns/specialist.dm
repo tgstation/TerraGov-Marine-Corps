@@ -16,7 +16,7 @@
 	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 15-round magazine.\nIt has an integrated Target Marker and a Laser Targeting system.\n'Peace Through Superior Firepower'"
 	icon_state = "m42a"
 	item_state = "m42a"
-	max_shells = 15 //codex
+	max_shells = 18 //codex
 	caliber = "10x28mm Caseless" //codex
 	origin_tech = "combat=6;materials=5"
 	fire_sound = 'sound/weapons/gun_sniper.ogg'
@@ -178,7 +178,7 @@
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 4
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 3.5
 	burst_amount = CONFIG_GET(number/combat_define/min_burst_value)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) - CONFIG_GET(number/combat_define/med_hit_damage_mult)
