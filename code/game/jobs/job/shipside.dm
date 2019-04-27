@@ -20,6 +20,8 @@
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	outfit = /datum/outfit/job/command/captain
+	exp_requirements = 600
+	exp_type = EXP_TYPE_LIVING
 
 
 /datum/job/command/captain/radio_help_message(mob/M)
@@ -60,6 +62,8 @@ Godspeed, captain! And remember, you are not above the law."})
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER
 	outfit = /datum/outfit/job/command/fieldcommander
+	exp_requirements = 300
+	exp_type = EXP_TYPE_LIVING
 
 
 /datum/job/command/fieldcommander/radio_help_message(mob/M)
@@ -101,6 +105,8 @@ Make the TGMC proud!"})
 	skills_type = /datum/skills/SO
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
 	outfit = /datum/outfit/job/command/intelligenceofficer
+	exp_requirements = 180
+	exp_type = EXP_TYPE_LIVING
 
 
 /datum/job/command/intelligenceofficer/radio_help_message(mob/M)
@@ -176,6 +182,8 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	skills_type = /datum/skills/tank_crew
 	display_order = JOB_DISPLAY_ORDER_TANK_CREWMAN
 	outfit = /datum/outfit/job/command/tank_crew
+	exp_requirements = 180
+	exp_type = EXP_TYPE_LIVING
 
 
 /datum/job/command/tank_crew/radio_help_message(mob/M)
@@ -216,6 +224,8 @@ You could use MTs help to repair and replace hardpoints."})
 	skills_type = /datum/skills/MP
 	display_order = JOB_DISPLAY_ORDER_MILITARY_POLICE
 	outfit = /datum/outfit/job/command/masteratarms
+	exp_requirements = 60
+	exp_type = EXP_TYPE_LIVING
 
 
 /datum/job/command/masteratarms/radio_help_message(mob/M)
@@ -257,6 +267,8 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	skills_type = /datum/skills/CMP
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MP
 	outfit = /datum/outfit/job/command/warrant
+	exp_requirements = 180
+	exp_type = EXP_TYPE_LIVING
 
 
 /datum/job/command/commandmasteratarms/radio_help_message(mob/M)
@@ -306,6 +318,8 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	skills_type = /datum/skills/CE
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	outfit = /datum/outfit/job/logistics/engineering
+	exp_requirements = 180
+	exp_type = EXP_TYPE_LIVING
 
 
 /datum/job/logistics/engineering/radio_help_message(mob/M)
@@ -345,6 +359,8 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	skills_type = /datum/skills/RO
 	display_order = JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER
 	outfit = /datum/outfit/job/logistics/requisition
+	exp_requirements = 180
+	exp_type = EXP_TYPE_LIVING
 
 
 /datum/job/logistics/requisition/radio_help_message(mob/M)
@@ -472,6 +488,8 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 	skills_type = /datum/skills/CMO
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	outfit = /datum/outfit/job/medical/professor
+	exp_requirements = 180
+	exp_type = EXP_TYPE_LIVING
 
 
 /datum/job/medical/professor/radio_help_message(mob/M)
@@ -641,6 +659,8 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	minimal_access = ALL_ACCESS
 	display_order = JOB_DISPLAY_ORDER_SYNTHETIC
 	outfit = /datum/outfit/job/civilian/synthetic
+	exp_requirements = 600
+	exp_type = EXP_TYPE_LIVING
 
 
 /datum/job/civilian/synthetic/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)

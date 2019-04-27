@@ -175,6 +175,8 @@ You can serve a variety of roles, so choose carefully."})
 	skills_type = /datum/skills/SL
 	display_order = JOB_DISPLAY_ORDER_SQUAD_LEADER
 	outfit = /datum/outfit/job/marine/leader
+	exp_requirements = 180
+	exp_type = EXP_TYPE_LIVING
 
 
 /datum/job/marine/leader/radio_help_message(mob/M)
