@@ -915,7 +915,7 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) - CONFIG_GET(number/combat_define/low_hit_damage_mult)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) - CONFIG_GET(number/combat_define/low_hit_damage_mult) - CONFIG_GET(number/combat_define/min_hit_damage_mult)
 
 //-------------------------------------------------------
 //This gun is very powerful, but also has a kick.
