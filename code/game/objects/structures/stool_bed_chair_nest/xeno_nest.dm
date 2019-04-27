@@ -79,7 +79,7 @@
 
 
 /obj/structure/bed/nest/proc/unbuckle_time_message(mob/living/user)
-	if(QDELETED(src) || QDELETED(user) || user != buckled_mob)
+	if(QDELETED(user) || user != buckled_mob)
 		return //Time has passed, conditions may have changed.
 	if(resisting_time + NEST_RESIST_TIME > world.time)
 		return //We've been freed and re-nested.
