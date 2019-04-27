@@ -344,9 +344,8 @@
 			for(var/mob/M in viewers(src))
 				M.show_message("<span class='warning'> The [src.name] is making strange noises!</span>", 3, "<span class='warning'> You hear sizzling electronics.</span>", 2)
 			sleep(10*pick(4,5,6,7,10,14))
-			var/datum/effect_system/smoke_spread/smoke = new
+			var/datum/effect_system/smoke_spread/smoke = new(src)
 			smoke.set_up(1, loc)
-			smoke.attach(src)
 			smoke.start()
 			explosion(src.loc, -1, 0, 1, 3, 1, 0)
 			qdel(src)
@@ -360,9 +359,8 @@
 			else
 				emp_act(2)
 		if(prob(5)) //smoke only
-			var/datum/effect_system/smoke_spread/smoke = new
+			var/datum/effect_system/smoke_spread/smoke = new(src)
 			smoke.set_up(1, loc)
-			smoke.attach(src)
 			smoke.start()
 
 /obj/machinery/power/smes/emp_act(severity)

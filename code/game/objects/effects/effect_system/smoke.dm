@@ -1,3 +1,4 @@
+
 /////////////////////////////////////////////
 //// SMOKE SYSTEMS
 /////////////////////////////////////////////
@@ -5,14 +6,14 @@
 /obj/effect/particle_effect/smoke
 	name = "smoke"
 	icon_state = "smoke"
-	opacity = FALSE
+	opacity = TRUE
 	anchored = TRUE
 	mouse_opacity = 0
 	var/amount = 3
 	var/spread_speed = 1 //time in decisecond for a smoke to spread one tile.
 	var/lifetime = 5
 	var/expansion_speed = 1
-	var/smoke_traits = SMOKE_OPAQUE
+	var/smoke_traits = NONE
 	var/strength = 1 // Effects scale with the emitter's bomb_strength upgrades.
 	var/bio_protection = 1 // how unefficient its effects are against protected target from 0 to 1.
 	var/datum/effect_system/smoke_spread/cloud // for associated chemical smokes.
@@ -44,10 +45,10 @@
 		var/obj/effect/particle_effect/smoke/neighbor = pick(cloud.smokes - src)
 		neighbor.chemical_effect()
 	STOP_PROCESSING(SSobj, src)
-	LAZYREMOVE(cloud.smokes, src)
-	if(!LAZYLEN(cloud.smokes))
-		cloud.active = FALSE
-		qdel(cloud)
+	if(cloud)
+		LAZYREMOVE(cloud.smokes, src)
+		if(cloud.single_use && !LAZYLEN(cloud.smokes))
+			qdel(cloud)
 	return ..()
 
 /obj/effect/particle_effect/smoke/proc/kill_smoke()
@@ -132,8 +133,6 @@
 		else
 			S.lifetime += rand(-1,1)
 	lifetime += rand(-1,1)
-	if(CHECK_BITFIELD(smoke_traits, SMOKE_OPAQUE))
-		SetOpacity(TRUE)
 
 	if(newsmokes.len)
 		addtimer(CALLBACK(src, .proc/spawn_smoke, newsmokes), expansion_speed) //the smoke spreads rapidly but not instantly
@@ -170,11 +169,19 @@
 	var/lifetime
 	var/list/smokes
 	var/list/smoked_mobs
-	var/active = FALSE
+	var/single_use = TRUE
 
-//it's sometimes good practice to delete bound variables datum upon deletion, but doing so while this is active may foul things up.
+//When adding a smoke_spread var which is possibly
+//going to be used multiple times to an atom,
+//be sure to set the only_once argument FALSE.
+/datum/effect_system/smoke_spread/New(atom/atom, only_once = TRUE)
+	. = ..()
+	single_use = only_once
+
+//it's good practice to delete bound variables datum upon deletion, but doing so while active may foul things up.
 /datum/effect_system/smoke_spread/Destroy()
-	if(active)
+	if(LAZYLEN(smokes))
+		single_use = TRUE
 		return QDEL_HINT_LETMELIVE
 	return ..()
 
@@ -190,7 +197,6 @@
 /datum/effect_system/smoke_spread/start()
 	if(!QDELETED(holder))
 		location = get_turf(holder)
-	active = TRUE
 	new smoke_type(location, range, lifetime, src)
 
 /////////////////////////////////////////////
@@ -199,7 +205,7 @@
 
 /obj/effect/particle_effect/smoke/bad
 	lifetime = 8
-	smoke_traits = SMOKE_OPAQUE|SMOKE_NERF_BEAM|SMOKE_FOUL|SMOKE_COUGH|SMOKE_OXYLOSS
+	smoke_traits = SMOKE_NERF_BEAM|SMOKE_FOUL|SMOKE_COUGH|SMOKE_OXYLOSS
 
 /////////////////////////////////////////////
 // Cloak Smoke
@@ -207,6 +213,7 @@
 
 /obj/effect/particle_effect/smoke/tactical
 	alpha = 145
+	opacity = FALSE
 	smoke_traits = SMOKE_CAMO
 
 /////////////////////////////////////////////
@@ -214,7 +221,7 @@
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/sleepy
-	smoke_traits = SMOKE_OPAQUE|SMOKE_COUGH|SMOKE_SLEEP|SMOKE_OXYLOSS
+	smoke_traits = SMOKE_COUGH|SMOKE_SLEEP|SMOKE_OXYLOSS
 
 /////////////////////////////////////////////
 // Mustard Gas
@@ -223,14 +230,14 @@
 /obj/effect/particle_effect/smoke/mustard
 	name = "mustard gas"
 	icon_state = "mustard"
-	smoke_traits = SMOKE_OPAQUE|SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS
+	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS
 
 /////////////////////////////////////////////
 // Phosphorus Gas
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/bad/phosphorus
-	smoke_traits = SMOKE_OPAQUE|SMOKE_BLISTERING
+	smoke_traits = SMOKE_BLISTERING
 
 //////////////////////////////////////
 // FLASHBANG SMOKE
@@ -239,7 +246,7 @@
 /obj/effect/particle_effect/smoke/flashbang
 	name = "illumination"
 	lifetime = 2
-	smoke_traits = NONE
+	opacity = FALSE
 	icon_state = "sparks"
 	icon = 'icons/effects/effects.dmi'
 
@@ -252,18 +259,18 @@
 	lifetime = 6
 	spread_speed = 7
 	expansion_speed = 3
-	smoke_traits = SMOKE_OPAQUE|SMOKE_XENO
+	smoke_traits = SMOKE_XENO
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
 	lifetime = 9
 	color = "#86B028" //Mostly green?
-	smoke_traits = SMOKE_OPAQUE|SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH
 
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
 	color = "#ffbf58" //Mustard orange?
-	smoke_traits = SMOKE_OPAQUE|SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH
 
 /////////////////////////////////////////////
 // Smoke spreads
@@ -291,7 +298,6 @@ datum/effect_system/smoke_spread/tactical
 /datum/effect_system/smoke_spread/xeno/start()
 	if(!QDELETED(holder))
 		location = get_turf(holder)
-	active = TRUE
 	var/obj/effect/particle_effect/smoke/xeno/S = new smoke_type(location, range, lifetime, src)
 	S.strength = strength
 
@@ -306,7 +312,7 @@ datum/effect_system/smoke_spread/tactical
 /////////////////////////////////////////////
 /obj/effect/particle_effect/smoke/chem
 	lifetime = 10
-	smoke_traits = SMOKE_OPAQUE|SMOKE_CHEM
+	smoke_traits = SMOKE_CHEM
 
 /obj/effect/particle_effect/smoke/chem/copy_stats(obj/effect/particle_effect/smoke/parent)
 	icon = parent.icon
@@ -352,7 +358,6 @@ datum/effect_system/smoke_spread/tactical
 	var/mixcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
 	if(!QDELETED(holder))
 		location = get_turf(holder)
-	active = TRUE
 	var/obj/effect/particle_effect/smoke/chem/S = new smoke_type(location, range, lifetime, src)
 
 	if(chemholder.reagents.total_volume > 1) // can't split 1 very well

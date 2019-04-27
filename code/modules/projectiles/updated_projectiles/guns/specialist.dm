@@ -724,15 +724,16 @@
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
 	reload_sound = 'sound/weapons/gun_mortar_reload.ogg'
-	var/datum/effect_system/smoke_spread/smoke
 	unload_sound = 'sound/weapons/gun_mortar_reload.ogg'
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	var/datum/effect_system/smoke_spread/smoke
 
-/obj/item/weapon/gun/launcher/rocket/Initialize()
+/obj/item/weapon/gun/launcher/rocket/Initialize(loc, spawn_empty)
 	. = ..()
-	smoke = new()
-	smoke.attach(src)
+	smoke = new(src, FALSE)
 
+/obj/item/weapon/gun/launcher/rocket/Destroy()
+	QDEL_NULL(smoke)
 
 /obj/item/weapon/gun/launcher/rocket/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(!able_to_fire(user) || user.action_busy)

@@ -333,11 +333,11 @@
 	else
 		icon_state = icon_opened
 
-/obj/structure/closet/hear_talk(mob/M as mob, text)
+/obj/structure/closet/hear_talk(mob/M, msg, verb = "says", datum/language/language)
 	for (var/atom/A in src)
 		if(istype(A,/obj/))
 			var/obj/O = A
-			O.hear_talk(M, text)
+			O.hear_talk(M, msg, verb, language)
 
 /obj/structure/closet/proc/break_open()
 	if(!opened)

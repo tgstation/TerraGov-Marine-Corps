@@ -458,7 +458,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	playsound(src.loc, sound_to_play, 25, 1)
 
 	var/obj/item/projectile/A = new /obj/item/projectile(current_turf)
-	A.generate_bullet(ammo, ammo.damage * SPIT_UPGRADE_BONUS(src)) 
+	A.generate_bullet(ammo, ammo.damage * SPIT_UPGRADE_BONUS(src))
 	A.permutated += src
 	A.def_zone = get_limbzone_target()
 
@@ -887,14 +887,14 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		M.acid_spray_act(src)
 
 
-/mob/living/carbon/Xenomorph/proc/larva_injection(mob/living/carbon/C)
-	if(!C?.can_sting())
+/mob/living/carbon/Xenomorph/proc/larva_injection(mob/living/carbon/C, precheck = TRUE)
+	if(precheck && !(C?.can_sting()))
 		return FALSE
-	if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, C, icon_display = USER_ICON_HOSTILE))
+	if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, C, icon_display = USER_ICON_HOSTILE, CALLBACK(C, .can_sting)))
 		return FALSE
 	if(stagger)
 		return FALSE
-	if(locate(/obj/item/alien_embryo) in C) // already got one, stops doubling up
+	if(CHECK_BITFIELD(C.status_flags, XENO_HOST))
 		to_chat(src, "<span class='warning'>There is already a little one in this vessel!</span>")
 		return FALSE
 	face_atom(C)
@@ -911,7 +911,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	return TRUE
 
 /mob/living/carbon/Xenomorph/proc/recurring_injection(mob/living/carbon/C, toxin = "xeno_toxin", channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 3)
-	if(!C?.can_sting() || !toxin)
+	if(!(C?.can_sting()) || !toxin)
 		return FALSE
 	var/datum/reagent/body_tox
 	var/i = 1
@@ -938,7 +938,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(!check_state())
 		return
 
-	if(!C?.can_sting())
+	if(!(C?.can_sting()))
 		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
 		return
 
@@ -956,7 +956,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			recent_notice = world.time //anti-notice spam
 		return
 
-	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
+	if (CHECK_BITFIELD(C.status_flags, XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
 		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return
 
@@ -982,7 +982,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(!check_state())
 		return
 
-	if(!C?.can_sting())
+	if(!(C?.can_sting()))
 		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
 		return
 
@@ -998,10 +998,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
 			to_chat(src, "<span class='warning'>You can't reach this target!</span>")
 			recent_notice = world.time //anti-notice spam
-		return
-
-	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
-		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return
 
 	if(!check_plasma(150))
@@ -1024,20 +1020,20 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /atom/proc/can_sting()
 	return FALSE
 
-/mob/living/carbon/monkey/can_sting()
-	if(stat != DEAD)
-		return TRUE
-	return FALSE
+/mob/living/carbon/can_sting()
+	if(stat == DEAD || CHECK_BITFIELD(status_flags, GODMODE))
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/can_sting()
-	if(stat != DEAD)
-		return TRUE
-	return FALSE
+	. = ..()
+	if(!.)
+		return FALSE
+	if(CHECK_BITFIELD(species.species_flags, IS_SYNTHETIC))
+		return FALSE
+	return TRUE
 
-/mob/living/carbon/human/species/machine/can_sting()
-	return FALSE
-
-/mob/living/carbon/human/species/synthetic/can_sting()
+/mob/living/carbon/Xenomorph/can_sting()
 	return FALSE
 
 /mob/living/carbon/Xenomorph/proc/hit_and_run_bonus(damage)

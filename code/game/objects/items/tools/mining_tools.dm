@@ -332,9 +332,9 @@
 		var/turfdirt = T.get_dirt_type()
 		if(!turfdirt == DIRT_TYPE_SNOW)
 			return
-		if(!istype(T, /turf/open/snow))
+		if(!istype(T, /turf/open/floor/plating/ground/snow))
 			return
-		var/turf/open/snow/ST = T
+		var/turf/open/floor/plating/ground/snow/ST = T
 		if(!ST.slayer)
 			return
 		if(!start_cut(user, target.name, target, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, "<span class='notice'>You start melting the [target.name] with [src].</span>"))

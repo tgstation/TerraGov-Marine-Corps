@@ -244,7 +244,11 @@
 	else
 		make_girder(FALSE)
 
-	ChangeTurf(/turf/open/floor/plating)
+	if(oldTurf != "")
+		ChangeTurf(text2path(oldTurf), TRUE)
+	else
+		ChangeTurf(/turf/open/floor/plating, TRUE)
+
 
 /turf/closed/wall/ex_act(severity)
 	if(hull)

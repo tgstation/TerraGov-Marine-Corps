@@ -41,7 +41,6 @@ GLOBAL_LIST_EMPTY(language_datum_instances)
 GLOBAL_LIST_EMPTY(all_languages)
 
 GLOBAL_LIST_EMPTY(all_species)
-GLOBAL_LIST_EMPTY(language_keys)	//table of say codes for all languages
 
 GLOBAL_LIST_EMPTY(xeno_caste_datums)
 

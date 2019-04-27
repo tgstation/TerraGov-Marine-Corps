@@ -277,8 +277,8 @@
 		if(SP.health > 0)
 			for(var/datum/coords/C in linked_objs)
 				var/turf/T = locate(x + C.x_pos, y + C.y_pos, z + C.z_pos)
-				if(!istype(T, /turf/open/snow)) continue
-				var/turf/open/snow/ST = T
+				if(!istype(T, /turf/open/floor/plating/ground/snow)) continue
+				var/turf/open/floor/plating/ground/snow/ST = T
 				if(!ST || !ST.slayer)
 					continue
 				new /obj/item/stack/snow(ST, ST.slayer)

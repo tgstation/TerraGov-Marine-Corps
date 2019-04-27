@@ -57,7 +57,7 @@
 	return canhear_range
 
 
-/obj/item/radio/intercom/hear_talk(mob/M as mob, msg)
+/obj/item/radio/intercom/hear_talk(mob/M, msg, verb = "says", datum/language/language)
 	if(!src.anyai && !(M in src.ai))
 		return
 	..()

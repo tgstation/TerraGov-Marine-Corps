@@ -75,7 +75,7 @@
 	if(greaterform_type)
 		greaterform = new greaterform_type()
 
-		add_language(greaterform.language)
+		grant_language(greaterform.language)
 
 		cold_level_1 = null ? greaterform.cold_level_1 : cold_level_1
 		cold_level_2 = null ? greaterform.cold_level_2 : cold_level_2

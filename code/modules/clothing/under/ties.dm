@@ -459,9 +459,9 @@
 	hold.emp_act(severity)
 	..()
 
-/obj/item/clothing/tie/storage/hear_talk(mob/M, var/msg)
-	hold.hear_talk(M, msg)
-	..()
+/obj/item/clothing/tie/storage/hear_talk(mob/M, msg, verb = "says", datum/language/language)
+	hold.hear_talk(M, msg, verb, language)
+	return ..()
 
 /obj/item/clothing/tie/storage/attack_self(mob/user as mob)
 	to_chat(user, "<span class='notice'>You empty [src].</span>")
@@ -484,7 +484,10 @@
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/cell/lasgun)
 	cant_hold = list(
-		/obj/item/stack)
+		/obj/item/stack/razorwire,
+		/obj/item/stack/sheet,
+		/obj/item/stack/sandbags,
+		/obj/item/stack/snow)
 
 /obj/item/clothing/tie/storage/black_vest
 	name = "black webbing vest"
@@ -495,7 +498,10 @@
 /obj/item/storage/internal/tie/vest
 	storage_slots = 5
 	cant_hold = list(
-		/obj/item/stack)
+		/obj/item/stack/razorwire,
+		/obj/item/stack/sheet,
+		/obj/item/stack/sandbags,
+		/obj/item/stack/snow)
 
 /obj/item/clothing/tie/storage/brown_vest
 	name = "brown webbing vest"

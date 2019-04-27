@@ -26,6 +26,7 @@
 
 	universal_speak = TRUE
 	var/atom/movable/following = null
+	initial_language_holder = /datum/language_holder/universal
 
 
 /mob/dead/observer/Initialize()
@@ -181,6 +182,16 @@
 	. = ..()
 
 	if(statpanel("Stats"))
+		if(SSticker.current_state == GAME_STATE_PREGAME)
+			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
+			stat("Players: [length(GLOB.player_list)]", "Players Ready: [GLOB.ready_players]")
+			for(var/i in GLOB.player_list)
+				if(isnewplayer(i))
+					var/mob/new_player/N = i
+					stat("[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key]", N.ready ? "Playing" : "")
+				else if(isobserver(i))
+					var/mob/dead/observer/O = i
+					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
 		var/eta_status = SSevacuation?.get_status_panel_eta()
 		if(eta_status)
 			stat("Evacuation in:", eta_status)

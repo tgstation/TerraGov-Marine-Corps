@@ -49,7 +49,6 @@
 	var/unacidable = FALSE
 	var/mob_size = MOB_SIZE_HUMAN
 	var/list/embedded = list()          // Embedded items, since simple mobs don't have organs.
-	var/list/languages = list()         // For speaking/listening.
 	var/list/speak_emote = list("says") // Verbs used when speaking. Defaults to 'say' if speak_emote is null.
 	var/emote_type = 1		// Define emote default type, 1 for seen emotes, 2 for heard emotes
 

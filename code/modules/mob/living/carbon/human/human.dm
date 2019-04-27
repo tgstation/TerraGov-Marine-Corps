@@ -1322,10 +1322,10 @@
 	species.create_organs(src)
 
 	if(species.language)
-		add_language(species.language)
+		grant_language(species.language)
 
 	if(species.default_language)
-		add_language(species.default_language)
+		grant_language(species.default_language)
 
 	if(species.base_color && default_colour)
 		//Apply colour.

@@ -9,7 +9,7 @@
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves)
 "aad" = (
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "aae" = (
 /turf/closed/wall/r_wall,
@@ -386,7 +386,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "abq" = (
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves)
 "abr" = (
 /obj/machinery/power/apc/drained{
@@ -528,17 +528,17 @@
 /area/bigredv2/outside/space_port)
 "abL" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves)
 "abM" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves)
 "abN" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "abO" = (
 /obj/machinery/power/apc/drained,
@@ -605,17 +605,17 @@
 /area/bigredv2/caves/lambda_lab)
 "abW" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "abX" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "abY" = (
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 4
 	},
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "abZ" = (
 /obj/machinery/light{
@@ -646,7 +646,7 @@
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 4
 	},
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves)
 "acd" = (
 /obj/effect/landmark/random_item/good,
@@ -895,7 +895,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "acP" = (
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "acQ" = (
 /turf/closed/wall,
@@ -1505,7 +1505,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aeI" = (
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "aeJ" = (
 /turf/open/floor/marking/delivery,
@@ -1930,15 +1930,15 @@
 /area/bigredv2/outside/marshal_office)
 "afX" = (
 /obj/structure/mineral_door/resin,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "afY" = (
 /obj/structure/mineral_door/resin,
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves)
 "afZ" = (
 /obj/effect/alien/weeds/node,
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves)
 "aga" = (
 /obj/machinery/iv_drip,
@@ -2403,7 +2403,7 @@
 /area/bigredv2/outside/space_port)
 "ahi" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "ahj" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2477,16 +2477,16 @@
 /area/bigredv2/outside/marshal_office)
 "ahv" = (
 /obj/effect/landmark/start/xeno_spawn,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "ahw" = (
 /obj/effect/alien/weeds/node,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "ahx" = (
 /obj/effect/landmark/random_item/crap,
 /obj/effect/alien/weeds/node,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "ahy" = (
 /obj/machinery/power/apc/drained,
@@ -2499,7 +2499,7 @@
 "ahz" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/surgery/scalpel/manager,
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/lambda_lab)
 "ahA" = (
 /obj/effect/decal/cleanable/blood,
@@ -2605,12 +2605,12 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/telecomm)
 "ahO" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
 	},
 /area/bigredv2/outside/nw)
 "ahP" = (
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/nw)
 "ahQ" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -2639,30 +2639,30 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "ahV" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
 	},
 /area/bigredv2/outside/nw)
 "ahW" = (
 /obj/item/stack/rods,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "ahX" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "ahY" = (
 /obj/item/stack/sheet/metal,
 /obj/item/stack/rods,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "ahZ" = (
 /obj/item/stack/rods,
 /obj/item/stack/rods,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "aia" = (
 /obj/machinery/door_control{
@@ -2738,7 +2738,7 @@
 "aij" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
 /obj/effect/alien/weeds/node,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "aik" = (
 /obj/structure/table/reinforced,
@@ -2841,17 +2841,17 @@
 	},
 /area/bigredv2/outside/nw)
 "aiz" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
 	},
 /area/bigredv2/outside/nw)
 "aiA" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
 "aiB" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
 	},
 /area/bigredv2/outside/nw)
@@ -3526,7 +3526,7 @@
 	},
 /area/bigredv2/outside/n)
 "akx" = (
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves)
 "aky" = (
 /obj/structure/bookcase/manuals/research_and_development,
@@ -3707,15 +3707,15 @@
 /area/bigredv2/outside/marshal_office)
 "akV" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "akW" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
 	},
 /area/bigredv2/caves)
 "akX" = (
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves)
 "akY" = (
 /obj/structure/cable{
@@ -3728,7 +3728,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "akZ" = (
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 8
 	},
 /area/bigredv2/caves)
@@ -3817,7 +3817,7 @@
 	},
 /area/bigredv2/outside/nw)
 "aln" = (
-/turf/open/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/nw)
 "alo" = (
 /obj/structure/cable,
@@ -3923,17 +3923,17 @@
 	},
 /area/bigredv2/outside/n)
 "alG" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
 	},
 /area/bigredv2/caves)
 "alI" = (
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 10
 	},
 /area/bigredv2/caves)
 "alJ" = (
-/turf/open/mars/cavetodirt,
+/turf/open/floor/plating/ground/mars/cavetodirt,
 /area/bigredv2/caves)
 "alK" = (
 /obj/structure/cable{
@@ -4031,7 +4031,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/telecomm)
 "ama" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
 	},
 /area/bigredv2/outside/nw)
@@ -4268,13 +4268,13 @@
 /area/bigredv2/outside/marshal_office)
 "amD" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "amE" = (
 /turf/open/floor/plating,
 /area/bigredv2/caves)
 "amF" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
 /area/bigredv2/caves)
@@ -4829,7 +4829,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "aog" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
 /area/bigredv2/outside/nw)
@@ -5655,7 +5655,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/n)
 "aqK" = (
 /obj/structure/cable{
@@ -5666,13 +5666,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/n)
 "aqL" = (
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/n)
 "aqM" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
 	},
 /area/bigredv2/outside/n)
@@ -5681,11 +5681,11 @@
 	dir = 8
 	},
 /obj/structure/barricade/wooden,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "aqO" = (
 /obj/structure/barricade/wooden,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "aqP" = (
 /obj/structure/table,
@@ -5749,7 +5749,7 @@
 /area/bigredv2/caves/lambda_lab)
 "ard" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/nw)
 "are" = (
 /obj/structure/table,
@@ -5810,7 +5810,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "arp" = (
-/turf/open/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/n)
 "arq" = (
 /obj/structure/cable{
@@ -5819,10 +5819,10 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/n)
 "arr" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
 	},
 /area/bigredv2/outside/n)
@@ -5894,7 +5894,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "arD" = (
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
 "arE" = (
 /obj/structure/rack,
@@ -5947,11 +5947,11 @@
 /area/bigredv2/caves/lambda_lab)
 "arL" = (
 /obj/effect/glowshroom,
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves)
 "arM" = (
 /obj/effect/glowshroom,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "arN" = (
 /obj/structure/table,
@@ -6040,12 +6040,12 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "asa" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
 	},
 /area/bigredv2/outside/n)
 "asb" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
 /area/bigredv2/outside/n)
@@ -6085,13 +6085,13 @@
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8
 	},
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "ash" = (
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 1
 	},
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "asi" = (
 /obj/machinery/door/airlock/almayer/maint{
@@ -6121,7 +6121,7 @@
 /area/bigredv2/outside/general_offices)
 "asm" = (
 /obj/item/flashlight/lantern,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
 "asn" = (
 /obj/structure/rack,
@@ -6613,7 +6613,7 @@
 /area/bigredv2/caves/lambda_lab)
 "atQ" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "atR" = (
 /obj/effect/decal/cleanable/dirt,
@@ -7594,7 +7594,7 @@
 /area/bigredv2/outside/general_offices)
 "awy" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
 "awz" = (
 /obj/structure/table/holotable/wood,
@@ -7920,7 +7920,7 @@
 "axF" = (
 /obj/structure/barricade/wooden,
 /obj/structure/barricade/wooden,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "axG" = (
 /obj/machinery/camera/autoname{
@@ -8013,7 +8013,7 @@
 /area/bigredv2/caves/lambda_lab)
 "axU" = (
 /obj/item/tool/pickaxe/drill,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "axW" = (
 /obj/structure/cable{
@@ -8219,7 +8219,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/lambda_lab)
 "ayD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -8228,11 +8228,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/lambda_lab)
 "ayE" = (
 /obj/structure/girder/reinforced,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/lambda_lab)
 "ayG" = (
 /obj/structure/bed/roller,
@@ -8409,7 +8409,7 @@
 	dir = 1
 	},
 /obj/effect/alien/weeds/node,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/lambda_lab)
 "azn" = (
 /obj/machinery/light{
@@ -8610,7 +8610,7 @@
 /area/bigredv2/outside/medical)
 "azK" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "azL" = (
 /obj/structure/window_frame/colony,
@@ -8934,7 +8934,7 @@
 "aAA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "aAB" = (
 /obj/effect/decal/cleanable/blood,
@@ -9429,7 +9429,7 @@
 	},
 /area/bigredv2/outside/medical)
 "aBR" = (
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "aBS" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -9487,10 +9487,10 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/bar)
 "aCc" = (
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/ne)
 "aCd" = (
-/turf/open/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/ne)
 "aCe" = (
 /obj/structure/window/framed/colony,
@@ -9712,7 +9712,7 @@
 /area/bigredv2/outside/medical)
 "aCM" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "aCN" = (
 /obj/effect/decal/cleanable/dirt,
@@ -9764,10 +9764,10 @@
 /area/bigredv2/outside/bar)
 "aCV" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
 "aCW" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
 	},
 /area/bigredv2/outside/ne)
@@ -10658,18 +10658,18 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aFs" = (
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/virology)
 "aFu" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
 	},
 /area/bigredv2/outside/virology)
 "aFv" = (
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/virology)
 "aFw" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
 	},
 /area/bigredv2/outside/virology)
@@ -10762,7 +10762,7 @@
 /area/bigredv2/outside/medical)
 "aFL" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "aFM" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -10999,15 +10999,15 @@
 /area/bigredv2/caves/lambda_lab)
 "aGo" = (
 /obj/structure/fence,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "aGp" = (
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 6
 	},
 /area/bigredv2/outside/virology)
 "aGr" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
 /area/bigredv2/outside/virology)
@@ -11248,7 +11248,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aHf" = (
 /obj/structure/fence,
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 4
 	},
 /area/bigredv2/caves)
@@ -11272,7 +11272,7 @@
 /area/bigredv2/outside/virology)
 "aHn" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "aHo" = (
 /obj/structure/closet/secure_closet/medical2,
@@ -11541,7 +11541,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aHZ" = (
-/turf/open/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/virology)
 "aIa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -11667,12 +11667,12 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aIm" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
 	},
 /area/bigredv2/outside/c)
 "aIn" = (
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/c)
 "aIo" = (
 /obj/structure/cable{
@@ -11680,10 +11680,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/c)
 "aIp" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
 	},
 /area/bigredv2/outside/c)
@@ -11965,7 +11965,7 @@
 /area/bigredv2/outside/virology)
 "aJi" = (
 /obj/item/trash/popcorn,
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/virology)
 "aJj" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -11989,7 +11989,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "aJm" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
 	},
 /area/bigredv2/outside/c)
@@ -12531,25 +12531,25 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/virology)
 "aKh" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
 	},
 /area/bigredv2/outside/virology)
 "aKi" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/virology)
 "aKj" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
 	},
 /area/bigredv2/outside/virology)
 "aKk" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "aKl" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
 /area/bigredv2/outside/c)
@@ -12589,7 +12589,7 @@
 /area/bigredv2/outside/c)
 "aKr" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "aKs" = (
 /obj/structure/cable{
@@ -12597,7 +12597,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
 /area/bigredv2/outside/c)
@@ -12633,12 +12633,12 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aKA" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
 /area/bigredv2/outside/ne)
 "aKB" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
 	},
 /area/bigredv2/outside/ne)
@@ -12698,7 +12698,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aKP" = (
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/e)
 "aKQ" = (
 /obj/structure/cable{
@@ -12804,10 +12804,10 @@
 /area/bigredv2/caves/lambda_lab)
 "aLc" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "aLd" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
 	},
 /area/bigredv2/outside/c)
@@ -12866,7 +12866,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/c)
 "aLk" = (
 /obj/structure/cable{
@@ -12874,7 +12874,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
 	},
 /area/bigredv2/outside/c)
@@ -12884,7 +12884,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "aLn" = (
 /obj/structure/cable{
@@ -12892,7 +12892,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
 	},
 /area/bigredv2/outside/c)
@@ -12902,7 +12902,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/c)
 "aLp" = (
 /obj/structure/bed/chair/wood/normal{
@@ -13764,7 +13764,7 @@
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aOk" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
 	},
 /area/bigredv2/outside/e)
@@ -14349,7 +14349,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aQu" = (
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/e)
 "aQv" = (
 /turf/open/floor/podhatch{
@@ -14412,7 +14412,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aQF" = (
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/w)
 "aQH" = (
 /obj/structure/table,
@@ -14713,7 +14713,7 @@
 "aRw" = (
 /obj/effect/landmark/random_item/crap,
 /obj/effect/alien/weeds/node,
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves)
 "aRx" = (
 /obj/machinery/teleport/station,
@@ -14960,7 +14960,7 @@
 	},
 /area/bigredv2/outside/e)
 "aSh" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
 /area/bigredv2/outside/e)
@@ -14971,7 +14971,7 @@
 /area/bigredv2/outside/e)
 "aSj" = (
 /obj/effect/decal/remains/human,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "aSl" = (
 /obj/machinery/light{
@@ -15072,7 +15072,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
 "aSB" = (
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/w)
 "aSC" = (
 /obj/effect/decal/cleanable/dirt,
@@ -15580,11 +15580,11 @@
 /area/bigredv2/outside/admin_building)
 "aUh" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/c)
 "aUi" = (
 /obj/effect/decal/cleanable/blood/xeno,
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/c)
 "aUj" = (
 /obj/structure/cable{
@@ -15598,11 +15598,11 @@
 	},
 /area/bigredv2/outside/c)
 "aUk" = (
-/turf/open/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/e)
 "aUl" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/e)
 "aUo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -15809,7 +15809,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aUK" = (
 /obj/structure/mineral_door/resin,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/lambda_lab)
 "aUL" = (
 /obj/structure/table,
@@ -15974,7 +15974,7 @@
 /area/bigredv2/outside/admin_building)
 "aVo" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "aVp" = (
 /obj/structure/cable{
@@ -15986,23 +15986,23 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "aVq" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
 	},
 /area/bigredv2/outside/e)
 "aVr" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
 	},
 /area/bigredv2/outside/e)
 "aVs" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
 	},
 /area/bigredv2/outside/e)
 "aVt" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/e)
 "aVu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -16022,7 +16022,7 @@
 /area/bigredv2/outside/e)
 "aVw" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "aVx" = (
 /obj/structure/curtain/medical,
@@ -16178,7 +16178,7 @@
 /area/bigredv2/outside/admin_building)
 "aVY" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/e)
 "aVZ" = (
 /obj/structure/table/reinforced,
@@ -16407,21 +16407,21 @@
 	},
 /area/bigredv2/outside/c)
 "aWJ" = (
-/turf/open/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/c)
 "aWK" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
 	},
 /area/bigredv2/outside/e)
 "aWL" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/e)
 "aWN" = (
 /obj/effect/alien/weeds/node,
 /obj/structure/mineral_door/resin,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "aWP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -16816,7 +16816,7 @@
 	},
 /area/bigredv2/outside/e)
 "aXY" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
 	},
 /area/bigredv2/outside/w)
@@ -17034,13 +17034,13 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
 "aYE" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
 	},
 /area/bigredv2/outside/w)
 "aYF" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/w)
 "aYG" = (
 /obj/structure/cable{
@@ -17102,7 +17102,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aYQ" = (
-/turf/open/jungle/clear,
+/turf/open/ground/jungle/clear,
 /area/bigredv2/outside/admin_building)
 "aYR" = (
 /obj/structure/window/reinforced{
@@ -17703,7 +17703,7 @@
 /area/bigredv2/outside/w)
 "bbb" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/w)
 "bbd" = (
 /obj/structure/window_frame/colony,
@@ -17889,7 +17889,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "bbJ" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
 	},
 /area/bigredv2/outside/w)
@@ -18027,7 +18027,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "bcp" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
 /area/bigredv2/outside/sw)
@@ -18617,20 +18617,20 @@
 	},
 /area/bigredv2/outside/se)
 "beq" = (
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/se)
 "ber" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
 	},
 /area/bigredv2/outside/se)
 "bes" = (
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "bet" = (
 /obj/effect/landmark/start/xeno_spawn,
 /obj/effect/alien/weeds/node,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "beu" = (
 /obj/effect/landmark/huntergames_primary_spawn,
@@ -18823,7 +18823,7 @@
 /area/bigredv2/outside/c)
 "bfb" = (
 /obj/structure/barricade/wooden,
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/c)
 "bfd" = (
 /obj/structure/table,
@@ -19017,7 +19017,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "bfw" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
 	},
 /area/bigredv2/outside/se)
@@ -19106,11 +19106,11 @@
 /area/bigredv2/outside/office_complex)
 "bfT" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/w)
 "bfU" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/w)
 "bfV" = (
 /obj/structure/largecrate/random,
@@ -19257,7 +19257,7 @@
 /area/bigredv2/outside/office_complex)
 "bgC" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/w)
 "bgD" = (
 /obj/effect/decal/cleanable/dirt,
@@ -19359,7 +19359,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bgW" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
 	},
 /area/bigredv2/outside/w)
@@ -19469,13 +19469,13 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bhq" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
 	},
 /area/bigredv2/outside/se)
 "bhr" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "bht" = (
 /obj/machinery/floodlight/landing,
@@ -19942,7 +19942,7 @@
 /area/bigredv2/outside/office_complex)
 "biF" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "biG" = (
 /turf/closed/wall/r_wall,
@@ -20096,7 +20096,7 @@
 	},
 /area/bigredv2/outside/office_complex)
 "bjm" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
 	},
 /area/bigredv2/outside/se)
@@ -20155,10 +20155,10 @@
 	},
 /area/bigredv2/outside/s)
 "bjy" = (
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/s)
 "bjA" = (
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/s)
 "bjC" = (
 /obj/structure/cable{
@@ -20214,7 +20214,7 @@
 	},
 /area/bigredv2/outside/c)
 "bjH" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
 	},
 /area/bigredv2/outside/s)
@@ -20346,12 +20346,12 @@
 	},
 /area/bigredv2/outside/office_complex)
 "bkh" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
 	},
 /area/bigredv2/outside/se)
 "bki" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
 /area/bigredv2/outside/se)
@@ -20384,16 +20384,16 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bkp" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
 	},
 /area/bigredv2/outside/s)
 "bkq" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/s)
 "bkr" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
 /area/bigredv2/outside/s)
@@ -20440,7 +20440,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "bky" = (
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 9
 	},
 /area/bigredv2/outside/se)
@@ -20568,7 +20568,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "bkW" = (
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 1
 	},
 /area/bigredv2/outside/se)
@@ -20691,7 +20691,7 @@
 	},
 /area/bigredv2/outside/s)
 "blv" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
 /area/bigredv2/outside/s)
@@ -20872,7 +20872,7 @@
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/sw)
 "bme" = (
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/sw)
 "bmf" = (
 /obj/structure/closet/secure_closet/engineering_personal,
@@ -21833,7 +21833,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bpr" = (
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/bigredv2/outside/s)
 "bps" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -21867,12 +21867,12 @@
 	},
 /area/bigredv2/outside/sw)
 "bpx" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
 	},
 /area/bigredv2/outside/sw)
 "bpy" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
 	},
 /area/bigredv2/outside/sw)
@@ -22980,7 +22980,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/s)
 "btp" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
 /area/bigredv2/outside/sw)
@@ -23036,7 +23036,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "btz" = (
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/bigredv2/outside/engineering)
 "btA" = (
 /obj/effect/landmark/huntergames_primary_spawn,
@@ -23135,21 +23135,21 @@
 /area/bigredv2/outside/s)
 "btQ" = (
 /obj/structure/fence,
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 5
 	},
 /area/bigredv2/outside/s)
 "btR" = (
 /obj/structure/fence,
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/s)
 "btS" = (
 /obj/structure/fence,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/s)
 "btU" = (
 /obj/structure/fence,
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/se)
 "btX" = (
 /obj/machinery/light{
@@ -23176,23 +23176,23 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bud" = (
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 9
 	},
 /area/bigredv2/outside/s)
 "bue" = (
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/s)
 "bug" = (
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 5
 	},
 /area/bigredv2/outside/s)
 "buj" = (
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/sw)
 "buk" = (
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/sw)
 "bun" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -23204,23 +23204,23 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
 "bur" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
 	},
 /area/bigredv2/outside/s)
 "buu" = (
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 1
 	},
 /area/bigredv2/outside/s)
 "buv" = (
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/s)
 "bux" = (
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
 "buC" = (
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 9
 	},
 /area/bigredv2/outside/sw)
@@ -23275,16 +23275,16 @@
 /area/bigredv2/outside/s)
 "buK" = (
 /obj/structure/fence,
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 8
 	},
 /area/bigredv2/outside/s)
 "buL" = (
 /obj/item/tool/warning_cone,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/s)
 "buM" = (
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/se)
 "buO" = (
 /obj/structure/cable{
@@ -23305,7 +23305,7 @@
 	},
 /area/bigredv2/outside/sw)
 "buS" = (
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 1
 	},
 /area/bigredv2/outside/sw)
@@ -23325,7 +23325,7 @@
 /area/bigredv2/outside/engineering)
 "buY" = (
 /obj/structure/fence,
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 10
 	},
 /area/bigredv2/outside/s)
@@ -23361,7 +23361,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/bigredv2/outside/engineering)
 "bvh" = (
 /obj/machinery/light{
@@ -23381,10 +23381,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/bigredv2/outside/engineering)
 "bvk" = (
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 8
 	},
 /area/bigredv2/outside/s)
@@ -23419,13 +23419,13 @@
 /area/bigredv2/outside/s)
 "bvq" = (
 /obj/structure/fence,
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 1
 	},
 /area/bigredv2/outside/s)
 "bvu" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
 "bvy" = (
 /obj/item/multitool,
@@ -23477,7 +23477,7 @@
 /area/bigredv2/outside/engineering)
 "bvH" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/s)
 "bvK" = (
 /obj/structure/cable{
@@ -23494,7 +23494,7 @@
 /area/bigredv2/outside/engineering)
 "bvL" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/sw)
 "bvM" = (
 /obj/machinery/compressor{
@@ -23504,7 +23504,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "bvP" = (
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bvS" = (
 /obj/structure/cable{
@@ -23557,7 +23557,7 @@
 /area/bigredv2/outside/s)
 "bwf" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/sw)
 "bwg" = (
 /obj/structure/cable{
@@ -23577,7 +23577,7 @@
 /area/bigredv2/outside/s)
 "bwj" = (
 /obj/effect/landmark/start/xeno_spawn,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwo" = (
 /obj/structure/cable{
@@ -23595,7 +23595,7 @@
 /area/bigredv2/outside/engineering)
 "bwv" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/sw)
 "bww" = (
 /turf/open/floor/plating,
@@ -24306,7 +24306,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzn" = (
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzp" = (
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
@@ -24343,13 +24343,13 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzu" = (
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzv" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzw" = (
 /obj/effect/decal/cleanable/dirt,
@@ -24466,11 +24466,11 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzO" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzP" = (
 /obj/structure/mineral_door/resin,
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzQ" = (
 /obj/machinery/door/airlock/almayer/research/glass{
@@ -24530,12 +24530,12 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAb" = (
 /obj/structure/bed/chair,
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAd" = (
 /obj/effect/alien/weeds/node,
 /obj/structure/mineral_door/resin,
-/turf/open/mars/random/cave/rock,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAf" = (
 /obj/machinery/r_n_d/server,
@@ -24874,7 +24874,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBp" = (
-/turf/open/jungle/clear,
+/turf/open/ground/jungle/clear,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBq" = (
 /turf/open/floor/tile/dark/red2{
@@ -24942,7 +24942,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBC" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/jungle/clear,
+/turf/open/ground/jungle/clear,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBD" = (
 /obj/structure/cable{
@@ -24981,7 +24981,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/jungle/clear,
+/turf/open/ground/jungle/clear,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBJ" = (
 /turf/open/floor/tile/dark/red2{
@@ -25256,7 +25256,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCE" = (
 /obj/item/stack/sheet/xenochitin,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCF" = (
 /obj/structure/mineral_door/resin,
@@ -25285,13 +25285,13 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCJ" = (
 /obj/effect/alien/weeds/node,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCK" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCL" = (
 /obj/structure/table,
@@ -25440,7 +25440,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDm" = (
 /obj/machinery/light{
@@ -25738,7 +25738,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEr" = (
 /obj/structure/mineral_door/resin,
-/turf/open/mars/cavetodirt{
+/turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -25913,7 +25913,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "cBD" = (
-/turf/open/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/sw)
 "cXq" = (
 /obj/effect/decal/cleanable/dirt,
@@ -25955,10 +25955,10 @@
 /area/bigredv2/outside/chapel)
 "dGd" = (
 /obj/effect/decal/cleanable/blood/gibs/limb,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/e)
 "dLO" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
 	},
 /area/bigredv2/outside/w)
@@ -25989,7 +25989,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/lambda_lab)
 "exJ" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
 /area/bigredv2/outside/e)
@@ -26109,7 +26109,7 @@
 /area/bigredv2/outside/engineering)
 "giI" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "gjg" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -26201,7 +26201,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "hlD" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
 	},
 /area/bigredv2/outside/c)
@@ -26359,14 +26359,14 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "knF" = (
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/engineering)
 "kpd" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "kxe" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
 	},
 /area/bigredv2/outside/virology)
@@ -26391,7 +26391,7 @@
 /area/bigredv2/outside/engineering)
 "kQy" = (
 /obj/structure/mineral_door/resin,
-/turf/open/mars/random/cave,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "kRt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -26476,7 +26476,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "mpz" = (
-/turf/open/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/se)
 "msI" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -26509,7 +26509,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "mXK" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
 	},
 /area/bigredv2/outside/sw)
@@ -26812,7 +26812,7 @@
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "riz" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
 /area/bigredv2/outside/virology)
@@ -26913,7 +26913,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "sBV" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
 /area/bigredv2/outside/w)
@@ -27075,10 +27075,10 @@
 /area/bigredv2/caves/lambda_lab)
 "vTU" = (
 /obj/effect/alien/weeds/node,
-/turf/open/jungle/clear,
+/turf/open/ground/jungle/clear,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "vUH" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
 /area/bigredv2/outside/w)
@@ -27120,7 +27120,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "wxA" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/down,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "wxR" = (
 /obj/effect/decal/cleanable/dirt,
@@ -27135,7 +27135,7 @@
 /turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "wzM" = (
-/turf/open/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
 /area/bigredv2/outside/c)
@@ -27144,7 +27144,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/medical)
 "wZg" = (
-/turf/open/mars/random/dirt,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/sw)
 "xbs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -27174,7 +27174,7 @@
 /area/bigredv2/outside/general_store)
 "xji" = (
 /obj/effect/decal/cleanable/blood/gibs/limb,
-/turf/open/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "xnf" = (
 /obj/effect/decal/cleanable/dirt,

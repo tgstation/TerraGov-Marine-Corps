@@ -221,8 +221,8 @@
 	T.ignite(heat, burn, f_color)
 
 	// Melt a single layer of snow
-	if(istype(T, /turf/open/snow))
-		var/turf/open/snow/S = T
+	if(istype(T, /turf/open/floor/plating/ground/snow))
+		var/turf/open/floor/plating/ground/snow/S = T
 
 		if (S.slayer > 0)
 			S.slayer -= 1

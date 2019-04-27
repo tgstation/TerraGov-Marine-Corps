@@ -147,7 +147,7 @@
 	var/evolution_stored = 0 //How much evolution they have stored
 
 	var/upgrade_stored = 0 //How much upgrade points they have stored.
-	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level. 
+	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
 	var/gib_chance = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
 	var/critical_proc = 0
 	var/critical_delay = 25
@@ -257,6 +257,9 @@
 	//Runner vars
 	var/savage = FALSE
 	var/savage_used = FALSE
+
+	//Hunter vars
+	var/sneak_bonus = 0.00
 
 	//Acid spray
 	var/last_spray_used

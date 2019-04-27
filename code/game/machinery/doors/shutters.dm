@@ -3,7 +3,6 @@
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = "shutter1"
 	power_channel = ENVIRON
-	destructible = FALSE
 
 /obj/machinery/door/poddoor/shutters/New()
 	..()

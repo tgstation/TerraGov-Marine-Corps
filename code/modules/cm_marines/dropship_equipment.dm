@@ -170,7 +170,6 @@
 	var/datum/shuttle/ferry/marine/linked_shuttle
 	var/screen_mode = 0 //used by the dropship console code when this equipment is selected
 	var/point_cost = 0 //how many points it costs to build this with the fabricator, set to 0 if unbuildable.
-	breakable = FALSE
 
 /obj/structure/dropship_equipment/Destroy()
 	if(ammo_equipped)

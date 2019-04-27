@@ -23,17 +23,12 @@
 		/obj/structure/window_frame)
 
 /obj/structure/window_frame/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
-		return 1
-	return 0
+	if(istype(mover) && climbable && mover.checkpass(PASSTABLE))
+		return TRUE
+	return FALSE
 
 /obj/structure/window_frame/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSTABLE))
-		return 1
-	return 1
+	return TRUE
 
 /obj/structure/window_frame/Initialize(loc, from_window_shatter)
 	. = ..()
@@ -149,6 +144,10 @@
 	basestate = "prison_rwindow"
 
 /obj/structure/window_frame/prison/reinforced
-	icon_state = "prison_rwindow0_frame"
-	basestate = "prison_rwindow"
 	reinforced = TRUE
+
+/obj/structure/window_frame/prison/hull
+	climbable = FALSE
+	throwpass = FALSE
+	reinforced = TRUE
+	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
