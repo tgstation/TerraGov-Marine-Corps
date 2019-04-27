@@ -266,7 +266,7 @@ How many shots the weapon shoots each burst. Should be set to 1 if the gun doesn
 	config_entry_value = 6
 
 /datum/config_entry/number/combat_define/minigun_burst_value
-	config_entry_value = 10
+	config_entry_value = 30
 
 /*
 Fire delay.

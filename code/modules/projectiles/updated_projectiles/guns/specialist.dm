@@ -925,7 +925,7 @@
 	desc = "It's a damn minigun! The ultimate in man-portable firepower, spraying countless high velocity armor piercing rounds with a rotary action, this thing will no doubt pack a punch."
 	icon_state = "minigun"
 	item_state = "minigun"
-	max_shells = 500 //codex
+	max_shells = 400 //codex
 	caliber = "7.62x51mm" //codex
 	load_method = MAGAZINE //codex
 	origin_tech = "combat=7;materials=5"
@@ -960,9 +960,9 @@
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	scatter = CONFIG_GET(/datum/config_entry/number/combat_define/mhigh_scatter_value)
+	scatter_unwielded = CONFIG_GET(/datum/config_entry/number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) - CONFIG_GET(number/combat_define/med_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
 	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
 
