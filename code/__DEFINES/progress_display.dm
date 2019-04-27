@@ -37,6 +37,8 @@
 #define USER_ICON_FRIENDLY		/mutable_appearance/progress/display/friendly
 #define USER_ICON_HOSTILE		/mutable_appearance/progress/display/hostile
 #define USER_ICON_CLOCK			/mutable_appearance/progress/display/clock
+#define USER_ICON_CLOCK_ALT		/mutable_appearance/progress/display/clock/alt
+#define USER_ICON_DANGER 		/mutable_appearance/progress/display/danger
 #define USER_ICON_BAR			/mutable_appearance/progress/display/bar
 
 #define TARGET_ICON_GENERIC		/mutable_appearance/progress/display/target
@@ -45,4 +47,6 @@
 #define TARGET_ICON_FRIENDLY	/mutable_appearance/progress/display/friendly/target
 #define TARGET_ICON_HOSTILE		/mutable_appearance/progress/display/hostile/target
 #define TARGET_ICON_CLOCK		/mutable_appearance/progress/display/clock/target
+#define TARGET_ICON_CLOCK_ALT	/mutable_appearance/progress/display/clock/alt/target
+#define TARGET_ICON_DANGER 		/mutable_appearance/progress/display/danger/target
 #define TARGET_ICON_BAR			/mutable_appearance/progress/display/bar/target

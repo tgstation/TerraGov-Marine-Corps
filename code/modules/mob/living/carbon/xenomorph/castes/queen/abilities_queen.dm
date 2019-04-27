@@ -291,9 +291,7 @@
 		return
 	X.visible_message("<span class='xenowarning'>\The [X] starts to grow an ovipositor.</span>", \
 	"<span class='xenowarning'>You start to grow an ovipositor...(takes 20 seconds, hold still)</span>")
-	if(!do_after(X, 200, TRUE) || !X.check_plasma(plasma_cost) || !X.check_state())
-		return
-	if(!locate(/obj/effect/alien/weeds) in current_turf)
+	if(!do_after(X, 200, TRUE, alien_weeds, icon_display = USER_ICON_BUILD) || !X.check_plasma(plasma_cost) || !X.check_state())
 		return
 
 	X.use_plasma(plasma_cost)
@@ -322,7 +320,7 @@
 		return
 	X.visible_message("<span class='xenowarning'>\The [X] starts detaching itself from its ovipositor!</span>", \
 		"<span class='xenowarning'>You start detaching yourself from your ovipositor.</span>")
-	if(!do_after(X, 50, FALSE) || !X.check_state() || !X.ovipositor)
+	if(!do_after(X, 50, FALSE, icon_display = USER_ICON_BUILD) || !X.check_state() || !X.ovipositor)
 		return
 	X.dismount_ovipositor()
 
@@ -810,7 +808,7 @@
 		return
 	X.visible_message("<span class='xenowarning'>\The [X] starts to advance larval growth inside of [H].</span>", \
 	"<span class='xenowarning'>You start to advance larval growth inside of [H].</span>")
-	if(!do_after(X, 50, TRUE, H) || !X.check_plasma(300) || !X.check_state())
+	if(!do_after(X, 50, TRUE, H, icon_display = USER_ICON_CLOCK_ALT) || !X.check_plasma(300) || !X.check_state())
 		return
 	X.use_plasma(300)
 	X.visible_message("<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>", \

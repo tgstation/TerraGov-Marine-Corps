@@ -133,11 +133,12 @@
 	icon_state = "Defiler Power Up"
 
 	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, icon_display = USER_ICON_HOSTILE))
-		smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
-		smoke_system.set_up(1, get_turf(src))
-		to_chat(src, "<span class='xenodanger'>You abort emitting neurogas, your expended plasma resulting in only a feeble wisp.</span>")
-		emitting_gas = FALSE
-		icon_state = "Defiler Running"
+		if(!QDELETED(src))
+			smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
+			smoke_system.set_up(1, get_turf(src))
+			to_chat(src, "<span class='xenodanger'>You abort emitting neurogas, your expended plasma resulting in only a feeble wisp.</span>")
+			emitting_gas = FALSE
+			icon_state = "Defiler Running"
 		return
 	emitting_gas = FALSE
 	icon_state = "Defiler Running"

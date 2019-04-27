@@ -258,6 +258,18 @@
 /mutable_appearance/progress/display/clock/target
 	owner = DISPLAY_ICON_TARG
 
+/mutable_appearance/progress/display/clock/alt
+	icontag = "clock2"
+
+/mutable_appearance/progress/display/clock/alt/target
+	owner = DISPLAY_ICON_TARG
+
+/mutable_appearance/progress/display/danger
+	icontag = "danger"
+
+/mutable_appearance/progress/display/danger/target
+	owner = DISPLAY_ICON_TARG
+
 /mutable_appearance/progress/display/bar
 	icontag = "bar"
 
