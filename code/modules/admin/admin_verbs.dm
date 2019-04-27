@@ -324,7 +324,8 @@
 	var/message = "[key_name_admin(usr)]"
 	var/message2 = ADMIN_TPMONTY(L)
 
-	L.take_over(usr, TRUE)
+	usr.mind.transfer_to(L, TRUE)
+	L.fully_replace_character_name(usr.real_name, L.real_name)
 
 	log_admin("[log] took over [log2][replaced ? " replacing the previous owner" : ""].")
 	message_admins("[message] took over [message2][replaced ? " replacing the previous owner" : ""].")
