@@ -52,41 +52,19 @@ SUBSYSTEM_DEF(weeds)
 		if(MC_TICK_CHECK)
 			return
 		
+		
 /datum/controller/subsystem/weeds/proc/add_node(obj/effect/alien/weeds/node/N)
 	if(!N)
 		stack_trace("SSweed.add_node called with a null obj")
 		return FALSE
 	weed_nodes.Add(N)
 
+
 /datum/controller/subsystem/weeds/proc/remove_node(obj/effect/alien/weeds/node/N)
 	if(!N)
 		stack_trace("SSweed.remove_node called with a null obj")
 		return FALSE
 	weed_nodes.Remove(N)
-
-/datum/controller/subsystem/weeds/proc/generate_weed_graph(obj/effect/alien/weeds/node/N, node_size)
-	var/list/node_turfs = list()
-	var/list/turfs_to_check = list()
-	turfs_to_check += get_turf(N)
-	while (node_size > 0)
-		node_size--
-		for(var/X in turfs_to_check)
-			var/turf/T = X
-
-			for(var/direction in GLOB.cardinals) 
-				var/turf/AdjT = get_step(T, direction)
-
-				if (AdjT == N) // Ignore the node
-					continue
-				if (AdjT in node_turfs) // Ignore existing weeds
-					continue
-
-				turfs_to_check += AdjT
-				node_turfs += AdjT
-
-
-	for(var/turf/smallT in node_turfs) 
-		new /obj/effect/alien/weeds(smallT)
 
 
 /datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/effect/alien/weeds/node/N)

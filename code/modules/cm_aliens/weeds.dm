@@ -267,7 +267,6 @@
 					node_turfs += AdjT
 					continue
 
-
 				turfs_to_check += AdjT
 				node_turfs += AdjT
 
