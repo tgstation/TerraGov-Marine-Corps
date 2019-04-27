@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(weeds)
 /datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/effect/alien/weeds/node/N)
 
 	if (!T.is_weedable())
-		N.node_turfs.Remove(T)
+		N.node_turfs -= T 
 		return
 
 	var/obj/effect/alien/weeds/W = locate() in T
