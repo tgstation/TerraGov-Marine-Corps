@@ -241,3 +241,17 @@ GLOBAL_PROTECT(exp_to_update)
 			"minutes" = jvalue)))
 		prefs.exp[jtype] += jvalue
 	addtimer(CALLBACK(GLOBAL_PROC, /proc/update_exp_db), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
+
+
+/proc/queen_age_check(client/C)
+	if(!istype(C) || !C.prefs?.exp)
+		return FALSE
+	if(!CONFIG_GET(flag/use_exp_tracking))
+		return FALSE
+	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(C, R_ADMIN, FALSE))
+		return FALSE
+	var/my_exp = C.prefs.exp[ROLE_XENOMORPH]
+	if(my_exp >= 60)
+		return FALSE
+	else
+		return (60 - my_exp)
