@@ -15,7 +15,7 @@
 	if(!affected.parent || CHECK_BITFIELD(affected.parent.limb_status, LIMB_AMPUTATED|LIMB_ROBOT))
 		to_chat(world, "cant use7")
 		return FALSE
-	if(affected.limb_replacement_stage != 2)
+	if(affected.limb_replacement_stage >= 2)
 		to_chat(world, "cant use6")
 		return FALSE
 	if(affected.natural_replacement_state != reattach_step)
@@ -53,10 +53,18 @@
 	user.visible_message("<span class='notice'>[user] has attached \the [tool] where [target]'s [affected.display_name] used to be.</span>",	\
 	"<span class='notice'>You have attached \the [tool] where [target]'s [affected.display_name] used to be.</span>")
 
+	var/obj/item/limb/L = tool
+	affected.wounds = L.wounds.Copy()
+	affected.brute_dam = L.brute
+	affected.burn_dam = L.burn
+
+	//todo: amputation time handling
+
 	//Deal with the limb item properly
 	user.temporarilyRemoveItemFromInventory(tool)
 	qdel(tool)
 	affected.natural_replacement_state = 1
+	limb_replacement_stage = 3
 
 /datum/surgery_step/limb_reattach/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging nerves on [target]'s [affected.display_name]!</span>", \
@@ -84,10 +92,39 @@
 /datum/surgery_step/limb_reattach/pull/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='notice'>[user] reattaching the nerves in [target]'s [affected.display_name] with \the [tool].</span>",	\
 	"<span class='notice'>You reattaching the nerves in [target]'s [affected.display_name] with \the [tool].</span>")
-	
+	affected.natural_replacement_state = 2
 
 /datum/surgery_step/limb_reattach/pull/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, tearing blood vessals and causing massive bleeding in [target]'s [affected.display_name] with \the [tool]!</span>",	\
 	"<span class='warning'>Your hand slips, tearing blood vessels and causing massive bleeding in [target]'s [affected.display_name] with \the [tool]!</span>",)
 	affected.createwound(CUT, 10)
 	affected.update_wounds()
+
+/datum/surgery_step/limb_reattach/fix_vein
+	allowed_tools = list(
+	/obj/item/tool/surgery/FixOVein = 100, \
+	/obj/item/stack/cable_coil = 75
+	)
+	can_infect = 1
+	blood_level = 1
+	reattach_step = 2
+	min_duration = FIXVEIN_MIN_DURATION
+	max_duration = FIXVEIN_MAX_DURATION
+
+/datum/surgery_step/limb_reattach/fix_vein/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message("<span class='notice'>[user] starts patching the damaged vein in [target]'s [affected.display_name] with \the [tool].</span>" , \
+	"<span class='notice'>You start patching the damaged vein in [target]'s [affected.display_name] with \the [tool].</span>")
+	target.custom_pain("The pain in [affected.display_name] is unbearable!",1)
+	..()
+
+/datum/surgery_step/limb_reattach/fix_vein/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message("<span class='notice'>[user] has patched the damaged vein in [target]'s [affected.display_name] with \the [tool].</span>", \
+		"<span class='notice'>You have patched the damaged vein in [target]'s [affected.display_name] with \the [tool].</span>")
+	affected.natural_replacement_state = 3
+	
+
+/datum/surgery_step/limb_reattach/fix_vein/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message("<span class='warning'>[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>" , \
+	"<span class='warning'>Your hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>")
+	affected.take_damage_limb(5, 0)
+	target.updatehealth()
