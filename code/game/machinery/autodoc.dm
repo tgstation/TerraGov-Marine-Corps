@@ -171,7 +171,7 @@
 	for(var/datum/limb/L in M.limbs)
 		if(L)
 			for(var/datum/wound/W in L.wounds)
-				if(W.internal)
+				if(CHECK_BITFIELD(W.wound_flags, WOUND_INTERNAL))
 					surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
 					break
 
@@ -387,7 +387,7 @@
 						open_incision(H,S.limb_ref)
 						for(var/datum/wound/W in S.limb_ref.wounds)
 							if(!surgery) break
-							if(W.internal)
+							if(CHECK_BITFIELD(W.wound_flags, WOUND_INTERNAL))
 								sleep(FIXVEIN_MAX_DURATION*surgery_mod)
 								S.limb_ref.wounds -= W
 						if(!surgery) break
@@ -1081,7 +1081,7 @@
 				for(var/datum/limb/L in connected.occupant.limbs)
 					if(L)
 						for(var/datum/wound/W in L.wounds)
-							if(W.internal)
+							if(CHECK_BITFIELD(W.wound_flags, WOUND_INTERNAL))
 								N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
 								needed++
 								break

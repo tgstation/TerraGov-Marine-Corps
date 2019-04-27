@@ -489,7 +489,7 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 		dat += "<tr>"
 
 		for(var/datum/wound/W in e.wounds)
-			if(W.internal)
+			if(CHECK_BITFIELD(W.wound_flags, WOUND_INTERNAL))
 				internal_bleeding = "Internal bleeding<br>"
 				break
 		if(istype(e, /datum/limb/chest) && occ["lung_ruptured"])

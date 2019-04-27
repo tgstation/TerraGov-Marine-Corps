@@ -18,8 +18,8 @@
 /datum/surgery_step/fix_vein/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(affected.surgery_open_stage >= 2)
 		for(var/datum/wound/W in affected.wounds)
-			if(W.internal)
-				return 1
+			if(CHECK_BITFIELD(W.wound_flags, WOUND_INTERNAL))
+				return TRUE
 
 /datum/surgery_step/fix_vein/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='notice'>[user] starts patching the damaged vein in [target]'s [affected.display_name] with \the [tool].</span>" , \
@@ -32,7 +32,7 @@
 		"<span class='notice'>You have patched the damaged vein in [target]'s [affected.display_name] with \the [tool].</span>")
 
 	for(var/datum/wound/W in affected.wounds)
-		if(W.internal)
+		if(CHECK_BITFIELD(W.wound_flags, WOUND_INTERNAL))
 			affected.wounds -= W
 			affected.update_damages()
 	if(ishuman(user) && prob(40))

@@ -505,7 +505,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			// let the GC handle the deletion of the wound
 
 		// Internal wounds get worse over time. Low temperatures (cryo) stop them.
-		if(W.internal && owner.bodytemperature >= 170 && !(owner.in_stasis == STASIS_IN_BAG))
+		if(CHECK_BITFIELD(W.wound_flags, WOUND_INTERNAL) && owner.bodytemperature >= 170 && !(owner.in_stasis == STASIS_IN_BAG))
 			var/bicardose = owner.reagents.get_reagent_amount("bicaridine")
 			var/inaprovaline = owner.reagents.get_reagent_amount("inaprovaline")
 			if(!(W.can_autoheal() || (bicardose && inaprovaline) || owner.reagents.get_reagent_amount("quickclot")))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
@@ -539,9 +539,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 			W.heal_damage(heal_amt)
 
 		// Salving also helps against infection, but only if it is small enoough
-		if((W.germ_level > 0 && W.germ_level < 50) && W.salved && prob(2))
-			W.disinfected = 1
-			W.germ_level = 0
+		if(W.can_disinfect() && prob(2))
+			W.disinfect()
 
 	// sync the organ's damage with its wounds
 	src.update_damages()
@@ -570,7 +569,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			W.bleed_timer--
 			limb_status |= LIMB_BLEEDING
 
-		clamped |= W.clamped
+		clamped |= CHECK_BITFIELD(W.wound_flags, WOUND_CLAMPED)
 
 		number_wounds += W.amount
 

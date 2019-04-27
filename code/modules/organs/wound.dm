@@ -31,12 +31,6 @@
 	// stages such as "cut", "deep cut", etc.
 	var/list/stages
 
-	var/internal
-	var/salved
-	var/bandaged
-	var/disinfected
-	var/clamped
-
 	// maximum stage at which bleeding should still happen, counted from the right rather than the left of the list
 	// 1 means all stages except the last should bleed
 	var/max_bleeding_stage = 1
@@ -117,6 +111,9 @@
 
 /datum/wound/proc/salve()
 	APPLY_WOUND_FLAG(WOUND_SALVED)
+
+/datum/wound/proc/can_disinfect()
+	return (germ_level > 0 && germ_level < 50 && CHECK_BITFIELD(wound_flags, WOUND_SALVED))
 
 // checks whether the wound has been appropriately treated
 /datum/wound/proc/is_treated()
@@ -222,17 +219,17 @@
 	return 1
 
 /datum/wound/proc/bleeding()
-	if (src.internal)
-		return 0	// internal wounds don't bleed in the sense of this function
+	if (CHECK_BITFIELD(wound_flags, WOUND_INTERNAL))
+		return FALSE	// internal wounds don't bleed in the sense of this function
 
 	if (current_stage > max_bleeding_stage)
-		return 0
+		return FALSE
 
-	if (bandaged||clamped)
-		return 0
+	if (CHECK_BITFIELD(wound_flags, WOUND_BANDAGED|WOUND_CLAMPED))
+		return FALSE
 
 	if (wound_damage() <= 30 && bleed_timer <= 0)
-		return 0	//Bleed timer has run out. Wounds with more than 30 damage don't stop bleeding on their own.
+		return FALSE	//Bleed timer has run out. Wounds with more than 30 damage don't stop bleeding on their own.
 
 	return (damage_type == BRUISE && wound_damage() >= 20 || damage_type == CUT && wound_damage() >= 5)
 

@@ -287,13 +287,19 @@
 			else if(temp.wounds.len > 0)
 				var/list/wound_descriptors = list()
 				for(var/datum/wound/W in temp.wounds)
-					if(W.internal && !temp.surgery_open_stage) continue // can't see internal wounds
+					if(CHECK_BITFIELD(W.wound_flags, WOUND_INTERNAL) && !temp.surgery_open_stage) 
+						continue // can't see internal wounds
 					var/this_wound_desc = W.desc
-					if(W.damage_type == BURN && W.salved) this_wound_desc = "salved [this_wound_desc]"
-					if(W.bleeding()) this_wound_desc = "bleeding [this_wound_desc]"
-					else if(W.bandaged) this_wound_desc = "bandaged [this_wound_desc]"
-					if(W.germ_level > 190) this_wound_desc = "badly infected [this_wound_desc]"
-					else if(W.germ_level > 100) this_wound_desc = "lightly infected [this_wound_desc]"
+					if(W.damage_type == BURN && CHECK_BITFIELD(W.wound_flags, WOUND_SALVED)) 
+						this_wound_desc = "salved [this_wound_desc]"
+					if(W.bleeding()) 
+						this_wound_desc = "bleeding [this_wound_desc]"
+					else if(CHECK_BITFIELD(W.wound_flags, WOUND_BANDAGED)) 
+						this_wound_desc = "bandaged [this_wound_desc]"
+					if(W.germ_level > 190) 
+						this_wound_desc = "badly infected [this_wound_desc]"
+					else if(W.germ_level > 100) 
+						this_wound_desc = "lightly infected [this_wound_desc]"
 					if(this_wound_desc in wound_descriptors)
 						wound_descriptors[this_wound_desc] += W.amount
 						continue

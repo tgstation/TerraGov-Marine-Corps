@@ -622,7 +622,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	var/mob/living/carbon/human/H = M
 	for(var/datum/limb/X in H.limbs)
 		for(var/datum/wound/W in X.wounds)
-			if(W.internal)
+			if(CHECK_BITFIELD(W.wound_flags, WOUND_INTERNAL))
 				W.damage = max(0, W.damage - 1)
 				X.update_damages()
 				if (X.update_icon())

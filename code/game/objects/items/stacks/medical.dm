@@ -70,7 +70,7 @@
 				return TRUE
 			else
 				for (var/datum/wound/W in affecting.wounds)
-					if (W.internal)
+					if (CHECK_BITFIELD(W.wound_flags, WOUND_INTERNAL))
 						continue
 					if (W.current_stage <= W.max_bleeding_stage)
 						user.visible_message("<span class='notice'>[user] bandages [W.desc] on [M]'s [affecting.display_name].</span>",
@@ -204,7 +204,7 @@
 				return TRUE
 			else
 				for(var/datum/wound/W in affecting.wounds)
-					if(W.internal)
+					if(CHECK_BITFIELD(W.wound_flags, WOUND_INTERNAL))
 						continue
 					if(W.current_stage <= W.max_bleeding_stage)
 						user.visible_message("<span class='notice'>[user] cleans [W.desc] on [M]'s [affecting.display_name] and seals edges with bioglue.</span>",

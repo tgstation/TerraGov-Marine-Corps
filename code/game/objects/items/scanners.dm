@@ -237,7 +237,7 @@ REAGENT SCANNER
 			var/limb = e.display_name
 			var/can_amputate = ""
 			for(var/datum/wound/W in e.wounds)
-				if(W.internal)
+				if(CHECK_BITFIELD(W.wound_flags, WOUND_INTERNAL))
 					internal_bleed_detected = TRUE
 					break
 			if(e.body_part != CHEST && e.body_part != GROIN && e.body_part != HEAD)
