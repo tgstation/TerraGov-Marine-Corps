@@ -183,7 +183,7 @@
 	origin_tech = "combat=3;materials=3"
 	matter = list("metal" = 10000)
 	default_ammo = /datum/ammo/bullet/minigun
-	max_rounds = 400
+	max_rounds = 420
 	reload_delay = 50 //Hard to reload.
 	w_class = 3
 	gun_type = /obj/item/weapon/gun/minigun
