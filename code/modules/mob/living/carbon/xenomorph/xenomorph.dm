@@ -266,7 +266,7 @@
 		return
 
 	var/obj/screen/LL_dir = hud_used.locate_leader
-	if(!X || xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
+	if(xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
 		LL_dir.icon_state = "trackoff"
 		return
 
