@@ -122,55 +122,55 @@ Damage.
 Damage of the projectile, though the gun itself can modify it. This is the main source of projectile damage.
 */
 /datum/config_entry/number/combat_define/base_hit_damage
-	config_entry_value = 10
+	config_entry_value = 9
 
 /datum/config_entry/number/combat_define/min_hit_damage
-	config_entry_value = 15
+	config_entry_value = 13.5
 
 /datum/config_entry/number/combat_define/llow_hit_damage
-	config_entry_value = 20
+	config_entry_value = 18
 
 /datum/config_entry/number/combat_define/mlow_hit_damage
-	config_entry_value = 25
+	config_entry_value = 22.5
 
 /datum/config_entry/number/combat_define/low_hit_damage
-	config_entry_value = 30
+	config_entry_value = 27
 
 /datum/config_entry/number/combat_define/hlow_hit_damage
-	config_entry_value = 35
+	config_entry_value = 31.5
 
 /datum/config_entry/number/combat_define/lmed_hit_damage
-	config_entry_value = 40
+	config_entry_value = 36
 
 /datum/config_entry/number/combat_define/lmmed_hit_damage
-	config_entry_value = 45
+	config_entry_value = 40.5
 
 /datum/config_entry/number/combat_define/med_hit_damage
-	config_entry_value = 50
+	config_entry_value = 45
 
 /datum/config_entry/number/combat_define/hmed_hit_damage
-	config_entry_value = 55
+	config_entry_value = 49.5
 
 /datum/config_entry/number/combat_define/high_hit_damage
-	config_entry_value = 70
+	config_entry_value = 63
 
 /datum/config_entry/number/combat_define/mhigh_hit_damage
-	config_entry_value = 80
+	config_entry_value = 72
 
 /datum/config_entry/number/combat_define/max_hit_damage
-	config_entry_value = 90
+	config_entry_value = 81
 
 /datum/config_entry/number/combat_define/super_hit_damage
-	config_entry_value = 120
+	config_entry_value = 108
 
 /datum/config_entry/number/combat_define/ultra_hit_damage
-	config_entry_value = 150
+	config_entry_value = 135
 
 /datum/config_entry/number/combat_define/aprocket_hit_damage
-	config_entry_value = 250
+	config_entry_value = 225
 
 /datum/config_entry/number/combat_define/ltb_hit_damage
-	config_entry_value = 300
+	config_entry_value = 270
 
 /*
 Damage multiplier.
@@ -303,7 +303,7 @@ Ticks before the weapon can be fired again. Should be 6 for regular delay and 2 
 	config_entry_value = 15
 
 /datum/config_entry/number/combat_define/scoutshottie_fire_delay
-	config_entry_value = 20
+	config_entry_value = 18
 
 
 /*
@@ -436,34 +436,37 @@ Penetration.
 Flat number subtracted from target armor before damage calculations take place.
 */
 /datum/config_entry/number/combat_define/min_armor_penetration
-	config_entry_value = 5
+	config_entry_value = 4.5
 
 /datum/config_entry/number/combat_define/mlow_armor_penetration
-	config_entry_value = 10
+	config_entry_value = 9
+
+/datum/config_entry/number/combat_define/mhlow_armor_penetration
+	config_entry_value = 13.5
 
 /datum/config_entry/number/combat_define/low_armor_penetration
-	config_entry_value = 20
+	config_entry_value = 18
 
 /datum/config_entry/number/combat_define/lmed_armor_penetration
-	config_entry_value = 25
+	config_entry_value = 22.5
 
 /datum/config_entry/number/combat_define/med_armor_penetration
-	config_entry_value = 30
+	config_entry_value = 27
 
 /datum/config_entry/number/combat_define/hmed_armor_penetration
-	config_entry_value = 40
+	config_entry_value = 36
 
 /datum/config_entry/number/combat_define/high_armor_penetration
-	config_entry_value = 50
+	config_entry_value = 45
 
 /datum/config_entry/number/combat_define/mhigh_armor_penetration
-	config_entry_value = 60
+	config_entry_value = 54
 
 /datum/config_entry/number/combat_define/vhigh_armor_penetration
-	config_entry_value = 70
+	config_entry_value = 63
 
 /datum/config_entry/number/combat_define/max_armor_penetration
-	config_entry_value = 80
+	config_entry_value = 72
 
 /datum/config_entry/number/combat_define/aprocket_armor_penetration
 	config_entry_value = 150
@@ -568,12 +571,12 @@ Accuracy penalty while bursting.
 
 /datum/config_entry/number/combat_define/max_burst_accuracy_penalty
 	config_entry_value = 0.2
-	
+
 /*
 Accuracy bonuses from focus order
 */
 /datum/config_entry/number/combat_define/focus_base_bonus
 	config_entry_value = 3
-	
+
 /datum/config_entry/number/combat_define/focus_per_tile_bonus
-	config_entry_value = 0.35	
+	config_entry_value = 0.35

@@ -178,10 +178,10 @@
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 5
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 4
 	burst_amount = CONFIG_GET(number/combat_define/min_burst_value)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) - CONFIG_GET(number/combat_define/med_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
 
 
@@ -275,7 +275,6 @@
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
 	attachable_allowed = list(
-						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
@@ -879,7 +878,7 @@
 
 /obj/item/weapon/gun/shotgun/merc/scout
 	name = "\improper ZX-76 assault shotgun"
-	desc = "The MIC ZX-76 Assault Shotgun, a dobule barreled semi-automatic combat shotgun with a twin shot mode. Has a 9 round internal magazine."
+	desc = "The MIC ZX-76 Assault Shotgun, a dobule barreled semi-automatic combat shotgun with a twin shot mode. Has a 10 round internal magazine."
 	icon_state = "zx-76"
 	item_state = "zx-76"
 	max_shells = 10 //codex
@@ -895,10 +894,7 @@
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/compensator,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/attached_gun/flamer,
@@ -911,7 +907,7 @@
 	fire_delay = CONFIG_GET(number/combat_define/scoutshottie_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/no_fire_delay) //basically instantaneous two shots
-	burst_accuracy_mult = CONFIG_GET(number/combat_define/mlow_burst_accuracy_penalty)
+	burst_accuracy_mult = CONFIG_GET(number/combat_define/low_burst_accuracy_penalty)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
@@ -919,6 +915,7 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) - CONFIG_GET(number/combat_define/low_hit_damage_mult)
 
 //-------------------------------------------------------
 //This gun is very powerful, but also has a kick.

@@ -116,8 +116,8 @@
 
 //Define sniper laser multipliers
 
-#define SNIPER_LASER_DAMAGE_MULTIPLIER	1.5 //+50% damage vs the aimed target
-#define SNIPER_LASER_ARMOR_MULTIPLIER	1.5 //+50% penetration vs the aimed target
+#define SNIPER_LASER_DAMAGE_MULTIPLIER	1.35 //+35% damage vs the aimed target
+#define SNIPER_LASER_ARMOR_MULTIPLIER	1.35 //+35% penetration vs the aimed target
 #define SNIPER_LASER_SLOWDOWN_STACKS	3
 
 //Define lasgun

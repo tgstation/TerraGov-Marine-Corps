@@ -474,7 +474,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	..()
 	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
 	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
-	penetration = CONFIG_GET(number/combat_define/mlow_armor_penetration)
+	penetration = CONFIG_GET(number/combat_define/min_armor_penetration)
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
@@ -797,7 +797,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	..()
 	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
 	damage = CONFIG_GET(number/combat_define/low_hit_damage)
-	penetration = CONFIG_GET(number/combat_define/low_armor_penetration)
+	penetration = CONFIG_GET(number/combat_define/mhlow_armor_penetration)
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -834,7 +834,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
-	penetration= CONFIG_GET(number/combat_define/low_armor_penetration)
+	penetration= CONFIG_GET(number/combat_define/mhlow_armor_penetration)
 	damage_falloff *= 0.5 //forgot to add this
 
 /datum/ammo/bullet/turret/dumb
