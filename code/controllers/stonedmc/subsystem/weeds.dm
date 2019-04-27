@@ -18,15 +18,17 @@ SUBSYSTEM_DEF(weeds)
 	if(!resumed)
 		currentrun = deepCopyList(weed_nodes)
 
-	var/obj/effect/alien/weeds/node/N
 	while(length(currentrun))
+		var/obj/effect/alien/weeds/node/N
 		N = currentrun[currentrun.len]
 		currentrun.len--
 		if(QDELETED(N))
-			weed_nodes.Remove(N)
+			remove_node(N)
 			continue
 
-		// PROCESS N in reverse order
+		var/list/to_create = list()
+
+		// nodes in reverse order in reverse order
 		for(var/X in N.node_turfs)
 			var/turf/T = X
 			if (locate(/obj/effect/alien/weeds) in T)
@@ -34,10 +36,18 @@ SUBSYSTEM_DEF(weeds)
 
 			for(var/direction in GLOB.cardinals) 
 				var/turf/AdjT = get_step(T, direction)
+				if (!(AdjT in N.node_turfs)) // only count our weed graph as eligble
+					continue
+				if (!(locate(/obj/effect/alien/weeds) in AdjT))
+					continue
 
-				if (locate(/obj/effect/alien/weeds) in AdjT)
-					new /obj/effect/alien/weeds(T)
-					break
+				to_create.Add(T)
+				break
+
+		// We create weeds outside of the loop to not influence new weeds within the loop
+		for(var/X in to_create)
+			var/turf/T = X
+			create_weed(T, N)
 
 		if(MC_TICK_CHECK)
 			return
@@ -77,4 +87,37 @@ SUBSYSTEM_DEF(weeds)
 
 	for(var/turf/smallT in node_turfs) 
 		new /obj/effect/alien/weeds(smallT)
+
+
+/datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/effect/alien/weeds/node/N)
+
+	if (!T.is_weedable())
+		return
+
+	var/obj/effect/alien/weeds/W = locate() in T
+	if (W)
+		return
+
+	if(iswallturf(T))
+		var/obj/effect/alien/weeds/weedwall/WW = new (T)
+		N.transfer_fingerprints_to(WW)
+		return
+
+	if (istype(T.loc, /area/arrival))
+		return
+
+	for (var/obj/O in T)
+		if(istype(O, /obj/structure/window/framed))
+			var/obj/effect/alien/weeds/weedwall/window/WN = new (T)
+			N.transfer_fingerprints_to(WN)
+			return
+		else if(istype(O, /obj/structure/window_frame))
+			var/obj/effect/alien/weeds/weedwall/frame/F = new (T)
+			N.transfer_fingerprints_to(F)
+			return
+		else if(istype(O, /obj/machinery/door) && O.density /*&& (!(O.flags_atom & ON_BORDER) || O.dir != dirn)*/)
+			return
+
+	var/obj/effect/alien/weeds/S = new (T, N)
+	N.transfer_fingerprints_to(S)
 

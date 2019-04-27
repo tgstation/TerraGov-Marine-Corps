@@ -262,6 +262,11 @@
 					continue
 				if (AdjT in node_turfs) // Ignore existing weeds
 					continue
+				if(AdjT.density || LinkBlocked(T, AdjT) || TurfBlockedNonWindow(AdjT))
+					// Finish here, but add it to expand weeds into
+					node_turfs += AdjT
+					continue
+
 
 				turfs_to_check += AdjT
 				node_turfs += AdjT
