@@ -77,5 +77,5 @@
 		if("broadcast")
 			message_mode = MODE_HEADSET
 
-	ai_headset.talk_into(src, message, message_mode, , language)
+	ai_headset.talk_into(src, message, message_mode, language = language)
 	return TRUE
