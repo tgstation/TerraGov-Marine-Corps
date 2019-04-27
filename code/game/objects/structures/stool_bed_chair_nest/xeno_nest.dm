@@ -31,20 +31,21 @@
 		to_chat(user, "<span class='notice'>You place [L] on [src].</span>")
 		L.forceMove(loc)
 		return TRUE
-	else
-		if(I.flags_item & NOBLUDGEON)
-			return
-		user.changeNext_move(I.attack_speed)
-		obj_integrity = max(0, obj_integrity - I.force)
-		playsound(loc, "alien_resin_break", 25)
-		user.visible_message("<span class='warning'>\The [user] hits \the [src] with \the [I]!</span>", \
-		"<span class='warning'>You hit \the [src] with \the [I]!</span>")
-		healthcheck()
+	if(I.flags_item & NOBLUDGEON)
+		return
+	user.changeNext_move(I.attack_speed)
+	obj_integrity = max(0, obj_integrity - I.force)
+	playsound(loc, "alien_resin_break", 25)
+	user.visible_message("<span class='warning'>\The [user] hits \the [src] with \the [I]!</span>", \
+	"<span class='warning'>You hit \the [src] with \the [I]!</span>")
+	healthcheck()
 
 
 /obj/structure/bed/nest/manual_unbuckle(mob/living/user)
 	if(!buckled_mob || buckled_mob.buckled != src)
 		return
+
+	add_fingerprint(user)
 
 	if(buckled_mob != user)
 		if(user.incapacitated())
@@ -57,26 +58,24 @@
 			var/mob/living/carbon/human/H = buckled_mob
 			H.last_unbuckled = world.time
 		unbuckle()
-	else
-		if(buckled_mob.incapacitated(TRUE))
-			to_chat(buckled_mob, "<span class='warning'>You're currently unable to try that.</span>")
-			return
-		if(!resisting_time)
-			resisting_time = world.time
-			buckled_mob.visible_message("<span class='warning'>\The [buckled_mob] struggles to break free of \the [src].</span>",\
-			"<span class='warning'>You struggle to break free from \the [src].</span>",\
-			"<span class='notice'>You hear squelching.</span>")
-			addtimer(CALLBACK(src, .proc/unbuckle_time_message, user), NEST_RESIST_TIME)
-			return
-		if(resisting_time + NEST_RESIST_TIME > world.time)
-			to_chat(buckled_mob, "<span class='warning'>You're already trying to free yourself. Give it some time.</span>")
-			return
-		buckled_mob.visible_message("<span class='danger'>\The [buckled_mob] breaks free from \the [src]!</span>",\
-		"<span class='danger'>You pull yourself free from \the [src]!</span>",\
-		"<span class='notice'>You hear squelching.</span>")
-		unbuckle()
 
-	add_fingerprint(user)
+	if(buckled_mob.incapacitated(TRUE))
+		to_chat(buckled_mob, "<span class='warning'>You're currently unable to try that.</span>")
+		return
+	if(!resisting_time)
+		resisting_time = world.time
+		buckled_mob.visible_message("<span class='warning'>\The [buckled_mob] struggles to break free of \the [src].</span>",\
+		"<span class='warning'>You struggle to break free from \the [src].</span>",\
+		"<span class='notice'>You hear squelching.</span>")
+		addtimer(CALLBACK(src, .proc/unbuckle_time_message, user), NEST_RESIST_TIME)
+		return
+	if(resisting_time + NEST_RESIST_TIME > world.time)
+		to_chat(buckled_mob, "<span class='warning'>You're already trying to free yourself. Give it some time.</span>")
+		return
+	buckled_mob.visible_message("<span class='danger'>\The [buckled_mob] breaks free from \the [src]!</span>",\
+	"<span class='danger'>You pull yourself free from \the [src]!</span>",\
+	"<span class='notice'>You hear squelching.</span>")
+	unbuckle()
 
 
 /obj/structure/bed/nest/proc/unbuckle_time_message(mob/living/user)
