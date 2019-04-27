@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - tweak: "Moves Game Preferences to Preferences tab"
