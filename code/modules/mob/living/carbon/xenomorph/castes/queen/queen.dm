@@ -196,7 +196,8 @@
 		if(!ovipositor)
 			return
 		var/xeno_num = text2num(href_list["watch_xeno_number"])
-		for(var/mob/living/carbon/Xenomorph/X in hive.get_watchable_xenos())
+		for(var/Y in hive.get_watchable_xenos())
+			var/mob/living/carbon/Xenomorph/X = Y
 			if(X.nicknumber != xeno_num)
 				continue
 			if(observed_xeno == X)
