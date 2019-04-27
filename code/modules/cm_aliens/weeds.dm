@@ -21,10 +21,6 @@
 
 	update_sprite()
 	update_neighbours()
-	// if(node && node.loc && (get_dist(node, src) < node.node_range))
-	// 	spawn(rand(150, 200))
-	// 		if(loc && node && node.loc)
-	// 			weed_expand(node)
 
 
 /obj/effect/alien/weeds/Destroy()
