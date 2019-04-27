@@ -87,7 +87,7 @@
 	allowed_tools = list(
 	/obj/item/tool/surgery/hemostat = 100,         \
 	/obj/item/stack/cable_coil = 75,         \
-	/obj/item/device/assembly/mousetrap = 10 //I don't know. Don't ask me. But I'm leaving it because hilarity.
+	/obj/item/assembly/mousetrap = 10 //I don't know. Don't ask me. But I'm leaving it because hilarity.
 	)
 
 	min_duration = EYE_MEND_MIN_DURATION

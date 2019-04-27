@@ -16,7 +16,7 @@
 		new /obj/item/clothing/suit/storage/labcoat(src)
 		new /obj/item/clothing/shoes/white(src)
 //		new /obj/item/cartridge/signal/science(src)
-//		new /obj/item/device/radio/headset/headset_sci(src)
+//		new /obj/item/radio/headset/headset_sci(src)
 		new /obj/item/tank/air(src)
 		new /obj/item/clothing/mask/gas(src)
 		return
@@ -45,8 +45,8 @@
 		new /obj/item/clothing/shoes/white(src)
 		new /obj/item/clothing/shoes/leather(src)
 		new /obj/item/clothing/gloves/latex(src)
-//		new /obj/item/device/radio/headset/heads/rd(src)
+//		new /obj/item/radio/headset/heads/rd(src)
 		new /obj/item/tank/air(src)
 		new /obj/item/clothing/mask/gas(src)
-		new /obj/item/device/flash(src)
+		new /obj/item/flash(src)
 		return

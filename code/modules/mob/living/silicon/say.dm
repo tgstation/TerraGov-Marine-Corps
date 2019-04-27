@@ -11,18 +11,8 @@
 #define IS_AI 1
 #define IS_ROBOT 2
 
-/mob/living/silicon/say_understands(var/other,var/datum/language/speaking = null)
-	//These only pertain to common. Languages are handled by mob/say_understands()
-	if (!speaking)
-		if (iscarbon(other))
-			return 1
-		if (issilicon(other))
-			return 1
-		if (isbrain(other))
-			return 1
-	return ..()
 
-/mob/living/silicon/say(var/message)
+/mob/living/silicon/say(message, datum/language/language)
 	if (!message)
 		return
 
@@ -64,16 +54,6 @@
 		else
 			message = trim(copytext(message,3))
 
-	//parse language key and consume it
-	var/datum/language/speaking = parse_language(message)
-	if (speaking)
-		verb = speaking.speech_verb
-		message = copytext(message,3)
-
-		if(speaking.language_flags & HIVEMIND)
-			speaking.broadcast(src,trim(message))
-			return
-
 	// Currently used by drones.
 	if(local_transmit)
 		var/list/listeners = hearers(5,src)
@@ -101,7 +81,7 @@
 					return AI.holopad_talk(message)
 				if(IS_ROBOT)
 					log_talk(message, LOG_SAY)
-					R.radio.talk_into(src,message,message_mode,verb,speaking)
+					R.radio.talk_into(src,message,message_mode,verb,language)
 			return 1
 
 			return 1
@@ -113,10 +93,10 @@
 						return
 					else
 						log_talk(message, LOG_SAY)
-						AI.aiRadio.talk_into(src,message,null,verb,speaking)
+						AI.aiRadio.talk_into(src,message,null,verb,language)
 				if(IS_ROBOT)
 					log_talk(message, LOG_SAY)
-					R.radio.talk_into(src,message,null,verb,speaking)
+					R.radio.talk_into(src,message,null,verb,language)
 			return 1
 
 		else
@@ -128,13 +108,13 @@
 							return
 						else
 							log_talk(message, LOG_SAY)
-							AI.aiRadio.talk_into(src,message,message_mode,verb,speaking)
+							AI.aiRadio.talk_into(src,message,message_mode,verb,language)
 					if(IS_ROBOT)
 						log_talk(message, LOG_SAY)
-						R.radio.talk_into(src,message,message_mode,verb,speaking)
+						R.radio.talk_into(src,message,message_mode,verb,language)
 				return 1
 
-	return ..(message,speaking,verb)
+	return ..(message,language,verb)
 
 //For holopads only. Usable by AI.
 /mob/living/silicon/ai/proc/holopad_talk(var/message)
@@ -153,16 +133,9 @@
 		//Human-like, sorta, heard by those who understand humans.
 		var/rendered_a = "<span class='game say'><span class='name'>[name]</span> [verb], <span class='message'>\"[message]\"</span></span>"
 
-		//Speach distorted, heard by those who do not understand AIs.
-		var/message_stars = stars(message)
-		var/rendered_b = "<span class='game say'><span class='name'>[voice_name]</span> [verb], <span class='message'>\"[message_stars]\"</span></span>"
-
 		to_chat(src, "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [verb], <span class='message'>[message]</span></span></i>")
 		for(var/mob/M in hearers(T.loc))//The location is the object, default distance.
-			if(M.say_understands(src))//If they understand AI speak. Humans and the like will be able to.
-				M.show_message(rendered_a, 2)
-			else//If they do not.
-				M.show_message(rendered_b, 2)
+			M.show_message(rendered_a, 2)
 		/*Radios "filter out" this conversation channel so we don't need to account for them.
 		This is another way of saying that we won't bother dealing with them.*/
 	else

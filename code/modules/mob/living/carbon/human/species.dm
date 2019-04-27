@@ -27,7 +27,7 @@
 
 	var/language                  // Default racial language, if any.
 	// Default language is used when 'say' is used without modifiers.
-	var/default_language = "English"
+	var/default_language = /datum/language/common
 	var/speech_verb_override
 	var/secondary_langs = list()  // The names of secondary languages that are available to this species.
 	var/mutantrace                // Safeguard due to old code.
@@ -150,8 +150,11 @@
 
 
 /datum/species/proc/hug(var/mob/living/carbon/human/H,var/mob/living/target)
-
-	H.visible_message("<span class='notice'>[H] hugs [target] to make [target.p_them()] feel better!</span>", \
+	if(H.zone_selected == "head")
+		H.visible_message("<span class='notice'>[H] pats [target] on the head.</span>", \
+					"<span class='notice'>You pat [target] on the head.</span>", null, 4)	
+	else
+		H.visible_message("<span class='notice'>[H] hugs [target] to make [target.p_them()] feel better!</span>", \
 					"<span class='notice'>You hug [target] to make [target.p_them()] feel better!</span>", null, 4)
 
 /datum/species/proc/random_name(gender)
@@ -234,7 +237,7 @@
 /datum/species/human
 	name = "Human"
 	name_plural = "Humans"
-	language = "Sol Common"
+	language = /datum/language/common
 	primitive = /mob/living/carbon/monkey
 	unarmed_type = /datum/unarmed_attack/punch
 	species_flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
@@ -267,7 +270,6 @@
 /datum/species/human/spook
 	name = "Horror"
 	name_plural = "Horrors"
-	default_language = "Drrrrrrr"
 	icobase = 'icons/mob/human_races/r_spooker.dmi'
 	deform = 'icons/mob/human_races/r_spooker.dmi'
 	brute_mod = 0.15
@@ -307,7 +309,7 @@
 	name_plural = "Unathi"
 	icobase = 'icons/mob/human_races/r_lizard.dmi'
 	deform = 'icons/mob/human_races/r_def_lizard.dmi'
-	language = "Sinta'unathi"
+	language = /datum/language/unathi
 	tail = "sogtail"
 	unarmed_type = /datum/unarmed_attack/claws
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
@@ -336,7 +338,7 @@
 	name_plural = "Tajaran"
 	icobase = 'icons/mob/human_races/r_tajaran.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
-	language = "Siik'tajr"
+	language = /datum/language/tajaran
 	tail = "tajtail"
 	unarmed_type = /datum/unarmed_attack/claws
 	darksight = 8
@@ -361,7 +363,7 @@
 	name_plural = "Skrell"
 	icobase = 'icons/mob/human_races/r_skrell.dmi'
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
-	language = "Skrellian"
+	language = /datum/language/skrell
 	primitive = /mob/living/carbon/monkey/skrell
 	unarmed_type = /datum/unarmed_attack/punch
 
@@ -433,8 +435,7 @@
 	name_plural = "Vox"
 	icobase = 'icons/mob/human_races/r_vox.dmi'
 	deform = 'icons/mob/human_races/r_def_vox.dmi'
-	default_language = "Vox-pidgin"
-	language = "English"
+	language = /datum/language/vox
 	taste_sensitivity = TASTE_DULL
 	unarmed_type = /datum/unarmed_attack/claws/strong
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
@@ -524,7 +525,7 @@
 
 	icobase = 'icons/mob/human_races/r_machine.dmi'
 	deform = 'icons/mob/human_races/r_machine.dmi'
-	language = "Tradeband"
+	language = /datum/language/trader
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 2
 
@@ -620,101 +621,8 @@
 		)
 
 
-/datum/species/zombie
-	name= "Zombie"
-	name_plural = "Zombies"
-	slowdown = 1
-	blood_color = "#333333"
-	icobase = 'icons/mob/human_races/r_goo_zed.dmi'
-	deform = 'icons/mob/human_races/r_goo_zed.dmi'
-	death_message = "seizes up and falls limp... But is it dead?"
-	language = "Zombie"
-	default_language = "Zombie"
-	taste_sensitivity = TASTE_DULL
-	species_flags = NO_PAIN|NO_BREATHE|NO_SCAN|NO_POISON|NO_OVERDOSE
-	brute_mod = 0.25 //EXTREME BULLET RESISTANCE
-	burn_mod = 2 //IT BURNS
-	speech_chance  = 5
-	warning_low_pressure = 0
-	hazard_low_pressure = 0
-	cold_level_1 = -1  //zombies don't mind the cold
-	cold_level_2 = -1
-	cold_level_3 = -1
-	hud_type = /datum/hud_data/zombie
-	has_fine_manipulation = FALSE
-	knock_down_reduction = 10
-	stun_reduction = 10
-	knock_out_reduction = 5
-	has_organ = list()
-
-
-/datum/species/zombie/handle_post_spawn(var/mob/living/carbon/human/H)
-	if(H.hud_used)
-		qdel(H.hud_used)
-		H.hud_used = null
-//		H.create_mob_hud()
-		if(H.hud_used)
-			H.hud_used.show_hud(H.hud_used.hud_version)
-	if(H.l_hand) H.dropItemToGround(H.l_hand, FALSE, TRUE)
-	if(H.r_hand) H.dropItemToGround(H.r_hand, FALSE, TRUE)
-	if(H.wear_id) qdel(H.wear_id)
-	if(H.gloves) qdel(H.gloves)
-	if(H.head) qdel(H.head)
-	if(H.glasses) qdel(H.glasses)
-	if(H.wear_mask) qdel(H.wear_mask)
-	var/obj/item/weapon/zombie_claws/ZC = new()
-	ZC.icon_state = "claw_r"
-	H.equip_to_slot_or_del(ZC, SLOT_R_HAND, TRUE)
-	H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claws, SLOT_L_HAND, TRUE)
-	H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, SLOT_GLASSES, TRUE)
-	H.equip_to_slot(new /obj/item/clothing/mask/rebreather/scarf/zombie, SLOT_WEAR_MASK, TRUE)
-	return ..()
-
-
-
-/datum/species/zombie/handle_unique_behavior(var/mob/living/carbon/human/H)
-	if(prob(5))
-		playsound(H.loc, 'sound/voice/alien_talk3.ogg', 25, 1)
-
-
-/datum/species/zombie/handle_death(var/mob/living/carbon/human/H, gibbed)
-	set waitfor = 0
-	if(gibbed) return
-	if(!H.regenZ) return  //Also in each check, in case they are hit with the stuff to stop the regenerating during timers.
-	sleep(5)
-	if(H && H.loc && H.stat == DEAD && H.regenZ)
-		to_chat(H, "<span class='green'> You fall... but your body is slowly regenerating itself.</span>")
-	sleep(1200)
-	if(H && H.loc && H.stat == DEAD && H.regenZ)
-		to_chat(H, "<span class='green'> Your body is half regenerated...</span>")
-	sleep(1200)
-
-	if(H && H.loc && H.stat == DEAD && H.regenZ)
-		H.revive(TRUE)
-		H.stunned = 4
-		H.Jitter(500)
-		H.visible_message("<span class = 'warning'>[H] rises!", "<span class='green'> YOU RISE AGAIN!</span>")
-		H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, SLOT_GLASSES, TRUE)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine, SLOT_SHOES, TRUE)
-
-		addtimer(CALLBACK(H, /mob/living/carbon/human/proc/reset_jitteriness), 30)
-
 /mob/living/carbon/human/proc/reset_jitteriness()
 	jitteriness = 0
-
-/datum/hud_data/zombie
-	has_a_intent = 1
-	has_m_intent = 1
-	has_warnings = 1
-	has_pressure = 1
-	has_nutrition = 0
-	has_bodytemp = 1
-	has_hands = 1
-	has_drop = 0
-	has_throw = 0
-	has_resist = 1
-	has_internals = 0
-	gear = list()
 
 
 /datum/species/synthetic/handle_post_spawn(mob/living/carbon/human/H)

@@ -3,6 +3,8 @@
 	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "extinguisher"
+	pixel_x = -16
+	pixel_y = -16
 	anchored = TRUE
 	density = FALSE
 	var/obj/item/tool/extinguisher/has_extinguisher
@@ -15,13 +17,13 @@
 		dir = ndir
 	switch(dir)
 		if(NORTH)
-			pixel_y = -32
+			pixel_y -= 32
 		if(SOUTH)
-			pixel_y = 32
+			pixel_y += 32
 		if(EAST)
-			pixel_x = -32
+			pixel_x -= 32
 		if(WEST)
-			pixel_x = 32
+			pixel_x += 32
 	if(starter_extinguisher)
 		has_extinguisher = new starter_extinguisher(src)
 	update_icon()

@@ -14,8 +14,6 @@
 	idle_power_usage = 60
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
 
-/*/obj/machinery/bodyscanner/allow_drop()
-	return 0*/
 
 /obj/machinery/bodyscanner/relaymove(mob/user)
 	if(user.incapacitated(TRUE)) return
@@ -73,8 +71,8 @@
 	go_out()
 
 /obj/machinery/bodyscanner/attackby(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/device/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out; this is here mainly for consistency's sake.
-		var/obj/item/device/healthanalyzer/J = I
+	if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out; this is here mainly for consistency's sake.
+		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 		return
 	var/mob/M

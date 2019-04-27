@@ -135,10 +135,9 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	dur_var = CLAMP(int_var, 0.1,0.5)
 	fire_stacks = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 	burn_damage = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
-	for(var/obj/flamer_fire/F in range(radius,T)) // No stacking flames!
-		qdel(F)
-	for(var/turf/IT in filled_diamond_turfs(T,radius))
-		new /obj/flamer_fire(IT, rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, 0, burn_damage, fire_stacks)
+
+	for(var/turf/IT in filled_circle_turfs(T,radius))
+		IT.ignite(rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
 
 
 /obj/item/explosive/grenade/incendiary/molotov
@@ -175,12 +174,11 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/smokebomb/New()
 	. = ..()
-	smoke = new /datum/effect_system/smoke_spread/bad
-	smoke.attach(src)
+	smoke = new(src)
 
 /obj/item/explosive/grenade/smokebomb/prime()
 	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, 0, usr.loc, null, 6)
+	smoke.set_up(3, usr.loc, 7)
 	smoke.start()
 	qdel(src)
 
@@ -198,12 +196,11 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/cloakbomb/New()
 	. = ..()
-	smoke = new /datum/effect_system/smoke_spread/tactical
-	smoke.attach(src)
+	smoke = new(src)
 
 /obj/item/explosive/grenade/cloakbomb/prime()
 	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, 0, usr.loc, null, 7)
+	smoke.set_up(3, usr.loc, 8)
 	smoke.start()
 	qdel(src)
 
@@ -217,16 +214,14 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	hud_state = "grenade_hide"
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
-	dangerous = 1
 
 /obj/item/explosive/grenade/phosphorus/New()
 	. = ..()
-	smoke = new /datum/effect_system/smoke_spread/phosphorus
-	smoke.attach(src)
+	smoke = new(src)
 
 /obj/item/explosive/grenade/phosphorus/prime()
 	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, 0, usr.loc)
+	smoke.set_up(3, usr.loc)
 	smoke.start()
 	qdel(src)
 

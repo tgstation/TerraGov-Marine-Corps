@@ -7,7 +7,7 @@
 	var/state = 0
 	var/datum/ai_laws/laws = new /datum/ai_laws/nanotrasen
 	var/obj/item/circuitboard/aicore/circuit = null
-	var/obj/item/device/mmi/brain = null
+	var/obj/item/mmi/brain = null
 
 
 /obj/structure/AIcore/attackby(obj/item/P as obj, mob/user as mob)
@@ -123,7 +123,7 @@
 				laws.add_inherent_law(M.newFreeFormLaw)
 				to_chat(usr, "Added a freeform law.")
 
-			if(istype(P, /obj/item/device/mmi))
+			if(istype(P, /obj/item/mmi))
 				if(!P:brainmob)
 					to_chat(user, "<span class='warning'> Sticking an empty [P] into the frame would sort of defeat the purpose.</span>")
 					return
@@ -171,8 +171,8 @@
 	anchored = 1
 	state = 20//So it doesn't interact based on the above. Not really necessary.
 
-	attackby(var/obj/item/device/aicard/A as obj, var/mob/user as mob)
-		if(istype(A, /obj/item/device/aicard))//Is it?
+	attackby(var/obj/item/aicard/A as obj, var/mob/user as mob)
+		if(istype(A, /obj/item/aicard))//Is it?
 			A.transfer_ai("INACTIVE","AICARD",src,user)
 		return
 
@@ -189,7 +189,7 @@ That prevents a few funky behaviors.
 				var/mob/living/silicon/ai/T = target
 				switch(interaction)
 					if("AICARD")
-						var/obj/item/device/aicard/C = src
+						var/obj/item/aicard/C = src
 						if(C.contents.len)//If there is an AI on card.
 							to_chat(U, "<span class='danger'>Transfer failed: Existing AI found on this terminal. Remove existing AI to install a new one.</span>")
 						else
@@ -210,7 +210,7 @@ That prevents a few funky behaviors.
 				var/obj/structure/AIcore/deactivated/T = target
 				switch(interaction)
 					if("AICARD")
-						var/obj/item/device/aicard/C = src
+						var/obj/item/aicard/C = src
 						var/mob/living/silicon/ai/A = locate() in C//I love locate(). Best proc ever.
 						if(A)//If AI exists on the card. Else nothing since both are empty.
 							A.control_disabled = 0
@@ -227,7 +227,7 @@ That prevents a few funky behaviors.
 				var/obj/machinery/computer/aifixer/T = target
 				switch(interaction)
 					if("AICARD")
-						var/obj/item/device/aicard/C = src
+						var/obj/item/aicard/C = src
 						if(!T.contents.len)
 							if (!C.contents.len)
 								to_chat(U, "No AI to copy over!")

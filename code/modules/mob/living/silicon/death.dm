@@ -1,6 +1,6 @@
 
 /mob/living/silicon/spawn_gibs()
-	robogibs(loc, viruses)
+	robogibs(loc)
 
 /mob/living/silicon/gib_animation()
 	new /obj/effect/overlay/temp/gib_animation(loc, src, "gibbed-r")

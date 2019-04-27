@@ -417,11 +417,16 @@
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
 /obj/item/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
-	if(!istype(W)) return 0
+	if(!istype(W))
+		return FALSE
 
 	for(var/mob/M in can_see_content())
-		if(M.client)
-			M.client.screen -= W
+		if(!M.client)
+			continue
+		M.client.screen -= W
+
+	if(QDELETED(W))
+		return TRUE
 
 	if(new_location)
 		if(ismob(new_location))
@@ -441,7 +446,7 @@
 	W.on_exit_storage(src)
 	update_icon()
 	W.mouse_opacity = initial(W.mouse_opacity)
-	return 1
+	return TRUE
 
 //This proc is called when you want to place an item into the storage item.
 /obj/item/storage/attackby(obj/item/W, mob/user)
@@ -612,11 +617,11 @@
 	qdel(src)
 //BubbleWrap END
 
-/obj/item/storage/hear_talk(mob/M as mob, text)
+/obj/item/storage/hear_talk(mob/M, msg, verb = "says", datum/language/language)
 	for (var/atom/A in src)
 		if(istype(A,/obj/))
 			var/obj/O = A
-			O.hear_talk(M, text)
+			O.hear_talk(M, msg, verb, language)
 
 /obj/item/proc/get_storage_cost() //framework for adjusting storage costs
 	if (storage_cost)
@@ -678,3 +683,22 @@
 /obj/item/storage/on_stored_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
 		remove_from_storage(AM)
+
+
+/obj/item/storage/max_stack_merging(obj/item/stack/S)
+	if(is_type_in_typecache(S, bypass_w_limit))
+		return FALSE //No need for limits if we can bypass it.
+	var/weight_diff = initial(S.w_class) - max_w_class
+	if(weight_diff <= 0)
+		return FALSE //Nor if the limit is not higher than what we have.
+	var/max_amt = round((S.max_amount / STACK_WEIGHT_STEPS) * (STACK_WEIGHT_STEPS - weight_diff)) //How much we can fill per weight step times the valid steps.
+	if(max_amt <= 0 || max_amt > S.max_amount)
+		stack_trace("[src] tried to max_stack_merging([S]) with [max_w_class] max_w_class and [weight_diff] weight_diff, resulting in [max_amt] max_amt.")
+	return max_amt
+
+
+/obj/item/storage/recalculate_storage_space()
+	orient2hud()
+	for(var/X in can_see_content())
+		var/mob/M = X //There is no need to typecast here, really, but for clarity.
+		show_to(M)

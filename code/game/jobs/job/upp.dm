@@ -20,7 +20,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine/upp/full
-	ears = /obj/item/device/radio/headset/distress/bears
+	ears = /obj/item/radio/headset/distress/bears
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP
@@ -42,7 +42,7 @@
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, SLOT_IN_BACKPACK)
@@ -71,7 +71,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/combatLifesaver/upp
-	ears = /obj/item/device/radio/headset/distress/bears
+	ears = /obj/item/radio/headset/distress/bears
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP/medic
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP
@@ -89,13 +89,13 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/upp, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/upp, SLOT_IN_SUIT)
 
-	H.equip_to_slot_or_del(new /obj/item/device/defibrillator, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/healthanalyzer, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/healthanalyzer, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
@@ -124,7 +124,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine/upp/full
-	ears = /obj/item/device/radio/headset/distress/bears
+	ears = /obj/item/radio/headset/distress/bears
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/heavy
@@ -144,7 +144,7 @@
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
@@ -153,9 +153,9 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/device/assembly/signaler, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/detpack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/detpack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/radio/detpack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/radio/detpack, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/cloakbomb, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
@@ -175,7 +175,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/korovin/standard
-	ears = /obj/item/device/radio/headset/distress/bears
+	ears = /obj/item/radio/headset/distress/bears
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/heavy
@@ -196,7 +196,7 @@
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/small_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/device/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
@@ -205,7 +205,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/device/binoculars, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_R_POUCH)
 

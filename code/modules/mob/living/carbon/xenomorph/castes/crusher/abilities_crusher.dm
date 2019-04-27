@@ -48,7 +48,7 @@
 		if(isxeno(M) || M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)))
 			continue
 		var/distance = get_dist(M, loc)
-		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS) / max(1,distance + 1)
+		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(src)) / max(1,distance + 1)
 		damage += FRENZY_DAMAGE_BONUS(src)
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			round_statistics.crusher_stomp_victims++

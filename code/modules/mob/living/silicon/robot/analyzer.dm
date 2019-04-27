@@ -1,7 +1,7 @@
 //
 //Robotic Component Analyser, basically a health analyser for robots
 //
-/obj/item/device/robotanalyzer
+/obj/item/robotanalyzer
 	name = "cyborg analyzer"
 	icon_state = "robotanalyzer"
 	item_state = "analyzer"
@@ -16,7 +16,7 @@
 	origin_tech = "magnets=1;biotech=1"
 	var/mode = 1;
 
-/obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
 	if(( (CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
 		to_chat(user, text("<span class='warning'> You try to analyze the floor's vitals!</span>"))
 		for(var/mob/O in viewers(M, null))
@@ -36,8 +36,8 @@
 	user.show_message("<span class='notice'> Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "fully disabled" : "[M.health]% functional"]</span>")
 	user.show_message("\t Key: <font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>", 1)
 	user.show_message("\t Damage Specifics: <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font>")
-	if(M.tod && M.stat == DEAD)
-		user.show_message("<span class='notice'> Time of Disable: [M.tod]</span>")
+	if(M.timeofdeath && M.stat == DEAD)
+		user.show_message("<span class='notice'> Time of Disable: [M.timeofdeath]</span>")
 
 	if (iscyborg(M))
 		var/mob/living/silicon/robot/H = M

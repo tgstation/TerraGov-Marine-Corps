@@ -142,7 +142,7 @@
 	},
 /area/tdome/tdomeobserve)
 "av" = (
-/obj/item/device/camera,
+/obj/item/camera,
 /turf/open/floor{
 	icon_state = "redbluefull";
 	dir = 8
@@ -997,7 +997,7 @@
 /area/syndicate_station)
 "cH" = (
 /obj/structure/rack,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/open/floor/tile/lightred/full,
 /area/syndicate_station)
 "cI" = (
@@ -1007,8 +1007,8 @@
 /area/syndicate_station)
 "cJ" = (
 /obj/structure/rack,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
@@ -1038,7 +1038,7 @@
 /area/syndicate_station)
 "cN" = (
 /obj/structure/rack,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
@@ -1046,7 +1046,7 @@
 /area/syndicate_station)
 "cO" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
@@ -1064,8 +1064,8 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
@@ -2665,8 +2665,8 @@
 /area/syndicate_station)
 "gE" = (
 /obj/structure/table/reinforced,
-/obj/item/device/assembly/voice,
-/obj/item/device/assembly/voice,
+/obj/item/assembly/voice,
+/obj/item/assembly/voice,
 /obj/item/weapon/baton/cattleprod,
 /obj/item/weapon/baton/cattleprod,
 /turf/open/floor/holofloor{
@@ -3089,7 +3089,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/distress_item,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -3136,7 +3136,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/distress_pmcitem,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -3183,7 +3183,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/distress_uppitem,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -4029,7 +4029,7 @@
 /area/shuttle/distress/start_big)
 "kz" = (
 /obj/structure/table/almayer,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -4286,7 +4286,7 @@
 /area/shuttle/distress/start_big)
 "le" = (
 /obj/structure/table/almayer,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/open/floor/carpet/edge2{
 	dir = 6
 	},
@@ -4311,7 +4311,7 @@
 /area/shuttle/distress/start_big)
 "lh" = (
 /obj/machinery/vending/engivend,
-/obj/item/device/radio/intercom/general{
+/obj/item/radio/intercom/general{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -4358,7 +4358,7 @@
 "lm" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -5179,9 +5179,9 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
+/obj/item/radio,
+/obj/item/radio,
+/obj/item/radio,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -6014,11 +6014,11 @@
 /area/deathmatch)
 "pd" = (
 /obj/effect/landmark/deathmatch,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pe" = (
 /obj/effect/landmark/deathmatch,
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/deathmatch)
 "pf" = (
 /obj/structure/bed/chair/dropship/pilot{
@@ -6069,7 +6069,7 @@
 /area/deathmatch)
 "pn" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pp" = (
 /obj/structure/table,
@@ -6078,7 +6078,7 @@
 /area/deathmatch)
 "pr" = (
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/gm/dirtgrassborder{
+/turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
 /area/deathmatch)
@@ -6088,40 +6088,40 @@
 /turf/open/floor/plating,
 /area/deathmatch)
 "pt" = (
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pu" = (
 /obj/structure/largecrate/guns/russian,
 /obj/item/tool/crowbar,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pv" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pw" = (
-/turf/open/gm/dirtgrassborder{
+/turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
 /area/deathmatch)
 "px" = (
-/turf/open/gm/dirt,
+/turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "py" = (
-/turf/open/gm/coast{
+/turf/open/ground/coast{
 	dir = 4
 	},
 /area/deathmatch)
 "pz" = (
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/deathmatch)
 "pA" = (
-/turf/open/gm/coast{
+/turf/open/ground/coast{
 	dir = 8
 	},
 /area/deathmatch)
 "pB" = (
-/turf/open/gm/dirtgrassborder{
+/turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
 /area/deathmatch)
@@ -6135,11 +6135,11 @@
 /area/deathmatch)
 "pE" = (
 /obj/structure/flora/ausbushes/grassybush,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pF" = (
 /obj/item/weapon/katana,
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/deathmatch)
 "pG" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -6171,18 +6171,18 @@
 /area/deathmatch)
 "pL" = (
 /obj/structure/fence,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pM" = (
 /obj/structure/fence,
-/turf/open/gm/dirtgrassborder{
+/turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
 /area/deathmatch)
 "pO" = (
 /obj/structure/largecrate/guns/merc,
 /obj/item/tool/crowbar,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pP" = (
 /obj/item/weapon/gun/shotgun/pump,
@@ -6200,12 +6200,12 @@
 /turf/closed/wall,
 /area/deathmatch)
 "pT" = (
-/turf/open/gm/dirtgrassborder{
+/turf/open/floor/plating/ground/dirtgrassborder{
 	icon_state = "grassdirt_corner"
 	},
 /area/deathmatch)
 "pU" = (
-/turf/open/gm/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
 /area/deathmatch)
 "pW" = (
 /obj/structure/closet,
@@ -6268,13 +6268,13 @@
 /turf/open/floor,
 /area/deathmatch)
 "qh" = (
-/turf/open/gm/coast/corner,
+/turf/open/ground/coast/corner,
 /area/deathmatch)
 "qi" = (
-/turf/open/gm/coast,
+/turf/open/ground/coast,
 /area/deathmatch)
 "qj" = (
-/turf/open/gm/coast/corner2{
+/turf/open/ground/coast/corner2{
 	dir = 2
 	},
 /area/deathmatch)
@@ -6302,7 +6302,7 @@
 /area/deathmatch)
 "qo" = (
 /obj/structure/lattice,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "qp" = (
 /obj/structure/table,
@@ -6312,17 +6312,17 @@
 /turf/open/floor,
 /area/deathmatch)
 "qq" = (
-/turf/open/gm/coast{
+/turf/open/ground/coast{
 	dir = 9
 	},
 /area/deathmatch)
 "qr" = (
-/turf/open/gm/coast{
+/turf/open/ground/coast{
 	dir = 1
 	},
 /area/deathmatch)
 "qs" = (
-/turf/open/gm/coast/corner{
+/turf/open/ground/coast/corner{
 	dir = 4
 	},
 /area/deathmatch)
@@ -6331,12 +6331,12 @@
 /turf/open/floor,
 /area/deathmatch)
 "qu" = (
-/turf/open/gm/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 1
 	},
 /area/deathmatch)
 "qv" = (
-/turf/open/gm/dirtgrassborder/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
 	},
 /area/deathmatch)
@@ -6351,7 +6351,7 @@
 /obj/machinery/floodlight{
 	name = "Floodlight"
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "qz" = (
 /obj/machinery/light{
@@ -6365,7 +6365,7 @@
 /area/deathmatch)
 "qB" = (
 /obj/structure/flora/tree/jungle/small,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "qC" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -6498,7 +6498,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "re" = (
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/open/floor,
 /area/deathmatch)
 "rf" = (
@@ -6515,7 +6515,7 @@
 /area/deathmatch)
 "rh" = (
 /obj/item/weapon/gun/pistol/b92fs,
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/deathmatch)
 "ri" = (
 /obj/structure/rack,
@@ -6560,7 +6560,7 @@
 /area/deathmatch)
 "rp" = (
 /obj/structure/flora/tree/jungle,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "rq" = (
 /obj/structure/largecrate/supply/weapons/flamers,
@@ -6573,19 +6573,19 @@
 "rs" = (
 /obj/structure/largecrate/guns,
 /obj/item/tool/crowbar,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "rt" = (
 /obj/item/weapon/gun/revolver/mateba/admiral,
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/deathmatch)
 "ru" = (
 /obj/item/weapon/twohanded/glaive,
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/deathmatch)
 "rv" = (
 /obj/item/weapon/baseballbat/metal,
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/deathmatch)
 
 (1,1,1) = {"

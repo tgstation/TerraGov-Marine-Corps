@@ -1,11 +1,11 @@
-#define FACEHUGGER_LIFECYCLE 8 SECONDS
+#define FACEHUGGER_LIFECYCLE 12 SECONDS
 #define FACEHUGGER_KNOCKOUT 10
 
 #define MIN_IMPREGNATION_TIME 10 SECONDS //Time it takes to impregnate someone
 #define MAX_IMPREGNATION_TIME 15 SECONDS
 
 #define MIN_ACTIVE_TIME 4 SECONDS //Time between being dropped and going idle
-#define MAX_ACTIVE_TIME 8 SECONDS
+#define MAX_ACTIVE_TIME 6 SECONDS
 
 /obj/item/clothing/mask/facehugger
 	name = "alien"
@@ -51,7 +51,7 @@
 /obj/item/clothing/mask/facehugger/process()
 	if(throwing)
 		return
-	if(hugger_tick && hugger_tick % 2 == 0)
+	if(hugger_tick % 2 == 0)
 		monitor_surrounding()
 	hugger_tick++
 
@@ -193,7 +193,8 @@
 		Die()
 		return FALSE
 
-	lifecycle -= 4 SECONDS
+	if(hugger_tick)
+		lifecycle -= 4 SECONDS
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/Crossed(atom/target)
@@ -234,27 +235,25 @@
 	update_icon()
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
-	if(stat == DEAD)
+	if(stat != CONSCIOUS)
 		return ..()
 	if(iscarbon(hit_atom))
 		var/mob/living/carbon/M = hit_atom
 		if(leaping && M.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
 			if(!Attach(M))
 				GoIdle()
-				return
+			return
 		else
 			step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
 			addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS)
 
 	else
-		var/victim = FALSE
 		for(var/mob/living/carbon/M in loc)
 			if(M.can_be_facehugged(src))
-				addtimer(CALLBACK(src, .proc/fast_facehug, M), 1.5 SECONDS)
-				victim = TRUE
-				break
-		if(!victim)
-			addtimer(CALLBACK(src, .proc/fast_activate), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
+				if(!Attach(M))
+					GoIdle()
+				return
+		addtimer(CALLBACK(src, .proc/fast_activate), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
 	. = ..()
 	leaping = FALSE
 	GoIdle(FALSE, TRUE)
@@ -305,8 +304,6 @@
 		return FALSE
 
 	if(!provoked)
-		if(iszombie(src))
-			return FALSE
 		if(species?.species_flags & IS_SYNTHETIC)
 			return FALSE
 
@@ -324,7 +321,7 @@
 
 	return TRUE
 
-/obj/item/clothing/mask/facehugger/proc/Attach(mob/living/carbon/M, self_done = FALSE)
+/obj/item/clothing/mask/facehugger/proc/Attach(mob/living/carbon/M)
 
 	throwing = FALSE
 	leaping = FALSE
@@ -338,13 +335,24 @@
 
 	if(M.status_flags & XENO_HOST || isxeno(M))
 		return FALSE
-	if(!self_done)
-		M.visible_message("<span class='danger'>[src] leaps at [M]'s face!</span>")
 
 	if(isxeno(loc)) //Being carried? Drop it
 		var/mob/living/carbon/Xenomorph/X = loc
 		X.dropItemToGround(src)
 		X.update_icons()
+
+	if(M.in_throw_mode && M.dir != dir && !M.incapacitated() && !M.get_active_held_item())
+		var/catch_chance = 50
+		if(M.dir == reverse_dir[dir])
+			catch_chance += 20
+		catch_chance -= M.shock_stage * 0.3
+		if(M.get_inactive_held_item())
+			catch_chance  -= 25
+
+		if(prob(catch_chance))
+			M.visible_message("<span class='notice'>[M] snatches [src] out of the air and [pickweight(list("clobbers" = 30, "kills" = 30, "squashes" = 25, "dunks" = 10, "dribbles" = 5))] it!")
+			Die()
+			return TRUE
 
 	var/blocked = null //To determine if the hugger just rips off the protection or can infect.
 	if(ishuman(M))
@@ -353,24 +361,6 @@
 		if(!H.has_limb(HEAD))
 			visible_message("<span class='warning'>[src] looks for a face to hug on [H], but finds none!</span>")
 			return FALSE
-
-		if(!self_done)
-			var/catch_chance = 50
-			if(H.dir == reverse_dir[dir])
-				catch_chance += 20
-			if(H.lying)
-				catch_chance -= 50
-			catch_chance -= ((H.maxHealth - H.health) / 3)
-			if(H.get_active_held_item())
-				catch_chance  -= 25
-			if(H.get_inactive_held_item())
-				catch_chance  -= 25
-
-			if(!H.stat && H.dir != dir && prob(catch_chance)) //Not facing away
-				H.visible_message("<span class='notice'>[H] snatches [src] out of the air and squashes it!")
-				Die()
-				loc = H.loc
-				return TRUE
 
 		if(H.head)
 			var/obj/item/clothing/head/D = H.head
@@ -408,8 +398,8 @@
 				M.dropItemToGround(W)
 			if(ishuman(M)) //Check for camera; if we have one, turn it off.
 				var/mob/living/carbon/human/H = M
-				if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
-					var/obj/item/device/radio/headset/almayer/marine/R = H.wear_ear
+				if(istype(H.wear_ear, /obj/item/radio/headset/almayer/marine))
+					var/obj/item/radio/headset/almayer/marine/R = H.wear_ear
 					if(R.camera.status)
 						R.camera.status = FALSE //Turn camera off.
 						to_chat(H, "<span class='danger'>Your headset camera flickers off; you'll need to reactivate it by rebooting your headset HUD!<span>")

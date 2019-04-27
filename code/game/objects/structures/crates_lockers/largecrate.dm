@@ -98,16 +98,16 @@
 	var/list/stuff = list(
 						/obj/item/cell/high,
 						/obj/item/storage/belt/utility/full,
-						/obj/item/device/multitool,
+						/obj/item/multitool,
 						/obj/item/tool/crowbar,
-						/obj/item/device/flashlight,
+						/obj/item/flashlight,
 						/obj/item/reagent_container/food/snacks/donkpocket,
 						/obj/item/explosive/grenade/smokebomb,
 						/obj/item/circuitboard/airlock,
-						/obj/item/device/assembly/igniter,
+						/obj/item/assembly/igniter,
 						/obj/item/tool/weldingtool,
 						/obj/item/tool/wirecutters,
-						/obj/item/device/analyzer,
+						/obj/item/analyzer,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine
 						)
@@ -327,8 +327,8 @@
 	..()
 	new /obj/item/clothing/glasses/hud/health(src)
 	new /obj/item/clothing/glasses/hud/health(src)
-	new /obj/item/device/healthanalyzer(src)
-	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/belt/medical(src)
 	new /obj/item/storage/belt/combatLifesaver(src)
 	new /obj/item/storage/firstaid/regular(src)
@@ -372,8 +372,8 @@
 	new /obj/item/storage/box/m94(src)
 	new /obj/item/storage/pouch/general/medium(src)
 	new /obj/item/storage/pouch/survival(src)
-	new /obj/item/device/flashlight (src)
-	new /obj/item/device/flashlight (src)
+	new /obj/item/flashlight (src)
+	new /obj/item/flashlight (src)
 	new /obj/item/tool/crowbar/red (src)
 	new /obj/item/tool/crowbar/red (src)
 	new /obj/item/storage/pouch/pistol(src)
@@ -382,8 +382,8 @@
 	new /obj/item/storage/backpack(src)
 	new /obj/item/storage/backpack/satchel(src)
 	new /obj/item/storage/backpack(src)
-	new /obj/item/device/radio(src)
-	new /obj/item/device/radio(src)
+	new /obj/item/radio(src)
+	new /obj/item/radio(src)
 	new /obj/item/weapon/combat_knife(src)
 	new /obj/item/weapon/combat_knife(src)
 	new /obj/item/weapon/throwing_knife(src)

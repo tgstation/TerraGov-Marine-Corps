@@ -218,14 +218,11 @@
 	if(!istype(T))
 		return
 
-	for(var/obj/flamer_fire/F in T) // No stacking flames!
-		qdel(F)
-
-	new /obj/flamer_fire(T, heat, burn, f_color)
+	T.ignite(heat, burn, f_color)
 
 	// Melt a single layer of snow
-	if(istype(T, /turf/open/snow))
-		var/turf/open/snow/S = T
+	if(istype(T, /turf/open/floor/plating/ground/snow))
+		var/turf/open/floor/plating/ground/snow/S = T
 
 		if (S.slayer > 0)
 			S.slayer -= 1
@@ -442,6 +439,14 @@
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 
+/turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+	//extinguish any flame present
+	var/obj/flamer_fire/F = locate(/obj/flamer_fire) in src
+	if(F)
+		qdel(F)
+
+	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //Time to redo part of abby's code.
 //Create a flame sprite object. Doesn't work like regular fire, ie. does not affect atmos or heat
@@ -457,9 +462,10 @@
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
 
-/obj/flamer_fire/New(loc, fire_lvl, burn_lvl, f_color, fire_spread_amount, fire_stacks = 0, fire_damage = 0)
-	..()
-	if (f_color)
+/obj/flamer_fire/Initialize(loc, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+	. = ..()
+
+	if(f_color)
 		flame_color = f_color
 
 	icon_state = "[flame_color]_2"
@@ -467,42 +473,21 @@
 		firelevel = fire_lvl
 	if(burn_lvl)
 		burnlevel = burn_lvl
-	START_PROCESSING(SSobj, src)
+	if(fire_stacks || fire_damage)
+		for(var/mob/living/C in get_turf(src))
+			C.flamer_fire_act(fire_stacks)
 
-	if(fire_spread_amount > 0)
-		var/turf/T
-		for(var/dirn in cardinal)
-			T = get_step(loc, dirn)
-			if(istype(T,/turf/open/space))
-				continue
-			var/obj/flamer_fire/F
-			if(locate(F) in T)
-				qdel(F) //No stacking
-			var/new_spread_amt = T.density ? 0 : fire_spread_amount - 1 //walls stop the spread
-			if(new_spread_amt)
-				for(var/obj/O in T)
-					if(!O.CanPass(src, loc))
-						new_spread_amt = 0
-						break
-			spawn(0) //delay so the newer flame don't block the spread of older flames
-				new /obj/flamer_fire(T, fire_lvl, burn_lvl, f_color, new_spread_amt, fire_stacks, fire_damage)
-				var/mob/living/C
-				if(fire_stacks || fire_damage)
-					for(C in T)
-						if(C.fire_immune)
-							continue
-						else
-							C.adjust_fire_stacks(fire_stacks)
-							var/armor_block = C.run_armor_check("chest", "fire")
-							C.apply_damage(fire_damage, BURN, null, armor_block)
-							C.IgniteMob()
-							C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
+			var/armor_block = C.run_armor_check("chest", "fire")
+			C.apply_damage(fire_damage, BURN, null, armor_block)
+			if(C.IgniteMob())
+				C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
+
+	START_PROCESSING(SSobj, src)
 
 /obj/flamer_fire/Destroy()
 	SetLuminosity(0)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
-
 
 /obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
 	if(istype(M))
@@ -515,10 +500,14 @@
 			show_message(text("Your suit protects you from most of the flames."), 1)
 			return CLAMP(. * 1.5, 0.75, 1) //Min 75% resist, max 100%
 
+/mob/living/carbon/Xenomorph/run_armor_check(def_zone = null, attack_flag = "melee")
+	if(attack_flag == "fire" && (xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
+		return 1
+	return ..()
+
+
 // override this proc to give different walking-over-fire effects
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
-	if(fire_immune) // this is a /mob/living var that xenos use but humans dont
-		return
 	adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 	if (prob(firelevel + 2*fire_stacks)) //the more soaked in fire you are, the likelier to be ignited
 		IgniteMob()

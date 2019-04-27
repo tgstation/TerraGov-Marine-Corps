@@ -28,7 +28,7 @@
 	name = "server rack"
 	icon_state = "rackframe"
 
-/obj/item/device/laptop
+/obj/item/laptop
 	name		= "Laptop Computer"
 	desc		= "A clamshell portable computer.  It is closed."
 	icon		= 'icons/obj/machines/computer3.dmi'

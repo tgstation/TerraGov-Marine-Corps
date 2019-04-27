@@ -10,13 +10,13 @@
 
 			if("stealth")
 				new /obj/item/tool/pen/paralysis(src)
-				new /obj/item/device/chameleon(src)
+				new /obj/item/chameleon(src)
 				return
 
 			if("screwed")
 				new /obj/effect/spawner/newbomb/timer/syndicate(src)
 				new /obj/effect/spawner/newbomb/timer/syndicate(src)
-				new /obj/item/device/powersink(src)
+				new /obj/item/powersink(src)
 				new /obj/item/clothing/suit/space/syndicate(src)
 				new /obj/item/clothing/head/helmet/space/syndicate(src)
 				return
@@ -39,7 +39,7 @@
 			if("hacker")
 				new /obj/item/circuitboard/ai_module/syndicate(src)
 				new /obj/item/card/emag(src)
-				new /obj/item/device/encryptionkey/binary(src)
+				new /obj/item/encryptionkey/binary(src)
 				return
 
 			if("smoothoperator")

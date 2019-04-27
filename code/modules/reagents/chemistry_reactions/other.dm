@@ -184,9 +184,7 @@
 			continue
 		if(istype(T,/turf/open/space))
 			continue
-		for(var/obj/flamer_fire/F in T) // No stacking flames!
-			qdel(F)
-		new /obj/flamer_fire(T, 5 + rand(0,11))
+		T.ignite(5 + rand(0,11))
 
 
 /datum/chemical_reaction/chemsmoke
@@ -195,14 +193,14 @@
 	required_reagents = list("potassium" = 1, "sugar" = 1, "phosphorus" = 1)
 
 /datum/chemical_reaction/chemsmoke/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/smoke_radius = round(sqrt(created_volume * 1.5), 1)
 	var/location = get_turf(holder.my_atom)
-	var/datum/effect_system/smoke_spread/chem/S = new /datum/effect_system/smoke_spread/chem
-	S.attach(location)
-	S.set_up(holder, created_volume, 0, location)
-	playsound(location, 'sound/effects/smoke.ogg', 25, 1)
-	spawn(0)
-		S.start()
-	holder.clear_reagents()
+	var/datum/effect_system/smoke_spread/chem/S = new(location)
+	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
+	S?.set_up(holder, smoke_radius, location)
+	S?.start()
+	if(holder?.my_atom)
+		holder.clear_reagents()
 
 
 /datum/chemical_reaction/chloralhydrate

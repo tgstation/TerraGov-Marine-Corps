@@ -123,7 +123,9 @@
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
 	unacidable = TRUE
+	away_time = -XENO_AFK_TIMER //Xenos start grabbable. This is reset on Login()
 	var/hivenumber = XENO_HIVE_NORMAL
+	job = ROLE_XENOMORPH
 
 	var/datum/hive_status/hive
 
@@ -145,7 +147,7 @@
 	var/evolution_stored = 0 //How much evolution they have stored
 
 	var/upgrade_stored = 0 //How much upgrade points they have stored.
-	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level. 
+	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
 	var/gib_chance = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
 	var/critical_proc = 0
 	var/critical_delay = 25
@@ -256,6 +258,9 @@
 	var/savage = FALSE
 	var/savage_used = FALSE
 
+	//Hunter vars
+	var/sneak_bonus = 0.00
+
 	//Acid spray
 	var/last_spray_used
 
@@ -272,3 +277,5 @@
 	var/cresttoss_used = FALSE
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	var/butchery_progress = 0

@@ -87,6 +87,7 @@
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/clothing/tie/storage/webbing = 3,
 					/obj/item/clothing/tie/storage/brown_vest = 1,
+					/obj/item/clothing/tie/storage/white_vest/medic = 1,
 					/obj/item/clothing/tie/holster = 1,
 					/obj/item/storage/belt/gun/m4a3 = 10,
 					/obj/item/storage/belt/gun/m44 = 5,
@@ -120,7 +121,7 @@
 					/obj/item/explosive/grenade/smokebomb = 5,
 					/obj/item/explosive/grenade/cloakbomb = 3,
 					/obj/item/storage/box/m94 = 30,
-					/obj/item/device/flashlight/combat = 5,
+					/obj/item/flashlight/combat = 5,
 					/obj/item/clothing/mask/gas = 10
 					)
 
@@ -415,7 +416,7 @@
 					/obj/item/stack/medical/advanced/ointment = 6,
 					/obj/item/stack/medical/ointment = 8,
 					/obj/item/stack/medical/splint = 2,
-					/obj/item/device/healthanalyzer = 3,
+					/obj/item/healthanalyzer = 3,
 					/obj/item/bodybag/cryobag = 2)
 
 	contraband = list(/obj/item/reagent_container/hypospray/autoinjector/sleeptoxin =3)
@@ -463,10 +464,10 @@
 						/obj/item/clothing/head/helmet/marine/corpsman = 4,
 						/obj/item/storage/backpack/marine/corpsman = 4,
 						/obj/item/storage/backpack/marine/satchel/corpsman = 4,
-						/obj/item/device/encryptionkey/med = 4,
+						/obj/item/encryptionkey/med = 4,
 						/obj/item/storage/belt/medical = 4,
 						/obj/item/bodybag/cryobag = 4,
-						/obj/item/device/healthanalyzer = 4,
+						/obj/item/healthanalyzer = 4,
 						/obj/item/clothing/glasses/hud/health = 4,
 						/obj/item/storage/firstaid/regular = 4,
 						/obj/item/storage/firstaid/adv = 4,
@@ -549,8 +550,8 @@
 	desc = "A marine engineering system vendor"
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(ACCESS_MARINE_ENGPREP)
-	icon_state = "tool"
-	icon_deny = "tool-deny"
+	icon_state = "engiprep"
+	icon_deny = "engiprep-deny"
 	wrenchable = FALSE
 	tokensupport = TOKEN_ENGI
 
@@ -612,12 +613,12 @@
 						/obj/item/clothing/suit/storage/marine/leader = 1,
 						/obj/item/clothing/head/helmet/marine/leader = 1,
 						/obj/item/clothing/tie/storage/webbing = 1,
-						/obj/item/device/squad_beacon = 3,
-						/obj/item/device/squad_beacon/bomb = 1,
+						/obj/item/squad_beacon = 3,
+						/obj/item/squad_beacon/bomb = 1,
 						/obj/item/explosive/plastique = 1,
 						/obj/item/explosive/grenade/smokebomb = 3,
-						/obj/item/device/binoculars/tactical = 1,
-						/obj/item/device/motiondetector = 1,
+						/obj/item/binoculars/tactical = 1,
+						/obj/item/motiondetector = 1,
 						/obj/item/ammo_magazine/pistol/hp = 2,
 						/obj/item/ammo_magazine/pistol/ap = 1,
 						/obj/item/storage/backpack/marine/satchel = 2,
@@ -627,7 +628,7 @@
 						/obj/item/storage/pouch/general/large = 1,
 						/obj/item/storage/pouch/pistol = 1,
 						/obj/item/clothing/mask/gas = 1,
-						/obj/item/device/whistle = 1,
+						/obj/item/whistle = 1,
 						/obj/item/storage/box/zipcuffs = 2
 					)
 
@@ -742,6 +743,7 @@
 					/obj/item/storage/pouch/construction = 10,
 					/obj/item/storage/pouch/tools/full = 10,
 					/obj/item/clothing/tie/storage/brown_vest = 10,
+					/obj/item/clothing/tie/storage/white_vest/medic = 10,
 					/obj/item/clothing/tie/storage/webbing = 10,
 					/obj/item/clothing/tie/holster = 10
 					)
@@ -769,19 +771,19 @@
 	if(squad_tag != null) //probably some better way to slide this in but no sleep is no sleep.
 		switch(squad_tag)
 			if("Alpha")
-				products2 = list(/obj/item/device/radio/headset/almayer/marine/alpha = 20,
+				products2 = list(/obj/item/radio/headset/almayer/marine/alpha = 20,
 								/obj/item/clothing/gloves/marine/alpha = 10)
 			if("Bravo")
-				products2 = list(/obj/item/device/radio/headset/almayer/marine/bravo = 20,
+				products2 = list(/obj/item/radio/headset/almayer/marine/bravo = 20,
 								/obj/item/clothing/gloves/marine/bravo = 10)
 			if("Charlie")
-				products2 = list(/obj/item/device/radio/headset/almayer/marine/charlie = 20,
+				products2 = list(/obj/item/radio/headset/almayer/marine/charlie = 20,
 								/obj/item/clothing/gloves/marine/charlie = 10)
 			if("Delta")
-				products2 = list(/obj/item/device/radio/headset/almayer/marine/delta = 20,
+				products2 = list(/obj/item/radio/headset/almayer/marine/delta = 20,
 								/obj/item/clothing/gloves/marine/delta = 10)
 	else
-		products2 = list(/obj/item/device/radio/headset/almayer = 10,
+		products2 = list(/obj/item/radio/headset/almayer = 10,
 						/obj/item/clothing/gloves/marine = 10)
 	build_inventory(products2)
 	GLOB.marine_vendors.Add(src)

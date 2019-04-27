@@ -20,7 +20,7 @@
 	jobtype = /datum/job/mercenaries/heavy
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/device/radio/headset/distress/dutch
+	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/marine/veteran/mercenary
 	shoes = /obj/item/clothing/shoes/veteran/PMC
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/mercenary
@@ -43,7 +43,7 @@
 	jobtype = /datum/job/mercenaries/miner
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/device/radio/headset/distress/dutch
+	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/marine/veteran/mercenary/miner
 	shoes = /obj/item/clothing/shoes/veteran/PMC
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/mercenary/miner
@@ -66,7 +66,7 @@
 	jobtype = /datum/job/mercenaries/engineer
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/device/radio/headset/distress/dutch
+	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/marine/veteran/mercenary/engineer
 	belt = /obj/item/storage/belt/utility/full
 	shoes = /obj/item/clothing/shoes/veteran/PMC

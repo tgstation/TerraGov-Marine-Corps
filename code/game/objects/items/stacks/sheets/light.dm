@@ -9,7 +9,7 @@
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 60
-	stack_id = "wired glass tile"
+
 
 /obj/item/stack/light_w/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	..()

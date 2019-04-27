@@ -20,7 +20,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/vp70
-	ears = /obj/item/device/radio/headset/distress/PMC
+	ears = /obj/item/radio/headset/distress/PMC
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC
 	shoes = /obj/item/clothing/shoes/veteran/PMC
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/PMC
@@ -39,7 +39,7 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_SUIT)
 
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/baton, SLOT_IN_BACKPACK)
@@ -64,7 +64,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/vp70
-	ears = /obj/item/device/radio/headset/distress/PMC
+	ears = /obj/item/radio/headset/distress/PMC
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC
 	shoes = /obj/item/clothing/shoes/veteran/PMC
 	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC
@@ -106,7 +106,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/vp70
-	ears = /obj/item/device/radio/headset/distress/PMC
+	ears = /obj/item/radio/headset/distress/PMC
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC
 	shoes = /obj/item/clothing/shoes/veteran/PMC
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper
@@ -128,7 +128,7 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_HEAD)
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/baton, SLOT_IN_BACKPACK)
@@ -150,7 +150,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/vp78
-	ears = /obj/item/device/radio/headset/distress/PMC
+	ears = /obj/item/radio/headset/distress/PMC
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC/leader
 	shoes = /obj/item/clothing/shoes/veteran/PMC
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/PMC/leader
@@ -172,7 +172,7 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/eat_bar, SLOT_IN_HEAD)
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/baton, SLOT_IN_BACKPACK)

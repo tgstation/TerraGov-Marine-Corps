@@ -21,6 +21,7 @@
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
 	xeno_explosion_resistance = 3 //some resistance against explosion stuns.
+	job = ROLE_XENO_QUEEN
 
 	var/breathing_counter = 0
 	var/ovipositor = FALSE //whether the Queen is attached to an ovipositor

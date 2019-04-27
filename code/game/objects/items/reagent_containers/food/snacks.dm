@@ -61,7 +61,8 @@
 		return FALSE
 
 	if(iscarbon(M))
-		var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
+		var/mob/living/carbon/C = M
+		var/fullness = C.nutrition + (C.reagents.get_reagent_amount("nutriment") * 25)
 		if(M == user)								//If you're eating it yourself
 			if(istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
@@ -101,7 +102,7 @@
 			var/rgt_list_text = get_reagent_list_text()
 
 			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
-			msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [rgt_list_text] (INTENT: [uppertext(user.a_intent)])")
+			msg_admin_attack("[key_name(user)] fed [key_name(C)] with [src.name] Reagents: [rgt_list_text] (INTENT: [uppertext(C.a_intent)])")
 
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message("<span class='warning'>[user] feeds [M] [src].</span>", 1)
@@ -1300,12 +1301,12 @@
 	name = "Tele Bacon"
 	desc = "It tastes a little odd but it is still delicious."
 	icon_state = "bacon"
-	var/obj/item/device/radio/beacon/bacon/baconbeacon
+	var/obj/item/radio/beacon/bacon/baconbeacon
 	bitesize = 2
 	New()
 		..()
 		reagents.add_reagent("nutriment", 4)
-		baconbeacon = new /obj/item/device/radio/beacon/bacon(src)
+		baconbeacon = new /obj/item/radio/beacon/bacon(src)
 	On_Consume()
 		if(!reagents.total_volume)
 			baconbeacon.loc = usr

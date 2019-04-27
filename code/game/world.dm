@@ -50,8 +50,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
 
-	initialize_marine_armor()
-
 	load_mode()
 
 	SSradio = new /datum/controller/radio()

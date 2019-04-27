@@ -69,16 +69,6 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 		var/datum/job/J = new T
 		joblist[J.title] = J
 
-	// Languages
-	for(var/T in subtypesof(/datum/language))
-		var/datum/language/L = new T
-		GLOB.all_languages[L.name] = L
-
-	for(var/language_name in GLOB.all_languages)
-		var/datum/language/L = GLOB.all_languages[language_name]
-		GLOB.language_keys[":[lowertext(L.key)]"] = L
-		GLOB.language_keys[".[lowertext(L.key)]"] = L
-		GLOB.language_keys["#[lowertext(L.key)]"] = L
 	var/rkey = 0
 
 	// Species
@@ -104,7 +94,19 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 		var/datum/hive_status/HS = new H
 		GLOB.hive_datums[HS.hivenumber] = HS
 
-	return 1
+
+	for(var/L in subtypesof(/datum/language))
+		var/datum/language/language = L
+		if(!initial(language.key))
+			continue
+
+		GLOB.all_languages += language
+
+		var/datum/language/instance = new language
+
+		GLOB.language_datum_instances[language] = instance
+
+	return TRUE
 
 /* // Uncomment to debug chemical reaction list.
 /client/verb/debug_chemical_list()

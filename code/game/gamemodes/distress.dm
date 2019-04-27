@@ -222,7 +222,7 @@
 
 	to_chat(X, "<B>You are now an alien!</B>")
 	to_chat(X, "<B>Your job is to spread the hive and protect the Queen. If there's no Queen, you can become the Queen yourself by evolving into a drone.</B>")
-	to_chat(X, "Talk in Hivemind using <strong>;</strong> (e.g. ';My life for the queen!')")
+	to_chat(X, "Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the queen!')")
 
 	X.update_icons()
 
@@ -238,7 +238,7 @@
 
 	to_chat(X, "<B>You are now the alien queen!</B>")
 	to_chat(X, "<B>Your job is to spread the hive.</B>")
-	to_chat(X, "Talk in Hivemind using <strong>;</strong> (e.g. ';My life for the hive!')")
+	to_chat(X, "Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the hive!')")
 
 	X.update_icons()
 
@@ -458,7 +458,7 @@
 						/obj/item/explosive/grenade/smokebomb = round(scale * 5),
 						/obj/item/explosive/grenade/cloakbomb = round(scale * 3),
 						/obj/item/storage/box/m94 = round(scale * 30),
-						/obj/item/device/flashlight/combat = round(scale * 5),
+						/obj/item/flashlight/combat = round(scale * 5),
 						/obj/item/clothing/mask/gas = round(scale * 10)
 						)
 

@@ -5,7 +5,7 @@
 	icon_state = "rig0-engineering"
 	item_state = "eng_helm"
 	armor = list("melee" = 40, "bullet" = 5, "laser" = 20, "energy" = 5, "bomb" = 35, "bio" = 100, "rad" = 20, "fire" = 5, "acid" = 5)
-	allowed = list(/obj/item/device/flashlight)
+	allowed = list(/obj/item/flashlight)
 	var/brightness_on = 4 //luminosity when on
 	var/on = 0
 	var/rig_color = "engineering" //Determines used sprites: rig[on]-[color] and rig[on]-[color]2 (lying down sprite)
@@ -70,7 +70,7 @@
 	item_state = "eng_hardsuit"
 	slowdown = 1
 	armor = list("melee" = 40, "bullet" = 5, "laser" = 20, "energy" = 5, "bomb" = 35, "bio" = 100, "rad" = 20, "fire" = 5, "acid" = 5)
-	allowed = list(/obj/item/device/flashlight,/obj/item/tank,/obj/item/device/suit_cooling_unit)
+	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit)
 	flags_heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
@@ -327,7 +327,7 @@
 	item_state = "eng_hardsuit"
 	slowdown = 1
 	armor = list("melee" = 40, "bullet" = 5, "laser" = 20, "energy" = 5, "bomb" = 35, "bio" = 100, "rad" = 80, "fire" = 5, "acid" = 5)
-	allowed = list(/obj/item/device/flashlight,/obj/item/tank,/obj/item/device/suit_cooling_unit,/obj/item/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/tool/pickaxe, /obj/item/device/rcd)
+	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/storage/bag/ore,/obj/item/t_scanner,/obj/item/tool/pickaxe, /obj/item/rcd)
 
 //Chief Engineer's rig
 /obj/item/clothing/head/helmet/space/rig/engineering/chief
@@ -400,7 +400,7 @@
 	slowdown = 1
 	w_class = 3
 	armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 35, "bio" = 100, "rad" = 60, "fire" = 15, "acid" = 15)
-	allowed = list(/obj/item/device/flashlight,/obj/item/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/weapon/energy/sword,/obj/item/handcuffs)
+	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/weapon/energy/sword,/obj/item/handcuffs)
 	siemens_coefficient = 0.6
 	species_restricted = list("exclude","Unathi","Tajara","Skrell","Vox")
 
@@ -445,7 +445,7 @@
 	name = "medical hardsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has minor radiation shielding."
 	item_state = "medical_hardsuit"
-	allowed = list(/obj/item/device/flashlight,/obj/item/tank,/obj/item/device/suit_cooling_unit,/obj/item/storage/firstaid,/obj/item/device/healthanalyzer,/obj/item/stack/medical)
+	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/storage/firstaid,/obj/item/healthanalyzer,/obj/item/stack/medical)
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 20, "energy" = 5, "bomb" = 25, "bio" = 100, "rad" = 50, "fire" = 5, "acid" = 5)
 
 	//Security
@@ -464,7 +464,7 @@
 	desc = "A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor."
 	item_state = "sec_hardsuit"
 	armor = list("melee" = 60, "bullet" = 10, "laser" = 30, "energy" = 5, "bomb" = 45, "bio" = 100, "rad" = 10, "fire" = 5, "acid" = 5)
-	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/baton)
+	allowed = list(/obj/item/weapon/gun,/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/weapon/baton)
 	siemens_coefficient = 0.7
 
 

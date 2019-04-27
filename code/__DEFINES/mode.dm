@@ -50,8 +50,6 @@
 #define MODE_INFESTATION_M_MINOR		"Marine Minor Victory"
 #define MODE_INFESTATION_DRAW_DEATH		"DRAW: Mutual Annihilation"
 
-#define MODE_INFECTION_ZOMBIE_WIN		"Major Zombie Victory"
-
 #define MODE_BATTLEFIELD_NT_MAJOR		"NT PMC Major Success"
 #define MODE_BATTLEFIELD_M_MAJOR		"Marine Major Success"
 #define MODE_BATTLEFIELD_NT_MINOR		"NT PMC Minor Success"
@@ -95,10 +93,7 @@
 #define COOLDOWN_COMM_MESSAGE 	1 MINUTES
 #define COOLDOWN_COMM_CENTRAL 	30 SECONDS
 
-#define XENO_AFK_TIMER			300 // Number of life proc ticks. In for re-doing.
+#define XENO_AFK_TIMER			5 MINUTES
 
-#define DEATH_TIMER				5 MINUTES
-
-
-#define DEATHTIME_CHECK(M) ((world.time - M.timeofdeath) > DEATH_TIMER) && check_other_rights(M.client, R_ADMIN, FALSE)
-#define DEATHTIME_MESSAGE(M) to_chat(M, "<span class='warning'>You have been dead for [(world.time - M.timeofdeath) / 10] second\s.</span><br><span class='warning'>You must wait [DEATH_TIMER / 10] seconds before rejoining the game!</span>")
+#define DEATHTIME_CHECK(M) ((world.time - M.timeofdeath) > GLOB.respawntime) && check_other_rights(M.client, R_ADMIN, FALSE)
+#define DEATHTIME_MESSAGE(M) to_chat(M, "<span class='warning'>You have been dead for [(world.time - M.timeofdeath) * 0.1] second\s.</span><br><span class='warning'>You must wait [GLOB.respawntime * 0.1] seconds before rejoining the game!</span>")

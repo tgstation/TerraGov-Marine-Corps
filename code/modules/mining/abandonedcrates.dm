@@ -24,7 +24,7 @@
 			new/obj/item/tool/lighter/zippo(src)
 		if(2)
 			new/obj/item/tool/pickaxe/drill(src)
-			new/obj/item/device/taperecorder(src)
+			new/obj/item/taperecorder(src)
 			new/obj/item/clothing/suit/space(src)
 			new/obj/item/clothing/head/helmet/space(src)
 		if(3)

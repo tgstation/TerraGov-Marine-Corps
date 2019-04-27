@@ -91,10 +91,13 @@
 			var/mob/living/carbon/Xenomorph/X = i
 			if(is_centcom_level(X.z))
 				continue
-			if(!X.client)
-				if(only_away && X.away_timer < XENO_AFK_TIMER)
-					continue
-				xenos += X
+			if(X.client)
+				continue
+			if(!X.away_time) //To prevent adminghosted xenos to be snatched.
+				continue
+			if(only_away && world.time - X.away_time < XENO_AFK_TIMER)
+				continue
+			xenos += X
 	return xenos
 
 // ***************************************
@@ -357,7 +360,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(!stored_larva) // no larva to deal with
 		return ..()
 
-	stored_larva = round(stored_larva * ((Q.upgrade_as_number() + 1) * QUEEN_DEATH_LARVA_MULTIPLIER))
+	stored_larva = round(stored_larva * QUEEN_DEATH_LARVA_MULTIPLIER(Q)
 
 	if(isdistress(SSticker?.mode))
 		INVOKE_ASYNC(src, .proc/unbury_all_larva) // this is potentially a lot of calls so do it async
@@ -428,11 +431,11 @@ to_chat will check for valid clients itself already so no need to double check f
 // Make sure they can understand english
 /datum/hive_status/corrupted/post_add(mob/living/carbon/Xenomorph/X)
 	. = ..()
-	X.add_language("English")
+	X.grant_language(/datum/language/common)
 
 /datum/hive_status/corrupted/post_removal(mob/living/carbon/Xenomorph/X)
 	. = ..()
-	X.remove_language("English")
+	X.remove_language(/datum/language/common)
 
 /datum/hive_status/corrupted/can_xeno_message()
 	return TRUE // can always talk in hivemind

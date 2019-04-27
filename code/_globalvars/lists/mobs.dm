@@ -21,6 +21,7 @@ GLOBAL_LIST_EMPTY(alive_human_list)			//as above except stat != DEAD
 GLOBAL_LIST_EMPTY(dead_human_list)
 GLOBAL_LIST_EMPTY(alive_mob_list)			//all alive mobs, including clientless. Excludes /mob/dead/new_player
 GLOBAL_LIST_EMPTY(suicided_mob_list)		//contains a list of all mobs that suicided, including their associated ghosts.
+GLOBAL_LIST_EMPTY(cryoed_mob_list)			//Used for logging people entering cryosleep
 GLOBAL_LIST_EMPTY(drones_list)
 GLOBAL_LIST_EMPTY(dead_mob_list)			//all dead mobs, including clientless. Excludes /mob/dead/new_player
 GLOBAL_LIST_EMPTY(joined_player_list)		//all clients that have joined the game at round-start or as a latejoin.
@@ -40,7 +41,6 @@ GLOBAL_LIST_EMPTY(language_datum_instances)
 GLOBAL_LIST_EMPTY(all_languages)
 
 GLOBAL_LIST_EMPTY(all_species)
-GLOBAL_LIST_EMPTY(language_keys)	//table of say codes for all languages
 
 GLOBAL_LIST_EMPTY(xeno_caste_datums)
 
