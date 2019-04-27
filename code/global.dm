@@ -68,7 +68,7 @@ var/datum/sun/sun = null
 var/datum/moduletypes/mods = new()
 
 // nanomanager, the manager for Nano UIs
-var/datum/nanomanager/nanomanager = new()
+var/datum/nanomanager/SSnano = new()
 
 var/list/globalAirlockWireColorToFlag = RandomAirlockWires()
 var/list/globalAirlockIndexToFlag

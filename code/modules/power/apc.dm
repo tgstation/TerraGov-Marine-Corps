@@ -771,7 +771,7 @@
 	)
 
 	//Update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		//The ui does not exist, so we'll create a new() one
         //For a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -891,7 +891,7 @@
 		return 0
 	if(!(ishuman(user) || issilicon(user) || ismonkey(user)))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to use [src]!</span>")
-		nanomanager.close_user_uis(user, src)
+		SSnano.close_user_uis(user, src)
 		return 0
 	if(user.restrained())
 		to_chat(user, "<span class='warning'>You must have free hands to use [src].</span>")
@@ -903,11 +903,11 @@
 		if(aidisabled)
 			if(!loud)
 				to_chat(user, "<span class='warning'>[src] has AI control disabled!</span>")
-				nanomanager.close_user_uis(user, src)
+				SSnano.close_user_uis(user, src)
 			return 0
 	else
 		if((!in_range(src, user) || !istype(src.loc, /turf)))
-			nanomanager.close_user_uis(user, src)
+			SSnano.close_user_uis(user, src)
 			return 0
 
 	var/mob/living/carbon/human/H = user
@@ -985,7 +985,7 @@
 		update()
 
 	else if(href_list["close"])
-		nanomanager.close_user_uis(usr, src)
+		SSnano.close_user_uis(usr, src)
 		return FALSE
 
 	else if(href_list["close2"])
