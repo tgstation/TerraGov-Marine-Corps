@@ -702,7 +702,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if(robot_object)
 					organ = new robot_object(owner.loc)
 			else
-				organ = new limb_object(owner.loc, owner, brute_dam, burn_dam)
+				organ = new limb_object(owner.loc, owner, brute_dam, burn_dam, wounds.Copy())
 
 		if(delete_limb)
 			qdel(organ)

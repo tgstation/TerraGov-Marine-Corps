@@ -7,6 +7,7 @@
 	var/brute
 	var/burn
 	var/datum/limb/attached_type
+	var/list/wounds
 
 /obj/item/limb/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -26,7 +27,7 @@
 		if(3*LIMB_REATTACH_TIME to INFINITY)
 			to_chat(user, "<span class='highdanger'>The smell is making you retch!</span>")
 
-/obj/item/limb/New(loc, mob/living/carbon/human/H, brute = 0, burn = 0)
+/obj/item/limb/New(loc, mob/living/carbon/human/H, brute = 0, burn = 0, list/wounds)
 	..(loc)
 	if(!istype(H))
 		return
