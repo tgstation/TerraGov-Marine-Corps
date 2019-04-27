@@ -310,7 +310,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		e.start()
 		qdel(src)
 		return
-	DISABLE_BITFIELD(reagents, NO_REACT)
+	DISABLE_BITFIELD(reagents.reagent_flags, NO_REACT)
 	reagents.handle_reactions()
 	icon_state = icon_on
 	item_state = icon_on

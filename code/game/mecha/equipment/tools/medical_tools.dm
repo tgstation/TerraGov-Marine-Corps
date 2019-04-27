@@ -401,7 +401,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/critfail()
 	. = ..()
-	DISABLE_BITFIELD(reagents, NO_REACT)
+	DISABLE_BITFIELD(reagents.reagent_flags, NO_REACT)
 	reagents.handle_reactions()
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/get_equip_info()
