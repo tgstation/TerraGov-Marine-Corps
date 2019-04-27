@@ -52,7 +52,7 @@ SUBSYSTEM_DEF(weeds)
 		if(MC_TICK_CHECK)
 			return
 		
-		
+
 /datum/controller/subsystem/weeds/proc/add_node(obj/effect/alien/weeds/node/N)
 	if(!N)
 		stack_trace("SSweed.add_node called with a null obj")
@@ -70,6 +70,7 @@ SUBSYSTEM_DEF(weeds)
 /datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/effect/alien/weeds/node/N)
 
 	if (!T.is_weedable())
+		N.node_turfs.Remove(T)
 		return
 
 	var/obj/effect/alien/weeds/W = locate() in T
