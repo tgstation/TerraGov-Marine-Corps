@@ -49,13 +49,25 @@
 	explosion(loc, -1, 0, 8, 12)
 
 
-/mob/living/silicon/decoy/say(message, new_sound) //General communication across the ship.
+/mob/living/silicon/decoy/say(message, new_sound, datum/language/language) //General communication across the ship.
 	if(stat || !message)
 		return FALSE
 
 	ai_sound = new_sound ? new_sound : 'sound/misc/interference.ogg' //Remember the sound we need to play.
 
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+
+	var/datum/language/message_language = get_message_language(message)
+	if(message_language)
+		if(can_speak_in_language(message_language))
+			language = message_language
+		message = copytext(message, 3)
+
+		if(findtext(message, " ", 1, 2))
+			message = copytext(message, 2)
+
+	if(!language)
+		language = get_default_language()
 
 	var/message_mode = get_message_mode(message)
 
@@ -65,5 +77,5 @@
 		if("broadcast")
 			message_mode = MODE_HEADSET
 
-	ai_headset.talk_into(src, message, message_mode)
+	ai_headset.talk_into(src, message, message_mode, , language)
 	return TRUE
