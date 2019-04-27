@@ -187,7 +187,7 @@
 	Broadcast_Message(connection, A,
 						0, "*garbled automated announcement*", src,
 						message, from, "Automated Announcement", from, from,
-						4, 0, list(1), PUB_FREQ)
+						4, 0, list(1), PUB_FREQ, "announces", /datum/language/common)
 	qdel(A)
 	return
 
