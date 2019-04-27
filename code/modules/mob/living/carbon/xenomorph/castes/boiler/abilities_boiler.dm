@@ -292,7 +292,7 @@
 	anchored = TRUE //We gain bump movement immunity while we're emitting gas.
 	if(!do_after(src, BOILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
 		smoke_system = new /datum/effect_system/smoke_spread/xeno/acid
-		smoke_system.set_up(1, 0, get_turf(src))
+		smoke_system.set_up(1, get_turf(src))
 		to_chat(src, "<span class='xenodanger'>You abort emitting acid smoke, your expended plasma resulting in only a feeble wisp.</span>")
 		anchored = FALSE
 		return
@@ -326,7 +326,7 @@
 		playsound(loc, 'sound/effects/smoke.ogg', 25)
 		var/turf/T = get_turf(src)
 		smoke_system = new /datum/effect_system/smoke_spread/xeno/acid
-		smoke_system.set_up(4, 0, T, null, 6)
+		smoke_system.set_up(4, T, 6)
 		smoke_system.start()
 		T.visible_message("<span class='danger'>Caustic smoke billows from the glowing xenomorph!</span>")
 		sleep(BOILER_GAS_DELAY)
