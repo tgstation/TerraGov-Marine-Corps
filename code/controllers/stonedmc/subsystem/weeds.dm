@@ -6,15 +6,15 @@ SUBSYSTEM_DEF(weeds)
 
 	// This is a list of nodes on the map.
 	var/list/creating = list()
-	var/list/processing = list()
+	var/list/pending = list()
 	var/list/currentrun
 
 /datum/controller/subsystem/weeds/stat_entry()
-	return ..("Nodes: [length(processing)]")
+	return ..("Nodes: [length(pending)]")
 
 /datum/controller/subsystem/weeds/fire(resumed = FALSE)
 	if(!resumed)
-		currentrun = processing.Copy()
+		currentrun = pending.Copy()
 		creating = list()
 
 	for(var/A in currentrun)
@@ -23,11 +23,11 @@ SUBSYSTEM_DEF(weeds)
 		currentrun -= T
 
 		if(QDELETED(N) || QDELETED(T))
-			processing -= T
+			pending -= T
 			continue
 
 		if (!T.is_weedable() || istype(T.loc, /area/arrival))
-			processing -= T
+			pending -= T
 			continue
 
 		if (locate(/obj/effect/alien/weeds) in T)
@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(weeds)
 		creating -= T
 
 		create_weed(T, N)
-		processing -= T
+		pending -= T
 
 		if(MC_TICK_CHECK)
 			return
@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(weeds)
 		if(locate(/obj/effect/alien/weeds/node) in T)
 			continue
 
-		processing[T] = N
+		pending[T] = N
 
 /datum/controller/subsystem/weeds/proc/add_weed(obj/effect/alien/weeds/W)
 	if(!W)
@@ -79,7 +79,7 @@ SUBSYSTEM_DEF(weeds)
 		return FALSE
 
 	var/turf/T = get_turf(W)
-	processing[T] = W.parent_node
+	pending[T] = W.parent_node
 
 
 /datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/effect/alien/weeds/node/N)
