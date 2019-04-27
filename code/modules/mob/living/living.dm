@@ -5,7 +5,10 @@
 
 		handle_regular_hud_updates()
 
+		handle_organs()
+
 		updatehealth()
+
 
 //this updates all special effects: knockdown, druggy, stuttering, etc..
 /mob/living/proc/handle_status_effects()
@@ -22,6 +25,11 @@
 	handle_stuttering()
 	handle_slurring()
 	handle_silent()
+
+/mob/living/proc/handle_organs()
+	reagent_move_delay_modifier = 0
+	reagent_shock_modifier = 0
+	reagent_pain_modifier = 0
 
 /mob/living/proc/handle_stunned()
 	if(stunned)

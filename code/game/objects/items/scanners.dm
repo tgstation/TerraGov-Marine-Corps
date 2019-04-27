@@ -290,10 +290,10 @@ REAGENT SCANNER
 				reagents_in_body["[R.id]"] = R.volume
 				if(R.scannable)
 					if(R.overdosed)
-						reagentdata["[R.id]"] = "<span class='warning'><b>OD: </b></span> <font color='#9773C4'><b>[round(R.volume, 1)]u [R.name]</b></font>"
+						reagentdata["[R.id]"] = "<span class='warning'><b>OD: </b></span> <font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
 						overdosed++
 					else
-						reagentdata["[R.id]"] =	"<font color='#9773C4'><b>[round(R.volume, 1)]u [R.name]</b></font>"
+						reagentdata["[R.id]"] =	"<font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
 				else
 					unknown++
 			if(reagentdata.len)
@@ -564,7 +564,6 @@ REAGENT SCANNER
 	item_state = "analyzer"
 	w_class = 2
 	flags_atom = CONDUCT
-	container_type = OPENCONTAINER
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
@@ -576,11 +575,9 @@ REAGENT SCANNER
 	var/details = 0
 	var/recent_fail = 0
 
-/obj/item/mass_spectrometer/New()
-	..()
-	var/datum/reagents/R = new/datum/reagents(5)
-	reagents = R
-	R.my_atom = src
+/obj/item/mass_spectrometer/Initialize(mapload)
+	. = ..()
+	create_reagents(5, OPENCONTAINER)
 
 /obj/item/mass_spectrometer/on_reagent_change()
 	if(reagents.total_volume)

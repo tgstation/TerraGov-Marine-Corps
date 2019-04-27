@@ -1,5 +1,4 @@
 /obj
-	var/list/list_reagents = null
 	//Used to store information about the contents of the object.
 	var/list/matter
 
@@ -44,10 +43,6 @@
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
 	return ..()
-
-/obj/proc/add_initial_reagents()
-	if(reagents && list_reagents)
-		reagents.add_reagent_list(list_reagents)
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
 	return
