@@ -693,8 +693,6 @@
 			return
 
 		M.fully_replace_character_name(M.real_name, new_name)
-		vv_update_display(M, "name", new_name)
-		vv_update_display(M, "real_name", M.real_name || "No real name")
 
 		message_admins("[ADMIN_TPMONTY(usr)] renamed [ADMIN_TPMONTY(M)] to [new_name].")
 
