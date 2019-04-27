@@ -161,13 +161,6 @@ var/global/normal_ooc_colour = "#002eb8"
 			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [ADMIN_TPMONTY(mob)]</span>: <span class='message'>[msg]</span></span></font>")
 
 
-/client/verb/setup_character()
-	set name = "Game Preferences"
-	set category = "OOC"
-	set desc = "Allows you to access the Setup Character screen. Changes to your character won't take effect until next round, but other changes will."
-	prefs.ShowChoices(usr)
-
-
 /client/verb/motd()
 	set name = "MOTD"
 	set category = "OOC"
