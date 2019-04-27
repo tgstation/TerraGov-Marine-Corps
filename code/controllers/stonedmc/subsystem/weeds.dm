@@ -1,53 +1,59 @@
 SUBSYSTEM_DEF(weeds)
 	name = "Weed"
 	priority = FIRE_PRIORITY_WEED
-	runlevels = RUNLEVEL_GAME
+	runlevels = RUNLEVEL_SETUP|RUNLEVEL_GAME
 	wait = 5 SECONDS
 
 	// This is a list of nodes on the map.
-	var/list/weed_nodes = list()
+	var/list/creating = list()
+	var/list/processing = list()
 	var/list/currentrun
 
-/datum/controller/subsystem/weeds/Initialize(start_timeofday)
-	return ..()
-
 /datum/controller/subsystem/weeds/stat_entry()
-	return ..("Nodes: [length(weed_nodes)]")
+	return ..("Nodes: [length(processing)]")
 
 /datum/controller/subsystem/weeds/fire(resumed = FALSE)
 	if(!resumed)
-		currentrun = deepCopyList(weed_nodes)
+		currentrun = processing.Copy()
+		creating = list()
 
-	while(length(currentrun))
-		var/obj/effect/alien/weeds/node/N
-		N = currentrun[currentrun.len]
-		currentrun.len--
-		if(QDELETED(N))
-			remove_node(N)
+	for(var/A in currentrun)
+		var/turf/T = A
+		var/obj/effect/alien/weeds/node/N = currentrun[T]
+		currentrun -= T
+
+		if(QDELETED(N) || QDELETED(T))
+			processing -= T
 			continue
 
-		var/list/to_create = list()
+		if (!T.is_weedable() || istype(T.loc, /area/arrival))
+			processing -= T
+			continue
 
-		// nodes in reverse order in reverse order
-		for(var/X in N.node_turfs)
-			var/turf/T = X
-			if (locate(/obj/effect/alien/weeds) in T)
+		if (locate(/obj/effect/alien/weeds) in T)
+			continue
+
+		for(var/direction in GLOB.cardinals) 
+			var/turf/AdjT = get_step(T, direction)
+			if (!(AdjT in N.node_turfs)) // only count our weed graph as eligble
+				continue
+			if (!(locate(/obj/effect/alien/weeds) in AdjT))
 				continue
 
-			for(var/direction in GLOB.cardinals) 
-				var/turf/AdjT = get_step(T, direction)
-				if (!(AdjT in N.node_turfs)) // only count our weed graph as eligble
-					continue
-				if (!(locate(/obj/effect/alien/weeds) in AdjT))
-					continue
+			creating[T] = N
+			break
 
-				to_create.Add(T)
-				break
+		if(MC_TICK_CHECK)
+			return
 
-		// We create weeds outside of the loop to not influence new weeds within the loop
-		for(var/X in to_create)
-			var/turf/T = X
-			create_weed(T, N)
+	// We create weeds outside of the loop to not influence new weeds within the loop
+	for(var/A in creating)
+		var/turf/T = A
+		var/obj/effect/alien/weeds/node/N = creating[T]
+		creating -= T
+
+		create_weed(T, N)
+		processing -= T
 
 		if(MC_TICK_CHECK)
 			return
@@ -57,32 +63,29 @@ SUBSYSTEM_DEF(weeds)
 	if(!N)
 		stack_trace("SSweed.add_node called with a null obj")
 		return FALSE
-	weed_nodes.Add(N)
 
+	for(var/X in N.node_turfs)
+		var/turf/T = X
 
-/datum/controller/subsystem/weeds/proc/remove_node(obj/effect/alien/weeds/node/N)
-	if(!N)
-		stack_trace("SSweed.remove_node called with a null obj")
+		// Skip if there is a node there
+		if(locate(/obj/effect/alien/weeds/node) in T)
+			continue
+
+		processing[T] = N
+
+/datum/controller/subsystem/weeds/proc/add_weed(obj/effect/alien/weeds/W)
+	if(!W)
+		stack_trace("SSweed.add_turf called with a null obj")
 		return FALSE
-	weed_nodes.Remove(N)
+
+	var/turf/T = get_turf(W)
+	processing[T] = W.parent_node
 
 
 /datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/effect/alien/weeds/node/N)
-
-	if (!T.is_weedable())
-		N.node_turfs -= T 
-		return
-
-	var/obj/effect/alien/weeds/W = locate() in T
-	if (W)
-		return
-
 	if(iswallturf(T))
 		var/obj/effect/alien/weeds/weedwall/WW = new (T)
 		N.transfer_fingerprints_to(WW)
-		return
-
-	if (istype(T.loc, /area/arrival))
 		return
 
 	for (var/obj/O in T)

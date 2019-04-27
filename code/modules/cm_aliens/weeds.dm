@@ -10,6 +10,7 @@
 	density = 0
 	layer = TURF_LAYER
 	health = 1
+	var/parent_node
 
 /obj/effect/alien/weeds/healthcheck()
     if(health <= 0)
@@ -19,11 +20,15 @@
 /obj/effect/alien/weeds/Initialize(pos, obj/effect/alien/weeds/node/node)
 	. = ..()
 
+	parent_node = node
+
 	update_sprite()
 	update_neighbours()
 
 
 /obj/effect/alien/weeds/Destroy()
+	SSweeds.add_weed(src)
+
 	var/oldloc = loc
 	. = ..()
 	update_neighbours(oldloc)
@@ -236,7 +241,7 @@
 	overlays += "weednode"
 	. = ..(loc, src)
 
-	// Generate our full graph before adding to the SS
+	// Generate our full graph before adding to SSweeds
 	generate_weed_graph()
 	SSweeds.add_node(src)
 	
@@ -265,7 +270,5 @@
 
 				turfs_to_check += AdjT
 				node_turfs += AdjT
-
-	reverseRange(node_turfs)
 
 #undef NODERANGE
