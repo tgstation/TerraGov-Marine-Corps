@@ -15,7 +15,7 @@
 	if(!affected.parent || CHECK_BITFIELD(affected.parent.limb_status, LIMB_AMPUTATED|LIMB_ROBOT))
 		to_chat(world, "cant use7")
 		return FALSE
-	if(affected.limb_replacement_stage >= 2)
+	if(affected.limb_replacement_stage < 2)
 		to_chat(world, "cant use6")
 		return FALSE
 	if(affected.natural_replacement_state != reattach_step)
@@ -35,7 +35,8 @@
 	reattach_step = 0
 
 /datum/surgery_step/limb_reattach/attach/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 	var/obj/item/limb/p = tool
 	if(!istype(affected, p.attached_type))
@@ -54,17 +55,18 @@
 	"<span class='notice'>You have attached \the [tool] where [target]'s [affected.display_name] used to be.</span>")
 
 	var/obj/item/limb/L = tool
-	affected.wounds = L.wounds.Copy()
+	if(L.wounds)
+		affected.wounds = L.wounds.Copy()
 	affected.brute_dam = L.brute
 	affected.burn_dam = L.burn
 
 	//todo: amputation time handling
 
 	//Deal with the limb item properly
-	user.temporarilyRemoveItemFromInventory(tool)
-	qdel(tool)
+	user.dropItemToGround(L)
+	qdel(L)
 	affected.natural_replacement_state = 1
-	limb_replacement_stage = 3
+	affected.limb_replacement_stage = 3
 
 /datum/surgery_step/limb_reattach/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging nerves on [target]'s [affected.display_name]!</span>", \
@@ -128,3 +130,65 @@
 	"<span class='warning'>Your hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>")
 	affected.take_damage_limb(5, 0)
 	target.updatehealth()
+
+
+
+/datum/surgery_step/limb_reattach/glue_bone
+	allowed_tools = list(
+	/obj/item/tool/surgery/bonegel = 100,	  \
+	/obj/item/tool/screwdriver = 75
+	)
+	can_infect = 1
+	blood_level = 1
+
+	min_duration = BONEGEL_REPAIR_MIN_DURATION
+	max_duration = BONEGEL_REPAIR_MAX_DURATION
+	reattach_step = 3
+
+/datum/surgery_step/limb_reattach/glue_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message("<span class='notice'>[user] starts applying medication to the damaged bones in [target]'s [affected.display_name] with \the [tool].</span>" , \
+		"<span class='notice'>You start applying medication to the damaged bones in [target]'s [affected.display_name] with \the [tool].</span>")
+	target.custom_pain("Something in your [affected.display_name] is causing you a lot of pain!", 1)
+	..()
+
+/datum/surgery_step/limb_reattach/glue_bone/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message("<span class='notice'>[user] applies some [tool] to [target]'s bone in [affected.display_name].</span>", \
+	"<span class='notice'>You apply some [tool] to [target]'s bone in [affected.display_name] with \the [tool].</span>")
+	affected.natural_replacement_state = 4
+
+/datum/surgery_step/limb_reattach/glue_bone/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message("<span class='warning'>[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>" , \
+	"<span class='warning'>Your hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>")
+
+
+/datum/surgery_step/limb_reattach/set_bone
+	allowed_tools = list(
+	/obj/item/tool/surgery/bonesetter = 100, \
+	/obj/item/tool/wrench = 75	   \
+	)
+
+	min_duration = BONESETTER_MIN_DURATION
+	max_duration = BONESETTER_MAX_DURATION
+	reattach_step = 4
+
+
+/datum/surgery_step/limb_reattach/set_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	if(affected.body_part == HEAD)
+		user.visible_message("<span class='notice'>[user] is beginning to piece together [target]'s skull with \the [tool].</span>"  , \
+		"<span class='notice'>You are beginning to piece together [target]'s skull with \the [tool].</span>")
+	else
+		user.visible_message("<span class='notice'>[user] is beginning to set the bone in [target]'s [affected.display_name] in place with \the [tool].</span>" , \
+		"<span class='notice'>You are beginning to set the bone in [target]'s [affected.display_name] in place with \the [tool].</span>")
+		target.custom_pain("The pain in your [affected.display_name] is going to make you pass out!", 1)
+	..()
+
+/datum/surgery_step/limb_reattach/set_bone/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message("<span class='notice'>[user] sets the bone in [target]'s [affected.display_name] in place with \the [tool].</span>", \
+	"<span class='notice'>You set the bone in [target]'s [affected.display_name] in place with \the [tool].</span>")
+	affected.natural_replacement_state = 5
+
+/datum/surgery_step/bone/set_bone/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	user.visible_message("<span class='warning'>[user]'s hand slips, damaging the bone in [target]'s [affected.display_name] with \the [tool]!</span>" , \
+		"<span class='warning'>Your hand slips, damaging the bone in [target]'s [affected.display_name] with \the [tool]!</span>")
+	affected.createwound(BRUISE, 5)
+	affected.update_wounds()
