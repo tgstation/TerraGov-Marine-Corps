@@ -373,20 +373,20 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/mob/living/L
 	switch(choice)
 		if("Key")
-			var/selection = input("Please, select a key.", "Check Contents") as null|anything in sortKey(GLOB.clients)
-			if(!selection)
+			var/client/C = input("Please, select a key.", "Check Contents") as null|anything in sortKey(GLOB.clients)
+			if(!C)
 				return
-			L = selection:mob
+			L = C.mob
 		if("Cliented Mob")
-			var/selection = input("Please, select a cliented mob.", "Check Contents") as null|anything in sortNames(GLOB.player_list)
-			if(!selection)
+			var/mob/CM = input("Please, select a cliented mob.", "Check Contents") as null|anything in sortNames(GLOB.player_list)
+			if(!CM)
 				return
-			L = selection
+			L = CM
 		if("Mob")
-			var/selection = input("Please, select a mob.", "Check Contents") as null|anything in sortNames(GLOB.mob_living_list)
-			if(!selection)
+			var/mob/M = input("Please, select a mob.", "Check Contents") as null|anything in sortNames(GLOB.mob_living_list)
+			if(!M)
 				return
-			L = selection
+			L = M
 
 	if(!istype(L))
 		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
