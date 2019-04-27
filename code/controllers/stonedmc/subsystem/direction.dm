@@ -62,33 +62,33 @@ SUBSYSTEM_DEF(direction)
 			return FALSE
 	return TRUE
 
-/datum/controller/subsystem/direction/proc/start_tracking(squad_id, mob/living/carbon/human/H)
+/datum/controller/subsystem/direction/proc/start_tracking(squad_id, mob/living/carbon/C)
 	if(!H)
 		stack_trace("SSdirection.start_tracking called with a null mob")
 		return FALSE
-	if(mobs_in_processing[H] == squad_id)
+	if(mobs_in_processing[C] == squad_id)
 		return TRUE // already tracking this squad leader
-	if(mobs_in_processing[H])
-		stop_tracking(mobs_in_processing[H], H) // remove from tracking the other squad
-	mobs_in_processing[H] = squad_id
-	processing_mobs[squad_id].Add(H)
+	if(mobs_in_processing[C])
+		stop_tracking(mobs_in_processing[C], C) // remove from tracking the other squad
+	mobs_in_processing[C] = squad_id
+	processing_mobs[squad_id].Add(C)
 
-/datum/controller/subsystem/direction/proc/stop_tracking(squad_id, mob/living/carbon/human/H)
-	if(!mobs_in_processing[H])
+/datum/controller/subsystem/direction/proc/stop_tracking(squad_id, mob/living/carbon/C)
+	if(!mobs_in_processing[C])
 		return TRUE // already removed
-	var/tracking_id = mobs_in_processing[H]
-	mobs_in_processing[H] = FALSE
+	var/tracking_id = mobs_in_processing[C]
+	mobs_in_processing[C] = FALSE
 
 	if(tracking_id != squad_id)
 		stack_trace("mismatch in tracking mobs by reference")
-		processing_mobs[squad_id].Remove(H)
+		processing_mobs[squad_id].Remove(C)
 
-	processing_mobs[tracking_id].Remove(H)
+	processing_mobs[tracking_id].Remove(C)
 
-/datum/controller/subsystem/direction/proc/set_leader(squad_id, mob/living/carbon/human/H)
+/datum/controller/subsystem/direction/proc/set_leader(squad_id, mob/living/carbon/C)
 	if(leader_mapping[squad_id])
 		clear_leader(squad_id)
-	leader_mapping[squad_id] = H
+	leader_mapping[squad_id] = C
 
 /datum/controller/subsystem/direction/proc/clear_leader(squad_id)
 	leader_mapping[squad_id] = null
