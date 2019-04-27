@@ -1,4 +1,4 @@
-SUBSYSTEM_DEF(nano)
+SUBSYSTEM_DEF(nanoo)
 	name     = "Nano UI"
 	flags    = SS_NO_INIT
 	wait     = 2 SECONDS
@@ -7,12 +7,12 @@ SUBSYSTEM_DEF(nano)
 
 	var/list/currentrun = list()
 
-/datum/controller/subsystem/nano/stat_entry()
-	..("P:[nanomanager.processing_uis.len]")
+/datum/controller/subsystem/nanoo/stat_entry()
+	..("P:[SSnano.processing_uis.len]")
 
-/datum/controller/subsystem/nano/fire(resumed = FALSE)
+/datum/controller/subsystem/nanoo/fire(resumed = FALSE)
 	if (!resumed)
-		currentrun = nanomanager.processing_uis.Copy()
+		currentrun = SSnano.processing_uis.Copy()
 
 	while (currentrun.len)
 		var/datum/nanoui/UI = currentrun[currentrun.len]
