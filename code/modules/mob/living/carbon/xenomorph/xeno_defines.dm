@@ -10,7 +10,7 @@
 
 	var/tier = XENO_TIER_ZERO
 	var/upgrade = XENO_UPGRADE_ZERO
-	var/wound_type = "ravager" //used to match appropriate wound overlays
+	var/wound_type = "alien" //used to match appropriate wound overlays
 	var/language = "Xenomorph"
 
 	// *** Melee Attacks *** //
