@@ -184,6 +184,9 @@ Damage multiplier.
 /datum/config_entry/number/combat_define/low_hit_damage_mult
 	config_entry_value = 0.10
 
+/datum/config_entry/number/combat_define/zx_hit_damage_mult
+	config_entry_value = 0.15
+
 /datum/config_entry/number/combat_define/med_hit_damage_mult
 	config_entry_value = 0.20
 
