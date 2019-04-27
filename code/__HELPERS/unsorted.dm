@@ -295,7 +295,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	if(istype(wear_id))
 		var/obj/item/card/id/C = wear_id
-		C.registered_name = real_name
 		C.update_label()
 
 	if(!GLOB.datacore.manifest_update(oldname, newname, job))
