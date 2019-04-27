@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(!can_speak())
 		return
 
-	if(message == "" || !message)
+	if(!message)
 		return
 
 	spans |= get_spans()
