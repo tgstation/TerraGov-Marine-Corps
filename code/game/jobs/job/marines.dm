@@ -144,6 +144,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	skills_type = /datum/skills/specialist
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SPECIALIST
 	outfit = /datum/outfit/job/marine/specialist
+	exp_requirements = 60
+	exp_type = EXP_TYPE_LIVING
 
 
 /datum/job/marine/specialist/radio_help_message(mob/M)
