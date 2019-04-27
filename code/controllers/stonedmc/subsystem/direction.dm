@@ -42,34 +42,19 @@ SUBSYSTEM_DEF(direction)
 	for(var/squad_id in currentrun)
 		var/mob/living/L
 		var/mob/living/SL = leader_mapping[squad_id]
-
-		if(QDELETED(SL) || !isliving(SL))
-			if (!clear_run(squad_id))
-				return
-
 		while(currentrun[squad_id].len)
 			L = currentrun[squad_id][currentrun[squad_id].len]
 			currentrun[squad_id].len--
-			if(QDELETED(L))
-				processing_mobs[squad_id].Remove(L)
-				continue
 			L.update_leader_tracking(SL)
 			if(MC_TICK_CHECK)
 				return
 
 /datum/controller/subsystem/direction/proc/clear_run(squad_id)
 	var/mob/living/L
-	var/mob/living/carbon/Xenomorph/X
-	var/mob/living/carbon/human/H
 	while(currentrun[squad_id].len)
 		L = currentrun[squad_id][currentrun[squad_id].len]
 		currentrun[squad_id].len--
-		if (isxeno(L))
-			X = L
-			X.clear_leader_tracking()
-		else if (ishuman(L))
-			H = L
-			H.clear_leader_tracking()
+		L.clear_leader_tracking()
 		if(MC_TICK_CHECK)
 			return FALSE
 	return TRUE
