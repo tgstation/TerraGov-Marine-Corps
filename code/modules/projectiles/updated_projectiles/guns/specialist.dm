@@ -878,7 +878,7 @@
 
 /obj/item/weapon/gun/shotgun/merc/scout
 	name = "\improper ZX-76 assault shotgun"
-	desc = "The MIC ZX-76 Assault Shotgun, a dobule barreled semi-automatic combat shotgun with a twin shot mode. Has a 10 round internal magazine."
+	desc = "The MIC ZX-76 Assault Shotgun, a double barreled semi-automatic combat shotgun with a twin shot mode. Has a 10 round internal magazine."
 	icon_state = "zx-76"
 	item_state = "zx-76"
 	max_shells = 10 //codex
