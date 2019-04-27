@@ -30,7 +30,6 @@
 	return !locked
 
 /obj/structure/closet/crate/secure/proc/togglelock(mob/user)
-	add_fingerprint(user)
 	if(!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
@@ -42,7 +41,8 @@
 		return
 	if(allowed(user))
 		locked = !locked
-		user.visible_message("<span class='notice'>\the [src] has been [locked ? "" : "un"]locked by [user].</span>", null, 3)
+		user.visible_message("<span class='notice'>\the [src] has been [locked ? "" : "un"]locked by [user].</span>", \
+							"<span class='notice'>You [locked ? "" : "un"]lock \the [src].</span>", null, 3)
 		update_icon()
 	else
 		to_chat(user, "<span class='notice'>Access Denied</span>")
@@ -54,9 +54,11 @@
 
 	if(usr.incapacitated())
 		return
+	add_fingerprint(usr)
 	togglelock(usr)
 
 /obj/structure/closet/crate/secure/attack_hand(mob/user)
+	add_fingerprint(user)
 	if(locked)
 		togglelock(user)
 	else
