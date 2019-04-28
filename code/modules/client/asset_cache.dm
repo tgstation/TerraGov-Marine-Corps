@@ -555,17 +555,21 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	for(var/path in common_dirs)
 		var/list/filenames = flist(path)
 		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) != "/") // Ignore directories.
-				if(fexists(path + filename))
-					common[filename] = fcopy_rsc(path + filename)
-					register_asset(filename, common[filename])
+			if(copytext(filename, length(filename)) == "/") // Ignore directories.
+				continue
+			if(!fexists(path + filename))
+				continue
+			common[filename] = fcopy_rsc(path + filename)
+			register_asset(filename, common[filename])
 	
 	for(var/path in uncommon_dirs)
 		var/list/filenames = flist(path)
 		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) != "/") // Ignore directories.
-				if(fexists(path + filename))
-					register_asset(filename, fcopy_rsc(path + filename))
+			if(copytext(filename, length(filename)) == "/") // Ignore directories.
+				continue
+			if(!fexists(path + filename))
+				continue
+			register_asset(filename, fcopy_rsc(path + filename))
 
 
 /datum/asset/nanoui/send(client, uncommon)
