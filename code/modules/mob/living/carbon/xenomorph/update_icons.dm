@@ -27,6 +27,9 @@
 /mob/living/carbon/Xenomorph/proc/handle_special_state()
 	return FALSE
 
+/mob/living/carbon/Xenomorph/proc/handle_special_wound_states()
+	return FALSE
+
 /mob/living/carbon/Xenomorph/update_icons()
 	if(stat == DEAD)
 		icon_state = "[xeno_caste.caste_name] Dead"
@@ -144,7 +147,9 @@
 		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[xeno_caste.wound_type]_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[xeno_caste.wound_type]_wounded", "layer"=-X_WOUND_LAYER)
+			I = handle_special_wound_states()
+			if(!I)
+				I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[xeno_caste.wound_type]_wounded", "layer"=-X_WOUND_LAYER)
 		I = apply_alpha_channel(I)
 		overlays_standing[X_WOUND_LAYER] = I
 		apply_overlay(X_WOUND_LAYER)

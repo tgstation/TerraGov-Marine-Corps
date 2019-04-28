@@ -34,6 +34,13 @@
 		return TRUE
 	return FALSE
 
+/mob/living/carbon/Xenomorph/Defender/handle_special_wound_states()
+	. = ..()
+	if(fortify)
+		return image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="defender_wounded_fortify", "layer"=-X_WOUND_LAYER)
+	if(crest_defense)
+		return image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="defender_wounded_crest", "layer"=-X_WOUND_LAYER)
+
 // ***************************************
 // *********** Life overrides
 // ***************************************
@@ -41,21 +48,3 @@
 	. = ..()
 	if(stat != CONSCIOUS && fortify == TRUE)
 		fortify_off() //Fortify prevents dragging due to the anchor component.
-
-/mob/living/carbon/Xenomorph/Defender/update_wounds()
-	remove_overlay(X_WOUND_LAYER)
-	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
-		var/image/I
-		if(resting)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="defender_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || stat == DEAD)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="defender_wounded_sleeping", "layer"=-X_WOUND_LAYER)
-		else if(fortify)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="defender_wounded_fortify", "layer"=-X_WOUND_LAYER)
-		else if(crest_defense)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="defender_wounded_crest", "layer"=-X_WOUND_LAYER)
-		else
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="defender_wounded", "layer"=-X_WOUND_LAYER)
-
-		overlays_standing[X_WOUND_LAYER] = I
-		apply_overlay(X_WOUND_LAYER)
