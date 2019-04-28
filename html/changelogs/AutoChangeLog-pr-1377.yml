@@ -1,0 +1,4 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - balance: "sligthy buffed boiler neurotoxin smoke to account the fast depletion rate of the associated chemical."
