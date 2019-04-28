@@ -21,7 +21,7 @@
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	outfit = /datum/outfit/job/command/captain
 	exp_requirements = XP_REQ_EXPERIENCED
-	exp_type = EXP_TYPE_LIVING
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/command/captain/radio_help_message(mob/M)
@@ -63,7 +63,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	display_order = JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER
 	outfit = /datum/outfit/job/command/fieldcommander
 	exp_requirements = XP_REQ_EXPERIENCED
-	exp_type = EXP_TYPE_LIVING
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/command/fieldcommander/radio_help_message(mob/M)
@@ -106,7 +106,7 @@ Make the TGMC proud!"})
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
 	outfit = /datum/outfit/job/command/intelligenceofficer
 	exp_requirements = XP_REQ_INTERMEDIATE
-	exp_type = EXP_TYPE_LIVING
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/command/intelligenceofficer/radio_help_message(mob/M)
@@ -183,7 +183,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	display_order = JOB_DISPLAY_ORDER_TANK_CREWMAN
 	outfit = /datum/outfit/job/command/tank_crew
 	exp_requirements = XP_REQ_INTERMEDIATE
-	exp_type = EXP_TYPE_LIVING
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/command/tank_crew/radio_help_message(mob/M)
@@ -266,7 +266,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MP
 	outfit = /datum/outfit/job/command/warrant
 	exp_requirements = XP_REQ_INTERMEDIATE
-	exp_type = EXP_TYPE_LIVING
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/command/commandmasteratarms/radio_help_message(mob/M)
@@ -317,7 +317,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	outfit = /datum/outfit/job/logistics/engineering
 	exp_requirements = XP_REQ_INTERMEDIATE
-	exp_type = EXP_TYPE_LIVING
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/logistics/engineering/radio_help_message(mob/M)
@@ -358,7 +358,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	display_order = JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER
 	outfit = /datum/outfit/job/logistics/requisition
 	exp_requirements = XP_REQ_INTERMEDIATE
-	exp_type = EXP_TYPE_LIVING
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/logistics/requisition/radio_help_message(mob/M)
@@ -487,7 +487,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	outfit = /datum/outfit/job/medical/professor
 	exp_requirements = XP_REQ_INTERMEDIATE
-	exp_type = EXP_TYPE_LIVING
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/medical/professor/radio_help_message(mob/M)
@@ -658,7 +658,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	display_order = JOB_DISPLAY_ORDER_SYNTHETIC
 	outfit = /datum/outfit/job/civilian/synthetic
 	exp_requirements = XP_REQ_EXPERIENCED
-	exp_type = EXP_TYPE_LIVING
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/civilian/synthetic/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)

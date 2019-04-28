@@ -48,14 +48,11 @@ GLOBAL_PROTECT(exp_to_update)
 	var/list/explist = prefs.exp.Copy()
 	var/amount = 0
 	var/list/typelist = GLOB.exp_jobsmap[exptype]
-	var/special = explist[exptype]
-	if(!typelist && !special)
+	if(!typelist)
 		return 0
 	for(var/job in typelist["titles"])
 		if(job in explist)
 			amount += explist[job]
-	if(special)
-		amount += special
 	return amount
 
 
