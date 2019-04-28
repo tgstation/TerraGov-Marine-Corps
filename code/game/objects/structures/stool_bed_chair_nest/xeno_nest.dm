@@ -58,6 +58,7 @@
 			var/mob/living/carbon/human/H = buckled_mob
 			H.last_unbuckled = world.time
 		unbuckle()
+		return
 
 	if(buckled_mob.incapacitated(TRUE))
 		to_chat(buckled_mob, "<span class='warning'>You're currently unable to try that.</span>")
