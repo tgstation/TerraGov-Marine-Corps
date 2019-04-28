@@ -145,6 +145,7 @@
 
 /mob/living/carbon/Xenomorph/set_away_time(new_away = -XENO_AFK_TIMER)
 	away_time = new_away //Xenos who force-ghost can be immediately taken by observers.
+	handle_afk_takeover()
 
 
 /mob/dead/observer/proc/unfollow()
