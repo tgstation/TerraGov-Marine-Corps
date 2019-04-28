@@ -269,7 +269,7 @@
 	icon_state = "m4ra"
 	item_state = "m4ra"
 	max_shells = 15 //codex
-	caliber = "10x24mm Caseless" //codex
+	caliber = "10x24mm caseless" //codex
 	origin_tech = "combat=5;materials=4"
 	fire_sound = list('sound/weapons/gun_m4ra.ogg')
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra

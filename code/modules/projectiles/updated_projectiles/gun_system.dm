@@ -449,9 +449,12 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			if(!found_handful)
 				var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
 				new_handful.generate_handful(current_mag.default_ammo, current_mag.caliber, 8, 1, type)
-				new_handful.loc = get_turf(src)
+				src.put_in_hands(new_handful)
 		else
-			make_casing(type_of_casings)
+			// We don't have a mag, so we grab ammo defaults from the gun itself.
+			var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
+			new_handful.generate_handful(ammo.type, caliber, 8, 1, type)
+			src.put_in_hands(new_handful)
 		in_chamber = null
 	else
 		user.visible_message("<span class='notice'>[user] cocks [src].</span>",
