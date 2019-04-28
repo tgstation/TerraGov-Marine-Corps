@@ -669,7 +669,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [O] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [O] on the [src].</span>")
 		var/fumbling_time = 50 * (SKILL_ENGINEER_MT - user.mind.cm_skills.engineer)
-		if(!do_after(user, fumbling_time, TRUE, src))
+		if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 			return
 
 	//Pick what to repair
@@ -736,7 +736,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	user.visible_message("<span class='notice'>[user] starts repairing the [slot] slot on [src].</span>",
 		"<span class='notice'>You start repairing the [slot] slot on the [src].</span>")
 
-	if(!do_after(user, 30 * num_delays, TRUE, src, extra_checks = iswelder(O) ? CALLBACK(O, /obj/item/tool/weldingtool/proc/isOn) : null))
+	if(!do_after(user, 30 * num_delays, TRUE, src, USER_ICON_BUILD, extra_checks = iswelder(O) ? CALLBACK(O, /obj/item/tool/weldingtool/proc/isOn) : null))
 		user.visible_message("<span class='notice'>[user] stops repairing the [slot] slot on [src].</span>",
 			"<span class='notice'>You stop repairing the [slot] slot on the [src].</span>")
 		return
@@ -780,7 +780,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [HP] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [HP] on the [src].</span>")
 		var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
-		if(!do_after(user, fumbling_time, TRUE, src))
+		if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 			return
 
 	var/obj/item/hardpoint/occupied = hardpoints[HP.slot]
@@ -806,7 +806,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		if(HDPT_TREADS)
 			num_delays = 7
 
-	if(!do_after(user, 30*num_delays, TRUE, src))
+	if(!do_after(user, 30 * num_delays, TRUE, src, USER_ICON_BUILD))
 		user.visible_message("<span class='warning'>[user] stops installing \the [HP] on [src].</span>", "<span class='warning'>You stop installing \the [HP] on [src].</span>")
 		return
 
@@ -827,7 +827,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [O] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [O] on the [src].</span>")
 		var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
-		if(!do_after(user, fumbling_time, TRUE, src))
+		if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 			return
 
 	var/slot = input("Select a slot to try and remove") in hardpoints
@@ -857,7 +857,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		if(HDPT_TREADS)
 			num_delays = 7
 
-	if(!do_after(user, 30*num_delays, TRUE, src))
+	if(!do_after(user, 30 * num_delays, TRUE, src, USER_ICON_BUILD))
 		user.visible_message("<span class='warning'>[user] stops removing \the [old] on [src].</span>", "<span class='warning'>You stop removing \the [old] on [src].</span>")
 		return
 	if(QDELETED(old) || old != hardpoints[slot])

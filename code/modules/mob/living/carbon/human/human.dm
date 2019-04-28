@@ -569,7 +569,7 @@
 			else
 				usr.visible_message("<span class='danger'>[usr] is trying to enable [src]'s internals.</span>", null, null, 3)
 
-			if(do_mob(usr, src, POCKET_STRIP_DELAY, icon_display = TARGET_ICON_GENERIC))
+			if(do_mob(usr, src, POCKET_STRIP_DELAY, TARGET_ICON_GENERIC))
 				if (internal)
 					internal.add_fingerprint(usr)
 					internal = null
@@ -608,7 +608,7 @@
 			if(count)
 				log_combat(usr, src, "attempted to remove splints")
 
-				if(do_mob(usr, src, HUMAN_STRIP_DELAY, icon_display = TARGET_ICON_GENERIC))
+				if(do_mob(usr, src, HUMAN_STRIP_DELAY, TARGET_ICON_GENERIC))
 					var/limbcount = 0
 					for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
 						var/datum/limb/o = get_limb(organ)
@@ -629,7 +629,7 @@
 						visible_message("<span class='danger'>[usr] tears off \the [U.hastie] from [src]'s [U]!</span>", null, null, 5)
 					else
 						visible_message("<span class='danger'>[usr] is trying to take off \a [U.hastie] from [src]'s [U]!</span>", null, null, 5)
-						if(do_mob(usr, src, HUMAN_STRIP_DELAY, icon_display = TARGET_ICON_HOSTILE))
+						if(do_mob(usr, src, HUMAN_STRIP_DELAY, TARGET_ICON_HOSTILE))
 							if(U == w_uniform && U.hastie)
 								U.remove_accessory(usr)
 
@@ -643,7 +643,7 @@
 			else
 				var/oldsens = U.has_sensor
 				visible_message("<span class='danger'>[usr] is trying to modify [src]'s sensors!</span>", null, null, 4)
-				if(do_mob(usr, src, HUMAN_STRIP_DELAY, icon_display = TARGET_ICON_GENERIC))
+				if(do_mob(usr, src, HUMAN_STRIP_DELAY, TARGET_ICON_GENERIC))
 					if(U == w_uniform)
 						if(U.has_sensor >= 2)
 							to_chat(usr, "The controls are locked.")

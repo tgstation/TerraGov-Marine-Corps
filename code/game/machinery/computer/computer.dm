@@ -94,10 +94,10 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, src))
+			if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 				return FALSE
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-		if(do_after(user, 20, TRUE, src))
+		if(do_after(user, 20, TRUE, src, USER_ICON_BUILD))
 			var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 			var/obj/item/circuitboard/computer/M = new circuit( A )
 			A.circuit = M

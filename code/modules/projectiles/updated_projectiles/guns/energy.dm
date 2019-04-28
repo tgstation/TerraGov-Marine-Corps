@@ -340,7 +340,7 @@
 	if(user)
 		if(new_cell.reload_delay > 1)
 			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-			if(do_after(user,new_cell.reload_delay, TRUE, src))
+			if(do_after(user,new_cell.reload_delay, TRUE, src, USER_ICON_GENERIC))
 				replace_magazine(user, new_cell)
 			else
 				to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")

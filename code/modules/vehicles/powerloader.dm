@@ -39,7 +39,7 @@
 		"<span class='danger'>[user] tries to move you out of [src]!</span>")
 		var/olddir = dir
 		var/old_buckled_mob = buckled_mob
-		if(do_after(user, 30, TRUE, src) && dir == olddir && buckled_mob == old_buckled_mob)
+		if(do_after(user, 30, TRUE, src, USER_ICON_HOSTILE) && dir == olddir && buckled_mob == old_buckled_mob)
 			manual_unbuckle(user)
 			playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
 	if(panel_open)

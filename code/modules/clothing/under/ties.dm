@@ -138,7 +138,7 @@
 					"<span class='notice'>You start pinning [src] on [H]'s [U.name].</span>")
 					if(user.action_busy)
 						return
-					if(!do_mob(user, H, 20))
+					if(!do_mob(user, H, 20, USER_ICON_FRIENDLY))
 						return
 				user.drop_held_item()
 				U.hastie = src
@@ -524,8 +524,8 @@
 /obj/item/storage/internal/tie/white_vest
 	storage_slots = 8
 	can_hold = list(
-		/obj/item/tool/surgery, 
-		/obj/item/stack/medical/advanced, 
+		/obj/item/tool/surgery,
+		/obj/item/stack/medical/advanced,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/stack/nanopaste)

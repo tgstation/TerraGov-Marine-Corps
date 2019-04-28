@@ -197,7 +197,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /obj/item/weapon/gun/proc/do_wield(mob/user, wield_time) //*shrugs*
-	if(!do_mob(user, user, wield_time, TRUE, extra_checks = CALLBACK(src, .proc/is_wielded)))
+	if(!do_mob(user, user, wield_time, null, TRUE, extra_checks = CALLBACK(src, .proc/is_wielded)))
 		return FALSE
 	return TRUE
 
@@ -378,6 +378,7 @@ should be alright.
 		return
 
 	var/final_delay = attachment.attach_delay
+	var/idisplay = USER_ICON_GENERIC
 	if(user.mind?.cm_skills?.firearms)
 		user.visible_message("<span class='notice'>[user] begins attaching [attachment] to [src].</span>",
 		"<span class='notice'>You begin attaching [attachment] to [src].</span>", null, 4)
@@ -387,8 +388,9 @@ should be alright.
 		final_delay *= 2
 		user.visible_message("<span class='notice'>[user] begins fumbling about, trying to attach [attachment] to [src].</span>",
 		"<span class='notice'>You begin fumbling about, trying to attach [attachment] to [src].</span>", null, 4)
+		idisplay = USER_ICON_UNSKILLED
 	//user.visible_message("","<span class='notice'>Attach Delay = [final_delay]. Attachment = [attachment]. Firearm Skill = [user.mind.cm_skills.firearms].</span>", null, 4) //DEBUG
-	if(do_after(user,final_delay, TRUE, src))
+	if(do_after(user,final_delay, TRUE, src, icon_display = idisplay))
 		user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
 		"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
 		user.temporarilyRemoveItemFromInventory(attachment)
@@ -554,6 +556,7 @@ should be alright.
 		return
 
 	var/final_delay = A.detach_delay
+	var/idisplay = USER_ICON_GENERIC
 	if(usr.mind?.cm_skills?.firearms)
 		usr.visible_message("<span class='notice'>[usr] begins stripping [A] from [src].</span>",
 		"<span class='notice'>You begin stripping [A] from [src].</span>", null, 4)
@@ -563,8 +566,9 @@ should be alright.
 		final_delay *= 2
 		usr.visible_message("<span class='notice'>[usr] begins fumbling about, trying to strip [A] from [src].</span>",
 		"<span class='notice'>You begin fumbling about, trying to strip [A] from [src].</span>", null, 4)
+		idisplay = USER_ICON_UNSKILLED
 	//usr.visible_message("","<span class='notice'>Detach Delay = [detach_delay]. Attachment = [A]. Firearm Skill = [usr.mind.cm_skills.firearms].</span>", null, 4) //DEBUG
-	if(!do_after(usr,final_delay, TRUE, src))
+	if(!do_after(usr,final_delay, TRUE, src, icon_display = idisplay))
 		return
 
 	if(A != rail && A != muzzle && A != under && A != stock)

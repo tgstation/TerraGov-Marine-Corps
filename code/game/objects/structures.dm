@@ -46,7 +46,7 @@
 	var/obj/item/tool/pickaxe/plasmacutter/P = C
 	if(!P.start_cut(user, name, src))
 		return
-	if(do_after(user, P.calc_delay(user), TRUE, src))
+	if(do_after(user, P.calc_delay(user), TRUE, src, USER_ICON_HOSTILE))
 		P.cut_apart(user, name, src)
 		qdel(src)
 
@@ -164,7 +164,7 @@
 
 	user.visible_message("<span class='warning'>[user] starts [flags_atom & ON_BORDER ? "leaping over":"climbing onto"] \the [src]!</span>")
 
-	if(!do_after(user, climb_delay, FALSE, src, extra_checks = CALLBACK(src, .proc/can_climb, user)))
+	if(!do_after(user, climb_delay, FALSE, src, USER_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_climb, user)))
 		return
 
 	if(!(flags_atom & ON_BORDER)) //If not a border structure or we are not on its tile, assume default behavior

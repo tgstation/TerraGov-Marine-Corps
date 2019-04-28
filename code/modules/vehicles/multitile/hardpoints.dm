@@ -81,7 +81,7 @@ Currently only has the tank hardpoints
 	if(WT && !WT.isOn())
 		to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
 		return
-	if(!do_after(user, 3 SECONDS * repair_delays, TRUE, src))
+	if(!do_after(user, 3 SECONDS * repair_delays, TRUE, src, USER_ICON_BUILD))
 		user.visible_message("<span class='notice'>[user] stops repairing [src].</span>",
 							"<span class='notice'>You stop repairing [src].</span>")
 		return
@@ -138,7 +138,7 @@ Currently only has the tank hardpoints
 
 	var/atom/target = owner ? owner : src
 
-	if(!do_after(user, 10, TRUE, target))
+	if(!do_after(user, 10, TRUE, target) || QDELETED(src))
 		to_chat(user, "<span class='warning'>Something interrupted you while loading [src].</span>")
 		return FALSE
 

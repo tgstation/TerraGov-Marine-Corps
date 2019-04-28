@@ -114,7 +114,7 @@
 
 /obj/machinery/meter/proc/wrench_act(mob/user, obj/item/I)
 	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
-	if(do_after(user, 40, TRUE, src))
+	if(do_after(user, 40, TRUE, src, USER_ICON_BUILD))
 		user.visible_message(
 			"[user] unfastens \the [src].",
 			"<span class='notice'>You unfasten \the [src].</span>",

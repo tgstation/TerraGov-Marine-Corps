@@ -62,7 +62,7 @@ var/global/list/randomized_pill_icons
 		if(user.mind && user.mind.cm_skills)
 			ingestion_time = max(10, 30 - 10*user.mind.cm_skills.medical)
 
-		if(!do_mob(user, M, ingestion_time, icon_display = TARGET_ICON_MEDICAL))
+		if(!do_mob(user, M, ingestion_time, TARGET_ICON_MEDICAL))
 			return
 
 		user.dropItemToGround(src) //icon update

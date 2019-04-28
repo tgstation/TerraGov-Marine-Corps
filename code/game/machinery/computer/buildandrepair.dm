@@ -15,7 +15,7 @@
 		if(0)
 			if(iswrench(P))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(do_after(user, 20, TRUE, src))
+				if(do_after(user, 20, TRUE, src, USER_ICON_BUILD))
 					to_chat(user, "<span class='notice'>You wrench the frame into place.</span>")
 					src.anchored = 1
 					src.state = 1
@@ -25,7 +25,7 @@
 					to_chat(user, "[WT] must be on to complete this task.")
 					return
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-				if(!do_after(user, 20, TRUE, src, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+				if(!do_after(user, 20, TRUE, src, USER_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					return FALSE
 				to_chat(user, "<span class='notice'>You deconstruct the frame.</span>")
 				new /obj/item/stack/sheet/metal( src.loc, 5 )
@@ -33,7 +33,7 @@
 		if(1)
 			if(iswrench(P))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(do_after(user, 20, TRUE, src))
+				if(do_after(user, 20, TRUE, src, USER_ICON_BUILD))
 					to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
 					src.anchored = 0
 					src.state = 0
@@ -70,7 +70,7 @@
 					return
 				to_chat(user, "<span class='notice'>You start to add cables to the frame.</span>")
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				if(!do_after(user, 20, TRUE, src) || state != 2 || !C.use(5))
+				if(!do_after(user, 20, TRUE, src, USER_ICON_BUILD) || state != 2 || !C.use(5))
 					return FALSE
 				to_chat(user, "<span class='notice'>You add cables to the frame.</span>")
 				state = 3
@@ -91,7 +91,7 @@
 					return
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You start to put in the glass panel.</span>")
-				if(!do_after(user, 20, TRUE, src) || state != 3 || !G.use(2))
+				if(!do_after(user, 20, TRUE, src, USER_ICON_BUILD) || state != 3 || !G.use(2))
 					return FALSE
 				to_chat(user, "<span class='notice'>You put in the glass panel.</span>")
 				state = 4

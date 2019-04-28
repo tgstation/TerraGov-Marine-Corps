@@ -193,9 +193,9 @@
 
 /datum/progressicon/New(mob/user, atom/target, mutable_appearance/progress/display/new_display)
 	. = ..()
-	display = new_display
+	display = new_display ? new_display : USER_ICON_GENERIC
 	target = initial(display.owner) == DISPLAY_ICON_TARG ? target : user
-	itag = initial(display.icontag)
+	itag = initial(display.icon_state)
 	if(!LAZYFIND(target.display_icons, itag))
 		display = new display
 		target.add_overlay(display, TRUE)
@@ -218,60 +218,62 @@
 	icon_state = "busy_generic"
 	plane = FLY_LAYER
 	var/owner = DISPLAY_ICON_USER
-	var/icontag = "generic"
-
-/mutable_appearance/progress/display/New()
-	. = ..()
-	icon_state = "busy_[icontag]"
 
 /mutable_appearance/progress/display/target
 	owner = DISPLAY_ICON_TARG
 
 /mutable_appearance/progress/display/medical
-	icontag = "medical"
+	icon_state = "busy_medical"
 	pixel_y = 0
 
 /mutable_appearance/progress/display/medical/target
 	owner = DISPLAY_ICON_TARG
 
 /mutable_appearance/progress/display/construction
-	icontag = "build"
+	icon_state = "busy_build"
 
 /mutable_appearance/progress/display/construction/target
 	owner = DISPLAY_ICON_TARG
 
 /mutable_appearance/progress/display/friendly
-	icontag = "friendly"
+	icon_state = "busy_friendly"
 
 /mutable_appearance/progress/display/friendly/target
 	owner = DISPLAY_ICON_TARG
 
 /mutable_appearance/progress/display/hostile
-	icontag = "hostile"
+	icon_state = "busy_hostile"
 
 /mutable_appearance/progress/display/hostile/target
 	owner = DISPLAY_ICON_TARG
 
 /mutable_appearance/progress/display/clock
-	icontag = "clock"
+	icon_state = "busy_clock"
 
 /mutable_appearance/progress/display/clock/target
 	owner = DISPLAY_ICON_TARG
 
 /mutable_appearance/progress/display/clock/alt
-	icontag = "clock2"
+	icon_state = "busy_clock2"
 
 /mutable_appearance/progress/display/clock/alt/target
 	owner = DISPLAY_ICON_TARG
 
 /mutable_appearance/progress/display/danger
-	icontag = "danger"
+	icon_state = "busy_danger"
 
 /mutable_appearance/progress/display/danger/target
 	owner = DISPLAY_ICON_TARG
 
 /mutable_appearance/progress/display/bar
-	icontag = "bar"
+	icon_state = "busy_bar"
 
 /mutable_appearance/progress/display/bar/target
 	owner = DISPLAY_ICON_TARG
+
+/mutable_appearance/progress/display/unskilled
+	icon_state = "busy_questionmark"
+
+/mutable_appearance/progress/display/unskilled/target
+	owner = DISPLAY_ICON_TARG
+

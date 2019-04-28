@@ -269,7 +269,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //This will update a mob's name, real_name, mind.name, GLOB.datacore records and id
 /mob/proc/fully_replace_character_name(oldname, newname)
-	if(!newname)	
+	if(!newname)
 		return FALSE
 
 	log_played_names(ckey, newname)
@@ -1268,6 +1268,40 @@ var/list/WALLITEMS = list(
 //datum may be null, but it does need to be a typed var
 #define NAMEOF(datum, X) (#X || ##datum.##X)
 
+/proc/do_atom(atom/user, time = 30, atom/target, uninterruptible = FALSE, icon_display, datum/callback/extra_checks)
+	if(!user)
+		return FALSE
+
+	var/T = target ? TRUE : FALSE
+	var/atom/Tloc
+	if(target && !isturf(target))
+		Tloc = target.loc
+
+	var/atom/Uloc
+	if(!isturf(user))
+		Uloc = user.loc
+
+	var/datum/progressicon/I = icon_display ? new (user, target, icon_display) : null
+
+	var/endtime = world.time+time
+	. = TRUE
+	while (world.time < endtime)
+		stoplag(1)
+		if(QDELETED(user) || T && QDELETED(target) || (extra_checks && !extra_checks.Invoke()))
+			. = FALSE
+			break
+
+		if(uninterruptible)
+			continue
+
+		if(!QDELETED(Uloc) && user.loc != Uloc || !QDELETED(Tloc) && target.loc != Tloc)
+			. = FALSE
+			break
+
+	if(I)
+		qdel(I)
+
+
 // \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
 // If it ever becomes necesary to get a more performant REF(), this lies here in wait
 // #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
@@ -1367,7 +1401,7 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 // Bucket a value within boundary
 /proc/get_bucket(bucket_size, max, current, min = 0, list/boundary_terms)
 	if (length(boundary_terms) == 2)
-		if (current >= max) 
+		if (current >= max)
 			return boundary_terms[1]
 		if (current < min)
 			return boundary_terms[2]

@@ -34,7 +34,7 @@
 				for(var/mob/O in viewers(world.view, user))
 					O.show_message(text("<span class='danger'>[] is trying to squirt something into []'s eyes!</span>", user, target), 1)
 
-				if(!do_mob(user, target, time))
+				if(!do_mob(user, target, time, USER_ICON_HOSTILE))
 					return
 
 				if(ishuman(target))

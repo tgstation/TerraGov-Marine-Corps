@@ -319,7 +319,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 	being_forced = !being_forced
 	visible_message("<span class='warning'>[user] begins to pry the [src]'s cover!</span>", 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-	if(do_after(user, 20, FALSE, src))
+	if(do_after(user, 20, FALSE, src, USER_ICON_HOSTILE))
 		go_out() //Force the occupant out.
 	being_forced = !being_forced
 

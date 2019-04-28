@@ -66,7 +66,7 @@
 /obj/item/dnainjector/proc/inject(mob/living/carbon/M, mob/user)
 	if(!istype(M))
 		return
-	
+
 	M.radiation += rand(5,20)
 
 	if (!(NOCLONE in M.mutations)) // prevents drained people from having their DNA changed
@@ -128,7 +128,7 @@
 
 
 				user.visible_message("<span class='danger'>[user] is trying to inject [M] with [src]!</span>")
-				if(do_mob(user, M, HUMAN_STRIP_DELAY, icon_display = TARGET_ICON_GENERIC))
+				if(do_mob(user, M, HUMAN_STRIP_DELAY, TARGET_ICON_GENERIC))
 					add_fingerprint(user)
 					inject(M, user)
 					user.visible_message("<span class='warning'> [user] injects [M] with the DNA Injector!</span>")

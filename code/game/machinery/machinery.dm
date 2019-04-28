@@ -121,13 +121,13 @@ Class Procs:
 	var/damage = 0
 	var/damage_cap = 1000 //The point where things start breaking down.
 
-/obj/machinery/attackby(obj/item/C as obj, mob/user as mob)
+/obj/machinery/attackby(obj/item/C, mob/user)
 	. = ..()
 	if(istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		var/obj/item/tool/pickaxe/plasmacutter/P = C
 		if(!P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
 			return
-		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src))
+		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, USER_ICON_HOSTILE))
 			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)
 			qdel()
 		return

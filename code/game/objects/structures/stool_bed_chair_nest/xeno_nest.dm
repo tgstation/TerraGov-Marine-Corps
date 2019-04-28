@@ -122,7 +122,7 @@
 
 	user.visible_message("<span class='warning'>[user] pins [M] into [src], preparing the securing resin.</span>",
 	"<span class='warning'>[user] pins [M] into [src], preparing the securing resin.</span>")
-	if(do_after(user, 15, TRUE, M))
+	if(do_after(user, 15, TRUE, M, USER_ICON_HOSTILE))
 		if(buckled_mob) //Just in case
 			to_chat(user, "<span class='warning'>There's already someone in [src].</span>")
 			return

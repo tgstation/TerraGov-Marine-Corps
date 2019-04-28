@@ -36,7 +36,7 @@
 		var/turf/T = get_turf(A)
 		user.visible_message("<span class='warning'>[user] begins to clean \the [T].</span>")
 
-		if(do_after(user, 40, TRUE, T))
+		if(do_after(user, 40, TRUE, T, USER_ICON_GENERIC))
 			T.clean(src)
 			to_chat(user, "<span class='notice'>You have finished mopping!</span>")
 

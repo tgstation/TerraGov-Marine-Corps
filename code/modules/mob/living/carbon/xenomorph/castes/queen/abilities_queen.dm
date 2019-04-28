@@ -245,7 +245,7 @@
 
 	visible_message("<span class='xenowarning'>\The [src] begins slowly lifting \the [victim] into the air.</span>", \
 	"<span class='xenowarning'>You begin focusing your anger as you slowly lift \the [victim] into the air.</span>")
-	if(do_mob(src, victim, 80, icon_display = USER_ICON_HOSTILE))
+	if(do_mob(src, victim, 80, USER_ICON_DANGER))
 		visible_message("<span class='xenodanger'>\The [src] viciously smashes and wrenches \the [victim] apart!</span>", \
 		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!</span>")
 		emote("roar")
@@ -291,7 +291,7 @@
 		return
 	X.visible_message("<span class='xenowarning'>\The [X] starts to grow an ovipositor.</span>", \
 	"<span class='xenowarning'>You start to grow an ovipositor...(takes 20 seconds, hold still)</span>")
-	if(!do_after(X, 200, TRUE, alien_weeds, icon_display = USER_ICON_BUILD) || !X.check_plasma(plasma_cost) || !X.check_state())
+	if(!do_after(X, 200, TRUE, alien_weeds, USER_ICON_BUILD) || !X.check_plasma(plasma_cost) || !X.check_state())
 		return
 
 	X.use_plasma(plasma_cost)
@@ -320,7 +320,7 @@
 		return
 	X.visible_message("<span class='xenowarning'>\The [X] starts detaching itself from its ovipositor!</span>", \
 		"<span class='xenowarning'>You start detaching yourself from your ovipositor.</span>")
-	if(!do_after(X, 50, FALSE, icon_display = USER_ICON_BUILD) || !X.check_state() || !X.ovipositor)
+	if(!do_after(X, 50, FALSE, null, USER_ICON_BUILD) || !X.check_state() || !X.ovipositor)
 		return
 	X.dismount_ovipositor()
 
@@ -808,7 +808,7 @@
 		return
 	X.visible_message("<span class='xenowarning'>\The [X] starts to advance larval growth inside of [H].</span>", \
 	"<span class='xenowarning'>You start to advance larval growth inside of [H].</span>")
-	if(!do_after(X, 50, TRUE, H, icon_display = USER_ICON_CLOCK_ALT) || !X.check_plasma(300) || !X.check_state())
+	if(!do_after(X, 50, TRUE, H, USER_ICON_CLOCK_ALT) || !X.check_plasma(300) || !X.check_state())
 		return
 	X.use_plasma(300)
 	X.visible_message("<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>", \

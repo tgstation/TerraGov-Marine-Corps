@@ -132,7 +132,7 @@
 	use_plasma(200)
 	icon_state = "Defiler Power Up"
 
-	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, icon_display = USER_ICON_HOSTILE))
+	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, null, USER_ICON_HOSTILE))
 		if(!QDELETED(src))
 			smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
 			smoke_system.set_up(1, get_turf(src))

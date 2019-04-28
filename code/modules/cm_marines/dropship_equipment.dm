@@ -938,7 +938,7 @@
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the medevac system.</span>",
 		"<span class='notice'>You fumble around figuring out how to use the medevac system.</span>")
 		var/fumbling_time = 60 - 20 * user.mind.cm_skills.pilot
-		if(!do_after(user, fumbling_time, TRUE, src))
+		if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_BUILD))
 			return
 
 	if(!linked_shuttle)

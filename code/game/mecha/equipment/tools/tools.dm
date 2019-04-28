@@ -338,7 +338,7 @@
 
 
 	action(atom/target)
-		if(!action_checks(target) || is_centcom_level(loc.z)) 
+		if(!action_checks(target) || is_centcom_level(loc.z))
 			return
 		var/list/theareas = list()
 		for(var/area/AR in orange(100, chassis))
@@ -1025,7 +1025,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/proc/move_inside(var/mob/user)
 	chassis?.visible_message("<span class='notice'> [user] starts to climb into [chassis].</span>")
 
-	if(do_after(user, 40, FALSE, src))
+	if(do_after(user, 40, FALSE, src, USER_ICON_FRIENDLY))
 		if(!occupant)
 			user.forceMove(src)
 			occupant = user

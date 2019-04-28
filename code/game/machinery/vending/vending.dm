@@ -169,7 +169,7 @@
 		shove_time = 50
 	if(istype(M,/mob/living/carbon/Xenomorph/Crusher))
 		shove_time = 15
-	if(do_after(M, shove_time, FALSE, src))
+	if(do_after(M, shove_time, FALSE, src, USER_ICON_HOSTILE))
 		M.visible_message("<span class='danger'>\The [M] knocks \the [src] down!</span>", \
 		"<span class='danger'>You knock \the [src] down!</span>", null, 5)
 		tip_over()
@@ -240,7 +240,7 @@
 		return
 
 	else if(iswrench(W))
-		if(wrenchable && do_after(user, 20, TRUE, src))
+		if(wrenchable && do_after(user, 20, TRUE, src, USER_ICON_BUILD))
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			switch (anchored)
 				if (0)
@@ -336,7 +336,7 @@
 /obj/machinery/vending/attack_hand(mob/user as mob)
 	if(tipped_level == 2)
 		user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
-		if(do_after(user,80, FALSE, src))
+		if(do_after(user,80, FALSE, src, USER_ICON_FRIENDLY))
 			user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
 			flip_back()
 			return
@@ -497,7 +497,7 @@
 				usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
 				"<span class='notice'>You fumble around figuring out the wiring.</span>")
 				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
-				if(!do_after(usr, fumbling_time, TRUE, src))
+				if(!do_after(usr, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 					return
 			if (!iswirecutter(usr.get_active_held_item()))
 				to_chat(usr, "You need wirecutters!")
@@ -513,7 +513,7 @@
 				usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
 				"<span class='notice'>You fumble around figuring out the wiring.</span>")
 				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
-				if(!do_after(usr, fumbling_time, TRUE, src))
+				if(!do_after(usr, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 					return
 			if (!ismultitool(usr.get_active_held_item()))
 				to_chat(usr, "You need a multitool!")

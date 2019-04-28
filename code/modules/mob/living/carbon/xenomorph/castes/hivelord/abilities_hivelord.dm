@@ -70,7 +70,7 @@
 		to_chat(src, "<span class='warning'>You scrape around, but you can't seem to dig through that kind of floor.</span>")
 		return
 
-	if(locate(/obj/structure/tunnel) in loc)
+	if(locate(/obj/structure/tunnel) in T)
 		to_chat(src, "<span class='warning'>There already is a tunnel here.</span>")
 		return
 
@@ -87,10 +87,10 @@
 
 	visible_message("<span class='xenonotice'>[src] begins digging out a tunnel entrance.</span>", \
 	"<span class='xenonotice'>You begin digging out a tunnel entrance.</span>", null, 5)
-	if(!do_after(src, HIVELORD_TUNNEL_DIG_TIME, TRUE, icon_display = USER_ICON_BUILD))
+	if(!do_after(src, HIVELORD_TUNNEL_DIG_TIME, TRUE, loc, USER_ICON_BUILD))
 		to_chat(src, "<span class='warning'>Your tunnel caves in as you stop digging it.</span>")
 		return
-	if(!check_plasma(200))
+	if(!check_plasma(200) || locate(/obj/structure/tunnel) in T)
 		return
 	if(!start_dig) //Let's start a new one.
 		visible_message("<span class='xenonotice'>\The [src] digs out a tunnel entrance.</span>", \

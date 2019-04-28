@@ -433,7 +433,7 @@
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			var/ratchet = anchored ? "loosen" : "tighten"
 			to_chat(user, "<span class='notice'>You begin to [ratchet] \the [src] to the floor...</span>")
-			if(do_after(user, 20, TRUE, src))
+			if(do_after(user, 20, TRUE, src, USER_ICON_BUILD))
 				user.visible_message("[user] [ratchet]s \the [src]'s casters.",
 									"<span class='notice'> You have [ratchet]ed \the [src]'s casters. Now it can be played again.</span>",
 									"You hear ratchet.")

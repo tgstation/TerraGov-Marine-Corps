@@ -61,12 +61,12 @@
 					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>Now securing the girder</span>")
-				if(do_after(user, 40, TRUE, src))
+				if(do_after(user, 40, TRUE, src, USER_ICON_BUILD))
 					to_chat(user, "<span class='notice'>You secured the girder!</span>")
 					new/obj/structure/girder( src.loc )
 					qdel(src)
 			else if (dismantlectr %2 == 0)
-				if(do_after(user,15, TRUE, src))
+				if(do_after(user,15, TRUE, src, USER_ICON_BUILD))
 					dismantlectr++
 					health -= 15
 					to_chat(user, "<span class='notice'>You unfasten a bolt from the girder!</span>")
@@ -77,7 +77,7 @@
 			var/obj/item/tool/pickaxe/plasmacutter/P = W
 			if(!(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)))
 				return
-			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src)) //Girders take half as long
+			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, USER_ICON_HOSTILE)) //Girders take half as long
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD) //Girders require half the normal power
 				P.debris(loc, 0, 2) //Generate some rods
 				if(!src)
@@ -92,14 +92,14 @@
 		else if(isscrewdriver(W) && state == 2 && istype(src,/obj/structure/girder/reinforced))
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>Now unsecuring support struts</span>")
-			if(do_after(user,40, TRUE, src))
+			if(do_after(user,40, TRUE, src, USER_ICON_BUILD))
 				to_chat(user, "<span class='notice'>You unsecured the support struts!</span>")
 				state = 1
 
 		else if(iswirecutter(W) && istype(src,/obj/structure/girder/reinforced) && state == 1)
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>Now removing support struts</span>")
-			if(do_after(user,40, TRUE, src))
+			if(do_after(user,40, TRUE, src, USER_ICON_BUILD))
 				to_chat(user, "<span class='notice'>You removed the support struts!</span>")
 				new/obj/structure/girder( src.loc )
 				qdel(src)
@@ -107,7 +107,7 @@
 		else if(iscrowbar(W) && state == 0 && anchored)
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>Now dislodging the girder...</span>")
-			if(do_after(user, 40, TRUE, src))
+			if(do_after(user, 40, TRUE, src, USER_ICON_BUILD))
 				to_chat(user, "<span class='notice'>You dislodged the girder!</span>")
 				new/obj/structure/girder/displaced( src.loc )
 				qdel(src)
@@ -124,7 +124,7 @@
 				if (anchored)
 					if(S.get_amount() < 1) return ..()
 					to_chat(user, "<span class='notice'>Now adding plating...</span>")
-					if (do_after(user,60, TRUE, src) && buildctr == old_buildctr && S.use(1))
+					if (do_after(user,60, TRUE, src, USER_ICON_BUILD) && buildctr == old_buildctr && S.use(1))
 						to_chat(user, "<span class='notice'>You added the plating!</span>")
 						buildctr++
 					return
@@ -139,7 +139,7 @@
 					if(S.amount < 2)
 						return ..()
 					to_chat(user, "<span class='notice'>Now adding plating...</span>")
-					if (do_after(user,40, TRUE, src) && buildctr == old_buildctr && S.use(2))
+					if (do_after(user,40, TRUE, src, USER_ICON_BUILD) && buildctr == old_buildctr && S.use(2))
 						to_chat(user, "<span class='notice'>You added the plating!</span>")
 						var/turf/Tsrc = get_turf(src)
 						Tsrc.ChangeTurf(text2path("/turf/closed/wall/mineral/[M]"))
@@ -154,7 +154,7 @@
 			var/obj/item/tool/weldingtool/WT = W
 			if (WT.remove_fuel(0,user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-				if(do_after(user,30, TRUE, src, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+				if(do_after(user,30, TRUE, src, USER_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					if (buildctr >= 5)
 						build_wall()
 						return
@@ -162,7 +162,7 @@
 					to_chat(user, "<span class='notice'>You weld the metal to the girder!</span>")
 			return
 		else if(iswirecutter(W) && dismantlectr %2 != 0)
-			if(do_after(user,15, TRUE, src))
+			if(do_after(user,15, TRUE, src, USER_ICON_BUILD))
 				if (dismantlectr >= 5)
 					dismantle()
 					dismantlectr = 0
@@ -187,13 +187,13 @@
 				if(M.amount < 2)
 					return ..()
 				to_chat(user, "<span class='notice'>Now adding plating...</span>")
-				if (do_after(user,40, TRUE, src) && !repair_state & M.use(2))
+				if (do_after(user,40, TRUE, src, USER_ICON_BUILD) && !repair_state & M.use(2))
 					to_chat(user, "<span class='notice'>You added the metal to the girder!</span>")
 					repair_state = 1
 				return
 		if (repair_state == 1)
 			if(iswelder(W))
-				if(do_after(user,30, TRUE, src) && repair_state == 1)
+				if(do_after(user,30, TRUE, src, USER_ICON_BUILD) && repair_state == 1)
 					to_chat(user, "<span class='notice'>You weld the girder together!</span>")
 					repair()
 				return

@@ -162,6 +162,6 @@
 	to_chat(user, "<span class='notice'>You start to weld the [src]..</span>")
 	playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 	WT.eyecheck(user)
-	if(do_after(user, 20, TRUE, src, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+	if(do_after(user, 20, TRUE, src, USER_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 		return TRUE
 	return FALSE

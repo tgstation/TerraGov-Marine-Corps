@@ -157,7 +157,7 @@
 		fumbling_time -= 2 SECONDS * M.mind.cm_skills.police
 	if(M.mind?.cm_skills?.large_vehicle)
 		fumbling_time -= 2 SECONDS * M.mind.cm_skills.large_vehicle
-	if(!do_after(M, fumbling_time, TRUE, src))
+	if(!do_after(M, fumbling_time, TRUE, src, USER_ICON_HOSTILE))
 		return
 	exit_tank(occupant, TRUE, TRUE)
 	M.visible_message("<span class='warning'>[M] forcibly pulls [occupant] out of [src].</span>",
@@ -198,11 +198,11 @@
 		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into [src].</span>")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * M.mind.cm_skills.large_vehicle
-		if(!do_after(M, fumbling_time, TRUE, src) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
+		if(!do_after(M, fumbling_time, TRUE, src, USER_ICON_UNSKILLED) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
 			return
 
 	to_chat(M, "<span class='notice'>You start climbing into [src].</span>")
-	if(!do_after(M, 10 SECONDS, src) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
+	if(!do_after(M, 10 SECONDS, src, USER_ICON_GENERIC) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
 		return
 	if(occupant)
 		to_chat(M, "<span class='warning'>Someone got into the [lowertext(slot)]'s seat before you could.</span>")

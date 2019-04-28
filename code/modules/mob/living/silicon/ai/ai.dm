@@ -596,7 +596,7 @@ var/list/ai_verbs_default = list(
 		if(!user.action_busy)
 			var/un = anchored ? "un" : ""
 			user.visible_message("<span class='notice'> \The [user] starts to [un]bolt \the [src] [anchored ? "from" : "to"] the plating...</span>")
-			if(!do_after(user, 40, TRUE, src, icon_display = USER_ICON_BUILD))
+			if(!do_after(user, 40, TRUE, src, USER_ICON_BUILD))
 				return
 			user.visible_message("<span class='notice'> \The [user] finishes [un]fastening \the [src]!</span>")
 			anchored = !anchored

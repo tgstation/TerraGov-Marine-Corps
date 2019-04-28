@@ -223,7 +223,7 @@
 	//	to_chat(user, "<span class='warning'>As you begin unwrenching \the [src] a gush of air blows in your face... maybe you should reconsider?</span>")
 	//	unsafe_wrenching = TRUE //Oh dear oh dear
 
-	if(!do_after(user, 20, TRUE, src))
+	if(!do_after(user, 20, TRUE, src, USER_ICON_BUILD))
 		return FALSE
 //	if(I.use_tool(src, user, 20, volume=50))
 	user.visible_message( \

@@ -353,7 +353,7 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 				"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
 				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-				if(!do_after(user, fumbling_time, TRUE, src))
+				if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 					return
 			if(terminal)
 				to_chat(user, "<span class='warning'>Disconnect the terminal first.</span>")
@@ -361,7 +361,7 @@
 			playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts removing [src]'s power control board.</span>",
 			"<span class='notice'>You start removing [src]'s power control board.</span>")
-			if(do_after(user, 50, TRUE, src) && has_electronics == APC_ELECTRONICS_INSTALLED)
+			if(do_after(user, 50, TRUE, src, USER_ICON_BUILD) && has_electronics == APC_ELECTRONICS_INSTALLED)
 				has_electronics = APC_ELECTRONICS_MISSING
 				if((machine_stat & BROKEN))
 					user.visible_message("<span class='notice'>[user] breaks [src]'s charred power control board and removes the remains.</span>",
@@ -392,7 +392,7 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fit [W] into [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to fit [W] into [src].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, src))
+			if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 				return
 		if(cell)
 			to_chat(user, "<span class='warning'>There is a power cell already installed.</span>")
@@ -413,7 +413,7 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s confusing wiring.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s confusing wiring.</span>")
 				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-				if(!do_after(user, fumbling_time, TRUE, src))
+				if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 					return
 			if(cell)
 				to_chat(user, "<span class='warning'>Close the APC first.</span>")
@@ -448,7 +448,7 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out where to swipe [W] on [src].</span>",
 			"<span class='notice'>You fumble around figuring out where to swipe [W] on [src].</span>")
 			var/fumbling_time = 30 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, src))
+			if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 				return
 		if(emagged)
 			to_chat(user, "<span class='warning'>The interface is broken.</span>")
@@ -488,7 +488,7 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [src].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [src].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, src))
+			if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 				return
 		var/turf/T = get_turf(src)
 		if(T.intact_tile)
@@ -501,7 +501,7 @@
 		user.visible_message("<span class='notice'>[user] starts wiring [src]'s frame.</span>",
 		"<span class='notice'>You start wiring [src]'s frame.</span>")
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		if(do_after(user, 20, TRUE, src) && !terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
+		if(do_after(user, 20, TRUE, src, USER_ICON_BUILD) && !terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
 			var/obj/structure/cable/N = T.get_cable_node()
 			if(prob(50) && electrocute_mob(usr, N, N))
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -518,7 +518,7 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, src))
+			if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 				return
 		terminal.dismantle(user)
 	else if(istype(W, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && !(machine_stat & BROKEN))
@@ -526,12 +526,12 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, src))
+			if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 				return
 		user.visible_message("<span class='notice'>[user] starts inserting the power control board into [src].</span>",
 		"<span class='notice'>You start inserting the power control board into [src].</span>")
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		if(do_after(user, 15, TRUE, src))
+		if(do_after(user, 15, TRUE, src, USER_ICON_BUILD))
 			has_electronics = APC_ELECTRONICS_INSTALLED
 			user.visible_message("<span class='notice'>[user] inserts the power control board into [src].</span>",
 			"<span class='notice'>You insert the power control board into [src].</span>")
@@ -542,7 +542,7 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, src))
+			if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 				return
 		to_chat(user, "<span class='warning'>You cannot put the board inside, the frame is damaged.</span>")
 		return
@@ -554,7 +554,7 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, src, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+			if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 		if(WT.get_fuel() < 3)
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
@@ -562,7 +562,7 @@
 		user.visible_message("<span class='notice'>[user] starts unwelding [src]'s frame.</span>",
 		"<span class='notice'>You start unwelding [src]'s frame.</span>")
 		playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-		if(do_after(user, 50, TRUE, src, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && WT.remove_fuel(3, user))
+		if(do_after(user, 50, TRUE, src, USER_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && WT.remove_fuel(3, user))
 			if(emagged || (machine_stat & BROKEN) || opened == APC_COVER_REMOVED)
 				new /obj/item/stack/sheet/metal(loc)
 				user.visible_message("<span class='notice'>[user] unwelds [src]'s frame apart.</span>",
@@ -578,7 +578,7 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, src))
+			if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 				return
 		emagged = FALSE
 		if(opened == APC_COVER_REMOVED)
@@ -592,14 +592,14 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, src))
+			if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 				return
 		if(has_electronics)
 			to_chat(user, "<span class='warning'>You cannot repair this APC until you remove the electronics still inside.</span>")
 			return
 		user.visible_message("<span class='notice'>[user] begins replacing [src]'s damaged frontal panel with a new one.</span>",
 		"<span class='notice'>You begin replacing [src]'s damaged frontal panel with a new one.</span>")
-		if(do_after(user, 50, TRUE, src))
+		if(do_after(user, 50, TRUE, src, USER_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
 			"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
 			qdel(W)
@@ -690,7 +690,7 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to remove the power cell from [src].</span>",
 				"<span class='notice'>You fumble around figuring out how to remove the power cell from [src].</span>")
 				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-				if(!do_after(user, fumbling_time, TRUE, src) || !cell)
+				if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED) || !cell)
 					return
 			user.put_in_hands(cell)
 			cell.add_fingerprint(user)
@@ -1286,7 +1286,7 @@
 		H.visible_message("<span class='notice'>[H] fumbles around figuring out how to operate [src]'s interface.</span>",
 		"<span class='notice'>You fumble around figuring out how to operate [src]'s interface.</span>")
 		var/fumbling_time = 50 * (SKILL_ENGINEER_ENGI - H.mind.cm_skills.engineer)
-		if(!do_after(H, fumbling_time, TRUE, src))
+		if(!do_after(H, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
 			return FALSE
 	return TRUE
 

@@ -48,7 +48,7 @@
 		msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(target)]")
 
 		user.visible_message("<span class='notice'>[user] tries to put [src] on [target].</span>")
-		if(do_mob(user, target, cuff_delay, icon_display = TARGET_ICON_HOSTILE, CALLBACK(user, .Adjacent, target)) && !target.handcuffed)
+		if(do_mob(user, target, cuff_delay, TARGET_ICON_HOSTILE, extra_checks = CALLBACK(user, .Adjacent, target)) && !target.handcuffed)
 			if(ishuman(target))
 				var/mob/living/carbon/human/H = target
 				if(!H.has_limb_for_slot(SLOT_HANDCUFFED))

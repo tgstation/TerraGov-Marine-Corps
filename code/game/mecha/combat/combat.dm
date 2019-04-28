@@ -96,7 +96,7 @@
 						src.visible_message("<b>[src.name] smashes through the wall</b>")
 						playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 					melee_can_hit = 0
-					if(do_after(melee_cooldown))
+					if(do_atom(src, melee_cooldown))
 						melee_can_hit = 1
 					break
 	return

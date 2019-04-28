@@ -746,7 +746,7 @@
 	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
 		delay += 6
 
-	if(!do_after(user, delay, TRUE, 3, src)) //slight wind up
+	if(!do_after(user, delay, TRUE, 3, src, USER_ICON_DANGER)) //slight wind up
 		return
 
 	playsound(loc,'sound/weapons/gun_mortar_fire.ogg', 50, 1)
@@ -807,7 +807,7 @@
 		to_chat(user, "<span class='warning'>[src] is already empty!</span>")
 		return
 	to_chat(user, "<span class='notice'>You begin unloading [src].</span>")
-	if(!do_after(user, current_mag.reload_delay * 0.5, TRUE, src))
+	if(!do_after(user, current_mag.reload_delay * 0.5, TRUE, src, USER_ICON_GENERIC))
 		to_chat(user, "<span class='warning'>Your unloading was interrupted!</span>")
 		return
 	if(!user) //If we want to drop it on the ground or there's no user.
@@ -951,7 +951,7 @@
 	if(user.action_busy)
 		return
 	playsound(get_turf(src), 'sound/weapons/tank_minigun_start.ogg', 30)
-	if(do_after(user, 5, TRUE, src)) //Half second wind up
+	if(do_after(user, 5, TRUE, src, USER_ICON_DANGER)) //Half second wind up
 		return ..()
 
 

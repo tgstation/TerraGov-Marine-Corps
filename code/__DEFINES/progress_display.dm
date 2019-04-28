@@ -40,6 +40,7 @@
 #define USER_ICON_CLOCK_ALT		/mutable_appearance/progress/display/clock/alt
 #define USER_ICON_DANGER 		/mutable_appearance/progress/display/danger
 #define USER_ICON_BAR			/mutable_appearance/progress/display/bar
+#define USER_ICON_UNSKILLED		/mutable_appearance/progress/display/unskilled
 
 #define TARGET_ICON_GENERIC		/mutable_appearance/progress/display/target
 #define TARGET_ICON_MEDICAL		/mutable_appearance/progress/display/medical/target
@@ -50,3 +51,4 @@
 #define TARGET_ICON_CLOCK_ALT	/mutable_appearance/progress/display/clock/alt/target
 #define TARGET_ICON_DANGER 		/mutable_appearance/progress/display/danger/target
 #define TARGET_ICON_BAR			/mutable_appearance/progress/display/bar/target
+#define TARGET_ICON_UNSKILLED	/mutable_appearance/progress/display/unskilled/target

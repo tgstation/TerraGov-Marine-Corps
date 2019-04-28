@@ -47,7 +47,7 @@
 	if(iscrowbar(I))
 		to_chat(user, "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>")
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
-		if(do_after(user, 30, TRUE, src))
+		if(do_after(user, 30, TRUE, src, USER_ICON_GENERIC))
 			user.visible_message("<span class='notice'>[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!</span>", "<span class='notice'>You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!</span>", "You hear grinding porcelain.")
 			cistern = !cistern
 			update_icon()
@@ -67,7 +67,7 @@
 				if(open && !swirlie)
 					user.visible_message("<span class='danger'>[user] starts to give [GM.name] a swirlie!</span>", "<span class='notice'>You start to give [GM.name] a swirlie!</span>")
 					swirlie = GM
-					if(do_after(user, 30, TRUE, src))
+					if(do_after(user, 30, TRUE, src, , USER_ICON_HOSTILE))
 						user.visible_message("<span class='danger'>[user] gives [GM.name] a swirlie!</span>", "<span class='notice'>You give [GM.name] a swirlie!</span>", "You hear a toilet flushing.")
 						log_admin("[key_name(usr)] gives [key_name(GM)] a swirlie.")
 						log_combat(user, GM, "given a swirlie")
@@ -173,7 +173,7 @@
 		to_chat(user, "<span class='notice'>The water temperature seems to be [watertemp].</span>")
 	if(iswrench(I))
 		to_chat(user, "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>")
-		if(do_after(user, 50, TRUE, src))
+		if(do_after(user, 50, TRUE, src, USER_ICON_GENERIC))
 			switch(watertemp)
 				if("normal")
 					watertemp = "freezing"

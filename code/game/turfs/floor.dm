@@ -434,7 +434,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 				to_chat(user, "<span class='warning'>You need more rods.</span>")
 				return
 			to_chat(user, "<span class='notice'>Reinforcing the floor.</span>")
-			if(do_after(user, 30, TRUE, src) && is_plating() && R.use(2))
+			if(do_after(user, 30, TRUE, src, USER_ICON_BUILD) && is_plating() && R.use(2))
 				ChangeTurf(/turf/open/floor/engine)
 				playsound(src, 'sound/items/Deconstruct.ogg', 25, 1)
 				return
