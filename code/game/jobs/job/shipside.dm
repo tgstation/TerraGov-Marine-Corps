@@ -325,7 +325,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	w_uniform = /obj/item/clothing/under/marine/officer/ce
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
-	glasses = /obj/item/clothing/glasses/welding
+	glasses = /obj/item/clothing/glasses/welding/superior
 	gloves = /obj/item/clothing/gloves/yellow
 	head = /obj/item/clothing/head/beret/marine/techofficer
 	r_store = /obj/item/storage/pouch/electronics
@@ -405,7 +405,7 @@ Start with the ship's engine, and don't forget radiation equipment."})
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/yellow
-	glasses = /obj/item/clothing/glasses/welding
+	glasses = /obj/item/clothing/glasses/welding/flipped
 	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/medium
 	back = /obj/item/storage/backpack/marine/satchel
