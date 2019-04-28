@@ -8,7 +8,7 @@
 
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
-	wound_type = "defender"
+	wound_type = "defender" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
@@ -147,4 +147,3 @@
 	// *** Defender Abilities *** //
 	crest_defense_armor = 45
 	fortify_armor = 90
-	
