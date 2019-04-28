@@ -244,7 +244,7 @@ GLOBAL_PROTECT(exp_to_update)
 
 
 /proc/queen_age_check(client/C)
-	if(!istype(C) || !C.prefs?.exp)
+	if(!C.prefs?.exp)
 		return FALSE
 	if(!CONFIG_GET(flag/use_exp_tracking))
 		return FALSE
