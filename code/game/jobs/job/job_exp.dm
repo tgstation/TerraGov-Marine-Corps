@@ -251,6 +251,4 @@ GLOBAL_PROTECT(exp_to_update)
 	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(C, R_ADMIN, FALSE))
 		return FALSE
 	var/my_exp = C.prefs.exp[ROLE_XENOMORPH]
-	if(my_exp >= 60)
-		return FALSE
-	return TRUE
+	return my_exp < XP_REQ_INTERMEDIATE
