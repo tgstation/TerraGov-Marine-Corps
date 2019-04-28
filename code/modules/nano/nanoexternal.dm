@@ -22,8 +22,7 @@
 		else if(ui.on_close_logic)
 			// no atomref specified (or not found)
 			// so just reset the user mob's machine var
-			if(mob)
-				mob.unset_interaction()
+			mob?.unset_interaction()
 
  /**
   * The ui_interact proc is used to open and update Nano UIs
