@@ -1,0 +1,6 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - rscadd: "Gives the CSE job outfit superior welding googles with less vision burden."
+  - tweak: "The other job outfits' welding googles now initialize pushed up."
+  - imageadd: "Ports in some loosely adapted bs12 on-mob beret sprites to replace some of the older ones."
