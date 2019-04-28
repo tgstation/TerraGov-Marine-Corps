@@ -144,7 +144,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	skills_type = /datum/skills/specialist
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SPECIALIST
 	outfit = /datum/outfit/job/marine/specialist
-	exp_requirements = 60
+	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_LIVING
 
 
@@ -177,7 +177,7 @@ You can serve a variety of roles, so choose carefully."})
 	skills_type = /datum/skills/SL
 	display_order = JOB_DISPLAY_ORDER_SQUAD_LEADER
 	outfit = /datum/outfit/job/marine/leader
-	exp_requirements = 180
+	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_LIVING
 
 

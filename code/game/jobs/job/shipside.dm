@@ -20,7 +20,7 @@
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	outfit = /datum/outfit/job/command/captain
-	exp_requirements = 180
+	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_LIVING
 
 
@@ -62,7 +62,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER
 	outfit = /datum/outfit/job/command/fieldcommander
-	exp_requirements = 180
+	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_LIVING
 
 
@@ -105,7 +105,7 @@ Make the TGMC proud!"})
 	skills_type = /datum/skills/SO
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
 	outfit = /datum/outfit/job/command/intelligenceofficer
-	exp_requirements = 60
+	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_LIVING
 
 
@@ -182,7 +182,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	skills_type = /datum/skills/tank_crew
 	display_order = JOB_DISPLAY_ORDER_TANK_CREWMAN
 	outfit = /datum/outfit/job/command/tank_crew
-	exp_requirements = 60
+	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_LIVING
 
 
@@ -265,7 +265,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	skills_type = /datum/skills/CMP
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MP
 	outfit = /datum/outfit/job/command/warrant
-	exp_requirements = 60
+	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_LIVING
 
 
@@ -316,7 +316,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	skills_type = /datum/skills/CE
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	outfit = /datum/outfit/job/logistics/engineering
-	exp_requirements = 60
+	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_LIVING
 
 
@@ -357,7 +357,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	skills_type = /datum/skills/RO
 	display_order = JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER
 	outfit = /datum/outfit/job/logistics/requisition
-	exp_requirements = 60
+	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_LIVING
 
 
@@ -486,7 +486,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 	skills_type = /datum/skills/CMO
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	outfit = /datum/outfit/job/medical/professor
-	exp_requirements = 60
+	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_LIVING
 
 
@@ -657,7 +657,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	minimal_access = ALL_ACCESS
 	display_order = JOB_DISPLAY_ORDER_SYNTHETIC
 	outfit = /datum/outfit/job/civilian/synthetic
-	exp_requirements = 180
+	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_LIVING
 
 

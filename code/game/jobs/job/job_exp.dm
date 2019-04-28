@@ -253,5 +253,4 @@ GLOBAL_PROTECT(exp_to_update)
 	var/my_exp = C.prefs.exp[ROLE_XENOMORPH]
 	if(my_exp >= 60)
 		return FALSE
-	else
-		return (60 - my_exp)
+	return TRUE
