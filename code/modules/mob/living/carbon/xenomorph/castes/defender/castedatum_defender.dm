@@ -8,6 +8,7 @@
 
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
+	wound_type = "defender"
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
