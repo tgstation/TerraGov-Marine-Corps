@@ -181,7 +181,7 @@ PROCESSING_SUBSYSTEM_DEF(nano)
   * @return nothing
   */
 /datum/controller/subsystem/processing/nano/proc/user_transferred(mob/oldMob, mob/newMob)
-	if(!oldMob || !oldMob.open_uis)
+	if(!oldMob?.open_uis)
 		return FALSE // has no open uis
 
 	LAZYINITLIST(newMob.open_uis)
