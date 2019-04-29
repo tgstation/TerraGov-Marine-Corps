@@ -407,23 +407,6 @@
 	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded admins.")
 
 
-/datum/admins/proc/map_random()
-	set category = "Server"
-	set name = "Trigger Random Map Rotation"
-
-	if(!check_rights(R_SERVER))
-		return
-
-	var/rotate = alert("Force a random map rotation to trigger?", "Rotate map?", "Yes", "No")
-	if(rotate != "Yes")
-		return
-
-	SSmapping.maprotate()
-
-	log_admin("[key_name(usr)] forced a random map rotation.")
-	message_admins("[ADMIN_TPMONTY(usr)] forced a random map rotation.")
-
-
 /datum/admins/proc/map_change()
 	set category = "Server"
 	set name = "Change Map"
