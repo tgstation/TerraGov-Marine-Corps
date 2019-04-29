@@ -74,7 +74,7 @@
 
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Lobby Notification System")
-	AI.aiRadio.talk_into(AI,"<b>[user.name] is requesting medical attention at: [get_area(src)].</b>","MedSci","announces")
+	AI.aiRadio.talk_into(AI, "<b>[user.name] is requesting medical attention at: [get_area(src)].</b>", "MedSci", "announces", /datum/language/common)
 	qdel(AI)	
 	visible_message("Remain calm, someone will be with you shortly.")
 

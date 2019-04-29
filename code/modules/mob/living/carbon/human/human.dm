@@ -1326,6 +1326,8 @@
 
 	if(species.default_language)
 		grant_language(species.default_language)
+		var/datum/language_holder/H = get_language_holder()
+		H.selected_default_language = species.default_language
 
 	if(species.base_color && default_colour)
 		//Apply colour.

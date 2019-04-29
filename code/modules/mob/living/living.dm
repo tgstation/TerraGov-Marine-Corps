@@ -230,6 +230,10 @@
 	return
 
 
+/mob/living/proc/InCritical()
+	return (health <= get_crit_threshold() && stat == UNCONSCIOUS)
+
+
 /mob/living/Move(NewLoc, direct)
 	if (buckled && buckled.loc != NewLoc) //not updating position
 		if (!buckled.anchored)
@@ -680,3 +684,7 @@ below 100 is not dizzy
 			layer = initial(layer)
 
 	return canmove
+
+// called when the client disconnects and is away.
+/mob/living/proc/begin_away()
+	away_time = set_away_time(world.time)

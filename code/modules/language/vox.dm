@@ -5,3 +5,6 @@
 	ask_verb = "creels"
 	exclaim_verb = "SHRIEKS"
 	key = "9"
+
+	syllables = list("ti", "ti", "ti", "hi", "hi", "ki", "ki", "ki", "ki", "ya", "ta", "ha", "ka",
+		"ya", "chi", "cha", "kah", "SKRE", "AHK", "EHK", "RAWK", "KRA", "AAA", "EEE", "KI", "II", "KRI", "KA")

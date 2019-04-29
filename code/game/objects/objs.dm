@@ -110,9 +110,6 @@
 	return
 
 
-/obj/proc/hear_talk(mob/M, msg, verb = "says", datum/language/language)
-	return
-
 /obj/attack_paw(mob/user)
 	if(can_buckle) return src.attack_hand(user)
 	else . = ..()

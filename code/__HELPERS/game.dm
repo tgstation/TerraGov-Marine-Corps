@@ -1,5 +1,4 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-#define DEATHTIME_XENO_REQUIREMENT 3000
 
 /proc/dopage(src,target)
 	var/href_list
@@ -249,11 +248,11 @@ proc/isInSight(var/atom/A, var/atom/B)
 
 		//Recently dead observers cannot be drafted.
 		var/deathtime = world.time - O.timeofdeath
-		if(deathtime < DEATHTIME_XENO_REQUIREMENT)
+		if(deathtime < GLOB.respawntime)
 			continue
 
 		//Aghosted admins don't get picked
-		if(O.mind?.current && copytext(O.mind.current.key, 1, 2) == "@")
+		if(O.mind?.current && isaghost(O.mind.current))
 			continue
 
 		if(!picked)
