@@ -1004,6 +1004,8 @@
 #include "code\modules\economy\economy_misc.dm"
 #include "code\modules\economy\EFTPOS.dm"
 #include "code\modules\economy\TradeDestinations.dm"
+#include "code\modules\error_handler\error_handler.dm"
+#include "code\modules\error_handler\error_viewer.dm"
 #include "code\modules\flufftext\Dreaming.dm"
 #include "code\modules\flufftext\Hallucination.dm"
 #include "code\modules\flufftext\TextFilters.dm"
