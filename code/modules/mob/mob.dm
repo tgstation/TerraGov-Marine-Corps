@@ -21,7 +21,8 @@
 	. = ..()
 
 	if(statpanel("Stats"))
-		stat("Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]")
+		if(GLOB.round_id)
+			stat("Round ID: [GLOB.round_id]")
 		stat("Operation Time: [worldtime2text()]")
 		stat("Current Map: [SSmapping.config?.map_name ? SSmapping.config.map_name : "Loading..."]")
 		stat("Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
