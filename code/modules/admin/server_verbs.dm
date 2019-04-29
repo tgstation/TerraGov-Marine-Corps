@@ -345,12 +345,15 @@
 	if(SSticker.admin_delay_notice)
 		SSticker.admin_delay_notice = null
 	else
-		SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
+		var/reason = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
+		if(!reason)
+			return
+		SSticker.admin_delay_notice = reason
 
 	SSticker.delay_end = !SSticker.delay_end
 
 	log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].")
-	message_admins("<hr><br><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].</h4><hr><br>")
+	message_admins("<hr><br><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].</h4><hr>")
 
 
 /datum/admins/proc/toggle_gun_restrictions()
