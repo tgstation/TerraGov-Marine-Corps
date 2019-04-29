@@ -328,36 +328,36 @@
 	name = "\improper Squad Leader Preparations"
 	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
 	req_access = list(ACCESS_MARINE_LEADER)
-	opacity = 0
-	glass = 1
+	opacity = FALSE
+	glass = TRUE
 
 /obj/machinery/door/airlock/almayer/marine/general/spec
 	name = "\improper Specialist Preparations"
 	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
 	req_access = list(ACCESS_MARINE_SPECPREP)
-	opacity = 0
-	glass = 1
+	opacity = FALSE
+	glass = TRUE
 
 /obj/machinery/door/airlock/almayer/marine/general/smart
 	name = "\improper Smartgunner Preparations"
 	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
 	req_access = list(ACCESS_MARINE_SMARTPREP)
-	opacity = 0
-	glass = 1
+	opacity = FALSE
+	glass = TRUE
 
 /obj/machinery/door/airlock/almayer/marine/general/corps
 	name = "\improper Corpsman Preparations"
 	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
 	req_access = list(ACCESS_MARINE_MEDPREP)
-	opacity = 0
-	glass = 1
+	opacity = FALSE
+	glass = TRUE
 
 /obj/machinery/door/airlock/almayer/marine/general/engi
 	name = "\improper Engineer Preparations"
 	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
 	req_access = list(ACCESS_MARINE_ENGPREP)
-	opacity = 0
-	glass = 1
+	opacity = FALSE
+	glass = TRUE
 
 /obj/machinery/door/airlock/almayer/marine/requisitions
 	name = "\improper Requisitions Bay"
