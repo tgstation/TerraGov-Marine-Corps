@@ -53,9 +53,13 @@
 
 	else if(href_list["track"])
 		var/mob/target = locate(href_list["track"]) in GLOB.mob_list
-		if(!target)
-			return
-		ManualFollow(target)
+		if(istype(target))
+			ManualFollow(target)
+		else
+			var/atom/movable/AM = locate(href_list["track"])
+			ManualFollow(AM)
+			
+		
 
 
 	else if(href_list["claim"])

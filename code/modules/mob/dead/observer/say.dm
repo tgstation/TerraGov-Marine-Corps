@@ -18,54 +18,19 @@
 
 
 
-
-/mob/dead/observer/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
-	if(!client)
-		return
-
-	if(speaker && !speaker.client && client.prefs.toggles_chat & CHAT_GHOSTEARS && speaker.z == z && get_dist(speaker, src) <= world.view)
-			//Does the speaker have a client?  It's either random stuff that observers won't care about (Experiment 97B says, 'EHEHEHEHEHEHEHE')
-			//Or someone snoring.  So we make it where they won't hear it.
-		return
-
-	if(sleeping || stat == 1)
-		hear_sleep(message)
-		return
-
-	var/style = "body"
-	var/comm_paygrade = ""
-
-	var/speaker_name = speaker.name
-	if(ishuman(speaker))
-		var/mob/living/carbon/human/H = speaker
-		speaker_name = H.GetVoice()
-		comm_paygrade = H.get_paygrade()
-
-	if(italics)
-		message = "<i>[message]</i>"
-
-	var/track = null
-
-	if(italics && client.prefs.toggles_chat & CHAT_GHOSTRADIO)
-		return
-	if(speaker_name != speaker.real_name && speaker.real_name)
-		speaker_name = "[speaker.real_name] ([speaker_name])"
-	track = "(<a href='byond://?src=\ref[src];track=\ref[speaker]'>follow</a>) "
-	if(client.prefs.toggles_chat & CHAT_GHOSTEARS && speaker.z == z && get_dist(speaker, src) <= world.view)
-		message = "<b>[message]</b>"
-
-	to_chat(src, "<span class='game say'><span class='name'>[comm_paygrade][speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='[style]'>\"[message]\"</span></span></span>")
-	if (speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
-		var/turf/source = speaker? get_turf(speaker) : get_turf(src)
-		src.playsound_local(source, speech_sound, sound_vol, 1)
+/mob/dead/observer/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+	. = ..()
+	var/atom/movable/to_follow = speaker
+	if(radio_freq)
+		var/atom/movable/virtualspeaker/V = speaker
+		to_follow = V.source
+	var/link = FOLLOW_LINK(src, to_follow)
+	// Recompose the message, because it's scrambled by default
+	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode)
+	to_chat(src, "[link] [message]")
 
 
-
-
-
-
-
-/mob/dead/observer/emote(var/act, var/type, var/message)
+/mob/dead/observer/emote(act, type, message, player_caused)
 	message = sanitize(copytext(message, 1, MAX_MESSAGE_LEN))
 
 	if(!message)

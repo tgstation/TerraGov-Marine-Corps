@@ -22,7 +22,6 @@
 	*/
 	var/zone_selected = "chest"
 
-	var/use_me = TRUE //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 	var/computer_id //to track the players
 	var/list/logging = list()
 	var/atom/movable/interactee //the thing that the mob is currently interacting with (e.g. a computer, another mob (stripping a mob), manning a hmg)

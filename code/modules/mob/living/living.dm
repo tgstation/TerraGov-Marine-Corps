@@ -230,6 +230,10 @@
 	return
 
 
+/mob/living/proc/InCritical()
+	return (health <= get_crit_threshold() && stat == UNCONSCIOUS)
+
+
 /mob/living/Move(NewLoc, direct)
 	if (buckled && buckled.loc != NewLoc) //not updating position
 		if (!buckled.anchored)
