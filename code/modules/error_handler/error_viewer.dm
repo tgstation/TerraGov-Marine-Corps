@@ -192,7 +192,7 @@ GLOBAL_DATUM_INIT(error_cache, /datum/error_viewer/error_cache, new)
 	if(usr_ref)
 		html += "<br><b>usr</b>: <a href='?_src_=vars;[HrefToken()];vars=[usr_ref]'>VV</a>"
 		html += " <a href='?_src_=holder;[HrefToken()];playerpanel=[usr_ref]'>PP</a>"
-		html += " <a href='?_src_=holder;[HrefToken()];observefollow=[usr_ref]'>Follow</a>"
+		html += " <a href='?_src_=holder;[HrefToken()];observefollow=[usr_ref]'>FLW</a>"
 		if(istype(usr_loc))
 			html += "<br><b>usr.loc</b>: <a href='?_src_=vars;[HrefToken()];vars=[REF(usr_loc)]'>VV</a>"
 			html += " <a href='?_src_=holder;[HrefToken()];observecoordjump=1;X=[usr_loc.x];Y=[usr_loc.y];Z=[usr_loc.z]'>JMP</a>"
