@@ -369,7 +369,7 @@
 		new /obj/effect/alien/weeds(loc)
 
 /turf/closed/wall/resin/ChangeTurf(new_turf_path, forget_old_turf, flags)
-	. = ..(new_turf_path, forget_old_turf, flags)
+	. = ..()
 	if(forget_old_turf)
 		new /obj/effect/alien/weeds(src)
 
