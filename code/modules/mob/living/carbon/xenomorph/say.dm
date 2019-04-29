@@ -52,7 +52,7 @@
 
 /mob/living/carbon/Xenomorph/Queen/receive_hivemind_message(mob/living/carbon/Xenomorph/X, message)
 	if(ovipositor && X != src)
-		show_message("[X.hivemind_name()] (<a href='byond://?src=\ref[src];queentrack=\ref[X]'>watch</a>)<span class='message'>hisses, '[message]'</span></span></i>[hivemind_end()]", 2)
+		show_message("(<a href='byond://?src=\ref[src];watch_xeno_number=[X.nicknumber]'>F</a>) [X.hivemind_name()] <span class='message'>hisses, '[message]'</span></span></i>[hivemind_end()]", 2)
 	else
 		return ..()
 
