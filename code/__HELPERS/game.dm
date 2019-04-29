@@ -404,11 +404,10 @@ datum/projectile_data
 	flick_overlay(I, viewing, duration)
 
 
-/proc/window_flash(client/C)
+/proc/window_flash(client/C, ignorepref = FALSE)
 	if(ismob(C))
 		var/mob/M = C
-		if(M.client)
-			C = M.client
-	if(!C)
+		C = M.client
+	if(!C?.prefs.windowflashing && !ignorepref)
 		return
 	winset(C, "mainwindow", "flash=5")
