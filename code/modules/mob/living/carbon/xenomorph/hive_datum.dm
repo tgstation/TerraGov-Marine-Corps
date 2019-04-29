@@ -309,9 +309,6 @@
 		return
 	hive?.burrow_larva(src)
 
-/mob/living/carbon/Xenomorph/Larva/predalien/burrow() // no no no
-	return
-
 /datum/hive_status/proc/burrow_larva(mob/living/carbon/Xenomorph/Larva/L)
 	return
 

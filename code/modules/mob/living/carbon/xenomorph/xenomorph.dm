@@ -13,9 +13,6 @@
 	if(SSmapping.config.map_name == MAP_WHISKEY_OUTPOST)
 		xeno_caste.hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
-	remove_language(/datum/language/common)
-	grant_language(/datum/language/xenocommon) //xenocommon
-	grant_language(/datum/language/xenohivemind) //hivemind
 	add_inherent_verbs()
 	add_abilities()
 
@@ -287,3 +284,7 @@
 
 	var/obj/screen/LL_dir = hud_used.locate_leader
 	LL_dir.icon_state = "trackoff"
+
+/mob/living/carbon/Xenomorph/begin_away()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/handle_afk_takeover), XENO_AFK_TIMER)

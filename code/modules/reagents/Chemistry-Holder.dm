@@ -1,3 +1,47 @@
+#define CHEMICAL_QUANTISATION_LEVEL 0.0001 //stops floating point errors causing issues with checking reagent amounts
+
+/proc/build_chemical_reagent_list()
+	//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
+
+	if(GLOB.chemical_reagents_list)
+		return
+
+	var/paths = subtypesof(/datum/reagent)
+	GLOB.chemical_reagents_list = list()
+
+	for(var/path in paths)
+		var/datum/reagent/D = new path()
+		GLOB.chemical_reagents_list[D.id] = D
+
+/proc/build_chemical_reactions_list()
+	//Chemical Reactions - Initialises all /datum/chemical_reaction into a list
+	// It is filtered into multiple lists within a list.
+	// For example:
+	// chemical_reaction_list["plasma"] is a list of all reactions relating to plasma
+
+	if(GLOB.chemical_reactions_list)
+		return
+
+	var/paths = subtypesof(/datum/chemical_reaction)
+	GLOB.chemical_reactions_list = list()
+
+	for(var/path in paths)
+
+		var/datum/chemical_reaction/D = new path()
+		var/list/reaction_ids = list()
+
+		if(D.required_reagents && D.required_reagents.len)
+			for(var/reaction in D.required_reagents)
+				reaction_ids += reaction
+
+		// Create filters based on each reagent id in the required reagents list
+		for(var/id in reaction_ids)
+			if(!GLOB.chemical_reactions_list[id])
+				GLOB.chemical_reactions_list[id] = list()
+			GLOB.chemical_reactions_list[id] += D
+			break // Don't bother adding ourselves to other reagent ids, it is redundant
+
+
 /datum/reagents
 	var/list/datum/reagent/reagent_list = new/list()
 	var/total_volume = 0
@@ -7,44 +51,18 @@
 	var/last_tick = 1
 	var/addiction_tick = 1
 	var/list/datum/reagent/addiction_list = new/list()
-	var/reagents_holder_flags
+	var/reagent_flags
 
-/datum/reagents/New(maximum=100)
+/datum/reagents/New(maximum = 100, new_flags)
 	maximum_volume = maximum
 
 	//I dislike having these here but map-objects are initialised before world/New() is called. >_>
-	if(!chemical_reagents_list)
-		//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
-		var/paths = subtypesof(/datum/reagent)
-		chemical_reagents_list = list()
-		for(var/path in paths)
-			var/datum/reagent/D = new path()
-			chemical_reagents_list[D.id] = D
-	if(!chemical_reactions_list)
-		//Chemical Reactions - Initialises all /datum/chemical_reaction into a list
-		// It is filtered into multiple lists within a list.
-		// For example:
-		// chemical_reaction_list["phoron"] is a list of all reactions relating to phoron PLASMA REEEEEE!!!!
+	if(!GLOB.chemical_reagents_list)
+		build_chemical_reagent_list()
+	if(!GLOB.chemical_reactions_list)
+		build_chemical_reactions_list()
 
-		var/paths = subtypesof(/datum/chemical_reaction)
-		chemical_reactions_list = list()
-
-		for(var/path in paths)
-
-			var/datum/chemical_reaction/D = new path()
-			var/list/reaction_ids = list()
-
-			if(D.required_reagents && D.required_reagents.len)
-				for(var/reaction in D.required_reagents)
-					reaction_ids += reaction
-
-			// Create filters based on each reagent id in the required reagents list
-			for(var/id in reaction_ids)
-				if(!chemical_reactions_list[id])
-					chemical_reactions_list[id] = list()
-				chemical_reactions_list[id] += D
-				break // Don't bother adding ourselves to other reagent ids, it is redundant.
-
+	reagent_flags = new_flags
 
 /datum/reagents/Destroy()
 	. = ..()
@@ -66,7 +84,7 @@
 	var/list/data = list()
 	for(var/r in reagent_list) //no reagents will be left behind
 		var/datum/reagent/R = r
-		data += "[R.id] ([round(R.volume, 0.1)]u)"
+		data += "[R.id] ([round(R.volume, CHEMICAL_QUANTISATION_LEVEL)]u)"
 		//Using IDs because SOME chemicals (I'm looking at you, chlorhydrate-beer) have the same names as other chemicals.
 	return english_list(data)
 
@@ -236,11 +254,13 @@
 	R.handle_reactions()
 	return amount
 
-/datum/reagents/proc/metabolize(var/mob/living/carbon/C, alien, can_overdose = FALSE , liverless = FALSE) //last two vars do nothing for the time being.
+/datum/reagents/proc/metabolize(mob/living/L, can_overdose = FALSE , liverless = FALSE) //last two vars do nothing for the time being.
 	var/list/cached_reagents = reagent_list
 	var/list/cached_addictions = addiction_list
-	if(C)
-		expose_temperature(C.bodytemperature, 0.25)
+	var/quirks
+	if(L)
+		expose_temperature(L.bodytemperature, 0.25)
+		quirks = L.get_reagent_tags()
 	var/need_mob_update = 0
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
@@ -248,19 +268,20 @@
 			continue
 		if(liverless && !R.self_consuming) //need to be metabolized
 			continue
-		if(!C)
-			C = R.holder.my_atom
+		if(!L)
+			L = R.holder.my_atom
+			quirks = L.get_reagent_tags()
 		if(R)
-			if(C.reagent_check(R) != 1)
+			if(L.reagent_check(R) != 1)
 				if(can_overdose)
 					if(R.overdose_threshold)
 						if(R.volume >= R.overdose_threshold && !R.overdosed)
 							R.overdosed = 1
-							need_mob_update += R.on_overdose_start(C, alien)
+							need_mob_update += R.on_overdose_start(L, quirks)
 					if(R.overdose_crit_threshold)
 						if(R.volume >= R.overdose_crit_threshold && !R.overdosed_crit)
 							R.overdosed_crit = 1
-							need_mob_update += R.on_overdose_crit_start(C, alien)
+							need_mob_update += R.on_overdose_crit_start(L, quirks)
 					if(R.addiction_threshold)
 						if(R.volume >= R.addiction_threshold && !is_type_in_list(R, cached_addictions))
 							var/datum/reagent/new_reagent = new R.type()
@@ -270,47 +291,40 @@
 					if(R.volume <R.overdose_crit_threshold && R.overdosed_crit && R.overdose_crit_threshold)
 						R.overdosed_crit = 0
 					if(R.overdosed)
-						need_mob_update += R.overdose_process(C, alien) //Small OD
+						need_mob_update += R.overdose_process(L, quirks) //Small OD
 					if(R.overdosed_crit)
-						need_mob_update += R.overdose_crit_process(C, alien) //Big OD
+						need_mob_update += R.overdose_crit_process(L, quirks) //Big OD
 					if(is_type_in_list(R,cached_addictions))
 						for(var/addiction in cached_addictions)
 							var/datum/reagent/A = addiction
 							if(istype(R, A))
 								A.addiction_stage = -15 //you're satisfied for a good while
-				need_mob_update +=R.on_mob_life(C, alien)
+				need_mob_update +=R.on_mob_life(L, quirks)
 
 	if(can_overdose)
 		if(addiction_tick == 6)
 			addiction_tick = 1
 			for(var/addiction in cached_addictions)
 				var/datum/reagent/R = addiction
-				if(C && R)
+				if(L && R)
 					R.addiction_stage++
 					switch(R.addiction_stage)
 						if(1 to 38)
-							need_mob_update += R.addiction_act_stage1(C)
+							need_mob_update += R.addiction_act_stage1(L, quirks)
 						if(38 to 76)
-							need_mob_update += R.addiction_act_stage2(C)
+							need_mob_update += R.addiction_act_stage2(L, quirks)
 						if(76 to 114)
-							need_mob_update += R.addiction_act_stage3(C)
+							need_mob_update += R.addiction_act_stage3(L, quirks)
 						if(114 to 152)
-							need_mob_update += R.addiction_act_stage4(C)
+							need_mob_update += R.addiction_act_stage4(L, quirks)
 						if(152 to INFINITY)
-							to_chat(C, "<span class='notice'>You feel like you've gotten over your need for [R.name].</span>")
+							to_chat(L, "<span class='notice'>You feel like you've gotten over your need for [R.name].</span>")
 							cached_addictions.Remove(R)
 		addiction_tick++
-	if(C && need_mob_update)
-		C.updatehealth()
-		C.update_canmove()
+	if(L && need_mob_update)
+		L.updatehealth()
+		L.update_canmove()
 	update_total()
-
-/datum/reagents/proc/set_reacting(react = TRUE)
-	if(react)
-		reagents_holder_flags &= ~(REAGENT_NOREACT)
-	else
-		reagents_holder_flags |= REAGENT_NOREACT
-
 
 /datum/reagents/proc/conditional_update_move(atom/A, Running = 0)
 	var/list/cached_reagents = reagent_list
@@ -329,11 +343,11 @@
 
 
 /datum/reagents/proc/handle_reactions()
-	var/list/cached_reagents = reagent_list
-	var/list/cached_reactions = chemical_reactions_list
-	var/datum/cached_my_atom = my_atom
-	if(reagents_holder_flags & REAGENT_NOREACT)
+	if(CHECK_BITFIELD(reagent_flags, NO_REACT))
 		return //Yup, no reactions here. No siree.
+	var/list/cached_reagents = reagent_list
+	var/list/cached_reactions = GLOB.chemical_reactions_list
+	var/datum/cached_my_atom = my_atom
 
 	var/reaction_occured = 0
 	do
@@ -447,8 +461,8 @@
 		var/datum/reagent/R = _reagent
 		if (R.id == reagent)
 			if(my_atom && isliving(my_atom))
-				var/mob/living/M = my_atom
-				R.on_mob_delete(M)
+				var/mob/living/L = my_atom
+				R.on_mob_delete(L, L.get_reagent_tags())
 			qdel(R)
 			reagent_list -= R
 			update_total()
@@ -529,7 +543,7 @@
 	if(!isnum(amount) || !amount || amount <= 0)
 		return FALSE
 
-	var/datum/reagent/D = chemical_reagents_list[reagent]
+	var/datum/reagent/D = GLOB.chemical_reagents_list[reagent]
 	if(!D)
 		warning("[my_atom] attempted to add a reagent called '[reagent]' which doesn't exist. ([usr])")
 		return FALSE
@@ -582,7 +596,8 @@
 		R.on_new(data)
 
 	if(isliving(my_atom))
-		R.on_mob_add(my_atom) //Must occur before it could possibly run on_mob_delete
+		var/mob/living/L = my_atom
+		R.on_mob_add(my_atom, L.get_reagent_tags()) //Must occur before it could possibly run on_mob_delete
 	update_total()
 	if(my_atom)
 		my_atom.on_reagent_change(ADD_REAGENT)
@@ -630,7 +645,7 @@
 			if(!amount)
 				return R
 			else
-				if(R.volume >= amount)
+				if(round(R.volume, CHEMICAL_QUANTISATION_LEVEL) >= amount)
 					return R
 				else
 					return 0
@@ -641,7 +656,7 @@
 	for(var/_reagent in cached_reagents)
 		var/datum/reagent/R = _reagent
 		if(R.id == reagent)
-			return R.volume
+			return round(R.volume, CHEMICAL_QUANTISATION_LEVEL)
 
 	return 0
 
@@ -784,11 +799,13 @@
 
 // Convenience proc to create a reagents holder for an atom
 // Max vol is maximum volume of holder
-/atom/proc/create_reagents(max_vol)
+/atom/proc/create_reagents(max_vol, new_flags, list/init_reagents, data)
 	if(reagents)
 		qdel(reagents)
-	reagents = new/datum/reagents(max_vol)
+	reagents = new (max_vol, new_flags)
 	reagents.my_atom = src
+	if(init_reagents)
+		reagents.add_reagent_list(init_reagents, data)
 
 /proc/get_random_reagent_id() //Returns a random reagent ID minus blacklisted reagents
 	var/static/list/random_reagents = list()

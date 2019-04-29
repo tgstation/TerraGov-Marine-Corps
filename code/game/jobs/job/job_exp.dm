@@ -49,7 +49,7 @@ GLOBAL_PROTECT(exp_to_update)
 	var/amount = 0
 	var/list/typelist = GLOB.exp_jobsmap[exptype]
 	if(!typelist)
-		return -1
+		return 0
 	for(var/job in typelist["titles"])
 		if(job in explist)
 			amount += explist[job]
@@ -241,3 +241,14 @@ GLOBAL_PROTECT(exp_to_update)
 			"minutes" = jvalue)))
 		prefs.exp[jtype] += jvalue
 	addtimer(CALLBACK(GLOBAL_PROC, /proc/update_exp_db), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
+
+
+/proc/queen_age_check(client/C)
+	if(!C.prefs?.exp)
+		return FALSE
+	if(!CONFIG_GET(flag/use_exp_tracking))
+		return FALSE
+	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(C, R_ADMIN, FALSE))
+		return FALSE
+	var/my_exp = C.prefs.exp[ROLE_XENOMORPH]
+	return my_exp < XP_REQ_INTERMEDIATE

@@ -344,12 +344,14 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
-#define IS_VOX 2
-#define IS_SKRELL 3
-#define IS_UNATHI 4
-#define IS_XENOS 5
-#define IS_HORROR 6
-#define IS_MOTH 7
+#define IS_HUMAN (1<<0)
+#define IS_MONKEY (1<<1)
+#define IS_XENO (1<<2)
+#define IS_VOX (1<<3)
+#define IS_SKRELL (1<<4)
+#define IS_UNATHI (1<<5)
+#define IS_HORROR (1<<6)
+#define IS_MOTH (1<<7)
 //=================================================
 
 //Mob sizes

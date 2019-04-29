@@ -359,9 +359,6 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 /mob/proc/incapacitated(ignore_restrained)
 	return (stat || stunned || knocked_down || knocked_out || (!ignore_restrained && restrained()))
 
-/mob/proc/reagent_check(datum/reagent/R)
-	return 1
-
 //returns how many non-destroyed legs the mob has (currently only useful for humans)
 /mob/proc/has_legs()
 	return 2

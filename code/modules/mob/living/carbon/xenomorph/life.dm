@@ -35,6 +35,7 @@
 	update_action_button_icons()
 	update_icons()
 
+
 /mob/living/carbon/Xenomorph/update_stat()
 
 	update_cloak()
@@ -322,3 +323,24 @@
 		return FALSE
 	stagger = max(stagger + amount,0)
 	return stagger
+
+/mob/living/carbon/Xenomorph/proc/handle_afk_takeover()
+	if(client || world.time - away_time < XENO_AFK_TIMER)
+		return
+	if(isaghost(src) && GLOB.directory[key]) // If aghosted, and admin still online
+		return
+	if(stat == DEAD)
+		return
+
+	var/picked = get_alien_candidate()
+	if(!picked)
+		return
+
+	var/mob/xeno_candidate = get_mob_by_key(picked)
+	if(!xeno_candidate)
+		return
+
+	SSticker.mode.transfer_xeno(xeno_candidate, src)
+
+	to_chat(src, "<span class='xenoannounce'>You are an old xenomorph re-awakened from slumber!</span>")
+	SEND_SOUND(src, sound('sound/effects/xeno_newlarva.ogg'))

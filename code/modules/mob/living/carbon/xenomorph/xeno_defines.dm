@@ -198,6 +198,8 @@
 	//It should add them properly on New() and should reset/readd them on evolves
 	var/list/inherent_verbs = list()
 
+	initial_language_holder = /datum/language_holder/xeno
+
 	//Lord forgive me for this horror, but Life code is awful
 	//These are tally vars, yep. Because resetting the aura value directly leads to fuckups
 	var/frenzy_new = 0
