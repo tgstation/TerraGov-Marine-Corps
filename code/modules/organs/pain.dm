@@ -1,12 +1,21 @@
-#define 
-
 /datum/pain_manager
 	var/datum/pain/stamina
 	var/list/full_body
 	var/list/pain_by_limb
+	var/list/pain_by_organ
 	var/mob/living/carbon/human/owner
 
-
+/datum/pain_manager/New(mob/living/carbon/human/owner)
+	src.owner = owner
+	full_body = list()
+	pain_by_limb = list()
+	for(var/i in owner.limbs)
+		var/datum/limb/L = i
+		pain_by_limb[L.name] = list()
+	pain_by_organ = list()
+	for(var/j in owner.internal_organs_by_name)
+		pain_by_organ[j] = new /datum/pain/organ(owner.internal_organs_by_name[j])
+	stamina = new /datum/pain/stamina
 
 /datum/pain
 	var/amount
@@ -14,7 +23,19 @@
 	var/owner
 
 /datum/pain/limb
-	var/limb
+	var/datum/limb/limb
+
+
+
+/datum/pain/limb/wound
+	var/datum/wound/wound
+
+/datum/pain/organ
+	var/datum/internal_organ/organ
+
+/datum/pain/organ/New(datum/internal_organ/organ)
+	. = ..()
+	src.organ = organ
 
 /datum/pain/stamina
 
