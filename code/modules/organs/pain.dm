@@ -1,8 +1,33 @@
+#define 
+
+/datum/pain_manager
+	var/datum/pain/stamina
+	var/list/full_body
+	var/list/pain_by_limb
+	var/mob/living/carbon/human/owner
+
+
+
+/datum/pain
+	var/amount
+	var/pain_flags
+	var/owner
+
+/datum/pain/limb
+	var/limb
+
+/datum/pain/stamina
+
+/datum/pain/full_body
+
+/datum/pain/full_body/Destroy()
+	owner.full_body -= src
+	return ..()
+
 /mob/proc/flash_pain()
 	overlay_fullscreen("pain", /obj/screen/fullscreen/pain, 2)
 	clear_fullscreen("pain")
 
-mob/var/list/pain_stored = list()
 mob/var/last_pain_message = ""
 mob/var/next_pain_time = 0
 
