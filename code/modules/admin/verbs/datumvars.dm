@@ -1110,20 +1110,10 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["purrbation"])
 		if(!istype(H))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
-		if(istype(H.head, /obj/item/clothing/head/kitty))
-			qdel(H.head)
-			H.regenerate_icons()
-			log_admin("[key_name(usr)] has removed purrbation [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has removed purrbation from [ADMIN_TPMONTY(H)].")
-		else
-			H.dropItemToGround(H.head)
-			H.head = new /obj/item/clothing/head/kitty(H)
-			H.regenerate_icons()
-			H.head.update_icon(H)
-			log_admin("[key_name(usr)] has purrbated [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has purrbated [ADMIN_TPMONTY(H)].")
+		H.purrbate()
 
 
 	else if(href_list["getatom"])
