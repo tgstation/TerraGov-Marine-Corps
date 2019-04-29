@@ -87,7 +87,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 /obj/vehicle/tonk/examine(mob/user)
 	. = ..()
 	to_chat(user, "<b>To fire its main cannon, <i>ctrl</i> click a tile</b>")
-	to_chat(user, "<b>To fire its minigun, click a tile</b>
+	to_chat(user, "<b>To fire its minigun, click a tile</b>")
 
 /obj/turret_overlay
 	name = "Tank gun turret"
@@ -102,7 +102,6 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	. = ..()
 	turret_overlay = new()
 	update_icon()
-	health = max_health
 	main_cannon = new(src) //Make our guns
 	minigun = new(src)
 	main_cannon.owner = src

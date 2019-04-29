@@ -346,16 +346,16 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /mob/living/tank_collision(obj/vehicle/V, facing, turf/T, turf/temp)
 	if(stat == DEAD) //We don't care about the dead
 		return
-	if(loc == C.loc) // treaded over.
+	if(loc == V.loc) // treaded over.
 		if(!knocked_down)
 			KnockDown(1)
-		var/target_dir = turn(C.dir, 180)
-		temp = get_step(C.loc, target_dir)
+		var/target_dir = turn(V.dir, 180)
+		temp = get_step(V.loc, target_dir)
 		T = temp
-		target_dir = turn(C.dir, 180)
+		target_dir = turn(V.dir, 180)
 		T = get_step(T, target_dir)
 		face_atom(T)
-		throw_at(T, 3, 2, C, 1)
+		throw_at(T, 3, 2, V, 1)
 		apply_damage(rand(5, 7.5), BRUTE)
 		return
 	if(!lying)
@@ -363,15 +363,15 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		T = temp
 		T = get_step(T, pick(cardinal))
 		if(mob_size == MOB_SIZE_BIG)
-			throw_at(T, 3, 2, C, 0)
+			throw_at(T, 3, 2, V, 0)
 		else
-			throw_at(T, 3, 2, C, 1)
+			throw_at(T, 3, 2, V, 1)
 		if(!knocked_down)
 			KnockDown(1)
 		apply_damage(rand(10, 15), BRUTE)
-		visible_message("<span class='danger'>[C] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[C] violently bumps into you!</span>")
-	if(istype(C, /obj/vehicle/multitile/hitbox/cm_armored))
-		var/obj/vehicle/multitile/hitbox/cm_armored/CC = C
+		visible_message("<span class='danger'>[V] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[V] violently bumps into you!</span>")
+	if(istype(V, /obj/vehicle/multitile/hitbox/cm_armored))
+		var/obj/vehicle/multitile/hitbox/cm_armored/CC = V
 		var/obj/vehicle/multitile/root/cm_armored/CA = CC.root
 		var/list/slots = CA.get_activatable_hardpoints()
 		for(var/slot in slots)
