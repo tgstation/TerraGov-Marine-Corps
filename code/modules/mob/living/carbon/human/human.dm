@@ -931,7 +931,10 @@
 			for(var/datum/data/record/R in GLOB.datacore.medical)
 				if (R.fields["name"] == real_name)
 					if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-						usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
+						//usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
+						var/datum/browser/popup = new(user, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
+						popup.set_content(dat)
+						popup.open(FALSE)
 					break
 
 	if (href_list["lookitem"])
