@@ -105,7 +105,7 @@
 	if(mode)
 		if(beaker.volume > 0)
 			var/transfer_amount = REAGENTS_METABOLISM
-			if(istype(src.beaker, /obj/item/reagent_container/blood))
+			if(istype(beaker, /obj/item/reagent_container/blood))
 				// speed up transfer on blood packs
 				transfer_amount = 4
 			attached.inject_blood(beaker, transfer_amount)
@@ -117,22 +117,24 @@
 		amount = min(amount, 4)
 		// If the beaker is full, ping
 		if(amount == 0)
-			if(prob(5)) visible_message("\The [src] pings.")
+			if(prob(5)) 
+				visible_message("\The [src] pings.")
 			return
 
 		var/mob/living/carbon/human/T = attached
 
-		if(!istype(T)) return
+		if(!istype(T)) 
+			return
 		if(!T.dna)
 			return
 		if(NOCLONE in T.mutations)
 			return
 
-		if(T?.species.species_flags & NO_BLOOD)
+		if(T.species?.species_flags & NO_BLOOD)
 			return
 
 		// If the human is losing too much blood, beep.
-		if(T.blood_volume < BLOOD_VOLUME_SAFE) if(prob(5))
+		if(T.blood_volume < BLOOD_VOLUME_SAFE && prob(5)) 
 			visible_message("\The [src] beeps loudly.")
 
 		T.take_blood(beaker, amount)
