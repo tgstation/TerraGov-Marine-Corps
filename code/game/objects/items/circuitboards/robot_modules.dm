@@ -52,16 +52,6 @@
 		if(O)
 			modules += O
 
-/obj/item/circuitboard/robot_module/proc/add_languages(var/mob/living/silicon/robot/R)
-	//full set of languages
-	R.add_language("Sol Common", 1)
-	R.add_language("Russian", 1)
-	R.add_language("Tradeband", 1)
-	R.add_language("Sinta'unathi", 0)
-	R.add_language("Siik'tajr", 0)
-	R.add_language("Skrellian", 0)
-	R.add_language("Gutter", 0)
-
 
 /obj/item/circuitboard/robot_module/standard
 	name = "standard robot module"
@@ -300,17 +290,6 @@
 		src.emag.name = "Mickey Finn's Special Brew"
 		return
 
-	add_languages(var/mob/living/silicon/robot/R)
-		//full set of languages
-		R.add_language("Sol Common", 1)
-		R.add_language("Sinta'unathi", 1)
-		R.add_language("Siik'maas", 1)
-		R.add_language("Siik'tajr", 0)
-		R.add_language("Skrellian", 1)
-		R.add_language("Rootspeak", 1)
-		R.add_language("Tradeband", 1)
-		R.add_language("Gutter", 1)
-
 	respawn_consumable(var/mob/living/silicon/robot/R)
 		var/obj/item/reagent_container/food/condiment/enzyme/E = locate() in src.modules
 		E.reagents.add_reagent("enzyme", 2)
@@ -364,9 +343,6 @@
 			src.modules += W
 
 		return
-
-	add_languages(var/mob/living/silicon/robot/R)
-		return	//not much ROM to spare in that tiny microprocessor!
 
 	respawn_consumable(var/mob/living/silicon/robot/R)
 		var/obj/item/reagent_container/spray/cleaner/C = locate() in src.modules

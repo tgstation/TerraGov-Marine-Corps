@@ -389,7 +389,7 @@ This function restores all limbs.
 				emote("pain")
 
 		..(damage, damagetype, def_zone, blocked)
-		return 1
+		return damage
 
 	//Handle BRUTE and BURN damage
 	handle_suit_punctures(damagetype, damage)
@@ -400,7 +400,8 @@ This function restores all limbs.
 	else
 		if(!def_zone)	def_zone = ran_zone(def_zone)
 		organ = get_limb(check_zone(def_zone))
-	if(!organ)	return 0
+	if(!organ)
+		return FALSE
 
 	switch(damagetype)
 		if(BRUTE)
@@ -421,4 +422,4 @@ This function restores all limbs.
 	camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, damage) //If we have the Scout cloak, check for a short out
 
 	updatehealth()
-	return 1
+	return damage

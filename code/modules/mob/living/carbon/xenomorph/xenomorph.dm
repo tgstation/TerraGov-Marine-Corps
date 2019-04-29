@@ -13,8 +13,6 @@
 	if(SSmapping.config.map_name == MAP_WHISKEY_OUTPOST)
 		xeno_caste.hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
-	add_language("Xenomorph") //xenocommon
-	add_language("Hivemind") //hivemind
 	add_inherent_verbs()
 	add_abilities()
 
@@ -259,3 +257,7 @@
 
 /mob/living/carbon/Xenomorph/reagent_check(datum/reagent/R) //For the time being they can't metabolize chemicals.
 	return TRUE
+
+/mob/living/carbon/Xenomorph/begin_away()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/handle_afk_takeover), XENO_AFK_TIMER)

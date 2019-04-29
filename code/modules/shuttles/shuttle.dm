@@ -227,7 +227,7 @@
 				if(is_mainship_level(T.z))
 					T.ChangeTurf(/turf/open/floor/almayer/empty)
 				else
-					T.ChangeTurf(/turf/open/gm/empty)
+					T.ChangeTurf(/turf/open/ground/empty)
 		else if(istype(T,/turf/open/space))
 			T.ChangeTurf(/turf/open/floor/plating)
 

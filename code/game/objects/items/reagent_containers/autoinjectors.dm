@@ -8,18 +8,18 @@
 	w_class = 1
 	volume = 15
 	skilllock = 0
-	container_type = DRAWABLE
+	init_reagent_flags = DRAWABLE
 	list_reagents = list("sodiumchloride" = 15)
 
 /obj/item/reagent_container/hypospray/autoinjector/update_icon()
 	if(!(reagents.total_volume) && is_drawable())
 		icon_state += "X"
 		name = "expended [name]" //So people can see what have been expended since we have smexy new sprites people aren't used too...
-		container_type = 0
-	else if(reagents.total_volume && !(container_type)) // refilling it somehow
+		DISABLE_BITFIELD(reagents.reagent_flags, DRAWABLE)
+	else if(reagents.total_volume && !CHECK_BITFIELD(reagents.reagent_flags, DRAWABLE)) // refilling it somehow
 		icon_state = initial(icon_state)
 		name = initial(name)
-		container_type = initial(container_type)
+		ENABLE_BITFIELD(reagents.reagent_flags, DRAWABLE)
 
 /obj/item/reagent_container/hypospray/autoinjector/examine(mob/user)
 	..()
@@ -32,7 +32,7 @@
 	desc = "An autoinjector loaded with... something, consult the doctor who gave this to you."
 	amount_per_transfer_from_this = 30
 	volume = 30
-	list_reagents = list()
+	list_reagents = null
 
 /obj/item/reagent_container/hypospray/autoinjector/tricordrazine
 	name = "tricordrazine autoinjector"

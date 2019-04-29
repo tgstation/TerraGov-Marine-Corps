@@ -26,6 +26,7 @@
 
 	universal_speak = TRUE
 	var/atom/movable/following = null
+	initial_language_holder = /datum/language_holder/universal
 
 
 /mob/dead/observer/Initialize()
@@ -52,9 +53,13 @@
 
 	else if(href_list["track"])
 		var/mob/target = locate(href_list["track"]) in GLOB.mob_list
-		if(!target)
-			return
-		ManualFollow(target)
+		if(istype(target))
+			ManualFollow(target)
+		else
+			var/atom/movable/AM = locate(href_list["track"])
+			ManualFollow(AM)
+			
+		
 
 
 	else if(href_list["claim"])
@@ -75,16 +80,6 @@
 
 /mob/dead/CanPass(atom/movable/mover, turf/target)
 	return TRUE
-
-
-/mob/dead/observer/Life()
-	. = ..()
-	if(!loc)
-		return FALSE
-	if(!client)
-		return FALSE
-	return TRUE
-
 
 /mob/proc/ghostize(var/can_reenter_corpse = TRUE)
 	if(!key)
@@ -145,15 +140,16 @@
 	return ghost
 
 
-/mob/proc/set_away_time()
+/mob/proc/set_away_time(new_away)
 	return
 
-/mob/living/set_away_time()
-	away_time = world.time //Generic way to handle away time, currently unused.
+/mob/living/set_away_time(new_away = world.time)
+	away_time = new_away //Generic way to handle away time, currently unused.
 
 
-/mob/living/carbon/Xenomorph/set_away_time()
-	away_time = -XENO_AFK_TIMER //Xenos who force-ghost can be immediately taken by observers.
+/mob/living/carbon/Xenomorph/set_away_time(new_away = -XENO_AFK_TIMER)
+	away_time = new_away //Xenos who force-ghost can be immediately taken by observers.
+	handle_afk_takeover()
 
 
 /mob/dead/observer/proc/unfollow()
@@ -191,6 +187,16 @@
 	. = ..()
 
 	if(statpanel("Stats"))
+		if(SSticker.current_state == GAME_STATE_PREGAME)
+			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
+			stat("Players: [length(GLOB.player_list)]", "Players Ready: [GLOB.ready_players]")
+			for(var/i in GLOB.player_list)
+				if(isnewplayer(i))
+					var/mob/new_player/N = i
+					stat("[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key]", N.ready ? "Playing" : "")
+				else if(isobserver(i))
+					var/mob/dead/observer/O = i
+					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
 		var/eta_status = SSevacuation?.get_status_panel_eta()
 		if(eta_status)
 			stat("Evacuation in:", eta_status)
@@ -394,7 +400,7 @@
 			if(M.client && M.client.is_afk())
 				name += " (AFK)"
 			else if(!M.client && (M.key || M.ckey))
-				if(copytext(M.key, 1, 2) == "@")
+				if(isaghost(M))
 					name += " (AGHOSTED)"
 				else
 					name += " (DC)"

@@ -20,30 +20,30 @@
 	overlays.Cut()
 	if(opened)
 		icon_state = icon_opened
-	else if(locked)
-		icon_state = icon_locked
 	else
-		icon_state = icon_unlocked
+		icon_state = locked ? icon_locked : icon_unlocked
 	if(welded)
-		overlays += "welded"
+		overlays += overlay_welded
 
 
 /obj/structure/closet/crate/secure/can_open()
 	return !locked
 
-/obj/structure/closet/crate/secure/proc/togglelock(mob/user as mob)
-	if(src.opened)
+/obj/structure/closet/crate/secure/proc/togglelock(mob/user)
+	if(!user.IsAdvancedToolUser())
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		return
+	if(opened)
 		to_chat(user, "<span class='notice'>Close the crate first.</span>")
 		return
-	if(src.broken)
+	if(broken)
 		to_chat(user, "<span class='warning'>The crate appears to be broken.</span>")
 		return
-	if(src.allowed(user))
-		src.locked = !src.locked
-		for(var/mob/O in viewers(user, 3))
-			if(O.client && !is_blind(O))
-				to_chat(O, "<span class='notice'>The crate has been [locked ? null : "un"]locked by [user].</span>")
-		icon_state = locked ? icon_locked : icon_unlocked
+	if(allowed(user))
+		locked = !locked
+		user.visible_message("<span class='notice'>\the [src] has been [locked ? "" : "un"]locked by [user].</span>", \
+							"<span class='notice'>You [locked ? "" : "un"]lock \the [src].</span>", null, 3)
+		update_icon()
 	else
 		to_chat(user, "<span class='notice'>Access Denied</span>")
 
@@ -52,21 +52,17 @@
 	set category = "Object"
 	set name = "Toggle Lock"
 
-	if(!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
+	if(usr.incapacitated())
 		return
+	add_fingerprint(usr)
+	togglelock(usr)
 
-	if(ishuman(usr))
-		src.add_fingerprint(usr)
-		src.togglelock(usr)
-	else
-		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")
-
-/obj/structure/closet/crate/secure/attack_hand(mob/user as mob)
-	src.add_fingerprint(user)
+/obj/structure/closet/crate/secure/attack_hand(mob/user)
+	add_fingerprint(user)
 	if(locked)
-		src.togglelock(user)
+		togglelock(user)
 	else
-		src.toggle(user)
+		toggle(user)
 
 /obj/structure/closet/crate/secure/attackby(obj/item/W as obj, mob/user as mob)
 	if(is_type_in_list(W, list(/obj/item/packageWrap, /obj/item/stack/cable_coil, /obj/item/radio/electropack, /obj/item/tool/wirecutters, /obj/item/tool/weldingtool)))
@@ -82,8 +78,8 @@
 		update_icon()
 		to_chat(user, "<span class='notice'>You unlock \the [src].</span>")
 		return
-	if(!opened)
-		src.togglelock(user)
+	if(!opened && user.a_intent != INTENT_HARM)
+		togglelock(user)
 		return
 	return ..()
 

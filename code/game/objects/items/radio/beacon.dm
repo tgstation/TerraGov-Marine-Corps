@@ -6,8 +6,6 @@
 	var/code = "electronic"
 	origin_tech = "bluespace=1"
 
-/obj/item/radio/beacon/hear_talk()
-	return
 
 
 /obj/item/radio/beacon/send_hear()
