@@ -370,8 +370,9 @@
 
 /turf/closed/wall/resin/ChangeTurf(new_turf_path, forget_old_turf, flags)
 	. = ..()
-	if(forget_old_turf)
-		new /obj/effect/alien/weeds(src)
+	if(!forget_old_turf)
+		return
+	new /obj/effect/alien/weeds(.)
 
 /turf/closed/wall/resin/flamer_fire_act()
 	take_damage(50)
