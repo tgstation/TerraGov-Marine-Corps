@@ -96,7 +96,7 @@
 		return
 
 	var/queen_healing_penalty = 0.5
-	if(!hive?.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z) //if there is a queen, it must be in the same z-level
+	if(!hive || (hive.living_xeno_queen && hive.living_xeno_queen.loc.z == T.z)) //if we are hiveless or the living queen's z-level is the same as ours.
 		queen_healing_penalty = 1
 
 	if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
