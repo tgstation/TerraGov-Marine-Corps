@@ -194,7 +194,7 @@
 			"<span class='danger'>You smash \the [src]!</span>", null, 5)
 		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
-	else
+	else if(!opened)
 		return attack_paw(M)
 
 /obj/structure/closet/attackby(obj/item/W, mob/living/user)
@@ -294,11 +294,6 @@
 
 /obj/structure/closet/attack_paw(mob/user as mob)
 	return attack_hand(user)
-
-/obj/structure/closet/attack_alien(mob/user as mob)
-	if(opened)
-		return FALSE // stop xeno closing things
-	return src.attack_hand(user)
 
 /obj/structure/closet/attack_hand(mob/living/user)
 	add_fingerprint(user)
