@@ -471,12 +471,12 @@ nanoui is used to open and update nano browser uis
 		return
 	var/params = "[REF(src)]"
 
-	addtimer(CALLBACK(src, ./proc/on_close_winset_c), 2)
+	addtimer(CALLBACK(src, .proc/on_close_winset_c, params), 2)
 
 		
 
 
-/datum/nanoui/proc/on_close_winset_c()
+/datum/nanoui/proc/on_close_winset_c(params)
 	if(!user?.client)
 		return
 	winset(user, window_id, "on-close=\"nanoclose [params]\"")
