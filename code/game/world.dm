@@ -17,16 +17,16 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	SetupExternalRSC()
 
-	//make_datum_references_lists()	//Port this from /tg/
-	populate_seed_list()
-	populate_gear_list()
-	makeDatumRefLists() //Legacy
-
 	TgsNew(new /datum/tgs_event_handler/tg, minimum_required_security_level = TGS_SECURITY_TRUSTED)
 
 	GLOB.revdata = new
 
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
+	
+	//make_datum_references_lists()	//Port this from /tg/
+	populate_seed_list()
+	populate_gear_list()
+	makeDatumRefLists() //Legacy
 	loadShuttleInfoDatums()
 
 	//SetupLogs depends on the RoundID, so lets check
