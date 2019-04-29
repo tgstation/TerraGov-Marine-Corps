@@ -81,8 +81,6 @@
 			var/mob/living/carbon/Xenomorph/X = i
 			if(is_centcom_level(X.z))
 				continue
-			if(X.stat == DEAD)
-				continue
 			xenos += X
 	return xenos
 
