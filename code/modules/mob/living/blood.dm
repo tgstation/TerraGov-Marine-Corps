@@ -203,16 +203,12 @@
 	var/b_id = get_blood_id()
 	for(var/datum/reagent/R in container.reagents.reagent_list)
 		// If its blood, lets check its compatible or not and cause some toxins.
-		to_chat(world, "injecting [R], [R.id] ? [b_id]")
 		if(istype(R, /datum/reagent/blood) && b_id && R.id == b_id)
 			if(b_id == "blood" && R.data && !(R.data["blood_type"] in get_safe_blood(dna.b_type)))
-				to_chat(world, "bad blood [R], [R.id] ? [b_id]")
 				reagents.add_reagent("toxin", amount * 0.5)
 			else
-				to_chat(world, "good blood [R], [R.id] ? [b_id]")
 				blood_volume = min(blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
 		else
-			to_chat(world, "not blood [R], [R.id] ? [b_id]")
 			reagents.add_reagent(R.id, amount, R.data)
 			reagents.update_total()
 		container.reagents.remove_reagent(R.id, amount)
