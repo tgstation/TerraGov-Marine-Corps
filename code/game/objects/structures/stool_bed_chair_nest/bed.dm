@@ -622,8 +622,8 @@ var/global/list/activated_medevac_stretchers = list()
 	 return
 
 	if(istype(O, /obj/item/card/id))
-		if(!allowed(user))
-			to_chat(user, "<span class='warning'>Access denied.</span>")
+		if(locked)
+			to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now.</span>")
 			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 			return
 		locked = !locked
