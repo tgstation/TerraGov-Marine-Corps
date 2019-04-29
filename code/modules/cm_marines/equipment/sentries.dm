@@ -366,7 +366,7 @@
 		"burst_size" = burst_size,
 	)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		if(!istype(src, /obj/machinery/marine_turret/mini)) //Check for mini-sentry
 			ui = new(user, src, ui_key, "sentry.tmpl", "[src.name] UI", 625, 525)

@@ -70,7 +70,7 @@
 	if(new_character.mind)								//disassociate any mind currently in our new body's mind variable
 		new_character.mind.current = null
 
-	nanomanager.user_transferred(current, new_character) // transfer active NanoUI instances to new user
+	SSnano.user_transferred(current, new_character) // transfer active NanoUI instances to new user
 
 	current = new_character								//associate ourself with our new body
 	new_character.mind = src							//and associate our new body with ourself

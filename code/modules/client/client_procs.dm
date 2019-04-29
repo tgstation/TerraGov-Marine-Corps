@@ -219,7 +219,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	validate_key_in_db()
 
 	send_assets()
-	nanomanager.send_resources(src)
+	SSnano.send_resources(src)
 
 	generate_clickcatcher()
 	apply_clickcatcher()
