@@ -63,16 +63,3 @@
 /mob/living/carbon/human/get_alt_name()
 	if(name != GetVoice())
 		return " (as [get_id_name("Unknown")])"
-
-
-/mob/living/carbon/human/compose_job(atom/movable/speaker, message_langs, raw_message, radio_freq)
-	if(!ishuman(speaker))
-		return ..()
-
-	var/mob/living/carbon/human/H = speaker
-
-	var/datum/job/J = SSjob.GetJob(H.mind ? H.mind.assigned_role : H.job)
-	if(!istype(J))
-		return ..()
-
-	return "[get_paygrades(J.paygrade, TRUE, gender)] "

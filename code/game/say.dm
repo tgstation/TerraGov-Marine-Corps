@@ -80,7 +80,16 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 
 /atom/movable/proc/compose_job(atom/movable/speaker, message_langs, raw_message, radio_freq)
-	return ""
+	if(!ishuman(speaker))
+		return ""
+
+	var/mob/living/carbon/human/H = speaker
+
+	var/datum/job/J = SSjob.GetJob(H.mind ? H.mind.assigned_role : H.job)
+	if(!istype(J))
+		return ""
+
+	return "[get_paygrades(J.paygrade, TRUE, gender)] "
 
 
 /atom/movable/proc/say_mod(input, message_mode, datum/language/language)
