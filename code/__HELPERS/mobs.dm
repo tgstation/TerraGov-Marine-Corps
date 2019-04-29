@@ -142,11 +142,6 @@ proc/age2agedescription(age)
 	var/atom/Uloc = user.loc
 
 	var/holding = user.get_active_held_item()
-
-	var/holdingnull = TRUE //User's hand started out empty, check for an empty hand
-	if(holding)
-		holdingnull = FALSE //Users hand started holding something, check to see if it's still holding that
-
 	delay *= user.do_after_coefficent()
 
 	var/atom/progtarget = target ? target : user
@@ -169,15 +164,9 @@ proc/age2agedescription(age)
 				. = FALSE
 				break
 
-		if(needhand)
-			//This might seem like an odd check, but you can still need a hand even when it's empty
-			//i.e the hand is used to pull some item/tool out of the construction
-			if(!holdingnull && !holding)
-				. = FALSE
-				break
-			if(user.get_active_held_item() != holding)
-				. = FALSE
-				break
+		if(needhand && user.get_active_held_item() != holding)
+			. = FALSE
+			break
 	if(P)
 		qdel(P)
 	user.action_busy--
