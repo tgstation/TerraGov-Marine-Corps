@@ -171,7 +171,10 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 
 	if(CONFIG_GET(flag/log_access))
 		for(var/I in GLOB.clients)
-			if(!I || I == src)
+			if(!I)
+				stack_trace("null in GLOB.clients during client/New()")
+				continue
+			if(I == src)
 				continue
 			var/client/C = I
 			if(C.key && (C.key != key) )
