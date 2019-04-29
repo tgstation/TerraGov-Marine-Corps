@@ -34,12 +34,11 @@
 	icon_state = "mopbucket"
 	density = TRUE
 	anchored = FALSE
-	container_type = OPENCONTAINER
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
 /obj/structure/mopbucket/New()
 	..()
-	create_reagents(100)
+	create_reagents(100, OPENCONTAINER)
 
 /obj/structure/mopbucket/examine(mob/user)
 	..()

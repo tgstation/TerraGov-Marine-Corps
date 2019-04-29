@@ -182,7 +182,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "cigoff"
 	w_class = 1
 	flags_armor_protection = 0
-	container_type = INJECTABLE
 	var/lit = FALSE
 	var/icon_on = "cigon"  //Note - these are in masks.dmi not in cigarette.dmi
 	var/icon_off = "cigoff"
@@ -190,15 +189,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/lastHolder = null
 	var/smoketime = 300
 	var/chem_volume = 30
-	list_reagents = list("nicotine" = 15)
+	var/list/list_reagents = list("nicotine" = 15)
 	flags_armor_protection = 0
 
 /obj/item/clothing/mask/cigarette/New()
 	. = ..()
-
-	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 30
-	reagents.set_reacting(FALSE)
-	add_initial_reagents()
+	create_reagents(chem_volume, INJECTABLE|NO_REACT, list_reagents) // making the cigarrete a chemical holder with a maximum volume of 30
 
 /obj/item/clothing/mask/cigarette/attackby(obj/item/W, mob/user, params)
 	if(lit || smoketime <= 0)
@@ -314,7 +310,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		e.start()
 		qdel(src)
 		return
-	reagents.set_reacting(TRUE)
+	DISABLE_BITFIELD(reagents.reagent_flags, NO_REACT)
 	reagents.handle_reactions()
 	icon_state = icon_on
 	item_state = icon_on

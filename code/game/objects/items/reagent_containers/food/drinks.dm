@@ -6,7 +6,7 @@
 	desc = "yummy"
 	icon = 'icons/obj/items/drinks.dmi'
 	icon_state = null
-	container_type = OPENCONTAINER_NOUNIT
+	init_reagent_flags = OPENCONTAINER_NOUNIT
 	var/gulp_size = 5 //This is now officially broken ... need to think of a nice way to fix it.
 	possible_transfer_amounts = list(5,10,25)
 	volume = 50

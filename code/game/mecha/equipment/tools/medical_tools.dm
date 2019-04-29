@@ -392,8 +392,7 @@
 	syringes = new
 	known_reagents = list("inaprovaline"="Inaprovaline","dylovene"="Dylovene")
 	processed_reagents = new
-	create_reagents(max_volume)
-	reagents.set_reacting(FALSE)
+	create_reagents(max_volume, NO_REACT)
 	synth = new (list(src),0)
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/detach()
@@ -402,7 +401,8 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/critfail()
 	. = ..()
-	reagents.set_reacting(TRUE)
+	DISABLE_BITFIELD(reagents.reagent_flags, NO_REACT)
+	reagents.handle_reactions()
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/get_equip_info()
 	. = ..()

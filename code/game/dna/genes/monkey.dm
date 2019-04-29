@@ -111,8 +111,8 @@
 		qdel(animation)
 
 	var/mob/living/carbon/human/O
-	if(Mo.greaterform)
-		O = new(src, Mo.greaterform.name)
+	if(Mo.species)
+		O = new(src, Mo.species.name)
 	else
 		O = new(src)
 
