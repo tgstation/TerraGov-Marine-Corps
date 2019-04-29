@@ -680,3 +680,7 @@ below 100 is not dizzy
 			layer = initial(layer)
 
 	return canmove
+
+// called when the client disconnects and is away.
+/mob/living/proc/begin_away()
+	away_time = set_away_time(world.time)

@@ -136,15 +136,16 @@
 	return ghost
 
 
-/mob/proc/set_away_time()
+/mob/proc/set_away_time(new_away)
 	return
 
-/mob/living/set_away_time()
-	away_time = world.time //Generic way to handle away time, currently unused.
+/mob/living/set_away_time(new_away = world.time)
+	away_time = new_away //Generic way to handle away time, currently unused.
 
 
-/mob/living/carbon/Xenomorph/set_away_time()
-	away_time = -XENO_AFK_TIMER //Xenos who force-ghost can be immediately taken by observers.
+/mob/living/carbon/Xenomorph/set_away_time(new_away = -XENO_AFK_TIMER)
+	away_time = new_away //Xenos who force-ghost can be immediately taken by observers.
+	handle_afk_takeover()
 
 
 /mob/dead/observer/proc/unfollow()
@@ -395,7 +396,7 @@
 			if(M.client && M.client.is_afk())
 				name += " (AFK)"
 			else if(!M.client && (M.key || M.ckey))
-				if(copytext(M.key, 1, 2) == "@")
+				if(isaghost(M))
 					name += " (AGHOSTED)"
 				else
 					name += " (DC)"
