@@ -9,46 +9,46 @@
 #define PROGRESS_BRASS			/datum/progressbar/brass
 #define PROGRESS_CLOCK			/datum/progressbar/clock
 
-#define PROG_BG_GENERIC			/mutable_appearance/progress/bg
-#define PROG_BG_CLOCK			/mutable_appearance/progress/bg/clock
+#define PROG_BG_GENERIC			/image/progress/bg
+#define PROG_BG_CLOCK			/image/progress/bg/clock
 
-#define PROG_FRAME_GENERIC		/mutable_appearance/progress/frame
-#define PROG_FRAME_BATTERY		/mutable_appearance/progress/frame/battery
-#define PROG_FRAME_TRAFFIC		/mutable_appearance/progress/frame/traffic
-#define PROG_FRAME_BRASS		/mutable_appearance/progress/frame/brass
-#define PROG_FRAME_CLOCK		/mutable_appearance/progress/frame/clock
+#define PROG_FRAME_GENERIC		/image/progress/frame
+#define PROG_FRAME_BATTERY		/image/progress/frame/battery
+#define PROG_FRAME_TRAFFIC		/image/progress/frame/traffic
+#define PROG_FRAME_BRASS		/image/progress/frame/brass
+#define PROG_FRAME_CLOCK		/image/progress/frame/clock
 
-#define PROG_BAR_GENERIC		/mutable_appearance/progress/bar
-#define PROG_BAR_BATTERY		/mutable_appearance/progress/bar/battery
-#define PROG_BAR_TRAFFIC		/mutable_appearance/progress/bar/traffic
-#define PROG_BAR_GRAYSCALE		/mutable_appearance/progress/bar/mono
-#define PROG_BAR_BRASS			/mutable_appearance/progress/bar/mono/brass
-#define PROG_BAR_CLOCK			/mutable_appearance/progress/bar/clock
-#define PROG_BAR_GRAY_CLOCK		/mutable_appearance/progress/bar/clock/mono
+#define PROG_BAR_GENERIC		/image/progress/bar
+#define PROG_BAR_BATTERY		/image/progress/bar/battery
+#define PROG_BAR_TRAFFIC		/image/progress/bar/traffic
+#define PROG_BAR_GRAYSCALE		/image/progress/bar/mono
+#define PROG_BAR_BRASS			/image/progress/bar/mono/brass
+#define PROG_BAR_CLOCK			/image/progress/bar/clock
+#define PROG_BAR_GRAY_CLOCK		/image/progress/bar/clock/mono
 
 //busy icons defines
 
 #define DISPLAY_ICON_TARG		"target"
 #define DISPLAY_ICON_USER		"user"
 
-#define USER_ICON_GENERIC		/mutable_appearance/progress/display
-#define USER_ICON_MEDICAL		/mutable_appearance/progress/display/medical
-#define USER_ICON_BUILD			/mutable_appearance/progress/display/construction
-#define USER_ICON_FRIENDLY		/mutable_appearance/progress/display/friendly
-#define USER_ICON_HOSTILE		/mutable_appearance/progress/display/hostile
-#define USER_ICON_CLOCK			/mutable_appearance/progress/display/clock
-#define USER_ICON_CLOCK_ALT		/mutable_appearance/progress/display/clock/alt
-#define USER_ICON_DANGER 		/mutable_appearance/progress/display/danger
-#define USER_ICON_BAR			/mutable_appearance/progress/display/bar
-#define USER_ICON_UNSKILLED		/mutable_appearance/progress/display/unskilled
+#define USER_ICON_GENERIC		/image/progress/display
+#define USER_ICON_MEDICAL		/image/progress/display/medical
+#define USER_ICON_BUILD			/image/progress/display/construction
+#define USER_ICON_FRIENDLY		/image/progress/display/friendly
+#define USER_ICON_HOSTILE		/image/progress/display/hostile
+#define USER_ICON_CLOCK			/image/progress/display/clock
+#define USER_ICON_CLOCK_ALT		/image/progress/display/clock/alt
+#define USER_ICON_DANGER 		/image/progress/display/danger
+#define USER_ICON_BAR			/image/progress/display/bar
+#define USER_ICON_UNSKILLED		/image/progress/display/unskilled
 
-#define TARGET_ICON_GENERIC		/mutable_appearance/progress/display/target
-#define TARGET_ICON_MEDICAL		/mutable_appearance/progress/display/medical/target
-#define TARGET_ICON_BUILD		/mutable_appearance/progress/display/construction/target
-#define TARGET_ICON_FRIENDLY	/mutable_appearance/progress/display/friendly/target
-#define TARGET_ICON_HOSTILE		/mutable_appearance/progress/display/hostile/target
-#define TARGET_ICON_CLOCK		/mutable_appearance/progress/display/clock/target
-#define TARGET_ICON_CLOCK_ALT	/mutable_appearance/progress/display/clock/alt/target
-#define TARGET_ICON_DANGER 		/mutable_appearance/progress/display/danger/target
-#define TARGET_ICON_BAR			/mutable_appearance/progress/display/bar/target
-#define TARGET_ICON_UNSKILLED	/mutable_appearance/progress/display/unskilled/target
+#define TARGET_ICON_GENERIC		/image/progress/display/target
+#define TARGET_ICON_MEDICAL		/image/progress/display/medical/target
+#define TARGET_ICON_BUILD		/image/progress/display/construction/target
+#define TARGET_ICON_FRIENDLY	/image/progress/display/friendly/target
+#define TARGET_ICON_HOSTILE		/image/progress/display/hostile/target
+#define TARGET_ICON_CLOCK		/image/progress/display/clock/target
+#define TARGET_ICON_CLOCK_ALT	/image/progress/display/clock/alt/target
+#define TARGET_ICON_DANGER 		/image/progress/display/danger/target
+#define TARGET_ICON_BAR			/image/progress/display/bar/target
+#define TARGET_ICON_UNSKILLED	/image/progress/display/unskilled/target
