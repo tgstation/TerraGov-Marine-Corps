@@ -412,8 +412,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
 		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
 		if(SP.health)
-			damage = 60
-			tank_damage = 0
+			damage = 45
+			tank_damage = 1
 
 	take_damage(damage)
 	CA.take_damage_type(tank_damage, "blunt", src)
