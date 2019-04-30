@@ -394,7 +394,9 @@
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-			usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
+			var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
+			popup.set_content(R.fields["last_scan_result"])
+			popup.open(FALSE)
 		break
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attack_hand(mob/user)
