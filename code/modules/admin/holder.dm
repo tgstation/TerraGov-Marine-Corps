@@ -337,7 +337,8 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/SDQL2_query,
 	/datum/admins/proc/map_template_load,
 	/datum/admins/proc/map_template_upload,
-	/datum/admins/proc/reestablish_db_connection
+	/datum/admins/proc/reestablish_db_connection,
+	/datum/admins/proc/view_runtimes
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 GLOBAL_PROTECT(admin_verbs_debug)

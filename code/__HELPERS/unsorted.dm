@@ -1382,6 +1382,15 @@ var/list/WALLITEMS = list(
 /datum/proc/stack_trace(msg)
 	CRASH(msg)
 
+GLOBAL_REAL_VAR(list/stack_trace_storage)
+/proc/gib_stack_trace()
+	stack_trace_storage = list()
+	stack_trace()
+	stack_trace_storage.Cut(1, min(3, length(stack_trace_storage)))
+	. = stack_trace_storage
+	stack_trace_storage = null
+
+
 ////// Matrices ///////
 
 /matrix/proc/TurnTo(old_angle, new_angle)
