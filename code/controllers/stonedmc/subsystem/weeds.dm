@@ -51,8 +51,9 @@ SUBSYSTEM_DEF(weeds)
 		var/turf/T = A
 		var/obj/effect/alien/weeds/node/N = creating[T]
 		creating -= T
-
-		create_weed(T, N)
+		// Adds a bit of jitter to the spawning weeds.
+		spawn(rand(0,10))
+			create_weed(T, N)
 		pending -= T
 
 		if(MC_TICK_CHECK)
