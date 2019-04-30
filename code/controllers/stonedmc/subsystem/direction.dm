@@ -48,6 +48,8 @@ SUBSYSTEM_DEF(direction)
 		while(currentrun[squad_id].len)
 			L = currentrun[squad_id][currentrun[squad_id].len]
 			currentrun[squad_id].len--
+			if(QDELETED(L))
+				stop_tracking(squad_id, L)
 			L.update_leader_tracking(SL)
 			if(MC_TICK_CHECK)
 				return
