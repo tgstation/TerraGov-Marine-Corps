@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(direction)
 	for(var/squad_id in currentrun)
 		var/mob/living/L
 		var/mob/living/SL = leader_mapping[squad_id]
-		if (!SL)
+		if (QDELETED(SL))
 			clear_run(squad_id) // clear and reset all the squad members
 			continue
 		while(currentrun[squad_id].len)
@@ -50,6 +50,7 @@ SUBSYSTEM_DEF(direction)
 			currentrun[squad_id].len--
 			if(QDELETED(L))
 				stop_tracking(squad_id, L)
+				continue
 			L.update_leader_tracking(SL)
 			if(MC_TICK_CHECK)
 				return
@@ -59,6 +60,9 @@ SUBSYSTEM_DEF(direction)
 	while(currentrun[squad_id].len)
 		L = currentrun[squad_id][currentrun[squad_id].len]
 		currentrun[squad_id].len--
+		if(QDELETED(L))
+			stop_tracking(squad_id, L)
+			continue
 		L.clear_leader_tracking()
 		if(MC_TICK_CHECK)
 			return FALSE
