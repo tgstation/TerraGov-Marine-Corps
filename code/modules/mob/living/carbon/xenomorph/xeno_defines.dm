@@ -277,3 +277,5 @@
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
 
 	var/butchery_progress = 0
+
+	var/last_damage_time

@@ -130,8 +130,11 @@
 /mob/living/carbon/Xenomorph/proc/handle_overhealth()
 	if(overhealth > XENO_MAX_OVERHEALTH) // too much overhealth
 		overhealth = max(0, overhealth - XENO_OVERHEALTH_DECAY_RATE)
-	if(overhealth < XENO_MAX_OVERHEALTH) // not enough overhealth
-		overhealth = min(overhealth + XENO_OVERHEALTH_GEN_RATE, XENO_MAX_OVERHEALTH)
+	else if(overhealth < XENO_MAX_OVERHEALTH) // not enough overhealth
+		var/gen_rate = XENO_OVERHEALTH_GEN_RATE
+		if(last_damage_time + 10 SECONDS < world.time)
+			gen_rate *= 5
+		overhealth = min(overhealth + gen_rate, XENO_MAX_OVERHEALTH)
 
 /mob/living/carbon/Xenomorph/proc/handle_living_plasma_updates()
 	var/turf/T = loc

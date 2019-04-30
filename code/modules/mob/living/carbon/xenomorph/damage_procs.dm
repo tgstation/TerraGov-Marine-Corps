@@ -119,6 +119,8 @@
 	if(stat == DEAD)
 		return FALSE
 
+	last_damage_time = world.time
+
 	damage = process_rage_damage(damage, src)
 
 	if(overhealth < damage)
@@ -127,6 +129,7 @@
 	else
 		overhealth -= damage
 		damage = 0
+		return TRUE
 
 	switch(damagetype)
 		if(BRUTE)
