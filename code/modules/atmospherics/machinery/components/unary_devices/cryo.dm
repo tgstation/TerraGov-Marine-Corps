@@ -160,7 +160,7 @@
 				reason = "<b>Reason for release:</b> Patient death."
 			var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 			AI.SetName("Cryotube Notification System")
-			AI.aiRadio.talk_into(AI,"Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]","MedSci","announces")
+			AI.aiRadio.talk_into(AI, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", "MedSci", "announces", /datum/language/common)
 			qdel(AI)
 	occupant = null
 	update_use_power(1)
@@ -450,7 +450,7 @@
 				data["beakerVolume"] += R.volume
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm

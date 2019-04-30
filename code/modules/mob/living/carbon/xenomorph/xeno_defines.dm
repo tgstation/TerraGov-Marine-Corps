@@ -125,6 +125,7 @@
 	unacidable = TRUE
 	away_time = -XENO_AFK_TIMER //Xenos start grabbable. This is reset on Login()
 	var/hivenumber = XENO_HIVE_NORMAL
+	job = ROLE_XENOMORPH
 
 	var/datum/hive_status/hive
 
@@ -146,7 +147,7 @@
 	var/evolution_stored = 0 //How much evolution they have stored
 
 	var/upgrade_stored = 0 //How much upgrade points they have stored.
-	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level. 
+	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
 	var/gib_chance = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
 	var/critical_proc = 0
 	var/critical_delay = 25
@@ -196,6 +197,8 @@
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
 	//It should add them properly on New() and should reset/readd them on evolves
 	var/list/inherent_verbs = list()
+
+	initial_language_holder = /datum/language_holder/xeno
 
 	//Lord forgive me for this horror, but Life code is awful
 	//These are tally vars, yep. Because resetting the aura value directly leads to fuckups
@@ -257,6 +260,9 @@
 	var/savage = FALSE
 	var/savage_used = FALSE
 
+	//Hunter vars
+	var/sneak_bonus = 0.00
+
 	//Acid spray
 	var/last_spray_used
 
@@ -273,3 +279,5 @@
 	var/cresttoss_used = FALSE
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	var/butchery_progress = 0

@@ -176,19 +176,6 @@
 			var/can_break_cuffs
 			if(HULK in usr.mutations)
 				can_break_cuffs = 1
-			else if(iszombie(CM))
-				CM.visible_message("<span class='danger'>[CM] is attempting to break out of [HC]...</span>", \
-				"<span class='notice'>You use your superior zombie strength to start breaking [HC]...</span>")
-				spawn(0)
-					if(do_after(CM, 100, FALSE, 5, BUSY_ICON_HOSTILE))
-						if(!CM.handcuffed || CM.buckled)
-							return
-						CM.visible_message("<span class='danger'>[CM] tears [HC] in half!</span>", \
-							"<span class='notice'>You tear [HC] in half!</span>")
-						qdel(CM.handcuffed)
-						CM.handcuffed = null
-						CM.handcuff_update()
-				return
 			else if(istype(CM,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = CM
 				if(H.species.can_shred(H))

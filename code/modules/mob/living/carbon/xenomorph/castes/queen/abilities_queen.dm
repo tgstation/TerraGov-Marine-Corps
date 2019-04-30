@@ -154,28 +154,10 @@
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
-	for(var/mob/M in view())
-		if(M && M.client)
-			if(isxeno(M))
-				shake_camera(M, 10, 1)
-			else
-				shake_camera(M, 30, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
-
-	for(var/mob/living/carbon/human/H in oview(7, src))
-		var/dist = get_dist(src,H)
-		var/reduction = max(1 - 0.1 * H.protection_aura, 0) //Hold orders will reduce the Halloss; 10% per rank.
-		var/halloss_damage = (max(0,140 - dist * 10)) * reduction //Max 130 beside Queen, 70 at the edge
-		var/stun_duration = max(0,1.1 - dist * 0.1) * reduction //Max 1 beside Queen, 0.4 at the edge.
-
-		if(dist < 8)
-			to_chat(H, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
-			H.stunned += stun_duration
-			H.KnockDown(stun_duration)
-			H.apply_damage(halloss_damage, HALLOSS)
-			if(!H.ear_deaf)
-				H.ear_deaf += stun_duration * 20  //Deafens them temporarily
-			//Perception distorting effects of the psychic scream
-			addtimer(CALLBACK(GLOBAL_PROC, /proc/shake_camera, H, stun_duration * 10, 0.75), 31)
+	for(var/mob/living/L in range(world.view))
+		if(L.stat == DEAD)
+			continue
+		L.screech_act(src)
 
 /mob/living/carbon/Xenomorph/Queen/proc/screech_cooldown()
 	has_screeched = FALSE

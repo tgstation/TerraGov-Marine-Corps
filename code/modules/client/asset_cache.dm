@@ -494,6 +494,20 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	name = "chat"
 
 
+/datum/asset/spritesheet/goonchat/register()
+	// pre-loading all lanugage icons also helps to avoid meta
+	InsertAll("language", 'icons/misc/language.dmi')
+	// catch languages which are pulling icons from another file
+	for(var/path in typesof(/datum/language))
+		var/datum/language/L = path
+		var/icon = initial(L.icon)
+		if(icon != 'icons/misc/language.dmi')
+			var/icon_state = initial(L.icon_state)
+			Insert("language-[icon_state]", icon, icon_state = icon_state)
+
+	return ..()
+
+
 /datum/asset/spritesheet/pipes
 	name = "pipes"
 
@@ -521,3 +535,46 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	assets = list(
 		"ntlogo.png"	= 'html/ntlogo.png'
 	)
+
+
+/datum/asset/nanoui
+	var/list/common = list()
+
+	var/list/common_dirs = list(
+		"nano/css/",
+		"nano/images/",
+		"nano/js/"
+	)
+	var/list/uncommon_dirs = list(
+		"nano/templates/"
+	)
+
+
+/datum/asset/nanoui/register()
+	// Crawl the directories to find files.
+	for(var/path in common_dirs)
+		var/list/filenames = flist(path)
+		for(var/filename in filenames)
+			if(copytext(filename, length(filename)) == "/") // Ignore directories.
+				continue
+			if(!fexists(path + filename))
+				continue
+			common[filename] = fcopy_rsc(path + filename)
+			register_asset(filename, common[filename])
+	
+	for(var/path in uncommon_dirs)
+		var/list/filenames = flist(path)
+		for(var/filename in filenames)
+			if(copytext(filename, length(filename)) == "/") // Ignore directories.
+				continue
+			if(!fexists(path + filename))
+				continue
+			register_asset(filename, fcopy_rsc(path + filename))
+
+
+/datum/asset/nanoui/send(client, uncommon)
+	if(!islist(uncommon))
+		uncommon = list(uncommon)
+
+	send_asset_list(client, uncommon, FALSE)
+	send_asset_list(client, common, TRUE)

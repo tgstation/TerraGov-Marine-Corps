@@ -200,3 +200,7 @@
 #define CRYO_BRAVO		"Bravo Squad"
 #define CRYO_CHARLIE	"Charlie Squad"
 #define CRYO_DELTA		"Delta Squad"
+
+
+#define XP_REQ_INTERMEDIATE 60
+#define XP_REQ_EXPERIENCED 180

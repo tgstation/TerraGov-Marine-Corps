@@ -48,9 +48,8 @@
 	if(!((user == loc || (in_range(src, user) && istype(src.loc, /turf)))))
 		return
 
-	var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
-	smoke.set_up(1, 0, user.loc)
-	smoke.attach(user)
+	var/datum/effect_system/smoke_spread/smoke = new(user)
+	smoke.set_up(1, user.loc)
 	smoke.start()
 	var/list/L = list()
 	for(var/turf/T in get_area_turfs(thearea.type))

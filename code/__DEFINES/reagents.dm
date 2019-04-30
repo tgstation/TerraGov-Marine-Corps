@@ -2,7 +2,7 @@
 #define LIQUID		2
 #define GAS			3
 
-// container_type defines
+// reagent_flags defines
 #define INJECTABLE		(1<<0)	// Makes it possible to add reagents through droppers and syringes.
 #define DRAWABLE		(1<<1)	// Makes it possible to remove reagents through syringes.
 
@@ -14,6 +14,7 @@
 
 #define AMOUNT_SKILLCHECK	(1<<6) //For containers which apply a skill check for wheter showing their reagents to the user or not.
 #define AMOUNT_ESTIMEE	(1<<7)	//For containers without volume meters on (e.g. drinking glasses, cans, sprays)
+#define NO_REACT (1<<8)
 
 // Is an open container for all intents and purposes.
 #define OPENCONTAINER 	(REFILLABLE | DRAINABLE | TRANSPARENT)
@@ -46,10 +47,6 @@
 
 // Factor of how fast mob nutrition decreases
 #define HUNGER_FACTOR 0.05
-
-//Flags for reagents
-#define REAGENT_NOREACT (1<<0) //until we get to GLOB. lists and vars.
-
 
 //Specific Heat, unused stuff right now..
 #define SPECIFIC_HEAT_DEFAULT		200

@@ -15,8 +15,6 @@
 	var/list/gamemode_cache
 	var/list/votable_modes // votable modes
 	var/list/mode_names
-	var/list/mode_reports
-	var/list/mode_false_report_weight
 
 	var/motd
 
@@ -72,11 +70,9 @@
 	entries_by_type.Cut()
 	QDEL_LIST_ASSOC_VAL(entries)
 	entries = null
-	/*
 	QDEL_LIST_ASSOC_VAL(maplist)
 	maplist = null
 	QDEL_NULL(defaultmap)
-	*/
 
 
 /datum/controller/configuration/Destroy()
@@ -243,8 +239,6 @@
 	gamemode_cache = typecacheof(/datum/game_mode, TRUE)
 	modes = list()
 	mode_names = list()
-	mode_reports = list()
-	mode_false_report_weight = list()
 	votable_modes = list()
 	for(var/T in gamemode_cache)
 		// I wish I didn't have to instance the game modes in order to look up
@@ -260,14 +254,12 @@
 
 
 /datum/controller/configuration/proc/LoadMOTD()
-	GLOB.motd = file2text("[directory]/motd.txt")
-	GLOB.motd += "<br><br><span class='tip'>[pick(ALLTIPS)]<br></span>"
-
-	/*
+	var/motd = file2text("[directory]/motd.txt")
 	var/tm_info = GLOB.revdata.GetTestMergeInfo()
 	if(motd || tm_info)
 		motd = motd ? "[motd]<br>[tm_info]" : tm_info
-	*/
+	motd += "<br><br><span class='tip'>[pick(ALLTIPS)]<br></span>"
+	GLOB.motd = motd
 
 
 /datum/controller/configuration/proc/loadmaplist(filename)
@@ -326,74 +318,9 @@
 				log_config("Unknown command in map vote config: '[command]'")
 
 /datum/controller/configuration/proc/pick_mode(mode_name)
-	// I wish I didn't have to instance the game modes in order to look up
-	// their information, but it is the only way (at least that I know of).
-	// ^ This guy didn't try hard enough
 	for(var/T in gamemode_cache)
 		var/datum/game_mode/M = T
 		var/ct = initial(M.config_tag)
 		if(ct && ct == mode_name)
 			return new T
 	return new /datum/game_mode/extended()
-
-
-/datum/controller/configuration/proc/get_runnable_modes()
-	return
-/*
-	var/list/datum/game_mode/runnable_modes = new
-	var/list/probabilities = Get(/datum/config_entry/keyed_list/probability)
-	var/list/min_pop = Get(/datum/config_entry/keyed_list/min_pop)
-	var/list/max_pop = Get(/datum/config_entry/keyed_list/max_pop)
-	var/list/repeated_mode_adjust = Get(/datum/config_entry/number_list/repeated_mode_adjust)
-	for(var/T in gamemode_cache)
-		var/datum/game_mode/M = new T()
-		runnable_modes += M
-		if(!(M.config_tag in modes))
-			qdel(M)
-			continue
-		if(probabilities[M.config_tag]<=0)
-			qdel(M)
-			continue
-		if(min_pop[M.config_tag])
-			M.required_players = min_pop[M.config_tag]
-		if(max_pop[M.config_tag])
-			M.maximum_players = max_pop[M.config_tag]
-		if(M.can_start())
-			var/final_weight = probabilities[M.config_tag]
-			if(SSpersistence.saved_modes.len == 3 && repeated_mode_adjust.len == 3)
-				var/recent_round = min(SSpersistence.saved_modes.Find(M.config_tag),3)
-				var/adjustment = 0
-				while(recent_round)
-					adjustment += repeated_mode_adjust[recent_round]
-					recent_round = SSpersistence.saved_modes.Find(M.config_tag,recent_round+1,0)
-				final_weight *= ((100-adjustment)/100)
-			runnable_modes[M] = final_weight
-	return runnable_modes
-*/
-
-
-/datum/controller/configuration/proc/get_runnable_midround_modes(crew)
-	return
-/*
-	var/list/datum/game_mode/runnable_modes = new
-	var/list/probabilities = Get(/datum/config_entry/keyed_list/probability)
-	var/list/min_pop = Get(/datum/config_entry/keyed_list/min_pop)
-	var/list/max_pop = Get(/datum/config_entry/keyed_list/max_pop)
-	for(var/T in (gamemode_cache - SSticker.mode.type))
-		var/datum/game_mode/M = new T()
-		if(!(M.config_tag in modes))
-			qdel(M)
-			continue
-		if(probabilities[M.config_tag]<=0)
-			qdel(M)
-			continue
-		if(min_pop[M.config_tag])
-			M.required_players = min_pop[M.config_tag]
-		if(max_pop[M.config_tag])
-			M.maximum_players = max_pop[M.config_tag]
-		if(M.required_players <= crew)
-			if(M.maximum_players >= 0 && M.maximum_players < crew)
-				continue
-			runnable_modes[M] = probabilities[M.config_tag]
-	return runnable_modes
-*/

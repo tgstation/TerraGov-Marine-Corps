@@ -281,8 +281,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		mind.name = newname
 		if(mind.key)
 			log_played_names(mind.key, newname) //Just in case the mind is unsynced at the moment.
-	if(dna)
-		dna.real_name = real_name
 
 	return TRUE
 
@@ -292,8 +290,12 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	if(!.)
 		return FALSE
 
+	if(dna)
+		dna.real_name = real_name
+
 	if(istype(wear_id))
 		var/obj/item/card/id/C = wear_id
+		C.registered_name = real_name
 		C.update_label()
 
 	if(!GLOB.datacore.manifest_update(oldname, newname, job))
@@ -1507,3 +1509,13 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	else if(powerused < 1000000000) //Less than a GW
 		return "[round((powerused * 0.000001),0.001)] MW"
 	return "[round((powerused * 0.000000001),0.0001)] GW"
+
+// Bucket a value within boundary
+/proc/get_bucket(bucket_size, max, current, min = 0, list/boundary_terms)
+	if (length(boundary_terms) == 2)
+		if (current >= max) 
+			return boundary_terms[1]
+		if (current < min)
+			return boundary_terms[2]
+
+	return CEILING((bucket_size / max) * current, 1)

@@ -156,9 +156,7 @@
 
 /obj/item/tool/weldingtool/Initialize()
 	. = ..()
-//	var/random_fuel = min(rand(10,20),max_fuel)
-	create_reagents(max_fuel)
-	reagents.add_reagent("fuel", max_fuel)
+	create_reagents(max_fuel, null, list("fuel" = max_fuel))
 	return
 
 
@@ -328,10 +326,10 @@
 	status = !status
 	if(status)
 		to_chat(user, "<span class='notice'>You resecure [src] and close the fuel tank.</span>")
-		container_type = 0
+		DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 	else
 		to_chat(user, "<span class='notice'>[src] can now be refuelled and emptied.</span>")
-		container_type = OPENCONTAINER
+		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 
 /obj/item/tool/weldingtool/pickup(mob/user)
 	if(welding && loc != user)
