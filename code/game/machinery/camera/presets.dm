@@ -75,20 +75,6 @@ var/static/list/id_by_area = list()
 		id_by_area[A] = 0
 	c_tag = "[A.name] #[++id_by_area[A]]"
 
-// /obj/machinery/camera/autoname/proc/generate_c_tag()
-// 	number = 1
-// 	var/area/A = get_area(src)
-// 	if(!A)
-// 		return
-// 	for(var/obj/machinery/camera/autoname/C in GLOB.machines)
-// 		if(C == src) 
-// 			continue
-// 		var/area/CA = get_area(C)
-// 		if(CA.type == A.type)
-// 			if(C.number)
-// 				number = max(number, C.number+1)
-// 	c_tag = "[A.name] #[number]"
-
 //cameras installed inside the dropships, accessible via both cockpit monitor and Theseus camera computers
 /obj/machinery/camera/autoname/almayer/dropship_one
 	network = list("almayer", "dropship1")
