@@ -147,7 +147,7 @@
 	for(var/mob/living/L in range(world.view))
 		if(L.stat == DEAD)
 			continue
-		L.screech_act(src)
+		L.screech_act(X)
 
 // ***************************************
 // *********** Gut
