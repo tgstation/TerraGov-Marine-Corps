@@ -62,14 +62,13 @@
 
 // AUTONAME
 
-var/static/list/id_by_area = list()
-
 /obj/machinery/camera/autoname
 	var/number = 0 //camera number in area
 
 //This camera type automatically sets it's name to whatever the area that it's in is called.
 /obj/machinery/camera/autoname/New()
 	..()
+	var/static/list/id_by_area = list()
 	var/area/A = get_area(src)
 	if(!id_by_area[A])
 		id_by_area[A] = 0
