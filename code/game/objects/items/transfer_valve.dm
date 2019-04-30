@@ -60,7 +60,7 @@
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
 
 		attacher = user
-		nanomanager.update_uis(src) // update all UIs attached to src
+		SSnano.update_uis(src) // update all UIs attached to src
 
 
 /obj/item/transfer_valve/HasProximity(atom/movable/AM as mob|obj)
