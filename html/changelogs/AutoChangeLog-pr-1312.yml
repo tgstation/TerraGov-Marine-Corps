@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - rscadd: "Ghosts will automatically takeover available Xenos if their preferences allow it."
