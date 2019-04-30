@@ -1,5 +1,5 @@
 # merger hooks, run tools/hooks/install.bat or install.sh to set up
-*.dmm merge=dmm
+*.dmm merge=dmm linguist-generated=true
 *.dmi merge=dmi
 
 # force changelog merging to use union
