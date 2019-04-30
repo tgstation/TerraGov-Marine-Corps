@@ -1,3 +1,22 @@
+#define SOAK_REDUCTION_RATIO 0.25 // % of armor that is soak rest is % reduction
+
+#define ARMOR_SOAK(armor) ((armor * SOAK_REDUCTION_RATIO))
+#define ARMOR_REDUCTION(armor) ((armor * (1 - SOAK_REDUCTION_RATIO)))
+
+#define XENO_BOMB_RESIST_3 80
+#define XENO_BOMB_RESIST_2 60
+#define XENO_BOMB_RESIST_1 40
+
+// this will eventually be moved up to atom
+/mob/living/carbon/Xenomorph/proc/apply_armor_reduction(damage, damage_type)
+	var/armorval = armor.getRating(damage_type)
+	if(!armorval)
+		return damage
+	damage = max(0, damage - ARMOR_SOAK(armorval))
+	if(!damage)
+		return 0
+	return damage * ARMOR_REDUCTION(armorval)
+
 /mob/living/carbon/Xenomorph/ex_act(severity)
 
 	flash_eyes()
@@ -5,81 +24,60 @@
 	if(severity < 3 && stomach_contents.len)
 		for(var/mob/M in stomach_contents)
 			M.ex_act(severity + 1)
-
+	var/bomb_armor = armor.getRating("bomb")
 	var/b_loss = 0
 	var/f_loss = 0
 	switch(severity)
 		if(1)
-			switch(xeno_explosion_resistance)
-				if(3)
-					b_loss += rand(70, 80)
-					f_loss += rand(70, 80)
+			switch(bomb_armor)
+				if(XENO_BOMB_RESIST_3 to INFINITY)
 					add_slowdown(3)
-				if(2)
+				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					KnockDown(6)
 					adjust_stagger(4)
 					add_slowdown(4)
-					b_loss += rand(75, 85)
-					f_loss += rand(75, 85)
-				if(1)
+				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					if(prob(80))
 						KnockOut(2)
 					KnockDown(8)
 					adjust_stagger(5)
 					add_slowdown(5)
-					b_loss += rand(80, 90)
-					f_loss += rand(80, 90)
 				else
-					gib()
-					return
-
-		if(2)
+					return gib()
 			b_loss += rand(80, 100)
 			f_loss += rand(80, 100)
-			switch(xeno_explosion_resistance)
-				if(3)
-					b_loss *= XENO_EXPLOSION_RESIST_3_MODIFIER
-					f_loss *= XENO_EXPLOSION_RESIST_3_MODIFIER
-					apply_damage(b_loss, BRUTE)
-					apply_damage(f_loss, BURN)
-					updatehealth()
-					return
-				if(2)
+		if(2)
+			b_loss += rand(70, 80)
+			f_loss += rand(70, 80)
+			switch(bomb_armor)
+				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					KnockDown(4)
 					adjust_stagger(1)
 					add_slowdown(3)
-				if(1)
+				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					KnockDown(6)
 					adjust_stagger(4)
 					add_slowdown(4)
-				if(0)
+				if(-INFINITY to XENO_BOMB_RESIST_1)
 					if(prob(80))
 						KnockOut(4)
 					KnockDown(8)
 					adjust_stagger(5)
 					add_slowdown(5)
-
 		if(3)
 			b_loss += rand(40, 50)
 			f_loss += rand(40, 50)
-			switch(xeno_explosion_resistance)
-				if(3)
-					b_loss *= XENO_EXPLOSION_RESIST_3_MODIFIER
-					f_loss *= XENO_EXPLOSION_RESIST_3_MODIFIER
-					apply_damage(b_loss, BRUTE)
-					apply_damage(f_loss, BURN)
-					updatehealth()
-					return
-				if(2)
+			switch(bomb_armor)
+				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					if(!knocked_down) //so marines can't chainstun with grenades
 						KnockDown(2)
 					add_slowdown(1)
-				if(1)
+				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					if(!knocked_down)
 						KnockDown(3)
 					adjust_stagger(2)
 					add_slowdown(2)
-				if(0)
+				if(-INFINITY to XENO_BOMB_RESIST_1)
 					if(prob(40))
 						KnockOut(2)
 					if(!knocked_down)
@@ -87,12 +85,12 @@
 					adjust_stagger(4)
 					add_slowdown(4)
 
-	apply_damage(b_loss, BRUTE)
-	apply_damage(f_loss, BURN)
+	apply_damage(b_loss, BRUTE, armortype = "bomb")
+	apply_damage(f_loss, BURN, armortype = "bomb")
 	updatehealth()
 
 
-/mob/living/carbon/Xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, used_weapon = null, sharp = 0, edge = 0)
+/mob/living/carbon/Xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, armortype = "melee", blocked = 0, used_weapon = null, sharp = 0, edge = 0)
 	if(blocked >= 1) //total negation
 		return FALSE
 

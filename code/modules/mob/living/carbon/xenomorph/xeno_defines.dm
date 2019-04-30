@@ -143,6 +143,8 @@
 	var/time_of_birth
 
 	var/devour_timer = 0
+	
+	var/datum/armor/armor
 
 	var/evolution_stored = 0 //How much evolution they have stored
 
