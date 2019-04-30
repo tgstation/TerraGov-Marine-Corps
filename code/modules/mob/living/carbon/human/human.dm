@@ -919,7 +919,7 @@
 			to_chat(usr, "<span class='notice'>You add a [newcolor] holo card on [src].</span>")
 		update_targeted()
 
-	if (href_list["	"])
+	if (href_list["scanreport"])
 		if(hasHUD(usr,"medical"))
 			if(!ishuman(src))
 				to_chat(usr, "<span class='warning'>This only works on humanoids.</span>")
