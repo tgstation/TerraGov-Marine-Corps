@@ -631,7 +631,7 @@ var/global/list/activated_medevac_stretchers = list()
 		"<span class='notice'>You [locked ? "lock" : "unlock"] [src]'s interface.</span>")
 	else if(istype(O,/obj/item/roller/medevac))
 		if(locked)
-			to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now.</span>")
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 			return
 		var/obj/item/roller/medevac/R = O
