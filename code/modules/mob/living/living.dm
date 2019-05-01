@@ -75,6 +75,12 @@
 		AdjustKnockedout(-1)
 	return knocked_out
 
+/mob/living/proc/add_slowdown(amount)
+	return
+
+/mob/living/proc/adjust_stagger(amount)
+	return
+
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
 		return

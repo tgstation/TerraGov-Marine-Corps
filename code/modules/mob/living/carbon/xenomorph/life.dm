@@ -343,12 +343,6 @@
 	if(halloss)
 		adjustHalLoss(XENO_HALOSS_REGEN)
 
-/mob/living/carbon/Xenomorph/Crusher/adjust_stagger(amount)
-	if(amount > 0 && (charge_speed > CHARGE_SPEED_MAX * 0.5) ) //If we're over half the max charge speed, we don't accumulate more stagger stacks.
-		return FALSE
-	stagger = max(stagger + amount,0)
-	return stagger
-
 /mob/living/carbon/Xenomorph/proc/handle_afk_takeover()
 	if(client || world.time - away_time < XENO_AFK_TIMER)
 		return
