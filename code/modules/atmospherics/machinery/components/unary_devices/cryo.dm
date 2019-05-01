@@ -160,7 +160,7 @@
 				reason = "<b>Reason for release:</b> Patient death."
 			var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 			AI.SetName("Cryotube Notification System")
-			AI.aiRadio.talk_into(AI,"Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]","MedSci","announces")
+			AI.aiRadio.talk_into(AI, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", "MedSci", "announces", /datum/language/common)
 			qdel(AI)
 	occupant = null
 	update_use_power(1)
@@ -263,13 +263,13 @@
 	set name = "Eject occupant"
 	set category = "Object"
 	set src in oview(1)
-	if(usr == occupant)//If the user is inside the tube...
-		if (usr.stat == 2)//and he's not dead....
+	if(usr == occupant) //If the user is inside the tube...
+		if (usr.stat == DEAD) //and he's not dead....
 			return
 		to_chat(usr, "<span class='notice'>Auto release sequence activated. You will be released when you have recovered.</span>")
 		auto_release = TRUE
 	else
-		if (usr.stat != 0)
+		if (usr.stat != CONSCIOUS)
 			return
 		go_out()
 	add_fingerprint(usr)
@@ -450,11 +450,11 @@
 				data["beakerVolume"] += R.volume
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "cryo.tmpl", "Cryo Cell Control System", 520, 410)
+		ui = new(user, src, ui_key, "cryo.tmpl", "Cryo Cell Control System", 520, 430)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

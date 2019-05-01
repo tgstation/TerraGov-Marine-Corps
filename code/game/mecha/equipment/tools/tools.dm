@@ -649,8 +649,8 @@
 					RD.chassis.clearInternalDamage(int_dam_flag)
 					repaired = 1
 					break
-		if(health_boost<0 || RD.chassis.health < initial(RD.chassis.health))
-			RD.chassis.health += min(health_boost, initial(RD.chassis.health)-RD.chassis.health)
+		if(health_boost<0 || RD.chassis.obj_integrity < initial(RD.chassis.obj_integrity))
+			RD.chassis.obj_integrity += min(health_boost, RD.chassis.max_integrity-RD.chassis.obj_integrity)
 			repaired = 1
 		if(repaired)
 			if(RD.chassis.use_power(RD.energy_drain))

@@ -179,7 +179,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	name = "\improper Auto-9 magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/squash
 	caliber = "9mm"
-	icon_state = "baretta"
+	icon_state = "beretta"
 	max_rounds = 50
 	gun_type = /obj/item/weapon/gun/pistol/auto9
 

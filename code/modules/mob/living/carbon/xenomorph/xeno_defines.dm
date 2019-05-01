@@ -10,7 +10,7 @@
 
 	var/tier = XENO_TIER_ZERO
 	var/upgrade = XENO_UPGRADE_ZERO
-	var/wound_type = "ravager" //used to match appropriate wound overlays
+	var/wound_type = "alien" //used to match appropriate wound overlays
 	var/language = "Xenomorph"
 
 	// *** Melee Attacks *** //
@@ -197,6 +197,8 @@
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
 	//It should add them properly on New() and should reset/readd them on evolves
 	var/list/inherent_verbs = list()
+
+	initial_language_holder = /datum/language_holder/xeno
 
 	//Lord forgive me for this horror, but Life code is awful
 	//These are tally vars, yep. Because resetting the aura value directly leads to fuckups

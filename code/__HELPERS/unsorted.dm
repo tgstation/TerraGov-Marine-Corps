@@ -295,6 +295,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	if(istype(wear_id))
 		var/obj/item/card/id/C = wear_id
+		C.registered_name = real_name
 		C.update_label()
 
 	if(!GLOB.datacore.manifest_update(oldname, newname, job))
@@ -1235,6 +1236,15 @@ var/list/WALLITEMS = list(
 
 /datum/proc/stack_trace(msg)
 	CRASH(msg)
+
+GLOBAL_REAL_VAR(list/stack_trace_storage)
+/proc/gib_stack_trace()
+	stack_trace_storage = list()
+	stack_trace()
+	stack_trace_storage.Cut(1, min(3, length(stack_trace_storage)))
+	. = stack_trace_storage
+	stack_trace_storage = null
+
 
 ////// Matrices ///////
 

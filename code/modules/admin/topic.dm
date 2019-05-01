@@ -1156,6 +1156,18 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		message_admins("[ADMIN_TPMONTY(usr)] created outfit named '[O.name]'.")
 
 
+	else if(href_list["viewruntime"])
+		var/datum/error_viewer/error_viewer = locate(href_list["viewruntime"])
+		if(!istype(error_viewer))
+			to_chat(usr, "<span class='warning'>That runtime viewer no longer exists.</span>")
+			return
+
+		if(href_list["viewruntime_backto"])
+			error_viewer.show_to(owner, locate(href_list["viewruntime_backto"]), href_list["viewruntime_linear"])
+		else
+			error_viewer.show_to(owner, null, href_list["viewruntime_linear"])
+
+
 	else if(href_list["addmessage"])
 		if(!check_rights(R_BAN))
 			return

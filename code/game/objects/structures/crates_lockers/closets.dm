@@ -11,7 +11,7 @@
 	var/opened = FALSE
 	var/welded = FALSE
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
-	health = 100
+	max_integrity = 100
 	var/lastbang = FALSE
 	var/storage_capacity = 30 //This is so that someone can't pack hundreds of items in a locker/crate
 							  //then open it in a populated area to crash clients.
@@ -162,11 +162,11 @@
 				qdel(src)
 
 /obj/structure/closet/bullet_act(var/obj/item/projectile/Proj)
-	if(health > 999)
+	if(obj_integrity > 999)
 		return TRUE
-	health -= round(Proj.damage*0.3)
+	obj_integrity -= round(Proj.damage*0.3)
 	if(prob(30)) playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		for(var/atom/movable/A as mob|obj in src)
 			A.loc = loc
 		spawn(1)
@@ -194,7 +194,7 @@
 			"<span class='danger'>You smash \the [src]!</span>", null, 5)
 		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
-	else
+	else if(!opened)
 		return attack_paw(M)
 
 /obj/structure/closet/attackby(obj/item/W, mob/living/user)
@@ -295,11 +295,6 @@
 /obj/structure/closet/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/structure/closet/attack_alien(mob/user as mob)
-	if(opened)
-		return FALSE // stop xeno closing things
-	return src.attack_hand(user)
-
 /obj/structure/closet/attack_hand(mob/living/user)
 	add_fingerprint(user)
 	return toggle(user)
@@ -333,11 +328,6 @@
 	else
 		icon_state = icon_opened
 
-/obj/structure/closet/hear_talk(mob/M, msg, verb = "says", datum/language/language)
-	for (var/atom/A in src)
-		if(istype(A,/obj/))
-			var/obj/O = A
-			O.hear_talk(M, msg, verb, language)
 
 /obj/structure/closet/proc/break_open()
 	if(!opened)

@@ -8,7 +8,7 @@
 	flags_atom = CONDUCT
 	layer = OBJ_LAYER
 	armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
-	health = 10
+	max_integrity = 10
 	var/destroyed = FALSE
 
 /obj/structure/grille/broken
@@ -17,7 +17,7 @@
 
 /obj/structure/grille/fence
 	var/width = 3
-	health = 50
+	max_integrity = 50
 
 /obj/structure/grille/fence/New()
 
@@ -46,7 +46,7 @@
 	icon_state = "fence-ns"
 
 /obj/structure/grille/fence/healthcheck()
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		density = FALSE
 		destroyed = TRUE
 		new /obj/item/stack/rods(loc)
@@ -77,7 +77,7 @@
 		"<span class='danger'>You hear a sharp ZAP and a smell of ozone.</span>")
 		return FALSE //Intended apparently ?
 
-	health -= damage_dealt
+	obj_integrity -= damage_dealt
 	healthcheck()
 
 /obj/structure/grille/attack_hand(mob/user as mob)
@@ -106,7 +106,7 @@
 	else
 		damage_dealt += 1
 
-	health -= damage_dealt
+	obj_integrity -= damage_dealt
 	healthcheck()
 
 
@@ -119,7 +119,7 @@
 					  "<span class='warning'>You smash against [src].</span>", \
 					  "You hear twisting metal.")
 
-	health -= M.melee_damage_upper
+	obj_integrity -= M.melee_damage_upper
 	healthcheck()
 	return
 
@@ -139,7 +139,7 @@
 	if(Proj.ammo.damage_type == HALLOSS)
 		return FALSE
 
-	src.health -= round(Proj.damage*0.3)
+	src.obj_integrity -= round(Proj.damage*0.3)
 	healthcheck()
 	return TRUE
 
@@ -198,21 +198,21 @@
 //window placing end
 
 	else if(istype(W, /obj/item/shard))
-		health -= W.force * 0.1
+		obj_integrity -= W.force * 0.1
 	else if(!shock(user, 70))
 		playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 		switch(W.damtype)
 			if("fire")
-				health -= W.force
+				obj_integrity -= W.force
 			if("brute")
-				health -= W.force * 0.1
+				obj_integrity -= W.force * 0.1
 	healthcheck()
 	..()
 	return
 
 
 /obj/structure/grille/proc/healthcheck()
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		if(!destroyed)
 			icon_state = "brokengrille"
 			density = 0
@@ -220,7 +220,7 @@
 			new /obj/item/stack/rods(loc)
 
 		else
-			if(health <= -6)
+			if(obj_integrity <= -6)
 				new /obj/item/stack/rods(loc)
 				qdel(src)
 				return
@@ -252,7 +252,7 @@
 /obj/structure/grille/fire_act(exposed_temperature, exposed_volume)
 	if(!destroyed)
 		if(exposed_temperature > T0C + 1500)
-			health -= 1
+			obj_integrity -= 1
 			healthcheck()
 	..()
 

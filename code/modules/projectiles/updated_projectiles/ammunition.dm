@@ -288,7 +288,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/default_ammo = /datum/ammo/bullet/rifle
 	var/bullet_amount = 600
 	var/max_bullet_amount = 600
-	var/caliber = "10x24mm"
+	var/caliber = "10x24mm caseless"
 
 /obj/item/big_ammo_box/update_icon()
 	if(bullet_amount) icon_state = base_icon_state

@@ -435,3 +435,16 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		message_admins("Database connection failed: " + SSdbcore.ErrorMsg())
 	else
 		message_admins("Database connection re-established!")
+
+
+/datum/admins/proc/view_runtimes()
+	set category = "Debug"
+	set name = "View Runtimes"
+	set desc = "Open the runtime Viewer"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	GLOB.error_cache.show_to(usr.client)
+
+	log_admin("[key_name(usr)] viewed the runtimes.")

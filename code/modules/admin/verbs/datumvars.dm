@@ -693,6 +693,8 @@
 			return
 
 		M.fully_replace_character_name(M.real_name, new_name)
+		vv_update_display(M, "name", new_name)
+		vv_update_display(M, "real_name", M.real_name || "No real name")
 
 		message_admins("[ADMIN_TPMONTY(usr)] renamed [ADMIN_TPMONTY(M)] to [new_name].")
 
@@ -927,6 +929,26 @@
 					message_admins("[ADMIN_TPMONTY(usr)] has added [amount] units of [chosen_id] to [A].")
 
 
+	else if(href_list["rotatedatum"])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/atom/A = locate(href_list["rotatedatum"])
+		if(!istype(A))
+			to_chat(usr, "This can only be done to instances of type /atom")
+			return
+
+		switch(href_list["rotatedir"])
+			if("right")
+				A.setDir(turn(A.dir, -45))
+			if("left")
+				A.setDir(turn(A.dir, 45))
+
+		vv_update_display(A, "dir", dir2text(A.dir))
+
+		log_admin("[key_name(usr)] rotated [A].")
+
+
 	else if(href_list["modtransform"])
 		if(!check_rights(R_DEBUG))
 			return
@@ -1088,20 +1110,10 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["purrbation"])
 		if(!istype(H))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
-		if(istype(H.head, /obj/item/clothing/head/kitty))
-			qdel(H.head)
-			H.regenerate_icons()
-			log_admin("[key_name(usr)] has removed purrbation [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has removed purrbation from [ADMIN_TPMONTY(H)].")
-		else
-			H.dropItemToGround(H.head)
-			H.head = new /obj/item/clothing/head/kitty(H)
-			H.regenerate_icons()
-			H.head.update_icon(H)
-			log_admin("[key_name(usr)] has purrbated [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has purrbated [ADMIN_TPMONTY(H)].")
+		H.purrbate()
 
 
 	else if(href_list["getatom"])

@@ -60,7 +60,7 @@
 	if (locate(/obj/structure/grille, usr.loc))
 		for(var/obj/structure/grille/G in usr.loc)
 			if (G.destroyed)
-				G.health = 10
+				G.obj_integrity = 10
 				G.density = 1
 				G.destroyed = 0
 				G.icon_state = "grille"
