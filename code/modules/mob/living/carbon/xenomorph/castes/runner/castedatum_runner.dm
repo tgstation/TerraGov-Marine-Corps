@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Runner
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
+	wound_type = "runner" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 10
