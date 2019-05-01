@@ -295,6 +295,7 @@
 
 
 /obj/machinery/marine_turret/Destroy() //Clear these for safety's sake.
+	QDEL_NULL(radio)
 	if(operator)
 		operator.unset_interaction()
 		operator = null
@@ -1205,7 +1206,7 @@
 				notice = "<b>ALERT! [src] at: [get_area(src)], Coordinates: (X: [x], Y: [y]) has been destroyed.</b>"
 		if(SENTRY_ALERT_BATTERY)
 			notice = "<b>ALERT! [src]'s battery depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
-	radio.talk_into(src, "[notice]", PUB_FREQ)
+	radio.talk_into(src, "[notice]", FREQ_COMMON)
 
 /obj/machinery/marine_turret/mini
 	name = "\improper UA-580 Point Defense Sentry"

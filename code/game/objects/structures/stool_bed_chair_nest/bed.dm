@@ -322,6 +322,7 @@ var/global/list/activated_medevac_stretchers = list()
 	unbuckle()
 
 /obj/structure/bed/medevac_stretcher/Destroy()
+	QDEL_NULL(radio)
 	if(stretcher_activated)
 		stretcher_activated = FALSE
 		activated_medevac_stretchers -= src
@@ -329,7 +330,7 @@ var/global/list/activated_medevac_stretchers = list()
 			linked_medevac.linked_stretcher = null
 			linked_medevac = null
 		update_icon()
-	. = ..()
+	return ..()
 
 /obj/structure/bed/medevac_stretcher/update_icon()
 	..()
@@ -499,7 +500,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 /obj/structure/bed/medevac_stretcher/proc/medvac_alert(mob/M)
 	playsound(loc, 'sound/machines/ping.ogg', 50, FALSE)
-	radio.talk_into(src, "Patient [M] has been tele-vaced to medvac beacon at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.y])", MED_FREQ)
+	radio.talk_into(src, "Patient [M] has been tele-vaced to medvac beacon at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.y])", FREQ_MEDICAL)
 
 /obj/structure/bed/medevac_stretcher/examine(mob/user)
 	. = ..()
@@ -568,6 +569,10 @@ var/global/list/activated_medevac_stretchers = list()
 	. = ..()
 	radio = new(src)
 
+/obj/item/medevac_beacon/Destroy()
+	QDEL_NULL(radio)
+	return ..()
+
 /obj/item/medevac_beacon/examine(mob/user)
 	. = ..()
 	var/list/details = list()
@@ -592,7 +597,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 /obj/item/medevac_beacon/proc/medvac_alert(mob/M)
 	playsound(loc, 'sound/machines/ping.ogg', 50, FALSE)
-	radio.talk_into(src, "Patient [M] has been tele-vaced to medvac beacon at: [get_area(src)]. Coordinates: (X: [x], Y: [y])", SEC_FREQ)
+	radio.talk_into(src, "Patient [M] has been tele-vaced to medvac beacon at: [get_area(src)]. Coordinates: (X: [x], Y: [y])", FREQ_POLICE)
 
 /obj/item/medevac_beacon/attack_self(mob/user)
 	if(locked)

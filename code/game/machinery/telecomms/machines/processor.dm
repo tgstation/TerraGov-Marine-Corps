@@ -20,7 +20,7 @@
 	if(!is_freq_listening(signal))
 		return
 
-	if (!process_mode)
+	if(!process_mode)
 		signal.data["compression"] = 100 // even more compressed signal
 	else if (signal.data["compression"])
 		signal.data["compression"] = 0 // uncompress subspace signal

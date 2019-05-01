@@ -144,7 +144,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	desc = "A standard military radio headset."
 	icon_state = "cargo_headset"
 	item_state = "headset"
-	frequency = PUB_FREQ
+	frequency = FREQ_COMMON
 	var/obj/machinery/camera/camera
 	var/datum/mob_hud/squadhud = null
 	var/mob/living/carbon/human/wearer = null
@@ -347,7 +347,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/almayer/marine/alpha
 	name = "marine alpha radio headset"
 	icon_state = "sec_headset"
-	frequency = ALPHA_FREQ //default frequency is alpha squad channel, not PUB_FREQ
+	frequency = FREQ_ALPHA //default frequency is alpha squad channel, not FREQ_COMMON
 
 
 /obj/item/radio/headset/almayer/marine/alpha/lead
@@ -371,7 +371,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/almayer/marine/bravo
 	name = "marine bravo radio headset"
 	icon_state = "eng_headset"
-	frequency = BRAVO_FREQ
+	frequency = FREQ_BRAVO
 
 
 /obj/item/radio/headset/almayer/marine/bravo/lead
@@ -395,7 +395,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/almayer/marine/charlie
 	name = "marine charlie radio headset"
 	icon_state = "charlie_headset"
-	frequency = CHARLIE_FREQ
+	frequency = FREQ_CHARLIE
 
 
 /obj/item/radio/headset/almayer/marine/charlie/lead
@@ -419,7 +419,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/almayer/marine/delta
 	name = "marine delta radio headset"
 	icon_state = "com_headset"
-	frequency = DELTA_FREQ
+	frequency = FREQ_DELTA
 
 
 /obj/item/radio/headset/almayer/marine/delta/lead
@@ -450,7 +450,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 //Distress headsets.
 /obj/item/radio/headset/distress
 	name = "operative headset"
-	frequency = PUB_FREQ
+	frequency = FREQ_COMMON
 
 
 /obj/item/radio/headset/distress/dutch
@@ -466,7 +466,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/distress/bears
 	name = "Iron Bear headset"
-	frequency = CIV_GEN_FREQ
+	frequency = FREQ_CIV_GENERAL
 	keyslot = new /obj/item/encryptionkey/bears
 
 

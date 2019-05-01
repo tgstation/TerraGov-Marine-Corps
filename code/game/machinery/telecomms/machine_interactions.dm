@@ -28,7 +28,6 @@
 			return
 	var/obj/item/multitool/P = get_multitool(user)
 	var/dat
-	dat = "<font face = \"Courier\"><HEAD><TITLE>[name]</TITLE></HEAD><center><H3>[name] Access</H3></center>"
 	dat += "<br>[temp]<br>"
 	dat += "<br>Power Status: <a href='?src=[REF(src)];input=toggle'>[toggled ? "On" : "Off"]</a>"
 	if(on && toggled)
@@ -37,7 +36,7 @@
 		else
 			dat += "<br>Identification String: <a href='?src=[REF(src)];input=id'>NULL</a>"
 		dat += "<br>Network: <a href='?src=[REF(src)];input=network'>[network]</a>"
-		dat += "<br>Prefabrication: [autolinkers.len ? "TRUE" : "FALSE"]"
+		dat += "<br>Prefabrication: [length(autolinkers) ? "TRUE" : "FALSE"]"
 		if(hide)
 			dat += "<br>Shadow Link: ACTIVE</a>"
 
@@ -77,10 +76,12 @@
 			else
 				dat += "<br><br>MULTITOOL BUFFER: <a href='?src=[REF(src)];buffer=1'>\[Add Machine\]</a>"
 
-	dat += "</font>"
 	temp = ""
-	user << browse(dat, "window=tcommachine;size=520x500;can_resize=0")
-	onclose(user, "tcommachine")
+
+	var/datum/browser/browser = new(user, "tcommachine", "<div align='center'>[src] Access</div>", 520, 500)
+	browser.set_content(dat)
+	browser.open(TRUE)
+
 	return TRUE
 
 
@@ -123,10 +124,10 @@
 /obj/machinery/telecomms/relay/Options_Topic(href, href_list)
 	if(href_list["receive"])
 		receiving = !receiving
-		temp = "<font color = #666633>-% Receiving mode changed. %-</font>"
+		temp = "<font color = #efef88>-% Receiving mode changed. %-</font>"
 	if(href_list["broadcast"])
 		broadcasting = !broadcasting
-		temp = "<font color = #666633>-% Broadcasting mode changed. %-</font>"
+		temp = "<font color = #efef88>-% Broadcasting mode changed. %-</font>"
 
 
 // BUS
@@ -144,10 +145,10 @@
 					newfreq *= 10 // shift the decimal one place
 				if(newfreq < 10000)
 					change_frequency = newfreq
-					temp = "<font color = #666633>-% New frequency to change to assigned: \"[newfreq] GHz\" %-</font>"
+					temp = "<font color = #efef88>-% New frequency to change to assigned: \"[newfreq] GHz\" %-</font>"
 			else
 				change_frequency = 0
-				temp = "<font color = #666633>-% Frequency changing deactivated %-</font>"
+				temp = "<font color = #efef88>-% Frequency changing deactivated %-</font>"
 
 
 /obj/machinery/telecomms/Topic(href, href_list)
@@ -163,36 +164,26 @@
 
 	if(href_list["input"])
 		switch(href_list["input"])
-
 			if("toggle")
-
 				toggled = !toggled
-				temp = "<font color = #666633>-% [src] has been [toggled ? "activated" : "deactivated"].</font>"
+				temp = "<font color = #efef88>-% [src] has been [toggled ? "activated" : "deactivated"].</font>"
 				update_power()
-
-
 			if("id")
 				var/newid = copytext(reject_bad_text(input(usr, "Specify the new ID for this machine", src, id) as null|text),1,MAX_MESSAGE_LEN)
 				if(newid && canAccess(usr))
 					id = newid
-					temp = "<font color = #666633>-% New ID assigned: \"[id]\" %-</font>"
-
+					temp = "<font color = #efef88>-% New ID assigned: \"[id]\" %-</font>"
 			if("network")
 				var/newnet = stripped_input(usr, "Specify the new network for this machine. This will break all current links.", src, network)
 				if(newnet && canAccess(usr))
-
 					if(length(newnet) > 15)
-						temp = "<font color = #666633>-% Too many characters in new network tag %-</font>"
-
+						temp = "<font color = #efef88>-% Too many characters in new network tag %-</font>"
 					else
 						for(var/obj/machinery/telecomms/T in links)
-							T.links.Remove(src)
-
+							LAZYREMOVE(T.links, src)
 						network = newnet
 						links = list()
-						temp = "<font color = #666633>-% New network tag assigned: \"[network]\" %-</font>"
-
-
+						temp = "<font color = #efef88>-% New network tag assigned: \"[network]\" %-</font>"
 			if("freq")
 				var/newfreq = input(usr, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, network) as null|num
 				if(newfreq && canAccess(usr))
@@ -200,62 +191,49 @@
 						newfreq *= 10 // shift the decimal one place
 					if(!(newfreq in freq_listening) && newfreq < 10000)
 						freq_listening.Add(newfreq)
-						temp = "<font color = #666633>-% New frequency filter assigned: \"[newfreq] GHz\" %-</font>"
+						temp = "<font color = #efef88>-% New frequency filter assigned: \"[newfreq] GHz\" %-</font>"
 
-	if(href_list["delete"])
-
-		// changed the layout about to workaround a pesky runtime -- Doohl
-
+	else if(href_list["delete"])
 		var/x = text2num(href_list["delete"])
-		temp = "<font color = #666633>-% Removed frequency filter [x] %-</font>"
+		temp = "<font color = #efef88>-% Removed frequency filter [x] %-</font>"
 		freq_listening.Remove(x)
 
-	if(href_list["unlink"])
-
+	else if(href_list["unlink"])
 		if(text2num(href_list["unlink"]) <= length(links))
 			var/obj/machinery/telecomms/T = links[text2num(href_list["unlink"])]
 			if(T)
-				temp = "<font color = #666633>-% Removed [REF(T)] [T.name] from linked entities. %-</font>"
-
+				temp = "<font color = #efef88>-% Removed [REF(T)] [T.name] from linked entities. %-</font>"
 				// Remove link entries from both T and src.
-
 				if(T.links)
-					T.links.Remove(src)
-				links.Remove(T)
+					LAZYREMOVE(T.links, src)
+				LAZYREMOVE(links, T)
 
 			else
-				temp = "<font color = #666633>-% Unable to locate machine to unlink from, try again. %-</font>"
+				temp = "<font color = #efef88>-% Unable to locate machine to unlink from, try again. %-</font>"
 
-	if(href_list["link"])
+	else if(href_list["link"])
 		if(P)
 			var/obj/machinery/telecomms/T = P.buffer
 			if(istype(T) && T != src)
 				if(!(src in T.links))
 					T.links += src
-
 				if(!(T in links))
 					links += T
-
-				temp = "<font color = #666633>-% Successfully linked with [REF(T)] [T.name] %-</font>"
-
+				temp = "<font color = #efef88>-% Successfully linked with [REF(T)] [T.name] %-</font>"
 			else
-				temp = "<font color = #666633>-% Unable to acquire buffer %-</font>"
+				temp = "<font color = #efef88>-% Unable to acquire buffer %-</font>"
 
-	if(href_list["buffer"])
-
+	else if(href_list["buffer"])
 		P.buffer = src
-		temp = "<font color = #666633>-% Successfully stored [REF(P.buffer)] [P.buffer.name] in buffer %-</font>"
+		temp = "<font color = #efef88>-% Successfully stored [REF(P.buffer)] [P.buffer.name] in buffer %-</font>"
 
 
-	if(href_list["flush"])
-
-		temp = "<font color = #666633>-% Buffer successfully flushed. %-</font>"
+	else if(href_list["flush"])
+		temp = "<font color = #efef88>-% Buffer successfully flushed. %-</font>"
 		P.buffer = null
 
 	Options_Topic(href, href_list)
-
 	usr.set_interaction(src)
-
 	updateUsrDialog()
 
 

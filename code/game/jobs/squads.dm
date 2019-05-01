@@ -46,7 +46,7 @@
 	color = "#e61919" // rgb(230,25,25)
 	access = list(ACCESS_MARINE_ALPHA)
 	usable = TRUE
-	radio_freq = ALPHA_FREQ
+	radio_freq = FREQ_ALPHA
 
 
 /datum/squad/bravo
@@ -56,7 +56,7 @@
 	color = "#ffc32d" // rgb(255,195,45)
 	access = list(ACCESS_MARINE_BRAVO)
 	usable = 1
-	radio_freq = BRAVO_FREQ
+	radio_freq = FREQ_BRAVO
 
 
 /datum/squad/charlie
@@ -66,7 +66,7 @@
 	color = "#c864c8" // rgb(200,100,200)
 	access = list(ACCESS_MARINE_CHARLIE)
 	usable = TRUE
-	radio_freq = CHARLIE_FREQ
+	radio_freq = FREQ_CHARLIE
 
 /datum/squad/delta
 	name = "Delta"
@@ -75,7 +75,7 @@
 	color = "#4148c8" // rgb(65,72,200)
 	access = list(ACCESS_MARINE_DELTA)
 	usable = TRUE
-	radio_freq = DELTA_FREQ
+	radio_freq = FREQ_DELTA
 
 GLOBAL_LIST_EMPTY(armormarkings)
 GLOBAL_LIST_EMPTY(armormarkings_sl)

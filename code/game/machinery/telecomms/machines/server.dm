@@ -16,10 +16,6 @@
 	var/totaltraffic = 0 // gigabytes (if > 1024, divide by 1024 -> terrabytes)
 
 
-/obj/machinery/telecomms/server/Initialize()
-	. = ..()
-
-
 /obj/machinery/telecomms/server/receive_information(datum/signal/subspace/vocal/signal, obj/machinery/telecomms/machine_from)
 	// can't log non-vocal signals
 	if(!istype(signal) || !signal.data["message"] || !is_freq_listening(signal))
@@ -48,9 +44,9 @@
 		log.parameters["message"] = Gibberish(signal.data["message"], compression + 50)
 
 	// Give the log a name and store it
-	var/identifier = num2text( rand(-1000,1000) + world.time )
+	var/identifier = num2text(rand(-1000, 1000) + world.time)
 	log.name = "data packet ([md5(identifier)])"
-	log_entries.Add(log)
+	LAZYADD(log_entries, log)
 
 	var/can_send = relay_information(signal, /obj/machinery/telecomms/hub)
 	if(!can_send)
@@ -76,61 +72,61 @@
 
 /obj/machinery/telecomms/server/presets/medical
 	id = "Medical Server"
-	freq_listening = list(MED_FREQ)
+	freq_listening = list(FREQ_MEDICAL)
 	autolinkers = list("medical")
 
 
 /obj/machinery/telecomms/server/presets/requisitions
 	id = "Requisitions Server"
-	freq_listening = list(SUP_FREQ)
+	freq_listening = list(FREQ_REQUISITIONS)
 	autolinkers = list("requisitions")
 
 
 /obj/machinery/telecomms/server/presets/alpha
 	id = "Alpha Server"
-	freq_listening = list(ALPHA_FREQ)
+	freq_listening = list(FREQ_ALPHA)
 	autolinkers = list("alpha")
 
 
 /obj/machinery/telecomms/server/presets/bravo
 	id = "Bravo Server"
-	freq_listening = list(BRAVO_FREQ)
+	freq_listening = list(FREQ_BRAVO)
 	autolinkers = list("bravo")
 
 
 /obj/machinery/telecomms/server/presets/charlie
 	id = "Charlie Server"
-	freq_listening = list(CHARLIE_FREQ)
+	freq_listening = list(FREQ_CHARLIE)
 	autolinkers = list("charlie")
 
 
 /obj/machinery/telecomms/server/presets/delta
 	id = "Delta Server"
-	freq_listening = list(DELTA_FREQ)
+	freq_listening = list(FREQ_DELTA)
 	autolinkers = list("delta")
 
 
 /obj/machinery/telecomms/server/presets/command
 	id = "Command Server"
-	freq_listening = list(COMM_FREQ)
+	freq_listening = list(FREQ_COMMAND)
 	autolinkers = list("command")
 
 
 /obj/machinery/telecomms/server/presets/engineering
 	id = "Engineering Server"
-	freq_listening = list(ENG_FREQ)
+	freq_listening = list(FREQ_ENGINEERING)
 	autolinkers = list("engineering")
 
 
 /obj/machinery/telecomms/server/presets/security
 	id = "Police Server"
-	freq_listening = list(SEC_FREQ)
+	freq_listening = list(FREQ_POLICE)
 	autolinkers = list("police")
 
 
 /obj/machinery/telecomms/server/presets/common
 	id = "Common Server"
-	freq_listening = list(PMC_FREQ, COL_FREQ, UPP_FREQ, DTH_FREQ, IMP_FREQ)
+	freq_listening = list(FREQ_PMC, FREQ_COLONIST, FREQ_UPP, FREQ_DEATHSQUAD, FREQ_IMPERIAL)
 	autolinkers = list("common", "ert")
 
 

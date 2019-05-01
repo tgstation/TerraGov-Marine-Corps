@@ -50,21 +50,21 @@
 /obj/machinery/telecomms/bus/preset_one
 	id = "Bus 1"
 	network = "tcommsat"
-	freq_listening = list(COMM_FREQ, SEC_FREQ, MED_FREQ, ENG_FREQ, SUP_FREQ)
+	freq_listening = list(FREQ_COMMAND, FREQ_POLICE, FREQ_MEDICAL, FREQ_ENGINEERING, FREQ_REQUISITIONS)
 	autolinkers = list("processor1", "command", "police", "medical", "engineering", "requisitions")
 
 
 /obj/machinery/telecomms/bus/preset_two
 	id = "Bus 2"
 	network = "tcommsat"
-	freq_listening = list(PMC_FREQ, COL_FREQ, UPP_FREQ, DTH_FREQ, IMP_FREQ)
+	freq_listening = list(FREQ_PMC, FREQ_COLONIST, FREQ_UPP, FREQ_DEATHSQUAD, FREQ_IMPERIAL)
 	autolinkers = list("processor2", "ert")
 
 
 /obj/machinery/telecomms/bus/preset_three
 	id = "Bus 3"
 	network = "tcommsat"
-	freq_listening = list(ALPHA_FREQ, BRAVO_FREQ, CHARLIE_FREQ, DELTA_FREQ)
+	freq_listening = list(FREQ_ALPHA, FREQ_BRAVO, FREQ_CHARLIE, FREQ_DELTA)
 	autolinkers = list("processor3", "alpha", "bravo", "charlie", "delta")
 
 

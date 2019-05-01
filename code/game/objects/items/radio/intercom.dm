@@ -85,4 +85,4 @@
 
 
 /obj/item/radio/intercom/general/colony
-	frequency = CIV_GEN_FREQ
+	frequency = FREQ_CIV_GENERAL

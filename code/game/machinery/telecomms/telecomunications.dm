@@ -110,11 +110,12 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	var/turf/position = get_turf(src)
 	var/turf/T_position = get_turf(T)
 	if((position.z == T_position.z) || (long_range_link && T.long_range_link))
-		if(src != T)
-			for(var/x in autolinkers)
-				if(x in T.autolinkers)
-					links |= T
-					T.links |= src
+		if(src == T)
+			return
+		for(var/x in autolinkers)
+			if(x in T.autolinkers)
+				links |= T
+				T.links |= src
 
 
 /obj/machinery/telecomms/update_icon()

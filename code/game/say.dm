@@ -1,15 +1,15 @@
 GLOBAL_LIST_INIT(freqtospan, list(
-	"[ALPHA_FREQ]" = "alpharadio",
-	"[BRAVO_FREQ]" = "bravoradio",
-	"[CHARLIE_FREQ]" = "charlieradio",
-	"[DELTA_FREQ]" = "deltaradio",
-	"[IMP_FREQ]" = "impradio",
-	"[COMM_FREQ]" = "comradio",
-	"[AI_FREQ]" = "airadio",
-	"[SEC_FREQ]" = "secradio",
-	"[ENG_FREQ]" = "engradio",
-	"[MED_FREQ]" = "medradio",
-	"[SUP_FREQ]" = "supradio"
+	"[FREQ_ALPHA]" = "alpharadio",
+	"[FREQ_BRAVO]" = "bravoradio",
+	"[FREQ_CHARLIE]" = "charlieradio",
+	"[FREQ_DELTA]" = "deltaradio",
+	"[FREQ_IMPERIAL]" = "impradio",
+	"[FREQ_COMMAND]" = "comradio",
+	"[FREQ_AI]" = "airadio",
+	"[FREQ_POLICE]" = "secradio",
+	"[FREQ_ENGINEERING]" = "engradio",
+	"[FREQ_MEDICAL]" = "medradio",
+	"[FREQ_REQUISITIONS]" = "supradio"
 	))
 
 

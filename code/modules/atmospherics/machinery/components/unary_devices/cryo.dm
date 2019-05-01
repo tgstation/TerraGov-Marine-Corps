@@ -47,12 +47,13 @@
 	. = ..()
 	initialize_directions = dir
 	beaker = new /obj/item/reagent_container/glass/beaker/cryomix
-/*
 	radio = new(src)
-	radio.keyslot = new radio_key
-	radio.subspace_transmission = TRUE
-	radio.canhear_range = 0
-	radio.recalculateChannels()*/
+
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/Destroy()
+	QDEL_NULL(radio)
+	return ..()
+
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/process_occupant()
 	if(occupant)
@@ -102,7 +103,7 @@
 		to_chat(user, "<span class='notice'>The status display reads: Efficiency at <b>[efficiency*100]%</b>.<span>")
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Destroy()
-	//QDEL_NULL(radio)
+	QDEL_NULL(radio)
 	QDEL_NULL(beaker)
 	return ..()
 

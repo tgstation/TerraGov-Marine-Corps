@@ -173,6 +173,10 @@
 	. = ..()
 	radio = new(src)
 
+/obj/machinery/medical_help_button/Destroy()
+	QDEL_NULL(radio)
+	return ..()
+
 /obj/machinery/medical_help_button/attack_hand(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
@@ -185,7 +189,7 @@
 	use_power(5)
 	icon_state = "doorctrl1"
 
-	radio.talk_into(src, "<b>[user.name] is requesting medical attention at: [get_area(src)].</b>", MED_FREQ)
+	radio.talk_into(src, "<b>[user.name] is requesting medical attention at: [get_area(src)].</b>", FREQ_MEDICAL)
 	visible_message("Remain calm, someone will be with you shortly.")
 
 	active = TRUE

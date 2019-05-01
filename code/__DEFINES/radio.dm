@@ -53,37 +53,32 @@
 #define MIN_FREE_FREQ 1201 // -------------------------------------------------
 // Frequencies are always odd numbers and range from 1201 to 1599.
 
-#define PMC_FREQ		1332
-#define COL_FREQ		1335
-#define UPP_FREQ		1337
-#define DTH_FREQ		1339
-#define IMP_FREQ		1341
-#define AI_FREQ			1343
+#define FREQ_PMC		1332
+#define FREQ_COLONIST	1335
+#define FREQ_UPP		1337
+#define FREQ_DEATHSQUAD	1339
+#define FREQ_IMPERIAL	1341
+#define FREQ_AI			1343
 
-#define COMM_FREQ 		1353
-#define MED_FREQ		1355
-#define ENG_FREQ		1357
-#define SEC_FREQ		1359
-#define SUP_FREQ		1354
+#define FREQ_COMMAND 		1353
+#define FREQ_MEDICAL		1355
+#define FREQ_ENGINEERING	1357
+#define FREQ_POLICE			1359
+#define FREQ_REQUISITIONS	1354
 
-#define ALPHA_FREQ		1361
-#define BRAVO_FREQ		1363
-#define CHARLIE_FREQ	1365
-#define DELTA_FREQ		1367
-
-#define DS1_FREQ		1371
-#define DS2_FREQ		1373
-
+#define FREQ_ALPHA		1361
+#define FREQ_BRAVO		1363
+#define FREQ_CHARLIE	1365
+#define FREQ_DELTA		1367
 
 #define MIN_FREQ 1441 // ------------------------------------------------------
 // Only the 1441 to 1489 range is freely available for general conversation.
 // This represents 1/8th of the available spectrum.
 
 
-#define PUB_FREQ		1461
+#define FREQ_COMMON		1461
 
-#define CIV_GEN_FREQ	1469
-#define CIV_COMM_FREQ	1471
+#define FREQ_CIV_GENERAL	1469
 
 
 #define MAX_FREQ 1489 // ------------------------------------------------------

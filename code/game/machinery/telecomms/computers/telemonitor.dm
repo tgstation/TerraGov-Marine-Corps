@@ -22,14 +22,10 @@
 
 /obj/machinery/computer/telecomms/monitor/interact(mob/user)
 	. = ..()
-	var/dat = "<TITLE>Telecommunications Monitor</TITLE><center><b>Telecommunications Monitor</b></center>"
+	var/dat
 
 	switch(screen)
-
-
-	  // --- Main Menu ---
-
-		if(0)
+		if(0) // --- Main Menu ---
 			dat += "<br>[temp]<br><br>"
 			dat += "<br>Current Network: <a href='?src=[REF(src)];network=1'>[network]</a><br>"
 			if(length(machinelist))
@@ -40,11 +36,7 @@
 				dat += "<br><a href='?src=[REF(src)];operation=release'>\[Flush Buffer\]</a>"
 			else
 				dat += "<a href='?src=[REF(src)];operation=probe'>\[Probe Network\]</a>"
-
-
-	  // --- Viewing Machine ---
-
-		if(1)
+		if(1) // --- Viewing Machine ---
 			dat += "<br>[temp]<br>"
 			dat += "<center><a href='?src=[REF(src)];operation=mainmenu'>\[Main Menu\]</a></center>"
 			dat += "<br>Current Network: [network]<br>"
@@ -56,19 +48,17 @@
 			dat += "</ol>"
 
 
-
-	user << browse(dat, "window=comm_monitor;size=575x400")
-	onclose(user, "server_control")
+	var/datum/browser/browser = new(user, "comm_monitor", "<div align='center'>Telecommunications Monitor</div>", 575, 400)
+	browser.set_content(dat)
+	browser.open(TRUE)
 
 	temp = ""
-	return
 
 
 /obj/machinery/computer/telecomms/monitor/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-
 
 	add_fingerprint(usr)
 	usr.set_interaction(src)
@@ -80,48 +70,41 @@
 				SelectedMachine = T
 				break
 
-	if(href_list["operation"])
+	else if(href_list["operation"])
 		switch(href_list["operation"])
-
 			if("release")
 				machinelist = list()
 				screen = 0
-
 			if("mainmenu")
 				screen = 0
-
 			if("probe")
 				if(length(machinelist))
-					temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font color>"
-
+					temp = "<font color = #f97c75>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font color>"
 				else
 					for(var/obj/machinery/telecomms/T in urange(25, src))
 						if(T.network == network)
-							machinelist.Add(T)
-
+							LAZYADD(machinelist, T)
 					if(!length(machinelist))
-						temp = "<font color = #D70B00>- FAILED: UNABLE TO LOCATE NETWORK ENTITIES IN \[[network]\] -</font color>"
+						temp = "<font color = #f97c75>- FAILED: UNABLE TO LOCATE NETWORK ENTITIES IN \[[network]\] -</font color>"
 					else
-						temp = "<font color = #336699>- [length(machinelist)] ENTITIES LOCATED & BUFFERED -</font color>"
+						temp = "<font color = #88bff7>- [length(machinelist)] ENTITIES LOCATED & BUFFERED -</font color>"
 
 					screen = 0
 
-
-	if(href_list["network"])
-
+	else if(href_list["network"])
 		var/newnet = stripped_input(usr, "Which network do you want to view?", "Comm Monitor", network)
 		if(newnet && ((usr in range(1, src)) || issilicon(usr)))
 			if(length(newnet) > 15)
-				temp = "<font color = #D70B00>- FAILED: NETWORK TAG STRING TOO LENGHTLY -</font color>"
-
+				temp = "<font color = #f97c75>- FAILED: NETWORK TAG STRING TOO LENGHTLY -</font color>"
 			else
 				network = newnet
 				screen = 0
 				machinelist = list()
-				temp = "<font color = #336699>- NEW NETWORK TAG SET IN ADDRESS \[[network]\] -</font color>"
+				temp = "<font color = #88bff7>- NEW NETWORK TAG SET IN ADDRESS \[[network]\] -</font color>"
 
 	updateUsrDialog()
 	return
+
 
 /obj/machinery/computer/telecomms/monitor/attackby(mob/user, obj/item/I, params)
 	. = ..()

@@ -11,7 +11,7 @@
 	w_class = 2
 
 	var/on = TRUE
-	var/frequency = PUB_FREQ //common chat
+	var/frequency = FREQ_COMMON //common chat
 	var/canhear_range = 3 // the range which mobs can hear this radio from
 
 	var/unscrewed = FALSE  // Whether wires are accessible. Toggleable by screwdrivering.
@@ -424,4 +424,4 @@
 //MARINE RADIO
 
 /obj/item/radio/marine
-	frequency = PUB_FREQ
+	frequency = FREQ_COMMON
