@@ -639,8 +639,9 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/M, alien)
 	. = ..()
 	M.heal_limb_damage(4 * REM, 0)
-	slowdown = 1.5
-
+	M.reagent_move_delay_modifier += 1
+	
+..()
 
 /datum/reagent/medicine/meralyne/overdose_process(mob/living/M, alien)
 	M.apply_damage(2, BURN)
