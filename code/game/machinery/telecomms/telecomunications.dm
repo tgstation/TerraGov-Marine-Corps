@@ -87,6 +87,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 /obj/machinery/telecomms/Initialize(mapload)
 	. = ..()
 	GLOB.telecomms_list += src
+	start_processing()
 	if(mapload && length(autolinkers))
 		return INITIALIZE_HINT_LATELOAD
 
@@ -99,6 +100,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 /obj/machinery/telecomms/Destroy()
 	GLOB.telecomms_list -= src
+	stop_processing()
 	for(var/obj/machinery/telecomms/comm in GLOB.telecomms_list)
 		comm.links -= src
 	links = list()
