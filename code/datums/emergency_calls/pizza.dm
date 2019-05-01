@@ -24,5 +24,6 @@
 
 	print_backstory(H)
 
-	var/datum/job/J = new /datum/job/other/pizza
+	var/datum/job/J = SSjob.GetJobType(/datum/job/other/pizza)
+	SSjob.AssignRole(H, J.title)
 	J.equip(H)
