@@ -1,9 +1,10 @@
 /obj
-	var/list/list_reagents = null
 	//Used to store information about the contents of the object.
 	var/list/matter
 
 	var/datum/armor/armor
+	var/obj_integrity	//defaults to max_integrity
+	var/max_integrity = 500
 
 	var/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
@@ -32,6 +33,9 @@
 	else if (!istype(armor, /datum/armor))
 		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
 
+	if(obj_integrity == null)
+		obj_integrity = max_integrity
+
 	GLOB.object_list += src
 
 /obj/Destroy()
@@ -44,10 +48,6 @@
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
 	return ..()
-
-/obj/proc/add_initial_reagents()
-	if(reagents && list_reagents)
-		reagents.add_reagent_list(list_reagents)
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
 	return
@@ -114,9 +114,6 @@
 /obj/proc/hide(h)
 	return
 
-
-/obj/proc/hear_talk(mob/M, text)
-	return
 
 /obj/attack_paw(mob/user)
 	if(can_buckle) return src.attack_hand(user)
@@ -245,6 +242,15 @@
 	if(mover == buckled_mob) //can't collide with the thing you're buckled to
 		return TRUE
 	. = ..()
+
+/obj/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
+		var/turf/T = get_turf(src)
+		if(!(T?.intact_tile) || level != 1) //not hidden under the floor
+			S.reagents?.reaction(src, VAPOR, S.fraction)
 
 /obj/proc/check_skill_level(skill_threshold = 1, skill_type, mob/living/M) //used to calculate do-after delays
 	if(!skill_threshold) //autopass

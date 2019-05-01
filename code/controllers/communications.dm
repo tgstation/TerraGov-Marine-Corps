@@ -159,6 +159,33 @@ var/list/radiochannels = list(
 	"Civ Command"	= CIV_COMM_FREQ
 )
 
+var/list/reverseradiochannels = list(
+	ERT_FREQ 		= "Response Team",
+	SYND_FREQ 		= "Syndicate",
+	PMC_FREQ 		= "NT PMC",
+	DTH_FREQ 		= "SpecOps",
+	RUS_FREQ		= "UPP",
+	DUT_FREQ 		= "Colonist",
+	IMP_FREQ		= "Imperial",
+
+	PUB_FREQ		= "Theseus",
+	COMM_FREQ		= "Command",
+	MED_FREQ		= "MedSci",
+	ENG_FREQ		= "Engi",
+	SEC_FREQ		= "MP",
+	SUP_FREQ		= "Req",
+
+	ALPHA_FREQ		= "Alpha",
+	BRAVO_FREQ		= "Bravo",
+	CHARLIE_FREQ	= "Charlie",
+	DELTA_FREQ		= "Delta",
+	DS1_FREQ		= "Alamo",
+	DS2_FREQ		= "Normandy",
+
+	CIV_GEN_FREQ 	= "Common",
+	CIV_COMM_FREQ 	= "Civ Command"
+)
+
 // central command channels, i.e deathsquid & response teams
 var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ)
 
@@ -199,6 +226,14 @@ var/global/datum/controller/radio/SSradio
 //The global radio controller
 /datum/controller/radio
 	var/list/datum/radio_frequency/frequencies = list()
+	var/list/saymodes = list()
+
+
+/datum/controller/radio/New()
+	. = ..()
+	for(var/_SM in subtypesof(/datum/saymode))
+		var/datum/saymode/SM = new _SM()
+		saymodes[SM.key] = SM
 
 
 /datum/controller/radio/stat_entry()

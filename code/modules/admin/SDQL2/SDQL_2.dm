@@ -63,7 +63,7 @@
 
 	You can also generate a new list on the fly using a selector array. @[] will generate a list of objects based off the selector provided.
 
-	"SELECT /mob/living IN @[/area/crew_quarters/bar MAP contents]"
+	"SELECT /mob/living IN (@[/area/crew_quarters/bar MAP contents])[1]"
 
 	What if some dumbass admin spawned a bajillion spiders and you need to kill them all?
 	Oh yeah you'd rather not delete all the spiders in maintenace. Only that one room the spiders were
@@ -571,8 +571,6 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 					objs[j] = SDQL_expression(x, expression)
 					SDQL2_TICK_CHECK
 					SDQL2_HALT_CHECK
-				if(length(objs) == 1 && islist(objs[1]))
-					objs = objs[1]
 
 			if ("where")
 				where_switched = TRUE
@@ -1034,6 +1032,12 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 			return null
 		start++
 		long = start < expression.len
+
+	else if(expression[start] == "(" && long)
+		v = query.SDQL_expression(source, expression[start + 1])
+		start++
+		long = start < expression.len
+		
 	else if(D != null && (!long || expression[start + 1] == ".") && (expression[start] in D.vars))
 		if(D.can_vv_get(expression[start]) || superuser)
 			v = D.vars[expression[start]]

@@ -54,12 +54,12 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
-/datum/reagent/medicine/ryetalyn/on_mob_life(mob/living/M)
+/datum/reagent/medicine/ryetalyn/on_mob_life(mob/living/carbon/M)
 	M.mutations = list()
 	M.disabilities = 0
 	M.sdisabilities = 0
 	// Might need to update appearance for hulk etc.
-	if(M.mutations.len)
+	if(length(M.mutations))
 		var/mob/living/carbon/human/H = M
 		H.update_mutations()
 	..()
@@ -677,7 +677,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	purge_list.Add(/datum/reagent/medicine/dexalinplus, /datum/reagent/medicine/peridaxon) //Rapidly purges chems that would offset the downsides
 	return ..()
 
-/datum/reagent/medicine/hyperzine/on_mob_life(mob/living/M)
+/datum/reagent/medicine/hyperzine/on_mob_life(mob/living/carbon/M)
 	M.reagent_move_delay_modifier -= min(2.5, volume * 0.5)
 	M.nutrition = max(M.nutrition-(3 * REM * volume), 0) //Body burns through energy fast (also can't go under 0 nutrition)
 	if(prob(1))
@@ -989,17 +989,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 
 /datum/reagent/medicine/antidepressant/paroxetine/on_mob_delete(mob/living/carbon/M)
 	to_chat(M, "<span class='warning'>Your mind feels much less stable...</span>")
-	..()
-
-/datum/reagent/medicine/antized
-	name = "Anti-Zed"
-	id = "antiZed"
-	description = "Destroys the zombie virus in living humans and prevents regeneration for those who have already turned."
-	color = "#C8A5DC"
-	custom_metabolism = 0.01
-
-/datum/reagent/medicine/antized/on_mob_life(mob/living/carbon/human/M)
-	M.regenZ = 0
 	..()
 
 /datum/reagent/medicine/hypervene

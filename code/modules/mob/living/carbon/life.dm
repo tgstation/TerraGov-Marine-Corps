@@ -4,7 +4,6 @@
 	set background = 1
 
 	if(stat != DEAD) //Chemicals in body and some other stuff.
-		handle_organs()
 
 		if((life_tick % CARBON_BREATH_DELAY == 0) || failed_last_breath) //First, resolve location and get a breath
 			breathe() //Only try to take a breath every 2 ticks, unless suffocating
@@ -64,11 +63,6 @@
 		stat = CONSCIOUS
 		adjust_blindness(-1)
 	update_canmove()
-
-/mob/living/proc/handle_organs()
-	reagent_move_delay_modifier = 0
-	reagent_shock_modifier = 0
-	reagent_pain_modifier = 0
 
 /mob/living/carbon/handle_status_effects()
 	. = ..()
@@ -184,6 +178,7 @@
 
 	handle_stagger()
 	handle_slowdown()
+	handle_disabilities()
 
 
 /mob/living/carbon/proc/handle_stagger()
@@ -191,7 +186,7 @@
 		adjust_stagger(-1)
 	return stagger
 
-/mob/living/carbon/proc/adjust_stagger(amount)
+/mob/living/carbon/adjust_stagger(amount)
 	stagger = max(stagger + amount,0)
 	return stagger
 
@@ -207,7 +202,7 @@
 		slowdown = max(slowdown + amount,0)
 	return slowdown
 
-/mob/living/carbon/proc/add_slowdown(amount)
+/mob/living/carbon/add_slowdown(amount)
 	slowdown = adjust_slowdown(amount*STANDARD_SLOWDOWN_REGEN)
 	return slowdown
 
@@ -270,3 +265,22 @@
 		oxygen_alert = TRUE
 		return FALSE
 	return TRUE
+
+
+/mob/living/carbon/proc/handle_impaired_vision()
+	//Eyes
+	if(eye_blind)
+		adjust_blindness(-1)
+	if(eye_blurry)			//blurry eyes heal slowly
+		adjust_blurriness(-1)
+
+
+/mob/living/carbon/proc/handle_impaired_hearing()
+	//Ears
+	if(ear_damage < 100)
+		adjustEarDamage(-0.05, -1)	// having ear damage impairs the recovery of ear_deaf
+
+
+/mob/living/carbon/proc/handle_disabilities()
+	handle_impaired_vision()
+	handle_impaired_hearing()

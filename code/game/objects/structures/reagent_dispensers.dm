@@ -7,10 +7,10 @@
 	icon_state = "watertank"
 	density = 1
 	anchored = 0
-	container_type = AMOUNT_VISIBLE
 	var/tank_volume = 1000
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
+	var/list/list_reagents
 
 /obj/structure/reagent_dispensers/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_refillable())
@@ -20,10 +20,9 @@
 
 /obj/structure/reagent_dispensers/New()
 	. = ..()
-	create_reagents(tank_volume)
+	create_reagents(tank_volume, AMOUNT_VISIBLE, list_reagents)
 	if (!possible_transfer_amounts)
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
-	add_initial_reagents()
 
 /obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"

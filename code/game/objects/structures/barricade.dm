@@ -12,9 +12,9 @@
 	var/stack_type //The type of stack the barricade dropped when disassembled if any.
 	var/stack_amount = 5 //The amount of stack dropped when disassembled at full health
 	var/destroyed_stack_amount //to specify a non-zero amount of stack to drop when destroyed
-	health = 100 //Pretty tough. Changes sprites at 300 and 150
-	var/maxhealth = 100 //Basic code functions
+	max_integrity = 100 //Pretty tough. Changes sprites at 300 and 150
 	var/crusher_resistant = TRUE //Whether a crusher can ram through it.
+	var/base_acid_damage = 2
 	var/barricade_resistance = 5 //How much force an item needs to even damage it at all.
 	var/barricade_hitsound
 
@@ -32,7 +32,7 @@
 	update_icon()
 
 /obj/structure/barricade/handle_barrier_chance(mob/living/M)
-	return prob(max(30,(100.0*health)/maxhealth))
+	return prob(max(30,(100.0*obj_integrity)/max_integrity))
 
 /obj/structure/barricade/examine(mob/user)
 	..()
@@ -68,7 +68,7 @@
 			return
 
 		if(crusher_resistant)
-			health -= C.charge_speed * CRUSHER_CHARGE_BARRICADE_MULTI
+			obj_integrity -= C.charge_speed * CRUSHER_CHARGE_BARRICADE_MULTI
 			update_health()
 
 		else if(!C.stat)
@@ -122,10 +122,10 @@
 
 /obj/structure/barricade/attack_alien(mob/living/carbon/Xenomorph/M)
 	M.animation_attack_on(src)
-	health -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
+	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
 	if(barricade_hitsound)
 		playsound(src, barricade_hitsound, 25, 1)
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)
 	else
@@ -140,14 +140,6 @@
 		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 /obj/structure/barricade/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/zombie_claws))
-		user.visible_message("<span class='danger'>The zombie smashed at the [src.barricade_type] barricade!</span>",
-		"<span class='danger'>You smack the [src.barricade_type] barricade!</span>")
-		if(barricade_hitsound)
-			playsound(src, barricade_hitsound, 25, 1)
-		hit_barricade(W)
-		return
-
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
 		if(A.acid_t == src)
 			to_chat(user, "You can't get near that, it's melting!")
@@ -168,8 +160,8 @@
 					wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
 				B.use(1)
 				overlays += wired_overlay
-				maxhealth += 50
-				health += 50
+				max_integrity += 50
+				obj_integrity += 50
 				update_health()
 				can_wire = FALSE
 				is_wired = TRUE
@@ -185,8 +177,8 @@
 				user.visible_message("<span class='notice'>[user] removes the barbed wire on [src].</span>",
 				"<span class='notice'>You remove the barbed wire on [src].</span>")
 				overlays -= wired_overlay
-				maxhealth -= 50
-				health -= 50
+				max_integrity -= 50
+				obj_integrity -= 50
 				update_health()
 				can_wire = TRUE
 				is_wired = FALSE
@@ -208,7 +200,7 @@
 		if(!deconstruct && destroyed_stack_amount)
 			stack_amt = destroyed_stack_amount
 		else
-			stack_amt = round(stack_amount * (health/maxhealth)) //Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0
+			stack_amt = round(stack_amount * (obj_integrity/max_integrity)) //Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0
 
 		if(stack_amt)
 			new stack_type (loc, stack_amt)
@@ -221,9 +213,9 @@
 			qdel(src)
 			return
 		if(2.0)
-			health -= rand(33, 66)
+			obj_integrity -= rand(33, 66)
 		if(3.0)
-			health -= rand(10, 33)
+			obj_integrity -= rand(10, 33)
 	update_health()
 
 /obj/structure/barricade/setDir(newdir)
@@ -264,15 +256,13 @@
 	overlays += wired_overlay
 
 /obj/structure/barricade/proc/hit_barricade(obj/item/I)
-	if(istype(I, /obj/item/weapon/zombie_claws))
-		health -= I.force * 0.5
-	health -= I.force * 0.5
+	obj_integrity -= I.force * 0.5
 	update_health()
 
 /obj/structure/barricade/update_health(nomessage)
-	health = CLAMP(health, 0, maxhealth)
+	obj_integrity = CLAMP(obj_integrity, 0, max_integrity)
 
-	if(!health)
+	if(!obj_integrity)
 		if(!nomessage)
 			visible_message("<span class='danger'>[src] falls apart!</span>")
 		destroy_structure()
@@ -282,7 +272,7 @@
 	update_icon()
 
 /obj/structure/barricade/proc/update_damage_state()
-	var/health_percent = round(health/maxhealth * 100)
+	var/health_percent = round(obj_integrity/max_integrity * 100)
 	switch(health_percent)
 		if(0 to 25) damage_state = 3
 		if(25 to 50) damage_state = 2
@@ -290,9 +280,14 @@
 		if(75 to INFINITY) damage_state = 0
 
 
-/obj/structure/barricade/proc/acid_smoke_damage(var/obj/effect/particle_effect/smoke/S)
-	health -= 15
-	update_health()
+/obj/structure/barricade/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
+		obj_integrity -= base_acid_damage * S.strength
+		update_health()
+
 
 /obj/structure/barricade/verb/rotate()
 	set name = "Rotate Barricade Counter-Clockwise"
@@ -328,8 +323,7 @@
 	desc = "A mound of snow shaped into a sloped wall. Statistically better than thin air as cover."
 	icon_state = "snow_0"
 	barricade_type = "snow"
-	health = 75 //Actual health depends on snow layer
-	maxhealth = 75
+	max_integrity = 75
 	stack_type = /obj/item/stack/snow
 	stack_amount = 3
 	destroyed_stack_amount = 0
@@ -364,9 +358,9 @@
 /obj/structure/barricade/snow/hit_barricade(obj/item/I)
 	switch(I.damtype)
 		if("fire")
-			health -= I.force * 0.6
+			obj_integrity -= I.force * 0.6
 		if("brute")
-			health -= I.force * 0.3
+			obj_integrity -= I.force * 0.3
 
 	update_health()
 	update_icon()
@@ -374,10 +368,10 @@
 
 /obj/structure/barricade/snow/bullet_act(var/obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage/2) //Not that durable.
+	obj_integrity -= round(P.damage/2) //Not that durable.
 
 	if (istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
+		obj_integrity -= 50
 
 	update_health()
 	return TRUE
@@ -390,8 +384,7 @@
 	name = "wooden barricade"
 	desc = "A wall made out of wooden planks nailed together. Not very sturdy, but can provide some concealment."
 	icon_state = "wooden"
-	health = 100
-	maxhealth = 100
+	max_integrity = 100
 	layer = OBJ_LAYER
 	climbable = FALSE
 	throwpass = FALSE
@@ -404,8 +397,8 @@
 	can_wire = FALSE
 
 /obj/structure/barricade/wooden/lv_snowflake
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it..."
-	health = 25000
+	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the beams supporting it..."
+	max_integrity = 25000
 
 /obj/structure/barricade/wooden/attackby(obj/item/W as obj, mob/user as mob)
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
@@ -414,14 +407,14 @@
 			return
 	if(istype(W, /obj/item/stack/sheet/wood))
 		var/obj/item/stack/sheet/wood/D = W
-		if(health < maxhealth)
+		if(obj_integrity < max_integrity)
 			if(D.get_amount() < 1)
 				to_chat(user, "<span class='warning'>You need one plank of wood to repair [src].</span>")
 				return
 			visible_message("<span class='notice'>[user] begins to repair [src].</span>")
-			if(do_after(user,20, TRUE, 5, BUSY_ICON_FRIENDLY) && health < maxhealth)
+			if(do_after(user,20, TRUE, 5, BUSY_ICON_FRIENDLY) && obj_integrity < max_integrity)
 				if (D.use(1))
-					health = maxhealth
+					obj_integrity = max_integrity
 					visible_message("<span class='notice'>[user] repairs [src].</span>")
 		return
 	. = ..()
@@ -429,20 +422,21 @@
 /obj/structure/barricade/wooden/hit_barricade(obj/item/I)
 	switch(I.damtype)
 		if("fire")
-			health -= I.force * 1.5
+			obj_integrity -= I.force * 1.5
 		if("brute")
-			health -= I.force * 0.75
+			obj_integrity -= I.force * 0.75
 	update_health()
 
 /obj/structure/barricade/wooden/bullet_act(var/obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage/2) //Not that durable.
+	obj_integrity -= round(P.damage/2) //Not that durable.
 
 	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
+		obj_integrity -= 50
 
 	update_health()
 	return TRUE
+
 
 /*----------------------*/
 // METAL
@@ -452,8 +446,7 @@
 	name = "metal barricade"
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
 	icon_state = "metal_0"
-	health = 200
-	maxhealth = 200
+	max_integrity = 200
 	crusher_resistant = TRUE
 	barricade_resistance = 10
 	stack_type = /obj/item/stack/sheet/metal
@@ -491,11 +484,11 @@
 			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
 				return
 		var/obj/item/tool/weldingtool/WT = W
-		if(health <= maxhealth * 0.3)
+		if(obj_integrity <= max_integrity * 0.3)
 			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>")
 			return
 
-		if(health == maxhealth)
+		if(obj_integrity == max_integrity)
 			to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
 			return
 
@@ -508,7 +501,7 @@
 			if(do_after(user, 50, TRUE, 5, BUSY_ICON_FRIENDLY) && old_loc == loc)
 				user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 				"<span class='notice'>You repair [src].</span>")
-				health += 150
+				obj_integrity += 150
 				update_health()
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 		return
@@ -613,20 +606,20 @@
 /obj/structure/barricade/metal/ex_act(severity)
 	switch(severity)
 		if(1)
-			health -= rand(400, 600)
+			obj_integrity -= rand(400, 600)
 		if(2)
-			health -= rand(150, 350)
+			obj_integrity -= rand(150, 350)
 		if(3)
-			health -= rand(50, 100)
+			obj_integrity -= rand(50, 100)
 
 	update_health()
 
 /obj/structure/barricade/metal/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage/10)
+	obj_integrity -= round(P.damage/10)
 
 	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
+		obj_integrity -= 50
 
 	update_health()
 	return TRUE
@@ -639,8 +632,7 @@
 	name = "plasteel barricade"
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
 	icon_state = "plasteel_closed_0"
-	health = 600
-	maxhealth = 600
+	max_integrity = 600
 	crusher_resistant = TRUE
 	barricade_resistance = 20
 	stack_type = /obj/item/stack/sheet/plasteel
@@ -691,11 +683,11 @@
 			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
 				return
 		var/obj/item/tool/weldingtool/WT = W
-		if(health <= maxhealth * 0.3)
+		if(obj_integrity <= max_integrity * 0.3)
 			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>")
 			return
 
-		if(health == maxhealth)
+		if(obj_integrity == max_integrity)
 			to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
 			return
 
@@ -708,7 +700,7 @@
 				busy = FALSE
 				user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 				"<span class='notice'>You repair [src].</span>")
-				health += 150
+				obj_integrity += 150
 				update_health()
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 			else busy = FALSE
@@ -844,20 +836,20 @@
 /obj/structure/barricade/plasteel/ex_act(severity)
 	switch(severity)
 		if(1)
-			health -= rand(450, 650)
+			obj_integrity -= rand(450, 650)
 		if(2)
-			health -= rand(200, 400)
+			obj_integrity -= rand(200, 400)
 		if(3)
-			health -= rand(50, 150)
+			obj_integrity -= rand(50, 150)
 
 	update_health()
 
 /obj/structure/barricade/plasteel/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage/10)
+	obj_integrity -= round(P.damage/10)
 
 	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
+		obj_integrity -= 50
 
 	update_health()
 	return TRUE
@@ -871,8 +863,7 @@
 	desc = "A bunch of bags filled with sand, stacked into a small wall. Surprisingly sturdy, albeit labour intensive to set up. Trusted to do the job since 1914."
 	icon_state = "sandbag_0"
 	barricade_resistance = 15
-	health = 400
-	maxhealth = 400
+	max_integrity = 400
 	stack_type = /obj/item/stack/sandbags
 	barricade_hitsound = "sound/weapons/Genhit.ogg"
 	barricade_type = "sandbag"
@@ -907,7 +898,7 @@
 		return TRUE
 
 	if(istype(W, /obj/item/stack/sandbags) )
-		if(health == maxhealth)
+		if(obj_integrity == max_integrity)
 			to_chat(user, "<span class='warning'>[src] isn't in need of repairs!</span>")
 			return
 		var/obj/item/stack/sandbags/D = W
@@ -915,9 +906,9 @@
 			to_chat(user, "<span class='warning'>You need a sandbag to repair [src].</span>")
 			return
 		visible_message("<span class='notice'>[user] begins to replace [src]'s damaged sandbags...</span>")
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD) && health < maxhealth)
+		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD) && obj_integrity < max_integrity)
 			if(D.use(1))
-				health = min(health + (maxhealth * 0.2), maxhealth) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
+				obj_integrity = min(obj_integrity + (max_integrity * 0.2), max_integrity) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
 				user.visible_message("<span class='notice'>[user] replaces a damaged sandbag, repairing [src].</span>",
 				"<span class='notice'>You replace a damaged sandbag, repairing it [src].</span>")
 	else
@@ -925,10 +916,10 @@
 
 /obj/structure/barricade/sandbags/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage/10)
+	obj_integrity -= round(P.damage/10)
 
 	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
+		obj_integrity -= 50
 
 	update_health()
 

@@ -1,6 +1,6 @@
 /obj/item/reagent_container/food/drinks/cans
 	name = "soda can"
-	container_type = 0
+	init_reagent_flags = NONE
 	var/canopened = FALSE
 
 
@@ -9,7 +9,7 @@
 		playsound(src,'sound/effects/canopen.ogg', 15, 1)
 		to_chat(user, "<span class='notice'>You open the drink with [pick("an audible", "a satisfying")] pop!</span>")
 		canopened = TRUE
-		container_type = OPENCONTAINER_NOUNIT
+		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER_NOUNIT)
 		return
 	var/obj/item/reagent_container/H = usr.get_active_held_item()
 	var/N = input("Amount per transfer from this:","[H]") as null|anything in H.possible_transfer_amounts

@@ -601,7 +601,7 @@
 	level = 1			//Underfloor only
 	var/dpdir = 0		//Bitmask of pipe directions
 	dir = 0				//dir will contain dominant direction for junction pipes
-	health = 10 	//Health points 0-10
+	max_integrity = 10 	//Health points 0-10
 	layer = DISPOSAL_PIPE_LAYER //Slightly lower than wires and other pipes
 	var/base_icon_state	//Initial icon state on map
 
@@ -760,19 +760,19 @@
 			broken(0)
 			return
 		if(2)
-			health -= rand(5, 15)
+			obj_integrity -= rand(5, 15)
 			healthcheck()
 			return
 		if(3)
-			health -= rand(0, 15)
+			obj_integrity -= rand(0, 15)
 			healthcheck()
 			return
 
 //Test health for brokenness
 /obj/structure/disposalpipe/proc/healthcheck()
-	if(health < -2)
+	if(obj_integrity < -2)
 		broken(0)
-	else if(health < 1)
+	else if(obj_integrity < 1)
 		broken(1)
 
 //Attack by item. Weldingtool: unfasten and convert to obj/disposalconstruct

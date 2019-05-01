@@ -9,7 +9,6 @@
 	var/last_bumped = 0
 	var/flags_pass = 0
 	var/throwpass = 0
-	var/container_type = 0
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
 	///Chemistry.
@@ -102,16 +101,16 @@ directive is properly returned.
 	return is_refillable() && is_drainable()
 
 /atom/proc/is_injectable(allowmobs = TRUE)
-	return reagents && (container_type & (INJECTABLE | REFILLABLE))
+	return reagents && CHECK_BITFIELD(reagents.reagent_flags, INJECTABLE | REFILLABLE)
 
 /atom/proc/is_drawable(allowmobs = TRUE)
-	return reagents && (container_type & (DRAWABLE | DRAINABLE))
+	return reagents && CHECK_BITFIELD(reagents.reagent_flags, DRAWABLE | DRAINABLE)
 
 /atom/proc/is_refillable()
-	return reagents && (container_type & REFILLABLE)
+	return reagents && CHECK_BITFIELD(reagents.reagent_flags, REFILLABLE)
 
 /atom/proc/is_drainable()
-	return reagents && (container_type & DRAINABLE)
+	return reagents && CHECK_BITFIELD(reagents.reagent_flags, DRAINABLE)
 
 /*//Convenience proc to see whether a container can be accessed in a certain way.
 
@@ -128,6 +127,12 @@ directive is properly returned.
 
 /atom/proc/emp_act(var/severity)
 	return
+
+/atom/proc/effect_smoke(obj/effect/particle_effect/smoke/S)
+	if(S.lifetime < 1)
+		return FALSE
+	return TRUE
+
 
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
 	if(ispath(container))
@@ -272,7 +277,7 @@ its easier to just keep the beam vertical.
 
 	if(get_dist(user,src) <= 2)
 		if(reagents)
-			if(container_type & TRANSPARENT)
+			if(CHECK_BITFIELD(reagents.reagent_flags, TRANSPARENT))
 				to_chat(user, "It contains:")
 				if(reagents.reagent_list.len) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
 					var/total_volume = 0
@@ -281,12 +286,12 @@ its easier to just keep the beam vertical.
 					to_chat(user, "<span class='notice'>[total_volume] units of various reagents.</span>")
 				else
 					to_chat(user, "<span class='notice'>Nothing.")
-			else if(container_type & AMOUNT_VISIBLE)
+			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_VISIBLE))
 				if(reagents.total_volume)
 					to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
 				else
 					to_chat(user, "<span class='warning'>It's empty.</span>")
-			else if(container_type & AMOUNT_SKILLCHECK)
+			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
 				if(isxeno(user))
 					return
 				if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_NOVICE) // If they have no skillset(admin-spawn, etc), or are properly skilled.
@@ -298,7 +303,7 @@ its easier to just keep the beam vertical.
 						to_chat(user, "Nothing.")
 				else
 					to_chat(user, "You don't know what's in it.")
-			else if(container_type & AMOUNT_ESTIMEE)
+			else if(reagents.reagent_flags & AMOUNT_ESTIMEE)
 				var/obj/item/reagent_container/C = src
 				if(!reagents.total_volume)
 					to_chat(user, "<span class='notice'>\The [src] is empty!</span>")

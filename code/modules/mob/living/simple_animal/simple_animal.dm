@@ -85,14 +85,15 @@
 	. = ..()
 	icon_state = icon_living
 	density = initial(density)
-	SetResting(FALSE)
+	resting = FALSE
 
 /mob/living/simple_animal/Life()
 	..()
 
 	//Health
 	if(stat == DEAD)
-		return 0
+		SSmobs.stop_processing(src)
+		return FALSE
 
 	//Movement
 	if(!client && !stop_automated_movement && wander && !anchored)
@@ -219,7 +220,7 @@
 	health = 0
 	icon_state = icon_dead
 	density = FALSE
-	SetResting(TRUE)
+	resting = TRUE
 
 
 /mob/living/simple_animal/gib()
@@ -245,11 +246,6 @@
 	if(changed)
 		animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)
 
-
-/mob/living/simple_animal/emote(var/act, var/type, var/message, player_caused)
-	if(act)
-		if(act == "scream")	act = "whimper" //ugly hack to stop animals screaming when crushed :P
-		..(act, type, message, player_caused)
 
 /mob/living/simple_animal/attack_animal(mob/living/M as mob)
 	if(M.melee_damage_upper == 0)
@@ -373,7 +369,7 @@
 			return (0)
 	if (istype(target_mob,/obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
-		if(B.health > 0)
+		if(B.obj_integrity > 0)
 			return (0)
 	return (1)
 
@@ -386,24 +382,12 @@
 	if (targeted_by && target_locked)
 		overlays += target_locked
 
-/mob/living/simple_animal/say(var/message)
-	if(stat)
-		return
-
-	if(copytext(message,1,2) == "*")
-		return emote(copytext(message,2))
-
-	if(stat)
-		return
-
-	var/verb = "says"
-
-	if(speak_emote.len)
-		verb = pick(speak_emote)
-
-	message = capitalize(trim_left(message))
-
-	..(message, null, verb)
 
 /mob/living/simple_animal/get_idcard(hand_first)
 	return access_card
+
+
+/mob/living/simple_animal/say_mod(input, message_mode, datum/language/language)
+	if(length(speak_emote))
+		verb_say = pick(speak_emote)
+	return ..()

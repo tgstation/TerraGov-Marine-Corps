@@ -6,7 +6,7 @@
 	var/state = 0
 	var/dismantlectr = 0
 	var/buildctr = 0
-	health = 125
+	max_integrity = 125
 	var/repair_state = 0
 	// To store what type of wall it used to be
 	var/original
@@ -19,13 +19,13 @@
 		return 0
 
 	if(Proj.ammo.damage_type == BURN)
-		health -= Proj.damage
-		if(health <= 0)
+		obj_integrity -= Proj.damage
+		if(obj_integrity <= 0)
 			update_state()
 	else
 		if(prob(50))
-			health -= round(Proj.ammo.damage / 2)
-			if(health <= 0)
+			obj_integrity -= round(Proj.ammo.damage / 2)
+			if(obj_integrity <= 0)
 				update_state()
 	return 1
 
@@ -35,8 +35,8 @@
 		return FALSE
 	else
 		M.animation_attack_on(src)
-		health -= round(rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) / 2)
-		if(health <= 0)
+		obj_integrity -= round(rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) / 2)
+		if(obj_integrity <= 0)
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
 			"<span class='danger'>You slice \the [src] apart!</span>", null, 5)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
@@ -53,7 +53,7 @@
 			return
 	if(user.action_busy)
 		return TRUE //no afterattack
-	if(health > 0)
+	if(obj_integrity > 0)
 		if(iswrench(W))
 			if(!anchored)
 				if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))
@@ -68,7 +68,7 @@
 			else if (dismantlectr %2 == 0)
 				if(do_after(user,15, TRUE, 5, BUSY_ICON_BUILD))
 					dismantlectr++
-					health -= 15
+					obj_integrity -= 15
 					to_chat(user, "<span class='notice'>You unfasten a bolt from the girder!</span>")
 				return
 
@@ -82,7 +82,7 @@
 				P.debris(loc, 0, 2) //Generate some rods
 				if(!src)
 					return
-				health = 0
+				obj_integrity = 0
 				update_state()
 
 		else if(istype(W, /obj/item/tool/pickaxe/diamonddrill))
@@ -175,7 +175,7 @@
 					dismantle()
 					dismantlectr = 0
 					return
-				health -= 15
+				obj_integrity -= 15
 				dismantlectr++
 				to_chat(user, "<span class='notice'>You cut away from structural piping!</span>")
 			return
@@ -223,7 +223,7 @@
 
 /obj/structure/girder/examine(mob/user)
 	..()
-	if (health <= 0)
+	if (obj_integrity <= 0)
 		to_chat(user, "It's broken, but can be mended by applying a metal plate then welding it together.")
 	else
 	//Build wall
@@ -254,11 +254,11 @@
 	qdel(src)
 
 /obj/structure/girder/proc/repair()
-	health = 200
+	obj_integrity = 200
 	update_state()
 
 /obj/structure/girder/proc/update_state()
-	if (health <= 0)
+	if (obj_integrity <= 0)
 		icon_state = "[icon_state]_damaged"
 		ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
 		density = 0
@@ -289,15 +289,15 @@
 /obj/structure/girder/ex_act(severity)
 	switch(severity)
 		if(1)
-			health = 0
+			obj_integrity = 0
 			update_state()
 		if(2)
 			if (prob(30))
-				health = 0
+				obj_integrity = 0
 				update_state()
 		if(3)
 			if(prob(5))
-				health = 0
+				obj_integrity = 0
 				update_state()
 
 
@@ -306,9 +306,9 @@
 /obj/structure/girder/displaced
 	icon_state = "displaced"
 	anchored = 0
-	health = 50
+	max_integrity = 50
 
 /obj/structure/girder/reinforced
 	icon_state = "reinforced"
 	state = 2
-	health = 500
+	max_integrity = 500

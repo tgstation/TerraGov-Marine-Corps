@@ -175,8 +175,7 @@
 /area/tdome)
 "aA" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
@@ -186,8 +185,7 @@
 /area/tdome)
 "aB" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
@@ -432,8 +430,7 @@
 /area/tdome)
 "bl" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
@@ -1213,8 +1210,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/machinery/door/window/southleft{
 	dir = 1;
@@ -1345,8 +1341,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/southleft,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1615,8 +1610,7 @@
 /area/syndicate_station)
 "ea" = (
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -1633,8 +1627,7 @@
 /area/syndicate_station)
 "eb" = (
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/machinery/door/window/northright{
 	icon_state = "right";
@@ -1673,8 +1666,7 @@
 /obj/structure/table/reinforced,
 /obj/item/weapon/twohanded/dualsaber,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -1692,8 +1684,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/holofloor{
@@ -1707,8 +1698,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /obj/item/clothing/mask/gas/voice/space_ninja{
@@ -1723,8 +1713,7 @@
 "ei" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /obj/item/teleportation_scroll{
@@ -1755,8 +1744,7 @@
 "em" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/machinery/door/window/northright{
 	icon_state = "right";
@@ -2382,8 +2370,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/machinery/door/window/southleft{
 	dir = 8;
@@ -2556,8 +2543,7 @@
 /obj/structure/table/reinforced,
 /obj/effect/decal/warning_stripes,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/machinery/door/window/southleft{
 	dir = 1;
@@ -2697,8 +2683,7 @@
 /area/syndicate_station)
 "gH" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /turf/open/floor/holofloor{
@@ -3866,8 +3851,7 @@
 "jZ" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating,
 /area/syndicate_station)
@@ -6014,11 +5998,11 @@
 /area/deathmatch)
 "pd" = (
 /obj/effect/landmark/deathmatch,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pe" = (
 /obj/effect/landmark/deathmatch,
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/deathmatch)
 "pf" = (
 /obj/structure/bed/chair/dropship/pilot{
@@ -6069,7 +6053,7 @@
 /area/deathmatch)
 "pn" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pp" = (
 /obj/structure/table,
@@ -6078,7 +6062,7 @@
 /area/deathmatch)
 "pr" = (
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/gm/dirtgrassborder{
+/turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
 /area/deathmatch)
@@ -6088,40 +6072,40 @@
 /turf/open/floor/plating,
 /area/deathmatch)
 "pt" = (
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pu" = (
 /obj/structure/largecrate/guns/russian,
 /obj/item/tool/crowbar,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pv" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pw" = (
-/turf/open/gm/dirtgrassborder{
+/turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
 /area/deathmatch)
 "px" = (
-/turf/open/gm/dirt,
+/turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "py" = (
-/turf/open/gm/coast{
+/turf/open/ground/coast{
 	dir = 4
 	},
 /area/deathmatch)
 "pz" = (
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/deathmatch)
 "pA" = (
-/turf/open/gm/coast{
+/turf/open/ground/coast{
 	dir = 8
 	},
 /area/deathmatch)
 "pB" = (
-/turf/open/gm/dirtgrassborder{
+/turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
 /area/deathmatch)
@@ -6135,11 +6119,11 @@
 /area/deathmatch)
 "pE" = (
 /obj/structure/flora/ausbushes/grassybush,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pF" = (
 /obj/item/weapon/katana,
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/deathmatch)
 "pG" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -6171,18 +6155,18 @@
 /area/deathmatch)
 "pL" = (
 /obj/structure/fence,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pM" = (
 /obj/structure/fence,
-/turf/open/gm/dirtgrassborder{
+/turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
 /area/deathmatch)
 "pO" = (
 /obj/structure/largecrate/guns/merc,
 /obj/item/tool/crowbar,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "pP" = (
 /obj/item/weapon/gun/shotgun/pump,
@@ -6200,12 +6184,12 @@
 /turf/closed/wall,
 /area/deathmatch)
 "pT" = (
-/turf/open/gm/dirtgrassborder{
+/turf/open/floor/plating/ground/dirtgrassborder{
 	icon_state = "grassdirt_corner"
 	},
 /area/deathmatch)
 "pU" = (
-/turf/open/gm/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
 /area/deathmatch)
 "pW" = (
 /obj/structure/closet,
@@ -6268,13 +6252,13 @@
 /turf/open/floor,
 /area/deathmatch)
 "qh" = (
-/turf/open/gm/coast/corner,
+/turf/open/ground/coast/corner,
 /area/deathmatch)
 "qi" = (
-/turf/open/gm/coast,
+/turf/open/ground/coast,
 /area/deathmatch)
 "qj" = (
-/turf/open/gm/coast/corner2{
+/turf/open/ground/coast/corner2{
 	dir = 2
 	},
 /area/deathmatch)
@@ -6302,7 +6286,7 @@
 /area/deathmatch)
 "qo" = (
 /obj/structure/lattice,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "qp" = (
 /obj/structure/table,
@@ -6312,17 +6296,17 @@
 /turf/open/floor,
 /area/deathmatch)
 "qq" = (
-/turf/open/gm/coast{
+/turf/open/ground/coast{
 	dir = 9
 	},
 /area/deathmatch)
 "qr" = (
-/turf/open/gm/coast{
+/turf/open/ground/coast{
 	dir = 1
 	},
 /area/deathmatch)
 "qs" = (
-/turf/open/gm/coast/corner{
+/turf/open/ground/coast/corner{
 	dir = 4
 	},
 /area/deathmatch)
@@ -6331,12 +6315,12 @@
 /turf/open/floor,
 /area/deathmatch)
 "qu" = (
-/turf/open/gm/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 1
 	},
 /area/deathmatch)
 "qv" = (
-/turf/open/gm/dirtgrassborder/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
 	},
 /area/deathmatch)
@@ -6351,7 +6335,7 @@
 /obj/machinery/floodlight{
 	name = "Floodlight"
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "qz" = (
 /obj/machinery/light{
@@ -6365,7 +6349,7 @@
 /area/deathmatch)
 "qB" = (
 /obj/structure/flora/tree/jungle/small,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "qC" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -6515,7 +6499,7 @@
 /area/deathmatch)
 "rh" = (
 /obj/item/weapon/gun/pistol/b92fs,
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/deathmatch)
 "ri" = (
 /obj/structure/rack,
@@ -6560,7 +6544,7 @@
 /area/deathmatch)
 "rp" = (
 /obj/structure/flora/tree/jungle,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "rq" = (
 /obj/structure/largecrate/supply/weapons/flamers,
@@ -6573,19 +6557,19 @@
 "rs" = (
 /obj/structure/largecrate/guns,
 /obj/item/tool/crowbar,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/deathmatch)
 "rt" = (
 /obj/item/weapon/gun/revolver/mateba/admiral,
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/deathmatch)
 "ru" = (
 /obj/item/weapon/twohanded/glaive,
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/deathmatch)
 "rv" = (
 /obj/item/weapon/baseballbat/metal,
-/turf/open/gm/river,
+/turf/open/ground/river,
 /area/deathmatch)
 
 (1,1,1) = {"

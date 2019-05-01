@@ -87,7 +87,7 @@
 /obj/item/storage/photo_album/MouseDrop(obj/over_object as obj)
 
 	if((ishuman(usr)))
-		var/mob/M = usr
+		var/mob/living/carbon/human/M = usr
 		if(!( istype(over_object, /obj/screen) ))
 			return ..()
 		playsound(loc, "rustle", 15, 1, 6)
