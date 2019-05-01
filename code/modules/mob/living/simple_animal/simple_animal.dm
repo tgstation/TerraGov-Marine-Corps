@@ -369,7 +369,7 @@
 			return (0)
 	if (istype(target_mob,/obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
-		if(B.health > 0)
+		if(B.obj_integrity > 0)
 			return (0)
 	return (1)
 

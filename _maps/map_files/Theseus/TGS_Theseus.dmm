@@ -9295,8 +9295,7 @@
 	req_access_txt = "3"
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
@@ -10067,8 +10066,7 @@
 "awk" = (
 /obj/structure/table/almayer,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /obj/item/detective_scanner,
@@ -10140,8 +10138,7 @@
 /area/almayer/shipboard/brig)
 "awr" = (
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/machinery/door/window{
 	dir = 2
@@ -14310,8 +14307,7 @@
 /obj/item/weapon/telebaton,
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/item/book/manual/marine_law,
 /obj/machinery/door/window{
@@ -14422,8 +14418,7 @@
 "aEs" = (
 /obj/structure/table/almayer,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/item/storage/box/evidence,
 /obj/item/storage/box/evidence,
@@ -15495,8 +15490,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
@@ -47753,8 +47747,7 @@
 /obj/structure/table/almayer,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/item/binoculars,
 /obj/structure/cable{
@@ -48126,8 +48119,7 @@
 /area/almayer/shipboard/brig_cells)
 "chy" = (
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/toilet{
 	tag = "icon-toilet00 (NORTH)";

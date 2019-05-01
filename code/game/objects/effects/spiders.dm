@@ -5,7 +5,7 @@
 	icon = 'icons/effects/effects.dmi'
 	anchored = 1
 	density = 0
-	var/health = 15
+	max_integrity = 15
 
 //similar to weeds, but only barfed out by nurses manually
 /obj/effect/spider/ex_act(severity)
@@ -35,22 +35,22 @@
 			damage = 15
 			playsound(loc, 'sound/items/Welder.ogg', 25, 1)
 
-	health -= damage
+	obj_integrity -= damage
 	healthcheck()
 
 /obj/effect/spider/bullet_act(var/obj/item/projectile/Proj)
 	..()
-	health -= Proj.ammo.damage
+	obj_integrity -= Proj.ammo.damage
 	healthcheck()
 	return 1
 
 /obj/effect/spider/proc/healthcheck()
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		qdel(src)
 
 /obj/effect/spider/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
-		health -= 5
+		obj_integrity -= 5
 		healthcheck()
 
 /obj/effect/spider/stickyweb
@@ -94,7 +94,7 @@
 	icon_state = "spiderling"
 	anchored = 0
 	layer = BELOW_TABLE_LAYER
-	health = 3
+	max_integrity = 3
 	var/amount_grown = -1
 	var/obj/machinery/atmospherics/components/unary/vent_pump/entry_vent
 	var/travelling_in_vent = 0
@@ -118,7 +118,7 @@
 	qdel(src)
 
 /obj/effect/spider/spiderling/healthcheck()
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		die()
 
 /obj/effect/spider/spiderling/process()
@@ -200,7 +200,7 @@
 	name = "cocoon"
 	desc = "Something wrapped in silky spider web"
 	icon_state = "cocoon1"
-	health = 60
+	max_integrity = 60
 
 	New()
 		icon_state = pick("cocoon1","cocoon2","cocoon3")

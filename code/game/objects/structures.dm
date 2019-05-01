@@ -6,10 +6,6 @@
 	var/flags_barrier = 0
 	anchored = TRUE
 
-	var/damage = 0
-	var/damage_cap = 500 //The point where things start breaking down.
-	var/health
-
 /obj/structure/New()
 	..()
 	GLOB.structure_list += src
@@ -264,9 +260,9 @@
 	if(!dam || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE|UNACIDABLE))
 		return
 
-	damage = max(0, damage + dam)
+	obj_integrity = max(0, obj_integrity - dam)
 
-	if(damage >= damage_cap)
+	if(obj_integrity <= 0)
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		qdel(src)
 	else

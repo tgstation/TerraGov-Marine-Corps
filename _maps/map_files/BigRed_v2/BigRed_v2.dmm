@@ -3879,8 +3879,7 @@
 /area/bigredv2/outside/marshal_office)
 "aly" = (
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/bed/chair{
 	dir = 4
@@ -13273,8 +13272,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -13831,8 +13829,7 @@
 "aNE" = (
 /obj/structure/table,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /turf/open/floor/tile/white/warningstripe{
 	dir = 4
@@ -14082,8 +14079,7 @@
 /obj/structure/table,
 /obj/item/flashlight/lamp,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /turf/open/floor/tile/white/warningstripe{
 	dir = 4
@@ -14387,8 +14383,7 @@
 "aPO" = (
 /obj/structure/table,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/item/phone,
 /turf/open/floor/tile/white/warningstripe{
@@ -15181,17 +15176,11 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aSu" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	health = 25000
-	},
+/obj/structure/barricade/wooden/lv_snowflake,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aSv" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	health = 25000
-	},
+/obj/structure/barricade/wooden/lv_snowflake,
 /turf/open/floor/plating,
 /area/bigredv2/outside/virology)
 "aSw" = (
@@ -17511,8 +17500,7 @@
 "aZR" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -18070,8 +18058,7 @@
 "bbU" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/item/reagent_container/food/drinks/bottle/sake,
 /turf/open/floor,
@@ -20137,10 +20124,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "biR" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	health = 25000
-	},
+/obj/structure/barricade/wooden/lv_snowflake,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "biV" = (
@@ -20756,18 +20740,12 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bli" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	health = 25000
-	},
+/obj/structure/barricade/wooden/lv_snowflake,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "blj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	health = 25000
-	},
+/obj/structure/barricade/wooden/lv_snowflake,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "blk" = (
@@ -22616,7 +22594,6 @@
 /area/bigredv2/outside/engineering)
 "brl" = (
 /obj/machinery/bot/mulebot{
-	health = 10;
 	move_speed = 100;
 	on = 0
 	},

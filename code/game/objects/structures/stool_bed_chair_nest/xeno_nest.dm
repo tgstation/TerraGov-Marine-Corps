@@ -8,7 +8,7 @@
 	buckling_y = 6
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
 	resistance_flags = UNACIDABLE
-	health = 100
+	max_integrity = 100
 	var/on_fire = 0
 	var/resisting = 0
 	var/resisting_ready = 0
@@ -31,7 +31,7 @@
 		if(W.flags_item & NOBLUDGEON) return
 		user.changeNext_move(W.attack_speed)
 		var/aforce = W.force
-		health = max(0, health - aforce)
+		obj_integrity = max(0, obj_integrity - aforce)
 		playsound(loc, "alien_resin_break", 25)
 		user.visible_message("<span class='warning'>\The [user] hits \the [src] with \the [W]!</span>", \
 		"<span class='warning'>You hit \the [src] with \the [W]!</span>")
@@ -168,16 +168,16 @@
 
 
 /obj/structure/bed/nest/proc/healthcheck()
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		density = 0
 		qdel(src)
 
 /obj/structure/bed/nest/flamer_fire_act()
-	health -= 50
+	obj_integrity -= 50
 	healthcheck()
 
 /obj/structure/bed/nest/fire_act()
-	health -= 50
+	obj_integrity -= 50
 	healthcheck()
 
 /obj/structure/bed/nest/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -187,7 +187,7 @@
 		M.visible_message("<span class='danger'>\The [M] claws at \the [src]!</span>", \
 		"<span class='danger'>You claw at \the [src].</span>")
 		playsound(loc, "alien_resin_break", 25)
-		health -= (M.melee_damage_upper + 25) //Beef up the damage a bit
+		obj_integrity -= (M.melee_damage_upper + 25) //Beef up the damage a bit
 		healthcheck()
 		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
@@ -198,5 +198,5 @@
 	M.visible_message("<span class='danger'>\The [M] tears at \the [src]!", \
 	"<span class='danger'>You tear at \the [src].")
 	playsound(loc, "alien_resin_break", 25)
-	health -= 40
+	obj_integrity -= 40
 	healthcheck()

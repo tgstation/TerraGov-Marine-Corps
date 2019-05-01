@@ -12,7 +12,7 @@
 	icon_opened = "secureopen"
 	var/icon_broken = "securebroken"
 	var/icon_off = "secureoff"
-	health = 100
+	max_integrity = 100
 	var/slotlocked = 0
 
 /obj/structure/closet/secure_closet/can_open()

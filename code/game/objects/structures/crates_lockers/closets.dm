@@ -11,7 +11,7 @@
 	var/opened = FALSE
 	var/welded = FALSE
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
-	health = 100
+	max_integrity = 100
 	var/lastbang = FALSE
 	var/storage_capacity = 30 //This is so that someone can't pack hundreds of items in a locker/crate
 							  //then open it in a populated area to crash clients.
@@ -162,11 +162,11 @@
 				qdel(src)
 
 /obj/structure/closet/bullet_act(var/obj/item/projectile/Proj)
-	if(health > 999)
+	if(obj_integrity > 999)
 		return TRUE
-	health -= round(Proj.damage*0.3)
+	obj_integrity -= round(Proj.damage*0.3)
 	if(prob(30)) playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		for(var/atom/movable/A as mob|obj in src)
 			A.loc = loc
 		spawn(1)

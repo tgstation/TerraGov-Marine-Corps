@@ -58,7 +58,7 @@
 /obj/structure/acid_spray_act(mob/living/carbon/Xenomorph/X)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
-	health -= rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X)
+	obj_integrity -= rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X)
 	update_health(TRUE)
 	return TRUE // normal density flag
 
