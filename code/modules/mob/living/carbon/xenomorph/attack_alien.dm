@@ -12,7 +12,7 @@
 	return TRUE
 
 /mob/living/carbon/Xenomorph/Hunter/can_critical()
-	if(stealth)
+	if(stealth) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
 		return FALSE
 	return ..()
 
@@ -132,6 +132,12 @@
 		to_chat(X, "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>")
 		return FALSE
 
+/mob/living/carbon/Xenomorph/proc/caste_slash_zone_chance()
+	return 0
+
+/mob/living/carbon/Xenomorph/Hunter/caste_slash_zone_chance()
+	return can_sneak_attack //We always get the limb we're aiming for if we're sneak attacking
+
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/Xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	return
 
@@ -139,7 +145,7 @@
 	var/datum/limb/affecting
 	if(set_location)
 		affecting = get_limb(set_location)
-	else if(X.stealth_router(HANDLE_STEALTH_CHECK) && X.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //We always get the limb we're aiming for if we're sneak attacking
+	else if(X.caste_slash_zone_chance())
 		affecting = get_limb(X.zone_selected)
 	else
 		affecting = get_limb(ran_zone(X.zone_selected, 70))
@@ -167,7 +173,7 @@
 	var/attack_message2 = "<span class='danger'>You slash [src]!</span>"
 	var/log = "slashed"
 	//Check for a special bite attack
-	if(prob(X.xeno_caste.bite_chance) && !X.critical_proc && !no_crit && !X.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
+	if(!no_crit && can_critical() && prob(X.xeno_caste.bite_chance))
 		damage *= 1.5
 		attack_sound = "alien_bite"
 		attack_message1 = "<span class='danger'>\The [src] is viciously shredded by \the [X]'s sharp teeth!</span>"
@@ -177,7 +183,7 @@
 		addtimer(CALLBACK(X, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), X.xeno_caste.rng_min_interval)
 
 	//Check for a special bite attack
-	if(prob(X.xeno_caste.tail_chance) && !X.critical_proc && !no_crit && !X.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
+	if(!no_crit && can_critical() && prob(X.xeno_caste.tail_chance))
 		damage *= 1.25
 		attack_flick = "tail"
 		attack_sound = 'sound/weapons/alien_tail_attack.ogg'
