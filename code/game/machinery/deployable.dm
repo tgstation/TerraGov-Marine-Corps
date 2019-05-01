@@ -14,8 +14,7 @@
 	anchored = 0.0
 	density = 1.0
 	icon_state = "barrier0"
-	var/health = 100.0
-	var/maxhealth = 100.0
+	max_integrity = 100
 	var/locked = 0.0
 //	req_access = list(access_maint_tunnels)
 
@@ -63,8 +62,8 @@
 				visible_message("<span class='warning'> BZZzZZzZZzZT</span>")
 				return
 		else if (iswrench(W))
-			if (src.health < src.maxhealth)
-				src.health = src.maxhealth
+			if (src.obj_integrity < max_integrity)
+				src.obj_integrity = max_integrity
 				src.emagged = 0
 				src.req_access = list(ACCESS_MARINE_PREP)
 				visible_message("<span class='warning'> [user] repairs \the [src]!</span>")
@@ -78,11 +77,11 @@
 		else
 			switch(W.damtype)
 				if("fire")
-					src.health -= W.force * 0.75
+					src.obj_integrity -= W.force * 0.75
 				if("brute")
-					src.health -= W.force * 0.5
+					src.obj_integrity -= W.force * 0.5
 				else
-			if (src.health <= 0)
+			if (src.obj_integrity <= 0)
 				src.explode()
 			..()
 
@@ -92,8 +91,8 @@
 				src.explode()
 				return
 			if(2.0)
-				src.health -= 25
-				if (src.health <= 0)
+				src.obj_integrity -= 25
+				if (src.obj_integrity <= 0)
 					src.explode()
 				return
 	emp_act(severity)

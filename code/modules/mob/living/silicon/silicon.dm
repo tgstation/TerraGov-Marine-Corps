@@ -21,7 +21,6 @@
 /mob/living/silicon/Initialize()
 	. = ..()
 	GLOB.silicon_mobs += src
-	grant_language(/datum/language/common)
 
 /mob/living/silicon/Destroy()
 	GLOB.silicon_mobs -= src

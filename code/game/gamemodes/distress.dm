@@ -183,6 +183,8 @@
 		var/datum/mind/new_queen = i
 		if(new_queen.assigned_role || jobban_isbanned(new_queen.current, ROLE_XENO_QUEEN) || is_banned_from(new_queen.current?.ckey, ROLE_XENO_QUEEN))
 			continue
+		if(queen_age_check(new_queen.current?.client))
+			continue
 		new_queen.assigned_role = ROLE_XENO_QUEEN
 		xenomorphs += new_queen
 		found = TRUE

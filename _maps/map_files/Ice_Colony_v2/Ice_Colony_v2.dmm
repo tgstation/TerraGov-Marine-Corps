@@ -21686,8 +21686,7 @@
 "bep" = (
 /obj/machinery/bot/mulebot,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 250
+	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 9
@@ -21712,8 +21711,7 @@
 "bes" = (
 /obj/machinery/bot/mulebot,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -25892,8 +25890,7 @@
 "bpP" = (
 /obj/structure/closet/coffin,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/morgue)
@@ -27994,8 +27991,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /turf/open/floor/tile/red/whitered{
 	dir = 9
@@ -28259,8 +28255,7 @@
 "bvY" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/item/tool/stamp,
 /turf/open/floor/tile/red/whitered{
@@ -28681,8 +28676,7 @@
 "bwY" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /turf/open/floor/tile/red/whitered{
 	dir = 8
@@ -28925,8 +28919,7 @@
 "bxE" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/item/tool/stamp,
 /turf/open/floor/tile/red/whitered{

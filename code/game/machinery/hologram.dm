@@ -115,15 +115,6 @@ var/const/HOLOPAD_MODE = 0
 		to_chat(user, "<span class='alert'>ERROR: Unable to project hologram.</span>")
 	return
 
-/*This is the proc for special two-way communication between AI and holopad/people talking near holopad.
-For the other part of the code, check silicon say.dm. Particularly robot talk.*/
-/obj/machinery/hologram/holopad/hear_talk(mob/living/M, text, verb)
-	if(M&&hologram&&master)//Master is mostly a safety in case lag hits or something.
-		var/name_used = M.GetVoice()
-		//This communication is imperfect because the holopad "filters" voices and is only designed to connect to the master only.
-		var/rendered = "<i><span class='game say'>Holopad received, <span class='name'>[name_used]</span> [verb], <span class='message'>\"[text]\"</span></span></i>"
-		master.show_message(rendered, 2)
-	return
 
 /obj/machinery/hologram/holopad/proc/create_holo(mob/living/silicon/ai/A, turf/T = loc)
 	hologram = new(T)//Spawn a blank effect at the location.

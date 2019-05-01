@@ -366,7 +366,7 @@
 		"burst_size" = burst_size,
 	)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		if(!istype(src, /obj/machinery/marine_turret/mini)) //Check for mini-sentry
 			ui = new(user, src, ui_key, "sentry.tmpl", "[src.name] UI", 625, 525)
@@ -1205,7 +1205,7 @@
 			notice = "<b>ALERT! [src]'s battery depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Sentry Alert System")
-	AI.aiRadio.talk_into(AI,"[notice]","Theseus","announces")
+	AI.aiRadio.talk_into(AI, "[notice]", "Theseus", "announces", /datum/language/common)
 	qdel(AI)
 
 /obj/machinery/marine_turret/mini

@@ -6,8 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 	layer = WINDOW_LAYER
-	health = 50
-	var/health_max = 50
+	max_integrity = 50
 	var/cut = FALSE //Cut fences can be passed through
 	var/junction = 0 //Because everything is terrible, I'm making this a fence-level var
 	var/basestate = "fence"
@@ -19,7 +18,7 @@
 
 	if(cut) //It's broken/cut, just a frame!
 		return
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		if(user)
 			user.visible_message("<span class='danger'>[user] smashes through [src][AM ? " with [AM]":""]!</span>")
 		playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
@@ -32,7 +31,7 @@
 	if(Proj.ammo.damage_type == HALLOSS || Proj.damage <= 0 || Proj.ammo.flags_ammo_behavior == AMMO_ENERGY)
 		return FALSE
 
-	health -= Proj.damage * 0.3
+	obj_integrity -= Proj.damage * 0.3
 	..()
 	healthcheck()
 	return TRUE
@@ -44,7 +43,7 @@
 		if(2)
 			qdel(src)
 		if(3)
-			health -= rand(25, 55)
+			obj_integrity -= rand(25, 55)
 			healthcheck(0, 1)
 
 /obj/structure/fence/hitby(AM as mob|obj)
@@ -56,14 +55,14 @@
 	else if(isobj(AM))
 		var/obj/item/I = AM
 		tforce = I.throwforce
-	health = max(0, health - tforce)
+	obj_integrity = max(0, obj_integrity - tforce)
 	healthcheck()
 
 /obj/structure/fence/attack_hand(mob/user as mob)
 	if(HULK in user.mutations)
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
 		user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
-		health -= 100
+		obj_integrity -= 100
 		healthcheck(1, 1, user)
 
 	else if(ishuman(user) && user.a_intent == INTENT_HARM)
@@ -81,12 +80,12 @@
 	"<span class='danger'>You mangle [src]!</span>", \
 	"<span class='danger'>You hear twisting metal!</span>", 5)
 
-	health -= damage_dealt
+	obj_integrity -= damage_dealt
 	healthcheck()
 
 //Used by attack_animal
 /obj/structure/fence/proc/attack_generic(mob/living/user, damage = 0)
-	health -= damage
+	obj_integrity -= damage
 	user.animation_attack_on(src)
 	user.visible_message("<span class='danger'>[user] smashes into [src]!</span>")
 	healthcheck(1, 1, user)
@@ -101,7 +100,7 @@
 
 /obj/structure/fence/attackby(obj/item/W, mob/user)
 
-	if(istype(W, /obj/item/stack/rods) && health < health_max)
+	if(istype(W, /obj/item/stack/rods) && obj_integrity < max_integrity)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_PLASTEEL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fix [src]'s wiring.</span>",
 			"<span class='notice'>You fumble around figuring out how to fix [src]'s wiring.</span>")
@@ -110,7 +109,7 @@
 				return
 		var/obj/item/stack/rods/R = W
 		var/amount_needed = 2
-		if(health)
+		if(obj_integrity)
 			amount_needed = 1
 		if(R.amount >= amount_needed)
 			user.visible_message("<span class='notice'>[user] starts repairing [src] with [R].</span>",
@@ -121,7 +120,7 @@
 					to_chat(user, "<span class='warning'>You need more metal rods to repair [src].")
 					return
 				R.use(amount_needed)
-				health = health_max
+				obj_integrity = max_integrity
 				cut = 0
 				density = 1
 				update_icon()
@@ -146,18 +145,18 @@
 				if(GRAB_PASSIVE)
 					M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
 					M.apply_damage(7)
-					health -= 10
+					obj_integrity -= 10
 				if(GRAB_AGGRESSIVE)
 					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
 					if(prob(50))
 						M.KnockDown(1)
 					M.apply_damage(10)
-					health -= 25
+					obj_integrity -= 25
 				if(GRAB_NECK)
 					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
 					M.KnockDown(5)
 					M.apply_damage(20)
-					health -= 50
+					obj_integrity -= 50
 			healthcheck(1, 1, M) //The person thrown into the window literally shattered it
 		return
 
@@ -177,9 +176,9 @@
 	else
 		switch(W.damtype)
 			if("fire")
-				health -= W.force
+				obj_integrity -= W.force
 			if("brute")
-				health -= W.force * 0.1
+				obj_integrity -= W.force * 0.1
 		healthcheck(1, 1, user, W)
 		..()
 
@@ -233,6 +232,6 @@
 
 /obj/structure/fence/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
-		health -= round(exposed_volume / 100)
+		obj_integrity -= round(exposed_volume / 100)
 		healthcheck(0) //Don't make hit sounds, it's dumb with fire/heat
 	..()

@@ -159,6 +159,10 @@
 	for(var/datum/limb/L in limbs)
 		L.icon_name = get_limb_icon_name(species, b_icon, gender, L.display_name, e_icon)
 
+/mob/living/carbon/human/get_reagent_tags()
+	. = ..()
+	return .|IS_HUMAN
+
 /mob/living/carbon/human/can_inject(mob/user, error_msg, target_zone, penetrate_thick = FALSE)
 	. = reagents
 

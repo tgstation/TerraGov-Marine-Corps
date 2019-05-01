@@ -1156,6 +1156,18 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		message_admins("[ADMIN_TPMONTY(usr)] created outfit named '[O.name]'.")
 
 
+	else if(href_list["viewruntime"])
+		var/datum/error_viewer/error_viewer = locate(href_list["viewruntime"])
+		if(!istype(error_viewer))
+			to_chat(usr, "<span class='warning'>That runtime viewer no longer exists.</span>")
+			return
+
+		if(href_list["viewruntime_backto"])
+			error_viewer.show_to(owner, locate(href_list["viewruntime_backto"]), href_list["viewruntime_linear"])
+		else
+			error_viewer.show_to(owner, null, href_list["viewruntime_linear"])
+
+
 	else if(href_list["addmessage"])
 		if(!check_rights(R_BAN))
 			return
@@ -1518,6 +1530,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/mob/living/carbon/human/H = locate(href_list["setrank"])
 
 		if(!istype(H))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
 		usr.client.holder.select_rank(H)
@@ -1530,6 +1543,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/mob/living/carbon/human/H = locate(href_list["setequipment"])
 
 		if(!istype(H))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
 		usr.client.holder.select_equipment(H)
@@ -1555,6 +1569,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/mob/living/L = locate(href_list["offer"]) in GLOB.mob_living_list
 
 		if(!istype(L))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
 		usr.client.holder.offer(L)
@@ -1567,6 +1582,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/mob/living/L = locate(href_list["give"]) in GLOB.mob_living_list
 
 		if(!istype(L))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
 		usr.client.holder.give_mob(L)
@@ -1580,6 +1596,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/client/C = M.client
 
 		if(!istype(C))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
 		var/list/body = list()
@@ -1588,3 +1605,41 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/datum/browser/popup = new(usr, "playtime_[C.key]", "<div align='center'>Playtime for [C.key]</div>", 550, 615)
 		popup.set_content(body.Join())
 		popup.open(FALSE)
+
+
+	else if(href_list["randomname"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["randomname"]) in GLOB.human_mob_list
+		if(!istype(H))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
+
+		log_admin("[key_name(src)] gave [key_name(H)] a random name.")
+		message_admins("[ADMIN_TPMONTY(usr)] gave a [ADMIN_TPMONTY(H)] random name.")
+
+
+	else if(href_list["checkcontents"])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/mob/living/L = locate(href_list["checkcontents"]) in GLOB.mob_living_list
+		if(!istype(L))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		var/dat
+
+		for(var/i in L.get_contents())
+			var/atom/A = i
+			dat += "[A] [ADMIN_VV(A)]<br>"
+
+		var/datum/browser/popup = new(usr, "contents_[key_name(L)]", "<div align='center'>Contents of [key_name(L)]</div>")
+		popup.set_content(dat)
+		popup.open(FALSE)
+
+		log_admin("[key_name(usr)] checked the contents of [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] checked the contents of [ADMIN_TPMONTY(L)].")

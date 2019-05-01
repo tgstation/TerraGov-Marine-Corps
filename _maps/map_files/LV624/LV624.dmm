@@ -13008,7 +13008,6 @@
 /obj/machinery/bot/mulebot{
 	auto_pickup = 0;
 	auto_return = 0;
-	health = 1;
 	on = 0
 	},
 /obj/effect/decal/cleanable/blood/oil,

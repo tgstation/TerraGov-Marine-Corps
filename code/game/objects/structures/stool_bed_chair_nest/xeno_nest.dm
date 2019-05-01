@@ -1,3 +1,5 @@
+#define NEST_RESIST_TIME 1 MINUTES
+#define NEST_UNBUCKLED_COOLDOWN 5 SECONDS
 
 //Alium nests. Essentially beds with an unbuckle delay that only aliums can buckle mobs to.
 /obj/structure/bed/nest
@@ -8,132 +10,120 @@
 	buckling_y = 6
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
 	resistance_flags = UNACIDABLE
-	health = 100
+	max_integrity = 100
 	var/on_fire = 0
-	var/resisting = 0
-	var/resisting_ready = 0
-	var/nest_resist_time = 1.5 MINUTES
+	var/resisting_time = 0
 	layer = RESIN_STRUCTURE_LAYER
 
-/obj/structure/bed/nest/New()
-	..()
-	if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
 
-/obj/structure/bed/nest/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/grab))
-		var/obj/item/grab/G = W
-		if(ismob(G.grabbed_thing))
-			var/mob/M = G.grabbed_thing
-			to_chat(user, "<span class='notice'>You place [M] on [src].</span>")
-			M.forceMove(loc)
+/obj/structure/bed/nest/Initialize()
+	. = ..()
+	if(!locate(/obj/effect/alien/weeds) in loc)
+		new /obj/effect/alien/weeds(loc)
+
+
+/obj/structure/bed/nest/attackby(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
+		if(!isliving(G.grabbed_thing))
+			return
+		var/mob/living/L = G.grabbed_thing
+		to_chat(user, "<span class='notice'>You place [L] on [src].</span>")
+		L.forceMove(loc)
 		return TRUE
-	else
-		if(W.flags_item & NOBLUDGEON) return
-		user.changeNext_move(W.attack_speed)
-		var/aforce = W.force
-		health = max(0, health - aforce)
-		playsound(loc, "alien_resin_break", 25)
-		user.visible_message("<span class='warning'>\The [user] hits \the [src] with \the [W]!</span>", \
-		"<span class='warning'>You hit \the [src] with \the [W]!</span>")
-		healthcheck()
+	if(I.flags_item & NOBLUDGEON)
+		return
+	user.changeNext_move(I.attack_speed)
+	obj_integrity = max(0, obj_integrity - I.force)
+	playsound(loc, "alien_resin_break", 25)
+	user.visible_message("<span class='warning'>\The [user] hits \the [src] with \the [I]!</span>", \
+	"<span class='warning'>You hit \the [src] with \the [I]!</span>")
+	healthcheck()
 
-/obj/structure/bed/nest/manual_unbuckle(mob/user)
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
-			if(buckled_mob != user)
-				if(user.stat || user.lying || user.restrained())
-					return
-				buckled_mob.visible_message("<span class='notice'>\The [user] pulls \the [buckled_mob] free from \the [src]!</span>",\
-				"<span class='notice'>\The [user] pulls you free from \the [src].</span>",\
-				"<span class='notice'>You hear squelching.</span>")
-				playsound(loc, "alien_resin_move", 50)
-				if(ishuman(buckled_mob))
-					var/mob/living/carbon/human/H = buckled_mob
-					H.start_nesting_cooldown()
-				unbuckle()
-			else
-				if(buckled_mob.stat)
-					to_chat(buckled_mob, "<span class='warning'>You're a little too unconscious to try that.</span>")
-					return
-				if(resisting_ready && buckled_mob == user && buckled_mob.stat != DEAD)
-					buckled_mob.visible_message("<span class='danger'>\The [buckled_mob] breaks free from \the [src]!</span>",\
-					"<span class='danger'>You pull yourself free from \the [src]!</span>",\
-					"<span class='notice'>You hear squelching.</span>")
-					unbuckle()
-					return
-				if(resisting)
-					to_chat(buckled_mob, "<span class='warning'>You're already trying to free yourself. Give it some time.</span>")
-					return
-				if(buckled_mob && buckled_mob.name)
-					buckled_mob.visible_message("<span class='warning'>\The [buckled_mob] struggles to break free of \the [src].</span>",\
-					"<span class='warning'>You struggle to break free from \the [src].</span>",\
-					"<span class='notice'>You hear squelching.</span>")
-				resisting = 1
-				var/mob/oldbuckled = buckled_mob
-				spawn(nest_resist_time)
-					if(resisting && buckled_mob == oldbuckled && buckled_mob.stat != DEAD) //Must be alive and conscious
-						resisting = 0
-						resisting_ready = 1
-						if(ishuman(usr))
-							var/mob/living/carbon/human/H = usr
-							if(H.handcuffed)
-								to_chat(buckled_mob, "<span class='danger'>You are ready to break free of the nest, but your limbs are still secured. Resist once more to pop up, then resist again to break your limbs free!</span>")
-							else
-								to_chat(buckled_mob, "<span class='danger'>You are ready to break free! Resist once more to free yourself!</span>")
-			add_fingerprint(user)
 
-/mob/living/carbon/human/proc/start_nesting_cooldown()
-	set waitfor = 0
-	recently_unbuckled = 1
-	sleep(50)
-	recently_unbuckled = 0
-
-/obj/structure/bed/nest/buckle_mob(mob/M as mob, mob/user as mob)
-
-	if(!ismob(M) || (get_dist(src, user) > 1) || (M.loc != loc) || user.restrained() || user.stat || user.lying || M.buckled || !iscarbon(user))
+/obj/structure/bed/nest/manual_unbuckle(mob/living/user)
+	if(!buckled_mob || buckled_mob.buckled != src)
 		return
 
-	if(buckled_mob)
-		to_chat(user, "<span class='warning'>There's already someone in [src].</span>")
+	add_fingerprint(user)
+
+	if(buckled_mob != user)
+		if(user.incapacitated())
+			return
+		buckled_mob.visible_message("<span class='notice'>\The [user] pulls \the [buckled_mob] free from \the [src]!</span>",\
+		"<span class='notice'>\The [user] pulls you free from \the [src].</span>",\
+		"<span class='notice'>You hear squelching.</span>")
+		playsound(loc, "alien_resin_move", 50)
+		if(ishuman(buckled_mob))
+			var/mob/living/carbon/human/H = buckled_mob
+			H.last_unbuckled = world.time
+		unbuckle()
 		return
 
-	if(M.mob_size > MOB_SIZE_HUMAN)
-		to_chat(user, "<span class='warning'>\The [M] is too big to fit in [src].</span>")
+	if(buckled_mob.incapacitated(TRUE))
+		to_chat(buckled_mob, "<span class='warning'>You're currently unable to try that.</span>")
 		return
+	if(!resisting_time)
+		resisting_time = world.time
+		buckled_mob.visible_message("<span class='warning'>\The [buckled_mob] struggles to break free of \the [src].</span>",\
+		"<span class='warning'>You struggle to break free from \the [src].</span>",\
+		"<span class='notice'>You hear squelching.</span>")
+		addtimer(CALLBACK(src, .proc/unbuckle_time_message, user), NEST_RESIST_TIME)
+		return
+	if(resisting_time + NEST_RESIST_TIME > world.time)
+		to_chat(buckled_mob, "<span class='warning'>You're already trying to free yourself. Give it some time.</span>")
+		return
+	buckled_mob.visible_message("<span class='danger'>\The [buckled_mob] breaks free from \the [src]!</span>",\
+	"<span class='danger'>You pull yourself free from \the [src]!</span>",\
+	"<span class='notice'>You hear squelching.</span>")
+	unbuckle()
 
+
+/obj/structure/bed/nest/proc/unbuckle_time_message(mob/living/user)
+	if(QDELETED(user) || user != buckled_mob)
+		return //Time has passed, conditions may have changed.
+	if(resisting_time + NEST_RESIST_TIME > world.time)
+		return //We've been freed and re-nested.
+	to_chat(buckled_mob, "<span class='danger'>You are ready to break free! Resist once more to free yourself!</span>")
+
+
+/obj/structure/bed/nest/buckle_mob(mob/living/L, mob/living/user)
+
+	if(user.incapacitated() || (get_dist(src, user) > 1) || (L.loc != loc) || L.buckled)
+		return
 	if(!isxeno(user))
 		to_chat(user, "<span class='warning'>Gross! You're not touching that stuff.</span>")
 		return
-
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.recently_unbuckled)
-			to_chat(user, "<span class='warning'>[M] was recently unbuckled. Wait a bit.</span>")
+	if(buckled_mob)
+		to_chat(user, "<span class='warning'>There's already someone in [src].</span>")
+		return
+	if(L.mob_size > MOB_SIZE_HUMAN)
+		to_chat(user, "<span class='warning'>\The [L] is too big to fit in [src].</span>")
+		return
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(H.last_unbuckled + NEST_UNBUCKLED_COOLDOWN > world.time)
+			to_chat(user, "<span class='warning'>[H] was recently unbuckled. Wait a bit.</span>")
+			return
+		if(!H.lying)
+			to_chat(user, "<span class='warning'>[H] is resisting, ground [H.p_them()].</span>")
 			return
 
-	if(M == user)
+	user.visible_message("<span class='warning'>[user] pins [L] into [src], preparing the securing resin.</span>",
+	"<span class='warning'>[user] pins [L] into [src], preparing the securing resin.</span>")
+	if(!do_after(user, 15, TRUE, 5, BUSY_ICON_HOSTILE))
+		return
+	if(L.loc != loc)
+		return
+	if(buckled_mob)
+		to_chat(user, "<span class='warning'>There's already someone in [src].</span>")
+		return
+	if(ishuman(L) && !L.lying) //Improperly stunned Marines won't be nested
+		to_chat(user, "<span class='warning'>[L] is resisting, ground [L.p_them()].</span>")
 		return
 
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(!H.lying) //Don't ask me why is has to be
-			to_chat(user, "<span class='warning'>[M] is resisting, ground [M.p_them()].</span>")
-			return
+	do_buckle(L, user)
 
-	user.visible_message("<span class='warning'>[user] pins [M] into [src], preparing the securing resin.</span>",
-	"<span class='warning'>[user] pins [M] into [src], preparing the securing resin.</span>")
-	var/M_loc = M.loc
-	if(do_after(user, 15, TRUE, 5, BUSY_ICON_HOSTILE))
-		if(M.loc != M_loc) return
-		if(buckled_mob) //Just in case
-			to_chat(user, "<span class='warning'>There's already someone in [src].</span>")
-			return
-		if(ishuman(M)) //Improperly stunned Marines won't be nested
-			var/mob/living/carbon/human/H = M
-			if(!H.lying) //Don't ask me why is has to be
-				to_chat(user, "<span class='warning'>[M] is resisting, ground [M.p_them()].</span>")
-				return
-		do_buckle(M, user)
 
 /obj/structure/bed/nest/send_buckling_message(mob/M, mob/user)
 	M.visible_message("<span class='xenonotice'>[user] secretes a thick, vile resin, securing [M] into [src]!</span>", \
@@ -141,22 +131,21 @@
 	"<span class='notice'>You hear squelching.</span>")
 	playsound(loc, "alien_resin_move", 50)
 
+
 /obj/structure/bed/nest/afterbuckle(mob/M)
 	. = ..()
-	if(. && M.pulledby)
-		M.pulledby.stop_pulling()
-		resisting = 0 //just in case
-		resisting_ready = 0
-	update_icon()
+	if(!.)
+		return
+	M.pulledby?.stop_pulling()
 
-/obj/structure/bed/nest/unbuckle(mob/user as mob)
+
+/obj/structure/bed/nest/unbuckle(mob/user)
 	if(!buckled_mob)
 		return
-	resisting = 0
-	resisting_ready = 0
+	resisting_time = 0 //Reset it to keep track on if someone is actively resisting.
 	buckled_mob.pixel_y = 0
 	buckled_mob.old_y = 0
-	..()
+	return ..()
 
 
 /obj/structure/bed/nest/update_icon()
@@ -168,16 +157,16 @@
 
 
 /obj/structure/bed/nest/proc/healthcheck()
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		density = 0
 		qdel(src)
 
 /obj/structure/bed/nest/flamer_fire_act()
-	health -= 50
+	obj_integrity -= 50
 	healthcheck()
 
 /obj/structure/bed/nest/fire_act()
-	health -= 50
+	obj_integrity -= 50
 	healthcheck()
 
 /obj/structure/bed/nest/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -187,16 +176,20 @@
 		M.visible_message("<span class='danger'>\The [M] claws at \the [src]!</span>", \
 		"<span class='danger'>You claw at \the [src].</span>")
 		playsound(loc, "alien_resin_break", 25)
-		health -= (M.melee_damage_upper + 25) //Beef up the damage a bit
+		obj_integrity -= (M.melee_damage_upper + 25) //Beef up the damage a bit
 		healthcheck()
 		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 	else
 		attack_hand(M)
 
-/obj/structure/bed/nest/attack_animal(mob/living/M as mob)
-	M.visible_message("<span class='danger'>\The [M] tears at \the [src]!", \
+/obj/structure/bed/nest/attack_animal(mob/living/L)
+	L.visible_message("<span class='danger'>\The [L] tears at \the [src]!", \
 	"<span class='danger'>You tear at \the [src].")
 	playsound(loc, "alien_resin_break", 25)
-	health -= 40
+	obj_integrity -= 40
 	healthcheck()
+
+
+#undef NEST_RESIST_TIME
+#undef NEST_UNBUCKLED_COOLDOWN
