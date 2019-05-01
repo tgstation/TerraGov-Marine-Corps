@@ -423,7 +423,6 @@
 	var/shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA
 	var/stealth_delay = null
 	actions_types = list(/datum/action/item_action/toggle)
-	var/process_count = 0
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/scout
 
@@ -434,7 +433,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/dropped(mob/user)
 	camo_off(user)
 	wearer = null
-	STOP_PROCESSING(SSfastprocess, src)
+	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/verb/use_camouflage()
@@ -490,8 +489,10 @@
 		XI.remove_from_hud(M)
 
 	addtimer(CALLBACK(src, .proc/on_cloak), 1)
+	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
+	RegisterSignal(M, list(COMSIG_HUMAN_GUN_FIRED, COMSIG_HUMAN_ATTACHMENT_FIRED), .proc/action_taken)
 
-	START_PROCESSING(SSfastprocess, src)
+	START_PROCESSING(SSprocessing, src)
 	wearer.cloaking = TRUE
 
 	return TRUE
@@ -500,7 +501,7 @@
 	if(wearer)
 		anim(wearer.loc,wearer,'icons/mob/mob.dmi',,"cloak",,wearer.dir)
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_decloak(mob/living/carbon/human/H)
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_decloak()
 	if(wearer)
 		anim(wearer.loc,wearer,'icons/mob/mob.dmi',,"uncloak",,wearer.dir)
 
@@ -508,8 +509,8 @@
 	if (!user)
 		camo_active = FALSE
 		wearer = null
-		STOP_PROCESSING(SSfastprocess, src)
-		return 0
+		STOP_PROCESSING(SSprocessing, src)
+		return FALSE
 
 	if(!camo_active)
 		return FALSE
@@ -535,7 +536,10 @@
 		camo_cooldown_timer = world.time + cooldown //recalibration and recharge time scales inversely with charge remaining
 		to_chat(user, "<span class='warning'>Your thermal cloak is recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
 		process_camo_cooldown(user, cooldown)
-	STOP_PROCESSING(SSfastprocess, src)
+	
+	UnregisterSignal(user, COMSIG_HUMAN_DAMAGE_TAKEN)
+	UnregisterSignal(user, COMSIG_HUMAN_GUN_FIRED)
+	STOP_PROCESSING(SSprocessing, src)
 	wearer.cloaking = FALSE
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_camo_cooldown(mob/living/user, cooldown)
@@ -584,6 +588,19 @@
 		to_chat(user, "<span class='danger'>Your thermal cloak lacks sufficient energy to remain active.</span>")
 		camo_off(user)
 
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(mob/living/carbon/human/wearer, damage)
+	if(damage >= 15)
+		to_chat(wearer, "<span class='danger'>Your cloak shimmers from the damage!</span>")
+		apply_shimmer()
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/action_taken(atom/target, obj/item/I, mob/living/wearer)
+	to_chat(wearer, "<span class='danger'>Your cloak shimmers from your actions!</span>")
+	apply_shimmer()
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/apply_shimmer()
+	camo_last_shimmer = world.time //Reduces transparency to 50%
+	wearer.alpha = max(wearer.alpha,shimmer_alpha)
+
 /obj/item/storage/backpack/marine/satchel/scout_cloak/process()
 	if(!wearer)
 		camo_off()
@@ -591,11 +608,6 @@
 	else if(wearer.stat == DEAD)
 		camo_off(wearer)
 		return
-
-	if(process_count++ < 4)
-		return
-
-	process_count = 0
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY
 	if(camo_last_shimmer > stealth_delay) //Shimmer after taking aggressive actions; no energy regeneration
