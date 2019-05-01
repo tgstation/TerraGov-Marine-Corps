@@ -19,6 +19,11 @@
 
 	var/initial_language_holder = /datum/language_holder
 	var/datum/language_holder/language_holder
+	var/verb_say = "says"
+	var/verb_ask = "asks"
+	var/verb_exclaim = "exclaims"
+	var/verb_whisper = "whispers"
+	var/verb_yell = "yells"
 
 	var/list/mob/dead/observer/followers = list()
 
@@ -529,7 +534,3 @@
 
 	H.selected_default_language = .
 	. = chosen_langtype
-
-
-/atom/movable/proc/can_speak()
-	return TRUE

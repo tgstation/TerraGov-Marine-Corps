@@ -1,3 +1,8 @@
+/*
+
+WILL BE DONE WITH SILICON CODE CLEANUP
+
+
 /mob/living/silicon/say_quote(var/text)
 	var/ending = copytext(text, length(text))
 
@@ -145,3 +150,4 @@
 
 #undef IS_AI
 #undef IS_ROBOT
+*/

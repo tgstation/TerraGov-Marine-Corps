@@ -7,7 +7,7 @@
 /obj/item/ammo_magazine/rifle
 	name = "\improper M41A magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
-	caliber = "10x24mm"
+	caliber = "10x24mm caseless"
 	icon_state = "m41a"
 	w_class = 3
 	default_ammo = /datum/ammo/bullet/rifle

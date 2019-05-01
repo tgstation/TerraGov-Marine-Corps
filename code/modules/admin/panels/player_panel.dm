@@ -464,20 +464,24 @@
 
 
 	if(!isnewplayer(M))
-		body += {"<br><br>
-			<b>Other actions:</b>
-			<br>
-			<a href='?src=[ref];thunderdome=[REF(M)]'>Thunderdome</a> |
-			<a href='?src=[ref];gib=[REF(M)]'>Gib</a>"}
+		body += "<br><br>"
+		body += "<b>Other actions:</b>"
+		body += "<br>"
+		body += "<a href='?src=[ref];thunderdome=[REF(M)]'>Thunderdome</a> | "
+		body += "<a href='?src=[ref];gib=[REF(M)]'>Gib</a>"
 
 		if(isliving(M))
-			body += "| <a href='?src=[ref];offer=[REF(M)]'>Offer Mob</a> | "
+			body += "<br>"
+			body += "<a href='?src=[ref];checkcontents=[REF(M)]'>Check Contents</a> | "			
+			body += "<a href='?src=[ref];offer=[REF(M)]'>Offer Mob</a> | "
 			body += "<a href='?src=[ref];give=[REF(M)]'>Give Mob</a>"
 
-		if(ishuman(M))
-			body += "| <a href='?src=[ref];setrank=[REF(M)]'>Select Rank</a> | "
-			body += "<a href='?src=[ref];setequipment=[REF(M)]'>Select Equipment</a> | "
-			body += "<a href='?src=[ref];setsquad=[REF(M)]'>Select Squad</a>"
+			if(ishuman(M))
+				body += "<br>"
+				body += "<a href='?src=[ref];setrank=[REF(M)]'>Select Rank</a> | "
+				body += "<a href='?src=[ref];setequipment=[REF(M)]'>Select Equipment</a> | "
+				body += "<a href='?src=[ref];setsquad=[REF(M)]'>Select Squad</a> | "
+				body += "<a href='?src=[ref];randomname=[REF(M)]'>Randomize Name</a>"
 
 	log_admin("[key_name(usr)] opened the player panel of [key_name(M)].")
 

@@ -223,7 +223,7 @@
 /datum/reagent/toxin/plantbgone/reaction_obj(obj/O, volume)
 	if(istype(O,/obj/effect/alien/weeds/))
 		var/obj/effect/alien/weeds/alien_weeds = O
-		alien_weeds.health -= rand(15,35) // Kills alien weeds pretty fast
+		alien_weeds.obj_integrity -= rand(15,35) // Kills alien weeds pretty fast
 		alien_weeds.healthcheck()
 	else if(istype(O,/obj/effect/glowshroom)) //even a small amount is enough to kill it
 		qdel(O)

@@ -75,6 +75,12 @@
 		AdjustKnockedout(-1)
 	return knocked_out
 
+/mob/living/proc/add_slowdown(amount)
+	return
+
+/mob/living/proc/adjust_stagger(amount)
+	return
+
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
 		return
@@ -228,6 +234,10 @@
 		to_chat(usr, "OOC Metadata is not supported by this server!")
 
 	return
+
+
+/mob/living/proc/InCritical()
+	return (health <= get_crit_threshold() && stat == UNCONSCIOUS)
 
 
 /mob/living/Move(NewLoc, direct)
@@ -680,3 +690,7 @@ below 100 is not dizzy
 			layer = initial(layer)
 
 	return canmove
+
+// called when the client disconnects and is away.
+/mob/living/proc/begin_away()
+	away_time = set_away_time(world.time)

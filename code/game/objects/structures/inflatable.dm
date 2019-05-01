@@ -43,7 +43,7 @@
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "wall"
 
-	health = 50.0
+	max_integrity = 50
 	var/deflated = FALSE
 
 
@@ -52,9 +52,9 @@
 	return 0
 
 /obj/structure/inflatable/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage
+	obj_integrity -= Proj.damage
 	..()
-	if(health <= 0 && !deflated)
+	if(obj_integrity <= 0 && !deflated)
 		deflate(1)
 	return 1
 
@@ -80,9 +80,9 @@
 
 
 /obj/structure/inflatable/proc/attack_generic(mob/living/user, damage = 0)	//used by attack_animal
-	health -= damage
+	obj_integrity -= damage
 	user.animation_attack_on(src)
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		user.visible_message("<span class='danger'>[user] tears open [src]!</span>")
 		deflate(1)
 	else	//for nicer text~
@@ -110,10 +110,10 @@
 	return
 
 /obj/structure/inflatable/proc/hit(var/damage, var/sound_effect = 1)
-	health = max(0, health - damage)
+	obj_integrity = max(0, obj_integrity - damage)
 	if(sound_effect)
 		playsound(loc, 'sound/effects/Glasshit_old.ogg', 25, 1)
-	if(health <= 0 && !deflated)
+	if(obj_integrity <= 0 && !deflated)
 		deflate(1)
 
 

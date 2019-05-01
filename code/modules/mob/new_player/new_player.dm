@@ -410,7 +410,7 @@
 	return ready && ..()
 
 
-/mob/new_player/hear_say(message, verb = "says", datum/language/language = null, alt_name = "", italics = FALSE, mob/speaker = null)
+/mob/new_player/Hear()
 	return
 
 

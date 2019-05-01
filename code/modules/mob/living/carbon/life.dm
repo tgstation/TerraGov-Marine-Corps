@@ -186,7 +186,7 @@
 		adjust_stagger(-1)
 	return stagger
 
-/mob/living/carbon/proc/adjust_stagger(amount)
+/mob/living/carbon/adjust_stagger(amount)
 	stagger = max(stagger + amount,0)
 	return stagger
 
@@ -202,7 +202,7 @@
 		slowdown = max(slowdown + amount,0)
 	return slowdown
 
-/mob/living/carbon/proc/add_slowdown(amount)
+/mob/living/carbon/add_slowdown(amount)
 	slowdown = adjust_slowdown(amount*STANDARD_SLOWDOWN_REGEN)
 	return slowdown
 

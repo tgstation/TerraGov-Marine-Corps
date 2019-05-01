@@ -617,11 +617,6 @@
 	qdel(src)
 //BubbleWrap END
 
-/obj/item/storage/hear_talk(mob/M, msg, verb = "says", datum/language/language)
-	for (var/atom/A in src)
-		if(istype(A,/obj/))
-			var/obj/O = A
-			O.hear_talk(M, msg, verb, language)
 
 /obj/item/proc/get_storage_cost() //framework for adjusting storage costs
 	if (storage_cost)

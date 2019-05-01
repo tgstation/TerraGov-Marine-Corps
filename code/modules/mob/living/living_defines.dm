@@ -28,6 +28,8 @@
 
 	var/now_pushing
 
+	var/bubble_icon = "default" //what icon the mob uses for speechbubbles
+
 	var/cameraFollow
 
 	var/silent	//Can't talk. Value goes down every life proc.

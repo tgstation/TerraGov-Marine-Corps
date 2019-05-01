@@ -175,8 +175,7 @@
 /area/tdome)
 "aA" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
@@ -186,8 +185,7 @@
 /area/tdome)
 "aB" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
@@ -432,8 +430,7 @@
 /area/tdome)
 "bl" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
@@ -1213,8 +1210,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/machinery/door/window/southleft{
 	dir = 1;
@@ -1345,8 +1341,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/southleft,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1615,8 +1610,7 @@
 /area/syndicate_station)
 "ea" = (
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -1633,8 +1627,7 @@
 /area/syndicate_station)
 "eb" = (
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/machinery/door/window/northright{
 	icon_state = "right";
@@ -1673,8 +1666,7 @@
 /obj/structure/table/reinforced,
 /obj/item/weapon/twohanded/dualsaber,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -1692,8 +1684,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/holofloor{
@@ -1707,8 +1698,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /obj/item/clothing/mask/gas/voice/space_ninja{
@@ -1723,8 +1713,7 @@
 "ei" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /obj/item/teleportation_scroll{
@@ -1755,8 +1744,7 @@
 "em" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/machinery/door/window/northright{
 	icon_state = "right";
@@ -2382,8 +2370,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/machinery/door/window/southleft{
 	dir = 8;
@@ -2556,8 +2543,7 @@
 /obj/structure/table/reinforced,
 /obj/effect/decal/warning_stripes,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/machinery/door/window/southleft{
 	dir = 1;
@@ -2697,8 +2683,7 @@
 /area/syndicate_station)
 "gH" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /turf/open/floor/holofloor{
@@ -3866,8 +3851,7 @@
 "jZ" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating,
 /area/syndicate_station)

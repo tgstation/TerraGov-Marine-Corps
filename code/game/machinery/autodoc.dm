@@ -726,7 +726,7 @@
 				reason = "Reason for discharge: Unauthorized manual release during surgery. Alerting security advised."
 		var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 		AI.SetName("Autodoc Notification System")
-		AI.aiRadio.talk_into(AI,"<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>","MedSci","announces")
+		AI.aiRadio.talk_into(AI, "<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>", "MedSci", "announces", /datum/language/common)
 		qdel(AI)
 	occupant = null
 	surgery_todo_list = list()

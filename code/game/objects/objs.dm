@@ -3,6 +3,8 @@
 	var/list/matter
 
 	var/datum/armor/armor
+	var/obj_integrity	//defaults to max_integrity
+	var/max_integrity = 500
 
 	var/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
@@ -30,6 +32,9 @@
 		armor = getArmor()
 	else if (!istype(armor, /datum/armor))
 		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
+
+	if(obj_integrity == null)
+		obj_integrity = max_integrity
 
 	GLOB.object_list += src
 
@@ -109,9 +114,6 @@
 /obj/proc/hide(h)
 	return
 
-
-/obj/proc/hear_talk(mob/M, msg, verb = "says", datum/language/language)
-	return
 
 /obj/attack_paw(mob/user)
 	if(can_buckle) return src.attack_hand(user)

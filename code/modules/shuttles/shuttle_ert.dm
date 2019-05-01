@@ -134,7 +134,7 @@
 		"recharge_time" = shuttle.recharge_time,
 	)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
 		ui = new(user, src, ui_key, "ert_shuttle_control_console.tmpl" , "ERT Shuttle Control", 550, 500)

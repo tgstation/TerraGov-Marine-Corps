@@ -13,6 +13,13 @@
 #define ACTIVE_POWER_USE 2
 
 
+// NanoUI flags
+#define STATUS_INTERACTIVE 2 // GREEN Visibility
+#define STATUS_UPDATE 1 // ORANGE Visibility
+#define STATUS_DISABLED 0 // RED Visibility
+#define STATUS_CLOSE -1 // Close the interface
+
+
 //bitflags for door switches.
 #define OPEN	(1<<0)
 #define IDSCAN	(1<<1)

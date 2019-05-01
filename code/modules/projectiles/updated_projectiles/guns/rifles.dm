@@ -276,7 +276,7 @@
 	max_shells = 300 //codex
 	wield_delay = WIELD_DELAY_NORMAL + WIELD_DELAY_VERY_FAST
 	origin_tech = "combat=5;materials=4"
-	fire_sound = "gun_pulse"
+	fire_sound =  'sound/weapons/gun_rifle.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/lmg
 	attachable_allowed = list(
 						/obj/item/attachable/extended_barrel,
