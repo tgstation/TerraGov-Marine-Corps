@@ -72,7 +72,7 @@
 	var/mob/remoteview_target
 
 	var/list/flavor_texts = list()
-	var/recently_unbuckled = 0
+	var/last_unbuckled = 0 //Unbuckled cooldown.
 
 
 	//Life variables
