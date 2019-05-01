@@ -31,6 +31,8 @@
 /mob/living/carbon/Xenomorph/Runner/Initialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_XENO_LIVING_SLASH, .proc/hit_and_run_bonus)
+	RegisterSignal(src, COMSIG_XENO_OBJ_THROWHIT, .proc/obj_throwhit)
+	RegisterSignal(src, COMSIG_XENO_LIVING_THROWHIT, .proc/mob_throwhit)
 
 // ***************************************
 // *********** Life overrides

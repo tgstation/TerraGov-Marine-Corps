@@ -37,7 +37,7 @@
 	emote("roar") //heheh
 	usedPounce = 1 //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
 	use_plasma(80)
-
+	RegisterSignal(src, COMSIG_XENO_OBJ_THROWHIT, .proc/obj_throwhit)
 	throw_at(T, RAV_CHARGEDISTANCE, RAV_CHARGESPEED, src)
 
 	charge_delay = world.time + RAV_CHARGECOOLDOWN

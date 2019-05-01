@@ -42,7 +42,6 @@
 	armor_deflection = 10
 
 	// *** Ranged Attack *** //
-	charge_type = 2 //Pounce - Hunter
 	pounce_delay = 15 SECONDS
 
 /datum/xeno_caste/hunter/young

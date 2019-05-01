@@ -115,6 +115,8 @@
 	usedPounce = TRUE
 	flags_pass = PASSTABLE
 	use_plasma(20)
+	RegisterSignal(src, COMSIG_XENO_OBJ_THROWHIT, .proc/obj_throwhit)
+	RegisterSignal(src, COMSIG_XENO_LIVING_THROWHIT, .proc/mob_throwhit)
 	throw_at(T, 7, 2, src) //Victim, distance, speed
 	addtimer(CALLBACK(src, .proc/reset_flags_pass), 6)
 	addtimer(CALLBACK(src, .proc/reset_pounce_delay), xeno_caste.pounce_delay)

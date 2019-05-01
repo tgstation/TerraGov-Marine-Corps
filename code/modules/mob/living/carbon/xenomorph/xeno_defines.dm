@@ -65,7 +65,6 @@
 	var/spit_delay = 6 SECONDS //Delay timer for spitting
 	var/list/spit_types //list of datum projectile types the xeno can use.
 
-	var/charge_type = 0 //0: normal. 1: warrior/hunter style pounce. 2: ravager free attack.
 	var/pounce_delay = 4 SECONDS
 
 	var/acid_spray_range = 0

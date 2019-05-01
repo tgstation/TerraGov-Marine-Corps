@@ -41,7 +41,6 @@
 	armor_deflection = 5
 
 	// *** Ranged Attack *** //
-	charge_type = 1 //Pounce - Runner
 	pounce_delay = 3.5 SECONDS
 
 /datum/xeno_caste/runner/young

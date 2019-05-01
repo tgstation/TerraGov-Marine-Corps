@@ -81,5 +81,12 @@
 #define COMSIG_XENO_HUMAN_SLASH "xeno_human_slash"				//: (mob/living/carbon/human/H, intent)
 #define COMSIG_XENO_LIVING_SLASH "xeno_living_slash"			//: (mob/living/L, damage, list/modified_damage, armor_block, list/modified_armor, intent)
 
+#define COMSIG_XENO_POUNCE_HIT "xeno_pounce_hit"				//: (mob/living/carbon/C, )
+
+#define COMSIG_XENO_OBJ_THROWHIT "xeno_obj_throwhit"			//: (obj/O, speed)
+	#define COMSIG_XENO_THROWHIT_HANDLED 1
+	
+#define COMSIG_XENO_LIVING_THROWHIT "xeno_living_throwhit"		//: (mob/living/L)
+
 #define COMSIG_XENO_ATTACK_DECLOAK "xeno_attack_decloak"		//soon to be from the base of attack_alien(): ()
 #define COMSIG_XENO_ATTACK_SNEAK "xeno_attack_sneak"

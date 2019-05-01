@@ -173,7 +173,7 @@
 	var/attack_message2 = "<span class='danger'>You slash [src]!</span>"
 	var/log = "slashed"
 	//Check for a special bite attack
-	if(!no_crit && can_critical() && prob(X.xeno_caste.bite_chance))
+	if(!no_crit && X.can_critical() && prob(X.xeno_caste.bite_chance))
 		damage *= 1.5
 		attack_sound = "alien_bite"
 		attack_message1 = "<span class='danger'>\The [src] is viciously shredded by \the [X]'s sharp teeth!</span>"
@@ -183,7 +183,7 @@
 		addtimer(CALLBACK(X, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), X.xeno_caste.rng_min_interval)
 
 	//Check for a special bite attack
-	if(!no_crit && can_critical() && prob(X.xeno_caste.tail_chance))
+	if(!no_crit && X.can_critical() && prob(X.xeno_caste.tail_chance))
 		damage *= 1.25
 		attack_flick = "tail"
 		attack_sound = 'sound/weapons/alien_tail_attack.ogg'

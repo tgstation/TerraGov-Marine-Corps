@@ -39,9 +39,6 @@
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 
-	// *** Ranged Attack *** //
-	charge_type = 3 //Claw at end of charge
-
 /datum/xeno_caste/ravager/young
 	upgrade_name = "Young"
 

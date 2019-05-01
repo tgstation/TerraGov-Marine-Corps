@@ -40,6 +40,7 @@
 /mob/living/carbon/Xenomorph/Ravager/Initialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_XENO_HUMAN_SLASH, .proc/process_rage_attack)
+	RegisterSignal(src, COMSIG_XENO_OBJ_THROWHIT, .proc/obj_throwhit)
 
 // ***************************************
 // *********** Mob overrides

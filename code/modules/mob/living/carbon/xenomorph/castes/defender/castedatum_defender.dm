@@ -39,9 +39,6 @@
 	// *** Defense *** //
 	armor_deflection = 20
 
-	// *** Ranged Attack *** //
-	charge_type = 2 //Pounce - Hunter
-
 	// *** Defender Abilities *** //
 	crest_defense_armor = 35
 	fortify_armor = 70

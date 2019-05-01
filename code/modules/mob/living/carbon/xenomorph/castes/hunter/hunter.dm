@@ -26,6 +26,14 @@
 		)
 
 // ***************************************
+// *********** Init
+// ***************************************
+/mob/living/carbon/Xenomorph/Hunter/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_XENO_OBJ_THROWHIT, .proc/obj_throwhit)
+	RegisterSignal(src, COMSIG_XENO_LIVING_THROWHIT, .proc/mob_throwhit)
+
+// ***************************************
 // *********** Mob override
 // ***************************************
 /mob/living/carbon/Xenomorph/Hunter/movement_delay()

@@ -275,80 +275,98 @@
 			to_chat(src, "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>")
 			src << sound('sound/effects/xeno_evolveready.ogg')
 
+GLOBAL_LIST_INIT(xeno_pounce_bypass, typecacheof(list(/obj/structure/table, /obj/structure/rack)))
+
 /mob/living/carbon/Xenomorph/show_inv(mob/user)
 	return
 
+/mob/living/carbon/Xenomorph/proc/obj_throwhit(obj/O, speed)
+	if(!is_type_in_typecache(O, GLOB.xeno_pounce_bypass))
+		O.hitby(src, speed)
+	return COMSIG_XENO_THROWHIT_HANDLED
+
+/mob/living/carbon/Xenomorph/Ravager/obj_throwhit(obj/O, speed)
+	if(is_type_in_typecache(O, GLOB.xeno_pounce_bypass))
+		var/obj/structure/S = O
+		visible_message("<span class='danger'>[src] plows straight through [S]!</span>", null, null, 5)
+		S.destroy_structure() //We want to continue moving, so we do not reset throwing.
+	return ..()
+
+/mob/living/carbon/Xenomorph/proc/mob_throwhit(mob/living/L)
+	if(ishuman(L) && L.dir in reverse_nearby_direction(dir))
+		var/mob/living/carbon/human/H = L
+		if(H.check_shields(15, "the pounce")) //Human shield block.
+			KnockDown(3)
+			throwing = FALSE //Reset throwing manually.
+			return COMSIG_XENO_THROWHIT_HANDLED
+
+	visible_message("<span class='danger'>[src] pounces on [L]!</span>",
+					"<span class='xenodanger'>You pounce on [L]!</span>", null, 5)
+	L.KnockDown(1)
+	step_to(src, L)
+	stop_movement()
+	playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
+	return COMSIG_XENO_THROWHIT_HANDLED
+
+/mob/living/carbon/Xenomorph/Runner/mob_throwhit(mob/living/L)
+	. = ..()
+	if(savage) //If Runner Savage is toggled on, attempt to use it.
+		if(!savage_used)
+			if(plasma_stored >= 10)
+				Savage(L)
+			else
+				to_chat(src, "<span class='xenodanger'>You attempt to savage your victim, but you need [10-plasma_stored] more plasma.</span>")
+		else
+			to_chat(src, "<span class='xenodanger'>You attempt to savage your victim, but you aren't yet ready.</span>")
+
+	addtimer(CALLBACK(src, .proc/reset_movement), 5)
+
+/mob/living/carbon/Xenomorph/Hunter/mob_throwhit(mob/living/L)
+	. = ..()
+	L.adjust_stagger(3)
+	L.add_slowdown(1)
+	to_chat(src, "<span class='xenodanger'>Pouncing from the shadows, you stagger your victim.</span>")
+
+	addtimer(CALLBACK(src, .proc/reset_movement), 15)
 
 //This deals with "throwing" xenos -- ravagers, hunters, and runners in particular. Everyone else defaults to normal
 //Pounce, charge both use throw_at, so we need extra code to do stuff rather than just push people aside.
 /mob/living/carbon/Xenomorph/throw_impact(atom/hit_atom, speed)
-	set waitfor = 0
-
-	if(!xeno_caste.charge_type || stat || (!throwing && usedPounce)) //No charge type, unconscious or dead, or not throwing but used pounce.
+	if(stat || (!throwing && usedPounce)) //No charge type, unconscious or dead, or not throwing but used pounce.
 		..() //Do the parent instead.
 		return FALSE
 
+	if(isturf(hit_atom))
+		throwing = FALSE //Reset throwing since something was hit.
+		reset_movement()
+		return ..() //Do the parent otherwise, for turfs.
+
 	if(isobj(hit_atom)) //Deal with smacking into dense objects. This overwrites normal throw code.
 		var/obj/O = hit_atom
-		if(!O.density) return FALSE//Not a dense object? Doesn't matter then, pass over it.
-		if(!O.anchored) step(O, dir) //Not anchored? Knock the object back a bit. Ie. canisters.
+		if(!O.anchored)
+			step(O, dir) //Not anchored? Knock the object back a bit. Ie. canisters.
 
-		switch(xeno_caste.charge_type) //Determine how to handle it depending on charge type.
-			if(1 to 2)
-				if(!istype(O, /obj/structure/table) && !istype(O, /obj/structure/rack))
-					O.hitby(src, speed) //This resets throwing.
-			if(3 to 4)
-				if(istype(O, /obj/structure/table) || istype(O, /obj/structure/rack))
-					var/obj/structure/S = O
-					visible_message("<span class='danger'>[src] plows straight through [S]!</span>", null, null, 5)
-					S.destroy_structure() //We want to continue moving, so we do not reset throwing.
-				else O.hitby(src, speed) //This resets throwing.
-		return TRUE
+		if(SEND_SIGNAL(src, COMSIG_XENO_OBJ_THROWHIT, O, speed) & COMSIG_XENO_THROWHIT_HANDLED)
+			return TRUE
+		return ..()
 
-	if(ismob(hit_atom)) //Hit a mob! This overwrites normal throw code.
-		var/mob/living/carbon/M = hit_atom
-		if(!M.stat && !isxeno(M))
-			switch(xeno_caste.charge_type)
-				if(1 to 2)
-					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
-						var/mob/living/carbon/human/H = M
-						if(H.check_shields(15, "the pounce")) //Human shield block.
-							KnockDown(3)
-							throwing = FALSE //Reset throwing manually.
-							return FALSE
+	if(isliving(hit_atom)) //Hit a mob! This overwrites normal throw code.
+		var/mob/living/L = hit_atom
+		if(L.stat)
+			throwing = FALSE //Reset throwing since something was hit.
+			reset_movement()
+			return TRUE
 
-					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
-									"<span class='xenodanger'>You pounce on [M]!</span>", null, 5)
-					M.KnockDown(1)
-					step_to(src, M)
-					stop_movement()
-					if(savage) //If Runner Savage is toggled on, attempt to use it.
-						if(!savage_used)
-							if(plasma_stored >= 10)
-								Savage(M)
-							else
-								to_chat(src, "<span class='xenodanger'>You attempt to savage your victim, but you need [10-plasma_stored] more plasma.</span>")
-						else
-							to_chat(src, "<span class='xenodanger'>You attempt to savage your victim, but you aren't yet ready.</span>")
+		if(SEND_SIGNAL(src, COMSIG_XENO_LIVING_THROWHIT, L) & COMSIG_XENO_THROWHIT_HANDLED)
+			throwing = FALSE //Reset throwing since something was hit.
+			reset_movement()
+			return TRUE
+		return ..()
 
-					if(xeno_caste.charge_type == 2)
-						if(stealth_router(HANDLE_STEALTH_CHECK))
-							M.adjust_stagger(3)
-							M.add_slowdown(1)
-							to_chat(src, "<span class='xenodanger'>Pouncing from the shadows, you stagger your victim.</span>")
-					playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
-					addtimer(CALLBACK(src, .proc/reset_movement), xeno_caste.charge_type == 1 ? 5 : 15)
-					SEND_SIGNAL(M, COMSIG_XENO_ATTACK_DECLOAK)
-
-				if(RAV_CHARGE_TYPE) //Ravagers plow straight through humans; we only stop on hitting a dense turf
-					return FALSE
-
-		throwing = FALSE //Resert throwing since something was hit.
-		reset_movement()
-		return TRUE
-	throwing = FALSE //Resert throwing since something was hit.
+	throwing = FALSE //failsafe
 	reset_movement()
-	return ..() //Do the parent otherwise, for turfs.
+	return TRUE
+
 
 /mob/living/carbon/Xenomorph/proc/reset_movement()
 	set_frozen(FALSE)
