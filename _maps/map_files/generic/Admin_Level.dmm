@@ -2054,27 +2054,6 @@
 	dir = 5
 	},
 /area/centcom/control)
-"fi" = (
-/obj/machinery/telecomms/hub/preset_cent,
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/centcom/control)
-"fj" = (
-/obj/machinery/telecomms/allinone/interceptor,
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/centcom/control)
-"fk" = (
-/obj/machinery/telecomms/relay/preset/centcom,
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/centcom/control)
 "fl" = (
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -2083,20 +2062,6 @@
 /area/centcom/control)
 "fm" = (
 /obj/machinery/r_n_d/server/centcom,
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/centcom/control)
-"fn" = (
-/obj/machinery/telecomms/processor/preset_cent,
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/centcom/control)
-"fo" = (
-/obj/machinery/telecomms/broadcaster/preset_cent,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
@@ -2126,27 +2091,6 @@
 	dir = 2
 	},
 /area/syndicate_station)
-"fr" = (
-/obj/machinery/telecomms/receiver/preset_cent,
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/centcom/control)
-"fs" = (
-/obj/machinery/telecomms/bus/preset_cent,
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/centcom/control)
-"ft" = (
-/obj/machinery/telecomms/server/presets/centcomm,
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/centcom/control)
 "fu" = (
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 2
@@ -6571,6 +6515,10 @@
 /obj/item/weapon/baseballbat/metal,
 /turf/open/ground/river,
 /area/deathmatch)
+"Qm" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/almayer,
+/area/centcom/control)
 
 (1,1,1) = {"
 aa
@@ -13729,7 +13677,7 @@ ep
 eE
 fa
 fa
-fa
+Qm
 fe
 fh
 fh
@@ -14036,7 +13984,7 @@ fa
 fa
 fe
 fh
-fi
+fl
 fh
 fl
 dX
@@ -14340,9 +14288,9 @@ fa
 fa
 ff
 fh
-fj
+fl
 fh
-fo
+fl
 dX
 eo
 eo
@@ -14494,7 +14442,7 @@ fe
 fh
 fh
 fh
-fn
+fl
 dX
 eo
 eo
@@ -14644,9 +14592,9 @@ fa
 fa
 fe
 fh
-fk
+fl
 fh
-fs
+fl
 dX
 eo
 eo
@@ -14798,7 +14746,7 @@ fe
 fh
 fh
 fh
-fr
+fl
 dX
 eo
 eo
@@ -14950,7 +14898,7 @@ fe
 fh
 fh
 fh
-ft
+fl
 dX
 eo
 eo

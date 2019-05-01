@@ -286,7 +286,7 @@
 		pod.occupant = null
 	else
 		radio = new(src)
-	radio.autosay("[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", "Hypersleep Storage System")
+	radio.talk_into(pod, "[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", null, get_spans(), get_default_language())
 
 	qdel(src)
 

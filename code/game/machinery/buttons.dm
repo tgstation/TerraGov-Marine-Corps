@@ -167,6 +167,11 @@
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4
+	var/obj/item/radio/radio
+
+/obj/machinery/medical_help_button/Initialize(mapload)
+	. = ..()
+	radio = new(src)
 
 /obj/machinery/medical_help_button/attack_hand(mob/living/carbon/human/user)
 	if(!istype(user))
@@ -180,10 +185,7 @@
 	use_power(5)
 	icon_state = "doorctrl1"
 
-	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
-	AI.SetName("Lobby Notification System")
-	AI.aiRadio.talk_into(AI, "<b>[user.name] is requesting medical attention at: [get_area(src)].</b>", "MedSci", "announces", /datum/language/common)
-	qdel(AI)	
+	radio.talk_into(src, "<b>[user.name] is requesting medical attention at: [get_area(src)].</b>", MED_FREQ)
 	visible_message("Remain calm, someone will be with you shortly.")
 
 	active = TRUE

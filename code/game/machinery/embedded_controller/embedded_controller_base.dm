@@ -13,7 +13,8 @@
 	return 0
 
 /obj/machinery/embedded_controller/receive_signal(datum/signal/signal, receive_method, receive_param)
-	if(!signal || signal.encryption) return
+	if(!signal) 
+		return
 
 	if(program)
 		program.receive_signal(signal, receive_method, receive_param)

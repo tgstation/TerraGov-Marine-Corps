@@ -18,12 +18,13 @@
 			pixel_y = 30
 		if(EAST)
 			pixel_x = 30
-
 	START_PROCESSING(SSobj, src)
+
 
 /obj/item/radio/intercom/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
+
 
 /obj/item/radio/intercom/attack_ai(mob/user as mob)
 	src.add_fingerprint(user)
@@ -39,22 +40,18 @@
 	spawn (0)
 		attack_self(user)
 
-/obj/item/radio/intercom/receive_range(freq, level)
-	if (!on)
-		return -1
-	if (!(src.wires & WIRE_RECEIVE))
-		return -1
+
+/obj/item/radio/intercom/can_receive(freq, level)
+	if(!on)
+		return FALSE
 	if(!(0 in level))
 		var/turf/position = get_turf(src)
 		if(isnull(position) || !(position.z in level))
-			return -1
-	if (!src.listening)
-		return -1
-	if(freq in ANTAG_FREQS)
-		if(!(src.syndie))
-			return -1//Prevents broadcast of messages over devices lacking the encryption
+			return FALSE
+	if(!listening)
+		return FALSE
 
-	return canhear_range
+	return TRUE
 
 
 /obj/item/radio/intercom/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode)
@@ -69,24 +66,23 @@
 	if(((world.timeofday - last_tick) > 30) || ((world.timeofday - last_tick) < 0))
 		last_tick = world.timeofday
 
-		if(!src.loc)
-			on = 0
+		var/area/A = get_area(src)
+		if(!A)
+			on = FALSE
 		else
-			var/area/A = src.loc.loc
-			if(!A || !isarea(A) || !A.master)
-				on = 0
-			else
-				on = A.master.powered(EQUIP) // set "on" to the power status
+			on = A.powered(EQUIP) // set "on" to the power status
 
 		if(!on)
 			icon_state = "intercom-p"
 		else
-			icon_state = "intercom"
+			icon_state = initial(icon_state)
+
 
 /obj/item/radio/intercom/general
 	name = "General Listening Channel"
 	anyai = TRUE
-	freerange = 1
+	freerange = TRUE
+
 
 /obj/item/radio/intercom/general/colony
 	frequency = CIV_GEN_FREQ

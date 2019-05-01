@@ -325,6 +325,7 @@ h1.alert, h2.alert		{color: #000000;}
 .vox					{color: #AA00AA;}
 .rough					{font-family: trebuchet-ms, cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
+.command_headset		{font-weight: bold; font-size: 18px;}
 
 
 .green					{color: #29b245;}

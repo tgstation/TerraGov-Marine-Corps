@@ -5,20 +5,17 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	MODE_KEY_L_HAND = MODE_L_HAND,
 	MODE_KEY_INTERCOM = MODE_INTERCOM,
 
-	"h" = "department",
-	"+" = "special",
-	"t" = "Syndicate",
+	MODE_KEY_DEPARTMENT = MODE_DEPARTMENT,
 
-	"m" = "MedSci",
-	"e" = "Engi",
-	"z" = "Theseus",
-	"v" = "Command",
-	"q" = "Alpha",
-	"b" = "Bravo",
-	"c" = "Charlie",	
-	"d" = "Delta",
-	"p" = "MP",
-	"u" = "Req",
+	RADIO_KEY_MEDICAL = RADIO_CHANNEL_MEDICAL,
+	RADIO_KEY_ENGINEERING = RADIO_CHANNEL_ENGINEERING,
+	RADIO_KEY_COMMAND = RADIO_CHANNEL_COMMAND,
+	RADIO_KEY_ALPHA = RADIO_CHANNEL_ALPHA,
+	RADIO_KEY_BRAVO = RADIO_CHANNEL_BRAVO,
+	RADIO_KEY_CHARLIE = RADIO_CHANNEL_CHARLIE,	
+	RADIO_KEY_DELTA = RADIO_CHANNEL_DELTA,
+	RADIO_KEY_POLICE = RADIO_CHANNEL_POLICE,
+	RADIO_KEY_REQUISITIONS = RADIO_CHANNEL_REQUISITIONS,
 ))
 
 /mob/living/proc/Ellipsis(original_msg, chance = 50, keep_words)

@@ -250,6 +250,7 @@
 	var/knockdown_threshold = 100
 	var/work_time = 40 //Defines how long it takes to do most maintenance actions
 	var/magazine_type = /obj/item/ammo_magazine/sentry
+	var/obj/item/radio/radio
 
 /obj/machinery/marine_turret/examine(mob/user)
 	. = ..()
@@ -279,6 +280,7 @@
 
 /obj/machinery/marine_turret/Initialize()
 	. = ..()
+	radio = new(src)
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -1203,10 +1205,7 @@
 				notice = "<b>ALERT! [src] at: [get_area(src)], Coordinates: (X: [x], Y: [y]) has been destroyed.</b>"
 		if(SENTRY_ALERT_BATTERY)
 			notice = "<b>ALERT! [src]'s battery depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
-	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
-	AI.SetName("Sentry Alert System")
-	AI.aiRadio.talk_into(AI, "[notice]", "Theseus", "announces", /datum/language/common)
-	qdel(AI)
+	radio.talk_into(src, "[notice]", PUB_FREQ)
 
 /obj/machinery/marine_turret/mini
 	name = "\improper UA-580 Point Defense Sentry"

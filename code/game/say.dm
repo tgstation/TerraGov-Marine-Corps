@@ -55,7 +55,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//Start name span.
 	var/spanpart2 = "<span class='name'>"
 	//Radio freq/name display
-	var/freqpart = radio_freq ? "\[[get_radio_name(radio_freq)]\] " : ""
+	var/job = speaker.GetJob()
+	var/freqpart = radio_freq ? "\[[get_radio_name(radio_freq)][job ? " ([job])": ""]\] " : ""
 	//Speaker name
 	var/namepart = "[speaker.GetVoice()][speaker.get_alt_name()]"
 	if(face_name && ishuman(speaker))
@@ -79,17 +80,28 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return ""
 
 
-/atom/movable/proc/compose_job(atom/movable/speaker, message_langs, raw_message, radio_freq)
-	if(!ishuman(speaker))
+/atom/movable/proc/compose_job(atom/movable/speaker, message_langs, raw_message, radio_freq) 
+	if(ishuman(speaker))
+		var/mob/living/carbon/human/H = speaker
+
+		var/datum/job/J = SSjob.GetJob(H.mind ? H.mind.assigned_role : H.job)
+		if(!istype(J))
+			return ""
+
+		return "[get_paygrades(J.paygrade, TRUE, gender)] "
+	else if(istype(speaker, /atom/movable/virtualspeaker))
+		var/atom/movable/virtualspeaker/VT = speaker
+		if(!ishuman(VT.source))
+			return
+		var/mob/living/carbon/human/H = VT.source
+		var/datum/job/J = SSjob.GetJob(H.mind ? H.mind.assigned_role : H.job)
+		if(!istype(J))
+			return ""
+
+		return "[get_paygrades(J.paygrade, TRUE, gender)] "
+	else
 		return ""
 
-	var/mob/living/carbon/human/H = speaker
-
-	var/datum/job/J = SSjob.GetJob(H.mind ? H.mind.assigned_role : H.job)
-	if(!istype(J))
-		return ""
-
-	return "[get_paygrades(J.paygrade, TRUE, gender)] "
 
 
 /atom/movable/proc/say_mod(input, message_mode, datum/language/language)
@@ -145,7 +157,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 
 /proc/get_radio_name(freq)
-	var/returntext = reverseradiochannels["[freq]"]
+	var/returntext = GLOB.reverseradiochannels["[freq]"]
 	if(returntext)
 		return returntext
 	return "[copytext("[freq]", 1, 4)].[copytext("[freq]", 4, 5)]"
@@ -231,7 +243,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 	. = ..()
 	radio = radio
 	source = M
-	if (istype(M))
+	if(istype(M))
 		name = M.GetVoice()
 		verb_say = M.verb_say
 		verb_ask = M.verb_ask
@@ -240,13 +252,13 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 
 	// The mob's job identity
 	if(ishuman(M))
-		// Humans use their job as seen on the crew manifest. This is so the AI
-		// can know their job even if they don't carry an ID.
-		var/datum/data/record/findjob = find_record("name", name, GLOB.datacore.general)
-		if(findjob)
-			job = findjob.fields["rank"]
+		var/mob/living/carbon/human/H = M
+
+		var/datum/job/J = SSjob.GetJob(H.mind ? H.mind.assigned_role : H.job)
+		if(!istype(J))
+			job = ""
 		else
-			job = "Unknown"
+			job = J.comm_title
 	else if(iscarbon(M))  // Carbon nonhuman
 		job = "No ID"
 	else if(isAI(M))  // AI
@@ -255,8 +267,6 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 		job = "Cyborg"
 	else if(isobj(M))  // Cold, emotionless machines
 		job = "Machine"
-	else  // Unidentifiable mob
-		job = "Unknown"
 
 
 /atom/movable/virtualspeaker/GetJob()
