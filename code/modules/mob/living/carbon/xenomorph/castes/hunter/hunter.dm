@@ -86,7 +86,7 @@
 	handle_stealth()
 
 /mob/living/carbon/Xenomorph/Hunter/proc/handle_stealth()
-	if(!stealth_router(HANDLE_STEALTH_CHECK))
+	if(!stealth)
 		return
 	if(stat != CONSCIOUS || stealth == FALSE || lying || resting) //Can't stealth while unconscious/resting
 		cancel_stealth()
@@ -132,21 +132,6 @@
 /mob/living/carbon/Xenomorph/Hunter/proc/disable_sneakattack()
 	can_sneak_attack = FALSE
 	UnregisterSignal(src, COMSIG_XENO_LIVING_SLASH)
-
-/mob/living/carbon/Xenomorph/Hunter/stealth_router(code = 0)
-	switch(code)
-		if(HANDLE_STEALTH_CHECK)
-			if(stealth)
-				return TRUE
-			else
-				return FALSE
-		if(HANDLE_STEALTH_CODE_CANCEL)
-			cancel_stealth()
-		if(HANDLE_SNEAK_ATTACK_CHECK)
-			if(can_sneak_attack)
-				return TRUE
-			else
-				return FALSE
 
 /mob/living/carbon/Xenomorph/Hunter/handle_living_plasma_updates()
 	var/turf/T = loc

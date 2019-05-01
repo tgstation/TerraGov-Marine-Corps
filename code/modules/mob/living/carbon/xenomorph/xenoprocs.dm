@@ -326,7 +326,7 @@ GLOBAL_LIST_INIT(xeno_pounce_bypass, typecacheof(list(/obj/structure/table, /obj
 	L.adjust_stagger(3)
 	L.add_slowdown(1)
 	to_chat(src, "<span class='xenodanger'>Pouncing from the shadows, you stagger your victim.</span>")
-
+	cancel_stealth()
 	addtimer(CALLBACK(src, .proc/reset_movement), 15)
 
 //This deals with "throwing" xenos -- ravagers, hunters, and runners in particular. Everyone else defaults to normal
@@ -562,12 +562,6 @@ GLOBAL_LIST_INIT(xeno_pounce_bypass, typecacheof(list(/obj/structure/table, /obj
 			ammo = GLOB.ammo_list[xeno_caste.spit_types[i]]
 			return
 	ammo = GLOB.ammo_list[xeno_caste.spit_types[1]] //No matching projectile time; default to first spit type
-	return
-
-/mob/living/carbon/Xenomorph/proc/stealth_router(code = 0)
-	return FALSE
-
-/mob/living/carbon/Xenomorph/proc/neuroclaw_router()
 	return
 
 /mob/living/carbon/Xenomorph/proc/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
