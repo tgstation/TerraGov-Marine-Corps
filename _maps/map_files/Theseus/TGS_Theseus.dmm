@@ -14732,13 +14732,6 @@
 	icon_state = "tcomms"
 	},
 /area/almayer/command/telecomms)
-"aFe" = (
-/obj/machinery/telecomms/broadcaster/preset_right,
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/almayer/command/telecomms)
 "aFf" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -93803,7 +93796,7 @@ avC
 awL
 ayD
 avH
-aCi
+aCk
 awL
 aFa
 aoI
@@ -94060,7 +94053,7 @@ avD
 avH
 ayE
 avH
-aCj
+aCi
 avH
 aFb
 aoI
@@ -94317,7 +94310,7 @@ avE
 avH
 ayF
 avH
-aCk
+aCj
 avH
 aFc
 aoI
@@ -95347,7 +95340,7 @@ avH
 aAs
 avH
 avH
-aFd
+avH
 awM
 arZ
 aJn
@@ -95604,7 +95597,7 @@ avH
 xkA
 avH
 avH
-aFe
+aFd
 aoJ
 aIe
 aJn
