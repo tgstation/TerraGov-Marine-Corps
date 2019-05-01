@@ -1,7 +1,10 @@
 /obj/item/radio/intercom
 	name = "station intercom"
 	desc = "Talk through this. To speak directly into an intercom next to you, use :i."
+	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "intercom"
+	pixel_x = -16
+	pixel_y = -16
 	anchored = 1
 	w_class = 4.0
 	canhear_range = 2
@@ -15,9 +18,13 @@
 	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_y = 30
+			pixel_y -= 32
+		if(SOUTH)
+			pixel_y += 32
 		if(EAST)
-			pixel_x = 30
+			pixel_x -= 32
+		if(WEST)
+			pixel_x += 32
 
 	START_PROCESSING(SSobj, src)
 
