@@ -630,7 +630,7 @@ var/global/list/activated_medevac_stretchers = list()
 		user.visible_message("<span class='notice'>[user] [locked ? "locks" : "unlocks"] [src]'s interface.</span>",
 		"<span class='notice'>You [locked ? "lock" : "unlock"] [src]'s interface.</span>")
 	else if(istype(O,/obj/item/roller/medevac))
-		if(locked && !allowed(user))
+		if(locked)
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 			return
