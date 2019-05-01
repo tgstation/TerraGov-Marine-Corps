@@ -149,8 +149,7 @@
 	if(X.charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 		X.stop_momentum(X.charge_dir)
 		return FALSE
-	obj_integrity -= X.charge_speed * 80 //Should generally smash it unless not moving very fast.
-	healthcheck(user = X)
+	take_damage(X.charge_speed * 80, BRUTE, "melee") //Should generally smash it unless not moving very fast.
 
 	X.charge_speed -= CHARGE_SPEED_BUILDUP * 2 //Lose two turfs worth of speed
 
@@ -163,8 +162,8 @@
 	if(X.charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 		X.stop_momentum(X.charge_dir)
 		return FALSE
-	obj_integrity -= X.charge_speed * 40 //Usually knocks it down.
-	healthcheck()
+	
+	take_damage(X.charge_speed * 40, BRUTE, "melee") //Usually knocks it down.
 
 	X.charge_speed -= CHARGE_SPEED_BUILDUP //Lose one turf worth of speed
 
@@ -218,7 +217,7 @@
 	machine_stat = 1
 	on = 0
 	update_icon()
-	update_health(X.charge_speed * 20)
+	take_damage(X.charge_speed * 20, BRUTE, "melee")
 	X.charge_speed -= CHARGE_SPEED_BUILDUP * 3 //Lose three turfs worth of speed
 	return TRUE
 

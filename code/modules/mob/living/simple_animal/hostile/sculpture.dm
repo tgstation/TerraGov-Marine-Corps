@@ -113,8 +113,7 @@
 			if(!next_turf.CanPass(src, next_turf)) //We can't pass through our planned path
 				break
 			for(var/obj/structure/window/W in next_turf)
-				W.obj_integrity -= 1000
-				W.healthcheck(1, 1, 1, src)
+				W.take_damage(1000, BRUTE, "melee")
 				sleep(5)
 			for(var/obj/structure/table/O in next_turf)
 				O.ex_act(1)
@@ -165,8 +164,7 @@
 				if(!next_turf.CanPass(src, next_turf)) //We can't pass through our planned path
 					break
 				for(var/obj/structure/window/W in next_turf)
-					W.obj_integrity -= 1000
-					W.healthcheck(1, 1, 1, src)
+					W.take_damage(1000, BRUTE, "melee")
 					sleep(5)
 				for(var/obj/structure/table/O in next_turf)
 					O.ex_act(1)

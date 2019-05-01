@@ -9,8 +9,7 @@
 
 /obj/effect/spider/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
-		obj_integrity -= 5
-		healthcheck()
+		take_damage(5, BURN, "fire")
 
 /obj/effect/spider/stickyweb
 	icon_state = "stickyweb1"

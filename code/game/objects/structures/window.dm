@@ -83,8 +83,7 @@
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
 		if(damageable) //Possible to destroy
 			user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
-			obj_integrity -= 500
-		healthcheck(1, 1, 1, user)
+			take_damage(500, BRUTE, "melee")
 
 	else if(user.a_intent == INTENT_HARM)
 
@@ -137,8 +136,7 @@
 					log_combat(user, M, "slammed", "", "against \the [src]")
 					msg_admin_attack("[key_name(usr)] slammed [key_name(M)]'s face' against \the [src].")
 					M.apply_damage(7)
-					if(damageable) //Possible to destroy
-						obj_integrity -= 10
+					take_damage(10, BRUTE, "melee")
 				if(GRAB_AGGRESSIVE)
 					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
 					log_admin("[key_name(usr)] bashes [key_name(M)] against \the [src].")
@@ -147,8 +145,7 @@
 					if(prob(50))
 						M.KnockDown(1)
 					M.apply_damage(10)
-					if(damageable) //Possible to destroy
-						obj_integrity -= 25
+					take_damage(25, BRUTE, "melee")
 				if(GRAB_NECK)
 					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
 					log_admin("[key_name(usr)] crushes [key_name(M)] against \the [src].")
@@ -156,9 +153,7 @@
 					msg_admin_attack("[key_name(usr)] crushed [key_name(M)]'s face' against \the [src].")
 					M.KnockDown(5)
 					M.apply_damage(20)
-					if(damageable) //Possible to destroy
-						obj_integrity -= 50
-			healthcheck(1, 1, 1, M) //The person thrown into the window literally shattered it
+					take_damage(50, BRUTE, "melee")
 		return
 
 	if(W.flags_item & NOBLUDGEON)
@@ -169,8 +164,7 @@
 		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
 			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P)
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
-				obj_integrity = 0
-				healthcheck(0, 0, 1)
+				deconstruct()
 				return
 
 	else if(isscrewdriver(W) && deconstructable)
@@ -198,13 +192,7 @@
 		to_chat(user, (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>"))
 
 	if(damageable && dismantle == FALSE) //Possible to destroy
-		obj_integrity -= W.force
-		if(obj_integrity <= 7  && !reinf && !static_frame && deconstructable)
-			anchored = FALSE
-			update_nearby_icons()
-			step(src, get_dir(user, src))
-		healthcheck(1, 1, 1, user, W)
-		. = ..() // Do the attack animation.
+		. = ..()
 	dismantle = FALSE
 
 
@@ -316,10 +304,8 @@
 
 /obj/structure/window/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
-		if(damageable)
-			obj_integrity -= round(exposed_volume / 100)
-		healthcheck(0) //Don't make hit sounds, it's dumb with fire/heat
-	..()
+		take_damage(round(exposed_volume / 100), BURN, "fire")
+	return ..()
 
 /obj/structure/window/phoronbasic
 	name = "phoron window"
@@ -331,9 +317,8 @@
 
 /obj/structure/window/phoronbasic/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 32000)
-		obj_integrity -= round(exposed_volume / 1000)
-		healthcheck(0) //Don't make hit sounds, it's dumb with fire/heat
-	..()
+		take_damage(round(exposed_volume / 1000), BURN, "fire")
+	return ..()
 
 /obj/structure/window/phoronreinforced
 	name = "reinforced phoron window"

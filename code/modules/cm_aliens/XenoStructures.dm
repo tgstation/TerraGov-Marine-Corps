@@ -14,36 +14,16 @@
 	if(obj_integrity <= 0)
 		qdel(src)
 
-/obj/effect/alien/proc/take_damage(amount)
-	obj_integrity = max(0, obj_integrity - amount)
-	healthcheck()
-
 /obj/effect/alien/Crossed(atom/movable/O)
 	. = ..()
 	if(!QDELETED(src) && istype(O, /obj/vehicle/multitile/hitbox/cm_armored))
 		tank_collision(O)
 
 /obj/effect/alien/flamer_fire_act()
-	take_damage(50)
+	take_damage(50, BURN, "fire")
 
 /obj/effect/alien/fire_act()
-	take_damage(50)
-
-/obj/effect/alien/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.damtype == "fire")
-		take_damage(Proj.damage*2)
-	else
-		take_damage(Proj.damage*0.5)
-	return TRUE
-
-/obj/effect/alien/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			take_damage(500)
-		if(2.0)
-			take_damage((rand(140, 300)))
-		if(3.0)
-			take_damage((rand(50, 100)))
+	take_damage(50, BURN, "fire")
 
 /*
  * Resin
