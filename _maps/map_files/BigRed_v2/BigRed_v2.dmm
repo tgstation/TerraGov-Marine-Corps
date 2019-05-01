@@ -732,6 +732,19 @@
 "acp" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/marshal_office)
+"acq" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/radio/intercom{
+	dir = 1;
+	frequency = 150;
+	name = "safe-room intercom"
+	},
+/turf/open/floor/elevatorshaft,
+/area/bigredv2/caves/lambda_lab)
 "acr" = (
 /turf/closed/wall,
 /area/bigredv2/outside/marshal_office)
@@ -4029,6 +4042,13 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
+"alZ" = (
+/obj/item/radio/intercom{
+	frequency = 150;
+	name = "safe-room intercom"
+	},
+/turf/open/floor/wood,
+/area/bigredv2/caves/lambda_lab)
 "ama" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
@@ -4305,6 +4325,13 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
+"amB" = (
+/obj/item/radio/intercom/general/colony{
+	icon_state = "intercom";
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
 "amC" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
@@ -6621,20 +6648,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"atc" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/item/radio/intercom{
-	dir = 1;
-	frequency = 150;
-	name = "Safe-Room intercom";
-	pixel_y = -30
-	},
-/turf/open/floor/elevatorshaft,
-/area/bigredv2/caves/lambda_lab)
 "atd" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -7010,14 +7023,6 @@
 /area/bigredv2/outside/general_offices)
 "aui" = (
 /obj/structure/filingcabinet,
-/turf/open/floor/wood,
-/area/bigredv2/caves/lambda_lab)
-"auj" = (
-/obj/item/radio/intercom{
-	frequency = 150;
-	name = "Safe-Room intercom";
-	dir = 1
-	},
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "auk" = (
@@ -18215,16 +18220,6 @@
 	},
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
-/turf/open/floor,
-/area/bigredv2/outside/cargo)
-"bcB" = (
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_y = -30
-	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bcC" = (
@@ -41314,7 +41309,7 @@ blb
 blb
 bbh
 aZO
-bcB
+amB
 aXK
 blb
 beh
@@ -63620,9 +63615,9 @@ adZ
 aqY
 arF
 arF
-atc
+acq
 adZ
-auj
+alZ
 ltt
 auY
 awz

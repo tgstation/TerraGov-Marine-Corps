@@ -97,3 +97,11 @@
 
 /obj/item/radio/intercom/general/colony
 	frequency = CIV_GEN_FREQ
+
+/obj/item/radio/intercom/dropship
+	name = "dropship intercom"
+	canhear_range = 7
+	frequency = DS1_FREQ
+
+/obj/item/radio/intercom/dropship/normandy
+	frequency = DS2_FREQ

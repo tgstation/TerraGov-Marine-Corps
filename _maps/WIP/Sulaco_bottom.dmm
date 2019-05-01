@@ -338,7 +338,7 @@
 "aY" = (
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
@@ -400,7 +400,7 @@
 "be" = (
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
@@ -613,7 +613,7 @@
 "bC" = (
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/structure/grille,
 /turf/open/floor/plating{
@@ -770,7 +770,7 @@
 "bY" = (
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
@@ -956,14 +956,12 @@
 	},
 /area/sulaco/research)
 "cr" = (
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_x = 28
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/machinery/chem_dispenser,
+/obj/item/radio/intercom/general{
+	icon_state = "intercom";
+	dir = 8
+	},
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -1114,7 +1112,7 @@
 "cH" = (
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
@@ -1147,7 +1145,7 @@
 "cJ" = (
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
@@ -1363,15 +1361,10 @@
 	},
 /area/sulaco/morgue)
 "dj" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
 /obj/structure/table,
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_x = 28
+/obj/item/radio/intercom/general{
+	icon_state = "intercom";
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "cult";
@@ -1422,7 +1415,7 @@
 "do" = (
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -1565,8 +1558,7 @@
 "dD" = (
 /obj/structure/table,
 /obj/machinery/light{
-	dir = 8;
-	
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/item/taperecorder,
@@ -1627,26 +1619,39 @@
 	},
 /area/sulaco/research)
 "dK" = (
+/obj/structure/morgue{
+	icon_state = "morgue1";
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor{
+	icon_state = "cult";
+	dir = 2
+	},
+/area/sulaco/morgue)
+"dL" = (
 /obj/effect/landmark/shuttle_loc/marine_src{
 	name = "Dropship 2"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"dL" = (
+"dM" = (
 /turf/open/floor/plating{
 	icon_state = "warnplate";
 	dir = 1
 	},
 /area/sulaco/hangar)
-"dM" = (
+"dN" = (
 /obj/structure/sign/greencross,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/medbay/hangar)
-"dN" = (
+"dO" = (
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 6
@@ -1661,35 +1666,35 @@
 	icon_state = "platebotc"
 	},
 /area/sulaco/medbay/hangar)
-"dO" = (
+"dP" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 9
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/medbay/hangar)
-"dP" = (
+"dQ" = (
 /obj/structure/sign/greencross,
 /turf/closed/wall/sulaco,
 /area/sulaco/medbay/hangar)
-"dQ" = (
+"dR" = (
 /turf/closed/shuttle/dropship{
 	tag = "icon-rasputin_nose";
 	icon_state = "rasputin_nose"
 	},
 /area/shuttle/drop1/sulaco)
-"dR" = (
+"dS" = (
 /turf/closed/shuttle/dropship{
 	tag = "icon-rasputin_light";
 	icon_state = "rasputin_light"
 	},
 /area/shuttle/drop1/sulaco)
-"dS" = (
+"dT" = (
 /turf/closed/shuttle/dropship{
 	tag = "icon-rasputin8";
 	icon_state = "rasputin8"
 	},
 /area/shuttle/drop1/sulaco)
-"dT" = (
+"dU" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Cockpit";
 	req_access_txt = "22";
@@ -1700,19 +1705,19 @@
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
-"dU" = (
+"dV" = (
 /turf/closed/shuttle/dropship{
 	tag = "icon-rasputin4";
 	icon_state = "rasputin4"
 	},
 /area/shuttle/drop1/sulaco)
-"dV" = (
+"dW" = (
 /turf/closed/shuttle/dropship{
 	tag = "icon-rasputin10";
 	icon_state = "rasputin10"
 	},
 /area/shuttle/drop1/sulaco)
-"dW" = (
+"dX" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 1;
 	name = "Firing Range";
@@ -1722,11 +1727,11 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"dX" = (
+"dY" = (
 /obj/item/stool,
 /turf/open/floor,
 /area/sulaco/hangar/one)
-"dY" = (
+"dZ" = (
 /obj/machinery/door_control{
 	id = "bot_armory";
 	name = "Armory Lockdown";
@@ -1742,14 +1747,14 @@
 	dir = 9
 	},
 /area/sulaco/command/armory)
-"dZ" = (
+"ea" = (
 /obj/machinery/alarm,
 /turf/open/floor{
 	icon_state = "red";
 	dir = 1
 	},
 /area/sulaco/command/armory)
-"ea" = (
+"eb" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -1760,11 +1765,11 @@
 	dir = 5
 	},
 /area/sulaco/command/armory)
-"eb" = (
+"ec" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/research)
-"ec" = (
+"ed" = (
 /obj/machinery/door/airlock/research{
 	id_tag = "xeno_containment";
 	name = "Sample Containment";
@@ -1775,11 +1780,11 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"ed" = (
+"ee" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/research)
-"ee" = (
+"ef" = (
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -1788,7 +1793,7 @@
 	icon_state = "diagonalWall3"
 	},
 /area/sulaco/research)
-"ef" = (
+"eg" = (
 /obj/structure/bed/chair/office/light,
 /obj/effect/landmark/start{
 	name = "Researcher"
@@ -1797,16 +1802,19 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"eg" = (
+"eh" = (
 /obj/structure/closet/walllocker/emerglocker,
 /obj/effect/landmark/shuttle_loc/marine_crs{
 	name = "Dropship 2"
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/floor{
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"eh" = (
+"ei" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -1816,20 +1824,14 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"ei" = (
+"ej" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_x = 28
-	},
 /obj/machinery/vending/medical,
 /turf/open/floor{
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"ej" = (
+"ek" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -1839,15 +1841,15 @@
 	dir = 2
 	},
 /area/sulaco/morgue)
-"ek" = (
+"el" = (
 /obj/item/storage/backpack/marine,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"el" = (
+"em" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"em" = (
+"en" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/door/firedoor,
 /obj/structure/cable{
@@ -1857,10 +1859,10 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"en" = (
+"eo" = (
 /turf/closed/shuttle/dropship,
 /area/shuttle/drop1/sulaco)
-"eo" = (
+"ep" = (
 /obj/structure/bed/chair/dropship/passenger{
 	tag = "icon-shuttle_chair (EAST)";
 	icon_state = "shuttle_chair";
@@ -1871,31 +1873,31 @@
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
-"ep" = (
+"eq" = (
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin6";
 	icon_state = "rasputin6"
 	},
 /area/shuttle/drop1/sulaco)
-"eq" = (
+"er" = (
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin5";
 	icon_state = "rasputin5"
 	},
 /area/shuttle/drop1/sulaco)
-"er" = (
+"es" = (
 /turf/open/shuttle/dropship{
 	tag = "icon-floor8";
 	icon_state = "floor8"
 	},
 /area/shuttle/drop1/sulaco)
-"es" = (
+"et" = (
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin7";
 	icon_state = "rasputin7"
 	},
 /area/shuttle/drop1/sulaco)
-"et" = (
+"eu" = (
 /obj/structure/bed/chair/dropship/passenger{
 	tag = "icon-shuttle_chair (WEST)";
 	icon_state = "shuttle_chair";
@@ -1906,7 +1908,7 @@
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
-"eu" = (
+"ev" = (
 /obj/structure/sign/securearea{
 	pixel_x = 32
 	},
@@ -1915,7 +1917,7 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"ev" = (
+"ew" = (
 /obj/structure/table,
 /obj/item/clothing/ears/earmuffs{
 	pixel_x = 5;
@@ -1924,51 +1926,51 @@
 /obj/item/clothing/ears/earmuffs,
 /turf/open/floor,
 /area/sulaco/hangar/one)
-"ew" = (
+"ex" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/structure/table,
 /obj/item/folder/red,
 /obj/item/tool/pen/red,
 /turf/open/floor,
 /area/sulaco/hangar/one)
-"ex" = (
+"ey" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor{
 	icon_state = "red";
 	dir = 10
 	},
 /area/sulaco/hangar/one)
-"ey" = (
+"ez" = (
 /turf/open/floor{
 	icon_state = "red"
 	},
 /area/sulaco/hangar/one)
-"ez" = (
+"eA" = (
 /turf/open/floor{
 	icon_state = "red";
 	dir = 6
 	},
 /area/sulaco/hangar/one)
-"eA" = (
+"eB" = (
 /turf/open/floor/plating/airless,
 /area/space)
-"eB" = (
+"eC" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/maintenance/lower_maint)
-"eC" = (
+"eD" = (
 /obj/structure/closet/secure_closet/marine,
 /turf/open/floor{
 	icon_state = "red";
 	dir = 8
 	},
 /area/sulaco/command/armory)
-"eD" = (
+"eE" = (
 /turf/open/floor{
 	icon_state = "redfull";
 	dir = 9
 	},
 /area/sulaco/command/armory)
-"eE" = (
+"eF" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -1988,7 +1990,7 @@
 	dir = 4
 	},
 /area/sulaco/command/armory)
-"eF" = (
+"eG" = (
 /obj/machinery/door/window/eastright{
 	req_access_txt = "14"
 	},
@@ -1999,13 +2001,13 @@
 	dir = 9
 	},
 /area/sulaco/research)
-"eG" = (
+"eH" = (
 /turf/open/floor{
 	icon_state = "warnwhite";
 	dir = 1
 	},
 /area/sulaco/research)
-"eH" = (
+"eI" = (
 /obj/machinery/door/window/westleft{
 	layer = 3.1;
 	req_access_txt = "0";
@@ -2018,7 +2020,7 @@
 	dir = 5
 	},
 /area/sulaco/research)
-"eI" = (
+"eJ" = (
 /obj/structure/table,
 /obj/structure/window/reinforced,
 /obj/item/paper_bin,
@@ -2028,7 +2030,7 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"eJ" = (
+"eK" = (
 /obj/structure/table,
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
@@ -2039,7 +2041,7 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"eK" = (
+"eL" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door/window/southleft{
 	req_one_access_txt = "2;14;200"
@@ -2048,7 +2050,7 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"eL" = (
+"eM" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/effect/landmark/start{
 	name = "Researcher"
@@ -2057,21 +2059,16 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"eM" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_x = 28
+"eN" = (
+/obj/item/radio/intercom/general{
+	icon_state = "intercom";
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"eN" = (
+"eO" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/table,
 /obj/item/reagent_container/glass/beaker/large,
@@ -2084,7 +2081,17 @@
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/research)
-"eO" = (
+"eP" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden,
+/obj/item/radio/intercom/general{
+	icon_state = "intercom";
+	dir = 8
+	},
+/turf/open/floor{
+	icon_state = "white"
+	},
+/area/sulaco/research)
+"eQ" = (
 /obj/machinery/door_control{
 	id = "dropship";
 	name = "Shutter Control";
@@ -2096,25 +2103,25 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"eP" = (
+"eR" = (
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
 /area/shuttle/drop1/sulaco)
-"eQ" = (
+"eS" = (
 /turf/closed/shuttle/dropship{
 	tag = "icon-rasputin0";
 	icon_state = "rasputin0"
 	},
 /area/shuttle/drop1/sulaco)
-"eR" = (
+"eT" = (
 /turf/open/floor/plating,
 /turf/closed/shuttle{
 	icon_state = "diagonalWall3"
 	},
 /area/sulaco/hangar)
-"eS" = (
+"eU" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/item/ammo_magazine/shotgun,
 /obj/structure/table,
@@ -2123,7 +2130,7 @@
 /obj/item/weapon/gun/shotgun/pump,
 /turf/open/floor,
 /area/sulaco/hangar/one)
-"eT" = (
+"eV" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
@@ -2134,7 +2141,7 @@
 /obj/item/weapon/gun/rifle/m41a,
 /turf/open/floor,
 /area/sulaco/hangar/one)
-"eU" = (
+"eW" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -2143,46 +2150,46 @@
 /obj/machinery/light,
 /turf/open/floor,
 /area/sulaco/hangar/one)
-"eV" = (
+"eX" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor,
 /area/sulaco/hangar/one)
-"eW" = (
+"eY" = (
 /turf/open/floor,
 /turf/closed/shuttle{
 	dir = 8;
 	icon_state = "diagonalWall3"
 	},
 /area/sulaco/maintenance/lower_maint)
-"eX" = (
+"eZ" = (
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/structure/grille,
 /turf/open/floor/plating{
 	icon_state = "platebotc"
 	},
 /area/sulaco/maintenance/lower_maint)
-"eY" = (
+"fa" = (
 /turf/open/floor,
 /turf/closed/shuttle{
 	dir = 1;
 	icon_state = "diagonalWall3"
 	},
 /area/sulaco/maintenance/lower_maint)
-"eZ" = (
+"fb" = (
 /obj/machinery/light,
 /turf/open/floor,
 /area/sulaco/hangar/one)
-"fa" = (
+"fc" = (
 /turf/open/space,
 /turf/closed/shuttle{
 	dir = 4;
 	icon_state = "diagonalWall3"
 	},
 /area/sulaco/maintenance/lower_maint)
-"fb" = (
+"fd" = (
 /obj/structure/broken_apc{
 	opacity = 0
 	},
@@ -2194,13 +2201,13 @@
 	icon_state = "diagonalWall3"
 	},
 /area/sulaco/maintenance/lower_maint)
-"fc" = (
+"fe" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"fd" = (
+"ff" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -2208,25 +2215,25 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"fe" = (
+"fg" = (
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"ff" = (
+"fh" = (
 /obj/machinery/suit_storage_unit,
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"fg" = (
+"fi" = (
 /obj/structure/closet/secure_closet/marine/standard/delta,
 /turf/open/floor{
 	icon_state = "red";
 	dir = 8
 	},
 /area/sulaco/command/armory)
-"fh" = (
+"fj" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -2249,7 +2256,7 @@
 	dir = 4
 	},
 /area/sulaco/command/armory)
-"fi" = (
+"fk" = (
 /obj/machinery/door/window/eastright{
 	req_access_txt = "14"
 	},
@@ -2259,14 +2266,14 @@
 	dir = 10
 	},
 /area/sulaco/research)
-"fj" = (
+"fl" = (
 /obj/machinery/light/small,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "warnwhite"
 	},
 /area/sulaco/research)
-"fk" = (
+"fm" = (
 /obj/machinery/door/window/westleft{
 	layer = 3.1;
 	req_access_txt = "0";
@@ -2278,7 +2285,7 @@
 	dir = 6
 	},
 /area/sulaco/research)
-"fl" = (
+"fn" = (
 /obj/machinery/alarm{
 	dir = 4
 	},
@@ -2286,7 +2293,7 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"fm" = (
+"fo" = (
 /obj/structure/table,
 /obj/item/stock_parts/console_screen,
 /obj/item/stock_parts/capacitor,
@@ -2294,7 +2301,7 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"fn" = (
+"fp" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/structure/table,
 /obj/item/stock_parts/matter_bin,
@@ -2303,7 +2310,7 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"fo" = (
+"fq" = (
 /obj/structure/table,
 /obj/item/stack/sheet/metal/large_stack{
 	pixel_x = 2;
@@ -2316,7 +2323,7 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"fp" = (
+"fr" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/item/reagent_container/spray/cleaner{
 	desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'";
@@ -2328,7 +2335,7 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"fq" = (
+"fs" = (
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -2342,14 +2349,14 @@
 	dir = 2
 	},
 /area/sulaco/morgue)
-"fr" = (
+"ft" = (
 /obj/machinery/light/small,
 /turf/open/floor{
 	icon_state = "cult";
 	dir = 2
 	},
 /area/sulaco/morgue)
-"fs" = (
+"fu" = (
 /obj/structure/table,
 /obj/item/storage/box/bodybags,
 /obj/item/storage/box/bodybags,
@@ -2358,48 +2365,48 @@
 	dir = 2
 	},
 /area/sulaco/morgue)
-"ft" = (
+"fv" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"fu" = (
+"fw" = (
 /obj/machinery/computer/shuttle_control/ert{
 	req_one_access_txt = "12;22;200"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"fv" = (
+"fx" = (
 /obj/structure/bed/roller,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"fw" = (
+"fy" = (
 /obj/machinery/light,
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"fx" = (
-/obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
-	},
-/obj/structure/grille,
-/obj/machinery/door/firedoor,
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
-/area/sulaco/hangar)
-"fy" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
-/area/sulaco/hangar)
 "fz" = (
+/obj/structure/window/reinforced{
+	dir = 5;
+	max_integrity = 80
+	},
+/obj/structure/grille,
+/obj/machinery/door/firedoor,
+/turf/open/floor/plating{
+	icon_state = "platebotc"
+	},
+/area/sulaco/hangar)
+"fA" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 5;
+	max_integrity = 80
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/plating{
+	icon_state = "platebotc"
+	},
+/area/sulaco/hangar)
+"fB" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	name = "Drop Pod Vindicator"
 	},
@@ -2409,7 +2416,7 @@
 	dir = 8
 	},
 /area/sulaco/hangar)
-"fA" = (
+"fC" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 6
@@ -2419,11 +2426,11 @@
 	dir = 8
 	},
 /area/sulaco/hangar)
-"fB" = (
+"fD" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -2433,7 +2440,7 @@
 	icon_state = "platebotc"
 	},
 /area/sulaco/hangar)
-"fC" = (
+"fE" = (
 /obj/structure/cable{
 	d1 = 2;
 	d2 = 4;
@@ -2449,7 +2456,7 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar)
-"fD" = (
+"fF" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
@@ -2462,46 +2469,46 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"fE" = (
+"fG" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"fF" = (
+"fH" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"fG" = (
+"fI" = (
 /turf/closed/shuttle/dropship{
 	tag = "icon-rasputin2";
 	icon_state = "rasputin2"
 	},
 /area/shuttle/drop1/sulaco)
-"fH" = (
+"fJ" = (
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/structure/grille,
 /turf/open/shuttle{
 	icon_state = "floor7"
 	},
 /area/shuttle/drop1/sulaco)
-"fI" = (
+"fK" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"fJ" = (
+"fL" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar/one)
-"fK" = (
+"fM" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -2509,11 +2516,11 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar/one)
-"fL" = (
+"fN" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar/one)
-"fM" = (
+"fO" = (
 /turf/open/floor{
 	icon_state = "dark"
 	},
@@ -2522,15 +2529,15 @@
 	icon_state = "diagonalWall3"
 	},
 /area/sulaco/maintenance/lower_maint)
-"fN" = (
+"fP" = (
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"fO" = (
+"fQ" = (
 /turf/open/space,
 /area/sulaco/maintenance/lower_maint)
-"fP" = (
+"fR" = (
 /obj/structure/rack,
 /obj/item/assembly/prox_sensor,
 /obj/item/assembly/prox_sensor,
@@ -2539,13 +2546,13 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"fQ" = (
+"fS" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"fR" = (
+"fT" = (
 /obj/machinery/door_control{
 	id = "eastblast";
 	name = "Observation Windows";
@@ -2556,7 +2563,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"fS" = (
+"fU" = (
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
@@ -2566,7 +2573,7 @@
 	dir = 8
 	},
 /area/sulaco/command/armory)
-"fT" = (
+"fV" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -2585,7 +2592,7 @@
 	dir = 4
 	},
 /area/sulaco/command/armory)
-"fU" = (
+"fW" = (
 /obj/machinery/door/airlock/multi_tile/research{
 	req_access_txt = "0";
 	req_one_access_txt = "2;14;200;8"
@@ -2595,14 +2602,14 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"fV" = (
+"fX" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/door/firedoor,
 /turf/open/floor{
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"fW" = (
+"fY" = (
 /obj/structure/cable{
 	d1 = 2;
 	d2 = 4;
@@ -2610,7 +2617,7 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/research)
-"fX" = (
+"fZ" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/cable{
 	d1 = 4;
@@ -2622,7 +2629,7 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"fY" = (
+"ga" = (
 /obj/machinery/door/airlock/multi_tile/research{
 	name = "Chemistry";
 	req_access_txt = "0";
@@ -2639,7 +2646,7 @@
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/research)
-"fZ" = (
+"gb" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/door/firedoor,
 /obj/structure/cable{
@@ -2651,7 +2658,7 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"ga" = (
+"gc" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -2660,7 +2667,7 @@
 /obj/structure/sign/chemistry,
 /turf/closed/wall/sulaco,
 /area/sulaco/morgue)
-"gb" = (
+"gd" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
@@ -2668,42 +2675,42 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/morgue)
-"gc" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Morgue";
-	req_one_access_txt = "2;8;19"
-	},
-/turf/open/floor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/sulaco/morgue)
-"gd" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden,
-/turf/closed/wall/sulaco,
-/area/sulaco/morgue)
 "ge" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Morgue";
 	req_one_access_txt = "2;8;19"
 	},
-/obj/machinery/door/firedoor,
 /turf/open/floor{
 	icon_state = "cult";
 	dir = 2
 	},
 /area/sulaco/morgue)
 "gf" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden,
+/turf/closed/wall/sulaco,
+/area/sulaco/morgue)
+"gg" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Morgue";
+	req_one_access_txt = "2;8;19"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor{
+	icon_state = "cult";
+	dir = 2
+	},
+/area/sulaco/morgue)
+"gh" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/hallway/lower_main_hall)
-"gg" = (
+"gi" = (
 /obj/machinery/door/firedoor,
 /turf/open/floor{
 	icon_state = "vault";
 	dir = 8
 	},
 /area/sulaco/hangar)
-"gh" = (
+"gj" = (
 /obj/structure/ladder{
 	height = 1;
 	id = "hall1"
@@ -2712,7 +2719,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gi" = (
+"gk" = (
 /obj/structure/ladder{
 	height = 1;
 	id = "hall2"
@@ -2721,7 +2728,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gj" = (
+"gl" = (
 /obj/structure/ladder{
 	height = 1;
 	id = "hall3"
@@ -2730,7 +2737,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gk" = (
+"gm" = (
 /obj/structure/ladder{
 	height = 1;
 	id = "hall4"
@@ -2740,7 +2747,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gl" = (
+"gn" = (
 /obj/structure/ladder{
 	height = 1;
 	id = "hall10"
@@ -2749,7 +2756,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gm" = (
+"go" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -2762,20 +2769,20 @@
 	dir = 8
 	},
 /area/sulaco/hangar)
-"gn" = (
+"gp" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/largecrate/random,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"go" = (
+"gq" = (
 /obj/structure/largecrate/random,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"gp" = (
+"gr" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -2786,33 +2793,33 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"gq" = (
+"gs" = (
 /obj/structure/closet/walllocker/emerglocker,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"gr" = (
+"gt" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/structure/closet/toolcloset,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"gs" = (
+"gu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"gt" = (
+"gv" = (
 /obj/structure/largecrate/random,
 /obj/machinery/alarm,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"gu" = (
+"gw" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 6
 	},
@@ -2822,7 +2829,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"gv" = (
+"gx" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
@@ -2830,7 +2837,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"gw" = (
+"gy" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
@@ -2838,17 +2845,17 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"gx" = (
+"gz" = (
 /obj/structure/rack,
 /obj/item/analyzer,
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"gy" = (
+"gA" = (
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
@@ -2863,14 +2870,14 @@
 	icon_state = "platebotc"
 	},
 /area/sulaco/maintenance/lower_maint)
-"gz" = (
+"gB" = (
 /obj/structure/closet/secure_closet/marine/standard/charlie,
 /turf/open/floor{
 	icon_state = "red";
 	dir = 8
 	},
 /area/sulaco/command/armory)
-"gA" = (
+"gC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
@@ -2879,7 +2886,7 @@
 	dir = 9
 	},
 /area/sulaco/command/armory)
-"gB" = (
+"gD" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -2907,13 +2914,13 @@
 	dir = 4
 	},
 /area/sulaco/command/armory)
-"gC" = (
+"gE" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/command/armory)
-"gD" = (
+"gF" = (
 /obj/structure/sign/securearea{
 	name = "\improper ARMORY";
 	pixel_x = -30
@@ -2930,7 +2937,7 @@
 	icon_state = "diagonalWall3"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gE" = (
+"gG" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
@@ -2944,13 +2951,13 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gF" = (
+"gH" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden,
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gG" = (
+"gI" = (
 /obj/structure/sign/biohazard{
 	pixel_y = 30
 	},
@@ -2964,7 +2971,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gH" = (
+"gJ" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
@@ -2972,7 +2979,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gI" = (
+"gK" = (
 /obj/structure/sign/science{
 	pixel_y = 30
 	},
@@ -2984,7 +2991,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gJ" = (
+"gL" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
 	dir = 1
 	},
@@ -2995,14 +3002,14 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gK" = (
+"gM" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden,
 /obj/structure/closet/walllocker/emerglocker,
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gL" = (
+"gN" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
 	dir = 1
 	},
@@ -3010,7 +3017,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gM" = (
+"gO" = (
 /obj/machinery/door/airlock/glass,
 /obj/structure/cable{
 	d1 = 1;
@@ -3025,7 +3032,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gN" = (
+"gP" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
@@ -3034,7 +3041,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gO" = (
+"gQ" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
@@ -3043,7 +3050,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gP" = (
+"gR" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
@@ -3052,7 +3059,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gQ" = (
+"gS" = (
 /obj/machinery/light{
 	dir = 1
 	},
@@ -3063,7 +3070,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gR" = (
+"gT" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
@@ -3072,7 +3079,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gS" = (
+"gU" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
@@ -3083,7 +3090,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gT" = (
+"gV" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
@@ -3095,7 +3102,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gU" = (
+"gW" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
@@ -3104,7 +3111,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gV" = (
+"gX" = (
 /obj/machinery/door/airlock/glass,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
 	dir = 1
@@ -3114,7 +3121,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gW" = (
+"gY" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
@@ -3123,7 +3130,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gX" = (
+"gZ" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
@@ -3131,7 +3138,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gY" = (
+"ha" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
@@ -3140,7 +3147,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"gZ" = (
+"hb" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
 	dir = 1
 	},
@@ -3148,7 +3155,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"ha" = (
+"hc" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 1;
 	name = "Dropship Rasputin"
@@ -3167,13 +3174,13 @@
 	dir = 8
 	},
 /area/sulaco/hangar)
-"hb" = (
+"hd" = (
 /obj/effect/landmark/shuttle_loc/marine_crs{
 	name = "Dropship 2"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"hc" = (
+"he" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	req_access_txt = "0"
 	},
@@ -3183,7 +3190,7 @@
 	dir = 8
 	},
 /area/sulaco/hangar)
-"hd" = (
+"hf" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 8
 	},
@@ -3191,7 +3198,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"he" = (
+"hg" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
@@ -3199,7 +3206,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hf" = (
+"hh" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -3209,19 +3216,19 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hg" = (
+"hi" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hh" = (
+"hj" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hi" = (
+"hk" = (
 /obj/machinery/light{
 	dir = 4
 	},
@@ -3229,7 +3236,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hj" = (
+"hl" = (
 /obj/machinery/power/apc,
 /obj/structure/cable{
 	d2 = 2;
@@ -3240,20 +3247,20 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hk" = (
+"hm" = (
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hl" = (
+"hn" = (
 /obj/structure/closet/walllocker/hydrant,
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hm" = (
+"ho" = (
 /obj/machinery/light{
 	dir = 1
 	},
@@ -3262,7 +3269,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hn" = (
+"hp" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	req_access_txt = "0";
 	req_one_access_txt = "2;7"
@@ -3273,13 +3280,13 @@
 	dir = 8
 	},
 /area/sulaco/maintenance/lower_maint)
-"ho" = (
+"hq" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hp" = (
+"hr" = (
 /obj/structure/table,
 /obj/item/stack/sheet/metal/medium_stack,
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
@@ -3287,7 +3294,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hq" = (
+"hs" = (
 /obj/structure/table,
 /obj/machinery/light/small,
 /obj/effect/spawner/random/toolbox,
@@ -3295,7 +3302,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hr" = (
+"ht" = (
 /obj/structure/table,
 /obj/item/reagent_container/spray,
 /obj/item/storage/briefcase/inflatable,
@@ -3303,20 +3310,20 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hs" = (
+"hu" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp,
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"ht" = (
+"hv" = (
 /obj/structure/closet/toolcloset,
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hu" = (
+"hw" = (
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -3330,7 +3337,7 @@
 	dir = 8
 	},
 /area/sulaco/command/armory)
-"hv" = (
+"hx" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -3341,7 +3348,7 @@
 	dir = 9
 	},
 /area/sulaco/command/armory)
-"hw" = (
+"hy" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -3357,7 +3364,7 @@
 	dir = 4
 	},
 /area/sulaco/command/armory)
-"hx" = (
+"hz" = (
 /obj/machinery/door/airlock/security{
 	req_access_txt = "4"
 	},
@@ -3377,7 +3384,7 @@
 	dir = 9
 	},
 /area/sulaco/command/armory)
-"hy" = (
+"hA" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -3388,7 +3395,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"hz" = (
+"hB" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -3399,7 +3406,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"hA" = (
+"hC" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -3409,7 +3416,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"hB" = (
+"hD" = (
 /obj/structure/sign/securearea{
 	pixel_y = -32
 	},
@@ -3422,7 +3429,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"hC" = (
+"hE" = (
 /obj/structure/cable{
 	d1 = 2;
 	d2 = 8;
@@ -3436,12 +3443,12 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"hD" = (
+"hF" = (
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"hE" = (
+"hG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
@@ -3449,7 +3456,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"hF" = (
+"hH" = (
 /obj/machinery/light{
 	dir = 4
 	},
@@ -3458,7 +3465,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"hG" = (
+"hI" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -3466,7 +3473,7 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/hallway/lower_main_hall)
-"hH" = (
+"hJ" = (
 /obj/machinery/light{
 	dir = 8
 	},
@@ -3475,13 +3482,13 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"hI" = (
+"hK" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"hJ" = (
+"hL" = (
 /obj/machinery/power/apc{
 	dir = 8
 	},
@@ -3493,11 +3500,11 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"hK" = (
+"hM" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/hallway/lower_main_hall)
-"hL" = (
+"hN" = (
 /obj/machinery/light{
 	dir = 8
 	},
@@ -3506,35 +3513,30 @@
 	icon_state = "dark"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"hM" = (
-/turf/open/floor{
-	icon_state = "dark"
-	},
-/area/sulaco/hallway/lower_main_hall)
-"hN" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor{
-	icon_state = "dark"
-	},
-/area/sulaco/hallway/lower_main_hall)
 "hO" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_x = 28
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/hallway/lower_main_hall)
 "hP" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/hallway/lower_main_hall)
+"hQ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/item/radio/intercom/general{
+	icon_state = "intercom";
+	dir = 8
+	},
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/hallway/lower_main_hall)
+"hR" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -3542,7 +3544,7 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar)
-"hQ" = (
+"hS" = (
 /obj/machinery/light{
 	dir = 8
 	},
@@ -3554,19 +3556,19 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"hR" = (
+"hT" = (
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin4";
 	icon_state = "rasputin4"
 	},
 /area/shuttle/drop1/sulaco)
-"hS" = (
+"hU" = (
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin8";
 	icon_state = "rasputin8"
 	},
 /area/shuttle/drop1/sulaco)
-"hT" = (
+"hV" = (
 /obj/machinery/vending/wallmed1{
 	name = "Emergency NanoMed";
 	pixel_x = 30
@@ -3576,7 +3578,7 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"hU" = (
+"hW" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/light{
 	dir = 8
@@ -3585,7 +3587,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hV" = (
+"hX" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -3600,7 +3602,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hW" = (
+"hY" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -3610,7 +3612,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hX" = (
+"hZ" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -3623,7 +3625,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hY" = (
+"ia" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -3636,7 +3638,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"hZ" = (
+"ib" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -3647,7 +3649,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"ia" = (
+"ic" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -3665,7 +3667,7 @@
 	dir = 8
 	},
 /area/sulaco/maintenance/lower_maint)
-"ib" = (
+"id" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
@@ -3678,24 +3680,10 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"ic" = (
+"ie" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
-/area/sulaco/maintenance/lower_maint)
-"id" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 4
-	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
-/area/sulaco/maintenance/lower_maint)
-"ie" = (
-/obj/machinery/atmospherics/pipe/manifold/cyan/hidden,
 /turf/open/floor{
 	icon_state = "dark"
 	},
@@ -3704,9 +3692,23 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
-/turf/closed/wall/sulaco,
+/turf/open/floor{
+	icon_state = "dark"
+	},
 /area/sulaco/maintenance/lower_maint)
 "ig" = (
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/maintenance/lower_maint)
+"ih" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 4
+	},
+/turf/closed/wall/sulaco,
+/area/sulaco/maintenance/lower_maint)
+"ii" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 9
 	},
@@ -3717,7 +3719,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"ih" = (
+"ij" = (
 /obj/machinery/door_control{
 	id = "eastblast";
 	name = "Observation Windows";
@@ -3730,7 +3732,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"ii" = (
+"ik" = (
 /obj/machinery/autolathe,
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -3739,7 +3741,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"ij" = (
+"il" = (
 /obj/structure/ladder{
 	height = 1;
 	id = "engi"
@@ -3749,7 +3751,7 @@
 	dir = 8
 	},
 /area/sulaco/maintenance/lower_maint)
-"ik" = (
+"im" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -3758,14 +3760,14 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"il" = (
+"in" = (
 /obj/structure/closet/secure_closet/marine/standard/alpha,
 /turf/open/floor{
 	icon_state = "red";
 	dir = 10
 	},
 /area/sulaco/command/armory)
-"im" = (
+"io" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
@@ -3773,7 +3775,7 @@
 	icon_state = "red"
 	},
 /area/sulaco/command/armory)
-"in" = (
+"ip" = (
 /obj/structure/rack,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -3794,13 +3796,13 @@
 	dir = 6
 	},
 /area/sulaco/command/armory)
-"io" = (
+"iq" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/command/armory)
-"ip" = (
+"ir" = (
 /obj/structure/sign/securearea{
 	name = "\improper ARMORY";
 	pixel_x = -30
@@ -3814,25 +3816,8 @@
 	icon_state = "diagonalWall3"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"iq" = (
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
-/turf/open/floor{
-	icon_state = "vault"
-	},
-/area/sulaco/hallway/lower_main_hall)
-"ir" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/turf/open/floor{
-	icon_state = "vault"
-	},
-/area/sulaco/hallway/lower_main_hall)
 "is" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/obj/structure/closet/emcloset,
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /turf/open/floor{
 	icon_state = "vault"
 	},
@@ -3841,9 +3826,26 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
+/turf/open/floor{
+	icon_state = "vault"
+	},
+/area/sulaco/hallway/lower_main_hall)
+"iu" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/structure/closet/emcloset,
+/turf/open/floor{
+	icon_state = "vault"
+	},
+/area/sulaco/hallway/lower_main_hall)
+"iv" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
 /turf/closed/wall/sulaco,
 /area/sulaco/telecomms)
-"iu" = (
+"iw" = (
 /obj/machinery/door/airlock/glass_command{
 	name = "Telecomms Chamber";
 	req_one_access_txt = "2;6;200"
@@ -3858,7 +3860,7 @@
 	dir = 1
 	},
 /area/sulaco/telecomms)
-"iv" = (
+"ix" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -3867,7 +3869,7 @@
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/telecomms)
-"iw" = (
+"iy" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
@@ -3876,7 +3878,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"ix" = (
+"iz" = (
 /obj/machinery/door/airlock/glass,
 /obj/structure/cable{
 	d1 = 1;
@@ -3891,7 +3893,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"iy" = (
+"iA" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 1
 	},
@@ -3899,7 +3901,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"iz" = (
+"iB" = (
 /obj/structure/sign/securearea{
 	pixel_y = -32
 	},
@@ -3910,7 +3912,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"iA" = (
+"iC" = (
 /obj/item/tool/warning_cone,
 /obj/item/tool/warning_cone{
 	pixel_x = -9;
@@ -3923,7 +3925,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"iB" = (
+"iD" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
@@ -3934,7 +3936,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"iC" = (
+"iE" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
@@ -3946,7 +3948,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"iD" = (
+"iF" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -3964,7 +3966,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"iE" = (
+"iG" = (
 /obj/machinery/door/airlock/glass,
 /obj/structure/cable{
 	d1 = 4;
@@ -3980,7 +3982,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"iF" = (
+"iH" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -3991,7 +3993,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"iG" = (
+"iI" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -4004,7 +4006,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"iH" = (
+"iJ" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
@@ -4024,19 +4026,19 @@
 	dir = 8
 	},
 /area/sulaco/hangar)
-"iI" = (
+"iK" = (
 /turf/closed/shuttle/dropship{
 	tag = "icon-rasputin5";
 	icon_state = "rasputin5"
 	},
 /area/shuttle/drop1/sulaco)
-"iJ" = (
+"iL" = (
 /turf/closed/shuttle/dropship{
 	tag = "icon-rasputin12";
 	icon_state = "rasputin12"
 	},
 /area/shuttle/drop1/sulaco)
-"iK" = (
+"iM" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Dropship Hatch"
 	},
@@ -4045,31 +4047,31 @@
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
-"iL" = (
+"iN" = (
 /turf/closed/shuttle/dropship{
 	tag = "icon-rasputin9";
 	icon_state = "rasputin9"
 	},
 /area/shuttle/drop1/sulaco)
-"iM" = (
+"iO" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"iN" = (
+"iP" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"iO" = (
+"iQ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"iP" = (
+"iR" = (
 /obj/structure/table,
 /obj/item/stack/rods{
 	amount = 40
@@ -4083,7 +4085,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"iQ" = (
+"iS" = (
 /obj/structure/table,
 /obj/machinery/light/small{
 	dir = 1
@@ -4099,7 +4101,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"iR" = (
+"iT" = (
 /obj/structure/table,
 /obj/item/stack/cable_coil/random,
 /obj/item/stack/cable_coil/random{
@@ -4110,17 +4112,17 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"iS" = (
+"iU" = (
 /obj/structure/table,
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"iT" = (
+"iV" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/telecomms)
-"iU" = (
+"iW" = (
 /obj/machinery/door/poddoor{
 	id = "tcomdoor";
 	name = "Telecomms Entrance Door"
@@ -4131,7 +4133,7 @@
 	icon_state = "platebot"
 	},
 /area/sulaco/telecomms)
-"iV" = (
+"iX" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 4;
@@ -4144,7 +4146,7 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/telecomms)
-"iW" = (
+"iY" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -4152,7 +4154,7 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/telecomms)
-"iX" = (
+"iZ" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -4161,7 +4163,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/telecomms)
-"iY" = (
+"ja" = (
 /obj/structure/cable{
 	d1 = 2;
 	d2 = 8;
@@ -4174,10 +4176,10 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/telecomms/office)
-"iZ" = (
+"jb" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/telecomms/office)
-"ja" = (
+"jc" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Telecomms Control Room";
 	opacity = 1;
@@ -4188,10 +4190,10 @@
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"jb" = (
+"jd" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/command/ai)
-"jc" = (
+"je" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Central Computer Core";
 	req_access_txt = "2"
@@ -4201,24 +4203,24 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/command/ai)
-"jd" = (
+"jf" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/command/ai)
-"je" = (
+"jg" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/command/ai)
-"jf" = (
+"jh" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/command/ai)
-"jg" = (
+"ji" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/liaison)
-"jh" = (
+"jj" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/liaison)
-"ji" = (
+"jk" = (
 /obj/machinery/door/airlock/glass_command{
 	name = "Weyland-Yutani Office";
 	req_access_txt = "0"
@@ -4235,15 +4237,15 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"jj" = (
+"jl" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/liaison)
-"jk" = (
+"jm" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -4266,11 +4268,11 @@
 	icon_state = "platebotc"
 	},
 /area/sulaco/liaison)
-"jl" = (
+"jn" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -4290,7 +4292,7 @@
 	icon_state = "platebotc"
 	},
 /area/sulaco/liaison)
-"jm" = (
+"jo" = (
 /obj/structure/ladder{
 	height = 1;
 	icon_state = "ladderup";
@@ -4300,7 +4302,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"jn" = (
+"jp" = (
 /obj/structure/ladder{
 	height = 1;
 	icon_state = "ladderup";
@@ -4310,17 +4312,18 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"jo" = (
+"jq" = (
 /obj/structure/ladder{
 	height = 1;
 	icon_state = "ladderup";
 	id = "hall7"
 	},
+/obj/machinery/light,
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"jp" = (
+"jr" = (
 /obj/structure/ladder{
 	height = 1;
 	icon_state = "ladderup";
@@ -4330,7 +4333,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"jq" = (
+"js" = (
 /obj/structure/ladder{
 	height = 1;
 	icon_state = "ladderup";
@@ -4340,7 +4343,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
-"jr" = (
+"jt" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 1;
 	name = "Dropship Rasputin"
@@ -4357,7 +4360,7 @@
 	dir = 8
 	},
 /area/sulaco/hangar)
-"js" = (
+"ju" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Dropship Hatch"
 	},
@@ -4380,7 +4383,7 @@
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
-"jt" = (
+"jv" = (
 /obj/machinery/door_control{
 	id = "dropshut";
 	name = "Shutter Control";
@@ -4392,7 +4395,7 @@
 	icon_state = "rasputin10"
 	},
 /area/shuttle/drop1/sulaco)
-"ju" = (
+"jw" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Dropship Hatch"
 	},
@@ -4414,14 +4417,14 @@
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
-"jv" = (
+"jx" = (
 /obj/structure/sign/directions/engineering{
 	dir = 4;
 	pixel_x = 32
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"jw" = (
+"jy" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 8
 	},
@@ -4430,7 +4433,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"jx" = (
+"jz" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
@@ -4439,29 +4442,12 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
-"jy" = (
+"jA" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
-/area/sulaco/maintenance/lower_maint)
-"jz" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
-/area/sulaco/maintenance/lower_maint)
-"jA" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
@@ -4473,16 +4459,15 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/structure/closet/emcloset,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
 "jC" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/structure/largecrate/random,
 /turf/open/floor{
 	icon_state = "dark"
 	},
@@ -4491,32 +4476,50 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/turf/closed/wall/sulaco,
+/obj/structure/closet/emcloset,
+/turf/open/floor{
+	icon_state = "dark"
+	},
 /area/sulaco/maintenance/lower_maint)
 "jE" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/turf/closed/wall/sulaco/unmeltable,
+/obj/structure/largecrate/random,
+/turf/open/floor{
+	icon_state = "dark"
+	},
 /area/sulaco/maintenance/lower_maint)
 "jF" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/turf/closed/wall/sulaco,
+/area/sulaco/maintenance/lower_maint)
+"jG" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/turf/closed/wall/sulaco/unmeltable,
+/area/sulaco/maintenance/lower_maint)
+"jH" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/maintenance/lower_maint)
-"jG" = (
+"jI" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 1
 	},
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/maintenance/lower_maint)
-"jH" = (
+"jJ" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/maintenance/lower_maint)
-"jI" = (
+"jK" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
@@ -4528,7 +4531,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"jJ" = (
+"jL" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
@@ -4536,7 +4539,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"jK" = (
+"jM" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 10
 	},
@@ -4544,44 +4547,44 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"jL" = (
+"jN" = (
 /obj/structure/rack,
 /obj/item/clothing/gloves/yellow,
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"jM" = (
+"jO" = (
 /turf/open/space,
 /turf/closed/shuttle{
 	icon_state = "diagonalWall3"
 	},
 /area/space)
-"jN" = (
+"jP" = (
 /obj/machinery/telecomms/bus/preset_one{
 	produces_heat = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"jO" = (
+"jQ" = (
 /obj/machinery/telecomms/bus/preset_two{
 	produces_heat = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"jP" = (
+"jR" = (
 /obj/machinery/telecomms/bus/preset_three{
 	produces_heat = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"jQ" = (
+"jS" = (
 /obj/machinery/telecomms/bus/preset_four{
 	produces_heat = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"jR" = (
+"jT" = (
 /obj/machinery/door/airlock/glass_command{
 	name = "Telecomms Chamber";
 	req_one_access_txt = "2;6;200"
@@ -4591,7 +4594,7 @@
 	icon_state = "podhatch"
 	},
 /area/sulaco/telecomms)
-"jS" = (
+"jU" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -4599,32 +4602,32 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/telecomms)
-"jT" = (
+"jV" = (
 /obj/machinery/telecomms/processor/preset_one{
 	produces_heat = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"jU" = (
+"jW" = (
 /obj/machinery/telecomms/processor/preset_two{
 	produces_heat = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"jV" = (
+"jX" = (
 /obj/machinery/telecomms/processor/preset_three{
 	produces_heat = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"jW" = (
+"jY" = (
 /obj/machinery/telecomms/processor/preset_four{
 	produces_heat = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"jX" = (
+"jZ" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -4632,50 +4635,50 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/telecomms/office)
-"jY" = (
+"ka" = (
 /obj/structure/closet/walllocker/hydrant,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"jZ" = (
+"kb" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"ka" = (
+"kc" = (
 /turf/open/floor/plating{
 	dir = 9;
 	icon_state = "warnplate"
 	},
 /area/sulaco/command/ai)
-"kb" = (
+"kd" = (
 /turf/open/floor/plating{
 	icon_state = "warnplate";
 	dir = 5
 	},
 /area/sulaco/command/ai)
-"kc" = (
+"ke" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
 	dir = 8
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/command/ai)
-"kd" = (
+"kf" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/command/ai)
-"ke" = (
+"kg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/sulaco/hub/bottom)
-"kf" = (
+"kh" = (
 /obj/structure/ladder{
 	height = 1;
 	icon_state = "ladderup";
@@ -4683,30 +4686,30 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hub/bottom)
-"kg" = (
+"ki" = (
 /obj/structure/rack,
 /obj/item/cane,
 /obj/item/storage/backpack/satchel,
 /obj/structure/closet/walllocker/hydrant,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"kh" = (
+"kj" = (
 /obj/structure/bed/chair,
 /obj/machinery/status_display{
 	pixel_y = 30
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"ki" = (
+"kk" = (
 /obj/structure/bed/chair,
 /obj/machinery/alarm,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"kj" = (
+"kl" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"kk" = (
+"km" = (
 /obj/machinery/atm{
 	name = "Weyland Yutani Automatic Teller Machine";
 	pixel_y = 30
@@ -4716,7 +4719,7 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"kl" = (
+"kn" = (
 /obj/machinery/power/apc,
 /obj/structure/cable{
 	d2 = 2;
@@ -4725,7 +4728,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"km" = (
+"ko" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -4733,17 +4736,17 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"kn" = (
+"kp" = (
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"ko" = (
+"kq" = (
 /obj/structure/flora/pottedplant,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"kp" = (
+"kr" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Storage Hatch";
 	req_access_txt = "0";
@@ -4751,7 +4754,7 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"kq" = (
+"ks" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -4760,7 +4763,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar)
-"kr" = (
+"kt" = (
 /obj/machinery/door_control{
 	id = "dropshut";
 	name = "Shutter Control";
@@ -4769,20 +4772,20 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"ks" = (
+"ku" = (
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin13";
 	icon_state = "rasputin13"
 	},
 /area/shuttle/drop1/sulaco)
-"kt" = (
+"kv" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar/two)
-"ku" = (
+"kw" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar/two)
-"kv" = (
+"kx" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -4790,7 +4793,7 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar/two)
-"kw" = (
+"ky" = (
 /obj/machinery/door/airlock/multi_tile/engineering{
 	req_one_access_txt = "7"
 	},
@@ -4800,7 +4803,7 @@
 	dir = 8
 	},
 /area/sulaco/hangar/two)
-"kx" = (
+"kz" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/door/firedoor,
 /turf/open/floor{
@@ -4808,16 +4811,16 @@
 	dir = 8
 	},
 /area/sulaco/hangar/two)
-"ky" = (
+"kA" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/maintenance/lower_maint)
-"kz" = (
+"kB" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/sulaco/hub/bottom)
-"kA" = (
+"kC" = (
 /obj/structure/ladder{
 	height = 1;
 	icon_state = "ladderup";
@@ -4825,19 +4828,19 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hub/bottom)
-"kB" = (
+"kD" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/sulaco/hub/bottom)
-"kC" = (
+"kE" = (
 /obj/effect/landmark/shuttle_loc/marine_crs{
 	name = "Dropship 2"
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/maintenance/lower_maint)
-"kD" = (
+"kF" = (
 /obj/structure/rack,
 /obj/item/assembly/infra,
 /obj/item/assembly/infra,
@@ -4845,7 +4848,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"kE" = (
+"kG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
@@ -4853,7 +4856,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"kF" = (
+"kH" = (
 /obj/structure/rack,
 /obj/item/flashlight,
 /obj/machinery/door_control{
@@ -4865,14 +4868,14 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"kG" = (
+"kI" = (
 /turf/open/space,
 /turf/closed/shuttle{
 	dir = 4;
 	icon_state = "diagonalWall3"
 	},
 /area/space)
-"kH" = (
+"kJ" = (
 /obj/machinery/door/poddoor{
 	id = "tcomvent";
 	name = "Telecomms Emergency Vent"
@@ -4882,14 +4885,14 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/telecomms)
-"kI" = (
+"kK" = (
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"kJ" = (
+"kL" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"kK" = (
+"kM" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -4906,7 +4909,7 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"kL" = (
+"kN" = (
 /obj/machinery/power/apc{
 	dir = 1
 	},
@@ -4916,11 +4919,11 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"kM" = (
+"kO" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"kN" = (
+"kP" = (
 /obj/machinery/power/apc{
 	dir = 4
 	},
@@ -4932,13 +4935,13 @@
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"kO" = (
+"kQ" = (
 /turf/open/floor/plating{
 	icon_state = "warnplate";
 	dir = 8
 	},
 /area/sulaco/command/ai)
-"kP" = (
+"kR" = (
 /obj/machinery/power/apc{
 	dir = 8
 	},
@@ -4951,19 +4954,19 @@
 	dir = 4
 	},
 /area/sulaco/command/ai)
-"kQ" = (
+"kS" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 5
 	},
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/command/ai)
-"kR" = (
+"kT" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 1
 	},
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/command/ai)
-"kS" = (
+"kU" = (
 /obj/structure/table/woodentable,
 /obj/item/folder/black_random,
 /obj/item/folder/black_random{
@@ -4979,14 +4982,14 @@
 	},
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
-"kT" = (
-/turf/open/floor/carpet,
-/area/sulaco/liaison)
-"kU" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+"kV" = (
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
 "kW" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/carpet,
+/area/sulaco/liaison)
+"kX" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -5000,7 +5003,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"kX" = (
+"kY" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
 /obj/structure/cable{
@@ -5010,7 +5013,7 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"kY" = (
+"kZ" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/stamp/internalaffairs{
 	pixel_y = 6
@@ -5022,48 +5025,46 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"kZ" = (
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_x = 28
+"la" = (
+/obj/item/radio/intercom/general{
+	icon_state = "intercom";
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"la" = (
+"lb" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"lb" = (
+"lc" = (
 /obj/structure/closet/walllocker/hydrant,
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"lc" = (
+"ld" = (
 /obj/structure/janitorialcart,
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"ld" = (
+"le" = (
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"le" = (
+"lf" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/alarm{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"lf" = (
+"lg" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"lg" = (
+"lh" = (
 /turf/closed/shuttle/dropship{
 	tag = "icon-rasputin6";
 	icon_state = "rasputin6"
 	},
 /area/shuttle/drop1/sulaco)
-"lh" = (
+"li" = (
 /obj/machinery/vending/wallmed1{
 	pixel_x = -32
 	},
@@ -5077,7 +5078,7 @@
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
-"li" = (
+"lj" = (
 /obj/machinery/vending/wallmed1{
 	pixel_x = 32
 	},
@@ -5091,27 +5092,27 @@
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
-"lj" = (
+"lk" = (
 /turf/open/floor/plating,
 /turf/closed/shuttle{
 	dir = 8;
 	icon_state = "diagonalWall3"
 	},
 /area/sulaco/hangar)
-"lk" = (
+"ll" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible{
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
-"ll" = (
+"lm" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
 /obj/machinery/alarm,
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
-"lm" = (
+"ln" = (
 /obj/machinery/power/apc,
 /obj/structure/cable{
 	d2 = 2;
@@ -5123,16 +5124,16 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
-"ln" = (
+"lo" = (
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
-"lo" = (
+"lp" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
-"lp" = (
+"lq" = (
 /obj/structure/sign/atmosplaque{
 	pixel_y = 30
 	},
@@ -5141,28 +5142,28 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
-"lq" = (
+"lr" = (
 /obj/machinery/portable_atmospherics/pump,
 /obj/structure/closet/walllocker/hydrant,
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
-"lr" = (
-/obj/machinery/portable_atmospherics/pump,
-/turf/open/floor/plating,
-/area/sulaco/hangar/two)
 "ls" = (
-/obj/machinery/portable_atmospherics/scrubber,
-/obj/structure/closet/walllocker/emerglocker,
+/obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
 "lt" = (
 /obj/machinery/portable_atmospherics/scrubber,
+/obj/structure/closet/walllocker/emerglocker,
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
 "lu" = (
-/turf/closed/wall/sulaco/unmeltable,
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/plating,
 /area/sulaco/hangar/two)
 "lv" = (
+/turf/closed/wall/sulaco/unmeltable,
+/area/sulaco/hangar/two)
+"lw" = (
 /obj/structure/rack,
 /obj/item/assembly/igniter,
 /obj/item/assembly/igniter,
@@ -5171,7 +5172,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"lw" = (
+"lx" = (
 /obj/structure/rack,
 /obj/item/circuitboard/computer/arcade,
 /obj/item/circuitboard/computer/operating,
@@ -5179,7 +5180,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"lx" = (
+"ly" = (
 /obj/structure/rack,
 /obj/item/circuitboard/machine/autolathe,
 /obj/item/circuitboard/machine/pacman,
@@ -5188,7 +5189,7 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"ly" = (
+"lz" = (
 /obj/machinery/light/small,
 /obj/structure/rack,
 /obj/item/circuitboard/machine/batteryrack,
@@ -5197,14 +5198,14 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"lz" = (
+"lA" = (
 /obj/structure/rack,
 /obj/item/radio,
 /turf/open/floor{
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"lA" = (
+"lB" = (
 /obj/structure/rack,
 /obj/item/assembly/signaler,
 /obj/item/assembly/signaler,
@@ -5213,41 +5214,41 @@
 	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
-"lB" = (
+"lC" = (
 /obj/effect/landmark/shuttle_loc/marine_crs{
 	name = "Dropship 1"
 	},
 /turf/open/space,
 /area/space)
-"lC" = (
+"lD" = (
 /obj/machinery/telecomms/server/presets/medical{
 	produces_heat = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"lD" = (
+"lE" = (
 /obj/machinery/telecomms/relay/preset/telecomms{
 	listening_level = 6
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"lE" = (
+"lF" = (
 /obj/machinery/telecomms/hub/preset{
 	produces_heat = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"lF" = (
+"lG" = (
 /obj/machinery/telecomms/relay/preset/telecomms{
 	listening_level = 4
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"lG" = (
+"lH" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/machinery/door/poddoor{
 	density = 1;
@@ -5261,11 +5262,11 @@
 	icon_state = "platebotc"
 	},
 /area/sulaco/telecomms)
-"lH" = (
+"lI" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/machinery/door/poddoor{
 	density = 1;
@@ -5280,7 +5281,7 @@
 	icon_state = "platebotc"
 	},
 /area/sulaco/telecomms)
-"lI" = (
+"lJ" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -5290,7 +5291,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"lJ" = (
+"lK" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/rack,
 /obj/item/clothing/suit/space/rig/ert/engineer{
@@ -5305,7 +5306,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"lK" = (
+"lL" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -5319,7 +5320,7 @@
 	dir = 4
 	},
 /area/sulaco/command/ai)
-"lL" = (
+"lM" = (
 /obj/machinery/power/smes/magical{
 	charge = 9e+006;
 	dir = 1;
@@ -5333,15 +5334,9 @@
 	icon_state = "platebot"
 	},
 /area/sulaco/command/ai)
-"lM" = (
+"lN" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 8
-	},
-/turf/closed/wall/sulaco/unmeltable,
-/area/sulaco/command/ai)
-"lN" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
 	},
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/command/ai)
@@ -5350,21 +5345,27 @@
 	dir = 4
 	},
 /turf/closed/wall/sulaco/unmeltable,
-/area/sulaco/liaison)
+/area/sulaco/command/ai)
 "lP" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/turf/closed/wall/sulaco/unmeltable,
+/area/sulaco/liaison)
+"lQ" = (
 /obj/machinery/computer/arcade,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
-"lQ" = (
+"lR" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
-"lR" = (
+"lS" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 4
 	},
@@ -5493,7 +5494,7 @@
 "mh" = (
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor{
@@ -5578,14 +5579,12 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_x = 28
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
+	},
+/obj/item/radio/intercom/general{
+	icon_state = "intercom";
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -5666,14 +5665,12 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_x = 28
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
+	},
+/obj/item/radio/intercom/general{
+	icon_state = "intercom";
+	dir = 8
 	},
 /turf/open/floor/plating{
 	icon_state = "platebot"
@@ -5843,38 +5840,23 @@
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "mR" = (
-/obj/machinery/message_server{
-	icon_state = "server-on";
-	name = "M.O.T.H.E.R. Control Box"
-	},
-/turf/open/floor/engine/vacuum,
-/area/sulaco/telecomms)
-"mS" = (
 /obj/machinery/r_n_d/server/core{
 	produces_heat = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"mT" = (
+"mS" = (
 /obj/machinery/telecomms/server/presets/common{
 	produces_heat = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
+"mT" = (
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/telecomms/office)
 "mU" = (
-/obj/machinery/computer/message_monitor{
-	req_one_access_txt = "19;200"
-	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
-/area/sulaco/telecomms/office)
-"mV" = (
-/turf/open/floor{
-	icon_state = "dark"
-	},
-/area/sulaco/telecomms/office)
-"mW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
@@ -5882,7 +5864,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"mX" = (
+"mV" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /obj/machinery/light{
 	dir = 4
@@ -5894,38 +5876,38 @@
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"mY" = (
+"mW" = (
 /turf/open/floor/plating{
 	icon_state = "warnplate";
 	dir = 4
 	},
 /area/sulaco/command/ai)
-"mZ" = (
+"mX" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating{
 	icon_state = "platebot"
 	},
 /area/sulaco/command/ai)
-"na" = (
+"mY" = (
 /obj/item/paper_bin,
 /obj/item/tool/pen,
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"nb" = (
+"mZ" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"nc" = (
+"na" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"nd" = (
+"nb" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -5936,51 +5918,51 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"ne" = (
+"nc" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"nf" = (
+"nd" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"ng" = (
+"ne" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"nh" = (
+"nf" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"ni" = (
+"ng" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"nj" = (
+"nh" = (
 /obj/structure/shuttle/engine/propulsion{
 	pixel_y = 24
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/sulaco)
-"nk" = (
+"ni" = (
 /turf/closed/shuttle/dropship{
 	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
 /area/shuttle/drop1/sulaco)
-"nl" = (
+"nj" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"nm" = (
+"nk" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"nn" = (
+"nl" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -5991,10 +5973,10 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar)
-"no" = (
+"nm" = (
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
@@ -6002,10 +5984,10 @@
 	icon_state = "platebotc"
 	},
 /area/sulaco/hangar/two)
-"np" = (
+"nn" = (
 /obj/structure/window/reinforced{
 	dir = 5;
-	health = 80
+	max_integrity = 80
 	},
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
@@ -6013,17 +5995,17 @@
 	icon_state = "platebotc"
 	},
 /area/sulaco/hangar/two)
-"nq" = (
+"no" = (
 /obj/structure/table,
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
-"nr" = (
+"np" = (
 /obj/machinery/telecomms/server/presets/engineering{
 	produces_heat = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"ns" = (
+"nq" = (
 /obj/machinery/computer/telecomms/server{
 	req_access = null;
 	req_one_access_txt = "19;200"
@@ -6032,13 +6014,13 @@
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"nt" = (
+"nr" = (
 /obj/structure/bed/stool,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"nu" = (
+"ns" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door_control{
 	id = "tcomwind";
@@ -6048,17 +6030,17 @@
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"nv" = (
+"nt" = (
 /obj/structure/bed/chair/wheelchair,
 /obj/effect/decal/cleanable/cobweb,
 /obj/item/weapon/gun/pistol/holdout,
 /obj/item/ammo_magazine/pistol/holdout,
 /turf/open/floor/plating,
 /area/sulaco/liaison/quarters)
-"nw" = (
+"nu" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/liaison/quarters)
-"nx" = (
+"nv" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -6067,47 +6049,47 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/liaison/quarters)
-"ny" = (
+"nw" = (
 /obj/machinery/door/airlock/command{
 	name = "Liaison's Quarters";
 	req_access_txt = "200"
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"nz" = (
+"nx" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/liaison/quarters)
-"nA" = (
+"ny" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	req_access_txt = "0";
 	req_one_access_txt = "2;7"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"nB" = (
+"nz" = (
 /obj/structure/sign/directions/engineering{
 	dir = 4;
 	pixel_x = -32
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"nC" = (
+"nA" = (
 /obj/effect/landmark/shuttle_loc/marine_src{
 	name = "Dropship 1"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"nD" = (
+"nB" = (
 /turf/closed/shuttle/dropship{
 	tag = "icon-rasputin13";
 	icon_state = "rasputin13"
 	},
 /area/shuttle/drop1/sulaco)
-"nE" = (
+"nC" = (
 /turf/open/floor/engine,
 /area/sulaco/hangar/two)
-"nF" = (
+"nD" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
 	active_power_usage = 1500;
 	dir = 1;
@@ -6119,47 +6101,38 @@
 	},
 /turf/open/floor/engine,
 /area/sulaco/hangar/two)
-"nG" = (
-/obj/machinery/computer/secure_data/detective_computer,
-/obj/machinery/power/apc,
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/turf/open/floor/carpet,
-/area/sulaco/liaison/quarters)
-"nH" = (
+"nE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1;
 	external_pressure_bound = 0
 	},
 /turf/open/floor/engine,
 /area/sulaco/hangar/two)
-"nI" = (
+"nF" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/machinery/pipedispenser,
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
-"nJ" = (
+"nG" = (
 /obj/machinery/telecomms/broadcaster/preset_left,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"nK" = (
+"nH" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"nL" = (
+"nI" = (
 /obj/machinery/telecomms/receiver/preset_left,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"nM" = (
+"nJ" = (
 /obj/machinery/telecomms/receiver/preset,
 /obj/machinery/light/small,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
-"nN" = (
+"nK" = (
 /obj/machinery/computer/telecomms/traffic{
 	req_access = null;
 	req_one_access_txt = "19;200"
@@ -6168,13 +6141,13 @@
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"nO" = (
+"nL" = (
 /obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"nP" = (
+"nM" = (
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp,
 /obj/item/multitool,
@@ -6182,7 +6155,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"nQ" = (
+"nN" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door_control{
 	id = "tcomdoor";
@@ -6193,7 +6166,7 @@
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"nR" = (
+"nO" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door_control{
 	id = "tcomvent";
@@ -6204,34 +6177,34 @@
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
-"nS" = (
+"nP" = (
 /turf/open/floor/plating{
 	icon_state = "warnplate";
 	dir = 10
 	},
 /area/sulaco/command/ai)
-"nT" = (
+"nQ" = (
 /turf/open/floor/plating{
 	icon_state = "warnplate";
 	dir = 6
 	},
 /area/sulaco/command/ai)
-"nU" = (
+"nR" = (
 /turf/open/floor/plating{
 	icon_state = "platebot"
 	},
 /area/sulaco/command/ai)
-"nV" = (
+"nS" = (
 /turf/open/floor/plating,
 /area/sulaco/liaison/quarters)
-"nW" = (
+"nT" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/lighter/zippo,
 /obj/item/cell/hyper,
 /obj/item/camera,
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
-"nX" = (
+"nU" = (
 /obj/structure/table/woodentable,
 /obj/machinery/status_display{
 	pixel_y = 30
@@ -6242,13 +6215,16 @@
 	},
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
-"nY" = (
-/obj/structure/closet/walllocker/emerglocker{
-	dir = 1
+"nV" = (
+/obj/machinery/computer/secure_data/detective_computer,
+/obj/machinery/power/apc,
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
 	},
-/turf/open/floor/plating,
-/area/sulaco/hangar)
-"nZ" = (
+/turf/open/floor/carpet,
+/area/sulaco/liaison/quarters)
+"nW" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
@@ -6260,17 +6236,17 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"oa" = (
+"nX" = (
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"ob" = (
+"nY" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/item/reagent_container/food/snacks/spacetwinkie,
 /obj/item/reagent_container/food/drinks/bottle/sake,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"oc" = (
+"nZ" = (
 /obj/structure/sink/kitchen{
 	pixel_y = 30
 	},
@@ -6281,12 +6257,12 @@
 /obj/item/reagent_container/glass/fertilizer/ez,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"od" = (
+"oa" = (
 /obj/effect/decal/cleanable/cobweb2,
 /obj/machinery/suit_storage_unit,
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"oe" = (
+"ob" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	req_access_txt = "0";
 	req_one_access_txt = "2;7"
@@ -6302,27 +6278,27 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"of" = (
+"oc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"og" = (
+"od" = (
 /turf/open/floor/plating{
 	dir = 1;
 	icon_state = "warnplate"
 	},
 /area/sulaco/hangar)
-"oh" = (
+"oe" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
-"oi" = (
+"of" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
-"oj" = (
+"og" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	req_access_txt = "7"
 	},
@@ -6332,21 +6308,21 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/telecomms)
-"ok" = (
+"oh" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	req_access_txt = "0";
 	req_one_access_txt = "2;6;200"
 	},
 /turf/open/floor/plating,
 /area/sulaco/telecomms/office)
-"ol" = (
+"oi" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	req_access_txt = "0";
 	req_one_access_txt = "2;7;200"
 	},
 /turf/open/floor/plating,
 /area/sulaco/command/ai)
-"om" = (
+"oj" = (
 /obj/machinery/computer/crew{
 	req_access_txt = "200"
 	},
@@ -6355,75 +6331,75 @@
 	},
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
-"on" = (
+"ok" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
-"oo" = (
+"ol" = (
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
-"op" = (
+"om" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"oq" = (
+"on" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"or" = (
+"oo" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	req_access_txt = "0";
 	req_one_access_txt = "200"
 	},
 /turf/open/floor/plating,
 /area/sulaco/liaison/quarters)
-"os" = (
+"op" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"ot" = (
+"oq" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"ou" = (
+"or" = (
 /obj/effect/landmark/shuttle_loc/marine_crs{
 	name = "Dropship 1"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"ov" = (
+"os" = (
 /obj/machinery/door/poddoor{
 	id = "waste";
 	name = "Waste Tank Dump"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
-"ow" = (
+"ot" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	req_access_txt = "0";
 	req_one_access_txt = "2;7"
 	},
 /turf/open/floor/plating,
 /area/sulaco/liaison/quarters)
-"ox" = (
+"ou" = (
 /obj/structure/table/woodentable,
 /obj/machinery/computer/security/wooden_tv,
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
-"oA" = (
+"ov" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"oB" = (
+"ow" = (
 /obj/structure/safe{
 	spawnkey = 1
 	},
@@ -6439,56 +6415,47 @@
 /obj/item/ammo_magazine/pistol/vp70,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"oC" = (
+"ox" = (
 /turf/open/floor/plating,
 /turf/closed/shuttle{
 	dir = 1;
 	icon_state = "diagonalWall3"
 	},
 /area/sulaco/hangar)
-"oD" = (
+"oy" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"oE" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
+"oz" = (
+/obj/structure/closet/walllocker/emerglocker{
+	dir = 1
 	},
 /turf/open/floor/plating,
-/turf/closed/shuttle{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
 /area/sulaco/hangar)
-"oF" = (
+"oA" = (
 /obj/structure/closet/crate/secure/loot,
 /turf/open/floor/plating,
 /area/sulaco/liaison/quarters)
-"oG" = (
+"oB" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/sulaco/liaison/quarters)
-"oH" = (
+"oC" = (
 /obj/structure/largecrate/random,
 /obj/item/ammo_magazine/pistol/holdout{
 	layer = 2
 	},
 /turf/open/floor/plating,
 /area/sulaco/liaison/quarters)
-"oI" = (
+"oD" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/sulaco/liaison/quarters)
-"oJ" = (
+"oE" = (
 /obj/structure/janitorialcart,
 /turf/open/floor/plating,
 /area/sulaco/liaison/quarters)
-"oK" = (
+"oF" = (
 /obj/structure/largecrate/random,
 /obj/machinery/light/small,
 /obj/item/ammo_magazine/pistol/holdout{
@@ -6496,7 +6463,7 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/liaison/quarters)
-"oL" = (
+"oG" = (
 /obj/structure/bookcase{
 	dir = 4
 	},
@@ -6505,32 +6472,30 @@
 /obj/item/book/manual/ripley_build_and_repair,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"oM" = (
+"oH" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"oN" = (
+"oI" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 9
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"oO" = (
+"oJ" = (
 /obj/structure/table/woodentable,
 /obj/item/book/manual/security_space_law,
 /obj/item/tool/crowbar,
 /obj/item/multitool,
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_x = 28
+/obj/item/radio/intercom/general{
+	icon_state = "intercom";
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"oP" = (
+"oK" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 4;
@@ -6541,7 +6506,7 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar)
-"oQ" = (
+"oL" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -6552,7 +6517,7 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar)
-"oR" = (
+"oM" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -6567,7 +6532,7 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"oS" = (
+"oN" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -6578,7 +6543,7 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"oT" = (
+"oO" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -6590,7 +6555,22 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"oV" = (
+"oP" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/sulaco/hangar)
+"oQ" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
@@ -6601,7 +6581,7 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar)
-"oW" = (
+"oR" = (
 /obj/structure/bookcase{
 	density = 0
 	},
@@ -6609,11 +6589,11 @@
 /obj/item/book/manual/nuclear,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"oX" = (
+"oS" = (
 /obj/machinery/photocopier,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"oY" = (
+"oT" = (
 /obj/structure/rack,
 /obj/item/storage/lockbox/loyalty{
 	req_access = list(200)
@@ -6622,7 +6602,7 @@
 /obj/item/storage/briefcase,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"oZ" = (
+"oU" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/liaison_suit,
 /obj/item/clothing/under/liaison_suit/formal,
@@ -6630,32 +6610,32 @@
 /obj/item/clothing/under/liaison_suit/outing,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"pa" = (
+"oV" = (
 /obj/structure/bed/fancy,
 /obj/item/bedsheet/hos,
 /obj/item/clothing/mask/balaclava,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"pb" = (
+"oW" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"pc" = (
+"oX" = (
 /obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"pd" = (
+"oY" = (
 /turf/open/space,
 /turf/closed/shuttle{
 	icon_state = "diagonalWall3"
 	},
 /area/sulaco/liaison/quarters)
-"pe" = (
+"oZ" = (
 /turf/open/floor/plating,
 /area/shuttle/distress/arrive_3)
-"pf" = (
+"pa" = (
 /obj/machinery/door/poddoor{
 	id = "tcomdoor";
 	name = "Blast Door"
@@ -31693,7 +31673,7 @@ dB
 dB
 dB
 dB
-jM
+jO
 aa
 aa
 aa
@@ -31942,13 +31922,13 @@ aa
 ab
 cX
 dB
-dY
-eC
-fg
-fS
-gz
-hu
-il
+dZ
+eD
+fi
+fU
+gB
+hw
+in
 dB
 cX
 aa
@@ -32199,13 +32179,13 @@ an
 an
 an
 dB
-dZ
-eD
-eD
-eD
-gA
-hv
-im
+ea
+eE
+eE
+eE
+gC
+hx
+io
 dB
 cX
 aa
@@ -32456,17 +32436,17 @@ aC
 cm
 cY
 dC
-ea
-eE
-fh
-fT
-gB
-hw
-in
+eb
+eF
+fj
+fV
+gD
+hy
+ip
 dB
 cX
 aa
-lB
+lC
 aa
 aa
 aa
@@ -32717,18 +32697,18 @@ dB
 dB
 dB
 dB
-gC
-hx
-io
-iT
-iT
-kH
-iT
-iT
-iT
-kH
-iT
-iT
+gE
+hz
+iq
+iV
+iV
+kJ
+iV
+iV
+iV
+kJ
+iV
+iV
 aa
 aa
 aa
@@ -32970,22 +32950,22 @@ bF
 co
 cZ
 dD
-eb
-eF
-fi
-eb
-gD
-hy
-ip
-iT
-jN
-kI
-lC
+ec
+eG
+fk
+ec
+gF
+hA
+ir
+iV
+jP
+kK
+lD
 mi
 mQ
-kI
-nJ
-iT
+kK
+nG
+iV
 aa
 aa
 aa
@@ -33227,22 +33207,22 @@ bG
 bO
 bO
 bO
-ec
-eG
-fj
+ed
+eH
+fl
 bn
-gE
-hz
-iq
-iT
-jO
-kI
-kI
-kI
-kI
-kI
-nK
-iT
+gG
+hB
+is
+iV
+jQ
+kK
+kK
+kK
+kK
+kK
+nH
+iV
 aa
 aa
 aa
@@ -33484,22 +33464,22 @@ bH
 bO
 da
 dE
-ed
-eH
-fk
-ed
-gF
-hA
-ir
-iT
-jP
-kI
-lD
-kI
-mR
-kI
-nL
-iT
+ee
+eI
+fm
+ee
+gH
+hC
+it
+iV
+jR
+kK
+lE
+kK
+kK
+kK
+nI
+iV
 aa
 aa
 aa
@@ -33741,23 +33721,23 @@ bI
 cp
 db
 bO
-ee
+ef
 bn
 bn
 bn
-gG
-hA
-is
-iT
-jQ
-kI
-lE
-kI
-mS
-kI
-nM
-iT
-jM
+gI
+hC
+iu
+iV
+jS
+kK
+lF
+kK
+mR
+kK
+nJ
+iV
+jO
 aa
 aa
 aa
@@ -33998,24 +33978,24 @@ bJ
 cq
 dc
 bO
-ef
-eI
-fl
-fU
-gH
-hB
-it
-iT
-iT
-kJ
-kI
-kI
-kI
-kI
-kI
-iT
-nw
-jM
+eg
+eJ
+fn
+fW
+gJ
+hD
+iv
+iV
+iV
+kL
+kK
+kK
+kK
+kK
+kK
+iV
+nu
+jO
 aa
 aa
 aa
@@ -34256,24 +34236,24 @@ bO
 bO
 bO
 bO
-eJ
+eK
 ct
-fV
-gF
-hA
-iu
-iU
-jR
-kI
-kI
-kI
-kI
-kI
-kI
-iT
-nw
-nw
-jM
+fX
+gH
+hC
+iw
+iW
+jT
+kK
+kK
+kK
+kK
+kK
+kK
+iV
+nu
+nu
+jO
 aa
 aa
 aa
@@ -34513,24 +34493,24 @@ cr
 dd
 dF
 dF
-eK
+eL
 dF
-eb
-gI
-hC
-iv
-iV
-jS
-kK
-lF
+ec
+gK
+hE
+ix
+iX
+jU
+kM
+lG
 mj
-mT
-nr
-kI
-oj
-nV
-nw
-nw
+mS
+np
+kK
+og
+nS
+nu
+nu
 aa
 aa
 aa
@@ -34773,21 +34753,21 @@ bO
 bO
 bn
 bn
-gH
-hD
-is
-iW
-jT
-kL
-iT
-lG
-lG
-lG
-iT
-iT
-ow
-nw
-nw
+gJ
+hF
+iu
+iY
+jV
+kN
+iV
+lH
+lH
+lH
+iV
+iV
+ot
+nu
+nu
 aa
 aa
 aa
@@ -35028,23 +35008,23 @@ de
 bn
 bO
 bO
-fm
+fo
 bn
-gJ
-hE
-ir
-iW
-jU
-kI
-lG
+gL
+hG
+it
+iY
+jW
+kK
+lH
 mk
-mU
-ns
-nN
-iZ
-nV
-oF
-nw
+mT
+nq
+nK
+jb
+nS
+oA
+nu
 aa
 aa
 aa
@@ -35284,24 +35264,24 @@ ct
 ct
 dH
 ct
-eL
-fn
-ed
-gK
-hD
-ir
-iW
-jV
-kI
-lG
+eM
+fp
+ee
+gM
+hF
+it
+iY
+jX
+kK
+lH
 ml
-mV
+mT
 ml
-mV
-ok
-nV
-oG
-nw
+mT
+oh
+nS
+oB
+nu
 aa
 aa
 aa
@@ -35540,25 +35520,25 @@ bO
 bO
 bO
 bn
-eg
-eM
-fo
+eh
+eN
+fq
 bn
-gL
-hF
-iw
-iX
-jW
-kM
-lH
-mm
-mW
-mV
-nO
+gN
+hH
+iy
 iZ
-nV
-oH
-nw
+jY
+kO
+lI
+mm
+mU
+mT
+nL
+jb
+nS
+oC
+nu
 aa
 aa
 aa
@@ -35800,22 +35780,22 @@ bn
 bn
 bn
 bn
-fW
-gM
-hG
-ix
-iY
-jX
-jX
-jX
+fY
+gO
+hI
+iz
+ja
+jZ
+jZ
+jZ
 mn
-mV
-mV
-nP
-iZ
-nV
-nw
-nw
+mT
+mT
+nM
+jb
+nS
+nu
+nu
 aa
 aa
 aa
@@ -36054,25 +36034,25 @@ bn
 cv
 bO
 bO
-eh
-eN
-fp
-fX
-gN
-hH
-iq
-iZ
-jY
-kN
-lI
+ei
+eO
+fr
+fZ
+gP
+hJ
+is
+jb
+ka
+kP
+lJ
 mo
-mV
-nt
-nQ
-iZ
-nV
-nw
-nw
+mT
+nr
+nN
+jb
+nS
+nu
+nu
 aa
 aa
 aa
@@ -36314,22 +36294,22 @@ dI
 dI
 dI
 dI
-fY
-gH
-hD
-iy
-ja
-jZ
-jZ
-lJ
+ga
+gJ
+hF
+iA
+jc
+kb
+kb
+lK
 mp
-mX
+mV
+ns
+nO
+jb
+nS
+oD
 nu
-nR
-iZ
-nV
-oI
-nw
 aa
 aa
 aa
@@ -36568,25 +36548,25 @@ bn
 cx
 dh
 dJ
-ei
+ej
+eP
 ct
-ct
-fZ
-gF
-hD
-ir
-iZ
-iZ
-iZ
-iZ
+gb
+gH
+hF
+it
+jb
+jb
+jb
+jb
 mq
-iZ
-iZ
-iZ
-iZ
-nV
-oJ
-nw
+jb
+jb
+jb
+jb
+nS
+oE
+nu
 aa
 aa
 aa
@@ -36828,22 +36808,22 @@ ao
 ao
 ao
 ao
-ga
-gO
-hD
-iz
-jb
-ka
-kO
-kO
+gc
+gQ
+hF
+iB
+jd
+kc
+kQ
+kQ
 mr
-kO
-kO
+kQ
+kQ
+nP
+jd
 nS
-jb
-nV
-oH
-nw
+oC
+nu
 aa
 aa
 aa
@@ -37082,25 +37062,25 @@ bP
 cy
 aE
 bP
-ej
+ek
 bP
-fq
-gb
-gH
-hD
-iA
-jc
-kb
-kP
-lK
+fs
+gd
+gJ
+hF
+iC
+je
+kd
+kR
+lL
 ms
-mY
-mY
-nT
-jb
-nV
-nw
-nw
+mW
+mW
+nQ
+jd
+nS
+nu
+nu
 aa
 aa
 aa
@@ -37342,22 +37322,22 @@ aE
 aE
 aE
 aE
-gc
-gL
-hI
-iw
-jd
-kc
-jd
-jd
+ge
+gN
+hK
+iy
+jf
+ke
+jf
+jf
 mt
-jb
-jb
-nU
-jb
-nV
-nw
-nw
+jd
+jd
+nR
+jd
+nS
+nu
+nu
 aa
 aa
 aa
@@ -37600,22 +37580,22 @@ aE
 aE
 aE
 ao
-gP
-hD
-iy
-je
-kd
-kQ
-lL
+gR
+hF
+iA
+jg
+kf
+kS
+lM
 mu
-mZ
-jb
-nU
-ol
-nV
-oH
-nw
-pd
+mX
+jd
+nR
+oi
+nS
+oC
+nu
+oY
 aa
 aa
 aa
@@ -37855,24 +37835,24 @@ aE
 aG
 aG
 aG
-fr
+ft
 ao
-gQ
-hD
-ir
-jf
-ke
-kR
-lM
+gS
+hF
+it
+jh
+kg
+kT
+lN
 mv
-jb
-jb
-jb
-jb
-nV
-oK
-nw
-nw
+jd
+jd
+jd
+jd
+nS
+oF
+nu
+nu
 aa
 aa
 aa
@@ -38113,23 +38093,23 @@ bt
 bt
 bt
 di
-gd
-gF
-hD
-ir
-jf
-kf
+gf
+gH
+hF
+it
+jh
+kh
 az
-lN
+lO
 mw
-jb
-nv
-nV
-nV
-nV
-nV
-nV
-nw
+jd
+nt
+nS
+nS
+nS
+nS
+nS
+nu
 aa
 aa
 aa
@@ -38371,22 +38351,22 @@ aE
 aE
 aE
 ao
-gP
-hD
-ir
-jg
-jg
-jg
-lO
+gR
+hF
+it
+ji
+ji
+ji
+lP
 mx
-jh
-jh
-nw
-nw
-nw
-nw
-or
-nw
+jj
+jj
+nu
+nu
+nu
+nu
+oo
+nu
 aa
 aa
 aa
@@ -38627,23 +38607,23 @@ aE
 aE
 aE
 aE
-ge
-gH
-hD
-ir
-jh
-kg
-kS
-lP
+gg
+gJ
+hF
+it
+jj
+ki
+kU
+lQ
 my
-na
-nw
-nW
-om
-ox
-oL
-oW
-nw
+mY
+nu
+nT
+oj
+ou
+oG
+oR
+nu
 aa
 aa
 aa
@@ -38880,27 +38860,27 @@ aG
 aG
 aG
 dj
+dK
 aG
 aG
-aG
-fs
+fu
 ao
-gR
-hD
-ir
-jh
-kh
-kT
-lQ
+gT
+hF
+it
+jj
+kj
+kV
+lR
 mz
-nb
-nw
+mZ
+nu
+nU
+ok
+ol
 nX
-on
-oo
-oa
-oa
-nw
+nX
+nu
 aa
 aa
 aa
@@ -39141,23 +39121,23 @@ ae
 ae
 ae
 ae
-gf
-gS
-hD
-ir
-jh
-ki
-kT
-lQ
+gh
+gU
+hF
+it
+jj
+kk
+kV
+lR
 mz
-nc
-nw
-nG
-oo
-oo
-oM
-oX
-nw
+na
+nu
+nV
+ol
+ol
+oH
+oS
+nu
 aa
 aa
 aa
@@ -39397,24 +39377,24 @@ af
 af
 bk
 af
-ft
+fv
 ae
-gT
-hD
-iy
-ji
-kj
-kU
-lR
+gV
+hF
+iA
+jk
+kl
+kW
+lS
 mA
-nd
-nx
-nZ
-op
-op
-oN
-oY
-nw
+nb
+nv
+nW
+om
+om
+oI
+oT
+nu
 aa
 aa
 aa
@@ -39651,27 +39631,27 @@ ap
 ap
 ap
 ap
-dK
+dL
 af
 af
 af
-fz
-gH
-hD
-iB
-jh
-kk
-kT
-kT
+fB
+gJ
+hF
+iD
+jj
+km
+kV
+kV
 mB
-kn
-ny
-oa
-oa
-oa
-oa
-oZ
+kp
 nw
+nX
+nX
+nX
+nX
+oU
+nu
 aa
 aa
 aa
@@ -39908,27 +39888,27 @@ bu
 aY
 cz
 dk
-dL
+dM
 af
 af
 af
-gg
-gL
-hI
-iC
-jj
-kl
-kW
+gi
+gN
+hK
+iE
+jl
+kn
+kX
 lT
 mC
-ne
-nz
-ob
-oq
-oA
-oa
-pa
-nw
+nc
+nx
+nY
+on
+ov
+nX
+oV
+nu
 aa
 aa
 aa
@@ -40165,27 +40145,27 @@ bv
 aZ
 cA
 dl
-dL
+dM
 af
 af
-fu
-gf
-gU
-hD
-ir
-jk
-km
-kX
+fw
+gh
+gW
+hF
+it
+jm
+ko
+kY
 lU
 mD
-kn
-nw
-oc
-oa
-oB
-oO
-pb
-nw
+kp
+nu
+nZ
+nX
+ow
+oJ
+oW
+nu
 aa
 aa
 aa
@@ -40422,27 +40402,27 @@ bw
 bQ
 cB
 as
-dL
+dM
 af
 af
-fv
 fx
-gH
-hJ
-iD
-jl
-kn
-kY
+fz
+gJ
+hL
+iF
+jn
+kp
+kZ
 lV
 mE
-kn
-nw
-nw
-or
-nw
-nw
-nw
-nw
+kp
+nu
+nu
+oo
+nu
+nu
+nu
+nu
 aa
 aa
 aa
@@ -40679,24 +40659,24 @@ bx
 bb
 aK
 dm
-dL
+dM
 af
 af
-fw
-gf
-gV
-hK
-iE
+fy
+gh
+gX
+hM
+iG
+jl
+kq
+la
+kp
+kp
+nd
 jj
-ko
-kZ
-kn
-kn
-nf
-jh
 mG
-ld
-gf
+le
+gh
 aa
 aa
 aa
@@ -40936,24 +40916,24 @@ bb
 bR
 cC
 au
-dL
+dM
 af
-eO
+eQ
 ae
-gf
-gW
-hL
-iF
-jh
-jh
-jh
-jh
-jh
-jh
-jh
-ld
-os
-gf
+gh
+gY
+hN
+iH
+jj
+jj
+jj
+jj
+jj
+jj
+jj
+le
+op
+gh
 aa
 aa
 aa
@@ -41193,24 +41173,24 @@ bv
 bd
 cz
 dl
-dL
+dM
 af
 af
-fx
+fz
+gj
+gZ
+hO
+iI
+jo
 gh
-gX
-hM
-iG
-jm
-gf
-la
-la
+lb
+lb
 mF
-ng
-gf
-ld
-gf
-gf
+ne
+gh
+le
+gh
+gh
 aa
 aa
 aa
@@ -41450,24 +41430,24 @@ by
 be
 cA
 dn
-dL
+dM
 af
 af
-fy
-gi
-gX
-hM
-iG
-jn
-gf
-la
-ld
-ld
-ld
-nA
-ld
-ld
-gf
+fA
+gk
+gZ
+hO
+iI
+jp
+gh
+lb
+le
+le
+le
+ny
+le
+le
+gh
 aa
 aa
 aa
@@ -41708,23 +41688,23 @@ aw
 aw
 aw
 af
-ek
+el
 af
-fz
-gj
-gX
-hM
-iG
-jo
-gf
-lb
-ld
-ld
-nh
-gf
-od
-ld
-gf
+fB
+gl
+gZ
+hO
+iI
+jq
+gh
+lc
+le
+le
+nf
+gh
+oa
+le
+gh
 aa
 aa
 aa
@@ -41967,21 +41947,21 @@ af
 af
 af
 af
-fA
-gk
-gY
-hN
-iF
-jp
-gf
-lc
+fC
+gm
+ha
+hP
+iH
+jr
+gh
 ld
-ld
-ld
-gf
-gf
-ot
-gf
+le
+le
+le
+gh
+gh
+oq
+gh
 aa
 aa
 aa
@@ -42221,24 +42201,24 @@ bf
 bS
 cD
 do
-dM
-el
-el
-fB
-gl
-gZ
-hO
-iG
-jq
-kp
-ld
-ld
+dN
+em
+em
+fD
+gn
+hb
+hQ
+iI
+js
+kr
+le
+le
 mG
 mG
-gf
-ld
-ou
-gf
+gh
+le
+or
+gh
 aa
 aa
 aa
@@ -42478,25 +42458,25 @@ bz
 bT
 cE
 dp
-dN
-em
-em
-fC
-gm
-ha
-hP
-iH
-jr
-kq
-kq
-kq
-kq
-kq
-kq
-oe
-kq
-kq
-oP
+dO
+en
+en
+fE
+go
+hc
+hR
+iJ
+jt
+ks
+ks
+ks
+ks
+ks
+ks
+ob
+ks
+ks
+oK
 ae
 ae
 cX
@@ -42508,7 +42488,7 @@ cX
 cX
 cX
 cX
-jM
+jO
 aa
 aa
 aa
@@ -42735,37 +42715,37 @@ bA
 bU
 bA
 dq
-dO
+dP
 af
 af
-fD
+fF
 af
 af
-hQ
+hS
 af
 af
-fv
-le
-fv
+fx
+lf
+fx
 mH
-ni
-nB
-nm
-ft
-oC
-oQ
+ng
+nz
+nk
+fv
+ox
+oL
 ae
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pf
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+pa
 aa
 aa
 aa
@@ -42995,7 +42975,7 @@ dr
 bC
 af
 af
-fE
+fG
 af
 af
 af
@@ -43007,22 +42987,22 @@ af
 af
 af
 af
-of
+oc
 af
 af
-oR
+oM
 ae
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pf
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+pa
 aa
 aa
 aa
@@ -43249,37 +43229,37 @@ bC
 bW
 cG
 bC
-dP
+dQ
 af
 af
-fF
-af
-af
-af
-af
-af
-kr
-lf
+fH
 af
 af
 af
 af
 af
+kt
+lg
 af
 af
-oS
-pc
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pf
+af
+af
+af
+af
+af
+oN
+oX
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+pa
 aa
 aa
 aa
@@ -43524,19 +43504,19 @@ ap
 af
 af
 af
-oT
+oO
 ae
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pf
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+pa
 aa
 aa
 aa
@@ -43763,37 +43743,37 @@ ak
 af
 af
 af
-dQ
-en
+dR
+eo
 cH
-fG
-en
+fI
+eo
 cH
-fG
-iI
+fI
+iK
 af
 af
 af
 af
 af
 af
-nC
-og
+nA
+od
 af
 af
-oE
+oP
 ae
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pe
-pf
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+oZ
+pa
 aa
 aa
 aa
@@ -44020,25 +44000,25 @@ ak
 af
 af
 ds
-dR
-eo
-eo
-eo
-eo
-eo
-eo
-iJ
+dS
+ep
+ep
+ep
+ep
+ep
+ep
+iL
 af
 af
-lg
-iI
+lh
+iK
 af
 af
 af
-og
+od
 af
 af
-oQ
+oL
 ae
 ae
 cX
@@ -44050,7 +44030,7 @@ cX
 cX
 cX
 cX
-kG
+kI
 aa
 aa
 aa
@@ -44277,25 +44257,25 @@ ak
 af
 af
 dt
-dR
-ep
-eP
-eP
-eP
-eP
-hR
 dS
-js
-js
-dV
+eq
+eR
+eR
+eR
+eR
+hT
+dT
+ju
+ju
+dW
 lW
-iI
+iK
 af
 af
-og
+od
 af
 af
-oQ
+oL
 aa
 aa
 aa
@@ -44534,25 +44514,25 @@ ak
 bX
 cH
 cH
-dS
+dT
+er
+eu
+eu
+eu
+eu
+er
+iM
 eq
-et
-et
-et
-et
-eq
-iK
+hT
+li
 ep
-hR
-lh
-eo
-iJ
-nj
+iL
+nh
 bX
-og
+od
 af
 af
-oQ
+oL
 aa
 aa
 aa
@@ -44791,25 +44771,25 @@ ak
 bY
 cI
 du
-dT
+dU
+es
+eS
+fJ
+fJ
+eS
 er
-eQ
-fH
-fH
-eQ
-eq
-eQ
-jt
-ks
-eP
-eP
+eS
+jv
+ku
+eR
+eR
 mI
-nk
-nD
-og
+ni
+nB
+od
 af
-oD
-oQ
+oy
+oL
 aa
 aa
 aa
@@ -45048,25 +45028,25 @@ ak
 bZ
 cJ
 cJ
-dU
-eq
-eo
-eo
-eo
-eo
-eq
-iK
-es
-hS
-li
+dV
+er
+ep
+ep
+ep
+ep
+er
+iM
 et
-iJ
-nj
+hU
+lj
+eu
+iL
+nh
 bZ
-og
+od
 af
 af
-oQ
+oL
 aa
 aa
 aa
@@ -45305,25 +45285,25 @@ ak
 af
 af
 dt
-dR
-es
-eP
-eP
-eP
-eP
-hS
-dU
-ju
-ju
-lg
+dS
+et
+eR
+eR
+eR
+eR
+hU
+dV
+jw
+jw
+lh
 lX
-iL
+iN
 af
 af
-og
+od
 af
-nY
-oQ
+oz
+oL
 aa
 aa
 aa
@@ -45562,25 +45542,25 @@ ak
 af
 af
 dv
-dR
-et
-et
-et
-et
-et
-et
-iJ
-af
-af
-dV
+dS
+eu
+eu
+eu
+eu
+eu
+eu
 iL
 af
 af
+dW
+iN
 af
-og
 af
 af
-oQ
+od
+af
+af
+oL
 aa
 aa
 aa
@@ -45819,14 +45799,14 @@ ak
 af
 af
 af
-dV
-en
+dW
+eo
 cJ
-fG
-en
+fI
+eo
 cJ
-fG
-iL
+fI
+iN
 af
 af
 af
@@ -45834,10 +45814,10 @@ af
 af
 af
 af
-og
+od
 af
 af
-oQ
+oL
 aa
 aa
 aa
@@ -46094,7 +46074,7 @@ aw
 af
 af
 af
-oQ
+oL
 aa
 aa
 aa
@@ -46350,8 +46330,8 @@ af
 af
 af
 af
-oD
-oQ
+oy
+oL
 aa
 aa
 aa
@@ -46603,12 +46583,12 @@ af
 af
 af
 af
-nl
+nj
 af
 af
 af
 af
-oQ
+oL
 aa
 aa
 aa
@@ -46848,11 +46828,11 @@ cb
 aR
 af
 af
-eu
+ev
 af
 af
 af
-hb
+hd
 af
 af
 af
@@ -46860,12 +46840,12 @@ af
 af
 af
 mJ
-nm
+nk
 af
 af
 af
-lj
-oQ
+lk
+oL
 aa
 aa
 aa
@@ -47104,25 +47084,25 @@ bl
 bl
 cL
 dw
-dW
+dX
 ae
-eR
-fI
+eT
+fK
 af
 af
-hT
+hV
 af
-jv
-fI
-lj
+jx
+fK
+lk
 lY
-kq
-nn
-kq
-kq
-kq
-kq
-oV
+ks
+nl
+ks
+ks
+ks
+ks
+oQ
 aa
 aa
 aa
@@ -47362,22 +47342,22 @@ cc
 cM
 dx
 dx
-ev
+ew
 bE
 ae
-eB
-hc
-eB
-hc
-eB
+eC
+he
+eC
+he
+eC
 ae
 ae
 lZ
-ln
-ku
-nE
-nE
-ov
+lo
+kw
+nC
+nC
+os
 aa
 aa
 aa
@@ -47618,23 +47598,23 @@ bE
 cd
 cN
 cT
-dX
-ew
-eS
-fJ
-gn
-hd
-hU
-iM
-jw
-kt
-lk
+dY
+ex
+eU
+fL
+gp
+hf
+hW
+iO
+jy
+kv
+ll
 ma
 mK
-no
-nF
-nE
-ov
+nm
+nD
+nC
+os
 aa
 aa
 aa
@@ -47877,21 +47857,21 @@ cO
 cT
 cT
 cT
-eT
+eV
 bE
-go
-he
-fN
-fN
-jx
-ku
-ll
+gq
+hg
+fP
+fP
+jz
+kw
+lm
 mb
 mL
-ku
-nE
-nE
-ov
+kw
+nC
+nC
+os
 aa
 aa
 aa
@@ -48134,21 +48114,21 @@ cP
 dy
 dy
 dy
-eU
-fK
-gp
-hf
-hV
-hf
-jy
-kv
-lm
+eW
+fM
+gr
+hh
+hX
+hh
+jA
+kx
+ln
 mc
 mM
-ku
-ku
-ku
-ku
+kw
+kw
+kw
+kw
 aa
 aa
 aa
@@ -48393,19 +48373,19 @@ dz
 dz
 cT
 bE
-gq
-hg
-hW
-fN
-jz
-kw
-ln
-ln
+gs
+hi
+hY
+fP
+jB
+ky
+lo
+lo
 mN
-ku
-nE
-nE
-ku
+kw
+nC
+nC
+kw
 aa
 aa
 aa
@@ -48647,22 +48627,22 @@ ch
 cR
 dA
 dA
-ex
-eV
-fL
-gr
-hh
-hX
-hh
-jA
-kx
-lo
+ey
+eX
+fN
+gt
+hj
+hZ
+hj
+jC
+kz
+lp
 md
 mO
-np
-nH
+nn
 nE
-ku
+nC
+kw
 aa
 aa
 aa
@@ -48904,22 +48884,22 @@ ci
 cS
 cT
 cT
-ey
-eW
-fM
-fN
-fN
-hY
-fN
-jB
-ku
-lp
+ez
+eY
+fO
+fP
+fP
+ia
+fP
+jD
+kw
+lq
 me
 mM
-ku
-nE
-nE
-ku
+kw
+nC
+nC
+kw
 aa
 aa
 aa
@@ -49161,22 +49141,22 @@ ci
 cT
 cT
 cU
-ey
-eX
-fN
-gs
-hh
-hZ
-fN
-jB
-ku
-lq
+ez
+eZ
+fP
+gu
+hj
+ib
+fP
+jD
+kw
+lr
 mf
 mM
-ku
-ku
-ku
-ku
+kw
+kw
+kw
+kw
 aa
 aa
 aa
@@ -49418,22 +49398,22 @@ ci
 cU
 cT
 cT
-ey
-eX
-fN
-fN
-fN
-hY
-fN
-jC
-ku
-lr
-ln
-ln
-ln
-ln
-oh
-ku
+ez
+eZ
+fP
+fP
+fP
+ia
+fP
+jE
+kw
+ls
+lo
+lo
+lo
+lo
+oe
+kw
 aa
 aa
 aa
@@ -49675,22 +49655,22 @@ cj
 cT
 cT
 cT
-ey
-eY
-eB
-gt
-hi
-hY
-go
-jC
-ku
-ls
-ln
-ln
-ln
-ln
-oh
-ku
+ez
+fa
+eC
+gv
+hk
+ia
+gq
+jE
+kw
+lt
+lo
+lo
+lo
+lo
+oe
+kw
 aa
 aa
 aa
@@ -49932,22 +49912,22 @@ ck
 cV
 cV
 cV
-ez
-eZ
-eB
-eB
-eB
-ia
-eB
-jD
-eB
-lt
-ln
-ln
-ln
-ln
-oi
-ku
+eA
+fb
+eC
+eC
+eC
+ic
+eC
+jF
+eC
+lu
+lo
+lo
+lo
+lo
+of
+kw
 aa
 aa
 aa
@@ -50191,20 +50171,20 @@ cl
 cW
 cl
 bE
-eB
-eB
-hj
-ib
-iN
-jE
-ky
-lu
+eC
+eC
+hl
+id
+iP
+jG
+kA
+lv
 mg
 mP
-nq
-nI
-oi
-ku
+no
+nF
+of
+kw
 aa
 aa
 aa
@@ -50447,21 +50427,21 @@ bE
 bE
 bE
 bE
-fa
-fO
-eB
-hk
-ic
-hh
-jF
-kz
-lu
-ku
-ku
-ku
-ku
-ku
-kG
+fc
+fQ
+eC
+hm
+ie
+hj
+jH
+kB
+lv
+kw
+kw
+kw
+kw
+kw
+kI
 aa
 aa
 aa
@@ -50703,17 +50683,17 @@ aa
 aa
 aa
 aa
-eA
-aa
-aa
 eB
-hk
-id
-go
-jE
+aa
+aa
+eC
+hm
+if
+gq
+jG
+kC
 kA
-ky
-eA
+eB
 aa
 aa
 aa
@@ -50960,17 +50940,17 @@ aa
 aa
 aa
 aa
-eA
-aa
-aa
 eB
-hk
-id
-go
-jG
-kB
-ky
-eA
+aa
+aa
+eC
+hm
+if
+gq
+jI
+kD
+kA
+eB
 aa
 aa
 aa
@@ -51217,17 +51197,17 @@ aa
 aa
 aa
 aa
-eA
-aa
-aa
 eB
-hl
-id
-fN
-jD
-ky
-fa
-eA
+aa
+aa
+eC
+hn
+if
+fP
+jF
+kA
+fc
+eB
 aa
 aa
 aa
@@ -51474,17 +51454,17 @@ aa
 aa
 aa
 aa
-eA
+eB
+aa
+aa
+eC
+gu
+ig
+fP
+jF
 aa
 aa
 eB
-gs
-ie
-fN
-jD
-aa
-aa
-eA
 aa
 aa
 aa
@@ -51731,17 +51711,17 @@ aa
 aa
 aa
 aa
-eA
+eB
+aa
+aa
+eC
+ho
+if
+fP
+jF
 aa
 aa
 eB
-hm
-id
-fN
-jD
-aa
-aa
-eA
 aa
 aa
 aa
@@ -51988,17 +51968,17 @@ aa
 aa
 aa
 aa
-eA
+eB
+aa
+aa
+eC
+gq
+if
+fP
+jF
 aa
 aa
 eB
-go
-id
-fN
-jD
-aa
-aa
-eA
 aa
 aa
 aa
@@ -52245,17 +52225,17 @@ aa
 aa
 aa
 aa
-eA
+eB
+aa
+aa
+eC
+gq
+if
+fP
+jF
 aa
 aa
 eB
-go
-id
-fN
-jD
-aa
-aa
-eA
 aa
 aa
 aa
@@ -52502,17 +52482,17 @@ aa
 aa
 aa
 aa
-eA
+eB
+aa
+aa
+eC
+gq
+if
+iQ
+jJ
 aa
 aa
 eB
-go
-id
-iO
-jH
-aa
-aa
-eA
 aa
 aa
 aa
@@ -52759,17 +52739,17 @@ aa
 aa
 aa
 aa
-eA
+eB
+aa
+aa
+eC
+fP
+if
+fP
+jF
 aa
 aa
 eB
-fN
-id
-fN
-jD
-aa
-aa
-eA
 aa
 aa
 aa
@@ -53016,17 +52996,17 @@ aa
 aa
 aa
 aa
-eA
+eB
 aa
 ab
-eB
-hn
-if
-hn
-jD
-jM
+eC
+hp
+ih
+hp
+jF
+jO
 aa
-eA
+eB
 aa
 aa
 aa
@@ -53273,17 +53253,17 @@ aa
 aa
 aa
 aa
-eA
-ab
 eB
-gu
-ho
-ig
-fe
-jI
-kC
-jM
-eA
+ab
+eC
+gw
+hq
+ii
+fg
+jK
+kE
+jO
+eB
 aa
 aa
 aa
@@ -53531,15 +53511,15 @@ aa
 aa
 aa
 cX
-eB
-fP
-gv
-fe
-fe
-fe
-jJ
-kD
-eB
+eC
+fR
+gx
+fg
+fg
+fg
+jL
+kF
+eC
 cX
 aa
 aa
@@ -53787,17 +53767,17 @@ aa
 aa
 aa
 aa
-eB
-fb
-fQ
-gv
-fe
-ih
-fe
-jJ
-fe
-lv
-eB
+eC
+fd
+fS
+gx
+fg
+ij
+fg
+jL
+fg
+lw
+eC
 aa
 aa
 aa
@@ -54044,16 +54024,16 @@ aa
 aa
 aa
 aa
-eB
-fc
+eC
 fe
-gv
-hp
-eB
-iP
-jK
-kE
-lw
+fg
+gx
+hr
+eC
+iR
+jM
+kG
+lx
 mh
 aa
 aa
@@ -54301,16 +54281,16 @@ aa
 aa
 aa
 aa
-eB
-fd
-fe
-gv
-hq
-eB
-iQ
-fe
-fe
-lx
+eC
+ff
+fg
+gx
+hs
+eC
+iS
+fg
+fg
+ly
 mh
 aa
 aa
@@ -54558,16 +54538,16 @@ aa
 aa
 aa
 aa
-eB
+eC
+fg
 fe
-fc
-gw
-hr
-eB
-iR
-fe
-fe
-ly
+gy
+ht
+eC
+iT
+fg
+fg
+lz
 mh
 aa
 aa
@@ -54815,16 +54795,16 @@ aa
 aa
 aa
 aa
-eB
-fc
+eC
 fe
-fe
-hs
-ii
-iS
-fe
-fe
-lz
+fg
+fg
+hu
+ik
+iU
+fg
+fg
+lA
 mh
 aa
 aa
@@ -55072,17 +55052,17 @@ aa
 aa
 aa
 aa
-eB
-ff
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-lA
-eB
+eC
+fh
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+lB
+eC
 aa
 aa
 aa
@@ -55330,16 +55310,16 @@ aa
 aa
 aa
 ad
-eB
-fR
-fe
-fe
-ij
-fe
-fe
-kF
-eB
-kG
+eC
+fT
+fg
+fg
+il
+fg
+fg
+kH
+eC
+kI
 aa
 aa
 aa
@@ -55588,14 +55568,14 @@ aa
 aa
 aa
 ad
-eB
-gx
-ht
-ik
-ht
-jL
-eB
-kG
+eC
+gz
+hv
+im
+hv
+jN
+eC
+kI
 aa
 aa
 aa
@@ -55846,12 +55826,12 @@ aa
 aa
 aa
 ad
-gy
-gy
-gy
-gy
-gy
-kG
+gA
+gA
+gA
+gA
+gA
+kI
 aa
 aa
 aa

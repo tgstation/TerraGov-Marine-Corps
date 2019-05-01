@@ -868,17 +868,16 @@
 /turf/open/floor/tile/lightred/full,
 /area/syndicate_station)
 "cw" = (
-/obj/machinery/power/apc/almayer{
-	dir = 1
+/obj/machinery/vending/engivend,
+/obj/item/radio/intercom/general,
+/obj/machinery/light{
+	dir = 4
 	},
-/obj/structure/table/reinforced,
-/obj/structure/cable{
-	tag = "icon-0-2";
-	icon_state = "0-2"
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
 	},
-/obj/structure/cable,
-/turf/open/floor/tile/lightred/full,
-/area/syndicate_station)
+/area/shuttle/distress/start_big)
 "cx" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light/small{
@@ -1089,6 +1088,36 @@
 	icon_state = "panelscorched"
 	},
 /area/deathmatch)
+"cT" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/power/apc/hyper{
+	icon_state = "apc0";
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/shuttle/distress/start_big)
+"cU" = (
+/obj/machinery/power/apc/almayer,
+/obj/structure/table/reinforced,
+/obj/structure/cable{
+	tag = "icon-0-2";
+	icon_state = "0-2"
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/lightred/full,
+/area/syndicate_station)
 "cV" = (
 /obj/structure/bed/alien,
 /turf/open/floor/holofloor{
@@ -4293,19 +4322,6 @@
 	tag = "icon-sterile"
 	},
 /area/shuttle/distress/start_big)
-"lh" = (
-/obj/machinery/vending/engivend,
-/obj/item/radio/intercom/general{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
-	},
-/area/shuttle/distress/start_big)
 "li" = (
 /obj/structure/rack,
 /turf/open/floor/almayer{
@@ -4546,26 +4562,6 @@
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
-	},
-/area/shuttle/distress/start_big)
-"lJ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/machinery/power/apc/almayer{
-	cell_type = /obj/item/cell/hyper;
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
 	},
 /area/shuttle/distress/start_big)
 "lK" = (
@@ -8274,7 +8270,7 @@ fC
 iU
 iU
 lu
-lJ
+cT
 lW
 iU
 iU
@@ -8576,7 +8572,7 @@ iU
 iW
 iU
 iU
-lh
+cw
 lw
 lL
 lY
@@ -25514,7 +25510,7 @@ cl
 co
 cq
 ct
-cw
+cU
 co
 co
 co
