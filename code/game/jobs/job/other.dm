@@ -1,5 +1,6 @@
 /datum/job/other
 	department_flag = J_FLAG_MISC
+	skills_type = /datum/skills/pfc
 
 
 //Colonist
