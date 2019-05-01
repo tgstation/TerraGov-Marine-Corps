@@ -342,6 +342,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/marine
 	keyslot = new /obj/item/encryptionkey/general
+	freerange = TRUE
 
 
 /obj/item/radio/headset/almayer/marine/alpha
