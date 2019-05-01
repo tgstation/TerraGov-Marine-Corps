@@ -461,10 +461,8 @@
 							modify.access -= Q.access //Remove any access found.
 							to_chat(usr, "Old squad access removed.")
 
-					modify.assignment = modify.rank //Use the original assignment name.
-					if(selected && selected.usable) //Now we have a proper squad. Change their ID to it.
-						var/card_ass = modify.assignment
-						modify.assignment = "[selected.name] [card_ass]" //Add squad name to assignment. "Alpha Squad Marine"
+					if(selected?.usable) //Now we have a proper squad. Change their ID to it.
+						modify.assignment = "[selected.name] [modify.rank]" //Change the assignment - "Alpha Squad Marine"
 						modify.access += selected.access //Add their new squad access (if anything) to their ID.
 						to_chat(usr, "[selected.name] Squad added to card.")
 					else
