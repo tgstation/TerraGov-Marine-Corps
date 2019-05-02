@@ -1,4 +1,5 @@
-#define DEBUG 0
+#define DEBUG 1
+#define DEBUG_LOG(msg) to_chat(world, msg)
 
 //Game defining directives.
 #define MAIN_AI_SYSTEM "ARES v3.2"

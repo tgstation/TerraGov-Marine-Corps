@@ -25,16 +25,23 @@
 	var/z = turf_source.z
 	var/list/listeners = SSmobs.clients_by_zlevel[z]
 	if(!ignore_walls) //these sounds don't carry through walls
-		listeners = listeners & hearers(maxdistance,turf_source)
+		listeners = listeners & hearers(maxdistance, turf_source)
+
+	DEBUG_LOG("got [listeners.len] listener on zlevel [z] within [maxdistance]. I am [get_dist(usr, turf_source)] away from [turf_source]")
 	for(var/P in listeners)
 		var/mob/M = P
+		
 		if(get_dist(M, turf_source) <= maxdistance)
 			sound_or_datum(M, turf_source, source, input, do_owner, vol, vary, frequency, falloff, channel, pressure_affected)
+			DEBUG_LOG("got listener [M] within distance!")
+	
+	
 	for(var/P in SSmobs.dead_players_by_zlevel[z])
 		var/mob/M = P
 		if(get_dist(M, turf_source) <= maxdistance)
 			sound_or_datum(M, turf_source, source, input, do_owner, vol, vary, frequency, falloff, channel, pressure_affected)
-
+			DEBUG_LOG("got dead listener [M]")
+			
 /proc/sound_or_datum(mob/receiver, turf/turf_source, atom/source, input, datum/do_owner, vol as num, vary, frequency, falloff, channel = 0, pressure_affected = TRUE)
 	if(istype(input, /datum/outputs))
 		var/last_played_time

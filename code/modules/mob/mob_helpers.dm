@@ -493,4 +493,4 @@ mob/proc/get_standard_bodytemperature()
 	client.screen[screen_num].update_icon(src)
 
 /mob/proc/can_hear()
-	. = isdeaf(src)
+	. = !isdeaf(src)

@@ -671,3 +671,19 @@
 		to_chat(src, "<span class='notice'>You will now examine everything you click on.</span>")
 	else
 		to_chat(src, "<span class='notice'>You will no longer examine things you click on.</span>")
+
+
+/mob/dead/proc/update_z(new_z) // 1+ to register, null to unregister
+	if (registered_z != new_z)
+		if (registered_z)
+			SSmobs.dead_players_by_zlevel[registered_z] -= src
+		if (client)
+			if (new_z)
+				SSmobs.dead_players_by_zlevel[new_z] += src
+			registered_z = new_z
+		else
+			registered_z = null
+
+/mob/dead/onTransitZ(old_z,new_z)
+	..()
+	update_z(new_z)

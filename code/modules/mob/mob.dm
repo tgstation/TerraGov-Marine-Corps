@@ -735,6 +735,11 @@ mob/proc/yank_out_object()
 		temporarilyRemoveItemFromInventory(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
 
 /mob/forceMove(atom/destination)
+	var/turf/old_turf = get_turf(src)
+	var/turf/new_turf = get_turf(destination)
+	if (old_turf?.z != new_turf?.z)
+		onTransitZ(old_turf?.z, new_turf?.z)
+
 	stop_pulling()
 	if(pulledby)
 		pulledby.stop_pulling()
