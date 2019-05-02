@@ -1,4 +1,4 @@
-/mob/living
+	/mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
 
 	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
@@ -23,6 +23,8 @@
 
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
 	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
+
+	var/audiolocation = FALSE // Does this mob see audio locations visually (onscreen icon)
 
 	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 
