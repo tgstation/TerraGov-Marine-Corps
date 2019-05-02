@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - balance: "Xeno's now have half healing (up from none) when a queen is not present."
