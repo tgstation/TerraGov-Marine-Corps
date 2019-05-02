@@ -464,7 +464,7 @@ Currently only has the tank hardpoints
 	buyable = FALSE
 
 /obj/item/hardpoint/secondary/m56cupola/apply_buff()
-	owner.cooldowns["secondary"] = 5
+	owner.cooldowns["secondary"] = 3
 	owner.accuracies["secondary"] = 0.7
 
 /obj/item/hardpoint/secondary/m56cupola/active_effect(atom/A)
@@ -635,15 +635,66 @@ Currently only has the tank hardpoints
 	max_clips = 0
 
 	icon_state = "odrive_enhancer"
+	is_activatable = TRUE
 
 	disp_icon = "tank"
 	disp_icon_state = "odrive_enhancer"
 
-/obj/item/hardpoint/support/overdrive_enhancer/apply_buff()
-	owner.misc_ratios["move"] = 0.5
+	var/last_boost
+
+/obj/item/hardpoint/support/overdrive_enhancer/proc/nitros_on(mob/M)
+	owner.misc_ratios["move"] = 0.2
+	if(M)
+		to_chat(M, "<span class='danger'>You hit the nitros! RRRRRRRMMMM!!</span>")
+	playsound(M, 'sound/mecha/hydraulic.ogg', 100, 1, vary = 0)
+	addtimer(CALLBACK(src, .boost_off), TANK_OVERDRIVE_BOOST_DURATION)
+	addtimer(CALLBACK(src, .boost_ready_notice), TANK_OVERDRIVE_BOOST_COOLDOWN)
 
 /obj/item/hardpoint/support/overdrive_enhancer/remove_buff()
+	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
+	C.verbs -= /obj/vehicle/multitile/root/cm_armored/tank/verb/overdrive_multitile
+	boost_off()
+
+/obj/item/hardpoint/support/overdrive_enhancer/apply_buff()
+	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
+	C.verbs += /obj/vehicle/multitile/root/cm_armored/tank/verb/overdrive_multitile
+
+/obj/item/hardpoint/support/overdrive_enhancer/proc/boost_off()
 	owner.misc_ratios["move"] = 1.0
+
+/obj/item/hardpoint/support/overdrive_enhancer/proc/boost_ready_notice()
+	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
+	if(C.driver)
+		to_chat(C.driver, "<span class='danger'>The overdrive nitros are ready for use.</span>")
+
+/obj/item/hardpoint/support/overdrive_enhancer/proc/activate_overdrive()
+	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
+	if(!C.driver)
+		return
+	if(world.time < last_boost + TANK_OVERDRIVE_BOOST_COOLDOWN)
+		to_chat(C.driver, "<span class='warning'>Your nitro overdrive isn't yet ready. It will be available again in [(last_boost + TANK_OVERDRIVE_BOOST_COOLDOWN - world.time) * 0.1] seconds.</span>")
+		return
+	last_boost = world.time
+	nitros_on(C.driver)
+
+//How to get out, via verb
+/obj/vehicle/multitile/root/cm_armored/tank/verb/overdrive_multitile()
+	set category = "Vehicle"
+	set name = "Activate Overdrive"
+	set src in view(0)
+
+	if(usr.incapacitated(TRUE))
+		return
+
+	if(usr != driver)
+		to_chat(usr, "<span class='warning'>You need to be in the driver seat to use this!</span>")
+		return
+
+	var/obj/item/hardpoint/support/overdrive_enhancer/OE = hardpoints[HDPT_SUPPORT]
+	if(!istype(OE, /obj/item/hardpoint/support/overdrive_enhancer) || OE.health <= 0)
+		to_chat(usr, "<span class='warning'>The overdrive engine is missing or too badly damaged!</span>")
+		return
+	OE.activate_overdrive(usr)
 
 /obj/item/hardpoint/support/artillery_module
 	name = "Artillery Module"
@@ -833,8 +884,8 @@ Currently only has the tank hardpoints
 	name = "Snowplow"
 	desc = "Clears a path in the snow for friendlies"
 
-	maxhealth = 600
-	health = 600
+	maxhealth = 700
+	health = 700
 	is_activatable = TRUE
 	point_cost = 50
 
@@ -956,7 +1007,7 @@ Currently only has the tank hardpoints
 	icon_state = "big_ammo_box"
 	w_class = 12
 	default_ammo = /datum/ammo/bullet/smartgun
-	max_rounds = 500
+	max_rounds = 1000
 	point_cost = 10
 	gun_type = /obj/item/hardpoint/secondary/m56cupola
 
