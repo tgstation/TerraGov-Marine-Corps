@@ -1,4 +1,0 @@
-author: "MoXuT0"
-delete-after: True
-changes: 
-  - bugfix: "Fixed double message on cloak deactivation."
