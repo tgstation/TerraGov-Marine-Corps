@@ -12,6 +12,7 @@
 	var/on = FALSE
 	var/brightness_on = 5 //luminosity when on
 	var/raillight_compatible = TRUE //Can this be turned into a rail light ?
+	var/activation_sound = 'sound/items/flashlight.ogg'
 
 /obj/item/flashlight/Initialize()
 	. = ..()
@@ -50,6 +51,8 @@
 		to_chat(user, "You cannot turn the light on while in [user.loc].")
 		return 0
 	on = !on
+	if(activation_sound)
+		playsound(get_turf(src), activation_sound, 15, 1)
 	update_brightness()
 	update_action_button_icons()
 	return 1
@@ -201,6 +204,7 @@
 	item_state = "flare"
 	actions = list()	//just pull it manually, neckbeard.
 	raillight_compatible = FALSE
+	activation_sound = 'sound/items/flare.ogg'
 	var/fuel = 0
 	var/on_damage = 7
 
