@@ -9,7 +9,7 @@
 	var/datum_flags = NONE
 	var/datum/weakref/weak_reference
 	var/hidden_from_codex = FALSE //set to TRUE if you want something to be hidden.
-
+	var/list/datum_outputs
 
 #ifdef TESTING
 	var/running_find_references

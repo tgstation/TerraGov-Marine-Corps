@@ -151,6 +151,7 @@
 #include "code\controllers\stonedmc\subsystem\mapping.dm"
 #include "code\controllers\stonedmc\subsystem\mobs.dm"
 #include "code\controllers\stonedmc\subsystem\nano.dm"
+#include "code\controllers\stonedmc\subsystem\outputs.dm"
 #include "code\controllers\stonedmc\subsystem\overlays.dm"
 #include "code\controllers\stonedmc\subsystem\ping.dm"
 #include "code\controllers\stonedmc\subsystem\points.dm"
