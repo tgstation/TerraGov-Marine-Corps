@@ -111,6 +111,18 @@
 		to_chat(src, msg)
 
 
+/mob/proc/display_output(sound/S, mutable_appearance/vfx, text, turf/turf_source, vol as num, vary, frequency, falloff, channel = 0, pressure_affected = TRUE)
+	if(isdeaf(src)) // TODO: Should this be M.can_hear()?
+		return
+	//Process sound
+	if(S)
+		SEND_SOUND(src, S)
+	//Process text
+	if(text)
+		to_chat(src, "<span class='italics'>[text]</span>")
+	//to whoever sees this: icons are handled in living.dm
+
+
 // Show a message to all mobs in sight of this one
 // This would be for visible actions by the src mob
 // message is the message output to anyone who can see e.g. "[src] does something!"

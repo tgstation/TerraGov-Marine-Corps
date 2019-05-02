@@ -487,3 +487,6 @@ mob/proc/get_standard_bodytemperature()
 			m_intent = MOVE_INTENT_RUN
 
 	client.screen[screen_num].update_icon(src)
+
+/mob/proc/can_hear()
+	. = isdeaf(src)

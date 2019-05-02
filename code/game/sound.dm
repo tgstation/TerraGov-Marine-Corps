@@ -18,7 +18,6 @@
 
 	if(isarea(source))
 		CRASH("[source] is an area and is trying to make the sound: [soundin]")
-
 	var/frequency = GET_RANDOM_FREQ // Same frequency for everybody
 	var/turf/turf_source = get_turf(source)
 	if(!turf_source) return
