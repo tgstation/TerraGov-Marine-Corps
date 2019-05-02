@@ -1,0 +1,6 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - tweak: "Overdrive now has nitros the driver can activate for a big, 5 second speed boost instead of a passive, continual speed increase. Has a cooldown of 20 seconds."
+  - tweak: "M56 Cupola ammo capacity increased to 1000 and fire rate increased to 3.33 shots / second up from 2 / second."
+  - balance: "Snowplow now takes half damage from wall collisions instead of no damage when facing walls, and destroys walls 50% faster down from 100% faster. Snowplow health increased by +100."
