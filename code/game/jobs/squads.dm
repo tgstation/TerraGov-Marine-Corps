@@ -326,7 +326,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 				num_engineers++
 			return TRUE
 		if("Squad Corpsman")
-			M.mind.assigned_squad = src.
+			M.mind.assigned_squad = src
 			if(!latejoin)
 				num_medics++
 			return TRUE
