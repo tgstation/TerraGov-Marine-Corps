@@ -1,4 +1,4 @@
-	/mob/living
+/mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
 
 	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
