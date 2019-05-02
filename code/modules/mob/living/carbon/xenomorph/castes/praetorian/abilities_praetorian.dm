@@ -48,11 +48,11 @@
 
 	speed += 2
 	do_acid_spray_cone(target)
-	addtimer(CALLBACK(src, .speed_increase, 2), rand(20,30))
+	addtimer(CALLBACK(src, .reset_speed), rand(20,30))
 	addtimer(CALLBACK(src, .acid_spray_cooldown_finished), xeno_caste.acid_spray_cooldown)
 
-/mob/living/carbon/Xenomorph/proc/speed_increase(var/amount)
-	speed -= amount
+/mob/living/carbon/Xenomorph/proc/reset_speed()
+	speed = xeno_caste.speed
 
 /mob/living/carbon/Xenomorph/proc/acid_spray_cooldown_finished()
 	used_acid_spray = FALSE

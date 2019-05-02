@@ -186,20 +186,20 @@
 	var/mob/living/silicon/ai/A = new /mob/living/silicon/ai(src, null, null, 1)
 	Broadcast_Message(connection, A,
 						0, "*garbled automated announcement*", src,
-						message, from, "Automated Announcement", from, "synthesized voice",
-						4, 0, list(1), PUB_FREQ)
+						message, from, "Automated Announcement", from, from,
+						4, 0, list(1), PUB_FREQ, "announces", /datum/language/common)
 	qdel(A)
 	return
 
 // Interprets the message mode when talking into a radio, possibly returning a connection datum
 /obj/item/radio/proc/handle_message_mode(mob/living/M as mob, message, message_mode)
 	// If a channel isn't specified, send to common.
-	if(!message_mode || message_mode == "headset")
+	if(!message_mode || message_mode == MODE_HEADSET)
 		return radio_connection
 
 	// Otherwise, if a channel is specified, look for it.
 	if(channels && channels.len)
-		if (message_mode == "department" ) // Department radio shortcut
+		if (message_mode == MODE_DEPARTMENT) // Department radio shortcut
 			message_mode = channels[1]
 
 		if (channels[message_mode]) // only broadcast if the channel is set on
@@ -208,7 +208,7 @@
 	// If we were to send to a channel we don't have, drop it.
 	return null
 
-/obj/item/radio/talk_into(mob/living/M as mob, message, channel, var/verb = "says", var/datum/language/speaking = null)
+/obj/item/radio/talk_into(mob/living/M, message, channel, list/spans, datum/language/language)
 	if(!on) return // the device has to be on
 	//  Fix for permacell radios, but kinda eh about actually fixing them.
 	if(!M || !message) return
@@ -232,6 +232,8 @@
 	*/
 
 	//#### Grab the connection datum ####//
+	var/datum/language/L = GLOB.language_datum_instances[language]
+	var/verb = L.get_spoken_verb(copytext(message, length(message)))
 	var/datum/radio_frequency/connection = handle_message_mode(M, message, channel)
 	if (!istype(connection))
 		return
@@ -322,7 +324,7 @@
 			"server" = null, // the last server to log this signal
 			"reject" = 0,	// if nonzero, the signal will not be accepted by any broadcasting machinery
 			"level" = position.z, // The source's z level
-			"language" = speaking,
+			"language" = language,
 			"verb" = verb
 		)
 		signal.frequency = connection.frequency // Quick frequency set
@@ -377,7 +379,7 @@
 		"server" = null,
 		"reject" = 0,
 		"level" = position.z,
-		"language" = speaking,
+		"language" = language,
 		"verb" = verb
 	)
 	signal.frequency = connection.frequency // Quick frequency set
@@ -400,14 +402,29 @@
 
 	Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
 					  src, message, displayname, jobname, real_name, M.voice_name,
-					  filter_type, signal.data["compression"], list(position.z), connection.frequency,verb,speaking)
+					  filter_type, signal.data["compression"], list(position.z), connection.frequency,verb,language)
 
 
-/obj/item/radio/hear_talk(mob/M as mob, msg, var/verb = "says", var/datum/language/speaking = null)
+/obj/item/radio/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+	. = ..()
 
-	if (broadcasting)
-		if(get_dist(src, M) <= canhear_range)
-			talk_into(M, msg,null,verb,speaking)
+	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
+		return
+
+	if(message_mode == MODE_WHISPER || message_mode == MODE_WHISPER_CRIT)
+		// radios don't pick up whispers very well
+		raw_message = stars(raw_message)
+	
+	else if(message_mode == MODE_L_HAND || message_mode == MODE_R_HAND)
+		// try to avoid being heard double
+		if(loc == speaker && ismob(speaker))
+			var/mob/M = speaker
+			if(M.l_hand == src && message_mode != MODE_L_HAND)
+				return
+			else if(M.r_hand == src && message_mode != MODE_R_HAND)
+				return
+
+	talk_into(speaker, raw_message, , spans, language = message_language)
 
 
 /*

@@ -183,6 +183,8 @@
 		var/datum/mind/new_queen = i
 		if(new_queen.assigned_role || jobban_isbanned(new_queen.current, ROLE_XENO_QUEEN) || is_banned_from(new_queen.current?.ckey, ROLE_XENO_QUEEN))
 			continue
+		if(queen_age_check(new_queen.current?.client))
+			continue
 		new_queen.assigned_role = ROLE_XENO_QUEEN
 		xenomorphs += new_queen
 		found = TRUE
@@ -222,7 +224,7 @@
 
 	to_chat(X, "<B>You are now an alien!</B>")
 	to_chat(X, "<B>Your job is to spread the hive and protect the Queen. If there's no Queen, you can become the Queen yourself by evolving into a drone.</B>")
-	to_chat(X, "Talk in Hivemind using <strong>;</strong> (e.g. ';My life for the queen!')")
+	to_chat(X, "Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the queen!')")
 
 	X.update_icons()
 
@@ -238,7 +240,7 @@
 
 	to_chat(X, "<B>You are now the alien queen!</B>")
 	to_chat(X, "<B>Your job is to spread the hive.</B>")
-	to_chat(X, "Talk in Hivemind using <strong>;</strong> (e.g. ';My life for the hive!')")
+	to_chat(X, "Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the hive!')")
 
 	X.update_icons()
 

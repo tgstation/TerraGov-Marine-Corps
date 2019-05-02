@@ -9,10 +9,10 @@
 	anchored = 1
 	density = 0
 	layer = TURF_LAYER
-	health = 1
+	max_integrity = 1
 
 /obj/effect/alien/weeds/healthcheck()
-    if(health <= 0)
+    if(obj_integrity <= 0)
         round_statistics.weeds_destroyed++
         qdel(src)
 
@@ -174,7 +174,7 @@
 		else
 			to_chat(user, "<span class='warning'>You cut \the [src] away with \the [W].</span>")
 
-	health -= damage * multiplier
+	obj_integrity -= damage * multiplier
 	healthcheck()
 	return TRUE //don't call afterattack
 
@@ -222,7 +222,7 @@
 	desc = "A weird, pulsating node."
 	icon_state = "weednode"
 	var/node_range = NODERANGE
-	health = 15
+	max_integrity = 15
 
 
 /obj/effect/alien/weeds/node/update_icon()

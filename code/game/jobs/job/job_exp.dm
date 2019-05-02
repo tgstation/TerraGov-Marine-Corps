@@ -49,7 +49,7 @@ GLOBAL_PROTECT(exp_to_update)
 	var/amount = 0
 	var/list/typelist = GLOB.exp_jobsmap[exptype]
 	if(!typelist)
-		return -1
+		return 0
 	for(var/job in typelist["titles"])
 		if(job in explist)
 			amount += explist[job]
@@ -95,7 +95,7 @@ GLOBAL_PROTECT(exp_to_update)
 		if(exp_data[EXP_TYPE_LIVING] > 0 && (dep == EXP_TYPE_GHOST || dep == EXP_TYPE_LIVING))
 			var/percentage = num2text(round(exp_data[dep] / (exp_data[EXP_TYPE_LIVING] + exp_data[EXP_TYPE_GHOST])  * 100))
 			return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] ([percentage]%) total.</LI>"
-		else if(exp_data[EXP_TYPE_LIVING] > 0)
+		else if(exp_data[EXP_TYPE_LIVING] > 0 && dep != EXP_TYPE_ADMIN)
 			var/percentage = num2text(round(exp_data[dep] / exp_data[EXP_TYPE_LIVING] * 100))
 			return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] ([percentage]%) while alive.</LI>"
 		else
@@ -190,6 +190,11 @@ GLOBAL_PROTECT(exp_to_update)
 		return -1
 	var/list/play_records = list()
 
+	if(holder && !holder.deadmined)
+		play_records[EXP_TYPE_ADMIN] += minutes
+		if(announce_changes)
+			to_chat(src,"<span class='notice'>You got: [minutes] Admin EXP!</span>")
+
 	if(isliving(mob))
 		if(mob.stat != DEAD)
 			var/rolefound = FALSE
@@ -213,14 +218,9 @@ GLOBAL_PROTECT(exp_to_update)
 			if(!rolefound)
 				play_records["Unknown"] += minutes
 		else
-			if(holder && !holder.deadmined)
-				play_records[EXP_TYPE_ADMIN] += minutes
-				if(announce_changes)
-					to_chat(src,"<span class='notice'>You got: [minutes] Admin EXP!</span>")
-			else
-				play_records[EXP_TYPE_GHOST] += minutes
-				if(announce_changes)
-					to_chat(src,"<span class='notice'>You got: [minutes] Ghost EXP!</span>")
+			play_records[EXP_TYPE_GHOST] += minutes
+			if(announce_changes)
+				to_chat(src,"<span class='notice'>You got: [minutes] Ghost EXP!</span>")
 	else if(isobserver(mob))
 		play_records[EXP_TYPE_GHOST] += minutes
 		if(announce_changes)
@@ -241,3 +241,14 @@ GLOBAL_PROTECT(exp_to_update)
 			"minutes" = jvalue)))
 		prefs.exp[jtype] += jvalue
 	addtimer(CALLBACK(GLOBAL_PROC, /proc/update_exp_db), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
+
+
+/proc/queen_age_check(client/C)
+	if(!C.prefs?.exp)
+		return FALSE
+	if(!CONFIG_GET(flag/use_exp_tracking))
+		return FALSE
+	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(C, R_ADMIN, FALSE))
+		return FALSE
+	var/my_exp = C.prefs.exp[ROLE_XENOMORPH]
+	return my_exp < XP_REQ_INTERMEDIATE

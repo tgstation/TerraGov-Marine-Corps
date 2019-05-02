@@ -189,7 +189,7 @@
 	if(!xenos_by_typepath[X.caste_base_type].Remove(X))
 		stack_trace("failed to remove a xeno from hive status typepath list, nothing was removed!?")
 		return FALSE
-	
+
 	remove_leader(X)
 
 	return TRUE
@@ -243,7 +243,7 @@
 /datum/hive_status/proc/on_xeno_death(mob/living/carbon/Xenomorph/X)
 	if(living_xeno_queen?.observed_xeno == X)
 		living_xeno_queen.set_queen_overwatch(X, TRUE)
-		
+
 	remove_from_lists(X)
 	dead_xenos += X
 
@@ -257,7 +257,7 @@
 	return TRUE
 
 // ***************************************
-// *********** Queen 
+// *********** Queen
 // ***************************************
 
 // This proc attempts to find a new queen to lead the hive, if there isnt then it will announce her death
@@ -299,9 +299,6 @@
 		return
 	hive?.burrow_larva(src)
 
-/mob/living/carbon/Xenomorph/Larva/predalien/burrow() // no no no
-	return
-
 /datum/hive_status/proc/burrow_larva(mob/living/carbon/Xenomorph/Larva/L)
 	return
 
@@ -322,7 +319,7 @@
 /datum/hive_status/proc/can_xeno_message() // This is defined for per-hive overrides
 	return living_xeno_queen
 
-/* 
+/*
 
 This is for hive-wide announcements like the queen dying
 
@@ -407,7 +404,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
 
 			stored_larva--
-		
+
 	for(var/mob/living/carbon/Xenomorph/Larva/L in range(1, Q))
 		L.burrow()
 
@@ -431,11 +428,11 @@ to_chat will check for valid clients itself already so no need to double check f
 // Make sure they can understand english
 /datum/hive_status/corrupted/post_add(mob/living/carbon/Xenomorph/X)
 	. = ..()
-	X.add_language("English")
+	X.grant_language(/datum/language/common)
 
 /datum/hive_status/corrupted/post_removal(mob/living/carbon/Xenomorph/X)
 	. = ..()
-	X.remove_language("English")
+	X.remove_language(/datum/language/common)
 
 /datum/hive_status/corrupted/can_xeno_message()
 	return TRUE // can always talk in hivemind

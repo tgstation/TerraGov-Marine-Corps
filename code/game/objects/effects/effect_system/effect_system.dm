@@ -5,7 +5,6 @@ it needs to create more trails.A beaker could have a steam_trail_follow system s
 would spawn and follow the beaker, even if it is carried or thrown.
 */
 
-
 /datum/effect_system
 	var/number = 3
 	var/cardinals = 0
@@ -13,18 +12,24 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	var/atom/holder
 	var/setup = 0
 
-	proc/set_up(n = 3, c = 0, turf/loca)
-		if(n > 10)
-			n = 10
-		number = n
-		cardinals = c
-		location = loca
-		setup = 1
+/datum/effect_system/New(atom/atom)
+	. = ..()
+	if(atom)
+		attach(atom)
 
-	proc/attach(atom/atom)
-		holder = atom
+/datum/effect_system/proc/set_up(n = 3, c = 0, turf/loca)
+	if(n > 10)
+		n = 10
+	number = n
+	cardinals = c
+	location = loca
+	setup = 1
 
-	proc/start()
+/datum/effect_system/proc/attach(atom/atom)
+	holder = atom
+
+/datum/effect_system/proc/start()
+	return
 
 
 /////////////////////////////////////////////

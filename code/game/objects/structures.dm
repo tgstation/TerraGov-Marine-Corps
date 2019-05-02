@@ -2,14 +2,9 @@
 	icon = 'icons/obj/structures/structures.dmi'
 	var/climbable
 	var/climb_delay = 50
-	var/breakable = TRUE
 	var/parts
 	var/flags_barrier = 0
 	anchored = TRUE
-
-	var/damage = 0
-	var/damage_cap = 500 //The point where things start breaking down.
-	var/health
 
 /obj/structure/New()
 	..()
@@ -32,36 +27,37 @@
 	return
 
 /obj/structure/attack_hand(mob/user)
-	..()
-	if(breakable)
-		if(HULK in user.mutations)
-			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-			visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
-			destroy_structure()
+	. = ..()
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return
+	if(HULK in user.mutations)
+		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+		visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
+		destroy_structure()
 
 /obj/structure/attackby(obj/item/C as obj, mob/user as mob)
 	. = ..()
-	if(istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && breakable && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-		var/obj/item/tool/pickaxe/plasmacutter/P = C
-		if(!P.start_cut(user, name, src))
-			return
-		if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
-			P.cut_apart(user, name, src)
-			qdel(src)
+	if(!istype(C, /obj/item/tool/pickaxe/plasmacutter) || user.action_busy || CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		return
+	var/obj/item/tool/pickaxe/plasmacutter/P = C
+	if(!P.start_cut(user, name, src))
+		return
+	if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
+		P.cut_apart(user, name, src)
+		qdel(src)
 
 //Default "structure" proc. This should be overwritten by sub procs.
 /obj/structure/attack_alien(mob/living/carbon/Xenomorph/M)
 	return FALSE
 
 /obj/structure/attack_animal(mob/living/user)
-	if(breakable)
-		if(user.wall_smash)
-			visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
-			destroy_structure()
+	. = ..()
+	if(user.wall_smash && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
+		destroy_structure()
 
 /obj/structure/attack_paw(mob/user)
-	if(breakable)
+	if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		attack_hand(user)
 
 /obj/structure/attack_tk()
@@ -261,15 +257,12 @@
 
 //Damage
 /obj/structure/proc/take_damage(dam)
-	if(!breakable)
+	if(!dam || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE|UNACIDABLE))
 		return
 
-	if(!dam)
-		return
+	obj_integrity = max(0, obj_integrity - dam)
 
-	damage = max(0, damage + dam)
-
-	if(damage >= damage_cap)
+	if(obj_integrity <= 0)
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		qdel(src)
 	else

@@ -134,16 +134,3 @@
 	layer = TURF_LAYER
 	icon = 'icons/effects/effects.dmi'
 	random_icon_states = list("smashed_pie")
-
-/obj/effect/decal/cleanable/blackgoo
-	name = "black goo"
-	desc = "It's thick and gooey."
-	gender = PLURAL
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "blackgoo"
-
-/obj/effect/decal/cleanable/blackgoo/Crossed(mob/living/carbon/human/H)
-	if(!istype(H)) return
-	if(H.species.count_human)
-		if(!H.shoes || prob(25))
-			H.contract_disease(new /datum/disease/black_goo)

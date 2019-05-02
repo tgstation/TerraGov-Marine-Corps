@@ -19,17 +19,6 @@
 	..()
 	recalculateChannels()
 
-/obj/item/radio/headset/handle_message_mode(mob/living/M as mob, message, channel)
-	if (channel == "special")
-		if (translate_binary)
-			var/datum/language/binary = GLOB.all_languages["Robot Talk"]
-			binary.broadcast(M, message)
-		if (translate_hive)
-			var/datum/language/hivemind = GLOB.all_languages["Hivemind"]
-			hivemind.broadcast(M, message)
-		return null
-
-	return ..()
 
 /obj/item/radio/headset/receive_range(freq, level, aiOverride = 0)
 	if (aiOverride)

@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	21
+#define SAVEFILE_VERSION_MAX	22
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -19,6 +19,9 @@
 					fdel(delpath)
 				break
 		return FALSE
+
+	if(savefile_version < 22)
+		S["windowflashing"]	<< TRUE
 
 	savefile_version = SAVEFILE_VERSION_MAX
 	return TRUE
@@ -66,6 +69,7 @@
 	S["toggles_sound"]		>> toggles_sound
 	S["show_typing"]		>> show_typing
 	S["ghost_hud"]			>> ghost_hud
+	S["windowflashing"]		>> windowflashing
 
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
@@ -80,6 +84,7 @@
 	toggles_sound	= sanitize_integer(toggles_sound, 0, 8388608, initial(toggles_sound))
 	show_typing		= sanitize_integer(show_typing, 0, 1, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, 0, 8388608, initial(ghost_hud))
+	windowflashing	= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
 
 	return TRUE
 
@@ -106,6 +111,7 @@
 	toggles_sound	= sanitize_integer(toggles_sound, 0, 8388608, initial(toggles_sound))
 	show_typing		= sanitize_integer(show_typing, 0, 1, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, 0, 8388608, initial(ghost_hud))
+	windowflashing	= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
 
 	S["default_slot"]		<< default_slot
 	S["lastchangelog"]		<< lastchangelog
@@ -119,6 +125,7 @@
 	S["toggles_sound"]		<< toggles_sound
 	S["show_typing"]		<< show_typing
 	S["ghost_hud"]			<< ghost_hud
+	S["windowflashing"]		<< windowflashing
 
 	return TRUE
 

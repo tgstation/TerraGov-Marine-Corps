@@ -17,7 +17,7 @@
 	var/is_bombarding = 0
 	var/obj/item/explosive/grenade/grenade_type = "/obj/item/explosive/grenade/xeno"
 	var/bomb_cooldown = 0
-	var/datum/effect_system/smoke_spread/xeno_acid/smoke
+	var/datum/effect_system/smoke_spread/xeno/smoke
 	var/turf/bomb_turf = null
 
 	actions = list(
@@ -36,16 +36,12 @@
 /mob/living/carbon/Xenomorph/Boiler/Initialize()
 	. = ..()
 	SetLuminosity(BOILER_LUMINOSITY)
-	smoke = new /datum/effect_system/smoke_spread/xeno_acid
-	smoke.attach(src)
+	smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
 	see_in_dark = 20
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
 
 /mob/living/carbon/Xenomorph/Boiler/Destroy()
 	SetLuminosity(-BOILER_LUMINOSITY)
-	if(smoke)
-		qdel(smoke)
-		smoke = null
 	return ..()
 
 // ***************************************

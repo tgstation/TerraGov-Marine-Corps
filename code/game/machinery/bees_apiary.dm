@@ -12,8 +12,7 @@
 	var/mut = 1
 	var/toxic = 0
 	var/dead = 0
-	var/health = -1
-	var/maxhealth = 100
+	max_integrity = 100
 	var/lastcycle = 0
 	var/cycledelay = 100
 	var/harvestable_honey = 0
@@ -31,10 +30,10 @@
 
 /obj/machinery/apiary/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/queen_bee))
-		if(health > 0)
+		if(obj_integrity > 0)
 			to_chat(user, "<span class='warning'>There is already a queen in there.</span>")
 		else
-			health = 10
+			obj_integrity = 10
 			nutrilevel += 10
 			if(user.temporarilyRemoveItemFromInventory(O))
 				qdel(O)
@@ -44,13 +43,13 @@
 		beezeez += 100
 		nutrilevel += 10
 		if(user.temporarilyRemoveItemFromInventory(O))
-			if(health > 0)
+			if(obj_integrity > 0)
 				to_chat(user, "<span class='notice'>You insert [O] into [src]. A relaxed humming appears to pick up.</span>")
 			else
 				to_chat(user, "<span class='notice'>You insert [O] into [src]. Now it just needs some bees.</span>")
 			qdel(O)
 	else if(istype(O, /obj/item/tool/minihoe))
-		if(health > 0)
+		if(obj_integrity > 0)
 			to_chat(user, "<span class='danger'>You begin to dislodge the apiary from the tray, the bees don't like that.</span>")
 			angry_swarm(user)
 		else
@@ -71,7 +70,7 @@
 	else if(istype(O, /obj/item/reagent_container/glass))
 		var/obj/item/reagent_container/glass/G = O
 		if(harvestable_honey > 0)
-			if(health > 0)
+			if(obj_integrity > 0)
 				to_chat(user, "<span class='warning'>You begin to harvest the honey. The bees don't seem to like it.</span>")
 				angry_swarm(user)
 			else
@@ -107,7 +106,7 @@
 
 	if(world.time > (lastcycle + cycledelay))
 		lastcycle = world.time
-		if(health < 0)
+		if(obj_integrity < 0)
 			return
 
 		//magical bee formula
@@ -115,18 +114,18 @@
 			beezeez -= 1
 
 			nutrilevel += 2
-			health += 1
+			obj_integrity += 1
 			toxic = max(0, toxic - 1)
 
 		//handle nutrients
 		nutrilevel -= bees_in_hive / 10 + owned_bee_swarms.len / 5
 		if(nutrilevel > 0)
 			bees_in_hive += 1 * yieldmod
-			if(health < maxhealth)
-				health++
+			if(obj_integrity < max_integrity)
+				obj_integrity++
 		else
 			//nutrilevel is less than 1, so we're effectively subtracting here
-			health += max(nutrilevel - 1, round(-health / 2))
+			obj_integrity += max(nutrilevel - 1, round(-obj_integrity / 2))
 			bees_in_hive += max(nutrilevel - 1, round(-bees_in_hive / 2))
 			if(owned_bee_swarms.len)
 				var/mob/living/simple_animal/bee/B = pick(owned_bee_swarms)
@@ -135,9 +134,9 @@
 		//clear out some toxins
 		if(toxic > 0)
 			toxic -= 1
-			health -= 1
+			obj_integrity -= 1
 
-		if(health <= 0)
+		if(obj_integrity <= 0)
 			return
 
 		//make a bit of honey
@@ -189,7 +188,7 @@
 		else if(B.strength <= 5)
 			B.icon_state = "bees[B.strength]"
 	bees_in_hive = 0
-	health = 0
+	obj_integrity = 0
 
 /obj/machinery/apiary/proc/angry_swarm(var/mob/M)
 	for(var/mob/living/simple_animal/bee/B in owned_bee_swarms)
@@ -216,8 +215,8 @@
 	set name = "Harvest honeycomb"
 	set category = "Object"
 
-	while(health > 15)
-		health -= 15
+	while(obj_integrity > 15)
+		obj_integrity -= 15
 		var/obj/item/reagent_container/food/snacks/honeycomb/H = new(src.loc)
 		if(toxic > 0)
 			H.reagents.add_reagent("toxin", toxic)
