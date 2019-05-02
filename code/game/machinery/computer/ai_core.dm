@@ -33,7 +33,7 @@
 		if(1)
 			if(iswrench(P))
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(do_after(user, 20, TRUE, src,, USER_ICON_BUILD))
+				if(do_after(user, 20, TRUE, src, USER_ICON_BUILD))
 					to_chat(user, "<span class='notice'> You unfasten the frame.</span>")
 					anchored = 0
 					state = 0

@@ -643,7 +643,7 @@
 			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 			var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
-			if(!do_after(usr, fumbling_time, TRUE, src, USER_ICON_UNSKILLED) && occupant)
+			if(!do_after(usr, fumbling_time, TRUE, src, USER_ICON_UNSKILLED) || !occupant)
 				return
 		if(surgery)
 			surgery = 0
@@ -681,25 +681,26 @@
 
 	usr.visible_message("<span class='notice'>[usr] starts climbing into \the [src].</span>",
 	"<span class='notice'>You start climbing into \the [src].</span>")
-	if(!do_after(usr, 10, FALSE, src, USER_ICON_GENERIC))
-		return
-	if(occupant)
-		to_chat(usr, "<span class='notice'>\ [src] is already occupied!</span>")
-		return
-	usr.stop_pulling()
-	usr.client.perspective = EYE_PERSPECTIVE
-	usr.client.eye = src
-	usr.loc = src
-	update_use_power(2)
-	occupant = usr
-	icon_state = "autodoc_closed"
-	var/implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
-	var/mob/living/carbon/human/H = occupant
-	var/doc_dat
-	med_scan(H, doc_dat, implants, TRUE)
-	start_processing()
-	connected.start_processing()
-	add_fingerprint(usr)
+	if(do_after(usr, 10, FALSE, src, USER_ICON_GENERIC))
+		if(occupant)
+			to_chat(usr, "<span class='notice'>\ [src] is already occupied!</span>")
+			return
+		usr.stop_pulling()
+		usr.client.perspective = EYE_PERSPECTIVE
+		usr.client.eye = src
+		usr.loc = src
+		update_use_power(2)
+		occupant = usr
+		icon_state = "autodoc_closed"
+		var/implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+		var/mob/living/carbon/human/H = occupant
+		var/doc_dat
+		med_scan(H, doc_dat, implants, TRUE)
+		start_processing()
+		connected.start_processing()
+		for(var/obj/O in src)
+			qdel(O)
+		add_fingerprint(usr)
 
 /obj/machinery/autodoc/proc/go_out(notice_code = FALSE)
 	for(var/atom/movable/A in contents)
@@ -797,24 +798,25 @@
 
 		user.visible_message("<span class='notice'>[user] starts putting [M] into [src].</span>",
 		"<span class='notice'>You start putting [M] into [src].</span>")
-		if(!do_after(user, 10, FALSE, M, USER_ICON_GENERIC) || QDELETED(src))
-			return
-		if(occupant)
-			to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
-			return
-		if(!M || !G) return
-		M.forceMove(src)
-		update_use_power(2)
-		occupant = M
-		icon_state = "autodoc_closed"
-		var/implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
-		var/mob/living/carbon/human/H = occupant
-		var/doc_dat
-		med_scan(H, doc_dat, implants, TRUE)
-		start_processing()
-		connected.start_processing()
 
-		add_fingerprint(user)
+		if(do_after(user, 10, FALSE, M, USER_ICON_GENERIC) && !QDELETED(src))
+			if(src.occupant)
+				to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
+				return
+			if(!G)
+				return
+			M.forceMove(src)
+			update_use_power(2)
+			occupant = M
+			icon_state = "autodoc_closed"
+			var/implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+			var/mob/living/carbon/human/H = occupant
+			var/doc_dat
+			med_scan(H, doc_dat, implants, TRUE)
+			start_processing()
+			connected.start_processing()
+
+			add_fingerprint(user)
 
 /////////////////////////////////////////////////////////////
 

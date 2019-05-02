@@ -90,15 +90,14 @@
 
 	to_chat(user, "<span class='notice'>You start crawling through the hole.</span>")
 
-	if(!do_after(user, 15, FALSE, src, USER_ICON_HOSTILE) || T.density || user.lying || user.buckled)
-		return
-	for(var/obj/O in T)
-		if(!O.CanPass(user, user.loc))
-			return
-	if(user.pulling)
-		user.stop_pulling()
-		to_chat(user, "<span class='warning'>You release what you're pulling to fit into the tunnel!</span>")
-	user.forceMove(T)
+	if(do_after(user, 15, FALSE, src, USER_ICON_HOSTILE) && !T.density && !user.lying && !user.buckled)
+		for(var/obj/O in T)
+			if(!O.CanPass(user, user.loc))
+				return
+		if(user.pulling)
+			user.stop_pulling()
+			to_chat(user, "<span class='warning'>You release what you're pulling to fit into the tunnel!</span>")
+		user.forceMove(T)
 
 
 
@@ -123,7 +122,7 @@
 			return
 
 		to_chat(user, "<span class='notice'>You take the position to throw [G].</span>")
-		if(do_after(user,10, TRUE, src, USER_ICON_HOSTILE) && !Target.density)
+		if(do_after(user,10, TRUE, src, USER_ICON_HOSTILE) && Target && !Target.density)
 			user.visible_message("<span class='warning'>[user] throws [G] through [src]!</span>", \
 								 "<span class='warning'>You throw [G] through [src]</span>")
 			user.drop_held_item()
@@ -143,7 +142,7 @@
 			return
 
 		to_chat(user, "<span class='notice'>You take the position to throw [F].</span>")
-		if(do_after(user,10, TRUE, src, USER_ICON_GENERIC) && !Target.density)
+		if(do_after(user,10, TRUE, src, USER_ICON_GENERIC) && Target && !Target.density)
 			user.visible_message("<span class='warning'>[user] throws [F] through [src]!</span>", \
 								 "<span class='warning'>You throw [F] through [src]</span>")
 			user.drop_held_item()

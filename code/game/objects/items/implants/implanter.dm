@@ -25,7 +25,7 @@
 /obj/item/implanter/attack(mob/M as mob, mob/user as mob)
 	if (!ishuman(M) && !ismonkey(M))
 		return
-	if (user && imp)
+	if (user && src.imp)
 		user.visible_message("<span class='warning'>[user] is attemping to implant [M].</span>", "<span class='notice'>You're attemping to implant [M].</span>")
 
 		if ((M == user || do_after(user, 50, TRUE, M, USER_ICON_GENERIC)) && imp)

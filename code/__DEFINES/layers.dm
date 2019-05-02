@@ -146,7 +146,6 @@
 
 #define HUD_PLANE 21
 #define HUD_LAYER 21
-
 #define ABOVE_HUD_PLANE 22
 #define ABOVE_HUD_LAYER 22
 

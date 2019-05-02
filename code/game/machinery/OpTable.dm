@@ -93,9 +93,10 @@
 		return
 	H.visible_message("<span class='notice'>[user] begins to connect [H] to the anesthetic system.</span>")
 	if(!do_after(user, 25, FALSE, src, USER_ICON_GENERIC))
-		return
-	if(H != victim)
-		to_chat(user, "<span class='warning'>The patient must remain on the table!</span>")
+		if(H != victim)
+			to_chat(user, "<span class='warning'>The patient must remain on the table!</span>")
+			return
+		to_chat(user, "<span class='notice'>You stop placing the mask on [H]'s face.</span>")
 		return
 	if(!anes_tank)
 		to_chat(user, "<span class='warning'>There is no anesthetic tank connected to the table, load one first.</span>")

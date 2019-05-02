@@ -274,15 +274,11 @@
 	else if(action_busy)
 		to_chat(src, "<span class='warning'>You are still in the process of standing up.</span>")
 		return
-	else
-		action_busy++
-		var/datum/progressbar/progbar = new(src, 2 SECONDS, src)
-		addtimer(CALLBACK(src, .proc/get_up, progbar), 2 SECONDS)
+	else if(do_mob(src, src, 2 SECONDS, uninterruptible = TRUE))
+		get_up()
 
 
-/mob/living/proc/get_up(datum/progressbar/progbar)
-	action_busy--
-	qdel(progbar)
+/mob/living/proc/get_up()
 	if(!incapacitated(TRUE))
 		to_chat(src, "<span class='notice'>You get up.</span>")
 		resting = FALSE

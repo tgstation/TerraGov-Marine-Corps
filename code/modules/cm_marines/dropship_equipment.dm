@@ -199,7 +199,7 @@
 			to_chat(user, "<span class='warning'>[SA] doesn't fit in [src].</span>")
 			return FALSE
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		if(!do_after(user, 30, FALSE, src))
+		if(!do_after(user, 30, FALSE, src, USER_ICON_BUILD))
 			return FALSE
 		if(ammo_equipped || PC.loaded != SA || !PC.linked_powerloader || PC.linked_powerloader.buckled_mob != user)
 			return FALSE
@@ -213,7 +213,7 @@
 		return TRUE //refilled dropship ammo
 	else if(uses_ammo && ammo_equipped)
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		if(!do_after(user, 30, FALSE, src))
+		if(!do_after(user, 30, FALSE, src, USER_ICON_BUILD))
 			return FALSE
 		if(!ammo_equipped || !PC.linked_powerloader || PC.linked_powerloader.buckled_mob != user)
 			return FALSE

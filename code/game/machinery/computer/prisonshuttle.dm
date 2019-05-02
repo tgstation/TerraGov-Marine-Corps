@@ -37,26 +37,25 @@ var/prison_shuttle_timeleft = 0
 	attackby(I as obj, user as mob)
 		if(isscrewdriver(I))
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-			if(!do_after(user, 20, TRUE, src, USER_ICON_BUILD))
-				return FALSE
-			var/obj/structure/computerframe/A = new /obj/structure/computerframe(loc)
-			var/obj/item/circuitboard/computer/prison_shuttle/M = new(A)
-			for (var/obj/C in src)
-				C.loc = loc
-			A.circuit = M
-			A.anchored = TRUE
+			if(do_after(user, 20, TRUE, src, USER_ICON_BUILD))
+				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
+				var/obj/item/circuitboard/computer/prison_shuttle/M = new(A)
+				for (var/obj/C in src)
+					C.loc = src.loc
+				A.circuit = M
+				A.anchored = 1
 
-			if (machine_stat & BROKEN)
-				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
-				new /obj/item/shard(loc)
-				A.state = 3
-				A.icon_state = "3"
-			else
-				to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
-				A.state = 4
-				A.icon_state = "4"
+				if (machine_stat & BROKEN)
+					to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
+					new /obj/item/shard( src.loc )
+					A.state = 3
+					A.icon_state = "3"
+				else
+					to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
+					A.state = 4
+					A.icon_state = "4"
 
-			qdel(src)
+				qdel(src)
 		else if(istype(I,/obj/item/card/emag) && (!hacked))
 			hacked = 1
 			to_chat(user, "<span class='notice'>You disable the lock.</span>")

@@ -121,7 +121,7 @@ Class Procs:
 	var/damage = 0
 	var/damage_cap = 1000 //The point where things start breaking down.
 
-/obj/machinery/attackby(obj/item/C, mob/user)
+/obj/machinery/attackby(obj/item/C as obj, mob/user as mob)
 	. = ..()
 	if(istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		var/obj/item/tool/pickaxe/plasmacutter/P = C

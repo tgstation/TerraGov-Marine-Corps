@@ -204,7 +204,7 @@
 		to_chat(src, "<span class='xenowarning'>The shock disrupts you!</span>")
 		return
 
-	if(action_busy || !check_plasma(plasmacost))
+	if(!check_plasma(plasmacost))
 		return
 
 	if(acid_cooldown)

@@ -269,17 +269,16 @@
 	if(X.action_busy)
 		return
 
-	if(!X.check_plasma(plasma_cost))
-		return
-	X.visible_message("<span class='xenowarning'>\The [X] starts to grow an ovipositor.</span>", \
-	"<span class='xenowarning'>You start to grow an ovipositor...(takes 20 seconds, hold still)</span>")
-	if(!do_after(X, 200, TRUE, alien_weeds, USER_ICON_BUILD) || !X.check_plasma(plasma_cost) || !X.check_state())
-		return
+	if(X.check_plasma(plasma_cost))
+		X.visible_message("<span class='xenowarning'>\The [X] starts to grow an ovipositor.</span>", \
+		"<span class='xenowarning'>You start to grow an ovipositor...(takes 20 seconds, hold still)</span>")
+		if(!do_after(X, 200, TRUE, alien_weeds, USER_ICON_BUILD) || !X.check_plasma(plasma_cost) || !X.check_state())
+			return
 
-	X.use_plasma(plasma_cost)
-	X.visible_message("<span class='xenowarning'>\The [X] has grown an ovipositor!</span>", \
-	"<span class='xenowarning'>You have grown an ovipositor!</span>")
-	X.mount_ovipositor()
+		X.use_plasma(plasma_cost)
+		X.visible_message("<span class='xenowarning'>\The [X] has grown an ovipositor!</span>", \
+		"<span class='xenowarning'>You have grown an ovipositor!</span>")
+		X.mount_ovipositor()
 
 /datum/action/xeno_action/remove_eggsac
 	name = "Remove Eggsac"
@@ -786,15 +785,14 @@
 		to_chat(X, "<span class='xenowarning'>\The [E] inside of [H] is too old to be advanced.</xenowarning>")
 		return
 
-	if(!X.check_plasma(300))
-		return
-	X.visible_message("<span class='xenowarning'>\The [X] starts to advance larval growth inside of [H].</span>", \
-	"<span class='xenowarning'>You start to advance larval growth inside of [H].</span>")
-	if(!do_after(X, 50, TRUE, H, USER_ICON_CLOCK_ALT) || !X.check_plasma(300) || !X.check_state())
-		return
-	X.use_plasma(300)
-	X.visible_message("<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>", \
-	"<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>")
+	if(X.check_plasma(300))
+		X.visible_message("<span class='xenowarning'>\The [X] starts to advance larval growth inside of [H].</span>", \
+		"<span class='xenowarning'>You start to advance larval growth inside of [H].</span>")
+		if(!do_after(X, 50, TRUE, H, USER_ICON_CLOCK_ALT) || !X.check_plasma(300) || !X.check_state())
+			return
+		X.use_plasma(300)
+		X.visible_message("<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>", \
+		"<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>")
 
-	E.stage++
-	X.last_larva_growth_used = world.time
+		E.stage++
+		X.last_larva_growth_used = world.time

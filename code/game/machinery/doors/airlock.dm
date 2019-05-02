@@ -629,18 +629,18 @@ About the new airlock wires panel:
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
 	"<span class='warning'>You dig into \the [src] and begin to pry it open.</span>", null, 5)
 
-	if(!do_after(M, 40, FALSE, src, USER_ICON_HOSTILE) || M.lying)
-		return FALSE
-	if(locked)
-		to_chat(M, "<span class='warning'>\The [src] is bolted down tight.</span>")
-		return FALSE
-	if(welded)
-		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
-		return FALSE
-	if(density) //Make sure it's still closed
-		open(1)
-		M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
-		"<span class='danger'>You pry \the [src] open.</span>", null, 5)
+	if(do_after(M, 40, FALSE, src, USER_ICON_HOSTILE) && !M.lying)
+		if(locked)
+			to_chat(M, "<span class='warning'>\The [src] is bolted down tight.</span>")
+			return FALSE
+		if(welded)
+			to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+			return FALSE
+		if(density) //Make sure it's still closed
+			spawn(0)
+				open(1)
+				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
+				"<span class='danger'>You pry \the [src] open.</span>", null, 5)
 
 /obj/machinery/door/airlock/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
 	for(var/atom/movable/AM in get_turf(src))
@@ -1048,46 +1048,45 @@ About the new airlock wires panel:
 				return
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
-			if(!do_after(user,40, TRUE, src, USER_ICON_BUILD))
-				return FALSE
-			to_chat(user, "<span class='notice'>You removed the airlock electronics!</span>")
+			if(do_after(user,40, TRUE, src, USER_ICON_BUILD))
+				to_chat(user, "<span class='notice'>You removed the airlock electronics!</span>")
 
-			var/obj/structure/door_assembly/da = new assembly_type(src.loc)
-			if (istype(da, /obj/structure/door_assembly/multi_tile))
-				da.setDir(dir)
+				var/obj/structure/door_assembly/da = new assembly_type(src.loc)
+				if (istype(da, /obj/structure/door_assembly/multi_tile))
+					da.setDir(dir)
 
-			da.anchored = TRUE
-			if(mineral)
-				da.glass = mineral
-			//else if(glass)
-			else if(glass && !da.glass)
-				da.glass = 1
-			da.state = 1
-			da.created_name = src.name
-			da.update_state()
+				da.anchored = TRUE
+				if(mineral)
+					da.glass = mineral
+				//else if(glass)
+				else if(glass && !da.glass)
+					da.glass = 1
+				da.state = 1
+				da.created_name = src.name
+				da.update_state()
 
-			var/obj/item/circuitboard/airlock/ae
-			if(!electronics)
-				ae = new/obj/item/circuitboard/airlock( src.loc )
-				if(!src.req_access)
-					src.check_access()
-				if(src.req_access.len)
-					ae.conf_access = src.req_access
-				else if (src.req_one_access.len)
-					ae.conf_access = src.req_one_access
-					ae.one_access = 1
-			else
-				ae = electronics
-				if(electronics.is_general_board)
-					ae.set_general()
-				electronics = null
-				ae.loc = src.loc
-			if(operating == -1)
-				ae.icon_state = "door_electronics_smoked"
-				operating = 0
+				var/obj/item/circuitboard/airlock/ae
+				if(!electronics)
+					ae = new/obj/item/circuitboard/airlock( src.loc )
+					if(!src.req_access)
+						src.check_access()
+					if(src.req_access.len)
+						ae.conf_access = src.req_access
+					else if (src.req_one_access.len)
+						ae.conf_access = src.req_one_access
+						ae.one_access = 1
+				else
+					ae = electronics
+					if(electronics.is_general_board)
+						ae.set_general()
+					electronics = null
+					ae.loc = src.loc
+				if(operating == -1)
+					ae.icon_state = "door_electronics_smoked"
+					operating = 0
 
-			qdel(src)
-			return
+				qdel(src)
+				return
 
 		else if(arePowerSystemsOn() && C.pry_capable != IS_PRY_CAPABLE_FORCE)
 			to_chat(user, "<span class='warning'>The airlock's motors resist your efforts to force it.</span>")

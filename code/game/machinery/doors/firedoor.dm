@@ -141,15 +141,15 @@
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
 	"<span class='warning'>You dig into \the [src] and begin to pry it open.</span>", null, 5)
 
-	if(!do_after(M, 30, FALSE, src, USER_ICON_BUILD))
-		return FALSE
-	if(blocked)
-		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
-		return FALSE
-	if(density) //Make sure it's still closed
-		open(1)
-		M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
-		"<span class='danger'>You pry \the [src] open.</span>", null, 5)
+	if(do_after(M, 30, FALSE, src, USER_ICON_BUILD))
+		if(blocked)
+			to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+			return FALSE
+		if(density) //Make sure it's still closed
+			spawn(0)
+				open(1)
+				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
+				"<span class='danger'>You pry \the [src] open.</span>", null, 5)
 
 /obj/machinery/door/firedoor/attack_hand(mob/user as mob)
 	add_fingerprint(user)

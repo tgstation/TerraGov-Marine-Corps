@@ -154,7 +154,7 @@
 						return
 	return TRUE
 
-/obj/structure/proc/do_climb(mob/living/user)
+/obj/structure/proc/do_climb(var/mob/living/user)
 	if(!can_climb(user))
 		return
 

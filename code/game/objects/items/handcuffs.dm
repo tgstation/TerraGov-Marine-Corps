@@ -32,27 +32,30 @@
 		place_handcuffs(C, user)
 
 /obj/item/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
+	playsound(src.loc, cuff_sound, 25, 1, 4)
 
 	if(user.action_busy)
 		return
 
-	if (!user.action_busy && (ishuman(target) || ismonkey(target)))
-		playsound(src.loc, cuff_sound, 25, 1, 4)
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
-			if (!H.has_limb_for_slot(SLOT_HANDCUFFED))
-				to_chat(user, "<span class='warning'>\The [H] needs at least two wrists before you can cuff them together!</span>")
-				return
+	if (ishuman(target))
+		var/mob/living/carbon/human/H = target
 
-		log_combat(user, target, "handcuffed", src, addition="(attempt)")
-		msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(target)]")
+		if (!H.has_limb_for_slot(SLOT_HANDCUFFED))
+			to_chat(user, "<span class='warning'>\The [H] needs at least two wrists before you can cuff them together!</span>")
+			return
 
+		log_combat(user, H, "handcuffed", src, addition="(attempt)")
+		msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(H)]")
+
+		user.visible_message("<span class='notice'>[user] tries to put [src] on [H].</span>")
+		if(do_mob(user, H, cuff_delay, USER_ICON_HOSTILE, extra_checks = CALLBACK(user, .Adjacent, H)) && !H.handcuffed)
+			if(H.has_limb_for_slot(SLOT_HANDCUFFED))
+				user.dropItemToGround(src)
+				H.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
+
+	else if (ismonkey(target))
 		user.visible_message("<span class='notice'>[user] tries to put [src] on [target].</span>")
-		if(do_mob(user, target, cuff_delay, TARGET_ICON_HOSTILE, extra_checks = CALLBACK(user, .Adjacent, target)) && !target.handcuffed)
-			if(ishuman(target))
-				var/mob/living/carbon/human/H = target
-				if(!H.has_limb_for_slot(SLOT_HANDCUFFED))
-					return
+		if(do_mob(user, target, 30, USER_ICON_HOSTILE, extra_checks = CALLBACK(user, .Adjacent, target)) && !target.handcuffed)
 			user.dropItemToGround(src)
 			target.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
 

@@ -159,7 +159,7 @@
 				user.visible_message("<span class='notice'>[user] starts welding [src]'s internal damage.</span>",
 				"<span class='notice'>You start welding [src]'s internal damage.</span>")
 				if(do_after(user, 200, TRUE, src, USER_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
-					if(buildstate != FUSION_ENGINE_HEAVY_DAMAGE || is_on || !WT.isOn())
+					if(buildstate != FUSION_ENGINE_HEAVY_DAMAGE || is_on)
 						return FALSE
 					playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 					buildstate = FUSION_ENGINE_MEDIUM_DAMAGE
@@ -200,14 +200,13 @@
 			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
 			"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
-			if(!do_after(user, 150, TRUE, src, USER_ICON_BUILD) || buildstate != FUSION_ENGINE_LIGHT_DAMAGE || is_on)
-				return FALSE
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-			buildstate = FUSION_ENGINE_NO_DAMAGE
-			user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
-			"<span class='notice'>You repair [src]'s tubing and plating.</span>")
-			update_icon()
-			return TRUE
+			if(do_after(user, 150, TRUE, src, USER_ICON_BUILD) && buildstate == FUSION_ENGINE_LIGHT_DAMAGE && !is_on)
+				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+				buildstate = FUSION_ENGINE_NO_DAMAGE
+				user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
+				"<span class='notice'>You repair [src]'s tubing and plating.</span>")
+				update_icon()
+				return TRUE
 	else if(iscrowbar(O))
 		if(buildstate != FUSION_ENGINE_NO_DAMAGE)
 			to_chat(user, "<span class='warning'>You must repair the generator before working with its fuel cell.</span>")
@@ -227,15 +226,14 @@
 			playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts prying [src]'s fuel receptacle open.</span>",
 			"<span class='notice'>You start prying [src]'s fuel receptacle open.</span>")
-			if(!do_after(user, 100, TRUE, src, USER_ICON_BUILD) || buildstate != FUSION_ENGINE_NO_DAMAGE || is_on || !fusion_cell)
-				return FALSE
-			user.visible_message("<span class='notice'>[user] pries [src]'s fuel receptacle open and removes the cell.</span>",
-			"<span class='notice'>You pry [src]'s fuel receptacle open and remove the cell..</span>")
-			fusion_cell.update_icon()
-			user.put_in_hands(fusion_cell)
-			fusion_cell = null
-			update_icon()
-			return TRUE
+			if(do_after(user, 100, TRUE, src, USER_ICON_BUILD) && buildstate == FUSION_ENGINE_NO_DAMAGE && !is_on && fusion_cell)
+				user.visible_message("<span class='notice'>[user] pries [src]'s fuel receptacle open and removes the cell.</span>",
+				"<span class='notice'>You pry [src]'s fuel receptacle open and remove the cell..</span>")
+				fusion_cell.update_icon()
+				user.put_in_hands(fusion_cell)
+				fusion_cell = null
+				update_icon()
+				return TRUE
 	else
 		return ..()
 

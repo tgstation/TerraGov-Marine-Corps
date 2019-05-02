@@ -174,7 +174,7 @@
 
 		else if(istype(M,/mob/living/silicon/robot/drone) && !M.client)
 
-			var/mob/living/silicon/robot/drone/D = loc
+			var/mob/living/silicon/robot/drone/D = src.loc
 
 			if(!istype(D))
 				return

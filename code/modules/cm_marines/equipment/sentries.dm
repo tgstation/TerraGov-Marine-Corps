@@ -117,12 +117,13 @@
 
 	user.visible_message("<span class='notice'>[user] begins to fold up and retrieve \the [src].</span>",
 	"<span class='notice'>You begin to fold up and retrieve \the [src].</span>")
-	if(do_after(user, 40, TRUE, src, USER_ICON_BUILD) && !anchored)
-		user.visible_message("<span class='notice'>[user] folds up and retrieves \the [src].</span>",
-		"<span class='notice'>You fold up and retrieve \the [src].</span>")
-		var/obj/item/turret_tripod/T = new(loc)
-		user.put_in_hands(T)
-		qdel(src)
+	if(!do_after(user, 40, TRUE, src, USER_ICON_BUILD) || !anchored)
+		return
+	user.visible_message("<span class='notice'>[user] folds up and retrieves \the [src].</span>",
+	"<span class='notice'>You fold up and retrieve \the [src].</span>")
+	var/obj/item/turret_tripod/T = new(loc)
+	user.put_in_hands(T)
+	qdel(src)
 
 /obj/machinery/turret_tripod_deployed/attackby(var/obj/item/O as obj, mob/user as mob)
 	if(iswrench(O))
