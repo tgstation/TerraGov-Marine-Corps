@@ -87,6 +87,7 @@
     sounds = 'sound/effects/mousesqueek.ogg'
 
 /datum/outputs/clownstep
+    text = ""
     sounds = list('sound/effects/clownstep1.ogg' = 1,'sound/effects/clownstep2.ogg' = 1)
 
 /datum/outputs/bite
