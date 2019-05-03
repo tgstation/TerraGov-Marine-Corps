@@ -732,7 +732,7 @@
 					/obj/item/storage/belt/gun/m44 = 10,
 					/obj/item/storage/large_holster/m39 = 10,
 					/obj/item/storage/large_holster/machete/full = 10,
-					/obj/item/storage/sparepouch = 10,
+					/obj/item/storage/belt/sparepouch = 10,
 					/obj/item/storage/pouch/pistol = 10,
 					/obj/item/storage/pouch/magazine = 10,
 					/obj/item/storage/pouch/magazine/pistol = 10,
