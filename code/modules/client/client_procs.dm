@@ -225,7 +225,11 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	apply_clickcatcher()
 
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
-		winset(src, "rpane.changelog", "background-color=#ED9F9B;font-style=bold")
+		to_chat(src, "<span class='info'>You have unread updates in the changelog.</span>")
+		if(CONFIG_GET(flag/aggressive_changelog))
+			changelog()
+		else
+			winset(src, "rpane.changelog", "background-color=#ED9F9B;font-style=bold")
 
 	if(ckey in GLOB.clientmessages)
 		for(var/message in GLOB.clientmessages[ckey])
