@@ -202,7 +202,7 @@
 			return
 
 	to_chat(M, "<span class='notice'>You start climbing into [src].</span>")
-	if(!do_after(M, 10 SECONDS, src, USER_ICON_GENERIC) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
+	if(!do_after(M, 10 SECONDS, TRUE, src, USER_ICON_GENERIC) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
 		return
 	if(occupant)
 		to_chat(M, "<span class='warning'>Someone got into the [lowertext(slot)]'s seat before you could.</span>")

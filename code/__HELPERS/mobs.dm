@@ -83,7 +83,7 @@ proc/age2agedescription(age)
 		if(70 to INFINITY)	return "elderly"
 		else				return "unknown"
 
-/proc/do_mob(mob/user , mob/target, delay = 30, icon_display, prog_bar = PROGRESS_GENERIC, uninterruptible = FALSE, datum/callback/extra_checks)
+/proc/do_mob(mob/user, mob/target, delay = 30, icon_display, prog_bar = PROGRESS_GENERIC, uninterruptible = FALSE, datum/callback/extra_checks)
 	if(!user || !target)
 		return FALSE
 	var/user_loc = user.loc

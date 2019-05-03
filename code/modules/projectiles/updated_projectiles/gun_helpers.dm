@@ -196,9 +196,11 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return FALSE
 
 
-/obj/item/weapon/gun/proc/do_wield(mob/user, wield_time) //*shrugs*
-	if(!do_mob(user, user, wield_time, null, TRUE, extra_checks = CALLBACK(src, .proc/is_wielded)))
+/obj/item/weapon/gun/proc/do_wield(mob/user, wdelay) //*shrugs*
+	if(wield_time > 0 && !do_mob(user, user, wdelay, USER_ICON_HOSTILE, PROGRESS_CLOCK, TRUE, CALLBACK(src, .proc/is_wielded)))
+		to_chat(world, "aaaaah")
 		return FALSE
+	to_chat(world, "good")
 	return TRUE
 
 /*
@@ -337,7 +339,7 @@ should be alright.
 	return 1
 
 /obj/item/weapon/gun/proc/is_wielded() //temporary proc until we get traits going
-	return flags_item & WIELDED
+	return CHECK_BITFIELD(flags_item, WIELDED)
 
 /obj/item/weapon/gun/proc/has_attachment(A)
 	if(!A)

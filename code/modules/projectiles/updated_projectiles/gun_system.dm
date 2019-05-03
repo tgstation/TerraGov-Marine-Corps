@@ -257,11 +257,11 @@
 	item_state += "_w"
 	update_slowdown()
 	place_offhand(user, initial(name))
-	wield_time = wield_delay
+	var/wdelay = wield_delay
 	//slower or faster wield delay depending on skill.
 	if(user.mind && user.mind.cm_skills)
 		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-			wield_time += 3
+			wdelay += 3
 		else
 			var/skill_value = 0
 			switch(gun_skill_category)
@@ -280,11 +280,12 @@
 				if(GUN_SKILL_SPEC)
 					skill_value = user.mind.cm_skills.spec_weapons
 			if(skill_value)
-				wield_time -= 2*skill_value
+				wdelay -= 2*skill_value
+	wield_time = world.time + wdelay
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.add_hud(user)
 	A.update_hud(user)
-	do_wield(user, wield_time)
+	do_wield(user, wdelay)
 	return TRUE
 
 /obj/item/weapon/gun/unwield(var/mob/user)

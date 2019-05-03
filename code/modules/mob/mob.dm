@@ -179,7 +179,7 @@
 	var/start_loc = W.loc
 	if(W.time_to_equip && !ignore_delay)
 		spawn(0)
-			if(!do_after(src, W.time_to_equip, TRUE, W, USER_ICON_GENERIC))
+			if(!do_after(src, W.time_to_equip, TRUE, W, USER_ICON_FRIENDLY))
 				to_chat(src, "You stop putting on \the [W]")
 			else
 				equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
