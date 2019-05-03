@@ -685,5 +685,5 @@
 			registered_z = null
 
 /mob/dead/onTransitZ(old_z,new_z)
-	..()
+	. = ..()
 	update_z(new_z)

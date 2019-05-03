@@ -698,18 +698,21 @@ below 100 is not dizzy
 /mob/living/display_output(sound/S, mutable_appearance/vfx, text, turf/turf_source, vol as num)
 	. = ..()
 	//Process icon
-	if(vfx && audiolocation)
-		var/image/sound_icon = image(vfx)
-		sound_icon.loc = turf_source
-		if(vol && S)
-			sound_icon.alpha = sound_icon.alpha * (vol / 100)
-		client.images += sound_icon
-		addtimer(CALLBACK(src, .proc/remove_image, sound_icon), 7)
+	if(!vfx || !audiolocation)
+		return
+
+	var/image/sound_icon = image(vfx)
+	sound_icon.loc = turf_source
+	if(vol && S)
+		sound_icon.alpha = sound_icon.alpha * (vol / 100)
+	client.images += sound_icon
+	addtimer(CALLBACK(src, .proc/remove_image, sound_icon), 7)
 
 /mob/living/proc/remove_image(sound_image)
-	if(sound_image && client)
-		client.images -= sound_image
-		qdel(sound_image)
+	if(!sound_image || !client)
+		return
+	client.images -= sound_image
+	qdel(sound_image)
 
 /mob/living/proc/update_z(new_z) // 1+ to register, null to unregister
 	if (registered_z != new_z)
@@ -723,5 +726,5 @@ below 100 is not dizzy
 			registered_z = null
 
 /mob/living/onTransitZ(old_z,new_z)
-	..()
+	. = ..()
 	update_z(new_z)
