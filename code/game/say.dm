@@ -259,8 +259,6 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 			job = ""
 		else
 			job = J.comm_title
-	else if(iscarbon(M))  // Carbon nonhuman
-		job = "No ID"
 	else if(isAI(M))  // AI
 		job = "AI"
 	else if(iscyborg(M))  // Cyborg
