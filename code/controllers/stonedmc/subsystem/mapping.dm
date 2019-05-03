@@ -3,9 +3,6 @@ SUBSYSTEM_DEF(mapping)
 	init_order = INIT_ORDER_MAPPING
 	flags = SS_NO_FIRE
 
-	var/list/nuke_tiles = list()
-	var/list/nuke_threats = list()
-
 	var/datum/map_config/config
 	var/datum/map_config/next_map_config
 
@@ -16,7 +13,6 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/areas_in_z = list()
 
-	var/loading_ruins = FALSE
 	var/list/turf/unused_turfs = list()				//Not actually unused turfs they're unused but reserved for use for whatever requests them. "[zlevel_of_turf]" = list(turfs)
 	var/list/datum/turf_reservations		//list of turf reservations
 	var/list/used_turfs = list()				//list of turf = datum/turf_reservation
@@ -25,10 +21,7 @@ SUBSYSTEM_DEF(mapping)
 
 	// Z-manager stuff
 	var/ground_start  // should only be used for maploading-related tasks
-	var/space_levels_so_far = 0
 	var/list/z_list
-	var/datum/space_level/transit
-	var/datum/space_level/empty_space
 	var/num_of_res_levels = 1
 
 //dlete dis once #39770 is resolved
@@ -52,44 +45,9 @@ SUBSYSTEM_DEF(mapping)
 			config = old_config
 	loadWorld()
 	repopulate_sorted_areas() // we dont have glob.sortedareas yet
-	//process_teleport_locs()			//Sets up the wizard teleport locations
 	preloadTemplates()
-#ifndef LOWMEMORYMODE
-	// Create space ruin levels
-	//while (space_levels_so_far < config.space_ruin_levels)
-	//	++space_levels_so_far
-	//	add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
-	// and one level with no ruins
-	//for (var/i in 1 to config.space_empty_levels)
-	//	++space_levels_so_far
-	//	empty_space = add_new_zlevel("Empty Area [space_levels_so_far]", list(ZTRAIT_LINKAGE = CROSSLINKED))
-	// and the transit level
-	//transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
-
-	// Pick a random away mission.
-	//if(CONFIG_GET(flag/roundstart_away))
-	//	createRandomZlevel()
-
-
-	// Generate mining ruins
-	//loading_ruins = TRUE
-	//var/list/lava_ruins = levels_by_trait(ZTRAIT_LAVA_RUINS)
-	//if (lava_ruins.len)
-	//	seedRuins(lava_ruins, CONFIG_GET(number/lavaland_budget), /area/lavaland/surface/outdoors/unexplored, lava_ruins_templates)
-	//	for (var/lava_z in lava_ruins)
-	//		spawn_rivers(lava_z)
-
-	// Generate deep space ruins
-	//var/list/space_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)
-	//if (space_ruins.len)
-	//	seedRuins(space_ruins, CONFIG_GET(number/space_budget), /area/space, space_ruins_templates)
-	//loading_ruins = FALSE
-#endif
-	//repopulate_sorted_areas()
 	// Set up Z-level transitions.
-	//setup_map_transitions()
 	generate_station_area_list()
-	//initialize_reserved_level()
 	return ..()
 
 /datum/controller/subsystem/mapping/Recover()
@@ -186,19 +144,6 @@ SUBSYSTEM_DEF(mapping)
 		query_round_map_name.Execute()
 		qdel(query_round_map_name)
 
-#ifndef LOWMEMORYMODE
-	// TODO: remove this when the DB is prepared for the z-levels getting reordered
-	//while (world.maxz < (5 - 1) && space_levels_so_far < config.space_ruin_levels)
-	//	++space_levels_so_far
-	//	add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
-
-	// load mining
-//	if(config.minetype == "lavaland")
-//		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
-//	else if (!isnull(config.minetype))
-//		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
-#endif
-
 	if(LAZYLEN(FailedZs))	//but seriously, unless the server's filesystem is messed up this will never happen
 		var/msg = "RED ALERT! The following map files failed to load: [FailedZs[1]]"
 		if(FailedZs.len > 1)
@@ -221,58 +166,8 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	if(!GLOB.the_station_areas.len)
 		log_world("ERROR: Station areas list failed to generate!")
 
-/datum/controller/subsystem/mapping/proc/maprotate()
-/*	var/players = clients.len
-	var/list/mapvotes = list()
-	//count votes
-	var/amv = TRUE
-	var/amv = CONFIG_GET(flag/allow_map_voting)
-	if(amv)
-		for (var/client/c in clients)
-			var/vote = c.prefs.preferred_map
-			if (!vote)
-				if (global.config.defaultmap)
-					mapvotes[global.config.defaultmap.map_name] += 1
-				continue
-			mapvotes[vote] += 1
-	else
-		for(var/M in global.config.maplist)
-			mapvotes[M] = 1
 
-	//filter votes
-	for (var/map in mapvotes)
-		if (!map)
-			mapvotes.Remove(map)
-		if (!(map in global.config.maplist))
-			mapvotes.Remove(map)
-			continue
-		var/datum/map_config/VM = global.config.maplist[map]
-		if (!VM)
-			mapvotes.Remove(map)
-			continue
-		if (VM.voteweight <= 0)
-			mapvotes.Remove(map)
-			continue
-		if (VM.config_min_users > 0 && players < VM.config_min_users)
-			mapvotes.Remove(map)
-			continue
-		if (VM.config_max_users > 0 && players > VM.config_max_users)
-			mapvotes.Remove(map)
-			continue
-
-		if(amv)
-			mapvotes[map] = mapvotes[map]*VM.voteweight
-
-	var/pickedmap = pickweight(mapvotes)
-	if (!pickedmap)
-		return
-	var/datum/map_config/VM = global.config.maplist[pickedmap]
-	message_admins("Randomly rotating map to [VM.map_name]")
-	. = changemap(VM)
-	if (. && VM.map_name != config.map_name)
-		to_chat(world, "<span class='boldannounce'>Map rotation has chosen [VM.map_name] for next round!</span>")
-*/
-/datum/controller/subsystem/mapping/proc/changemap(var/datum/map_config/VM)
+/datum/controller/subsystem/mapping/proc/changemap(datum/map_config/VM)
 	if(!VM.MakeNextMap())
 		next_map_config = load_map_config(default_to_box = TRUE)
 		message_admins("Failed to set new map with next_map.json for [VM.map_name]! Using default as backup!")

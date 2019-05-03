@@ -115,18 +115,13 @@
  */
 /obj/item/tool/pen/sleepypen
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
-	container_type = OPENCONTAINER
 	flags_equip_slot = ITEM_SLOT_BELT
 	origin_tech = "materials=2;syndicate=5"
 
 
-/obj/item/tool/pen/sleepypen/New()
-	var/datum/reagents/R = new/datum/reagents(30) //Used to be 300
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("chloralhydrate", 22)	//Used to be 100 sleep toxin//30 Chloral seems to be fatal, reducing it to 22./N
-	..()
-	return
+/obj/item/tool/pen/sleepypen/Initialize()
+	. = ..()
+	create_reagents(30, OPENCONTAINER, list("chloralhydrate" = 22))
 
 
 /obj/item/tool/pen/sleepypen/attack(mob/M as mob, mob/user as mob)
@@ -143,7 +138,6 @@
  * Parapens
  */
  /obj/item/tool/pen/paralysis
-	container_type = OPENCONTAINER
 	flags_equip_slot = ITEM_SLOT_BELT
 	origin_tech = "materials=2;syndicate=5"
 
@@ -160,12 +154,8 @@
 
 
 /obj/item/tool/pen/paralysis/New()
-	var/datum/reagents/R = new/datum/reagents(50)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("zombiepowder", 10)
-	R.add_reagent("cryptobiolin", 15)
-	..()
+	. = ..()
+	create_reagents(50, OPENCONTAINER, list("zombiepowder" = 10, "cryptobiolin" = 15))
 
 
 

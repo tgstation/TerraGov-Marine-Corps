@@ -48,7 +48,7 @@
 			"You detach \the [src] from \the [attached].")
 			attached = null
 			update_icon()
-			stop_processing()
+			STOP_PROCESSING(SSobj, src)
 			return
 
 		if(in_range(src, usr) && ishuman(over_object) && get_dist(over_object, src) <= 1)
@@ -56,7 +56,7 @@
 			"You attach \the [src] to \the [over_object].")
 			attached = over_object
 			update_icon()
-			start_processing()
+			START_PROCESSING(SSobj, src)
 
 
 /obj/machinery/iv_drip/attackby(obj/item/W, mob/living/user)
@@ -87,53 +87,58 @@
 
 
 /obj/machinery/iv_drip/process()
-	if(src.attached)
+	if(!attached)
+		return
 
-		if(!(get_dist(src, src.attached) <= 1 && isturf(src.attached.loc)))
-			visible_message("The needle is ripped out of [src.attached], doesn't that hurt?")
-			attached.apply_damage(3, BRUTE, pick("r_arm", "l_arm"))
-			attached = null
+	if(!(get_dist(src, attached) <= 1 && isturf(attached.loc)))
+		visible_message("The needle is ripped out of [attached], doesn't that hurt?")
+		attached.apply_damage(3, BRUTE, pick("r_arm", "l_arm"))
+		attached = null
+		update_icon()
+		STOP_PROCESSING(SSobj, src)
+		return
+
+	if(!beaker)
+		return
+
+	// Give blood
+	if(mode)
+		if(beaker.volume > 0)
+			var/transfer_amount = REAGENTS_METABOLISM
+			if(istype(beaker, /obj/item/reagent_container/blood))
+				// speed up transfer on blood packs
+				transfer_amount = 4
+			attached.inject_blood(beaker, transfer_amount)
 			update_icon()
-			stop_processing()
+
+	// Take blood
+	else
+		var/amount = beaker.reagents.maximum_volume - beaker.reagents.total_volume
+		amount = min(amount, 4)
+		// If the beaker is full, ping
+		if(amount == 0)
+			if(prob(5)) 
+				visible_message("\The [src] pings.")
 			return
 
-	if(attached && beaker)
-		// Give blood
-		if(mode)
-			if(beaker.volume > 0)
-				var/transfer_amount = REAGENTS_METABOLISM
-				if(istype(src.beaker, /obj/item/reagent_container/blood))
-					// speed up transfer on blood packs
-					transfer_amount = 4
-				attached.inject_blood(beaker, transfer_amount)
-				update_icon()
+		var/mob/living/carbon/human/T = attached
 
-		// Take blood
-		else
-			var/amount = beaker.reagents.maximum_volume - beaker.reagents.total_volume
-			amount = min(amount, 4)
-			// If the beaker is full, ping
-			if(amount == 0)
-				if(prob(5)) visible_message("\The [src] pings.")
-				return
+		if(!istype(T)) 
+			return
+		if(!T.dna)
+			return
+		if(NOCLONE in T.mutations)
+			return
 
-			var/mob/living/carbon/human/T = attached
+		if(T.species?.species_flags & NO_BLOOD)
+			return
 
-			if(!istype(T)) return
-			if(!T.dna)
-				return
-			if(NOCLONE in T.mutations)
-				return
+		// If the human is losing too much blood, beep.
+		if(T.blood_volume < BLOOD_VOLUME_SAFE && prob(5)) 
+			visible_message("\The [src] beeps loudly.")
 
-			if(T.species && T.species.species_flags & NO_BLOOD)
-				return
-
-			// If the human is losing too much blood, beep.
-			if(T.blood_volume < BLOOD_VOLUME_SAFE) if(prob(5))
-				visible_message("\The [src] beeps loudly.")
-
-			T.take_blood(beaker,amount)
-			update_icon()
+		T.take_blood(beaker, amount)
+		update_icon()
 
 /obj/machinery/iv_drip/attack_hand(mob/user as mob)
 	if(src.beaker)

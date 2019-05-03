@@ -225,7 +225,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 			"can_delay"			= launch_status[2]
 		)
 
-		ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+		ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 		if (!ui)
 			ui = new(user, src, ui_key, "escape_pod_console.tmpl", id_tag, 470, 290)
@@ -373,7 +373,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 		"armed" = armed,
 	)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
 		ui = new(user, src, ui_key, "escape_pod_berth_console.tmpl", name, 470, 290)

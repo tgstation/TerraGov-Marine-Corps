@@ -354,19 +354,19 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 /turf/open/space/is_weedable()
 	return FALSE
 
-/turf/open/gm/grass/is_weedable()
+/turf/open/ground/grass/is_weedable()
 	return FALSE
 
-/turf/open/gm/dirtgrassborder/is_weedable()
+/turf/open/floor/plating/ground/dirtgrassborder/is_weedable()
 	return FALSE
 
-/turf/open/gm/river/is_weedable()
+/turf/open/ground/river/is_weedable()
 	return FALSE
 
-/turf/open/gm/coast/is_weedable()
+/turf/open/ground/coast/is_weedable()
 	return FALSE
 
-/turf/open/snow/is_weedable()
+/turf/open/floor/plating/ground/snow/is_weedable()
 	return !slayer && ..()
 
 
@@ -421,19 +421,16 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 /turf/proc/can_dig_xeno_tunnel()
 	return FALSE
 
-/turf/open/gm/can_dig_xeno_tunnel()
+/turf/open/ground/can_dig_xeno_tunnel()
 	return TRUE
 
-/turf/open/gm/river/can_dig_xeno_tunnel()
+/turf/open/ground/river/can_dig_xeno_tunnel()
 	return FALSE
 
-/turf/open/snow/can_dig_xeno_tunnel()
+/turf/open/floor/plating/ground/snow/can_dig_xeno_tunnel()
 	return TRUE
 
-/turf/open/ice/can_dig_xeno_tunnel()
-	return TRUE
-
-/turf/open/mars/can_dig_xeno_tunnel()
+/turf/open/floor/plating/ground/ice/can_dig_xeno_tunnel()
 	return TRUE
 
 /turf/open/floor/can_dig_xeno_tunnel()
@@ -445,13 +442,13 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 /turf/open/floor/almayer/research/containment/can_dig_xeno_tunnel()
 	return FALSE
 
-/turf/open/jungle/can_dig_xeno_tunnel()
+/turf/open/ground/jungle/can_dig_xeno_tunnel()
 	return TRUE
 
-/turf/open/jungle/impenetrable/can_dig_xeno_tunnel()
+/turf/open/ground/jungle/impenetrable/can_dig_xeno_tunnel()
 	return FALSE
 
-/turf/open/jungle/water/can_dig_xeno_tunnel()
+/turf/open/ground/jungle/water/can_dig_xeno_tunnel()
 	return FALSE
 
 /turf/open/floor/prison/can_dig_xeno_tunnel()
@@ -467,13 +464,16 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 /turf/proc/get_dirt_type()
 	return NO_DIRT
 
-/turf/open/gm/get_dirt_type()
+/turf/open/ground/get_dirt_type()
 	return DIRT_TYPE_GROUND
 
-/turf/open/mars/get_dirt_type()
+/turf/open/floor/plating/ground/get_dirt_type()
+	return DIRT_TYPE_GROUND
+
+/turf/open/floor/plating/ground/mars/get_dirt_type()
 	return DIRT_TYPE_MARS
 
-/turf/open/snow/get_dirt_type()
+/turf/open/floor/plating/ground/snow/get_dirt_type()
 	return DIRT_TYPE_SNOW
 
 

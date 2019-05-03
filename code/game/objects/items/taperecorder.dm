@@ -20,11 +20,13 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/taperecorder/hear_talk(mob/living/M as mob, msg, var/verb="says", var/speaking, var/italics = 0)
+/obj/item/taperecorder/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, message_mode)
+	. = ..()
+
 	if(recording)
-		timestamp+= timerecorded
-		storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] [M.name] [verb], \"[italics ? "<i>" : ""][msg][italics ? "</i>" : ""]\""
-		return
+		timestamp += timerecorded
+		storedinfo += "\[[time2text(timerecorded * 10, "mm:ss")]\] [speaker.name]: \"[message]\""
+
 
 /obj/item/taperecorder/attackby(obj/item/W as obj, mob/user as mob)
 	..()

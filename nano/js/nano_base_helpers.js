@@ -48,6 +48,10 @@ NanoBaseHelpers = function ()
 			round: function(number) {
 				return Math.round(number);
 			},
+			// Returns the number fixed to 1 decimal
+			fixed: function(number) {
+				return Math.round(number * 10) / 10;
+			},
 			// Round a number down to integer
 			floor: function(number) {
 				return Math.floor(number);
@@ -83,8 +87,12 @@ NanoBaseHelpers = function ()
 				parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 				return parts.join(".");
 			},
-			// Display a bar. Used to show health, capacity, etc.
-			displayBar: function(value, rangeMin, rangeMax, styleClass, showText) {
+			// Capitalize the first letter of a string. From http://stackoverflow.com/questions/1026069/capitalize-the-first-letter-of-string-in-javascript
+			capitalizeFirstLetter: function(string) {
+				return string.charAt(0).toUpperCase() + string.slice(1);
+			},
+			// Display a bar. Used to show health, capacity, etc. Use difClass if the entire display bar class should be different
+			displayBar: function(value, rangeMin, rangeMax, styleClass, showText, difClass, direction) {
 
 				if (rangeMin < rangeMax)
                 {
@@ -118,10 +126,24 @@ NanoBaseHelpers = function ()
 				{
 					showText = '';
 				}
-
+				
+				if (typeof difClass == 'undefined' || !difClass)
+				{
+					difClass = ''
+				}
+				
+				if(typeof direction == 'undefined' || !direction)
+				{
+					direction = 'width'
+				}
+				else
+				{
+					direction = 'height'
+				}
+				
 				var percentage = Math.round((value - rangeMin) / (rangeMax - rangeMin) * 100);
-
-				return '<div class="displayBar ' + styleClass + '"><div class="displayBarFill ' + styleClass + '" style="width: ' + percentage + '%;"></div><div class="displayBarText ' + styleClass + '">' + showText + '</div></div>';
+				
+				return '<div class="displayBar' + difClass + ' ' + styleClass + '"><div class="displayBar' + difClass + 'Fill ' + styleClass + '" style="' + direction + ': ' + percentage + '%;"></div><div class="displayBar' + difClass + 'Text ' + styleClass + '">' + showText + '</div></div>';
 			},
 			// Display DNA Blocks (for the DNA Modifier UI)
 			displayDNABlocks: function(dnaString, selectedBlock, selectedSubblock, blockSize, paramKey) {

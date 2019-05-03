@@ -13,15 +13,15 @@
 	var/sheet_type = /obj/item/stack/barbed_wire
 	var/sheet_type2 = /obj/item/stack/rods
 	var/table_prefix = "" //used in update_icon()
-	health = RAZORWIRE_MAX_HEALTH
+	max_integrity = RAZORWIRE_MAX_HEALTH
 	var/soak = 5
 
 /obj/structure/razorwire/proc/destroyed(deconstruct = FALSE)
 	if(deconstruct)
-		if(health > RAZORWIRE_MAX_HEALTH * 0.5)
+		if(obj_integrity > max_integrity * 0.5)
 			new sheet_type(loc)
 		var/obj/item/stack/rods/salvage = new sheet_type2(loc)
-		salvage.amount = min(1, round(4 * (health / RAZORWIRE_MAX_HEALTH) ) )
+		salvage.amount = min(1, round(4 * (obj_integrity / max_integrity) ) )
 	else
 		if(prob(50))
 			new sheet_type(loc)
@@ -49,7 +49,7 @@
 	razorwire_tangle(M)
 
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/M, duration = RAZORWIRE_ENTANGLE_DELAY)
-	if(QDELETED(src) || health <= 0) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
+	if(QDELETED(src) || obj_integrity <= 0) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
 		return
 	M.entangle_delay = world.time + duration
 	M.visible_message("<span class='danger'>[M] gets entangled in the barbed wire!</span>",
@@ -150,7 +150,7 @@
 			if(do_after(user, delay, TRUE, 5, BUSY_ICON_FRIENDLY) && old_loc == loc)
 				user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 				"<span class='notice'>You repair [src].</span>")
-				health = min(health + 100, RAZORWIRE_MAX_HEALTH)
+				obj_integrity = min(obj_integrity + 100, max_integrity)
 				update_health()
 				playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 		return
@@ -172,7 +172,7 @@
 	damage = max(damage - soak,0)
 	if(damage)
 		. = ..()
-		health -= damage
+		obj_integrity -= damage
 		update_health()
 
 	if(isliving(user))
@@ -187,9 +187,9 @@
 
 /obj/structure/razorwire/attack_alien(mob/living/carbon/Xenomorph/M)
 	M.animation_attack_on(src)
-	health -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
+	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)
 	else
@@ -209,9 +209,9 @@
 			destroyed()
 			return
 		if(2.0)
-			health -= rand(33, 66)
+			obj_integrity -= rand(33, 66)
 		if(3.0)
-			health -= rand(10, 33)
+			obj_integrity -= rand(10, 33)
 	update_health()
 
 /obj/structure/razorwire/Bumped(atom/A)
@@ -224,7 +224,7 @@
 		if(C.charge_speed < CHARGE_SPEED_MAX * 0.5)
 			return
 
-		health -= C.charge_speed * CRUSHER_CHARGE_RAZORWIRE_MULTI
+		obj_integrity -= C.charge_speed * CRUSHER_CHARGE_RAZORWIRE_MULTI
 
 
 		var/def_zone = ran_zone()
@@ -232,7 +232,7 @@
 			C.visible_message("<span class='danger'>[C] plows through the barbed wire!</span>",
 			"<span class='danger'>You plow through the barbed wire!</span>", null, 5)
 
-		else if(health > 0) //If we didn't destroy the barbed wire, we get tangled up.
+		else if(obj_integrity > 0) //If we didn't destroy the barbed wire, we get tangled up.
 			C.stop_momentum(C.charge_dir)
 			razorwire_tangle(C, RAZORWIRE_ENTANGLE_DELAY * 0.5) //entangled for only half as long
 
@@ -246,10 +246,10 @@
 
 /obj/structure/razorwire/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage * 0.1)
+	obj_integrity -= round(P.damage * 0.1)
 
 	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
+		obj_integrity -= 50
 
 	update_health()
 	return TRUE
@@ -270,9 +270,9 @@
 	return ..()
 
 /obj/structure/razorwire/update_health(nomessage)
-	health = CLAMP(health, 0, RAZORWIRE_MAX_HEALTH)
+	obj_integrity = CLAMP(obj_integrity, 0, max_integrity)
 
-	if(!health)
+	if(!obj_integrity)
 		if(!nomessage)
 			visible_message("<span class='danger'>[src] falls apart!</span>")
 		destroyed()
@@ -291,7 +291,7 @@
 		return TRUE
 
 /obj/structure/razorwire/update_icon()
-	var/health_percent = round(health/RAZORWIRE_MAX_HEALTH * 100)
+	var/health_percent = round(obj_integrity/max_integrity * 100)
 	var/remaining = CEILING(health_percent, 25)
 	icon_state = "[base_icon_state]_[remaining]"
 
@@ -300,5 +300,5 @@
 	if(!.)
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		health -= 2 * S.strength
+		obj_integrity -= 2 * S.strength
 		update_health()

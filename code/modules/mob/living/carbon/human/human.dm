@@ -931,7 +931,9 @@
 			for(var/datum/data/record/R in GLOB.datacore.medical)
 				if (R.fields["name"] == real_name)
 					if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-						usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
+						var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
+						popup.set_content(R.fields["last_scan_result"])
+						popup.open(FALSE)
 					break
 
 	if (href_list["lookitem"])
@@ -1326,6 +1328,8 @@
 
 	if(species.default_language)
 		grant_language(species.default_language)
+		var/datum/language_holder/H = get_language_holder()
+		H.selected_default_language = species.default_language
 
 	if(species.base_color && default_colour)
 		//Apply colour.
@@ -1758,3 +1762,21 @@
 	hud_set_squad()
 
 	return TRUE
+
+
+/mob/living/carbon/human/proc/purrbate()
+	if(overlays_standing["purrbation"])
+		remove_overlay("purrbation")
+		log_admin("[key_name(usr)] has removed purrbation from [key_name(src)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has removed purrbation from [ADMIN_TPMONTY(src)].")
+	else
+		var/icon/ears = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kitty")
+		var/icon/earbit = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kittyinner")
+
+		ears.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+		ears.Blend(earbit, ICON_OVERLAY)
+
+		overlays_standing["purrbation"] = ears
+		apply_overlay("purrbation")
+		log_admin("[key_name(usr)] has purrbated [key_name(src)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has purrbated [ADMIN_TPMONTY(src)].")

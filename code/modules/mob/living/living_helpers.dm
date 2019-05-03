@@ -16,3 +16,9 @@
 	if(get_total_tint() >= TINT_HEAVY)
 		return FALSE
 	return has_eyes()
+
+/mob/living/proc/reagent_check(datum/reagent/R)
+	return TRUE
+
+/mob/living/proc/get_reagent_tags()
+	return

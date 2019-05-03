@@ -196,7 +196,8 @@
 	terminal.master = src
 
 /obj/machinery/power/apc/examine(mob/user)
-	to_chat(user, desc)
+	. = ..()
+
 	if(machine_stat & BROKEN)
 		to_chat(user, "<span class='info'>It appears to be completely broken. It's hard to see what else is wrong with it.</span>")
 		return
@@ -228,23 +229,23 @@
 	overlays.Cut()
 
 	if(update & 1)
-		var/broken = update_state & UPSTATE_BROKE ? "-b" : ""
-		var/status = update_state & UPSTATE_WIREEXP ? "-wires" : broken
+		var/broken = CHECK_BITFIELD(update_state, UPSTATE_BROKE) ? "-b" : ""
+		var/status = (CHECK_BITFIELD(update_state, UPSTATE_WIREEXP) && !CHECK_BITFIELD(update_state, UPSTATE_OPENED1)) ? "-wires" : broken
 		icon_state = "apc[opened][status]"
 
 	if(update & 2)
-		if(update_overlay & APC_UPOVERLAY_CELL_IN)
+		if(CHECK_BITFIELD(update_overlay, APC_UPOVERLAY_CELL_IN))
 			overlays += "apco-cell"
-		else if(update_overlay & APC_UPOVERLAY_BLUESCREEN)
-			overlays += image(icon, "apco-emag")
-		else
-			if(!(panel_open || opened))
+		else if(CHECK_BITFIELD(update_state, UPSTATE_ALLGOOD))
+			if(CHECK_BITFIELD(update_overlay, APC_UPOVERLAY_BLUESCREEN))
+				overlays += image(icon, "apco-emag")
+			else
 				overlays += image(icon, "apcox-[locked]")
 				overlays += image(icon, "apco3-[charging]")
-				if(update_overlay & APC_UPOVERLAY_OPERATING)
-					overlays += image(icon, "apco0-[equipment]")
-					overlays += image(icon, "apco1-[lighting]")
-					overlays += image(icon, "apco2-[environ]")
+				var/operating = CHECK_BITFIELD(update_overlay, APC_UPOVERLAY_OPERATING)
+				overlays += image(icon, "apco0-[operating ? equipment : 0]")
+				overlays += image(icon, "apco1-[operating ? lighting : 0]")
+				overlays += image(icon, "apco2-[operating ? environ : 0]")
 
 /obj/machinery/power/apc/proc/check_updates()
 
@@ -253,57 +254,54 @@
 	update_state = 0
 	update_overlay = 0
 
-
 	if(machine_stat & BROKEN)
-		update_state |= UPSTATE_BROKE
+		ENABLE_BITFIELD(update_state, UPSTATE_BROKE)
 	if(machine_stat & MAINT)
-		update_state |= UPSTATE_MAINT
+		ENABLE_BITFIELD(update_state, UPSTATE_MAINT)
 	if(opened)
 		if(opened == APC_COVER_OPENED)
-			update_state |= UPSTATE_OPENED1
+			ENABLE_BITFIELD(update_state, UPSTATE_OPENED1)
 		if(opened == APC_COVER_REMOVED)
-			update_state |= UPSTATE_OPENED2
+			ENABLE_BITFIELD(update_state, UPSTATE_OPENED2)
 	if(panel_open)
-		update_state |= UPSTATE_WIREEXP
+		ENABLE_BITFIELD(update_state, UPSTATE_WIREEXP)
 	if(!update_state)
-		update_state |= UPSTATE_ALLGOOD
-
-	if(update_state & UPSTATE_ALLGOOD)
+		ENABLE_BITFIELD(update_state, UPSTATE_ALLGOOD)
 		if(emagged)
-			update_overlay |= APC_UPOVERLAY_BLUESCREEN
+			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_BLUESCREEN)
 		if(locked)
-			update_overlay |= APC_UPOVERLAY_LOCKED
+			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LOCKED)
 		if(operating)
-			update_overlay |= APC_UPOVERLAY_OPERATING
+			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_OPERATING)
 		if(!charging)
-			update_overlay |= APC_UPOVERLAY_CHARGEING0
+			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CHARGEING0)
 		else if(charging == APC_CHARGING)
-			update_overlay |= APC_UPOVERLAY_CHARGEING1
+			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CHARGEING1)
 		else if(charging == APC_FULLY_CHARGED)
-			update_overlay |= APC_UPOVERLAY_CHARGEING2
+			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CHARGEING2)
 
 		if (!equipment)
-			update_overlay |= APC_UPOVERLAY_EQUIPMENT0
+			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_EQUIPMENT0)
 		else if(equipment == 1)
-			update_overlay |= APC_UPOVERLAY_EQUIPMENT1
+			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_EQUIPMENT1)
 		else if(equipment == 2)
-			update_overlay |= APC_UPOVERLAY_EQUIPMENT2
+			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_EQUIPMENT2)
 
 		if(!lighting)
-			update_overlay |= APC_UPOVERLAY_LIGHTING0
+			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LIGHTING0)
 		else if(lighting == 1)
-			update_overlay |= APC_UPOVERLAY_LIGHTING1
+			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LIGHTING1)
 		else if(lighting == 2)
-			update_overlay |= APC_UPOVERLAY_LIGHTING2
+			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LIGHTING2)
 
 		if(!environ)
-			update_overlay |= APC_UPOVERLAY_ENVIRON0
+			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_ENVIRON0)
 		else if(environ == 1)
-			update_overlay |= APC_UPOVERLAY_ENVIRON1
+			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_ENVIRON1)
 		else if(environ == 2)
-			update_overlay |= APC_UPOVERLAY_ENVIRON2
-	if(opened && cell && !(update_state & UPSTATE_MAINT) && ((opened == APC_COVER_OPENED && !(update_state & UPSTATE_BROKE)) || opened == APC_COVER_REMOVED))
-		update_overlay |= APC_UPOVERLAY_CELL_IN
+			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_ENVIRON2)
+	if(opened && cell && !CHECK_BITFIELD(update_state, UPSTATE_MAINT) && ((CHECK_BITFIELD(update_state, UPSTATE_OPENED1) && !CHECK_BITFIELD(update_state, UPSTATE_BROKE)) || CHECK_BITFIELD(update_state, UPSTATE_OPENED2)))
+		ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CELL_IN)
 
 	var/results = 0
 	if(last_update_state == update_state && last_update_overlay == update_overlay)
@@ -773,7 +771,7 @@
 	)
 
 	//Update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		//The ui does not exist, so we'll create a new() one
         //For a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -893,7 +891,7 @@
 		return 0
 	if(!(ishuman(user) || issilicon(user) || ismonkey(user)))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to use [src]!</span>")
-		nanomanager.close_user_uis(user, src)
+		SSnano.close_user_uis(user, src)
 		return 0
 	if(user.restrained())
 		to_chat(user, "<span class='warning'>You must have free hands to use [src].</span>")
@@ -905,11 +903,11 @@
 		if(aidisabled)
 			if(!loud)
 				to_chat(user, "<span class='warning'>[src] has AI control disabled!</span>")
-				nanomanager.close_user_uis(user, src)
+				SSnano.close_user_uis(user, src)
 			return 0
 	else
 		if((!in_range(src, user) || !istype(src.loc, /turf)))
-			nanomanager.close_user_uis(user, src)
+			SSnano.close_user_uis(user, src)
 			return 0
 
 	var/mob/living/carbon/human/H = user
@@ -987,7 +985,7 @@
 		update()
 
 	else if(href_list["close"])
-		nanomanager.close_user_uis(usr, src)
+		SSnano.close_user_uis(usr, src)
 		return FALSE
 
 	else if(href_list["close2"])
@@ -1313,36 +1311,7 @@
 	desc = "A control terminal for the area electrical systems. This one is hardened against sudden power fluctuations caused by electrical grid damage."
 	crash_break_probability = 0
 
-#undef APC_WIRE_IDSCAN
-#undef APC_WIRE_MAIN_POWER1
-#undef APC_WIRE_MAIN_POWER2
-#undef APC_WIRE_AI_CONTROL
-
 #undef APC_RESET_EMP
-
-#undef UPSTATE_OPENED1
-#undef UPSTATE_OPENED2
-#undef UPSTATE_MAINT
-#undef UPSTATE_BROKE
-#undef UPSTATE_WIREEXP
-#undef UPSTATE_ALLGOOD
-
-#undef APC_UPOVERLAY_CHARGEING0
-#undef APC_UPOVERLAY_CHARGEING1
-#undef APC_UPOVERLAY_CHARGEING2
-#undef APC_UPOVERLAY_EQUIPMENT0
-#undef APC_UPOVERLAY_EQUIPMENT1
-#undef APC_UPOVERLAY_EQUIPMENT2
-#undef APC_UPOVERLAY_LIGHTING0
-#undef APC_UPOVERLAY_LIGHTING1
-#undef APC_UPOVERLAY_LIGHTING2
-#undef APC_UPOVERLAY_ENVIRON0
-#undef APC_UPOVERLAY_ENVIRON1
-#undef APC_UPOVERLAY_ENVIRON2
-#undef APC_UPOVERLAY_LOCKED
-#undef APC_UPOVERLAY_OPERATING
-#undef APC_UPOVERLAY_CELL_IN
-#undef APC_UPOVERLAY_BLUESCREEN
 
 #undef APC_ELECTRONICS_MISSING
 #undef APC_ELECTRONICS_INSTALLED

@@ -5,7 +5,7 @@
 	possible_transfer_amounts = null
 	volume = 50 //Sets the default container amount for all food items.
 	var/filling_color = "#FFFFFF" //Used by sandwiches.
-	container_type = INJECTABLE
+	init_reagent_flags = INJECTABLE
 
 	var/list/center_of_mass = newlist() //Center of mass
 

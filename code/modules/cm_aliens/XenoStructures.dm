@@ -7,15 +7,15 @@
 	desc = "theres something alien about this"
 	icon = 'icons/Xeno/Effects.dmi'
 	anchored = TRUE
-	var/health = 1
+	max_integrity = 1
 	var/on_fire = FALSE
 
 /obj/effect/alien/proc/healthcheck()
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		qdel(src)
 
 /obj/effect/alien/proc/take_damage(amount)
-	health = max(0, health - amount)
+	obj_integrity = max(0, obj_integrity - amount)
 	healthcheck()
 
 /obj/effect/alien/Crossed(atom/movable/O)
@@ -52,7 +52,7 @@
 	name = "resin"
 	desc = "Looks like some kind of slimy growth."
 	icon_state = "Resin1"
-	health = 200
+	max_integrity = 200
 
 /obj/effect/alien/resin/hitby(AM as mob|obj)
 	..()
@@ -130,7 +130,7 @@
 	icon_state = "sticky"
 	density = 0
 	opacity = 0
-	health = 36
+	max_integrity = 36
 	layer = RESIN_STRUCTURE_LAYER
 	var/slow_amt = 8
 
@@ -144,7 +144,7 @@
 /obj/effect/alien/resin/sticky/thin
 	name = "thin sticky resin"
 	desc = "A thin layer of disgusting sticky slime."
-	health = 6
+	max_integrity = 6
 	slow_amt = 4
 
 
@@ -156,7 +156,7 @@
 	density = 0
 	opacity = 0
 	anchored = 1
-	health = 5
+	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
 	var/obj/item/clothing/mask/facehugger/hugger = null
 	var/mob/living/linked_carrier //The carrier that placed us.
@@ -269,7 +269,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	hardness = 1.5
 	layer = RESIN_STRUCTURE_LAYER
-	health = 80
+	max_integrity = 80
 	var/close_delay = 100
 
 	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)
@@ -293,8 +293,8 @@
 		user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
 		"<span class='xenowarning'>You claw at \the [src].</span>")
 		playsound(loc, "alien_resin_break", 25)
-		health -= rand(40, 60)
-		if(health <= 0)
+		obj_integrity -= rand(40, 60)
+		if(obj_integrity <= 0)
 			user.visible_message("<span class='xenodanger'>\The [user] slices \the [src] apart.</span>", \
 			"<span class='xenodanger'>You slice \the [src] apart.</span>")
 		healthcheck()
@@ -331,14 +331,14 @@
 		qdel(src)
 
 /obj/structure/mineral_door/resin/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage * 0.5
+	obj_integrity -= Proj.damage * 0.5
 	..()
 	healthcheck()
 	return TRUE
 
 /obj/structure/mineral_door/resin/flamer_fire_act()
-	health -= 50
-	if(health <= 0)
+	obj_integrity -= 50
+	if(obj_integrity <= 0)
 		qdel(src)
 
 /turf/closed/wall/resin/fire_act()
@@ -411,7 +411,7 @@
 	return ..()
 
 /obj/structure/mineral_door/resin/proc/healthcheck()
-	if(src.health <= 0)
+	if(src.obj_integrity <= 0)
 		src.Dismantle(1)
 
 
@@ -434,7 +434,7 @@
 
 /obj/structure/mineral_door/resin/thick
 	name = "thick resin door"
-	health = 160
+	max_integrity = 160
 	hardness = 2.0
 
 /obj/structure/mineral_door/resin/thick/thicken()
@@ -459,7 +459,7 @@
 	icon_state = "Egg Growing"
 	density = 0
 
-	health = 80
+	max_integrity = 80
 	var/obj/item/clothing/mask/facehugger/hugger = null
 	var/hugger_type = /obj/item/clothing/mask/facehugger/stasis
 	var/list/egg_triggers = list()
@@ -628,7 +628,7 @@
 
 
 /obj/effect/alien/egg/healthcheck()
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		Burst(TRUE)
 
 /obj/effect/alien/egg/flamer_fire_act() // gotta kill the egg + hugger
@@ -691,7 +691,7 @@ TUNNEL
 
 	var/tunnel_desc = "" //description added by the hivelord.
 
-	health = 140
+	max_integrity = 140
 	var/mob/living/carbon/Xenomorph/Hivelord/creator = null
 	var/obj/structure/tunnel/other = null
 	var/id = null //For mapping
@@ -723,7 +723,7 @@ TUNNEL
 			to_chat(user, "<span class='info'>The Hivelord scent reads: \'[tunnel_desc]\'</span>")
 
 /obj/structure/tunnel/proc/healthcheck()
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		visible_message("<span class='danger'>[src] suddenly collapses!</span>")
 		if(other && isturf(other.loc))
 			visible_message("<span class='danger'>[other] suddenly collapses!</span>")
@@ -737,11 +737,11 @@ TUNNEL
 /obj/structure/tunnel/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			health -= 210
+			obj_integrity -= 210
 		if(2.0)
-			health -= 140
+			obj_integrity -= 140
 		if(3.0)
-			health -= 70
+			obj_integrity -= 70
 	healthcheck()
 
 /obj/structure/tunnel/attackby(obj/item/W as obj, mob/user as mob)
@@ -756,7 +756,7 @@ TUNNEL
 	if(M.a_intent == INTENT_HARM && M == creator)
 		to_chat(M, "<span class='xenowarning'>You begin filling in your tunnel...</span>")
 		if(do_after(M, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, 5, BUSY_ICON_HOSTILE))
-			health = 0
+			obj_integrity = 0
 			healthcheck()
 		return
 

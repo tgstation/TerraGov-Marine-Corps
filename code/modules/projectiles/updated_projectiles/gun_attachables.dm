@@ -796,10 +796,6 @@ Defined in conflicts.dm of the #defines folder.
 	pockets.emp_act(severity)
 	return ..()
 
-/obj/item/attachable/stock/vp70/hear_talk(mob/M, msg)
-	pockets.hear_talk(M, msg)
-	return ..()
-
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
 	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility. Less effective in melee as well"
