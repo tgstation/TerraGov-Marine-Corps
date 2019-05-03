@@ -527,7 +527,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			item_state = icon_on
 			if(istype(src, /obj/item/tool/lighter/zippo) )
 				user.visible_message("<span class='rose'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
-				playsound(src.loc, 'sound/items/zippo_on.ogg', 15, 1)
+				playsound(loc, 'sound/items/zippo_on.ogg', 15, 1)
 			else
 				if(prob(95))
 					user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src].</span>")
@@ -538,7 +538,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					else
 						user.apply_damage(2,BURN,"r_hand")
 					user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
-				playsound(src.loc, 'sound/items/lighter_on.ogg', 15, 1)
+				playsound(loc, 'sound/items/lighter_on.ogg', 15, 1)
 
 			user.SetLuminosity(LIGHTER_LUMINOSITY)
 			START_PROCESSING(SSobj, src)
@@ -556,10 +556,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(!silent)
 			if(istype(src, /obj/item/tool/lighter/zippo) )
 				bearer.visible_message("<span class='rose'>You hear a quiet click, as [bearer] shuts off [src] without even looking at what they're doing.")
-				playsound(src.loc, 'sound/items/zippo_off.ogg', 15, 1)
+				playsound(loc, 'sound/items/zippo_off.ogg', 15, 1)
 			else
 				bearer.visible_message("<span class='notice'>[bearer] quietly shuts off the [src].")
-				playsound(src.loc, 'sound/items/lighter_off.ogg', 15, 1)
+				playsound(loc, 'sound/items/lighter_off.ogg', 15, 1)
 		bearer.SetLuminosity(-LIGHTER_LUMINOSITY)
 		SetLuminosity(0)
 		STOP_PROCESSING(SSobj, src)
