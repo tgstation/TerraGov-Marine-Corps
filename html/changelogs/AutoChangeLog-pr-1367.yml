@@ -1,0 +1,5 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - balance: "Xeno stings will stop injecting chems on overdosed infected hosts."
+  - balance: "Larval growth serum provides decent healing and strong analgesic properties to the host, both stacking with other chems. OD made a little softer. Still able to push you over if you are at the edge."
