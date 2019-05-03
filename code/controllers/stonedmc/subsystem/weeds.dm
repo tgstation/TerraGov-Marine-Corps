@@ -52,8 +52,7 @@ SUBSYSTEM_DEF(weeds)
 		var/obj/effect/alien/weeds/node/N = creating[T]
 		creating -= T
 		// Adds a bit of jitter to the spawning weeds.
-		spawn(rand(0,10))
-			create_weed(T, N)
+		addTimer(CALLBACK(src, ./proc/create_weed, T, N), rand(0,10))
 		pending -= T
 
 		if(MC_TICK_CHECK)
