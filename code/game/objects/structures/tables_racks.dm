@@ -29,8 +29,8 @@
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
 	max_integrity = 100
 
-/obj/structure/table/destroy_structure(deconstruct)
-	if(deconstruct)
+/obj/structure/table/deconstruct(disassembled)
+	if(disassembled)
 		if(parts)
 			new parts(loc)
 	else
@@ -38,7 +38,7 @@
 			if(prob(50))
 				new /obj/item/stack/rods(loc)
 		new sheet_type(src)
-	qdel(src)
+	return ..()
 
 /obj/structure/table/proc/update_adjacent(location)
 	if(!location) location = src //location arg is used to correctly update neighbour tables when deleting a table.
@@ -61,7 +61,7 @@
 		var/mob/living/carbon/Xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
-			destroy_structure()
+			deconstruct()
 
 /obj/structure/table/Destroy()
 	var/tableloc = loc
@@ -265,7 +265,7 @@
 	if(obj_integrity <= 0)
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)
-		destroy_structure()
+		deconstruct()
 	else
 		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
 		"<span class='danger'>You slash [src]!</span>", null, 5)
@@ -308,7 +308,7 @@
 		if(do_after(user,50, TRUE, 5, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 			"<span class='notice'>You disassemble [src].</span>")
-			destroy_structure(1)
+			deconstruct(TRUE)
 		return
 
 	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
@@ -573,13 +573,13 @@
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
 	"<span class='danger'>You slice [src] apart!</span>", null, 5)
-	destroy_structure()
+	deconstruct()
 	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 /obj/structure/rack/attackby(obj/item/W, mob/user)
 	if(iswrench(W))
-		destroy_structure(1)
+		deconstruct(TRUE)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		return
 	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
@@ -593,13 +593,12 @@
 		var/mob/living/carbon/Xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
-			destroy_structure()
+			deconstruct()
 
-/obj/structure/rack/destroy_structure(deconstruct)
-	if(deconstruct)
+/obj/structure/rack/deconstruct(disassembled)
+	if(disassembled)
 		if(parts)
 			new parts(loc)
 	else
 		new /obj/item/stack/sheet/metal(loc)
-	density = 0
-	qdel(src)
+	return ..()

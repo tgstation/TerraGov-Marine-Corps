@@ -749,25 +749,6 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		return //immune to acid spit
 	. = ..()
 
-
-
-
-//Hitting an object. These are too numerous so they're staying in their files.
-//Why are there special cases listed here? Oh well, whatever. ~N
-/obj/bullet_act(obj/item/projectile/P)
-	if(!CanPass(P, get_turf(src)) && density)
-		bullet_ping(P)
-		return 1
-
-/obj/structure/table/bullet_act(obj/item/projectile/P)
-	src.bullet_ping(P)
-	obj_integrity -= round(P.damage/2)
-	if (obj_integrity < 0)
-		visible_message("<span class='warning'>[src] breaks down!</span>")
-		destroy_structure()
-	return 1
-
-
 //----------------------------------------------------------
 					//				    \\
 					//    OTHER PROCS	\\

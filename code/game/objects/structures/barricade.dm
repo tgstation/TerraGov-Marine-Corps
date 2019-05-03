@@ -180,10 +180,7 @@
 		return
 
 	if(W.force > barricade_resistance)
-		..()
-		if(barricade_hitsound)
-			playsound(src, barricade_hitsound, 25, 1)
-		hit_barricade(W)
+		return ..()
 
 /obj/structure/barricade/deconstruct(disassembled = TRUE)
 	if(disassembled && is_wired)
@@ -235,22 +232,6 @@
 	else
 		wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
 	overlays += wired_overlay
-
-/obj/structure/barricade/proc/hit_barricade(obj/item/I)
-	obj_integrity -= I.force * 0.5
-	update_health()
-
-/obj/structure/barricade/update_health(nomessage)
-	obj_integrity = CLAMP(obj_integrity, 0, max_integrity)
-
-	if(!obj_integrity)
-		if(!nomessage)
-			visible_message("<span class='danger'>[src] falls apart!</span>")
-		destroy_structure()
-		return
-
-	update_damage_state()
-	update_icon()
 
 /obj/structure/barricade/proc/update_damage_state()
 	var/health_percent = round(obj_integrity/max_integrity * 100)
@@ -331,7 +312,7 @@
 			return
 		if(!ET.folded)
 			user.visible_message("<span class='notice'> \The [user] removes \the [src].</span>")
-			destroy_structure(TRUE)
+			deconstruct(TRUE)
 		return
 	else
 		. = ..()
@@ -399,14 +380,6 @@
 					visible_message("<span class='notice'>[user] repairs [src].</span>")
 		return
 	. = ..()
-
-/obj/structure/barricade/wooden/hit_barricade(obj/item/I)
-	switch(I.damtype)
-		if("fire")
-			obj_integrity -= I.force * 1.5
-		if("brute")
-			obj_integrity -= I.force * 0.75
-	update_health()
 
 /obj/structure/barricade/wooden/bullet_act(var/obj/item/projectile/P)
 	bullet_ping(P)
@@ -579,7 +552,7 @@
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					destroy_structure(TRUE) //Note : Handles deconstruction too !
+					deconstruct(TRUE)
 				return
 
 	. = ..()
@@ -790,7 +763,7 @@
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					destroy_structure(TRUE) //Note : Handles deconstruction too !
+					deconstruct(TRUE)
 				else busy = FALSE
 				return
 
@@ -875,7 +848,7 @@
 			if(do_after(user, ET.shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 				"<span class='notice'>You disassemble [src].</span>")
-				destroy_structure(TRUE)
+				deconstruct(TRUE)
 		return TRUE
 
 	if(istype(W, /obj/item/stack/sandbags) )

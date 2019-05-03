@@ -301,7 +301,7 @@
 				if(istype(O, /obj/structure/table) || istype(O, /obj/structure/rack))
 					var/obj/structure/S = O
 					visible_message("<span class='danger'>[src] plows straight through [S]!</span>", null, null, 5)
-					S.destroy_structure() //We want to continue moving, so we do not reset throwing.
+					S.deconstruct() //We want to continue moving, so we do not reset throwing.
 				else O.hitby(src, speed) //This resets throwing.
 		return TRUE
 

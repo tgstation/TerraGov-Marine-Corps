@@ -160,7 +160,7 @@ obj/structure/bed/Destroy()
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)
 		unbuckle()
-		destroy_structure()
+		deconstruct()
 		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 	else attack_hand(M)

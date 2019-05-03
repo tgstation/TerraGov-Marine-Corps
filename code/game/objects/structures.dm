@@ -14,11 +14,10 @@
 	. = ..()
 	GLOB.structure_list -= src
 
-/obj/structure/proc/destroy_structure(deconstruct)
-	if(parts)
+/obj/structure/deconstruct(disassembled)
+	if(disassembled && parts)
 		new parts(loc)
-	density = FALSE
-	qdel(src)
+	return ..()
 
 /obj/structure/proc/handle_barrier_chance(mob/living/M)
 	return FALSE
@@ -33,7 +32,7 @@
 	if(HULK in user.mutations)
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 		visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
-		destroy_structure()
+		deconstruct()
 
 /obj/structure/attackby(obj/item/C as obj, mob/user as mob)
 	. = ..()
@@ -54,7 +53,7 @@
 	. = ..()
 	if(user.wall_smash && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
-		destroy_structure()
+		deconstruct()
 
 /obj/structure/attack_paw(mob/user)
 	if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
