@@ -61,7 +61,7 @@
 				C.last_special = world.time + 100
 				C.visible_message("<span class='danger'>[C] attempts to unbuckle themself!</span>",\
 				"<span class='warning'> You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)</span>")
-				if(do_after(C, 1200, FALSE, C.buckled))
+				if(do_after(C, 1200, FALSE, C.buckled, USER_ICON_HOSTILE))
 					C.visible_message("<span class='danger'>[C] manages to unbuckle themself!</span>",\
 								"<span class='notice'> You successfully unbuckle yourself.</span>")
 					C.buckled.manual_unbuckle(C)
@@ -96,7 +96,7 @@
 
 
 		spawn(0)
-			if(do_after(usr, breakout_time * 60 SECONDS, FALSE, C))
+			if(do_after(usr, breakout_time * 60 SECONDS, FALSE, C, USER_ICON_HOSTILE))
 
 				//Perform the same set of checks as above for weld and lock status to determine if there is even still a point in 'resisting'...
 				if(istype(L.loc, /obj/structure/closet/secure_closet))
@@ -183,7 +183,7 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message(text("<span class='danger'>[] is trying to break [HC]!</span>", CM), 1)
 				spawn(0)
-					if(do_after(CM, 50, FALSE, HC) && !CM.buckled)
+					if(do_after(CM, 50, FALSE, HC, USER_ICON_HOSTILE) && !CM.buckled)
 						for(var/mob/O in viewers(CM))
 							O.show_message(text("<span class='danger'>[] manages to break [HC]!</span>", CM), 1)
 						to_chat(CM, "<span class='warning'>You successfully break [HC].</span>")
@@ -211,7 +211,7 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message( "<span class='danger'>[usr] attempts to remove [HC]!</span>", 1)
 				spawn(0)
-					if(do_after(CM, HC.breakouttime, FALSE, HC) && !CM.buckled)
+					if(do_after(CM, HC.breakouttime, FALSE, HC, USER_ICON_HOSTILE) && !CM.buckled)
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("<span class='danger'>[CM] manages to remove [HC]!</span>", 1)
 						to_chat(CM, "<span class='notice'>You successfully remove [HC].</span>")
@@ -235,7 +235,7 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message(text("<span class='danger'>[] is trying to break [LC]!</span>", CM), 1)
 				spawn(0)
-					if(do_after(CM, 50, FALSE, LC) && !CM.buckled)
+					if(do_after(CM, 50, FALSE, LC, USER_ICON_HOSTILE) && !CM.buckled)
 						for(var/mob/O in viewers(CM))
 							O.show_message(text("<span class='danger'>[] manages to break [LC]!</span>", CM), 1)
 						to_chat(CM, "<span class='warning'>You successfully break your legcuffs.</span>")
@@ -253,7 +253,7 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message( "<span class='danger'>[usr] attempts to remove [LC]!</span>", 1)
 				spawn(0)
-					if(do_after(CM, breakouttime, FALSE, LC) && !CM.buckled)
+					if(do_after(CM, breakouttime, FALSE, LC, USER_ICON_HOSTILE) && !CM.buckled)
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("<span class='danger'>[CM] manages to remove the legcuffs!</span>", 1)
 						to_chat(CM, "<span class='notice'>You successfully remove \the [CM.legcuffed].</span>")
