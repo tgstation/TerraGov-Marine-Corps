@@ -261,10 +261,10 @@
 /obj/item/storage/box/matches/attackby(obj/item/tool/match/W as obj, mob/user as mob)
 	if(istype(W) && !W.heat_source && !W.burnt)
 		if(prob(50))
-			playsound(src.loc, 'sound/items/matchstick_lit.ogg', 100, 1)
+			playsound(loc, 'sound/items/matchstick_lit.ogg', 100, 1)
 			W.light_match()
 		else
-			playsound(src.loc, 'sound/items/matchstick_hit.ogg', 100, 1)
+			playsound(loc, 'sound/items/matchstick_hit.ogg', 100, 1)
 		return TRUE
 	return ..()
 
