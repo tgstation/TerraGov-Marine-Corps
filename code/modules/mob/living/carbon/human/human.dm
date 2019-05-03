@@ -1191,7 +1191,8 @@
 			virus.cure(0)
 
 	undefibbable = FALSE
-	..()
+	
+	return ..()
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
 	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
