@@ -50,6 +50,8 @@
 		to_chat(usr, "<span class='warning'>You have deadchat muted.</span>")
 		return
 
+	log_talk(message, LOG_SAY, "ghost")
+
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
 
