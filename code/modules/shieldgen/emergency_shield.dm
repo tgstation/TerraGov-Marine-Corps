@@ -281,7 +281,7 @@
 	else if(iscablecoil(W) && malfunction && is_open)
 		var/obj/item/stack/cable_coil/coil = W
 		to_chat(user, "<span class='notice'>You begin to replace the wires.</span>")
-		if(do_after(user, 30, TRUE, src, USER_ICON_BUILD) && coil.use(1))
+		if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD) && coil.use(1))
 			health = max_health
 			malfunction = 0
 			to_chat(user, "<span class='notice'>You repair the [src]!</span>")

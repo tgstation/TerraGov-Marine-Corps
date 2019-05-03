@@ -69,7 +69,7 @@
 			if(W.remove_fuel(0, user))
 				playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal unit.</span>")
-				if(do_after(user, 20, TRUE, src, USER_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
+				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 					to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal unit.</span>")
 					var/obj/structure/disposalconstruct/C = new(loc)
 					transfer_fingerprints_to(C)
@@ -97,7 +97,7 @@
 			var/mob/GM = G.grabbed_thing
 			user.visible_message("<span class='warning'>[user] starts putting [GM] into [src].</span>",
 			"<span class='warning'>You start putting [GM] into [src].</span>")
-			if(do_after(user, 20, TRUE, src, USER_ICON_HOSTILE) && G.grabbed_thing == GM)
+			if(do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) && G.grabbed_thing == GM)
 				GM.forceMove(src)
 				user.visible_message("<span class='warning'>[user] puts [GM] into [src].</span>",
 				"<span class='warning'>[user] puts [GM] into [src].</span>")
@@ -128,7 +128,7 @@
 	else
 		if(user.restrained()) return //can't stuff someone other than you if restrained.
 		visible_message("<span class ='warning'>[user] starts stuffing [target] into the disposal.</span>")
-	if(!do_after(user, 40, FALSE, target, USER_ICON_HOSTILE))
+	if(!do_after(user, 40, FALSE, target, BUSY_ICON_HOSTILE))
 		return
 	if(target == user)
 		user.visible_message("<span class='notice'>[user] climbs into [src].</span>",
@@ -1357,7 +1357,7 @@
 		if(W.remove_fuel(0, user))
 			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal outlet.</span>")
-			if(do_after(user, 20, TRUE, src, USER_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
+			if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 				to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal outlet.</span>")
 				var/obj/structure/disposalconstruct/C = new(loc)
 				transfer_fingerprints_to(C)

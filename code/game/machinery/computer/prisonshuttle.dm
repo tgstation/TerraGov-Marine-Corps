@@ -37,7 +37,7 @@ var/prison_shuttle_timeleft = 0
 	attackby(I as obj, user as mob)
 		if(isscrewdriver(I))
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-			if(do_after(user, 20, TRUE, src, USER_ICON_BUILD))
+			if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				var/obj/item/circuitboard/computer/prison_shuttle/M = new(A)
 				for (var/obj/C in src)

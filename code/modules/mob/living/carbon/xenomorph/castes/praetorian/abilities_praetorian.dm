@@ -31,7 +31,7 @@
 	if (used_acid_spray || !check_plasma(200))
 		return
 
-	if(!do_after(src, 5, TRUE, target, USER_ICON_DANGER))
+	if(!do_after(src, 5, TRUE, target, BUSY_ICON_DANGER))
 		return
 
 	if(stagger)

@@ -22,7 +22,7 @@
 		M.visible_message("<span class='notice'>\The [M] starts clearing out \the [src].</span>", \
 		"<span class='notice'>You start clearing out \the [src].</span>", null, 5)
 		playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
-		if(!do_after(M, 25, FALSE, src, USER_ICON_BUILD))
+		if(!do_after(M, 25, FALSE, src, BUSY_ICON_BUILD))
 			return FALSE
 
 		if(!slayer)
@@ -45,7 +45,7 @@
 			return
 
 		to_chat(user, "Now planting \the [L].")
-		if(!do_after(user,20, TRUE, src, USER_ICON_BUILD))
+		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message("<span class='notice'>[user.name] planted \the [L] into [src].</span>")

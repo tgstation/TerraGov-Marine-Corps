@@ -52,7 +52,7 @@
 
 	busy = 1
 	user.visible_message("<span class='warning'> [user] started reprogramming [src]!</span>","You start reprogramming [src]")
-	if(do_after(user, 30 SECONDS, FALSE, src, USER_ICON_BUILD)) // 30s for non-AIs as humans have to manually reprogram it and rapid switching may cause some lag / powernet updates flood. If AIs spam it they can be easily traced.
+	if(do_after(user, 30 SECONDS, FALSE, src, BUSY_ICON_BUILD)) // 30s for non-AIs as humans have to manually reprogram it and rapid switching may cause some lag / powernet updates flood. If AIs spam it they can be easily traced.
 		set_state(!on)
 		user.visible_message(\
 		"<span class='notice'>[user.name] [on ? "enabled" : "disabled"] the breaker box!</span>",\

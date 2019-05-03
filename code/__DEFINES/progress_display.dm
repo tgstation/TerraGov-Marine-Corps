@@ -28,27 +28,13 @@
 
 //busy icons defines
 
-#define DISPLAY_ICON_TARG		"target"
-#define DISPLAY_ICON_USER		"user"
-
-#define USER_ICON_GENERIC		/image/progress/display
-#define USER_ICON_MEDICAL		/image/progress/display/medical
-#define USER_ICON_BUILD			/image/progress/display/construction
-#define USER_ICON_FRIENDLY		/image/progress/display/friendly
-#define USER_ICON_HOSTILE		/image/progress/display/hostile
-#define USER_ICON_CLOCK			/image/progress/display/clock
-#define USER_ICON_CLOCK_ALT		/image/progress/display/clock/alt
-#define USER_ICON_DANGER 		/image/progress/display/danger
-#define USER_ICON_BAR			/image/progress/display/bar
-#define USER_ICON_UNSKILLED		/image/progress/display/unskilled
-
-#define TARGET_ICON_GENERIC		/image/progress/display/target
-#define TARGET_ICON_MEDICAL		/image/progress/display/medical/target
-#define TARGET_ICON_BUILD		/image/progress/display/construction/target
-#define TARGET_ICON_FRIENDLY	/image/progress/display/friendly/target
-#define TARGET_ICON_HOSTILE		/image/progress/display/hostile/target
-#define TARGET_ICON_CLOCK		/image/progress/display/clock/target
-#define TARGET_ICON_CLOCK_ALT	/image/progress/display/clock/alt/target
-#define TARGET_ICON_DANGER 		/image/progress/display/danger/target
-#define TARGET_ICON_BAR			/image/progress/display/bar/target
-#define TARGET_ICON_UNSKILLED	/image/progress/display/unskilled/target
+#define BUSY_ICON_GENERIC		/image/progress/display
+#define BUSY_ICON_MEDICAL		/image/progress/display/medical
+#define BUSY_ICON_BUILD			/image/progress/display/construction
+#define BUSY_ICON_FRIENDLY		/image/progress/display/friendly
+#define BUSY_ICON_HOSTILE		/image/progress/display/hostile
+#define BUSY_ICON_CLOCK			/image/progress/display/clock
+#define BUSY_ICON_CLOCK_ALT		/image/progress/display/clock/alt
+#define BUSY_ICON_DANGER 		/image/progress/display/danger
+#define BUSY_ICON_BAR			/image/progress/display/bar
+#define BUSY_ICON_UNSKILLED		/image/progress/display/unskilled

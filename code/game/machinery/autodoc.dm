@@ -643,7 +643,7 @@
 			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 			var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
-			if(!do_after(usr, fumbling_time, TRUE, src, USER_ICON_UNSKILLED) || !occupant)
+			if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !occupant)
 				return
 		if(surgery)
 			surgery = 0
@@ -676,12 +676,12 @@
 		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to get into \the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into \the [src].</span>")
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
-		if(!do_after(usr, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
+		if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
 	usr.visible_message("<span class='notice'>[usr] starts climbing into \the [src].</span>",
 	"<span class='notice'>You start climbing into \the [src].</span>")
-	if(do_after(usr, 10, FALSE, src, USER_ICON_GENERIC))
+	if(do_after(usr, 10, FALSE, src, BUSY_ICON_GENERIC))
 		if(occupant)
 			to_chat(usr, "<span class='notice'>\ [src] is already occupied!</span>")
 			return
@@ -793,13 +793,13 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to put [M] into [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to put [M] into [src].</span>")
 			var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
-			if(!do_after(user, fumbling_time, TRUE, M, USER_ICON_UNSKILLED) || QDELETED(src))
+			if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
 				return
 
 		user.visible_message("<span class='notice'>[user] starts putting [M] into [src].</span>",
 		"<span class='notice'>You start putting [M] into [src].</span>")
 
-		if(do_after(user, 10, FALSE, M, USER_ICON_GENERIC) && !QDELETED(src))
+		if(do_after(user, 10, FALSE, M, BUSY_ICON_GENERIC) && !QDELETED(src))
 			if(src.occupant)
 				to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
 				return

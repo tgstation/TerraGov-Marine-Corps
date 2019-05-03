@@ -394,7 +394,7 @@
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
 		if(!P.start_cut(user, src.name, src))
 			return
-		if(do_after(user, P.calc_delay(user), TRUE, src, USER_ICON_HOSTILE))
+		if(do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
 			P.cut_apart(user, src.name, src)
 			dismantle_wall()
 		return
@@ -405,7 +405,7 @@
 			user.visible_message("<span class='notice'>[user] starts repairing the damage to [src].</span>",
 			"<span class='notice'>You start repairing the damage to [src].</span>")
 			playsound(src, 'sound/items/Welder.ogg', 25, 1)
-			if(do_after(user, max(5, round(damage / 5)), TRUE, src, USER_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+			if(do_after(user, max(5, round(damage / 5)), TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				user.visible_message("<span class='notice'>[user] finishes repairing the damage to [src].</span>",
 				"<span class='notice'>You finish repairing the damage to [src].</span>")
 				take_damage(-damage)
@@ -424,7 +424,7 @@
 				user.visible_message("<span class='notice'>[user] begins slicing through the outer plating.</span>",
 				"<span class='notice'>You begin slicing through the outer plating.</span>")
 
-				if(do_after(user, 60, TRUE, src, USER_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && !d_state)
+				if(do_after(user, 60, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && !d_state)
 					d_state++
 					user.visible_message("<span class='notice'>[user] slices through the outer plating.</span>",
 					"<span class='notice'>You slice through the outer plating.</span>")
@@ -437,7 +437,7 @@
 				"<span class='notice'>You begin removing the support lines.</span>")
 				playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
 
-				if(do_after(user, 60, TRUE, src, USER_ICON_BUILD) && d_state == 1)
+				if(do_after(user, 60, TRUE, src, BUSY_ICON_BUILD) && d_state == 1)
 					d_state++
 					user.visible_message("<span class='notice'>[user] removes the support lines.</span>",
 					"<span class='notice'>You remove the support lines.</span>")
@@ -451,7 +451,7 @@
 				"<span class='notice'>You begin slicing through the metal cover.</span>")
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
-				if(do_after(user, 60, TRUE, src, USER_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && d_state == 2)
+				if(do_after(user, 60, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && d_state == 2)
 					d_state++
 					user.visible_message("<span class='notice'>[user] presses firmly on the cover, dislodging it.</span>",
 					"<span class='notice'>You press firmly on the cover, dislodging it.</span>")
@@ -464,7 +464,7 @@
 				"<span class='notice'>You struggle to pry off the cover.</span>")
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
-				if(do_after(user, 60, TRUE, src, USER_ICON_BUILD) && d_state == 3)
+				if(do_after(user, 60, TRUE, src, BUSY_ICON_BUILD) && d_state == 3)
 					d_state++
 					user.visible_message("<span class='notice'>[user] pries off the cover.</span>",
 					"<span class='notice'>You pry off the cover.</span>")
@@ -477,7 +477,7 @@
 				"<span class='notice'>You start loosening the anchoring bolts securing the support rods.</span>")
 				playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
 
-				if(do_after(user, 60, TRUE, src, USER_ICON_BUILD) && d_state == 4)
+				if(do_after(user, 60, TRUE, src, BUSY_ICON_BUILD) && d_state == 4)
 					d_state++
 					user.visible_message("<span class='notice'>[user] removes the bolts anchoring the support rods.</span>",
 					"<span class='notice'>You remove the bolts anchoring the support rods.</span>")
@@ -490,7 +490,7 @@
 				"<span class='notice'>You begin uncrimping the hydraulic lines.</span>")
 				playsound(src, 'sound/items/Wirecutter.ogg', 25, 1)
 
-				if(do_after(user, 60, TRUE, src, USER_ICON_BUILD) && d_state == 5)
+				if(do_after(user, 60, TRUE, src, BUSY_ICON_BUILD) && d_state == 5)
 					d_state++
 					user.visible_message("<span class='notice'>[user] finishes uncrimping the hydraulic lines.</span>",
 					"<span class='notice'>You finish uncrimping the hydraulic lines.</span>")
@@ -503,7 +503,7 @@
 				"<span class='notice'>You struggle to pry off the inner sheath.</span>")
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
-				if(do_after(user, 60, TRUE, src, USER_ICON_BUILD) && d_state == 6)
+				if(do_after(user, 60, TRUE, src, BUSY_ICON_BUILD) && d_state == 6)
 					d_state++
 					user.visible_message("<span class='notice'>[user] pries off the inner sheath.</span>",
 					"<span class='notice'>You pry off the inner sheath.</span>")
@@ -517,7 +517,7 @@
 				"<span class='notice'>You begin slicing through the final layer.</span>")
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
-				if(do_after(user, 60, TRUE, src, USER_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+				if(do_after(user, 60, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					if(!iswallturf(src))
 						return
 

@@ -629,7 +629,7 @@ About the new airlock wires panel:
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
 	"<span class='warning'>You dig into \the [src] and begin to pry it open.</span>", null, 5)
 
-	if(do_after(M, 40, FALSE, src, USER_ICON_HOSTILE) && !M.lying)
+	if(do_after(M, 40, FALSE, src, BUSY_ICON_HOSTILE) && !M.lying)
 		if(locked)
 			to_chat(M, "<span class='warning'>\The [src] is bolted down tight.</span>")
 			return FALSE
@@ -739,7 +739,7 @@ About the new airlock wires panel:
 			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out [src]'s wiring.</span>",
 			"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
 			var/fumbling_time = 100 - 20 * usr.mind.cm_skills.engineer
-			if(!do_after(usr, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
+			if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 		if(href_list["wires"])
 			var/t1 = text2num(href_list["wires"])
@@ -990,7 +990,7 @@ About the new airlock wires panel:
 		if(!src.welded) //Cut apart the airlock if it isn't welded shut.
 			if(!(P.start_cut(user, src.name, src)))
 				return
-			if(do_after(user, P.calc_delay(user), TRUE, src, USER_ICON_HOSTILE))
+			if(do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
 				P.cut_apart(user, src.name, src) //Airlocks cost as much as a wall to fully cut apart.
 				P.debris(loc, 1, 1, 0, 3) //Metal sheet, some rods and wires.
 				qdel(src)
@@ -998,7 +998,7 @@ About the new airlock wires panel:
 
 		if(!(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)))
 			return
-		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, src, USER_ICON_BUILD))
+		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, src, BUSY_ICON_BUILD))
 			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Airlocks require much less power to unweld.
 			welded = FALSE
 			update_icon()
@@ -1017,7 +1017,7 @@ About the new airlock wires panel:
 			"<span class='notice'>You start working on \the [src] with [W].</span>", \
 			"<span class='notice'>You hear welding.</span>")
 			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)
-			if(do_after(user, 50, TRUE, src, USER_ICON_BUILD) && density)
+			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD) && density)
 				welded = !welded
 				update_icon()
 		return
@@ -1041,14 +1041,14 @@ About the new airlock wires panel:
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 				"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
 				var/fumbling_time = 50 * (SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer)
-				if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return FALSE
 			if(width > 1)
 				to_chat(user, "<span class='warning'>Large doors seem impossible to disassemble.</span>")
 				return
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
-			if(do_after(user,40, TRUE, src, USER_ICON_BUILD))
+			if(do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
 				to_chat(user, "<span class='notice'>You removed the airlock electronics!</span>")
 
 				var/obj/structure/door_assembly/da = new assembly_type(src.loc)

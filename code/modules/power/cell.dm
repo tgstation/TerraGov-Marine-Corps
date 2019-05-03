@@ -131,7 +131,7 @@
 			if(skill < SKILL_ENGINEER_ENGI) //Field engi skill or better or ya fumble.
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to manipulate [src].</span>",
 				"<span class='notice'>You fumble around, trying to figure out how to rig [src] to explode.</span>")
-				if(!do_after(user, delay, TRUE, src, USER_ICON_UNSKILLED))
+				if(!do_after(user, delay, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
 				//if(prob((SKILL_ENGINEER_PLASTEEL - skill) * 20)) //Not sure if I want to keep this as I do like encouraging out of the box thinking/improvisation; let's test it
 				//	to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
@@ -139,7 +139,7 @@
 				//	explode() //Oops. Now you fucked up (or succeeded only too well). Immediate detonation.
 			user.visible_message("<span class='notice'>[user] begins manipulating [src] with [W].</span>",
 			"<span class='notice'>You begin rigging [src] to detonate with [W].</span>")
-			if(!do_after(user, delay, TRUE, src, USER_ICON_BUILD))
+			if(!do_after(user, delay, TRUE, src, BUSY_ICON_BUILD))
 				return
 			rigged = TRUE
 			overlays += spark_overlay
@@ -150,7 +150,7 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to manipulate [src].</span>",
 				"<span class='notice'>You fumble around, trying to figure out how to stabilize [src].</span>")
 				var/fumbling_time = SKILL_TASK_EASY
-				if(!do_after(user, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
 				if(prob((SKILL_ENGINEER_PLASTEEL - skill) * 20))
 					to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
@@ -160,7 +160,7 @@
 			"<span class='notice'>You begin stabilizing [src] with [W] so it won't detonate on use.</span>")
 			if(skill > SKILL_ENGINEER_ENGI)
 				delay = max(delay - 10, 0)
-			if(!do_after(user, delay, TRUE, src, USER_ICON_BUILD))
+			if(!do_after(user, delay, TRUE, src, BUSY_ICON_BUILD))
 				return
 			rigged = FALSE
 			overlays -= spark_overlay

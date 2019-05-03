@@ -181,7 +181,7 @@
 
 			to_chat(D, "<span class='warning'>You begin decompiling the other drone.</span>")
 
-			if(!do_after(D, 50, FALSE, M, USER_ICON_HOSTILE))
+			if(!do_after(D, 50, FALSE, M, BUSY_ICON_HOSTILE))
 				return
 
 			to_chat(D, "<span class='warning'>You carefully and thoroughly decompile your downed fellow, storing as much of its resources as you can within yourself.</span>")

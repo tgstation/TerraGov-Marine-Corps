@@ -81,7 +81,7 @@ Currently only has the tank hardpoints
 	if(WT && !WT.isOn())
 		to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
 		return
-	if(!do_after(user, 3 SECONDS * repair_delays, TRUE, src, USER_ICON_BUILD))
+	if(!do_after(user, 3 SECONDS * repair_delays, TRUE, src, BUSY_ICON_BUILD))
 		user.visible_message("<span class='notice'>[user] stops repairing [src].</span>",
 							"<span class='notice'>You stop repairing [src].</span>")
 		return

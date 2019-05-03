@@ -207,7 +207,7 @@
 	attackby(var/obj/item/D as obj, var/mob/user as mob)
 		if(isscrewdriver(D))
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-			if(do_after(user, 20, TRUE, src, USER_ICON_BUILD))
+			if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 				if (src.machine_stat & BROKEN)
 					to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 					var/obj/structure/computerframe/A = new( src.loc )

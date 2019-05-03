@@ -179,7 +179,7 @@
 	var/start_loc = W.loc
 	if(W.time_to_equip && !ignore_delay)
 		spawn(0)
-			if(!do_after(src, W.time_to_equip, TRUE, W, USER_ICON_FRIENDLY))
+			if(!do_after(src, W.time_to_equip, TRUE, W, BUSY_ICON_FRIENDLY))
 				to_chat(src, "You stop putting on \the [W]")
 			else
 				equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
@@ -658,7 +658,7 @@ mob/proc/yank_out_object()
 			return FALSE
 		to_chat(U, "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>")
 
-	if(!do_after(U, 80, TRUE, S, USER_ICON_GENERIC) || !istype(selection))
+	if(!do_after(U, 80, TRUE, S, BUSY_ICON_GENERIC) || !istype(selection))
 		return
 
 	if(self)

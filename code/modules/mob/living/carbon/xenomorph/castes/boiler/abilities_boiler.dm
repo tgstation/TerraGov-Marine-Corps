@@ -22,7 +22,7 @@
 	else
 		X.visible_message("<span class='notice'>[X] starts looking off into the distance.</span>", \
 			"<span class='notice'>You start focusing your sight to look off into the distance.</span>", null, 5)
-		if(!do_after(X, 20, FALSE, null, USER_ICON_GENERIC) || X.is_zoomed)
+		if(!do_after(X, 20, FALSE, null, BUSY_ICON_GENERIC) || X.is_zoomed)
 			return
 		X.zoom_in()
 		..()
@@ -91,7 +91,7 @@
 
 	X.visible_message("<span class='notice'>\The [X] begins digging their claws into the ground.</span>", \
 	"<span class='notice'>You begin digging yourself into place.</span>", null, 5)
-	if(do_after(X, 30, FALSE, null, USER_ICON_HOSTILE) && !X.is_bombarding)
+	if(do_after(X, 30, FALSE, null, BUSY_ICON_HOSTILE) && !X.is_bombarding)
 		X.is_bombarding = 1
 		X.visible_message("<span class='notice'>\The [X] digs itself into the ground!</span>", \
 		"<span class='notice'>You dig yourself into place! If you move, you must wait again to fire.</span>", null, 5)
@@ -157,7 +157,7 @@
 	is_bombarding = FALSE
 	use_plasma(200)
 
-	if(!do_after(src, 50, FALSE, target, USER_ICON_DANGER))
+	if(!do_after(src, 50, FALSE, target, BUSY_ICON_DANGER))
 		bomb_cooldown = FALSE
 		to_chat(src, "<span class='warning'>You decide not to launch any acid.</span>")
 		return
@@ -211,7 +211,7 @@
 		to_chat(src, "<span class='xenowarning'>You're not yet ready to spray again! You can do so in [( (last_spray_used + acid_d) - world.time) * 0.1] seconds.</span>")
 		return
 
-	if(!do_after(src, 5, TRUE, T, USER_ICON_DANGER))
+	if(!do_after(src, 5, TRUE, T, BUSY_ICON_DANGER))
 		return
 
 	var/turf/target

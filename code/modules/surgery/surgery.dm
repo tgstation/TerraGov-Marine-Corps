@@ -119,7 +119,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to operate [M].</span>",
 		"<span class='notice'>You fumble around figuring out how to operate [M].</span>")
 		var/fumbling_time = SKILL_TASK_FORMIDABLE - ( SKILL_TASK_AVERAGE * user.mind.cm_skills.surgery ) // 20 secs non-trained, 15 amateur, 10 semi-prof
-		if(!do_after(user, fumbling_time, TRUE, M, USER_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED))
 			return
 	var/datum/limb/affected = M.get_limb(user.zone_selected)
 	if(!affected)
@@ -168,7 +168,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 					step_duration = max(5, step_duration - 10*user.mind.cm_skills.surgery)
 
 				//Multiply tool success rate with multipler
-				if(do_mob(user, M, step_duration, TARGET_ICON_MEDICAL, extra_checks = CALLBACK(user, /mob/proc/break_do_after_checks, null, null, user.zone_selected)) && prob(S.tool_quality(tool) * CLAMP01(multipler)))
+				if(do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(user, /mob/proc/break_do_after_checks, null, null, user.zone_selected)) && prob(S.tool_quality(tool) * CLAMP01(multipler)))
 					if(S.can_use(user, M, user.zone_selected, tool, affected, TRUE)) //to check nothing changed during the do_mob
 						S.end_step(user, M, user.zone_selected, tool, affected) //Finish successfully
 

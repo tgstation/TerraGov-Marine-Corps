@@ -28,7 +28,7 @@
 	if (user && src.imp)
 		user.visible_message("<span class='warning'>[user] is attemping to implant [M].</span>", "<span class='notice'>You're attemping to implant [M].</span>")
 
-		if ((M == user || do_after(user, 50, TRUE, M, USER_ICON_GENERIC)) && imp)
+		if ((M == user || do_after(user, 50, TRUE, M, BUSY_ICON_GENERIC)) && imp)
 			if(imp.implanted(M, user))
 				M.visible_message("<span class='warning'>[M] has been implanted by [user].</span>")
 

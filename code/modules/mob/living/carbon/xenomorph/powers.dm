@@ -341,7 +341,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return
 
 	to_chat(src, "<span class='notice'>You start focusing your plasma towards [target].</span>")
-	if(!do_after(src, transfer_delay, TRUE, null, USER_ICON_FRIENDLY) || QDELETED(target))
+	if(!do_after(src, transfer_delay, TRUE, null, BUSY_ICON_FRIENDLY) || QDELETED(target))
 		return
 
 	if(!check_state())
@@ -401,7 +401,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	to_chat(src, "<span class='notice'>You start salvaging plasma from [target].</span>")
 
 	while(target.plasma_stored && plasma_stored >= xeno_caste.plasma_max)
-		if(!do_after(src, salvage_delay, TRUE, null, USER_ICON_GENERIC) || !check_state() || QDELETED(target))
+		if(!do_after(src, salvage_delay, TRUE, null, BUSY_ICON_GENERIC) || !check_state() || QDELETED(target))
 			break
 
 		if(!isturf(loc))
@@ -560,7 +560,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	var/wait_time = 10 + 30 - max(0,(30*health/maxHealth)) //Between 1 and 4 seconds, depending on health.
 
-	if(!do_after(src, wait_time, TRUE, current_turf, USER_ICON_BUILD))
+	if(!do_after(src, wait_time, TRUE, current_turf, BUSY_ICON_BUILD))
 		return
 
 	blocker = locate() in current_turf
@@ -703,7 +703,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		to_chat(src, "<span class='warning'>You cannot dissolve \the [O].</span>")
 		return
 
-	if(!do_after(src, wait_time, TRUE, O, USER_ICON_HOSTILE))
+	if(!do_after(src, wait_time, TRUE, O, BUSY_ICON_HOSTILE))
 		return
 
 	if(!check_state())
@@ -890,7 +890,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /mob/living/carbon/Xenomorph/proc/larva_injection(mob/living/carbon/C, precheck = TRUE)
 	if(precheck && !(C?.can_sting()))
 		return FALSE
-	if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, C, USER_ICON_DANGER, extra_checks = CALLBACK(C, .can_sting)))
+	if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, C, BUSY_ICON_DANGER, extra_checks = CALLBACK(C, .can_sting)))
 		return FALSE
 	if(stagger)
 		return FALSE
@@ -929,7 +929,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with [body_tox.name]!</span>")
 		if(body_tox.volume > body_tox.overdose_threshold)
 			to_chat(src, "<span class='danger'>You sense the host is saturated with [body_tox.name].</span>")
-	while(i++ < count && do_after(src, channel_time, TRUE, C, USER_ICON_HOSTILE))
+	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
 

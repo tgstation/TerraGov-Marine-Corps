@@ -51,7 +51,7 @@
 		return
 
 	playsound(src, 'sound/effects/metal_creaking.ogg', 25, 1)
-	if(do_after(user,60, FALSE, holed_wall, USER_ICON_HOSTILE) && !QDELETED(src) && !user.lying)
+	if(do_after(user,60, FALSE, holed_wall, BUSY_ICON_HOSTILE) && !QDELETED(src) && !user.lying)
 		holed_wall.take_damage(rand(2000,3500))
 		user.emote("roar")
 
@@ -90,7 +90,7 @@
 
 	to_chat(user, "<span class='notice'>You start crawling through the hole.</span>")
 
-	if(do_after(user, 15, FALSE, src, USER_ICON_HOSTILE) && !T.density && !user.lying && !user.buckled)
+	if(do_after(user, 15, FALSE, src, BUSY_ICON_HOSTILE) && !T.density && !user.lying && !user.buckled)
 		for(var/obj/O in T)
 			if(!O.CanPass(user, user.loc))
 				return
@@ -122,7 +122,7 @@
 			return
 
 		to_chat(user, "<span class='notice'>You take the position to throw [G].</span>")
-		if(do_after(user,10, TRUE, src, USER_ICON_HOSTILE) && Target && !Target.density)
+		if(do_after(user,10, TRUE, src, BUSY_ICON_HOSTILE) && Target && !Target.density)
 			user.visible_message("<span class='warning'>[user] throws [G] through [src]!</span>", \
 								 "<span class='warning'>You throw [G] through [src]</span>")
 			user.drop_held_item()
@@ -142,7 +142,7 @@
 			return
 
 		to_chat(user, "<span class='notice'>You take the position to throw [F].</span>")
-		if(do_after(user,10, TRUE, src, USER_ICON_GENERIC) && Target && !Target.density)
+		if(do_after(user,10, TRUE, src, BUSY_ICON_GENERIC) && Target && !Target.density)
 			user.visible_message("<span class='warning'>[user] throws [F] through [src]!</span>", \
 								 "<span class='warning'>You throw [F] through [src]</span>")
 			user.drop_held_item()

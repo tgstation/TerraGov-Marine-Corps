@@ -370,7 +370,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(user)
 		if(magazine.reload_delay > 1)
 			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-			if(do_after(user,magazine.reload_delay, TRUE, src, USER_ICON_GENERIC))
+			if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 				replace_magazine(user, magazine)
 			else
 				to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
@@ -807,7 +807,7 @@ and you're good to go.
 	var/u = "[key_name(user)] is trying to commit suicide."
 	user.log_message(u, LOG_ATTACK, "red")
 
-	if(!do_after(user, 40, TRUE, src, USER_ICON_DANGER))
+	if(!do_after(user, 40, TRUE, src, BUSY_ICON_DANGER))
 		M.visible_message("<span class='notice'>[user] decided life was worth living.</span>")
 		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
 		return

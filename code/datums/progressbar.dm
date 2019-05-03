@@ -7,13 +7,13 @@
 	var/image/progress/bar/bar
 	var/image/progress/bg/bg
 	var/image/progress/frame/frame
-	var/datum/progressicon/prog_display
+	var/list/prog_displays
 	var/shown = FALSE
 	var/mob/user
 	var/client/client
 	var/listindex
 
-/datum/progressbar/New(mob/U, goal_number, atom/target, image/progress/display/new_display)
+/datum/progressbar/New(mob/U, goal_number, atom/target, user_display, target_display)
 	. = ..()
 	if (!istype(target))
 		EXCEPTION("Invalid target given")
@@ -22,8 +22,12 @@
 	user = U
 	if(user)
 		client = user.client
-	if(new_display)
-		prog_display = new (U, target, new_display)
+	if(user_display)
+		var/datum/progressicon/D = new (U, user_display)
+		LAZYADD(prog_displays, D)
+	if(target_display)
+		var/datum/progressicon/D = new (target, target_display)
+		LAZYADD(prog_displays, D)
 	if(!bar_tag)
 		return
 	bar = new bar_tag
@@ -90,7 +94,7 @@
 				LAZYREMOVE(user.progbar_towers, bar.loc)
 		INVOKE_ASYNC(bar, /image/progress/proc/fade_out, client, frame, bg)
 
-	qdel(prog_display)
+	QDEL_LIST(prog_displays)
 
 	return ..()
 
@@ -188,14 +192,14 @@
 
 /datum/progressicon
 	var/image/progress/display/display
-	var/image/progress/display/display_tag = USER_ICON_GENERIC
+	var/image/progress/display/display_tag = BUSY_ICON_GENERIC
 	var/atom/target
 
-/datum/progressicon/New(mob/U, atom/T, image/progress/display/new_display)
+/datum/progressicon/New(atom/T, image/progress/display/new_display)
 	. = ..()
 	if(new_display)
 		display_tag = new_display
-	target = (initial(display_tag.owner) == DISPLAY_ICON_TARG) ? T : U
+	target = T
 	LAZYINITLIST(target.display_icons)
 	for(var/A in target.display_icons)
 		var/image/progress/display/D = A
@@ -219,70 +223,38 @@
 		QDEL_NULL(display)
 	return ..()
 
-
 /image/progress/display
 	icon = 'icons/effects/progressicons.dmi'
 	icon_state = "busy_generic"
 	plane = FLY_LAYER
 	alpha = 255
 	pixel_y = 32
-	var/owner = DISPLAY_ICON_USER
-
-/image/progress/display/target
-	owner = DISPLAY_ICON_TARG
 
 /image/progress/display/medical
 	icon_state = "busy_medical"
 	pixel_y = 0
 
-/image/progress/display/medical/target
-	owner = DISPLAY_ICON_TARG
-
 /image/progress/display/construction
 	icon_state = "busy_build"
-
-/image/progress/display/construction/target
-	owner = DISPLAY_ICON_TARG
 
 /image/progress/display/friendly
 	icon_state = "busy_friendly"
 
-/image/progress/display/friendly/target
-	owner = DISPLAY_ICON_TARG
-
 /image/progress/display/hostile
 	icon_state = "busy_hostile"
-
-/image/progress/display/hostile/target
-	owner = DISPLAY_ICON_TARG
 
 /image/progress/display/clock
 	icon_state = "busy_clock"
 
-/image/progress/display/clock/target
-	owner = DISPLAY_ICON_TARG
-
 /image/progress/display/clock/alt
 	icon_state = "busy_clock2"
-
-/image/progress/display/clock/alt/target
-	owner = DISPLAY_ICON_TARG
 
 /image/progress/display/danger
 	icon_state = "busy_danger"
 
-/image/progress/display/danger/target
-	owner = DISPLAY_ICON_TARG
-
 /image/progress/display/bar
 	icon_state = "busy_bar"
 
-/image/progress/display/bar/target
-	owner = DISPLAY_ICON_TARG
-
 /image/progress/display/unskilled
 	icon_state = "busy_questionmark"
-
-/image/progress/display/unskilled/target
-	owner = DISPLAY_ICON_TARG
 

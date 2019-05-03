@@ -83,7 +83,7 @@ proc/age2agedescription(age)
 		if(70 to INFINITY)	return "elderly"
 		else				return "unknown"
 
-/proc/do_mob(mob/user, mob/target, delay = 30, icon_display, prog_bar = PROGRESS_GENERIC, uninterruptible = FALSE, datum/callback/extra_checks)
+/proc/do_mob(mob/user, mob/target, delay = 30, user_display, target_display, prog_bar = PROGRESS_GENERIC, uninterruptible = FALSE, datum/callback/extra_checks)
 	if(!user || !target)
 		return FALSE
 	var/user_loc = user.loc
@@ -91,7 +91,7 @@ proc/age2agedescription(age)
 	var/target_loc = target.loc
 
 	var/holding = user.get_active_held_item()
-	var/datum/progressbar/P = prog_bar ? new prog_bar(user, delay, target, icon_display) : null
+	var/datum/progressbar/P = prog_bar ? new prog_bar(user, delay, target, user_display, target_display) : null
 
 	user.action_busy++
 	var/endtime = world.time + delay
@@ -131,7 +131,7 @@ proc/age2agedescription(age)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, delay, needhand = TRUE, atom/target, icon_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks)
+/proc/do_after(mob/user, delay, needhand = TRUE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks)
 	if(!user)
 		return FALSE
 
@@ -145,7 +145,7 @@ proc/age2agedescription(age)
 	delay *= user.do_after_coefficent()
 
 	var/atom/progtarget = target ? target : user
-	var/datum/progressbar/P = prog_bar ? new prog_bar(user, delay, progtarget, icon_display) : null
+	var/datum/progressbar/P = prog_bar ? new prog_bar(user, delay, progtarget, user_display, target_display) : null
 
 	user.action_busy++
 	var/endtime = world.time + delay

@@ -54,7 +54,7 @@
 			angry_swarm(user)
 		else
 			to_chat(user, "<span class='notice'>You begin to dislodge the dead apiary from the tray.</span>")
-		if(do_after(user, 50, TRUE, src, USER_ICON_BUILD))
+		if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 			new hydrotray_type(loc)
 			new /obj/item/frame/apiary(loc)
 			to_chat(user, "<span class='warning'>You dislodge the apiary from the tray.</span>")
@@ -75,7 +75,7 @@
 				angry_swarm(user)
 			else
 				to_chat(user, "<span class='notice'>You begin to harvest the honey.</span>")
-			if(do_after(user,50, TRUE, src, USER_ICON_GENERIC))
+			if(do_after(user,50, TRUE, src, BUSY_ICON_GENERIC))
 				G.reagents.add_reagent("honey",harvestable_honey)
 				harvestable_honey = 0
 				to_chat(user, "<span class='notice'>You successfully harvest the honey.</span>")

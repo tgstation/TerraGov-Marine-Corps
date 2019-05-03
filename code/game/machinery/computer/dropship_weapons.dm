@@ -111,7 +111,7 @@
 			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use the automated targeting system.</span>",
 			"<span class='notice'>You fumble around figuring out how to use the automated targeting system.</span>")
 			var/fumbling_time = 100 - 20 * usr.mind.cm_skills.pilot
-			if(!do_after(usr, fumbling_time, TRUE, src, USER_ICON_UNSKILLED))
+			if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 		for(var/X in active_laser_targets)
 			var/obj/effect/overlay/temp/laser_target/LT = X

@@ -38,7 +38,7 @@
 			return
 
 		to_chat(user, "You start pulling out \the [src].")
-		if(!do_after(user,20, TRUE, src, USER_ICON_GENERIC))
+		if(!do_after(user,20, TRUE, src, BUSY_ICON_GENERIC))
 			return
 
 		anchored = 0

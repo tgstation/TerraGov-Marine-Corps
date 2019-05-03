@@ -82,7 +82,7 @@
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
 		delay_assembly -= 5 + user.mind.cm_skills.engineer * 2
 
-	if(do_after(user, delay_assembly, TRUE, src, USER_ICON_BUILD))
+	if(do_after(user, delay_assembly, TRUE, src, BUSY_ICON_BUILD))
 		var/obj/structure/razorwire/M = new /obj/structure/razorwire(target)
 		M.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] assembles a [M].</span>",

@@ -87,7 +87,7 @@
 
 	visible_message("<span class='xenonotice'>[src] begins digging out a tunnel entrance.</span>", \
 	"<span class='xenonotice'>You begin digging out a tunnel entrance.</span>", null, 5)
-	if(!do_after(src, HIVELORD_TUNNEL_DIG_TIME, TRUE, loc, USER_ICON_BUILD))
+	if(!do_after(src, HIVELORD_TUNNEL_DIG_TIME, TRUE, loc, BUSY_ICON_BUILD))
 		to_chat(src, "<span class='warning'>Your tunnel caves in as you stop digging it.</span>")
 		return
 	if(!check_plasma(200) || locate(/obj/structure/tunnel) in T)

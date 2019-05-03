@@ -448,7 +448,7 @@
 		"<span class='notice'>You start climbing into [src].</span>")
 
 	var/mob/doafterman = helper ? helper : user
-	if(!do_after(doafterman, 20, TRUE, user, USER_ICON_GENERIC))
+	if(!do_after(doafterman, 20, TRUE, user, BUSY_ICON_GENERIC))
 		return
 	if(helper)
 		var/obj/item/grab/G = helper.get_active_held_item()
