@@ -500,7 +500,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 /obj/structure/bed/medevac_stretcher/proc/medvac_alert(mob/M)
 	playsound(loc, 'sound/machines/ping.ogg', 50, FALSE)
-	radio.talk_into(src, "Patient [M] has been tele-vaced to medvac beacon at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.y])", FREQ_MEDICAL)
+	radio.talk_into(src, "Patient [M] has been tele-vaced to medvac beacon at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.y])", RADIO_CHANNEL_MEDICA)
 
 /obj/structure/bed/medevac_stretcher/examine(mob/user)
 	. = ..()
@@ -597,7 +597,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 /obj/item/medevac_beacon/proc/medvac_alert(mob/M)
 	playsound(loc, 'sound/machines/ping.ogg', 50, FALSE)
-	radio.talk_into(src, "Patient [M] has been tele-vaced to medvac beacon at: [get_area(src)]. Coordinates: (X: [x], Y: [y])", FREQ_POLICE)
+	radio.talk_into(src, "Patient [M] has been tele-vaced to medvac beacon at: [get_area(src)]. Coordinates: (X: [x], Y: [y])", RADIO_CHANNEL_MEDICA)
 
 /obj/item/medevac_beacon/attack_self(mob/user)
 	if(locked)

@@ -157,7 +157,7 @@
 			var/reason = "Reason for release:</b> Patient recovery."
 			if(dead)
 				reason = "<b>Reason for release:</b> Patient death."
-			radio.talk_into(src, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", FREQ_MEDICAL)
+			radio.talk_into(src, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", RADIO_CHANNEL_MEDICA)
 	occupant = null
 	update_use_power(1)
 	update_icon()

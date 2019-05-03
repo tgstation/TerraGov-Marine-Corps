@@ -189,7 +189,7 @@
 	use_power(5)
 	icon_state = "doorctrl1"
 
-	radio.talk_into(src, "<b>[user.name] is requesting medical attention at: [get_area(src)].</b>", FREQ_MEDICAL)
+	radio.talk_into(src, "<b>[user.name] is requesting medical attention at: [get_area(src)].</b>", RADIO_CHANNEL_MEDICA)
 	visible_message("Remain calm, someone will be with you shortly.")
 
 	active = TRUE
