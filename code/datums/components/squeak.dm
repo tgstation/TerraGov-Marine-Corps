@@ -12,7 +12,10 @@
 	var/use_delay = 20
 
 
-/datum/component/squeak/Initialize(sound_to_play, volume_override, chance_override, step_delay_override, use_delay_override)
+/datum/component/squeak/Initialize(volume_override, chance_override, step_delay_override, use_delay_override)
+	if(datum_outputs)
+		for(var/i in 1 to length(datum_outputs))
+			datum_outputs[i] = SSoutputs.outputs[datum_outputs[i]]
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_ATOM_ENTERED, COMSIG_PARENT_ATTACKBY), .proc/play_squeak)
@@ -28,8 +31,6 @@
 			if(istype(parent, /obj/item/clothing/shoes))
 				RegisterSignal(parent, COMSIG_SHOES_STEP_ACTION, .proc/step_squeak)
 
-	squeak_sound = sound_to_play
-
 	if(chance_override)
 		squeak_chance = chance_override
 	if(volume_override)
@@ -43,14 +44,11 @@
 /datum/component/squeak/proc/play_squeak()
 	if(!prob(squeak_chance))
 		return
-	if(!squeak_sound)
-		CRASH("Squeak component attempted to play invalid sound.")
+	if(!datum_outputs)
+		CRASH("Squeak component attempted to play missing datum.")
 		return
 
-	if(islist(squeak_sound))
-		playsound(parent, sound(pick(squeak_sound)), volume)
-	else
-		playsound(parent, sound(squeak_sound), volume)
+	playsound(parent, datum_outputs[1], volume, 1, -1, , , , , , src)
 
 
 /datum/component/squeak/proc/step_squeak()
@@ -99,3 +97,14 @@
 	//If the dir changes it means we're going through a bend in the pipes, let's pretend we bumped the wall
 	if(old_dir != new_dir)
 		play_squeak()
+
+
+/datum/component/squeak/bikehorn
+	datum_outputs = list(
+		/datum/outputs/bikehorn
+	)
+
+/datum/component/squeak/clownstep
+	datum_outputs = list(
+		/datum/outputs/clownstep
+	)

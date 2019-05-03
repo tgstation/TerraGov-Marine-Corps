@@ -3,7 +3,6 @@
 /datum/outputs
     var/text = "You hear something."
     var/list/sounds = 'sound/misc/bangindonk.ogg' //can be either a sound path or a WEIGHTED list, put multiple for random selection between sounds
-    // var/mutable_appearance/vfx = list('icons/sound_icon.dmi',"circle", HUD_LAYER) //syntax: icon, icon_state, layer
     var/mutable_appearance/vfx = list('icons/mob/talk.dmi',"scream", HUD_LAYER) //syntax: icon, icon_state, layer
     var/cooldown =  0.1 SECONDS // ms
 
@@ -44,8 +43,6 @@
                 var/pressure_factor = 1
                 var/hearer_pressure = T.return_pressure()
                 var/source_pressure = turf_source.return_pressure()
-                // var/datum/gas_mixture/hearer_env = T.return_air()
-                // var/datum/gas_mixture/source_env = turf_source.return_air()
 
                 if(hearer_pressure && source_pressure)
                     var/pressure = min(hearer_pressure, source_pressure)
@@ -81,10 +78,6 @@
     text = "You hear a HONK."
     sounds = 'sound/items/bikehorn.ogg'
 
-// /datum/outputs/airhorn
-//     text = "You hear the violent blaring of an airhorn."
-//     sounds = 'sound/items/airhorn2.ogg'
-
 /datum/outputs/alarm
     text = "You hear a blaring alarm."
     sounds = 'sound/machines/alarm.ogg'
@@ -100,17 +93,9 @@
     text = "You hear ravenous biting."
     sounds = 'sound/weapons/bite.ogg'
 
-// /datum/outputs/demonattack
-//     text = "You hear a terrifying, unholy noise."
-//     sounds = 'sound/magic/demon_attack1.ogg'
-
 /datum/outputs/slash
     text = "You hear a slashing noise."
     sounds = 'sound/weapons/slash.ogg'
-
-// /datum/outputs/punch
-//     text = "You hear a punch."
-//     sounds = 'sound/effects/hit_punch.ogg'
 
 /datum/outputs/squelch
     text = "You hear a horrendous squelching sound."
