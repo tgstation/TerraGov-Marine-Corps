@@ -290,31 +290,14 @@
 		else if (src == M.r_hand)
 			M.update_inv_r_hand()
 
-/obj/item/weapon/gun/energy/lasgun/attackby(obj/item/I, mob/user)
+/obj/item/weapon/gun/energy/lasgun/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 
-	if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user))
-			attach_to_gun(user,I)
-
- 	//the active attachment is reloadable
-	else if(active_attachable && active_attachable.flags_attach_features & ATTACH_RELOADABLE)
-		if(!check_inactive_hand(user))
-			return
-		if(istype(I,/obj/item/ammo_magazine))
-			var/obj/item/ammo_magazine/MG = I
-			if(istype(src, MG.gun_type))
-				to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
-				playsound(user, active_attachable.activation_sound, 15, 1)
-				active_attachable.activate_attachment(src, null, TRUE)
-				reload(user,MG)
-				return
-		active_attachable.reload_attachment(I, user)
-
-	else if(istype(I,/obj/item/cell/lasgun))
-		if(check_inactive_hand(user))
-			reload(user,I)
+	else if(istype(I, /obj/item/cell/lasgun) && check_inactive_hand(user))
+		reload(user, I)
 
 
 /obj/item/weapon/gun/energy/lasgun/reload(mob/user, obj/item/cell/lasgun/new_cell)
