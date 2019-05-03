@@ -289,21 +289,11 @@ should be alright.
 			attach_to_gun(user,I)
 
  	//the active attachment is reloadable
-	else if(active_attachable && active_attachable.flags_attach_features & ATTACH_RELOADABLE)
-		if(check_inactive_hand(user))
-			if(istype(I,/obj/item/ammo_magazine))
-				var/obj/item/ammo_magazine/MG = I
-				if(istype(src, MG.gun_type))
-					to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
-					playsound(user, active_attachable.activation_sound, 15, 1)
-					active_attachable.activate_attachment(src, null, TRUE)
-					reload(user,MG)
-					return
-			active_attachable.reload_attachment(I, user)
+	else if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user))
+		active_attachable.reload_attachment(I, user)
 
-	else if(istype(I,/obj/item/ammo_magazine))
-		if(check_inactive_hand(user))
-			reload(user,I)
+	else if(istype(I, /obj/item/ammo_magazine) && check_inactive_hand(user))
+		reload(user, I)
 
 
 //tactical reloads
