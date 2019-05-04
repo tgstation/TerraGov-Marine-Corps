@@ -8,7 +8,7 @@
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
-	health = 15
+	max_integrity = 15
 	var/state = 2
 	var/reinf = FALSE
 	var/basestate = "window"
@@ -28,7 +28,7 @@
 		if(make_hit_sound) //We'll still make the noise for immersion's sake
 			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
 		return
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		if(user)
 			user.visible_message("<span class='danger'>[user] smashes through [src][AM ? " with [AM]":""]!</span>")
 		if(make_shatter_sound)
@@ -44,7 +44,7 @@
 		return FALSE
 
 	if(damageable) //Possible to destroy
-		health -= Proj.damage
+		obj_integrity -= Proj.damage
 	..()
 	healthcheck()
 	return TRUE
@@ -54,13 +54,13 @@
 		return
 	switch(severity)
 		if(1)
-			health -= rand(125, 250)
+			obj_integrity -= rand(125, 250)
 			healthcheck(0, 1, 0)
 		if(2)
-			health -= rand(75, 125)
+			obj_integrity -= rand(75, 125)
 			healthcheck(0, 1)
 		if(3)
-			health -= rand(25, 75)
+			obj_integrity -= rand(25, 75)
 			healthcheck(0, 1)
 
 //TODO: Make full windows a separate type of window.
@@ -98,8 +98,8 @@
 		tforce = I.throwforce
 	if(reinf) tforce *= 0.25
 	if(damageable) //Possible to destroy
-		health = max(0, health - tforce)
-		if(health <= 7 && !reinf && !static_frame)
+		obj_integrity = max(0, obj_integrity - tforce)
+		if(obj_integrity <= 7 && !reinf && !static_frame)
 			anchored = FALSE
 			update_nearby_icons()
 			step(src, get_dir(AM, src))
@@ -124,7 +124,7 @@
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
 		if(damageable) //Possible to destroy
 			user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
-			health -= 500
+			obj_integrity -= 500
 		healthcheck(1, 1, 1, user)
 
 	else if(user.a_intent == INTENT_HARM)
@@ -157,7 +157,7 @@
 //Used by attack_animal
 /obj/structure/window/proc/attack_generic(mob/living/user, damage = 0)
 	if(damageable) //Possible to destroy
-		health -= damage
+		obj_integrity -= damage
 	user.animation_attack_on(src)
 	user.visible_message("<span class='danger'>[user] smashes into [src]!</span>")
 	healthcheck(1, 1, 1, user)
@@ -187,7 +187,7 @@
 					msg_admin_attack("[key_name(usr)] slammed [key_name(M)]'s face' against \the [src].")
 					M.apply_damage(7)
 					if(damageable) //Possible to destroy
-						health -= 10
+						obj_integrity -= 10
 				if(GRAB_AGGRESSIVE)
 					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
 					log_admin("[key_name(usr)] bashes [key_name(M)] against \the [src].")
@@ -197,7 +197,7 @@
 						M.KnockDown(1)
 					M.apply_damage(10)
 					if(damageable) //Possible to destroy
-						health -= 25
+						obj_integrity -= 25
 				if(GRAB_NECK)
 					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
 					log_admin("[key_name(usr)] crushes [key_name(M)] against \the [src].")
@@ -206,7 +206,7 @@
 					M.KnockDown(5)
 					M.apply_damage(20)
 					if(damageable) //Possible to destroy
-						health -= 50
+						obj_integrity -= 50
 			healthcheck(1, 1, 1, M) //The person thrown into the window literally shattered it
 		return
 
@@ -218,7 +218,7 @@
 		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
 			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P)
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
-				health = 0
+				obj_integrity = 0
 				healthcheck(0, 0, 1)
 				return
 
@@ -247,8 +247,8 @@
 		to_chat(user, (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>"))
 
 	if(damageable && dismantle == FALSE) //Possible to destroy
-		health -= W.force
-		if(health <= 7  && !reinf && !static_frame && deconstructable)
+		obj_integrity -= W.force
+		if(obj_integrity <= 7  && !reinf && !static_frame && deconstructable)
 			anchored = FALSE
 			update_nearby_icons()
 			step(src, get_dir(user, src))
@@ -366,7 +366,7 @@
 /obj/structure/window/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
 		if(damageable)
-			health -= round(exposed_volume / 100)
+			obj_integrity -= round(exposed_volume / 100)
 		healthcheck(0) //Don't make hit sounds, it's dumb with fire/heat
 	..()
 
@@ -376,11 +376,11 @@
 	basestate = "phoronwindow"
 	icon_state = "phoronwindow"
 	shardtype = /obj/item/shard/phoron
-	health = 120
+	max_integrity = 120
 
 /obj/structure/window/phoronbasic/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 32000)
-		health -= round(exposed_volume / 1000)
+		obj_integrity -= round(exposed_volume / 1000)
 		healthcheck(0) //Don't make hit sounds, it's dumb with fire/heat
 	..()
 
@@ -391,7 +391,7 @@
 	icon_state = "phoronrwindow"
 	shardtype = /obj/item/shard/phoron
 	reinf = TRUE
-	health = 160
+	max_integrity = 160
 
 /obj/structure/window/phoronreinforced/fire_act(exposed_temperature, exposed_volume)
 	return
@@ -401,7 +401,7 @@
 	desc = "A glass window with a rod matrice. It looks rather strong. Might take a few good hits to shatter it."
 	icon_state = "rwindow"
 	basestate = "rwindow"
-	health = 40
+	max_integrity = 40
 	reinf = TRUE
 
 /obj/structure/window/reinforced/toughened
@@ -409,7 +409,7 @@
 	desc = "A very tough looking glass window with a special rod matrice, probably bullet proof."
 	icon_state = "rwindow"
 	basestate = "rwindow"
-	health = 300
+	max_integrity = 300
 	reinf = TRUE
 
 /obj/structure/window/Initialize(Loc, constructed = 0)
@@ -431,7 +431,7 @@
 	desc = "A glass window with a rod matrice. It looks rather strong and frosted over. Looks like it might take a few less hits then a normal reinforced window."
 	icon_state = "fwindow"
 	basestate = "fwindow"
-	health = 30
+	max_integrity = 30
 
 /obj/structure/window/shuttle
 	name = "shuttle window"
@@ -439,8 +439,9 @@
 	icon = 'icons/obj/podwindows.dmi'
 	icon_state = "window"
 	basestate = "window"
-	health = 40
+	max_integrity = 40
 	reinf = TRUE
+	flags_atom = NONE
 
 /obj/structure/window/shuttle/update_icon() //icon_state has to be set manually
 	return
@@ -508,7 +509,7 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
 	icon_state = "alm_rwindow0"
 	basestate = "alm_rwindow"
-	health = 100 //Was 600
+	max_integrity = 100 //Was 600
 	reinf = TRUE
 	dir = 5
 	window_frame = /obj/structure/window_frame/almayer
@@ -516,7 +517,7 @@
 /obj/structure/window/framed/almayer/toughened
 	name = "safety glass"
 	desc = "A very tough looking glass window with a special rod matrice, probably bullet proof."
-	health = 300
+	max_integrity = 300
 
 /obj/structure/window/framed/almayer/hull
 	name = "hull window"
@@ -525,12 +526,12 @@
 	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	health = 1000000 //Failsafe, shouldn't matter
+	max_integrity = 1000000 //Failsafe, shouldn't matter
 
 /obj/structure/window/framed/almayer/requisitions
 	name = "kevlar-weave infused bulletproof window"
 	desc = "A borosilicate glass window infused with kevlar fibres and mounted within a special shock-absorbing frame, this is gonna be seriously hard to break through."
-	health = 2000
+	max_integrity = 2000
 	deconstructable = FALSE
 	window_frame = /obj/structure/window_frame/almayer/requisitions
 
@@ -552,7 +553,7 @@
 	icon_state = "col_rwindow0"
 	basestate = "col_rwindow"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
-	health = 100
+	max_integrity = 100
 	reinf = 1
 	window_frame = /obj/structure/window_frame/colony/reinforced
 
@@ -568,7 +569,7 @@
 	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	health = 1000000 //Failsafe, shouldn't matter
+	max_integrity = 1000000 //Failsafe, shouldn't matter
 
 
 
@@ -579,7 +580,7 @@
 	icon_state = "chig_rwindow0"
 	basestate = "chig_rwindow"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
-	health = 100
+	max_integrity = 100
 	reinf = TRUE
 	window_frame = /obj/structure/window_frame/chigusa
 
@@ -594,7 +595,7 @@
 /obj/structure/window/framed/wood/reinforced
 	name = "reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
-	health = 100
+	max_integrity = 100
 	reinf = TRUE
 	icon_state = "wood_rwindow0"
 	basestate = "wood_rwindow"
@@ -612,7 +613,7 @@
 /obj/structure/window/framed/prison/reinforced
 	name = "reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
-	health = 100
+	max_integrity = 100
 	reinf = TRUE
 	icon_state = "prison_rwindow0"
 	basestate = "prison_rwindow"
@@ -621,7 +622,7 @@
 /obj/structure/window/framed/prison/reinforced/hull
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one has an automatic shutter system to prevent any atmospheric breach."
-	health = 200
+	max_integrity = 200
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	var/triggered = FALSE //indicates if the shutters have already been triggered
 
@@ -659,4 +660,4 @@
 	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	health = 1000000 //Failsafe, shouldn't matter
+	max_integrity = 1000000 //Failsafe, shouldn't matter

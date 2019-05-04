@@ -438,20 +438,40 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(in_chamber)
 		user.visible_message("<span class='notice'>[user] cocks [src], clearing a [in_chamber.name] from its chamber.</span>",
 		"<span class='notice'>You cock [src], clearing a [in_chamber.name] from its chamber.</span>", null, 4)
+
+		// Get gun information from the current mag if its equipped otherwise the default ammo & caliber
+		var/bullet_ammo_type
+		var/bullet_caliber
 		if(current_mag)
-			var/found_handful
-			for(var/obj/item/ammo_magazine/handful/H in user.loc)
-				if(H.default_ammo == current_mag.default_ammo && H.caliber == current_mag.caliber && H.current_rounds < H.max_rounds)
-					found_handful = TRUE
-					H.current_rounds++
-					H.update_icon()
-					break
-			if(!found_handful)
-				var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-				new_handful.generate_handful(current_mag.default_ammo, current_mag.caliber, 8, 1, type)
-				new_handful.loc = get_turf(src)
+			bullet_ammo_type = current_mag.default_ammo
+			bullet_caliber = current_mag.caliber
 		else
-			make_casing(type_of_casings)
+			bullet_ammo_type = ammo.type
+			bullet_caliber = caliber
+
+		// Try to find an existing handful in our hands or on the floor under us
+		var/obj/item/ammo_magazine/handful/X
+		if (istype(user.r_hand, /obj/item/ammo_magazine/handful))
+			X = user.r_hand
+		else if (istype(user.l_hand, /obj/item/ammo_magazine/handful))
+			X = user.l_hand
+
+		var/obj/item/ammo_magazine/handful/H
+		if (X && X.default_ammo == bullet_ammo_type && X.caliber == bullet_caliber && X.current_rounds < X.max_rounds)
+			H = X
+		else
+			for(var/obj/item/ammo_magazine/handful/HL in user.loc)
+				if(HL.default_ammo == bullet_ammo_type && HL.caliber == bullet_caliber && HL.current_rounds < HL.max_rounds)
+					H = HL
+					break
+		if(H)
+			H.current_rounds++
+		else
+			H = new
+			H.generate_handful(bullet_ammo_type, bullet_caliber, 8, 1, type)
+			user.put_in_hands(H)
+
+		H.update_icon()
 		in_chamber = null
 	else
 		user.visible_message("<span class='notice'>[user] cocks [src].</span>",

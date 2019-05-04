@@ -4,7 +4,6 @@
 	. = ..()
 	name = MAIN_AI_SYSTEM
 	desc = "This is the artificial intelligence system for the [CONFIG_GET(string/ship_name)]. Like many other military-grade AI systems, this one was manufactured by NanoTrasen."
-	ai_headset = new(src)
 
 
 //Should likely just replace this with an actual AI mob in the future. Might as well.
@@ -12,13 +11,18 @@
 	name = "AI"
 	icon = 'icons/Marine/ai.dmi'
 	icon_state = "hydra"
+	voice_name = "ARES v3.2"
 	anchored = 1
 	canmove = FALSE
 	density = TRUE //Do not want to see past it.
 	bound_height = 64 //putting this in so we can't walk through our machine.
 	bound_width = 96
-	var/obj/item/radio/headset/almayer/mcom/ai/ai_headset //The thing it speaks into.
+	var/obj/item/radio/headset/almayer/mcom/ai/radio //The thing it speaks into.
 	var/sound/ai_sound //The lines that it plays when speaking.
+
+/mob/living/silicon/decoy/Initialize()
+	. = ..()
+	radio = new(src)
 
 /mob/living/silicon/decoy/Life()
 	if(stat == DEAD)
@@ -44,7 +48,8 @@
 	sleep(20)
 	explosion(loc, -1, 0, 8, 12)
 
-/mob/living/silicon/decoy/say(message, new_sound) //General communication across the ship.
+
+/mob/living/silicon/decoy/say(message, new_sound, datum/language/language) //General communication across the ship.
 	if(stat || !message)
 		return FALSE
 
@@ -52,32 +57,25 @@
 
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 
-	var/message_mode = parse_message_mode(message) //I really prefer my rewrite of all this.
+	var/datum/language/message_language = get_message_language(message)
+	if(message_language)
+		if(can_speak_in_language(message_language))
+			language = message_language
+		message = copytext(message, 3)
+
+		if(findtext(message, " ", 1, 2))
+			message = copytext(message, 2)
+
+	if(!language)
+		language = get_default_language()
+
+	var/message_mode = get_message_mode(message)
 
 	switch(message_mode)
-		if("headset")
+		if(MODE_HEADSET)
 			message = copytext(message, 2)
 		if("broadcast")
-			message_mode = "headset"
-		else
-			message = copytext(message, 3)
+			message_mode = MODE_HEADSET
 
-	ai_headset.talk_into(src, message, message_mode, "states", GLOB.all_languages[1])
+	radio.talk_into(src, message, message_mode, language = language)
 	return TRUE
-
-/mob/living/silicon/decoy/parse_message_mode(message)
-	. = "broadcast"
-
-	if(length(message) >= 1 && copytext(message,1,2) == ";")
-		return "headset"
-
-	if(length(message) >= 2)
-		var/channel_prefix = copytext(message, 1 ,3)
-		channel_prefix = department_radio_keys[channel_prefix]
-		if(channel_prefix)
-			return channel_prefix
-
-
-/*Specific communication to a terminal.
-/mob/living/silicon/decoy/proc/transmit(message)
-*/

@@ -1,5 +1,3 @@
-
-//actual built floors, not natural ground
 /turf/open/floor
 	//Note to coders, the 'intact_tile' var can no longer be used to determine if the floor is a plating or not.
 	//Use the is_plating(), is_plasteel_floor() and is_light_floor() procs instead. --Errorage

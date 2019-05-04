@@ -150,7 +150,7 @@
 						ears.loc = src.loc
 						ears = null
 						for(var/possible_phrase in speak)
-							if(copytext(possible_phrase,1,3) in department_radio_keys)
+							if(copytext(possible_phrase,1,3) in GLOB.department_radio_keys)
 								possible_phrase = copytext(possible_phrase,3,length(possible_phrase))
 					else
 						to_chat(usr, "<span class='warning'>There is nothing to remove from its [remove_from].</span>")
@@ -199,9 +199,6 @@
 									available_channels.Add(":d")
 								if("Cargo")
 									available_channels.Add(":q")
-
-						if(headset_to_add.translate_binary)
-							available_channels.Add(":b")
 		else
 			..()
 
@@ -339,7 +336,7 @@
 						if(prob(50))
 							useradio = 1
 
-						if(copytext(possible_phrase,1,3) in department_radio_keys)
+						if(copytext(possible_phrase,1,3) in GLOB.department_radio_keys)
 							possible_phrase = "[useradio?pick(available_channels):""] [copytext(possible_phrase,3,length(possible_phrase)+1)]" //crop out the channel prefix
 						else
 							possible_phrase = "[useradio?pick(available_channels):""] [possible_phrase]"
@@ -348,7 +345,7 @@
 
 				else //If we have no headset or channels to use, dont try to use any!
 					for(var/possible_phrase in speak)
-						if(copytext(possible_phrase,1,3) in department_radio_keys)
+						if(copytext(possible_phrase,1,3) in GLOB.department_radio_keys)
 							possible_phrase = "[copytext(possible_phrase,3,length(possible_phrase)+1)]" //crop out the channel prefix
 						newspeak.Add(possible_phrase)
 				speak = newspeak
@@ -718,7 +715,7 @@
 
 	if(length(message) >= 2)
 		var/channel_prefix = copytext(message, 1 ,3)
-		message_mode = department_radio_keys[channel_prefix]
+		message_mode = GLOB.department_radio_keys[channel_prefix]
 
 	if(copytext(message,1,2) == ":")
 		var/positioncut = 3
@@ -727,28 +724,9 @@
 	message = capitalize(trim_left(message))
 
 	if(message_mode)
-		if(message_mode in radiochannels)
+		if(message_mode in GLOB.radiochannels)
 			if(ears && istype(ears,/obj/item/radio))
 				ears.talk_into(src,message, message_mode, verb, null)
 
 
 	..(message)
-
-
-/mob/living/simple_animal/parrot/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
-	if(prob(50))
-		parrot_hear(message)
-	..(message,verb,language,alt_name,italics,speaker)
-
-
-
-/mob/living/simple_animal/parrot/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0)
-	if(prob(50))
-		parrot_hear("[pick(available_channels)] [message]")
-	..(message,verb,language,part_a,part_b,speaker,hard_to_hear)
-
-
-/mob/living/simple_animal/parrot/proc/parrot_hear(var/message="")
-	if(!message || stat)
-		return
-	speech_buffer.Add(message)

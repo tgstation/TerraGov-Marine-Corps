@@ -16,7 +16,6 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/ai_statuschange,
 	/mob/living/silicon/ai/proc/ai_store_location,
 	/mob/living/silicon/ai/proc/checklaws,
-	/mob/living/silicon/ai/proc/control_integrated_radio,
 	/mob/living/silicon/ai/proc/core,
 	/mob/living/silicon/ai/proc/pick_icon,
 	/mob/living/silicon/ai/proc/sensor_mode,
@@ -116,15 +115,10 @@ var/list/ai_verbs_default = list(
 		laws = new base_law_type
 
 	aiMulti = new(src)
-	aiRadio = new(src)
-	aiRadio.myAi = src
 	aiCamera = new/obj/item/camera/siliconcam/ai_camera(src)
 
 	if (istype(loc, /turf))
 		add_ai_verbs(src)
-
-	//Languages
-	grant_language(/datum/language/common)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
@@ -612,17 +606,6 @@ var/list/ai_verbs_default = list(
 	else
 		return ..()
 
-/mob/living/silicon/ai/proc/control_integrated_radio()
-	set name = "Radio Settings"
-	set desc = "Allows you to change settings of your radio."
-	set category = "AI Commands"
-
-	if(check_unable(AI_CHECK_RADIO))
-		return
-
-	to_chat(src, "Accessing Subspace Transceiver control...")
-	if (src.aiRadio)
-		src.aiRadio.interact(src)
 
 /mob/living/silicon/ai/proc/sensor_mode()
 	set name = "Set Sensor Augmentation"
@@ -637,9 +620,6 @@ var/list/ai_verbs_default = list(
 
 	if((flags & AI_CHECK_WIRELESS) && src.control_disabled)
 		to_chat(usr, "<span class='warning'>Wireless control is disabled!</span>")
-		return 1
-	if((flags & AI_CHECK_RADIO) && src.aiRadio.disabledAi)
-		to_chat(src, "<span class='warning'>System Error - Transceiver Disabled!</span>")
 		return 1
 	return 0
 

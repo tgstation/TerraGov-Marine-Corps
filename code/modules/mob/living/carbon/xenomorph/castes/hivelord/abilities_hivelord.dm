@@ -106,7 +106,7 @@
 		if(newt.z != newt.other.z)
 			start_dig = newt
 			to_chat(src, "<span class='xenonotice'>The first tunnel of this set has been destroyed as it cannot connect to this tunnel.</span>")
-			newt.other.health = 0
+			newt.other.obj_integrity = 0
 			newt.other.healthcheck()
 			newt.other = null
 			return
@@ -128,7 +128,7 @@
 
 		if(length(tunnels) * 0.5 > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
 			var/obj/structure/tunnel/old_tunnel = tunnels[1]
-			old_tunnel.health = 0
+			old_tunnel.obj_integrity = 0
 			old_tunnel.healthcheck()
 			to_chat(src, "<span class='xenodanger'>Having exceeding your tunnel set limit, your oldest tunnel set has collapsed.</span>")
 

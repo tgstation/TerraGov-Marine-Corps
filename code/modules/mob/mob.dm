@@ -22,8 +22,11 @@
 	. = ..()
 
 	if(statpanel("Stats"))
+		if(GLOB.round_id)
+			stat("Round ID: [GLOB.round_id]")
 		stat("Operation Time: [worldtime2text()]")
-		stat("The current map is: [SSmapping.config?.map_name ? SSmapping.config.map_name : "Loading..."]")
+		stat("Current Map: [SSmapping.config?.map_name ? SSmapping.config.map_name : "Loading..."]")
+		stat("Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
 
 
 	if(client?.holder?.rank?.rights)
@@ -37,7 +40,6 @@
 				supply_controller.stat_entry()
 				shuttle_controller?.stat_entry()
 				lighting_controller.stat_entry()
-				SSradio.stat_entry()
 				stat(null)
 				if(Master)
 					Master.stat_entry()

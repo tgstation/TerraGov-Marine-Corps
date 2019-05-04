@@ -15,3 +15,6 @@
 	if(reagents.has_reagent("lexorin") || in_stasis)
 		return FALSE
 	return TRUE
+
+/mob/living/carbon/get_reagent_tags()
+	return species?.reagent_tag

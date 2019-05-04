@@ -51,7 +51,7 @@
 
 		if(istype(A, /obj/machinery/bot))
 			var/obj/machinery/bot/B = A
-			if (B.health > 0)
+			if (B.obj_integrity > 0)
 				stance = HOSTILE_STANCE_ATTACK
 				T = B
 				break

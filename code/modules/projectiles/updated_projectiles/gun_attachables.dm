@@ -451,6 +451,7 @@ Defined in conflicts.dm of the #defines folder.
 	matter = list("metal" = 50,"glass" = 20)
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
+	activation_sound = 'sound/items/flashlight.ogg'
 
 /obj/item/attachable/flashlight/activate_attachment(obj/item/weapon/gun/G, mob/living/user, turn_off)
 	if(turn_off && !(G.flags_gun_features & GUN_FLASHLIGHT_ON))
@@ -794,10 +795,6 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/vp70/emp_act(severity)
 	pockets.emp_act(severity)
-	return ..()
-
-/obj/item/attachable/stock/vp70/hear_talk(mob/M, msg)
-	pockets.hear_talk(M, msg)
 	return ..()
 
 /obj/item/attachable/stock/revolver

@@ -30,6 +30,11 @@
 		return TRUE
 	return FALSE
 
+/mob/living/carbon/Xenomorph/Warrior/handle_special_wound_states()
+	. = ..()
+	if(agility)
+		return image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded_agility", "layer"=-X_WOUND_LAYER)
+
 // ***************************************
 // *********** Mob overrides
 // ***************************************
@@ -81,22 +86,3 @@
 	if(ishuman(AM))
 		return
 	..()
-
-// ***************************************
-// *********** Death
-// ***************************************
-/mob/living/carbon/Xenomorph/Warrior/update_wounds()
-	remove_overlay(X_WOUND_LAYER)
-	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
-		var/image/I
-		if(resting)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || stat == DEAD)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded_sleeping", "layer"=-X_WOUND_LAYER)
-		else if(agility)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded_agility", "layer"=-X_WOUND_LAYER)
-		else
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded", "layer"=-X_WOUND_LAYER)
-
-		overlays_standing[X_WOUND_LAYER] = I
-		apply_overlay(X_WOUND_LAYER)

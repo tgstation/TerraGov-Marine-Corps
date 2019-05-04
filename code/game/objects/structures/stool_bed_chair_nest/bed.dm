@@ -312,11 +312,17 @@ var/global/list/activated_medevac_stretchers = list()
 	var/obj/item/medevac_beacon/linked_beacon = null
 	var/stretcher_activated
 	var/obj/structure/dropship_equipment/medevac_system/linked_medevac
+	var/obj/item/radio/headset/almayer/doc/radio
+
+/obj/structure/bed/medevac_stretcher/Initialize(mapload)
+	. = ..()
+	radio = new(src)
 
 /obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/Xenomorph/M)
 	unbuckle()
 
 /obj/structure/bed/medevac_stretcher/Destroy()
+	QDEL_NULL(radio)
 	if(stretcher_activated)
 		stretcher_activated = FALSE
 		activated_medevac_stretchers -= src
@@ -324,7 +330,7 @@ var/global/list/activated_medevac_stretchers = list()
 			linked_medevac.linked_stretcher = null
 			linked_medevac = null
 		update_icon()
-	. = ..()
+	return ..()
 
 /obj/structure/bed/medevac_stretcher/update_icon()
 	..()
@@ -494,10 +500,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 /obj/structure/bed/medevac_stretcher/proc/medvac_alert(mob/M)
 	playsound(loc, 'sound/machines/ping.ogg', 50, FALSE)
-	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
-	AI.SetName("Medevac Notification System")
-	AI.aiRadio.talk_into(AI,"Patient [M] has been tele-vaced to medvac beacon at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.y])","MedSci","announces")
-	qdel(AI)
+	radio.talk_into(src, "Patient [M] has been tele-vaced to medvac beacon at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.y])", RADIO_CHANNEL_MEDICAL)
 
 /obj/structure/bed/medevac_stretcher/examine(mob/user)
 	. = ..()
@@ -560,7 +563,15 @@ var/global/list/activated_medevac_stretchers = list()
 	var/obj/item/roller/medevac/linked_bed = null
 	var/obj/structure/bed/medevac_stretcher/linked_bed_deployed = null
 	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_MEDBAY)
+	var/obj/item/radio/headset/almayer/doc/radio
 
+/obj/item/medevac_beacon/Initialize(mapload)
+	. = ..()
+	radio = new(src)
+
+/obj/item/medevac_beacon/Destroy()
+	QDEL_NULL(radio)
+	return ..()
 
 /obj/item/medevac_beacon/examine(mob/user)
 	. = ..()
@@ -586,10 +597,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 /obj/item/medevac_beacon/proc/medvac_alert(mob/M)
 	playsound(loc, 'sound/machines/ping.ogg', 50, FALSE)
-	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
-	AI.SetName("Medevac Notification System")
-	AI.aiRadio.talk_into(AI,"Patient [M] has been tele-vaced to medvac beacon at: [get_area(src)]. Coordinates: (X: [src.x], Y: [src.y])","MedSci","announces")
-	qdel(AI)
+	radio.talk_into(src, "Patient [M] has been tele-vaced to medvac beacon at: [get_area(src)]. Coordinates: (X: [x], Y: [y])", RADIO_CHANNEL_MEDICAL)
 
 /obj/item/medevac_beacon/attack_self(mob/user)
 	if(locked)
@@ -630,7 +638,7 @@ var/global/list/activated_medevac_stretchers = list()
 		user.visible_message("<span class='notice'>[user] [locked ? "locks" : "unlocks"] [src]'s interface.</span>",
 		"<span class='notice'>You [locked ? "lock" : "unlock"] [src]'s interface.</span>")
 	else if(istype(O,/obj/item/roller/medevac))
-		if(locked && !allowed(user))
+		if(locked)
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 			return

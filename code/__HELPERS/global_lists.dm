@@ -1,7 +1,5 @@
 var/list/fax_contents = list() 					//List of fax contents to maintain it even if source paper is deleted
 
-var/global/list/chemical_reactions_list				//List of all /datum/chemical_reaction datums. Used during chemical reactions
-var/global/list/chemical_reagents_list				//List of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 var/global/list/surgery_steps = list()				//List of all surgery steps  |BS12
 var/global/list/joblist = list()					//List of all jobstypes, minus borg and AI
 
@@ -22,7 +20,7 @@ GLOBAL_LIST_EMPTY(joketips)
 var/global/list/active_laser_targets = list()
 
 //used by the main overwatch console
-var/global/list/active_orbital_beacons = list()		
+var/global/list/active_orbital_beacons = list()
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
 
@@ -111,10 +109,10 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 /* // Uncomment to debug chemical reaction list.
 /client/verb/debug_chemical_list()
 
-	for (var/reaction in chemical_reactions_list)
-		. += "chemical_reactions_list\[\"[reaction]\"\] = \"[chemical_reactions_list[reaction]]\"\n"
-		if(islist(chemical_reactions_list[reaction]))
-			var/list/L = chemical_reactions_list[reaction]
+	for (var/reaction in GLOB.chemical_reactions_list)
+		. += "GLOB.chemical_reactions_list\[\"[reaction]\"\] = \"[GLOB.chemical_reactions_list[reaction]]\"\n"
+		if(islist(GLOB.chemical_reactions_list[reaction]))
+			var/list/L = GLOB.chemical_reactions_list[reaction]
 			for(var/t in L)
 				. += "    has: [t]\n"
 	to_chat(world, .)

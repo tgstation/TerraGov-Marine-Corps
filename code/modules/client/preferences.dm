@@ -27,6 +27,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/toggles_sound = TOGGLES_SOUND_DEFAULT
 	var/ghost_hud = TOGGLES_GHOSTHUD_DEFAULT
 	var/show_typing = TRUE
+	var/windowflashing = TRUE
 
 	//Synthetic specific preferences
 	var/synthetic_name = "David"
@@ -273,6 +274,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Ghost Sight:</b> <a href='?_src_=prefs;preference=ghost_sight'>[(toggles_chat & CHAT_GHOSTSIGHT) ? "All Emotes" : "Nearest Creatures"]</a><br>"
 	dat += "<b>Ghost Radio:</b> <a href='?_src_=prefs;preference=ghost_radio'>[(toggles_chat & CHAT_GHOSTRADIO) ? "All Chatter" : "Nearest Speakers"]</a><br>"
 	dat += "<b>Ghost Hivemind:</b> <a href='?_src_=prefs;preference=ghost_hivemind'>[(toggles_chat & CHAT_GHOSTHIVEMIND) ? "Show" : "Hide"]</a><br>"
+	dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=windowflashing'>[windowflashing ? "Yes" : "No"]</a><br>"
 
 	if(CONFIG_GET(flag/allow_metadata))
 		dat += "<b>OOC Notes:</b> <a href='?_src_=prefs;preference=metadata'> Edit </a><br>"
@@ -851,6 +853,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("ghost_hivemind")
 			toggles_chat ^= CHAT_GHOSTHIVEMIND
+
+		if("windowflashing")
+			windowflashing = !windowflashing
 
 	save_preferences()
 	save_character()

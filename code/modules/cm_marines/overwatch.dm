@@ -604,12 +604,10 @@
 
 	if(istype(H.wear_ear, /obj/item/radio/headset/almayer/marine))
 		var/obj/item/radio/headset/almayer/marine/R = H.wear_ear
-		if(!R.keyslot1)
-			R.keyslot1 = new /obj/item/encryptionkey/squadlead (src)
+		if(!R.keyslot)
+			R.keyslot = new /obj/item/encryptionkey/squadlead (src)
 		else if(!R.keyslot2)
 			R.keyslot2 = new /obj/item/encryptionkey/squadlead (src)
-		else if(!R.keyslot3)
-			R.keyslot3 = new /obj/item/encryptionkey/squadlead (src)
 		R.recalculateChannels()
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/ID = H.wear_id

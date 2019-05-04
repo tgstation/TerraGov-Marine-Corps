@@ -7,7 +7,6 @@
 	density = 0
 	anchored = 1
 	use_power = 0
-	var/obj/item/circuitboard/machine/circuit = null
 	var/list/components = null
 	var/list/req_components = null
 	var/list/req_component_names = null
@@ -62,7 +61,7 @@
 				if(istype(P, /obj/item/circuitboard/machine))
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 					to_chat(user, "<span class='notice'>You add the circuit board to the frame.</span>")
-					circuit = P
+					var/obj/item/circuitboard/machine/circuit = P
 					if(user.transferItemToLoc(P, src))
 						icon_state = "box_2"
 						state = 3

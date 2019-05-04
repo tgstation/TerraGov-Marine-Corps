@@ -366,3 +366,21 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(!istype(C)) return
 	if(!(unique_access in C.access)) return
 	return 1
+
+
+/mob/living/carbon/human/screech_act(mob/living/carbon/Xenomorph/Queen/Q)
+	shake_camera(src, 3 SECONDS, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
+	var/dist = get_dist(src, Q)
+
+	var/reduction = max(1 - 0.1 * protection_aura, 0) //Hold orders will reduce the Halloss; 10% per rank.
+	var/halloss_damage = (max(0,140 - dist * 10)) * reduction //Max 130 beside Queen, 70 at the edge
+	var/stun_duration = max(0,1.1 - dist * 0.1) * reduction //Max 1 beside Queen, 0.4 at the edge.
+
+	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
+	stunned += stun_duration
+	KnockDown(stun_duration)
+	apply_damage(halloss_damage, HALLOSS)
+	if(!ear_deaf)
+		ear_deaf += stun_duration * 20  //Deafens them temporarily
+	//Perception distorting effects of the psychic scream
+	addtimer(CALLBACK(GLOBAL_PROC, /proc/shake_camera, src, stun_duration * 1 SECONDS, 0.75), 31)

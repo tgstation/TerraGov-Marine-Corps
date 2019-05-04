@@ -237,7 +237,7 @@
 /datum/species/human
 	name = "Human"
 	name_plural = "Humans"
-	language = /datum/language/common
+	default_language = /datum/language/common
 	primitive = /mob/living/carbon/monkey
 	unarmed_type = /datum/unarmed_attack/punch
 	species_flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
@@ -309,7 +309,7 @@
 	name_plural = "Unathi"
 	icobase = 'icons/mob/human_races/r_lizard.dmi'
 	deform = 'icons/mob/human_races/r_def_lizard.dmi'
-	language = /datum/language/unathi
+	default_language = /datum/language/unathi
 	tail = "sogtail"
 	unarmed_type = /datum/unarmed_attack/claws
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
@@ -338,7 +338,7 @@
 	name_plural = "Tajaran"
 	icobase = 'icons/mob/human_races/r_tajaran.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
-	language = /datum/language/tajaran
+	default_language = /datum/language/tajaran
 	tail = "tajtail"
 	unarmed_type = /datum/unarmed_attack/claws
 	darksight = 8
@@ -363,7 +363,7 @@
 	name_plural = "Skrell"
 	icobase = 'icons/mob/human_races/r_skrell.dmi'
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
-	language = /datum/language/skrell
+	default_language = /datum/language/skrell
 	primitive = /mob/living/carbon/monkey/skrell
 	unarmed_type = /datum/unarmed_attack/punch
 
@@ -378,6 +378,7 @@
 	name_plural = "Moth"
 	icobase = 'icons/mob/human_races/r_moth.dmi'
 	deform = 'icons/mob/human_races/r_moth.dmi'
+	default_language = /datum/language/moth
 	eyes = "blank_eyes"
 	speech_verb_override = "flutters"
 	show_paygrade = TRUE
@@ -435,7 +436,7 @@
 	name_plural = "Vox"
 	icobase = 'icons/mob/human_races/r_vox.dmi'
 	deform = 'icons/mob/human_races/r_def_vox.dmi'
-	language = /datum/language/vox
+	default_language = /datum/language/vox
 	taste_sensitivity = TASTE_DULL
 	unarmed_type = /datum/unarmed_attack/claws/strong
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
@@ -525,7 +526,7 @@
 
 	icobase = 'icons/mob/human_races/r_machine.dmi'
 	deform = 'icons/mob/human_races/r_machine.dmi'
-	language = /datum/language/trader
+	default_language = /datum/language/trader
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 2
 

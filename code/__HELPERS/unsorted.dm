@@ -252,18 +252,21 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			return 0
 	return 1
 
-//Ensure the frequency is within bounds of what it should be sending/recieving at
-/proc/sanitize_frequency(var/f)
-	f = round(f)
-	f = max(1441, f) // 144.1
-	f = min(1489, f) // 148.9
-	if ((f % 2) == 0) //Ensure the last digit is an odd number
-		f += 1
-	return f
 
-//Turns 1479 into 147.9
-/proc/format_frequency(var/f)
-	return "[round(f / 10)].[f % 10]"
+// Ensure the frequency is within bounds of what it should be sending/receiving at
+/proc/sanitize_frequency(frequency, free = FALSE)
+	. = round(frequency)
+	if(free)
+		. = CLAMP(frequency, MIN_FREE_FREQ, MAX_FREE_FREQ)
+	else
+		. = CLAMP(frequency, MIN_FREQ, MAX_FREQ)
+	if(!(. % 2)) // Ensure the last digit is an odd number
+		. += 1
+
+// Format frequency by moving the decimal.
+/proc/format_frequency(frequency)
+	frequency = text2num(frequency)
+	return "[round(frequency / 10)].[frequency % 10]"
 
 
 
@@ -295,6 +298,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	if(istype(wear_id))
 		var/obj/item/card/id/C = wear_id
+		C.registered_name = real_name
 		C.update_label()
 
 	if(!GLOB.datacore.manifest_update(oldname, newname, job))
@@ -449,6 +453,27 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		return M
 	if(M < 0)
 		return -M
+
+
+//ultra range (no limitations on distance, faster than range for distances > 8); including areas drastically decreases performance
+/proc/urange(dist = 0, atom/center = usr, orange = 0, areas = 0)
+	if(!dist)
+		if(!orange)
+			return list(center)
+		else
+			return list()
+
+	var/list/turfs = RANGE_TURFS(dist, center)
+	if(orange)
+		turfs -= get_turf(center)
+	. = list()
+	for(var/V in turfs)
+		var/turf/T = V
+		. += T
+		. += T.contents
+		if(areas)
+			. |= T.loc
+
 
 // returns the turf located at the map edge in the specified direction relative to A
 // used for mass driver
@@ -1380,6 +1405,15 @@ var/list/WALLITEMS = list(
 
 /datum/proc/stack_trace(msg)
 	CRASH(msg)
+
+GLOBAL_REAL_VAR(list/stack_trace_storage)
+/proc/gib_stack_trace()
+	stack_trace_storage = list()
+	stack_trace()
+	stack_trace_storage.Cut(1, min(3, length(stack_trace_storage)))
+	. = stack_trace_storage
+	stack_trace_storage = null
+
 
 ////// Matrices ///////
 

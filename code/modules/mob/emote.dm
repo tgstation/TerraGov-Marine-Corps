@@ -1,10 +1,9 @@
 // All mobs should have custom emote, really..
-/mob/proc/custom_emote(var/m_type = EMOTE_VISIBLE, var/message = null, player_caused)
+/mob/proc/custom_emote(m_type = EMOTE_VISIBLE, message = null, player_caused = FALSE)
 	var/comm_paygrade = ""
 
-	if(stat || (!use_me && player_caused))
-		if(player_caused)
-			to_chat(src, "You are unable to emote.")
+	if(stat != CONSCIOUS && player_caused)
+		to_chat(src, "You are unable to emote.")
 		return
 
 	if(ishuman(src))

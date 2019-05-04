@@ -293,7 +293,7 @@
 	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 	var/lum_value = 7
 	var/repair_state = FLOODLIGHT_REPAIR_FINE
-	var/health = 120
+	max_integrity = 120
 
 /obj/machinery/colony_floodlight/Destroy()
 	toggle_light(SWITCH_OFF)
@@ -333,8 +333,8 @@
 	else
 		M.animation_attack_on(src)
 		M.visible_message("[M] slashes away at [src]!","You slash and claw at the bright light!", null, null, 5)
-		health  = max(health - rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper), 0)
-		if(!health)
+		obj_integrity  = max(obj_integrity - rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper), 0)
+		if(!obj_integrity)
 			panel_open = TRUE
 			playsound(loc, 'sound/items/trayhit2.ogg', 25, 1)
 			update_icon()
@@ -403,7 +403,7 @@
 					playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 					repair_state = FLOODLIGHT_REPAIR_FINE
 					damaged = FALSE
-					health = initial(health)
+					obj_integrity = max_integrity
 					toggle_light(SWITCH_ON)
 					user.visible_message("<span class='notice'>[user] mend [src]'s damaged cables.</span>",\
 					"<span class='notice'>You mend [src]'s damaged cables.</span>")

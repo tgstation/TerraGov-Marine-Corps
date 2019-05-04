@@ -58,7 +58,7 @@
 /obj/structure/acid_spray_act(mob/living/carbon/Xenomorph/X)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
-	health -= rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X)
+	obj_integrity -= rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X)
 	update_health(TRUE)
 	return TRUE // normal density flag
 
@@ -924,6 +924,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	do
 		face_atom(C)
 		if(stagger)
+			return FALSE
+		body_tox = C.reagents.get_reagent(toxin)
+		if(CHECK_BITFIELD(C.status_flags, XENO_HOST) && body_tox && body_tox.volume > body_tox.overdose_threshold)
+			to_chat(src, "<span class='warning'>You sense the infected host is saturated with [body_tox.name] and cease your attempt to inoculate it further to preserve the little one inside.</span>")
 			return FALSE
 		animation_attack_on(C)
 		playsound(C, 'sound/effects/spray3.ogg', 15, 1)

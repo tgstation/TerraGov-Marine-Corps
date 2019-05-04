@@ -28,9 +28,7 @@
 	var/obj/item/reagent_container/glass/beaker = null
 	var/reagent_transfer = 0
 
-	var/obj/item/radio/radio
-	//var/radio_key = /obj/item/encryptionkey/headset_med
-	//var/radio_channel = RADIO_CHANNEL_MEDICAL
+	var/obj/item/radio/headset/almayer/doc/radio
 	var/idle_ticks_until_shutdown = 60 //Number of ticks permitted to elapse without a patient before the cryotube shuts itself off to save processing
 
 	var/running_anim = FALSE
@@ -47,12 +45,13 @@
 	. = ..()
 	initialize_directions = dir
 	beaker = new /obj/item/reagent_container/glass/beaker/cryomix
-/*
 	radio = new(src)
-	radio.keyslot = new radio_key
-	radio.subspace_transmission = TRUE
-	radio.canhear_range = 0
-	radio.recalculateChannels()*/
+
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/Destroy()
+	QDEL_NULL(radio)
+	return ..()
+
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/process_occupant()
 	if(occupant)
@@ -102,7 +101,7 @@
 		to_chat(user, "<span class='notice'>The status display reads: Efficiency at <b>[efficiency*100]%</b>.<span>")
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Destroy()
-	//QDEL_NULL(radio)
+	QDEL_NULL(radio)
 	QDEL_NULL(beaker)
 	return ..()
 
@@ -158,10 +157,7 @@
 			var/reason = "Reason for release:</b> Patient recovery."
 			if(dead)
 				reason = "<b>Reason for release:</b> Patient death."
-			var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
-			AI.SetName("Cryotube Notification System")
-			AI.aiRadio.talk_into(AI,"Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]","MedSci","announces")
-			qdel(AI)
+			radio.talk_into(src, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", RADIO_CHANNEL_MEDICAL)
 	occupant = null
 	update_use_power(1)
 	update_icon()
@@ -263,13 +259,13 @@
 	set name = "Eject occupant"
 	set category = "Object"
 	set src in oview(1)
-	if(usr == occupant)//If the user is inside the tube...
-		if (usr.stat == 2)//and he's not dead....
+	if(usr == occupant) //If the user is inside the tube...
+		if (usr.stat == DEAD) //and he's not dead....
 			return
 		to_chat(usr, "<span class='notice'>Auto release sequence activated. You will be released when you have recovered.</span>")
 		auto_release = TRUE
 	else
-		if (usr.stat != 0)
+		if (usr.stat != CONSCIOUS)
 			return
 		go_out()
 	add_fingerprint(usr)
@@ -394,7 +390,9 @@
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-			usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
+			var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
+			popup.set_content(R.fields["last_scan_result"])
+			popup.open(FALSE)
 		break
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attack_hand(mob/user)
@@ -450,11 +448,11 @@
 				data["beakerVolume"] += R.volume
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "cryo.tmpl", "Cryo Cell Control System", 520, 410)
+		ui = new(user, src, ui_key, "cryo.tmpl", "Cryo Cell Control System", 520, 430)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
