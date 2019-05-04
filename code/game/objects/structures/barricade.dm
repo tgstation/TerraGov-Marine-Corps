@@ -14,13 +14,11 @@
 	var/destroyed_stack_amount //to specify a non-zero amount of stack to drop when destroyed
 	max_integrity = 100 //Pretty tough. Changes sprites at 300 and 150
 	var/crusher_resistant = TRUE //Whether a crusher can ram through it.
-	var/base_acid_damage = 2
 	var/barricade_resistance = 5 //How much force an item needs to even damage it at all.
 	var/barricade_hitsound
 
 	var/barricade_type = "barricade" //"metal", "plasteel", etc.
 	var/can_change_dmg_state = TRUE
-	var/damage_state = 0
 	var/closed = FALSE
 	var/can_wire = FALSE
 	var/is_wired = FALSE
@@ -200,10 +198,7 @@
 
 /obj/structure/barricade/update_icon()
 	if(!closed)
-		if(can_change_dmg_state)
-			icon_state = "[barricade_type]_[damage_state]"
-		else
-			icon_state = "[barricade_type]"
+		icon_state = "[barricade_type][damage_state()]"
 		switch(dir)
 			if(SOUTH)
 				layer = ABOVE_MOB_LAYER
@@ -214,10 +209,7 @@
 		if(!anchored)
 			layer = initial(layer)
 	else
-		if(can_change_dmg_state)
-			icon_state = "[barricade_type]_closed_[damage_state]"
-		else
-			icon_state = "[barricade_type]_closed"
+		icon_state = "[barricade_type]_closed[damage_state()]"
 		layer = OBJ_LAYER
 
 /obj/structure/barricade/proc/update_overlay()
@@ -231,23 +223,19 @@
 		wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
 	overlays += wired_overlay
 
-/obj/structure/barricade/proc/update_damage_state()
+/obj/structure/barricade/proc/damage_state()
+	if(!can_change_dmg_state)
+		return
 	var/health_percent = round(obj_integrity/max_integrity * 100)
 	switch(health_percent)
-		if(0 to 25) damage_state = 3
-		if(25 to 50) damage_state = 2
-		if(50 to 75) damage_state = 1
-		if(75 to INFINITY) damage_state = 0
-
-
-/obj/structure/barricade/effect_smoke(obj/effect/particle_effect/smoke/S)
-	. = ..()
-	if(!.)
-		return
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		obj_integrity -= base_acid_damage * S.strength
-		update_health()
-
+		if(0 to 25) 
+			return "_3"
+		if(25 to 50)
+			return "_2"
+		if(50 to 75)
+			return "_1"
+		if(75 to INFINITY)
+			return "_0"
 
 /obj/structure/barricade/verb/rotate()
 	set name = "Rotate Barricade Counter-Clockwise"
@@ -315,27 +303,6 @@
 	else
 		. = ..()
 
-/obj/structure/barricade/snow/hit_barricade(obj/item/I)
-	switch(I.damtype)
-		if("fire")
-			obj_integrity -= I.force * 0.6
-		if("brute")
-			obj_integrity -= I.force * 0.3
-
-	update_health()
-	update_icon()
-	return
-
-/obj/structure/barricade/snow/bullet_act(var/obj/item/projectile/P)
-	bullet_ping(P)
-	obj_integrity -= round(P.damage/2) //Not that durable.
-
-	if (istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		obj_integrity -= 50
-
-	update_health()
-	return TRUE
-
 /*----------------------*/
 // WOOD
 /*----------------------*/
@@ -378,17 +345,6 @@
 					visible_message("<span class='notice'>[user] repairs [src].</span>")
 		return
 	. = ..()
-
-/obj/structure/barricade/wooden/bullet_act(var/obj/item/projectile/P)
-	bullet_ping(P)
-	obj_integrity -= round(P.damage/2) //Not that durable.
-
-	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		obj_integrity -= 50
-
-	update_health()
-	return TRUE
-
 
 /*----------------------*/
 // METAL
@@ -554,27 +510,6 @@
 				return
 
 	. = ..()
-
-/obj/structure/barricade/metal/ex_act(severity)
-	switch(severity)
-		if(1)
-			obj_integrity -= rand(400, 600)
-		if(2)
-			obj_integrity -= rand(150, 350)
-		if(3)
-			obj_integrity -= rand(50, 100)
-
-	update_health()
-
-/obj/structure/barricade/metal/bullet_act(obj/item/projectile/P)
-	bullet_ping(P)
-	obj_integrity -= round(P.damage/10)
-
-	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		obj_integrity -= 50
-
-	update_health()
-	return TRUE
 
 /*----------------------*/
 // PLASTEEL
@@ -785,27 +720,6 @@
 	update_icon()
 	update_overlay()
 
-/obj/structure/barricade/plasteel/ex_act(severity)
-	switch(severity)
-		if(1)
-			obj_integrity -= rand(450, 650)
-		if(2)
-			obj_integrity -= rand(200, 400)
-		if(3)
-			obj_integrity -= rand(50, 150)
-
-	update_health()
-
-/obj/structure/barricade/plasteel/bullet_act(obj/item/projectile/P)
-	bullet_ping(P)
-	obj_integrity -= round(P.damage/10)
-
-	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		obj_integrity -= 50
-
-	update_health()
-	return TRUE
-
 /*----------------------*/
 // SANDBAGS
 /*----------------------*/
@@ -865,14 +779,3 @@
 				"<span class='notice'>You replace a damaged sandbag, repairing it [src].</span>")
 	else
 		. = ..()
-
-/obj/structure/barricade/sandbags/bullet_act(obj/item/projectile/P)
-	bullet_ping(P)
-	obj_integrity -= round(P.damage/10)
-
-	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		obj_integrity -= 50
-
-	update_health()
-
-	return TRUE

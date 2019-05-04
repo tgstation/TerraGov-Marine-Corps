@@ -294,11 +294,3 @@
 	var/health_percent = round(obj_integrity/max_integrity * 100)
 	var/remaining = CEILING(health_percent, 25)
 	icon_state = "[base_icon_state]_[remaining]"
-
-/obj/structure/razorwire/effect_smoke(obj/effect/particle_effect/smoke/S)
-	. = ..()
-	if(!.)
-		return
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		obj_integrity -= 2 * S.strength
-		update_health()

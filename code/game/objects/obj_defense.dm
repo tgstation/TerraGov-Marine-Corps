@@ -138,3 +138,14 @@
 //returns how much the object blocks an explosion
 /obj/proc/GetExplosionBlock()
 	CRASH("Unimplemented GetExplosionBlock()")
+
+/obj/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
+		var/turf/T = get_turf(src)
+		if(!(T?.intact_tile) || level != 1) //not hidden under the floor
+			S.reagents?.reaction(src, VAPOR, S.fraction)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
+		take_damage(2 * S.strength, BURN, "acid")
