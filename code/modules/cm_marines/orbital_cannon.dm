@@ -182,9 +182,6 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 	update_icon()
 
-
-
-
 /obj/structure/orbital_cannon/proc/fire_ob_cannon(turf/T, mob/user)
 	set waitfor = 0
 
@@ -214,7 +211,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 			inaccurate_fuel = abs(ob_type_fuel_requirements[3] - tray.fuel_amt)
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
-	for(var/mob/M in range(target,WARHEAD_FALLING_SOUND_RANGE))
+	for(var/M in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
 		SEND_SOUND(M, 'sound/effects/OB_incoming.ogg')
 
 	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), WARHEAD_FLY_TIME)
