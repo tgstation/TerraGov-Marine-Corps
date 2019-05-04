@@ -9,7 +9,6 @@ var/global/list/processing_machines = list()
 var/global/list/active_diseases = list()
 var/global/list/events = list()
 
-
 //tips
 GLOBAL_LIST_EMPTY(metatips)
 GLOBAL_LIST_EMPTY(marinetips)
