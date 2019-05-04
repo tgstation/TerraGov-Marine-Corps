@@ -48,18 +48,6 @@
 	dispensable_reagents = sortList(dispensable_reagents)
 	start_processing()
 
-
-/obj/machinery/chem_dispenser/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			qdel(src)
-			return
-		if(2.0)
-			if (prob(50))
-				qdel(src)
-				return
-
-
 /obj/machinery/chem_dispenser/on_stored_atom_del(atom/movable/AM)
 	if(AM == beaker)
 		beaker = null
@@ -261,16 +249,6 @@
 	var/datum/reagents/R = new/datum/reagents(240)
 	reagents = R
 	R.my_atom = src
-
-/obj/machinery/chem_master/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			qdel(src)
-			return
-		if(2.0)
-			if (prob(50))
-				qdel(src)
-				return
 
 /obj/machinery/chem_master/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(istype(I,/obj/item/reagent_container) && I.is_open_container())

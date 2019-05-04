@@ -33,19 +33,6 @@
 		else
 			icon_state = "[morgue_type]1"
 
-/obj/structure/morgue/ex_act(severity)
-	switch(severity)
-		if(2)
-			if(prob(50))
-				return
-		if(3)
-			if(prob(95))
-				return
-	for(var/atom/movable/A in src)
-		A.forceMove(loc)
-		ex_act(severity)
-	qdel(src)
-
 /obj/structure/morgue/attack_paw(mob/user)
 	toggle_morgue(user)
 

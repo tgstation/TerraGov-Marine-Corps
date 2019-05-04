@@ -53,9 +53,6 @@
 		qdel(src)
 	return
 
-/obj/structure/grille/ex_act(severity)
-	qdel(src)
-
 /obj/structure/grille/Bumped(atom/user)
 	if(ismob(user)) shock(user, 70)
 

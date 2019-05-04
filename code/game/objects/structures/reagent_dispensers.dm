@@ -32,23 +32,10 @@
 	if (N)
 		amount_per_transfer_from_this = N
 
-/obj/structure/reagent_dispensers/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			qdel(src)
-			return
-		if(2.0)
-			if (prob(50))
-				new /obj/effect/particle_effect/water(src.loc)
-				qdel(src)
-				return
-		if(3.0)
-			if (prob(5))
-				new /obj/effect/particle_effect/water(src.loc)
-				qdel(src)
-				return
-		else
-	return
+/obj/structure/reagent_dispensers/deconstruct(disassembled = FALSE)
+	if(!disassembled)
+		new /obj/effect/particle_effect/water(src.loc)
+	return ..()
 
 /obj/structure/reagent_dispensers/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))

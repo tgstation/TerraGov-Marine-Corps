@@ -202,18 +202,6 @@
 	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-/obj/structure/razorwire/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			visible_message("<span class='danger'>[src] is blown apart!</span>")
-			destroyed()
-			return
-		if(2.0)
-			obj_integrity -= rand(33, 66)
-		if(3.0)
-			obj_integrity -= rand(10, 33)
-	update_health()
-
 /obj/structure/razorwire/Bumped(atom/A)
 	. = ..()
 

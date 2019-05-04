@@ -204,26 +204,6 @@
 				if(master)
 					master.spawn_piece( F )
 
-// Explosion damage.
-/obj/effect/plantsegment/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			die()
-			return
-		if(2.0)
-			if (prob(90))
-				die()
-				return
-		if(3.0)
-			if (prob(50))
-				die()
-				return
-	return
-
-// Hotspots kill vines.
-/obj/effect/plantsegment/fire_act(null, temp, volume)
-	qdel(src)
-
 /obj/effect/plantsegment/proc/die()
 	if(seed && harvest && rand(5))
 		seed.harvest(src,1)

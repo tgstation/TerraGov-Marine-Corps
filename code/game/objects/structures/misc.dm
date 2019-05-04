@@ -6,14 +6,6 @@
 	density = TRUE
 	anchored = TRUE
 
-/obj/structure/showcase/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(prob(50))
-				qdel(src)
-
 /obj/structure/showcase/yaut
 	name = "alien sarcophagus"
 	desc = "An ancient, dusty tomb with strange alien writing. It's best not to touch it."

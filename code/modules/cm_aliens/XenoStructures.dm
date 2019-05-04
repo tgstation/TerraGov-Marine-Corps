@@ -714,16 +714,6 @@ TUNNEL
 /obj/structure/tunnel/bullet_act(var/obj/item/projectile/Proj)
 	return 0
 
-/obj/structure/tunnel/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			obj_integrity -= 210
-		if(2.0)
-			obj_integrity -= 140
-		if(3.0)
-			obj_integrity -= 70
-	healthcheck()
-
 /obj/structure/tunnel/attackby(obj/item/W as obj, mob/user as mob)
 	if(!isxeno(user))
 		return ..()

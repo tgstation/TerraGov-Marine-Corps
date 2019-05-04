@@ -284,20 +284,6 @@
 				"<span class='warning'>You get pushed out of [src] and get your bearings!")
 	update()
 
-//Pipe affected by explosion
-/obj/machinery/disposal/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			if(prob(60))
-				qdel(src)
-			return
-		if(3)
-			if(prob(25))
-				qdel(src)
-
 /obj/machinery/disposal/Destroy()
 	if(contents.len)
 		eject()
@@ -751,22 +737,6 @@
 
 	spawn(2) //Delete pipe after 2 ticks to ensure expel proc finished
 		qdel(src)
-
-//Pipe affected by explosion
-/obj/structure/disposalpipe/ex_act(severity)
-
-	switch(severity)
-		if(1)
-			broken(0)
-			return
-		if(2)
-			obj_integrity -= rand(5, 15)
-			healthcheck()
-			return
-		if(3)
-			obj_integrity -= rand(0, 15)
-			healthcheck()
-			return
 
 //Test health for brokenness
 /obj/structure/disposalpipe/proc/healthcheck()

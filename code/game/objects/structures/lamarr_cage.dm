@@ -16,21 +16,6 @@
 	destroyed = TRUE
 	occupied = FALSE
 
-/obj/structure/lamarr/ex_act(severity)
-	switch(severity)
-		if (1)
-			new /obj/item/shard( src.loc )
-			Break()
-			qdel(src)
-		if (2)
-			if (prob(50))
-				src.obj_integrity -= 15
-				src.healthcheck()
-		if (3)
-			if (prob(50))
-				src.obj_integrity -= 5
-				src.healthcheck()
-
 
 /obj/structure/lamarr/bullet_act(var/obj/item/projectile/Proj)
 	obj_integrity -= Proj.damage

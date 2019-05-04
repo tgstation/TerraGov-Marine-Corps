@@ -315,6 +315,7 @@
 	invisibility = INVISIBILITY_MAXIMUM //Can't be seen or found, it's "up in the sky"
 	mouse_opacity = 0
 	brightness_on = 7 //Way brighter than most lights
+	resistance_flags = INDESTRUCTIBLE
 
 	New()
 
@@ -325,10 +326,6 @@
 
 	..()
 	qdel(src)
-
-/obj/item/flashlight/flare/on/illumination/ex_act(severity)
-
-	return //Nope
 
 /obj/structure/closet/crate/mortar_ammo
 

@@ -431,15 +431,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	dir = WEST
 	flags_atom = ON_BORDER|CONDUCT
 	var/orbital_window_page = 0
-
-
-
-/obj/machinery/computer/orbital_cannon_console/ex_act()
-	return
-
-/obj/machinery/computer/orbital_cannon_console/bullet_act()
-	return
-
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/machinery/computer/orbital_cannon_console/attack_hand(mob/user)
 	if(..())

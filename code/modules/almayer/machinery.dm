@@ -35,23 +35,6 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "terminal"
 
-/obj/machinery/prop/almayer/computer/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			qdel(src)
-			return
-		if(2.0)
-			if (prob(25))
-				qdel(src)
-				return
-			if (prob(50))
-				set_broken()
-		if(3.0)
-			if (prob(25))
-				set_broken()
-		else
-			return
-
 /obj/machinery/prop/almayer/computer/proc/set_broken()
 	machine_stat |= BROKEN
 	update_icon()
@@ -209,13 +192,7 @@
 	density = 0
 	mouse_opacity = 0
 	layer = LADDER_LAYER
-
-/obj/structure/prop/almayer/cannon_cables/ex_act()
-	return
-
-/obj/structure/prop/almayer/cannon_cables/bullet_act()
-	return
-
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/prop/almayer/cannon_cable_connector
 	name = "\improper Cannon cable connector"
@@ -223,12 +200,7 @@
 	icon = 'icons/Marine/almayer_props.dmi'
 	icon_state = "cannon_cable_connector"
 	density = 1
-
-/obj/structure/prop/almayer/cannon_cable_connector/ex_act()
-	return
-
-/obj/structure/prop/almayer/cannon_cable_connector/bullet_act()
-	return
+	resistance_flags = INDESTRUCTIBLE
 
 //------- Cryobag Recycler -------//
 // Wanted to put this in, but since we still have extra time until tomorrow and this is really simple thing. It just recycles opened cryobags to make it nice-r for medics.
