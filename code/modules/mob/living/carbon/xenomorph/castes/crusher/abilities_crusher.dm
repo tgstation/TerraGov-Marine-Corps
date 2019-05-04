@@ -22,7 +22,7 @@
 	X.create_stomp() //Adds the visual effect. Wom wom wom
 
 	for(var/mob/living/M in range(2,X.loc))
-		if(isxeno(M) || M.stat == DEAD || (CHECK_BITFIELD(M.status_flags, XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)))
+		if(isxeno(M) || M.stat == DEAD || isnestedhost(M))
 			continue
 		var/distance = get_dist(M, X)
 		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(X)) / max(1,distance + 1)
@@ -83,7 +83,7 @@
 	if(!owner.Adjacent(A) || !isliving(A))
 		return FALSE
 	var/mob/living/L = A
-	if(L.stat == DEAD || (CHECK_BITFIELD(L.status_flags, XENO_HOST) && istype(L.buckled, /obj/structure/bed/nest) ) ) //no bully
+	if(L.stat == DEAD || isnestedhost(L)) //no bully
 		return FALSE
 	if(L.mob_size >= MOB_SIZE_BIG)
 		if(!silent)

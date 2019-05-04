@@ -29,6 +29,8 @@
 
 #define isbrain(A) (istype(A, /mob/living/brain))
 
+#define isnestedhost(A)	((CHECK_BITFIELD(A.status_flags, XENO_HOST) && istype(A.buckled, /obj/structure/bed/nest)))
+
 //Carbon mobs
 #define iscarbon(A) (istype(A, /mob/living/carbon))
 
