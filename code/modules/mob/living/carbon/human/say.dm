@@ -29,8 +29,6 @@
 		var/obj/item/radio/headset/H = wear_ear
 		if(!istype(H))
 			return FALSE
-		if(H.translate_binary)
-			return TRUE
 
 
 /mob/living/carbon/human/radio(message, message_mode, list/spans, language)
@@ -51,7 +49,7 @@
 				wear_ear.talk_into(src, message, message_mode, spans, language)
 			return ITALICS | REDUCE_RANGE
 
-	if(message_mode in radiochannels)
+	if(message_mode in GLOB.radiochannels)
 		if(wear_ear)
 			playsound(loc, 'sound/effects/radiostatic.ogg', 15, 1)
 			wear_ear.talk_into(src, message, message_mode, spans, language)

@@ -203,7 +203,7 @@
 	var/orient_right = FALSE // Flips the sprite.
 	var/time_till_despawn = 10 MINUTES
 	var/time_entered
-	var/obj/item/radio/intercom/announce //Intercom for cryo announcements
+	var/obj/item/radio/radio
 
 /obj/machinery/cryopod/right
 	orient_right = TRUE
@@ -211,8 +211,12 @@
 
 /obj/machinery/cryopod/Initialize()
 	. = ..()
-	announce = new(src)
+	radio = new(src)
 	update_icon()
+
+/obj/machinery/cryopod/Destroy()
+	QDEL_NULL(radio)
+	return ..()
 
 /obj/machinery/cryopod/update_icon()
 	var/occupied = occupant ? TRUE : FALSE
@@ -279,14 +283,14 @@
 	GLOB.cryoed_mob_list += data
 	GLOB.cryoed_mob_list[data] = list(real_name, job ? job : "Unassigned", gameTimestamp())
 
-	var/obj/item/radio/intercom/radio
+	var/obj/item/radio/radio
 	if(pod)
-		radio = pod.announce
+		radio = pod.radio
 		pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")
 		pod.occupant = null
 	else
 		radio = new(src)
-	radio.autosay("[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", "Hypersleep Storage System")
+	radio.talk_into(pod, "[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", FREQ_COMMON)
 
 	qdel(src)
 
@@ -480,7 +484,7 @@
 		return
 
 	//Eject any items that aren't meant to be in the pod.
-	var/list/items = contents - announce
+	var/list/items = contents - radio
 
 	for(var/I in items)
 		var/atom/movable/A = I
