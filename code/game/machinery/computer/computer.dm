@@ -26,16 +26,6 @@
 	if(prob(20/severity)) set_broken()
 	..()
 
-/obj/machinery/computer/bullet_act(var/obj/item/projectile/Proj)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		visible_message("[Proj] ricochets off [src]!")
-		return 0
-	else
-		if(prob(round(Proj.ammo.damage /2)))
-			set_broken()
-		..()
-		return 1
-
 /obj/machinery/computer/update_icon()
 	..()
 	icon_state = initial(icon_state)

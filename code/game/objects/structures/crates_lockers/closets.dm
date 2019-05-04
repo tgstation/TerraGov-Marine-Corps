@@ -140,20 +140,6 @@
 		return FALSE
 	return TRUE
 
-/obj/structure/closet/bullet_act(var/obj/item/projectile/Proj)
-	if(obj_integrity > 999)
-		return TRUE
-	obj_integrity -= round(Proj.damage*0.3)
-	if(prob(30)) playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-	if(obj_integrity <= 0)
-		for(var/atom/movable/A as mob|obj in src)
-			A.loc = loc
-		spawn(1)
-			playsound(loc, 'sound/effects/meteorimpact.ogg', 25, 1)
-			qdel(src)
-
-	return TRUE
-
 /obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)
 		visible_message("<span class='warning'> [user] destroys the [src]. </span>")

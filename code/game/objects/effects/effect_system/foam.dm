@@ -161,6 +161,7 @@
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
 	var/metal = 1		// 1=aluminum, 2=iron
+	max_integrity = 10
 
 /obj/structure/foamedmetal/Destroy()
 	density = FALSE
@@ -171,11 +172,6 @@
 		icon_state = "metalfoam"
 	else
 		icon_state = "ironfoam"
-
-/obj/structure/foamedmetal/bullet_act()
-	if(metal==1 || prob(50))
-		qdel(src)
-	return TRUE
 
 /obj/structure/foamedmetal/attack_paw(var/mob/user)
 	attack_hand(user)
