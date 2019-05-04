@@ -6,9 +6,6 @@
 	Otherwise pretty standard.
 */
 
-/mob/living/carbon/human
-	var/last_chew = 0
-
 /mob/living/carbon/human/RestrainedClickOn(atom/A) //chewing your handcuffs
 	if (A != src) return ..()
 	var/mob/living/carbon/human/H = A
@@ -62,26 +59,6 @@
 	changeNext_move(CLICK_CD_MELEE)
 	A.attack_hand(src)
 
-
-/mob/living/carbon/human/RangedAttack(atom/A)
-
-	if(!gloves && !mutations.len) return
-	var/obj/item/clothing/gloves/G = gloves
-
-	if(istype(G) && G.Touch(A,0)) // for magic gloves
-		return
-
-	else if(TK in mutations)
-		switch(get_dist(src,A))
-			if(1 to 5) // not adjacent may mean blocked by window
-				next_move += 2
-			if(5 to 7)
-				next_move += 5
-			if(8 to 15)
-				next_move += 10
-			if(16 to 128)
-				return
-		A.attack_tk(src)
 
 /atom/proc/attack_hand(mob/user)
 	return

@@ -227,7 +227,7 @@
 		formatted_type = null
 
 	var/marked
-	if(holder && holder.marked_datum && holder.marked_datum == D)
+	if(holder?.marked_datum && holder.marked_datum == D)
 		marked = VV_MSG_MARKED
 	var/varedited_line = ""
 	if(!islist && (D.datum_flags & DF_VAR_EDITED))
@@ -693,6 +693,8 @@
 			return
 
 		M.fully_replace_character_name(M.real_name, new_name)
+		vv_update_display(M, "name", new_name)
+		vv_update_display(M, "real_name", M.real_name || "No real name")
 
 		message_admins("[ADMIN_TPMONTY(usr)] renamed [ADMIN_TPMONTY(M)] to [new_name].")
 
@@ -904,7 +906,7 @@
 
 		if(A.reagents)
 			var/chosen_id
-			var/list/reagent_options = sortList(chemical_reagents_list)
+			var/list/reagent_options = sortList(GLOB.chemical_reagents_list)
 			switch(alert(usr, "Choose a method.", "Add Reagents", "Enter ID", "Choose ID"))
 				if("Enter ID")
 					var/valid_id
@@ -925,6 +927,26 @@
 					A.reagents.add_reagent(chosen_id, amount)
 					log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to [A].")
 					message_admins("[ADMIN_TPMONTY(usr)] has added [amount] units of [chosen_id] to [A].")
+
+
+	else if(href_list["rotatedatum"])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/atom/A = locate(href_list["rotatedatum"])
+		if(!istype(A))
+			to_chat(usr, "This can only be done to instances of type /atom")
+			return
+
+		switch(href_list["rotatedir"])
+			if("right")
+				A.setDir(turn(A.dir, -45))
+			if("left")
+				A.setDir(turn(A.dir, 45))
+
+		vv_update_display(A, "dir", dir2text(A.dir))
+
+		log_admin("[key_name(usr)] rotated [A].")
 
 
 	else if(href_list["modtransform"])
@@ -1041,20 +1063,18 @@
 		if(!istype(L))
 			return
 
-		var/new_language = input("Please choose a language to add.", "Language", null) as null|anything in GLOB.all_languages
-
+		var/new_language = input("Please choose a language to add.", "Language") as null|anything in GLOB.all_languages
 		if(!new_language)
 			return
 
-		if(!L)
+		if(!istype(L))
 			to_chat(usr, "<span class='warning'>Mob doesn't exist anymore.</span>")
 			return
 
-		if(L.add_language(new_language))
-			log_admin("[key_name(usr)] has added [new_language] to [key_name(L)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has added [new_language] to [ADMIN_TPMONTY(L)].")
-		else
-			to_chat(usr, "<span class='warning'>Mob already knows that language.</span>")
+		L.grant_language(new_language)
+
+		log_admin("[key_name(usr)] has added [new_language] to [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has added [new_language] to [ADMIN_TPMONTY(L)].")
 
 
 	else if(href_list["remlanguage"])
@@ -1063,14 +1083,13 @@
 
 		var/mob/living/L = locate(href_list["remlanguage"])
 		if(!istype(L))
-
 			return
 
-		if(!length(L.languages))
+		if(!length(L.language_holder.languages))
 			to_chat(usr, "<span class='warning'>This mob knows no languages.</span>")
 			return
 
-		var/datum/language/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in L.languages
+		var/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in L.language_holder.languages
 
 		if(!rem_language)
 			return
@@ -1079,34 +1098,10 @@
 			to_chat(usr, "<span class='warning'>Mob doesn't exist anymore.</span>")
 			return
 
-		if(L.remove_language(rem_language.name))
-			to_chat(usr, "Removed [rem_language] from [L].")
-			log_admin("[key_name(usr)] has removed [rem_language] from [key_name(L)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has removed [rem_language] from [ADMIN_TPMONTY(L)].")
-		else
-			to_chat(usr, "<span class='warning'>Mob doesn't know that language.</span>")
+		L.remove_language(rem_language)
 
-
-	else if(href_list["purrbation"])
-		if(!check_rights(R_FUN))
-			return
-
-		var/mob/living/carbon/human/H = locate(href_list["purrbation"])
-		if(!istype(H))
-			return
-
-		if(istype(H.head, /obj/item/clothing/head/kitty))
-			qdel(H.head)
-			H.regenerate_icons()
-			log_admin("[key_name(usr)] has removed purrbation [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has removed purrbation from [ADMIN_TPMONTY(H)].")
-		else
-			H.dropItemToGround(H.head)
-			H.head = new /obj/item/clothing/head/kitty(H)
-			H.regenerate_icons()
-			H.head.update_icon(H)
-			log_admin("[key_name(usr)] has purrbated [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has purrbated [ADMIN_TPMONTY(H)].")
+		log_admin("[key_name(usr)] has removed [rem_language] from [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has removed [rem_language] from [ADMIN_TPMONTY(L)].")
 
 
 	else if(href_list["getatom"])
@@ -1176,7 +1171,7 @@
 		var/mob/living/carbon/human/H = locate(href_list["copyoutfit"])
 		if(!istype(H))
 			return
-			
+
 		H.copy_outfit()
 
 		log_admin("[key_name(usr)] copied the outfit of [key_name(H)].")
@@ -1214,3 +1209,15 @@
 		AM.update_icon()
 
 		log_admin("[key_name(usr)] updated the icon of [AM].")
+
+
+	else if(href_list["playerpanel"])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/mob/M = locate(href_list["playerpanel"])
+		if(!istype(M))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		usr.client.holder.show_player_panel(M)

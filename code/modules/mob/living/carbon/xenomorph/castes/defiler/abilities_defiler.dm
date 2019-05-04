@@ -50,7 +50,7 @@
 		return TRUE
 
 /mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting(mob/living/carbon/C)
-	if(!check_state() || !C?.can_sting())
+	if(!check_state() || QDELETED(C))
 		return
 
 	if(world.time < last_defiler_sting + DEFILER_STING_COOLDOWN) //Sure, let's use this.
@@ -61,18 +61,14 @@
 		to_chat(src, "<span class='warning'>You try to sting but are too disoriented!</span>")
 		return
 
-	if(!C.can_sting())
-		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
-		return
-
 	if(!Adjacent(C))
 		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
 			to_chat(src, "<span class='warning'>You can't reach this target!</span>")
 			recent_notice = world.time //anti-notice spam
 		return
 
-	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
-		to_chat(src, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
+	if(!(C.can_sting()))
+		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
 		return
 
 	if(!check_plasma(150))
@@ -84,9 +80,10 @@
 
 	addtimer(CALLBACK(src, .defiler_sting_cooldown), DEFILER_STING_COOLDOWN)
 
-	larva_injection(C)
+	if(!CHECK_BITFIELD(C.status_flags, XENO_HOST))
+		larva_injection(C, FALSE)
 	larval_growth_sting(C)
-	
+
 
 /mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting_cooldown()
 	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -136,9 +133,8 @@
 	icon_state = "Defiler Power Up"
 
 	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
-		smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
-		smoke_system.amount = 1
-		smoke_system.set_up(1, 0, get_turf(src))
+		smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
+		smoke_system.set_up(1, get_turf(src))
 		to_chat(src, "<span class='xenodanger'>You abort emitting neurogas, your expended plasma resulting in only a feeble wisp.</span>")
 		emitting_gas = FALSE
 		icon_state = "Defiler Running"
@@ -176,13 +172,11 @@
 			return
 		playsound(loc, 'sound/effects/smoke.ogg', 25)
 		var/turf/T = get_turf(src)
-		smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
+		smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
 		if(count > 1)
-			smoke_system.amount = 2
-			smoke_system.set_up(2, 0, T)
+			smoke_system.set_up(2, T)
 		else //last emission is larger
-			smoke_system.amount = 3
-			smoke_system.set_up(3, 0, T)
+			smoke_system.set_up(3, T)
 		smoke_system.start()
 		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
 		count = max(0,count - 1)

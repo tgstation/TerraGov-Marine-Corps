@@ -1,4 +1,4 @@
-/mob/living/carbon/Xenomorph/emote(act, m_type = EMOTE_AUDIBLE, message, player_caused)
+/mob/living/carbon/Xenomorph/emote(act, m_type = EMOTE_AUDIBLE, message = null, player_caused = FALSE)
 	if(stat)
 		return
 

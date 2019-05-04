@@ -22,7 +22,7 @@
 
 	for(var/T in reagent_ids)
 		reagent_volumes[T] = volume
-		var/datum/reagent/R = chemical_reagents_list[T]
+		var/datum/reagent/R = GLOB.chemical_reagents_list[T]
 		reagent_names += R.name
 
 	START_PROCESSING(SSobj, src)
@@ -71,7 +71,7 @@
 /obj/item/reagent_container/borghypo/attack_self(mob/user as mob)
 	var/selection = input("Please select a reagent:", "Reagent", null) as null|anything in reagent_ids
 	if(!selection) return
-	var/datum/reagent/R = chemical_reagents_list[selection]
+	var/datum/reagent/R = GLOB.chemical_reagents_list[selection]
 	to_chat(user, "<span class='notice'> Synthesizer is now producing '[R.name]'.</span>")
 	mode = reagent_ids.Find(selection)
 	playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
@@ -81,6 +81,6 @@
 	..()
 	if (user != loc) return
 
-	var/datum/reagent/R = chemical_reagents_list[reagent_ids[mode]]
+	var/datum/reagent/R = GLOB.chemical_reagents_list[reagent_ids[mode]]
 
 	to_chat(user, "<span class='notice'>It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.</span>")

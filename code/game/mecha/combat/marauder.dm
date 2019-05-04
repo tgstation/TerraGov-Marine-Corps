@@ -4,7 +4,7 @@
 	icon_state = "marauder"
 	initial_icon = "marauder"
 	step_in = 5
-	health = 500
+	max_integrity = 500
 	deflect_chance = 25
 	damage_absorption = list("brute"=0.5,"fire"=0.7,"bullet"=0.45,"laser"=0.6,"energy"=0.7,"bomb"=0.7)
 	max_temperature = 60000
@@ -14,7 +14,7 @@
 	var/smoke = 5
 	var/smoke_ready = 1
 	var/smoke_cooldown = 100
-	var/datum/effect_system/smoke_spread/smoke_system = new
+	var/datum/effect_system/smoke_spread/smoke_system
 	operation_req_access = list(ACCESS_NT_CORPORATE)
 	wreckage = /obj/effect/decal/mecha_wreckage/marauder
 	add_req_access = 0
@@ -29,7 +29,7 @@
 	initial_icon = "seraph"
 	operation_req_access = list(ACCESS_NT_CORPORATE)
 	step_in = 3
-	health = 550
+	max_integrity = 550
 	wreckage = /obj/effect/decal/mecha_wreckage/seraph
 	internal_damage_threshold = 20
 	force = 55
@@ -53,9 +53,10 @@
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster(src)
 	ME.attach(src)
-	src.smoke_system.set_up(3, 0, src)
-	src.smoke_system.attach(src)
-	return
+	smoke_system = new(src, FALSE)
+
+/obj/mecha/combat/marauder/Destroy()
+	QDEL_NULL(smoke_system)
 
 /obj/mecha/combat/marauder/seraph/New()
 	..()//Let it equip whatever is needed.
@@ -144,7 +145,8 @@
 	if(usr!=src.occupant)
 		return
 	if(smoke_ready && smoke>0)
-		src.smoke_system.start()
+		smoke_system.set_up(3, src)
+		smoke_system.start()
 		smoke--
 		smoke_ready = 0
 		spawn(smoke_cooldown)

@@ -452,9 +452,6 @@
 	if (!istype(M))
 		return
 
-	if(iszombie(M))
-		return
-
 	if (M.back != src)
 		to_chat(M, "<span class='warning'>You must be wearing the cloak to activate it!")
 		return
@@ -508,7 +505,6 @@
 	if(!camo_active)
 		return FALSE
 
-	to_chat(user, "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
 	camo_active = FALSE
 
 	user.visible_message("[user.name] shimmers into existence!", "<span class='warning'>Your cloak's camouflage has deactivated!</span>")

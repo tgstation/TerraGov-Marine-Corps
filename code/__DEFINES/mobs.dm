@@ -321,16 +321,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_PRINTING_TIME 550
 #define LIMB_METAL_AMOUNT 125
 
-//=================================================
-//language_flags
-#define WHITELISTED (1<<0)  		// Language is available if the speaker is whitelisted.
-#define RESTRICTED	(1<<1)   		// Language can only be accquired by spawning or an admin.
-#define NONVERBAL 	(1<<2)    		// Language has a significant non-verbal component. Speech is garbled without line-of-sight
-#define SIGNLANG 	(1<<3)     		// Language is completely non-verbal. Speech is displayed through emotes for those who can understand.
-#define HIVEMIND 	(1<<4)         // Broadcast to all mobs with this language.
-//=================================================
-
-
 #define EMOTE_VISIBLE  1
 #define EMOTE_AUDIBLE  2
 
@@ -354,12 +344,14 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
-#define IS_VOX 2
-#define IS_SKRELL 3
-#define IS_UNATHI 4
-#define IS_XENOS 5
-#define IS_HORROR 6
-#define IS_MOTH 7
+#define IS_HUMAN (1<<0)
+#define IS_MONKEY (1<<1)
+#define IS_XENO (1<<2)
+#define IS_VOX (1<<3)
+#define IS_SKRELL (1<<4)
+#define IS_UNATHI (1<<5)
+#define IS_HORROR (1<<6)
+#define IS_MOTH (1<<7)
 //=================================================
 
 //Mob sizes
@@ -418,12 +410,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define PANDEMIC 2
 
 
-//forcesay types
-#define SUDDEN 0
-#define GRADUAL 1
-#define PAINFUL 2
-#define EXTREMELY_PAINFUL 3
-
 // halloss defines
 
 #define BASE_HALLOSS_RECOVERY_RATE -4
@@ -480,6 +466,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFENDER_FORTIFY_ARMOR 60
 #define WARRIOR_AGILITY_ARMOR 30
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
+#define XENO_EXPLOSION_RESIST_3_MODIFIER	0.25 //multiplies top level explosive damage by this amount.
 
 #define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
 #define SPRAY_STRUCTURE_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 8 ))
@@ -530,6 +517,17 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HANDLE_STEALTH_CHECK					1
 #define HANDLE_STEALTH_CODE_CANCEL				2
 #define HANDLE_SNEAK_ATTACK_CHECK				3
+#define HUNTER_SNEAK_TACKLE_ARMOR_PEN			0.5 //1 - this value = the actual penetration
+#define HUNTER_SNEAK_SLASH_ARMOR_PEN			0.8 //1 - this value = the actual penetration
+#define HUNTER_SNEAK_ATTACK_RUN_DELAY			2 SECONDS
+#define HUNTER_SNEAKATTACK_MAX_MULTIPLIER		3.5
+#define HUNTER_SNEAKATTACK_RUN_REDUCTION		0.2
+#define HUNTER_SNEAKATTACK_WALK_INCREASE		1
+#define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY	10
+
+// xeno defines
+
+#define XENO_TACKLE_ARMOR_PEN	0.4 //Actual armor pen is 1 - this value.
 
 //Ravager defines:
 #define RAVAGER_MAX_RAGE 50

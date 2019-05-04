@@ -6,13 +6,13 @@
 	faction = "Marine"
 
 
-/datum/job/marine/after_spawn(mob/living/L, mob/M, latejoin = FALSE)
+/datum/job/marine/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
-	L.hud_set_squad()
-	L.nutrition = rand(60,250)
-	if(!L.mind?.assigned_squad)
+	C.hud_set_squad()
+	C.nutrition = rand(60,250)
+	if(!C.mind?.assigned_squad)
 		return
-	var/datum/squad/S = L.mind.assigned_squad
+	var/datum/squad/S = C.mind.assigned_squad
 	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[S.color]>[lowertext(S.name)] squad</font></b>.
 Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."})
 
@@ -144,6 +144,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	skills_type = /datum/skills/specialist
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SPECIALIST
 	outfit = /datum/outfit/job/marine/specialist
+	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/marine/specialist/radio_help_message(mob/M)
@@ -175,6 +177,8 @@ You can serve a variety of roles, so choose carefully."})
 	skills_type = /datum/skills/SL
 	display_order = JOB_DISPLAY_ORDER_SQUAD_LEADER
 	outfit = /datum/outfit/job/marine/leader
+	exp_requirements = XP_REQ_EXPERIENCED
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/marine/leader/radio_help_message(mob/M)
