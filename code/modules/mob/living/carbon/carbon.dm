@@ -54,7 +54,8 @@
 	if (legcuffed && !initial(legcuffed))
 		dropItemToGround(legcuffed)
 	legcuffed = initial(legcuffed)
-	..()
+	
+	return ..()
 
 
 /mob/living/carbon/human/attack_hand(mob/living/carbon/M)
