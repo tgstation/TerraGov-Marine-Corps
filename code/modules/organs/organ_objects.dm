@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/organs.dmi'
 	icon_state = "appendix"
 
-	health = 100                              // Process() ticks before death.
+	max_integrity = 100                              // Process() ticks before death.
 
 	var/fresh = 3                             // Squirts of blood left in it.
 	var/dead_icon                             // Icon used when the organ dies.
@@ -56,14 +56,14 @@
 			TU.add_blood(L, B.color)
 		//blood_splatter(src,B,1)
 
-	health -= rand(0,1)
-	if(health <= 0)
+	obj_integrity -= rand(0,1)
+	if(obj_integrity <= 0)
 		die()
 
 /obj/item/organ/proc/die()
 	name = "dead [initial(name)]"
 	if(dead_icon) icon_state = dead_icon
-	health = 0
+	obj_integrity = 0
 	STOP_PROCESSING(SSobj, src)
 	//TODO: Grey out the icon state.
 	//TODO: Inject an organ with peridaxon to make it alive again.

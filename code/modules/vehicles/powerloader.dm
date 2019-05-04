@@ -8,8 +8,7 @@
 	density = 1
 	luminosity = 5
 	move_delay = 8
-	health = 200
-	maxhealth = 200
+	max_integrity = 200
 	var/panel_open = FALSE
 
 /obj/vehicle/powerloader/New()

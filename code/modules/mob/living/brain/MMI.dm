@@ -25,7 +25,7 @@
 		if(istype(O,/obj/item/organ/brain) && !brainmob) //Time to stick a brain in it --NEO
 
 			var/obj/item/organ/brain/B = O
-			if(B.health <= 0)
+			if(B.obj_integrity <= 0)
 				to_chat(user, "<span class='warning'>That brain is well and truly dead.</span>")
 				return
 			else if(!B.brainmob)
