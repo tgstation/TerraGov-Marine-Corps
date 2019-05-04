@@ -63,6 +63,7 @@ Currently only has the tank hardpoints
 		return ..()
 	if(health >= maxhealth)
 		to_chat(user, "<span class='notice'>[src] is already in perfect conditions.</span>")
+		return
 	var/repair_delays = 6
 	var/obj/item/tool/repair_tool = /obj/item/tool/weldingtool
 	switch(slot)
@@ -76,10 +77,10 @@ Currently only has the tank hardpoints
 			repair_delays = 2
 		if(HDPT_ARMOR)
 			repair_delays = 10
-	if(!istype(W, repair_tool))
-		to_chat(user, "<span class='warning'>That's the wrong tool. Use a [iswelder(W) ? "wrench" : "welder"].</span>")
-		return
 	var/obj/item/tool/weldingtool/WT = iswelder(W) ? W : null
+	if(!istype(W, repair_tool))
+		to_chat(user, "<span class='warning'>That's the wrong tool. Use a [WT ? "wrench" : "welder"].</span>")
+		return
 	if(WT && !WT.isOn())
 		to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
 		return
