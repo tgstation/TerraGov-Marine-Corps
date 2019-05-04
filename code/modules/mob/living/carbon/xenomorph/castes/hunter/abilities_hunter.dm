@@ -130,6 +130,7 @@
 	if(can_sneak_attack)
 		return
 	RegisterSignal(src, COMSIG_XENO_LIVING_SLASH, .proc/sneak_attack_bonus)
+	RegisterSignal(src, COMSIG_XENO_LIVING_TACKLE, .proc/sneak_attack_bonus)
 	can_sneak_attack = TRUE
 	to_chat(src, "<span class='xenodanger'>You're ready to use Sneak Attack while stealthed.</span>")
 	playsound(src, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)

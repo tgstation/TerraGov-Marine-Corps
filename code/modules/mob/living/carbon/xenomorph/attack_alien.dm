@@ -77,7 +77,7 @@
 	var/list/modified_damage = list()
 	var/list/modified_armor = list()
 
-	SEND_SIGNAL(X, COMSIG_XENO_LIVING_SLASH, src, tackle_pain, modified_damage, armor_block, modified_armor, INTENT_DISARM)
+	SEND_SIGNAL(X, COMSIG_XENO_LIVING_TACKLE, src, tackle_pain, modified_damage, armor_block, modified_armor)
 
 	for(var/i in modified_damage)
 		tackle_pain += i // add the bonus damages
@@ -220,7 +220,7 @@
 	var/list/modified_damage = list()
 	var/list/modified_armor = list()
 
-	SEND_SIGNAL(X, COMSIG_XENO_LIVING_SLASH, src, damage, modified_damage, armor_block, modified_armor, INTENT_HARM)
+	SEND_SIGNAL(X, COMSIG_XENO_LIVING_SLASH, src, damage, modified_damage, armor_block, modified_armor)
 
 	for(var/i in modified_damage)
 		damage += i // add the bonus damages
@@ -268,7 +268,7 @@
 	if(!.)
 		return FALSE
 
-	SEND_SIGNAL(X, COMSIG_XENO_HUMAN_SLASH, src, INTENT_HARM)
+	SEND_SIGNAL(X, COMSIG_XENO_HUMAN_SLASH, src)
 
 //Every other type of nonhuman mob
 /mob/living/attack_alien(mob/living/carbon/Xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)

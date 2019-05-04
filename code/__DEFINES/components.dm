@@ -78,8 +78,9 @@
 	#define COMSIG_MOB_CANCEL_CLICKON 1
 #define COMSIG_MOB_ATTACK_RANGED "mob_attack_ranged"			//from base of mob/RangedAttack(): (atom/A, params)
 
-#define COMSIG_XENO_HUMAN_SLASH "xeno_human_slash"				//: (mob/living/carbon/human/H, intent)
-#define COMSIG_XENO_LIVING_SLASH "xeno_living_slash"			//: (mob/living/L, damage, list/modified_damage, armor_block, list/modified_armor, intent)
+#define COMSIG_XENO_HUMAN_SLASH "xeno_human_slash"				//: (mob/living/carbon/human/H)
+#define COMSIG_XENO_LIVING_SLASH "xeno_living_slash"			//: (mob/living/L, damage, list/modified_damage, armor_block, list/modified_armor)
+#define COMSIG_XENO_LIVING_TACKLE "xeno_living_tackle"			//: (mob/living/L, damage, list/modified_damage, armor_block, list/modified_armor)
 
 #define COMSIG_XENO_POUNCE_HIT "xeno_pounce_hit"				//: (mob/living/carbon/C, )
 

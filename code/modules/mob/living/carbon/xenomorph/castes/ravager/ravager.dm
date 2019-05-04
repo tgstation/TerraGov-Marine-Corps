@@ -102,7 +102,5 @@
 	return damage
 
 /mob/living/carbon/Xenomorph/Ravager/proc/process_rage_attack(mob/living/carbon/human/H, intent)
-	if(intent == INTENT_DISARM)
-		return
 	rage += RAV_RAGE_ON_HIT
 	last_rage = world.time //We incremented rage, so bookmark this.
