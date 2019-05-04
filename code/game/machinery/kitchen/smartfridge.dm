@@ -18,7 +18,7 @@
 	var/ispowered = 1 //starts powered
 	var/isbroken = 0
 	var/is_secure_fridge = 0
-	var/seconds_electrified = 0;
+	var/electrified = FALSE;
 	var/shoot_inventory = 0
 	var/locked = 0
 	var/wires = 7
@@ -40,8 +40,6 @@
 /obj/machinery/smartfridge/process()
 	if(!src.ispowered)
 		return
-	if(src.seconds_electrified > 0)
-		src.seconds_electrified--
 	if(src.shoot_inventory && prob(2))
 		src.throw_item()
 
@@ -142,7 +140,7 @@
 	if(!ispowered)
 		to_chat(user, "<span class='warning'>[src] has no power.</span>")
 		return
-	if(seconds_electrified != 0)
+	if(electrified == TRUE)
 		if(shock(user, 100))
 			return
 
@@ -159,7 +157,7 @@
 	data["contents"] = null
 	data["wires"] = null
 	data["panel_open"] = panel_open
-	data["electrified"] = seconds_electrified > 0
+	data["electrified"] = electrified == TRUE
 	data["shoot_inventory"] = shoot_inventory
 	data["locked"] = locked
 	data["secure"] = is_secure_fridge
@@ -280,7 +278,7 @@
 	src.wires &= ~wireFlag
 	switch(wireIndex)
 		if(WIRE_SHOCK)
-			src.seconds_electrified = -1
+			src.electrified = -1 // disabled
 		if (WIRE_SHOOTINV)
 			if(!src.shoot_inventory)
 				src.shoot_inventory = 1
@@ -293,7 +291,7 @@
 	src.wires |= wireFlag
 	switch(wireIndex)
 		if(WIRE_SHOCK)
-			src.seconds_electrified = 0
+			src.electrified = FALSE
 		if (WIRE_SHOOTINV)
 			src.shoot_inventory = 0
 		if(WIRE_SCANID)
@@ -303,7 +301,7 @@
 	var/wireIndex = APCWireColorToIndex[wireColor]
 	switch(wireIndex)
 		if(WIRE_SHOCK)
-			src.seconds_electrified = 30
+			addtimer(CALLBACK(src, .proc/reset_electrified), 30 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 		if(WIRE_SHOOTINV)
 			src.shoot_inventory = !src.shoot_inventory
 		if(WIRE_SCANID)
@@ -340,8 +338,6 @@
 		throw_item.throw_at(target,16,3,src)
 	src.visible_message("<span class='danger'>[src] launches [throw_item.name] at [target.name]!</span>")
 	return 1
-
-
 
 
 /********************
@@ -420,3 +416,8 @@
 /obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/reagent_container/glass) || istype(O,/obj/item/reagent_container/food/drinks) || istype(O,/obj/item/reagent_container/food/condiment))
 		return 1
+
+/obj/machinery/smartfridge/proc/reset_electrified()
+	if (src.electrified != TRUE)
+		return // Already false or its disabled since
+	src.electrified = FALSE

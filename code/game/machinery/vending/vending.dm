@@ -54,7 +54,7 @@
 	var/icon_vend //Icon_state when vending!
 	var/icon_deny //Icon_state when vending!
 	//var/emagged = 0 //Ignores if somebody doesn't have card access to that machine.
-	var/seconds_electrified = 0 //Shock customers like an airlock.
+	var/electrified = FALSE //Shock customers like an airlock.
 	var/shoot_inventory = FALSE //Fire items at customers! We're broken!
 	var/shut_up = FALSE //Stop spouting those godawful pitches!
 	var/extended_inventory = FALSE //can we access the hidden inventory?
@@ -353,7 +353,7 @@
 
 	user.set_interaction(src)
 
-	if(src.seconds_electrified != 0)
+	if(src.electrified == TRUE)
 		if(shock(user, 100))
 			return
 
@@ -378,7 +378,7 @@
 			dat += "<br>"
 
 		dat += "<br>"
-		dat += "The orange light is [(src.seconds_electrified == 0) ? "off" : "on"].<BR>"
+		dat += "The orange light is [(src.electrified) ? "on" : "off"].<BR>"
 		dat += "The red light is [src.shoot_inventory ? "off" : "blinking"].<BR>"
 		dat += "The green light is [src.extended_inventory ? "on" : "off"].<BR>"
 		dat += "The [(src.wires & WIRE_SCANID) ? "purple" : "yellow"] light is on.<BR>"
@@ -662,9 +662,6 @@
 	if(!src.active)
 		return
 
-	if(src.seconds_electrified > 0)
-		src.seconds_electrified--
-
 	//Pitch to the people!  Really sell it!
 	if(((src.last_slogan + src.slogan_delay) <= world.time) && (src.slogan_list.len > 0) && (!src.shut_up) && prob(5))
 		var/slogan = pick(src.slogan_list)
@@ -751,7 +748,7 @@
 		if(WIRE_EXTEND)
 			src.extended_inventory = 0
 		if(WIRE_SHOCK)
-			src.seconds_electrified = -1
+			src.electrified = -1 // Disabled
 		if (WIRE_SHOOTINV)
 			if(!src.shoot_inventory)
 				src.shoot_inventory = 1
@@ -763,7 +760,7 @@
 	src.wires |= wireFlag
 	switch(wireIndex)
 		if(WIRE_SHOCK)
-			src.seconds_electrified = 0
+			src.electrified = FALSE
 		if (WIRE_SHOOTINV)
 			src.shoot_inventory = 0
 
@@ -773,6 +770,12 @@
 		if(WIRE_EXTEND)
 			src.extended_inventory = !src.extended_inventory
 		if (WIRE_SHOCK)
-			src.seconds_electrified = 30
+			src.electrified = TRUE
+			addtimer(CALLBACK(src, .proc/reset_electrified), 30 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 		if (WIRE_SHOOTINV)
 			src.shoot_inventory = !src.shoot_inventory
+
+/obj/machinery/vending/proc/reset_electrified()
+	if (src.electrified != TRUE)
+		return // Already false or its disabled since
+	src.electrified = FALSE

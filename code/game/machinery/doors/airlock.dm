@@ -84,7 +84,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	var/spawnPowerRestoreRunning = 0
 	var/lights = 1 // bolt lights show by default
 	var/wires = 4095
-	secondsElectrified = 0 //How many seconds remain until the door is no longer electrified. -1 if it is permanently electrified until someone fixes it.
+	electrified = FALSE // -1 if it is permanently electrified until someone fixes it.
 	var/aiDisabledIdScanner = 0
 	var/aiHacking = 0
 	var/obj/machinery/door/airlock/closeOther = null
@@ -190,18 +190,8 @@ About the new airlock wires panel:
 				src.updateDialog()
 		if(AIRLOCK_WIRE_ELECTRIFY)
 			//one wire for electrifying the door. Sending a pulse through this electrifies the door for 30 seconds.
-			if(src.secondsElectrified==0)
-				shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
-				log_combat(usr, src, "electrified")
-				src.secondsElectrified = 30
-				spawn(10)
-					//TODO: Move this into process() and make pulsing reset secondsElectrified to 30
-					while (src.secondsElectrified>0)
-						src.secondsElectrified-=1
-						if(src.secondsElectrified<0)
-							src.secondsElectrified = 0
-//						src.updateUsrDialog()  //Commented this line out to keep the airlock from clusterfucking you with electricity. --NeoFite
-						sleep(10)
+			electrified = TRUE
+			addtimer(CALLBACK(src, .proc/reset_electrified), 30 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 		if(AIRLOCK_WIRE_OPEN_DOOR)
 			//tries to open the door without ID
 			//will succeed only if the ID wire is cut or the door requires no access
@@ -252,10 +242,10 @@ About the new airlock wires panel:
 			src.updateUsrDialog()
 		if(AIRLOCK_WIRE_ELECTRIFY)
 			//Cutting this wire electrifies the door, so that the next person to touch the door without insulated gloves gets electrocuted.
-			if(src.secondsElectrified != -1)
+			if(src.electrified != -1)
 				shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
 				log_combat(usr, src, "electrified")
-				src.secondsElectrified = -1
+				src.electrified = -1
 		if (AIRLOCK_WIRE_SAFETY)
 			safe = 0
 			src.updateUsrDialog()
@@ -292,8 +282,8 @@ About the new airlock wires panel:
 				src.aiControlDisabled = -1
 			src.updateUsrDialog()
 		if(AIRLOCK_WIRE_ELECTRIFY)
-			if(src.secondsElectrified == -1)
-				src.secondsElectrified = 0
+			if(src.electrified == -1)
+				src.electrified = FALSE
 
 		if (AIRLOCK_WIRE_SAFETY)
 			safe = 1
@@ -311,7 +301,7 @@ About the new airlock wires panel:
 
 
 /obj/machinery/door/airlock/proc/isElectrified()
-	if(src.secondsElectrified != 0)
+	if(src.electrified != FALSE)
 		return 1
 	return 0
 
@@ -508,10 +498,10 @@ About the new airlock wires panel:
 
 	if(src.isWireCut(AIRLOCK_WIRE_ELECTRIFY))
 		t1 += text("Electrification wire is cut.<br>\n")
-	if(src.secondsElectrified==-1)
+	if(src.electrified == -1)
 		t1 += text("Door is electrified indefinitely. <A href='?src=\ref[];aiDisable=5'>Un-electrify it?</a><br>\n", src)
-	else if(src.secondsElectrified>0)
-		t1 += text("Door is electrified temporarily ([] seconds). <A href='?src=\ref[];aiDisable=5'>Un-electrify it?</a><br>\n", src.secondsElectrified, src)
+	else if(src.electrified == TRUE)
+		t1 += text("Door is electrified temporarily. <A href='?src=\ref[];aiDisable=5'>Un-electrify it?</a><br>\n", src)
 	else
 		t1 += text("Door is not electrified. <A href='?src=\ref[];aiEnable=5'>Electrify it for 30 seconds?</a> Or, <A href='?src=\ref[];aiEnable=6'>Electrify it indefinitely until someone cancels the electrification?</a><br>\n", src, src)
 
@@ -835,9 +825,9 @@ About the new airlock wires panel:
 					//un-electrify door
 					if(src.isWireCut(AIRLOCK_WIRE_ELECTRIFY))
 						to_chat(usr, text("The electrification wire is cut - Cannot un-electrify the door."))
-					else if(secondsElectrified != 0)
+					else if(electrified != FALSE)
 						to_chat(usr, "The door is now un-electrified.")
-						src.secondsElectrified = 0
+						src.electrified = FALSE
 				if(7)
 					//close door
 					if(src.welded)
@@ -901,34 +891,29 @@ About the new airlock wires panel:
 					//electrify door for 30 seconds
 					if(src.isWireCut(AIRLOCK_WIRE_ELECTRIFY))
 						to_chat(usr, text("The electrification wire has been cut.<br>\n"))
-					else if(src.secondsElectrified==-1)
+					else if(src.electrified == -1)
 						to_chat(usr, text("The door is already indefinitely electrified. You'd have to un-electrify it before you can re-electrify it with a non-forever duration.<br>\n"))
-					else if(src.secondsElectrified!=0)
+					else if(src.electrified != FALSE)
 						to_chat(usr, text("The door is already electrified. Cannot re-electrify it while it's already electrified.<br>\n"))
 					else
 						shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
 						log_combat(usr, src, "electrified")
 						to_chat(usr, "The door is now electrified for thirty seconds.")
-						src.secondsElectrified = 30
-						spawn(10)
-							while (src.secondsElectrified>0)
-								src.secondsElectrified-=1
-								if(src.secondsElectrified<0)
-									src.secondsElectrified = 0
-								sleep(10)
+						electrified = TRUE
+						addtimer(CALLBACK(src, .proc/reset_electrified), 30 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 				if(6)
 					//electrify door indefinitely
 					if(src.isWireCut(AIRLOCK_WIRE_ELECTRIFY))
 						to_chat(usr, text("The electrification wire has been cut.<br>\n"))
-					else if(src.secondsElectrified==-1)
+					else if(src.electrified == -1)
 						to_chat(usr, text("The door is already indefinitely electrified.<br>\n"))
-					else if(src.secondsElectrified!=0)
+					else if(src.electrified != FALSE)
 						to_chat(usr, text("The door is already electrified. You can't re-electrify it while it's already electrified.<br>\n"))
 					else
 						shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
 						log_combat(usr, src, "electrified")
 						to_chat(usr, "The door is now electrified.")
-						src.secondsElectrified = -1
+						src.electrified = -1
 				if(7)
 					//open door
 					if(src.welded)

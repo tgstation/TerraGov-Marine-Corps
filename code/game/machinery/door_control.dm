@@ -153,7 +153,7 @@
 				if(specialfunctions & BOLTS)
 					D.lock()
 				if(specialfunctions & SHOCK)
-					D.secondsElectrified = -1
+					D.electrified = -1
 				if(specialfunctions & SAFE)
 					D.safe = 0
 			else
@@ -163,7 +163,7 @@
 					if(!D.isWireCut(4) && D.arePowerSystemsOn())
 						D.unlock()
 				if(specialfunctions & SHOCK)
-					D.secondsElectrified = 0
+					D.electrified = FALSE
 				if(specialfunctions & SAFE)
 					D.safe = 1
 

@@ -11,7 +11,7 @@
 	var/closed_layer = DOOR_CLOSED_LAYER
 	var/id
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
-	var/secondsElectrified = 0
+	var/electrified = FALSE
 	var/visible = TRUE
 	var/p_open = FALSE
 	var/operating = FALSE
@@ -163,10 +163,9 @@
 	if(prob(20/severity) && (istype(src,/obj/machinery/door/airlock) || istype(src,/obj/machinery/door/window)) )
 		open()
 	if(prob(40/severity))
-		if(secondsElectrified == 0)
-			secondsElectrified = -1
-			spawn(300)
-				secondsElectrified = 0
+		if(electrified == FALSE)
+			electrified = TRUE
+			addtimer(CALLBACK(src, .proc/reset_electrified), 30 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	..()
 
 
@@ -280,3 +279,8 @@
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'
+
+/obj/machinery/door/proc/reset_electrified()
+	if (src.electrified != TRUE)
+		return // Already false or its disabled since
+	src.electrified = FALSE
