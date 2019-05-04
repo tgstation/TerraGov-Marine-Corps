@@ -53,8 +53,6 @@
 			return 0
 
 	/////////////////////////
-	user.lastattacked = M
-	M.lastattacker = user
 
 	log_combat(user, M, "attacked", src, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])")
 	msg_admin_attack("[key_name(user)] attacked [key_name(M)] with [name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])" )

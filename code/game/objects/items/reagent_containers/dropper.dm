@@ -10,7 +10,7 @@
 	possible_transfer_amounts = list(1,2,3,4,5)
 	w_class = 1
 	volume = 5
-	container_type = TRANSPARENT
+	init_reagent_flags = TRANSPARENT
 	var/filled = 0
 
 	afterattack(obj/target, mob/user , flag)

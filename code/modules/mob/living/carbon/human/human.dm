@@ -1,3 +1,5 @@
+//#define DEBUG_HUMAN_ARMOR
+
 /mob/living/carbon/human
 	name = "unknown"
 	real_name = "unknown"
@@ -6,7 +8,7 @@
 	icon_state = "body_m_s"
 	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, STATUS_HUD_OBSERVER_INFECTION, ORDER_HUD)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
-	var/regenZ = 1 //Temp zombie thing until I write a better method ~Apop
+
 
 /mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/lay_down
@@ -137,7 +139,7 @@
 		dna.real_name = real_name
 
 	prev_gender = gender // Debug for plural genders
-	
+
 
 	//makes order hud visible
 	var/datum/mob_hud/H = huds[MOB_HUD_ORDER]
@@ -148,7 +150,6 @@
 	. = ..()
 	. += "---"
 	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
-	.["Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
 	.["Drop Everything"] = "?_src_=vars;[HrefToken()];dropeverything=[REF(src)]"
 	.["Copy Outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
 
@@ -212,8 +213,8 @@
 	var/armor = max(0, 1 - getarmor(null, "bomb"))
 	switch(severity)
 		if(1)
-			b_loss += rand(120, 160) * armor	//Probably instant death
-			f_loss += rand(120, 160) * armor	//Probably instant death
+			b_loss += rand(160, 200) * armor	//Probably instant death
+			f_loss += rand(160, 200) * armor	//Probably instant death
 
 			var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
 			throw_at(target, 200, 4)
@@ -227,8 +228,8 @@
 			KnockOut(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
 
 		if(2)
-			b_loss += rand(60, 80) * armor	//Ouchie time. Armor makes it survivable
-			f_loss += rand(60, 80) * armor	//Ouchie time. Armor makes it survivable
+			b_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
+			f_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 30 * armor
@@ -239,19 +240,21 @@
 			KnockDown(4 * armor)
 
 		if(3)
-			b_loss += rand(30, 40) * armor
-			f_loss += rand(30, 40) * armor
+			b_loss += (rand(40, 50) * armor)
+			f_loss += (rand(40, 50) * armor)
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 15 * armor
-				ear_deaf += 60 * armor
+				ear_damage += 10 * armor
+				ear_deaf += 30 * armor
 
 			adjust_stagger(3 * armor)
 			add_slowdown(round(3 * armor,0.1))
 			KnockDown(2 * armor)
 
 	var/update = 0
-
+	#ifdef DEBUG_HUMAN_ARMOR
+	to_chat(src, "DEBUG EX_ACT: armor: [armor], b_loss: [b_loss], f_loss: [f_loss]")
+	#endif
 	//Focus half the blast on one organ
 	var/datum/limb/take_blast = pick(limbs)
 	update |= take_blast.take_damage_limb(b_loss * 0.5, f_loss * 0.5)
@@ -927,7 +930,9 @@
 			for(var/datum/data/record/R in GLOB.datacore.medical)
 				if (R.fields["name"] == real_name)
 					if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-						usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
+						var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
+						popup.set_content(R.fields["last_scan_result"])
+						popup.open(FALSE)
 					break
 
 	if (href_list["lookitem"])
@@ -1318,10 +1323,12 @@
 	species.create_organs(src)
 
 	if(species.language)
-		add_language(species.language)
+		grant_language(species.language)
 
 	if(species.default_language)
-		add_language(species.default_language)
+		grant_language(species.default_language)
+		var/datum/language_holder/H = get_language_holder()
+		H.selected_default_language = species.default_language
 
 	if(species.base_color && default_colour)
 		//Apply colour.
@@ -1457,6 +1464,12 @@
 	if(shoes && !override_noslip) // && (shoes.flags_inventory & NOSLIPPING)) // no more slipping if you have shoes on. -spookydonut
 		return FALSE
 	. = ..()
+
+/mob/living/carbon/human/smokecloak_on()
+	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back
+	if(istype(S) && S.camo_active)
+		return FALSE
+	return ..()
 
 /mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
 	if(luminosity <= 0)
@@ -1675,9 +1688,11 @@
 	if(!(equipment in outfits))
 		return FALSE
 
-	var/datum/outfit/O = new outfits[equipment]
+	var/outfit_type = outfits[equipment]
+	var/datum/outfit/O = new outfit_type
 	delete_equipment(TRUE)
 	equipOutfit(O, FALSE)
+	regenerate_icons()
 
 	return TRUE
 
@@ -1692,9 +1707,6 @@
 	return TRUE
 
 /mob/living/carbon/human/take_over(mob/M)
-	if(assigned_squad)
-		assigned_squad.clean_marine_from_squad(src)
-
 	. = ..()
 
 	set_rank(job)
@@ -1709,11 +1721,13 @@
 
 	var/datum/squad/S = SSjob.squads[squad]
 
-	if(mind)
-		assigned_squad = null
-	else
+	if(!mind)
 		assigned_squad = S
 		return FALSE
+
+	else if(assigned_squad)
+		assigned_squad.clean_marine_from_squad(src)
+		assigned_squad = null
 
 	var/datum/job/J = SSjob.GetJob(mind.assigned_role)
 	var/datum/outfit/job/O = new J.outfit

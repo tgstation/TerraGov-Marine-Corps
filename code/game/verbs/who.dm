@@ -15,7 +15,7 @@
 			if(!check_other_rights(C, R_ADMIN, FALSE))
 				count_nonadmin_observers++
 		if(C.mob && C.mob.stat != DEAD)
-			if(ishuman(C.mob) && !iszombie(C.mob))
+			if(ishuman(C.mob))
 				count_humans++
 				if(C.mob.mind.assigned_role in (JOBS_MARINES))
 					count_marine_humans++

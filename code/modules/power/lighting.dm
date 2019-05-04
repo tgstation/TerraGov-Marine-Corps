@@ -195,11 +195,11 @@
 			update(0)
 
 	switch(dir)
-		if(1)
-			pixel_y = 23
-		if(4)
+		if(NORTH)
+			pixel_y = 20
+		if(EAST)
 			pixel_x = 10
-		if(8)
+		if(WEST)
 			pixel_x = -10
 
 /obj/machinery/light/Destroy()

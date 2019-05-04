@@ -1,7 +1,5 @@
 var/list/fax_contents = list() 					//List of fax contents to maintain it even if source paper is deleted
 
-var/global/list/chemical_reactions_list				//List of all /datum/chemical_reaction datums. Used during chemical reactions
-var/global/list/chemical_reagents_list				//List of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 var/global/list/surgery_steps = list()				//List of all surgery steps  |BS12
 var/global/list/joblist = list()					//List of all jobstypes, minus borg and AI
 
@@ -15,7 +13,7 @@ var/global/list/events = list()
 var/global/list/active_laser_targets = list()
 
 //used by the main overwatch console
-var/global/list/active_orbital_beacons = list()		
+var/global/list/active_orbital_beacons = list()
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
 
@@ -62,16 +60,6 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 		var/datum/job/J = new T
 		joblist[J.title] = J
 
-	// Languages
-	for(var/T in subtypesof(/datum/language))
-		var/datum/language/L = new T
-		GLOB.all_languages[L.name] = L
-
-	for(var/language_name in GLOB.all_languages)
-		var/datum/language/L = GLOB.all_languages[language_name]
-		GLOB.language_keys[":[lowertext(L.key)]"] = L
-		GLOB.language_keys[".[lowertext(L.key)]"] = L
-		GLOB.language_keys["#[lowertext(L.key)]"] = L
 	var/rkey = 0
 
 	// Species
@@ -97,15 +85,27 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 		var/datum/hive_status/HS = new H
 		GLOB.hive_datums[HS.hivenumber] = HS
 
-	return 1
+
+	for(var/L in subtypesof(/datum/language))
+		var/datum/language/language = L
+		if(!initial(language.key))
+			continue
+
+		GLOB.all_languages += language
+
+		var/datum/language/instance = new language
+
+		GLOB.language_datum_instances[language] = instance
+
+	return TRUE
 
 /* // Uncomment to debug chemical reaction list.
 /client/verb/debug_chemical_list()
 
-	for (var/reaction in chemical_reactions_list)
-		. += "chemical_reactions_list\[\"[reaction]\"\] = \"[chemical_reactions_list[reaction]]\"\n"
-		if(islist(chemical_reactions_list[reaction]))
-			var/list/L = chemical_reactions_list[reaction]
+	for (var/reaction in GLOB.chemical_reactions_list)
+		. += "GLOB.chemical_reactions_list\[\"[reaction]\"\] = \"[GLOB.chemical_reactions_list[reaction]]\"\n"
+		if(islist(GLOB.chemical_reactions_list[reaction]))
+			var/list/L = GLOB.chemical_reactions_list[reaction]
 			for(var/t in L)
 				. += "    has: [t]\n"
 	to_chat(world, .)

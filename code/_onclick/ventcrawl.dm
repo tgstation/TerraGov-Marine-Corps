@@ -123,7 +123,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			A.pipe_vision_img.alpha = 200
 			client.images += A.pipe_vision_img
 			pipes_shown += A.pipe_vision_img
-
+	is_ventcrawling = TRUE
 
 /mob/living/carbon/Xenomorph/Hunter/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
 	. = ..()

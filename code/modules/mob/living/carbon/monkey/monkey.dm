@@ -9,7 +9,6 @@
 	hud_possible = list(STATUS_HUD_XENO_INFECTION)
 
 	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie
-	var/datum/species/greaterform              // Used when humanizing a monkey.
 	var/greaterform_type = /datum/species/human
 	icon_state = "monkey1"
 	//var/uni_append = "12C4E2"                // Small appearance modifier for different species.
@@ -73,17 +72,17 @@
 	create_reagents(1000)
 
 	if(greaterform_type)
-		greaterform = new greaterform_type()
+		species = new greaterform_type()
 
-		add_language(greaterform.language)
+		grant_language(species.language)
 
-		cold_level_1 = null ? greaterform.cold_level_1 : cold_level_1
-		cold_level_2 = null ? greaterform.cold_level_2 : cold_level_2
-		cold_level_3 = null ? greaterform.cold_level_3 : cold_level_3
+		cold_level_1 = null ? species.cold_level_1 : cold_level_1
+		cold_level_2 = null ? species.cold_level_2 : cold_level_2
+		cold_level_3 = null ? species.cold_level_3 : cold_level_3
 
-		heat_level_1 = null ? greaterform.heat_level_1 : heat_level_1
-		heat_level_2 = null ? greaterform.heat_level_2 : heat_level_2
-		heat_level_3 = null ? greaterform.heat_level_3 : heat_level_3
+		heat_level_1 = null ? species.heat_level_1 : heat_level_1
+		heat_level_2 = null ? species.heat_level_2 : heat_level_2
+		heat_level_3 = null ? species.heat_level_3 : heat_level_3
 
 
 	if(name == initial(name)) //To stop Pun-Pun becoming generic.
@@ -216,9 +215,6 @@
 				var/damage = rand(1, 5)
 				adjustBruteLoss(damage)
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
-				for(var/datum/disease/D in M.viruses)
-					if(istype(D, /datum/disease/jungle_fever))
-						contract_disease(D,1,0)
 			else
 				for(var/mob/O in viewers(src, null))
 					O.show_message("<span class='danger'>[M.name] has attempted to bite [name]!</span>", 1)
@@ -341,6 +337,11 @@
 	if(wear_id) wear_id.emp_act(severity)
 	..()
 
+/mob/living/carbon/monkey/has_smoke_protection()
+	if(istype(wear_mask) && wear_mask.flags_inventory & BLOCKGASEFFECT)
+		return TRUE
+	return ..()
+
 /mob/living/carbon/monkey/ex_act(severity)
 	flash_eyes()
 
@@ -383,10 +384,6 @@
 
         ..(message, speaking, verb, alt_name, italics, message_range, used_radios)
 
-
-
-
-
 /mob/living/carbon/monkey/update_sight()
 	if (stat == DEAD || (XRAY in mutations))
 		sight |= SEE_TURFS
@@ -414,3 +411,8 @@
 			id_card = held_item.GetID()
 	if(id_card)
 		return id_card
+
+
+/mob/living/carbon/monkey/get_reagent_tags()
+	. = ..()
+	return .|IS_MONKEY

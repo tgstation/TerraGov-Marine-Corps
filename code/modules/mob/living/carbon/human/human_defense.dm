@@ -2,6 +2,8 @@
 Contains most of the procs that are called when a mob is attacked by something
 */
 
+//#define DEBUG_HUMAN_EXPLOSIONS
+
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 	var/datum/limb/affected = get_limb(check_zone(def_zone))
 	var/siemens_coeff = get_siemens_coefficient_organ(affected)
@@ -42,12 +44,16 @@ Contains most of the procs that are called when a mob is attacked by something
 		//If a specific bodypart is targetted, check how that bodypart is protected and return the value.
 
 	//If you don't specify a bodypart, it checks ALL your bodyparts for protection, and averages out the values
+	else
 		for(var/X in limbs)
 			var/datum/limb/E = X
 			var/weight = organ_rel_size[E.name]
 			armorval += getarmor_organ(E, type) * weight
 			total += weight
-	return (armorval/max(total, 1))
+			#ifdef DEBUG_HUMAN_EXPLOSIONS
+			to_chat(src, "DEBUG getarmor: total: [total], armorval: [armorval], weight: [weight], name: [E.name]")
+			#endif
+	return ( round(armorval/max(total, 1)*0.01,0.01) )
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(var/datum/limb/def_zone)
@@ -111,6 +117,16 @@ Contains most of the procs that are called when a mob is attacked by something
 			I.emp_act(severity)
 	..()
 
+/mob/living/carbon/human/has_smoke_protection()
+	if(istype(wear_mask) && wear_mask.flags_inventory & BLOCKGASEFFECT)
+		return TRUE
+	if(istype(glasses) && glasses.flags_inventory & BLOCKGASEFFECT)
+		return TRUE
+	if(head && istype(head, /obj/item/clothing))
+		var/obj/item/clothing/CH = head
+		if(CH.flags_inventory & BLOCKGASEFFECT)
+			return TRUE
+	return ..()
 
 //Returns 1 if the attack hit, 0 if it missed.
 /mob/living/carbon/human/proc/attacked_by(var/obj/item/I, var/mob/living/user, var/def_zone)
@@ -350,3 +366,21 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(!istype(C)) return
 	if(!(unique_access in C.access)) return
 	return 1
+
+
+/mob/living/carbon/human/screech_act(mob/living/carbon/Xenomorph/Queen/Q)
+	shake_camera(src, 3 SECONDS, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
+	var/dist = get_dist(src, Q)
+
+	var/reduction = max(1 - 0.1 * protection_aura, 0) //Hold orders will reduce the Halloss; 10% per rank.
+	var/halloss_damage = (max(0,140 - dist * 10)) * reduction //Max 130 beside Queen, 70 at the edge
+	var/stun_duration = max(0,1.1 - dist * 0.1) * reduction //Max 1 beside Queen, 0.4 at the edge.
+
+	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
+	stunned += stun_duration
+	KnockDown(stun_duration)
+	apply_damage(halloss_damage, HALLOSS)
+	if(!ear_deaf)
+		ear_deaf += stun_duration * 20  //Deafens them temporarily
+	//Perception distorting effects of the psychic scream
+	addtimer(CALLBACK(GLOBAL_PROC, /proc/shake_camera, src, stun_duration * 1 SECONDS, 0.75), 31)

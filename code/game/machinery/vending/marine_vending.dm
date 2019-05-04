@@ -87,6 +87,7 @@
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/clothing/tie/storage/webbing = 3,
 					/obj/item/clothing/tie/storage/brown_vest = 1,
+					/obj/item/clothing/tie/storage/white_vest/medic = 1,
 					/obj/item/clothing/tie/holster = 1,
 					/obj/item/storage/belt/gun/m4a3 = 10,
 					/obj/item/storage/belt/gun/m44 = 5,
@@ -742,6 +743,7 @@
 					/obj/item/storage/pouch/construction = 10,
 					/obj/item/storage/pouch/tools/full = 10,
 					/obj/item/clothing/tie/storage/brown_vest = 10,
+					/obj/item/clothing/tie/storage/white_vest/medic = 10,
 					/obj/item/clothing/tie/storage/webbing = 10,
 					/obj/item/clothing/tie/holster = 10
 					)

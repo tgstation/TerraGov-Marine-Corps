@@ -27,7 +27,7 @@
 
 /datum/outfit/job/imperial/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.add_language("Imperial")
+	H.grant_language(/datum/language/imperial)
 
 /datum/job/imperial/guardsman
 	title = "Guardsman"

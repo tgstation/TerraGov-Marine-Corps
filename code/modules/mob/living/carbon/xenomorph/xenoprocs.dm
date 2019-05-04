@@ -479,7 +479,7 @@
 		stop_momentum(charge_dir)
 		return FALSE
 
-	if(dir != charge_dir || m_intent == MOVE_INTENT_WALK || istype(loc, /turf/open/gm/river))
+	if(dir != charge_dir || m_intent == MOVE_INTENT_WALK || istype(loc, /turf/open/ground/river))
 		stop_momentum(charge_dir)
 		return FALSE
 

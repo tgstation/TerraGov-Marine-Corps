@@ -254,8 +254,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/admin_ghost,
 	/datum/admins/proc/invisimin,
 	/datum/admins/proc/stealth_mode,
-	/datum/admins/proc/change_key,
-	/datum/admins/proc/change_key_panel,
+	/datum/admins/proc/give_mob,
+	/datum/admins/proc/give_mob_panel,
 	/datum/admins/proc/rejuvenate,
 	/datum/admins/proc/rejuvenate_panel,
 	/datum/admins/proc/toggle_sleep,
@@ -337,7 +337,8 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/SDQL2_query,
 	/datum/admins/proc/map_template_load,
 	/datum/admins/proc/map_template_upload,
-	/datum/admins/proc/reestablish_db_connection
+	/datum/admins/proc/reestablish_db_connection,
+	/datum/admins/proc/view_runtimes
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -403,7 +404,6 @@ GLOBAL_PROTECT(admin_verbs_fun)
 	/datum/admins/proc/toggle_gun_restrictions,
 	/datum/admins/proc/toggle_synthetic_restrictions,
 	/datum/admins/proc/reload_admins,
-	/datum/admins/proc/map_random,
 	/datum/admins/proc/map_change
 	)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())

@@ -345,12 +345,15 @@
 	if(SSticker.admin_delay_notice)
 		SSticker.admin_delay_notice = null
 	else
-		SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
+		var/reason = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
+		if(!reason)
+			return
+		SSticker.admin_delay_notice = reason
 
 	SSticker.delay_end = !SSticker.delay_end
 
 	log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].")
-	message_admins("<hr><br><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].</h4><hr><br>")
+	message_admins("<hr><br><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].</h4><hr>")
 
 
 /datum/admins/proc/toggle_gun_restrictions()
@@ -405,23 +408,6 @@
 
 	log_admin("[key_name(src)] manually reloaded admins.")
 	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded admins.")
-
-
-/datum/admins/proc/map_random()
-	set category = "Server"
-	set name = "Trigger Random Map Rotation"
-
-	if(!check_rights(R_SERVER))
-		return
-
-	var/rotate = alert("Force a random map rotation to trigger?", "Rotate map?", "Yes", "No")
-	if(rotate != "Yes")
-		return
-
-	SSmapping.maprotate()
-
-	log_admin("[key_name(usr)] forced a random map rotation.")
-	message_admins("[ADMIN_TPMONTY(usr)] forced a random map rotation.")
 
 
 /datum/admins/proc/map_change()
