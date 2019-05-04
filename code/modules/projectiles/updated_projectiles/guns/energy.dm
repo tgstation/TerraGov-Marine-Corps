@@ -290,15 +290,6 @@
 		else if (src == M.r_hand)
 			M.update_inv_r_hand()
 
-/obj/item/weapon/gun/energy/lasgun/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(flags_gun_features & GUN_BURST_FIRING)
-		return
-
-	else if(istype(I, /obj/item/cell/lasgun) && check_inactive_hand(user))
-		reload(user, I)
-
 
 /obj/item/weapon/gun/energy/lasgun/reload(mob/user, obj/item/cell/lasgun/new_cell)
 	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))

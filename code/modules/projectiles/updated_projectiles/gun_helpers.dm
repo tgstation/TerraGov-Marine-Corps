@@ -292,7 +292,7 @@ should be alright.
 	else if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user))
 		active_attachable.reload_attachment(I, user)
 
-	else if(istype(I, /obj/item/ammo_magazine) && check_inactive_hand(user))
+	else if((istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/cell/lasgun)) && check_inactive_hand(user))
 		reload(user, I)
 
 
