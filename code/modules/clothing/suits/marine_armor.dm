@@ -126,7 +126,7 @@
 		else
 			SetLuminosity(brightness_on)
 	flags_marine_armor ^= ARMOR_LAMP_ON
-	playsound(src,'sound/machines/click.ogg', 15, 1)
+	playsound(src,'sound/items/flashlight.ogg', 15, 1)
 	update_icon(user)
 	update_action_button_icons()
 
