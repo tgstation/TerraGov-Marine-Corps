@@ -39,7 +39,6 @@
 			if("hacker")
 				new /obj/item/circuitboard/ai_module/syndicate(src)
 				new /obj/item/card/emag(src)
-				new /obj/item/encryptionkey/binary(src)
 				return
 
 			if("smoothoperator")

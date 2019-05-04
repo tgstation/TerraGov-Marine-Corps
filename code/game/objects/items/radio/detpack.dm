@@ -20,6 +20,7 @@
 	var/boom = FALSE //confirms whether we actually detted.
 	var/detonation_pending
 	var/sound_timer
+	var/datum/radio_frequency/radio_connection
 
 /obj/item/radio/detpack/examine(mob/user)
 	. = ..()
@@ -48,6 +49,13 @@
 	else
 		nullvars()
 		return ..()
+
+
+/obj/item/radio/detpack/set_frequency(new_frequency)
+	SSradio.remove_object(src, frequency)
+	frequency = new_frequency
+	radio_connection = SSradio.add_object(src, frequency, RADIO_SIGNALER)
+
 
 /obj/item/radio/detpack/update_icon()
 	icon_state = "detpack_[plant_target ? "set_" : ""]"
@@ -104,7 +112,10 @@
 	update_icon()
 
 /obj/item/radio/detpack/receive_signal(datum/signal/signal)
-	if(signal?.encryption != code || !on)
+	if(!signal || !on)
+		return
+
+	if(signal.data["code"] != code)
 		return
 
 	if(!armed)

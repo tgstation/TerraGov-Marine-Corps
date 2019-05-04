@@ -4,15 +4,11 @@
 /area/space)
 "b" = (
 /turf/closed/wall/indestructible,
-/area/space)
+/area/storage/testroom)
 "c" = (
-/obj/machinery/telecomms/relay/preset/station{
-	idle_power_usage = 0;
-	listening_level = 1;
-	use_power = 0
-	},
+/obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor,
-/area/space)
+/area/storage/testroom)
 "d" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;

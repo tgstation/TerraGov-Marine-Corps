@@ -42,9 +42,15 @@
 		to_chat(src, "<span class='warning'>Deadchat is globally muted</span>")
 		return
 
+	if(client.prefs.muted & MUTE_DEADCHAT)
+		to_chat(src, "<span class='warning'>You cannot emote in deadchat (muted).</span>")
+		return
+
 	if(client?.prefs && !(client.prefs.toggles_chat & CHAT_DEAD))
 		to_chat(usr, "<span class='warning'>You have deadchat muted.</span>")
 		return
+
+	log_talk(message, LOG_SAY, "ghost")
 
 	for(var/i in GLOB.player_list)
 		var/mob/M = i

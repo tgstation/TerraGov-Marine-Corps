@@ -32,6 +32,7 @@
 		H.voice_name = H.name
 
 	M.transfer_to(H, TRUE)
+	H.fully_replace_character_name(M.name, H.real_name)
 
 	if(original)
 		qdel(original)
@@ -40,23 +41,27 @@
 
 	if(!leader)
 		leader = H
-		var/datum/job/J = new /datum/job/pmc/leader
+		var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/leader)
+		SSjob.AssignRole(H, J.title)
 		J.equip(H)
 		to_chat(H, "<span class='notice'>You are the leader of this Nanotrasen mercenary squad!</span>")
 		return
 
 	if(prob(50))
-		var/datum/job/J = new /datum/job/pmc/gunner
+		var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/gunner)
+		SSjob.AssignRole(H, J.title)
 		J.equip(H)
 		to_chat(H, "<span class='notice'>You are a Nanostrasen heavy gunner!</span>")
 		return
 
 	if(prob(30))
-		var/datum/job/J = new /datum/job/pmc/sniper
+		var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/sniper)
+		SSjob.AssignRole(H, J.title)
 		J.equip(H)
 		to_chat(H, "<span class='notice'>You are a Nanotrasen sniper!</span>")
 		return
 
-	var/datum/job/J = new /datum/job/pmc/standard
+	var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/standard)
+		SSjob.AssignRole(H, J.title)
 	J.equip(H)
 	to_chat(H, "<span class='notice'>You are a Nanotrasen mercenary!</span>")

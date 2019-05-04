@@ -391,7 +391,7 @@ its easier to just keep the beam vertical.
 		if(LOG_SAY)
 			log_say(log_text)
 		if(LOG_TELECOMMS)
-			log_say(log_text)
+			log_telecomms(log_text)
 		if(LOG_WHISPER)
 			log_whisper(log_text)
 		if(LOG_HIVEMIND)
