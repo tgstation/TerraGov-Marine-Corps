@@ -61,6 +61,8 @@ Currently only has the tank hardpoints
 		return
 	if(!iswelder(W) && !iswrench(W))
 		return ..()
+	if(health >= maxhealth)
+		to_chat(user, "<span class='notice'>[src] is already in perfect conditions.</span>")
 	var/repair_delays = 6
 	var/obj/item/tool/repair_tool = /obj/item/tool/weldingtool
 	switch(slot)
@@ -75,12 +77,14 @@ Currently only has the tank hardpoints
 		if(HDPT_ARMOR)
 			repair_delays = 10
 	if(!istype(W, repair_tool))
-		to_chat(user, "<span class='warning'>That's the wrong tool. Use a [iswrench(repair_tool) ? "wrench" : "welder"].</span>")
+		to_chat(user, "<span class='warning'>That's the wrong tool. Use a [iswelder(W) ? "wrench" : "welder"].</span>")
 		return
 	var/obj/item/tool/weldingtool/WT = iswelder(W) ? W : null
 	if(WT && !WT.isOn())
 		to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
 		return
+	user.visible_message("<span class='notice'>[user] starts repairing [src].</span>",
+		"<span class='notice'>You start repairing [src].</span>")
 	if(!do_after(user, 3 SECONDS * repair_delays, TRUE, repair_delays, BUSY_ICON_FRIENDLY) || !user.Adjacent(src))
 		user.visible_message("<span class='notice'>[user] stops repairing [src].</span>",
 							"<span class='notice'>You stop repairing [src].</span>")
@@ -89,7 +93,7 @@ Currently only has the tank hardpoints
 		if(!WT.isOn())
 			return
 		WT.remove_fuel(repair_delays, user)
-	user.visible_message("<span class='notice'>[user] finishs repairing [src].</span>",
+	user.visible_message("<span class='notice'>[user] finishes repairing [src].</span>",
 		"<span class='notice'>You finish repairing [src].</span>")
 	health = maxhealth
 
