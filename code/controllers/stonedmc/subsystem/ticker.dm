@@ -34,6 +34,8 @@ SUBSYSTEM_DEF(ticker)
 	var/list/round_end_events
 	var/end_state = "undefined"
 
+	var/tipped = FALSE
+
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
@@ -66,6 +68,10 @@ SUBSYSTEM_DEF(ticker)
 				time_left = max(0, start_at - world.time)
 			if(start_immediately)
 				time_left = 0
+
+			if(time_left <= 300 && !tipped)
+				send_tip_of_the_round()
+				tipped = TRUE
 
 			//countdown
 			if(time_left < 0)
@@ -272,6 +278,8 @@ SUBSYSTEM_DEF(ticker)
 
 	time_left = SSticker.time_left
 
+	tipped = SSticker.tipped
+
 	switch(current_state)
 		if(GAME_STATE_SETTING_UP)
 			Master.SetRunLevel(RUNLEVEL_SETUP)
@@ -338,3 +346,20 @@ SUBSYSTEM_DEF(ticker)
 	to_chat_immediate(world, "<h3><span class='boldnotice'>Rebooting...</span></h3>")
 
 	world.Reboot(TRUE)
+
+/datum/controller/subsystem/ticker/proc/send_tip_of_the_round()
+	var/tip
+	var/list/marine_tips = world.file2list("strings/tips/marine.txt")
+	var/list/xeno_tips = world.file2list("strings/tips/xeno.txt")
+	var/list/meta_tips = world.file2list("strings/tips/meta.txt")
+
+	var/list/all_tips = marine_tips + xeno_tips + meta_tips
+
+	var/list/meme_tips = world.file2list("strings/tips/meme.txt")
+	if(all_tips.len && prob(95))
+		tip = pick(all_tips)
+	else if(meme_tips.len)
+		tip = pick(meme_tips)
+
+	if(tip)
+		to_chat(world, "<br><span class='tip'>[html_encode(tip)]</span><br>")
