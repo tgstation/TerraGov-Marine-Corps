@@ -349,17 +349,16 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/send_tip_of_the_round()
 	var/tip
-	var/list/marine_tips = world.file2list("strings/tips/marine.txt")
-	var/list/xeno_tips = world.file2list("strings/tips/xeno.txt")
-	var/list/meta_tips = world.file2list("strings/tips/meta.txt")
+	GLOB.marinetips = world.file2list("strings/tips/marine.txt")
+	GLOB.xenotips = world.file2list("strings/tips/xeno.txt")
+	GLOB.metatips = world.file2list("strings/tips/meta.txt")
+	GLOB.joketips = world.file2list("strings/tips/meme.txt")
 
-	var/list/all_tips = marine_tips + xeno_tips + meta_tips
 
-	var/list/meme_tips = world.file2list("strings/tips/meme.txt")
-	if(all_tips.len && prob(95))
-		tip = pick(all_tips)
-	else if(meme_tips.len)
-		tip = pick(meme_tips)
+	if(length(ALLTIPS) && prob(95))
+		tip = pick(ALLTIPS)
+	else if(GLOB.joketips.len)
+		tip = pick(GLOB.joketips)
 
 	if(tip)
 		to_chat(world, "<br><span class='tip'>[html_encode(tip)]</span><br>")

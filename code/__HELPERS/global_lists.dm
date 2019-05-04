@@ -9,6 +9,14 @@ var/global/list/processing_machines = list()
 var/global/list/active_diseases = list()
 var/global/list/events = list()
 
+
+//tips
+GLOBAL_LIST_EMPTY(metatips)
+GLOBAL_LIST_EMPTY(marinetips)
+GLOBAL_LIST_EMPTY(xenotips)
+GLOBAL_LIST_EMPTY(joketips)
+#define ALLTIPS (GLOB.marinetips + GLOB.xenotips + GLOB.joketips + GLOB.metatips)
+
 //used by binoculars for dropship bombardment
 var/global/list/active_laser_targets = list()
 
