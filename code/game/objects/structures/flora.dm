@@ -3,17 +3,6 @@
 	max_integrity = 25
 	var/on_fire = FALSE
 
-/obj/structure/flora/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(prob(70))
-				qdel(src)
-		if(3)
-			if(prob(50))
-				qdel(src)
-
 /obj/structure/flora/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
@@ -70,17 +59,6 @@
 	max_integrity = 500
 	layer = ABOVE_FLY_LAYER
 	var/log_amount = 10
-
-/obj/structure/flora/tree/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			obj_integrity -= 500
-		if(2.0)
-			obj_integrity -= (rand(140, 300))
-		if(3.0)
-			obj_integrity -= (rand(50, 100))
-	START_PROCESSING(SSobj, src)
-	return
 
 /obj/structure/flora/tree/bullet_act(var/obj/item/projectile/Proj)
 	obj_integrity -= Proj.damage * 0.5

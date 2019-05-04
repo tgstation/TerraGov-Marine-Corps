@@ -23,7 +23,6 @@
 //used by the laser camera dropship equipment
 /obj/machinery/camera/laser_cam
 	name = "laser camera"
-	invuln = TRUE
 	icon_state = ""
 	mouse_opacity = 0
 	network = list("laser targets")
@@ -37,7 +36,6 @@
 
 /obj/machinery/camera/beacon_cam
 	name = "beacon camera"
-	invuln = TRUE
 	icon_state = ""
 	mouse_opacity = 0
 	network = list("supply beacons")
@@ -95,7 +93,7 @@
 //Should place them near each corner of your LZs.
 /obj/machinery/camera/autoname/lz_camera
 	name = "landing zone camera"
-	invuln = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	icon_state = ""
 	mouse_opacity = 0
 	network = list("landing zones")

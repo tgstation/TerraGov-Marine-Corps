@@ -20,20 +20,6 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/sleep_console/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			//SN src = null
-			qdel(src)
-			return
-		if(2.0)
-			if (prob(50))
-				//SN src = null
-				qdel(src)
-				return
-		else
-	return
-
 /obj/machinery/sleep_console/Initialize()
 	. = ..()
 	if(orient == "RIGHT")
@@ -310,21 +296,6 @@
 			icon_state = "sleeper_1-r"
 
 		add_fingerprint(user)
-
-
-/obj/machinery/sleeper/ex_act(severity)
-	if(filtering)
-		toggle_filter()
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(prob(50))
-				qdel(src)
-		if(3)
-			if(prob(25))
-				qdel(src)
-
 
 /obj/machinery/sleeper/emp_act(severity)
 	if(filtering)

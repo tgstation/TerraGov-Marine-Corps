@@ -185,25 +185,6 @@ Class Procs:
 	new /obj/effect/overlay/temp/emp_sparks (loc)
 	..()
 
-
-/obj/machinery/ex_act(severity)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		return FALSE
-	switch(severity)
-		if(1.0)
-			qdel(src)
-			return
-		if(2.0)
-			if (prob(50))
-				qdel(src)
-				return
-		if(3.0)
-			if (prob(25))
-				qdel(src)
-				return
-		else
-	return
-
 //sets the use_power var and then forces an area power update
 /obj/machinery/proc/update_use_power(var/new_use_power, var/force_update = 0)
 	if ((new_use_power == use_power) && !force_update)

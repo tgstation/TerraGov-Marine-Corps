@@ -474,9 +474,6 @@
 	no_panel = TRUE
 	not_weldable = TRUE
 
-/obj/machinery/door/airlock/dropship_hatch/ex_act(severity)
-	return
-
 /obj/machinery/door/airlock/dropship_hatch/close(var/forced=0)
 	if(forced)
 		for(var/mob/living/L in loc)

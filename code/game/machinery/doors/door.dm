@@ -171,19 +171,11 @@
 
 
 /obj/machinery/door/ex_act(severity)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		return
-	switch(severity)
-		if(1.0)
-			qdel(src)
-		if(2.0)
-			if(prob(25))
-				qdel(src)
-		if(3.0)
-			if(prob(80))
-				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-				s.set_up(2, 1, src)
-				s.start()
+	if(prob(80))
+		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+		s.set_up(2, 1, src)
+		s.start()
+	return ..()
 
 
 /obj/machinery/door/update_icon()

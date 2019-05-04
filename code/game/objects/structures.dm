@@ -62,20 +62,6 @@
 /obj/structure/attack_tk()
 	return
 
-/obj/structure/ex_act(severity)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		return
-	switch(severity)
-		if(1.0)
-			qdel(src)
-			return
-		if(2.0)
-			if(prob(50))
-				qdel(src)
-				return
-		if(3.0)
-			return
-
 /obj/structure/Initialize()
 	. = ..()
 	if(climbable)

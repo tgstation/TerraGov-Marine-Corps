@@ -13,7 +13,6 @@
 	var/c_tag_order = 999
 	var/status = 1.0
 	anchored = 1.0
-	var/invuln = null
 	var/bugged = FALSE
 	var/obj/item/frame/camera/assembly = null
 
@@ -77,14 +76,6 @@
 					cameranet.addCamera(src)
 			kick_viewers()
 			..()
-
-
-/obj/machinery/camera/ex_act(severity)
-	if(src.invuln)
-		return
-	else
-		..(severity)
-	return
 
 /obj/machinery/camera/proc/setViewRange(var/num = 7)
 	src.view_range = num

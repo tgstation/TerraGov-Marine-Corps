@@ -37,7 +37,7 @@
 
 	if(is_wired)
 		to_chat(user, "<span class='info'>There is a length of wire strewn across the top of this barricade.</span>")
-	switch(damage_state)
+	switch(damage_state())
 		if(0) to_chat(user, "<span class='info'>It appears to be in good shape.</span>")
 		if(1) to_chat(user, "<span class='warning'>It's slightly damaged, but still very functional.</span>")
 		if(2) to_chat(user, "<span class='warning'>It's quite beat up, but it's holding together.</span>")
@@ -198,7 +198,7 @@
 
 /obj/structure/barricade/update_icon()
 	if(!closed)
-		icon_state = "[barricade_type][damage_state()]"
+		icon_state = "[barricade_type][damage_state_suffix()]"
 		switch(dir)
 			if(SOUTH)
 				layer = ABOVE_MOB_LAYER
@@ -209,7 +209,7 @@
 		if(!anchored)
 			layer = initial(layer)
 	else
-		icon_state = "[barricade_type]_closed[damage_state()]"
+		icon_state = "[barricade_type]_closed[damage_state_suffix()]"
 		layer = OBJ_LAYER
 
 /obj/structure/barricade/proc/update_overlay()
@@ -223,19 +223,25 @@
 		wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
 	overlays += wired_overlay
 
+/obj/structure/barricade/proc/damage_state_suffix()
+	var/state = damage_state()
+	if(!state)
+		return
+	return "_[state]"
+
 /obj/structure/barricade/proc/damage_state()
 	if(!can_change_dmg_state)
 		return
 	var/health_percent = round(obj_integrity/max_integrity * 100)
 	switch(health_percent)
 		if(0 to 25) 
-			return "_3"
+			return 3
 		if(25 to 50)
-			return "_2"
+			return 2
 		if(50 to 75)
-			return "_1"
+			return 1
 		if(75 to INFINITY)
-			return "_0"
+			return 0
 
 /obj/structure/barricade/verb/rotate()
 	set name = "Rotate Barricade Counter-Clockwise"

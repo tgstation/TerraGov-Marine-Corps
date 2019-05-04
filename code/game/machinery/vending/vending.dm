@@ -61,7 +61,7 @@
 	var/wires = 15
 	var/obj/item/coin/coin
 	var/tokensupport = TOKEN_GENERAL
-
+	integrity_failure = 100
 	var/check_accounts = 0		// 1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!
 	var/obj/item/spacecash/ewallet/ewallet
 	var/tipped_level = 0
@@ -84,18 +84,6 @@
 	src.build_inventory(premium, 0, 1)
 	power_change()
 	start_processing()
-
-/obj/machinery/vending/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(prob(50))
-				qdel(src)
-		if(3)
-			if(prob(25))
-				spawn(0)
-					malfunction()
 
 /obj/machinery/vending/proc/select_gamemode_equipment(gamemode)
 	return

@@ -20,12 +20,6 @@
 		crowbar_salvage = new
 		return
 
-/obj/effect/decal/mecha_wreckage/ex_act(severity)
-	if(severity < 2)
-		spawn
-			qdel(src)
-	return
-
 /obj/effect/decal/mecha_wreckage/bullet_act(var/obj/item/projectile/Proj)
 	return 1
 

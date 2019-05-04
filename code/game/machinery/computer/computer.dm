@@ -10,6 +10,7 @@
 	var/circuit = null //The path to the circuit board type. If circuit==null, the computer can't be disassembled.
 	var/processing = 0
 	resistance_flags = UNACIDABLE
+	integrity_failure = 200
 
 /obj/machinery/computer/Initialize()
 	. = ..()
@@ -24,30 +25,6 @@
 /obj/machinery/computer/emp_act(severity)
 	if(prob(20/severity)) set_broken()
 	..()
-
-
-/obj/machinery/computer/ex_act(severity)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		return FALSE
-	switch(severity)
-		if(1.0)
-			qdel(src)
-			return
-		if(2.0)
-			if (prob(25))
-				qdel(src)
-				return
-			if (prob(50))
-				for(var/x in verbs)
-					verbs -= x
-				set_broken()
-		if(3.0)
-			if (prob(25))
-				for(var/x in verbs)
-					verbs -= x
-				set_broken()
-		else
-	return
 
 /obj/machinery/computer/bullet_act(var/obj/item/projectile/Proj)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))

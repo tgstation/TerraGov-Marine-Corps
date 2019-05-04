@@ -99,6 +99,7 @@
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target2"
 	effect_duration = 600
+	resistance_flags = INDESTRUCTIBLE
 	var/target_id
 	var/obj/item/binoculars/tactical/source_binoc
 	var/obj/machinery/camera/laser_cam/linked_cam
@@ -129,9 +130,6 @@
 		linked_cam = null
 	SetLuminosity(0)
 	. = ..()
-
-/obj/effect/overlay/temp/laser_target/ex_act(severity) //immune to explosions
-	return
 
 /obj/effect/overlay/temp/laser_target/examine()
 	..()
@@ -200,16 +198,13 @@
 /obj/effect/overlay/temp/gib_animation
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 14
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/effect/overlay/temp/gib_animation/New(Loc, mob/source_mob, gib_icon)
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
 	..()
-
-/obj/effect/overlay/temp/gib_animation/ex_act(severity)
-	return
-
 
 /obj/effect/overlay/temp/gib_animation/animal
 	icon = 'icons/mob/animal.dmi'

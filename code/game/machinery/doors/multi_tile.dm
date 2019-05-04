@@ -174,9 +174,6 @@
 	no_panel = TRUE
 	not_weldable = TRUE
 
-/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ex_act(severity)
-	return
-
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/close(var/forced=0)
 	if(forced)
 		for(var/turf/T in get_filler_turfs())

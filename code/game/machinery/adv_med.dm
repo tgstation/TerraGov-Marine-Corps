@@ -108,53 +108,6 @@
 	add_fingerprint(user)
 	//G = null
 
-
-/obj/machinery/bodyscanner/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.loc
-				ex_act(severity)
-				//Foreach goto(35)
-			//SN src = null
-			qdel(src)
-			return
-		if(2.0)
-			if (prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
-					ex_act(severity)
-					//Foreach goto(108)
-				//SN src = null
-				qdel(src)
-				return
-		if(3.0)
-			if (prob(25))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
-					ex_act(severity)
-					//Foreach goto(181)
-				//SN src = null
-				qdel(src)
-				return
-		else
-	return
-
-/obj/machinery/body_scanconsole/ex_act(severity)
-
-	switch(severity)
-		if(1.0)
-			//SN src = null
-			qdel(src)
-			return
-		if(2.0)
-			if (prob(50))
-				//SN src = null
-				qdel(src)
-				return
-		else
-	return
-
 /obj/machinery/body_scanconsole/power_change()
 	..()
 	if(machine_stat & BROKEN)

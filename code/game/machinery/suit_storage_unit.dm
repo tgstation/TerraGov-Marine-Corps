@@ -67,21 +67,6 @@
 		isUV = 0
 	update_icon()
 
-
-/obj/machinery/suit_storage_unit/ex_act(severity)
-	switch(severity)
-		if(1)
-			if(prob(50))
-				dump_everything() //So suits dont survive all the time
-			qdel(src)
-
-		if(2)
-			if(prob(50))
-				dump_everything()
-				qdel(src)
-
-
-
 /obj/machinery/suit_storage_unit/attack_hand(mob/user)
 	var/dat
 	if(..())

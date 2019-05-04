@@ -170,8 +170,7 @@
 			wires &= ~(1 << rand(0,9))
 		if(3)
 			wires &= ~(1 << rand(0,9))
-	..()
-	return
+	return ..()
 
 /obj/machinery/bot/mulebot/bullet_act()
 	if(prob(50) && !isnull(load))

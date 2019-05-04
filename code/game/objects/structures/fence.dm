@@ -36,16 +36,6 @@
 	healthcheck()
 	return TRUE
 
-/obj/structure/fence/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src) //Nope
-		if(2)
-			qdel(src)
-		if(3)
-			obj_integrity -= rand(25, 55)
-			healthcheck(0, 1)
-
 /obj/structure/fence/hitby(AM as mob|obj)
 	..()
 	visible_message("<span class='danger'>[src] was hit by [AM].</span>")

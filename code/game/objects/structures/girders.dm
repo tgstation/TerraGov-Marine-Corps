@@ -286,23 +286,6 @@
 		return
 	return ..()
 
-/obj/structure/girder/ex_act(severity)
-	switch(severity)
-		if(1)
-			obj_integrity = 0
-			update_state()
-		if(2)
-			if (prob(30))
-				obj_integrity = 0
-				update_state()
-		if(3)
-			if(prob(5))
-				obj_integrity = 0
-				update_state()
-
-
-
-
 /obj/structure/girder/displaced
 	icon_state = "displaced"
 	anchored = 0

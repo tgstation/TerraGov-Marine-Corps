@@ -10,29 +10,6 @@
 	var/occupied = 1
 	var/destroyed = 0
 
-/obj/structure/displaycase/ex_act(severity)
-	switch(severity)
-		if (1)
-			new /obj/item/shard( src.loc )
-			if (occupied)
-				occupied = 0
-			qdel(src)
-		if (2)
-			if (prob(50))
-				src.obj_integrity -= 15
-				src.healthcheck()
-		if (3)
-			if (prob(50))
-				src.obj_integrity -= 5
-				src.healthcheck()
-
-
-/obj/structure/displaycase/bullet_act(var/obj/item/projectile/Proj)
-	obj_integrity -= Proj.ammo.damage
-	..()
-	src.healthcheck()
-	return 1
-
 /obj/structure/displaycase/proc/healthcheck()
 	if (src.obj_integrity <= 0)
 		if (!( src.destroyed ))
