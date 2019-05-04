@@ -1,0 +1,4 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - imageadd: "Moved wallmounted inventory down by 1-2 pixels. Lightened up a few APC light overlays to be more visible."
