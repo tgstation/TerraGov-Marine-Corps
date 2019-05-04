@@ -355,9 +355,9 @@ SUBSYSTEM_DEF(ticker)
 	GLOB.joketips = world.file2list("strings/tips/meme.txt")
 
 
-	if(length(ALLTIPS) && prob(95))
+	if(prob(95) && length(ALLTIPS))
 		tip = pick(ALLTIPS)
-	else if(GLOB.joketips.len)
+	else if(length(GLOB.joketips))
 		tip = pick(GLOB.joketips)
 
 	if(tip)
