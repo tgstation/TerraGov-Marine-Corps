@@ -128,8 +128,6 @@
 		user.visible_message("<span class='danger'>The barbed wire slices into [user]!</span>",
 		"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 		user.apply_damage(10)
-	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 	return ..()
 
 /obj/structure/barricade/attackby(obj/item/W, mob/user)
