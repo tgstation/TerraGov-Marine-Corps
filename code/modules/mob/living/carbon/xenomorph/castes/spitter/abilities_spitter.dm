@@ -33,7 +33,7 @@
 
 
 /datum/action/xeno_action/activable/spray_acid/line/proc/spray_turfs(list/turflist)
-	set waitfor = 0
+	set waitfor = FALSE
 
 	if(isnull(turflist))
 		return
