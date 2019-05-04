@@ -1104,18 +1104,6 @@
 		message_admins("[ADMIN_TPMONTY(usr)] has removed [rem_language] from [ADMIN_TPMONTY(L)].")
 
 
-	else if(href_list["purrbation"])
-		if(!check_rights(R_FUN))
-			return
-
-		var/mob/living/carbon/human/H = locate(href_list["purrbation"])
-		if(!istype(H))
-			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
-			return
-
-		H.purrbate()
-
-
 	else if(href_list["getatom"])
 		if(!check_rights(R_DEBUG))
 			return
