@@ -18,6 +18,7 @@
 	var/junction = 0 //Because everything is terrible, I'm making this a window-level var
 	var/damageable = TRUE
 	var/deconstructable = TRUE
+	resistance_flags = ENERGY_TRANSPARENT
 
 //create_debris creates debris like shards and rods. This also includes the window frame for explosions
 //If an user is passed, it will create a "user smashes through the window" message. AM is the item that hits
@@ -39,10 +40,6 @@
 			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
 
 /obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
-	//Tasers and the like should not damage windows.
-	if(Proj.ammo.damage_type == HALLOSS || Proj.damage <= 0 || Proj.ammo.flags_ammo_behavior == AMMO_ENERGY)
-		return FALSE
-
 	if(damageable) //Possible to destroy
 		obj_integrity -= Proj.damage
 	..()

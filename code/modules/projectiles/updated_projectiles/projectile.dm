@@ -324,21 +324,30 @@
 	if(!density)
 		return FALSE
 
-	if(layer >= OBJ_LAYER || src == P.original)
-		return TRUE
-
-/obj/structure/get_projectile_hit_chance(obj/item/projectile/P)
-	if(!density) //structure is passable
+	if(CHECK_BITFIELD(resistance_flags, ENERGY_TRANSPARENT) && (CHECK_BITFIELD(P.ammo.flags_ammo_behavior, AMMO_ENERGY) || P.damage <= 0))
 		return FALSE
 
-	if(src == P.original) //clicking on the structure itself hits the structure
-		return TRUE
+	if(CHECK_BITFIELD(resistance_flags, HALLOSS_TRANSPARENT) && (P.ammo.damage_type = HALLOSS || P.damage <= 0))
+		return FALSE
+
+	if(layer < OBJ_LAYER)
+		return FALSE
+
+	if(src != P.original)
+		return FALSE
+
+	return TRUE
+
+/obj/structure/get_projectile_hit_chance(obj/item/projectile/P)
+	. = ..()
+	if(!.)
+		return FALSE
 
 	if(!anchored) //unanchored structure offers no protection.
 		return FALSE
 
-	if(!throwpass)
-		return TRUE
+	if(throwpass)
+		return FALSE
 
 	if(P.ammo.flags_ammo_behavior & AMMO_SNIPER || P.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS || P.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
 		return FALSE
@@ -362,10 +371,14 @@
 	return prob(hitchance)
 
 /obj/structure/window/get_projectile_hit_chance(obj/item/projectile/P)
-	if(P.ammo.flags_ammo_behavior & AMMO_ENERGY || ( (flags_atom & ON_BORDER) && P.dir != dir && P.dir != reverse_direction(dir) ) )
+	. = ..()
+	if(!.)
 		return FALSE
-	else
-		return TRUE
+
+	if((flags_atom & ON_BORDER) && P.dir != dir && P.dir != reverse_direction(dir) )
+		return FALSE
+
+	return TRUE
 
 /obj/machinery/door/poddoor/railing/get_projectile_hit_chance(obj/item/projectile/P)
 	return src == P.original

@@ -14,3 +14,5 @@
 #define ACID_PROOF		(1<<5) //acid stuck on it doesn't melt it.
 #define INDESTRUCTIBLE	(1<<6) //doesn't take damage
 #define FREEZE_PROOF	(1<<7) //can't be frozen
+#define ENERGY_TRANSPARENT	(1<<8) //won't absorb energy projectiles
+#define HALLOSS_TRANSPARENT	(1<<9) //basically neuro spits

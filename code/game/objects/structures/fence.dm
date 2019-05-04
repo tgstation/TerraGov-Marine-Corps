@@ -10,6 +10,7 @@
 	var/cut = FALSE //Cut fences can be passed through
 	var/junction = 0 //Because everything is terrible, I'm making this a fence-level var
 	var/basestate = "fence"
+	resistance_flags = ENERGY_TRANSPARENT|HALLOSS_TRANSPARENT
 
 //create_debris creates debris like shards and rods. This also includes the window frame for explosions
 //If an user is passed, it will create a "user smashes through the window" message. AM is the item that hits
@@ -27,10 +28,6 @@
 		playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 
 /obj/structure/fence/bullet_act(var/obj/item/projectile/Proj)
-	//Tasers and the like should not damage windows.
-	if(Proj.ammo.damage_type == HALLOSS || Proj.damage <= 0 || Proj.ammo.flags_ammo_behavior == AMMO_ENERGY)
-		return FALSE
-
 	obj_integrity -= Proj.damage * 0.3
 	..()
 	healthcheck()
