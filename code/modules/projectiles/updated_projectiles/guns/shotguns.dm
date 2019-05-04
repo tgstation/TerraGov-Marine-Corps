@@ -11,7 +11,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	origin_tech = "combat=4;materials=3"
 	w_class = 4
 	force = 14.0
-	caliber = "12 guage shotgun shells" //codex
+	caliber = "12 gauge shotgun shells" //codex
 	max_shells = 9 //codex
 	load_method = SINGLE_CASING //codex
 	fire_sound = 'sound/weapons/gun_shotgun.ogg'
