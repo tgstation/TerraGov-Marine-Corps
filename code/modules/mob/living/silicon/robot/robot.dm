@@ -228,7 +228,6 @@ var/list/robot_verbs_default = list(
 		status_flags &= ~CANPUSH
 
 	choose_icon(6,module_sprites)
-	radio.config(module.channels)
 
 /mob/living/silicon/robot/proc/updatename(var/prefix as text)
 	if(prefix)

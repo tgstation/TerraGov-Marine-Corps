@@ -17,7 +17,8 @@
 	set_frequency(receive_frequency)
 
 /obj/machinery/computer/atmos_alert/receive_signal(datum/signal/signal)
-	if(!signal || signal.encryption) return
+	if(!signal) 
+		return
 
 	var/zone = signal.data["zone"]
 	var/severity = signal.data["alert"]

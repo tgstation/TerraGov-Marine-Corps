@@ -130,7 +130,6 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "aaD" = (
-/obj/machinery/telecomms/relay/preset/ice_colony,
 /turf/open/floor/plating/asteroidplating,
 /area/bigredv2/outside/telecomm)
 "aaE" = (
@@ -224,11 +223,6 @@
 /obj/effect/spawner/random/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
-"aaR" = (
-/obj/machinery/computer/telecomms/traffic,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/telecomm)
 "aaS" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 4
@@ -1610,13 +1604,6 @@
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
-"afb" = (
-/obj/machinery/computer/telecomms/traffic{
-	req_access = null;
-	req_one_access_txt = "19;200"
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
 "afc" = (
 /obj/item/folder/yellow,
 /turf/open/floor/tile/dark,
@@ -26652,6 +26639,10 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"obN" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/asteroidfloor,
+/area/storage/testroom)
 "onZ" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -26857,6 +26848,9 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
+"qSy" = (
+/turf/closed/wall/indestructible/mineral,
+/area/storage/testroom)
 "qUm" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -27758,9 +27752,9 @@ aaa
 (3,1,1) = {"
 aaa
 aab
-aac
-aac
-aac
+qSy
+qSy
+qSy
 aac
 aac
 aac
@@ -27975,9 +27969,9 @@ aaa
 (4,1,1) = {"
 aaa
 aab
-aac
-aac
-aac
+qSy
+obN
+qSy
 aac
 aac
 aac
@@ -28192,9 +28186,9 @@ aaa
 (5,1,1) = {"
 aaa
 aab
-aac
-aac
-aac
+qSy
+qSy
+qSy
 aac
 aac
 aac
@@ -28875,7 +28869,7 @@ adq
 adH
 aea
 aeB
-afb
+ade
 afI
 acQ
 aas
@@ -30591,7 +30585,7 @@ aac
 acA
 aas
 aaD
-aaR
+ahd
 aas
 aas
 aas

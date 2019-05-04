@@ -9766,27 +9766,21 @@
 	},
 /area/almayer/hull/upper_hull)
 "avC" = (
-/obj/machinery/telecomms/server/presets/common{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/server/presets/alpha,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
 /area/almayer/command/telecomms)
 "avD" = (
-/obj/machinery/telecomms/server/presets/medical{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/server/presets/bravo,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
 /area/almayer/command/telecomms)
 "avE" = (
-/obj/machinery/telecomms/server/presets/engineering{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/server/presets/charlie,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
@@ -9800,22 +9794,13 @@
 	},
 /area/almayer/command/telecomms)
 "avG" = (
-/obj/machinery/telecomms/receiver/preset,
+/obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
 /area/almayer/command/telecomms)
 "avH" = (
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/almayer/command/telecomms)
-"avI" = (
-/obj/machinery/r_n_d/server/core{
-	produces_heat = 0
-	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
@@ -11174,53 +11159,32 @@
 	},
 /area/almayer/command/airoom)
 "ayD" = (
-/obj/machinery/telecomms/bus/preset_three{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/bus/preset_one,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
 /area/almayer/command/telecomms)
 "ayE" = (
-/obj/machinery/telecomms/bus/preset_two{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/bus/preset_two,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
 /area/almayer/command/telecomms)
 "ayF" = (
-/obj/machinery/telecomms/bus/preset_four{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/bus/preset_three,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
 /area/almayer/command/telecomms)
 "ayG" = (
-/obj/machinery/telecomms/bus/preset_one{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
-/area/almayer/command/telecomms)
-"ayH" = (
-/obj/machinery/telecomms/relay/preset/telecomms{
-	listening_level = 4
-	},
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/almayer/command/telecomms)
-"ayI" = (
-/obj/machinery/computer/telecomms/traffic,
-/turf/open/floor/almayer/mono,
 /area/almayer/command/telecomms)
 "ayJ" = (
 /obj/machinery/light{
@@ -12173,9 +12137,7 @@
 	},
 /area/almayer/command/airoom)
 "aAs" = (
-/obj/machinery/telecomms/hub/preset{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/hub/preset,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
@@ -13179,45 +13141,28 @@
 	},
 /area/almayer/command/airoom)
 "aCi" = (
-/obj/machinery/telecomms/processor/preset_two{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
 /area/almayer/command/telecomms)
 "aCj" = (
-/obj/machinery/telecomms/processor/preset_three{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/processor/preset_three,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
 /area/almayer/command/telecomms)
 "aCk" = (
-/obj/machinery/telecomms/processor/preset_four{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
 /area/almayer/command/telecomms)
 "aCl" = (
-/obj/machinery/telecomms/processor/preset_one{
-	produces_heat = 0
-	},
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/almayer/command/telecomms)
-"aCm" = (
-/obj/machinery/telecomms/relay/preset/telecomms{
-	listening_level = 6
-	},
+/obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
@@ -14714,27 +14659,21 @@
 	},
 /area/almayer/hull/upper_hull)
 "aFa" = (
-/obj/machinery/telecomms/server/presets/command{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/server/presets/requisitions,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
 /area/almayer/command/telecomms)
 "aFb" = (
-/obj/machinery/telecomms/server/presets/security{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
 /area/almayer/command/telecomms)
 "aFc" = (
-/obj/machinery/telecomms/server/presets/squads{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
@@ -14742,13 +14681,6 @@
 /area/almayer/command/telecomms)
 "aFd" = (
 /obj/machinery/telecomms/broadcaster/preset_left,
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/almayer/command/telecomms)
-"aFe" = (
-/obj/machinery/telecomms/broadcaster/preset_right,
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
@@ -49464,6 +49396,13 @@
 	dir = 1
 	},
 /area/almayer/shipboard/ex_firing_range)
+"dXn" = (
+/obj/machinery/telecomms/server/presets/security,
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/almayer/command/telecomms)
 "ees" = (
 /obj/structure/sign/nosmoking_2{
 	dir = 1
@@ -49720,6 +49659,13 @@
 /obj/structure/prop/almayer/name_stencil,
 /turf/open/floor/theseus_hull,
 /area/space)
+"goj" = (
+/obj/machinery/telecomms/receiver/preset_right,
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/almayer/command/telecomms)
 "gEh" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -51177,6 +51123,13 @@
 /obj/structure/window/framed/almayer/requisitions,
 /turf/open/floor/plating,
 /area/almayer/engineering/port_atmos)
+"sXq" = (
+/obj/machinery/telecomms/server/presets/delta,
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/almayer/command/telecomms)
 "tjY" = (
 /obj/structure/flora/pottedplant{
 	tag = "icon-plant-10";
@@ -51481,6 +51434,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/commandbunks)
+"vQz" = (
+/obj/machinery/telecomms/server/presets/medical,
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/almayer/command/telecomms)
 "vWi" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -51644,6 +51604,13 @@
 	tag = "icon-red"
 	},
 /area/almayer/hallways/stern_hallway)
+"xkA" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/almayer/command/telecomms)
 "xna" = (
 /obj/structure/mirror{
 	dir = 8
@@ -93707,7 +93674,7 @@ avC
 awL
 ayD
 avH
-aCi
+aCk
 awL
 aFa
 aoI
@@ -93964,7 +93931,7 @@ avD
 avH
 ayE
 avH
-aCj
+aCi
 avH
 aFb
 aoI
@@ -94221,7 +94188,7 @@ avE
 avH
 ayF
 avH
-aCk
+aCj
 avH
 aFc
 aoI
@@ -94474,13 +94441,13 @@ aoI
 apT
 arT
 aoJ
-avF
+sXq
 avH
 ayG
 avH
 aCl
 avH
-aFd
+vQz
 aoJ
 aId
 aJl
@@ -94733,11 +94700,11 @@ arU
 aoJ
 avG
 avH
-ayH
 avH
-aCm
 avH
-aFe
+avH
+avH
+dXn
 awM
 arZ
 aJm
@@ -95245,7 +95212,7 @@ aoJ
 apW
 arW
 aoJ
-avI
+avF
 avH
 avH
 aAs
@@ -95502,13 +95469,13 @@ aoJ
 apX
 arW
 aoJ
+goj
 avH
 avH
+xkA
 avH
 avH
-avH
-avH
-avH
+aFd
 aoJ
 aIe
 aJn
@@ -96018,7 +95985,7 @@ arW
 aoJ
 avJ
 awN
-ayI
+aJn
 aAt
 aCn
 aDG

@@ -198,6 +198,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	regenerate_icons()
 	med_hud_set_status()
 	med_hud_set_health()
+	handle_regular_hud_updates()
 	reload_fullscreens()
 
 /mob/living/carbon/rejuvenate()
