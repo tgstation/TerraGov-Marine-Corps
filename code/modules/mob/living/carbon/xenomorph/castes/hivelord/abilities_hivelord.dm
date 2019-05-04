@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	if(newt.z != newt.other.z)
 		X.start_dig = newt
 		to_chat(X, "<span class='xenonotice'>The first tunnel of this set has been destroyed as it cannot connect to this tunnel.</span>")
-		newt.other.health = 0
+		newt.other.obj_integrity = 0
 		newt.other.healthcheck()
 		newt.other = null
 		return fail_activate()

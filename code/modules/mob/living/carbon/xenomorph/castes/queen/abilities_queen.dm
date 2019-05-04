@@ -144,7 +144,7 @@
 	X.create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
-	for(var/mob/living/L in range(world.view))
+	for(var/mob/living/L in range(world.view, X))
 		if(L.stat == DEAD)
 			continue
 		L.screech_act(X)
