@@ -12,23 +12,46 @@
 */
 /obj/item/laptop/rescue
     name = "Communications laptop"
-    desc = "A small device used for augmenting communication. Someone seems to have left it logged in with open communications to a nearby ship."
+    desc = "A device used for augmenting communication. Someone seems to have left it logged in with open communications to a nearby ship."
     w_class = WEIGHT_CLASS_BULKY
     // icon = 'icons/obj/machines/computer.dmi'
     // icon_state = "comm_traffic"
-    icon = 'icons/obj/machines/computer3.dmi'
-    icon_state = "tracking_laptop"
-
+    icon = 'icons/obj/machines/laptop_beacon.dmi'
+    icon_state = "tandy0"
     var/activation_time = 5 SECONDS
 
 /obj/item/laptop/rescue/Initialize()
     . = ..()
-    SetLuminosity(1)
+    SetLuminosity(4)
+    update_icon()
 
 /obj/item/laptop/rescue/Destroy()
     SetLuminosity(0)
     return ..()
 
+/obj/item/laptop/rescue/update_icon()
+    icon_state = "tandy0"
+    cut_overlays()
+    if(anchored)
+        icon_state = "tandy1"
+        add_overlay("tandy1o_wifi")
+
+    return ..()
+
+/obj/item/laptop/rescue/attack_hand(mob/user as mob)
+    if(!anchored)
+        return
+    if(!ishuman(user)) 
+        return
+    user.visible_message("<span class='notice'>[user] starts packing up \the [src].</span>",
+    "<span class='notice'>You start packing up \the [src]. <b>This will interrupt the beacon.</b></span>")
+    if(do_after(user, activation_time*2, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
+        user.transferItemToLoc(src, user)
+        anchored = FALSE
+        w_class = initial(w_class)
+        update_icon()
+    . = ..()
+    
 /obj/item/laptop/rescue/attack_self(mob/user)
     if(anchored)
         to_chat(user, "<span class='warning'>It's already been anchored. Just leave it.</span>")
@@ -48,10 +71,11 @@
 
     user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
     "<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
-    if(do_after(user, activation_time, TRUE, 5, BUSY_ICON_FRIENDLY))
+    if(do_after(user, activation_time, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
         user.transferItemToLoc(src, user.loc)
-        anchored = 1
+        anchored = TRUE
         w_class = 10
+        update_icon()
 
 /obj/item/beacon/rescue
     name = "Rescue beacon"
@@ -76,6 +100,8 @@
     var/current_hp = 0
 
 /obj/item/beacon/rescue/Initialize()
+    SetLuminosity(4)
+
     if(!issurvivorgamemode(SSticker.mode))
         return
 
@@ -154,6 +180,10 @@
     
 
 // TODO: Handle other click types (altclick etc)
+/obj/item/beacon/rescue/attack_hand(mob/user as mob)
+    return
+
+
 /obj/item/beacon/rescue/attackby(obj/item/W as obj, mob/user as mob)
     if(!anchored || activated)
         return
@@ -401,8 +431,6 @@ SPAWNS
     else 
         player_size = LOW_POP
 
-
-    player_size = HIGH_POP
     return TRUE
 
 

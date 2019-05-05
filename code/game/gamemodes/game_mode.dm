@@ -47,6 +47,9 @@
 
 	return TRUE
 
+/datum/game_mode/proc/setup()
+	CRASH("Call to /datum/game_mode/proc/setup(), unimplemented proc")
+
 
 /datum/game_mode/proc/post_setup()
 	addtimer(CALLBACK(src, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
