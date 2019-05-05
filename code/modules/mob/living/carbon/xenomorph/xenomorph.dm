@@ -83,7 +83,7 @@
 
 	//Update linked data so they show up properly
 	real_name = name
-	if(mind) 
+	if(mind)
 		mind.name = name
 
 /mob/living/carbon/Xenomorph/proc/tier_as_number()
@@ -257,6 +257,33 @@
 
 /mob/living/carbon/Xenomorph/reagent_check(datum/reagent/R) //For the time being they can't metabolize chemicals.
 	return TRUE
+
+/mob/living/carbon/Xenomorph/update_leader_tracking(mob/living/carbon/Xenomorph/X)
+	if(!hud_used?.locate_leader)
+		return
+
+	var/obj/screen/LL_dir = hud_used.locate_leader
+	if(xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
+		LL_dir.icon_state = "trackoff"
+		return
+
+	if(X.z != src.z || get_dist(src,X) < 1 || src == X)
+		LL_dir.icon_state = "trackondirect"
+	else
+		var/area/A = get_area(src.loc)
+		var/area/QA = get_area(X.loc)
+		if(A.fake_zlevel == QA.fake_zlevel)
+			LL_dir.icon_state = "trackon"
+			LL_dir.setDir(get_dir(src, X))
+		else
+			LL_dir.icon_state = "trackondirect"
+
+/mob/living/carbon/Xenomorph/clear_leader_tracking()
+	if(!hud_used?.locate_leader)
+		return
+
+	var/obj/screen/LL_dir = hud_used.locate_leader
+	LL_dir.icon_state = "trackoff"
 
 /mob/living/carbon/Xenomorph/begin_away()
 	. = ..()

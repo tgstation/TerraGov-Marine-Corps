@@ -262,9 +262,6 @@
 	else if(!client.adminobs)
 		reset_view(null)
 
-	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
-		queen_locator()
-
 	return TRUE
 
 /mob/living/carbon/Xenomorph/proc/handle_environment() //unused while atmos is not on
@@ -281,25 +278,6 @@
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire0"
 
-/mob/living/carbon/Xenomorph/proc/queen_locator()
-	if(!hud_used || !hud_used.locate_leader)
-		return
-
-	if(!hive?.living_xeno_queen || xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
-		hud_used.locate_leader.icon_state = "trackoff"
-		return
-
-	if(hive.living_xeno_queen.loc.z != loc.z || get_dist(src,hive.living_xeno_queen) < 1 || src == hive.living_xeno_queen)
-		hud_used.locate_leader.icon_state = "trackondirect"
-	else
-		var/area/A = get_area(loc)
-		var/area/QA = get_area(hive.living_xeno_queen.loc)
-		if(A.fake_zlevel == QA.fake_zlevel)
-			hud_used.locate_leader.setDir(get_dir(src,hive.living_xeno_queen))
-			hud_used.locate_leader.icon_state = "trackon"
-		else
-			hud_used.locate_leader.icon_state = "trackondirect"
-
 /mob/living/carbon/Xenomorph/updatehealth()
 	if(status_flags & GODMODE)
 		return
@@ -307,9 +285,6 @@
 	med_hud_set_health()
 	update_stat()
 	update_wounds()
-
-
-
 
 /mob/living/carbon/Xenomorph/handle_stunned()
 	if(stunned)
