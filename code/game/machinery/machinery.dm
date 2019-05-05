@@ -107,7 +107,6 @@ Class Procs:
 	var/machine_current_charge = 0 //Does it have an integrated, unremovable capacitor? Normally 10k if so.
 	var/machine_max_charge = 0
 	var/power_channel = EQUIP
-	var/panel_open = FALSE
 	var/mob/living/carbon/human/operator = null //Had no idea where to put this so I put this here. Used for operating machines with RELAY_CLICK
 		//EQUIP,ENVIRON or LIGHT
 	var/list/component_parts = list() //list of all the parts used to build it, if made from certain kinds of frames.
@@ -115,7 +114,6 @@ Class Procs:
 	var/manual = 0
 	var/global/gl_uid = 1
 	layer = OBJ_LAYER
-	var/machine_processing = 0 // whether the machine is busy and requires process() calls in scheduler.
 
 	var/wrenchable = FALSE
 	var/damage = 0
@@ -171,13 +169,13 @@ Class Procs:
 	return
 
 /obj/machinery/proc/start_processing()
-	if(!machine_processing)
-		machine_processing = TRUE
+	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
+		ENABLE_BITFIELD(datum_flags, DF_ISPROCESSING)
 		processing_machines += src
 
 /obj/machinery/proc/stop_processing()
-	if(machine_processing)
-		machine_processing = FALSE
+	if(CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
+		DISABLE_BITFIELD(datum_flags, DF_ISPROCESSING)
 		processing_machines -= src
 
 /obj/machinery/process()//If you dont use process or power why are you here

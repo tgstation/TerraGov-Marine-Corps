@@ -37,7 +37,7 @@
 	heat_capacity = 5000 * ((B - 1) ** 2)
 
 /obj/machinery/atmospherics/components/unary/thermomachine/update_icon()
-	if(panel_open)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		icon_state = icon_state_open
 	else if(on && is_operational())
 		icon_state = icon_state_on
