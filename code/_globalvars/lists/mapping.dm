@@ -49,6 +49,12 @@ GLOBAL_LIST_EMPTY(servant_spawns) //Servants of Ratvar spawn here
 GLOBAL_LIST_EMPTY(city_of_cogs_spawns) //Anyone entering the City of Cogs spawns here
 GLOBAL_LIST_EMPTY(ruin_landmarks)
 
+// Survivor gamemode
+GLOBAL_LIST_EMPTY(survivor_spawn_human) // human spawns
+GLOBAL_LIST_EMPTY(survivor_spawn_xeno) // xeno spawns
+GLOBAL_LIST_EMPTY(survivor_spawn_random_item) // random item (guns, mateirals)
+GLOBAL_LIST_EMPTY(survivor_spawn_key_item) // required items ( power cells idk idk )
+
 	//away missions
 GLOBAL_LIST_EMPTY(awaydestinations)	//a list of landmarks that the warpgate can take you to
 GLOBAL_LIST_EMPTY(vr_spawnpoints)

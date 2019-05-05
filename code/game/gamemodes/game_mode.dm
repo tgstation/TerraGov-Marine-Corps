@@ -49,8 +49,7 @@
 
 
 /datum/game_mode/proc/post_setup()
-	spawn(ROUNDSTART_LOGOUT_REPORT_TIME)
-		display_roundstart_logout_report()
+	addtimer(CALLBACK(src, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
 	if(!SSdbcore.Connect())
 		return
 	var/sql

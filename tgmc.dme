@@ -289,6 +289,7 @@
 #include "code\game\gamemodes\extended.dm"
 #include "code\game\gamemodes\game_mode.dm"
 #include "code\game\gamemodes\huntergames.dm"
+#include "code\game\gamemodes\survivor.dm"
 #include "code\game\jobs\access.dm"
 #include "code\game\jobs\departments.dm"
 #include "code\game\jobs\slot_scaling.dm"
