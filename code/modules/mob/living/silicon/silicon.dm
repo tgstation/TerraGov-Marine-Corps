@@ -109,20 +109,12 @@
 	stat(null, "Station Time: [worldtime2text()]")
 
 
-// this function displays the shuttles ETA in the status panel if the shuttle has been called
-/mob/living/silicon/proc/show_emergency_shuttle_eta()
-	var/eta_status = SSevacuation?.get_status_panel_eta()
-	if(eta_status)
-		stat("Evacuation in:", eta_status)
-
-
-// This adds the basic clock, shuttle recall timer, and malf_ai info to all silicon lifeforms
+// This adds the basic clock, and malf_ai info to all silicon lifeforms
 /mob/living/silicon/Stat()
 	. = ..()
 
 	if(statpanel("Stats"))
 		show_station_time()
-		show_emergency_shuttle_eta()
 		show_system_integrity()
 
 // this function displays the stations manifest in a separate window

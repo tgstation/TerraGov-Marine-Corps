@@ -82,17 +82,6 @@
 
 		transit_optimized = 0 //De-optimize the flight plans
 
-/* Pseudo-code. Auto-bolt shuttle airlocks when in motion.
-/datum/shuttle/proc/toggle_doors(var/close_doors, var/bolt_doors, var/area/whatArea)
-	if(!whatArea) return <-- logic checks!
-  		for(all doors in whatArea)
-  			if(door.id is the same as src.id)
-				if(close_doors)
-			    	toggle dat shit
-			   	if(bolt_doors)
-			   		bolt dat shit
-*/
-
 //Actual code. lel
 /datum/shuttle/proc/close_doors(var/area/area)
 	if(!area || !istype(area)) //somehow
@@ -103,25 +92,10 @@
 			spawn(0)
 				P.close()
 
-	if (iselevator)	// Super snowflake code
-		for (var/obj/machinery/computer/shuttle_control/ice_colony/C in area)
-			C.animate_on()
-
-		for (var/turf/closed/shuttle/elevator/gears/G in area)
-			G.start()
-
-		for (var/obj/machinery/door/airlock/D in area)//For elevators
+	for(var/obj/machinery/door/airlock/unpowered/D in area)
+		if(!D.density && !D.locked)
 			spawn(0)
-				if (!D.density)
-					D.close()
-					D.lock()
-				else
-					D.lock()
-	else
-		for(var/obj/machinery/door/airlock/unpowered/D in area)
-			if(!D.density && !D.locked)
-				spawn(0)
-					D.close()
+				D.close()
 
 
 
@@ -134,25 +108,10 @@
 			spawn(0)
 				P.open()
 
-	if (iselevator)	// Super snowflake code
-		for (var/obj/machinery/computer/shuttle_control/ice_colony/C in area)
-			C.animate_off()
-
-		for (var/turf/closed/shuttle/elevator/gears/G in area)
-			G.stop()
-
-		for (var/obj/machinery/door/airlock/D in area)//For elevators
-			if (D.locked)
-				spawn(0)
-					D.unlock()
-			if (D.density)
-				spawn(0)
-					D.open()
-	else
-		for(var/obj/machinery/door/airlock/unpowered/D in area)
-			if(D.density && !D.locked)
-				spawn(0)
-					D.open()
+	for(var/obj/machinery/door/airlock/unpowered/D in area)
+		if(D.density && !D.locked)
+			spawn(0)
+				D.open()
 
 /datum/shuttle/proc/dock()
 	if (!docking_controller)
