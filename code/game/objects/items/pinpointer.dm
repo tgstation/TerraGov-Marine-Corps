@@ -8,13 +8,16 @@
     throw_speed = 4
     throw_range = 20
     matter = list("metal" = 500)
-    var/obj/item/disk/nuclear/the_disk = null
     var/active = FALSE
-
-    var/target
+    var/target = null
 
 /obj/item/pinpointer/proc/set_target()
-    the_disk = locate()
+    if (issurvivorgamemode(SSticker.mode))
+        target = input("Select the item you wish to track.", "Pinpointer") as null|anything in GLOB.gamemode_survivor_key_items
+        if(!target)
+            return
+    
+    var/obj/item/disk/nuclear/the_disk = locate()
     if(the_disk)
         target = the_disk
 
@@ -34,10 +37,12 @@
     if(!active)
         STOP_PROCESSING(SSobj, src)
         return
-    if(!the_disk)
+    if(!target)
         icon_state = "pinonnull"
         active = FALSE
         return
+
+    message_admins("looking for [target]")
 
     setDir(get_dir(src, target))
     switch(get_dist(src, target))
@@ -64,7 +69,7 @@
 
 /obj/item/pinpointer/advpinpointer/set_target()
     if(mode == 0)
-        the_disk = locate()
+        var/obj/item/disk/nuclear/the_disk = locate()
         if(the_disk)
             target = the_disk
     if(mode == 1)

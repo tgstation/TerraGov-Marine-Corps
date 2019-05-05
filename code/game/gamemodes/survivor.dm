@@ -4,6 +4,8 @@
 #define HIGH_POP "HIGH_POP"
 #define MED_POP "MED_POP"
 #define LOW_POP "LOW_POP"
+GLOBAL_LIST_EMPTY(gamemode_survivor_key_items)
+
 
 // TODO: Move shit to their own file.
 
@@ -488,8 +490,6 @@ SPAWNS
     // var/mob/living/carbon/Xenomorph/Larva/X = new (pick(GLOB.survivor_spawn_xeno))
     var/mob/living/carbon/Xenomorph/Larva/X = new (pick(GLOB.xeno_spawn))
 
-    GLOB.xeno_spawn
-
     if(isnewplayer(M.current))
         var/mob/new_player/N = M.current
         N.close_spawn_windows()
@@ -566,7 +566,6 @@ SPAWNS
             to_chat(H, "<span class='notice'>Through a miracle you managed to survive the attack. But are you truly safe now?</span>")
 
 
-
 /datum/game_mode/survivor/proc/spawn_mission_items()
     var/list/all_key_items = key_items 
 
@@ -576,7 +575,7 @@ SPAWNS
         all_key_items += key_items_medpop + key_items_highpop
 
     for (var/key_item in all_key_items)
-        new key_item(pick(GLOB.survivor_spawn_key_item)) 
+        GLOB.gamemode_survivor_key_items += new key_item(pick(GLOB.survivor_spawn_key_item)) 
 
     for (var/random_item in random_items)
         new random_item(pick(GLOB.survivor_spawn_random_item)) 
