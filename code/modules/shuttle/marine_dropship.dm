@@ -112,8 +112,7 @@
 /obj/machinery/computer/shuttle/marine_dropship
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
-	unacidable = TRUE
-	exproof = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "dropship;alamo;normandy"
 
@@ -126,7 +125,7 @@
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
-		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [MAIN_SHIP_NAME]</A><br>"
+		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [CONFIG_GET(string/ship_name)]</A><br>"
 	dat += "<a href='?src=[REF(X)];mach_close=computer'>Close</a>"
 
 	var/datum/browser/popup = new(X, "computer", M ? M.name : "shuttle", 300, 200)
@@ -187,7 +186,7 @@
 /obj/structure/dropship_piece
 	icon = 'icons/obj/structures/dropship_structures.dmi'
 	density = TRUE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	opacity = TRUE
 
 /obj/structure/dropship_piece/ex_act(severity)
@@ -431,9 +430,7 @@
 	desc = "The remote controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texans to rally to the flag."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
-
-	unacidable = 1
-	exproof = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 
 /obj/machinery/computer/shuttle_control/dropship1/onboard
@@ -448,8 +445,7 @@
 	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
-	unacidable = 1
-	exproof = 1
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
 
 /obj/machinery/computer/shuttle_control/dropship2/onboard

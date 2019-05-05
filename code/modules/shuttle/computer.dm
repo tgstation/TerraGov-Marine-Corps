@@ -11,7 +11,7 @@
 	var/no_destination_swap = 0
 
 /obj/machinery/computer/shuttle/attack_hand(mob/user)
-	if(!user || user.is_mob_incapacitated())
+	if(!user || user.incapacitated())
 		return
 	ui_interact(user)
 

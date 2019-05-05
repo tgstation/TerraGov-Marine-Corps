@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(evacuation)
 
 
 /datum/controller/subsystem/evacuation/fire()
-	switch(evac_status)
+/*	switch(evac_status)
 		if(EVACUATION_STATUS_INITIATING)
 			if(world.time < evac_time + EVACUATION_AUTOMATIC_DEPARTURE)
 				return
@@ -64,12 +64,12 @@ SUBSYSTEM_DEF(evacuation)
 				return
 
 			I = dest_rods[dest_index]
-			I.activate_time = world.time
+			I.activate_time = world.time*/
 
 
 
 /datum/controller/subsystem/evacuation/proc/initiate_evacuation(override)
-	if(evac_status != EVACUATION_STATUS_STANDING_BY)
+/*	if(evac_status != EVACUATION_STATUS_STANDING_BY)
 		return FALSE
 	if(!override && flags_scuttle & (FLAGS_EVACUATION_DENY|FLAGS_SDEVAC_TIMELOCK))
 		return FALSE
@@ -84,7 +84,7 @@ SUBSYSTEM_DEF(evacuation)
 		P.toggle_ready()
 		pod_list += P
 	addtimer(CALLBACK(src, .proc/announce_evac_completion), 5 MINUTES)
-	return TRUE
+	return TRUE*/
 
 
 /datum/controller/subsystem/evacuation/proc/begin_launch()
@@ -96,7 +96,7 @@ SUBSYSTEM_DEF(evacuation)
 
 
 /datum/controller/subsystem/evacuation/proc/cancel_evacuation()
-	if(evac_status != EVACUATION_STATUS_INITIATING)
+/*	if(evac_status != EVACUATION_STATUS_INITIATING)
 		return FALSE
 	GLOB.enter_allowed = TRUE
 	evac_time = null
@@ -106,7 +106,7 @@ SUBSYSTEM_DEF(evacuation)
 	for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
 		P = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] Evac [i]"]
 		P.toggle_ready()
-	return TRUE
+	return TRUE*/
 
 
 /datum/controller/subsystem/evacuation/proc/get_status_panel_eta()

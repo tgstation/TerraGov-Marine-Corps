@@ -515,7 +515,7 @@
 
 
 	//Scale the amount of cargo points through a direct multiplier
-	supply_controller.points = round(supply_controller.points * scale)
+	SSshuttle.points = round(SSshuttle.points * scale)
 
 
 /datum/game_mode/distress/proc/announce_xenomorphs()

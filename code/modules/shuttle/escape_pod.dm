@@ -59,7 +59,7 @@
 	if(!ishuman(usr))
 		return
 	var/mob/living/carbon/human/H = usr
-	if(H.is_mob_incapacitated())
+	if(H.incapacitated())
 		return
 	if(!href_list["launch"])
 		return
@@ -79,7 +79,7 @@
 //=========================================================================================
 
 /obj/machinery/cryopod/evacuation
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE
 	var/being_forced = 0 //Simple variable to prevent sound spam.
 	var/linked_to_shuttle = FALSE
 
@@ -120,7 +120,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(!occupant || !usr.stat || usr.is_mob_restrained()) return FALSE
+	if(!occupant || !usr.stat || usr.restrained()) return FALSE
 
 	if(occupant) //Once you're in, you cannot exit, and outside forces cannot eject you.
 		//The occupant is actually automatically ejected once the evac is canceled.
@@ -142,7 +142,7 @@
 
 	var/mob/living/carbon/human/user = usr
 
-	if(!istype(user) || user.stat || user.is_mob_restrained()) return FALSE
+	if(!istype(user) || user.stat || user.restrained()) return FALSE
 
 	if(being_forced)
 		to_chat(user, "<span class='warning'>You can't enter when it's being forced open!</span>")
@@ -189,8 +189,7 @@
 	name = "\improper Evacuation Airlock"
 	icon = 'icons/obj/doors/almayer/pod_doors.dmi'
 	icon_state = "door_locked"
-	heat_proof = TRUE
-	unacidable = TRUE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	density = TRUE
 	opacity = TRUE
 	locked = TRUE
