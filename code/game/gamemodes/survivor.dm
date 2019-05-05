@@ -284,6 +284,7 @@ SPAWNS
     flags_atom |= INITIALIZED
     return INITIALIZE_HINT_QDEL
 
+
 /obj/effect/landmark/survivor/spawn/xeno/Initialize()
     . = ..()
     GLOB.survivor_spawn_xeno += loc
@@ -297,13 +298,12 @@ SPAWNS
     flags_atom |= INITIALIZED
     return INITIALIZE_HINT_QDEL
 
+
 /obj/effect/landmark/survivor/spawn/key_items/Initialize()
     . = ..()
     GLOB.survivor_spawn_key_item += loc
     flags_atom |= INITIALIZED
     return INITIALIZE_HINT_QDEL
-
-
 
 
 /datum/game_mode/survivor
@@ -358,10 +358,12 @@ SPAWNS
 
     return TRUE
 
+/datum/game_mode/survivor/announce()
+    to_chat(world, "<b>The current game mode is - Survivor!</b>")
+    to_chat(world, "<b>Find all the parts required to setup a distress beacon and get the fuck out of there!</b>")
 
-/datum/game_mode/survivor/post_setup()
-    . = ..()
-
+/datum/game_mode/survivor/setup()
+    
     for(var/i in xenos)
         var/datum/mind/M = i
         if(M.assigned_role == ROLE_XENO_QUEEN)
@@ -373,6 +375,17 @@ SPAWNS
         var/datum/mind/M = i
         transform_survivor(M)
 
+    return TRUE
+
+/datum/game_mode/survivor/post_setup()
+    . = ..()
+
+    // Transfer everyone to their bodies and delete existing
+    for(var/mob/new_player/player in GLOB.mob_list)
+        var/mob/living = player.transfer_character()
+        if(living)
+            qdel(player)
+            
     spawn_mission_items()
 
 /datum/game_mode/survivor/proc/calculate_team_sizes()
@@ -389,15 +402,6 @@ SPAWNS
     var/list/possible_xeno_queens = get_players_for_role(BE_QUEEN)
     var/list/possible_xenos = get_players_for_role(BE_ALIEN)
     var/list/possible_humans = get_players_for_role(BE_SURVIVOR)
-    for(var/I in possible_humans)
-        var/datum/mind/new_surivor = I
-
-        humans += new_surivor
-
-        possible_humans -= I
-        possible_xenos -= I
-        if(length(humans) >= init_human_size)
-            break
 
     for(var/I in possible_xeno_queens)
         var/datum/mind/new_xeno = I
@@ -405,18 +409,32 @@ SPAWNS
         new_xeno.assigned_role = ROLE_XENO_QUEEN
         xenos += new_xeno
 
-        possible_xenos -= I
         possible_humans -= I
+        possible_xeno_queens -= I
+        possible_xenos -= I
+        // We only need 1 queen
         break
 
+    for(var/I in possible_humans)
+        var/datum/mind/new_surivor = I
+
+        humans += new_surivor
+
+        possible_humans -= I
+        possible_xeno_queens -= I
+        possible_xenos -= I
+        if(length(humans) >= init_human_size)
+            break
+            
     for(var/I in possible_xenos)
         var/datum/mind/new_xeno = I
 
         new_xeno.assigned_role = ROLE_XENOMORPH
         xenos += new_xeno
 
-        possible_xenos -= I
         possible_humans -= I
+        possible_xeno_queens -= I
+        possible_xenos -= I
         if(length(xenos) >= init_xeno_size)
             break
 

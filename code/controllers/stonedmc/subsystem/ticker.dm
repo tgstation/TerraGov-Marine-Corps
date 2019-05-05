@@ -114,13 +114,15 @@ SUBSYSTEM_DEF(ticker)
 		return FALSE
 
 	CHECK_TICK
-	if (!mode.pre_setup() && !GLOB.Debug2)
-		QDEL_NULL(mode)
-		to_chat(world, "<b>Error in pre-setup for [GLOB.master_mode].</b> Reverting to pre-game lobby.")
-		SSjob.ResetOccupations()
-		return FALSE
-	else
-		message_admins("<span class='notice'>DEBUG: Bypassing failing prestart checks...</span>")
+	var/success = mode.pre_setup()
+	if (!success)
+		if(GLOB.Debug2)
+			message_admins("<span class='notice'>DEBUG: Bypassing failing prestart checks...</span>")
+		else
+			QDEL_NULL(mode)
+			to_chat(world, "<b>Error in pre-setup for [GLOB.master_mode].</b> Reverting to pre-game lobby.")
+			SSjob.ResetOccupations()
+			return FALSE
 
 	CHECK_TICK
 	if (!mode.setup())
