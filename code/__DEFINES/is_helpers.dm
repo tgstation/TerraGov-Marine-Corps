@@ -173,6 +173,7 @@
 
 //Gamemode
 #define isdistress(O) (istype(O, /datum/game_mode/distress))
+#define issurvivorgamemode(O) (istype(O, /datum/game_mode/survivor))
 
 
 // Admin
