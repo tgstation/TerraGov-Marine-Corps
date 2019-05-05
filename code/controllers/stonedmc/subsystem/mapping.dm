@@ -208,6 +208,53 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 				return reserve
 	QDEL_NULL(reserve)
 
+#define SHUTTLE_TRANSIT_BORDER 8
+
+//This is not for wiping reserved levels, use wipe_reservations() for that.
+/datum/controller/subsystem/mapping/proc/initialize_reserved_level()
+	UNTIL(!clearing_reserved_turfs)				//regardless, lets add a check just in case.
+	clearing_reserved_turfs = TRUE			//This operation will likely clear any existing reservations, so lets make sure nothing tries to make one while we're doing it.
+	for(var/i in levels_by_trait(ZTRAIT_RESERVED))
+		var/turf/A = get_turf(locate(SHUTTLE_TRANSIT_BORDER,SHUTTLE_TRANSIT_BORDER,i))
+		var/turf/B = get_turf(locate(world.maxx - SHUTTLE_TRANSIT_BORDER,world.maxy - SHUTTLE_TRANSIT_BORDER,i))
+		var/block = block(A, B)
+		for(var/t in block)
+			// No need to empty() these, because it's world init and they're
+			// already /turf/open/space/basic.
+			var/turf/T = t
+			T.flags_atom |= UNUSED_RESERVATION_TURF_1
+		unused_turfs["[i]"] = block
+	clearing_reserved_turfs = FALSE
+
+/datum/controller/subsystem/mapping/proc/reserve_turfs(list/turfs)
+	for(var/i in turfs)
+		var/turf/T = i
+		T.empty(RESERVED_TURF_TYPE, RESERVED_TURF_TYPE, null, TRUE)
+		LAZYINITLIST(unused_turfs["[T.z]"])
+		unused_turfs["[T.z]"] |= T
+		T.flags_atom |= UNUSED_RESERVATION_TURF_1
+		GLOB.areas_by_type[world.area].contents += T
+		CHECK_TICK
+
+//DO NOT CALL THIS PROC DIRECTLY, CALL wipe_reservations().
+/datum/controller/subsystem/mapping/proc/do_wipe_turf_reservations()
+	UNTIL(initialized)							//This proc is for AFTER init, before init turf reservations won't even exist and using this will likely break things.
+	for(var/i in turf_reservations)
+		var/datum/turf_reservation/TR = i
+		if(!QDELETED(TR))
+			qdel(TR, TRUE)
+	UNSETEMPTY(turf_reservations)
+	var/list/clearing = list()
+	for(var/l in unused_turfs)			//unused_turfs is a assoc list by z = list(turfs)
+		if(islist(unused_turfs[l]))
+			clearing |= unused_turfs[l]
+	clearing |= used_turfs		//used turfs is an associative list, BUT, reserve_turfs() can still handle it. If the code above works properly, this won't even be needed as the turfs would be freed already.
+	unused_turfs.Cut()
+	used_turfs.Cut()
+	reserve_turfs(clearing)
+
+
+
 /datum/controller/subsystem/mapping/proc/reg_in_areas_in_z(list/areas)
 	for(var/B in areas)
 		var/area/A = B
