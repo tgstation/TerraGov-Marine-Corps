@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - code_imp: "Xeno queen tracking is now handled by a subsystem."
