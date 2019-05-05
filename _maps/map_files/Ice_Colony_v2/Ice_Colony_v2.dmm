@@ -7970,17 +7970,6 @@
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/lobby)
-"auN" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment/corner{
-	dir = 4
-	},
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/dorms)
 "auO" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -40565,10 +40554,46 @@
 "cLf" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/storage/testroom)
+"fxq" = (
+/obj/effect/landmark/survivor/spawn/key_items,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/command/checkpoint)
+"fHi" = (
+/obj/effect/landmark/survivor/spawn/key_items,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/dorms)
+"gFE" = (
+/obj/effect/landmark/survivor/spawn/xeno,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/dorms)
+"iGR" = (
+/obj/effect/landmark/survivor/spawn/random_items,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 8
+	},
+/area/ice_colony/surface/dorms)
+"nwF" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/tile/darkgreen/darkgreen2,
+/area/ice_colony/surface/dorms)
+"ppW" = (
+/obj/effect/landmark/survivor/spawn/random_items,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 4
+	},
+/area/ice_colony/surface/dorms)
+"qlO" = (
+/obj/effect/landmark/survivor/spawn/key_items,
+/turf/open/floor/wood,
+/area/ice_colony/surface/command/crisis)
 "rcI" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/plating/icefloor,
 /area/storage/testroom)
+"tAN" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/dorms)
 
 (1,1,1) = {"
 aaa
@@ -63018,7 +63043,7 @@ akW
 aql
 alk
 apC
-ari
+nwF
 arE
 aAi
 arQ
@@ -63286,7 +63311,7 @@ arQ
 arQ
 arF
 avn
-aqS
+tAN
 arF
 arQ
 arQ
@@ -64343,7 +64368,7 @@ aHF
 aHZ
 aIw
 aIK
-aHh
+qlO
 aGL
 aBG
 aBH
@@ -64561,15 +64586,15 @@ arD
 apZ
 aqS
 aro
-arG
+iGR
 arR
+iGR
 arG
+iGR
 arG
-asT
+iGR
 arG
-arG
-arG
-arG
+iGR
 avq
 avX
 arG
@@ -64809,7 +64834,7 @@ aax
 aax
 arD
 apZ
-apZ
+fHi
 apY
 ash
 aGe
@@ -64819,13 +64844,13 @@ axX
 aqT
 arp
 arH
+gFE
 arH
+gFE
 arH
-asv
+gFE
 arH
-arH
-arH
-arH
+gFE
 arH
 avr
 avY
@@ -65075,15 +65100,15 @@ apZ
 apZ
 aqS
 arq
+gFE
 arI
-arI
-arI
+gFE
 asw
+gFE
 arI
+gFE
 arI
-arI
-arI
-auN
+gFE
 avs
 avZ
 arI
@@ -65333,13 +65358,13 @@ aJo
 aqU
 arr
 arJ
+ppW
 arJ
-arJ
-arJ
+ppW
 asU
+ppW
 arJ
-arJ
-arJ
+ppW
 auO
 avt
 awa
@@ -65871,7 +65896,7 @@ aBp
 aBd
 aCj
 aDf
-aCg
+fxq
 aDY
 aED
 aBd
@@ -67130,7 +67155,7 @@ akX
 akX
 alm
 apC
-arw
+nwF
 arE
 arE
 arE
@@ -67141,7 +67166,7 @@ arE
 arE
 arE
 avm
-avW
+nwF
 arE
 arE
 arE
