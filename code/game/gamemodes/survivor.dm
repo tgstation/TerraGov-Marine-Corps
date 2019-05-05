@@ -1,6 +1,9 @@
 #define GAMEMODE_SURIVOR_DRAW "DRAW"
 #define GAMEMODE_SURIVOR_HUMAN_WIN "HUMAN WIN"
 #define GAMEMODE_SURIVOR_XENO_WIN "XENO WIN"
+#define HIGH_POP "HIGH_POP"
+#define MED_POP "MED_POP"
+#define LOW_POP "LOW_POP"
 
 // TODO: Move shit to their own file.
 
@@ -11,9 +14,10 @@
     name = "Communications laptop"
     desc = "A small device used for augmenting communication. Someone seems to have left it logged in with open communications to a nearby ship."
     w_class = WEIGHT_CLASS_BULKY
-    icon = 'icons/obj/machines/computer.dmi'
-    icon_state = "comm_traffic"
-    // icon_state = "tracking_laptop"
+    // icon = 'icons/obj/machines/computer.dmi'
+    // icon_state = "comm_traffic"
+    icon = 'icons/obj/machines/computer3.dmi'
+    icon_state = "tracking_laptop"
 
     var/activation_time = 5 SECONDS
 
@@ -60,19 +64,36 @@
     var/icon_activated = "motion2"
 
     var/distress_timer = 10 SECONDS
-    var/required_components = list(
-        /obj/item/cell,
-    )
+    var/required_components
 
-    var/required_nearby = list(
-        /obj/item/laptop/rescue,
-    )
+    var/required_nearby
 
+    // For when it broken, we spit everything out again
     var/internal_components = list()
 
-    // It can't be destroyed but it can be stopped.
+    // It can't be destroyed but it can be stopped by reducing health to 0
     var/max_hp = 100
     var/current_hp = 0
+
+/obj/item/beacon/rescue/Initialize()
+    if(!issurvivorgamemode(SSticker.mode))
+        return
+
+    var/datum/game_mode/survivor/GM = SSticker.mode
+    switch (GM.player_size)
+        if(MED_POP)
+            required_components = list(
+                /obj/item/cell,
+            )
+        if(HIGH_POP)
+            required_components = list(
+                /obj/item/cell,
+            )
+            required_nearby = list(
+                /obj/item/laptop/rescue,
+            )
+    return ..()
+
 
 /obj/item/beacon/rescue/Destroy()
     SetLuminosity(0)
@@ -81,7 +102,18 @@
 /obj/item/beacon/rescue/examine()
     . = ..() // show parent examines (if any) first
     if (current_hp < max_hp)
-        to_chat(usr, "<span class='warning'>It looks a little damaged.</span>")
+        var/integrity = health / max_hp * 100
+        switch(integrity)
+            if(85 to 100)
+                to_chat(usr, "It's fully intact.")
+            if(65 to 85)
+                to_chat(usr, "It's slightly damaged.")
+            if(45 to 65)
+                to_chat(usr, "It's badly damaged.")
+            if(25 to 45)
+                to_chat(usr, "It's heavily damaged.")
+            else
+                to_chat(usr, "It's falling apart.")
     if (length(required_components))
         to_chat(usr, "<span class='warning'>It looks like a few parts are missing.</span>")
 
@@ -125,7 +157,7 @@
         if (istype(W, R))
             var/obj/item/cell/C = W
             if (C.charge < 2000)
-                to_chat(user, "<span class='warning'>That doesn't have enough charge!</span>")
+                to_chat(user, "<span class='warning'>\The [C] doesn't have enough charge!</span>")
                 return
             if (user.transferItemToLoc(W, src))
                 required_components -= R
@@ -191,10 +223,19 @@
        
 
 /obj/item/beacon/rescue/proc/make_noise()
-    playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+    playsound(loc, 'sound/machines/twobeep.ogg', 15, 1)
+
+
+/obj/item/beacon/rescue/proc/humans_win()
+    SSticker.mode.round_finished = GAMEMODE_SURIVOR_HUMAN_WIN
+
 
 /obj/item/beacon/rescue/proc/call_distress_team()
-    SSticker.mode.activate_distress()
+    var/datum/emergency_call/pmc/T = new
+    T.mob_min = 5
+    T.mob_max = length(GLOB.player_list) // everyone is allowed
+    T.activate()
+    addtimer(CALLBACK(src, .proc/humans_win), 5 MINUTES)
 
 
 /*
@@ -227,40 +268,46 @@ SPAWNS
     return INITIALIZE_HINT_QDEL
 
 
+
+
 /datum/game_mode/survivor
     name = "Survivor"
     config_tag = "Survivor"
     required_players = 1
 
+    var/player_size
+
     var/init_human_size = 0
     var/init_xeno_size = 0
 
-    var/ready_ratio = 0.5 // ratio of ready players that should be human / xeno
+    var/xeno_ratio = 0.25 // ratio of xeno to humans
 
     var/list/humans = list()
     var/list/xenos = list()
 
-    // All the items required to complete the current mission on high pop (ie the minimal requirements)
     var/list/key_items = list(
         /obj/item/beacon/rescue,
-        /obj/item/cell/high,
         /obj/item/tool/weldingtool,
+    )
+    var/list/key_items_medpop = list( 
+        /obj/item/cell/high,
+    )
+    var/list/key_items_highpop = list(
         /obj/item/laptop/rescue,
-    )
-    var/list/key_items_medpop = list(
-        
-    )
-    var/list/key_items_lowpop = list(
-        
     )
 
     var/list/random_items = list(
+        /obj/item/cell,
         /obj/item/cell,
     )
 
 
 /datum/game_mode/survivor/pre_setup()
     . = ..()
+
+    if (!scale_player_size())
+        message_admins("failed to scale_player_size()")
+        return FALSE
 
     if (!calculate_team_sizes())
         message_admins("failed to calculate_team_sizes()")
@@ -269,8 +316,8 @@ SPAWNS
         message_admins("failed to assign_players()")
         return FALSE
 
-    if (!scale_difficulty())
-        message_admins("failed to scale_difficulty()")
+    if (!adjust_map())
+        message_admins("failed to adjust_map()")
         return FALSE
 
     return TRUE
@@ -294,17 +341,18 @@ SPAWNS
 
 /datum/game_mode/survivor/proc/calculate_team_sizes()
     // TODO: Be smart?
-    init_human_size = length(get_players_for_role(BE_SURVIVOR)) / ready_ratio
-    init_xeno_size = length(get_players_for_role(BE_ALIEN)) / ready_ratio
+    init_xeno_size = max(CEILING(GLOB.ready_players * xeno_ratio, 1), 1)
+    init_human_size = GLOB.ready_players - init_xeno_size
+
 
     message_admins("calculate_team_sizes::\nhuman: [init_human_size]\nxeno: [init_xeno_size]")
     return TRUE
     // return (init_human_size > 0 && init_xeno_size > 0)
 
 /datum/game_mode/survivor/proc/assign_players()
+    var/list/possible_xeno_queens = get_players_for_role(BE_QUEEN)
     var/list/possible_xenos = get_players_for_role(BE_ALIEN)
     var/list/possible_humans = get_players_for_role(BE_SURVIVOR)
-
     for(var/I in possible_humans)
         var/datum/mind/new_surivor = I
 
@@ -314,6 +362,16 @@ SPAWNS
         possible_xenos -= I
         if(length(humans) >= init_human_size)
             break
+
+    for(var/I in possible_xeno_queens)
+        var/datum/mind/new_xeno = I
+
+        new_xeno.assigned_role = ROLE_XENO_QUEEN
+        xenos += new_xeno
+
+        possible_xenos -= I
+        possible_humans -= I
+        break
 
     for(var/I in possible_xenos)
         var/datum/mind/new_xeno = I
@@ -328,10 +386,51 @@ SPAWNS
 
     return TRUE
 
-/datum/game_mode/survivor/proc/scale_difficulty()
+
+/datum/game_mode/survivor/proc/scale_player_size()
+    if (GLOB.ready_players > 15)
+        player_size = HIGH_POP
+    else if (GLOB.ready_players > 10)
+        player_size = MED_POP
+    else 
+        player_size = LOW_POP
+
+
+    player_size = HIGH_POP
     return TRUE
 
-        
+
+/datum/game_mode/survivor/proc/adjust_map()
+    // TODO: Replace this with a loop through area's instead
+    /*
+    for (var/area/A in GLOB.sortedAreas)
+        var/obj/machinery/power/apc/A = A.apc
+        var/ratio = rand(0, 100)
+        switch (player_size)
+            if(HIGH_POP)
+                ratio = rand(5,50)
+            if(MED_POP)
+                ratio = rand(25,50)
+            if(LOW_POP)
+                ratio = rand(50,100)
+        A.cell.charge = A.cell.maxcharge * (ratio / 100)
+    */
+
+    for (var/I in world)
+        // Charge every apc across the map
+        if (isAPC(I))
+            var/obj/machinery/power/apc/A = I
+            var/ratio = rand(0, 100)
+            switch (player_size)
+                if(HIGH_POP)
+                    ratio = rand(5,50)
+                if(MED_POP)
+                    ratio = rand(25,50)
+                if(LOW_POP)
+                    ratio = rand(50,100)
+            A.cell.charge = A.cell.maxcharge * (ratio / 100)
+    return TRUE
+
 
 /datum/game_mode/survivor/proc/transform_xeno(datum/mind/M)
     var/mob/living/carbon/Xenomorph/Larva/X = new (pick(GLOB.survivor_spawn_xeno))
@@ -339,6 +438,7 @@ SPAWNS
     if(isnewplayer(M.current))
         var/mob/new_player/N = M.current
         N.close_spawn_windows()
+        N.new_character = X
 
     M.transfer_to(X, TRUE)
 
@@ -355,6 +455,7 @@ SPAWNS
     if(isnewplayer(M.current))
         var/mob/new_player/N = M.current
         N.close_spawn_windows()
+        N.new_character = X
 
     M.transfer_to(X, TRUE)
 
@@ -371,6 +472,7 @@ SPAWNS
     if(isnewplayer(M.current))
         var/mob/new_player/N = M.current
         N.close_spawn_windows()
+        N.new_character = H
 
     M.transfer_to(H, TRUE)
     H.client.prefs.copy_to(H)
@@ -410,8 +512,14 @@ SPAWNS
 
 
 /datum/game_mode/survivor/proc/spawn_mission_items()
-    to_chat(world, "still need to spawn mission items?!")
-    for (var/key_item in key_items)
+    var/list/all_key_items = key_items 
+
+    if(player_size == MED_POP)
+        all_key_items += key_items_medpop
+    if(player_size == HIGH_POP)
+        all_key_items += key_items_medpop + key_items_highpop
+
+    for (var/key_item in all_key_items)
         new key_item(pick(GLOB.survivor_spawn_key_item)) 
 
     for (var/random_item in random_items)
@@ -421,6 +529,12 @@ SPAWNS
 /datum/game_mode/survivor/proc/count_team_alive(list/team)
     var/count = 0
     for(var/mob/M in team)
+        if(!M.client)
+            continue
+        if (ishuman(M))
+            var/mob/living/carbon/human/H = M
+            if(CHECK_BITFIELD(H.status_flags, XENO_HOST))
+                continue
         if(M.stat != CONSCIOUS)
             continue
         count++
@@ -429,6 +543,9 @@ SPAWNS
 /datum/game_mode/survivor/check_finished()
     var/H = count_team_alive(GLOB.alive_human_list)
     var/X = count_team_alive(GLOB.alive_xeno_list)
+    if (round_finished)
+        return TRUE
+
     if(H == 0 && X == 0)
         round_finished = GAMEMODE_SURIVOR_DRAW
         return TRUE

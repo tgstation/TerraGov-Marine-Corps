@@ -7,6 +7,7 @@
 	var/datum/emergency_call/picked_call = null //Which distress call is currently active
 	var/on_distress_cooldown = FALSE
 	var/waiting_for_candidates = FALSE
+	var/difficulty
 
 
 //The distress call parent.
