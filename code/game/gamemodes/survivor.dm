@@ -359,8 +359,8 @@ SPAWNS
     return TRUE
 
 /datum/game_mode/survivor/announce()
-    to_chat(world, "<b>The current game mode is - Survivor!</b>")
-    to_chat(world, "<b>Find all the parts required to setup a distress beacon and get the fuck out of there!</b>")
+    to_chat(world, "<br><b>The current game mode is - Survivor!</b>")
+    to_chat(world, "<b>Find all the parts required to setup a distress beacon and get the fuck out of there!</b><br>")
 
 /datum/game_mode/survivor/setup()
     
@@ -425,7 +425,7 @@ SPAWNS
         possible_xenos -= I
         if(length(humans) >= init_human_size)
             break
-            
+
     for(var/I in possible_xenos)
         var/datum/mind/new_xeno = I
 
@@ -485,7 +485,10 @@ SPAWNS
 
 
 /datum/game_mode/survivor/proc/transform_xeno(datum/mind/M)
-    var/mob/living/carbon/Xenomorph/Larva/X = new (pick(GLOB.survivor_spawn_xeno))
+    // var/mob/living/carbon/Xenomorph/Larva/X = new (pick(GLOB.survivor_spawn_xeno))
+    var/mob/living/carbon/Xenomorph/Larva/X = new (pick(GLOB.xeno_spawn))
+
+    GLOB.xeno_spawn
 
     if(isnewplayer(M.current))
         var/mob/new_player/N = M.current
@@ -502,7 +505,8 @@ SPAWNS
 
 
 /datum/game_mode/survivor/proc/transform_queen(datum/mind/M)
-    var/mob/living/carbon/Xenomorph/Queen/X = new (pick(GLOB.survivor_spawn_xeno))
+    // var/mob/living/carbon/Xenomorph/Queen/X = new (pick(GLOB.survivor_spawn_xeno))
+    var/mob/living/carbon/Xenomorph/Queen/X = new (pick(GLOB.xeno_spawn))
 
     if(isnewplayer(M.current))
         var/mob/new_player/N = M.current
