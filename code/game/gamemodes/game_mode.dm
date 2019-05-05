@@ -68,6 +68,9 @@
 		qdel(query_round_game_mode)
 
 
+/datum/game_mode/proc/new_player_topic(mob/M, href, href_list[])
+	return FALSE
+
 /datum/game_mode/process()
 	return TRUE
 

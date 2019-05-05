@@ -37,12 +37,11 @@
 		output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=[REF(src)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
 
 	else
-		output += "<a href='byond://?src=[REF(src)];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
 		if (issurvivorgamemode(SSticker.mode))
-			output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join_survivor'>Join survivors!</A></p>"
+			output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join_survivor'>Join the survivors!</A></p>"
 			output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
-
 		else
+			output += "<a href='byond://?src=[REF(src)];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
 			output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join'>Join the TGMC!</A></p>"
 			if(isdistress(SSticker.mode))
 				output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
@@ -99,6 +98,9 @@
 /mob/new_player/Topic(href, href_list[])
 	if(!client)
 		return
+
+	if (SSticker?.mode?.new_player_topic(src, href, href_list))
+		return // Delegate to the gamemode to handle if they want to
 
 	switch(href_list["lobby_choice"])
 		if("show_preferences")
@@ -177,7 +179,7 @@
 				to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
 				return
 
-			if(SSticker.mode.flags_round_type	& MODE_NO_LATEJOIN)
+			if(SSticker.mode.flags_round_type & MODE_NO_LATEJOIN)
 				to_chat(src, "<span class='warning'>Sorry, you cannot late join during [SSticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible.</span>")
 				return
 

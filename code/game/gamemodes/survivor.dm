@@ -352,6 +352,28 @@ SPAWNS
     )
 
 
+/datum/game_mode/survivor/new_player_topic(mob/M, href, href_list[])
+    switch(href_list["lobby_choice"])
+		if("late_join_survivor")
+			var/datum/mind/new_human = I
+            new_human.assigned_role = ROLE_SURVIVOR
+            humans += new_human
+            transform_survivor(new_human, TRUE)
+
+            return TRUE
+
+		if("late_join_xeno")
+			var/datum/mind/new_xeno = I
+            new_xeno.assigned_role = ROLE_XENOMORPH
+            xenos += new_xeno
+            transform_xeno(new_xeno, TRUE)
+
+            return TRUE
+
+	return ..()
+
+
+
 /datum/game_mode/survivor/pre_setup()
     . = ..()
 
@@ -470,8 +492,6 @@ SPAWNS
         player_size = MED_POP
     else 
         player_size = LOW_POP
-
-    player_size = HIGH_POP
 
     return TRUE
 
