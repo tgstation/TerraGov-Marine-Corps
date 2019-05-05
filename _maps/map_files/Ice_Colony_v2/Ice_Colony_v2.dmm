@@ -108,6 +108,7 @@
 	},
 /area/ice_colony/surface/engineering/electric)
 "aaw" = (
+/obj/effect/landmark/survivor/spawn/key_items,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
@@ -5452,6 +5453,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoL" = (
+/obj/effect/landmark/survivor/spawn/key_items,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
@@ -7970,6 +7972,17 @@
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/lobby)
+"auN" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
+	},
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/dorms)
 "auO" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -40551,49 +40564,91 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
+"cws" = (
+/obj/effect/landmark/survivor/spawn/key_items,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/dorms)
+"cEV" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/southwest)
 "cLf" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/storage/testroom)
-"fxq" = (
-/obj/effect/landmark/survivor/spawn/key_items,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/command/checkpoint)
-"fHi" = (
-/obj/effect/landmark/survivor/spawn/key_items,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/dorms)
-"gFE" = (
-/obj/effect/landmark/survivor/spawn/xeno,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/dorms)
-"iGR" = (
-/obj/effect/landmark/survivor/spawn/random_items,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 8
-	},
-/area/ice_colony/surface/dorms)
-"nwF" = (
+"fFa" = (
 /obj/effect/landmark/survivor/spawn/human,
-/turf/open/floor/tile/darkgreen/darkgreen2,
-/area/ice_colony/surface/dorms)
-"ppW" = (
-/obj/effect/landmark/survivor/spawn/random_items,
-/turf/open/floor/tile/darkgreen/darkgreen2{
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/north)
+"fGH" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/northwest)
+"gWD" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/command/control)
+"iPy" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/wood,
+/area/ice_colony/surface/bar/bar)
+"jGT" = (
+/obj/effect/landmark/survivor/spawn/key_items,
+/turf/open/floor/tile/dark/yellow2/corner{
 	dir = 4
 	},
-/area/ice_colony/surface/dorms)
-"qlO" = (
+/area/ice_colony/surface/substation/smes)
+"lIq" = (
 /obj/effect/landmark/survivor/spawn/key_items,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
+"oFy" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/research/field_gear)
+"pvv" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/excavation)
+"pyp" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/ice_colony/surface/dorms)
+"qjO" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/pass)
 "rcI" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/plating/icefloor,
 /area/storage/testroom)
-"tAN" = (
+"rwJ" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
+	},
+/area/ice_colony/surface/research/tech_storage)
+"slZ" = (
 /obj/effect/landmark/survivor/spawn/human,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/surface/dorms)
+/area/ice_colony/surface/hydroponics/lobby)
+"vHh" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/freezer,
+/area/ice_colony/surface/dorms/restroom_e)
+"vKJ" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/freezer,
+/area/ice_colony/surface/dorms/restroom_w)
+"wyA" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/plating/icefloor,
+/area/ice_colony/surface/tcomms)
+"xwT" = (
+/obj/effect/landmark/survivor/spawn/key_items,
+/turf/open/floor/plating/icefloor,
+/area/ice_colony/surface/requesitions)
 
 (1,1,1) = {"
 aaa
@@ -45038,7 +45093,7 @@ alj
 aaJ
 aaJ
 bUO
-bUO
+wyA
 bUQ
 adY
 avN
@@ -48357,7 +48412,7 @@ aai
 abB
 abB
 abT
-abB
+xwT
 abB
 abB
 acl
@@ -49992,7 +50047,7 @@ aaZ
 aMX
 aNW
 aNY
-aOb
+oFy
 aOb
 aRJ
 aSD
@@ -53549,7 +53604,7 @@ avE
 auJ
 axe
 ati
-ati
+slZ
 axL
 asn
 alK
@@ -54374,7 +54429,7 @@ aWc
 aUX
 aVp
 aVQ
-aVO
+rwJ
 aVO
 aVP
 baI
@@ -55314,7 +55369,7 @@ aaJ
 abz
 abz
 abz
-abz
+fGH
 abC
 abz
 aaI
@@ -55596,7 +55651,7 @@ abL
 abL
 atL
 asN
-ati
+slZ
 ati
 ati
 ati
@@ -57456,7 +57511,7 @@ bbS
 bMq
 bbS
 bRn
-aMG
+cEV
 aMG
 aMG
 aMG
@@ -58163,7 +58218,7 @@ akF
 aij
 akF
 akF
-akF
+fFa
 akF
 akF
 akF
@@ -59465,7 +59520,7 @@ akF
 akF
 akF
 akF
-akF
+fFa
 akF
 avU
 akF
@@ -62778,7 +62833,7 @@ akW
 akW
 anB
 akW
-akW
+vKJ
 akW
 akW
 akW
@@ -62846,7 +62901,7 @@ aae
 aJH
 aQp
 aRi
-aMG
+cEV
 acm
 aac
 aac
@@ -63043,7 +63098,7 @@ akW
 aql
 alk
 apC
-nwF
+ari
 arE
 aAi
 arQ
@@ -63074,7 +63129,7 @@ aDR
 aCa
 aFG
 aEJ
-aEJ
+gWD
 aGH
 aGj
 aHJ
@@ -63311,7 +63366,7 @@ arQ
 arQ
 arF
 avn
-tAN
+aqS
 arF
 arQ
 arQ
@@ -64368,7 +64423,7 @@ aHF
 aHZ
 aIw
 aIK
-qlO
+aHh
 aGL
 aBG
 aBH
@@ -64586,15 +64641,15 @@ arD
 apZ
 aqS
 aro
-iGR
+arG
 arR
-iGR
 arG
-iGR
 arG
-iGR
+asT
 arG
-iGR
+arG
+arG
+arG
 avq
 avX
 arG
@@ -64604,7 +64659,7 @@ arG
 asT
 axN
 axN
-axN
+pyp
 axN
 aAE
 aBl
@@ -64625,7 +64680,7 @@ aHh
 aIa
 aIa
 aHh
-aHh
+lIq
 aGL
 aBG
 aBG
@@ -64834,7 +64889,7 @@ aax
 aax
 arD
 apZ
-fHi
+cws
 apY
 ash
 aGe
@@ -64844,13 +64899,13 @@ axX
 aqT
 arp
 arH
-gFE
 arH
-gFE
 arH
-gFE
+asv
 arH
-gFE
+arH
+arH
+arH
 arH
 avr
 avY
@@ -65100,15 +65155,15 @@ apZ
 apZ
 aqS
 arq
-gFE
 arI
-gFE
+arI
+arI
 asw
-gFE
 arI
-gFE
 arI
-gFE
+arI
+arI
+auN
 avs
 avZ
 arI
@@ -65190,7 +65245,7 @@ baj
 bci
 bcN
 bcL
-bcL
+pvv
 bcL
 bcL
 bhF
@@ -65358,13 +65413,13 @@ aJo
 aqU
 arr
 arJ
-ppW
 arJ
-ppW
+arJ
+arJ
 asU
-ppW
 arJ
-ppW
+arJ
+arJ
 auO
 avt
 awa
@@ -65896,7 +65951,7 @@ aBp
 aBd
 aCj
 aDf
-fxq
+aCg
 aDY
 aED
 aBd
@@ -66889,7 +66944,7 @@ alp
 amy
 akX
 akX
-akX
+vHh
 akX
 akX
 akX
@@ -67155,7 +67210,7 @@ akX
 akX
 alm
 apC
-nwF
+arw
 arE
 arE
 arE
@@ -67166,7 +67221,7 @@ arE
 arE
 arE
 avm
-nwF
+avW
 arE
 arE
 arE
@@ -69262,7 +69317,7 @@ aLm
 aBH
 aKy
 aMx
-aLi
+iPy
 aNh
 aNO
 aOL
@@ -69472,7 +69527,7 @@ aax
 aij
 aij
 akF
-akF
+fFa
 akF
 akF
 aij
@@ -70295,7 +70350,7 @@ aNk
 aUF
 aMN
 aLi
-aLi
+iPy
 aRq
 aSb
 aLi
@@ -70772,7 +70827,7 @@ akF
 akF
 axY
 akF
-akF
+fFa
 akF
 aij
 aax
@@ -73628,7 +73683,7 @@ aBJ
 aBJ
 aBJ
 aBJ
-aBJ
+qjO
 aKu
 aKu
 aKu
@@ -74358,7 +74413,7 @@ aax
 aax
 aij
 atr
-akF
+fFa
 aij
 aax
 aax
@@ -75878,7 +75933,7 @@ aeI
 aeI
 aeI
 aij
-akF
+fFa
 akF
 aij
 aij
@@ -76958,7 +77013,7 @@ aBH
 aBJ
 aBJ
 aBJ
-aBJ
+qjO
 bks
 aBG
 aBG
@@ -83596,7 +83651,7 @@ anp
 anO
 aop
 aoH
-akF
+fFa
 aax
 aax
 abL
@@ -84609,7 +84664,7 @@ aaC
 aaC
 agP
 ahz
-aic
+jGT
 aiJ
 ajd
 ahw
