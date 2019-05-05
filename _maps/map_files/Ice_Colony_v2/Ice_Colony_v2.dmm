@@ -6365,7 +6365,6 @@
 /area/ice_colony/surface/dorms)
 "aqT" = (
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
-/obj/effect/landmark/survivor/spawn/random_items,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "aqU" = (
@@ -6589,7 +6588,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/landmark/survivor/spawn/random_items,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "arq" = (
@@ -9183,7 +9181,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/survivor/spawn/random_items,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
@@ -13727,7 +13724,6 @@
 	name = "Colony Emergency Armory";
 	pixel_y = 29
 	},
-/obj/effect/landmark/survivor/spawn/human,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "aJp" = (
@@ -62254,7 +62250,7 @@ apC
 ari
 arE
 aAi
-oeJ
+arQ
 ast
 arE
 ast
@@ -62511,12 +62507,12 @@ apC
 arN
 arF
 arQ
-lBh
+arQ
 asu
 arE
 asu
-oeJ
-lBh
+arQ
+arQ
 arF
 avn
 aqS
@@ -62758,13 +62754,13 @@ akW
 anB
 akW
 akW
-tfx
+akW
 akW
 akW
 akW
 akW
 alk
-nbb
+apC
 ari
 arE
 arE
@@ -63032,7 +63028,7 @@ ast
 arQ
 aAi
 arE
-glq
+avm
 avW
 arE
 aAi
@@ -63269,7 +63265,7 @@ aln
 aln
 amu
 amS
-vfk
+anC
 anC
 anC
 anC
@@ -63281,18 +63277,18 @@ aqN
 arj
 arO
 arF
-oeJ
-lBh
+arQ
+arQ
 asu
 arE
 atX
-oeJ
-lBh
+arQ
+arQ
 arF
 avn
 aqS
 arF
-oeJ
+arQ
 arQ
 asu
 axl
@@ -63796,12 +63792,12 @@ arl
 arm
 arE
 aAi
-oeJ
+arQ
 ast
 arE
 ast
-oeJ
-qsY
+arQ
+aAi
 arE
 avm
 avW
@@ -64053,7 +64049,7 @@ arn
 arW
 arF
 arQ
-lBh
+arQ
 asu
 arE
 atY
@@ -64305,7 +64301,7 @@ apZ
 aIs
 arD
 apX
-ntU
+apZ
 aqS
 arm
 arE
@@ -64563,16 +64559,16 @@ arD
 arD
 arD
 apZ
-mjd
+aqS
 aro
 arG
 arR
-vIh
+arG
 arG
 asT
 arG
 arG
-wsa
+arG
 arG
 avq
 avX
@@ -64584,7 +64580,7 @@ asT
 axN
 axN
 axN
-ezJ
+axN
 aAE
 aBl
 aBc
@@ -64822,8 +64818,8 @@ aIL
 axX
 aqT
 arp
-lHS
-lHS
+arH
+arH
 arH
 asv
 arH
@@ -65077,11 +65073,11 @@ apZ
 apZ
 apZ
 apZ
-pay
+aqS
 arq
 arI
 arI
-eZk
+arI
 asw
 arI
 arI
@@ -65342,7 +65338,7 @@ arJ
 arJ
 asU
 arJ
-wAa
+arJ
 arJ
 auO
 avt
@@ -65852,15 +65848,15 @@ aqW
 art
 arF
 arQ
-lBh
+arQ
 asu
 arE
 ato
-oeJ
-lBh
+arQ
+arQ
 arF
 avn
-pay
+aqS
 arF
 arQ
 arQ
@@ -66109,7 +66105,7 @@ aqX
 aru
 arE
 aAI
-oeJ
+arQ
 ast
 arE
 ast
@@ -66119,7 +66115,7 @@ arE
 avm
 avW
 arE
-hNQ
+aAI
 arQ
 ast
 axQ
@@ -66623,12 +66619,12 @@ aqZ
 arv
 arF
 arQ
-lBh
+arQ
 asx
 arE
 atp
 arQ
-lBh
+arQ
 arF
 avn
 aqS
@@ -66867,10 +66863,10 @@ alp
 alp
 amy
 akX
-lQt
 akX
 akX
-lQt
+akX
+akX
 akX
 akX
 akX
@@ -66879,12 +66875,12 @@ alm
 apC
 arw
 arE
-hNQ
+aAI
 arQ
 ast
 arE
 ast
-oeJ
+arQ
 aAI
 arE
 avm
@@ -67133,7 +67129,7 @@ akX
 akX
 akX
 alm
-nbb
+apC
 arw
 arE
 arE
@@ -67398,11 +67394,11 @@ arT
 asy
 arE
 asu
-oeJ
-lBh
+arQ
+arQ
 arF
 avn
-pay
+aqS
 arF
 arQ
 arQ
