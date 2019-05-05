@@ -20,10 +20,6 @@
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	see_in_dark = 8
 
-
-	if(xeno_caste.spit_types?.len)
-		ammo = GLOB.ammo_list[xeno_caste.spit_types[1]]
-
 	create_reagents(1000)
 	gender = NEUTER
 
