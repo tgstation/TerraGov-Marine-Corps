@@ -5792,11 +5792,11 @@
 /obj/item/weapon/baseballbat/metal,
 /turf/open/ground/river,
 /area/deathmatch)
-"Jb" = (
+"Oj" = (
 /obj/effect/landmark/shuttle_import,
 /turf/open/space,
 /area/space)
-"XQ" = (
+"Qm" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/almayer,
 /area/centcom/control)
@@ -12958,7 +12958,7 @@ ep
 eE
 fa
 fa
-XQ
+Qm
 fe
 fh
 fh
@@ -18842,7 +18842,7 @@ aa
 aa
 aa
 aa
-Jb
+Oj
 aa
 aa
 aa
