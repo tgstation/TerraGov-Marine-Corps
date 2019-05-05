@@ -118,9 +118,11 @@ Class Procs:
 	var/machine_processing = 0 // whether the machine is busy and requires process() calls in scheduler.
 
 	var/wrenchable = FALSE
-	var/destructible = TRUE
 	var/damage = 0
 	var/damage_cap = 1000 //The point where things start breaking down.
+	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
+	verb_say = "beeps"
+	verb_yell = "blares"
 
 /obj/machinery/attackby(obj/item/C as obj, mob/user as mob)
 	. = ..()
@@ -603,10 +605,7 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 
 //Damage
 /obj/machinery/proc/take_damage(dam)
-	if(!destructible)
-		return
-
-	if(!dam)
+	if(!dam || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE|UNACIDABLE))
 		return
 
 	damage = max(0, damage + dam)

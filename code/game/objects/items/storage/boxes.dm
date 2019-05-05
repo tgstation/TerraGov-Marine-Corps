@@ -260,7 +260,11 @@
 
 /obj/item/storage/box/matches/attackby(obj/item/tool/match/W as obj, mob/user as mob)
 	if(istype(W) && !W.heat_source && !W.burnt)
-		W.light_match()
+		if(prob(50))
+			playsound(loc, 'sound/items/matchstick_lit.ogg', 15, 1)
+			W.light_match()
+		else
+			playsound(loc, 'sound/items/matchstick_hit.ogg', 15, 1)
 		return TRUE
 	return ..()
 
@@ -353,7 +357,7 @@
 /obj/item/storage/box/nade_box
 	name = "\improper M40 HEDP grenade box"
 	desc = "A secure box holding 25 M40 HEDP grenades. High explosive, don't store near the flamer fuel."
-	icon_state = "nade_placeholder"
+	icon_state = "nade"
 	w_class = 4
 	storage_slots = 25
 	max_storage_space = 50
@@ -368,13 +372,13 @@
 /obj/item/storage/box/nade_box/training
 	name = "\improper M07 training grenade box"
 	desc = "A secure box holding 25 M07 training grenades. Harmless and reusable."
-	icon_state = "train_nade_placeholder"
+	icon_state = "nade_train"
 	spawn_type = /obj/item/explosive/grenade/frag/training
 
 /obj/item/storage/box/nade_box/HIDP
 	name = "\improper HIDP incendiary grenade box"
 	desc = "A secure box holding 25 incendiary grenades. Warning: highly flammable!!."
-	icon_state = "HIDP_nade_placeholder"
+	icon_state = "nade_incendiary"
 	storage_slots = 15
 	max_storage_space = 30
 	spawn_type = /obj/item/explosive/grenade/incendiary
@@ -383,7 +387,7 @@
 /obj/item/storage/box/nade_box/M15
 	name = "\improper M15 grenade box"
 	desc = "A secure box holding M15 fragmentation grenades."
-	icon_state = "M15_nade_placeholder"
+	icon_state = "nade_M15"
 	storage_slots = 15
 	max_storage_space = 30
 	spawn_type = /obj/item/explosive/grenade/frag/m15
@@ -392,13 +396,13 @@
 /obj/item/storage/box/nade_box/tear_gas
 	name = "\improper M66 tear gas grenade box"
 	desc = "A secure box holding 25 M66 tear gas grenades. Used for riot control."
-	icon_state = "teargas_nade_placeholder"
+	icon_state = "nade_teargas"
 	spawn_type = /obj/item/explosive/grenade/chem_grenade/teargas
 
 /obj/item/storage/box/nade_box/impact
 	name = "\improper M40 IMDP grenade box"
 	desc = "A secure box holding 25 M40 IMDP impact grenades. High explosive, don't store near the flamer fuel."
-	icon_state = "nade_placeholder"
+	icon_state = "nade_impact"
 	spawn_type = /obj/item/explosive/grenade/impact
 
 

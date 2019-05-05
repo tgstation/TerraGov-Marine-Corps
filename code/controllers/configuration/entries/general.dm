@@ -92,6 +92,8 @@ Administrative related.
 
 /datum/config_entry/flag/log_say
 
+/datum/config_entry/flag/log_telecomms
+
 /datum/config_entry/flag/log_hivemind
 
 /datum/config_entry/flag/log_runtime
@@ -291,3 +293,23 @@ The default value assumes youtube-dl is in your system PATH
 */
 /datum/config_entry/string/invoke_youtubedl
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+
+
+/datum/config_entry/number/error_cooldown	// The "cooldown" time for each occurrence of a unique error
+	config_entry_value = 600
+	integer = FALSE
+	min_val = 0
+
+
+/datum/config_entry/number/error_limit	// How many occurrences before the next will silence them
+	config_entry_value = 50
+
+
+/datum/config_entry/number/error_silence_time	// How long a unique error will be silenced for
+	config_entry_value = 6000
+	integer = FALSE
+
+
+/datum/config_entry/number/error_msg_delay	// How long to wait between messaging admins about occurrences of a unique error
+	config_entry_value = 50
+	integer = FALSE

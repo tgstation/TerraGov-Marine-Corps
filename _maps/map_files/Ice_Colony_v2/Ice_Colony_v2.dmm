@@ -67,7 +67,7 @@
 /area/ice_colony/surface/engineering/electric)
 "aap" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/north)
 "aaq" = (
 /obj/effect/turf_underlay/icefloor,
@@ -113,7 +113,7 @@
 	},
 /area/ice_colony/surface/engineering/electric)
 "aax" = (
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aay" = (
 /turf/open/floor/tile/dark/brown2,
@@ -124,7 +124,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "aaA" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aaB" = (
 /turf/closed/ice_rock/corners{
@@ -139,13 +139,13 @@
 /turf/closed/ice/thin/single,
 /area/ice_colony/exterior/surface/valley/north)
 "aaE" = (
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/north)
 "aaF" = (
 /obj/structure/tunnel{
 	id = "north_tunnel"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/north)
 "aaG" = (
 /turf/closed/ice_rock/westWall,
@@ -157,10 +157,10 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
 "aaI" = (
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aaJ" = (
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aaK" = (
 /obj/structure/table,
@@ -391,7 +391,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/requesitions)
 "abz" = (
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
 "abA" = (
 /obj/structure/barricade/metal{
@@ -411,7 +411,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
 "abD" = (
 /obj/machinery/floodlight/landing,
@@ -419,7 +419,7 @@
 /area/ice_colony/exterior/surface/landing_pad2)
 "abE" = (
 /obj/machinery/floodlight/landing,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/northwest)
 "abF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -450,10 +450,10 @@
 /area/ice_colony/surface/engineering/electric)
 "abK" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/northwest)
 "abL" = (
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "abM" = (
 /turf/closed/ice/junction{
@@ -480,7 +480,7 @@
 	},
 /area/ice_colony/exterior/surface/valley/north)
 "abR" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/north)
 "abS" = (
 /obj/machinery/landinglight/ds1{
@@ -637,7 +637,7 @@
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
 "act" = (
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/north)
 "acu" = (
 /obj/structure/table,
@@ -707,7 +707,7 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "acG" = (
 /obj/structure/fence,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "acH" = (
 /obj/structure/barricade/metal{
@@ -825,7 +825,7 @@
 /obj/structure/tunnel{
 	id = "east_cargo_tunnel"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/northwest)
 "ada" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -850,7 +850,7 @@
 /obj/structure/tunnel{
 	id = "engineering_tunnel"
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/northeast)
 "adf" = (
 /obj/structure/table,
@@ -892,7 +892,7 @@
 	},
 /area/ice_colony/surface/engineering/electric)
 "adj" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/northeast)
 "adk" = (
 /obj/effect/turf_underlay/icefloor,
@@ -954,7 +954,7 @@
 /area/ice_colony/exterior/surface/valley/north)
 "adu" = (
 /obj/structure/fence,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/northwest)
 "adv" = (
 /obj/structure/rack,
@@ -1037,7 +1037,7 @@
 /area/ice_colony/exterior/surface/cliff)
 "adG" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "adH" = (
 /obj/machinery/light/small{
@@ -1155,14 +1155,9 @@
 /area/ice_colony/exterior/surface/valley/north)
 "adX" = (
 /obj/machinery/floodlight/landing,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "adY" = (
-/obj/machinery/telecomms/relay/preset/ice_colony{
-	idle_power_usage = 0;
-	listening_level = 1;
-	name = "Telecommunication Relay Tower"
-	},
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/tcomms)
@@ -1175,7 +1170,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aea" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1258,7 +1253,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aen" = (
 /turf/open/floor/tile/dark/yellow2/corner{
@@ -1360,11 +1355,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aeA" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/northeast)
 "aeB" = (
 /obj/effect/turf_underlay/icefloor,
@@ -1379,11 +1374,11 @@
 /obj/structure/tunnel{
 	id = "dig_site_tunnel"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/north)
 "aeE" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aeF" = (
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -1529,7 +1524,7 @@
 /area/ice_colony/exterior/surface/landing_pad2)
 "afb" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "afc" = (
 /obj/effect/turf_underlay/icefloor,
@@ -1800,7 +1795,7 @@
 /area/ice_colony/exterior/surface/valley/north)
 "afM" = (
 /obj/machinery/colony_floodlight,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/northwest)
 "afN" = (
 /obj/structure/cable{
@@ -1958,7 +1953,7 @@
 /turf/closed/ice_rock/westWall,
 /area/ice_colony/exterior/surface/cliff)
 "agd" = (
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "age" = (
 /obj/effect/turf_overlay/icerock{
@@ -2133,7 +2128,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "agB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2144,7 +2139,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "agC" = (
 /turf/closed/ice_rock/corners{
@@ -2298,7 +2293,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "agT" = (
 /obj/structure/table/reinforced,
@@ -2327,7 +2322,7 @@
 /area/lv624/lazarus/console)
 "agW" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "agX" = (
 /turf/closed/ice_rock/southWall,
@@ -2374,7 +2369,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "ahe" = (
 /obj/structure/table,
@@ -2445,7 +2440,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "ahk" = (
 /turf/closed/ice/corner{
@@ -2454,7 +2449,7 @@
 /area/ice_colony/exterior/surface/valley/northwest)
 "ahl" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/north)
 "ahm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2626,7 +2621,7 @@
 /area/ice_colony/surface/substation/smes)
 "ahE" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/north)
 "ahF" = (
 /turf/closed/ice/straight,
@@ -2649,7 +2644,7 @@
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
 "ahK" = (
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/north)
 "ahL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2664,7 +2659,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "ahN" = (
 /obj/structure/closet/secure_closet/engineering_personal,
@@ -2695,7 +2690,7 @@
 /area/ice_colony/surface/engineering)
 "ahQ" = (
 /obj/structure/fence,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/north)
 "ahR" = (
 /obj/structure/closet/secure_closet/engineering_personal,
@@ -2814,10 +2809,10 @@
 	},
 /area/ice_colony/surface/engineering/generator)
 "aii" = (
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northeast)
 "aij" = (
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "aik" = (
 /obj/effect/turf_underlay/icefloor,
@@ -2929,11 +2924,11 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/north)
 "aiw" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aix" = (
 /obj/effect/turf_underlay/icefloor,
@@ -3015,7 +3010,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
 "aiH" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aiI" = (
 /obj/effect/landmark/start/surv_spawn,
@@ -3166,7 +3161,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "aiX" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/clearing/north)
 "aiY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3529,7 +3524,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "ajK" = (
 /obj/structure/cable/yellow{
@@ -3624,7 +3619,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "ajW" = (
 /obj/vehicle/train/cargo/engine,
@@ -3701,7 +3696,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "akh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -3785,7 +3780,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "akn" = (
 /turf/closed/ice,
@@ -3877,7 +3872,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aky" = (
 /obj/machinery/portable_atmospherics/canister/empty,
@@ -3897,7 +3892,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "akB" = (
 /obj/machinery/portable_atmospherics/canister/empty,
@@ -3912,10 +3907,10 @@
 /area/ice_colony/surface/dorms/restroom_e)
 "akE" = (
 /obj/item/lightstick/red/anchored,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "akF" = (
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "akG" = (
 /obj/structure/disposalpipe/segment,
@@ -3925,11 +3920,11 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "akH" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "akI" = (
 /obj/structure/closet/toolcloset,
@@ -3949,19 +3944,19 @@
 /obj/structure/tunnel{
 	id = "construction_tunnel"
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/northeast)
 "akM" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "akN" = (
 /obj/item/flashlight,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/northwest)
 "akO" = (
 /obj/item/tool/shovel/snow,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "akP" = (
 /obj/effect/turf_underlay/icefloor,
@@ -4133,7 +4128,7 @@
 /area/ice_colony/surface/substation)
 "alr" = (
 /obj/machinery/colony_floodlight,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "als" = (
 /turf/closed/wall/r_wall,
@@ -4199,7 +4194,7 @@
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/ice_colony/surface/engineering)
 "alz" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/surface/mining)
 "alA" = (
 /obj/structure/rack,
@@ -4244,16 +4239,16 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "alI" = (
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/west)
 "alJ" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/west)
 "alK" = (
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/west)
 "alL" = (
 /obj/structure/table/woodentable,
@@ -4285,7 +4280,7 @@
 	pixel_y = 2
 	},
 /obj/item/tool/shovel/snow,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
 "alP" = (
 /turf/open/floor/plating/icefloor,
@@ -4398,7 +4393,7 @@
 /area/ice_colony/surface/hydroponics/north)
 "amh" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/clearing/north)
 "ami" = (
 /obj/structure/ore_box{
@@ -4434,7 +4429,7 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "amn" = (
 /obj/structure/cable{
@@ -4442,7 +4437,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "amo" = (
 /obj/structure/cable{
@@ -4450,7 +4445,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "amp" = (
 /obj/structure/cable{
@@ -4458,7 +4453,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "amq" = (
 /obj/item/lightstick/red/anchored,
@@ -4467,7 +4462,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "amr" = (
 /obj/structure/cable{
@@ -4475,7 +4470,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "ams" = (
 /obj/structure/cable{
@@ -4587,7 +4582,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "amH" = (
 /obj/structure/table/reinforced,
@@ -4624,7 +4619,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "amN" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -4633,7 +4628,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "amO" = (
 /obj/structure/disposalpipe/segment{
@@ -4642,7 +4637,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "amP" = (
 /obj/structure/disposalpipe/segment{
@@ -4651,11 +4646,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "amQ" = (
 /obj/item/storage/box/lightstick,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "amR" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -4690,7 +4685,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "amW" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -4699,7 +4694,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "amX" = (
 /obj/structure/cable{
@@ -4713,7 +4708,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "amY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4722,7 +4717,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "amZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4731,7 +4726,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "ana" = (
 /turf/open/floor/tile/dark/yellow2/corner,
@@ -4753,7 +4748,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "and" = (
 /obj/effect/turf_underlay/icefloor,
@@ -4784,7 +4779,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
 "anh" = (
 /obj/structure/disposalpipe/segment{
@@ -4812,7 +4807,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "anj" = (
 /obj/structure/table/reinforced,
@@ -4872,11 +4867,11 @@
 /area/ice_colony/surface/mining)
 "anr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "ans" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "ant" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -4896,17 +4891,17 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "anv" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "anw" = (
 /obj/item/lightstick/red/anchored,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "anx" = (
 /obj/structure/cable{
@@ -4996,12 +4991,12 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "anH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "anI" = (
 /obj/structure/dispenser,
@@ -5067,7 +5062,7 @@
 /area/ice_colony/surface/substation)
 "anS" = (
 /obj/structure/fence,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "anT" = (
 /obj/structure/table,
@@ -5133,7 +5128,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "aob" = (
 /turf/closed/wall/r_wall,
@@ -5152,7 +5147,7 @@
 /area/ice_colony/surface/tcomms)
 "aod" = (
 /obj/machinery/colony_floodlight,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoe" = (
 /obj/machinery/power/geothermal,
@@ -5167,7 +5162,7 @@
 /area/ice_colony/surface/tcomms)
 "aof" = (
 /obj/item/lightstick/red/anchored,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aog" = (
 /obj/structure/cable{
@@ -5175,7 +5170,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aoh" = (
 /obj/machinery/light{
@@ -5244,7 +5239,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aop" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -5309,11 +5304,11 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aow" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aox" = (
 /turf/open/floor/tile/dark/blue2{
@@ -5390,7 +5385,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5404,7 +5399,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoH" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -5421,7 +5416,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5432,7 +5427,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5443,7 +5438,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5454,7 +5449,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoL" = (
 /turf/open/floor/tile/red/whitered{
@@ -5497,7 +5492,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5506,7 +5501,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5520,11 +5515,11 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5769,7 +5764,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "apz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -5851,7 +5846,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "apK" = (
 /obj/structure/rack,
@@ -5912,11 +5907,11 @@
 /area/ice_colony/surface/dorms)
 "apQ" = (
 /obj/item/lightstick/red/anchored,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "apR" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/west)
 "apS" = (
 /obj/effect/turf_underlay/icefloor,
@@ -6264,10 +6259,10 @@
 /area/ice_colony/surface/clinic/storage)
 "aqI" = (
 /obj/item/storage/bag/plants,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/north)
 "aqJ" = (
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/northeast)
 "aqK" = (
 /obj/effect/turf_underlay/icefloor,
@@ -6360,7 +6355,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aqS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -6756,7 +6751,7 @@
 /area/ice_colony/surface/dorms)
 "arL" = (
 /obj/item/lightstick/red/anchored,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/northeast)
 "arM" = (
 /obj/structure/cable{
@@ -6840,7 +6835,7 @@
 /area/ice_colony/surface/tcomms)
 "arV" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "arW" = (
 /obj/structure/disposalpipe/segment{
@@ -7016,7 +7011,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "ast" = (
 /obj/structure/bed,
@@ -7075,11 +7070,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "asD" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "asE" = (
 /obj/machinery/door/airlock/multi_tile/almayer/medidoor{
@@ -7154,7 +7149,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "asN" = (
 /obj/structure/bed/chair,
@@ -7213,7 +7208,7 @@
 "asV" = (
 /obj/item/lightstick/red/anchored,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "asW" = (
 /obj/machinery/vending/snack,
@@ -7286,18 +7281,18 @@
 /obj/item/tool/pickaxe,
 /obj/item/storage/box/lightstick/red,
 /obj/item/storage/box/lightstick,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
 "atf" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
 /obj/item/flashlight,
 /obj/item/storage/belt/utility,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
 "atg" = (
 /obj/machinery/colony_floodlight,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/west)
 "ath" = (
 /obj/structure/bed/chair{
@@ -7320,7 +7315,7 @@
 /obj/structure/tunnel{
 	id = "hydroponics_tunnel"
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/west)
 "atl" = (
 /obj/structure/bed/chair{
@@ -7363,7 +7358,7 @@
 	pixel_x = 5
 	},
 /obj/item/tool/shovel/snow,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
 "atr" = (
 /obj/structure/cable{
@@ -7374,7 +7369,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "ats" = (
 /obj/structure/cable{
@@ -7383,7 +7378,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "att" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -7397,7 +7392,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "atu" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -7421,7 +7416,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "atv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
@@ -7438,7 +7433,7 @@
 /area/ice_colony/surface/clinic/lobby)
 "atx" = (
 /obj/structure/largecrate/random,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aty" = (
 /turf/open/floor/plating/icefloor/warnplate,
@@ -7598,13 +7593,13 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "atV" = (
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 8
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "atW" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -7616,7 +7611,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "atX" = (
 /obj/structure/closet/cabinet,
@@ -7638,7 +7633,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "aua" = (
 /obj/structure/cable{
@@ -7723,7 +7718,7 @@
 	},
 /area/ice_colony/surface/clinic/lobby)
 "aui" = (
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "auj" = (
 /obj/structure/disposalpipe/segment,
@@ -7814,7 +7809,7 @@
 /area/ice_colony/surface/clinic/lobby)
 "aus" = (
 /obj/structure/fence,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aut" = (
 /obj/effect/landmark/corpsespawner/miner,
@@ -7825,7 +7820,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "auv" = (
 /obj/item/lightstick/red/anchored,
@@ -7838,13 +7833,13 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "auw" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "aux" = (
 /obj/structure/cable{
@@ -7853,7 +7848,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "auy" = (
 /obj/structure/disposalpipe/segment{
@@ -7967,7 +7962,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "auM" = (
 /obj/structure/disposalpipe/segment{
@@ -8011,7 +8006,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "auR" = (
 /obj/structure/cable{
@@ -8023,7 +8018,7 @@
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "auS" = (
 /obj/structure/disposalpipe/segment{
@@ -8069,7 +8064,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/lobby)
 "auZ" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -8154,10 +8149,10 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "avk" = (
 /mob/living/simple_animal/cow,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/lobby)
 "avl" = (
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/lobby)
 "avm" = (
 /obj/structure/disposalpipe/segment{
@@ -8251,7 +8246,7 @@
 /area/ice_colony/surface/dorms)
 "avw" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "avx" = (
 /obj/structure/disposalpipe/segment,
@@ -8261,7 +8256,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "avy" = (
 /obj/effect/turf_underlay/icefloor,
@@ -8271,7 +8266,7 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "avz" = (
 /obj/item/shard,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/west)
 "avA" = (
 /obj/structure/bed/chair{
@@ -8320,13 +8315,13 @@
 /area/ice_colony/surface/clinic/lobby)
 "avH" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/lobby)
 "avI" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/lobby)
 "avJ" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -8340,7 +8335,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "avL" = (
 /obj/structure/table,
@@ -8446,7 +8441,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "avV" = (
 /obj/machinery/disposal,
@@ -8527,11 +8522,11 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "awe" = (
 /obj/item/lightstick/red/anchored,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "awf" = (
 /obj/effect/turf_underlay/icefloor,
@@ -8541,13 +8536,13 @@
 /obj/item/stack/rods{
 	amount = 25
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/west)
 "awh" = (
 /obj/item/stack/rods{
 	amount = 25
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/lobby)
 "awi" = (
 /obj/structure/disposalpipe/segment{
@@ -8559,7 +8554,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "awj" = (
 /obj/structure/disposalpipe/segment{
@@ -8602,7 +8597,7 @@
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "awn" = (
 /obj/item/stack/rods{
@@ -8659,7 +8654,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "awv" = (
 /obj/effect/turf_underlay/icefloor,
@@ -8669,10 +8664,10 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "aww" = (
 /obj/item/lightstick/red/anchored,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "awx" = (
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "awy" = (
 /obj/effect/turf_underlay/icefloor,
@@ -8769,7 +8764,7 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "awJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -8794,10 +8789,10 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "awL" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
 "awM" = (
 /obj/effect/turf_underlay/icefloor,
@@ -8881,7 +8876,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
 "axa" = (
 /obj/structure/cable{
@@ -8891,11 +8886,11 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "axb" = (
 /obj/machinery/light,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/lobby)
 "axc" = (
 /obj/structure/bed/chair{
@@ -9010,13 +9005,13 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "axq" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "axr" = (
 /obj/structure/cable{
@@ -9028,7 +9023,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "axs" = (
 /obj/structure/cable{
@@ -9036,7 +9031,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "axt" = (
 /obj/effect/turf_overlay/icerock{
@@ -9053,7 +9048,7 @@
 /area/ice_colony/exterior/surface/cliff)
 "axu" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "axv" = (
 /turf/closed/ice_rock/singleEnd,
@@ -9096,19 +9091,19 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "axB" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "axC" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "axD" = (
 /turf/closed/ice/junction{
@@ -9198,7 +9193,7 @@
 /area/ice_colony/surface/dorms/canteen)
 "axR" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "axS" = (
 /obj/effect/turf_overlay/icerock{
@@ -9221,7 +9216,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "axV" = (
 /obj/structure/cable{
@@ -9230,7 +9225,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "axW" = (
 /obj/effect/landmark/random_item/crap,
@@ -9250,37 +9245,37 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "axZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "aya" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "ayb" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "ayc" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "ayd" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "aye" = (
 /obj/structure/disposalpipe/junction{
@@ -9289,7 +9284,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "ayf" = (
 /obj/structure/disposalpipe/segment{
@@ -9298,7 +9293,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "ayg" = (
 /obj/structure/disposalpipe/segment{
@@ -9307,7 +9302,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "ayh" = (
 /obj/structure/disposalpipe/segment{
@@ -9316,7 +9311,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "ayi" = (
 /obj/structure/disposalpipe/segment{
@@ -9330,7 +9325,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "ayj" = (
 /obj/item/trash/liquidfood,
@@ -9479,7 +9474,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "ayI" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
@@ -9494,7 +9489,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "ayK" = (
 /turf/closed/wall,
@@ -9523,7 +9518,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "ayO" = (
 /obj/item/lightstick/red/anchored,
@@ -9532,7 +9527,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "ayP" = (
 /obj/structure/cable{
@@ -9548,7 +9543,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "ayQ" = (
 /obj/structure/cable{
@@ -9559,7 +9554,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "ayR" = (
 /obj/structure/table,
@@ -9589,13 +9584,13 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "ayU" = (
 /obj/structure/disposalpipe/junction{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "ayV" = (
 /obj/structure/disposalpipe/segment{
@@ -9605,7 +9600,7 @@
 	dir = 4
 	},
 /obj/structure/fence,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "ayW" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -9627,7 +9622,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "ayZ" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -9636,7 +9631,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aza" = (
 /obj/structure/window/reinforced{
@@ -9717,7 +9712,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "azm" = (
 /obj/structure/disposalpipe/segment{
@@ -9726,7 +9721,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "azn" = (
 /obj/structure/disposalpipe/segment{
@@ -9735,7 +9730,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "azo" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -9744,13 +9739,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "azp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "azq" = (
 /obj/machinery/door_control{
@@ -9776,7 +9771,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "azt" = (
 /obj/structure/cable{
@@ -9784,7 +9779,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "azu" = (
 /obj/structure/cable{
@@ -9793,7 +9788,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/fence,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "azv" = (
 /obj/structure/disposalpipe/segment,
@@ -9803,7 +9798,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "azw" = (
 /obj/structure/bed,
@@ -9881,7 +9876,7 @@
 	},
 /area/ice_colony/exterior/surface/cliff)
 "azG" = (
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "azH" = (
 /obj/structure/cable{
@@ -9889,7 +9884,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "azI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -10033,7 +10028,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aAf" = (
 /turf/open/floor/tile/dark/brown2{
@@ -10080,10 +10075,10 @@
 /area/ice_colony/surface/disposals)
 "aAn" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/south)
 "aAo" = (
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/south)
 "aAp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -10172,7 +10167,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/south)
 "aAC" = (
 /turf/open/floor/tile/dark/brown2{
@@ -10622,7 +10617,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "aBD" = (
 /obj/structure/cable{
@@ -10636,7 +10631,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "aBE" = (
 /turf/closed/ice/end{
@@ -10650,16 +10645,16 @@
 	},
 /area/ice_colony/surface/command/checkpoint)
 "aBG" = (
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aBH" = (
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aBI" = (
 /turf/closed/ice/junction,
 /area/ice_colony/exterior/surface/valley/west)
 "aBJ" = (
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aBK" = (
 /turf/closed/ice/straight{
@@ -10688,7 +10683,7 @@
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 1
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "aBN" = (
 /turf/open/floor/tile/dark2,
@@ -10905,7 +10900,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aCo" = (
 /obj/structure/table,
@@ -11042,7 +11037,7 @@
 /area/ice_colony/surface/command/checkpoint)
 "aCJ" = (
 /obj/item/lightstick/red/anchored,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aCK" = (
 /obj/structure/disposalpipe/segment,
@@ -11068,7 +11063,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aCN" = (
 /obj/machinery/power/port_gen/pacman,
@@ -11143,14 +11138,14 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aCW" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/single,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aCX" = (
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aCY" = (
 /obj/structure/filingcabinet,
@@ -11982,7 +11977,7 @@
 /area/ice_colony/surface/command/checkpoint)
 "aEY" = (
 /obj/machinery/colony_floodlight,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "aEZ" = (
 /obj/machinery/light,
@@ -12178,11 +12173,11 @@
 /area/ice_colony/surface/command/control)
 "aFw" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aFx" = (
 /obj/machinery/colony_floodlight,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aFy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -12370,7 +12365,7 @@
 /area/ice_colony/surface/garage/two)
 "aFV" = (
 /obj/item/tool/hatchet,
-/turf/open/gm/grass,
+/turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/south)
 "aFW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -12401,7 +12396,7 @@
 /area/ice_colony/surface/garage/one)
 "aGa" = (
 /obj/machinery/colony_floodlight,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aGb" = (
 /obj/effect/decal/cleanable/blood,
@@ -12498,7 +12493,7 @@
 /obj/structure/tunnel{
 	id = "west_tcomms_tunnel"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aGq" = (
 /turf/closed/wall/r_wall,
@@ -12527,7 +12522,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aGu" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -12557,7 +12552,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aGx" = (
 /obj/structure/cable{
@@ -12571,11 +12566,11 @@
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 8
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aGy" = (
 /obj/structure/fence,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aGz" = (
 /obj/structure/cable{
@@ -12589,7 +12584,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aGA" = (
 /obj/structure/cable{
@@ -12606,7 +12601,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aGB" = (
 /turf/closed/wall/r_wall,
@@ -12852,19 +12847,19 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aGX" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aGY" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aGZ" = (
 /obj/structure/cable{
@@ -12876,7 +12871,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aHa" = (
 /obj/effect/turf_underlay/icefloor,
@@ -13101,7 +13096,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aHB" = (
 /obj/machinery/firealarm{
@@ -13222,7 +13217,7 @@
 /area/ice_colony/surface/command/control/pv2)
 "aHR" = (
 /obj/machinery/colony_floodlight,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aHS" = (
 /obj/machinery/light{
@@ -13266,7 +13261,7 @@
 	req_access_txt = "100";
 	specialfunctions = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/surface/storage_unit/power)
 "aHW" = (
 /obj/machinery/alarm{
@@ -13377,7 +13372,7 @@
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
 "aIl" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aIm" = (
 /obj/machinery/disposal,
@@ -13410,7 +13405,7 @@
 /area/ice_colony/surface/dorms)
 "aIq" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aIr" = (
 /obj/structure/cable{
@@ -13421,7 +13416,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aIs" = (
 /obj/structure/closet/crate,
@@ -13445,7 +13440,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aIw" = (
 /obj/structure/table/woodentable,
@@ -13522,7 +13517,7 @@
 /area/ice_colony/surface/storage_unit/power)
 "aIH" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/west)
 "aII" = (
 /obj/structure/filingcabinet,
@@ -13558,7 +13553,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "aIO" = (
 /obj/item/storage/box/donkpockets,
@@ -13682,7 +13677,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aJh" = (
 /obj/structure/table/woodentable,
@@ -13777,11 +13772,11 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aJw" = (
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/cliff)
 "aJx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "aJy" = (
 /obj/effect/turf_underlay/icefloor,
@@ -13797,7 +13792,7 @@
 /area/ice_colony/surface/command/crisis)
 "aJA" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/north)
 "aJB" = (
 /turf/closed/ice/end,
@@ -13866,7 +13861,7 @@
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
 "aJL" = (
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aJM" = (
 /obj/effect/turf_underlay/icefloor,
@@ -13917,7 +13912,7 @@
 /area/ice_colony/surface/command/control/pv2)
 "aJS" = (
 /obj/structure/fence,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aJT" = (
 /obj/machinery/light{
@@ -13931,7 +13926,7 @@
 /area/ice_colony/surface/garage/two)
 "aJU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aJV" = (
 /obj/structure/bed/chair/comfy/brown{
@@ -13997,7 +13992,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aKe" = (
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aKf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -14081,7 +14076,7 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "aKu" = (
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aKv" = (
 /obj/structure/disposalpipe/segment,
@@ -14091,7 +14086,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aKw" = (
 /turf/closed/wall,
@@ -14123,7 +14118,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/bar/bar)
 "aKC" = (
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "aKD" = (
 /turf/closed/ice/corner{
@@ -14131,14 +14126,14 @@
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
 "aKE" = (
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "aKF" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "aKG" = (
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "aKH" = (
 /obj/effect/turf_underlay/icefloor,
@@ -14164,7 +14159,7 @@
 /area/ice_colony/underground/responsehangar)
 "aKL" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "aKM" = (
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
@@ -14288,7 +14283,7 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "aLd" = (
 /obj/item/lightstick/red/anchored,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aLe" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -14302,7 +14297,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aLf" = (
 /obj/structure/disposalpipe/segment{
@@ -14316,7 +14311,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aLg" = (
 /obj/structure/disposalpipe/segment{
@@ -14330,7 +14325,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aLh" = (
 /obj/machinery/light{
@@ -14354,7 +14349,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aLk" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/clearing/south)
 "aLl" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/down,
@@ -14374,7 +14369,7 @@
 /obj/structure/disposalpipe/junction{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aLm" = (
 /obj/structure/cable{
@@ -14388,7 +14383,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aLn" = (
 /obj/structure/cable{
@@ -14402,7 +14397,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aLo" = (
 /obj/structure/cable{
@@ -14426,7 +14421,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aLp" = (
 /obj/structure/rack,
@@ -14459,7 +14454,7 @@
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
 "aLu" = (
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aLv" = (
 /turf/closed/ice_rock/singlePart{
@@ -14476,7 +14471,7 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "aLy" = (
 /obj/item/lightstick/red/anchored,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aLz" = (
 /turf/open/floor/wood,
@@ -14492,7 +14487,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aLC" = (
 /obj/structure/rack,
@@ -14502,7 +14497,7 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aLD" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/west)
 "aLE" = (
 /obj/machinery/floodlight,
@@ -14531,7 +14526,7 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "aLJ" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aLK" = (
 /obj/structure/bed/chair{
@@ -14626,7 +14621,7 @@
 /area/ice_colony/surface/bar/canteen)
 "aLV" = (
 /obj/machinery/colony_floodlight,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "aLW" = (
 /obj/machinery/computer/security,
@@ -14780,7 +14775,7 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aMt" = (
 /obj/structure/fence,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aMu" = (
 /obj/machinery/disposal,
@@ -14872,7 +14867,7 @@
 	},
 /area/ice_colony/surface/hangar/checkpoint)
 "aMG" = (
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aMH" = (
 /obj/structure/cable{
@@ -14937,7 +14932,7 @@
 	dir = 5
 	},
 /obj/machinery/light,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "aMR" = (
 /obj/item/stack/rods,
@@ -15113,7 +15108,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aNm" = (
 /obj/machinery/light{
@@ -15200,7 +15195,7 @@
 /obj/structure/tunnel{
 	id = "north_research_tunnel"
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/west)
 "aNv" = (
 /obj/structure/rack,
@@ -15375,7 +15370,7 @@
 /area/ice_colony/surface/bar/bar)
 "aNQ" = (
 /obj/effect/spawner/random/toolbox,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "aNR" = (
 /turf/open/floor/tile/dark/red2{
@@ -15522,7 +15517,7 @@
 /area/ice_colony/surface/research)
 "aOq" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aOr" = (
 /obj/structure/cable{
@@ -15530,7 +15525,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aOs" = (
 /obj/structure/cable/yellow{
@@ -15546,7 +15541,7 @@
 /area/ice_colony/underground/responsehangar)
 "aOt" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aOu" = (
 /obj/structure/cable{
@@ -15907,11 +15902,11 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aPp" = (
 /obj/machinery/colony_floodlight,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aPq" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "aPr" = (
 /obj/structure/cable{
@@ -16107,14 +16102,14 @@
 /area/ice_colony/surface/research/field_gear)
 "aPS" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "aPT" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/beta)
 "aPU" = (
 /obj/item/lightstick/red/anchored,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aPV" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -16294,7 +16289,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aQq" = (
 /obj/item/trash/raisins,
@@ -16308,15 +16303,15 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aQs" = (
 /obj/item/shard,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aQt" = (
 /obj/item/stack/rods,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "aQu" = (
 /obj/item/shard,
@@ -16533,7 +16528,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aQT" = (
 /turf/open/floor/tile/dark/red2{
@@ -16558,7 +16553,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aQW" = (
 /obj/structure/cable{
@@ -16567,7 +16562,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aQX" = (
 /obj/structure/cable{
@@ -16576,7 +16571,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aQY" = (
 /obj/structure/cable{
@@ -16679,7 +16674,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aRi" = (
 /obj/structure/disposalpipe/segment{
@@ -16688,7 +16683,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aRj" = (
 /obj/structure/table,
@@ -16816,7 +16811,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aRC" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -16916,7 +16911,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aRN" = (
 /turf/open/floor/tile/dark/purple2/corner{
@@ -16940,7 +16935,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aRQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -16954,7 +16949,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aRR" = (
 /obj/structure/disposalpipe/segment{
@@ -17048,7 +17043,7 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aRY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -17086,7 +17081,7 @@
 /area/ice_colony/surface/bar/bar)
 "aSd" = (
 /obj/item/shard,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "aSe" = (
 /obj/structure/table,
@@ -17387,7 +17382,7 @@
 /area/ice_colony/surface/research)
 "aST" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aSU" = (
 /obj/structure/disposalpipe/segment{
@@ -17396,7 +17391,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aSV" = (
 /turf/open/shuttle{
@@ -17428,7 +17423,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aSZ" = (
 /turf/open/shuttle{
@@ -17460,7 +17455,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aTd" = (
 /turf/open/floor/tile/dark2,
@@ -17774,7 +17769,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aTN" = (
 /obj/machinery/light/small{
@@ -17821,11 +17816,11 @@
 /area/ice_colony/surface/bar/bar)
 "aTU" = (
 /obj/machinery/colony_floodlight,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "aTV" = (
 /obj/item/lightstick/red/anchored,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "aTW" = (
 /obj/effect/turf_overlay/shuttle/heater,
@@ -17842,7 +17837,7 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "aTY" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/cliff)
 "aTZ" = (
 /turf/closed/shuttle{
@@ -17946,7 +17941,7 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aUn" = (
 /turf/closed/shuttle{
@@ -17982,7 +17977,7 @@
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aUr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aUs" = (
 /obj/structure/window/framed/colony,
@@ -18035,7 +18030,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "aUy" = (
 /obj/machinery/alarm{
@@ -18081,7 +18076,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "aUF" = (
 /obj/structure/bed/chair/wood/normal{
@@ -18169,7 +18164,7 @@
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
 "aUP" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aUQ" = (
 /obj/structure/cable{
@@ -18187,7 +18182,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aUR" = (
 /obj/structure/disposalpipe/segment,
@@ -18197,7 +18192,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "aUS" = (
 /obj/structure/table/reinforced,
@@ -18264,7 +18259,7 @@
 /area/ice_colony/surface/bar/bar)
 "aVf" = (
 /obj/item/lightstick/anchored,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aVg" = (
 /turf/closed/ice/junction{
@@ -18414,7 +18409,7 @@
 /area/ice_colony/surface/research/tech_storage)
 "aVu" = (
 /obj/vehicle/train/cargo/trolley,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aVv" = (
 /turf/open/floor/plating/icefloor,
@@ -18456,7 +18451,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aVB" = (
 /turf/open/floor/tile/dark/yellow2{
@@ -18726,7 +18721,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aWl" = (
 /obj/structure/disposalpipe/segment,
@@ -18738,7 +18733,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "aWm" = (
 /obj/effect/turf_underlay/shuttle/floor6,
@@ -18758,7 +18753,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "aWp" = (
 /turf/open/floor/plating/icefloor,
@@ -18774,7 +18769,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "aWt" = (
 /obj/structure/cable{
@@ -18786,7 +18781,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aWu" = (
 /obj/structure/cable{
@@ -18827,15 +18822,15 @@
 /area/ice_colony/surface/research/tech_storage)
 "aWx" = (
 /obj/vehicle/train/cargo/engine,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aWy" = (
 /obj/item/lightstick/red/anchored,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aWz" = (
 /obj/structure/fence,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aWA" = (
 /obj/structure/cable{
@@ -18989,7 +18984,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aWS" = (
 /obj/structure/cable,
@@ -19017,11 +19012,11 @@
 /obj/structure/tunnel{
 	id = "south_tunnel"
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/west)
 "aWW" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aWX" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -19284,7 +19279,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "aXF" = (
 /obj/machinery/disposal,
@@ -19303,7 +19298,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "aXH" = (
 /obj/structure/fence,
@@ -19313,7 +19308,7 @@
 /area/ice_colony/exterior/surface/container_yard)
 "aXI" = (
 /obj/item/tool/shovel/snow,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "aXJ" = (
 /obj/machinery/space_heater,
@@ -19429,7 +19424,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "aXX" = (
 /obj/structure/cargo_container{
@@ -19570,10 +19565,10 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/research/tech_storage)
 "aYv" = (
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/south)
 "aYw" = (
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south)
 "aYx" = (
 /obj/vehicle/train/cargo/trolley,
@@ -19585,7 +19580,7 @@
 /area/ice_colony/exterior/surface/container_yard)
 "aYz" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aYA" = (
 /obj/machinery/light,
@@ -19634,7 +19629,7 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "aYJ" = (
 /obj/structure/fence,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aYK" = (
 /turf/closed/ice/straight{
@@ -19648,7 +19643,7 @@
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aYM" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aYN" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
@@ -19686,7 +19681,7 @@
 /turf/closed/ice/straight,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aYT" = (
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south)
 "aYU" = (
 /turf/open/floor/tile/dark/yellow2/corner{
@@ -19902,7 +19897,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "aZz" = (
 /obj/structure/disposalpipe/segment{
@@ -19916,7 +19911,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "aZA" = (
 /obj/machinery/landinglight/ds1/delaythree{
@@ -19936,7 +19931,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "aZC" = (
 /obj/structure/cargo_container/red{
@@ -19973,10 +19968,10 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "aZJ" = (
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/cliff)
 "aZK" = (
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/cliff)
 "aZL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -20050,7 +20045,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "aZW" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -20064,7 +20059,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "aZY" = (
 /obj/machinery/door_control{
@@ -20075,7 +20070,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/surface/research)
 "aZZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -20158,7 +20153,7 @@
 /turf/closed/ice/thin/single,
 /area/ice_colony/exterior/surface/valley/south)
 "baj" = (
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bak" = (
 /obj/structure/cable{
@@ -20166,7 +20161,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bal" = (
 /turf/closed/ice/corner,
@@ -20235,7 +20230,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south)
 "baw" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -20270,7 +20265,7 @@
 /area/ice_colony/surface/hydroponics/south)
 "baA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "baB" = (
 /obj/effect/landmark/corpsespawner/security{
@@ -20286,7 +20281,7 @@
 	mobname = "Unknown";
 	name = "Unknown PMC"
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "baC" = (
 /obj/effect/turf_underlay/icefloor,
@@ -20357,7 +20352,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "baO" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -20413,7 +20408,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south)
 "baS" = (
 /obj/structure/disposalpipe/segment{
@@ -20427,7 +20422,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south)
 "baT" = (
 /obj/structure/disposalpipe/segment{
@@ -20441,7 +20436,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south)
 "baU" = (
 /obj/machinery/light{
@@ -20526,7 +20521,7 @@
 /obj/structure/tunnel{
 	id = "south_research_tunnel"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bbd" = (
 /obj/structure/barricade/metal{
@@ -20547,7 +20542,7 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "bbf" = (
 /obj/structure/ice_sign,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bbg" = (
 /obj/machinery/floodlight/landing,
@@ -20612,7 +20607,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bbm" = (
 /obj/item/lightstick/anchored,
@@ -20627,7 +20622,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bbn" = (
 /turf/closed/shuttle/ert{
@@ -20679,7 +20674,7 @@
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bbt" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south)
 "bbu" = (
 /turf/open/floor/plating/icefloor/warnplate{
@@ -20688,7 +20683,7 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "bbv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bbw" = (
 /turf/open/floor/plating/icefloor,
@@ -20755,10 +20750,10 @@
 /turf/closed/ice/thin/single,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bbJ" = (
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bbK" = (
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bbL" = (
 /obj/effect/turf_underlay/icefloor,
@@ -20778,7 +20773,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bbO" = (
 /obj/structure/cable{
@@ -20786,7 +20781,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bbP" = (
 /obj/structure/cable{
@@ -20794,7 +20789,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south)
 "bbQ" = (
 /obj/machinery/landinglight/ds1/delayone{
@@ -20811,11 +20806,11 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bbS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bbT" = (
 /turf/open/floor/tile/dark2,
@@ -20896,7 +20891,7 @@
 /area/ice_colony/underground/requesition)
 "bcf" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bcg" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
@@ -20973,25 +20968,25 @@
 "bcs" = (
 /obj/structure/table,
 /obj/effect/landmark/random_item/crap,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bct" = (
 /obj/structure/table,
 /obj/effect/landmark/random_item/good,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bcu" = (
 /obj/structure/table,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bcv" = (
 /obj/structure/table,
 /obj/item/camera,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bcw" = (
 /obj/structure/fence,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "bcx" = (
 /obj/structure/table/reinforced,
@@ -21038,10 +21033,10 @@
 /area/ice_colony/underground/westroadtunnel)
 "bcC" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bcD" = (
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bcE" = (
 /obj/effect/turf_underlay/icefloor,
@@ -21194,7 +21189,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/surface/research)
 "bda" = (
 /turf/closed/wall,
@@ -21245,7 +21240,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bdj" = (
 /obj/effect/turf_overlay/icerock{
@@ -21385,7 +21380,7 @@
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bdC" = (
 /obj/item/tool/shovel,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bdD" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -21499,7 +21494,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bdQ" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -21567,7 +21562,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bea" = (
 /obj/structure/closet/toolcloset,
@@ -21588,7 +21583,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bed" = (
 /obj/structure/disposalpipe/segment,
@@ -21603,7 +21598,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bee" = (
 /obj/structure/rack,
@@ -21662,7 +21657,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bem" = (
 /obj/structure/rack,
@@ -21685,13 +21680,12 @@
 /area/ice_colony/surface/bar/bar)
 "beo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/pass)
 "bep" = (
 /obj/machinery/bot/mulebot,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 250
+	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 9
@@ -21716,8 +21710,7 @@
 "bes" = (
 /obj/machinery/bot/mulebot,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -21810,7 +21803,7 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "beG" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "beH" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -21874,15 +21867,15 @@
 /area/ice_colony/surface/excavation)
 "beP" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "beQ" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "beR" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "beS" = (
 /obj/effect/decal/cleanable/blood,
@@ -21897,7 +21890,7 @@
 	corpseuniform = /obj/item/clothing/under/rank/engineer;
 	name = "Engi"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "beT" = (
 /obj/structure/rack,
@@ -22117,7 +22110,7 @@
 	req_access_txt = "103";
 	specialfunctions = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bfC" = (
 /obj/machinery/conveyor,
@@ -22153,7 +22146,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bfG" = (
 /obj/structure/cable{
@@ -22296,7 +22289,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bfW" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -22326,7 +22319,7 @@
 /area/ice_colony/exterior/surface/valley/west)
 "bga" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bgb" = (
 /turf/closed/ice_rock/southWall,
@@ -22343,7 +22336,7 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "bgd" = (
 /obj/structure/rack,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bge" = (
 /obj/effect/turf_underlay/icefloor,
@@ -22353,7 +22346,7 @@
 /area/ice_colony/exterior/surface/valley/south)
 "bgf" = (
 /obj/machinery/colony_floodlight,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south)
 "bgg" = (
 /obj/structure/cable/yellow{
@@ -22410,7 +22403,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bgp" = (
 /obj/structure/table,
@@ -22423,7 +22416,7 @@
 "bgr" = (
 /obj/structure/rack,
 /obj/item/tool/pickaxe/gold,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bgs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -22442,13 +22435,13 @@
 /area/ice_colony/underground/requesition)
 "bgu" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bgv" = (
 /obj/machinery/floodlight{
 	name = "Floodlight"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bgw" = (
 /obj/effect/turf_underlay/icefloor,
@@ -22598,7 +22591,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bgS" = (
 /obj/effect/decal/cleanable/blood/gibs,
@@ -22616,7 +22609,7 @@
 /area/ice_colony/underground/hangar)
 "bgV" = (
 /obj/structure/fence,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/north)
 "bgW" = (
 /turf/closed/shuttle/ert{
@@ -22874,7 +22867,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bhF" = (
 /obj/structure/table,
@@ -22960,11 +22953,11 @@
 /area/ice_colony/exterior/surface/valley/south)
 "bhS" = (
 /obj/structure/fence,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bhT" = (
 /obj/item/lightstick/anchored,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bhU" = (
 /obj/machinery/constructable_frame/state_2,
@@ -23299,13 +23292,13 @@
 /area/ice_colony/underground/hangar)
 "biE" = (
 /obj/structure/inflatable/door,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "biF" = (
 /obj/structure/tunnel{
 	id = "construction_tunnel"
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/engineering)
 "biG" = (
 /obj/structure/cable{
@@ -23319,7 +23312,7 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "biH" = (
 /turf/open/floor/tile/dark/brown2{
@@ -23510,7 +23503,7 @@
 /area/ice_colony/underground/hangar)
 "bjg" = (
 /obj/item/tool/shovel/snow,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "bjh" = (
 /obj/machinery/light/small{
@@ -23707,11 +23700,11 @@
 /area/ice_colony/underground/requesition/lobby)
 "bjF" = (
 /obj/item/weapon/gun/smg/mp5,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "bjG" = (
 /obj/structure/barricade/wooden,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "bjH" = (
 /obj/structure/cargo_container/red{
@@ -23725,7 +23718,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bjJ" = (
 /obj/structure/bed/chair{
@@ -23852,7 +23845,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/pass)
 "bkd" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -23942,7 +23935,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/pass)
 "bkt" = (
 /turf/closed/wall/r_wall,
@@ -23973,7 +23966,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/pass)
 "bkA" = (
 /obj/structure/cable/yellow{
@@ -24130,7 +24123,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/pass)
 "blb" = (
 /obj/structure/cable{
@@ -24149,7 +24142,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bld" = (
 /obj/machinery/power/apc/drained{
@@ -24286,7 +24279,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "blv" = (
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "blw" = (
 /obj/structure/cable{
@@ -24297,7 +24290,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "blx" = (
 /obj/structure/bed/chair/dropship/passenger,
@@ -24313,7 +24306,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "blz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -24457,7 +24450,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "blU" = (
 /obj/machinery/light{
@@ -24814,14 +24807,14 @@
 /area/ice_colony/surface/bar/canteen)
 "bmS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bmT" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/single,
 /area/ice_colony/exterior/underground/caves)
 "bmU" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "bmV" = (
 /obj/machinery/light{
@@ -24834,12 +24827,12 @@
 "bmW" = (
 /obj/structure/rack,
 /obj/item/tool/shovel,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bmX" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/emergency,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bmY" = (
 /turf/open/floor/carpet,
@@ -25086,7 +25079,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "bnG" = (
 /obj/effect/turf_underlay/icefloor,
@@ -25098,7 +25091,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "bnI" = (
 /obj/structure/cable/yellow{
@@ -25122,7 +25115,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "bnL" = (
 /turf/open/floor/tile/dark/yellow2{
@@ -25146,7 +25139,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bnN" = (
 /obj/machinery/light{
@@ -25403,7 +25396,7 @@
 /obj/structure/tunnel{
 	id = "north_tunnel"
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "bow" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25451,7 +25444,7 @@
 /area/ice_colony/underground/crew/chapel)
 "boD" = (
 /obj/effect/alien/weeds/node,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "boE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25545,7 +25538,7 @@
 "boR" = (
 /obj/effect/landmark/monkey_spawn,
 /obj/effect/alien/weeds/node,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "boS" = (
 /turf/closed/ice/end{
@@ -25561,7 +25554,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "boU" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -25607,7 +25600,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south)
 "bpa" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -25670,7 +25663,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bpg" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -25775,7 +25768,7 @@
 	name = "Hangar Shutters";
 	pixel_x = 24
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bpB" = (
 /obj/structure/table,
@@ -25857,7 +25850,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south)
 "bpK" = (
 /obj/structure/cable/yellow{
@@ -25874,7 +25867,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south)
 "bpM" = (
 /obj/structure/closet/coffin,
@@ -25887,7 +25880,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bpO" = (
 /obj/structure/closet/coffin,
@@ -25896,8 +25889,7 @@
 "bpP" = (
 /obj/structure/closet/coffin,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/morgue)
@@ -26041,13 +26033,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bqg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bqh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -26247,7 +26239,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bqG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -26336,7 +26328,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bqU" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -26388,7 +26380,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southwest)
 "brf" = (
 /obj/structure/closet/wardrobe/engineering_yellow,
@@ -26532,7 +26524,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bry" = (
 /obj/structure/cable/yellow{
@@ -26540,13 +26532,13 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "brz" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/surface/excavationbarracks)
 "brA" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -26557,7 +26549,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "brB" = (
 /obj/structure/bed/chair,
@@ -26574,7 +26566,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "brD" = (
 /obj/structure/flora/pottedplant,
@@ -26586,7 +26578,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "brF" = (
 /obj/structure/sign/electricshock,
@@ -26597,7 +26589,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
 "brH" = (
 /obj/structure/closet/emcloset,
@@ -26704,7 +26696,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bsb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -26725,7 +26717,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bse" = (
 /obj/machinery/door/poddoor/almayer{
@@ -26883,7 +26875,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bsB" = (
 /obj/machinery/disposal,
@@ -27167,7 +27159,7 @@
 /area/ice_colony/exterior/underground/caves)
 "btk" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "btl" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -27356,7 +27348,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/light,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "btP" = (
 /obj/structure/cable/yellow{
@@ -27845,7 +27837,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "buX" = (
 /obj/structure/mineral_door/resin,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/engineering)
 "buY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -27875,7 +27867,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bvc" = (
 /turf/open/floor/tile/dark/brown2{
@@ -27998,8 +27990,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /turf/open/floor/tile/red/whitered{
 	dir = 9
@@ -28141,7 +28132,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bvJ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -28263,8 +28254,7 @@
 "bvY" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/item/tool/stamp,
 /turf/open/floor/tile/red/whitered{
@@ -28547,7 +28537,7 @@
 	},
 /area/ice_colony/exterior/underground/caves/open)
 "bwK" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves)
 "bwL" = (
 /obj/structure/cable/yellow{
@@ -28685,8 +28675,7 @@
 "bwY" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /turf/open/floor/tile/red/whitered{
 	dir = 8
@@ -28929,8 +28918,7 @@
 "bxE" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/item/tool/stamp,
 /turf/open/floor/tile/red/whitered{
@@ -29050,7 +29038,7 @@
 "bxV" = (
 /obj/effect/alien/weeds/node,
 /obj/structure/mineral_door/resin,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/engineering)
 "bxW" = (
 /obj/structure/cable/yellow{
@@ -29123,7 +29111,7 @@
 	},
 /area/ice_colony/underground/command/center)
 "byc" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/engineering)
 "byd" = (
 /obj/structure/curtain/medical,
@@ -29756,7 +29744,7 @@
 /area/ice_colony/underground/crew/canteen)
 "bzF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bzG" = (
 /turf/open/floor/tile/dark/blue2{
@@ -29990,7 +29978,7 @@
 /obj/structure/tunnel{
 	id = "west_tcomms_tunnel"
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "bAp" = (
 /obj/structure/cable/yellow{
@@ -31197,7 +31185,7 @@
 	name = "West Hangar";
 	pixel_x = -24
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bDj" = (
 /obj/structure/closet/fireaxecabinet{
@@ -31698,7 +31686,7 @@
 /area/ice_colony/underground/storage/highsec)
 "bEx" = (
 /obj/effect/alien/weeds/node,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
 "bEy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -32118,7 +32106,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
 "bFH" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
 "bFI" = (
 /obj/structure/bed,
@@ -32268,7 +32256,7 @@
 	},
 /area/ice_colony/surface/research)
 "bFZ" = (
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/underground/caves/open)
 "bGa" = (
 /obj/structure/bed/chair{
@@ -33019,7 +33007,7 @@
 /area/ice_colony/underground/command/checkpoint)
 "bHR" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bHS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -33094,7 +33082,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bHY" = (
 /obj/structure/filingcabinet,
@@ -33325,7 +33313,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/surface/excavationbarracks)
 "bIB" = (
 /obj/machinery/alarm,
@@ -33693,7 +33681,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/engineering)
 "bJv" = (
 /turf/open/floor/tile/dark/purple2/corner{
@@ -33851,7 +33839,7 @@
 /area/ice_colony/underground/responsehangar)
 "bJK" = (
 /obj/structure/mineral_door/resin,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
 "bJL" = (
 /obj/structure/cable/yellow{
@@ -34934,7 +34922,7 @@
 "bMq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bMs" = (
 /turf/closed/wall/r_wall,
@@ -35068,7 +35056,7 @@
 /obj/structure/tunnel{
 	id = "dig_site_tunnel"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bMP" = (
 /obj/machinery/door/poddoor/two_tile_hor/secure{
@@ -35874,7 +35862,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bOT" = (
 /obj/structure/disposalpipe/segment,
@@ -36194,7 +36182,7 @@
 /area/ice_colony/underground/security/armory)
 "bPX" = (
 /obj/effect/alien/weeds/node,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bPY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -36235,7 +36223,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
 "bQe" = (
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "bQf" = (
 /turf/closed/wall/r_wall/unmeltable,
@@ -36296,11 +36284,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
 "bQp" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
 "bQq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -36321,10 +36309,10 @@
 /area/ice_colony/underground/reception)
 "bQt" = (
 /obj/item/tool/shovel,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "bQu" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
 "bQv" = (
 /turf/closed/wall/r_wall/unmeltable,
@@ -36365,7 +36353,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bQD" = (
 /obj/structure/cable/yellow{
@@ -36387,7 +36375,7 @@
 	name = "Mining Garage";
 	pixel_x = 24
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/surface/excavationbarracks)
 "bQF" = (
 /turf/open/floor/tile/dark2,
@@ -36652,7 +36640,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bRo" = (
 /obj/machinery/door/airlock/almayer/maint{
@@ -36763,7 +36751,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bRF" = (
 /obj/structure/cable{
@@ -36777,7 +36765,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bRG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -36866,7 +36854,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "bRS" = (
 /obj/structure/cable/yellow{
@@ -36894,11 +36882,11 @@
 /area/ice_colony/underground/security/interrogation)
 "bRV" = (
 /obj/effect/alien/weeds/node,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/engineering)
 "bRW" = (
 /obj/structure/mineral_door/resin,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/central)
 "bRX" = (
 /obj/structure/cable/yellow{
@@ -36934,11 +36922,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "bSb" = (
 /obj/effect/landmark/start/xeno_spawn,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/central)
 "bSc" = (
 /obj/structure/cargo_container/red{
@@ -36965,7 +36953,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bSg" = (
 /obj/structure/table/reinforced,
@@ -37004,7 +36992,7 @@
 	icon_state = "pipe-j2";
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bSi" = (
 /obj/structure/cable{
@@ -37013,7 +37001,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bSj" = (
 /obj/structure/cable/yellow{
@@ -37026,7 +37014,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south)
 "bSk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -37041,7 +37029,7 @@
 /area/ice_colony/underground/command/checkpoint)
 "bSl" = (
 /obj/effect/alien/weeds/node,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/central)
 "bSm" = (
 /obj/structure/cable/yellow{
@@ -37165,11 +37153,11 @@
 	},
 /area/ice_colony/exterior/underground/caves)
 "bSE" = (
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bSF" = (
 /obj/structure/fence,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/pass)
 "bSG" = (
 /turf/closed/ice_rock/corners,
@@ -37472,7 +37460,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/south)
 "bTp" = (
 /turf/open/floor/plating,
@@ -37494,7 +37482,7 @@
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bTt" = (
 /obj/effect/multitile_spawner/cm_armored/tank,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/underground/caves/open)
 "bTu" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -37570,7 +37558,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bTD" = (
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/underground/caves/open)
 "bTE" = (
 /obj/machinery/light/small{
@@ -37618,7 +37606,7 @@
 /obj/structure/tunnel{
 	id = "south_tcomms_tunnel"
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
 "bTN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -37747,7 +37735,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/storage)
 "bUj" = (
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/central)
 "bUk" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -37761,7 +37749,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bUl" = (
 /obj/structure/window/framed/colony,
@@ -37860,7 +37848,7 @@
 /area/ice_colony/underground/maintenance/south)
 "bUD" = (
 /obj/effect/alien/weeds/node,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
 "bUE" = (
 /obj/item/ammo_casing/bullet,
@@ -38090,18 +38078,8 @@
 /area/ice_colony/underground/hangar)
 "bVh" = (
 /obj/effect/alien/weeds/node,
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/south/excavation)
-"bVi" = (
-/obj/machinery/telecomms/allinone{
-	freq_listening = list(1214);
-	level = 1;
-	listening_level = 1;
-	name = "Alien Mainframe";
-	network = "ALIEN"
-	},
-/turf/open/floor,
-/area/ice_colony/surface/tcomms)
 "bVj" = (
 /obj/machinery/door/window/brigdoor/northleft,
 /obj/machinery/door/window/brigdoor/southright,
@@ -38231,7 +38209,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bVC" = (
 /turf/closed/wall/r_wall,
@@ -38273,7 +38251,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bVK" = (
 /obj/machinery/vending/wallmed1{
@@ -38303,7 +38281,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bVN" = (
 /obj/structure/mirror{
@@ -38320,7 +38298,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bVP" = (
 /obj/machinery/washing_machine,
@@ -38399,7 +38377,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bVX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -38410,7 +38388,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bVY" = (
 /obj/structure/cable{
@@ -38423,7 +38401,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south)
 "bVZ" = (
 /obj/structure/cable{
@@ -38436,7 +38414,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bWa" = (
 /obj/structure/cable/yellow{
@@ -38643,7 +38621,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bWF" = (
 /turf/closed/ice_rock/corners{
@@ -38847,7 +38825,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/xtracks,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bXg" = (
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -38945,7 +38923,7 @@
 	dir = 4
 	},
 /obj/machinery/light,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bXt" = (
 /obj/structure/window/reinforced{
@@ -39010,7 +38988,7 @@
 "bXB" = (
 /obj/structure/rack,
 /obj/item/tool/pickaxe/plasmacutter,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bXC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -39149,7 +39127,7 @@
 "bXT" = (
 /obj/structure/table,
 /obj/item/tool/pickaxe/plasmacutter,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bXU" = (
 /obj/structure/ore_box{
@@ -39177,7 +39155,7 @@
 /area/ice_colony/surface/excavationbarracks)
 "bXY" = (
 /obj/effect/landmark/corpsespawner/miner,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bXZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -39201,30 +39179,30 @@
 /area/ice_colony/surface/excavationbarracks)
 "bYb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYc" = (
 /obj/effect/decal/cleanable/blood/xtracks,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYd" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/down,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYe" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/effect/decal/cleanable/blood/gibs/xeno,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYf" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/blood/xeno,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYh" = (
 /obj/effect/landmark/corpsespawner/miner{
@@ -39237,13 +39215,13 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/effect/decal/cleanable/blood,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYi" = (
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood/xtracks,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYj" = (
 /obj/machinery/firealarm{
@@ -39257,13 +39235,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYm" = (
 /obj/structure/filingcabinet,
@@ -39279,13 +39257,13 @@
 	dir = 4
 	},
 /obj/machinery/light,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYp" = (
 /obj/structure/cable/yellow{
@@ -39297,7 +39275,7 @@
 /area/ice_colony/underground/security)
 "bYq" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYr" = (
 /obj/effect/turf_overlay/icerock{
@@ -39401,7 +39379,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYD" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -39415,7 +39393,7 @@
 	},
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/effect/decal/cleanable/blood/gibs/xeno,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -39426,13 +39404,13 @@
 	pixel_y = 27
 	},
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYH" = (
 /obj/structure/cable/yellow{
@@ -39621,7 +39599,7 @@
 /obj/structure/tunnel{
 	id = "east_cargo_tunnel"
 	},
-/turf/open/ice,
+/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "bZd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -40198,7 +40176,7 @@
 /area/ice_colony/exterior/underground/caves)
 "cax" = (
 /obj/structure/inflatable,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "cay" = (
 /obj/machinery/door/poddoor/four_tile_ver{
@@ -40221,11 +40199,11 @@
 /area/ice_colony/underground/engineering/substation)
 "caB" = (
 /obj/structure/inflatable,
-/turf/open/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "caC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/snow/layer2,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "caD" = (
 /obj/machinery/power/smes/buildable/empty/dist,
@@ -40530,7 +40508,7 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "cea" = (
 /obj/effect/decal/mecha_wreckage/ripley,
-/turf/open/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south)
 "ceD" = (
 /obj/structure/cable/yellow{
@@ -40588,118 +40566,13 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
-"ezJ" = (
-/obj/effect/landmark/survivor/spawn/random_items,
-/turf/open/floor/tile/dark/brown2{
-	dir = 8
-	},
-/area/ice_colony/surface/dorms)
-"eZk" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/landmark/survivor/spawn/xeno,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/dorms)
-"glq" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/landmark/survivor/spawn/random_items,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 1
-	},
-/area/ice_colony/surface/dorms)
-"hNQ" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/landmark/survivor/spawn/key_items,
-/turf/open/floor/wood,
-/area/ice_colony/surface/dorms)
-"lBh" = (
-/obj/effect/landmark/survivor/spawn/human,
-/turf/open/floor/wood,
-/area/ice_colony/surface/dorms)
-"lHS" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/survivor/spawn/random_items,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/dorms)
-"lQt" = (
-/obj/effect/landmark/survivor/spawn/xeno,
-/turf/open/floor/freezer,
-/area/ice_colony/surface/dorms/restroom_e)
-"mjd" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/landmark/survivor/spawn/key_items,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/dorms)
-"nbb" = (
-/obj/effect/landmark/survivor/spawn/random_items,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 1
-	},
-/area/ice_colony/surface/dorms)
-"ntU" = (
-/obj/effect/landmark/survivor/spawn/human,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/dorms)
-"oeJ" = (
-/obj/effect/landmark/survivor/spawn/key_items,
-/turf/open/floor/wood,
-/area/ice_colony/surface/dorms)
-"pay" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/landmark/survivor/spawn/random_items,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/dorms)
-"qsY" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/landmark/survivor/spawn/human,
-/turf/open/floor/wood,
-/area/ice_colony/surface/dorms)
-"tfx" = (
-/obj/effect/landmark/survivor/spawn/xeno,
-/turf/open/floor/freezer,
-/area/ice_colony/surface/dorms/restroom_w)
-"vfk" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/survivor/spawn/xeno,
-/turf/open/floor/freezer,
-/area/ice_colony/surface/dorms/restroom_w)
-"vIh" = (
-/obj/effect/landmark/survivor/spawn/xeno,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 8
-	},
-/area/ice_colony/surface/dorms)
-"wsa" = (
-/obj/effect/landmark/survivor/spawn/random_items,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 8
-	},
-/area/ice_colony/surface/dorms)
-"wAa" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/landmark/survivor/spawn/random_items,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 4
-	},
-/area/ice_colony/surface/dorms)
+"cLf" = (
+/turf/closed/wall/r_wall/unmeltable,
+/area/storage/testroom)
+"rcI" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/plating/icefloor,
+/area/storage/testroom)
 
 (1,1,1) = {"
 aaa
@@ -41256,9 +41129,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+cLf
+cLf
+cLf
 aaa
 aaa
 bSw
@@ -41513,9 +41386,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+cLf
+rcI
+cLf
 aaa
 aaa
 bSw
@@ -41770,9 +41643,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+cLf
+cLf
+cLf
 aaa
 aaa
 bSw
@@ -77653,7 +77526,7 @@ aaU
 bSw
 aaa
 bSw
-bVi
+bSw
 bSw
 aaa
 aaa

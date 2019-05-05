@@ -17,6 +17,14 @@
 								// and if yes, are we doing the first or second move.
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
 
+	var/initial_language_holder = /datum/language_holder
+	var/datum/language_holder/language_holder
+	var/verb_say = "says"
+	var/verb_ask = "asks"
+	var/verb_exclaim = "exclaims"
+	var/verb_whisper = "whispers"
+	var/verb_yell = "yells"
+
 	var/list/mob/dead/observer/followers = list()
 
 //===========================================================================
@@ -31,6 +39,8 @@
 
 	if(loc)
 		loc.on_stored_atom_del(src) //things that container need to do when a movable atom inside it is deleted
+
+	QDEL_NULL(language_holder)
 
 	. = ..()
 	loc = null //so we move into null space. Must be after ..() b/c atom's Dispose handles deleting our lighting stuff
@@ -204,10 +214,6 @@
 	src.throwing = 1
 	src.thrower = thrower
 	src.throw_source = get_turf(src)	//store the origin turf
-
-	if(usr)
-		if(HULK in usr.mutations)
-			src.throwing = 2 // really strong throw!
 
 	var/dist_x = abs(target.x - src.x)
 	var/dist_y = abs(target.y - src.y)
@@ -432,9 +438,99 @@
 /atom/movable/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	. -= "Jump to"
 	.["Follow"] = "?_src_=holder;[HrefToken()];observefollow=[REF(src)]"
 	.["Get"] = "?_src_=vars;[HrefToken()];getatom=[REF(src)]"
 	.["Send"] = "?_src_=vars;[HrefToken()];sendatom=[REF(src)]"
 	.["Delete All Instances"] = "?_src_=vars;[HrefToken()];delall=[REF(src)]"
 	.["Update Icon"] = "?_src_=vars;[HrefToken()];updateicon=[REF(src)]"
+
+
+/atom/movable/proc/get_language_holder(shadow = TRUE)
+	if(language_holder)
+		return language_holder
+	else
+		language_holder = new initial_language_holder(src)
+		return language_holder
+
+
+/atom/movable/proc/grant_language(datum/language/dt, body = FALSE)
+	var/datum/language_holder/H = get_language_holder(!body)
+	H.grant_language(dt, body)
+
+
+/atom/movable/proc/grant_all_languages(omnitongue = FALSE)
+	var/datum/language_holder/H = get_language_holder()
+	H.grant_all_languages(omnitongue)
+
+
+/atom/movable/proc/get_random_understood_language()
+	var/datum/language_holder/H = get_language_holder()
+	. = H.get_random_understood_language()
+
+
+/atom/movable/proc/remove_language(datum/language/dt, body = FALSE)
+	var/datum/language_holder/H = get_language_holder(!body)
+	H.remove_language(dt, body)
+
+
+/atom/movable/proc/remove_all_languages()
+	var/datum/language_holder/H = get_language_holder()
+	H.remove_all_languages()
+
+
+/atom/movable/proc/has_language(datum/language/dt)
+	var/datum/language_holder/H = get_language_holder()
+	. = H.has_language(dt)
+
+
+/atom/movable/proc/copy_known_languages_from(thing, replace = FALSE)
+	var/datum/language_holder/H = get_language_holder()
+	. = H.copy_known_languages_from(thing, replace)
+
+
+// Whether an AM can speak in a language or not, independent of whether
+// it KNOWS the language
+/atom/movable/proc/could_speak_in_language(datum/language/dt)
+	. = TRUE
+
+
+/atom/movable/proc/can_speak_in_language(datum/language/dt)
+	var/datum/language_holder/H = get_language_holder()
+
+	if(!H.has_language(dt))
+		return FALSE
+	else if(H.omnitongue)
+		return TRUE
+	else if(could_speak_in_language(dt) && (!H.only_speaks_language || H.only_speaks_language == dt))
+		return TRUE
+	else
+		return FALSE
+
+
+/atom/movable/proc/get_default_language()
+	// if no language is specified, and we want to say() something, which
+	// language do we use?
+	var/datum/language_holder/H = get_language_holder()
+
+	if(H.selected_default_language)
+		if(can_speak_in_language(H.selected_default_language))
+			return H.selected_default_language
+		else
+			H.selected_default_language = null
+
+
+	var/datum/language/chosen_langtype
+	var/highest_priority
+
+	for(var/lt in H.languages)
+		var/datum/language/langtype = lt
+		if(!can_speak_in_language(langtype))
+			continue
+
+		var/pri = initial(langtype.default_priority)
+		if(!highest_priority || (pri > highest_priority))
+			chosen_langtype = langtype
+			highest_priority = pri
+
+	H.selected_default_language = .
+	. = chosen_langtype

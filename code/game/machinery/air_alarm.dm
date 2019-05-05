@@ -229,7 +229,7 @@
 		elect_master()
 		if (alarm_area.master_air_alarm != src)
 			return
-	if(!signal || signal.encryption)
+	if(!signal)
 		return
 	var/id_tag = signal.data["tag"]
 	if (!id_tag)

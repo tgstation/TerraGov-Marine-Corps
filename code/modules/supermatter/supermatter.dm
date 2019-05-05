@@ -153,7 +153,6 @@
 				lastwarning = world.timeofday
 
 			if(!isspaceturf(L) && alert_msg)
-				radio.autosay(alert_msg, "Supermatter Monitor")
 				log_admin("[src] [alert_msg].")
 				message_admins("[src] [alert_msg].")
 

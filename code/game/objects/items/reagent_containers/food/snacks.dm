@@ -13,19 +13,19 @@
 	center_of_mass = list("x"=15, "y"=15)
 	var/list/tastes // for example list("crisps" = 2, "salt" = 1)
 
-	//Placeholder for effect that trigger on eating that aren't tied to reagents.
-
-/obj/item/reagent_container/food/snacks/add_initial_reagents()
-	if(!tastes || !tastes.len)
+/obj/item/reagent_container/food/snacks/create_reagents(max_vol, new_flags, list/init_reagents, data)
+	if(!length(tastes) || !length(init_reagents))
 		return ..()
-	else if(list_reagents)
-		for(var/rid in list_reagents)
-			var/amount = list_reagents[rid]
-			if(rid == "nutriment")
-				reagents.add_reagent(rid, amount, tastes.Copy())
-			else
-				reagents.add_reagent(rid, amount)
-
+	if(reagents)
+		qdel(reagents)
+	reagents = new (max_vol, new_flags)
+	reagents.my_atom = src
+	for(var/rid in init_reagents)
+		var/amount = list_reagents[rid]
+		if(rid == "nutriment")
+			reagents.add_reagent(rid, amount, tastes.Copy())
+		else
+			reagents.add_reagent(rid, amount, data)
 
 /obj/item/reagent_container/food/snacks/proc/On_Consume(var/mob/M)
 	if(!usr)
@@ -61,7 +61,8 @@
 		return FALSE
 
 	if(iscarbon(M))
-		var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
+		var/mob/living/carbon/C = M
+		var/fullness = C.nutrition + (C.reagents.get_reagent_amount("nutriment") * 25)
 		if(M == user)								//If you're eating it yourself
 			if(istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
@@ -101,7 +102,7 @@
 			var/rgt_list_text = get_reagent_list_text()
 
 			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
-			msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [rgt_list_text] (INTENT: [uppertext(user.a_intent)])")
+			msg_admin_attack("[key_name(user)] fed [key_name(C)] with [src.name] Reagents: [rgt_list_text] (INTENT: [uppertext(C.a_intent)])")
 
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message("<span class='warning'>[user] feeds [M] [src].</span>", 1)

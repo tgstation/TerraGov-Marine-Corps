@@ -12,13 +12,12 @@
 	density = 1
 	anchored = 1
 	animate_movement=1
-	health = 150 //yeah, it's tougher than ed209 because it is a big metal box with wheels --rastaf0
-	maxhealth = 150
+	max_integrity = 150
 	fire_dam_coeff = 0.7
 	brute_dam_coeff = 0.5
 	var/atom/movable/load = null		// the loaded crate (usually)
 	var/beacon_freq = 1400
-	var/control_freq = AI_FREQ
+	var/control_freq = FREQ_AI
 
 	suffix = ""
 
@@ -143,8 +142,8 @@
 
 		updateDialog()
 	else if (iswrench(I))
-		if (src.health < maxhealth)
-			src.health = min(maxhealth, src.health+25)
+		if (src.obj_integrity < max_integrity)
+			src.obj_integrity = min(max_integrity, src.obj_integrity+25)
 			user.visible_message(
 				"<span class='warning'> [user] repairs [src]!</span>",
 				"<span class='notice'> You repair [src]!</span>"

@@ -10,8 +10,7 @@
 	icon_state = "floorbot0"
 	density = 0
 	anchored = 0
-	health = 25
-	maxhealth = 25
+	max_integrity = 25
 	//weight = 1.0E7
 	var/amount = 10
 	var/repairing = 0

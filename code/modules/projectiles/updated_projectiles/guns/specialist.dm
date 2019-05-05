@@ -269,7 +269,7 @@
 	icon_state = "m4ra"
 	item_state = "m4ra"
 	max_shells = 15 //codex
-	caliber = "10x24mm Caseless" //codex
+	caliber = "10x24mm caseless" //codex
 	origin_tech = "combat=5;materials=4"
 	fire_sound = list('sound/weapons/gun_m4ra.ogg')
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
@@ -356,7 +356,7 @@
 	to_chat(user, "[current_mag?.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]")
 	to_chat(user, "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"].")
 
-/obj/item/weapon/gun/smartgun/unique_action(mob/user)
+/obj/item/weapon/gun/smartgun/unique_action(mob/living/carbon/user)
 	var/obj/item/smartgun_powerpack/power_pack = user.back
 	if(istype(power_pack))
 		power_pack.attack_self(user)
@@ -375,7 +375,7 @@
 //	if(active_attachable) active_attachable = null
 	return ready_in_chamber()
 
-/obj/item/weapon/gun/smartgun/reload_into_chamber(mob/user)
+/obj/item/weapon/gun/smartgun/reload_into_chamber(mob/living/carbon/user)
 	var/obj/item/smartgun_powerpack/power_pack = user.back
 	if(!istype(power_pack))
 		return current_mag.current_rounds
@@ -724,15 +724,16 @@
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
 	reload_sound = 'sound/weapons/gun_mortar_reload.ogg'
-	var/datum/effect_system/smoke_spread/smoke
 	unload_sound = 'sound/weapons/gun_mortar_reload.ogg'
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	var/datum/effect_system/smoke_spread/smoke
 
-/obj/item/weapon/gun/launcher/rocket/Initialize()
+/obj/item/weapon/gun/launcher/rocket/Initialize(loc, spawn_empty)
 	. = ..()
-	smoke = new()
-	smoke.attach(src)
+	smoke = new(src, FALSE)
 
+/obj/item/weapon/gun/launcher/rocket/Destroy()
+	QDEL_NULL(smoke)
 
 /obj/item/weapon/gun/launcher/rocket/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(!able_to_fire(user))
@@ -823,8 +824,8 @@
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
 /obj/item/weapon/gun/launcher/rocket/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
 
-	var/backblast_loc = get_turf(get_step(user.loc, turn(user.dir, 180)))
-	smoke.set_up(1, 0, backblast_loc, turn(user.dir, 180))
+	var/turf/backblast_loc = get_turf(get_step(user, turn(user.dir, 180)))
+	smoke.set_up(0, backblast_loc)
 	smoke.start()
 	for(var/mob/living/carbon/C in backblast_loc)
 		if(!C.lying) //Have to be standing up to get the fun stuff

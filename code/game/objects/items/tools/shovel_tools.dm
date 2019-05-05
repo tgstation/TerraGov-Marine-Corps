@@ -78,7 +78,7 @@
 			var/turfdirt = T.get_dirt_type()
 			if(turfdirt)
 				if(turfdirt == DIRT_TYPE_SNOW)
-					var/turf/open/snow/ST = T
+					var/turf/open/floor/plating/ground/snow/ST = T
 					if(!ST.slayer)
 						return
 				to_chat(user, "<span class='notice'>You start digging.</span>")
@@ -87,7 +87,7 @@
 					return
 				var/transf_amt = dirt_amt_per_dig
 				if(turfdirt == DIRT_TYPE_SNOW)
-					var/turf/open/snow/ST = T
+					var/turf/open/floor/plating/ground/snow/ST = T
 					if(!ST.slayer)
 						return
 					transf_amt = min(ST.slayer, dirt_amt_per_dig)

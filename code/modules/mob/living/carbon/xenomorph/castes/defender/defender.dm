@@ -34,10 +34,17 @@
 		return TRUE
 	return FALSE
 
+/mob/living/carbon/Xenomorph/Defender/handle_special_wound_states()
+	. = ..()
+	if(fortify)
+		return image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="defender_wounded_fortify", "layer"=-X_WOUND_LAYER)
+	if(crest_defense)
+		return image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="defender_wounded_crest", "layer"=-X_WOUND_LAYER)
+
 // ***************************************
 // *********** Life overrides
 // ***************************************
 /mob/living/carbon/Xenomorph/Defender/update_stat()
 	. = ..()
-	if(stat != CONSCIOUS && fortify == TRUE)
-		fortify_off() //Fortify prevents dragging due to the anchor component.
+	if(stat && fortify)
+		set_fortify(FALSE) //Fortify prevents dragging due to the anchor component.

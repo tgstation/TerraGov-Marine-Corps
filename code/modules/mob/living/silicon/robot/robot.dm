@@ -79,8 +79,6 @@ var/list/robot_verbs_default = list(
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-	add_language("Robot Talk", 1)
-
 	ident = rand(1, 999)
 	updatename("Default")
 	update_icons()
@@ -223,9 +221,6 @@ var/list/robot_verbs_default = list(
 			module_sprites["Mop Gear Rex"] = "mopgearrex"
 			module_sprites["Drone"] = "drone-janitor"
 
-	//languages
-	module.add_languages(src)
-
 	hands.icon_state = lowertext(modtype)
 	updatename()
 
@@ -233,7 +228,6 @@ var/list/robot_verbs_default = list(
 		status_flags &= ~CANPUSH
 
 	choose_icon(6,module_sprites)
-	radio.config(module.channels)
 
 /mob/living/silicon/robot/proc/updatename(var/prefix as text)
 	if(prefix)

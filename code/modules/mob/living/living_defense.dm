@@ -122,6 +122,8 @@
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
+	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
+		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
 		to_chat(src, "<span class='danger'>You are on fire! Use Resist to put yourself out!</span>")
@@ -183,3 +185,16 @@
 	IgniteMob()
 
 //Mobs on Fire end
+// When they are affected by a queens screech
+/mob/living/proc/screech_act(mob/living/carbon/Xenomorph/Queen/Q)
+	shake_camera(src, 3 SECONDS, 1)
+
+/mob/living/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+			smokecloak_off()
+		return
+
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+		smokecloak_on()

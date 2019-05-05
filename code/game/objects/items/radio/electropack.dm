@@ -12,7 +12,7 @@
 
 	var/code = 2
 
-/obj/item/radio/electropack/attack_hand(mob/user as mob)
+/obj/item/radio/electropack/attack_hand(mob/living/carbon/user)
 	if(src == user.back)
 		to_chat(user, "<span class='notice'>You need help taking this off!</span>")
 		return
@@ -58,7 +58,10 @@
 	return
 
 /obj/item/radio/electropack/receive_signal(datum/signal/signal)
-	if(!signal || signal.encryption != code)
+	if(!signal)
+		return
+
+	if(signal.data["code"] != code)
 		return
 
 	if(ismob(loc) && on)

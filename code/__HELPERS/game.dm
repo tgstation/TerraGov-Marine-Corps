@@ -1,5 +1,4 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-#define DEATHTIME_XENO_REQUIREMENT 3000
 
 /proc/dopage(src,target)
 	var/href_list
@@ -22,6 +21,13 @@
 		return null
 	return format_text ? format_text(A.name) : A.name
 
+/proc/get_adjacent_open_turfs(atom/center)
+	. = list()
+	for(var/i in GLOB.cardinals)
+		var/turf/open/T = get_step(center, i)
+		if(!istype(T))
+			continue
+		. += T
 
 // Like view but bypasses luminosity check
 
@@ -34,6 +40,15 @@
 	source.luminosity = lum
 
 	return heard
+
+
+//supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
+#define RANGE_TURFS(RADIUS, CENTER) \
+  block( \
+    locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
+    locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
+  )
+ 
 
 /proc/trange(rad = 0, turf/centre = null) //alternative to range (ONLY processes turfs and thus less intensive)
 	if(!centre)
@@ -242,11 +257,11 @@ proc/isInSight(var/atom/A, var/atom/B)
 
 		//Recently dead observers cannot be drafted.
 		var/deathtime = world.time - O.timeofdeath
-		if(deathtime < DEATHTIME_XENO_REQUIREMENT)
+		if(deathtime < GLOB.respawntime)
 			continue
 
 		//Aghosted admins don't get picked
-		if(O.mind?.current && copytext(O.mind.current.key, 1, 2) == "@")
+		if(O.mind?.current && isaghost(O.mind.current))
 			continue
 
 		if(!picked)
@@ -348,7 +363,29 @@ datum/projectile_data
 	var/b = mixOneColor(weights, blues)
 	return rgb(r,g,b)
 
+/proc/mixOneColor(list/weight, list/color)
+	if (!weight || !color || length(weight) != length(color))
+		return FALSE
 
+	var/contents = length(weight)
+	var/i
+
+	//normalize weights
+	var/listsum = 0
+	for(i in 1 to contents)
+		listsum += weight[i]
+	for(i in 1 to contents)
+		weight[i] /= listsum
+
+	//mix them
+	var/mixedcolor = 0
+	for(i in 1 to contents)
+		mixedcolor += weight[i]*color[i]
+	mixedcolor = round(mixedcolor)
+
+	mixedcolor= CLAMP(mixedcolor, 0 ,255)
+
+	return mixedcolor
 
 /proc/convert_k2c(var/temp)
 	return ((temp - T0C))
@@ -376,11 +413,10 @@ datum/projectile_data
 	flick_overlay(I, viewing, duration)
 
 
-/proc/window_flash(client/C)
+/proc/window_flash(client/C, ignorepref = FALSE)
 	if(ismob(C))
 		var/mob/M = C
-		if(M.client)
-			C = M.client
-	if(!C)
+		C = M.client
+	if(!C?.prefs.windowflashing && !ignorepref)
 		return
 	winset(C, "mainwindow", "flash=5")

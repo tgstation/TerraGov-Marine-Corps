@@ -203,7 +203,7 @@
 	var/orient_right = FALSE // Flips the sprite.
 	var/time_till_despawn = 10 MINUTES
 	var/time_entered
-	var/obj/item/radio/intercom/announce //Intercom for cryo announcements
+	var/obj/item/radio/radio
 
 /obj/machinery/cryopod/right
 	orient_right = TRUE
@@ -211,8 +211,12 @@
 
 /obj/machinery/cryopod/Initialize()
 	. = ..()
-	announce = new(src)
+	radio = new(src)
 	update_icon()
+
+/obj/machinery/cryopod/Destroy()
+	QDEL_NULL(radio)
+	return ..()
 
 /obj/machinery/cryopod/update_icon()
 	var/occupied = occupant ? TRUE : FALSE
@@ -246,8 +250,6 @@
 		if((J.title in JOBS_REGULAR_ALL) && isdistress(SSticker?.mode))
 			var/datum/game_mode/distress/D = SSticker.mode
 			D.latejoin_tally-- //Cryoing someone removes a player from the round, blocking further larva spawns until accounted for
-		if(J.flag & SQUAD_SPECIALIST && specset && !available_specialist_sets.Find(specset))
-			available_specialist_sets += specset //we make the set this specialist took if any available again
 		if(J.title in JOBS_POLICE)
 			dept_console = CRYO_SEC
 		else if(J.title in JOBS_MEDICAL)
@@ -281,14 +283,14 @@
 	GLOB.cryoed_mob_list += data
 	GLOB.cryoed_mob_list[data] = list(real_name, job ? job : "Unassigned", gameTimestamp())
 
-	var/obj/item/radio/intercom/radio
+	var/obj/item/radio/radio
 	if(pod)
-		radio = pod.announce
+		radio = pod.radio
 		pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")
 		pod.occupant = null
 	else
 		radio = new(src)
-	radio.autosay("[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", "Hypersleep Storage System")
+	radio.talk_into(pod, "[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", FREQ_COMMON)
 
 	qdel(src)
 
@@ -305,6 +307,8 @@
 				dept_console = CRYO_DELTA
 		if(job)
 			var/datum/job/J = SSjob.name_occupations[job]
+			if(J.flag & SQUAD_SPECIALIST && specset && !available_specialist_sets.Find(specset))
+				available_specialist_sets += specset //we make the set this specialist took if any available again
 			if(J.flag & SQUAD_ENGINEER)
 				assigned_squad.num_engineers--
 			if(J.flag & SQUAD_CORPSMAN)
@@ -480,7 +484,7 @@
 		return
 
 	//Eject any items that aren't meant to be in the pod.
-	var/list/items = contents - announce
+	var/list/items = contents - radio
 
 	for(var/I in items)
 		var/atom/movable/A = I

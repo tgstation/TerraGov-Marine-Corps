@@ -148,10 +148,6 @@ Implant Specifics:<BR>"}
 <b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
 		return dat
 
-	hear_talk(mob/M as mob, msg)
-		hear(msg)
-		return
-
 	hear(var/msg)
 		var/list/replacechars = list("'" = "","\"" = "",">" = "","<" = "","(" = "",")" = "")
 		msg = sanitize_simple(msg, replacechars)
@@ -401,26 +397,12 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			activate("death")
 
 	activate(var/cause)
-		var/mob/M = imp_in
-		var/area/t = get_area(M)
 		switch (cause)
 			if("death")
-				var/obj/item/radio/headset/a = new /obj/item/radio/headset(null)
-				if(istype(t, /area/syndicate_station) || istype(t, /area/syndicate_mothership) || istype(t, /area/shuttle/syndicate_elite) )
-					//give the syndies a bit of stealth
-					a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm")
-				else
-					a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm")
-				qdel(a)
 				STOP_PROCESSING(SSobj, src)
 			if ("emp")
-				var/obj/item/radio/headset/a = new /obj/item/radio/headset(null)
-				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm")
-				qdel(a)
+				return
 			else
-				var/obj/item/radio/headset/a = new /obj/item/radio/headset(null)
-				a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm")
-				qdel(a)
 				STOP_PROCESSING(SSobj, src)
 
 	emp_act(severity)			//for some reason alarms stop going off in case they are emp'd, even without this

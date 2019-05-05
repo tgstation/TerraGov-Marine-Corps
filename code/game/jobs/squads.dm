@@ -46,7 +46,7 @@
 	color = "#e61919" // rgb(230,25,25)
 	access = list(ACCESS_MARINE_ALPHA)
 	usable = TRUE
-	radio_freq = ALPHA_FREQ
+	radio_freq = FREQ_ALPHA
 
 
 /datum/squad/bravo
@@ -56,7 +56,7 @@
 	color = "#ffc32d" // rgb(255,195,45)
 	access = list(ACCESS_MARINE_BRAVO)
 	usable = 1
-	radio_freq = BRAVO_FREQ
+	radio_freq = FREQ_BRAVO
 
 
 /datum/squad/charlie
@@ -66,7 +66,7 @@
 	color = "#c864c8" // rgb(200,100,200)
 	access = list(ACCESS_MARINE_CHARLIE)
 	usable = TRUE
-	radio_freq = CHARLIE_FREQ
+	radio_freq = FREQ_CHARLIE
 
 /datum/squad/delta
 	name = "Delta"
@@ -75,7 +75,7 @@
 	color = "#4148c8" // rgb(65,72,200)
 	access = list(ACCESS_MARINE_DELTA)
 	usable = TRUE
-	radio_freq = DELTA_FREQ
+	radio_freq = FREQ_DELTA
 
 GLOBAL_LIST_EMPTY(armormarkings)
 GLOBAL_LIST_EMPTY(armormarkings_sl)
@@ -240,15 +240,12 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(!old_lead.mind || old_lead.mind.assigned_role != "Squad Leader" || !leader_killed)
 		if(istype(old_lead.wear_ear, /obj/item/radio/headset/almayer/marine))
 			var/obj/item/radio/headset/almayer/marine/R = old_lead.wear_ear
-			if(istype(R.keyslot1, /obj/item/encryptionkey/squadlead))
-				qdel(R.keyslot1)
-				R.keyslot1 = null
+			if(istype(R.keyslot, /obj/item/encryptionkey/squadlead))
+				qdel(R.keyslot)
+				R.keyslot = null
 			else if(istype(R.keyslot2, /obj/item/encryptionkey/squadlead))
 				qdel(R.keyslot2)
 				R.keyslot2 = null
-			else if(istype(R.keyslot3, /obj/item/encryptionkey/squadlead))
-				qdel(R.keyslot3)
-				R.keyslot3 = null
 			R.recalculateChannels()
 		if(istype(old_lead.wear_id, /obj/item/card/id))
 			var/obj/item/card/id/ID = old_lead.wear_id
@@ -313,7 +310,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 			return FALSE
 
 
-/datum/squad/proc/assign(mob/M, rank)
+/datum/squad/proc/assign(mob/M, rank, latejoin = FALSE)
 	if(!rank || !M?.mind)
 		return FALSE
 	switch(rank)
@@ -322,23 +319,28 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 			return TRUE
 		if("Squad Engineer")
 			M.mind.assigned_squad = src
-			num_engineers++
+			if(!latejoin)
+				num_engineers++
 			return TRUE
 		if("Squad Corpsman")
 			M.mind.assigned_squad = src
-			num_medics++
+			if(!latejoin)
+				num_medics++
 			return TRUE
 		if("Squad Smartgunner")
 			M.mind.assigned_squad = src
-			num_smartgun++
+			if(!latejoin)
+				num_smartgun++
 			return TRUE
 		if("Squad Specialist")
 			M.mind.assigned_squad = src
-			num_specialists++
+			if(!latejoin)
+				num_specialists++
 			return TRUE
 		if("Squad Leader")
 			M.mind.assigned_squad = src
-			num_leaders++
+			if(!latejoin)
+				num_leaders++
 			return TRUE
 		else
 			return FALSE
@@ -361,7 +363,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				if(P && P == S && S.assign(M, rank))
+				if(P && P == S && S.assign(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
@@ -369,14 +371,14 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				else if(S.assign(M, rank))
+				else if(S.assign(M, rank, latejoin))
 					return TRUE
 		if("Squad Corpsman")
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				if(P && P == S && S.assign(M, rank))
+				if(P && P == S && S.assign(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
@@ -384,29 +386,29 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				else if(S.assign(M, rank))
+				else if(S.assign(M, rank, latejoin))
 					return TRUE
 		if("Squad Smartgunner")
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				if(P && P == S && S.assign(M, rank))
+				if(P && P == S && S.assign(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
-				if(!S.check_entry(rank))
+				if(!S.check_entry(rank, latejoin))
 					continue
-				else if(S.assign(M, rank))
+				else if(S.assign(M, rank, latejoin))
 					return TRUE
 		if("Squad Specialist")
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				if(P && P == S && S.assign(M, rank))
+				if(P && P == S && S.assign(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
@@ -414,14 +416,14 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				else if(S.assign(M, rank))
+				else if(S.assign(M, rank, latejoin))
 					return TRUE
 		if("Squad Leader")
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				if(P && P == S && S.assign(M, rank))
+				if(P && P == S && S.assign(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
@@ -429,7 +431,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				else if(S.assign(M, rank))
+				else if(S.assign(M, rank, latejoin))
 					return TRUE
 	return FALSE
 

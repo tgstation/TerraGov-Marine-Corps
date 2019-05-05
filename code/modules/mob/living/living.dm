@@ -1,13 +1,14 @@
-/mob/living/Life()
-	. = ..()
-
+/mob/living/proc/Life()
 	if(stat != DEAD)
 
 		handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
 
 		handle_regular_hud_updates()
 
+		handle_organs()
+
 		updatehealth()
+
 
 //this updates all special effects: knockdown, druggy, stuttering, etc..
 /mob/living/proc/handle_status_effects()
@@ -24,7 +25,11 @@
 	handle_stuttering()
 	handle_slurring()
 	handle_silent()
-	handle_disabilities()
+
+/mob/living/proc/handle_organs()
+	reagent_move_delay_modifier = 0
+	reagent_shock_modifier = 0
+	reagent_pain_modifier = 0
 
 /mob/living/proc/handle_stunned()
 	if(stunned)
@@ -60,22 +65,6 @@
 		slurring = max(slurring-1, 0)
 	return slurring
 
-/mob/living/proc/handle_disabilities()
-	handle_impaired_vision()
-	handle_impaired_hearing()
-
-/mob/living/proc/handle_impaired_vision()
-	//Eyes
-	if(eye_blind)
-		adjust_blindness(-1)
-	if(eye_blurry)			//blurry eyes heal slowly
-		adjust_blurriness(-1)
-
-
-/mob/living/proc/handle_impaired_hearing()
-	//Ears
-	if(ear_damage < 100)
-		adjustEarDamage(-0.05, -1)	// having ear damage impairs the recovery of ear_deaf
 
 /mob/living/proc/handle_regular_hud_updates()
 	if(!client)
@@ -85,6 +74,12 @@
 	if(knocked_out)
 		AdjustKnockedout(-1)
 	return knocked_out
+
+/mob/living/proc/add_slowdown(amount)
+	return
+
+/mob/living/proc/adjust_stagger(amount)
+	return
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
@@ -99,6 +94,7 @@
 	. = ..()
 	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
 	GLOB.mob_living_list += src
+	START_PROCESSING(SSmobs, src)
 
 /mob/living/Destroy()
 	if(attack_icon)
@@ -106,6 +102,7 @@
 		attack_icon = null
 	GLOB.mob_living_list -= src
 	GLOB.offered_mob_list -= src
+	STOP_PROCESSING(SSmobs, src)
 	return ..()
 
 
@@ -239,6 +236,10 @@
 	return
 
 
+/mob/living/proc/InCritical()
+	return (health <= get_crit_threshold() && stat == UNCONSCIOUS)
+
+
 /mob/living/Move(NewLoc, direct)
 	if (buckled && buckled.loc != NewLoc) //not updating position
 		if (!buckled.anchored)
@@ -282,18 +283,26 @@
 
 /mob/living/resist_grab(moving_resist)
 	if(pulledby.grab_level)
-		if(prob(30/pulledby.grab_level))
+		grab_resist_level += 1
+		if(grab_resist_level > pulledby.grab_level)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
 			pulledby.stop_pulling()
-			return 1
+			grab_resist_level = 0 //zero it out.
+			return TRUE
 		if(moving_resist && client) //we resisted by trying to move
 			visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
 			client.next_movement = world.time + (10*pulledby.grab_level) + client.move_delay
 	else
+		grab_resist_level = 0 //zero it out.
 		pulledby.stop_pulling()
-		return 1
+		return TRUE
 
+/mob/living/stop_pulling()
+	if(isliving(pulling))
+		var/mob/living/L = pulling
+		L.grab_resist_level = 0 //zero it out
+	return ..()
 
 /mob/living/movement_delay()
 
@@ -491,7 +500,7 @@
 /mob/proc/flash_eyes()
 	return
 
-/mob/living/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/living/carbon/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
 	if( bypass_checks || (get_eye_protection() < intensity && !(disabilities & BLIND)) )
 		overlay_fullscreen_timer(40, 20, "flash", type)
 		return TRUE
@@ -611,22 +620,6 @@ below 100 is not dizzy
 		A.update_button_icon()
 
 
-/mob/living/proc/equip_preference_gear(client/C)
-	if(!C?.prefs || !istype(back, /obj/item/storage/backpack))
-		return
-
-	var/datum/preferences/P = C.prefs
-	var/list/gear = P.gear
-
-	if(!length(gear))
-		return
-
-	for(var/i in GLOB.gear_datums)
-		var/datum/gear/G = GLOB.gear_datums[i]
-		if(!G || !gear.Find(i))
-			continue
-		equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
-
 /mob/living/proc/vomit()
 	return
 
@@ -635,16 +628,75 @@ below 100 is not dizzy
 	if(!M.mind)
 		to_chat(M, "<span class='warning'>You don't have a mind.</span>")
 		return FALSE
-	if(!bypass && (key || ckey))
-		to_chat(M, "<span class='warning'>That mob has already been taken.</span>")
-		return FALSE
-	if(!bypass && job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
-		to_chat(M, "<span class='warning'>You are jobbanned from that job.</span>")
-		return FALSE
 
-	log_admin("[key_name(M)] has taken [key_name_admin(src)].")
-	message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")
+	if(!bypass)
+		if(client)
+			to_chat(M, "<span class='warning'>That mob has already been taken.</span>")
+			GLOB.offered_mob_list -= src
+			return FALSE
+
+		if(job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
+			to_chat(M, "<span class='warning'>You are jobbanned from that role.</span>")
+			return FALSE
+
+		if(stat == DEAD)
+			to_chat(M, "<span class='warning'>That mob has died.</span>")
+			GLOB.offered_mob_list -= src
+			return FALSE
+
+		log_admin("[key_name(M)] has taken [key_name_admin(src)].")
+		message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")
 
 	M.mind.transfer_to(src, TRUE)
-	M.fully_replace_character_name(M.real_name, real_name)
+	fully_replace_character_name(M.real_name, real_name)
 	GLOB.offered_mob_list -= src
+	return TRUE
+
+
+/mob/living/update_canmove()
+
+	var/laid_down = (stat || knocked_down || knocked_out || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_level >= GRAB_NECK))
+
+	if(laid_down)
+		if(!lying)
+			lying = pick(90, 270)
+	else
+		lying = 0
+	if(buckled)
+		if(buckled.buckle_lying)
+			if(!lying)
+				lying = 90
+		else
+			lying = 0
+
+	canmove =  !(stunned || frozen || laid_down)
+
+	if(lying)
+		density = FALSE
+		drop_l_hand()
+		drop_r_hand()
+	else
+		density = TRUE
+
+	if(lying_prev != lying)
+		update_transform()
+		lying_prev = lying
+
+	if(lying)
+		if(layer == initial(layer)) //to avoid things like hiding larvas.
+			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
+	else
+		if(layer == LYING_MOB_LAYER)
+			layer = initial(layer)
+
+	return canmove
+
+/mob/living/proc/update_leader_tracking(mob/living/L)
+	return
+
+/mob/living/proc/clear_leader_tracking()
+	return
+
+// called when the client disconnects and is away.
+/mob/living/proc/begin_away()
+	away_time = set_away_time(world.time)

@@ -221,8 +221,8 @@
 	T.ignite(heat, burn, f_color)
 
 	// Melt a single layer of snow
-	if(istype(T, /turf/open/snow))
-		var/turf/open/snow/S = T
+	if(istype(T, /turf/open/floor/plating/ground/snow))
+		var/turf/open/floor/plating/ground/snow/S = T
 
 		if (S.slayer > 0)
 			S.slayer -= 1
@@ -602,7 +602,9 @@
 	if(stat)
 		return
 	plasma_stored = xeno_caste.plasma_max
-	usedcharge = FALSE //Reset charge cooldown
+	var/datum/action/xeno_action/charge = actions_by_path[/datum/action/xeno_action/activable/charge]
+	if(charge)
+		charge.clear_cooldown() //Reset charge cooldown
 	to_chat(src, "<span class='xenodanger'>The heat of the fire roars in your veins! KILL! CHARGE! DESTROY!</span>")
 	if(prob(70))
 		emote("roar")

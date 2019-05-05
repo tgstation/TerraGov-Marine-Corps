@@ -57,6 +57,16 @@
 
 	var/stored_metal = 1000 // starts with 500 metal loaded
 	var/stored_metal_max = 2000
+	var/obj/item/radio/radio
+
+
+/obj/machinery/autodoc/Initialize(mapload)
+	. = ..()
+	radio = new(src)
+
+/obj/machinery/autodoc/Destroy()
+	QDEL_NULL(radio)
+	return ..()
 
 /obj/machinery/autodoc/power_change(var/area/master_area = null)
 	..()
@@ -297,7 +307,7 @@
 				switch(S.surgery_procedure)
 					if(ADSURGERY_GERMS) // Just dose them with the maximum amount of antibiotics and hope for the best
 						if(prob(30)) visible_message("\ [src] speaks, Beginning organ disinfection.");
-						var/datum/reagent/R = chemical_reagents_list["spaceacillin"]
+						var/datum/reagent/R = GLOB.chemical_reagents_list["spaceacillin"]
 						var/amount = R.overdose_threshold - H.reagents.get_reagent_amount("spaceacillin")
 						var/inject_per_second = 3
 						to_chat(occupant, "<span class='info'>You feel a soft prick from a needle.</span>")
@@ -512,7 +522,7 @@
 					if(ADSURGERY_GERM)
 						if(prob(30)) visible_message("\ [src] speaks, Beginning limb disinfection.");
 
-						var/datum/reagent/R = chemical_reagents_list["spaceacillin"]
+						var/datum/reagent/R = GLOB.chemical_reagents_list["spaceacillin"]
 						var/amount = (R.overdose_threshold/2) - H.reagents.get_reagent_amount("spaceacillin")
 						var/inject_per_second = 3
 						to_chat(occupant, "<span class='info'>You feel a soft prick from a needle.</span>")
@@ -724,10 +734,7 @@
 			if(AUTODOC_NOTICE_IDIOT_EJECT)
 				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 				reason = "Reason for discharge: Unauthorized manual release during surgery. Alerting security advised."
-		var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
-		AI.SetName("Autodoc Notification System")
-		AI.aiRadio.talk_into(AI,"<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>","MedSci","announces")
-		qdel(AI)
+		radio.talk_into(src, "<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>", RADIO_CHANNEL_MEDICAL)
 	occupant = null
 	surgery_todo_list = list()
 	update_use_power(1)
@@ -1249,5 +1256,7 @@
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-			usr << browse(R.fields["last_scan_result"], "window=scanresults;size=430x600")
+			var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
+			popup.set_content(R.fields["last_scan_result"])
+			popup.open(FALSE)
 		break
