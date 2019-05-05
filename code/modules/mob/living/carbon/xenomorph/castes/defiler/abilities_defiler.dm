@@ -5,90 +5,70 @@
 	name = "Toggle Neuroinjectors"
 	action_icon_state = "neuroclaws_off"
 	mechanics_text = "Toggle on to add neurotoxin to your melee slashes."
+	cooldown_timer = DEFILER_CLAWS_COOLDOWN
 
 /datum/action/xeno_action/neuroclaws/action_activate()
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
 
-	if(!X.check_state())
-		return
-
-	if(world.time < X.last_use_neuroclaws + DEFILER_CLAWS_COOLDOWN)
-		return
-
+	add_cooldown()
 	X.neuro_claws = !X.neuro_claws
-	X.last_use_neuroclaws = world.time
 	to_chat(X, "<span class='notice'>You [X.neuro_claws ? "extend" : "retract"] your claws' neuro spines.</span>")
-	button.overlays.Cut()
+
 	if(X.neuro_claws)
 		playsound(X, 'sound/weapons/slash.ogg', 15, 1)
-		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_on")
 	else
 		playsound(X, 'sound/weapons/slashmiss.ogg', 15, 1)
-		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_off")
+	update_button_icon()
 
-/datum/action/xeno_action/emit_neurogas/action_cooldown_check()
+/datum/action/xeno_action/neuroclaws/update_button_icon()
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
-	if(world.time >= X.last_use_neuroclaws + DEFILER_CLAWS_COOLDOWN)
-		return TRUE
+	button.overlays.Cut()
+	if(X.neuro_claws)
+		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_on")
+	else
+		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_off")
+	return ..()
 
 // ***************************************
 // *********** Sting
 // ***************************************
-/datum/action/xeno_action/activable/defiler_sting
+/datum/action/xeno_action/activable/larval_growth_sting/defiler
 	name = "Defile"
 	action_icon_state = "defiler_sting"
 	mechanics_text = "Channel to inject an adjacent target with larval growth serum. At the end of the channel your target will be infected."
 	ability_name = "defiler sting"
+	plasma_cost = 150
+	cooldown_timer = DEFILER_STING_COOLDOWN
 
-/datum/action/xeno_action/activable/defiler_sting/use_ability(atom/A)
+/datum/action/xeno_action/activable/larval_growth_sting/defiler/on_cooldown_finish()
+	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	to_chat(owner, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
+	return ..()
+
+/datum/action/xeno_action/activable/larval_growth_sting/defiler/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
-	X.defiler_sting(A)
-
-/datum/action/xeno_action/activable/defiler_sting/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Defiler/X = owner
-	if(world.time >= X.last_defiler_sting + DEFILER_STING_COOLDOWN)
-		return TRUE
-
-/mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting(mob/living/carbon/C)
-	if(!check_state() || QDELETED(C))
-		return
-
-	if(world.time < last_defiler_sting + DEFILER_STING_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='warning'>You are not ready to Defile again. It will be ready in [(last_defiler_sting + DEFILER_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='warning'>You try to sting but are too disoriented!</span>")
-		return
-
-	if(!Adjacent(C))
-		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
-			to_chat(src, "<span class='warning'>You can't reach this target!</span>")
-			recent_notice = world.time //anti-notice spam
-		return
-
-	if(!(C.can_sting()))
-		to_chat(src, "<span class='warning'>Your sting won't affect this target!</span>")
-		return
-
-	if(!check_plasma(150))
-		return
-	last_defiler_sting = world.time
-	use_plasma(150)
-
+	var/mob/living/carbon/C = A
+	if(locate(/obj/item/alien_embryo) in C) // already got one, stops doubling up
+		return ..()
+	if(!do_after(X, DEFILER_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+		return fail_activate()
+	if(!can_use_ability(A))
+		return fail_activate()
+	add_cooldown()
+	X.face_atom(C)
+	X.animation_attack_on(C)
+	playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+	var/obj/item/alien_embryo/embryo = new(C)
+	embryo.hivenumber = X.hivenumber
+	round_statistics.now_pregnant++
+	to_chat(X, "<span class='xenodanger'>Your stinger successfully implants a larva into the host.</span>")
+	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
+	C.apply_damage(100, HALLOSS)
+	C.apply_damage(10, BRUTE, "chest")
+	C.emote("scream")
 	round_statistics.defiler_defiler_stings++
-
-	addtimer(CALLBACK(src, .defiler_sting_cooldown), DEFILER_STING_COOLDOWN)
-
-	if(!CHECK_BITFIELD(C.status_flags, XENO_HOST))
-		larva_injection(C, FALSE)
-	larval_growth_sting(C)
-
-
-/mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting_cooldown()
-	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(src, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
-	update_action_button_icons()
+	succeed_activate()
+	return ..()
 
 // ***************************************
 // *********** Neurogas
@@ -98,86 +78,65 @@
 	action_icon_state = "emit_neurogas"
 	mechanics_text = "Channel for 3 seconds to emit a cloud of noxious smoke that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
 	ability_name = "emit neurogas"
+	plasma_cost = 200
+	cooldown_timer = DEFILER_GAS_COOLDOWN
 
-/datum/action/xeno_action/activable/emit_neurogas/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Defiler/X = owner
-	if(world.time >= X.last_emit_neurogas + DEFILER_GAS_COOLDOWN)
-		return TRUE
+/datum/action/xeno_action/activable/emit_neurogas/on_cooldown_finish()
+	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
+	to_chat(owner, "<span class='xenodanger'>You feel your dorsal vents bristle with neurotoxic gas. You can use Emit Neurogas again.</span>")
+	return ..()
 
 /datum/action/xeno_action/activable/emit_neurogas/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
-	X.emit_neurogas()
-
-/mob/living/carbon/Xenomorph/Defiler/proc/emit_neurogas()
-
-	if(!check_state())
-		return
-
-	if(world.time < last_emit_neurogas + DEFILER_GAS_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='xenodanger'>You are not ready to emit neurogas again. This ability will be ready in [(last_emit_neurogas + DEFILER_GAS_COOLDOWN - world.time) * 0.1] seconds.</span>")
-		return FALSE
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
-		return
-
-	if(!check_plasma(200))
-		return
 
 	//give them fair warning
-	visible_message("<span class='danger'>Tufts of smoke begin to billow from [src]!</span>", \
+	X.visible_message("<span class='danger'>Tufts of smoke begin to billow from [X]!</span>", \
 	"<span class='xenodanger'>Your dorsal vents widen, preparing to emit neurogas. Keep still!</span>")
 
-	emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
-	use_plasma(200)
-	icon_state = "Defiler Power Up"
+	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
+	succeed_activate()
+	X.icon_state = "Defiler Power Up"
 
-	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
-		smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
-		smoke_system.set_up(1, get_turf(src))
-		to_chat(src, "<span class='xenodanger'>You abort emitting neurogas, your expended plasma resulting in only a feeble wisp.</span>")
-		emitting_gas = FALSE
-		icon_state = "Defiler Running"
-		return
-	emitting_gas = FALSE
-	icon_state = "Defiler Running"
+	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+		X.smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
+		X.smoke_system.set_up(1, get_turf(src))
+		to_chat(X, "<span class='xenodanger'>You abort emitting neurogas, your expended plasma resulting in only a feeble wisp.</span>")
+		X.emitting_gas = FALSE
+		X.icon_state = "Defiler Running"
+		return fail_activate()
+	X.emitting_gas = FALSE
+	X.icon_state = "Defiler Running"
 
-	addtimer(CALLBACK(src, .defiler_gas_cooldown), DEFILER_GAS_COOLDOWN)
+	add_cooldown()
 
-	last_emit_neurogas = world.time
-
-	if(stagger) //If we got staggered, return
-		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
-		return
+	if(X.stagger) //If we got staggered, return
+		to_chat(X, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
+		return fail_activate()
 
 	round_statistics.defiler_neurogas_uses++
 
-	visible_message("<span class='xenodanger'>[src] emits a noxious gas!</span>", \
+	X.visible_message("<span class='xenodanger'>[X] emits a noxious gas!</span>", \
 	"<span class='xenodanger'>You emit neurogas!</span>")
 	dispense_gas()
 
-/mob/living/carbon/Xenomorph/Defiler/proc/defiler_gas_cooldown()
-	playsound(loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
-	to_chat(src, "<span class='xenodanger'>You feel your dorsal vents bristle with neurotoxic gas. You can use Emit Neurogas again.</span>")
-	update_action_button_icons()
-
-/mob/living/carbon/Xenomorph/Defiler/proc/dispense_gas(count = 3)
+/datum/action/xeno_action/activable/emit_neurogas/proc/dispense_gas(count = 3)
+	var/mob/living/carbon/Xenomorph/Defiler/X = owner
 	set waitfor = FALSE
 	while(count)
-		if(stagger) //If we got staggered, return
-			to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
+		if(X.stagger) //If we got staggered, return
+			to_chat(X, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
 			return
-		if(stunned || knocked_down)
-			to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are disabled!</span>")
+		if(X.stunned || X.knocked_down)
+			to_chat(X, "<span class='xenowarning'>You try to emit neurogas but are disabled!</span>")
 			return
-		playsound(loc, 'sound/effects/smoke.ogg', 25)
-		var/turf/T = get_turf(src)
-		smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
+		var/turf/T = get_turf(X)
+		playsound(T, 'sound/effects/smoke.ogg', 25)
+		X.smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
 		if(count > 1)
-			smoke_system.set_up(2, T)
+			X.smoke_system.set_up(2, T)
 		else //last emission is larger
-			smoke_system.set_up(3, T)
-		smoke_system.start()
+			X.smoke_system.set_up(3, T)
+		X.smoke_system.start()
 		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
 		count = max(0,count - 1)
 		sleep(DEFILER_GAS_DELAY)

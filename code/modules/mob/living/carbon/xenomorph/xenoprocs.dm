@@ -558,3 +558,191 @@
 /mob/living/carbon/Xenomorph/proc/handle_decay()
 	if(prob(7+(3*tier)+(3*upgrade_as_number()))) // higher level xenos decay faster, higher plasma storage.
 		use_plasma(min(rand(1,2), plasma_stored))
+
+
+
+// this mess will be fixed by obj damage refactor
+/atom/proc/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	return TRUE
+
+/obj/structure/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
+		return TRUE // normal density flag
+	obj_integrity -= rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X)
+	update_health(TRUE)
+	return TRUE // normal density flag
+
+/obj/structure/razorwire/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	. = ..()
+	return FALSE // not normal density flag
+
+/obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	take_damage_type(rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X), "acid", src)
+	healthcheck()
+	return TRUE
+
+/mob/living/carbon/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest))
+		return
+
+	if(isxenopraetorian(X))
+		round_statistics.praetorian_spray_direct_hits++
+
+	acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
+	var/armor_block = run_armor_check("chest", "acid")
+	var/damage = rand(30,40) + SPRAY_MOB_UPGRADE_BONUS(X)
+	apply_acid_spray_damage(damage, armor_block)
+	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
+
+/mob/living/carbon/proc/apply_acid_spray_damage(damage, armor_block)
+	apply_damage(damage, BURN, null, armor_block)
+
+/mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
+	take_overall_damage(null, damage, null, null, null, armor_block)
+	emote("scream")
+	KnockDown(1)
+
+/mob/living/carbon/Xenomorph/acid_spray_act(mob/living/carbon/Xenomorph/X)
+	return
+
+
+// Vent Crawl
+/mob/living/carbon/Xenomorph/proc/vent_crawl()
+	set name = "Crawl through Vent"
+	set desc = "Enter an air vent and crawl through the pipe system."
+	set category = "Alien"
+	if(!check_state())
+		return
+	var/pipe = start_ventcrawl()
+	if(pipe)
+		handle_ventcrawl(pipe)
+
+/mob/living/carbon/Xenomorph/proc/xeno_salvage_plasma(atom/A, amount, salvage_delay, max_range)
+	if(!isxeno(A) || !check_state() || A == src)
+		return
+
+	var/mob/living/carbon/Xenomorph/target = A
+
+	if(!isturf(loc))
+		to_chat(src, "<span class='warning'>You can't salvage plasma from here!</span>")
+		return
+
+	if(plasma_stored >= xeno_caste.plasma_max)
+		to_chat(src, "<span class='notice'>Your plasma reserves are already at full capacity and can't hold any more.</span>")
+		return
+
+	if(target.stat != DEAD)
+		to_chat(src, "<span class='warning'>You can't steal plasma from living sisters, ask for some to a drone or a hivelord instead!</span>")
+		return
+
+	if(get_dist(src, target) > max_range)
+		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
+		return
+
+	if(!(target.plasma_stored))
+		to_chat(src, "<span class='notice'>[target] doesn't have any plasma left to salvage.</span>")
+		return
+
+	to_chat(src, "<span class='notice'>You start salvaging plasma from [target].</span>")
+
+	while(target.plasma_stored && plasma_stored >= xeno_caste.plasma_max)
+		if(!do_after(src, salvage_delay, TRUE, 5, BUSY_ICON_HOSTILE) || !check_state())
+			break
+
+		if(!isturf(loc))
+			to_chat(src, "<span class='warning'>You can't absorb plasma from here!</span>")
+			break
+
+		if(get_dist(src, target) > max_range)
+			to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
+			break
+
+		if(stagger)
+			to_chat(src, "<span class='xenowarning'>Your muscles fail to respond as you try to shake up the shock!</span>")
+			break
+
+		if(target.plasma_stored < amount)
+			amount = target.plasma_stored //Just take it all.
+
+		var/absorbed_amount = round(amount * PLASMA_SALVAGE_MULTIPLIER)
+		target.use_plasma(amount)
+		gain_plasma(absorbed_amount)
+		to_chat(src, "<span class='xenowarning'>You salvage [absorbed_amount] units of plasma from [target]. You have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
+		if(prob(50))
+			playsound(src, "alien_drool", 25)
+
+
+
+/mob/living/carbon/Xenomorph/verb/toggle_xeno_mobhud()
+	set name = "Toggle Xeno Status HUD"
+	set desc = "Toggles the health and plasma hud appearing above Xenomorphs."
+	set category = "Alien"
+
+	xeno_mobhud = !xeno_mobhud
+	var/datum/mob_hud/H = huds[MOB_HUD_XENO_STATUS]
+	if(xeno_mobhud)
+		H.add_hud_to(usr)
+	else
+		H.remove_hud_from(usr)
+
+
+/mob/living/carbon/Xenomorph/verb/middle_mousetoggle()
+	set name = "Toggle Middle/Shift Clicking"
+	set desc = "Toggles between using middle mouse click and shift click for selected abilitiy use."
+	set category = "Alien"
+
+	middle_mouse_toggle = !middle_mouse_toggle
+	if(!middle_mouse_toggle)
+		to_chat(src, "<span class='notice'>The selected xeno ability will now be activated with shift clicking.</span>")
+	else
+		to_chat(src, "<span class='notice'>The selected xeno ability will now be activated with middle mouse clicking.</span>")
+
+
+/mob/living/carbon/Xenomorph/proc/recurring_injection(mob/living/carbon/C, toxin = "xeno_toxin", channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 3)
+	if(!C?.can_sting() || !toxin)
+		return FALSE
+	var/datum/reagent/body_tox
+	var/i = 1
+	do
+		face_atom(C)
+		if(stagger)
+			return FALSE
+		body_tox = C.reagents.get_reagent(toxin)
+		if(CHECK_BITFIELD(C.status_flags, XENO_HOST) && body_tox && body_tox.volume > body_tox.overdose_threshold)
+			to_chat(src, "<span class='warning'>You sense the infected host is saturated with [body_tox.name] and cease your attempt to inoculate it further to preserve the little one inside.</span>")
+			return FALSE
+		animation_attack_on(C)
+		playsound(C, 'sound/effects/spray3.ogg', 15, 1)
+		playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+		C.reagents.add_reagent(toxin, transfer_amount)
+		if(!body_tox) //Let's check this each time because depending on the metabolization rate it can disappear between stings.
+			body_tox = C.reagents.get_reagent(toxin)
+		to_chat(C, "<span class='danger'>You feel a tiny prick.</span>")
+		to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with [body_tox.name]!</span>")
+		if(body_tox.volume > body_tox.overdose_threshold)
+			to_chat(src, "<span class='danger'>You sense the host is saturated with [body_tox.name].</span>")
+	while(i++ < count && do_after(src, channel_time, TRUE, 5, BUSY_ICON_HOSTILE))
+	return TRUE
+
+
+/atom/proc/can_sting()
+	return FALSE
+
+/mob/living/carbon/monkey/can_sting()
+	if(stat != DEAD)
+		return TRUE
+	return FALSE
+
+/mob/living/carbon/human/can_sting()
+	if(stat != DEAD)
+		return TRUE
+	return FALSE
+
+/mob/living/carbon/human/species/machine/can_sting()
+	return FALSE
+
+/mob/living/carbon/human/species/synthetic/can_sting()
+	return FALSE
+
+/mob/living/carbon/Xenomorph/proc/hit_and_run_bonus(damage)
+	return damage
