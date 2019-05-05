@@ -100,7 +100,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "at" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	canhear_range = 7;
 	frequency = 1441;
 	name = "dropship intercom";
@@ -216,7 +216,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "aJ" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	canhear_range = 7;
 	frequency = 1441;
 	name = "dropship intercom";
@@ -249,7 +249,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "aM" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	canhear_range = 7;
 	frequency = 1441;
 	name = "dropship intercom";
@@ -414,7 +414,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "bk" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	canhear_range = 7;
 	frequency = 1441;
 	name = "dropship intercom";

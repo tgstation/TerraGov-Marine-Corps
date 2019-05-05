@@ -65,12 +65,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/space_port)
-"aaq" = (
-/obj/structure/sign/safety/hazard{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
 "aar" = (
 /obj/machinery/light{
 	dir = 8
@@ -89,8 +83,9 @@
 	},
 /area/bigredv2/outside/space_port)
 "aau" = (
+/obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating,
-/area/shuttle/drop1/BigRed)
+/area/shuttle/drop1/lz1)
 "aav" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
@@ -289,10 +284,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/space_port)
-"abb" = (
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/plating,
-/area/shuttle/drop1/BigRed)
 "abc" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
@@ -443,6 +434,9 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "aby" = (
+/obj/machinery/computer/shuttle_control/dropship1{
+	onboard = 0
+	},
 /obj/structure/table,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/console)
@@ -557,8 +551,11 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "abR" = (
-/obj/structure/sign/safety/vent{
-	dir = 1
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "Spaceport";
+	name = "\improper Spaceport Shutters"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
@@ -573,14 +570,15 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "abU" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "Spaceport";
-	name = "\improper Spaceport Shutters"
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
 	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
+/obj/machinery/power/apc{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
 "abV" = (
 /obj/structure/closet/walllocker/hydrant/full{
 	icon_state = "hydrant";
@@ -638,7 +636,7 @@
 "acd" = (
 /obj/effect/landmark/random_item/good,
 /turf/open/floor/plating,
-/area/shuttle/drop1/BigRed)
+/area/shuttle/drop1/lz1)
 "ace" = (
 /obj/structure/cargo_container/green{
 	dir = 8
@@ -723,6 +721,15 @@
 "acp" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/marshal_office)
+"acq" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "Marshal Offices";
+	name = "\improper Marshal Offices Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/marshal_office)
 "acr" = (
 /turf/closed/wall,
 /area/bigredv2/outside/marshal_office)
@@ -752,9 +759,6 @@
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/telecomm)
-"acv" = (
-/turf/open/floor/plating,
-/area/shuttle/drop1/LV624)
 "acw" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
@@ -1157,6 +1161,9 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "adK" = (
+/obj/effect/landmark/shuttle_loc/marine_trg/landing{
+	name = "1"
+	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "adL" = (
@@ -1989,14 +1996,14 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/caves/lambda_lab)
 "agm" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 2;
-	id = "Marshal Offices";
-	name = "\improper Marshal Offices Shutters"
+	id = "tcomms";
+	name = "\improper Telecommunications Shutters"
 	},
 /turf/open/floor/plating,
-/area/bigredv2/outside/marshal_office)
+/area/bigredv2/outside/telecomm)
 "agn" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -3816,12 +3823,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
-"als" = (
-/obj/structure/sign/safety/hazard{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
 "alt" = (
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -3902,15 +3903,6 @@
 	dir = 10
 	},
 /area/bigredv2/caves)
-"alH" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "tcomms";
-	name = "\improper Telecommunications Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/telecomm)
 "alI" = (
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 10
@@ -4015,12 +4007,6 @@
 	dir = 6
 	},
 /area/bigredv2/outside/nw)
-"amb" = (
-/obj/structure/sign/safety/hazard{
-	dir = 2
-	},
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "amc" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -4235,46 +4221,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
-"amu" = (
-/obj/machinery/camera/autoname{
-	dir = 2
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/marshal_office)
-"amv" = (
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/marshal_office)
-"amw" = (
-/obj/structure/sign/safety/hazard{
-	dir = 2
-	},
-/turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/telecomm)
-"amx" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "Dormitories";
-	name = "\improper Dormitories Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/general_offices)
-"amy" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "Medical";
-	name = "\improper Medical Storm Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/medical)
 "amz" = (
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
@@ -4304,13 +4250,6 @@
 	dir = 8
 	},
 /area/bigredv2/caves)
-"amG" = (
-/obj/structure/bed,
-/obj/structure/sign/safety/medical{
-	dir = 1
-	},
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/medical)
 "amH" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -4396,43 +4335,6 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
-"amV" = (
-/obj/structure/sign/safety/EVA{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/general_offices)
-"amW" = (
-/obj/structure/sign/safety/EVA{
-	dir = 1
-	},
-/turf/open/floor,
-/area/bigredv2/outside/general_offices)
-"amX" = (
-/obj/structure/sign/safety/autodoc{
-	dir = 1
-	},
-/turf/open/floor/tile/white/warningstripe{
-	dir = 8
-	},
-/area/bigredv2/outside/medical)
-"amY" = (
-/obj/structure/sign/safety/autodoc{
-	dir = 1
-	},
-/turf/open/floor/tile/white/warningstripe{
-	dir = 4
-	},
-/area/bigredv2/outside/medical)
-"amZ" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "Greenhouse";
-	name = "\improper Greenhouse Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/hydroponics)
 "ana" = (
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 1;
@@ -4793,12 +4695,6 @@
 	},
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
-"anU" = (
-/obj/structure/sign/safety/breakroom{
-	dir = 1
-	},
-/turf/open/floor/tile/green/whitegreenfull,
-/area/bigredv2/outside/medical)
 "anV" = (
 /obj/item/reagent_container/spray/pepper,
 /obj/structure/cable{
@@ -4896,22 +4792,6 @@
 	},
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
-"aod" = (
-/obj/structure/sign/safety/medical_supplies{
-	dir = 4
-	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 4
-	},
-/area/bigredv2/outside/medical)
-"aoe" = (
-/obj/structure/sign/safety/medical{
-	dir = 1
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
-/area/bigredv2/outside/c)
 "aof" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -4983,14 +4863,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
-"aoq" = (
-/obj/structure/sign/safety/medical{
-	dir = 1
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
-/area/bigredv2/outside/c)
 "aor" = (
 /obj/machinery/washing_machine,
 /obj/item/clothing/under/darkred,
@@ -5157,31 +5029,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
-"aoR" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/light,
-/obj/machinery/door_control{
-	id = "viro_q";
-	name = "Qurantine Lockdown";
-	normaldoorcontrol = 1;
-	pixel_x = -25;
-	req_access_txt = "7";
-	specialfunctions = 4
-	},
-/obj/structure/sign/biohazard{
-	dir = 2
-	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 10
-	},
-/area/bigredv2/caves/lambda_lab)
 "aoS" = (
 /obj/structure/closet/secure_closet/brig,
 /turf/open/floor/tile/dark,
@@ -5288,18 +5135,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
-"apl" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/obj/machinery/light/built,
-/obj/structure/sign/biohazard{
-	dir = 2
-	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 6
-	},
-/area/bigredv2/caves/lambda_lab)
 "apm" = (
 /obj/machinery/door/airlock/almayer/engineering{
 	dir = 4;
@@ -5357,15 +5192,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
-"apv" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "General Store";
-	name = "\improper General Store Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/general_store)
 "apw" = (
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 8
@@ -5409,6 +5235,15 @@
 /area/bigredv2/caves/lambda_lab)
 "apC" = (
 /turf/closed/wall,
+/area/bigredv2/outside/medical)
+"apD" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "Medical";
+	name = "\improper Medical Storm Shutters"
+	},
+/turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "apE" = (
 /obj/effect/decal/cleanable/blood/gibs,
@@ -5499,24 +5334,6 @@
 /obj/structure/bedsheetbin,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
-"apQ" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "Operations";
-	name = "\improper Operations Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
-"apS" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "Library";
-	name = "\improper Library Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/library)
 "apT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/alarm{
@@ -5546,20 +5363,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
-"apY" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = -30
-	},
-/obj/machinery/light/built{
-	dir = 1
-	},
-/obj/structure/sign/biohazard{
-	dir = 1
-	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 9
-	},
-/area/bigredv2/caves/lambda_lab)
 "apZ" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/uranium{
@@ -5861,20 +5664,6 @@
 /obj/structure/table,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
-"aqQ" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = 30
-	},
-/obj/machinery/light/built{
-	dir = 1
-	},
-/obj/structure/sign/biohazard{
-	dir = 1
-	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 5
-	},
-/area/bigredv2/caves/lambda_lab)
 "aqR" = (
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/freezer,
@@ -5883,24 +5672,6 @@
 /obj/item/clothing/under/brown,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
-"aqT" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "Bar Complex";
-	name = "\improper Bar Complex Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/bar)
-"aqV" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "Kitchen";
-	name = "\improper Kitchen Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/hydroponics)
 "aqW" = (
 /obj/structure/dispenser/oxygen,
 /turf/open/floor/tile/dark,
@@ -6049,15 +5820,6 @@
 /obj/item/clothing/under/lightred,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
-"arw" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "Office Complex 1";
-	name = "\improper Office Complex Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/office_complex)
 "arx" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark,
@@ -6250,10 +6012,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
-"arZ" = (
-/obj/structure/sign/safety/breakroom,
-/turf/open/floor,
-/area/bigredv2/outside/office_complex)
 "asa" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
@@ -6334,11 +6092,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
-"asl" = (
-/obj/structure/table,
-/obj/structure/sign/prop3,
-/turf/open/floor,
-/area/bigredv2/outside/office_complex)
 "asm" = (
 /obj/item/flashlight/lantern,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -6407,15 +6160,6 @@
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
-"asx" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "Cargonia";
-	name = "\improper Cargo Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/cargo)
 "asy" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -6536,15 +6280,6 @@
 /obj/structure/closet/toolcloset,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
-"asT" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "Engineering";
-	name = "\improper Engineering Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "asU" = (
 /obj/structure/closet/l3closet,
 /obj/effect/decal/cleanable/dirt,
@@ -6552,15 +6287,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/general_offices)
-"asV" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "Filtration Plant";
-	name = "\improper Filtration Plant Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/filtration_plant)
 "asW" = (
 /obj/structure/closet/l3closet,
 /turf/open/floor/tile/vault{
@@ -6577,12 +6303,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
-"asY" = (
-/obj/structure/sign/safety/hazard{
-	dir = 2
-	},
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "asZ" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/diamond,
@@ -6595,13 +6315,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/ne)
-"atb" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/safety/hazard{
-	dir = 2
-	},
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "atc" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -6673,15 +6386,6 @@
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
-"atk" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/almayer{
-	dir = 2;
-	id = "rad_door";
-	name = "\improper Radiation Shielding"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "atl" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
@@ -8517,6 +8221,14 @@
 	dir = 8
 	},
 /area/bigredv2/outside/medical)
+"ayJ" = (
+/obj/structure/sign/safety/autodoc{
+	dir = 1
+	},
+/turf/open/floor/tile/white/warningstripe{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
 "ayK" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
@@ -8532,6 +8244,14 @@
 	dir = 9
 	},
 /turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/medical)
+"ayN" = (
+/obj/structure/sign/safety/autodoc{
+	dir = 1
+	},
+/turf/open/floor/tile/white/warningstripe{
+	dir = 4
+	},
 /area/bigredv2/outside/medical)
 "ayO" = (
 /obj/effect/decal/cleanable/dirt,
@@ -9520,6 +9240,15 @@
 "aBv" = (
 /turf/closed/wall,
 /area/bigredv2/outside/hydroponics)
+"aBw" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "Greenhouse";
+	name = "\improper Greenhouse Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/hydroponics)
 "aBx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
@@ -10300,6 +10029,14 @@
 /obj/item/tool/surgery/cautery,
 /obj/item/reagent_container/spray/cleaner,
 /turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/medical)
+"aDG" = (
+/obj/structure/sign/safety/medical_supplies{
+	dir = 4
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
 /area/bigredv2/outside/medical)
 "aDH" = (
 /obj/structure/closet/secure_closet/medical1,
@@ -12797,6 +12534,14 @@
 	dir = 8
 	},
 /area/bigredv2/outside/c)
+"aKm" = (
+/obj/structure/sign/safety/medical{
+	dir = 1
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/c)
 "aKn" = (
 /turf/closed/wall,
 /area/bigredv2/outside/admin_building)
@@ -12815,6 +12560,14 @@
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
+"aKq" = (
+/obj/structure/sign/safety/medical{
+	dir = 1
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/c)
 "aKr" = (
 /obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -13480,6 +13233,31 @@
 	},
 /turf/open/floor/greengrid,
 /area/bigredv2/caves/lambda_lab)
+"aMv" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/light,
+/obj/machinery/door_control{
+	id = "viro_q";
+	name = "Qurantine Lockdown";
+	normaldoorcontrol = 1;
+	pixel_x = -25;
+	req_access_txt = "7";
+	specialfunctions = 4
+	},
+/obj/structure/sign/biohazard{
+	dir = 2
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 10
+	},
+/area/bigredv2/caves/lambda_lab)
 "aMw" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -13504,6 +13282,18 @@
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
+"aMy" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/machinery/light/built,
+/obj/structure/sign/biohazard{
+	dir = 2
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 6
+	},
+/area/bigredv2/caves/lambda_lab)
 "aMz" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/virology)
@@ -13525,6 +13315,15 @@
 /area/bigredv2/outside/virology)
 "aMB" = (
 /turf/closed/wall,
+/area/bigredv2/outside/general_store)
+"aMC" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "General Store";
+	name = "\improper General Store Shutters"
+	},
+/turf/open/floor/plating,
 /area/bigredv2/outside/general_store)
 "aMD" = (
 /obj/structure/window_frame/colony,
@@ -13549,6 +13348,15 @@
 	req_access_txt = "0"
 	},
 /turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"aMG" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "Operations";
+	name = "\improper Operations Shutters"
+	},
+/turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
 "aMH" = (
 /obj/machinery/light{
@@ -14865,6 +14673,15 @@
 /obj/machinery/light,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
+"aRt" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "Library";
+	name = "\improper Library Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/library)
 "aRu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
@@ -14890,6 +14707,20 @@
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
+"aRz" = (
+/obj/machinery/vending/wallmed1{
+	pixel_x = -30
+	},
+/obj/machinery/light/built{
+	dir = 1
+	},
+/obj/structure/sign/biohazard{
+	dir = 1
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 9
+	},
+/area/bigredv2/caves/lambda_lab)
 "aRA" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -14905,6 +14736,20 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
+	},
+/area/bigredv2/caves/lambda_lab)
+"aRC" = (
+/obj/machinery/vending/wallmed1{
+	pixel_x = 30
+	},
+/obj/machinery/light/built{
+	dir = 1
+	},
+/obj/structure/sign/biohazard{
+	dir = 1
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
 "aRD" = (
@@ -15057,6 +14902,15 @@
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
+"aSb" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "Bar Complex";
+	name = "\improper Bar Complex Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/bar)
 "aSc" = (
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 4;
@@ -15064,6 +14918,15 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
+"aSd" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "Kitchen";
+	name = "\improper Kitchen Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/hydroponics)
 "aSe" = (
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 4;
@@ -18612,6 +18475,11 @@
 	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
+"bdV" = (
+/obj/structure/table,
+/obj/structure/sign/prop3,
+/turf/open/floor,
+/area/bigredv2/outside/office_complex)
 "bdW" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -20067,8 +19935,9 @@
 	},
 /area/bigredv2/outside/w)
 "biI" = (
+/obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating,
-/area/shuttle/drop2/BigRed)
+/area/shuttle/drop2/lz2)
 "biJ" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 8
@@ -20219,7 +20088,7 @@
 "bjo" = (
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/plating,
-/area/shuttle/drop2/BigRed)
+/area/shuttle/drop2/lz2)
 "bjp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds2{
@@ -20713,6 +20582,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "blg" = (
+/obj/machinery/computer/ordercomp,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "blh" = (
@@ -20869,6 +20739,15 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
+"blI" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "Cargonia";
+	name = "\improper Cargo Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
 "blJ" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/engineering)
@@ -21119,7 +20998,7 @@
 "bmM" = (
 /obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/floor/plating,
-/area/shuttle/drop2/BigRed)
+/area/shuttle/drop2/lz2)
 "bmO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -21524,9 +21403,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
-"boh" = (
-/turf/open/floor/plating,
-/area/shuttle/drop2/LV624)
 "boi" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -22608,6 +22484,9 @@
 /obj/item/lightreplacer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"brr" = (
+/turf/closed/wall/indestructible/mineral,
+/area/storage/testroom)
 "bru" = (
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor,
@@ -22665,6 +22544,9 @@
 /turf/open/floor/greengrid,
 /area/bigredv2/outside/se)
 "brF" = (
+/obj/effect/landmark/shuttle_loc/marine_trg/landing{
+	name = "2"
+	},
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "brG" = (
@@ -23073,6 +22955,15 @@
 	dir = 8
 	},
 /area/bigredv2/outside/sw)
+"btq" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/almayer{
+	dir = 2;
+	id = "rad_door";
+	name = "\improper Radiation Shielding"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/engineering)
 "btr" = (
 /obj/machinery/computer/station_alert,
 /obj/structure/table,
@@ -26038,11 +25929,24 @@
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/e)
+"dGj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/safety/hazard{
+	dir = 2
+	},
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "dLO" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
 	},
 /area/bigredv2/outside/w)
+"dNS" = (
+/obj/structure/sign/safety/EVA{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/general_offices)
 "dPu" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/e)
@@ -26348,6 +26252,15 @@
 /obj/effect/landmark/random_item/good,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
+"iCy" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "Engineering";
+	name = "\improper Engineering Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/engineering)
 "iNd" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -26574,6 +26487,12 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"mQn" = (
+/obj/structure/sign/safety/breakroom{
+	dir = 1
+	},
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
 "mXK" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
@@ -26634,10 +26553,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"obN" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/asteroidfloor,
-/area/storage/testroom)
 "onZ" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -26649,6 +26564,10 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/e)
+"ooQ" = (
+/obj/structure/sign/safety/breakroom,
+/turf/open/floor,
+/area/bigredv2/outside/office_complex)
 "orX" = (
 /obj/machinery/light{
 	dir = 4
@@ -26734,6 +26653,15 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"oWh" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "Dormitories";
+	name = "\improper Dormitories Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/general_offices)
 "oWn" = (
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/tile/green/whitegreenfull,
@@ -26746,11 +26674,21 @@
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
+"phM" = (
+/obj/machinery/camera/autoname{
+	dir = 2
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
 "ppT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/huntergames_secondary_spawn,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"pIU" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/asteroidfloor,
+/area/storage/testroom)
 "pZW" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -26843,9 +26781,6 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
-"qSy" = (
-/turf/closed/wall/indestructible/mineral,
-/area/storage/testroom)
 "qUm" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -26947,6 +26882,15 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
+"svE" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "Filtration Plant";
+	name = "\improper Filtration Plant Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/filtration_plant)
 "svV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/wood,
@@ -26985,6 +26929,12 @@
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/se)
+"sLS" = (
+/obj/structure/sign/safety/hazard{
+	dir = 2
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "sUd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -26992,9 +26942,22 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"tbY" = (
+/obj/structure/sign/safety/hazard{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
 "tco" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/s)
+"tqN" = (
+/obj/structure/bed,
+/obj/structure/sign/safety/medical{
+	dir = 1
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
 "twQ" = (
 /obj/effect/spawner/random/tool,
 /turf/open/floor,
@@ -27020,6 +26983,12 @@
 	dir = 6
 	},
 /area/bigredv2/outside/ne)
+"tIb" = (
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
 "tIX" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -27049,6 +27018,12 @@
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/white,
 /area/bigredv2/caves/lambda_lab)
+"tPQ" = (
+/obj/structure/sign/safety/hazard{
+	dir = 2
+	},
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/telecomm)
 "tVO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -27101,12 +27076,24 @@
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
+"viN" = (
+/obj/structure/sign/safety/EVA{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
 "vpT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"vwP" = (
+/obj/structure/sign/safety/hazard{
+	dir = 2
+	},
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "vzU" = (
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
@@ -27143,6 +27130,15 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
+"wce" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "Office Complex 1";
+	name = "\improper Office Complex Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/office_complex)
 "wfD" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/darkish,
@@ -27188,6 +27184,12 @@
 	dir = 1
 	},
 /area/bigredv2/outside/c)
+"wSe" = (
+/obj/structure/sign/safety/vent{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
 "wZg" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/sw)
@@ -27747,9 +27749,9 @@ aaa
 (3,1,1) = {"
 aaa
 aab
-qSy
-qSy
-qSy
+brr
+brr
+brr
 aac
 aac
 aac
@@ -27964,9 +27966,9 @@ aaa
 (4,1,1) = {"
 aaa
 aab
-qSy
-obN
-qSy
+brr
+pIU
+brr
 aac
 aac
 aac
@@ -28181,9 +28183,9 @@ aaa
 (5,1,1) = {"
 aaa
 aab
-qSy
-qSy
-qSy
+brr
+brr
+brr
 aac
 aac
 aac
@@ -29083,7 +29085,7 @@ aeb
 aeC
 ade
 adc
-alH
+agm
 ahd
 ahd
 acA
@@ -29300,7 +29302,7 @@ ade
 ade
 afc
 ade
-alH
+agm
 ahd
 ahd
 acA
@@ -29517,7 +29519,7 @@ ade
 ade
 adr
 afJ
-alH
+agm
 aas
 aas
 acA
@@ -29742,7 +29744,7 @@ ahd
 ahd
 ahd
 ahd
-amw
+tPQ
 acA
 aad
 aad
@@ -30168,7 +30170,7 @@ adt
 ade
 afe
 acZ
-alH
+agm
 ahd
 ahd
 aas
@@ -30385,7 +30387,7 @@ aee
 aeE
 aff
 afL
-alH
+agm
 aas
 aas
 aas
@@ -30602,7 +30604,7 @@ adt
 ade
 ade
 acZ
-alH
+agm
 aas
 ahd
 ahd
@@ -30827,7 +30829,7 @@ aas
 aas
 ahd
 aas
-amw
+tPQ
 acA
 aac
 aad
@@ -32101,19 +32103,19 @@ aao
 aao
 aao
 aao
-aau
-aau
-aau
+aao
+aao
+aao
 aao
 aao
 aao
 aaF
 aao
 aao
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
 aao
 aao
 adK
@@ -32317,23 +32319,23 @@ aao
 aao
 aaF
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
 aao
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aaF
 aao
-aau
+aao
 aei
 aaf
 aaf
@@ -32534,23 +32536,23 @@ aao
 aao
 aao
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-acv
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 adx
-aau
+aao
 aej
 aaf
 aaf
@@ -32748,31 +32750,31 @@ aae
 aaf
 aal
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-acv
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aek
 aaf
 aaf
 aaf
-amb
+sLS
 aae
 aad
 abq
@@ -32965,24 +32967,24 @@ aae
 aaf
 aai
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 acd
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aao
 aao
 aeh
@@ -33182,24 +33184,24 @@ aae
 aaf
 aaj
 aao
+aao
+aao
+aao
+adx
+aao
+aao
+aao
+aao
+aao
 aau
-aau
-aau
-abb
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aao
 aao
 aei
@@ -33399,24 +33401,24 @@ aae
 aaf
 aak
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 acd
-aau
-aau
+aao
+aao
 aao
 aao
 aej
@@ -33503,19 +33505,19 @@ bie
 bie
 bie
 bie
-biI
-biI
-biI
+bie
+bie
+bie
 bie
 bie
 bje
 bie
 bie
 bie
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
 bie
 bie
 brF
@@ -33616,26 +33618,26 @@ aae
 aaf
 aal
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-abb
-aau
-aau
-acv
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+adx
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aek
 aaf
 aaf
@@ -33719,23 +33721,23 @@ bie
 bie
 bje
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
 bie
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bjo
-biI
+bie
 bje
 bie
-biI
+bie
 bsc
 bpv
 bpv
@@ -33836,23 +33838,23 @@ aao
 aao
 aao
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-acv
-aau
-aau
-aau
-aau
-aau
 aao
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aeh
 aaf
 aaf
@@ -33936,23 +33938,23 @@ bie
 bie
 bie
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-boh
-biI
-biI
-biI
-biI
-biI
 bie
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bsd
 bpv
 bpv
@@ -34053,23 +34055,23 @@ aao
 aao
 aaF
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
 aao
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aaF
 aao
-aau
+aao
 aei
 aaf
 aaf
@@ -34150,26 +34152,26 @@ aSB
 aVG
 bhx
 bie
-biI
-biI
+bie
+bie
 bjo
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-boh
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bse
 bpv
 bpv
@@ -34271,19 +34273,19 @@ aao
 aao
 aao
 aao
-aau
-aau
-aau
+aao
+aao
+aao
 aao
 aao
 aao
 aaF
 aao
 aao
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
 aao
 aao
 aao
@@ -34367,24 +34369,24 @@ sBV
 aVG
 bhu
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bmM
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bie
 bsb
@@ -34584,24 +34586,24 @@ aSB
 aVG
 bhy
 bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bie
 bsc
@@ -34801,24 +34803,24 @@ aSB
 aVG
 bhw
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bie
 bsd
@@ -35018,26 +35020,26 @@ aWk
 aVG
 bhz
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-boh
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bse
 bpv
 bpv
@@ -35238,21 +35240,21 @@ bie
 bie
 bie
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-boh
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bjo
 bsb
@@ -35455,23 +35457,23 @@ bie
 bie
 bje
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
 bie
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bje
 bie
-biI
+bie
 bsc
 bpv
 bpv
@@ -35673,19 +35675,19 @@ bie
 bie
 bie
 bie
-biI
-biI
-biI
+bie
+bie
+bie
 bie
 bie
 bje
 bie
 bie
 bie
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
 bie
 bie
 bie
@@ -36220,7 +36222,7 @@ aad
 aad
 aad
 aae
-aaq
+tIb
 aaK
 aaV
 aaV
@@ -36287,7 +36289,7 @@ ama
 aeI
 aeI
 ajz
-apv
+aMC
 aNk
 aOv
 aPv
@@ -36437,7 +36439,7 @@ aad
 aad
 aad
 aae
-abR
+wSe
 agp
 aah
 adL
@@ -36504,7 +36506,7 @@ aeI
 aeI
 aeI
 ajz
-apv
+aMC
 aNk
 aNo
 aOB
@@ -36721,7 +36723,7 @@ aeI
 aeI
 aeI
 ajz
-apv
+aMC
 aNk
 aOw
 aPw
@@ -36765,10 +36767,10 @@ aXK
 bmd
 bmd
 bmd
-asT
+iCy
 bmi
 boE
-asT
+iCy
 wZg
 wZg
 bqG
@@ -36938,7 +36940,7 @@ aeI
 aeI
 aeI
 ajz
-apv
+aMC
 aNk
 aOx
 aPx
@@ -36982,10 +36984,10 @@ aXK
 bmd
 bmd
 bmd
-asT
+iCy
 bmi
 boE
-asT
+iCy
 wZg
 wZg
 bqG
@@ -37096,7 +37098,7 @@ aaO
 aaO
 abA
 abF
-abU
+abR
 aah
 ach
 aah
@@ -37199,10 +37201,10 @@ aXK
 bmd
 bmd
 bme
-asT
+iCy
 bmi
 boE
-asT
+iCy
 wZg
 wZg
 bqG
@@ -37313,7 +37315,7 @@ aaP
 aaO
 aaO
 abG
-abU
+abR
 aah
 ach
 aah
@@ -37419,7 +37421,7 @@ bme
 bnP
 bmi
 boE
-asT
+iCy
 bpy
 wZg
 bqH
@@ -37633,10 +37635,10 @@ aXK
 bmd
 bmd
 bme
-asT
+iCy
 bmi
 boE
-asT
+iCy
 bme
 bpy
 wZg
@@ -37850,7 +37852,7 @@ aXK
 bmd
 bme
 bme
-asT
+iCy
 bmi
 boE
 blJ
@@ -38067,12 +38069,12 @@ aXK
 bme
 bme
 bme
-asT
+iCy
 bmi
 boE
 bmi
 bmi
-asT
+iCy
 bqI
 bre
 bmq
@@ -38181,7 +38183,7 @@ abp
 abz
 abB
 abK
-abU
+abR
 aah
 ach
 aah
@@ -38240,7 +38242,7 @@ aeI
 aeI
 aeI
 ajy
-apv
+aMC
 aNk
 aOy
 aPB
@@ -38280,22 +38282,22 @@ aXK
 blb
 bkA
 ble
-asx
+blI
 bme
 bme
 bme
-asT
+iCy
 bmi
 boE
 bmi
 bmi
-asT
+iCy
 bmi
 bmi
 bmi
 bmi
 bmi
-asT
+iCy
 bme
 bme
 bmd
@@ -38408,7 +38410,7 @@ aah
 aah
 aah
 aah
-als
+tbY
 adL
 aah
 aah
@@ -38457,7 +38459,7 @@ aeI
 aeI
 aeI
 ajy
-apv
+aMC
 aNk
 aOy
 aNo
@@ -38497,11 +38499,11 @@ bjR
 bbe
 qny
 blf
-asx
+blI
 bme
 bme
 bme
-asT
+iCy
 bmi
 boF
 bnU
@@ -38714,22 +38716,22 @@ aZN
 bkl
 aZO
 blg
-asx
+blI
 bme
 bme
 bme
-asT
+iCy
 bmi
 bmi
 bmi
 bmi
-asT
+iCy
 bmi
 boE
 bmg
 bre
 bmq
-asT
+iCy
 bme
 bme
 bmd
@@ -38931,16 +38933,16 @@ aZN
 bkl
 blb
 blb
-asx
+blI
 bme
 bme
 bme
-asT
+iCy
 bmi
 bmi
 bmi
 bmi
-asT
+iCy
 bmi
 boE
 bsu
@@ -39108,7 +39110,7 @@ aeI
 aeI
 aeI
 ajy
-apv
+aMC
 aNk
 aOy
 aPE
@@ -39325,7 +39327,7 @@ ahQ
 aeI
 aeI
 ajz
-apv
+aMC
 aNk
 aOy
 aPF
@@ -39542,7 +39544,7 @@ aHD
 aCM
 aBR
 aMc
-apv
+aMC
 aNk
 aOy
 aOB
@@ -39976,7 +39978,7 @@ aHD
 aBR
 aBR
 aMc
-apv
+aMC
 aNk
 aOB
 aOB
@@ -40193,7 +40195,7 @@ aHD
 aBR
 aBR
 aMc
-apv
+aMC
 aNo
 aNo
 aNm
@@ -40249,7 +40251,7 @@ brK
 bmi
 bmg
 bmi
-asT
+iCy
 bme
 bme
 bme
@@ -40466,7 +40468,7 @@ bop
 gBV
 feK
 bta
-asT
+iCy
 bme
 bme
 bme
@@ -40683,7 +40685,7 @@ bmi
 bsm
 bmi
 btb
-asT
+iCy
 btp
 btp
 btp
@@ -41033,7 +41035,7 @@ ahP
 ahO
 ajz
 apC
-amG
+tqN
 aqw
 aqw
 aqw
@@ -41249,7 +41251,7 @@ akK
 ahP
 ahP
 ajz
-amy
+apD
 aqv
 aqw
 arR
@@ -41278,7 +41280,7 @@ aHD
 aBR
 aBR
 aMc
-apv
+aMC
 aNq
 aOB
 aPI
@@ -41466,7 +41468,7 @@ ahR
 ahP
 ahP
 ajz
-amy
+apD
 aqv
 aqw
 arR
@@ -41485,7 +41487,7 @@ aAt
 aqz
 aBJ
 aCB
-aod
+aDG
 aEA
 axB
 aGy
@@ -41548,7 +41550,7 @@ bmk
 bpg
 bmi
 bmg
-asY
+vwP
 blJ
 bsP
 blJ
@@ -41683,7 +41685,7 @@ ahR
 ahP
 ahP
 ajy
-amy
+apD
 aqv
 ari
 arS
@@ -41712,7 +41714,7 @@ aHD
 aBR
 aBR
 aMc
-apv
+aMC
 aNs
 aNo
 aOB
@@ -41913,7 +41915,7 @@ awe
 awP
 apC
 apC
-amX
+ayJ
 azw
 apC
 apC
@@ -41929,7 +41931,7 @@ aHD
 aBR
 aFL
 aMc
-apv
+aMC
 aNt
 aOB
 aNo
@@ -42146,7 +42148,7 @@ aHD
 aBR
 aBR
 aMc
-apv
+aMC
 aNu
 aNo
 aNo
@@ -42363,7 +42365,7 @@ aHD
 aBR
 aBR
 aMc
-apv
+aMC
 aNv
 aOD
 aPJ
@@ -42419,7 +42421,7 @@ brN
 boE
 bmi
 bmi
-atk
+btq
 btz
 btz
 btY
@@ -42636,7 +42638,7 @@ bmi
 boE
 bmi
 bsu
-atk
+btq
 btz
 btz
 btz
@@ -42741,7 +42743,7 @@ aad
 aad
 aad
 aad
-agm
+acq
 acy
 acC
 acE
@@ -42853,7 +42855,7 @@ brO
 bom
 bmi
 bmi
-atk
+btq
 btz
 btz
 btY
@@ -43215,7 +43217,7 @@ awg
 awS
 apC
 apC
-amY
+ayN
 azz
 apC
 apC
@@ -43288,7 +43290,7 @@ boE
 bmi
 brN
 btr
-atk
+btq
 btz
 btY
 btz
@@ -43505,7 +43507,7 @@ boE
 bmg
 btf
 bmr
-atk
+btq
 btz
 btz
 btz
@@ -43609,7 +43611,7 @@ aad
 aad
 aad
 aad
-agm
+acq
 acz
 acD
 acG
@@ -43722,7 +43724,7 @@ ouM
 feK
 bmi
 bts
-atk
+btq
 btz
 btY
 btz
@@ -43939,7 +43941,7 @@ boE
 bmg
 btf
 btt
-atk
+btq
 btz
 btz
 btz
@@ -44043,7 +44045,7 @@ aad
 abq
 aad
 abq
-agm
+acq
 acy
 acC
 acE
@@ -44096,7 +44098,7 @@ apC
 apC
 apC
 apC
-aoe
+aKm
 aFM
 aFM
 aMe
@@ -44156,7 +44158,7 @@ boE
 bmi
 bmi
 btu
-atk
+btq
 btz
 btY
 btz
@@ -44556,7 +44558,7 @@ aZA
 aZU
 hiJ
 aYO
-apQ
+aMG
 aHD
 aBR
 aBR
@@ -44589,7 +44591,7 @@ bpl
 boE
 bmg
 bmi
-atk
+btq
 btz
 btz
 btY
@@ -44773,7 +44775,7 @@ aYL
 aYL
 bcM
 aYO
-apQ
+aMG
 aHD
 aBR
 aBR
@@ -44806,7 +44808,7 @@ bmg
 boE
 bmg
 bsu
-atk
+btq
 btz
 btz
 btz
@@ -45023,7 +45025,7 @@ bmg
 boE
 bmi
 bmi
-atk
+btq
 btz
 btz
 btY
@@ -45181,7 +45183,7 @@ aGE
 aqw
 aIk
 apC
-aoq
+aKq
 aLi
 aMg
 aMe
@@ -45401,7 +45403,7 @@ apC
 aIn
 aLj
 aJm
-apQ
+aMG
 aND
 aMf
 aMf
@@ -45576,7 +45578,7 @@ acp
 afn
 afS
 agD
-amu
+phM
 acp
 aiG
 afS
@@ -45607,7 +45609,7 @@ azG
 aAz
 aBh
 apC
-anU
+mQn
 aqw
 aEJ
 aFK
@@ -45618,7 +45620,7 @@ apC
 aIn
 aLk
 aBR
-apQ
+aMG
 aNE
 aOH
 aPO
@@ -45888,7 +45890,7 @@ blJ
 bqS
 brQ
 bqM
-atb
+dGj
 blJ
 bsP
 blJ
@@ -46010,7 +46012,7 @@ acp
 afo
 afT
 agF
-amv
+abU
 acp
 aiI
 afT
@@ -46703,7 +46705,7 @@ aBR
 aBR
 aLl
 aMc
-apQ
+aMG
 aNI
 aOJ
 aPR
@@ -46920,7 +46922,7 @@ aBR
 aBR
 aLl
 aMc
-apQ
+aMG
 aNJ
 aOK
 aPS
@@ -47354,7 +47356,7 @@ aBR
 aBR
 aLl
 aMc
-apQ
+aMG
 aNK
 aOL
 aPS
@@ -47571,7 +47573,7 @@ aBR
 aBR
 aLl
 aMc
-apQ
+aMG
 aNL
 aNF
 aPT
@@ -48222,7 +48224,7 @@ aBR
 aBR
 aLl
 aMc
-apQ
+aMG
 aNL
 aNF
 aPU
@@ -48390,7 +48392,7 @@ aac
 aac
 acP
 acP
-agm
+acq
 adV
 adW
 aeP
@@ -48439,7 +48441,7 @@ aBR
 aBR
 aLl
 aMc
-apQ
+aMG
 aNL
 aNF
 aPV
@@ -48679,7 +48681,7 @@ bcc
 bcS
 bcc
 aYO
-apQ
+aMG
 aTh
 aIn
 aIp
@@ -48824,7 +48826,7 @@ aac
 aac
 acP
 acP
-agm
+acq
 adX
 aeu
 aeR
@@ -48896,7 +48898,7 @@ bcc
 bcT
 bcc
 aYO
-apQ
+aMG
 aTh
 aWJ
 aBR
@@ -51916,7 +51918,7 @@ aEQ
 aKy
 aGI
 aEO
-aqT
+aSb
 aHD
 aBR
 aIn
@@ -52350,7 +52352,7 @@ aEO
 aEO
 aEO
 aRj
-aqT
+aSb
 aHD
 aUh
 aIn
@@ -52358,7 +52360,7 @@ aMc
 aHD
 aWJ
 aFL
-arw
+wce
 aYY
 aZE
 bac
@@ -52375,7 +52377,7 @@ bfJ
 bgd
 bgd
 bgJ
-arw
+wce
 aHD
 aBR
 aBR
@@ -52575,7 +52577,7 @@ aMc
 aHD
 aWJ
 aBR
-arw
+wce
 aYZ
 aZE
 bac
@@ -52606,7 +52608,7 @@ blY
 bkQ
 bnm
 bnK
-asV
+svE
 bjw
 bjw
 bpc
@@ -52747,7 +52749,7 @@ acP
 acP
 acP
 acP
-amx
+oWh
 aoo
 apK
 aqP
@@ -52792,7 +52794,7 @@ aHF
 aHD
 aWJ
 aBR
-arw
+wce
 aZa
 aZE
 bac
@@ -52809,7 +52811,7 @@ bgd
 bgc
 bgc
 bgK
-arw
+wce
 aHD
 aBR
 aBR
@@ -52823,7 +52825,7 @@ bkR
 bkR
 bnn
 bkQ
-asV
+svE
 bjw
 bjw
 bpc
@@ -52964,7 +52966,7 @@ acP
 acP
 acP
 acP
-amx
+oWh
 apc
 apK
 aqP
@@ -53040,7 +53042,7 @@ bma
 bkQ
 bmJ
 bkQ
-asV
+svE
 bjw
 bjw
 bpb
@@ -53181,7 +53183,7 @@ acP
 acP
 acP
 acP
-amx
+oWh
 apc
 apc
 apc
@@ -53257,7 +53259,7 @@ bly
 bkQ
 bno
 bnN
-asV
+svE
 boA
 bjw
 bjw
@@ -53398,7 +53400,7 @@ acP
 acP
 acP
 acP
-amx
+oWh
 apc
 apc
 apL
@@ -53869,7 +53871,7 @@ aFW
 aKx
 aEO
 aGH
-aqT
+aSb
 aTh
 aIn
 aMc
@@ -54330,7 +54332,7 @@ bgg
 bgO
 bgf
 bgg
-arw
+wce
 bjb
 bes
 bes
@@ -54520,7 +54522,7 @@ aFW
 aKx
 aEO
 aEO
-aqT
+aSb
 aTi
 aUj
 aVp
@@ -54764,7 +54766,7 @@ bgv
 bgP
 bgg
 bgg
-arw
+wce
 bjb
 bes
 bes
@@ -54963,7 +54965,7 @@ aQu
 aXs
 aXU
 aYt
-arZ
+ooQ
 aXp
 aXp
 aXp
@@ -55188,7 +55190,7 @@ bbC
 aXp
 bcY
 bcY
-asl
+bdV
 aXp
 beI
 bfm
@@ -55805,7 +55807,7 @@ anI
 anI
 aAK
 aBu
-amZ
+aBw
 aCf
 aCZ
 aCf
@@ -56039,7 +56041,7 @@ aOV
 aOW
 aIE
 aCZ
-aqV
+aSd
 aTk
 aTu
 aTu
@@ -56239,7 +56241,7 @@ ayz
 aAh
 aqa
 tDX
-amZ
+aBw
 aCf
 aCo
 aCf
@@ -56256,7 +56258,7 @@ aOc
 aOX
 aQm
 aIE
-aqV
+aSd
 aTk
 aSg
 aSg
@@ -56447,7 +56449,7 @@ apU
 apU
 aoB
 anI
-amW
+viN
 oOL
 apc
 anI
@@ -56456,7 +56458,7 @@ anI
 anI
 arD
 arD
-amZ
+aBw
 aCf
 aCZ
 aCf
@@ -56473,7 +56475,7 @@ rdd
 aOY
 aQh
 aCZ
-aqV
+aSd
 aTk
 aQu
 aVq
@@ -56673,7 +56675,7 @@ azc
 anI
 arD
 arD
-amZ
+aBw
 aCf
 aCo
 aEe
@@ -56690,7 +56692,7 @@ aQq
 aOZ
 aCo
 aMN
-aqV
+aSd
 aTk
 aUk
 aKP
@@ -56890,7 +56892,7 @@ azd
 anI
 arD
 arD
-amZ
+aBw
 aCf
 aCo
 aEe
@@ -57107,7 +57109,7 @@ anI
 anI
 arD
 arD
-amZ
+aBw
 aCf
 aCo
 aEf
@@ -57311,7 +57313,7 @@ aoB
 aoB
 arz
 anI
-amV
+dNS
 aoB
 aue
 anI
@@ -57324,7 +57326,7 @@ azc
 anI
 arD
 arD
-amZ
+aBw
 aCf
 aCZ
 aCZ
@@ -57775,7 +57777,7 @@ aQp
 aPd
 aQh
 aEU
-aqV
+aSd
 aTk
 aUk
 aKP
@@ -57992,7 +57994,7 @@ aOg
 aPj
 uHK
 jcs
-aqV
+aSd
 aTk
 aUk
 dGd
@@ -58209,7 +58211,7 @@ aIE
 aCZ
 aIE
 aEV
-aqV
+aSd
 aTk
 aUk
 aVt
@@ -58643,7 +58645,7 @@ aOh
 aOW
 aIE
 aCZ
-aqV
+aSd
 aTn
 aQu
 aUk
@@ -58860,7 +58862,7 @@ aPi
 aOX
 aQm
 aIE
-aqV
+aSd
 aTo
 aUo
 aUk
@@ -59077,7 +59079,7 @@ aOb
 aOc
 aQl
 aCZ
-aqV
+aSd
 aTp
 aTn
 aUk
@@ -59944,7 +59946,7 @@ aEi
 aDc
 aEi
 aEi
-apS
+aRt
 aQu
 aTr
 aUp
@@ -60161,7 +60163,7 @@ aGN
 aGN
 aGN
 aEi
-apS
+aRt
 aQu
 aTr
 aUp
@@ -61246,7 +61248,7 @@ aEi
 aGN
 aGN
 aEi
-apS
+aRt
 aQu
 aTr
 aUp
@@ -61463,7 +61465,7 @@ aGQ
 aEi
 aEi
 aEi
-apS
+aRt
 aQu
 aTr
 aUp
@@ -72308,12 +72310,12 @@ aJb
 aKa
 aKW
 aLP
-aoR
+aMv
 adZ
 adZ
 adZ
 adZ
-apY
+aRz
 aSp
 aTE
 aUF
@@ -72959,12 +72961,12 @@ aJd
 aKd
 aKZ
 aLa
-apl
+aMy
 adZ
 adZ
 adZ
 adZ
-aqQ
+aRC
 aSs
 aTH
 aUH

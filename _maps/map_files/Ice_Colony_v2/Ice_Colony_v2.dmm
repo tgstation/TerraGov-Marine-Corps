@@ -40540,10 +40540,10 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
-"cLf" = (
+"oRW" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/storage/testroom)
-"rcI" = (
+"xBr" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/plating/icefloor,
 /area/storage/testroom)
@@ -41103,9 +41103,9 @@ aaa
 aaa
 aaa
 aaa
-cLf
-cLf
-cLf
+oRW
+oRW
+oRW
 aaa
 aaa
 bSw
@@ -41360,9 +41360,9 @@ aaa
 aaa
 aaa
 aaa
-cLf
-rcI
-cLf
+oRW
+xBr
+oRW
 aaa
 aaa
 bSw
@@ -41617,9 +41617,9 @@ aaa
 aaa
 aaa
 aaa
-cLf
-cLf
-cLf
+oRW
+oRW
+oRW
 aaa
 aaa
 bSw
@@ -87231,8 +87231,8 @@ aYC
 aYC
 aYC
 aYC
-aYC
 alQ
+aYC
 aYC
 aYC
 aYC
