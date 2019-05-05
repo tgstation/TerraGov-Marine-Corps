@@ -352,8 +352,8 @@
 
 	if(target.species.has_organ[O.organ_tag])
 
-		if(!O.health)
-			to_chat(user, "<span class='warning'>\The [O.organ_tag] [o_is] in no state to be anted.</span>")
+		if(!O.obj_integrity)
+			to_chat(user, "<span class='warning'>\The [O.organ_tag] [o_is] in no state to be implanted.</span>")
 			return SPECIAL_SURGERY_INVALID
 
 		if(!target.internal_organs_by_name[O.organ_tag])

@@ -1,6 +1,6 @@
 /obj/item/organ/brain
 	name = "brain"
-	health = 400 //They need to live awhile longer than other organs.
+	max_integrity = 400 //They need to live awhile longer than other organs.
 	desc = "A piece of juicy meat found in a person's head."
 	icon_state = "brain2"
 	flags_atom = NOFLAGS

@@ -1259,11 +1259,11 @@
 	to_chat(user, "<span class='notice'>You fold up and retrieve [src].</span>")
 	var/obj/item/marine_turret/mini/P = new(loc)
 	user.put_in_hands(P)
-	P.health = health //track the health
+	P.obj_integrity = obj_integrity //track the health
 	qdel(src)
 
 /obj/machinery/marine_turret/mini/update_icon()
-	if(machine_stat && health > 0) //Knocked over
+	if(machine_stat && obj_integrity > 0) //Knocked over
 		on = FALSE
 		density = FALSE
 		icon_state = "minisentry_fallen"
@@ -1304,7 +1304,7 @@
 	icon_state = "minisentry_packed"
 	item_state = "minisentry_packed"
 	w_class = 4
-	health = 155 //We keep track of this when folding up the sentry.
+	max_integrity = 155 //We keep track of this when folding up the sentry.
 	flags_equip_slot = ITEM_SLOT_BACK
 
 /obj/item/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
@@ -1325,7 +1325,7 @@
 		user.visible_message("<span class='notice'>[user] deploys [M].</span>",
 		"<span class='notice'>You deploy [M]. The [M]'s securing bolts automatically anchor it to the ground.</span>")
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
-		M.health = health
+		M.obj_integrity = obj_integrity
 		M.anchored = TRUE
 		M.activate_turret()
 		qdel(src)
