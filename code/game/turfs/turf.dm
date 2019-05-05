@@ -55,8 +55,7 @@
 		ChangeTurf(text2path(oldTurf), TRUE)
 	else
 		ChangeTurf(/turf/open/floor/plating, TRUE)
-	..()
-	return TA_PURGE_ME_NOW
+	return ..()
 
 /turf/ex_act(severity)
 	return 0

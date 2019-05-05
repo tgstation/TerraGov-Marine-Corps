@@ -107,10 +107,6 @@
 	wield()
 		qdel(src) //This shouldn't even happen.
 
-	Destroy()
-		..()
-		return TA_REVIVE_ME //So we can recycle this garbage.
-
 	dropped(mob/user)
 		..()
 		//This hand should be holding the main weapon. If everything worked correctly, it should not be wielded.

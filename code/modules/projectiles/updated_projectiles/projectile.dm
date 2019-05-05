@@ -58,7 +58,6 @@
 	permutated = list()
 
 /obj/item/projectile/Destroy()
-	. = ..()
 	in_flight = 0
 	ammo = null
 	shot_from = null
@@ -67,7 +66,7 @@
 	starting = null
 	permutated = null
 	path = null
-	return TA_REVIVE_ME
+	return ..()
 
 /obj/item/projectile/Bumped(atom/A as mob|obj|turf|area)
 	if(A && !A in permutated)

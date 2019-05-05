@@ -171,10 +171,6 @@ bullets/shells. ~N
 	flags_magazine = AMMUNITION_HANDFUL
 	attack_speed = 3 // should make reloading less painful
 
-/obj/item/ammo_magazine/handful/Destroy()
-	..()
-	return TA_REVIVE_ME
-
 /obj/item/ammo_magazine/handful/update_icon() //Handles the icon itself as well as some bonus things.
 	if(max_rounds >= current_rounds)
 		var/I = current_rounds*50 // For the metal.
