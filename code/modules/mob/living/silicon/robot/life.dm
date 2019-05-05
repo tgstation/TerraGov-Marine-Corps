@@ -77,7 +77,7 @@
 	..()
 
 	if(camera && !scrambledcodes)
-		if(stat == DEAD || isWireCut(5))
+		if(stat == DEAD)
 			camera.status = 0
 		else
 			camera.status = 1

@@ -48,7 +48,7 @@
 	icon_state = "chest"
 	construction_time = 350
 	construction_cost = list("metal"=40000)
-	var/wires = 0.0
+	var/wires_attached = FALSE
 	var/obj/item/cell/cell = null
 
 /obj/item/robot_parts/head
@@ -127,13 +127,15 @@
 			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/chest))
-		if(chest)	return
-		if(W:wires && W:cell)
-			if(user.transferItemToLoc(W, src))
-				chest = W
+		var/obj/item/robot_parts/chest/R = W
+		if(chest)	
+			return
+		if(R.wires_attached && R.cell)
+			if(user.transferItemToLoc(R, src))
+				chest = R
 				updateicon()
-		else if(!W:wires)
-			to_chat(user, "<span class='notice'>You need to attach wires to it first!</span>")
+		else if(!R.wires_attached)
+			to_chat(user, "<span class='notice'>You need to attach wires_attached to it first!</span>")
 		else
 			to_chat(user, "<span class='notice'>You need to attach a cell to it first!</span>")
 
@@ -222,13 +224,13 @@
 				cell = W
 				to_chat(user, "<span class='notice'>You insert the cell!</span>")
 	if(iscablecoil(W))
-		if(src.wires)
+		if(wires_attached)
 			to_chat(user, "<span class='notice'>You have already inserted wire!</span>")
 			return
 		else
 			var/obj/item/stack/cable_coil/coil = W
 			coil.use(1)
-			src.wires = 1.0
+			wires_attached = TRUE
 			to_chat(user, "<span class='notice'>You insert the wire!</span>")
 	return
 
