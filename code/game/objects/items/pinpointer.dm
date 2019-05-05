@@ -42,8 +42,6 @@
         active = FALSE
         return
 
-    message_admins("looking for [target]")
-
     setDir(get_dir(src, target))
     switch(get_dist(src, target))
         if(0)

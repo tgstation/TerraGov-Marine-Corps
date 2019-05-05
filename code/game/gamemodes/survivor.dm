@@ -14,7 +14,7 @@ GLOBAL_LIST_EMPTY(gamemode_survivor_key_items)
 */
 /obj/item/laptop/rescue
     name = "Communications laptop"
-    desc = "A device used for augmenting communication. Someone seems to have left it logged in with open communications to a nearby ship."
+    desc = "A device used for augmenting communication. Someone seems to have left it logged in with open communications to a nearby ship. Set this up next to a rescue beacon."
     w_class = WEIGHT_CLASS_BULKY
     // icon = 'icons/obj/machines/computer.dmi'
     // icon_state = "comm_traffic"
@@ -551,6 +551,9 @@ SPAWNS
     H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), SLOT_GLASSES)
     H.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(H), SLOT_R_STORE)
     H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
+
+    // TODO: Lets not do this
+    H.equip_to_slot_or_del(new /obj/item/pinpointer(H), SLOT_L_HAND)
 
     to_chat(H, "<h2>You are a survivor!</h2>")
     switch(SSmapping.config.map_name)
