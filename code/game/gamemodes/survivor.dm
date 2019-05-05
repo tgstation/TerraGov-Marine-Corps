@@ -59,7 +59,7 @@
     icon_state = "motion0"
     w_class = WEIGHT_CLASS_BULKY
 
-    var/activated = 0
+    var/activated = FALSE
     var/activation_time = 10 SECONDS
     var/icon_activated = "motion2"
 
@@ -105,23 +105,25 @@
         var/integrity = health / max_hp * 100
         switch(integrity)
             if(85 to 100)
-                to_chat(usr, "It's fully intact.")
+                to_chat(usr, "<span class='warning'>It's fully intact.</span>")
             if(65 to 85)
-                to_chat(usr, "It's slightly damaged.")
+                to_chat(usr, "<span class='warning'>It's slightly damaged.</span>")
             if(45 to 65)
-                to_chat(usr, "It's badly damaged.")
+                to_chat(usr, "<span class='warning'>It's badly damaged.</span>")
             if(25 to 45)
-                to_chat(usr, "It's heavily damaged.")
+                to_chat(usr, "<span class='warning'>It's heavily damaged.</span>")
             else
-                to_chat(usr, "It's falling apart.")
+                to_chat(usr, "<span class='warning'>It's falling apart.</span>")
     if (length(required_components))
-        to_chat(usr, "<span class='warning'>It looks like a few parts are missing.</span>")
+        to_chat(usr, "<span class='warning'>It looks like a few parts are missing.")
 
 
 /obj/item/beacon/rescue/proc/reset_state()
-    anchored = 0
-    activated = 0
+    anchored = FALSE
+    activated = FALSE
     required_components = initial(required_components)
+    icon_state = "motion0"
+    w_class = WEIGHT_CLASS_BULKY
     
     // TODO: Handle if something is blocking the way to throw things
     for (var/I in internal_components)
@@ -134,6 +136,10 @@
 
 /obj/item/beacon/rescue/attack_alien(mob/living/carbon/Xenomorph/M)
     M.animation_attack_on(src)
+
+    if (activated == FALSE)
+        return
+
     current_hp -= rand(15, 30)
     if(health <= 0)
         M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
@@ -191,10 +197,10 @@
     icon_state = "[icon_activated]"
     playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
     user.visible_message("<span class='notice'>[user] activates [src]</span>", "<span class='notice'>You activate [src]</span>")
-    activated = 1
+    activated = TRUE
     SetLuminosity(1)
 
-    addtimer(CALLBACK(src, .proc/make_noise), 3 SECONDS, TIMER_LOOP)
+    addtimer(CALLBACK(src, .proc/make_noise), 7 SECONDS, TIMER_LOOP)
     addtimer(CALLBACK(src, .proc/call_distress_team), distress_timer, TIMER_UNIQUE)
 
 /obj/item/beacon/rescue/attack_self(mob/user)
@@ -218,7 +224,7 @@
     "<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
     if(do_after(user, activation_time, TRUE, 5, BUSY_ICON_FRIENDLY))
         user.transferItemToLoc(src, user.loc)
-        anchored = 1
+        anchored = TRUE
         w_class = 10
        
 
