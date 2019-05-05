@@ -210,18 +210,6 @@
 	build_path = /obj/machinery/computer/telecomms/server
 	origin_tech = "programming=3"
 
-/obj/item/circuitboard/computer/mining_shuttle
-	name = "Circuit board (Mining Shuttle)"
-	build_path = /obj/machinery/computer/shuttle_control/mining
-	origin_tech = "programming=2"
-/obj/item/circuitboard/computer/engineering_shuttle
-	name = "Circuit board (Engineering Shuttle)"
-	build_path = /obj/machinery/computer/shuttle_control/engineering
-	origin_tech = "programming=2"
-/obj/item/circuitboard/computer/research_shuttle
-	name = "Circuit board (Research Shuttle)"
-	build_path = /obj/machinery/computer/shuttle_control/research
-	origin_tech = "programming=2"
 /obj/item/circuitboard/computer/HolodeckControl // Not going to let people get this, but it's just here for future
 	name = "Circuit board (Holodeck Control)"
 	build_path = /obj/machinery/computer/HolodeckControl
@@ -233,10 +221,6 @@
 /obj/item/circuitboard/computer/area_atmos
 	name = "Circuit board (Area Air Control)"
 	build_path = /obj/machinery/computer/area_atmos
-	origin_tech = "programming=2"
-/obj/item/circuitboard/computer/prison_shuttle
-	name = "Circuit board (Prison Shuttle)"
-	build_path = /obj/machinery/computer/prison_shuttle
 	origin_tech = "programming=2"
 
 
