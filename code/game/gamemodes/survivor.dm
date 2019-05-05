@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(gamemode_survivor_key_items)
         return
 
     current_hp -= rand(15, 30)
-    if(health <= 0)
+    if(current_hp <= 0)
         reset_state()
    
     if(prob(10))
