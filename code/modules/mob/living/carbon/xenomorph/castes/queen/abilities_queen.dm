@@ -110,114 +110,140 @@
 // *********** Screech
 // ***************************************
 /datum/action/xeno_action/activable/screech
-	name = "Screech"
+	name = "Screech (250)"
 	action_icon_state = "screech"
 	mechanics_text = "A large area knockdown that causes pain and screen-shake."
 	ability_name = "screech"
-	plasma_cost = 250
-	cooldown_timer = 50 SECONDS
 
-/datum/action/xeno_action/activable/screech/on_cooldown_finish()
-	to_chat(owner, "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>")
-	return ..()
+/datum/action/xeno_action/activable/screech/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	return !X.has_screeched
 
 /datum/action/xeno_action/activable/screech/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	X.queen_screech()
+
+/mob/living/carbon/Xenomorph/Queen/proc/queen_screech()
+	if(!check_state())
+		return
+
+	if(has_screeched)
+		to_chat(src, "<span class='warning'>You are not ready to screech again.</span>")
+		return
+
+	if(!check_plasma(250))
+		return
 
 	//screech is so powerful it kills huggers in our hands
-	if(istype(X.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = X.r_hand
+	if(istype(r_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = r_hand
 		if(FH.stat != DEAD)
 			FH.Die()
 
-	if(istype(X.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = X.l_hand
+	if(istype(l_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = l_hand
 		if(FH.stat != DEAD)
 			FH.Die()
 
-	succeed_activate()
-	add_cooldown()
-
-	playsound(X.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
-	X.visible_message("<span class='xenohighdanger'>\The [X] emits an ear-splitting guttural roar!</span>")
+	has_screeched = TRUE
+	use_plasma(250)
+	addtimer(CALLBACK(src, .screech_cooldown), 500)
+	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
+	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
 	round_statistics.queen_screech++
-	X.create_shriekwave() //Adds the visual effect. Wom wom wom
+	create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
-	for(var/mob/living/L in range(world.view, X))
+	for(var/mob/living/L in range(world.view))
 		if(L.stat == DEAD)
 			continue
-		L.screech_act(X)
+		L.screech_act(src)
+
+/mob/living/carbon/Xenomorph/Queen/proc/screech_cooldown()
+	has_screeched = FALSE
+	to_chat(src, "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>")
+	update_action_buttons()
 
 // ***************************************
 // *********** Gut
 // ***************************************
 /datum/action/xeno_action/activable/gut
-	name = "Gut"
+	name = "Gut (200)"
 	action_icon_state = "gut"
 	ability_name = "gut"
-	plasma_cost = 200
-
-/datum/action/xeno_action/activable/gut/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
-	if(X.last_special > world.time)
-		return FALSE
-	if(!iscarbon(A))
-		return FALSE
-	if(!owner.Adjacent(A))
-		return FALSE
-	var/mob/living/carbon/victim = A
-	if(issynth(victim))
-		var/datum/limb/head/synthhead = victim.get_limb("head")
-		if(synthhead.limb_status & LIMB_DESTROYED)
-			return FALSE
-	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
-		var/mob/living/carbon/human/H = victim
-		if(CHECK_BITFIELD(H.status_flags, XENO_HOST))
-			if(victim.stat != DEAD) //Not dead yet.
-				if(!silent)
-					to_chat(owner, "<span class='xenowarning'>The host and child are still alive!</span>")
-				return FALSE
-			else if(istype(H) && !H.check_tod()) //Dead, but the host can still hatch, possibly.
-				if(!silent)
-					to_chat(owner, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
-				return FALSE
-	if(owner.issamexenohive(victim))
-		if(!silent)
-			to_chat(owner, "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>")
-		return FALSE
 
 /datum/action/xeno_action/activable/gut/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	X.queen_gut(A)
+
+/mob/living/carbon/Xenomorph/Queen/proc/queen_gut(atom/A)
+
+	if(!iscarbon(A))
+		return
+
 	var/mob/living/carbon/victim = A
 
-	succeed_activate()
+	if(get_dist(src, victim) > 1)
+		return
 
-	X.last_special = world.time + 5 SECONDS
+	if(!check_state())
+		return
 
-	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
+	if(last_special > world.time)
+		return
+
+	if(issynth(victim))
+		var/datum/limb/head/synthhead = victim.get_limb("head")
+		if(synthhead.limb_status & LIMB_DESTROYED)
+			return
+
+	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
+		var/mob/living/carbon/human/H = victim
+		if(H.status_flags & XENO_HOST)
+			if(victim.stat != DEAD) //Not dead yet.
+				to_chat(src, "<span class='xenowarning'>The host and child are still alive!</span>")
+				return
+			else if(istype(H) && !H.check_tod()) //Dead, but the host can still hatch, possibly.
+				to_chat(src, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
+				return
+
+	if(isxeno(victim))
+		var/mob/living/carbon/Xenomorph/xeno = victim
+		if(hivenumber == xeno.hivenumber)
+			to_chat(src, "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>")
+			return
+
+	var/turf/cur_loc = victim.loc
+	if(!istype(cur_loc))
+		return
+
+	if(action_busy)
+		return
+
+	if(!check_plasma(200))
+		return
+	use_plasma(200)
+	last_special = world.time + 50
+
+	visible_message("<span class='xenowarning'>\The [src] begins slowly lifting \the [victim] into the air.</span>", \
 	"<span class='xenowarning'>You begin focusing your anger as you slowly lift \the [victim] into the air.</span>")
-	if(!do_mob(X, victim, 80, BUSY_ICON_HOSTILE))
-		return fail_activate()
-	if(!can_use_ability(victim,TRUE,XACT_IGNORE_PLASMA))
-		return fail_activate()
-	if(victim.loc != X.loc)
-		return fail_activate()
-	X.visible_message("<span class='xenodanger'>\The [X] viciously smashes and wrenches \the [victim] apart!</span>", \
-	"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!</span>")
-	X.emote("roar")
-	log_combat(victim, X, "gibbed")
-	victim.gib() //Splut
-	X.stop_pulling()
+	if(do_mob(src, victim, 80, BUSY_ICON_HOSTILE))
+		if(!victim)
+			return
+		if(victim.loc != cur_loc)
+			return
+		visible_message("<span class='xenodanger'>\The [src] viciously smashes and wrenches \the [victim] apart!</span>", \
+		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!</span>")
+		emote("roar")
+		log_combat(victim, src, "gibbed")
+		victim.gib() //Splut
+		stop_pulling()
 
 // ***************************************
 // *********** Ovipositor
 // ***************************************
 /datum/action/xeno_action/grow_ovipositor
-	name = "Grow Ovipositor"
+	name = "Grow Ovipositor (700)"
 	action_icon_state = "grow_ovipositor"
 	mechanics_text = "Grow an ovipositor to lay eggs and access new abilities. Takes 20 seconds and you cannot move while on the ovipositor."
 	plasma_cost = 700
@@ -265,14 +291,18 @@
 	name = "Remove Eggsac"
 	action_icon_state = "grow_ovipositor"
 	mechanics_text = "Get off your ovipositor, causing it to collapse. You must grow a new one the next time you wish to reattach."
+	plasma_cost = 0
 
 /datum/action/xeno_action/remove_eggsac/action_activate()
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	if(!X.check_state())
+		return
 
+	if(X.action_busy) return
 	var/answer = alert(X, "Are you sure you want to remove your ovipositor? (5min cooldown to grow a new one)", , "Yes", "No")
 	if(answer != "Yes")
 		return
-	if(!can_use_action())
+	if(!X.check_state())
 		return
 	if(!X.ovipositor)
 		return
@@ -386,6 +416,8 @@
 
 /datum/action/xeno_action/watch_xeno/action_activate()
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	if(!X.check_state())
+		return
 	if(!X.hive)
 		return
 	var/list/possible_xenos = X.hive.get_watchable_xenos()
@@ -415,9 +447,12 @@
 /datum/action/xeno_action/psychic_whisper
 	name = "Psychic Whisper"
 	action_icon_state = "psychic_whisper"
+	plasma_cost = 0
 
 /datum/action/xeno_action/psychic_whisper/action_activate()
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	if(!X.check_state())
+		return
 	var/list/target_list = list()
 	for(var/mob/living/possible_target in view(7, X))
 		if(possible_target == X || !possible_target.client) continue

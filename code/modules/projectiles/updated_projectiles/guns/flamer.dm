@@ -602,9 +602,7 @@
 	if(stat)
 		return
 	plasma_stored = xeno_caste.plasma_max
-	var/datum/action/xeno_action/charge = actions_by_path[/datum/action/xeno_action/activable/charge]
-	if(charge)
-		charge.clear_cooldown() //Reset charge cooldown
+	usedcharge = FALSE //Reset charge cooldown
 	to_chat(src, "<span class='xenodanger'>The heat of the fire roars in your veins! KILL! CHARGE! DESTROY!</span>")
 	if(prob(70))
 		emote("roar")

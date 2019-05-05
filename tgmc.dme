@@ -1177,6 +1177,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\hive_datum.dm"
 #include "code\modules\mob\living\carbon\xenomorph\life.dm"
 #include "code\modules\mob\living\carbon\xenomorph\login.dm"
+#include "code\modules\mob\living\carbon\xenomorph\powers.dm"
 #include "code\modules\mob\living\carbon\xenomorph\say.dm"
 #include "code\modules\mob\living\carbon\xenomorph\update_icons.dm"
 #include "code\modules\mob\living\carbon\xenomorph\xeno_defines.dm"
