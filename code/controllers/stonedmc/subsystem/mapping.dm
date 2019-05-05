@@ -22,6 +22,7 @@ SUBSYSTEM_DEF(mapping)
 	// Z-manager stuff
 	var/ground_start  // should only be used for maploading-related tasks
 	var/list/z_list
+	var/datum/space_level/transit
 	var/num_of_res_levels = 1
 
 //dlete dis once #39770 is resolved
@@ -46,8 +47,10 @@ SUBSYSTEM_DEF(mapping)
 	loadWorld()
 	repopulate_sorted_areas() // we dont have glob.sortedareas yet
 	preloadTemplates()
+	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	// Set up Z-level transitions.
 	generate_station_area_list()
+	initialize_reserved_level()
 	return ..()
 
 /datum/controller/subsystem/mapping/Recover()
