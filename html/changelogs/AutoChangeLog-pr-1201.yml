@@ -1,0 +1,8 @@
+author: "spookydonut"
+delete-after: True
+changes: 
+  - tweak: "Regurgitate will disabled if you have nothing to regurgitate"
+  - tweak: "Many xeno ability buttons will now red/grey out when you can't use them."
+  - tweak: "Abilities on cooldown or that you lack plasma for are now selectable to allow quick switching"
+  - tweak: "Abilities on cooldown now show a moving clock on top of the icon"
+  - tweak: "Abilities on cooldown or you lack plasma for now show the green outline showing they're selected"
