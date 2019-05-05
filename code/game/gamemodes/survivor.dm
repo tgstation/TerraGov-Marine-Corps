@@ -42,9 +42,10 @@ GLOBAL_LIST_EMPTY(gamemode_survivor_key_items)
 
 /obj/item/laptop/rescue/attack_hand(mob/user as mob)
     if(!anchored)
-        return
+        return ..()
     if(!ishuman(user)) 
-        return
+        return ..()
+
     user.visible_message("<span class='notice'>[user] starts packing up \the [src].</span>",
     "<span class='notice'>You start packing up \the [src]. <b>This will interrupt the beacon.</b></span>")
     if(do_after(user, activation_time*2, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
@@ -164,26 +165,37 @@ GLOBAL_LIST_EMPTY(gamemode_survivor_key_items)
 
 /obj/item/beacon/rescue/attack_alien(mob/living/carbon/Xenomorph/M)
     M.animation_attack_on(src)
+    M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+        "<span class='danger'>You slice [src] apart!</span>", null, 5)
+    playsound(loc, "alien_claw_metal", 25, 1)
 
     if (activated == FALSE)
         return
 
     current_hp -= rand(15, 30)
     if(health <= 0)
-        M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
-        "<span class='danger'>You slice [src] apart!</span>", null, 5)
         reset_state()
-    else
-        M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
-        "<span class='danger'>You slash [src]!</span>", null, 5)
-    playsound(loc, "alien_claw_metal", 25, 1)
+   
     if(prob(10))
         new /obj/effect/decal/cleanable/blood/oil(src.loc)
     
 
 // TODO: Handle other click types (altclick etc)
 /obj/item/beacon/rescue/attack_hand(mob/user as mob)
-    return
+    if(!anchored)
+        return ..()
+
+    if(!ishuman(user)) 
+        return ..()
+
+    user.visible_message("<span class='notice'>[user] starts packing up \the [src].</span>",
+    "<span class='notice'>You start packing up \the [src]. <b>This will interrupt the beacon.</b></span>")
+    if(do_after(user, activation_time*2, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
+        user.transferItemToLoc(src, user)
+        anchored = FALSE
+        w_class = initial(w_class)
+        update_icon()
+    return ..()
 
 
 /obj/item/beacon/rescue/attackby(obj/item/W as obj, mob/user as mob)
@@ -363,9 +375,17 @@ SPAWNS
 /datum/game_mode/survivor/announce()
     to_chat(world, "<br><b>The current game mode is - Survivor!</b>")
     to_chat(world, "<b>Find all the parts required to setup a distress beacon and get the fuck out of there!</b><br>")
+    to_chat(world, "<br><hr><br>")
+    to_chat(world, "<h3> TL;DR Advice while testing </h3>")
+    to_chat(world, "<b>Difficulty changes as pop goes up, breakpoints are around high (15+) med (10-15) low (10-0). </b><br>")
+    to_chat(world, "<b>Humans start with a pinpointer, use this to find the key items needed.</b><br>")
+    to_chat(world, "<b>Xenos are expected to assault humans as soon as possible, humans just need to place a beacon and defend it.</b><br>")
+    to_chat(world, "<b>Xenos work just like in distress nothing special here.</b><br>")
+    to_chat(world, "<b>Humans do not yet have a way to communicate, ideally radios will be found and used. (not yet implemented)</b><br>")
 
 /datum/game_mode/survivor/setup()
     
+    // TODO: Equally distribute players
     for(var/i in xenos)
         var/datum/mind/M = i
         if(M.assigned_role == ROLE_XENO_QUEEN)
@@ -451,6 +471,8 @@ SPAWNS
     else 
         player_size = LOW_POP
 
+    player_size = HIGH_POP
+
     return TRUE
 
 
@@ -470,7 +492,14 @@ SPAWNS
         A.cell.charge = A.cell.maxcharge * (ratio / 100)
     */
 
-    for (var/I in world)
+    for (var/I in GLOB.machines)
+        if (istype(I, /obj/machinery/door))
+            var/obj/machinery/door/airlock/A = I
+            A.req_access = null
+            A.req_access_txt = null
+            A.req_one_access = null
+            A.req_one_access_txt = null
+
         // Charge every apc across the map
         if (isAPC(I))
             var/obj/machinery/power/apc/A = I
@@ -483,6 +512,9 @@ SPAWNS
                 if(LOW_POP)
                     ratio = rand(50,100)
             A.cell.charge = A.cell.maxcharge * (ratio / 100)
+
+
+
     return TRUE
 
 
@@ -587,7 +619,7 @@ SPAWNS
 /datum/game_mode/survivor/proc/count_team_alive(list/team)
     var/count = 0
     for(var/mob/M in team)
-        if(!M.client)
+        if(!M.client && !isaghost(M))
             continue
         if (ishuman(M))
             var/mob/living/carbon/human/H = M
