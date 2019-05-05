@@ -6370,6 +6370,7 @@
 /area/ice_colony/surface/dorms)
 "aqT" = (
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
+/obj/effect/landmark/survivor/spawn/random_items,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "aqU" = (
@@ -6593,6 +6594,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/effect/landmark/survivor/spawn/random_items,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "arq" = (
@@ -9186,6 +9188,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/landmark/survivor/spawn/random_items,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
@@ -13729,6 +13732,7 @@
 	name = "Colony Emergency Armory";
 	pixel_y = 29
 	},
+/obj/effect/landmark/survivor/spawn/human,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "aJp" = (
@@ -40584,6 +40588,118 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
+"ezJ" = (
+/obj/effect/landmark/survivor/spawn/random_items,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/ice_colony/surface/dorms)
+"eZk" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/landmark/survivor/spawn/xeno,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/dorms)
+"glq" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/landmark/survivor/spawn/random_items,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 1
+	},
+/area/ice_colony/surface/dorms)
+"hNQ" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/landmark/survivor/spawn/key_items,
+/turf/open/floor/wood,
+/area/ice_colony/surface/dorms)
+"lBh" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/wood,
+/area/ice_colony/surface/dorms)
+"lHS" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/survivor/spawn/random_items,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/dorms)
+"lQt" = (
+/obj/effect/landmark/survivor/spawn/xeno,
+/turf/open/floor/freezer,
+/area/ice_colony/surface/dorms/restroom_e)
+"mjd" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/survivor/spawn/key_items,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/dorms)
+"nbb" = (
+/obj/effect/landmark/survivor/spawn/random_items,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 1
+	},
+/area/ice_colony/surface/dorms)
+"ntU" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/dorms)
+"oeJ" = (
+/obj/effect/landmark/survivor/spawn/key_items,
+/turf/open/floor/wood,
+/area/ice_colony/surface/dorms)
+"pay" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/survivor/spawn/random_items,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/dorms)
+"qsY" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/wood,
+/area/ice_colony/surface/dorms)
+"tfx" = (
+/obj/effect/landmark/survivor/spawn/xeno,
+/turf/open/floor/freezer,
+/area/ice_colony/surface/dorms/restroom_w)
+"vfk" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/survivor/spawn/xeno,
+/turf/open/floor/freezer,
+/area/ice_colony/surface/dorms/restroom_w)
+"vIh" = (
+/obj/effect/landmark/survivor/spawn/xeno,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 8
+	},
+/area/ice_colony/surface/dorms)
+"wsa" = (
+/obj/effect/landmark/survivor/spawn/random_items,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 8
+	},
+/area/ice_colony/surface/dorms)
+"wAa" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/landmark/survivor/spawn/random_items,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 4
+	},
+/area/ice_colony/surface/dorms)
 
 (1,1,1) = {"
 aaa
@@ -62265,7 +62381,7 @@ apC
 ari
 arE
 aAi
-arQ
+oeJ
 ast
 arE
 ast
@@ -62522,12 +62638,12 @@ apC
 arN
 arF
 arQ
-arQ
+lBh
 asu
 arE
 asu
-arQ
-arQ
+oeJ
+lBh
 arF
 avn
 aqS
@@ -62769,13 +62885,13 @@ akW
 anB
 akW
 akW
-akW
+tfx
 akW
 akW
 akW
 akW
 alk
-apC
+nbb
 ari
 arE
 arE
@@ -63043,7 +63159,7 @@ ast
 arQ
 aAi
 arE
-avm
+glq
 avW
 arE
 aAi
@@ -63280,7 +63396,7 @@ aln
 aln
 amu
 amS
-anC
+vfk
 anC
 anC
 anC
@@ -63292,18 +63408,18 @@ aqN
 arj
 arO
 arF
-arQ
-arQ
+oeJ
+lBh
 asu
 arE
 atX
-arQ
-arQ
+oeJ
+lBh
 arF
 avn
 aqS
 arF
-arQ
+oeJ
 arQ
 asu
 axl
@@ -63807,12 +63923,12 @@ arl
 arm
 arE
 aAi
-arQ
+oeJ
 ast
 arE
 ast
-arQ
-aAi
+oeJ
+qsY
 arE
 avm
 avW
@@ -64064,7 +64180,7 @@ arn
 arW
 arF
 arQ
-arQ
+lBh
 asu
 arE
 atY
@@ -64316,7 +64432,7 @@ apZ
 aIs
 arD
 apX
-apZ
+ntU
 aqS
 arm
 arE
@@ -64574,16 +64690,16 @@ arD
 arD
 arD
 apZ
-aqS
+mjd
 aro
 arG
 arR
-arG
+vIh
 arG
 asT
 arG
 arG
-arG
+wsa
 arG
 avq
 avX
@@ -64595,7 +64711,7 @@ asT
 axN
 axN
 axN
-axN
+ezJ
 aAE
 aBl
 aBc
@@ -64833,8 +64949,8 @@ aIL
 axX
 aqT
 arp
-arH
-arH
+lHS
+lHS
 arH
 asv
 arH
@@ -65088,11 +65204,11 @@ apZ
 apZ
 apZ
 apZ
-aqS
+pay
 arq
 arI
 arI
-arI
+eZk
 asw
 arI
 arI
@@ -65353,7 +65469,7 @@ arJ
 arJ
 asU
 arJ
-arJ
+wAa
 arJ
 auO
 avt
@@ -65863,15 +65979,15 @@ aqW
 art
 arF
 arQ
-arQ
+lBh
 asu
 arE
 ato
-arQ
-arQ
+oeJ
+lBh
 arF
 avn
-aqS
+pay
 arF
 arQ
 arQ
@@ -66120,7 +66236,7 @@ aqX
 aru
 arE
 aAI
-arQ
+oeJ
 ast
 arE
 ast
@@ -66130,7 +66246,7 @@ arE
 avm
 avW
 arE
-aAI
+hNQ
 arQ
 ast
 axQ
@@ -66634,12 +66750,12 @@ aqZ
 arv
 arF
 arQ
-arQ
+lBh
 asx
 arE
 atp
 arQ
-arQ
+lBh
 arF
 avn
 aqS
@@ -66878,10 +66994,10 @@ alp
 alp
 amy
 akX
+lQt
 akX
 akX
-akX
-akX
+lQt
 akX
 akX
 akX
@@ -66890,12 +67006,12 @@ alm
 apC
 arw
 arE
-aAI
+hNQ
 arQ
 ast
 arE
 ast
-arQ
+oeJ
 aAI
 arE
 avm
@@ -67144,7 +67260,7 @@ akX
 akX
 akX
 alm
-apC
+nbb
 arw
 arE
 arE
@@ -67409,11 +67525,11 @@ arT
 asy
 arE
 asu
-arQ
-arQ
+oeJ
+lBh
 arF
 avn
-aqS
+pay
 arF
 arQ
 arQ
