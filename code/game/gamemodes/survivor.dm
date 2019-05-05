@@ -131,7 +131,7 @@ GLOBAL_LIST_EMPTY(gamemode_survivor_key_items)
 /obj/item/beacon/rescue/examine()
     . = ..() // show parent examines (if any) first
     if (current_hp < max_hp)
-        var/integrity = health / max_hp * 100
+        var/integrity = current_hp / max_hp * 100
         switch(integrity)
             if(85 to 100)
                 to_chat(usr, "<span class='warning'>It's fully intact.</span>")
