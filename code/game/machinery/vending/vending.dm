@@ -292,7 +292,7 @@
 			else
 				T.amount = "[transaction_amount]"
 			T.source_terminal = src.name
-			T.date = current_date_string
+			T.date = GLOB.current_date_string
 			T.time = worldtime2text()
 			acc.transaction_log.Add(T)
 
