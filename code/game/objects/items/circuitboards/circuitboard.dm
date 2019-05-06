@@ -10,29 +10,26 @@
 	var/build_path = null
 	var/is_general_board = FALSE
 
-/obj/item/circuitboard/attackby(obj/item/W , mob/user)
-	if(ismultitool(W) && is_general_board == TRUE)
-		var/list/modes_to_pick = list("APC", "Airlock", "Fire Alarm", "Air Alarm", "None")
+/obj/item/circuitboard/attackby(obj/item/I , mob/user, params)
+	. = ..()
+	if(ismultitool(I) && is_general_board == TRUE)
 		var/obj/item/circuitboard/new_board
-		var/modepick = input("Select a mode for this circuit.") as null|anything in modes_to_pick
+		var/modepick = input("Select a mode for this circuit.") as null|anything in list("APC", "Airlock", "Fire Alarm", "Air Alarm")
 		switch(modepick)
 			if("APC")
-				new_board = new/obj/item/circuitboard/apc(user.loc)
+				new_board = new /obj/item/circuitboard/apc(user.loc)
 			if("Airlock")
-				new_board = new/obj/item/circuitboard/airlock(user.loc)
+				new_board = new /obj/item/circuitboard/airlock(user.loc)
 			if("Fire Alarm")
-				new_board = new/obj/item/circuitboard/firealarm(user.loc)
+				new_board = new /obj/item/circuitboard/firealarm(user.loc)
 			if("Air Alarm")
-				new_board = new/obj/item/circuitboard/airalarm(user.loc)
-			if("None")
-				to_chat(user, "<span class='notice'>You choose not to alter the function of [name] at this time.</span>")
+				new_board = new /obj/item/circuitboard/airalarm(user.loc)
 		if(new_board)
 			qdel(src)
-			to_chat(user, "<span class='notice'>You set the general circuit to act as [name].</span>")
+			to_chat(user, "<span class='notice'>You set the general circuit to act as [new_board].</span>")
 			new_board.set_general()
 			user.put_in_hands(new_board)
-		return
-	return ..()
+
 
 /obj/item/circuitboard/proc/set_general()
 	is_general_board = TRUE
@@ -77,14 +74,6 @@
 	name = "power control module"
 	icon_state = "power_mod"
 	desc = "Heavy-duty switching circuits for power control."
-
-/obj/item/circuitboard/apc/attackby(obj/item/W , mob/user)
-	. = ..()
-	if (ismultitool(W))
-		var/obj/item/circuitboard/machine/ghettosmes/newcircuit = new(user.loc)
-		user.put_in_hands(newcircuit)
-		qdel(src)
-
 
 
 // Tracker Electronic
