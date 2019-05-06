@@ -18,9 +18,9 @@ SUBSYSTEM_DEF(weeds)
 		creating = list()
 
 	for(var/A in currentrun)
+		var/obj/effect/alien/weeds/node/N = currentrun[A]
+		currentrun -= A
 		var/turf/T = A
-		var/obj/effect/alien/weeds/node/N = currentrun[T]
-		currentrun -= T
 
 		if(QDELETED(N) || QDELETED(T))
 			pending -= T
@@ -30,7 +30,8 @@ SUBSYSTEM_DEF(weeds)
 			pending -= T
 			continue
 
-		if (locate(/obj/effect/alien/weeds) in T)
+		if ((locate(/obj/effect/alien/weeds) in T) || (locate(/obj/effect/alien/weeds/node) in T))
+			pending -= T
 			continue
 
 		for(var/direction in GLOB.cardinals) 
