@@ -60,7 +60,7 @@ Currently only has the tank hardpoints
 		return
 	if(!iswelder(W) && !iswrench(W))
 		return ..()
-	if(health >= maxhealth)
+	if(obj_integrity >= max_integrity)
 		to_chat(user, "<span class='notice'>[src] is already in perfect conditions.</span>")
 		return
 	var/repair_delays = 6
