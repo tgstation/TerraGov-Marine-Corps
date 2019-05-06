@@ -67,7 +67,7 @@
 
 	for(var/i in GLOB.dead_mob_list)
 		var/mob/M = i
-		if(!M.client)
+		if(isnewplayer(M) || !M.client)
 			continue
 		var/T = get_turf(user)
 		if(!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) || (M in viewers(T, null)))
