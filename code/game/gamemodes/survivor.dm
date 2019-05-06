@@ -77,7 +77,7 @@ SPAWNS
             M.mind.assigned_role = ROLE_SURVIVOR
             M.mind.late_joiner = TRUE
             humans +=  M.mind
-            transform_survivor( M.mind, TRUE)
+            transform_survivor(M.mind, TRUE)
             return TRUE
 
     return ..()
@@ -274,8 +274,14 @@ SPAWNS
     Q.away_time = 0 // queen so they can't be taken by late joins
 
 
-/datum/game_mode/survivor/proc/transform_survivor(datum/mind/M, late_join = FALSE)
-    var/mob/living/carbon/human/H = new (pick(GLOB.survivor_spawn_human))
+/datum/game_mode/survivor/proc/transform_survivor(datum/mind/M, late_join = FALSE,)
+    var/spawn_point = pick(GLOB.survivor_spawn_human)
+    if (late_join)
+        var/mob/A = pick(GLOB.alive_human_list)
+        if(A)
+            spawn_point = A.loc
+
+    var/mob/living/carbon/human/H = new(spawn_point)
 
     if(isnewplayer(M.current))
         var/mob/new_player/N = M.current
