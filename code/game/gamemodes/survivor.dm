@@ -94,13 +94,16 @@ SPAWNS
 /datum/game_mode/survivor/announce()
     to_chat(world, "<br><b>The current game mode is - Survivor!</b>")
     to_chat(world, "<b>Find all the parts required to setup a distress beacon and get the fuck out of there!</b><br>")
+    // TODO: Debug code
     to_chat(world, "<br><hr><br>")
     to_chat(world, "<h3> TL;DR Advice while testing </h3>")
     to_chat(world, "<b>Difficulty changes as pop goes up, breakpoints are around high (15+) med (10-15) low (10-0). </b><br>")
-    to_chat(world, "<b>Humans start with a pinpointer, use this to find the key items needed.</b><br>")
+    to_chat(world, "<b>Humans start with different gearsets. Group up and work together to find the key items needed.</b><br>")
+    to_chat(world, "<b>Some humans spawn with radios, you can find more in the world</b><br>")
     to_chat(world, "<b>Xenos are expected to assault humans as soon as possible, humans just need to place a beacon and defend it.</b><br>")
     to_chat(world, "<b>Xenos work just like in distress nothing special here.</b><br>")
-    to_chat(world, "<b>Humans do not yet have a way to communicate, ideally radios will be found and used. (not yet implemented)</b><br>")
+    to_chat(world, "<b>Xenos can break the beacon to interrupt the timer, it will restart where it left off.</b><br>")
+    to_chat(world, "<span class='boldnotice'>Send your feedback to PsyKzz</span><br>")
 
 /datum/game_mode/survivor/setup()
     
@@ -132,9 +135,7 @@ SPAWNS
     init_xeno_size = max(CEILING(GLOB.ready_players * xeno_ratio, 1), 1)
     init_human_size = GLOB.ready_players - init_xeno_size
 
-    message_admins("calculate_team_sizes::\nhuman: [init_human_size]\nxeno: [init_xeno_size]")
-    return TRUE // TODO: Remove this line, TRUE is DEBUG CODE.
-    // return (init_human_size > 0 && init_xeno_size > 0)
+    return (init_human_size > 0 && init_xeno_size > 0)
 
 /datum/game_mode/survivor/proc/assign_players()
     var/list/possible_xeno_queens = get_players_for_role(BE_QUEEN)
@@ -187,6 +188,8 @@ SPAWNS
     else 
         player_size = LOW_POP
 
+    // TODO: debug code for now, while people are working things out, high pop works best
+    player_size = HIGH_POP
     return TRUE
 
 
@@ -226,8 +229,6 @@ SPAWNS
                 if(LOW_POP)
                     ratio = rand(50,100)
             A.cell.charge = A.cell.maxcharge * (ratio / 100)
-
-
 
     return TRUE
 
@@ -406,6 +407,7 @@ SPAWNS
             continue
         count++
     return count
+
 
 /datum/game_mode/survivor/check_finished()
     return FALSE // DEBUG YO REMOVE ME

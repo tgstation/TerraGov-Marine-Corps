@@ -32,12 +32,10 @@
         return ..()
 
     user.visible_message("<span class='notice'>[user] starts packing up \the [src].</span>",
-    "<span class='notice'>You start packing up \the [src]. <b>This will interrupt the beacon.</b></span>")
-    if(do_after(user, activation_time*2, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
-        user.transferItemToLoc(src, user)
-        anchored = FALSE
-        w_class = initial(w_class)
-        update_icon()
+    "<span class='notice'>You start packing up \the [src]. <b>This will interrupt the process.</b></span>")
+    if(!user.get_active_held_item() && do_after(user, activation_time*1.2, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
+        reset_state()
+        user.put_in_hands(src)
     . = ..()
     
 /obj/item/laptop/rescue/attack_self(mob/user)
@@ -69,6 +67,8 @@
 /obj/item/laptop/rescue/proc/reset_state()
     icon_state = "tandy0"
     w_class = initial(w_class)
+    anchored = FALSE
+    update_icon()
 
 
 /obj/item/laptop/rescue/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -100,15 +100,19 @@
     var/distress_timer = 5 MINUTES
     var/required_components
 
+    // Requirements for nearby components that need setting up
+    var/scan_range = 2
     var/required_nearby
 
-    // For when it broken, we spit everything out again
+    // Contents list, for when it gets broken. We spit everything out again
     var/internal_components = list()
 
-    // It can't be destroyed but it can be stopped by reducing health to 0
+    // Custom health, It can't be destroyed but it can be stopped by reducing health to 0
     var/max_hp = 100
     var/current_hp = 0
 
+    // Timer to remove the distress beacon if we get distroyed
+    var/noise_timer_id = null
     var/beacon_timer_id = null
 
 /obj/item/beacon/rescue/Initialize()
@@ -140,6 +144,7 @@
 
 /obj/item/beacon/rescue/examine()
     . = ..() // show parent examines (if any) first
+    to_chat(usr, "<span class='notice'>It shows [timeleft(beacon_timer_id) / 10] seconds left.</span>")
     if (current_hp < max_hp)
         var/integrity = current_hp / max_hp * 100
         switch(integrity)
@@ -154,13 +159,13 @@
             else
                 to_chat(usr, "<span class='warning'>It's falling apart.</span>")
     if (length(required_components))
-        to_chat(usr, "<span class='warning'>It looks like a few parts are missing.")
+        to_chat(usr, "<span class='warning'>It looks like a few parts are missing.</span>")
 
 
 
 
 /obj/item/beacon/rescue/process()
-    var/list/nearby = range(2, src)
+    var/list/nearby = range(scan_range, src)
     var/nearby_setup = 0
     for (var/R in required_nearby)
         var/obj/found = locate(R) in nearby
@@ -176,8 +181,10 @@
 
 /obj/item/beacon/rescue/proc/reset_state(dump_contents = TRUE)
     activated = FALSE
+    anchored = FALSE
     icon_state = "motion0"
     w_class = WEIGHT_CLASS_BULKY
+    update_icon()
     
     if (dump_contents && length(internal_components))
         required_components = initial(required_components)
@@ -188,8 +195,13 @@
             else
                 usr.transferItemToLoc(I, T)
 
-    if (beacon_timer_id)
+    if (beacon_timer_id && noise_timer_id)
+        distress_timer = timeleft(beacon_timer_id)
+        deltimer(noise_timer_id)
         deltimer(beacon_timer_id)
+        for (var/mob/M in GLOB.alive_human_list)
+            to_chat(M, "<h2 class='alert'>MESSAGE RECIEVED</h2>")
+            to_chat(M, "<span class='alert'>We have lost signal with your beacon! Get it set back up or we'll never find you.</span>")
 
     STOP_PROCESSING(SSobj, src)
 
@@ -220,12 +232,10 @@
         return ..()
 
     user.visible_message("<span class='notice'>[user] starts packing up \the [src].</span>",
-    "<span class='notice'>You start packing up \the [src]. <b>This will interrupt the beacon.</b></span>")
-    if(do_after(user, activation_time*2, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
-        user.transferItemToLoc(src, user)
-        anchored = FALSE
-        w_class = initial(w_class)
-        update_icon()
+    "<span class='notice'>You start packing up \the [src]. <b>This will interrupt the process.</b></span>")
+    if(!user.get_active_held_item() && do_after(user, activation_time*1.2, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
+        reset_state()
+        user.put_in_hands(src)
     return ..()
 
 
@@ -276,8 +286,8 @@
     activated = TRUE
     SetLuminosity(1)
 
-    addtimer(CALLBACK(src, .proc/make_noise), 7 SECONDS, TIMER_LOOP)
-    addtimer(CALLBACK(src, .proc/call_distress_team), distress_timer, TIMER_UNIQUE)
+    noise_timer_id = addtimer(CALLBACK(src, .proc/make_noise), 7 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
+    beacon_timer_id = addtimer(CALLBACK(src, .proc/call_distress_team), distress_timer, TIMER_UNIQUE|TIMER_STOPPABLE)
 
     for (var/mob/M in GLOB.alive_human_list)
         to_chat(M, "<h2 class='alert'>MESSAGE RECIEVED</h2>")
