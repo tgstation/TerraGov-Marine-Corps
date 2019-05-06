@@ -182,14 +182,14 @@
 			else
 				spawn()
 					M.close()
-
+/*
 /obj/machinery/door_control/proc/handle_emitters(mob/user as mob)
 	for(var/obj/machinery/power/emitter/E in range(range))
 		if(E.id == src.id)
 			spawn(0)
 				E.activate(user)
 				return
-
+*/
 /obj/machinery/door_control/attack_hand(mob/user)
 	src.add_fingerprint(user)
 	if(istype(user,/mob/living/carbon/Xenomorph))
@@ -212,8 +212,8 @@
 			handle_door()
 		if(CONTROL_POD_DOORS)
 			handle_pod()
-		if(CONTROL_EMITTERS)
-			handle_emitters(user)
+		//if(CONTROL_EMITTERS)
+		//	handle_emitters(user)
 		if(CONTROL_DROPSHIP)
 			handle_dropship(id)
 
@@ -301,8 +301,8 @@
 				handle_door()
 			if(CONTROL_POD_DOORS)
 				handle_pod()
-			if(CONTROL_EMITTERS)
-				handle_emitters()
+			//if(CONTROL_EMITTERS)
+			//	handle_emitters()
 			if(CONTROL_DROPSHIP)
 				handle_dropship(id)
 

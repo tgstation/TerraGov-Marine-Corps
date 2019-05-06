@@ -12,6 +12,7 @@
 
 
 /obj/machinery/mineral/unloading_machine/New()
+/*
 	..()
 	spawn( 5 )
 		for (var/dir in cardinal)
@@ -45,3 +46,4 @@
 				else
 					return
 	return
+*/

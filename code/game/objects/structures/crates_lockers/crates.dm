@@ -259,32 +259,6 @@
 /obj/structure/closet/crate/solar
 	name = "Solar Pack crate"
 
-/obj/structure/closet/crate/solar/New()
-	..()
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/circuitboard/computer/solar_control(src)
-	new /obj/item/circuitboard/solar_tracker(src)
-	new /obj/item/paper/solar(src)
 
 /obj/structure/closet/crate/freezer/rations //Fpr use in the escape shuttle
 	desc = "A crate of emergency rations."

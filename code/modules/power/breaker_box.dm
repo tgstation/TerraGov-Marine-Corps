@@ -19,7 +19,7 @@
 /obj/machinery/power/breakerbox/activated
 	icon_state = "bbox_on"
 
-	// Enabled on server startup. Used in substations to keep them in bypass mode.
+/*	// Enabled on server startup. Used in substations to keep them in bypass mode.
 /obj/machinery/power/breakerbox/activated/Initialize()
 	..()
 	set_state(1)
@@ -89,3 +89,4 @@
 		icon_state = icon_state_off
 		for(var/obj/structure/cable/C in src.loc)
 			qdel(C)
+*/

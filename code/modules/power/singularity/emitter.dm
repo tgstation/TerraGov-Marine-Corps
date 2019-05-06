@@ -24,7 +24,7 @@
 	var/state = 0
 	var/locked = 0
 	var/datum/ammo/energy/emitter/ammo = /datum/ammo/energy/emitter
-
+/*
 	New()
 		..()
 		ammo = GLOB.ammo_list[ammo]
@@ -33,7 +33,7 @@
 	Destroy()
 		ammo = null
 		. = ..()
-
+*/
 
 /obj/machinery/power/emitter/verb/rotate()
 	set name = "Rotate"
@@ -48,9 +48,9 @@
 
 /obj/machinery/power/emitter/Initialize()
 	..()
-	if(state == 2 && anchored)
+/*	if(state == 2 && anchored)
 		connect_to_network()
-
+*/
 /obj/machinery/power/emitter/Destroy()
 	log_game("Emitter deleted at [AREACOORD(src.loc)].")
 	message_admins("Emitter deleted at [ADMIN_VERBOSEJMP(src.loc)].")
@@ -61,7 +61,7 @@
 		icon_state = "emitter_+a"
 	else
 		icon_state = "emitter"
-
+/*
 /obj/machinery/power/emitter/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
 	activate(user)
@@ -230,3 +230,4 @@
 
 	..()
 	return
+*/

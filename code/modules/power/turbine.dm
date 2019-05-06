@@ -29,7 +29,7 @@
 	desc = "A computer to remotely control a gas turbine"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "turbinecomp"
-	circuit = /obj/item/circuitboard/computer/turbine_control
+	//circuit = /obj/item/circuitboard/computer/turbine_control
 	anchored = 1
 	density = 1
 	var/list/obj/machinery/compressor/compressors = list()
@@ -38,7 +38,7 @@
 	var/door_status = 0
 
 // the inlet stage of the gas turbine electricity generator
-
+/*
 /obj/machinery/compressor/Initialize()
 	. = ..()
 
@@ -338,7 +338,7 @@
 /obj/machinery/computer/turbine_computer/process()
 	src.updateDialog()
 	return
-
+*/
 /obj/machinery/power/turbinemotor
 	name = "motor"
 	desc = "Electrogenerator. Converts rotation into power."

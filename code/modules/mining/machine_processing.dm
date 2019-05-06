@@ -11,7 +11,7 @@
 	var/machinedir = EAST
 	var/show_all_ores = 0
 
-/obj/machinery/mineral/processing_unit_console/New()
+/obj/machinery/mineral/processing_unit_console/New()/*
 	..()
 	spawn(7)
 		src.machine = locate(/obj/machinery/mineral/processing_unit, get_step(src, machinedir))
@@ -94,7 +94,7 @@
 
 	src.updateUsrDialog()
 	return
-
+*/
 /**********************Mineral processing unit**************************/
 
 
@@ -116,7 +116,7 @@
 	var/active = 0
 
 /obj/machinery/mineral/processing_unit/New()
-
+/*
 	..()
 
 	//TODO: Ore and alloy global storage datum.
@@ -237,3 +237,4 @@
 /obj/machinery/mineral/processing_unit/Destroy()
 	SetLuminosity(0)
 	. = ..()
+*/

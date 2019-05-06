@@ -1,3 +1,4 @@
+/*
 /datum/codex_entry/supermatter
 	associated_paths = list(/obj/machinery/power/supermatter)
 	mechanics_text = "When energized by a laser (or something hitting it), it emits radiation and heat.  If the heat reaches above 7000 kelvin, it will send an alert and start taking damage. \
@@ -13,7 +14,7 @@
 	antag_text = "Exposing the supermatter to oxygen or vaccum will cause it to start rapidly heating up.  Sabotaging the supermatter and making it explode will \
 	cause a period of lag as the explosion is processed by the server, as well as irradiating the entire station and causing hallucinations to happen.  \
 	Wearing radiation equipment will protect you from most of the delamination effects sans explosion."
-
+*/
 /datum/codex_entry/apc
 	associated_paths = list(/obj/machinery/power/apc)
 	mechanics_text = "An APC (Area Power Controller) regulates and supplies backup power for the area they are in. Their power channels are divided \

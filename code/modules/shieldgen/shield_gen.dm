@@ -29,7 +29,7 @@
 	var/time_since_fail = 100
 	var/energy_conversion_rate = 0.0002	//how many renwicks per watt?
 	use_power = 0	//doesn't use APC power
-
+/*
 /obj/machinery/shield_gen/Initialize()
 	for(var/obj/machinery/shield_capacitor/possible_cap in range(1, src))
 		if(get_dir(possible_cap, src) == possible_cap.dir)
@@ -262,3 +262,4 @@
 		if (T) out += T
 
 	return out
+*/
