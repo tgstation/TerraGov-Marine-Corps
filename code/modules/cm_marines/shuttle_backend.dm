@@ -331,8 +331,6 @@ L[get_turf(src)] = rotation
 /obj/effect/landmark/shuttle_loc/marine_src/dropship/link_location()
 	SHUTTLE_LINK_LOCATIONS("Dropship", S.locs_dock)
 
-/obj/effect/landmark/shuttle_loc/marine_src/evacuation
-
 /obj/effect/landmark/shuttle_loc/marine_int/dropship
 
 /obj/effect/landmark/shuttle_loc/marine_int/dropship/link_location()
@@ -342,8 +340,6 @@ L[get_turf(src)] = rotation
 
 /obj/effect/landmark/shuttle_loc/marine_trg/landing/link_location()
 	SHUTTLE_LINK_LOCATIONS("Dropship", S.locs_land)
-
-/obj/effect/landmark/shuttle_loc/marine_trg/evacuation
 
 /obj/effect/landmark/shuttle_loc/marine_crs/dropship
 
