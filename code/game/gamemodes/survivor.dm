@@ -10,13 +10,6 @@ SPAWNS
     return INITIALIZE_HINT_QDEL
 
 
-/obj/effect/landmark/survivor/spawn/xeno/Initialize()
-    . = ..()
-    GLOB.survivor_spawn_xeno += loc
-    flags_atom |= INITIALIZED
-    return INITIALIZE_HINT_QDEL
-
-
 /obj/effect/landmark/survivor/spawn/random_items/Initialize()
     . = ..()
     GLOB.survivor_spawn_random_item += loc
@@ -238,7 +231,6 @@ SPAWNS
 
 
 /datum/game_mode/survivor/proc/transform_xeno(datum/mind/M)
-    // var/mob/living/carbon/Xenomorph/Larva/X = new (pick(GLOB.survivor_spawn_xeno))
     var/mob/living/carbon/Xenomorph/Larva/X = new (pick(GLOB.xeno_spawn))
 
     if(isnewplayer(M.current))
