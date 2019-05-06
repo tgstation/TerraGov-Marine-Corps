@@ -146,7 +146,7 @@
 			to_chat(owner, "<span class='warning'>You can only shape on weeds. Find some resin before you start building!</span>")
 		return FALSE
 
-	if(!T.check_alien_construction(owner))
+	if(!T.check_alien_construction(owner, silent))
 		return FALSE
 
 /datum/action/xeno_action/place_trap/action_activate()
