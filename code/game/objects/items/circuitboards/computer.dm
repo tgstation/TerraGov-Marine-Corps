@@ -174,28 +174,6 @@
 	name = "Circuit board (Mech Bay Power Control Console)"
 	build_path = /obj/machinery/computer/mech_bay_power_console
 	origin_tech = "programming=2;powerstorage=3"
-/obj/item/circuitboard/computer/ordercomp
-	name = "Circuit board (Supply ordering console)"
-	build_path = /obj/machinery/computer/ordercomp
-	origin_tech = "programming=2"
-
-/obj/item/circuitboard/computer/supplycomp
-	name = "Circuit board (Supply shuttle console)"
-	build_path = /obj/machinery/computer/supplycomp
-	origin_tech = "programming=3"
-	var/contraband_enabled = 0
-
-/obj/item/circuitboard/computer/supplycomp/construct(var/obj/machinery/computer/supplycomp/SC)
-	if (..(SC))
-		SC.can_order_contraband = contraband_enabled
-		if(contraband_enabled)
-			SC.req_access = list()
-		else
-			SC.req_access = list(ACCESS_MARINE_LOGISTICS)
-
-/obj/item/circuitboard/computer/supplycomp/deconstruct(var/obj/machinery/computer/supplycomp/SC)
-	if (..(SC))
-		contraband_enabled = SC.can_order_contraband
 
 /obj/item/circuitboard/computer/operating
 	name = "Circuit board (Operating Computer)"

@@ -31617,9 +31617,6 @@
 	},
 /area/almayer/squads/req)
 "bwl" = (
-/obj/machinery/status_display/supply_display{
-	pixel_y = 32
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/req)
 "bwn" = (

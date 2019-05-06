@@ -13,6 +13,14 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/list/escape_pods = list()
 
+	var/obj/docking_port/mobile/supply/supply
+	var/ordernum = 1					//order number given to next order
+
+	var/list/supply_packs = list()
+	var/list/shoppinglist = list()
+	var/list/requestlist = list()
+	var/list/orderhistory = list()
+
 	var/list/crash_targets = list()
 
 	var/list/transit_requesters = list()
@@ -30,6 +38,13 @@ SUBSYSTEM_DEF(shuttle)
 	var/obj/docking_port/mobile/existing_shuttle
 
 /datum/controller/subsystem/shuttle/Initialize(timeofday)
+	ordernum = rand(1, 9000)
+
+	for(var/pack in subtypesof(/datum/supply_packs))
+		var/datum/supply_packs/P = new pack()
+		if(!P.contains)
+			continue
+		supply_packs[P.type] = P
 
 	initial_load()
 
@@ -230,6 +245,18 @@ SUBSYSTEM_DEF(shuttle)
 		transit_requesters = SSshuttle.transit_requesters
 	if (istype(SSshuttle.transit_request_failures))
 		transit_request_failures = SSshuttle.transit_request_failures
+
+	if (istype(SSshuttle.supply))
+		supply = SSshuttle.supply
+
+	if (istype(SSshuttle.shoppinglist))
+		shoppinglist = SSshuttle.shoppinglist
+	if (istype(SSshuttle.requestlist))
+		requestlist = SSshuttle.requestlist
+	if (istype(SSshuttle.orderhistory))
+		orderhistory = SSshuttle.orderhistory
+
+	ordernum = SSshuttle.ordernum
 
 	lockdown = SSshuttle.lockdown
 
