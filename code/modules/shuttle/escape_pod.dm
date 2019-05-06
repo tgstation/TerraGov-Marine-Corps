@@ -36,7 +36,7 @@
 /obj/docking_port/mobile/escape_pod/proc/auto_launch()
 	if(!can_launch)
 		return
-	addtimer(CALLBACK(src, .intoTheSunset), ignitionTime)
+	addtimer(CALLBACK(src, .proc/intoTheSunset), ignitionTime)
 	close_all_doors()
 	launch_status = ENDGAME_LAUNCHED
 
@@ -91,7 +91,7 @@
 		to_chat(H, "<span class='warning'>Evacuation is not enabled.</span>")
 		return
 
-	addtimer(CALLBACK(M, .intoTheSunset), ignitionTime)
+	addtimer(CALLBACK(M, /obj/docking_port/mobile/.proc/intoTheSunset), M.ignitionTime)
 	M.close_all_doors()
 	M.launch_status = EARLY_LAUNCHED
 
@@ -221,6 +221,13 @@
 		return
 	unlock()
 	open()
+	lock()
+
+/obj/machinery/door/airlock/evacuation/proc/force_close()
+	if(density)
+		return
+	unlock()
+	close()
 	lock()
 
 /obj/machinery/door/airlock/evacuation/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
