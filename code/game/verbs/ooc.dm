@@ -141,7 +141,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		to_chat(src, "<span class='warning'>You have been banned from LOOC.</span>")
 		return
 
-	mob.log_talk("LOOC: [msg]", LOG_LOOC)
+	mob.log_talk(msg, LOG_LOOC)
 
 	var/message
 
