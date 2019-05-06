@@ -3932,6 +3932,7 @@
 /turf/open/ground/coast,
 /area/lv624/lazarus/atmos)
 "anW" = (
+/obj/effect/landmark/survivor/spawn/key_items,
 /turf/open/floor/wood,
 /area/lv624/ground/jungle8)
 "anX" = (
@@ -20461,12 +20462,99 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
+"cxz" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor,
+/area/lv624/ground/sand9)
+"djO" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/lv624/ground/jungle7)
+"eGE" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/sw)
+"hin" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/tile/purple/whitepurplecorner{
+	dir = 4
+	},
+/area/lv624/lazarus/fitness)
+"iXP" = (
+/obj/effect/landmark/survivor/spawn/key_items,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
+"jlJ" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/main_hall)
+"jKU" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
+"mQD" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/tile/bar,
+/area/lv624/lazarus/canteen)
 "ncP" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/coast{
 	dir = 1
 	},
 /area/lv624/ground/river2)
+"nIM" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
+"nLN" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
+"oBV" = (
+/obj/effect/landmark/survivor/spawn/key_items,
+/turf/open/floor/plating,
+/area/lv624/ground/sand2)
+"pbd" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/se)
+"prr" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor,
+/area/lv624/ground/river2)
+"qtD" = (
+/obj/effect/landmark/survivor/spawn/key_items,
+/turf/open/floor/tile/brown{
+	dir = 9
+	},
+/area/lv624/lazarus/comms)
+"rDq" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/c)
+"rPa" = (
+/obj/effect/landmark/survivor/spawn/key_items,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
+"swF" = (
+/obj/effect/landmark/survivor/spawn/key_items,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle7)
+"tEg" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/wood,
+/area/lv624/lazarus/chapel)
+"wZC" = (
+/obj/effect/landmark/survivor/spawn/key_items,
+/turf/open/floor/tile/red/yellowfull,
+/area/lv624/ground/sand4)
+"xbt" = (
+/obj/effect/landmark/survivor/spawn/human,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/lazarus/quartstorage/outdoors)
 
 (1,1,1) = {"
 aaa
@@ -35786,7 +35874,7 @@ aht
 akz
 akZ
 akZ
-akZ
+wZC
 akZ
 akZ
 akz
@@ -36334,7 +36422,7 @@ axQ
 auJ
 axQ
 aBi
-axR
+rPa
 auH
 axQ
 axQ
@@ -38411,7 +38499,7 @@ awi
 auk
 aOj
 aPa
-aMm
+rDq
 aNk
 aMm
 aMm
@@ -38688,7 +38776,7 @@ aZm
 aZm
 aZm
 bcB
-aZl
+eGE
 beo
 aES
 aES
@@ -38698,7 +38786,7 @@ bhX
 biT
 bjE
 bks
-bnN
+qtD
 blK
 bnN
 bjF
@@ -39164,7 +39252,7 @@ awi
 auk
 aOj
 aFR
-axR
+nIM
 axR
 auH
 avd
@@ -43503,7 +43591,7 @@ anw
 anw
 aoF
 apg
-apC
+prr
 apg
 apZ
 apZ
@@ -43520,7 +43608,7 @@ avh
 auT
 aro
 asU
-asU
+djO
 aus
 auT
 aoC
@@ -43741,7 +43829,7 @@ agw
 agv
 ahk
 ahD
-ahA
+oBV
 ahM
 ais
 ahA
@@ -44072,7 +44160,7 @@ aLt
 aPW
 aPW
 aLt
-aMm
+rDq
 aNk
 aMm
 aEz
@@ -44312,7 +44400,7 @@ aFx
 aGh
 aGh
 aGh
-aGh
+hin
 aGh
 aGh
 aKl
@@ -46674,7 +46762,7 @@ bnt
 bnt
 bnt
 bnt
-bnt
+pbd
 bpN
 bpx
 bpx
@@ -47166,7 +47254,7 @@ aYC
 aNz
 aRd
 aNz
-aNz
+jlJ
 bbV
 bcM
 bdN
@@ -49214,7 +49302,7 @@ aNy
 aUn
 aUT
 aVx
-aUT
+tEg
 aUT
 aUT
 aXY
@@ -50522,7 +50610,7 @@ aRd
 aNz
 aNz
 aQm
-aNz
+jlJ
 aNC
 bod
 aLN
@@ -50715,7 +50803,7 @@ arW
 aut
 aus
 arl
-arl
+swF
 arp
 arW
 atl
@@ -50744,7 +50832,7 @@ aDc
 aDc
 aLO
 aME
-aNz
+jlJ
 aNC
 aNz
 aME
@@ -51253,7 +51341,7 @@ aDc
 aDc
 aDc
 aDc
-aDc
+jKU
 aDc
 aDc
 aLO
@@ -51299,7 +51387,7 @@ aYf
 aLO
 bnt
 bnt
-bnt
+pbd
 bnt
 bpN
 bpx
@@ -53604,7 +53692,7 @@ bdV
 bjr
 bfz
 bkQ
-bdb
+mQD
 bdb
 bec
 bdk
@@ -54323,7 +54411,7 @@ auO
 azJ
 aAk
 aAk
-aAk
+xbt
 aAk
 aAk
 aCb
@@ -57198,7 +57286,7 @@ aWs
 aWs
 aWs
 aWs
-aWs
+nLN
 bjv
 bkd
 bjz
@@ -57434,7 +57522,7 @@ aFK
 aFK
 aKD
 aEk
-aEk
+iXP
 aEj
 aVj
 aVO
@@ -57633,7 +57721,7 @@ akL
 akK
 akK
 amK
-anj
+cxz
 anR
 aom
 aoU
