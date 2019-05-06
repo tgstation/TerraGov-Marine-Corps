@@ -5,21 +5,43 @@
 	width = 5
 	height = 4
 	launch_status = UNLAUNCHED
+	var/can_launch = FALSE
 
 	var/list/doors = list()
 	var/list/cryopods = list()
 	var/max_capacity // set this to override determining capacity by number of cryopods
 
+/obj/docking_port/mobile/escape_pod/register()
+	. = ..()
+	SSshuttle.escape_pods += src
+
+/obj/docking_port/mobile/escape_pod/Destroy(force)
+	if(force)
+		SSshuttle.escape_pods -= src
+	. = ..()
+
 /obj/docking_port/mobile/escape_pod/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
 	if(launch_status == UNLAUNCHED)
 		return
-	setTimer(2 MINUTES)
+	intoTheSunset()
 
-/obj/docking_port/mobile/escape_pod/check()
-	. = ..()
-	if(launch_status == UNLAUNCHED && is_reserved_level(z))
-		intoTheSunset()
+/obj/docking_port/mobile/escape_pod/proc/prep_for_launch()
+	for(var/obj/machinery/door/airlock/evacuation/D in doors)
+		INVOKE_ASYNC(D, /obj/machinery/door/airlock/evacuation/.proc/force_open)
+	can_launch = TRUE
+
+/obj/docking_port/mobile/escape_pod/proc/unprep_for_launch()
+	// dont close the door it might trap someone inside
+	can_launch = FALSE
+
+/obj/docking_port/mobile/escape_pod/proc/auto_launch()
+	if(!can_launch)
+		return
+	SSshuttle.request_transit_dock(src)
+	mode = SHUTTLE_IGNITING
+	launch_status = ENDGAME_LAUNCHED
+	setTimer(ignitionTime)
 
 /obj/docking_port/stationary/escape_pod
 	name = "escape pod"
@@ -64,9 +86,12 @@
 	if(!href_list["launch"])
 		return
 
-	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	var/obj/docking_port/mobile/escape_pod/M = SSshuttle.getShuttle(shuttleId)
 
 	if(!M)
+		return
+	if(!M.can_launch)
+		to_chat(H, "<span class='warning'>Evacuation is not enabled.</span>")
 		return
 
 	SSshuttle.request_transit_dock(M)
@@ -194,6 +219,13 @@
 	opacity = TRUE
 	locked = TRUE
 	var/linked_to_shuttle = FALSE
+
+/obj/machinery/door/airlock/evacuation/proc/force_open()
+	if(!density)
+		return
+	unlock()
+	open()
+	lock()
 
 /obj/machinery/door/airlock/evacuation/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(linked_to_shuttle)
