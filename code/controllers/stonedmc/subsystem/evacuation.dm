@@ -43,8 +43,9 @@ SUBSYSTEM_DEF(evacuation)
 		if(EVACUATION_STATUS_IN_PROGRESS)
 			if(world.time < pod_cooldown + EVACUATION_POD_LAUNCH_COOLDOWN)
 				return
-			if(!length(pod_list))
-				announce_evac_completion()
+			if(!length(pod_list)) // none left to pick from to evac
+				if(!length(SSshuttle.escape_pods)) // no valid pods left, all have launched/exploded
+					announce_evac_completion()
 				return
 			var/obj/docking_port/mobile/escape_pod/P = pick_n_take(pod_list)
 			P.launch()
