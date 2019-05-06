@@ -256,7 +256,7 @@
 /datum/action/xeno_action/activable/emit_acidgas
 	name = "Emit Acid"
 	action_icon_state = "emit_neurogas2"
-	ability_name = "emit acidgas"
+	ability_name = "emit acid gas"
 
 /datum/action/xeno_action/activable/emit_acidgas/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/Boiler/X = owner
