@@ -62,11 +62,12 @@ SPAWNS
 /datum/game_mode/survivor/new_player_topic(mob/M, href, href_list[])
     switch(href_list["lobby_choice"])
         if("late_join_survivor")
-            var/datum/mind/new_human = M
-            new_human.assigned_role = ROLE_SURVIVOR
-            new_human.late_joiner = TRUE
-            humans += new_human
-            transform_survivor(new_human, TRUE)
+            if (!M.mind)
+                M.mind = new
+            M.mind.assigned_role = ROLE_SURVIVOR  // Line 66
+            M.mind.late_joiner = TRUE
+            humans +=  M.mind
+            transform_survivor( M.mind, TRUE)
             return TRUE
 
     return ..()
@@ -327,7 +328,7 @@ SPAWNS
             H.equip_to_slot(new /obj/item/pinpointer(H), SLOT_R_STORE)
             H.equip_to_slot(new /obj/item/radio/marine(H), SLOT_L_STORE)
 
-    H.mind.assigned_role = "Survivor"
+    H.mind.assigned_role = ROLE_SURVIVOR
 
     to_chat(H, "<h2>You are a survivor!</h2>")
     switch(SSmapping.config.map_name)
@@ -407,6 +408,7 @@ SPAWNS
     return count
 
 /datum/game_mode/survivor/check_finished()
+    return FALSE // DEBUG YO REMOVE ME
     var/H = count_team_alive(GLOB.alive_human_list)
     var/X = count_team_alive(GLOB.alive_xeno_list)
     if (round_finished)
