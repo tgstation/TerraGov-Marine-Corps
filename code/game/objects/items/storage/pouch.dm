@@ -192,6 +192,10 @@
 	fill_type = /obj/item/ammo_magazine/pistol/vp78
 	fill_number = 3
 
+/obj/item/storage/pouch/magazine/smg/mp7
+	fill_type = /obj/item/ammo_magazine/smg/mp7 
+	fill_number = 2
+
 /obj/item/storage/pouch/magazine/upp
 	fill_type = /obj/item/ammo_magazine/rifle/type71
 	fill_number = 2
@@ -223,9 +227,6 @@
 /obj/item/storage/pouch/magazine/large/pmc_rifle
 	fill_type = /obj/item/ammo_magazine/rifle/ap
 	fill_number = 3
-
-
-
 
 /obj/item/storage/pouch/explosive
 	name = "explosive pouch"

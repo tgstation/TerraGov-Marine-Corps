@@ -338,7 +338,7 @@ SPAWNS
     var/init_human_size = 0
     var/init_xeno_size = 0
 
-    var/xeno_ratio = 0.25 // ratio of xeno to humans
+    var/xeno_ratio = 0.35 // ratio of xeno to humans
 
     var/list/humans = list()
     var/list/xenos = list()
@@ -586,11 +586,6 @@ SPAWNS
     var/survivor_job = pick(subtypesof(/datum/job/survivor))
     var/datum/job/J = new survivor_job
 
-    H.set_rank(J.title)
-    J.equip(H)
-
-    H.mind.assigned_role = "Survivor"
-
     if(SSmapping.config.map_name == MAP_ICE_COLONY)
         H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
         H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
@@ -610,7 +605,7 @@ SPAWNS
             role_guide = "You have extra medical supplies, that could be useful if you or someone else gets hurt..."
         if (50 to 75)
             // Fighter
-            H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/upp_smg(H), SLOT_L_STORE)
+            H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/smg/mp7(H), SLOT_L_STORE)
             H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/mp7(H), SLOT_R_HAND)
             role_guide = "You have found a weapon! Hope you don't have to use it too soon..."
         if (75 to 100)
@@ -618,6 +613,12 @@ SPAWNS
             H.equip_to_slot_or_del(new /obj/item/pinpointer(H), SLOT_R_HAND)
             H.equip_to_slot_or_del(new /obj/item/radio/marine(H), SLOT_L_HAND)
             role_guide = "You have a radio and pinpointer! Maybe this will lead you to what you need most..."
+
+    // Equip job based items last to not conflict with gamemode items.
+    H.set_rank(J.title)
+    J.equip(H)
+
+    H.mind.assigned_role = "Survivor"
 
     to_chat(H, "<h2>You are a survivor!</h2>")
     switch(SSmapping.config.map_name)
