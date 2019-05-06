@@ -53,12 +53,3 @@
 			qdel(T)
 	new /obj/machinery/power/apc(loc, ndir, 1)
 	qdel(src)
-
-
-
-/obj/item/frame/apiary
-	name = "moveable apiary"
-	icon = 'icons/obj/apiary_bees_etc.dmi'
-	icon_state = "apiary_item"
-	item_state = "giftbag"
-	w_class = 5
