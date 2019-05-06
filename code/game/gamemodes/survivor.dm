@@ -412,7 +412,6 @@ SPAWNS
 
 
 /datum/game_mode/survivor/check_finished()
-    return FALSE // DEBUG YO REMOVE ME
     var/H = count_team_alive(GLOB.alive_human_list)
     var/X = count_team_alive(GLOB.alive_xeno_list)
     if (round_finished)
