@@ -1,4 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - bugfix: "Sanitizes a handful of premapped snowflake wooden barricades' integrity from 25000 down to 400."
