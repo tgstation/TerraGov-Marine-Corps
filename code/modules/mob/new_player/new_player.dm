@@ -344,6 +344,15 @@
 			var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 			HS.stored_larva++
 
+	if(issurvivorgamemode(SSticker?.mode))
+		var/datum/game_mode/survivor/GM = SSticker.mode
+		var/H = count_team_alive(GLOB.alive_human_list)
+		var/X = count_team_alive(GLOB.alive_xeno_list)
+		if ((X / H) < GM.xeno_ratio)
+			var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+			HS.stored_larva++
+
+
 	qdel(src)
 
 
