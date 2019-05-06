@@ -152,3 +152,5 @@
 	var/track_blood = 0
 	var/list/feet_blood_DNA
 	var/feet_blood_color
+
+	var/move_on_shuttle = 1 // Can move on the shuttle.
