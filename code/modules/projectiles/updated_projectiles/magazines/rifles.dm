@@ -5,7 +5,7 @@
 //M41A PULSE RIFLE AMMUNITION
 
 /obj/item/ammo_magazine/rifle
-	name = "\improper M41A magazine (10x24mm)"
+	name = "\improper M41A1 magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
 	caliber = "10x24mm caseless"
 	icon_state = "m41a"
@@ -38,7 +38,7 @@
 //M41A TRUE AND ORIGINAL
 
 /obj/item/ammo_magazine/rifle/m41aMK1
-	name = "\improper M41AMK1 magazine (10x24mm)"
+	name = "\improper M41A magazine (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the original M41A Pulse Rifle."
 	max_rounds = 95
 	gun_type = /obj/item/weapon/gun/rifle/m41aMK1
