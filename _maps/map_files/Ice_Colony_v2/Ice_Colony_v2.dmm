@@ -1158,11 +1158,6 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "adY" = (
-/obj/machinery/telecomms/relay/preset/ice_colony{
-	idle_power_usage = 0;
-	listening_level = 1;
-	name = "Telecommunication Relay Tower"
-	},
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/tcomms)
@@ -38081,16 +38076,6 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/south/excavation)
-"bVi" = (
-/obj/machinery/telecomms/allinone{
-	freq_listening = list(1214);
-	level = 1;
-	listening_level = 1;
-	name = "Alien Mainframe";
-	network = "ALIEN"
-	},
-/turf/open/floor,
-/area/ice_colony/surface/tcomms)
 "bVj" = (
 /obj/machinery/door/window/brigdoor/northleft,
 /obj/machinery/door/window/brigdoor/southright,
@@ -40577,6 +40562,13 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
+"cLf" = (
+/turf/closed/wall/r_wall/unmeltable,
+/area/storage/testroom)
+"rcI" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/plating/icefloor,
+/area/storage/testroom)
 
 (1,1,1) = {"
 aaa
@@ -41133,9 +41125,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+cLf
+cLf
+cLf
 aaa
 aaa
 bSw
@@ -41390,9 +41382,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+cLf
+rcI
+cLf
 aaa
 aaa
 bSw
@@ -41647,9 +41639,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+cLf
+cLf
+cLf
 aaa
 aaa
 bSw
@@ -77530,7 +77522,7 @@ aaU
 bSw
 aaa
 bSw
-bVi
+bSw
 bSw
 aaa
 aaa

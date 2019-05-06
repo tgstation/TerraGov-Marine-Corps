@@ -250,6 +250,7 @@
 	var/knockdown_threshold = 100
 	var/work_time = 40 //Defines how long it takes to do most maintenance actions
 	var/magazine_type = /obj/item/ammo_magazine/sentry
+	var/obj/item/radio/radio
 
 /obj/machinery/marine_turret/examine(mob/user)
 	. = ..()
@@ -279,6 +280,7 @@
 
 /obj/machinery/marine_turret/Initialize()
 	. = ..()
+	radio = new(src)
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -293,6 +295,7 @@
 
 
 /obj/machinery/marine_turret/Destroy() //Clear these for safety's sake.
+	QDEL_NULL(radio)
 	if(operator)
 		operator.unset_interaction()
 		operator = null
@@ -1203,10 +1206,7 @@
 				notice = "<b>ALERT! [src] at: [get_area(src)], Coordinates: (X: [x], Y: [y]) has been destroyed.</b>"
 		if(SENTRY_ALERT_BATTERY)
 			notice = "<b>ALERT! [src]'s battery depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
-	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
-	AI.SetName("Sentry Alert System")
-	AI.aiRadio.talk_into(AI, "[notice]", "Theseus", "announces", /datum/language/common)
-	qdel(AI)
+	radio.talk_into(src, "[notice]", FREQ_COMMON)
 
 /obj/machinery/marine_turret/mini
 	name = "\improper UA-580 Point Defense Sentry"
@@ -1259,11 +1259,11 @@
 	to_chat(user, "<span class='notice'>You fold up and retrieve [src].</span>")
 	var/obj/item/marine_turret/mini/P = new(loc)
 	user.put_in_hands(P)
-	P.health = health //track the health
+	P.obj_integrity = obj_integrity //track the health
 	qdel(src)
 
 /obj/machinery/marine_turret/mini/update_icon()
-	if(machine_stat && health > 0) //Knocked over
+	if(machine_stat && obj_integrity > 0) //Knocked over
 		on = FALSE
 		density = FALSE
 		icon_state = "minisentry_fallen"
@@ -1304,7 +1304,7 @@
 	icon_state = "minisentry_packed"
 	item_state = "minisentry_packed"
 	w_class = 4
-	health = 155 //We keep track of this when folding up the sentry.
+	max_integrity = 155 //We keep track of this when folding up the sentry.
 	flags_equip_slot = ITEM_SLOT_BACK
 
 /obj/item/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
@@ -1325,7 +1325,7 @@
 		user.visible_message("<span class='notice'>[user] deploys [M].</span>",
 		"<span class='notice'>You deploy [M]. The [M]'s securing bolts automatically anchor it to the ground.</span>")
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
-		M.health = health
+		M.obj_integrity = obj_integrity
 		M.anchored = TRUE
 		M.activate_turret()
 		qdel(src)

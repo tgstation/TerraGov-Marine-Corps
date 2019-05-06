@@ -11,18 +11,18 @@
 	name = "AI"
 	icon = 'icons/Marine/ai.dmi'
 	icon_state = "hydra"
-	voice_name = "<font size=3><b>ARES v3.2</b></font>"
+	voice_name = "ARES v3.2"
 	anchored = 1
 	canmove = FALSE
 	density = TRUE //Do not want to see past it.
 	bound_height = 64 //putting this in so we can't walk through our machine.
 	bound_width = 96
-	var/obj/item/radio/headset/almayer/mcom/ai/ai_headset //The thing it speaks into.
+	var/obj/item/radio/headset/almayer/mcom/ai/radio //The thing it speaks into.
 	var/sound/ai_sound //The lines that it plays when speaking.
 
 /mob/living/silicon/decoy/Initialize()
 	. = ..()
-	ai_headset = new(src)
+	radio = new(src)
 
 /mob/living/silicon/decoy/Life()
 	if(stat == DEAD)
@@ -77,5 +77,5 @@
 		if("broadcast")
 			message_mode = MODE_HEADSET
 
-	ai_headset.talk_into(src, message, message_mode, language = language)
+	radio.talk_into(src, message, message_mode, language = language)
 	return TRUE

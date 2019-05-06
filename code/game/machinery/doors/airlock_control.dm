@@ -18,7 +18,8 @@ obj/machinery/door/airlock/receive_signal(datum/signal/signal)
 
 	if (!can_radio()) return //no radio
 
-	if(!signal || signal.encryption) return
+	if(!signal) 
+		return
 
 	if(id_tag != signal.data["tag"] || !signal.data["command"]) return
 

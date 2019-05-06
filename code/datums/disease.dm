@@ -203,8 +203,7 @@ var/list/diseases = subtypesof(/datum/disease)
 	affected_mob = null
 	holder = null
 	active_diseases -= src
-	. = ..()
-	return TA_PURGE_ME_NOW //immediate deletion
+	return ..()
 
 
 /mob/living/carbon/proc/has_disease(var/datum/disease/virus)

@@ -52,10 +52,12 @@
 	if(L.client)
 		L.client.screen += button
 	L.update_action_buttons()
+	L.actions_by_path[type] = src
 
 /datum/action/proc/remove_action(mob/living/L)
 	if(L.client)
 		L.client.screen -= button
+	L.actions_by_path[type] = null
 	L.actions -= src
 	L.update_action_buttons()
 	owner = null
@@ -106,62 +108,183 @@
 
 
 
-
+#define XACT_USE_INCAP			(1 << 0) // ignore incapacitated
+#define XACT_USE_LYING			(1 << 1) // ignore lying down
+#define XACT_USE_BUCKLED		(1 << 2) // ignore buckled
+#define XACT_USE_STAGGERED		(1 << 3) // ignore staggered
+#define XACT_USE_FORTIFIED		(1 << 4) // ignore fortified
+#define XACT_USE_CRESTED		(1 << 5) // ignore being in crest defense
+#define XACT_USE_NOTTURF		(1 << 6) // ignore not being on a turf (like in a vent)
+#define XACT_USE_BUSY			(1 << 7) // ignore being in a do_after or similar
+#define XACT_USE_AGILITY		(1 << 8) // ignore agility mode
+#define XACT_TARGET_SELF		(1 << 9) // allow self-targetting
+#define XACT_IGNORE_PLASMA		(1 << 10) // ignore plasma cost
+#define XACT_IGNORE_COOLDOWN	(1 << 11) // ignore cooldown
 
 /datum/action/xeno_action
 	var/action_icon_state
 	var/plasma_cost = 0
 	var/mechanics_text = "This ability not found in codex." //codex. If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
+	var/use_state_flags = NONE // bypass use limitations checked by can_use_action()
+	var/on_cooldown
+	var/last_use
+	var/cooldown_timer
+	var/ability_name
+	var/image/cooldown_image
 
 /datum/action/xeno_action/New(Target)
-	..()
+	. = ..()
+	if(plasma_cost)
+		name = "[name] ([plasma_cost])"
 	button.overlays += image('icons/mob/actions.dmi', button, action_icon_state)
+	cooldown_image = image('icons/mob/mob.dmi', null, "busy_clock_old")
+	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
 
-/datum/action/xeno_action/can_use_action()
+/datum/action/xeno_action/can_use_action(silent = FALSE, override_flags)
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(X && !X.incapacitated() && !X.lying && !X.buckled && X.plasma_stored >= plasma_cost && !X.stagger)
-		return TRUE
+	if(!X)
+		return FALSE
+	var/flags_to_check = use_state_flags|override_flags
 
+	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't use [ability_name] yet, wait [cooldown_remaining()] seconds!</span>")
+		return FALSE
+
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_INCAP) && X.incapacitated())
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do this while incapacitated!</span>")
+		return FALSE
+
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_LYING) && X.lying)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do this while lying down!</span>")
+		return FALSE
+
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_BUCKLED) && X.buckled)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do this while buckled!</span>")
+		return FALSE
+
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_STAGGERED) && X.stagger)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do this while staggered!</span>")
+		return FALSE
+
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_FORTIFIED) && X.fortify)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do this while fortified!</span>")
+		return FALSE
+
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_CRESTED) && X.crest_defense)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do this while in crest defense!</span>")
+		return FALSE
+
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_NOTTURF) && !isturf(X.loc))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do this here!</span>")
+		return FALSE
+
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_BUSY) && X.action_busy)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You're busy doing something right now!</span>")
+		return FALSE
+
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_AGILITY) && X.agility)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't do that in agility mode!</span>")
+		return FALSE
+
+	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You don't have enough plasma to do this!</span>")
+		return FALSE
+
+	return TRUE
+
+/datum/action/xeno_action/fail_activate()
+	update_button_icon()
+
+/datum/action/xeno_action/proc/succeed_activate()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(plasma_cost)
+		X.use_plasma(plasma_cost)
 
 //checks if the linked ability is on some cooldown.
 //The action can still be activated by clicking the button
 /datum/action/xeno_action/proc/action_cooldown_check()
-	return TRUE
+	return !on_cooldown
+
+/datum/action/xeno_action/proc/clear_cooldown()
+	for(var/timer in active_timers)
+		qdel(timer)
+		on_cooldown_finish()
+
+/datum/action/xeno_action/proc/get_cooldown()
+	return cooldown_timer
+
+/datum/action/xeno_action/proc/add_cooldown()
+	if(!length(active_timers)) // stop doubling up
+		last_use = world.time
+		on_cooldown = TRUE
+		addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown())
+		button.overlays += cooldown_image
+		update_button_icon()
+
+/datum/action/xeno_action/proc/cooldown_remaining()
+	for(var/i in active_timers)
+		var/datum/timedevent/timer = i
+		return (timer.timeToRun - world.time) * 0.1
+	return 0
+
+//override this for cooldown completion.
+/datum/action/xeno_action/proc/on_cooldown_finish()
+	on_cooldown = FALSE
+	button.overlays -= cooldown_image
+	update_button_icon()
 
 /datum/action/xeno_action/update_button_icon()
-	if(!can_use_action())
-		button.color = rgb(128,0,0,128)
+	if(!can_use_action(TRUE, XACT_IGNORE_COOLDOWN))
+		button.color = "#80000080" // rgb(128,0,0,128)
 	else if(!action_cooldown_check())
-		button.color = rgb(240,180,0,200)
+		button.color = "#f0b400c8" // rgb(240,180,0,200)
 	else
-		button.color = rgb(255,255,255,255)
+		button.color = "#ffffffff" // rgb(255,255,255,255)
 
 
 
 /datum/action/xeno_action/activable
-	var/ability_name
+	var/image/selected_frame
+
+/datum/action/xeno_action/activable/New()
+	. = ..()
+	selected_frame = image('icons/mob/actions.dmi', null, "selected_frame")
+	selected_frame.appearance_flags = RESET_COLOR
+
+/datum/action/xeno_action/activable/proc/deselect()
+	var/mob/living/carbon/Xenomorph/X = owner
+	button.overlays -= selected_frame
+	X.selected_ability = null
+	on_deactivation()
+
+/datum/action/xeno_action/activable/proc/select()
+	var/mob/living/carbon/Xenomorph/X = owner
+	button.overlays += selected_frame
+	X.selected_ability = src
+	on_activation()
 
 /datum/action/xeno_action/activable/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(plasma_cost)
-		if(!X.check_plasma(plasma_cost))
-			return
 	if(X.selected_ability == src)
 		to_chat(X, "You will no longer use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"].")
-		button.icon_state = "template"
-		X.selected_ability.on_deactivation()
-		X.selected_ability = null
+		deselect()
 	else
 		to_chat(X, "You will now use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"].")
 		if(X.selected_ability)
-			X.selected_ability.button.icon_state = "template"
-			X.selected_ability.on_deactivation()
-			X.selected_ability = null
-		button.icon_state = "template_on"
-		X.selected_ability = src
-		X.selected_ability.on_activation()
-	if(plasma_cost)
-		X.use_plasma(plasma_cost) //after on_activation so the button's appearance is updated correctly.
+			X.selected_ability.deselect()
+		select()
+	return ..()
 
 
 /datum/action/xeno_action/activable/remove_action(mob/living/carbon/Xenomorph/X)
@@ -172,6 +295,26 @@
 //the thing to do when the selected action ability is selected and triggered by middle_click
 /datum/action/xeno_action/activable/proc/use_ability(atom/A)
 	return
+
+/datum/action/xeno_action/activable/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+	if(selecting)
+		return ..(silent, XACT_IGNORE_COOLDOWN|XACT_IGNORE_PLASMA|XACT_USE_STAGGERED)
+	return ..()
+	
+//override this 
+/datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, override_flags)
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(X.selected_ability != src)
+		return FALSE
+
+	. = can_use_action(silent, override_flags)
+	var/flags_to_check = use_state_flags|override_flags
+
+	if(!CHECK_BITFIELD(flags_to_check, XACT_TARGET_SELF) && A == owner)
+		return FALSE
+
+/datum/action/xeno_action/activable/proc/can_activate()
+	return TRUE
 
 /datum/action/xeno_action/activable/proc/on_activation()
 	return

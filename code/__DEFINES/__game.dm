@@ -10,18 +10,6 @@
 #define MAP_PRISON_STATION "Prison Station"
 #define MAP_WHISKEY_OUTPOST "Whiskey Outpost"
 
-/*
-Trash Authority Directives
-Defines for when we need to give commands to the trash authority in how to handle trash.
-These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) would tell the TA to throw the atom into the recycler.
-*/
-#define TA_TRASH_ME		1 //Trash it.
-#define TA_REVIVE_ME	2 //Not killing this one, instead adding it to the recycler. Call this on bullets, for example.
-#define TA_PURGE_ME		3 //Purge it, but later. Not different from adding it to queue regularly as the trash authority will incinerate it when possible.
-#define TA_PURGE_ME_NOW	4 //Purge it immediately. Generally don't want to use this.
-#define TA_IGNORE_ME	5 //Ignore this atom, don't do anything with it. In case the atom will die on its own or something.
-					 	  //Shouldn't usually use this as garbage collection is far better.
-
 #define SEE_INVISIBLE_MINIMUM 5
 
 #define SEE_INVISIBLE_OBSERVER_NOLIGHTING 15
@@ -149,3 +137,4 @@ var/list/accessable_z_levels = list("1" = 10, "3" = 10, "4" = 10, "5" = 70)
 #define MAX_PAPER_MESSAGE_LEN 3072
 #define MAX_BOOK_MESSAGE_LEN 9216
 #define MAX_NAME_LEN 26
+#define MAX_BROADCAST_LEN 512

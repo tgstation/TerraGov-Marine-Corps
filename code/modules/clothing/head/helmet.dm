@@ -171,7 +171,7 @@
 	sprite_sheet_id = 1
 	icon_state = "helmet"
 	armor = list("melee" = 65, "bullet" = 60, "laser" = 30, "energy" = 20, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
-	health = 5
+	max_integrity = 5
 	var/helmet_overlays[]
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS

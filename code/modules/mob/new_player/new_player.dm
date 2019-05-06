@@ -414,10 +414,6 @@
 	return
 
 
-/mob/new_player/hear_radio(message, verb = "says", datum/language/language = null, part_a, part_b, mob/speaker = null, hard_to_hear = FALSE)
-	return
-
-
 /mob/new_player/proc/create_character(transfer_after)
 	spawning = TRUE
 	close_spawn_windows()

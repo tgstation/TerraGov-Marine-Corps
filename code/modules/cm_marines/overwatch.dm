@@ -558,7 +558,7 @@
 	var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
 	if(target && istype(target))
 		target.ceiling_debris_check(5)
-		addtimer(CALLBACK(almayer_orbital_cannon, /obj/structure/orbital_cannon.proc/fire_ob_cannon, target, user), 2)
+		almayer_orbital_cannon.fire_ob_cannon(target,user)
 
 /obj/machinery/computer/overwatch/proc/change_lead()
 	if(!usr || usr != operator)
@@ -604,12 +604,10 @@
 
 	if(istype(H.wear_ear, /obj/item/radio/headset/almayer/marine))
 		var/obj/item/radio/headset/almayer/marine/R = H.wear_ear
-		if(!R.keyslot1)
-			R.keyslot1 = new /obj/item/encryptionkey/squadlead (src)
+		if(!R.keyslot)
+			R.keyslot = new /obj/item/encryptionkey/squadlead (src)
 		else if(!R.keyslot2)
 			R.keyslot2 = new /obj/item/encryptionkey/squadlead (src)
-		else if(!R.keyslot3)
-			R.keyslot3 = new /obj/item/encryptionkey/squadlead (src)
 		R.recalculateChannels()
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/ID = H.wear_id

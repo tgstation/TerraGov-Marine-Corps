@@ -2,54 +2,31 @@
 // *********** Stomp
 // ***************************************
 /datum/action/xeno_action/activable/stomp
-	name = "Stomp (50)"
+	name = "Stomp"
 	action_icon_state = "stomp"
 	mechanics_text = "Knocks all adjacent targets away and down."
 	ability_name = "stomp"
-
-/datum/action/xeno_action/activable/stomp/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Crusher/X = owner
-	if(world.time >= X.has_screeched + CRUSHER_STOMP_COOLDOWN)
-		return TRUE
+	plasma_cost = 80
+	cooldown_timer = CRUSHER_STOMP_COOLDOWN
 
 /datum/action/xeno_action/activable/stomp/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Crusher/X = owner
-	X.stomp()
-
-/mob/living/carbon/Xenomorph/Crusher/proc/stomp()
-
-	if(!check_state()) return
-
-	if(world.time < has_screeched + CRUSHER_STOMP_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='xenowarning'>You are not ready to stomp again.</span>")
-		return FALSE
-
-	if(legcuffed)
-		to_chat(src, "<span class='xenodanger'>You can't rear up to stomp with that thing on your leg!</span>")
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>You try to stomp but are unable as you fail to shake off the shock!</span>")
-		return
-
-	if(!check_plasma(80))
-		return
-	has_screeched = world.time
-	use_plasma(80)
+	succeed_activate()
+	add_cooldown()
 
 	round_statistics.crusher_stomps++
 
-	playsound(loc, 'sound/effects/bang.ogg', 25, 0)
-	visible_message("<span class='xenodanger'>[src] smashes into the ground!</span>", \
+	playsound(X.loc, 'sound/effects/bang.ogg', 25, 0)
+	X.visible_message("<span class='xenodanger'>[X] smashes into the ground!</span>", \
 	"<span class='xenodanger'>You smash into the ground!</span>")
-	create_stomp() //Adds the visual effect. Wom wom wom
+	X.create_stomp() //Adds the visual effect. Wom wom wom
 
-	for(var/mob/living/M in range(2,loc))
-		if(isxeno(M) || M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)))
+	for(var/mob/living/M in range(2,X.loc))
+		if(isxeno(M) || M.stat == DEAD || (CHECK_BITFIELD(M.status_flags, XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)))
 			continue
-		var/distance = get_dist(M, loc)
-		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(src)) / max(1,distance + 1)
-		damage += FRENZY_DAMAGE_BONUS(src)
+		var/distance = get_dist(M, X)
+		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(X)) / max(1,distance + 1)
+		damage += FRENZY_DAMAGE_BONUS(X)
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			round_statistics.crusher_stomp_victims++
 			var/armor_block = M.run_armor_check("chest", "melee") * 0.5 //Only 50% armor applies vs stomp brute damage
@@ -58,12 +35,12 @@
 				H.take_overall_damage(damage, null, 0, 0, 0, armor_block) //Armour functions against this.
 			else
 				M.take_overall_damage(damage, 0, null, armor_block) //Armour functions against this.
-			to_chat(M, "<span class='highdanger'>You are stomped on by [src]!</span>")
+			to_chat(M, "<span class='highdanger'>You are stomped on by [X]!</span>")
 			shake_camera(M, 3, 3)
 		else
-			step_away(M, src, 1) //Knock away
+			step_away(M, X, 1) //Knock away
 			shake_camera(M, 2, 2)
-			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [src]'s stomp!</span>")
+			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [X]'s stomp!</span>")
 		if(distance < 2) //If we're beside or adjacent to the Crusher, we get knocked down.
 			M.KnockDown(1)
 		else
@@ -77,17 +54,11 @@
 	name = "Toggle Charging"
 	action_icon_state = "ready_charge"
 	mechanics_text = "Toggles the Crusher’s movement based charge on and off."
-	plasma_cost = 0
 
 /datum/action/xeno_action/ready_charge/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state()) return FALSE
-	if(X.legcuffed)
-		to_chat(src, "<span class='xenodanger'>You can't charge with that thing on your leg!</span>")
-		X.is_charging = 0
-	else
-		X.is_charging = !X.is_charging
-		to_chat(X, "<span class='xenonotice'>You will [X.is_charging ? "now" : "no longer"] charge when moving.</span>")
+	X.is_charging = !X.is_charging
+	to_chat(X, "<span class='xenonotice'>You will [X.is_charging ? "now" : "no longer"] charge when moving.</span>")
 
 // ***************************************
 // *********** Cresttoss
@@ -97,64 +68,55 @@
 	action_icon_state = "cresttoss"
 	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
 	ability_name = "crest toss"
+	plasma_cost = CRUSHER_CRESTTOSS_COST
+	cooldown_timer = CRUSHER_CRESTTOSS_COOLDOWN
+
+/datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
+	to_chat(src, "<span class='xenowarning'><b>You can now crest toss again.</b></span>")
+	playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
+	return ..()
+
+/datum/action/xeno_action/activable/cresttoss/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!owner.Adjacent(A) || !isliving(A))
+		return FALSE
+	var/mob/living/L = A
+	if(L.stat == DEAD || (CHECK_BITFIELD(L.status_flags, XENO_HOST) && istype(L.buckled, /obj/structure/bed/nest) ) ) //no bully
+		return FALSE
+	if(L.mob_size >= MOB_SIZE_BIG)
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>[L] is too large to fling!</span>")
+		return FALSE
 
 /datum/action/xeno_action/activable/cresttoss/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.cresttoss(A)
+	var/mob/living/L = A
+	X.face_atom(L) //Face towards the target so we don't look silly
 
-/datum/action/xeno_action/activable/cresttoss/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/X = owner
-	return !X.cresttoss_used
-
-/mob/living/carbon/Xenomorph/proc/cresttoss(var/mob/living/carbon/M)
-	if(cresttoss_used)
-		return
-
-	if(!check_plasma(CRUSHER_CRESTTOSS_COST))
-		return
-
-	if(legcuffed)
-		to_chat(src, "<span class='xenodanger'>You can't maneuver your body properly with that thing on your leg!</span>")
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>You try to fling away [M] but are too disoriented!</span>")
-		return
-
-	if (!Adjacent(M) || !isliving(M)) //Sanity check
-		return
-
-	if(M.stat == DEAD || (M.status_flags & XENO_HOST && istype(M.buckled, /obj/structure/bed/nest) ) ) //no bully
-		return
-
-	if(M.mob_size >= MOB_SIZE_BIG) //We can't fling big aliens/mobs
-		to_chat(src, "<span class='xenowarning'>[M] is too large to fling!</span>")
-		return
-
-	face_atom(M) //Face towards the target so we don't look silly
-
-	var/facing = get_dir(src, M)
+	var/facing = get_dir(X, L)
 	var/toss_distance = rand(3,5)
-	var/turf/T = loc
-	var/turf/temp = loc
-	if(a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
+	var/turf/T = X.loc
+	var/turf/temp = X.loc
+	if(X.a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
 		for (var/x in 1 to toss_distance)
 			temp = get_step(T, facing)
 			if (!temp)
 				break
 			T = temp
 	else
-		facing = get_dir(M, src)
-		if(!check_blocked_turf(get_step(T, facing) ) ) //Make sure we can actually go to the target turf
-			M.loc = get_step(T, facing) //Move the target behind us before flinging
+		facing = get_dir(L, X)
+		if(!X.check_blocked_turf(get_step(T, facing) ) ) //Make sure we can actually go to the target turf
+			L.loc = get_step(T, facing) //Move the target behind us before flinging
 			for (var/x = 0, x < toss_distance, x++)
 				temp = get_step(T, facing)
 				if (!temp)
 					break
 				T = temp
 		else
-			to_chat(src, "<span class='xenowarning'>You try to fling [M] behind you, but there's no room!</span>")
-			return
+			to_chat(X, "<span class='xenowarning'>You try to fling [L] behind you, but there's no room!</span>")
+			return fail_activate()
 
 	//The target location deviates up to 1 tile in any direction
 	var/scatter_x = rand(-1,1)
@@ -163,46 +125,29 @@
 	if(new_target)
 		T = new_target//Looks like we found a turf.
 
-	icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
+	X.icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
 
-	visible_message("<span class='xenowarning'>\The [src] flings [M] away with its crest!</span>", \
-	"<span class='xenowarning'>You fling [M] away with your crest!</span>")
+	X.visible_message("<span class='xenowarning'>\The [X] flings [L] away with its crest!</span>", \
+	"<span class='xenowarning'>You fling [L] away with your crest!</span>")
 
-	cresttoss_used = TRUE
-	use_plasma(CRUSHER_CRESTTOSS_COST)
+	succeed_activate()
 
+	L.throw_at(T, toss_distance, 1, X)
 
-	M.throw_at(T, toss_distance, 1, src)
-
-	var/mob/living/carbon/Xenomorph/X = M
 	//Handle the damage
-	if(!istype(X) || hivenumber != X.hivenumber) //Friendly xenos don't take damage.
+	if(!X.issamexenohive(L)) //Friendly xenos don't take damage.
 		var/damage = toss_distance * 5
-		damage += FRENZY_DAMAGE_BONUS(src)
-		var/armor_block = M.run_armor_check("chest", "melee")
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+		damage += FRENZY_DAMAGE_BONUS(X)
+		var/armor_block = L.run_armor_check("chest", "melee")
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
 			H.take_overall_damage(rand(damage * 0.75,damage * 1.25), null, 0, 0, 0, armor_block) //Armour functions against this.
 		else
-			M.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, null, armor_block) //Armour functions against this.
-		M.apply_damage(damage, HALLOSS) //...But decent armour ignoring Halloss
-		shake_camera(M, 2, 2)
-		playsound(M,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
-		M.KnockDown(1, 1)
+			L.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, null, armor_block) //Armour functions against this.
+		L.apply_damage(damage, HALLOSS) //...But decent armour ignoring Halloss
+		shake_camera(L, 2, 2)
+		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
+		L.KnockDown(1, 1)
 
-	addtimer(CALLBACK(src, .cresttoss_cooldown), CRUSHER_CRESTTOSS_COOLDOWN)
-	addtimer(CALLBACK(src, .reset_intent_icon_state), 3)
-
-/mob/living/carbon/Xenomorph/proc/reset_intent_icon_state()
-	if(m_intent == MOVE_INTENT_RUN)
-		icon_state = "Crusher Running"
-	else
-		icon_state = "Crusher Walking"
-
-/mob/living/carbon/Xenomorph/proc/cresttoss_cooldown()
-	if(!cresttoss_used)//sanity check/safeguard
-		return
-	cresttoss_used = FALSE
-	to_chat(src, "<span class='xenowarning'><b>You can now crest toss again.</b></span>")
-	playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
-	update_action_buttons()
+	add_cooldown()
+	addtimer(CALLBACK(X, /mob/.proc/update_icons), 3)
