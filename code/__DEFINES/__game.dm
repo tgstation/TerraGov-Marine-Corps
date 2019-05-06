@@ -2,7 +2,6 @@
 
 //Game defining directives.
 #define MAIN_AI_SYSTEM "ARES v3.2"
-#define MAIN_SHIP_ESCAPE_POD_NUMBER 11
 
 #define MAP_ICE_COLONY "Ice Colony"
 #define MAP_LV_624 "LV624"
