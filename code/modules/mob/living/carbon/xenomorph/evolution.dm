@@ -15,7 +15,7 @@
 	set category = "Alien"
 
 	if (issurvivorgamemode(SSticker?.mode) && tier == XENO_TIER_TWO)
-		to_chat(src, "<span class='warning'>Tier 3 is disabled in this gamemode.</span>")
+		to_chat(src, "<span class='warning'>The Queen Mother prevents you from evolving to tier 3. Your Hive is in a hurry.</span>")
 		return
 
 	if(is_ventcrawling)
