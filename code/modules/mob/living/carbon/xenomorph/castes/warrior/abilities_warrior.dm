@@ -6,44 +6,31 @@
 	action_icon_state = "agility_on"
 	mechanics_text = "Move an all fours for greater speed. Cannot use abilities while in this mode."
 	ability_name = "toggle agility"
+	cooldown_timer = WARRIOR_AGILITY_COOLDOWN
+	use_state_flags = XACT_USE_AGILITY
+
+/datum/action/xeno_action/activable/toggle_agility/on_cooldown_finish()
+	var/mob/living/carbon/Xenomorph/X = owner
+	to_chat(src, "<span class='notice'>You can [X.agility ? "raise yourself back up" : "lower yourself back down"] again.</span>")
+	return ..()
 
 /datum/action/xeno_action/activable/toggle_agility/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.toggle_agility()
 
-/datum/action/xeno_action/activable/toggle_agility/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/X = owner
-	return !X.used_toggle_agility
-
-/mob/living/carbon/Xenomorph/proc/toggle_agility()
-	if (!check_state())
-		return
-
-	if (used_toggle_agility)
-		return
-
-	agility = !agility
+	X.agility = !X.agility
 
 	round_statistics.warrior_agility_toggles++
-	if (agility)
-		to_chat(src, "<span class='xenowarning'>You lower yourself to all fours and loosen your armored scales to ease your movement.</span>")
-		speed_modifier--
-		armor_bonus -= WARRIOR_AGILITY_ARMOR
-
-		update_icons()
-		addtimer(CALLBACK(src, .agility_cooldown), WARRIOR_AGILITY_COOLDOWN)
-		return
-
-	to_chat(src, "<span class='xenowarning'>You raise yourself to stand on two feet, hard scales setting back into place.</span>")
-	speed_modifier++
-	armor_bonus += WARRIOR_AGILITY_ARMOR
-	update_icons()
-	addtimer(CALLBACK(src, .agility_cooldown), WARRIOR_AGILITY_COOLDOWN)
-
-/mob/living/carbon/Xenomorph/proc/agility_cooldown()
-	used_toggle_agility = FALSE
-	to_chat(src, "<span class='notice'>You can [agility ? "raise yourself back up" : "lower yourself back down"] again.</span>")
-	update_action_button_icons()
+	if (X.agility)
+		to_chat(X, "<span class='xenowarning'>You lower yourself to all fours and loosen your armored scales to ease your movement.</span>")
+		X.speed_modifier--
+		X.armor_bonus -= WARRIOR_AGILITY_ARMOR
+	else
+		to_chat(X, "<span class='xenowarning'>You raise yourself to stand on two feet, hard scales setting back into place.</span>")
+		X.speed_modifier++
+		X.armor_bonus += WARRIOR_AGILITY_ARMOR
+	X.update_icons()
+	add_cooldown()
+	return succeed_activate()
 
 // ***************************************
 // *********** Lunge
@@ -53,54 +40,43 @@
 	action_icon_state = "lunge"
 	mechanics_text = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
 	ability_name = "lunge"
+	plasma_cost = 10
+	cooldown_timer = WARRIOR_LUNGE_COOLDOWN
+
+/datum/action/xeno_action/activable/lunge/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!A)
+		return FALSE
+	if(!ishuman(A))
+		return FALSE
+	var/mob/living/carbon/human/H = A
+	if(H.stat == DEAD)
+		return FALSE
+
+/datum/action/xeno_action/activable/lunge/on_cooldown_finish()
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.used_lunge = FALSE
+	to_chat(X, "<span class='notice'>You get ready to lunge again.</span>")
+	return ..()
 
 /datum/action/xeno_action/activable/lunge/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.lunge(A)
 
-/datum/action/xeno_action/activable/lunge/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/X = owner
-	return !X.used_lunge
-
-/mob/living/carbon/Xenomorph/proc/lunge(atom/A)
-
-	if (!A || !ishuman(A) || !check_state() || agility || !check_plasma(10))
-		return
-
-	if (!isturf(loc))
-		to_chat(src, "<span class='xenowarning'>You can't lunge from here!</span>")
-		return
-
-	if (used_lunge)
-		to_chat(src, "<span class='xenowarning'>You must gather your strength before lunging.</span>")
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake up the shock!</span>")
-		return
-
-	var/mob/living/carbon/human/H = A
-	if(H.stat == DEAD)
-		return
 	round_statistics.warrior_lunges++
-	visible_message("<span class='xenowarning'>\The [src] lunges towards [H]!</span>", \
-	"<span class='xenowarning'>You lunge at [H]!</span>")
+	X.visible_message("<span class='xenowarning'>\The [X] lunges towards [A]!</span>", \
+	"<span class='xenowarning'>You lunge at [A]!</span>")
 
-	used_lunge = TRUE // triggered by start_pulling
-	use_plasma(10)
-	throw_at(get_step_towards(A, src), 6, 2, src)
+	succeed_activate()
+	X.used_lunge = TRUE // triggered by start_pulling
+	X.throw_at(get_step_towards(A, X), 6, 2, X)
 
-	if (Adjacent(H))
-		start_pulling(H,1)
+	if (X.Adjacent(A))
+		X.start_pulling(A, TRUE)
 
-	addtimer(CALLBACK(src, .lunge_reset), WARRIOR_LUNGE_COOLDOWN)
-
+	add_cooldown()
 	return TRUE
-
-/mob/living/carbon/Xenomorph/proc/lunge_reset()
-	used_lunge = FALSE
-	to_chat(src, "<span class='notice'>You get ready to lunge again.</span>")
-	update_action_button_icons()
 
 // ***************************************
 // *********** Fling
@@ -110,60 +86,54 @@
 	action_icon_state = "fling"
 	mechanics_text = "Knock a target flying up to 5 tiles."
 	ability_name = "Fling"
+	plasma_cost = 30
+	cooldown_timer = WARRIOR_FLING_COOLDOWN
+
+/datum/action/xeno_action/activable/fling/on_cooldown_finish()
+	to_chat(owner, "<span class='notice'>You gather enough strength to fling something again.</span>")
+	return ..()
+
+/datum/action/xeno_action/activable/fling/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!A)
+		return FALSE
+	if(!owner.Adjacent(A))
+		return FALSE
+	if(!ishuman(A))
+		return FALSE
+	var/mob/living/carbon/human/H = A
+	if(H.stat == DEAD)
+		return FALSE
 
 /datum/action/xeno_action/activable/fling/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.fling(A)
-
-/datum/action/xeno_action/activable/fling/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/X = owner
-	return !X.used_fling
-
-/mob/living/carbon/Xenomorph/proc/fling(atom/A)
-
-	if (!A || !ishuman(A) || !check_state() || agility || !check_plasma(30) || !Adjacent(A))
-		return
-
-	if (used_fling)
-		to_chat(src, "<span class='xenowarning'>You must gather your strength before flinging something.</span>")
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake up the shock!</span>")
-		return
-
 	var/mob/living/carbon/human/H = A
-	if(H.stat == DEAD)
-		return
 	round_statistics.warrior_flings++
 
-	visible_message("<span class='xenowarning'>\The [src] effortlessly flings [H] to the side!</span>", \
+	X.visible_message("<span class='xenowarning'>\The [X] effortlessly flings [H] to the side!</span>", \
 	"<span class='xenowarning'>You effortlessly fling [H] to the side!</span>")
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 75, 1)
-	used_fling = TRUE
-	use_plasma(30)
+	succeed_activate()
 	H.apply_effects(1,2) 	// Stun
 	shake_camera(H, 2, 1)
 
-	var/facing = get_dir(src, H)
+	var/facing = get_dir(X, H)
 	var/fling_distance = 4
-	var/turf/T = loc
-	var/turf/temp = loc
+	var/turf/T = X.loc
+	var/turf/temp = X.loc
 
-	for (var/x = 0, x < fling_distance, x++)
+	for (var/x in 1 to fling_distance)
 		temp = get_step(T, facing)
 		if (!temp)
 			break
 		T = temp
+	X.animation_attack_on(H)
+	X.flick_attack_overlay(H, "disarm")
+	H.throw_at(T, fling_distance, 1, X, 1)
 
-	H.throw_at(T, fling_distance, 1, src, 1)
-
-	addtimer(CALLBACK(src, .fling_reset), WARRIOR_FLING_COOLDOWN)
-
-/mob/living/carbon/Xenomorph/proc/fling_reset()
-	used_fling = FALSE
-	to_chat(src, "<span class='notice'>You gather enough strength to fling something again.</span>")
-	update_action_button_icons()
+	add_cooldown()
 
 // ***************************************
 // *********** Punch
@@ -173,14 +143,46 @@
 	action_icon_state = "punch"
 	mechanics_text = "Strike a target up to 1 tile away with a chance to break bones."
 	ability_name = "punch"
+	plasma_cost = 20
+	cooldown_timer = WARRIOR_PUNCH_COOLDOWN
+
+/datum/action/xeno_action/activable/punch/on_cooldown_finish()
+	to_chat(src, "<span class='notice'>You gather enough strength to punch again.</span>")
+	return ..()
+
+/datum/action/xeno_action/activable/punch/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!isliving(A))
+		return FALSE
+	var/mob/living/L = A
+	if(L.stat == DEAD || (CHECK_BITFIELD(L.status_flags, XENO_HOST) && istype(L.buckled, /obj/structure/bed/nest))) //Can't bully the dead/nested hosts.
+		return FALSE
 
 /datum/action/xeno_action/activable/punch/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.punch(A)
+	var/mob/living/M = A
+	if(X.issamexenohive(M))
+		return M.attack_alien() //harmless nibbling.
 
-/datum/action/xeno_action/activable/punch/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/X = owner
-	return !X.used_punch
+	round_statistics.warrior_punches++
+
+	var/S = pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg')
+	var/target_zone = check_zone(X.zone_selected)
+	if(!target_zone)
+		target_zone = "chest"
+	var/damage = rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper)
+	succeed_activate()
+	playsound(M, S, 50, 1)
+
+	M.punch_act(X, damage, target_zone)
+	X.animation_attack_on(M)
+	X.flick_attack_overlay(M, "punch")
+	shake_camera(M, 2, 1)
+	step_away(M, X, 2)
+
+	add_cooldown()
 
 /mob/living/proc/punch_act(mob/living/carbon/Xenomorph/X, damage, target_zone)
 	apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
@@ -204,56 +206,6 @@
 	add_slowdown(3)
 
 	apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
-
-/mob/living/carbon/Xenomorph/proc/punch(var/mob/living/M)
-	if (!istype(M) || M == src)
-		return
-
-	if (!check_state() || agility)
-		return
-
-	if (!Adjacent(M))
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake off the shock!</span>")
-		return
-
-	if (used_punch)
-		to_chat(src, "<span class='xenowarning'>You must gather your strength before punching.</span>")
-		return
-
-	if(issamexenohive(M))
-		return M.attack_alien() //harmless nibbling.
-
-	if (!check_plasma(20))
-		return
-
-	if(M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest))) //Can't bully the dead/nested hosts.
-		return
-	round_statistics.warrior_punches++
-
-
-	var/S = pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg')
-	var/target_zone = check_zone(zone_selected)
-	if(!target_zone)
-		target_zone = "chest"
-	var/damage = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper)
-	used_punch = TRUE
-	use_plasma(20)
-	playsound(M, S, 50, 1)
-
-	M.punch_act(src, damage, target_zone)
-
-	shake_camera(M, 2, 1)
-	step_away(M, src, 2)
-
-	addtimer(CALLBACK(src, .punch_reset), WARRIOR_PUNCH_COOLDOWN)
-
-/mob/living/carbon/Xenomorph/proc/punch_reset()
-	used_punch = FALSE
-	to_chat(src, "<span class='notice'>You gather enough strength to punch again.</span>")
-	update_action_button_icons()
 
 // ***************************************
 // *********** Rip limb

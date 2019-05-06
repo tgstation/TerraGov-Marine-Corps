@@ -139,7 +139,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/slot = input("Select a slot.") in slots
 
 	var/obj/item/hardpoint/HP = hardpoints[slot]
-	if(!(HP?.health))
+	if(!(HP?.obj_integrity))
 		to_chat(usr, "<span class='warning'>That module is either missing or broken.</span>")
 		return
 
@@ -196,7 +196,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/list/slots = list()
 	for(var/slot in hardpoints)
 		var/obj/item/hardpoint/HP = hardpoints[slot]
-		if(!(HP?.health))
+		if(!(HP?.obj_integrity))
 			continue
 		if(!HP.is_activatable)
 			continue
@@ -243,10 +243,10 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		if(!HP)
 			to_chat(user, "There is nothing installed on the [i] hardpoint slot.")
 			continue
-		var/status = !HP.health  ? "broken" : "functional"
-		var/span_class = !HP.health ? "<span class = 'danger'>" : "<span class = 'notice'>"
+		var/status = !HP.obj_integrity  ? "broken" : "functional"
+		var/span_class = !HP.obj_integrity ? "<span class = 'danger'>" : "<span class = 'notice'>"
 		if((user?.mind?.cm_skills && user.mind.cm_skills.engineer >= SKILL_ENGINEER_METAL) || isobserver(user))
-			switch(PERCENT(HP.health / HP.maxhealth))
+			switch(PERCENT(HP.obj_integrity / HP.max_integrity))
 				if(0.1 to 33)
 					status = "heavily damaged"
 					span_class = "<span class = 'warning'>"
@@ -261,14 +261,14 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 //Special armored vic healthcheck that mainly updates the hardpoint states
 /obj/vehicle/multitile/root/cm_armored/healthcheck()
-	health = maxhealth //The tank itself doesn't take damage
+	obj_integrity = max_integrity //The tank itself doesn't take damage
 	var/i
 	var/remove_person = TRUE //Whether or not to call handle_all_modules_broken()
 	for(i in hardpoints)
 		var/obj/item/hardpoint/H = hardpoints[i]
 		if(!H)
 			continue
-		if(!H.health)
+		if(!H.obj_integrity)
 			H.remove_buff()
 		else
 			remove_person = FALSE //if something exists but isnt broken
@@ -299,7 +299,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	for(var/i in hardpoints)
 		var/obj/item/hardpoint/H = hardpoints[i]
 
-		if((i == HDPT_TREADS && !H) || (H && !H.health)) //Treads not installed or broken
+		if((i == HDPT_TREADS && !H) || (H && !H.obj_integrity)) //Treads not installed or broken
 			var/image/I = image(icon, icon_state = "damaged_hardpt_[i]")
 			overlays += I
 
@@ -411,7 +411,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
 		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
-		if(SP.health)
+		if(SP.obj_integrity)
 			damage = 45
 			tank_damage = 1
 
@@ -428,7 +428,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
 		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
-		if(SP.health)
+		if(SP.obj_integrity)
 			damage = 60
 			tank_damage = 0
 
@@ -446,7 +446,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	if(facing == CA.old_dir && istype(CA.hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) ) //Snowplow eliminates collision damage, and doubles damage dealt if we're facing the thing we're crushing
 		var/obj/item/hardpoint/armor/snowplow/SP = CA.hardpoints[HDPT_ARMOR]
-		if(SP.health)
+		if(SP.obj_integrity)
 			damage = 60
 			tank_damage = 0
 
@@ -524,7 +524,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	for(var/i in hardpoints)
 		var/obj/item/hardpoint/HP = hardpoints[i]
 		if(HP)
-			HP.health = CLAMP(HP.health - damage * dmg_distribs[i] * get_dmg_multi(type), 0, HP.maxhealth)
+			HP.obj_integrity = CLAMP(HP.obj_integrity - damage * dmg_distribs[i] * get_dmg_multi(type), 0, HP.max_integrity)
 
 	healthcheck()
 
@@ -684,7 +684,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		to_chat(user, "<span class='warning'>There is nothing installed on that slot.</span>")
 		return
 
-	if(old.health >= old.maxhealth)
+	if(old.obj_integrity >= old.max_integrity)
 		to_chat(user, "<span class='notice'>\the [old] is already in perfect conditions.</span>")
 		return
 
@@ -748,7 +748,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	user.visible_message("<span class='notice'>[user] repairs the [slot] slot on the [src].</span>",
 		"<span class='notice'>You repair the [slot] slot on [src].</span>")
 
-	old.health = old.maxhealth //We repaired it, good job
+	old.obj_integrity = old.max_integrity //We repaired it, good job
 	old.apply_buff()
 
 	update_icon()
@@ -873,7 +873,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(!istype(HP))
 		return
 	HP.owner = src
-	if(HP.health)
+	if(HP.obj_integrity)
 		HP.apply_buff()
 	HP.forceMove(src)
 

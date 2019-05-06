@@ -69,9 +69,8 @@
 	var/fs_view = 7
 
 /obj/screen/fullscreen/Destroy()
-	..()
 	severity = 0
-	return TA_REVIVE_ME
+	return ..()
 
 
 /obj/screen/fullscreen/proc/update_for_view(client_view)

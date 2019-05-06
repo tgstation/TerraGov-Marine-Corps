@@ -1,8 +1,8 @@
 /obj/effect/spawner/random
 	name = "Random Object"
 	desc = "This item type is used to spawn random objects at round-start"
-	icon = 'icons/misc/mark.dmi'
-	icon_state = "rup"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "random_loot"
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 
 
@@ -27,9 +27,7 @@
 
 /obj/effect/spawner/random/tool
 	name = "Random Tool"
-	desc = "This is a random tool"
-	icon = 'icons/obj/items/items.dmi'
-	icon_state = "welder"
+	icon_state = "random_tool"
 	item_to_spawn()
 		return pick(/obj/item/tool/screwdriver,\
 					/obj/item/tool/wirecutters,\
@@ -52,9 +50,7 @@
 
 /obj/effect/spawner/random/powercell
 	name = "Random Powercell"
-	desc = "This is a random powercell."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "cell"
+	icon_state = "random_cell"
 	item_to_spawn()
 		return pick(prob(10);/obj/item/cell/crap,\
 					prob(40);/obj/item/cell,\
@@ -65,9 +61,7 @@
 
 /obj/effect/spawner/random/bomb_supply
 	name = "Bomb Supply"
-	desc = "This is a random bomb supply."
-	icon = 'icons/obj/assemblies/new_assemblies.dmi'
-	icon_state = "signaller"
+	icon_state = "random_scanner"
 	item_to_spawn()
 		return pick(/obj/item/assembly/igniter,\
 					/obj/item/assembly/prox_sensor,\
@@ -77,9 +71,7 @@
 
 /obj/effect/spawner/random/toolbox
 	name = "Random Toolbox"
-	desc = "This is a random toolbox."
-	icon = 'icons/obj/items/storage/storage.dmi'
-	icon_state = "red"
+	icon_state = "random_toolbox"
 	item_to_spawn()
 		return pick(prob(3);/obj/item/storage/toolbox/mechanical,\
 					prob(2);/obj/item/storage/toolbox/electrical,\
@@ -88,9 +80,7 @@
 
 /obj/effect/spawner/random/tech_supply
 	name = "Random Tech Supply"
-	desc = "This is a random piece of technology supplies."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "cell"
+	icon_state = "random_cell"
 	spawn_nothing_percentage = 50
 	item_to_spawn()
 		return pick(prob(3);/obj/effect/spawner/random/powercell,\

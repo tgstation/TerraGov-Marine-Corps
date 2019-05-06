@@ -11,8 +11,7 @@ Currently only has the tank hardpoints
 	icon = 'icons/obj/hardpoint_modules.dmi'
 	icon_state = "tires" //Placeholder
 
-	var/maxhealth = 100
-	health = 100
+	max_integrity = 100
 	w_class = 15
 
 	var/obj/item/ammo_magazine/tank/ammo
@@ -39,10 +38,10 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/examine(mob/user)
 	. = ..()
-	var/status = health <= 0.1 ? "broken" : "functional"
-	var/span_class = health <= 0.1 ? "<span class = 'danger'>" : "<span class = 'notice'>"
+	var/status = obj_integrity <= 0.1 ? "broken" : "functional"
+	var/span_class = obj_integrity <= 0.1 ? "<span class = 'danger'>" : "<span class = 'notice'>"
 	if((user?.mind?.cm_skills && user.mind.cm_skills.engineer >= SKILL_ENGINEER_METAL) || isobserver(user))
-		switch(PERCENT(health / maxhealth))
+		switch(PERCENT(obj_integrity / max_integrity))
 			if(0.1 to 33)
 				status = "heavily damaged"
 				span_class = "<span class = 'warning'>"
@@ -91,7 +90,7 @@ Currently only has the tank hardpoints
 		WT.remove_fuel(repair_delays, user)
 	user.visible_message("<span class='notice'>[user] finishs repairing [src].</span>",
 		"<span class='notice'>You finish repairing [src].</span>")
-	health = maxhealth
+	obj_integrity = max_integrity
 
 //Called on attaching, for weapons sets the actual cooldowns
 /obj/item/hardpoint/proc/apply_buff()
@@ -117,7 +116,7 @@ Currently only has the tank hardpoints
 	if(world.time < next_use)
 		to_chat(usr, "<span class='warning'>This module is not ready to be used yet.</span>")
 		return FALSE
-	if(!health)
+	if(!obj_integrity)
 		to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
 		return FALSE
 	return TRUE
@@ -160,7 +159,7 @@ Currently only has the tank hardpoints
 	else if(new_dir in list(EAST, WEST))
 		icon_suffix = "EW"
 
-	if(!health)
+	if(!obj_integrity)
 		icon_state_suffix = "1"
 
 	return image(icon = "[disp_icon]_[icon_suffix]", icon_state = "[disp_icon_state]_[icon_state_suffix]", pixel_x = x_offset, pixel_y = y_offset)
@@ -216,8 +215,7 @@ Currently only has the tank hardpoints
 	name = "LTB Cannon"
 	desc = "A primary cannon for tanks that shoots explosive rounds"
 
-	maxhealth = 500
-	health = 500
+	max_integrity = 500
 	point_cost = 100
 
 	icon_state = "ltb_cannon"
@@ -230,7 +228,7 @@ Currently only has the tank hardpoints
 	max_angle = 45
 
 /obj/item/hardpoint/primary/cannon/broken
-	health = 0
+	obj_integrity = 0
 	buyable = FALSE
 
 /obj/item/hardpoint/primary/cannon/apply_buff()
@@ -282,8 +280,7 @@ Currently only has the tank hardpoints
 	name = "LTAA-AP Minigun"
 	desc = "A primary weapon for tanks that spews bullets"
 
-	maxhealth = 350
-	health = 350
+	max_integrity = 350
 	point_cost = 100
 
 	icon_state = "ltaaap_minigun"
@@ -353,8 +350,7 @@ Currently only has the tank hardpoints
 	name = "Secondary Flamer Unit"
 	desc = "A secondary weapon for tanks that shoots flames"
 
-	maxhealth = 300
-	health = 300
+	max_integrity = 300
 	point_cost = 100
 
 	icon_state = "flamer"
@@ -391,8 +387,7 @@ Currently only has the tank hardpoints
 	name = "TOW Launcher"
 	desc = "A secondary weapon for tanks that shoots rockets"
 
-	maxhealth = 500
-	health = 500
+	max_integrity = 500
 	point_cost = 100
 
 	icon_state = "tow_launcher"
@@ -447,8 +442,7 @@ Currently only has the tank hardpoints
 	name = "M56 Cupola"
 	desc = "A secondary weapon for tanks that shoots bullets"
 
-	maxhealth = 350
-	health = 350
+	max_integrity = 350
 	point_cost = 50
 
 	icon_state = "m56_cupola"
@@ -461,7 +455,7 @@ Currently only has the tank hardpoints
 	max_angle = 90
 
 /obj/item/hardpoint/secondary/m56cupola/broken
-	health = 0
+	obj_integrity = 0
 	buyable = FALSE
 
 /obj/item/hardpoint/secondary/m56cupola/apply_buff()
@@ -490,8 +484,7 @@ Currently only has the tank hardpoints
 	name = "Grenade Launcher"
 	desc = "A secondary weapon for tanks that shoots grenades"
 
-	maxhealth = 500
-	health = 500
+	max_integrity = 500
 	point_cost = 25
 
 	icon_state = "glauncher"
@@ -538,8 +531,7 @@ Currently only has the tank hardpoints
 	name = "Smoke Launcher"
 	desc = "Launches smoke forward to obscure vision"
 
-	maxhealth = 300
-	health = 300
+	max_integrity = 300
 	point_cost = 10
 
 	icon_state = "slauncher_0"
@@ -552,7 +544,7 @@ Currently only has the tank hardpoints
 	is_activatable = TRUE
 
 /obj/item/hardpoint/support/smoke_launcher/broken
-	health = 0
+	obj_integrity = 0
 	buyable = FALSE
 
 /obj/item/hardpoint/support/smoke_launcher/apply_buff()
@@ -587,7 +579,7 @@ Currently only has the tank hardpoints
 	else if(new_dir in list(EAST, WEST))
 		icon_suffix = "EW"
 
-	if(!health)
+	if(!obj_integrity)
 		icon_state_suffix = "1"
 	else if(!(ammo?.current_rounds > 0))
 		icon_state_suffix = "2"
@@ -598,8 +590,7 @@ Currently only has the tank hardpoints
 	name = "Integrated Weapons Sensor Array"
 	desc = "Improves the accuracy and fire rate of all onboard weapons"
 
-	maxhealth = 250
-	health = 250
+	max_integrity = 250
 	point_cost = 100
 	max_clips = 0
 
@@ -630,8 +621,7 @@ Currently only has the tank hardpoints
 	name = "Overdrive Enhancer"
 	desc = "Increases the movement speed of the vehicle it's atached to"
 
-	maxhealth = 250
-	health = 250
+	max_integrity = 250
 	point_cost = 100
 	max_clips = 0
 
@@ -692,7 +682,7 @@ Currently only has the tank hardpoints
 		return
 
 	var/obj/item/hardpoint/support/overdrive_enhancer/OE = hardpoints[HDPT_SUPPORT]
-	if(!istype(OE, /obj/item/hardpoint/support/overdrive_enhancer) || OE.health <= 0)
+	if(!istype(OE, /obj/item/hardpoint/support/overdrive_enhancer) || OE.obj_integrity <= 0)
 		to_chat(usr, "<span class='warning'>The overdrive engine is missing or too badly damaged!</span>")
 		return
 	OE.activate_overdrive(usr)
@@ -701,8 +691,7 @@ Currently only has the tank hardpoints
 	name = "Artillery Module"
 	desc = "Allows the gunner to look far into the distance."
 
-	maxhealth = 250
-	health = 250
+	max_integrity = 250
 	point_cost = 100
 	max_clips = 0
 
@@ -764,7 +753,7 @@ Currently only has the tank hardpoints
 	deactivate()
 
 /obj/item/hardpoint/support/artillery_module/is_ready()
-	if(!health)
+	if(!obj_integrity)
 		to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
 		return FALSE
 	return TRUE
@@ -781,8 +770,7 @@ Currently only has the tank hardpoints
 	name = "Ballistic Armor"
 	desc = "Protects the vehicle from high-penetration weapons. Provides some protection against slashing and high impact attacks."
 
-	maxhealth = 1000
-	health = 1000
+	max_integrity = 1000
 	point_cost = 100
 
 	icon_state = "ballistic_armor"
@@ -791,7 +779,7 @@ Currently only has the tank hardpoints
 	disp_icon_state = "ballistic_armor"
 
 /obj/item/hardpoint/armor/ballistic/broken
-	health = 0
+	obj_integrity = 0
 	buyable = FALSE
 
 /obj/item/hardpoint/armor/ballistic/apply_buff()
@@ -810,8 +798,7 @@ Currently only has the tank hardpoints
 	name = "Caustic Armor"
 	desc = "Protects vehicles from most types of acid. Provides some protection against slashing and high impact attacks."
 
-	maxhealth = 1000
-	health = 1000
+	max_integrity = 1000
 	point_cost = 100
 
 	icon_state = "caustic_armor"
@@ -835,8 +822,7 @@ Currently only has the tank hardpoints
 	name = "Concussive Armor"
 	desc = "Protects the vehicle from high-impact weapons. Provides some protection against ballistic and explosive attacks."
 
-	maxhealth = 1000
-	health = 1000
+	max_integrity = 1000
 	point_cost = 100
 
 	icon_state = "concussive_armor"
@@ -860,8 +846,7 @@ Currently only has the tank hardpoints
 	name = "Paladin Armor"
 	desc = "Protects the vehicle from large incoming explosive projectiles. Provides some protection against slashing and high impact attacks."
 
-	maxhealth = 1000
-	health = 1000
+	max_integrity = 1000
 	point_cost = 100
 
 	icon_state = "paladin_armor"
@@ -885,8 +870,7 @@ Currently only has the tank hardpoints
 	name = "Snowplow"
 	desc = "Clears a path in the snow for friendlies"
 
-	maxhealth = 700
-	health = 700
+	max_integrity = 700
 	is_activatable = TRUE
 	point_cost = 50
 
@@ -914,8 +898,7 @@ Currently only has the tank hardpoints
 	name = "Treads"
 	desc = "Integral to the movement of the vehicle"
 
-	maxhealth = 500
-	health = 500
+	max_integrity = 500
 	point_cost = 25
 
 	icon_state = "treads"
@@ -924,7 +907,7 @@ Currently only has the tank hardpoints
 	disp_icon_state = "treads"
 
 /obj/item/hardpoint/treads/standard/broken
-	health = 0
+	obj_integrity = 0
 	buyable = FALSE
 
 /obj/item/hardpoint/treads/standard/get_icon_image(x_offset, y_offset, new_dir)

@@ -334,6 +334,8 @@
 
 		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
 
+		playsound(loc, pick('sound/items/write1.ogg','sound/items/write2.ogg'), 15, 1)
+
 		update_icon()
 
 
@@ -407,6 +409,7 @@
 		overlays += stampoverlay
 
 		to_chat(user, "<span class='notice'>You stamp the paper with your rubber stamp.</span>")
+		playsound(src, 'sound/items/stamp.ogg', 15, 1)
 
 	else if(P.heat_source >= 400)
 		burnpaper(P, user)

@@ -883,7 +883,7 @@
 	icon_state = "zx-76"
 	item_state = "zx-76"
 	max_shells = 10 //codex
-	caliber = "12 guage shotgun shells" //codex
+	caliber = "12 gauge shotgun shells" //codex
 	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
