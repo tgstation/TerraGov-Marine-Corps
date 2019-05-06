@@ -5,6 +5,7 @@
 	width = 5
 	height = 4
 	launch_status = UNLAUNCHED
+	ignitionTime = 8 SECONDS
 	var/can_launch = FALSE
 
 	var/list/doors = list()
@@ -20,25 +21,64 @@
 		SSshuttle.escape_pods -= src
 	. = ..()
 
+/obj/docking_port/mobile/escape_pod/proc/check_capacity()
+	var/mobs = 0
+	var/capacity = 0
+	for(var/t in return_turfs())
+		var/turf/T = t
+		for(var/mob/living/M in T.GetAllContents())
+			mobs++
+		for(var/obj/machinery/cryopod/evacuation/E in T.GetAllContents())
+			capacity++
+	if(max_capacity)
+		capacity = max_capacity
+	return mobs <= capacity
+
+/obj/docking_port/mobile/escape_pod/proc/launch(manual = FALSE)
+	if(!can_launch || launch_status == NOLAUNCH)
+		return
+	close_all_doors()
+	if(!check_capacity())
+		playsound(return_center_turf(),'sound/effects/alert.ogg', 25, 1)
+		addtimer(CALLBACK(src, .proc/explode), 4 SECONDS)
+		can_launch = FALSE
+		return
+	playsound(return_center_turf(),'sound/effects/escape_pod_warmup.ogg', 25, 1)
+	if(manual)
+		launch_status = EARLY_LAUNCHED
+	else
+		launch_status = ENDGAME_LAUNCHED
+	addtimer(CALLBACK(src, .proc/do_launch), ignitionTime)
+
+/obj/docking_port/mobile/escape_pod/proc/explode()
+	var/turf/T = return_center_turf()
+	var/average_dimension = (width+height)*0.25
+	explosion(T, -1, -1, average_dimension, average_dimension)
+	launch_status = NOLAUNCH
+	open_all_doors()
+
 /obj/docking_port/mobile/escape_pod/proc/prep_for_launch()
+	open_all_doors()
+	can_launch = TRUE
+
+/obj/docking_port/mobile/escape_pod/proc/open_all_doors()
 	for(var/obj/machinery/door/airlock/evacuation/D in doors)
 		INVOKE_ASYNC(D, /obj/machinery/door/airlock/evacuation/.proc/force_open)
-	can_launch = TRUE
 
 /obj/docking_port/mobile/escape_pod/proc/unprep_for_launch()
 	// dont close the door it might trap someone inside
 	can_launch = FALSE
+	open_all_doors()
 
 /obj/docking_port/mobile/escape_pod/proc/close_all_doors()
 	for(var/obj/machinery/door/airlock/evacuation/D in doors)
 		INVOKE_ASYNC(D, /obj/machinery/door/airlock/evacuation/.proc/force_close)
 
-/obj/docking_port/mobile/escape_pod/proc/auto_launch()
+/obj/docking_port/mobile/escape_pod/proc/do_launch()
 	if(!can_launch)
 		return
-	addtimer(CALLBACK(src, .proc/intoTheSunset), ignitionTime)
-	close_all_doors()
-	launch_status = ENDGAME_LAUNCHED
+	playsound(return_center_turf(),'sound/effects/escape_pod_launch.ogg', 25, 1)
+	intoTheSunset()
 
 /obj/docking_port/stationary/escape_pod
 	name = "escape pod"
@@ -88,12 +128,11 @@
 	if(!M)
 		return
 	if(!M.can_launch)
-		to_chat(H, "<span class='warning'>Evacuation is not enabled.</span>")
+		to_chat(H, "<span class='warning'>Evacuation is not enabled!</span>")
 		return
 
-	addtimer(CALLBACK(M, /obj/docking_port/mobile/.proc/intoTheSunset), M.ignitionTime)
-	M.close_all_doors()
-	M.launch_status = EARLY_LAUNCHED
+	to_chat(H, "<span class='highdanger'>You slam your fist down on the launch button!</span>")
+	M.launch(TRUE)
 
 //=========================================================================================
 //================================Evacuation Sleeper=======================================

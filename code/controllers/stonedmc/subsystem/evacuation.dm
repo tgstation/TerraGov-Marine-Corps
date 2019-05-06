@@ -44,9 +44,10 @@ SUBSYSTEM_DEF(evacuation)
 			if(world.time < pod_cooldown + EVACUATION_POD_LAUNCH_COOLDOWN)
 				return
 			if(!length(pod_list))
+				announce_evac_completion()
 				return
 			var/obj/docking_port/mobile/escape_pod/P = pick_n_take(pod_list)
-			P.auto_launch()
+			P.launch()
 
 	switch(dest_status)
 		if(NUKE_EXPLOSION_ACTIVE)
@@ -81,7 +82,6 @@ SUBSYSTEM_DEF(evacuation)
 	for(var/i in pod_list)
 		var/obj/docking_port/mobile/escape_pod/P = i
 		P.prep_for_launch()
-	addtimer(CALLBACK(src, .proc/announce_evac_completion), 5 MINUTES)
 	return TRUE
 
 
