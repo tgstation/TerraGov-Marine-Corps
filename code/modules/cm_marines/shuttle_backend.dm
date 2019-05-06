@@ -295,7 +295,7 @@ x_pos = 0 1 2 3 4 5 6
 
 /obj/effect/landmark/shuttle_loc
 	desc = "The reference landmark for shuttles"
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "spawn_shuttle"
 	var/rotation = 0 //When loading to this landmark, how much to rotate the turfs. See /proc/rotate_shuttle_turfs()
 

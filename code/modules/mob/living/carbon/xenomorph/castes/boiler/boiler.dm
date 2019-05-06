@@ -14,20 +14,17 @@
 	upgrade = XENO_UPGRADE_ZERO
 	gib_chance = 100
 	drag_delay = 6 //pulling a big dead xeno is hard
-	var/is_bombarding = 0
 	var/obj/item/explosive/grenade/grenade_type = "/obj/item/explosive/grenade/xeno"
-	var/bomb_cooldown = 0
 	var/datum/effect_system/smoke_spread/xeno/smoke
-	var/turf/bomb_turf = null
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/corrosive_acid/Boiler,
-		/datum/action/xeno_action/bombard,
+		/datum/action/xeno_action/activable/bombard,
 		/datum/action/xeno_action/toggle_long_range,
 		/datum/action/xeno_action/toggle_bomb,
-		/datum/action/xeno_action/activable/spray_acid,
+		/datum/action/xeno_action/activable/spray_acid/line/boiler
 		)
 
 // ***************************************

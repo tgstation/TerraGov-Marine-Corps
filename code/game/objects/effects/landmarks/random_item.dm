@@ -59,6 +59,7 @@
 
 // names are for mapper ease of use only
 /obj/effect/landmark/random_item
+	icon_state = "random_loot"
 	var/item_quality = NONE
 
 /obj/effect/landmark/random_item/Initialize()

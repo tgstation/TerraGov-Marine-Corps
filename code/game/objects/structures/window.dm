@@ -441,6 +441,7 @@
 	basestate = "window"
 	max_integrity = 40
 	reinf = TRUE
+	flags_atom = NONE
 
 /obj/structure/window/shuttle/update_icon() //icon_state has to be set manually
 	return

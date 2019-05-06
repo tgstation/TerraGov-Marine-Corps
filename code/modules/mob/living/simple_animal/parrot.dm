@@ -199,9 +199,6 @@
 									available_channels.Add(":d")
 								if("Cargo")
 									available_channels.Add(":q")
-
-						if(headset_to_add.translate_binary)
-							available_channels.Add(":b")
 		else
 			..()
 
@@ -727,21 +724,9 @@
 	message = capitalize(trim_left(message))
 
 	if(message_mode)
-		if(message_mode in radiochannels)
+		if(message_mode in GLOB.radiochannels)
 			if(ears && istype(ears,/obj/item/radio))
 				ears.talk_into(src,message, message_mode, verb, null)
 
 
 	..(message)
-
-
-/mob/living/simple_animal/parrot/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0)
-	if(prob(50))
-		parrot_hear("[pick(available_channels)] [message]")
-	..(message,verb,language,part_a,part_b,speaker,hard_to_hear)
-
-
-/mob/living/simple_animal/parrot/proc/parrot_hear(var/message="")
-	if(!message || stat)
-		return
-	speech_buffer.Add(message)

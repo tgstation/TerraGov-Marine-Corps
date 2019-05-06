@@ -389,7 +389,7 @@
 	if(use_beaker && reagent_glass && reagent_glass.reagents.total_volume)
 		var/safety_fail = 0
 		for(var/datum/reagent/R in reagent_glass.reagents.reagent_list)
-			if(!C.reagents.has_reagent(R))
+			if(C.reagents.has_reagent(R.id))
 				safety_fail = 1
 				break
 		if(!safety_fail)

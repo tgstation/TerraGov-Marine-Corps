@@ -1,0 +1,4 @@
+author: "Menshin"
+delete-after: True
+changes: 
+  - rscadd: "OB shells now makes a sound when incoming"

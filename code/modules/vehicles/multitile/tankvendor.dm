@@ -72,7 +72,7 @@
 				dat += "<b>Brief description</b>: [loaded_mod.desc]<br>"
 				if(istype(loaded_mod, /obj/item/hardpoint))
 					var/obj/item/hardpoint/H = loaded_mod
-					dat += "<b>Hardpoint integrity</b>: [PERCENT(H.health/H.maxhealth)]%<br>"
+					dat += "<b>Hardpoint integrity</b>: [PERCENT(H.obj_integrity/H.max_integrity)]%<br>"
 					if(H.starter_ammo)
 						var/ammo_count = H.ammo ? "[H.ammo] ([H.ammo.current_rounds]/[H.ammo.max_rounds])" : "No clip loaded"
 						dat += "<b>Current clip</b>: [ammo_count]<br>"
@@ -186,7 +186,7 @@
 /obj/machinery/tank_part_fabricator/proc/calculate_mod_value()
 	if(istype(loaded_mod, /obj/item/hardpoint))
 		var/obj/item/hardpoint/mod = loaded_mod
-		. = (mod.point_cost - mod.point_cost * (1 - (mod.health/mod.maxhealth)) * 0.5) * 0.5
+		. = (mod.point_cost - mod.point_cost * (1 - (mod.obj_integrity/mod.max_integrity)) * 0.5) * 0.5
 		if(mod.starter_ammo)
 			if(mod.ammo)
 				. += (mod.ammo.point_cost - mod.ammo.point_cost * (1 - (mod.ammo.current_rounds/mod.ammo.max_rounds)) * 0.5) * 0.5
@@ -203,7 +203,7 @@
 /obj/machinery/tank_part_fabricator/proc/calculate_repair_price()
 	if(istype(loaded_mod, /obj/item/hardpoint))
 		var/obj/item/hardpoint/mod = loaded_mod
-		. = ((mod.point_cost - mod.point_cost * (mod.health/mod.maxhealth)) * 0.1)
+		. = ((mod.point_cost - mod.point_cost * (mod.obj_integrity/mod.max_integrity)) * 0.1)
 		if(mod.starter_ammo)
 			if(mod.ammo)
 				. += ((mod.ammo.point_cost - mod.ammo.point_cost * (mod.ammo.current_rounds/mod.ammo.max_rounds)) * 0.9)
@@ -241,7 +241,7 @@
 	tank_points -= cost
 	if(istype(loaded_mod, /obj/item/hardpoint))
 		var/obj/item/hardpoint/H = loaded_mod
-		H.health = H.maxhealth
+		H.obj_integrity = H.max_integrity
 		if(H.ammo)
 			H.ammo.current_rounds = H.ammo.max_rounds
 			H.ammo.update_icon()

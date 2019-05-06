@@ -150,7 +150,6 @@
 	. = ..()
 	. += "---"
 	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
-	.["Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
 	.["Drop Everything"] = "?_src_=vars;[HrefToken()];dropeverything=[REF(src)]"
 	.["Copy Outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
 
@@ -1191,7 +1190,8 @@
 			virus.cure(0)
 
 	undefibbable = FALSE
-	..()
+	
+	return ..()
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
 	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
@@ -1762,21 +1762,3 @@
 	hud_set_squad()
 
 	return TRUE
-
-
-/mob/living/carbon/human/proc/purrbate()
-	if(overlays_standing["purrbation"])
-		remove_overlay("purrbation")
-		log_admin("[key_name(usr)] has removed purrbation from [key_name(src)].")
-		message_admins("[ADMIN_TPMONTY(usr)] has removed purrbation from [ADMIN_TPMONTY(src)].")
-	else
-		var/icon/ears = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kitty")
-		var/icon/earbit = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kittyinner")
-
-		ears.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
-		ears.Blend(earbit, ICON_OVERLAY)
-
-		overlays_standing["purrbation"] = ears
-		apply_overlay("purrbation")
-		log_admin("[key_name(usr)] has purrbated [key_name(src)].")
-		message_admins("[ADMIN_TPMONTY(usr)] has purrbated [ADMIN_TPMONTY(src)].")

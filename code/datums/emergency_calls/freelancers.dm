@@ -27,6 +27,7 @@
 		H.voice_name = H.name
 
 	M.transfer_to(H, TRUE)
+	H.fully_replace_character_name(M.name, H.real_name)
 
 	if(original)
 		qdel(original)
@@ -35,18 +36,21 @@
 
 	if(!leader)
 		leader = H
-		var/datum/job/J = new /datum/job/freelancer/leader
+		var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/leader)
+		SSjob.AssignRole(H, J.title)
 		J.equip(H)
 		to_chat(H, "<span class='notice'>You are the Freelancer leader!</notice>")
 		return
 
 	if(medics < max_medics)
-		var/datum/job/J = new /datum/job/freelancer/medic
+		var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/medic)
+		SSjob.AssignRole(H, J.title)
 		J.equip(H)
 		medics++
 		to_chat(H, "<span class='notice'>You are a Freelancer medic!</notice>")
 		return
 
-	var/datum/job/J = new /datum/job/freelancer/standard
+	var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/standard)
+	SSjob.AssignRole(H, J.title)
 	J.equip(H)
 	to_chat(H, "<span class='notice'>You are a Freelancer mercenary!</notice>")
