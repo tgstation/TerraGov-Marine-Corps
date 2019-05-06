@@ -87,12 +87,30 @@
 	icon_state = "wall6"
 	},
 /area/shuttle/escape_pod)
+"p" = (
+/turf/closed/shuttle/escapepod{
+	icon_state = "wall10";
+	tag = "icon-wall11"
+	},
+/area/shuttle/escape_pod)
+"q" = (
+/turf/closed/shuttle/escapepod{
+	icon_state = "wall5";
+	tag = "icon-wall4"
+	},
+/area/shuttle/escape_pod)
+"r" = (
+/turf/closed/shuttle/escapepod{
+	icon_state = "wall8";
+	tag = "icon-wall7"
+	},
+/area/shuttle/escape_pod)
 
 (1,1,1) = {"
 a
 e
 i
-i
+p
 m
 "}
 (2,1,1) = {"
@@ -100,7 +118,7 @@ b
 f
 f
 f
-n
+r
 "}
 (3,1,1) = {"
 c
@@ -113,6 +131,6 @@ n
 d
 h
 k
-h
+q
 o
 "}
