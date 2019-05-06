@@ -235,7 +235,7 @@
 
     for (var/mob/M in GLOB.alive_human_list)
         to_chat(M, "<h2 class='alert'>MESSAGE RECIEVED</h2>")
-        to_chat(M, "<span class='alert'>We have gotten your messages, we are sending units to your location. Hold out until they get there, they shouldn't be more than [distress_timer / 60] minutes.</span>")
+        to_chat(M, "<span class='alert'>We have gotten your messages, we are sending units to your location. Hold out until they get there, they shouldn't be more than [distress_timer / 600] minutes.</span>")
 
 
 /obj/item/beacon/rescue/attack_self(mob/user)
