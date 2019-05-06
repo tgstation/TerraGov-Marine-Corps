@@ -213,7 +213,7 @@
 /area/almayer/hull/upper_hull)
 "aaE" = (
 /turf/open/floor/plating,
-/area/almayer/evacuation/pod7)
+/area/almayer/hull/upper_hull)
 "aaI" = (
 /obj/machinery/door/firedoor/theseus{
 	dir = 2
@@ -223,9 +223,6 @@
 	icon_state = "test_floor4"
 	},
 /area/almayer/hallways/aft_hallway)
-"aaJ" = (
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod8)
 "aaN" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -260,7 +257,7 @@
 "aba" = (
 /obj/docking_port/stationary/escape_pod/right,
 /turf/open/floor/plating,
-/area/almayer/evacuation/pod7)
+/area/almayer/hull/upper_hull)
 "abb" = (
 /obj/machinery/door/airlock/almayer/secure{
 	dir = 4;
@@ -272,7 +269,7 @@
 "abc" = (
 /obj/docking_port/stationary/escape_pod,
 /turf/open/floor/plating,
-/area/almayer/evacuation/pod8)
+/area/almayer/hull/upper_hull)
 "abf" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -417,12 +414,6 @@
 	tag = "icon-silver"
 	},
 /area/almayer/living/cafeteria_officer)
-"abJ" = (
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod5)
-"abN" = (
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod6)
 "abR" = (
 /turf/closed/wall/almayer,
 /area/almayer/living/numbertwobunks)
@@ -831,14 +822,6 @@
 /obj/item/folder/black,
 /turf/open/floor/carpet,
 /area/almayer/living/officer_rnr)
-"adg" = (
-/obj/docking_port/stationary/escape_pod/right,
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod5)
-"adh" = (
-/obj/docking_port/stationary/escape_pod,
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod6)
 "adj" = (
 /obj/structure/table/almayer,
 /obj/item/taperecorder,
@@ -20210,9 +20193,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/bridgebunks)
-"aSq" = (
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod3)
 "aSu" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -20234,9 +20214,6 @@
 	tag = "icon-red"
 	},
 /area/almayer/hallways/aft_hallway)
-"aSw" = (
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod4)
 "aSB" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -20488,18 +20465,10 @@
 	icon_state = "blue"
 	},
 /area/almayer/shipboard/ex_firing_range)
-"aTA" = (
-/obj/docking_port/stationary/escape_pod/right,
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod3)
 "aTC" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/aft_hallway)
-"aTD" = (
-/obj/docking_port/stationary/escape_pod,
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod4)
 "aTF" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -20684,25 +20653,11 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/starboard_point_defense)
-"aUp" = (
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod1)
-"aUt" = (
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod2)
 "aUx" = (
 /turf/open/floor/theseus_hull/dir{
 	dir = 10
 	},
 /area/space)
-"aUI" = (
-/obj/docking_port/stationary/escape_pod/right,
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod1)
-"aUJ" = (
-/obj/docking_port/stationary/escape_pod,
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod2)
 "aUT" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -20922,7 +20877,7 @@
 /area/almayer/shipboard/starboard_point_defense)
 "aVB" = (
 /turf/open/floor/plating,
-/area/almayer/evacuation/pod10)
+/area/almayer/hull/lower_hull)
 "aVF" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/almayer/mono,
@@ -21005,7 +20960,7 @@
 "aWb" = (
 /obj/docking_port/stationary/escape_pod/down,
 /turf/open/floor/plating,
-/area/almayer/evacuation/pod10)
+/area/almayer/hull/lower_hull)
 "aWf" = (
 /turf/closed/wall/almayer,
 /area/almayer/hallways/starboard_hallway)
@@ -44395,9 +44350,6 @@
 	tag = "icon-red"
 	},
 /area/almayer/hallways/port_hallway)
-"caw" = (
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod11)
 "caA" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /turf/open/floor/almayer/mono,
@@ -44829,7 +44781,7 @@
 "cbR" = (
 /obj/docking_port/stationary/escape_pod,
 /turf/open/floor/plating,
-/area/almayer/evacuation/pod11)
+/area/almayer/hull/lower_hull)
 "cbT" = (
 /obj/structure/rack,
 /obj/item/reagent_container/food/condiment/sugar,
@@ -46037,13 +45989,10 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/port_point_defense)
-"ceP" = (
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod9)
 "ceR" = (
 /obj/docking_port/stationary/escape_pod/up,
 /turf/open/floor/plating,
-/area/almayer/evacuation/pod9)
+/area/almayer/hull/lower_hull)
 "ceZ" = (
 /obj/machinery/conveyor{
 	id = "lower_garbage"
@@ -79831,11 +79780,11 @@ bSw
 bXF
 bYS
 aVs
-caw
-caw
+aVB
+aVB
 cbR
-caw
-caw
+aVB
+aVB
 aVs
 aVm
 aVk
@@ -80088,11 +80037,11 @@ bVy
 bUa
 bUa
 aVs
-caw
-caw
-caw
-caw
-caw
+aVB
+aVB
+aVB
+aVB
+aVB
 aVs
 aVm
 aVk
@@ -80345,11 +80294,11 @@ bUa
 bUa
 bUa
 aVs
-caw
-caw
-caw
-caw
-caw
+aVB
+aVB
+aVB
+aVB
+aVB
 aVs
 aVm
 aVk
@@ -80602,11 +80551,11 @@ bWE
 bXG
 bYT
 aVs
-caw
-caw
-caw
-caw
-caw
+aVB
+aVB
+aVB
+aVB
+aVB
 aVs
 aVm
 aVk
@@ -86088,11 +86037,11 @@ aaE
 aaE
 aaE
 aar
-abJ
-abJ
-abJ
-abJ
-abJ
+aaE
+aaE
+aaE
+aaE
+aaE
 aeI
 afw
 agC
@@ -86124,17 +86073,17 @@ aLs
 aLs
 chm
 aDk
-aSq
-aSq
-aSq
-aSq
-aSq
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-aUp
-aUp
-aUp
-aUp
-aUp
+aaE
+aaE
+aaE
+aaE
+aaE
 aap
 aam
 aai
@@ -86345,11 +86294,11 @@ aaE
 aaE
 aaE
 aar
-abJ
-abJ
-abJ
-abJ
-abJ
+aaE
+aaE
+aaE
+aaE
+aaE
 aeI
 abE
 agD
@@ -86381,17 +86330,17 @@ chm
 chm
 chm
 aDk
-aSq
-aSq
-aSq
-aSq
-aSq
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-aUp
-aUp
-aUp
-aUp
-aUp
+aaE
+aaE
+aaE
+aaE
+aaE
 aap
 aam
 aai
@@ -86602,11 +86551,11 @@ aaE
 aaE
 aaE
 aar
-abJ
-abJ
-abJ
-abJ
-abJ
+aaE
+aaE
+aaE
+aaE
+aaE
 aeI
 afy
 agE
@@ -86638,17 +86587,17 @@ chm
 chm
 chm
 aDk
-aSq
-aSq
-aSq
-aSq
-aSq
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-aUp
-aUp
-aUp
-aUp
-aUp
+aaE
+aaE
+aaE
+aaE
+aaE
 aap
 aam
 aai
@@ -86859,11 +86808,11 @@ aba
 aaE
 aaE
 aar
-abJ
-abJ
-adg
-abJ
-abJ
+aaE
+aaE
+aba
+aaE
+aaE
 aeI
 afz
 agE
@@ -86895,17 +86844,17 @@ chm
 chm
 chm
 aDk
-aSq
-aSq
-aTA
-aSq
-aSq
+aaE
+aaE
+aba
+aaE
+aaE
 aar
-aUp
-aUp
-aUI
-aUp
-aUp
+aaE
+aaE
+aba
+aaE
+aaE
 aap
 aan
 aao
@@ -87295,10 +87244,10 @@ aVs
 ceu
 aVs
 aVs
-ceP
-ceP
-ceP
-ceP
+aVB
+aVB
+aVB
+aVB
 aVs
 cak
 aVk
@@ -87552,10 +87501,10 @@ cep
 cev
 ceG
 aWf
-ceP
-ceP
-ceP
-ceP
+aVB
+aVB
+aVB
+aVB
 aVs
 caj
 aVk
@@ -87810,9 +87759,9 @@ cew
 bDM
 ceM
 ceR
-ceP
-ceP
-ceP
+aVB
+aVB
+aVB
 aVs
 cal
 aVk
@@ -88066,10 +88015,10 @@ ceq
 cex
 ceH
 aWf
-ceP
-ceP
-ceP
-ceP
+aVB
+aVB
+aVB
+aVB
 aVs
 cal
 aVk
@@ -88323,10 +88272,10 @@ cbn
 cey
 ceI
 aWf
-ceP
-ceP
-ceP
-ceP
+aVB
+aVB
+aVB
+aVB
 aVs
 cal
 aVk
@@ -88395,17 +88344,17 @@ aap
 aap
 aap
 aap
-aaJ
-aaJ
+aaE
+aaE
 abc
-aaJ
-aaJ
+aaE
+aaE
 aar
-abN
-abN
-adh
-abN
-abN
+aaE
+aaE
+abc
+aaE
+aaE
 aeL
 afC
 agH
@@ -88437,17 +88386,17 @@ aPg
 aRa
 aRb
 abR
-aSw
-aSw
-aTD
-aSw
-aSw
+aaE
+aaE
+abc
+aaE
+aaE
 aar
-aUt
-aUt
-aUJ
-aUt
-aUt
+aaE
+aaE
+abc
+aaE
+aaE
 aap
 aap
 aap
@@ -88652,17 +88601,17 @@ aao
 aao
 aaz
 aap
-aaJ
-aaJ
-aaJ
-aaJ
-aaJ
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-abN
-abN
-abN
-abN
-abN
+aaE
+aaE
+aaE
+aaE
+aaE
 aeL
 afD
 agH
@@ -88694,17 +88643,17 @@ aQm
 aRb
 aRb
 abR
-aSw
-aSw
-aSw
-aSw
-aSw
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-aUt
-aUt
-aUt
-aUt
-aUt
+aaE
+aaE
+aaE
+aaE
+aaE
 aap
 aaj
 aao
@@ -88909,17 +88858,17 @@ aai
 aai
 aam
 aap
-aaJ
-aaJ
-aaJ
-aaJ
-aaJ
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-abN
-abN
-abN
-abN
-abN
+aaE
+aaE
+aaE
+aaE
+aaE
 aeL
 afE
 agI
@@ -88951,17 +88900,17 @@ aQn
 aRb
 aRb
 abR
-aSw
-aSw
-aSw
-aSw
-aSw
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-aUt
-aUt
-aUt
-aUt
-aUt
+aaE
+aaE
+aaE
+aaE
+aaE
 aap
 aUn
 aai
@@ -89166,17 +89115,17 @@ aag
 aai
 aaA
 aap
-aaJ
-aaJ
-aaJ
-aaJ
-aaJ
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-abN
-abN
-abN
-abN
-abN
+aaE
+aaE
+aaE
+aaE
+aaE
 aeL
 afF
 agJ
@@ -89208,17 +89157,17 @@ aQo
 aRb
 aRb
 abR
-aSw
-aSw
-aSw
-aSw
-aSw
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-aUt
-aUt
-aUt
-aUt
-aUt
+aaE
+aaE
+aaE
+aaE
+aaE
 aap
 aam
 aai
