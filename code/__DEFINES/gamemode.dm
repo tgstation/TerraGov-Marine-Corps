@@ -1,0 +1,6 @@
+#define GAMEMODE_SURIVOR_DRAW "Draw"
+#define GAMEMODE_SURIVOR_HUMAN_WIN "Survivors Win"
+#define GAMEMODE_SURIVOR_XENO_WIN "Xeno Win"
+#define HIGH_POP "HIGH_POP"
+#define MED_POP "MED_POP"
+#define LOW_POP "LOW_POP"
