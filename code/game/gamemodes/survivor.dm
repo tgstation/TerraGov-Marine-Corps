@@ -276,40 +276,55 @@ SPAWNS
     M.transfer_to(H, TRUE)
     H.client.prefs.copy_to(H)
 
-    var/survivor_job = pick(subtypesof(/datum/job/survivor))
-    var/datum/job/J = new survivor_job
-
-    if(SSmapping.config.map_name == MAP_ICE_COLONY)
-        H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
-        H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
-        H.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(H), SLOT_SHOES)
-
+    var/job_title
     var/role_guide
+    var/survivor_job = pick(subtypesof(/datum/job/survivor))
 
-    switch(/*rand(0, 100)*/ 55)
+    switch(rand(0, 100))
         if (0 to 25)
-            // Builder 
-            H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), SLOT_GLASSES)
-            H.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(H), SLOT_R_STORE)
+            survivor_job = /datum/job/survivor/atmos
+            job_title = SURVIVOR_BUILDER
             role_guide = "You have extra building equipment, use the metal and tools to create defenses. You won't know you'll need it until its too late..."
         if (25 to 50)
-            // Medic
-            H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
+            survivor_job = /datum/job/survivor/doctor
+            job_title = SURVIVOR_MEDIC
             role_guide = "You have extra medical supplies, that could be useful if you or someone else gets hurt..."
         if (50 to 75)
-            // Fighter
-            H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/smg/mp7(H), SLOT_L_STORE)
-            H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/mp7(H), SLOT_R_HAND)
+            survivor_job = /datum/job/survivor/security
+            job_title = SURVIVOR_FIGHTER
             role_guide = "You have found a weapon! Hope you don't have to use it too soon..."
         if (75 to 100)
-            // Scav
-            H.equip_to_slot_or_del(new /obj/item/pinpointer(H), SLOT_R_HAND)
-            H.equip_to_slot_or_del(new /obj/item/radio/marine(H), SLOT_L_HAND)
+            job_title = SURVIVOR_SCAV
             role_guide = "You have a radio and pinpointer! Maybe this will lead you to what you need most..."
 
-    // Equip job based items last to not conflict with gamemode items.
+    var/datum/job/J = new survivor_job
+
     H.set_rank(J.title)
     J.equip(H)
+
+    if(SSmapping.config.map_name == MAP_ICE_COLONY)
+        H.equip_to_slot(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
+        H.equip_to_slot(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)
+        H.equip_to_slot(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
+        H.equip_to_slot(new /obj/item/clothing/gloves/black(H), SLOT_GLOVES)
+        H.equip_to_slot(new /obj/item/clothing/shoes/snow(H), SLOT_SHOES)
+
+    switch(job_title)
+        if (SURVIVOR_BUILDER)
+            H.equip_to_slot(new /obj/item/clothing/suit/storage/snow_suit/engineer(H), SLOT_WEAR_SUIT)
+            H.equip_to_slot(new /obj/item/clothing/glasses/welding(H), SLOT_GLASSES)
+            H.equip_to_slot(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
+            H.equip_to_slot(new /obj/item/storage/pouch/tools/full(H), SLOT_R_STORE)
+        if (SURVIVOR_MEDIC)
+            H.equip_to_slot(new /obj/item/clothing/suit/storage/snow_suit/doctor(H), SLOT_WEAR_SUIT)
+            H.equip_to_slot(new /obj/item/storage/pouch/firstaid/full(H), SLOT_L_STORE)
+            H.equip_to_slot(new /obj/item/healthanalyzer(H), SLOT_R_STORE)
+        if (SURVIVOR_FIGHTER)
+            H.equip_to_slot(new /obj/item/storage/pouch/magazine/smg/mp7(H), SLOT_R_STORE)
+            H.equip_to_slot(new /obj/item/weapon/gun/smg/mp7(H), SLOT_R_HAND)
+        if (SURVIVOR_SCAV)
+            H.equip_to_slot(new /obj/item/pinpointer(H), SLOT_R_STORE)
+            H.equip_to_slot(new /obj/item/radio/marine(H), SLOT_L_STORE)
 
     H.mind.assigned_role = "Survivor"
 
@@ -325,7 +340,7 @@ SPAWNS
             to_chat(H, "<span class='notice'>You are a survivor of the attack on the colony. You suspected something was wrong and tried to warn others, but it was too late...</span>")
         else
             to_chat(H, "<span class='notice'>Through a miracle you managed to survive the attack. But are you truly safe now?</span>")
-    to_chat(H, "<span class='caption'>[role_guide]</span>")
+    to_chat(H, "<span class='boldnotice'>[role_guide]</span>")
 
 
 /datum/game_mode/survivor/attempt_to_join_as_larva(mob/xeno_candidate)
@@ -346,11 +361,12 @@ SPAWNS
     if(player_size == HIGH_POP)
         all_key_items += key_items_medpop + key_items_highpop
 
-    for (var/key_item in all_key_items)
-        GLOB.gamemode_survivor_key_items += new key_item(pick(GLOB.survivor_spawn_key_item)) 
-
-    for (var/random_item in random_items)
-        new random_item(pick(GLOB.survivor_spawn_random_item)) 
+    if (GLOB.survivor_spawn_key_item)
+        for (var/key_item in all_key_items)
+            GLOB.gamemode_survivor_key_items += new key_item(pick(GLOB.survivor_spawn_key_item)) 
+    if (GLOB.survivor_spawn_random_item)
+        for (var/random_item in random_items)
+            new random_item(pick(GLOB.survivor_spawn_random_item)) 
 
 
 /datum/game_mode/survivor/process()
