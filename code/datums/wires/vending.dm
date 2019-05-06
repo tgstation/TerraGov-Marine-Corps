@@ -32,6 +32,10 @@
 
 
 /datum/wires/vending/on_pulse(wire)
+	. = ..()
+	if(!.)
+		return
+
 	var/obj/machinery/vending/V = holder
 	switch(wire)
 		if(WIRE_THROW)
@@ -47,6 +51,10 @@
 
 
 /datum/wires/vending/on_cut(wire, mend)
+	. = ..()
+	if(!.)
+		return
+		
 	var/obj/machinery/vending/V = holder
 	switch(wire)
 		if(WIRE_THROW)

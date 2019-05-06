@@ -28,6 +28,10 @@
 
 
 /datum/wires/apc/on_pulse(wire)
+	. = ..()
+	if(!.)
+		return
+
 	var/obj/machinery/power/apc/A = holder
 	switch(wire)
 		if(WIRE_POWER1, WIRE_POWER2) // Short for a long while.
@@ -44,6 +48,10 @@
 
 
 /datum/wires/apc/on_cut(index, mend)
+	. = ..()
+	if(!.)
+		return
+		
 	var/obj/machinery/power/apc/A = holder
 	switch(index)
 		if(WIRE_POWER1, WIRE_POWER2) // Short out.

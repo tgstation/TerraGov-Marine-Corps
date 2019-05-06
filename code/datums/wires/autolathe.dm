@@ -27,6 +27,10 @@
 
 
 /datum/wires/autolathe/on_pulse(wire)
+	. = ..()
+	if(!.)
+		return
+
 	var/obj/machinery/autolathe/A = holder
 	switch(wire)
 		if(WIRE_HACK)
@@ -41,6 +45,10 @@
 
 
 /datum/wires/autolathe/on_cut(wire, mend)
+	. = ..()
+	if(!.)
+		return
+		
 	var/obj/machinery/autolathe/A = holder
 	switch(wire)
 		if(WIRE_HACK)

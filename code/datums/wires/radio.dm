@@ -17,6 +17,10 @@
 
 
 /datum/wires/radio/on_pulse(index)
+	. = ..()
+	if(!.)
+		return
+		
 	var/obj/item/radio/R = holder
 	switch(index)
 		if(WIRE_SIGNAL)

@@ -228,11 +228,23 @@
 
 
 /datum/wires/proc/on_cut(wire, mend = FALSE)
-	return
+	if(usr.mind?.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
+		"<span class='notice'>You fumble around figuring out the wiring.</span>")
+		var/fumbling_time = 20 * (SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer)
+		if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			return FALSE
+	return TRUE
 
 
 /datum/wires/proc/on_pulse(wire, user)
-	return
+	if(usr.mind?.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
+		"<span class='notice'>You fumble around figuring out the wiring.</span>")
+		var/fumbling_time = 20 * (SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer)
+		if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			return FALSE
+	return TRUE
 // End Overridable Procs
 
 
