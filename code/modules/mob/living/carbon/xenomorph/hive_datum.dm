@@ -426,6 +426,50 @@ to_chat will check for valid clients itself already so no need to double check f
 	round_statistics.total_xenos_created-- // keep stats sane
 	qdel(L)
 
+/datum/hive_status/normal/proc/can_spawn_larva(mob/xeno_candidate)
+	if(!stored_larva)
+		to_chat(xeno_candidate, "<span class='warning'>There are no burrowed larvas.</span>")
+		return FALSE
+
+	if(!living_xeno_queen?.ovipositor)
+		to_chat(xeno_candidate, "<span class='warning'>There are no mothers with an ovipositor deployed.</span>")
+		return FALSE
+
+	if (!xeno_candidate || !xeno_candidate.client)
+		return FALSE
+
+	if(living_xeno_queen?.incapacitated(TRUE))
+		to_chat(xeno_candidate, "<span class='warning'>Mother is not in a state to receive us.</span>")
+		return FALSE
+
+	if(!isnewplayer(xeno_candidate))
+		if(!DEATHTIME_CHECK(xeno_candidate))
+			DEATHTIME_MESSAGE(xeno_candidate)
+			return FALSE
+
+	return TRUE
+
+/datum/hive_status/normal/proc/spawn_larva(mob/xeno_candidate)
+	if(!xeno_candidate?.mind)
+		return FALSE
+
+	if(!stored_larva || !istype(living_xeno_queen))
+		to_chat(xeno_candidate, "<span class='warning'>Something went awry. Can't spawn at the moment.</span>")
+		return FALSE
+
+	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(living_xeno_queen.loc)
+	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
+	"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
+
+	xeno_candidate.mind.transfer_to(new_xeno, TRUE)
+	SEND_SOUND(new_xeno, 'sound/effects/xeno_newlarva.ogg')
+	to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
+	stored_larva--
+
+	log_admin("[key_name(new_xeno)] has joined as [new_xeno].")
+	message_admins("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")
+
+
 // ***************************************
 // *********** Corrupted Xenos
 // ***************************************

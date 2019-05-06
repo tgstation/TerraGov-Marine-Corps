@@ -328,6 +328,14 @@ SPAWNS
     to_chat(H, "<span class='caption'>[role_guide]</span>")
 
 
+/datum/game_mode/survivor/attempt_to_join_as_larva(mob/xeno_candidate)
+    var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+    return HS.can_spawn_larva(xeno_candidate)
+
+/datum/game_mode/survivor/spawn_larva(mob/xeno_candidate)
+    var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+    return HS.spawn_larva(xeno_candidate)
+
 /datum/game_mode/survivor/proc/spawn_mission_items()
     GLOB.survivor_spawn_key_item = shuffle(GLOB.survivor_spawn_key_item)
     GLOB.survivor_spawn_random_item = shuffle(GLOB.survivor_spawn_random_item)
