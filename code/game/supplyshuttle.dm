@@ -103,7 +103,7 @@ var/list/mechtoys = list(
 
 /*
 /obj/effect/marker/supplymarker
-	icon_state = "X"
+	icon_state = "x3"
 	icon = 'icons/misc/mark.dmi'
 	name = "X"
 	invisibility = INVISIBILITY_MAXIMUM
