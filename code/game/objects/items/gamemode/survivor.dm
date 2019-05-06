@@ -69,6 +69,7 @@
     desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for someone to rescue you."
     icon_state = "motion0"
     w_class = WEIGHT_CLASS_BULKY
+    luminosity = 4 
 
     var/activated = FALSE
     var/activation_time = 10 SECONDS
@@ -87,8 +88,6 @@
     var/current_hp = 0
 
 /obj/item/beacon/rescue/Initialize()
-    SetLuminosity(4)
-
     if(!issurvivorgamemode(SSticker.mode))
         return
 

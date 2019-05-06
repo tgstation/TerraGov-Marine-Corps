@@ -64,6 +64,7 @@ SPAWNS
         if("late_join_survivor")
             var/datum/mind/new_human = M
             new_human.assigned_role = ROLE_SURVIVOR
+            new_human.late_joiner = TRUE
             humans += new_human
             transform_survivor(new_human, TRUE)
             return TRUE
@@ -361,10 +362,10 @@ SPAWNS
     if(player_size == HIGH_POP)
         all_key_items += key_items_medpop + key_items_highpop
 
-    if (GLOB.survivor_spawn_key_item)
+    if (length(GLOB.survivor_spawn_key_item))
         for (var/key_item in all_key_items)
             GLOB.gamemode_survivor_key_items += new key_item(pick(GLOB.survivor_spawn_key_item)) 
-    if (GLOB.survivor_spawn_random_item)
+    if (length(GLOB.survivor_spawn_random_item))
         for (var/random_item in random_items)
             new random_item(pick(GLOB.survivor_spawn_random_item)) 
 
