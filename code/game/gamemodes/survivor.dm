@@ -135,7 +135,9 @@ SPAWNS
     init_xeno_size = max(CEILING(GLOB.ready_players * xeno_ratio, 1), 1)
     init_human_size = GLOB.ready_players - init_xeno_size
 
-    return (init_human_size > 0 && init_xeno_size > 0)
+    return TRUE
+    // We might not require the exact size if we want to allow late joins, this should just be an admin though delaying to start until ready.
+    // return (init_human_size > 0 && init_xeno_size > 0)
 
 /datum/game_mode/survivor/proc/assign_players()
     var/list/possible_xeno_queens = get_players_for_role(BE_QUEEN)

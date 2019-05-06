@@ -352,7 +352,6 @@
 			var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 			HS.stored_larva++
 
-
 	qdel(src)
 
 
