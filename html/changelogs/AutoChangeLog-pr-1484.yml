@@ -1,0 +1,4 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "Fixes an issue with not being able to recover from temporary blindness whilst wearing cumbersome facewear such as shoddy gas masks or welding googles."
