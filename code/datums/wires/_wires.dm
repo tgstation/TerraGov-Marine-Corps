@@ -136,7 +136,7 @@
 
 
 /datum/wires/proc/is_all_cut()
-	if(cut_wires.len == wires.len)
+	if(length(cut_wires) == length(wires))
 		return TRUE
 
 
