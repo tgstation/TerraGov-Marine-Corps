@@ -41,7 +41,7 @@
 	name = "Supply Drop"
 	mob_max = 0
 	mob_min = 0
-	probability = 5
+	probability = 0
 	auto_shuttle_launch = TRUE
 
 

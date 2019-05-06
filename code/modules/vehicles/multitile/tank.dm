@@ -274,7 +274,7 @@
 	//The check is made here since the snowplow won't fit on the APC
 	if(. && istype(hardpoints[HDPT_ARMOR], /obj/item/hardpoint/armor/snowplow) && direction == dir)
 		var/obj/item/hardpoint/armor/snowplow/SP = hardpoints[HDPT_ARMOR]
-		if(SP.health > 0)
+		if(SP.obj_integrity > 0)
 			for(var/datum/coords/C in linked_objs)
 				var/turf/T = locate(x + C.x_pos, y + C.y_pos, z + C.z_pos)
 				if(!istype(T, /turf/open/floor/plating/ground/snow)) continue

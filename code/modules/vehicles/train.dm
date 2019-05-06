@@ -4,8 +4,7 @@
 
 	move_delay = 5
 
-	health = 100
-	maxhealth = 100
+	max_integrity = 100
 	fire_dam_coeff = 0.7
 	brute_dam_coeff = 0.5
 	buckling_y = 4
