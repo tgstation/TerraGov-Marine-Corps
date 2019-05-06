@@ -16,9 +16,6 @@ GLOBAL_LIST_EMPTY(xenotips)
 GLOBAL_LIST_EMPTY(joketips)
 #define ALLTIPS (GLOB.marinetips + GLOB.xenotips + GLOB.joketips + GLOB.metatips)
 
-// Names
-
-
 //used by binoculars for dropship bombardment
 var/global/list/active_laser_targets = list()
 
