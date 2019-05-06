@@ -1762,3 +1762,9 @@
 	hud_set_squad()
 
 	return TRUE
+
+
+/mob/living/carbon/human/is_muzzled()
+	if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
+		return TRUE
+	return ..()

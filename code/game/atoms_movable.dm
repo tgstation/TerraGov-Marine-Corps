@@ -388,47 +388,6 @@
 	return
 
 
-// Spin for a set amount of time at a set speed using directional states
-/atom/movable/proc/spin(var/duration, var/turn_delay = 1, var/clockwise = 0, var/cardinal_only = 1)
-	set waitfor = 0
-
-	if (turn_delay < 1)
-		return
-
-	var/spin_degree = 90
-
-	if (!cardinal_only)
-		spin_degree = 45
-
-	if (clockwise)
-		spin_degree *= -1
-
-	while (duration > turn_delay)
-		sleep(turn_delay)
-		setDir(turn(dir, spin_degree))
-		duration -= turn_delay
-
-/atom/movable/proc/spin_circle(var/num_circles = 1, var/turn_delay = 1, var/clockwise = 0, var/cardinal_only = 1)
-	set waitfor = 0
-
-	if (num_circles < 1 || turn_delay < 1)
-		return
-
-	var/spin_degree = 90
-	num_circles *= 4
-
-	if (!cardinal_only)
-		spin_degree = 45
-		num_circles *= 2
-
-	if (clockwise)
-		spin_degree *= -1
-
-	for (var/x = 0, x < num_circles, x++)
-		sleep(turn_delay)
-		setDir(turn(dir, spin_degree))
-
-
 //called when a mob tries to breathe while inside us.
 /atom/movable/proc/handle_internal_lifeform(mob/lifeform_inside_me)
 	. = return_air()
