@@ -72,7 +72,7 @@
 		var/T = get_turf(user)
 		if(!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) || (M in viewers(T, null)))
 			continue
-		M.show_message(msg)
+		M.show_message("[FOLLOW_LINK(M, user)] [msg]")
 
 	if(emote_type == EMOTE_AUDIBLE)
 		user.audible_message(msg)
