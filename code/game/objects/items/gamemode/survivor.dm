@@ -109,6 +109,8 @@
     var/max_hp = 100
     var/current_hp = 0
 
+    var/beacon_timer_id = null
+
 /obj/item/beacon/rescue/Initialize()
     if(!issurvivorgamemode(SSticker.mode))
         return
@@ -155,19 +157,41 @@
         to_chat(usr, "<span class='warning'>It looks like a few parts are missing.")
 
 
-/obj/item/beacon/rescue/proc/reset_state()
-    anchored = FALSE
+
+
+/obj/item/beacon/rescue/process()
+    var/list/nearby = range(2, src)
+    var/nearby_setup = 0
+    for (var/R in required_nearby)
+        var/obj/found = locate(R) in nearby
+        if (found && found.anchored == 1)
+            nearby_setup++
+
+    if(nearby_setup == length(required_nearby))    
+        return
+
+    visible_message("\The [src] emits an erroneous beep and turns off.", "You hear erroneous beep.")
+    reset_state(FALSE)
+
+
+/obj/item/beacon/rescue/proc/reset_state(dump_contents = TRUE)
     activated = FALSE
-    required_components = initial(required_components)
     icon_state = "motion0"
     w_class = WEIGHT_CLASS_BULKY
     
-    for (var/I in internal_components)
-        var/turf/T = get_step(src, pick(cardinal))
-        if (T.obscured)
-            usr.transferItemToLoc(I, src)
-        else
-            usr.transferItemToLoc(I, T)
+    if (dump_contents && length(internal_components))
+        required_components = initial(required_components)
+        for (var/I in internal_components)
+            var/turf/T = get_step(src, pick(cardinal))
+            if (T.obscured)
+                usr.transferItemToLoc(I, src)
+            else
+                usr.transferItemToLoc(I, T)
+
+    if (beacon_timer_id)
+        deltimer(beacon_timer_id)
+
+    STOP_PROCESSING(SSobj, src)
 
 
 /obj/item/beacon/rescue/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -179,7 +203,7 @@
     if (activated == FALSE)
         return
 
-    current_hp -= rand(15, 30)
+    current_hp -= max(0, rand(15, 30))
     if(current_hp <= 0)
         reset_state()
    
@@ -235,9 +259,10 @@
 
     // Required Nearby components
     // TODO: Check if this is wasteful.
+    var/list/nearby = range(2, src)
     var/nearby_setup = 0
     for (var/R in required_nearby)
-        var/obj/found = locate(R) in range(2, src)
+        var/obj/found = locate(R) in nearby
         if (found && found.anchored == 1)
             nearby_setup++
 
@@ -257,6 +282,8 @@
     for (var/mob/M in GLOB.alive_human_list)
         to_chat(M, "<h2 class='alert'>MESSAGE RECIEVED</h2>")
         to_chat(M, "<span class='alert'>We have gotten your messages, we are sending units to your location. Hold out until they get there, they shouldn't be more than [distress_timer / 600] minutes.</span>")
+
+    START_PROCESSING(SSobj, src)
 
 
 /obj/item/beacon/rescue/attack_self(mob/user)
