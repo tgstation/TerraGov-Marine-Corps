@@ -83,13 +83,14 @@
 
 	return TRUE
 
-
 /datum/game_mode/huntergames/post_setup()
 	. = ..()
 	spawn_points = GLOB.huntergames_primary_spawns.Copy()
 	var/mob/M
 	for(M in GLOB.mob_list)
 		if(M.client && ishuman(M))
+			to_chat(world, "spawning human [M]")
+
 			var/mob/living/carbon/human/H = M
 			spawn_contestant(H)
 

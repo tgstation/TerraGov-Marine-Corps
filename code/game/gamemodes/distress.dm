@@ -21,6 +21,10 @@
 	var/queen_death_countdown = 0
 
 
+/datum/game_mode/distress/announce()
+	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.config.map_name]!</span>")
+
+
 /datum/game_mode/distress/can_start()
 	. = ..()
 	initialize_scales()
@@ -30,20 +34,6 @@
 		return FALSE
 	initialize_survivor()
 	return TRUE
-
-
-/datum/game_mode/distress/announce()
-	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.config.map_name]!</span>")
-
-/datum/game_mode/distress/setup()
-	SSjob.DivideOccupations() 
-	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
-	create_characters() //Create player characters
-	collect_minds()
-	reset_squads()
-	equip_characters()
-
-	transfer_characters()	//transfer keys to the new mobs
 
 
 /datum/game_mode/distress/pre_setup()
@@ -65,66 +55,22 @@
 	addtimer(CALLBACK(SSticker.mode, .proc/map_announce), 5 SECONDS)
 
 
+/datum/game_mode/distress/setup()
+	SSjob.DivideOccupations() 
+	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
+	create_characters() //Create player characters
+	collect_minds()
+	reset_squads()
+	equip_characters()
+
+	transfer_characters()	//transfer keys to the new mobs
+
 
 /datum/game_mode/distress/proc/map_announce()
 	if(!SSmapping.config.announce_text)
 		return
 
 	command_announcement.Announce(SSmapping.config.announce_text, "[CONFIG_GET(string/ship_name)]")
-
-
-
-/datum/game_mode/distress/proc/create_characters()
-	for(var/mob/new_player/player in GLOB.player_list)
-		if(player.ready && player.mind)
-			GLOB.joined_player_list += player.ckey
-			player.create_character(FALSE)
-		else
-			player.new_player_panel()
-		CHECK_TICK
-
-
-/datum/game_mode/distress/proc/collect_minds()
-	for(var/mob/new_player/P in GLOB.player_list)
-		if(P.new_character && P.new_character.mind)
-			SSticker.minds += P.new_character.mind
-		CHECK_TICK
-
-
-/datum/game_mode/distress/proc/equip_characters()
-	var/captainless = TRUE
-	for(var/mob/new_player/N in GLOB.player_list)
-		var/mob/living/carbon/human/player = N.new_character
-		if(istype(player) && player.mind && player.mind.assigned_role)
-			if(player.mind.assigned_role == "Captain")
-				captainless = FALSE
-			if(player.mind.assigned_role)
-				SSjob.EquipRank(N, player.mind.assigned_role, 0)
-		CHECK_TICK
-	if(captainless)
-		for(var/mob/new_player/N in GLOB.player_list)
-			if(N.new_character)
-				to_chat(N, "Marine Captain position not forced on anyone.")
-			CHECK_TICK
-
-
-/datum/game_mode/distress/proc/transfer_characters()
-	var/list/livings = list()
-	for(var/mob/new_player/player in GLOB.mob_list)
-		var/mob/living = player.transfer_character()
-		if(living)
-			qdel(player)
-			living.notransform = TRUE
-			livings += living
-	if(length(livings))
-		addtimer(CALLBACK(src, .proc/release_characters, livings), 30, TIMER_CLIENT_TIME)
-
-
-/datum/game_mode/distress/proc/release_characters(list/livings)
-	for(var/I in livings)
-		var/mob/living/L = I
-		L.notransform = FALSE
-
 
 
 /datum/game_mode/distress/process()

@@ -74,7 +74,6 @@
 	popup.set_content(output)
 	popup.open(FALSE)
 
-
 /mob/new_player/Stat()
 	. = ..()
 

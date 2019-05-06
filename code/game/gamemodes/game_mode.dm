@@ -48,7 +48,14 @@
 	return TRUE
 
 /datum/game_mode/proc/setup()
-	CRASH("Call to /datum/game_mode/proc/setup(), unimplemented proc")
+	SSjob.DivideOccupations() 
+	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
+	create_characters() //Create player characters
+	collect_minds()
+	reset_squads()
+	equip_characters()
+
+	transfer_characters()	//transfer keys to the new mobs
 
 
 /datum/game_mode/proc/post_setup()
@@ -73,6 +80,61 @@
 
 /datum/game_mode/process()
 	return TRUE
+
+
+
+
+/datum/game_mode/proc/create_characters()
+	for(var/mob/new_player/player in GLOB.player_list)
+		if(player.ready && player.mind)
+			GLOB.joined_player_list += player.ckey
+			player.create_character(FALSE)
+		else
+			player.new_player_panel()
+		CHECK_TICK
+
+
+/datum/game_mode/proc/collect_minds()
+	for(var/mob/new_player/P in GLOB.player_list)
+		if(P.new_character && P.new_character.mind)
+			SSticker.minds += P.new_character.mind
+		CHECK_TICK
+
+
+/datum/game_mode/proc/equip_characters()
+	var/captainless = TRUE
+	for(var/mob/new_player/N in GLOB.player_list)
+		var/mob/living/carbon/human/player = N.new_character
+		if(istype(player) && player.mind && player.mind.assigned_role)
+			if(player.mind.assigned_role == "Captain")
+				captainless = FALSE
+			if(player.mind.assigned_role)
+				SSjob.EquipRank(N, player.mind.assigned_role, 0)
+		CHECK_TICK
+	if(captainless)
+		for(var/mob/new_player/N in GLOB.player_list)
+			if(N.new_character)
+				to_chat(N, "Marine Captain position not forced on anyone.")
+			CHECK_TICK
+
+
+/datum/game_mode/proc/transfer_characters()
+	var/list/livings = list()
+	for(var/mob/new_player/player in GLOB.mob_list)
+		var/mob/living = player.transfer_character()
+		if(living)
+			qdel(player)
+			living.notransform = TRUE
+			livings += living
+	if(length(livings))
+		addtimer(CALLBACK(src, .proc/release_characters, livings), 30, TIMER_CLIENT_TIME)
+
+
+/datum/game_mode/proc/release_characters(list/livings)
+	for(var/I in livings)
+		var/mob/living/L = I
+		L.notransform = FALSE
+
 
 
 /datum/game_mode/proc/check_finished()
