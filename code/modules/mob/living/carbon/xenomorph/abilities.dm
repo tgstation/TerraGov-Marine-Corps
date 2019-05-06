@@ -290,6 +290,9 @@
 	if(!isxeno(A) || A == owner || !owner.issamexenohive(A))
 		return FALSE
 
+	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/Xenomorph/target = A
+
 	if(get_dist(owner, target) > max_range)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You need to be closer to [target].</span>")
