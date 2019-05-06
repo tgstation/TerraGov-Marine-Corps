@@ -3,6 +3,12 @@ GLOBAL_LIST_EMPTY(gamemode_survivor_key_items)
 /*
 SPAWNS
 */
+/obj/effect/landmark/survivor/spawn/queen_ovi/Initialize()
+    . = ..()
+    GLOB.survivor_spawn_human += loc
+    flags_atom |= INITIALIZED
+    return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/survivor/spawn/human/Initialize()
     . = ..()
     GLOB.survivor_spawn_human += loc
@@ -29,42 +35,46 @@ SPAWNS
     config_tag = "Survivor"
     required_players = 1
 
-    var/player_size
-
-    var/init_human_size = 0
-    var/init_xeno_size = 0
-
-    var/xeno_ratio = 0.35 // ratio of xeno to humans
+    var/player_size // used to balance the gamemode. (= lowpop, medpop, highpop)
+    var/init_human_size 
+    var/init_xeno_size 
 
     var/list/humans = list()
     var/list/xenos = list()
+    
+    var/obj/item/beacon/beacon = null
+    var/last_beacon_announce = 0
 
-    var/list/key_items = list(
+    // Configuration
+    var/late_join_time = 5 MINUTES // this is late join for survivors
+    var/xeno_min = 2 // absolute min amount of xenos
+    var/xeno_ratio = 0.35 // otherwise fill to ratio of xeno to humans
+
+    var/list/key_items = list( // Beacon requires repair at lowpop
         /obj/item/beacon/rescue,
         /obj/item/tool/weldingtool,
     )
-    var/list/key_items_medpop = list( 
+    var/list/key_items_medpop = list( // Medpop requires a working cell 
         /obj/item/cell/high,
     )
-    var/list/key_items_highpop = list(
+    var/list/key_items_highpop = list( // Highpop requires the laptop
         /obj/item/laptop/rescue,
     )
 
-    var/list/random_items = list(
-        /obj/item/cell,
-        /obj/item/cell,
-    )
+    var/list/random_items = list() // Use to add more random items to the map
 
-    var/obj/item/beacon/beacon = null
-    var/last_beacon_announce = 0
 
 
 /datum/game_mode/survivor/new_player_topic(mob/M, href, href_list[])
     switch(href_list["lobby_choice"])
         if("late_join_survivor")
+            if (world.time > (SSticker.round_start_time + late_join_time))
+                to_chat(src, "<span class='warning'>It's too late to join this round.</span>")
+                return
+
             if (!M.mind)
                 M.mind = new
-            M.mind.assigned_role = ROLE_SURVIVOR  // Line 66
+            M.mind.assigned_role = ROLE_SURVIVOR
             M.mind.late_joiner = TRUE
             humans +=  M.mind
             transform_survivor( M.mind, TRUE)
@@ -109,10 +119,7 @@ SPAWNS
     
     for(var/i in xenos)
         var/datum/mind/M = i
-        if(M.assigned_role == ROLE_XENO_QUEEN)
-            transform_queen(M)
-        else
-            transform_xeno(M)
+        transform_xeno(M)
 
     for(var/i in humans)
         var/datum/mind/M = i
@@ -120,9 +127,12 @@ SPAWNS
 
     return TRUE
 
+
 /datum/game_mode/survivor/post_setup()
     . = ..()
 
+    spawn_queen_in_ovi()
+    
     // Transfer everyone to their bodies and delete existing
     for(var/mob/new_player/player in GLOB.mob_list)
         var/mob/living = player.transfer_character()
@@ -140,21 +150,9 @@ SPAWNS
     // return (init_human_size > 0 && init_xeno_size > 0)
 
 /datum/game_mode/survivor/proc/assign_players()
-    var/list/possible_xeno_queens = get_players_for_role(BE_QUEEN)
     var/list/possible_xenos = get_players_for_role(BE_ALIEN)
     var/list/possible_humans = get_players_for_role(BE_SURVIVOR)
 
-    for(var/I in possible_xeno_queens)
-        var/datum/mind/new_xeno = I
-
-        new_xeno.assigned_role = ROLE_XENO_QUEEN
-        xenos += new_xeno
-
-        possible_humans -= I
-        possible_xeno_queens -= I
-        possible_xenos -= I
-        // We only need 1 queen
-        break
 
     for(var/I in possible_humans)
         var/datum/mind/new_surivor = I
@@ -162,7 +160,7 @@ SPAWNS
         humans += new_surivor
 
         possible_humans -= I
-        possible_xeno_queens -= I
+        // possible_xeno_queens -= I
         possible_xenos -= I
         if(length(humans) >= init_human_size)
             break
@@ -174,7 +172,7 @@ SPAWNS
         xenos += new_xeno
 
         possible_humans -= I
-        possible_xeno_queens -= I
+        // possible_xeno_queens -= I
         possible_xenos -= I
         if(length(xenos) >= init_xeno_size)
             break
@@ -270,6 +268,12 @@ SPAWNS
     X.update_icons()
 
 
+/datum/game_mode/survivor/proc/spawn_queen_in_ovi()
+    var/mob/living/carbon/Xenomorph/Queen/Q = new (pick(GLOB.xeno_spawn))
+    Q.ovipositor = TRUE
+    Q.away_time = 0 // queen so they can't be taken by late joins
+
+
 /datum/game_mode/survivor/proc/transform_survivor(datum/mind/M, late_join = FALSE)
     var/mob/living/carbon/human/H = new (pick(GLOB.survivor_spawn_human))
 
@@ -305,6 +309,7 @@ SPAWNS
     var/datum/job/J = new survivor_job
 
     H.set_rank(J.title)
+    H.mind.cm_skills = null // Remove skill requirements
     J.equip(H)
 
     if(SSmapping.config.map_name == MAP_ICE_COLONY)
@@ -325,8 +330,8 @@ SPAWNS
             H.equip_to_slot(new /obj/item/storage/pouch/firstaid/full(H), SLOT_L_STORE)
             H.equip_to_slot(new /obj/item/healthanalyzer(H), SLOT_R_STORE)
         if (SURVIVOR_FIGHTER)
-            H.equip_to_slot(new /obj/item/storage/pouch/magazine/smg/mp7(H), SLOT_R_STORE)
-            H.equip_to_slot(new /obj/item/weapon/gun/smg/mp7(H), SLOT_R_HAND)
+            H.equip_to_slot(new /obj/item/storage/pouch/magazine/smg/ppsh(H), SLOT_R_STORE)
+            H.equip_to_slot(new /obj/item/weapon/gun/smg/ppsh(H), SLOT_R_HAND)
         if (SURVIVOR_SCAV)
             H.equip_to_slot(new /obj/item/pinpointer(H), SLOT_R_STORE)
             H.equip_to_slot(new /obj/item/radio/marine(H), SLOT_L_STORE)
@@ -381,19 +386,19 @@ SPAWNS
     if(beacon)
         if(!beacon.anchored)
             return
-        if (world.time - last_beacon_announce > 1 MINUTES)
+        if (world.time - last_beacon_announce < 2 MINUTES)
             return
         annouce_beacon_location()
 
 
 /datum/game_mode/survivor/proc/annouce_beacon_location()
-    var/area/beacon_area = get_area(beacon)
-
+    last_beacon_announce = world.time
+    var/area/beacon_area = get_area(beacon.loc)
     for(var/i in GLOB.alive_xeno_list)
         var/mob/M = i
         SEND_SOUND(M, sound(get_sfx("queen"), wait = 0, volume = 50))
         to_chat(M, "<span class='xenoannounce'>The Queen Mother reaches into your mind from worlds away.</span>")
-        to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense the humans reaching out for aid in \the [beacon_area] to the [dir2text(get_dir(M, beacon_area))]. Find their mechanical device and destroy it!</span>")
+        to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense the humans reaching out for aid in \the [beacon_area] to the [dir2text(get_dir(M, beacon))]. Find their mechanical device and destroy it!</span>")
 
 
 /datum/game_mode/survivor/proc/count_team_alive(list/team)

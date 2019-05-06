@@ -14,6 +14,10 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
+	if (issurvivorgamemode(SSticker?.mode) && tier == XENO_TIER_TWO)
+		to_chat(src, "<span class='warning'>Tier 3 is disabled in this gamemode.</span>")
+		return
+
 	if(is_ventcrawling)
 		to_chat(src, "<span class='warning'>This place is too constraining to evolve.</span>")
 		return

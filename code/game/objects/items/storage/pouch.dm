@@ -196,6 +196,10 @@
 	fill_type = /obj/item/ammo_magazine/smg/mp7 
 	fill_number = 2
 
+/obj/item/storage/pouch/magazine/smg/ppsh
+	fill_type = /obj/item/ammo_magazine/smg/ppsh 
+	fill_number = 2
+
 /obj/item/storage/pouch/magazine/upp
 	fill_type = /obj/item/ammo_magazine/rifle/type71
 	fill_number = 2

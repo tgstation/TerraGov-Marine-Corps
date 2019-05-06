@@ -3,17 +3,12 @@
     desc = "A device used for augmenting communication. Someone seems to have left it logged in with open communications to a nearby ship. Set this up next to a rescue beacon."
     icon = 'icons/obj/machines/laptop_beacon.dmi'
     icon_state = "tandy0"
+    luminosity = 4
     resistance_flags = UNACIDABLE|INDESTRUCTIBLE
     w_class = WEIGHT_CLASS_BULKY
     var/activation_time = 5 SECONDS
 
-/obj/item/laptop/rescue/Initialize()
-    . = ..()
-    SetLuminosity(4)
-    update_icon()
-
 /obj/item/laptop/rescue/Destroy()
-    SetLuminosity(0)
     return ..()
 
 /obj/item/laptop/rescue/update_icon()
@@ -57,17 +52,22 @@
 
     user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
     "<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
+
     if(do_after(user, activation_time, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
+        log_game("[key_name(user)] placed \the [src] near [AREACOORD(A.loc)]")
+
         user.transferItemToLoc(src, user.loc)
         anchored = TRUE
         w_class = 10
         update_icon()
+        
 
 
 /obj/item/laptop/rescue/proc/reset_state()
     icon_state = "tandy0"
     w_class = initial(w_class)
     anchored = FALSE
+    SetLuminosity(initial(luminosity))
     update_icon()
 
 
@@ -137,14 +137,10 @@
 
     return ..()
 
-
-/obj/item/beacon/rescue/Destroy()
-    SetLuminosity(0)
-    return ..()
-
 /obj/item/beacon/rescue/examine()
     . = ..() // show parent examines (if any) first
-    to_chat(usr, "<span class='notice'>It shows [timeleft(beacon_timer_id) / 10] seconds left.</span>")
+    if (beacon_timer_id)
+        to_chat(usr, "<span class='notice'>It shows [timeleft(beacon_timer_id) / 10] seconds left.</span>")
     if (current_hp < max_hp)
         var/integrity = current_hp / max_hp * 100
         switch(integrity)
@@ -176,6 +172,7 @@
         return
 
     visible_message("\The [src] emits an erroneous beep and turns off.", "You hear erroneous beep.")
+    log_game("Beacon is too far from the laptop and reset [AREACOORD(src.loc)]")
     reset_state(FALSE)
 
 
@@ -184,7 +181,12 @@
     anchored = FALSE
     icon_state = "motion0"
     w_class = WEIGHT_CLASS_BULKY
+    SetLuminosity(initial(luminosity))
     update_icon()
+
+    if (issurvivorgamemode(SSticker.mode))
+        var/datum/game_mode/survivor/GM = SSticker.mode
+        GM.beacon = null
     
     if (dump_contents && length(internal_components))
         required_components = initial(required_components)
@@ -200,8 +202,10 @@
         deltimer(noise_timer_id)
         deltimer(beacon_timer_id)
         for (var/mob/M in GLOB.alive_human_list)
+            SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
             to_chat(M, "<h2 class='alert'>MESSAGE RECIEVED</h2>")
             to_chat(M, "<span class='alert'>We have lost signal with your beacon! Get it set back up or we'll never find you.</span>")
+        log_game("[src] was stopped. Timer had [distress_timer] time left.")
 
     STOP_PROCESSING(SSobj, src)
 
@@ -217,6 +221,7 @@
 
     current_hp -= max(0, rand(15, 30))
     if(current_hp <= 0)
+        log_game("[key_name(M)] destroyed \the [src].")
         reset_state()
    
     if(prob(10))
@@ -234,6 +239,7 @@
     user.visible_message("<span class='notice'>[user] starts packing up \the [src].</span>",
     "<span class='notice'>You start packing up \the [src]. <b>This will interrupt the process.</b></span>")
     if(!user.get_active_held_item() && do_after(user, activation_time*1.2, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
+        log_game("[key_name(user)] picked up \the [src].")
         reset_state()
         user.put_in_hands(src)
     return ..()
@@ -258,10 +264,10 @@
 
     // repair dmg
     if(iswelder(W) && current_hp < max_hp)
-        var/obj/item/tool/weldingtool/WT = W
-        if(WT.remove_fuel(0, user))
-            user.visible_message("<span class='notice'>[user] started repairing \the [src]</span>","<span class='notice'>You started repairing \the [src]</span>")
-            if(do_after(user, 1 SECONDS, TRUE, 5, BUSY_ICON_BUILD,, TRUE))
+        if(do_after(user, 1 SECONDS, TRUE, 5, BUSY_ICON_BUILD,, TRUE))
+            var/obj/item/tool/weldingtool/WT = W
+            if(WT.remove_fuel(0, user))
+                user.visible_message("<span class='notice'>[user] started repairing \the [src]</span>","<span class='notice'>You started repairing \the [src]</span>")
                 playsound(get_turf(src), 'sound/items/Welder2.ogg', 25, 1)
                 current_hp = min(current_hp + 25, max_hp)
     else if(iswelder(W) && current_hp == max_hp)
@@ -277,6 +283,7 @@
             nearby_setup++
 
     if(length(required_components) == 0 && current_hp == max_hp && nearby_setup == length(required_nearby))
+        log_game("[key_name(user)] activated \the [src].")
         activate_beacon(user)
 
 /obj/item/beacon/rescue/proc/activate_beacon(mob/user as mob)
@@ -284,7 +291,11 @@
     playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
     user.visible_message("<span class='notice'>[user] activates \the [src]</span>", "<span class='notice'>You activates \the [src]</span>")
     activated = TRUE
-    SetLuminosity(1)
+    SetLuminosity(5)
+
+    if (issurvivorgamemode(SSticker.mode))
+        var/datum/game_mode/survivor/GM = SSticker.mode
+        GM.beacon = src
 
     noise_timer_id = addtimer(CALLBACK(src, .proc/make_noise), 7 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
     beacon_timer_id = addtimer(CALLBACK(src, .proc/call_distress_team), distress_timer, TIMER_UNIQUE|TIMER_STOPPABLE)
@@ -316,6 +327,7 @@
     user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
     "<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
     if(do_after(user, activation_time, TRUE, 5, BUSY_ICON_FRIENDLY))
+        log_game("[key_name(user)] placed \the [src] near [AREACOORD(A.loc)]")
         user.transferItemToLoc(src, user.loc)
         anchored = TRUE
         w_class = 10
@@ -330,8 +342,10 @@
 
 
 /obj/item/beacon/rescue/proc/call_distress_team()
+    log_game("[src] called a PMC distress beacon.")
     var/datum/emergency_call/pmc/T = new
     T.mob_min = 5
     T.mob_max = length(GLOB.player_list) // everyone is allowed
     T.activate()
     addtimer(CALLBACK(src, .proc/humans_win), 5 MINUTES)
+    log_game("Humans win in 5 minutes.")
