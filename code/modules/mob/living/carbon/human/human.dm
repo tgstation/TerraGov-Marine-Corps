@@ -24,13 +24,13 @@
 	switch(pick("female", "male"))
 		if("female")
 			gender = FEMALE
-			name = pick(first_names_female) + " " + pick(last_names)
+			name = pick(GLOB.first_names_female) + " " + pick(GLOB.last_names)
 			real_name = name
 			voice_name = name
 
 		if("male")
 			gender = MALE
-			name = pick(first_names_male) + " " + pick(last_names)
+			name = pick(GLOB.first_names_male) + " " + pick(GLOB.last_names)
 			real_name = name
 			voice_name = name
 

@@ -873,7 +873,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
 		if(!firstspace || firstspace == name_length)
-			real_name += " " + pick(last_names)
+			real_name += " " + pick(GLOB.last_names)
 
 	character.real_name = real_name
 	character.name = character.real_name

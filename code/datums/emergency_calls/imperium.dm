@@ -18,9 +18,9 @@
 	
 	// custom wh40k names when?
 	if(H.gender == MALE)
-		H.name = pick(first_names_male) + " " + pick(last_names)
+		H.name = pick(GLOB.first_names_male) + " " + pick(GLOB.last_names)
 	else
-		H.name = pick(first_names_female) + " " + pick(last_names)
+		H.name = pick(GLOB.first_names_female) + " " + pick(GLOB.last_names)
 	H.real_name = H.name
 	H.voice_name = H.name
 	

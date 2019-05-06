@@ -90,11 +90,11 @@ var/list/ai_verbs_default = list(
 	announcement.announcement_type = "A.I. Announcement"
 	announcement.newscast = 1
 
-	var/list/possibleNames = ai_names
+	var/list/possibleNames = GLOB.ai_names
 
 	var/pickedName = null
 	while(!pickedName)
-		pickedName = pick(ai_names)
+		pickedName = pick(GLOB.ai_names)
 		for (var/mob/living/silicon/ai/A in GLOB.ai_list)
 			if (A.real_name == pickedName && possibleNames.len > 1) //fixing the theoretically possible infinite loop
 				possibleNames -= pickedName

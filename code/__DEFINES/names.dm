@@ -1,0 +1,28 @@
+GLOBAL_LIST_INIT(first_names_male, file2list("strings/names/first_male.txt"))
+GLOBAL_LIST_INIT(first_names_female, file2list("strings/names/first_female.txt"))
+GLOBAL_LIST_INIT(first_names_male_russian, file2list("strings/names/first_male_russian.txt"))
+GLOBAL_LIST_INIT(first_names_female_russian, file2list("strings/names/first_female_russian.txt"))
+GLOBAL_LIST_INIT(first_names_male_pmc, file2list("strings/names/first_male_pmc.txt"))
+GLOBAL_LIST_INIT(first_names_female_pmc, file2list("strings/names/first_female_pmc.txt"))
+GLOBAL_LIST_INIT(first_names_male_clf, file2list("strings/names/first_male_clf.txt"))
+GLOBAL_LIST_INIT(first_names_female_clf, file2list("strings/names/first_female_clf.txt"))
+GLOBAL_LIST_INIT(last_names, file2list("strings/names/last_name.txt"))
+GLOBAL_LIST_INIT(last_names_russian, file2list("strings/names/last_name_russian.txt"))
+GLOBAL_LIST_INIT(last_names_pmc, file2list("strings/names/last_name_pmc.txt"))
+GLOBAL_LIST_INIT(last_names_clf, file2list("strings/names/last_name_clf.txt"))
+GLOBAL_LIST_INIT(moth_first, file2list("strings/names/moth_first.txt"))
+GLOBAL_LIST_INIT(moth_last, file2list("strings/names/moth_last.txt"))
+GLOBAL_LIST_INIT(food_adjectives, file2list("strings/names/food_adjectives.txt"))
+GLOBAL_LIST_INIT(ai_names, file2list("strings/names/ai.txt"))    
+
+// Potentially unused
+/*
+GLOBAL_LIST_INIT(wizard_first, file2list("strings/names/clown.txt"))              
+GLOBAL_LIST_INIT(wizard_second, file2list("strings/names/verbs.txt"))             
+GLOBAL_LIST_INIT(ninja_titles, file2list("strings/names/adjectives.txt"))              
+GLOBAL_LIST_INIT(ninja_names, file2list("strings/names/wizardfirst.txt"))               
+GLOBAL_LIST_INIT(commando_names, file2list("strings/names/wizardsecond.txt"))            
+GLOBAL_LIST_INIT(clown_names, file2list("strings/names/ninjatitle.txt"))               
+GLOBAL_LIST_INIT(verbs, file2list("strings/names/ninjaname.txt"))                     
+GLOBAL_LIST_INIT(adjectives, file2list("strings/names/death_commando.txt"))    
+*/

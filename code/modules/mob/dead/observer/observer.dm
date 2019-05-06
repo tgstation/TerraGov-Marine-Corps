@@ -106,9 +106,9 @@
 			ghost.real_name = real_name
 		else
 			if(gender == MALE)
-				ghost.real_name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+				ghost.real_name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 			else
-				ghost.real_name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+				ghost.real_name = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 
 	ghost.name = ghost.real_name
 
@@ -121,7 +121,7 @@
 	ghost.loc = T
 
 	if(!name)
-		ghost.name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+		ghost.name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 
 	if(!can_reenter_corpse)
 		set_away_time()

@@ -159,9 +159,9 @@
 
 /datum/species/proc/random_name(gender)
 	if(gender == FEMALE)
-		return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+		return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 	else
-		return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+		return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
@@ -401,7 +401,7 @@
 		H.update_body()
 
 /datum/species/moth/random_name()
-	return "[pick(moth_first)] [pick(moth_last)]"
+	return "[pick(GLOB.moth_first)] [pick(GLOB.moth_last)]"
 
 /datum/species/moth/proc/update_moth_wings(mob/living/carbon/human/H)
 	H.remove_overlay(MOTH_WINGS_LAYER)
