@@ -65,6 +65,26 @@
         w_class = 10
         update_icon()
 
+
+/obj/item/laptop/rescue/proc/reset_state()
+    icon_state = "tandy0"
+    w_class = initial(w_class)
+
+
+/obj/item/laptop/rescue/attack_alien(mob/living/carbon/Xenomorph/M)
+    M.animation_attack_on(src)
+    M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+        "<span class='danger'>You slice [src] apart!</span>", null, 5)
+    playsound(loc, "alien_claw_metal", 25, 1)
+
+    if (anchored == FALSE)
+        return
+
+    reset_state()
+   
+    if(prob(10))
+        new /obj/effect/decal/cleanable/blood/oil(src.loc)
+
 /obj/item/beacon/rescue
     name = "Rescue beacon"
     desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for someone to rescue you."
