@@ -40,7 +40,7 @@
 	close_all_doors()
 	if(!check_capacity())
 		playsound(return_center_turf(),'sound/effects/alert.ogg', 25, 1)
-		addtimer(CALLBACK(src, .proc/explode), 4 SECONDS)
+		addtimer(CALLBACK(src, .proc/explode), 4 SECONDS, TIMER_UNIQUE)
 		can_launch = FALSE
 		return
 	playsound(return_center_turf(),'sound/effects/escape_pod_warmup.ogg', 25, 1)
@@ -48,7 +48,7 @@
 		launch_status = EARLY_LAUNCHED
 	else
 		launch_status = ENDGAME_LAUNCHED
-	addtimer(CALLBACK(src, .proc/do_launch), ignitionTime)
+	addtimer(CALLBACK(src, .proc/do_launch), ignitionTime, TIMER_UNIQUE)
 
 /obj/docking_port/mobile/escape_pod/proc/explode()
 	var/turf/T = return_center_turf()
