@@ -1,12 +1,13 @@
 //Costume spawner landmarks
 /obj/effect/landmark/itemspawner
-    var/list/items_to_spawn
+	icon_state = "random_loot"
+	var/list/items_to_spawn
 
 
 /obj/effect/landmark/itemspawner/Initialize()
-    for(var/path in items_to_spawn)
-        new path(loc)
-    . = INITIALIZE_HINT_QDEL
+	for(var/path in items_to_spawn)
+		new path(loc)
+	. = INITIALIZE_HINT_QDEL
 
 
 /obj/effect/landmark/itemspawner/chicken
