@@ -81,7 +81,6 @@
 								/obj/machinery/dna_scannernew,
 								/obj/machinery/telecomms,
 								/obj/machinery/smartfridge,
-								///obj/machinery/particle_accelerator,
 								/obj/machinery/recharge_station)
 
 	//Parrots are kleptomaniacs. This variable ... stores the item a parrot is holding.
