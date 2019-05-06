@@ -15,11 +15,9 @@ GLOBAL_LIST_EMPTY(gamemode_survivor_key_items)
 /obj/item/laptop/rescue
     name = "Communications laptop"
     desc = "A device used for augmenting communication. Someone seems to have left it logged in with open communications to a nearby ship. Set this up next to a rescue beacon."
-    w_class = WEIGHT_CLASS_BULKY
-    // icon = 'icons/obj/machines/computer.dmi'
-    // icon_state = "comm_traffic"
     icon = 'icons/obj/machines/laptop_beacon.dmi'
     icon_state = "tandy0"
+    w_class = WEIGHT_CLASS_BULKY
     var/activation_time = 5 SECONDS
 
 /obj/item/laptop/rescue/Initialize()
@@ -157,7 +155,6 @@ GLOBAL_LIST_EMPTY(gamemode_survivor_key_items)
     icon_state = "motion0"
     w_class = WEIGHT_CLASS_BULKY
     
-    // TODO: Handle if something is blocking the way to throw things
     for (var/I in internal_components)
         var/turf/T = get_step(src, pick(cardinal))
         if (T.obscured)
@@ -230,7 +227,7 @@ GLOBAL_LIST_EMPTY(gamemode_survivor_key_items)
         to_chat(user, "That doesn't look damaged!")
 
     // Required Nearby components
-    // TODO: This seems wasteful.
+    // TODO: Check if this is wasteful.
     var/nearby_setup = 0
     for (var/R in required_nearby)
         var/obj/found = locate(R) in range(2, src)
@@ -431,13 +428,11 @@ SPAWNS
     spawn_mission_items()
 
 /datum/game_mode/survivor/proc/calculate_team_sizes()
-    // TODO: Be smart?
     init_xeno_size = max(CEILING(GLOB.ready_players * xeno_ratio, 1), 1)
     init_human_size = GLOB.ready_players - init_xeno_size
 
-
     message_admins("calculate_team_sizes::\nhuman: [init_human_size]\nxeno: [init_xeno_size]")
-    return TRUE
+    return TRUE // TODO: Remove this line, TRUE is DEBUG CODE.
     // return (init_human_size > 0 && init_xeno_size > 0)
 
 /datum/game_mode/survivor/proc/assign_players()
@@ -637,6 +632,7 @@ SPAWNS
 
 /datum/game_mode/survivor/proc/spawn_mission_items()
     GLOB.survivor_spawn_key_item = shuffle(GLOB.survivor_spawn_key_item)
+    GLOB.survivor_spawn_random_item = shuffle(GLOB.survivor_spawn_random_item)
     var/list/all_key_items = key_items 
 
     if(player_size == MED_POP)
