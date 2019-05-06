@@ -134,7 +134,7 @@
 // message is output to anyone who can see, e.g. "The [src] does something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
 /atom/proc/visible_message(message, blind_message, max_distance)
-	var/view_dist = 7
+	var/view_dist = world.view // default view distance is (7 = world.view)
 	if(max_distance) view_dist = max_distance
 	for(var/mob/M in viewers(view_dist, src))
 		M.show_message( message, 1, blind_message, 2)
