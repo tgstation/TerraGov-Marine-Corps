@@ -39,7 +39,6 @@
 	else
 		if (issurvivorgamemode(SSticker.mode))
 			output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join_survivor'>Join the survivors!</A></p>"
-			output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
 		else
 			output += "<a href='byond://?src=[REF(src)];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
 			output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join'>Join the TGMC!</A></p>"
