@@ -351,7 +351,6 @@ SPAWNS
         /obj/item/cell,
     )
 
-
 /datum/game_mode/survivor/new_player_topic(mob/M, href, href_list[])
     switch(href_list["lobby_choice"])
         if("late_join_survivor")

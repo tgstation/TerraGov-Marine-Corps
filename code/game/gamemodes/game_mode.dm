@@ -49,13 +49,14 @@
 
 /datum/game_mode/proc/setup()
 	SSjob.DivideOccupations() 
-	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
 	create_characters() //Create player characters
 	collect_minds()
 	reset_squads()
 	equip_characters()
 
 	transfer_characters()	//transfer keys to the new mobs
+
+	return TRUE
 
 
 /datum/game_mode/proc/post_setup()
@@ -80,9 +81,6 @@
 
 /datum/game_mode/process()
 	return TRUE
-
-
-
 
 /datum/game_mode/proc/create_characters()
 	for(var/mob/new_player/player in GLOB.player_list)
@@ -134,7 +132,6 @@
 	for(var/I in livings)
 		var/mob/living/L = I
 		L.notransform = FALSE
-
 
 
 /datum/game_mode/proc/check_finished()

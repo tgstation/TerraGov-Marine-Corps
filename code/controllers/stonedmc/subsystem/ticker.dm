@@ -165,6 +165,7 @@ SUBSYSTEM_DEF(ticker)
 
 	setup_done = TRUE
 
+	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
 	for(var/i in GLOB.start_landmarks_list)
 		var/obj/effect/landmark/start/S = i
 		if(istype(S))							//we can not runtime here. not in this important of a proc.

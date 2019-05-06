@@ -55,17 +55,6 @@
 	addtimer(CALLBACK(SSticker.mode, .proc/map_announce), 5 SECONDS)
 
 
-/datum/game_mode/distress/setup()
-	SSjob.DivideOccupations() 
-	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
-	create_characters() //Create player characters
-	collect_minds()
-	reset_squads()
-	equip_characters()
-
-	transfer_characters()	//transfer keys to the new mobs
-
-
 /datum/game_mode/distress/proc/map_announce()
 	if(!SSmapping.config.announce_text)
 		return
