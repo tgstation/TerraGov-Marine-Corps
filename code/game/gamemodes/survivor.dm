@@ -594,16 +594,30 @@ SPAWNS
     if(SSmapping.config.map_name == MAP_ICE_COLONY)
         H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
         H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
-        H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)
         H.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(H), SLOT_SHOES)
-        H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_GLOVES)
 
-    H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), SLOT_GLASSES)
-    H.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(H), SLOT_R_STORE)
-    H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
+    var/role_guide
 
-    // TODO: Lets not do this
-    H.equip_to_slot_or_del(new /obj/item/pinpointer(H), SLOT_L_HAND)
+    switch(/*rand(0, 100)*/ 55)
+        if (0 to 25)
+            // Builder 
+            H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), SLOT_GLASSES)
+            H.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(H), SLOT_R_STORE)
+            role_guide = "You have extra building equipment, use the metal and tools to create defenses. You won't know you'll need it until its too late..."
+        if (25 to 50)
+            // Medic
+            H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
+            role_guide = "You have extra medical supplies, that could be useful if you or someone else gets hurt..."
+        if (50 to 75)
+            // Fighter
+            H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/upp_smg(H), SLOT_L_STORE)
+            H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/mp7(H), SLOT_R_HAND)
+            role_guide = "You have found a weapon! Hope you don't have to use it too soon..."
+        if (75 to 100)
+            // Scav
+            H.equip_to_slot_or_del(new /obj/item/pinpointer(H), SLOT_R_HAND)
+            H.equip_to_slot_or_del(new /obj/item/radio/marine(H), SLOT_L_HAND)
+            role_guide = "You have a radio and pinpointer! Maybe this will lead you to what you need most..."
 
     to_chat(H, "<h2>You are a survivor!</h2>")
     switch(SSmapping.config.map_name)
@@ -617,9 +631,11 @@ SPAWNS
             to_chat(H, "<span class='notice'>You are a survivor of the attack on the colony. You suspected something was wrong and tried to warn others, but it was too late...</span>")
         else
             to_chat(H, "<span class='notice'>Through a miracle you managed to survive the attack. But are you truly safe now?</span>")
+    to_chat(H, "<span class='caption'>[role_guide]</span>")
 
 
 /datum/game_mode/survivor/proc/spawn_mission_items()
+    GLOB.survivor_spawn_key_item = shuffle(GLOB.survivor_spawn_key_item)
     var/list/all_key_items = key_items 
 
     if(player_size == MED_POP)
