@@ -20,12 +20,6 @@
 		SSshuttle.escape_pods -= src
 	. = ..()
 
-/obj/docking_port/mobile/escape_pod/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
-	. = ..()
-	if(launch_status == UNLAUNCHED)
-		return
-	intoTheSunset()
-
 /obj/docking_port/mobile/escape_pod/proc/prep_for_launch()
 	for(var/obj/machinery/door/airlock/evacuation/D in doors)
 		INVOKE_ASYNC(D, /obj/machinery/door/airlock/evacuation/.proc/force_open)
@@ -35,13 +29,16 @@
 	// dont close the door it might trap someone inside
 	can_launch = FALSE
 
+/obj/docking_port/mobile/escape_pod/proc/close_all_doors()
+	for(var/obj/machinery/door/airlock/evacuation/D in doors)
+		INVOKE_ASYNC(D, /obj/machinery/door/airlock/evacuation/.proc/force_close)
+
 /obj/docking_port/mobile/escape_pod/proc/auto_launch()
 	if(!can_launch)
 		return
-	SSshuttle.request_transit_dock(src)
-	mode = SHUTTLE_IGNITING
+	addtimer(CALLBACK(src, .intoTheSunset), ignitionTime)
+	close_all_doors()
 	launch_status = ENDGAME_LAUNCHED
-	setTimer(ignitionTime)
 
 /obj/docking_port/stationary/escape_pod
 	name = "escape pod"
@@ -94,10 +91,9 @@
 		to_chat(H, "<span class='warning'>Evacuation is not enabled.</span>")
 		return
 
-	SSshuttle.request_transit_dock(M)
-	M.mode = SHUTTLE_IGNITING
+	addtimer(CALLBACK(M, .intoTheSunset), ignitionTime)
+	M.close_all_doors()
 	M.launch_status = EARLY_LAUNCHED
-	M.setTimer(M.ignitionTime)
 
 //=========================================================================================
 //================================Evacuation Sleeper=======================================
