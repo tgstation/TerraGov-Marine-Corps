@@ -3,6 +3,7 @@
     desc = "A device used for augmenting communication. Someone seems to have left it logged in with open communications to a nearby ship. Set this up next to a rescue beacon."
     icon = 'icons/obj/machines/laptop_beacon.dmi'
     icon_state = "tandy0"
+    resistance_flags = UNACIDABLE|INDESTRUCTIBLE
     w_class = WEIGHT_CLASS_BULKY
     var/activation_time = 5 SECONDS
 
@@ -68,6 +69,7 @@
     name = "Rescue beacon"
     desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for someone to rescue you."
     icon_state = "motion0"
+    resistance_flags = UNACIDABLE|INDESTRUCTIBLE
     w_class = WEIGHT_CLASS_BULKY
     luminosity = 4 
 
