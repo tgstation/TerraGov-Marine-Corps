@@ -39,6 +39,7 @@
 		spawn_fog_blockers()
 		addtimer(CALLBACK(src, .proc/disperse_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-2500, 2500))
 
+	GLOB.landmarks_round_start = shuffle(GLOB.landmarks_round_start)
 	var/obj/effect/landmark/L
 	while(GLOB.landmarks_round_start.len)
 		L = GLOB.landmarks_round_start[GLOB.landmarks_round_start.len]
@@ -79,8 +80,10 @@
 /datum/game_mode/proc/new_player_topic(mob/M, href, href_list[])
 	return FALSE
 
+
 /datum/game_mode/process()
 	return TRUE
+
 
 /datum/game_mode/proc/create_characters()
 	for(var/mob/new_player/player in GLOB.player_list)

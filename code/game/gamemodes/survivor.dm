@@ -90,7 +90,7 @@ GLOBAL_LIST_EMPTY(gamemode_survivor_key_items)
     var/activation_time = 10 SECONDS
     var/icon_activated = "motion2"
 
-    var/distress_timer = 10 SECONDS
+    var/distress_timer = 5 MINUTES
     var/required_components
 
     var/required_nearby
@@ -240,12 +240,17 @@ GLOBAL_LIST_EMPTY(gamemode_survivor_key_items)
 /obj/item/beacon/rescue/proc/activate_beacon(mob/user as mob)
     icon_state = "[icon_activated]"
     playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
-    user.visible_message("<span class='notice'>[user] activates [src]</span>", "<span class='notice'>You activate [src]</span>")
+    user.visible_message("<span class='notice'>[user] activates \the [src]</span>", "<span class='notice'>You activates \the [src]</span>")
     activated = TRUE
     SetLuminosity(1)
 
     addtimer(CALLBACK(src, .proc/make_noise), 7 SECONDS, TIMER_LOOP)
     addtimer(CALLBACK(src, .proc/call_distress_team), distress_timer, TIMER_UNIQUE)
+
+    for (var/i in GLOB.alive_human_list)
+        to_chat(M, "<h2 class='alert'>MESSAGE RECIEVED</h2>")
+        to_chat(M, "<span class='alert'>We have gotten your messages, we are sending units to your location. Hold out until they get there, they shouldn't be more than [distress_timer / 60] minutes.</span>")
+
 
 /obj/item/beacon/rescue/attack_self(mob/user)
     if(anchored)
@@ -351,6 +356,10 @@ SPAWNS
         /obj/item/cell,
     )
 
+    var/beacon = null
+    var/last_beacon_announce = 0
+
+
 /datum/game_mode/survivor/new_player_topic(mob/M, href, href_list[])
     switch(href_list["lobby_choice"])
         if("late_join_survivor")
@@ -372,24 +381,30 @@ SPAWNS
     return ..()
 
 
-
 /datum/game_mode/survivor/pre_setup()
     . = ..()
 
     if (!scale_player_size())
         message_admins("failed to scale_player_size()")
         return FALSE
-
     if (!calculate_team_sizes())
         message_admins("failed to calculate_team_sizes()")
         return FALSE
     if (!assign_players())
         message_admins("failed to assign_players()")
         return FALSE
-
     if (!adjust_map())
         message_admins("failed to adjust_map()")
         return FALSE
+
+    // Modify distress timers
+    switch (player_size)
+        if (HIGH_POP)
+            distress_timer = 10 MINUTES
+        if (MED_POP)
+            distress_timer = 7 MINUTES
+        if (LOW_POP)
+            distress_timer = 5 MINUTES
 
     return TRUE
 
@@ -633,6 +648,28 @@ SPAWNS
 
     for (var/random_item in random_items)
         new random_item(pick(GLOB.survivor_spawn_random_item)) 
+
+
+/datum/game_mode/survivor/process()
+    if(round_finished)
+        return FALSE
+
+    if(beacon)
+        if(!beacon.anchored)
+            return
+        if (world.time - last_beacon_announce > 1 MINUTES)
+            return
+        announce_bioscans()
+
+
+/datum/game_mode/survivor/proc/annouce_beacon_location()
+    var/area/beacon_area = get_area(beacon)
+
+    for(var/i in GLOB.alive_xeno_list)
+        var/mob/M = i
+        SEND_SOUND(M, sound(get_sfx("queen"), wait = 0, volume = 50))
+        to_chat(M, "<span class='xenoannounce'>The Queen Mother reaches into your mind from worlds away.</span>")
+        to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense the humans reaching out for aid in \the [beacon_area] to the [dir2text(get_dir(M, beacon_area)]. Find their mechanical device and destroy it!</span>")
 
 
 /datum/game_mode/survivor/proc/count_team_alive(list/team)
