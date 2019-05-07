@@ -8,9 +8,6 @@
     w_class = WEIGHT_CLASS_BULKY
     var/activation_time = 5 SECONDS
 
-/obj/item/laptop/rescue/Destroy()
-    return ..()
-
 /obj/item/laptop/rescue/update_icon()
     icon_state = "tandy0"
     cut_overlays()
