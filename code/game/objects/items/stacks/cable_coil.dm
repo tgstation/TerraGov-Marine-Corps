@@ -135,7 +135,7 @@
 								"<span class='warning'>You repair some burn damage on \the [H]'s [S.display_name] with \the [src].</span>")
 			return
 		else
-			to_chat(user, "Nothing to fix!")
+			to_chat(user, "<span class='warning'>Nothing to fix!</span>")
 
 	else
 		return ..()
