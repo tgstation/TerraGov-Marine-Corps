@@ -12,10 +12,24 @@ SUBSYSTEM_DEF(blackbox)
 	if(!CONFIG_GET(flag/use_exp_tracking))
 		return
 
-	update_exp(10, FALSE)
+	if(!SSdbcore.IsConnected())
+		log_admin("Database not connected! Attempting to reconnect.")
+		message_admins("Database not connected! Attempting to reconnect.")
+
+		SSdbcore.Disconnect()
+
+		if(SSdbcore.Connect())
+			log_admin("Database connection re-established!")
+			message_admins("Database connection re-established!")
+		else
+			log_admin("Database connection failed: " + SSdbcore.ErrorMsg())
+			message_admins("Database connection failed: " + SSdbcore.ErrorMsg())
+			return
 
 	if(!GLOB.round_id)
 		SSdbcore.SetRoundID()
+
+	update_exp(10, FALSE)
 
 
 /datum/controller/subsystem/blackbox/vv_edit_var(var_name, var_value)

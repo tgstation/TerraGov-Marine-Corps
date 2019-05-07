@@ -155,8 +155,10 @@ SUBSYSTEM_DEF(dbcore)
 	//block until any connect operations finish
 	var/datum/BSQL_Connection/_connection = connection
 	var/datum/BSQL_Operation/op = connectOperation
+	var/datum/DBQuery/query_db_version = NewQuery("SELECT major, minor FROM [format_table_name("schema_revision")] ORDER BY date DESC LIMIT 1")
+	var/error = query_db_version.Execute()
 	UNTIL(QDELETED(_connection) || op.IsComplete())
-	return !QDELETED(connection) && !op.GetError()
+	return !QDELETED(connection) && !op.GetError() && !error
 
 /datum/controller/subsystem/dbcore/proc/Quote(str)
 	if(connection)
