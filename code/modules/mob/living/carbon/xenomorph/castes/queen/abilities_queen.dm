@@ -765,10 +765,10 @@
 	"<span class='xenowarning'>You start to advance larval growth inside of [A].</span>", \
 	"<span class='italics'>You hear an angry buzzing...</span>")
 	if(!do_after(X, 50, TRUE, 20, BUSY_ICON_FRIENDLY))
-		return
+		return fail_activate()
 
 	if(!can_use_ability(A, TRUE))
-		return
+		return fail_activate()
 
 	succeed_activate()
 	X.visible_message("<span class='xenowarning'>\The [X] finishes buzzing, [X.p_their()] echo slowly waning away!</span>", \
