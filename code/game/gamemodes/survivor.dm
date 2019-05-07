@@ -48,7 +48,7 @@ SPAWNS
     // Configuration
     var/late_join_time = 5 MINUTES // this is late join for survivors
     var/xeno_min = 2 // absolute min amount of xenos
-    var/xeno_ratio = 0.25 // otherwise fill to ratio of xeno to humans
+    var/xeno_ratio = 0.3 // otherwise fill to ratio of xeno to humans
 
     var/list/key_items = list( // Beacon requires repair at lowpop
         /obj/item/beacon/rescue,
@@ -142,7 +142,7 @@ SPAWNS
     spawn_mission_items()
 
 /datum/game_mode/survivor/proc/calculate_team_sizes()
-    init_xeno_size = max(CEILING(length(GLOB.ready_players) * xeno_ratio, 1), 1)
+    init_xeno_size = max(CEILING(GLOB.ready_players * xeno_ratio, 1), 1)
     init_human_size = GLOB.ready_players - init_xeno_size
     log_game("Initial team sizes. Xeno: [init_xeno_size] Human: [init_human_size]")
     return TRUE
