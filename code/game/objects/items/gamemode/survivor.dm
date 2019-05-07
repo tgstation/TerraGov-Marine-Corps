@@ -28,7 +28,7 @@
     if(!user.get_active_held_item() && do_after(user, activation_time*1.2, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
         reset_state()
         user.put_in_hands(src)
-    . = ..()
+    return ..()
     
 /obj/item/laptop/rescue/attack_self(mob/user)
     if(anchored)
