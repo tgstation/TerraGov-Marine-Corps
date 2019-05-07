@@ -126,11 +126,11 @@
 		return FALSE
 
 	if((sound || get_sound(user)))
-		if(audio_emote_time >= world.time)
-			to_chat(src, "<span class='notice'>You just did an audible emote. Wait a while.</span>")
+		if(user.audio_emote_time >= world.time)
+			to_chat(user, "<span class='notice'>You just did an audible emote. Wait a while.</span>")
 			return FALSE
 		else
-			audio_emote_time = world.time + 8 SECONDS
+			user.audio_emote_time = world.time + 8 SECONDS
 
 	if(intentional && user.client)
 		if(user.client.prefs.muted & MUTE_IC)
