@@ -546,6 +546,45 @@
 
     to_chat(world, dat)
 
+/datum/game_mode/distress/new_player_panel(mob/new_player/NP)
+
+	var/output = "<div align='center'>"
+	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=show_preferences'>Setup Character</A></p>"
+
+	if(SSticker.current_state <= GAME_STATE_PREGAME)
+		output += "<p>\[ [NP.ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [NP.ready? "<a href='byond://?src=[REF(NP)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
+	else
+		output += "<a href='byond://?src=[REF(NP)];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
+		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join'>Join the TGMC!</A></p>"
+		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
+
+	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=observe'>Observe</A></p>"
+
+	if(!IsGuestKey(NP.key))
+		if(SSdbcore.Connect())
+			var/isadmin = FALSE
+			if(check_rights(R_ADMIN, FALSE))
+				isadmin = TRUE
+			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\")")
+			if(query_get_new_polls.Execute())
+				var/newpoll = FALSE
+				if(query_get_new_polls.NextRow())
+					newpoll = TRUE
+
+				if(newpoll)
+					output += "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+				else
+					output += "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
+			qdel(query_get_new_polls)
+			if(QDELETED(src))
+				return
+
+	output += "</div>"
+
+	var/datum/browser/popup = new(NP, "playersetup", "<div align='center'>New Player Options</div>", 240, 300)
+	popup.set_window_options("can_close=0")
+	popup.set_content(output)
+	popup.open(FALSE)
 
 /datum/game_mode/distress/proc/announce_bioscans(delta = 2)
     var/list/xenoLocationsP = list()
@@ -649,6 +688,14 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
     if(eta > 0)
         return "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
 
+
+/datum/game_mode/distress/handle_late_spawn()
+    var/datum/game_mode/survivor/GM = SSticker.mode
+    var/H = GM.count_team_alive(GLOB.alive_human_list)
+    var/X = GM.count_team_alive(GLOB.alive_xeno_list)
+    if ((X / H) < GM.xeno_ratio)
+        var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+        HS.stored_larva++
 
 /datum/game_mode/distress/attempt_to_join_as_larva(mob/xeno_candidate)
     var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]

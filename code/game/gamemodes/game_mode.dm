@@ -436,6 +436,87 @@
 		qdel(i)
 		sleep(1)
 
+/datum/game_mode/proc/new_player_panel(mob/new_player/NP)
+
+	var/output = "<div align='center'>"
+	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=show_preferences'>Setup Character</A></p>"
+
+	if(SSticker.current_state <= GAME_STATE_PREGAME)
+		output += "<p>\[ [NP.ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [NP.ready? "<a href='byond://?src=[REF(NP)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
+	else
+		output += "<a href='byond://?src=[REF(NP)];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
+		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join'>Join the TGMC!</A></p>"
+
+	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=observe'>Observe</A></p>"
+
+	if(!IsGuestKey(NP.key))
+		if(SSdbcore.Connect())
+			var/isadmin = FALSE
+			if(check_rights(R_ADMIN, FALSE))
+				isadmin = TRUE
+			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\")")
+			if(query_get_new_polls.Execute())
+				var/newpoll = FALSE
+				if(query_get_new_polls.NextRow())
+					newpoll = TRUE
+
+				if(newpoll)
+					output += "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+				else
+					output += "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
+			qdel(query_get_new_polls)
+			if(QDELETED(src))
+				return
+
+	output += "</div>"
+
+	var/datum/browser/popup = new(NP, "playersetup", "<div align='center'>New Player Options</div>", 240, 300)
+	popup.set_window_options("can_close=0")
+	popup.set_content(output)
+	popup.open(FALSE)
+
+/datum/game_mode/proc/AttemptLateSpawn(mob/M, rank)
+	if(src != usr || !isnewplayer(M))
+		return
+	var/mob/new_player/NP
+	if(!NP.IsJobAvailable(rank))
+		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
+		return
+	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
+		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
+		return
+	if(!GLOB.enter_allowed)
+		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
+		return
+
+	if(!SSjob.AssignRole(src, rank, TRUE))
+		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
+		return
+
+	NP.close_spawn_windows()
+	NP.spawning = TRUE
+
+	var/mob/living/character = NP.create_character(TRUE)	//creates the human and transfers vars and mind
+	var/equip = SSjob.EquipRank(character, rank, TRUE)
+	if(isliving(equip))	//Borgs get borged in the equip, so we need to make sure we handle the new mob.
+		character = equip
+
+	var/datum/job/job = SSjob.GetJob(rank)
+
+	if(job && !job.override_latejoin_spawn(character))
+		SSjob.SendToLateJoin(character)
+
+	GLOB.datacore.manifest_inject(character)
+	SSticker.minds += character.mind
+
+	handle_late_spawn(character)
+
+	qdel(src)
+
+
+/datum/game_mode/proc/handle_late_spawn(mob/C)
+	return
+
 
 /datum/game_mode/proc/attempt_to_join_as_larva(mob/xeno_candidate)
 	to_chat(xeno_candidate, "<span class='warning'>This is unavailable in this gamemode.</span>")

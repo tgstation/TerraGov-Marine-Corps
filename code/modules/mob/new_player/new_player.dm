@@ -30,6 +30,10 @@
 
 
 /mob/new_player/proc/new_player_panel()
+
+	if(SSticker?.mode?.new_player_panel())
+		return
+
 	var/output = "<div align='center'>"
 	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=show_preferences'>Setup Character</A></p>"
 
@@ -215,7 +219,7 @@
 				to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.</span>")
 				return
 
-			AttemptLateSpawn(href_list["job_selected"])
+			SSticker?.mode.AttemptLateSpawn(src, href_list["job_selected"])
 
 
 	if(href_list["showpoll"])
@@ -300,59 +304,6 @@
 					to_chat(src, "<span class='danger'>Vote failed, please try again or contact an administrator.</span>")
 					return
 				to_chat(src, "<span class='notice'>Vote successful.</span>")
-
-
-/mob/new_player/proc/AttemptLateSpawn(rank)
-	if(src != usr)
-		return
-	if(!IsJobAvailable(rank))
-		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
-		return
-	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
-		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
-		return
-	if(!GLOB.enter_allowed)
-		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
-		return
-
-	if(!SSjob.AssignRole(src, rank, TRUE))
-		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
-		return
-
-	close_spawn_windows()
-	spawning = TRUE
-
-	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
-	var/equip = SSjob.EquipRank(character, rank, TRUE)
-	if(isliving(equip))	//Borgs get borged in the equip, so we need to make sure we handle the new mob.
-		character = equip
-
-	var/datum/job/job = SSjob.GetJob(rank)
-
-	if(job && !job.override_latejoin_spawn(character))
-		SSjob.SendToLateJoin(character)
-
-	GLOB.datacore.manifest_inject(character)
-	SSticker.minds += character.mind
-
-	if(isdistress(SSticker?.mode))
-		var/datum/game_mode/distress/D = SSticker.mode
-		D.latejoin_tally++
-
-		if(D.latejoin_larva_drop && D.latejoin_tally >= D.latejoin_larva_drop)
-			D.latejoin_tally -= D.latejoin_larva_drop
-			var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-			HS.stored_larva++
-
-	if(issurvivorgamemode(SSticker?.mode))
-		var/datum/game_mode/survivor/GM = SSticker.mode
-		var/H = GM.count_team_alive(GLOB.alive_human_list)
-		var/X = GM.count_team_alive(GLOB.alive_xeno_list)
-		if ((X / H) < GM.xeno_ratio)
-			var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-			HS.stored_larva++
-
-	qdel(src)
 
 
 /mob/new_player/proc/LateChoices()
