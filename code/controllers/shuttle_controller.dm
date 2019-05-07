@@ -24,8 +24,6 @@ var/global/datum/controller/shuttle_controller/shuttle_controller
 	process_shuttles = list()
 	locs_crash = list()
 
-	var/datum/shuttle/ferry/shuttle
-
 	var/datum/shuttle/ferry/marine/shuttle1 //Because I am using shuttle_tag, which is only defined under /datum/shuttle/ferry/marine
 	//ALMAYER DROPSHIP 1
 	shuttle1 = new
