@@ -156,6 +156,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		slip.info +="Order #[SO.id]<br>"
 		slip.info +="[SSshuttle.shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
 		slip.info +="CONTENTS:<br><ul>"
+		slip.update_icon()
 
 		//spawn the stuff, finish generating the manifest while you're at it
 		if(SP.access)
@@ -468,10 +469,14 @@ GLOBAL_LIST_EMPTY(exports_types)
 		if(SSshuttle.supply.mode == SHUTTLE_IDLE && is_mainship_level(SSshuttle.supply.z))
 			if (!SSshuttle.supply.check_blacklist())
 				temp = "For safety reasons, the Automated Storage and Retrieval System cannot store live, non-xeno organisms, classified nuclear weaponry or homing beacons.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
+				playsound(SSshuttle.supply.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)
 			else
+				playsound(SSshuttle.supply.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
 				SSshuttle.moveShuttle("supply", "supply_away", TRUE)
 				temp = "Lowering platform. \[<span class='warning'><A href='?src=\ref[src];force_send=1'>Force</A></span>\]<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 		else
+			var/obj/docking_port/D = SSshuttle.getDock("supply_home")
+			playsound(D.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
 			SSshuttle.moveShuttle("supply", "supply_home", TRUE)
 			temp = "Raising platform.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 
