@@ -363,8 +363,9 @@ SPAWNS
 /datum/game_mode/survivor/proc/annouce_beacon_location()
     last_beacon_announce = world.time
     var/area/beacon_area = get_area(beacon.loc)
-    for(var/i in GLOB.alive_xeno_list)
-        var/mob/M = i
+    var/mob/M
+    for (var/I in GLOB.alive_xeno_list)
+        M = I
         SEND_SOUND(M, sound(get_sfx("queen"), wait = 0, volume = 50))
         to_chat(M, "<span class='xenoannounce'>The Queen Mother reaches into your mind from worlds away.</span>")
         to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense the humans reaching out for aid in \the [beacon_area] to the [dir2text(get_dir(M, beacon))]. Find their mechanical device and destroy it!</span>")
