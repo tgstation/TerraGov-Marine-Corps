@@ -351,13 +351,19 @@ proc/tg_list2text(list/list, glue=",")
 
 /proc/ui_style2icon(ui_style)
 	switch(ui_style)
-		if("old")		return 'icons/mob/screen1_old.dmi'
-		if("Orange")	return 'icons/mob/screen1_Orange.dmi'
-		if("Slimecore")	return 'icons/mob/screen1_Slimecore.dmi'
-		if("Operative") return 'icons/mob/screen1_Operative.dmi'
-		if("Clockwork") return 'icons/mob/screen1_Clockwork.dmi'
-		if("Midnight")	return 'icons/mob/screen1_Midnight.dmi'
-		else			return 'icons/mob/screen1_White.dmi'
+		if("Retro")
+			return 'icons/mob/screen/retro.dmi'
+		if("Plasmafire")
+			return 'icons/mob/screen/plasmafire.dmi'
+		if("Slimecore")
+			return 'icons/mob/screen/slimecore.dmi'
+		if("Operative")
+			return 'icons/mob/screen/operative.dmi'
+		if("Clockwork")
+			return 'icons/mob/screen/clockwork.dmi'
+		if("White")
+			return 'icons/mob/screen/White.dmi'
+	return 'icons/mob/screen/midnight.dmi'
 
 //Splits the text of a file at seperator and returns them in a list.
 //returns an empty list if the file doesn't exist

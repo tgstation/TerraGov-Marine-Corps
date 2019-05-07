@@ -3,7 +3,7 @@
 /obj/item/grab
 	name = "grab"
 	icon_state = "reinforce"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	flags_atom = NOFLAGS
 	flags_item = NOBLUDGEON|DELONDROP|ITEM_ABSTRACT
 	layer = ABOVE_HUD_LAYER

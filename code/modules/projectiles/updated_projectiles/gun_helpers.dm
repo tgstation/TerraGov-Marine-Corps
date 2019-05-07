@@ -494,7 +494,7 @@ should be alright.
 			attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored") //Greater than 35
 
 
-/obj/item/weapon/gun/proc/get_active_firearm(mob/user)
+/proc/get_active_firearm(mob/user)
 	if(!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this.</span>")
 		return
