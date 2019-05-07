@@ -187,7 +187,7 @@
     if (beacon_timer_id && noise_timer_id)
         distress_timer = timeleft(beacon_timer_id)
         deltimer(noise_timer_id)
-        deltimer(beacon_timer_id)+
+        deltimer(beacon_timer_id)
         var/mob/M
         for (var/i in GLOB.alive_human_list)
             M = i
@@ -247,31 +247,32 @@
 
     // Install components
     for (var/R in required_components)
-        if (istype(W, R))
-            var/obj/item/cell/C = W
+        if (istype(I, R))
+            var/obj/item/cell/C = I
             if (C.charge < 2000)
                 to_chat(user, "<span class='warning'>\The [C] doesn't have enough charge!</span>")
                 return
-            if (user.transferItemToLoc(W, src))
+            if (user.transferItemToLoc(I, src))
                 required_components -= R
-                internal_components += W
+                internal_components += I
                 user.visible_message("<span class='notice'>[user] installed \the [C]</span>","<span class='notice'>You installed \the [C]</span>")
                 break
 
     // repair dmg
-    if(iswelder(W) && current_hp < max_hp)
+    if(iswelder(I))
+        if (current_hp == max_hp)
+            to_chat(user, "That doesn't look damaged!")
+            return 
+
         if(!do_after(user, 1 SECONDS, TRUE, 5, BUSY_ICON_BUILD,, TRUE))
             return
 
-        var/obj/item/tool/weldingtool/WT = W
+        var/obj/item/tool/weldingtool/WT = I
         if(WT.remove_fuel(0, user))
             user.visible_message("<span class='notice'>[user] started repairing \the [src]</span>","<span class='notice'>You started repairing \the [src]</span>")
             playsound(get_turf(src), 'sound/items/Welder2.ogg', 25, 1)
             current_hp = min(current_hp + 25, max_hp)
             
-    else if(iswelder(W) && current_hp == max_hp)
-        to_chat(user, "That doesn't look damaged!")
-
     // Required Nearby components
     // TODO: Check if this is wasteful.
     var/list/nearby = range(2, src)
