@@ -726,50 +726,54 @@
 // *********** Larval growth
 // ***************************************
 /datum/action/xeno_action/activable/larva_growth
-	name = "Advance Larval Growth (300)"
+	name = "Advance Larval Growth"
 	action_icon_state = "larva_growth"
 	mechanics_text = "Instantly cause the larva inside a host to grow a set amount."
 	ability_name = "advance larval growth"
+	plasma_cost = 300
+	cooldown_timer = XENO_LARVAL_ADVANCEMENT_COOLDOWN
 
-/datum/action/xeno_action/activable/larva_growth/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(world.time > X.last_larva_growth_used + XENO_LARVAL_ADVANCEMENT_COOLDOWN)
-		return TRUE
-
-/datum/action/xeno_action/activable/larva_growth/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
-	if(!X.check_state() || X.action_busy)
-		return
-
-	if(world.time < X.last_larva_growth_used + XENO_LARVAL_ADVANCEMENT_COOLDOWN)
-		to_chat(X, "<span class='xenowarning'>You're still recovering from your previous larva growth advance. Wait [round((X.last_larva_growth_used + XENO_LARVAL_ADVANCEMENT_COOLDOWN - world.time) * 0.1)] seconds.</span>")
-		return
-
+/datum/action/xeno_action/activable/larva_growth/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	
 	if(!ishuman(A) && !ismonkey(A))
-		return
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>You can't accelerate the growth of that host")
+		return FALSE
 
 	var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in A
 
 	if(!E)
-		to_chat(X, "<span class='xenowarning'>[A] doesn't have a larva growing inside of them.</xenowarning>")
-		return
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>[A] doesn't have a larva growing inside of them.</xenowarning>")
+		return FALSE
 
 	if(E.stage >= 3)
-		to_chat(X, "<span class='xenowarning'>\The [E] inside of [A] is too old to be advanced.</xenowarning>")
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>\The [E] inside of [A] is too old to be advanced.</xenowarning>")
+		return FALSE
+
+
+/datum/action/xeno_action/activable/larva_growth/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Queen/X = owner
+
+	var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in A
+
+	X.visible_message("<span class='xenowarning'>\The [X] begins buzzing menacingly at [A].</span>", \
+	"<span class='xenowarning'>You start to advance larval growth inside of [A].</span>", \
+	"<span class='italics'>You hear an angry buzzing...</span>")
+	if(!do_after(X, 50, TRUE, 20, BUSY_ICON_FRIENDLY))
 		return
 
-	if(X.check_plasma(300))
-		X.visible_message("<span class='xenowarning'>\The [X] begins buzzing menacingly at [A].</span>", \
-		"<span class='xenowarning'>You start to advance larval growth inside of [A].</span>", \
-		"<span class='italics'>You hear an angry buzzing...</span>")
-		if(!do_after(X, 50, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(300))
-			return
-		if(!X.check_state())
-			return
-		X.use_plasma(300)
-		X.visible_message("<span class='xenowarning'>\The [X] finishes buzzing, [X.p_their()] echo slowly waning away!</span>", \
-		"<span class='xenowarning'>You advance the larval growth inside of [A] a little!</span>", \
-		"<span class='italics'>You hear buzzing waning away...</span>")
+	if(!can_use_ability(A, TRUE))
+		return
 
-		E.stage++
-		X.last_larva_growth_used = world.time
+	succeed_activate()
+	X.visible_message("<span class='xenowarning'>\The [X] finishes buzzing, [X.p_their()] echo slowly waning away!</span>", \
+	"<span class='xenowarning'>You advance the larval growth inside of [A] a little!</span>", \
+	"<span class='italics'>You hear buzzing waning away...</span>")
+
+	E.stage++
+	add_cooldown()
