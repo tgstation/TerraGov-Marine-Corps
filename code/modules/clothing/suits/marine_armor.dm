@@ -21,7 +21,7 @@
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/storage/bible,
-		/obj/item/storage/sparepouch,
+		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/claymore,
 		/obj/item/storage/belt/gun)
@@ -201,7 +201,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/storage/sparepouch,
+		/obj/item/storage/belt/sparepouch,
 		/obj/item/hailer,
 		/obj/item/storage/belt/gun)
 
@@ -239,7 +239,7 @@
 					/obj/item/explosive/mine,
 					/obj/item/weapon/combat_knife,
 					/obj/item/weapon/gun/smartgun,
-					/obj/item/storage/sparepouch)
+					/obj/item/storage/belt/sparepouch)
 
 /obj/item/clothing/suit/storage/marine/smartgunner/fancy
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories. This luxury model appears to belong to the CO. You feel like you probably could get fired for touching this.."
@@ -745,7 +745,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/storage/sparepouch,
+		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete)
 	var/brightness_on = 5 //Average attachable pocket light
 	var/flashlight_cooldown = 0 //Cooldown for toggling the light
@@ -887,7 +887,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/storage/sparepouch,
+		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/baseballbat)
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS

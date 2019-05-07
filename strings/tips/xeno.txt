@@ -29,3 +29,4 @@ As a xeno, you can melee other xenos on fire on 'help' intent to try to extingui
 As a xeno, it's not a good idea to kill hosts during the crash phase if they can be captured instead.
 As a xeno, don't take too long attacking during the crash phase. The ship can be rigged to explode in twenty minutes, ending the round in a tie.
 As a xeno, remember that neurotox injected by defilers, sentinels, praetorian, and queen can overdose, killing a marine quickly. Try to avoid this when capturing, if they scream in pain they've probably had enough.
+As a xeno, you can use the crawl through vent verb found in the xeno tab to quickly find and use vents in the floor without having to alt-click them. 

@@ -34,23 +34,26 @@ All effects don't start immediately, but rather get worse over time; the rate is
 101 and beyond: Lethally toxic - Swift death.
 */
 
-/datum/reagent/consumable/ethanol/on_mob_life(mob/living/carbon/C, alien)
-	if(C.drunkenness < volume * boozepwr * ALCOHOL_THRESHOLD_MODIFIER)
-		C.drunkenness = max((C.drunkenness + (sqrt(volume) * boozepwr * ALCOHOL_RATE)), 0) //Volume, power, and server alcohol rate effect how quickly one gets drunk.
-	var/mob/living/carbon/human/H = C
-	var/datum/internal_organ/liver/L = H.internal_organs_by_name["liver"]
-	if (istype(L))
-		L.take_damage(((max(sqrt(volume) * (boozepwr ** ALCOHOL_EXPONENT) * L.alcohol_tolerance, 0))/500), 1) // Decrement or Increment the divisor to adjust damage. Last digit 1 so it's silent.
+/datum/reagent/consumable/ethanol/on_mob_life(mob/living/L, metabolism)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		if(C.drunkenness < volume * boozepwr * ALCOHOL_THRESHOLD_MODIFIER)
+			C.drunkenness = max((C.drunkenness + (sqrt(volume) * boozepwr * ALCOHOL_RATE)), 0) //Volume, power, and server alcohol rate effect how quickly one gets drunk.
+		if(ishuman(C))
+			var/mob/living/carbon/human/H = C
+			var/datum/internal_organ/liver/O = H.internal_organs_by_name["liver"]
+			if (istype(O))
+				O.take_damage(((max(sqrt(volume) * (boozepwr ** ALCOHOL_EXPONENT) * O.alcohol_tolerance, 0)) * 0.002), TRUE)
 
 	if(druggy != 0)
-		C.set_drugginess(druggy)
+		L.set_drugginess(druggy)
 
 	if(halluci)
-		C.hallucination += halluci
+		L.hallucination += halluci
 
-	..()
+	return ..()
 
-/datum/reagent/consumable/ethanol/reaction_obj(var/obj/O, var/volume)
+/datum/reagent/consumable/ethanol/reaction_obj(obj/O, volume)
 	if(istype(O,/obj/item/paper))
 		var/obj/item/paper/paperaffected = O
 		paperaffected.clearpaper()
@@ -62,14 +65,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			to_chat(usr, "<span class='warning'>The [name] dissolves the ink on the book.</span>")
 		else
 			to_chat(usr, "<span class='warning'>[O]'s ink is smeared by [name], but doesn't wash away!</span>")
-	return
 
-/datum/reagent/consumbale/ethanol/reaction_mob(mob/living/M, var/method=TOUCH, reac_volume)//Splashing people with ethanol isn't quite as good as fuel.
-	if(!isliving(M))
-		return
-
+/datum/reagent/consumbale/ethanol/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+	. = ..()
 	if(method in list(TOUCH, VAPOR, PATCH))
-		M.adjust_fire_stacks(reac_volume / 15)
+		L.adjust_fire_stacks(round(volume * 0.65))
 
 /datum/reagent/consumable/ethanol/beer
 	name = "Beer"
@@ -95,12 +95,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "spiked latte"
 	boozepwr = 45
 
-/datum/reagent/consumable/ethanol/kahlua/on_mob_life(mob/living/carbon/M)
-	M.Dizzy(-4)
-	M.drowsyness = max(M.drowsyness-2, 0)
-	M.AdjustSleeping(-3)
-	M.Jitter(5)
-	..()
+/datum/reagent/consumable/ethanol/kahlua/on_mob_life(mob/living/L, metabolism)
+	L.Dizzy(-4)
+	L.drowsyness = max(L.drowsyness-2, 0)
+	L.AdjustSleeping(-3)
+	L.Jitter(5)
+	return ..()
 
 /datum/reagent/consumable/ethanol/whiskey
 	name = "Whiskey"
@@ -137,11 +137,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	adj_temp = 5
 	targ_temp = 305
 
-/datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/carbon/M)
-	M.drowsyness = max(0,M.drowsyness-7)
-	M.AdjustSleeping(-40)
-	M.Jitter(5)
-	..()
+/datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/L, metabolism)
+	L.drowsyness = max(0,L.drowsyness-7)
+	L.AdjustSleeping(-40)
+	L.Jitter(5)
+	return ..()
 
 /datum/reagent/consumable/ethanol/vodka
 	name = "Vodka"
@@ -151,9 +151,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "grain alcohol"
 	boozepwr = 65
 
-/datum/reagent/consumable/ethanol/vodka/on_mob_life(mob/living/carbon/C)
-	C.radiation = max(C.radiation-1,0)
-	..()
+/datum/reagent/consumable/ethanol/vodka/on_mob_life(mob/living/L, metabolism)
+	L.radiation = max(L.radiation-1,0)
+	return ..()
 
 /datum/reagent/consumable/ethanol/bilk
 	name = "Bilk"
@@ -245,10 +245,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "death and licorice"
 	boozepwr = 80
 
-/datum/reagent/consumable/ethanol/absinthe/on_mob_life(mob/living/carbon/M)
+/datum/reagent/consumable/ethanol/absinthe/on_mob_life(mob/living/L, metabolism)
 	if(prob(10))
-		M.hallucination += 4 //Reference to the urban myth
-	..()
+		L.hallucination += 4 //Reference to the urban myth
+	return ..()
 
 /datum/reagent/consumable/ethanol/pwine
 	name = "Poison Wine"
@@ -258,64 +258,63 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "evil velvet"
 	boozepwr = 40
 
-/datum/reagent/consumable/ethanol/pwine/on_mob_life(mob/living/carbon/C,alien)
+/datum/reagent/consumable/ethanol/pwine/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 19)
-			C.Jitter(2)
-			C.hallucination = max(C.hallucination, 3)
+			L.Jitter(2)
+			L.hallucination = max(L.hallucination, 3)
 			if(prob(1))
-				C.emote(pick("twitch","giggle"))
+				L.emote(pick("twitch","giggle"))
 		if(20 to 59)
-			C.stuttering += 1
-			C.hallucination = max(C.hallucination, 10)
-			C.Jitter(3)
-			C.Dizzy(2)
-			C.set_drugginess(10)
+			L.stuttering = max(L.stuttering, 2)
+			L.hallucination = max(L.hallucination, 10)
+			L.Jitter(3)
+			L.Dizzy(2)
+			L.set_drugginess(10)
 			if(prob(5))
-				C.emote(pick("twitch","giggle"))
+				L.emote(pick("twitch","giggle"))
 		if(60 to 119)
-			if(!C.stuttering)
-				C.stuttering = 1
-			C.hallucination = max(C.hallucination, 60)
-			C.Jitter(4)
-			C.Dizzy(4)
-			C.set_drugginess(30)
+			L.stuttering = max(L.stuttering, 2)
+			L.hallucination = max(L.hallucination, 60)
+			L.Jitter(4)
+			L.Dizzy(4)
+			L.set_drugginess(30)
 			if(prob(10))
-				C.emote(pick("twitch","giggle"))
+				L.emote(pick("twitch","giggle"))
 			if(prob(30))
-				C.adjustToxLoss(0.5)
+				L.adjustToxLoss(0.5)
 		if(120 to 199)
-			C.stuttering += 1
-			C.hallucination = max(C.hallucination, 60)
-			C.Jitter(4)
-			C.Dizzy(4)
-			C.druggy = max(C.druggy, 60)
+			L.stuttering = max(L.stuttering, 2)
+			L.hallucination = max(L.hallucination, 60)
+			L.Jitter(4)
+			L.Dizzy(4)
+			L.druggy = max(L.druggy, 60)
 			if(prob(10))
-				C.emote(pick("twitch","giggle"))
+				L.emote(pick("twitch","giggle"))
 			if(prob(30))
-				C.adjustToxLoss(1)
+				L.adjustToxLoss(1)
 			if(prob(5))
-				if(ishuman(C))
-					var/mob/living/carbon/human/H = C
-					var/datum/internal_organ/heart/L = H.internal_organs_by_name["heart"]
-					if(istype(L))
-						L.take_damage(2)
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+					if(istype(E))
+						E.take_damage(2)
 		if(200 to INFINITY)
-			C.stuttering += 1
-			C.adjustToxLoss(1)
-			C.hallucination = max(C.hallucination, 60)
-			C.Jitter(4)
-			C.Dizzy(4)
-			C.druggy = max(C.druggy, 60)
-			if(ishuman(C) && prob(10))
-				var/mob/living/carbon/human/H = C
-				var/datum/internal_organ/heart/L = H.internal_organs_by_name["heart"]
-				if(istype(L))
+			L.stuttering += 1
+			L.adjustToxLoss(1)
+			L.hallucination = max(L.hallucination, 60)
+			L.Jitter(4)
+			L.Dizzy(4)
+			L.druggy = max(L.druggy, 60)
+			if(ishuman(L) && prob(10))
+				var/mob/living/carbon/human/H = L
+				var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+				if(istype(E))
 					if(H.species.species_flags ~! NO_PAIN)
 						to_chat(H, "<span class='danger'>You clutch for a moment as you feel a scorching pain covering your abdomen!</span>")
 						H.Stun(3)
-					L.take_damage(20) //used to be 100 each tick without prob
-	..()
+					E.take_damage(20)
+	return ..()
 
 /datum/reagent/consumable/ethanol/deadrum
 	name = "Deadrum"
@@ -325,9 +324,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 35
 	taste_description = "salty sea water"
 
-/datum/reagent/consumable/ethanol/deadrum/on_mob_life(mob/living/carbon/C)
-	C.Dizzy(5)
-	..()
+/datum/reagent/consumable/ethanol/deadrum/on_mob_life(mob/living/L, metabolism)
+	L.Dizzy(5)
+	return ..()
 
 /datum/reagent/consumable/ethanol/davenport
 	name = "Davenport Rye"
@@ -429,9 +428,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 55
 
 
-/datum/reagent/consumable/ethanol/bloody_mary/on_mob_life(mob/living/carbon/C)
-	if(C.blood_volume < BLOOD_VOLUME_NORMAL)
-		C.blood_volume += 0.3 //Bloody Mary slowly restores blood loss.
+/datum/reagent/consumable/ethanol/bloody_mary/on_mob_life(mob/living/L, metabolism)
+	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
+		L.blood_volume += 0.3 //Bloody Mary slowly restores blood loss.
 	return ..()
 
 /datum/reagent/consumable/ethanol/brave_bull
@@ -469,9 +468,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "JUSTICE"
 	boozepwr = 90 //THE FIST OF THE LAW IS STRONG AND HARD
 
-/datum/reagent/consumable/ethanol/beepsky_smash/on_mob_life(mob/living/carbon/C)
-	C.Stun(2)
-	..()
+/datum/reagent/consumable/ethanol/beepsky_smash/on_mob_life(mob/living/L, metabolism)
+	L.Stun(2)
+	return ..()
 
 /datum/reagent/consumable/ethanol/irish_cream
 	name = "Irish Cream"
@@ -805,20 +804,19 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 59
 	taste_description = "a pencil eraser"
 
-/datum/reagent/consumable/ethanol/silencer/on_mob_life(mob/living/carbon/C)
-	..()
+/datum/reagent/consumable/ethanol/silencer/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 50)
-			C.Dizzy(5)
-			C.stuttering += 2
+			L.Dizzy(5)
+			L.stuttering += 2
 		if(51 to 100)
-			C.Dizzy(5)
-			C.stuttering += 5
+			L.Dizzy(5)
+			L.stuttering += 5
 			if(prob(20))
-				C.confused += 3
+				L.confused += 3
 		if(101 to INFINITY)
-			C.Dizzy(6)
-			C.stuttering += 5
+			L.Dizzy(6)
+			L.stuttering += 5
 			if(prob(20))
-				C.confused += 5
-	..()
+				L.confused += 5
+	return ..()

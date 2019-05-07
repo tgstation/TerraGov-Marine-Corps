@@ -623,3 +623,10 @@ datum/proc/dd_SortValue()
 			L |= key
 		else
 			L[key] = temp[key]
+
+/proc/typecache_filter_list_reverse(list/atoms, list/typecache)
+	. = list()
+	for(var/thing in atoms)
+		var/atom/A = thing
+		if(!typecache[A.type])
+			. += A

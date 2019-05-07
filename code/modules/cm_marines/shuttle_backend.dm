@@ -331,17 +331,6 @@ L[get_turf(src)] = rotation
 /obj/effect/landmark/shuttle_loc/marine_src/dropship/link_location()
 	SHUTTLE_LINK_LOCATIONS("Dropship", S.locs_dock)
 
-/obj/effect/landmark/shuttle_loc/marine_src/evacuation
-
-/obj/effect/landmark/shuttle_loc/marine_src/evacuation/link_location()
-	..()
-	var/datum/shuttle/ferry/marine/evacuation_pod/S = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] Evac [name]"]
-	if(!S)
-		log_runtime("ERROR CODE SO1: unable to find shuttle with the tag of: ["[CONFIG_GET(string/ship_name)] Evac [name]"].")
-		return FALSE
-	S.locs_dock[get_turf(src)] = rotation
-	S.link_support_units(get_turf(src)) //Process links.
-
 /obj/effect/landmark/shuttle_loc/marine_int/dropship
 
 /obj/effect/landmark/shuttle_loc/marine_int/dropship/link_location()
@@ -351,11 +340,6 @@ L[get_turf(src)] = rotation
 
 /obj/effect/landmark/shuttle_loc/marine_trg/landing/link_location()
 	SHUTTLE_LINK_LOCATIONS("Dropship", S.locs_land)
-
-/obj/effect/landmark/shuttle_loc/marine_trg/evacuation
-
-/obj/effect/landmark/shuttle_loc/marine_trg/evacuation/link_location()
-	SHUTTLE_LINK_LOCATIONS("Evac", S.locs_land)
 
 /obj/effect/landmark/shuttle_loc/marine_crs/dropship
 
