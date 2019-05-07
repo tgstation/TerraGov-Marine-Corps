@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(blackbox)
 /datum/controller/subsystem/blackbox/fire()
 	set waitfor = FALSE
 
-	if(!CONFIG_GET(flag/use_exp_tracking))
+	if(!CONFIG_GET(flag/sql_enabled))
 		return
 
 	if(!SSdbcore.IsConnected())
@@ -28,6 +28,10 @@ SUBSYSTEM_DEF(blackbox)
 
 	if(!GLOB.round_id)
 		SSdbcore.SetRoundID()
+
+
+	if(!CONFIG_GET(flag/use_exp_tracking))
+		return
 
 	update_exp(10, FALSE)
 
