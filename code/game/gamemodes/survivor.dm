@@ -392,18 +392,18 @@ SPAWNS
         return TRUE
 
     if(H == 0 && X == 0)
-        round_finished = GAMEMODE_SURIVOR_DRAW
+        round_finished = MODE_SURIVOR_DRAW
         return TRUE
     else if(H > 0 && X == 0)
-        round_finished = GAMEMODE_SURIVOR_HUMAN_WIN
+        round_finished = MODE_SURIVOR_HUMAN_WIN
         return TRUE
     else if(H == 0 && X > 0)
-        round_finished = GAMEMODE_SURIVOR_XENO_WIN
+        round_finished = MODE_SURIVOR_XENO_WIN
         return TRUE
     return FALSE
 
 /datum/game_mode/survivor/declare_completion()
-    if (round_finished == GAMEMODE_SURIVOR_DRAW)
+    if (round_finished == MODE_SURIVOR_DRAW)
         return
     else
         to_chat(world, "<span class='round_header'> >> [round_finished] << </span>")

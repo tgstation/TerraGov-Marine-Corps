@@ -75,7 +75,7 @@
     if(anchored == FALSE)
         to_chat(M, "<span class='warning'>It's already broken.</span>")
         return
-        
+
     M.animation_attack_on(src)
     M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
         "<span class='danger'>You slice [src] apart!</span>", null, 5)
@@ -327,7 +327,7 @@
 
 
 /obj/item/beacon/rescue/proc/humans_win()
-    SSticker.mode.round_finished = GAMEMODE_SURIVOR_HUMAN_WIN
+    SSticker.mode.round_finished = MODE_SURIVOR_HUMAN_WIN
 
 
 /obj/item/beacon/rescue/proc/call_distress_team()

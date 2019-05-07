@@ -59,6 +59,15 @@
 
 #define MODE_GENERIC_DRAW_NUKE			"DRAW: Nuclear Explosion"
 
+#define MODE_SURIVOR_DRAW "Draw"
+#define MODE_SURIVOR_HUMAN_WIN "Survivors Win"
+#define MODE_SURIVOR_XENO_WIN "Xeno Win"
+
+#define SURVIVOR_BUILDER "SURVIVOR_BUILDER"
+#define SURVIVOR_MEDIC "SURVIVOR_MEDIC"
+#define SURVIVOR_FIGHTER "SURVIVOR_FIGHTER"
+#define SURVIVOR_SCAV "SURVIVOR_SCAV"
+
 #define SURVIVOR_WEAPONS list(\
 				list(/obj/item/weapon/gun/smg/mp7, /obj/item/ammo_magazine/smg/mp7),\
 				list(/obj/item/weapon/gun/shotgun/double/sawn, /obj/item/ammo_magazine/shotgun/flechette),\
