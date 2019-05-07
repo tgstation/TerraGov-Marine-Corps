@@ -142,7 +142,7 @@ SPAWNS
     spawn_mission_items()
 
 /datum/game_mode/survivor/proc/calculate_team_sizes()
-    init_xeno_size = max(CEILING(GLOB.ready_players * xeno_ratio, 1), 1)
+    init_xeno_size = max(CEILING(GLOB.ready_players * xeno_ratio, 1), xeno_min)
     init_human_size = GLOB.ready_players - init_xeno_size
     log_game("Initial team sizes. Xeno: [init_xeno_size] Human: [init_human_size]")
     return TRUE
@@ -150,9 +150,8 @@ SPAWNS
     // return (init_human_size > 0 && init_xeno_size > 0)
 
 /datum/game_mode/survivor/proc/assign_players()
-    var/list/possible_xenos = get_players_for_role(BE_ALIEN)
-    var/list/possible_humans = get_players_for_role(BE_SURVIVOR)
-
+    var/list/possible_xenos = shuffle(get_players_for_role(BE_ALIEN))
+    var/list/possible_humans = shuffle(get_players_for_role(BE_SURVIVOR))
 
     for(var/I in possible_humans)
         var/datum/mind/new_surivor = I
@@ -160,7 +159,6 @@ SPAWNS
         humans += new_surivor
 
         possible_humans -= I
-        // possible_xeno_queens -= I
         possible_xenos -= I
         if(length(humans) >= init_human_size)
             break
@@ -172,11 +170,14 @@ SPAWNS
         xenos += new_xeno
 
         possible_humans -= I
-        // possible_xeno_queens -= I
         possible_xenos -= I
         if(length(xenos) >= init_xeno_size)
             break
 
+
+    // Create larva for the rest
+    var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+    HS.stored_larva = max(init_xeno_size - length(xenos), 1)
     return TRUE
 
 
@@ -324,6 +325,8 @@ SPAWNS
         H.equip_to_slot(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
         H.equip_to_slot(new /obj/item/clothing/gloves/black(H), SLOT_GLOVES)
         H.equip_to_slot(new /obj/item/clothing/shoes/snow(H), SLOT_SHOES)
+
+    H.equip_to_slot(new /obj/item/flashlight/combat(H), SLOT_L_HAND)
 
     switch(job_title)
         if (SURVIVOR_BUILDER)
