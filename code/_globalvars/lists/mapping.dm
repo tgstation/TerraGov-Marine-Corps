@@ -51,15 +51,14 @@ GLOBAL_LIST_EMPTY(ruin_landmarks)
 
 // Survivor gamemode
 GLOBAL_LIST_EMPTY(survivor_spawn_human) // human spawns
-GLOBAL_LIST_EMPTY(survivor_spawn_xeno) // xeno spawns
-GLOBAL_LIST_EMPTY(survivor_spawn_random_item) // random item (guns, mateirals)
-GLOBAL_LIST_EMPTY(survivor_spawn_key_item) // required items ( power cells idk idk )
+GLOBAL_LIST_EMPTY(survivor_spawn_random_item) // random item (guns, materials)
+GLOBAL_LIST_EMPTY(survivor_spawn_key_item) // required items ( power cells, beacon, laptop, etc )
 
-	//away missions
+//away missions
 GLOBAL_LIST_EMPTY(awaydestinations)	//a list of landmarks that the warpgate can take you to
 GLOBAL_LIST_EMPTY(vr_spawnpoints)
 
-	//used by jump-to-area etc. Updated by area/updateName()
+//used by jump-to-area etc. Updated by area/updateName()
 GLOBAL_LIST_EMPTY(sortedAreas)
 /// An association from typepath to area instance. Only includes areas with `unique` set.
 GLOBAL_LIST_EMPTY(areas_by_type)
