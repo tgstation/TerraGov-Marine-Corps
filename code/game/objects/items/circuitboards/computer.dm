@@ -204,7 +204,7 @@
 
 /obj/item/circuitboard/computer/supplycomp/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I,/obj/item/multitool))
-		var/catastasis = src.contraband_enabled
+		var/catastasis = 0//src.contraband_enabled
 		var/opposite_catastasis
 		if(catastasis)
 			opposite_catastasis = "STANDARD"
@@ -215,8 +215,8 @@
 
 		switch( alert("Current receiver spectrum is set to: [catastasis]","Multitool-Circuitboard interface","Switch to [opposite_catastasis]","Cancel") )
 		//switch( alert("Current receiver spectrum is set to: " {(src.contraband_enabled) ? ("BROAD") : ("STANDARD")} , "Multitool-Circuitboard interface" , "Switch to " {(src.contraband_enabled) ? ("STANDARD") : ("BROAD")}, "Cancel") )
-			if("Switch to STANDARD","Switch to BROAD")
-				src.contraband_enabled = !src.contraband_enabled
+			//if("Switch to STANDARD","Switch to BROAD")
+				//src.contraband_enabled = !src.contraband_enabled
 
 			if("Cancel")
 				return

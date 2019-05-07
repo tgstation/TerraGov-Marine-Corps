@@ -37,7 +37,6 @@
 				stat("World Time:", "[world.time]")
 				GLOB.stat_entry()
 				config.stat_entry()
-				supply_controller.stat_entry()
 				shuttle_controller?.stat_entry()
 				lighting_controller.stat_entry()
 				stat(null)

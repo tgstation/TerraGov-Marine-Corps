@@ -21,3 +21,6 @@ SUBSYSTEM_DEF(points)
 	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
 
 	supply_points += SUPPLY_POINT_RATE / (1 MINUTES / wait)
+
+/datum/controller/subsystem/points/proc/scale_supply_points(scale)
+	supply_points = round(supply_points * scale)
