@@ -43,11 +43,12 @@ SUBSYSTEM_DEF(evacuation)
 		if(EVACUATION_STATUS_IN_PROGRESS)
 			if(world.time < pod_cooldown + EVACUATION_POD_LAUNCH_COOLDOWN)
 				return
-			if(!length(pod_list))
+			if(!length(pod_list)) // none left to pick from to evac
+				if(!length(SSshuttle.escape_pods)) // no valid pods left, all have launched/exploded
+					announce_evac_completion()
 				return
-			var/datum/shuttle/ferry/marine/evacuation_pod/P = pick(pod_list)
-			P.prepare_for_launch()
-			pod_list -= P
+			var/obj/docking_port/mobile/escape_pod/P = pick_n_take(pod_list)
+			P.launch()
 
 	switch(dest_status)
 		if(NUKE_EXPLOSION_ACTIVE)
@@ -78,12 +79,10 @@ SUBSYSTEM_DEF(evacuation)
 	evac_status = EVACUATION_STATUS_INITIATING
 	command_announcement.Announce("Emergency evacuation has been triggered. Please proceed to the escape pods.", "Priority Alert", new_sound='sound/AI/evacuate.ogg', to_xenos = 0)
 	xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
-	var/datum/shuttle/ferry/marine/evacuation_pod/P
-	for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
-		P = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] Evac [i]"]
-		P.toggle_ready()
-		pod_list += P
-	addtimer(CALLBACK(src, .proc/announce_evac_completion), 5 MINUTES)
+	pod_list = SSshuttle.escape_pods.Copy()
+	for(var/i in pod_list)
+		var/obj/docking_port/mobile/escape_pod/P = i
+		P.prep_for_launch()
 	return TRUE
 
 
@@ -102,10 +101,9 @@ SUBSYSTEM_DEF(evacuation)
 	evac_time = null
 	evac_status = EVACUATION_STATUS_STANDING_BY
 	command_announcement.Announce("Evacuation has been cancelled.", "Priority Alert", new_sound='sound/AI/evacuate_cancelled.ogg')
-	var/datum/shuttle/ferry/marine/evacuation_pod/P
-	for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
-		P = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] Evac [i]"]
-		P.toggle_ready()
+	for(var/i in pod_list)
+		var/obj/docking_port/mobile/escape_pod/P = i
+		P.unprep_for_launch()
 	return TRUE
 
 

@@ -120,21 +120,6 @@ var/global/datum/controller/shuttle_controller/shuttle_controller
 	shuttles[shuttle1.shuttle_tag] = shuttle1
 	process_shuttles += shuttle1
 
-	//START: ALMAYER SHUTTLES AND EVAC PODS
-	var/datum/shuttle/ferry/marine/evacuation_pod/P
-	for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
-		P = new
-		P.shuttle_tag = CONFIG_GET(string/ship_name) + " Evac [i]"
-		switch(i) //TODO: Do this procedurally.
-			if(10 to 11) 
-				P.info_tag = "Alt [CONFIG_GET(string/ship_name)] Evac"
-		P.load_datums()
-		shuttles[P.shuttle_tag] = P
-		process_shuttles += P
-
-
-	//END: ALMAYER SHUTTLES AND EVAC PODS
-
 	// Distress Shuttles - ERT
 	var/datum/shuttle/ferry/ert/ES
 	ES = new ()

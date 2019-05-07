@@ -196,6 +196,40 @@
 	W.levelupdate()
 	return W
 
+// Take off the top layer turf and replace it with the next baseturf down
+/turf/proc/ScrapeAway(amount=1, flags)
+	if(!amount)
+		return
+	if(length(baseturfs))
+		var/list/new_baseturfs = baseturfs.Copy()
+		var/turf_type = new_baseturfs[max(1, new_baseturfs.len - amount + 1)]
+		while(ispath(turf_type, /turf/baseturf_skipover))
+			amount++
+			if(amount > new_baseturfs.len)
+				CRASH("The bottomost baseturf of a turf is a skipover [src]([type])")
+			turf_type = new_baseturfs[max(1, new_baseturfs.len - amount + 1)]
+		new_baseturfs.len -= min(amount, new_baseturfs.len - 1) // No removing the very bottom
+		if(new_baseturfs.len == 1)
+			new_baseturfs = new_baseturfs[1]
+		return ChangeTurf(turf_type, new_baseturfs, flags)
+
+	if(baseturfs == type)
+		return src
+
+	return ChangeTurf(baseturfs, baseturfs, flags) // The bottom baseturf will never go away
+
+/turf/proc/empty(turf_type=/turf/open/space, baseturf_type, list/ignore_typecache, flags)
+	// Remove all atoms except observers, landmarks, docking ports
+	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port))
+	var/list/allowed_contents = typecache_filter_list_reverse(GetAllContentsIgnoring(ignore_typecache), ignored_atoms)
+	allowed_contents -= src
+	for(var/i in 1 to allowed_contents.len)
+		var/thing = allowed_contents[i]
+		qdel(thing, force=TRUE)
+
+	if(turf_type)
+		ChangeTurf(turf_type, baseturf_type, flags)
+		//var/turf/newT = ChangeTurf(turf_type, baseturf_type, flags)
 
 /turf/proc/ReplaceWithLattice()
 	src.ChangeTurf(/turf/open/space)

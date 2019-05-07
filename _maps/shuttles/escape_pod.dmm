@@ -1,0 +1,136 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall13";
+	icon_state = "wall13"
+	},
+/area/shuttle/escape_pod)
+"b" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall1";
+	icon_state = "wall1"
+	},
+/area/shuttle/escape_pod)
+"c" = (
+/obj/machinery/computer/shuttle/escape_pod,
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall2";
+	icon_state = "wall2"
+	},
+/area/shuttle/escape_pod)
+"d" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall3";
+	icon_state = "wall3"
+	},
+/area/shuttle/escape_pod)
+"e" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall12";
+	icon_state = "wall12"
+	},
+/area/shuttle/escape_pod)
+"f" = (
+/obj/machinery/cryopod/evacuation,
+/turf/open/shuttle/escapepod,
+/area/shuttle/escape_pod)
+"g" = (
+/turf/open/shuttle/escapepod{
+	tag = "icon-floor0";
+	icon_state = "floor0"
+	},
+/area/shuttle/escape_pod)
+"h" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall4";
+	icon_state = "wall4"
+	},
+/area/shuttle/escape_pod)
+"i" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall11";
+	icon_state = "wall11"
+	},
+/area/shuttle/escape_pod)
+"j" = (
+/turf/open/shuttle/escapepod{
+	tag = "icon-floor1";
+	icon_state = "floor1"
+	},
+/area/shuttle/escape_pod)
+"k" = (
+/obj/docking_port/mobile/escape_pod,
+/obj/machinery/door/airlock/evacuation,
+/turf/open/floor/plating,
+/area/shuttle/escape_pod)
+"l" = (
+/turf/open/shuttle/escapepod{
+	tag = "icon-floor10";
+	icon_state = "floor10"
+	},
+/area/shuttle/escape_pod)
+"m" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall9";
+	icon_state = "wall9"
+	},
+/area/shuttle/escape_pod)
+"n" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall7";
+	icon_state = "wall7"
+	},
+/area/shuttle/escape_pod)
+"o" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall6";
+	icon_state = "wall6"
+	},
+/area/shuttle/escape_pod)
+"p" = (
+/turf/closed/shuttle/escapepod{
+	icon_state = "wall10";
+	tag = "icon-wall11"
+	},
+/area/shuttle/escape_pod)
+"q" = (
+/turf/closed/shuttle/escapepod{
+	icon_state = "wall5";
+	tag = "icon-wall4"
+	},
+/area/shuttle/escape_pod)
+"r" = (
+/turf/closed/shuttle/escapepod{
+	icon_state = "wall8";
+	tag = "icon-wall7"
+	},
+/area/shuttle/escape_pod)
+
+(1,1,1) = {"
+a
+e
+i
+p
+m
+"}
+(2,1,1) = {"
+b
+f
+f
+f
+r
+"}
+(3,1,1) = {"
+c
+g
+j
+l
+n
+"}
+(4,1,1) = {"
+d
+h
+k
+q
+o
+"}

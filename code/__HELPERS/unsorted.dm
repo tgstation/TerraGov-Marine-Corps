@@ -1552,3 +1552,16 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 			return boundary_terms[2]
 
 	return CEILING((bucket_size / max) * current, 1)
+
+/atom/proc/GetAllContentsIgnoring(list/ignore_typecache)
+	if(!length(ignore_typecache))
+		return GetAllContents()
+	var/list/processing = list(src)
+	var/list/assembled = list()
+	while(processing.len)
+		var/atom/A = processing[1]
+		processing.Cut(1,2)
+		if(!ignore_typecache[A.type])
+			processing += A.contents
+			assembled += A
+	return assembled

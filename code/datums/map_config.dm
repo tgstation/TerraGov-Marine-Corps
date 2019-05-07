@@ -24,11 +24,7 @@
 	var/minetype = "lavaland"
 
 	var/allow_custom_shuttles = TRUE
-	var/shuttles = list(
-		"cargo" = "cargo_box",
-		"ferry" = "ferry_fancy",
-		"whiteship" = "whiteship_box",
-		"emergency" = "emergency_box")
+	var/shuttles = list()
 
 	var/announce_text = ""
 

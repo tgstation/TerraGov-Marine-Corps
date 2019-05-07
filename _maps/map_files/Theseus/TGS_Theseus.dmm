@@ -212,29 +212,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hull/upper_hull)
 "aaE" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall13";
-	icon_state = "wall13"
-	},
-/area/almayer/evacuation/pod7)
-"aaF" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall1";
-	icon_state = "wall1"
-	},
-/area/almayer/evacuation/pod7)
-"aaG" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall2";
-	icon_state = "wall2"
-	},
-/area/almayer/evacuation/pod7)
-"aaH" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall3";
-	icon_state = "wall3"
-	},
-/area/almayer/evacuation/pod7)
+/turf/open/floor/plating,
+/area/almayer/hull/upper_hull)
 "aaI" = (
 /obj/machinery/door/firedoor/theseus{
 	dir = 2
@@ -244,30 +223,6 @@
 	icon_state = "test_floor4"
 	},
 /area/almayer/hallways/aft_hallway)
-"aaJ" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall13";
-	icon_state = "wall13"
-	},
-/area/almayer/evacuation/pod8)
-"aaK" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall1";
-	icon_state = "wall1"
-	},
-/area/almayer/evacuation/pod8)
-"aaL" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall2";
-	icon_state = "wall2"
-	},
-/area/almayer/evacuation/pod8)
-"aaM" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall3";
-	icon_state = "wall3"
-	},
-/area/almayer/evacuation/pod8)
 "aaN" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -279,31 +234,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/upper_hull)
-"aaO" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall12";
-	icon_state = "wall12"
-	},
-/area/almayer/evacuation/pod7)
-"aaP" = (
-/obj/machinery/cryopod/evacuation,
-/turf/open/shuttle/escapepod,
-/area/almayer/evacuation/pod7)
-"aaQ" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	pixel_y = 30
-	},
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor0";
-	icon_state = "floor0"
-	},
-/area/almayer/evacuation/pod7)
-"aaR" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall4";
-	icon_state = "wall4"
-	},
-/area/almayer/evacuation/pod7)
 "aaS" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -324,47 +254,10 @@
 	tag = "icon-red"
 	},
 /area/almayer/hallways/aft_hallway)
-"aaU" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall12";
-	icon_state = "wall12"
-	},
-/area/almayer/evacuation/pod8)
-"aaV" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	pixel_y = 30
-	},
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
-/area/almayer/evacuation/pod8)
-"aaW" = (
-/obj/machinery/cryopod/evacuation,
-/turf/open/shuttle/escapepod,
-/area/almayer/evacuation/pod8)
-"aaX" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall4";
-	icon_state = "wall4"
-	},
-/area/almayer/evacuation/pod8)
-"aaY" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall11";
-	icon_state = "wall11"
-	},
-/area/almayer/evacuation/pod7)
-"aaZ" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor1";
-	icon_state = "floor1"
-	},
-/area/almayer/evacuation/pod7)
 "aba" = (
-/obj/machinery/door/airlock/evacuation,
+/obj/docking_port/stationary/escape_pod/right,
 /turf/open/floor/plating,
-/area/almayer/evacuation/pod7)
+/area/almayer/hull/upper_hull)
 "abb" = (
 /obj/machinery/door/airlock/almayer/secure{
 	dir = 4;
@@ -374,21 +267,9 @@
 /turf/open/floor/plating,
 /area/almayer/powered)
 "abc" = (
-/obj/machinery/door/airlock/evacuation,
+/obj/docking_port/stationary/escape_pod,
 /turf/open/floor/plating,
-/area/almayer/evacuation/pod8)
-"abd" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor5";
-	icon_state = "floor5"
-	},
-/area/almayer/evacuation/pod8)
-"abe" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor10";
-	icon_state = "floor10"
-	},
-/area/almayer/evacuation/pod7)
+/area/almayer/hull/upper_hull)
 "abf" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -412,42 +293,6 @@
 	tag = "icon-red"
 	},
 /area/almayer/hallways/aft_hallway)
-"abh" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall10";
-	icon_state = "wall10"
-	},
-/area/almayer/evacuation/pod8)
-"abi" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor6";
-	icon_state = "floor6"
-	},
-/area/almayer/evacuation/pod8)
-"abj" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall5";
-	icon_state = "wall5"
-	},
-/area/almayer/evacuation/pod8)
-"abk" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall9";
-	icon_state = "wall9"
-	},
-/area/almayer/evacuation/pod7)
-"abl" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall7";
-	icon_state = "wall7"
-	},
-/area/almayer/evacuation/pod7)
-"abm" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall6";
-	icon_state = "wall6"
-	},
-/area/almayer/evacuation/pod7)
 "abn" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -466,32 +311,8 @@
 /obj/machinery/power/apc/almayer,
 /turf/open/floor/grass,
 /area/almayer/living/starboard_garden)
-"abp" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall9";
-	icon_state = "wall9"
-	},
-/area/almayer/evacuation/pod8)
-"abq" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall7";
-	icon_state = "wall7"
-	},
-/area/almayer/evacuation/pod8)
-"abr" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall6";
-	icon_state = "wall6"
-	},
-/area/almayer/evacuation/pod8)
 "abs" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/almayer/hull/upper_hull)
-"abt" = (
-/obj/effect/landmark/shuttle_loc/marine_src/evacuation{
-	name = "1"
-	},
-/turf/closed/wall/almayer,
 /area/almayer/hull/upper_hull)
 "abu" = (
 /obj/machinery/camera/autoname/almayer{
@@ -505,12 +326,6 @@
 	icon_state = "red";
 	tag = "icon-red"
 	},
-/area/almayer/hallways/aft_hallway)
-"abv" = (
-/obj/effect/landmark/shuttle_loc/marine_src/evacuation{
-	name = "3"
-	},
-/turf/closed/wall/almayer,
 /area/almayer/hallways/aft_hallway)
 "abw" = (
 /obj/machinery/alarm,
@@ -599,54 +414,6 @@
 	tag = "icon-silver"
 	},
 /area/almayer/living/cafeteria_officer)
-"abJ" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall13";
-	icon_state = "wall13"
-	},
-/area/almayer/evacuation/pod5)
-"abK" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall1";
-	icon_state = "wall1"
-	},
-/area/almayer/evacuation/pod5)
-"abL" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall2";
-	icon_state = "wall2"
-	},
-/area/almayer/evacuation/pod5)
-"abM" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall3";
-	icon_state = "wall3"
-	},
-/area/almayer/evacuation/pod5)
-"abN" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall13";
-	icon_state = "wall13"
-	},
-/area/almayer/evacuation/pod6)
-"abO" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall1";
-	icon_state = "wall1"
-	},
-/area/almayer/evacuation/pod6)
-"abP" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall2";
-	icon_state = "wall2"
-	},
-/area/almayer/evacuation/pod6)
-"abQ" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall3";
-	icon_state = "wall3"
-	},
-/area/almayer/evacuation/pod6)
 "abR" = (
 /turf/closed/wall/almayer,
 /area/almayer/living/numbertwobunks)
@@ -874,56 +641,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hull/upper_hull)
-"acw" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall12";
-	icon_state = "wall12"
-	},
-/area/almayer/evacuation/pod5)
-"acx" = (
-/obj/machinery/cryopod/evacuation,
-/turf/open/shuttle/escapepod,
-/area/almayer/evacuation/pod5)
-"acy" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	pixel_y = 30
-	},
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor0";
-	icon_state = "floor0"
-	},
-/area/almayer/evacuation/pod5)
-"acz" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall4";
-	icon_state = "wall4"
-	},
-/area/almayer/evacuation/pod5)
-"acA" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall12";
-	icon_state = "wall12"
-	},
-/area/almayer/evacuation/pod6)
-"acB" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	pixel_y = 30
-	},
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
-/area/almayer/evacuation/pod6)
-"acC" = (
-/obj/machinery/cryopod/evacuation,
-/turf/open/shuttle/escapepod,
-/area/almayer/evacuation/pod6)
-"acD" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall4";
-	icon_state = "wall4"
-	},
-/area/almayer/evacuation/pod6)
 "acE" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1105,32 +822,6 @@
 /obj/item/folder/black,
 /turf/open/floor/carpet,
 /area/almayer/living/officer_rnr)
-"ade" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall11";
-	icon_state = "wall11"
-	},
-/area/almayer/evacuation/pod5)
-"adf" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor1";
-	icon_state = "floor1"
-	},
-/area/almayer/evacuation/pod5)
-"adg" = (
-/obj/machinery/door/airlock/evacuation,
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod5)
-"adh" = (
-/obj/machinery/door/airlock/evacuation,
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod6)
-"adi" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor5";
-	icon_state = "floor5"
-	},
-/area/almayer/evacuation/pod6)
 "adj" = (
 /obj/structure/table/almayer,
 /obj/item/taperecorder,
@@ -1284,18 +975,6 @@
 /obj/item/trash/cigbutt,
 /turf/open/floor/carpet,
 /area/almayer/living/officer_rnr)
-"adF" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall10";
-	icon_state = "wall10"
-	},
-/area/almayer/evacuation/pod5)
-"adG" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor10";
-	icon_state = "floor10"
-	},
-/area/almayer/evacuation/pod5)
 "adH" = (
 /obj/machinery/light{
 	dir = 8
@@ -1319,24 +998,6 @@
 	tag = "icon-red"
 	},
 /area/almayer/hallways/aft_hallway)
-"adJ" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall10";
-	icon_state = "wall10"
-	},
-/area/almayer/evacuation/pod6)
-"adK" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor6";
-	icon_state = "floor6"
-	},
-/area/almayer/evacuation/pod6)
-"adL" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall5";
-	icon_state = "wall5"
-	},
-/area/almayer/evacuation/pod6)
 "adM" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1491,42 +1152,6 @@
 	},
 /turf/open/floor/wood,
 /area/almayer/living/officer_rnr)
-"aef" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall9";
-	icon_state = "wall9"
-	},
-/area/almayer/evacuation/pod5)
-"aeg" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall7";
-	icon_state = "wall7"
-	},
-/area/almayer/evacuation/pod5)
-"aeh" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall6";
-	icon_state = "wall6"
-	},
-/area/almayer/evacuation/pod5)
-"aei" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall9";
-	icon_state = "wall9"
-	},
-/area/almayer/evacuation/pod6)
-"aej" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall7";
-	icon_state = "wall7"
-	},
-/area/almayer/evacuation/pod6)
-"aek" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall6";
-	icon_state = "wall6"
-	},
-/area/almayer/evacuation/pod6)
 "ael" = (
 /turf/closed/wall/almayer,
 /area/almayer/engineering/starboard_atmos)
@@ -1709,12 +1334,6 @@
 	dir = 4
 	},
 /area/almayer/shipboard/brig)
-"aeH" = (
-/obj/effect/landmark/shuttle_loc/marine_src/evacuation{
-	name = "2"
-	},
-/turf/closed/wall/almayer,
-/area/almayer/hull/upper_hull)
 "aeI" = (
 /turf/closed/wall/almayer,
 /area/almayer/living/officer_study)
@@ -1727,12 +1346,6 @@
 	icon_state = "red";
 	tag = "icon-red"
 	},
-/area/almayer/hallways/aft_hallway)
-"aeK" = (
-/obj/effect/landmark/shuttle_loc/marine_src/evacuation{
-	name = "4"
-	},
-/turf/closed/wall/almayer,
 /area/almayer/hallways/aft_hallway)
 "aeL" = (
 /turf/closed/wall/almayer,
@@ -20580,30 +20193,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/bridgebunks)
-"aSq" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall13";
-	icon_state = "wall13"
-	},
-/area/almayer/evacuation/pod3)
-"aSr" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall1";
-	icon_state = "wall1"
-	},
-/area/almayer/evacuation/pod3)
-"aSs" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall2";
-	icon_state = "wall2"
-	},
-/area/almayer/evacuation/pod3)
-"aSt" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall3";
-	icon_state = "wall3"
-	},
-/area/almayer/evacuation/pod3)
 "aSu" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -20625,30 +20214,6 @@
 	tag = "icon-red"
 	},
 /area/almayer/hallways/aft_hallway)
-"aSw" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall13";
-	icon_state = "wall13"
-	},
-/area/almayer/evacuation/pod4)
-"aSx" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall1";
-	icon_state = "wall1"
-	},
-/area/almayer/evacuation/pod4)
-"aSy" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall2";
-	icon_state = "wall2"
-	},
-/area/almayer/evacuation/pod4)
-"aSz" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall3";
-	icon_state = "wall3"
-	},
-/area/almayer/evacuation/pod4)
 "aSB" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -20755,31 +20320,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/starboard_point_defense)
-"aST" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall12";
-	icon_state = "wall12"
-	},
-/area/almayer/evacuation/pod3)
-"aSU" = (
-/obj/machinery/cryopod/evacuation,
-/turf/open/shuttle/escapepod,
-/area/almayer/evacuation/pod3)
-"aSV" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	pixel_y = 30
-	},
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor0";
-	icon_state = "floor0"
-	},
-/area/almayer/evacuation/pod3)
-"aSW" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall4";
-	icon_state = "wall4"
-	},
-/area/almayer/evacuation/pod3)
 "aSX" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -20808,31 +20348,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/ex_firing_range)
-"aSZ" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall12";
-	icon_state = "wall12"
-	},
-/area/almayer/evacuation/pod4)
-"aTa" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	pixel_y = 30
-	},
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
-/area/almayer/evacuation/pod4)
-"aTb" = (
-/obj/machinery/cryopod/evacuation,
-/turf/open/shuttle/escapepod,
-/area/almayer/evacuation/pod4)
-"aTc" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall4";
-	icon_state = "wall4"
-	},
-/area/almayer/evacuation/pod4)
 "aTd" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -20950,36 +20465,10 @@
 	icon_state = "blue"
 	},
 /area/almayer/shipboard/ex_firing_range)
-"aTy" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall11";
-	icon_state = "wall11"
-	},
-/area/almayer/evacuation/pod3)
-"aTz" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor1";
-	icon_state = "floor1"
-	},
-/area/almayer/evacuation/pod3)
-"aTA" = (
-/obj/machinery/door/airlock/evacuation,
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod3)
 "aTC" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/aft_hallway)
-"aTD" = (
-/obj/machinery/door/airlock/evacuation,
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod4)
-"aTE" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor5";
-	icon_state = "floor5"
-	},
-/area/almayer/evacuation/pod4)
 "aTF" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -21065,18 +20554,6 @@
 	dir = 8
 	},
 /area/almayer/shipboard/ex_firing_range)
-"aTN" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall10";
-	icon_state = "wall10"
-	},
-/area/almayer/evacuation/pod3)
-"aTO" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor10";
-	icon_state = "floor10"
-	},
-/area/almayer/evacuation/pod3)
 "aTP" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
@@ -21088,24 +20565,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hull/upper_hull)
-"aTR" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall10";
-	icon_state = "wall10"
-	},
-/area/almayer/evacuation/pod4)
-"aTS" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor6";
-	icon_state = "floor6"
-	},
-/area/almayer/evacuation/pod4)
-"aTT" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall5";
-	icon_state = "wall5"
-	},
-/area/almayer/evacuation/pod4)
 "aTU" = (
 /obj/structure/holohoop{
 	dir = 4;
@@ -21167,48 +20626,6 @@
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/ex_firing_range)
-"aUd" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall9";
-	icon_state = "wall9"
-	},
-/area/almayer/evacuation/pod3)
-"aUe" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall7";
-	icon_state = "wall7"
-	},
-/area/almayer/evacuation/pod3)
-"aUf" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall6";
-	icon_state = "wall6"
-	},
-/area/almayer/evacuation/pod3)
-"aUh" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall9";
-	icon_state = "wall9"
-	},
-/area/almayer/evacuation/pod4)
-"aUi" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall7";
-	icon_state = "wall7"
-	},
-/area/almayer/evacuation/pod4)
-"aUj" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall6";
-	icon_state = "wall6"
-	},
-/area/almayer/evacuation/pod4)
-"aUk" = (
-/obj/effect/landmark/shuttle_loc/marine_src/evacuation{
-	name = "6"
-	},
-/turf/closed/wall/almayer,
-/area/almayer/hull/upper_hull)
 "aUl" = (
 /obj/machinery/door/firedoor/theseus{
 	dir = 2
@@ -21220,12 +20637,6 @@
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
-/area/almayer/hallways/aft_hallway)
-"aUm" = (
-/obj/effect/landmark/shuttle_loc/marine_src/evacuation{
-	name = "9"
-	},
-/turf/closed/wall/almayer,
 /area/almayer/hallways/aft_hallway)
 "aUn" = (
 /obj/machinery/light/small,
@@ -21242,183 +20653,11 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/starboard_point_defense)
-"aUp" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall13";
-	icon_state = "wall13"
-	},
-/area/almayer/evacuation/pod1)
-"aUq" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall1";
-	icon_state = "wall1"
-	},
-/area/almayer/evacuation/pod1)
-"aUr" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall2";
-	icon_state = "wall2"
-	},
-/area/almayer/evacuation/pod1)
-"aUs" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall3";
-	icon_state = "wall3"
-	},
-/area/almayer/evacuation/pod1)
-"aUt" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall13";
-	icon_state = "wall13"
-	},
-/area/almayer/evacuation/pod2)
-"aUu" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall1";
-	icon_state = "wall1"
-	},
-/area/almayer/evacuation/pod2)
-"aUv" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall2";
-	icon_state = "wall2"
-	},
-/area/almayer/evacuation/pod2)
-"aUw" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall3";
-	icon_state = "wall3"
-	},
-/area/almayer/evacuation/pod2)
 "aUx" = (
 /turf/open/floor/theseus_hull/dir{
 	dir = 10
 	},
 /area/space)
-"aUy" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall12";
-	icon_state = "wall12"
-	},
-/area/almayer/evacuation/pod1)
-"aUz" = (
-/obj/machinery/cryopod/evacuation,
-/turf/open/shuttle/escapepod,
-/area/almayer/evacuation/pod1)
-"aUA" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	pixel_y = 30
-	},
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor0";
-	icon_state = "floor0"
-	},
-/area/almayer/evacuation/pod1)
-"aUB" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall4";
-	icon_state = "wall4"
-	},
-/area/almayer/evacuation/pod1)
-"aUC" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall12";
-	icon_state = "wall12"
-	},
-/area/almayer/evacuation/pod2)
-"aUD" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	pixel_y = 30
-	},
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
-/area/almayer/evacuation/pod2)
-"aUE" = (
-/obj/machinery/cryopod/evacuation,
-/turf/open/shuttle/escapepod,
-/area/almayer/evacuation/pod2)
-"aUF" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall4";
-	icon_state = "wall4"
-	},
-/area/almayer/evacuation/pod2)
-"aUG" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall11";
-	icon_state = "wall11"
-	},
-/area/almayer/evacuation/pod1)
-"aUH" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor1";
-	icon_state = "floor1"
-	},
-/area/almayer/evacuation/pod1)
-"aUI" = (
-/obj/machinery/door/airlock/evacuation,
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod1)
-"aUJ" = (
-/obj/machinery/door/airlock/evacuation,
-/turf/open/floor/plating,
-/area/almayer/evacuation/pod2)
-"aUK" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor5";
-	icon_state = "floor5"
-	},
-/area/almayer/evacuation/pod2)
-"aUL" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall10";
-	icon_state = "wall10"
-	},
-/area/almayer/evacuation/pod1)
-"aUM" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor10";
-	icon_state = "floor10"
-	},
-/area/almayer/evacuation/pod1)
-"aUN" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall10";
-	icon_state = "wall10"
-	},
-/area/almayer/evacuation/pod2)
-"aUO" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor6";
-	icon_state = "floor6"
-	},
-/area/almayer/evacuation/pod2)
-"aUP" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall5";
-	icon_state = "wall5"
-	},
-/area/almayer/evacuation/pod2)
-"aUQ" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall9";
-	icon_state = "wall9"
-	},
-/area/almayer/evacuation/pod1)
-"aUR" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall7";
-	icon_state = "wall7"
-	},
-/area/almayer/evacuation/pod1)
-"aUS" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall6";
-	icon_state = "wall6"
-	},
-/area/almayer/evacuation/pod1)
 "aUT" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -21437,30 +20676,6 @@
 	icon_state = "test_floor4"
 	},
 /area/almayer/hallways/aft_hallway)
-"aUV" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall9";
-	icon_state = "wall9"
-	},
-/area/almayer/evacuation/pod2)
-"aUW" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall7";
-	icon_state = "wall7"
-	},
-/area/almayer/evacuation/pod2)
-"aUX" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall6";
-	icon_state = "wall6"
-	},
-/area/almayer/evacuation/pod2)
-"aUY" = (
-/obj/effect/landmark/shuttle_loc/marine_src/evacuation{
-	name = "7"
-	},
-/turf/closed/wall/almayer,
-/area/almayer/hull/upper_hull)
 "aUZ" = (
 /obj/machinery/light/small,
 /obj/structure/cable/yellow{
@@ -21481,12 +20696,6 @@
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
-/area/almayer/hallways/aft_hallway)
-"aVb" = (
-/obj/effect/landmark/shuttle_loc/marine_src/evacuation{
-	name = "8"
-	},
-/turf/closed/wall/almayer,
 /area/almayer/hallways/aft_hallway)
 "aVc" = (
 /obj/machinery/light{
@@ -21667,29 +20876,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/starboard_point_defense)
 "aVB" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall13";
-	icon_state = "wall13"
-	},
-/area/almayer/evacuation/pod10)
-"aVC" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall2";
-	icon_state = "wall2"
-	},
-/area/almayer/evacuation/pod10)
-"aVD" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall1";
-	icon_state = "wall1"
-	},
-/area/almayer/evacuation/pod10)
-"aVE" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall3";
-	icon_state = "wall3"
-	},
-/area/almayer/evacuation/pod10)
+/turf/open/floor/plating,
+/area/almayer/hull/lower_hull)
 "aVF" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/almayer/mono,
@@ -21751,22 +20939,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hull/lower_hull)
-"aVO" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall10";
-	icon_state = "wall10"
-	},
-/area/almayer/evacuation/pod10)
-"aVP" = (
-/obj/machinery/cryopod/evacuation,
-/turf/open/shuttle/escapepod,
-/area/almayer/evacuation/pod10)
-"aVQ" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall4";
-	icon_state = "wall4"
-	},
-/area/almayer/evacuation/pod10)
 "aVR" = (
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor/almayer/mono,
@@ -21777,27 +20949,6 @@
 "aVT" = (
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/starboard_point_defense)
-"aVU" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor12";
-	icon_state = "floor12"
-	},
-/area/almayer/evacuation/pod10)
-"aVV" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor11";
-	icon_state = "floor11"
-	},
-/area/almayer/evacuation/pod10)
-"aVW" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	pixel_x = 30
-	},
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor2";
-	icon_state = "floor2"
-	},
-/area/almayer/evacuation/pod10)
 "aVX" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/almayer/mono,
@@ -21806,41 +20957,9 @@
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hull/lower_hull)
-"aVZ" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall9";
-	icon_state = "wall9"
-	},
-/area/almayer/evacuation/pod10)
-"aWa" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall15";
-	icon_state = "wall15"
-	},
-/area/almayer/evacuation/pod10)
 "aWb" = (
-/obj/machinery/door/airlock/evacuation{
-	dir = 2
-	},
+/obj/docking_port/stationary/escape_pod/down,
 /turf/open/floor/plating,
-/area/almayer/evacuation/pod10)
-"aWc" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall14";
-	icon_state = "wall14"
-	},
-/area/almayer/evacuation/pod10)
-"aWd" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall6";
-	icon_state = "wall6"
-	},
-/area/almayer/evacuation/pod10)
-"aWe" = (
-/obj/effect/landmark/shuttle_loc/marine_src/evacuation{
-	name = "10"
-	},
-/turf/closed/wall/almayer,
 /area/almayer/hull/lower_hull)
 "aWf" = (
 /turf/closed/wall/almayer,
@@ -45231,30 +44350,6 @@
 	tag = "icon-red"
 	},
 /area/almayer/hallways/port_hallway)
-"caw" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall13";
-	icon_state = "wall13"
-	},
-/area/almayer/evacuation/pod11)
-"cax" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall1";
-	icon_state = "wall1"
-	},
-/area/almayer/evacuation/pod11)
-"cay" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall2";
-	icon_state = "wall2"
-	},
-/area/almayer/evacuation/pod11)
-"caz" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall3";
-	icon_state = "wall3"
-	},
-/area/almayer/evacuation/pod11)
 "caA" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /turf/open/floor/almayer/mono,
@@ -45427,31 +44522,6 @@
 	tag = "icon-red"
 	},
 /area/almayer/hallways/port_hallway)
-"cba" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall10";
-	icon_state = "wall10"
-	},
-/area/almayer/evacuation/pod11)
-"cbb" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	pixel_y = 30
-	},
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
-/area/almayer/evacuation/pod11)
-"cbc" = (
-/obj/machinery/cryopod/evacuation,
-/turf/open/shuttle/escapepod,
-/area/almayer/evacuation/pod11)
-"cbd" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall4";
-	icon_state = "wall4"
-	},
-/area/almayer/evacuation/pod11)
 "cbe" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -45709,15 +44779,9 @@
 /turf/open/floor/almayer,
 /area/almayer/powered)
 "cbR" = (
-/obj/machinery/door/airlock/evacuation,
+/obj/docking_port/stationary/escape_pod,
 /turf/open/floor/plating,
-/area/almayer/evacuation/pod11)
-"cbS" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor5";
-	icon_state = "floor5"
-	},
-/area/almayer/evacuation/pod11)
+/area/almayer/hull/lower_hull)
 "cbT" = (
 /obj/structure/rack,
 /obj/item/reagent_container/food/condiment/sugar,
@@ -46106,12 +45170,6 @@
 	tag = "icon-red"
 	},
 /area/almayer/hallways/port_hallway)
-"ccH" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor12";
-	icon_state = "floor12"
-	},
-/area/almayer/evacuation/pod11)
 "ccI" = (
 /obj/structure/rack,
 /obj/item/reagent_container/food/condiment/enzyme,
@@ -46316,30 +45374,6 @@
 	dir = 1
 	},
 /area/almayer/hallways/port_hallway)
-"cdn" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall9";
-	icon_state = "wall9"
-	},
-/area/almayer/evacuation/pod11)
-"cdo" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall8";
-	icon_state = "wall8"
-	},
-/area/almayer/evacuation/pod11)
-"cdp" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall7";
-	icon_state = "wall7"
-	},
-/area/almayer/evacuation/pod11)
-"cdq" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall6";
-	icon_state = "wall6"
-	},
-/area/almayer/evacuation/pod11)
 "cdr" = (
 /obj/structure/rack,
 /obj/item/reagent_container/food/snacks/chocolatebar,
@@ -46469,12 +45503,6 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/almayer/mono,
-/area/almayer/hull/lower_hull)
-"cdK" = (
-/obj/effect/landmark/shuttle_loc/marine_src/evacuation{
-	name = "5"
-	},
-/turf/closed/wall/almayer,
 /area/almayer/hull/lower_hull)
 "cdL" = (
 /obj/machinery/door_control{
@@ -46961,66 +45989,10 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/port_point_defense)
-"ceP" = (
-/turf/closed/shuttle/escapepod,
-/area/almayer/evacuation/pod9)
-"ceQ" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall1";
-	icon_state = "wall1"
-	},
-/area/almayer/evacuation/pod9)
 "ceR" = (
-/obj/machinery/door/airlock/evacuation{
-	dir = 2
-	},
+/obj/docking_port/stationary/escape_pod/up,
 /turf/open/floor/plating,
-/area/almayer/evacuation/pod9)
-"ceS" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall2";
-	icon_state = "wall2"
-	},
-/area/almayer/evacuation/pod9)
-"ceT" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall3";
-	icon_state = "wall3"
-	},
-/area/almayer/evacuation/pod9)
-"ceU" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall11";
-	icon_state = "wall11"
-	},
-/area/almayer/evacuation/pod9)
-"ceV" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	pixel_y = 30
-	},
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor7";
-	icon_state = "floor7"
-	},
-/area/almayer/evacuation/pod9)
-"ceW" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor8";
-	icon_state = "floor8"
-	},
-/area/almayer/evacuation/pod9)
-"ceX" = (
-/turf/open/shuttle/escapepod{
-	tag = "icon-floor9";
-	icon_state = "floor9"
-	},
-/area/almayer/evacuation/pod9)
-"ceY" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall4";
-	icon_state = "wall4"
-	},
-/area/almayer/evacuation/pod9)
+/area/almayer/hull/lower_hull)
 "ceZ" = (
 /obj/machinery/conveyor{
 	id = "lower_garbage"
@@ -47039,10 +46011,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/lower_hull)
-"cfb" = (
-/obj/machinery/cryopod/evacuation,
-/turf/open/shuttle/escapepod,
-/area/almayer/evacuation/pod9)
 "cfc" = (
 /obj/machinery/conveyor{
 	id = "lower_garbage"
@@ -47058,35 +46026,11 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/lower_hull)
-"cfe" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall9";
-	icon_state = "wall9"
-	},
-/area/almayer/evacuation/pod9)
-"cff" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall7";
-	icon_state = "wall7"
-	},
-/area/almayer/evacuation/pod9)
-"cfg" = (
-/turf/closed/shuttle/escapepod{
-	tag = "icon-wall6";
-	icon_state = "wall6"
-	},
-/area/almayer/evacuation/pod9)
 "cfh" = (
 /obj/machinery/conveyor_switch{
 	id = "lower_garbage"
 	},
 /turf/open/floor/almayer/mono,
-/area/almayer/hull/lower_hull)
-"cfi" = (
-/obj/effect/landmark/shuttle_loc/marine_src/evacuation{
-	name = "11"
-	},
-/turf/closed/wall/almayer,
 /area/almayer/hull/lower_hull)
 "cfj" = (
 /obj/structure/disposalpipe/segment,
@@ -80584,7 +79528,7 @@ aVs
 cbQ
 aVs
 aVs
-cdK
+aVs
 aVm
 aVk
 aaa
@@ -80836,11 +79780,11 @@ bSw
 bXF
 bYS
 aVs
-caw
-cba
+aVB
+aVB
 cbR
-cba
-cdn
+aVB
+aVB
 aVs
 aVm
 aVk
@@ -81093,11 +80037,11 @@ bVy
 bUa
 bUa
 aVs
-cax
-cbb
-cbS
-ccH
-cdo
+aVB
+aVB
+aVB
+aVB
+aVB
 aVs
 aVm
 aVk
@@ -81350,11 +80294,11 @@ bUa
 bUa
 bUa
 aVs
-cay
-cbc
-cbc
-cbc
-cdp
+aVB
+aVB
+aVB
+aVB
+aVB
 aVs
 aVm
 aVk
@@ -81607,11 +80551,11 @@ bWE
 bXG
 bYT
 aVs
-caz
-cbd
-cbd
-cbd
-cdq
+aVB
+aVB
+aVB
+aVB
+aVB
 aVs
 aVm
 aVk
@@ -86835,13 +85779,13 @@ aap
 aap
 aap
 aap
-abt
 aap
 aap
 aap
 aap
 aap
-aeH
+aap
+aap
 aap
 aap
 aap
@@ -86877,13 +85821,13 @@ aap
 aap
 aap
 aap
-aUk
 aap
 aap
 aap
 aap
 aap
-aUY
+aap
+aap
 aam
 aai
 aaa
@@ -87088,16 +86032,16 @@ aai
 aal
 aap
 aaE
-aaO
-aaY
-aaY
-abk
+aaE
+aaE
+aaE
+aaE
 aar
-abJ
-acw
-ade
-adF
-aef
+aaE
+aaE
+aaE
+aaE
+aaE
 aeI
 afw
 agC
@@ -87129,17 +86073,17 @@ aLs
 aLs
 chm
 aDk
-aSq
-aST
-aTy
-aTN
-aUd
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-aUp
-aUy
-aUG
-aUL
-aUQ
+aaE
+aaE
+aaE
+aaE
+aaE
 aap
 aam
 aai
@@ -87344,17 +86288,17 @@ aaf
 aai
 aal
 aap
-aaF
-aaP
-aaP
-aaP
-abl
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-abK
-acx
-acx
-acx
-aeg
+aaE
+aaE
+aaE
+aaE
+aaE
 aeI
 abE
 agD
@@ -87386,17 +86330,17 @@ chm
 chm
 chm
 aDk
-aSr
-aSU
-aSU
-aSU
-aUe
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-aUq
-aUz
-aUz
-aUz
-aUR
+aaE
+aaE
+aaE
+aaE
+aaE
 aap
 aam
 aai
@@ -87601,17 +86545,17 @@ aai
 aai
 aam
 aap
-aaG
-aaQ
-aaZ
-abe
-abl
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-abL
-acy
-adf
-adG
-aeg
+aaE
+aaE
+aaE
+aaE
+aaE
 aeI
 afy
 agE
@@ -87643,17 +86587,17 @@ chm
 chm
 chm
 aDk
-aSs
-aSV
-aTz
-aTO
-aUe
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-aUr
-aUA
-aUH
-aUM
-aUR
+aaE
+aaE
+aaE
+aaE
+aaE
 aap
 aam
 aai
@@ -87858,17 +86802,17 @@ aao
 aao
 aaw
 aap
-aaH
-aaR
+aaE
+aaE
 aba
-aaR
-abm
+aaE
+aaE
 aar
-abM
-acz
-adg
-acz
-aeh
+aaE
+aaE
+aba
+aaE
+aaE
 aeI
 afz
 agE
@@ -87900,17 +86844,17 @@ chm
 chm
 chm
 aDk
-aSt
-aSW
-aTA
-aSW
-aUf
+aaE
+aaE
+aba
+aaE
+aaE
 aar
-aUs
-aUB
-aUI
-aUB
-aUS
+aaE
+aaE
+aba
+aaE
+aaE
 aap
 aan
 aao
@@ -87978,7 +86922,7 @@ aVs
 aVs
 aVs
 aVs
-aWe
+aVs
 aWk
 aVu
 aWx
@@ -88047,7 +86991,7 @@ aVs
 aVs
 aVs
 aVs
-cfi
+aVs
 caj
 aVk
 aaa
@@ -88232,9 +87176,9 @@ aVk
 aVm
 aVs
 aVB
-aVO
-aVO
-aVZ
+aVB
+aVB
+aVB
 aVs
 aVs
 aWq
@@ -88300,10 +87244,10 @@ aVs
 ceu
 aVs
 aVs
-ceP
-ceU
-ceU
-cfe
+aVB
+aVB
+aVB
+aVB
 aVs
 cak
 aVk
@@ -88488,10 +87432,10 @@ aaa
 aVk
 aVm
 aVs
-aVC
-aVP
-aVU
-aWa
+aVB
+aVB
+aVB
+aVB
 aWf
 aWl
 aWl
@@ -88557,10 +87501,10 @@ cep
 cev
 ceG
 aWf
-ceQ
-ceV
-cfb
-cff
+aVB
+aVB
+aVB
+aVB
 aVs
 caj
 aVk
@@ -88745,9 +87689,9 @@ aaa
 aVk
 aVn
 aVs
-aVD
-aVP
-aVV
+aVB
+aVB
+aVB
 aWb
 aWg
 aWm
@@ -88815,9 +87759,9 @@ cew
 bDM
 ceM
 ceR
-ceW
-cfb
-cff
+aVB
+aVB
+aVB
 aVs
 cal
 aVk
@@ -89002,10 +87946,10 @@ aaa
 aVk
 aVn
 aVs
-aVC
-aVP
-aVW
-aWc
+aVB
+aVB
+aVB
+aVB
 aWf
 aWn
 aWs
@@ -89071,10 +88015,10 @@ ceq
 cex
 ceH
 aWf
-ceS
-ceX
-cfb
-cff
+aVB
+aVB
+aVB
+aVB
 aVs
 cal
 aVk
@@ -89148,13 +88092,13 @@ aar
 abb
 aar
 aar
-abv
+aar
 aar
 aar
 abb
 aar
 aar
-aeK
+aar
 aar
 agG
 ahW
@@ -89190,13 +88134,13 @@ aar
 abb
 aar
 aar
-aUm
+aar
 aar
 aar
 abb
 aar
 aar
-aVb
+aar
 ajd
 aVe
 aap
@@ -89259,10 +88203,10 @@ aaa
 aVk
 aVn
 aVs
-aVE
-aVQ
-aVQ
-aWd
+aVB
+aVB
+aVB
+aVB
 aWf
 aWo
 aWt
@@ -89328,10 +88272,10 @@ cbn
 cey
 ceI
 aWf
-ceT
-ceY
-ceY
-cfg
+aVB
+aVB
+aVB
+aVB
 aVs
 cal
 aVk
@@ -89400,17 +88344,17 @@ aap
 aap
 aap
 aap
-aaJ
-aaU
+aaE
+aaE
 abc
-abh
-abp
+aaE
+aaE
 aar
-abN
-acA
-adh
-adJ
-aei
+aaE
+aaE
+abc
+aaE
+aaE
 aeL
 afC
 agH
@@ -89442,17 +88386,17 @@ aPg
 aRa
 aRb
 abR
-aSw
-aSZ
-aTD
-aTR
-aUh
+aaE
+aaE
+abc
+aaE
+aaE
 aar
-aUt
-aUC
-aUJ
-aUN
-aUV
+aaE
+aaE
+abc
+aaE
+aaE
 aap
 aap
 aap
@@ -89657,17 +88601,17 @@ aao
 aao
 aaz
 aap
-aaK
-aaV
-abd
-abi
-abq
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-abO
-acB
-adi
-adK
-aej
+aaE
+aaE
+aaE
+aaE
+aaE
 aeL
 afD
 agH
@@ -89699,17 +88643,17 @@ aQm
 aRb
 aRb
 abR
-aSx
-aTa
-aTE
-aTS
-aUi
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-aUu
-aUD
-aUK
-aUO
-aUW
+aaE
+aaE
+aaE
+aaE
+aaE
 aap
 aaj
 aao
@@ -89914,17 +88858,17 @@ aai
 aai
 aam
 aap
-aaL
-aaW
-aaW
-aaW
-abq
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-abP
-acC
-acC
-acC
-aej
+aaE
+aaE
+aaE
+aaE
+aaE
 aeL
 afE
 agI
@@ -89956,17 +88900,17 @@ aQn
 aRb
 aRb
 abR
-aSy
-aTb
-aTb
-aTb
-aUi
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-aUv
-aUE
-aUE
-aUE
-aUW
+aaE
+aaE
+aaE
+aaE
+aaE
 aap
 aUn
 aai
@@ -90171,17 +89115,17 @@ aag
 aai
 aaA
 aap
-aaM
-aaX
-aaX
-abj
-abr
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-abQ
-acD
-acD
-adL
-aek
+aaE
+aaE
+aaE
+aaE
+aaE
 aeL
 afF
 agJ
@@ -90213,17 +89157,17 @@ aQo
 aRb
 aRb
 abR
-aSz
-aTc
-aTc
-aTT
-aUj
+aaE
+aaE
+aaE
+aaE
+aaE
 aar
-aUw
-aUF
-aUF
-aUP
-aUX
+aaE
+aaE
+aaE
+aaE
+aaE
 aap
 aam
 aai
