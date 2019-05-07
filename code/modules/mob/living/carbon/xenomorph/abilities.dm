@@ -475,6 +475,10 @@
 
 	if(isobj(A))
 		O = A
+		if(CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+			to_chat(X, "<span class='warning'>You cannot dissolve \the [A].</span>")
+			return fail_activate()	
+
 		if(O.density || istype(O, /obj/structure))
 			wait_time = 40 //dense objects are big, so takes longer to melt.
 

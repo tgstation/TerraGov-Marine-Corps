@@ -72,6 +72,10 @@
 
 
 /obj/item/laptop/rescue/attack_alien(mob/living/carbon/Xenomorph/M)
+    if(anchored == FALSE)
+        to_chat(M, "<span class='warning'>It's already broken.</span>")
+        return
+        
     M.animation_attack_on(src)
     M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
         "<span class='danger'>You slice [src] apart!</span>", null, 5)
@@ -158,8 +162,6 @@
         to_chat(usr, "<span class='warning'>It looks like a few parts are missing.</span>")
 
 
-
-
 /obj/item/beacon/rescue/process()
     var/list/nearby = range(scan_range, src)
     var/nearby_setup = 0
@@ -211,6 +213,10 @@
 
 
 /obj/item/beacon/rescue/attack_alien(mob/living/carbon/Xenomorph/M)
+    if(current_hp <= 0)
+        to_chat(M, "<span class='warning'>It's already broken.</span>")
+        return
+
     M.animation_attack_on(src)
     M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
         "<span class='danger'>You slice [src] apart!</span>", null, 5)
