@@ -53,11 +53,11 @@
 	emote_type = EMOTE_AUDIBLE
 
 
-/datum/emote/living/carbon/human/collapse/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+/datum/emote/living/carbon/human/collapse/run_emote(mob/living/carbon/human/user, params, type_override, intentional = FALSE, prefix)
 	. = ..()
-	if(. && isliving(user))
-		var/mob/living/L = user
-		L.KnockOut(2)
+	if(!.)
+		return
+	user.KnockOut(2)
 
 
 /datum/emote/living/carbon/human/cough
@@ -91,11 +91,11 @@
 	message = "faints."
 
 
-/datum/emote/living/carbon/human/faint/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+/datum/emote/living/carbon/human/faint/run_emote(mob/living/carbon/human/user, params, type_override, intentional = FALSE, prefix)
 	. = ..()
-	if(. && isliving(user))
-		var/mob/living/L = user
-		L.sleeping += 10
+	if(!.)
+		return
+	user.sleeping += 10
 
 
 /datum/emote/living/carbon/human/frown
@@ -331,6 +331,8 @@
 
 /datum/emote/living/carbon/human/scream/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
 	. = ..()
+	if(!.)
+		return
 	var/image/scream = image('icons/mob/talk.dmi', user, icon_state = "scream")
 	user.add_emote_overlay(scream)
 
@@ -353,6 +355,8 @@
 
 /datum/emote/living/carbon/human/medic/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
 	. = ..()
+	if(!.)
+		return
 	var/image/medic = image('icons/mob/talk.dmi', user, icon_state = "medic")
 	user.add_emote_overlay(medic)
 
@@ -374,5 +378,7 @@
 
 /datum/emote/living/carbon/human/pain/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
 	. = ..()
+	if(!.)
+		return
 	var/image/pain = image('icons/mob/talk.dmi', user, icon_state = "pain")
 	user.add_emote_overlay(pain)

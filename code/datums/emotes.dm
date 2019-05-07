@@ -125,7 +125,7 @@
 	if(is_type_in_typecache(user, mob_type_blacklist_typecache))
 		return FALSE
 
-	if(sound && user.audio_emote_cooldown(intentional))
+	if((sound || get_sound(user)) && user.audio_emote_cooldown(intentional))
 		return FALSE
 
 	if(intentional && user.client)
