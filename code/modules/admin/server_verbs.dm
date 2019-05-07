@@ -286,8 +286,8 @@
 
 /datum/admins/proc/end_round()
 	set category = "Server"
-	set desc = "Immediately ends the round, be very careful"
 	set name = "End Round"
+	set desc = "Immediately ends the round, be very careful"
 
 	if(!check_rights(R_SERVER))
 		return
@@ -295,13 +295,23 @@
 	if(!SSticker?.mode)
 		return
 
-	if(alert("Are you sure you want to end the round?", "Confirmation", "Yes", "No") != "Yes")
+	if(alert("Are you sure you want to end the round?", "End Round", "Yes", "No") != "Yes")
 		return
 
-	SSticker.mode.round_finished = "Admin Intervention"
+	var/winstate = input(usr, "What do you want the round end state to be?", "End Round") as null|anything in list("Custom", "Admin Intervention", MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_X_MINOR,  MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
+	if(!winstate)
+		return
 
-	log_admin("[key_name(usr)] has made the round end early.")
-	message_admins("[ADMIN_TPMONTY(usr)] has made the round end early.")
+	if(winstate == "Custom")
+		winstate = input(usr, "Please enter a custom round end state.", "End Round") as null|text
+		if(!winstate)
+			return
+
+	SSticker.force_ending = TRUE
+	SSticker.mode.round_finished = winstate
+
+	log_admin("[key_name(usr)] has made the round end early - [winstate].")
+	message_admins("[ADMIN_TPMONTY(usr)] has made the round end early - [winstate].")
 
 
 /datum/admins/proc/delay_start()
