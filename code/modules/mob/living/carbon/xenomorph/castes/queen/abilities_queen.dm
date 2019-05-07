@@ -760,14 +760,16 @@
 
 	if(X.check_plasma(300))
 		X.visible_message("<span class='xenowarning'>\The [X] begins buzzing menacingly at [A].</span>", \
-		"<span class='xenowarning'>You start to advance larval growth inside of [A].</span>")
+		"<span class='xenowarning'>You start to advance larval growth inside of [A].</span>", \
+		"<span class='italics'>You hear an angry buzzing...</span>")
 		if(!do_after(X, 50, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(300))
 			return
 		if(!X.check_state())
 			return
 		X.use_plasma(300)
 		X.visible_message("<span class='xenowarning'>\The [X] finishes buzzing, [X.p_their()] echo slowly waning away!</span>", \
-		"<span class='xenowarning'>You advance the larval growth inside of [A] a little!</span>")
+		"<span class='xenowarning'>You advance the larval growth inside of [A] a little!</span>", \
+		"<span class='italics'>You hear buzzing waning away...</span>")
 
 		E.stage++
 		X.last_larva_growth_used = world.time
