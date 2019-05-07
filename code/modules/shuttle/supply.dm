@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
 	id = "supply"
-	callTime = 600
+	callTime = 15 SECONDS
 
 	dir = WEST
 	port_direction = EAST
@@ -49,7 +49,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 	dheight = 2
 	height = 5
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
-
+	use_ripples = FALSE
 	var/list/gears = list()
 	var/list/railings = list()
 
@@ -58,14 +58,15 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 /obj/docking_port/mobile/supply/afterShuttleMove()
 	. = ..()
-	if(mode == SHUTTLE_IDLE)
+	if(getDockedId() == "supply_home" || getDockedId() == "supply_away")
 		for(var/i in gears)
 			var/obj/machinery/gear/G = i
 			G.stop_moving()
-		if(getDockedId() == "supply_home")
-			for(var/j in railings)
-				var/obj/machinery/door/poddoor/railing/R = j
-				R.open()
+
+	if(getDockedId() == "supply_home")
+		for(var/j in railings)
+			var/obj/machinery/door/poddoor/railing/R = j
+			R.open()
 
 /obj/docking_port/mobile/supply/on_ignition()
 	if(getDockedId() == "supply_home")

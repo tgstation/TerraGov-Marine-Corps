@@ -54,10 +54,12 @@
 
 /obj/machinery/door/poddoor/railing/proc/do_open()
 	density = FALSE
+	operating = FALSE
 
 /obj/machinery/door/poddoor/railing/close()
 	if (!SSticker || operating || density)
 		return FALSE
+		
 	density = TRUE
 	operating = TRUE
 	layer = closed_layer

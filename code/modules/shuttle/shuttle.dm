@@ -270,6 +270,7 @@
 	var/list/movement_force = list("KNOCKDOWN" = 3, "THROW" = 0)
 
 	var/list/ripples = list()
+	var/use_ripples = TRUE
 	var/engine_coeff = 1 //current engine coeff
 	var/current_engines = 0 //current engine power
 	var/initial_engines = 0 //initial engine power
@@ -503,6 +504,8 @@
 	jumpToNullSpace()
 
 /obj/docking_port/mobile/proc/create_ripples(obj/docking_port/stationary/S1, animate_time)
+	if(!use_ripples)
+		return
 	var/list/turfs = ripple_area(S1)
 	for(var/t in turfs)
 		ripples += new /obj/effect/abstract/ripple(t, animate_time)
