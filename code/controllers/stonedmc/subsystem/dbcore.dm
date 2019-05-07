@@ -160,9 +160,11 @@ SUBSYSTEM_DEF(dbcore)
 		return FALSE
 	if(advanced)
 		var/datum/DBQuery/query_db_version = NewQuery("SELECT major, minor FROM [format_table_name("schema_revision")] ORDER BY date DESC LIMIT 1")
-		var/error = query_db_version.Execute()
+		var/connected = TRUE
+		if(!query_db_version.Execute())
+			connected = FALSE
 		qdel(query_db_version)
-		return !error
+		return connected
 	else
 		return TRUE
 
