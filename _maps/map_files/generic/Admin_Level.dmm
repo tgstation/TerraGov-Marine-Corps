@@ -1294,8 +1294,11 @@
 	},
 /area/syndicate_station)
 "ej" = (
-/turf/open/floor/plating/plating_catwalk,
-/area/supply/dock)
+/turf/open/floor/plating{
+	tag = "icon-test_floor5";
+	icon_state = "test_floor5"
+	},
+/area/centcom/suppy)
 "ek" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/holofloor{
@@ -1303,12 +1306,6 @@
 	dir = 2
 	},
 /area/syndicate_station)
-"el" = (
-/turf/open/floor/plating{
-	tag = "icon-test_floor5";
-	icon_state = "test_floor5"
-	},
-/area/supply/dock)
 "em" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -5847,6 +5844,13 @@
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/almayer,
 /area/centcom/control)
+"TC" = (
+/obj/docking_port/stationary/supply,
+/turf/open/floor/plating{
+	tag = "icon-test_floor5";
+	icon_state = "test_floor5"
+	},
+/area/centcom/suppy)
 
 (1,1,1) = {"
 aa
@@ -13933,9 +13937,9 @@ gj
 gj
 in
 ej
-el
 ej
-el
+ej
+ej
 ej
 in
 gj
@@ -14086,7 +14090,7 @@ gj
 iv
 ej
 ej
-ej
+TC
 ej
 ej
 nK
@@ -14237,9 +14241,9 @@ gj
 gj
 in
 ej
-el
 ej
-el
+ej
+ej
 ej
 in
 gj
