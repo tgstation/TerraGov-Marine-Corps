@@ -3,12 +3,6 @@ GLOBAL_LIST_EMPTY(gamemode_survivor_key_items)
 /*
 SPAWNS
 */
-/obj/effect/landmark/survivor/spawn/queen_ovi/Initialize()
-    . = ..()
-    GLOB.survivor_spawn_human += loc
-    flags_atom |= INITIALIZED
-    return INITIALIZE_HINT_QDEL
-
 /obj/effect/landmark/survivor/spawn/human/Initialize()
     . = ..()
     GLOB.survivor_spawn_human += loc
