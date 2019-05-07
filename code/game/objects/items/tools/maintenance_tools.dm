@@ -214,7 +214,7 @@
 			playsound(user.loc, 'sound/items/Welder2.ogg', 25, 1)
 			return
 		else
-			to_chat(user, "Nothing to fix!")
+			to_chat(user, "<span class='warning'>Nothing to fix!</span>")
 
 	else
 		return ..()
