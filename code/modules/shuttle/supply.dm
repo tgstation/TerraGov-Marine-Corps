@@ -129,7 +129,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		sell()
 
 /obj/docking_port/mobile/supply/proc/buy()
-	if(!SSshuttle.shoppinglist.len)
+	if(!length(SSshuttle.shoppinglist))
 		return
 
 	var/list/empty_turfs = list()
@@ -184,6 +184,8 @@ GLOBAL_LIST_EMPTY(exports_types)
 		slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
 		if (SP.contraband) 
 			slip.loc = null	//we are out of blanks for Form #44-D Ordering Illicit Drugs.
+
+		SSshuttle.shoppinglist -= SO
 
 /obj/docking_port/mobile/supply/proc/sell()
 	if(!GLOB.exports_types.len) // No exports list? Generate it!
