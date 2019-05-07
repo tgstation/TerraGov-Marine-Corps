@@ -53,11 +53,7 @@ SPAWNS
     var/list/key_items = list( // Beacon requires repair at lowpop
         /obj/item/beacon/rescue,
         /obj/item/tool/weldingtool,
-    )
-    var/list/key_items_medpop = list( // Medpop requires a working cell 
         /obj/item/cell/high,
-    )
-    var/list/key_items_highpop = list( // Highpop requires the laptop
         /obj/item/laptop/rescue,
     )
 
@@ -86,9 +82,6 @@ SPAWNS
 /datum/game_mode/survivor/pre_setup()
     . = ..()
 
-    if (!scale_player_size())
-        message_admins("failed to scale_player_size()")
-        return FALSE
     if (!calculate_team_sizes())
         message_admins("failed to calculate_team_sizes()")
         return FALSE
@@ -107,7 +100,6 @@ SPAWNS
     // TODO: Debug code
     to_chat(world, "<br><hr><br>")
     to_chat(world, "<h3> TL;DR Advice while testing </h3>")
-    to_chat(world, "<b>Difficulty changes as pop goes up, breakpoints are around high (15+) med (10-15) low (10-0). </b><br>")
     to_chat(world, "<b>Humans start with different gearsets. Group up and work together to find the key items needed.</b><br>")
     to_chat(world, "<b>Some humans spawn with radios, you can find more in the world</b><br>")
     to_chat(world, "<b>Xenos are expected to assault humans as soon as possible, humans just need to place a beacon and defend it.</b><br>")
@@ -181,19 +173,6 @@ SPAWNS
     return TRUE
 
 
-/datum/game_mode/survivor/proc/scale_player_size()
-    if (GLOB.ready_players > 15)
-        player_size = HIGH_POP
-    else if (GLOB.ready_players > 10)
-        player_size = MED_POP
-    else 
-        player_size = LOW_POP
-
-    // TODO: debug code for now, while people are working things out, high pop works best
-    player_size = HIGH_POP
-    return TRUE
-
-
 /datum/game_mode/survivor/proc/adjust_map()
     // TODO: Replace this with a loop through area's instead
     /*
@@ -221,14 +200,7 @@ SPAWNS
         // Charge every apc across the map
         if (isAPC(I))
             var/obj/machinery/power/apc/A = I
-            var/ratio = rand(0, 100)
-            switch (player_size)
-                if(HIGH_POP)
-                    ratio = rand(5,50)
-                if(MED_POP)
-                    ratio = rand(25,50)
-                if(LOW_POP)
-                    ratio = rand(50,100)
+            var/ratio = rand(5,50)
             A.cell.charge = A.cell.maxcharge * (ratio / 100)
 
     return TRUE
@@ -373,15 +345,9 @@ SPAWNS
 /datum/game_mode/survivor/proc/spawn_mission_items()
     GLOB.survivor_spawn_key_item = shuffle(GLOB.survivor_spawn_key_item)
     GLOB.survivor_spawn_random_item = shuffle(GLOB.survivor_spawn_random_item)
-    var/list/all_key_items = key_items 
-
-    if(player_size == MED_POP)
-        all_key_items += key_items_medpop
-    if(player_size == HIGH_POP)
-        all_key_items += key_items_medpop + key_items_highpop
 
     if (length(GLOB.survivor_spawn_key_item))
-        for (var/key_item in all_key_items)
+        for (var/key_item in key_items)
             GLOB.gamemode_survivor_key_items += new key_item(pick(GLOB.survivor_spawn_key_item)) 
     if (length(GLOB.survivor_spawn_random_item))
         for (var/random_item in random_items)

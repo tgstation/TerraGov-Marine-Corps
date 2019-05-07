@@ -101,12 +101,16 @@
     var/activation_time = 10 SECONDS
     var/icon_activated = "motion2"
 
-    var/distress_timer = 5 MINUTES
-    var/required_components
+    var/distress_timer = 10 MINUTES
+    var/required_components = list(
+        /obj/item/cell,
+    )
 
     // Requirements for nearby components that need setting up
     var/scan_range = 2
-    var/required_nearby
+    var/required_nearby = list(
+        /obj/item/laptop/rescue,
+    )
 
     // Contents list, for when it gets broken. We spit everything out again
     var/internal_components = list()
@@ -119,27 +123,6 @@
     var/noise_timer_id = null
     var/beacon_timer_id = null
 
-/obj/item/beacon/rescue/Initialize()
-    if(!issurvivorgamemode(SSticker.mode))
-        return
-
-    var/datum/game_mode/survivor/GM = SSticker.mode
-    switch (GM.player_size)
-        if(MED_POP)
-            distress_timer = 7 MINUTES
-            required_components = list(
-                /obj/item/cell,
-            )
-        if(HIGH_POP)
-            distress_timer = 10 MINUTES
-            required_components = list(
-                /obj/item/cell,
-            )
-            required_nearby = list(
-                /obj/item/laptop/rescue,
-            )
-
-    return ..()
 
 /obj/item/beacon/rescue/examine()
     . = ..() // show parent examines (if any) first
