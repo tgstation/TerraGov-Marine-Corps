@@ -19,7 +19,6 @@
 	desc = "A computer to remotely control a gas turbine"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "turbinecomp"
-	//circuit = /obj/item/circuitboard/computer/turbine_control
 	anchored = 1
 	density = 1
 
