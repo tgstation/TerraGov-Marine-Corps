@@ -1,6 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - tweak: "Tweaked how some reagents work. removed a little RNG, made xeno larval growth serum into a subtype of toxin (with no tox pwr)."
-  - bugfix: "Certain medicines (such as tricordrazine should now) properly work on slighty-less-human mobs such as mothpeople."
-  - code_imp: "standarizing reagents procs from working on /carbon level to /living level a little more."
