@@ -57,6 +57,8 @@
 
 /turf/open/floor/almayer/empty/Entered(var/atom/movable/AM)
 	..()
+	if(istype(AM, /obj/docking_port))
+		return
 	spawn(2)
 		if(AM.throwing == 0 && istype(get_turf(AM), /turf/open/floor/almayer/empty))
 			AM.visible_message("<span class='warning'>[AM] falls into the depths!</span>", "<span class='warning'>You fall into the depths!</span>")

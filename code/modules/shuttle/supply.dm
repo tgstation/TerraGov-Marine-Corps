@@ -1,12 +1,13 @@
 GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/mob/living,
-		/obj/effect/rune,
 		/obj/item/disk/nuclear,
-		/obj/machinery/nuclearbomb,
-		/obj/effect/portal
+		/obj/item/radio/beacon,
+		/obj/item/stack/sheet/mineral/phoron
 	)))
 
 GLOBAL_LIST_EMPTY(exports_types)
+
+#define SUPPLY_COST_MULTIPLIER 1.08
 
 /datum/supply_order
 	var/id
@@ -25,7 +26,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		GLOB.exports_types += E
 
 /obj/docking_port/stationary/supply
-	id = "supply"
+	id = "supply_away"
 
 	width = 5
 	dwidth = 2
@@ -33,6 +34,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 	height = 5
 
 /obj/docking_port/stationary/supply/reqs
+	id = "supply_home"
 	roundstart_template = /datum/map_template/shuttle/supply
 
 /obj/docking_port/mobile/supply
@@ -62,11 +64,17 @@ GLOBAL_LIST_EMPTY(exports_types)
 	return ..()
 
 /obj/docking_port/mobile/supply/proc/check_blacklist(areaInstances)
+	if(!areaInstances)
+		areaInstances = shuttle_areas
 	for(var/place in areaInstances)
 		var/area/shuttle/shuttle_area = place
 		for(var/trf in shuttle_area)
 			var/turf/T = trf
 			for(var/a in T.GetAllContents())
+				if(isxeno(a))
+					var/mob/living/L = a
+					if(L.stat == DEAD)
+						continue
 				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
 					return FALSE
 	return TRUE
@@ -231,12 +239,18 @@ GLOBAL_LIST_EMPTY(exports_types)
 	if(temp)
 		dat = temp
 	else
-		var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
-		if (shuttle)
-			dat += {"<BR><B>Automated Storage and Retrieval System</B><HR>
-			Location: [shuttle.has_arrive_time() ? "Raising platform":shuttle.at_station() ? "Raised":"Lowered"]<BR>
-			<HR>Supply points: [supply_controller.points]<BR>
-		<BR>\n<A href='?src=\ref[src];order=categories'>Request items</A><BR><BR>
+		if (SSshuttle.supply)
+			dat += "<BR><B>Automated Storage and Retrieval System</B><HR>Location: "
+			if(is_centcom_level(SSshuttle.supply.z))
+				dat += "Lowered"
+			else if(is_mainship_level(SSshuttle.supply.z))
+				dat += "Raised"
+			else if(is_mainship_level(SSshuttle.supply.destination?.z))
+				dat += "Raising platform"
+			else
+				dat += "Lowering platform"
+			dat += "<BR><HR>Supply points: [round(SSpoints.supply_points)]<BR>"
+		dat += {"<BR>\n<A href='?src=\ref[src];order=categories'>Request items</A><BR><BR>
 		<A href='?src=\ref[src];vieworders=1'>View approved orders</A><BR><BR>
 		<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR><BR>
 		<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
@@ -259,20 +273,20 @@ GLOBAL_LIST_EMPTY(exports_types)
 			//all_supply_groups
 			//Request what?
 			last_viewed_group = "categories"
-			temp = "<b>Supply points: [supply_controller.points]</b><BR>"
+			temp = "<b>Supply points: [round(SSpoints.supply_points)]</b><BR>"
 			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
 			for(var/supply_group_name in all_supply_groups )
 				temp += "<A href='?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
 		else
 			last_viewed_group = href_list["order"]
-			temp = "<b>Supply points: [supply_controller.points]</b><BR>"
+			temp = "<b>Supply points: [round(SSpoints.supply_points)]</b><BR>"
 			temp += "<A href='?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
 			temp += "<b>Request from: [last_viewed_group]</b><BR><BR>"
-			for(var/supply_name in supply_controller.supply_packs )
-				var/datum/supply_packs/N = supply_controller.supply_packs[supply_name]
+			for(var/supply_type in SSshuttle.supply_packs )
+				var/datum/supply_packs/N = SSshuttle.supply_packs[supply_type]
 				if(N.hidden || N.contraband || N.group != last_viewed_group) continue								//Have to send the type instead of a reference to
-				temp += "<A href='?src=\ref[src];doorder=[supply_name]'>[supply_name]</A> Cost: [round(N.cost)]<BR>"		//the obj because it would get caught by the garbage
+				temp += "<A href='?src=\ref[src];doorder=[N.name]'>[N.name]</A> Cost: [round(N.cost)]<BR>"		//the obj because it would get caught by the garbage
 
 	else if (href_list["doorder"])
 		if(world.time < reqtime)
@@ -281,7 +295,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 			return
 
 		//Find the correct supply_pack datum
-		var/datum/supply_packs/P = supply_controller.supply_packs[href_list["doorder"]]
+		var/datum/supply_packs/P = SSshuttle.supply_packs[href_list["doorder"]]
 		if(!istype(P))	return
 
 		var/timeout = world.time + 600
@@ -298,11 +312,11 @@ GLOBAL_LIST_EMPTY(exports_types)
 		else if(issilicon(usr))
 			idname = usr.real_name
 
-		supply_controller.ordernum++
+		SSshuttle.ordernum++
 		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
 		reqform.info += "<h3>[CONFIG_GET(string/ship_name)] Supply Requisition Form</h3><hr>"
-		reqform.info += "INDEX: #[supply_controller.ordernum]<br>"
+		reqform.info += "INDEX: #[SSshuttle.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"
 		reqform.info += "REASON: [reason]<br>"
@@ -318,26 +332,26 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 		//make our supply_order datum
 		var/datum/supply_order/O = new /datum/supply_order()
-		O.ordernum = supply_controller.ordernum
-		O.object = P
-		O.orderedby = idname
-		supply_controller.requestlist += O
+		O.id = SSshuttle.ordernum
+		O.pack = P
+		O.orderer = idname
+		SSshuttle.requestlist += O
 
 		temp = "Thanks for your request. The cargo team will process it as soon as possible.<BR>"
 		temp += "<BR><A href='?src=\ref[src];order=[last_viewed_group]'>Back</A> <A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
 
 	else if (href_list["vieworders"])
 		temp = "Current approved orders: <BR><BR>"
-		for(var/S in supply_controller.shoppinglist)
+		for(var/S in SSshuttle.shoppinglist)
 			var/datum/supply_order/SO = S
-			temp += "[SO.object.name] approved by [SO.orderedby] [SO.comment ? "([SO.comment])":""]<BR>"
+			temp += "[SO.pack.name] approved by [SO.orderer] [SO.reason ? "([SO.reason])":""]<BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 
 	else if (href_list["viewrequests"])
 		temp = "Current requests: <BR><BR>"
-		for(var/S in supply_controller.requestlist)
+		for(var/S in SSshuttle.requestlist)
 			var/datum/supply_order/SO = S
-			temp += "#[SO.ordernum] - [SO.object.name] requested by [SO.orderedby]<BR>"
+			temp += "#[SO.id] - [SO.pack.name] requested by [SO.orderer]<BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 
 	else if (href_list["mainmenu"])
@@ -359,41 +373,33 @@ GLOBAL_LIST_EMPTY(exports_types)
 	if (temp)
 		dat = temp
 	else
-		var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
-		if (shuttle)
+		if (SSshuttle.supply)
 			dat += "\nPlatform position: "
-			if (shuttle.has_arrive_time())
+			if (SSshuttle.supply.mode == SHUTTLE_CALL)
 				dat += "Moving<BR>"
 			else
-				if (shuttle.at_station())
-					if (shuttle.docking_controller)
-						switch(shuttle.docking_controller.get_docking_status())
-							if ("docked") dat += "Raised<BR>"
-							if ("undocked") dat += "Lowered<BR>"
-							if ("docking") dat += "Raising [shuttle.can_force()? "<span class='warning'><A href='?src=\ref[src];force_send=1'>Force</A></span>" : ""]<BR>"
-							if ("undocking") dat += "Lowering [shuttle.can_force()? "<span class='warning'><A href='?src=\ref[src];force_send=1'>Force</A></span>" : ""]<BR>"
-					else
-						dat += "Raised<BR>"
+				if (is_mainship_level(SSshuttle.supply.z))
+					dat += "Raised<BR>"
 
-					if (shuttle.can_launch())
+					if (SSshuttle.supply.mode == SHUTTLE_IDLE)
 						dat += "<A href='?src=\ref[src];send=1'>Lower platform</A>"
-					else if (shuttle.can_cancel())
+					else if (SSshuttle.supply.mode == SHUTTLE_IGNITING)
 						dat += "<A href='?src=\ref[src];cancel_send=1'>Cancel</A>"
 					else
 						dat += "*ASRS is busy*"
 					dat += "<BR>\n<BR>"
 				else
 					dat += "Lowered<BR>"
-					if (shuttle.can_launch())
+					if (SSshuttle.supply.mode == SHUTTLE_IDLE)
 						dat += "<A href='?src=\ref[src];send=1'>Raise platform</A>"
-					else if (shuttle.can_cancel())
+					else if (SSshuttle.supply.mode == SHUTTLE_IGNITING)
 						dat += "<A href='?src=\ref[src];cancel_send=1'>Cancel</A>"
 					else
 						dat += "*ASRS is busy*"
 					dat += "<BR>\n<BR>"
 
 
-		dat += {"<HR>\nSupply points: [supply_controller.points]<BR>\n<BR>
+		dat += {"<HR>\nSupply points: [round(SSpoints.supply_points)]<BR>\n<BR>
 		\n<A href='?src=\ref[src];order=categories'>Order items</A><BR>\n<BR>
 		\n<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR>\n<BR>
 		\n<A href='?src=\ref[src];vieworders=1'>View orders</A><BR>\n<BR>
@@ -416,13 +422,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 	return
 
 /obj/machinery/computer/supplycomp/Topic(href, href_list)
-	if(!supply_controller)
-		log_world("## ERROR: Eek. The supply_controller controller datum is missing somehow.")
-		return
-	var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
-	if (!shuttle)
-		log_world("## ERROR: Eek. The supply/shuttle datum is missing somehow.")
-		return
 	if(..())
 		return
 
@@ -431,22 +430,21 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 	//Calling the shuttle
 	if(href_list["send"])
-		if(shuttle.at_station())
-			if (shuttle.forbidden_atoms_check())
+		if(SSshuttle.supply.mode == SHUTTLE_IDLE && is_mainship_level(SSshuttle.supply.z))
+			if (!SSshuttle.supply.check_blacklist())
 				temp = "For safety reasons, the Automated Storage and Retrieval System cannot store live, non-xeno organisms, classified nuclear weaponry or homing beacons.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 			else
-				shuttle.launch(src)
+				SSshuttle.moveShuttle("supply", "supply_away", TRUE)
 				temp = "Lowering platform. \[<span class='warning'><A href='?src=\ref[src];force_send=1'>Force</A></span>\]<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 		else
-			shuttle.launch(src)
+			SSshuttle.moveShuttle("supply", "supply_home", TRUE)
 			temp = "Raising platform.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
-			post_signal("supply")
 
-	if (href_list["force_send"])
-		shuttle.force_launch(src)
+	//if (href_list["force_send"])
+		//shuttle.force_launch(src)
 
-	if (href_list["cancel_send"])
-		shuttle.cancel_launch(src)
+	//if (href_list["cancel_send"])
+		//shuttle.cancel_launch(src)
 
 	else if (href_list["order"])
 		//if(!shuttle.idle()) return	//this shouldn't be necessary it seems
@@ -454,22 +452,22 @@ GLOBAL_LIST_EMPTY(exports_types)
 			//all_supply_groups
 			//Request what?
 			last_viewed_group = "categories"
-			temp = "<b>Supply points: [supply_controller.points]</b><BR>"
+			temp = "<b>Supply points: [round(SSpoints.supply_points)]</b><BR>"
 			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
 			for(var/supply_group_name in all_supply_groups )
 				temp += "<A href='?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
 		else
 			last_viewed_group = href_list["order"]
-			temp = "<b>Supply points: [supply_controller.points]</b><BR>"
+			temp = "<b>Supply points: [round(SSpoints.supply_points)]</b><BR>"
 			temp += "<A href='?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
 			temp += "<b>Request from: [last_viewed_group]</b><BR><BR>"
-			for(var/supply_name in supply_controller.supply_packs )
-				var/datum/supply_packs/N = supply_controller.supply_packs[supply_name]
+			for(var/supply_type in SSshuttle.supply_packs )
+				var/datum/supply_packs/N = SSshuttle.supply_packs[supply_type]
 				if((N.hidden && !hacked) || (N.contraband && !can_order_contraband) || N.group != last_viewed_group) continue								//Have to send the type instead of a reference to
-				temp += "<A href='?src=\ref[src];doorder=[supply_name]'>[supply_name]</A> Cost: [round(N.cost)]<BR>"		//the obj because it would get caught by the garbage
+				temp += "<A href='?src=\ref[src];doorder=[N.name]'>[N.name]</A> Cost: [round(N.cost)]<BR>"		//the obj because it would get caught by the garbage
 
-		/*temp = "Supply points: [supply_controller.points]<BR><HR><BR>Request what?<BR><BR>"
+		/*temp = "Supply points: [round(SSpoints.supply_points)]<BR><HR><BR>Request what?<BR><BR>"
 		for(var/supply_name in supply_controller.supply_packs )
 			var/datum/supply_packs/N = supply_controller.supply_packs[supply_name]
 			if(N.hidden && !hacked) continue
@@ -484,7 +482,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 			return
 
 		//Find the correct supply_pack datum
-		var/datum/supply_packs/P = supply_controller.supply_packs[href_list["doorder"]]
+		var/datum/supply_packs/P = SSshuttle.supply_packs[href_list["doorder"]]
 		if(!istype(P))	return
 
 		var/timeout = world.time + 600
@@ -502,11 +500,11 @@ GLOBAL_LIST_EMPTY(exports_types)
 		else if(issilicon(usr))
 			idname = usr.real_name
 
-		supply_controller.ordernum++
+		SSshuttle.ordernum++
 		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
 		reqform.info += "<h3>[CONFIG_GET(string/ship_name)] Supply Requisition Form</h3><hr>"
-		reqform.info += "INDEX: #[supply_controller.ordernum]<br>"
+		reqform.info += "INDEX: #[SSshuttle.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"
 		reqform.info += "REASON: [reason]<br>"
@@ -522,13 +520,13 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 		//make our supply_order datum
 		var/datum/supply_order/O = new /datum/supply_order()
-		O.ordernum = supply_controller.ordernum
-		O.object = P
-		O.orderedby = idname
-		supply_controller.requestlist += O
+		O.id = SSshuttle.ordernum
+		O.pack = P
+		O.orderer = idname
+		SSshuttle.requestlist += O
 
 		temp = "Order request placed.<BR>"
-		temp += "<BR><A href='?src=\ref[src];order=[last_viewed_group]'>Back</A>|<A href='?src=\ref[src];mainmenu=1'>Main Menu</A>|<A href='?src=\ref[src];confirmorder=[O.ordernum]'>Authorize Order</A>"
+		temp += "<BR><A href='?src=\ref[src];order=[last_viewed_group]'>Back</A>|<A href='?src=\ref[src];mainmenu=1'>Main Menu</A>|<A href='?src=\ref[src];confirmorder=[O.id]'>Authorize Order</A>"
 
 	else if(href_list["confirmorder"])
 		//Find the correct supply_order datum
@@ -538,20 +536,20 @@ GLOBAL_LIST_EMPTY(exports_types)
 		temp = "Invalid Request"
 		temp += "<BR><A href='?src=\ref[src];order=[last_viewed_group]'>Back</A>|<A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
 
-		if(supply_controller.shoppinglist.len > 20)
+		if(SSshuttle.shoppinglist.len > 20)
 			to_chat(usr, "<span class='warning'>Current retrieval load has reached maximum capacity.</span>")
 			return
 
-		for(var/i=1, i<=supply_controller.requestlist.len, i++)
-			var/datum/supply_order/SO = supply_controller.requestlist[i]
-			if(SO.ordernum == ordernum)
+		for(var/i in SSshuttle.requestlist)
+			var/datum/supply_order/SO = i
+			if(SO.id == ordernum)
 				O = SO
-				P = O.object
-				if(supply_controller.points >= round(P.cost))
+				P = O.pack
+				if(SSpoints.supply_points >= round(P.cost))
 					log_game("[key_name(usr)] approved the [P.name] supply pack.")
-					supply_controller.requestlist.Cut(i,i+1)
-					supply_controller.points -= round(P.cost)
-					supply_controller.shoppinglist += O
+					SSshuttle.requestlist -= SO
+					SSpoints.supply_points -= round(P.cost)
+					SSshuttle.shoppinglist += O
 					P.cost = P.cost * SUPPLY_COST_MULTIPLIER
 					temp = "Thank you for your order.<BR>"
 					temp += "<BR><A href='?src=\ref[src];viewrequests=1'>Back</A> <A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
@@ -562,9 +560,9 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 	else if (href_list["vieworders"])
 		temp = "Current approved orders: <BR><BR>"
-		for(var/S in supply_controller.shoppinglist)
+		for(var/S in SSshuttle.shoppinglist)
 			var/datum/supply_order/SO = S
-			temp += "#[SO.ordernum] - [SO.object.name] approved by [SO.orderedby][SO.comment ? " ([SO.comment])":""]<BR>"// <A href='?src=\ref[src];cancelorder=[S]'>(Cancel)</A><BR>"
+			temp += "#[SO.id] - [SO.pack.name] approved by [SO.orderer][SO.reason ? " ([SO.reason])":""]<BR>"// <A href='?src=\ref[src];cancelorder=[S]'>(Cancel)</A><BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 /*
 	else if (href_list["cancelorder"])
@@ -579,9 +577,9 @@ GLOBAL_LIST_EMPTY(exports_types)
 */
 	else if (href_list["viewrequests"])
 		temp = "Current requests: <BR><BR>"
-		for(var/S in supply_controller.requestlist)
+		for(var/S in SSshuttle.requestlist)
 			var/datum/supply_order/SO = S
-			temp += "#[SO.ordernum] - [SO.object.name] requested by [SO.orderedby] <A href='?src=\ref[src];confirmorder=[SO.ordernum]'>Approve</A> <A href='?src=\ref[src];rreq=[SO.ordernum]'>Remove</A><BR>"
+			temp += "#[SO.id] - [SO.pack.name] requested by [SO.orderer] <A href='?src=\ref[src];confirmorder=[SO.id]'>Approve</A> <A href='?src=\ref[src];rreq=[SO.id]'>Remove</A><BR>"
 
 		temp += "<BR><A href='?src=\ref[src];clearreq=1'>Clear list</A>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
@@ -589,16 +587,16 @@ GLOBAL_LIST_EMPTY(exports_types)
 	else if (href_list["rreq"])
 		var/ordernum = text2num(href_list["rreq"])
 		temp = "Invalid Request.<BR>"
-		for(var/i=1, i<=supply_controller.requestlist.len, i++)
-			var/datum/supply_order/SO = supply_controller.requestlist[i]
-			if(SO.ordernum == ordernum)
-				supply_controller.requestlist.Cut(i,i+1)
+		for(var/i in SSshuttle.requestlist)
+			var/datum/supply_order/SO = i
+			if(SO.id == ordernum)
+				SSshuttle.requestlist -= SO
 				temp = "Request removed.<BR>"
 				break
 		temp += "<BR><A href='?src=\ref[src];viewrequests=1'>Back</A> <A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
 
 	else if (href_list["clearreq"])
-		supply_controller.requestlist.Cut()
+		SSshuttle.requestlist.Cut()
 		temp = "List cleared.<BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 

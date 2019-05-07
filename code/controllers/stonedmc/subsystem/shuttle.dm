@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(shuttle)
 		var/datum/supply_packs/P = new pack()
 		if(!P.contains)
 			continue
-		supply_packs[P.type] = P
+		supply_packs[P.name] = P
 
 	initial_load()
 
