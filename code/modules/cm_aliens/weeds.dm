@@ -9,6 +9,7 @@
 	anchored = 1
 	density = 0
 	layer = TURF_LAYER
+	var/parent_node
 	max_integrity = 1
 
 /obj/effect/alien/weeds/healthcheck()
@@ -19,15 +20,15 @@
 /obj/effect/alien/weeds/Initialize(pos, obj/effect/alien/weeds/node/node)
 	. = ..()
 
+	parent_node = node
+
 	update_sprite()
 	update_neighbours()
-	if(node && node.loc && (get_dist(node, src) < node.node_range))
-		spawn(rand(150, 200))
-			if(loc && node && node.loc)
-				weed_expand(node)
 
 
 /obj/effect/alien/weeds/Destroy()
+	SSweeds.add_weed(src)
+
 	var/oldloc = loc
 	. = ..()
 	update_neighbours(oldloc)
@@ -45,49 +46,6 @@
 		var/mob/living/carbon/human/H = AM
 		H.next_move_slowdown += 1
 
-
-/obj/effect/alien/weeds/proc/weed_expand(obj/effect/alien/weeds/node/node)
-	var/turf/U = get_turf(src)
-
-	if(!istype(U))
-		return
-
-	direction_loop:
-		for (var/dirn in cardinal)
-			var/turf/T = get_step(src, dirn)
-
-			if (!istype(T))
-				continue
-
-			if (!T.is_weedable())
-				continue
-
-			var/obj/effect/alien/weeds/W = locate() in T
-			if (W)
-				continue
-
-			if(iswallturf(T))
-				var/obj/effect/alien/weeds/weedwall/WW = new (T)
-				transfer_fingerprints_to(WW)
-				continue
-
-			if (istype(T.loc, /area/arrival))
-				continue
-
-			for (var/obj/O in T)
-				if(istype(O, /obj/structure/window/framed))
-					var/obj/effect/alien/weeds/weedwall/window/WN = new (T)
-					transfer_fingerprints_to(WN)
-					continue direction_loop
-				else if(istype(O, /obj/structure/window_frame))
-					var/obj/effect/alien/weeds/weedwall/frame/F = new (T)
-					transfer_fingerprints_to(F)
-					continue direction_loop
-				else if(istype(O, /obj/machinery/door) && O.density && (!(O.flags_atom & ON_BORDER) || O.dir != dirn))
-					continue direction_loop
-
-			var/obj/effect/alien/weeds/S = new (T, node)
-			transfer_fingerprints_to(S)
 
 /obj/effect/alien/weeds/proc/update_neighbours(turf/U)
 	if(!U)
@@ -224,6 +182,8 @@
 	var/node_range = NODERANGE
 	max_integrity = 15
 
+	var/node_turfs = list() // list of all potential turfs that we can expand to
+
 
 /obj/effect/alien/weeds/node/update_icon()
 	overlays.Cut()
@@ -237,8 +197,35 @@
 
 	overlays += "weednode"
 	. = ..(loc, src)
+
+	// Generate our full graph before adding to SSweeds
+	generate_weed_graph()
+	SSweeds.add_node(src)
+	
 	if(X)
 		add_hiddenprint(X)
 
+
+/obj/effect/alien/weeds/node/proc/generate_weed_graph()
+	var/list/turfs_to_check = list()
+	turfs_to_check += get_turf(src)
+	var/node_size = node_range
+	while (node_size > 0)
+		node_size--
+		for(var/X in turfs_to_check)
+			var/turf/T = X
+			for(var/direction in GLOB.cardinals) 
+				var/turf/AdjT = get_step(T, direction)
+				if (AdjT == src) // Ignore the node
+					continue
+				if (AdjT in node_turfs) // Ignore existing weeds
+					continue
+				if(AdjT.density || LinkBlocked(T, AdjT) || TurfBlockedNonWindow(AdjT))
+					// Finish here, but add it to expand weeds into
+					node_turfs += AdjT
+					continue
+
+				turfs_to_check += AdjT
+				node_turfs += AdjT
 
 #undef NODERANGE
