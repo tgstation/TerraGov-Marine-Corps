@@ -295,7 +295,7 @@
 	M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
 	"<span class='danger'>You slash \the [src]!</span>", null, 5)
 	playsound(loc, "alien_claw_metal", 25, 1)
-	var/allcut = TRUE
+	var/allcut = wires.is_all_cut()
 
 	if(beenhit >= pick(3, 4) && !panel_open)
 		panel_open = TRUE
@@ -303,6 +303,7 @@
 		visible_message("<span class='danger'>\The [src]'s cover swings open, exposing the wires!</span>", null, null, 5)
 
 	else if(panel_open && !allcut)
+		wires.cut_all()
 		update_icon()
 		visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!", null, null, 5)
 	else
@@ -618,13 +619,14 @@
 			user.visible_message("<span class='warning'>[user.name] slashes [src]!</span>",
 			"<span class='warning'>You slash [src]!</span>")
 			playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
-			var/allcut = 1
+			var/allcut = wires.is_all_cut()
 			if(beenhit >= pick(3, 4) && !panel_open)
 				panel_open = TRUE
 				update_icon()
 				visible_message("<span class='warning'>[src]'s cover flies open, exposing the wires!</span>")
 
-			else if(panel_open && allcut == 0)
+			else if(panel_open && !allcut)
+				wires.cut_all()
 				update_icon()
 				visible_message("<span class='warning'>[src]'s wires are shredded!</span>")
 			else
