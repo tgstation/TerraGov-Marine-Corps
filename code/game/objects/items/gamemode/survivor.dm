@@ -347,6 +347,7 @@
 /obj/item/beacon/rescue/proc/call_distress_team()
     log_game("[src] called a PMC distress beacon.")
     var/datum/emergency_call/pmc/T = new
+    SSticker.mode.picked_call = T
     T.mob_min = 5
     T.mob_max = length(GLOB.player_list) // everyone is allowed
     T.activate()
