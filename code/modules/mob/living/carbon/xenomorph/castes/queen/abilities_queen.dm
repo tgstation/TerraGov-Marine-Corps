@@ -766,7 +766,7 @@
 		if(!X.check_state())
 			return
 		X.use_plasma(300)
-		X.visible_message("<span class='xenowarning'>\The [X]'s finishes buzzing, its echo slowly waning away!</span>", \
+		X.visible_message("<span class='xenowarning'>\The [X] finishes buzzing, [X.p_their()] echo slowly waning away!</span>", \
 		"<span class='xenowarning'>You advance the larval growth inside of [A] a little!</span>")
 
 		E.stage++
