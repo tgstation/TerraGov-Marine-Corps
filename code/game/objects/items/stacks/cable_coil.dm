@@ -122,7 +122,7 @@
 		var/datum/limb/S = M:get_limb(user.zone_selected)
 
 		if(!S) 
-		return
+			return
 		if(!(S.limb_status & LIMB_ROBOT) || user.a_intent == INTENT_HARM)
 			return ..()
 		
