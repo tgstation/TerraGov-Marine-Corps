@@ -56,6 +56,8 @@
 				flag = R_MENTOR
 			if("ASAY")
 				flag = R_ASAY
+			if("ADMINTICKET")
+				flag = R_ADMINTICKET
 			if("BAN")
 				flag = R_BAN
 			if("FUN")
