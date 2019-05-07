@@ -425,10 +425,6 @@
 		explosion(sploded, 0, 5, 10, 0)
 		sleep(3)
 
-	explosion(get_turf(HangarLowerElevator), 0, 3, 5, 0)
-	var/datum/shuttle/ferry/hangar/hangarelevator = shuttle_controller.shuttles["Hangar"]
-	hangarelevator.process_state = FORCE_CRASH
-
 	for(var/mob/living/carbon/M in GLOB.mob_living_list) //knock down mobs
 		if(M.z != T_trg.z) continue
 		if(M.buckled)

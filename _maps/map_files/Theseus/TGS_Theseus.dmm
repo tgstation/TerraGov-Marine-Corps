@@ -36081,7 +36081,6 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bGS" = (
-/obj/machinery/computer/shuttle_control/almayer/hangar,
 /turf/open/floor/almayer{
 	dir = 6;
 	icon_state = "red";
