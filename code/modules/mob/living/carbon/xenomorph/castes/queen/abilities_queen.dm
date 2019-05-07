@@ -492,7 +492,7 @@
 		T.hud_set_queen_overwatch()
 		T.handle_xeno_leader_pheromones(X)
 	else
-		if(length(X.hive.xeno_leader_list) > 1) 
+		if(length(X.hive.xeno_leader_list) > 1)
 			var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph leader?") as null|anything in X.hive.xeno_leader_list
 			if(!selected_xeno || !selected_xeno.queen_chosen_lead || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z != X.z || !X.check_state())
 				return
@@ -745,31 +745,29 @@
 		to_chat(X, "<span class='xenowarning'>You're still recovering from your previous larva growth advance. Wait [round((X.last_larva_growth_used + XENO_LARVAL_ADVANCEMENT_COOLDOWN - world.time) * 0.1)] seconds.</span>")
 		return
 
-	if(!istype(A, /mob/living/carbon/human))
+	if(!ishuman(A) && !ismonkey(A))
 		return
 
-	var/mob/living/carbon/human/H = A
-
-	var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in H
+	var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in A
 
 	if(!E)
-		to_chat(X, "<span class='xenowarning'>[H] doesn't have a larva growing inside of them.</xenowarning>")
+		to_chat(X, "<span class='xenowarning'>[A] doesn't have a larva growing inside of them.</xenowarning>")
 		return
 
 	if(E.stage >= 3)
-		to_chat(X, "<span class='xenowarning'>\The [E] inside of [H] is too old to be advanced.</xenowarning>")
+		to_chat(X, "<span class='xenowarning'>\The [E] inside of [A] is too old to be advanced.</xenowarning>")
 		return
 
 	if(X.check_plasma(300))
-		X.visible_message("<span class='xenowarning'>\The [X] starts to advance larval growth inside of [H].</span>", \
-		"<span class='xenowarning'>You start to advance larval growth inside of [H].</span>")
+		X.visible_message("<span class='xenowarning'>\The [X] begins buzzing menacingly at [A].</span>", \
+		"<span class='xenowarning'>You start to advance larval growth inside of [A].</span>")
 		if(!do_after(X, 50, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(300))
 			return
 		if(!X.check_state())
 			return
 		X.use_plasma(300)
-		X.visible_message("<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>", \
-		"<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>")
+		X.visible_message("<span class='xenowarning'>\The [X]'s finishes buzzing, its echo slowly waning away!</span>", \
+		"<span class='xenowarning'>You advance the larval growth inside of [A] a little!</span>")
 
 		E.stage++
 		X.last_larva_growth_used = world.time
