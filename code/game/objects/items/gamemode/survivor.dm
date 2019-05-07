@@ -25,9 +25,12 @@
 
     user.visible_message("<span class='notice'>[user] starts packing up \the [src].</span>",
     "<span class='notice'>You start packing up \the [src]. <b>This will interrupt the process.</b></span>")
-    if(!user.get_active_held_item() && do_after(user, activation_time*1.2, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
-        reset_state()
-        user.put_in_hands(src)
+    if(user.get_active_held_item() || !do_after(user, activation_time*1.2, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
+        return
+
+    reset_state()
+    user.put_in_hands(src)
+    
     return ..()
     
 /obj/item/laptop/rescue/attack_self(mob/user)
@@ -50,13 +53,15 @@
     user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
     "<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
 
-    if(do_after(user, activation_time, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
-        log_game("[key_name(user)] placed \the [src] near [AREACOORD(A.loc)]")
+    if(!do_after(user, activation_time, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
+        return
 
-        user.transferItemToLoc(src, user.loc)
-        anchored = TRUE
-        w_class = 10
-        update_icon()
+    log_game("[key_name(user)] placed \the [src] near [AREACOORD(A.loc)]")
+
+    user.transferItemToLoc(src, user.loc)
+    anchored = TRUE
+    w_class = 10
+    update_icon()
         
 
 
@@ -224,10 +229,13 @@
 
     user.visible_message("<span class='notice'>[user] starts packing up \the [src].</span>",
     "<span class='notice'>You start packing up \the [src]. <b>This will interrupt the process.</b></span>")
-    if(!user.get_active_held_item() && do_after(user, activation_time*1.2, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
-        log_game("[key_name(user)] picked up \the [src].")
-        reset_state()
-        user.put_in_hands(src)
+    if(user.get_active_held_item() || !do_after(user, activation_time*1.2, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
+        return
+
+    log_game("[key_name(user)] picked up \the [src].")
+    reset_state()
+    user.put_in_hands(src)
+
     return ..()
 
 
@@ -250,12 +258,15 @@
 
     // repair dmg
     if(iswelder(W) && current_hp < max_hp)
-        if(do_after(user, 1 SECONDS, TRUE, 5, BUSY_ICON_BUILD,, TRUE))
-            var/obj/item/tool/weldingtool/WT = W
-            if(WT.remove_fuel(0, user))
-                user.visible_message("<span class='notice'>[user] started repairing \the [src]</span>","<span class='notice'>You started repairing \the [src]</span>")
-                playsound(get_turf(src), 'sound/items/Welder2.ogg', 25, 1)
-                current_hp = min(current_hp + 25, max_hp)
+        if(!do_after(user, 1 SECONDS, TRUE, 5, BUSY_ICON_BUILD,, TRUE))
+            return
+
+        var/obj/item/tool/weldingtool/WT = W
+        if(WT.remove_fuel(0, user))
+            user.visible_message("<span class='notice'>[user] started repairing \the [src]</span>","<span class='notice'>You started repairing \the [src]</span>")
+            playsound(get_turf(src), 'sound/items/Welder2.ogg', 25, 1)
+            current_hp = min(current_hp + 25, max_hp)
+            
     else if(iswelder(W) && current_hp == max_hp)
         to_chat(user, "That doesn't look damaged!")
 
@@ -312,11 +323,13 @@
 
     user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
     "<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
-    if(do_after(user, activation_time, TRUE, 5, BUSY_ICON_FRIENDLY))
-        log_game("[key_name(user)] placed \the [src] near [AREACOORD(A.loc)]")
-        user.transferItemToLoc(src, user.loc)
-        anchored = TRUE
-        w_class = 10
+    if(!do_after(user, activation_time, TRUE, 5, BUSY_ICON_FRIENDLY))
+        return
+
+    log_game("[key_name(user)] placed \the [src] near [AREACOORD(A.loc)]")
+    user.transferItemToLoc(src, user.loc)
+    anchored = TRUE
+    w_class = 10
        
 
 /obj/item/beacon/rescue/proc/make_noise()
