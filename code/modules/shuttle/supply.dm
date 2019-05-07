@@ -50,13 +50,47 @@ GLOBAL_LIST_EMPTY(exports_types)
 	height = 5
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 
+	var/list/gears = list()
+	var/list/railings = list()
 
 	//Export categories for this run, this is set by console sending the shuttle.
 //	var/export_categories = EXPORT_CARGO
 
+/obj/docking_port/mobile/supply/afterShuttleMove()
+	. = ..()
+	if(mode == SHUTTLE_IDLE)
+		for(var/i in gears)
+			var/obj/machinery/gear/G = i
+			G.stop_moving()
+		if(getDockedId() == "supply_home")
+			for(var/j in railings)
+				var/obj/machinery/door/poddoor/railing/R = j
+				R.open()
+
+/obj/docking_port/mobile/supply/on_ignition()
+	if(getDockedId() == "supply_home")
+		for(var/j in railings)
+			var/obj/machinery/door/poddoor/railing/R = j
+			R.close()
+		for(var/i in gears)
+			var/obj/machinery/gear/G = i
+			G.start_moving(NORTH)
+	else
+		for(var/i in gears)
+			var/obj/machinery/gear/G = i
+			G.start_moving(SOUTH)
+
 /obj/docking_port/mobile/supply/register()
 	. = ..()
 	SSshuttle.supply = src
+	// bit clunky but shuttles need to init after atoms
+	for(var/obj/machinery/gear/G in GLOB.machines)
+		if(G.id == "supply_elevator_gear")
+			gears += G
+	for(var/obj/machinery/door/poddoor/railing/R in GLOB.machines)
+		if(R.id == "supply_elevator_railing")
+			railings += R
+			R.open()
 
 /obj/docking_port/mobile/supply/canMove()
 	if(is_station_level(z))
