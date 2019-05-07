@@ -39,12 +39,12 @@
 
 		M.account_number = rand(111111, 999999)
 	else
-		T.date = current_date_string
+		T.date = GLOB.current_date_string
 		T.time = worldtime2text()
 		T.source_terminal = source_db.machine_id
 
-		M.account_number = next_account_number
-		next_account_number += rand(1,25)
+		M.account_number = GLOB.next_account_number
+		GLOB.next_account_number += rand(1,25)
 
 		//create a sealed package containing the account details
 		var/obj/item/smallDelivery/P = new /obj/item/smallDelivery(source_db.loc)
@@ -57,7 +57,7 @@
 		R.info += "<i>Account number:</i> [M.account_number]<br>"
 		R.info += "<i>Account pin:</i> [M.remote_access_pin]<br>"
 		R.info += "<i>Starting balance:</i> $[M.money]<br>"
-		R.info += "<i>Date and time:</i> [worldtime2text()], [current_date_string]<br><br>"
+		R.info += "<i>Date and time:</i> [worldtime2text()], [GLOB.current_date_string]<br><br>"
 		R.info += "<i>Creation terminal ID:</i> [source_db.machine_id]<br>"
 		R.info += "<i>Authorised NT officer overseeing creation:</i> [source_db.held_card.registered_name]<br>"
 
@@ -72,12 +72,12 @@
 
 	//add the account
 	M.transaction_log.Add(T)
-	all_money_accounts.Add(M)
+	GLOB.all_money_accounts.Add(M)
 
 	return M
 
 /proc/charge_to_account(var/attempt_account_number, var/source_name, var/purpose, var/terminal_id, var/amount)
-	for(var/datum/money_account/D in all_money_accounts)
+	for(var/datum/money_account/D in GLOB.all_money_accounts)
 		if(D.account_number == attempt_account_number && !D.suspended)
 			D.money += amount
 
@@ -89,7 +89,7 @@
 				T.amount = "([amount])"
 			else
 				T.amount = "[amount]"
-			T.date = current_date_string
+			T.date = GLOB.current_date_string
 			T.time = worldtime2text()
 			T.source_terminal = terminal_id
 			D.transaction_log.Add(T)
@@ -101,13 +101,13 @@
 
 //this returns the first account datum that matches the supplied accnum/pin combination, it returns null if the combination did not match any account
 /proc/attempt_account_access(var/attempt_account_number, var/attempt_pin_number, var/security_level_passed = 0)
-	for(var/datum/money_account/D in all_money_accounts)
+	for(var/datum/money_account/D in GLOB.all_money_accounts)
 		if(D.account_number == attempt_account_number)
 			if( D.security_level <= security_level_passed && (!D.security_level || D.remote_access_pin == attempt_pin_number) )
 				return D
 			break
 
 /proc/get_account(var/account_number)
-	for(var/datum/money_account/D in all_money_accounts)
+	for(var/datum/money_account/D in GLOB.all_money_accounts)
 		if(D.account_number == account_number)
 			return D

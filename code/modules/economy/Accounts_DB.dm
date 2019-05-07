@@ -25,7 +25,7 @@
 		T.target_name = target
 		T.purpose = reason
 		T.amount = amount
-		T.date = current_date_string
+		T.date = GLOB.current_date_string
 		T.time = worldtime2text()
 		T.source_terminal = machine_id
 		return T
@@ -39,7 +39,7 @@
 		"}
 
 /obj/machinery/account_database/New()
-	machine_id = "Acc. DB #[num_financial_terminals++]"
+	machine_id = "Acc. DB #[GLOB.num_financial_terminals++]"
 	return ..()
 
 /obj/machinery/account_database/attackby(obj/O, mob/user)
@@ -70,7 +70,8 @@
 	data["machine_id"] = machine_id
 	data["creating_new_account"] = creating_new_account
 	data["detailed_account_view"] = !!detailed_account_view
-	data["station_account_number"] = station_account.account_number
+	var/datum/money_account/SA = GLOB.station_account
+	data["station_account_number"] = SA.account_number
 	data["transactions"] = null
 	data["accounts"] = null
 
@@ -94,8 +95,8 @@
 			data["transactions"] = trx
 
 	var/list/accounts[0]
-	for(var/i=1, i<=all_money_accounts.len, i++)
-		var/datum/money_account/D = all_money_accounts[i]
+	for(var/i in GLOB.all_money_accounts)
+		var/datum/money_account/D = i
 		accounts.Add(list(list(\
 			"account_number"=D.account_number,\
 			"owner_name"=D.owner_name,\
@@ -114,155 +115,4 @@
 /obj/machinery/account_database/Topic(href, href_list)
 	if(..())
 		return 1
-
-	var/datum/nanoui/ui = SSnano.get_open_ui(usr, src, "main")
-
-	if(href_list["choice"])
-		switch(href_list["choice"])
-			if("create_account")
-				creating_new_account = 1
-
-			if("add_funds")
-				var/amount = input("Enter the amount you wish to add", "Silently add funds") as num
-				if(detailed_account_view)
-					detailed_account_view.money += amount
-
-			if("remove_funds")
-				var/amount = input("Enter the amount you wish to remove", "Silently remove funds") as num
-				if(detailed_account_view)
-					detailed_account_view.money -= amount
-
-			if("toggle_suspension")
-				if(detailed_account_view)
-					detailed_account_view.suspended = !detailed_account_view.suspended
-
-			if("finalise_create_account")
-				var/account_name = href_list["holder_name"]
-				var/starting_funds = max(text2num(href_list["starting_funds"]), 0)
-				create_account(account_name, starting_funds, src)
-				if(starting_funds > 0)
-					//subtract the money
-					station_account.money -= starting_funds
-
-					//create a transaction log entry
-					var/trx = create_transation(account_name, "New account activation", "([starting_funds])")
-					station_account.transaction_log.Add(trx)
-
-					creating_new_account = 0
-					ui.close()
-
-				creating_new_account = 0
-			if("insert_card")
-				if(held_card)
-					held_card.loc = src.loc
-
-					if(ishuman(usr) && !usr.get_active_held_item())
-						usr.put_in_hands(held_card)
-					held_card = null
-
-				else
-					var/obj/item/I = usr.get_active_held_item()
-					if (istype(I, /obj/item/card/id))
-						var/obj/item/card/id/C = I
-						usr.drop_held_item()
-						C.loc = src
-						held_card = C
-
-			if("view_account_detail")
-				var/index = text2num(href_list["account_index"])
-				if(index && index <= all_money_accounts.len)
-					detailed_account_view = all_money_accounts[index]
-
-			if("view_accounts_list")
-				detailed_account_view = null
-				creating_new_account = 0
-
-			if("revoke_payroll")
-				var/funds = detailed_account_view.money
-				var/account_trx = create_transation(station_account.owner_name, "Revoke payroll", "([funds])")
-				var/station_trx = create_transation(detailed_account_view.owner_name, "Revoke payroll", funds)
-
-				station_account.money += funds
-				detailed_account_view.money = 0
-
-				detailed_account_view.transaction_log.Add(account_trx)
-				station_account.transaction_log.Add(station_trx)
-
-			if("print")
-				var/text
-				var/obj/item/paper/P = new(loc)
-				if (detailed_account_view)
-					P.name = "account #[detailed_account_view.account_number] details"
-					var/title = "Account #[detailed_account_view.account_number] Details"
-					text = {"
-						[accounting_letterhead(title)]
-						<u>Holder:</u> [detailed_account_view.owner_name]<br>
-						<u>Balance:</u> $[detailed_account_view.money]<br>
-						<u>Status:</u> [detailed_account_view.suspended ? "Suspended" : "Active"]<br>
-						<u>Transactions:</u> ([detailed_account_view.transaction_log.len])<br>
-						<table>
-							<thead>
-								<tr>
-									<td>Timestamp</td>
-									<td>Target</td>
-									<td>Reason</td>
-									<td>Value</td>
-									<td>Terminal</td>
-								</tr>
-							</thead>
-							<tbody>
-						"}
-
-					for (var/datum/transaction/T in detailed_account_view.transaction_log)
-						text += {"
-									<tr>
-										<td>[T.date] [T.time]</td>
-										<td>[T.target_name]</td>
-										<td>[T.purpose]</td>
-										<td>[T.amount]</td>
-										<td>[T.source_terminal]</td>
-									</tr>
-							"}
-
-					text += {"
-							</tbody>
-						</table>
-						"}
-
-				else
-					P.name = "financial account list"
-					text = {"
-						[accounting_letterhead("Financial Account List")]
-
-						<table>
-							<thead>
-								<tr>
-									<td>Account Number</td>
-									<td>Holder</td>
-									<td>Balance</td>
-									<td>Status</td>
-								</tr>
-							</thead>
-							<tbody>
-					"}
-
-					for(var/i=1, i<=all_money_accounts.len, i++)
-						var/datum/money_account/D = all_money_accounts[i]
-						text += {"
-								<tr>
-									<td>#[D.account_number]</td>
-									<td>[D.owner_name]</td>
-									<td>$[D.money]</td>
-									<td>[D.suspended ? "Suspended" : "Active"]</td>
-								</tr>
-						"}
-
-					text += {"
-							</tbody>
-						</table>
-					"}
-
-				P.info = text
-				state("The terminal prints out a report.")
-
 	return 1
