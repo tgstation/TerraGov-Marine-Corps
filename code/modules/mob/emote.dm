@@ -53,6 +53,11 @@
 	message = null
 
 
+/datum/emote/custom/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+	message = params
+	return ..()
+
+
 /datum/emote/spin
 	key = "spin"
 	key_third_person = "spins"
