@@ -78,13 +78,13 @@
         "<span class='danger'>You slice [src] apart!</span>", null, 5)
     playsound(loc, "alien_claw_metal", 25, 1)
 
-    if (anchored == FALSE)
+    if (!anchored)
         return
 
     reset_state()
    
     if(prob(10))
-        new /obj/effect/decal/cleanable/blood/oil(src.loc)
+        new /obj/effect/decal/cleanable/blood/oil(loc)
 
 /obj/item/beacon/rescue
     name = "Rescue beacon"
