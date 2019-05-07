@@ -125,8 +125,12 @@
 	if(is_type_in_typecache(user, mob_type_blacklist_typecache))
 		return FALSE
 
-	if((sound || get_sound(user)) && user.audio_emote_cooldown(intentional))
-		return FALSE
+	if((sound || get_sound(user)))
+		if(audio_emote_time >= world.time)
+			to_chat(src, "<span class='notice'>You just did an audible emote. Wait a while.</span>")
+			return FALSE
+		else
+			audio_emote_time = world.time + 8 SECONDS
 
 	if(intentional && user.client)
 		if(user.client.prefs.muted & MUTE_IC)

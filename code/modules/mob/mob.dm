@@ -871,17 +871,6 @@ mob/proc/yank_out_object()
 	qdel(emote_overlay)
 
 
-/mob/proc/audio_emote_cooldown(player_caused)
-	if(player_caused)
-		if(audio_emote_time < world.time)
-			audio_emote_time = world.time + 80
-			return FALSE
-		else
-			to_chat(src, "<span class='notice'>You just did an audible emote. Wait a while.</span>")
-			return TRUE
-	return FALSE
-
-
 /mob/proc/spin(spintime, speed)
 	set waitfor = FALSE
 	var/D = dir
