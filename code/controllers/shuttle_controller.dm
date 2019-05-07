@@ -171,38 +171,7 @@ var/global/datum/controller/shuttle_controller/shuttle_controller
 
 //This is called by gameticker after all the machines and radio frequencies have been properly initialized
 /datum/controller/shuttle_controller/proc/setup_shuttle_docks()
-	var/datum/shuttle/shuttle
-	var/list/dock_controller_map = list()	//so we only have to iterate once through each list
-
-	for(var/shuttle_tag in shuttles)
-		shuttle = shuttles[shuttle_tag]
-		if(istype(shuttle, /datum/shuttle/ferry/marine)) continue //Evac pods ignore this, as do other marine ferries.
-		if(shuttle.docking_controller_tag)
-			dock_controller_map[shuttle.docking_controller_tag] = shuttle
-
-	//search for the controllers, if we have one.
-	if(dock_controller_map.len)
-		for(var/obj/machinery/embedded_controller/radio/C in GLOB.machines)	//only radio controllers are supported at the moment
-			if (istype(C.program, /datum/computer/file/embedded_program/docking))
-				if(C.id_tag in dock_controller_map)
-					shuttle = dock_controller_map[C.id_tag]
-					shuttle.docking_controller = C.program
-					dock_controller_map -= C.id_tag
-
-
-	//sanity check
-	//NO SANITY
-//	if (dock_controller_map.len || dock_controller_map_station.len || dock_controller_map_offsite.len)
-//		var/dat = ""
-//		for (var/dock_tag in dock_controller_map + dock_controller_map_station + dock_controller_map_offsite)
-//			dat += "\"[dock_tag]\", "
-//		to_chat(world, "<span class='danger'>warning: shuttles with docking tags [dat] could not find their controllers!</span>")
-
-	//makes all shuttles docked to something at round start go into the docked state
-	for(var/shuttle_tag in shuttles)
-		shuttle = shuttles[shuttle_tag]
-		shuttle.dock()
-
+	return
 
 /datum/controller/shuttle_controller/stat_entry()
 	if(!statclick)

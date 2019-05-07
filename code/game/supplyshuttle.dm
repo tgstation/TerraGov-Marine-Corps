@@ -448,14 +448,7 @@ var/list/mechtoys = list(
 				dat += "Moving<BR>"
 			else
 				if (shuttle.at_station())
-					if (shuttle.docking_controller)
-						switch(shuttle.docking_controller.get_docking_status())
-							if ("docked") dat += "Raised<BR>"
-							if ("undocked") dat += "Lowered<BR>"
-							if ("docking") dat += "Raising [shuttle.can_force()? "<span class='warning'><A href='?src=\ref[src];force_send=1'>Force</A></span>" : ""]<BR>"
-							if ("undocking") dat += "Lowering [shuttle.can_force()? "<span class='warning'><A href='?src=\ref[src];force_send=1'>Force</A></span>" : ""]<BR>"
-					else
-						dat += "Raised<BR>"
+					dat += "Raised<BR>"
 
 					if (shuttle.can_launch())
 						dat += "<A href='?src=\ref[src];send=1'>Lower platform</A>"
