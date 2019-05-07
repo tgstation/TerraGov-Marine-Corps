@@ -1,5 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - balance: "weeds continue to grow back until the main node is destroyed"
-  - server: "new weeds subsystem"
