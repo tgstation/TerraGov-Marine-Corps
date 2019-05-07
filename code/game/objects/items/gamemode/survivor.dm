@@ -46,7 +46,7 @@
         return
 
     var/area/A = get_area(user)
-    if(A && istype(A) && A.ceiling >= CEILING_METAL)
+    if(istype(A) && A.ceiling >= CEILING_METAL)
         to_chat(user, "<span class='warning'>You have to be outside or under a glass ceiling to activate this.</span>")
         return
 
@@ -74,7 +74,7 @@
 
 
 /obj/item/laptop/rescue/attack_alien(mob/living/carbon/Xenomorph/M)
-    if(anchored == FALSE)
+    if(!anchored)
         to_chat(M, "<span class='warning'>It's already broken.</span>")
         return
 
@@ -83,13 +83,13 @@
         "<span class='danger'>You slice [src] apart!</span>", null, 5)
     playsound(loc, "alien_claw_metal", 25, 1)
 
-    if (anchored == FALSE)
+    if (!anchored)
         return
 
     reset_state()
    
     if(prob(10))
-        new /obj/effect/decal/cleanable/blood/oil(src.loc)
+        new /obj/effect/decal/cleanable/blood/oil(loc)
 
 /obj/item/beacon/rescue
     name = "Rescue beacon"
@@ -207,7 +207,7 @@
         "<span class='danger'>You slice [src] apart!</span>", null, 5)
     playsound(loc, "alien_claw_metal", 25, 1)
 
-    if (activated == FALSE)
+    if (!activated)
         return
 
     current_hp -= max(0, rand(15, 30))
@@ -216,7 +216,7 @@
         reset_state()
    
     if(prob(10))
-        new /obj/effect/decal/cleanable/blood/oil(src.loc)
+        new /obj/effect/decal/cleanable/blood/oil(loc)
     
 
 // TODO: Handle other click types (altclick etc)
@@ -239,7 +239,7 @@
     return ..()
 
 
-/obj/item/beacon/rescue/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/beacon/rescue/attackby(obj/item/I, mob/user, params)
     if(!anchored || activated)
         return
 
@@ -276,10 +276,10 @@
     var/nearby_setup = 0
     for (var/R in required_nearby)
         var/obj/found = locate(R) in nearby
-        if (found && found.anchored == 1)
+        if (found?.anchored)
             nearby_setup++
 
-    if(length(required_components) == 0 && current_hp == max_hp && nearby_setup == length(required_nearby))
+    if(!length(required_components) && current_hp == max_hp && nearby_setup == length(required_nearby))
         log_game("[key_name(user)] activated \the [src].")
         activate_beacon(user)
 
@@ -317,7 +317,7 @@
         return
 
     var/area/A = get_area(user)
-    if(A && istype(A) && A.ceiling >= CEILING_METAL)
+    if(istype(A) && A.ceiling >= CEILING_METAL)
         to_chat(user, "<span class='warning'>You have to be outside or under a glass ceiling to activate this.</span>")
         return
 
