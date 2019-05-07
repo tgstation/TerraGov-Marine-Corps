@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(blackbox)
 	if(!CONFIG_GET(flag/sql_enabled))
 		return
 
-	if(!SSdbcore.IsConnected())
+	if(!SSdbcore.IsConnected(TRUE))
 		log_admin("Database not connected! Attempting to reconnect.")
 		message_admins("Database not connected! Attempting to reconnect.")
 

@@ -149,17 +149,23 @@ SUBSYSTEM_DEF(dbcore)
 	QDEL_NULL(connectOperation)
 	QDEL_NULL(connection)
 
-/datum/controller/subsystem/dbcore/proc/IsConnected()
+/datum/controller/subsystem/dbcore/proc/IsConnected(advanced)
 	if(!CONFIG_GET(flag/sql_enabled))
 		return FALSE
 	//block until any connect operations finish
 	var/datum/BSQL_Connection/_connection = connection
 	var/datum/BSQL_Operation/op = connectOperation
-	var/datum/DBQuery/query_db_version = NewQuery("SELECT major, minor FROM [format_table_name("schema_revision")] ORDER BY date DESC LIMIT 1")
-	var/error = query_db_version.Execute()
-	qdel(query_db_version)
 	UNTIL(QDELETED(_connection) || op.IsComplete())
-	return !QDELETED(connection) && !op.GetError() && !error
+	if(QDELETED(connection) || op.GetError())
+		return FALSE
+	if(advanced)
+		var/datum/DBQuery/query_db_version = NewQuery("SELECT major, minor FROM [format_table_name("schema_revision")] ORDER BY date DESC LIMIT 1")
+		var/error = query_db_version.Execute()
+		qdel(query_db_version)
+		return !error
+	else
+		return TRUE
+
 
 /datum/controller/subsystem/dbcore/proc/Quote(str)
 	if(connection)
