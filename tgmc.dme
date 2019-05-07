@@ -32,7 +32,6 @@
 #include "code\__DEFINES\conflict.dm"
 #include "code\__DEFINES\equipment.dm"
 #include "code\__DEFINES\flags.dm"
-#include "code\__DEFINES\gamemode.dm"
 #include "code\__DEFINES\is_helpers.dm"
 #include "code\__DEFINES\jobs.dm"
 #include "code\__DEFINES\language.dm"

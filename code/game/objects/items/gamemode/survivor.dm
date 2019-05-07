@@ -187,8 +187,10 @@
     if (beacon_timer_id && noise_timer_id)
         distress_timer = timeleft(beacon_timer_id)
         deltimer(noise_timer_id)
-        deltimer(beacon_timer_id)
-        for (var/mob/M in GLOB.alive_human_list)
+        deltimer(beacon_timer_id)+
+        var/mob/M
+        for (var/i in GLOB.alive_human_list)
+            M = i
             SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
             to_chat(M, "<h2 class='alert'>MESSAGE RECIEVED</h2>")
             to_chat(M, "<span class='alert'>We have lost signal with your beacon! Get it set back up or we'll never find you.</span>")
