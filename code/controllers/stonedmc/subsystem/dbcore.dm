@@ -157,6 +157,7 @@ SUBSYSTEM_DEF(dbcore)
 	var/datum/BSQL_Operation/op = connectOperation
 	var/datum/DBQuery/query_db_version = NewQuery("SELECT major, minor FROM [format_table_name("schema_revision")] ORDER BY date DESC LIMIT 1")
 	var/error = query_db_version.Execute()
+	qdel(query_db_version)
 	UNTIL(QDELETED(_connection) || op.IsComplete())
 	return !QDELETED(connection) && !op.GetError() && !error
 
