@@ -44,7 +44,7 @@
 /datum/action/xeno_action/toggle_bomb/update_button_icon()
 	var/mob/living/carbon/Xenomorph/Boiler/X = owner
 	button.overlays.Cut()
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
+	if(X.ammo?.type == /datum/ammo/xeno/boiler_gas)
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb1")
 	else
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb0")
@@ -54,7 +54,7 @@
 // *********** Super strong acid
 // ***************************************
 
-/datum/action/xeno_action/activable/corrosive_acid/Boiler
+/datum/action/xeno_action/activable/corrosive_acid/boiler
 	name = "Corrosive Acid"
 	plasma_cost = 200
 	acid_type = /obj/effect/xenomorph/acid/strong
