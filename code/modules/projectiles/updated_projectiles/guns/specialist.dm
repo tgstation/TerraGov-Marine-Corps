@@ -800,6 +800,17 @@
 		current_mag.current_rounds++
 	return TRUE
 
+
+/obj/item/weapon/gun/launcher/rocket/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
+	user.transferItemToLoc(magazine, src) //Click!
+	current_mag = magazine
+	user.visible_message("<span class='notice'>[user] loads [magazine] into [src]!</span>",
+	"<span class='notice'>You load [magazine] into [src]!</span>", null, 3)
+	if(reload_sound)
+		playsound(user, reload_sound, 25, 1, 5)
+	update_icon()
+
+
 /obj/item/weapon/gun/launcher/rocket/unload(mob/user)
 	if(!user)
 		return
