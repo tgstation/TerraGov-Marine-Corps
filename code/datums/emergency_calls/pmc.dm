@@ -23,11 +23,11 @@
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
 
 	if(H.gender == MALE)
-		H.name = pick(first_names_male_pmc) + " " + pick(last_names_pmc)
+		H.name = pick(GLOB.first_names_male_pmc) + " " + pick(GLOB.last_names_pmc)
 		H.real_name = H.name
 		H.voice_name = H.name
 	else
-		H.name = pick(first_names_female_pmc) + " " + pick(last_names_pmc)
+		H.name = pick(GLOB.first_names_female_pmc) + " " + pick(GLOB.last_names_pmc)
 		H.real_name = H.name
 		H.voice_name = H.name
 

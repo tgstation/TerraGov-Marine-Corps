@@ -262,9 +262,9 @@
 		xeno_name = "Undefined"
 	if(!real_name)
 		if(gender == FEMALE)
-			real_name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+			real_name = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 		else
-			real_name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+			real_name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 
 	return TRUE
 
