@@ -278,21 +278,23 @@ should be alright.
 
 //Clicking stuff onto the gun.
 //Attachables & Reloading
-/obj/item/weapon/gun/attackby(obj/item/I, mob/user)
+/obj/item/weapon/gun/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 
 	user.changeNext_move(CLICK_CD_CLICK_ABILITY)
 
-	if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user))
-			attach_to_gun(user,I)
+	if(istype(I,/obj/item/attachable) && check_inactive_hand(user))
+		attach_to_gun(user, I)
+		return
 
  	//the active attachment is reloadable
-	else if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user))
+	if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user))
 		active_attachable.reload_attachment(I, user)
+		return
 
-	else if((istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/cell/lasgun)) && check_inactive_hand(user))
+	if((istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/cell/lasgun)) && check_inactive_hand(user))
 		reload(user, I)
 
 
