@@ -1,0 +1,6 @@
+author: "spookydonut"
+delete-after: True
+changes: 
+  - rscadd: "Ported tg shuttle subsystem, only handles escape pods for now"
+  - tweak: "escape pod doors cannot be locked except by pushing launch"
+  - tweak: "escape pods now delete themselves and ghost anyone inside on launch"
