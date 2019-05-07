@@ -278,7 +278,7 @@ SPAWNS
     var/spawn_point = pick(GLOB.survivor_spawn_human)
     if (late_join)
         var/mob/A = pick(GLOB.alive_human_list)
-        if(A)
+        if(A && !isspaceturf(get_turf(A.loc)))
             spawn_point = A.loc
 
     var/mob/living/carbon/human/H = new(spawn_point)
