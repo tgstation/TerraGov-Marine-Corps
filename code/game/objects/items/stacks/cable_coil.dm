@@ -119,7 +119,7 @@
 /obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
 	if(hasorgans(M))
 		var/mob/living/carbon/human/H = M
-		var/datum/limb/S = M:get_limb(user.zone_selected)
+		var/datum/limb/S = H.get_limb(user.zone_selected)
 
 		if(!S) 
 			return
