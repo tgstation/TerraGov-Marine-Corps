@@ -455,6 +455,7 @@
 						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 10),
 						/obj/item/explosive/mine = round(scale * 2),
 						/obj/item/storage/box/nade_box = round(scale * 2),
+						/obj/item/storage/box/nade_box/impact = round(scale * 2),
 						/obj/item/explosive/grenade/frag/m15 = round(scale * 2),
 						/obj/item/explosive/grenade/incendiary = round(scale * 4),
 						/obj/item/explosive/grenade/smokebomb = round(scale * 5),
