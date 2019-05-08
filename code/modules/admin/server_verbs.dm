@@ -353,6 +353,8 @@
 		return
 
 	if(SSticker.admin_delay_notice)
+		if(alert(usr, "Do you want to remove the round end delay?", "Delay Round End", "Yes", "No") != "Yes")
+			return
 		SSticker.admin_delay_notice = null
 	else
 		var/reason = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
