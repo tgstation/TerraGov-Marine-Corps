@@ -78,8 +78,8 @@
         to_chat(X, "<span class='warning'>It's already broken.</span>")
         return
 
-    M.animation_attack_on(src)
-    M.visible_message("<span class='danger'>\The [X] slices [src] apart!</span>", \
+    X.animation_attack_on(src)
+    X.visible_message("<span class='danger'>\The [X] slices [src] apart!</span>", \
         "<span class='danger'>You slice [src] apart!</span>", null, 5)
     playsound(loc, "alien_claw_metal", 25, 1)
 
@@ -237,7 +237,7 @@
         return
 
     log_game("[key_name(user)] picked up \the [src].")
-    reset_state(X)
+    reset_state(user)
     user.put_in_hands(src)
 
     return ..()
