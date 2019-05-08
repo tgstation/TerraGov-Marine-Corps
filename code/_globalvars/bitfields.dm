@@ -3,6 +3,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"ADMIN" = R_ADMIN ,
 		"MENTOR" = R_MENTOR,
 		"BAN" = R_BAN,
+		"ADMINTICKET" = R_ADMINTICKET,
 		"ASAY" = R_ASAY,
 		"FUN" = R_FUN,
 		"SERVER" = R_SERVER,
