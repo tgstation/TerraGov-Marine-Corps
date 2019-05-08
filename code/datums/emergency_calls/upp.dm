@@ -1,8 +1,7 @@
 /datum/emergency_call/upp
 	name = "UPP"
 	probability = 10
-	shuttle_id = "Distress_UPP"
-	name_of_spawn = "Distress_UPP"
+	shuttle_id = "distress_upp"
 
 
 /datum/emergency_call/upp/print_backstory(mob/living/carbon/human/H)
@@ -13,8 +12,8 @@
 	to_chat(H, "<span class='notice'>Use say :3 <text> to speak in your native tongue.</span>")
 
 
-/datum/emergency_call/upp/create_member(datum/mind/M)
-	var/turf/spawn_loc = get_spawn_point()
+/datum/emergency_call/upp/create_member(datum/mind/M, list/spawnpoints)
+	var/turf/spawn_loc = get_spawn_point(spawnpoints)
 	var/mob/original = M.current
 
 	if(!istype(spawn_loc))

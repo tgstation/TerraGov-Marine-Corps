@@ -1451,6 +1451,8 @@
 #include "code\modules\shieldgen\shield_gen_external.dm"
 #include "code\modules\shuttle\computer.dm"
 #include "code\modules\shuttle\docking.dm"
+#include "code\modules\shuttle\ert_big.dm"
+#include "code\modules\shuttle\ert_small.dm"
 #include "code\modules\shuttle\escape_pod.dm"
 #include "code\modules\shuttle\on_move.dm"
 #include "code\modules\shuttle\ripple.dm"
