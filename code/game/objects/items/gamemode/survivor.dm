@@ -222,7 +222,7 @@
     
 
 // TODO: Handle other click types (altclick etc)
-/obj/item/beacon/rescue/attack_hand(mob/user as mob)
+/obj/item/beacon/rescue/attack_hand(mob/user)
     if(!anchored)
         return ..()
 

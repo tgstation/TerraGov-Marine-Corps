@@ -1,3 +1,6 @@
+#define PINPOINTER_MODE_DISK "disk"
+#define PINPOINTER_MODE_TARGET "target"
+#define PINPOINTER_MODE_UNKNOWN "unknown"
 /obj/item/pinpointer
     name = "pinpointer"
     icon_state = "pinoff"
@@ -63,19 +66,19 @@
 /obj/item/pinpointer/advpinpointer
     name = "Advanced Pinpointer"
     desc = "A larger version of the normal pinpointer, this unit features a helpful quantum entanglement detection system to locate various objects that do not broadcast a locator signal."
-    var/mode = 0  // Mode 0 locates disk, mode 1 locates coordinates, 2 to find an item
+    var/mode = PINPOINTER_MODE_DISK  // Mode 0 locates disk, mode 1 locates coordinates, 2 to find an item
 
 /obj/item/pinpointer/advpinpointer/set_target()
-    if(mode == 0)
+    if(mode == PINPOINTER_MODE_DISK)
         var/obj/item/disk/nuclear/the_disk = locate()
         if(the_disk)
             target = the_disk
-    if(mode == 1)
+    if(mode == PINPOINTER_MODE_TARGET)
         if (!target)
             to_chat(usr, "<span class='notice'>\The [src] beeps, and turns off</span>")
             active = FALSE
             return
-    if(mode == 2)
+    if(mode == PINPOINTER_MODE_UNKNOWN)
         // This never worked,
         to_chat(usr, "<span class='notice'>\The [src] beeps twice, and turns off</span>")
         active = FALSE
@@ -92,10 +95,10 @@
 
     switch(alert("Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", "Location", "Disk Recovery", "Other Signature"))
         if("Disk Recovery")
-            mode = 0
+            mode = PINPOINTER_MODE_DISK
             return attack_self()
         if("Location")
-            mode = 1
+            mode = PINPOINTER_MODE_TARGET
             var/locationx = input(usr, "Please input the x coordinate to search for.", "Location?" , "") as num
             if(!locationx || !(usr in view(1,src)))
                 return
@@ -110,5 +113,5 @@
 
             return attack_self()
         if("Other Signature")
-            mode = 2
+            mode = PINPOINTER_MODE_UNKNOWN
             return attack_self()
