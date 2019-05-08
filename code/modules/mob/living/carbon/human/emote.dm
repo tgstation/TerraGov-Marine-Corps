@@ -25,7 +25,7 @@
 	key_third_person = "bows"
 	message = "bows."
 	message_param = "bows to %t."
-	restraint_check = TRUE
+	flags_emote = EMOTE_RESTRAINT_CHECK
 
 
 /datum/emote/living/carbon/human/chuckle
@@ -39,10 +39,8 @@
 	key = "clap"
 	key_third_person = "claps"
 	message = "claps."
-	muzzle_ignore = TRUE
-	restraint_check = TRUE
+	flags_emote = EMOTE_RESTRAINT_CHECK|EMOTE_VARY|EMOTE_MUZZLE_IGNORE
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 	sound = 'sound/misc/clap.ogg'
 
 
@@ -233,7 +231,7 @@
 	key = "signal"
 	key_third_person = "signals"
 	message_param = "raises %t fingers."
-	restraint_check = TRUE
+	flags_emote = EMOTE_RESTRAINT_CHECK
 
 
 /datum/emote/living/carbon/human/sign/select_param(mob/user, params)
@@ -277,7 +275,7 @@
 	key_third_person = "hugs"
 	message = "hugs themself."
 	message_param = "hugs %t."
-	restraint_check = TRUE
+	flags_emote = EMOTE_RESTRAINT_CHECK
 	emote_type = EMOTE_AUDIBLE
 
 
@@ -292,7 +290,7 @@
 	key = "handshake"
 	message = "shakes their own hands."
 	message_param = "shakes hands with %t."
-	restraint_check = TRUE
+	flags_emote = EMOTE_RESTRAINT_CHECK
 	emote_type = EMOTE_AUDIBLE
 
 
@@ -301,7 +299,7 @@
 	key_third_person = "salutes"
 	message = "salutes."
 	message_param = "salutes to %t."
-	restraint_check = TRUE
+	flags_emote = EMOTE_RESTRAINT_CHECK
 	sound = 'sound/misc/salute.ogg'
 
 
@@ -309,7 +307,7 @@
 	key = "golfclap"
 	key_third_person = "golfclaps"
 	message = "claps, clearly unimpressed."
-	restraint_check = TRUE
+	flags_emote = EMOTE_RESTRAINT_CHECK
 	sound = 'sound/misc/golfclap.ogg'
 
 

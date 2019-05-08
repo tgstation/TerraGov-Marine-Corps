@@ -61,7 +61,7 @@
 /datum/emote/spin
 	key = "spin"
 	key_third_person = "spins"
-	restraint_check = TRUE
+	flags_emote = EMOTE_RESTRAINT_CHECK
 	mob_type_allowed_typecache = list(/mob/living, /mob/dead/observer)
 	mob_type_ignore_stat_typecache = list(/mob/dead/observer)
 

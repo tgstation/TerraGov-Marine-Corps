@@ -34,7 +34,7 @@
 	key = "honk"
 	key_third_person = "honks"
 	message = "honks."
-	vary = TRUE
+	flags_emote = EMOTE_VARY
 	sound = 'sound/items/bikehorn.ogg'
 
 

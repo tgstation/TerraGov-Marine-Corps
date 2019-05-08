@@ -1,6 +1,11 @@
 #define EMOTE_VISIBLE 1
 #define EMOTE_AUDIBLE 2
 
+#define EMOTE_VARY 				(1<<0) //vary the pitch
+#define EMOTE_FORCED_AUDIO 		(1<<1) //can only code call this event instead of the player.
+#define EMOTE_MUZZLE_IGNORE 	(1<<2) //Will only work if the emote is EMOTE_AUDIBLE
+#define EMOTE_RESTRAINT_CHECK 	(1<<3) //Checks if the mob is restrained before performing the emote
+
 /datum/emote
 	var/key = "" //What calls the emote
 	var/key_third_person = "" //This will also call the emote
@@ -13,15 +18,12 @@
 	var/message_simple = "" //Message to display if the user is a simple_animal
 	var/message_param = "" //Message to display if a param was given
 	var/emote_type = EMOTE_VISIBLE //Whether the emote is visible or audible
-	var/restraint_check = FALSE //Checks if the mob is restrained before performing the emote
-	var/muzzle_ignore = FALSE //Will only work if the emote is EMOTE_AUDIBLE
 	var/list/mob_type_allowed_typecache = /mob //Types that are allowed to use that emote
 	var/list/mob_type_blacklist_typecache //Types that are NOT allowed to use that emote
 	var/list/mob_type_ignore_stat_typecache
 	var/stat_allowed = CONSCIOUS
 	var/sound //Sound to play when emote is called
-	var/vary = FALSE	//used for the honk borg emote
-	var/only_forced_audio = FALSE //can only code call this event instead of the player.
+	var/flags_emote = NONE
 
 	var/static/list/emote_list = list()
 
@@ -62,8 +64,8 @@
 	msg = "[prefix]<b>[user]</b> [msg]"
 
 	var/tmp_sound = get_sound(user)
-	if(tmp_sound && (!only_forced_audio || !intentional))
-		playsound(user, tmp_sound, 50, vary)
+	if(tmp_sound && (!(flags_emote & EMOTE_FORCED_AUDIO) || !intentional))
+		playsound(user, tmp_sound, 50, flags_emote & EMOTE_VARY)
 
 	for(var/i in GLOB.dead_mob_list)
 		var/mob/M = i
@@ -96,7 +98,7 @@
 
 /datum/emote/proc/select_message_type(mob/user)
 	. = message
-	if(!muzzle_ignore && user.is_muzzled() && emote_type == EMOTE_AUDIBLE)
+	if(!(flags_emote & EMOTE_MUZZLE_IGNORE) && user.is_muzzled() && emote_type == EMOTE_AUDIBLE)
 		return "makes a [pick("strong ", "weak ", "")]noise."
 	if(isxeno(user) && message_alien)
 		. = message_alien
@@ -157,7 +159,7 @@
 
 			return FALSE
 
-		if(restraint_check)
+		if(flags_emote & EMOTE_RESTRAINT_CHECK)
 			if(isliving(user))
 				var/mob/living/L = user
 				if(L.incapacitated())
@@ -166,7 +168,7 @@
 					to_chat(user, "<span class='notice'>You cannot [key] while stunned.</span>")
 					return FALSE
 
-		if(restraint_check && user.restrained())
+		if((flags_emote & EMOTE_RESTRAINT_CHECK) && user.restrained())
 			if(!intentional)
 				return FALSE
 			to_chat(user, "<span class='notice'>You cannot [key] while restrained.</span>")
