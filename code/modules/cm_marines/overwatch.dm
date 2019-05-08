@@ -558,7 +558,7 @@
 	var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
 	if(target && istype(target))
 		target.ceiling_debris_check(5)
-		addtimer(CALLBACK(almayer_orbital_cannon, /obj/structure/orbital_cannon.proc/fire_ob_cannon, target, user), 2)
+		almayer_orbital_cannon.fire_ob_cannon(target,user)
 
 /obj/machinery/computer/overwatch/proc/change_lead()
 	if(!usr || usr != operator)

@@ -77,7 +77,7 @@
 
 		for(var/obj/structure/barricade/B in TF)
 			if(get_dir(TF, prev_turf) & B.dir)
-				B.acid_spray_act(src)
+				B.acid_spray_act(owner)
 
 		acid_splat_turf(TF)
 

@@ -290,6 +290,8 @@
 	if(!isxeno(A) || A == owner || !owner.issamexenohive(A))
 		return FALSE
 
+	var/mob/living/carbon/Xenomorph/target = A
+
 	if(get_dist(owner, target) > max_range)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You need to be closer to [target].</span>")
@@ -505,8 +507,8 @@
 	if(!can_use_ability(A, TRUE))
 		return
 
-	var/obj/effect/xenomorph/acid/newacid = new acid_type(get_turf(O), O)
-
+	var/obj/effect/xenomorph/acid/newacid = new acid_type(get_turf(A), A)
+	
 	succeed_activate()
 
 	if(istype(A, /obj/vehicle/multitile/root/cm_armored))
@@ -524,7 +526,7 @@
 			acid_progress_transfer(newacid, null, T)
 		T.current_acid = newacid
 
-	if(istype(A, /obj/structure) || istype(A, /obj/machinery)) //Always appears above machinery
+	else if(istype(A, /obj/structure) || istype(A, /obj/machinery)) //Always appears above machinery
 		newacid.layer = A.layer + 0.1
 		if(O.current_acid)
 			acid_progress_transfer(newacid, O)

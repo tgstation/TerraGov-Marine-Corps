@@ -675,7 +675,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	//Pick what to repair
 	var/slot = input("Select a slot to try and repair") in hardpoints
 	var/obj/item/I = user.get_active_held_item()
-	if(!Adjacent(user) || (iswelder(I) && !iswrench(I)))
+	if(!Adjacent(user) || (!iswelder(I) && !iswrench(I)))
 		return
 
 	var/obj/item/hardpoint/old = hardpoints[slot] //Is there something there already?

@@ -241,6 +241,8 @@
 //override this for cooldown completion.
 /datum/action/xeno_action/proc/on_cooldown_finish()
 	on_cooldown = FALSE
+	if(!button)
+		CRASH("no button object on finishing xeno action cooldown")
 	button.overlays -= cooldown_image
 	update_button_icon()
 
