@@ -1,5 +1,0 @@
-author: "Ghommie and Spookydonut"
-delete-after: True
-changes: 
-  - bugfix: "Fixes queen's larval growth not affecting monkeys."
-  - spellcheck: "reworded a couple visible message lines of the above ability to be more inconspicious to viewers."
