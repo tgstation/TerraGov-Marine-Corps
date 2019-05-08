@@ -16,7 +16,7 @@
 	var/list/mob_spawns = list()
 	var/list/item_spawns = list()
 
-/obj/docking_port/mobile/ert_small/register()
+/obj/docking_port/mobile/ert/register()
 	. = ..()
 	for(var/t in return_turfs())
 		var/turf/T = t

@@ -21,6 +21,7 @@
 	var/list/datum/mind/candidates = list() //Potential candidates for enlisting.
 	var/mob/living/carbon/leader = null
 	var/shuttle_id = "distress"
+	var/obj/docking_port/mobile/ert/shuttle
 	var/auto_shuttle_launch = FALSE //Useful for xenos that can't interact with the shuttle console.
 	var/medics = 0
 	var/max_medics = 1
@@ -191,17 +192,26 @@
 		command_announcement.Announce(dispatch_message, "Distress Beacon", new_sound='sound/AI/distressreceived.ogg') //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
 
 	message_admins("Distress beacon: [name] finalized, setting up candidates.")
-	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_id]
 
-	if(!shuttle || !istype(shuttle))
-		log_game("ERROR: Distress shuttle not found.")
-		message_admins("ERROR: Distress shuttle not found.")
+	// begin loading the shuttle
+	if(!SSmapping.shuttle_templates[shuttle_id])
+		CRASH("ert called with invalid shuttle_id")
 		return
+	var/datum/map_template/shuttle/S = SSmapping.shuttle_templates[shuttle_id]
+
+	var/obj/docking_port/stationary/L = SSshuttle.getDock("distress_loading")
+	if(!L)
+		CRASH("no distress loading port defined")
+
+	if(L.get_docked())
+		CRASH("trying to load an ert when one is currently being loaded")
+
+	shuttle = SSshuttle.action_load(S, L)
+
+	if(!istype(shuttle))
+		CRASH("ert shuttle failed to load")
 
 	spawn_items()
-
-	if(auto_shuttle_launch)
-		shuttle.launch()
 
 	if(length(picked_candidates))
 		max_medics = max(round(length(members) * 0.25), 1)
@@ -211,6 +221,9 @@
 	else
 		message_admins("ERROR: No picked candidates, aborting.")
 		return
+
+	if(auto_shuttle_launch)
+		shuttle.launch()
 
 	candidates = list() //Blank out the candidates list for next time.
 
@@ -237,24 +250,9 @@
 
 
 /datum/emergency_call/proc/get_spawn_point(is_for_items)
-	var/index
 	if(is_for_items)
-		index = "[name_of_spawn]Item"
-	else
-		index = name_of_spawn
-	if(!GLOB.distress_spawns_by_name[index])
-		return FALSE
-
-	var/list/spawn_list = GLOB.distress_spawns_by_name[index].Copy()
-
-	if(!length(spawn_list)) //Empty list somehow
-		return FALSE
-
-	var/turf/spawn_loc	= pick(spawn_list)
-	if(!istype(spawn_loc))
-		return FALSE
-
-	return spawn_loc
+		return pick(shuttle?.item_spawns)
+	return pick(shuttle?.mob_spawns)
 
 
 /datum/emergency_call/proc/create_member(datum/mind/M) //Overriden in each distress call file.

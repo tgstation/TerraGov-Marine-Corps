@@ -7,8 +7,8 @@
 	to_chat(H, "<B>You joined the Imperial Guard because [pick("you had nothing to lose, so you went with the worst, at least you could be somewhat useful", "after having your life be nothing but misery, you decided to make it even worse")].</B>")
 	to_chat(H, "<B>Wait for the Emperor to give you objectives.</B>") // admin only ERT so have admins tell them what to do
 
-/datum/emergency_call/imperial/create_member(datum/mind/M, list/spawnpoints)
-	var/turf/spawn_loc = get_spawn_point(spawnpoints)
+/datum/emergency_call/imperial/create_member(datum/mind/M)
+	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 	
 	if(!istype(spawn_loc))

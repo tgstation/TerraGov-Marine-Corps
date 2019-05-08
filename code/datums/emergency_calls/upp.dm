@@ -12,8 +12,8 @@
 	to_chat(H, "<span class='notice'>Use say :3 <text> to speak in your native tongue.</span>")
 
 
-/datum/emergency_call/upp/create_member(datum/mind/M, list/spawnpoints)
-	var/turf/spawn_loc = get_spawn_point(spawnpoints)
+/datum/emergency_call/upp/create_member(datum/mind/M)
+	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
 	if(!istype(spawn_loc))

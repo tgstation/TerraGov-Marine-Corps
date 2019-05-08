@@ -12,8 +12,8 @@
 	to_chat(H, "<B>If there is no Liaison, eliminate the threat and cooperate with the Captain before returning back home.</b>")
 
 
-/datum/emergency_call/pmc/create_member(datum/mind/M, list/spawnpoints)
-	var/turf/spawn_loc = get_spawn_point(spawnpoints)
+/datum/emergency_call/pmc/create_member(datum/mind/M)
+	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
 	if(!istype(spawn_loc))
