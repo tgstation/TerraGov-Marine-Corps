@@ -7,6 +7,12 @@
 	width = 7
 	height = 13
 
+/obj/docking_port/stationary/ert/loading
+	id = "distress_loading"
+
+/obj/docking_port/stationary/ert/target
+	id = "distress_target"
+
 /obj/docking_port/mobile/ert
 	name = "ert shuttle"
 	dir = SOUTH
