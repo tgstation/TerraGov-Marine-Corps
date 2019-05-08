@@ -1,0 +1,4 @@
+author: "spookydonut"
+delete-after: True
+changes: 
+  - rscadd: "Converted the supply elevator to use the new shuttle subsystem"
