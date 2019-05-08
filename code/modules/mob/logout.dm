@@ -2,6 +2,7 @@
 	SSnano.user_logout(src) // this is used to clean up (remove) this user's Nano UIs
 	if(interactee) 
 		unset_interaction()
+	typing = null
 	GLOB.player_list -= src
 	log_access("Logout: [key_name(src)]")
 	log_message("[key_name(src)] has logged out.", LOG_OOC)
