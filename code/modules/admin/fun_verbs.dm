@@ -991,7 +991,7 @@
 	var/modification = input("What do you want to edit?", "Edit Appearance") as null|anything in list("Hair Style", "Hair Color", "Facial Hair Style", "Facial Hair Color", "Eye Color", "Body Color", "Gender", "Ethnicity")
 	switch(modification)
 		if("Hair Style")
-			var/new_hstyle = input("Select a hair style", "Edit Appearance") as null|anything in sortNames(GLOB.hair_styles_list)
+			var/new_hstyle = input("Select a hair style", "Edit Appearance") as null|anything in sortList(GLOB.hair_styles_list)
 			if(!new_hstyle || !istype(H))
 				return
 			H.h_style = new_hstyle
@@ -1003,7 +1003,7 @@
 			H.g_hair = hex2num(copytext(new_hair, 4, 6))
 			H.b_hair = hex2num(copytext(new_hair, 6, 8))
 		if("Facial Hair Style")
-			var/new_fstyle = input("Select a facial hair style", "Edit Appearance") as null|anything in sortNames(GLOB.facial_hair_styles_list)
+			var/new_fstyle = input("Select a facial hair style", "Edit Appearance") as null|anything in sortList(GLOB.facial_hair_styles_list)
 			if(!new_fstyle || !istype(H))
 				return
 			H.f_style = new_fstyle
@@ -1040,7 +1040,7 @@
 				else
 					return
 		if("Ethnicity")
-			var/new_ethnicity = input("Please select the ethnicity") as null|anything in sortNames(GLOB.ethnicities_list)
+			var/new_ethnicity = input("Please select the ethnicity") as null|anything in sortList(GLOB.ethnicities_list)
 			if(!new_ethnicity || !istype(H))
 				return
 			H.ethnicity = new_ethnicity
