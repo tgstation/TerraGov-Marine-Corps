@@ -28,7 +28,7 @@
     if(user.get_active_held_item() || !do_after(user, activation_time*1.2, TRUE, 5, BUSY_ICON_FRIENDLY,, TRUE))
         return
 
-    reset_state()
+    reset_state(user)
     user.put_in_hands(src)
     
     return ..()
@@ -73,20 +73,20 @@
     update_icon()
 
 
-/obj/item/laptop/rescue/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/item/laptop/rescue/attack_alien(mob/living/carbon/Xenomorph/X)
     if(!anchored)
-        to_chat(M, "<span class='warning'>It's already broken.</span>")
+        to_chat(X, "<span class='warning'>It's already broken.</span>")
         return
 
     M.animation_attack_on(src)
-    M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+    M.visible_message("<span class='danger'>\The [X] slices [src] apart!</span>", \
         "<span class='danger'>You slice [src] apart!</span>", null, 5)
     playsound(loc, "alien_claw_metal", 25, 1)
 
     if (!anchored)
         return
 
-    reset_state()
+    reset_state(X)
    
     if(prob(10))
         new /obj/effect/decal/cleanable/blood/oil(loc)
@@ -160,10 +160,10 @@
 
     visible_message("\The [src] emits an erroneous beep and turns off.", "You hear erroneous beep.")
     log_game("Beacon is too far from the laptop and reset [AREACOORD(src.loc)]")
-    reset_state(FALSE)
+    reset_state(, FALSE)
 
 
-/obj/item/beacon/rescue/proc/reset_state(dump_contents = TRUE)
+/obj/item/beacon/rescue/proc/reset_state(mob/user, dump_contents = TRUE)
     activated = FALSE
     anchored = FALSE
     icon_state = "motion0"
@@ -175,14 +175,17 @@
         var/datum/game_mode/survivor/GM = SSticker.mode
         GM.beacon = null
     
+    if(!user)
+        return
+    
     if (dump_contents && length(internal_components))
         required_components = initial(required_components)
         for (var/I in internal_components)
             var/turf/T = get_step(src, pick(cardinal))
             if (T.obscured)
-                usr.transferItemToLoc(I, src)
+                user.transferItemToLoc(I, src)
             else
-                usr.transferItemToLoc(I, T)
+                user.transferItemToLoc(I, T)
 
     if (beacon_timer_id && noise_timer_id)
         distress_timer = timeleft(beacon_timer_id)
@@ -214,7 +217,7 @@
     obj_integrity -= max(0, rand(15, 30))
     if(obj_integrity <= 0)
         log_game("[key_name(X)] destroyed \the [src].")
-        reset_state()
+        reset_state(X)
    
     if(prob(10))
         new /obj/effect/decal/cleanable/blood/oil(loc)
@@ -234,7 +237,7 @@
         return
 
     log_game("[key_name(user)] picked up \the [src].")
-    reset_state()
+    reset_state(X)
     user.put_in_hands(src)
 
     return ..()
