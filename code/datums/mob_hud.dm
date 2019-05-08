@@ -115,9 +115,9 @@ var/datum/mob_hud/huds = list(
 
 /datum/mob_hud/squad
 	hud_icons = list(SQUAD_HUD)
-	
+
 /datum/mob_hud/order
-	hud_icons = list(ORDER_HUD)	
+	hud_icons = list(ORDER_HUD)
 
 
 
@@ -406,29 +406,6 @@ var/datum/mob_hud/huds = list(
 		if(I)
 			holder.icon_state = "hud[ckey(I.GetJobName())]"
 
-
-
-/mob/proc/sec_hud_set_implants()
-	return
-
-/mob/living/carbon/human/sec_hud_set_implants()
-	var/image/holder1 = hud_list[IMPTRACK_HUD]
-	var/image/holder2 = hud_list[IMPLOYAL_HUD]
-	var/image/holder3 = hud_list[IMPCHEM_HUD]
-
-	holder1.icon_state = "hudblank"
-	holder2.icon_state = "hudblank"
-	holder3.icon_state = "hudblank"
-
-	for(var/obj/item/implant/I in src)
-		if(I.implanted)
-			if(istype(I,/obj/item/implant/tracking))
-				holder1.icon_state = "hud_imp_tracking"
-			if(istype(I,/obj/item/implant/loyalty))
-				holder2.icon_state = "hud_imp_loyal"
-			if(istype(I,/obj/item/implant/chem))
-				holder3.icon_state = "hud_imp_chem"
-
 /mob/living/carbon/human/proc/sec_hud_set_security_status()
 	var/image/holder = hud_list[WANTED_HUD]
 	holder.icon_state = "hudblank"
@@ -487,8 +464,8 @@ var/datum/mob_hud/huds = list(
 			IMG2.color = squad_clr
 			holder.overlays += IMG2
 	hud_list[SQUAD_HUD] = holder
-	
-	
+
+
 //Order HUD
 
 /mob/living/carbon/human/proc/hud_set_order()
@@ -514,4 +491,4 @@ var/datum/mob_hud/huds = list(
 			if("focus")
 				holder.overlays += image('icons/mob/hud.dmi',src, "hudfocusaura")
 
-	hud_list[ORDER_HUD] = holder	
+	hud_list[ORDER_HUD] = holder

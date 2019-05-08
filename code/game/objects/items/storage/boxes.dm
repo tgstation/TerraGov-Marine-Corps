@@ -115,26 +115,6 @@
 	desc = "Box full of scum-bag tracking utensils."
 	icon_state = "implant"
 
-/obj/item/storage/box/trackimp/Initialize(mapload, ...)
-	. = ..()
-	for(var/i in 1 to 4)
-		new /obj/item/implantcase/tracking(src)
-	new /obj/item/implanter(src)
-	new /obj/item/implantpad(src)
-	new /obj/item/locator(src)
-
-/obj/item/storage/box/chemimp
-	name = "boxed chemical implant kit"
-	desc = "Box of stuff used to implant chemicals."
-	icon_state = "implant"
-
-/obj/item/storage/box/chemimp/Initialize(mapload, ...)
-	. = ..()
-	for(var/i in 1 to 5)
-		new /obj/item/implantcase/chem(src)
-	new /obj/item/implanter(src)
-	new /obj/item/implantpad(src)
-
 /obj/item/storage/box/rxglasses
 	name = "box of prescription glasses"
 	desc = "This box contains nerd glasses."
@@ -148,18 +128,6 @@
 	desc = "It has a picture of drinking glasses on it."
 	spawn_type = /obj/item/reagent_container/food/drinks/drinkingglass
 	spawn_number = 6
-
-/obj/item/storage/box/cdeathalarm_kit
-	name = "Death Alarm Kit"
-	desc = "Box of stuff used to implant death alarms."
-	icon_state = "implant"
-	item_state = "syringe_kit"
-
-/obj/item/storage/box/cdeathalarm_kit/Initialize(mapload, ...)
-	. = ..()
-	new /obj/item/implanter(src)
-	for(var/i in 1 to 6)
-		new /obj/item/implantcase/death_alarm(src)
 
 /obj/item/storage/box/condimentbottles
 	name = "box of condiment bottles"

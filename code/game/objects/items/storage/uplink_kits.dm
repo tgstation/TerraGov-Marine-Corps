@@ -33,9 +33,6 @@
 				new /obj/item/clothing/shoes/syndigaloshes(src)
 				return
 
-			if("freedom")
-				new /obj/item/implanter/freedom(src)
-
 			if("hacker")
 				new /obj/item/circuitboard/ai_module/syndicate(src)
 				new /obj/item/card/emag(src)
@@ -53,21 +50,6 @@
 	name = "box"
 	desc = "A sleek, sturdy box"
 	icon_state = "box_of_doom"
-
-/obj/item/storage/box/syndie_kit/imp_freedom
-	name = "boxed freedom implant (with injector)"
-	spawn_type = /obj/item/implanter/freedom
-	spawn_number = 1
-
-/obj/item/storage/box/syndie_kit/imp_compress
-	name = "box (C)"
-	spawn_type = /obj/item/implanter/compressed
-	spawn_number = 1
-
-/obj/item/storage/box/syndie_kit/imp_explosive
-	name = "box (E)"
-	spawn_type = /obj/item/implanter/explosive
-	spawn_number = 1
 
 /obj/item/storage/box/syndie_kit/space
 	name = "boxed space suit and helmet"

@@ -37207,11 +37207,6 @@
 /obj/structure/rack,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
-"bSP" = (
-/obj/structure/rack,
-/obj/item/implantpad,
-/turf/open/floor/plating,
-/area/ice_colony/underground/maintenance/east)
 "bSQ" = (
 /turf/closed/ice_rock/eastWall,
 /area/ice_colony/exterior/underground/caves)
@@ -65732,7 +65727,7 @@ bRN
 bFD
 bFD
 bFD
-bSP
+bTJ
 bSZ
 bCJ
 bCJ

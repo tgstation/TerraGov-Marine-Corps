@@ -175,10 +175,6 @@
 			imp.imp_in = null
 			imp.implanted = 0
 
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
-			H.sec_hud_set_implants()
-
 	else if(affected.hidden)
 		user.visible_message("<span class='notice'>[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool].</span>", \
 		"<span class='notice'> You take something out of incision on [target]'s [affected.display_name]s with \the [tool].</span>")

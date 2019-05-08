@@ -160,7 +160,6 @@
 	med_hud_set_health()
 	med_hud_set_status()
 	sec_hud_set_ID()
-	sec_hud_set_implants()
 	sec_hud_set_security_status()
 	hud_set_squad()
 	hud_set_order()
@@ -1190,7 +1189,7 @@
 			virus.cure(0)
 
 	undefibbable = FALSE
-	
+
 	return ..()
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
