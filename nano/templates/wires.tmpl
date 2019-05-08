@@ -1,0 +1,13 @@
+<h2>Wires:</h2>
+{{for data.wires}}
+	<div style="padding-top: 5px ; font-weight: bold">
+	{{:value.color}}	
+	{{:helper.link(value.cut ? 'Mend' : 'Cut', null, {'wire' : value.color, 'cut' : 1})}}
+	{{:helper.link('Pulse', null, {'wire' : value.color, 'pulse' : 1})}}
+	{{:helper.link(value.attached ? 'Detach' : 'Attach', null, {'wire' : value.color, 'attach' : 1})}}
+	</div>
+{{/for}}
+{{if data.status}}
+	<h2>Status:</h2>
+	{{:data.status}}
+{{/if}}

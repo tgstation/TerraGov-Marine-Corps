@@ -270,6 +270,7 @@
 	var/list/movement_force = list("KNOCKDOWN" = 3, "THROW" = 0)
 
 	var/list/ripples = list()
+	var/use_ripples = TRUE
 	var/engine_coeff = 1 //current engine coeff
 	var/current_engines = 0 //current engine power
 	var/initial_engines = 0 //initial engine power
@@ -503,6 +504,8 @@
 	jumpToNullSpace()
 
 /obj/docking_port/mobile/proc/create_ripples(obj/docking_port/stationary/S1, animate_time)
+	if(!use_ripples)
+		return
 	var/list/turfs = ripple_area(S1)
 	for(var/t in turfs)
 		ripples += new /obj/effect/abstract/ripple(t, animate_time)
@@ -561,13 +564,11 @@
 	// If we can't dock or we don't have a transit slot, wait for 20 ds,
 	// then try again
 	switch(mode)
-		if(SHUTTLE_CALL)
-			mode = SHUTTLE_PRE_ARRIVAL
-			on_prearrival()
-			setTimer(max(prearrivalTime, 10))
-			return
-		
-		if(SHUTTLE_PRE_ARRIVAL)
+		if(SHUTTLE_CALL, SHUTTLE_PREARRIVAL)
+			if(prearrivalTime && mode != SHUTTLE_PREARRIVAL)
+				mode = SHUTTLE_PREARRIVAL
+				setTimer(prearrivalTime)
+				return
 			var/error = initiate_docking(destination, preferred_direction)
 			if(error && error & (DOCKING_NULL_DESTINATION | DOCKING_NULL_SOURCE))
 				var/msg = "A mobile dock in transit exited initiate_docking() with an error. This is most likely a mapping problem: Error: [error],  ([src]) ([previous][ADMIN_JMP(previous)] -> [destination][ADMIN_JMP(destination)])"
@@ -578,10 +579,10 @@
 			else if(error)
 				setTimer(20)
 				return
-			mode = SHUTTLE_RECHARGING
-			setTimer(max(rechargeTime, 10))
-			destination = null
-
+			if(rechargeTime)
+				mode = SHUTTLE_RECHARGING
+				setTimer(rechargeTime)
+				return
 		if(SHUTTLE_RECALL)
 			if(initiate_docking(previous) != DOCKING_SUCCESS)
 				setTimer(20)

@@ -103,8 +103,6 @@ var/list/robot_verbs_default = list(
 		camera = new /obj/machinery/camera(src)
 		camera.c_tag = real_name
 		camera.network = list("SS13","Robots")
-		if(isWireCut(5)) // 5 = BORG CAMERA
-			camera.status = 0
 
 	initialize_components()
 	//if(!unfinished)
@@ -495,7 +493,7 @@ var/list/robot_verbs_default = list(
 				to_chat(user, "You close the cover.")
 				opened = 0
 				update_icons()
-			else if(wiresexposed && isWireCut(1) && isWireCut(2) && isWireCut(3) && isWireCut(4) && isWireCut(5))
+			else if(wiresexposed)
 				//Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
 				if(!mmi)
 					to_chat(user, "\The [src] has no brain to remove.")
@@ -562,12 +560,6 @@ var/list/robot_verbs_default = list(
 			//This will mean that removing and replacing a power cell will repair the mount, but I don't care at this point. ~Z
 			C.brute_damage = 0
 			C.electronics_damage = 0
-
-	else if (iswirecutter(W) || ismultitool(W))
-		if (wiresexposed)
-			interact(user)
-		else
-			to_chat(user, "You can't reach the wiring.")
 
 	else if(isscrewdriver(W) && opened && !cell)	// haxing
 		wiresexposed = !wiresexposed

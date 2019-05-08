@@ -214,6 +214,33 @@
 "aaE" = (
 /turf/open/floor/plating,
 /area/almayer/hull/upper_hull)
+"aaF" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "84"
+	},
+/area/shuttle/drop1/sulaco)
+"aaG" = (
+/obj/effect/attach_point/electronics/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "85"
+	},
+/area/shuttle/drop1/sulaco)
+"aaH" = (
+/obj/effect/attach_point/electronics/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "90"
+	},
+/area/shuttle/drop1/sulaco)
 "aaI" = (
 /obj/machinery/door/firedoor/theseus{
 	dir = 2
@@ -223,6 +250,38 @@
 	icon_state = "test_floor4"
 	},
 /area/almayer/hallways/aft_hallway)
+"aaJ" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "91"
+	},
+/area/shuttle/drop1/sulaco)
+"aaK" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "61"
+	},
+/area/shuttle/drop1/sulaco)
+"aaL" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 4;
+	icon_state = "equip_base_r_wing"
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "65"
+	},
+/area/shuttle/drop1/sulaco)
+"aaM" = (
+/turf/open/floor/almayer/empty,
+/area/almayer/squads/req)
 "aaN" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -234,6 +293,10 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/upper_hull)
+"aaO" = (
+/obj/docking_port/stationary/supply/reqs,
+/turf/open/floor/almayer/empty,
+/area/almayer/squads/req)
 "aaS" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -16240,15 +16303,6 @@
 "aIT" = (
 /turf/open/floor/wood,
 /area/almayer/living/captain_mess)
-"aIU" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "84"
-	},
-/area/shuttle/drop1/sulaco)
 "aIV" = (
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 2;
@@ -16334,15 +16388,6 @@
 	tag = "icon-sterile_green_side"
 	},
 /area/almayer/medical/medical_science)
-"aJe" = (
-/obj/effect/attach_point/electronics/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "85"
-	},
-/area/shuttle/drop1/sulaco)
 "aJf" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -16528,15 +16573,6 @@
 /obj/machinery/camera/autoname/almayer,
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/upper_engineering)
-"aJD" = (
-/obj/effect/attach_point/electronics/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "90"
-	},
-/area/shuttle/drop1/sulaco)
 "aJE" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/mineral/phoron{
@@ -16596,31 +16632,12 @@
 	dir = 1
 	},
 /area/almayer/hallways/stern_hallway)
-"aJL" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "91"
-	},
-/area/shuttle/drop1/sulaco)
 "aJM" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/command/self_destruct)
-"aJN" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "61"
-	},
-/area/shuttle/drop1/sulaco)
 "aJO" = (
 /obj/structure/table/almayer,
 /obj/machinery/prop/almayer/computer,
@@ -16719,16 +16736,6 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig_cells)
-"aKa" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 4;
-	icon_state = "equip_base_r_wing"
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "65"
-	},
-/area/shuttle/drop1/sulaco)
 "aKb" = (
 /obj/structure/bed,
 /turf/open/floor/almayer{
@@ -28049,9 +28056,6 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/squads/req)
-"bnC" = (
-/turf/open/floor/plating/plating_catwalk,
-/area/almayer/squads/req)
 "bnD" = (
 /turf/open/floor/almayer{
 	dir = 4;
@@ -31617,9 +31621,6 @@
 	},
 /area/almayer/squads/req)
 "bwl" = (
-/obj/machinery/status_display/supply_display{
-	pixel_y = 32
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/req)
 "bwn" = (
@@ -32960,9 +32961,6 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/squads/req)
-"bzr" = (
-/turf/open/floor/almayer/empty,
-/area/supply/station)
 "bzs" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 8;
@@ -34002,10 +34000,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/req)
-"bBX" = (
-/obj/effect/landmark/supply_elevator,
-/turf/open/floor/almayer/empty,
-/area/supply/station)
 "bBY" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 8;
@@ -71273,7 +71267,7 @@ blA
 blA
 btZ
 bvv
-aJN
+aaK
 cjV
 cjV
 cjV
@@ -71526,7 +71520,7 @@ bkY
 blA
 blA
 blA
-aIU
+aaF
 bsn
 bua
 bvw
@@ -71783,7 +71777,7 @@ bkZ
 blA
 blA
 blA
-aJe
+aaG
 bso
 bub
 bub
@@ -73325,7 +73319,7 @@ bkX
 blA
 blA
 blA
-aJD
+aaH
 bso
 bug
 bvz
@@ -73582,7 +73576,7 @@ bkY
 blA
 blA
 blA
-aJL
+aaJ
 bsu
 buh
 bvA
@@ -73843,7 +73837,7 @@ blA
 blA
 bui
 bvB
-aKa
+aaL
 cjW
 cjW
 cjW
@@ -89000,25 +88994,25 @@ biu
 bjW
 biu
 aWm
-bnC
-bnC
+bwl
+bwl
 brb
-bnC
-bnC
+bwl
+bwl
 brb
-bnC
-bnC
+bwl
+bwl
 brb
 bEO
 brb
-bnC
-bnC
+bwl
+bwl
 brb
-bnC
-bnC
+bwl
+bwl
 brb
-bnC
-bnC
+bwl
+bwl
 bDM
 bGq
 bQt
@@ -90806,11 +90800,11 @@ bsR
 buE
 bwe
 bxX
-bnC
+bwl
 bAL
 bnF
 bDE
-bnC
+bwl
 bGh
 bwd
 bID
@@ -91063,11 +91057,11 @@ bsS
 buE
 bwf
 bxY
-bnC
+bwl
 bAM
 bpq
 bDF
-bnC
+bwl
 bGh
 bHt
 bnF
@@ -91320,11 +91314,11 @@ bpq
 bnF
 avU
 bxZ
-bnC
+bwl
 bAN
 bpq
 bDG
-bnC
+bwl
 bGh
 bMs
 bnF
@@ -91577,11 +91571,11 @@ bsT
 buG
 bAK
 bya
-bnC
+bwl
 bAO
 bnF
 bDH
-bnC
+bwl
 bGi
 bHv
 bIE
@@ -91830,20 +91824,20 @@ aWm
 bnG
 bps
 brj
-bnC
+bwl
 gas
-bnC
-bnC
-bnC
-bnC
+bwl
+bwl
+bwl
+bwl
 bBV
-bnC
-bnC
-bnC
-bnC
+bwl
+bwl
+bwl
+bwl
 bIF
-bnC
-bnC
+bwl
+bwl
 bMC
 bnG
 bOO
@@ -92089,15 +92083,15 @@ bpt
 brk
 gEh
 lEo
-bnC
+bwl
 byc
-bnC
+bwl
 byc
-bnC
+bwl
 byc
-bnC
+bwl
 byc
-bnC
+bwl
 bIG
 bJM
 bKT
@@ -92346,15 +92340,15 @@ bpu
 brl
 brb
 vBC
-bnC
+bwl
 byd
-bnC
+bwl
 byd
-bnC
+bwl
 byd
-bnC
+bwl
 byd
-bnC
+bwl
 buH
 brb
 brl
@@ -92860,15 +92854,15 @@ bnF
 brm
 bnF
 bnF
-bnC
-bnC
-bnC
-bnC
-bnC
-bnC
-bnC
-bnC
-bnC
+bwl
+bwl
+bwl
+bwl
+bwl
+bwl
+bwl
+bwl
+bwl
 bnF
 bnF
 bKU
@@ -93117,7 +93111,7 @@ bpw
 brl
 bsU
 bnF
-bnC
+bwl
 byf
 bzq
 bzq
@@ -93125,7 +93119,7 @@ jER
 bzq
 bzq
 bGj
-bnC
+bwl
 bnF
 bJN
 brl
@@ -93376,11 +93370,11 @@ bsV
 bnF
 bpn
 byg
-bzr
-bzr
-bzr
-bzr
-bzr
+aaM
+aaM
+aaM
+aaM
+aaM
 bGk
 kWq
 bnF
@@ -93633,13 +93627,13 @@ bsW
 bnF
 bwl
 byg
-bzr
-bzr
-bzr
-bzr
-bzr
+aaM
+aaM
+aaM
+aaM
+aaM
 bGk
-bnC
+bwl
 bnF
 bJN
 brl
@@ -93888,15 +93882,15 @@ bpz
 brn
 bsX
 bnF
-bnC
+bwl
 byh
-bzr
-bzr
-bBX
-bzr
-bzr
+aaM
+aaM
+aaO
+aaM
+aaM
 bGl
-bnC
+bwl
 bnF
 bJO
 brn
@@ -94147,16 +94141,16 @@ bsY
 bnF
 bwn
 byg
-bzr
-bzr
-bzr
-bzr
-bzr
+aaM
+aaM
+aaM
+aaM
+aaM
 bGk
-bnC
+bwl
 bIH
-bnC
-bnC
+bwl
+bwl
 bMJ
 bnF
 bDM
@@ -94399,16 +94393,16 @@ biu
 aWm
 bnF
 bpB
-bnC
+bwl
 bsZ
 bnF
 bpn
 byg
-bzr
-bzr
-bzr
-bzr
-bzr
+aaM
+aaM
+aaM
+aaM
+aaM
 bGk
 kWq
 bnF
@@ -94656,10 +94650,10 @@ biu
 aKe
 bnF
 bpC
-bnC
-bnC
+bwl
+bwl
 buI
-bnC
+bwl
 byi
 bzs
 bzs
@@ -94667,7 +94661,7 @@ bBY
 bzs
 bzs
 bGm
-bnC
+bwl
 bnF
 bnF
 bKV
@@ -94913,18 +94907,18 @@ biu
 aXj
 bnF
 bpD
-bnC
+bwl
 bta
 bnF
-bnC
-bnC
-bnC
-bnC
-bnC
-bnC
-bnC
-bnC
-bnC
+bwl
+bwl
+bwl
+bwl
+bwl
+bwl
+bwl
+bwl
+bwl
 bnF
 bJQ
 bJQ
