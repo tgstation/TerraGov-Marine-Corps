@@ -151,7 +151,6 @@ SUBSYSTEM_DEF(ticker)
 	CHECK_TICK
 
 	GLOB.datacore.manifest()
-	supply_controller.process()
 
 	log_world("Game start took [(world.timeofday - init_start) / 10]s")
 	round_start_time = world.time
