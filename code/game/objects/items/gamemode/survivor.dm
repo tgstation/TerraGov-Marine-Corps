@@ -118,8 +118,8 @@
     var/internal_components = list()
 
     // Custom health, It can't be destroyed but it can be stopped by reducing health to 0
-    var/max_hp = 100
-    var/current_hp = 0
+    max_integrity = 100
+    obj_integrity = 0
 
     // Timer to remove the distress beacon if we get distroyed
     var/noise_timer_id = null
@@ -130,8 +130,8 @@
     . = ..() // show parent examines (if any) first
     if (beacon_timer_id)
         to_chat(usr, "<span class='notice'>It shows [timeleft(beacon_timer_id) / 10] seconds left.</span>")
-    if (current_hp < max_hp)
-        var/integrity = current_hp / max_hp * 100
+    if (obj_integrity < max_integrity)
+        var/integrity = obj_integrity / max_integrity * 100
         switch(integrity)
             if(85 to 100)
                 to_chat(usr, "<span class='warning'>It's fully intact.</span>")
@@ -199,7 +199,7 @@
 
 
 /obj/item/beacon/rescue/attack_alien(mob/living/carbon/Xenomorph/M)
-    if(current_hp <= 0)
+    if(obj_integrity <= 0)
         to_chat(M, "<span class='warning'>It's already broken.</span>")
         return
 
@@ -211,8 +211,8 @@
     if (!activated)
         return
 
-    current_hp -= max(0, rand(15, 30))
-    if(current_hp <= 0)
+    obj_integrity -= max(0, rand(15, 30))
+    if(obj_integrity <= 0)
         log_game("[key_name(M)] destroyed \the [src].")
         reset_state()
    
@@ -259,7 +259,7 @@
 
     // repair dmg
     if(iswelder(I))
-        if (current_hp == max_hp)
+        if (obj_integrity == max_integrity)
             to_chat(user, "That doesn't look damaged!")
             return 
 
@@ -270,7 +270,7 @@
         if(WT.remove_fuel(0, user))
             user.visible_message("<span class='notice'>[user] started repairing \the [src]</span>","<span class='notice'>You started repairing \the [src]</span>")
             playsound(get_turf(src), 'sound/items/Welder2.ogg', 25, 1)
-            current_hp = min(current_hp + 25, max_hp)
+            obj_integrity = min(obj_integrity + 25, max_integrity)
             
     // Required Nearby components
     // TODO: Check if this is wasteful.
@@ -281,7 +281,7 @@
         if (found?.anchored)
             nearby_setup++
 
-    if(!length(required_components) && current_hp == max_hp && nearby_setup == length(required_nearby))
+    if(!length(required_components) && obj_integrity == max_integrity && nearby_setup == length(required_nearby))
         log_game("[key_name(user)] activated \the [src].")
         activate_beacon(user)
 
