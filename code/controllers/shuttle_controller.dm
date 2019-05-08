@@ -24,28 +24,6 @@ var/global/datum/controller/shuttle_controller/shuttle_controller
 	process_shuttles = list()
 	locs_crash = list()
 
-	var/datum/shuttle/ferry/shuttle
-
-	// Supply shuttle
-	shuttle = new/datum/shuttle/ferry/supply()
-	shuttle.location = 1
-	shuttle.warmup_time = 3
-	shuttle.move_time = ELEVATOR_TRANSIT_DURATION
-	for(var/area/A in all_areas)
-		if(A.type == /area/supply/dock)
-			shuttle.area_offsite = A
-			break
-
-	for(var/area/A in all_areas)
-		if(A.type == /area/supply/station)
-			shuttle.area_station = A
-			break
-
-	shuttles["Supply"] = shuttle
-	process_shuttles += shuttle
-
-	supply_controller.shuttle = shuttle
-
 	var/datum/shuttle/ferry/marine/shuttle1 //Because I am using shuttle_tag, which is only defined under /datum/shuttle/ferry/marine
 	//ALMAYER DROPSHIP 1
 	shuttle1 = new
