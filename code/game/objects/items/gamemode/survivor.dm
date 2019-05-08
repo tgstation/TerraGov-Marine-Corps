@@ -189,7 +189,7 @@
         deltimer(noise_timer_id)
         deltimer(beacon_timer_id)
         for (var/i in GLOB.alive_human_list)
-            var/mob/M = I
+            var/mob/M = i
             SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
             to_chat(M, "<h2 class='alert'>MESSAGE RECIEVED</h2>")
             to_chat(M, "<span class='alert'>We have lost signal with your beacon! Get it set back up or we'll never find you.</span>")
