@@ -277,7 +277,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		switch(href_list["transform"])
 			if("observer")
-				newmob = M.change_mob_type(/mob/dead/observer, location, null, delmob)
+				newmob = M.ghostize()
+				if(delmob)
+					qdel(M)
+				if(location)
+					newmob.forceMove(usr.loc)
 			if("larva")
 				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Larva, location, null, delmob)
 			if("defender")
