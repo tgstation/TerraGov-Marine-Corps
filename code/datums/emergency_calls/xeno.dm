@@ -10,14 +10,14 @@
 	to_chat(X, "<B>Help the new Queen take over this sector. For the new Hive!</b>")
 
 
-/datum/emergency_call/xenomorphs/spawn_items(list/spawnpoints)
-	var/turf/drop_spawn	= get_spawn_point(spawnpoints)
+/datum/emergency_call/xenomorphs/spawn_items()
+	var/turf/drop_spawn	= get_spawn_point(TRUE)
 	if(istype(drop_spawn))
 		new /obj/effect/alien/weeds/node(drop_spawn) //Drop some weeds for xeno plasma regen.
 
 
-/datum/emergency_call/xenomorphs/create_member(datum/mind/M, list/spawnpoints)
-	var/turf/spawn_loc = get_spawn_point(spawnpoints)
+/datum/emergency_call/xenomorphs/create_member(datum/mind/M)
+	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
 	if(!istype(spawn_loc))
