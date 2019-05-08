@@ -33,6 +33,7 @@
 	return ..()
 
 
+/* Will be used in the future
 /mob/living/silicon/robot/shared_nano_interaction()
 	. = STATUS_INTERACTIVE
 	if(!cell || cell.charge <= 0)
@@ -40,3 +41,4 @@
 	if(lockcharge)
 		. = STATUS_DISABLED
 	return min(., ..())
+*/

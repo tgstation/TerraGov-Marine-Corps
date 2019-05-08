@@ -286,66 +286,6 @@
 		else
 			to_chat(user, "<span class='notice'>The radio can no longer be modified or attached!</span>")
 
-
-///////////////////////////////
-//////////Borg Radios//////////
-///////////////////////////////
-//Giving borgs their own radio to have some more room to work with -Sieve
-
-/obj/item/radio/borg
-	var/mob/living/silicon/robot/myborg = null // Cyborg which owns this radio. Used for power checks
-	var/shut_up = 0
-	icon = 'icons/obj/robot_component.dmi' // Cyborgs radio icons should look like the component.
-	icon_state = "radio"
-	canhear_range = 3
-
-/obj/item/radio/borg/talk_into()
-	..()
-	if (iscyborg(src.loc))
-		var/mob/living/silicon/robot/R = src.loc
-		var/datum/robot_component/C = R.components["radio"]
-		R.cell_use_power(C.active_usage)
-
-/obj/item/radio/borg/attackby(obj/item/W as obj, mob/user as mob)
-//	..()
-	user.set_interaction(src)
-	if (!(isscrewdriver(W) || (istype(W, /obj/item/encryptionkey/ ))))
-		return
-
-	if(isscrewdriver(W))
-		if(keyslot)
-
-
-			for(var/ch_name in channels)
-				SSradio.remove_object(src, GLOB.radiochannels[ch_name])
-				secure_radio_connections[ch_name] = null
-
-
-			if(keyslot)
-				var/turf/T = get_turf(user)
-				if(T)
-					keyslot.loc = T
-					keyslot = null
-
-			recalculateChannels()
-			to_chat(user, "You pop out the encryption key in the radio!")
-
-		else
-			to_chat(user, "This radio doesn't have any encryption keys!")
-
-	if(istype(W, /obj/item/encryptionkey/))
-		if(keyslot)
-			to_chat(user, "The radio can't hold another key!")
-			return
-
-		if(!keyslot)
-			if(user.drop_held_item())
-				W.forceMove(src)
-				keyslot = W
-
-		recalculateChannels()
-
-
 /obj/item/radio/proc/recalculateChannels()
 	channels = list()
 
@@ -356,55 +296,6 @@
 
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
-
-
-/obj/item/radio/borg/Topic(href, href_list)
-	if(usr.stat || !on)
-		return
-	if (href_list["mode"])
-		if(subspace_transmission != 1)
-			subspace_transmission = 1
-			to_chat(usr, "Subspace Transmission is disabled")
-		else
-			subspace_transmission = 0
-			to_chat(usr, "Subspace Transmission is enabled")
-		if(subspace_transmission == 1)//Simple as fuck, clears the channel list to prevent talking/listening over them if subspace transmission is disabled
-			channels = list()
-		else
-			recalculateChannels()
-	if (href_list["shutup"]) // Toggle loudspeaker mode, AKA everyone around you hearing your radio.
-		shut_up = !shut_up
-		if(shut_up)
-			canhear_range = 0
-		else
-			canhear_range = 3
-
-	..()
-
-/obj/item/radio/borg/interact(mob/user as mob)
-	if(!on)
-		return
-
-	var/dat = {"
-				Speaker: [listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>
-				Frequency:
-				<A href='byond://?src=\ref[src];freq=-10'>-</A>
-				<A href='byond://?src=\ref[src];freq=-2'>-</A>
-				[format_frequency(frequency)]
-				<A href='byond://?src=\ref[src];freq=2'>+</A>
-				<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
-				<A href='byond://?src=\ref[src];mode=1'>Toggle Broadcast Mode</A><BR>
-				<A href='byond://?src=\ref[src];shutup=1'>Toggle Loudspeaker</A><BR>
-				"}
-
-	if(!subspace_transmission)//Don't even bother if subspace isn't turned on
-		for (var/ch_name in channels)
-			dat+=text_sec_channel(ch_name, channels[ch_name])
-
-	var/datum/browser/popup = new(user, "radio", "<div align='center'>[src]</div>")
-	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "radio")
 
 
 /obj/item/radio/off

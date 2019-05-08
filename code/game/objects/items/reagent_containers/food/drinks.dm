@@ -17,7 +17,6 @@
 
 /obj/item/reagent_container/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
 	var/datum/reagents/R = src.reagents
-	var/fillevel = gulp_size
 
 	if(!R.total_volume || !R)
 		to_chat(user, "<span class='warning'>The [src.name] is empty!</span>")
@@ -61,13 +60,6 @@
 			reagents.reaction(M, INGEST)
 			reagents.trans_to(M, gulp_size)
 
-		if(iscyborg(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
-			var/mob/living/silicon/robot/bro = user
-			bro.cell.use(30)
-			var/refill = R.get_master_reagent_id()
-			spawn(600)
-				R.add_reagent(refill, fillevel)
-
 		playsound(M.loc,'sound/items/drink.ogg', 15, 1)
 		return TRUE
 
@@ -89,25 +81,8 @@
 			to_chat(user, "<span class='warning'>[target] is full.</span>")
 			return
 
-		var/datum/reagent/refill
-		var/datum/reagent/refillName
-		if(iscyborg(user))
-			refill = reagents.get_master_reagent_id()
-			refillName = reagents.get_master_reagent_name()
-
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
 		to_chat(user, "<span class='notice'>You transfer [trans] units of the solution to [target].</span>")
-
-		if(iscyborg(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
-			var/mob/living/silicon/robot/bro = user
-			var/chargeAmount = max(30,4*trans)
-			bro.cell.use(chargeAmount)
-			to_chat(user, "Now synthesizing [trans] units of [refillName]...")
-
-
-			spawn(300)
-				reagents.add_reagent(refill, trans)
-				to_chat(user, "Cyborg [src] refilled.")
 
 	else if(target.is_drainable()) //A dispenser Transfer FROM it TO us.
 		if(!is_refillable())

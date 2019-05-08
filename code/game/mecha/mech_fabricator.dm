@@ -115,15 +115,6 @@
 
 						),
 
-	"Robotic Upgrade Modules" = list(
-						/obj/item/robot/upgrade/reset,
-						/obj/item/robot/upgrade/rename,
-						/obj/item/robot/upgrade/restart,
-						/obj/item/robot/upgrade/vtec,
-						/obj/item/robot/upgrade/tasercooler,
-						/obj/item/robot/upgrade/jetpack
-						),
-
 
 
 

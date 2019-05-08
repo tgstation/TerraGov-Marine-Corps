@@ -78,10 +78,6 @@
 	set hidden = 1
 	if(iscarbon(mob))
 		mob:swap_hand()
-	if(istype(mob,/mob/living/silicon/robot))
-		var/mob/living/silicon/robot/R = mob
-		R.cycle_modules()
-	return
 
 
 

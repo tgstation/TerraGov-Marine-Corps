@@ -504,42 +504,6 @@
 			usr.unset_interaction()
 			return TRUE
 
-		if("module")
-			if(issilicon(usr))
-				if(usr:module)
-					return TRUE
-				usr:pick_module()
-			return TRUE
-
-		if("radio")
-			if(issilicon(usr))
-				usr:radio_menu()
-			return TRUE
-		if("panel")
-			if(issilicon(usr))
-				usr:installed_modules()
-			return TRUE
-
-		if("store")
-			if(issilicon(usr))
-				usr:uneq_active()
-			return TRUE
-
-		if("module1")
-			if(iscyborg(usr))
-				usr:toggle_module(1)
-			return TRUE
-
-		if("module2")
-			if(iscyborg(usr))
-				usr:toggle_module(2)
-			return TRUE
-
-		if("module3")
-			if(iscyborg(usr))
-				usr:toggle_module(3)
-			return TRUE
-
 		if("Activate weapon attachment")
 			var/obj/item/weapon/gun/G = usr.get_held_item()
 			if(istype(G))

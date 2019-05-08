@@ -413,11 +413,7 @@
 				user.Stun(10)
 				user.stuttering = 10
 				user.KnockDown(10)
-				if(iscyborg(user))
-					var/mob/living/silicon/robot/R = user
-					R.cell.charge -= 20
-				else
-					B.deductcharge(B.hitcost)
+				B.deductcharge(B.hitcost)
 				user.visible_message("<span class='danger'>[user] was stunned by [user.p_their()] wet [O]!</span>")
 				return
 

@@ -114,7 +114,6 @@ var/list/ai_verbs_default = list(
 		laws = new base_law_type
 
 	aiMulti = new(src)
-	aiCamera = new/obj/item/camera/siliconcam/ai_camera(src)
 
 	if (istype(loc, /turf))
 		add_ai_verbs(src)
