@@ -64,23 +64,5 @@ var/datum/sun/sun = null
 
 var/datum/moduletypes/mods = new()
 
-var/list/globalAirlockWireColorToFlag = RandomAirlockWires()
-var/list/globalAirlockIndexToFlag
-var/list/globalAirlockIndexToWireColor
-var/list/globalAirlockWireColorToIndex
-var/list/APCWireColorToFlag = RandomAPCWires()
-var/list/APCIndexToFlag
-var/list/APCIndexToWireColor
-var/list/APCWireColorToIndex
-// *******
-var/list/BorgWireColorToFlag = RandomBorgWires()
-var/list/BorgIndexToFlag
-var/list/BorgIndexToWireColor
-var/list/BorgWireColorToIndex
-var/list/AAlarmWireColorToFlag = RandomAAlarmWires()
-var/list/AAlarmIndexToFlag
-var/list/AAlarmIndexToWireColor
-var/list/AAlarmWireColorToIndex
-
 // Reference list for disposal sort junctions. Filled up by sorting junction's New()
 /var/list/tagger_locations = list()

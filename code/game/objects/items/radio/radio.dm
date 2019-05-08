@@ -26,17 +26,11 @@
 
 	matter = list("glass" = 25,"metal" = 75)
 
-	var/wires = WIRE_SIGNAL|WIRE_RECEIVE|WIRE_TRANSMIT
-	var/const/WIRE_SIGNAL = 1 //sends a signal, like to set off a bomb or electrocute someone
-	var/const/WIRE_RECEIVE = 2
-	var/const/WIRE_TRANSMIT = 4
-	var/const/TRANSMISSION_DELAY = 5 // only 2/second/radio
-	var/const/FREQ_LISTENING = 1
-
-
 	var/list/channels = list()  // Map from name (see communications.dm) to on/off. First entry is current department (:h).
 	var/list/secure_radio_connections
 	var/obj/item/encryptionkey/keyslot
+
+	var/const/FREQ_LISTENING = 1
 
 
 /obj/item/radio/Initialize()
@@ -45,6 +39,8 @@
 	frequency = sanitize_frequency(frequency, freerange)
 	set_frequency(frequency)
 
+	wires = new /datum/wires/radio(src)
+
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
 
@@ -52,6 +48,7 @@
 /obj/item/radio/Destroy()
 	remove_radio_all(src) //Just to be sure
 	QDEL_NULL(keyslot)
+	QDEL_NULL(wires)
 	return ..()
 
 
@@ -66,7 +63,12 @@
 	interact(user)
 
 
-/obj/item/radio/interact(mob/user as mob)
+/obj/item/radio/interact(mob/user)
+	if(unscrewed && !isAI(user))
+		wires.interact(user)
+		add_fingerprint(user)
+		return
+
 	if(!on)
 		return
 
@@ -79,10 +81,10 @@
 				Speaker: [listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>
 				Frequency: 	[format_frequency(frequency)] "}
 
+	dat += "<br>"
+
 	for(var/ch_name in channels)
 		dat += text_sec_channel(ch_name, channels[ch_name])
-	
-	dat += {"[text_wires()]"}
 
 	var/datum/browser/popup = new(user, "radio", "<div align='center'>[src]</div>")
 	popup.set_content(dat)
@@ -90,19 +92,9 @@
 	onclose(user, "radio")
 
 
-/obj/item/radio/proc/text_wires()
-	if(!unscrewed)
-		return ""
-	return {"
-			<hr>
-			Green Wire: <A href='byond://?src=\ref[src];wires=4'>[(wires & 4) ? "Cut" : "Mend"] Wire</A><BR>
-			Red Wire:   <A href='byond://?src=\ref[src];wires=2'>[(wires & 2) ? "Cut" : "Mend"] Wire</A><BR>
-			Blue Wire:  <A href='byond://?src=\ref[src];wires=1'>[(wires & 1) ? "Cut" : "Mend"] Wire</A><BR>
-			"}
-
 
 /obj/item/radio/proc/text_sec_channel(var/chan_name, var/chan_stat)
-	var/list = !!(chan_stat&FREQ_LISTENING)!=0
+	var/list = !!(chan_stat & FREQ_LISTENING) != 0
 	return {"
 			<B>[chan_name]</B><br>
 			Speaker: <A href='byond://?src=\ref[src];ch_name=[chan_name];listen=[!list]'>[list ? "Engaged" : "Disengaged"]</A><BR>
@@ -408,7 +400,6 @@
 	if(!subspace_transmission)//Don't even bother if subspace isn't turned on
 		for (var/ch_name in channels)
 			dat+=text_sec_channel(ch_name, channels[ch_name])
-	dat += {"[text_wires()]"}
 
 	var/datum/browser/popup = new(user, "radio", "<div align='center'>[src]</div>")
 	popup.set_content(dat)

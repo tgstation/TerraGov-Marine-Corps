@@ -56,6 +56,9 @@ GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
 
 
 /mob/living/proc/shared_living_nano_distance(atom/movable/src_object)
+	if(istype(src_object, /datum/wires))
+		var/datum/wires/W = src_object
+		src_object = W.holder
 	if(!(src_object in view(4, src))) 	// If the src object is not visable, disable updates
 		return STATUS_CLOSE
 
