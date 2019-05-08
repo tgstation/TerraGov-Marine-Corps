@@ -139,10 +139,6 @@
 		deductcharge(hitcost)
 		return
 
-	if(iscyborg(M))
-		..()
-		return
-
 	var/agony = agonyforce
 	var/stun = stunforce
 	var/mob/living/L = M

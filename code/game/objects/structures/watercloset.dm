@@ -369,7 +369,7 @@
 			pixel_x = 12
 
 /obj/structure/sink/attack_hand(mob/user)
-	if(iscyborg(user) || isAI(user))
+	if(isAI(user))
 		return
 
 	if(!Adjacent(user))

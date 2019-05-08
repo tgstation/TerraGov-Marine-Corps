@@ -151,8 +151,6 @@
 	return TRUE // update UIs attached to this object
 
 /obj/machinery/chem_dispenser/attackby(var/obj/item/reagent_container/B as obj, var/mob/user as mob)
-	if(iscyborg(user))
-		return
 	if(src.beaker)
 		to_chat(user, "Something is already loaded into the machine.")
 		return

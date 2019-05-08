@@ -109,8 +109,6 @@
 		else if(ismob(A))
 			if(ishuman(A))
 				jump_to = locate() in A:head
-			else if(iscyborg(A))
-				jump_to = A:camera
 		else if(isobj(A))
 			jump_to = locate() in A
 		else if(isturf(A))

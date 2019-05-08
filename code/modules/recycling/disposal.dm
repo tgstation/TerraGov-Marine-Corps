@@ -106,8 +106,6 @@
 				flush()
 		return
 
-	if(iscyborg(user))
-		return
 	if(!I)
 		return
 

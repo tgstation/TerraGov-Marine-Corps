@@ -162,7 +162,7 @@
 				destroyed()
 		return
 
-	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
+	if((W.flags_item & ITEM_ABSTRACT))
 		return
 
 	var/damage = W.force

@@ -227,8 +227,6 @@
 			qdel(src)
 			return
 
-		if(iscyborg(user))
-			return
 		user.transferItemToLoc(W,loc)
 
 	else if(istype(W, /obj/item/packageWrap))

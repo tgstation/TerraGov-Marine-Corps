@@ -100,8 +100,7 @@
 
 /client/verb/drop_item()
 	set hidden = 1
-	if(!iscyborg(mob))
-		mob.drop_item_v()
+	mob.drop_item_v()
 	return
 
 
