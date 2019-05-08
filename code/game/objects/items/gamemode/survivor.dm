@@ -188,9 +188,8 @@
         distress_timer = timeleft(beacon_timer_id)
         deltimer(noise_timer_id)
         deltimer(beacon_timer_id)
-        var/mob/M
         for (var/i in GLOB.alive_human_list)
-            M = i
+            var/mob/M = I
             SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
             to_chat(M, "<h2 class='alert'>MESSAGE RECIEVED</h2>")
             to_chat(M, "<span class='alert'>We have lost signal with your beacon! Get it set back up or we'll never find you.</span>")
@@ -300,9 +299,8 @@
     noise_timer_id = addtimer(CALLBACK(src, .proc/make_noise), 7 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
     beacon_timer_id = addtimer(CALLBACK(src, .proc/call_distress_team), distress_timer, TIMER_UNIQUE|TIMER_STOPPABLE)
     
-    var/mob/M
     for (var/I in GLOB.alive_human_list)
-        M = I
+        var/mob/M = I
         to_chat(M, "<h2 class='alert'>MESSAGE RECIEVED</h2>")
         to_chat(M, "<span class='alert'>We have gotten your messages, we are sending units to your location. Hold out until they get there, they shouldn't be more than [distress_timer / 600] minutes.</span>")
 
