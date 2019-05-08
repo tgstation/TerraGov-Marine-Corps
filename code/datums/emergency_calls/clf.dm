@@ -10,8 +10,8 @@
 	to_chat(H, "<B>Assault the TGMC, and sabotage as much as you can. Ensure any survivors escape in your custody.</b>")
 
 
-/datum/emergency_call/clf/create_member(datum/mind/M)
-	var/turf/spawn_loc = get_spawn_point()
+/datum/emergency_call/clf/create_member(datum/mind/M, list/spawnpoints)
+	var/turf/spawn_loc = get_spawn_point(spawnpoints)
 	var/mob/original = M.current
 
 	if(!istype(spawn_loc))

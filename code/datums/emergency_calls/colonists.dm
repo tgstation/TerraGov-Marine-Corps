@@ -7,8 +7,8 @@
 	to_chat(H, "<B>You are a colonist!</b>")
 
 
-/datum/emergency_call/colonist/create_member(datum/mind/M)
-	var/turf/spawn_loc = get_spawn_point()
+/datum/emergency_call/colonist/create_member(datum/mind/M, list/spawnpoints)
+	var/turf/spawn_loc = get_spawn_point(spawnpoints)
 	var/mob/original = M.current
 
 	if(!istype(spawn_loc))

@@ -9,8 +9,8 @@
 	to_chat(H, "<B> Follow any orders directly from Nanotrasen!</b>")
 
 
-/datum/emergency_call/deathsquad/create_member(datum/mind/M)
-	var/turf/spawn_loc = get_spawn_point()
+/datum/emergency_call/deathsquad/create_member(datum/mind/M, list/spawnpoints)
+	var/turf/spawn_loc = get_spawn_point(spawnpoints)
 	var/mob/original = M.current
 	var/list/names = list("Alpha","Beta", "Gamma", "Delta","Epsilon", "Zeta", "Eta", "Theta", "Iota", "Kappa", "Lambda", "Mu", "Nu", "Xi", "Omnicron", "Pi", "Rho", "Sigma", "Tau", "Upsilon", "Phi", "Chi", "Psi", "Omega")
 

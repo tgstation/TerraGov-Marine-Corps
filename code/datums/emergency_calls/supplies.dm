@@ -45,7 +45,7 @@
 	auto_shuttle_launch = TRUE
 
 
-/datum/emergency_call/supplies/spawn_items()
+/datum/emergency_call/supplies/spawn_items(list/spawnpoints)
 	var/turf/drop_spawn
 	var/total = rand(3,6)
 	
