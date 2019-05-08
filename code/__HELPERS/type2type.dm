@@ -1,17 +1,3 @@
-/*
- * Holds procs designed to change one type of value, into another.
- * Contains:
- *			hex2num & num2hex
- *			text2list & list2text
- *			file2list
- *			angle2dir
- *			angle2text
- *			worldtime2text
- *          file2list
- *          type2top
- *			type2parent
- */
-
 //Returns an integer given a hex input
 /proc/hex2num(hex)
 	if (!( istext(hex) ))

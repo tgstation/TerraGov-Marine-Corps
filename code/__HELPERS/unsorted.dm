@@ -1,40 +1,36 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
+//Key thing that stops lag. Cornerstone of performance in ss13, Just sitting here, in unsorted.dm.
 
-/*
- * A large number of misc global procs.
- */
+//Increases delay as the server gets more overloaded,
+//as sleeps aren't cheap and sleeping only to wake up and sleep again is wasteful
+#define DELTA_CALC max(((max(TICK_USAGE, world.cpu) / 100) * max(Master.sleep_delta-1,1)), 1)
 
-//Inverts the colour of an HTML string
-/proc/invertHTML(HTMLstring)
+//returns the number of ticks slept
+/proc/stoplag(initial_delay)
+	if(!Master || !(Master.current_runlevel & RUNLEVELS_DEFAULT))
+		sleep(world.tick_lag)
+		return 1
+	if(!initial_delay)
+		initial_delay = world.tick_lag
+	. = 0
+	var/i = DS2TICKS(initial_delay)
+	do
+		. += CEILING(i * DELTA_CALC, 1)
+		sleep(i * world.tick_lag * DELTA_CALC)
+		i *= 2
+	while(TICK_USAGE > min(TICK_LIMIT_TO_RUN, Master.current_ticklimit))
 
-	if (!( istext(HTMLstring) ))
-		CRASH("Given non-text argument!")
-		return
-	else
-		if (length(HTMLstring) != 7)
-			CRASH("Given non-HTML argument!")
-			return
-	var/textr = copytext(HTMLstring, 2, 4)
-	var/textg = copytext(HTMLstring, 4, 6)
-	var/textb = copytext(HTMLstring, 6, 8)
-	var/r = hex2num(textr)
-	var/g = hex2num(textg)
-	var/b = hex2num(textb)
-	textr = num2hex(255 - r)
-	textg = num2hex(255 - g)
-	textb = num2hex(255 - b)
-	if (length(textr) < 2)
-		textr = text("0[]", textr)
-	if (length(textg) < 2)
-		textr = text("0[]", textg)
-	if (length(textb) < 2)
-		textr = text("0[]", textb)
-	return text("#[][][]", textr, textg, textb)
-	return
+#undef DELTA_CALC
+
+#define UNTIL(X) while(!(X)) stoplag()
+#define SIGN(x) ( x < 0 ? -1  : 1 )
+
+//datum may be null, but it does need to be a typed var
+#define NAMEOF(datum, X) (#X || ##datum.##X)
 
 //Returns the middle-most value
 /proc/dd_range(var/low, var/high, var/num)
 	return max(low,min(high,num))
+
 
 //Returns whether or not A is the middle most value
 /proc/InRange(var/A, var/lower, var/upper)
@@ -58,131 +54,6 @@
 	else if(dx<0)
 		.+=360
 
-/proc/Get_Compass_Dir(atom/start,atom/end)//get_dir() only considers an object to be north/south/east/west if there is zero deviation. This uses rounding instead.
-	if(!start || !end) return 0
-	if(!start.z || !end.z) return 0 //Atoms are not on turfs.
-	var/dy=end.y-start.y
-	var/dx=end.x-start.x
-	if(!dy)
-		return (dx>=0)?4:8
-	var/angle=arctan(dx/dy)
-	if(dy<0)
-		angle+=180
-	else if(dx<0)
-		angle+=360
-
-	switch(angle) //diagonal directions get priority over straight directions in edge cases
-		if (22.5 to 67.5)
-			return NORTHEAST
-		if (112.5 to 157.5)
-			return SOUTHEAST
-		if (202.5 to 247.5)
-			return SOUTHWEST
-		if (292.5 to 337.5)
-			return NORTHWEST
-		if (0 to 22.5)
-			return NORTH
-		if (67.5 to 112.5)
-			return EAST
-		if (157.5 to 202.5)
-			return SOUTH
-		if (247.5 to 292.5)
-			return WEST
-		else
-			return NORTH
-
-//Returns location. Returns null if no location was found.
-/proc/get_teleport_loc(turf/location,mob/target,distance = 1, density = 0, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
-/*
-Location where the teleport begins, target that will teleport, distance to go, density checking 0/1(yes/no).
-Random error in tile placement x, error in tile placement y, and block offset.
-Block offset tells the proc how to place the box. Behind teleport location, relative to starting location, forward, etc.
-Negative values for offset are accepted, think of it in relation to North, -x is west, -y is south. Error defaults to positive.
-Turf and target are seperate in case you want to teleport some distance from a turf the target is not standing on or something.
-*/
-
-	var/dirx = 0//Generic location finding variable.
-	var/diry = 0
-
-	var/xoffset = 0//Generic counter for offset location.
-	var/yoffset = 0
-
-	var/b1xerror = 0//Generic placing for point A in box. The lower left.
-	var/b1yerror = 0
-	var/b2xerror = 0//Generic placing for point B in box. The upper right.
-	var/b2yerror = 0
-
-	errorx = abs(errorx)//Error should never be negative.
-	errory = abs(errory)
-	//var/errorxy = round((errorx+errory)/2)//Used for diagonal boxes.
-
-	switch(target.dir)//This can be done through equations but switch is the simpler method. And works fast to boot.
-	//Directs on what values need modifying.
-		if(1)//North
-			diry+=distance
-			yoffset+=eoffsety
-			xoffset+=eoffsetx
-			b1xerror-=errorx
-			b1yerror-=errory
-			b2xerror+=errorx
-			b2yerror+=errory
-		if(2)//South
-			diry-=distance
-			yoffset-=eoffsety
-			xoffset+=eoffsetx
-			b1xerror-=errorx
-			b1yerror-=errory
-			b2xerror+=errorx
-			b2yerror+=errory
-		if(4)//East
-			dirx+=distance
-			yoffset+=eoffsetx//Flipped.
-			xoffset+=eoffsety
-			b1xerror-=errory//Flipped.
-			b1yerror-=errorx
-			b2xerror+=errory
-			b2yerror+=errorx
-		if(8)//West
-			dirx-=distance
-			yoffset-=eoffsetx//Flipped.
-			xoffset+=eoffsety
-			b1xerror-=errory//Flipped.
-			b1yerror-=errorx
-			b2xerror+=errory
-			b2yerror+=errorx
-
-	var/turf/destination=locate(location.x+dirx,location.y+diry,location.z)
-
-	if(destination)//If there is a destination.
-		if(errorx||errory)//If errorx or y were specified.
-			var/destination_list[] = list()//To add turfs to list.
-			//destination_list = new()
-			/*This will draw a block around the target turf, given what the error is.
-			Specifying the values above will basically draw a different sort of block.
-			If the values are the same, it will be a square. If they are different, it will be a rectengle.
-			In either case, it will center based on offset. Offset is position from center.
-			Offset always calculates in relation to direction faced. In other words, depending on the direction of the teleport,
-			the offset should remain positioned in relation to destination.*/
-
-			var/turf/center = locate((destination.x+xoffset),(destination.y+yoffset),location.z)//So now, find the new center.
-
-			//Now to find a box from center location and make that our destination.
-			for(var/turf/T in block(locate(center.x+b1xerror,center.y+b1yerror,location.z), locate(center.x+b2xerror,center.y+b2yerror,location.z) ))
-				if(density&&T.density)	continue//If density was specified.
-				if(T.x>world.maxx || T.x<1)	continue//Don't want them to teleport off the map.
-				if(T.y>world.maxy || T.y<1)	continue
-				destination_list += T
-			if(destination_list.len)
-				destination = pick(destination_list)
-			else	return
-
-		else//Same deal here.
-			if(density&&destination.density)	return
-			if(destination.x>world.maxx || destination.x<1)	return
-			if(destination.y>world.maxy || destination.y<1)	return
-	else	return
-
-	return destination
 
 /proc/LinkBlocked(turf/A, turf/B)
 	if(A == null || B == null)
@@ -204,6 +75,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	if(DirBlocked(B,rdir))
 		return TRUE
 	return FALSE
+
 
 /proc/DirBlocked(turf/loc,var/direction)
 	for(var/obj/structure/window/D in loc)
@@ -227,19 +99,22 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			return TRUE
 	return FALSE
 
+
 /proc/TurfBlockedNonWindow(turf/loc)
 	for(var/obj/O in loc)
 		if(O.density && !istype(O, /obj/structure/window))
 			return TRUE
 	return FALSE
 
+
 /proc/sign(x)
-	return x!=0?x/abs(x):0
+	return x != 0 ? x / abs(x) : 0
+
 
 //Returns whether or not a player is a guest using their ckey as an input
 /proc/IsGuestKey(key)
-	if (findtext(key, "Guest-", 1, 7) != 1) //was findtextEx
-		return 0
+	if(findtext(key, "Guest-", 1, 7) != 1) //was findtextEx
+		return FALSE
 
 	var/i = 7, ch, len = length(key)
 
@@ -263,90 +138,11 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	if(!(. % 2)) // Ensure the last digit is an odd number
 		. += 1
 
+
 // Format frequency by moving the decimal.
 /proc/format_frequency(frequency)
 	frequency = text2num(frequency)
 	return "[round(frequency / 10)].[frequency % 10]"
-
-
-
-//This will update a mob's name, real_name, mind.name, GLOB.datacore records and id
-/mob/proc/fully_replace_character_name(oldname, newname)
-	if(!newname)
-		return FALSE
-
-	log_played_names(ckey, newname)
-
-	real_name = newname
-	voice_name = newname
-	name = newname
-	if(mind)
-		mind.name = newname
-		if(mind.key)
-			log_played_names(mind.key, newname) //Just in case the mind is unsynced at the moment.
-
-	return TRUE
-
-
-/mob/living/carbon/human/fully_replace_character_name(oldname, newname)
-	. = ..()
-	if(!.)
-		return FALSE
-
-	if(dna)
-		dna.real_name = real_name
-
-	if(istype(wear_id))
-		var/obj/item/card/id/C = wear_id
-		C.registered_name = real_name
-		C.update_label()
-
-	if(!GLOB.datacore.manifest_update(oldname, newname, job))
-		GLOB.datacore.manifest_inject(src)
-
-	return TRUE
-
-
-//Generalised helper proc for letting mobs rename themselves. Used to be clname() and ainame()
-//Last modified by Carn
-/mob/proc/rename_self(var/role, var/allow_numbers=0)
-	spawn(0)
-		var/oldname = real_name
-
-		var/time_passed = world.time
-		var/newname
-
-		for(var/i=1,i<=3,i++)	//we get 3 attempts to pick a suitable name.
-			newname = input(src,"You are a [role]. Would you like to change your name to something else?", "Name change",oldname) as text
-			if((world.time-time_passed)>300)
-				return	//took too long
-			newname = reject_bad_name(newname,allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
-
-			for(var/mob/living/M in GLOB.player_list)
-				if(M == src)
-					continue
-				if(!newname || M.real_name == newname)
-					newname = null
-					break
-			if(newname)
-				break	//That's a suitable name!
-			to_chat(src, "Sorry, that [role]-name wasn't appropriate, please try another. It's possibly too long/short, has bad characters or is already taken.")
-
-		if(!newname)	//we'll stick with the oldname then
-			return
-
-		if(cmptext("ai",role))
-			if(isAI(src))
-				var/mob/living/silicon/ai/A = src
-				oldname = null//don't bother with the records update crap
-				//to_chat(world, "<b>[newname] is the AI!</b>")
-				//world << sound('sound/AI/newAI.ogg')
-				// Set eyeobj name
-				A.SetName(newname)
-
-
-		fully_replace_character_name(oldname,newname)
-
 
 
 //Picks a string of symbols to display as the law number for hacked or ion laws
@@ -365,7 +161,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		. += A
 	return .
 
-//Find an active ai with the least borgs. VERBOSE PROCNAME HUH!
+
+//Find an active ai with the least borgs.
 /proc/select_active_ai_with_fewest_borgs()
 	var/mob/living/silicon/ai/selected
 	var/list/active = active_ais()
@@ -375,12 +172,14 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return selected
 
+
 /proc/select_active_ai(var/mob/user)
 	var/list/ais = active_ais()
 	if(ais.len)
 		if(user)	. = input(usr,"AI signals detected:", "AI selection") in ais
 		else		. = pick(ais)
 	return .
+
 
 //Orders mobs by type then by name
 /proc/sortmobs()
@@ -403,41 +202,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	for(var/mob/living/simple_animal/M in sortmob)
 		moblist.Add(M)
 	return moblist
-
-/proc/sortxenos()
-	var/list/xenolist = list()
-	var/list/sortmob = sortNames(GLOB.mob_list)
-	for(var/mob/living/carbon/Xenomorph/M in sortmob)
-		if(!M.client)
-			continue
-		xenolist.Add(M)
-	return xenolist
-
-/proc/sorthumans()
-	var/list/humanlist = list()
-	var/list/sortmob = sortNames(GLOB.mob_list)
-	for(var/mob/living/carbon/human/M in sortmob)
-		if(!M.client)
-			continue
-		humanlist.Add(M)
-	return humanlist
-
-//E = MC^2
-/proc/convert2energy(var/M)
-	var/E = M*(SPEED_OF_LIGHT_SQ)
-	return E
-
-//M = E/C^2
-/proc/convert2mass(var/E)
-	var/M = E/(SPEED_OF_LIGHT_SQ)
-	return M
-
-//Forces a variable to be posative
-/proc/modulus(var/M)
-	if(M >= 0)
-		return M
-	if(M < 0)
-		return -M
 
 
 //ultra range (no limitations on distance, faster than range for distances > 8); including areas drastically decreases performance
@@ -482,12 +246,12 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return target
 
+
 // returns turf relative to A in given direction at set range
 // result is bounded to map size
 // note range is non-pythagorean
 // used for disposal system
 /proc/get_ranged_target_turf(var/atom/A, var/direction, var/range)
-
 	var/x = A.x
 	var/y = A.y
 	if(direction & NORTH)
@@ -509,16 +273,19 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/y = min(world.maxy, max(1, A.y + dy))
 	return locate(x,y,A.z)
 
+
 //Makes sure MIDDLE is between LOW and HIGH. If not, it adjusts it. Returns the adjusted value.
 /proc/between(var/low, var/middle, var/high)
 	return max(min(middle, high), low)
 
-proc/arctan(x)
-	var/y=arcsin(x/sqrt(1+x*x))
+
+/proc/arctan(x)
+	var/y = arcsin(x / sqrt(1 + x * x))
 	return y
 
+
 //returns random gauss number
-proc/GaussRand(var/sigma)
+/proc/GaussRand(var/sigma)
   var/x,y,rsq
   do
     x=2*rand()-1
@@ -527,11 +294,13 @@ proc/GaussRand(var/sigma)
   while(rsq>1 || !rsq)
   return sigma*y*sqrt(-2*log(rsq)/rsq)
 
+
 //returns random gauss number, rounded to 'roundto'
-proc/GaussRandRound(var/sigma,var/roundto)
+/proc/GaussRandRound(var/sigma,var/roundto)
 	return round(GaussRand(sigma),roundto)
 
-proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as text,sleeptime = 0,direction as num)
+
+/proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as text,sleeptime = 0,direction as num)
 //This proc throws up either an icon or an animation for a specified amount of time.
 //The variables should be apparent enough.
 	var/atom/movable/overlay/animation = new(location)
@@ -548,6 +317,7 @@ proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as te
 	sleep(max(sleeptime, 15))
 	qdel(animation)
 
+
 //Will return the contents of an atom recursivly to a depth of 'searchDepth'
 /atom/proc/GetAllContents(searchDepth = 5)
 	var/list/toReturn = list()
@@ -558,6 +328,7 @@ proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as te
 			toReturn += part.GetAllContents(searchDepth - 1)
 
 	return toReturn
+
 
 //Step-towards method of determining whether one atom can see another. Similar to viewers()
 /proc/can_see(atom/source, atom/target, length=5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
@@ -577,6 +348,8 @@ proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as te
 				return FALSE
 		current = get_step_towards(current, target_turf)
 	return TRUE
+
+
 /proc/is_blocked_turf(var/turf/T)
 	var/cant_pass = 0
 	if(T.density) cant_pass = 1
@@ -585,34 +358,151 @@ proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as te
 			cant_pass = 1
 	return cant_pass
 
-/proc/get_step_towards2(var/atom/ref , var/atom/trg)
-	var/base_dir = get_dir(ref, get_step_towards(ref,trg))
-	var/turf/temp = get_step_towards(ref,trg)
 
-	if(is_blocked_turf(temp))
-		var/dir_alt1 = turn(base_dir, 90)
-		var/dir_alt2 = turn(base_dir, -90)
-		var/turf/turf_last1 = temp
-		var/turf/turf_last2 = temp
-		var/free_tile = null
-		var/breakpoint = 0
+var/global/image/busy_indicator_clock
+var/global/image/busy_indicator_medical
+var/global/image/busy_indicator_build
+var/global/image/busy_indicator_friendly
+var/global/image/busy_indicator_hostile
 
-		while(!free_tile && breakpoint < 10)
-			if(!is_blocked_turf(turf_last1))
-				free_tile = turf_last1
+/proc/get_busy_icon(busy_type)
+	if(busy_type == BUSY_ICON_GENERIC)
+		if(!busy_indicator_clock)
+			busy_indicator_clock = image('icons/mob/mob.dmi', null, "busy_generic", "pixel_y" = 22)
+			busy_indicator_clock.layer = FLY_LAYER
+		return busy_indicator_clock
+	else if(busy_type == BUSY_ICON_MEDICAL)
+		if(!busy_indicator_medical)
+			busy_indicator_medical = image('icons/mob/mob.dmi', null, "busy_medical", "pixel_y" = 0) //This shows directly on top of the mob, no offset!
+			busy_indicator_medical.layer = FLY_LAYER
+		return busy_indicator_medical
+	else if(busy_type == BUSY_ICON_BUILD)
+		if(!busy_indicator_build)
+			busy_indicator_build = image('icons/mob/mob.dmi', null, "busy_build", "pixel_y" = 22)
+			busy_indicator_build.layer = FLY_LAYER
+		return busy_indicator_build
+	else if(busy_type == BUSY_ICON_FRIENDLY)
+		if(!busy_indicator_friendly)
+			busy_indicator_friendly = image('icons/mob/mob.dmi', null, "busy_friendly", "pixel_y" = 22)
+			busy_indicator_friendly.layer = FLY_LAYER
+		return busy_indicator_friendly
+	else if(busy_type == BUSY_ICON_HOSTILE)
+		if(!busy_indicator_hostile)
+			busy_indicator_hostile = image('icons/mob/mob.dmi', null, "busy_hostile", "pixel_y" = 22)
+			busy_indicator_hostile.layer = FLY_LAYER
+		return busy_indicator_hostile
+
+
+
+/proc/do_mob(mob/user , mob/target, time = 30, show_busy_icon, show_target_icon, selected_zone_check)
+	if(!user || !target) return 0
+
+	var/image/busy_icon
+	if(show_busy_icon)
+		busy_icon = get_busy_icon(show_busy_icon)
+		if(busy_icon)
+			user.overlays += busy_icon
+
+	var/image/target_icon
+	if(show_target_icon) //putting a busy overlay on top of the target
+		target_icon = get_busy_icon(show_target_icon)
+		if(target_icon)
+			target.overlays += target_icon
+
+	user.action_busy = TRUE
+
+	var/cur_zone_sel
+	if(selected_zone_check)
+		cur_zone_sel = user.zone_selected
+
+	var/user_loc = user.loc
+	var/target_loc = target.loc
+	var/delayfraction = round(time/5)
+	var/holding = user.get_active_held_item()
+
+	. = TRUE
+	for(var/i = 0 to 5)
+		sleep(delayfraction)
+		if(!user || !target)
+			. = FALSE
+			break
+		if(user.loc != user_loc || target.loc != target_loc)
+			. = FALSE
+			break
+		if(user.get_active_held_item() != holding)
+			. = FALSE
+			break
+		if(user.incapacitated(TRUE) || user.lying)
+			. = FALSE
+			break
+		if(selected_zone_check && cur_zone_sel != user.zone_selected)
+			. = FALSE
+			break
+
+	if(user && busy_icon)
+		user.overlays -= busy_icon
+	if(target && target_icon)
+		target.overlays -= target_icon
+
+	user.action_busy = FALSE
+
+
+/proc/do_after(mob/user, delay, needhand = TRUE, numticks = 5, show_busy_icon, selected_zone_check, busy_check = FALSE) //hacky, will suffice for now.
+	if(!istype(user) || delay <= 0)
+		return FALSE
+
+	if(busy_check && user.action_busy)
+		to_chat(user, "<span class='warning'>You're already busy doing something!</span>")
+		return FALSE
+
+	var/mob/living/L
+	if(isliving(user))
+		L = user //No more doing things while you're in crit
+
+	var/image/busy_icon
+	if(show_busy_icon)
+		busy_icon = get_busy_icon(show_busy_icon)
+		if(busy_icon)
+			user.overlays += busy_icon
+
+	user.action_busy = TRUE
+
+	var/cur_zone_sel
+	if(selected_zone_check)
+		cur_zone_sel = user.zone_selected
+
+	var/original_loc = user.loc
+	var/original_turf = get_turf(user)
+	var/obj/holding = user.get_active_held_item()
+
+	. = TRUE
+	var/endtime = world.time + delay
+	while(world.time < endtime)
+		stoplag(1)
+		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.knocked_down || user.stunned)
+			. = FALSE
+			break
+		if(L?.health && L.health < L.get_crit_threshold())
+			. = FALSE //catching mobs below crit level but haven't had their stat var updated
+			break
+		if(needhand)
+			if(holding)
+				if(!holding.loc || user.get_active_held_item() != holding) //no longer holding the required item
+					. = FALSE
+					break
+			else if(user.get_active_held_item()) //something in active hand when we need it to stay empty
+				. = FALSE
 				break
-			if(!is_blocked_turf(turf_last2))
-				free_tile = turf_last2
-				break
-			turf_last1 = get_step(turf_last1,dir_alt1)
-			turf_last2 = get_step(turf_last2,dir_alt2)
-			breakpoint++
 
-		if(!free_tile) return get_step(ref, base_dir)
-		else return get_step_towards(ref,free_tile)
+		if(selected_zone_check && cur_zone_sel != user.zone_selected) //changed the selected zone
+			. = FALSE
+			break
 
-	else
-		return get_step(ref, base_dir)
+	if(user && busy_icon)
+		user.overlays -= busy_icon
+
+	user.action_busy = FALSE
+
 
 //Takes: Anything that could possibly have variables and a varname to check.
 //Returns: 1 if found, 0 if not.
@@ -1181,7 +1071,6 @@ var/list/WALLITEMS = list(
 		arglist = list2params(arglist)
 	return "<a href='?src=\ref[D];[arglist]'>[content]</a>"
 
-#define SIGN(x) ( x < 0 ? -1  : 1 )
 //Reasonably Optimized Bresenham's Line Drawing
 /proc/getline(atom/start, atom/end)
 	var/x = start.x
@@ -1255,66 +1144,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	stack_trace_storage = null
 
 
-//Key thing that stops lag. Cornerstone of performance in ss13, Just sitting here, in unsorted.dm.
-
-//Increases delay as the server gets more overloaded,
-//as sleeps aren't cheap and sleeping only to wake up and sleep again is wasteful
-#define DELTA_CALC max(((max(TICK_USAGE, world.cpu) / 100) * max(Master.sleep_delta-1,1)), 1)
-
-//returns the number of ticks slept
-/proc/stoplag(initial_delay)
-	if (!Master || !(Master.current_runlevel & RUNLEVELS_DEFAULT))
-		sleep(world.tick_lag)
-		return 1
-	if (!initial_delay)
-		initial_delay = world.tick_lag
-	. = 0
-	var/i = DS2TICKS(initial_delay)
-	do
-		. += CEILING(i*DELTA_CALC, 1)
-		sleep(i*world.tick_lag*DELTA_CALC)
-		i *= 2
-	while (TICK_USAGE > min(TICK_LIMIT_TO_RUN, Master.current_ticklimit))
-
-#undef DELTA_CALC
-
-//datum may be null, but it does need to be a typed var
-#define NAMEOF(datum, X) (#X || ##datum.##X)
-
-/proc/do_atom(atom/user, time = 30, atom/target, uninterruptible = FALSE, icon_display, datum/callback/extra_checks)
-	if(!user)
-		return FALSE
-
-	var/T = target ? TRUE : FALSE
-	var/atom/Tloc
-	if(target && !isturf(target))
-		Tloc = target.loc
-
-	var/atom/Uloc
-	if(!isturf(user))
-		Uloc = user.loc
-
-	var/datum/progressicon/I = icon_display ? new (user, target, icon_display) : null
-
-	var/endtime = world.time+time
-	. = TRUE
-	while (world.time < endtime)
-		stoplag(1)
-		if(QDELETED(user) || T && QDELETED(target) || (extra_checks && !extra_checks.Invoke()))
-			. = FALSE
-			break
-
-		if(uninterruptible)
-			continue
-
-		if(!QDELETED(Uloc) && user.loc != Uloc || !QDELETED(Tloc) && target.loc != Tloc)
-			. = FALSE
-			break
-
-	if(I)
-		qdel(I)
-
-
 // \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
 // If it ever becomes necesary to get a more performant REF(), this lies here in wait
 // #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
@@ -1329,6 +1158,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 				return "\[[url_encode(thing.tag)]\]"
 	return "\ref[input]"
 
+
 // Makes a call in the context of a different usr
 // Use sparingly
 /world/proc/PushUsr(mob/M, datum/callback/CB, ...)
@@ -1340,7 +1170,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		. = CB.Invoke()
 	usr = temp
 
-#define UNTIL(X) while(!(X)) stoplag()
 
 
 //returns a GUID like identifier (using a mostly made up record format)
@@ -1361,10 +1190,12 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 	return "{[time_high]-[time_mid]-[GUID_VERSION][time_low]-[GUID_VARIANT][time_clock]-[node_id]}"
 
+
 /proc/pass()
 	return
 
-proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
+
+/proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if (value == FALSE) //nothing should be calling us with a number, so this is safe
 		value = input("Enter type to find (blank for all, cancel to cancel)", "Search for type") as null|text
 		if (isnull(value))
@@ -1392,6 +1223,7 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 		return !QDELETED(D)
 	return FALSE
 
+
 //Repopulates sortedAreas list
 /proc/repopulate_sorted_areas()
 	GLOB.sortedAreas = list()
@@ -1400,6 +1232,7 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 		GLOB.sortedAreas.Add(A)
 
 	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)
+
 
 // Format a power value in W, kW, MW, or GW.
 /proc/DisplayPower(powerused)
@@ -1411,6 +1244,7 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 		return "[round((powerused * 0.000001),0.001)] MW"
 	return "[round((powerused * 0.000000001),0.0001)] GW"
 
+
 // Bucket a value within boundary
 /proc/get_bucket(bucket_size, max, current, min = 0, list/boundary_terms)
 	if (length(boundary_terms) == 2)
@@ -1420,6 +1254,7 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 			return boundary_terms[2]
 
 	return CEILING((bucket_size / max) * current, 1)
+
 
 /atom/proc/GetAllContentsIgnoring(list/ignore_typecache)
 	if(!length(ignore_typecache))

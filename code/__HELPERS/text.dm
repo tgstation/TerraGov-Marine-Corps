@@ -1,28 +1,14 @@
-/*
- * Holds procs designed to help with filtering text
- * Contains groups:
- *			SQL sanitization
- *			Text sanitization
- *			Text searches
- *			Text modification
- *			Misc
- */
+#define strip_improper(input_text) replacetext(replacetext(input_text, "\proper", ""), "\improper", "")
 
-
-/*
- * SQL sanitization
- */
 
 // Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
 /proc/sanitizeSQL(t)
 	return SSdbcore.Quote("[t]")
 
-/proc/format_table_name(table as text)
+
+/proc/format_table_name(table)
 	return CONFIG_GET(string/feedback_tableprefix) + table
 
-/*
- * Text sanitization
- */
 
 //Simply removes < and > and limits the length of the message
 /proc/strip_html_simple(var/t,var/limit=MAX_MESSAGE_LEN)
@@ -35,6 +21,7 @@
 			index = findtext(t, char)
 	return t
 
+
 //Removes a few problematic characters
 /proc/sanitize_simple(var/t,var/list/repl_chars = list("\n"=" ","\t"=" ","�"="�"))
 	for(var/char in repl_chars)
@@ -43,6 +30,7 @@
 			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index+1)
 			index = findtext(t, char)
 	return t
+
 
 /proc/readd_quotes(var/t)
 	var/list/repl_chars = list("&#34;" = "\"", "&#39;" = "\"")
@@ -53,14 +41,17 @@
 			index = findtext(t, char)
 	return t
 
+
 //Runs byond's sanitization proc along-side sanitize_simple
 /proc/sanitize(var/t,var/list/repl_chars = null)
 	return html_encode(sanitize_simple(t,repl_chars))
+
 
 //Runs sanitize and strip_html_simple
 //I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' after sanitize() calls byond's html_encode()
 /proc/strip_html(var/t,var/limit=MAX_MESSAGE_LEN)
 	return copytext((sanitize(strip_html_simple(t))),1,limit)
+
 
 //Runs byond's sanitization proc along-side strip_html_simple
 //I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' that html_encode() would cause
@@ -81,15 +72,18 @@
 			else			non_whitespace = 1
 	if(non_whitespace)		return text		//only accepts the text if it has some non-spaces
 
+
 // Used to get a sanitized input.
 /proc/stripped_input(var/mob/user, var/message = "", var/title = "", var/default = "", var/max_length=MAX_MESSAGE_LEN)
 	var/name = input(user, message, title, default) as text|null
 	return html_encode(trim(name, max_length))
 
+
 // Used to get a properly sanitized multiline input, of max_length
 /proc/stripped_multiline_input(var/mob/user, var/message = "", var/title = "", var/default = "", var/max_length=MAX_MESSAGE_LEN)
 	var/name = input(user, message, title, default) as message|null
 	return html_encode(trim(name, max_length))
+
 
 //Filters out undesirable characters from names
 /proc/reject_bad_name(var/t_in, var/allow_numbers=0, var/max_length=MAX_NAME_LEN)
@@ -156,30 +150,6 @@
 	return t_out
 
 
-#define strip_improper(input_text) replacetext(replacetext(input_text, "\proper", ""), "\improper", "")
-
-//checks text for html tags
-//if tag is not in whitelist (var/list/paper_tag_whitelist in global.dm)
-//relpaces < with &lt;
-proc/checkhtml(var/t)
-	t = sanitize_simple(t, list("&#"="."))
-	var/p = findtext(t,"<",1)
-	while (p)	//going through all the tags
-		var/start = p++
-		var/tag = copytext(t,p, p+1)
-		if (tag != "/")
-			while (reject_bad_text(copytext(t, p, p+1), 1))
-				tag = copytext(t,start, p)
-				p++
-			tag = copytext(t,start+1, p)
-			if (!(tag in paper_tag_whitelist))	//if it's unkown tag, disarming it
-				t = copytext(t,1,start-1) + "&lt;" + copytext(t,start+1)
-		p = findtext(t,"<",p)
-	return t
-/*
- * Text searches
- */
-
 //Checks the beginning of a string for a specified sub-string
 //Returns the position of the substring or 0 if it was not found
 /proc/dd_hasprefix(text, prefix)
@@ -187,36 +157,11 @@ proc/checkhtml(var/t)
 	var/end = length(prefix) + 1
 	return findtext(text, prefix, start, end)
 
-//Checks the beginning of a string for a specified sub-string. This proc is case sensitive
-//Returns the position of the substring or 0 if it was not found
-/proc/dd_hasprefix_case(text, prefix)
-	var/start = 1
-	var/end = length(prefix) + 1
-	return findtextEx(text, prefix, start, end)
 
-//Checks the end of a string for a specified substring.
-//Returns the position of the substring or 0 if it was not found
-/proc/dd_hassuffix(text, suffix)
-	var/start = length(text) - length(suffix)
-	if(start)
-		return findtext(text, suffix, start, null)
-	return
-
-//Checks the end of a string for a specified substring. This proc is case sensitive
-//Returns the position of the substring or 0 if it was not found
-/proc/dd_hassuffix_case(text, suffix)
-	var/start = length(text) - length(suffix)
-	if(start)
-		return findtextEx(text, suffix, start, null)
-
-/*
- * Text modification
- */
 /proc/oldreplacetext(text, find, replacement)
 	return list2text(text2list(text, find), replacement)
 
-/proc/oldreplacetextEx(text, find, replacement)
-	return list2text(text2listEx(text, find), replacement)
+
 
 //Adds 'u' number of zeros ahead of the text 't'
 /proc/add_zero(t, u)
@@ -224,17 +169,20 @@ proc/checkhtml(var/t)
 		t = "0[t]"
 	return t
 
+
 //Adds 'u' number of spaces ahead of the text 't'
 /proc/add_lspace(t, u)
 	while(length(t) < u)
 		t = " [t]"
 	return t
 
+
 //Adds 'u' number of spaces behind the text 't'
 /proc/add_tspace(t, u)
 	while(length(t) < u)
 		t = "[t] "
 	return t
+
 
 //Returns a string with reserved characters and spaces before the first letter removed
 /proc/trim_left(text)
@@ -243,21 +191,25 @@ proc/checkhtml(var/t)
 			return copytext(text, i)
 	return ""
 
+
 //Returns a string with reserved characters and spaces after the last letter removed
 /proc/trim_right(text)
-	for (var/i = length(text), i > 0, i--)
-		if (text2ascii(text, i) > 32)
+	for(var/i = length(text), i > 0, i--)
+		if(text2ascii(text, i) > 32)
 			return copytext(text, 1, i + 1)
 
 	return ""
+
 
 //Returns a string with reserved characters and spaces before the first word and after the last word removed.
 /proc/trim(text)
 	return trim_left(trim_right(text))
 
+
 //Returns a string with the first element of the string capitalized.
-/proc/capitalize(var/t as text)
+/proc/capitalize(t)
 	return uppertext(copytext(t, 1, 2)) + copytext(t, 2)
+
 
 //Centers text by adding spaces to either side of the string.
 /proc/dd_centertext(message, length)
@@ -275,6 +227,7 @@ proc/checkhtml(var/t)
 		delta--
 	var/spaces = add_lspace("",delta/2-1)
 	return spaces + new_message + spaces
+
 
 //Limits the length of the text. Note: MAX_MESSAGE_LEN and MAX_NAME_LEN are widely used for this purpose
 /proc/dd_limittext(message, length)
@@ -305,6 +258,7 @@ proc/checkhtml(var/t)
 				return 0
 	return newtext
 
+
 /proc/stringpercent(var/text,character = "*")
 //This proc returns the number of chars of the string that is the character
 //This is used for detective work to determine fingerprint completion.
@@ -317,22 +271,18 @@ proc/checkhtml(var/t)
 			count++
 	return count
 
-/proc/reverse_text(var/text = "")
-	var/new_text = ""
-	for(var/i = length(text); i > 0; i--)
-		new_text += copytext(text, i, i+1)
-	return new_text
 
 //Used in preferences' SetFlavorText and human's set_flavor verb
 //Previews a string of len or less length
-proc/TextPreview(var/string,var/len=40)
-	if(lentext(string) <= len)
+/proc/TextPreview(string, length = 40)
+	if(lentext(string) <= length)
 		if(!lentext(string))
 			return "\[...\]"
 		else
 			return string
 	else
 		return "[copytext(string, 1, 37)]..."
+
 
 //Used for applying byonds text macros to strings that are loaded at runtime
 /proc/apply_text_macros(string)
@@ -389,18 +339,6 @@ proc/TextPreview(var/string,var/len=40)
 	. = base
 	if(rest)
 		. += .(rest)
-
-//finds the first occurrence of one of the characters from needles argument inside haystack
-//it may appear this can be optimised, but it really can't. findtext() is so much faster than anything you can do in byondcode.
-//stupid byond :(
-/proc/findchar(haystack, needles, start=1, end=0)
-	var/temp
-	var/len = length(needles)
-	for(var/i=1, i<=len, i++)
-		temp = findtextEx(haystack, ascii2text(text2ascii(needles,i)), start, end)	//Note: ascii2text(text2ascii) is faster than copytext()
-		if(temp)
-			end = temp
-	return end
 
 
 /proc/noscript(text)

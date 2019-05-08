@@ -1,23 +1,58 @@
-/*
- * Holds procs to help with list operations
- * Contains groups:
- *			Misc
- *			Sorting
- */
+#define LAZYINITLIST(L) if (!L) L = list()
+#define UNSETEMPTY(L) if (L && !length(L)) L = null
+#define LAZYREMOVE(L, I) if(L) { L -= I; if(!length(L)) { L = null; } }
+#define LAZYADD(L, I) if(!L) { L = list(); } L += I;
+#define LAZYDISTINCTADD(L, I) if(!L) { L = list(); } L |= I;
+#define LAZYOR(L, I) if(!L) { L = list(); } L |= I;
+#define LAZYFIND(L, V) L ? L.Find(V) : 0
+#define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= length(L) ? L[I] : null) : L[I]) : null)
+#define LAZYSET(L, K, V) if(!L) { L = list(); } L[K] = V;
+#define LAZYLEN(L) length(L)
+#define LAZYCLEARLIST(L) if(L) L.Cut()
+#define SANITIZE_LIST(L) ( islist(L) ? L : list() )
+#define reverseList(L) reverseRange(L.Copy())
 
-/*
- * Misc
- */
+//Checks for specific types in specifically structured (Assoc "type" = TRUE) lists ('typecaches')
+#define is_type_in_typecache(A, L) (A && length(L) && L[(ispath(A) ? A : A:type)])
+
+// binary search sorted insert
+// IN: Object to be inserted
+// LIST: List to insert object into
+// TYPECONT: The typepath of the contents of the list
+// COMPARE: The variable on the objects to compare
+#define BINARY_INSERT(IN, LIST, TYPECONT, COMPARE) \
+	var/__BIN_CTTL = length(LIST);\
+	if(!__BIN_CTTL) {\
+		LIST += IN;\
+	} else {\
+		var/__BIN_LEFT = 1;\
+		var/__BIN_RIGHT = __BIN_CTTL;\
+		var/__BIN_MID = (__BIN_LEFT + __BIN_RIGHT) >> 1;\
+		var/##TYPECONT/__BIN_ITEM;\
+		while(__BIN_LEFT < __BIN_RIGHT) {\
+			__BIN_ITEM = LIST[__BIN_MID];\
+			if(__BIN_ITEM.##COMPARE <= IN.##COMPARE) {\
+				__BIN_LEFT = __BIN_MID + 1;\
+			} else {\
+				__BIN_RIGHT = __BIN_MID;\
+			};\
+			__BIN_MID = (__BIN_LEFT + __BIN_RIGHT) >> 1;\
+		};\
+		__BIN_ITEM = LIST[__BIN_MID];\
+		__BIN_MID = __BIN_ITEM.##COMPARE > IN.##COMPARE ? __BIN_MID : __BIN_MID + 1;\
+		LIST.Insert(__BIN_MID, IN);\
+	}
+
 
 //Returns a list in plain english as a string
-/proc/english_list(list/input, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )
-	var/total = input.len
+/proc/english_list(list/L, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )
+	var/total = length(L)
 	if (!total)
 		return "[nothing_text]"
 	else if (total == 1)
-		return "[input[1]]"
+		return "[L[1]]"
 	else if (total == 2)
-		return "[input[1]][and_text][input[2]]"
+		return "[L[1]][and_text][L[2]]"
 	else
 		var/output = ""
 		var/index = 1
@@ -25,51 +60,56 @@
 			if (index == total - 1)
 				comma_text = final_comma_text
 
-			output += "[input[index]][comma_text]"
+			output += "[L[index]][comma_text]"
 			index++
 
-		return "[output][and_text][input[index]]"
+		return "[output][and_text][L[index]]"
+
 
 //Returns list element or null. Should prevent "index out of bounds" error.
-proc/listgetindex(var/list/L,index)
-	if(istype(L))
-		if(isnum(index) && ISINTEGER(index))
-			if(ISINRANGE(index,1,L.len))
-				return L[index]
-		else if(index in L)
-			return L[index]
-	return
+/proc/listgetindex(list/L, index)
+	if(!istype(L))
+		return
+
+	if(isnum(index) && ISINTEGER(index) && ISINRANGE(index, 1, length(L)))
+		return L[index]
+
+	else if(index in L)
+		return L[index]
+
 
 //Return either pick(list) or null if list is not of type /list or is empty
-proc/safepick(list/list)
-	if(!islist(list) || !list.len)
+/proc/safepick(list/L)
+	if(!islist(L) || !length(L))
 		return
-	return pick(list)
+	return pick(L)
+
 
 //Checks if the list is empty
-proc/isemptylist(list/list)
-	if(!list.len)
-		return 1
-	return 0
+/proc/isemptylist(list/L)
+	if(!L.len)
+		return TRUE
+	return FALSE
+
 
 //Checks for specific types in a list
-/proc/is_type_in_list(var/atom/A, var/list/L)
+/proc/is_type_in_list(atom/A, list/L)
 	for(var/type in L)
 		if(istype(A, type))
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
-//Checks for specific types in specifically structured (Assoc "type" = TRUE) lists ('typecaches')
-#define is_type_in_typecache(A, L) (A && length(L) && L[(ispath(A) ? A : A:type)])
 
 //Empties the list by setting the length to 0. Hopefully the elements get garbage collected
-proc/clearlist(list/list)
-	if(istype(list))
-		list.len = 0
-	return
+/proc/clearlist(list/L)
+	if(!istype(L))
+		return
+
+	L.len = 0
+
 
 //Removes any null entries from the list
-proc/listclearnulls(list/list)
+/proc/listclearnulls(list/list)
 	if(istype(list))
 		while(null in list)
 			list -= null
@@ -92,20 +132,6 @@ proc/listclearnulls(list/list)
 		result = first - second
 	return result
 
-/*
- * Returns list containing entries that are in either list but not both.
- * If skipref = 1, repeated elements are treated as one.
- * If either of arguments is not a list, returns null
- */
-/proc/uniquemergelist(var/list/first, var/list/second, var/skiprep=0)
-	if(!islist(first) || !islist(second))
-		return
-	var/list/result = new
-	if(skiprep)
-		result = difflist(first, second, skiprep)+difflist(second, first, skiprep)
-	else
-		result = first ^ second
-	return result
 
 //Pretends to pick an element based on its weight but really just seems to pick a random element.
 /proc/pickweight(list/L)
@@ -132,12 +158,6 @@ proc/listclearnulls(list/list)
 		return picked
 	return null
 
-//Returns the top(last) element from the list and removes it from the list (typical stack function)
-/proc/pop(list/L)
-	if(L.len)
-		. = L[L.len]
-		L.len--
-
 /proc/popleft(list/L)
 	if(L.len)
 		. = L[1]
@@ -150,18 +170,6 @@ proc/listclearnulls(list/list)
 			return L[i+1]
 	return L[1]
 
-/*
- * Sorting
- */
-/*
-//Reverses the order of items in the list
-/proc/reverselist(list/L)
-	var/list/output = list()
-	if(L)
-		for(var/i = L.len; i >= 1; i--)
-			output += L[i]
-	return output
-*/
 
 //Randomize: Return the list in a random order
 /proc/shuffle(list/L, ref) //Reference override for indexed lists.
@@ -219,14 +227,6 @@ proc/listclearnulls(list/list)
 
 	return r
 
-// Returns the key based on the index
-/proc/get_key_by_index(var/list/L, var/index)
-	var/i = 1
-	for(var/key in L)
-		if(index == i)
-			return key
-		i++
-	return null
 
 /proc/count_by_type(var/list/L, type)
 	var/i = 0
@@ -234,11 +234,6 @@ proc/listclearnulls(list/list)
 		if(istype(T, type))
 			i++
 	return i
-
-/proc/find_record(field, value, list/L)
-	for(var/datum/data/record/R in L)
-		if(R.fields[field] == value)
-			return R
 
 
 //Move a single element from position fromIndex within a list, to position toIndex
@@ -281,55 +276,9 @@ proc/listclearnulls(list/list)
 			L.Swap(fromIndex, toIndex)
 			L.Cut(fromIndex, fromIndex+1)
 
-//Move elements from [fromIndex, fromIndex+len) to [toIndex, toIndex+len)
-//Move any elements being overwritten by the move to the now-empty elements, preserving order
-//Note: if the two ranges overlap, only the destination order will be preserved fully, since some elements will be within both ranges ~Carnie
-/proc/swapRange(list/L, fromIndex, toIndex, len=1)
-	var/distance = abs(toIndex - fromIndex)
-	if(len > distance)	//there is an overlap, therefore swapping each element will require more swaps than inserting new elements
-		if(fromIndex < toIndex)
-			toIndex += len
-		else
-			fromIndex += len
 
-		for(var/i=0, i<distance, ++i)
-			L.Insert(fromIndex, null)
-			L.Swap(fromIndex, toIndex)
-			L.Cut(toIndex, toIndex+1)
-	else
-		if(toIndex > fromIndex)
-			var/a = toIndex
-			toIndex = fromIndex
-			fromIndex = a
 
-		for(var/i=0, i<len, ++i)
-			L.Swap(fromIndex++, toIndex++)
-
-//Don't use this on lists larger than half a dozen or so
-/proc/insertion_sort_numeric_list_ascending(var/list/L)
-	//log_world("ascending len input: [L.len]")
-	var/list/out = list(pop(L))
-	for(var/entry in L)
-		if(isnum(entry))
-			var/success = 0
-			for(var/i=1, i<=out.len, i++)
-				if(entry <= out[i])
-					success = 1
-					out.Insert(i, entry)
-					break
-			if(!success)
-				out.Add(entry)
-
-	//log_world("	output: [out.len]")
-	return out
-
-/proc/insertion_sort_numeric_list_descending(var/list/L)
-	//log_world("descending len input: [L.len]")
-	var/list/out = insertion_sort_numeric_list_ascending(L)
-	//log_world("	output: [out.len]")
-	return reverseRange(out)
-
-proc/dd_sortedObjectList(list/incoming)
+/proc/dd_sortedObjectList(list/incoming)
 	/*
 	   Use binary search to order by dd_SortValue().
 	   This works by going to the half-point of the list, seeing if the node in
@@ -387,72 +336,9 @@ proc/dd_sortedObjectList(list/incoming)
 	return sorted_list
 
 
-proc/dd_sortedtextlist(list/incoming, case_sensitive = 0)
-	// Returns a new list with the text values sorted.
-	// Use binary search to order by sortValue.
-	// This works by going to the half-point of the list, seeing if the node in question is higher or lower cost,
-	// then going halfway up or down the list and checking again.
-	// This is a very fast way to sort an item into a list.
-	var/list/sorted_text = new()
-	var/low_index
-	var/high_index
-	var/insert_index
-	var/midway_calc
-	var/current_index
-	var/current_item
-	var/list/list_bottom
-	var/sort_result
-
-	var/current_sort_text
-	for (current_sort_text in incoming)
-		low_index = 1
-		high_index = sorted_text.len
-		while (low_index <= high_index)
-			// Figure out the midpoint, rounding up for fractions.  (BYOND rounds down, so add 1 if necessary.)
-			midway_calc = (low_index + high_index) / 2
-			current_index = round(midway_calc)
-			if (midway_calc > current_index)
-				current_index++
-			current_item = sorted_text[current_index]
-
-			if (case_sensitive)
-				sort_result = sorttextEx(current_sort_text, current_item)
-			else
-				sort_result = sorttext(current_sort_text, current_item)
-
-			switch(sort_result)
-				if (1)
-					high_index = current_index - 1	// current_sort_text < current_item
-				if (-1)
-					low_index = current_index + 1	// current_sort_text > current_item
-				if (0)
-					low_index = current_index		// current_sort_text == current_item
-					break
-
-		// Insert before low_index.
-		insert_index = low_index
-
-		// Special case adding to end of list.
-		if (insert_index > sorted_text.len)
-			sorted_text += current_sort_text
-			continue
-
-		// Because BYOND lists don't support insert, have to do it by:
-		// 1) taking out bottom of list, 2) adding item, 3) putting back bottom of list.
-		list_bottom = sorted_text.Copy(insert_index)
-		sorted_text.Cut(insert_index)
-		sorted_text += current_sort_text
-		sorted_text += list_bottom
-	return sorted_text
-
-
-proc/dd_sortedTextList(list/incoming)
-	var/case_sensitive = 1
-	return dd_sortedtextlist(incoming, case_sensitive)
-
-
-datum/proc/dd_SortValue()
+/datum/proc/dd_SortValue()
 	return "[src]"
+
 
 /obj/machinery/dd_SortValue()
 	return "[sanitize(name)]"
@@ -532,59 +418,14 @@ datum/proc/dd_SortValue()
 						L[T] = TRUE
 		return L
 
-/*
- * List macros ported from /tg/
- */
-
-#define LAZYINITLIST(L) if (!L) L = list()
-#define UNSETEMPTY(L) if (L && !length(L)) L = null
-#define LAZYREMOVE(L, I) if(L) { L -= I; if(!length(L)) { L = null; } }
-#define LAZYADD(L, I) if(!L) { L = list(); } L += I;
-#define LAZYDISTINCTADD(L, I) if(!L) { L = list(); } L |= I;
-#define LAZYOR(L, I) if(!L) { L = list(); } L |= I;
-#define LAZYFIND(L, V) L ? L.Find(V) : 0
-#define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= length(L) ? L[I] : null) : L[I]) : null)
-#define LAZYSET(L, K, V) if(!L) { L = list(); } L[K] = V;
-#define LAZYLEN(L) length(L)
-#define LAZYCLEARLIST(L) if(L) L.Cut()
-#define SANITIZE_LIST(L) ( islist(L) ? L : list() )
-#define reverseList(L) reverseRange(L.Copy())
-
-// binary search sorted insert
-// IN: Object to be inserted
-// LIST: List to insert object into
-// TYPECONT: The typepath of the contents of the list
-// COMPARE: The variable on the objects to compare
-#define BINARY_INSERT(IN, LIST, TYPECONT, COMPARE) \
-	var/__BIN_CTTL = length(LIST);\
-	if(!__BIN_CTTL) {\
-		LIST += IN;\
-	} else {\
-		var/__BIN_LEFT = 1;\
-		var/__BIN_RIGHT = __BIN_CTTL;\
-		var/__BIN_MID = (__BIN_LEFT + __BIN_RIGHT) >> 1;\
-		var/##TYPECONT/__BIN_ITEM;\
-		while(__BIN_LEFT < __BIN_RIGHT) {\
-			__BIN_ITEM = LIST[__BIN_MID];\
-			if(__BIN_ITEM.##COMPARE <= IN.##COMPARE) {\
-				__BIN_LEFT = __BIN_MID + 1;\
-			} else {\
-				__BIN_RIGHT = __BIN_MID;\
-			};\
-			__BIN_MID = (__BIN_LEFT + __BIN_RIGHT) >> 1;\
-		};\
-		__BIN_ITEM = LIST[__BIN_MID];\
-		__BIN_MID = __BIN_ITEM.##COMPARE > IN.##COMPARE ? __BIN_MID : __BIN_MID + 1;\
-		LIST.Insert(__BIN_MID, IN);\
-	}
 
 //Copies a list, and all lists inside it recusively
 //Does not copy any other reference type
-/proc/deepCopyList(list/l)
-	if(!islist(l))
-		return l
-	. = l.Copy()
-	for(var/i = 1 to l.len)
+/proc/deepCopyList(list/L)
+	if(!islist(L))
+		return L
+	. = L.Copy()
+	for(var/i in 1 to length(L))
 		var/key = .[i]
 		if(isnum(key))
 			// numbers cannot ever be associative keys
@@ -610,8 +451,8 @@ datum/proc/dd_SortValue()
 	if(!L)
 		return
 
-	for(var/i=1, i<L.len, ++i)
-		L.Swap(i,rand(i,L.len))
+	for(var/i = 1, i < L.len, ++i)
+		L.Swap(i,rand(i, L.len))
 
 
 //same, but returns nothing and acts on list in place (also handles associated values properly)
