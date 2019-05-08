@@ -47,17 +47,17 @@
 //Returns a list in plain english as a string
 /proc/english_list(list/L, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )
 	var/total = length(L)
-	if (!total)
+	if(!total)
 		return "[nothing_text]"
-	else if (total == 1)
+	else if(total == 1)
 		return "[L[1]]"
-	else if (total == 2)
+	else if(total == 2)
 		return "[L[1]][and_text][L[2]]"
 	else
 		var/output = ""
 		var/index = 1
-		while (index < total)
-			if (index == total - 1)
+		while(index < total)
+			if(index == total - 1)
 				comma_text = final_comma_text
 
 			output += "[L[index]][comma_text]"
@@ -80,7 +80,7 @@
 
 //Return either pick(list) or null if list is not of type /list or is empty
 /proc/safepick(list/L)
-	if(!islist(L) || !length(L))
+	if(!length(L))
 		return
 	return pick(L)
 
@@ -109,27 +109,31 @@
 
 
 //Removes any null entries from the list
-/proc/listclearnulls(list/list)
-	if(istype(list))
-		while(null in list)
-			list -= null
-	return
+/proc/listclearnulls(list/L)
+	if(!istype(L))
+		return
+
+	while(null in L)
+		L -= null
+
 
 /*
  * Returns list containing all the entries from first list that are not present in second.
  * If skiprep = 1, repeated elements are treated as one.
  * If either of arguments is not a list, returns null
  */
-/proc/difflist(var/list/first, var/list/second, var/skiprep=0)
+/proc/difflist(list/first, list/second, skiprep = FALSE)
 	if(!islist(first) || !islist(second))
 		return
-	var/list/result = new
+	var/list/result = list()
 	if(skiprep)
 		for(var/e in first)
-			if(!(e in result) && !(e in second))
-				result += e
+			if((e in result) || (e in second))
+				continue
+			result += e
 	else
 		result = first - second
+
 	return result
 
 
@@ -137,37 +141,43 @@
 /proc/pickweight(list/L)
 	var/total = 0
 	var/item
-	for (item in L)
-		if (!L[item])
+	for(item in L)
+		if(!L[item])
 			L[item] = 1
 		total += L[item]
 
 	total = rand(1, total)
-	for (item in L)
+	for(item in L)
 		total -=L [item]
-		if (total <= 0)
+		if(total <= 0)
 			return item
 
 	return null
 
+
 //Pick a random element from the list and remove it from the list.
-/proc/pick_n_take(list/listfrom)
-	if (listfrom.len > 0)
-		var/picked = pick(listfrom)
-		listfrom -= picked
-		return picked
-	return null
+/proc/pick_n_take(list/L)
+	if(!length(L))
+		return
+
+	var/picked = pick(L)
+	L -= picked
+	return picked
+
 
 /proc/popleft(list/L)
-	if(L.len)
-		. = L[1]
-		L.Cut(1,2)
+	if(!length(L))
+		return
+
+	. = L[1]
+	L.Cut(1, 2)
+
 
 //Returns the next element in parameter list after first appearance of parameter element. If it is the last element of the list or not present in list, returns first element.
 /proc/next_in_list(element, list/L)
-	for(var/i=1, i<L.len, i++)
+	for(var/i in 1 to length(L))
 		if(L[i] == element)
-			return L[i+1]
+			return L[i + 1]
 	return L[1]
 
 
@@ -182,13 +192,16 @@
 
 	return L
 
+
 //Return a list with no duplicate entries
-/proc/uniquelist(var/list/L)
+/proc/uniquelist(list/L)
 	var/list/K = list()
 	for(var/item in L)
-		if(!(item in K))
-			K += item
+		if((item in K))
+			continue
+		K += item
 	return K
+
 
 //for sorting clients or mobs by ckey
 /proc/sortKey(list/L, order = 1)
@@ -199,36 +212,22 @@
 /proc/sortRecord(list/L, field = "name", order = 1)
 	return sortTim(L, order >= 0 ? /proc/cmp_records_asc : /proc/cmp_records_dsc, sortkey=field)
 
+
 //any value in a list
 /proc/sortList(list/L, cmp=/proc/cmp_text_asc)
 	return sortTim(L.Copy(), cmp)
 
+
 /proc/sortListUsingKey(list/L, cmp=/proc/cmp_list_asc, sortKey)
 	return sortTim(L.Copy(), cmp, sortkey=sortKey)
+
 
 //uses sortList() but uses the var's name specifically. This should probably be using mergeAtom() instead
 /proc/sortNames(list/L, order=1)
 	return sortTim(L, order >= 0 ? /proc/cmp_name_asc : /proc/cmp_name_dsc)
 
-//Converts a bitfield to a list of numbers (or words if a wordlist is provided)
-/proc/bitfield2list(bitfield = 0, list/wordlist)
-	var/list/r = list()
-	if(istype(wordlist,/list))
-		var/max = min(wordlist.len,16)
-		var/bit = 1
-		for(var/i=1, i<=max, i++)
-			if(bitfield & bit)
-				r += wordlist[i]
-			bit = bit << 1
-	else
-		for(var/bit=1, bit<=65535, bit = bit << 1)
-			if(bitfield & bit)
-				r += bit
 
-	return r
-
-
-/proc/count_by_type(var/list/L, type)
+/proc/count_by_type(list/L, type)
 	var/i = 0
 	for(var/T in L)
 		if(istype(T, type))
@@ -243,38 +242,38 @@
 //fromIndex and toIndex must be in the range [1,L.len+1]
 //This will preserve associations ~Carnie
 /proc/moveElement(list/L, fromIndex, toIndex)
-	if(fromIndex == toIndex || fromIndex+1 == toIndex)	//no need to move
+	if(fromIndex == toIndex || fromIndex + 1 == toIndex)	//no need to move
 		return
 	if(fromIndex > toIndex)
 		++fromIndex	//since a null will be inserted before fromIndex, the index needs to be nudged right by one
 
 	L.Insert(toIndex, null)
 	L.Swap(fromIndex, toIndex)
-	L.Cut(fromIndex, fromIndex+1)
+	L.Cut(fromIndex, fromIndex + 1)
 
 
 //Move elements [fromIndex,fromIndex+len) to [toIndex-len, toIndex)
 //Same as moveElement but for ranges of elements
 //This will preserve associations ~Carnie
-/proc/moveRange(list/L, fromIndex, toIndex, len=1)
+/proc/moveRange(list/L, fromIndex, toIndex, len = 1)
 	var/distance = abs(toIndex - fromIndex)
 	if(len >= distance)	//there are more elements to be moved than the distance to be moved. Therefore the same result can be achieved (with fewer operations) by moving elements between where we are and where we are going. The result being, our range we are moving is shifted left or right by dist elements
 		if(fromIndex <= toIndex)
 			return	//no need to move
 		fromIndex += len	//we want to shift left instead of right
 
-		for(var/i=0, i<distance, ++i)
+		for(var/i in 0 to distance)
 			L.Insert(fromIndex, null)
 			L.Swap(fromIndex, toIndex)
-			L.Cut(toIndex, toIndex+1)
+			L.Cut(toIndex, toIndex + 1)
 	else
 		if(fromIndex > toIndex)
 			fromIndex += len
 
-		for(var/i=0, i<len, ++i)
+		for(var/i in 0 to len)
 			L.Insert(toIndex, null)
 			L.Swap(fromIndex, toIndex)
-			L.Cut(fromIndex, fromIndex+1)
+			L.Cut(fromIndex, fromIndex + 1)
 
 
 
@@ -304,15 +303,15 @@
 			// Figure out the midpoint, rounding up for fractions.  (BYOND rounds down, so add 1 if necessary.)
 			midway_calc = (low_index + high_index) / 2
 			current_index = round(midway_calc)
-			if (midway_calc > current_index)
+			if(midway_calc > current_index)
 				current_index++
 			current_item = sorted_list[current_index]
 
 			current_item_value = current_item:dd_SortValue()
 			current_sort_object_value = current_sort_object:dd_SortValue()
-			if (current_sort_object_value < current_item_value)
+			if(current_sort_object_value < current_item_value)
 				high_index = current_index - 1
-			else if (current_sort_object_value > current_item_value)
+			else if(current_sort_object_value > current_item_value)
 				low_index = current_index + 1
 			else
 				// current_sort_object == current_item
@@ -323,7 +322,7 @@
 		insert_index = low_index
 
 		// Special case adding to end of list.
-		if (insert_index > sorted_list.len)
+		if(insert_index > sorted_list.len)
 			sorted_list += current_sort_object
 			continue
 
@@ -343,15 +342,15 @@
 /obj/machinery/dd_SortValue()
 	return "[sanitize(name)]"
 
-//replaces reverseList ~Carnie
-/proc/reverseRange(list/L, start=1, end=0)
-	if(L.len)
-		start = start % L.len
-		end = end % (L.len+1)
+
+/proc/reverseRange(list/L, start = 1, end = 0)
+	if(length(L))
+		start = start % length(L)
+		end = end % (length(L) + 1)
 		if(start <= 0)
-			start += L.len
+			start += length(L)
 		if(end <= 0)
-			end += L.len + 1
+			end += length(L) + 1
 
 		--end
 		while(start < end)
@@ -359,21 +358,23 @@
 
 	return L
 
+
 /* Definining a counter as a series of key -> numeric value entries
 
  * All these procs modify in place.
 */
-
 /proc/counterlist_scale(list/L, scalar)
 	var/list/out = list()
 	for(var/key in L)
 		out[key] = L[key] * scalar
 	. = out
 
+
 /proc/counterlist_sum(list/L)
 	. = 0
 	for(var/key in L)
 		. += L[key]
+
 
 /proc/counterlist_normalise(list/L)
 	var/avg = counterlist_sum(L)
@@ -382,6 +383,7 @@
 	else
 		. = L
 
+
 /proc/counterlist_combine(list/L1, list/L2)
 	for(var/key in L2)
 		var/other_value = L2[key]
@@ -389,6 +391,7 @@
 			L1[key] += other_value
 		else
 			L1[key] = other_value
+
 
 //Like typesof() or subtypesof(), but returns a typecache instead of a list
 /proc/typecacheof(path, ignore_root_path, only_root_path = FALSE)
@@ -439,6 +442,7 @@
 			.[i] = key
 			.[key] = value
 
+
 //Return a list with no duplicate entries
 /proc/uniqueList(list/L)
 	. = list()
@@ -451,8 +455,8 @@
 	if(!L)
 		return
 
-	for(var/i = 1, i < L.len, ++i)
-		L.Swap(i,rand(i, L.len))
+	for(var/i in 1 to length(L))
+		L.Swap(i, rand(i, length(L)))
 
 
 //same, but returns nothing and acts on list in place (also handles associated values properly)
@@ -464,6 +468,7 @@
 			L |= key
 		else
 			L[key] = temp[key]
+
 
 /proc/typecache_filter_list_reverse(list/atoms, list/typecache)
 	. = list()

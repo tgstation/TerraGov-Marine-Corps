@@ -7,8 +7,6 @@
 
 
 /proc/random_hair_style(gender, species = "Human")
-	var/h_style = "Crewcut"
-
 	var/list/valid_hairstyles = list()
 	for(var/hairstyle in GLOB.hair_styles_list)
 		var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
@@ -20,15 +18,13 @@
 			continue
 		valid_hairstyles[hairstyle] = GLOB.hair_styles_list[hairstyle]
 
-	if(valid_hairstyles.len)
-		h_style = pick(valid_hairstyles)
-
-	return h_style
+	if(!length(valid_hairstyles))
+		return "Crewcut"
+		
+	return pick(valid_hairstyles)
 
 
 /proc/random_facial_hair_style(gender, species = "Human")
-	var/f_style = "Shaved"
-
 	var/list/valid_facialhairstyles = list()
 	for(var/facialhairstyle in GLOB.facial_hair_styles_list)
 		var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
@@ -42,7 +38,7 @@
 		valid_facialhairstyles[facialhairstyle] = GLOB.facial_hair_styles_list[facialhairstyle]
 
 	if(!length(valid_facialhairstyles))
-		return f_style
+		return "Shaved"
 
 	return pick(valid_facialhairstyles)
 

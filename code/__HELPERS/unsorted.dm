@@ -22,62 +22,123 @@
 #undef DELTA_CALC
 
 #define UNTIL(X) while(!(X)) stoplag()
-#define SIGN(x) ( x < 0 ? -1  : 1 )
+#define SIGN(x) (x < 0 ? -1  : 1)
 
 //datum may be null, but it does need to be a typed var
 #define NAMEOF(datum, X) (#X || ##datum.##X)
 
+
+//gives us the stack trace from CRASH() without ending the current proc.
+/proc/stack_trace(msg)
+	CRASH(msg)
+
+
+/datum/proc/stack_trace(msg)
+	CRASH(msg)
+
+
+GLOBAL_REAL_VAR(list/stack_trace_storage)
+/proc/gib_stack_trace()
+	stack_trace_storage = list()
+	stack_trace()
+	stack_trace_storage.Cut(1, min(3, length(stack_trace_storage)))
+	. = stack_trace_storage
+	stack_trace_storage = null
+
+
+//returns a GUID like identifier (using a mostly made up record format)
+//guids are not on their own suitable for access or security tokens, as most of their bits are predictable.
+//	(But may make a nice salt to one)
+/proc/GUID()
+	var/const/GUID_VERSION = "b"
+	var/const/GUID_VARIANT = "d"
+	var/node_id = copytext(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][world.contents.len][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
+
+	var/time_high = "[num2hex(text2num(time2text(world.realtime,"YYYY")), 2)][num2hex(world.realtime, 6)]"
+
+	var/time_mid = num2hex(world.timeofday, 4)
+
+	var/time_low = num2hex(world.time, 3)
+
+	var/time_clock = num2hex(TICK_DELTA_TO_MS(world.tick_usage), 3)
+
+	return "{[time_high]-[time_mid]-[GUID_VERSION][time_low]-[GUID_VARIANT][time_clock]-[node_id]}"
+
+
+/proc/pass()
+	return
+
+
+// \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
+// If it ever becomes necesary to get a more performant REF(), this lies here in wait
+// #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
+/proc/REF(input)
+	if(istype(input, /datum))
+		var/datum/thing = input
+		if(thing.datum_flags & DF_USE_TAG)
+			if(!thing.tag)
+				stack_trace("A ref was requested of an object with DF_USE_TAG set but no tag: [thing]")
+				thing.datum_flags &= ~DF_USE_TAG
+			else
+				return "\[[url_encode(thing.tag)]\]"
+	return "\ref[input]"
+
+
 //Returns the middle-most value
-/proc/dd_range(var/low, var/high, var/num)
-	return max(low,min(high,num))
+/proc/dd_range(low, high, num)
+	return max(low, min(high, num))
 
 
 //Returns whether or not A is the middle most value
-/proc/InRange(var/A, var/lower, var/upper)
-	if(A < lower) return 0
-	if(A > upper) return 0
-	return 1
+/proc/InRange(A, lower, upper)
+	if(A < lower) 
+		return FALSE
+	if(A > upper) 
+		return FALSE
+	return TRUE
 
 
-/proc/Get_Angle(atom/start,atom/end)//For beams.
-	if(!start || !end) return 0
-	if(!start.z || !end.z) return 0 //Atoms are not on turfs.
+/proc/Get_Angle(atom/start, atom/end)//For beams.
+	if(!start || !end) 
+		return FALSE
+	if(!start.z || !end.z) 
+		return FALSE //Atoms are not on turfs.
 	var/dy
 	var/dx
-	dy=(32*end.y+end.pixel_y)-(32*start.y+start.pixel_y)
-	dx=(32*end.x+end.pixel_x)-(32*start.x+start.pixel_x)
+	dy = (32 * end.y + end.pixel_y) - (32 * start.y + start.pixel_y)
+	dx = (32 * end.x + end.pixel_x) - (32 * start.x + start.pixel_x)
 	if(!dy)
-		return (dx>=0)?90:270
-	.=arctan(dx/dy)
-	if(dy<0)
-		.+=180
-	else if(dx<0)
-		.+=360
+		return (dx >= 0) ? 90 : 270
+	. = arctan(dx / dy)
+	if(dy < 0)
+		. += 180
+	else if(dx < 0)
+		. += 360
 
 
 /proc/LinkBlocked(turf/A, turf/B)
-	if(A == null || B == null)
+	if(isnull(A) || isnull(B))
 		return TRUE
-	var/adir = get_dir(A,B)
-	var/rdir = get_dir(B,A)
-	if(adir & (adir-1))//is diagonal direction
-		var/turf/iStep = get_step(A,adir&(NORTH|SOUTH))
-		if(!iStep.density && !LinkBlocked(A,iStep) && !LinkBlocked(iStep,B))
+	var/adir = get_dir(A, B)
+	var/rdir = get_dir(B, A)
+	if(adir & (adir - 1))//is diagonal direction
+		var/turf/iStep = get_step(A, adir & (NORTH|SOUTH))
+		if(!iStep.density && !LinkBlocked(A, iStep) && !LinkBlocked(iStep, B))
 			return FALSE
 
-		var/turf/pStep = get_step(A,adir&(EAST|WEST))
-		if(!pStep.density && !LinkBlocked(A,pStep) && !LinkBlocked(pStep,B))
+		var/turf/pStep = get_step(A,adir & (EAST|WEST))
+		if(!pStep.density && !LinkBlocked(A, pStep) && !LinkBlocked(pStep, B))
 			return FALSE
 		return TRUE
 
-	if(DirBlocked(A,adir))
+	if(DirBlocked(A, adir))
 		return TRUE
-	if(DirBlocked(B,rdir))
+	if(DirBlocked(B, rdir))
 		return TRUE
 	return FALSE
 
 
-/proc/DirBlocked(turf/loc,var/direction)
+/proc/DirBlocked(turf/loc, direction)
 	for(var/obj/structure/window/D in loc)
 		if(!D.density)
 			continue
@@ -107,13 +168,9 @@
 	return FALSE
 
 
-/proc/sign(x)
-	return x != 0 ? x / abs(x) : 0
-
-
 //Returns whether or not a player is a guest using their ckey as an input
 /proc/IsGuestKey(key)
-	if(findtext(key, "Guest-", 1, 7) != 1) //was findtextEx
+	if(!findtext(key, "Guest-", 1, 7))
 		return FALSE
 
 	var/i = 7, ch, len = length(key)
@@ -121,11 +178,11 @@
 	if(copytext(key, 7, 8) == "W") //webclient
 		i++
 
-	for (, i <= len, ++i)
+	for(, i <= len, ++i)
 		ch = text2ascii(key, i)
-		if (ch < 48 || ch > 57)
-			return 0
-	return 1
+		if(ch < 48 || ch > 57)
+			return FALSE
+	return TRUE
 
 
 // Ensure the frequency is within bounds of what it should be sending/receiving at
@@ -156,7 +213,7 @@
 	for(var/mob/living/silicon/ai/A in GLOB.alive_mob_list)
 		if(A.stat == DEAD)
 			continue
-		if(A.control_disabled == 1)
+		if(A.control_disabled)
 			continue
 		. += A
 	return .
@@ -173,11 +230,13 @@
 	return selected
 
 
-/proc/select_active_ai(var/mob/user)
+/proc/select_active_ai(mob/user)
 	var/list/ais = active_ais()
-	if(ais.len)
-		if(user)	. = input(usr,"AI signals detected:", "AI selection") in ais
-		else		. = pick(ais)
+	if(length(ais))
+		if(user)	
+			. = input(usr,"AI signals detected:", "AI selection") in ais
+		else		
+			. = pick(ais)
 	return .
 
 
@@ -205,7 +264,7 @@
 
 
 //ultra range (no limitations on distance, faster than range for distances > 8); including areas drastically decreases performance
-/proc/urange(dist = 0, atom/center = usr, orange = 0, areas = 0)
+/proc/urange(dist = 0, atom/center = usr, orange = FALSE, areas = FALSE)
 	if(!dist)
 		if(!orange)
 			return list(center)
@@ -226,11 +285,10 @@
 
 // returns the turf located at the map edge in the specified direction relative to A
 // used for mass driver
-/proc/get_edge_target_turf(var/atom/A, var/direction)
-
+/proc/get_edge_target_turf(atom/A, direction)
 	var/turf/target = locate(A.x, A.y, A.z)
 	if(!A || !target)
-		return 0
+		return FALSE
 		//since NORTHEAST == NORTH & EAST, etc, doing it this way allows for diagonal mass drivers in the future
 		//and isn't really any more complicated
 
@@ -251,7 +309,7 @@
 // result is bounded to map size
 // note range is non-pythagorean
 // used for disposal system
-/proc/get_ranged_target_turf(var/atom/A, var/direction, var/range)
+/proc/get_ranged_target_turf(atom/A, direction, range)
 	var/x = A.x
 	var/y = A.y
 	if(direction & NORTH)
@@ -263,51 +321,50 @@
 	if(direction & WEST)
 		x = max(1, x - range)
 
-	return locate(x,y,A.z)
+	return locate(x, y, A.z)
 
 
 // returns turf relative to A offset in dx and dy tiles
 // bound to map limits
-/proc/get_offset_target_turf(var/atom/A, var/dx, var/dy)
+/proc/get_offset_target_turf(atom/A, dx, dy)
 	var/x = min(world.maxx, max(1, A.x + dx))
 	var/y = min(world.maxy, max(1, A.y + dy))
-	return locate(x,y,A.z)
+	return locate(x, y, A.z)
 
 
 //Makes sure MIDDLE is between LOW and HIGH. If not, it adjusts it. Returns the adjusted value.
-/proc/between(var/low, var/middle, var/high)
+/proc/between(low, middle, high)
 	return max(min(middle, high), low)
 
 
 /proc/arctan(x)
-	var/y = arcsin(x / sqrt(1 + x * x))
-	return y
+	return arcsin(x / sqrt(1 + x * x))
 
 
 //returns random gauss number
-/proc/GaussRand(var/sigma)
+/proc/GaussRand(sigma)
   var/x,y,rsq
   do
-    x=2*rand()-1
-    y=2*rand()-1
-    rsq=x*x+y*y
-  while(rsq>1 || !rsq)
-  return sigma*y*sqrt(-2*log(rsq)/rsq)
+    x = 2 * rand() - 1
+    y = 2 * rand() - 1
+    rsq = x * x + y * y
+  while(rsq > 1 || !rsq)
+  return sigma * y * sqrt(-2 * log(rsq) / rsq)
 
 
 //returns random gauss number, rounded to 'roundto'
-/proc/GaussRandRound(var/sigma,var/roundto)
-	return round(GaussRand(sigma),roundto)
+/proc/GaussRandRound(sigma, roundto)
+	return round(GaussRand(sigma), roundto)
 
 
-/proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as text,sleeptime = 0,direction as num)
+/proc/anim(turf/location, atom/target, a_icon, a_icon_state, flick_anim, sleeptime = 0, direction)
 //This proc throws up either an icon or an animation for a specified amount of time.
 //The variables should be apparent enough.
 	var/atom/movable/overlay/animation = new(location)
 	if(direction)
 		animation.setDir(direction)
 	animation.icon = a_icon
-	animation.layer = target.layer+0.1
+	animation.layer = target.layer + 0.1
 	if(a_icon_state)
 		animation.icon_state = a_icon_state
 	else
@@ -324,14 +381,14 @@
 
 	for(var/atom/part in contents)
 		toReturn += part
-		if(part.contents.len && searchDepth)
+		if(length(part.contents) && searchDepth)
 			toReturn += part.GetAllContents(searchDepth - 1)
 
 	return toReturn
 
 
 //Step-towards method of determining whether one atom can see another. Similar to viewers()
-/proc/can_see(atom/source, atom/target, length=5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
+/proc/can_see(atom/source, atom/target, length = 5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
 	var/turf/current = get_turf(source)
 	var/turf/target_turf = get_turf(target)
 	if(current == target_turf)
@@ -350,13 +407,14 @@
 	return TRUE
 
 
-/proc/is_blocked_turf(var/turf/T)
-	var/cant_pass = 0
-	if(T.density) cant_pass = 1
+/proc/is_blocked_turf(turf/T)
+	var/can_pass = TRUE
+	if(T.density) 
+		can_pass = FALSE
 	for(var/atom/A in T)
-		if(A.density)//&&A.anchored
-			cant_pass = 1
-	return cant_pass
+		if(A.density)
+			can_pass = FALSE
+	return can_pass
 
 
 var/global/image/busy_indicator_clock
@@ -505,10 +563,12 @@ var/global/image/busy_indicator_hostile
 
 
 //Takes: Anything that could possibly have variables and a varname to check.
-//Returns: 1 if found, 0 if not.
-/proc/hasvar(var/datum/A, var/varname)
-	if(A.vars.Find(lowertext(varname))) return 1
-	else return 0
+//Returns: TRUE if found, FALSE if not.
+/proc/hasvar(datum/A, varname)
+	if(A.vars.Find(lowertext(varname))) 
+		return TRUE
+	return FALSE
+
 
 //Returns: all the areas in the world
 /proc/return_areas()
@@ -517,91 +577,109 @@ var/global/image/busy_indicator_hostile
 		areas += A
 	return areas
 
+
 //Returns: all the areas in the world, sorted.
 /proc/return_sorted_areas()
 	return sortNames(return_areas())
 
+
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all areas of that type in the world.
-/proc/get_areas(var/areatype)
-	if(!areatype) return null
-	if(istext(areatype)) areatype = text2path(areatype)
+/proc/get_areas(areatype)
+	if(!areatype) 
+		return
+	if(istext(areatype)) 
+		areatype = text2path(areatype)
 	if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
 
-	var/list/areas = new/list()
+	var/list/areas = list()
 	for(var/area/N in all_areas)
-		if(istype(N, areatype)) areas += N
+		if(!istype(N, areatype)) 
+			continue
+		areas += N
 	return areas
+
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all turfs in areas of that type of that type in the world.
-/proc/get_area_turfs(var/areatype)
-	if(!areatype) return null
-	if(istext(areatype)) areatype = text2path(areatype)
+/proc/get_area_turfs(areatype)
+	if(!areatype) 
+		return
+	if(istext(areatype)) 
+		areatype = text2path(areatype)
 	if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
 
-	var/list/turfs = new/list()
+	var/list/turfs = list()
 	for(var/area/N in all_areas)
-		if(istype(N, areatype))
-			for(var/turf/T in N) turfs += T
+		if(!istype(N, areatype))
+			return
+		for(var/turf/T in N) 
+			turfs += T
 	return turfs
+
 
 /datum/coords //Simple datum for storing coordinates.
 	var/x_pos = null
 	var/y_pos = null
 	var/z_pos = null
 
-/area/proc/move_contents_to(var/area/A, var/turftoleave=null, var/direction = null)
+
+/area/proc/move_contents_to(area/A, turftoleave, direction)
 	//Takes: Area. Optional: turf type to leave behind.
 	//Returns: Nothing.
 	//Notes: Attempts to move the contents of one area to another area.
 	//       Movement based on lower left corner. Tiles that do not fit
 	//		 into the new area will not be moved.
 
-	if(!A || !src) return 0
+	if(!A || !src) 
+		return FALSE
 
 	var/list/turfs_src = get_area_turfs(src.type)
 	var/list/turfs_trg = get_area_turfs(A.type)
 
 	var/src_min_x = 0
 	var/src_min_y = 0
-	for (var/turf/T in turfs_src)
-		if(T.x < src_min_x || !src_min_x) src_min_x	= T.x
-		if(T.y < src_min_y || !src_min_y) src_min_y	= T.y
+	for(var/turf/T in turfs_src)
+		if(T.x < src_min_x || !src_min_x) 
+			src_min_x = T.x
+		if(T.y < src_min_y || !src_min_y) 
+			src_min_y = T.y
 
 	var/trg_min_x = 0
 	var/trg_min_y = 0
-	for (var/turf/T in turfs_trg)
-		if(T.x < trg_min_x || !trg_min_x) trg_min_x	= T.x
-		if(T.y < trg_min_y || !trg_min_y) trg_min_y	= T.y
+	for(var/turf/T in turfs_trg)
+		if(T.x < trg_min_x || !trg_min_x) 
+			trg_min_x = T.x
+		if(T.y < trg_min_y || !trg_min_y) 
+			trg_min_y = T.y
 
-	var/list/refined_src = new/list()
+	var/list/refined_src = list()
 	for(var/turf/T in turfs_src)
 		refined_src += T
-		refined_src[T] = new/datum/coords
+		refined_src[T] = new /datum/coords
 		var/datum/coords/C = refined_src[T]
 		C.x_pos = (T.x - src_min_x)
 		C.y_pos = (T.y - src_min_y)
 
-	var/list/refined_trg = new/list()
+	var/list/refined_trg = list()
 	for(var/turf/T in turfs_trg)
 		refined_trg += T
-		refined_trg[T] = new/datum/coords
+		refined_trg[T] = new /datum/coords
 		var/datum/coords/C = refined_trg[T]
 		C.x_pos = (T.x - trg_min_x)
 		C.y_pos = (T.y - trg_min_y)
 
-	var/list/fromupdate = new/list()
-	var/list/toupdate = new/list()
+	var/list/fromupdate = list()
+	var/list/toupdate = list()
 
 	moving:
-		for (var/turf/T in refined_src)
+		for(var/turf/T in refined_src)
 			var/datum/coords/C_src = refined_src[T]
-			for (var/turf/B in refined_trg)
+			for(var/turf/B in refined_trg)
 				var/datum/coords/C_trg = refined_trg[B]
 				if(C_src.x_pos == C_trg.x_pos && C_src.y_pos == C_trg.y_pos)
 
@@ -646,10 +724,12 @@ var/global/image/busy_indicator_hostile
 							X.name = "wall"
 							qdel(O) // prevents multiple shuttle corners from stacking
 							continue
-						if(!istype(O,/obj)) continue
+						if(!isobj(O)) 
+							continue
 						O.loc = X
 					for(var/mob/M in T)
-						if(!istype(M,/mob) || istype(M, /mob/aiEye)) continue // If we need to check for more mobs, I'll add a variable
+						if(!ismob(M) || istype(M, /mob/aiEye)) 
+							continue // If we need to check for more mobs, I'll add a variable
 						M.loc = X
 
 //					var/area/AR = X.loc
@@ -669,9 +749,9 @@ var/global/image/busy_indicator_hostile
 					refined_trg -= B
 					continue moving
 
-	var/list/doors = new/list()
+	var/list/doors = list()
 
-	if(toupdate.len)
+	if(length(toupdate))
 		for(var/turf/T1 in toupdate)
 			for(var/obj/machinery/door/D2 in T1)
 				doors += D2
@@ -680,7 +760,7 @@ var/global/image/busy_indicator_hostile
 			else
 				air_master.tiles_to_update += T1*/
 
-	if(fromupdate.len)
+	if(length(fromupdate))
 		for(var/turf/T2 in fromupdate)
 			for(var/obj/machinery/door/D2 in T2)
 				doors += D2
@@ -723,55 +803,60 @@ var/global/image/busy_indicator_hostile
 	return O
 
 
-/area/proc/copy_contents_to(var/area/A , var/platingRequired = 0 )
+/area/proc/copy_contents_to(area/A , platingRequired = FALSE)
 	//Takes: Area. Optional: If it should copy to areas that don't have plating
 	//Returns: Nothing.
 	//Notes: Attempts to move the contents of one area to another area.
 	//       Movement based on lower left corner. Tiles that do not fit
 	//		 into the new area will not be moved.
 
-	if(!A || !src) return 0
+	if(!A || !src) 
+		return FALSE
 
 	var/list/turfs_src = get_area_turfs(src.type)
 	var/list/turfs_trg = get_area_turfs(A.type)
 
 	var/src_min_x = 0
 	var/src_min_y = 0
-	for (var/turf/T in turfs_src)
-		if(T.x < src_min_x || !src_min_x) src_min_x	= T.x
-		if(T.y < src_min_y || !src_min_y) src_min_y	= T.y
+	for(var/turf/T in turfs_src)
+		if(T.x < src_min_x || !src_min_x) 
+			src_min_x = T.x
+		if(T.y < src_min_y || !src_min_y)
+			src_min_y = T.y
 
 	var/trg_min_x = 0
 	var/trg_min_y = 0
-	for (var/turf/T in turfs_trg)
-		if(T.x < trg_min_x || !trg_min_x) trg_min_x	= T.x
-		if(T.y < trg_min_y || !trg_min_y) trg_min_y	= T.y
+	for(var/turf/T in turfs_trg)
+		if(T.x < trg_min_x || !trg_min_x) 
+			trg_min_x = T.x
+		if(T.y < trg_min_y || !trg_min_y) 
+			trg_min_y = T.y
 
-	var/list/refined_src = new/list()
+	var/list/refined_src = list()
 	for(var/turf/T in turfs_src)
 		refined_src += T
-		refined_src[T] = new/datum/coords
+		refined_src[T] = new /datum/coords
 		var/datum/coords/C = refined_src[T]
 		C.x_pos = (T.x - src_min_x)
 		C.y_pos = (T.y - src_min_y)
 
-	var/list/refined_trg = new/list()
+	var/list/refined_trg = list()
 	for(var/turf/T in turfs_trg)
 		refined_trg += T
-		refined_trg[T] = new/datum/coords
+		refined_trg[T] = new /datum/coords
 		var/datum/coords/C = refined_trg[T]
 		C.x_pos = (T.x - trg_min_x)
 		C.y_pos = (T.y - trg_min_y)
 
-	var/list/toupdate = new/list()
+	var/list/toupdate = list()
 
 	var/copiedobjs = list()
 
 
 	moving:
-		for (var/turf/T in refined_src)
+		for(var/turf/T in refined_src)
 			var/datum/coords/C_src = refined_src[T]
-			for (var/turf/B in refined_trg)
+			for(var/turf/B in refined_trg)
 				var/datum/coords/C_trg = refined_trg[B]
 				if(C_src.x_pos == C_trg.x_pos && C_src.y_pos == C_trg.y_pos)
 
@@ -796,7 +881,7 @@ var/global/image/busy_indicator_hostile
 
 					for(var/obj/O in T)
 
-						if(!istype(O,/obj))
+						if(!isobj(O))
 							continue
 
 						objs += O
@@ -811,7 +896,8 @@ var/global/image/busy_indicator_hostile
 
 					for(var/mob/M in T)
 
-						if(!istype(M,/mob) || istype(M, /mob/aiEye)) continue // If we need to check for more mobs, I'll add a variable
+						if(!ismob(M) || istype(M, /mob/aiEye)) 
+							continue // If we need to check for more mobs, I'll add a variable
 						mobs += M
 
 					for(var/mob/M in mobs)
@@ -826,7 +912,7 @@ var/global/image/busy_indicator_hostile
 
 
 					for(var/V in T.vars)
-						if(!(V in list("type","loc","locs","vars", "parent", "parent_type","verbs","ckey","key","x","y","z","contents", "luminosity")))
+						if(!(V in list("type", "loc", "locs", "vars", "parent", "parent_type", "verbs", "ckey", "key", "x", "y", "z", "contents", "luminosity")))
 							X.vars[V] = T.vars[V]
 
 //					var/area/AR = X.loc
@@ -845,79 +931,62 @@ var/global/image/busy_indicator_hostile
 	return copiedobjs
 
 
-
-proc/get_cardinal_dir(atom/A, atom/B)
+/proc/get_cardinal_dir(atom/A, atom/B)
 	var/dx = abs(B.x - A.x)
 	var/dy = abs(B.y - A.y)
 	return get_dir(A, B) & (rand() * (dx+dy) < dy ? 3 : 12)
 
-//I dont understand the above proc so I'm writing my own shittier one
-proc/get_cardinal_dir2(var/atom/A, var/atom/B)
-	var/dx = B.x - A.x
-	var/dy = B.y - A.y
-	if(abs(dx) > abs(dy))
-		return (dx > 0) ? EAST : WEST
-	return (dy > 0) ? NORTH : SOUTH
 
 //Returns the 2 dirs perpendicular to the arg
-proc/get_perpen_dir(var/dir)
-	if(dir & (dir-1)) return 0 //diagonals
+/proc/get_perpen_dir(dir)
+	if(dir & (dir-1)) 
+		return 0 //diagonals
 	if(dir in list(EAST, WEST))
 		return list(SOUTH, NORTH)
-	else return list(EAST, WEST)
+	else 
+		return list(EAST, WEST)
+
 
 //chances are 1:value. anyprob(1) will always return true
-proc/anyprob(value)
-	return (rand(1,value)==value)
+/proc/anyprob(value)
+	return (rand(1, value) == value)
 
-proc/view_or_range(distance = world.view , center = usr , type)
+
+/proc/view_or_range(distance = world.view , center = usr , type)
 	switch(type)
 		if("view")
 			. = view(distance,center)
 		if("range")
 			. = range(distance,center)
-	return
-
-proc/oview_or_orange(distance = world.view , center = usr , type)
-	switch(type)
-		if("view")
-			. = oview(distance,center)
-		if("range")
-			. = orange(distance,center)
-	return
-
-proc/get_mob_with_client_list()
-	var/list/mobs = list()
-	for(var/mob/M in GLOB.mob_list)
-		if (M.client)
-			mobs += M
-	return mobs
 
 
 /proc/parse_zone(zone)
-	if(zone == "r_hand") return "right hand"
-	else if (zone == "l_hand") return "left hand"
-	else if (zone == "l_arm") return "left arm"
-	else if (zone == "r_arm") return "right arm"
-	else if (zone == "l_leg") return "left leg"
-	else if (zone == "r_leg") return "right leg"
-	else if (zone == "l_foot") return "left foot"
-	else if (zone == "r_foot") return "right foot"
-	else if (zone == "l_hand") return "left hand"
-	else if (zone == "r_hand") return "right hand"
-	else if (zone == "l_foot") return "left foot"
-	else if (zone == "r_foot") return "right foot"
-	else return zone
-
-/proc/get(atom/loc, type)
-	while(loc)
-		if(istype(loc, type))
-			return loc
-		loc = loc.loc
-	return null
-
-/proc/get_turf_or_move(turf/location)
-	return get_turf(location)
+	if(zone == "r_hand") 
+		return "right hand"
+	else if (zone == "l_hand") 
+		return "left hand"
+	else if (zone == "l_arm") 
+		return "left arm"
+	else if (zone == "r_arm") 
+		return "right arm"
+	else if (zone == "l_leg") 
+		return "left leg"
+	else if (zone == "r_leg") 
+		return "right leg"
+	else if (zone == "l_foot") 
+		return "left foot"
+	else if (zone == "r_foot") 
+		return "right foot"
+	else if (zone == "l_hand") 
+		return "left hand"
+	else if (zone == "r_hand") 
+		return "right hand"
+	else if (zone == "l_foot") 
+		return "left foot"
+	else if (zone == "r_foot") 
+		return "right foot"
+	else 
+		return zone
 
 
 //Quick type checks for some tools
@@ -930,30 +999,40 @@ var/global/list/common_tools = list(
 /obj/item/multitool,
 /obj/item/tool/crowbar)
 
+
 /proc/istool(O)
 	if(O && is_type_in_list(O, common_tools))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
-proc/is_hot(obj/item/I)
+
+/proc/is_hot(obj/item/I)
 	return I.heat_source
+
 
 //Whether or not the given item counts as sharp in terms of dealing damage
 /proc/is_sharp(obj/item/I)
-	if (!istype(I)) return 0
-	if (I.sharp) return 1
-	if (I.edge) return 1
-	return 0
+	if(!istype(I)) 
+		return FALSE
+	if(I.sharp) 
+		return TRUE
+	if(I.edge) 
+		return TRUE
+	return FALSE
+
 
 //Whether or not the given item counts as cutting with an edge in terms of removing limbs
 /proc/has_edge(obj/item/I)
-	if (!istype(I)) return 0
-	if (I.edge) return 1
-	return 0
+	if(!istype(I))
+		return FALSE
+	if(!I.edge) 
+		return FALSE
+	return TRUE
+
 
 /proc/params2turf(scr_loc, turf/origin, client/C)
 	if(!scr_loc)
-		return null
+		return
 	var/tX = splittext(scr_loc, ",")
 	var/tY = splittext(tX[2], ":")
 	var/tZ = origin.z
@@ -966,26 +1045,15 @@ proc/is_hot(obj/item/I)
 	return locate(tX, tY, tZ)
 
 
-//Returns 1 if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.
-/proc/can_puncture(obj/item/W)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
-	if(!istype(W)) return 0
-	return (W.sharp || W.heat_source >= 400 	|| \
-		isscrewdriver(W)	 || \
-		istype(W, /obj/item/tool/pen) 		 || \
-		istype(W, /obj/item/tool/shovel) \
+//Returns TRUE if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.
+/proc/can_puncture(obj/item/I)
+	if(!istype(I)) 
+		return FALSE
+	return (I.sharp || I.heat_source >= 400 	|| \
+		isscrewdriver(I)	 || \
+		istype(I, /obj/item/tool/pen) 		 || \
+		istype(I, /obj/item/tool/shovel) \
 	)
-
-/proc/is_surgery_tool(obj/item/W as obj)
-	return (	\
-	istype(W, /obj/item/tool/surgery/scalpel)			||	\
-	istype(W, /obj/item/tool/surgery/hemostat)		||	\
-	istype(W, /obj/item/tool/surgery/retractor)		||	\
-	istype(W, /obj/item/tool/surgery/cautery)			||	\
-	istype(W, /obj/item/tool/surgery/bonegel)			||	\
-	istype(W, /obj/item/tool/surgery/bonesetter)
-	)
-
-
 
 
 /proc/reverse_direction(direction)
@@ -1007,16 +1075,25 @@ proc/is_hot(obj/item/I)
 		if(NORTHWEST)
 			return SOUTHEAST
 
+
 /proc/reverse_nearby_direction(direction)
 	switch(direction)
-		if(NORTH) 		. = list(SOUTH,     SOUTHEAST, SOUTHWEST)
-		if(NORTHEAST) 	. = list(SOUTHWEST, SOUTH,     WEST)
-		if(EAST) 		. = list(WEST,      SOUTHWEST, NORTHWEST)
-		if(SOUTHEAST) 	. = list(NORTHWEST, NORTH,     WEST)
-		if(SOUTH) 		. = list(NORTH,     NORTHEAST, NORTHWEST)
-		if(SOUTHWEST) 	. = list(NORTHEAST, NORTH,     EAST)
-		if(WEST) 		. = list(EAST,      NORTHEAST, SOUTHEAST)
-		if(NORTHWEST) 	. = list(SOUTHEAST, SOUTH,     EAST)
+		if(NORTH) 		
+			. = list(SOUTH, SOUTHEAST, SOUTHWEST)
+		if(NORTHEAST) 	
+			. = list(SOUTHWEST, SOUTH, WEST)
+		if(EAST) 		
+			. = list(WEST, SOUTHWEST, NORTHWEST)
+		if(SOUTHEAST) 	
+			. = list(NORTHWEST, NORTH, WEST)
+		if(SOUTH) 		
+			. = list(NORTH, NORTHEAST, NORTHWEST)
+		if(SOUTHWEST) 	
+			. = list(NORTHEAST, NORTH, EAST)
+		if(WEST) 		
+			. = list(EAST, NORTHEAST, SOUTHEAST)
+		if(NORTHWEST) 	
+			. = list(SOUTHEAST, SOUTH, EAST)
 
 
 /*
@@ -1031,45 +1108,51 @@ var/list/WALLITEMS = list(
 	"/obj/item/storage/secure/safe", "/obj/machinery/door_timer", "/obj/machinery/flasher", "/obj/machinery/keycard_auth",
 	"/obj/structure/mirror", "/obj/structure/closet/fireaxecabinet", "/obj/machinery/computer/security/telescreen/entertainment"
 	)
+
+
 /proc/gotwallitem(loc, dir)
 	for(var/obj/O in loc)
 		for(var/item in WALLITEMS)
-			if(istype(O, text2path(item)))
-				//Direction works sometimes
-				if(O.dir == dir)
-					return 1
+			if(!istype(O, text2path(item)))
+				continue
 
-				//Some stuff doesn't use dir properly, so we need to check pixel instead
-				switch(dir)
-					if(SOUTH)
-						if(O.pixel_y > 10)
-							return 1
-					if(NORTH)
-						if(O.pixel_y < -10)
-							return 1
-					if(WEST)
-						if(O.pixel_x > 10)
-							return 1
-					if(EAST)
-						if(O.pixel_x < -10)
-							return 1
+			//Direction works sometimes
+			if(O.dir == dir)
+				return TRUE
+
+			//Some stuff doesn't use dir properly, so we need to check pixel instead
+			switch(dir)
+				if(SOUTH)
+					if(O.pixel_y > 10)
+						return TRUE
+				if(NORTH)
+					if(O.pixel_y < -10)
+						return TRUE
+				if(WEST)
+					if(O.pixel_x > 10)
+						return TRUE
+				if(EAST)
+					if(O.pixel_x < -10)
+						return TRUE
 
 
 	//Some stuff is placed directly on the wallturf (signs)
 	for(var/obj/O in get_step(loc, dir))
 		for(var/item in WALLITEMS)
-			if(istype(O, text2path(item)))
-				if(O.pixel_x == 0 && O.pixel_y == 0)
-					return 1
-	return 0
+			if(!istype(O, text2path(item)))
+				continue
+
+			if(O.pixel_x != 0 || O.pixel_y != 0)
+				continue
+			
+			return TRUE
+
+	return FALSE
+
 
 /proc/format_text(text)
 	return oldreplacetext(oldreplacetext(text,"\proper ",""),"\improper ","")
 
-/proc/topic_link(var/datum/D, var/arglist, var/content)
-	if(istype(arglist,/list))
-		arglist = list2params(arglist)
-	return "<a href='?src=\ref[D];[arglist]'>[content]</a>"
 
 //Reasonably Optimized Bresenham's Line Drawing
 /proc/getline(atom/start, atom/end)
@@ -1126,38 +1209,6 @@ var/list/WALLITEMS = list(
 
 	. = turfs
 
-#undef SIGN
-
-//gives us the stack trace from CRASH() without ending the current proc.
-/proc/stack_trace(msg)
-	CRASH(msg)
-
-/datum/proc/stack_trace(msg)
-	CRASH(msg)
-
-GLOBAL_REAL_VAR(list/stack_trace_storage)
-/proc/gib_stack_trace()
-	stack_trace_storage = list()
-	stack_trace()
-	stack_trace_storage.Cut(1, min(3, length(stack_trace_storage)))
-	. = stack_trace_storage
-	stack_trace_storage = null
-
-
-// \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
-// If it ever becomes necesary to get a more performant REF(), this lies here in wait
-// #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
-/proc/REF(input)
-	if(istype(input, /datum))
-		var/datum/thing = input
-		if(thing.datum_flags & DF_USE_TAG)
-			if(!thing.tag)
-				stack_trace("A ref was requested of an object with DF_USE_TAG set but no tag: [thing]")
-				thing.datum_flags &= ~DF_USE_TAG
-			else
-				return "\[[url_encode(thing.tag)]\]"
-	return "\ref[input]"
-
 
 // Makes a call in the context of a different usr
 // Use sparingly
@@ -1171,44 +1222,20 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	usr = temp
 
 
-
-//returns a GUID like identifier (using a mostly made up record format)
-//guids are not on their own suitable for access or security tokens, as most of their bits are predictable.
-//	(But may make a nice salt to one)
-/proc/GUID()
-	var/const/GUID_VERSION = "b"
-	var/const/GUID_VARIANT = "d"
-	var/node_id = copytext(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][world.contents.len][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
-
-	var/time_high = "[num2hex(text2num(time2text(world.realtime,"YYYY")), 2)][num2hex(world.realtime, 6)]"
-
-	var/time_mid = num2hex(world.timeofday, 4)
-
-	var/time_low = num2hex(world.time, 3)
-
-	var/time_clock = num2hex(TICK_DELTA_TO_MS(world.tick_usage), 3)
-
-	return "{[time_high]-[time_mid]-[GUID_VERSION][time_low]-[GUID_VARIANT][time_clock]-[node_id]}"
-
-
-/proc/pass()
-	return
-
-
 /proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
-	if (value == FALSE) //nothing should be calling us with a number, so this is safe
+	if(value == FALSE) //nothing should be calling us with a number, so this is safe
 		value = input("Enter type to find (blank for all, cancel to cancel)", "Search for type") as null|text
-		if (isnull(value))
+		if(isnull(value))
 			return
 	value = trim(value)
 	if(!isnull(value) && value != "")
 		matches = filter_fancy_list(matches, value)
 
-	if(matches.len==0)
+	if(!length(matches))
 		return
 
 	var/chosen
-	if(matches.len==1)
+	if(length(matches) == 1)
 		chosen = matches[1]
 	else
 		chosen = input("Select a type", "Pick Type", matches[1]) as null|anything in matches
@@ -1247,10 +1274,10 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 // Bucket a value within boundary
 /proc/get_bucket(bucket_size, max, current, min = 0, list/boundary_terms)
-	if (length(boundary_terms) == 2)
-		if (current >= max)
+	if(length(boundary_terms) == 2)
+		if(current >= max) 
 			return boundary_terms[1]
-		if (current < min)
+		if(current < min)
 			return boundary_terms[2]
 
 	return CEILING((bucket_size / max) * current, 1)

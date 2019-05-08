@@ -16,7 +16,7 @@
 /proc/get_area_name(atom/X, format_text = FALSE)
 	var/area/A = isarea(X) ? X : get_area(X)
 	if(!A)
-		return null
+		return
 	return format_text ? format_text(A.name) : A.name
 
 
@@ -30,7 +30,7 @@
 
 
 // Like view but bypasses luminosity check
-/proc/hear(var/range, var/atom/source)
+/proc/hear(range, atom/source)
 
 	var/lum = source.luminosity
 	source.luminosity = 6
@@ -80,11 +80,10 @@
 	return .
 
 
-/proc/get_mob_by_key(var/key)
+/proc/get_mob_by_key(key)
 	for(var/mob/M in GLOB.mob_list)
 		if(M.ckey == lowertext(key))
 			return M
-	return null
 
 
 // Same as above but for alien candidates.
@@ -131,7 +130,7 @@
 	return hex2num(copytext(hexa, 6, 8))
 
 
-/proc/convert_k2c(var/temp)
+/proc/convert_k2c(temp)
 	return ((temp - T0C))
 
 

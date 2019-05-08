@@ -1,5 +1,5 @@
 //Andres-based again
-/proc/filled_circle_turfs(atom/center, radius=3)
+/proc/filled_circle_turfs(atom/center, radius = 3)
 	var/turf/center_turf = get_turf(center)
 	if(radius < 0 || !center_turf)
 		return
