@@ -17,7 +17,7 @@
 
     return ..()
 
-/obj/item/laptop/rescue/attack_hand(mob/user as mob)
+/obj/item/laptop/rescue/attack_hand(mob/user)
     if(!anchored)
         return ..()
     if(!ishuman(user)) 
@@ -198,13 +198,13 @@
     STOP_PROCESSING(SSobj, src)
 
 
-/obj/item/beacon/rescue/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/item/beacon/rescue/attack_alien(mob/living/carbon/Xenomorph/X)
     if(obj_integrity <= 0)
-        to_chat(M, "<span class='warning'>It's already broken.</span>")
+        to_chat(X, "<span class='warning'>It's already broken.</span>")
         return
 
-    M.animation_attack_on(src)
-    M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+    X.animation_attack_on(src)
+    X.visible_message("<span class='danger'>\The [X] slices [src] apart!</span>", \
         "<span class='danger'>You slice [src] apart!</span>", null, 5)
     playsound(loc, "alien_claw_metal", 25, 1)
 
@@ -213,7 +213,7 @@
 
     obj_integrity -= max(0, rand(15, 30))
     if(obj_integrity <= 0)
-        log_game("[key_name(M)] destroyed \the [src].")
+        log_game("[key_name(X)] destroyed \the [src].")
         reset_state()
    
     if(prob(10))
@@ -246,16 +246,17 @@
 
     // Install components
     for (var/R in required_components)
-        if (istype(I, R))
-            var/obj/item/cell/C = I
-            if (C.charge < 2000)
-                to_chat(user, "<span class='warning'>\The [C] doesn't have enough charge!</span>")
-                return
-            if (user.transferItemToLoc(I, src))
-                required_components -= R
-                internal_components += I
-                user.visible_message("<span class='notice'>[user] installed \the [C]</span>","<span class='notice'>You installed \the [C]</span>")
-                break
+        if (!istype(I, R))
+            return
+        var/obj/item/cell/C = I
+        if (C.charge < 2000)
+            to_chat(user, "<span class='warning'>\The [C] doesn't have enough charge!</span>")
+            return
+        if (user.transferItemToLoc(I, src))
+            required_components -= R
+            internal_components += I
+            user.visible_message("<span class='notice'>[user] installed \the [C]</span>","<span class='notice'>You installed \the [C]</span>")
+            break
 
     // repair dmg
     if(iswelder(I))
@@ -267,10 +268,11 @@
             return
 
         var/obj/item/tool/weldingtool/WT = I
-        if(WT.remove_fuel(0, user))
-            user.visible_message("<span class='notice'>[user] started repairing \the [src]</span>","<span class='notice'>You started repairing \the [src]</span>")
-            playsound(get_turf(src), 'sound/items/Welder2.ogg', 25, 1)
-            obj_integrity = min(obj_integrity + 25, max_integrity)
+        if(!WT.remove_fuel(0, user))
+            return
+        user.visible_message("<span class='notice'>[user] started repairing \the [src]</span>","<span class='notice'>You started repairing \the [src]</span>")
+        playsound(get_turf(src), 'sound/items/Welder2.ogg', 25, 1)
+        obj_integrity = min(obj_integrity + 25, max_integrity)
             
     // Required Nearby components
     // TODO: Check if this is wasteful.
@@ -285,7 +287,7 @@
         log_game("[key_name(user)] activated \the [src].")
         activate_beacon(user)
 
-/obj/item/beacon/rescue/proc/activate_beacon(mob/user as mob)
+/obj/item/beacon/rescue/proc/activate_beacon(mob/user)
     icon_state = "[icon_activated]"
     playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
     user.visible_message("<span class='notice'>[user] activates \the [src]</span>", "<span class='notice'>You activates \the [src]</span>")

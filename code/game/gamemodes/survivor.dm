@@ -101,6 +101,7 @@ SPAWNS
                 return
 
             if (!M.mind)
+                stack_trace("late join new_player doesn't have a mind")
                 M.mind = new
             M.mind.assigned_role = ROLE_SURVIVOR
             M.mind.late_joiner = TRUE
@@ -159,7 +160,7 @@ SPAWNS
     spawn_queen_in_ovi()
     
     // Transfer everyone to their bodies and delete existing
-    for(var/mob/new_player/player in GLOB.mob_list)
+    for(var/mob/new_player/player in GLOB.dead_mob_list)
         var/mob/living = player.transfer_character()
         if(living)
             qdel(player)
@@ -222,7 +223,7 @@ SPAWNS
         A.cell.charge = A.cell.maxcharge * (ratio / 100)
     */
 
-    for (var/I in GLOB.machines)
+    for (var/I in GLOB.airlocks)
         if (istype(I, /obj/machinery/door))
             var/obj/machinery/door/airlock/A = I
             A.req_access = null
@@ -231,6 +232,7 @@ SPAWNS
             A.req_one_access_txt = null
 
         // Charge every apc across the map
+    for (var/I in GLOB.apcs_list)
         if (isAPC(I))
             var/obj/machinery/power/apc/A = I
             var/ratio = rand(5,50)
@@ -301,24 +303,25 @@ SPAWNS
     var/role_guide
     var/survivor_job = pick(subtypesof(/datum/job/survivor))
 
-    switch(rand(0, 100))
-        if (0 to 25)
+    switch(rand(1, 4))
+        if (1)
             survivor_job = /datum/job/survivor/atmos
             job_title = SURVIVOR_BUILDER
             role_guide = "You have extra building equipment, use the metal and tools to create defenses. You won't know you'll need it until its too late..."
-        if (25 to 50)
+        if (2)
             survivor_job = /datum/job/survivor/doctor
             job_title = SURVIVOR_MEDIC
             role_guide = "You have extra medical supplies, that could be useful if you or someone else gets hurt..."
-        if (50 to 75)
+        if (3)
             survivor_job = /datum/job/survivor/security
             job_title = SURVIVOR_FIGHTER
             role_guide = "You have found a weapon! Hope you don't have to use it too soon..."
-        if (75 to 100)
+        if (4)
             job_title = SURVIVOR_SCAV
             role_guide = "You have a radio and pinpointer! Maybe this will lead you to what you need most..."
 
-    var/datum/job/J = new survivor_job
+
+    var/datum/job/J = SSjob.GetJobType(survivor_job)
 
     H.set_rank(J.title)
     H.mind.cm_skills = null // Remove skill requirements
