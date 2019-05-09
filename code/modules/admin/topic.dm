@@ -1076,6 +1076,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		browser.open(FALSE)
 
 
+	else if(href_list["adminprivate_log"])
+		if(!check_rights(R_BAN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.adminprivate_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "adminprivate_log", "<div align='center'>Adminprivate Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
 	else if(href_list["asay_log"])
 		if(!check_rights(R_ASAY))
 			return
@@ -1100,6 +1114,34 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			dat += "[x]<br>"
 
 		var/datum/browser/browser = new(usr, "msay_log", "<div align='center'>Msay Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["game_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.game_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "game_log", "<div align='center'>Game Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["access_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.access_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "access_log", "<div align='center'>Access Log</div>")
 		browser.set_content(dat)
 		browser.open(FALSE)
 
