@@ -174,6 +174,13 @@
 	icon_state = "wy12"
 	},
 /area/shuttle/ert/pmc)
+"C" = (
+/obj/machinery/computer/shuttle/ert,
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/pmc)
 "D" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy13"
@@ -292,7 +299,7 @@ I
 "}
 (4,1,1) = {"
 c
-g
+C
 l
 r
 r

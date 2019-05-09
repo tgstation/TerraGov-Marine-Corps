@@ -251,10 +251,13 @@
 
 
 /datum/emergency_call/proc/get_spawn_point(is_for_items)
+	var/obj/effect/landmark/L
 	if(is_for_items)
-		return pick(shuttle?.item_spawns)
-	return pick(shuttle?.mob_spawns)
-
+		L = pick(shuttle?.item_spawns)
+	else
+		L = pick(shuttle?.mob_spawns)
+	if(L)
+		return get_turf(L)
 
 /datum/emergency_call/proc/create_member(datum/mind/M) //Overriden in each distress call file.
 	return

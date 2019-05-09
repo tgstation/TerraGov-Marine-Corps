@@ -21,6 +21,10 @@
 	height = 21
 	var/list/mob_spawns = list()
 	var/list/item_spawns = list()
+	var/departing = FALSE
+	ignitionTime = 10 SECONDS
+	prearrivalTime = 10 SECONDS
+	callTime = 1 MINUTES
 
 /obj/docking_port/mobile/ert/proc/get_destinations()
 	var/list/docks = list()
@@ -56,3 +60,43 @@
 				mob_spawns += L
 			else if(istype(L, /obj/effect/landmark/distress_item))
 				item_spawns += L
+
+/obj/docking_port/mobile/ert/check()
+	if(departing)
+		intoTheSunset()
+		return
+	return ..()
+
+/obj/machinery/computer/shuttle/ert
+
+/obj/machinery/computer/shuttle/ert/ui_interact(mob/user)
+	. = ..()
+	var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
+	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
+	if(M?.mode == SHUTTLE_IDLE)
+		if(is_centcom_level(M.z))
+			for(var/obj/docking_port/stationary/S in M.get_destinations())
+				dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
+		else
+			dat += "<A href='?src=[REF(src)];depart=1'>Depart</A><br>"
+	dat += "<a href='?src=[REF(user)];mach_close=computer'>Close</a>"
+
+	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
+	popup.set_content("<center>[dat]</center>")
+	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
+	popup.open()
+
+/obj/machinery/computer/shuttle/Topic(href, href_list)
+	if(..())
+		return
+	if(href_list["depart"])
+		var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
+		M.on_ignition()
+		M.departing = TRUE
+		M.setTimer(M.ignitionTime)
+	if(usr)
+		ui_interact(usr)
+
+/obj/machinery/computer/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
+	if(port && (shuttleId == initial(shuttleId) || override))
+		shuttleId = port.id

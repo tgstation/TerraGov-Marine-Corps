@@ -168,6 +168,12 @@
 	icon_state = "upp8"
 	},
 /area/shuttle/ert/upp)
+"C" = (
+/obj/machinery/computer/shuttle/ert,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/upp)
 "D" = (
 /turf/closed/shuttle/ert{
 	icon_state = "upp9"
@@ -250,7 +256,7 @@ I
 "}
 (4,1,1) = {"
 c
-g
+C
 l
 r
 r

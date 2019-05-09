@@ -177,6 +177,13 @@
 	icon_state = "stan_rightengine"
 	},
 /area/shuttle/ert)
+"C" = (
+/obj/machinery/computer/shuttle/ert,
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert)
 "H" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan1"
@@ -250,7 +257,7 @@ I
 "}
 (4,1,1) = {"
 c
-g
+C
 l
 r
 r
