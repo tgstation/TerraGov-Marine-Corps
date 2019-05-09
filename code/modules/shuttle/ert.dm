@@ -49,14 +49,21 @@
 /obj/docking_port/mobile/ert/proc/open_shutters()
 	for(var/i in shutters)
 		var/obj/machinery/door/poddoor/shutters/transit/T = i
-		INVOKE_ASYNC(T, .proc/open)
+		if(T.density)
+			INVOKE_ASYNC(T, /obj/machinery/door/poddoor/shutters/.proc/open)
 
 /obj/docking_port/mobile/ert/proc/close_shutters()
 	for(var/i in shutters)
 		var/obj/machinery/door/poddoor/shutters/transit/T = i
-		INVOKE_ASYNC(T, .proc/close)
+		if(!T.density)
+			INVOKE_ASYNC(T, /obj/machinery/door/poddoor/shutters/.proc/close)
 
-/obj/docking_port/mobile/supply/afterShuttleMove()
+/obj/docking_port/mobile/ert/afterShuttleMove()
+	. = ..()
+	if(getDockedId() == "distress_target")
+		open_shutters()
+	else
+		close_shutters()
 
 /obj/docking_port/mobile/ert/Destroy(force)
 	. = ..()
@@ -75,6 +82,7 @@
 				item_spawns += O
 			else if(istype(O, /obj/machinery/door/poddoor/shutters/transit))
 				shutters += O
+	close_shutters()
 
 /obj/docking_port/mobile/ert/check()
 	if(departing)
