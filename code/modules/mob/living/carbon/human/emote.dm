@@ -1,344 +1,382 @@
-/mob/living/carbon/human/emote(act, m_type = EMOTE_VISIBLE, message = null, player_caused = FALSE)
-	var/param
-	var/comm_paygrade = get_paygrade()
-
-	if(findtext(act, "-"))
-		var/t1 = findtext(act, "-")
-		param = copytext(act, t1 + 1, length(act) + 1)
-		act = copytext(act, 1, t1)
-
-	if(findtext(act, "s", -1) && !findtext(act, "_", -2)) //Removes ending s's unless they are prefixed with a '_'
-		act = copytext(act, 1, length(act))
-
-	var/muzzled = istype(wear_mask, /obj/item/clothing/mask/muzzle)
-
-	for(var/obj/item/implant/I in src)
-		if(I.implanted)
-			I.trigger(act, src)
-
-	var/mob/living/carbon/human/H
-	if(param)
-		for(var/mob/living/carbon/A in view(null, null))
-			if(findtext(param, A.name) != 0)
-				H = A
-				break
-
-	if(act != "help") //you can always use the help emote
-		if(stat == DEAD)
-			return
-
-	switch(act)
-		if("me")
-			if(stat || !message)
-				return
-			if(player_caused && client)
-				if(client.prefs.muted & MUTE_IC)
-					to_chat(src, "<span class='warning'>You cannot send IC messages (muted).</span>")
-					return
-				if(client.handle_spam_prevention(message, MUTE_IC))
-					return
-				if(is_banned_from(ckey, "Emote"))
-					to_chat(src, "<span class='warning'>You cannot send emotes (banned).</span>")
-					return
-			return custom_emote(m_type, "[message]", player_caused)
-
-		if("blink")
-			message = "<B>[comm_paygrade][src]</B> blinks."
-
-		if("blink_r")
-			message = "<B>[comm_paygrade][src]</B> blinks rapidly."
-
-		if("bow")
-			if(!buckled)
-				if(param)
-					message = "<B>[comm_paygrade][src]</B> bows to [param]."
-				else
-					message = "<B>[comm_paygrade][src]</B> bows."
-
-		if("chuckle")
-			m_type = EMOTE_AUDIBLE
-			if(!muzzled)
-				message = "<B>[comm_paygrade][src]</B> chuckles."
-			else
-				message = "<B>[comm_paygrade][src]</B> makes a noise."
-
-		if("clap")
-			m_type = EMOTE_AUDIBLE
-			if(restrained() || audio_emote_cooldown(player_caused))
-				return
-			message = "<B>[comm_paygrade][src]</B> claps."
-			playsound(src.loc, 'sound/misc/clap.ogg', 25, 0)
-
-		if("collapse")
-			KnockOut(2)
-			message = "<B>[comm_paygrade][src]</B> collapses!"
-
-		if("cough")
-			m_type = EMOTE_AUDIBLE
-			if(!muzzled)
-				message = "<B>[comm_paygrade][src]</B> coughs!"
-			else
-				message = "<B>[comm_paygrade][src]</B> makes a strong noise."
-
-		if("cry")
-			message = "<B>[comm_paygrade][src]</B> cries."
-
-		if("dab")
-			if(!CONFIG_GET(flag/fun_allowed)) //fun_allowed is in the config folder. change it in game by Debug>debug controllers> ctrl+f fun_allowed.
-				return
-			if(incapacitated())
-				to_chat(src, "You cannot dab in your current state.")
-				return
-			var/datum/limb/l_arm/A = get_limb("l_arm")
-			var/datum/limb/r_arm/B = get_limb("r_arm")
-			if((!A || A.limb_status & LIMB_DESTROYED) && (!B || B.limb_status & LIMB_DESTROYED))
-				to_chat(src, "You cannot dab without your arms.")
-				return
-
-			message = "<B>[comm_paygrade][src]</B> dabs"
-			var/risk = rand (1, 100)
-			switch(risk)
-				if(1 to 3)
-					if(A || A.limb_status && !LIMB_DESTROYED)
-						A.droplimb()
-						message += " so hard their left arm goes flying off"
-				if(4 to 6)
-					if(B || B.limb_status && !LIMB_DESTROYED)
-						B.droplimb()
-						message += " so hard their right arm goes flying off"
-			message += "."
-
-		if("drool")
-			message = "<B>[comm_paygrade][src]</B> drools."
-
-		if("eyebrow")
-			message = "<B>[comm_paygrade][src]</B> raises an eyebrow."
-
-		if("facepalm")
-			message = "<B>[comm_paygrade][src]</B> facepalms."
-
-		if("faint")
-			message = "<B>[comm_paygrade][src]</B> faints!"
-			if(sleeping)
-				return
-			sleeping += 10
-
-		if("frown")
-			message = "<B>[comm_paygrade][src]</B> frowns."
-
-		if("gasp")
-			m_type = EMOTE_AUDIBLE
-			if(!muzzled)
-				message = "<B>[comm_paygrade][src]</B> gasps!"
-			else
-				message = "<B>[comm_paygrade][src]</B> makes a weak noise."
-
-		if("giggle")
-			m_type = EMOTE_AUDIBLE
-			if(!muzzled)
-				message = "<B>[comm_paygrade][src]</B> giggles."
-			else
-				message = "<B>[comm_paygrade][src]</B> makes a noise."
-
-		if("glare")
-			if(param)
-				message = "<B>[comm_paygrade][src]</B> glares at [param]."
-			else
-				message = "<B>[comm_paygrade][src]</B> glares."
-
-		if("golfclap")
-			m_type = EMOTE_AUDIBLE
-			if(restrained() || audio_emote_cooldown(player_caused))
-				return
-			message = "<B>[comm_paygrade][src]</B> claps, clearly unimpressed."
-			playsound(src.loc, 'sound/misc/golfclap.ogg', 25, 0)
-
-		if("grin")
-			message = "<B>[comm_paygrade][src]</B> grins."
-
-		if("grumble")
-			m_type = EMOTE_AUDIBLE
-			if(!muzzled)
-				message = "<B>[comm_paygrade][src]</B> grumbles."
-			else
-				message = "<B>[comm_paygrade][src]</B> makes a noise."
-
-		if("handshake")
-			if(!restrained() && !(r_hand && l_hand) && param)
-				if(H.canmove && H.r_hand && !H.restrained())
-					message = "<B>[comm_paygrade][src]</B> shakes hands with [H]."
-				else
-					message = "<B>[comm_paygrade][src]</B> holds out [p_their()] hand to [H]."
-
-		if("hug")
-			if(!restrained())
-				if(param)
-					message = "<B>[comm_paygrade][src]</B> hugs [H]."
-				else
-					message = "<B>[comm_paygrade][src]</B> hugs [p_them()]self."
-
-		if("laugh")
-			m_type = EMOTE_AUDIBLE
-			if(!muzzled)
-				message = "<B>[comm_paygrade][src]</B> laughs!"
-			else
-				message = "<B>[comm_paygrade][src]</B> makes a noise."
-
-		if("look")
-			if(param)
-				message = "<B>[comm_paygrade][src]</B> looks at [param]."
-			else
-				message = "<B>[comm_paygrade][src]</B> looks."
-
-		if("medic")
-			m_type = EMOTE_AUDIBLE
-			if(muzzled || audio_emote_cooldown(player_caused))
-				return
-			message = "<B>[comm_paygrade][src] calls for a medic!</b>"
-			var/image/medic = image('icons/mob/talk.dmi', src, icon_state = "medic")
-			add_emote_overlay(medic)
-			if(gender == "male")
-				if(prob(95))
-					playsound(loc, 'sound/voice/human_male_medic.ogg', 25, 0)
-				else
-					playsound(loc, 'sound/voice/human_male_medic2.ogg', 25, 0)
-			else
-				playsound(loc, 'sound/voice/human_female_medic.ogg', 25, 0)
-
-		if("moan")
-			m_type = EMOTE_AUDIBLE
-			message = "<B>[comm_paygrade][src]</B> moans."
-
-		if("mumble")
-			m_type = EMOTE_AUDIBLE
-			message = "<B>[comm_paygrade][src]</B> mumbles."
-
-		if("nod")
-			message = "<B>[comm_paygrade][src]</B> nods."
-
-		if("pain")
-			m_type = EMOTE_AUDIBLE
-			if(muzzled || audio_emote_cooldown(player_caused))
-				return
-			var/image/pain = image('icons/mob/talk.dmi', src, icon_state = "pain")
-			add_emote_overlay(pain)
-			message = "<B>[comm_paygrade][src]</B> cries out in pain!"
-			if(species)
-				if(species.paincries[gender])
-					playsound(loc, species.paincries[gender], 50)
-				else if(species.screams[NEUTER])
-					playsound(loc, species.paincries[NEUTER], 50)
-
-		if("salute")
-			m_type = EMOTE_AUDIBLE
-			if(audio_emote_cooldown(player_caused) || buckled)
-				return
-			if(param)
-				message = "<B>[comm_paygrade][src]</B> salutes to [param]."
-			else
-				message = "<B>[comm_paygrade][src]</b> salutes."
-			playsound(src.loc, 'sound/misc/salute.ogg', 20, 1)
-
-		if("scream")
-			m_type = EMOTE_AUDIBLE
-			if(muzzled || audio_emote_cooldown(player_caused))
-				return
-			message = "<B>[comm_paygrade][src]</B> screams!"
-			var/image/scream = image('icons/mob/talk.dmi', src, icon_state = "scream")
-			add_emote_overlay(scream)
-			if(client && species)
-				if(species.screams[gender])
-					playsound(loc, species.screams[gender], 50)
-				else if(species.screams[NEUTER])
-					playsound(loc, species.screams[NEUTER], 50)
-
-		if("shakehead")
-			message = "<B>[comm_paygrade][src]</B> shakes [p_their()] head."
-
-		if("shiver")
-			message = "<B>[comm_paygrade][src]</B> shivers."
-
-		if("shrug")
-			message = "<B>[comm_paygrade][src]</B> shrugs."
-
-		if("sigh")
-			m_type = EMOTE_AUDIBLE
-			if(!muzzled)
-				message = "<B>[comm_paygrade][src]</B> sighs."
-			else
-				message = "<B>[comm_paygrade][src]</B> makes a weak noise."
-
-		if("signal")
-			if(restrained())
-				return
-			var/t1 = CLAMP(round(text2num(param)), 1, 10)
-			if(isnum(t1))
-				if(t1 <= 5 && (!r_hand || !l_hand))
-					message = "<B>[comm_paygrade][src]</B> raises [t1] finger\s."
-				else if(t1 <= 10 && (!r_hand && !l_hand))
-					message = "<B>[comm_paygrade][src]</B> raises [t1] finger\s."
-
-		if("smile")
-			message = "<B>[comm_paygrade][src]</B> smiles."
-
-		if("sneeze")
-			m_type = EMOTE_AUDIBLE
-			message = "<B>[comm_paygrade][src]</B> sneezes!"
-
-		if("snore")
-			m_type = EMOTE_AUDIBLE
-			message = "<B>[comm_paygrade][src]</B> snores."
-
-		if("stare")
-			if(param)
-				message = "<B>[comm_paygrade][src]</B> stares at [H]."
-			else
-				message = "<B>[comm_paygrade][src]</B> stares."
-
-		if("twitch")
-			message = "<B>[comm_paygrade][src]</B> twitches."
-
-		if("wave")
-			if(restrained())
-				return
-			message = "<B>[comm_paygrade][src]</B> waves."
-
-		if("yawn")
-			m_type = EMOTE_AUDIBLE
-			if(muzzled)
-				return
-			message = "<B>[comm_paygrade][src]</B> yawns."
-
-		if("help")
-			//this is the default *help message
-			var/msg = {"<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Spamming emotes with sound will likely get you in trouble, don't do it.<br><br> \
-blink, blink_r, bow-(mob name), chuckle, <span style='color: green;'>clap</span>, collapse, cough, cry, drool, eyebrow, facepalm,
-faint, frown, gasp, giggle, glare-(mob name), <span style='color: green;'>golfclap</span>, grin, grumble, handshake, hug-(mob name),
-laugh, look-(mob name), me, <span style='color: green;'>medic</span>, moan, mumble, nod, point, <span style='color: green;'>salute</span>,
-<span style='color: green;'>scream</span>, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, stare-(mob name), twitch, wave, yawn</b><br>"}
-			
-			if(CONFIG_GET(flag/fun_allowed)) //this is the *help message when fun_allowed = 1.
-				msg = {"<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Emotes that are <span style='color: red;'>RED</span> are done at your own risk. Spamming emotes with sound will likely get you in trouble, don't do it.<br><br> \
-blink, blink_r, bow-(mob name), chuckle, <span style='color: green;'>clap</span>, collapse, cough, cry, <span style='color: red;'>dab</span>, drool, eyebrow, facepalm, 
-faint, frown, gasp, giggle, glare-(mob name), <span style='color: green;'>golfclap</span>, grin, grumble, handshake, hug-(mob name), 
-laugh, look-(mob name), me, <span style='color: green;'>medic</span>, moan, mumble, nod, point, <span style='color: green;'>salute</span>, 
-<span style='color: green;'>scream</span>, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, stare-(mob name), twitch, wave, yawn</b><br>"}
-		
-			to_chat(src, msg)
+/datum/emote/living/carbon/human
+	mob_type_allowed_typecache = list(/mob/living/carbon/human)
 
 
-	if(message)
-		log_message(message, LOG_EMOTE)
+/datum/emote/living/carbon/human/run_emote(mob/living/carbon/human/user, params, type_override, intentional = FALSE, prefix)
+	var/paygrade = user.get_paygrade()
+	if(paygrade)
+		prefix = "<b>[paygrade]</b> "
+	return ..()
 
-		for(var/mob/M in GLOB.dead_mob_list)
-			if(!M.client || isnewplayer(M))
-				continue
-			if(M.stat == DEAD && M.client.prefs && (M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) && !(M in viewers(src,null)))
-				M.show_message(message, m_type)
 
-		if(m_type == EMOTE_VISIBLE)
-			for(var/mob/O in viewers(src, null))
-				O.show_message(message, m_type)
-		else if(m_type == EMOTE_AUDIBLE)
-			for(var/mob/O in hearers(loc, null))
-				O.show_message(message, m_type)
+/datum/emote/living/carbon/human/blink
+	key = "blink"
+	key_third_person = "blinks"
+	message = "blinks."
+
+
+/datum/emote/living/carbon/human/blink_r
+	key = "blink_r"
+	message = "blinks rapidly."
+
+
+/datum/emote/living/carbon/human/bow
+	key = "bow"
+	key_third_person = "bows"
+	message = "bows."
+	message_param = "bows to %t."
+	flags_emote = EMOTE_RESTRAINT_CHECK
+
+
+/datum/emote/living/carbon/human/chuckle
+	key = "chuckle"
+	key_third_person = "chuckles"
+	message = "chuckles."
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/clap
+	key = "clap"
+	key_third_person = "claps"
+	message = "claps."
+	flags_emote = EMOTE_RESTRAINT_CHECK|EMOTE_VARY|EMOTE_MUZZLE_IGNORE
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/misc/clap.ogg'
+
+
+/datum/emote/living/carbon/human/collapse
+	key = "collapse"
+	key_third_person = "collapses"
+	message = "collapses!"
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/collapse/run_emote(mob/living/carbon/human/user, params, type_override, intentional = FALSE, prefix)
+	. = ..()
+	if(!.)
+		return
+	user.KnockOut(2)
+
+
+/datum/emote/living/carbon/human/cough
+	key = "cough"
+	key_third_person = "coughs"
+	message = "coughs!"
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/cry
+	key = "cry"
+	key_third_person = "cries"
+	message = "cries."
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/drool
+	key = "drool"
+	key_third_person = "drools"
+	message = "drools."
+
+
+/datum/emote/living/carbon/human/eyebrow
+	key = "eyebrow"
+	message = "raises an eyebrow."
+
+
+/datum/emote/living/carbon/human/faint
+	key = "faint"
+	key_third_person = "faints"
+	message = "faints."
+
+
+/datum/emote/living/carbon/human/faint/run_emote(mob/living/carbon/human/user, params, type_override, intentional = FALSE, prefix)
+	. = ..()
+	if(!.)
+		return
+	user.sleeping += 10
+
+
+/datum/emote/living/carbon/human/frown
+	key = "frown"
+	key_third_person = "frowns"
+	message = "frowns."
+
+
+/datum/emote/living/carbon/human/gasp
+	key = "gasp"
+	key_third_person = "gasps"
+	message = "gasps!"
+	emote_type = EMOTE_AUDIBLE
+	stat_allowed = UNCONSCIOUS
+
+
+/datum/emote/living/carbon/human/giggle
+	key = "giggle"
+	key_third_person = "giggles"
+	message = "giggles."
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/glare
+	key = "glare"
+	key_third_person = "glares"
+	message = "glares."
+	message_param = "glares at %t."
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/yawn
+	key = "yawn"
+	key_third_person = "yawns"
+	message = "yawns."
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/wave
+	key = "wave"
+	key_third_person = "waves"
+	message = "waves."
+
+
+/datum/emote/living/carbon/human/twitch
+	key = "twitch"
+	key_third_person = "twitches"
+	message = "twitches."
+
+
+/datum/emote/living/carbon/human/snore
+	key = "snore"
+	key_third_person = "snores"
+	message = "snores."
+	emote_type = EMOTE_AUDIBLE
+	stat_allowed = UNCONSCIOUS
+
+
+/datum/emote/living/carbon/human/smile
+	key = "smile"
+	key_third_person = "smiles"
+	message = "smiles."
+
+
+/datum/emote/living/carbon/human/stare
+	key = "stare"
+	key_third_person = "stares"
+	message = "stares."
+	message_param = "stares at %t."
+
+
+/datum/emote/living/carbon/human/sneeze
+	key = "sneeze"
+	key_third_person = "sneezes"
+	message = "sneezes."
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/shiver
+	key = "shiver"
+	key_third_person = "shiver"
+	message = "shivers."
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/sigh
+	key = "sigh"
+	key_third_person = "sighs"
+	message = "sighs."
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/shrug
+	key = "shrug"
+	key_third_person = "shrugs"
+	message = "shrugs."
+
+
+/datum/emote/living/carbon/human/shakehead
+	key = "shakehead"
+	key_third_person = "shakeheads"
+	message = "shakes their head."
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/nod
+	key = "nod"
+	key_third_person = "nods"
+	message = "nods."
+	message_param = "nods at %t."
+
+
+/datum/emote/living/carbon/human/glare
+	key = "glare"
+	key_third_person = "glares"
+	message = "glares."
+	message_param = "glares at %t."
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/grin
+	key = "grin"
+	key_third_person = "grins"
+	message = "grins."
+
+
+/datum/emote/living/carbon/human/grumble
+	key = "grumble"
+	key_third_person = "grumbles"
+	message = "grumbles!"
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/signal
+	key = "signal"
+	key_third_person = "signals"
+	message_param = "raises %t fingers."
+	flags_emote = EMOTE_RESTRAINT_CHECK
+
+
+/datum/emote/living/carbon/human/sign/select_param(mob/user, params)
+	params = text2num(params)
+	if(!isnum(params))
+		return message
+	params = CLAMP(params, 1, 10)
+	return ..()
+
+
+/datum/emote/living/carbon/human/mumble
+	key = "mumble"
+	key_third_person = "mumbles"
+	message = "mumbles!"
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/moan
+	key = "moan"
+	key_third_person = "moans"
+	message = "moans!"
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/laugh
+	key = "laugh"
+	key_third_person = "laughs"
+	message = "laughs."
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/laugh/get_sound(mob/living/user)
+	if(user.gender == FEMALE)
+		return 'sound/voice/human_female_laugh_1.ogg'
+	else
+		return pick('sound/voice/human_male_laugh_1.ogg', 'sound/voice/human_male_laugh_2.ogg')
+
+
+/datum/emote/living/carbon/human/hug
+	key = "hug"
+	key_third_person = "hugs"
+	message = "hugs themself."
+	message_param = "hugs %t."
+	flags_emote = EMOTE_RESTRAINT_CHECK
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/look
+	key = "look"
+	key_third_person = "looks"
+	message = "looks."
+	message_param = "looks at %t."
+
+
+/datum/emote/living/carbon/human/handshake
+	key = "handshake"
+	message = "shakes their own hands."
+	message_param = "shakes hands with %t."
+	flags_emote = EMOTE_RESTRAINT_CHECK
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/salute
+	key = "salute"
+	key_third_person = "salutes"
+	message = "salutes."
+	message_param = "salutes to %t."
+	flags_emote = EMOTE_RESTRAINT_CHECK
+	sound = 'sound/misc/salute.ogg'
+
+
+/datum/emote/living/carbon/human/golfclap
+	key = "golfclap"
+	key_third_person = "golfclaps"
+	message = "claps, clearly unimpressed."
+	flags_emote = EMOTE_RESTRAINT_CHECK
+	sound = 'sound/misc/golfclap.ogg'
+
+
+/datum/emote/living/carbon/human/scream
+	key = "scream"
+	key_third_person = "screams"
+	message = "screams!"
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/scream/get_sound(mob/living/carbon/human/user)
+	if(!user.species)
+		return
+	if(user.species.screams[user.gender])
+		return user.species.screams[user.gender]
+	if(user.species.screams[NEUTER])
+		return user.species.screams[NEUTER]
+
+
+/datum/emote/living/carbon/human/scream/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+	. = ..()
+	if(!.)
+		return
+	var/image/scream = image('icons/mob/talk.dmi', user, icon_state = "scream")
+	user.add_emote_overlay(scream)
+
+
+/datum/emote/living/carbon/human/medic
+	key = "medic"
+	message = "calls for a medic!"
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/medic/get_sound(mob/living/carbon/human/user)
+	if(user.gender == MALE)
+		if(prob(95))
+			return 'sound/voice/human_male_medic.ogg'
+		else
+			return 'sound/voice/human_male_medic2.ogg'
+	else
+		return 'sound/voice/human_female_medic.ogg'
+
+
+/datum/emote/living/carbon/human/medic/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+	. = ..()
+	if(!.)
+		return
+	var/image/medic = image('icons/mob/talk.dmi', user, icon_state = "medic")
+	user.add_emote_overlay(medic)
+
+
+/datum/emote/living/carbon/human/pain
+	key = "pain"
+	message = "cries out in pain!"
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/pain/get_sound(mob/living/carbon/human/user)
+	if(!user.species)
+		return
+	if(user.species.paincries[user.gender])
+		return user.species.paincries[user.gender]
+	if(user.species.paincries[NEUTER])
+		return user.species.paincries[NEUTER]
+
+
+/datum/emote/living/carbon/human/pain/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+	. = ..()
+	if(!.)
+		return
+	var/image/pain = image('icons/mob/talk.dmi', user, icon_state = "pain")
+	user.add_emote_overlay(pain)
