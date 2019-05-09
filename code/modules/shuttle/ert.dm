@@ -89,6 +89,18 @@
 	SSshuttle.moveShuttle(id, S.id, 1)
 	return TRUE
 
+/obj/docking_port/mobile/ert/proc/open_shutters()
+	for(var/i in shutters)
+		var/obj/machinery/door/poddoor/shutters/transit/T = i
+		INVOKE_ASYNC(T, .proc/open)
+
+/obj/docking_port/mobile/ert/proc/close_shutters()
+	for(var/i in shutters)
+		var/obj/machinery/door/poddoor/shutters/transit/T = i
+		INVOKE_ASYNC(T, .proc/close)
+
+/obj/docking_port/mobile/supply/afterShuttleMove()
+
 /obj/docking_port/mobile/ert/Destroy(force)
 	. = ..()
 	if(force)
