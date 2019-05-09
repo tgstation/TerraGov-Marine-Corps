@@ -304,7 +304,7 @@
 	name = "resist"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "act_resist"
-	screen_loc = ui_above_movement
+	screen_loc = ui_above_intent
 
 
 /obj/screen/resist/Click()
