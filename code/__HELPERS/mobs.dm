@@ -144,7 +144,9 @@ proc/age2agedescription(age)
 	var/holding = user.get_active_held_item()
 	delay *= user.do_after_coefficent()
 
-	var/atom/progtarget = target ? target : user
+	var/atom/progtarget = target
+	if(!target || Tloc == user)
+		progtarget = user
 	var/datum/progressbar/P = prog_bar ? new prog_bar(user, delay, progtarget, user_display, target_display) : null
 
 	user.action_busy++
