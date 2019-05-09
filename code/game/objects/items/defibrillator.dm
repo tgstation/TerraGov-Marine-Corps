@@ -60,7 +60,7 @@
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-			var/fumbling_time = SKILL_TASK_AVERAGE - ( SKILL_TASK_VERY_EASY * ( SKILL_MEDICAL_PRACTICED - user.mind.cm_skills.medical ) ) // 3 seconds with medical skill, 5 without
+			var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * user.mind.cm_skills.medical) // 3 seconds with medical skill, 5 without
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
