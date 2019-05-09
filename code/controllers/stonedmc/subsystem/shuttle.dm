@@ -12,6 +12,7 @@ SUBSYSTEM_DEF(shuttle)
 	var/list/transit = list()
 
 	var/list/escape_pods = list()
+	var/list/ert_shuttles = list()
 
 	var/obj/docking_port/mobile/supply/supply
 	var/ordernum = 1					//order number given to next order

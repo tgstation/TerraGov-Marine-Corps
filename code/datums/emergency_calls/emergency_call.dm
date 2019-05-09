@@ -223,7 +223,8 @@
 		return
 
 	if(auto_shuttle_launch)
-		shuttle.launch()
+		if(!shuttle.auto_launch())
+			CRASH("can't find a valid place to autolaunch ert shuttle towards")
 
 	candidates = list() //Blank out the candidates list for next time.
 
