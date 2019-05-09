@@ -17,13 +17,6 @@
 	var/bugged = FALSE
 	var/obj/item/frame/camera/assembly = null
 
-	// WIRES
-	var/wires = 63 // 0b111111
-	var/list/IndexToFlag = list()
-	var/list/IndexToWireColor = list()
-	var/list/WireColorToIndex = list()
-	var/list/WireColorToFlag = list()
-
 	//OTHER
 
 	var/view_range = 7
@@ -33,7 +26,6 @@
 	var/alarm_on = FALSE
 
 /obj/machinery/camera/Initialize()
-	WireColorToFlag = randomCameraWires()
 	assembly = new(src)
 	assembly.state = 4
 	/* // Use this to look for cameras that have the same c_tag.
@@ -95,7 +87,6 @@
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)
 		playsound(loc, "alien_claw_metal", 25, 1)
-		wires = 0 //wires all cut
 		light_disabled = 0
 		toggle_cam_status(M, TRUE)
 
@@ -107,7 +98,6 @@
 	if(user.species.can_shred(user))
 		visible_message("<span class='warning'>\The [user] slashes at [src]!</span>")
 		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
-		wires = FALSE //wires all cut
 		light_disabled = FALSE
 		toggle_cam_status(user, TRUE)
 
@@ -125,7 +115,7 @@
 	else if((iswirecutter(W) || ismultitool(W)) && panel_open)
 		interact(user)
 
-	else if(iswelder(W) && canDeconstruct())
+	else if(iswelder(W))
 		if(weld(W, user))
 			if(assembly)
 				assembly.loc = src.loc

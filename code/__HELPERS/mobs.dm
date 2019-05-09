@@ -159,7 +159,7 @@ proc/age2agedescription(age)
 			. = FALSE
 			break
 
-		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target?.loc))
+		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
 			if(Uloc != Tloc || Tloc != user)
 				. = FALSE
 				break

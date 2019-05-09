@@ -136,7 +136,7 @@
 				announce_preflight_failure()
 				process_state = IDLE_STATE
 				return .
-			if (skip_docking_checks() || docking_controller.can_launch())
+			if (skip_docking_checks())
 
 				//to_chat(world, "shuttle/ferry/process: area_transition=[area_transition], travel_time=[travel_time]")
 				if (move_time) long_jump()
@@ -163,7 +163,7 @@
 				process_state = WAIT_FINISH
 
 		if (WAIT_FINISH)
-			if (skip_docking_checks() || docking_controller.docked() || world.time > last_dock_attempt_time + DOCK_ATTEMPT_TIMEOUT)
+			if (skip_docking_checks() || world.time > last_dock_attempt_time + DOCK_ATTEMPT_TIMEOUT)
 				process_state = IDLE_STATE
 				arrived()
 
@@ -424,10 +424,6 @@
 		//Fucking. Kaboom.
 		explosion(sploded, 0, 5, 10, 0)
 		sleep(3)
-
-	explosion(get_turf(HangarLowerElevator), 0, 3, 5, 0)
-	var/datum/shuttle/ferry/hangar/hangarelevator = shuttle_controller.shuttles["Hangar"]
-	hangarelevator.process_state = FORCE_CRASH
 
 	for(var/mob/living/carbon/M in GLOB.mob_living_list) //knock down mobs
 		if(M.z != T_trg.z) continue

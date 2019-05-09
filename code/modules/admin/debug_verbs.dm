@@ -418,7 +418,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		to_chat(usr, "<span class='adminnotice'>The Database is not enabled!</span>")
 		return
 
-	if(SSdbcore.IsConnected())
+	if(SSdbcore.IsConnected(TRUE))
 		if(alert("The database is already connected! If you *KNOW* that this is incorrect, you can force a reconnection", "The database is already connected!", "Force Reconnect", "Cancel") != "Force Reconnect")
 			return
 

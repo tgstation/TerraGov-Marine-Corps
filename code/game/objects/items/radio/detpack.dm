@@ -136,7 +136,7 @@
 		disarm()
 		update_icon()
 
-	if(master && wires & WIRE_RECEIVE)
+	if(master && !wires.is_cut(WIRE_RX))
 		master.receive_signal()
 	return
 

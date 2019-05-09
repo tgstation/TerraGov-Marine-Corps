@@ -97,10 +97,11 @@
 	succeed_activate()
 	X.icon_state = "Defiler Power Up"
 
-	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, null, BUSY_ICON_HOSTILE))
+	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, TRUE, null, BUSY_ICON_HOSTILE))
 		if(!QDELETED(src))
 			X.smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
 			X.smoke_system.set_up(1, get_turf(src))
+			X.smoke_system.start()
 			to_chat(X, "<span class='xenodanger'>You abort emitting neurogas, your expended plasma resulting in only a feeble wisp.</span>")
 			X.emitting_gas = FALSE
 			X.icon_state = "Defiler Running"

@@ -290,6 +290,8 @@
 	if(!isxeno(A) || A == owner || !owner.issamexenohive(A))
 		return FALSE
 
+	var/mob/living/carbon/Xenomorph/target = A
+
 	if(get_dist(owner, target) > max_range)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You need to be closer to [target].</span>")
@@ -300,7 +302,7 @@
 	var/mob/living/carbon/Xenomorph/target = A
 
 	to_chat(X, "<span class='notice'>You start focusing your plasma towards [target].</span>")
-	if(!do_after(src, transfer_delay, TRUE, null, BUSY_ICON_FRIENDLY))
+	if(!do_after(X, transfer_delay, TRUE, null, BUSY_ICON_FRIENDLY))
 		return fail_activate()
 
 	if(!can_use_ability(A))
@@ -506,7 +508,7 @@
 		return
 
 	var/obj/effect/xenomorph/acid/newacid = new acid_type(get_turf(A), A)
-	
+
 	succeed_activate()
 
 	if(istype(A, /obj/vehicle/multitile/root/cm_armored))

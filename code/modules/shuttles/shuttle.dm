@@ -11,9 +11,6 @@
 	var/target_rotation = 0
 	var/list/shuttle_turfs = null
 
-	var/docking_controller_tag	//tag of the controller used to coordinate docking
-	var/datum/computer/file/embedded_program/docking/docking_controller	//the controller itself. (micro-controller, not game controller)
-
 	var/arrive_time = 0	//the time at which the shuttle arrives when long jumping
 
 	//Important note: Shuttle code is a mess, recharge vars will only work fully on ferry type shuttles, aka everything but specops snowflake
@@ -82,17 +79,6 @@
 
 		transit_optimized = 0 //De-optimize the flight plans
 
-/* Pseudo-code. Auto-bolt shuttle airlocks when in motion.
-/datum/shuttle/proc/toggle_doors(var/close_doors, var/bolt_doors, var/area/whatArea)
-	if(!whatArea) return <-- logic checks!
-  		for(all doors in whatArea)
-  			if(door.id is the same as src.id)
-				if(close_doors)
-			    	toggle dat shit
-			   	if(bolt_doors)
-			   		bolt dat shit
-*/
-
 //Actual code. lel
 /datum/shuttle/proc/close_doors(var/area/area)
 	if(!area || !istype(area)) //somehow
@@ -103,25 +89,10 @@
 			spawn(0)
 				P.close()
 
-	if (iselevator)	// Super snowflake code
-		for (var/obj/machinery/computer/shuttle_control/ice_colony/C in area)
-			C.animate_on()
-
-		for (var/turf/closed/shuttle/elevator/gears/G in area)
-			G.start()
-
-		for (var/obj/machinery/door/airlock/D in area)//For elevators
+	for(var/obj/machinery/door/airlock/unpowered/D in area)
+		if(!D.density && !D.locked)
 			spawn(0)
-				if (!D.density)
-					D.close()
-					D.lock()
-				else
-					D.lock()
-	else
-		for(var/obj/machinery/door/airlock/unpowered/D in area)
-			if(!D.density && !D.locked)
-				spawn(0)
-					D.close()
+				D.close()
 
 
 
@@ -134,46 +105,22 @@
 			spawn(0)
 				P.open()
 
-	if (iselevator)	// Super snowflake code
-		for (var/obj/machinery/computer/shuttle_control/ice_colony/C in area)
-			C.animate_off()
-
-		for (var/turf/closed/shuttle/elevator/gears/G in area)
-			G.stop()
-
-		for (var/obj/machinery/door/airlock/D in area)//For elevators
-			if (D.locked)
-				spawn(0)
-					D.unlock()
-			if (D.density)
-				spawn(0)
-					D.open()
-	else
-		for(var/obj/machinery/door/airlock/unpowered/D in area)
-			if(D.density && !D.locked)
-				spawn(0)
-					D.open()
+	for(var/obj/machinery/door/airlock/unpowered/D in area)
+		if(D.density && !D.locked)
+			spawn(0)
+				D.open()
 
 /datum/shuttle/proc/dock()
-	if (!docking_controller)
-		return
-
-	var/dock_target = current_dock_target()
-	if (!dock_target)
-		return
-
-	docking_controller.initiate_docking(dock_target)
+	return
 
 /datum/shuttle/proc/undock()
-	if (!docking_controller)
-		return
-	docking_controller.initiate_undocking()
+	return
 
 /datum/shuttle/proc/current_dock_target()
 	return null
 
 /datum/shuttle/proc/skip_docking_checks()
-	if (!docking_controller || !current_dock_target())
+	if (!current_dock_target())
 		return 1	//shuttles without docking controllers or at locations without docking ports act like old-style shuttles
 	return 0
 
@@ -190,9 +137,6 @@
 	if(origin == destination)
 		//to_chat(world, "cancelling move, shuttle will overlap.")
 		return
-
-	if (docking_controller && !docking_controller.undocked())
-		docking_controller.force_undock()
 
 	for(var/turf/T in destination)
 		for(var/obj/O in T)

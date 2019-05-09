@@ -269,8 +269,6 @@ obj/structure/door_assembly
 
 			door.assembly_type = type
 			door.electronics = src.electronics
-			if (istype(electronics, /obj/item/circuitboard/airlock/secure))
-				door.randomize_wires()
 			if(src.electronics.one_access)
 				door.req_access = null
 				door.req_one_access = src.electronics.conf_access

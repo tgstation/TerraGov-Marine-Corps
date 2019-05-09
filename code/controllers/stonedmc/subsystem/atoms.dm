@@ -17,7 +17,6 @@ SUBSYSTEM_DEF(atoms)
 /datum/controller/subsystem/atoms/Initialize(timeofday)
 	populate_spawn_points()
 
-	setup_economy()
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
 

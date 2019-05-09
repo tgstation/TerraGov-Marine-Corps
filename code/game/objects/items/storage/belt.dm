@@ -387,15 +387,14 @@
 	new /obj/item/explosive/grenade/frag(src)
 	new /obj/item/explosive/grenade/frag(src)
 
-/obj/item/storage/sparepouch
-	name="\improper G8 general utility pouch"
-	desc="A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor to provide additional storage. Unfortunately, this pouch uses the same securing system as most Armat platform weaponry, and thus only one can be clipped to the M3 Pattern Armor."
+/obj/item/storage/belt/sparepouch
+	name= "\improper G8 general utility pouch"
+	desc= "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage."
 	storage_slots = 3
 	w_class = 4
 	max_w_class = 3
-	icon = 'icons/obj/clothing/belts.dmi'
-	icon_state="sparepouch"
-	item_state="marine_s"
+	icon_state= "sparepouch"
+	item_state= "sparepouch"
 
 
 
