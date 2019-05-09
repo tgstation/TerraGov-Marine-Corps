@@ -716,6 +716,7 @@
 	w_class = 5
 	force = 15
 	wield_delay = 12
+	wield_penalty = WIELD_DELAY_VERY_SLOW
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_HEAVY
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness,
@@ -746,7 +747,7 @@
 	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
 		delay += 6
 
-	if(!do_after(user, delay, TRUE, 3, src, BUSY_ICON_DANGER)) //slight wind up
+	if(!do_after(user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
 		return
 
 	playsound(loc,'sound/weapons/gun_mortar_fire.ogg', 50, 1)
@@ -762,12 +763,6 @@
 
 	log_combat(usr, usr, "fired the [src].")
 	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
-
-/obj/item/weapon/gun/launcher/rocket/wield(mob/living/user)
-	if(user.mind?.cm_skills?.spec_weapons < 0 && !do_after(user, 15, TRUE, src))
-		return
-	return ..()
-
 
 /obj/item/weapon/gun/launcher/rocket/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 2

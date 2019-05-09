@@ -57,6 +57,7 @@
 
 	var/aim_slowdown	= 0						//Self explanatory. How much does aiming (wielding the gun) slow you
 	var/wield_delay		= WIELD_DELAY_FAST		//How long between wielding and firing in tenths of seconds
+	var/wield_penalty	= WIELD_DELAY_VERY_FAST	//Extra wield delay for untrained operators
 	var/wield_time		= 0						//Storing value for above
 
 	//Burst fire.
@@ -279,8 +280,10 @@
 					skill_value = user.mind.cm_skills.smartgun
 				if(GUN_SKILL_SPEC)
 					skill_value = user.mind.cm_skills.spec_weapons
-			if(skill_value)
+			if(skill_value > 0)
 				wdelay -= 2*skill_value
+			else
+				wdelay += wield_penalty
 	wield_time = world.time + wdelay
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.add_hud(user)
