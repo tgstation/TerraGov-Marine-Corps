@@ -3,7 +3,7 @@
 	if(interactee) 
 		unset_interaction()	
 	if(typing)
-		remove_emote_overlay(client, typing, viewers())
+		remove_emote_overlay(null, typing, viewers())
 		typing = null
 	GLOB.player_list -= src
 	log_access("Logout: [key_name(src)]")
