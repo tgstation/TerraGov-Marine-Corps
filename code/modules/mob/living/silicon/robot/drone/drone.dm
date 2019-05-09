@@ -246,5 +246,5 @@
 /mob/living/silicon/robot/drone/verb/Power_up()
 	set category = "Robot Commands"
 	if(resting)
-		resting = 0
+		set_resting(FALSE)
 		to_chat(src, "<span class='notice'>You begin powering up.</span>")

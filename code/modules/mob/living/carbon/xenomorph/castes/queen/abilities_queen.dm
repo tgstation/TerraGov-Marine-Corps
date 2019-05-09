@@ -312,8 +312,7 @@
 		A.give_action(src)
 
 	anchored = TRUE
-	resting = FALSE
-	update_canmove()
+	set_resting(FALSE)
 	update_icons()
 
 	hive?.update_leader_pheromones()
@@ -492,7 +491,7 @@
 		T.hud_set_queen_overwatch()
 		T.handle_xeno_leader_pheromones(X)
 	else
-		if(length(X.hive.xeno_leader_list) > 1) 
+		if(length(X.hive.xeno_leader_list) > 1)
 			var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph leader?") as null|anything in X.hive.xeno_leader_list
 			if(!selected_xeno || !selected_xeno.queen_chosen_lead || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z != X.z || !X.check_state())
 				return

@@ -1,13 +1,11 @@
 /obj/screen
-	name = ""
 	icon = 'icons/mob/screen/generic.dmi'
 	layer = HUD_LAYER
 	plane = HUD_PLANE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	appearance_flags = APPEARANCE_UI
-	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
-	var/datum/hud/hud = null // A reference to the owner HUD, if any.
-
+	var/obj/master //A reference to the object in the slot. Grabs or items, generally.
+	var/datum/hud/hud // A reference to the owner HUD, if any.
 
 /obj/screen/Destroy()
 	master = null
@@ -83,7 +81,7 @@
 	if(isobserver(usr) || usr.incapacitated(TRUE))
 		return TRUE
 
-	if(istype(usr.loc,/obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+	if(ismecha(usr.loc) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return TRUE
 
 	if(!istype(src, /obj/screen/inventory/hand) && usr.attack_ui(slot_id)) // until we get a proper hands refactor
@@ -102,9 +100,12 @@
 		add_overlay("hand_active")
 
 /obj/screen/inventory/hand/Click()
-	. = ..()
-	if(. || !iscarbon(usr))
-		return
+	if(world.time <= usr.next_move)
+		return TRUE
+	if(usr.incapacitated() || !iscarbon(usr))
+		return TRUE
+	if (ismecha(usr.loc) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored))
+		return TRUE
 	var/mob/living/carbon/C = usr
 	C.activate_hand(hand_tag)
 

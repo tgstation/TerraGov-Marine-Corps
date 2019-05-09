@@ -10,7 +10,7 @@
 	var/mob/living/carbon/human/H = usr
 	H.quick_equip()
 
-/datum/hud/human/New(mob/living/carbon/human/owner, ui_style='icons/mob/screen/White.dmi', ui_color = "#ffffff", ui_alpha = 255)
+/datum/hud/human/New(mob/living/carbon/human/owner, ui_style='icons/mob/screen/White.dmi', ui_color = "#ffffff", ui_alpha = 230)
 	..()
 	var/datum/hud_data/hud_data
 	if(!istype(owner))
@@ -100,7 +100,7 @@
 		inv_box = new /obj/screen/inventory/hand()
 		inv_box.setDir(EAST)
 		inv_box.icon = ui_style
-		if(owner && owner.hand)	//This being 1 means the left hand is in use
+		if(owner?.hand)	//This being 1 means the left hand is in use
 			inv_box.add_overlay("hand_active")
 		inv_box.slot_id = SLOT_L_HAND
 		inv_box.color = ui_color
@@ -182,6 +182,8 @@
 
 	rest_icon = new /obj/screen/rest()
 	rest_icon.icon = ui_style
+	rest_icon.color = ui_color
+	rest_icon.alpha = ui_alpha
 	rest_icon.update_icon(owner)
 	static_inventory += rest_icon
 
@@ -198,7 +200,7 @@
 	eject_mag = new /obj/screen/firearms/magazine()
 	static_inventory += eject_mag
 
-	/obj/screen/firearms/burstfire()
+	toggle_burst = new /obj/screen/firearms/burstfire()
 	static_inventory += toggle_burst
 
 	unique_action = new /obj/screen/firearms/unique()

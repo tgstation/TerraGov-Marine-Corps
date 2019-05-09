@@ -198,8 +198,7 @@
 				if(client)
 					AdjustSleeping(-5)
 				if(sleeping == 0)
-					resting = 0
-					update_canmove()
+					set_resting(FALSE)
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!", \
 									"<span class='notice'>You shake [src] trying to wake [t_him] up!", null, 4)
 				AdjustKnockedout(-3)

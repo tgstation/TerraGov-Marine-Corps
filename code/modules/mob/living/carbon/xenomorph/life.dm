@@ -244,8 +244,8 @@
 	// Health Hud
 	if(hud_used && hud_used.healths)
 		if(stat != DEAD)
-			var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, maxHealth, health, 0, list("full", "critical"))
-			hud_used.healths.icon_state = "health_[bucket]"
+			var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, maxHealth, health, get_crit_threshold(), list("full", "critical"))
+			hud_used.healths.icon_state = "health[bucket]"
 		else
 			hud_used.healths.icon_state = "health_dead"
 

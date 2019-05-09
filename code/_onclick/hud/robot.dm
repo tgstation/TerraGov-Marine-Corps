@@ -76,28 +76,32 @@
 	var/mob/living/silicon/robot/R = usr
 	R.installed_modules()
 
-/datum/hud/robot/New(mob/living/silicon/robot/owner)
+/datum/hud/robot/New(mob/living/silicon/robot/owner, ui_alpha = 230)
 	..()
 	var/obj/screen/using
 
 //Radio
 	using = new /obj/screen/robot/radio()
+	using.alpha = ui_alpha
 	using.screen_loc = ui_movi
 	static_inventory += using
 
 //Module select
 
 	using = new /obj/screen/robot/module()
+	using.alpha = ui_alpha
 	using.screen_loc = ui_inv1
 	owner.inv1 = using
 	static_inventory += using
 
 	using = new /obj/screen/robot/module/two()
+	using.alpha = ui_alpha
 	using.screen_loc = ui_inv2
 	owner.inv2 = using
 	static_inventory += using
 
 	using = new /obj/screen/robot/module/three()
+	using.alpha = ui_alpha
 	using.screen_loc = ui_inv3
 	owner.inv3 = using
 	static_inventory += using
@@ -107,6 +111,7 @@
 //Intent
 	using = new /obj/screen/act_intent()
 	using.icon = 'icons/mob/screen/cyborg.dmi'
+	using.alpha = ui_alpha
 	using.icon_state = owner.a_intent
 	static_inventory += using
 	action_intent = using
@@ -114,6 +119,7 @@
 //Cell
 	owner.cells = new /obj/screen()
 	owner.cells.icon = 'icons/mob/screen/cyborg.dmi'
+	using.alpha = ui_alpha
 	owner.cells.icon_state = "charge-empty"
 	owner.cells.name = "cell"
 	owner.cells.screen_loc = ui_toxin
@@ -121,26 +127,31 @@
 
 //Health
 	healths = new /obj/screen/healths/robot()
+	using.alpha = ui_alpha
 	infodisplay += healths
 
 //Installed Module
 	owner.hands = new /obj/screen/robot/cyborg_module()
+	using.alpha = ui_alpha
 	owner.hands.screen_loc = ui_borg_module
 	static_inventory += owner.hands
 
 //Module Panel
 	using = new /obj/screen/robot/panel()
+	using.alpha = ui_alpha
 	using.screen_loc = ui_borg_panel
 	static_inventory += using
 
 //Store
 	module_store_icon = new /obj/screen/robot/store()
+	using.alpha = ui_alpha
 	module_store_icon.screen_loc = ui_borg_store
 	static_inventory += module_store_icon
 
 //Temp
 	bodytemp_icon = new /obj/screen/bodytemp()
 	bodytemp_icon.icon = 'icons/mob/screen/cyborg.dmi'
+	using.alpha = ui_alpha
 	bodytemp_icon.screen_loc = ui_borg_temp
 	infodisplay += bodytemp_icon
 
@@ -154,17 +165,20 @@
 
 	pull_icon = new /obj/screen/pull()
 	pull_icon.icon = 'icons/mob/screen/cyborg.dmi'
+	using.alpha = ui_alpha
 	pull_icon.screen_loc = ui_borg_pull
 	static_inventory += pull_icon
 
 	zone_sel = new /obj/screen/zone_sel/robot()
+	using.alpha = ui_alpha
 	zone_sel.update_icon(owner)
 	static_inventory += zone_sel
 
 
 /mob/living/silicon/robot/create_hud()
 	if(client && !hud_used)
-		hud_used = new /datum/hud/robot(src)
+		var/ui_alpha = client.prefs.ui_style_alpha
+		hud_used = new /datum/hud/robot(src, ui_alpha)
 
 
 

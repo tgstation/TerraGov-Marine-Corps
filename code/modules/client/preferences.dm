@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/be_special = BE_SPECIAL_DEFAULT	//Special role selection
 	var/ui_style = "Midnight"
 	var/ui_style_color = "#ffffff"
-	var/ui_style_alpha = 255
+	var/ui_style_alpha = 230
 	var/toggles_chat = TOGGLES_CHAT_DEFAULT
 	var/toggles_sound = TOGGLES_SOUND_DEFAULT
 	var/ghost_hud = TOGGLES_GHOSTHUD_DEFAULT
