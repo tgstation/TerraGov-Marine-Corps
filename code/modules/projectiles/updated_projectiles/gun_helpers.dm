@@ -382,7 +382,7 @@ should be alright.
 		"<span class='notice'>You begin fumbling about, trying to attach [attachment] to [src].</span>", null, 4)
 		idisplay = BUSY_ICON_UNSKILLED
 	//user.visible_message("","<span class='notice'>Attach Delay = [final_delay]. Attachment = [attachment]. Firearm Skill = [user.mind.cm_skills.firearms].</span>", null, 4) //DEBUG
-	if(do_after(user,final_delay, TRUE, src, icon_display = idisplay))
+	if(do_after(user, final_delay, TRUE, src, idisplay))
 		user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
 		"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
 		user.temporarilyRemoveItemFromInventory(attachment)
@@ -560,7 +560,7 @@ should be alright.
 		"<span class='notice'>You begin fumbling about, trying to strip [A] from [src].</span>", null, 4)
 		idisplay = BUSY_ICON_UNSKILLED
 	//usr.visible_message("","<span class='notice'>Detach Delay = [detach_delay]. Attachment = [A]. Firearm Skill = [usr.mind.cm_skills.firearms].</span>", null, 4) //DEBUG
-	if(!do_after(usr,final_delay, TRUE, src, icon_display = idisplay))
+	if(!do_after(usr,final_delay, TRUE, src, idisplay))
 		return
 
 	if(A != rail && A != muzzle && A != under && A != stock)
