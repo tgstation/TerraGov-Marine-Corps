@@ -76,8 +76,8 @@
 	*/
 	var/list/sprite_sheets_obj = null
 
-/obj/item/New(loc)
-	..()
+/obj/item/Initialize()
+	. = ..()
 	GLOB.item_list += src
 	for(var/path in actions_types)
 		new path(src)

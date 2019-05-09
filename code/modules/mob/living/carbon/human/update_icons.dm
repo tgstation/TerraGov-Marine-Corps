@@ -383,7 +383,7 @@ var/global/list/damage_icon_parts = list()
 
 
 /mob/living/carbon/human/proc/update_mutantrace()
-	remove_overlay(MUTANTRACE_LAYER)
+/*	remove_overlay(MUTANTRACE_LAYER)
 	var/fat
 
 	if( FAT in mutations )
@@ -399,7 +399,7 @@ var/global/list/damage_icon_parts = list()
 		update_body(0)
 
 	update_hair(0)
-	apply_overlay(MUTANTRACE_LAYER)
+	apply_overlay(MUTANTRACE_LAYER)*/
 
 //Call when target overlay should be added/removed
 /mob/living/carbon/human/update_targeted()
@@ -425,7 +425,7 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/regenerate_icons()
 	if(monkeyizing)		return
 	update_mutations(0)
-	update_mutantrace(0)
+	//update_mutantrace(0)
 	update_inv_w_uniform()
 	update_inv_wear_id()
 	update_inv_gloves()

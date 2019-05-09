@@ -1335,9 +1335,8 @@
 
 	species.handle_post_spawn(src)
 
-	spawn(0)
-		regenerate_icons()
-		restore_blood()
+	INVOKE_ASYNC(src, .proc/regenerate_icons)
+	INVOKE_ASYNC(src, .proc/restore_blood)
 
 	if(species)
 		return 1
