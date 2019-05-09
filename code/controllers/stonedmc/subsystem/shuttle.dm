@@ -393,6 +393,9 @@ SUBSYSTEM_DEF(shuttle)
 	. = FALSE
 	// load shuttle template, centred at shuttle import landmark,
 	var/turf/landmark_turf = get_turf(locate(/obj/effect/landmark/shuttle_import) in GLOB.landmarks_list)
+	if(!landmark_turf)
+		to_chat(world, "no shuttle import landmark")
+		CRASH("no shuttle import landmark")
 	S.load(landmark_turf, centered = TRUE, register = FALSE)
 
 	var/affected = S.get_affected_turfs(landmark_turf, centered=TRUE)

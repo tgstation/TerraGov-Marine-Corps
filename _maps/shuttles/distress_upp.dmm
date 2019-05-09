@@ -8,7 +8,7 @@
 	},
 /area/shuttle/ert/upp)
 "c" = (
-/obj/docking_port/mobile/ert_small,
+/obj/docking_port/mobile/ert,
 /turf/closed/shuttle/ert{
 	icon_state = "upp27"
 	},
