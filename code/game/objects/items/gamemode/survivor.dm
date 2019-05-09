@@ -126,25 +126,25 @@
     var/beacon_timer_id = null
 
 
-/obj/item/beacon/rescue/examine()
+/obj/item/beacon/rescue/examine(mob/user)
     . = ..() // show parent examines (if any) first
     if (beacon_timer_id)
-        to_chat(usr, "<span class='notice'>It shows [timeleft(beacon_timer_id) / 10] seconds left.</span>")
+        to_chat(user, "<span class='notice'>It shows [timeleft(beacon_timer_id) / 10] seconds left.</span>")
     if (obj_integrity < max_integrity)
         var/integrity = obj_integrity / max_integrity * 100
         switch(integrity)
             if(85 to 100)
-                to_chat(usr, "<span class='warning'>It's fully intact.</span>")
+                to_chat(user, "<span class='warning'>It's fully intact.</span>")
             if(65 to 85)
-                to_chat(usr, "<span class='warning'>It's slightly damaged.</span>")
+                to_chat(user, "<span class='warning'>It's slightly damaged.</span>")
             if(45 to 65)
-                to_chat(usr, "<span class='warning'>It's badly damaged.</span>")
+                to_chat(user, "<span class='warning'>It's badly damaged.</span>")
             if(25 to 45)
-                to_chat(usr, "<span class='warning'>It's heavily damaged.</span>")
+                to_chat(user, "<span class='warning'>It's heavily damaged.</span>")
             else
-                to_chat(usr, "<span class='warning'>It's falling apart.</span>")
+                to_chat(user, "<span class='warning'>It's falling apart.</span>")
     if (length(required_components))
-        to_chat(usr, "<span class='warning'>It looks like a few parts are missing.</span>")
+        to_chat(user, "<span class='warning'>It looks like a few parts are missing.</span>")
 
 
 /obj/item/beacon/rescue/process()
