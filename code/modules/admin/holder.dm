@@ -370,7 +370,6 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/custom_info,
 	/datum/admins/proc/announce,
 	/datum/admins/proc/force_distress,
-	/datum/admins/proc/force_dropship,
 	/datum/admins/proc/object_sound,
 	/datum/admins/proc/drop_bomb,
 	/datum/admins/proc/change_security_level,

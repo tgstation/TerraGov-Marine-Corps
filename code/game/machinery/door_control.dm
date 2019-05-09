@@ -25,21 +25,21 @@
 	return src.attack_hand(user)
 
 /obj/machinery/door_control/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT && normaldoorcontrol == CONTROL_DROPSHIP)
-		var/shuttle_tag
-		switch(id)
-			if("sh_dropship1")
-				shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
-			if("sh_dropship2")
-				shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
-			else
-				return
+//	if(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT && normaldoorcontrol == CONTROL_DROPSHIP)
+//		var/shuttle_tag
+//		switch(id)
+//			if("sh_dropship1")
+//				shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
+//			if("sh_dropship2")
+//				shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
+//			else
+//				return
 
-		var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
-		shuttle.hijack(M)
-		shuttle.door_override(M)
-	else
-		..()
+//		var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
+//		shuttle.hijack(M)
+//		shuttle.door_override(M)
+//	else
+//		..()
 
 /obj/machinery/door_control/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -56,7 +56,7 @@
 		return attack_hand(user)
 
 /obj/machinery/door_control/proc/handle_dropship(var/ship_id)
-	var/shuttle_tag
+/*	var/shuttle_tag
 	switch(ship_id)
 		if("sh_dropship1")
 			shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
@@ -103,7 +103,7 @@
 		spawn()
 			reardoor.close()
 			sleep(reardoor.openspeed + 1)
-			reardoor.lock()
+			reardoor.lock()*/
 
 /obj/machinery/door_control/proc/handle_door()
 	for(var/obj/machinery/door/airlock/D in range(range))
@@ -137,21 +137,21 @@
 				if(specialfunctions & SAFE)
 					D.safe = 1
 
-/obj/machinery/door_control/proc/handle_pod()
+/obj/machinery/door_control/proc/handle_pod()/*
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == id)
 			var/datum/shuttle/ferry/marine/S
 			var/area/A = get_area(M)
-			for(var/i = 1 to 2)
-				if(istype(A, text2path("/area/shuttle/drop[i]")))
-					S = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] Dropship [i]"]
-					if(S.moving_status == SHUTTLE_INTRANSIT) return FALSE
+//			for(var/i = 1 to 2)
+//				if(istype(A, text2path("/area/shuttle/drop[i]")))
+//					S = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] Dropship [i]"]
+//					if(S.moving_status == SHUTTLE_INTRANSIT) return FALSE
 			if(M.density)
 				spawn()
 					M.open()
 			else
 				spawn()
-					M.close()
+					M.close()*/
 
 /obj/machinery/door_control/attack_hand(mob/user)
 	if(istype(user,/mob/living/carbon/xenomorph))

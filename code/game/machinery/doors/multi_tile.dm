@@ -188,11 +188,6 @@
 	else
 		..()
 
-/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/unlock()
-	if(is_low_orbit_level(z))
-		return // in orbit
-	return ..(TRUE)
-
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1
 	name = "\improper Alamo cargo door"
 	icon = 'icons/obj/doors/almayer/dropship1_cargo.dmi'

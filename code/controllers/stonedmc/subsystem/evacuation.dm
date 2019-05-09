@@ -219,4 +219,4 @@ SUBSYSTEM_DEF(evacuation)
 /datum/controller/subsystem/evacuation/proc/get_affected_zlevels()
 	if(dest_status >= NUKE_EXPLOSION_IN_PROGRESS || evac_status != EVACUATION_STATUS_COMPLETE)
 		return
-	. = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_LOW_ORBIT))
+	. = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP))

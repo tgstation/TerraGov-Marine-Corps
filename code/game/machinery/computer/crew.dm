@@ -116,7 +116,7 @@
 					crewmembers_planetside += list(crewmemberData)
 				else if(is_mainship_level(pos.z))
 					crewmembers_on_ship += list(crewmemberData)
-				else if(is_low_orbit_level(pos.z))
+				else if(is_reserved_level(pos.z))
 					crewmembers_in_transit += list(crewmemberData)
 
 	switch(displayed_z_level)

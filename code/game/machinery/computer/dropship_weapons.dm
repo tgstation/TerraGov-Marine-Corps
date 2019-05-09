@@ -29,7 +29,7 @@
 
 
 /obj/machinery/computer/dropship_weapons/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
-	var/data[0]
+/*	var/data[0]
 	var/datum/shuttle/ferry/marine/FM = shuttle_controller.shuttles[shuttle_tag]
 	if (!istype(FM))
 		return
@@ -144,7 +144,7 @@
 	if(href_list["deselect"])
 		selected_equipment = null
 
-	ui_interact(usr)
+	ui_interact(usr)*/
 
 /obj/machinery/computer/dropship_weapons/dropship1
 	name = "\improper 'Alamo' weapons controls"

@@ -462,10 +462,10 @@
 
 	//Stolen from events.dm. WARNING: This code is old as hell
 	for (var/obj/machinery/power/apc/APC in GLOB.machines)
-		if(is_mainship_or_low_orbit_level(APC.z))
+		if(is_mainship_level(APC.z))
 			APC.ion_act()
 	for (var/obj/machinery/power/smes/SMES in GLOB.machines)
-		if(is_mainship_or_low_orbit_level(SMES.z))
+		if(is_mainship_level(SMES.z))
 			SMES.ion_act()
 
 	if(security_level < SEC_LEVEL_RED) //automatically set security level to red.

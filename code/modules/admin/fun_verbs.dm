@@ -519,43 +519,6 @@
 	message_admins("[ADMIN_TPMONTY(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [SSticker.mode.picked_call.name] Min: [min], Max: [max].")
 
 
-/datum/admins/proc/force_dropship()
-	set category = "Fun"
-	set name = "Force Dropship"
-	set desc = "Force a dropship to launch"
-
-	var/tag = input("Which dropship should be force launched?", "Select a dropship:") as null|anything in list("Dropship 1", "Dropship 2")
-	if(!tag)
-		return
-
-	var/crash = FALSE
-	switch(alert("Would you like to force a crash?", , "Yes", "No", "Cancel"))
-		if("Yes")
-			crash = TRUE
-		if("No")
-			crash = FALSE
-		else
-			return
-
-	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[CONFIG_GET(string/ship_name) + " " + tag]
-
-	if(!dropship)
-		return
-
-	if(crash && dropship.location != 1)
-		switch(alert("Error: Shuttle is on the ground. Proceed with standard launch anyways?", , "Yes", "No"))
-			if("Yes")
-				dropship.process_state = WAIT_LAUNCH
-			if("No")
-				return
-	else if(crash)
-		dropship.process_state = FORCE_CRASH
-	else
-		dropship.process_state = WAIT_LAUNCH
-
-	log_admin("[key_name(usr)] force launched [tag][crash ? " making it crash" : ""].")
-	message_admins("[ADMIN_TPMONTY(usr)] force launched [tag][crash ? " making it crash" : ""].")
-
 /datum/admins/proc/object_sound(atom/O as obj)
 	set category = null
 	set name = "Object Sound"
