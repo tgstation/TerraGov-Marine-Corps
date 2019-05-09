@@ -421,7 +421,7 @@
 		if(CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 			if(!silent)
 				to_chat(owner, "<span class='warning'>You cannot dissolve \the [O].</span>")
-			return
+			return FALSE
 		if(O.acid_check(acid_type))
 			if(!silent)
 				to_chat(owner, "<span class='warning'>This object is already subject to a more or equally powerful acid.</span>")
