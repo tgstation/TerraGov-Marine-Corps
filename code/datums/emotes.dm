@@ -12,7 +12,6 @@
 	var/message = "" //Message displayed when emote is used
 	var/message_alien = "" //Message displayed if the user is a grown alien
 	var/message_larva = "" //Message displayed if the user is an alien larva
-	var/message_robot = "" //Message displayed if the user is a robot
 	var/message_AI = "" //Message displayed if the user is an AI
 	var/message_monkey = "" //Message displayed if the user is a monkey
 	var/message_simple = "" //Message to display if the user is a simple_animal
@@ -104,8 +103,6 @@
 		. = message_alien
 	else if(isxenolarva(user) && message_larva)
 		. = message_larva
-	else if(iscyborg(user) && message_robot)
-		. = message_robot
 	else if(isAI(user) && message_AI)
 		. = message_AI
 	else if(ismonkey(user) && message_monkey)
