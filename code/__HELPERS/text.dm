@@ -65,7 +65,7 @@
 		return			//message too long
 
 	var/non_whitespace = FALSE
-	for(var/i in 1 to length(text) - 1)
+	for(var/i = 1, i <= length(text), i++)
 		switch(text2ascii(text, i))
 			if(62, 60, 92, 47)	
 				return			//rejects the text if it contains these bad characters: <, >, \ or /
@@ -103,7 +103,7 @@
 	var/last_char_group			= 0
 	var/t_out = ""
 
-	for(var/i in 1 to length(t_in))
+	for(var/i = 1, i <= length(t_in), i++)
 		var/ascii_char = text2ascii(t_in,i)
 		switch(ascii_char)
 			// A  .. Z

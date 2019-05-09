@@ -68,7 +68,7 @@
 
 	. = "#"
 
-	for(var/i in 2 to len)
+	for(var/i = 2, i <= len, i++)
 		var/ascii = text2ascii(color,i)
 		switch(ascii)
 			if(48 to 57)	
