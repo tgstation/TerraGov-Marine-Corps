@@ -759,17 +759,6 @@
 "fW" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/ferry)
-"fX" = (
-/obj/machinery/computer/shuttle_control/ert/centcom{
-	density = 0;
-	pixel_y = 32
-	},
-/turf/open/floor/almayer{
-	tag = "icon-emerald (NORTH)";
-	icon_state = "emerald";
-	dir = 1
-	},
-/area/centcom)
 "fY" = (
 /turf/open/floor/almayer{
 	dir = 2;
@@ -815,18 +804,6 @@
 	},
 /turf/open/floor/almayer,
 /area/centcom/suppy)
-"gh" = (
-/obj/machinery/computer/shuttle_control/ert/centcom{
-	density = 0;
-	pixel_y = 32;
-	shuttle_tag = "Distress_PMC"
-	},
-/turf/open/floor/almayer{
-	tag = "icon-silver (NORTH)";
-	icon_state = "silver";
-	dir = 1
-	},
-/area/centcom)
 "gi" = (
 /turf/open/floor/wood,
 /area/centcom)
@@ -1089,18 +1066,6 @@
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
-"ku" = (
-/obj/machinery/computer/shuttle_control/ert/centcom{
-	density = 0;
-	pixel_y = 32;
-	shuttle_tag = "Distress_UPP"
-	},
-/turf/open/floor/almayer{
-	tag = "icon-green (NORTH)";
-	icon_state = "green";
-	dir = 1
-	},
-/area/centcom)
 "kx" = (
 /turf/closed/wall/indestructible/splashscreen,
 /area/start)
@@ -1771,9 +1736,6 @@
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lV" = (
-/obj/machinery/computer/shuttle_control/ert{
-	shuttle_tag = "Distress_Big"
-	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -2756,9 +2718,6 @@
 /turf/open/floor/grass,
 /area/centcom)
 "oT" = (
-/obj/machinery/computer/shuttle_control/ert{
-	shuttle_tag = "Distress_Big"
-	},
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -9773,7 +9732,7 @@ aa
 aa
 aa
 dX
-fX
+fG
 eo
 eo
 dX
@@ -11303,7 +11262,7 @@ aa
 aa
 aa
 dX
-gh
+fL
 eo
 eo
 dX
@@ -12833,7 +12792,7 @@ aa
 aa
 aa
 dX
-ku
+fO
 eo
 eo
 gi

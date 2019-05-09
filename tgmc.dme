@@ -1462,7 +1462,6 @@
 #include "code\modules\shuttles\marine_ferry.dm"
 #include "code\modules\shuttles\shuttle.dm"
 #include "code\modules\shuttles\shuttle_console.dm"
-#include "code\modules\shuttles\shuttle_ert.dm"
 #include "code\modules\shuttles\shuttle_ferry.dm"
 #include "code\modules\supermatter\supermatter.dm"
 #include "code\modules\surgery\amputation.dm"
