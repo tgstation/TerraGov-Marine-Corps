@@ -152,7 +152,7 @@
     var/nearby_setup = 0
     for (var/R in required_nearby)
         var/obj/found = locate(R) in nearby
-        if (found && found.anchored == 1)
+        if (found?.anchored == 1)
             nearby_setup++
 
     if(nearby_setup == length(required_nearby))    
