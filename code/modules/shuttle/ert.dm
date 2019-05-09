@@ -21,6 +21,7 @@
 	height = 21
 	var/list/mob_spawns = list()
 	var/list/item_spawns = list()
+	var/list/shutters = list()
 	var/departing = FALSE
 	ignitionTime = 10 SECONDS
 	prearrivalTime = 10 SECONDS
@@ -45,6 +46,18 @@
 	SSshuttle.moveShuttle(id, S.id, 1)
 	return TRUE
 
+/obj/docking_port/mobile/ert/proc/open_shutters()
+	for(var/i in shutters)
+		var/obj/machinery/door/poddoor/shutters/transit/T = i
+		INVOKE_ASYNC(T, .proc/open)
+
+/obj/docking_port/mobile/ert/proc/close_shutters()
+	for(var/i in shutters)
+		var/obj/machinery/door/poddoor/shutters/transit/T = i
+		INVOKE_ASYNC(T, .proc/close)
+
+/obj/docking_port/mobile/supply/afterShuttleMove()
+
 /obj/docking_port/mobile/ert/Destroy(force)
 	. = ..()
 	if(force)
@@ -55,11 +68,13 @@
 	SSshuttle.ert_shuttles += src
 	for(var/t in return_turfs())
 		var/turf/T = t
-		for(var/obj/effect/landmark/L in T.GetAllContents())
-			if(istype(L, /obj/effect/landmark/distress))
-				mob_spawns += L
-			else if(istype(L, /obj/effect/landmark/distress_item))
-				item_spawns += L
+		for(var/obj/O in T.GetAllContents())
+			if(istype(O, /obj/effect/landmark/distress))
+				mob_spawns += O
+			else if(istype(O, /obj/effect/landmark/distress_item))
+				item_spawns += O
+			else if(istype(O, /obj/machinery/door/poddoor/shutters/transit))
+				shutters += O
 
 /obj/docking_port/mobile/ert/check()
 	if(departing)
