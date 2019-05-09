@@ -175,7 +175,7 @@
 
 //Returns the next element in parameter list after first appearance of parameter element. If it is the last element of the list or not present in list, returns first element.
 /proc/next_in_list(element, list/L)
-	for(var/i in 1 to length(L))
+	for(var/i in 1 to length(L) - 1)
 		if(L[i] == element)
 			return L[i + 1]
 	return L[1]
@@ -262,7 +262,7 @@
 			return	//no need to move
 		fromIndex += len	//we want to shift left instead of right
 
-		for(var/i in 0 to distance)
+		for(var/i in 0 to distance - 1)
 			L.Insert(fromIndex, null)
 			L.Swap(fromIndex, toIndex)
 			L.Cut(toIndex, toIndex + 1)
@@ -455,7 +455,7 @@
 	if(!L)
 		return
 
-	for(var/i in 1 to length(L))
+	for(var/i in 1 to length(L) - 1)
 		L.Swap(i, rand(i, length(L)))
 
 
