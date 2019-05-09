@@ -93,13 +93,13 @@
 	for(var/i in shutters)
 		var/obj/machinery/door/poddoor/shutters/transit/T = i
 		if(T.density)
-			INVOKE_ASYNC(T, /obj/machinery/door/poddoor/shutters/.proc/open)
+			T.open()
 
 /obj/docking_port/mobile/ert/proc/close_shutters()
 	for(var/i in shutters)
 		var/obj/machinery/door/poddoor/shutters/transit/T = i
 		if(!T.density)
-			INVOKE_ASYNC(T, /obj/machinery/door/poddoor/shutters/.proc/close)
+			T.close()
 
 /obj/docking_port/mobile/ert/afterShuttleMove()
 	. = ..()
