@@ -436,7 +436,7 @@
 		qdel(i)
 		sleep(1)
 
-/datum/game_mode/proc/new_player_panel(mob/new_player/NP)
+/datum/game_mode/proc/override_new_player_panel(mob/new_player/NP)
 
 	var/output = "<div align='center'>"
 	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=show_preferences'>Setup Character</A></p>"

@@ -31,7 +31,7 @@
 
 /mob/new_player/proc/new_player_panel()
 
-	if(SSticker?.mode?.new_player_panel(src))
+	if(SSticker?.mode?.override_new_player_panel(src))
 		return
 
 	var/output = "<div align='center'>"
