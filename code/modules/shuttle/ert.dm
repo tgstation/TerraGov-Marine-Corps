@@ -86,7 +86,7 @@
 	var/obj/docking_port/stationary/S = pick(get_destinations())
 	if(!S)
 		return FALSE
-	SSshuttle.moveShuttle(src, S, 1)
+	SSshuttle.moveShuttle(id, S.id, 1)
 	return TRUE
 
 /obj/docking_port/mobile/ert/Destroy(force)
