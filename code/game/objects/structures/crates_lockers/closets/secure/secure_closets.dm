@@ -118,7 +118,7 @@
 	add_fingerprint(usr)
 	togglelock(usr)
 
-/obj/structure/closet/crate/secure/update_icon()
+/obj/structure/closet/secure_closet/update_icon()
 	overlays.Cut()
 	if(opened)
 		icon_state = icon_opened
