@@ -183,20 +183,22 @@
 
 
 /datum/game_mode/proc/setup_xeno_tunnels()
-	var/obj/structure/tunnel/T
 	var/i = 0
-	var/turf/t
 	while(length(GLOB.xeno_tunnel_landmarks) && i++ < MAX_TUNNELS_PER_MAP)
-		t = pick(GLOB.xeno_tunnel_landmarks)
-		GLOB.xeno_tunnel_landmarks -= t
-		T = new (t)
-		T.id = "hole[i]"
+		var/obj/structure/tunnel/ONE
+		var/obj/effect/landmark/xeno_tunnel/L
+		var/turf/T
+		L = pick(GLOB.xeno_tunnel_landmarks)
+		GLOB.xeno_tunnel_landmarks -= L
+		T = L.loc
+		ONE = new(T)
+		ONE.id = "hole[i]"
 		for(var/x in GLOB.xeno_tunnels)
-			var/obj/structure/tunnel/TO = x
-			if(TO.id != T.id || T == TO || TO.other)
+			var/obj/structure/tunnel/TWO = x
+			if(ONE.id != TWO.id || ONE == TWO || ONE.other || TWO.other)
 				continue
-			TO.other = T
-			T.other = TO
+			ONE.other = TWO
+			TWO.other = ONE
 
 
 /datum/game_mode/proc/spawn_fog_blockers()

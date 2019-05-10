@@ -8,8 +8,7 @@
 	density = 1
 	luminosity = 5
 	move_delay = 8
-	health = 200
-	maxhealth = 200
+	max_integrity = 200
 	var/panel_open = FALSE
 
 /obj/vehicle/powerloader/New()
@@ -37,10 +36,9 @@
 	if(buckled_mob && user != buckled_mob)
 		buckled_mob.visible_message("<span class='warning'>[user] tries to move [buckled_mob] out of [src].</span>",\
 		"<span class='danger'>[user] tries to move you out of [src]!</span>")
-		var/oldloc = loc
 		var/olddir = dir
 		var/old_buckled_mob = buckled_mob
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_HOSTILE) && dir == olddir && loc == oldloc && buckled_mob == old_buckled_mob)
+		if(do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE) && dir == olddir && buckled_mob == old_buckled_mob)
 			manual_unbuckle(user)
 			playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
 	if(panel_open)

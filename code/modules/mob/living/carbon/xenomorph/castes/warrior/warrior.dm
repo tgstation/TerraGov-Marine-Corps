@@ -80,7 +80,8 @@
 			"<span class='xenowarning'>You grab [L] by the throat!</span>")
 
 	if(!lunge && !isxeno(AM))
-		addtimer(CALLBACK(src, .proc/lunge_reset), WARRIOR_LUNGE_COOLDOWN)
+		var/datum/action/xeno_action/lun = actions_by_path[/datum/action/xeno_action/activable/lunge]
+		lun?.add_cooldown()
 
 /mob/living/carbon/Xenomorph/Warrior/hitby(atom/movable/AM as mob|obj,var/speed = 5)
 	if(ishuman(AM))

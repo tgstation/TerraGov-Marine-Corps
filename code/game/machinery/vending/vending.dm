@@ -2,11 +2,6 @@
 #define CAT_HIDDEN 1
 #define CAT_COIN   2
 
-#define WIRE_EXTEND 1
-#define WIRE_SCANID 2
-#define	WIRE_SHOCK 3
-#define	WIRE_SHOOTINV 4
-
 /datum/data/vending_product
 	var/product_name = "generic"
 	var/product_path = null
@@ -58,7 +53,6 @@
 	var/shoot_inventory = FALSE //Fire items at customers! We're broken!
 	var/shut_up = FALSE //Stop spouting those godawful pitches!
 	var/extended_inventory = FALSE //can we access the hidden inventory?
-	var/wires = 15
 	var/obj/item/coin/coin
 	var/tokensupport = TOKEN_GENERAL
 
@@ -68,9 +62,11 @@
 	var/hacking_safety = FALSE //1 = Will never shoot inventory or allow all access
 	wrenchable = TRUE
 	var/isshared = FALSE
+	var/scan_id = TRUE
 
-/obj/machinery/vending/Initialize()
+/obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
+	wires = new /datum/wires/vending(src)
 	src.slogan_list = text2list(src.product_slogans, ";")
 
 	// So not all machines speak at the exact same time.
@@ -84,6 +80,10 @@
 	src.build_inventory(premium, 0, 1)
 	power_change()
 	start_processing()
+
+/obj/machinery/vending/Destroy()
+	QDEL_NULL(wires)
+	return ..()
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)
@@ -169,7 +169,7 @@
 		shove_time = 50
 	if(istype(M,/mob/living/carbon/Xenomorph/Crusher))
 		shove_time = 15
-	if(do_after(M, shove_time, FALSE, 5, BUSY_ICON_HOSTILE))
+	if(do_after(M, shove_time, FALSE, src, BUSY_ICON_HOSTILE))
 		M.visible_message("<span class='danger'>\The [M] knocks \the [src] down!</span>", \
 		"<span class='danger'>You knock \the [src] down!</span>", null, 5)
 		tip_over()
@@ -240,10 +240,7 @@
 		return
 
 	else if(iswrench(W))
-		if(!wrenchable) return
-
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-			if(!src) return
+		if(wrenchable && do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			switch (anchored)
 				if (0)
@@ -292,7 +289,7 @@
 			else
 				T.amount = "[transaction_amount]"
 			T.source_terminal = src.name
-			T.date = current_date_string
+			T.date = GLOB.current_date_string
 			T.time = worldtime2text()
 			acc.transaction_log.Add(T)
 
@@ -338,14 +335,10 @@
 
 /obj/machinery/vending/attack_hand(mob/user as mob)
 	if(tipped_level == 2)
-		tipped_level = 1
 		user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
-		if(do_after(user,80, FALSE, 5, BUSY_ICON_FRIENDLY))
+		if(do_after(user,80, FALSE, src, BUSY_ICON_FRIENDLY))
 			user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
 			flip_back()
-			return
-		else
-			tipped_level = 2
 			return
 
 	if(machine_stat & (BROKEN|NOPOWER))
@@ -357,41 +350,9 @@
 		if(shock(user, 100))
 			return
 
-
-	if(panel_open)
-		var/dat = ""
-		var/list/vendwires = list(
-			"Violet" = 1,
-			"Orange" = 2,
-			"Goldenrod" = 3,
-			"Green" = 4,
-		)
-		dat += "<br>"
-		for(var/wiredesc in vendwires)
-			var/is_uncut = src.wires & APCWireColorToFlag[vendwires[wiredesc]]
-			dat += "[wiredesc] wire: "
-			if(!is_uncut)
-				dat += "<a href='?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Mend</a>"
-			else
-				dat += "<a href='?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Cut</a> "
-				dat += "<a href='?src=\ref[src];pulsewire=[vendwires[wiredesc]]'>Pulse</a> "
-			dat += "<br>"
-
-		dat += "<br>"
-		dat += "The orange light is [(src.seconds_electrified == 0) ? "off" : "on"].<BR>"
-		dat += "The red light is [src.shoot_inventory ? "off" : "blinking"].<BR>"
-		dat += "The green light is [src.extended_inventory ? "on" : "off"].<BR>"
-		dat += "The [(src.wires & WIRE_SCANID) ? "purple" : "yellow"] light is on.<BR>"
-
-		if (product_slogans != "")
-			dat += "The speaker switch is [src.shut_up ? "off" : "on"]. <a href='?src=\ref[src];togglevoice=[1]'>Toggle</a>"
-
-		var/datum/browser/popup = new(user, "vending", "<div align='center'>Access Panel</div>")
-		popup.set_content(dat)
-		popup.open(FALSE)
-		onclose(user, "vending")
-
-
+	. = ..()
+	if(.)
+		return
 
 	ui_interact(user)
 
@@ -465,7 +426,7 @@
 		usr.set_interaction(src)
 		if ((href_list["vend"]) && vend_ready && !currently_vending)
 
-			if(!allowed(usr) && !emagged && (wires & WIRE_SCANID || hacking_safety)) //For SECURE VENDING MACHINES YEAH. Hacking safety always prevents bypassing emag or access
+			if(!allowed(usr) && !emagged && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH. Hacking safety always prevents bypassing emag or access
 				to_chat(usr, "<span class='warning'>Access denied.</span>")
 				flick(src.icon_deny,src)
 				return
@@ -498,38 +459,6 @@
 			src.updateUsrDialog()
 			return
 
-		else if ((href_list["cutwire"]) && (src.panel_open))
-			var/twire = text2num(href_list["cutwire"])
-			if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
-				"<span class='notice'>You fumble around figuring out the wiring.</span>")
-				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
-				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
-					return
-			if (!iswirecutter(usr.get_active_held_item()))
-				to_chat(usr, "You need wirecutters!")
-				return
-			if (src.isWireColorCut(twire))
-				src.mend(twire)
-			else
-				src.cut(twire)
-
-		else if ((href_list["pulsewire"]) && (src.panel_open))
-			var/twire = text2num(href_list["pulsewire"])
-			if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
-				"<span class='notice'>You fumble around figuring out the wiring.</span>")
-				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
-				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-			if (!ismultitool(usr.get_active_held_item()))
-				to_chat(usr, "You need a multitool!")
-				return
-			if (src.isWireColorCut(twire))
-				to_chat(usr, "You can't pulse a cut wire.")
-				return
-			else
-				src.pulse(twire)
-
 		else if ((href_list["togglevoice"]) && (src.panel_open))
 			src.shut_up = !src.shut_up
 
@@ -541,7 +470,7 @@
 
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
-	if(!allowed(user) && !emagged && (wires & WIRE_SCANID || hacking_safety)) //For SECURE VENDING MACHINES YEAH
+	if(!allowed(user) && !emagged && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		flick(src.icon_deny,src)
 		return
@@ -734,45 +663,3 @@
 		throw_item.throw_at(target, 16, 3, src)
 	src.visible_message("<span class='warning'>[src] launches [throw_item.name] at [target]!</span>")
 	. = TRUE
-
-/obj/machinery/vending/proc/isWireColorCut(var/wireColor)
-	var/wireFlag = APCWireColorToFlag[wireColor]
-	return ((src.wires & wireFlag) == 0)
-
-/obj/machinery/vending/proc/isWireCut(var/wireIndex)
-	var/wireFlag = APCIndexToFlag[wireIndex]
-	return ((src.wires & wireFlag) == 0)
-
-/obj/machinery/vending/proc/cut(var/wireColor)
-	var/wireFlag = APCWireColorToFlag[wireColor]
-	var/wireIndex = APCWireColorToIndex[wireColor]
-	src.wires &= ~wireFlag
-	switch(wireIndex)
-		if(WIRE_EXTEND)
-			src.extended_inventory = 0
-		if(WIRE_SHOCK)
-			src.seconds_electrified = -1
-		if (WIRE_SHOOTINV)
-			if(!src.shoot_inventory)
-				src.shoot_inventory = 1
-
-
-/obj/machinery/vending/proc/mend(var/wireColor)
-	var/wireFlag = APCWireColorToFlag[wireColor]
-	var/wireIndex = APCWireColorToIndex[wireColor] //not used in this function
-	src.wires |= wireFlag
-	switch(wireIndex)
-		if(WIRE_SHOCK)
-			src.seconds_electrified = 0
-		if (WIRE_SHOOTINV)
-			src.shoot_inventory = 0
-
-/obj/machinery/vending/proc/pulse(var/wireColor)
-	var/wireIndex = APCWireColorToIndex[wireColor]
-	switch(wireIndex)
-		if(WIRE_EXTEND)
-			src.extended_inventory = !src.extended_inventory
-		if (WIRE_SHOCK)
-			src.seconds_electrified = 30
-		if (WIRE_SHOOTINV)
-			src.shoot_inventory = !src.shoot_inventory

@@ -44,7 +44,7 @@
 			return
 	user.visible_message("<span class='notice'>[user] starts planting [src].</span>", \
 					"<span class='notice'>You start planting [src].</span>", null, 5)
-	if(!do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(user, 50, TRUE, T, BUSY_ICON_BUILD))
 		return
 	for (var/obj/O in T)
 		if (!istype(O,/obj/machinery/light/small))
@@ -67,9 +67,7 @@
 	var/plant_time = 35
 	if(!isxenodrone(user))
 		plant_time = 25
-	if(!do_after(user, plant_time, TRUE, 5, BUSY_ICON_BUILD))
-		return
-	if(!T.check_alien_construction(user))
+	if(!do_after(user, plant_time, TRUE, T, BUSY_ICON_BUILD, extra_checks = CALLBACK(T, /turf/proc/check_alien_construction, user)))
 		return
 	if(!user.check_plasma(30))
 		return

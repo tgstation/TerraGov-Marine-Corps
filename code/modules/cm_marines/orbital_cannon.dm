@@ -1,4 +1,5 @@
-
+#define WARHEAD_FLY_TIME 50
+#define WARHEAD_FALLING_SOUND_RANGE 15
 
 //global vars
 var/obj/structure/orbital_cannon/almayer_orbital_cannon
@@ -142,7 +143,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	if(!loaded_tray)
 		to_chat(user, "<span class='warning'>You need to load the tray before chambering it.</span>")
 		return
-	
+
 	if(ob_cannon_busy)
 		return
 
@@ -181,10 +182,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 	update_icon()
 
-
-
-
-/obj/structure/orbital_cannon/proc/fire_ob_cannon(turf/T, mob/user, x_offset, y_offset)
+/obj/structure/orbital_cannon/proc/fire_ob_cannon(turf/T, mob/user)
 	set waitfor = 0
 
 	if(ob_cannon_busy)
@@ -213,24 +211,22 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 			inaccurate_fuel = abs(ob_type_fuel_requirements[3] - tray.fuel_amt)
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
+	for(var/M in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
+		SEND_SOUND(M, 'sound/effects/OB_incoming.ogg')
 
+	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), WARHEAD_FLY_TIME)
+
+/obj/structure/orbital_cannon/proc/impact_callback(target,inaccurate_fuel)
 	tray.warhead.warhead_impact(target, inaccurate_fuel)
 
-	sleep(11)
-
 	ob_cannon_busy = FALSE
-
 	chambered_tray = FALSE
 	tray.fuel_amt = 0
 	if(tray.warhead)
-		qdel(tray.warhead)
-		tray.warhead = null
+		QDEL_NULL(tray.warhead)
 	tray.update_icon()
 
 	update_icon()
-
-
-
 
 /obj/structure/orbital_tray
 	name = "loading tray"
@@ -260,8 +256,6 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 		linked_ob.tray = null
 		linked_ob = null
 	. = ..()
-
-
 
 /obj/structure/orbital_tray/bullet_act()
 	return
@@ -407,9 +401,6 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 		explosion(U, 1, 3, 5, 6, 1, 0) //rocket barrage
 		sleep(1)
 
-
-
-
 /obj/structure/ob_ammo/ob_fuel
 	name = "solid fuel"
 	icon_state = "ob_fuel"
@@ -449,7 +440,8 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the console.</span>",
 		"<span class='notice'>You fumble around figuring out how to use the console.</span>")
 		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			return
 
 	user.set_interaction(src)
 

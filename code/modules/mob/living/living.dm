@@ -691,6 +691,12 @@ below 100 is not dizzy
 
 	return canmove
 
+/mob/living/proc/update_leader_tracking(mob/living/L)
+	return
+
+/mob/living/proc/clear_leader_tracking()
+	return
+
 // called when the client disconnects and is away.
 /mob/living/proc/begin_away()
 	away_time = set_away_time(world.time)

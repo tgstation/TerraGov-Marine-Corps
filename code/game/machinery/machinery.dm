@@ -120,6 +120,9 @@ Class Procs:
 	var/wrenchable = FALSE
 	var/damage = 0
 	var/damage_cap = 1000 //The point where things start breaking down.
+	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
+	verb_say = "beeps"
+	verb_yell = "blares"
 
 /obj/machinery/attackby(obj/item/C as obj, mob/user as mob)
 	. = ..()
@@ -127,7 +130,7 @@ Class Procs:
 		var/obj/item/tool/pickaxe/plasmacutter/P = C
 		if(!P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
 			return
-		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P)
+		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, BUSY_ICON_HOSTILE))
 			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)
 			qdel()
 		return
@@ -328,6 +331,9 @@ Class Procs:
 		else if(prob(H.getBrainLoss()))
 			to_chat(user, "<span class='warning'>You momentarily forget how to use [src].</span>")
 			return 1
+
+	if(panel_open && (attempt_wire_interaction(user) == WIRE_INTERACTION_BLOCK))
+		return TRUE
 
 	src.add_fingerprint(user)
 

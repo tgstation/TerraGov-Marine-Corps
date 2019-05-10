@@ -7,26 +7,6 @@
 	icon_state = "almayer"
 	ceiling = CEILING_METAL
 
-/area/shuttle/almayer/elevator_maintenance/upperdeck
-	name = "\improper Maintenance Elevator"
-	icon_state = "shuttle"
-	fake_zlevel = 1
-
-/area/shuttle/almayer/elevator_maintenance/lowerdeck
-	name = "\improper Maintenance Elevator"
-	icon_state = "shuttle"
-	fake_zlevel = 2
-
-/area/shuttle/almayer/elevator_hangar/lowerdeck
-	name = "\improper Hangar Elevator"
-	icon_state = "shuttle"
-	fake_zlevel = 2 // lowerdeck
-
-/area/shuttle/almayer/elevator_hangar/underdeck
-	name = "\improper Hangar Elevator"
-	icon_state = "shuttle"
-	fake_zlevel = 3
-
 /area/almayer/command/cic
 	name = "\improper Combat Information Center"
 	icon_state = "cic"

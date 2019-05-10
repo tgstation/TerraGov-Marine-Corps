@@ -348,7 +348,7 @@
 			else
 				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Dead marines are now shown again.</span>")
 		if("choose_z")
-			switch(z_hidden) 
+			switch(z_hidden)
 				if(HIDE_NONE)
 					z_hidden = HIDE_ON_SHIP
 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [CONFIG_GET(string/ship_name)] are now hidden.</span>")
@@ -558,7 +558,7 @@
 	var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
 	if(target && istype(target))
 		target.ceiling_debris_check(5)
-		addtimer(CALLBACK(almayer_orbital_cannon, /obj/structure/orbital_cannon.proc/fire_ob_cannon, target, user), 2)
+		almayer_orbital_cannon.fire_ob_cannon(target,user)
 
 /obj/machinery/computer/overwatch/proc/change_lead()
 	if(!usr || usr != operator)
@@ -604,12 +604,10 @@
 
 	if(istype(H.wear_ear, /obj/item/radio/headset/almayer/marine))
 		var/obj/item/radio/headset/almayer/marine/R = H.wear_ear
-		if(!R.keyslot1)
-			R.keyslot1 = new /obj/item/encryptionkey/squadlead (src)
+		if(!R.keyslot)
+			R.keyslot = new /obj/item/encryptionkey/squadlead (src)
 		else if(!R.keyslot2)
 			R.keyslot2 = new /obj/item/encryptionkey/squadlead (src)
-		else if(!R.keyslot3)
-			R.keyslot3 = new /obj/item/encryptionkey/squadlead (src)
 		R.recalculateChannels()
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/ID = H.wear_id
@@ -913,8 +911,7 @@
 
 	user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
-	if(do_after(user, delay, TRUE, 5, BUSY_ICON_FRIENDLY))
-
+	if(do_after(user, delay, TRUE, src, BUSY_ICON_GENERIC))
 		squad.sbeacon = src
 		user.transferItemToLoc(src, user.loc)
 		activated = 1
@@ -965,7 +962,7 @@
 		delay = max(15, delay - 20*H.mind.cm_skills.leadership)
 	H.visible_message("<span class='notice'>[H] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
-	if(do_after(H, delay, TRUE, 5, BUSY_ICON_HOSTILE))
+	if(do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
 		message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
 		name = "transmitting orbital beacon"
 		active_orbital_beacons += src
@@ -997,7 +994,7 @@
 		delay = max(10, delay - 20 * H.mind.cm_skills.leadership)
 	H.visible_message("<span class='notice'>[H] starts removing [src] from the ground.</span>",
 	"<span class='notice'>You start removing [src] from the ground, deactivating it.</span>")
-	if(do_after(H, delay, TRUE, 5, BUSY_ICON_HOSTILE))
+	if(do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
 		message_admins("[ADMIN_TPMONTY(usr)] removed an orbital strike beacon.")
 		if(squad)
 			squad.squad_orbital_beacons -= src
@@ -1095,16 +1092,16 @@
 		return
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/order_icons.dmi', icon_state = "[order_type]")
-	
+
 	if(human.command_aura_cooldown > 0)
 		button.color = rgb(255,0,0,255)
 	else
 		button.color = rgb(255,255,255,255)
-		
+
 /datum/action/skill/issue_order/move
 	name = "Issue Move Order"
 	order_type = "move"
-		
+
 /datum/action/skill/issue_order/hold
 	name = "Issue Hold Order"
 	order_type = "hold"
@@ -1118,12 +1115,12 @@
 /datum/action/skill/toggle_orders
 	name = "Show/Hide Order Options"
 	skill_name = "leadership"
-	skill_min = SKILL_LEAD_TRAINED	
-	var/orders_visible = TRUE	
-	
+	skill_min = SKILL_LEAD_TRAINED
+	var/orders_visible = TRUE
+
 /datum/action/skill/toggle_orders/New()
-	return ..(/obj/item/megaphone)	
-	
+	return ..(/obj/item/megaphone)
+
 /datum/action/skill/toggle_orders/action_activate()
 	var/mob/living/carbon/human/H = owner
 	if(!istype(H))
@@ -1138,9 +1135,9 @@
 		var/list/subtypeactions = subtypesof(/datum/action/skill/issue_order)
 		for(var/path in subtypeactions)
 			var/datum/action/skill/issue_order/A = new path()
-			A.give_action(H)	
-	
-	
+			A.give_action(H)
+
+
 /mob/living/carbon/human/Initialize()
 	. = ..()
 	var/datum/action/skill/toggle_orders/toggle_orders_action = new

@@ -72,7 +72,7 @@
 				dat += "<b>Brief description</b>: [loaded_mod.desc]<br>"
 				if(istype(loaded_mod, /obj/item/hardpoint))
 					var/obj/item/hardpoint/H = loaded_mod
-					dat += "<b>Hardpoint integrity</b>: [PERCENT(H.health/H.maxhealth)]%<br>"
+					dat += "<b>Hardpoint integrity</b>: [PERCENT(H.obj_integrity/H.max_integrity)]%<br>"
 					if(H.starter_ammo)
 						var/ammo_count = H.ammo ? "[H.ammo] ([H.ammo.current_rounds]/[H.ammo.max_rounds])" : "No clip loaded"
 						dat += "<b>Current clip</b>: [ammo_count]<br>"
@@ -159,7 +159,7 @@
 			to_chat(user, "<span class='warning'>[W] appears to be stuck to your hands.</span>")
 	else if(iscrowbar(W) && machine_stat & (NOPOWER|BROKEN) && !QDELETED(loaded_mod))
 		user.visible_message("<span class='warning'>[user] starts to pry [src]'s maintenance slot open.</span>", "<span class='notice'>You start to pry [loaded_mod] out of [src]'s maintenance slot...</span>")
-		if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD) || QDELETED(src) || QDELETED(loaded_mod))
+		if(!do_after(user, 40, TRUE, src, BUSY_ICON_GENERIC) || QDELETED(loaded_mod))
 			return
 		user.visible_message("[user] pries [loaded_mod] out of [src].", "<span class='notice'>You retrieve [loaded_mod] from [src].</span>")
 		eject_tank_part()
@@ -186,7 +186,7 @@
 /obj/machinery/tank_part_fabricator/proc/calculate_mod_value()
 	if(istype(loaded_mod, /obj/item/hardpoint))
 		var/obj/item/hardpoint/mod = loaded_mod
-		. = (mod.point_cost - mod.point_cost * (1 - (mod.health/mod.maxhealth)) * 0.5) * 0.5
+		. = (mod.point_cost - mod.point_cost * (1 - (mod.obj_integrity/mod.max_integrity)) * 0.5) * 0.5
 		if(mod.starter_ammo)
 			if(mod.ammo)
 				. += (mod.ammo.point_cost - mod.ammo.point_cost * (1 - (mod.ammo.current_rounds/mod.ammo.max_rounds)) * 0.5) * 0.5
@@ -203,7 +203,7 @@
 /obj/machinery/tank_part_fabricator/proc/calculate_repair_price()
 	if(istype(loaded_mod, /obj/item/hardpoint))
 		var/obj/item/hardpoint/mod = loaded_mod
-		. = ((mod.point_cost - mod.point_cost * (mod.health/mod.maxhealth)) * 0.1)
+		. = ((mod.point_cost - mod.point_cost * (mod.obj_integrity/mod.max_integrity)) * 0.1)
 		if(mod.starter_ammo)
 			if(mod.ammo)
 				. += ((mod.ammo.point_cost - mod.ammo.point_cost * (mod.ammo.current_rounds/mod.ammo.max_rounds)) * 0.9)
@@ -241,7 +241,7 @@
 	tank_points -= cost
 	if(istype(loaded_mod, /obj/item/hardpoint))
 		var/obj/item/hardpoint/H = loaded_mod
-		H.health = H.maxhealth
+		H.obj_integrity = H.max_integrity
 		if(H.ammo)
 			H.ammo.current_rounds = H.ammo.max_rounds
 			H.ammo.update_icon()

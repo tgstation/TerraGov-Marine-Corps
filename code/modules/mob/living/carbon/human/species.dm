@@ -152,16 +152,16 @@
 /datum/species/proc/hug(var/mob/living/carbon/human/H,var/mob/living/target)
 	if(H.zone_selected == "head")
 		H.visible_message("<span class='notice'>[H] pats [target] on the head.</span>", \
-					"<span class='notice'>You pat [target] on the head.</span>", null, 4)	
+					"<span class='notice'>You pat [target] on the head.</span>", null, 4)
 	else
 		H.visible_message("<span class='notice'>[H] hugs [target] to make [target.p_them()] feel better!</span>", \
 					"<span class='notice'>You hug [target] to make [target.p_them()] feel better!</span>", null, 4)
 
 /datum/species/proc/random_name(gender)
 	if(gender == FEMALE)
-		return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+		return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 	else
-		return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+		return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
@@ -224,14 +224,15 @@
 	return
 
 /datum/species/proc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(species_flags & NO_CHEM_METABOLIZATION) //explicit
+	if(CHECK_BITFIELD(species_flags, NO_CHEM_METABOLIZATION)) //explicit
 		H.reagents.del_reagent(chem.id) //for the time being
 		return TRUE
-	if(species_flags & NO_OVERDOSE) //no stacking
-		for(var/datum/reagent/R in H.reagents)
-			if(R.volume > R.overdose_threshold)
-				H.reagents.remove_reagent(R, R.volume - R.overdose_threshold)
-				return FALSE
+	if(CHECK_BITFIELD(species_flags, NO_POISON) && istype(chem, /datum/reagent/toxin))
+		H.reagents.remove_reagent(chem.id, chem.custom_metabolism * H.metabolism_efficiency)
+		return TRUE
+	if(CHECK_BITFIELD(species_flags, NO_OVERDOSE)) //no stacking
+		if(chem.overdose_threshold && chem.volume > chem.overdose_threshold)
+			H.reagents.remove_reagent(chem.id, chem.volume - chem.overdose_threshold)
 	return FALSE
 
 /datum/species/human
@@ -401,7 +402,7 @@
 		H.update_body()
 
 /datum/species/moth/random_name()
-	return "[pick(moth_first)] [pick(moth_last)]"
+	return "[pick(GLOB.moth_first)] [pick(GLOB.moth_last)]"
 
 /datum/species/moth/proc/update_moth_wings(mob/living/carbon/human/H)
 	H.remove_overlay(MOTH_WINGS_LAYER)

@@ -15,7 +15,9 @@
 	if(!message)
 		return
 
-	custom_emote(EMOTE_VISIBLE, message, TRUE)
+	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+
+	emote("me", EMOTE_VISIBLE, message, TRUE)
 
 
 /mob/verb/whisper_verb(message as text)
@@ -42,9 +44,15 @@
 		to_chat(src, "<span class='warning'>Deadchat is globally muted</span>")
 		return
 
+	if(client.prefs.muted & MUTE_DEADCHAT)
+		to_chat(src, "<span class='warning'>You cannot emote in deadchat (muted).</span>")
+		return
+
 	if(client?.prefs && !(client.prefs.toggles_chat & CHAT_DEAD))
 		to_chat(usr, "<span class='warning'>You have deadchat muted.</span>")
 		return
+
+	log_talk(message, LOG_SAY, "ghost")
 
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
@@ -60,10 +68,6 @@
 			to_chat(M, rendered)
 
 
-/mob/proc/emote(act, type, message, player_caused)
-	return custom_emote(type, message, player_caused)
-
-
 /mob/proc/get_message_mode(message)
 	var/key = copytext(message, 1, 2)
 	if(key == "#")
@@ -77,5 +81,5 @@
 
 /mob/proc/check_emote(message)
 	if(copytext(message, 1, 2) == "*")
-		emote(copytext(message, 2, length(message) + 1), EMOTE_VISIBLE, null, TRUE)
+		emote(copytext(message, 2), intentional = TRUE)
 		return TRUE

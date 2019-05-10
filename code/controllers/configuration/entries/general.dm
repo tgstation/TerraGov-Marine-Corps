@@ -92,6 +92,8 @@ Administrative related.
 
 /datum/config_entry/flag/log_say
 
+/datum/config_entry/flag/log_telecomms
+
 /datum/config_entry/flag/log_hivemind
 
 /datum/config_entry/flag/log_runtime

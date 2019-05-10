@@ -174,28 +174,6 @@
 	name = "Circuit board (Mech Bay Power Control Console)"
 	build_path = /obj/machinery/computer/mech_bay_power_console
 	origin_tech = "programming=2;powerstorage=3"
-/obj/item/circuitboard/computer/ordercomp
-	name = "Circuit board (Supply ordering console)"
-	build_path = /obj/machinery/computer/ordercomp
-	origin_tech = "programming=2"
-
-/obj/item/circuitboard/computer/supplycomp
-	name = "Circuit board (Supply shuttle console)"
-	build_path = /obj/machinery/computer/supplycomp
-	origin_tech = "programming=3"
-	var/contraband_enabled = 0
-
-/obj/item/circuitboard/computer/supplycomp/construct(var/obj/machinery/computer/supplycomp/SC)
-	if (..(SC))
-		SC.can_order_contraband = contraband_enabled
-		if(contraband_enabled)
-			SC.req_access = list()
-		else
-			SC.req_access = list(ACCESS_MARINE_LOGISTICS)
-
-/obj/item/circuitboard/computer/supplycomp/deconstruct(var/obj/machinery/computer/supplycomp/SC)
-	if (..(SC))
-		contraband_enabled = SC.can_order_contraband
 
 /obj/item/circuitboard/computer/operating
 	name = "Circuit board (Operating Computer)"
@@ -209,23 +187,7 @@
 	name = "Circuit board (Telecommunications Server Monitor)"
 	build_path = /obj/machinery/computer/telecomms/server
 	origin_tech = "programming=3"
-/obj/item/circuitboard/computer/comm_traffic
-	name = "Circuitboard (Telecommunications Traffic Control)"
-	build_path = /obj/machinery/computer/telecomms/traffic
-	origin_tech = "programming=3"
 
-/obj/item/circuitboard/computer/mining_shuttle
-	name = "Circuit board (Mining Shuttle)"
-	build_path = /obj/machinery/computer/shuttle_control/mining
-	origin_tech = "programming=2"
-/obj/item/circuitboard/computer/engineering_shuttle
-	name = "Circuit board (Engineering Shuttle)"
-	build_path = /obj/machinery/computer/shuttle_control/engineering
-	origin_tech = "programming=2"
-/obj/item/circuitboard/computer/research_shuttle
-	name = "Circuit board (Research Shuttle)"
-	build_path = /obj/machinery/computer/shuttle_control/research
-	origin_tech = "programming=2"
 /obj/item/circuitboard/computer/HolodeckControl // Not going to let people get this, but it's just here for future
 	name = "Circuit board (Holodeck Control)"
 	build_path = /obj/machinery/computer/HolodeckControl
@@ -238,15 +200,11 @@
 	name = "Circuit board (Area Air Control)"
 	build_path = /obj/machinery/computer/area_atmos
 	origin_tech = "programming=2"
-/obj/item/circuitboard/computer/prison_shuttle
-	name = "Circuit board (Prison Shuttle)"
-	build_path = /obj/machinery/computer/prison_shuttle
-	origin_tech = "programming=2"
 
 
 /obj/item/circuitboard/computer/supplycomp/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I,/obj/item/multitool))
-		var/catastasis = src.contraband_enabled
+		var/catastasis = 0//src.contraband_enabled
 		var/opposite_catastasis
 		if(catastasis)
 			opposite_catastasis = "STANDARD"
@@ -257,8 +215,8 @@
 
 		switch( alert("Current receiver spectrum is set to: [catastasis]","Multitool-Circuitboard interface","Switch to [opposite_catastasis]","Cancel") )
 		//switch( alert("Current receiver spectrum is set to: " {(src.contraband_enabled) ? ("BROAD") : ("STANDARD")} , "Multitool-Circuitboard interface" , "Switch to " {(src.contraband_enabled) ? ("STANDARD") : ("BROAD")}, "Cancel") )
-			if("Switch to STANDARD","Switch to BROAD")
-				src.contraband_enabled = !src.contraband_enabled
+			//if("Switch to STANDARD","Switch to BROAD")
+				//src.contraband_enabled = !src.contraband_enabled
 
 			if("Cancel")
 				return

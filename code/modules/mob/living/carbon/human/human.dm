@@ -24,13 +24,13 @@
 	switch(pick("female", "male"))
 		if("female")
 			gender = FEMALE
-			name = pick(first_names_female) + " " + pick(last_names)
+			name = pick(GLOB.first_names_female) + " " + pick(GLOB.last_names)
 			real_name = name
 			voice_name = name
 
 		if("male")
 			gender = MALE
-			name = pick(first_names_male) + " " + pick(last_names)
+			name = pick(GLOB.first_names_male) + " " + pick(GLOB.last_names)
 			real_name = name
 			voice_name = name
 
@@ -150,7 +150,6 @@
 	. = ..()
 	. += "---"
 	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
-	.["Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
 	.["Drop Everything"] = "?_src_=vars;[HrefToken()];dropeverything=[REF(src)]"
 	.["Copy Outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
 
@@ -569,7 +568,7 @@
 			else
 				usr.visible_message("<span class='danger'>[usr] is trying to enable [src]'s internals.</span>", null, null, 3)
 
-			if(do_mob(usr, src, POCKET_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
+			if(do_mob(usr, src, POCKET_STRIP_DELAY, BUSY_ICON_GENERIC))
 				if (internal)
 					internal.add_fingerprint(usr)
 					internal = null
@@ -608,7 +607,7 @@
 			if(count)
 				log_combat(usr, src, "attempted to remove splints")
 
-				if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
+				if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 					var/limbcount = 0
 					for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
 						var/datum/limb/o = get_limb(organ)
@@ -629,7 +628,7 @@
 						visible_message("<span class='danger'>[usr] tears off \the [U.hastie] from [src]'s [U]!</span>", null, null, 5)
 					else
 						visible_message("<span class='danger'>[usr] is trying to take off \a [U.hastie] from [src]'s [U]!</span>", null, null, 5)
-						if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
+						if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE))
 							if(U == w_uniform && U.hastie)
 								U.remove_accessory(usr)
 
@@ -1191,7 +1190,8 @@
 			virus.cure(0)
 
 	undefibbable = FALSE
-	..()
+	
+	return ..()
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
 	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
@@ -1764,19 +1764,7 @@
 	return TRUE
 
 
-/mob/living/carbon/human/proc/purrbate()
-	if(overlays_standing["purrbation"])
-		remove_overlay("purrbation")
-		log_admin("[key_name(usr)] has removed purrbation from [key_name(src)].")
-		message_admins("[ADMIN_TPMONTY(usr)] has removed purrbation from [ADMIN_TPMONTY(src)].")
-	else
-		var/icon/ears = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kitty")
-		var/icon/earbit = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kittyinner")
-
-		ears.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
-		ears.Blend(earbit, ICON_OVERLAY)
-
-		overlays_standing["purrbation"] = ears
-		apply_overlay("purrbation")
-		log_admin("[key_name(usr)] has purrbated [key_name(src)].")
-		message_admins("[ADMIN_TPMONTY(usr)] has purrbated [ADMIN_TPMONTY(src)].")
+/mob/living/carbon/human/is_muzzled()
+	if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
+		return TRUE
+	return ..()

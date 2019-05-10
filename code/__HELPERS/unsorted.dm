@@ -252,24 +252,27 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			return 0
 	return 1
 
-//Ensure the frequency is within bounds of what it should be sending/recieving at
-/proc/sanitize_frequency(var/f)
-	f = round(f)
-	f = max(1441, f) // 144.1
-	f = min(1489, f) // 148.9
-	if ((f % 2) == 0) //Ensure the last digit is an odd number
-		f += 1
-	return f
 
-//Turns 1479 into 147.9
-/proc/format_frequency(var/f)
-	return "[round(f / 10)].[f % 10]"
+// Ensure the frequency is within bounds of what it should be sending/receiving at
+/proc/sanitize_frequency(frequency, free = FALSE)
+	. = round(frequency)
+	if(free)
+		. = CLAMP(frequency, MIN_FREE_FREQ, MAX_FREE_FREQ)
+	else
+		. = CLAMP(frequency, MIN_FREQ, MAX_FREQ)
+	if(!(. % 2)) // Ensure the last digit is an odd number
+		. += 1
+
+// Format frequency by moving the decimal.
+/proc/format_frequency(frequency)
+	frequency = text2num(frequency)
+	return "[round(frequency / 10)].[frequency % 10]"
 
 
 
 //This will update a mob's name, real_name, mind.name, GLOB.datacore records and id
 /mob/proc/fully_replace_character_name(oldname, newname)
-	if(!newname)	
+	if(!newname)
 		return FALSE
 
 	log_played_names(ckey, newname)
@@ -451,6 +454,27 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	if(M < 0)
 		return -M
 
+
+//ultra range (no limitations on distance, faster than range for distances > 8); including areas drastically decreases performance
+/proc/urange(dist = 0, atom/center = usr, orange = 0, areas = 0)
+	if(!dist)
+		if(!orange)
+			return list(center)
+		else
+			return list()
+
+	var/list/turfs = RANGE_TURFS(dist, center)
+	if(orange)
+		turfs -= get_turf(center)
+	. = list()
+	for(var/V in turfs)
+		var/turf/T = V
+		. += T
+		. += T.contents
+		if(areas)
+			. |= T.loc
+
+
 // returns the turf located at the map edge in the specified direction relative to A
 // used for mass driver
 /proc/get_edge_target_turf(var/atom/A, var/direction)
@@ -602,153 +626,8 @@ proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as te
 		if(!free_tile) return get_step(ref, base_dir)
 		else return get_step_towards(ref,free_tile)
 
-	else return get_step(ref, base_dir)
-
-
-var/global/image/busy_indicator_clock
-var/global/image/busy_indicator_medical
-var/global/image/busy_indicator_build
-var/global/image/busy_indicator_friendly
-var/global/image/busy_indicator_hostile
-
-/proc/get_busy_icon(busy_type)
-	if(busy_type == BUSY_ICON_GENERIC)
-		if(!busy_indicator_clock)
-			busy_indicator_clock = image('icons/mob/mob.dmi', null, "busy_generic", "pixel_y" = 22)
-			busy_indicator_clock.layer = FLY_LAYER
-		return busy_indicator_clock
-	else if(busy_type == BUSY_ICON_MEDICAL)
-		if(!busy_indicator_medical)
-			busy_indicator_medical = image('icons/mob/mob.dmi', null, "busy_medical", "pixel_y" = 0) //This shows directly on top of the mob, no offset!
-			busy_indicator_medical.layer = FLY_LAYER
-		return busy_indicator_medical
-	else if(busy_type == BUSY_ICON_BUILD)
-		if(!busy_indicator_build)
-			busy_indicator_build = image('icons/mob/mob.dmi', null, "busy_build", "pixel_y" = 22)
-			busy_indicator_build.layer = FLY_LAYER
-		return busy_indicator_build
-	else if(busy_type == BUSY_ICON_FRIENDLY)
-		if(!busy_indicator_friendly)
-			busy_indicator_friendly = image('icons/mob/mob.dmi', null, "busy_friendly", "pixel_y" = 22)
-			busy_indicator_friendly.layer = FLY_LAYER
-		return busy_indicator_friendly
-	else if(busy_type == BUSY_ICON_HOSTILE)
-		if(!busy_indicator_hostile)
-			busy_indicator_hostile = image('icons/mob/mob.dmi', null, "busy_hostile", "pixel_y" = 22)
-			busy_indicator_hostile.layer = FLY_LAYER
-		return busy_indicator_hostile
-
-
-
-/proc/do_mob(mob/user , mob/target, time = 30, show_busy_icon, show_target_icon, selected_zone_check)
-	if(!user || !target) return 0
-
-	var/image/busy_icon
-	if(show_busy_icon)
-		busy_icon = get_busy_icon(show_busy_icon)
-		if(busy_icon)
-			user.overlays += busy_icon
-
-	var/image/target_icon
-	if(show_target_icon) //putting a busy overlay on top of the target
-		target_icon = get_busy_icon(show_target_icon)
-		if(target_icon)
-			target.overlays += target_icon
-
-	user.action_busy = TRUE
-
-	var/cur_zone_sel
-	if(selected_zone_check)
-		cur_zone_sel = user.zone_selected
-
-	var/user_loc = user.loc
-	var/target_loc = target.loc
-	var/delayfraction = round(time/5)
-	var/holding = user.get_active_held_item()
-
-	. = TRUE
-	for(var/i = 0 to 5)
-		sleep(delayfraction)
-		if(!user || !target)
-			. = FALSE
-			break
-		if(user.loc != user_loc || target.loc != target_loc)
-			. = FALSE
-			break
-		if(user.get_active_held_item() != holding)
-			. = FALSE
-			break
-		if(user.incapacitated(TRUE) || user.lying)
-			. = FALSE
-			break
-		if(selected_zone_check && cur_zone_sel != user.zone_selected)
-			. = FALSE
-			break
-
-	if(user && busy_icon)
-		user.overlays -= busy_icon
-	if(target && target_icon)
-		target.overlays -= target_icon
-
-	user.action_busy = FALSE
-
-
-/proc/do_after(mob/user, delay, needhand = TRUE, numticks = 5, show_busy_icon, selected_zone_check, busy_check = FALSE) //hacky, will suffice for now.
-	if(!istype(user) || delay <= 0)
-		return FALSE
-
-	if(busy_check && user.action_busy)
-		to_chat(user, "<span class='warning'>You're already busy doing something!</span>")
-		return FALSE
-
-	var/mob/living/L
-	if(isliving(user))
-		L = user //No more doing things while you're in crit
-
-	var/image/busy_icon
-	if(show_busy_icon)
-		busy_icon = get_busy_icon(show_busy_icon)
-		if(busy_icon)
-			user.overlays += busy_icon
-
-	user.action_busy = TRUE
-
-	var/cur_zone_sel
-	if(selected_zone_check)
-		cur_zone_sel = user.zone_selected
-
-	var/original_loc = user.loc
-	var/original_turf = get_turf(user)
-	var/obj/holding = user.get_active_held_item()
-
-	. = TRUE
-	var/endtime = world.time + delay
-	while(world.time < endtime)
-		stoplag(1)
-		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.knocked_down || user.stunned)
-			. = FALSE
-			break
-		if(L?.health && L.health < L.get_crit_threshold())
-			. = FALSE //catching mobs below crit level but haven't had their stat var updated
-			break
-		if(needhand)
-			if(holding)
-				if(!holding.loc || user.get_active_held_item() != holding) //no longer holding the required item
-					. = FALSE
-					break
-			else if(user.get_active_held_item()) //something in active hand when we need it to stay empty
-				. = FALSE
-				break
-
-		if(selected_zone_check && cur_zone_sel != user.zone_selected) //changed the selected zone
-			. = FALSE
-			break
-
-	if(user && busy_icon)
-		user.overlays -= busy_icon
-
-	user.action_busy = FALSE
-
+	else
+		return get_step(ref, base_dir)
 
 //Takes: Anything that could possibly have variables and a varname to check.
 //Returns: 1 if found, 0 if not.
@@ -1423,6 +1302,40 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 //datum may be null, but it does need to be a typed var
 #define NAMEOF(datum, X) (#X || ##datum.##X)
 
+/proc/do_atom(atom/user, time = 30, atom/target, uninterruptible = FALSE, icon_display, datum/callback/extra_checks)
+	if(!user)
+		return FALSE
+
+	var/T = target ? TRUE : FALSE
+	var/atom/Tloc
+	if(target && !isturf(target))
+		Tloc = target.loc
+
+	var/atom/Uloc
+	if(!isturf(user))
+		Uloc = user.loc
+
+	var/datum/progressicon/I = icon_display ? new (user, target, icon_display) : null
+
+	var/endtime = world.time+time
+	. = TRUE
+	while (world.time < endtime)
+		stoplag(1)
+		if(QDELETED(user) || T && QDELETED(target) || (extra_checks && !extra_checks.Invoke()))
+			. = FALSE
+			break
+
+		if(uninterruptible)
+			continue
+
+		if(!QDELETED(Uloc) && user.loc != Uloc || !QDELETED(Tloc) && target.loc != Tloc)
+			. = FALSE
+			break
+
+	if(I)
+		qdel(I)
+
+
 // \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
 // If it ever becomes necesary to get a more performant REF(), this lies here in wait
 // #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
@@ -1522,9 +1435,22 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 // Bucket a value within boundary
 /proc/get_bucket(bucket_size, max, current, min = 0, list/boundary_terms)
 	if (length(boundary_terms) == 2)
-		if (current >= max) 
+		if (current >= max)
 			return boundary_terms[1]
 		if (current < min)
 			return boundary_terms[2]
 
 	return CEILING((bucket_size / max) * current, 1)
+
+/atom/proc/GetAllContentsIgnoring(list/ignore_typecache)
+	if(!length(ignore_typecache))
+		return GetAllContents()
+	var/list/processing = list(src)
+	var/list/assembled = list()
+	while(processing.len)
+		var/atom/A = processing[1]
+		processing.Cut(1,2)
+		if(!ignore_typecache[A.type])
+			processing += A.contents
+			assembled += A
+	return assembled

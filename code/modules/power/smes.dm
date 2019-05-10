@@ -237,9 +237,7 @@
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 
 		//var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-		if(!do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-			return
-		if(!C || C.get_amount() < 10)
+		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD) || C.get_amount() < 10)
 			return
 		var/obj/structure/cable/N = T.get_cable_node() //get the connecting node cable, if there's one
 		if (prob(50))

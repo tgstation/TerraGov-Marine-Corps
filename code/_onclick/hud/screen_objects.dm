@@ -446,7 +446,7 @@
 	if(usr.next_move >= world.time)
 		return TRUE
 
-	if(source_action.can_use_action())
+	if(source_action.can_use_action(FALSE, null, TRUE))
 		source_action.action_activate()
 	else
 		source_action.fail_activate()

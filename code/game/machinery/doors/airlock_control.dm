@@ -9,16 +9,18 @@ obj/machinery/door/airlock
 	var/cur_command = null	//the command the door is currently attempting to complete
 
 obj/machinery/door/airlock/proc/can_radio()
-	if(!arePowerSystemsOn())
+	if(!hasPower())
 		return 0
 	return 1
 
 obj/machinery/door/airlock/receive_signal(datum/signal/signal)
-	if (!arePowerSystemsOn()) return //no power
+	if(!hasPower()) 
+		return
 
 	if (!can_radio()) return //no radio
 
-	if(!signal || signal.encryption) return
+	if(!signal) 
+		return
 
 	if(id_tag != signal.data["tag"] || !signal.data["command"]) return
 

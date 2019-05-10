@@ -46,5 +46,5 @@
 // ***************************************
 /mob/living/carbon/Xenomorph/Defender/update_stat()
 	. = ..()
-	if(stat != CONSCIOUS && fortify == TRUE)
-		fortify_off() //Fortify prevents dragging due to the anchor component.
+	if(stat && fortify)
+		set_fortify(FALSE) //Fortify prevents dragging due to the anchor component.

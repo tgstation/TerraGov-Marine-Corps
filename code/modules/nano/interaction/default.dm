@@ -56,6 +56,9 @@ GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
 
 
 /mob/living/proc/shared_living_nano_distance(atom/movable/src_object)
+	if(istype(src_object, /datum/wires))
+		var/datum/wires/W = src_object
+		src_object = W.holder
 	if(!(src_object in view(4, src))) 	// If the src object is not visable, disable updates
 		return STATUS_CLOSE
 
@@ -78,6 +81,13 @@ GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
 			. = min(., loc.contents_nano_distance(src_object, src))
 	if(STATUS_INTERACTIVE)
 		return STATUS_UPDATE
+
+
+/mob/living/carbon/Xenomorph/default_can_use_topic(src_object)
+	. = shared_nano_interaction(src_object)
+	if(. != STATUS_CLOSE)
+		if(loc)
+			. = min(., loc.contents_nano_distance(src_object, src))
 
 
 /mob/living/carbon/human/default_can_use_topic(src_object)

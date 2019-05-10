@@ -139,13 +139,16 @@
 	hivenumber = HS.hivenumber // just to be sure
 	generate_name()
 
+	SSdirection.start_tracking(HS.hivenumber, src)
+
 /mob/living/carbon/Xenomorph/Queen/add_to_hive(datum/hive_status/HS, force=FALSE) // override to ensure proper queen/hive behaviour
 	. = ..()
 	HS.update_queen()
 
 	if(HS.living_xeno_queen) // theres already a queen
 		return
-	HS.living_xeno_queen = src
+
+	HS.set_queen(src)
 
 /mob/living/carbon/Xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE) // helper function to add by given hivenumber
 	if(!GLOB.hive_datums[hivenumber])
@@ -271,7 +274,7 @@
 		var/mob/living/carbon/Xenomorph/Queen/Q = i
 		if(is_centcom_level(Q.z))
 			continue
-		living_xeno_queen = Q
+		set_queen(Q)
 		if(announce)
 			xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
 		update_leader_pheromones()
@@ -284,10 +287,17 @@
 	start_queen_timer()
 	return TRUE
 
+/datum/hive_status/proc/set_queen(mob/living/carbon/Xenomorph/Queen/Q)
+	SSdirection.clear_leader(hivenumber)
+	if (Q != null)
+		SSdirection.set_leader(hivenumber, Q)
+	living_xeno_queen = Q
+
+
 // These are defined for per-hive behaviour
 /datum/hive_status/proc/on_queen_death(mob/living/carbon/Xenomorph/Queen/Q)
 	if(living_xeno_queen == Q)
-		living_xeno_queen = null
+		set_queen(null)
 	update_queen()
 	return TRUE
 

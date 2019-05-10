@@ -5,7 +5,6 @@ var/list/ai_list = list()
 var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/ai_alerts,
 	/mob/living/silicon/ai/proc/ai_announcement,
-	// /mob/living/silicon/ai/proc/ai_recall_shuttle,
 	/mob/living/silicon/ai/proc/ai_camera_track,
 	/mob/living/silicon/ai/proc/ai_camera_list,
 	/mob/living/silicon/ai/proc/ai_goto_location,
@@ -16,7 +15,6 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/ai_statuschange,
 	/mob/living/silicon/ai/proc/ai_store_location,
 	/mob/living/silicon/ai/proc/checklaws,
-	/mob/living/silicon/ai/proc/control_integrated_radio,
 	/mob/living/silicon/ai/proc/core,
 	/mob/living/silicon/ai/proc/pick_icon,
 	/mob/living/silicon/ai/proc/sensor_mode,
@@ -91,11 +89,11 @@ var/list/ai_verbs_default = list(
 	announcement.announcement_type = "A.I. Announcement"
 	announcement.newscast = 1
 
-	var/list/possibleNames = ai_names
+	var/list/possibleNames = GLOB.ai_names
 
 	var/pickedName = null
 	while(!pickedName)
-		pickedName = pick(ai_names)
+		pickedName = pick(GLOB.ai_names)
 		for (var/mob/living/silicon/ai/A in GLOB.ai_list)
 			if (A.real_name == pickedName && possibleNames.len > 1) //fixing the theoretically possible infinite loop
 				possibleNames -= pickedName
@@ -116,8 +114,6 @@ var/list/ai_verbs_default = list(
 		laws = new base_law_type
 
 	aiMulti = new(src)
-	aiRadio = new(src)
-	aiRadio.myAi = src
 	aiCamera = new/obj/item/camera/siliconcam/ai_camera(src)
 
 	if (istype(loc, /turf))
@@ -589,37 +585,17 @@ var/list/ai_verbs_default = list(
 
 
 /mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)
-	if(iswrench(W))
-		if(anchored)
-			user.visible_message("<span class='notice'> \The [user] starts to unbolt \the [src] from the plating...</span>")
-			if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-				user.visible_message("<span class='notice'> \The [user] decides not to unbolt \the [src].</span>")
+	if(iswrench(W) && user.a_intent != INTENT_HARM)
+		if(!user.action_busy)
+			var/un = anchored ? "un" : ""
+			user.visible_message("<span class='notice'> \The [user] starts to [un]bolt \the [src] [anchored ? "from" : "to"] the plating...</span>")
+			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				return
-			user.visible_message("<span class='notice'> \The [user] finishes unfastening \the [src]!</span>")
-			anchored = 0
-			return
-		else
-			user.visible_message("<span class='notice'> \The [user] starts to bolt \the [src] to the plating...</span>")
-			if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-				user.visible_message("<span class='notice'> \The [user] decides not to bolt \the [src].</span>")
-				return
-			user.visible_message("<span class='notice'> \The [user] finishes fastening down \the [src]!</span>")
-			anchored = 1
-			return
-	else
-		return ..()
-
-/mob/living/silicon/ai/proc/control_integrated_radio()
-	set name = "Radio Settings"
-	set desc = "Allows you to change settings of your radio."
-	set category = "AI Commands"
-
-	if(check_unable(AI_CHECK_RADIO))
+			user.visible_message("<span class='notice'> \The [user] finishes [un]fastening \the [src]!</span>")
+			anchored = !anchored
 		return
+	return ..()
 
-	to_chat(src, "Accessing Subspace Transceiver control...")
-	if (src.aiRadio)
-		src.aiRadio.interact(src)
 
 /mob/living/silicon/ai/proc/sensor_mode()
 	set name = "Set Sensor Augmentation"
@@ -634,9 +610,6 @@ var/list/ai_verbs_default = list(
 
 	if((flags & AI_CHECK_WIRELESS) && src.control_disabled)
 		to_chat(usr, "<span class='warning'>Wireless control is disabled!</span>")
-		return 1
-	if((flags & AI_CHECK_RADIO) && src.aiRadio.disabledAi)
-		to_chat(src, "<span class='warning'>System Error - Transceiver Disabled!</span>")
 		return 1
 	return 0
 

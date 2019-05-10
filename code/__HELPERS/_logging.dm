@@ -91,6 +91,11 @@
 		WRITE_LOG(GLOB.world_game_log, "SAY: [text]")
 
 
+/proc/log_telecomms(text)
+	if(CONFIG_GET(flag/log_telecomms))
+		WRITE_LOG(GLOB.world_telecomms_log, "TCOMMS: [text]")
+
+
 /proc/log_ooc(text)
 	if(CONFIG_GET(flag/log_ooc))
 		WRITE_LOG(GLOB.world_game_log, "OOC: [text]")

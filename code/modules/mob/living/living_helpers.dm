@@ -13,7 +13,7 @@
 /mob/living/proc/has_vision()
 	if(sdisabilities & BLIND)
 		return FALSE
-	if(get_total_tint() >= TINT_HEAVY)
+	if(get_total_tint() >= TINT_BLIND)
 		return FALSE
 	return has_eyes()
 

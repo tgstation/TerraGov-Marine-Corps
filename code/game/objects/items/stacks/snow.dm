@@ -29,7 +29,7 @@
 			else
 				to_chat(user, "<span class='notice'>You start taking snow from [src].</span>")
 				playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
-				if(!do_after(user, ET.shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
 					return
 				var/transf_amt = ET.dirt_amt_per_dig
 				if(amount < ET.dirt_amt_per_dig)
@@ -57,7 +57,7 @@
 				to_chat(user, "This ground is already full of snow.")
 				return
 			to_chat(user, "You start putting some snow back on the ground.")
-			if(!do_after(user, 15, FALSE, 5, BUSY_ICON_BUILD))
+			if(!do_after(user, 15, FALSE, target, BUSY_ICON_BUILD))
 				return
 			if(T.slayer >= 3)
 				return
@@ -92,7 +92,7 @@
 
 	user.visible_message("<span class='notice'>[user] starts assembling a snow barricade.</span>",
 	"<span class='notice'>You start assembling a snow barricade.</span>")
-	if(!do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 		return
 	if(amount < 3)
 		return

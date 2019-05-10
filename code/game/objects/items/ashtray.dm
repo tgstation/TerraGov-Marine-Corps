@@ -15,7 +15,7 @@
 	return
 
 /obj/item/ashtray/attackby(obj/item/W as obj, mob/user as mob)
-	if (health < 1)
+	if (obj_integrity < 1)
 		return
 	if (istype(W,/obj/item/trash/cigbutt) || istype(W,/obj/item/clothing/mask/cigarette) || istype(W, /obj/item/tool/match))
 		if (contents.len >= max_butts)
@@ -46,16 +46,16 @@
 			icon_state = icon_half
 			desc = empty_desc + " It's half-filled."
 	else
-		health = max(0,health - W.force)
+		obj_integrity = max(0,obj_integrity - W.force)
 		to_chat(user, "You hit [src] with [W].")
-		if (health < 1)
+		if (obj_integrity < 1)
 			die()
 	return
 
 /obj/item/ashtray/throw_impact(atom/hit_atom)
-	if (health > 0)
-		health = max(0,health - 3)
-		if (health < 1)
+	if (obj_integrity > 0)
+		obj_integrity = max(0,obj_integrity - 3)
+		if (obj_integrity < 1)
 			die()
 			return
 		if (contents.len)
@@ -80,7 +80,7 @@
 	icon_full  = "ashtray_full_bl"
 	icon_broken  = "ashtray_bork_bl"
 	max_butts = 14
-	health = 24.0
+	max_integrity = 24.0
 	matter = list("metal" = 30,"glass" = 30)
 	empty_desc = "Cheap plastic ashtray."
 	throwforce = 3.0
@@ -100,7 +100,7 @@
 	icon_full  = "ashtray_full_br"
 	icon_broken  = "ashtray_bork_br"
 	max_butts = 10
-	health = 72.0
+	max_integrity = 72.0
 	matter = list("metal" = 80)
 	empty_desc = "Massive bronze ashtray."
 	throwforce = 10.0
@@ -121,7 +121,7 @@
 	icon_full  = "ashtray_full_gl"
 	icon_broken  = "ashtray_bork_gl"
 	max_butts = 12
-	health = 12.0
+	max_integrity = 12.0
 	matter = list("glass" = 60)
 	empty_desc = "Glass ashtray. Looks fragile."
 	throwforce = 6.0

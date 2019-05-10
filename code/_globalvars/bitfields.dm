@@ -3,6 +3,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"ADMIN" = R_ADMIN ,
 		"MENTOR" = R_MENTOR,
 		"BAN" = R_BAN,
+		"ADMINTICKET" = R_ADMINTICKET,
 		"ASAY" = R_ASAY,
 		"FUN" = R_FUN,
 		"SERVER" = R_SERVER,
@@ -460,5 +461,21 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"ACID_PROOF" = ACID_PROOF,
 		"INDESTRUCTIBLE" = INDESTRUCTIBLE,
 		"FREEZE_PROOF" = FREEZE_PROOF
+		),
+	"vision_flags" = list(
+		"SEE_OBJS" = SEE_OBJS,
+		"SEE_MOBS" = SEE_MOBS,
+		"SEE_TURFS" = SEE_TURFS
+		),
+	"sight" = list(
+		"SEE_INFRA" = SEE_INFRA,
+		"SEE_SELF" = SEE_SELF,
+		"SEE_MOBS" = SEE_MOBS,
+		"SEE_OBJS" = SEE_OBJS,
+		"SEE_TURFS" = SEE_TURFS,
+		"SEE_PIXELS" = SEE_PIXELS,
+		"SEE_THRU" = SEE_THRU,
+		"SEE_BLACKNESS" = SEE_BLACKNESS,
+		"BLIND" = BLIND
 		)
 	))
