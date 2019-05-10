@@ -560,7 +560,7 @@
 		var/list/L = value
 		var/list/items = list()
 
-		if(length(L) > 0 && !(name == "underlays" || name == "overlays" || length(L) > (IS_NORMAL_LIST(L) ? 50 : 150)))
+		if(length(L) > 0 && DA?.vv_edit_var(name, L) && !(name == "underlays" || name == "overlays" || length(L) > (IS_NORMAL_LIST(L) ? 50 : 150)))
 			for(var/i in 1 to L.len)
 				var/key = L[i]
 				var/val
@@ -573,8 +573,10 @@
 				items += debug_variable(key, val, level + 1, sanitize = sanitize)
 
 			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([L.len])</a><ul>[items.Join()]</ul>"
-		else
+		else if(DA?.vv_edit_var(name, L))
 			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([L.len])</a>"
+		else
+			item = "[VV_HTML_ENCODE(name)] = /list ([L.len])"
 
 	else if(name in GLOB.bitfields)
 		var/list/flags = list()

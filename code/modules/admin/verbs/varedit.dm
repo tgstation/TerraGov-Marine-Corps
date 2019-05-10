@@ -351,11 +351,12 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 	switch(alert("Would you like to associate a value with the list entry?",,"Yes","No"))
 		if("Yes")
-			L[var_value] = mod_list_add_ass(O) //hehe
-	if (O)
-		if (O.vv_edit_var(objectvar, L) == FALSE)
-			to_chat(src, "Your edit was rejected by the object.")
-			return
+			L[var_value] = mod_list_add_ass(O)
+
+	if(O && !O.vv_edit_var(objectvar, L))
+		to_chat(src, "Your edit was rejected by the object.")
+		return
+
 	log_world("### ListVarEdit by [src]: [(O ? O.type : "/list")] [objectvar]: ADDED=[var_value]")
 	log_admin("[key_name(src)] modified [original_name]'s [objectvar]: ADDED=[var_value]")
 	message_admins("[key_name_admin(src)] modified [original_name]'s [objectvar]: ADDED=[var_value]")
@@ -363,11 +364,12 @@ GLOBAL_PROTECT(VVpixelmovement)
 /client/proc/mod_list(list/L, atom/O, original_name, objectvar, index, autodetect_class = FALSE)
 	if(!check_rights(R_VAREDIT))
 		return
+
 	if(!istype(L, /list))
 		to_chat(src, "Not a List.")
 		return
 
-	if(L.len > 1000)
+	if(length(L) > 1000)
 		var/confirm = alert(src, "The list you're trying to edit is very long, continuing may crash the server.", "Warning", "Continue", "Abort")
 		if(confirm != "Continue")
 			return
@@ -390,35 +392,38 @@ GLOBAL_PROTECT(VVpixelmovement)
 			return
 
 		if(variable == "(ADD VAR)")
+			if(!O.vv_edit_var(objectvar, L))
+				to_chat(src, "Your edit was rejected by the object.")
+				return
 			mod_list_add(L, O, original_name, objectvar)
 			return
 
 		if(variable == "(CLEAR NULLS)")
-			L = L.Copy()
-			listclearnulls(L)
-			if (!O.vv_edit_var(objectvar, L))
+			if(!O.vv_edit_var(objectvar, L))
 				to_chat(src, "Your edit was rejected by the object.")
 				return
+			L = L.Copy()
+			listclearnulls(L)
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: CLEAR NULLS")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: CLEAR NULLS")
 			message_admins("[key_name_admin(src)] modified [original_name]'s list [objectvar]: CLEAR NULLS")
 			return
 
 		if(variable == "(CLEAR DUPES)")
-			L = uniqueList(L)
-			if (!O.vv_edit_var(objectvar, L))
+			if(!O.vv_edit_var(objectvar, L))
 				to_chat(src, "Your edit was rejected by the object.")
 				return
+			L = uniqueList(L)
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: CLEAR DUPES")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: CLEAR DUPES")
 			message_admins("[key_name_admin(src)] modified [original_name]'s list [objectvar]: CLEAR DUPES")
 			return
 
 		if(variable == "(SHUFFLE)")
-			L = shuffle(L)
-			if (!O.vv_edit_var(objectvar, L))
+			if(!O.vv_edit_var(objectvar, L))
 				to_chat(src, "Your edit was rejected by the object.")
 				return
+			L = shuffle(L)
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: SHUFFLE")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: SHUFFLE")
 			message_admins("[key_name_admin(src)] modified [original_name]'s list [objectvar]: SHUFFLE")
@@ -489,11 +494,12 @@ GLOBAL_PROTECT(VVpixelmovement)
 			mod_list(variable, O, original_name, objectvar)
 
 		if("DELETE FROM LIST")
-			L.Cut(index, index+1)
-			if (O)
-				if (O.vv_edit_var(objectvar, L))
-					to_chat(src, "Your edit was rejected by the object.")
-					return
+			if(O && !O.vv_edit_var(objectvar, L))
+				to_chat(src, "Your edit was rejected by the object.")
+				return
+
+			L.Cut(index, index + 1)
+
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: REMOVED=[html_encode("[original_var]")]")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: REMOVED=[original_var]")
 			message_admins("[key_name_admin(src)] modified [original_name]'s [objectvar]: REMOVED=[original_var]")
@@ -509,10 +515,11 @@ GLOBAL_PROTECT(VVpixelmovement)
 		L[assoc_key] = new_var
 	else
 		L[index] = new_var
-	if (O)
-		if (O.vv_edit_var(objectvar, L) == FALSE)
-			to_chat(src, "Your edit was rejected by the object.")
-			return
+
+	if(O && !O.vv_edit_var(objectvar, L))
+		to_chat(src, "Your edit was rejected by the object.")
+		return
+
 	log_world("### ListVarEdit by [src]: [(O ? O.type : "/list")] [objectvar]: [original_var]=[new_var]")
 	log_admin("[key_name(src)] modified [original_name]'s [objectvar]: [original_var]=[new_var]")
 	message_admins("[key_name_admin(src)] modified [original_name]'s varlist [objectvar]: [original_var]=[new_var]")
@@ -626,9 +633,10 @@ GLOBAL_PROTECT(VVpixelmovement)
 				var_new = replacetext(var_new,"\[[V]]","[O.vars[V]]")
 
 
-	if(O.vv_edit_var(variable, var_new) == FALSE)
+	if(!O.vv_edit_var(variable, var_new))
 		to_chat(src, "Your edit was rejected by the object.")
 		return
+
 	vv_update_display(O, "varedited", VV_MSG_EDITED)
 	log_world("### VarEdit by [key_name(src)]: [O.type] [variable]=[var_value] => [var_new]")
 	log_admin("[key_name(src)] modified [original_name]'s [variable] from [html_encode("[var_value]")] to [html_encode("[var_new]")]")
