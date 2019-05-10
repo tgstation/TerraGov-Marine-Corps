@@ -95,6 +95,7 @@
 
 /obj/effect/particle_effect/smoke/proc/apply_smoke_effect(turf/T)
 	if(!T)
+		qdel(src)
 		return
 	T.effect_smoke(src)
 	for(var/V in T)
