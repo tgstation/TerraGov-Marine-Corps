@@ -335,7 +335,7 @@
 		if(M.contents.len)
 			if(contents.len < storage_slots)
 				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
+				if(!do_after(user, 15, TRUE, W))
 					return
 				for(var/obj/item/I in M)
 					if(contents.len < storage_slots)
@@ -467,7 +467,7 @@
 		if(M.current_rounds)
 			if(contents.len < storage_slots)
 				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
+				if(!do_after(user, 15, TRUE, src))
 					return
 				for(var/x = 1 to (storage_slots - contents.len))
 					var/cont = handle_item_insertion(M.create_handful(), 1, user)

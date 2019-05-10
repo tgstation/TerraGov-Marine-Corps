@@ -101,14 +101,15 @@
 
 	if(mind?.name)
 		ghost.real_name = mind.name
+
+	else if(real_name)
+		ghost.real_name = real_name
+
+	else if(gender == MALE)
+		ghost.real_name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+		
 	else
-		if(real_name)
-			ghost.real_name = real_name
-		else
-			if(gender == MALE)
-				ghost.real_name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
-			else
-				ghost.real_name = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
+		ghost.real_name = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 
 	ghost.name = ghost.real_name
 

@@ -57,6 +57,8 @@
 
 /turf/open/floor/almayer/empty/Entered(var/atom/movable/AM)
 	..()
+	if(istype(AM, /obj/docking_port))
+		return
 	spawn(2)
 		if(AM.throwing == 0 && istype(get_turf(AM), /turf/open/floor/almayer/empty))
 			AM.visible_message("<span class='warning'>[AM] falls into the depths!</span>", "<span class='warning'>You fall into the depths!</span>")
@@ -214,7 +216,7 @@
 		user.visible_message("<span class='notice'>[user] starts removing [src]'s protective cover.</span>",
 		"<span class='notice'>You start removing [src]'s protective cover.</span>")
 		playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			new /obj/item/stack/rods(src, 2)
 			ChangeTurf(/turf/open/floor)
 			var/turf/open/floor/F = src

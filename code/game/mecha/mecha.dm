@@ -146,11 +146,6 @@
 	pr_inertial_movement = new /datum/global_iterator/mecha_intertial_movement(null,0)
 	pr_internal_damage = new /datum/global_iterator/mecha_internal_damage(list(src),0)
 
-/obj/mecha/proc/do_after(delay as num)
-	sleep(delay)
-	if(src)
-		return TRUE
-	return FALSE
 
 /obj/mecha/proc/enter_after(delay as num, var/mob/user as mob, var/numticks = 5)
 	var/delayfraction = delay/numticks
@@ -284,10 +279,12 @@
 			if(!src.check_for_support())
 				src.pr_inertial_movement.start(list(src,direction))
 				src.log_message("Movement control lost. Inertial movement started.")
-		if(do_after(step_in))
-			can_move = TRUE
+		addtimer(CALLBACK(src, .proc/can_move_again), step_in)
 		return TRUE
 	return FALSE
+
+/obj/mecha/proc/can_move_again()
+	can_move = TRUE
 
 /obj/mecha/proc/mechturn(direction)
 	setDir(direction)
@@ -1481,7 +1478,7 @@
 		var/mob/occupant = P.occupant
 
 		user.visible_message("<span class='warning'> [user] begins opening the hatch on \the [P]...</span>", "<span class='warning'> You begin opening the hatch on \the [P]...</span>")
-		if (!do_after(user, 40, FALSE, 5, BUSY_ICON_GENERIC))
+		if(!do_after(user, 40, FALSE, src, BUSY_ICON_HOSTILE))
 			return
 
 		user.visible_message("<span class='warning'> [user] opens the hatch on \the [P] and removes [occupant]!</span>", "<span class='warning'> You open the hatch on \the [P] and remove [occupant]!</span>")
@@ -1521,16 +1518,18 @@
 		src.occupant_message("Recalibrating coordination system.")
 		src.log_message("Recalibration of coordination system started.")
 		var/T = src.loc
-		if(do_after(100))
-			if(T == src.loc)
-				src.clearInternalDamage(MECHA_INT_CONTROL_LOST)
-				src.occupant_message("<font color='blue'>Recalibration successful.</font>")
-				src.log_message("Recalibration of coordination system finished with 0 errors.")
-			else
-				src.occupant_message("<font color='red'>Recalibration failed.</font>")
-				src.log_message("Recalibration of coordination system failed with 1 error.", color="red")
-
+		addtimer(CALLBACK(src, .proc/recalibrate, T), 100)
 	return
+
+/obj/mecha/proc/recalibrate(location)
+	if(loc == location)
+		clearInternalDamage(MECHA_INT_CONTROL_LOST)
+		occupant_message("<font color='blue'>Recalibration successful.</font>")
+		log_message("Recalibration of coordination system finished with 0 errors.")
+	else
+		occupant_message("<font color='red'>Recalibration failed.</font>")
+		log_message("Recalibration of coordination system failed with 1 error.", color="red")
+
 
 ///////////////////////
 ///// Power stuff /////

@@ -74,7 +74,7 @@
 			return
 		to_chat(usr, "<span class='notice'>Assembling grille...</span>")
 		ENABLE_BITFIELD(obj_flags, IN_USE)
-		if (!do_after(usr, 20, TRUE, 5, BUSY_ICON_BUILD))
+		if (!do_after(usr, 20, TRUE, src, BUSY_ICON_BUILD))
 			DISABLE_BITFIELD(obj_flags, IN_USE)
 			return
 		var/obj/structure/grille/F = new /obj/structure/grille/ ( usr.loc )

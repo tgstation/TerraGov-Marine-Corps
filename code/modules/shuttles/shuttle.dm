@@ -11,9 +11,6 @@
 	var/target_rotation = 0
 	var/list/shuttle_turfs = null
 
-	var/docking_controller_tag	//tag of the controller used to coordinate docking
-	var/datum/computer/file/embedded_program/docking/docking_controller	//the controller itself. (micro-controller, not game controller)
-
 	var/arrive_time = 0	//the time at which the shuttle arrives when long jumping
 
 	//Important note: Shuttle code is a mess, recharge vars will only work fully on ferry type shuttles, aka everything but specops snowflake
@@ -114,25 +111,16 @@
 				D.open()
 
 /datum/shuttle/proc/dock()
-	if (!docking_controller)
-		return
-
-	var/dock_target = current_dock_target()
-	if (!dock_target)
-		return
-
-	docking_controller.initiate_docking(dock_target)
+	return
 
 /datum/shuttle/proc/undock()
-	if (!docking_controller)
-		return
-	docking_controller.initiate_undocking()
+	return
 
 /datum/shuttle/proc/current_dock_target()
 	return null
 
 /datum/shuttle/proc/skip_docking_checks()
-	if (!docking_controller || !current_dock_target())
+	if (!current_dock_target())
 		return 1	//shuttles without docking controllers or at locations without docking ports act like old-style shuttles
 	return 0
 
@@ -149,9 +137,6 @@
 	if(origin == destination)
 		//to_chat(world, "cancelling move, shuttle will overlap.")
 		return
-
-	if (docking_controller && !docking_controller.undocked())
-		docking_controller.force_undock()
 
 	for(var/turf/T in destination)
 		for(var/obj/O in T)

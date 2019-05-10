@@ -244,7 +244,7 @@
 	visible_message("<span class='xenowarning'>\The [src] begins pulling on [M]'s [L.display_name] with incredible strength!</span>", \
 	"<span class='xenowarning'>You begin to pull on [M]'s [L.display_name] with incredible strength!</span>")
 
-	if(!do_after(src, limb_time, TRUE, 5, BUSY_ICON_HOSTILE, 1) || M.stat == DEAD)
+	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
 		to_chat(src, "<span class='notice'>You stop ripping off the limb.</span>")
 		return FALSE
 
@@ -262,7 +262,7 @@
 		L.fracture()
 	log_message(src, M, "ripped the [L.display_name] off", addition="1/2 progress")
 
-	if(!do_after(src, limb_time, TRUE, 5, BUSY_ICON_HOSTILE)  || M.stat == DEAD)
+	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
 		to_chat(src, "<span class='notice'>You stop ripping off the limb.</span>")
 		return FALSE
 

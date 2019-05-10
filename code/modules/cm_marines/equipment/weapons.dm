@@ -70,7 +70,7 @@
 	if(!automatic)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun>0)
 			reload_duration = max(reload_duration - 10*user.mind.cm_skills.smartgun,30)
-		if(do_after(user,reload_duration, TRUE, 5, BUSY_ICON_FRIENDLY))
+		if(do_after(user,reload_duration, TRUE, src, BUSY_ICON_GENERIC))
 			reload(user, mygun)
 			A.update_hud(user)
 		else

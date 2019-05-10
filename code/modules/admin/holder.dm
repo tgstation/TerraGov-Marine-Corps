@@ -496,7 +496,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 		return FALSE
 	if(!C?.holder?.rank?.rights)
 		return FALSE
-	if(check_other_rights(C, R_ADMIN, FALSE))
+	if(check_other_rights(C, R_ADMINTICKET, FALSE))
 		return FALSE
 	if(!check_other_rights(C, R_MENTOR, FALSE))
 		return FALSE

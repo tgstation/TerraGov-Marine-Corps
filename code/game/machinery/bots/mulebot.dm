@@ -48,34 +48,20 @@
 	var/obj/item/cell/cell
 						// the installed power cell
 
-	// constants for internal wiring bitflags
-	var/const/wire_power1 = 1			// power connections
-	var/const/wire_power2 = 2
-	var/const/wire_mobavoid = 4		// mob avoidance
-	var/const/wire_loadcheck = 8		// load checking (non-crate)
-	var/const/wire_motor1 = 16		// motor wires
-	var/const/wire_motor2 = 32		//
-	var/const/wire_remote_rx = 64		// remote recv functions
-	var/const/wire_remote_tx = 128	// remote trans status
-	var/const/wire_beacon_rx = 256	// beacon ping recv
-	var/const/wire_beacon_tx = 512	// beacon ping trans
-
-	var/wires = 1023		// all flags on
-
 	var/list/wire_text	// list of wire colours
 	var/list/wire_order	// order of wire indices
 
 
 	var/bloodiness = 0		// count of bloodiness
 
-/obj/machinery/bot/mulebot/Initialize()
+/obj/machinery/bot/mulebot/Initialize(mapload, ...)
 	. = ..()
+	wires = new /datum/wires/mulebot(src)
 	botcard = new(src)
 	botcard.access = ALL_MARINE_ACCESS
 	cell = new(src)
 	cell.charge = 2000
 	cell.maxcharge = 2000
-	setup_wires()
 
 	if(SSradio)
 		SSradio.add_object(src, control_freq, filter = RADIO_MULEBOT)
@@ -91,23 +77,9 @@
 	verbs -= /atom/movable/verb/pull
 
 
-// set up the wire colours in random order
-// and the random wire display order
-// needs 10 wire colours
-/obj/machinery/bot/mulebot/proc/setup_wires()
-	var/list/colours = list("Red", "Green", "Blue", "Magenta", "Cyan", "Yellow", "Black", "White", "Orange", "Grey")
-	var/list/orders = list("0","1","2","3","4","5","6","7","8","9")
-	wire_text = list()
-	wire_order = list()
-	while(colours.len > 0)
-		var/colour = colours[ rand(1,colours.len) ]
-		wire_text += colour
-		colours -= colour
-
-		var/order = orders[ rand(1,orders.len) ]
-		wire_order += text2num(order)
-		orders -= order
-
+/obj/machinery/bot/mulebot/Destroy()
+	QDEL_NULL(wires)
+	return ..()
 
 
 // attack by item
@@ -199,6 +171,9 @@
 	interact(user, 0)
 
 /obj/machinery/bot/mulebot/interact(var/mob/user, var/ai=0)
+	if(open && !isAI(user))
+		wires.interact(user)
+
 	var/dat
 	dat += "<TT><B>Multiple Utility Load Effector Mk. III</B></TT><BR><BR>"
 	dat += "ID: [suffix]<BR>"
@@ -255,8 +230,6 @@
 				dat += "<A href='byond://?src=\ref[src];op=cellremove'>Installed</A><BR>"
 			else
 				dat += "<A href='byond://?src=\ref[src];op=cellinsert'>Removed</A><BR>"
-
-			dat += wires()
 		else
 			dat += "The bot is in maintenance mode and cannot be controlled.<BR>"
 
@@ -264,18 +237,6 @@
 	onclose(user, "mulebot")
 	return
 
-// returns the wire panel text
-/obj/machinery/bot/mulebot/proc/wires()
-	var/t = ""
-	for(var/i = 0 to 9)
-		var/index = 1<<wire_order[i+1]
-		t += "[wire_text[i+1]] wire: "
-		if(index & wires)
-			t += "<A href='byond://?src=\ref[src];op=wirecut;wire=[index]'>(cut)</A> <A href='byond://?src=\ref[src];op=wirepulse;wire=[index]'>(pulse)</A><BR>"
-		else
-			t += "<A href='byond://?src=\ref[src];op=wiremend;wire=[index]'>(mend)</A><BR>"
-
-	return t
 
 
 
@@ -389,38 +350,6 @@
 				usr.unset_interaction()
 				usr << browse(null,"window=mulebot")
 
-
-			if("wirecut")
-				if(iswirecutter(usr.get_active_held_item()))
-					var/wirebit = text2num(href_list["wire"])
-					wires &= ~wirebit
-				else
-					to_chat(usr, "<span class='notice'>You need wirecutters!</span>")
-			if("wiremend")
-				if(iswirecutter(usr.get_active_held_item()))
-					var/wirebit = text2num(href_list["wire"])
-					wires |= wirebit
-				else
-					to_chat(usr, "<span class='notice'>You need wirecutters!</span>")
-
-			if("wirepulse")
-				if(ismultitool(usr.get_active_held_item()))
-					switch(href_list["wire"])
-						if("1","2")
-							to_chat(usr, "<span class='notice'>[icon2html(src, usr)] The charge light flickers.</span>")
-						if("4")
-							to_chat(usr, "<span class='notice'>[icon2html(src, usr)] The external warning lights flash briefly.</span>")
-						if("8")
-							to_chat(usr, "<span class='notice'>[icon2html(src, usr)] The load platform clunks.</span>")
-						if("16", "32")
-							to_chat(usr, "<span class='notice'>[icon2html(src, usr)] The drive motor whines briefly.</span>")
-						else
-							to_chat(usr, "<span class='notice'>[icon2html(src, usr)] You hear a radio crackle.</span>")
-				else
-					to_chat(usr, "<span class='notice'>You need a multitool!</span>")
-
-
-
 		updateDialog()
 		//src.updateUsrDialog()
 	else
@@ -432,7 +361,7 @@
 
 // returns true if the bot has power
 /obj/machinery/bot/mulebot/proc/has_power()
-	return !open && cell && cell.charge>0 && (wires & wire_power1) && (wires & wire_power2)
+	return !open && cell && cell.charge > 0 && (!wires.is_cut(WIRE_POWER1) && !wires.is_cut(WIRE_POWER2))
 
 // mousedrop a crate to load the bot
 // can load anything if emagged
@@ -453,7 +382,7 @@
 
 // called to load a crate
 /obj/machinery/bot/mulebot/proc/load(var/atom/movable/C)
-	if((wires & wire_loadcheck) && !istype(C,/obj/structure/closet/crate))
+	if(!wires.is_cut(WIRE_LOADCHECK) && !istype(C,/obj/structure/closet/crate))
 		src.visible_message("[src] makes a sighing buzz.", "You hear an electronic buzzing sound.")
 		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 25, 0)
 		return		// if not emagged, only allow crates to be loaded
@@ -550,30 +479,32 @@
 	if(!has_power())
 		on = 0
 		return
-	if(on)
-		var/speed = ((wires & wire_motor1) ? 1:0) + ((wires & wire_motor2) ? 2:0)
-		//to_chat(world, "speed: [speed]")
-		switch(speed)
-			if(0)
-				// do nothing
-			if(1)
-				process_bot()
-				spawn(2)
-					process_bot()
-					sleep(2)
-					process_bot()
-					sleep(2)
-					process_bot()
-					sleep(2)
-					process_bot()
-			if(2)
-				process_bot()
-				spawn(4)
-					process_bot()
-			if(3)
-				process_bot()
+	if(!on)
+		return
 
-	if(refresh) updateDialog()
+	var/speed = (wires.is_cut(WIRE_MOTOR1) ? 0 : 1) + (wires.is_cut(WIRE_MOTOR2) ? 0 : 2)
+	switch(speed)
+		if(0)
+			// do nothing
+		if(1)
+			process_bot()
+			spawn(2)
+				process_bot()
+				sleep(2)
+				process_bot()
+				sleep(2)
+				process_bot()
+				sleep(2)
+				process_bot()
+		if(2)
+			process_bot()
+			spawn(4)
+				process_bot()
+		if(3)
+			process_bot()
+
+	if(refresh) 
+		updateDialog()
 
 /obj/machinery/bot/mulebot/proc/process_bot()
 	//if(mode) to_chat(world, "Mode: [mode]")
@@ -720,7 +651,6 @@
 		mode = 3
 	else
 		mode = 2
-	icon_state = "mulebot[(wires & wire_mobavoid) == wire_mobavoid]"
 
 // starts bot moving to home
 // sends a beacon query to find
@@ -728,7 +658,6 @@
 	spawn(0)
 		set_destination(home_destination)
 		mode = 4
-	icon_state = "mulebot[(wires & wire_mobavoid) == wire_mobavoid]"
 
 // called when bot reaches current target
 /obj/machinery/bot/mulebot/proc/at_target()
@@ -743,7 +672,7 @@
 			// not loaded
 			if(auto_pickup)		// find a crate
 				var/atom/movable/AM
-				if(!(wires & wire_loadcheck))		// if emagged, load first unanchored thing we find
+				if(wires.is_cut(WIRE_LOADCHECK))		// if emagged, load first unanchored thing we find
 					for(var/atom/movable/A in get_step(loc, loaddir))
 						if(!A.anchored)
 							AM = A
@@ -767,7 +696,7 @@
 
 // called when bot bumps into anything
 /obj/machinery/bot/mulebot/Bump(var/atom/obs)
-	if(!(wires & wire_mobavoid))		//usually just bumps, but if avoidance disabled knock over mobs
+	if(wires.is_cut(WIRE_AVOIDANCE))		//usually just bumps, but if avoidance disabled knock over mobs
 		var/mob/M = obs
 		if(ismob(M))
 			if(istype(M,/mob/living/silicon/robot))
@@ -823,12 +752,12 @@
 	*/
 	var/recv = signal.data["command"]
 	// process all-bot input
-	if(recv=="bot_status" && (wires & wire_remote_rx))
+	if(recv=="bot_status" && !wires.is_cut(WIRE_RX))
 		send_status()
 
 
 	recv = signal.data["command [suffix]"]
-	if(wires & wire_remote_rx)
+	if(!wires.is_cut(WIRE_RX))
 		// process control input
 		switch(recv)
 			if("stop")
@@ -868,7 +797,7 @@
 
 	// receive response from beacon
 	recv = signal.data["beacon"]
-	if(wires & wire_beacon_rx)
+	if(!wires.is_cut(WIRE_RX))
 		if(recv == new_destination)	// if the recvd beacon location matches the set destination
 									// the we will navigate there
 			destination = new_destination
@@ -878,7 +807,7 @@
 				loaddir = text2num(direction)
 			else
 				loaddir = 0
-			icon_state = "mulebot[(wires & wire_mobavoid) == wire_mobavoid]"
+			icon_state = "mulebot[!wires.is_cut(WIRE_AVOIDANCE)]"
 			calc_path()
 			updateDialog()
 
@@ -889,9 +818,9 @@
 // send a radio signal with multiple data key/values
 /obj/machinery/bot/mulebot/proc/post_signal_multiple(var/freq, var/list/keyval)
 
-	if(freq == beacon_freq && !(wires & wire_beacon_tx))
+	if(freq == beacon_freq && wires.is_cut(WIRE_TX))
 		return
-	if(freq == control_freq && !(wires & wire_remote_tx))
+	if(freq == control_freq && wires.is_cut(WIRE_TX))
 		return
 
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(freq)

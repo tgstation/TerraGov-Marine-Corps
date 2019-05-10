@@ -99,9 +99,9 @@
 	data = list(
 		"shuttle_status" = shuttle_status,
 		"shuttle_state" = shuttle_state,
-		"has_docking" = shuttle.docking_controller? 1 : 0,
-		"docking_status" = shuttle.docking_controller? shuttle.docking_controller.get_docking_status() : null,
-		"docking_override" = shuttle.docking_controller? shuttle.docking_controller.override_enabled : null,
+		"has_docking" = 0,
+		"docking_status" = null,
+		"docking_override" = null,
 		"can_launch" = shuttle.can_launch(),
 		"can_cancel" = shuttle.can_cancel(),
 		"can_force" = shuttle.can_force(),
@@ -213,7 +213,7 @@
 				M.visible_message("<span class='notice'>[M] fumbles around figuring out how to set the autopilot.</span>",
 				"<span class='notice'>You fumble around figuring out how to set the autopilot.</span>")
 				var/fumbling_time = 100 - 20 * usr.mind.cm_skills.pilot
-				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
 			to_chat(M, "<span class='notice'>You upload a flight plan for a low altitude flyby above the planet.</span>")
 			shuttle.transit_gun_mission = TRUE

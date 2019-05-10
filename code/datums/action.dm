@@ -137,7 +137,7 @@
 	if(plasma_cost)
 		name = "[name] ([plasma_cost])"
 	button.overlays += image('icons/mob/actions.dmi', button, action_icon_state)
-	cooldown_image = image('icons/mob/mob.dmi', null, "busy_clock_old")
+	cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock")
 	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
 
 /datum/action/xeno_action/can_use_action(silent = FALSE, override_flags)
@@ -302,8 +302,8 @@
 	if(selecting)
 		return ..(silent, XACT_IGNORE_COOLDOWN|XACT_IGNORE_PLASMA|XACT_USE_STAGGERED)
 	return ..()
-	
-//override this 
+
+//override this
 /datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(X.selected_ability != src)

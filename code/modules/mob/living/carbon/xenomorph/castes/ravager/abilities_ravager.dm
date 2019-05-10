@@ -47,7 +47,7 @@
 	plasma_cost = 40
 	var/last_victim_count = 0
 	cooldown_timer = RAV_RAVAGE_COOLDOWN
-	
+
 /datum/action/xeno_action/activable/ravage/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>You gather enough strength to Ravage again.</span>")
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
@@ -103,7 +103,7 @@
 	var/last_rage = 0
 
 /datum/action/xeno_action/activable/second_wind/get_cooldown()
-	return cooldown_timer * round((1 - (last_rage * 0.015) ),0.01) 
+	return cooldown_timer * round((1 - (last_rage * 0.015) ),0.01)
 
 /datum/action/xeno_action/activable/second_wind/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>You gather enough strength to use Second Wind again.</span>")
@@ -116,7 +116,7 @@
 	to_chat(X, "<span class='xenodanger'>Your coursing adrenaline stimulates tissues into a spat of rapid regeneration...</span>")
 	var/current_rage = CLAMP(X.rage,0,RAVAGER_MAX_RAGE) //lock in the value at the time we use it; min 0, max 50.
 	X.do_jitter_animation(1000)
-	if(!do_after(X, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
+	if(!do_after(X, 50, FALSE))
 		return fail_activate()
 	X.do_jitter_animation(1000)
 	playsound(X, "sound/effects/alien_drool2.ogg", 50, 0)

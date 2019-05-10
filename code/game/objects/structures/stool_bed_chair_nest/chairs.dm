@@ -38,7 +38,7 @@
 	set name = "Rotate Chair"
 	set category = "Object"
 	set src in view(0)
-	
+
 	var/mob/living/carbon/user = usr
 
 	if(!istype(user) || !isturf(user.loc) || user.incapacitated())
@@ -64,21 +64,20 @@
 	else if(iswelder(W))
 		if(user.action_busy)
 			return
+		var/obj/item/tool/weldingtool/WT = W
 
 		if(user.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to weld down \the [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to weld down \the [src].</span>")
 			var/fumbling_time = 50 * (SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer)
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 
-		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			user.visible_message("<span class='notice'>[user] begins welding down \the [src].</span>",
 			"<span class='notice'>You begin welding down \the [src].</span>")
 			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-			if(!do_after(user, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
-				to_chat(user, "<span class='warning'>You need to stand still!</span>")
+			if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 			user.visible_message("<span class='notice'>[user] welds down \the [src].</span>",
 			"<span class='notice'>You weld down \the [src].</span>")
@@ -252,7 +251,7 @@
 				user.visible_message("<span class='warning'>[user] begins loosening the bolts on \the [src].</span>",
 				"<span class='warning'>You begin loosening the bolts on \the [src].</span>")
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					user.visible_message("<span class='warning'>[user] loosens the bolts on \the [src], folding it into the decking.</span>",
 					"<span class='warning'>You loosen the bolts on \the [src], folding it into the decking.</span>")
 					fold_down()
@@ -261,7 +260,7 @@
 				user.visible_message("<span class='warning'>[user] begins unfolding \the [src].</span>",
 				"<span class='warning'>You begin unfolding \the [src].</span>")
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					user.visible_message("<span class='warning'>[user] unfolds \the [src] from the floor and tightens the bolts.</span>",
 					"<span class='warning'>You unfold \the [src] from the floor and tighten the bolts.</span>")
 					unfold_up()
@@ -275,7 +274,7 @@
 			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)
 			user.visible_message("<span class='warning'>[user] begins repairing \the [src].</span>",
 			"<span class='warning'>You begin repairing \the [src].</span>")
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(C, /obj/item/tool/weldingtool/proc/isOn)))
 				user.visible_message("<span class='warning'>[user] repairs \the [src].</span>",
 				"<span class='warning'>You repair \the [src].</span>")
 				chair_state = DROPSHIP_CHAIR_FOLDED
