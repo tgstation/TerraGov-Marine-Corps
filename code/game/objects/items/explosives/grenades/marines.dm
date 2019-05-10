@@ -177,15 +177,15 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	smoke = new(src)
 
 /obj/item/explosive/grenade/smokebomb/prime()
-	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, usr.loc, 7)
+	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(3, loc, 7)
 	smoke.start()
 	qdel(src)
 
 
 /obj/item/explosive/grenade/cloakbomb
 	name = "\improper M40-2 SCDP smoke grenade"
-	desc = "A sophisticated version of the M40 HSDP with an improved smoke screen payload, currently being field-tested in the TGMC. It's set to detonate in 2 seconds."
+	desc = "A sophisticated version of the M40 HSDP with a slighty improved smoke screen payload. It's set to detonate in 2 seconds."
 	icon_state = "grenade_cloak"
 	det_time = 20
 	item_state = "grenade_cloak"
@@ -199,8 +199,8 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	smoke = new(src)
 
 /obj/item/explosive/grenade/cloakbomb/prime()
-	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, usr.loc, 8)
+	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(3, loc, 9)
 	smoke.start()
 	qdel(src)
 
@@ -220,8 +220,8 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	smoke = new(src)
 
 /obj/item/explosive/grenade/phosphorus/prime()
-	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, usr.loc)
+	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(3, loc)
 	smoke.start()
 	qdel(src)
 

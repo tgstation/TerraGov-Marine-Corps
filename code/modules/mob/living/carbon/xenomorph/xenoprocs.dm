@@ -26,7 +26,7 @@
 
 		var/area/A = get_area(X)
 		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
-	
+
 	return xenoinfo
 
 /proc/check_hive_status(mob/living/carbon/Xenomorph/user, var/anchored = FALSE)
@@ -124,7 +124,7 @@
 	else
 		stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
 
-	if(upgrade_possible()) 
+	if(upgrade_possible())
 		stat(null, "Upgrade Progress: [upgrade_stored]/[xeno_caste.upgrade_threshold]")
 	else //Upgrade process finished or impossible
 		stat(null, "Upgrade Progress (FINISHED)")
@@ -196,13 +196,15 @@
 			return 0
 	return 1
 
-/mob/living/carbon/Xenomorph/proc/use_plasma(value)
+/mob/living/carbon/Xenomorph/proc/use_plasma(value, update = TRUE)
 	plasma_stored = max(plasma_stored - value, 0)
-	update_action_button_icons()
+	if(update)
+		update_action_button_icons()
 
-/mob/living/carbon/Xenomorph/proc/gain_plasma(value)
+/mob/living/carbon/Xenomorph/proc/gain_plasma(value, update = TRUE)
 	plasma_stored = min(plasma_stored + value, xeno_caste.plasma_max)
-	update_action_button_icons()
+	if(update)
+		update_action_button_icons()
 
 
 

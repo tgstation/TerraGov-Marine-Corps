@@ -224,20 +224,12 @@
 	smoke_traits = SMOKE_COUGH|SMOKE_SLEEP|SMOKE_OXYLOSS
 
 /////////////////////////////////////////////
-// Mustard Gas
-/////////////////////////////////////////////
-
-/obj/effect/particle_effect/smoke/mustard
-	name = "mustard gas"
-	icon_state = "mustard"
-	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS
-
-/////////////////////////////////////////////
 // Phosphorus Gas
 /////////////////////////////////////////////
 
-/obj/effect/particle_effect/smoke/bad/phosphorus
-	smoke_traits = SMOKE_BLISTERING
+/obj/effect/particle_effect/smoke/phosphorus
+	color = "#D3BB83"
+	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_PLASMALOSS
 
 //////////////////////////////////////
 // FLASHBANG SMOKE
@@ -285,11 +277,8 @@ datum/effect_system/smoke_spread/tactical
 /datum/effect_system/smoke_spread/sleepy
 	smoke_type = /obj/effect/particle_effect/smoke/sleepy
 
-/datum/effect_system/smoke_spread/mustard
-	smoke_type = /obj/effect/particle_effect/smoke/mustard
-
 /datum/effect_system/smoke_spread/phosphorus
-	smoke_type = /obj/effect/particle_effect/smoke/bad/phosphorus
+	smoke_type = /obj/effect/particle_effect/smoke/phosphorus
 
 /datum/effect_system/smoke_spread/xeno
 	smoke_type = /obj/effect/particle_effect/smoke/xeno
