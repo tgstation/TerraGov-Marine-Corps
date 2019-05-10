@@ -282,13 +282,14 @@
 		return
 	if(!direct)
 		return
-	user.next_move = world.time + 5
 
-	if(!src.open())
+	user.changeNext_move(5)
+
+	if(!open())
 		to_chat(user, "<span class='notice'>It won't budge!</span>")
 		if(!lastbang)
 			lastbang = TRUE
-			for (var/mob/M in hearers(src, null))
+			for(var/mob/M in hearers(src, null))
 				to_chat(M, text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M))))
 			spawn(30)
 				lastbang = FALSE
