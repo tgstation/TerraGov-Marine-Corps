@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	22
+#define SAVEFILE_VERSION_MAX	23
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -19,6 +19,9 @@
 					fdel(delpath)
 				break
 		return FALSE
+
+	if(savefile_version < 23)
+		S["hotkeys"]	<< TRUE
 
 	if(savefile_version < 22)
 		S["windowflashing"]	<< TRUE

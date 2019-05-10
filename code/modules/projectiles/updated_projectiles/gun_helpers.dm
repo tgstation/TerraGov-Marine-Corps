@@ -343,6 +343,17 @@ should be alright.
 	return
 
 
+/mob/living/carbon/human/proc/unique_action()
+	if(stat != CONSCIOUS)
+		return
+
+	var/obj/item/weapon/gun/G = get_active_held_item()
+	if(!istype(G))
+		return
+
+	G.unique_action(src)
+
+
 /obj/item/weapon/gun/proc/check_inactive_hand(mob/user)
 	if(user)
 		var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()

@@ -6,35 +6,6 @@
 	return (!mover.density || !density || lying)
 
 
-
-/client/verb/fastNorth()
-	set instant = TRUE
-	set hidden = TRUE
-	set name = ".fastNorth"
-	Move(get_step(mob, NORTH), NORTH)
-
-
-/client/verb/fastSouth()
-	set instant = TRUE
-	set hidden = TRUE
-	set name = ".fastSouth"
-	Move(get_step(mob, SOUTH), SOUTH)
-
-
-/client/verb/fastWest()
-	set instant = TRUE
-	set hidden = TRUE
-	set name = ".fastWest"
-	Move(get_step(mob, WEST), WEST)
-
-
-/client/verb/fastEast()
-	set instant = TRUE
-	set hidden = TRUE
-	set name = ".fastEast"
-	Move(get_step(mob, EAST), EAST)
-
-
 /client/Northeast()
 	swap_hand()
 	return
@@ -132,14 +103,25 @@
 
 /client/Move(n, direct)
 	if(mob.control_object)
+		next_move_dir_add = 0
+		next_move_dir_sub = 0
 		return Move_object(direct) //admins possessing object
 
 	if(isobserver(mob) || isAI(mob))
-		return mob.Move(n,direct)
+		next_move_dir_add = 0
+		next_move_dir_sub = 0
+		return mob.Move(n, direct)
 
 	var/start_move_time = world.time
 	if(next_movement > world.time)
 		return
+	else
+		next_move_dir_add = 0
+		next_move_dir_sub = 0
+
+	var/double_delay = FALSE
+	if(direct in GLOB.diagonals)
+		double_delay = TRUE
 
 	if(mob.stat == DEAD)
 		return
@@ -179,6 +161,9 @@
 		return O.relaymove(mob, direct)
 
 	if(isturf(mob.loc))
+		if(double_delay && mob.cadecheck())
+			return
+
 		mob.last_move_intent = world.time + 10
 		switch(mob.m_intent)
 			if(MOVE_INTENT_RUN)
@@ -197,7 +182,10 @@
 			. = ..()
 
 		moving = 0
-		next_movement = start_move_time + move_delay
+		if(double_delay)
+			next_movement = start_move_time + (move_delay * sqrt(2))
+		else
+			next_movement = start_move_time + move_delay
 		return .
 
 	return
@@ -285,3 +273,138 @@
 
 	prob_slip = round(prob_slip)
 	return(prob_slip)
+
+
+/client/proc/check_has_body_select()
+	return mob?.hud_used?.zone_sel && istype(mob.hud_used.zone_sel, /obj/screen/zone_sel)
+
+
+/client/verb/body_toggle_head()
+	set name = "body-toggle-head"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/next_in_line
+	switch(mob.zone_selected)
+		if(BODY_ZONE_HEAD)
+			next_in_line = BODY_ZONE_PRECISE_EYES
+		if(BODY_ZONE_PRECISE_EYES)
+			next_in_line = BODY_ZONE_PRECISE_MOUTH
+		else
+			next_in_line = BODY_ZONE_HEAD
+
+	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	selector.set_selected_zone(next_in_line, mob)
+
+
+/client/verb/body_r_arm()
+	set name = "body-r-arm"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/next_in_line
+	switch(mob.zone_selected)
+		if(BODY_ZONE_R_ARM)
+			next_in_line = BODY_ZONE_PRECISE_R_HAND
+		else
+			next_in_line = BODY_ZONE_R_ARM
+
+	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	selector.set_selected_zone(next_in_line, mob)
+
+
+/client/verb/body_chest()
+	set name = "body-chest"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	selector.set_selected_zone(BODY_ZONE_CHEST, mob)
+
+
+/client/verb/body_l_arm()
+	set name = "body-l-arm"
+	set hidden = TRUE
+
+	var/next_in_line
+	switch(mob.zone_selected)
+		if(BODY_ZONE_L_ARM)
+			next_in_line = BODY_ZONE_PRECISE_L_HAND
+		else
+			next_in_line = BODY_ZONE_L_ARM
+
+	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	selector.set_selected_zone(next_in_line, mob)
+
+
+/client/verb/body_r_leg()
+	set name = "body-r-leg"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/next_in_line
+	switch(mob.zone_selected)
+		if(BODY_ZONE_R_LEG)
+			next_in_line = BODY_ZONE_PRECISE_R_FOOT
+		else
+			next_in_line = BODY_ZONE_R_LEG
+
+	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	selector.set_selected_zone(next_in_line, mob)
+
+
+/client/verb/body_groin()
+	set name = "body-groin"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	selector.set_selected_zone(BODY_ZONE_PRECISE_GROIN, mob)
+
+
+/client/verb/body_l_leg()
+	set name = "body-l-leg"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/next_in_line
+	switch(mob.zone_selected)
+		if(BODY_ZONE_L_LEG)
+			next_in_line = BODY_ZONE_PRECISE_L_FOOT
+		else
+			next_in_line = BODY_ZONE_L_LEG
+
+	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	selector.set_selected_zone(next_in_line, mob)
+
+
+/mob/proc/toggle_move_intent(mob/user)
+	if(m_intent == MOVE_INTENT_RUN)
+		m_intent = MOVE_INTENT_WALK
+	else
+		m_intent = MOVE_INTENT_RUN
+	if(hud_used && hud_used.static_inventory)
+		for(var/obj/screen/mov_intent/selector in hud_used.static_inventory)
+			selector.update_icon(src)
+
+
+/mob/proc/cadecheck()
+	var/list/coords = list(list(x + 1, y, z), list(x, y + 1, z), list(x - 1, y, z), list(x, y - 1, z))
+	for(var/i in coords)
+		var/list/L = i
+		var/turf/T = locate(L[1], L[2], L[3])
+		for(var/obj/structure/barricade/B in T.contents)
+			return TRUE
+	return FALSE

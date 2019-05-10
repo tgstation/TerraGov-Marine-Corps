@@ -672,3 +672,23 @@
 		to_chat(src, "<span class='notice'>You will now examine everything you click on.</span>")
 	else
 		to_chat(src, "<span class='notice'>You will no longer examine things you click on.</span>")
+
+
+/mob/dead/observer/reset_perspective(atom/A)
+	if(client && ismob(client.eye) && client.eye != src)
+		var/mob/target = client.eye
+		following = null
+		if(target.followers)
+			target.followers -= src
+			UNSETEMPTY(target.followers)
+
+	. = ..()
+	
+	if(!.)
+		return
+
+	if(!hud_used)
+		return
+
+	client.screen = list()
+	hud_used.show_hud(hud_used.hud_version)

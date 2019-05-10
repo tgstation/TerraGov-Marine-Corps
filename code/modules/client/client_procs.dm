@@ -194,6 +194,10 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(C)] (no longer logged in).")
 
 	. = ..()	//calls mob.Login()
+
+	if(SSinput.initialized)
+		set_macros()
+		
 	chatOutput.start() // Starts the chat
 
 	if(byond_version < 512)
