@@ -334,7 +334,7 @@
 
 			if(ismob(target) && target != user)
 				user.visible_message("<span class='danger'>[user] is trying to inject [target] with a giant syringe!</span>")
-				if(!do_mob(user, target, 300, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+				if(!do_mob(user, target, 30 SECONDS, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 					return
 				user.visible_message("<span class='warning'>[user] injects [target] with a giant syringe!</span>")
 			spawn(5)

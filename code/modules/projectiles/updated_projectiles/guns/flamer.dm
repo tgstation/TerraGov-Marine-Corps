@@ -104,7 +104,7 @@
 		if(user)
 			if(magazine.reload_delay > 1)
 				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-				if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
+				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 					replace_magazine(user, magazine)
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
@@ -380,7 +380,8 @@
 		if(user)
 			if(magazine.reload_delay > 1)
 				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-				if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY)) replace_magazine(user, magazine)
+				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
+					replace_magazine(user, magazine)
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 					return
@@ -426,7 +427,7 @@
 		last_use = world.time
 		return
 	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
-		if(!do_after(user, 10, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 10, TRUE, src))
 			return
 	return ..()
 

@@ -653,7 +653,8 @@
 			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 			var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
-			if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !occupant)
+				return
 		if(surgery)
 			surgery = 0
 			if(usr.mind && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED) //Untrained people will fail to terminate the surgery properly.
@@ -685,11 +686,12 @@
 		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to get into \the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into \the [src].</span>")
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
-		if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+		if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			return
 
 	usr.visible_message("<span class='notice'>[usr] starts climbing into \the [src].</span>",
 	"<span class='notice'>You start climbing into \the [src].</span>")
-	if(do_after(usr, 10, FALSE, 5, BUSY_ICON_GENERIC))
+	if(do_after(usr, 10, FALSE, src, BUSY_ICON_GENERIC))
 		if(occupant)
 			to_chat(usr, "<span class='notice'>\ [src] is already occupied!</span>")
 			return
@@ -706,7 +708,6 @@
 		med_scan(H, doc_dat, implants, TRUE)
 		start_processing()
 		connected.start_processing()
-
 		for(var/obj/O in src)
 			qdel(O)
 		add_fingerprint(usr)
@@ -799,15 +800,18 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to put [M] into [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to put [M] into [src].</span>")
 			var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
+				return
 
-		visible_message("[user] starts putting [M] into [src].", 3)
+		user.visible_message("<span class='notice'>[user] starts putting [M] into [src].</span>",
+		"<span class='notice'>You start putting [M] into [src].</span>")
 
-		if(do_after(user, 10, FALSE, 5, BUSY_ICON_GENERIC))
+		if(do_after(user, 10, FALSE, M, BUSY_ICON_GENERIC) && !QDELETED(src))
 			if(src.occupant)
 				to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
 				return
-			if(!M || !G) return
+			if(!G)
+				return
 			M.forceMove(src)
 			update_use_power(2)
 			occupant = M

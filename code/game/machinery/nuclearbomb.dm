@@ -86,8 +86,7 @@ var/bomb_set
 						return
 					user.visible_message("<span class='notice'>[user] starts cutting loose the anchoring bolt covers on [src].</span>",
 					"<span class='notice'>You start cutting loose the anchoring bolt covers with [O].</span>")
-					if(do_after(user,40, TRUE, 5, BUSY_ICON_GENERIC))
-						if(!src || !user || !WT.remove_fuel(5, user)) return
+					if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && WT.remove_fuel(5, user))
 						user.visible_message("<span class='notice'>[user] cuts through the bolt covers on [src].</span>",
 						"<span class='notice'>You cut through the bolt cover.</span>")
 						removal_stage = 1
@@ -97,8 +96,7 @@ var/bomb_set
 				if(iscrowbar(O))
 					user.visible_message("<span class='notice'>[user] starts forcing open the bolt covers on [src].</span>",
 					"<span class='notice'>You start forcing open the anchoring bolt covers with [O].</span>")
-					if(do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
-						if(!src || !user) return
+					if(do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
 						user.visible_message("<span class='notice'>[user] forces open the bolt covers on [src].</span>",
 						"<span class='notice'>You force open the bolt covers.</span>")
 						removal_stage = 2
@@ -113,8 +111,7 @@ var/bomb_set
 						return
 					user.visible_message("<span class='notice'>[user] starts cutting apart the anchoring system sealant on [src].</span>",
 					"<span class='notice'>You start cutting apart the anchoring system's sealant with [O].</span>")
-					if(do_after(user, 40, TRUE, 5, BUSY_ICON_GENERIC))
-						if(!src || !user || !WT.remove_fuel(5, user)) return
+					if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && WT.remove_fuel(5, user))
 						user.visible_message("<span class='notice'>[user] cuts apart the anchoring system sealant on [src].</span>",
 						"<span class='notice'>You cut apart the anchoring system's sealant.</span>")
 						removal_stage = 3
@@ -124,8 +121,7 @@ var/bomb_set
 				if(iswrench(O))
 					user.visible_message("<span class='notice'>[user] begins unwrenching the anchoring bolts on [src].</span>",
 					"<span class='notice'>You begin unwrenching the anchoring bolts.</span>")
-					if(do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC))
-						if(!src || !user) return
+					if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 						user.visible_message("<span class='notice'>[user] unwrenches the anchoring bolts on [src].</span>",
 						"<span class='notice'>You unwrench the anchoring bolts.</span>")
 						removal_stage = 4
@@ -135,8 +131,7 @@ var/bomb_set
 				if(iscrowbar(O))
 					user.visible_message("<span class='notice'>[user] begins lifting [src] off of the anchors.",
 					"<span class='notice'>You begin lifting the device off the anchors...")
-					if(do_after(user, 80, TRUE, 5, BUSY_ICON_GENERIC))
-						if(!src || !user) return
+					if(!do_after(user, 80, TRUE, src, BUSY_ICON_BUILD))
 						user.visible_message("<span class='notice'>[user] crowbars [src] off of the anchors. It can now be moved.",
 						"<span class='notice'>You jam the crowbar under the nuclear device and lift it off its anchors. You can now move it!")
 						anchored = 0

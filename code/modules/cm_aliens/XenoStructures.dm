@@ -321,11 +321,7 @@
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins ripping it down.</span>", \
 	"<span class='warning'>You dig into \the [src] and begin ripping it down.</span>", null, 5)
 	playsound(src, "alien_resin_break", 25)
-	if(do_after(M, 80, FALSE, 5, BUSY_ICON_HOSTILE))
-		if(!loc)
-			return FALSE //Someone already destroyed it, do_after should check this but best to be safe
-		if(M.loc != cur_loc)
-			return FALSE //Make sure we're still there
+	if(do_after(M, 80, FALSE, src, BUSY_ICON_HOSTILE))
 		M.visible_message("<span class='danger'>[M] rips down \the [src]!</span>", \
 		 "<span class='danger'>You rip down \the [src]!</span>", null, 5)
 		qdel(src)
@@ -755,7 +751,7 @@ TUNNEL
 
 	if(M.a_intent == INTENT_HARM && M == creator)
 		to_chat(M, "<span class='xenowarning'>You begin filling in your tunnel...</span>")
-		if(do_after(M, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, 5, BUSY_ICON_HOSTILE))
+		if(do_after(M, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
 			obj_integrity = 0
 			healthcheck()
 		return
@@ -792,7 +788,7 @@ TUNNEL
 	if(isxenolarva(M)) //Larva can zip through near-instantly, they are wormlike after all
 		tunnel_time = 5
 
-	if(do_after(M, tunnel_time, FALSE, 5, BUSY_ICON_GENERIC))
+	if(do_after(M, tunnel_time, FALSE, src, BUSY_ICON_GENERIC))
 		if(other && isturf(other.loc)) //Make sure the end tunnel is still there
 			M.forceMove(other.loc)
 			M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \

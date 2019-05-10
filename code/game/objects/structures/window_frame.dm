@@ -60,7 +60,7 @@
 	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
 		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
-			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P && src) //Window frames require half the normal time
+			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, BUSY_ICON_HOSTILE)) //Window frames require half the normal time
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD) //Window frames require half the normal power
 				P.debris(loc, 1, 1) //Generate some rods and metal
 				qdel(src)
@@ -74,7 +74,7 @@
 		user.visible_message("<span class='notice'>[user] starts installing a new glass window on the frame.</span>", \
 		"<span class='notice'>You start installing a new window on the frame.</span>")
 		playsound(src, 'sound/items/Deconstruct.ogg', 25, 1)
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] installs a new glass window on the frame.</span>", \
 			"<span class='notice'>You install a new window on the frame.</span>")
 			sheet.use(2)
@@ -94,8 +94,8 @@
 						return
 					user.visible_message("<span class='notice'>[user] starts pulling [M] onto [src].</span>",
 					"<span class='notice'>You start pulling [M] onto [src]!</span>")
-					var/oldloc = loc
-					if(!do_mob(user, M, 20, BUSY_ICON_GENERIC) || loc != oldloc) return
+					if(!do_mob(user, M, 20, BUSY_ICON_HOSTILE))
+						return
 					M.KnockDown(2)
 					user.visible_message("<span class='warning'>[user] pulls [M] onto [src].</span>",
 					"<span class='notice'>You pull [M] onto [src].</span>")

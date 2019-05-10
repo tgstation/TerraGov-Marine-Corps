@@ -200,7 +200,7 @@
 
 	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
 	"<span class='xenowarning'>You begin focusing your anger as you slowly lift \the [victim] into the air.</span>")
-	if(!do_mob(X, victim, 80, BUSY_ICON_HOSTILE))
+	if(!do_mob(X, victim, 80, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 		return fail_activate()
 	if(!can_use_ability(victim,TRUE,XACT_IGNORE_PLASMA))
 		return fail_activate()
@@ -250,10 +250,7 @@
 	if(X.check_plasma(plasma_cost))
 		X.visible_message("<span class='xenowarning'>\The [X] starts to grow an ovipositor.</span>", \
 		"<span class='xenowarning'>You start to grow an ovipositor...(takes 20 seconds, hold still)</span>")
-		if(!do_after(X, 200, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(plasma_cost))
-			return
-		if(!X.check_state()) return
-		if(!locate(/obj/effect/alien/weeds) in current_turf)
+		if(!do_after(X, 200, TRUE, alien_weeds, BUSY_ICON_BUILD) || !X.check_plasma(plasma_cost) || !X.check_state())
 			return
 
 		X.use_plasma(plasma_cost)
@@ -278,10 +275,7 @@
 		return
 	X.visible_message("<span class='xenowarning'>\The [X] starts detaching itself from its ovipositor!</span>", \
 		"<span class='xenowarning'>You start detaching yourself from your ovipositor.</span>")
-	if(!do_after(X, 50, FALSE, 10, BUSY_ICON_HOSTILE)) return
-	if(!X.check_state())
-		return
-	if(!X.ovipositor)
+	if(!do_after(X, 50, FALSE, null, BUSY_ICON_BUILD) || !X.check_state() || !X.ovipositor)
 		return
 	X.dismount_ovipositor()
 
@@ -737,7 +731,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	
+
 	if(!ishuman(A) && !ismonkey(A))
 		if(!silent)
 			to_chat(owner, "<span class='xenowarning'>You can't accelerate the growth of that host")
@@ -764,7 +758,7 @@
 	X.visible_message("<span class='xenowarning'>\The [X] begins buzzing menacingly at [A].</span>", \
 	"<span class='xenowarning'>You start to advance larval growth inside of [A].</span>", \
 	"<span class='italics'>You hear an angry buzzing...</span>")
-	if(!do_after(X, 50, TRUE, 20, BUSY_ICON_FRIENDLY))
+	if(!do_after(X, 50, TRUE, A, BUSY_ICON_CLOCK_ALT) && X.check_plasma(300))
 		return fail_activate()
 
 	if(!can_use_ability(A, TRUE))

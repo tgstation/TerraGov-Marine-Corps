@@ -50,7 +50,7 @@
 	var/mob/living/carbon/C = A
 	if(locate(/obj/item/alien_embryo) in C) // already got one, stops doubling up
 		return ..()
-	if(!do_after(X, DEFILER_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+	if(!do_after(X, DEFILER_STING_CHANNEL_TIME, TRUE, C, BUSY_ICON_HOSTILE))
 		return fail_activate()
 	if(!can_use_ability(A))
 		return fail_activate()
@@ -97,13 +97,15 @@
 	succeed_activate()
 	X.icon_state = "Defiler Power Up"
 
-	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
-		X.smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
-		X.smoke_system.set_up(1, get_turf(src))
-		to_chat(X, "<span class='xenodanger'>You abort emitting neurogas, your expended plasma resulting in only a feeble wisp.</span>")
-		X.emitting_gas = FALSE
-		X.icon_state = "Defiler Running"
-		return fail_activate()
+	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, TRUE, null, BUSY_ICON_HOSTILE))
+		if(!QDELETED(src))
+			X.smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
+			X.smoke_system.set_up(1, get_turf(src))
+			X.smoke_system.start()
+			to_chat(X, "<span class='xenodanger'>You abort emitting neurogas, your expended plasma resulting in only a feeble wisp.</span>")
+			X.emitting_gas = FALSE
+			X.icon_state = "Defiler Running"
+			return fail_activate()
 	X.emitting_gas = FALSE
 	X.icon_state = "Defiler Running"
 

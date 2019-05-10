@@ -17,8 +17,8 @@
 	else
 		X.visible_message("<span class='notice'>[X] starts looking off into the distance.</span>", \
 			"<span class='notice'>You start focusing your sight to look off into the distance.</span>", null, 5)
-		if(!do_after(X, 20, FALSE)) return
-		if(X.is_zoomed) return
+		if(!do_after(X, 20, FALSE, null, BUSY_ICON_GENERIC) || X.is_zoomed)
+			return
 		X.zoom_in()
 		..()
 
@@ -84,7 +84,7 @@
 	var/mob/living/carbon/Xenomorph/Boiler/X = owner
 	X.visible_message("<span class='notice'>\The [X] begins digging their claws into the ground.</span>", \
 	"<span class='notice'>You begin digging yourself into place.</span>", null, 5)
-	if(!do_after(X, 30, FALSE, 5, BUSY_ICON_GENERIC))
+	if(!do_after(X, 30, FALSE, null, BUSY_ICON_HOSTILE))
 		on_deactivation()
 		X.selected_ability = null
 		X.update_action_button_icons()
@@ -116,7 +116,7 @@
 
 /mob/living/carbon/Xenomorph/Boiler/proc/reset_bombard_pointer()
 	if(client)
-		client.mouse_pointer_icon = initial(client.mouse_pointer_icon) 
+		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
 
 /datum/action/xeno_action/activable/bombard/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -132,7 +132,7 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You are too close! You must be at least 7 meters from the target due to the trajectory arc.</span>")
 		return FALSE
-	
+
 /datum/action/xeno_action/activable/bombard/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Boiler/X = owner
 	var/turf/T = get_turf(A)
@@ -153,7 +153,7 @@
 
 	succeed_activate()
 
-	if(!do_after(X, 50, FALSE, 5, BUSY_ICON_HOSTILE))
+	if(!do_after(X, 50, FALSE, target, BUSY_ICON_DANGER))
 		to_chat(X, "<span class='warning'>You decide not to launch any acid.</span>")
 		return fail_activate()
 
@@ -174,7 +174,7 @@
 
 	add_cooldown()
 	X.reset_bombard_pointer()
-	
+
 // ***************************************
 // *********** Acid spray
 // ***************************************

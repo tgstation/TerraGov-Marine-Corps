@@ -31,17 +31,9 @@
 			playsound(src, 'sound/weapons/punch4.ogg', 25, 1)
 			if(damtype == "brute")
 				step_away(M,src,15)
-			/*
-			if(M.stat>1)
-				M.gib()
-				melee_can_hit = 0
-				if(do_after(melee_cooldown))
-					melee_can_hit = 1
-				return
-			*/
+
 			if(ishuman(target))
 				var/mob/living/carbon/human/H = target
-	//			if (M.health <= 0) return
 
 				var/datum/limb/temp = H.get_limb(pick("chest", "chest", "chest", "head"))
 				if(temp)
@@ -87,8 +79,7 @@
 			src.visible_message("[src] pushes [target] out of the way.")
 
 		melee_can_hit = 0
-		if(do_after(melee_cooldown))
-			melee_can_hit = 1
+		addtimer(CALLBACK(src, .proc/can_hit_again), melee_cooldown)
 		return
 
 	else
@@ -105,10 +96,13 @@
 						src.visible_message("<b>[src.name] smashes through the wall</b>")
 						playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 					melee_can_hit = 0
-					if(do_after(melee_cooldown))
+					if(do_atom(src, melee_cooldown))
 						melee_can_hit = 1
 					break
 	return
+
+/obj/mecha/combat/proc/can_hit_again()
+	melee_can_hit = TRUE
 
 /*
 /obj/mecha/combat/proc/mega_shake(target)
