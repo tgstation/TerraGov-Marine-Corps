@@ -275,10 +275,12 @@
 
 
 
-/obj/structure/closet/relaymove(mob/user)
+/obj/structure/closet/relaymove(mob/user, direct)
 	if(!isturf(loc))
 		return
 	if(user.incapacitated(TRUE))
+		return
+	if(!direct)
 		return
 	user.next_move = world.time + 5
 
