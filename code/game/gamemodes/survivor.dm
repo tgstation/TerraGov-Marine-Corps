@@ -53,7 +53,7 @@ SPAWNS
 
     var/list/random_items = list() // Use to add more random items to the map
 
-/datum/game_mode/survivor/new_player_panel(mob/new_player/NP)
+/datum/game_mode/survivor/override_new_player_panel(mob/new_player/NP)
 
     var/output = "<div align='center'>"
     output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=show_preferences'>Setup Character</A></p>"

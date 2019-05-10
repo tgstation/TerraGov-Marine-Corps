@@ -547,7 +547,7 @@
 
     to_chat(world, dat)
 
-/datum/game_mode/distress/new_player_panel(mob/new_player/NP)
+/datum/game_mode/distress/override_new_player_panel(mob/new_player/NP)
 
 	var/output = "<div align='center'>"
 	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=show_preferences'>Setup Character</A></p>"
