@@ -118,23 +118,24 @@
     
 /obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
 	if(hasorgans(M))
-		var/datum/limb/S = M:get_limb(user.zone_selected)
+		var/mob/living/carbon/human/H = M
+		var/datum/limb/S = H.get_limb(user.zone_selected)
+
+		if(!S) 
+			return
 		if(!(S.limb_status & LIMB_ROBOT) || user.a_intent == INTENT_HARM)
 			return ..()
-
-		if(istype(M,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
-			if(H.species.species_flags & IS_SYNTHETIC)
-				if(M == user)
-					to_chat(user, "<span class='warning'>You can't repair damage to your own body - it's against OH&S.</span>")
-					return
-
+		
 		if(S.burn_dam > 0 && use(1))
+			if(issynth(H) && M == user)
+				if(user.action_busy || !do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+					return
 			S.heal_damage(0,15,0,1)
-			user.visible_message("<span class='warning'> \The [user] repairs some burn damage on \the [M]'s [S.display_name] with \the [src].</span>")
+			user.visible_message("<span class='warning'>\The [user] repairs some burn damage on \the [H]'s [S.display_name] with \the [src].</span>", \
+								"<span class='warning'>You repair some burn damage on \the [H]'s [S.display_name] with \the [src].</span>")
 			return
 		else
-			to_chat(user, "Nothing to fix!")
+			to_chat(user, "<span class='warning'>Nothing to fix!</span>")
 
 	else
 		return ..()

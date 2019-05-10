@@ -202,17 +202,16 @@
 		if(!(S.limb_status & LIMB_ROBOT) || user.a_intent != INTENT_HELP)
 			return ..()
 
-		if(issynth(H))
-			if(M == user)
-				to_chat(user, "<span class='warning'>You can't repair damage to your own body - it's against OH&S.</span>")
-				return
-
 		if(S.brute_dam && welding)
+			if(issynth(H) && M == user)
+				if(user.action_busy || !do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+					return
 			S.heal_damage(15,0,0,1)
 			H.UpdateDamageIcon()
 			user.visible_message("<span class='warning'>\The [user] patches some dents on \the [H]'s [S.display_name] with \the [src].</span>", \
 								"<span class='warning'>You patch some dents on \the [H]'s [S.display_name] with \the [src].</span>")
 			remove_fuel(1,user)
+			playsound(user.loc, 'sound/items/Welder2.ogg', 25, 1)
 			return
 		else
 			to_chat(user, "<span class='warning'>Nothing to fix!</span>")
