@@ -9,10 +9,12 @@
 	return TRUE
 
 /mob/living/carbon/Xenomorph/smoke_contact(obj/effect/particle_effect/smoke/S)
-	var/protection = max(1 - get_permeability_protection() * S.bio_protection)
+	var/protection = max(1 - get_permeability_protection() * S.bio_protection) //0.2 by default
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
-		adjustFireLoss(5 * protection)
+		adjustFireLoss(10 * protection)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_PLASMALOSS))
-		use_plasma(3, FALSE)
+		use_plasma(7)
+		if(prob(15))
+			to_chat(src, "<span class='xenowarning'>You feel your plasma reserves being drained.</span>")
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)

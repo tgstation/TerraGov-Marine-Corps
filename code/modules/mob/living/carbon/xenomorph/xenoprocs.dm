@@ -196,15 +196,13 @@
 			return 0
 	return 1
 
-/mob/living/carbon/Xenomorph/proc/use_plasma(value, update = TRUE)
+/mob/living/carbon/Xenomorph/proc/use_plasma(value)
 	plasma_stored = max(plasma_stored - value, 0)
-	if(update)
-		update_action_button_icons()
+	update_action_button_icons()
 
-/mob/living/carbon/Xenomorph/proc/gain_plasma(value, update = TRUE)
+/mob/living/carbon/Xenomorph/proc/gain_plasma(value)
 	plasma_stored = min(plasma_stored + value, xeno_caste.plasma_max)
-	if(update)
-		update_action_button_icons()
+	update_action_button_icons()
 
 
 

@@ -221,7 +221,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/phosphorus/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, loc)
+	smoke.set_up(4, loc)
 	smoke.start()
 	qdel(src)
 
