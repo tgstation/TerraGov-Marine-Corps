@@ -1,0 +1,5 @@
+author: "grinkgo"
+delete-after: True
+changes: 
+  - tweak: "Synth players rejoice! You no longer have to rely on pesky humans to repair your own body (however, they still do it faster than you can)."
+  - soundadd: "repairing synths with a welder now makes the welding noise."
