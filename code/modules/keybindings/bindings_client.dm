@@ -14,13 +14,19 @@
 
 	switch(_key)
 		if("F1")
-			if(keys_held["Ctrl"] && keys_held["Shift"]) // Is this command ever used?
-				winset(src, null, "command=.options")
-			else
-				choosehelp()
+			choosehelp()
 			return
 		if("F2") // Screenshot. Hold shift to choose a name and location to save in
 			winset(src, null, "command=.screenshot [!keys_held["shift"] ? "auto" : ""]")
+			return
+		if("F3")
+			get_asay()
+			return
+		if("F4")
+			get_msay()
+			return
+		if("F5")
+			get_dsay()
 			return
 		if("F12") // Toggles minimal HUD
 			mob.button_pressed_F12()

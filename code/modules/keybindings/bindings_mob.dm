@@ -53,15 +53,6 @@
 		if("Numpad3")
 			user.body_l_leg()
 			return
-		if("F3")
-			user.asay()
-			return
-		if("F4")
-			user.msay()
-			return
-		if("F5")
-			user.dsay()
-			return
 
 	if(client.keys_held["Shift"])
 		switch(SSinput.movement_keys[_key])
