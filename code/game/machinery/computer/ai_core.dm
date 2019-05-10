@@ -159,7 +159,7 @@
 			if(isscrewdriver(P))
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'> You connect the monitor.</span>")
-				var/mob/living/silicon/ai/A = new /mob/living/silicon/ai ( loc, laws, brain )
+				new /mob/living/silicon/ai(loc, laws, brain)
 				qdel(src)
 
 /obj/structure/AIcore/deactivated

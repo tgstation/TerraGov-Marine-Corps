@@ -2,7 +2,7 @@
 /mob/proc/emote(act, m_type, message, intentional = FALSE)
 	act = lowertext(act)
 	var/param = message
-	var/custom_param = findchar(act, " ")
+	var/custom_param = findtext(act, " ")
 	if(custom_param)
 		param = copytext(act, custom_param + 1, length(act) + 1)
 		act = copytext(act, 1, custom_param)
