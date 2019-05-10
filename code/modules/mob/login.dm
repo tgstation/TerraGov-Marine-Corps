@@ -16,6 +16,10 @@
 
 	next_move = 1
 	sight |= SEE_SELF
+
+	if(SSinput.initialized)
+		client.set_macros()
+		
 	. = ..()
 
 	reset_view(loc)

@@ -16,5 +16,3 @@
 
 	new_player_panel()
 	client.playtitlemusic()
-	if(SSinput.initialized)
-		client.set_macros()
