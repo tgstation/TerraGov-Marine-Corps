@@ -9,7 +9,7 @@
 
 #define SHORT_REAL_LIMIT 16777216
 
-#define SQRTWO sqrt(2)
+#define SQRTWO 1.414
 
 //"fancy" math for calculating time in ms from tick_usage percentage and the length of ticks
 //percent_of_tick_used * (ticklag * 100(to convert to ms)) / 100(percent ratio)
