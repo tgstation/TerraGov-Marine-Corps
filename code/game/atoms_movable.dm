@@ -566,21 +566,20 @@
 	return throw_at(target, range, speed, thrower, spin)
 
 
-/atom/movable/proc/start_pulling(atom/movable/AM, state, supress_message = FALSE)
+/atom/movable/proc/start_pulling(atom/movable/AM, supress_message = FALSE)
 	if(QDELETED(AM))
 		return FALSE
-	if(!(AM.can_be_pulled(src, state)))
+
+	if(!(AM.can_be_pulled(src)))
 		return FALSE
 
 	// If we're pulling something then drop what we're currently pulling and pull this instead.
 	if(pulling)
-		if(state == 0)
-			stop_pulling()
-			return FALSE
-		// Are we trying to pull something we are already pulling? Then enter grab cycle and end.
-		if(AM == pulling)
-			return TRUE
+		var/pulling_old = pulling
 		stop_pulling()
+		// Are we pulling the same thing twice? Just stop pulling.
+		if(pulling_old == AM)
+			return FALSE
 	if(AM.pulledby)
 		log_combat(AM, AM.pulledby, "pulled from", src)
 		AM.pulledby.stop_pulling() //an object can't be pulled by two mobs at once.
@@ -621,7 +620,7 @@
 		pulledby.stop_pulling()
 
 
-/atom/movable/proc/can_be_pulled(user, grab_state)
+/atom/movable/proc/can_be_pulled(user)
 	if(src == user || !isturf(loc))
 		return FALSE
 	if(anchored || throwing)

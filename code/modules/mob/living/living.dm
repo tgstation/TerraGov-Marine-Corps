@@ -285,15 +285,17 @@
 		return TRUE
 
 /mob/living/stop_pulling()
+	if(istype(r_hand, /obj/item/grab))
+		temporarilyRemoveItemFromInventory(r_hand)
+	else if(istype(l_hand, /obj/item/grab))
+		temporarilyRemoveItemFromInventory(l_hand)
+
+	if(hud_used?.pull_icon)
+		hud_used.pull_icon.icon_state = "pull0"
+
 	if(ismob(pulling))
 		var/mob/M = pulling
 		grab_level = 0
-		if(hud_used?.pull_icon)
-			hud_used.pull_icon.icon_state = "pull0"
-		if(istype(r_hand, /obj/item/grab))
-			temporarilyRemoveItemFromInventory(r_hand)
-		else if(istype(l_hand, /obj/item/grab))
-			temporarilyRemoveItemFromInventory(l_hand)
 		if(M.client)
 			//resist_grab uses long movement cooldown durations to prevent message spam
 			//so we must undo it here so the victim can move right away

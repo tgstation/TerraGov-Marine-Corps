@@ -497,21 +497,24 @@
 
 
 /mob/living/start_pulling(atom/movable/AM, lunge, no_msg)
-	if(!AM || !usr || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
-		return
+	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+		return FALSE
 
-	if (AM.anchored || AM.throwing)
-		return
+	if(!AM.can_be_pulled(src))
+		return FALSE
+
+	if(AM.anchored || AM.throwing)
+		return FALSE
 
 	if(throwing || incapacitated())
-		return
+		return FALSE
 
 	if(pulling)
 		var/pulling_old = pulling
 		stop_pulling()
 		// Are we pulling the same thing twice? Just stop pulling.
 		if(pulling_old == AM)
-			return
+			return FALSE
 
 	var/mob/M
 	if(ismob(AM))
