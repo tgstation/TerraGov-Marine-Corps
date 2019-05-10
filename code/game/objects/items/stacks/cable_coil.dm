@@ -128,7 +128,7 @@
 		
 		if(S.burn_dam > 0 && use(1))
 			if(issynth(H) && M == user)
-				if(user.action_busy || !do_after(user, 5 SECONDS, TRUE, 5, BUSY_ICON_BUILD))
+				if(user.action_busy || !do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 					return
 			S.heal_damage(0,15,0,1)
 			user.visible_message("<span class='warning'>\The [user] repairs some burn damage on \the [H]'s [S.display_name] with \the [src].</span>", \
