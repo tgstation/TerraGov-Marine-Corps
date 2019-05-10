@@ -41,6 +41,9 @@
 
 	var/distance = get_dist(X, H)
 
+	if(X.cadecheck())
+		return fail_activate()
+
 	if (distance > 1)
 		step_towards(X, H, 1)
 

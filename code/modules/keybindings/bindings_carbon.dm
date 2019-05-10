@@ -4,7 +4,7 @@
 			toggle_throw_mode()
 			return
 		if("1")
-			a_intent_change(INTENT_HARM)
+			a_intent_change(INTENT_HELP)
 			return
 		if("2")
 			a_intent_change(INTENT_DISARM)
