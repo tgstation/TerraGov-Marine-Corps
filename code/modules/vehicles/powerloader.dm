@@ -21,6 +21,10 @@
 /obj/vehicle/powerloader/relaymove(mob/user, direction)
 	if(user.incapacitated())
 		return
+	if(!direction)
+		return
+	if(direction in GLOB.diagonals)
+		return
 	if(world.time > l_move_time + move_delay)
 		if(dir != direction)
 			l_move_time = world.time
