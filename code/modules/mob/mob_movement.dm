@@ -183,7 +183,7 @@
 
 		moving = 0
 		if(double_delay)
-			next_movement = start_move_time + (move_delay * sqrt(2))
+			next_movement = start_move_time + (move_delay * SQRTWO)
 		else
 			next_movement = start_move_time + move_delay
 		return .
