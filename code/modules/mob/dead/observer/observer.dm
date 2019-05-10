@@ -160,7 +160,6 @@
 
 
 /mob/dead/observer/Move(NewLoc, direct)
-	unfollow()
 	setDir(direct)
 	if(NewLoc)
 		loc = NewLoc
@@ -174,6 +173,11 @@
 		x++
 	else if((direct & WEST) && x > 1)
 		x--
+
+
+/mob/dead/observer/Moved(atom/newloc, direct)
+	unfollow()
+	return ..()
 
 
 /mob/dead/observer/examine(mob/user)
