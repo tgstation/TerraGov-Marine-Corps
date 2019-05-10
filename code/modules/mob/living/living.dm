@@ -247,23 +247,9 @@
 		else
 			return 0
 
-	var/atom/movable/pullee = pulling
-	if(pullee && get_dist(src, pullee) > 1)
-		stop_pulling()
-	var/turf/T = loc
 	. = ..()
-	if(. && pulling && pulling == pullee) //we were pulling a thing and didn't lose it during our move.
-		if(pulling.anchored)
-			stop_pulling()
-			return
 
-		var/pull_dir = get_dir(src, pulling)
-		if(get_dist(src, pulling) > 1 || ((pull_dir - 1) & pull_dir)) //puller and pullee more than one tile away or in diagonal position
-			pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
-			if(pulling && get_dist(src, pulling) > 1) //the pullee couldn't keep up
-				stop_pulling()
-
-	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1)//separated from our puller and not in the middle of a diagonal move.
+	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
 		pulledby.stop_pulling()
 
 
@@ -299,9 +285,25 @@
 		return TRUE
 
 /mob/living/stop_pulling()
+	if(ismob(pulling))
+		var/mob/M = pulling
+		grab_level = 0
+		if(hud_used?.pull_icon)
+			hud_used.pull_icon.icon_state = "pull0"
+		if(istype(r_hand, /obj/item/grab))
+			temporarilyRemoveItemFromInventory(r_hand)
+		else if(istype(l_hand, /obj/item/grab))
+			temporarilyRemoveItemFromInventory(l_hand)
+		if(M.client)
+			//resist_grab uses long movement cooldown durations to prevent message spam
+			//so we must undo it here so the victim can move right away
+			M.client.next_movement = world.time
+		M.update_canmove()
+
 	if(isliving(pulling))
 		var/mob/living/L = pulling
 		L.grab_resist_level = 0 //zero it out
+
 	return ..()
 
 /mob/living/movement_delay()

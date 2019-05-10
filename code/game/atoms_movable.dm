@@ -13,8 +13,10 @@
 	var/throw_range = 7
 	var/moved_recently = 0
 	var/mob/pulledby = null
+	var/atom/movable/pulling
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
-								// and if yes, are we doing the first or second move.
+	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
+
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
 
 	var/initial_language_holder = /datum/language_holder
@@ -47,19 +49,95 @@
 
 //===========================================================================
 
-/atom/movable/Move(NewLoc, direct)
+/atom/movable/Move(atom/newloc, direct)
 	var/atom/oldloc = loc
 	var/old_dir = dir
+	var/atom/movable/pullee = pulling
+	var/turf/T = loc
 
-	. = ..()
+	if(!moving_from_pull)
+		check_pulling()
+
+	if(!loc || !newloc)
+		return FALSE
+
+	if(loc != newloc)
+		if(!(direct & (direct - 1))) //Cardinal move
+			. = ..()
+		else //Diagonal move, split it into cardinal moves
+			moving_diagonally = FIRST_DIAG_STEP
+			var/first_step_dir
+			// The `&& moving_diagonally` checks are so that a forceMove taking
+			// place due to a Crossed, Bumped, etc. call will interrupt
+			// the second half of the diagonal movement, or the second attempt
+			// at a first half if step() fails because we hit something.
+			if(direct & NORTH)
+				if(direct & EAST)
+					if(step(src, NORTH) && moving_diagonally)
+						first_step_dir = NORTH
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, EAST)
+					else if(moving_diagonally && step(src, EAST))
+						first_step_dir = EAST
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, NORTH)
+				else if(direct & WEST)
+					if(step(src, NORTH) && moving_diagonally)
+						first_step_dir = NORTH
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, WEST)
+					else if(moving_diagonally && step(src, WEST))
+						first_step_dir = WEST
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, NORTH)
+			else if(direct & SOUTH)
+				if(direct & EAST)
+					if(step(src, SOUTH) && moving_diagonally)
+						first_step_dir = SOUTH
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, EAST)
+					else if(moving_diagonally && step(src, EAST))
+						first_step_dir = EAST
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, SOUTH)
+				else if(direct & WEST)
+					if(step(src, SOUTH) && moving_diagonally)
+						first_step_dir = SOUTH
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, WEST)
+					else if(moving_diagonally && step(src, WEST))
+						first_step_dir = WEST
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, SOUTH)
+			if(moving_diagonally == SECOND_DIAG_STEP)
+				if(!.)
+					setDir(first_step_dir)
+			moving_diagonally = 0
+			return
+
 	if(flags_atom & DIRLOCK)
 		setDir(old_dir)
+
 	move_speed = world.time - l_move_time
 	l_move_time = world.time
-	if ((oldloc != loc && oldloc && oldloc.z == z))
+
+	if((oldloc != loc && oldloc && oldloc.z == z))
 		last_move_dir = get_dir(oldloc, loc)
+
 	if(.)
-		Moved(oldloc,direct)
+		Moved(oldloc, direct)
+
+	if(. && pulling && pulling == pullee && pulling != moving_from_pull) //we were pulling a thing and didn't lose it during our move.
+		if(pulling.anchored)
+			stop_pulling()
+		else
+			var/pull_dir = get_dir(src, pulling)
+			//puller and pullee more than one tile away or in diagonal position
+			if(get_dist(src, pulling) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir)))
+				pulling.moving_from_pull = src
+				pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
+				pulling.moving_from_pull = null
+			check_pulling()
 
 
 /atom/movable/Bump(atom/A, yes) //yes arg is to distinguish our calls of this proc from the calls native from byond.
@@ -486,3 +564,66 @@
 	//if((force < (move_resist * MOVE_FORCE_THROW_RATIO)) || (move_resist == INFINITY))
 	//	return
 	return throw_at(target, range, speed, thrower, spin)
+
+
+/atom/movable/proc/start_pulling(atom/movable/AM, state, supress_message = FALSE)
+	if(QDELETED(AM))
+		return FALSE
+	if(!(AM.can_be_pulled(src, state)))
+		return FALSE
+
+	// If we're pulling something then drop what we're currently pulling and pull this instead.
+	if(pulling)
+		if(state == 0)
+			stop_pulling()
+			return FALSE
+		// Are we trying to pull something we are already pulling? Then enter grab cycle and end.
+		if(AM == pulling)
+			return TRUE
+		stop_pulling()
+	if(AM.pulledby)
+		log_combat(AM, AM.pulledby, "pulled from", src)
+		AM.pulledby.stop_pulling() //an object can't be pulled by two mobs at once.
+	pulling = AM
+	AM.pulledby = src
+	if(ismob(AM))
+		var/mob/M = AM
+		log_combat(src, M, "grabbed", addition = "passive grab")
+		if(!supress_message)
+			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
+	return TRUE
+
+
+/atom/movable/proc/stop_pulling()
+	if(!pulling)
+		return
+
+	pulling.pulledby = null
+	pulling = null
+
+
+/atom/movable/proc/check_pulling()
+	if(pulling)
+		var/atom/movable/pullee = pulling
+		if(pullee && get_dist(src, pullee) > 1)
+			stop_pulling()
+			return
+		if(!isturf(loc))
+			stop_pulling()
+			return
+		if(pullee && !isturf(pullee.loc) && pullee.loc != loc) //to be removed once all code that changes an object's loc uses forceMove().
+			stop_pulling()
+			return
+		if(pulling.anchored)
+			stop_pulling()
+			return
+	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1)		//separated from our puller and not in the middle of a diagonal move.
+		pulledby.stop_pulling()
+
+
+/atom/movable/proc/can_be_pulled(user, grab_state)
+	if(src == user || !isturf(loc))
+		return FALSE
+	if(anchored || throwing)
+		return FALSE
+	return TRUE

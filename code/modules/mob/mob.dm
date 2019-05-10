@@ -496,10 +496,6 @@
 	show_inv(M)
 
 
-//attempt to pull/grab something. Returns true upon success.
-/mob/proc/start_pulling(atom/movable/AM, lunge, no_msg)
-	return
-
 /mob/living/start_pulling(atom/movable/AM, lunge, no_msg)
 	if(!AM || !usr || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
