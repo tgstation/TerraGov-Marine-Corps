@@ -167,7 +167,7 @@
 				light.changed()
 	for(var/_F in followers)
 		var/mob/dead/observer/F = _F
-		F.loc = loc
+		F.forceMove(loc)
 
 
 /atom/movable/proc/forceMove(atom/destination)

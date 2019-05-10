@@ -152,8 +152,10 @@
 		return O.relaymove(mob, direct)
 
 	if(isturf(mob.loc))
-		if(double_delay && mob.cadecheck())
-			return
+		if(double_delay && mob.cadecheck()) //Hacky
+			direct = get_cardinal_dir(n, mob.loc)
+			direct = DIRFLIP(direct)
+			n = get_step(mob.loc, direct)
 
 		mob.last_move_intent = world.time + 10
 		switch(mob.m_intent)
