@@ -158,10 +158,10 @@
 	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, AM)
 
 
-/atom/movable/proc/Moved(atom/OldLoc)
+/atom/movable/proc/Moved(atom/oldloc, direction)
 	if(isturf(loc))
 		if(opacity)
-			OldLoc.UpdateAffectingLights()
+			oldloc.UpdateAffectingLights()
 		else
 			if(light)
 				light.changed()

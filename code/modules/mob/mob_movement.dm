@@ -131,21 +131,12 @@
 		if(mob:is_zoomed)
 			mob:zoom_out()
 
-	// If mob moves while zoomed in with device, unzoom them.
-	if(view != world.view || pixel_x || pixel_y)
-		for(var/obj/item/item in mob.contents)
-			if(item.zoom)
-				item.zoom(mob)
-				click_intercept = null
-				break
-
 	//Check if you are being grabbed and if so attemps to break it
 	if(mob.pulledby)
 		if(mob.incapacitated(TRUE))
 			return
 		else if(mob.restrained(0))
 			next_movement = world.time + 20 //to reduce the spam
-			to_chat(src, "<span class='warning'>You're restrained! You can't move!</span>")
 			return
 		else if(!mob.resist_grab(TRUE))
 			return
