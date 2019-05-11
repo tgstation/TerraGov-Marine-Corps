@@ -221,6 +221,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			return
 		T.ignite(20, 20)
 
+/datum/ammo/proc/set_smoke()
+	return
+
+/datum/ammo/proc/drop_nade(turf/T)
+	return
+
 
 /*
 //================================================
@@ -912,25 +918,26 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = CONFIG_GET(number/combat_define/max_armor_penetration)
 	shell_speed = CONFIG_GET(number/combat_define/slow_shell_speed)
 
-/datum/ammo/rocket/on_hit_mob(mob/M, obj/item/projectile/P)
-	explosion(get_turf(M), -1, 2, 4, 5)
-	smoke.set_up(1, get_turf(M))
-	smoke.start()
+/datum/ammo/rocket/set_smoke()
+	smoke = new
 
-/datum/ammo/rocket/on_hit_obj(obj/O, obj/item/projectile/P)
-	explosion(get_turf(O), -1, 2, 4, 5)
-	smoke.set_up(1, get_turf(O))
-	smoke.start()
-
-/datum/ammo/rocket/on_hit_turf(turf/T, obj/item/projectile/P)
-	explosion(T,  -1, 2, 4, 5)
+/datum/ammo/rocket/drop_nade(turf/T)
+	explosion(T, -1, 2, 4, 5)
+	set_smoke()
 	smoke.set_up(1, T)
 	smoke.start()
 
+/datum/ammo/rocket/on_hit_mob(mob/M, obj/item/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/rocket/on_hit_obj(obj/O, obj/item/projectile/P)
+	drop_nade(get_turf(O))
+
+/datum/ammo/rocket/on_hit_turf(turf/T, obj/item/projectile/P)
+	drop_nade(T)
+
 /datum/ammo/rocket/do_at_max_range(obj/item/projectile/P)
-	explosion(get_turf(P),  -1, 2, 4, 5)
-	smoke.set_up(1, get_turf(P))
-	smoke.start()
+	drop_nade(get_turf(P))
 
 /datum/ammo/rocket/ap
 	name = "anti-armor rocket"
@@ -943,24 +950,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = CONFIG_GET(number/combat_define/aprocket_armor_penetration)
 	damage = CONFIG_GET(number/combat_define/aprocket_hit_damage)
 
-/datum/ammo/rocket/ap/on_hit_mob(mob/M, obj/item/projectile/P)
-	explosion(get_turf(M), -1, -1, 2, 5)
-	smoke.set_up(1, get_turf(M))
-	smoke.start()
-
-/datum/ammo/rocket/ap/on_hit_obj(obj/O, obj/item/projectile/P)
-	explosion(get_turf(O), -1, -1, 2, 5)
-	smoke.set_up(1, get_turf(O))
-	smoke.start()
-
-/datum/ammo/rocket/ap/on_hit_turf(turf/T, obj/item/projectile/P)
+/datum/ammo/rocket/ap/drop_nade(turf/T)
 	explosion(T, -1, -1, 2, 5)
+	set_smoke()
 	smoke.set_up(1, T)
-	smoke.start()
-
-/datum/ammo/rocket/ap/do_at_max_range(obj/item/projectile/P)
-	explosion(get_turf(P),  -1, -1, 2, 5)
-	smoke.set_up(1, get_turf(P))
 	smoke.start()
 
 /datum/ammo/rocket/ltb
@@ -977,23 +970,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = CONFIG_GET(number/combat_define/ltb_hit_damage)
 	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
 
-/datum/ammo/rocket/ltb/on_hit_mob(mob/M, obj/item/projectile/P)
-	explosion(get_turf(M), -1, 3, 5, 6)
-
-/datum/ammo/rocket/ltb/on_hit_obj(obj/O, obj/item/projectile/P)
-	explosion(get_turf(P), -1, 3, 5, 6)
-
-/datum/ammo/rocket/ltb/on_hit_turf(turf/T, obj/item/projectile/P)
-	explosion(get_turf(P), -1, 3, 5, 6)
-
-/datum/ammo/rocket/ltb/do_at_max_range(obj/item/projectile/P)
-	explosion(get_turf(P), -1, 3, 5, 6)
+/datum/ammo/rocket/ltb/drop_nade(turf/T)
+	explosion(T, -1, 3, 5, 6)
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
 	hud_state = "rocket_fire"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_EXPLOSIVE
 	damage_type = BURN
+
 /datum/ammo/rocket/wp/New()
 	..()
 	accuracy_var_low = CONFIG_GET(number/combat_define/med_proj_variance)
@@ -1001,51 +986,31 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = CONFIG_GET(number/combat_define/super_hit_damage)
 	max_range = CONFIG_GET(number/combat_define/norm_shell_range)
 
-/datum/ammo/rocket/wp/drop_flame(turf/T, radius = 3) //~Art updated fire.
+/datum/ammo/rocket/wp/drop_nade(turf/T, radius = 3)
 	if(!T || !isturf(T))
 		return
+	set_smoke()
 	smoke.set_up(1, T)
 	smoke.start()
 	playsound(T, 'sound/weapons/gun_flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 25, 25, 25, 15)
 
-
-/datum/ammo/rocket/wp/on_hit_mob(mob/M,obj/item/projectile/P)
-	drop_flame(get_turf(M), 3)
-
-/datum/ammo/rocket/wp/on_hit_obj(obj/O,obj/item/projectile/P)
-	drop_flame(get_turf(O), 3)
-
-/datum/ammo/rocket/wp/on_hit_turf(turf/T,obj/item/projectile/P)
-	drop_flame(T, 3)
-
-/datum/ammo/rocket/wp/do_at_max_range(obj/item/projectile/P)
-	drop_flame(get_turf(P), 3)
-
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"
 	hud_state = "rocket_thermobaric"
 	flags_ammo_behavior = AMMO_ROCKET
+
 /datum/ammo/rocket/wp/quad/New()
 	..()
 	damage = CONFIG_GET(number/combat_define/ultra_hit_damage)
 	max_range = CONFIG_GET(number/combat_define/long_shell_range)
 
-/datum/ammo/rocket/wp/quad/on_hit_mob(mob/M,obj/item/projectile/P)
-	drop_flame(get_turf(M))
-	explosion(P.loc,  -1, 2, 4, 5)
+/datum/ammo/rocket/wp/quad/drop_nade(turf/T, radius = 3)
+	. = ..()
+	if(!.)
+		return
+	explosion(T,  -1, 2, 4, 5)
 
-/datum/ammo/rocket/wp/quad/on_hit_obj(obj/O,obj/item/projectile/P)
-	drop_flame(get_turf(O))
-	explosion(P.loc,  -1, 2, 4, 5)
-
-/datum/ammo/rocket/wp/quad/on_hit_turf(turf/T,obj/item/projectile/P)
-	drop_flame(T)
-	explosion(P.loc,  -1, 2, 4, 5)
-
-/datum/ammo/rocket/wp/quad/do_at_max_range(obj/item/projectile/P)
-	drop_flame(get_turf(P))
-	explosion(P.loc,  -1, 2, 4, 5)
 
 /*
 //================================================
@@ -1333,7 +1298,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/turf/T = get_turf(M)
 	if(!T)
 		T = get_turf(P)
-	drop_acid(T)
+	drop_nade(T)
 
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
@@ -1343,21 +1308,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/turf/T = get_turf(O)
 	if(!T)
 		T = get_turf(P)
-	drop_acid(T)
+	drop_nade(T)
 
 
 /datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/item/projectile/P)
 	if(!T)
 		T = get_turf(P)
-	drop_acid(T)
+	drop_nade(T)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(obj/item/projectile/P)
-	drop_acid(get_turf(P))
+	drop_nade(get_turf(P))
 
-/datum/ammo/xeno/acid/proc/drop_acid(turf/T) //Leaves behind a short lived acid pool; lasts for 1-3 seconds.
-	if(T.density)
+/datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind a short lived acid pool; lasts for 1-3 seconds.
+	if(!T || T.density)
 		return
-
 	new /obj/effect/xenomorph/spray(T, 10)
 
 /datum/ammo/xeno/boiler_gas
@@ -1388,11 +1352,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/boiler_gas/do_at_max_range(obj/item/projectile/P)
 	drop_nade(get_turf(P), P.firer)
 
-/datum/ammo/xeno/boiler_gas/proc/set_xeno_smoke()
+/datum/ammo/xeno/boiler_gas/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
 
-/datum/ammo/xeno/boiler_gas/proc/drop_nade(turf/T, atom/firer, range = 1)
-	set_xeno_smoke()
+/datum/ammo/xeno/boiler_gas/drop_nade(turf/T, atom/firer, range = 1)
+	set_smoke()
 	if(isxeno(firer))
 		var/mob/living/carbon/Xenomorph/X = firer
 		smoke_system.strength = X.xeno_caste.bomb_strength
@@ -1420,7 +1384,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/M, obj/item/projectile/P)
 	burst(M,P,damage_type)
 
-/datum/ammo/xeno/boiler_gas/corrosive/set_xeno_smoke()
+/datum/ammo/xeno/boiler_gas/corrosive/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
 
 /*
@@ -1510,7 +1474,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/flare/do_at_max_range(obj/item/projectile/P)
 	drop_nade(get_turf(P))
 
-/datum/ammo/flare/proc/drop_nade(var/turf/T)
+/datum/ammo/flare/drop_nade(turf/T)
 	var/obj/item/explosive/grenade/flare/G = new (T)
 	G.visible_message("<span class='warning'>\A [G] bursts into brilliant light nearby!</span>")
 	G.turn_on()
@@ -1557,7 +1521,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/grenade_container/do_at_max_range(obj/item/projectile/P)
 	drop_nade(get_turf(P))
 
-/datum/ammo/grenade_container/proc/drop_nade(var/turf/T)
+/datum/ammo/grenade_container/drop_nade(turf/T)
 	var/obj/item/explosive/grenade/G = new nade_type(T)
 	G.visible_message("<span class='warning'>\A [G] lands on [T]!</span>")
 	G.det_time = 10
