@@ -1,6 +1,6 @@
 /datum/action/xeno_action/activable/corrosive_acid/drone
 	name = "Corrosive Acid (75)"
-	acid_plasma_cost = 75
+	plasma_cost = 75
 	acid_type = /obj/effect/xenomorph/acid/weak
 
 /datum/action/xeno_action/activable/salvage_plasma

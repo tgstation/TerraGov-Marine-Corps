@@ -86,19 +86,6 @@
 	. += CONFIG_GET(number/outdated_movedelay/human_delay)
 
 	. = max(-2.5, . + reagent_move_delay_modifier) //hyperzine and ultrazine
-/mob/living/carbon/human/proc/clear_leader_tracking()
-	var/obj/screen/SL_dir = hud_used.SL_locator
-	SL_dir.icon_state = "SL_locator_off"
-
-/mob/living/carbon/human/proc/update_leader_tracking(var/mob/living/carbon/human/H)
-	var/obj/screen/SL_dir = hud_used.SL_locator
-
-	if(H.z != src.z || get_dist(src,H) < 1 || src == H)
-		SL_dir.icon_state = ""
-	else
-		SL_dir.icon_state = "SL_locator"
-		SL_dir.transform = 0 //Reset and 0 out
-		SL_dir.transform = turn(SL_dir.transform, Get_Angle(src,H))
 
 /mob/living/carbon/human/proc/Process_Cloaking_Router(mob/living/carbon/human/user)
 	if(!user.cloaking)

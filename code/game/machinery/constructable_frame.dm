@@ -7,7 +7,6 @@
 	density = 0
 	anchored = 1
 	use_power = 0
-	var/obj/item/circuitboard/machine/circuit = null
 	var/list/components = null
 	var/list/req_components = null
 	var/list/req_component_names = null
@@ -46,7 +45,7 @@
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 					user.visible_message("<span class='notice'>[user] starts adding cables to [src].</span>",
 					"<span class='notice'>You start adding cables to [src].</span>")
-					if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD) && state == 1)
+					if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) && state == 1)
 						if(C && istype(C) && C.use(5))
 							user.visible_message("<span class='notice'>[user] adds cables to [src].</span>",
 							"<span class='notice'>You add cables to [src].</span>")
@@ -62,7 +61,7 @@
 				if(istype(P, /obj/item/circuitboard/machine))
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 					to_chat(user, "<span class='notice'>You add the circuit board to the frame.</span>")
-					circuit = P
+					var/obj/item/circuitboard/machine/circuit = P
 					if(user.transferItemToLoc(P, src))
 						icon_state = "box_2"
 						state = 3

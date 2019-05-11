@@ -22,7 +22,7 @@
 	var/step_in = 10 //make a step in step_in/10 sec.
 	var/dir_in = 2//What direction will the mech face when entered/powered on? Defaults to South.
 	var/step_energy_drain = 10
-	var/health = 300 //health is health
+	max_integrity = 300 //health is health
 	var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	//the values in this list show how much damage will pass through, not how much will be absorbed.
 	var/list/damage_absorption = list("brute"=0.8,"fire"=1.2,"bullet"=0.9,"laser"=1,"energy"=1,"bomb"=1)
@@ -146,11 +146,6 @@
 	pr_inertial_movement = new /datum/global_iterator/mecha_intertial_movement(null,0)
 	pr_internal_damage = new /datum/global_iterator/mecha_internal_damage(list(src),0)
 
-/obj/mecha/proc/do_after(delay as num)
-	sleep(delay)
-	if(src)
-		return TRUE
-	return FALSE
 
 /obj/mecha/proc/enter_after(delay as num, var/mob/user as mob, var/numticks = 5)
 	var/delayfraction = delay/numticks
@@ -174,7 +169,7 @@
 
 /obj/mecha/examine(mob/user)
 	..()
-	var/integrity = health/initial(health)*100
+	var/integrity = obj_integrity/max_integrity*100
 	switch(integrity)
 		if(85 to 100)
 			to_chat(usr, "It's fully intact.")
@@ -193,11 +188,6 @@
 
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
-	return
-
-/obj/mecha/hear_talk(mob/M as mob, text)
-	if(M==occupant && radio.broadcasting)
-		radio.talk_into(M, text)
 	return
 
 ////////////////////////////
@@ -289,10 +279,12 @@
 			if(!src.check_for_support())
 				src.pr_inertial_movement.start(list(src,direction))
 				src.log_message("Movement control lost. Inertial movement started.")
-		if(do_after(step_in))
-			can_move = TRUE
+		addtimer(CALLBACK(src, .proc/can_move_again), step_in)
 		return TRUE
 	return FALSE
+
+/obj/mecha/proc/can_move_again()
+	can_move = TRUE
 
 /obj/mecha/proc/mechturn(direction)
 	setDir(direction)
@@ -338,7 +330,7 @@
 /obj/mecha/proc/check_for_internal_damage(var/list/possible_int_damage,var/ignore_threshold=null)
 	if(!islist(possible_int_damage) || isemptylist(possible_int_damage)) return
 	if(prob(20))
-		if(ignore_threshold || src.health*100/initial(src.health)<src.internal_damage_threshold)
+		if(ignore_threshold || src.obj_integrity*100/max_integrity<src.internal_damage_threshold)
 			for(var/T in possible_int_damage)
 				if(internal_damage & T)
 					possible_int_damage -= T
@@ -346,7 +338,7 @@
 			if(int_dam_flag)
 				setInternalDamage(int_dam_flag)
 	if(prob(5))
-		if(ignore_threshold || src.health*100/initial(src.health)<src.internal_damage_threshold)
+		if(ignore_threshold || src.obj_integrity*100/max_integrity<src.internal_damage_threshold)
 			var/obj/item/mecha_parts/mecha_equipment/destr = safepick(equipment)
 			if(destr)
 				destr.destroy_mecha()
@@ -375,7 +367,7 @@
 /obj/mecha/proc/take_damage(amount, type="brute")
 	if(amount)
 		var/damage = absorbDamage(amount,type)
-		health -= damage
+		obj_integrity -= damage
 		update_health()
 		log_append_to_last("Took [damage] points of damage. Damage type: \"[type]\".",1)
 	return
@@ -388,7 +380,7 @@
 
 
 /obj/mecha/proc/update_health()
-	if(src.health > 0)
+	if(src.obj_integrity > 0)
 		src.spark_system.start()
 	else
 		src.destroy_mecha()
@@ -571,13 +563,13 @@
 			if (prob(30))
 				src.destroy_mecha()
 			else
-				src.take_damage(initial(src.health)/2)
+				src.take_damage(max_integrity/2)
 				src.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)
 		if(3.0)
 			if (prob(5))
 				src.destroy_mecha()
 			else
-				src.take_damage(initial(src.health)/5)
+				src.take_damage(max_integrity/5)
 				src.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)
 	return
 
@@ -697,9 +689,9 @@
 		var/obj/item/tool/weldingtool/WT = W
 		if (!WT.remove_fuel(0,user))
 			return
-		if(src.health<initial(src.health))
+		if(src.obj_integrity<max_integrity)
 			to_chat(user, "<span class='notice'>You repair some damage to [src.name].</span>")
-			src.health += min(10, initial(src.health)-src.health)
+			src.obj_integrity += min(10, max_integrity-src.obj_integrity)
 		else
 			to_chat(user, "The [src.name] is at full integrity")
 		return
@@ -1191,7 +1183,7 @@
 
 
 /obj/mecha/proc/get_stats_part()
-	var/integrity = health/initial(health)*100
+	var/integrity = obj_integrity/max_integrity*100
 	var/cell_charge = get_charge()
 	var/tank_pressure = internal_tank ? round(internal_tank.return_pressure(),0.01) : "None"
 	var/tank_temperature = internal_tank ? internal_tank.return_temperature() : "Unknown"
@@ -1486,7 +1478,7 @@
 		var/mob/occupant = P.occupant
 
 		user.visible_message("<span class='warning'> [user] begins opening the hatch on \the [P]...</span>", "<span class='warning'> You begin opening the hatch on \the [P]...</span>")
-		if (!do_after(user, 40, FALSE, 5, BUSY_ICON_GENERIC))
+		if(!do_after(user, 40, FALSE, src, BUSY_ICON_HOSTILE))
 			return
 
 		user.visible_message("<span class='warning'> [user] opens the hatch on \the [P] and removes [occupant]!</span>", "<span class='warning'> You open the hatch on \the [P] and remove [occupant]!</span>")
@@ -1526,16 +1518,18 @@
 		src.occupant_message("Recalibrating coordination system.")
 		src.log_message("Recalibration of coordination system started.")
 		var/T = src.loc
-		if(do_after(100))
-			if(T == src.loc)
-				src.clearInternalDamage(MECHA_INT_CONTROL_LOST)
-				src.occupant_message("<font color='blue'>Recalibration successful.</font>")
-				src.log_message("Recalibration of coordination system finished with 0 errors.")
-			else
-				src.occupant_message("<font color='red'>Recalibration failed.</font>")
-				src.log_message("Recalibration of coordination system failed with 1 error.", color="red")
-
+		addtimer(CALLBACK(src, .proc/recalibrate, T), 100)
 	return
+
+/obj/mecha/proc/recalibrate(location)
+	if(loc == location)
+		clearInternalDamage(MECHA_INT_CONTROL_LOST)
+		occupant_message("<font color='blue'>Recalibration successful.</font>")
+		log_message("Recalibration of coordination system finished with 0 errors.")
+	else
+		occupant_message("<font color='red'>Recalibration failed.</font>")
+		log_message("Recalibration of coordination system failed with 1 error.", color="red")
+
 
 ///////////////////////
 ///// Power stuff /////

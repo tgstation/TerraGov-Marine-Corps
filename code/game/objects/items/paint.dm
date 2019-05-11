@@ -13,7 +13,7 @@ var/global/list/cached_icons = list()
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(10,20,30,50,70)
 	volume = 70
-	container_type = OPENCONTAINER
+	init_reagent_flags = OPENCONTAINER
 	var/paint_type = ""
 
 	afterattack(turf/target, mob/user, proximity)

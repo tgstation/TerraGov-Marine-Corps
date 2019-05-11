@@ -6,7 +6,7 @@
 	var/state = 0
 	var/dismantlectr = 0
 	var/buildctr = 0
-	health = 125
+	max_integrity = 125
 	var/repair_state = 0
 	// To store what type of wall it used to be
 	var/original
@@ -19,13 +19,13 @@
 		return 0
 
 	if(Proj.ammo.damage_type == BURN)
-		health -= Proj.damage
-		if(health <= 0)
+		obj_integrity -= Proj.damage
+		if(obj_integrity <= 0)
 			update_state()
 	else
 		if(prob(50))
-			health -= round(Proj.ammo.damage / 2)
-			if(health <= 0)
+			obj_integrity -= round(Proj.ammo.damage / 2)
+			if(obj_integrity <= 0)
 				update_state()
 	return 1
 
@@ -35,8 +35,8 @@
 		return FALSE
 	else
 		M.animation_attack_on(src)
-		health -= round(rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) / 2)
-		if(health <= 0)
+		obj_integrity -= round(rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) / 2)
+		if(obj_integrity <= 0)
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
 			"<span class='danger'>You slice \the [src] apart!</span>", null, 5)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
@@ -53,7 +53,7 @@
 			return
 	if(user.action_busy)
 		return TRUE //no afterattack
-	if(health > 0)
+	if(obj_integrity > 0)
 		if(iswrench(W))
 			if(!anchored)
 				if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))
@@ -61,14 +61,14 @@
 					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>Now securing the girder</span>")
-				if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 					to_chat(user, "<span class='notice'>You secured the girder!</span>")
 					new/obj/structure/girder( src.loc )
 					qdel(src)
 			else if (dismantlectr %2 == 0)
-				if(do_after(user,15, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user,15, TRUE, src, BUSY_ICON_BUILD))
 					dismantlectr++
-					health -= 15
+					obj_integrity -= 15
 					to_chat(user, "<span class='notice'>You unfasten a bolt from the girder!</span>")
 				return
 
@@ -77,12 +77,12 @@
 			var/obj/item/tool/pickaxe/plasmacutter/P = W
 			if(!(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)))
 				return
-			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P) //Girders take half as long
+			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, BUSY_ICON_HOSTILE)) //Girders take half as long
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD) //Girders require half the normal power
 				P.debris(loc, 0, 2) //Generate some rods
 				if(!src)
 					return
-				health = 0
+				obj_integrity = 0
 				update_state()
 
 		else if(istype(W, /obj/item/tool/pickaxe/diamonddrill))
@@ -92,16 +92,14 @@
 		else if(isscrewdriver(W) && state == 2 && istype(src,/obj/structure/girder/reinforced))
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>Now unsecuring support struts</span>")
-			if(do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
-				if(!src) return
+			if(do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
 				to_chat(user, "<span class='notice'>You unsecured the support struts!</span>")
 				state = 1
 
 		else if(iswirecutter(W) && istype(src,/obj/structure/girder/reinforced) && state == 1)
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>Now removing support struts</span>")
-			if(do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
-				if(!src) return
+			if(do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
 				to_chat(user, "<span class='notice'>You removed the support struts!</span>")
 				new/obj/structure/girder( src.loc )
 				qdel(src)
@@ -109,8 +107,7 @@
 		else if(iscrowbar(W) && state == 0 && anchored)
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>Now dislodging the girder...</span>")
-			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-				if(!src) return
+			if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				to_chat(user, "<span class='notice'>You dislodged the girder!</span>")
 				new/obj/structure/girder/displaced( src.loc )
 				qdel(src)
@@ -127,11 +124,9 @@
 				if (anchored)
 					if(S.get_amount() < 1) return ..()
 					to_chat(user, "<span class='notice'>Now adding plating...</span>")
-					if (do_after(user,60, TRUE, 5, BUSY_ICON_BUILD))
-						if(gc_destroyed || buildctr != old_buildctr) return
-						if (S.use(1))
-							to_chat(user, "<span class='notice'>You added the plating!</span>")
-							buildctr++
+					if (do_after(user,60, TRUE, src, BUSY_ICON_BUILD) && buildctr == old_buildctr && S.use(1))
+						to_chat(user, "<span class='notice'>You added the plating!</span>")
+						buildctr++
 					return
 			else if(istype(S, /obj/item/stack/sheet/plasteel))
 				if (anchored)
@@ -144,9 +139,7 @@
 					if(S.amount < 2)
 						return ..()
 					to_chat(user, "<span class='notice'>Now adding plating...</span>")
-					if (do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
-						if(gc_destroyed || buildctr != old_buildctr || S.amount < 2) return
-						S.use(2)
+					if (do_after(user,40, TRUE, src, BUSY_ICON_BUILD) && buildctr == old_buildctr && S.use(2))
 						to_chat(user, "<span class='notice'>You added the plating!</span>")
 						var/turf/Tsrc = get_turf(src)
 						Tsrc.ChangeTurf(text2path("/turf/closed/wall/mineral/[M]"))
@@ -161,8 +154,7 @@
 			var/obj/item/tool/weldingtool/WT = W
 			if (WT.remove_fuel(0,user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-				if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD))
-					if(!WT.isOn()) return
+				if(do_after(user,30, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					if (buildctr >= 5)
 						build_wall()
 						return
@@ -170,12 +162,12 @@
 					to_chat(user, "<span class='notice'>You weld the metal to the girder!</span>")
 			return
 		else if(iswirecutter(W) && dismantlectr %2 != 0)
-			if(do_after(user,15, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user,15, TRUE, src, BUSY_ICON_BUILD))
 				if (dismantlectr >= 5)
 					dismantle()
 					dismantlectr = 0
 					return
-				health -= 15
+				obj_integrity -= 15
 				dismantlectr++
 				to_chat(user, "<span class='notice'>You cut away from structural piping!</span>")
 			return
@@ -195,16 +187,13 @@
 				if(M.amount < 2)
 					return ..()
 				to_chat(user, "<span class='notice'>Now adding plating...</span>")
-				if (do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
-					if(gc_destroyed || repair_state != 0 || !M || M.amount < 2) return
-					M.use(2)
+				if (do_after(user,40, TRUE, src, BUSY_ICON_BUILD) && !repair_state & M.use(2))
 					to_chat(user, "<span class='notice'>You added the metal to the girder!</span>")
 					repair_state = 1
 				return
 		if (repair_state == 1)
 			if(iswelder(W))
-				if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD))
-					if(gc_destroyed || repair_state != 1) return
+				if(do_after(user,30, TRUE, src, BUSY_ICON_BUILD) && repair_state == 1)
 					to_chat(user, "<span class='notice'>You weld the girder together!</span>")
 					repair()
 				return
@@ -223,7 +212,7 @@
 
 /obj/structure/girder/examine(mob/user)
 	..()
-	if (health <= 0)
+	if (obj_integrity <= 0)
 		to_chat(user, "It's broken, but can be mended by applying a metal plate then welding it together.")
 	else
 	//Build wall
@@ -254,11 +243,11 @@
 	qdel(src)
 
 /obj/structure/girder/proc/repair()
-	health = 200
+	obj_integrity = 200
 	update_state()
 
 /obj/structure/girder/proc/update_state()
-	if (health <= 0)
+	if (obj_integrity <= 0)
 		icon_state = "[icon_state]_damaged"
 		ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
 		density = 0
@@ -289,15 +278,15 @@
 /obj/structure/girder/ex_act(severity)
 	switch(severity)
 		if(1)
-			health = 0
+			obj_integrity = 0
 			update_state()
 		if(2)
 			if (prob(30))
-				health = 0
+				obj_integrity = 0
 				update_state()
 		if(3)
 			if(prob(5))
-				health = 0
+				obj_integrity = 0
 				update_state()
 
 
@@ -306,9 +295,9 @@
 /obj/structure/girder/displaced
 	icon_state = "displaced"
 	anchored = 0
-	health = 50
+	max_integrity = 50
 
 /obj/structure/girder/reinforced
 	icon_state = "reinforced"
 	state = 2
-	health = 500
+	max_integrity = 500

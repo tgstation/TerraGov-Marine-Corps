@@ -1,7 +1,6 @@
 /obj/structure/flora
 	anchored = TRUE
-	health = 25
-	var/health_max = 25
+	max_integrity = 25
 	var/on_fire = FALSE
 
 /obj/structure/flora/ex_act(severity)
@@ -54,12 +53,12 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/flora/process()
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		qdel(src)
 	if(!on_fire)
 		STOP_PROCESSING(SSobj, src)
 	else
-		health -= 25
+		obj_integrity -= 25
 
 //TREES
 
@@ -68,24 +67,23 @@
 	desc = "A large tree."
 	density = TRUE
 	pixel_x = -16
-	health = 500
-	health_max = 500
+	max_integrity = 500
 	layer = ABOVE_FLY_LAYER
 	var/log_amount = 10
 
 /obj/structure/flora/tree/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			health -= 500
+			obj_integrity -= 500
 		if(2.0)
-			health -= (rand(140, 300))
+			obj_integrity -= (rand(140, 300))
 		if(3.0)
-			health -= (rand(50, 100))
+			obj_integrity -= (rand(50, 100))
 	START_PROCESSING(SSobj, src)
 	return
 
 /obj/structure/flora/tree/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage * 0.5
+	obj_integrity -= Proj.damage * 0.5
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	return TRUE
@@ -98,7 +96,7 @@
 		user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
 		var/cut_force = min(1, W.force)
 		var/cutting_time = CLAMP(10, 20, 100/cut_force) SECONDS
-		if(do_after(usr, cutting_time , TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(usr, cutting_time , TRUE, src, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] fells [src] with the [W].</span>","<span class='notice'>You fell [src] with the [W].</span>", "You hear the sound of a tree falling.")
 			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 10 , 0, 0)
 			for(var/i=1 to log_amount)
@@ -126,7 +124,7 @@
 		overlays += "fire"
 
 /obj/structure/flora/tree/process()
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		density = 0
 		var/obj/structure/flora/stump/S = new(loc)
 		S.name = "[name] stump"
@@ -135,7 +133,7 @@
 	if(!on_fire)
 		STOP_PROCESSING(SSobj, src)
 	else
-		health -= 5
+		obj_integrity -= 5
 	return ..()
 
 /obj/structure/flora/stump
@@ -266,7 +264,7 @@
 
 /obj/structure/flora/pottedplant/ten
 	icon_state = "plant-10"
-	
+
 //newbushes
 
 /obj/structure/flora/ausbushes

@@ -20,6 +20,8 @@
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	outfit = /datum/outfit/job/command/captain
+	exp_requirements = XP_REQ_EXPERIENCED
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/command/captain/radio_help_message(mob/M)
@@ -60,6 +62,8 @@ Godspeed, captain! And remember, you are not above the law."})
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER
 	outfit = /datum/outfit/job/command/fieldcommander
+	exp_requirements = XP_REQ_EXPERIENCED
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/command/fieldcommander/radio_help_message(mob/M)
@@ -101,6 +105,8 @@ Make the TGMC proud!"})
 	skills_type = /datum/skills/SO
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
 	outfit = /datum/outfit/job/command/intelligenceofficer
+	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/command/intelligenceofficer/radio_help_message(mob/M)
@@ -176,6 +182,8 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	skills_type = /datum/skills/tank_crew
 	display_order = JOB_DISPLAY_ORDER_TANK_CREWMAN
 	outfit = /datum/outfit/job/command/tank_crew
+	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/command/tank_crew/radio_help_message(mob/M)
@@ -257,6 +265,8 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	skills_type = /datum/skills/CMP
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MP
 	outfit = /datum/outfit/job/command/warrant
+	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/command/commandmasteratarms/radio_help_message(mob/M)
@@ -306,6 +316,8 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	skills_type = /datum/skills/CE
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	outfit = /datum/outfit/job/logistics/engineering
+	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/logistics/engineering/radio_help_message(mob/M)
@@ -325,7 +337,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	w_uniform = /obj/item/clothing/under/marine/officer/ce
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
-	glasses = /obj/item/clothing/glasses/welding
+	glasses = /obj/item/clothing/glasses/welding/superior
 	gloves = /obj/item/clothing/gloves/yellow
 	head = /obj/item/clothing/head/beret/marine/techofficer
 	r_store = /obj/item/storage/pouch/electronics
@@ -345,6 +357,8 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	skills_type = /datum/skills/RO
 	display_order = JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER
 	outfit = /datum/outfit/job/logistics/requisition
+	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/logistics/requisition/radio_help_message(mob/M)
@@ -405,7 +419,7 @@ Start with the ship's engine, and don't forget radiation equipment."})
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/yellow
-	glasses = /obj/item/clothing/glasses/welding
+	glasses = /obj/item/clothing/glasses/welding/flipped
 	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/medium
 	back = /obj/item/storage/backpack/marine/satchel
@@ -472,6 +486,8 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 	skills_type = /datum/skills/CMO
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	outfit = /datum/outfit/job/medical/professor
+	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/medical/professor/radio_help_message(mob/M)
@@ -641,6 +657,8 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	minimal_access = ALL_ACCESS
 	display_order = JOB_DISPLAY_ORDER_SYNTHETIC
 	outfit = /datum/outfit/job/civilian/synthetic
+	exp_requirements = XP_REQ_EXPERIENCED
+	exp_type = EXP_TYPE_REGULAR_ALL
 
 
 /datum/job/civilian/synthetic/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)

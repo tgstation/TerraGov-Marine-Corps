@@ -988,72 +988,28 @@
 	if(!istype(H))
 		return
 
-	var/modification = input("What do you want to edit?", "Edit Appearance") as null|anything in list("Hair Style", "Hair Color", "Facial Hair Style", "Facial Hair Color", "Eye Color", "Body Color", "Gender", "Ethnicity")
-	switch(modification)
-		if("Hair Style")
-			var/new_hstyle = input("Select a hair style", "Edit Appearance") as null|anything in sortNames(GLOB.hair_styles_list)
-			if(!new_hstyle || !istype(H))
-				return
-			H.h_style = new_hstyle
-		if("Hair Color")
-			var/new_hair = input("Select hair color.", "Edit Appearance") as color
-			if(!new_hair || !istype(H))
-				return
-			H.r_hair = hex2num(copytext(new_hair, 2, 4))
-			H.g_hair = hex2num(copytext(new_hair, 4, 6))
-			H.b_hair = hex2num(copytext(new_hair, 6, 8))
-		if("Facial Hair Style")
-			var/new_fstyle = input("Select a facial hair style", "Edit Appearance") as null|anything in sortNames(GLOB.facial_hair_styles_list)
-			if(!new_fstyle || !istype(H))
-				return
-			H.f_style = new_fstyle
-		if("Facial Hair Color")
-			var/new_facial = input("Please select facial hair color.", "Edit Appearance") as color
-			if(!new_facial || !istype(H))
-				return
-			H.r_facial = hex2num(copytext(new_facial, 2, 4))
-			H.g_facial = hex2num(copytext(new_facial, 4, 6))
-			H.b_facial = hex2num(copytext(new_facial, 6, 8))
-		if("Eye Color")
-			var/new_eyes = input("Please select eye color.", "Edit Appearance") as color
-			if(!new_eyes || !istype(H))
-				return
-			H.r_eyes = hex2num(copytext(new_eyes, 2, 4))
-			H.g_eyes = hex2num(copytext(new_eyes, 4, 6))
-			H.b_eyes = hex2num(copytext(new_eyes, 6, 8))
-		if("Body Color")
-			var/new_skin = input("Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Edit Appearance") as color
-			if(!new_skin || !istype(H))
-				return
-			H.r_skin = hex2num(copytext(new_skin, 2, 4))
-			H.g_skin = hex2num(copytext(new_skin, 4, 6))
-			H.b_skin = hex2num(copytext(new_skin, 6, 8))
-		if("Gender")
-			var/new_gender = alert("Please select gender.", "Edit Appearance", "Male", "Female", "Cancel")
-			if(!new_gender || !istype(H))
-				return
-			switch(new_gender)
-				if("Male")
-					H.gender = MALE
-				if("Female")
-					H.gender = FEMALE
-				else
-					return
-		if("Ethnicity")
-			var/new_ethnicity = input("Please select the ethnicity") as null|anything in sortNames(GLOB.ethnicities_list)
-			if(!new_ethnicity || !istype(H))
-				return
-			H.ethnicity = new_ethnicity
-		else
-			return
+	var/hcolor = "#[num2hex(H.r_hair)][num2hex(H.g_hair)][num2hex(H.b_hair)]"
+	var/fcolor = "#[num2hex(H.r_facial)][num2hex(H.g_facial)][num2hex(H.b_facial)]"
+	var/ecolor = "#[num2hex(H.r_eyes)][num2hex(H.g_eyes)][num2hex(H.b_eyes)]"
+	var/bcolor = "#[num2hex(H.r_skin)][num2hex(H.g_skin)][num2hex(H.b_skin)]"
 
-	H.update_hair()
-	H.update_body()
-	H.regenerate_icons()
-	H.check_dna(H)
+	var/dat
 
-	log_admin("[key_name(usr)] updated the [modification] of [key_name(H)].")
-	message_admins("[ADMIN_TPMONTY(usr)] updated the [modification] of [ADMIN_TPMONTY(H)].")
+	dat += "Hair style: [H.h_style] <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=hairstyle;mob=[REF(H)]'>Edit</a><br>"
+	dat += "Hair color: <font face='fixedsys' size='3' color='[hcolor]'><table style='display:inline;' bgcolor='[hcolor]'><tr><td>_.</td></tr></table></font> <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=haircolor;mob=[REF(H)]'>Edit</a><br>"
+	dat += "<br>"
+	dat += "Facial hair style: [H.f_style] <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=facialhairstyle;mob=[REF(H)]'>Edit</a><br>"
+	dat += "Facial hair color: <font face='fixedsys' size='3' color='[fcolor]'><table style='display:inline;' bgcolor='[fcolor]'><tr><td>_.</td></tr></table></font> <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=facialhaircolor;mob=[REF(H)]'>Edit</a><br>"
+	dat += "<br>"
+	dat += "Eye color: <font face='fixedsys' size='3' color='[ecolor]'><table style='display:inline;' bgcolor='[ecolor]'><tr><td>_.</td></tr></table></font> <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=eyecolor;mob=[REF(H)]'>Edit</a><br>"
+	dat += "Body color: <font face='fixedsys' size='3' color='[bcolor]'><table style='display:inline;' bgcolor='[bcolor]'><tr><td>_.</td></tr></table></font> <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=bodycolor;mob=[REF(H)]'>Edit</a><br>"
+	dat += "<br>"
+	dat += "Gender: [H.gender] <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=gender;mob=[REF(H)]'>Edit</a><br>"
+	dat += "Ethnicity: [H.ethnicity] <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=ethnicity;mob=[REF(H)]'>Edit</a><br>"
+
+	var/datum/browser/browser = new(usr, "edit_appearance_[key_name(H)]", "<div align='center'>Edit Appearance [key_name(H)]</div>")
+	browser.set_content(dat)
+	browser.open(FALSE)
 
 
 /datum/admins/proc/offer(mob/living/L in GLOB.mob_living_list)

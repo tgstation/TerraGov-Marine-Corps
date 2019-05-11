@@ -49,7 +49,7 @@
 		return
 	if( href_list["close"] )
 		var/mob/user = usr
-		var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
+		var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
 		user.unset_interaction()
 		ui.close()
 		return FALSE
@@ -131,7 +131,7 @@
 		if(DISPLAY_IN_TRANSIT)
 			data["crewmembers"] = sortListUsingKey(crewmembers_in_transit, cmp_proc, sortkey)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "crew_monitor.tmpl", "Crew Monitoring Computer", 900, 800)
 

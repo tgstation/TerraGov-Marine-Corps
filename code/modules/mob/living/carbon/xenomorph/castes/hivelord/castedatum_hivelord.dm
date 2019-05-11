@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Hivelord
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
+	wound_type = "hivelord" //used to match appropriate wound overlays
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
 	melee_damage_upper = 20

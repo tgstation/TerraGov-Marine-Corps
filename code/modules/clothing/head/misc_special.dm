@@ -31,43 +31,52 @@
 	tint = TINT_HEAVY
 	var/hug_memory = 0 //Variable to hold the "memory" of how many anti-hugs remain.  Because people were abusing the fuck out of it.
 
-/obj/item/clothing/head/welding/attack_self()
-	toggle()
+/obj/item/clothing/head/welding/attack_self(mob/user)
+	toggle(user)
 
 
-/obj/item/clothing/head/welding/verb/toggle()
+/obj/item/clothing/head/welding/verb/verbtoggle()
 	set category = "Object"
 	set name = "Adjust welding mask"
 	set src in usr
 
-	if(usr.canmove && !usr.stat && !usr.restrained())
-		if(up)
-			flags_inventory |= COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
-			flags_inv_hide |= HIDEEARS|HIDEEYES|HIDEFACE
-			icon_state = initial(icon_state)
-			eye_protection = initial(eye_protection)
-			tint = initial(tint)
-			to_chat(usr, "You flip the [src] down to protect your eyes.")
-			anti_hug = hug_memory //This will reset the hugged var, but ehh. More efficient than making a new var for it.
-		else
-			flags_inventory &= ~(COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
-			flags_inv_hide &= ~(HIDEEARS|HIDEEYES|HIDEFACE)
-			icon_state = "[initial(icon_state)]up"
-			eye_protection = 0
-			tint = TINT_NONE
-			to_chat(usr, "You push the [src] up out of your face.")
-			hug_memory = anti_hug
-			anti_hug = 0
-		up = !up
+	if(!usr.incapacitated())
+		toggle(usr)
 
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.head == src)
-				H.update_tint()
+/obj/item/clothing/head/welding/proc/toggle(mob/user)
+	up = !up
+	icon_state = "[initial(icon_state)][up ? "up" : ""]"
+	if(up)
+		DISABLE_BITFIELD(flags_inventory, COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
+		DISABLE_BITFIELD(flags_inv_hide, HIDEEARS|HIDEEYES|HIDEFACE)
+		eye_protection = 0
+		tint = TINT_NONE
+		hug_memory = anti_hug
+		anti_hug = 0
+	else
+		ENABLE_BITFIELD(flags_inventory, COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
+		ENABLE_BITFIELD(flags_inv_hide, HIDEEARS|HIDEEYES|HIDEFACE)
+		eye_protection = initial(eye_protection)
+		tint = initial(tint)
+		anti_hug = hug_memory
+	if(user)
+		to_chat(usr, "You [up ? "push [src] up out of your face" : "flip [src] down to protect your eyes"].")
 
-		update_clothing_icon()	//so our mob-overlays update
 
-		update_action_button_icons()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		if(H.head == src)
+			H.update_tint()
+
+	update_clothing_icon()	//so our mob-overlays update
+
+	update_action_button_icons()
+
+/obj/item/clothing/head/welding/flipped //spawn in flipped up.
+
+/obj/item/clothing/head/welding/flipped/Initialize(mapload)
+	. = ..()
+	toggle()
 
 /*
  * Cakehat

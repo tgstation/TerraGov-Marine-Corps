@@ -12,7 +12,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60)
 	volume = 60
-	container_type = OPENCONTAINER
+	init_reagent_flags = OPENCONTAINER
 
 	var/label_text = ""
 
@@ -31,12 +31,12 @@
 	set category = "Object"
 	if(is_open_container())
 		to_chat(usr, "<span class='notice'>You put the lid on \the [src].</span>")
-		container_type ^= OPENCONTAINER
-		container_type |= TRANSPARENT
+		DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
+		ENABLE_BITFIELD(reagents.reagent_flags, TRANSPARENT)
 	else
 		to_chat(usr, "<span class='notice'>You take the lid off \the [src].</span>")
-		container_type ^= TRANSPARENT
-		container_type |= OPENCONTAINER
+		DISABLE_BITFIELD(reagents.reagent_flags, TRANSPARENT)
+		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 	update_icon()
 
 /obj/item/reagent_container/glass/afterattack(obj/target, mob/user , proximity)
@@ -182,11 +182,8 @@
 	icon_state = "beakernoreact"
 	matter = list("glass" = 500)
 	volume = 60
+	init_reagent_flags = OPENCONTAINER|NO_REACT
 	amount_per_transfer_from_this = 10
-
-/obj/item/reagent_container/glass/beaker/noreact/New()
-	. = ..()
-	reagents.set_reacting(FALSE)
 
 /obj/item/reagent_container/glass/beaker/bluespace
 	name = "bluespace beaker"

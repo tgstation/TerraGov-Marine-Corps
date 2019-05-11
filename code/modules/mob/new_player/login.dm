@@ -1,5 +1,4 @@
 /mob/new_player/Login()
-	update_Login_details()	//handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
 	if(GLOB.motd)
 		to_chat(src, "<div class='motd'>[GLOB.motd]</div>")
 

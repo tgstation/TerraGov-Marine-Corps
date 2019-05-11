@@ -459,10 +459,6 @@
 	hold.emp_act(severity)
 	..()
 
-/obj/item/clothing/tie/storage/hear_talk(mob/M, msg, verb = "says", datum/language/language)
-	hold.hear_talk(M, msg, verb, language)
-	return ..()
-
 /obj/item/clothing/tie/storage/attack_self(mob/user as mob)
 	to_chat(user, "<span class='notice'>You empty [src].</span>")
 	var/turf/T = get_turf(src)
@@ -524,8 +520,8 @@
 /obj/item/storage/internal/tie/white_vest
 	storage_slots = 8
 	can_hold = list(
-		/obj/item/tool/surgery, 
-		/obj/item/stack/medical/advanced, 
+		/obj/item/tool/surgery,
+		/obj/item/stack/medical/advanced,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/stack/nanopaste)

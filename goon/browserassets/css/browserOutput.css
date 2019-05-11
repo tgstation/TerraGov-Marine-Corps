@@ -217,6 +217,15 @@ a.popt {text-decoration: none;}
 *
 ******************************************/
 
+/* ADD HERE FOR BOLD */
+.bold, .name, .prefix, .ooc, .looc, .adminooc, .admin, .medal, .yell {font-weight: bold;}
+
+/* ADD HERE FOR ITALIC */
+.italic, .italics,  .emote {font-style: italic;}
+
+/* OUTPUT COLORS */
+.highlight {background: yellow;}
+
 .motd					{color: #638500;	font-family: Verdana, sans-serif;}
 .motd h1, .motd h2, .motd h3, .motd h4, .motd h5, .motd h6
 	{color: #638500;	text-decoration: underline;}
@@ -316,6 +325,7 @@ h1.alert, h2.alert		{color: #000000;}
 .vox					{color: #AA00AA;}
 .rough					{font-family: trebuchet-ms, cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
+.command_headset		{font-weight: bold; font-size: 18px;}
 
 
 .green					{color: #29b245;}

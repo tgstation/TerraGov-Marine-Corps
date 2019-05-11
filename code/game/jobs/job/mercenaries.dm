@@ -73,6 +73,6 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/mercenary/engineer
 	gloves = /obj/item/clothing/gloves/combat
 	head = /obj/item/clothing/head/helmet/marine/veteran/mercenary/engineer
-	glasses = /obj/item/clothing/glasses/welding
+	glasses = /obj/item/clothing/glasses/welding/flipped
 	mask = /obj/item/clothing/mask/gas/PMC
 	back = /obj/item/storage/backpack/satchel/eng

@@ -155,6 +155,9 @@
 
 	return t_out
 
+
+#define strip_improper(input_text) replacetext(replacetext(input_text, "\proper", ""), "\improper", "")
+
 //checks text for html tags
 //if tag is not in whitelist (var/list/paper_tag_whitelist in global.dm)
 //relpaces < with &lt;

@@ -195,7 +195,7 @@
 		lifetime = smoke_time
 
 /datum/effect_system/smoke_spread/start()
-	if(!QDELETED(holder))
+	if(QDELETED(location) && !QDELETED(holder))
 		location = get_turf(holder)
 	new smoke_type(location, range, lifetime, src)
 
@@ -296,7 +296,7 @@ datum/effect_system/smoke_spread/tactical
 	var/strength = 1
 
 /datum/effect_system/smoke_spread/xeno/start()
-	if(!QDELETED(holder))
+	if(QDELETED(location) && !QDELETED(holder))
 		location = get_turf(holder)
 	var/obj/effect/particle_effect/smoke/xeno/S = new smoke_type(location, range, lifetime, src)
 	S.strength = strength
@@ -356,7 +356,7 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/chem/start()
 	var/mixcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
-	if(!QDELETED(holder))
+	if(QDELETED(location) && !QDELETED(holder))
 		location = get_turf(holder)
 	var/obj/effect/particle_effect/smoke/chem/S = new smoke_type(location, range, lifetime, src)
 

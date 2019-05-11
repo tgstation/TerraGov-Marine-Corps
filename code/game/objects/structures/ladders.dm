@@ -87,14 +87,13 @@
 	user.visible_message("<span class='notice'>[user] starts climbing [ladder_dir_name] [src].</span>",
 	"<span class='notice'>You start climbing [ladder_dir_name] [src].</span>")
 	add_fingerprint(user)
-	if(!do_after(user, 20, FALSE, 5, BUSY_ICON_GENERIC))
+	if(!do_after(user, 20, FALSE, src, BUSY_ICON_GENERIC) || user.lying || user.anchored)
 		return
-	if(!user.incapacitated() && get_dist(user, src) <= 1 && !user.lying && !user.anchored)
-		user.trainteleport(ladder_dest.loc)
-		visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
-		user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
-		"<span class='notice'>You climb [ladder_dir_name] [src].</span>")
-		ladder_dest.add_fingerprint(user)
+	user.trainteleport(ladder_dest.loc)
+	visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
+	user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
+	"<span class='notice'>You climb [ladder_dir_name] [src].</span>")
+	ladder_dest.add_fingerprint(user)
 
 /obj/structure/ladder/attack_paw(mob/user as mob)
 	return attack_hand(user)
@@ -201,7 +200,7 @@
 
 		user.visible_message("<span class='warning'>[user] takes position to throw [G] [ladder_dir_name] [src].</span>",
 		"<span class='warning'>You take position to throw [G] [ladder_dir_name] [src].</span>")
-		if(do_after(user, 10, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
 			user.visible_message("<span class='warning'>[user] throws [G] [ladder_dir_name] [src]!</span>",
 			"<span class='warning'>You throw [G] [ladder_dir_name] [src]</span>")
 			user.drop_held_item()
@@ -233,7 +232,7 @@
 
 		user.visible_message("<span class='warning'>[user] takes position to throw [F] [ladder_dir_name] [src].</span>",
 		"<span class='warning'>You take position to throw [F] [ladder_dir_name] [src].</span>")
-		if(do_after(user, 10, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(do_after(user, 10, TRUE, src, BUSY_ICON_GENERIC))
 			user.visible_message("<span class='warning'>[user] throws [F] [ladder_dir_name] [src]!</span>",
 			"<span class='warning'>You throw [F] [ladder_dir_name] [src]</span>")
 			user.drop_held_item()

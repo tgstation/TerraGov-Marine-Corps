@@ -31,7 +31,7 @@
 	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 	var/constrdir = usr.dir
 	var/constrloc = usr.loc
-	if (!do_after(usr, 30, TRUE, 5, BUSY_ICON_BUILD))
+	if (!do_after(usr, 30, TRUE, on_wall, BUSY_ICON_BUILD))
 		return
 	switch(fixture_type)
 		if("bulb")

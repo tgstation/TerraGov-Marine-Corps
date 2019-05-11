@@ -249,8 +249,7 @@
 				if(W.remove_fuel(0,user))
 					playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 					to_chat(user, "Welding the [nicetype] in place.")
-					if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-						if(!src || !W.isOn()) return
+					if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 						to_chat(user, "The [nicetype] has been welded in place!")
 						update() // TODO: Make this neat
 						if(ispipe) // Pipe

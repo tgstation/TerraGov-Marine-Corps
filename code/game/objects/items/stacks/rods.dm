@@ -60,7 +60,7 @@
 	if (locate(/obj/structure/grille, usr.loc))
 		for(var/obj/structure/grille/G in usr.loc)
 			if (G.destroyed)
-				G.health = 10
+				G.obj_integrity = 10
 				G.density = 1
 				G.destroyed = 0
 				G.icon_state = "grille"
@@ -74,7 +74,7 @@
 			return
 		to_chat(usr, "<span class='notice'>Assembling grille...</span>")
 		ENABLE_BITFIELD(obj_flags, IN_USE)
-		if (!do_after(usr, 20, TRUE, 5, BUSY_ICON_BUILD))
+		if (!do_after(usr, 20, TRUE, src, BUSY_ICON_BUILD))
 			DISABLE_BITFIELD(obj_flags, IN_USE)
 			return
 		var/obj/structure/grille/F = new /obj/structure/grille/ ( usr.loc )

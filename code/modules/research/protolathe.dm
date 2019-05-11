@@ -10,7 +10,6 @@ Note: Must be placed west/left of and R&D console to function.
 /obj/machinery/r_n_d/protolathe
 	name = "Protolathe"
 	icon_state = "protolathe"
-	container_type = REFILLABLE
 
 	use_power = 1
 	idle_power_usage = 30
@@ -44,9 +43,7 @@ Note: Must be placed west/left of and R&D console to function.
 	var/T = 0
 	for(var/obj/item/reagent_container/glass/G in component_parts)
 		T += G.reagents.maximum_volume
-	var/datum/reagents/R = new/datum/reagents(T)		//Holder for the reagents used as materials.
-	reagents = R
-	R.my_atom = src
+	create_reagents(T, REFILLABLE)
 	T = 0
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		T += M.rating
@@ -148,9 +145,9 @@ Note: Must be placed west/left of and R&D console to function.
 	busy = 1
 	use_power(max(1000, (3750*amount/10)))
 	var/stacktype = stack.type
-	stack.use(amount)
-	if(do_after(user, 15, TRUE, 5, BUSY_ICON_FRIENDLY))
-		to_chat(user, "<span class='notice'>You add [amount] sheets to the [src.name].</span>")
+	if(do_after(user, 15, TRUE, src))
+		stack.use(amount)
+		to_chat(user, "<span class='notice'>You add [amount] sheets to \the [src].</span>")
 		icon_state = "protolathe"
 		switch(stacktype)
 			if(/obj/item/stack/sheet/metal)
@@ -167,8 +164,6 @@ Note: Must be placed west/left of and R&D console to function.
 				uranium_amount += amount * 2000
 			if(/obj/item/stack/sheet/mineral/diamond)
 				diamond_amount += amount * 2000
-	else
-		new stacktype(src.loc, amount)
 	busy = 0
 	src.updateUsrDialog()
 	return

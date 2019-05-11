@@ -80,7 +80,7 @@
 		"screen_mode" = screen_mode,
 	)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
 		ui = new(user, src, ui_key, "dropship_weapons_console.tmpl", "Weapons Control", 500, 400)
@@ -111,7 +111,8 @@
 			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use the automated targeting system.</span>",
 			"<span class='notice'>You fumble around figuring out how to use the automated targeting system.</span>")
 			var/fumbling_time = 100 - 20 * usr.mind.cm_skills.pilot
-			if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				return FALSE
 		for(var/X in active_laser_targets)
 			var/obj/effect/overlay/temp/laser_target/LT = X
 			if(LT.target_id == targ_id)

@@ -13008,7 +13008,6 @@
 /obj/machinery/bot/mulebot{
 	auto_pickup = 0;
 	auto_return = 0;
-	health = 1;
 	on = 0
 	},
 /obj/effect/decal/cleanable/blood/oil,
@@ -17586,12 +17585,6 @@
 "bjF" = (
 /turf/closed/wall,
 /area/lv624/lazarus/comms)
-"bjG" = (
-/obj/machinery/computer/telecomms/traffic,
-/turf/open/floor/tile/brown{
-	dir = 9
-	},
-/area/lv624/lazarus/comms)
 "bjH" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/engineering)
@@ -20432,7 +20425,7 @@
 /area/lv624/ground/jungle1)
 "bsk" = (
 /turf/closed/wall,
-/area/lv624/lazarus/relay)
+/area/storage/testroom)
 "bsl" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/planttop1,
@@ -20446,7 +20439,7 @@
 /area/lv624/ground/jungle2)
 "bso" = (
 /turf/open/floor,
-/area/lv624/lazarus/relay)
+/area/storage/testroom)
 "bsp" = (
 /obj/structure/jungle/plantbot1,
 /obj/structure/jungle/vines,
@@ -20459,13 +20452,9 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle2)
 "bsr" = (
-/obj/machinery/telecomms/relay/preset/station{
-	idle_power_usage = 0;
-	listening_level = 1;
-	use_power = 0
-	},
+/obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor,
-/area/lv624/lazarus/relay)
+/area/storage/testroom)
 "bHX" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -40249,7 +40238,7 @@ bgL
 bhh
 bia
 biU
-bjG
+bnN
 bjF
 ajV
 blM

@@ -7,7 +7,7 @@
 	step_in = 4
 	step_energy_drain = 10
 	max_temperature = 20000
-	health = 150
+	max_integrity = 150
 	infra_luminosity = 6
 	wreckage = /obj/effect/decal/mecha_wreckage/hoverpod
 	var/list/cargo = new
@@ -108,7 +108,7 @@
 /obj/mecha/hoverpod/combatpod
 	desc = "An ancient, run-down combat spacecraft." // Ideally would have a seperate icon.
 	name = "Combat Hoverpod"
-	health = 200
+	max_integrity = 200
 	internal_damage_threshold = 35
 
 /obj/mecha/hoverpod/combatpod/New()

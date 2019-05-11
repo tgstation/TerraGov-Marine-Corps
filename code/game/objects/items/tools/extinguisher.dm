@@ -13,11 +13,14 @@
 	force = 10.0
 	matter = list("metal" = 90)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
-	container_type = AMOUNT_VISIBLE
 	var/max_water = 50
 	var/last_use = 1.0
 	var/safety = 1
 	var/sprite_name = "fire_extinguisher"
+
+/obj/item/tool/extinguisher/Initialize(mapload)
+	. = ..()
+	create_reagents(max_water, AMOUNT_VISIBLE, list("water" = max_water))
 
 /obj/item/tool/extinguisher/mini
 	name = "fire extinguisher"

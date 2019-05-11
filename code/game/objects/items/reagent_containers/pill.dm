@@ -12,7 +12,7 @@ var/global/list/randomized_pill_icons
 	icon_state = null
 	item_state = "pill"
 	possible_transfer_amounts = null
-	container_type = AMOUNT_SKILLCHECK
+	init_reagent_flags = AMOUNT_SKILLCHECK
 	w_class = 1
 	volume = 60
 	var/pill_desc = "An unknown pill." //the real description of the pill, shown when examined by a medically trained person
@@ -62,7 +62,8 @@ var/global/list/randomized_pill_icons
 		if(user.mind && user.mind.cm_skills)
 			ingestion_time = max(10, 30 - 10*user.mind.cm_skills.medical)
 
-		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL)) return
+		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+			return
 
 		user.dropItemToGround(src) //icon update
 		for(var/mob/O in viewers(world.view, user))

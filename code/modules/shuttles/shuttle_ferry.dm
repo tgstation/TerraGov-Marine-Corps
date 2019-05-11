@@ -86,7 +86,7 @@
 				announce_preflight_failure()
 				process_state = SHUTTLE_IDLE
 				return .
-			if (skip_docking_checks() || docking_controller.can_launch())
+			if (skip_docking_checks())
 
 				//to_chat(world, "shuttle/ferry/process: area_transition=[area_transition], travel_time=[travel_time]")
 				if (move_time && area_transition)
@@ -111,7 +111,7 @@
 				process_state = WAIT_FINISH
 
 		if (WAIT_FINISH)
-			if (skip_docking_checks() || docking_controller.docked() || world.time > last_dock_attempt_time + DOCK_ATTEMPT_TIMEOUT)
+			if (skip_docking_checks() || world.time > last_dock_attempt_time + DOCK_ATTEMPT_TIMEOUT)
 				process_state = IDLE_STATE
 				arrived()
 
@@ -146,9 +146,6 @@
 	moving_status = SHUTTLE_IDLE
 	process_state = WAIT_FINISH
 	in_use = null
-
-	if (docking_controller && !docking_controller.undocked())
-		docking_controller.force_undock()
 
 	spawn(10)
 		dock()

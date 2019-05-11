@@ -192,41 +192,26 @@
 
 //Transfers blood from container to mob
 /mob/living/carbon/proc/inject_blood(obj/item/reagent_container/container, amount)
-
-	var/b_id = get_blood_id()
-	if(!b_id)
-		return
-
-	for(var/datum/reagent/blood/B in container.reagents.reagent_list)
-		if(B.id == b_id)
-
-			if(b_id == "blood" && B.data && !(B.data["blood_type"] in get_safe_blood(dna.b_type)))
-				reagents.add_reagent("toxin", amount * 0.5)
-			else
-				blood_volume = min(blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
-
-		else
-			reagents.add_reagent(B.id, amount, B.data)
-			reagents.update_total()
-
-		container.reagents.remove_reagent(B.id, amount)
-		return
+	for(var/datum/reagent/R in container.reagents.reagent_list)
+		reagents.add_reagent(R.id, amount, R.data)
+		reagents.update_total()
+		container.reagents.remove_reagent(R.id, amount)
 
 
 //Transfers blood from container to human, respecting blood types compatability.
 /mob/living/carbon/human/inject_blood(obj/item/reagent_container/container, amount)
-
-	var/datum/reagent/blood/B = locate() in container.reagents.reagent_list
-
-	if(species && species.species_flags & NO_BLOOD)
-		reagents.add_reagent(B.id, amount, B.data)
-		reagents.update_total()
-		container.reagents.remove_reagent(B.id, amount)
-		return
-
-
-	..()
-
+	var/b_id = get_blood_id()
+	for(var/datum/reagent/R in container.reagents.reagent_list)
+		// If its blood, lets check its compatible or not and cause some toxins.
+		if(istype(R, /datum/reagent/blood) && b_id && R.id == b_id)
+			if(b_id == "blood" && R.data && !(R.data["blood_type"] in get_safe_blood(dna.b_type)))
+				reagents.add_reagent("toxin", amount * 0.5)
+			else
+				blood_volume = min(blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
+		else
+			reagents.add_reagent(R.id, amount, R.data)
+			reagents.update_total()
+		container.reagents.remove_reagent(R.id, amount)
 
 
 //Gets blood from mob to the container, preserving all data in it.

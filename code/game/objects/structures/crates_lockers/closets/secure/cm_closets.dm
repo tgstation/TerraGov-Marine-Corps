@@ -135,9 +135,8 @@
 // MARINE ENGINEER
 
 /obj/structure/closet/secure_closet/marine/engi
-	slotlocked = 1
-	slotlocktype = "engi"
-	health = 100000 // just no
+	slotlocked = TRUE
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/closet/secure_closet/marine/engi/Initialize()
 	. = ..()
@@ -192,11 +191,10 @@
 
 
 
-// SQUAD CORPSMAN-''
+// SQUAD CORPSMAN
 /obj/structure/closet/secure_closet/marine/medic
-	slotlocked = 1
-	slotlocktype = "medic"
-	health = 100000 // just no
+	slotlocked = TRUE
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/closet/secure_closet/marine/medic/Initialize()
 	. = ..()

@@ -15,7 +15,6 @@
 /obj/effect/mark
 	var/mark = ""
 	icon = 'icons/misc/mark.dmi'
-	icon_state = "blank"
 	anchored = 1
 	layer = 99
 	mouse_opacity = 0

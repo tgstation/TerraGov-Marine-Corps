@@ -6,6 +6,11 @@
  *		Photo Albums
  */
 
+/datum/picture
+	var/name = "image"
+	var/list/fields = list()
+	
+
 /*******
 * film *
 *******/

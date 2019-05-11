@@ -340,7 +340,7 @@
 		if(!start_cut(user, target.name, target, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, "<span class='notice'>You start melting the [target.name] with [src].</span>"))
 			return
 		playsound(user.loc, 'sound/items/Welder.ogg', 25, 1)
-		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, T, BUSY_ICON_BUILD))
 			return
 		if(!cell.charge >= PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD || !powered)
 			fizzle_message(user)

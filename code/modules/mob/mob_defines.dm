@@ -22,7 +22,6 @@
 	*/
 	var/zone_selected = "chest"
 
-	var/use_me = TRUE //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 	var/computer_id //to track the players
 	var/list/logging = list()
 	var/atom/movable/interactee //the thing that the mob is currently interacting with (e.g. a computer, another mob (stripping a mob), manning a hmg)
@@ -141,6 +140,9 @@
 
 	var/action_busy //whether the mob is currently doing an action that takes time (do_after or do_mob procs)
 
+	var/list/progressbars //for stacking do_after bars
+	var/list/progbar_towers //for stacking the total pixel height of the aboves.
+
 	var/list/fullscreens = list()
 
 	var/list/light_sources = list()
@@ -153,3 +155,5 @@
 	var/track_blood = 0
 	var/list/feet_blood_DNA
 	var/feet_blood_color
+
+	var/move_on_shuttle = 1 // Can move on the shuttle.

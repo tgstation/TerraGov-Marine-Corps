@@ -33,12 +33,11 @@
 			to_chat(user, "<span class='notice'>Your mop is dry!</span>")
 			return
 
-		user.visible_message("<span class='warning'>[user] begins to clean \the [get_turf(A)].</span>")
+		var/turf/T = get_turf(A)
+		user.visible_message("<span class='warning'>[user] begins to clean \the [T].</span>")
 
-		if(do_after(user, 40, TRUE, 5, BUSY_ICON_GENERIC))
-			var/turf/T = get_turf(A)
-			if(T)
-				T.clean(src)
+		if(do_after(user, 40, TRUE, T, BUSY_ICON_GENERIC))
+			T.clean(src)
 			to_chat(user, "<span class='notice'>You have finished mopping!</span>")
 
 

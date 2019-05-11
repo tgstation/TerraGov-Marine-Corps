@@ -72,54 +72,24 @@
 // ***************************************
 // *********** Pounce/sneak attack
 // ***************************************
-/mob/living/carbon/Xenomorph/Hunter/Pounce(atom/T)
+/datum/action/xeno_action/activable/pounce/hunter
+	plasma_cost = 20
+	range = 7
 
-	if(!T || !check_state() || !check_plasma(20) || T.layer >= FLY_LAYER) //anything above that shouldn't be pounceable (hud stuff)
-		return
+/datum/action/xeno_action/activable/pounce/hunter/prepare_to_pounce()
+	. = ..()
+	if(owner.m_intent == MOVE_INTENT_WALK) //Hunter that is currently using its stealth ability, need to unstealth him
+		owner.m_intent = MOVE_INTENT_RUN
+		if(owner.hud_used?.move_intent)
+			owner.hud_used.move_intent.icon_state = "running"
+		owner.update_icons()
 
-	if(!isturf(loc))
-		to_chat(src, "<span class='xenowarning'>You can't pounce from here!</span>")
-		return
-
-	if(usedPounce)
-		to_chat(src, "<span class='xenowarning'>You must wait before pouncing.</span>")
-		return
-
-	if(legcuffed)
-		to_chat(src, "<span class='xenodanger'>You can't pounce with that thing on your leg!</span>")
-		return
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake up the shock!</span>")
-		return
-
-	if(layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
-		layer = MOB_LAYER
-
-	if(m_intent == "walk") //Hunter that is currently using its stealth ability, need to unstealth him
-		m_intent = "run"
-		if(hud_used && hud_used.move_intent)
-			hud_used.move_intent.icon_state = "running"
-		update_icons()
-
-	visible_message("<span class='xenowarning'>\The [src] pounces at [T]!</span>", \
-	"<span class='xenowarning'>You pounce at [T]!</span>")
-
-	if(can_sneak_attack) //If we could sneak attack, add a cooldown to sneak attack
-		to_chat(src, "<span class='xenodanger'>Your pounce has left you off-balance; you'll need to wait [HUNTER_POUNCE_SNEAKATTACK_DELAY*0.1] seconds before you can Sneak Attack again.</span>")
-		can_sneak_attack = FALSE
-		addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY)
-
-	usedPounce = TRUE
-	flags_pass = PASSTABLE
-	use_plasma(20)
-	throw_at(T, 7, 2, src) //Victim, distance, speed
-	addtimer(CALLBACK(src, .proc/reset_flags_pass), 6)
-	addtimer(CALLBACK(src, .proc/reset_pounce_delay), xeno_caste.pounce_delay)
-
-
-
-	return TRUE
+/datum/action/xeno_action/activable/pounce/hunter/sneak_attack()
+	var/mob/living/carbon/Xenomorph/Hunter/X = owner
+	if(X.can_sneak_attack) //If we could sneak attack, add a cooldown to sneak attack
+		to_chat(X, "<span class='xenodanger'>Your pounce has left you off-balance; you'll need to wait [HUNTER_POUNCE_SNEAKATTACK_DELAY*0.1] seconds before you can Sneak Attack again.</span>")
+		X.can_sneak_attack = FALSE
+		addtimer(CALLBACK(X, /mob/living/carbon/Xenomorph/Hunter/.proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY)
 
 /mob/living/carbon/Xenomorph/Hunter/proc/sneak_attack_cooldown()
 	if(can_sneak_attack)

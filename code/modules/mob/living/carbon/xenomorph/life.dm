@@ -35,6 +35,7 @@
 	update_action_button_icons()
 	update_icons()
 
+
 /mob/living/carbon/Xenomorph/update_stat()
 
 	update_cloak()
@@ -109,12 +110,15 @@
 	if(!T || !istype(T))
 		return
 
-	if(!hive?.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z) //if there is a queen, it must be in the same z-level
-		if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
-			if(lying || resting)
-				heal_wounds(XENO_RESTING_HEAL)
-			else
-				heal_wounds(XENO_STANDING_HEAL) //Major healing nerf if standing.
+	var/queen_healing_penalty = 0.5
+	if(hive?.living_xeno_queen?.loc?.z == T.z) //if the living queen's z-level is the same as ours.
+		queen_healing_penalty = 1
+
+	if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
+		if(lying || resting)
+			heal_wounds(XENO_RESTING_HEAL * queen_healing_penalty)
+		else
+			heal_wounds(XENO_STANDING_HEAL * queen_healing_penalty) //Major healing nerf if standing.
 	updatehealth()
 
 /mob/living/carbon/Xenomorph/proc/handle_critical_health_updates()
@@ -258,9 +262,6 @@
 	else if(!client.adminobs)
 		reset_view(null)
 
-	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
-		queen_locator()
-
 	return TRUE
 
 /mob/living/carbon/Xenomorph/proc/handle_environment() //unused while atmos is not on
@@ -277,25 +278,6 @@
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire0"
 
-/mob/living/carbon/Xenomorph/proc/queen_locator()
-	if(!hud_used || !hud_used.locate_leader)
-		return
-
-	if(!hive?.living_xeno_queen || xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
-		hud_used.locate_leader.icon_state = "trackoff"
-		return
-
-	if(hive.living_xeno_queen.loc.z != loc.z || get_dist(src,hive.living_xeno_queen) < 1 || src == hive.living_xeno_queen)
-		hud_used.locate_leader.icon_state = "trackondirect"
-	else
-		var/area/A = get_area(loc)
-		var/area/QA = get_area(hive.living_xeno_queen.loc)
-		if(A.fake_zlevel == QA.fake_zlevel)
-			hud_used.locate_leader.setDir(get_dir(src,hive.living_xeno_queen))
-			hud_used.locate_leader.icon_state = "trackon"
-		else
-			hud_used.locate_leader.icon_state = "trackondirect"
-
 /mob/living/carbon/Xenomorph/updatehealth()
 	if(status_flags & GODMODE)
 		return
@@ -303,9 +285,6 @@
 	med_hud_set_health()
 	update_stat()
 	update_wounds()
-
-
-
 
 /mob/living/carbon/Xenomorph/handle_stunned()
 	if(stunned)
@@ -342,8 +321,23 @@
 	if(halloss)
 		adjustHalLoss(XENO_HALOSS_REGEN)
 
-/mob/living/carbon/Xenomorph/Crusher/adjust_stagger(amount)
-	if(amount > 0 && (charge_speed > CHARGE_SPEED_MAX * 0.5) ) //If we're over half the max charge speed, we don't accumulate more stagger stacks.
-		return FALSE
-	stagger = max(stagger + amount,0)
-	return stagger
+/mob/living/carbon/Xenomorph/proc/handle_afk_takeover()
+	if(client || world.time - away_time < XENO_AFK_TIMER)
+		return
+	if(isaghost(src) && GLOB.directory[key]) // If aghosted, and admin still online
+		return
+	if(stat == DEAD)
+		return
+
+	var/picked = get_alien_candidate()
+	if(!picked)
+		return
+
+	var/mob/xeno_candidate = get_mob_by_key(picked)
+	if(!xeno_candidate)
+		return
+
+	SSticker.mode.transfer_xeno(xeno_candidate, src)
+
+	to_chat(src, "<span class='xenoannounce'>You are an old xenomorph re-awakened from slumber!</span>")
+	SEND_SOUND(src, sound('sound/effects/xeno_newlarva.ogg'))

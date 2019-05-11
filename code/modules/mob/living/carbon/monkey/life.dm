@@ -261,10 +261,16 @@
 
 /mob/living/carbon/monkey/handle_organs()
 	. = ..()
-	if(reagents && reagents.reagent_list.len)
-		reagents.metabolize(src, 0, can_overdose = TRUE)
-
-	return
+	if(!reagents)
+		return
+	var/overdosable = TRUE
+	var/liverless = FALSE
+	if(species)
+		if(CHECK_BITFIELD(species.species_flags, NO_CHEM_METABOLIZATION))
+			return
+		overdosable = CHECK_BITFIELD(species.species_flags, NO_OVERDOSE) ? FALSE : TRUE
+		liverless = species.has_organ["liver"]
+	reagents.metabolize(src, overdosable, liverless)
 
 /mob/living/carbon/monkey/handle_regular_hud_updates()
 	. = ..()

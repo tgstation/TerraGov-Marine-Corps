@@ -58,7 +58,6 @@
 	permutated = list()
 
 /obj/item/projectile/Destroy()
-	. = ..()
 	in_flight = 0
 	ammo = null
 	shot_from = null
@@ -67,7 +66,7 @@
 	starting = null
 	permutated = null
 	path = null
-	return TA_REVIVE_ME
+	return ..()
 
 /obj/item/projectile/Bumped(atom/A as mob|obj|turf|area)
 	if(A && !A in permutated)
@@ -761,8 +760,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 /obj/structure/table/bullet_act(obj/item/projectile/P)
 	src.bullet_ping(P)
-	health -= round(P.damage/2)
-	if (health < 0)
+	obj_integrity -= round(P.damage/2)
+	if (obj_integrity < 0)
 		visible_message("<span class='warning'>[src] breaks down!</span>")
 		destroy_structure()
 	return 1

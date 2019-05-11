@@ -10,8 +10,7 @@
 	icon_state = "medibot0"
 	density = 0
 	anchored = 0
-	health = 20
-	maxhealth = 20
+	max_integrity = 20
 	req_access =list(ACCESS_MARINE_MEDBAY)
 	var/stunned = 0 //It can be stunned by tasers. Delicate circuits.
 //var/emagged = 0
@@ -205,7 +204,7 @@
 
 	else
 		..()
-		if (health < maxhealth && !isscrewdriver(W) && W.force)
+		if (obj_integrity < max_integrity && !isscrewdriver(W) && W.force)
 			step_to(src, (get_step_away(src,user)))
 
 /obj/machinery/bot/medbot/Emag(mob/user as mob)
@@ -390,7 +389,7 @@
 	if(use_beaker && reagent_glass && reagent_glass.reagents.total_volume)
 		var/safety_fail = 0
 		for(var/datum/reagent/R in reagent_glass.reagents.reagent_list)
-			if(!C.reagents.has_reagent(R))
+			if(C.reagents.has_reagent(R.id))
 				safety_fail = 1
 				break
 		if(!safety_fail)

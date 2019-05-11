@@ -21,13 +21,13 @@
 		if(fireaxe)
 			hasaxe = 1
 
-		if (iscyborg(usr) || src.locked)
+		if (locked)
 			if(ismultitool(O))
 				to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
 				playsound(user, 'sound/machines/lockreset.ogg', 25, 1)
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_HOSTILE))
-					src.locked = 0
-					to_chat(user, "<span class = 'caution'> You disable the locking modules.</span>")
+				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+					locked = FALSE
+					to_chat(user, "<span class = 'caution'>You disable the locking modules.</span>")
 					update_icon()
 				return
 			else if(!(O.flags_item & NOBLUDGEON) && O.force)
@@ -87,8 +87,8 @@
 					src.locked = 1
 					to_chat(user, "<span class='notice'>You re-enable the locking modules.</span>")
 					playsound(user, 'sound/machines/lockenable.ogg', 25, 1)
-					if(do_after(user,20, TRUE, 5, BUSY_ICON_FRIENDLY))
-						src.locked = 1
+					if(do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
+						locked = TRUE
 						to_chat(user, "<span class = 'caution'> You re-enable the locking modules.</span>")
 					return
 			else
@@ -153,7 +153,7 @@
 		set name = "Open/Close"
 		set category = "Object"
 
-		if (iscyborg(usr) || src.locked || src.smashed)
+		if (locked || smashed)
 			if(src.locked)
 				to_chat(usr, "<span class='warning'>The cabinet won't budge!</span>")
 			else if(src.smashed)
@@ -166,9 +166,6 @@
 	verb/remove_fire_axe()
 		set name = "Remove Fire Axe"
 		set category = "Object"
-
-		if (iscyborg(usr))
-			return
 
 		if (istype(usr, /mob/living/carbon/Xenomorph))
 			return

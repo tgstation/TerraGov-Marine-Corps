@@ -13,9 +13,6 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	var/datum/effect_system/smoke_spread/smoke_system
-	var/last_defiler_sting = null
-	var/last_emit_neurogas = null
-	var/last_use_neuroclaws = null
 	var/neuro_claws = FALSE
 	var/emitting_gas = FALSE
 	var/neuro_claws_dose = DEFILER_CLAW_AMOUNT
@@ -23,8 +20,7 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/activable/larval_growth_sting,
-		/datum/action/xeno_action/activable/defiler_sting,
+		/datum/action/xeno_action/activable/larval_growth_sting/defiler,
 		/datum/action/xeno_action/activable/neurotox_sting,
 		/datum/action/xeno_action/activable/emit_neurogas,
 		/datum/action/xeno_action/neuroclaws

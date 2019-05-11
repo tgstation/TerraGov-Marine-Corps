@@ -35,7 +35,7 @@
 			if(installed_equipment)
 				return TRUE
 			playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-			if(!do_after(user, 70, FALSE, 5, BUSY_ICON_BUILD))
+			if(!do_after(user, 70, FALSE, src))
 				return TRUE
 			if(installed_equipment || PC.loaded != SE)
 				return TRUE
@@ -199,7 +199,7 @@
 			to_chat(user, "<span class='warning'>[SA] doesn't fit in [src].</span>")
 			return FALSE
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		if(!do_after(user, 30, FALSE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
 			return FALSE
 		if(ammo_equipped || PC.loaded != SA || !PC.linked_powerloader || PC.linked_powerloader.buckled_mob != user)
 			return FALSE
@@ -213,7 +213,7 @@
 		return TRUE //refilled dropship ammo
 	else if(uses_ammo && ammo_equipped)
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		if(!do_after(user, 30, FALSE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
 			return FALSE
 		if(!ammo_equipped || !PC.linked_powerloader || PC.linked_powerloader.buckled_mob != user)
 			return FALSE
@@ -233,9 +233,9 @@
 	else
 		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
-		if(!do_after(user, duration_time, FALSE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, duration_time, FALSE, src))
 			return FALSE
-		if(!PC.linked_powerloader || PC.loaded || PC.linked_powerloader.buckled_mob != user)
+		if(!(PC.linked_powerloader?.buckled_mob == user) || PC.loaded)
 			return FALSE
 		forceMove(PC.linked_powerloader)
 		PC.loaded = src
@@ -938,7 +938,7 @@
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the medevac system.</span>",
 		"<span class='notice'>You fumble around figuring out how to use the medevac system.</span>")
 		var/fumbling_time = 60 - 20 * user.mind.cm_skills.pilot
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 	if(!linked_shuttle)

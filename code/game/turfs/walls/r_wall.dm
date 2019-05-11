@@ -46,7 +46,7 @@
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
 		if(!P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_HIGH_MOD))
 			return
-		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_HIGH_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P) //Reinforced walls take several times as long as regulars.
+		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_HIGH_MOD, TRUE, src, BUSY_ICON_HOSTILE)) //Reinforced walls take several times as long as regulars.
 			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_HIGH_MOD)
 			dismantle_wall()
 		return
@@ -56,7 +56,7 @@
 		if(WT.remove_fuel(0,user))
 			to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
 			playsound(src, 'sound/items/Welder.ogg', 25, 1)
-			if(do_after(user, max(5, damage / 5, TRUE, 5, BUSY_ICON_FRIENDLY)) && WT && WT.isOn())
+			if(do_after(user, max(5, damage * 0.2), TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
 				take_damage(-damage)
 			return
@@ -80,7 +80,7 @@
 				to_chat(user, "<span class='notice'>You begin removing the support lines.</span>")
 				playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
 
-				if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 					if(!isrwallturf(src))
 						return
 
@@ -108,8 +108,8 @@
 					to_chat(user, "<span class='notice'>You begin slicing through the metal cover.</span>")
 					playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
-					if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-						if(!isrwallturf(src) || !WT || !WT.isOn())
+					if(do_after(user, 60, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+						if(!isrwallturf(src))
 							return
 
 
@@ -120,27 +120,13 @@
 					to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
 				return
 
-			if( istype(W, /obj/item/tool/pickaxe/plasmacutter) )
-
-				to_chat(user, "<span class='notice'>You begin slicing through the metal cover.</span>")
-				playsound(src, 'sound/items/Welder.ogg', 25, 1)
-
-				if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-					if(!isrwallturf(src))
-						return
-
-					if(d_state == 2 )
-						d_state = 3
-						to_chat(user, "<span class='notice'>You press firmly on the cover, dislodging it.</span>")
-				return
-
 		if(3)
 			if (iscrowbar(W))
 
 				to_chat(user, "<span class='notice'>You struggle to pry off the cover.</span>")
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
-				if(do_after(user, 100, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 100, TRUE, src, BUSY_ICON_BUILD))
 					if(!isrwallturf(src))
 						return
 					if(d_state == 3 )
@@ -154,7 +140,7 @@
 				to_chat(user, "<span class='notice'>You start loosening the anchoring bolts which secure the support rods to their frame.</span>")
 				playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
 
-				if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 					if(!isrwallturf(src))
 						return
 
@@ -170,7 +156,7 @@
 				"<span class='notice'>You begin uncrimping the hydraulic lines.</span>")
 				playsound(src, 'sound/items/Wirecutter.ogg', 25, 1)
 
-				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 					if(!isrwallturf(src))
 						return
 
@@ -186,7 +172,7 @@
 				to_chat(user, "<span class='notice'>You struggle to pry off the outer sheath.</span>")
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
-				if(do_after(user, 100, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 100, TRUE, src, BUSY_ICON_BUILD))
 					if(!isrwallturf(src))
 						return
 
@@ -202,7 +188,7 @@
 
 		to_chat(user, "<span class='notice'>You begin to drill though the wall.</span>")
 
-		if(do_after(user, 200, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(user, 200, TRUE, src, BUSY_ICON_BUILD))
 			if(!isrwallturf(src))
 				return
 			to_chat(user, "<span class='notice'>Your drill tears though the last of the reinforced plating.</span>")
@@ -214,7 +200,7 @@
 		user.visible_message("<span class='notice'>[user] starts repairing the damage to [src].</span>",
 		"<span class='notice'>You start repairing the damage to [src].</span>")
 		playsound(src, 'sound/items/Welder.ogg', 25, 1)
-		if(do_after(user, max(5, round(damage / 5)), TRUE, 5, BUSY_ICON_FRIENDLY) && isrwallturf(src))
+		if(do_after(user, max(5, round(damage / 5)), TRUE, src, BUSY_ICON_BUILD) && isrwallturf(src))
 			user.visible_message("<span class='notice'>[user] finishes repairing the damage to [src].</span>",
 			"<span class='notice'>You finish repairing the damage to [src].</span>")
 			take_damage(-damage)

@@ -11,7 +11,7 @@
 		 _lore_text = "[initial(reagent.description)] It apparently tastes of [initial(reagent.taste_description)].")
 
 		var/list/production_strings = list()
-		for(var/react in chemical_reactions_list[thing])
+		for(var/react in GLOB.chemical_reactions_list[thing])
 
 			var/datum/chemical_reaction/reaction = react
 

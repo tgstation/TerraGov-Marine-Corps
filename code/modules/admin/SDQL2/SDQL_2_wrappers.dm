@@ -278,3 +278,87 @@
 
 /proc/_step_away(ref, trg, max)
 	step_away(ref, trg, max)
+
+
+/proc/_winset(player, control_id, params)
+	winset(player, control_id, params)
+
+
+/proc/_winshow(player, window, show = 1) 
+	winshow(player, window, show)
+
+
+/proc/_winget(player, control_id, params) 
+	winget(player, control_id, params)
+
+
+/proc/_winexists(player, control_id)
+	winexists(player, control_id)
+
+
+/proc/_winclone(player, window_name, clone_name)
+	winclone(player, window_name, clone_name)
+
+
+/proc/_url_encode(PlainText, format=0)
+	return url_encode(PlainText, format)
+
+
+/proc/_url_decode(UrlText)
+	return url_decode(UrlText)
+
+
+/proc/_uppertext(T)
+	return uppertext(T)
+
+
+/proc/_html_decode(HtmlText)
+	return html_decode(HtmlText)
+
+
+/proc/_html_encode(PlainText)
+	return html_encode(PlainText)
+
+
+/proc/_json_decode(JSON)
+	return json_decode(JSON)
+
+
+/proc/_json_encode(Value)
+	return json_encode(Value)
+
+
+/proc/_view(Dist = 5, Center = usr)
+	return view(Dist, Center)
+
+
+/proc/_viewers(Depth = world.view, Center = usr)
+	return viewers(Depth, Center)
+
+
+/proc/_initial(Var)
+	return initial(Var)
+
+
+/proc/_isnull(Val)
+	return isnull(Val)
+
+
+/proc/_sound(file, repeat = 0, wait, channel, volume)
+	return sound(file, repeat, wait, channel, volume)
+
+
+/proc/_time2text(timestamp,	format)
+	return time2text(timestamp,format)
+
+
+/proc/_browse(target, Body, Options)
+	target << browse(Body, Options)
+
+
+/proc/_browse_rsc(target, File, FileName)
+	target << browse_rsc(File,FileName)
+
+
+/proc/_icon(icon, state, dir, frame, moving)
+	return icon(icon, state, dir, frame, moving)

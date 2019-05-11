@@ -169,6 +169,30 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 
 	var/full_version = "[byond_version].[byond_build ? byond_build : "xxx"]"
 
+	if(CONFIG_GET(flag/log_access))
+		for(var/I in GLOB.clients)
+			if(!I)
+				stack_trace("null in GLOB.clients during client/New()")
+				continue
+			if(I == src)
+				continue
+			var/client/C = I
+			if(C.key && (C.key != key) )
+				var/matches
+				if( (C.address == address) )
+					matches += "IP ([address])"
+				if( (C.computer_id == computer_id) )
+					if(matches)
+						matches += " and "
+					matches += "ID ([computer_id])"
+				if(matches)
+					if(C)
+						message_admins("<span class='danger'><B>Notice: </B></span><span class='notice'>[key_name_admin(src)] has the same [matches] as [key_name_admin(C)].</span>")
+						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(C)].")
+					else
+						message_admins("<span class='danger'><B>Notice: </B></span><span class='notice'>[key_name_admin(src)] has the same [matches] as [key_name_admin(C)] (no longer logged in). </span>")
+						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(C)] (no longer logged in).")
+
 	. = ..()	//calls mob.Login()
 	chatOutput.start() // Starts the chat
 
@@ -219,7 +243,6 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	validate_key_in_db()
 
 	send_assets()
-	nanomanager.send_resources(src)
 
 	generate_clickcatcher()
 	apply_clickcatcher()
@@ -259,7 +282,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 /client/Del()
 	if(isliving(mob))
 		var/mob/living/L = mob
-		L.away_time = world.time
+		L.begin_away()
 	if(holder)
 		if(check_rights(R_ADMIN, FALSE))
 			message_admins("Admin logout: [key_name(src)].")

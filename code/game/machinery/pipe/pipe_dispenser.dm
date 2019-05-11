@@ -74,7 +74,7 @@
 		if (unwrenched==FALSE)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You begin to unfasten \the [src] from the floor...</span>")
-			if (do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+			if (do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				user.visible_message( \
 					"[user] unfastens \the [src].", \
 					"<span class='notice'> You have unfastened \the [src]. Now it can be pulled somewhere else.</span>", \
@@ -87,7 +87,7 @@
 		else /*if (unwrenched==1)*/
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You begin to fasten \the [src] to the floor...</span>")
-			if (do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+			if (do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 				user.visible_message( \
 					"[user] fastens \the [src].", \
 					"<span class='notice'> You have fastened \the [src]. Now it can dispense pipes.</span>", \

@@ -141,7 +141,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		to_chat(src, "<span class='warning'>You have been banned from LOOC.</span>")
 		return
 
-	mob.log_talk("LOOC: [msg]", LOG_LOOC)
+	mob.log_talk(msg, LOG_LOOC)
 
 	var/message
 
@@ -159,13 +159,6 @@ var/global/normal_ooc_colour = "#002eb8"
 			continue
 		if(C.prefs.toggles_chat & CHAT_LOOC)
 			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [ADMIN_TPMONTY(mob)]</span>: <span class='message'>[msg]</span></span></font>")
-
-
-/client/verb/setup_character()
-	set name = "Game Preferences"
-	set category = "OOC"
-	set desc = "Allows you to access the Setup Character screen. Changes to your character won't take effect until next round, but other changes will."
-	prefs.ShowChoices(usr)
 
 
 /client/verb/motd()

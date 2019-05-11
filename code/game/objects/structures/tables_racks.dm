@@ -27,7 +27,7 @@
 	var/reinforced = FALSE
 	var/flipped = FALSE
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
-	health = 100
+	max_integrity = 100
 
 /obj/structure/table/destroy_structure(deconstruct)
 	if(deconstruct)
@@ -247,8 +247,6 @@
 
 	if (!istype(I) || user.get_active_held_item() != I)
 		return ..()
-	if(iscyborg(user))
-		return
 	user.drop_held_item()
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
@@ -261,8 +259,8 @@
 		playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
 	else
 		playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-	health -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
-	if(health <= 0)
+	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
+	if(obj_integrity <= 0)
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)
 		destroy_structure()
@@ -305,13 +303,13 @@
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user,50, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(user,50, TRUE, src, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 			"<span class='notice'>You disassemble [src].</span>")
 			destroy_structure(1)
 		return
 
-	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
+	if((W.flags_item & ITEM_ABSTRACT))
 		return
 
 	user.transferItemToLoc(W, loc)
@@ -456,7 +454,7 @@
 	sheet_type = /obj/item/stack/sheet/wood
 	parts = /obj/item/frame/table/wood
 	table_prefix = "wood"
-	health = 50
+	max_integrity = 50
 /*
  * Gambling tables
  */
@@ -467,7 +465,7 @@
 	sheet_type = /obj/item/stack/sheet/wood
 	parts = /obj/item/frame/table/gambling
 	table_prefix = "gamble"
-	health = 50
+	max_integrity = 50
 /*
  * Reinforced tables
  */
@@ -475,7 +473,7 @@
 	name = "reinforced table"
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
 	icon_state = "reinftable"
-	health = 200
+	max_integrity = 200
 	var/status = 2
 	reinforced = TRUE
 	table_prefix = "reinf"
@@ -495,19 +493,15 @@
 				user.visible_message("<span class='notice'>[user] starts weakening [src].</span>",
 				"<span class='notice'>You start weakening [src]</span>")
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-				if (do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-					if(!src || !WT.isOn())
-						return
+				if (do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					user.visible_message("<span class='notice'>[user] weakens [src].</span>",
 					"<span class='notice'>You weaken [src]</span>")
-					src.status = 1
+					status = 1
 			else
 				user.visible_message("<span class='notice'>[user] starts welding [src] back together.</span>",
 				"<span class='notice'>You start welding [src] back together.</span>")
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-				if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-					if(!src || !WT.isOn())
-						return
+				if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					user.visible_message("<span class='notice'>[user] welds [src] back together.</span>",
 					"<span class='notice'>You weld [src] back together.</span>")
 					status = 2
@@ -562,8 +556,6 @@
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
 	if (!istype(I) || user.get_active_held_item() != I)
 		return
-	if(iscyborg(user))
-		return
 	user.drop_held_item()
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
@@ -582,7 +574,7 @@
 		destroy_structure(1)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		return
-	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
+	if((W.flags_item & ITEM_ABSTRACT))
 		return
 	user.transferItemToLoc(W, loc)
 

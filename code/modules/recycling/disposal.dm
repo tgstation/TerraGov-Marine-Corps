@@ -69,8 +69,7 @@
 			if(W.remove_fuel(0, user))
 				playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal unit.</span>")
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					if(!src || !W.isOn()) return
+				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 					to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal unit.</span>")
 					var/obj/structure/disposalconstruct/C = new(loc)
 					transfer_fingerprints_to(C)
@@ -98,7 +97,7 @@
 			var/mob/GM = G.grabbed_thing
 			user.visible_message("<span class='warning'>[user] starts putting [GM] into [src].</span>",
 			"<span class='warning'>You start putting [GM] into [src].</span>")
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_HOSTILE))
+			if(do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) && G.grabbed_thing == GM)
 				GM.forceMove(src)
 				user.visible_message("<span class='warning'>[user] puts [GM] into [src].</span>",
 				"<span class='warning'>[user] puts [GM] into [src].</span>")
@@ -107,8 +106,6 @@
 				flush()
 		return
 
-	if(iscyborg(user))
-		return
 	if(!I)
 		return
 
@@ -123,23 +120,18 @@
 		return
 	if(isanimal(user) && target != user) return //Animals cannot put mobs other than themselves into disposal
 	add_fingerprint(user)
-	var/target_loc = target.loc
 
 	if(target == user)
 		visible_message("<span class='notice'>[user] starts climbing into the disposal.</span>")
 	else
 		if(user.restrained()) return //can't stuff someone other than you if restrained.
 		visible_message("<span class ='warning'>[user] starts stuffing [target] into the disposal.</span>")
-	if(!do_after(user, 40, FALSE, 5, BUSY_ICON_HOSTILE))
-		return
-	if(target_loc != target.loc)
+	if(!do_after(user, 40, FALSE, target, BUSY_ICON_HOSTILE))
 		return
 	if(target == user)
-		if(user.incapacitated(TRUE)) return
 		user.visible_message("<span class='notice'>[user] climbs into [src].</span>",
 		"<span class ='notice'>You climb into [src].</span>")
 	else
-		if(user.incapacitated()) return
 		user.visible_message("<span class ='danger'>[user] stuffs [target] into [src]!</span>",
 		"<span class ='warning'>You stuff [target] into [src]!</span>")
 
@@ -486,10 +478,6 @@
 		if(istype(AM, /obj/item/smallDelivery) && !hasmob)
 			var/obj/item/smallDelivery/T = AM
 			destinationTag = T.sortTag
-		//Drones can mail themselves through maint.
-		if(ismaintdrone(AM))
-			var/mob/living/silicon/robot/drone/drone = AM
-			destinationTag = drone.mail_destination
 
 //Start the movement process
 //Argument is the disposal unit the holder started in
@@ -601,7 +589,7 @@
 	level = 1			//Underfloor only
 	var/dpdir = 0		//Bitmask of pipe directions
 	dir = 0				//dir will contain dominant direction for junction pipes
-	health = 10 	//Health points 0-10
+	max_integrity = 10 	//Health points 0-10
 	layer = DISPOSAL_PIPE_LAYER //Slightly lower than wires and other pipes
 	var/base_icon_state	//Initial icon state on map
 
@@ -760,19 +748,19 @@
 			broken(0)
 			return
 		if(2)
-			health -= rand(5, 15)
+			obj_integrity -= rand(5, 15)
 			healthcheck()
 			return
 		if(3)
-			health -= rand(0, 15)
+			obj_integrity -= rand(0, 15)
 			healthcheck()
 			return
 
 //Test health for brokenness
 /obj/structure/disposalpipe/proc/healthcheck()
-	if(health < -2)
+	if(obj_integrity < -2)
 		broken(0)
-	else if(health < 1)
+	else if(obj_integrity < 1)
 		broken(1)
 
 //Attack by item. Weldingtool: unfasten and convert to obj/disposalconstruct
@@ -1363,8 +1351,7 @@
 		if(W.remove_fuel(0, user))
 			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal outlet.</span>")
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-				if(!src || !W.isOn()) return
+			if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 				to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal outlet.</span>")
 				var/obj/structure/disposalconstruct/C = new(loc)
 				transfer_fingerprints_to(C)

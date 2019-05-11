@@ -118,7 +118,7 @@
 			else
 				user.visible_message("<span class='warning'>[user] begins to wipe [H]'s lipstick off with \the [src].</span>", \
 								 	 "<span class='notice'>You begin to wipe off [H]'s lipstick.</span>")
-				if(do_after(user, 10, TRUE, 5, BUSY_ICON_FRIENDLY) && do_after(H, 10, FALSE, 5, BUSY_ICON_GENERIC))	//user needs to keep their active hand, H does not.
+				if(do_after(user, 10, TRUE, H, BUSY_ICON_FRIENDLY))
 					user.visible_message("<span class='notice'>[user] wipes [H]'s lipstick off with \the [src].</span>", \
 										 "<span class='notice'>You wipe off [H]'s lipstick.</span>")
 					H.lip_style = null
@@ -334,6 +334,8 @@
 
 		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
 
+		playsound(loc, pick('sound/items/write1.ogg','sound/items/write2.ogg'), 15, 1)
+
 		update_icon()
 
 
@@ -364,10 +366,7 @@
 		user.put_in_hands(B)
 
 	else if(istype(P, /obj/item/tool/pen) || istype(P, /obj/item/toy/crayon))
-		if ( istype(P, /obj/item/tool/pen/robopen) && P:mode == 2 )
-			P:RenamePaper(user,src)
-		else
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
+		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
 		//openhelp(user)
 		return
 
@@ -407,6 +406,7 @@
 		overlays += stampoverlay
 
 		to_chat(user, "<span class='notice'>You stamp the paper with your rubber stamp.</span>")
+		playsound(src, 'sound/items/stamp.ogg', 15, 1)
 
 	else if(P.heat_source >= 400)
 		burnpaper(P, user)

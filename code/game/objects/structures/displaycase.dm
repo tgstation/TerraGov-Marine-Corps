@@ -6,7 +6,7 @@
 	density = 1
 	anchored = 1
 	resistance_flags = UNACIDABLE
-	health = 30
+	max_integrity = 30
 	var/occupied = 1
 	var/destroyed = 0
 
@@ -19,22 +19,22 @@
 			qdel(src)
 		if (2)
 			if (prob(50))
-				src.health -= 15
+				src.obj_integrity -= 15
 				src.healthcheck()
 		if (3)
 			if (prob(50))
-				src.health -= 5
+				src.obj_integrity -= 5
 				src.healthcheck()
 
 
 /obj/structure/displaycase/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.ammo.damage
+	obj_integrity -= Proj.ammo.damage
 	..()
 	src.healthcheck()
 	return 1
 
 /obj/structure/displaycase/proc/healthcheck()
-	if (src.health <= 0)
+	if (src.obj_integrity <= 0)
 		if (!( src.destroyed ))
 			src.density = 0
 			src.destroyed = 1
@@ -54,7 +54,7 @@
 
 
 /obj/structure/displaycase/attackby(obj/item/W as obj, mob/user as mob)
-	src.health -= W.force
+	src.obj_integrity -= W.force
 	src.healthcheck()
 	..()
 	return
@@ -74,13 +74,13 @@
 		for(var/mob/O in oviewers())
 			if ((O.client && !( is_blind(O) )))
 				to_chat(O, text("<span class='warning'> [] kicks the display case.</span>", usr))
-		src.health -= 2
+		src.obj_integrity -= 2
 		healthcheck()
 		return
 
 //Quick destroyed case.
 /obj/structure/displaycase/destroyed
 	icon_state = "glassboxb0"
-	health = 0
+	max_integrity = 0
 	occupied = 0
 	destroyed = 1

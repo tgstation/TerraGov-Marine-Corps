@@ -271,7 +271,7 @@
 			return FALSE
 		if(!(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)))
 			return FALSE
-		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P)
+		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, src, BUSY_ICON_BUILD))
 			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Vents require much less charge
 			welded = FALSE
 			update_icon()
@@ -282,13 +282,11 @@
 	add_fingerprint(user)
 	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
-		if(WT.remove_fuel(1, user))
+		if(WT.isOn())
 			user.visible_message("<span class='notice'>[user] starts welding [src] with [WT].</span>", \
 			"<span class='notice'>You start welding [src] with [WT].</span>")
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-			if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-				if(!src || !WT.isOn())
-					return FALSE
+			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && WT.remove_fuel(1, user))
 				playsound(get_turf(src), 'sound/items/Welder2.ogg', 25, 1)
 				if(!welded)
 					user.visible_message("<span class='notice'>[user] welds [src] shut.</span>", \
@@ -299,13 +297,11 @@
 					"<span class='notice'>You weld [src] open.</span>")
 					welded = FALSE
 				update_icon()
-				pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)	
+				pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
 				pipe_vision_img.plane = ABOVE_HUD_PLANE
 				return TRUE
-			else
-				to_chat(user, "<span class='warning'>[WT] needs to be on to start this task.</span>")
 		else
-			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+			to_chat(user, "<span class='warning'>[WT] needs to be on to start this task.</span>")
 	return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/can_unwrench(mob/user)
@@ -323,7 +319,7 @@
 	return !welded
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/attack_alien(mob/user)
-	if(!welded || !(do_after(user, 20, target = src)))
+	if(!welded || !(do_after(user, 20, FALSE, src, BUSY_ICON_HOSTILE)))
 		return
 	user.visible_message("[user] furiously claws at [src]!", "You manage to clear away the stuff blocking the scrubber.", "You hear loud scraping noises.")
 	welded = FALSE

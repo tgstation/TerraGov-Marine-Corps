@@ -13,19 +13,19 @@
 	center_of_mass = list("x"=15, "y"=15)
 	var/list/tastes // for example list("crisps" = 2, "salt" = 1)
 
-	//Placeholder for effect that trigger on eating that aren't tied to reagents.
-
-/obj/item/reagent_container/food/snacks/add_initial_reagents()
-	if(!tastes || !tastes.len)
+/obj/item/reagent_container/food/snacks/create_reagents(max_vol, new_flags, list/init_reagents, data)
+	if(!length(tastes) || !length(init_reagents))
 		return ..()
-	else if(list_reagents)
-		for(var/rid in list_reagents)
-			var/amount = list_reagents[rid]
-			if(rid == "nutriment")
-				reagents.add_reagent(rid, amount, tastes.Copy())
-			else
-				reagents.add_reagent(rid, amount)
-
+	if(reagents)
+		qdel(reagents)
+	reagents = new (max_vol, new_flags)
+	reagents.my_atom = src
+	for(var/rid in init_reagents)
+		var/amount = list_reagents[rid]
+		if(rid == "nutriment")
+			reagents.add_reagent(rid, amount, tastes.Copy())
+		else
+			reagents.add_reagent(rid, amount, data)
 
 /obj/item/reagent_container/food/snacks/proc/On_Consume(var/mob/M)
 	if(!usr)
@@ -2514,7 +2514,7 @@
 	name = "meat"
 	desc = "A slab of meat"
 	icon_state = "meat"
-	health = 180
+	max_integrity = 180
 	filling_color = "#FF1C1C"
 	list_reagents = list("nutriment" = 3)
 	bitesize = 3
@@ -2773,7 +2773,7 @@
 	var/flavor = "boneless pork ribs"//default value
 
 /obj/item/reagent_container/food/snacks/packaged_meal/New(loc, newflavor)
-	tastes = list("[pick(food_adjectives)]" = 1) //idea, list, gimmick
+	tastes = list("[pick(GLOB.food_adjectives)]" = 1) //idea, list, gimmick
 	determinetype(newflavor)
 	desc = "A packaged [icon_state] from a Meal Ready-to-Eat, there is a lengthy list of [pick("obscure", "arcane", "unintelligible", "revolutionary", "sophisticated", "unspellable")] ingredients and addictives printed on the back.</i>"
 	..()
