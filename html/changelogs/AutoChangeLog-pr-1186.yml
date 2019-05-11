@@ -1,6 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - refactor: "Refactored do_mob() and do_after(), ergo the general use timed action procs used all over the code."
-  - rscadd: "Added progress bars to said procs."
-  - imageadd: "Also some changes and additions to the pre-existing busy indicator icons."
