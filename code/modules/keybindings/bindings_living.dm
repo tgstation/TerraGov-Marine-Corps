@@ -1,6 +1,6 @@
-/mob/living/key_down(_key, client/user)
-	switch(_key)
-		if("B")
+/mob/living/key_down(_key, client/user, action)
+	switch(action)
+		if("resist")
 			resist()
 			return
 

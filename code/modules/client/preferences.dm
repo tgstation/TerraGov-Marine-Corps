@@ -422,16 +422,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 
 
-/datum/preferences/proc/SetKeybindings(mob/user)
-	var/HTML = "<body><br>"
+/datum/preferences/proc/ShowKeybindings(mob/user)
+	var/HTML = "<style>label { display: inline-block; width: 200px; }</style><body><br>"
 
 	HTML += "<h3>Action: Keybinding</h3>"
 	for (var/kb in key_bindings)
-		HTML += "[kb]: <a href ='?_src_=prefs;preference=keybindings_set;action=[kb];key=[key_bindings[kb]]'>[key_bindings[kb]]</a>"
+		HTML += "<label>[kb]</label>: <a href ='?_src_=prefs;preference=keybindings_set;action=[kb];key=[key_bindings[kb]]'>[key_bindings[kb]]</a>"
 		HTML += "<br>"
 
 	HTML += "<br><br>"
-	HTML += "<a href ='?_src_=prefs;preference=keybindings_done'>\[Save\]</a>"
+	HTML += "<a href ='?_src_=prefs;preference=keybindings_done'>\[Close\]</a>"
+	HTML += "<a href ='?_src_=prefs;preference=keybindings_reset'>\[Reset to default\]</a>"
 	HTML += "</body>"
 
 	winshow(user, "keybindings", TRUE)
@@ -894,18 +895,31 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
 
 		if("keybindings_menu")
-			SetKeybindings(user)
+			ShowKeybindings(user)
+			return
 
 		if("keybindings_set")
 			var/action = href_list["action"]
 			var/key = href_list["key"]
-			var/new_key = input(user, "Enter a new key", "New Keybinding: [action]", sanitize(key)) as null|message
+			var/new_key = input(user, "Enter a new key", "New Keybinding: [action]", sanitize(key)) as text|null
 			if(!new_key)
 				return
+
+			new_key = uppertext(new_key)
+			// NumpadX, and Space are special cases and doesn't work uppercase
+			new_key = new_key == "SPACE" ? "Space" : new_key
+			new_key = copytext(new_key,1,-1) == "NUMPAD" ? "Numpad[copytext(new_key,-1)]" : new_key
 			key_bindings[action] = new_key
+			ShowKeybindings(user)
+			return
 		
 		if("keybindings_done")
 			user << browse(null, "window=keybindings")
+		
+		if("keybindings_reset")
+			key_bindings = GLOB.default_kb 
+			ShowKeybindings(user)
+			return
 
 	save_preferences()
 	save_character()

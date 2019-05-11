@@ -7,11 +7,11 @@
 
 // Set a client's focus to an object and override these procs on that object to let it handle keypresses
 
-/datum/proc/key_down(key, client/user) // Called when a key is pressed down initially
+/datum/proc/key_down(key, client/user, action) // Called when a key is pressed down initially
 	return
 
 
-/datum/proc/key_up(key, client/user) // Called when a key is released
+/datum/proc/key_up(key, client/user, action) // Called when a key is released
 	return
 
 

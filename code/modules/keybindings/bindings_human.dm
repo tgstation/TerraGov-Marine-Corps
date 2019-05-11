@@ -1,12 +1,12 @@
-/mob/living/carbon/human/key_down(_key, client/user)
-	switch(_key)
-		if("E")
+/mob/living/carbon/human/key_down(_key, client/user, action)
+	switch(action)
+		if("quick-equip")
 			quick_equip()
 			return
-		if("H")
+		if("holster")
 			holster()
 			return
-		if("Space")
+		if("unique-action")
 			unique_action()
 			return
 

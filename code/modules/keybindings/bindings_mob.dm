@@ -1,21 +1,9 @@
 // Technically the client argument is unncessary here since that SHOULD be src.client but let's not assume things
 // All it takes is one badmin setting their focus to someone else's client to mess things up
 // Or we can have NPC's send actual keypresses and detect that by seeing no client
-/mob/key_down(_key, client/user)
+/mob/key_down(_key, client/user, action)
 
-
-	var/list/userkb = user.prefs.key_bindings
-	var/list/kb = list()
-	for (var/i in userkb)
-		kb[userkb[i]] = i
-
-	// // Handle if our player's bindings do not contain the key pressed, check for a default binding
-	// if (!(_key in kb))
-	// 	for (var/i in GLOB.default_kb)
-	// 		kb[GLOB.default_kb[i]] = i
-
-
-	switch(kb[_key])
+	switch(action)
 		if("stop-pulling")
 			if(!pulling)
 				to_chat(src, "<span class='notice'>You are not pulling anything.</span>")
@@ -41,29 +29,29 @@
 			else
 				dropItemToGround(I)
 			return
-		if("Alt")
+		if("toggle-move-intent")
 			toggle_move_intent()
 			return
 		//Bodypart selections
-		if("Numpad8")
+		if("select-body-toggle_head")
 			user.body_toggle_head()
 			return
-		if("Numpad4")
+		if("select-body-r_arm")
 			user.body_r_arm()
 			return
-		if("Numpad5")
+		if("select-body-chest")
 			user.body_chest()
 			return
-		if("Numpad6")
+		if("select-body-l_arm")
 			user.body_l_arm()
 			return
-		if("Numpad1")
+		if("select-body-r_leg")
 			user.body_r_leg()
 			return
-		if("Numpad2")
+		if("select-body-groin")
 			user.body_groin()
 			return
-		if("Numpad3")
+		if("select-body-l_leg")
 			user.body_l_leg()
 			return
 
@@ -84,9 +72,9 @@
 	return ..()
 
 
-/mob/key_up(_key, client/user)
-	switch(_key)
-		if("Alt")
+/mob/key_up(_key, client/user, action)
+	switch(action)
+		if("toggle-move-intent")
 			toggle_move_intent()
 			return
 	return ..()

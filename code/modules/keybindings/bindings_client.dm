@@ -12,31 +12,38 @@
 	// Client-level keybindings are ones anyone should be able to do at any time
 	// Things like taking screenshots, hitting tab, and adminhelps.
 
-	switch(_key)
-		if("F1")
+	var/list/userkb = prefs.key_bindings
+	var/list/kb = list()
+	for (var/i in userkb)
+		kb[userkb[i]] = i
+
+	var/key_action = kb[_key]
+
+	switch(key_action)
+		if("choose-help")
 			choosehelp()
 			return
-		if("F2") // Screenshot. Hold shift to choose a name and location to save in
+		if("screenshot") // Screenshot. Hold shift to choose a name and location to save in
 			winset(src, null, "command=.screenshot [!keys_held["shift"] ? "auto" : ""]")
 			return
-		if("F3")
+		if("admin-say")
 			get_asay()
 			return
-		if("F4")
+		if("mentor-say")
 			get_msay()
 			return
-		if("F5")
+		if("dead-say")
 			get_dsay()
 			return
-		if("F12") // Toggles minimal HUD
+		if("toggle-hud") // Toggles minimal HUD
 			mob.button_pressed_F12()
 			return
 
 	if(holder)
-		holder.key_down(_key, src)
+		holder.key_down(_key, src, key_action)
 
 	if(mob.focus)
-		mob.focus.key_down(_key, src)
+		mob.focus.key_down(_key, src, key_action)
 
 
 /client/verb/keyUp(_key as text)
@@ -48,10 +55,17 @@
 	if(!(next_move_dir_add & movement))
 		next_move_dir_sub |= movement
 
+	var/list/userkb = prefs.key_bindings
+	var/list/kb = list()
+	for (var/i in userkb)
+		kb[userkb[i]] = i
+
+	var/key_action = kb[_key]
+
 	if(holder)
-		holder.key_up(_key, src)
+		holder.key_up(_key, src, key_action)
 	if(mob.focus)
-		mob.focus.key_up(_key, src)
+		mob.focus.key_up(_key, src, key_action)
 
 
 // Called every game tick
