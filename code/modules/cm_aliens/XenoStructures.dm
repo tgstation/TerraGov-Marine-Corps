@@ -45,6 +45,13 @@
 		if(3.0)
 			take_damage((rand(50, 100)))
 
+/obj/effect/alien/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
+		take_damage(rand(0.2, 1.5))
+
 /*
  * Resin
  */
