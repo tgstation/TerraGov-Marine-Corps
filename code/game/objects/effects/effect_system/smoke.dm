@@ -94,7 +94,7 @@
 			M.smokecloak_off()
 
 /obj/effect/particle_effect/smoke/proc/apply_smoke_effect(turf/T)
-	if(!T)
+	if(!T && !QDELING(src))
 		qdel(src)
 		return
 	T.effect_smoke(src)
