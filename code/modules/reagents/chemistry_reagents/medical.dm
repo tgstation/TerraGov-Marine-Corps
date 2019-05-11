@@ -643,7 +643,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	return ..()
 
 /datum/reagent/medicine/meralyne/overdose_process(mob/living/L, alien)
-	M.apply_damage(2, BURN)
+	L.apply_damage(2, BURN)
 
 /datum/reagent/medicine/meralyne/overdose_crit_process(mob/living/M, alien)
 	M.apply_damages(2, 6, 4)
