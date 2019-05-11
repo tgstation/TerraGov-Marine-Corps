@@ -1647,3 +1647,83 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		log_admin("[key_name(usr)] checked the contents of [key_name(L)].")
 		message_admins("[ADMIN_TPMONTY(usr)] checked the contents of [ADMIN_TPMONTY(L)].")
+
+
+	else if(href_list["appearance"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["mob"]) in GLOB.human_mob_list
+		if(!istype(H))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		var/change
+		var/previous
+
+		switch(href_list["appearance"])
+			if("hairstyle")
+				change = input("Select the hair style.", "Edit Appearance") as null|anything in sortList(GLOB.hair_styles_list)
+				if(!change || !istype(H))
+					return
+				previous = H.h_style
+				H.h_style = change
+			if("haircolor")
+				change = input("Select the hair color.", "Edit Appearance") as null|color
+				if(!change || !istype(H))
+					return
+				previous = "#[num2hex(H.r_hair)][num2hex(H.g_hair)][num2hex(H.b_hair)]"
+				H.r_hair = hex2num(copytext(change, 2, 4))
+				H.g_hair = hex2num(copytext(change, 4, 6))
+				H.b_hair = hex2num(copytext(change, 6, 8))
+			if("facialhairstyle")
+				change = input("Select the facial hair style.", "Edit Appearance") as null|anything in sortList(GLOB.facial_hair_styles_list)
+				if(!change || !istype(H))
+					return
+				previous = H.f_style
+				H.f_style = change
+			if("facialhaircolor")
+				change = input("Select the facial hair color.", "Edit Appearance") as null|color
+				if(!change || !istype(H))
+					return
+				previous = "#[num2hex(H.r_facial)][num2hex(H.g_facial)][num2hex(H.b_facial)]"
+				H.r_facial = hex2num(copytext(change, 2, 4))
+				H.g_facial = hex2num(copytext(change, 4, 6))
+				H.b_facial = hex2num(copytext(change, 6, 8))
+			if("eyecolor")
+				change = input("Select the eye color.", "Edit Appearance") as null|color
+				if(!change || !istype(H))
+					return
+				previous = "#[num2hex(H.r_eyes)][num2hex(H.g_eyes)][num2hex(H.b_eyes)]"
+				H.r_eyes = hex2num(copytext(change, 2, 4))
+				H.g_eyes = hex2num(copytext(change, 4, 6))
+				H.b_eyes = hex2num(copytext(change, 6, 8))
+			if("bodycolor")
+				change = input("Select the body color.", "Edit Appearance") as null|color
+				if(!change || !istype(H))
+					return
+				previous = "#[num2hex(H.r_skin)][num2hex(H.g_skin)][num2hex(H.b_skin)]"
+				H.r_skin = hex2num(copytext(change, 2, 4))
+				H.g_skin = hex2num(copytext(change, 4, 6))
+				H.b_skin = hex2num(copytext(change, 6, 8))
+			if("gender")
+				change = input("Select the gender.", "Edit Appearance") as null|anything in sortList(GLOB.genders)
+				if(!change || !istype(H))
+					return
+				previous = H.gender
+				H.gender = change
+			if("ethnicity")
+				change = input("Select the ethnicity.", "Edit Appearance") as null|anything in sortList(GLOB.ethnicities_list)
+				if(!change || !istype(H))
+					return
+				previous = H.ethnicity
+				H.ethnicity = change
+
+		H.update_hair()
+		H.update_body()
+		H.regenerate_icons()
+		H.check_dna(H)
+		usr.client.holder.edit_appearance(H)
+
+		log_admin("[key_name(usr)] updated the changed the [href_list["appearance"]] from [previous] to [change] of [key_name(H)].")
+		message_admins("[ADMIN_TPMONTY(usr)] updated the [href_list["appearance"]] from [previous] to [change] of [ADMIN_TPMONTY(H)].")
