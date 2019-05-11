@@ -54,9 +54,9 @@
 /obj/effect/particle_effect/smoke/proc/kill_smoke()
 	LAZYCLEARLIST(cloud?.smoked_mobs)
 	STOP_PROCESSING(SSobj, src)
+	INVOKE_ASYNC(src, .proc/fade_out)
 	if(CHECK_BITFIELD(smoke_traits, SMOKE_CAMO))
 		apply_smoke_effect(get_turf(src))
-	INVOKE_ASYNC(src, .proc/fade_out)
 
 /obj/effect/particle_effect/smoke/proc/fade_out(frames = 16)
 	if(alpha == 0) //Handle already transparent case
