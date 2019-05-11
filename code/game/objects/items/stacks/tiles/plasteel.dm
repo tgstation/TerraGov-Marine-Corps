@@ -16,6 +16,7 @@
 	..()
 	src.pixel_x = rand(1, 14)
 	src.pixel_y = rand(1, 14)
+	return
 
 /*
 /obj/item/stack/tile/plasteel/attack_self(mob/user as mob)
