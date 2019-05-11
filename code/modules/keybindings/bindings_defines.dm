@@ -38,4 +38,8 @@ GLOBAL_LIST_INIT(default_kb, list(
     "quick-equip" = "E",
     "holster" = "H",
     "unique-action" = "Space",
+
+    // Xeno
+    "drop-weeds" = "V",
+
 ))

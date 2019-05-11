@@ -1041,6 +1041,7 @@
 #include "code\modules\keybindings\bindings_human.dm"
 #include "code\modules\keybindings\bindings_living.dm"
 #include "code\modules\keybindings\bindings_mob.dm"
+#include "code\modules\keybindings\bindings_xeno.dm"
 #include "code\modules\keybindings\focus.dm"
 #include "code\modules\keybindings\setup.dm"
 #include "code\modules\language\aphasia.dm"
