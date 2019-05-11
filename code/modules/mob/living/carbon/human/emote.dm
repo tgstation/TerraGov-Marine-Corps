@@ -3,6 +3,8 @@
 
 
 /datum/emote/living/carbon/human/run_emote(mob/living/carbon/human/user, params, type_override, intentional = FALSE, prefix)
+	if(!can_run_emote(user, TRUE, intentional))
+		return
 	var/paygrade = user.get_paygrade()
 	if(paygrade)
 		prefix = "<b>[paygrade]</b> "
