@@ -1037,6 +1037,7 @@
 #include "code\modules\keybindings\bindings_atom.dm"
 #include "code\modules\keybindings\bindings_carbon.dm"
 #include "code\modules\keybindings\bindings_client.dm"
+#include "code\modules\keybindings\bindings_defines.dm"
 #include "code\modules\keybindings\bindings_human.dm"
 #include "code\modules\keybindings\bindings_living.dm"
 #include "code\modules\keybindings\bindings_mob.dm"

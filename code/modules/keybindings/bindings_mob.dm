@@ -2,26 +2,39 @@
 // All it takes is one badmin setting their focus to someone else's client to mess things up
 // Or we can have NPC's send actual keypresses and detect that by seeing no client
 /mob/key_down(_key, client/user)
-	switch(_key)
-		if("Delete")
+
+
+	var/list/userkb = user.prefs.key_bindings
+	var/list/kb = list()
+	for (var/i in userkb)
+		kb[userkb[i]] = i
+
+	// // Handle if our player's bindings do not contain the key pressed, check for a default binding
+	// if (!(_key in kb))
+	// 	for (var/i in GLOB.default_kb)
+	// 		kb[GLOB.default_kb[i]] = i
+
+
+	switch(kb[_key])
+		if("stop-pulling")
 			if(!pulling)
 				to_chat(src, "<span class='notice'>You are not pulling anything.</span>")
 			else
 				stop_pulling()
 			return
-		if("Home")
+		if("intent-right")
 			a_intent_change(INTENT_HOTKEY_RIGHT)
 			return
-		if("Insert")
+		if("intent-left")
 			a_intent_change(INTENT_HOTKEY_LEFT)
 			return
-		if("X", "Northeast") // Northeast is Page-up
+		if("swap-hands") // Northeast is Page-up
 			user.swap_hand()
 			return
-		if("Y", "Z", "Southeast")	// Southeast is Page-down
+		if("attack-self")	// Southeast is Page-down
 			mode()					// attack_self(). No idea who came up with "mode()"
 			return
-		if("Q", "Northwest") // Northwest is Home
+		if("drop-item") // Northwest is Home
 			var/obj/item/I = get_active_held_item()
 			if(!I)
 				to_chat(src, "<span class='warning'>You have nothing to drop in your hand!</span>")

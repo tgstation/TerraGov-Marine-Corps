@@ -30,6 +30,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/windowflashing = TRUE
 	var/hotkeys = TRUE
 
+	// Custom Keybindings
+	var/list/key_bindings = null
+
 	//Synthetic specific preferences
 	var/synthetic_name = "David"
 	var/synthetic_type = "Synthetic"
@@ -290,6 +293,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<br>"
 	dat += "</div>"
 
+	dat += "<div><span><a href='?_src_=prefs;preference=keybindings_menu'>Keybindings</a></span></div>"
+
 	dat += "<br>"
 
 	dat += "</div></body></html>"
@@ -414,6 +419,26 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	popup.set_content(HTML)
 	popup.open(FALSE)
 	onclose(user, "records", src)
+
+
+
+/datum/preferences/proc/SetKeybindings(mob/user)
+	var/HTML = "<body><br>"
+
+	HTML += "<h3>Action: Keybinding</h3>"
+	for (var/kb in key_bindings)
+		HTML += "[kb]: <a href ='?_src_=prefs;preference=keybindings_set;action=[kb];key=[key_bindings[kb]]'>[key_bindings[kb]]</a>"
+		HTML += "<br>"
+
+	HTML += "<br><br>"
+	HTML += "<a href ='?_src_=prefs;preference=keybindings_done'>\[Save\]</a>"
+	HTML += "</body>"
+
+	winshow(user, "keybindings", TRUE)
+	var/datum/browser/popup = new(user, "keybindings", "<div align='center'>Keybindings</div>", 350, 300)
+	popup.set_content(HTML)
+	popup.open(FALSE)
+	onclose(user, "keybindings", src)
 
 
 /datum/preferences/proc/ResetJobs()
@@ -867,6 +892,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED] mainwindow.macro=default")
 			else
 				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
+
+		if("keybindings_menu")
+			SetKeybindings(user)
+
+		if("keybindings_set")
+			var/action = href_list["action"]
+			var/key = href_list["key"]
+			var/new_key = input(user, "Enter a new key", "New Keybinding: [action]", sanitize(key)) as null|message
+			if(!new_key)
+				return
+			key_bindings[action] = new_key
+		
+		if("keybindings_done")
+			user << browse(null, "window=keybindings")
 
 	save_preferences()
 	save_character()

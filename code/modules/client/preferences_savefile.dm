@@ -1,5 +1,7 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	23
+#define SAVEFILE_VERSION_MAX	24
+
+
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -20,8 +22,11 @@
 				break
 		return FALSE
 
+	if(savefile_version < 24)
+		S["key_bindings"] << GLOB.default_kb.Copy()
+
 	if(savefile_version < 23)
-		S["hotkeys"]	<< TRUE
+		S["hotkeys"] << TRUE
 
 	if(savefile_version < 22)
 		S["windowflashing"]	<< TRUE
@@ -74,6 +79,9 @@
 	S["ghost_hud"]			>> ghost_hud
 	S["windowflashing"]		>> windowflashing
 
+	// Custom hotkeys
+	S["key_bindings"]		>> key_bindings
+
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
 	ooccolor		= sanitize_hexcolor(ooccolor, initial(ooccolor))
@@ -88,6 +96,8 @@
 	show_typing		= sanitize_integer(show_typing, 0, 1, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, 0, 8388608, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
+
+	key_bindings 	= sanitize_islist(key_bindings, GLOB.default_kb) 
 
 	return TRUE
 
@@ -115,6 +125,7 @@
 	show_typing		= sanitize_integer(show_typing, 0, 1, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, 0, 8388608, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
+	key_bindings	= sanitize_islist(key_bindings, GLOB.default_kb)
 
 	S["default_slot"]		<< default_slot
 	S["lastchangelog"]		<< lastchangelog
@@ -129,6 +140,7 @@
 	S["show_typing"]		<< show_typing
 	S["ghost_hud"]			<< ghost_hud
 	S["windowflashing"]		<< windowflashing
+	S["key_bindings"]		<< key_bindings
 
 	return TRUE
 
