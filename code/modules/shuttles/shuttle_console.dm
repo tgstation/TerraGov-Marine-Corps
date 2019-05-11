@@ -99,9 +99,9 @@
 	data = list(
 		"shuttle_status" = shuttle_status,
 		"shuttle_state" = shuttle_state,
-		"has_docking" = shuttle.docking_controller? 1 : 0,
-		"docking_status" = shuttle.docking_controller? shuttle.docking_controller.get_docking_status() : null,
-		"docking_override" = shuttle.docking_controller? shuttle.docking_controller.override_enabled : null,
+		"has_docking" = 0,
+		"docking_status" = null,
+		"docking_override" = null,
 		"can_launch" = shuttle.can_launch(),
 		"can_cancel" = shuttle.can_cancel(),
 		"can_force" = shuttle.can_force(),
@@ -213,7 +213,7 @@
 				M.visible_message("<span class='notice'>[M] fumbles around figuring out how to set the autopilot.</span>",
 				"<span class='notice'>You fumble around figuring out how to set the autopilot.</span>")
 				var/fumbling_time = 100 - 20 * usr.mind.cm_skills.pilot
-				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
 			to_chat(M, "<span class='notice'>You upload a flight plan for a low altitude flyby above the planet.</span>")
 			shuttle.transit_gun_mission = TRUE
@@ -405,52 +405,3 @@
 	icon_state = "console"
 	onboard = 1
 	req_access = list(ACCESS_MARINE_DROPSHIP)
-
-
-//Hangar elevator console
-
-/obj/machinery/computer/shuttle_control/almayer/hangar
-	name = "Elevator Console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "supply"
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	density = 1
-	req_access = null
-	shuttle_tag = "Hangar"
-
-/obj/machinery/computer/shuttle_control/almayer/maintenance
-	name = "Elevator Console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	req_access = null
-	shuttle_tag = "Maintenance"
-
-
-//Elevator control console
-
-/obj/machinery/computer/shuttle_control/ice_colony
-	name = "Elevator Console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "elevator_screen"
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	density = 0
-	req_access = null
-
-/obj/machinery/computer/shuttle_control/ice_colony/proc/animate_on()
-	icon_state = "elevator_screen_animated"
-
-/obj/machinery/computer/shuttle_control/ice_colony/proc/animate_off()
-	icon_state = "elevator_screen"
-
-/obj/machinery/computer/shuttle_control/ice_colony/elevator1
-	shuttle_tag = "Elevator 1"
-
-/obj/machinery/computer/shuttle_control/ice_colony/elevator2
-	shuttle_tag = "Elevator 2"
-
-/obj/machinery/computer/shuttle_control/ice_colony/elevator3
-	shuttle_tag = "Elevator 3"
-
-/obj/machinery/computer/shuttle_control/ice_colony/elevator4
-	shuttle_tag = "Elevator 4"

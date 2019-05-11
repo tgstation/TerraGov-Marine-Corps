@@ -140,6 +140,9 @@
 
 	var/action_busy //whether the mob is currently doing an action that takes time (do_after or do_mob procs)
 
+	var/list/progressbars //for stacking do_after bars
+	var/list/progbar_towers //for stacking the total pixel height of the aboves.
+
 	var/list/fullscreens = list()
 
 	var/list/light_sources = list()
@@ -152,3 +155,5 @@
 	var/track_blood = 0
 	var/list/feet_blood_DNA
 	var/feet_blood_color
+
+	var/move_on_shuttle = 1 // Can move on the shuttle.

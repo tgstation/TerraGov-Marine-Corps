@@ -21,7 +21,7 @@
 		var/obj/item/tool/pickaxe/plasmacutter/P = C
 		if(!P.start_cut(user, name, src))
 			return
-		if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
+		if(do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
 			P.cut_apart(user, name, src)
 			qdel()
 		return

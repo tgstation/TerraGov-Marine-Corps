@@ -586,26 +586,20 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/scope/m4ra
 	name = "m4ra rail scope"
-	//icon_state = "sniperscope"
-	//attach_icon = "sniperscope_a"
+	attach_icon = "none"
 	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	zoom_offset = 5
 	zoom_viewsize = 7
 	zoom_accuracy = SCOPE_RAIL_MINI
 	flags_attach_features = ATTACH_ACTIVATION
-	attach_icon = ""
-	icon_state = ""
 
 
 /obj/item/attachable/scope/m42a
 	name = "m42a rail scope"
-	//icon_state = "sniperscope"
-	//attach_icon = "sniperscope_a"
+	attach_icon = "none"
 	desc = "A rail mounted zoom sight scope specialized for the M42A Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
 	zoom_accuracy = SCOPE_RAIL_SNIPER
 	flags_attach_features = ATTACH_ACTIVATION
-	attach_icon = ""
-	icon_state = ""
 
 /obj/item/attachable/scope/slavic
 	icon_state = "slavicscope"
@@ -1252,7 +1246,7 @@ Defined in conflicts.dm of the #defines folder.
 		G.aim_slowdown -= SLOWDOWN_ADS_SCOPE
 		G.wield_delay -= WIELD_DELAY_FAST
 		bipod_deployed = !bipod_deployed
-	else if(do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
+	else if(do_after(user, 10, TRUE, src))
 		if(bipod_deployed)
 			return
 		bipod_deployed = !bipod_deployed

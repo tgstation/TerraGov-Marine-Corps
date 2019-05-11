@@ -15,7 +15,7 @@
 		if(0)
 			if(iswrench(P))
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					to_chat(user, "<span class='notice'> You wrench the frame into place.</span>")
 					anchored = 1
 					state = 1
@@ -25,15 +25,15 @@
 					to_chat(user, "The welder must be on for this task.")
 					return
 				playsound(loc, 'sound/items/Welder.ogg', 25, 1)
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					if(!src || !WT.remove_fuel(0, user)) return
-					to_chat(user, "<span class='notice'> You deconstruct the frame.</span>")
-					new /obj/item/stack/sheet/plasteel( loc, 4)
-					qdel(src)
+				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+					return FALSE
+				to_chat(user, "<span class='notice'> You deconstruct the frame.</span>")
+				new /obj/item/stack/sheet/plasteel( loc, 4)
+				qdel(src)
 		if(1)
 			if(iswrench(P))
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					to_chat(user, "<span class='notice'> You unfasten the frame.</span>")
 					anchored = 0
 					state = 0
@@ -69,12 +69,12 @@
 					return
 				to_chat(user, "<span class='notice'>You start to add cables to the frame.</span>")
 				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				if (do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD) && state == 2)
-					if (C.use(5))
-						state = 3
-						icon_state = "3"
-						to_chat(user, "<span class='notice'>You add cables to the frame.</span>")
-				return
+				if (!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 2 || !C.use(5))
+					return FALSE
+				state = 3
+				icon_state = "3"
+				to_chat(user, "<span class='notice'>You add cables to the frame.</span>")
+				return TRUE
 		if(3)
 			if(iswirecutter(P))
 				if (brain)
@@ -94,11 +94,11 @@
 					return
 				to_chat(user, "<span class='notice'>You start to put in the glass panel.</span>")
 				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				if (do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD) && state == 3)
-					if(RG.use(2))
-						to_chat(user, "<span class='notice'>You put in the glass panel.</span>")
-						state = 4
-						icon_state = "4"
+				if (!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 3 || !RG.use(2))
+					return FALSE
+				to_chat(user, "<span class='notice'>You put in the glass panel.</span>")
+				state = 4
+				icon_state = "4"
 
 			if(istype(P, /obj/item/circuitboard/ai_module/asimov))
 				laws.add_inherent_law("You may not injure a human being or, through inaction, allow a human being to come to harm.")

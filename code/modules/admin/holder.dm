@@ -278,6 +278,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/secrets_panel,
 	/datum/admins/proc/remove_from_tank,
 	/datum/admins/proc/game_panel,
+	/datum/admins/proc/log_panel,
 	/datum/admins/proc/mode_panel,
 	/datum/admins/proc/job_slots,
 	/datum/admins/proc/toggle_adminhelp_sound,
@@ -496,7 +497,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 		return FALSE
 	if(!C?.holder?.rank?.rights)
 		return FALSE
-	if(check_other_rights(C, R_ADMIN, FALSE))
+	if(check_other_rights(C, R_ADMINTICKET, FALSE))
 		return FALSE
 	if(!check_other_rights(C, R_MENTOR, FALSE))
 		return FALSE

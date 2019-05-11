@@ -3,6 +3,9 @@
 	if(!message)
 		return
 
+	if(check_emote(message))
+		return
+
 	. = say_dead(message)
 
 

@@ -742,15 +742,6 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	if(istype(PH))
 		if(user.transferItemToLoc(photo, src))
 			photo = PH
-	else if(istype(user,/mob/living/silicon))
-		var/mob/living/silicon/tempAI = user
-		var/datum/picture/selection = tempAI.GetPicture()
-		if (!selection)
-			return
-
-		var/obj/item/photo/P = new/obj/item/photo()
-		P.construct(selection)
-		photo = P
 
 
 //########################################################################################################################

@@ -45,7 +45,7 @@
 	bypass_w_limit = typecacheof(bypass_w_limit)
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
-	if(ishuman(usr) || ismonkey(usr) || iscyborg(usr)) //so monkeys can take off their backpacks -- Urist
+	if(ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
 
 		if(usr.lying)
 			return

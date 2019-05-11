@@ -16,7 +16,7 @@
 	if(!istype(target)) //Something went horribly wrong. Clicked off edge of map probably
 		return
 
-	if(!do_after(X, 5, TRUE, 5, BUSY_ICON_HOSTILE))
+	if(!do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	if(!can_use_ability(A, TRUE))

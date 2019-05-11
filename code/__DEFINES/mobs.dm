@@ -367,13 +367,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TASTE_DULL 30 //anything below 30%
 #define TASTE_NUMB 101 //no taste
 
-//defines for the busy icons when the mob does something that takes time using do_after proc
-#define BUSY_ICON_GENERIC	1
-#define BUSY_ICON_MEDICAL	2
-#define BUSY_ICON_BUILD		3
-#define BUSY_ICON_FRIENDLY	4
-#define BUSY_ICON_HOSTILE	5
-
 
 //defins for datum/hud
 

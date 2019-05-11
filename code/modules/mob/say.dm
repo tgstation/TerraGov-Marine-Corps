@@ -15,7 +15,9 @@
 	if(!message)
 		return
 
-	custom_emote(EMOTE_VISIBLE, message, TRUE)
+	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+
+	emote("me", EMOTE_VISIBLE, message, TRUE)
 
 
 /mob/verb/whisper_verb(message as text)
@@ -66,10 +68,6 @@
 			to_chat(M, rendered)
 
 
-/mob/proc/emote(act, type, message, player_caused)
-	return custom_emote(type, message, player_caused)
-
-
 /mob/proc/get_message_mode(message)
 	var/key = copytext(message, 1, 2)
 	if(key == "#")
@@ -83,5 +81,5 @@
 
 /mob/proc/check_emote(message)
 	if(copytext(message, 1, 2) == "*")
-		emote(copytext(message, 2, length(message) + 1), EMOTE_VISIBLE, null, TRUE)
+		emote(copytext(message, 2), intentional = TRUE)
 		return TRUE

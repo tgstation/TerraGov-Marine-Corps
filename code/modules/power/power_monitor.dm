@@ -115,7 +115,7 @@
 /obj/machinery/power/monitor/attackby(I as obj, user as mob)
 	if(isscrewdriver(I) && circuit)
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			var/obj/structure/computerframe/A = new( src.loc )
 			var/obj/item/circuitboard/computer/M = new circuit( A )
 			A.circuit = M

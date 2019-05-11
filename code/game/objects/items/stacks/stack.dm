@@ -171,7 +171,7 @@
 			else
 				usr.visible_message("<span class='notice'>[usr] starts building \a [R.title].</span>",
 				"<span class='notice'>You start building \a [R.title]...</span>")
-			if(!do_after(usr, building_time, TRUE, 5, BUSY_ICON_BUILD))
+			if(!do_after(usr, building_time, TRUE, src, BUSY_ICON_BUILD))
 				return
 			if(!building_checks(R, multiplier))
 				return

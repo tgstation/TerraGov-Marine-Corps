@@ -2773,7 +2773,7 @@
 	var/flavor = "boneless pork ribs"//default value
 
 /obj/item/reagent_container/food/snacks/packaged_meal/New(loc, newflavor)
-	tastes = list("[pick(food_adjectives)]" = 1) //idea, list, gimmick
+	tastes = list("[pick(GLOB.food_adjectives)]" = 1) //idea, list, gimmick
 	determinetype(newflavor)
 	desc = "A packaged [icon_state] from a Meal Ready-to-Eat, there is a lengthy list of [pick("obscure", "arcane", "unintelligible", "revolutionary", "sophisticated", "unspellable")] ingredients and addictives printed on the back.</i>"
 	..()

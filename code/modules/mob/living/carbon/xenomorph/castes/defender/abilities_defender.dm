@@ -117,7 +117,7 @@
 	X.visible_message("<span class='xenowarning'>\The [X] sweeps it's tail in a wide circle!</span>", \
 	"<span class='xenowarning'>You sweep your tail in a wide circle!</span>")
 
-	X.spin_circle()
+	X.spin(4, 1)
 
 	var/sweep_range = 1
 	var/list/L = orange(sweep_range, X)		// Not actually the fruit

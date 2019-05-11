@@ -108,7 +108,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	owner.visible_message("<span class='xenonotice'>[owner] begins digging out a tunnel entrance.</span>", \
 	"<span class='xenonotice'>You begin digging out a tunnel entrance.</span>", null, 5)
-	if(!do_after(owner, HIVELORD_TUNNEL_DIG_TIME, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(owner, HIVELORD_TUNNEL_DIG_TIME, TRUE, T, BUSY_ICON_BUILD))
 		to_chat(owner, "<span class='warning'>Your tunnel caves in as you stop digging it.</span>")
 		return fail_activate()
 

@@ -489,18 +489,6 @@
 	icon = 'icons/mob/screen/cyborg.dmi'
 	screen_loc = ui_borg_health
 
-/obj/screen/healthdoll
-	name = "health doll"
-	icon = 'icons/mob/screen/health.dmi'
-	screen_loc = ui_healthdoll
-
-/*
-/obj/screen/healthdoll/Click()
-	if (ishuman(usr))
-		var/mob/living/carbon/human/H = usr
-		H.check_self_for_injuries()
-*/
-
 /obj/screen/component_button
 	var/obj/screen/parent
 
@@ -578,9 +566,7 @@
 /obj/screen/firearms
 
 /obj/screen/firearms/Click()
-	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(istype(G))
-		return G
+	return get_active_firearm(usr)
 
 /obj/screen/firearms/attachment
 	name = "Activate weapon attachment"

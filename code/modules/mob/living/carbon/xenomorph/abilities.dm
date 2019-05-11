@@ -149,7 +149,7 @@
 
 	var/wait_time = 10 + 30 - max(0,(30*X.health/X.maxHealth)) //Between 1 and 4 seconds, depending on health.
 
-	if(!do_after(X, wait_time, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(X, wait_time, TRUE, T, BUSY_ICON_BUILD))
 		return fail_activate()
 
 	blocker = locate() in T
@@ -290,6 +290,8 @@
 	if(!isxeno(A) || A == owner || !owner.issamexenohive(A))
 		return FALSE
 
+	var/mob/living/carbon/Xenomorph/target = A
+
 	if(get_dist(owner, target) > max_range)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You need to be closer to [target].</span>")
@@ -300,7 +302,7 @@
 	var/mob/living/carbon/Xenomorph/target = A
 
 	to_chat(X, "<span class='notice'>You start focusing your plasma towards [target].</span>")
-	if(!do_after(src, transfer_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
+	if(!do_after(X, transfer_delay, TRUE, null, BUSY_ICON_FRIENDLY))
 		return fail_activate()
 
 	if(!can_use_ability(A))
@@ -338,7 +340,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	
+
 	if(QDELETED(A))
 		return FALSE
 
@@ -419,7 +421,7 @@
 		if(CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 			if(!silent)
 				to_chat(owner, "<span class='warning'>You cannot dissolve \the [O].</span>")
-			return
+			return FALSE
 		if(O.acid_check(acid_type))
 			if(!silent)
 				to_chat(owner, "<span class='warning'>This object is already subject to a more or equally powerful acid.</span>")
@@ -499,14 +501,14 @@
 		to_chat(X, "<span class='warning'>You cannot dissolve \the [A].</span>")
 		return fail_activate()
 
-	if(!do_after(X, wait_time, TRUE, 5, BUSY_ICON_HOSTILE))
+	if(!do_after(X, wait_time, TRUE, A, BUSY_ICON_HOSTILE))
 		return fail_activate()
 
 	if(!can_use_ability(A, TRUE))
 		return
 
 	var/obj/effect/xenomorph/acid/newacid = new acid_type(get_turf(A), A)
-	
+
 	succeed_activate()
 
 	if(istype(A, /obj/vehicle/multitile/root/cm_armored))
@@ -633,12 +635,12 @@
 	playsound(X.loc, sound_to_play, 25, 1)
 
 	var/obj/item/projectile/newspit = new /obj/item/projectile(current_turf)
-	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X)) 
+	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.permutated += X
 	newspit.def_zone = X.get_limbzone_target()
 
 	newspit.fire_at(A, X, X, X.ammo.max_range, X.ammo.shell_speed)
-	
+
 	add_cooldown()
 
 	return succeed_activate()

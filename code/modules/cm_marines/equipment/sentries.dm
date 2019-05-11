@@ -69,9 +69,7 @@
 	user.visible_message("<span class='notice'>[user] starts unfolding \the [src].</span>",
 			"<span class='notice'>You start unfolding \the [src].</span>")
 
-	if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
-		if(!src) //Make sure the sentry still exists
-			return
+	if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 		var/obj/machinery/turret_tripod_deployed/S = new /obj/machinery/turret_tripod_deployed/(target)
 		S.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] unfolds \the [S].</span>",
@@ -119,9 +117,7 @@
 
 	user.visible_message("<span class='notice'>[user] begins to fold up and retrieve \the [src].</span>",
 	"<span class='notice'>You begin to fold up and retrieve \the [src].</span>")
-	if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-		return
-	if(!src || anchored || !Adjacent(user))//Check if we got exploded
+	if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD) || !anchored)
 		return
 	user.visible_message("<span class='notice'>[user] folds up and retrieves \the [src].</span>",
 	"<span class='notice'>You fold up and retrieve \the [src].</span>")
@@ -135,7 +131,7 @@
 			user.visible_message("<span class='notice'>[user] begins unsecuring \the [src] from the ground.</span>",
 			"<span class='notice'>You begin unsecuring \the [src] from the ground.</span>")
 
-			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] unsecures \the [src] from the ground.</span>",
 				"<span class='notice'>You unsecure \the [src] from the ground.</span>")
 				anchored = FALSE
@@ -145,7 +141,7 @@
 			user.visible_message("<span class='notice'>[user] begins securing \the [src] to the ground.</span>",
 			"<span class='notice'>You begin securing \the [src] to the ground.</span>")
 
-			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] secures \the [src] to the ground.</span>",
 				"<span class='notice'>You secure \the [src] to the ground.</span>")
 				anchored = TRUE
@@ -161,7 +157,7 @@
 			user.visible_message("<span class='notice'>[user] begins attaching the turret top to \the [src].</span>",
 			"<span class='notice'>You begin attaching the turret top to \the [src].</span>")
 
-			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] attaches the turret top to \the [src].</span>",
 				"<span class='notice'>You attach the turret top to \the [src].</span>")
 				has_top = TRUE
@@ -177,7 +173,7 @@
 			user.visible_message("<span class='notice'>[user] begins finalizing \the [src].</span>",
 			"<span class='notice'>You begin finalizing \the [src].</span>")
 
-			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				var/obj/machinery/marine_turret/S = new /obj/machinery/marine_turret(loc)
 				S.setDir(dir)
 				user.visible_message("<span class='notice'>[user] finishes \the [S].</span>",
@@ -192,7 +188,7 @@
 			user.visible_message("<span class='notice'>[user] begins removing the turret top from \the [src].</span>",
 			"<span class='notice'>You begin removing the turret top from \the [src].</span>")
 
-			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] removes turret top from \the [src].</span>",
 				"<span class='notice'>You remove the turret top from \the [src].</span>")
 				has_top = FALSE
@@ -330,7 +326,7 @@
 	if(machine_stat)
 		user.visible_message("<span class='notice'>[user] begins to set [src] upright.</span>",
 		"<span class='notice'>You begin to set [src] upright.</span>")
-		if(do_after(user,20, TRUE, 5, BUSY_ICON_FRIENDLY))
+		if(do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] sets [src] upright.</span>",
 			"<span class='notice'>You set [src] upright.</span>")
 			machine_stat = 0
@@ -563,24 +559,22 @@
 			user.visible_message("<span class='notice'>[user] begins unanchoring [src] from the ground.</span>",
 			"<span class='notice'>You begin unanchoring [src] from the ground.</span>")
 
-			if(do_after(user, work_time, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] unanchors [src] from the ground.</span>",
 				"<span class='notice'>You unanchor [src] from the ground.</span>")
 				anchored = 0
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			return
 
-		//Secure
-		if(loc) //Just to be safe.
-			user.visible_message("<span class='notice'>[user] begins securing [src] to the ground.</span>",
-			"<span class='notice'>You begin securing [src] to the ground.</span>")
+		user.visible_message("<span class='notice'>[user] begins securing [src] to the ground.</span>",
+		"<span class='notice'>You begin securing [src] to the ground.</span>")
 
-			if(do_after(user, work_time, TRUE, 5, BUSY_ICON_BUILD))
-				user.visible_message("<span class='notice'>[user] secures [src] to the ground.</span>",
-				"<span class='notice'>You secure [src] to the ground.</span>")
-				anchored = 1
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-			return
+		if(do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
+			user.visible_message("<span class='notice'>[user] secures [src] to the ground.</span>",
+			"<span class='notice'>You secure [src] to the ground.</span>")
+			anchored = TRUE
+			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		return
 
 
 	// Rotation
@@ -622,7 +616,7 @@
 		if(WT.remove_fuel(0, user))
 			user.visible_message("<span class='notice'>[user] begins repairing [src].</span>",
 			"<span class='notice'>You begin repairing [src].</span>")
-			if(do_after(user, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
+			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				user.visible_message("<span class='notice'>[user] repairs [src].</span>",
 				"<span class='notice'>You repair [src].</span>")
 				update_health(-50)
@@ -642,7 +636,7 @@
 				user.visible_message("<span class='notice'>[user] begins removing [src]'s [cell.name].</span>",
 				"<span class='notice'>You begin removing [src]'s [cell.name].</span>")
 
-				if(do_after(user, work_time, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
 					user.visible_message("<span class='notice'>[user] removes [src]'s [cell.name].</span>",
 					"<span class='notice'>You remove [src]'s [cell.name].</span>")
 					playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
@@ -658,7 +652,7 @@
 
 		user.visible_message("<span class='notice'>[user] begins installing \a [O.name] into [src].</span>",
 		"<span class='notice'>You begin installing \a [O.name] into [src].</span>")
-		if(do_after(user, work_time, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
 			user.transferItemToLoc(O, src)
 			user.visible_message("<span class='notice'>[user] installs \a [O.name] into [src].</span>",
 			"<span class='notice'>You install \a [O.name] into [src].</span>")
@@ -674,7 +668,7 @@
 			"<span class='notice'>You begin fumbling about, swapping a new [O.name] into [src].</span>")
 			if(user.action_busy)
 				return
-			if(!do_after(user, work_time, TRUE, 5, BUSY_ICON_FRIENDLY))
+			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		playsound(loc, 'sound/weapons/unload.ogg', 25, 1)
@@ -1012,7 +1006,7 @@
 	var/mob/living/M
 
 	for(M in oview(range, src))
-		if(M.stat == DEAD || iscyborg(M)) //No dead or robots.
+		if(M.stat == DEAD) //No dead or robots.
 			continue
 		if(!safety_off && !isxeno(M)) //When safeties are on, Xenos only.
 			continue
@@ -1252,9 +1246,7 @@
 
 	user.visible_message("<span class='notice'>[user] begins to fold up and retrieve [src].</span>",
 	"<span class='notice'>You begin to fold up and retrieve [src].</span>")
-	if(!do_after(user, work_time * 3, TRUE, 5, BUSY_ICON_BUILD))
-		return
-	if(!src || !Adjacent(user))//Check if we got exploded
+	if(!do_after(user, work_time * 3, TRUE, src, BUSY_ICON_BUILD) || on || anchored)
 		return
 	to_chat(user, "<span class='notice'>You fold up and retrieve [src].</span>")
 	var/obj/item/marine_turret/mini/P = new(loc)
@@ -1317,9 +1309,7 @@
 	if(check_blocked_turf(target)) //check if blocked
 		to_chat(user, "<span class='warning'>There is insufficient room to deploy [src]!</span>")
 		return
-	if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
-		if(!src) //Make sure the sentry still exists
-			return
+	if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 		var/obj/machinery/marine_turret/mini/M = new /obj/machinery/marine_turret/mini(target)
 		M.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] deploys [M].</span>",

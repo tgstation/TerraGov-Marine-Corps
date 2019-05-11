@@ -129,44 +129,62 @@
 
 
 /atom/movable/proc/forceMove(atom/destination)
+	. = FALSE
 	if(destination)
-		return doMove(destination)
+		. = doMove(destination)
 	else
 		CRASH("No valid destination passed into forceMove")
 
+/atom/movable/proc/moveToNullspace()
+	return doMove(null)
 
 /atom/movable/proc/doMove(atom/destination)
-	if(!destination)
-		return FALSE
-	if(pulledby)
-		pulledby.stop_pulling()
-	var/atom/oldloc = loc
-	var/area/old_area = get_area(oldloc)
-	var/area/destarea = get_area(destination)
+	. = FALSE
+	if(destination)
+		if(pulledby)
+			pulledby.stop_pulling()
+		var/atom/oldloc = loc
+		var/same_loc = oldloc == destination
+		var/area/old_area = get_area(oldloc)
+		var/area/destarea = get_area(destination)
 
-	loc = destination
+		loc = destination
 
-	if(oldloc == destination)
-		Moved(oldloc)
-		return TRUE
+		if(!same_loc)
+			if(oldloc)
+				oldloc.Exited(src, destination)
+				if(old_area && old_area != destarea)
+					old_area.Exited(src, destination)
+			for(var/atom/movable/AM in oldloc)
+				AM.Uncrossed(src)
+			//var/turf/oldturf = get_turf(oldloc)
+			//var/turf/destturf = get_turf(destination)
+			//var/old_z = (oldturf ? oldturf.z : null)
+			//var/dest_z = (destturf ? destturf.z : null)
+			//if (old_z != dest_z)
+			//	onTransitZ(old_z, dest_z)
+			destination.Entered(src, oldloc)
+			if(destarea && old_area != destarea)
+				destarea.Entered(src, oldloc)
 
-	if(oldloc)
-		oldloc.Exited(src, destination)
-		if(old_area && old_area != destarea)
-			old_area.Exited(src, destination)
-	for(var/atom/movable/AM in oldloc)
-		AM.Uncrossed(src)
-	destination.Entered(src, oldloc)
-	if(destarea && old_area != destarea)
-		destarea.Entered(src, oldloc)
+			for(var/atom/movable/AM in destination)
+				if(AM == src)
+					continue
+				AM.Crossed(src, oldloc)
 
-	for(var/atom/movable/AM in destination)
-		if(AM == src)
-			continue
-		AM.Crossed(src, oldloc)
-	Moved(oldloc)
-	return TRUE
+		Moved(oldloc, NONE, TRUE)
+		. = TRUE
 
+	//If no destination, move the atom into nullspace (don't do this unless you know what you're doing)
+	else
+		. = TRUE
+		if (loc)
+			var/atom/oldloc = loc
+			var/area/old_area = get_area(oldloc)
+			oldloc.Exited(src, null)
+			if(old_area)
+				old_area.Exited(src, null)
+		loc = null
 
 //called when src is thrown into hit_atom
 /atom/movable/proc/throw_impact(atom/hit_atom, var/speed)
@@ -370,47 +388,6 @@
 	return
 
 
-// Spin for a set amount of time at a set speed using directional states
-/atom/movable/proc/spin(var/duration, var/turn_delay = 1, var/clockwise = 0, var/cardinal_only = 1)
-	set waitfor = 0
-
-	if (turn_delay < 1)
-		return
-
-	var/spin_degree = 90
-
-	if (!cardinal_only)
-		spin_degree = 45
-
-	if (clockwise)
-		spin_degree *= -1
-
-	while (duration > turn_delay)
-		sleep(turn_delay)
-		setDir(turn(dir, spin_degree))
-		duration -= turn_delay
-
-/atom/movable/proc/spin_circle(var/num_circles = 1, var/turn_delay = 1, var/clockwise = 0, var/cardinal_only = 1)
-	set waitfor = 0
-
-	if (num_circles < 1 || turn_delay < 1)
-		return
-
-	var/spin_degree = 90
-	num_circles *= 4
-
-	if (!cardinal_only)
-		spin_degree = 45
-		num_circles *= 2
-
-	if (clockwise)
-		spin_degree *= -1
-
-	for (var/x = 0, x < num_circles, x++)
-		sleep(turn_delay)
-		setDir(turn(dir, spin_degree))
-
-
 //called when a mob tries to breathe while inside us.
 /atom/movable/proc/handle_internal_lifeform(mob/lifeform_inside_me)
 	. = return_air()
@@ -534,3 +511,14 @@
 
 	H.selected_default_language = .
 	. = chosen_langtype
+
+/atom/movable/proc/onTransitZ(old_z,new_z)
+//	SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
+	for (var/item in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
+		var/atom/movable/AM = item
+		AM.onTransitZ(old_z,new_z)
+
+/atom/movable/proc/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE)
+	//if((force < (move_resist * MOVE_FORCE_THROW_RATIO)) || (move_resist == INFINITY))
+	//	return
+	return throw_at(target, range, speed, thrower, spin)

@@ -82,8 +82,6 @@
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
 
-#define iscyborg(A) (istype(A, /mob/living/silicon/robot))
-
 #define isAI(A) (istype(A, /mob/living/silicon/ai))
 
 #define ismaintdrone(A) (istype(A, /mob/living/silicon/robot/drone))
@@ -177,3 +175,6 @@
 
 // Admin
 #define isaghost(mob) ( copytext(mob.key, 1, 2) == "@" )
+
+// Shuttles
+#define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))

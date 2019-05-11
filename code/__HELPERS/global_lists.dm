@@ -104,6 +104,11 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 
 		GLOB.language_datum_instances[language] = instance
 
+	//Emotes
+	for(var/path in subtypesof(/datum/emote))
+		var/datum/emote/E = new path()
+		E.emote_list[E.key] = E
+
 	return TRUE
 
 /* // Uncomment to debug chemical reaction list.

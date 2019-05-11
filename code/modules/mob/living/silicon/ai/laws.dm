@@ -34,9 +34,6 @@
 /mob/living/silicon/ai/proc/add_ion_law(var/law)
 	src.laws_sanity_check()
 	src.laws.add_ion_law(law)
-	for(var/mob/living/silicon/robot/R in GLOB.silicon_mobs)
-		if(R.lawupdate && (R.connected_ai == src))
-			R.show_laws()
 
 /mob/living/silicon/ai/proc/clear_ion_laws()
 	src.laws_sanity_check()

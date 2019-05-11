@@ -72,14 +72,14 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 			var/fumbling_time = 30
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 			if(prob((SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer) * 20))
 				to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
 				timer = 0 //Oops. Now you fucked up. Immediate detonation.
 		user.visible_message("<span class='notice'>[user] begins disarming [src] with [W].</span>",
 		"<span class='notice'>You begin disarming [src] with [W].</span>")
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(user, 30, TRUE, src, BUSY_ICON_FRIENDLY))
 			user.visible_message("<span class='notice'>[user] disarms [src].</span>",
 			"<span class='notice'>You disarm [src].</span>")
 			armed = FALSE
@@ -92,7 +92,7 @@
 	if(plant_target)
 		user.visible_message("<span class='notice'>[user] begins unsecuring [src] from [plant_target].</span>",
 		"<span class='notice'>You begin unsecuring [src] from [plant_target].</span>")
-		if(!do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			return
 		user.visible_message("<span class='notice'>[user] unsecures [src] from [plant_target].</span>",
 		"<span class='notice'>You unsecure [src] from [plant_target].</span>")
@@ -136,7 +136,7 @@
 		disarm()
 		update_icon()
 
-	if(master && wires & WIRE_RECEIVE)
+	if(master && !wires.is_cut(WIRE_RX))
 		master.receive_signal()
 	return
 
@@ -194,28 +194,24 @@
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 20
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 	user.set_interaction(src)
 	var/dat = {"<TT>
 <A href='?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
-
 <B>Current Detonation Mode:</B> [det_mode ? "Demolition" : "Breach"]<BR>
 <A href='?src=\ref[src];det_mode=1'><B>Set Detonation Mode:</B> [det_mode ? "Breach" : "Demolition"]</A><BR>
-
 <B>Frequency/Code for Detpack:</B><BR>
 <A href='byond://?src=\ref[src];freq=-10'>-</A>
 <A href='byond://?src=\ref[src];freq=-2'>-</A>
 [format_frequency(src.frequency)]
 <A href='byond://?src=\ref[src];freq=2'>+</A>
 <A href='byond://?src=\ref[src];freq=10'>+</A><BR>
-
 <B>Signal Code:</B><BR>
 <A href='byond://?src=\ref[src];code=-5'>-</A>
 <A href='byond://?src=\ref[src];code=-1'>-</A> [code]
 <A href='byond://?src=\ref[src];code=1'>+</A>
 <A href='byond://?src=\ref[src];code=5'>+</A><BR>
-
 <B>Timer (Max 300 seconds, Min 5 seconds):</B><BR>
 <A href='byond://?src=\ref[src];timer=-50'>-</A>
 <A href='byond://?src=\ref[src];timer=-10'>-</A>
@@ -225,7 +221,6 @@
 <A href='byond://?src=\ref[src];timer=5'>+</A>
 <A href='byond://?src=\ref[src];timer=10'>+</A>
 <A href='byond://?src=\ref[src];timer=50'>+</A><BR>
-
 </TT>"}
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
@@ -255,14 +250,14 @@
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 50
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, fumbling_time, TRUE, target, BUSY_ICON_UNSKILLED))
 			return
 
 	user.visible_message("<span class='warning'>[user] is trying to plant [name] on [target]!</span>",
 	"<span class='warning'>You are trying to plant [name] on [target]!</span>")
 	bombers += "[key_name(user)] attached [src] to [target.name]."
 
-	if(do_mob(user, target, 30, BUSY_ICON_HOSTILE))
+	if(do_after(user, 3 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
 		user.drop_held_item()
 		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
 		var/location

@@ -26,17 +26,11 @@
 
 	matter = list("glass" = 25,"metal" = 75)
 
-	var/wires = WIRE_SIGNAL|WIRE_RECEIVE|WIRE_TRANSMIT
-	var/const/WIRE_SIGNAL = 1 //sends a signal, like to set off a bomb or electrocute someone
-	var/const/WIRE_RECEIVE = 2
-	var/const/WIRE_TRANSMIT = 4
-	var/const/TRANSMISSION_DELAY = 5 // only 2/second/radio
-	var/const/FREQ_LISTENING = 1
-
-
 	var/list/channels = list()  // Map from name (see communications.dm) to on/off. First entry is current department (:h).
 	var/list/secure_radio_connections
 	var/obj/item/encryptionkey/keyslot
+
+	var/const/FREQ_LISTENING = 1
 
 
 /obj/item/radio/Initialize()
@@ -45,6 +39,8 @@
 	frequency = sanitize_frequency(frequency, freerange)
 	set_frequency(frequency)
 
+	wires = new /datum/wires/radio(src)
+
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
 
@@ -52,6 +48,7 @@
 /obj/item/radio/Destroy()
 	remove_radio_all(src) //Just to be sure
 	QDEL_NULL(keyslot)
+	QDEL_NULL(wires)
 	return ..()
 
 
@@ -66,7 +63,12 @@
 	interact(user)
 
 
-/obj/item/radio/interact(mob/user as mob)
+/obj/item/radio/interact(mob/user)
+	if(unscrewed && !isAI(user))
+		wires.interact(user)
+		add_fingerprint(user)
+		return
+
 	if(!on)
 		return
 
@@ -79,10 +81,10 @@
 				Speaker: [listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>
 				Frequency: 	[format_frequency(frequency)] "}
 
+	dat += "<br>"
+
 	for(var/ch_name in channels)
 		dat += text_sec_channel(ch_name, channels[ch_name])
-	
-	dat += {"[text_wires()]"}
 
 	var/datum/browser/popup = new(user, "radio", "<div align='center'>[src]</div>")
 	popup.set_content(dat)
@@ -90,19 +92,9 @@
 	onclose(user, "radio")
 
 
-/obj/item/radio/proc/text_wires()
-	if(!unscrewed)
-		return ""
-	return {"
-			<hr>
-			Green Wire: <A href='byond://?src=\ref[src];wires=4'>[(wires & 4) ? "Cut" : "Mend"] Wire</A><BR>
-			Red Wire:   <A href='byond://?src=\ref[src];wires=2'>[(wires & 2) ? "Cut" : "Mend"] Wire</A><BR>
-			Blue Wire:  <A href='byond://?src=\ref[src];wires=1'>[(wires & 1) ? "Cut" : "Mend"] Wire</A><BR>
-			"}
-
 
 /obj/item/radio/proc/text_sec_channel(var/chan_name, var/chan_stat)
-	var/list = !!(chan_stat&FREQ_LISTENING)!=0
+	var/list = !!(chan_stat & FREQ_LISTENING) != 0
 	return {"
 			<B>[chan_name]</B><br>
 			Speaker: <A href='byond://?src=\ref[src];ch_name=[chan_name];listen=[!list]'>[list ? "Engaged" : "Disengaged"]</A><BR>
@@ -294,66 +286,6 @@
 		else
 			to_chat(user, "<span class='notice'>The radio can no longer be modified or attached!</span>")
 
-
-///////////////////////////////
-//////////Borg Radios//////////
-///////////////////////////////
-//Giving borgs their own radio to have some more room to work with -Sieve
-
-/obj/item/radio/borg
-	var/mob/living/silicon/robot/myborg = null // Cyborg which owns this radio. Used for power checks
-	var/shut_up = 0
-	icon = 'icons/obj/robot_component.dmi' // Cyborgs radio icons should look like the component.
-	icon_state = "radio"
-	canhear_range = 3
-
-/obj/item/radio/borg/talk_into()
-	..()
-	if (iscyborg(src.loc))
-		var/mob/living/silicon/robot/R = src.loc
-		var/datum/robot_component/C = R.components["radio"]
-		R.cell_use_power(C.active_usage)
-
-/obj/item/radio/borg/attackby(obj/item/W as obj, mob/user as mob)
-//	..()
-	user.set_interaction(src)
-	if (!(isscrewdriver(W) || (istype(W, /obj/item/encryptionkey/ ))))
-		return
-
-	if(isscrewdriver(W))
-		if(keyslot)
-
-
-			for(var/ch_name in channels)
-				SSradio.remove_object(src, GLOB.radiochannels[ch_name])
-				secure_radio_connections[ch_name] = null
-
-
-			if(keyslot)
-				var/turf/T = get_turf(user)
-				if(T)
-					keyslot.loc = T
-					keyslot = null
-
-			recalculateChannels()
-			to_chat(user, "You pop out the encryption key in the radio!")
-
-		else
-			to_chat(user, "This radio doesn't have any encryption keys!")
-
-	if(istype(W, /obj/item/encryptionkey/))
-		if(keyslot)
-			to_chat(user, "The radio can't hold another key!")
-			return
-
-		if(!keyslot)
-			if(user.drop_held_item())
-				W.forceMove(src)
-				keyslot = W
-
-		recalculateChannels()
-
-
 /obj/item/radio/proc/recalculateChannels()
 	channels = list()
 
@@ -364,56 +296,6 @@
 
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
-
-
-/obj/item/radio/borg/Topic(href, href_list)
-	if(usr.stat || !on)
-		return
-	if (href_list["mode"])
-		if(subspace_transmission != 1)
-			subspace_transmission = 1
-			to_chat(usr, "Subspace Transmission is disabled")
-		else
-			subspace_transmission = 0
-			to_chat(usr, "Subspace Transmission is enabled")
-		if(subspace_transmission == 1)//Simple as fuck, clears the channel list to prevent talking/listening over them if subspace transmission is disabled
-			channels = list()
-		else
-			recalculateChannels()
-	if (href_list["shutup"]) // Toggle loudspeaker mode, AKA everyone around you hearing your radio.
-		shut_up = !shut_up
-		if(shut_up)
-			canhear_range = 0
-		else
-			canhear_range = 3
-
-	..()
-
-/obj/item/radio/borg/interact(mob/user as mob)
-	if(!on)
-		return
-
-	var/dat = {"
-				Speaker: [listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>
-				Frequency:
-				<A href='byond://?src=\ref[src];freq=-10'>-</A>
-				<A href='byond://?src=\ref[src];freq=-2'>-</A>
-				[format_frequency(frequency)]
-				<A href='byond://?src=\ref[src];freq=2'>+</A>
-				<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
-				<A href='byond://?src=\ref[src];mode=1'>Toggle Broadcast Mode</A><BR>
-				<A href='byond://?src=\ref[src];shutup=1'>Toggle Loudspeaker</A><BR>
-				"}
-
-	if(!subspace_transmission)//Don't even bother if subspace isn't turned on
-		for (var/ch_name in channels)
-			dat+=text_sec_channel(ch_name, channels[ch_name])
-	dat += {"[text_wires()]"}
-
-	var/datum/browser/popup = new(user, "radio", "<div align='center'>[src]</div>")
-	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "radio")
 
 
 /obj/item/radio/off

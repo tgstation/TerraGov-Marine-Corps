@@ -196,42 +196,10 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return FALSE
 
 
-/obj/item/weapon/gun/proc/do_wield(mob/user, wield_time) //a poor way to make timed actions show an icon without affecting them until /tg/'s do_mob is ported.
-	var/delay = wield_time - world.time
-	if(!istype(user) || delay <= 0)
+/obj/item/weapon/gun/proc/do_wield(mob/user, wdelay) //*shrugs*
+	if(wield_time > 0 && !do_mob(user, user, wdelay, BUSY_ICON_HOSTILE, null, PROGRESS_CLOCK, TRUE, CALLBACK(src, .proc/is_wielded)))
 		return FALSE
-	var/mob/living/L
-	if(isliving(user))
-		L = user
-	var/image/busy_icon
-	busy_icon = get_busy_icon(BUSY_ICON_HOSTILE)
-	user.overlays += busy_icon
-	user.action_busy = TRUE
-	var/delayfraction = round(delay/5)
-	var/obj/holding = user.get_active_held_item()
-	. = TRUE
-	for(var/i = 1 to 5)
-		sleep(delayfraction)
-		if(!user || user.stat || user.knocked_down || user.stunned)
-			. = FALSE
-			break
-		if(L?.health < L.get_crit_threshold())
-			. = FALSE
-			break
-		if(holding)
-			if(!holding.loc || user.get_active_held_item() != holding)
-				. = FALSE
-				break
-		else if(user.get_active_held_item())
-			. = FALSE
-			break
-		if(world.time > wield_time)
-			. = FALSE
-			break
-	if(user && busy_icon)
-		user.overlays -= busy_icon
-	user.action_busy = FALSE
-
+	return TRUE
 
 /*
 Here we have throwing and dropping related procs.
@@ -278,32 +246,24 @@ should be alright.
 
 //Clicking stuff onto the gun.
 //Attachables & Reloading
-/obj/item/weapon/gun/attackby(obj/item/I, mob/user)
+/obj/item/weapon/gun/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 
 	user.changeNext_move(CLICK_CD_CLICK_ABILITY)
 
-	if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user))
-			attach_to_gun(user,I)
+	if(istype(I,/obj/item/attachable) && check_inactive_hand(user))
+		attach_to_gun(user, I)
+		return
 
  	//the active attachment is reloadable
-	else if(active_attachable && active_attachable.flags_attach_features & ATTACH_RELOADABLE)
-		if(check_inactive_hand(user))
-			if(istype(I,/obj/item/ammo_magazine))
-				var/obj/item/ammo_magazine/MG = I
-				if(istype(src, MG.gun_type))
-					to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
-					playsound(user, active_attachable.activation_sound, 15, 1)
-					active_attachable.activate_attachment(src, null, TRUE)
-					reload(user,MG)
-					return
-			active_attachable.reload_attachment(I, user)
+	if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user))
+		active_attachable.reload_attachment(I, user)
+		return
 
-	else if(istype(I,/obj/item/ammo_magazine))
-		if(check_inactive_hand(user))
-			reload(user,I)
+	if((istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/cell/lasgun)) && check_inactive_hand(user))
+		reload(user, I)
 
 
 //tactical reloads
@@ -326,11 +286,10 @@ should be alright.
 			if(current_mag)
 				unload(user,0,1)
 				to_chat(user, "<span class='notice'>You start a tactical reload.</span>")
-			var/old_mag_loc = AM.loc
 			var/tac_reload_time = 15
 			if(user.mind && user.mind.cm_skills)
 				tac_reload_time = max(15 - 5*user.mind.cm_skills.firearms, 5)
-			if(do_after(user,tac_reload_time, TRUE, 5, BUSY_ICON_FRIENDLY) && AM.loc == old_mag_loc && !current_mag)
+			if(do_after(user,tac_reload_time, TRUE, AM) && loc == user)
 				if(istype(AM.loc, /obj/item/storage))
 					var/obj/item/storage/S = AM.loc
 					S.remove_from_storage(AM)
@@ -369,6 +328,8 @@ should be alright.
 			return
 	return 1
 
+/obj/item/weapon/gun/proc/is_wielded() //temporary proc until we get traits going
+	return CHECK_BITFIELD(flags_item, WIELDED)
 
 /obj/item/weapon/gun/proc/has_attachment(A)
 	if(!A)
@@ -409,6 +370,7 @@ should be alright.
 		return
 
 	var/final_delay = attachment.attach_delay
+	var/idisplay = BUSY_ICON_GENERIC
 	if(user.mind?.cm_skills?.firearms)
 		user.visible_message("<span class='notice'>[user] begins attaching [attachment] to [src].</span>",
 		"<span class='notice'>You begin attaching [attachment] to [src].</span>", null, 4)
@@ -418,15 +380,15 @@ should be alright.
 		final_delay *= 2
 		user.visible_message("<span class='notice'>[user] begins fumbling about, trying to attach [attachment] to [src].</span>",
 		"<span class='notice'>You begin fumbling about, trying to attach [attachment] to [src].</span>", null, 4)
+		idisplay = BUSY_ICON_UNSKILLED
 	//user.visible_message("","<span class='notice'>Attach Delay = [final_delay]. Attachment = [attachment]. Firearm Skill = [user.mind.cm_skills.firearms].</span>", null, 4) //DEBUG
-	if(do_after(user,final_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
-		if(attachment && attachment.loc)
-			user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
-			"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
-			user.temporarilyRemoveItemFromInventory(attachment)
-			attachment.Attach(src)
-			update_attachable(attachment.slot)
-			playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
+	if(do_after(user, final_delay, TRUE, src, idisplay))
+		user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
+		"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
+		user.temporarilyRemoveItemFromInventory(attachment)
+		attachment.Attach(src)
+		update_attachable(attachment.slot)
+		playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
 
 
 /obj/item/weapon/gun/proc/update_attachables() //Updates everything. You generally don't need to use this.
@@ -586,6 +548,7 @@ should be alright.
 		return
 
 	var/final_delay = A.detach_delay
+	var/idisplay = BUSY_ICON_GENERIC
 	if(usr.mind?.cm_skills?.firearms)
 		usr.visible_message("<span class='notice'>[usr] begins stripping [A] from [src].</span>",
 		"<span class='notice'>You begin stripping [A] from [src].</span>", null, 4)
@@ -595,8 +558,9 @@ should be alright.
 		final_delay *= 2
 		usr.visible_message("<span class='notice'>[usr] begins fumbling about, trying to strip [A] from [src].</span>",
 		"<span class='notice'>You begin fumbling about, trying to strip [A] from [src].</span>", null, 4)
+		idisplay = BUSY_ICON_UNSKILLED
 	//usr.visible_message("","<span class='notice'>Detach Delay = [detach_delay]. Attachment = [A]. Firearm Skill = [usr.mind.cm_skills.firearms].</span>", null, 4) //DEBUG
-	if(!do_after(usr,final_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
+	if(!do_after(usr,final_delay, TRUE, src, idisplay))
 		return
 
 	if(A != rail && A != muzzle && A != under && A != stock)

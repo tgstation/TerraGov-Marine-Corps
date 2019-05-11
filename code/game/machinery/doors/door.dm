@@ -13,7 +13,6 @@
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
 	var/secondsElectrified = 0
 	var/visible = TRUE
-	var/p_open = FALSE
 	var/operating = FALSE
 	var/autoclose = FALSE
 	var/glass = FALSE
@@ -62,7 +61,7 @@
 		fillers += new /obj/effect/opacifier(T, opacity)
 
 /obj/machinery/door/Bumped(atom/AM)
-	if(p_open || operating)
+	if(panel_open || operating)
 		return
 
 	if(ismob(AM))
@@ -123,6 +122,9 @@
 
 
 /obj/machinery/door/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	return try_to_activate_door(user)
 
 /obj/machinery/door/attack_tk(mob/user)
@@ -195,12 +197,12 @@
 /obj/machinery/door/proc/do_animate(animation)
 	switch(animation)
 		if("opening")
-			if(p_open)
+			if(panel_open)
 				flick("o_doorc0", src)
 			else
 				flick("doorc0", src)
 		if("closing")
-			if(p_open)
+			if(panel_open)
 				flick("o_doorc1", src)
 			else
 				flick("doorc1", src)
