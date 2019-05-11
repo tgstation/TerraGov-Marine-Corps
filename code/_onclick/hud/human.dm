@@ -6,7 +6,7 @@
 
 /obj/screen/human/equip/Click()
 	if(ismecha(usr.loc) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech
-		return 1
+		return TRUE
 	var/mob/living/carbon/human/H = usr
 	H.quick_equip()
 
