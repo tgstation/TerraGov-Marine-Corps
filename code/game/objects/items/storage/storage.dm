@@ -178,7 +178,8 @@
 /obj/item/storage/proc/slot_orient_objs(var/rows, var/cols, var/list/obj/item/display_contents)
 	var/cx = 4
 	var/cy = 2+rows
-	boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
+	if(boxes)
+		boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
 
 	if(display_contents_with_number)
 		for(var/datum/numbered_display/ND in display_contents)
@@ -200,8 +201,9 @@
 			if (cx > (4+cols))
 				cx = 4
 				cy--
-	closer.screen_loc = "[4+cols+1]:16,2:16"
-	if(show_storage_fullness)
+	if(closer)
+		closer.screen_loc = "[4+cols+1]:16,2:16"
+	if(show_storage_fullness && boxes)
 		boxes.update_fullness(src)
 
 /obj/item/storage/proc/space_orient_objs(var/list/obj/item/display_contents)
