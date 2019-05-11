@@ -22,13 +22,13 @@
 	origin_tech = "materials=1"
 
 
-/obj/item/stack/Initialize(mapload, new_amount)
+/obj/item/stack/New(loc, new_amount)
 	. = ..()
 	if(new_amount)
 		amount = new_amount
 	while(amount > max_amount)
 		amount -= max_amount
-		new type(mapload, max_amount)
+		new type(loc, max_amount)
 	if(!merge_type)
 		merge_type = type
 	update_weight()
