@@ -52,10 +52,10 @@
 	return ..()
 
 /obj/effect/particle_effect/smoke/proc/kill_smoke()
-	if(CHECK_BITFIELD(smoke_traits, SMOKE_CAMO))
-		apply_smoke_effect(get_turf(src))
 	LAZYCLEARLIST(cloud?.smoked_mobs)
 	STOP_PROCESSING(SSobj, src)
+	if(CHECK_BITFIELD(smoke_traits, SMOKE_CAMO))
+		apply_smoke_effect(get_turf(src))
 	INVOKE_ASYNC(src, .proc/fade_out)
 
 /obj/effect/particle_effect/smoke/proc/fade_out(frames = 16)
@@ -153,6 +153,8 @@
 
 //proc to check if smoke can expand to another turf
 /obj/effect/particle_effect/smoke/proc/check_airblock(turf/T)
+	if(!T)
+		return TRUE
 	var/obj/effect/particle_effect/smoke/foundsmoke = locate() in T //Don't spread smoke where there's already smoke!
 	if(foundsmoke)
 		return TRUE
