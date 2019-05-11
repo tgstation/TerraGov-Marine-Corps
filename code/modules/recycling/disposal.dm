@@ -106,8 +106,6 @@
 				flush()
 		return
 
-	if(iscyborg(user))
-		return
 	if(!I)
 		return
 
@@ -480,10 +478,6 @@
 		if(istype(AM, /obj/item/smallDelivery) && !hasmob)
 			var/obj/item/smallDelivery/T = AM
 			destinationTag = T.sortTag
-		//Drones can mail themselves through maint.
-		if(ismaintdrone(AM))
-			var/mob/living/silicon/robot/drone/drone = AM
-			destinationTag = drone.mail_destination
 
 //Start the movement process
 //Argument is the disposal unit the holder started in

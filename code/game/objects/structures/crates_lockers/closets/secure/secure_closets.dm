@@ -80,8 +80,6 @@
 				else
 					to_chat(user, "<span class='notice'>The locker is too small to stuff [W:affecting] into!</span>")
 			return
-		if(iscyborg(user))
-			return
 		user.drop_held_item()
 		if(W)
 			W.loc = src.loc

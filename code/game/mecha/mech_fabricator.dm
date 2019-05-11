@@ -115,15 +115,6 @@
 
 						),
 
-	"Robotic Upgrade Modules" = list(
-						/obj/item/robot/upgrade/reset,
-						/obj/item/robot/upgrade/rename,
-						/obj/item/robot/upgrade/restart,
-						/obj/item/robot/upgrade/vtec,
-						/obj/item/robot/upgrade/tasercooler,
-						/obj/item/robot/upgrade/jetpack
-						),
-
 
 
 
@@ -183,7 +174,7 @@
 		time_coeff = diff
 
 /obj/machinery/mecha_part_fabricator/proc/operation_allowed(mob/M)
-	if(iscyborg(M) || isAI(M))
+	if(isAI(M))
 		return 1
 	if(!istype(req_access) || !req_access.len)
 		return 1

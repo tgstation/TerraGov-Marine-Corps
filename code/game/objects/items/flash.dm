@@ -80,17 +80,6 @@
 	else
 		flashfail = 1
 
-	if(iscyborg(user))
-		spawn(0)
-			var/atom/movable/overlay/animation = new(user.loc)
-			animation.layer = user.layer + 1
-			animation.icon_state = "blank"
-			animation.icon = 'icons/mob/mob.dmi'
-			animation.master = user
-			flick("blspell", animation)
-			sleep(5)
-			qdel(animation)
-
 	if(!flashfail)
 	//	flick("flash2", src)
 		if(!issilicon(M))
@@ -137,16 +126,6 @@
 	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1)
 	user.log_message("flashed an area with [key_name(src)]", LOG_ATTACK)
 	//flick("flash2", src)
-	if(user && iscyborg(user))
-		spawn(0)
-			var/atom/movable/overlay/animation = new(user.loc)
-			animation.layer = user.layer + 1
-			animation.icon_state = "blank"
-			animation.icon = 'icons/mob/mob.dmi'
-			animation.master = user
-			flick("blspell", animation)
-			sleep(5)
-			qdel(animation)
 
 	for(var/mob/living/carbon/human/M in oviewers(3, null))
 		if(prob(50))

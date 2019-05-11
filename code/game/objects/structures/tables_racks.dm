@@ -247,8 +247,6 @@
 
 	if (!istype(I) || user.get_active_held_item() != I)
 		return ..()
-	if(iscyborg(user))
-		return
 	user.drop_held_item()
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
@@ -311,7 +309,7 @@
 			destroy_structure(1)
 		return
 
-	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
+	if((W.flags_item & ITEM_ABSTRACT))
 		return
 
 	user.transferItemToLoc(W, loc)
@@ -558,8 +556,6 @@
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
 	if (!istype(I) || user.get_active_held_item() != I)
 		return
-	if(iscyborg(user))
-		return
 	user.drop_held_item()
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
@@ -578,7 +574,7 @@
 		destroy_structure(1)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		return
-	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
+	if((W.flags_item & ITEM_ABSTRACT))
 		return
 	user.transferItemToLoc(W, loc)
 

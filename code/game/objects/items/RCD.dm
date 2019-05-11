@@ -79,7 +79,7 @@ RCD
 
 	afterattack(atom/A, mob/user, proximity)
 		if(!proximity) return
-		if(disabled && !iscyborg(user))
+		if(disabled)
 			return 0
 		if(istype(A,/area/shuttle) || istype(A,/turf/open/space/transit))
 			return 0
@@ -175,20 +175,6 @@ RCD
 
 /obj/item/rcd/proc/checkResource(var/amount, var/mob/user)
 	return stored_matter >= amount
-/obj/item/rcd/borg/useResource(var/amount, var/mob/user)
-	if(!iscyborg(user))
-		return 0
-	return user:cell:use(amount * 30)
-
-/obj/item/rcd/borg/checkResource(var/amount, var/mob/user)
-	if(!iscyborg(user))
-		return 0
-	return user:cell:charge >= (amount * 30)
-
-/obj/item/rcd/borg/New()
-	..()
-	desc = "A device used to rapidly build walls/floor."
-	canRwall = 1
 
 /obj/item/ammo_rcd
 	name = "compressed matter cartridge"

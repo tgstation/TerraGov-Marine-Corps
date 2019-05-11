@@ -33,34 +33,7 @@
 			src.transmitInstructions(comp.current, usr)
 			to_chat(comp.current, "These are your laws now:")
 			comp.current.show_laws()
-			for(var/mob/living/silicon/robot/R in GLOB.silicon_mobs)
-				if(R.lawupdate && (R.connected_ai == comp.current))
-					to_chat(R, "These are your laws now:")
-					R.show_laws()
 			to_chat(usr, "Upload complete. The AI's laws have been modified.")
-
-
-	else if (istype(C, /obj/machinery/computer/borgupload))
-		var/obj/machinery/computer/borgupload/comp = C
-		if(comp.machine_stat & NOPOWER)
-			to_chat(usr, "The upload computer has no power!")
-			return
-		if(comp.machine_stat & BROKEN)
-			to_chat(usr, "The upload computer is broken!")
-			return
-		if (!comp.current)
-			to_chat(usr, "You haven't selected a robot to transmit laws to!")
-			return
-
-		if (comp.current.stat == 2 || comp.current.emagged)
-			to_chat(usr, "Upload failed. No signal is being detected from the robot.")
-		else if (comp.current.connected_ai)
-			to_chat(usr, "Upload failed. The robot is slaved to an AI.")
-		else
-			src.transmitInstructions(comp.current, usr)
-			to_chat(comp.current, "These are your laws now:")
-			comp.current.show_laws()
-			to_chat(usr, "Upload complete. The robot's laws have been modified.")
 
 
 /obj/item/circuitboard/ai_module/proc/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)

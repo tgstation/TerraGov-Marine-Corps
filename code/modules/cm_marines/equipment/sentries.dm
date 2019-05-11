@@ -1006,7 +1006,7 @@
 	var/mob/living/M
 
 	for(M in oview(range, src))
-		if(M.stat == DEAD || iscyborg(M)) //No dead or robots.
+		if(M.stat == DEAD) //No dead or robots.
 			continue
 		if(!safety_off && !isxeno(M)) //When safeties are on, Xenos only.
 			continue

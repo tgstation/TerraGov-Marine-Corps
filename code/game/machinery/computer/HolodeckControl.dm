@@ -352,9 +352,6 @@ var/global/list/holodeck_programs = list(
 		to_chat(user, "It's a holotable!  There are no bolts!")
 		return
 
-	if(iscyborg(user))
-		return
-
 	..()
 
 /obj/structure/table/holotable/wood

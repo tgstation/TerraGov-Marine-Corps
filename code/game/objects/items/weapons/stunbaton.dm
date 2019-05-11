@@ -139,10 +139,6 @@
 		deductcharge(hitcost)
 		return
 
-	if(iscyborg(M))
-		..()
-		return
-
 	var/agony = agonyforce
 	var/stun = stunforce
 	var/mob/living/L = M
@@ -197,17 +193,6 @@
 	if(bcell)
 		bcell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
 	..()
-
-//secborg stun baton module
-/obj/item/weapon/baton/robot/attack_self(mob/user)
-	//try to find our power cell
-	var/mob/living/silicon/robot/R = loc
-	if (istype(R))
-		bcell = R.cell
-	return ..()
-
-/obj/item/weapon/baton/robot/attackby(obj/item/W, mob/user)
-	return
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/weapon/baton/cattleprod
