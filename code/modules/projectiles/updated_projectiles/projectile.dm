@@ -453,10 +453,6 @@
 		else							. -= 10
 
 
-/mob/living/silicon/robot/drone/get_projectile_hit_chance(obj/item/projectile/P)
-	return 0 // just stop them getting hit by projectiles completely
-
-
 /obj/item/projectile/proc/play_damage_effect(mob/M)
 	if(ammo.sound_hit) playsound(M, ammo.sound_hit, 50, 1)
 	if(M.stat != DEAD) animation_flash_color(M)

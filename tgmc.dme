@@ -543,7 +543,6 @@
 #include "code\game\objects\items\defibrillator.dm"
 #include "code\game\objects\items\disks.dm"
 #include "code\game\objects\items\dna_injector.dm"
-#include "code\game\objects\items\drone_devices.dm"
 #include "code\game\objects\items\flash.dm"
 #include "code\game\objects\items\flashlight.dm"
 #include "code\game\objects\items\floor_painter.dm"
