@@ -882,17 +882,21 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/new_mode = href_list["changemode"]
+		if(!new_mode)
+			return
 
 		if(SSticker.mode)
 			world.save_mode(new_mode)
 			log_admin("[key_name(usr)] set the mode for next round to: [new_mode].")
-			message_admins("[ADMIN_TPMONTY(usr)] set the mode to: [new_mode].")
+			message_admins("[ADMIN_TPMONTY(usr)] set the mode for next round to: [new_mode].")
 		else
 			GLOB.master_mode = new_mode
 			to_chat(world, "<span class='boldnotice'>The mode is now: [GLOB.master_mode].</span>")
 			world.save_mode(GLOB.master_mode)
 			log_admin("[key_name(usr)] set the mode to: [GLOB.master_mode].")
 			message_admins("[ADMIN_TPMONTY(usr)] set the mode to: [GLOB.master_mode].")
+
+		Topic(usr.client.holder, list("admin_token" = RawHrefToken(TRUE), "modemenu" = TRUE))
 
 
 	if(href_list["evac_authority"])
