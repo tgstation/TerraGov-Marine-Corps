@@ -228,7 +228,9 @@
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/phosphorus
-	color = "#D3BB83"
+	alpha = 160
+	opacity = FALSE
+	color = "#DBCBB9"
 	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_PLASMALOSS
 
 //////////////////////////////////////
