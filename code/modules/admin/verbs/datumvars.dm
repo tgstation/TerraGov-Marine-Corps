@@ -560,8 +560,10 @@
 		var/list/L = value
 		var/list/items = list()
 
-		if(length(L) > 0 && !(name == "underlays" || name == "overlays" || length(L) > (IS_NORMAL_LIST(L) ? 50 : 150)))
-			for(var/i in 1 to L.len)
+		if(istype(DA, /datum/controller/global_vars) && !DA.vv_edit_var(name, L))
+			item = "[VV_HTML_ENCODE(name)] = /list ([L.len])"
+		else if(length(L) > 0  && !(name == "underlays" || name == "overlays" || length(L) > (IS_NORMAL_LIST(L) ? 50 : 150)))
+			for(var/i in 1 to length(L))
 				var/key = L[i]
 				var/val
 				if(IS_NORMAL_LIST(L) && !isnum(key))
