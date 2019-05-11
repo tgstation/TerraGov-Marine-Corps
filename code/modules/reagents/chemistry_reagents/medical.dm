@@ -646,7 +646,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	L.apply_damage(2, BURN)
 
 /datum/reagent/medicine/meralyne/overdose_crit_process(mob/living/L, alien)
-	M.apply_damages(2, 6, 4)
+	L.apply_damages(2, 6, 4)
 
 /datum/reagent/medicine/quickclot
 	name = "Quick Clot"
