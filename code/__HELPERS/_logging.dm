@@ -23,31 +23,31 @@
 
 /* Items with private are stripped from public logs. */
 /proc/log_admin(text)
-	GLOB.admin_log.Add("\[[stationTimestamp()]\] ADMIN: [text]")
+	LAZYADD(GLOB.admin_log, "\[[stationTimestamp()]\] ADMIN: [text]")
 	if(CONFIG_GET(flag/log_admin))
 		WRITE_LOG(GLOB.world_game_log, "ADMIN: [text]")
 
 
 /proc/log_admin_private(text)
-	GLOB.admin_log.Add("\[[stationTimestamp()]\] PRIVATE: [text]")
+	LAZYADD(GLOB.adminprivate_log, "\[[stationTimestamp()]\] PRIVATE: [text]")
 	if(CONFIG_GET(flag/log_admin))
 		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: [text]")
 
 
 /proc/log_admin_private_asay(text)
-	GLOB.asay_log.Add("\[[stationTimestamp()]\] ASAY: [text]")
+	LAZYADD(GLOB.asay_log, "\[[stationTimestamp()]\] ASAY: [text]")
 	if(CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: ASAY: [text]")
 
 
 /proc/log_admin_private_msay(text)
-	GLOB.msay_log.Add("\[[stationTimestamp()]\] MSAY: [text]")
+	LAZYADD(GLOB.msay_log, "\[[stationTimestamp()]\] MSAY: [text]")
 	if(CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: MSAY: [text]")
 
 
 /proc/log_dsay(text)
-	GLOB.admin_log.Add("\[[stationTimestamp()]\] DSAY: [text]")
+	LAZYADD(GLOB.admin_log, "\[[stationTimestamp()]\] DSAY: [text]")
 	if(CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(GLOB.world_game_log, "ADMIN: DSAY: [text]")
 
@@ -55,11 +55,13 @@
 
 /* All other items are public. */
 /proc/log_game(text)
+	LAZYADD(GLOB.game_log, "\[[stationTimestamp()]\] GAME: [text]")
 	if(CONFIG_GET(flag/log_game))
 		WRITE_LOG(GLOB.world_game_log, "GAME: [text]")
 
 
 /proc/log_access(text)
+	LAZYADD(GLOB.access_log, "\[[stationTimestamp()]\] ACCESS: [text]")
 	if(CONFIG_GET(flag/log_access))
 		WRITE_LOG(GLOB.world_game_log, "ACCESS: [text]")
 
@@ -70,13 +72,13 @@
 
 
 /proc/log_ffattack(text)
-	GLOB.ffattack_log.Add("\[[stationTimestamp()]\] FFATTACK: [text]")
+	LAZYADD(GLOB.ffattack_log, "\[[stationTimestamp()]\] FFATTACK: [text]")
 	if(CONFIG_GET(flag/log_attack))
 		WRITE_LOG(GLOB.world_attack_log, "FFATTACK: [text]")
 
 
 /proc/log_explosion(text)
-	GLOB.explosion_log.Add("\[[stationTimestamp()]\] EXPLOSION: [text]")
+	LAZYADD(GLOB.explosion_log, "\[[stationTimestamp()]\] EXPLOSION: [text]")
 	if(CONFIG_GET(flag/log_attack))
 		WRITE_LOG(GLOB.world_game_log, "EXPLOSION: [text]")
 
