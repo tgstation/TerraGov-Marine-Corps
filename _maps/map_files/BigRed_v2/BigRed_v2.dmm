@@ -1245,7 +1245,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aeb" = (
-/obj/item/radio/headset,
+/obj/item/radio/headset/survivor,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aec" = (
@@ -1275,7 +1275,7 @@
 /area/bigredv2/outside/telecomm)
 "aef" = (
 /obj/structure/table,
-/obj/item/radio/headset,
+/obj/item/radio/headset/survivor,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aeg" = (
@@ -3164,7 +3164,7 @@
 /area/bigredv2/outside/marshal_office)
 "ajC" = (
 /obj/structure/table,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor/animated/bcircuit,
 /area/bigredv2/outside/marshal_office)
 "ajD" = (
@@ -6614,9 +6614,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/radio/intercom{
+/obj/item/radio/intercom/general/colony{
 	dir = 1;
-	frequency = 150;
 	name = "Safe-Room intercom";
 	pixel_y = -30
 	},
@@ -6644,7 +6643,7 @@
 /obj/item/storage/firstaid/o2,
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/rad,
-/obj/item/radio/marine,
+/obj/item/radio/survivor,
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "atg" = (
@@ -7000,8 +6999,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "auj" = (
-/obj/item/radio/intercom{
-	frequency = 150;
+/obj/item/radio/intercom/general/colony{
 	name = "Safe-Room intercom";
 	dir = 1
 	},
@@ -8047,7 +8045,7 @@
 /area/bigredv2/outside/dorms)
 "axb" = (
 /obj/structure/table,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "axd" = (
@@ -11064,7 +11062,7 @@
 /area/bigredv2/outside/dorms)
 "aFT" = (
 /obj/structure/table/woodentable,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aFU" = (
@@ -17634,7 +17632,7 @@
 /area/bigredv2/outside/chapel)
 "ban" = (
 /obj/structure/table/woodentable,
-/obj/item/radio/headset,
+/obj/item/radio/headset/survivor,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -18205,10 +18203,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bcB" = (
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
+/obj/item/radio/intercom/general/colony{
 	name = "General Listening Channel";
 	pixel_y = -30
 	},
@@ -20715,7 +20710,7 @@
 /area/bigredv2/outside/cargo)
 "blf" = (
 /obj/structure/table,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "blg" = (
@@ -21293,7 +21288,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bno" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/radio/headset,
+/obj/item/radio/headset/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bnp" = (

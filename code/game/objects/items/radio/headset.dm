@@ -140,6 +140,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	return FALSE
 
 
+/obj/item/radio/headset/survivor
+	freqlock = TRUE
+	frequency = FREQ_CIV_GENERAL
+
+
 //MARINE HEADSETS
 /obj/item/radio/headset/almayer
 	name = "marine radio headset"

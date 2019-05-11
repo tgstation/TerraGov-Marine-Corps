@@ -17066,14 +17066,11 @@
 /area/lv624/lazarus/comms)
 "bhY" = (
 /obj/structure/table,
-/obj/item/radio/headset{
-	frequency = 1469;
+/obj/item/radio/headset/survivor{
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/radio/headset{
-	frequency = 1469
-	},
+/obj/item/radio/headset/survivor,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -17083,9 +17080,7 @@
 /area/lv624/lazarus/comms)
 "bhZ" = (
 /obj/structure/table,
-/obj/item/radio/off{
-	frequency = 1469
-	},
+/obj/item/radio/survivor,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -19444,7 +19439,7 @@
 /obj/structure/table/reinforced,
 /obj/item/folder,
 /obj/item/assembly/signaler,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "boN" = (
@@ -19687,9 +19682,7 @@
 /area/lv624/lazarus/comms)
 "bpB" = (
 /obj/structure/table,
-/obj/item/radio/off{
-	frequency = 1469
-	},
+/obj/item/radio/survivor,
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
@@ -19704,9 +19697,7 @@
 /area/lv624/lazarus/comms)
 "bpD" = (
 /obj/structure/table,
-/obj/item/radio/off{
-	frequency = 1469
-	},
+/obj/item/radio/survivor,
 /obj/item/tool/crowbar,
 /obj/machinery/light,
 /turf/open/floor/tile/brown{
@@ -20261,9 +20252,9 @@
 /area/lv624/ground/jungle1)
 "brJ" = (
 /obj/structure/rack,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /obj/machinery/light,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

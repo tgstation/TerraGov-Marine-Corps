@@ -655,7 +655,7 @@
 "acw" = (
 /obj/structure/table,
 /obj/item/flashlight/flare,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/engineering/electric)
 "acx" = (
@@ -1922,7 +1922,7 @@
 	corpsemask = /obj/item/clothing/mask/rebreather;
 	corpsepocket1 = /obj/item/storage/pouch/general/medium;
 	corpsepocket2 = /obj/item/storage/pouch/electronics/full;
-	corpseradio = /obj/item/radio/headset;
+	corpseradio = /obj/item/radio/headset/survivor;
 	corpseshoes = /obj/item/clothing/shoes/snow;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
 	corpseuniform = /obj/item/clothing/under/rank/engineer;
@@ -7454,7 +7454,7 @@
 	corpsebelt = /obj/item/storage/belt/medical;
 	corpsegloves = /obj/item/clothing/gloves/latex;
 	corpsepocket2 = /obj/item/storage/pouch/medkit/full;
-	corpseradio = /obj/item/radio/headset;
+	corpseradio = /obj/item/radio/headset/survivor;
 	corpseshoes = /obj/item/clothing/shoes/snow;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit/doctor;
 	name = "Dr. Micheal Hwang"
@@ -10144,8 +10144,8 @@
 /area/ice_colony/surface/dorms/canteen)
 "aAy" = (
 /obj/structure/table,
-/obj/item/radio,
-/obj/item/radio,
+/obj/item/radio/survivor,
+/obj/item/radio/survivor,
 /obj/item/storage/toolbox/emergency,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -14564,7 +14564,7 @@
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack/satchel/norm;
 	corpsehelmet = /obj/item/clothing/head/hardhat/white;
-	corpseradio = /obj/item/radio/headset;
+	corpseradio = /obj/item/radio/headset/survivor;
 	corpseshoes = /obj/item/clothing/shoes/snow;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
 	corpseuniform = /obj/item/clothing/under/rank/miner;
@@ -20272,7 +20272,7 @@
 	corpsemask = /obj/item/clothing/mask/gas/PMC;
 	corpsepocket1 = /obj/item/storage/pouch/magazine/large/pmc_m39;
 	corpsepocket2 = /obj/item/flashlight;
-	corpseradio = /obj/item/radio/headset/distress/PMC;
+	corpseradio = /obj/item/radio/headset/survivor;
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC;
 	mobname = "Unknown";
 	name = "Unknown PMC"
@@ -21139,7 +21139,7 @@
 	corpsebelt = /obj/item/storage/belt/medical;
 	corpsegloves = /obj/item/clothing/gloves/latex;
 	corpsepocket2 = /obj/item/storage/pouch/medkit/full;
-	corpseradio = /obj/item/radio/headset;
+	corpseradio = /obj/item/radio/headset/survivor;
 	corpseshoes = /obj/item/clothing/shoes/snow;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit/doctor;
 	name = "Colonist Doctor"
@@ -21880,7 +21880,7 @@
 	corpsemask = /obj/item/clothing/mask/rebreather;
 	corpsepocket1 = /obj/item/storage/pouch/general/medium;
 	corpsepocket2 = /obj/item/storage/pouch/electronics/full;
-	corpseradio = /obj/item/radio/headset;
+	corpseradio = /obj/item/radio/headset/survivor;
 	corpseshoes = /obj/item/clothing/shoes/snow;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
 	corpseuniform = /obj/item/clothing/under/rank/engineer;
@@ -32838,7 +32838,7 @@
 /area/ice_colony/underground/hangar)
 "bHv" = (
 /obj/structure/table,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -34388,7 +34388,7 @@
 	on = 1
 	},
 /obj/effect/landmark/corpsespawner/miner{
-	corpseradio = /obj/item/radio/headset;
+	corpseradio = /obj/item/radio/headset/survivor;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit
 	},
 /turf/open/floor/freezer,
@@ -37308,7 +37308,7 @@
 	corpsemask = /obj/item/clothing/mask/rebreather;
 	corpsepocket1 = /obj/item/storage/pouch/general/medium;
 	corpsepocket2 = /obj/item/storage/pouch/electronics/full;
-	corpseradio = /obj/item/radio/headset;
+	corpseradio = /obj/item/radio/headset/survivor;
 	corpseshoes = /obj/item/clothing/shoes/snow;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
 	corpseuniform = /obj/item/clothing/under/rank/engineer;
@@ -37976,7 +37976,7 @@
 	corpsemask = null;
 	corpsepocket1 = /obj/item/storage/pouch/magazine/large/pmc_m39;
 	corpsepocket2 = /obj/item/flashlight;
-	corpseradio = /obj/item/radio/headset/distress/PMC;
+	corpseradio = /obj/item/radio/headset/survivor;
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC;
 	mobname = "Unknown";
 	name = "Unknown PMC"
@@ -39099,7 +39099,7 @@
 /obj/structure/closet/cabinet,
 /obj/item/clothing/suit/storage/snow_suit,
 /obj/item/clothing/suit/storage/snow_suit,
-/obj/item/radio/headset,
+/obj/item/radio/headset/survivor,
 /obj/item/clothing/shoes/snow,
 /obj/item/clothing/shoes/snow,
 /obj/machinery/alarm{
@@ -40227,7 +40227,7 @@
 	corpsemask = /obj/item/clothing/mask/gas/PMC;
 	corpsepocket1 = /obj/item/storage/pouch/magazine/large/pmc_m39;
 	corpsepocket2 = /obj/item/flashlight;
-	corpseradio = /obj/item/radio/headset/distress/PMC;
+	corpseradio = /obj/item/radio/headset/survivor;
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC;
 	mobname = "Unknown";
 	name = "Unknown PMC"
@@ -40299,7 +40299,7 @@
 	mobname = "Unknown";
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC;
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC;
-	corpseradio = /obj/item/radio/headset/distress/PMC;
+	corpseradio = /obj/item/radio/headset/survivor;
 	corpsemask = /obj/item/clothing/mask/gas/PMC;
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC;
 	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70;
@@ -40487,7 +40487,7 @@
 	corpsemask = /obj/item/clothing/mask/rebreather;
 	corpsepocket1 = /obj/item/storage/pouch/general/medium;
 	corpsepocket2 = /obj/item/storage/pouch/electronics/full;
-	corpseradio = /obj/item/radio/headset;
+	corpseradio = /obj/item/radio/headset/survivor;
 	corpseshoes = /obj/item/clothing/shoes/snow;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
 	corpseuniform = /obj/item/clothing/under/rank/engineer;
