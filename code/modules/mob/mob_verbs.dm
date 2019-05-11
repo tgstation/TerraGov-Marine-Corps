@@ -160,24 +160,8 @@
 	return facedir(SOUTH)
 
 
-/mob/verb/stop_pulling()
+/mob/verb/stop_pulling1()
 	set name = "Stop Pulling"
 	set category = "IC"
 
-	if(pulling)
-		var/mob/M = pulling
-		pulling.pulledby = null
-		pulling = null
-		grab_level = 0
-		if(hud_used && hud_used.pull_icon)
-			hud_used.pull_icon.icon_state = "pull0"
-		if(istype(r_hand, /obj/item/grab))
-			temporarilyRemoveItemFromInventory(r_hand)
-		else if(istype(l_hand, /obj/item/grab))
-			temporarilyRemoveItemFromInventory(l_hand)
-		if(istype(M))
-			if(M.client)
-				//resist_grab uses long movement cooldown durations to prevent message spam
-				//so we must undo it here so the victim can move right away
-				M.client.next_movement = world.time
-			M.update_canmove()
+	stop_pulling()

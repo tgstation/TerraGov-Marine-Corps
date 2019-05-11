@@ -168,6 +168,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
 	var/full_version = "[byond_version].[byond_build ? byond_build : "xxx"]"
+	log_access("Login: [key_name(src)] from [address ? address : "localhost"]-[computer_id] || BYOND v[full_version]")
 
 	if(CONFIG_GET(flag/log_access))
 		for(var/I in GLOB.clients)
@@ -193,7 +194,19 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 						message_admins("<span class='danger'><B>Notice: </B></span><span class='notice'>[key_name_admin(src)] has the same [matches] as [key_name_admin(C)] (no longer logged in). </span>")
 						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(C)] (no longer logged in).")
 
+	if(GLOB.player_details[ckey])
+		player_details = GLOB.player_details[ckey]
+		player_details.byond_version = full_version
+	else
+		player_details = new
+		player_details.byond_version = full_version
+		GLOB.player_details[ckey] = player_details
+
 	. = ..()	//calls mob.Login()
+
+	if(SSinput.initialized)
+		set_macros()
+		
 	chatOutput.start() // Starts the chat
 
 	if(byond_version < 512)
@@ -248,7 +261,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	apply_clickcatcher()
 
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
-		winset(src, "rpane.changelog", "background-color=#ED9F9B;font-style=bold")
+		winset(src, "infowindow.changelog", "background-color=#ED9F9B;font-style=bold")
 
 	if(ckey in GLOB.clientmessages)
 		for(var/message in GLOB.clientmessages[ckey])
@@ -264,15 +277,30 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		else if(holder.rank.rights & R_MENTOR)
 			message_staff("Mentor login: [key_name_admin(src)].")
 
-	if(GLOB.player_details[ckey])
-		player_details = GLOB.player_details[ckey]
-		player_details.byond_version = full_version
-	else
-		player_details = new
-		player_details.byond_version = full_version
-		GLOB.player_details[ckey] = player_details
+	var/list/topmenus = GLOB.menulist[/datum/verbs/menu]
+	for(var/thing in topmenus)
+		var/datum/verbs/menu/topmenu = thing
+		var/topmenuname = "[topmenu]"
+		if(topmenuname == "[topmenu.type]")
+			var/list/tree = splittext(topmenuname, "/")
+			topmenuname = tree[length(tree)]
+		winset(src, "[topmenu.type]", "parent=menu;name=[url_encode(topmenuname)]")
+		var/list/entries = topmenu.Generate_list(src)
+		for(var/child in entries)
+			winset(src, "[child]", "[entries[child]]")
+			if(!ispath(child, /datum/verbs/menu))
+				var/procpath/verbpath = child
+				if(copytext(verbpath.name, 1, 2) != "@")
+					new child(src)
+
+	for(var/thing in prefs.menuoptions)
+		var/datum/verbs/menu/menuitem = GLOB.menulist[thing]
+		if(menuitem)
+			menuitem.Load_checked(src)
 
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
+
+	Master.UpdateTickRate()
 
 
 

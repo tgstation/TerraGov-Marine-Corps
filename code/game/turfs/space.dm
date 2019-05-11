@@ -78,8 +78,6 @@
 	..()
 	if ((!(A) || src != A.loc))	return
 
-	inertial_drift(A)
-
 	if(SSticker?.mode)
 
 
