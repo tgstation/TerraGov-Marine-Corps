@@ -191,7 +191,7 @@
 					/obj/item/stack/medical/splint = 5
 					)
 
-	contraband = list(/obj/item/reagent_container/glass/bottle/toxin = 2)
+	contraband = list(/obj/item/reagent_container/glass/bottle/toxin = 1)
 
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
