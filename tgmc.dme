@@ -160,7 +160,6 @@
 #include "code\controllers\stonedmc\subsystem\shuttle.dm"
 #include "code\controllers\stonedmc\subsystem\shuttleold.dm"
 #include "code\controllers\stonedmc\subsystem\stickyban.dm"
-#include "code\controllers\stonedmc\subsystem\sun.dm"
 #include "code\controllers\stonedmc\subsystem\ticker.dm"
 #include "code\controllers\stonedmc\subsystem\time_track.dm"
 #include "code\controllers\stonedmc\subsystem\timer.dm"

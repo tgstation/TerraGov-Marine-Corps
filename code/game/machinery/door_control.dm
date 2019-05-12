@@ -1,6 +1,6 @@
 #define CONTROL_POD_DOORS 0
 #define CONTROL_NORMAL_DOORS 1
-#define CONTROL_DROPSHIP 3
+#define CONTROL_DROPSHIP 2
 
 /obj/machinery/door_control
 	name = "remote door-control"
