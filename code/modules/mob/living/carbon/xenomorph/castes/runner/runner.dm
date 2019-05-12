@@ -33,7 +33,7 @@
 	var/bonus
 	if(last_move && last_move < world.time - 5) //If we haven't moved in the last 500 ms, we lose our bonus
 		hit_and_run = 1
-	bonus = CLAMP(hit_and_run, 1, 2)//Runner deals +5% damage per tile moved in rapid succession to a maximum of +100%. Damage bonus is lost on attacking.
+	bonus = min(hit_and_run, 2)//Runner deals +5% damage per tile moved in rapid succession to a maximum of +100%. Damage bonus is lost on attacking.
 	switch(bonus)
 		if(2)
 			visible_message("<span class='danger'>\The [src] strikes with lethal speed!</span>", \
