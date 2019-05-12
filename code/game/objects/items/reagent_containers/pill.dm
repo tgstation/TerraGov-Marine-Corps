@@ -245,7 +245,7 @@ var/global/list/randomized_pill_icons
 
 /obj/item/reagent_container/pill/zoom
 	pill_desc = "A Zoom pill! Gotta go fast!"
-	list_reagents = list("synaptizine" = 5, "hyperzine" = 5, "nutriment" = 2, "ultrazine" = 1)
+	list_reagents = list("synaptizine" = 5, "hyperzine" = 5, "nutriment" = 2)
 
 /obj/item/reagent_container/pill/zoom/New()
 	. = ..()
