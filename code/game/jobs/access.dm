@@ -404,6 +404,14 @@ proc/get_all_job_icons()
 			. = size ? "CLF " : "CLF Medic"
 		if("CLF3")
 			. = size ? "CLF " : "CLF Leader"
+		if("SOM1")
+			. = size ? "SOM " : "SOM Standard"
+		if("SOM2")
+			. = size ? "SOM " : "SOM Medic"
+		if("SOM3")
+			. = size ? "SOM " : "SOM Veteran"
+		if("SOM4")
+			. = size ? "SOM " : "SOM Leader"
 		if("MRC1")
 			. = size ? "MERC " : "MERC Heavy"
 		if("MRC2")

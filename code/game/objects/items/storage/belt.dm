@@ -184,6 +184,14 @@
 	icon_state = "medicalbag_u"
 	item_state = "medicbag_u"
 
+
+/obj/item/storage/belt/combatLifesaver/som
+	name = "\improper S17 lifesaver bag"
+	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
+	icon_state = "medicbag_som"
+	item_state = "medicbag_som"
+
+
 /obj/item/storage/belt/security
 	name = "\improper M276 pattern security rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This configuration is commonly seen among TGMC Military Police and peacekeepers, though it can hold some light munitions."
@@ -281,6 +289,12 @@
 	new /obj/item/ammo_magazine/rifle/type71(src)
 	new /obj/item/ammo_magazine/rifle/type71(src)
 
+
+/obj/item/storage/belt/marine/som
+	name = "\improper S18 ammo belt"
+	desc = "A belt with origins traced to the M276 ammo belt and some old colony security."
+	icon_state = "som_belt"
+	item_state = "som_belt"
 
 
 /obj/item/storage/belt/shotgun
@@ -535,6 +549,14 @@
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new_gun.on_enter_storage(src)
+
+
+/obj/item/storage/belt/gun/m4a3/som
+	name = "\improper S19 holster rig"
+	desc = "A belt with origins to old colony security holster rigs."
+	icon_state = "som_belt_pistol"
+	item_state = "som_belt_pistol"
+
 
 /obj/item/storage/belt/gun/m44
 	name = "\improper M276 pattern M44 holster rig"

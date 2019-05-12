@@ -303,6 +303,13 @@
 	var/dogtag_taken = FALSE
 
 
+/obj/item/card/id/dogtag/som
+	name = "\improper Sons of Mars dogtag"
+	desc = "Used by the Sons of Mars."
+	icon_state = "dogtag_som"
+	item_state = "dogtag_som"
+
+
 /obj/item/card/id/dogtag/examine(mob/user)
 	..()
 	if(ishuman(user))

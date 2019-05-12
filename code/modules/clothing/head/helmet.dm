@@ -540,3 +540,32 @@
 	icon_state = "mercenary_engineer_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list("melee" = 55, "bullet" = 60, "laser" = 45, "energy" = 55, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 55, "acid" = 55)
+
+
+
+/obj/item/clothing/head/helmet/marine/som
+	name = "\improper S6 combat helmet"
+	desc = "A helmet with origns of heavily modified head protection used back in the mining colonies. Protection from threats is bad but it's better than nothing."
+	icon_state = "som_helmet"
+	item_state = "som_helmet"
+	armor = list("melee" = 38, "bullet" = 38, "laser" = 32, "energy" = 22, "bomb" = 12, "bio" = 5, "rad" = 5, "fire" = 22, "acid" = 22)
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = NOFLAGS
+	flags_marine_helmet = NOFLAGS
+
+
+/obj/item/clothing/head/helmet/marine/som/veteran
+	name = "\improper S7 combat helmet"
+	desc = "A helmet of origins off of heavily modified helmets used back in the mining colonies. Seems to have extensive modification."
+	icon_state = "som_helmet_veteran"
+	item_state = "som_helmet_veteran"
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 45, "energy" = 35, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 35, "acid" = 35)
+
+
+/obj/item/clothing/head/helmet/marine/som/leader
+	name = "\improper S8 combat helmet"
+	desc = "A helmet of origins off of heavily modified helmets used back in the mining colonies."
+	icon_state = "som_helmet_leader"
+	item_state = "som_helmet_leader"
+	armor = list("melee" = 45, "bullet" = 38, "laser" = 48, "energy" = 30, "bomb" = 20, "bio" = 15, "rad" = 15, "fire" = 30, "acid" = 30)
