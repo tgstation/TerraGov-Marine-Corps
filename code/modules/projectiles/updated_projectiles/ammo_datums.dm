@@ -1320,7 +1320,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_nade(get_turf(P))
 
 /datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind a short lived acid pool; lasts for 1-3 seconds.
-	if(!T || T.density)
+	if(T.density)
 		return
 	new /obj/effect/xenomorph/spray(T, 10)
 

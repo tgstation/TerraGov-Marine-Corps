@@ -94,8 +94,9 @@
 			M.smokecloak_off()
 
 /obj/effect/particle_effect/smoke/proc/apply_smoke_effect(turf/T)
-	if(!T && !QDELING(src))
-		qdel(src)
+	if(!T)
+		if(!QDELING(src))
+			qdel(src)
 		return
 	T.effect_smoke(src)
 	for(var/V in T)
@@ -153,8 +154,6 @@
 
 //proc to check if smoke can expand to another turf
 /obj/effect/particle_effect/smoke/proc/check_airblock(turf/T)
-	if(!T)
-		return TRUE
 	var/obj/effect/particle_effect/smoke/foundsmoke = locate() in T //Don't spread smoke where there's already smoke!
 	if(foundsmoke)
 		return TRUE
