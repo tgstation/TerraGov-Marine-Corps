@@ -697,17 +697,14 @@
 
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
-			if(iscyborg(M))
-				M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
-			else
-				M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
-				M.SetStunned(5)
-				M.SetKnockeddown(5)
-				if (iscarbon(M))
-					var/mob/living/carbon/C = M
-					var/datum/species/S = C.species
-					if(S?.species_flags & NO_PAIN)
-						M.emote("pain")
+			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
+			M.SetStunned(5)
+			M.SetKnockeddown(5)
+			if (iscarbon(M))
+				var/mob/living/carbon/C = M
+				var/datum/species/S = C.species
+				if(S?.species_flags & NO_PAIN)
+					M.emote("pain")
 			var/turf/location = src.loc
 			if(istype(location, /turf))
 				location.add_mob_blood(M)

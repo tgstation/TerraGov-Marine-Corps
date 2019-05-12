@@ -103,7 +103,7 @@
 	if(!armed || triggered)
 		return
 
-	if((istype(H) && H.get_target_lock(iff_signal)) || iscyborg(H))
+	if((istype(H) && H.get_target_lock(iff_signal)))
 		return
 
 	H.visible_message("<span class='danger'>[icon2html(src, viewers(H))] The [name] clicks as [H] moves in front of it.</span>", \

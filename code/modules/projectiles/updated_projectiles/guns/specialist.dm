@@ -799,6 +799,7 @@
 /obj/item/weapon/gun/launcher/rocket/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
 	user.transferItemToLoc(magazine, src) //Click!
 	current_mag = magazine
+	ammo = GLOB.ammo_list[current_mag.default_ammo]
 	user.visible_message("<span class='notice'>[user] loads [magazine] into [src]!</span>",
 	"<span class='notice'>You load [magazine] into [src]!</span>", null, 3)
 	if(reload_sound)

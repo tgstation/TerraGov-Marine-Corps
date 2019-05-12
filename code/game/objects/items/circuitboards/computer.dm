@@ -41,11 +41,6 @@
 	build_path = /obj/machinery/computer/aiupload
 	origin_tech = "programming=4"
 
-/obj/item/circuitboard/computer/borgupload
-	name = "Circuit board (Cyborg Upload)"
-	build_path = /obj/machinery/computer/borgupload
-	origin_tech = "programming=4"
-
 /obj/item/circuitboard/computer/med_data
 	name = "Circuit board (Medical Records)"
 	build_path = /obj/machinery/computer/med_data
@@ -127,10 +122,6 @@
 /obj/item/circuitboard/computer/pod
 	name = "Circuit board (Massdriver control)"
 	build_path = /obj/machinery/computer/pod
-/obj/item/circuitboard/computer/robotics
-	name = "Circuit board (Robotics Control)"
-	build_path = /obj/machinery/computer/robotics
-	origin_tech = "programming=3"
 /obj/item/circuitboard/computer/arcade
 	name = "Circuit board (Arcade)"
 	build_path = /obj/machinery/computer/arcade

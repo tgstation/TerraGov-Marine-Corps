@@ -531,7 +531,7 @@
 /obj/structure/window/framed/almayer/requisitions
 	name = "kevlar-weave infused bulletproof window"
 	desc = "A borosilicate glass window infused with kevlar fibres and mounted within a special shock-absorbing frame, this is gonna be seriously hard to break through."
-	max_integrity = 2000
+	max_integrity = 1000
 	deconstructable = FALSE
 	window_frame = /obj/structure/window_frame/almayer/requisitions
 

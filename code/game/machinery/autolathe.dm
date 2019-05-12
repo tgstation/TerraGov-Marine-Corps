@@ -160,7 +160,7 @@
 		to_chat(user, "<span class='warning'>\The [eating] does not contain significant amounts of useful materials and cannot be accepted.</span>")
 		return
 
-	if (eating.is_robot_module() || (eating.flags_item & (NODROP|DELONDROP)))
+	if (eating.flags_item & (NODROP|DELONDROP))
 		to_chat(user, "<span class='warning'>\The [eating] is stuck to you and cannot be placed into [src].</span>")
 		return
 

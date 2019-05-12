@@ -31,13 +31,6 @@
 		return TryToSwitchState(user)
 	return
 
-/obj/structure/mineral_door/attack_ai(mob/user as mob) //those aren't machinery, they're just big fucking slabs of a mineral
-	if(isAI(user)) //so the AI can't open it
-		return
-	else if(iscyborg(user)) //but cyborgs can
-		if(get_dist(user,src) <= 1) //not remotely though
-			return TryToSwitchState(user)
-
 /obj/structure/mineral_door/attack_paw(mob/user as mob)
 	return TryToSwitchState(user)
 
