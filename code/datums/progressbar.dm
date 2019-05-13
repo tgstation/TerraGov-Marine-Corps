@@ -226,7 +226,7 @@
 /image/progress/display
 	icon = 'icons/effects/progressicons.dmi'
 	icon_state = "busy_generic"
-	plane = FLY_LAYER
+	plane = GAME_PLANE
 	alpha = 255
 	pixel_y = 32
 
