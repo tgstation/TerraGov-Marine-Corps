@@ -145,8 +145,6 @@
 
 #define isAPC(A) (istype(A, /obj/machinery/power/apc))
 
-#define ismecha(A) (istype(A, /obj/mecha))
-
 #define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/rune)) //if something is cleanable
 
 #define isorgan(A) (istype(A, /datum/limb))
