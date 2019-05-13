@@ -427,7 +427,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	HTML += "<h3>Action: Keybinding</h3>"
 	for (var/kb in key_bindings)
-		HTML += "<label>[kb]</label>: <a href ='?_src_=prefs;preference=keybindings_set;action=[kb];key=[key_bindings[kb]]'>[key_bindings[kb]]</a>"
+		HTML += "<label>[kb]</label>: <a href ='?_src_=prefs;preference=keybindings_capture;action=[kb];key=[key_bindings[kb]]'>[key_bindings[kb]]</a>"
 		HTML += "<br>"
 
 	HTML += "<br><br>"
@@ -436,10 +436,32 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	HTML += "</body>"
 
 	winshow(user, "keybindings", TRUE)
-	var/datum/browser/popup = new(user, "keybindings", "<div align='center'>Keybindings</div>", 350, 300)
+	var/datum/browser/popup = new(user, "keybindings", "<div align='center'>Keybindings</div>", 350, 600)
 	popup.set_content(HTML)
 	popup.open(FALSE)
 	onclose(user, "keybindings", src)
+
+
+/datum/preferences/proc/CaptureKeybinding(mob/user, action)
+	var/HTML = {"
+	<div id='focus' style="font-weight: 800; outline: 0;" tabindex=0>Action: [action]<br>Press any key</div>
+	<script>
+	document.onkeyup = function(e) {
+		var shift = e.shiftKey ? 1 : 0;
+		var alt = e.altKey ? 1 : 0;
+		var ctrl = e.ctrlKey ? 1 : 0;
+		var numpad = (95 < e.keyCode && e.keyCode < 112) ? 1 : 0;
+		var url = 'byond://?_src_=prefs;preference=keybindings_set;action=[action];key='+e.key+';shift='+shift+';alt='+alt+';ctrl='+ctrl+';numpad='+numpad+';key_code='+e.keyCode;
+		window.location=url;
+	}
+	document.getElementById('focus').focus();
+	</script>
+	"}
+	winshow(user, "capturekeypress", TRUE)
+	var/datum/browser/popup = new(user, "capturekeypress", "<div align='center'>Keybindings</div>", 350, 300)
+	popup.set_content(HTML)
+	popup.open(FALSE)
+	onclose(user, "capturekeypress", src)
 
 
 /datum/preferences/proc/ResetJobs()
@@ -898,18 +920,28 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			ShowKeybindings(user)
 			return
 
+		if("keybindings_capture")
+			var/action = href_list["action"]
+			CaptureKeybinding(user, action)
+
+			return
 		if("keybindings_set")
 			var/action = href_list["action"]
 			var/key = href_list["key"]
-			var/new_key = input(user, "Enter a new key", "New Keybinding: [action]", sanitize(key)) as text|null
-			if(!new_key)
-				return
+			var/shift = text2num(href_list["shift"])
+			var/alt = text2num(href_list["alt"])
+			var/ctrl = text2num(href_list["ctrl"])
+			var/numpad = text2num(href_list["numpad"])
+			var/key_code = text2num(href_list["key_code"])
+			to_chat(user, "key press [action] - [key] - [shift] - [alt] - [ctrl] - [numpad] - [key_code]")
 
-			new_key = uppertext(new_key)
-			// NumpadX, and Space are special cases and doesn't work uppercase
-			new_key = new_key == "SPACE" ? "Space" : new_key
-			new_key = copytext(new_key,1,-1) == "NUMPAD" ? "Numpad[copytext(new_key,-1)]" : new_key
+			var/new_key = uppertext(key)
+			// NumpadX, and Space are special cases and doesn't work just uppercase
+			new_key = new_key == "SPACEBAR" ? "Space" : new_key
+			if (numpad)
+				new_key = "Numpad[new_key]"
 			key_bindings[action] = new_key
+			user << browse(null, "window=capturekeypress")
 			ShowKeybindings(user)
 			return
 		
