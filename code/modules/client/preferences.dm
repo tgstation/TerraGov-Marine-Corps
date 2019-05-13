@@ -928,12 +928,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if("keybindings_set")
 			var/action = href_list["action"]
 			var/key = href_list["key"]
-			var/shift = text2num(href_list["shift"])
-			var/alt = text2num(href_list["alt"])
-			var/ctrl = text2num(href_list["ctrl"])
+			// var/alt = text2num(href_list["alt"])
+			// var/ctrl = text2num(href_list["ctrl"])
+			// var/shift = text2num(href_list["shift"])
 			var/numpad = text2num(href_list["numpad"])
-			var/key_code = text2num(href_list["key_code"])
-			to_chat(user, "key press [action] - [key] - [shift] - [alt] - [ctrl] - [numpad] - [key_code]")
+			// var/key_code = text2num(href_list["key_code"])
 
 			var/new_key = uppertext(key)
 			// NumpadX, and Space are special cases and doesn't work just uppercase
