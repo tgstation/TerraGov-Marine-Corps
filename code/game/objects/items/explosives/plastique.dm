@@ -20,7 +20,7 @@
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 20
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
 	if(newtime < 10)
@@ -37,7 +37,7 @@
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 50
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, fumbling_time, TRUE, target, BUSY_ICON_UNSKILLED))
 			return
 	if(istype(target, /obj/item) || isopenturf(target))
 		return FALSE
@@ -59,7 +59,7 @@
 	"<span class='warning'>You are trying to plant [name] on [target]!</span>")
 	bombers += "[key_name(user)] attached C4 to [target.name]."
 
-	if(do_mob(user, target, 50, BUSY_ICON_HOSTILE))
+	if(do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
 		user.drop_held_item()
 		plant_target = target
 		loc = null

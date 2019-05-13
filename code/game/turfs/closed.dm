@@ -47,7 +47,7 @@
 /turf/closed/gm/ex_act(severity)
 	switch(severity)
 		if(1)
-			ChangeTurf(/turf/open/gm/grass)
+			ChangeTurf(/turf/open/ground/grass)
 
 
 /turf/closed/gm/dense
@@ -143,14 +143,14 @@
 			return
 		if(!P.start_cut(user, src.name, src))
 			return
-		if(do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, 5, BUSY_ICON_FRIENDLY) && P)
+		if(do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, src, BUSY_ICON_BUILD))
 			P.cut_apart(user, src.name, src)
 			if(ismineralturf(src) || istype(src, /turf/closed/desertdamrockwall))
-				ChangeTurf(/turf/open/desertdam/cave/inner_cave_floor)
+				ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
 			else if(istype(src, /turf/closed/gm/dense))
-				ChangeTurf(/turf/open/jungle/clear)
+				ChangeTurf(/turf/open/ground/jungle/clear)
 			else
-				ChangeTurf(/turf/open/ice)
+				ChangeTurf(/turf/open/floor/plating/ground/ice)
 
 
 //Ice Secret Wall

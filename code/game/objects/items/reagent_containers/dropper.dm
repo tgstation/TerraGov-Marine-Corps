@@ -10,7 +10,7 @@
 	possible_transfer_amounts = list(1,2,3,4,5)
 	w_class = 1
 	volume = 5
-	container_type = TRANSPARENT
+	init_reagent_flags = TRANSPARENT
 	var/filled = 0
 
 	afterattack(obj/target, mob/user , flag)
@@ -34,7 +34,8 @@
 				for(var/mob/O in viewers(world.view, user))
 					O.show_message(text("<span class='danger'>[] is trying to squirt something into []'s eyes!</span>", user, target), 1)
 
-				if(!do_mob(user, target, time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL)) return
+				if(!do_mob(user, target, time, BUSY_ICON_HOSTILE))
+					return
 
 				if(ishuman(target))
 					var/mob/living/carbon/human/victim = target

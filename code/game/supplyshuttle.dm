@@ -78,39 +78,6 @@ var/list/mechtoys = list(
 	name = "\improper Airtight plastic flaps"
 	desc = "Heavy duty, airtight, plastic flaps."
 
-
-/obj/machinery/computer/supplycomp
-	name = "ASRS console"
-	desc = "A console for an Automated Storage and Retrieval System"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "supply"
-	req_access = list(ACCESS_MARINE_CARGO)
-	circuit = "/obj/item/circuitboard/computer/supplycomp"
-	var/temp = null
-	var/reqtime = 0 //Cooldown for requisitions - Quarxink
-	var/hacked = 0
-	var/can_order_contraband = 0
-	var/last_viewed_group = "categories"
-
-/obj/machinery/computer/ordercomp
-	name = "Supply ordering console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "request"
-	circuit = "/obj/item/circuitboard/computer/ordercomp"
-	var/temp = null
-	var/reqtime = 0 //Cooldown for requisitions - Quarxink
-	var/last_viewed_group = "categories"
-
-/*
-/obj/effect/marker/supplymarker
-	icon_state = "X"
-	icon = 'icons/misc/mark.dmi'
-	name = "X"
-	invisibility = INVISIBILITY_MAXIMUM
-	anchored = 1
-	opacity = 0
-*/
-
 /datum/supply_order
 	var/ordernum
 	var/datum/supply_packs/object = null
@@ -448,14 +415,7 @@ var/list/mechtoys = list(
 				dat += "Moving<BR>"
 			else
 				if (shuttle.at_station())
-					if (shuttle.docking_controller)
-						switch(shuttle.docking_controller.get_docking_status())
-							if ("docked") dat += "Raised<BR>"
-							if ("undocked") dat += "Lowered<BR>"
-							if ("docking") dat += "Raising [shuttle.can_force()? "<span class='warning'><A href='?src=\ref[src];force_send=1'>Force</A></span>" : ""]<BR>"
-							if ("undocking") dat += "Lowering [shuttle.can_force()? "<span class='warning'><A href='?src=\ref[src];force_send=1'>Force</A></span>" : ""]<BR>"
-					else
-						dat += "Raised<BR>"
+					dat += "Raised<BR>"
 
 					if (shuttle.can_launch())
 						dat += "<A href='?src=\ref[src];send=1'>Lower platform</A>"

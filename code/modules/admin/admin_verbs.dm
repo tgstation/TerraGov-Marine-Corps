@@ -324,8 +324,7 @@
 	var/message = "[key_name_admin(usr)]"
 	var/message2 = ADMIN_TPMONTY(L)
 
-	usr.mind.transfer_to(L, TRUE)
-	L.fully_replace_character_name(usr.real_name, L.real_name)
+	L.take_over(usr, TRUE)
 
 	log_admin("[log] took over [log2][replaced ? " replacing the previous owner" : ""].")
 	message_admins("[message] took over [message2][replaced ? " replacing the previous owner" : ""].")
@@ -952,7 +951,7 @@
 
 	var/datum/admin_help/AH = C.current_ticket
 
-	if(AH.tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+	if(AH.tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
 		return
 
 	if(AH && !AH.marked)
@@ -960,7 +959,7 @@
 		if(AH.tier == TICKET_MENTOR)
 			message_staff("[key_name_admin(src)] has marked and started replying to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
 		else if(AH.tier == TICKET_ADMIN)
-			if(!check_rights(R_ADMIN, FALSE))
+			if(!check_rights(R_ADMINTICKET, FALSE))
 				return
 			message_admins("[key_name_admin(src)] has marked and started replying to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
 
@@ -1049,10 +1048,10 @@
 		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>IRC</i>: [keywordparsedmsg]</font>")
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
 	else
-		if(check_other_rights(recipient, R_ADMIN, FALSE) || is_mentor(recipient))
-			if(check_rights(R_ADMIN, FALSE) || is_mentor(src)) //Both are staff
+		if(check_other_rights(recipient, R_ADMINTICKET, FALSE) || is_mentor(recipient))
+			if(check_rights(R_ADMINTICKET, FALSE) || is_mentor(src)) //Both are staff
 				if(!current_ticket && !recipient.current_ticket)
-					if(check_other_rights(recipient, R_ADMIN, FALSE) || check_rights(R_ADMIN, FALSE))
+					if(check_other_rights(recipient, R_ADMINTICKET, FALSE) || check_rights(R_ADMINTICKET, FALSE))
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_ADMIN)
 					else
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_MENTOR)
@@ -1078,14 +1077,14 @@
 				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
 
 		else  //PM sender is mentor/admin, recipient is not -> big red text
-			if(check_rights(R_ADMIN, FALSE) || is_mentor(src))
+			if(check_rights(R_ADMINTICKET, FALSE) || is_mentor(src))
 				if(!recipient.current_ticket)
-					if(check_rights(R_ADMIN, FALSE))
+					if(check_rights(R_ADMINTICKET, FALSE))
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_ADMIN)
 					else if(is_mentor(src))
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_MENTOR)
 
-				if(check_rights(R_ADMIN, FALSE))
+				if(check_rights(R_ADMINTICKET, FALSE))
 					to_chat(recipient, "<font color='red' size='4'><b>-- Private Message --</b></font>")
 					to_chat(recipient, "<font color='red'>[holder.fakekey ? "Administrator" : holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
 					to_chat(recipient, "<font color='red'><i>Click on the staff member's name to reply.</i></font>")
@@ -1109,29 +1108,29 @@
 	if(irc)
 		log_admin_private("PM: [key_name(src)]->IRC: [rawmsg]")
 		for(var/client/X in GLOB.admins)
-			if(check_other_rights(X, R_ADMIN, FALSE))
+			if(check_other_rights(X, R_ADMINTICKET, FALSE))
 				to_chat(X, "<font color='blue'><B>PM: [key_name(src, X, FALSE)]-&gt;IRC:</B> [keywordparsedmsg]</font>")
 	else
 		log_admin_private("PM: [key_name(src)]->[key_name(recipient)]: [rawmsg]")
 		//Admins PMs go to admins, mentor PMs go to mentors and admins
-		if(check_rights(R_ADMIN, FALSE))
+		if(check_rights(R_ADMINTICKET, FALSE))
 			for(var/client/X in GLOB.admins)
 				if(X.key == key || X.key == recipient.key)
 					continue
-				if(check_other_rights(X, R_ADMIN, FALSE))
+				if(check_other_rights(X, R_ADMINTICKET, FALSE))
 					to_chat(X, "<font color='blue'><B>Admin PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
 		else if(is_mentor(src))
 			for(var/client/X in GLOB.admins)
 				if(X.key == key || X.key == recipient.key)
 					continue
-				if(check_other_rights(X, R_ADMIN, FALSE) || is_mentor(X))
+				if(check_other_rights(X, R_ADMINTICKET, FALSE) || is_mentor(X))
 					to_chat(X, "<font color='blue'><B>Mentor PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
 		else //Admins get all messages, mentors only mentor responses
 			var/datum/admin_help/AH = src.current_ticket
 			for(var/client/X in GLOB.admins)
 				if(X.key == key || X.key == recipient.key)
 					continue
-				if(check_other_rights(X, R_ADMIN, FALSE))
+				if(check_other_rights(X, R_ADMINTICKET, FALSE))
 					to_chat(X, "<font color='blue'><B>PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
 			if(AH?.tier == TICKET_MENTOR)
 				for(var/client/X in GLOB.admins)

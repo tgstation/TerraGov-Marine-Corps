@@ -219,7 +219,7 @@ Contains most of the procs that are called when a mob is attacked by something
 					bloody_body(src)
 
 	//Melee weapon embedded object code.
-	if (I.damtype == BRUTE && !I.is_robot_module() && !(I.flags_item & (NODROP|DELONDROP)))
+	if (I.damtype == BRUTE && !(I.flags_item & (NODROP|DELONDROP)))
 		var/damage = I.force
 		if(damage > 40) 
 			damage = 40
@@ -295,20 +295,19 @@ Contains most of the procs that are called when a mob is attacked by something
 		//thrown weapon embedded object code.
 		if(dtype == BRUTE && istype(O,/obj/item))
 			var/obj/item/I = O
-			if (!I.is_robot_module())
-				var/sharp = is_sharp(I)
-				var/damage = throw_damage
-				if (armor)
-					damage /= armor+1
+			var/sharp = is_sharp(I)
+			var/damage = throw_damage
+			if (armor)
+				damage /= armor+1
 
-				//blunt objects should really not be embedding in things unless a huge amount of force is involved
-				var/embed_chance = sharp? damage/I.w_class : damage/(I.w_class*3)
-				var/embed_threshold = sharp? 5*I.w_class : 15*I.w_class
+			//blunt objects should really not be embedding in things unless a huge amount of force is involved
+			var/embed_chance = sharp? damage/I.w_class : damage/(I.w_class*3)
+			var/embed_threshold = sharp? 5*I.w_class : 15*I.w_class
 
-				//Sharp objects will always embed if they do enough damage.
-				//Thrown sharp objects have some momentum already and have a small chance to embed even if the damage is below the threshold
-				if((sharp && prob(damage/(10*I.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
-					affecting.embed(I)
+			//Sharp objects will always embed if they do enough damage.
+			//Thrown sharp objects have some momentum already and have a small chance to embed even if the damage is below the threshold
+			if((sharp && prob(damage/(10*I.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
+				affecting.embed(I)
 
 		// Begin BS12 momentum-transfer code.
 		if(O.throw_source && speed >= 15)
@@ -366,3 +365,21 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(!istype(C)) return
 	if(!(unique_access in C.access)) return
 	return 1
+
+
+/mob/living/carbon/human/screech_act(mob/living/carbon/Xenomorph/Queen/Q)
+	shake_camera(src, 3 SECONDS, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
+	var/dist = get_dist(src, Q)
+
+	var/reduction = max(1 - 0.1 * protection_aura, 0) //Hold orders will reduce the Halloss; 10% per rank.
+	var/halloss_damage = (max(0,140 - dist * 10)) * reduction //Max 130 beside Queen, 70 at the edge
+	var/stun_duration = max(0,1.1 - dist * 0.1) * reduction //Max 1 beside Queen, 0.4 at the edge.
+
+	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
+	stunned += stun_duration
+	KnockDown(stun_duration)
+	apply_damage(halloss_damage, HALLOSS)
+	if(!ear_deaf)
+		ear_deaf += stun_duration * 20  //Deafens them temporarily
+	//Perception distorting effects of the psychic scream
+	addtimer(CALLBACK(GLOBAL_PROC, /proc/shake_camera, src, stun_duration * 1 SECONDS, 0.75), 31)

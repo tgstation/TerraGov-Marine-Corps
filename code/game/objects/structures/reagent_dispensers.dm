@@ -7,10 +7,10 @@
 	icon_state = "watertank"
 	density = 1
 	anchored = 0
-	container_type = AMOUNT_VISIBLE
 	var/tank_volume = 1000
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
+	var/list/list_reagents
 
 /obj/structure/reagent_dispensers/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_refillable())
@@ -20,10 +20,9 @@
 
 /obj/structure/reagent_dispensers/New()
 	. = ..()
-	create_reagents(tank_volume)
+	create_reagents(tank_volume, AMOUNT_VISIBLE, list_reagents)
 	if (!possible_transfer_amounts)
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
-	add_initial_reagents()
 
 /obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
@@ -94,7 +93,7 @@
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if (rig)
 		usr.visible_message("[usr] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]...")
-		if(do_after(usr, 20, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(usr, 20, TRUE, src, BUSY_ICON_GENERIC))
 			usr.visible_message("<span class='notice'>[usr] detaches [rig] from \the [src].</span>", "<span class='notice'>You detach [rig] from \the [src].</span>")
 			rig.loc = get_turf(usr)
 			rig = null
@@ -116,7 +115,7 @@
 			to_chat(user, "<span class='warning'>There is another device in the way.</span>")
 			return
 		user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_HOSTILE) && !rig)
+		if(do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) && !rig)
 			user.visible_message("<span class='notice'>[user] rigs [I] to \the [src].</span>", "<span class='notice'>You rig [I] to \the [src].</span>")
 			var/obj/item/assembly_holder/H = I
 			if (istype(H.a_left,/obj/item/assembly/igniter) || istype(H.a_right,/obj/item/assembly/igniter))

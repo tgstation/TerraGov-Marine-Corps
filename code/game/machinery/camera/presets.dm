@@ -66,19 +66,11 @@
 	var/number = 0 //camera number in area
 
 //This camera type automatically sets it's name to whatever the area that it's in is called.
-/obj/machinery/camera/autoname/New()
+/obj/machinery/camera/autoname/Initialize()
 	..()
-	spawn(10)
-		number = 1
-		var/area/A = get_area(src)
-		if(A)
-			for(var/obj/machinery/camera/autoname/C in GLOB.machines)
-				if(C == src) continue
-				var/area/CA = get_area(C)
-				if(CA.type == A.type)
-					if(C.number)
-						number = max(number, C.number+1)
-			c_tag = "[A.name] #[number]"
+	var/static/list/id_by_area = list()
+	var/area/A = get_area(src)
+	c_tag = "[A.name] #[++id_by_area[A]]"
 
 //cameras installed inside the dropships, accessible via both cockpit monitor and Theseus camera computers
 /obj/machinery/camera/autoname/almayer/dropship_one

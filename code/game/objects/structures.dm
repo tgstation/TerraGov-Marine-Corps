@@ -6,10 +6,6 @@
 	var/flags_barrier = 0
 	anchored = TRUE
 
-	var/damage = 0
-	var/damage_cap = 500 //The point where things start breaking down.
-	var/health
-
 /obj/structure/New()
 	..()
 	GLOB.structure_list += src
@@ -46,7 +42,7 @@
 	var/obj/item/tool/pickaxe/plasmacutter/P = C
 	if(!P.start_cut(user, name, src))
 		return
-	if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
+	if(do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
 		P.cut_apart(user, name, src)
 		qdel(src)
 
@@ -164,10 +160,7 @@
 
 	user.visible_message("<span class='warning'>[user] starts [flags_atom & ON_BORDER ? "leaping over":"climbing onto"] \the [src]!</span>")
 
-	if(!do_after(user, climb_delay, FALSE, 5, BUSY_ICON_GENERIC))
-		return
-
-	if(!can_climb(user))
+	if(!do_after(user, climb_delay, FALSE, src, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_climb, user)))
 		return
 
 	if(!(flags_atom & ON_BORDER)) //If not a border structure or we are not on its tile, assume default behavior
@@ -264,9 +257,9 @@
 	if(!dam || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE|UNACIDABLE))
 		return
 
-	damage = max(0, damage + dam)
+	obj_integrity = max(0, obj_integrity - dam)
 
-	if(damage >= damage_cap)
+	if(obj_integrity <= 0)
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		qdel(src)
 	else

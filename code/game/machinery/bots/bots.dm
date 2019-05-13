@@ -7,8 +7,6 @@
 	use_power = FALSE
 	var/obj/item/card/id/botcard			// the ID card that the bot "holds"
 	var/on = TRUE
-	var/health = 0 //do not forget to set health for your bot!
-	var/maxhealth = 0
 	var/fire_dam_coeff = 1.0
 	var/brute_dam_coeff = 1.0
 	var/open = FALSE //Maint panel
@@ -31,7 +29,7 @@
 	qdel(src)
 
 /obj/machinery/bot/proc/healthcheck()
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		explode()
 
 /obj/machinery/bot/Destroy()
@@ -52,8 +50,8 @@
 
 /obj/machinery/bot/examine(mob/user)
 	..()
-	if(health < maxhealth)
-		if(health > maxhealth/3)
+	if(obj_integrity < max_integrity)
+		if(obj_integrity > max_integrity/3)
 			to_chat(user, "<span class='warning'>[src]'s parts look loose.</span>")
 		else
 			to_chat(user, "<span class='danger'>[src]'s parts look very loose!</span>")
@@ -61,7 +59,7 @@
 /obj/machinery/bot/attack_animal(var/mob/living/simple_animal/M as mob)
 	if(M.melee_damage_upper == 0)
 		return
-	health -= M.melee_damage_upper
+	obj_integrity -= M.melee_damage_upper
 	visible_message("<span class='danger'>[M] has [M.attacktext] [src]!</span>")
 	log_combat(M, src, "attacked")
 	if(prob(10))
@@ -70,8 +68,8 @@
 
 /obj/machinery/bot/attack_alien(mob/living/carbon/Xenomorph/M)
 	M.animation_attack_on(src)
-	health -= rand(15, 30)
-	if(health <= 0)
+	obj_integrity -= rand(15, 30)
+	if(obj_integrity <= 0)
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)
 	else
@@ -88,9 +86,9 @@
 			open = !open
 			to_chat(user, "<span class='notice'>Maintenance panel is now [src.open ? "opened" : "closed"].</span>")
 	else if(iswelder(W))
-		if(health < maxhealth)
+		if(obj_integrity < max_integrity)
 			if(open)
-				health = min(maxhealth, health+10)
+				obj_integrity = min(max_integrity, obj_integrity+10)
 				user.visible_message("<span class='warning'> [user] repairs [src]!</span>","<span class='notice'> You repair [src]!</span>")
 			else
 				to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
@@ -102,16 +100,16 @@
 		if(hasvar(W,"force") && hasvar(W,"damtype"))
 			switch(W.damtype)
 				if("fire")
-					src.health -= W.force * fire_dam_coeff
+					src.obj_integrity -= W.force * fire_dam_coeff
 				if("brute")
-					src.health -= W.force * brute_dam_coeff
+					src.obj_integrity -= W.force * brute_dam_coeff
 			..()
 			healthcheck()
 		else
 			..()
 
 /obj/machinery/bot/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.ammo.damage
+	obj_integrity -= Proj.ammo.damage
 	..()
 	healthcheck()
 	return TRUE
@@ -121,13 +119,13 @@
 		if(1)
 			explode()
 		if(2)
-			health -= rand(5, 10)*fire_dam_coeff
-			health -= rand(10, 20)*brute_dam_coeff
+			obj_integrity -= rand(5, 10)*fire_dam_coeff
+			obj_integrity -= rand(10, 20)*brute_dam_coeff
 			healthcheck()
 		if(3)
 			if(prob(50))
-				health -= rand(1, 5)*fire_dam_coeff
-				health -= rand(1, 5)*brute_dam_coeff
+				obj_integrity -= rand(1, 5)*fire_dam_coeff
+				obj_integrity -= rand(1, 5)*brute_dam_coeff
 				healthcheck()
 
 /obj/machinery/bot/emp_act(severity)
@@ -150,7 +148,7 @@
 		return ..()
 
 	if(user.species.can_shred(user))
-		src.health -= rand(15,30)*brute_dam_coeff
+		src.obj_integrity -= rand(15,30)*brute_dam_coeff
 		src.visible_message("<span class ='danger'>[user] has slashed [src]!</span>")
 		playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1)
 		if(prob(10))

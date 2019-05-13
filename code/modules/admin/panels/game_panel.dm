@@ -13,16 +13,9 @@
 		<a href='?src=[ref];quick_create_object=1'>Quick Create Object</a><br>
 		<a href='?src=[ref];create_turf=1'>Create Turf</a><br>
 		<a href='?src=[ref];create_mob=1'>Create Mob</a><br>
-		<br>
-		<a href='?src=[ref];admin_log=1'>Admin Log</a><br>
-		<a href='?src=[ref];asay_log=1'>Asay Log</a><br>
-		<a href='?src=[ref];msay_log=1'>Msay Log</a><br>
-		<br>
-		<a href='?src=[ref];ffattack_log=1'>FF Log</a><br>
-		<a href='?src=[ref];explosion_log=1'>Explosion Log</a><br>
 		"}
 
-	var/datum/browser/browser = new(usr, "gamepanel", "<div align='center'>Game Panel</div>", 220, 330)
+	var/datum/browser/browser = new(usr, "gamepanel", "<div align='center'>Game Panel</div>", 220, 250)
 	browser.set_content(dat)
 	browser.open()
 

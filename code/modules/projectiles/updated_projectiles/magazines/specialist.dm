@@ -6,7 +6,7 @@
 	name = "\improper M42A marksman magazine (10x28mm Caseless)"
 	desc = "A magazine of sniper rifle ammo."
 	caliber = "10x28mm"
-	icon_state = "m42c"
+	icon_state = "m42a"
 	w_class = 3
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/sniper
@@ -19,12 +19,12 @@
 /obj/item/ammo_magazine/sniper/incendiary
 	name = "\improper M42A incendiary magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/incendiary
-	icon_state = "m42c_inc"
+	icon_state = "m42a_inc"
 
 /obj/item/ammo_magazine/sniper/flak
 	name = "\improper M42A flak magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/flak
-	icon_state = "m42c_flak"
+	icon_state = "m42a_flak"
 
 
 //M42C magazine
@@ -114,7 +114,7 @@
 	attack_self(mob/user)
 		if(current_rounds <= 0)
 			to_chat(user, "<span class='notice'>You begin taking apart the empty tube frame...</span>")
-			if(do_after(user,10, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user, 10, TRUE, src))
 				user.visible_message("[user] deconstructs the rocket tube frame.","<span class='notice'>You take apart the empty frame.</span>")
 				var/obj/item/stack/sheet/metal/M = new(get_turf(user))
 				M.amount = 2

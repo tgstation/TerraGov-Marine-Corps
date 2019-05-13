@@ -12,8 +12,7 @@
 	var/stack_type //The type of stack the barricade dropped when disassembled if any.
 	var/stack_amount = 5 //The amount of stack dropped when disassembled at full health
 	var/destroyed_stack_amount //to specify a non-zero amount of stack to drop when destroyed
-	health = 100 //Pretty tough. Changes sprites at 300 and 150
-	var/maxhealth = 100 //Basic code functions
+	max_integrity = 100 //Pretty tough. Changes sprites at 300 and 150
 	var/crusher_resistant = TRUE //Whether a crusher can ram through it.
 	var/base_acid_damage = 2
 	var/barricade_resistance = 5 //How much force an item needs to even damage it at all.
@@ -33,7 +32,7 @@
 	update_icon()
 
 /obj/structure/barricade/handle_barrier_chance(mob/living/M)
-	return prob(max(30,(100.0*health)/maxhealth))
+	return prob(max(30,(100.0*obj_integrity)/max_integrity))
 
 /obj/structure/barricade/examine(mob/user)
 	..()
@@ -69,7 +68,7 @@
 			return
 
 		if(crusher_resistant)
-			health -= C.charge_speed * CRUSHER_CHARGE_BARRICADE_MULTI
+			obj_integrity -= C.charge_speed * CRUSHER_CHARGE_BARRICADE_MULTI
 			update_health()
 
 		else if(!C.stat)
@@ -123,10 +122,10 @@
 
 /obj/structure/barricade/attack_alien(mob/living/carbon/Xenomorph/M)
 	M.animation_attack_on(src)
-	health -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
+	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
 	if(barricade_hitsound)
 		playsound(src, barricade_hitsound, 25, 1)
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)
 	else
@@ -151,7 +150,7 @@
 		if(can_wire)
 			user.visible_message("<span class='notice'>[user] starts setting up [W.name] on [src].</span>",
 			"<span class='notice'>You start setting up [W.name] on [src].</span>")
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD) && can_wire)
+			if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) && can_wire)
 				playsound(src.loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] sets up [W.name] on [src].</span>",
 				"<span class='notice'>You set up [W.name] on [src].</span>")
@@ -161,8 +160,8 @@
 					wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
 				B.use(1)
 				overlays += wired_overlay
-				maxhealth += 50
-				health += 50
+				max_integrity += 50
+				obj_integrity += 50
 				update_health()
 				can_wire = FALSE
 				is_wired = TRUE
@@ -173,13 +172,13 @@
 		if(is_wired)
 			user.visible_message("<span class='notice'>[user] begin removing the barbed wire on [src].</span>",
 			"<span class='notice'>You begin removing the barbed wire on [src].</span>")
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] removes the barbed wire on [src].</span>",
 				"<span class='notice'>You remove the barbed wire on [src].</span>")
 				overlays -= wired_overlay
-				maxhealth -= 50
-				health -= 50
+				max_integrity -= 50
+				obj_integrity -= 50
 				update_health()
 				can_wire = TRUE
 				is_wired = FALSE
@@ -201,7 +200,7 @@
 		if(!deconstruct && destroyed_stack_amount)
 			stack_amt = destroyed_stack_amount
 		else
-			stack_amt = round(stack_amount * (health/maxhealth)) //Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0
+			stack_amt = round(stack_amount * (obj_integrity/max_integrity)) //Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0
 
 		if(stack_amt)
 			new stack_type (loc, stack_amt)
@@ -214,9 +213,9 @@
 			qdel(src)
 			return
 		if(2.0)
-			health -= rand(33, 66)
+			obj_integrity -= rand(33, 66)
 		if(3.0)
-			health -= rand(10, 33)
+			obj_integrity -= rand(10, 33)
 	update_health()
 
 /obj/structure/barricade/setDir(newdir)
@@ -257,13 +256,13 @@
 	overlays += wired_overlay
 
 /obj/structure/barricade/proc/hit_barricade(obj/item/I)
-	health -= I.force * 0.5
+	obj_integrity -= I.force * 0.5
 	update_health()
 
 /obj/structure/barricade/update_health(nomessage)
-	health = CLAMP(health, 0, maxhealth)
+	obj_integrity = CLAMP(obj_integrity, 0, max_integrity)
 
-	if(!health)
+	if(!obj_integrity)
 		if(!nomessage)
 			visible_message("<span class='danger'>[src] falls apart!</span>")
 		destroy_structure()
@@ -273,7 +272,7 @@
 	update_icon()
 
 /obj/structure/barricade/proc/update_damage_state()
-	var/health_percent = round(health/maxhealth * 100)
+	var/health_percent = round(obj_integrity/max_integrity * 100)
 	switch(health_percent)
 		if(0 to 25) damage_state = 3
 		if(25 to 50) damage_state = 2
@@ -286,7 +285,7 @@
 	if(!.)
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		health -= base_acid_damage * S.strength
+		obj_integrity -= base_acid_damage * S.strength
 		update_health()
 
 
@@ -324,8 +323,7 @@
 	desc = "A mound of snow shaped into a sloped wall. Statistically better than thin air as cover."
 	icon_state = "snow_0"
 	barricade_type = "snow"
-	health = 75 //Actual health depends on snow layer
-	maxhealth = 75
+	max_integrity = 75
 	stack_type = /obj/item/stack/snow
 	stack_amount = 3
 	destroyed_stack_amount = 0
@@ -348,7 +346,7 @@
 			user  << "<span class='warning'> You are already shoveling!</span>"
 			return
 		user.visible_message("[user.name] starts clearing out \the [src].","You start removing \the [src].")
-		if(!do_after(user, ET.shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
 			return
 		if(!ET.folded)
 			user.visible_message("<span class='notice'> \The [user] removes \the [src].</span>")
@@ -360,9 +358,9 @@
 /obj/structure/barricade/snow/hit_barricade(obj/item/I)
 	switch(I.damtype)
 		if("fire")
-			health -= I.force * 0.6
+			obj_integrity -= I.force * 0.6
 		if("brute")
-			health -= I.force * 0.3
+			obj_integrity -= I.force * 0.3
 
 	update_health()
 	update_icon()
@@ -370,10 +368,10 @@
 
 /obj/structure/barricade/snow/bullet_act(var/obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage/2) //Not that durable.
+	obj_integrity -= round(P.damage/2) //Not that durable.
 
 	if (istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
+		obj_integrity -= 50
 
 	update_health()
 	return TRUE
@@ -386,8 +384,7 @@
 	name = "wooden barricade"
 	desc = "A wall made out of wooden planks nailed together. Not very sturdy, but can provide some concealment."
 	icon_state = "wooden"
-	health = 100
-	maxhealth = 100
+	max_integrity = 100
 	layer = OBJ_LAYER
 	climbable = FALSE
 	throwpass = FALSE
@@ -400,8 +397,8 @@
 	can_wire = FALSE
 
 /obj/structure/barricade/wooden/lv_snowflake
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it..."
-	health = 25000
+	desc = "A reinforced wooden barricade. Pretty good at keeping neighbours away from your lawn."
+	max_integrity = 400
 
 /obj/structure/barricade/wooden/attackby(obj/item/W as obj, mob/user as mob)
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
@@ -410,32 +407,31 @@
 			return
 	if(istype(W, /obj/item/stack/sheet/wood))
 		var/obj/item/stack/sheet/wood/D = W
-		if(health < maxhealth)
+		if(obj_integrity < max_integrity)
 			if(D.get_amount() < 1)
 				to_chat(user, "<span class='warning'>You need one plank of wood to repair [src].</span>")
 				return
 			visible_message("<span class='notice'>[user] begins to repair [src].</span>")
-			if(do_after(user,20, TRUE, 5, BUSY_ICON_FRIENDLY) && health < maxhealth)
-				if (D.use(1))
-					health = maxhealth
-					visible_message("<span class='notice'>[user] repairs [src].</span>")
+			if(do_after(user,20, TRUE, src, BUSY_ICON_BUILD) && obj_integrity < max_integrity && D.use(1))
+				obj_integrity = max_integrity
+				visible_message("<span class='notice'>[user] repairs [src].</span>")
 		return
 	. = ..()
 
 /obj/structure/barricade/wooden/hit_barricade(obj/item/I)
 	switch(I.damtype)
 		if("fire")
-			health -= I.force * 1.5
+			obj_integrity -= I.force * 1.5
 		if("brute")
-			health -= I.force * 0.75
+			obj_integrity -= I.force * 0.75
 	update_health()
 
 /obj/structure/barricade/wooden/bullet_act(var/obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage/2) //Not that durable.
+	obj_integrity -= round(P.damage/2) //Not that durable.
 
 	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
+		obj_integrity -= 50
 
 	update_health()
 	return TRUE
@@ -449,8 +445,7 @@
 	name = "metal barricade"
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
 	icon_state = "metal_0"
-	health = 200
-	maxhealth = 200
+	max_integrity = 200
 	crusher_resistant = TRUE
 	barricade_resistance = 10
 	stack_type = /obj/item/stack/sheet/metal
@@ -485,27 +480,26 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to repair [src].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 				return
 		var/obj/item/tool/weldingtool/WT = W
-		if(health <= maxhealth * 0.3)
+		if(obj_integrity <= max_integrity * 0.3)
 			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>")
 			return
 
-		if(health == maxhealth)
+		if(obj_integrity == max_integrity)
 			to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
 			return
 
-		var/old_loc = loc
 
 		if(WT.remove_fuel(0, user))
 			user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
 			"<span class='notice'>You begin repairing the damage to [src].</span>")
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			if(do_after(user, 50, TRUE, 5, BUSY_ICON_FRIENDLY) && old_loc == loc)
+			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 				"<span class='notice'>You repair [src].</span>")
-				health += 150
+				obj_integrity += 150
 				update_health()
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 		return
@@ -519,10 +513,10 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
 					return
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
 				"<span class='notice'>You remove [src]'s protection panels, exposing the anchor bolts.</span>")
@@ -536,10 +530,10 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
 					return
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
 				"<span class='notice'>You set [src]'s protection panel back.</span>")
@@ -552,10 +546,10 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
 					return
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
 				"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
@@ -571,14 +565,14 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				for(var/obj/structure/barricade/B in loc)
 					if(B != src && B.dir == dir)
 						to_chat(user, "<span class='warning'>There's already a barricade here.</span>")
 						return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
 					return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
@@ -593,12 +587,12 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
 					var/fumbling_time = 50 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-				if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
@@ -610,20 +604,20 @@
 /obj/structure/barricade/metal/ex_act(severity)
 	switch(severity)
 		if(1)
-			health -= rand(400, 600)
+			obj_integrity -= rand(400, 600)
 		if(2)
-			health -= rand(150, 350)
+			obj_integrity -= rand(150, 350)
 		if(3)
-			health -= rand(50, 100)
+			obj_integrity -= rand(50, 100)
 
 	update_health()
 
 /obj/structure/barricade/metal/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage/10)
+	obj_integrity -= round(P.damage/10)
 
 	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
+		obj_integrity -= 50
 
 	update_health()
 	return TRUE
@@ -636,8 +630,7 @@
 	name = "plasteel barricade"
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
 	icon_state = "plasteel_closed_0"
-	health = 600
-	maxhealth = 600
+	max_integrity = 600
 	crusher_resistant = TRUE
 	barricade_resistance = 20
 	stack_type = /obj/item/stack/sheet/plasteel
@@ -678,37 +671,37 @@
 			return
 
 	if(iswelder(W))
-		if(busy || tool_cooldown > world.time)
+		var/obj/item/tool/weldingtool/WT = W
+		if(busy || tool_cooldown > world.time || !WT.isOn())
 			return
 		tool_cooldown = world.time + 10
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to repair [src].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
-		var/obj/item/tool/weldingtool/WT = W
-		if(health <= maxhealth * 0.3)
+		if(obj_integrity <= max_integrity * 0.3)
 			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>")
 			return
 
-		if(health == maxhealth)
+		if(obj_integrity == max_integrity)
 			to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
 			return
 
-		if(WT.remove_fuel(0, user))
-			user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
-			"<span class='notice'>You begin repairing the damage to [src].</span>")
+		user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
+		"<span class='notice'>You begin repairing the damage to [src].</span>")
+		playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
+		busy = TRUE
+		if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+			busy = FALSE
+			user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
+			"<span class='notice'>You repair [src].</span>")
+			obj_integrity += 150
+			update_health()
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			busy = TRUE
-			if(do_after(user, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
-				busy = FALSE
-				user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
-				"<span class='notice'>You repair [src].</span>")
-				health += 150
-				update_health()
-				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			else busy = FALSE
+		else
+			busy = FALSE
 		return
 
 	switch(build_state)
@@ -721,14 +714,14 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 
 				for(var/obj/structure/barricade/B in loc)
 					if(B != src && B.dir == dir)
 						to_chat(user, "<span class='warning'>There's already a barricade here.</span>")
 						return
-				if(!do_after(user, 1, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, 1, TRUE, src, BUSY_ICON_BUILD))
 					return
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
 
@@ -746,10 +739,8 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
-				if(!do_after(user, 1, TRUE, 5, BUSY_ICON_BUILD))
-					return
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
 				"<span class='notice'>You set [src]'s protection panel back.</span>")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -763,10 +754,8 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
-				if(!do_after(user, 1, TRUE, 5, BUSY_ICON_BUILD))
-					return
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
 				"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -784,10 +773,8 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
-				if(!do_after(user, 1, TRUE, 5, BUSY_ICON_BUILD))
-					return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -803,19 +790,20 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
 					var/fumbling_time = 50 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 				busy = TRUE
-				if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 					busy = FALSE
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 					destroy_structure(TRUE) //Note : Handles deconstruction too !
-				else busy = FALSE
+				else
+					busy = FALSE
 				return
 
 	. = ..()
@@ -841,20 +829,20 @@
 /obj/structure/barricade/plasteel/ex_act(severity)
 	switch(severity)
 		if(1)
-			health -= rand(450, 650)
+			obj_integrity -= rand(450, 650)
 		if(2)
-			health -= rand(200, 400)
+			obj_integrity -= rand(200, 400)
 		if(3)
-			health -= rand(50, 150)
+			obj_integrity -= rand(50, 150)
 
 	update_health()
 
 /obj/structure/barricade/plasteel/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage/10)
+	obj_integrity -= round(P.damage/10)
 
 	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
+		obj_integrity -= 50
 
 	update_health()
 	return TRUE
@@ -868,8 +856,7 @@
 	desc = "A bunch of bags filled with sand, stacked into a small wall. Surprisingly sturdy, albeit labour intensive to set up. Trusted to do the job since 1914."
 	icon_state = "sandbag_0"
 	barricade_resistance = 15
-	health = 400
-	maxhealth = 400
+	max_integrity = 400
 	stack_type = /obj/item/stack/sandbags
 	barricade_hitsound = "sound/weapons/Genhit.ogg"
 	barricade_type = "sandbag"
@@ -897,14 +884,14 @@
 		if(!ET.folded)
 			user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 			"<span class='notice'>You start disassembling [src].</span>")
-			if(do_after(user, ET.shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 				"<span class='notice'>You disassemble [src].</span>")
 				destroy_structure(TRUE)
 		return TRUE
 
 	if(istype(W, /obj/item/stack/sandbags) )
-		if(health == maxhealth)
+		if(obj_integrity == max_integrity)
 			to_chat(user, "<span class='warning'>[src] isn't in need of repairs!</span>")
 			return
 		var/obj/item/stack/sandbags/D = W
@@ -912,20 +899,19 @@
 			to_chat(user, "<span class='warning'>You need a sandbag to repair [src].</span>")
 			return
 		visible_message("<span class='notice'>[user] begins to replace [src]'s damaged sandbags...</span>")
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD) && health < maxhealth)
-			if(D.use(1))
-				health = min(health + (maxhealth * 0.2), maxhealth) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
-				user.visible_message("<span class='notice'>[user] replaces a damaged sandbag, repairing [src].</span>",
-				"<span class='notice'>You replace a damaged sandbag, repairing it [src].</span>")
+		if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD) && obj_integrity < max_integrity && D.use(1))
+			obj_integrity = min(obj_integrity + (max_integrity * 0.2), max_integrity) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
+			user.visible_message("<span class='notice'>[user] replaces a damaged sandbag, repairing [src].</span>",
+			"<span class='notice'>You replace a damaged sandbag, repairing it [src].</span>")
 	else
 		. = ..()
 
 /obj/structure/barricade/sandbags/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage/10)
+	obj_integrity -= round(P.damage/10)
 
 	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
+		obj_integrity -= 50
 
 	update_health()
 

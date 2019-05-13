@@ -110,10 +110,9 @@
 			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)
 			user.visible_message("[user] starts welding [src]'s damage.</span>",
 			"You start welding [src]'s damage.</span>")
-			if(do_after(user, 200, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				playsound(get_turf(src), 'sound/items/Welder2.ogg', 25, 1)
-				if(!src || !WT.isOn()) return
-				damaged = 0
+				damaged = FALSE
 				user.visible_message("[user] finishes welding [src]'s damage.</span>",
 				"You finish welding [src]'s damage.</span>")
 				if(is_lit)
@@ -145,13 +144,12 @@
 				return FALSE
 			user.visible_message("<span class='danger'>[user] starts to slash and claw away at [src]!</span>",
 			"<span class='danger'>You start slashing and clawing at [src]!</span>")
-			if(do_after(user, 50, TRUE, 5, BUSY_ICON_HOSTILE) && !damaged) //Not when it's already damaged.
-				if(!src) return 0
-				damaged = 1
+			if(do_after(user, 50, TRUE, src, BUSY_ICON_HOSTILE) && !damaged) //Not when it's already damaged.
+				damaged = TRUE
 				SetLuminosity(0)
 				user.visible_message("<span class='danger'>[user] slashes up [src]!</span>",
 				"<span class='danger'>You slash up [src]!</span>")
 				playsound(src, 'sound/weapons/blade1.ogg', 25, 1)
 				update_icon()
-				return 0
+				return FALSE
 	..()

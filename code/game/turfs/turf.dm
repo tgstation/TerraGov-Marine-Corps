@@ -55,8 +55,7 @@
 		ChangeTurf(text2path(oldTurf), TRUE)
 	else
 		ChangeTurf(/turf/open/floor/plating, TRUE)
-	..()
-	return TA_PURGE_ME_NOW
+	return ..()
 
 /turf/ex_act(severity)
 	return 0
@@ -197,6 +196,40 @@
 	W.levelupdate()
 	return W
 
+// Take off the top layer turf and replace it with the next baseturf down
+/turf/proc/ScrapeAway(amount=1, flags)
+	if(!amount)
+		return
+	if(length(baseturfs))
+		var/list/new_baseturfs = baseturfs.Copy()
+		var/turf_type = new_baseturfs[max(1, new_baseturfs.len - amount + 1)]
+		while(ispath(turf_type, /turf/baseturf_skipover))
+			amount++
+			if(amount > new_baseturfs.len)
+				CRASH("The bottomost baseturf of a turf is a skipover [src]([type])")
+			turf_type = new_baseturfs[max(1, new_baseturfs.len - amount + 1)]
+		new_baseturfs.len -= min(amount, new_baseturfs.len - 1) // No removing the very bottom
+		if(new_baseturfs.len == 1)
+			new_baseturfs = new_baseturfs[1]
+		return ChangeTurf(turf_type, new_baseturfs, flags)
+
+	if(baseturfs == type)
+		return src
+
+	return ChangeTurf(baseturfs, baseturfs, flags) // The bottom baseturf will never go away
+
+/turf/proc/empty(turf_type=/turf/open/space, baseturf_type, list/ignore_typecache, flags)
+	// Remove all atoms except observers, landmarks, docking ports
+	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port))
+	var/list/allowed_contents = typecache_filter_list_reverse(GetAllContentsIgnoring(ignore_typecache), ignored_atoms)
+	allowed_contents -= src
+	for(var/i in 1 to allowed_contents.len)
+		var/thing = allowed_contents[i]
+		qdel(thing, force=TRUE)
+
+	if(turf_type)
+		ChangeTurf(turf_type, baseturf_type, flags)
+		//var/turf/newT = ChangeTurf(turf_type, baseturf_type, flags)
 
 /turf/proc/ReplaceWithLattice()
 	src.ChangeTurf(/turf/open/space)
@@ -354,19 +387,19 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 /turf/open/space/is_weedable()
 	return FALSE
 
-/turf/open/gm/grass/is_weedable()
+/turf/open/ground/grass/is_weedable()
 	return FALSE
 
-/turf/open/gm/dirtgrassborder/is_weedable()
+/turf/open/floor/plating/ground/dirtgrassborder/is_weedable()
 	return FALSE
 
-/turf/open/gm/river/is_weedable()
+/turf/open/ground/river/is_weedable()
 	return FALSE
 
-/turf/open/gm/coast/is_weedable()
+/turf/open/ground/coast/is_weedable()
 	return FALSE
 
-/turf/open/snow/is_weedable()
+/turf/open/floor/plating/ground/snow/is_weedable()
 	return !slayer && ..()
 
 
@@ -380,14 +413,16 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 	return !is_type_in_typecache(get_area(src), GLOB.unweedable_areas) //so we can spawn weeds on the walls
 
 
-/turf/proc/check_alien_construction(mob/living/L)
+/turf/proc/check_alien_construction(mob/living/L, silent = FALSE)
 	var/has_obstacle
 	for(var/obj/O in contents)
 		if(istype(O, /obj/item/clothing/mask/facehugger))
-			to_chat(L, "<span class='warning'>There is a little one here already. Best move it.</span>")
+			if(!silent)
+				to_chat(L, "<span class='warning'>There is a little one here already. Best move it.</span>")
 			return FALSE
 		if(istype(O, /obj/effect/alien/egg))
-			to_chat(L, "<span class='warning'>There's already an egg.</span>")
+			if(!silent)
+				to_chat(L, "<span class='warning'>There's already an egg.</span>")
 			return FALSE
 		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin))
 			has_obstacle = TRUE
@@ -410,30 +445,29 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 			break
 
 	if(density || has_obstacle)
-		to_chat(L, "<span class='warning'>There's something built here already.</span>")
+		if(!silent)
+			to_chat(L, "<span class='warning'>There's something built here already.</span>")
 		return FALSE
 	return TRUE
 
-/turf/closed/check_alien_construction(mob/living/L)
-	to_chat(L, "<span class='warning'>There's something built here already.</span>")
+/turf/closed/check_alien_construction(mob/living/L, silent = FALSE)
+	if(!silent)
+		to_chat(L, "<span class='warning'>There's something built here already.</span>")
 	return FALSE
 
 /turf/proc/can_dig_xeno_tunnel()
 	return FALSE
 
-/turf/open/gm/can_dig_xeno_tunnel()
+/turf/open/ground/can_dig_xeno_tunnel()
 	return TRUE
 
-/turf/open/gm/river/can_dig_xeno_tunnel()
+/turf/open/ground/river/can_dig_xeno_tunnel()
 	return FALSE
 
-/turf/open/snow/can_dig_xeno_tunnel()
+/turf/open/floor/plating/ground/snow/can_dig_xeno_tunnel()
 	return TRUE
 
-/turf/open/ice/can_dig_xeno_tunnel()
-	return TRUE
-
-/turf/open/mars/can_dig_xeno_tunnel()
+/turf/open/floor/plating/ground/ice/can_dig_xeno_tunnel()
 	return TRUE
 
 /turf/open/floor/can_dig_xeno_tunnel()
@@ -445,13 +479,13 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 /turf/open/floor/almayer/research/containment/can_dig_xeno_tunnel()
 	return FALSE
 
-/turf/open/jungle/can_dig_xeno_tunnel()
+/turf/open/ground/jungle/can_dig_xeno_tunnel()
 	return TRUE
 
-/turf/open/jungle/impenetrable/can_dig_xeno_tunnel()
+/turf/open/ground/jungle/impenetrable/can_dig_xeno_tunnel()
 	return FALSE
 
-/turf/open/jungle/water/can_dig_xeno_tunnel()
+/turf/open/ground/jungle/water/can_dig_xeno_tunnel()
 	return FALSE
 
 /turf/open/floor/prison/can_dig_xeno_tunnel()
@@ -467,13 +501,16 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 /turf/proc/get_dirt_type()
 	return NO_DIRT
 
-/turf/open/gm/get_dirt_type()
+/turf/open/ground/get_dirt_type()
 	return DIRT_TYPE_GROUND
 
-/turf/open/mars/get_dirt_type()
+/turf/open/floor/plating/ground/get_dirt_type()
+	return DIRT_TYPE_GROUND
+
+/turf/open/floor/plating/ground/mars/get_dirt_type()
 	return DIRT_TYPE_MARS
 
-/turf/open/snow/get_dirt_type()
+/turf/open/floor/plating/ground/snow/get_dirt_type()
 	return DIRT_TYPE_SNOW
 
 

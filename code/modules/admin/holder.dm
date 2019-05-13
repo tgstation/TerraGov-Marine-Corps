@@ -278,6 +278,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/secrets_panel,
 	/datum/admins/proc/remove_from_tank,
 	/datum/admins/proc/game_panel,
+	/datum/admins/proc/log_panel,
 	/datum/admins/proc/mode_panel,
 	/datum/admins/proc/job_slots,
 	/datum/admins/proc/toggle_adminhelp_sound,
@@ -337,7 +338,8 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/SDQL2_query,
 	/datum/admins/proc/map_template_load,
 	/datum/admins/proc/map_template_upload,
-	/datum/admins/proc/reestablish_db_connection
+	/datum/admins/proc/reestablish_db_connection,
+	/datum/admins/proc/view_runtimes
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -403,7 +405,6 @@ GLOBAL_PROTECT(admin_verbs_fun)
 	/datum/admins/proc/toggle_gun_restrictions,
 	/datum/admins/proc/toggle_synthetic_restrictions,
 	/datum/admins/proc/reload_admins,
-	/datum/admins/proc/map_random,
 	/datum/admins/proc/map_change
 	)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
@@ -496,7 +497,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 		return FALSE
 	if(!C?.holder?.rank?.rights)
 		return FALSE
-	if(check_other_rights(C, R_ADMIN, FALSE))
+	if(check_other_rights(C, R_ADMINTICKET, FALSE))
 		return FALSE
 	if(!check_other_rights(C, R_MENTOR, FALSE))
 		return FALSE

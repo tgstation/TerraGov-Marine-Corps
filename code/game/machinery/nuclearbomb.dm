@@ -18,10 +18,6 @@ var/bomb_set
 	var/yes_code = 0.0
 	var/safety = 1.0
 	var/obj/item/disk/nuclear/auth = null
-	var/list/wires = list()
-	var/light_wire
-	var/safety_wire
-	var/timing_wire
 	var/removal_stage = 0 // 0 is no removal, 1 is covers removed, 2 is covers open,
 	                      // 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
 	use_power = 0
@@ -31,21 +27,6 @@ var/bomb_set
 /obj/machinery/nuclearbomb/New()
 	..()
 	r_code = "[rand(10000, 99999.0)]"//Creates a random code upon object spawn.
-
-	src.wires["Red"] = 0
-	src.wires["Blue"] = 0
-	src.wires["Green"] = 0
-	src.wires["Marigold"] = 0
-	src.wires["Fuschia"] = 0
-	src.wires["Black"] = 0
-	src.wires["Pearl"] = 0
-	var/list/w = list("Red","Blue","Green","Marigold","Black","Fuschia","Pearl")
-	src.light_wire = pick(w)
-	w -= src.light_wire
-	src.timing_wire = pick(w)
-	w -= src.timing_wire
-	src.safety_wire = pick(w)
-	w -= src.safety_wire
 
 /obj/machinery/nuclearbomb/process()
 	if (src.timing)
@@ -105,8 +86,7 @@ var/bomb_set
 						return
 					user.visible_message("<span class='notice'>[user] starts cutting loose the anchoring bolt covers on [src].</span>",
 					"<span class='notice'>You start cutting loose the anchoring bolt covers with [O].</span>")
-					if(do_after(user,40, TRUE, 5, BUSY_ICON_GENERIC))
-						if(!src || !user || !WT.remove_fuel(5, user)) return
+					if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && WT.remove_fuel(5, user))
 						user.visible_message("<span class='notice'>[user] cuts through the bolt covers on [src].</span>",
 						"<span class='notice'>You cut through the bolt cover.</span>")
 						removal_stage = 1
@@ -116,8 +96,7 @@ var/bomb_set
 				if(iscrowbar(O))
 					user.visible_message("<span class='notice'>[user] starts forcing open the bolt covers on [src].</span>",
 					"<span class='notice'>You start forcing open the anchoring bolt covers with [O].</span>")
-					if(do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
-						if(!src || !user) return
+					if(do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
 						user.visible_message("<span class='notice'>[user] forces open the bolt covers on [src].</span>",
 						"<span class='notice'>You force open the bolt covers.</span>")
 						removal_stage = 2
@@ -132,8 +111,7 @@ var/bomb_set
 						return
 					user.visible_message("<span class='notice'>[user] starts cutting apart the anchoring system sealant on [src].</span>",
 					"<span class='notice'>You start cutting apart the anchoring system's sealant with [O].</span>")
-					if(do_after(user, 40, TRUE, 5, BUSY_ICON_GENERIC))
-						if(!src || !user || !WT.remove_fuel(5, user)) return
+					if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && WT.remove_fuel(5, user))
 						user.visible_message("<span class='notice'>[user] cuts apart the anchoring system sealant on [src].</span>",
 						"<span class='notice'>You cut apart the anchoring system's sealant.</span>")
 						removal_stage = 3
@@ -143,8 +121,7 @@ var/bomb_set
 				if(iswrench(O))
 					user.visible_message("<span class='notice'>[user] begins unwrenching the anchoring bolts on [src].</span>",
 					"<span class='notice'>You begin unwrenching the anchoring bolts.</span>")
-					if(do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC))
-						if(!src || !user) return
+					if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 						user.visible_message("<span class='notice'>[user] unwrenches the anchoring bolts on [src].</span>",
 						"<span class='notice'>You unwrench the anchoring bolts.</span>")
 						removal_stage = 4
@@ -154,8 +131,7 @@ var/bomb_set
 				if(iscrowbar(O))
 					user.visible_message("<span class='notice'>[user] begins lifting [src] off of the anchors.",
 					"<span class='notice'>You begin lifting the device off the anchors...")
-					if(do_after(user, 80, TRUE, 5, BUSY_ICON_GENERIC))
-						if(!src || !user) return
+					if(!do_after(user, 80, TRUE, src, BUSY_ICON_BUILD))
 						user.visible_message("<span class='notice'>[user] crowbars [src] off of the anchors. It can now be moved.",
 						"<span class='notice'>You jam the crowbar under the nuclear device and lift it off its anchors. You can now move it!")
 						anchored = 0
@@ -212,8 +188,6 @@ var/bomb_set
 obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	var/dat
 	dat += "<B>Nuclear Fission Explosive</B><BR>\nNuclear Device Wires:</A><HR>"
-	for(var/wire in src.wires)
-		dat += text("[wire] Wire: <A href='?src=\ref[src];wire=[wire];act=wire'>[src.wires[wire] ? "Mend" : "Cut"]</A> <A href='?src=\ref[src];wire=[wire];act=pulse'>Pulse</A><BR>")
 	dat += text("<HR>The device is [src.timing ? "shaking!" : "still"]<BR>")
 	dat += text("The device is [src.safety ? "quiet" : "whirring"].<BR>")
 	dat += text("The lights are [src.lighthack ? "static" : "functional"].<BR>")
@@ -249,49 +223,6 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
 		usr.set_interaction(src)
-		if(href_list["act"])
-			var/temp_wire = href_list["wire"]
-			if(href_list["act"] == "pulse")
-				if (!ismultitool(usr.get_active_held_item()))
-					to_chat(usr, "You need a multitool!")
-				else
-					if(src.wires[temp_wire])
-						to_chat(usr, "You can't pulse a cut wire.")
-					else
-						if(src.light_wire == temp_wire)
-							src.lighthack = !src.lighthack
-							spawn(100) src.lighthack = !src.lighthack
-						if(src.timing_wire == temp_wire)
-							if(src.timing)
-								explode()
-						if(src.safety_wire == temp_wire)
-							src.safety = !src.safety
-							spawn(100) src.safety = !src.safety
-							if(src.safety == 1)
-								visible_message("<span class='notice'> The [src] quiets down.</span>")
-								if(!src.lighthack)
-									if (src.icon_state == "nuclearbomb2")
-										src.icon_state = "nuclearbomb1"
-							else
-								visible_message("<span class='notice'> The [src] emits a quiet whirling noise!</span>")
-			if(href_list["act"] == "wire")
-				if (!iswirecutter(usr.get_active_held_item()))
-					to_chat(usr, "You need wirecutters!")
-				else
-					wires[temp_wire] = !wires[temp_wire]
-					if(src.safety_wire == temp_wire)
-						if(src.timing)
-							explode()
-					if(src.timing_wire == temp_wire)
-						if(!src.lighthack)
-							if (src.icon_state == "nuclearbomb2")
-								src.icon_state = "nuclearbomb1"
-						src.timing = 0
-						stop_processing()
-						bomb_set = 0
-					if(src.light_wire == temp_wire)
-						src.lighthack = !src.lighthack
-
 		if (href_list["auth"])
 			if (src.auth)
 				src.auth.loc = src.loc

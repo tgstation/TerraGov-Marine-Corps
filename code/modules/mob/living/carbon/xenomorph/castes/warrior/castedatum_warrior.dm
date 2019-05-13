@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Warrior
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
+	wound_type = "warrior" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -139,4 +140,3 @@
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
-	

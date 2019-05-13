@@ -29,8 +29,6 @@
 	update_icon()
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
-	if(iscyborg(user))
-		return
 	if(istype(O, /obj/item/tool/extinguisher))
 		if(!has_extinguisher && opened)
 			user.drop_held_item()
@@ -45,9 +43,6 @@
 
 
 /obj/structure/extinguisher_cabinet/attack_hand(mob/user)
-	if(iscyborg(user))
-		return
-
 	if(has_extinguisher)
 		user.put_in_hands(has_extinguisher)
 		to_chat(user, "<span class='notice'>You take [has_extinguisher] from [src].</span>")

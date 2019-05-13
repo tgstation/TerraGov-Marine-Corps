@@ -147,4 +147,3 @@
 	// *** Defender Abilities *** //
 	crest_defense_armor = 45
 	fortify_armor = 90
-	

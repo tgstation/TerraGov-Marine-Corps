@@ -14,10 +14,6 @@
 	var/identifier = MOTION_DETECTOR_HOSTILE
 	layer = BELOW_FULLSCREEN_LAYER
 
-	Destroy()
-		..()
-		return TA_REVIVE_ME
-
 /obj/effect/detector_blip/friendly
 	icon_state = "detector_blip_friendly"
 	identifier = MOTION_DETECTOR_FRIENDLY
@@ -133,8 +129,6 @@
 	var/status
 	for(var/mob/living/M in orange(detector_range, operator))
 		if(!isturf(M.loc))
-			continue
-		if(iscyborg(M))
 			continue
 		status = MOTION_DETECTOR_HOSTILE //Reset the status to default
 		if(ishuman(M))

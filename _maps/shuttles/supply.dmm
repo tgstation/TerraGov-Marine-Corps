@@ -1,0 +1,50 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/supply)
+"b" = (
+/turf/open/floor/plating{
+	tag = "icon-test_floor5";
+	icon_state = "test_floor5"
+	},
+/area/shuttle/supply)
+"c" = (
+/obj/docking_port/mobile/supply,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/supply)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+a
+b
+a
+"}
+(3,1,1) = {"
+a
+a
+c
+a
+a
+"}
+(4,1,1) = {"
+a
+b
+a
+b
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
+"}

@@ -186,3 +186,11 @@
 		mob.toggle_typing_indicator()
 
 	to_chat(src, "<span class='notice'>You will [prefs.show_typing ? "now" : "no longer"] display a typing indicator.</span>")
+
+
+/client/verb/setup_character()
+	set category = "Preferences"
+	set name = "Game Preferences"
+	set desc = "Allows you to access the Setup Character screen. Changes to your character won't take effect until next round, but other changes will."
+	prefs.ShowChoices(usr)
+

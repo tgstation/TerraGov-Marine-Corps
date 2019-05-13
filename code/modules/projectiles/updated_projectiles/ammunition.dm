@@ -171,10 +171,6 @@ bullets/shells. ~N
 	flags_magazine = AMMUNITION_HANDFUL
 	attack_speed = 3 // should make reloading less painful
 
-/obj/item/ammo_magazine/handful/Destroy()
-	..()
-	return TA_REVIVE_ME
-
 /obj/item/ammo_magazine/handful/update_icon() //Handles the icon itself as well as some bonus things.
 	if(max_rounds >= current_rounds)
 		var/I = current_rounds*50 // For the metal.
@@ -288,7 +284,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/default_ammo = /datum/ammo/bullet/rifle
 	var/bullet_amount = 600
 	var/max_bullet_amount = 600
-	var/caliber = "10x24mm"
+	var/caliber = "10x24mm caseless"
 
 /obj/item/big_ammo_box/update_icon()
 	if(bullet_amount) icon_state = base_icon_state
@@ -317,7 +313,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			if(AM.current_rounds == AM.max_rounds)
 				to_chat(user, "<span class='warning'>[AM] is already full.</span>")
 				return
-			if(!do_after(user,15, TRUE, 5, BUSY_ICON_FRIENDLY))
+			if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
 				return
 			playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
 			var/S = min(bullet_amount, AM.max_rounds - AM.current_rounds)

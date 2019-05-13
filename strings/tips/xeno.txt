@@ -1,0 +1,32 @@
+As a ravager, anytime you take damage you get even more angry, and thus resist more damage.
+As a ravager, you gain more fire resistance the more rage you acquire.
+As a ravager, targeting hands or feet is better to inflict a lot of damage while lunging.
+As the Queen, you contain the hivemind of all the xenos.
+As the Queen, use hive status to quickly swap between alien 'cameras'.
+As the Queen, you can force larva to grow forcibly during the first two stages, using an ability.
+As a boiler, you have the most powerful corrosive acid for melting things.
+As a boiler, your shots are more accurate when fired diagonally.
+As a boiler, shots have a small chance to bypass barricades, aim where you want them to land in case this happens.
+As a hunter, you have almost perfect stealth if you stand still.
+As a hivelord, you can upgrade existing weaker resin doors and walls by activating them in build mode via middle/shift click.
+As a praetorian, your sticky resin is vastly inferior to that of drones and hivelords.
+As a drone, your corrosive acid is very weak, but it's better than nothing.
+As a drone, spread weeds as much as you can, especially to the front line fighters.
+As a drone, you've got pheromones that can help the hive.
+As a drone, you have growth accelerator serum, use it to make larva grow quickly.
+As a carrier, you can hit a host directly with a thrown facehugger to have a high chance of infecting them near instantly.
+As a carrier, you can hide traps beneath certain objects and items.
+As a larva, ask your queen what you should evolve into.
+As a larva, you can slide under unbolted and unwelded doors by clicking on the door.
+As a runner, plasma gain is halted when you hide.
+As a defiler, your growth accelerator can make more xenos during the crash phase.
+As a xeno, check hive status often.
+As a xeno, you can pounce past window frames and barricades without barbed wires.
+As a xeno, pouncing into a barricade with barbed wire stuns you.
+As a xeno, aging from young to mature gives you the most benefit, further aging has diminishing returns.
+As a xeno, keep resisting to put out fires if you are currently on fire.
+As a xeno, you can melee other xenos on fire on 'help' intent to try to extinguish their fires.
+As a xeno, it's not a good idea to kill hosts during the crash phase if they can be captured instead.
+As a xeno, don't take too long attacking during the crash phase. The ship can be rigged to explode in twenty minutes, ending the round in a tie.
+As a xeno, remember that neurotox injected by defilers, sentinels, praetorian, and queen can overdose, killing a marine quickly. Try to avoid this when capturing, if they scream in pain they've probably had enough.
+As a xeno, you can use the crawl through vent verb found in the xeno tab to quickly find and use vents in the floor without having to alt-click them. 

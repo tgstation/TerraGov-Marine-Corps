@@ -459,10 +459,6 @@
 	hold.emp_act(severity)
 	..()
 
-/obj/item/clothing/tie/storage/hear_talk(mob/M, msg, verb = "says", datum/language/language)
-	hold.hear_talk(M, msg, verb, language)
-	return ..()
-
 /obj/item/clothing/tie/storage/attack_self(mob/user as mob)
 	to_chat(user, "<span class='notice'>You empty [src].</span>")
 	var/turf/T = get_turf(src)
@@ -484,7 +480,10 @@
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/cell/lasgun)
 	cant_hold = list(
-		/obj/item/stack)
+		/obj/item/stack/razorwire,
+		/obj/item/stack/sheet,
+		/obj/item/stack/sandbags,
+		/obj/item/stack/snow)
 
 /obj/item/clothing/tie/storage/black_vest
 	name = "black webbing vest"
@@ -495,7 +494,10 @@
 /obj/item/storage/internal/tie/vest
 	storage_slots = 5
 	cant_hold = list(
-		/obj/item/stack)
+		/obj/item/stack/razorwire,
+		/obj/item/stack/sheet,
+		/obj/item/stack/sandbags,
+		/obj/item/stack/snow)
 
 /obj/item/clothing/tie/storage/brown_vest
 	name = "brown webbing vest"
@@ -518,8 +520,8 @@
 /obj/item/storage/internal/tie/white_vest
 	storage_slots = 8
 	can_hold = list(
-		/obj/item/tool/surgery, 
-		/obj/item/stack/medical/advanced, 
+		/obj/item/tool/surgery,
+		/obj/item/stack/medical/advanced,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/stack/nanopaste)

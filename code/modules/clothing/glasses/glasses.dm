@@ -142,45 +142,51 @@
 	eye_protection = 2
 	tint = TINT_HEAVY
 
-/obj/item/clothing/glasses/welding/attack_self()
-	toggle()
+/obj/item/clothing/glasses/welding/attack_self(mob/user)
+	toggle(user)
 
 
-/obj/item/clothing/glasses/welding/verb/toggle()
+/obj/item/clothing/glasses/welding/verb/verbtoggle()
 	set category = "Object"
 	set name = "Adjust welding goggles"
 	set src in usr
 
-	if(usr.canmove && !usr.stat && !usr.restrained())
-		if(active)
-			active = 0
-			flags_inventory &= ~COVEREYES
-			flags_inv_hide &= ~HIDEEYES
-			flags_armor_protection &= ~EYES
-			icon_state = "[initial(icon_state)]up"
-			eye_protection = 0
-			tint = TINT_NONE
-			to_chat(usr, "You push [src] up out of your face.")
-		else
-			active = 1
-			flags_inventory |= COVEREYES
-			flags_inv_hide |= HIDEEYES
-			flags_armor_protection |= EYES
-			icon_state = initial(icon_state)
-			eye_protection = initial(eye_protection)
-			tint = initial(tint)
-			to_chat(usr, "You flip [src] down to protect your eyes.")
+	if(!usr.incapacitated())
+		toggle(usr)
+
+/obj/item/clothing/glasses/welding/proc/toggle(mob/user)
+	active = !active
+	icon_state = "[initial(icon_state)][!active ? "up" : ""]"
+	if(!active)
+		DISABLE_BITFIELD(flags_inventory, COVEREYES)
+		DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+		DISABLE_BITFIELD(flags_armor_protection, EYES)
+		eye_protection = 0
+		tint = TINT_NONE
+	else
+		ENABLE_BITFIELD(flags_inventory, COVEREYES)
+		ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+		ENABLE_BITFIELD(flags_armor_protection, EYES)
+		eye_protection = initial(eye_protection)
+		tint = initial(tint)
+	if(user)
+		to_chat(usr, "You [active ? "flip [src] down to protect your eyes" : "push [src] up out of your face"].")
 
 
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.glasses == src)
-				H.update_tint()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		if(H.glasses == src)
+			H.update_tint()
 
-		update_clothing_icon()
+	update_clothing_icon()
 
-		update_action_button_icons()
+	update_action_button_icons()
 
+/obj/item/clothing/glasses/welding/flipped //spawn in flipped up.
+
+/obj/item/clothing/glasses/welding/flipped/Initialize(mapload)
+	. = ..()
+	toggle()
 
 /obj/item/clothing/glasses/welding/superior
 	name = "superior welding goggles"

@@ -139,13 +139,16 @@
 	hivenumber = HS.hivenumber // just to be sure
 	generate_name()
 
+	SSdirection.start_tracking(HS.hivenumber, src)
+
 /mob/living/carbon/Xenomorph/Queen/add_to_hive(datum/hive_status/HS, force=FALSE) // override to ensure proper queen/hive behaviour
 	. = ..()
 	HS.update_queen()
 
 	if(HS.living_xeno_queen) // theres already a queen
 		return
-	HS.living_xeno_queen = src
+
+	HS.set_queen(src)
 
 /mob/living/carbon/Xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE) // helper function to add by given hivenumber
 	if(!GLOB.hive_datums[hivenumber])
@@ -189,7 +192,7 @@
 	if(!xenos_by_typepath[X.caste_base_type].Remove(X))
 		stack_trace("failed to remove a xeno from hive status typepath list, nothing was removed!?")
 		return FALSE
-	
+
 	remove_leader(X)
 
 	return TRUE
@@ -243,7 +246,7 @@
 /datum/hive_status/proc/on_xeno_death(mob/living/carbon/Xenomorph/X)
 	if(living_xeno_queen?.observed_xeno == X)
 		living_xeno_queen.set_queen_overwatch(X, TRUE)
-		
+
 	remove_from_lists(X)
 	dead_xenos += X
 
@@ -257,7 +260,7 @@
 	return TRUE
 
 // ***************************************
-// *********** Queen 
+// *********** Queen
 // ***************************************
 
 // This proc attempts to find a new queen to lead the hive, if there isnt then it will announce her death
@@ -271,7 +274,7 @@
 		var/mob/living/carbon/Xenomorph/Queen/Q = i
 		if(is_centcom_level(Q.z))
 			continue
-		living_xeno_queen = Q
+		set_queen(Q)
 		if(announce)
 			xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
 		update_leader_pheromones()
@@ -284,10 +287,17 @@
 	start_queen_timer()
 	return TRUE
 
+/datum/hive_status/proc/set_queen(mob/living/carbon/Xenomorph/Queen/Q)
+	SSdirection.clear_leader(hivenumber)
+	if (Q != null)
+		SSdirection.set_leader(hivenumber, Q)
+	living_xeno_queen = Q
+
+
 // These are defined for per-hive behaviour
 /datum/hive_status/proc/on_queen_death(mob/living/carbon/Xenomorph/Queen/Q)
 	if(living_xeno_queen == Q)
-		living_xeno_queen = null
+		set_queen(null)
 	update_queen()
 	return TRUE
 
@@ -298,9 +308,6 @@
 	if(ckey && client)
 		return
 	hive?.burrow_larva(src)
-
-/mob/living/carbon/Xenomorph/Larva/predalien/burrow() // no no no
-	return
 
 /datum/hive_status/proc/burrow_larva(mob/living/carbon/Xenomorph/Larva/L)
 	return
@@ -322,7 +329,7 @@
 /datum/hive_status/proc/can_xeno_message() // This is defined for per-hive overrides
 	return living_xeno_queen
 
-/* 
+/*
 
 This is for hive-wide announcements like the queen dying
 
@@ -407,7 +414,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
 
 			stored_larva--
-		
+
 	for(var/mob/living/carbon/Xenomorph/Larva/L in range(1, Q))
 		L.burrow()
 

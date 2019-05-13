@@ -4,7 +4,7 @@
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "left"
 	var/base_state = "left"
-	var/health = 150.0 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
+	max_integrity = 150 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
 	visible = 0.0
 	use_power = FALSE
 	flags_atom = ON_BORDER
@@ -105,8 +105,8 @@
 	return TRUE
 
 /obj/machinery/door/window/take_damage(var/damage)
-	src.health = max(0, src.health - damage)
-	if (src.health <= 0)
+	src.obj_integrity = max(0, src.obj_integrity - damage)
+	if (src.obj_integrity <= 0)
 		var/obj/item/shard/S = new(loc)
 		transfer_fingerprints_to(S)
 		var/obj/item/stack/cable_coil/CC = new(loc)
@@ -196,9 +196,9 @@
 	//If it's emagged, crowbar can pry electronics out.
 	if (src.operating == -1 && iscrowbar(I))
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
-		if (do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
-			to_chat(user, "<span class='notice'>You removed the windoor electronics!</span>")
+		user.visible_message("[user] starts removing the electronics from \the [src].", "You start to remove electronics from \the [src].", null, 5)
+		if (do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
+			user.visible_message("[user] removes \the [src]'s electronics.", "You remove \the [src]'s electronics.", null, 5)
 
 			var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)
 			if (istype(src, /obj/machinery/door/window/brigdoor))
@@ -252,14 +252,14 @@
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	req_access = list(ACCESS_MARINE_BRIG)
-	health = 300.0 //Stronger doors for prison (regular window door health is 200)
+	max_integrity = 300 //Stronger doors for prison (regular window door health is 200)
 
 
 //theseus brig doors
-/obj/machinery/door/window/brigdoor/theseus/
+/obj/machinery/door/window/brigdoor/theseus
 	name = "Cell"
 	id = "Cell"
-	health = 500
+	max_integrity = 500
 
 /obj/machinery/door/window/brigdoor/theseus/cell_1
 	name = "Cell 1"

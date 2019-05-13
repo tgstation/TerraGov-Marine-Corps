@@ -34,7 +34,7 @@
 				continue
 			else if(L in friends)
 				continue
-			else if (istype(src, /mob/living/simple_animal/hostile/alien) && (isxeno(L) || (iscyborg(L))))
+			else if (istype(src, /mob/living/simple_animal/hostile/alien) && isxeno(L))
 				continue
 			else
 				if(!L.stat)
@@ -51,7 +51,7 @@
 
 		if(istype(A, /obj/machinery/bot))
 			var/obj/machinery/bot/B = A
-			if (B.health > 0)
+			if (B.obj_integrity > 0)
 				stance = HOSTILE_STANCE_ATTACK
 				T = B
 				break

@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Ravager
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
+	wound_type = "ravager" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40

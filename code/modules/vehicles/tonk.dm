@@ -66,8 +66,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	can_buckle = FALSE
 	req_access = list(ACCESS_MARINE_TANK)
 	move_delay = 4
-	health = 600
-	maxhealth = 600
+	obj_integrity = 600
+	max_integrity = 600
 	//Who's driving the tonk
 	var/mob/living/carbon/human/pilot
 	var/mob/living/carbon/human/gunner
@@ -171,7 +171,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into [src].</span>")
 	var/time = 10 SECONDS - (2 SECONDS * M.mind.cm_skills.large_vehicle)
-	if(do_after(M, time, TRUE, 5, BUSY_ICON_BUILD) && M.Adjacent(src))
+	if(do_after(M, time, TRUE, src, BUSY_ICON_BUILD))
 		return TRUE
 
 /obj/vehicle/tonk/proc/enter(var/mob/user, var/position) //By this point, we've checked that the seats are actually empty, so we won't need to do that again HOPEFULLY
@@ -208,8 +208,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 /obj/vehicle/tonk/Bump(atom/A, yes)
 	. = ..()
 	var/facing = get_dir(src, A)
-	var/turf/temp = loc
-	var/turf/T = loc
+	var/turf/temp = get_turf(loc)
+	var/turf/T = get_turf(loc)
 	A.tank_collision(src, facing, T, temp)
 	if(isliving(A) && pilot)
 		log_attack("[pilot] drove over [A] with [src]")

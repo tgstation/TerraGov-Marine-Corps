@@ -1,3 +1,111 @@
+#define DOOR_FLAG_OPEN_ONLY (1 << 0)
+
+/obj/machinery/button
+	name = "button"
+	desc = "A remote control switch."
+	icon = 'icons/obj/machines/buttons.dmi'
+	icon_state = "doorctrl"
+	power_channel = ENVIRON
+	var/id = null
+	var/next_activate = 0
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 70)
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 2
+	resistance_flags = LAVA_PROOF | FIRE_PROOF
+
+
+/obj/machinery/button/indestructible
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+
+/obj/machinery/button/Initialize(mapload, ndir = 0)
+	. = ..()
+	setDir(ndir)
+	pixel_x = ( (dir & 3) ? 0 : (dir == 4 ? -24 : 24) )
+	pixel_y = ( (dir & 3) ? (dir == 1 ? -24 : 24) : 0 )
+	update_icon()
+
+
+/obj/machinery/button/update_icon()
+	if(machine_stat & (NOPOWER|BROKEN))
+		icon_state = "[initial(icon_state)]-p"
+	else
+		icon_state = initial(icon_state)
+
+
+/obj/machinery/button/attack_robot(mob/user)
+	return attack_ai(user)
+
+
+/obj/machinery/button/attack_ai(mob/user)
+	return attack_hand(user)
+
+
+/obj/machinery/button/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	add_fingerprint(user)
+
+	if((machine_stat & (NOPOWER|BROKEN)))
+		return
+
+	if(!allowed(user))
+		to_chat(user, "<span class='danger'>Access Denied</span>")
+		flick("[initial(icon_state)]-denied", src)
+		return
+
+	use_power(5)
+	icon_state = "[initial(icon_state)]1"
+
+	pulsed()
+
+	addtimer(CALLBACK(src, .update_icon), 1.5 SECONDS)
+
+
+/obj/machinery/button/proc/pulsed()
+	if(next_activate > world.time)
+		return FALSE
+	next_activate = world.time + 3 SECONDS
+	return TRUE
+
+
+/obj/machinery/button/power_change()
+	. = ..()
+	update_icon()
+
+
+/obj/machinery/button/door
+	name = "door button"
+	desc = "A door remote control switch."
+	var/specialfunctions = NOFLAGS
+
+
+/obj/machinery/button/door/indestructible
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+
+/obj/machinery/button/door/pulsed()
+	. = ..()
+	if(!.)
+		return
+	var/openclose
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
+		if(M.id != src.id)
+			continue
+		if(!specialfunctions)
+			openclose = M.density
+		else if(CHECK_BITFIELD(specialfunctions, DOOR_FLAG_OPEN_ONLY))
+			openclose = TRUE
+		INVOKE_ASYNC(M, openclose ? /obj/machinery/door/poddoor.proc/open : /obj/machinery/door/poddoor.proc/close)
+
+
+/obj/machinery/button/door/open_only
+	name = "open button"
+	desc = "Opens whatever it is linked to. Does not close. Careful on what you release."
+	specialfunctions = DOOR_FLAG_OPEN_ONLY
+
+
 /obj/machinery/driver_button
 	name = "mass driver button"
 	icon = 'icons/obj/objects.dmi'
@@ -59,6 +167,15 @@
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4
+	var/obj/item/radio/radio
+
+/obj/machinery/medical_help_button/Initialize(mapload)
+	. = ..()
+	radio = new(src)
+
+/obj/machinery/medical_help_button/Destroy()
+	QDEL_NULL(radio)
+	return ..()
 
 /obj/machinery/medical_help_button/attack_hand(mob/living/carbon/human/user)
 	if(!istype(user))
@@ -72,10 +189,7 @@
 	use_power(5)
 	icon_state = "doorctrl1"
 
-	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
-	AI.SetName("Lobby Notification System")
-	AI.aiRadio.talk_into(AI,"<b>[user.name] is requesting medical attention at: [get_area(src)].</b>","MedSci","announces")
-	qdel(AI)	
+	radio.talk_into(src, "<b>[user.name] is requesting medical attention at: [get_area(src)].</b>", RADIO_CHANNEL_MEDICAL)
 	visible_message("Remain calm, someone will be with you shortly.")
 
 	active = TRUE
@@ -92,3 +206,6 @@
 		icon_state = "doorctrl-p"
 	else
 		icon_state = "doorctrl0"
+
+
+#undef DOOR_FLAG_OPEN_ONLY

@@ -68,24 +68,24 @@
 			I.activate_time = world.time
 			SSevacuation.initiate_self_destruct()
 			var/data[] = list("dest_status" = active_state)
-			nanomanager.try_update_ui(usr, src, "main",, data)
+			SSnano.try_update_ui(usr, src, "main",, data)
 
 		if("dest_trigger")
 			if(SSevacuation.initiate_self_destruct())
-				nanomanager.close_user_uis(usr, src, "main")
+				SSnano.close_user_uis(usr, src, "main")
 
 		if("dest_cancel")
 			if(!usr.mind?.assigned_role || !(usr.mind.assigned_role in JOBS_COMMAND))
 				to_chat(usr, "<span class='notice'>You don't have the necessary clearance to cancel the emergency destruct system.</span>")
 				return
 			if(SSevacuation.cancel_self_destruct())
-				nanomanager.close_user_uis(usr, src, "main")
+				SSnano.close_user_uis(usr, src, "main")
 
 
 /obj/machinery/self_destruct/console/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
 	var/data[] = list("dest_status" = active_state)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if(!ui)
 		ui = new(user, src, ui_key, "self_destruct_console.tmpl", "OMICRON6 PAYLOAD", 470, 290)

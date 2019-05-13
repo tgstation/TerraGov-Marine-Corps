@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Praetorian
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
+	wound_type = "praetorian" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
@@ -40,7 +41,6 @@
 	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy)
 
 	acid_spray_range = 4
-	acid_spray_cooldown = 20 SECONDS
 
 	// *** Pheromones *** //
 	aura_strength = 2.5 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5

@@ -226,3 +226,8 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 //Lighter
 
 #define LIGHTER_LUMINOSITY	2
+
+//Tank
+
+#define TANK_OVERDRIVE_BOOST_DURATION	5 SECONDS
+#define TANK_OVERDRIVE_BOOST_COOLDOWN	20 SECONDS

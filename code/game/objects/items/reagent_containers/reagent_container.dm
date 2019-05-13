@@ -7,10 +7,12 @@
 	w_class = 2.0
 	throw_speed = 1
 	throw_range = 5
+	var/init_reagent_flags
 	var/amount_per_transfer_from_this = 5
 	var/possible_transfer_amounts = list(5,10,15,25,30)
 	var/volume = 30
 	var/liquifier = FALSE //Can liquify/grind pills without needing fluid to dissolve.
+	var/list/list_reagents
 
 /obj/item/reagent_container/attack_self()
 	. = ..()
@@ -27,8 +29,7 @@
 
 /obj/item/reagent_container/New()
 	. = ..()
-	create_reagents(volume)
-	add_initial_reagents()
+	create_reagents(volume, init_reagent_flags, list_reagents)
 
 //returns a text listing the reagents (and their volume) in the atom. Used by Attack logs for reagents in pills
 /obj/item/reagent_container/proc/get_reagent_list_text()

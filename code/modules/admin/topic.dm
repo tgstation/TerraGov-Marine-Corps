@@ -277,7 +277,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		switch(href_list["transform"])
 			if("observer")
-				newmob = M.change_mob_type(/mob/dead/observer, location, null, delmob)
+				newmob = M.ghostize()
+				if(delmob)
+					qdel(M)
+				if(location)
+					newmob.forceMove(usr.loc)
 			if("larva")
 				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Larva, location, null, delmob)
 			if("defender")
@@ -878,17 +882,21 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/new_mode = href_list["changemode"]
+		if(!new_mode)
+			return
 
 		if(SSticker.mode)
 			world.save_mode(new_mode)
 			log_admin("[key_name(usr)] set the mode for next round to: [new_mode].")
-			message_admins("[ADMIN_TPMONTY(usr)] set the mode to: [new_mode].")
+			message_admins("[ADMIN_TPMONTY(usr)] set the mode for next round to: [new_mode].")
 		else
 			GLOB.master_mode = new_mode
 			to_chat(world, "<span class='boldnotice'>The mode is now: [GLOB.master_mode].</span>")
 			world.save_mode(GLOB.master_mode)
 			log_admin("[key_name(usr)] set the mode to: [GLOB.master_mode].")
 			message_admins("[ADMIN_TPMONTY(usr)] set the mode to: [GLOB.master_mode].")
+
+		Topic(usr.client.holder, list("admin_token" = RawHrefToken(TRUE), "modemenu" = TRUE))
 
 
 	if(href_list["evac_authority"])
@@ -1072,6 +1080,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		browser.open(FALSE)
 
 
+	else if(href_list["adminprivate_log"])
+		if(!check_rights(R_BAN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.adminprivate_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "adminprivate_log", "<div align='center'>Adminprivate Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
 	else if(href_list["asay_log"])
 		if(!check_rights(R_ASAY))
 			return
@@ -1096,6 +1118,34 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			dat += "[x]<br>"
 
 		var/datum/browser/browser = new(usr, "msay_log", "<div align='center'>Msay Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["game_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.game_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "game_log", "<div align='center'>Game Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["access_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.access_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "access_log", "<div align='center'>Access Log</div>")
 		browser.set_content(dat)
 		browser.open(FALSE)
 
@@ -1154,6 +1204,18 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		GLOB.custom_outfits.Add(O)
 		log_admin("[key_name(usr)] created outfit named '[O.name]'.")
 		message_admins("[ADMIN_TPMONTY(usr)] created outfit named '[O.name]'.")
+
+
+	else if(href_list["viewruntime"])
+		var/datum/error_viewer/error_viewer = locate(href_list["viewruntime"])
+		if(!istype(error_viewer))
+			to_chat(usr, "<span class='warning'>That runtime viewer no longer exists.</span>")
+			return
+
+		if(href_list["viewruntime_backto"])
+			error_viewer.show_to(owner, locate(href_list["viewruntime_backto"]), href_list["viewruntime_linear"])
+		else
+			error_viewer.show_to(owner, null, href_list["viewruntime_linear"])
 
 
 	else if(href_list["addmessage"])
@@ -1518,6 +1580,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/mob/living/carbon/human/H = locate(href_list["setrank"])
 
 		if(!istype(H))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
 		usr.client.holder.select_rank(H)
@@ -1530,6 +1593,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/mob/living/carbon/human/H = locate(href_list["setequipment"])
 
 		if(!istype(H))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
 		usr.client.holder.select_equipment(H)
@@ -1555,6 +1619,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/mob/living/L = locate(href_list["offer"]) in GLOB.mob_living_list
 
 		if(!istype(L))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
 		usr.client.holder.offer(L)
@@ -1567,6 +1632,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/mob/living/L = locate(href_list["give"]) in GLOB.mob_living_list
 
 		if(!istype(L))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
 		usr.client.holder.give_mob(L)
@@ -1580,6 +1646,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/client/C = M.client
 
 		if(!istype(C))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
 		var/list/body = list()
@@ -1588,3 +1655,121 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/datum/browser/popup = new(usr, "playtime_[C.key]", "<div align='center'>Playtime for [C.key]</div>", 550, 615)
 		popup.set_content(body.Join())
 		popup.open(FALSE)
+
+
+	else if(href_list["randomname"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["randomname"]) in GLOB.human_mob_list
+		if(!istype(H))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
+
+		log_admin("[key_name(src)] gave [key_name(H)] a random name.")
+		message_admins("[ADMIN_TPMONTY(usr)] gave a [ADMIN_TPMONTY(H)] random name.")
+
+
+	else if(href_list["checkcontents"])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/mob/living/L = locate(href_list["checkcontents"]) in GLOB.mob_living_list
+		if(!istype(L))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		var/dat
+
+		for(var/i in L.get_contents())
+			var/atom/A = i
+			dat += "[A] [ADMIN_VV(A)]<br>"
+
+		var/datum/browser/popup = new(usr, "contents_[key_name(L)]", "<div align='center'>Contents of [key_name(L)]</div>")
+		popup.set_content(dat)
+		popup.open(FALSE)
+
+		log_admin("[key_name(usr)] checked the contents of [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] checked the contents of [ADMIN_TPMONTY(L)].")
+
+
+	else if(href_list["appearance"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["mob"]) in GLOB.human_mob_list
+		if(!istype(H))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		var/change
+		var/previous
+
+		switch(href_list["appearance"])
+			if("hairstyle")
+				change = input("Select the hair style.", "Edit Appearance") as null|anything in sortList(GLOB.hair_styles_list)
+				if(!change || !istype(H))
+					return
+				previous = H.h_style
+				H.h_style = change
+			if("haircolor")
+				change = input("Select the hair color.", "Edit Appearance") as null|color
+				if(!change || !istype(H))
+					return
+				previous = "#[num2hex(H.r_hair)][num2hex(H.g_hair)][num2hex(H.b_hair)]"
+				H.r_hair = hex2num(copytext(change, 2, 4))
+				H.g_hair = hex2num(copytext(change, 4, 6))
+				H.b_hair = hex2num(copytext(change, 6, 8))
+			if("facialhairstyle")
+				change = input("Select the facial hair style.", "Edit Appearance") as null|anything in sortList(GLOB.facial_hair_styles_list)
+				if(!change || !istype(H))
+					return
+				previous = H.f_style
+				H.f_style = change
+			if("facialhaircolor")
+				change = input("Select the facial hair color.", "Edit Appearance") as null|color
+				if(!change || !istype(H))
+					return
+				previous = "#[num2hex(H.r_facial)][num2hex(H.g_facial)][num2hex(H.b_facial)]"
+				H.r_facial = hex2num(copytext(change, 2, 4))
+				H.g_facial = hex2num(copytext(change, 4, 6))
+				H.b_facial = hex2num(copytext(change, 6, 8))
+			if("eyecolor")
+				change = input("Select the eye color.", "Edit Appearance") as null|color
+				if(!change || !istype(H))
+					return
+				previous = "#[num2hex(H.r_eyes)][num2hex(H.g_eyes)][num2hex(H.b_eyes)]"
+				H.r_eyes = hex2num(copytext(change, 2, 4))
+				H.g_eyes = hex2num(copytext(change, 4, 6))
+				H.b_eyes = hex2num(copytext(change, 6, 8))
+			if("bodycolor")
+				change = input("Select the body color.", "Edit Appearance") as null|color
+				if(!change || !istype(H))
+					return
+				previous = "#[num2hex(H.r_skin)][num2hex(H.g_skin)][num2hex(H.b_skin)]"
+				H.r_skin = hex2num(copytext(change, 2, 4))
+				H.g_skin = hex2num(copytext(change, 4, 6))
+				H.b_skin = hex2num(copytext(change, 6, 8))
+			if("gender")
+				change = input("Select the gender.", "Edit Appearance") as null|anything in sortList(GLOB.genders)
+				if(!change || !istype(H))
+					return
+				previous = H.gender
+				H.gender = change
+			if("ethnicity")
+				change = input("Select the ethnicity.", "Edit Appearance") as null|anything in sortList(GLOB.ethnicities_list)
+				if(!change || !istype(H))
+					return
+				previous = H.ethnicity
+				H.ethnicity = change
+
+		H.update_hair()
+		H.update_body()
+		H.regenerate_icons()
+		H.check_dna(H)
+		usr.client.holder.edit_appearance(H)
+
+		log_admin("[key_name(usr)] updated the changed the [href_list["appearance"]] from [previous] to [change] of [key_name(H)].")
+		message_admins("[ADMIN_TPMONTY(usr)] updated the [href_list["appearance"]] from [previous] to [change] of [ADMIN_TPMONTY(H)].")

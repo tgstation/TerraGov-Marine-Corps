@@ -314,6 +314,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	heat_source = 1500
 	damtype = "fire"
 	update_brightness()
+	playsound(src,'sound/items/flare.ogg', 15, 1)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/attack_self(mob/user)

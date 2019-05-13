@@ -1,5 +1,4 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-#define DEATHTIME_XENO_REQUIREMENT 3000
 
 /proc/dopage(src,target)
 	var/href_list
@@ -41,6 +40,15 @@
 	source.luminosity = lum
 
 	return heard
+
+
+//supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
+#define RANGE_TURFS(RADIUS, CENTER) \
+  block( \
+    locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
+    locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
+  )
+ 
 
 /proc/trange(rad = 0, turf/centre = null) //alternative to range (ONLY processes turfs and thus less intensive)
 	if(!centre)
@@ -127,21 +135,15 @@
 	// Returns a list of mobs who can hear any of the radios given in @radios
 	var/list/speaker_coverage = list()
 	for(var/obj/item/radio/R in radios)
-		if(R)
-			//Cyborg checks. Receiving message uses a bit of cyborg's charge.
-			var/obj/item/radio/borg/BR = R
-			if(istype(BR) && BR.myborg)
-				var/mob/living/silicon/robot/borg = BR.myborg
-				var/datum/robot_component/CO = borg.get_component("radio")
-				if(!CO)
-					continue //No radio component (Shouldn't happen)
-				if(!borg.is_component_functioning("radio") || !borg.cell_use_power(CO.active_usage))
-					continue //No power.
+		if(!R)
+			continue
 
-			var/turf/speaker = get_turf(R)
-			if(speaker)
-				for(var/turf/T in hear(R.canhear_range,speaker))
-					speaker_coverage[T] = T
+		var/turf/speaker = get_turf(R)
+		if(!speaker)
+			continue
+			
+		for(var/turf/T in hear(R.canhear_range,speaker))
+			speaker_coverage[T] = T
 
 
 	// Try to find all the players who can hear the message
@@ -249,11 +251,11 @@ proc/isInSight(var/atom/A, var/atom/B)
 
 		//Recently dead observers cannot be drafted.
 		var/deathtime = world.time - O.timeofdeath
-		if(deathtime < DEATHTIME_XENO_REQUIREMENT)
+		if(deathtime < GLOB.respawntime)
 			continue
 
 		//Aghosted admins don't get picked
-		if(O.mind?.current && copytext(O.mind.current.key, 1, 2) == "@")
+		if(O.mind?.current && isaghost(O.mind.current))
 			continue
 
 		if(!picked)
@@ -405,11 +407,10 @@ datum/projectile_data
 	flick_overlay(I, viewing, duration)
 
 
-/proc/window_flash(client/C)
+/proc/window_flash(client/C, ignorepref = FALSE)
 	if(ismob(C))
 		var/mob/M = C
-		if(M.client)
-			C = M.client
-	if(!C)
+		C = M.client
+	if(!C?.prefs.windowflashing && !ignorepref)
 		return
 	winset(C, "mainwindow", "flash=5")

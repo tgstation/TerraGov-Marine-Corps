@@ -57,6 +57,7 @@
 
 	var/aim_slowdown	= 0						//Self explanatory. How much does aiming (wielding the gun) slow you
 	var/wield_delay		= WIELD_DELAY_FAST		//How long between wielding and firing in tenths of seconds
+	var/wield_penalty	= WIELD_DELAY_VERY_FAST	//Extra wield delay for untrained operators
 	var/wield_time		= 0						//Storing value for above
 
 	//Burst fire.
@@ -257,11 +258,11 @@
 	item_state += "_w"
 	update_slowdown()
 	place_offhand(user, initial(name))
-	wield_time = world.time + wield_delay
+	var/wdelay = wield_delay
 	//slower or faster wield delay depending on skill.
 	if(user.mind && user.mind.cm_skills)
 		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-			wield_time += 3
+			wdelay += 3
 		else
 			var/skill_value = 0
 			switch(gun_skill_category)
@@ -279,12 +280,15 @@
 					skill_value = user.mind.cm_skills.smartgun
 				if(GUN_SKILL_SPEC)
 					skill_value = user.mind.cm_skills.spec_weapons
-			if(skill_value)
-				wield_time -= 2*skill_value
+			if(skill_value > 0)
+				wdelay -= 2*skill_value
+			else
+				wdelay += wield_penalty
+	wield_time = world.time + wdelay
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.add_hud(user)
 	A.update_hud(user)
-	do_wield(user, wield_time)
+	do_wield(user, wdelay)
 	return TRUE
 
 /obj/item/weapon/gun/unwield(var/mob/user)
@@ -369,7 +373,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(user)
 		if(magazine.reload_delay > 1)
 			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-			if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
+			if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 				replace_magazine(user, magazine)
 			else
 				to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
@@ -438,20 +442,40 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(in_chamber)
 		user.visible_message("<span class='notice'>[user] cocks [src], clearing a [in_chamber.name] from its chamber.</span>",
 		"<span class='notice'>You cock [src], clearing a [in_chamber.name] from its chamber.</span>", null, 4)
+
+		// Get gun information from the current mag if its equipped otherwise the default ammo & caliber
+		var/bullet_ammo_type
+		var/bullet_caliber
 		if(current_mag)
-			var/found_handful
-			for(var/obj/item/ammo_magazine/handful/H in user.loc)
-				if(H.default_ammo == current_mag.default_ammo && H.caliber == current_mag.caliber && H.current_rounds < H.max_rounds)
-					found_handful = TRUE
-					H.current_rounds++
-					H.update_icon()
-					break
-			if(!found_handful)
-				var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-				new_handful.generate_handful(current_mag.default_ammo, current_mag.caliber, 8, 1, type)
-				new_handful.loc = get_turf(src)
+			bullet_ammo_type = current_mag.default_ammo
+			bullet_caliber = current_mag.caliber
 		else
-			make_casing(type_of_casings)
+			bullet_ammo_type = ammo.type
+			bullet_caliber = caliber
+
+		// Try to find an existing handful in our hands or on the floor under us
+		var/obj/item/ammo_magazine/handful/X
+		if (istype(user.r_hand, /obj/item/ammo_magazine/handful))
+			X = user.r_hand
+		else if (istype(user.l_hand, /obj/item/ammo_magazine/handful))
+			X = user.l_hand
+
+		var/obj/item/ammo_magazine/handful/H
+		if (X && X.default_ammo == bullet_ammo_type && X.caliber == bullet_caliber && X.current_rounds < X.max_rounds)
+			H = X
+		else
+			for(var/obj/item/ammo_magazine/handful/HL in user.loc)
+				if(HL.default_ammo == bullet_ammo_type && HL.caliber == bullet_caliber && HL.current_rounds < HL.max_rounds)
+					H = HL
+					break
+		if(H)
+			H.current_rounds++
+		else
+			H = new
+			H.generate_handful(bullet_ammo_type, bullet_caliber, 8, 1, type)
+			user.put_in_hands(H)
+
+		H.update_icon()
 		in_chamber = null
 	else
 		user.visible_message("<span class='notice'>[user] cocks [src].</span>",
@@ -778,7 +802,7 @@ and you're good to go.
 
 	if(user.zone_selected != "mouth")
 		return ..()
-	
+
 	DISABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK) //If they try to click again, they're going to hit themselves.
 
 	M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
@@ -786,7 +810,7 @@ and you're good to go.
 	var/u = "[key_name(user)] is trying to commit suicide."
 	user.log_message(u, LOG_ATTACK, "red")
 
-	if(!do_after(user, 40, TRUE, 5, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 40, TRUE, src, BUSY_ICON_DANGER))
 		M.visible_message("<span class='notice'>[user] decided life was worth living.</span>")
 		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
 		return

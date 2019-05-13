@@ -9,7 +9,6 @@
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
-	container_type = OPENCONTAINER
 	var/operating = 0 // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
 	var/broken = 0 // ={0,1,2} How broken is it???
@@ -27,8 +26,7 @@
 
 /obj/machinery/microwave/New()
 	..()
-	reagents = new/datum/reagents(100)
-	reagents.my_atom = src
+	create_reagents(100, OPENCONTAINER)
 	if (!available_recipes)
 		available_recipes = new
 		for (var/type in subtypesof(/datum/recipe))
@@ -59,7 +57,7 @@
 				"<span class='notice'> [user] starts to fix part of the microwave.</span>", \
 				"<span class='notice'> You start to fix part of the microwave.</span>" \
 			)
-			if (do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
+			if (do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 				user.visible_message( \
 					"<span class='notice'> [user] fixes part of the microwave.</span>", \
 					"<span class='notice'> You have fixed part of the microwave.</span>" \
@@ -70,7 +68,7 @@
 				"<span class='notice'> [user] starts to fix part of the microwave.</span>", \
 				"<span class='notice'> You start to fix part of the microwave.</span>" \
 			)
-			if (do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
+			if (do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 				user.visible_message( \
 					"<span class='notice'> [user] fixes the microwave.</span>", \
 					"<span class='notice'> You have fixed the microwave.</span>" \
@@ -78,7 +76,7 @@
 				icon_state = "mw"
 				broken = 0 // Fix it!
 				dirty = 0 // just to be sure
-				container_type = OPENCONTAINER
+				ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 		else
 			to_chat(user, "<span class='warning'>It's broken!</span>")
 			return 1
@@ -88,7 +86,7 @@
 				"<span class='notice'> [user] starts to clean the microwave.</span>", \
 				"<span class='notice'> You start to clean the microwave.</span>" \
 			)
-			if (do_after(user,20, TRUE, 5, BUSY_ICON_FRIENDLY))
+			if (do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 				user.visible_message( \
 					"<span class='notice'> [user]  has cleaned  the microwave.</span>", \
 					"<span class='notice'> You have cleaned the microwave.</span>" \
@@ -96,7 +94,7 @@
 				dirty = 0 // It's clean!
 				broken = 0 // just to be sure
 				icon_state = "mw"
-				container_type = OPENCONTAINER
+				ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 		else //Otherwise bad luck!!
 			to_chat(user, "<span class='warning'>It's dirty!</span>")
 			return 1
@@ -327,7 +325,7 @@
 	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
 	visible_message("<span class='warning'> The microwave gets covered in muck!</span>")
 	dirty = 100 // Make it dirty so it can't be used util cleaned
-	flags_atom = null //So you can't add condiments
+	DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER) //So you can't add condiments
 	icon_state = "mwbloody" // Make it look dirty too
 	operating = 0 // Turn it off again aferwards
 	updateUsrDialog()
@@ -339,7 +337,7 @@
 	icon_state = "mwb" // Make it look all busted up and shit
 	visible_message("<span class='warning'> The microwave breaks!</span>") //Let them know they're stupid
 	broken = 2 // Make it broken so it can't be used util fixed
-	flags_atom = null //So you can't add condiments
+	DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER) //So you can't add condiments
 	operating = 0 // Turn it off again aferwards
 	updateUsrDialog()
 

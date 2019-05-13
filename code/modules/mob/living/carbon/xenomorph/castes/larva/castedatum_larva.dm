@@ -6,7 +6,7 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Larva
 	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_BASETYPE
-	wound_type = "alien" //used to match appropriate wound overlays
+	wound_type = "larva" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 0

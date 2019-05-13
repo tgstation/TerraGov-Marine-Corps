@@ -5,7 +5,10 @@
 
 		handle_regular_hud_updates()
 
+		handle_organs()
+
 		updatehealth()
+
 
 //this updates all special effects: knockdown, druggy, stuttering, etc..
 /mob/living/proc/handle_status_effects()
@@ -22,6 +25,11 @@
 	handle_stuttering()
 	handle_slurring()
 	handle_silent()
+
+/mob/living/proc/handle_organs()
+	reagent_move_delay_modifier = 0
+	reagent_shock_modifier = 0
+	reagent_pain_modifier = 0
 
 /mob/living/proc/handle_stunned()
 	if(stunned)
@@ -66,6 +74,12 @@
 	if(knocked_out)
 		AdjustKnockedout(-1)
 	return knocked_out
+
+/mob/living/proc/add_slowdown(amount)
+	return
+
+/mob/living/proc/adjust_stagger(amount)
+	return
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
@@ -220,6 +234,10 @@
 		to_chat(usr, "OOC Metadata is not supported by this server!")
 
 	return
+
+
+/mob/living/proc/InCritical()
+	return (health <= get_crit_threshold() && stat == UNCONSCIOUS)
 
 
 /mob/living/Move(NewLoc, direct)
@@ -672,3 +690,13 @@ below 100 is not dizzy
 			layer = initial(layer)
 
 	return canmove
+
+/mob/living/proc/update_leader_tracking(mob/living/L)
+	return
+
+/mob/living/proc/clear_leader_tracking()
+	return
+
+// called when the client disconnects and is away.
+/mob/living/proc/begin_away()
+	away_time = set_away_time(world.time)

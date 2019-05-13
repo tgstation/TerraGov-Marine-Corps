@@ -182,7 +182,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "cigoff"
 	w_class = 1
 	flags_armor_protection = 0
-	container_type = INJECTABLE
 	var/lit = FALSE
 	var/icon_on = "cigon"  //Note - these are in masks.dmi not in cigarette.dmi
 	var/icon_off = "cigoff"
@@ -190,15 +189,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/lastHolder = null
 	var/smoketime = 300
 	var/chem_volume = 30
-	list_reagents = list("nicotine" = 15)
+	var/list/list_reagents = list("nicotine" = 15)
 	flags_armor_protection = 0
 
 /obj/item/clothing/mask/cigarette/New()
 	. = ..()
-
-	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 30
-	reagents.set_reacting(FALSE)
-	add_initial_reagents()
+	create_reagents(chem_volume, INJECTABLE|NO_REACT, list_reagents) // making the cigarrete a chemical holder with a maximum volume of 30
 
 /obj/item/clothing/mask/cigarette/attackby(obj/item/W, mob/user, params)
 	if(lit || smoketime <= 0)
@@ -314,7 +310,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		e.start()
 		qdel(src)
 		return
-	reagents.set_reacting(TRUE)
+	DISABLE_BITFIELD(reagents.reagent_flags, NO_REACT)
 	reagents.handle_reactions()
 	icon_state = icon_on
 	item_state = icon_on
@@ -331,6 +327,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			var/mob/living/carbon/human/H = loc
 			if(H.wear_mask == src)
 				H.update_inv_wear_mask()
+	playsound(src, 'sound/items/cig_light.ogg', 15, 1)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/cigarette/process()
@@ -341,6 +338,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(smoketime < 1)
 		if(ismob(loc))
 			to_chat(M, "<span class='notice'>Your [name] goes out.</span>")
+			playsound(src, 'sound/items/cig_snuff.ogg', 15, 1)
 		die()
 		return
 
@@ -363,6 +361,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/cigarette/attack_self(mob/user)
 	if(lit)
 		user.visible_message("<span class='notice'>[user] calmly drops and treads on the lit [src], putting it out instantly.</span>")
+		playsound(src, 'sound/items/cig_snuff.ogg', 15, 1)
 		die()
 	. = ..()
 
@@ -528,6 +527,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			item_state = icon_on
 			if(istype(src, /obj/item/tool/lighter/zippo) )
 				user.visible_message("<span class='rose'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
+				playsound(loc, 'sound/items/zippo_on.ogg', 15, 1)
 			else
 				if(prob(95))
 					user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src].</span>")
@@ -538,6 +538,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					else
 						user.apply_damage(2,BURN,"r_hand")
 					user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
+				playsound(loc, 'sound/items/lighter_on.ogg', 15, 1)
 
 			user.SetLuminosity(LIGHTER_LUMINOSITY)
 			START_PROCESSING(SSobj, src)
@@ -555,8 +556,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(!silent)
 			if(istype(src, /obj/item/tool/lighter/zippo) )
 				bearer.visible_message("<span class='rose'>You hear a quiet click, as [bearer] shuts off [src] without even looking at what they're doing.")
+				playsound(loc, 'sound/items/zippo_off.ogg', 15, 1)
 			else
 				bearer.visible_message("<span class='notice'>[bearer] quietly shuts off the [src].")
+				playsound(loc, 'sound/items/lighter_off.ogg', 15, 1)
 		bearer.SetLuminosity(-LIGHTER_LUMINOSITY)
 		SetLuminosity(0)
 		STOP_PROCESSING(SSobj, src)

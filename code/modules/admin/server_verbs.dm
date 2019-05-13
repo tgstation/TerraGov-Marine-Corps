@@ -286,8 +286,8 @@
 
 /datum/admins/proc/end_round()
 	set category = "Server"
-	set desc = "Immediately ends the round, be very careful"
 	set name = "End Round"
+	set desc = "Immediately ends the round, be very careful"
 
 	if(!check_rights(R_SERVER))
 		return
@@ -295,13 +295,23 @@
 	if(!SSticker?.mode)
 		return
 
-	if(alert("Are you sure you want to end the round?", "Confirmation", "Yes", "No") != "Yes")
+	if(alert("Are you sure you want to end the round?", "End Round", "Yes", "No") != "Yes")
 		return
 
-	SSticker.mode.round_finished = "Admin Intervention"
+	var/winstate = input(usr, "What do you want the round end state to be?", "End Round") as null|anything in list("Custom", "Admin Intervention", MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_X_MINOR,  MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
+	if(!winstate)
+		return
 
-	log_admin("[key_name(usr)] has made the round end early.")
-	message_admins("[ADMIN_TPMONTY(usr)] has made the round end early.")
+	if(winstate == "Custom")
+		winstate = input(usr, "Please enter a custom round end state.", "End Round") as null|text
+		if(!winstate)
+			return
+
+	SSticker.force_ending = TRUE
+	SSticker.mode.round_finished = winstate
+
+	log_admin("[key_name(usr)] has made the round end early - [winstate].")
+	message_admins("[ADMIN_TPMONTY(usr)] has made the round end early - [winstate].")
 
 
 /datum/admins/proc/delay_start()
@@ -343,14 +353,19 @@
 		return
 
 	if(SSticker.admin_delay_notice)
+		if(alert(usr, "Do you want to remove the round end delay?", "Delay Round End", "Yes", "No") != "Yes")
+			return
 		SSticker.admin_delay_notice = null
 	else
-		SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
+		var/reason = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
+		if(!reason)
+			return
+		SSticker.admin_delay_notice = reason
 
 	SSticker.delay_end = !SSticker.delay_end
 
 	log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].")
-	message_admins("<hr><br><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].</h4><hr><br>")
+	message_admins("<hr><br><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].</h4><hr>")
 
 
 /datum/admins/proc/toggle_gun_restrictions()
@@ -405,23 +420,6 @@
 
 	log_admin("[key_name(src)] manually reloaded admins.")
 	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded admins.")
-
-
-/datum/admins/proc/map_random()
-	set category = "Server"
-	set name = "Trigger Random Map Rotation"
-
-	if(!check_rights(R_SERVER))
-		return
-
-	var/rotate = alert("Force a random map rotation to trigger?", "Rotate map?", "Yes", "No")
-	if(rotate != "Yes")
-		return
-
-	SSmapping.maprotate()
-
-	log_admin("[key_name(usr)] forced a random map rotation.")
-	message_admins("[ADMIN_TPMONTY(usr)] forced a random map rotation.")
 
 
 /datum/admins/proc/map_change()

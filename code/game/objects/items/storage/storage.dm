@@ -45,7 +45,7 @@
 	bypass_w_limit = typecacheof(bypass_w_limit)
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
-	if(ishuman(usr) || ismonkey(usr) || iscyborg(usr)) //so monkeys can take off their backpacks -- Urist
+	if(ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
 
 		if(usr.lying)
 			return
@@ -617,11 +617,6 @@
 	qdel(src)
 //BubbleWrap END
 
-/obj/item/storage/hear_talk(mob/M, msg, verb = "says", datum/language/language)
-	for (var/atom/A in src)
-		if(istype(A,/obj/))
-			var/obj/O = A
-			O.hear_talk(M, msg, verb, language)
 
 /obj/item/proc/get_storage_cost() //framework for adjusting storage costs
 	if (storage_cost)

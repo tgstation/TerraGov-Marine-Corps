@@ -21,16 +21,11 @@
 	var/seconds_electrified = 0;
 	var/shoot_inventory = 0
 	var/locked = 0
-	var/wires = 7
-	var/const/WIRE_SHOCK = 1
-	var/const/WIRE_SHOOTINV = 2
-	var/const/WIRE_SCANID = 3 //Only used by the secure smartfridge, but required by the cut, mend and pulse procs.
 
 
 /obj/machinery/smartfridge/New()
 	. = ..()
-	create_reagents()
-	reagents.set_reacting(FALSE)
+	create_reagents(100, NO_REACT)
 
 /obj/machinery/smartfridge/proc/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/reagent_container/food/snacks/grown/) || istype(O,/obj/item/seeds/))
@@ -74,7 +69,7 @@
 		overlays.Cut()
 		if(panel_open)
 			overlays += image(icon, icon_panel)
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)
 		return
 
 	if(ismultitool(O) || iswirecutter(O))
@@ -101,7 +96,7 @@
 				user.visible_message("<span class='notice'>[user] has added \the [O] to \the [src].", \
 									 "<span class='notice'>You add \the [O] to \the [src].")
 
-			nanomanager.update_uis(src)
+			SSnano.update_uis(src)
 
 	else if(istype(O, /obj/item/storage/bag/plants))
 		var/obj/item/storage/bag/plants/P = O
@@ -126,7 +121,7 @@
 			if(P.contents.len > 0)
 				to_chat(user, "<span class='notice'>Some items are refused.</span>")
 
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)
 
 	else
 		to_chat(user, "<span class='notice'>\The [src] smartly refuses [O].</span>")
@@ -157,7 +152,6 @@
 
 	var/data[0]
 	data["contents"] = null
-	data["wires"] = null
 	data["panel_open"] = panel_open
 	data["electrified"] = seconds_electrified > 0
 	data["shoot_inventory"] = shoot_inventory
@@ -174,27 +168,7 @@
 	if (items.len > 0)
 		data["contents"] = items
 
-	var/list/vendwires = null
-	if (is_secure_fridge)
-		vendwires = list(
-			"Violet" = 1,
-			"Orange" = 2,
-			"Green" = 3)
-	else
-		vendwires = list(
-			"Blue" = 1,
-			"Red" = 2,
-			"Black" = 3)
-
-	var/list/vendor_wires[0]
-	for (var/wire in vendwires)
-		var is_uncut = wires & APCWireColorToFlag[vendwires[wire]]
-		vendor_wires.Add(list(list("wire" = wire, "cut" = !is_uncut, "index" = vendwires[wire])))
-
-	if (vendor_wires.len > 0)
-		data["wires"] = vendor_wires
-
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "smartfridge.tmpl", src.name, 400, 500)
 		ui.set_initial_data(data)
@@ -204,7 +178,7 @@
 	if (..()) return 0
 
 	var/mob/user = usr
-	var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
+	var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
 
 	src.add_fingerprint(user)
 
@@ -241,81 +215,6 @@
 						return 1
 
 		return 1
-
-	if (panel_open)
-		if (href_list["cutwire"])
-			if (!iswirecutter(usr.get_active_held_item()))
-				to_chat(user, "You need wirecutters!")
-				return 1
-
-			var/wire_index = text2num(href_list["cutwire"])
-			if (isWireColorCut(wire_index))
-				mend(wire_index)
-			else
-				cut(wire_index)
-			return 1
-
-		if (href_list["pulsewire"])
-			if (!ismultitool(usr.get_active_held_item()))
-				to_chat(usr, "You need a multitool!")
-				return 1
-
-			var/wire_index = text2num(href_list["pulsewire"])
-			if (isWireColorCut(wire_index))
-				to_chat(usr, "You can't pulse a cut wire.")
-				return 1
-
-			pulse(wire_index)
-			return 1
-
-	return 0
-
-/*************
-*	Hacking
-**************/
-
-/obj/machinery/smartfridge/proc/cut(var/wireColor)
-	var/wireFlag = APCWireColorToFlag[wireColor]
-	var/wireIndex = APCWireColorToIndex[wireColor]
-	src.wires &= ~wireFlag
-	switch(wireIndex)
-		if(WIRE_SHOCK)
-			src.seconds_electrified = -1
-		if (WIRE_SHOOTINV)
-			if(!src.shoot_inventory)
-				src.shoot_inventory = 1
-		if(WIRE_SCANID)
-			src.locked = 1
-
-/obj/machinery/smartfridge/proc/mend(var/wireColor)
-	var/wireFlag = APCWireColorToFlag[wireColor]
-	var/wireIndex = APCWireColorToIndex[wireColor]
-	src.wires |= wireFlag
-	switch(wireIndex)
-		if(WIRE_SHOCK)
-			src.seconds_electrified = 0
-		if (WIRE_SHOOTINV)
-			src.shoot_inventory = 0
-		if(WIRE_SCANID)
-			src.locked = 0
-
-/obj/machinery/smartfridge/proc/pulse(var/wireColor)
-	var/wireIndex = APCWireColorToIndex[wireColor]
-	switch(wireIndex)
-		if(WIRE_SHOCK)
-			src.seconds_electrified = 30
-		if(WIRE_SHOOTINV)
-			src.shoot_inventory = !src.shoot_inventory
-		if(WIRE_SCANID)
-			src.locked = -1
-
-/obj/machinery/smartfridge/proc/isWireColorCut(var/wireColor)
-	var/wireFlag = APCWireColorToFlag[wireColor]
-	return ((src.wires & wireFlag) == 0)
-
-/obj/machinery/smartfridge/proc/isWireCut(var/wireIndex)
-	var/wireFlag = APCIndexToFlag[wireIndex]
-	return ((src.wires & wireFlag) == 0)
 
 /obj/machinery/smartfridge/proc/throw_item()
 	var/obj/throw_item = null

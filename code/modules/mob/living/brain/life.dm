@@ -7,9 +7,6 @@
 		//Mutations and radiation
 		handle_mutations_and_radiation()
 
-		//Chemicals in the body
-		handle_organs()
-
 	//Handle temperature/pressure differences between body and environment
 	handle_environment()
 
@@ -84,13 +81,7 @@
 /mob/living/brain/handle_organs()
 	. = ..()
 
-	if(reagents)
-		reagents.metabolize(src, 0, can_overdose = TRUE)
-
-	updatehealth()
-
-	return //TODO: DEFERRED
-
+	reagents?.metabolize(src, can_overdose = TRUE)
 
 /mob/living/brain/update_stat()
 	.=..()

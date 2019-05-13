@@ -7,7 +7,6 @@
 	icon_state = "pussywagon"
 	anchored = 0
 	density = 1
-	container_type = OPENCONTAINER
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
@@ -17,7 +16,7 @@
 
 /obj/structure/bed/chair/janicart/New()
 	. = ..()
-	create_reagents(100)
+	create_reagents(100, OPENCONTAINER)
 
 
 /obj/structure/bed/chair/janicart/examine(mob/user)

@@ -21,10 +21,6 @@
 	pockets.emp_act(severity)
 	return ..()
 
-/obj/item/clothing/suit/storage/hear_talk(mob/M, msg, verb = "says", datum/language/language)
-	pockets.hear_talk(M, msg, verb, language)
-	return ..()
-
 /obj/item/storage/internal/suit
 	storage_slots = 2	//two slots
 	max_w_class = 2		//fit only small items

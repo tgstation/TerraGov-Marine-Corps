@@ -37,7 +37,7 @@
 		return //can't move the thing you're sitting on.
 	if(istype(target, /obj/effect))//if you click a blood splatter with a grab instead of the turf,
 		target = get_turf(target)	//we still try to move the grabbed thing to the turf.
-	if(!isturf(target))
+	if(!isturf(target) || istype(target, /turf/open/floor/almayer/empty))
 		return
 	var/turf/T = target
 	if(T.density || !T.Adjacent(user))
@@ -104,7 +104,7 @@
 						return */
 		X.visible_message("<span class='danger'>[X] starts to devour [pulled]!</span>", \
 		"<span class='danger'>You start to devour [pulled]!</span>", null, 5)
-		if(do_after(X, 50, FALSE, 5, BUSY_ICON_HOSTILE))
+		if(do_after(X, 50, FALSE, pulled, BUSY_ICON_DANGER))
 			if(X.pulling == pulled && !pulled.buckled && pulled.stat != DEAD && !X.stomach_contents.len) //make sure you've still got them in your claws, and alive
 				X.visible_message("<span class='warning'>[X] devours [pulled]!</span>", \
 				"<span class='warning'>You devour [pulled]!</span>", null, 5)

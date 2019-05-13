@@ -112,7 +112,7 @@
 		to_chat(user, "These people have opened \the [src] during an alert: [users_to_open_string].")
 
 /obj/machinery/door/firedoor/Bumped(atom/AM)
-	if(p_open || operating)
+	if(panel_open || operating)
 		return
 	if(!density)
 		return ..()
@@ -141,9 +141,7 @@
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
 	"<span class='warning'>You dig into \the [src] and begin to pry it open.</span>", null, 5)
 
-	if(do_after(M, 30, FALSE, 5, BUSY_ICON_HOSTILE))
-		if(M.loc != cur_loc)
-			return FALSE //Make sure we're still there
+	if(do_after(M, 30, FALSE, src, BUSY_ICON_BUILD))
 		if(blocked)
 			to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
 			return FALSE
@@ -236,7 +234,7 @@
 				"<span class='notice'>You start forcing \the [src] [density ? "open" : "closed"] with \the [C]!</span>",\
 				"You hear metal strain.")
 		var/old_density = density
-		if(do_after(user,30, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(do_after(user,30, TRUE, src, BUSY_ICON_HOSTILE))
 			if(blocked || density != old_density)
 				return
 			user.visible_message("<span class='danger'>\The [user] forces \the [blocked ? "welded " : "" ][name] [density ? "open" : "closed"] with \a [C]!</span>",\

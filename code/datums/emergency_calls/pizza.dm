@@ -18,11 +18,13 @@
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
 
 	M.transfer_to(H, TRUE)
+	H.fully_replace_character_name(M.name, H.real_name)
 
 	if(original)
 		qdel(original)
 
 	print_backstory(H)
 
-	var/datum/job/J = new /datum/job/other/pizza
+	var/datum/job/J = SSjob.GetJobType(/datum/job/other/pizza)
+	SSjob.AssignRole(H, J.title)
 	J.equip(H)

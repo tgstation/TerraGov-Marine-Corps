@@ -85,8 +85,6 @@
 /obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.flags_item & ITEM_ABSTRACT) return
 	if(opened)
-		if(iscyborg(user))
-			return
 		user.transferItemToLoc(W, loc)
 	else if(istype(W, /obj/item/packageWrap))
 		return

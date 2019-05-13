@@ -181,7 +181,7 @@
 	else if(ismultitool(W))
 		. = multitool_act(user, W)
 	else if(isscrewdriver(W))
-		. = screwdriver_act(user,W)	
+		. = screwdriver_act(user,W)
 	else if(iswelder(W))
 		. = welder_act(user, W)
 	else if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
@@ -223,7 +223,7 @@
 	//	to_chat(user, "<span class='warning'>As you begin unwrenching \the [src] a gush of air blows in your face... maybe you should reconsider?</span>")
 	//	unsafe_wrenching = TRUE //Oh dear oh dear
 
-	if(!do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
 //	if(I.use_tool(src, user, 20, volume=50))
 	user.visible_message( \
@@ -313,7 +313,7 @@
 	if(!isxenohunter(user) ) //Hunters silently enter/exit/move through vents.
 		visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
 	to_chat(user, "<span class='notice'>You begin to climb out of [src]</span>")
-	if(!do_after(user, 20, FALSE))
+	if(!do_after(user, 20, FALSE, src))
 		return FALSE
 	user.remove_ventcrawl()
 	user.forceMove(T)

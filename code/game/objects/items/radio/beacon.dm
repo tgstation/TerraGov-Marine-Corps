@@ -6,13 +6,6 @@
 	var/code = "electronic"
 	origin_tech = "bluespace=1"
 
-/obj/item/radio/beacon/hear_talk()
-	return
-
-
-/obj/item/radio/beacon/send_hear()
-	return null
-
 
 /obj/item/radio/beacon/verb/alter_signal(t as text)
 	set name = "Alter Beacon's Signal"

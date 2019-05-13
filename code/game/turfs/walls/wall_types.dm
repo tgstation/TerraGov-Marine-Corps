@@ -368,6 +368,12 @@
 	if(!locate(/obj/effect/alien/weeds) in loc)
 		new /obj/effect/alien/weeds(loc)
 
+/turf/closed/wall/resin/ChangeTurf(new_turf_path, forget_old_turf, flags)
+	. = ..()
+	if(!forget_old_turf)
+		return
+	new /obj/effect/alien/weeds(.)
+
 /turf/closed/wall/resin/flamer_fire_act()
 	take_damage(50)
 
@@ -379,7 +385,7 @@
 
 //this one is only for map use
 /turf/closed/wall/resin/ondirt
-	oldTurf = "/turf/open/gm/dirt"
+	oldTurf = "/turf/open/floor/plating/ground/dirt"
 
 /turf/closed/wall/resin/thick
 	name = "thick resin wall"
@@ -407,7 +413,7 @@
 
 //this one is only for map use
 /turf/closed/wall/resin/membrane/ondirt
-	oldTurf = "/turf/open/gm/dirt"
+	oldTurf = "/turf/open/floor/plating/ground/dirt"
 
 /turf/closed/wall/resin/membrane/thick
 	name = "thick resin membrane"

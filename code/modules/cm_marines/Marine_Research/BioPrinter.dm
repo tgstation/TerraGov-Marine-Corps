@@ -6,7 +6,6 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 /obj/machinery/r_n_d/bioprinter
 	name = "Nanotrasen Brand Bio-Organic Printer(TM)"
 	icon_state = "protolathe"
-	container_type = REFILLABLE
 
 	use_power = 1
 	idle_power_usage = 30
@@ -18,7 +17,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 	var/chitin_amount = 0.0
 
 /obj/machinery/r_n_d/bioprinter/New()
-	..()
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/protolathe(src) //We'll need to make our own board one day
 	component_parts += new /obj/item/stock_parts/matter_bin(src)
@@ -36,9 +35,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 	var/T = 0
 	for(var/obj/item/reagent_container/glass/G in component_parts)
 		T += G.reagents.maximum_volume
-	var/datum/reagents/R = new/datum/reagents(T)		//Holder for the reagents used as materials.
-	reagents = R
-	R.my_atom = src
+	create_reagents(T, REFILLABLE)
 	T = 0
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		T += M.rating
@@ -102,7 +99,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 	icon_state = "protolathe"
 	busy = 1
 	use_power(max(1000, (3750)))
-	if (do_after(user, 16, TRUE, 5, BUSY_ICON_GENERIC))
+	if (do_after(user, 16, TRUE, src))
 		to_chat(user, "<span class='notice'>You add a [O] to the [src.name].</span>")
 		icon_state = "protolathe"
 		if(istype(O, /obj/item/XenoBio/Blood))

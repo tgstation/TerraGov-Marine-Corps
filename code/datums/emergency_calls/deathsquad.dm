@@ -25,6 +25,7 @@
 	H.voice_name = H.name
 
 	M.transfer_to(H, TRUE)
+	H.fully_replace_character_name(M.name, H.real_name)
 
 	if(original)
 		qdel(original)
@@ -33,11 +34,13 @@
 
 	if(!leader)
 		leader = H
-		var/datum/job/J = new /datum/job/deathsquad/leader
+		var/datum/job/J = SSjob.GetJobType(/datum/job/deathsquad/leader)
+		SSjob.AssignRole(H, J.title)
 		J.equip(H)
 		to_chat(H, "<span class='notice'>You are the leader of the elite Death Squad commando!</span>")
 		return
 
-	var/datum/job/J = new /datum/job/deathsquad/standard
+	var/datum/job/J = SSjob.GetJobType(/datum/job/deathsquad/standard)
+		SSjob.AssignRole(H, J.title)
 	J.equip(H)
 	to_chat(H, "<span class='notice'>You are a member of the elite Death Squad commando!</span>")

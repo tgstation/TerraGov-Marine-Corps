@@ -110,158 +110,114 @@
 // *********** Screech
 // ***************************************
 /datum/action/xeno_action/activable/screech
-	name = "Screech (250)"
+	name = "Screech"
 	action_icon_state = "screech"
 	mechanics_text = "A large area knockdown that causes pain and screen-shake."
 	ability_name = "screech"
+	plasma_cost = 250
+	cooldown_timer = 50 SECONDS
 
-/datum/action/xeno_action/activable/screech/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
-	return !X.has_screeched
+/datum/action/xeno_action/activable/screech/on_cooldown_finish()
+	to_chat(owner, "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>")
+	return ..()
 
 /datum/action/xeno_action/activable/screech/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
-	X.queen_screech()
-
-/mob/living/carbon/Xenomorph/Queen/proc/queen_screech()
-	if(!check_state())
-		return
-
-	if(has_screeched)
-		to_chat(src, "<span class='warning'>You are not ready to screech again.</span>")
-		return
-
-	if(!check_plasma(250))
-		return
 
 	//screech is so powerful it kills huggers in our hands
-	if(istype(r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = r_hand
+	if(istype(X.r_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = X.r_hand
 		if(FH.stat != DEAD)
 			FH.Die()
 
-	if(istype(l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = l_hand
+	if(istype(X.l_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = X.l_hand
 		if(FH.stat != DEAD)
 			FH.Die()
 
-	has_screeched = TRUE
-	use_plasma(250)
-	addtimer(CALLBACK(src, .screech_cooldown), 500)
-	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
-	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
+	succeed_activate()
+	add_cooldown()
+
+	playsound(X.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
+	X.visible_message("<span class='xenohighdanger'>\The [X] emits an ear-splitting guttural roar!</span>")
 	round_statistics.queen_screech++
-	create_shriekwave() //Adds the visual effect. Wom wom wom
+	X.create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
-	for(var/mob/M in view())
-		if(M && M.client)
-			if(isxeno(M))
-				shake_camera(M, 10, 1)
-			else
-				shake_camera(M, 30, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
-
-	for(var/mob/living/carbon/human/H in oview(7, src))
-		var/dist = get_dist(src,H)
-		var/reduction = max(1 - 0.1 * H.protection_aura, 0) //Hold orders will reduce the Halloss; 10% per rank.
-		var/halloss_damage = (max(0,140 - dist * 10)) * reduction //Max 130 beside Queen, 70 at the edge
-		var/stun_duration = max(0,1.1 - dist * 0.1) * reduction //Max 1 beside Queen, 0.4 at the edge.
-
-		if(dist < 8)
-			to_chat(H, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
-			H.stunned += stun_duration
-			H.KnockDown(stun_duration)
-			H.apply_damage(halloss_damage, HALLOSS)
-			if(!H.ear_deaf)
-				H.ear_deaf += stun_duration * 20  //Deafens them temporarily
-			//Perception distorting effects of the psychic scream
-			addtimer(CALLBACK(GLOBAL_PROC, /proc/shake_camera, H, stun_duration * 10, 0.75), 31)
-
-/mob/living/carbon/Xenomorph/Queen/proc/screech_cooldown()
-	has_screeched = FALSE
-	to_chat(src, "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>")
-	update_action_buttons()
+	for(var/mob/living/L in range(world.view, X))
+		if(L.stat == DEAD)
+			continue
+		L.screech_act(X)
 
 // ***************************************
 // *********** Gut
 // ***************************************
 /datum/action/xeno_action/activable/gut
-	name = "Gut (200)"
+	name = "Gut"
 	action_icon_state = "gut"
 	ability_name = "gut"
+	plasma_cost = 200
 
-/datum/action/xeno_action/activable/gut/use_ability(atom/A)
+/datum/action/xeno_action/activable/gut/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
-	X.queen_gut(A)
-
-/mob/living/carbon/Xenomorph/Queen/proc/queen_gut(atom/A)
-
+	if(X.last_special > world.time)
+		return FALSE
 	if(!iscarbon(A))
-		return
-
+		return FALSE
+	if(!owner.Adjacent(A))
+		return FALSE
 	var/mob/living/carbon/victim = A
-
-	if(get_dist(src, victim) > 1)
-		return
-
-	if(!check_state())
-		return
-
-	if(last_special > world.time)
-		return
-
 	if(issynth(victim))
 		var/datum/limb/head/synthhead = victim.get_limb("head")
 		if(synthhead.limb_status & LIMB_DESTROYED)
-			return
-
+			return FALSE
 	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
 		var/mob/living/carbon/human/H = victim
-		if(H.status_flags & XENO_HOST)
+		if(CHECK_BITFIELD(H.status_flags, XENO_HOST))
 			if(victim.stat != DEAD) //Not dead yet.
-				to_chat(src, "<span class='xenowarning'>The host and child are still alive!</span>")
-				return
+				if(!silent)
+					to_chat(owner, "<span class='xenowarning'>The host and child are still alive!</span>")
+				return FALSE
 			else if(istype(H) && !H.check_tod()) //Dead, but the host can still hatch, possibly.
-				to_chat(src, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
-				return
+				if(!silent)
+					to_chat(owner, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
+				return FALSE
+	if(owner.issamexenohive(victim))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>")
+		return FALSE
 
-	if(isxeno(victim))
-		var/mob/living/carbon/Xenomorph/xeno = victim
-		if(hivenumber == xeno.hivenumber)
-			to_chat(src, "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>")
-			return
+/datum/action/xeno_action/activable/gut/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/victim = A
 
-	var/turf/cur_loc = victim.loc
-	if(!istype(cur_loc))
-		return
+	succeed_activate()
 
-	if(action_busy)
-		return
+	X.last_special = world.time + 5 SECONDS
 
-	if(!check_plasma(200))
-		return
-	use_plasma(200)
-	last_special = world.time + 50
-
-	visible_message("<span class='xenowarning'>\The [src] begins slowly lifting \the [victim] into the air.</span>", \
+	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
 	"<span class='xenowarning'>You begin focusing your anger as you slowly lift \the [victim] into the air.</span>")
-	if(do_mob(src, victim, 80, BUSY_ICON_HOSTILE))
-		if(!victim)
-			return
-		if(victim.loc != cur_loc)
-			return
-		visible_message("<span class='xenodanger'>\The [src] viciously smashes and wrenches \the [victim] apart!</span>", \
-		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!</span>")
-		emote("roar")
-		log_combat(victim, src, "gibbed")
-		victim.gib() //Splut
-		stop_pulling()
+	if(!do_mob(X, victim, 80, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+		return fail_activate()
+	if(!can_use_ability(victim,TRUE,XACT_IGNORE_PLASMA))
+		return fail_activate()
+	if(victim.loc != X.loc)
+		return fail_activate()
+	X.visible_message("<span class='xenodanger'>\The [X] viciously smashes and wrenches \the [victim] apart!</span>", \
+	"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!</span>")
+	X.emote("roar")
+	log_combat(victim, X, "gibbed")
+	victim.gib() //Splut
+	X.stop_pulling()
 
 // ***************************************
 // *********** Ovipositor
 // ***************************************
 /datum/action/xeno_action/grow_ovipositor
-	name = "Grow Ovipositor (700)"
+	name = "Grow Ovipositor"
 	action_icon_state = "grow_ovipositor"
 	mechanics_text = "Grow an ovipositor to lay eggs and access new abilities. Takes 20 seconds and you cannot move while on the ovipositor."
 	plasma_cost = 700
@@ -294,10 +250,7 @@
 	if(X.check_plasma(plasma_cost))
 		X.visible_message("<span class='xenowarning'>\The [X] starts to grow an ovipositor.</span>", \
 		"<span class='xenowarning'>You start to grow an ovipositor...(takes 20 seconds, hold still)</span>")
-		if(!do_after(X, 200, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(plasma_cost))
-			return
-		if(!X.check_state()) return
-		if(!locate(/obj/effect/alien/weeds) in current_turf)
+		if(!do_after(X, 200, TRUE, alien_weeds, BUSY_ICON_BUILD) || !X.check_plasma(plasma_cost) || !X.check_state())
 			return
 
 		X.use_plasma(plasma_cost)
@@ -309,27 +262,20 @@
 	name = "Remove Eggsac"
 	action_icon_state = "grow_ovipositor"
 	mechanics_text = "Get off your ovipositor, causing it to collapse. You must grow a new one the next time you wish to reattach."
-	plasma_cost = 0
 
 /datum/action/xeno_action/remove_eggsac/action_activate()
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
-	if(!X.check_state())
-		return
 
-	if(X.action_busy) return
 	var/answer = alert(X, "Are you sure you want to remove your ovipositor? (5min cooldown to grow a new one)", , "Yes", "No")
 	if(answer != "Yes")
 		return
-	if(!X.check_state())
+	if(!can_use_action())
 		return
 	if(!X.ovipositor)
 		return
 	X.visible_message("<span class='xenowarning'>\The [X] starts detaching itself from its ovipositor!</span>", \
 		"<span class='xenowarning'>You start detaching yourself from your ovipositor.</span>")
-	if(!do_after(X, 50, FALSE, 10, BUSY_ICON_HOSTILE)) return
-	if(!X.check_state())
-		return
-	if(!X.ovipositor)
+	if(!do_after(X, 50, FALSE, null, BUSY_ICON_BUILD) || !X.check_state() || !X.ovipositor)
 		return
 	X.dismount_ovipositor()
 
@@ -434,8 +380,6 @@
 
 /datum/action/xeno_action/watch_xeno/action_activate()
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
-	if(!X.check_state())
-		return
 	if(!X.hive)
 		return
 	var/list/possible_xenos = X.hive.get_watchable_xenos()
@@ -465,12 +409,9 @@
 /datum/action/xeno_action/psychic_whisper
 	name = "Psychic Whisper"
 	action_icon_state = "psychic_whisper"
-	plasma_cost = 0
 
 /datum/action/xeno_action/psychic_whisper/action_activate()
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
-	if(!X.check_state())
-		return
 	var/list/target_list = list()
 	for(var/mob/living/possible_target in view(7, X))
 		if(possible_target == X || !possible_target.client) continue
@@ -545,7 +486,7 @@
 		T.hud_set_queen_overwatch()
 		T.handle_xeno_leader_pheromones(X)
 	else
-		if(length(X.hive.xeno_leader_list) > 1) 
+		if(length(X.hive.xeno_leader_list) > 1)
 			var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph leader?") as null|anything in X.hive.xeno_leader_list
 			if(!selected_xeno || !selected_xeno.queen_chosen_lead || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z != X.z || !X.check_state())
 				return
@@ -779,50 +720,54 @@
 // *********** Larval growth
 // ***************************************
 /datum/action/xeno_action/activable/larva_growth
-	name = "Advance Larval Growth (300)"
+	name = "Advance Larval Growth"
 	action_icon_state = "larva_growth"
 	mechanics_text = "Instantly cause the larva inside a host to grow a set amount."
 	ability_name = "advance larval growth"
+	plasma_cost = 300
+	cooldown_timer = XENO_LARVAL_ADVANCEMENT_COOLDOWN
 
-/datum/action/xeno_action/activable/larva_growth/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(world.time > X.last_larva_growth_used + XENO_LARVAL_ADVANCEMENT_COOLDOWN)
-		return TRUE
+/datum/action/xeno_action/activable/larva_growth/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!ishuman(A) && !ismonkey(A))
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>You can't accelerate the growth of that host")
+		return FALSE
+
+	var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in A
+
+	if(!E)
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>[A] doesn't have a larva growing inside of them.</xenowarning>")
+		return FALSE
+
+	if(E.stage >= 3)
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>\The [E] inside of [A] is too old to be advanced.</xenowarning>")
+		return FALSE
+
 
 /datum/action/xeno_action/activable/larva_growth/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
-	if(!X.check_state() || X.action_busy)
-		return
 
-	if(world.time < X.last_larva_growth_used + XENO_LARVAL_ADVANCEMENT_COOLDOWN)
-		to_chat(X, "<span class='xenowarning'>You're still recovering from your previous larva growth advance. Wait [round((X.last_larva_growth_used + XENO_LARVAL_ADVANCEMENT_COOLDOWN - world.time) * 0.1)] seconds.</span>")
-		return
+	var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in A
 
-	if(!istype(A, /mob/living/carbon/human))
-		return
+	X.visible_message("<span class='xenowarning'>\The [X] begins buzzing menacingly at [A].</span>", \
+	"<span class='xenowarning'>You start to advance larval growth inside of [A].</span>", \
+	"<span class='italics'>You hear an angry buzzing...</span>")
+	if(!do_after(X, 50, TRUE, A, BUSY_ICON_CLOCK_ALT) && X.check_plasma(300))
+		return fail_activate()
 
-	var/mob/living/carbon/human/H = A
+	if(!can_use_ability(A, TRUE))
+		return fail_activate()
 
-	var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in H
+	succeed_activate()
+	X.visible_message("<span class='xenowarning'>\The [X] finishes buzzing, [X.p_their()] echo slowly waning away!</span>", \
+	"<span class='xenowarning'>You advance the larval growth inside of [A] a little!</span>", \
+	"<span class='italics'>You hear buzzing waning away...</span>")
 
-	if(!E)
-		to_chat(X, "<span class='xenowarning'>[H] doesn't have a larva growing inside of them.</xenowarning>")
-		return
-
-	if(E.stage >= 3)
-		to_chat(X, "<span class='xenowarning'>\The [E] inside of [H] is too old to be advanced.</xenowarning>")
-		return
-
-	if(X.check_plasma(300))
-		X.visible_message("<span class='xenowarning'>\The [X] starts to advance larval growth inside of [H].</span>", \
-		"<span class='xenowarning'>You start to advance larval growth inside of [H].</span>")
-		if(!do_after(X, 50, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(300))
-			return
-		if(!X.check_state())
-			return
-		X.use_plasma(300)
-		X.visible_message("<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>", \
-		"<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>")
-
-		E.stage++
-		X.last_larva_growth_used = world.time
+	E.stage++
+	add_cooldown()

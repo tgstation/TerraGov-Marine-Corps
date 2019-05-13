@@ -262,7 +262,7 @@ var/list/advance_cures = 	list(
 		cure_id = advance_cures[res]
 
 		// Get the cure name from the cure_id
-		var/datum/reagent/D = chemical_reagents_list[cure_id]
+		var/datum/reagent/D = GLOB.chemical_reagents_list[cure_id]
 		cure = D.name
 
 

@@ -28,30 +28,28 @@
 	if (user && src.imp)
 		user.visible_message("<span class='warning'>[user] is attemping to implant [M].</span>", "<span class='notice'>You're attemping to implant [M].</span>")
 
-		var/turf/T1 = get_turf(M)
-		if (T1 && ((M == user) || do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC)))
-			if(user && M && (get_turf(M) == T1) && src && src.imp)
-				if(src.imp.implanted(M, user))
-					M.visible_message("<span class='warning'>[M] has been implanted by [user].</span>")
+		if ((M == user || do_after(user, 50, TRUE, M, BUSY_ICON_GENERIC)) && imp)
+			if(imp.implanted(M, user))
+				M.visible_message("<span class='warning'>[M] has been implanted by [user].</span>")
 
-					log_combat(user, M, "implanted", src)
-					message_admins("[ADMIN_TPMONTY(usr)] implanted [ADMIN_TPMONTY(M)] with [src.name].")
+				log_combat(user, M, "implanted", src)
+				message_admins("[ADMIN_TPMONTY(usr)] implanted [ADMIN_TPMONTY(M)] with [src.name].")
 
-					src.imp.loc = M
-					src.imp.imp_in = M
-					src.imp.implanted = 1
-					if (ishuman(M))
-						var/mob/living/carbon/human/H = M
-						var/datum/limb/affected = H.get_limb(user.zone_selected)
-						affected.implants += src.imp
-						imp.part = affected
+				imp.loc = M
+				imp.imp_in = M
+				imp.implanted = 1
+				if (ishuman(M))
+					var/mob/living/carbon/human/H = M
+					var/datum/limb/affected = H.get_limb(user.zone_selected)
+					affected.implants += imp
+					imp.part = affected
 
-						M.sec_hud_set_implants()
+					M.sec_hud_set_implants()
 
-					src.imp = null
-					update()
-				else
-					to_chat(user, "<span class='notice'> You failed to implant [M].</span>")
+				imp = null
+				update()
+			else
+				to_chat(user, "<span class='notice'> You failed to implant [M].</span>")
 
 	return
 

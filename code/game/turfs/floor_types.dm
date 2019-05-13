@@ -12,125 +12,6 @@
 	icon_state = "mono"
 	icon_regular_floor = "mono"
 
-/turf/open/floor/plating
-	name = "plating"
-	icon_state = "plating"
-	floor_tile = null
-	intact_tile = 0
-
-/turf/open/floor/plating/almayer
-	icon = 'icons/turf/almayer.dmi'
-
-/turf/open/floor/plating/almayer/striped
-	icon_state = "plating_striped"
-
-/turf/open/floor/plating/airless
-	icon_state = "plating"
-	name = "airless plating"
-
-	New()
-		..()
-		name = "plating"
-
-/turf/open/floor/plating/icefloor
-	icon_state = "plating"
-	name = "ice colony plating"
-
-	New()
-		..()
-		name = "plating"
-
-/turf/open/floor/plating/icefloor/warnplate
-	icon_state = "warnplate"
-
-/turf/open/floor/plating/plating_catwalk
-	icon = 'icons/turf/almayer.dmi'
-	icon_state = "plating_catwalk"
-	var/base_state = "plating" //Post mapping
-	name = "catwalk"
-	desc = "Cats really don't like these things."
-	var/covered = 1 //1 for theres the cover, 0 if there isn't.
-
-	Initialize()
-		. = ..()
-		icon_state = base_state
-		update_turf_overlay()
-
-/turf/open/floor/plating/plating_catwalk/proc/update_turf_overlay()
-	var/image/I = image(icon, src, "catwalk", CATWALK_LAYER)
-	I.plane = GAME_PLANE
-	switch(covered)
-		if(0)
-			overlays -= I
-			qdel(I)
-		if(1)
-			overlays += I
-
-/turf/open/floor/plating/plating_catwalk/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if (iscrowbar(W))
-		if(covered)
-			var/obj/item/stack/catwalk/R = new(usr.loc)
-			R.add_to_stacks(usr)
-			covered = 0
-			update_turf_overlay()
-			return
-	if(istype(W, /obj/item/stack/catwalk))
-		if(!covered)
-			var/obj/item/stack/catwalk/E = W
-			E.use(1)
-			covered = 1
-			update_turf_overlay()
-			return
-	..()
-
-
-/turf/open/floor/plating/plating_catwalk/prison
-	icon = 'icons/turf/prison.dmi'
-
-
-
-/turf/open/floor/plating/ironsand/New()
-	..()
-	name = "Iron Sand"
-	icon_state = "ironsand[rand(1,15)]"
-
-
-
-/turf/open/floor/plating/catwalk
-	icon = 'icons/turf/catwalks.dmi'
-	icon_state = "catwalk0"
-	name = "catwalk"
-	desc = "Cats really don't like these things."
-	layer = 2.4
-
-/turf/open/floor/plating/warning
-	icon_state = "warnplate"
-
-/turf/open/floor/plating/platebot
-	icon_state = "platebot"
-
-/turf/open/floor/plating/platebotc
-	icon_state = "platebotc"
-
-/turf/open/floor/plating/asteroidwarning // used around lv's lz2
-	icon_state = "asteroidwarning"
-
-/turf/open/floor/plating/asteroidfloor
-	icon_state = "asteroidfloor"
-
-/turf/open/floor/plating/asteroidplating
-	icon_state = "asteroidplating"
-
-/turf/open/floor/plating/dmg1
-	icon_state = "platingdmg1"
-
-/turf/open/floor/plating/dmg2
-	icon_state = "platingdmg2"
-
-/turf/open/floor/plating/dmg3
-	icon_state = "platingdmg3"
-
 /turf/open/floor/marking/loadingarea
 	icon_state = "loadingarea"
 
@@ -176,47 +57,28 @@
 
 /turf/open/floor/almayer/empty/Entered(var/atom/movable/AM)
 	..()
+	if(istype(AM, /obj/docking_port))
+		return
 	spawn(2)
 		if(AM.throwing == 0 && istype(get_turf(AM), /turf/open/floor/almayer/empty))
 			AM.visible_message("<span class='warning'>[AM] falls into the depths!</span>", "<span class='warning'>You fall into the depths!</span>")
-			if(get_area(src) == get_area(get_turf(HangarUpperElevator)))
-				var/list/droppoints = list()
-				for(var/turf/TL in get_area(get_turf(HangarLowerElevator)))
-					droppoints += TL
-				AM.forceMove(pick(droppoints))
-				if(ishuman(AM))
-					var/mob/living/carbon/human/human = AM
-					human.take_overall_damage(50, 0, "Blunt Trauma")
-					human.KnockDown(2)
-				for(var/mob/living/carbon/human/landedon in AM.loc)
-					if(AM == landedon)
-						continue
-					landedon.KnockDown(3)
-					landedon.take_overall_damage(50, 0, "Blunt Trauma")
-				if(isxeno(AM))
-					var/list/L = orange(rand(2,4))		// Not actually the fruit
-					for (var/mob/living/carbon/human/H in L)
-						H.KnockDown(3)
-						H.take_overall_damage(10, 0, "Blunt Trauma")
-				playsound(AM.loc, 'sound/effects/bang.ogg', 10, 0)
-			else
-				for(var/obj/structure/disposaloutlet/retrieval/R in GLOB.structure_list)
-					if(R.z != src.z)	continue
-					var/obj/structure/disposalholder/H = new()
-					AM.loc = H
-					sleep(10)
-					H.loc = R
-					for(var/mob/living/M in H)
-						M.take_overall_damage(100, 0, "Blunt Trauma")
-					sleep(20)
-					for(var/mob/living/M in H)
-						M.take_overall_damage(20, 0, "Blunt Trauma")
-					for(var/obj/effect/decal/cleanable/C in contents) //get rid of blood
-						qdel(C)
-					R.expel(H)
-					return
+			for(var/obj/structure/disposaloutlet/retrieval/R in GLOB.structure_list)
+				if(R.z != src.z)	continue
+				var/obj/structure/disposalholder/H = new()
+				AM.loc = H
+				sleep(10)
+				H.loc = R
+				for(var/mob/living/M in H)
+					M.take_overall_damage(100, 0, "Blunt Trauma")
+				sleep(20)
+				for(var/mob/living/M in H)
+					M.take_overall_damage(20, 0, "Blunt Trauma")
+				for(var/obj/effect/decal/cleanable/C in contents) //get rid of blood
+					qdel(C)
+				R.expel(H)
+				return
 
-				qdel(AM)
+			qdel(AM)
 
 		else
 			for(var/obj/effect/decal/cleanable/C in contents) //for the off chance of someone bleeding mid=flight
@@ -354,7 +216,7 @@
 		user.visible_message("<span class='notice'>[user] starts removing [src]'s protective cover.</span>",
 		"<span class='notice'>You start removing [src]'s protective cover.</span>")
 		playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			new /obj/item/stack/rods(src, 2)
 			ChangeTurf(/turf/open/floor)
 			var/turf/open/floor/F = src

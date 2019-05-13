@@ -12,10 +12,10 @@
 	layer = BUSH_LAYER
 	var/indestructable = 0
 	var/stump = 0
-	health = 100
+	max_integrity = 100
 
 /obj/structure/bush/New()
-	health = rand(50,75)
+	obj_integrity = rand(50,75)
 	if(prob(75))
 		opacity = 1
 
@@ -78,17 +78,17 @@
 		else
 			user.visible_message("<span class='warning'> [user] flails away at the  [src] with [I].</span>","<span class='warning'> You flail away at the [src] with [I].</span>")
 			playsound(src.loc, 'sound/effects/vegetation_hit.ogg', 25, 1)
-			health -= damage
-			if(health < 0)
+			obj_integrity -= damage
+			if(obj_integrity < 0)
 				to_chat(user, "<span class='notice'>You clear away [src].</span>")
 			healthcheck()
 	else
 		return ..()
 
 /obj/structure/bush/proc/healthcheck()
-	if(health < 35 && opacity)
+	if(obj_integrity < 35 && opacity)
 		opacity = 0
-	if(health < 0)
+	if(obj_integrity < 0)
 		if(prob(10))
 			icon_state = "stump[rand(1,2)]"
 			name = "cleared foliage"
@@ -100,7 +100,7 @@
 			qdel(src)
 
 /obj/structure/bush/flamer_fire_act(heat)
-	health -= 30
+	obj_integrity -= 30
 	healthcheck(src)
 
 //*******************************//

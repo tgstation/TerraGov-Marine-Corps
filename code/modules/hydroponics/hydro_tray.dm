@@ -6,7 +6,6 @@
 	icon_state = "hydrotray3"
 	density = 1
 	anchored = 1
-	container_type = AMOUNT_VISIBLE|REFILLABLE
 	volume = 100
 	throwpass = 1
 	layer = BELOW_OBJ_LAYER
@@ -128,7 +127,7 @@
 	..()
 	temp_chem_holder = new()
 	temp_chem_holder.create_reagents(10)
-	create_reagents(200)
+	create_reagents(200, AMOUNT_VISIBLE|REFILLABLE)
 	connect()
 	update_icon()
 	start_processing()

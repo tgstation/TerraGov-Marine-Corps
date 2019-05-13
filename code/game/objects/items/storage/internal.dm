@@ -48,12 +48,12 @@
 		if(master_item.loc != user || (master_item.loc && master_item.loc.loc == user))
 			return 0
 
-		if(!user.restrained() && !user.stat)
+		if(!user.incapacitated())
 			switch(over_object.name)
 				if("r_hand")
 					if(master_item.time_to_unequip)
 						spawn(0)
-							if(!do_after(user, master_item.time_to_unequip, TRUE, 5, BUSY_ICON_GENERIC))
+							if(!do_after(user, master_item.time_to_unequip, TRUE, master_item, BUSY_ICON_FRIENDLY))
 								to_chat(user, "You stop taking off \the [master_item]")
 							else
 								user.dropItemToGround(master_item)
@@ -65,7 +65,7 @@
 				if("l_hand")
 					if(master_item.time_to_unequip)
 						spawn(0)
-							if(!do_after(user, master_item.time_to_unequip, TRUE, 5, BUSY_ICON_GENERIC))
+							if(!do_after(user, master_item.time_to_unequip, TRUE, master_item, BUSY_ICON_FRIENDLY))
 								to_chat(user, "You stop taking off \the [master_item]")
 							else
 								user.dropItemToGround(master_item)

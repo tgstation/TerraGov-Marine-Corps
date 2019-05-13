@@ -75,8 +75,6 @@ Note: Must be placed within 3 tiles of the NT Research Console
 		to_chat(user, "<span class='warning'> The Nanotrasen Brand Organic Analyzer is busy right now.</span>")
 		return
 	if (istype(O, /obj/item/XenoBio) && !loaded_item)
-		if(iscyborg(user)) //Don't put your module items in there!
-			return
 		if(!O.origin_tech)
 			to_chat(user, "<span class='warning'>Can't do anything with that, maybe something organic...!</span>")
 			return

@@ -11,11 +11,7 @@
 	speed = 0
 	mob_size = MOB_SIZE_BIG
 	var/list/huggers = list()
-	var/threw_a_hugger = 0
 	var/eggs_cur = 0
-	var/used_spawn_facehugger = FALSE
-	var/last_spawn_facehugger
-	var/cooldown_spawn_facehugger = 100 //10 seconds; keeping this as a var for now as I may have it adjust with upgrade level
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
 	pixel_x = -16 //Needed for 2x2
