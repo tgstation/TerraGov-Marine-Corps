@@ -363,3 +363,9 @@
 	id = "plantbgone"
 	results = list("plantbgone" = 5)
 	required_reagents = list("toxin" = 1, "water" = 4)
+
+/datum/chemical_reaction/laughter
+	name = "laughter"
+	id = "laughter"
+	results = list("laughter" = 5)
+	required_reagents = list("sugar" = 1, "banana" = 1)

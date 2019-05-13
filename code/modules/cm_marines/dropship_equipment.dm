@@ -359,7 +359,8 @@
 	if(deployed_turret)
 		playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
 		deployment_cooldown = world.time + 50
-		deployed_turret.on = 1
+		deployed_turret.on = TRUE
+		deployed_turret.update_icon()
 		deployed_turret.loc = get_step(src, dir)
 		icon_state = "sentry_system_deployed"
 
@@ -368,7 +369,8 @@
 		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		deployment_cooldown = world.time + 50
 		deployed_turret.loc = src
-		deployed_turret.on = 0
+		deployed_turret.on = FALSE
+		deployed_turret.update_icon()
 		icon_state = "sentry_system_installed"
 
 
