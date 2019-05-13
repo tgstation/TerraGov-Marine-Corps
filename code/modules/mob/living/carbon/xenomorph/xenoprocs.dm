@@ -647,7 +647,7 @@
 
 	to_chat(src, "<span class='notice'>You start salvaging plasma from [target].</span>")
 
-	while(target.plasma_stored && plasma_stored >= xeno_caste.plasma_max)
+	while(target.plasma_stored && plasma_stored < xeno_caste.plasma_max)
 		if(!do_after(src, salvage_delay, TRUE, null, BUSY_ICON_HOSTILE) || !check_state())
 			break
 
