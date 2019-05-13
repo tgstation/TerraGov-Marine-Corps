@@ -934,6 +934,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/numpad = text2num(href_list["numpad"])
 			// var/key_code = text2num(href_list["key_code"])
 
+			// TODO: Mapping for DEL / Insert / pgup etc.
+
 			var/new_key = uppertext(key)
 			// NumpadX, and Space are special cases and doesn't work just uppercase
 			new_key = new_key == "SPACEBAR" ? "Space" : new_key
