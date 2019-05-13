@@ -68,6 +68,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	move_delay = 4
 	obj_integrity = 600
 	max_integrity = 600
+	anchored = TRUE //No bumping / pulling the tonk
 	//Who's driving the tonk
 	var/mob/living/carbon/human/pilot
 	var/mob/living/carbon/human/gunner
@@ -363,13 +364,16 @@ This handles stuff like swapping seats, pulling people out of the tank, all that
 					"<span class='notice'>you forcibly pull [occupant] out of [src].</span>", null, 6)
 	occupant.KnockDown(4)
 
-/obj/vehicle/tonk/Bumped(var/atom/A, yes)
-	..()
-	if(istype(A, /mob/living/carbon/Xenomorph/Crusher))
+/obj/vehicle/tonk/Bumped(var/atom/A) //Don't ..() because then you can shove the tank into a wall.
+	if(isliving(A))
+		if(istype(A, /mob/living/carbon/Xenomorph/Crusher))
 
-		var/mob/living/carbon/Xenomorph/Crusher/C = A
+			var/mob/living/carbon/Xenomorph/Crusher/C = A
 
-		if(C.charge_speed < CHARGE_SPEED_MAX/(1.1)) //Arbitrary ratio here, might want to apply a linear transformation instead
-			return
+			if(C.charge_speed < CHARGE_SPEED_MAX/(1.1)) //Arbitrary ratio here, might want to apply a linear transformation instead
+				return
 
-		take_damage(C.charge_speed * CRUSHER_CHARGE_TANK_MULTI)
+			take_damage(C.charge_speed * CRUSHER_CHARGE_TANK_MULTI)
+		return
+	else
+		. = ..()
