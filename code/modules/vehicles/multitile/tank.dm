@@ -3,7 +3,7 @@
 //Read the documentation in cm_armored.dm and multitile.dm before trying to decipher this stuff
 
 
-/obj/vehicle/multitile/root/cm_armored/tank
+/obj/vehicle/tank
 	name = "\improper M34A2 Longstreet Light Tank"
 	desc = "A giant piece of armor with a big gun, you know what to do. Entrance in the back."
 
@@ -33,7 +33,7 @@
 
 /obj/effect/multitile_spawner/cm_armored/tank/Initialize()
 	. = ..()
-	var/obj/vehicle/multitile/root/cm_armored/tank/R = new(loc)
+	var/obj/vehicle/tank/R = new(loc)
 	R.setDir(EAST)
 
 	var/datum/coords/dimensions = new
@@ -75,7 +75,7 @@
 							HDPT_TREADS = /obj/item/hardpoint/treads/standard)
 
 //For the tank, start forcing people out if everything is broken
-/obj/vehicle/multitile/root/cm_armored/tank/handle_all_modules_broken()
+/obj/vehicle/tank/handle_all_modules_broken()
 	deactivate_all_hardpoints()
 
 	if(driver)
@@ -89,7 +89,7 @@
 		gunner.unset_interaction()
 		gunner = null
 
-/obj/vehicle/multitile/root/cm_armored/tank/remove_all_players()
+/obj/vehicle/tank/remove_all_players()
 	deactivate_all_hardpoints()
 	for(var/mob/living/L in (contents + loc.contents))
 		if(!entrance) //Something broke, uh oh
@@ -100,7 +100,7 @@
 	driver = null
 
 //Let's you switch into the other seat, doesn't work if it's occupied
-/obj/vehicle/multitile/root/cm_armored/tank/verb/switch_seats()
+/obj/vehicle/tank/verb/switch_seats()
 	set name = "Swap Seats"
 	set category = "Vehicle"
 	set src in view(0)
@@ -117,7 +117,7 @@
 	to_chat(usr, "<span class='notice'>You start getting into the other seat.</span>")
 	addtimer(CALLBACK(src, .proc/seat_switched, wannabe_trucker, usr), 3 SECONDS)
 
-/obj/vehicle/multitile/root/cm_armored/tank/proc/seat_switched(wannabe_trucker, mob/living/user)
+/obj/vehicle/tank/proc/seat_switched(wannabe_trucker, mob/living/user)
 
 	var/player = wannabe_trucker ? gunner : driver
 	var/challenger = wannabe_trucker ? driver : gunner
@@ -135,7 +135,7 @@
 	driver = wannabe_trucker ? user : null
 	gunner = wannabe_trucker ? null : user
 
-/obj/vehicle/multitile/root/cm_armored/tank/can_use_hp(mob/M)
+/obj/vehicle/tank/can_use_hp(mob/M)
 	if(!M || M != gunner)
 		return FALSE
 	if(!M.IsAdvancedToolUser())
@@ -143,7 +143,7 @@
 		return FALSE
 	return !M.incapacitated()
 
-/obj/vehicle/multitile/root/cm_armored/tank/handle_harm_attack(mob/M, mob/occupant)
+/obj/vehicle/tank/handle_harm_attack(mob/M, mob/occupant)
 	. = ..()
 	if(!.)
 		return
@@ -166,7 +166,7 @@
 
 //Two seats, gunner and driver
 //Must have the skills to do so
-/obj/vehicle/multitile/root/cm_armored/tank/handle_player_entrance(mob/living/carbon/M)
+/obj/vehicle/tank/handle_player_entrance(mob/living/carbon/M)
 	. = ..()
 	if(!. || !istype(M) || M.action_busy)
 		return
@@ -217,7 +217,7 @@
 	M.set_interaction(src)
 
 //Deposits you onto the exit marker
-/obj/vehicle/multitile/root/cm_armored/tank/handle_player_exit(mob/M)
+/obj/vehicle/tank/handle_player_exit(mob/M)
 
 	if(!(M in list(gunner, driver))) //someone whom isn't supposed to be here to begin with.
 		exit_tank(M, TRUE)
@@ -233,7 +233,7 @@
 
 	addtimer(CALLBACK(src, .proc/exit_tank, M), 5 SECONDS)
 
-/obj/vehicle/multitile/root/cm_armored/tank/proc/exit_tank(mob/M, forced = FALSE, silent = FALSE)
+/obj/vehicle/tank/proc/exit_tank(mob/M, forced = FALSE, silent = FALSE)
 	if(!forced)
 		occupant_exiting = null
 
@@ -264,7 +264,7 @@
 		to_chat(M, "<span class='notice'>You climb out of [src].</span>")
 
 //No one but the driver can drive
-/obj/vehicle/multitile/root/cm_armored/tank/relaymove(mob/user, direction)
+/obj/vehicle/tank/relaymove(mob/user, direction)
 	if(user != driver || user.incapacitated())
 		return
 
@@ -293,7 +293,7 @@
 		next_sound_play = world.time + 21
 
 //No one but the driver can turn
-/obj/vehicle/multitile/root/cm_armored/tank/try_rotate(deg, mob/user, force = FALSE)
+/obj/vehicle/tank/try_rotate(deg, mob/user, force = FALSE)
 
 	if(user != driver || user.incapacitated())
 		return
@@ -307,12 +307,12 @@
 		C.pixel_x = old_x*cos(deg) - old_y*sin(deg)
 		C.pixel_y = old_x*sin(deg) + old_y*cos(deg)
 
-/obj/vehicle/multitile/hitbox/cm_armored/tank/get_driver()
-	var/obj/vehicle/multitile/root/cm_armored/tank/T = root
+/obj/vehicle/hitbox/cm_armored/tank/get_driver()
+	var/obj/vehicle/tank/T = root
 	return T?.driver
 
 
-/obj/vehicle/multitile/root/cm_armored/tank/take_damage_type(damage, type, atom/attacker)
+/obj/vehicle/tank/take_damage_type(damage, type, atom/attacker)
 	. = ..()
 
 	if(istype(attacker, /mob))
@@ -325,7 +325,7 @@
 		log_combat(driver, null, "[src] took [damage] [type] damage [ismob(attacker) ? "from [key_name(attacker)]" : ""].")
 
 
-/obj/vehicle/multitile/root/cm_armored/proc/click_action(A, mob/user, params)
+/obj/vehicle/proc/click_action(A, mob/user, params)
 	if(istype(A, /obj/screen) || A == src)
 		return FALSE
 

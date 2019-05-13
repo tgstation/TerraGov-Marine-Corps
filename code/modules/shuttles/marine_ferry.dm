@@ -56,11 +56,11 @@
 					main_doors += M
 
 	for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/D in main_doors)
-		for(var/obj/vehicle/multitile/M in D.loc)
+		for(var/obj/vehicle/M in D.loc)
 			if(M) return 0
 
 		for(var/turf/T in D.get_filler_turfs())
-			for(var/obj/vehicle/multitile/M in T)
+			for(var/obj/vehicle/M in T)
 				if(M) return 0
 
 		//No return 1 here in case future elevators have multiple multi_tile doors
@@ -347,14 +347,14 @@
 			for(var/turf/TU in shuttle_controller.locs_crash)
 				if(istype(get_area(TU), /area/almayer/hallways/hangar))
 					crash_turfs += TU
-			if(crash_turfs.len) 
+			if(crash_turfs.len)
 				T_trg = pick(crash_turfs)
-			else 
+			else
 				message_admins("ERROR: No crash turf found in [CONFIG_GET(string/ship_name)] Hangar.")
 			break
 
 	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))
-		log_admin("ERROR: Shuttle reference turfs not correctly instantiated.")		
+		log_admin("ERROR: Shuttle reference turfs not correctly instantiated.")
 		message_admins("ERROR: Shuttle reference turfs not correctly instantiated.")
 
 	shuttle_controller.locs_crash -= T_trg
@@ -491,7 +491,7 @@
 	//Switch the landmarks so we can do this again
 	if(!istype(T_src) || !istype(T_trg))
 		log_admin("ERROR: Shuttles ref turfs are null.")
-		message_admins("ERROR: Shuttle ref turfs are null.")		
+		message_admins("ERROR: Shuttle ref turfs are null.")
 		return FALSE
 
 	locs_dock -= T_src
@@ -737,11 +737,11 @@
 		//An argument can be made for tanks being allowed to block the door, but
 		//	that would make this already relatively expensive and inefficent even more so
 		//	--MadSnailDisease
-		for(var/obj/vehicle/multitile/M in E.loc)
+		for(var/obj/vehicle/M in E.loc)
 			if(M) return 0
 
 		for(var/turf/T in E.locs) //For some reason elevators use different multidoor code, this should work though
-			for(var/obj/vehicle/multitile/M in T)
+			for(var/obj/vehicle/M in T)
 				if(M) return 0
 
 		//No return 1 here in case future elevators have multiple multi_tile doors

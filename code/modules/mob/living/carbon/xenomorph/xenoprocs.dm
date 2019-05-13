@@ -578,11 +578,6 @@
 	. = ..()
 	return FALSE // not normal density flag
 
-/obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/Xenomorph/X)
-	take_damage_type(rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X), "acid", src)
-	healthcheck()
-	return TRUE
-
 /mob/living/carbon/acid_spray_act(mob/living/carbon/Xenomorph/X)
 	if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest))
 		return

@@ -39,7 +39,7 @@
 	if(amount > 0 && (charge_speed > CHARGE_SPEED_MAX * 0.5) ) //If we're over half the max charge speed, we don't accumulate more stagger stacks.
 		return FALSE
 	stagger = max(stagger + amount,0)
-	return stagger 
+	return stagger
 
 //The atom collided with is passed to this proc, all types of collisions are dealt with here.
 //The atom does not tell the Crusher how to handle a collision, the Crusher is an independant
@@ -80,14 +80,14 @@
 			stop_momentum(charge_dir)
 			return FALSE
 
-	if(istype(target, /obj/vehicle/multitile/hitbox))
-		var/obj/vehicle/multitile/hitbox/H = target
+	if(istype(target, /obj/vehicle))
+		var/obj/vehicle/carcrash = target
 		if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
-			visible_message("<span class='danger'>[src] rams into [H.root] and skids to a halt!</span>",
-			"<span class='xenowarning'>You ram into [H.root] and skid to a halt!</span>")
+			visible_message("<span class='danger'>[src] rams into [carcrash] and skids to a halt!</span>",
+			"<span class='xenowarning'>You ram into [carcrash] and skid to a halt!</span>")
 			flags_pass = 0
 			update_icons()
-			H.root.Bumped(src)
+			carcrash.Bumped(src)
 			stop_momentum(charge_dir)
 			return TRUE
 		else

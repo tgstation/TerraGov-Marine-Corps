@@ -23,6 +23,7 @@
 	var/obj/item/cell/cell
 	var/charge_use = 5	//set this to adjust the amount of power the vehicle uses per move
 	var/lastsound = 0
+	var/demolish_on_ram = FALSE //For tank collision code. Stops cargo tugs from demolishing walls
 
 //-------------------------------------------
 // Standard procs

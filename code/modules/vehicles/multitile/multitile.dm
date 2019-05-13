@@ -29,7 +29,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	name = "Entrance marker"
 	desc = "Marker for the entrance of a multitile vehicle."
 
-	var/obj/vehicle/multitile/root/master
+	var/obj/vehicle/master
 	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/effect/multitile_entrance/Destroy(force = FALSE)
@@ -58,7 +58,7 @@ Vehicles are placed on the map by a spawner or admin verb
 
 	invisibility = INVISIBILITY_MAXIMUM
 
-	var/obj/vehicle/multitile/root/master
+	var/obj/vehicle/master
 */
 
 /*
@@ -71,23 +71,23 @@ Vehicles are placed on the map by a spawner or admin verb
 */
 
 //Super super generic, doesn't really need to exist
-/obj/vehicle/multitile
+/obj/vehicle
 	name = "multitile vehicle"
 	desc = "You shouldn't see this"
 
-/obj/vehicle/multitile/relaymove(mob/user, direction)
+/obj/vehicle/relaymove(mob/user, direction)
 	return
 
 //Hitboxes, do notthing but move with the root object and take up space
 //All interactions like bullets or whatever should be passed up to the root object
-/obj/vehicle/multitile/hitbox
+/obj/vehicle/hitbox
 	name = "hitbox"
 	desc = "Generic multitile vehicle hitbox"
 
-	var/obj/vehicle/multitile/root/root
+	var/obj/vehicle/root
 	invisibility = INVISIBILITY_MAXIMUM
 
-/obj/vehicle/multitile/root
+/obj/vehicle
 	name = "root"
 	desc = "Root tile for multitile vehicles"
 
@@ -114,10 +114,10 @@ Vehicles are placed on the map by a spawner or admin verb
 
 	var/base_icon_type = "" //e.g. "tank" or "apc", used to assign icons to the hitboxes
 
-	var/hitbox_type = /obj/vehicle/multitile/hitbox
+	var/hitbox_type = /obj/vehicle/hitbox
 
 //How to get out, via verb
-/obj/vehicle/multitile/root/verb/exit_multitile()
+/obj/vehicle/verb/exit_multitile()
 	set category = "Vehicle"
 	set name = "Exit Vehicle"
 	set src in view(0)
@@ -125,21 +125,21 @@ Vehicles are placed on the map by a spawner or admin verb
 	if(!usr.incapacitated(TRUE))
 		handle_player_exit(usr)
 
-/obj/vehicle/multitile/root/proc/handle_player_exit(mob/M)
+/obj/vehicle/proc/handle_player_exit(mob/M)
 	return
 
-/obj/vehicle/multitile/root/proc/handle_player_entrance(mob/living/M)
+/obj/vehicle/proc/handle_player_entrance(mob/living/M)
 	if(M.resting || M.buckled || M.incapacitated())
 		return FALSE
 	return TRUE
 
-/obj/vehicle/multitile/root/proc/handle_harm_attack(mob/living/M)
+/obj/vehicle/proc/handle_harm_attack(mob/living/M)
 	if(M.resting || M.buckled || M.incapacitated())
 		return FALSE
 	return TRUE
 
 //Vebrs for rotations, set up a macro and get turnin
-/obj/vehicle/multitile/root/verb/clockwise_rotate_multitile()
+/obj/vehicle/verb/clockwise_rotate_multitile()
 	set category = "Vehicle"
 	set name = "Rotate Vehicle Clockwise"
 	set src in view(0)
@@ -147,7 +147,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	var/mob/M = usr
 	try_rotate(-90, M)
 
-/obj/vehicle/multitile/root/verb/counterclockwise_rotate_multitile()
+/obj/vehicle/verb/counterclockwise_rotate_multitile()
 	set category = "Vehicle"
 	set name = "Rotate Vehicle Counterclockwise"
 	set src in view(0)
@@ -156,7 +156,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	try_rotate(90, M)
 
 //A wrapper for try_move() that rotates
-/obj/vehicle/multitile/root/proc/try_rotate(deg, mob/user, force = FALSE)
+/obj/vehicle/proc/try_rotate(deg, mob/user, force = FALSE)
 	save_locs()
 	rotate_coords(deg)
 	if(!try_move(linked_objs, null, TRUE))
@@ -169,7 +169,7 @@ Vehicles are placed on the map by a spawner or admin verb
 
 //Called when players try to move from inside the vehicle
 //Another wrapper for try_move()
-/obj/vehicle/multitile/root/relaymove(mob/user, direction)
+/obj/vehicle/relaymove(mob/user, direction)
 	if(dir in list(EAST, WEST))
 		if(direction == SOUTH)
 			return try_rotate( (dir == WEST ? 90 : -90), user, 1)
@@ -192,7 +192,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	setDir(old_dir) //Preserve the direction you're facing when moving backwards
 	return TRUE
 
-/obj/vehicle/multitile/root/Initialize()
+/obj/vehicle/Initialize()
 	. = ..()
 	var/datum/coords/C = new
 	C.x_pos = 0
@@ -200,14 +200,14 @@ Vehicles are placed on the map by a spawner or admin verb
 	C.y_pos = 0
 	linked_objs[C] = src
 
-/obj/vehicle/multitile/root/proc/load_hitboxes(datum/coords/dimensions, datum/coords/root_pos)
+/obj/vehicle/proc/load_hitboxes(datum/coords/dimensions, datum/coords/root_pos)
 	return
 
-/obj/vehicle/multitile/root/proc/load_entrance_marker(datum/coords/rel_pos)
+/obj/vehicle/proc/load_entrance_marker(datum/coords/rel_pos)
 	return
 
 //Saves where everything is so we can revert
-/obj/vehicle/multitile/root/proc/save_locs()
+/obj/vehicle/proc/save_locs()
 
 	for(var/datum/coords/C in linked_objs)
 		var/atom/movable/A = linked_objs[C]
@@ -220,7 +220,7 @@ Vehicles are placed on the map by a spawner or admin verb
 		old_locs[A] = A.loc
 
 //We were unable to move, so revert everything we may have done so far
-/obj/vehicle/multitile/root/proc/revert_locs()
+/obj/vehicle/proc/revert_locs()
 
 	for(var/datum/coords/C in linked_objs)
 		var/atom/movable/A = linked_objs[C]
@@ -230,7 +230,7 @@ Vehicles are placed on the map by a spawner or admin verb
 			O.buckled_mob?.loc = old_locs[A]
 
 //Forces the root object to move so everything can update relative to it
-/obj/vehicle/multitile/root/proc/move_root(direction)
+/obj/vehicle/proc/move_root(direction)
 
 	var/turf/T = get_step(loc, direction)
 	loc = T
@@ -244,7 +244,7 @@ Vehicles are placed on the map by a spawner or admin verb
 //			This is so if one hitbox is blocking another, eventually they will both move
 //Step 4: If on this level of recursion, we couldn't move any more things, we've failed
 //Step 5: Continue steps 1 through 4 until we fail or succeed
-/obj/vehicle/multitile/root/proc/try_move(list/objs, direction, is_rotation = FALSE)
+/obj/vehicle/proc/try_move(list/objs, direction, is_rotation = FALSE)
 
 	var/list/blocked = list() //What couldn't move this time
 	for(var/datum/coords/C in objs) //objs is an associative list like linked_objs
@@ -256,9 +256,9 @@ Vehicles are placed on the map by a spawner or admin verb
 			//BUT, then the hitbox that ends of up in the wrong place tries to move later on
 			//The only instance where this can cause problems is if you have two hitboxes tryign to move to the same tile
 			//If you do, you're probably doing something wrong
-			var/obj/vehicle/multitile/M
+			var/obj/vehicle/M
 			for(var/i in T) //Get the one to swap with
-				if(istype(i, /obj/vehicle/multitile))
+				if(istype(i, /obj/vehicle))
 					M = i
 					break
 			if(istype(M))
@@ -289,7 +289,7 @@ Vehicles are placed on the map by a spawner or admin verb
 		return FALSE //Shouldn't even be possible, so say we failed anyways
 
 //Applies the 2D transformation matrix to the saved coords
-/obj/vehicle/multitile/root/proc/rotate_coords(deg)
+/obj/vehicle/proc/rotate_coords(deg)
 
 	for(var/datum/coords/C in linked_objs)
 

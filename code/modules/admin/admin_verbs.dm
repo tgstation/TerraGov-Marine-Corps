@@ -365,7 +365,7 @@
 	var/path = usr.client.holder.browse_folders()
 	if(!path)
 		return
-	
+
 	usr.client.holder.recursive_download(path)
 
 
@@ -1295,11 +1295,11 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/obj/vehicle/multitile/root/cm_armored/CA in GLOB.object_list)
-		CA.remove_all_players()
+	for(var/obj/vehicle/tonk/getthefuckout in GLOB.object_list)
+		getthefuckout.remove_all_players()
 
-		log_admin("[key_name(usr)] forcibly removed all players from [CA].")
-		message_admins("[ADMIN_TPMONTY(usr)] forcibly removed all players from [CA].")
+		log_admin("[key_name(usr)] forcibly removed all players from [getthefuckout].")
+		message_admins("[ADMIN_TPMONTY(usr)] forcibly removed all players from [getthefuckout].")
 
 
 /datum/admins/proc/job_slots()

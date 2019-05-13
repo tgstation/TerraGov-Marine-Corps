@@ -69,6 +69,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	obj_integrity = 600
 	max_integrity = 600
 	anchored = TRUE //No bumping / pulling the tonk
+	demolish_on_ram = TRUE
 	//Who's driving the tonk
 	var/mob/living/carbon/human/pilot
 	var/mob/living/carbon/human/gunner
@@ -185,6 +186,11 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 			pilot = user
 		if("gunner")
 			gunner = user
+
+
+/obj/vehicle/tonk/proc/remove_all_players()
+	for(var/M in operators)
+		exit_tank(M)
 
 /obj/vehicle/tonk/proc/exit_tank(var/mob/user) //By this point, we've checked that the seats are actually empty, so we won't need to do that again HOPEFULLY
 	if(!user)

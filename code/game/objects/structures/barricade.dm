@@ -100,10 +100,12 @@
 				return FALSE
 		return TRUE
 
-	if(istype(mover, /obj/vehicle/multitile))
-		visible_message("<span class='danger'>[mover] drives over and destroys [src]!</span>")
-		destroy_structure(0)
-		return FALSE
+	if(istype(mover, /obj/vehicle))
+		var/obj/vehicle/carcrash = mover
+		if(carcrash.demolish_on_ram)
+			visible_message("<span class='danger'>[mover] drives over and destroys [src]!</span>")
+			destroy_structure(0)
+			return FALSE
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others

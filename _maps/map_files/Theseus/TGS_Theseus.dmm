@@ -23085,9 +23085,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/exoarmor)
-"bbE" = (
-/turf/open/floor/almayer/mono,
-/area/almayer/hallways/exoarmor)
 "bbF" = (
 /turf/closed/wall/almayer,
 /area/almayer/hallways/exoarmor)
@@ -23133,10 +23130,6 @@
 	name = "Tank Garage Shutters";
 	pixel_x = 25
 	},
-/turf/open/floor/almayer/mono,
-/area/almayer/hallways/exoarmor)
-"bbO" = (
-/obj/machinery/tank_part_fabricator,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/exoarmor)
 "bbP" = (
@@ -24296,7 +24289,6 @@
 	},
 /area/almayer/hallways/exoarmor)
 "beR" = (
-/obj/effect/multitile_spawner/cm_armored/tank,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/exoarmor)
 "beS" = (
@@ -65083,10 +65075,10 @@ aVk
 aVm
 aVs
 bbD
-bbE
-bbE
-bbE
-bbE
+beR
+beR
+beR
+beR
 bgY
 bgb
 biJ
@@ -65339,12 +65331,12 @@ aaa
 aVk
 aVm
 aVs
-bbE
-bbE
+beR
+beR
 bfU
-bbE
+beR
 bfT
-bbE
+beR
 bhY
 biK
 bjC
@@ -65596,12 +65588,12 @@ aaa
 aVk
 aVm
 aVs
-bbE
+beR
 hhV
-bbE
-bbE
-bbE
-bbE
+beR
+beR
+beR
+beR
 bhY
 biK
 bjC
@@ -65853,12 +65845,12 @@ aaa
 aVk
 aVm
 aVs
-bbE
+beR
 bdL
 bfU
-bbE
+beR
 bfU
-bbE
+beR
 bhZ
 biK
 bjC
@@ -66113,9 +66105,9 @@ aVs
 bbD
 bdL
 bfX
-bbE
+beR
 bfV
-bbE
+beR
 bgb
 biL
 bjC
@@ -66883,10 +66875,10 @@ aVn
 aVs
 bbG
 bdL
-bbE
-bbE
-bbE
-bbE
+beR
+beR
+beR
+beR
 bgb
 bbQ
 bjC
@@ -67140,9 +67132,9 @@ aVn
 aVs
 bbH
 bdL
-bbE
-bbE
-bbE
+beR
+beR
+beR
 bgZ
 bgb
 biJ
@@ -67400,7 +67392,7 @@ bdL
 beM
 beM
 beM
-bbE
+beR
 bia
 biK
 bjC
@@ -67657,7 +67649,7 @@ bdL
 beN
 beN
 beN
-bbE
+beR
 bia
 biK
 bjC
@@ -68171,7 +68163,7 @@ bdL
 beP
 beP
 beP
-bbE
+beR
 bia
 biK
 bjE
@@ -68425,9 +68417,9 @@ aVm
 aVs
 bbM
 bdL
-bbE
-bbE
-bbE
+beR
+beR
+beR
 bgZ
 bgb
 biL
@@ -68682,10 +68674,10 @@ aVm
 aVs
 bbN
 bdL
-bbE
-bbE
-bbE
-bbE
+beR
+beR
+beR
+beR
 bgb
 bbQ
 bjF
@@ -69453,10 +69445,10 @@ aVm
 aVs
 bdV
 bdL
-bbE
-bbE
+beR
+beR
 bfX
-bbE
+beR
 bgb
 biJ
 bjE
@@ -69711,9 +69703,9 @@ aVs
 bfZ
 bdL
 bfU
-bbE
+beR
 bfY
-bbE
+beR
 bic
 biK
 bjE
@@ -69965,12 +69957,12 @@ aaa
 aVk
 aVm
 aVs
-bbO
-hxX
-bbE
 beR
-bbE
-bbE
+hxX
+beR
+beR
+beR
+beR
 bic
 biK
 bjE
@@ -70222,12 +70214,12 @@ aaa
 aVk
 aVm
 aVs
-bbE
-bbE
+beR
+beR
 bfU
-bbE
+beR
 bfU
-bbE
+beR
 bid
 biK
 bjE
@@ -70480,11 +70472,11 @@ aVk
 bag
 aVs
 bbD
-bbE
-bbE
-bbE
-bbE
-bbE
+beR
+beR
+beR
+beR
+beR
 bgb
 biL
 bjE

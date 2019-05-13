@@ -181,7 +181,7 @@
 	var/is_animating = 0
 
 /obj/structure/bed/chair/dropship/passenger/CanPass(var/atom/movable/mover, var/turf/target, var/height = 0, var/air_group = 0)
-	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/multitile) && !is_animating)
+	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle) && !is_animating)
 		visible_message("<span class='danger'>[mover] slams into [src] and breaks it!</span>")
 		spawn(0)
 			fold_down(1)
