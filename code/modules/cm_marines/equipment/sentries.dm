@@ -1157,6 +1157,7 @@
 /obj/machinery/marine_turret/premade/dropship
 	name = "UA-577 Gauss Dropship Turret"
 	density = FALSE
+	on = FALSE
 	safety_off = TRUE
 	burst_size = 10
 	burst_delay = 15
