@@ -167,5 +167,5 @@
 	if(linked_claymore.triggered) //Mine is already set to go off
 		return
 
-	if(linked_claymore && ismob(A))
+	if(linked_claymore && isliving(A))
 		linked_claymore.Bumped(A)
