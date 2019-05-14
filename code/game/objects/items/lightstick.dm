@@ -10,19 +10,18 @@
 	l_color = "#47A3FF" //Blue
 	var/s_color = "blue"
 
-/obj/item/lightstick/Crossed(mob/living/O)
+/obj/item/lightstick/Crossed(mob/living/L)
 	. = ..()
-	if(anchored && prob(20) && istype(O) && !isxenolarva(O))
-		visible_message("<span class='danger'>[O] tramples the [src]!</span>")
-		playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
-		if(isxeno(O) && prob(40))
-			qdel(src)
-			return
-		anchored = FALSE
-		icon_state = "lightstick_[s_color][anchored]"
-		SetLuminosity(0)
-		pixel_x = 0
-		pixel_y = 0
+	if(!anchored || prob(80) || !istype(L) || isxenolarva(L))
+		return
+	visible_message("<span class='danger'>[L] tramples the [src]!</span>")
+	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
+	if(isxeno(L) && prob(40))
+		qdel(src)
+		return
+	anchored = FALSE
+	icon_state = "lightstick_[s_color][anchored]"
+	SetLuminosity(0)
 
 	//Removing from turf
 /obj/item/lightstick/attack_hand(mob/user)
@@ -38,8 +37,6 @@
 	user.visible_message("[user.name] removes \the [src] from the ground.","You remove the [src] from the ground.")
 	icon_state = "lightstick_[s_color][anchored]"
 	SetLuminosity(0)
-	pixel_x = 0
-	pixel_y = 0
 	playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
 
 	//Remove lightsource
