@@ -11,6 +11,8 @@
  * 		Crowbar
  */
 
+//toolspeed is used to change the speed of how fast this tool works lower is faster
+
 /*
  * Wrench
  */
@@ -28,7 +30,7 @@
 	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 	tool_behaviour = TOOL_WRENCH
-	toolspeed = 1
+
 
 
 /*
@@ -49,7 +51,7 @@
 	matter = list("metal" = 75)
 	attack_verb = list("stabbed")
 	tool_behaviour = TOOL_SCREWDRIVER
-	toolspeed = 1
+
 
 /obj/item/tool/screwdriver/suicide_act(mob/user)
 	user.visible_message("<span class='danger'>[user] is stabbing the [name] into [user.p_their()] [pick("temple","heart")]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
@@ -112,7 +114,7 @@
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 1
 	tool_behaviour = TOOL_WIRECUTTER
-	toolspeed = 1
+
 
 /obj/item/tool/wirecutters/Initialize()
 	. = ..()
@@ -148,7 +150,7 @@
 	throw_range = 5
 	w_class = 2.0
 	tool_behaviour = TOOL_WELDER
-	toolspeed = 1
+
 
 	//Cost to make in the autolathe
 	matter = list("metal" = 70, "glass" = 30)
@@ -400,7 +402,7 @@
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 	pry_capable = IS_PRY_CAPABLE_CROWBAR
 	tool_behaviour = TOOL_CROWBAR
-	toolspeed = 1
+
 
 /obj/item/tool/crowbar/red
 	icon = 'icons/obj/items/items.dmi'

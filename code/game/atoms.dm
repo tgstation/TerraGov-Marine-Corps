@@ -630,10 +630,10 @@ Proc for attack log creation, because really why not
 
 // Tool-specific behavior procs. To be overridden in subtypes.
 /atom/proc/crowbar_act(mob/living/user, obj/item/I)
-	return
+	return FALSE
 
 /atom/proc/multitool_act(mob/living/user, obj/item/I)
-	return
+	return FALSE
 
 /atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
 	if(!istype(I, /obj/item/multitool))
@@ -647,19 +647,19 @@ Proc for attack log creation, because really why not
 	SEND_SIGNAL(src, COMSIG_ATOM_SCREWDRIVER_ACT, user, I)
 
 /atom/proc/wrench_act(mob/living/user, obj/item/I)
-	return
+	return FALSE
 
 /atom/proc/wirecutter_act(mob/living/user, obj/item/I)
-	return
+	return FALSE
 
 /atom/proc/welder_act(mob/living/user, obj/item/I)
-	return
+	return FALSE
 
 /atom/proc/weld_cut_act(mob/living/user, obj/item/I)
-	return
+	return FALSE
 
 /atom/proc/analyzer_act(mob/living/user, obj/item/I)
-	return
+	return FALSE
 
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	return
