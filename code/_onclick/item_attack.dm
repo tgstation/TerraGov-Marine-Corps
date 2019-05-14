@@ -1,10 +1,31 @@
 
+/obj/item/proc/melee_attack_chain(mob/user, atom/target, params)
+	if(!tool_attack_chain(user, target) && pre_attack(target, user, params))
+		// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
+		var/resolved = target.attackby(src, user, params)
+		if(!resolved && target && !QDELETED(src))
+			afterattack(target, user, 1, params) // 1: clicking something Adjacent
+
+
+
+//Checks if the item can work as a tool, calling the appropriate tool behavior on the target
+/obj/item/proc/tool_attack_chain(mob/user, atom/target)
+	if(!tool_behaviour)
+		return FALSE
+
+	return target.tool_act(user, src, tool_behaviour)
+
+
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
 		return
 	return
 
+
+
+/obj/item/proc/pre_attack(atom/A, mob/living/user, params) //do stuff before attackby!
+	return TRUE //return FALSE to avoid calling attackby after this proc does stuff
 
 
 /atom/proc/attackby(obj/item/W, mob/user, params)
