@@ -1,0 +1,5 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - rscadd: "Adds a bottle of base toxin to the med-vendors contraband for your chemistry needs."
+  - balance: "Balanced plantbgone effects on resin structures to scale with volume."
