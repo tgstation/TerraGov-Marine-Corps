@@ -227,7 +227,8 @@
 	var/datum/effect_system/spark_spread/spark_system //The spark system, used for generating... sparks?
 	var/obj/item/cell/cell = null
 	var/burst_fire = FALSE
-	var/obj/machinery/camera/camera = null
+	var/obj/machinery/camera/camera
+	var/has_camera = TRUE
 	var/fire_delay = 3
 	var/burst_delay = 5
 	var/last_fired = 0
@@ -281,9 +282,10 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	cell = new /obj/item/cell/high(src)
-	camera = new (src)
-	camera.network = list("military")
-	camera.c_tag = "[name] ([rand(0, 1000)])"
+	if(has_camera)
+		camera = new (src)
+		camera.network = list("military")
+		camera.c_tag = "[name] ([rand(0, 1000)])"
 	machine_stat = NOFLAGS
 	//START_PROCESSING(SSobj, src)
 	ammo = GLOB.ammo_list[ammo]
@@ -292,17 +294,11 @@
 
 /obj/machinery/marine_turret/Destroy() //Clear these for safety's sake.
 	QDEL_NULL(radio)
-	if(operator)
-		operator.unset_interaction()
-		operator = null
-	if(camera)
-		qdel(camera)
-		camera = null
-	if(cell)
-		qdel(cell)
-		cell = null
-	if(target)
-		target = null
+	operator?.unset_interaction()
+	operator = null
+	QDEL_NULL(camera)
+	QDEL_NULL(cell)
+	target = null
 	alert_list = list()
 	SetLuminosity(0)
 	stop_processing()
@@ -472,7 +468,7 @@
 				target = null
 				on = TRUE
 				SetLuminosity(7)
-				if(!camera)
+				if(has_camera && !camera)
 					camera = new /obj/machinery/camera(src)
 					camera.network = list("military")
 					camera.c_tag = src.name
@@ -1106,13 +1102,11 @@
 	magazine_type = /obj/item/ammo_magazine/sentry/premade/dumb
 	rounds_max = 500
 	alerts_on = FALSE
+	has_camera = FALSE
 
 /obj/machinery/marine_turret/premade/dumb/Initialize()
 	. = ..()
 	rounds = 500
-	camera.network = null
-	camera.c_tag = null
-	camera = null
 
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
@@ -1358,7 +1352,7 @@
 	target = null
 	on = TRUE
 	SetLuminosity(7)
-	if(!camera)
+	if(has_camera && !camera)
 		camera = new /obj/machinery/camera(src)
 		camera.network = list("military")
 		camera.c_tag = src.name
