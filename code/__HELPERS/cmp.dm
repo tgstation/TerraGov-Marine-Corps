@@ -22,6 +22,12 @@
 /proc/cmp_list_dsc(list/a, list/b, sortkey)
 	return sorttext(a[sortkey], b[sortkey])
 
+/proc/cmp_keybinding_asc(datum/keybinding/a, datum/keybinding/b)
+	return cmp_numeric_asc(a.weight, b.weight)
+
+/proc/cmp_keybinding_dsc(datum/keybinding/a, datum/keybinding/b)
+	return cmp_numeric_dsc(a.weight, b.weight)
+
 /proc/cmp_records_asc(datum/data/record/a, datum/data/record/b, sortkey)
 	return sorttext(b.fields[sortkey], a.fields[sortkey])
 

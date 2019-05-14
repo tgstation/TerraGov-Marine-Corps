@@ -23,7 +23,7 @@
 		return FALSE
 
 	if(savefile_version < 24)
-		S["key_bindings"] << GLOB.default_kb.Copy()
+		S["key_bindings"] << deepCopyList(GLOB.keybinding_list_by_key)
 
 	if(savefile_version < 23)
 		S["hotkeys"] << TRUE
@@ -97,7 +97,7 @@
 	ghost_hud 		= sanitize_integer(ghost_hud, 0, 8388608, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
 
-	key_bindings 	= sanitize_islist(key_bindings, GLOB.default_kb) 
+	key_bindings 	= sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key)) 
 
 	return TRUE
 

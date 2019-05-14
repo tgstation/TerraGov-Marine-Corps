@@ -423,11 +423,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 
 /datum/preferences/proc/ShowKeybindings(mob/user)
+	// Create an inverted list of keybindings -> key
+	var/list/user_binds = list()
+	for (var/key in key_bindings)
+		for (var/datum/keybinding/kb in key_bindings[key])
+			user_binds[kb] = key
+
 	var/HTML = "<style>label { display: inline-block; width: 200px; }</style><body><br>"
 
 	HTML += "<h3>Action: Keybinding</h3>"
-	for (var/kb in key_bindings)
-		HTML += "<label>[kb]</label>: <a href ='?_src_=prefs;preference=keybindings_capture;action=[kb];key=[key_bindings[kb]]'>[key_bindings[kb]]</a>"
+	for (var/name in GLOB.keybindings_by_name)
+		var/datum/keybinding/keybinding = GLOB.keybindings_by_name[name]
+		var/bound_key = user_binds[keybinding]
+		bound_key = (bound_key) ? bound_key : "Unbound"
+
+		HTML += "<label>[keybinding.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[keybinding.name];old_key=[bound_key]'>[bound_key] Default: ( [keybinding.key] )</a>"
 		HTML += "<br>"
 
 	HTML += "<br><br>"
@@ -436,22 +446,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	HTML += "</body>"
 
 	winshow(user, "keybindings", TRUE)
-	var/datum/browser/popup = new(user, "keybindings", "<div align='center'>Keybindings</div>", 350, 600)
+	var/datum/browser/popup = new(user, "keybindings", "<div align='center'>Keybindings</div>", 450, 600)
 	popup.set_content(HTML)
 	popup.open(FALSE)
 	onclose(user, "keybindings", src)
 
 
-/datum/preferences/proc/CaptureKeybinding(mob/user, action)
+/datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, var/old_key)
 	var/HTML = {"
-	<div id='focus' style="font-weight: 800; outline: 0;" tabindex=0>Action: [action]<br>Press any key</div>
+	<div id='focus' style="outline: 0;" tabindex=0>Keybinding: [kb.full_name]<br>[kb.description]<br><br><b>Press any key to change<br>Press ESC to clear</b></div>
 	<script>
 	document.onkeyup = function(e) {
 		var shift = e.shiftKey ? 1 : 0;
 		var alt = e.altKey ? 1 : 0;
 		var ctrl = e.ctrlKey ? 1 : 0;
 		var numpad = (95 < e.keyCode && e.keyCode < 112) ? 1 : 0;
-		var url = 'byond://?_src_=prefs;preference=keybindings_set;action=[action];key='+e.key+';shift='+shift+';alt='+alt+';ctrl='+ctrl+';numpad='+numpad+';key_code='+e.keyCode;
+		var escPressed = e.keyCode == 27 ? 1 : 0;
+		var url = 'byond://?_src_=prefs;preference=keybindings_set;keybinding=[kb];old_key=[old_key];clear_key='+escPressed+';key='+e.key+';shift='+shift+';alt='+alt+';ctrl='+ctrl+';numpad='+numpad+';key_code='+e.keyCode;
 		window.location=url;
 	}
 	document.getElementById('focus').focus();
@@ -921,26 +932,41 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return
 
 		if("keybindings_capture")
-			var/action = href_list["action"]
-			CaptureKeybinding(user, action)
-
+			var/datum/keybinding/kb = GLOB.keybindings_by_name[href_list["keybinding"]]
+			var/old_key = href_list["old_key"]
+			CaptureKeybinding(user, kb, old_key)
 			return
+
 		if("keybindings_set")
-			var/action = href_list["action"]
+			var/datum/keybinding/kb = GLOB.keybindings_by_name[href_list["keybinding"]]
+			var/clear_key = text2num(href_list["clear_key"])
+			var/old_key = href_list["old_key"]
+			if (clear_key)
+				if (old_key != "Unbound") // if it was already set
+					key_bindings[old_key] -= kb
+				user << browse(null, "window=capturekeypress")
+				ShowKeybindings(user)
+				return
+
 			var/key = href_list["key"]
-			var/shift = text2num(href_list["shift"])
-			var/alt = text2num(href_list["alt"])
-			var/ctrl = text2num(href_list["ctrl"])
 			var/numpad = text2num(href_list["numpad"])
-			var/key_code = text2num(href_list["key_code"])
-			to_chat(user, "key press [action] - [key] - [shift] - [alt] - [ctrl] - [numpad] - [key_code]")
+			// TODO: Handle holding shift or alt down
+			// var/shift = text2num(href_list["shift"])
+			// var/alt = text2num(href_list["alt"])
+			// var/ctrl = text2num(href_list["ctrl"])
+			// var/key_code = text2num(href_list["key_code"])
 
 			var/new_key = uppertext(key)
 			// NumpadX, and Space are special cases and doesn't work just uppercase
 			new_key = new_key == "SPACEBAR" ? "Space" : new_key
 			if (numpad)
 				new_key = "Numpad[new_key]"
-			key_bindings[action] = new_key
+			key_bindings[new_key] += list(kb)
+			key_bindings[new_key] = sortKeybindings(key_bindings[new_key])
+			
+			if (old_key != "Unbound")
+				key_bindings[old_key] -= kb
+
 			user << browse(null, "window=capturekeypress")
 			ShowKeybindings(user)
 			return
@@ -949,7 +975,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			user << browse(null, "window=keybindings")
 		
 		if("keybindings_reset")
-			key_bindings = GLOB.default_kb 
+			key_bindings = deepCopyList(GLOB.keybinding_list_by_key)
 			ShowKeybindings(user)
 			return
 
