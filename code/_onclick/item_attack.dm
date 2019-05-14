@@ -1,10 +1,11 @@
 
 /obj/item/proc/melee_attack_chain(mob/user, atom/target, params)
-	if(!tool_attack_chain(user, target) && pre_attack(target, user, params))
-		// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
-		var/resolved = target.attackby(src, user, params)
-		if(!resolved && target && !QDELETED(src))
-			afterattack(target, user, 1, params) // 1: clicking something Adjacent
+	if(tool_attack_chain(user, target))
+		return
+	// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
+	var/resolved = target.attackby(src, user, params)
+	if(!resolved && target && !QDELETED(src))
+		afterattack(target, user, TRUE, params) // TRUE: clicking something Adjacent
 
 
 
@@ -21,12 +22,6 @@
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
 		return
 	return
-
-
-
-/obj/item/proc/pre_attack(atom/A, mob/living/user, params) //do stuff before attackby!
-	return TRUE //return FALSE to avoid calling attackby after this proc does stuff
-
 
 /atom/proc/attackby(obj/item/W, mob/user, params)
 	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, W, user, params) & COMPONENT_NO_AFTERATTACK)
