@@ -195,8 +195,12 @@
 		lifetime = smoke_time
 
 /datum/effect_system/smoke_spread/start()
+	location = get_turf(location)
 	if(QDELETED(location) && !QDELETED(holder))
 		location = get_turf(holder)
+		if(QDELETED(location))
+			stack_trace("Smoke spread start() called without a turf to spawn smoke on.[holder ? " Holder : [holder]" : ".. and no assigned holder."]")
+			return
 	new smoke_type(location, range, lifetime, src)
 
 /////////////////////////////////////////////
@@ -296,8 +300,12 @@ datum/effect_system/smoke_spread/tactical
 	var/strength = 1
 
 /datum/effect_system/smoke_spread/xeno/start()
+	location = get_turf(location)
 	if(QDELETED(location) && !QDELETED(holder))
 		location = get_turf(holder)
+		if(QDELETED(location))
+			stack_trace("Smoke spread start() called without a turf to spawn smoke on.[holder ? " Holder : [holder]" : ".. and no assigned holder."]")
+			return
 	var/obj/effect/particle_effect/smoke/xeno/S = new smoke_type(location, range, lifetime, src)
 	S.strength = strength
 
@@ -355,9 +363,13 @@ datum/effect_system/smoke_spread/tactical
 			log_game("A chemical smoke reaction has taken place in ([where])[contained]. No associated key.")
 
 /datum/effect_system/smoke_spread/chem/start()
-	var/mixcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
+	location = get_turf(location)
 	if(QDELETED(location) && !QDELETED(holder))
 		location = get_turf(holder)
+		if(QDELETED(location))
+			stack_trace("Smoke spread start() called without a turf to spawn smoke on.[holder ? " Holder : [holder]" : ".. and no assigned holder."]")
+			return
+	var/mixcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
 	var/obj/effect/particle_effect/smoke/chem/S = new smoke_type(location, range, lifetime, src)
 
 	if(chemholder.reagents.total_volume > 1) // can't split 1 very well
