@@ -63,6 +63,13 @@
 #define ui_gun_attachment 	"EAST-3:-10,1:+5"
 #define ui_gun_unique 		"EAST-3:-4,1:+2"
 
+//Upper-middle right (alerts)
+#define ui_alert1 "EAST-1:28,CENTER+5:27"
+#define ui_alert2 "EAST-1:28,CENTER+4:25"
+#define ui_alert3 "EAST-1:28,CENTER+3:23"
+#define ui_alert4 "EAST-1:28,CENTER+2:21"
+#define ui_alert5 "EAST-1:28,CENTER+1:19"
+
 //Upper-middle right (damage indicators)
 #define ui_toxin "EAST-1:28,13:27"
 #define ui_fire "EAST-1:28,12:25"

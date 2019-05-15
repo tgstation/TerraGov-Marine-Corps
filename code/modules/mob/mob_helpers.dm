@@ -400,6 +400,41 @@ mob/proc/get_standard_bodytemperature()
 
 	return ..()
 
+
+/proc/notify_ghosts(var/message, var/ghost_sound = null, var/enter_link = null, var/atom/source = null, var/mutable_appearance/alert_overlay = null, var/action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_suiciders = TRUE, var/notify_volume = 100) //Easy notification of ghosts.
+	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
+		return
+	for(var/mob/dead/observer/O in GLOB.player_list)
+		if(!O.client)
+			continue
+		if(!notify_suiciders && (O in GLOB.suicided_mob_list))
+			continue
+		var/orbit_link
+		if (source && action == NOTIFY_ORBIT)
+			orbit_link = " <a href='?src=[REF(O)];track=[REF(source)]'>(Orbit)</a>"
+		to_chat(O, "<span class='ghostalert'>[message][(enter_link) ? " [enter_link]" : ""][orbit_link]</span>")
+		if(ghost_sound)
+			SEND_SOUND(O, sound(ghost_sound, volume = notify_volume))
+		if(flashwindow)
+			window_flash(O.client)
+
+		if(!source)
+			continue
+
+		var/obj/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /obj/screen/alert/notify_action)
+		if(!A)
+			continue
+		if (header)
+			A.name = header
+		A.desc = message
+		A.action = action
+		A.target = source
+		if(!alert_overlay)
+			alert_overlay = new(source)
+		alert_overlay.layer = FLOAT_LAYER
+		alert_overlay.plane = FLOAT_PLANE
+		A.add_overlay(alert_overlay)
+
 /mob/verb/a_select_zone(input as text, screen_num as null|num)
 	set name = "a-select-zone"
 	set hidden = TRUE
