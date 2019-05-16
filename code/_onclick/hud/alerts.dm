@@ -113,18 +113,6 @@
 
 //GHOSTS
 //TODO: expand this system to replace the pollCandidates/CheckAntagonist/"choose quickly"/etc Yes/No messages
-/obj/screen/alert/notify_cloning
-	name = "Revival"
-	desc = "Someone is trying to revive you. Re-enter your corpse if you want to be revived!"
-	icon_state = "template"
-	timeout = 300
-
-/obj/screen/alert/notify_cloning/Click()
-	if(!usr || !usr.client)
-		return
-	var/mob/dead/observer/G = usr
-	G.reenter_corpse()
-
 /obj/screen/alert/notify_action
 	name = "Body created"
 	desc = "A body was created. You can enter it."
@@ -168,10 +156,10 @@
 /datum/hud/proc/reorganize_alerts()
 	var/list/alerts = mymob.alerts
 	if(!hud_shown)
-		for(var/i = 1, i <= alerts.len, i++)
+		for(var/i in 1 to length(alerts))
 			mymob.client.screen -= alerts[alerts[i]]
 		return 1
-	for(var/i = 1, i <= alerts.len, i++)
+	for(var/i in 1 to length(alerts))
 		var/obj/screen/alert/alert = alerts[alerts[i]]
 		// if(alert.icon_state == "template")
 		// 	alert.icon = ui_style
