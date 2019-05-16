@@ -410,10 +410,13 @@ mob/proc/get_standard_bodytemperature()
 			continue
 		if(!notify_suiciders && (O in GLOB.suicided_mob_list))
 			continue
-		var/orbit_link
+		var/track_link
 		if (source && action == NOTIFY_ORBIT)
-			orbit_link = " <a href='?src=[REF(O)];track=[REF(source)]'>(Orbit)</a>"
-		to_chat(O, "<span class='deadsay'>[message][(enter_link) ? " [enter_link]" : ""][orbit_link]</span>")
+			track_link = " <a href='?src=[REF(O)];track=[REF(source)]'>(Follow)</a>"
+		if (source && action == NOTIFY_JUMP)
+			var/turf/T = get_turf(source)
+			track_link = " <a href=?src=[REF(O)];jump=1;x=[T.x];y=[T.y];z=[T.z]>(Jump)</a>"
+		to_chat(O, "<span class='deadsay'>[message][(enter_link) ? " [enter_link]" : ""][track_link]</span>")
 		if(ghost_sound)
 			SEND_SOUND(O, sound(ghost_sound, volume = notify_volume))
 		if(flashwindow)

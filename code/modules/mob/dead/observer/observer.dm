@@ -28,6 +28,8 @@
 	var/atom/movable/following = null
 	initial_language_holder = /datum/language_holder/universal
 
+	var/observetarget // used to show hud
+
 
 /mob/dead/observer/Initialize()
 	. = ..()
@@ -55,12 +57,29 @@
 		var/mob/target = locate(href_list["track"]) in GLOB.mob_list
 		if(istype(target))
 			ManualFollow(target)
+			return
 		else
 			var/atom/movable/AM = locate(href_list["track"])
 			ManualFollow(AM)
-			
+			return
 		
+			
+	else if(href_list["jump"])
+		var/x = text2num(href_list["x"])
+		var/y = text2num(href_list["y"])
+		var/z = text2num(href_list["z"])
 
+		if(x == 0 && y == 0 && z == 0)
+			return
+
+		var/turf/T = locate(x, y, z)
+		if(!T)
+			return
+
+		var/mob/dead/observer/A = usr
+		A.on_mob_jump()
+		A.forceMove(T)
+		return
 
 	else if(href_list["claim"])
 		var/mob/living/target = locate(href_list["claim"]) in GLOB.mob_list
@@ -638,6 +657,7 @@
 	if(client.eye != client.mob)
 		client.perspective = MOB_PERSPECTIVE
 		client.eye = client.mob
+		observetarget = null
 		return
 
 	var/mob/target = input("Please select a mob:", "Observe", null, null) as null|anything in GLOB.mob_list
@@ -647,6 +667,7 @@
 	if(client && target)
 		client.perspective = EYE_PERSPECTIVE
 		client.eye = target
+		observetarget = target
 
 
 /mob/dead/observer/verb/dnr()

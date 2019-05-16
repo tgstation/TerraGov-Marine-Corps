@@ -109,3 +109,12 @@
 #define ui_head "WEST+1:8,4:11"
 
 #define ui_sl_dir "CENTER,CENTER"
+
+
+
+// Ghosts
+#define ui_ghost_slot1 "SOUTH:6,CENTER-2:24"
+#define ui_ghost_slot2 "SOUTH:6,CENTER-1:24"
+#define ui_ghost_slot3 "SOUTH:6,CENTER:24"
+#define ui_ghost_slot4 "SOUTH:6,CENTER+1:24"
+#define ui_ghost_slot5 "SOUTH:6,CENTER+2:24"
