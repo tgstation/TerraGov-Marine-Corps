@@ -114,10 +114,10 @@
 //GHOSTS
 //TODO: expand this system to replace the pollCandidates/CheckAntagonist/"choose quickly"/etc Yes/No messages
 /obj/screen/alert/notify_action
-	name = "Body created"
-	desc = "A body was created. You can enter it."
+	name = "Notification"
+	desc = "A new notification. You can enter it."
 	icon_state = "template"
-	timeout = 300
+	timeout = 15 SECONDS
 	var/atom/target = null
 	var/action = NOTIFY_JUMP
 
@@ -158,13 +158,13 @@
 	if(!alerts)
 		return FALSE
 	if(!hud_shown)
-		for(var/i in alerts)
-			var/obj/screen/alert/alert = i
+		for(var/category in alerts)
+			var/obj/screen/alert/alert = alerts[category]
 			mymob.client.screen -= alert
 		return TRUE
 	var/c = 0
-	for(var/i in alerts)
-		var/obj/screen/alert/alert = i
+	for(var/category in alerts)
+		var/obj/screen/alert/alert = alerts[category]
 		c++
 		switch(c)
 			if(1)

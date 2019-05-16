@@ -413,7 +413,7 @@ mob/proc/get_standard_bodytemperature()
 		var/orbit_link
 		if (source && action == NOTIFY_ORBIT)
 			orbit_link = " <a href='?src=[REF(O)];track=[REF(source)]'>(Orbit)</a>"
-		to_chat(O, "<span class='ghostalert'>[message][(enter_link) ? " [enter_link]" : ""][orbit_link]</span>")
+		to_chat(O, "<span class='deadsay'>[message][(enter_link) ? " [enter_link]" : ""][orbit_link]</span>")
 		if(ghost_sound)
 			SEND_SOUND(O, sound(ghost_sound, volume = notify_volume))
 		if(flashwindow)
