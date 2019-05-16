@@ -4,14 +4,6 @@
 /obj/screen/ghost/MouseEntered()
 	flick(icon_state + "_anim", src)
 
-// /obj/screen/ghost/jumptomob
-// 	name = "Jump to mob"
-// 	icon_state = "jumptomob"
-
-// /obj/screen/ghost/jumptomob/Click()
-// 	var/mob/dead/observer/G = usr
-// 	G.follow()
-
 /obj/screen/ghost/orbit
 	name = "Follow"
 	icon_state = "orbit"
@@ -28,29 +20,10 @@
 	var/mob/dead/observer/G = usr
 	G.reenter_corpse()
 
-// /obj/screen/ghost/teleport
-// 	name = "Teleport"
-// 	icon_state = "teleport"
-
-// /obj/screen/ghost/teleport/Click()
-// 	var/mob/dead/observer/G = usr
-// 	G.dead_tele()
-
-// /obj/screen/ghost/pai
-// 	name = "pAI Candidate"
-// 	icon_state = "pai"
-
-// /obj/screen/ghost/pai/Click()
-// 	var/mob/dead/observer/G = usr
-// 	G.register_pai()
 
 /datum/hud/ghost/New(mob/owner, ui_style='icons/mob/screen1_White.dmi')
 	..()
 	var/obj/screen/using
-
-	// using = new /obj/screen/ghost/jumptomob()
-	// using.screen_loc = ui_ghost_slot1
-	// static_inventory += using
 
 	using = new /obj/screen/ghost/orbit()
 	using.screen_loc = ui_ghost_slot2
@@ -60,17 +33,6 @@
 	using.screen_loc = ui_ghost_slot3
 	static_inventory += using
 
-	// using = new /obj/screen/ghost/teleport()
-	// using.screen_loc = ui_ghost_slot4
-	// static_inventory += using
-
-	// using = new /obj/screen/ghost/pai()
-	// using.screen_loc = ui_ghost_slot5
-	// static_inventory += using
-
-	// using = new /obj/screen/language_menu
-	// using.icon = ui_style
-	// static_inventory += using
 
 /datum/hud/ghost/show_hud(version = 0, mob/viewmob)
 	// don't show this HUD if observing; show the HUD of the observee
