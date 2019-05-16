@@ -22,7 +22,7 @@
 	if(alerts[category])
 		thealert = alerts[category]
 		if(thealert.override_alerts)
-			return 0
+			return FALSE
 		if(new_master && new_master != thealert.master)
 			WARNING("[src] threw alert [category] with new_master [new_master] while already having that alert with master [thealert.master]")
 
@@ -36,7 +36,7 @@
 				clear_alert(category)
 				return .()
 			else //no need to update
-				return 0
+				return FALSE
 	else
 		thealert = new type()
 		thealert.override_alerts = override
@@ -77,9 +77,9 @@
 /mob/proc/clear_alert(category, clear_override = FALSE)
 	var/obj/screen/alert/alert = alerts[category]
 	if(!alert)
-		return 0
+		return FALSE
 	if(alert.override_alerts && !clear_override)
-		return 0
+		return FALSE
 
 	alerts -= category
 	if(client && hud_used)
@@ -155,15 +155,18 @@
 // Re-render all alerts - also called in /datum/hud/show_hud() because it's needed there
 /datum/hud/proc/reorganize_alerts()
 	var/list/alerts = mymob.alerts
+	if(!alerts)
+		return FALSE
 	if(!hud_shown)
-		for(var/i in 1 to length(alerts))
-			mymob.client.screen -= alerts[alerts[i]]
-		return 1
-	for(var/i in 1 to length(alerts))
-		var/obj/screen/alert/alert = alerts[alerts[i]]
-		// if(alert.icon_state == "template")
-		// 	alert.icon = ui_style
-		switch(i)
+		for(var/i in alerts)
+			var/obj/screen/alert/alert = i
+			mymob.client.screen -= alert
+		return TRUE
+	var/c = 0
+	for(var/i in alerts)
+		var/obj/screen/alert/alert = i
+		c++
+		switch(c)
 			if(1)
 				. = ui_alert1
 			if(2)
@@ -178,7 +181,7 @@
 				. = ""
 		alert.screen_loc = .
 		mymob.client.screen |= alert
-	return 1
+	return TRUE
 
 /mob
 	var/list/alerts = list() // contains /obj/screen/alert only // On /mob so clientless mobs will throw alerts properly
