@@ -299,7 +299,7 @@
 
 	if(now_pushing) return FALSE //Just a plain ol turf, let's return.
 
-	if(dir != charge_dir) //We aren't facing the way we're charging.
+	if(dir != charge_dir || moving_diagonally) //We aren't facing the way we're charging.
 		stop_momentum()
 		return ..()
 

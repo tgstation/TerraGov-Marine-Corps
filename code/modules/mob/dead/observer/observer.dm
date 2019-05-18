@@ -178,21 +178,26 @@
 	following = null
 
 
-/mob/dead/observer/Move(NewLoc, direct)
-	unfollow()
+/mob/dead/observer/Move(atom/newloc, direct)
+	var/oldloc = loc
 	setDir(direct)
-	if(NewLoc)
-		loc = NewLoc
+	if(loc != newloc)
+		unfollow()
+	if(newloc)
+		forceMove(newloc)
 		return
-	loc = get_turf(src)
-	if((direct & NORTH) && y < world.maxy)
-		y++
-	else if((direct & SOUTH) && y > 1)
-		y--
-	if((direct & EAST) && x < world.maxx)
-		x++
-	else if((direct & WEST) && x > 1)
-		x--
+	else
+		forceMove(get_turf(src))  //Get out of closets and such as a ghost
+		if((direct & NORTH) && y < world.maxy)
+			y++
+		else if((direct & SOUTH) && y > 1)
+			y--
+		if((direct & EAST) && x < world.maxx)
+			x++
+		else if((direct & WEST) && x > 1)
+			x--
+
+	Moved(oldloc, direct)
 
 
 /mob/dead/observer/examine(mob/user)
@@ -533,7 +538,7 @@
 			ManualFollow(L)
 
 
-/mob/dead/observer/proc/ManualFollow(var/atom/movable/target)
+/mob/dead/observer/proc/ManualFollow(atom/movable/target)
 	set waitfor = FALSE
 
 	if(target && target != src)
@@ -542,17 +547,8 @@
 		unfollow()
 		target.followers += src
 		following = target
-		loc = target.loc
+		forceMove(target.loc)
 		to_chat(src, "<span class='notice'>Now following [target]</span>")
-		spawn(0) //Backup
-			while(target && following == target && client)
-				var/turf/T = get_turf(target)
-				if(!T)
-					break
-				// To stop the ghost flickering.
-				if(loc != T)
-					loc = T
-				sleep(15)
 
 
 /mob/dead/observer/verb/analyze_air()
@@ -693,3 +689,23 @@
 		to_chat(src, "<span class='notice'>You will now examine everything you click on.</span>")
 	else
 		to_chat(src, "<span class='notice'>You will no longer examine things you click on.</span>")
+
+
+/mob/dead/observer/reset_perspective(atom/A)
+	if(client && ismob(client.eye) && client.eye != src)
+		var/mob/target = client.eye
+		following = null
+		if(target.followers)
+			target.followers -= src
+			UNSETEMPTY(target.followers)
+
+	. = ..()
+	
+	if(!.)
+		return
+
+	if(!hud_used)
+		return
+
+	client.screen = list()
+	hud_used.show_hud(hud_used.hud_version)

@@ -26,7 +26,6 @@
 	var/list/logging = list()
 	var/atom/movable/interactee //the thing that the mob is currently interacting with (e.g. a computer, another mob (stripping a mob), manning a hmg)
 	var/sdisabilities = 0	//Carbon
-	var/atom/movable/pulling
 	var/next_move
 	var/next_move_slowdown = 0	// Amount added during the next movement_delay(), then is reset.
 	var/hand
