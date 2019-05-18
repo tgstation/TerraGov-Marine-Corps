@@ -607,6 +607,9 @@
 	tag = "mob_[next_mob_id++]"
 
 
+/mob/proc/get_paygrade()
+	return ""
+
 // facing verbs
 /mob/proc/canface()
 	if(!canmove)						return 0

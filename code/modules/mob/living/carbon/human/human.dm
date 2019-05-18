@@ -397,7 +397,7 @@
 
 //gets paygrade from ID
 //paygrade is a user's actual rank, as defined on their ID.  size 1 returns an abbreviation, size 0 returns the full rank name, the third input is used to override what is returned if no paygrade is assigned.
-/mob/living/carbon/human/proc/get_paygrade(size = 1)
+/mob/living/carbon/human/get_paygrade(size = 1)
 	if(species.show_paygrade)
 		var/obj/item/card/id/id = wear_id
 		if(istype(id))
