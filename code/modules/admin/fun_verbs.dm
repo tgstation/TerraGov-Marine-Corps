@@ -739,9 +739,6 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(!istype(H))
-		return
-
 	var/dat
 	var/obj/item/card/id/C = H.wear_id
 
