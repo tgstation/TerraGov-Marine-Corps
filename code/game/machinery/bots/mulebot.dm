@@ -699,14 +699,11 @@
 	if(wires.is_cut(WIRE_AVOIDANCE))		//usually just bumps, but if avoidance disabled knock over mobs
 		var/mob/M = obs
 		if(ismob(M))
-			if(istype(M,/mob/living/silicon/robot))
-				src.visible_message("<span class='warning'> [src] bumps into [M]!</span>")
-			else
-				src.visible_message("<span class='warning'> [src] knocks over [M]!</span>")
-				M.stop_pulling()
-				M.Stun(8)
-				M.KnockDown(5)
-				M.lying = 1
+			visible_message("<span class='warning'> [src] knocks over [M]!</span>")
+			M.stop_pulling()
+			M.Stun(8)
+			M.KnockDown(5)
+			M.lying = 1
 	..()
 
 /obj/machinery/bot/mulebot/alter_health()
