@@ -162,8 +162,9 @@ proc/age2agedescription(age)
 			break
 
 		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
-			. = FALSE
-			break
+			if(Uloc != Tloc || Tloc != user)
+				. = FALSE
+				break
 
 		if(needhand && user.get_active_held_item() != holding)
 			. = FALSE
