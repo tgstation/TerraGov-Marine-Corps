@@ -1,0 +1,5 @@
+author: "LaKiller8"
+delete-after: True
+changes: 
+  - code_imp: "SSinput has been ported from /tg/."
+  - tweak: "Diagonal movement is now possible."
