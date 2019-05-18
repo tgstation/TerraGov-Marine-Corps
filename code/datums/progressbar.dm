@@ -191,18 +191,18 @@
 	icon_state = "prog_bar_4"
 
 /datum/progressicon
-	var/image/progress/display/display
-	var/image/progress/display/display_tag = BUSY_ICON_GENERIC
+	var/image/progdisplay/display
+	var/image/progdisplay/display_tag = BUSY_ICON_GENERIC
 	var/atom/target
 
-/datum/progressicon/New(atom/T, image/progress/display/new_display)
+/datum/progressicon/New(atom/T, image/progdisplay/new_display)
 	. = ..()
 	if(new_display)
 		display_tag = new_display
 	target = T
 	LAZYINITLIST(target.display_icons)
 	for(var/A in target.display_icons)
-		var/image/progress/display/D = A
+		var/image/progdisplay/D = A
 		if(D.icon_state == initial(display_tag.icon_state))
 			display = D
 			break
@@ -223,38 +223,38 @@
 		QDEL_NULL(display)
 	return ..()
 
-/image/progress/display
+/image/progdisplay
 	icon = 'icons/effects/progressicons.dmi'
 	icon_state = "busy_generic"
-	plane = FLY_LAYER
+	appearance_flags = APPEARANCE_UI
 	alpha = 255
 	pixel_y = 32
 
-/image/progress/display/medical
+/image/progdisplay/medical
 	icon_state = "busy_medical"
 	pixel_y = 0
 
-/image/progress/display/construction
+/image/progdisplay/construction
 	icon_state = "busy_build"
 
-/image/progress/display/friendly
+/image/progdisplay/friendly
 	icon_state = "busy_friendly"
 
-/image/progress/display/hostile
+/image/progdisplay/hostile
 	icon_state = "busy_hostile"
 
-/image/progress/display/clock
+/image/progdisplay/clock
 	icon_state = "busy_clock"
 
-/image/progress/display/clock/alt
+/image/progdisplay/clock/alt
 	icon_state = "busy_clock2"
 
-/image/progress/display/danger
+/image/progdisplay/danger
 	icon_state = "busy_danger"
 
-/image/progress/display/bar
+/image/progdisplay/bar
 	icon_state = "busy_bar"
 
-/image/progress/display/unskilled
+/image/progdisplay/unskilled
 	icon_state = "busy_questionmark"
 
