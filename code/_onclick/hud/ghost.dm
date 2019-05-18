@@ -22,7 +22,7 @@
 
 
 /datum/hud/ghost/New(mob/owner, ui_style='icons/mob/screen1_White.dmi')
-	..()
+	. = ..()
 	var/obj/screen/using
 
 	using = new /obj/screen/ghost/orbit()

@@ -122,7 +122,7 @@
 	var/action = NOTIFY_JUMP
 
 /obj/screen/alert/notify_action/Click()
-	if(!usr || !usr.client)
+	if(!usr?.client)
 		return
 	if(!target)
 		return
@@ -134,7 +134,7 @@
 			target.attack_ghost(G)
 		if(NOTIFY_JUMP)
 			var/turf/T = get_turf(target)
-			if(T && isturf(T))
+			if(T)
 				G.forceMove(T)
 		if(NOTIFY_ORBIT)
 			G.ManualFollow(target)
@@ -155,7 +155,7 @@
 // Re-render all alerts - also called in /datum/hud/show_hud() because it's needed there
 /datum/hud/proc/reorganize_alerts()
 	var/list/alerts = mymob.alerts
-	if(!alerts)
+	if(!length(alerts))
 		return FALSE
 	if(!hud_shown)
 		for(var/category in alerts)
@@ -187,7 +187,7 @@
 	var/list/alerts = list() // contains /obj/screen/alert only // On /mob so clientless mobs will throw alerts properly
 
 /obj/screen/alert/Click(location, control, params)
-	if(!usr || !usr.client)
+	if(!usr?.client)
 		return
 	var/paramslist = params2list(params)
 	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff so we'll cheat
