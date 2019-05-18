@@ -220,7 +220,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	var/aspect_ratio = view_size[1] / view_size[2]
 
 	// Calculate desired pixel width using window size and aspect ratio
-	var/sizes = params2list(winget(src, "mainwindow.mainvsplit;mapwindow", "size"))
+	var/sizes = params2list(winget(src, "mainwindow.split;mapwindow", "size"))
 	var/map_size = splittext(sizes["mapwindow.size"], "x")
 	var/height = text2num(map_size[2])
 	var/desired_width = round(height * aspect_ratio)
@@ -228,13 +228,13 @@ var/global/normal_ooc_colour = "#002eb8"
 		// Nothing to do
 		return
 
-	var/split_size = splittext(sizes["mainwindow.mainvsplit.size"], "x")
+	var/split_size = splittext(sizes["mainwindow.split.size"], "x")
 	var/split_width = text2num(split_size[1])
 
 	// Calculate and apply a best estimate
 	// +4 pixels are for the width of the splitter's handle
 	var/pct = 100 * (desired_width + 4) / split_width
-	winset(src, "mainwindow.mainvsplit", "splitter=[pct]")
+	winset(src, "mainwindow.split", "splitter=[pct]")
 
 	// Apply an ever-lowering offset until we finish or fail
 	var/delta
@@ -254,4 +254,4 @@ var/global/normal_ooc_colour = "#002eb8"
 			delta = -delta/2
 
 		pct += delta
-		winset(src, "mainwindow.mainvsplit", "splitter=[pct]")
+		winset(src, "mainwindow.split", "splitter=[pct]")
