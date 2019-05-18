@@ -122,12 +122,12 @@
 	var/action = NOTIFY_JUMP
 
 /obj/screen/alert/notify_action/Click()
-	if(!usr?.client)
-		return
-	if(!target)
-		return
 	var/mob/dead/observer/G = usr
 	if(!istype(G))
+		return
+	if(!G.client)
+		return
+	if(!target)
 		return
 	switch(action)
 		if(NOTIFY_ATTACK)
@@ -182,9 +182,6 @@
 		alert.screen_loc = .
 		mymob.client.screen |= alert
 	return TRUE
-
-/mob
-	var/list/alerts = list() // contains /obj/screen/alert only // On /mob so clientless mobs will throw alerts properly
 
 /obj/screen/alert/Click(location, control, params)
 	if(!usr?.client)

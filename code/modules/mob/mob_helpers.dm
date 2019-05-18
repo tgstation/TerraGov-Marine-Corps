@@ -401,14 +401,12 @@ mob/proc/get_standard_bodytemperature()
 	return ..()
 
 
-/proc/notify_ghosts(var/message, var/ghost_sound = null, var/enter_link = null, var/atom/source = null, var/mutable_appearance/alert_overlay = null, var/action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_suiciders = TRUE, var/notify_volume = 100) //Easy notification of ghosts.
+/proc/notify_ghosts(var/message, var/ghost_sound = null, var/enter_link = null, var/atom/source = null, var/mutable_appearance/alert_overlay = null, var/action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, var/notify_volume = 100) //Easy notification of ghosts.
 	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
 		return
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/O = i
 		if(!O.client)
-			continue
-		if(!notify_suiciders && (O in GLOB.suicided_mob_list))
 			continue
 		var/track_link
 		if (source && action == NOTIFY_ORBIT)

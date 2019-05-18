@@ -89,6 +89,7 @@
 	var/next_move_modifier = 1 //Value to multiply action/click delays by
 
 	var/datum/hud/hud_used
+	var/list/alerts = list() // contains /obj/screen/alert only, used by alerts.dm
 
 	var/grab_level = GRAB_PASSIVE //if we're pulling a mob, tells us how aggressive our grab is.
 
