@@ -284,3 +284,9 @@
 /mob/living/carbon/Xenomorph/begin_away()
 	. = ..()
 	addtimer(CALLBACK(src, .proc/handle_afk_takeover), XENO_AFK_TIMER)
+
+
+/mob/living/carbon/Xenomorph/Moved(atom/newloc, direct)
+	if(is_zoomed)
+		zoom_out()
+	return ..()

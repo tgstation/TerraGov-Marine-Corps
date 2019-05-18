@@ -16,7 +16,7 @@
 		buckled_mob.setDir(dir)
 
 /obj/structure/bed/chair/wheelchair/relaymove(mob/user, direction)
-	if(world.time <= l_move_time + move_delay)
+	if(world.time <= last_move_time + move_delay)
 		return
 	// Redundant check?
 	if(user.incapacitated() || user.lying)
@@ -43,7 +43,7 @@
 			move_delay += 2
 		if(!working_hands)
 			return // No hands to drive your chair? Tough luck!
-		if(driver.pulling && driver.pulling.drag_delay && !driver.ignore_pull_delay())	//Dragging stuff can slow you down a bit.
+		if(driver.pulling?.drag_delay)	//Dragging stuff can slow you down a bit.
 			var/pull_delay = driver.pulling.drag_delay
 			if(ismob(driver.pulling))
 				var/mob/M = driver.pulling

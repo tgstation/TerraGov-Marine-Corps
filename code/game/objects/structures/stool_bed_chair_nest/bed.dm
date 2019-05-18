@@ -98,7 +98,6 @@ obj/structure/bed/Destroy()
 	if(!(direct & (direct - 1))) //Not diagonal move. the obj's diagonal move is split into two cardinal moves and those moves will handle the buckled bodybag's movement.
 		if(!buckled_bodybag.Move(NewLoc, direct))
 			loc = buckled_bodybag.loc
-			last_move_dir = buckled_bodybag.last_move_dir
 			return 0
 	return 1
 
