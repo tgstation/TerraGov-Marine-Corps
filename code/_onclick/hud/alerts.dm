@@ -195,10 +195,3 @@
 		return
 	if(master)
 		return usr.client.Click(master, location, control, params)
-
-/obj/screen/alert/Destroy()
-	. = ..()
-	severity = 0
-	master = null
-	mob_viewer = null
-	screen_loc = ""
