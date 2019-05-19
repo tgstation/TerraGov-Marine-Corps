@@ -401,7 +401,7 @@ mob/proc/get_standard_bodytemperature()
 	return ..()
 
 
-/proc/notify_ghosts(var/message, var/ghost_sound = null, var/enter_link = null, var/atom/source = null, var/mutable_appearance/alert_overlay = null, var/action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, var/notify_volume = 100) //Easy notification of ghosts.
+/proc/notify_ghosts(message, ghost_sound = null, enter_link = null, enter_text = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_volume = 100, extra_large = FALSE) //Easy notification of ghosts.
 	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
 		return
 	for(var/i in GLOB.observer_list)
@@ -414,7 +414,10 @@ mob/proc/get_standard_bodytemperature()
 		if (source && action == NOTIFY_JUMP)
 			var/turf/T = get_turf(source)
 			track_link = " <a href=?src=[REF(O)];jump=1;x=[T.x];y=[T.y];z=[T.z]>(Jump)</a>"
-		to_chat(O, "<span class='deadsay'>[message][(enter_link) ? " [enter_link]" : ""][track_link]</span>")
+		var/full_enter_link
+		if (enter_link)
+			full_enter_link = "<a href='byond://?src=[REF(O)];[enter_link]'>[(enter_text) ? "[enter_text]" : "(Claim)"]</a>"
+		to_chat(O, "[(extra_large) ? "<br><hr>" : ""]<span class='deadsay'>[message][(enter_link) ? " [full_enter_link]" : ""][track_link]</span>[(extra_large) ? "<hr><br>" : ""]")
 		if(ghost_sound)
 			SEND_SOUND(O, sound(ghost_sound, volume = notify_volume))
 		if(flashwindow)
