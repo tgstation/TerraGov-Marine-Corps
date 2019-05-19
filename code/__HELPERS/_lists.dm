@@ -187,7 +187,7 @@
 		return
 	L = L.Copy()
 
-	for(var/i = 1, i < length(L), ++i)
+	for(var/i in 1 to length(L)-1)
 		L.Swap(i,rand(i, length(L)))
 
 	return L
