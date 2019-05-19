@@ -546,6 +546,11 @@
 	return "<a href='?src=[REF(usr.client.holder)];[HrefToken()];individuallog=[REF(M)];log_type=[log_type];log_src=[log_src]'>[slabel]</a>"
 
 
+/client/proc/get_asay()
+	var/msg = input(src, null, "asay \"text\"") as text|null
+	asay(msg)
+
+
 /client/proc/asay(msg as text)
 	set category = "Admin"
 	set name = "asay"
@@ -569,6 +574,11 @@
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ASAY, FALSE))
 			to_chat(C, msg)
+
+
+/client/proc/get_msay()
+	var/msg = input(src, null, "msay \"text\"") as text|null
+	msay(msg)
 
 
 /client/proc/msay(msg as text)
@@ -602,6 +612,11 @@
 			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>")
 		else if(is_mentor(C))
 			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>")
+
+
+/client/proc/get_dsay()
+	var/msg = input(src, null, "dsay \"text\"") as text|null
+	dsay(msg)
 
 
 /client/proc/dsay(msg as text)

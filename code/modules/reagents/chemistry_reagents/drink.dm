@@ -153,6 +153,19 @@
 	description = "Absolutely nothing."
 	taste_description = "nothing"
 
+
+/datum/reagent/consumable/laughter
+	name = "Laughter"
+	id = "laughter"
+	description = "Some say that this is the best medicine, but recent studies have proven that to be untrue."
+	custom_metabolism = INFINITY
+	color = "#FF4DD2"
+	taste_description = "laughter"
+
+/datum/reagent/consumable/laughter/on_mob_life(mob/living/carbon/M)
+	M.emote("laugh")
+	return ..()
+
 /datum/reagent/consumable/drink/potato_juice
 	name = "Potato Juice"
 	id = "potato"

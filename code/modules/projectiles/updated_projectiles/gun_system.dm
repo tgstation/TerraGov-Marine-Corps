@@ -944,7 +944,7 @@ and you're good to go.
 		gun_accuracy_mult = accuracy_mult
 		gun_scatter = scatter
 
-	else if(user && world.time - user.l_move_time < 5) //moved during the last half second
+	else if(user && world.time - user.last_move_time < 5) //moved during the last half second
 		//accuracy and scatter penalty if the user fires unwielded right after moving
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * CONFIG_GET(number/combat_define/low_hit_accuracy_mult)))
 		gun_scatter += max(0, movement_acc_penalty_mult * CONFIG_GET(number/combat_define/min_scatter_value))

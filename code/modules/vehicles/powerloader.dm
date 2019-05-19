@@ -21,9 +21,13 @@
 /obj/vehicle/powerloader/relaymove(mob/user, direction)
 	if(user.incapacitated())
 		return
-	if(world.time > l_move_time + move_delay)
+	if(direction in GLOB.diagonals)
+		return
+	if(!direction)
+		return
+	if(world.time > last_move_time + move_delay)
 		if(dir != direction)
-			l_move_time = world.time
+			last_move_time = world.time
 			setDir(direction)
 			pick(playsound(src.loc, 'sound/mecha/powerloader_turn.ogg', 25, 1), playsound(src.loc, 'sound/mecha/powerloader_turn2.ogg', 25, 1))
 			. = TRUE

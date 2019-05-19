@@ -1,4 +1,0 @@
-author: "Baby1991"
-delete-after: True
-changes: 
-  - bugfix: "Fixes the icon typing indicator bugging when talking disconnecting."

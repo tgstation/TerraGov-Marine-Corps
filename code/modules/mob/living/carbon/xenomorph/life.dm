@@ -53,11 +53,14 @@
 			death()
 		return
 
-	if(knocked_out || sleeping || health < 0)
+	if(knocked_out || sleeping || health < get_crit_threshold())
+		if(stat != UNCONSCIOUS)
+			blind_eyes(1)
 		stat = UNCONSCIOUS
 		see_in_dark = 5
-	else
+	else if(stat == UNCONSCIOUS)
 		stat = CONSCIOUS
+		adjust_blindness(-1)
 		see_in_dark = 8
 	update_canmove()
 

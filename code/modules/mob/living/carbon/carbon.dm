@@ -21,7 +21,7 @@
 	if(user.incapacitated(TRUE)) return
 	if(user in src.stomach_contents)
 		if(user.client)
-			user.client.next_movement = world.time + 20
+			user.client.move_delay = world.time + 20
 		if(prob(30))
 			for(var/mob/M in hearers(4, src))
 				if(M.client)

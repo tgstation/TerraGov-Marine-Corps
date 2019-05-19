@@ -397,7 +397,7 @@
 
 //gets paygrade from ID
 //paygrade is a user's actual rank, as defined on their ID.  size 1 returns an abbreviation, size 0 returns the full rank name, the third input is used to override what is returned if no paygrade is assigned.
-/mob/living/carbon/human/proc/get_paygrade(size = 1)
+/mob/living/carbon/human/get_paygrade(size = 1)
 	if(species.show_paygrade)
 		var/obj/item/card/id/id = wear_id
 		if(istype(id))
@@ -802,9 +802,6 @@
 									spawn()
 										if(istype(usr,/mob/living/carbon/human))
 											var/mob/living/carbon/human/U = usr
-											U.handle_regular_hud_updates()
-										if(istype(usr,/mob/living/silicon/robot))
-											var/mob/living/silicon/robot/U = usr
 											U.handle_regular_hud_updates()
 
 			if(!modified)
@@ -1256,7 +1253,7 @@
 	to_chat(usr, "Don't move until counting is finished.")
 	var/time = world.time
 	sleep(60)
-	if(usr.l_move_time >= time)	//checks if our mob has moved during the sleep()
+	if(usr.last_move_time >= time)	//checks if our mob has moved during the sleep()
 		to_chat(usr, "You moved while counting. Try again.")
 	else
 		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].</span>")
@@ -1595,11 +1592,6 @@
 	if(istype(glasses, /obj/item/clothing/glasses))
 		C = glasses
 		. += C.tint
-
-
-/mob/living/carbon/human/a_select_zone(input as text, screen_num as null|num)
-	screen_num = 20
-	return ..()
 
 
 /mob/living/carbon/human/verb/check_skills()
