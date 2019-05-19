@@ -36,16 +36,10 @@
 	screen_loc = ui_swaphand1
 
 /obj/screen/swap_hand/Click()
-	if(world.time <= usr.next_move)
-		return TRUE
-
-	if(usr.incapacitated())
-		return TRUE
-
-	if(iscarbon(usr))
-		var/mob/living/carbon/M = usr
-		M.swap_hand()
-	return TRUE
+	if(!iscarbon(usr))
+		return
+	var/mob/living/carbon/M = usr
+	M.swap_hand()
 
 /obj/screen/swap_hand/right
 	icon_state = "swap_2"
@@ -265,18 +259,16 @@
 	screen_loc = ui_above_movement
 
 /obj/screen/rest/Click()
-	if(isliving(usr))
-		var/mob/living/L = usr
-		L.lay_down()
+	if(!isliving(usr))
+		return
+	var/mob/living/L = usr
+	L.lay_down()
 
 /obj/screen/rest/update_icon(mob/mymob)
 	if(!isliving(mymob))
 		return
 	var/mob/living/L = mymob
-	if(!L.resting)
-		icon_state = "act_rest"
-	else
-		icon_state = "act_rest0"
+	icon_state = "act_rest[L.resting ? "0" : ""]"
 
 /obj/screen/pull
 	name = "stop pulling"
@@ -586,10 +578,11 @@
 /obj/screen/firearms/flashlight/Click()
 	. = ..()
 	var/obj/item/weapon/gun/G = .
-	if(G)
-		var/obj/item/attachable/flashlight/F = G.rail
-		if(F?.activate_attachment(G, usr))
-			playsound(usr, F.activation_sound, 15, 1)
+	if(!G)
+		return
+	var/obj/item/attachable/flashlight/F = G.rail
+	if(F?.activate_attachment(G, usr))
+		playsound(usr, F.activation_sound, 15, 1)
 
 /obj/screen/firearms/magazine
 	name = "Eject magazine"

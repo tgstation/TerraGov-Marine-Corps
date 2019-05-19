@@ -3,7 +3,7 @@
 
 /obj/screen/alien/Click()
 	if(!isxeno(usr))
-		return TRUE
+		return FALSE
 
 /obj/screen/alien/nightvision
 	name = "toggle night vision"
@@ -12,11 +12,11 @@
 
 /obj/screen/alien/nightvision/Click()
 	. = ..()
-	if(.)
+	if(!.)
 		return
 	var/mob/living/carbon/Xenomorph/X = usr
 	X.toggle_nightvision()
-	icon_state == (X.see_invisible = SEE_INVISIBLE_LEVEL_TWO) ? "nightvision0" : "nightvision1"
+	icon_state = (X.see_invisible == SEE_INVISIBLE_LEVEL_TWO) ? "nightvision0" : "nightvision1"
 
 /obj/screen/alien/queen_locator
 	icon_state = "trackoff"
@@ -25,7 +25,7 @@
 
 /obj/screen/alien/queen_locator/Click()
 	. = ..()
-	if(.)
+	if(!.)
 		return
 	var/mob/living/carbon/Xenomorph/X = usr
 	X.hive_status()
