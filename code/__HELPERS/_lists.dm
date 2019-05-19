@@ -270,7 +270,7 @@
 		if(fromIndex > toIndex)
 			fromIndex += len
 
-		for(var/i = 0, i < len, ++i)
+		for(var/i in 1 to len)
 			L.Insert(toIndex, null)
 			L.Swap(fromIndex, toIndex)
 			L.Cut(fromIndex, fromIndex + 1)
