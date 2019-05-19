@@ -178,7 +178,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	if(copytext(key, 7, 8) == "W") //webclient
 		i++
 
-	for(, i <= len, ++i)
+	for(var/j in i to len)
 		ch = text2ascii(key, j)
 		if(ch < 48 || ch > 57)
 			return FALSE
