@@ -21,7 +21,7 @@
 	G.follow_xeno()
 
 /obj/screen/ghost/follow_human
-	name = "Follow"
+	name = "Follow Humans"
 	icon_state = "follow_human"
 
 /obj/screen/ghost/follow_human/Click()
