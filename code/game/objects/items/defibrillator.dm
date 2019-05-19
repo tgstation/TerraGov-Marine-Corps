@@ -218,7 +218,7 @@
 			H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 			to_chat(H, "<span class='notice'>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane.</span>")
 
-			notify_ghosts("<b>[user]</b> has brought <b>[H.name]</b> back to life!", source = user, action = NOTIFY_ORBIT)
+			notify_ghosts("<b>[user]</b> has brought <b>[H.name]</b> back to life!", source = H, action = NOTIFY_ORBIT)
 
 		else
 			user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Vital signs are too weak, repair damage and try again.</span>") //Freak case
