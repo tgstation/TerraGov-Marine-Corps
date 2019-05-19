@@ -1,0 +1,5 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - balance: "Runner speed got a tiny nerf. Their savage skill no longer stacks with the hit-and-run damage bonus either."
+  - bugfix: "Fixes a bug preventing xenos with special attacks from dealing extra damage, like ravager's rage and runner hit-and-run."
