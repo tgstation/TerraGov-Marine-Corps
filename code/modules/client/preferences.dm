@@ -428,8 +428,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// Create an inverted list of keybindings -> key
 	var/list/user_binds = list()
 	for (var/key in key_bindings)
-		for (var/datum/keybinding/kb in key_bindings[key])
-			user_binds[kb] = key
+		for (var/i in key_bindings[key])
+			var/datum/keybinding/kb = i
+			user_binds[kb.name] = key
 
 	var/list/kb_categories = list()
 	// Group keybinds by category
@@ -443,11 +444,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	for (var/category in kb_categories)
 		HTML += "<h3>[category]</h3>"
-		for (var/datum/keybinding/keybinding in kb_categories[category])
-			var/bound_key = user_binds[keybinding]
+		for (var/i in kb_categories[category])
+			var/datum/keybinding/kb = i
+			var/bound_key = user_binds[kb.name]
 			bound_key = (bound_key) ? bound_key : "Unbound"
 
-			HTML += "<label>[keybinding.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[keybinding.name];old_key=[bound_key]'>[bound_key] Default: ( [keybinding.key] )</a>"
+			HTML += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key] Default: ( [kb.key] )</a>"
 			HTML += "<br>"
 
 	HTML += "<br><br>"

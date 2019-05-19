@@ -1045,7 +1045,6 @@
 #include "code\modules\hydroponics\seeds.dm"
 #include "code\modules\hydroponics\vines.dm"
 #include "code\modules\keybindings\bindings_atom.dm"
-#include "code\modules\keybindings\bindings_carbon.dm"
 #include "code\modules\keybindings\bindings_client.dm"
 #include "code\modules\keybindings\focus.dm"
 #include "code\modules\keybindings\setup.dm"

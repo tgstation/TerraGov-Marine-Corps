@@ -4,13 +4,15 @@
 
 
 /datum/keybinding/xeno/drop_weeds
-    key = "B"
+    key = "V"
     name = "drop_weeds"
     full_name = "Drop Weed"
     description = "Drop weeds to help grow your hive."
     category = CATEGORY_XENO
 
 /datum/keybinding/xeno/drop_weeds/down(client/user)
+	if(!isxeno(user.mob))
+		return
     var/mob/living/carbon/Xenomorph/X = user.mob
     var/datum/action/xeno_action/plant_weeds/ability = locate() in X.actions
     if (!ability)

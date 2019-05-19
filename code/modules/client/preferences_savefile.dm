@@ -127,7 +127,7 @@
 	show_typing		= sanitize_integer(show_typing, 0, 1, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, 0, 8388608, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
-	key_bindings	= sanitize_islist(key_bindings, GLOB.keybinding_list_by_key)
+	key_bindings	= sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key))
 
 	S["default_slot"]		<< default_slot
 	S["lastchangelog"]		<< lastchangelog
