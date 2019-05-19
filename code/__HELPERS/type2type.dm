@@ -453,7 +453,6 @@
 	var/list/r = list()
 	if(islist(L))
 		var/max = min(length(L), MAX_BITFIELD_BITS)
-		var/bit = 1
 		for(var/i in 0 to max-1)
 			if(bitfield & (1 << i))
 				r += L[i+1]
