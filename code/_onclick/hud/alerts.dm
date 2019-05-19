@@ -192,3 +192,9 @@
 		return
 	if(master)
 		return usr.client.Click(master, location, control, params)
+
+/obj/screen/alert/Destroy()
+	. = ..()
+	// nulling the obj references.
+	master = null
+	mob_viewer = null

@@ -4,13 +4,29 @@
 /obj/screen/ghost/MouseEntered()
 	flick(icon_state + "_anim", src)
 
-/obj/screen/ghost/orbit
-	name = "Follow"
-	icon_state = "orbit"
+/obj/screen/ghost/follow_ghosts
+	name = "Follow Ghosts"
+	icon_state = "follow_ghost"
 
-/obj/screen/ghost/orbit/Click()
+/obj/screen/ghost/follow_ghosts/Click()
 	var/mob/dead/observer/G = usr
-	G.follow()
+	G.follow_ghost()
+
+/obj/screen/ghost/follow_xeno
+	name = "Follow Xeno"
+	icon_state = "follow_xeno"
+
+/obj/screen/ghost/follow_xeno/Click()
+	var/mob/dead/observer/G = usr
+	G.follow_xeno()
+
+/obj/screen/ghost/follow_human
+	name = "Follow"
+	icon_state = "follow_human"
+
+/obj/screen/ghost/follow_human/Click()
+	var/mob/dead/observer/G = usr
+	G.follow_human()
 
 /obj/screen/ghost/reenter_corpse
 	name = "Reenter corpse"
@@ -25,12 +41,20 @@
 	. = ..()
 	var/obj/screen/using
 
-	using = new /obj/screen/ghost/orbit()
+	using = new /obj/screen/ghost/follow_ghosts()
+	using.screen_loc = ui_ghost_slot1
+	static_inventory += using
+
+	using = new /obj/screen/ghost/follow_xeno()
 	using.screen_loc = ui_ghost_slot2
 	static_inventory += using
 
-	using = new /obj/screen/ghost/reenter_corpse()
+	using = new /obj/screen/ghost/follow_human()
 	using.screen_loc = ui_ghost_slot3
+	static_inventory += using
+
+	using = new /obj/screen/ghost/reenter_corpse()
+	using.screen_loc = ui_ghost_slot4
 	static_inventory += using
 
 
