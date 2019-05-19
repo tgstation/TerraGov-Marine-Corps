@@ -11,7 +11,8 @@
 
 	// Client-level keybindings are ones anyone should be able to do at any time
 	// Things like taking screenshots, hitting tab, and adminhelps.
-	for (var/datum/keybinding/kb in prefs.key_bindings[_key])
+	for (var/i in prefs.key_bindings[_key])
+		var/datum/keybinding/kb = i
 		if (kb.down(src))
 			break
 
@@ -28,7 +29,8 @@
 	if(!(next_move_dir_add & movement))
 		next_move_dir_sub |= movement
 
-	for (var/datum/keybinding/kb in prefs.key_bindings[_key])
+	for (var/i in prefs.key_bindings[_key])
+		var/datum/keybinding/kb = i
 		if (kb.up(src))
 			break
 

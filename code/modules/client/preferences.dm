@@ -949,6 +949,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("keybindings_set")
 			var/datum/keybinding/kb = GLOB.keybindings_by_name[href_list["keybinding"]]
+			if(!istype(kb))
+				user << browse(null, "window=capturekeypress")
+				ShowKeybindings(user)
+				return
+
 			var/clear_key = text2num(href_list["clear_key"])
 			var/old_key = href_list["old_key"]
 			if (clear_key)
