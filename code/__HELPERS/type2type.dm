@@ -459,7 +459,7 @@
 				r += L[i]
 			bit = bit << 1
 	else
-		for(var/bit = 1, bit <= 65535, bit = bit << 1)
+		for(var/i in 0 to MAX_BITFIELD_BITS-1)
 			if(bitfield & bit)
 				r += bit
 
