@@ -1016,6 +1016,24 @@
 
 	else if(istype(whom, /client))
 		recipient = whom
+		
+
+
+	if(irc)
+		if(!ircreplyamount)	//to prevent people from spamming irc
+			return
+
+		if(!msg)
+			msg = input(src, "Message:", "Private message to Administrator") as message|null
+
+		if(!msg)
+			return
+
+		if(holder)
+			to_chat(src, "<span class='danger'>Use the admin IRC channel.</span>")
+			return
+
+	else
 		if(!recipient)
 			if(holder)
 				to_chat(src, "<span class='warning'>Error: Client not found.</span>")
@@ -1026,24 +1044,24 @@
 				current_ticket.MessageNoRecipient(msg)
 				return
 
-	//get message text, limit it's length.and clean/escape html
-	if(!msg)
-		msg = input("Message:", "Private message to [key_name(recipient, FALSE, FALSE)]") as message|null
-		msg = trim(msg)
+		//get message text, limit it's length.and clean/escape html
 		if(!msg)
-			return
+			msg = input("Message:", "Private message to [key_name(recipient, FALSE, FALSE)]") as message|null
+			msg = trim(msg)
+			if(!msg)
+				return
 
-		if(prefs.muted & MUTE_ADMINHELP)
-			to_chat(src, "<span class='warning'>You are unable to use admin PMs (muted).</span>")
-			return
+			if(prefs.muted & MUTE_ADMINHELP)
+				to_chat(src, "<span class='warning'>You are unable to use admin PMs (muted).</span>")
+				return
 
-		if(!recipient && !irc)
-			if(holder)
-				to_chat(src, "<br><span class='boldnotice'>Client not found. Here's your message, copy-paste it if needed:</span>")
-				to_chat(src, "<span class='notice'>[msg]</span><br>")
-			else
-				current_ticket.MessageNoRecipient(msg)
-			return
+			if(!recipient && !irc)
+				if(holder)
+					to_chat(src, "<br><span class='boldnotice'>Client not found. Here's your message, copy-paste it if needed:</span>")
+					to_chat(src, "<span class='notice'>[msg]</span><br>")
+				else
+					current_ticket.MessageNoRecipient(msg)
+				return
 
 	if(handle_spam_prevention(msg, MUTE_ADMINHELP))
 		return
@@ -1061,6 +1079,7 @@
 	if(irc)
 		to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]</span></font>")
 		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>IRC</i>: [keywordparsedmsg]</font>")
+		ircreplyamount--
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
 	else
 		if(check_other_rights(recipient, R_ADMINTICKET, FALSE) || is_mentor(recipient))
@@ -1255,6 +1274,8 @@
 
 	//always play non-admin recipients the adminhelp sound
 	SEND_SOUND(C, 'sound/effects/adminhelp.ogg')
+
+	C.ircreplyamount = IRCREPLYCOUNT
 
 	return "Message Successful"
 
