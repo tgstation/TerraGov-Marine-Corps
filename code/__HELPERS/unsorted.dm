@@ -179,7 +179,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		i++
 
 	for(, i <= len, ++i)
-		ch = text2ascii(key, i)
+		ch = text2ascii(key, j)
 		if(ch < 48 || ch > 57)
 			return FALSE
 	return TRUE
