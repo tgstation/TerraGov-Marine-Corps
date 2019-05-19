@@ -51,6 +51,8 @@
 
 // for clean transfers between hives
 /mob/living/carbon/Xenomorph/proc/transfer_to_hive(hivenumber)
+	if (hive.hivenumber == hivenumber) 
+		return // If we are in that hive already
 	if(!GLOB.hive_datums[hivenumber])
 		CRASH("invalid hivenumber passed to transfer_to_hive")
 
