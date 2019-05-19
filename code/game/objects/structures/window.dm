@@ -308,7 +308,7 @@
 	setDir(turn(dir, 270))
 
 
-/obj/structure/window/Initialize(Loc, start_dir = null, constructed = 0)
+/obj/structure/window/Initialize(mapload, Loc, start_dir, constructed)
 	. = ..()
 
 	//player-constructed windows
@@ -412,7 +412,7 @@
 	max_integrity = 300
 	reinf = TRUE
 
-/obj/structure/window/Initialize(Loc, constructed = 0)
+/obj/structure/window/Initialize(mapload, Loc, constructed)
 	. = ..()
 
 	//player-constructed windows

@@ -265,7 +265,7 @@
 	screen_loc = "7,7 to 10,8"
 
 
-/obj/screen/storage/New(new_master, mapload)
+/obj/screen/storage/Initialize(mapload, new_master)
 	. = ..()
 	master = new_master
 

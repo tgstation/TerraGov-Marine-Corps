@@ -6,7 +6,7 @@
 	anchored = 1
 	var/amount = 1 //Basically moles.
 
-/obj/effect/decal/cleanable/liquid_fuel/Initialize(turf/newLoc, amt = 1, nologs = 0)
+/obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, turf/newLoc, amt = 1, nologs = 0)
 	if(!nologs)
 		log_game("[amt] units of liquid fuel have spilled in [AREACOORD(newLoc.loc)].")
 		message_admins("[amt] units of liquid fuel have spilled in [ADMIN_VERBOSEJMP(newLoc.loc)].")
@@ -41,7 +41,7 @@
 	icon_state = "mustard"
 	anchored = 0
 
-/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/Initialize(newLoc, amt = 1, d = 0)
+/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/Initialize(mapload, newLoc, amt = 1, d = 0)
 	setDir(d) //Setting this direction means you won't get torched by your own flamethrower.
 	. = ..()
 

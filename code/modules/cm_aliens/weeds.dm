@@ -18,7 +18,7 @@
         round_statistics.weeds_destroyed++
         qdel(src)
 
-/obj/effect/alien/weeds/Initialize(pos, obj/effect/alien/weeds/node/node)
+/obj/effect/alien/weeds/Initialize(mapload, pos, obj/effect/alien/weeds/node/node)
 	. = ..()
 
 	parent_node = node
@@ -190,7 +190,7 @@
 	overlays.Cut()
 	overlays += "weednode"
 
-/obj/effect/alien/weeds/node/Initialize(loc, obj/effect/alien/weeds/node/node, mob/living/carbon/xenomorph/X)
+/obj/effect/alien/weeds/node/Initialize(mapload, loc, obj/effect/alien/weeds/node/node, mob/living/carbon/xenomorph/X)
 	for(var/obj/effect/alien/weeds/W in loc)
 		if(W != src)
 			qdel(W) //replaces the previous weed
