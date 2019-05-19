@@ -175,7 +175,7 @@
 
 //Returns the next element in parameter list after first appearance of parameter element. If it is the last element of the list or not present in list, returns first element.
 /proc/next_in_list(element, list/L)
-	for(var/i = 1, i < length(L), i++)
+	for(var/i in 1 to length(L)-1)
 		if(L[i] == element)
 			return L[i + 1]
 	return L[1]
