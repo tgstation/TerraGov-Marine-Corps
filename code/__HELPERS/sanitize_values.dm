@@ -16,6 +16,9 @@
 	if(default)			return default
 	if(List && List.len)return List[1]
 
+/proc/sanitize_islist(value, default)
+	if(value && length(value) && islist(value))	return value
+	if(default)									return default
 
 
 //more specialised stuff
