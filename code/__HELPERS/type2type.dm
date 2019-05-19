@@ -454,7 +454,7 @@
 	if(islist(L))
 		var/max = min(length(L), 16)
 		var/bit = 1
-		for(var/i = 1, i <= max, i++)
+		for(var/i in 0 to max-1)
 			if(bitfield & bit)
 				r += L[i]
 			bit = bit << 1
