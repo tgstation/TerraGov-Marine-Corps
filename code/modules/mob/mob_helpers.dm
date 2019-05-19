@@ -410,10 +410,10 @@ mob/proc/get_standard_bodytemperature()
 			continue
 		var/track_link
 		if (source && action == NOTIFY_ORBIT)
-			track_link = " <a href='?src=[REF(O)];track=[REF(source)]'>(Follow)</a>"
+			track_link = " <a href='byond://?src=[REF(O)];track=[REF(source)]'>(Follow)</a>"
 		if (source && action == NOTIFY_JUMP)
 			var/turf/T = get_turf(source)
-			track_link = " <a href=?src=[REF(O)];jump=1;x=[T.x];y=[T.y];z=[T.z]>(Jump)</a>"
+			track_link = " <a href='byond://?src=[REF(O)];jump=1;x=[T.x];y=[T.y];z=[T.z]'>(Jump)</a>"
 		var/full_enter_link
 		if (enter_link)
 			full_enter_link = "<a href='byond://?src=[REF(O)];[enter_link]'>[(enter_text) ? "[enter_text]" : "(Claim)"]</a>"
