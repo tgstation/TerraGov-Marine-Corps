@@ -504,9 +504,12 @@
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()
-	can_hold = typecacheof(can_hold)
-	cant_hold = typecacheof(cant_hold)
-	bypass_w_limit = typecacheof(bypass_w_limit)
+	if(length(can_hold))
+		can_hold = typecacheof(can_hold)
+	else if(length(cant_hold))
+		cant_hold = typecacheof(cant_hold)
+	if(length(bypass_w_limit))
+		bypass_w_limit = typecacheof(bypass_w_limit)
 
 	if(!allow_quick_gather)
 		verbs -= /obj/item/storage/verb/toggle_gathering_mode
