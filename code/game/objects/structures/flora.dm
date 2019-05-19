@@ -96,7 +96,7 @@
 		user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
 		var/cut_force = min(1, W.force)
 		var/cutting_time = CLAMP(10, 20, 100/cut_force) SECONDS
-		if(do_after(usr, cutting_time , TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(usr, cutting_time , TRUE, src, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] fells [src] with the [W].</span>","<span class='notice'>You fell [src] with the [W].</span>", "You hear the sound of a tree falling.")
 			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 10 , 0, 0)
 			for(var/i=1 to log_amount)
@@ -264,7 +264,7 @@
 
 /obj/structure/flora/pottedplant/ten
 	icon_state = "plant-10"
-	
+
 //newbushes
 
 /obj/structure/flora/ausbushes

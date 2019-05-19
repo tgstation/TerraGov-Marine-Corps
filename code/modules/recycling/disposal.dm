@@ -69,8 +69,7 @@
 			if(W.remove_fuel(0, user))
 				playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal unit.</span>")
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					if(!src || !W.isOn()) return
+				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 					to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal unit.</span>")
 					var/obj/structure/disposalconstruct/C = new(loc)
 					transfer_fingerprints_to(C)
@@ -98,7 +97,7 @@
 			var/mob/GM = G.grabbed_thing
 			user.visible_message("<span class='warning'>[user] starts putting [GM] into [src].</span>",
 			"<span class='warning'>You start putting [GM] into [src].</span>")
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_HOSTILE))
+			if(do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) && G.grabbed_thing == GM)
 				GM.forceMove(src)
 				user.visible_message("<span class='warning'>[user] puts [GM] into [src].</span>",
 				"<span class='warning'>[user] puts [GM] into [src].</span>")
@@ -107,8 +106,6 @@
 				flush()
 		return
 
-	if(iscyborg(user))
-		return
 	if(!I)
 		return
 
@@ -123,23 +120,18 @@
 		return
 	if(isanimal(user) && target != user) return //Animals cannot put mobs other than themselves into disposal
 	add_fingerprint(user)
-	var/target_loc = target.loc
 
 	if(target == user)
 		visible_message("<span class='notice'>[user] starts climbing into the disposal.</span>")
 	else
 		if(user.restrained()) return //can't stuff someone other than you if restrained.
 		visible_message("<span class ='warning'>[user] starts stuffing [target] into the disposal.</span>")
-	if(!do_after(user, 40, FALSE, 5, BUSY_ICON_HOSTILE))
-		return
-	if(target_loc != target.loc)
+	if(!do_after(user, 40, FALSE, target, BUSY_ICON_HOSTILE))
 		return
 	if(target == user)
-		if(user.incapacitated(TRUE)) return
 		user.visible_message("<span class='notice'>[user] climbs into [src].</span>",
 		"<span class ='notice'>You climb into [src].</span>")
 	else
-		if(user.incapacitated()) return
 		user.visible_message("<span class ='danger'>[user] stuffs [target] into [src]!</span>",
 		"<span class ='warning'>You stuff [target] into [src]!</span>")
 
@@ -371,9 +363,6 @@
 	var/wrapcheck = 0
 	var/obj/structure/disposalholder/H = new()	//Virtual holder object which actually
 												//Travels through the pipes.
-	//Hacky test to get drones to mail themselves through disposals.
-	for(var/mob/living/silicon/robot/drone/D in src)
-		wrapcheck = 1
 
 	for(var/obj/item/smallDelivery/O in src)
 		wrapcheck = 1
@@ -416,10 +405,9 @@
 			target = get_offset_target_turf(loc, rand(5) - rand(5), rand(5) - rand(5))
 			AM.loc = loc
 			AM.pipe_eject(0)
-			if(!ismaintdrone(AM)) //Poor drones kept smashing windows and taking system damage being fired out of disposals. ~Z
-				spawn(1)
-					if(AM)
-						AM.throw_at(target, 5, 1)
+			spawn(1)
+				AM?.throw_at(target, 5, 1)
+	
 		qdel(H)
 
 /obj/machinery/disposal/CanPass(atom/movable/mover, turf/target)
@@ -460,7 +448,7 @@
 	//Check for any living mobs trigger hasmob.
 	//hasmob effects whether the package goes to cargo or its tagged destination.
 	for(var/mob/living/M in D)
-		if(M?.stat != DEAD && !ismaintdrone(M))
+		if(M?.stat != DEAD)
 			hasmob = 1
 
 	//Checks 1 contents level deep. This means that players can be sent through disposals...
@@ -468,7 +456,7 @@
 	for(var/obj/O in D)
 		if(O.contents)
 			for(var/mob/living/M in O.contents)
-				if(M && M.stat != 2 && !ismaintdrone(M))
+				if(M.stat != DEAD)
 					hasmob = 1
 
 	//Now everything inside the disposal gets put into the holder
@@ -486,10 +474,6 @@
 		if(istype(AM, /obj/item/smallDelivery) && !hasmob)
 			var/obj/item/smallDelivery/T = AM
 			destinationTag = T.sortTag
-		//Drones can mail themselves through maint.
-		if(ismaintdrone(AM))
-			var/mob/living/silicon/robot/drone/drone = AM
-			destinationTag = drone.mail_destination
 
 //Start the movement process
 //Argument is the disposal unit the holder started in
@@ -512,9 +496,8 @@
 	while(active)
 		if(hasmob && prob(3))
 			for(var/mob/living/H in src)
-				if(!ismaintdrone(H)) //Drones use the mailing code to move through the disposal system,
-					if(SSmapping.config.map_name != MAP_WHISKEY_OUTPOST)
-						H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
+				if(SSmapping.config.map_name != MAP_WHISKEY_OUTPOST)
+					H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
 
 		if(has_fat_guy && prob(2)) //Chance of becoming stuck per segment if contains a fat guy
 			active = 0
@@ -1340,9 +1323,8 @@
 		for(var/atom/movable/AM in H)
 			AM.loc = src.loc
 			AM.pipe_eject(dir)
-			if(!ismaintdrone(AM)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
-				spawn(5)
-					AM.throw_at(target, 3, 1)
+			spawn(5)
+				AM.throw_at(target, 3, 1)
 		qdel(H)
 
 /obj/structure/disposaloutlet/attackby(var/obj/item/I, var/mob/user)
@@ -1363,8 +1345,7 @@
 		if(W.remove_fuel(0, user))
 			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal outlet.</span>")
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-				if(!src || !W.isOn()) return
+			if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 				to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal outlet.</span>")
 				var/obj/structure/disposalconstruct/C = new(loc)
 				transfer_fingerprints_to(C)

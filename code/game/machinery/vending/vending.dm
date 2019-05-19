@@ -169,7 +169,7 @@
 		shove_time = 50
 	if(istype(M,/mob/living/carbon/Xenomorph/Crusher))
 		shove_time = 15
-	if(do_after(M, shove_time, FALSE, 5, BUSY_ICON_HOSTILE))
+	if(do_after(M, shove_time, FALSE, src, BUSY_ICON_HOSTILE))
 		M.visible_message("<span class='danger'>\The [M] knocks \the [src] down!</span>", \
 		"<span class='danger'>You knock \the [src] down!</span>", null, 5)
 		tip_over()
@@ -240,10 +240,7 @@
 		return
 
 	else if(iswrench(W))
-		if(!wrenchable) return
-
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-			if(!src) return
+		if(wrenchable && do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			switch (anchored)
 				if (0)
@@ -338,14 +335,10 @@
 
 /obj/machinery/vending/attack_hand(mob/user as mob)
 	if(tipped_level == 2)
-		tipped_level = 1
 		user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
-		if(do_after(user,80, FALSE, 5, BUSY_ICON_FRIENDLY))
+		if(do_after(user,80, FALSE, src, BUSY_ICON_FRIENDLY))
 			user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
 			flip_back()
-			return
-		else
-			tipped_level = 2
 			return
 
 	if(machine_stat & (BROKEN|NOPOWER))

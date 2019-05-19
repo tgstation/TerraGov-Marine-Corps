@@ -227,8 +227,6 @@
 			qdel(src)
 			return
 
-		if(iscyborg(user))
-			return
 		user.transferItemToLoc(W,loc)
 
 	else if(istype(W, /obj/item/packageWrap))
@@ -275,18 +273,21 @@
 
 
 
-/obj/structure/closet/relaymove(mob/user)
+/obj/structure/closet/relaymove(mob/user, direct)
 	if(!isturf(loc))
 		return
 	if(user.incapacitated(TRUE))
 		return
-	user.next_move = world.time + 5
+	if(!direct)
+		return
 
-	if(!src.open())
+	user.changeNext_move(5)
+
+	if(!open())
 		to_chat(user, "<span class='notice'>It won't budge!</span>")
 		if(!lastbang)
 			lastbang = TRUE
-			for (var/mob/M in hearers(src, null))
+			for(var/mob/M in hearers(src, null))
 				to_chat(M, text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M))))
 			spawn(30)
 				lastbang = FALSE

@@ -21,9 +21,13 @@
 /obj/vehicle/powerloader/relaymove(mob/user, direction)
 	if(user.incapacitated())
 		return
-	if(world.time > l_move_time + move_delay)
+	if(direction in GLOB.diagonals)
+		return
+	if(!direction)
+		return
+	if(world.time > last_move_time + move_delay)
 		if(dir != direction)
-			l_move_time = world.time
+			last_move_time = world.time
 			setDir(direction)
 			pick(playsound(src.loc, 'sound/mecha/powerloader_turn.ogg', 25, 1), playsound(src.loc, 'sound/mecha/powerloader_turn2.ogg', 25, 1))
 			. = TRUE
@@ -36,10 +40,9 @@
 	if(buckled_mob && user != buckled_mob)
 		buckled_mob.visible_message("<span class='warning'>[user] tries to move [buckled_mob] out of [src].</span>",\
 		"<span class='danger'>[user] tries to move you out of [src]!</span>")
-		var/oldloc = loc
 		var/olddir = dir
 		var/old_buckled_mob = buckled_mob
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_HOSTILE) && dir == olddir && loc == oldloc && buckled_mob == old_buckled_mob)
+		if(do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE) && dir == olddir && buckled_mob == old_buckled_mob)
 			manual_unbuckle(user)
 			playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
 	if(panel_open)

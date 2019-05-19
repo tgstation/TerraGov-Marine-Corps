@@ -222,7 +222,7 @@
 
 //Adds or removes a delay to movement based on your caste. If speed = 0 then it shouldn't do much.
 //Runners are -2, -4 is BLINDLINGLY FAST, +2 is fat-level
-/mob/living/carbon/Xenomorph/movement_delay()
+/mob/living/carbon/Xenomorph/movement_delay(direct)
 	. = ..()
 
 	. += speed + slowdown + speed_modifier
@@ -245,7 +245,7 @@
 				charge_dir = dir
 				handle_momentum()
 			else
-				if(charge_dir != dir) //Have we changed direction?
+				if(charge_dir != dir || moving_diagonally || (direct in GLOB.diagonals))
 					stop_momentum() //This should disallow rapid turn bumps
 				else
 					handle_momentum()
@@ -479,7 +479,7 @@
 		stop_momentum(charge_dir)
 		return FALSE
 
-	if(dir != charge_dir || m_intent == MOVE_INTENT_WALK || istype(loc, /turf/open/ground/river))
+	if(dir != charge_dir || m_intent == MOVE_INTENT_WALK || istype(loc, /turf/open/ground/river) || moving_diagonally)
 		stop_momentum(charge_dir)
 		return FALSE
 
@@ -647,8 +647,8 @@
 
 	to_chat(src, "<span class='notice'>You start salvaging plasma from [target].</span>")
 
-	while(target.plasma_stored && plasma_stored >= xeno_caste.plasma_max)
-		if(!do_after(src, salvage_delay, TRUE, 5, BUSY_ICON_HOSTILE) || !check_state())
+	while(target.plasma_stored && plasma_stored < xeno_caste.plasma_max)
+		if(!do_after(src, salvage_delay, TRUE, null, BUSY_ICON_HOSTILE) || !check_state())
 			break
 
 		if(!isturf(loc))
@@ -723,7 +723,7 @@
 		to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with [body_tox.name]!</span>")
 		if(body_tox.volume > body_tox.overdose_threshold)
 			to_chat(src, "<span class='danger'>You sense the host is saturated with [body_tox.name].</span>")
-	while(i++ < count && do_after(src, channel_time, TRUE, 5, BUSY_ICON_HOSTILE))
+	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
 

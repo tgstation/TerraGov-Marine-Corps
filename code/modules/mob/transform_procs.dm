@@ -128,52 +128,6 @@
 	. = O
 	qdel(src)
 
-
-//human -> robot
-/mob/living/carbon/human/proc/Robotize()
-	if (monkeyizing)
-		return
-	for(var/obj/item/W in src)
-		dropItemToGround(W)
-	regenerate_icons()
-	monkeyizing = 1
-	canmove = 0
-	icon = null
-	invisibility = INVISIBILITY_MAXIMUM
-	for(var/t in limbs)
-		qdel(t)
-
-	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot( loc )
-
-	// cyborgs produced by Robotize get an automatic power cell
-	O.cell = new(O)
-	O.cell.maxcharge = 7500
-	O.cell.charge = 7500
-
-
-	O.gender = gender
-	O.invisibility = 0
-
-	if(mind)		//TODO
-		mind.transfer_to(O)
-	else
-		O.key = key
-		if(O.client) O.client.change_view(world.view)
-
-	O.loc = loc
-	O.job = "Cyborg"
-	if(O.mind.assigned_role == "Cyborg")
-		O.mmi = new /obj/item/mmi(O)
-
-		if(O.mmi)
-			O.mmi.transfer_identity(src)
-
-	O.Namepick()
-
-	spawn(0)//To prevent the proc from returning null.
-		qdel(src)
-	return O
-
 //human -> alien
 /mob/living/carbon/human/proc/Alienize()
 	if (monkeyizing)

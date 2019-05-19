@@ -14,6 +14,7 @@
 		GLOB.dead_mob_list += src
 	else
 		GLOB.alive_mob_list += src
+	set_focus(src)
 	prepare_huds()
 	return ..()
 
@@ -225,7 +226,7 @@
 	var/start_loc = W.loc
 	if(W.time_to_equip && !ignore_delay)
 		spawn(0)
-			if(!do_after(src, W.time_to_equip, TRUE, 5, BUSY_ICON_GENERIC))
+			if(!do_after(src, W.time_to_equip, TRUE, W, BUSY_ICON_FRIENDLY))
 				to_chat(src, "You stop putting on \the [W]")
 			else
 				equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
@@ -455,7 +456,7 @@
 	if(prefs.lastchangelog != GLOB.changelog_hash)
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
-		winset(src, "rpane.changelog", "background-color=none;font-style=;")
+		winset(src, "infowindow.changelog", "background-color=none;font-style=;")
 
 /mob/Topic(href, href_list)
 	if(href_list["mach_close"])
@@ -480,7 +481,7 @@
 		if(isliving(src))
 			var/mob/living/L = src
 			L.language_menu()
-		
+
 
 
 /mob/MouseDrop(mob/M)
@@ -495,26 +496,25 @@
 	show_inv(M)
 
 
-//attempt to pull/grab something. Returns true upon success.
-/mob/proc/start_pulling(atom/movable/AM, lunge, no_msg)
-	return
-
 /mob/living/start_pulling(atom/movable/AM, lunge, no_msg)
-	if(!AM || !usr || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
-		return
+	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+		return FALSE
 
-	if (AM.anchored || AM.throwing)
-		return
+	if(!AM.can_be_pulled(src))
+		return FALSE
+
+	if(AM.anchored || AM.throwing)
+		return FALSE
 
 	if(throwing || incapacitated())
-		return
+		return FALSE
 
 	if(pulling)
 		var/pulling_old = pulling
 		stop_pulling()
 		// Are we pulling the same thing twice? Just stop pulling.
 		if(pulling_old == AM)
-			return
+			return FALSE
 
 	var/mob/M
 	if(ismob(AM))
@@ -606,6 +606,9 @@
 /mob/GenerateTag()
 	tag = "mob_[next_mob_id++]"
 
+
+/mob/proc/get_paygrade()
+	return ""
 
 // facing verbs
 /mob/proc/canface()
@@ -704,9 +707,7 @@ mob/proc/yank_out_object()
 			return FALSE
 		to_chat(U, "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>")
 
-	if(!do_after(U, 80, TRUE, 5, BUSY_ICON_FRIENDLY))
-		return
-	if(!selection || !S || !U || !istype(selection))
+	if(!do_after(U, 80, TRUE, S, BUSY_ICON_GENERIC) || !istype(selection))
 		return
 
 	if(self)
@@ -893,3 +894,48 @@ mob/proc/yank_out_object()
 
 /mob/proc/is_muzzled()
 	return FALSE
+
+
+// reset_perspective(thing) set the eye to the thing (if it's equal to current default reset to mob perspective)
+// reset_perspective() set eye to common default : mob on turf, loc otherwise
+/mob/proc/reset_perspective(atom/A)
+	if(!client)
+		return
+
+	if(A)
+		if(ismovableatom(A))
+			//Set the the thing unless it's us
+			if(A != src)
+				client.perspective = EYE_PERSPECTIVE
+				client.eye = A
+			else
+				client.eye = client.mob
+				client.perspective = MOB_PERSPECTIVE
+		else if(isturf(A))
+			//Set to the turf unless it's our current turf
+			if(A != loc)
+				client.perspective = EYE_PERSPECTIVE
+				client.eye = A
+			else
+				client.eye = client.mob
+				client.perspective = MOB_PERSPECTIVE
+	else
+		//Reset to common defaults: mob if on turf, otherwise current loc
+		if(isturf(loc))
+			client.eye = client.mob
+			client.perspective = MOB_PERSPECTIVE
+		else
+			client.perspective = EYE_PERSPECTIVE
+			client.eye = loc
+			
+	return TRUE
+
+
+/mob/Moved(atom/oldloc, direction)
+	if(client && (client.view != world.view || client.pixel_x || client.pixel_y))
+		for(var/obj/item/item in contents)
+			if(item.zoom)
+				item.zoom(src)
+				click_intercept = null
+				break
+	return ..()

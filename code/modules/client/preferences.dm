@@ -28,6 +28,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ghost_hud = TOGGLES_GHOSTHUD_DEFAULT
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
+	var/hotkeys = TRUE
 
 	//Synthetic specific preferences
 	var/synthetic_name = "David"
@@ -96,6 +97,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/icon/preview_icon_side = null
 
 	var/list/exp = list()
+	var/list/menuoptions
 
 
 /datum/preferences/New(client/C)
@@ -114,6 +116,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	real_name = S.random_name(gender)
 	age = rand(18, 36)
 	h_style = pick("Crewcut", "Bald", "Short Hair")
+	menuoptions = list()
 
 
 /datum/preferences/proc/ShowChoices(mob/user)
@@ -275,6 +278,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Ghost Radio:</b> <a href='?_src_=prefs;preference=ghost_radio'>[(toggles_chat & CHAT_GHOSTRADIO) ? "All Chatter" : "Nearest Speakers"]</a><br>"
 	dat += "<b>Ghost Hivemind:</b> <a href='?_src_=prefs;preference=ghost_hivemind'>[(toggles_chat & CHAT_GHOSTHIVEMIND) ? "Show" : "Hide"]</a><br>"
 	dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=windowflashing'>[windowflashing ? "Yes" : "No"]</a><br>"
+	dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>"
+
 
 	if(CONFIG_GET(flag/allow_metadata))
 		dat += "<b>OOC Notes:</b> <a href='?_src_=prefs;preference=metadata'> Edit </a><br>"
@@ -856,6 +861,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("windowflashing")
 			windowflashing = !windowflashing
+
+
+		if("hotkeys")
+			hotkeys = !hotkeys
+			if(hotkeys)
+				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED] mainwindow.macro=default")
+			else
+				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
 
 	save_preferences()
 	save_character()

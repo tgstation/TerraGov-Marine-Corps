@@ -33,7 +33,7 @@
 /obj/vehicle/relaymove(mob/user, direction)
 	if(user.incapacitated())
 		return
-	if(world.time > l_move_time + move_delay)
+	if(world.time > last_move_time + move_delay)
 		if(on && powered && cell && cell.charge < charge_use)
 			turn_off()
 		else if(!on && powered)
@@ -59,9 +59,7 @@
 		if(WT.remove_fuel(1, user))
 			if(obj_integrity < max_integrity)
 				user.visible_message("<span class='notice'>[user] starts to repair [src].</span>","<span class='notice'>You start to repair [src]</span>")
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_FRIENDLY))
-					if(!src || !WT.isOn())
-						return
+				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					obj_integrity = min(max_integrity, obj_integrity+10)
 					user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
 			else

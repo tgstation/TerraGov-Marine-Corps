@@ -21,6 +21,8 @@
 	var/list/remove_overlays // a very temporary list of overlays to remove
 	var/list/add_overlays // a very temporary list of overlays to add
 
+	var/list/display_icons // related to do_after/do_mob overlays, I can't get my hopes high.
+
 	var/list/atom_colours	 //used to store the different colors on an atom
 							//its inherent color, the colored paint applied on it, special color effect etc...
 
@@ -604,4 +606,9 @@ Proc for attack log creation, because really why not
 	return //Nothing to see here.
 
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
+	return
+
+
+//the vision impairment to give to the mob whose perspective is set to that atom (e.g. an unfocused camera giving you an impaired vision when looking through it)
+/atom/proc/get_remote_view_fullscreens(mob/user)
 	return

@@ -257,9 +257,7 @@
 
 /obj/machinery/camera/proc/weld(var/obj/item/tool/weldingtool/WT, var/mob/user)
 
-	if(user.action_busy)
-		return FALSE
-	if(!WT.isOn())
+	if(user.action_busy || !WT.isOn())
 		return FALSE
 
 	//Do after stuff here
@@ -267,11 +265,9 @@
 	"<span class='notice'>You start to weld [src].</span>")
 	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 	WT.eyecheck(user)
-	if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-		if(!WT.isOn())
-			return FALSE
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-		user.visible_message("<span class='notice'>[user] welds [src].</span>",
-		"<span class='notice'>You weld [src].</span>")
-		return TRUE
-	return FALSE
+	if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+		return FALSE
+	playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+	user.visible_message("<span class='notice'>[user] welds [src].</span>",
+	"<span class='notice'>You weld [src].</span>")
+	return TRUE

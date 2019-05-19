@@ -204,12 +204,6 @@ What a mess.*/
 					src.authenticated = usr.name
 					src.rank = "AI"
 					src.screen = 1
-				else if (iscyborg(usr))
-					src.active1 = null
-					src.authenticated = usr.name
-					var/mob/living/silicon/robot/R = usr
-					src.rank = R.braintype
-					src.screen = 1
 				else if (istype(scan, /obj/item/card/id))
 					active1 = null
 					if(check_access(scan))

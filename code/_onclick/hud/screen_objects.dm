@@ -320,6 +320,17 @@
 	user.zone_selected = selecting
 
 
+/obj/screen/zone_sel/proc/set_selected_zone(choice, mob/user)
+	if(isobserver(user))
+		return
+
+	if(choice != selecting)
+		selecting = choice
+		update_icon(user)
+		
+	return TRUE
+
+
 /obj/screen/zone_sel/Click(location, control, params)
 	if(isobserver(usr))
 		return
@@ -502,42 +513,6 @@
 
 		if("Reset Machine")
 			usr.unset_interaction()
-			return TRUE
-
-		if("module")
-			if(issilicon(usr))
-				if(usr:module)
-					return TRUE
-				usr:pick_module()
-			return TRUE
-
-		if("radio")
-			if(issilicon(usr))
-				usr:radio_menu()
-			return TRUE
-		if("panel")
-			if(issilicon(usr))
-				usr:installed_modules()
-			return TRUE
-
-		if("store")
-			if(issilicon(usr))
-				usr:uneq_active()
-			return TRUE
-
-		if("module1")
-			if(iscyborg(usr))
-				usr:toggle_module(1)
-			return TRUE
-
-		if("module2")
-			if(iscyborg(usr))
-				usr:toggle_module(2)
-			return TRUE
-
-		if("module3")
-			if(iscyborg(usr))
-				usr:toggle_module(3)
 			return TRUE
 
 		if("Activate weapon attachment")

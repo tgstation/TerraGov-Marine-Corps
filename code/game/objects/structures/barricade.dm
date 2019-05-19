@@ -150,7 +150,7 @@
 		if(can_wire)
 			user.visible_message("<span class='notice'>[user] starts setting up [W.name] on [src].</span>",
 			"<span class='notice'>You start setting up [W.name] on [src].</span>")
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD) && can_wire)
+			if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) && can_wire)
 				playsound(src.loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] sets up [W.name] on [src].</span>",
 				"<span class='notice'>You set up [W.name] on [src].</span>")
@@ -172,7 +172,7 @@
 		if(is_wired)
 			user.visible_message("<span class='notice'>[user] begin removing the barbed wire on [src].</span>",
 			"<span class='notice'>You begin removing the barbed wire on [src].</span>")
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] removes the barbed wire on [src].</span>",
 				"<span class='notice'>You remove the barbed wire on [src].</span>")
@@ -346,7 +346,7 @@
 			user  << "<span class='warning'> You are already shoveling!</span>"
 			return
 		user.visible_message("[user.name] starts clearing out \the [src].","You start removing \the [src].")
-		if(!do_after(user, ET.shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
 			return
 		if(!ET.folded)
 			user.visible_message("<span class='notice'> \The [user] removes \the [src].</span>")
@@ -412,10 +412,9 @@
 				to_chat(user, "<span class='warning'>You need one plank of wood to repair [src].</span>")
 				return
 			visible_message("<span class='notice'>[user] begins to repair [src].</span>")
-			if(do_after(user,20, TRUE, 5, BUSY_ICON_FRIENDLY) && obj_integrity < max_integrity)
-				if (D.use(1))
-					obj_integrity = max_integrity
-					visible_message("<span class='notice'>[user] repairs [src].</span>")
+			if(do_after(user,20, TRUE, src, BUSY_ICON_BUILD) && obj_integrity < max_integrity && D.use(1))
+				obj_integrity = max_integrity
+				visible_message("<span class='notice'>[user] repairs [src].</span>")
 		return
 	. = ..()
 
@@ -481,7 +480,7 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to repair [src].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 				return
 		var/obj/item/tool/weldingtool/WT = W
 		if(obj_integrity <= max_integrity * 0.3)
@@ -492,13 +491,12 @@
 			to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
 			return
 
-		var/old_loc = loc
 
 		if(WT.remove_fuel(0, user))
 			user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
 			"<span class='notice'>You begin repairing the damage to [src].</span>")
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			if(do_after(user, 50, TRUE, 5, BUSY_ICON_FRIENDLY) && old_loc == loc)
+			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 				"<span class='notice'>You repair [src].</span>")
 				obj_integrity += 150
@@ -515,10 +513,10 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
 					return
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
 				"<span class='notice'>You remove [src]'s protection panels, exposing the anchor bolts.</span>")
@@ -532,10 +530,10 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
 					return
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
 				"<span class='notice'>You set [src]'s protection panel back.</span>")
@@ -548,10 +546,10 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
 					return
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
 				"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
@@ -567,14 +565,14 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				for(var/obj/structure/barricade/B in loc)
 					if(B != src && B.dir == dir)
 						to_chat(user, "<span class='warning'>There's already a barricade here.</span>")
 						return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
 					return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
@@ -589,12 +587,12 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
 					var/fumbling_time = 50 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-				if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
@@ -673,16 +671,16 @@
 			return
 
 	if(iswelder(W))
-		if(busy || tool_cooldown > world.time)
+		var/obj/item/tool/weldingtool/WT = W
+		if(busy || tool_cooldown > world.time || !WT.isOn())
 			return
 		tool_cooldown = world.time + 10
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to repair [src].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
-		var/obj/item/tool/weldingtool/WT = W
 		if(obj_integrity <= max_integrity * 0.3)
 			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>")
 			return
@@ -691,19 +689,19 @@
 			to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
 			return
 
-		if(WT.remove_fuel(0, user))
-			user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
-			"<span class='notice'>You begin repairing the damage to [src].</span>")
+		user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
+		"<span class='notice'>You begin repairing the damage to [src].</span>")
+		playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
+		busy = TRUE
+		if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+			busy = FALSE
+			user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
+			"<span class='notice'>You repair [src].</span>")
+			obj_integrity += 150
+			update_health()
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			busy = TRUE
-			if(do_after(user, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
-				busy = FALSE
-				user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
-				"<span class='notice'>You repair [src].</span>")
-				obj_integrity += 150
-				update_health()
-				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			else busy = FALSE
+		else
+			busy = FALSE
 		return
 
 	switch(build_state)
@@ -716,14 +714,14 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 
 				for(var/obj/structure/barricade/B in loc)
 					if(B != src && B.dir == dir)
 						to_chat(user, "<span class='warning'>There's already a barricade here.</span>")
 						return
-				if(!do_after(user, 1, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, 1, TRUE, src, BUSY_ICON_BUILD))
 					return
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
 
@@ -741,10 +739,8 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
-				if(!do_after(user, 1, TRUE, 5, BUSY_ICON_BUILD))
-					return
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
 				"<span class='notice'>You set [src]'s protection panel back.</span>")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -758,10 +754,8 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
-				if(!do_after(user, 1, TRUE, 5, BUSY_ICON_BUILD))
-					return
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
 				"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -779,10 +773,8 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
 					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
-				if(!do_after(user, 1, TRUE, 5, BUSY_ICON_BUILD))
-					return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -798,19 +790,20 @@
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
 					var/fumbling_time = 50 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
-					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 				busy = TRUE
-				if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 					busy = FALSE
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 					destroy_structure(TRUE) //Note : Handles deconstruction too !
-				else busy = FALSE
+				else
+					busy = FALSE
 				return
 
 	. = ..()
@@ -891,7 +884,7 @@
 		if(!ET.folded)
 			user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 			"<span class='notice'>You start disassembling [src].</span>")
-			if(do_after(user, ET.shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 				"<span class='notice'>You disassemble [src].</span>")
 				destroy_structure(TRUE)
@@ -906,11 +899,10 @@
 			to_chat(user, "<span class='warning'>You need a sandbag to repair [src].</span>")
 			return
 		visible_message("<span class='notice'>[user] begins to replace [src]'s damaged sandbags...</span>")
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD) && obj_integrity < max_integrity)
-			if(D.use(1))
-				obj_integrity = min(obj_integrity + (max_integrity * 0.2), max_integrity) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
-				user.visible_message("<span class='notice'>[user] replaces a damaged sandbag, repairing [src].</span>",
-				"<span class='notice'>You replace a damaged sandbag, repairing it [src].</span>")
+		if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD) && obj_integrity < max_integrity && D.use(1))
+			obj_integrity = min(obj_integrity + (max_integrity * 0.2), max_integrity) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
+			user.visible_message("<span class='notice'>[user] replaces a damaged sandbag, repairing [src].</span>",
+			"<span class='notice'>You replace a damaged sandbag, repairing it [src].</span>")
 	else
 		. = ..()
 

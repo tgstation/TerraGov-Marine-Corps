@@ -54,7 +54,7 @@
 
 
 /obj/structure/bed/chair/janicart/relaymove(mob/user, direction)
-	if(world.time <= l_move_time + move_delay)
+	if(world.time <= last_move_time + move_delay)
 		return
 	if(user.incapacitated(TRUE))
 		unbuckle()

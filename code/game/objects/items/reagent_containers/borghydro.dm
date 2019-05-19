@@ -37,13 +37,6 @@
 		return 0
 	charge_tick = 0
 
-	if(iscyborg(loc))
-		var/mob/living/silicon/robot/R = loc
-		if(R && R.cell)
-			for(var/T in reagent_ids)
-				if(reagent_volumes[T] < volume)
-					R.cell.use(charge_cost)
-					reagent_volumes[T] = min(reagent_volumes[T] + 5, volume)
 	return 1
 
 /obj/item/reagent_container/borghypo/attack(mob/living/M as mob, mob/user as mob)

@@ -367,13 +367,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TASTE_DULL 30 //anything below 30%
 #define TASTE_NUMB 101 //no taste
 
-//defines for the busy icons when the mob does something that takes time using do_after proc
-#define BUSY_ICON_GENERIC	1
-#define BUSY_ICON_MEDICAL	2
-#define BUSY_ICON_BUILD		3
-#define BUSY_ICON_FRIENDLY	4
-#define BUSY_ICON_HOSTILE	5
-
 
 //defins for datum/hud
 
@@ -472,7 +465,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SPRAY_STRUCTURE_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 8 ))
 #define SPRAY_MOB_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 4 ))
 
-#define QUEEN_DEATH_LARVA_MULTIPLIER(Xenomorph) ((Xenomorph.upgrade_as_number() + 1) * 0.17)) // 85/68/51/34 for ancient/elder emp/elder queen/queen
+#define QUEEN_DEATH_LARVA_MULTIPLIER(Xenomorph) ((Xenomorph.upgrade_as_number() + 1) * 0.17) // 85/68/51/34 for ancient/elder emp/elder queen/queen
 
 #define PLASMA_TRANSFER_AMOUNT 50
 #define PLASMA_SALVAGE_AMOUNT 40
@@ -631,3 +624,20 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 
 #define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.
+
+
+#define BODY_ZONE_HEAD		"head"
+#define BODY_ZONE_CHEST		"chest"
+#define BODY_ZONE_L_ARM		"l_arm"
+#define BODY_ZONE_R_ARM		"r_arm"
+#define BODY_ZONE_L_LEG		"l_leg"
+#define BODY_ZONE_R_LEG		"r_leg"
+
+
+#define BODY_ZONE_PRECISE_EYES		"eyes"
+#define BODY_ZONE_PRECISE_MOUTH		"mouth"
+#define BODY_ZONE_PRECISE_GROIN		"groin"
+#define BODY_ZONE_PRECISE_L_HAND	"l_hand"
+#define BODY_ZONE_PRECISE_R_HAND	"r_hand"
+#define BODY_ZONE_PRECISE_L_FOOT	"l_foot"
+#define BODY_ZONE_PRECISE_R_FOOT	"r_foot"

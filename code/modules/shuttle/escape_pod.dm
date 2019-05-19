@@ -154,7 +154,7 @@
 		M.cryopods += src
 		linked_to_shuttle = TRUE
 
-/obj/machinery/cryopod/evacuation/ex_act(severity) 
+/obj/machinery/cryopod/evacuation/ex_act(severity)
 	return FALSE
 
 /obj/machinery/cryopod/evacuation/attackby(obj/item/grab/G, mob/user)
@@ -172,8 +172,7 @@
 
 		visible_message("<span class='warning'>[user] starts putting [M.name] into the cryo pod.</span>", 3)
 
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_GENERIC))
-			if(!M || !G || !G.grabbed_thing || !G.grabbed_thing.loc || G.grabbed_thing != M) return FALSE
+		if(do_after(user, 20, TRUE, M, BUSY_ICON_GENERIC) && !QDELETED(src))
 			move_mob_inside(M)
 
 /obj/machinery/cryopod/evacuation/eject()
@@ -215,7 +214,7 @@
 
 	visible_message("<span class='warning'>[user] starts climbing into the cryo pod.</span>", 3)
 
-	if(do_after(user, 20, FALSE, 5, BUSY_ICON_GENERIC))
+	if(do_after(user, 20, FALSE, src, BUSY_ICON_GENERIC))
 		user.stop_pulling()
 		move_mob_inside(user)
 
@@ -231,7 +230,8 @@
 	being_forced = !being_forced
 	visible_message("<span class='warning'>[user] begins to pry the [src]'s cover!</span>", 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-	if(do_after(user, 20, FALSE, 5, BUSY_ICON_HOSTILE)) go_out() //Force the occupant out.
+	if(do_after(user, 20, FALSE, src, BUSY_ICON_HOSTILE))
+		go_out() //Force the occupant out.
 	being_forced = !being_forced
 
 /obj/machinery/cryopod/evacuation/proc/move_mob_inside(mob/M)

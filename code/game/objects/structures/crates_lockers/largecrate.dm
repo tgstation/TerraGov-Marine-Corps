@@ -143,8 +143,8 @@
 	icon_state = "case_small"
 
 /obj/structure/largecrate/random/barrel/attackby(obj/item/tool/weldingtool/W, mob/user as mob)
-	if(istype(W) && W.welding == 1)
-		if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
+	if(istype(W) && W.isOn())
+		if(do_after(user, 50, TRUE, src, BUSY_ICON_GENERIC, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 			new /obj/item/stack/sheet/metal/small_stack(src)
 			W.remove_fuel(1,user)
 			var/turf/T = get_turf(src)
@@ -163,6 +163,20 @@
 /obj/structure/largecrate/random/barrel/attack_hand(mob/user)
 	to_chat(user, "<span class='notice'>You need a blowtorch to weld this open!</span>")
 	return FALSE
+
+
+/obj/structure/largecrate/random/barrel/attack_alien(mob/living/carbon/Xenomorph/X)
+	X.animation_attack_on(src)
+	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
+	new /obj/item/stack/sheet/metal/small_stack(src)
+	var/turf/T = get_turf(src)
+	for(var/obj/O in contents)
+		O.forceMove(T)
+	X.visible_message("<span class='danger'>\The [X] smashes \the [src] apart!</span>", \
+	"<span class='danger'>You smash \the [src] apart!</span>", \
+	"<span class='danger'>You hear metal being smashed!</span>", 5)
+	qdel(src)
+
 
 /obj/structure/largecrate/random/barrel
 	name = "blue barrel"
@@ -209,7 +223,7 @@
 
 	to_chat(user, "<span class='notice'>You begin to cut the straps off \the [src]...</span>")
 
-	if (do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
+	if (do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
 		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>You cut the straps away.</span>")
 		icon_state = "secure_crate"

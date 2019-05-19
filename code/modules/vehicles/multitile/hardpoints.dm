@@ -85,7 +85,7 @@ Currently only has the tank hardpoints
 		return
 	user.visible_message("<span class='notice'>[user] starts repairing [src].</span>",
 		"<span class='notice'>You start repairing [src].</span>")
-	if(!do_after(user, 3 SECONDS * repair_delays, TRUE, repair_delays, BUSY_ICON_FRIENDLY) || !user.Adjacent(src))
+	if(!do_after(user, 3 SECONDS * repair_delays, TRUE, src, BUSY_ICON_BUILD))
 		user.visible_message("<span class='notice'>[user] stops repairing [src].</span>",
 							"<span class='notice'>You stop repairing [src].</span>")
 		return
@@ -142,7 +142,7 @@ Currently only has the tank hardpoints
 
 	var/atom/target = owner ? owner : src
 
-	if(!do_after(user, 10, TRUE, 5, BUSY_ICON_FRIENDLY) || !target.Adjacent(user))
+	if(!do_after(user, 10, TRUE, target) || QDELETED(src))
 		to_chat(user, "<span class='warning'>Something interrupted you while loading [src].</span>")
 		return FALSE
 
@@ -260,9 +260,10 @@ Currently only has the tank hardpoints
 
 	to_chat(usr, "<span class='warning'>Preparing to fire... keep the tank still for [delay * 0.1] seconds.</span>")
 
-	if(!do_after(usr, delay, FALSE, 5, BUSY_ICON_HOSTILE, null, TRUE) )
+	if(!do_after(usr, delay, FALSE, src) || QDELETED(owner))
 		to_chat(usr, "<span class='warning'>The [name]'s firing was interrupted.</span>")
 		qdel(TL)
+
 		return
 
 	qdel(TL)
@@ -425,7 +426,7 @@ Currently only has the tank hardpoints
 
 	to_chat(usr, "<span class='warning'>Preparing to fire... keep the tank still for [delay * 0.1] seconds.</span>")
 
-	if(!do_after(usr, delay, FALSE, 5, BUSY_ICON_HOSTILE, null, TRUE))
+	if(!do_after(usr, delay, FALSE, src) || QDELETED(owner))
 		to_chat(usr, "<span class='warning'>The [name]'s firing was interrupted.</span>")
 		qdel(TL)
 		return

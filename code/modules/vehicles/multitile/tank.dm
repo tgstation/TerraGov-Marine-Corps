@@ -157,7 +157,7 @@
 		fumbling_time -= 2 SECONDS * M.mind.cm_skills.police
 	if(M.mind?.cm_skills?.large_vehicle)
 		fumbling_time -= 2 SECONDS * M.mind.cm_skills.large_vehicle
-	if(!do_after(M, fumbling_time, TRUE, 5, BUSY_ICON_HOSTILE) || !Adjacent(M))
+	if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_HOSTILE))
 		return
 	exit_tank(occupant, TRUE, TRUE)
 	M.visible_message("<span class='warning'>[M] forcibly pulls [occupant] out of [src].</span>",
@@ -190,7 +190,7 @@
 		to_chat(M, "<span class='warning'>That seat is already taken.</span>")
 		return
 	var/obj/item/offhand = M.get_inactive_held_item()
-	if(offhand && !(offhand.flags_item & (NODROP|DELONDROP)))
+	if(offhand && !(offhand.flags_item & (NODROP|DELONDROP|ITEM_ABSTRACT)))
 		to_chat(M, "<span class='warning'>You need your hands free to climb on [src].</span>")
 		return
 
@@ -198,11 +198,11 @@
 		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into [src].</span>")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * M.mind.cm_skills.large_vehicle
-		if(!do_after(M, fumbling_time, TRUE, 5, BUSY_ICON_BUILD) || !Adjacent(M) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
+		if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
 			return
 
 	to_chat(M, "<span class='notice'>You start climbing into [src].</span>")
-	if(!do_after(M, 10 SECONDS, TRUE, show_busy_icon = TRUE) || !Adjacent(M) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
+	if(!do_after(M, 10 SECONDS, TRUE, src, BUSY_ICON_GENERIC) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
 		return
 	if(occupant)
 		to_chat(M, "<span class='warning'>Someone got into the [lowertext(slot)]'s seat before you could.</span>")

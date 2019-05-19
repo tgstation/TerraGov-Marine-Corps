@@ -124,13 +124,6 @@ I said no!
 	)
 	result = /obj/item/reagent_container/food/snacks/brainburger
 
-/datum/recipe/roburger
-	items = list(
-		/obj/item/reagent_container/food/snacks/flour,
-		/obj/item/robot_parts/head
-	)
-	result = /obj/item/reagent_container/food/snacks/roburger
-
 /datum/recipe/xenoburger
 	items = list(
 		/obj/item/reagent_container/food/snacks/bun,

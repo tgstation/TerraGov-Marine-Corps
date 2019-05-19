@@ -118,8 +118,8 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 		busy = 1
 		use_power(max(1000, (3750*amount/10)))
 		var/stacktype = stack.type
-		stack.use(amount)
-		if(do_after(usr, 15, TRUE, 5, BUSY_ICON_FRIENDLY))
+		if(do_after(usr, 15, TRUE, src))
+			stack.use(amount)
 			to_chat(user, "<span class='notice'>You add [amount] sheets to the [src.name].</span>")
 			switch(stacktype)
 				if(/obj/item/stack/sheet/glass)
@@ -130,8 +130,6 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 					diamond_amount += amount * 2000
 				if(/obj/item/stack/sheet/mineral/uranium)
 					uranium_amount += amount * 2000
-		else
-			new stacktype(src.loc, amount)
 		busy = 0
 		src.updateUsrDialog()
 

@@ -331,7 +331,6 @@
 	has_suit.verbs -= /obj/item/clothing/tie/holster/verb/holster_verb
 	..()
 
-//For the holster hotkey
 /obj/item/clothing/tie/holster/verb/holster_verb()
 	set name = "Holster"
 	set category = "Object"
@@ -359,6 +358,33 @@
 		H.holster(W, usr)
 	else
 		H.unholster(usr)
+
+
+//For the holster hotkey
+/mob/living/carbon/human/proc/holster()
+	if(stat != CONSCIOUS) 
+		return
+
+	
+	if(!istype(w_uniform, /obj/item/clothing/under))
+		return
+
+	var/obj/item/clothing/under/S = w_uniform
+
+	if(!istype(S.hastie, /obj/item/clothing/tie/holster))
+		return
+
+	var/obj/item/clothing/tie/holster/H = S.hastie
+
+	if(!H.holstered)
+		if(!istype(get_active_held_item(), /obj/item/weapon/gun))
+			to_chat(src, "<span class='notice'>You need your gun equiped to holster it.</span>")
+			return
+		var/obj/item/weapon/gun/W = get_active_held_item()
+		H.holster(W, src)
+	else
+		H.unholster(src)
+
 
 /obj/item/clothing/tie/holster/m4a3/New()
 	. = ..()
@@ -520,8 +546,8 @@
 /obj/item/storage/internal/tie/white_vest
 	storage_slots = 8
 	can_hold = list(
-		/obj/item/tool/surgery, 
-		/obj/item/stack/medical/advanced, 
+		/obj/item/tool/surgery,
+		/obj/item/stack/medical/advanced,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/stack/nanopaste)

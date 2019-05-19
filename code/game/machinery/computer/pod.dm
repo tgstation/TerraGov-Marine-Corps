@@ -48,7 +48,7 @@
 /obj/machinery/computer/pod/attackby(I as obj, user as mob)
 	if(isscrewdriver(I))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
+		if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			if(machine_stat & BROKEN)
 				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( loc )

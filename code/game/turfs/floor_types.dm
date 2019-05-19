@@ -55,35 +55,6 @@
 /turf/open/floor/almayer/empty/attackby() //This should fix everything else. No cables, etc
 	return
 
-/turf/open/floor/almayer/empty/Entered(var/atom/movable/AM)
-	..()
-	if(istype(AM, /obj/docking_port))
-		return
-	spawn(2)
-		if(AM.throwing == 0 && istype(get_turf(AM), /turf/open/floor/almayer/empty))
-			AM.visible_message("<span class='warning'>[AM] falls into the depths!</span>", "<span class='warning'>You fall into the depths!</span>")
-			for(var/obj/structure/disposaloutlet/retrieval/R in GLOB.structure_list)
-				if(R.z != src.z)	continue
-				var/obj/structure/disposalholder/H = new()
-				AM.loc = H
-				sleep(10)
-				H.loc = R
-				for(var/mob/living/M in H)
-					M.take_overall_damage(100, 0, "Blunt Trauma")
-				sleep(20)
-				for(var/mob/living/M in H)
-					M.take_overall_damage(20, 0, "Blunt Trauma")
-				for(var/obj/effect/decal/cleanable/C in contents) //get rid of blood
-					qdel(C)
-				R.expel(H)
-				return
-
-			qdel(AM)
-
-		else
-			for(var/obj/effect/decal/cleanable/C in contents) //for the off chance of someone bleeding mid=flight
-				qdel(C)
-
 
 //Others
 /turf/open/floor/almayer/uscm
@@ -216,7 +187,7 @@
 		user.visible_message("<span class='notice'>[user] starts removing [src]'s protective cover.</span>",
 		"<span class='notice'>You start removing [src]'s protective cover.</span>")
 		playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			new /obj/item/stack/rods(src, 2)
 			ChangeTurf(/turf/open/floor)
 			var/turf/open/floor/F = src

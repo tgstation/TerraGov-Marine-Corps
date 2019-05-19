@@ -38,7 +38,8 @@
 
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message("<span class='warning'>[user] attempts to feed [M] [src].</span>", 1)
-			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY)) return
+			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
+				return
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message("<span class='warning'>[user] feeds [M] [src].</span>", 1)
 

@@ -57,9 +57,4 @@
 				gibs(T)
 				src.cure(0)
 				gibbed = 1
-				var/mob/living/carbon/human/H = affected_mob
-				if(istype(H))
-					H.Robotize()
-				else
-					affected_mob.death(1)
-
+				affected_mob.death(1)

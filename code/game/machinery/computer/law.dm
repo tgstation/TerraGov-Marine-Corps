@@ -50,36 +50,3 @@
 		else
 			to_chat(usr, "[src.current.name] selected for law changes.")
 		return
-
-
-
-/obj/machinery/computer/borgupload
-	name = "Cyborg Upload"
-	desc = "Used to upload laws to Cyborgs."
-	icon_state = "command"
-	circuit = "/obj/item/circuitboard/computer/borgupload"
-	var/mob/living/silicon/robot/current = null
-
-
-	attackby(obj/item/circuitboard/ai_module/module as obj, mob/user as mob)
-		if(istype(module, /obj/item/circuitboard/ai_module))
-			module.install(src)
-		else
-			return ..()
-
-
-	attack_hand(var/mob/user as mob)
-		if(src.machine_stat & NOPOWER)
-			to_chat(usr, "The upload computer has no power!")
-			return
-		if(src.machine_stat & BROKEN)
-			to_chat(usr, "The upload computer is broken!")
-			return
-
-		src.current = freeborg()
-
-		if (!src.current)
-			to_chat(usr, "No free cyborgs detected.")
-		else
-			to_chat(usr, "[src.current.name] selected for law changes.")
-		return

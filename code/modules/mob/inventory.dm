@@ -201,16 +201,11 @@
 
 //proc to get the item in the active hand.
 /mob/proc/get_held_item()
-	if(issilicon(src))
-		if(iscyborg(src))
-			if(src:module_active)
-				return src:module_active
+	if (hand)
+		return l_hand
 	else
-		if (hand)
-			return l_hand
-		else
-			return r_hand
-		return
+		return r_hand
+	return
 
 /mob/living/carbon/human/proc/equip_if_possible(obj/item/W, slot, del_on_fail = 1) // since byond doesn't seem to have pointers, this seems like the best way to do this :/
 	//warning: icky code

@@ -157,7 +157,7 @@
 	"<span class='xenonotice'>You begin to twist and contort.</span>")
 	do_jitter_animation(1000)
 
-	if(!do_after(src, 25, FALSE, 5, BUSY_ICON_HOSTILE))
+	if(!do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
 		to_chat(src, "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>")
 		return
 
