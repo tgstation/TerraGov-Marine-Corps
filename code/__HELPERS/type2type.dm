@@ -461,6 +461,6 @@
 	else
 		for(var/i in 0 to MAX_BITFIELD_BITS-1)
 			if(bitfield & (1 << i))
-				r += bit
+				r += (1 << i)
 
 	return r
