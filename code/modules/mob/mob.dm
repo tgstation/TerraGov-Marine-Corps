@@ -149,7 +149,7 @@
 		else if(M.see_invisible < invisibility || (T != loc && T != src)) //if src is invisible to us or is inside something (and isn't a turf),
 			if(!blind_message) // then people see blind message if there is one, otherwise nothing.
 				continue
-			
+
 			msg = blind_message
 
 		M.show_message(msg, EMOTE_VISIBLE, blind_message, EMOTE_AUDIBLE)
@@ -552,7 +552,8 @@
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
 			G.icon_state = "!reinforce"
 
-	if(hud_used && hud_used.pull_icon) hud_used.pull_icon.icon_state = "pull1"
+	if(hud_used?.pull_icon)
+		hud_used.pull_icon.icon_state = "pull"
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(M)
@@ -927,7 +928,7 @@ mob/proc/yank_out_object()
 		else
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = loc
-			
+
 	return TRUE
 
 
