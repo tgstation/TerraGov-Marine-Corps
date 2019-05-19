@@ -447,7 +447,7 @@
 					continue
 				. += A
 
-
+#define MAX_BITFIELD_BITS 24
 //Converts a bitfield to a list of numbers
 /proc/bitfield2list(bitfield = 0, list/L)
 	var/list/r = list()
