@@ -407,44 +407,44 @@
 		if(1 to 3) //Feet
 			switch(icon_x)
 				if(10 to 15)
-					return "r_foot"
+					return BODY_ZONE_PRECISE_R_FOOT
 				if(17 to 22)
-					return "l_foot"
+					return BODY_ZONE_PRECISE_L_FOOT
 		if(4 to 9) //Legs
 			switch(icon_x)
 				if(10 to 15)
-					return "r_leg"
+					return BODY_ZONE_R_LEG
 				if(17 to 22)
-					return "l_leg"
+					return BODY_ZONE_L_LEG
 		if(10 to 13) //Hands and groin
 			switch(icon_x)
 				if(8 to 11)
-					return "r_hand"
+					return BODY_ZONE_PRECISE_R_HAND
 				if(12 to 20)
-					return "groin"
+					return BODY_ZONE_PRECISE_GROIN
 				if(21 to 24)
-					return "l_hand"
+					return BODY_ZONE_PRECISE_L_HAND
 		if(14 to 22) //Chest and arms to shoulders
 			switch(icon_x)
 				if(8 to 11)
-					return "r_arm"
+					return BODY_ZONE_R_ARM
 				if(12 to 20)
-					return "chest"
+					return BODY_ZONE_CHEST
 				if(21 to 24)
-					return "l_arm"
+					return BODY_ZONE_L_ARM
 		if(23 to 30) //Head, but we need to check for eye or mouth
 			if(icon_x in 12 to 20)
 				switch(icon_y)
 					if(23 to 24)
 						if(icon_x in 15 to 17)
-							return "mouth"
+							return BODY_ZONE_PRECISE_MOUTH
 					if(26) //Eyeline, eyes are on 15 and 17
 						if(icon_x in 14 to 18)
-							return "eyes"
+							return BODY_ZONE_PRECISE_EYES
 					if(25 to 27)
 						if(icon_x in 15 to 17)
-							return "eyes"
-				return "head"
+							return BODY_ZONE_PRECISE_EYES
+				return BODY_ZONE_HEAD
 
 /obj/screen/zone_sel/proc/set_selected_zone(choice, mob/user)
 	if(isobserver(user))

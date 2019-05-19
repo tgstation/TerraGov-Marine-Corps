@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	24
+#define SAVEFILE_VERSION_MAX	25
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -19,6 +19,15 @@
 					fdel(delpath)
 				break
 		return FALSE
+
+	if(savefile_version < 25)
+		switch(S["ui_style"])
+			if("Orange")
+				S["ui_style"] << "Plasmafire"
+			if("old")
+				S["ui_style"] << "Retro"
+		if(S["ui_style_alpha"] == 255)
+			S["ui_style_alpha"] << 230
 
 	if(savefile_version < 24)
 		S["menuoptions"]	<< list()
@@ -399,7 +408,7 @@
 /datum/preferences/proc/save()
 	save_preferences()
 	save_character()
-	
+
 
 /datum/preferences/proc/load()
 	load_preferences()
