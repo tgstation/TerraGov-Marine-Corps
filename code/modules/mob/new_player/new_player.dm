@@ -148,8 +148,6 @@
 
 				observer.timeofdeath = world.time
 
-				observer.alpha = 127
-
 				var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 
 				if(is_banned_from(ckey, "Appearance") || !client?.prefs)
