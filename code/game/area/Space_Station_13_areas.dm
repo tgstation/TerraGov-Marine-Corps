@@ -27,6 +27,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	layer = AREAS_LAYER
 	mouse_opacity = 0
 	invisibility = INVISIBILITY_LIGHTING
+	plane = LIGHTING_PLANE
 	var/lightswitch = 1
 
 	var/flags_alarm_state = NOFLAGS
