@@ -122,6 +122,7 @@
 #define MID_LANDMARK_LAYER 9.1
 #define HIGH_LANDMARK_LAYER 9.2
 
+#define LIGHTING_LAYER 10									//Drawing layer for lighting overlays
 #define AREAS_LAYER 10 //for areas, so they appear above everything else on map file.
 
 #define POINT_LAYER 12
