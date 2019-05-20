@@ -28,7 +28,7 @@
 	
 	ghost_others = client.prefs.ghost_others
 
-	update_icon()
+	update_icon(client.prefs.ghost_form)
 	updateghostimages()
 	
 	if(length(GLOB.offered_mob_list))
