@@ -154,7 +154,7 @@
 
 //Provides darkness to the back of the lighting plane
 /obj/screen/fullscreen/lighting_backdrop/lit
-	invisibility = INVISIBILITY_LIGHTING
+	invisibility = SEE_INVISIBLE_LIVING + 1
 	layer = BACKGROUND_LAYER + 21
 	color = "#000"
 
