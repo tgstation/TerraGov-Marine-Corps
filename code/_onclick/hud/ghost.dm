@@ -16,4 +16,4 @@
 	if(!client || hud_used)
 		return
 
-	hud_used = new /datum/hud/ghost
+	hud_used = new /datum/hud/ghost(src)
