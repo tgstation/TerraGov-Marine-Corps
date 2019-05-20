@@ -1,3 +1,7 @@
+GLOBAL_LIST_EMPTY(ghost_images_default) //this is a list of the default (non-accessorized, non-dir) images of the ghosts themselves
+GLOBAL_LIST_EMPTY(ghost_images_simple) //this is a list of all ghost images as the simple white ghost
+
+
 GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
@@ -12,10 +16,22 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
 	invisibility = INVISIBILITY_OBSERVER
+	sight = SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
+	var/lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
 	initial_language_holder = /datum/language_holder/universal
 	var/atom/movable/following = null
 	var/mob/observetarget = null	//The target mob that the ghost is observing. Used as a reference in logout()
+
+
+	//We store copies of the ghost display preferences locally so they can be referred to even if no client is connected.
+	//If there's a bug with changing your ghost settings, it's probably related to this.
+	var/ghost_others = GHOST_OTHERS_DEFAULT_OPTION
+	var/image/ghostimage_default = null //this mobs ghost image without accessories and dirs
+	var/image/ghostimage_simple = null //this mob with the simple white ghost sprite
+
+	var/updatedir = TRUE	//Do we have to update our dir as the ghost moves around?
+	var/lastsetting = null	//Stores the last setting that ghost_others was set to, for a little more efficiency when we update ghost images. Null means no update is necessary
 
 	var/inquisitive_ghost = FALSE
 	var/can_reenter_corpse = FALSE
@@ -31,11 +47,22 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 
-	var/updatedir = TRUE //Do we have to update our dir as the ghost moves around?
-
 
 /mob/dead/observer/Initialize()
 	invisibility = GLOB.observer_default_invisibility
+
+	if(icon_state in GLOB.ghost_forms_with_directions_list)
+		ghostimage_default = image(icon, src, icon_state + "_nodir")
+	else
+		ghostimage_default = image(icon, src, icon_state)
+	ghostimage_default.override = TRUE
+	GLOB.ghost_images_default |= ghostimage_default
+
+	ghostimage_simple = image(icon, src, "ghost_nodir")
+	ghostimage_simple.override = TRUE
+	GLOB.ghost_images_simple |= ghostimage_simple
+
+	updateallghostimages()
 
 	var/turf/T
 	var/mob/body = loc
@@ -53,6 +80,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
 
+	update_icon()
+
 	if(!T)
 		T = pick(GLOB.latejoin)
 
@@ -69,13 +98,39 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	return ..()
 
 
-/mob/dead/observer/update_icon(state)
-	if(!started_as_observer)
-		return FALSE
+/mob/dead/observer/Destroy()
+	GLOB.ghost_images_default -= ghostimage_default
+	QDEL_NULL(ghostimage_default)
 
-	icon_state = state
-	return TRUE
+	GLOB.ghost_images_simple -= ghostimage_simple
+	QDEL_NULL(ghostimage_simple)
 
+	updateallghostimages()
+
+	return ..()
+
+
+/mob/dead/observer/update_icon(new_form)
+	if(client) //We update our preferences in case they changed right before update_icon was called.
+		ghost_others = client.prefs.ghost_others
+
+	if(new_form && started_as_observer)
+		icon_state = new_form
+		if(icon_state in GLOB.ghost_forms_with_directions_list)
+			ghostimage_default.icon_state = new_form + "_nodir" //if this icon has dirs, the default ghostimage must use its nodir version or clients with the preference set to default sprites only will see the dirs
+		else
+			ghostimage_default.icon_state = new_form
+
+
+/mob/dead/observer/sync_lighting_plane_alpha()
+	if(!hud_used)
+		return
+
+	var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
+	if(!L)
+		return
+
+	L.alpha = lighting_alpha
 
 
 /mob/dead/observer/Topic(href, href_list)
@@ -625,12 +680,17 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set category = "Ghost"
 	set name = "Toggle Darkness"
 
-	if(see_invisible == SEE_INVISIBLE_OBSERVER_NOLIGHTING)
-		see_invisible = SEE_INVISIBLE_OBSERVER
-		to_chat(src, "<span class='notice'>You can no longer see in the dark.</span>")
-	else
-		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
-		to_chat(src, "<span class='notice'>You can now see in the dark.</span>")
+	switch(lighting_alpha)
+		if(LIGHTING_PLANE_ALPHA_VISIBLE)
+			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+		if(LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
+			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		if(LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
+			lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+		else
+			lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+
+	update_sight()
 
 
 /mob/dead/observer/verb/toggle_ghostsee()
@@ -653,6 +713,42 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		see_invisible = SEE_INVISIBLE_OBSERVER
 	else
 		see_invisible = SEE_INVISIBLE_LIVING
+
+	updateghostimages()
+
+	return ..()
+
+
+/proc/updateallghostimages()
+	listclearnulls(GLOB.ghost_images_default)
+	listclearnulls(GLOB.ghost_images_simple)
+
+	for(var/mob/dead/observer/O in GLOB.player_list)
+		O.updateghostimages()
+
+
+/mob/dead/observer/proc/updateghostimages()
+	if(!client)
+		return
+
+	if(lastsetting)
+		switch(lastsetting) //checks the setting we last came from, for a little efficiency so we don't try to delete images from the client that it doesn't have anyway
+			if(GHOST_OTHERS_DEFAULT_SPRITE)
+				client.images -= GLOB.ghost_images_default
+			if(GHOST_OTHERS_SIMPLE)
+				client.images -= GLOB.ghost_images_simple
+	lastsetting = client.prefs.ghost_others
+
+	if(!ghost_vision)
+		return
+
+	if(client.prefs.ghost_others != GHOST_OTHERS_THEIR_SETTING)
+		switch(client.prefs.ghost_others)
+			if(GHOST_OTHERS_DEFAULT_SPRITE)
+				client.images |= (GLOB.ghost_images_default - ghostimage_default)
+			if(GHOST_OTHERS_SIMPLE)
+				client.images |= (GLOB.ghost_images_simple - ghostimage_simple)
+
 
 
 /mob/dead/observer/verb/hive_status()

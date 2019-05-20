@@ -240,14 +240,35 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE, GHOST_ORBIT_TRIANGLE, GH
 	O.ghost_orbit = new_orbit
 
 
+GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DEFAULT_SPRITE, GHOST_OTHERS_THEIR_SETTING))
+
+/client/proc/pick_ghost_other_form()
+	var/new_others = input(src, "Choose how you see other observers:", "Ghost Customization") as null|anything in GLOB.ghost_others_options
+	if(!new_others)
+		return
+
+	prefs.ghost_others = new_others
+	prefs.save_preferences()
+
+	to_chat(src, "<span class='notice'>You will now see people who started as an observer as [new_others].</span>")
+
+	if(!isobserver(mob))
+		return
+
+	var/mob/dead/observer/O = mob
+	O.ghost_others = new_others
+
+
 /client/verb/pick_ghost_customization()
 	set category = "Preferences"
 	set name = "Ghost Customization"
 	set desc = "Customize your ghastly appearance."
 
 
-	switch(alert("Which setting do you want to change?", "Ghost Customization", "Ghost Form", "Ghost Orbit", "Cancel"))
+	switch(input(src, "Which setting do you want to change?", "Ghost Customization") as null|anything in list("Ghost Form", "Ghost Orbit", "Ghosts of others"))
 		if("Ghost Form")
 			pick_form()
 		if("Ghost Orbit")
 			pick_ghost_orbit()
+		if("Ghosts of others")
+			pick_ghost_other_form()

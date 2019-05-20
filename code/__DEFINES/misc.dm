@@ -84,6 +84,12 @@ var/global/TAB = "&nbsp;&nbsp;&nbsp;&nbsp;"
 #define GHOST_ORBIT_PENTAGON	"pentagon"
 
 
+#define GHOST_OTHERS_SIMPLE			"white ghost"
+#define GHOST_OTHERS_DEFAULT_SPRITE		"default sprites"
+#define GHOST_OTHERS_THEIR_SETTING	"their setting"
+
+#define GHOST_OTHERS_DEFAULT_OPTION			GHOST_OTHERS_THEIR_SETTING
+
 #define GHOST_DEFAULT_FORM 		"ghost"
 
 
@@ -91,3 +97,9 @@ var/global/TAB = "&nbsp;&nbsp;&nbsp;&nbsp;"
 #define LUMA_R 0.213
 #define LUMA_G 0.715
 #define LUMA_B 0.072
+
+
+#define LIGHTING_PLANE_ALPHA_VISIBLE 255
+#define LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE 192
+#define LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE 128
+#define LIGHTING_PLANE_ALPHA_INVISIBLE 0

@@ -24,6 +24,7 @@
 		S["ghost_vision"]	<< TRUE
 		S["ghost_orbit"]	<< GHOST_ORBIT_CIRCLE
 		S["ghost_form"]		<< GHOST_DEFAULT_FORM
+		S["ghost_others"]	<< GHOST_OTHERS_DEFAULT_OPTION
 
 	if(savefile_version < 24)
 		S["menuoptions"]	<< list()
@@ -85,6 +86,7 @@
 	S["ghost_vision"]		>> ghost_vision
 	S["ghost_orbit"]		>> ghost_orbit
 	S["ghost_form"]			>> ghost_form
+	S["ghost_others"]		>> ghost_others
 
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
@@ -103,6 +105,7 @@
 	ghost_vision	= sanitize_integer(ghost_vision, 0, 1, initial(ghost_vision))
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
+	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
 
 	return TRUE
 
@@ -133,6 +136,7 @@
 	ghost_vision	= sanitize_integer(ghost_vision, 0, 1, initial(ghost_vision))
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
+	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
 
 	S["default_slot"]		<< default_slot
 	S["lastchangelog"]		<< lastchangelog
@@ -151,6 +155,7 @@
 	S["ghost_vision"]		<< ghost_vision
 	S["ghost_orbit"]		<< ghost_orbit
 	S["ghost_form"]			<< ghost_form
+	S["ghost_others"]		<< ghost_others
 
 
 	return TRUE
