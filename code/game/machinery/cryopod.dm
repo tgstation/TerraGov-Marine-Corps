@@ -244,7 +244,7 @@
 /mob/proc/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
 
 	//Handle job slot/tater cleanup.
-	if(job && job != ROLE_XENOMORPH && job != ROLE_XENO_QUEEN && job != ROLE_SURVIVOR && job != ROLE_ERT)
+	if(job && job in JOBS_REGULAR_ALL)
 		var/datum/job/J = SSjob.name_occupations[job]
 		J.current_positions--
 		if((J.title in JOBS_REGULAR_ALL) && isdistress(SSticker?.mode))
