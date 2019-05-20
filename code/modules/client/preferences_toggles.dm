@@ -194,3 +194,60 @@
 	set desc = "Allows you to access the Setup Character screen. Changes to your character won't take effect until next round, but other changes will."
 	prefs.ShowChoices(usr)
 
+
+GLOBAL_LIST_INIT(ghost_forms, list("Default" = GHOST_DEFAULT_FORM, "Ghost King" = "ghostking", "Ghost Ian" = "ghostian2", "Skeleton" = "skeleghost", "Red" = "ghost_red",\
+							"Black" = "ghost_black", "Blue" = "ghost_blue", "Yellow" = "ghost_yellow", "Green" = "ghost_green", "Pink" = "ghost_pink", \
+							"Cyan" = "ghost_cyan", "Dark Blue" = "ghost_dblue", "Dark Red" = "ghost_dred", "Dark Green" = "ghost_dgreen", \
+							"Dark Cyan" = "ghost_dcyan", "Grey" = "ghost_grey", "Dark Yellow" = "ghost_dyellow", "Dark Pink" = "ghost_dpink",\
+							"Purple" = "ghost_purpleswirl", "Funky" = "ghost_funkypurp", "Transparent Pink" = "ghost_pinksherbert", "Blaze it" = "ghost_blazeit",\
+							"Mellow" = "ghost_mellow", "Rainbow" = "ghost_rainbow", "Camo" = "ghost_camo", "Fire" = "ghost_fire", "Cat" = "catghost"))
+
+
+/client/proc/pick_form()
+	var/new_form = input(src, "Choose your ghostly form:", "Ghost Customization") as null|anything in GLOB.ghost_forms
+	if(!new_form)
+		return
+
+
+	prefs.ghost_form = GLOB.ghost_forms[new_form]
+	prefs.save_preferences()
+
+	to_chat(src, "<span class='notice'>You will use the [new_form] ghost form when starting as an observer.</span>")
+
+	if(!isobserver(mob))
+		return
+
+	var/mob/dead/observer/O = mob
+	O.update_icon(GLOB.ghost_forms[new_form])
+
+
+GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE, GHOST_ORBIT_TRIANGLE, GHOST_ORBIT_SQUARE, GHOST_ORBIT_HEXAGON, GHOST_ORBIT_PENTAGON))
+
+/client/proc/pick_ghost_orbit()
+	var/new_orbit = input(src, "Choose your ghostly orbit:", "Ghost Customization") as null|anything in GLOB.ghost_orbits
+	if(!new_orbit)
+		return
+
+	prefs.ghost_orbit = new_orbit
+	prefs.save_preferences()
+
+	to_chat(src, "<span class='notice'>You will use the [new_orbit] as a ghost.</span>")
+
+	if(!isobserver(mob))
+		return
+
+	var/mob/dead/observer/O = mob
+	O.ghost_orbit = new_orbit
+
+
+/client/verb/pick_ghost_customization()
+	set category = "Preferences"
+	set name = "Ghost Customization"
+	set desc = "Customize your ghastly appearance."
+
+
+	switch(alert("Which setting do you want to change?", "Ghost Customization", "Ghost Form", "Ghost Orbit", "Cancel"))
+		if("Ghost Form")
+			pick_form()
+		if("Ghost Orbit")
+			pick_ghost_orbit()

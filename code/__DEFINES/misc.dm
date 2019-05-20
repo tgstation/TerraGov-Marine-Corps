@@ -74,3 +74,20 @@ var/global/TAB = "&nbsp;&nbsp;&nbsp;&nbsp;"
 #define CHECKBOX_NONE 0
 #define CHECKBOX_GROUP 1
 #define CHECKBOX_TOGGLE 2
+
+
+//Ghost orbit types:
+#define GHOST_ORBIT_CIRCLE		"circle"
+#define GHOST_ORBIT_TRIANGLE	"triangle"
+#define GHOST_ORBIT_HEXAGON		"hexagon"
+#define GHOST_ORBIT_SQUARE		"square"
+#define GHOST_ORBIT_PENTAGON	"pentagon"
+
+
+#define GHOST_DEFAULT_FORM 		"ghost"
+
+
+//Luma coefficients suggested for HDTVs. If you change these, make sure they add up to 1.
+#define LUMA_R 0.213
+#define LUMA_G 0.715
+#define LUMA_B 0.072

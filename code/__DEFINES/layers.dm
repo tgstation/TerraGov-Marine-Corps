@@ -115,6 +115,7 @@
 
 #define RIPPLE_LAYER 5.1
 
+#define GHOST_LAYER 6
 #define ABOVE_FLY_LAYER 6
 
 #define LOW_LANDMARK_LAYER 9

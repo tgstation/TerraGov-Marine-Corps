@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	24
+#define SAVEFILE_VERSION_MAX	25
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -19,6 +19,11 @@
 					fdel(delpath)
 				break
 		return FALSE
+
+	if(savefile_version < 25)
+		S["ghost_vision"]	<< TRUE
+		S["ghost_orbit"]	<< GHOST_ORBIT_CIRCLE
+		S["ghost_form"]		<< GHOST_DEFAULT_FORM
 
 	if(savefile_version < 24)
 		S["menuoptions"]	<< list()
@@ -77,6 +82,9 @@
 	S["ghost_hud"]			>> ghost_hud
 	S["windowflashing"]		>> windowflashing
 	S["menuoptions"]		>> menuoptions
+	S["ghost_vision"]		>> ghost_vision
+	S["ghost_orbit"]		>> ghost_orbit
+	S["ghost_form"]			>> ghost_form
 
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
@@ -92,6 +100,9 @@
 	show_typing		= sanitize_integer(show_typing, 0, 1, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, 0, 8388608, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
+	ghost_vision	= sanitize_integer(ghost_vision, 0, 1, initial(ghost_vision))
+	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
+	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 
 	return TRUE
 
@@ -119,6 +130,9 @@
 	show_typing		= sanitize_integer(show_typing, 0, 1, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, 0, 8388608, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
+	ghost_vision	= sanitize_integer(ghost_vision, 0, 1, initial(ghost_vision))
+	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
+	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 
 	S["default_slot"]		<< default_slot
 	S["lastchangelog"]		<< lastchangelog
@@ -134,6 +148,10 @@
 	S["ghost_hud"]			<< ghost_hud
 	S["windowflashing"]		<< windowflashing
 	S["menuoptions"]		<< menuoptions
+	S["ghost_vision"]		<< ghost_vision
+	S["ghost_orbit"]		<< ghost_orbit
+	S["ghost_form"]			<< ghost_form
+
 
 	return TRUE
 

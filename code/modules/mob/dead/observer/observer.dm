@@ -1,47 +1,82 @@
+GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
+
+
 /mob/dead/observer
 	name = "ghost"
 	desc = "It's a g-g-g-g-ghooooost!"
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "ghost"
+	layer = GHOST_LAYER
 	stat = DEAD
 	density = FALSE
-	canmove = FALSE
-	anchored = TRUE
+	see_invisible = SEE_INVISIBLE_OBSERVER
+	see_in_dark = 100
 	invisibility = INVISIBILITY_OBSERVER
-	alpha = 127
-	layer = ABOVE_FLY_LAYER
 
+	initial_language_holder = /datum/language_holder/universal
+	var/atom/movable/following = null
+	var/mob/observetarget = null	//The target mob that the ghost is observing. Used as a reference in logout()
 
 	var/inquisitive_ghost = FALSE
 	var/can_reenter_corpse = FALSE
-	var/datum/hud/living/carbon/hud = null
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
+	
 	var/ghost_medhud = FALSE
 	var/ghost_sechud = FALSE
 	var/ghost_squadhud = FALSE
 	var/ghost_xenohud = FALSE
 	var/ghost_orderhud = FALSE
+	var/ghost_vision = TRUE
+	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 
-	universal_speak = TRUE
-	var/atom/movable/following = null
-	initial_language_holder = /datum/language_holder/universal
+	var/updatedir = TRUE //Do we have to update our dir as the ghost moves around?
 
 
 /mob/dead/observer/Initialize()
-	. = ..()
+	invisibility = GLOB.observer_default_invisibility
 
-	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
-	see_invisible = SEE_INVISIBLE_OBSERVER
-	see_in_dark = 100
+	var/turf/T
+	var/mob/body = loc
+	if(ismob(body))
+		T = get_turf(body)				//Where is the body located?
 
-	stat = DEAD
+		gender = body.gender
+		if(body.mind?.name)
+			name = body.mind.name
+		else
+			if(body.real_name)
+				name = body.real_name
+			else
+				name = random_unique_name(gender)
+
+		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
+
+	if(!T)
+		T = pick(GLOB.latejoin)
+
+	forceMove(T)
+
+	if(!name)
+		name = random_unique_name(gender)
+	real_name = name
+
+	animate(src, pixel_y = 2, time = 10, loop = -1)
+
+	grant_all_languages()
+
+	return ..()
 
 
-/mob/dead/observer/Destroy()
-	unfollow()
-	. = ..()
+/mob/dead/observer/update_icon(state)
+	if(!started_as_observer)
+		return FALSE
+
+	icon_state = state
+	return TRUE
+
+
 
 /mob/dead/observer/Topic(href, href_list)
 	if(href_list["reentercorpse"])
@@ -80,6 +115,7 @@
 
 /mob/dead/CanPass(atom/movable/mover, turf/target)
 	return TRUE
+
 
 /mob/proc/ghostize(var/can_reenter_corpse = TRUE)
 	if(!key)
@@ -153,20 +189,13 @@
 	handle_afk_takeover()
 
 
-/mob/dead/observer/proc/unfollow()
-	if(following?.followers)
-		following.followers -= src
-	following = null
-
-
 /mob/dead/observer/Move(atom/newloc, direct)
+	if(updatedir)
+		setDir(direct)//only update dir if we actually need it, so overlays won't spin on base sprites that don't have directions of their own
 	var/oldloc = loc
-	setDir(direct)
-	if(loc != newloc)
-		unfollow()
+
 	if(newloc)
 		forceMove(newloc)
-		return
 	else
 		forceMove(get_turf(src))  //Get out of closets and such as a ghost
 		if((direct & NORTH) && y < world.maxy)
@@ -291,7 +320,6 @@
 	if(!A)
 		return
 
-	unfollow()
 	loc = pick(get_area_turfs(A))
 
 
@@ -519,17 +547,42 @@
 			ManualFollow(L)
 
 
+// This is the ghost's follow verb with an argument
 /mob/dead/observer/proc/ManualFollow(atom/movable/target)
-	set waitfor = FALSE
+	if(!istype(target))
+		return
 
-	if(target && target != src)
-		if(following && following == target)
-			return
-		unfollow()
-		target.followers += src
-		following = target
-		forceMove(target.loc)
-		to_chat(src, "<span class='notice'>Now following [target]</span>")
+	var/icon/I = icon(target.icon, target.icon_state, target.dir)
+
+	var/orbitsize = (I.Width() + I.Height()) * 0.5
+	orbitsize -= (orbitsize / world.icon_size) * (world.icon_size * 0.25)
+
+	var/rot_seg
+
+	switch(ghost_orbit)
+		if(GHOST_ORBIT_TRIANGLE)
+			rot_seg = 3
+		if(GHOST_ORBIT_SQUARE)
+			rot_seg = 4
+		if(GHOST_ORBIT_PENTAGON)
+			rot_seg = 5
+		if(GHOST_ORBIT_HEXAGON)
+			rot_seg = 6
+		else //Circular
+			rot_seg = 36
+
+	orbit(target,orbitsize, FALSE, 20, rot_seg)
+
+
+/mob/dead/observer/orbit()
+	setDir(SOUTH)//reset dir so the right directional sprites show up
+	return ..()
+
+
+/mob/dead/observer/stop_orbit(datum/component/orbiter/orbits)
+	. = ..()
+	pixel_y = 0
+	animate(src, pixel_y = 2, time = 10, loop = -1)
 
 
 /mob/dead/observer/verb/analyze_air()
@@ -578,6 +631,28 @@
 	else
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 		to_chat(src, "<span class='notice'>You can now see in the dark.</span>")
+
+
+/mob/dead/observer/verb/toggle_ghostsee()
+	set category = "Ghost"
+	set name = "Toggle Ghost Vision"
+	set desc = "Toggles your ability to see things only ghosts can see, like other ghosts."
+
+	ghost_vision = !ghost_vision
+	update_sight()
+
+	if(client?.prefs)
+		client.prefs.ghost_vision = ghost_vision
+		client.prefs.save_preferences()
+
+	to_chat(src, "<span class='notice'>You [(ghost_vision ? "now" : "no longer")] have ghost vision.</span>")
+
+
+/mob/dead/observer/update_sight()
+	if(ghost_vision)
+		see_invisible = SEE_INVISIBLE_OBSERVER
+	else
+		see_invisible = SEE_INVISIBLE_LIVING
 
 
 /mob/dead/observer/verb/hive_status()
@@ -673,10 +748,10 @@
 /mob/dead/observer/reset_perspective(atom/A)
 	if(client && ismob(client.eye) && client.eye != src)
 		var/mob/target = client.eye
-		following = null
-		if(target.followers)
-			target.followers -= src
-			UNSETEMPTY(target.followers)
+		observetarget = null
+		if(target.observers)
+			target.observers -= src
+			UNSETEMPTY(target.observers)
 
 	. = ..()
 	
