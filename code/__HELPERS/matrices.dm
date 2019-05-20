@@ -6,13 +6,13 @@
 /atom/proc/SpinAnimation(speed = 10, loops = -1, clockwise = TRUE, segments = 3)
 	if(!segments)
 		return
-	var/segment = 360/segments
+	var/segment = 360 / segments
 	if(!clockwise)
 		segment = -segment
 	var/list/matrices = list()
-	for(var/i in 1 to segments-1)
+	for(var/i in 1 to segments - 1)
 		var/matrix/M = matrix(transform)
-		M.Turn(segment*i)
+		M.Turn(segment * i)
 		matrices += M
 	var/matrix/last = matrix(transform)
 	matrices += last
@@ -165,7 +165,7 @@ round(cos_inv_third+sqrt3_sin, 0.001), round(cos_inv_third-sqrt3_sin, 0.001), ro
 /proc/color_matrix_add(list/A, list/B)
 	if(!istype(A) || !istype(B))
 		return color_matrix_identity()
-	if(A.len != 20 || B.len != 20)
+	if(length(A) != 20 || length(B) != 20)
 		return color_matrix_identity()
 	var/list/output = list()
 	output.len = 20
@@ -178,7 +178,7 @@ round(cos_inv_third+sqrt3_sin, 0.001), round(cos_inv_third-sqrt3_sin, 0.001), ro
 /proc/color_matrix_multiply(list/A, list/B)
 	if(!istype(A) || !istype(B))
 		return color_matrix_identity()
-	if(A.len != 20 || B.len != 20)
+	if(length(A) != 20 || length(B) != 20)
 		return color_matrix_identity()
 	var/list/output = list()
 	output.len = 20
