@@ -87,6 +87,7 @@
 	S["ghost_orbit"]		>> ghost_orbit
 	S["ghost_form"]			>> ghost_form
 	S["ghost_others"]		>> ghost_others
+	S["hotkeys"]			>> hotkeys
 
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
@@ -106,6 +107,7 @@
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
+	hotkeys			= sanitize_integer(hotkeys, 0, 1, initial(hotkeys))
 
 	return TRUE
 
@@ -137,6 +139,7 @@
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
+	hotkeys			= sanitize_integer(hotkeys, 0, 1, initial(hotkeys))
 
 	S["default_slot"]		<< default_slot
 	S["lastchangelog"]		<< lastchangelog
@@ -156,7 +159,7 @@
 	S["ghost_orbit"]		<< ghost_orbit
 	S["ghost_form"]			<< ghost_form
 	S["ghost_others"]		<< ghost_others
-
+	S["hotkeys"]			<< hotkeys
 
 	return TRUE
 
