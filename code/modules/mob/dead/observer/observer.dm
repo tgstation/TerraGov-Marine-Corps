@@ -47,8 +47,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 
-	var/observetarget // used to show hud
-
 
 /mob/dead/observer/Initialize()
 	invisibility = GLOB.observer_default_invisibility
@@ -167,7 +165,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			return
 
 		var/mob/dead/observer/A = usr
-		A.on_mob_jump()
 		A.forceMove(T)
 		return
 
