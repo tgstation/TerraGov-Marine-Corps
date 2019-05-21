@@ -231,7 +231,7 @@
 		. -= (frenzy_aura * 0.05)
 
 	if(hit_and_run) //We need to have the hit and run ability before we do anything
-		hit_and_run = min(2, hit_and_run + 0.05) //increment the damage of our next attack by +5% up to 200%
+		hit_and_run += 0.05 //increment the damage of our next attack by +5%
 
 	if(is_charging)
 		if(legcuffed)
@@ -647,7 +647,7 @@
 
 	to_chat(src, "<span class='notice'>You start salvaging plasma from [target].</span>")
 
-	while(target.plasma_stored && plasma_stored >= xeno_caste.plasma_max)
+	while(target.plasma_stored && plasma_stored < xeno_caste.plasma_max)
 		if(!do_after(src, salvage_delay, TRUE, null, BUSY_ICON_HOSTILE) || !check_state())
 			break
 

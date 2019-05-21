@@ -102,7 +102,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
-		O.on_mob_jump()
 		var/turf/T = locate(x, y, z)
 		O.forceMove(T)
 
@@ -127,7 +126,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
-		O.on_mob_jump()
 		O.ManualFollow(AM)
 
 		if(message)
@@ -148,7 +146,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
-		O.on_mob_jump()
 		O.forceMove(get_turf(AM))
 
 		if(message)
@@ -642,7 +639,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 				target = locate(X, Y, Z)
 
-		M.on_mob_jump()
 		M.forceMove(target)
 
 		log_admin("[key_name(usr)] has sent [key_name(M)]'s mob to [AREACOORD(target)].")
@@ -1583,7 +1579,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
-		usr.client.holder.select_rank(H)
+		usr.client.holder.edit_rank(H)
 
 
 	else if(href_list["setequipment"])
@@ -1771,5 +1767,87 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		H.check_dna(H)
 		usr.client.holder.edit_appearance(H)
 
-		log_admin("[key_name(usr)] updated the changed the [href_list["appearance"]] from [previous] to [change] of [key_name(H)].")
+		log_admin("[key_name(usr)] updated the [href_list["appearance"]] from [previous] to [change] of [key_name(H)].")
 		message_admins("[ADMIN_TPMONTY(usr)] updated the [href_list["appearance"]] from [previous] to [change] of [ADMIN_TPMONTY(H)].")
+
+
+	else if(href_list["rank"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["mob"]) in GLOB.human_mob_list
+		if(!istype(H))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		var/change
+		var/previous
+
+		switch(href_list["rank"])
+			if("createmind")
+				if(!istype(H) || H.mind)
+					return
+				H.mind_initialize()
+			if("rank")
+				change = input("Select a rank.", "Edit Rank") as null|anything in sortList(SSjob.name_occupations)
+				if(!change || !istype(H) || !H.mind)
+					return
+				previous = H.mind.assigned_role
+				H.set_rank(change)
+			if("skills")
+				var/list/skilltypes = subtypesof(/datum/skills)
+				var/list/skills = list()
+				for(var/i in skilltypes)
+					var/datum/skills/S = i
+					skills[initial(S.name)] = S
+				var/newskillset = input("Select a skillset.", "Edit Rank") as null|anything in sortList(skills)
+				if(!newskillset || !istype(H) || !H.mind)
+					return
+				var/pickedtype = skills[newskillset]
+				var/datum/skills/S = new pickedtype
+				previous = H.mind.cm_skills.name
+				change = S.name
+				H.mind.cm_skills = S
+			if("commstitle")
+				change = input("Input a comms title - \[Requisitions (Title)\]", "Edit Rank") as null|text
+				if(!change || !istype(H) || !H.mind)
+					return
+				previous = H.mind.comm_title
+				H.mind.comm_title = change
+			if("chattitle")
+				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.item_list
+				change = input("Input a chat title - Title Jane Doe screams!", "Edit Rank") as null|text
+				if(isnull(change) || !istype(H) || !istype(C))
+					return
+				previous = C.paygrade
+				C.paygrade = change
+				C.update_label()
+			if("idtitle")
+				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.item_list
+				change = input("Input an ID title - Jane Doe (Title)", "Edit Rank") as null|text
+				if(isnull(change) || !istype(H) || !H.mind)
+					return
+				previous = C.assignment
+				C.assignment = change
+				C.update_label()
+			if("idname")
+				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.item_list
+				change = input("Input an ID name - Jane Doe (Title)", "Edit Rank") as null|text
+				if(isnull(change) || !istype(H) || !H.mind)
+					return
+				previous = C.registered_name
+				C.registered_name = change
+				C.update_label()
+			if("createid")
+				if(!istype(H) || H.wear_id)
+					return
+				H.equip_to_slot_or_del(new /obj/item/card/id(H), SLOT_WEAR_ID)
+
+		usr.client.holder.edit_rank(H)
+
+		if(change)
+			log_admin("[key_name(usr)] updated the [href_list["rank"]] from [previous] to [change] of [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] updated the [href_list["rank"]] from [previous] to [change] of [ADMIN_TPMONTY(H)].")
+		else
+			log_admin("[key_name(usr)] updated the rank: [href_list["rank"]] of [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] updated the rank: [href_list["rank"]] of [ADMIN_TPMONTY(H)].")

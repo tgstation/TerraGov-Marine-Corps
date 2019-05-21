@@ -119,6 +119,8 @@
 
 	var/area/lastarea
 
+	var/list/observers = null	//The list of people observing this mob.
+
 	var/obj/control_object //Used by admins to possess objects. All mobs should have this var
 
 	//Whether or not mobs can understand other mobtypes. These stay in /mob so that ghosts can hear everything.

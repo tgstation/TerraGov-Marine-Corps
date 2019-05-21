@@ -732,62 +732,35 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed the security level to code [sec_level].")
 
 
-/datum/admins/proc/select_rank(mob/living/carbon/human/H in GLOB.human_mob_list)
+/datum/admins/proc/edit_rank(mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
-	set name = "Select Rank"
+	set name = "Edit Rank"
 
-	if(!istype(H))
+	if(!check_rights(R_FUN))
 		return
 
-	switch(alert("Modify the rank or give them a new one?", "Select Rank", "New Rank", "Modify", "Cancel"))
-		if("New Rank")
-			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(SSjob.name_occupations)
-			if(!newrank || !istype(H))
-				return
+	var/dat
+	var/obj/item/card/id/C = H.wear_id
 
-			H.set_rank(newrank)
+	if(!H.mind)
+		dat += "No mind! <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=createmind;mob=[REF(H)]'>Create</a><br>"
+	else
+		dat += "Job: [H.mind.assigned_role] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=rank;mob=[REF(H)]'>Edit</a><br>"
+		dat += "<br>"
+		dat += "Skillset: [H.mind.cm_skills.name] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=skills;mob=[REF(H)]'>Edit</a><br>"
+		dat += "Comms title: [H.mind.comm_title] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=commstitle;mob=[REF(H)]'>Edit</a><br>"
+	if(istype(C))
+		dat += "<br>"
+		dat += "Chat title: [C.paygrade] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=chattitle;mob=[REF(H)];id=[REF(C)]'>Edit</a><br>"
+		dat += "ID title: [C.assignment] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=idtitle;mob=[REF(H)];id=[REF(C)]'>Edit</a><br>"
+		dat += "ID name: [C.registered_name] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=idname;mob=[REF(H)];id=[REF(C)]'>Edit</a><br>"
+	else
+		dat += "No ID! <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=createid;mob=[REF(H)]'>Give ID</a><br>"
 
-			log_admin("[key_name(usr)] has set the rank of [key_name(H)] to [newrank].")
-			message_admins("[ADMIN_TPMONTY(usr)] has set the rank of [ADMIN_TPMONTY(H)] to [newrank].")
 
-		if("Modify")
-			var/obj/item/card/id/I = H.wear_id
-			switch(input("What do you want to edit?") as null|anything in list("Comms Title - \[Engineering (Title)]", "Chat Title - Title John Doe screams!", "ID title - Jane Doe's ID Card (Title)", "Registered Name - Jane Doe's ID Card", "Skills"))
-				if("Comms Title - \[Engineering (Title)]")
-					var/commtitle = input("Write the custom title appearing in the comms: Comms Title - \[Engineering (Title)]", "Comms Title") as null|text
-					if(!commtitle || !H?.mind)
-						return
-					H.mind.comm_title = commtitle
-				if("Chat Title - Title John Doe screams!")
-					var/chattitle = input("Write the custom title appearing in all chats: Title Jane Doe screams!", "Chat Title") as null|text
-					if(chattitle || !H || !istype(I))
-						return
-					I.paygrade = chattitle
-					I.update_label()
-				if("ID title - Jane Doe's ID Card (Title)")
-					var/idtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID Title") as null|text
-					if(!idtitle || !H || !istype(I))
-						return
-					I.assignment = idtitle
-					I.update_label()
-				if("Registered Name - Jane Doe's ID Card")
-					var/regname = input("Write the name appearing on the ID itself: Jane Doe's ID Card", "Registered Name") as null|text
-					if(!H || I != H.wear_id || !istype(I))
-						return
-					I.registered_name = regname
-					I.update_label()
-				if("Skills")
-					var/newskillset = input("Select a skillset", "Skill Set") as null|anything in sortList(SSjob.name_occupations)
-					if(!newskillset || !H?.mind)
-						return
-					var/datum/job/J = SSjob.name_occupations[newskillset]
-					var/datum/skills/S = new J.skills_type()
-					H.mind.cm_skills = S
-				else
-					return
-
-			log_admin("[key_name(usr)] has made a custom rank/skill change for [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank/skill change for [ADMIN_TPMONTY(H)].")
+	var/datum/browser/browser = new(usr, "edit_rank_[key_name(H)]", "<div align='center'>Edit Rank [key_name(H)]</div>")
+	browser.set_content(dat)
+	browser.open(FALSE)
 
 
 /datum/admins/proc/select_equipment(mob/living/carbon/human/H in GLOB.human_mob_list)
