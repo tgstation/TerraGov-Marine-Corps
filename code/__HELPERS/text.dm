@@ -280,7 +280,7 @@
 	if(!text || !character)
 		return 0
 	var/count = 0
-	for(var/i = 1, i <= lentext(text), i++)
+	for(var/i in 1 to lentext(text))
 		var/a = copytext(text, i, i + 1)
 		if(a == character)
 			count++
