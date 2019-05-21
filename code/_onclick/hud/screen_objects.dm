@@ -320,6 +320,17 @@
 	user.zone_selected = selecting
 
 
+/obj/screen/zone_sel/proc/set_selected_zone(choice, mob/user)
+	if(isobserver(user))
+		return
+
+	if(choice != selecting)
+		selecting = choice
+		update_icon(user)
+		
+	return TRUE
+
+
 /obj/screen/zone_sel/Click(location, control, params)
 	if(isobserver(usr))
 		return

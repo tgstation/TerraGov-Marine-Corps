@@ -84,8 +84,6 @@
 
 #define isAI(A) (istype(A, /mob/living/silicon/ai))
 
-#define ismaintdrone(A) (istype(A, /mob/living/silicon/robot/drone))
-
 //Simple animals
 #define isanimal(A) (istype(A, /mob/living/simple_animal))
 

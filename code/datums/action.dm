@@ -138,6 +138,7 @@
 		name = "[name] ([plasma_cost])"
 	button.overlays += image('icons/mob/actions.dmi', button, action_icon_state)
 	cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock")
+	cooldown_image.pixel_y = 7
 	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
 
 /datum/action/xeno_action/can_use_action(silent = FALSE, override_flags)

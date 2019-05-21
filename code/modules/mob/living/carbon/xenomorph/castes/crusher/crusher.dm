@@ -216,7 +216,7 @@
 	"<span class='xenodanger'>You ram [src]!</span>")
 	playsound(loc, "punch", 25, 1)
 	machine_stat = 1
-	on = 0
+	DISABLE_BITFIELD(turret_flags, TURRET_ON)
 	update_icon()
 	update_health(X.charge_speed * 20)
 	X.charge_speed -= CHARGE_SPEED_BUILDUP * 3 //Lose three turfs worth of speed
@@ -299,7 +299,7 @@
 
 	if(now_pushing) return FALSE //Just a plain ol turf, let's return.
 
-	if(dir != charge_dir) //We aren't facing the way we're charging.
+	if(dir != charge_dir || moving_diagonally) //We aren't facing the way we're charging.
 		stop_momentum()
 		return ..()
 

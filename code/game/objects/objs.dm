@@ -233,8 +233,6 @@
 	if(!(direct & (direct - 1))) //not diagonal move. the obj's diagonal move is split into two cardinal moves and those moves will handle the buckled mob's movement.
 		if(!buckled_mob.Move(NewLoc, direct))
 			loc = buckled_mob.loc
-			last_move_dir = buckled_mob.last_move_dir
-			buckled_mob.inertia_dir = last_move_dir
 			return 0
 	return 1
 
