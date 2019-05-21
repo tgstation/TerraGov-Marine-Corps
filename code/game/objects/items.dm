@@ -846,17 +846,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		// Create a callback with checks that would be called every tick by do_after.
 		var/datum/callback/tool_check = CALLBACK(src, .proc/tool_check_callback, user, amount, extra_checks)
 
-		if(ismob(target))
-			if(!do_mob(user, target, delay, extra_checks=tool_check))
-				return
-
-		else
-			if(!do_after(user, delay, target=target, extra_checks=tool_check))
-				return
-	else
-		// Invoke the extra checks once, just in case.
-		if(extra_checks && !extra_checks.Invoke())
+		if(ismob(target) && !do_mob(user, target, delay, extra_checks=tool_check))
 			return
+
+		else if(!do_after(user, delay, target=target, extra_checks=tool_check))
+			return
+	else if(extra_checks && !extra_checks.Invoke()) // Invoke the extra checks once, just in case.
+		return
 
 	// Use tool's fuel, stack sheets or charges if amount is set.
 	if(amount && !use(amount))
@@ -885,8 +881,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 // Plays item's usesound, if any.
 /obj/item/proc/play_tool_sound(atom/target, volume)
-	if(target && usesound && volume)
-		playsound(target, usesound, volume, 1)
+	if(!target || !usesound || !volume)
+		return
+	playsound(target, usesound, volume, 1)
 
 // Used in a callback that is passed by use_tool into do_after call. Do not override, do not call manually.
 /obj/item/proc/tool_check_callback(mob/living/user, amount, datum/callback/extra_checks)

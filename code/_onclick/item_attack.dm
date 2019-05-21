@@ -4,8 +4,9 @@
 		return
 	// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
 	var/resolved = target.attackby(src, user, params)
-	if(!resolved && target && !QDELETED(src))
-		afterattack(target, user, TRUE, params) // TRUE: clicking something Adjacent
+	if(resolved || QDELETED(target) || QDELETED(src))
+		return
+	afterattack(target, user, TRUE, params) // TRUE: clicking something Adjacent
 
 
 
