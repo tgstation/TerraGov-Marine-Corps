@@ -1076,8 +1076,8 @@
 				to_chat(recipient, "<font size='3' color='red'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 				to_chat(src, "<font size='3' color='blue'>Staff PM to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 
-				window_flash(recipient)
-				window_flash(src)
+				window_flash(recipient, TRUE)
+				window_flash(src, TRUE)
 
 				var/interaction_message = "<font color='#cea7f1'>PM from-<b>[key_name(src, recipient, TRUE)]</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [keywordparsedmsg]</font>"
 				admin_ticket_log(src, interaction_message)
@@ -1087,7 +1087,7 @@
 			else //Recipient is a staff member, sender is not.
 				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 				to_chat(recipient, "<font size='3' color='red'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
-				window_flash(recipient)
+				window_flash(recipient, TRUE)
 				to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[msg]</span></font>")
 
 			//Play the bwoink if enabled.
@@ -1108,14 +1108,15 @@
 					to_chat(recipient, "<font color='red'><i>Click on the staff member's name to reply.</i></font>")
 					to_chat(src, "<font color='blue'><b>[holder.fakekey ? "Administrator" : holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
 					SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
+					window_flash(recipient, TRUE)
 				else if(is_mentor(src))
 					to_chat(recipient, "<font color='blue' size='2'><b>-- Mentor Message --</b></font>")
 					to_chat(recipient, "<font color='blue'>[holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
 					to_chat(recipient, "<font color='blue'><i>Click on the mentor's name to reply.</i></font>")
 					to_chat(src, "<font color='blue'><b>[holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
 					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg'))
+					window_flash(recipient)
 
-				window_flash(recipient)
 				admin_ticket_log(recipient, "<font color='#a7f2ef'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
 
 
