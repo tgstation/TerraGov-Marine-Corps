@@ -185,7 +185,7 @@
 		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
 		"<span class='notice'>You fumble around figuring out the wiring.</span>")
 		var/fumbling_time = 20 * (SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer)
-		if(!do_after(usr, fumbling_time, TRUE, holder, BUSY_ICON_UNSKILLED))
+		if(!do_after(usr, fumbling_time, TRUE, holder, BUSY_ICON_UNSKILLED) || is_cut(wire))
 			return
 
 	on_pulse(wire, user)
