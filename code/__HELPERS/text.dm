@@ -259,7 +259,7 @@
 	var/newtext = text
 	if(lentext(text) != lentext(compare))
 		return FALSE
-	for(var/i = 1, i < lentext(text), i++)
+	for(var/i in 1 to lentext(text)-1)
 		var/a = copytext(text, i, i + 1)
 		var/b = copytext(compare, i, i + 1)
 //if it isn't both the same letter, or if they are both the replacement character
