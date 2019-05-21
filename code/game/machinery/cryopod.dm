@@ -244,7 +244,7 @@
 /mob/proc/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
 
 	//Handle job slot/tater cleanup.
-	if(job)
+	if(job in JOBS_REGULAR_ALL)
 		var/datum/job/J = SSjob.name_occupations[job]
 		J.current_positions--
 		if((J.title in JOBS_REGULAR_ALL) && isdistress(SSticker?.mode))
@@ -283,14 +283,10 @@
 	GLOB.cryoed_mob_list += data
 	GLOB.cryoed_mob_list[data] = list(real_name, job ? job : "Unassigned", gameTimestamp())
 
-	var/obj/item/radio/radio
 	if(pod)
-		radio = pod.radio
 		pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")
 		pod.occupant = null
-	else
-		radio = new(src)
-	radio.talk_into(pod, "[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", FREQ_COMMON)
+		pod.radio.talk_into(pod, "[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", FREQ_COMMON)
 
 	qdel(src)
 
