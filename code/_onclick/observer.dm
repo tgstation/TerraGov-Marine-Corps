@@ -10,7 +10,6 @@
 
 	// Otherwise jump
 	else if(A.loc)
-		unfollow()
 		forceMove(get_turf(A))
 
 

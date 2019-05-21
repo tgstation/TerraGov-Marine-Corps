@@ -939,3 +939,12 @@ mob/proc/yank_out_object()
 				click_intercept = null
 				break
 	return ..()
+
+
+/mob/proc/update_sight()
+	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_SIGHT)
+	sync_lighting_plane_alpha()
+
+
+/mob/proc/sync_lighting_plane_alpha()
+	return

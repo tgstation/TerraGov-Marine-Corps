@@ -26,7 +26,7 @@
 	var/verb_whisper = "whispers"
 	var/verb_yell = "yells"
 
-	var/list/mob/dead/observer/followers = list()
+	var/datum/component/orbiter/orbiting
 
 //===========================================================================
 /atom/movable/Destroy()
@@ -209,9 +209,8 @@
 		else
 			if(light)
 				light.changed()
-	for(var/_F in followers)
-		var/mob/dead/observer/F = _F
-		F.forceMove(loc)
+
+	return TRUE
 
 
 /atom/movable/proc/forceMove(atom/destination)

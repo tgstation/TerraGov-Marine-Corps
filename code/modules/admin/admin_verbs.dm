@@ -658,14 +658,6 @@
 			to_chat(C, msg)
 
 
-/mob/proc/on_mob_jump()
-	return
-
-
-/mob/dead/observer/on_mob_jump()
-	unfollow()
-
-
 /datum/admins/proc/jump()
 	set category = "Admin"
 	set name = "Jump"
@@ -704,7 +696,6 @@
 	if(!istype(target))
 		return
 
-	N.on_mob_jump()
 	N.forceMove(target)
 
 	log_admin("[key_name(usr)] jumped to [selection] at [AREACOORD(target)].")
@@ -744,7 +735,6 @@
 
 	var/turf/T = get_turf(N)
 
-	M.on_mob_jump()
 	M.forceMove(T)
 
 	log_admin("[key_name(usr)] teleported [key_name(M)] to themselves [AREACOORD(M.loc)].")
@@ -795,7 +785,6 @@
 	if(!istype(M))
 		return
 
-	M.on_mob_jump()
 	M.forceMove(target)
 
 	log_admin("[key_name(usr)] teleported [key_name(M)] to [AREACOORD(target)].")
@@ -811,7 +800,6 @@
 
 	var/mob/M = usr
 	var/target = pick(get_area_turfs(A))
-	M.on_mob_jump()
 	M.forceMove(target)
 
 	log_admin("[key_name(usr)] jumped to [AREACOORD(M)].")
@@ -830,7 +818,6 @@
 		return
 
 	var/mob/M = usr
-	M.on_mob_jump()
 	M.forceMove(T)
 
 	log_admin("[key_name(M)] jumped to turf [AREACOORD(T)].")
@@ -846,7 +833,6 @@
 		return
 
 	var/mob/M = usr
-	M.on_mob_jump()
 	M.x = tx
 	M.y = ty
 	M.z = tz
@@ -873,7 +859,6 @@
 	var/mob/N = usr
 	var/turf/T = get_turf(M)
 
-	N.on_mob_jump()
 	N.forceMove(T)
 
 	log_admin("[key_name(N)] jumped to [key_name(M)]'s mob [AREACOORD(T)]")
@@ -899,7 +884,6 @@
 	var/mob/N = usr
 	var/turf/T = get_turf(M)
 
-	N.on_mob_jump()
 	N.forceMove(T)
 
 	log_admin("[key_name(usr)] jumped to [key_name(M)]'s key [AREACOORD(T)].")

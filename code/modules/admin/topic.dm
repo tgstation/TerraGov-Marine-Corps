@@ -102,7 +102,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
-		O.on_mob_jump()
 		var/turf/T = locate(x, y, z)
 		O.forceMove(T)
 
@@ -127,7 +126,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
-		O.on_mob_jump()
 		O.ManualFollow(AM)
 
 		if(message)
@@ -148,7 +146,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
-		O.on_mob_jump()
 		O.forceMove(get_turf(AM))
 
 		if(message)
@@ -642,7 +639,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 				target = locate(X, Y, Z)
 
-		M.on_mob_jump()
 		M.forceMove(target)
 
 		log_admin("[key_name(usr)] has sent [key_name(M)]'s mob to [AREACOORD(target)].")
