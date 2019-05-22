@@ -2,8 +2,8 @@
 obj/item/limb
 	icon = 'icons/mob/human_races/r_human.dmi'
 
-obj/item/limb/New(loc, mob/living/carbon/human/H)
-	..(loc)
+obj/item/limb/Initialize(mapload, mob/living/carbon/human/H)
+	. = ..()
 	if(!istype(H))
 		return
 	//Forming icon for the limb
@@ -73,10 +73,10 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	var/brain_item_type = /obj/item/organ/brain
 	var/braindeath_on_decap = 1 //whether the brainmob dies when head is decapitated (used by synthetics)
 
-/obj/item/limb/head/New(loc, mob/living/carbon/human/H)
+/obj/item/limb/head/Initialize(mapload, mob/living/carbon/human/H)
 	if(istype(H))
 		src.icon_state = H.gender == MALE? "head_m" : "head_f"
-	..()
+	. = ..()
 	if(H.species.species_flags & HAS_NO_HAIR)
 		return
 	//Add (facial) hair.

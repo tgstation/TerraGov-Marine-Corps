@@ -88,7 +88,7 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 
 /obj/item/stack/sheet/metal/cyborg
 
-/obj/item/stack/sheet/metal/New(var/loc, var/amount=null)
+/obj/item/stack/sheet/metal/Initialize(mapload, amount)
 	recipes = metal_recipes
 	return ..()
 
@@ -113,7 +113,7 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
 	merge_type = /obj/item/stack/sheet/plasteel
 
 
-/obj/item/stack/sheet/plasteel/New(var/loc, var/amount=null)
+/obj/item/stack/sheet/plasteel/Initialize(mapload, amount)
 	recipes = plasteel_recipes
 	return ..()
 
@@ -163,7 +163,7 @@ var/global/list/datum/stack_recipe/wood_recipes = list ( \
 	singular_name = "wood plank"
 	icon_state = "sheet-wood"
 
-/obj/item/stack/sheet/wood/New(var/loc, var/amount=null)
+/obj/item/stack/sheet/wood/Initialize(mapload, amount)
 	recipes = wood_recipes
 	return ..()
 
@@ -209,6 +209,6 @@ var/global/list/datum/stack_recipe/cardboard_recipes = list ( \
 	origin_tech = "materials=1"
 
 
-/obj/item/stack/sheet/cardboard/New(var/loc, var/amount=null)
+/obj/item/stack/sheet/cardboard/Initialize(mapload, amount)
 		recipes = cardboard_recipes
 		return ..()

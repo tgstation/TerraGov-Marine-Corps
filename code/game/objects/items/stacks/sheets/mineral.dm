@@ -60,8 +60,8 @@ var/global/list/datum/stack_recipe/iron_recipes = list ( \
 	throw_speed = 3
 	throw_range = 3
 
-/obj/item/stack/sheet/mineral/New()
-	..()
+/obj/item/stack/sheet/mineral/Initialize()
+	. = ..()
 	pixel_x = rand(0,4)-4
 	pixel_y = rand(0,4)-4
 
@@ -76,8 +76,8 @@ obj/item/stack/sheet/mineral/iron
 	perunit = 3750
 
 
-obj/item/stack/sheet/mineral/iron/New()
-	..()
+obj/item/stack/sheet/mineral/iron/Initialize()
+	. = ..()
 	recipes = iron_recipes
 
 /obj/item/stack/sheet/mineral/sandstone
@@ -91,8 +91,8 @@ obj/item/stack/sheet/mineral/iron/New()
 	sheettype = "sandstone"
 
 
-/obj/item/stack/sheet/mineral/sandstone/New()
-	..()
+/obj/item/stack/sheet/mineral/sandstone/Initialize()
+	. = ..()
 	recipes = sandstone_recipes
 
 /obj/item/stack/sheet/mineral/diamond
@@ -105,8 +105,8 @@ obj/item/stack/sheet/mineral/iron/New()
 	sheettype = "diamond"
 
 
-/obj/item/stack/sheet/mineral/diamond/New()
-	..()
+/obj/item/stack/sheet/mineral/diamond/Initialize()
+	. = ..()
 	recipes = diamond_recipes
 
 /obj/item/stack/sheet/mineral/uranium
@@ -119,8 +119,8 @@ obj/item/stack/sheet/mineral/iron/New()
 	sheettype = "uranium"
 
 
-/obj/item/stack/sheet/mineral/uranium/New()
-	..()
+/obj/item/stack/sheet/mineral/uranium/Initialize()
+	. = ..()
 	recipes = uranium_recipes
 
 /obj/item/stack/sheet/mineral/phoron
@@ -132,11 +132,6 @@ obj/item/stack/sheet/mineral/iron/New()
 	perunit = 2000
 	sheettype = "phoron"
 	merge_type = /obj/item/stack/sheet/mineral/phoron
-
-
-/obj/item/stack/sheet/mineral/phoron/New()
-	..()
-	// recipes = phoron_recipes // Disabled phoron doors
 
 
 /obj/item/stack/sheet/mineral/phoron/small_stack
@@ -156,8 +151,8 @@ obj/item/stack/sheet/mineral/iron/New()
 	perunit = 2000
 
 
-/obj/item/stack/sheet/mineral/plastic/New()
-	..()
+/obj/item/stack/sheet/mineral/plastic/Initialize()
+	. = ..()
 	recipes = plastic_recipes
 
 /obj/item/stack/sheet/mineral/plastic/cyborg
@@ -178,8 +173,8 @@ obj/item/stack/sheet/mineral/iron/New()
 	number_of_extra_variants = 2
 
 
-/obj/item/stack/sheet/mineral/gold/New()
-	..()
+/obj/item/stack/sheet/mineral/gold/Initialize()
+	. = ..()
 	recipes = gold_recipes
 
 /obj/item/stack/sheet/mineral/silver
@@ -193,8 +188,8 @@ obj/item/stack/sheet/mineral/iron/New()
 	number_of_extra_variants = 2
 
 
-/obj/item/stack/sheet/mineral/silver/New()
-	..()
+/obj/item/stack/sheet/mineral/silver/Initialize()
+	. = ..()
 	recipes = silver_recipes
 
 

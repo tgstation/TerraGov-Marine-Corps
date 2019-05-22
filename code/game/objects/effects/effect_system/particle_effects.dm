@@ -16,7 +16,8 @@
 	var/life = 0.5 //In seconds
 	mouse_opacity = 0
 
-/obj/effect/particle_effect/fire/New()
+/obj/effect/particle_effect/fire/Initialize()
+	. = ..()
 	if(!istype(loc, /turf))
 		qdel(src)
 	extinguish()

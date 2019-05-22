@@ -21,9 +21,8 @@
 
 /obj/effect/glowshroom/single
 
-/obj/effect/glowshroom/New()
-
-	..()
+/obj/effect/glowshroom/Initialize()
+	. = ..()
 
 	setDir(CalcDir())
 

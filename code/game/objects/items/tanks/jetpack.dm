@@ -13,8 +13,8 @@
 	var/volume_rate = 500              //Needed for borg jetpack transfer
 	actions_types = list(/datum/action/item_action)
 
-/obj/item/tank/jetpack/New()
-	..()
+/obj/item/tank/jetpack/Initialize()
+	. = ..()
 	src.ion_trail = new /datum/effect_system/ion_trail_follow()
 	src.ion_trail.set_up(src)
 
@@ -77,8 +77,8 @@
 	icon_state = "jetpack-black"
 	item_state =  "jetpack-black"
 
-/obj/item/tank/jetpack/carbondioxide/New()
-	..()
+/obj/item/tank/jetpack/carbondioxide/Initialize()
+	. = ..()
 	src.ion_trail = new /datum/effect_system/ion_trail_follow()
 	src.ion_trail.set_up(src)
 

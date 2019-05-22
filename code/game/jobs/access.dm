@@ -24,7 +24,6 @@
 	return
 
 /obj/proc/check_access(obj/item/I)
-	//These generations have been moved out of /obj/New() because they were slowing down the creation of objects that never even used the access system.
 	var/i
 	if(!req_access)
 		req_access = list()

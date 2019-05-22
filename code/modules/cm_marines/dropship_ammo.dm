@@ -377,8 +377,8 @@
 	mouse_opacity = 0
 	brightness_on = 7 //Magnesium/sodium fires (White star) really are bright
 
-/obj/item/flashlight/flare/on/cas/New()
-	..()
+/obj/item/flashlight/flare/on/cas/Initialize()
+	. = ..()
 	var/turf/T = get_turf(src)
 	fuel = rand(700, 900) // About the same burn time as a flare, considering it requires it's own CAS run.
 	T.visible_message("<span class='warning'>You see a tiny flash, and then a blindingly bright light from the flare as it lights off in the sky!</span>")

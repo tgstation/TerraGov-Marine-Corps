@@ -94,8 +94,8 @@
 						/obj/item/clothing/shoes/marine
 						)
 
-/obj/structure/largecrate/random/New()
-	..()
+/obj/structure/largecrate/random/Initialize()
+	. = ..()
 	if(!num_things) num_things = rand(0,3)
 
 	while(num_things)
@@ -248,8 +248,8 @@
 					/obj/item/weapon/gun/launcher/m81 = /obj/item/explosive/grenade/phosphorus
 					)
 
-/obj/structure/largecrate/guns/New()
-	..()
+/obj/structure/largecrate/guns/Initialize()
+	. = ..()
 	var/gun_type
 	var/i = 0
 	while(++i <= num_guns)
@@ -303,8 +303,8 @@
 /obj/structure/largecrate/hunter_games_construction
 	name = "construction crate"
 
-/obj/structure/largecrate/hunter_games_construction/New()
-	..()
+/obj/structure/largecrate/hunter_games_construction/Initialize()
+	. = ..()
 	new /obj/item/stack/sheet/metal(src, 50)
 	new /obj/item/stack/sheet/glass(src, 50)
 	new /obj/item/stack/sheet/plasteel(src, 50)
@@ -328,8 +328,8 @@
 /obj/structure/largecrate/hunter_games_medical
 	name = "medical crate"
 
-/obj/structure/largecrate/hunter_games_medical/New()
-	..()
+/obj/structure/largecrate/hunter_games_medical/Initialize()
+	. = ..()
 	new /obj/item/clothing/glasses/hud/health(src)
 	new /obj/item/clothing/glasses/hud/health(src)
 	new /obj/item/healthanalyzer(src)
@@ -352,8 +352,8 @@
 /obj/structure/largecrate/hunter_games_surgery
 	name = "surgery crate"
 
-/obj/structure/largecrate/hunter_games_surgery/New()
-	..()
+/obj/structure/largecrate/hunter_games_surgery/Initialize()
+	. = ..()
 	new /obj/item/tool/surgery/cautery(src)
 	new /obj/item/tool/surgery/surgicaldrill(src)
 	new /obj/item/clothing/mask/breath/medical(src)
@@ -371,8 +371,8 @@
 /obj/structure/largecrate/hunter_games_supplies
 	name = "supplies crate"
 
-/obj/structure/largecrate/hunter_games_supplies/New()
-	..()
+/obj/structure/largecrate/hunter_games_supplies/Initialize()
+	. = ..()
 	new /obj/item/storage/box/m94(src)
 	new /obj/item/storage/box/m94(src)
 	new /obj/item/storage/pouch/general/medium(src)
@@ -403,8 +403,8 @@
 /obj/structure/largecrate/hunter_games_guns
 	name = "weapons crate"
 
-/obj/structure/largecrate/hunter_games_guns/mediocre/New()
-	..()
+/obj/structure/largecrate/hunter_games_guns/mediocre/Initialize()
+	. = ..()
 	new /obj/item/weapon/gun/pistol/holdout(src)
 	new /obj/item/ammo_magazine/pistol/holdout(src)
 	new /obj/item/ammo_magazine/pistol/holdout(src)
@@ -418,8 +418,8 @@
 	new /obj/item/ammo_magazine/revolver/small(src)
 
 
-/obj/structure/largecrate/hunter_games_guns/decent/New()
-	..()
+/obj/structure/largecrate/hunter_games_guns/decent/Initialize()
+	. = ..()
 	new /obj/item/weapon/gun/pistol/m4a3(src)
 	new /obj/item/ammo_magazine/pistol(src)
 	new /obj/item/ammo_magazine/pistol(src)
@@ -442,8 +442,8 @@
 	new /obj/item/ammo_magazine/rifle/m16(src)
 
 
-/obj/structure/largecrate/hunter_games_guns/good/New()
-	..()
+/obj/structure/largecrate/hunter_games_guns/good/Initialize()
+	. = ..()
 	new /obj/item/weapon/gun/pistol/highpower(src)
 	new /obj/item/ammo_magazine/pistol/highpower(src)
 	new /obj/item/ammo_magazine/pistol/highpower(src)
@@ -466,8 +466,8 @@
 /obj/structure/largecrate/hunter_games_ammo
 	name = "ammo crate"
 
-/obj/structure/largecrate/hunter_games_ammo/mediocre/New()
-	..()
+/obj/structure/largecrate/hunter_games_ammo/mediocre/Initialize()
+	. = ..()
 	new /obj/item/ammo_magazine/pistol/holdout(src)
 	new /obj/item/ammo_magazine/pistol/holdout(src)
 	new /obj/item/ammo_magazine/pistol/holdout(src)
@@ -478,8 +478,8 @@
 	new /obj/item/ammo_magazine/revolver/small(src)
 	new /obj/item/ammo_magazine/revolver/small(src)
 
-/obj/structure/largecrate/hunter_games_ammo/decent/New()
-	..()
+/obj/structure/largecrate/hunter_games_ammo/decent/Initialize()
+	. = ..()
 	new /obj/item/ammo_magazine/pistol(src)
 	new /obj/item/ammo_magazine/pistol(src)
 	new /obj/item/ammo_magazine/smg/m39(src)
@@ -493,8 +493,8 @@
 	new /obj/item/ammo_magazine/rifle/m16(src)
 	new /obj/item/ammo_magazine/rifle/m16(src)
 
-/obj/structure/largecrate/hunter_games_ammo/good/New()
-	..()
+/obj/structure/largecrate/hunter_games_ammo/good/Initialize()
+	. = ..()
 	new /obj/item/ammo_magazine/pistol/highpower(src)
 	new /obj/item/ammo_magazine/pistol/highpower(src)
 	new /obj/item/ammo_magazine/rifle(src)
@@ -513,8 +513,8 @@
 /obj/structure/largecrate/hunter_games_armors
 	name = "armors crate"
 
-/obj/structure/largecrate/hunter_games_armors/New()
-	..()
+/obj/structure/largecrate/hunter_games_armors/Initialize()
+	. = ..()
 	new /obj/item/clothing/gloves/marine(src)
 	new /obj/item/clothing/gloves/marine(src)
 	new /obj/item/clothing/gloves/marine(src)

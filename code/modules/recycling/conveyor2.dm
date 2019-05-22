@@ -21,8 +21,8 @@
 	id = "round_end_belt"
 
 	// create a conveyor
-/obj/machinery/conveyor/New(loc, newdir, on = 0)
-	..(loc)
+/obj/machinery/conveyor/Initialize(mapload, newdir, on = FALSE)
+	. = ..()
 	if(newdir)
 		setDir(newdir)
 	switch(dir)
@@ -193,8 +193,8 @@
 
 
 
-/obj/machinery/conveyor_switch/New()
-	..()
+/obj/machinery/conveyor_switch/Initialize()
+	. = ..()
 	update()
 
 	spawn(5)		// allow map load

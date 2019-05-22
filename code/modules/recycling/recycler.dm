@@ -12,8 +12,8 @@
 	var/last_recycle_sound //for sound cooldown
 	var/ignored_items = list(/obj/item/limb)
 
-/obj/machinery/recycler/New()
-	..()
+/obj/machinery/recycler/Initialize()
+	. = ..()
 	update_icon()
 
 

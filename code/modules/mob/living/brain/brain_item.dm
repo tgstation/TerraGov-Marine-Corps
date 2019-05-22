@@ -22,8 +22,8 @@
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "chitin"
 
-/obj/item/organ/brain/New()
-	..()
+/obj/item/organ/brain/Initialize(mapload, ...)
+	. = ..()
 	spawn(5)
 		if(brainmob && brainmob.client)
 			brainmob.client.screen.len = null //clear the hud

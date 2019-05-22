@@ -11,7 +11,7 @@
 	var/admin = FALSE
 
 
-/obj/item/alien_embryo/New()
+/obj/item/alien_embryo/Initialize(mapload, ...)
 	. = ..()
 	if(isliving(loc))
 		affected_mob = loc

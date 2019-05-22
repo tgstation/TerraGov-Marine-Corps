@@ -4,7 +4,8 @@
 	icon_state = "x"
 	resistance_flags = UNACIDABLE
 
-/obj/effect/manifest/New()
+/obj/effect/manifest/Initialize()
+	. = ..()
 
 	src.invisibility = INVISIBILITY_MAXIMUM
 	return

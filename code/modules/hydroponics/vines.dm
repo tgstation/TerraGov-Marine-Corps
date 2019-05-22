@@ -23,8 +23,6 @@
 	var/obj/effect/plant_controller/master = null
 	var/datum/seed/seed
 
-/obj/effect/plantsegment/New()
-	return
 
 /obj/effect/plantsegment/Destroy()
 	if(master)
@@ -291,7 +289,8 @@
 	slowdown_limit = 3
 	limited_growth = 1
 
-/obj/effect/plant_controller/New()
+/obj/effect/plant_controller/Initialize()
+	. = ..()
 	if(!istype(src.loc,/turf/open/floor))
 		qdel(src)
 

@@ -68,6 +68,7 @@
 	icon_state = "slag"
 	oretag = "slag"
 
-/obj/item/ore/New()
+/obj/item/ore/Initialize(mapload, ...)
+	. = ..()
 	pixel_x = rand(0,16)-8
 	pixel_y = rand(0,8)-8

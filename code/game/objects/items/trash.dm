@@ -115,8 +115,8 @@
 	w_class = 1
 	throwforce = 1
 
-/obj/item/trash/cigbutt/New()
-	..()
+/obj/item/trash/cigbutt/Initialize()
+	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
 	transform = turn(transform,rand(0,360))

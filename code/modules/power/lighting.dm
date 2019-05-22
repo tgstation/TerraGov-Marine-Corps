@@ -23,8 +23,8 @@
 	var/sheets_refunded = 2
 	var/obj/machinery/light/newlight = null
 
-/obj/machinery/light_construct/New()
-	..()
+/obj/machinery/light_construct/Initialize()
+	. = ..()
 	if (fixture_type == "bulb")
 		icon_state = "bulb-construct-stage1"
 
@@ -169,19 +169,19 @@
 	light_type = /obj/item/light_bulb/tube/large
 	brightness = 12
 
-/obj/machinery/light/built/New()
+/obj/machinery/light/built/Initialize()
 	status = LIGHT_EMPTY
 	update(0)
-	..()
+	return ..()
 
-/obj/machinery/light/small/built/New()
+/obj/machinery/light/small/built/Initialize()
 	status = LIGHT_EMPTY
 	update(0)
-	..()
+	return ..()
 
 // create a new lighting fixture
-/obj/machinery/light/New()
-	..()
+/obj/machinery/light/Initialize()
+	. = ..()
 
 	spawn(2)
 		switch(fitting)
@@ -613,8 +613,8 @@
 			desc = "A broken [name]."
 
 
-/obj/item/light_bulb/New()
-	..()
+/obj/item/light_bulb/Initialize(mapload, ...)
+	. = ..()
 	switch(name)
 		if("light tube")
 			brightness = rand(6,9)
@@ -680,7 +680,8 @@
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
-/obj/machinery/landinglight/New()
+/obj/machinery/landinglight/Initialize()
+	. = ..()
 	turn_off()
 
 /obj/machinery/landinglight/proc/turn_off()
@@ -690,14 +691,14 @@
 /obj/machinery/landinglight/ds1
 
 
-/obj/machinery/landinglight/ds1/New()
+/obj/machinery/landinglight/ds1/Initialize()
 	. = ..()
 	id = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/machinery/landinglight/ds2
 
 
-/obj/machinery/landinglight/ds2/New()
+/obj/machinery/landinglight/ds2/Initialize()
 	. = ..()
 	id = "[CONFIG_GET(string/ship_name)] Dropship 2" // ID for landing zone
 

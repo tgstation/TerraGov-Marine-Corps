@@ -21,8 +21,8 @@
 	var/metal = 0
 
 
-/obj/effect/particle_effect/foam/New(loc, var/ismetal=0)
-	..(loc)
+/obj/effect/particle_effect/foam/Initialize(mapload, ismetal = 0)
+	. = ..()
 	icon_state = "[ismetal ? "m":""]foam"
 	metal = ismetal
 	playsound(src, 'sound/effects/bubbles2.ogg', 25, 1, 5)

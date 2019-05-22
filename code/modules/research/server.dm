@@ -14,8 +14,8 @@
 	var/delay = 10
 	req_access = list(ACCESS_MARINE_CMO) //Only the R&D can change server settings.
 
-/obj/machinery/r_n_d/server/New()
-	..()
+/obj/machinery/r_n_d/server/Initialize()
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/rdserver(src)
 	component_parts += new /obj/item/stock_parts/scanning_module(src)

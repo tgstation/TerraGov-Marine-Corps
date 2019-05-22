@@ -1199,8 +1199,8 @@
 	icon_state = "pipe-t"
 	var/obj/linked 	//The linked obj/machinery/disposal or obj/disposaloutlet
 
-/obj/structure/disposalpipe/trunk/New()
-	..()
+/obj/structure/disposalpipe/trunk/Initialize()
+	. = ..()
 	dpdir = dir
 	spawn(1)
 		getlinked()

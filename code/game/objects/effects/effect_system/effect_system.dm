@@ -95,8 +95,8 @@ steam.start() -- spawns the effect
 	anchored = 1.0
 	mouse_opacity = 0
 
-/obj/effect/particle_effect/sparks/New()
-	..()
+/obj/effect/particle_effect/sparks/Initialize()
+	. = ..()
 	playsound(src.loc, "sparks", 25, 1)
 //	var/turf/T = src.loc
 //	if (istype(T, /turf))

@@ -28,7 +28,8 @@
 	sharp = 0
 	var/loaded      //Descriptive string for currently loaded food object.
 
-/obj/item/tool/kitchen/utensil/New()
+/obj/item/tool/kitchen/utensil/Initialize()
+	. = ..()
 	if (prob(60))
 		src.pixel_y = rand(0, 4)
 

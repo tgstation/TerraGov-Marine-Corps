@@ -17,8 +17,8 @@
 	opacity = 0
 	anchored = 1
 
-/obj/effect/xenomorph/splatter/New() //Self-deletes after creation & animation
-	..()
+/obj/effect/xenomorph/splatter/Initialize() //Self-deletes after creation & animation
+	. = ..()
 	spawn(8)
 		qdel(src)
 
@@ -31,8 +31,8 @@
 	opacity = 0
 	anchored = 1
 
-/obj/effect/xenomorph/splatterblob/New() //Self-deletes after creation & animation
-	..()
+/obj/effect/xenomorph/splatterblob/Initialize() //Self-deletes after creation & animation
+	. = ..()
 	spawn(40)
 		qdel(src)
 
@@ -50,7 +50,7 @@
 	var/slow_amt = 8
 	var/duration = 100
 
-/obj/effect/xenomorph/spray/New(loc, duration = 100) //Self-deletes
+/obj/effect/xenomorph/spray/Initialize(mapload, duration = 100) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	spawn(duration + rand(0, 20))
@@ -123,8 +123,8 @@
 	acid_damage = 175
 	icon_state = "acid_strong"
 
-/obj/effect/xenomorph/acid/New(loc, target)
-	..(loc)
+/obj/effect/xenomorph/acid/Initialize(mapload, target)
+	. = ..()
 	acid_t = target
 	var/strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
 	tick(strength_t)

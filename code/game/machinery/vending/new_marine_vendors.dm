@@ -1030,7 +1030,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 /obj/effect/essentials_set
 	var/list/spawned_gear_list
 
-/obj/effect/essentials_set/New(loc)
+/obj/effect/essentials_set/Initialize(mapload)
 	. = ..()
 	for(var/typepath in spawned_gear_list)
 		if(spawned_gear_list[typepath])

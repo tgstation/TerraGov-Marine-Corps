@@ -42,8 +42,8 @@
 	unfolded_path = /obj/structure/closet/bodybag/cryobag
 	var/used = 0
 
-/obj/item/bodybag/cryobag/New(loc, obj/structure/closet/bodybag/cryobag/CB)
-	..()
+/obj/item/bodybag/cryobag/Initialize(mapload, obj/structure/closet/bodybag/cryobag/CB)
+	. = ..()
 	if(CB)
 		used = CB.used
 
@@ -197,8 +197,8 @@
 	var/last_use = 0 //remembers the value of used, to delay crostasis start.
 	var/max_uses = 1800 //15 mins of usable cryostasis
 
-/obj/structure/closet/bodybag/cryobag/New(loc, obj/item/bodybag/cryobag/CB)
-	..()
+/obj/structure/closet/bodybag/cryobag/Initialize(mapload, obj/item/bodybag/cryobag/CB)
+	. = ..()
 	if(CB)
 		used = CB.used
 

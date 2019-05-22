@@ -1733,7 +1733,8 @@ datum/design/security_hud
 	matter = list("metal" = 30,"glass" = 10)
 	var/datum/design/blueprint
 
-/obj/item/disk/design_disk/New()
+/obj/item/disk/design_disk/Initialize(mapload, ...)
+	. = ..()
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
 

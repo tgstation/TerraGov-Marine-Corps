@@ -38,6 +38,101 @@
 	var/opened = 0 //Has it been opened before?
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
 
+
+/obj/item/storage/Initialize(mapload, ...)
+	. = ..()
+	if(length(can_hold))
+		can_hold = typecacheof(can_hold)
+	else if(length(cant_hold))
+		cant_hold = typecacheof(cant_hold)
+	if(length(bypass_w_limit))
+		bypass_w_limit = typecacheof(bypass_w_limit)
+
+	if(!allow_quick_gather)
+		verbs -= /obj/item/storage/verb/toggle_gathering_mode
+
+	if(!allow_drawing_method)
+		verbs -= /obj/item/storage/verb/toggle_draw_mode
+
+	boxes = new
+	boxes.name = "storage"
+	boxes.master = src
+	boxes.icon_state = "block"
+	boxes.screen_loc = "7,7 to 10,8"
+	boxes.layer = HUD_LAYER
+	boxes.plane = HUD_PLANE
+
+	storage_start = new /obj/screen/storage(  )
+	storage_start.name = "storage"
+	storage_start.master = src
+	storage_start.icon_state = "storage_start"
+	storage_start.screen_loc = "7,7 to 10,8"
+	storage_start.layer = HUD_LAYER
+	storage_start.plane = HUD_PLANE
+	storage_continue = new /obj/screen/storage(  )
+	storage_continue.name = "storage"
+	storage_continue.master = src
+	storage_continue.icon_state = "storage_continue"
+	storage_continue.screen_loc = "7,7 to 10,8"
+	storage_continue.layer = HUD_LAYER
+	storage_continue.plane = HUD_PLANE
+	storage_end = new /obj/screen/storage(  )
+	storage_end.name = "storage"
+	storage_end.master = src
+	storage_end.icon_state = "storage_end"
+	storage_end.screen_loc = "7,7 to 10,8"
+	storage_end.layer = HUD_LAYER
+	storage_end.plane = HUD_PLANE
+
+	stored_start = new /obj //we just need these to hold the icon
+	stored_start.icon_state = "stored_start"
+	stored_start.layer = HUD_LAYER
+	stored_start.plane = HUD_PLANE
+	stored_continue = new /obj
+	stored_continue.icon_state = "stored_continue"
+	stored_continue.layer = HUD_LAYER
+	stored_continue.plane = HUD_PLANE
+	stored_end = new /obj
+	stored_end.icon_state = "stored_end"
+	stored_end.layer = HUD_LAYER
+	stored_end.plane = HUD_PLANE
+
+	closer = new
+	closer.master = src
+
+
+/obj/item/storage/Destroy()
+	for(var/atom/movable/I in contents)
+		qdel(I)
+	for(var/mob/M in content_watchers)
+		hide_from(M)
+	if(boxes)
+		qdel(boxes)
+		boxes = null
+	if(storage_start)
+		qdel(storage_start)
+		storage_start = null
+	if(storage_continue)
+		qdel(storage_continue)
+		storage_continue = null
+	if(storage_end)
+		qdel(storage_end)
+		storage_end = null
+	if(stored_start)
+		qdel(stored_start)
+		stored_start = null
+	if(src.stored_continue)
+		qdel(src.stored_continue)
+		src.stored_continue = null
+	if(stored_end)
+		qdel(stored_end)
+		stored_end = null
+	if(closer)
+		qdel(closer)
+		closer = null
+	. = ..()
+
+
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
 
@@ -506,67 +601,6 @@
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
 
-
-/obj/item/storage/Initialize(mapload, ...)
-	. = ..()
-	if(length(can_hold))
-		can_hold = typecacheof(can_hold)
-	else if(length(cant_hold))
-		cant_hold = typecacheof(cant_hold)
-	if(length(bypass_w_limit))
-		bypass_w_limit = typecacheof(bypass_w_limit)
-
-	if(!allow_quick_gather)
-		verbs -= /obj/item/storage/verb/toggle_gathering_mode
-
-	if(!allow_drawing_method)
-		verbs -= /obj/item/storage/verb/toggle_draw_mode
-
-	boxes = new
-	boxes.name = "storage"
-	boxes.master = src
-	boxes.icon_state = "block"
-	boxes.screen_loc = "7,7 to 10,8"
-	boxes.layer = HUD_LAYER
-	boxes.plane = HUD_PLANE
-
-	storage_start = new /obj/screen/storage(  )
-	storage_start.name = "storage"
-	storage_start.master = src
-	storage_start.icon_state = "storage_start"
-	storage_start.screen_loc = "7,7 to 10,8"
-	storage_start.layer = HUD_LAYER
-	storage_start.plane = HUD_PLANE
-	storage_continue = new /obj/screen/storage(  )
-	storage_continue.name = "storage"
-	storage_continue.master = src
-	storage_continue.icon_state = "storage_continue"
-	storage_continue.screen_loc = "7,7 to 10,8"
-	storage_continue.layer = HUD_LAYER
-	storage_continue.plane = HUD_PLANE
-	storage_end = new /obj/screen/storage(  )
-	storage_end.name = "storage"
-	storage_end.master = src
-	storage_end.icon_state = "storage_end"
-	storage_end.screen_loc = "7,7 to 10,8"
-	storage_end.layer = HUD_LAYER
-	storage_end.plane = HUD_PLANE
-
-	stored_start = new /obj //we just need these to hold the icon
-	stored_start.icon_state = "stored_start"
-	stored_start.layer = HUD_LAYER
-	stored_start.plane = HUD_PLANE
-	stored_continue = new /obj
-	stored_continue.icon_state = "stored_continue"
-	stored_continue.layer = HUD_LAYER
-	stored_continue.plane = HUD_PLANE
-	stored_end = new /obj
-	stored_end.icon_state = "stored_end"
-	stored_end.layer = HUD_LAYER
-	stored_end.plane = HUD_PLANE
-
-	closer = new
-	closer.master = src
 
 /obj/item/storage/Destroy()
 	for(var/atom/movable/I in contents)

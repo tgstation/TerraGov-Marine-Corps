@@ -14,8 +14,8 @@
 	idle_power_usage = 300
 	active_power_usage = 300
 
-/obj/machinery/power/monitor/New()
-	..()
+/obj/machinery/power/monitor/Initialize()
+	. = ..()
 	var/obj/structure/cable/attached = null
 	var/turf/T = loc
 	if(isturf(T))

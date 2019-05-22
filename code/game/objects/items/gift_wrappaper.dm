@@ -14,8 +14,8 @@
 	icon_state = "gift1"
 	item_state = "gift1"
 
-/obj/item/a_gift/New()
-	..()
+/obj/item/a_gift/Initialize()
+	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
 	if(w_class > 0 && w_class < 4)

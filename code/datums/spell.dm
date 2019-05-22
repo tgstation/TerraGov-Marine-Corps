@@ -112,8 +112,8 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 			else
 				H.whisper(oldreplacetext(invocation, " ", "`"))
 
-/obj/effect/proc_holder/spell/New()
-	..()
+/obj/effect/proc_holder/spell/Initialize()
+	. = ..()
 
 	charge_counter = charge_max
 

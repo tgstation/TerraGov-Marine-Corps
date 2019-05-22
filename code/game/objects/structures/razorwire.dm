@@ -30,8 +30,8 @@
 			salvage.amount = rand(1,4)
 	qdel(src)
 
-/obj/structure/razorwire/New()
-	..()
+/obj/structure/razorwire/Initialize()
+	. = ..()
 	for(var/obj/structure/razorwire/T in loc)
 		if(T != src)
 			qdel(T)

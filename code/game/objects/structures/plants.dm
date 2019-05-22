@@ -14,7 +14,8 @@
 	var/stump = 0
 	max_integrity = 100
 
-/obj/structure/bush/New()
+/obj/structure/bush/Initialize()
+	. = ..()
 	obj_integrity = rand(50,75)
 	if(prob(75))
 		opacity = 1
@@ -135,7 +136,8 @@ var/jungle_plants_init = 0
 	var/fruit_b
 
 
-/obj/structure/jungle_plant/New()
+/obj/structure/jungle_plant/Initialize()
+	. = ..()
 	if(!jungle_plants_init)
 		init_jungle_plants()
 

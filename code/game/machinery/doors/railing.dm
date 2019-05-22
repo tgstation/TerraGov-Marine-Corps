@@ -10,8 +10,8 @@
 	open_layer = CATWALK_LAYER
 	closed_layer = WINDOW_LAYER
 
-/obj/machinery/door/poddoor/railing/New()
-	..()
+/obj/machinery/door/poddoor/railing/Initialize()
+	. = ..()
 	if(dir == SOUTH)
 		closed_layer = ABOVE_MOB_LAYER
 	layer = closed_layer

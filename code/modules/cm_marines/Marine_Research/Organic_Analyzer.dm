@@ -14,7 +14,7 @@ Note: Must be placed within 3 tiles of the NT Research Console
 	idle_power_usage = 30
 	active_power_usage = 2500
 
-/obj/machinery/r_n_d/organic_analyzer/New()
+/obj/machinery/r_n_d/organic_analyzer/Initialize()
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/destructive_analyzer(src) //We'll need it's own board one day.

@@ -15,8 +15,8 @@
 	var/turf/moveto = locate(src.x + rand(-1,1),src.y + rand(-1, 1),src.z)
 	if(isturf(moveto) && !moveto.density) step_towards(src, moveto)
 
-/obj/machinery/bot/chefbot/New()
-	..()
+/obj/machinery/bot/chefbot/Initialize()
+	. = ..()
 	drama()
 
 /obj/machinery/bot/chefbot/process()

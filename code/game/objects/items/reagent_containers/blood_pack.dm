@@ -7,7 +7,6 @@
 	init_reagent_flags = AMOUNT_ESTIMEE
 	var/blood_type
 
-
 /obj/item/reagent_container/blood/Initialize()
 	. = ..()
 	if(blood_type)

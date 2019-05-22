@@ -173,10 +173,10 @@
 	var/obj/item/clothing/mask/facehugger/hugger = null
 	var/mob/living/linked_carrier //The carrier that placed us.
 
-/obj/effect/alien/resin/trap/New(loc, mob/living/builder)
+/obj/effect/alien/resin/trap/Initialize(mapload, mob/living/builder)
 	if(builder)
 		linked_carrier = builder
-	..()
+	return ..()
 
 /obj/effect/alien/resin/trap/examine(mob/user)
 	if(isxeno(user))
@@ -290,13 +290,13 @@
 
 	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)
 
-/obj/structure/mineral_door/resin/New()
+/obj/structure/mineral_door/resin/Initialize()
 	spawn(0)
 		relativewall()
 		relativewall_neighbours()
 		if(!locate(/obj/effect/alien/weeds) in loc)
 			new /obj/effect/alien/weeds(loc)
-	..()
+	return ..()
 
 /obj/structure/mineral_door/resin/proc/thicken()
 	var/oldloc = loc
@@ -667,8 +667,8 @@
 	invisibility = INVISIBILITY_MAXIMUM
 	var/obj/effect/alien/egg/linked_egg
 
-/obj/effect/egg_trigger/New(loc, obj/effect/alien/egg/source_egg)
-	..()
+/obj/effect/egg_trigger/Initialize(mapload, obj/effect/alien/egg/source_egg)
+	. = ..()
 	linked_egg = source_egg
 
 

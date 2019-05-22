@@ -9,8 +9,8 @@
 
 	var/list/center_of_mass = newlist() //Center of mass
 
-/obj/item/reagent_container/food/New()
-	..()
+/obj/item/reagent_container/food/Initialize()
+	. = ..()
 	if (!pixel_x && !pixel_y)
 		src.pixel_x = rand(-6.0, 6) //Randomizes postion
 		src.pixel_y = rand(-6.0, 6)

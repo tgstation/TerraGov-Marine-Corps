@@ -4,7 +4,8 @@
 	unique = 1
 	dat = ""
 
-/obj/item/book/codebook/New()
+/obj/item/book/codebook/Initialize(mapload, ...)
+	. = ..()
 	var/letters = list("Alpha","Beta","Gamma","Delta","Epsilon","Zeta","Eta","Theta","Iota","Kappa","Lambda","Mu","Nu","Xi","Omicron","Pi","Rho","Sigma","Tau","Upsilon","Phi","Chi","Psi","Omega")
 	var/number
 	var/letter

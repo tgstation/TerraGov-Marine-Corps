@@ -32,8 +32,8 @@
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
-/obj/vehicle/train/cargo/engine/New()
-	..()
+/obj/vehicle/train/cargo/engine/Initialize()
+	. = ..()
 	cell = new /obj/item/cell/apc
 	verbs -= /atom/movable/verb/pull
 	key = new()

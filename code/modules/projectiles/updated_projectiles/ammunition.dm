@@ -29,8 +29,8 @@ They're all essentially identical when it comes to getting the job done.
 	var/flags_magazine = AMMUNITION_REFILLABLE //flags specifically for magazines.
 	var/base_mag_icon //the default mag icon state.
 
-/obj/item/ammo_magazine/New(loc, spawn_empty)
-	..()
+/obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
+	. = ..()
 	base_mag_icon = icon_state
 	if(spawn_empty) current_rounds = 0
 	switch(current_rounds)
@@ -247,8 +247,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/current_icon = 0
 	var/number_of_states = 10 //How many variations of this item there are.
 
-/obj/item/ammo_casing/New()
-	..()
+/obj/item/ammo_casing/Initialize(mapload, ...)
+	. = ..()
 	pixel_x = rand(-2.0, 2) //Want to move them just a tad.
 	pixel_y = rand(-2.0, 2)
 	icon_state += "[rand(1,number_of_states)]" //Set the icon to it.

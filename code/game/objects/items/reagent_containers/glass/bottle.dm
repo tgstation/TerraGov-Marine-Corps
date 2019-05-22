@@ -27,8 +27,8 @@
 	..()
 	update_icon()
 
-/obj/item/reagent_container/glass/bottle/New()
-	..()
+/obj/item/reagent_container/glass/bottle/Initialize()
+	. = ..()
 	if(!icon_state)
 		icon_state = "bottle-[rand(1.4)]"
 

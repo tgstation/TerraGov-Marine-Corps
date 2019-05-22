@@ -15,13 +15,13 @@
 	var/serial_number = 0
 
 
-/obj/item/contraband/poster/New(turf/loc, var/given_serial = 0)
+/obj/item/contraband/poster/Initialize(mapload, given_serial = 0)
 	if(given_serial == 0)
 		serial_number = rand(1, poster_designs.len)
 	else
 		serial_number = given_serial
 	name += " - No. [serial_number]"
-	..(loc)
+	return ..()
 
 //############################## THE ACTUAL DECALS ###########################
 
@@ -34,7 +34,7 @@ obj/structure/sign/poster
 	var/ruined = 0
 
 
-obj/structure/sign/poster/New(var/serial)
+obj/structure/sign/poster/Initialize(serial)
 
 	serial_number = serial
 
@@ -46,7 +46,7 @@ obj/structure/sign/poster/New(var/serial)
 	name += " - [design.name]"
 	desc += " [design.desc]"
 	icon_state = design.icon_state // poster[serial_number]
-	..()
+	return ..()
 
 /obj/structure/sign/poster/attackby(obj/item/I, mob/user, params)
 	. = ..()

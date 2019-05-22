@@ -52,7 +52,7 @@
 	var/projectile_speed = 0
 	var/armor_type = null
 
-/obj/item/projectile/New()
+/obj/item/projectile/Initialize(mapload, ...)
 	. = ..()
 	path = list()
 	permutated = list()

@@ -11,8 +11,8 @@
 	var/decayed = 0		// This is here so later on we can use the ovpositor molt for research. ~BMC777
 	var/destroyed = 0
 
-/obj/ovipositor/New()
-	..()
+/obj/ovipositor/Initialize()
+	. = ..()
 	begin_decay_time = world.timeofday + QUEEN_OVIPOSITOR_DECAY_TIME
 	process_decay()
 

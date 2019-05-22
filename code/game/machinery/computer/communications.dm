@@ -38,7 +38,7 @@
 	var/stat_msg2
 
 
-/obj/machinery/computer/communications/New()
+/obj/machinery/computer/communications/Initialize()
 	. = ..()
 	start_processing()
 

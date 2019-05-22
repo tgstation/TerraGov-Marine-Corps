@@ -187,7 +187,7 @@
 		return 0
 	return ..()
 
-/obj/structure/bed/chair/dropship/passenger/New()
+/obj/structure/bed/chair/dropship/passenger/Initialize()
 	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")
 	chairbar.layer = ABOVE_MOB_LAYER
 

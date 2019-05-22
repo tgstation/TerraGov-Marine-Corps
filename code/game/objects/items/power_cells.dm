@@ -29,8 +29,8 @@
 	maxcharge = 500
 	matter = list("metal" = 700, "glass" = 40)
 
-/obj/item/cell/crap/empty/New()
-	..()
+/obj/item/cell/crap/empty/Initialize()
+	. = ..()
 	charge = 0
 
 /obj/item/cell/secborg
@@ -39,8 +39,8 @@
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
 	matter = list("metal" = 700, "glass" = 40)
 
-/obj/item/cell/secborg/empty/New()
-	..()
+/obj/item/cell/secborg/empty/Initialize()
+	. = ..()
 	charge = 0
 
 /obj/item/cell/apc
@@ -56,8 +56,8 @@
 	maxcharge = 10000
 	matter = list("metal" = 700, "glass" = 60)
 
-/obj/item/cell/high/empty/New()
-	..()
+/obj/item/cell/high/empty/Initialize()
+	. = ..()
 	charge = 0
 
 /obj/item/cell/super
@@ -68,8 +68,8 @@
 	matter = list("metal" = 700, "glass" = 70)
 	construction_cost = list("metal"=750,"glass"=100)
 
-/obj/item/cell/super/empty/New()
-	..()
+/obj/item/cell/super/empty/Initialize()
+	. = ..()
 	charge = 0
 
 /obj/item/cell/hyper
@@ -80,8 +80,8 @@
 	matter = list("metal" = 700, "glass" = 80)
 	construction_cost = list("metal"=500,"glass"=150,"gold"=200,"silver"=200)
 
-/obj/item/cell/hyper/empty/New()
-	..()
+/obj/item/cell/hyper/empty/Initialize()
+	. = ..()
 	charge = 0
 
 /obj/item/cell/infinite

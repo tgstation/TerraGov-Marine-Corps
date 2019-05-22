@@ -55,10 +55,14 @@
 	if(delete_after_roundstart)
 		qdel(src)
 
+// Must be immediate because players will
+// join before SSatom initializes everything.
+INITIALIZE_IMMEDIATE(/obj/effect/landmark/newplayer_start)
 
-/obj/effect/landmark/newplayer_start/New()
+/obj/effect/landmark/newplayer_start/Initialize()
+	..()
 	GLOB.newplayer_start += loc
-	return
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/start/latejoin/Initialize()
 	. = ..()
@@ -74,7 +78,6 @@
 	. = ..()
 	GLOB.latejoin_cryo += loc
 	return INITIALIZE_HINT_QDEL
-
 
 /obj/effect/landmark/thunderdome/one
 	icon_state = "tdome_t1"

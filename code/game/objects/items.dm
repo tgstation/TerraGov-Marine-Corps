@@ -82,7 +82,7 @@
 	var/toolspeed = 1
 	var/usesound = null
 
-/obj/item/Initialize()
+/obj/item/Initialize(mapload, ...)
 	. = ..()
 
 	GLOB.item_list += src

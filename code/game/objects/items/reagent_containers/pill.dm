@@ -133,7 +133,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A dylovene pill. It neutralizes many common toxins."
 	list_reagents = list("dylovene" = 15)
 
-/obj/item/reagent_container/pill/dylovene/New()
+/obj/item/reagent_container/pill/dylovene/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[1]
 
@@ -141,7 +141,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A toxins pill. It's highly toxic."
 	list_reagents = list("toxin" = 50)
 
-/obj/item/reagent_container/pill/tox/New()
+/obj/item/reagent_container/pill/tox/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[2]
 
@@ -150,7 +150,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = null//so even non medics can see what this pill is.
 	list_reagents = list("cyanide" = 50)
 
-/obj/item/reagent_container/pill/cyanide/New()
+/obj/item/reagent_container/pill/cyanide/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[2]
 
@@ -158,7 +158,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "An adminordrazine pill. It's magic. We don't have to explain it."
 	list_reagents = list("adminordrazine" = 50)
 
-/obj/item/reagent_container/pill/adminordrazine/New()
+/obj/item/reagent_container/pill/adminordrazine/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[3]
 
@@ -166,7 +166,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A sleeping pill commonly used to treat insomnia."
 	list_reagents = list("sleeptoxin" = 15)
 
-/obj/item/reagent_container/pill/sleeptox/New()
+/obj/item/reagent_container/pill/sleeptox/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[4]
 
@@ -174,7 +174,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A kelotane pill. Used to treat burns."
 	list_reagents = list("kelotane" = 15)
 
-/obj/item/reagent_container/pill/kelotane/New()
+/obj/item/reagent_container/pill/kelotane/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[5]
 
@@ -182,7 +182,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A paracetamol pill. Painkiller for the ages."
 	list_reagents = list("paracetamol" = 15)
 
-/obj/item/reagent_container/pill/paracetamol/New()
+/obj/item/reagent_container/pill/paracetamol/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[6]
 
@@ -190,7 +190,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A tramadol pill. A simple painkiller."
 	list_reagents = list("tramadol" = 15)
 
-/obj/item/reagent_container/pill/tramadol/New()
+/obj/item/reagent_container/pill/tramadol/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[7]
 
@@ -199,7 +199,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A methylphenidate pill. This improves the ability to concentrate."
 	list_reagents = list("methylphenidate" = 15)
 
-/obj/item/reagent_container/pill/methylphenidate/New()
+/obj/item/reagent_container/pill/methylphenidate/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[8]
 
@@ -207,7 +207,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A citalopram pill. A mild anti-depressant."
 	list_reagents = list("citalopram" = 15)
 
-/obj/item/reagent_container/pill/citalopram/New()
+/obj/item/reagent_container/pill/citalopram/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[9]
 
@@ -216,7 +216,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "An inaprovaline pill. Used to stabilize patients."
 	list_reagents = list("inaprovaline" = 30)
 
-/obj/item/reagent_container/pill/inaprovaline/New()
+/obj/item/reagent_container/pill/inaprovaline/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[10]
 
@@ -224,7 +224,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A dexalin pill. Used to treat oxygen deprivation."
 	list_reagents = list("dexalin" = 15)
 
-/obj/item/reagent_container/pill/dexalin/New()
+/obj/item/reagent_container/pill/dexalin/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[11]
 
@@ -232,7 +232,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A spaceacillin pill. Used to treat infected wounds and slow down viral infections."
 	list_reagents = list("spaceacillin" = 10)
 
-/obj/item/reagent_container/pill/spaceacillin/New()
+/obj/item/reagent_container/pill/spaceacillin/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[12]
 
@@ -240,7 +240,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A Happy Pill! Happy happy joy joy!"
 	list_reagents = list("space_drugs" = 15, "sugar" = 15, "laughter" = 5)
 
-/obj/item/reagent_container/pill/happy/New()
+/obj/item/reagent_container/pill/happy/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[13]
 
@@ -248,7 +248,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A Zoom pill! Gotta go fast!"
 	list_reagents = list("synaptizine" = 5, "hyperzine" = 5, "nutriment" = 2)
 
-/obj/item/reagent_container/pill/zoom/New()
+/obj/item/reagent_container/pill/zoom/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[14]
 
@@ -256,7 +256,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A Russian Red pill. A very dangerous radiation-countering substance."
 	list_reagents = list("russianred" = 10)
 
-/obj/item/reagent_container/pill/russianRed/New()
+/obj/item/reagent_container/pill/russianRed/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[15]
 
@@ -265,7 +265,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A peridaxon pill. Heals internal organ damage."
 	list_reagents = list("peridaxon" = 10)
 
-/obj/item/reagent_container/pill/peridaxon/New()
+/obj/item/reagent_container/pill/peridaxon/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[16]
 
@@ -274,7 +274,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "An imidazoline pill. Heals eye damage."
 	list_reagents = list("imidazoline" = 10)
 
-/obj/item/reagent_container/pill/imidazoline/New()
+/obj/item/reagent_container/pill/imidazoline/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[17]
 
@@ -283,7 +283,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "An Alkysine pill. Heals brain damage."
 	list_reagents = list("alkysine" = 10)
 
-/obj/item/reagent_container/pill/alkysine/New()
+/obj/item/reagent_container/pill/alkysine/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[18]
 
@@ -292,7 +292,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A bicaridine pill. Heals brute damage."
 	list_reagents = list("bicaridine" = 15)
 
-/obj/item/reagent_container/pill/bicaridine/New()
+/obj/item/reagent_container/pill/bicaridine/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[19]
 
@@ -300,7 +300,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A quick-clot pill. Stabilizes internal bleeding temporarily."
 	list_reagents = list("quickclot" = 10)
 
-/obj/item/reagent_container/pill/quickclot/New()
+/obj/item/reagent_container/pill/quickclot/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[20]
 
@@ -308,7 +308,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A tricordrazine pill. Broad spectrum medication that slowly heals all damage types."
 	list_reagents = list("tricordrazine" = 15)
 
-/obj/item/reagent_container/pill/tricordrazine/New()
+/obj/item/reagent_container/pill/tricordrazine/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[9]
 
@@ -316,7 +316,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A hypervene pill. A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
 	list_reagents = list("hypervene" = 3)
 
-/obj/item/reagent_container/pill/hypervene/New()
+/obj/item/reagent_container/pill/hypervene/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[14]
 
@@ -324,6 +324,6 @@ var/global/list/randomized_pill_icons
 	//pill_desc = "An ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
 	list_reagents = list("ultrazine" = 5)
 
-/obj/item/reagent_container/pill/ultrazine/New()
+/obj/item/reagent_container/pill/ultrazine/Initialize()
 	. = ..()
 	icon_state = randomized_pill_icons[21]

@@ -3,12 +3,16 @@
 /obj/item/storage/internal
 	var/obj/item/master_item
 
-/obj/item/storage/internal/New(obj/item/MI)
+/obj/item/storage/internal/Initialize(mapload)
+	if(!isitem(loc))
+		stack_trace("Internal storage [src] Initialized in [loc] loc, not in an item.")
+		return INITIALIZE_HINT_QDEL
+	var/obj/item/MI = loc
 	master_item = MI
 	loc = master_item
 	name = master_item.name
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
-	..()
+	return ..()
 
 /obj/item/storage/internal/attack_hand()
 	return		//make sure this is never picked up

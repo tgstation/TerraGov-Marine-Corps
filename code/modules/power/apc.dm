@@ -86,27 +86,11 @@
 		return
 	..()
 
-/obj/machinery/power/apc/New()
+/obj/machinery/power/apc/Initialize(mapload, ndir, building)
 	. = ..()
 	GLOB.apcs_list += src
 	wires = new /datum/wires/apc(src)
 
-/obj/machinery/power/apc/Destroy()
-	GLOB.apcs_list -= src
-
-	area.power_light = 0
-	area.power_equip = 0
-	area.power_environ = 0
-	area.power_change()
-
-	QDEL_NULL(cell)
-	QDEL_NULL(wires)
-	if(terminal)
-		disconnect_terminal()
-
-	. = ..()
-
-/obj/machinery/power/apc/Initialize(mapload, ndir, building = FALSE)
 	// offset 32 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
 	if (ndir)
@@ -134,8 +118,6 @@
 
 	start_processing()
 
-	. = ..()
-
 	if(mapload)
 		has_electronics = APC_ELECTRONICS_SECURED
 
@@ -162,6 +144,23 @@
 		//Break few ACPs on the colony
 		if(!start_charge && is_ground_level(z) && prob(10))
 			addtimer(CALLBACK(src, .proc/set_broken), 5)
+
+
+/obj/machinery/power/apc/Destroy()
+	GLOB.apcs_list -= src
+
+	area.power_light = 0
+	area.power_equip = 0
+	area.power_environ = 0
+	area.power_change()
+
+	QDEL_NULL(cell)
+	QDEL_NULL(wires)
+	if(terminal)
+		disconnect_terminal()
+
+	. = ..()
+
 
 /obj/machinery/power/apc/proc/make_terminal()
 	//Create a terminal object at the same position as original turf loc

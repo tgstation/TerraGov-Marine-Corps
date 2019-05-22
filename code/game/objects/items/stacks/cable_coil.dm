@@ -342,8 +342,8 @@
 /obj/item/stack/cable_coil/cut
 	item_state = "coil2"
 
-/obj/item/stack/cable_coil/cut/New(loc)
-	..()
+/obj/item/stack/cable_coil/cut/Initialize(mapload, new_amount, param_color)
+	. = ..()
 	src.amount = rand(1,2)
 	pixel_x = rand(-2,2)
 	pixel_y = rand(-2,2)
@@ -378,6 +378,6 @@
 	item_color = "white"
 	color = "#FFFFFF"
 
-/obj/item/stack/cable_coil/random/New()
+/obj/item/stack/cable_coil/random/Initialize(mapload, new_amount, param_color)
 	item_color = pick("red", "blue", "green", "white", "pink", "yellow", "cyan")
-	..()
+	return ..()

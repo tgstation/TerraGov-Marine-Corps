@@ -14,8 +14,8 @@
 	var/morgue_open = 0
 	anchored = 1
 
-/obj/structure/morgue/New()
-	..()
+/obj/structure/morgue/Initialize()
+	. = ..()
 	connected = new tray_path(src)
 
 /obj/structure/morgue/Destroy()
@@ -123,10 +123,10 @@
 	anchored = 1
 	throwpass = 1
 
-/obj/structure/morgue_tray/New(loc, obj/structure/morgue/morgue_source)
+/obj/structure/morgue_tray/Initialize(mapload, obj/structure/morgue/morgue_source)
 	if(morgue_source)
 		linked_morgue = morgue_source
-	..()
+	return ..()
 
 /obj/structure/morgue_tray/Destroy()
 	. = ..()

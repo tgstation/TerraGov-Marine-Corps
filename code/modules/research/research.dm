@@ -265,6 +265,7 @@ datum/tech/robotics
 	matter = list("metal" = 30, "glass" = 10)
 	var/datum/tech/stored
 
-/obj/item/disk/tech_disk/New()
+/obj/item/disk/tech_disk/Initialize(mapload, ...)
+	. = ..()
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)

@@ -6,8 +6,8 @@
 	flags_equip_slot = ITEM_SLOT_HEAD
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/head.dmi')
 
-/obj/item/holder/New()
-	..()
+/obj/item/holder/Initialize(mapload, ...)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/holder/Destroy()

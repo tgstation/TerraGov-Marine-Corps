@@ -24,7 +24,6 @@ Note: Must be placed west/left of and R&D console to function.
 	var/uranium_amount = 0.0
 	var/diamond_amount = 0.0
 
-
 /obj/machinery/r_n_d/protolathe/Initialize()
 	. = ..()
 	component_parts = list()

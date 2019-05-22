@@ -56,8 +56,8 @@
 							)
 	build_inventory(products2)
 
-/obj/machinery/vending/marine/New()
-	..()
+/obj/machinery/vending/marine/Initialize(mapload, ...)
+	. = ..()
 	GLOB.marine_vendors.Add(src)
 
 /obj/machinery/vending/marine/Destroy()
@@ -155,8 +155,8 @@
 /obj/machinery/vending/marine/cargo_guns/select_gamemode_equipment(gamemode)
 	return
 
-/obj/machinery/vending/marine/cargo_guns/New()
-	..()
+/obj/machinery/vending/marine/cargo_guns/Initialize(mapload, ...)
+	. = ..()
 	GLOB.cargo_guns_vendors.Add(src)
 	GLOB.marine_vendors.Remove(src)
 
@@ -238,8 +238,8 @@
 /obj/machinery/vending/marine/cargo_ammo/select_gamemode_equipment(gamemode)
 	return
 
-/obj/machinery/vending/marine/cargo_ammo/New()
-	..()
+/obj/machinery/vending/marine/cargo_ammo/Initialize(mapload, ...)
+	. = ..()
 	GLOB.cargo_ammo_vendors.Add(src)
 	GLOB.marine_vendors.Remove(src)
 
@@ -275,7 +275,7 @@
 
 	prices = list()
 
-/obj/machinery/vending/lasgun/New()
+/obj/machinery/vending/lasgun/Initialize(mapload, ...)
 	. = ..()
 	update_icon()
 
@@ -535,14 +535,14 @@
 			)
 	prices = list()
 
-/obj/machinery/vending/shared_vending/marine_special/New()
+/obj/machinery/vending/shared_vending/marine_special/Initialize(mapload, ...)
 
 	if(shared_products.len == 0)
 		var/i
 
 		for(i in shared)
 			shared_products.Add(new /datum/data/vending_product())
-	..()
+	return ..()
 
 /obj/machinery/vending/shared_vending/marine_engi
 	name = "\improper ColMarTech Engineer System Vendor"
@@ -568,14 +568,14 @@
 				)
 	prices = list()
 
-/obj/machinery/vending/shared_vending/marine_engi/New()
+/obj/machinery/vending/shared_vending/marine_engi/Initialize(mapload, ...)
 
 	if(shared_products.len == 0)
 		var/i
 
 		for(i in shared)
 			shared_products.Add(new /datum/data/vending_product())
-	..()
+	return ..()
 
 /obj/machinery/vending/marine_smartgun
 	name = "\improper ColMarTech Smartgun Vendor"
@@ -686,8 +686,8 @@
 						/obj/item/attachable/attached_gun/grenade = 5
 					)
 
-/obj/machinery/vending/attachments/New()
-	..()
+/obj/machinery/vending/attachments/Initialize(mapload, ...)
+	. = ..()
 	GLOB.attachment_vendors.Add(src)
 
 /obj/machinery/vending/attachments/Destroy()
@@ -764,8 +764,8 @@
 					/obj/item/clothing/gloves/white = 50,
 					)
 
-/obj/machinery/vending/uniform_supply/New()
-	..()
+/obj/machinery/vending/uniform_supply/Initialize(mapload, ...)
+	. = ..()
 	var/products2[]
 	if(squad_tag != null) //probably some better way to slide this in but no sleep is no sleep.
 		switch(squad_tag)

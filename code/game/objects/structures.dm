@@ -6,9 +6,11 @@
 	var/flags_barrier = 0
 	anchored = TRUE
 
-/obj/structure/New()
-	..()
+/obj/structure/Initialize()
+	. = ..()
 	GLOB.structure_list += src
+	if(climbable)
+		verbs += /obj/structure/proc/climb_on
 
 /obj/structure/Destroy()
 	. = ..()
@@ -69,11 +71,6 @@
 				return
 		if(3.0)
 			return
-
-/obj/structure/Initialize()
-	. = ..()
-	if(climbable)
-		verbs += /obj/structure/proc/climb_on
 
 /obj/structure/proc/climb_on()
 

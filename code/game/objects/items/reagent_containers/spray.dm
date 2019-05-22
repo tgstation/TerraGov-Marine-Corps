@@ -19,8 +19,8 @@
 	volume = 250
 
 
-/obj/item/reagent_container/spray/New()
-	..()
+/obj/item/reagent_container/spray/Initialize()
+	. = ..()
 	src.verbs -= /obj/item/reagent_container/proc/set_APTFT
 
 /obj/item/reagent_container/spray/afterattack(atom/A as mob|obj, mob/user)

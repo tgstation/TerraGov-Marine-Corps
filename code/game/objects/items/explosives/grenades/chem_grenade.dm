@@ -220,7 +220,6 @@
 	dangerous = FALSE
 	stage = READY
 
-
 /obj/item/explosive/grenade/chem_grenade/metalfoam/Initialize(mapload, ...)
 	. = ..()
 	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
@@ -239,7 +238,6 @@
 	name = "Incendiary Grenade"
 	desc = "Used for clearing rooms of living things."
 	stage = READY
-
 
 /obj/item/explosive/grenade/chem_grenade/incendiary/Initialize(mapload, ...)
 	. = ..()
@@ -263,7 +261,6 @@
 	dangerous = FALSE
 	stage = READY
 
-
 /obj/item/explosive/grenade/chem_grenade/antiweed/Initialize(mapload, ...)
 	. = ..()
 	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
@@ -285,7 +282,6 @@
 	dangerous = FALSE
 	stage = READY
 
-
 /obj/item/explosive/grenade/chem_grenade/cleaner/Initialize(mapload, ...)
 	. = ..()
 	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
@@ -304,7 +300,6 @@
 	name = "\improper M66 teargas grenade"
 	desc = "Tear gas grenade used for nonlethal riot control. Please wear adequate gas protection."
 	stage = READY
-
 
 /obj/item/explosive/grenade/chem_grenade/teargas/Initialize(mapload, ...)
 	. = ..()

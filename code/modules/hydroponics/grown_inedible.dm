@@ -8,9 +8,8 @@
 	var/plantname
 	var/potency = 1
 
-/obj/item/grown/New()
-
-	..()
+/obj/item/grown/Initialize(mapload, ...)
+	. = ..()
 
 	var/datum/reagents/R = new/datum/reagents(50)
 	reagents = R
@@ -98,8 +97,8 @@
 
 	var/potency_divisior = 5
 
-/obj/item/grown/nettle/New()
-	..()
+/obj/item/grown/nettle/Initialize(mapload, ...)
+	. = ..()
 	spawn(5)
 		force = round((5+potency/potency_divisior), 1)
 

@@ -14,11 +14,14 @@
 	var/obj/machinery/camera/cam
 
 /obj/structure/ladder/Initialize()
-	. = ..()
+	..()
 	cam = new /obj/machinery/camera(src)
 	cam.network = list("LADDER")
 	cam.c_tag = name
+	return INITIALIZE_HINT_LATELOAD
 
+
+/obj/structure/ladder/LateInitialize()
 	for(var/obj/structure/ladder/L in GLOB.structure_list)
 		if(L.id == id)
 			if(L.height == (height - 1))

@@ -15,8 +15,8 @@
 	active_power_usage = 500
 
 
-/obj/machinery/gibber/New()
-	..()
+/obj/machinery/gibber/Initialize()
+	. = ..()
 	src.overlays += image('icons/obj/kitchen.dmi', "grjam")
 
 /obj/machinery/gibber/update_icon()

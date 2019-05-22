@@ -18,6 +18,9 @@
 	var/cmp_proc = /proc/cmp_list_asc
 	var/sortkey = "name"
 
+/obj/machinery/computer/crew/Initialize()
+	tracked = list()
+	return ..()
 
 /obj/machinery/computer/crew/attack_ai(mob/living/user)
 	attack_hand(user)

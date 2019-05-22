@@ -13,8 +13,8 @@
 	armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
 	air_properties_vary_with_direction = 1
 
-/obj/machinery/door/window/New()
-	..()
+/obj/machinery/door/window/Initialize()
+	. = ..()
 	if (src.req_access && src.req_access.len)
 		src.icon_state = "[src.icon_state]"
 		src.base_state = src.icon_state

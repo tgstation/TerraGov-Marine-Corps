@@ -23,7 +23,7 @@
 	var/locked = 0
 
 
-/obj/machinery/smartfridge/New()
+/obj/machinery/smartfridge/Initialize()
 	. = ..()
 	create_reagents(100, NO_REACT)
 

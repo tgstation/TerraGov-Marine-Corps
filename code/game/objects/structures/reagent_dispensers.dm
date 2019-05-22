@@ -16,7 +16,7 @@
 	if(!I.is_refillable())
 		return ..()
 
-/obj/structure/reagent_dispensers/New()
+/obj/structure/reagent_dispensers/Initialize()
 	. = ..()
 	create_reagents(tank_volume, AMOUNT_VISIBLE, list_reagents)
 	if (!possible_transfer_amounts)
@@ -250,7 +250,7 @@
 	amount_per_transfer_from_this = 45
 	list_reagents = list("condensedcapsaicin" = 1000)
 
-/obj/structure/reagent_dispensers/wallmounted/peppertank/New()
+/obj/structure/reagent_dispensers/wallmounted/peppertank/Initialize(mapload, ndir)
 	. = ..()
 	if(prob(1))
 		desc = "IT'S PEPPER TIME, BITCH!"

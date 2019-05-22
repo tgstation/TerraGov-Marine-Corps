@@ -42,8 +42,8 @@
 	else
 		recharged -= 1
 
-/obj/machinery/chem_dispenser/New()
-	..()
+/obj/machinery/chem_dispenser/Initialize()
+	. = ..()
 	recharge()
 	dispensable_reagents = sortList(dispensable_reagents)
 	start_processing()
@@ -253,8 +253,8 @@
 	var/client/has_sprites = list()
 	var/max_pill_count = 20
 
-/obj/machinery/chem_master/New()
-	..()
+/obj/machinery/chem_master/Initialize()
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(240)
 	reagents = R
 	R.my_atom = src
@@ -687,8 +687,8 @@
 
 	var/list/holdingitems = list()
 
-/obj/machinery/reagentgrinder/New()
-	..()
+/obj/machinery/reagentgrinder/Initialize()
+	. = ..()
 	beaker = new /obj/item/reagent_container/glass/beaker/large(src)
 	return
 

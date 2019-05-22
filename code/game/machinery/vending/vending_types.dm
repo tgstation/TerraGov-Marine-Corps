@@ -373,8 +373,8 @@
 	var/static/list/shared_products = list()
 	isshared = TRUE
 
-/obj/machinery/vending/shared_vending/New()
-	..()
+/obj/machinery/vending/shared_vending/Initialize(mapload, ...)
+	. = ..()
 
 	build_shared_inventory(shared,0,1)
 

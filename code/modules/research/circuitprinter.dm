@@ -18,7 +18,6 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	idle_power_usage = 30
 	active_power_usage = 2500
 
-
 /obj/machinery/r_n_d/circuit_imprinter/Initialize()
 	. = ..()
 	component_parts = list()

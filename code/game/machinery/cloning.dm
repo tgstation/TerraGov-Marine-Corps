@@ -8,8 +8,8 @@
 	var/read_only = 0 //Well,it's still a floppy disk
 
 //Disk stuff.
-/obj/item/disk/data/New()
-	..()
+/obj/item/disk/data/Initialize()
+	. = ..()
 	var/diskcolor = pick(0,1,2)
 	src.icon_state = "datadisk[diskcolor]"
 

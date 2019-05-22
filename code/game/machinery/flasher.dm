@@ -22,7 +22,6 @@
 	base_state = "pflash"
 	density = 1
 
-
 /obj/machinery/flasher/power_change()
 	..()
 	if ( !(machine_stat & NOPOWER) )

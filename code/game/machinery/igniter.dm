@@ -33,8 +33,8 @@
 //			location.hotspot_expose(1000,500,1)
 	return 1
 
-/obj/machinery/igniter/New()
-	..()
+/obj/machinery/igniter/Initialize()
+	. = ..()
 	icon_state = "igniter[on]"
 
 /obj/machinery/igniter/power_change()
@@ -57,8 +57,6 @@
 	var/base_state = "migniter"
 	anchored = 1
 
-/obj/machinery/sparker/New()
-	..()
 
 /obj/machinery/sparker/power_change()
 	..()

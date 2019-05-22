@@ -25,8 +25,8 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	var/ob_cannon_busy = FALSE
 	var/last_orbital_firing = 0 //stores the last time it was fired to check when we can fire again
 
-/obj/structure/orbital_cannon/New()
-	..()
+/obj/structure/orbital_cannon/Initialize()
+	. = ..()
 	if(!almayer_orbital_cannon)
 		almayer_orbital_cannon = src
 
@@ -419,8 +419,8 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	icon_state = "ob_fuel"
 	is_solid_fuel = 1
 
-/obj/structure/ob_ammo/ob_fuel/New()
-	..()
+/obj/structure/ob_ammo/ob_fuel/Initialize()
+	. = ..()
 	pixel_x = rand(-5,5)
 	pixel_y = rand(-5,5)
 
@@ -538,7 +538,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
 	var/obj/structure/ship_ammo/heavygun/highvelocity/rail_gun_ammo
 
-/obj/structure/ship_rail_gun/New()
+/obj/structure/ship_rail_gun/Initialize()
 	. = ..()
 	if(!almayer_rail_gun)
 		almayer_rail_gun = src

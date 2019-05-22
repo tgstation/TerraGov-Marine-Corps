@@ -7,8 +7,8 @@
 
 
 // creates a new object and deletes itself
-/obj/effect/spawner/random/New()
-	..()
+/obj/effect/spawner/random/Initialize()
+	. = ..()
 	if (!prob(spawn_nothing_percentage))
 		spawn_item()
 	qdel(src)

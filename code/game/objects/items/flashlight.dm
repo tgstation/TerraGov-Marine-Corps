@@ -209,9 +209,9 @@
 	var/fuel = 0
 	var/on_damage = 7
 
-/obj/item/flashlight/flare/New()
+/obj/item/flashlight/flare/Initialize()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
-	..()
+	return ..()
 
 /obj/item/flashlight/flare/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -279,7 +279,8 @@
 	on = TRUE //Bio-luminesence has one setting, on.
 	raillight_compatible = FALSE
 
-/obj/item/flashlight/slime/New()
+/obj/item/flashlight/slime/Initialize()
+	. = ..()
 	SetLuminosity(brightness_on)
 	spawn(1) //Might be sloppy, but seems to be necessary to prevent further runtimes and make these work as intended... don't judge me!
 		update_brightness()

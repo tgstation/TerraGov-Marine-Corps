@@ -23,7 +23,7 @@
 /obj/effect/spawner/bomb/suicide
 	btype = 3
 
-/obj/effect/spawner/bomb/New()
+/obj/effect/spawner/bomb/Initialize()
 	..()
 
 	switch (src.btype)
@@ -123,8 +123,8 @@
 		btype = 0
 
 
-/obj/effect/spawner/newbomb/New()
-	..()
+/obj/effect/spawner/newbomb/Initialize()
+	. = ..()
 
 	var/obj/item/transfer_valve/V = new(src.loc)
 	var/obj/item/tank/phoron/PT = new(V)

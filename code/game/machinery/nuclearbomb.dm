@@ -23,8 +23,8 @@ var/bomb_set
 
 
 
-/obj/machinery/nuclearbomb/New()
-	..()
+/obj/machinery/nuclearbomb/Initialize()
+	. = ..()
 	r_code = "[rand(10000, 99999.0)]"//Creates a random code upon object spawn.
 
 /obj/machinery/nuclearbomb/process()

@@ -118,8 +118,8 @@
 			C.files.AddDesign2Known(D)
 		C.files.RefreshResearch()
 
-/obj/machinery/computer/NTresearch/New()
-	..()
+/obj/machinery/computer/NTresearch/Initialize()
+	. = ..()
 	files = new /datum/XenoResearch(src) //Setup the research data holder.
 	/*if(!id)
 		for(var/obj/machinery/r_n_d/server/centcom/S in machines)

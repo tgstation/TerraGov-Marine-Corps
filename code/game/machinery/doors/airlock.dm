@@ -733,10 +733,12 @@
 	return 0
 
 /obj/machinery/door/airlock/Initialize(mapload, ...)
-	. = ..()
-
+	..()
 	wires = new /datum/wires/airlock(src)
+	return INITIALIZE_HINT_LATELOAD
 
+/obj/machinery/door/airlock/LateInitialize()
+	. = ..()
 	if(closeOtherId != null)
 		for (var/obj/machinery/door/airlock/A in GLOB.machines)
 			if(A.closeOtherId == src.closeOtherId && A != src)

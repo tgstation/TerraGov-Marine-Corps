@@ -11,7 +11,7 @@
 	max_integrity = 200
 	var/panel_open = FALSE
 
-/obj/vehicle/powerloader/New()
+/obj/vehicle/powerloader/Initialize()
 	. = ..()
 	cell = new /obj/item/cell/apc(src)
 	for(var/i = 1, i <= 2, i++)

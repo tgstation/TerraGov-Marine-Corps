@@ -10,8 +10,8 @@
 	var/last_use
 	var/id
 
-/obj/machinery/line_nexter/New()
-	..()
+/obj/machinery/line_nexter/Initialize()
+	. = ..()
 	last_use = world.time
 
 /obj/machinery/line_nexter/ex_act(severity)

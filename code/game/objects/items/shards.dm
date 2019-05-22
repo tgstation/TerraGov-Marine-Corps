@@ -25,7 +25,7 @@
 	return ..()
 
 
-/obj/item/shard/New()
+/obj/item/shard/Initialize()
 	shardsize = pick("large", "medium", "small")
 	switch(shardsize)
 		if("small")
@@ -38,7 +38,7 @@
 			pixel_x = rand(-5, 5)
 			pixel_y = rand(-5, 5)
 	icon_state += shardsize
-	..()
+	return ..()
 
 
 /obj/item/shard/attackby(obj/item/I, mob/user, params)
