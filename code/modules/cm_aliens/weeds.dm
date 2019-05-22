@@ -197,7 +197,7 @@
 			break
 
 	overlays += "weednode"
-	. = ..(src)
+	. = ..(mapload, src)
 
 	// Generate our full graph before adding to SSweeds
 	generate_weed_graph()
