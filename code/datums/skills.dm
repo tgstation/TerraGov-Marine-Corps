@@ -46,6 +46,7 @@
 /datum/skills/civilian/survivor
 	name = "Survivor"
 	engineer = SKILL_ENGINEER_ENGI //to hack airlocks so they're never stuck in a room.
+	firearms = SKILL_FIREARMS_DEFAULT
 	construction = SKILL_CONSTRUCTION_METAL
 	medical = SKILL_MEDICAL_NOVICE
 
@@ -53,15 +54,18 @@
 	name = "Survivor Doctor"
 	medical = SKILL_MEDICAL_COMPETENT
 	surgery = SKILL_SURGERY_EXPERT
+	firearms = SKILL_FIREARMS_UNTRAINED
 
 /datum/skills/civilian/survivor/scientist
 	name = "Survivor Scientist"
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_PROFESSIONAL
+	firearms = SKILL_FIREARMS_UNTRAINED
 
 /datum/skills/civilian/survivor/chef
 	name = "Survivor Chef"
 	melee_weapons = SKILL_MELEE_TRAINED
+	firearms = SKILL_FIREARMS_UNTRAINED
 
 /datum/skills/civilian/survivor/miner
 	name = "Survivor Miner"
@@ -91,6 +95,7 @@
 	name = "Survivor Clown"
 	cqc = SKILL_CQC_MP
 	melee_weapons = SKILL_MELEE_SUPER
+	firearms = SKILL_FIREARMS_UNTRAINED
 
 
 /datum/skills/combat_engineer

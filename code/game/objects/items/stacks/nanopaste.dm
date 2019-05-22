@@ -13,17 +13,6 @@
 /obj/item/stack/nanopaste/attack(mob/living/M as mob, mob/user as mob)
 	if (!istype(M) || !istype(user))
 		return 0
-	if (istype(M,/mob/living/silicon/robot))	//Repairing cyborgs
-		var/mob/living/silicon/robot/R = M
-		if (R.getBruteLoss() || R.getFireLoss() )
-			R.adjustBruteLoss(-15)
-			R.adjustFireLoss(-15)
-			R.updatehealth()
-			use(1)
-			user.visible_message("<span class='notice'>\The [user] applied some [src] at [R]'s damaged areas.</span>",\
-				"<span class='notice'>You apply some [src] at [R]'s damaged areas.</span>")
-		else
-			to_chat(user, "<span class='notice'>All [R]'s systems are nominal.</span>")
 
 	if (istype(M,/mob/living/carbon/human))		//Repairing robolimbs
 		if(issynth(M) && M == user)

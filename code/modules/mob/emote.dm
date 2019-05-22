@@ -29,7 +29,7 @@
 		if(e in keys)
 			continue
 		E = emote_list[e]
-		if(E.can_run_emote(user, status_check = FALSE))
+		if(E.can_run_emote(user, status_check = FALSE, intentional = FALSE))
 			keys += E.key
 
 	keys = sortList(keys)

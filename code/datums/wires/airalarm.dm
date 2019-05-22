@@ -29,10 +29,6 @@
 
 
 /datum/wires/airalarm/on_pulse(wire)
-	. = ..()
-	if(!.)
-		return
-		
 	var/obj/machinery/alarm/A = holder
 	switch(wire)
 		if(WIRE_POWER) // Short out for a long time.
@@ -61,10 +57,6 @@
 
 
 /datum/wires/airalarm/on_cut(wire, mend)
-	. = ..()
-	if(!.)
-		return
-
 	var/obj/machinery/alarm/A = holder
 	switch(wire)
 		if(WIRE_POWER) // Short out forever.

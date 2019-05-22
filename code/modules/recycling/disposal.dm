@@ -363,9 +363,6 @@
 	var/wrapcheck = 0
 	var/obj/structure/disposalholder/H = new()	//Virtual holder object which actually
 												//Travels through the pipes.
-	//Hacky test to get drones to mail themselves through disposals.
-	for(var/mob/living/silicon/robot/drone/D in src)
-		wrapcheck = 1
 
 	for(var/obj/item/smallDelivery/O in src)
 		wrapcheck = 1
@@ -408,10 +405,9 @@
 			target = get_offset_target_turf(loc, rand(5) - rand(5), rand(5) - rand(5))
 			AM.loc = loc
 			AM.pipe_eject(0)
-			if(!ismaintdrone(AM)) //Poor drones kept smashing windows and taking system damage being fired out of disposals. ~Z
-				spawn(1)
-					if(AM)
-						AM.throw_at(target, 5, 1)
+			spawn(1)
+				AM?.throw_at(target, 5, 1)
+	
 		qdel(H)
 
 /obj/machinery/disposal/CanPass(atom/movable/mover, turf/target)
@@ -452,7 +448,7 @@
 	//Check for any living mobs trigger hasmob.
 	//hasmob effects whether the package goes to cargo or its tagged destination.
 	for(var/mob/living/M in D)
-		if(M?.stat != DEAD && !ismaintdrone(M))
+		if(M?.stat != DEAD)
 			hasmob = 1
 
 	//Checks 1 contents level deep. This means that players can be sent through disposals...
@@ -460,7 +456,7 @@
 	for(var/obj/O in D)
 		if(O.contents)
 			for(var/mob/living/M in O.contents)
-				if(M && M.stat != 2 && !ismaintdrone(M))
+				if(M.stat != DEAD)
 					hasmob = 1
 
 	//Now everything inside the disposal gets put into the holder
@@ -500,9 +496,8 @@
 	while(active)
 		if(hasmob && prob(3))
 			for(var/mob/living/H in src)
-				if(!ismaintdrone(H)) //Drones use the mailing code to move through the disposal system,
-					if(SSmapping.config.map_name != MAP_WHISKEY_OUTPOST)
-						H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
+				if(SSmapping.config.map_name != MAP_WHISKEY_OUTPOST)
+					H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
 
 		if(has_fat_guy && prob(2)) //Chance of becoming stuck per segment if contains a fat guy
 			active = 0
@@ -1328,9 +1323,8 @@
 		for(var/atom/movable/AM in H)
 			AM.loc = src.loc
 			AM.pipe_eject(dir)
-			if(!ismaintdrone(AM)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
-				spawn(5)
-					AM.throw_at(target, 3, 1)
+			spawn(5)
+				AM.throw_at(target, 3, 1)
 		qdel(H)
 
 /obj/structure/disposaloutlet/attackby(var/obj/item/I, var/mob/user)

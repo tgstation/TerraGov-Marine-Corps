@@ -81,8 +81,6 @@
 	if(mRun in mutations)
 		. = 0
 
-	Process_Cloaking_Router(src)
-
 	. += CONFIG_GET(number/outdated_movedelay/human_delay)
 
 	. = max(-2.5, . + reagent_move_delay_modifier) //hyperzine and ultrazine
@@ -159,3 +157,8 @@
 
 	prob_slip = round(prob_slip)
 	return(prob_slip)
+
+
+/mob/living/carbon/human/Moved(atom/oldloc, direction)
+	Process_Cloaking_Router(src)
+	return ..()

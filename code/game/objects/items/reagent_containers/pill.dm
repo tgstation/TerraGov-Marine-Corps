@@ -238,7 +238,7 @@ var/global/list/randomized_pill_icons
 
 /obj/item/reagent_container/pill/happy
 	pill_desc = "A Happy Pill! Happy happy joy joy!"
-	list_reagents = list("space_drugs" = 15, "sugar" = 15)
+	list_reagents = list("space_drugs" = 15, "sugar" = 15, "laughter" = 5)
 
 /obj/item/reagent_container/pill/happy/New()
 	. = ..()
@@ -246,7 +246,7 @@ var/global/list/randomized_pill_icons
 
 /obj/item/reagent_container/pill/zoom
 	pill_desc = "A Zoom pill! Gotta go fast!"
-	list_reagents = list("impedrezene" = 10, "synaptizine" = 5, "hyperzine" = 5)
+	list_reagents = list("synaptizine" = 5, "hyperzine" = 5, "nutriment" = 2)
 
 /obj/item/reagent_container/pill/zoom/New()
 	. = ..()

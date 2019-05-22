@@ -30,7 +30,6 @@
 */
 
 #define LIGHTING_CIRCULAR 1									//comment this out to use old square lighting effects.
-#define LIGHTING_LAYER 10									//Drawing layer for lighting overlays
 #define LIGHTING_ICON 'icons/effects/ss13_dark_alpha6.dmi'	//Icon used for lighting shading effects
 
 datum/light_source
@@ -405,6 +404,7 @@ area
 			lighting_overlay.icon_state = "[light]"
 		else
 			lighting_overlay = image(LIGHTING_ICON,,num2text(light),LIGHTING_LAYER)
+			lighting_overlay.plane = LIGHTING_PLANE
 
 		if (color_overlay)
 			overlays.Remove(color_overlay)
