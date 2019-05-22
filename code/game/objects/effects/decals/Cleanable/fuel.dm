@@ -3,61 +3,52 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "fuel"
 	layer = ABOVE_TURF_LAYER
-	anchored = 1
+	anchored = TRUE
 	var/amount = 1 //Basically moles.
+	var/spread_fail_chance = 75 //percent
 
-/obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, amt = 1, logs = TRUE)
+
+/obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, amt = 1, logs = TRUE, newDir = 0)
+	..()
 	if(logs)
 		log_game("[amt] units of liquid fuel have spilled in [AREACOORD(loc.loc)].")
 		message_admins("[amt] units of liquid fuel have spilled in [ADMIN_VERBOSEJMP(loc.loc)].")
 	amount = amt
+	setDir(newDir)
+	return INITIALIZE_HINT_LATELOAD
 
-	//Be absorbed by any other liquid fuel in the tile.
-	for(var/obj/effect/decal/cleanable/liquid_fuel/other in loc)
-		if(other != src)
-			src.amount += other.amount
-			qdel(other)
 
-	Spread()
+/obj/effect/decal/cleanable/liquid_fuel/LateInitialize()
 	. = ..()
+	for(var/obj/effect/decal/cleanable/liquid_fuel/other in loc)
+		if(other == src || other.type != type)
+			continue
+		amount += other.amount
+		qdel(other)
+	fuel_spread()
 
-/obj/effect/decal/cleanable/liquid_fuel/proc/Spread()
+
+/obj/effect/decal/cleanable/liquid_fuel/proc/fuel_spread()
 	//Allows liquid fuels to sometimes flow into other tiles.
-	if(amount < 5.0) 
+	if(amount < 5) 
 		return
-	var/turf/S = loc
-	if(!istype(S)) 
-		return
-	for(var/d in cardinal)
-		if(rand(25))
-			var/turf/target = get_step(src,d)
-			var/turf/origin = get_turf(src)
-			if(origin.CanPass(null, target) && target.CanPass(null, origin))
-				if(!locate(/obj/effect/decal/cleanable/liquid_fuel) in target)
-					new/obj/effect/decal/cleanable/liquid_fuel(target, amount * 0.25, FALSE)
-					amount *= 0.75
+	var/turf/S = get_turf(src)
+	var/spread_dirs = (dir == 0) ? CARDINAL_DIRS : list(turn(dir,90), turn(dir,-90), dir)
+	var/successful_spread = 0
+	var/slice_per_transfer = round(1 / (length(spread_dirs) + 1), 0.01)
+	for(var/D in spread_dirs)
+		if(spread_fail_chance)
+			continue
+		var/turf/T = get_step(S, D)
+		if(locate(type) in T)
+			continue
+		if(!S.CanPass(null, T) || !T.CanPass(null, S))
+			continue
+		new type(T, amount * slice_per_transfer, FALSE, D)
+		successful_spread++
+	amount *= max(0, 1 - (successful_spread * slice_per_transfer))
+
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel
 	icon_state = "mustard"
-	anchored = 0
-
-/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/Initialize(mapload, amt = 1, logs = TRUE, d = 0)
-	setDir(d) //Setting this direction means you won't get torched by your own flamethrower.
-	. = ..()
-
-/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/Spread()
-	//The spread for flamethrower fuel is much more precise, to create a wide fire pattern.
-	if(amount < 0.1) 
-		return
-	var/turf/S = loc
-	if(!istype(S)) 
-		return
-
-	for(var/d in list(turn(dir,90),turn(dir,-90), dir))
-		var/turf/O = get_step(S,d)
-		if(locate(/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel) in O)
-			continue
-		if(O.CanPass(null, S) && S.CanPass(null, O))
-			new/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(O, amount * 0.25, FALSE, d)
-
-	amount *= 0.25
+	spread_fail_chance = 0 //percent
