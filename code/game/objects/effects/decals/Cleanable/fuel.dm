@@ -4,17 +4,19 @@
 	icon_state = "fuel"
 	layer = ABOVE_TURF_LAYER
 	anchored = TRUE
+	dir = NORTHEAST //Spawns with a diagonal direction, for spread optimization.
 	var/amount = 1 //Basically moles.
 	var/spread_fail_chance = 75 //percent
 
 
-/obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, amt = 1, logs = TRUE, newDir = 0)
+/obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, amt = 1, logs = TRUE, newDir)
 	..()
 	if(logs)
 		log_game("[amt] units of liquid fuel have spilled in [AREACOORD(loc.loc)].")
 		message_admins("[amt] units of liquid fuel have spilled in [ADMIN_VERBOSEJMP(loc.loc)].")
 	amount = amt
-	setDir(newDir)
+	if(newDir)
+		setDir(newDir)
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -30,21 +32,30 @@
 
 /obj/effect/decal/cleanable/liquid_fuel/proc/fuel_spread()
 	//Allows liquid fuels to sometimes flow into other tiles.
-	if(amount < 5) 
+	var/spread_dirs = ISDIAGONALDIR(dir) ? CARDINAL_DIRS : list(turn(dir,90), turn(dir,-90), dir)
+	if(amount < (length(spread_dirs) + 1)) //At least one unit per transfer
 		return
-	var/turf/S = get_turf(src)
-	var/spread_dirs = (dir == 0) ? CARDINAL_DIRS : list(turn(dir,90), turn(dir,-90), dir)
-	var/successful_spread = 0
 	var/slice_per_transfer = round(1 / (length(spread_dirs) + 1), 0.01)
+	var/successful_spread = 0
+	var/turf/S = get_turf(src)
 	for(var/D in spread_dirs)
-		if(spread_fail_chance)
+		if(prob(spread_fail_chance))
 			continue
 		var/turf/T = get_step(S, D)
-		if(locate(type) in T)
+		if(!S.CanPass(src, T) || !T.CanPass(src, S))
 			continue
-		if(!S.CanPass(null, T) || !T.CanPass(null, S))
-			continue
-		new type(T, amount * slice_per_transfer, FALSE, D)
+		var/obj/effect/decal/cleanable/liquid_fuel/other_found
+		for(var/obj/effect/decal/cleanable/liquid_fuel/other in T)
+			if(other.type != type)
+				continue
+			if(other.amount > amount * slice_per_transfer) //Only large transfers to avoid infinite loops.
+				continue
+			other_found = other
+			break
+		if(other_found)
+			other_found.amount += amount * slice_per_transfer
+		else //If there's no fuel in the target tile, make some.
+			new type(T, amount * slice_per_transfer, FALSE, D)
 		successful_spread++
 	amount *= max(0, 1 - (successful_spread * slice_per_transfer))
 
