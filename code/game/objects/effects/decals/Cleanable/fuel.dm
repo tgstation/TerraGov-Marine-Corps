@@ -6,14 +6,14 @@
 	anchored = 1
 	var/amount = 1 //Basically moles.
 
-/obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, turf/newLoc, amt = 1, nologs = 0)
-	if(!nologs)
-		log_game("[amt] units of liquid fuel have spilled in [AREACOORD(newLoc.loc)].")
-		message_admins("[amt] units of liquid fuel have spilled in [ADMIN_VERBOSEJMP(newLoc.loc)].")
+/obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, amt = 1, logs = TRUE)
+	if(logs)
+		log_game("[amt] units of liquid fuel have spilled in [AREACOORD(loc.loc)].")
+		message_admins("[amt] units of liquid fuel have spilled in [ADMIN_VERBOSEJMP(loc.loc)].")
 	amount = amt
 
 	//Be absorbed by any other liquid fuel in the tile.
-	for(var/obj/effect/decal/cleanable/liquid_fuel/other in newLoc)
+	for(var/obj/effect/decal/cleanable/liquid_fuel/other in loc)
 		if(other != src)
 			src.amount += other.amount
 			qdel(other)
@@ -34,14 +34,14 @@
 			var/turf/origin = get_turf(src)
 			if(origin.CanPass(null, target) && target.CanPass(null, origin))
 				if(!locate(/obj/effect/decal/cleanable/liquid_fuel) in target)
-					new/obj/effect/decal/cleanable/liquid_fuel(target, amount * 0.25, 1)
+					new/obj/effect/decal/cleanable/liquid_fuel(target, amount * 0.25, FALSE)
 					amount *= 0.75
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel
 	icon_state = "mustard"
 	anchored = 0
 
-/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/Initialize(mapload, newLoc, amt = 1, d = 0)
+/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/Initialize(mapload, amt = 1, logs = TRUE, d = 0)
 	setDir(d) //Setting this direction means you won't get torched by your own flamethrower.
 	. = ..()
 
@@ -58,6 +58,6 @@
 		if(locate(/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel) in O)
 			continue
 		if(O.CanPass(null, S) && S.CanPass(null, O))
-			new/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(O, amount * 0.25, 1)
+			new/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(O, amount * 0.25, FALSE, d)
 
 	amount *= 0.25

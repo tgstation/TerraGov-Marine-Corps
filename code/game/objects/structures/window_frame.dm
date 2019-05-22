@@ -30,7 +30,7 @@
 /obj/structure/window_frame/CheckExit(atom/movable/O as mob|obj, target as turf)
 	return TRUE
 
-/obj/structure/window_frame/Initialize(mapload, loc, from_window_shatter)
+/obj/structure/window_frame/Initialize(mapload, from_window_shatter)
 	. = ..()
 	var/weed_found
 	if(from_window_shatter)

@@ -107,7 +107,7 @@
 				//					\\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/Initialize(mapload, loc, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
+/obj/item/weapon/gun/Initialize(mapload, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
 	. = ..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
 	base_gun_icon = icon_state
 	attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")

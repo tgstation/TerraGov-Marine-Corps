@@ -19,6 +19,32 @@
 	var/damageable = TRUE
 	var/deconstructable = TRUE
 
+
+/obj/structure/window/Initialize(mapload, start_dir, constructed)
+	..()
+
+	//player-constructed windows
+	if(constructed)
+		anchored = FALSE
+		state = 0
+
+	if(start_dir)
+		setDir(start_dir)
+
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/structure/window/LateInitialize()
+	. = ..()
+	update_nearby_icons()
+
+
+/obj/structure/window/Destroy()
+	density = FALSE
+	update_nearby_icons()
+	return ..()
+
+
 //create_debris creates debris like shards and rods. This also includes the window frame for explosions
 //If an user is passed, it will create a "user smashes through the window" message. AM is the item that hits
 //Please only fire this after a hit
@@ -307,24 +333,6 @@
 
 	setDir(turn(dir, 270))
 
-
-/obj/structure/window/Initialize(mapload, Loc, start_dir, constructed)
-	. = ..()
-
-	//player-constructed windows
-	if(constructed)
-		anchored = FALSE
-
-	if(start_dir)
-		setDir(start_dir)
-
-	update_nearby_icons()
-
-/obj/structure/window/Destroy()
-	density = FALSE
-	update_nearby_icons()
-	. = ..()
-
 /obj/structure/window/Move()
 	var/ini_dir = dir
 	..()
@@ -411,13 +419,6 @@
 	basestate = "rwindow"
 	max_integrity = 300
 	reinf = TRUE
-
-/obj/structure/window/Initialize(mapload, Loc, constructed)
-	. = ..()
-
-	//player-constructed windows
-	if(constructed)
-		state = 0
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
