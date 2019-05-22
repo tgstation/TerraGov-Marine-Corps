@@ -265,14 +265,6 @@
 	screen_loc = "7,7 to 10,8"
 
 
-/obj/screen/storage/Initialize(mapload)
-	. = ..()
-	if(!isitem(loc))
-		stack_trace("/obj/screen/storage [src] Initialized in [loc] loc, not in an item.")
-		return INITIALIZE_HINT_QDEL
-	master = loc
-
-
 /obj/screen/storage/proc/update_fullness(obj/item/storage/S)
 	if(!length(S.contents))
 		color = null
