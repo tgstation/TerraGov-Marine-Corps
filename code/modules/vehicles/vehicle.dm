@@ -33,7 +33,7 @@
 /obj/vehicle/relaymove(mob/user, direction)
 	if(user.incapacitated())
 		return
-	if(world.time > l_move_time + move_delay)
+	if(world.time > last_move_time + move_delay)
 		if(on && powered && cell && cell.charge < charge_use)
 			turn_off()
 		else if(!on && powered)

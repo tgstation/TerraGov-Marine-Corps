@@ -353,7 +353,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 
 /world/proc/AVfun()
 	return list(
-	/datum/admins/proc/select_rank,
+	/datum/admins/proc/edit_rank,
 	/datum/admins/proc/select_equipment,
 	/datum/admins/proc/change_squad,
 	/datum/admins/proc/set_view_range,

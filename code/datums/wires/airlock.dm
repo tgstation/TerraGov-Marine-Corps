@@ -43,10 +43,6 @@
 /datum/wires/airlock/on_pulse(wire)
 	set waitfor = FALSE
 
-	. = ..()
-	if(!.)
-		return
-
 	var/obj/machinery/door/airlock/A = holder
 	switch(wire)
 		if(WIRE_POWER1, WIRE_POWER2) // Pulse to loose power.
@@ -100,10 +96,6 @@
 
 
 /datum/wires/airlock/on_cut(wire, mend)
-	. = ..()
-	if(!.)
-		return
-		
 	var/obj/machinery/door/airlock/A = holder
 	switch(wire)
 		if(WIRE_POWER1, WIRE_POWER2) // Cut to loose power, repair all to gain power.

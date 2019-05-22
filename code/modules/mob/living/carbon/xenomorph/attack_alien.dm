@@ -241,8 +241,12 @@
 			add_slowdown(staggerslow_stacks)
 		X.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-	damage = X.hit_and_run_bonus(damage) //Apply Runner hit and run bonus damage if applicable
-	apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
+	if(dam_bonus)
+		damage += dam_bonus
+	else //We avoid stacking, like hit-and-run and savage.
+		damage = X.hit_and_run_bonus(damage) //Apply Runner hit and run bonus damage if applicable
+
+	apply_damage(damage, BRUTE, affecting, armor_block, sharp = TRUE, edge = TRUE) //This should slicey dicey
 	updatehealth()
 
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/Xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)

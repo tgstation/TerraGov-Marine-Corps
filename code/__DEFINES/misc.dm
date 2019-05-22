@@ -65,3 +65,41 @@ var/global/TAB = "&nbsp;&nbsp;&nbsp;&nbsp;"
 
 #define AREASELECT_CORNERA "corner A"
 #define AREASELECT_CORNERB "corner B"
+
+
+#define COLOR_INPUT_DISABLED "#F0F0F0"
+#define COLOR_INPUT_ENABLED "#D3B5B5"
+
+
+#define CHECKBOX_NONE 0
+#define CHECKBOX_GROUP 1
+#define CHECKBOX_TOGGLE 2
+
+
+//Ghost orbit types:
+#define GHOST_ORBIT_CIRCLE		"circle"
+#define GHOST_ORBIT_TRIANGLE	"triangle"
+#define GHOST_ORBIT_HEXAGON		"hexagon"
+#define GHOST_ORBIT_SQUARE		"square"
+#define GHOST_ORBIT_PENTAGON	"pentagon"
+
+
+#define GHOST_OTHERS_SIMPLE			"white ghost"
+#define GHOST_OTHERS_DEFAULT_SPRITE		"default sprites"
+#define GHOST_OTHERS_THEIR_SETTING	"their setting"
+
+#define GHOST_OTHERS_DEFAULT_OPTION			GHOST_OTHERS_THEIR_SETTING
+
+#define GHOST_DEFAULT_FORM 		"ghost"
+
+
+//Luma coefficients suggested for HDTVs. If you change these, make sure they add up to 1.
+#define LUMA_R 0.213
+#define LUMA_G 0.715
+#define LUMA_B 0.072
+
+
+#define LIGHTING_PLANE_ALPHA_VISIBLE 255
+#define LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE 192
+#define LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE 128
+#define LIGHTING_PLANE_ALPHA_INVISIBLE 0

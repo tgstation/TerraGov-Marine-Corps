@@ -164,6 +164,20 @@
 	to_chat(user, "<span class='notice'>You need a blowtorch to weld this open!</span>")
 	return FALSE
 
+
+/obj/structure/largecrate/random/barrel/attack_alien(mob/living/carbon/Xenomorph/X)
+	X.animation_attack_on(src)
+	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
+	new /obj/item/stack/sheet/metal/small_stack(src)
+	var/turf/T = get_turf(src)
+	for(var/obj/O in contents)
+		O.forceMove(T)
+	X.visible_message("<span class='danger'>\The [X] smashes \the [src] apart!</span>", \
+	"<span class='danger'>You smash \the [src] apart!</span>", \
+	"<span class='danger'>You hear metal being smashed!</span>", 5)
+	qdel(src)
+
+
 /obj/structure/largecrate/random/barrel
 	name = "blue barrel"
 	desc = "A blue storage barrel"

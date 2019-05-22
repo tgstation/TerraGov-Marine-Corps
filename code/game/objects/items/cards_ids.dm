@@ -134,7 +134,7 @@
 	var/assignment = null	//can be alt title or the actual job
 	var/rank = null			//actual job
 	var/dorm = 0		// determines if this ID has claimed a dorm already
-	var/paygrade = 0  // Marine's paygrade
+	var/paygrade = null  // Marine's paygrade
 	var/claimedgear = 1 // For medics and engineers to 'claim' a locker
 
 	var/assigned_fireteam = "" //which fire team this ID belongs to, only used by squad marines.

@@ -18,7 +18,6 @@
 
 	var/locked = 0
 	var/mob/living/brain/brainmob = null//The current occupant.
-	var/mob/living/silicon/robot = null//Appears unused.
 
 
 	attackby(var/obj/item/O as obj, var/mob/user as mob)

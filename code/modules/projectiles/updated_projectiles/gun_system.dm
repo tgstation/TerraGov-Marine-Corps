@@ -800,12 +800,12 @@ and you're good to go.
 		return TRUE
 
 
-	if(user.zone_selected != "mouth")
+	if(M != user || user.zone_selected != "mouth")
 		return ..()
 
 	DISABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK) //If they try to click again, they're going to hit themselves.
 
-	M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
+	user.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
 	log_game("[key_name(user)] is trying to commit suicide.")
 	var/u = "[key_name(user)] is trying to commit suicide."
 	user.log_message(u, LOG_ATTACK, "red")
@@ -944,7 +944,7 @@ and you're good to go.
 		gun_accuracy_mult = accuracy_mult
 		gun_scatter = scatter
 
-	else if(user && world.time - user.l_move_time < 5) //moved during the last half second
+	else if(user && world.time - user.last_move_time < 5) //moved during the last half second
 		//accuracy and scatter penalty if the user fires unwielded right after moving
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * CONFIG_GET(number/combat_define/low_hit_accuracy_mult)))
 		gun_scatter += max(0, movement_acc_penalty_mult * CONFIG_GET(number/combat_define/min_scatter_value))

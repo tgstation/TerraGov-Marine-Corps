@@ -1,8 +1,5 @@
-/mob/living/carbon/human/verb/quick_equip()
-	set name = "quick-equip"
-	set hidden = TRUE
-
-	if(incapacitated() || lying || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored))
+/mob/living/carbon/human/proc/quick_equip()
+	if(incapacitated() || lying || istype(loc, /obj/vehicle/multitile/root/cm_armored))
 		return
 
 	var/obj/item/I = get_active_held_item()
