@@ -152,7 +152,7 @@
 	if(usr.mind?.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
 		"<span class='notice'>You fumble around figuring out the wiring.</span>")
-		var/fumbling_time = 20 * (SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer)
+		var/fumbling_time = SKILL_FUMBLE_TIME(usr.mind?.cm_skills.engineer, SKILL_ENGINEER_ENGI, SKILL_TASK_VERY_EASY)
 		if(!do_after(usr, fumbling_time, TRUE, holder, BUSY_ICON_UNSKILLED))
 			return
 

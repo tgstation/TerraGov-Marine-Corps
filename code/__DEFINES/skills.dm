@@ -171,3 +171,6 @@
 #define SKILL_TASK_DIFFICULT	100
 #define SKILL_TASK_CHALLENGING	150
 #define SKILL_TASK_FORMIDABLE	200
+
+
+#define SKILL_FUMBLE_TIME(usr_skill, skill_req, task_diff) (usr_skill ? (max(0, task_diff * (skill_req - usr_skill))) : 0)
