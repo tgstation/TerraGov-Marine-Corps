@@ -44,16 +44,23 @@
 		var/turf/T = get_step(S, D)
 		if(!S.CanPass(src, T) || !T.CanPass(src, S))
 			continue
-		var/obj/effect/decal/cleanable/liquid_fuel/other_found
+		var/other_found = FALSE
+		var/obj/effect/decal/cleanable/liquid_fuel/valid_target
 		for(var/obj/effect/decal/cleanable/liquid_fuel/other in T)
 			if(other.type != type)
 				continue
 			if(other.amount > amount * slice_per_transfer) //Only large transfers to avoid infinite loops.
-				continue
-			other_found = other
+				other_found = TRUE
+				break
+			other_found = TRUE
+			valid_target = other
 			break
 		if(other_found)
-			other_found.amount += amount * slice_per_transfer
+			if(valid_target)
+				valid_target.amount += amount * slice_per_transfer
+				valid_target.fuel_spread()
+			else
+				continue //Failed spread.
 		else //If there's no fuel in the target tile, make some.
 			new type(T, amount * slice_per_transfer, FALSE, D)
 		successful_spread++
