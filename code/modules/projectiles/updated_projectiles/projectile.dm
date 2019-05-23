@@ -211,88 +211,19 @@
 /obj/item/projectile/proc/scan_a_turf(turf/T)
 	// Not a turf, keep moving
 	if(!istype(T))
-		return 0
+		return FALSE
 
 	if(T.density) // Handle wall hit
 		ammo.on_hit_turf(T,src)
 
-		if(T && T.loc)
+		if(T?.loc)
 			T.bullet_act(src)
 
-		return 1
+		return TRUE
 
 	// Firer's turf, keep moving
 	if(firer && T == firer.loc)
 		return FALSE
-
-	// Empty turf, keep moving
-	if(!T.contents.len)
-		return FALSE
-
-	for(var/atom/movable/A in T)
-		// If we've already handled this atom, don't do it again
-		if(A in permutated)
-			continue
-
-		permutated += A // Don't want to hit them again, no matter what the outcome
-
-		var/hit_chance = A.get_projectile_hit_chance(src) // Calculated from combination of both ammo accuracy and gun accuracy
-
-		if(hit_chance)
-			if(isliving(A))
-				if(shot_from && shot_from.sniper_target(A) && A != shot_from.sniper_target(A)) //First check to see if we've actually got anyone targeted; If we've singled out someone with a targeting laser, forsake all others
-					continue
-				var/mob_is_hit = FALSE
-				var/mob/living/L = A
-
-				var/hit_roll
-				var/critical_miss = rand(CONFIG_GET(number/combat_define/critical_chance_low), CONFIG_GET(number/combat_define/critical_chance_high))
-				var/i = 0
-				while(++i <= 2 && hit_chance > 0) // This runs twice if necessary
-					hit_roll 					= rand(0, 99) //Our randomly generated roll
-					#if DEBUG_HIT_CHANCE
-					to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
-					#endif
-					if(hit_roll < 25) //Sniper targets more likely to hit
-						if(shot_from && !shot_from.sniper_target(A) || !shot_from) //Avoid sentry run times
-							def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
-
-					if(shot_from && !shot_from.sniper_target(A)) //Avoid sentry run times
-						hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
-						#if DEBUG_HIT_CHANCE
-						to_chat(world, "Hit Chance 2: [hit_chance]")
-						#endif
-
-					switch(i)
-						if(1)
-							if(hit_chance > hit_roll)
-								mob_is_hit = TRUE
-								break //Hit
-							if( hit_chance < (hit_roll - 20) )
-								break //Outright miss.
-							def_zone 	  = pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
-							hit_chance   -= 10 //If you missed once, the next go around will be harder to hit.
-						if(2)
-							if(prob(critical_miss) )
-								break //Critical miss on the second go around.
-							if(hit_chance > hit_roll)
-								mob_is_hit = TRUE
-								break
-				if(mob_is_hit)
-					ammo.on_hit_mob(L,src)
-					if(L?.loc)
-						L.bullet_act(src)
-					return TRUE
-				else if (!L.lying)
-					animatation_displace_reset(L)
-					if(ammo.sound_miss) L.playsound_local(get_turf(L), ammo.sound_miss, 75, 1)
-					L.visible_message("<span class='avoidharm'>[src] misses [L]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
-
-			else if(isobj(A))
-				ammo.on_hit_obj(A,src)
-				if(A && A.loc)
-					A.bullet_act(src)
-				return TRUE
 
 	// Explosive ammo always explodes on the turf of the clicked target
 	if(src && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE && T == target_turf)
@@ -305,6 +236,80 @@
 			T.bullet_act(src)
 
 		return TRUE
+
+	// Empty turf, keep moving
+	if(!length(T.contents))
+		return FALSE
+
+	for(z in T)
+		var/atom/movable/A = z
+		// If we've already handled this atom, don't do it again
+		if(A in permutated)
+			continue
+
+		permutated += A // Don't want to hit them again, no matter what the outcome
+
+		var/hit_chance = A.get_projectile_hit_chance(src) // Calculated from combination of both ammo accuracy and gun accuracy
+
+		if(!hit_chance)
+			continue
+
+		if(isobj(A))
+			ammo.on_hit_obj(A,src)
+			if(A?.loc)
+				A.bullet_act(src)
+			return TRUE
+
+		if(!isliving(A))
+			continue
+
+		if(shot_from?.sniper_target(A) && A != shot_from.sniper_target(A)) //First check to see if we've actually got anyone targeted; If we've singled out someone with a targeting laser, forsake all others
+			continue
+		var/mob_is_hit = FALSE
+		var/mob/living/L = A
+
+		var/hit_roll
+		var/critical_miss = rand(CONFIG_GET(number/combat_define/critical_chance_low), CONFIG_GET(number/combat_define/critical_chance_high))
+		var/i = 0
+		while(++i <= 2 && hit_chance > 0) // This runs twice if necessary
+			hit_roll 					= rand(0, 99) //Our randomly generated roll
+			#if DEBUG_HIT_CHANCE
+			to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
+			#endif
+			if(hit_roll < 25) //Sniper targets more likely to hit
+				if(shot_from && !shot_from.sniper_target(A) || !shot_from) //Avoid sentry run times
+					def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
+
+			if(shot_from && !shot_from.sniper_target(A)) //Avoid sentry run times
+				hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
+				#if DEBUG_HIT_CHANCE
+				to_chat(world, "Hit Chance 2: [hit_chance]")
+				#endif
+
+			switch(i)
+				if(1)
+					if(hit_chance > hit_roll)
+						mob_is_hit = TRUE
+						break //Hit
+					if( hit_chance < (hit_roll - 20) )
+						break //Outright miss.
+					def_zone 	  = pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
+					hit_chance   -= 10 //If you missed once, the next go around will be harder to hit.
+				if(2)
+					if(prob(critical_miss) )
+						break //Critical miss on the second go around.
+					if(hit_chance > hit_roll)
+						mob_is_hit = TRUE
+						break
+		if(mob_is_hit)
+			ammo.on_hit_mob(L,src)
+			if(L?.loc)
+				L.bullet_act(src)
+			return TRUE
+		else if (!L.lying)
+			animatation_displace_reset(L)
+			if(ammo.sound_miss) L.playsound_local(get_turf(L), ammo.sound_miss, 75, 1)
+			L.visible_message("<span class='avoidharm'>[src] misses [L]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
 
 //----------------------------------------------------------
 		    	//				    	\\
