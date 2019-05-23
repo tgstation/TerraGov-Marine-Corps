@@ -232,11 +232,6 @@
 			T.bullet_act(src)
 		return TRUE
 
-		if(T?.loc)
-			T.bullet_act(src)
-
-		return TRUE
-
 	// Empty turf, keep moving
 	if(!length(T.contents))
 		return FALSE
