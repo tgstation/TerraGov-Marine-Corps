@@ -16,7 +16,7 @@
 	var/obj/machinery/vending/V = holder
 	if(!issilicon(user) && V.seconds_electrified && V.shock(user, 100))
 		return FALSE
-	if(V.panel_open)
+	if(CHECK_BITFIELD(V.machine_stat, PANEL_OPEN))
 		return TRUE
 
 

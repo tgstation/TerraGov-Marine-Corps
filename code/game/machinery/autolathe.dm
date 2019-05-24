@@ -137,13 +137,13 @@
 		return
 
 	if(isscrewdriver(O))
-		panel_open = !panel_open
-		icon_state = (panel_open ? "autolathe_t": "autolathe")
-		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance hatch of [src].")
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+		icon_state = (CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "autolathe_t": "autolathe")
+		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance hatch of [src].")
 		updateUsrDialog()
 		return
 
-	if (panel_open)
+	if (CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		//Don't eat multitools or wirecutters used on an open lathe.
 		if(ismultitool(O) || iswirecutter(O))
 			attack_hand(user)

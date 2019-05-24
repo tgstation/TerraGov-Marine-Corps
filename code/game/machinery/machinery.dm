@@ -321,7 +321,7 @@ Class Procs:
 			to_chat(user, "<span class='warning'>You momentarily forget how to use [src].</span>")
 			return 1
 
-	if(panel_open && (attempt_wire_interaction(user) == WIRE_INTERACTION_BLOCK))
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (attempt_wire_interaction(user) == WIRE_INTERACTION_BLOCK))
 		return TRUE
 
 	src.add_fingerprint(user)

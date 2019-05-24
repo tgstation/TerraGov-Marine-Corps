@@ -23,7 +23,7 @@
 	var/obj/machinery/door/airlock/A = holder
 	if(!issilicon(user) && A.isElectrified() && A.shock(user, 100))
 		return FALSE
-	if(A.panel_open)
+	if(CHECK_BITFIELD(A.machine_stat, PANEL_OPEN))
 		return TRUE
 
 
