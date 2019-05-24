@@ -533,7 +533,7 @@
 
 	var/obj/item/grab/G = new /obj/item/grab()
 	G.grabbed_thing = AM
-	if(!put_in_hands(G)) //placing the grab in hand failed, grab is dropped, deleted, and we stop pulling automatically.
+	if(!put_in_hands(G, lunge)) //placing the grab in hand failed, grab is dropped, deleted, and we stop pulling automatically.
 		return
 
 	changeNext_move(CLICK_CD_RANGE)
