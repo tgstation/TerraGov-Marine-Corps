@@ -294,10 +294,10 @@
 		if(!O.anchored) step(O, dir) //Not anchored? Knock the object back a bit. Ie. canisters.
 
 		switch(xeno_caste.charge_type) //Determine how to handle it depending on charge type.
-			if(1 to 2)
+			if(CHARGE_TYPE_SMALL to CHARGE_TYPE_MEDIUM)
 				if(!istype(O, /obj/structure/table) && !istype(O, /obj/structure/rack))
 					O.hitby(src, speed) //This resets throwing.
-			if(3 to 4)
+			if(CHARGE_TYPE_LARGE to CHARGE_TYPE_MASSIVE)
 				if(istype(O, /obj/structure/table) || istype(O, /obj/structure/rack))
 					var/obj/structure/S = O
 					visible_message("<span class='danger'>[src] plows straight through [S]!</span>", null, null, 5)
@@ -309,7 +309,7 @@
 		var/mob/living/carbon/M = hit_atom
 		if(!M.stat && !isxeno(M))
 			switch(xeno_caste.charge_type)
-				if(1 to 2)
+				if(CHARGE_TYPE_SMALL to CHARGE_TYPE_MEDIUM)
 					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
 						var/mob/living/carbon/human/H = M
 						if(H.check_shields(15, "the pounce")) //Human shield block.
@@ -331,7 +331,7 @@
 						else
 							to_chat(src, "<span class='xenodanger'>You attempt to savage your victim, but you aren't yet ready.</span>")
 
-					if(xeno_caste.charge_type == 2)
+					if(xeno_caste.charge_type == CHARGE_TYPE_MEDIUM)
 						if(stealth_router(HANDLE_STEALTH_CHECK))
 							M.adjust_stagger(3)
 							M.add_slowdown(1)
@@ -340,7 +340,7 @@
 					addtimer(CALLBACK(src, .proc/reset_movement), xeno_caste.charge_type == 1 ? 5 : 15)
 					stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-				if(RAV_CHARGE_TYPE) //Ravagers plow straight through humans; we only stop on hitting a dense turf
+				if(CHARGE_TYPE_LARGE) //Ravagers plow straight through humans; we only stop on hitting a dense turf
 					return FALSE
 
 		throwing = FALSE //Resert throwing since something was hit.

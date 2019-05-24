@@ -40,7 +40,7 @@
 	armor_deflection = 20
 
 	// *** Ranged Attack *** //
-	charge_type = DEFENDER_CHARGE_TYPE 
+	charge_type = CHARGE_TYPE_LARGE 
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 35

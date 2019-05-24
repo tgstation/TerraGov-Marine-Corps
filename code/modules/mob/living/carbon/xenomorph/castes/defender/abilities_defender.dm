@@ -155,7 +155,7 @@
 	action_icon_state = "charge"
 	mechanics_text = "Charge up to 4 tiles and knockdown any targets in your way."
 	ability_name = "charge"
-	cooldown_timer = DEFENDER_CHARGECOOLDOWN
+	cooldown_timer = 15 SECONDS
 	plasma_cost = 80
 
 /datum/action/xeno_action/activable/forward_charge/can_use_ability(atom/A, silent = FALSE, override_flags)
