@@ -54,9 +54,9 @@
 // *********** Mob overrides
 // ***************************************
 /mob/living/carbon/Xenomorph/Defender/Bump(atom/A)
-	if(!throwing || !throw_source || !thrower) //Must currently be charging to knock aside and hit marines in it's path
-		return ..() //It's not charging; do regular Bump() IE body block but not throw_impact() because defender isn't being thrown
-	if(!ishuman(A)) //Must also be a human; regular Bump() will default to throw_impact() which means ravager will plow through tables but get stopped by cades and walls
+	if(!throwing || !throw_source || !thrower)
+		return ..()
+	if(!ishuman(A)) 
 		return ..()
 	var/mob/living/carbon/human/H = A
 	var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * 0.5 // 50% dmg reduction

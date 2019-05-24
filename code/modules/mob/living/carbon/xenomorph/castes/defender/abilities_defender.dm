@@ -151,7 +151,7 @@
 // *********** Forward Charge
 // ***************************************
 /datum/action/xeno_action/activable/forward_charge
-	name = "Forward Charge (80)"
+	name = "Forward Charge"
 	action_icon_state = "charge"
 	mechanics_text = "Charge up to 4 tiles and knockdown any targets in your way."
 	ability_name = "charge"
@@ -174,11 +174,11 @@
 	var/mob/living/carbon/Xenomorph/X = owner
 
 	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_GENERIC))
-		return
+		return fail_activate()
 
 	X.visible_message("<span class='danger'>[X] charges towards \the [A]!</span>", \
 	"<span class='danger'>You charge towards \the [A]!</span>" )
-	X.emote("roar") //heheh
+	X.emote("roar")
 	succeed_activate()
 
 	X.throw_at(A, DEFENDER_CHARGEDISTANCE, DEFENDER_CHARGESPEED, X)
