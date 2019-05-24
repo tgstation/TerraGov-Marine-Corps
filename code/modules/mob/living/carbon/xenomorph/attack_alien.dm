@@ -43,7 +43,7 @@
 	KnockDown(8)
 
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/Xenomorph/X, dam_bonus)
-	if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest)) //No more memeing nested and infected hosts
+	if(isnestedhost(src)) //No more memeing nested and infected hosts
 		to_chat(X, "<span class='xenodanger'>You reconsider your mean-spirited bullying of the pregnant, secured host.</span>")
 		return FALSE
 	X.animation_attack_on(src)
@@ -123,7 +123,7 @@
 			to_chat(X, "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>")
 			return FALSE
 
-	else if(istype(buckled, /obj/structure/bed/nest) && (status_flags & XENO_HOST))
+	else if(isnestedhost(src))
 		for(var/obj/item/alien_embryo/embryo in src)
 			if(!embryo.issamexenohive(X))
 				continue
