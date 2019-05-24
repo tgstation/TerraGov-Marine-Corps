@@ -15,7 +15,7 @@
 
 /datum/wires/airalarm/interactable(mob/user)
 	var/obj/machinery/alarm/A = holder
-	if(A.panel_open && A.buildstage == 2)
+	if(CHECK_BITFIELD(A.machine_stat, PANEL_OPEN) && A.buildstage == 2)
 		return TRUE
 
 
