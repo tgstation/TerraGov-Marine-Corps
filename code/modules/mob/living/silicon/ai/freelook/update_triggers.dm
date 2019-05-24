@@ -14,10 +14,6 @@
 /turf/Destroy()
 	visibilityChanged()
 	. = ..()
-/*
-/turf/Initialize(mapload, ...)
-	. = ..()
-	visibilityChanged()*/
 
 
 

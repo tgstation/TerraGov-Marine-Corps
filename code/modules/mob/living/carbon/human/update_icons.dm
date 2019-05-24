@@ -425,7 +425,6 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/regenerate_icons()
 	if(monkeyizing)		return
 	update_mutations(0)
-	//update_mutantrace(0)
 	update_inv_w_uniform()
 	update_inv_wear_id()
 	update_inv_gloves()
