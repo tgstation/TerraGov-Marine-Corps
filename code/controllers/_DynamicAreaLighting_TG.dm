@@ -148,17 +148,11 @@ atom
 
 //Turfs with opacity when they are constructed will trigger nearby lights to update
 //Turfs and atoms with luminosity when they are constructed will create a light_source automatically
-turf/New()
-	..()
-	if(luminosity)
-		if(light)	WARNING("[type] - Don't set lights up manually during New(), We do it automatically.")
-		trueLuminosity = luminosity * luminosity
-		light = new(src)
 
 //Movable atoms with opacity when they are constructed will trigger nearby lights to update
 //Movable atoms with luminosity when they are constructed will create a light_source automatically
-atom/movable/New()
-	..()
+atom/movable/Initialize(mapload, ...)
+	. = ..()
 	if(opacity)
 		if(isturf(loc))
 			if(loc:lighting_lumcount > 1)
