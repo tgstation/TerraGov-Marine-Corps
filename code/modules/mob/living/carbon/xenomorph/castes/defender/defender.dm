@@ -18,7 +18,7 @@
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/toggle_crest_defense,
 		/datum/action/xeno_action/activable/fortify,
-		/datum/action/xeno_action/activable/headbutt,
+		/datum/action/xeno_action/activable/forward_charge,
 		/datum/action/xeno_action/activable/tail_sweep
 		)
 
@@ -48,3 +48,21 @@
 	. = ..()
 	if(stat && fortify)
 		set_fortify(FALSE) //Fortify prevents dragging due to the anchor component.
+
+
+// ***************************************
+// *********** Mob overrides
+// ***************************************
+/mob/living/carbon/Xenomorph/Defender/Bump(atom/A)
+	if(!throwing || !throw_source || !thrower) //Must currently be charging to knock aside and hit marines in it's path
+		return ..() //It's not charging; do regular Bump() IE body block but not throw_impact() because defender isn't being thrown
+	if(!ishuman(A)) //Must also be a human; regular Bump() will default to throw_impact() which means ravager will plow through tables but get stopped by cades and walls
+		return ..()
+	var/mob/living/carbon/human/H = A
+	var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * 0.5 // 50% dmg reduction
+	H.attack_alien(src, extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
+	var/target_turf = get_step_away(src, H, rand(1, 2)) //This is where we blast our target
+	target_turf =  get_step_rand(target_turf) //Scatter
+	H.throw_at(get_turf(target_turf), DEFENDER_CHARGEDISTANCE, DEFENDER_CHARGESPEED, H)
+	H.KnockDown(2)
+	return

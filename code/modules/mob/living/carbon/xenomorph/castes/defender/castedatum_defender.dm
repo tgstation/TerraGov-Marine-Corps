@@ -40,7 +40,7 @@
 	armor_deflection = 20
 
 	// *** Ranged Attack *** //
-	charge_type = 2 //Pounce - Hunter
+	charge_type = DEFENDER_CHARGE_TYPE 
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 35
