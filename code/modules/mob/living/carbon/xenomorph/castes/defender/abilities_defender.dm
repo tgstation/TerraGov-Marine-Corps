@@ -163,7 +163,7 @@
 	if(!.)
 		return FALSE
 	if(!A)
-		return FALSE
+		CRASH("forward_charge/can_use_ability invoked without an atom/A")
 
 /datum/action/xeno_action/activable/forward_charge/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>Your exoskeleton quivers as you get ready to use Forward Charge again.</span>")
