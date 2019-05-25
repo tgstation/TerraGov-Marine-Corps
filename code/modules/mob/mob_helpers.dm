@@ -436,6 +436,13 @@ mob/proc/get_standard_bodytemperature()
 		alert_overlay = new(source)
 	alert_overlay.layer = FLOAT_LAYER
 	alert_overlay.plane = FLOAT_PLANE
+
+	// Extra processing for queen notifications
+	if (isxenoqueen(source))
+		var/matrix/i = alert_overlay.transform
+		alert_overlay.transform = i.Scale(0.5, 0.5) // 50% size
+		alert_overlay.pixel_y = -16 // Centered
+	
 	A.add_overlay(alert_overlay)
     
 
