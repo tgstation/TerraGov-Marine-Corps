@@ -298,6 +298,12 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		if(menuitem)
 			menuitem.Load_checked(src)
 
+	
+	//This is down here because of the browse() calls in tooltip/New()
+	if(!tooltips)
+		tooltips = new /datum/tooltip(src)
+
+
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
 
 	Master.UpdateTickRate()

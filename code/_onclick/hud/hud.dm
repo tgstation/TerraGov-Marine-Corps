@@ -245,6 +245,16 @@
 	return
 
 
+/obj/screen/action_button/MouseEntered(location, control, params)
+	message_admins("showing [name] - [desc]")
+	openToolTip(usr, params, title = name, content = desc)
+
+
+/obj/screen/action_button/MouseExited()
+	message_admins("hiding")
+	closeToolTip(usr)
+
+
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)
 /mob/verb/button_pressed_F12()
 	set name = "F12"
