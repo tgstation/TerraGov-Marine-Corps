@@ -434,15 +434,18 @@ mob/proc/get_standard_bodytemperature()
 	A.target = source
 	if(!alert_overlay)
 		alert_overlay = new(source)
+		var/icon/i = icon(source.icon)
+		var/higher_power = (i.Height() > i.Width()) ? i.Height() : i.Width()
+		if (higher_power > 32)
+			var/diff = 32 / higher_power
+			alert_overlay.transform = alert_overlay.transform.Scale(diff, diff)
+			if(isxenoqueen(source)) // Queen specific
+				alert_overlay.pixel_y = -16
+
+
 	alert_overlay.layer = FLOAT_LAYER
 	alert_overlay.plane = FLOAT_PLANE
 
-	// Extra processing for queen notifications
-	if (isxenoqueen(source))
-		var/matrix/i = alert_overlay.transform
-		alert_overlay.transform = i.Scale(0.5, 0.5) // 50% size
-		alert_overlay.pixel_y = -16 // Centered
-	
 	A.add_overlay(alert_overlay)
     
 
