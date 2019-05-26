@@ -14,6 +14,7 @@
 		GLOB.dead_mob_list += src
 	else
 		GLOB.alive_mob_list += src
+	set_focus(src)
 	prepare_huds()
 	return ..()
 
@@ -455,7 +456,7 @@
 	if(prefs.lastchangelog != GLOB.changelog_hash)
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
-		winset(src, "rpane.changelog", "background-color=none;font-style=;")
+		winset(src, "infowindow.changelog", "background-color=none;font-style=;")
 
 /mob/Topic(href, href_list)
 	if(href_list["mach_close"])
@@ -495,26 +496,25 @@
 	show_inv(M)
 
 
-//attempt to pull/grab something. Returns true upon success.
-/mob/proc/start_pulling(atom/movable/AM, lunge, no_msg)
-	return
-
 /mob/living/start_pulling(atom/movable/AM, lunge, no_msg)
-	if(!AM || !usr || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
-		return
+	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+		return FALSE
 
-	if (AM.anchored || AM.throwing)
-		return
+	if(!AM.can_be_pulled(src))
+		return FALSE
+
+	if(AM.anchored || AM.throwing)
+		return FALSE
 
 	if(throwing || incapacitated())
-		return
+		return FALSE
 
 	if(pulling)
 		var/pulling_old = pulling
 		stop_pulling()
 		// Are we pulling the same thing twice? Just stop pulling.
 		if(pulling_old == AM)
-			return
+			return FALSE
 
 	var/mob/M
 	if(ismob(AM))
@@ -606,6 +606,9 @@
 /mob/GenerateTag()
 	tag = "mob_[next_mob_id++]"
 
+
+/mob/proc/get_paygrade()
+	return ""
 
 // facing verbs
 /mob/proc/canface()
@@ -891,3 +894,75 @@ mob/proc/yank_out_object()
 
 /mob/proc/is_muzzled()
 	return FALSE
+
+
+// reset_perspective(thing) set the eye to the thing (if it's equal to current default reset to mob perspective)
+// reset_perspective() set eye to common default : mob on turf, loc otherwise
+/mob/proc/reset_perspective(atom/A)
+	if(!client)
+		return
+
+	if(A)
+		if(ismovableatom(A))
+			//Set the the thing unless it's us
+			if(A != src)
+				client.perspective = EYE_PERSPECTIVE
+				client.eye = A
+			else
+				client.eye = client.mob
+				client.perspective = MOB_PERSPECTIVE
+		else if(isturf(A))
+			//Set to the turf unless it's our current turf
+			if(A != loc)
+				client.perspective = EYE_PERSPECTIVE
+				client.eye = A
+			else
+				client.eye = client.mob
+				client.perspective = MOB_PERSPECTIVE
+	else
+		//Reset to common defaults: mob if on turf, otherwise current loc
+		if(isturf(loc))
+			client.eye = client.mob
+			client.perspective = MOB_PERSPECTIVE
+		else
+			client.perspective = EYE_PERSPECTIVE
+			client.eye = loc
+			
+	return TRUE
+
+
+/mob/Moved(atom/oldloc, direction)
+	if(client && (client.view != world.view || client.pixel_x || client.pixel_y))
+		for(var/obj/item/item in contents)
+			if(item.zoom)
+				item.zoom(src)
+				click_intercept = null
+				break
+	return ..()
+
+
+//This will update a mob's name, real_name, mind.name, GLOB.datacore records and id
+/mob/proc/fully_replace_character_name(oldname, newname)
+	if(!newname)	
+		return FALSE
+
+	log_played_names(ckey, newname)
+
+	real_name = newname
+	voice_name = newname
+	name = newname
+	if(mind)
+		mind.name = newname
+		if(mind.key)
+			log_played_names(mind.key, newname) //Just in case the mind is unsynced at the moment.
+
+	return TRUE
+
+
+/mob/proc/update_sight()
+	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_SIGHT)
+	sync_lighting_plane_alpha()
+
+
+/mob/proc/sync_lighting_plane_alpha()
+	return

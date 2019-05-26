@@ -384,7 +384,7 @@
 		return 0
 
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
-		if(((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest)) || stat == DEAD)
+		if(isnestedhost(src) || stat == DEAD)
 			return FALSE
 
 	. = P.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
@@ -451,10 +451,6 @@
 			return 0
 		if(mob_size == MOB_SIZE_BIG)	. += 10
 		else							. -= 10
-
-
-/mob/living/silicon/robot/drone/get_projectile_hit_chance(obj/item/projectile/P)
-	return 0 // just stop them getting hit by projectiles completely
 
 
 /obj/item/projectile/proc/play_damage_effect(mob/M)

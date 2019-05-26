@@ -17,7 +17,7 @@
 	if(!ishuman(A))
 		return FALSE
 	var/mob/living/carbon/human/H = A
-	if(H.stat == DEAD || (istype(H.buckled, /obj/structure/bed/nest) && CHECK_BITFIELD(H.status_flags, XENO_HOST)) )
+	if(H.stat == DEAD || isnestedhost(H) )
 		return FALSE
 	var/mob/living/carbon/Xenomorph/Defender/X = owner
 	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
@@ -40,6 +40,9 @@
 	var/mob/living/carbon/human/H = A
 
 	var/distance = get_dist(X, H)
+
+	if(X.cadecheck())
+		return fail_activate()
 
 	if (distance > 1)
 		step_towards(X, H, 1)
@@ -124,7 +127,7 @@
 
 	for (var/mob/living/carbon/human/H in L)
 		step_away(H, src, sweep_range, 2)
-		if(H.stat != DEAD && !(istype(H.buckled, /obj/structure/bed/nest) && CHECK_BITFIELD(H.status_flags, XENO_HOST)) ) //No bully
+		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
 			var/damage = rand(X.xeno_caste.melee_damage_lower,X.xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(X)
 			var/affecting = H.get_limb(ran_zone(null, 0))
 			if(!affecting) //Still nothing??

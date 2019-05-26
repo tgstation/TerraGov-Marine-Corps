@@ -1180,7 +1180,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
 		return
 
-	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest))
+	if(isnestedhost(C))
 		return
 
 	staggerstun(C, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 1, 0) //Staggers and slows down briefly

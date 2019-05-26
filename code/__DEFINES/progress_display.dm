@@ -28,13 +28,13 @@
 
 //busy icons defines
 
-#define BUSY_ICON_GENERIC		/image/progress/display
-#define BUSY_ICON_MEDICAL		/image/progress/display/medical
-#define BUSY_ICON_BUILD			/image/progress/display/construction
-#define BUSY_ICON_FRIENDLY		/image/progress/display/friendly
-#define BUSY_ICON_HOSTILE		/image/progress/display/hostile
-#define BUSY_ICON_CLOCK			/image/progress/display/clock
-#define BUSY_ICON_CLOCK_ALT		/image/progress/display/clock/alt
-#define BUSY_ICON_DANGER 		/image/progress/display/danger
-#define BUSY_ICON_BAR			/image/progress/display/bar
-#define BUSY_ICON_UNSKILLED		/image/progress/display/unskilled
+#define BUSY_ICON_GENERIC		/image/progdisplay
+#define BUSY_ICON_MEDICAL		/image/progdisplay/medical
+#define BUSY_ICON_BUILD			/image/progdisplay/construction
+#define BUSY_ICON_FRIENDLY		/image/progdisplay/friendly
+#define BUSY_ICON_HOSTILE		/image/progdisplay/hostile
+#define BUSY_ICON_CLOCK			/image/progdisplay/clock
+#define BUSY_ICON_CLOCK_ALT		/image/progdisplay/clock/alt
+#define BUSY_ICON_DANGER 		/image/progdisplay/danger
+#define BUSY_ICON_BAR			/image/progdisplay/bar
+#define BUSY_ICON_UNSKILLED		/image/progdisplay/unskilled

@@ -189,7 +189,7 @@
 		else
 			to_chat(user, "<span class='info'>The cover is closed.</span>")
 
-	if(panel_open)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		to_chat(user, "<span class='info'>The wiring is exposed.</span>")
 
 //Update the APC icon to show the three base states
@@ -238,7 +238,7 @@
 			ENABLE_BITFIELD(update_state, UPSTATE_OPENED1)
 		if(opened == APC_COVER_REMOVED)
 			ENABLE_BITFIELD(update_state, UPSTATE_OPENED2)
-	if(panel_open)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		ENABLE_BITFIELD(update_state, UPSTATE_WIREEXP)
 	if(!update_state)
 		ENABLE_BITFIELD(update_state, UPSTATE_ALLGOOD)
@@ -297,12 +297,12 @@
 	playsound(loc, "alien_claw_metal", 25, 1)
 	var/allcut = wires.is_all_cut()
 
-	if(beenhit >= pick(3, 4) && !panel_open)
-		panel_open = TRUE
+	if(beenhit >= pick(3, 4) && !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 		update_icon()
 		visible_message("<span class='danger'>\The [src]'s cover swings open, exposing the wires!</span>", null, null, 5)
 
-	else if(panel_open && !allcut)
+	else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && !allcut)
 		wires.cut_all()
 		update_icon()
 		visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!", null, null, 5)
@@ -406,9 +406,9 @@
 		else if(emagged)
 			to_chat(user, "<span class='warning'>The interface is broken.</span>")
 		else
-			panel_open = !panel_open
-			user.visible_message("<span class='notice'>[user] [panel_open ? "exposes" : "unexposes"] [src]'s wiring.</span>",
-			"<span class='notice'>You [panel_open ? "expose" : "unexpose"] [src]'s wiring.</span>")
+			TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+			user.visible_message("<span class='notice'>[user] [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposes" : "unexposes"] [src]'s wiring.</span>",
+			"<span class='notice'>You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "expose" : "unexpose"] [src]'s wiring.</span>")
 			update_icon()
 
 	else if(istype(W, /obj/item/card/id)) //Trying to unlock the interface with an ID card
@@ -422,7 +422,7 @@
 			to_chat(user, "<span class='warning'>The interface is broken.</span>")
 		else if(opened)
 			to_chat(user, "<span class='warning'>You must close the cover to swipe an ID card.</span>")
-		else if(panel_open)
+		else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			to_chat(user, "<span class='warning'>You must close the panel.</span>")
 		else if(machine_stat & (BROKEN|MAINT))
 			to_chat(user, "<span class='warning'>Nothing happens.</span>")
@@ -437,7 +437,7 @@
 	else if(istype(W, /obj/item/card/emag) && !(emagged)) // trying to unlock with an emag card
 		if(opened)
 			to_chat(user, "<span class='warning'>You must close the cover to swipe an ID card.</span>")
-		else if(panel_open)
+		else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			to_chat(user, "<span class='warning'>You must close the panel first</span>")
 		else if(machine_stat & (BROKEN|MAINT))
 			to_chat(user, "<span class='warning'>Nothing happens.</span>")
@@ -584,7 +584,7 @@
 		else
 			if(issilicon(user))
 				return attack_hand(user)
-			if(!opened && panel_open && (ismultitool(W) || iswirecutter(W)))
+			if(!opened && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (ismultitool(W) || iswirecutter(W)))
 				return attack_hand(user)
 			user.visible_message("<span class='danger'>[user] hits [src] with [W]!</span>", \
 			"<span class='danger'>You hit [src] with [W]!</span>")
@@ -631,12 +631,12 @@
 			"<span class='warning'>You slash [src]!</span>")
 			playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
 			var/allcut = wires.is_all_cut()
-			if(beenhit >= pick(3, 4) && !panel_open)
-				panel_open = TRUE
+			if(beenhit >= pick(3, 4) && !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+				ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 				update_icon()
 				visible_message("<span class='warning'>[src]'s cover flies open, exposing the wires!</span>")
 
-			else if(panel_open && !allcut)
+			else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && !allcut)
 				wires.cut_all()
 				update_icon()
 				visible_message("<span class='warning'>[src]'s wires are shredded!</span>")

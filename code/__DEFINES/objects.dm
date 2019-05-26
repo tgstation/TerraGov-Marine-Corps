@@ -23,11 +23,12 @@
 #define ATMOS_DEFAULT_VOLUME_PIPE	70	//L
 
 // bitflags for machine stat variable
-#define BROKEN		1
-#define NOPOWER		2
-#define POWEROFF	4		// tbd
-#define MAINT		8			// under maintaince
-#define EMPED		16		// temporary broken by EMP pulse
+#define BROKEN		(1<<0)
+#define NOPOWER		(1<<1)
+#define POWEROFF	(1<<2)		// tbd
+#define MAINT		(1<<3)		// under maintaince
+#define EMPED		(1<<4)		// temporary broken by EMP pulse
+#define PANEL_OPEN	(1<<5)
 #define MACHINE_DO_NOT_PROCESS 32768 //Do not added these to processing queue.
 
 #define ENGINE_EJECT_Z	3

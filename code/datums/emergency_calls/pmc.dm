@@ -62,6 +62,6 @@
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/standard)
-		SSjob.AssignRole(H, J.title)
+	SSjob.AssignRole(H, J.title)
 	J.equip(H)
 	to_chat(H, "<span class='notice'>You are a Nanotrasen mercenary!</span>")

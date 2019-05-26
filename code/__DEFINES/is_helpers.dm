@@ -29,6 +29,8 @@
 
 #define isbrain(A) (istype(A, /mob/living/brain))
 
+#define isnestedhost(A)	((CHECK_BITFIELD(A.status_flags, XENO_HOST) && istype(A.buckled, /obj/structure/bed/nest)))
+
 //Carbon mobs
 #define iscarbon(A) (istype(A, /mob/living/carbon))
 
@@ -83,8 +85,6 @@
 #define issilicon(A) (istype(A, /mob/living/silicon))
 
 #define isAI(A) (istype(A, /mob/living/silicon/ai))
-
-#define ismaintdrone(A) (istype(A, /mob/living/silicon/robot/drone))
 
 //Simple animals
 #define isanimal(A) (istype(A, /mob/living/simple_animal))

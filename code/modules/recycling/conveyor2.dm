@@ -72,10 +72,10 @@
 		operating = 0
 
 	if(operating)
-		if(!machine_processing)
+		if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 			start_processing()
 	else
-		if(machine_processing)
+		if(CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 			stop_processing()
 
 	icon_state = "conveyor[operating]"

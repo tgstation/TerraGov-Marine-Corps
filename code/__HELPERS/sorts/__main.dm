@@ -56,7 +56,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 		if(runLen < minRun)
 			var/force = (remaining <= minRun) ? remaining : minRun
 
-			binarySort(start, start+force, start+runLen)
+			binarySort(start, start + force, start + runLen)
 			runLen = force
 
 			//add data about run to queue
@@ -82,6 +82,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 	minGallop = MIN_GALLOP
 
 	return L
+
 
 /*
 Sorts the specified portion of the specified array using a binary
@@ -114,13 +115,14 @@ start	the index of the first element in the range that is	not already known to b
 		//in other words, find where the pivot element should go using bisection search
 		while(left < right)
 			var/mid = (left + right) >> 1	//round((left+right)/2)
-			if(call(cmp)(fetchElement(L,mid), pivot, sortkey) > 0)
+			if(call(cmp)(fetchElement(L, mid), pivot, sortkey) > 0)
 				right = mid
 			else
-				left = mid+1
+				left = mid + 1
 
 		//ASSERT(left == right)
 		moveElement(L, start, left)	//move pivot element to correct location in the sorted range
+
 
 /*
 Returns the length of the run beginning at the specified position and reverses the run if it is back-to-front
@@ -141,13 +143,13 @@ reverse a descending sequence without violating stability.
 	if(runHi >= hi)
 		return 1
 
-	var/last = fetchElement(L,lo)
-	var/current = fetchElement(L,runHi++)
+	var/last = fetchElement(L, lo)
+	var/current = fetchElement(L, runHi++)
 
 	if(call(cmp)(current, last, sortkey) < 0)
 		while(runHi < hi)
 			last = current
-			current = fetchElement(L,runHi)
+			current = fetchElement(L, runHi)
 			if(call(cmp)(current, last, sortkey) >= 0)
 				break
 			++runHi
@@ -155,12 +157,13 @@ reverse a descending sequence without violating stability.
 	else
 		while(runHi < hi)
 			last = current
-			current = fetchElement(L,runHi)
+			current = fetchElement(L, runHi)
 			if(call(cmp)(current, last, sortkey) < 0)
 				break
 			++runHi
 
 	return runHi - lo
+
 
 //Returns the minimum acceptable run length for an array of the specified length.
 //Natural runs shorter than this will be extended with binarySort
@@ -172,6 +175,7 @@ reverse a descending sequence without violating stability.
 		n >>= 1
 	return n + r
 
+
 //Examines the stack of runs waiting to be merged and merges adjacent runs until the stack invariants are reestablished:
 //	runLen[i-3] > runLen[i-2] + runLen[i-1]
 //	runLen[i-2] > runLen[i-1]
@@ -180,11 +184,11 @@ reverse a descending sequence without violating stability.
 /datum/sortInstance/proc/mergeCollapse()
 	while(runBases.len >= 2)
 		var/n = runBases.len - 1
-		if(n > 1 && runLens[n-1] <= runLens[n] + runLens[n+1])
-			if(runLens[n-1] < runLens[n+1])
+		if(n > 1 && runLens[n - 1] <= runLens[n] + runLens[n + 1])
+			if(runLens[n - 1] < runLens[n + 1])
 				--n
 			mergeAt(n)
-		else if(runLens[n] <= runLens[n+1])
+		else if(runLens[n] <= runLens[n + 1])
 			mergeAt(n)
 		else
 			break	//Invariant is established
@@ -195,7 +199,7 @@ reverse a descending sequence without violating stability.
 /datum/sortInstance/proc/mergeForceCollapse()
 	while(runBases.len >= 2)
 		var/n = runBases.len - 1
-		if(n > 1 && runLens[n-1] < runLens[n+1])
+		if(n > 1 && runLens[n - 1] < runLens[n + 1])
 			--n
 		mergeAt(n)
 
@@ -209,23 +213,23 @@ reverse a descending sequence without violating stability.
 	//ASSERT(i == runBases.len - 1 || i == runBases.len - 2)
 
 	var/base1 = runBases[i]
-	var/base2 = runBases[i+1]
+	var/base2 = runBases[i + 1]
 	var/len1 = runLens[i]
-	var/len2 = runLens[i+1]
+	var/len2 = runLens[i + 1]
 
 	//ASSERT(len1 > 0 && len2 > 0)
 	//ASSERT(base1 + len1 == base2)
 
 	//Record the legth of the combined runs. If i is the 3rd last run now, also slide over the last run
 	//(which isn't involved in this merge). The current run (i+1) goes away in any case.
-	runLens[i] += runLens[i+1]
-	runLens.Cut(i+1, i+2)
-	runBases.Cut(i+1, i+2)
+	runLens[i] += runLens[i + 1]
+	runLens.Cut(i + 1, i + 2)
+	runBases.Cut(i + 1, i + 2)
 
 
 	//Find where the first element of run2 goes in run1.
 	//Prior elements in run1 can be ignored (because they're already in place)
-	var/k = gallopRight(fetchElement(L,base2), base1, len1, 0)
+	var/k = gallopRight(fetchElement(L, base2), base1, len1, 0)
 	//ASSERT(k >= 0)
 	base1 += k
 	len1 -= k
@@ -234,7 +238,7 @@ reverse a descending sequence without violating stability.
 
 	//Find where the last element of run1 goes in run2.
 	//Subsequent elements in run2 can be ignored (because they're already in place)
-	len2 = gallopLeft(fetchElement(L,base1 + len1 - 1), base2, len2, len2-1)
+	len2 = gallopLeft(fetchElement(L, base1 + len1 - 1), base2, len2, len2 - 1)
 	//ASSERT(len2 >= 0)
 	if(len2 == 0)
 		return
@@ -262,9 +266,9 @@ reverse a descending sequence without violating stability.
 
 	var/lastOffset = 0
 	var/offset = 1
-	if(call(cmp)(key, fetchElement(L,base+hint), sortkey) > 0)
+	if(call(cmp)(key, fetchElement(L, base + hint), sortkey) > 0)
 		var/maxOffset = len - hint
-		while(offset < maxOffset && call(cmp)(key, fetchElement(L,base+hint+offset), sortkey) > 0)
+		while(offset < maxOffset && call(cmp)(key, fetchElement(L, base + hint + offset), sortkey) > 0)
 			lastOffset = offset
 			offset = (offset << 1) + 1
 
@@ -276,7 +280,7 @@ reverse a descending sequence without violating stability.
 
 	else
 		var/maxOffset = hint + 1
-		while(offset < maxOffset && call(cmp)(key, fetchElement(L,base+hint-offset), sortkey) <= 0)
+		while(offset < maxOffset && call(cmp)(key, fetchElement(L, base + hint - offset), sortkey) <= 0)
 			lastOffset = offset
 			offset = (offset << 1) + 1
 
@@ -295,7 +299,7 @@ reverse a descending sequence without violating stability.
 	while(lastOffset < offset)
 		var/m = lastOffset + ((offset - lastOffset) >> 1)
 
-		if(call(cmp)(key, fetchElement(L,base+m), sortkey) > 0)
+		if(call(cmp)(key, fetchElement(L, base + m), sortkey) > 0)
 			lastOffset = m + 1
 		else
 			offset = m
@@ -321,9 +325,9 @@ reverse a descending sequence without violating stability.
 
 	var/offset = 1
 	var/lastOffset = 0
-	if(call(cmp)(key, fetchElement(L,base+hint), sortkey) < 0)	//key <= L[base+hint]
+	if(call(cmp)(key, fetchElement(L, base + hint), sortkey) < 0)	//key <= L[base+hint]
 		var/maxOffset = hint + 1	//therefore we want to insert somewhere in the range [base,base+hint] = [base+,base+(hint+1))
-		while(offset < maxOffset && call(cmp)(key, fetchElement(L,base+hint-offset), sortkey) < 0)	//we are iterating backwards
+		while(offset < maxOffset && call(cmp)(key, fetchElement(L, base + hint - offset), sortkey) < 0)	//we are iterating backwards
 			lastOffset = offset
 			offset = (offset << 1) + 1	//1 3 7 15
 
@@ -336,7 +340,7 @@ reverse a descending sequence without violating stability.
 
 	else	//key > L[base+hint]
 		var/maxOffset = len - hint	//therefore we want to insert somewhere in the range (base+hint,base+len) = [base+hint+1, base+hint+(len-hint))
-		while(offset < maxOffset && call(cmp)(key, fetchElement(L,base+hint+offset), sortkey) >= 0)
+		while(offset < maxOffset && call(cmp)(key, fetchElement(L, base + hint + offset), sortkey) >= 0)
 			lastOffset = offset
 			offset = (offset << 1) + 1
 
@@ -352,7 +356,7 @@ reverse a descending sequence without violating stability.
 	while(lastOffset < offset)
 		var/m = lastOffset + ((offset - lastOffset) >> 1)
 
-		if(call(cmp)(key, fetchElement(L,base+m), sortkey) < 0)	//key <= L[base+m]
+		if(call(cmp)(key, fetchElement(L, base + m), sortkey) < 0)	//key <= L[base+m]
 			offset = m
 		else							//key > L[base+m]
 			lastOffset = m + 1
@@ -376,7 +380,7 @@ reverse a descending sequence without violating stability.
 		return
 
 	if(len1 == 1)
-		moveElement(L, cursor1, cursor2+len2)
+		moveElement(L, cursor1, cursor2 + len2)
 		return
 
 
@@ -393,7 +397,7 @@ reverse a descending sequence without violating stability.
 
 			do
 				//ASSERT(len1 > 1 && len2 > 0)
-				if(call(cmp)(fetchElement(L,cursor2), fetchElement(L,cursor1), sortkey) < 0)
+				if(call(cmp)(fetchElement(L, cursor2), fetchElement(L, cursor1), sortkey) < 0)
 					moveElement(L, cursor2++, cursor1++)
 					--len2
 
@@ -419,7 +423,7 @@ reverse a descending sequence without violating stability.
 			do
 				//ASSERT(len1 > 1 && len2 > 0)
 
-				count1 = gallopRight(fetchElement(L,cursor2), cursor1, len1, 0)
+				count1 = gallopRight(fetchElement(L, cursor2), cursor1, len1, 0)
 				if(count1)
 					cursor1 += count1
 					len1 -= count1
@@ -433,7 +437,7 @@ reverse a descending sequence without violating stability.
 				if(--len2 == 0)
 					break outer
 
-				count2 = gallopLeft(fetchElement(L,cursor1), cursor2, len2, 0)
+				count2 = gallopLeft(fetchElement(L, cursor1), cursor2, len2, 0)
 				if(count2)
 					moveRange(L, cursor2, cursor1, count2)
 
@@ -459,7 +463,7 @@ reverse a descending sequence without violating stability.
 
 	if(len1 == 1)
 		//ASSERT(len2 > 0)
-		moveElement(L, cursor1, cursor2+len2)
+		moveElement(L, cursor1, cursor2 + len2)
 
 	//else
 		//ASSERT(len2 == 0)
@@ -492,7 +496,7 @@ reverse a descending sequence without violating stability.
 			//do the straightfoward thing until one run starts winning consistently
 			do
 				//ASSERT(len1 > 0 && len2 > 1)
-				if(call(cmp)(fetchElement(L,cursor2), fetchElement(L,cursor1), sortkey) < 0)
+				if(call(cmp)(fetchElement(L, cursor2), fetchElement(L, cursor1), sortkey) < 0)
 					moveElement(L, cursor1--, cursor2-- + 1)
 					--len1
 
@@ -517,11 +521,11 @@ reverse a descending sequence without violating stability.
 			do
 				//ASSERT(len1 > 0 && len2 > 1)
 
-				count1 = len1 - gallopRight(fetchElement(L,cursor2), base1, len1, len1-1)	//should cursor1 be base1?
+				count1 = len1 - gallopRight(fetchElement(L, cursor2), base1, len1, len1 - 1)	//should cursor1 be base1?
 				if(count1)
 					cursor1 -= count1
 
-					moveRange(L, cursor1+1, cursor2+1, count1)	//cursor1+1 == cursor2 by definition
+					moveRange(L, cursor1 + 1, cursor2 + 1, count1)	//cursor1+1 == cursor2 by definition
 
 					cursor2 -= count1
 					len1 -= count1
@@ -534,7 +538,7 @@ reverse a descending sequence without violating stability.
 				if(--len2 == 1)
 					break outer
 
-				count2 = len2 - gallopLeft(fetchElement(L,cursor1), cursor1+1, len2, len2-1)
+				count2 = len2 - gallopLeft(fetchElement(L, cursor1), cursor1 + 1, len2, len2 - 1)
 				if(count2)
 					cursor2 -= count2
 					len2 -= count2
@@ -559,7 +563,7 @@ reverse a descending sequence without violating stability.
 		//ASSERT(len1 > 0)
 
 		cursor1 -= len1
-		moveRange(L, cursor1+1, cursor2+1, len1)
+		moveRange(L, cursor1 + 1, cursor2 + 1, len1)
 
 	//else
 		//ASSERT(len1 == 0)
@@ -579,7 +583,7 @@ reverse a descending sequence without violating stability.
 	do
 		var/runLen = (remaining <= minRun) ? remaining : minRun
 
-		binarySort(start, start+runLen, start)
+		binarySort(start, start + runLen, start)
 
 		//add data about run to queue
 		runBases.Add(start)
@@ -593,54 +597,55 @@ reverse a descending sequence without violating stability.
 
 	while(runBases.len >= 2)
 		var/n = runBases.len - 1
-		if(n > 1 && runLens[n-1] <= runLens[n] + runLens[n+1])
-			if(runLens[n-1] < runLens[n+1])
+		if(n > 1 && runLens[n - 1] <= runLens[n] + runLens[n + 1])
+			if(runLens[n - 1] < runLens[n + 1])
 				--n
 			mergeAt2(n)
-		else if(runLens[n] <= runLens[n+1])
+		else if(runLens[n] <= runLens[n + 1])
 			mergeAt2(n)
 		else
 			break	//Invariant is established
 
 	while(runBases.len >= 2)
 		var/n = runBases.len - 1
-		if(n > 1 && runLens[n-1] < runLens[n+1])
+		if(n > 1 && runLens[n - 1] < runLens[n + 1])
 			--n
 		mergeAt2(n)
 
 	return L
 
+
 /datum/sortInstance/proc/mergeAt2(i)
 	var/cursor1 = runBases[i]
-	var/cursor2 = runBases[i+1]
+	var/cursor2 = runBases[i + 1]
 
-	var/end1 = cursor1+runLens[i]
-	var/end2 = cursor2+runLens[i+1]
+	var/end1 = cursor1 + runLens[i]
+	var/end2 = cursor2 + runLens[i + 1]
 
-	var/val1 = fetchElement(L,cursor1)
-	var/val2 = fetchElement(L,cursor2)
+	var/val1 = fetchElement(L, cursor1)
+	var/val2 = fetchElement(L, cursor2)
 
 	while(1)
-		if(call(cmp)(val1,val2, sortkey) <= 0)
+		if(call(cmp)(val1, val2, sortkey) <= 0)
 			if(++cursor1 >= end1)
 				break
-			val1 = fetchElement(L,cursor1)
+			val1 = fetchElement(L, cursor1)
 		else
-			moveElement(L,cursor2,cursor1)
+			moveElement(L, cursor2, cursor1)
 
 			if(++cursor2 >= end2)
 				break
 			++end1
 			++cursor1
 
-			val2 = fetchElement(L,cursor2)
+			val2 = fetchElement(L, cursor2)
 
 
 	//Record the legth of the combined runs. If i is the 3rd last run now, also slide over the last run
 	//(which isn't involved in this merge). The current run (i+1) goes away in any case.
-	runLens[i] += runLens[i+1]
-	runLens.Cut(i+1, i+2)
-	runBases.Cut(i+1, i+2)
+	runLens[i] += runLens[i + 1]
+	runLens.Cut(i + 1, i + 2)
+	runBases.Cut(i + 1, i + 2)
 
 #undef MIN_GALLOP
 #undef MIN_MERGE

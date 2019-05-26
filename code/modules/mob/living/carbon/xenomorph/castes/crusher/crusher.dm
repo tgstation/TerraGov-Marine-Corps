@@ -39,7 +39,7 @@
 	if(amount > 0 && (charge_speed > CHARGE_SPEED_MAX * 0.5) ) //If we're over half the max charge speed, we don't accumulate more stagger stacks.
 		return FALSE
 	stagger = max(stagger + amount,0)
-	return stagger 
+	return stagger
 
 //The atom collided with is passed to this proc, all types of collisions are dealt with here.
 //The atom does not tell the Crusher how to handle a collision, the Crusher is an independant
@@ -216,7 +216,7 @@
 	"<span class='xenodanger'>You ram [src]!</span>")
 	playsound(loc, "punch", 25, 1)
 	machine_stat = 1
-	on = 0
+	DISABLE_BITFIELD(turret_flags, TURRET_ON)
 	update_icon()
 	update_health(X.charge_speed * 20)
 	X.charge_speed -= CHARGE_SPEED_BUILDUP * 3 //Lose three turfs worth of speed
@@ -248,7 +248,7 @@
 					count++
 			if(count)
 				X.charge_speed -= CHARGE_SPEED_BUILDUP / (count * 2) // half normal slowdown regardless of number of corpses.
-		else if(!(status_flags & XENO_HOST) && !istype(buckled, /obj/structure/bed/nest))
+		else if(!(status_flags & XENO_HOST) && !istype(buckled, /obj/structure/bed/nest)) // neither
 			log_combat(X, src, "xeno charged")
 			apply_damage(X.charge_speed * 40, BRUTE)
 			X.visible_message("<span class='danger'>[X] rams [src]!</span>",
@@ -299,7 +299,7 @@
 
 	if(now_pushing) return FALSE //Just a plain ol turf, let's return.
 
-	if(dir != charge_dir) //We aren't facing the way we're charging.
+	if(dir != charge_dir || moving_diagonally) //We aren't facing the way we're charging.
 		stop_momentum()
 		return ..()
 

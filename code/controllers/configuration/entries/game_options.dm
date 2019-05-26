@@ -95,10 +95,6 @@
 	config_entry_value = 0
 	movedelay_type = /mob/living/carbon/human
 
-/datum/config_entry/number/outdated_movedelay/robot_delay
-	config_entry_value = 0
-	movedelay_type = /mob/living/silicon/robot
-
 /datum/config_entry/number/outdated_movedelay/monkey_delay
 	config_entry_value = 0
 	movedelay_type = /mob/living/carbon/monkey
