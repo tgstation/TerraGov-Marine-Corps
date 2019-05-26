@@ -246,12 +246,10 @@
 
 
 /obj/screen/action_button/MouseEntered(location, control, params)
-	message_admins("showing [name] - [desc]")
-	openToolTip(usr, params, title = name, content = desc)
+	openToolTip(usr, src, params, title = name, content = desc)
 
 
 /obj/screen/action_button/MouseExited()
-	message_admins("hiding")
 	closeToolTip(usr)
 
 

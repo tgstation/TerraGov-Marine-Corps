@@ -108,16 +108,13 @@ Notes:
 //Includes sanity.checks
 /proc/openToolTip(mob/user = null, atom/movable/tip_src = null, params = null, title = "", content = "", theme = "")
 	if(!istype(user))
-		message_admins("bad user")
 		return
 	if(!user?.client.tooltips)
-		message_admins("no tooltips?")
 		return
 	if(!theme && user.client?.prefs?.ui_style)
 		theme = lowertext(user.client.prefs.ui_style)
 	if(!theme)
 		theme = "default"
-	message_admins("theme: [theme] & showing")
 	user.client.tooltips.show(tip_src, params, title, content, theme)
 
 
