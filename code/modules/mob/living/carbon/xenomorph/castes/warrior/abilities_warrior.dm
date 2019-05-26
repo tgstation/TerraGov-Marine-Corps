@@ -79,7 +79,6 @@
 
 /datum/action/xeno_action/activable/lunge/on_cooldown_finish()
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.used_lunge = FALSE
 	to_chat(X, "<span class='notice'>You get ready to lunge again.</span>")
 	return ..()
 
@@ -91,7 +90,6 @@
 	"<span class='xenowarning'>You lunge at [A]!</span>")
 
 	succeed_activate()
-	X.used_lunge = TRUE // triggered by start_pulling
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
 
 	if (X.Adjacent(A))
