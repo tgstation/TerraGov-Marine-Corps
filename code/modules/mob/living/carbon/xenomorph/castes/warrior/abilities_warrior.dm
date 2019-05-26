@@ -43,6 +43,14 @@
 	plasma_cost = 10
 	cooldown_timer = WARRIOR_LUNGE_COOLDOWN
 
+/datum/action/xeno_action/activable/lunge/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(owner, COMSIG_WARRIOR_USED_GRAB, .proc/add_cooldown)
+
+/datum/action/xeno_action/activable/lunge/remove_action(mob/living/L)
+	. = ..()
+	UnregisterSignal(owner, COMSIG_WARRIOR_USED_GRAB)
+
 /datum/action/xeno_action/activable/lunge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)

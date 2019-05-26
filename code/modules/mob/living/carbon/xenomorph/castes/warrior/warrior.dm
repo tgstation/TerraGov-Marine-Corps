@@ -80,8 +80,7 @@
 			"<span class='xenowarning'>You grab [L] by the throat!</span>")
 
 	if(!lunge && !isxeno(AM))
-		var/datum/action/xeno_action/lun = actions_by_path[/datum/action/xeno_action/activable/lunge]
-		lun?.add_cooldown()
+		SEND_SIGNAL(src, COMSIG_WARRIOR_USED_GRAB)
 
 /mob/living/carbon/Xenomorph/Warrior/hitby(atom/movable/AM as mob|obj,var/speed = 5)
 	if(ishuman(AM))
