@@ -19,8 +19,8 @@
 					fdel(delpath)
 				break
 		return FALSE
-    
-  if(savefile_version < 26)
+
+	if(savefile_version < 26)
 		S["key_bindings"] << deepCopyList(GLOB.keybinding_list_by_key)
 
 	if(savefile_version < 25)
