@@ -120,6 +120,7 @@
 #define XACT_TARGET_SELF		(1 << 9) // allow self-targetting
 #define XACT_IGNORE_PLASMA		(1 << 10) // ignore plasma cost
 #define XACT_IGNORE_COOLDOWN	(1 << 11) // ignore cooldown
+#define XACT_IGNORE_DEAD_TARGET	(1 << 12) // bypass checks of a dead target
 
 /datum/action/xeno_action
 	var/action_icon_state

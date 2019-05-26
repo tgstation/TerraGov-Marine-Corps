@@ -49,38 +49,37 @@
 	..()
 
 /mob/living/carbon/Xenomorph/Warrior/start_pulling(atom/movable/AM, lunge, no_msg)
-	if (!check_state() || agility || !isliving(AM))
+	if(!check_state() || agility || !isliving(AM))
 		return FALSE
 
 	var/mob/living/L = AM
 
-	if(!isxeno(AM))
-		if (used_lunge && !lunge)
-			to_chat(src, "<span class='xenowarning'>You must gather your strength before neckgrabbing again.</span>")
-			return FALSE
+	if(isxeno(L))
+		return ..()
 
-		if (!check_plasma(10))
-			return FALSE
+	if(lunge && ..(L, TRUE))
+		return neck_grab(L)
 
-		if(!lunge)
-			used_lunge = TRUE
+	if(SEND_SIGNAL(src, COMSIG_WARRIOR_NECKGRAB, L) & COMSIG_WARRIOR_CANT_NECKGRAB)
+		return FALSE
 
-	. = ..(AM, lunge, TRUE) //no_msg = true because we don't want to show the defaul pull message
+	. = ..(L, TRUE) //no_msg = true because we don't want to show the defaul pull message
 
 	if(.) //successful pull
-		if(!isxeno(AM))
-			use_plasma(10)
+		neck_grab(L)
 
-		if(!isxeno(L))
-			round_statistics.warrior_grabs++
-			grab_level = GRAB_NECK
-			L.drop_all_held_items()
-			L.KnockDown(1)
-			visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
-			"<span class='xenowarning'>You grab [L] by the throat!</span>")
+	SEND_SIGNAL(src, COMSIG_WARRIOR_USED_GRAB)
 
-	if(!lunge && !isxeno(AM))
-		SEND_SIGNAL(src, COMSIG_WARRIOR_USED_GRAB)
+/mob/living/carbon/Xenomorph/Warrior/proc/neck_grab(mob/living/L)
+	use_plasma(10)
+
+	round_statistics.warrior_grabs++
+	grab_level = GRAB_NECK
+	L.drop_all_held_items()
+	L.KnockDown(1)
+	visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
+	"<span class='xenowarning'>You grab [L] by the throat!</span>")
+	return TRUE
 
 /mob/living/carbon/Xenomorph/Warrior/hitby(atom/movable/AM as mob|obj,var/speed = 5)
 	if(ishuman(AM))

@@ -82,6 +82,8 @@
 
 // xeno stuff
 #define COMSIG_WARRIOR_USED_GRAB "warrior_used_grab"
+#define COMSIG_WARRIOR_NECKGRAB "warrior_neckgrab"
+	#define COMSIG_WARRIOR_CANT_NECKGRAB 1
 
 
 // /obj/item/radio signals
