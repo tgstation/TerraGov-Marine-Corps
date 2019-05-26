@@ -173,7 +173,7 @@
 /datum/action/xeno_action/activable/forward_charge/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
 
-	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_GENERIC))
+	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src .proc/can_use_ability, A)))
 		return fail_activate()
 
 	X.visible_message("<span class='danger'>[X] charges towards \the [A]!</span>", \
