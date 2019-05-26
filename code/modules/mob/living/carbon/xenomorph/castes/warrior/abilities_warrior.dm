@@ -43,12 +43,12 @@
 	plasma_cost = 10
 	cooldown_timer = WARRIOR_LUNGE_COOLDOWN
 
-/datum/action/xeno_action/activable/lunge/proc/neck_grab(mob/living/L)
+/datum/action/xeno_action/activable/lunge/proc/neck_grab(mob/living/owner, mob/living/L)
 	if(!can_use_ability(L, FALSE, XACT_IGNORE_DEAD_TARGET))
 		return COMSIG_WARRIOR_CANT_NECKGRAB
 
-/datum/action/xeno_action/activable/lunge/proc/lunge(atom/A)
-	if(can_use_ability(A))
+/datum/action/xeno_action/activable/lunge/proc/lunge(mob/living/owner, atom/A)
+	if(can_use_ability(A, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 		use_ability(A)
 		return COMSIG_WARRIOR_USED_LUNGE
 
