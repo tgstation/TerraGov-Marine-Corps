@@ -28,8 +28,8 @@
 		var/grid_y = round(mouse_y, 32/cellnumber)
 
 		if(mouse_control["icon-x"])
-			var/sign = mouse_x - grid_x != 0 ? sign(mouse_x - grid_x) : -1 //positive if rounded down, else negative
+			var/sign = mouse_x - grid_x != 0 ? SIGN(mouse_x - grid_x) : -1 //positive if rounded down, else negative
 			pixel_x = grid_x - center_of_mass["x"] + sign*16/cellnumber //center of the cell
 		if(mouse_control["icon-y"])
-			var/sign = mouse_y - grid_y != 0 ? sign(mouse_y - grid_y) : -1
+			var/sign = mouse_y - grid_y != 0 ? SIGN(mouse_y - grid_y) : -1
 			pixel_y = grid_y - center_of_mass["y"] + sign*16/cellnumber

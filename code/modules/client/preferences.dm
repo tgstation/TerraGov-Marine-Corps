@@ -25,7 +25,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ui_style_alpha = 255
 	var/toggles_chat = TOGGLES_CHAT_DEFAULT
 	var/toggles_sound = TOGGLES_SOUND_DEFAULT
+
 	var/ghost_hud = TOGGLES_GHOSTHUD_DEFAULT
+	var/ghost_vision = TRUE
+	var/ghost_orbit = GHOST_ORBIT_CIRCLE
+	var/ghost_form = GHOST_DEFAULT_FORM
+	var/ghost_others = GHOST_OTHERS_DEFAULT_OPTION
+
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
 	var/hotkeys = TRUE
@@ -628,7 +634,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			ethnicity = new_ethnicity
 
 		if("species")
-			var/new_species = input(user, "Choose your species:", "Species") as null|anything in get_playable_species()
+			var/new_species = input(user, "Choose your species:", "Species") as null|anything in GLOB.all_species[DEFAULT_SPECIES]
 			if(!new_species)
 				return
 			species = new_species
