@@ -112,7 +112,7 @@
 		to_chat(user, "These people have opened \the [src] during an alert: [users_to_open_string].")
 
 /obj/machinery/door/firedoor/Bumped(atom/AM)
-	if(panel_open || operating)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) || operating)
 		return
 	if(!density)
 		return ..()

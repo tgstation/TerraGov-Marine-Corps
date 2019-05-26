@@ -6,5 +6,6 @@
 #define QDEL_LIST_ASSOC(L) if(L) { for(var/I in L) { qdel(L[I]); qdel(I); } L.Cut(); }
 #define QDEL_LIST_ASSOC_VAL(L) if(L) { for(var/I in L) qdel(L[I]); L.Cut(); }
 
+
 /proc/______qdel_list_wrapper(list/L) //the underscores are to encourage people not to use this directly.
 	QDEL_LIST(L)

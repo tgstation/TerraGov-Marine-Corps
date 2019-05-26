@@ -40,15 +40,20 @@
 	var/list/baseturfs = /turf/baseturf_bottom
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
-/turf/New()
-	..()
+/turf/Initialize(mapload, ...)
+	. = ..()
 	GLOB.turfs += src
-	for(var/atom/movable/AM as mob|obj in src)
-		spawn(0)
-			Entered(AM)
+	for(var/atom/movable/AM in src)
+		Entered(AM)
 
 	levelupdate()
 
+	if(luminosity)
+		if(light)	
+			WARNING("[type] - Don't set lights up manually during New(), We do it automatically.")
+		trueLuminosity = luminosity * luminosity
+		light = new(src)
+	visibilityChanged()
 
 /turf/Destroy()
 	if(oldTurf != "")

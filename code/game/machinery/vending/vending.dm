@@ -78,8 +78,14 @@
 		//Add hidden inventory
 	src.build_inventory(contraband, 1)
 	src.build_inventory(premium, 0, 1)
-	power_change()
 	start_processing()
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/machinery/vending/LateInitialize()
+	. = ..()
+	power_change()
+
 
 /obj/machinery/vending/Destroy()
 	QDEL_NULL(wires)
@@ -202,15 +208,15 @@
 		to_chat(user, "You short out the product lock on [src]")
 		return
 	else if(isscrewdriver(W))
-		src.panel_open = !src.panel_open
-		to_chat(user, "You [src.panel_open ? "open" : "close"] the maintenance panel.")
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
 		src.overlays.Cut()
-		if(src.panel_open)
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			src.overlays += image(src.icon, "[initial(icon_state)]-panel")
 		src.updateUsrDialog()
 		return
 	else if(ismultitool(W)||iswirecutter(W))
-		if(src.panel_open)
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			attack_hand(user)
 		return
 	else if(istype(W, /obj/item/coin))
@@ -459,7 +465,7 @@
 			src.updateUsrDialog()
 			return
 
-		else if ((href_list["togglevoice"]) && (src.panel_open))
+		else if ((href_list["togglevoice"]) && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			src.shut_up = !src.shut_up
 
 		src.add_fingerprint(usr)

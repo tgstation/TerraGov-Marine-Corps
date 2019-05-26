@@ -37,8 +37,9 @@
 
 
 
-/turf/closed/wall/New()
-	..()
+/turf/closed/wall/Initialize(mapload, ...)
+	. = ..()
+	
 	//smooth wall stuff
 	relativewall()
 	relativewall_neighbours()

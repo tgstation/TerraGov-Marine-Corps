@@ -14,7 +14,7 @@
 
 /datum/wires/autolathe/interactable(mob/user)
 	var/obj/machinery/autolathe/A = holder
-	if(A.panel_open)
+	if(CHECK_BITFIELD(A.machine_stat, PANEL_OPEN))
 		return TRUE
 
 

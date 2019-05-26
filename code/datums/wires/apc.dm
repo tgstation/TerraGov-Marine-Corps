@@ -14,7 +14,7 @@
 
 /datum/wires/apc/interactable(mob/user)
 	var/obj/machinery/power/apc/A = holder
-	if(A.panel_open && !A.opened)
+	if(CHECK_BITFIELD(A.machine_stat, PANEL_OPEN) && !A.opened)
 		return TRUE
 
 
