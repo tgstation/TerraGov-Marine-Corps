@@ -40,12 +40,14 @@ Notes:
 
 
 /datum/tooltip/New(client/C)
-	if (C)
-		owner = C
-		var/datum/asset/stuff = get_asset_datum(/datum/asset/simple/jquery)
-		stuff.send(owner)
-		
-		owner << browse(file2text('code/modules/tooltip/tooltip.html'), "window=[control]")
+	if (!C)
+		stack_trace("/datum/tooltip/New() called without a valid client")
+		return ..()
+	owner = C
+	var/datum/asset/stuff = get_asset_datum(/datum/asset/simple/jquery)
+	stuff.send(owner)
+	
+	owner << browse(file2text('code/modules/tooltip/tooltip.html'), "window=[control]")
 
 	return ..()
 
