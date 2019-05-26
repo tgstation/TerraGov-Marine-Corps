@@ -105,14 +105,14 @@
 
 	// DECONSTRUCTION
 	if(isscrewdriver(W))
-		//to_chat(user, "<span class='notice'>You start to [panel_open ? "close" : "open"] the camera's panel.</span>")
+		//to_chat(user, "<span class='notice'>You start to [ ? "close" : "open"] the camera's panel.</span>")
 		//if(toggle_panel(user)) // No delay because no one likes screwdrivers trying to be hip and have a duration cooldown
-		panel_open = !panel_open
-		user.visible_message("<span class='warning'>[user] screws the camera's panel [panel_open ? "open" : "closed"]!</span>",
-		"<span class='notice'>You screw the camera's panel [panel_open ? "open" : "closed"].</span>")
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+		user.visible_message("<span class='warning'>[user] screws the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"]!</span>",
+		"<span class='notice'>You screw the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"].</span>")
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 
-	else if((iswirecutter(W) || ismultitool(W)) && panel_open)
+	else if((iswirecutter(W) || ismultitool(W)) && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		interact(user)
 
 	else if(iswelder(W))

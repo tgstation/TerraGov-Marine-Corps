@@ -61,7 +61,7 @@
 		fillers += new /obj/effect/opacifier(T, opacity)
 
 /obj/machinery/door/Bumped(atom/AM)
-	if(panel_open || operating)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) || operating)
 		return
 
 	if(ismob(AM))
@@ -197,12 +197,12 @@
 /obj/machinery/door/proc/do_animate(animation)
 	switch(animation)
 		if("opening")
-			if(panel_open)
+			if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				flick("o_doorc0", src)
 			else
 				flick("doorc0", src)
 		if("closing")
-			if(panel_open)
+			if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				flick("o_doorc1", src)
 			else
 				flick("doorc1", src)

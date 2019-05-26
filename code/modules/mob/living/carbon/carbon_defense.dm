@@ -7,7 +7,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || (istype(buckled, /obj/structure/bed/nest) && status_flags & XENO_HOST)))
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || isnestedhost(src)))
 		return
 	if(smoke_delay)
 		return

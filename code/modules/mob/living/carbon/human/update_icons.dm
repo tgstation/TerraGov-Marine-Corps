@@ -383,23 +383,7 @@ var/global/list/damage_icon_parts = list()
 
 
 /mob/living/carbon/human/proc/update_mutantrace()
-	remove_overlay(MUTANTRACE_LAYER)
-	var/fat
-
-	if( FAT in mutations )
-		fat = "fat"
-
-	if(dna)
-		switch(dna.mutantrace)
-			if("golem","slime","shadow","adamantine")
-				overlays_standing[MUTANTRACE_LAYER]	= image("icon" = 'icons/effects/genetics.dmi', "icon_state" = "[dna.mutantrace][fat]_[gender]_s")
-
-
-	if(!dna || !(dna.mutantrace in list("golem","metroid")))
-		update_body(0)
-
-	update_hair(0)
-	apply_overlay(MUTANTRACE_LAYER)
+	return
 
 //Call when target overlay should be added/removed
 /mob/living/carbon/human/update_targeted()
@@ -425,7 +409,6 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/regenerate_icons()
 	if(monkeyizing)		return
 	update_mutations(0)
-	update_mutantrace(0)
 	update_inv_w_uniform()
 	update_inv_wear_id()
 	update_inv_gloves()

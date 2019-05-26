@@ -157,7 +157,7 @@
 	if(!isliving(A))
 		return FALSE
 	var/mob/living/L = A
-	if(L.stat == DEAD || (CHECK_BITFIELD(L.status_flags, XENO_HOST) && istype(L.buckled, /obj/structure/bed/nest))) //Can't bully the dead/nested hosts.
+	if(L.stat == DEAD || isnestedhost(L)) //Can't bully the dead/nested hosts.
 		return FALSE
 
 /datum/action/xeno_action/activable/punch/use_ability(atom/A)

@@ -124,7 +124,6 @@
 	O.add_ai_verbs()
 	O.job = "AI"
 
-	O.rename_self("ai",1)
 	. = O
 	qdel(src)
 
