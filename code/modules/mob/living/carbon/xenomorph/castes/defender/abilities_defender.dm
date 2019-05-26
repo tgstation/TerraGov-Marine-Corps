@@ -6,9 +6,9 @@
 	action_icon_state = "headbutt"
 	mechanics_text = "Charge a target up to 2 tiles away, knocking them away and down and disarming them."
 	ability_name = "headbutt"
-	plasma_cost = DEFENDER_HEADBUTT_COST
+	plasma_cost = 25
 	use_state_flags = XACT_USE_CRESTED
-	cooldown_timer = DEFENDER_HEADBUTT_COOLDOWN
+	cooldown_timer = 6 SECONDS
 
 /datum/action/xeno_action/activable/headbutt/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -95,9 +95,9 @@
 	action_icon_state = "tail_sweep"
 	mechanics_text = "Hit all adjacent units around you, knocking them away and down."
 	ability_name = "tail sweep"
-	plasma_cost = DEFENDER_TAILSWIPE_COST
+	plasma_cost = 35
 	use_state_flags = XACT_USE_CRESTED
-	cooldown_timer = DEFENDER_TAILSWIPE_COOLDOWN
+	cooldown_timer = 12 SECONDS
 
 /datum/action/xeno_action/activable/tail_sweep/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -156,7 +156,7 @@
 	mechanics_text = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
 	ability_name = "toggle crest defense"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
-	cooldown_timer = DEFENDER_CREST_DEFENSE_COOLDOWN
+	cooldown_timer = 1 SECONDS
 
 /datum/action/xeno_action/activable/toggle_crest_defense/on_cooldown_finish()
 	var/mob/living/carbon/Xenomorph/Defender/X = owner
@@ -212,7 +212,7 @@
 	mechanics_text = "Plant yourself for a large defensive boost."
 	ability_name = "fortify"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
-	cooldown_timer = DEFENDER_FORTIFY_COOLDOWN
+	cooldown_timer = 1 SECONDS
 
 /datum/action/xeno_action/activable/fortify/on_cooldown_finish()
 	var/mob/living/carbon/Xenomorph/X = owner

@@ -500,7 +500,7 @@
 // *********** Queen heal
 // ***************************************
 /datum/action/xeno_action/queen_heal
-	name = "Heal Xenomorph (600)"
+	name = "Heal Xenomorph"
 	action_icon_state = "heal_xeno"
 	mechanics_text = "Heals a target Xenomorph (you must be overwatching them.)"
 	plasma_cost = 600
@@ -537,7 +537,7 @@
 // *********** Queen plasma
 // ***************************************
 /datum/action/xeno_action/queen_give_plasma
-	name = "Give Plasma (600)"
+	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
 	mechanics_text = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	plasma_cost = 600
@@ -571,7 +571,7 @@
 // *********** Queen order
 // ***************************************
 /datum/action/xeno_action/queen_order
-	name = "Give Order (100)"
+	name = "Give Order"
 	action_icon_state = "queen_order"
 	plasma_cost = 100
 
@@ -725,7 +725,7 @@
 	mechanics_text = "Instantly cause the larva inside a host to grow a set amount."
 	ability_name = "advance larval growth"
 	plasma_cost = 300
-	cooldown_timer = XENO_LARVAL_ADVANCEMENT_COOLDOWN
+	cooldown_timer = 15 SECONDS
 
 /datum/action/xeno_action/activable/larva_growth/can_use_ability(atom/A, silent, override_flags)
 	. = ..()

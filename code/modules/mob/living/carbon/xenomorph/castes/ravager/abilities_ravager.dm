@@ -2,11 +2,11 @@
 // *********** Charge
 // ***************************************
 /datum/action/xeno_action/activable/charge
-	name = "Eviscerating Charge (80)"
+	name = "Eviscerating Charge"
 	action_icon_state = "charge"
 	mechanics_text = "Charge up to 7 tiles and viciously attack your target."
 	ability_name = "charge"
-	cooldown_timer = RAV_CHARGECOOLDOWN
+	cooldown_timer = 30 SECONDS
 	plasma_cost = 80
 
 /datum/action/xeno_action/activable/charge/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -46,7 +46,7 @@
 	ability_name = "ravage"
 	plasma_cost = 40
 	var/last_victim_count = 0
-	cooldown_timer = RAV_RAVAGE_COOLDOWN
+	cooldown_timer = 10 SECONDS
 
 /datum/action/xeno_action/activable/ravage/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>You gather enough strength to Ravage again.</span>")
@@ -99,7 +99,7 @@
 	name = "Second Wind"
 	action_icon_state = "second_wind"
 	mechanics_text = "A channeled ability to restore health that uses plasma and rage. Must stand still for it to work."
-	cooldown_timer = RAV_SECOND_WIND_COOLDOWN
+	cooldown_timer = 240 SECONDS
 	var/last_rage = 0
 
 /datum/action/xeno_action/activable/second_wind/get_cooldown()

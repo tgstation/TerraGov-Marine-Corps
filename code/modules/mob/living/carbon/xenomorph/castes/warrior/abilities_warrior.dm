@@ -6,7 +6,7 @@
 	action_icon_state = "agility_on"
 	mechanics_text = "Move an all fours for greater speed. Cannot use abilities while in this mode."
 	ability_name = "toggle agility"
-	cooldown_timer = WARRIOR_AGILITY_COOLDOWN
+	cooldown_timer = 0.5 SECONDS
 	use_state_flags = XACT_USE_AGILITY
 
 /datum/action/xeno_action/activable/toggle_agility/on_cooldown_finish()
@@ -41,7 +41,7 @@
 	mechanics_text = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
 	ability_name = "lunge"
 	plasma_cost = 10
-	cooldown_timer = WARRIOR_LUNGE_COOLDOWN
+	cooldown_timer = 10 SECONDS
 
 /datum/action/xeno_action/activable/lunge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -87,7 +87,7 @@
 	mechanics_text = "Knock a target flying up to 5 tiles."
 	ability_name = "Fling"
 	plasma_cost = 30
-	cooldown_timer = WARRIOR_FLING_COOLDOWN
+	cooldown_timer = 6 SECONDS
 
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
 	to_chat(owner, "<span class='notice'>You gather enough strength to fling something again.</span>")
@@ -144,7 +144,7 @@
 	mechanics_text = "Strike a target up to 1 tile away with a chance to break bones."
 	ability_name = "punch"
 	plasma_cost = 20
-	cooldown_timer = WARRIOR_PUNCH_COOLDOWN
+	cooldown_timer = 6 SECONDS
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
 	to_chat(src, "<span class='notice'>You gather enough strength to punch again.</span>")

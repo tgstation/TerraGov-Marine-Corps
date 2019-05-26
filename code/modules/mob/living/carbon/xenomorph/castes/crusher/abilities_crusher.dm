@@ -7,7 +7,7 @@
 	mechanics_text = "Knocks all adjacent targets away and down."
 	ability_name = "stomp"
 	plasma_cost = 80
-	cooldown_timer = CRUSHER_STOMP_COOLDOWN
+	cooldown_timer = 20 SECONDS
 
 /datum/action/xeno_action/activable/stomp/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Crusher/X = owner
@@ -68,8 +68,8 @@
 	action_icon_state = "cresttoss"
 	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
 	ability_name = "crest toss"
-	plasma_cost = CRUSHER_CRESTTOSS_COST
-	cooldown_timer = CRUSHER_CRESTTOSS_COOLDOWN
+	plasma_cost = 40
+	cooldown_timer = 6 SECONDS
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
 	to_chat(src, "<span class='xenowarning'><b>You can now crest toss again.</b></span>")

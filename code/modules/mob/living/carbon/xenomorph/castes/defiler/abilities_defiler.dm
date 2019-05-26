@@ -5,7 +5,7 @@
 	name = "Toggle Neuroinjectors"
 	action_icon_state = "neuroclaws_off"
 	mechanics_text = "Toggle on to add neurotoxin to your melee slashes."
-	cooldown_timer = DEFILER_CLAWS_COOLDOWN
+	cooldown_timer = 1 SECONDS
 
 /datum/action/xeno_action/neuroclaws/action_activate()
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
@@ -38,7 +38,7 @@
 	mechanics_text = "Channel to inject an adjacent target with larval growth serum. At the end of the channel your target will be infected."
 	ability_name = "defiler sting"
 	plasma_cost = 150
-	cooldown_timer = DEFILER_STING_COOLDOWN
+	cooldown_timer = 20 SECONDS
 
 /datum/action/xeno_action/activable/larval_growth_sting/defiler/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -79,7 +79,7 @@
 	mechanics_text = "Channel for 3 seconds to emit a cloud of noxious smoke that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
 	ability_name = "emit neurogas"
 	plasma_cost = 200
-	cooldown_timer = DEFILER_GAS_COOLDOWN
+	cooldown_timer = 40 SECONDS
 
 /datum/action/xeno_action/activable/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
