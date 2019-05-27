@@ -8,11 +8,11 @@
 	icon = 'icons/turf/snow2.dmi'
 	icon_state = "snow_0"
 
-/turf/open/floor/plating/ground/snow/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/turf/open/floor/plating/ground/snow/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	return //Larvae can't do shit
 
 //Xenos digging up snow
-/turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/Xenomorph/M)
+/turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_GRAB)
 
 		if(!slayer)

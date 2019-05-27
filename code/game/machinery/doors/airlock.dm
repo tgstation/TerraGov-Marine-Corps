@@ -270,7 +270,7 @@
 	return src.attack_hand(user)
 
 //Prying open doors
-/obj/machinery/door/airlock/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/door/airlock/attack_alien(mob/living/carbon/xenomorph/M)
 	var/turf/cur_loc = M.loc
 	if(isElectrified())
 		if(shock(M, 70))
@@ -307,7 +307,7 @@
 				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
 				"<span class='danger'>You pry \the [src] open.</span>", null, 5)
 
-/obj/machinery/door/airlock/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/obj/machinery/door/airlock/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	for(var/atom/movable/AM in get_turf(src))
 		if(AM != src && AM.density && !AM.CanPass(M, M.loc))
 			to_chat(M, "<span class='warning'>\The [AM] prevents you from squeezing under \the [src]!</span>")

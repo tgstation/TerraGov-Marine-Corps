@@ -57,10 +57,10 @@
 	else	//wtf make your ladders properly assholes
 		icon_state = "ladder00"
 
-/obj/structure/ladder/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/ladder/attack_alien(mob/living/carbon/xenomorph/M)
 	return attack_hand(M)
 
-/obj/structure/ladder/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/obj/structure/ladder/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	return attack_hand(M)
 
 /obj/structure/ladder/attack_hand(mob/user)

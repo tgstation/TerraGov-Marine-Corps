@@ -1,5 +1,5 @@
-/mob/living/carbon/Xenomorph/Warrior
-	caste_base_type = /mob/living/carbon/Xenomorph/Warrior
+/mob/living/carbon/xenomorph/warrior
+	caste_base_type = /mob/living/carbon/xenomorph/warrior
 	name = "Warrior"
 	desc = "A beefy, alien with an armored carapace."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
@@ -24,13 +24,13 @@
 // ***************************************
 // *********** Icons
 // ***************************************
-/mob/living/carbon/Xenomorph/Warrior/handle_special_state()
+/mob/living/carbon/xenomorph/warrior/handle_special_state()
 	if(agility)
 		icon_state = "Warrior Agility"
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/Xenomorph/Warrior/handle_special_wound_states()
+/mob/living/carbon/xenomorph/warrior/handle_special_wound_states()
 	. = ..()
 	if(agility)
 		return image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded_agility", "layer"=-X_WOUND_LAYER)
@@ -38,17 +38,17 @@
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-/mob/living/carbon/Xenomorph/Warrior/throw_item(atom/target)
+/mob/living/carbon/xenomorph/warrior/throw_item(atom/target)
 	throw_mode_off()
 
-/mob/living/carbon/Xenomorph/Warrior/stop_pulling()
+/mob/living/carbon/xenomorph/warrior/stop_pulling()
 	if(isliving(pulling))
 		var/mob/living/L = pulling
 		grab_resist_level = 0 //zero it out
 		L.SetStunned(0)
 	..()
 
-/mob/living/carbon/Xenomorph/Warrior/start_pulling(atom/movable/AM, lunge, no_msg)
+/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, lunge, no_msg)
 	if(!check_state() || agility || !isliving(AM))
 		return FALSE
 
@@ -81,7 +81,7 @@
 	"<span class='xenowarning'>You grab [L] by the throat!</span>")
 	return TRUE
 
-/mob/living/carbon/Xenomorph/Warrior/hitby(atom/movable/AM as mob|obj,var/speed = 5)
+/mob/living/carbon/xenomorph/warrior/hitby(atom/movable/AM as mob|obj,var/speed = 5)
 	if(ishuman(AM))
 		return
 	..()

@@ -185,7 +185,7 @@
 	attack_hand(user)
 	return
 
-/obj/structure/foamedmetal/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/foamedmetal/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	if(prob(33))
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \

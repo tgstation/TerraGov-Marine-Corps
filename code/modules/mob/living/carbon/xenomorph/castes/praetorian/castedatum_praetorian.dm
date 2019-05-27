@@ -3,7 +3,7 @@
 	display_name = "Praetorian"
 	upgrade_name = ""
 	caste_desc = "Ptui!"
-	caste_type_path = /mob/living/carbon/Xenomorph/Praetorian
+	caste_type_path = /mob/living/carbon/xenomorph/praetorian
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "praetorian" //used to match appropriate wound overlays
@@ -28,7 +28,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
-	deevolves_to = /mob/living/carbon/Xenomorph/Spitter
+	deevolves_to = /mob/living/carbon/xenomorph/spitter
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER

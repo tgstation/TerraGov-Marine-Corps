@@ -19,7 +19,7 @@
 	var/mob/living/carbon/human/H = A
 	if(H.stat == DEAD || isnestedhost(H) )
 		return FALSE
-	var/mob/living/carbon/Xenomorph/Defender/X = owner
+	var/mob/living/carbon/xenomorph/defender/X = owner
 	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
 		if(!silent)
 			to_chat(X, "<span class='xenowarning'>You don't have enough plasma, you need [(plasma_cost * 2) - X.plasma_stored] more plasma!</span>")
@@ -35,7 +35,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/headbutt/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	var/mob/living/carbon/human/H = A
 
@@ -103,7 +103,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
 		if(!silent)
 			to_chat(X, "<span class='xenowarning'>You don't have enough plasma, you need [(plasma_cost * 2) - X.plasma_stored] more plasma!</span>")
@@ -114,7 +114,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/tail_sweep/use_ability()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	round_statistics.defender_tail_sweeps++
 	X.visible_message("<span class='xenowarning'>\The [X] sweeps it's tail in a wide circle!</span>", \
@@ -159,12 +159,12 @@
 	cooldown_timer = DEFENDER_CREST_DEFENSE_COOLDOWN
 
 /datum/action/xeno_action/activable/toggle_crest_defense/on_cooldown_finish()
-	var/mob/living/carbon/Xenomorph/Defender/X = owner
+	var/mob/living/carbon/xenomorph/defender/X = owner
 	to_chat(X, "<span class='notice'>You can [X.crest_defense ? "raise" : "lower"] your crest.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/toggle_crest_defense/action_activate()
-	var/mob/living/carbon/Xenomorph/Defender/X = owner
+	var/mob/living/carbon/xenomorph/defender/X = owner
 
 	if(X.crest_defense)
 		X.set_crest_defense(FALSE)
@@ -185,7 +185,7 @@
 	add_cooldown()
 	return succeed_activate()
 
-/mob/living/carbon/Xenomorph/Defender/proc/set_crest_defense(on, silent = FALSE)
+/mob/living/carbon/xenomorph/defender/proc/set_crest_defense(on, silent = FALSE)
 	crest_defense = on
 	if(on)
 		if(!silent)
@@ -215,12 +215,12 @@
 	cooldown_timer = DEFENDER_FORTIFY_COOLDOWN
 
 /datum/action/xeno_action/activable/fortify/on_cooldown_finish()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, "<span class='notice'>You can [X.fortify ? "stand up" : "fortify"] again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/fortify/action_activate()
-	var/mob/living/carbon/Xenomorph/Defender/X = owner
+	var/mob/living/carbon/xenomorph/defender/X = owner
 
 	if(X.fortify)
 		X.set_fortify(FALSE)
@@ -241,7 +241,7 @@
 	add_cooldown()
 	return succeed_activate()
 
-/mob/living/carbon/Xenomorph/Defender/proc/set_fortify(on, silent = FALSE)
+/mob/living/carbon/xenomorph/defender/proc/set_fortify(on, silent = FALSE)
 	round_statistics.defender_fortifiy_toggles++
 	if(on)
 		if(!silent)

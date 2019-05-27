@@ -10,12 +10,12 @@
 	use_state_flags = XACT_USE_AGILITY
 
 /datum/action/xeno_action/activable/toggle_agility/on_cooldown_finish()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(src, "<span class='notice'>You can [X.agility ? "raise yourself back up" : "lower yourself back down"] again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/toggle_agility/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	X.agility = !X.agility
 
@@ -78,12 +78,12 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/lunge/on_cooldown_finish()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, "<span class='notice'>You get ready to lunge again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/lunge/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	round_statistics.warrior_lunges++
 	X.visible_message("<span class='xenowarning'>\The [X] lunges towards [A]!</span>", \
@@ -133,7 +133,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/fling/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/H = A
 	round_statistics.warrior_flings++
 
@@ -186,7 +186,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/punch/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/M = A
 	if(X.issamexenohive(M))
 		return M.attack_alien() //harmless nibbling.
@@ -209,10 +209,10 @@
 
 	add_cooldown()
 
-/mob/living/proc/punch_act(mob/living/carbon/Xenomorph/X, damage, target_zone)
+/mob/living/proc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
 	apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
 
-/mob/living/carbon/human/punch_act(mob/living/carbon/Xenomorph/X, damage, target_zone)
+/mob/living/carbon/human/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
 	var/datum/limb/L = get_limb(target_zone)
 
 	if (!L || (L.limb_status & LIMB_DESTROYED))
@@ -237,7 +237,7 @@
 // ***************************************
 
 // Called when pulling something and attacking yourself with the pull
-/mob/living/carbon/Xenomorph/proc/pull_power(var/mob/M)
+/mob/living/carbon/xenomorph/proc/pull_power(var/mob/M)
 	if (isxenowarrior(src) && !ripping_limb && M.stat != DEAD)
 		ripping_limb = TRUE
 		if(rip_limb(M))
@@ -246,7 +246,7 @@
 
 
 // Warrior Rip Limb - called by pull_power()
-/mob/living/carbon/Xenomorph/proc/rip_limb(var/mob/M)
+/mob/living/carbon/xenomorph/proc/rip_limb(var/mob/M)
 	if (!ishuman(M))
 		return FALSE
 

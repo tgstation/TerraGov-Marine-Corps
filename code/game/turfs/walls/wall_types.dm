@@ -440,7 +440,7 @@
 
 /turf/closed/wall/resin/hitby(AM as mob|obj)
 	..()
-	if(istype(AM,/mob/living/carbon/Xenomorph))
+	if(istype(AM,/mob/living/carbon/xenomorph))
 		return
 	visible_message("<span class='danger'>\The [src] was hit by \the [AM].</span>", \
 	"<span class='danger'>You hit \the [src].</span>")
@@ -453,7 +453,7 @@
 	take_damage(max(0, damage_cap - tforce))
 
 
-/turf/closed/wall/resin/attack_alien(mob/living/carbon/Xenomorph/M)
+/turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/M)
 	if(isxenolarva(M)) //Larvae can't do shit
 		return 0
 	M.animation_attack_on(src)

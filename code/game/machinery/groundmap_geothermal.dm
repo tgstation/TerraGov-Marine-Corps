@@ -306,7 +306,7 @@
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		icon_state = "[icon_state]_o"
 
-/obj/machinery/colony_floodlight/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/obj/machinery/colony_floodlight/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	M.visible_message("[M] starts biting [src]!","In a rage, you start biting [src], but with no effect!", null, 5)
 
 /obj/machinery/colony_floodlight/proc/breakdown()
@@ -315,7 +315,7 @@
 	repair_state = FLOODLIGHT_REPAIR_WELD
 	toggle_light(SWITCH_OFF)
 
-/obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/xenomorph/M)
 	if(!is_lit)
 		to_chat(M, "Why bother? It's just some weird metal thing.")
 		return FALSE

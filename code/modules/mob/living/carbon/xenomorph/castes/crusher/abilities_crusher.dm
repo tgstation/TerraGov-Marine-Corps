@@ -10,7 +10,7 @@
 	cooldown_timer = CRUSHER_STOMP_COOLDOWN
 
 /datum/action/xeno_action/activable/stomp/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Crusher/X = owner
+	var/mob/living/carbon/xenomorph/crusher/X = owner
 	succeed_activate()
 	add_cooldown()
 
@@ -56,7 +56,7 @@
 	mechanics_text = "Toggles the Crusher’s movement based charge on and off."
 
 /datum/action/xeno_action/ready_charge/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	X.is_charging = !X.is_charging
 	to_chat(X, "<span class='xenonotice'>You will [X.is_charging ? "now" : "no longer"] charge when moving.</span>")
 
@@ -91,7 +91,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/cresttoss/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/L = A
 	X.face_atom(L) //Face towards the target so we don't look silly
 

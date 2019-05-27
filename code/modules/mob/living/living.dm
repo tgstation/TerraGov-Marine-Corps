@@ -349,7 +349,7 @@
 			return
 
 		if(isxeno(L) && !isxenolarva(L)) //Handling pushing Xenos in general, but big Xenos can still push small Xenos
-			var/mob/living/carbon/Xenomorph/X = L
+			var/mob/living/carbon/xenomorph/X = L
 			if((ishuman(src) && X.mob_size == MOB_SIZE_BIG) || (isxeno(src) && X.mob_size == MOB_SIZE_BIG))
 				if(!isxeno(src) && client)
 					do_bump_delay = 1
@@ -357,7 +357,7 @@
 				return
 
 		if(isxeno(src) && !isxenolarva(src) && ishuman(L)) //We are a Xenomorph and pushing a human
-			var/mob/living/carbon/Xenomorph/X = src
+			var/mob/living/carbon/xenomorph/X = src
 			if(X.mob_size == MOB_SIZE_BIG)
 				L.do_bump_delay = 1
 

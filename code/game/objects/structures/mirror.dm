@@ -82,7 +82,7 @@
 
 		H.update_hair()
 
-/obj/structure/mirror/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/mirror/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	if(shattered)
 		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)

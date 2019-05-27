@@ -66,7 +66,7 @@
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
 	healthcheck()
 
-/obj/machinery/bot/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/bot/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	obj_integrity -= rand(15, 30)
 	if(obj_integrity <= 0)
