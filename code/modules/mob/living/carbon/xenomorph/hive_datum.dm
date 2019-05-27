@@ -50,7 +50,7 @@
 	X.color = null
 
 // for clean transfers between hives
-/mob/living/carbon/Xenomorph/proc/transfer_to_hive(hivenumber)
+/mob/living/carbon/xenomorph/proc/transfer_to_hive(hivenumber)
 	if (hive.hivenumber == hivenumber) 
 		return // If we are in that hive already
 	if(!GLOB.hive_datums[hivenumber])
