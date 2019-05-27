@@ -439,8 +439,8 @@ mob/proc/get_standard_bodytemperature()
 		if (higher_power > 32)
 			var/diff = 32 / higher_power
 			alert_overlay.transform = alert_overlay.transform.Scale(diff, diff)
-			if(isxenoqueen(source)) // Queen specific
-				alert_overlay.pixel_y = -16
+			alert_overlay.pixel_y = -32 * diff
+			alert_overlay.pixel_x = -32 * diff
 
 
 	alert_overlay.layer = FLOAT_LAYER
