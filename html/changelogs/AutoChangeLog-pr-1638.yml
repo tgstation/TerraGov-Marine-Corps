@@ -1,0 +1,4 @@
+author: "spookydonut"
+delete-after: True
+changes: 
+  - rscadd: "Ctrl-Click as a Warrior will activate lunge on whatever you click, if you're able to"
