@@ -292,8 +292,9 @@
 //	 tastes = list("dough" = 2, "heresy" = 1)							//This is the flavour of the food
 //	 bitesize = 3														//This is the amount each bite consumes.
 
-///obj/item/reagent_container/food/snacks/xenoburger/New()				//Absolute pathing for procs, please.
-//	 ..()																//Calls the parent proc, don't forget to add this if you want to add extra things.
+
+///obj/item/reagent_container/food/snacks/xenoburger/Initialize()		//Absolute pathing for procs, please.
+//	 . = ..()															//Calls the parent proc, don't forget to add this.
 
 
 /obj/item/reagent_container/food/snacks/honeycomb
@@ -390,7 +391,8 @@
 	list_reagents = list ("nutriment" = 3)
 	bitesize = 3
 
-/obj/item/reagent_container/food/snacks/donut/normal/New()
+
+/obj/item/reagent_container/food/snacks/donut/normal/Initialize()
 	. = ..()
 	if(prob(40))
 		icon_state = "donut2"
@@ -408,7 +410,8 @@
 	list_reagents = list ("nutriment" = 2, "sprinkles" = 1)
 	bitesize = 10
 
-/obj/item/reagent_container/food/snacks/donut/chaos/New()
+
+/obj/item/reagent_container/food/snacks/donut/chaos/Initialize()
 	. = ..()
 	var/chaosselect = pick(1,2,3,4,5,6,7,8,9)
 	switch(chaosselect)
@@ -446,7 +449,8 @@
 	bitesize = 5
 	list_reagents = list ("nutriment" = 3, "sprinkles" = 1, "berryjuice" = 5)
 
-/obj/item/reagent_container/food/snacks/donut/jelly/New()
+
+/obj/item/reagent_container/food/snacks/donut/jelly/Initialize()
 	. = ..()
 	if(prob(30))
 		icon_state = "jdonut2"
@@ -461,7 +465,8 @@
 	filling_color = "#ED1169"
 	list_reagents = list ("nutriment" = 3, "sprinkles" = 1, "cherryjelly" = 5)
 
-/obj/item/reagent_container/food/snacks/donut/cherryjelly/New()
+
+/obj/item/reagent_container/food/snacks/donut/cherryjelly/Initialize()
 	. = ..()
 	if(prob(30))
 		icon_state = "jdonut2"
@@ -565,9 +570,11 @@
 	filling_color = "#E00D34"
 	bitesize = 3
 
-/obj/item/reagent_container/food/snacks/organ/New()
+
+/obj/item/reagent_container/food/snacks/organ/Initialize()
 	list_reagents = list("nutriment" = rand(3,5), "toxin" = rand(1,3))
 	return ..()
+
 
 /obj/item/reagent_container/food/snacks/tofu
 	name = "Tofu"
@@ -760,7 +767,8 @@
 	bitesize = 2
 	tastes = list("bun" = 4, "lettuce" = 2, "sludge" = 1)
 
-/obj/item/reagent_container/food/snacks/roburger/New()
+
+/obj/item/reagent_container/food/snacks/roburger/Initialize()
 	. = ..()
 	if(prob(5))
 		reagents.add_reagent("nanites", 2)
@@ -792,13 +800,6 @@
 	bitesize = 2
 	tastes = list("bun" = 4)
 
-/*
-/obj/item/reagent_container/food/snacks/clownburger/New()
-	..()
-	var/datum/disease/F = new /datum/disease/pierrot_throat(0)
-	var/list/data = list("viruses"= list(F))
-	reagents.add_reagent("blood", 4, data)
-*/
 
 /obj/item/reagent_container/food/snacks/mimeburger
 	name = "Mime Burger"
@@ -931,7 +932,8 @@
 	tastes = list("pie" = 1, "mushroom" = 1)
 	bitesize = 2
 
-/obj/item/reagent_container/food/snacks/plump_pie/New()
+
+/obj/item/reagent_container/food/snacks/plump_pie/Initialize()
 	. = ..()
 	var/fey = prob(10)
 	if(fey)
@@ -1010,7 +1012,8 @@
 	bitesize = 0.1  //this snack is supposed to be eating during looooong time. And this it not dinner food! --rastaf0
 	tastes = list("popcorn" = 3, "butter" = 1)
 
-/obj/item/reagent_container/food/snacks/popcorn/New()
+
+/obj/item/reagent_container/food/snacks/popcorn/Initialize()
 	. = ..()
 	unpopped = rand(1,10)
 
@@ -1222,7 +1225,7 @@
 	tastes = list("chaos" = 1)
 
 
-/obj/item/reagent_container/food/snacks/mysterysoup/New()
+/obj/item/reagent_container/food/snacks/mysterysoup/Initialize()
 	. = ..()
 	var/mysteryselect = pick(1,2,3,4,5,6,7,8,9)
 	switch(mysteryselect)
@@ -1268,7 +1271,8 @@
 	bitesize = 5
 	tastes = list("wishes" = 1)
 
-/obj/item/reagent_container/food/snacks/wishsoup/New()
+
+/obj/item/reagent_container/food/snacks/wishsoup/Initialize()
 	. = ..()
 	var/wish = prob(25)
 	if(wish)
@@ -1296,22 +1300,6 @@
 	bitesize = 5
 	tastes = list("tomato" = 1, "mint" = 1)
 
-/* No more of this
-/obj/item/reagent_container/food/snacks/telebacon
-	name = "Tele Bacon"
-	desc = "It tastes a little odd but it is still delicious."
-	icon_state = "bacon"
-	var/obj/item/radio/beacon/bacon/baconbeacon
-	bitesize = 2
-	New()
-		..()
-		reagents.add_reagent("nutriment", 4)
-		baconbeacon = new /obj/item/radio/beacon/bacon(src)
-	On_Consume()
-		if(!reagents.total_volume)
-			baconbeacon.loc = usr
-			baconbeacon.digest_delay()
-*/
 
 /obj/item/reagent_container/food/snacks/monkeycube
 	name = "monkey cube"
@@ -1734,7 +1722,8 @@
 	bitesize = 2
 	tastes = list("mushroom" = 1, "biscuit" = 1)
 
-/obj/item/reagent_container/food/snacks/plumphelmetbiscuit/New()
+
+/obj/item/reagent_container/food/snacks/plumphelmetbiscuit/Initialize()
 	if(prob(10))
 		name = "exceptional plump helmet biscuit"
 		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump helmet biscuit!"
@@ -1759,7 +1748,8 @@
 	list_reagents = list("nutriment" = 8)
 	tastes = list("tasteless soup" = 1)
 
-/obj/item/reagent_container/food/snacks/beetsoup/New()
+
+/obj/item/reagent_container/food/snacks/beetsoup/Initialize()
 	. = ..()
 	name = pick("borsch","bortsch","borstch","borsh","borshch","borscht")
 	tastes = list(name = 1)
@@ -2378,19 +2368,27 @@
 		return
 	..()
 
-/obj/item/pizzabox/margherita/New()
+
+/obj/item/pizzabox/margherita/Initialize()
+	. = ..()
 	pizza = new /obj/item/reagent_container/food/snacks/sliceable/pizza/margherita(src)
 	boxtag = "Margherita Deluxe"
 
-/obj/item/pizzabox/vegetable/New()
+
+/obj/item/pizzabox/vegetable/Initialize()
+	. = ..()
 	pizza = new /obj/item/reagent_container/food/snacks/sliceable/pizza/vegetablepizza(src)
 	boxtag = "Gourmet Vegatable"
 
-/obj/item/pizzabox/mushroom/New()
+
+/obj/item/pizzabox/mushroom/Initialize()
+	. = ..()
 	pizza = new /obj/item/reagent_container/food/snacks/sliceable/pizza/mushroompizza(src)
 	boxtag = "Mushroom Special"
 
-/obj/item/pizzabox/meat/New()
+
+/obj/item/pizzabox/meat/Initialize()
+	. = ..()
 	pizza = new /obj/item/reagent_container/food/snacks/sliceable/pizza/meatpizza(src)
 	boxtag = "Meatlover's Supreme"
 
@@ -2665,7 +2663,8 @@
 	list_reagents = list("nutriment" = 4, "sodiumchloride" = 0.5)
 	var/variation = null
 
-/obj/item/reagent_container/food/snacks/upp/New()
+
+/obj/item/reagent_container/food/snacks/upp/Initialize()
 	if(!variation)
 		variation = pick("fish","rice")
 
@@ -2772,11 +2771,12 @@
 	icon_state = "entree"
 	var/flavor = "boneless pork ribs"//default value
 
-/obj/item/reagent_container/food/snacks/packaged_meal/New(loc, newflavor)
+
+/obj/item/reagent_container/food/snacks/packaged_meal/Initialize(mapload, newflavor)
 	tastes = list("[pick(GLOB.food_adjectives)]" = 1) //idea, list, gimmick
 	determinetype(newflavor)
 	desc = "A packaged [icon_state] from a Meal Ready-to-Eat, there is a lengthy list of [pick("obscure", "arcane", "unintelligible", "revolutionary", "sophisticated", "unspellable")] ingredients and addictives printed on the back.</i>"
-	..()
+	return ..()
 
 /obj/item/reagent_container/food/snacks/packaged_meal/attack_self(mob/user as mob)
 	if (package)
