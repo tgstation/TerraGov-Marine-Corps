@@ -321,9 +321,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_PRINTING_TIME 550
 #define LIMB_METAL_AMOUNT 125
 
-#define EMOTE_VISIBLE  1
-#define EMOTE_AUDIBLE  2
-
 
 //species_flags
 #define NO_BLOOD 				(1<<0)
