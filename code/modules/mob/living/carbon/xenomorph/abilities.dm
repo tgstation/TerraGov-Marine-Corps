@@ -357,7 +357,7 @@
 		return FALSE
 
 	var/mob/living/carbon/C = A
-	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
+	if (isnestedhost(C))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return FALSE
@@ -686,7 +686,7 @@
 			X.recent_notice = world.time //anti-notice spam
 		return FALSE
 	var/mob/living/carbon/C = A
-	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
+	if (isnestedhost(C))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return FALSE

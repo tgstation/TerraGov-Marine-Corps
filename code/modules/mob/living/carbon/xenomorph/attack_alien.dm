@@ -43,7 +43,7 @@
 	KnockDown(8)
 
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/Xenomorph/X, dam_bonus)
-	if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest)) //No more memeing nested and infected hosts
+	if(isnestedhost(src)) //No more memeing nested and infected hosts
 		to_chat(X, "<span class='xenodanger'>You reconsider your mean-spirited bullying of the pregnant, secured host.</span>")
 		return FALSE
 	X.animation_attack_on(src)
@@ -123,7 +123,7 @@
 			to_chat(X, "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>")
 			return FALSE
 
-	else if(istype(buckled, /obj/structure/bed/nest) && (status_flags & XENO_HOST))
+	else if(isnestedhost(src))
 		for(var/obj/item/alien_embryo/embryo in src)
 			if(!embryo.issamexenohive(X))
 				continue
@@ -241,8 +241,12 @@
 			add_slowdown(staggerslow_stacks)
 		X.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-	damage = X.hit_and_run_bonus(damage) //Apply Runner hit and run bonus damage if applicable
-	apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
+	if(dam_bonus)
+		damage += dam_bonus
+	else //We avoid stacking, like hit-and-run and savage.
+		damage = X.hit_and_run_bonus(damage) //Apply Runner hit and run bonus damage if applicable
+
+	apply_damage(damage, BRUTE, affecting, armor_block, sharp = TRUE, edge = TRUE) //This should slicey dicey
 	updatehealth()
 
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/Xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)

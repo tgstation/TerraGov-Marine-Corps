@@ -18,8 +18,11 @@
 	// rather than waiting for atoms to initialize.
 	if (unique)
 		GLOB.areas_by_type[type] = src
-	. = ..()
+	return ..()
 
+/area/Initialize(mapload, ...)
+	. = ..()
+	
 	icon_state = "" //Used to reset the icon overlay, I assume.
 	layer = AREAS_LAYER
 	master = src //moved outside the spawn(1) to avoid runtimes in lighting.dm when it references loc.loc.master ~Carn

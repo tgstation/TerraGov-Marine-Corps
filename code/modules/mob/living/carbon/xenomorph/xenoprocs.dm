@@ -231,7 +231,7 @@
 		. -= (frenzy_aura * 0.05)
 
 	if(hit_and_run) //We need to have the hit and run ability before we do anything
-		hit_and_run = min(2, hit_and_run + 0.05) //increment the damage of our next attack by +5% up to 200%
+		hit_and_run += 0.05 //increment the damage of our next attack by +5%
 
 	if(is_charging)
 		if(legcuffed)
@@ -507,7 +507,7 @@
 	if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 
 		for(var/mob/living/carbon/M in loc)
-			if(M.lying && !isxeno(M) && M.stat != DEAD && !(M.status_flags & XENO_HOST && istype(M.buckled, /obj/structure/bed/nest)))
+			if(M.lying && !isxeno(M) && M.stat != DEAD && !isnestedhost(M))
 				visible_message("<span class='danger'>[src] runs [M] over!</span>",
 				"<span class='danger'>You run [M] over!</span>", null, 5)
 
@@ -584,7 +584,7 @@
 	return TRUE
 
 /mob/living/carbon/acid_spray_act(mob/living/carbon/Xenomorph/X)
-	if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest))
+	if(isnestedhost(src))
 		return
 
 	if(isxenopraetorian(X))
