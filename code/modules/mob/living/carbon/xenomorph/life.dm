@@ -98,8 +98,7 @@
 	if(.)
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
-		if(stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to y'know being on fire.
-			stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+		SEND_SIGNAL(src, COMSIG_XENOMORPH_FIRE_BURNING)
 		adjustFireLoss((fire_stacks + 3) * CLAMP(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) // modifier is negative
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates()
