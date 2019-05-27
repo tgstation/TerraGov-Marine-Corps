@@ -166,7 +166,7 @@
 	name = "Spawn Facehugger"
 	action_icon_state = "spawn_hugger"
 	mechanics_text = "Spawn a facehugger that is stored on your body."
-	plasma_cost = CARRIER_SPAWN_HUGGER_COST
+	plasma_cost = 100
 	cooldown_timer = 10 SECONDS
 
 /datum/action/xeno_action/spawn_hugger/on_cooldown_finish()

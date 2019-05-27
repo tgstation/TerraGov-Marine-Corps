@@ -329,7 +329,7 @@
 	mechanics_text = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
 	ability_name = "larval growth sting"
 	plasma_cost = 150
-	cooldown_timer = XENO_LARVAL_GROWTH_COOLDOWN
+	cooldown_timer = 12 SECONDS
 
 /datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -667,7 +667,7 @@
 	action_icon_state = "neuro_sting"
 	mechanics_text = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	ability_name = "neurotoxin sting"
-	cooldown_timer = XENO_NEURO_STING_COOLDOWN
+	cooldown_timer = 12 SECONDS
 	plasma_cost = 150
 
 /datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)

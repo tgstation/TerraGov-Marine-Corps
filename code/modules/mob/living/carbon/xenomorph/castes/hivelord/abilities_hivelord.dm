@@ -80,7 +80,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	action_icon_state = "build_tunnel"
 	mechanics_text = "Create a tunnel entrance. Use again to create the tunnel exit."
 	plasma_cost = 200
-	cooldown_timer = HIVELORD_TUNNEL_COOLDOWN
+	cooldown_timer = 120 SECONDS
 
 /datum/action/xeno_action/build_tunnel/can_use_action(silent = FALSE, override_flags)
 	. = ..()
