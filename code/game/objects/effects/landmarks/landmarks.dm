@@ -75,9 +75,6 @@
 	GLOB.latejoin_cryo += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/supply_elevator/New()
-	GLOB.supply_elevator = loc
-	return
 
 /obj/effect/landmark/thunderdome/one
 	icon_state = "tdome_t1"
