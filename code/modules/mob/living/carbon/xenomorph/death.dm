@@ -47,18 +47,9 @@
 	remains.icon = icon
 	remains.pixel_x = pixel_x //For 2x2.
 
-	if(isxenoboiler(src))
-		var/mob/living/carbon/xenomorph/boiler/B = src
-		visible_message("<span class='danger'>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</span>")
-		B.smoke.set_up(2, get_turf(src))
-		B.smoke.start()
-		remains.icon_state = "gibbed-a-corpse"
-	else if(isxenorunner(src))
-		remains.icon_state = "gibbed-a-corpse-runner"
-	else if(isxenolarva(src))
-		remains.icon_state = "larva_gib_corpse"
-	else
-		remains.icon_state = "gibbed-a-corpse"
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_GIBBING)
+
+	remains.icon_state = xeno_caste.gib_anim
 
 	check_blood_splash(35, BURN, 65, 2) //Some testing numbers. 35 burn, 65 chance.
 

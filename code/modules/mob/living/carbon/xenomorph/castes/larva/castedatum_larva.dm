@@ -8,6 +8,8 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "larva" //used to match appropriate wound overlays
 
+	gib_anim = "larva_gib_corpse"
+
 	// *** Melee Attacks *** //
 	melee_damage_lower = 0
 	melee_damage_upper = 0
