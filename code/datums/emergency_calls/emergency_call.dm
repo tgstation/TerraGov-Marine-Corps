@@ -149,8 +149,26 @@
 	addtimer(CALLBACK(src, .do_activate, announce), 1 MINUTES)
 
 /datum/emergency_call/proc/do_activate(announce = TRUE)
-	if(length(candidates) < mob_min)
-		message_admins("Aborting distress beacon [name], not enough candidates. Found: [length(candidates)]. Minimum required: [mob_min].")
+	SSticker.mode.waiting_for_candidates = FALSE
+
+	var/list/valid_candidates = list()
+
+	for(var/i in candidates)
+		var/datum/mind/M = i
+		if(!istype(M)) // invalid
+			continue 
+		if(M.current?.stat != DEAD) //Strip them from the list, they aren't dead anymore.
+			if(M.current)
+				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team because you aren't dead.</span>")
+			continue
+		if(name == "Xenomorphs" && is_banned_from(M.current.ckey, ROLE_XENOMORPH))
+			if(M.current)
+				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team because you are jobbanned from Xenomorph.</span>")
+			continue
+		valid_candidates += M
+
+	if(length(valid_candidates) < mob_min)
+		message_admins("Aborting distress beacon [name], not enough candidates. Found: [length(valid_candidates)]. Minimum required: [mob_min].")
 		SSticker.mode.waiting_for_candidates = FALSE
 		members = list() //Empty the members list.
 		candidates = list()
@@ -164,29 +182,18 @@
 		addtimer(CALLBACK(src, .distress_cooldown), COOLDOWN_COMM_REQUEST)
 		return
 
-	SSticker.mode.waiting_for_candidates = FALSE
 	var/datum/mind/picked_candidates = list()
-	if(mob_max > 0)
+	if(length(valid_candidates) > mob_max)
 		for(var/i in 1 to mob_max)
-			if(!length(candidates)) //We ran out of candidates.
+			if(!length(valid_candidates)) //We ran out of candidates.
 				break
-			var/datum/mind/M = pick(candidates) //Get a random candidate, then remove it from the candidates list.
-			if(!istype(M)) //Something went horrifically wrong
-				candidates -= M
-				continue
-			if(M.current?.stat != DEAD)
-				candidates -= M //Strip them from the list, they aren't dead anymore.
-				continue
-			if(name == "Xenomorphs" && is_banned_from(M.current.ckey, ROLE_XENOMORPH))
-				candidates -= M
-				continue
-			picked_candidates += M
-			candidates -= M
+			picked_candidates += pick_n_take(valid_candidates) //Get a random candidate, then remove it from the candidates list.
 
-		if(length(candidates))
-			for(var/datum/mind/M in candidates)
-				if(M.current)
-					to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team. Better luck next time!</span>")
+		for(var/datum/mind/M in valid_candidates)
+			if(M.current)
+				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team. Better luck next time!</span>")
+	else
+		picked_candidates = valid_candidates // save some time
 
 	if(announce)
 		command_announcement.Announce(dispatch_message, "Distress Beacon", new_sound='sound/AI/distressreceived.ogg') //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
@@ -214,8 +221,9 @@
 	spawn_items()
 
 	if(length(picked_candidates))
-		max_medics = max(round(length(members) * 0.25), 1)
-		for(var/datum/mind/M in picked_candidates)
+		max_medics = max(round(length(picked_candidates) * 0.25), 1)
+		for(var/i in picked_candidates)
+			var/datum/mind/M = i
 			members += M
 			create_member(M)
 	else
@@ -227,6 +235,8 @@
 		if(!shuttle.auto_launch())
 			shuttle.intoTheSunset()
 			CRASH("can't find a valid place to autolaunch ert shuttle towards")
+
+	message_admins("Distress beacon: [name] finished spawning.")
 
 	candidates = list() //Blank out the candidates list for next time.
 
