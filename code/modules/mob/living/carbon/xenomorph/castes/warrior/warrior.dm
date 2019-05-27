@@ -70,7 +70,7 @@
 
 	SEND_SIGNAL(src, COMSIG_WARRIOR_USED_GRAB)
 
-/mob/living/carbon/Xenomorph/Warrior/proc/neck_grab(mob/living/L)
+/mob/living/carbon/xenomorph/warrior/proc/neck_grab(mob/living/L)
 	use_plasma(10)
 
 	round_statistics.warrior_grabs++
