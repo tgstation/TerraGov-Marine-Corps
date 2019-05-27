@@ -10,7 +10,7 @@
 	cooldown_timer = 30 SECONDS
 
 /datum/action/xeno_action/activable/spray_acid/line/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/turf/target = get_turf(A)
 
 	if(!istype(target)) //Something went horribly wrong. Clicked off edge of map probably

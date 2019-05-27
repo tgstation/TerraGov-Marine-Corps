@@ -19,12 +19,12 @@
 /datum/action/xeno_action/activable/charge/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>Your exoskeleton quivers as you get ready to use Eviscerating Charge again.</span>")
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
-	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	var/mob/living/carbon/xenomorph/ravager/X = owner
 	X.usedPounce = FALSE
 	return ..()
 
 /datum/action/xeno_action/activable/charge/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	X.visible_message("<span class='danger'>[X] charges towards \the [A]!</span>", \
 	"<span class='danger'>You charge towards \the [A]!</span>" )
@@ -57,7 +57,7 @@
 	return CLAMP(cooldown_timer - (last_victim_count * 30),10,100) //10 second cooldown base, minus 3 seconds per victim
 
 /datum/action/xeno_action/activable/ravage/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	X.emote("roar")
 	round_statistics.ravager_ravages++
@@ -111,7 +111,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/second_wind/action_activate(atom/A)
-	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	to_chat(X, "<span class='xenodanger'>Your coursing adrenaline stimulates tissues into a spat of rapid regeneration...</span>")
 	var/current_rage = CLAMP(X.rage,0,RAVAGER_MAX_RAGE) //lock in the value at the time we use it; min 0, max 50.

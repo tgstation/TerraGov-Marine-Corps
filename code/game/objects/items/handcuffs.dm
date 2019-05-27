@@ -162,7 +162,7 @@
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
 
 /obj/item/restraints/attack(mob/living/carbon/C as mob, mob/user as mob)
-	if(!istype(C, /mob/living/carbon/Xenomorph))
+	if(!istype(C, /mob/living/carbon/xenomorph))
 		to_chat(user, "<span class='warning'>The cuffs do not fit!</span>")
 		return
 	if(!C.handcuffed)

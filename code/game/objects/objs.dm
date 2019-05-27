@@ -185,7 +185,7 @@
 	if (M.mob_size > MOB_SIZE_HUMAN)
 		to_chat(user, "<span class='warning'>[M] is too big to buckle in.</span>")
 		return
-	if (istype(user, /mob/living/carbon/Xenomorph))
+	if (istype(user, /mob/living/carbon/xenomorph))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do that, try a nest.</span>")
 		return
 

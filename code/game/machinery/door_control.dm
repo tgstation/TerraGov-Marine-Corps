@@ -25,7 +25,7 @@
 /obj/machinery/door_control/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/door_control/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/door_control/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT && normaldoorcontrol == CONTROL_DROPSHIP)
 		var/shuttle_tag
 		switch(id)
@@ -158,7 +158,7 @@
 
 /obj/machinery/door_control/attack_hand(mob/user)
 	src.add_fingerprint(user)
-	if(istype(user,/mob/living/carbon/Xenomorph))
+	if(istype(user,/mob/living/carbon/xenomorph))
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")

@@ -177,7 +177,7 @@
 				L.visible_message("<span class='danger'>[L] has been prodded with [src] by [user]!</span>")
 
 	//stun effects
-	if(!istype(L,/mob/living/carbon/Xenomorph)) //Xenos are IMMUNE to all baton stuns.
+	if(!istype(L,/mob/living/carbon/xenomorph)) //Xenos are IMMUNE to all baton stuns.
 		L.stun_effect_act(stun, agony, target_zone, src)
 		if(!L.knocked_down)
 			L.KnockDown(4)

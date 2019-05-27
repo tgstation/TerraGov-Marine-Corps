@@ -27,7 +27,7 @@
 				if(M.client)
 					M.show_message("<span class='warning'> You hear something rumbling inside [src]'s stomach...</span>", 2)
 	else if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
-		var/mob/living/carbon/Xenomorph/Larva/L = user
+		var/mob/living/carbon/xenomorph/larva/L = user
 		L.initiate_burst(src)
 
 

@@ -1,5 +1,5 @@
-/mob/living/carbon/Xenomorph/Spitter
-	caste_base_type = /mob/living/carbon/Xenomorph/Spitter
+/mob/living/carbon/xenomorph/spitter
+	caste_base_type = /mob/living/carbon/xenomorph/spitter
 	name = "Spitter"
 	desc = "A gross, oozing alien of some kind."
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
@@ -20,5 +20,5 @@
 		/datum/action/xeno_action/activable/spray_acid/line,
 		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/vent_crawl,
+		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		)

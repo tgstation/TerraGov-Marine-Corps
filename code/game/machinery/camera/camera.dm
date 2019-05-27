@@ -82,7 +82,7 @@
 	src.view_range = num
 	cameranet.updateVisibility(src, 0)
 
-/obj/machinery/camera/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/camera/attack_alien(mob/living/carbon/xenomorph/M)
 	if(status)
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)

@@ -218,7 +218,7 @@
 		user.stop_pulling()
 		move_mob_inside(user)
 
-/obj/machinery/cryopod/evacuation/attack_alien(mob/living/carbon/Xenomorph/user)
+/obj/machinery/cryopod/evacuation/attack_alien(mob/living/carbon/xenomorph/user)
 	if(being_forced)
 		to_chat(user, "<span class='xenowarning'>It's being forced open already!</span>")
 		return FALSE

@@ -47,7 +47,7 @@
 		qdel(src)
 
 //Default "structure" proc. This should be overwritten by sub procs.
-/obj/structure/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/attack_alien(mob/living/carbon/xenomorph/M)
 	return FALSE
 
 /obj/structure/attack_animal(mob/living/user)

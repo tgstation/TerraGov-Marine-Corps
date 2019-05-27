@@ -144,7 +144,7 @@
 	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
 
 /datum/action/xeno_action/can_use_action(silent = FALSE, override_flags)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(!X)
 		return FALSE
 	var/flags_to_check = use_state_flags|override_flags
@@ -210,7 +210,7 @@
 	update_button_icon()
 
 /datum/action/xeno_action/proc/succeed_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(plasma_cost)
 		X.use_plasma(plasma_cost)
 
@@ -268,19 +268,19 @@
 	selected_frame.appearance_flags = RESET_COLOR
 
 /datum/action/xeno_action/activable/proc/deselect()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays -= selected_frame
 	X.selected_ability = null
 	on_deactivation()
 
 /datum/action/xeno_action/activable/proc/select()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays += selected_frame
 	X.selected_ability = src
 	on_activation()
 
 /datum/action/xeno_action/activable/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
 		to_chat(X, "You will no longer use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"].")
 		deselect()
@@ -292,7 +292,7 @@
 	return ..()
 
 
-/datum/action/xeno_action/activable/remove_action(mob/living/carbon/Xenomorph/X)
+/datum/action/xeno_action/activable/remove_action(mob/living/carbon/xenomorph/X)
 	..()
 	if(X.selected_ability == src)
 		X.selected_ability = null
@@ -310,7 +310,7 @@
 /datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/flags_to_check = use_state_flags|override_flags
 
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_SELECTED_ABILITY) && X.selected_ability != src)
 		return FALSE
 	. = can_use_action(silent, override_flags)

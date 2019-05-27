@@ -41,7 +41,7 @@
 	if(A)
 		user.visible_message("<span class='warning'>[user] rips a wriggling parasite out of [target]'s ribcage!</span>",
 							 "<span class='warning'>You rip a wriggling parasite out of [target]'s ribcage!</span>")
-		var/mob/living/carbon/Xenomorph/Larva/L = locate() in target //the larva was fully grown, ready to burst.
+		var/mob/living/carbon/xenomorph/larva/L = locate() in target //the larva was fully grown, ready to burst.
 		if(L)
 			L.forceMove(target.loc)
 			qdel(A)

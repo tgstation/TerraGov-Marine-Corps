@@ -8,7 +8,7 @@
 	cooldown_timer = DEFILER_CLAWS_COOLDOWN
 
 /datum/action/xeno_action/neuroclaws/action_activate()
-	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
 	add_cooldown()
 	X.neuro_claws = !X.neuro_claws
@@ -21,7 +21,7 @@
 	update_button_icon()
 
 /datum/action/xeno_action/neuroclaws/update_button_icon()
-	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	button.overlays.Cut()
 	if(X.neuro_claws)
 		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_on")
@@ -46,7 +46,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/larval_growth_sting/defiler/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	var/mob/living/carbon/C = A
 	if(locate(/obj/item/alien_embryo) in C) // already got one, stops doubling up
 		return ..()
@@ -87,7 +87,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/emit_neurogas/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
 	//give them fair warning
 	X.visible_message("<span class='danger'>Tufts of smoke begin to billow from [X]!</span>", \
@@ -122,7 +122,7 @@
 	dispense_gas()
 
 /datum/action/xeno_action/activable/emit_neurogas/proc/dispense_gas(count = 3)
-	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	set waitfor = FALSE
 	while(count)
 		if(X.stagger) //If we got staggered, return

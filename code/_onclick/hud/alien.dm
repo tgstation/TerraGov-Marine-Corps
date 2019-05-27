@@ -1,4 +1,4 @@
-/datum/hud/alien/New(mob/living/carbon/Xenomorph/owner)
+/datum/hud/alien/New(mob/living/carbon/xenomorph/owner)
 	..()
 	var/obj/screen/using
 	var/obj/screen/inventory/inv_box
@@ -100,7 +100,7 @@
 /datum/hud/alien/persistant_inventory_update()
 	if(!mymob)
 		return
-	var/mob/living/carbon/Xenomorph/H = mymob
+	var/mob/living/carbon/xenomorph/H = mymob
 	if(hud_version != HUD_STYLE_NOHUD)
 		if(H.r_hand)
 			H.r_hand.screen_loc = ui_rhand
@@ -115,6 +115,6 @@
 			H.l_hand.screen_loc = null
 
 
-/mob/living/carbon/Xenomorph/create_hud()
+/mob/living/carbon/xenomorph/create_hud()
 	if(client && !hud_used)
 		hud_used = new /datum/hud/alien(src)
