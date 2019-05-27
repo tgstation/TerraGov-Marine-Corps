@@ -167,7 +167,7 @@
 	SSticker.mode.waiting_for_candidates = FALSE
 	var/datum/mind/picked_candidates = list()
 	if(mob_max > 0)
-		for(var/i = 1 to mob_max)
+		for(var/i in 1 to mob_max)
 			if(!length(candidates)) //We ran out of candidates.
 				break
 			var/datum/mind/M = pick(candidates) //Get a random candidate, then remove it from the candidates list.
@@ -220,10 +220,12 @@
 			create_member(M)
 	else
 		message_admins("ERROR: No picked candidates, aborting.")
+		shuttle.intoTheSunset() // delete
 		return
 
 	if(auto_shuttle_launch)
 		if(!shuttle.auto_launch())
+			shuttle.intoTheSunset()
 			CRASH("can't find a valid place to autolaunch ert shuttle towards")
 
 	candidates = list() //Blank out the candidates list for next time.
