@@ -120,6 +120,8 @@
 #define XACT_TARGET_SELF		(1 << 9) // allow self-targetting
 #define XACT_IGNORE_PLASMA		(1 << 10) // ignore plasma cost
 #define XACT_IGNORE_COOLDOWN	(1 << 11) // ignore cooldown
+#define XACT_IGNORE_DEAD_TARGET	(1 << 12) // bypass checks of a dead target
+#define XACT_IGNORE_SELECTED_ABILITY	(1 << 13) // bypass the check of the selected ability
 
 /datum/action/xeno_action
 	var/action_icon_state
@@ -306,13 +308,12 @@
 
 //override this
 /datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, override_flags)
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(X.selected_ability != src)
-		return FALSE
-
-	. = can_use_action(silent, override_flags)
 	var/flags_to_check = use_state_flags|override_flags
 
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_SELECTED_ABILITY) && X.selected_ability != src)
+		return FALSE
+	. = can_use_action(silent, override_flags)
 	if(!CHECK_BITFIELD(flags_to_check, XACT_TARGET_SELF) && A == owner)
 		return FALSE
 
