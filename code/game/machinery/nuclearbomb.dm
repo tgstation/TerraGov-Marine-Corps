@@ -10,7 +10,6 @@ var/bomb_set
 	var/deployable = 0.0
 	var/extended = 0.0
 	var/lighthack = 0
-	var/opened = 0.0
 	var/timeleft = 60.0
 	var/timing = 0.0
 	var/r_code = "ADMIN"
@@ -44,27 +43,27 @@ var/bomb_set
 	if (isscrewdriver(O))
 		src.add_fingerprint(user)
 		if (src.auth)
-			if (src.opened == 0)
-				src.opened = 1
+			if (!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+				ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 				overlays += image(icon, "npanel_open")
 				to_chat(user, "You unscrew the control panel of [src].")
 
 			else
-				src.opened = 0
+				DISABLE_BITFIELD(machine_stat, PANEL_OPEN)
 				overlays -= image(icon, "npanel_open")
 				to_chat(user, "You screw the control panel of [src] back on.")
 		else
-			if (src.opened == 0)
+			if (!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				to_chat(user, "The [src] emits a buzzing noise, the panel staying locked in.")
-			if (src.opened == 1)
-				src.opened = 0
+			if (CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+				DISABLE_BITFIELD(machine_stat, PANEL_OPEN)
 				overlays -= image(icon, "npanel_open")
 				to_chat(user, "You screw the control panel of [src] back on.")
 			flick("nuclearbombc", src)
 
 		return
 	if (iswirecutter(O) || ismultitool(O))
-		if (src.opened == 1)
+		if (CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			nukehack_win(user)
 		return
 

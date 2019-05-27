@@ -1,4 +1,4 @@
-/mob/living/carbon/Xenomorph/Login()
+/mob/living/carbon/xenomorph/Login()
 	. = ..()
 
 	if(!isdistress(SSticker.mode))
@@ -10,7 +10,7 @@
 	mind.assigned_role = ROLE_XENOMORPH
 
 
-/mob/living/carbon/Xenomorph/Queen/Login()
+/mob/living/carbon/xenomorph/queen/Login()
 	. = ..()
 
 	mind.assigned_role = ROLE_XENO_QUEEN

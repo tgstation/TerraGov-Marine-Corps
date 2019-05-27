@@ -1,4 +1,4 @@
-/datum/hud/larva/New(mob/living/carbon/Xenomorph/Larva/owner)
+/datum/hud/larva/New(mob/living/carbon/xenomorph/larva/owner)
 	..()
 	var/obj/screen/using
 
@@ -19,6 +19,6 @@
 
 
 
-/mob/living/carbon/Xenomorph/Larva/create_hud()
+/mob/living/carbon/xenomorph/larva/create_hud()
 	if(client && !hud_used)
 		hud_used = new /datum/hud/larva(src)

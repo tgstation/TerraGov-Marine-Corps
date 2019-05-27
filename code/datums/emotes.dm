@@ -124,7 +124,7 @@
 	if(is_type_in_typecache(user, mob_type_blacklist_typecache))
 		return FALSE
 
-	if((sound || get_sound(user)))
+	if(intentional && (sound || get_sound(user)))
 		if(user.audio_emote_time >= world.time)
 			to_chat(user, "<span class='notice'>You just did an audible emote. Wait a while.</span>")
 			return FALSE

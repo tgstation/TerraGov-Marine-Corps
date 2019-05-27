@@ -574,7 +574,7 @@
 	if(!isxeno(usr))
 		return
 
-	var/mob/living/carbon/Xenomorph/X = usr
+	var/mob/living/carbon/xenomorph/X = usr
 	X.hive_status()
 
 
@@ -590,7 +590,7 @@
 	if(!isxeno(usr))
 		return
 
-	var/mob/living/carbon/Xenomorph/X = usr
+	var/mob/living/carbon/xenomorph/X = usr
 	X.toggle_nightvision()
 	if(icon_state == "nightvision1")
 		icon_state = "nightvision0"

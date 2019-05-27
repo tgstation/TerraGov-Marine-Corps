@@ -123,7 +123,7 @@
 			explosion(tripwire ? tripwire.loc : loc, -1, -1, 2)
 			qdel(src)
 
-/obj/item/explosive/mine/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/M)
 	if(triggered) //Mine is already set to go off
 		return
 

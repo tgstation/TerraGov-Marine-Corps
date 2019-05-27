@@ -1,5 +1,5 @@
 /datum/action/xeno_action/activable/corrosive_acid/drone
-	name = "Corrosive Acid (75)"
+	name = "Corrosive Acid"
 	plasma_cost = 75
 	acid_type = /obj/effect/xenomorph/acid/weak
 
@@ -12,7 +12,7 @@
 	var/max_range = 1
 
 /datum/action/xeno_action/activable/salvage_plasma/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(owner.action_busy)
 		return
 	X.xeno_salvage_plasma(A, plasma_salvage_amount, salvage_delay, max_range)

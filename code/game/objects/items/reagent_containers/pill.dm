@@ -17,7 +17,7 @@ var/global/list/randomized_pill_icons
 	volume = 60
 	var/pill_desc = "An unknown pill." //the real description of the pill, shown when examined by a medically trained person
 
-/obj/item/reagent_container/pill/New()
+/obj/item/reagent_container/pill/Initialize()
 	. = ..()
 	if(!randomized_pill_icons)
 		var/allowed_numbers = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21)

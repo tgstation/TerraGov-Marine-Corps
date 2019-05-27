@@ -496,7 +496,7 @@
 	show_inv(M)
 
 
-/mob/living/start_pulling(atom/movable/AM, lunge, no_msg)
+/mob/living/start_pulling(atom/movable/AM, no_msg)
 	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 
@@ -939,6 +939,24 @@ mob/proc/yank_out_object()
 				click_intercept = null
 				break
 	return ..()
+
+
+//This will update a mob's name, real_name, mind.name, GLOB.datacore records and id
+/mob/proc/fully_replace_character_name(oldname, newname)
+	if(!newname)	
+		return FALSE
+
+	log_played_names(ckey, newname)
+
+	real_name = newname
+	voice_name = newname
+	name = newname
+	if(mind)
+		mind.name = newname
+		if(mind.key)
+			log_played_names(mind.key, newname) //Just in case the mind is unsynced at the moment.
+
+	return TRUE
 
 
 /mob/proc/update_sight()

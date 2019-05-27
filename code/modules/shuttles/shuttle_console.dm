@@ -169,7 +169,7 @@
 					"Dropship Alert", new_sound = 'sound/AI/hijack.ogg')
 					shuttle.alerts_allowed--
 					to_chat(usr, "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>")
-					var/mob/living/carbon/Xenomorph/Queen/Q = usr // typechecked above
+					var/mob/living/carbon/xenomorph/queen/Q = usr // typechecked above
 					xeno_message("<span class='xenoannounce'>The Queen has commanded the metal bird to depart for the metal hive in the sky! Rejoice!</span>",3,Q.hivenumber)
 					playsound(src, 'sound/misc/queen_alarm.ogg')
 					SSevacuation.flags_scuttle &= ~FLAGS_SDEVAC_TIMELOCK
@@ -344,7 +344,7 @@
 	else
 		..()
 
-/obj/machinery/computer/shuttle_control/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/computer/shuttle_control/attack_alien(mob/living/carbon/xenomorph/M)
 	var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
 		attack_hand(M)

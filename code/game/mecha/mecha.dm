@@ -386,7 +386,7 @@
 		src.destroy_mecha()
 	return
 
-/obj/mecha/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/mecha/attack_alien(mob/living/carbon/xenomorph/M)
 	log_message("Attack by claw. Attacker - [M].", color="red")
 
 	if(!prob(deflect_chance))

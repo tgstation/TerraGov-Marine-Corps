@@ -792,7 +792,7 @@
 			update_health(rand(30, 100))
 
 
-/obj/machinery/marine_turret/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/marine_turret/attack_alien(mob/living/carbon/xenomorph/M)
 	if(isxenolarva(M)) return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
 	"<span class='danger'>You slash [src]!</span>")

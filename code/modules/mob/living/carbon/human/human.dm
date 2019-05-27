@@ -1335,9 +1335,8 @@
 
 	species.handle_post_spawn(src)
 
-	spawn(0)
-		regenerate_icons()
-		restore_blood()
+	INVOKE_ASYNC(src, .proc/regenerate_icons)
+	INVOKE_ASYNC(src, .proc/restore_blood)
 
 	if(species)
 		return 1
@@ -1747,3 +1746,21 @@
 	if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
 		return TRUE
 	return ..()
+
+/mob/living/carbon/human/fully_replace_character_name(oldname, newname)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(dna)
+		dna.real_name = real_name
+
+	if(istype(wear_id))
+		var/obj/item/card/id/C = wear_id
+		C.registered_name = real_name
+		C.update_label()
+
+	if(!GLOB.datacore.manifest_update(oldname, newname, job))
+		GLOB.datacore.manifest_inject(src)
+
+	return TRUE

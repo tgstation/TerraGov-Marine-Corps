@@ -303,10 +303,10 @@
 		icon_state = "floodon"
 	else
 		icon_state = "floodoff"
-	if(panel_open)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		icon_state = "[icon_state]_o"
 
-/obj/machinery/colony_floodlight/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/obj/machinery/colony_floodlight/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	M.visible_message("[M] starts biting [src]!","In a rage, you start biting [src], but with no effect!", null, 5)
 
 /obj/machinery/colony_floodlight/proc/breakdown()
@@ -315,21 +315,21 @@
 	repair_state = FLOODLIGHT_REPAIR_WELD
 	toggle_light(SWITCH_OFF)
 
-/obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/xenomorph/M)
 	if(!is_lit)
 		to_chat(M, "Why bother? It's just some weird metal thing.")
 		return FALSE
 	else if(damaged)
 		to_chat(M, "It's already damaged.")
 		return FALSE
-	else if(panel_open)
+	else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		breakdown()
 	else
 		M.animation_attack_on(src)
 		M.visible_message("[M] slashes away at [src]!","You slash and claw at the bright light!", null, null, 5)
 		obj_integrity  = max(obj_integrity - rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper), 0)
 		if(!obj_integrity)
-			panel_open = TRUE
+			ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 			playsound(loc, 'sound/items/trayhit2.ogg', 25, 1)
 			update_icon()
 		else
@@ -337,11 +337,11 @@
 
 /obj/machinery/colony_floodlight/attackby(obj/item/I, mob/user)
 	if(isscrewdriver(I))
-		if(!panel_open)
-			panel_open = TRUE
+		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 			to_chat(user, "<span class='notice'>You open the maintenance hatch of [src].</span>")
 		else
-			panel_open = FALSE
+			DISABLE_BITFIELD(machine_stat, PANEL_OPEN)
 			to_chat(user, "<span class='notice'>You close the maintenance hatch of [src].</span>")
 		update_icon()
 		return FALSE
@@ -416,7 +416,7 @@
 		if(damaged)
 			to_chat(user, "<span class='warning'>It is damaged.</span>")
 			if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.engineer >= SKILL_ENGINEER_ENGI)
-				if(!panel_open)
+				if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 					to_chat(user, "<span class='info'>You must first open its maintenance hatch.</span>")
 				else
 					switch(repair_state)
@@ -428,7 +428,7 @@
 							to_chat(user, "<span class='info'>You must screw its maintenance hatch closed.</span>")
 		else if(!is_lit)
 			to_chat(user, "<span class='info'>It doesn't seem powered.</span>")
-		if(panel_open)
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			to_chat(user, "<span class='notice'>The maintenance hatch is open.</span>")
 
 /obj/machinery/colony_floodlight/proc/toggle_light(var/switch_on)
