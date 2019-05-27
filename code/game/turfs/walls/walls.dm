@@ -37,8 +37,9 @@
 
 
 
-/turf/closed/wall/New()
-	..()
+/turf/closed/wall/Initialize(mapload, ...)
+	. = ..()
+	
 	//smooth wall stuff
 	relativewall()
 	relativewall_neighbours()
@@ -90,7 +91,7 @@
 	..()
 
 
-/turf/closed/wall/attack_alien(mob/living/carbon/Xenomorph/user)
+/turf/closed/wall/attack_alien(mob/living/carbon/xenomorph/user)
 	if(acided_hole && user.mob_size == MOB_SIZE_BIG)
 		acided_hole.expand_hole(user)
 	else

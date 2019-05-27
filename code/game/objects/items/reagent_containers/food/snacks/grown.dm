@@ -12,13 +12,14 @@
 	var/potency = -1
 	icon = 'icons/obj/items/harvest.dmi'
 
-/obj/item/reagent_container/food/snacks/grown/New(newloc,newpotency)
+/obj/item/reagent_container/food/snacks/grown/Initialize(mapload, newpotency)
+	. = ..()
+
 	if(!tastes)
 		tastes = list("[name]" = 1)
 	if (!isnull(newpotency))
 		potency = newpotency
-	. = ..()
-	// Fill the object up with the appropriate reagents.
+
 	if(!isnull(plantname))
 		var/datum/seed/S = GLOB.seed_types[plantname]
 		if(!S || !S.chems)
@@ -36,6 +37,7 @@
 
 	if(reagents.total_volume > 0)
 		bitesize = 1+round(reagents.total_volume / 2, 1)
+
 
 /obj/item/reagent_container/food/snacks/grown/corn
 	name = "ear of corn"

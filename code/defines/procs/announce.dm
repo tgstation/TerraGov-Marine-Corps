@@ -103,7 +103,7 @@
 	command += "<br><span class='alert'>[message]</span><br>"
 	command += "<br>"
 	for(var/mob/M in GLOB.player_list)
-		if(istype(M,/mob/living/carbon/Xenomorph))
+		if(istype(M,/mob/living/carbon/xenomorph))
 			continue
 		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			to_chat(M, command)

@@ -73,7 +73,7 @@
 /obj/structure/fence/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/structure/fence/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/fence/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	var/damage_dealt = 5
 	M.visible_message("<span class='danger'>\The [M] mangles [src]!</span>", \

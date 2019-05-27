@@ -76,8 +76,8 @@
 	*/
 	var/list/sprite_sheets_obj = null
 
-/obj/item/New(loc)
-	..()
+/obj/item/Initialize()
+	. = ..()
 	GLOB.item_list += src
 	for(var/path in actions_types)
 		new path(src)
@@ -713,7 +713,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 //This proc is here to prevent Xenomorphs from picking up objects (default attack_hand behaviour)
 //Note that this is overriden by every proc concerning a child of obj unless inherited
-/obj/item/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/item/attack_alien(mob/living/carbon/xenomorph/M)
 	return FALSE
 
 /obj/item/proc/update_action_button_icons()

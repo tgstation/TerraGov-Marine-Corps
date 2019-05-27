@@ -33,7 +33,7 @@
 	..()
 	if(!terminal)
 		to_chat(user, "<span class='warning'>This SMES has no power terminal!</span>")
-	if(panel_open)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		to_chat(user, "<span class='notice'>The maintenance hatch is open.</span>")
 
 /obj/machinery/power/smes/Initialize()
@@ -67,7 +67,7 @@
 	if(machine_stat & BROKEN)
 		return
 
-	if(panel_open)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 
 		return
 
@@ -197,14 +197,14 @@
 
 /obj/machinery/power/smes/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(isscrewdriver(W))
-		if(!panel_open)
-			panel_open = TRUE
+		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 			to_chat(user, "<span class='notice'>You open the maintenance hatch of [src].</span>")
 			icon_state = "[initial(icon_state)]_o"
 			update_icon()
 			return FALSE
 		else
-			panel_open = FALSE
+			DISABLE_BITFIELD(machine_stat, PANEL_OPEN)
 			to_chat(user, "<span class='notice'>You close the maintenance hatch of [src].</span>")
 			icon_state = "[initial(icon_state)]"
 			update_icon()
@@ -219,7 +219,7 @@
 			to_chat(user, "<span class='warning'>This SMES already has a power terminal!</span>")
 			return
 
-		if(!panel_open)
+		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			to_chat(user, "<span class='warning'>You must open the maintenance panel first!</span>")
 			return
 
@@ -255,7 +255,7 @@
 		return FALSE
 
 	else if(iswirecutter(W))
-		if(terminal && panel_open)
+		if(terminal && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			terminal.dismantle(user)
 			return FALSE
 
@@ -398,6 +398,6 @@
 
 
 /obj/machinery/power/smes/can_terminal_dismantle()
-	. = panel_open ? TRUE : FALSE
+	return CHECK_BITFIELD(machine_stat, PANEL_OPEN)
 
 #undef SMESRATE

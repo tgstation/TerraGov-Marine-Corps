@@ -1,5 +1,5 @@
-/mob/living/carbon/Xenomorph/Defender
-	caste_base_type = /mob/living/carbon/Xenomorph/Defender
+/mob/living/carbon/xenomorph/defender
+	caste_base_type = /mob/living/carbon/xenomorph/defender
 	name = "Defender"
 	desc = "A alien with an armored head crest."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
@@ -25,7 +25,7 @@
 // ***************************************
 // *********** Icon
 // ***************************************
-/mob/living/carbon/Xenomorph/Defender/handle_special_state()
+/mob/living/carbon/xenomorph/defender/handle_special_state()
 	if(fortify)
 		icon_state = "Defender Fortify"
 		return TRUE
@@ -34,7 +34,7 @@
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/Xenomorph/Defender/handle_special_wound_states()
+/mob/living/carbon/xenomorph/defender/handle_special_wound_states()
 	. = ..()
 	if(fortify)
 		return image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="defender_wounded_fortify", "layer"=-X_WOUND_LAYER)
@@ -44,7 +44,7 @@
 // ***************************************
 // *********** Life overrides
 // ***************************************
-/mob/living/carbon/Xenomorph/Defender/update_stat()
+/mob/living/carbon/xenomorph/defender/update_stat()
 	. = ..()
 	if(stat && fortify)
 		set_fortify(FALSE) //Fortify prevents dragging due to the anchor component.

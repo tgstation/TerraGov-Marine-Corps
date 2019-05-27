@@ -88,7 +88,7 @@
 	in_use = user
 	process_state = FORCE_CRASH
 
-/datum/shuttle/ferry/marine/proc/hijack(mob/living/carbon/Xenomorph/M)
+/datum/shuttle/ferry/marine/proc/hijack(mob/living/carbon/xenomorph/M)
 	if(!queen_locked) //we have not hijacked it yet
 		if(world.time < SHUTTLE_LOCK_TIME_LOCK)
 			to_chat(M, "<span class='xenodanger'>You can't mobilize the strength to hijack the shuttle yet. Please wait another [round((SHUTTLE_LOCK_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
@@ -98,7 +98,7 @@
 		last_locked = world.time
 		queen_locked = TRUE
 
-/datum/shuttle/ferry/marine/proc/door_override(mob/living/carbon/Xenomorph/M)
+/datum/shuttle/ferry/marine/proc/door_override(mob/living/carbon/xenomorph/M)
 	if(!door_override)
 		to_chat(M, "<span class='xenonotice'>You override the doors.</span>")
 		xeno_message("<span class='xenoannounce'>The doors of the metal bird have been overridden! Rejoice!</span>",3,M.hivenumber)

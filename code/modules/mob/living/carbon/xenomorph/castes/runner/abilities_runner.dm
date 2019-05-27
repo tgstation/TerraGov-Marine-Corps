@@ -7,7 +7,7 @@
 	mechanics_text = "Toggle on to add a vicious attack to your pounce."
 
 /datum/action/xeno_action/toggle_savage/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	if(!X.check_state())
 		return
@@ -21,7 +21,7 @@
 	update_button_icon()
 
 /datum/action/xeno_action/toggle_savage/update_button_icon()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays.Cut()
 	if(X.savage)
 		button.overlays += image('icons/mob/actions.dmi', button, "savage_off")
@@ -29,7 +29,7 @@
 		button.overlays += image('icons/mob/actions.dmi', button, "savage_on")
 	return ..()
 
-/mob/living/carbon/Xenomorph/proc/Savage(mob/living/carbon/M)
+/mob/living/carbon/xenomorph/proc/Savage(mob/living/carbon/M)
 
 	if(!check_state())
 		return
@@ -60,7 +60,7 @@
 
 	return TRUE
 
-/mob/living/carbon/Xenomorph/proc/savage_cooldown()
+/mob/living/carbon/xenomorph/proc/savage_cooldown()
 	if(!savage_used)//sanity check/safeguard
 		return
 	savage_used = FALSE
@@ -95,18 +95,18 @@
 	return
 
 /datum/action/xeno_action/activable/pounce/get_cooldown()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	return X.xeno_caste.pounce_delay
 
 /datum/action/xeno_action/activable/pounce/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>You're ready to pounce again.</span>")
 	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	X.usedPounce = FALSE
 	return ..()
 
 /datum/action/xeno_action/activable/pounce/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	prepare_to_pounce()
 
@@ -121,11 +121,11 @@
 	X.flags_pass = PASSTABLE
 	X.throw_at(A, range, 2, X) //Victim, distance, speed
 
-	addtimer(CALLBACK(X, /mob/living/carbon/Xenomorph/.proc/reset_flags_pass), 6)
+	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/.proc/reset_flags_pass), 6)
 
 	return TRUE
 
-/mob/living/carbon/Xenomorph/proc/reset_flags_pass()
+/mob/living/carbon/xenomorph/proc/reset_flags_pass()
 	if(!xeno_caste.hardcore)
 		flags_pass = initial(flags_pass) //Reset the passtable.
 	else

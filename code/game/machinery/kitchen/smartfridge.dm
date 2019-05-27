@@ -64,16 +64,16 @@
 			to_chat(user, "You short out the product lock on [src].")
 		return
 	if(isscrewdriver(O))
-		panel_open = !panel_open
-		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
 		overlays.Cut()
-		if(panel_open)
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			overlays += image(icon, icon_panel)
 		SSnano.update_uis(src)
 		return
 
 	if(ismultitool(O) || iswirecutter(O))
-		if(panel_open)
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			attack_hand(user)
 		return
 
@@ -152,7 +152,7 @@
 
 	var/data[0]
 	data["contents"] = null
-	data["panel_open"] = panel_open
+	data["panel_open"] = CHECK_BITFIELD(machine_stat, PANEL_OPEN)
 	data["electrified"] = seconds_electrified > 0
 	data["shoot_inventory"] = shoot_inventory
 	data["locked"] = locked

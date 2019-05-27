@@ -76,7 +76,7 @@
 		healthcheck()
 
 
-/obj/vehicle/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/vehicle/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HARM)
 		M.animation_attack_on(src)
 		playsound(loc, "alien_claw_metal", 25, 1)

@@ -1,5 +1,4 @@
 //Runs the command in the system's shell, returns a list of (error code, stdout, stderr)
-
 #define SHELLEO_NAME "data/shelleo."
 #define SHELLEO_ERR ".err"
 #define SHELLEO_OUT ".out"
@@ -20,7 +19,7 @@
 				shelleo_id = "[seo_id]"
 				break
 		if(!shelleo_id)
-			shelleo_id = "[shelleo_ids.len + 1]"
+			shelleo_id = "[length(shelleo_ids) + 1]"
 			shelleo_ids += shelleo_id
 			shelleo_ids[shelleo_id] = TRUE
 		out_file = "[SHELLEO_NAME][shelleo_id][SHELLEO_OUT]"
@@ -42,6 +41,7 @@
 #undef SHELLEO_NAME
 #undef SHELLEO_ERR
 #undef SHELLEO_OUT
+
 
 /proc/shell_url_scrub(url)
 	var/static/regex/bad_chars_regex = regex("\[^#%&./:=?\\w]*", "g")

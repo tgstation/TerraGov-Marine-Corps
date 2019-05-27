@@ -164,7 +164,7 @@
 
 	if(length(xenomorphs) < xeno_required_num)
 		for(var/i = 1 to xeno_starting_num - length(xenomorphs))
-			new /mob/living/carbon/Xenomorph/Larva(pick(GLOB.xeno_spawn))
+			new /mob/living/carbon/xenomorph/larva(pick(GLOB.xeno_spawn))
 
 	else if(length(xenomorphs) < xeno_starting_num)
 		var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
@@ -214,7 +214,7 @@
 
 
 /datum/game_mode/distress/proc/transform_xeno(datum/mind/M)
-	var/mob/living/carbon/Xenomorph/Larva/X = new (pick(GLOB.xeno_spawn))
+	var/mob/living/carbon/xenomorph/larva/X = new (pick(GLOB.xeno_spawn))
 
 	if(isnewplayer(M.current))
 		var/mob/new_player/N = M.current
@@ -230,7 +230,7 @@
 
 
 /datum/game_mode/distress/proc/transform_queen(datum/mind/M)
-	var/mob/living/carbon/Xenomorph/Queen/X = new (pick(GLOB.xeno_spawn))
+	var/mob/living/carbon/xenomorph/queen/X = new (pick(GLOB.xeno_spawn))
 
 	if(isnewplayer(M.current))
 		var/mob/new_player/N = M.current
@@ -562,7 +562,7 @@
 	var/numLarvaShip    = 0
 
 	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/Xenomorph/X = i
+		var/mob/living/carbon/xenomorph/X = i
 		var/area/A = get_area(X)
 		if(is_ground_level(A?.z) || is_low_orbit_level(A?.z))
 			if(isxenolarva(X))
@@ -686,7 +686,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		to_chat(xeno_candidate, "<span class='warning'>Something went awry. Can't spawn at the moment.</span>")
 		return FALSE
 
-	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(HS.living_xeno_queen.loc)
+	var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(HS.living_xeno_queen.loc)
 	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 	"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
 

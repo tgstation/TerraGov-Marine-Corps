@@ -151,7 +151,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	GLOB.alive_human_list += src
 	GLOB.dead_human_list -= src
 
-/mob/living/carbon/Xenomorph/on_revive()
+/mob/living/carbon/xenomorph/on_revive()
 	. = ..()
 	GLOB.alive_xeno_list += src
 	GLOB.dead_xeno_list -= src
@@ -218,7 +218,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	mutations?.Remove(HUSK)
 	return ..()
 
-/mob/living/carbon/Xenomorph/rejuvenate()
+/mob/living/carbon/xenomorph/rejuvenate()
 	plasma_stored = xeno_caste.plasma_max
 	stagger = 0
 	slowdown = 0

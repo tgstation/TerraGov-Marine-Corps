@@ -164,9 +164,9 @@
 			icon_state = "door_locked"
 		else
 			icon_state = "door_closed"
-		if(panel_open || welded)
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) || welded)
 			overlays = list()
-			if(panel_open)
+			if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				overlays += image(icon, "panel_open")
 			if(welded)
 				overlays += image(icon, "welded")
@@ -179,14 +179,14 @@
 	switch(animation)
 		if("opening")
 			if(overlays) overlays.Cut()
-			if(panel_open)
+			if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				spawn(2) // The only work around that works. Downside is that the door will be gone for a millisecond.
 					flick("o_door_opening", src)  //can not use flick due to BYOND bug updating overlays right before flicking
 			else
 				flick("door_opening", src)
 		if("closing")
 			if(overlays) overlays.Cut()
-			if(panel_open)
+			if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				flick("o_door_closing", src)
 			else
 				flick("door_closing", src)
@@ -270,7 +270,7 @@
 	return src.attack_hand(user)
 
 //Prying open doors
-/obj/machinery/door/airlock/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/door/airlock/attack_alien(mob/living/carbon/xenomorph/M)
 	var/turf/cur_loc = M.loc
 	if(isElectrified())
 		if(shock(M, 70))
@@ -307,7 +307,7 @@
 				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
 				"<span class='danger'>You pry \the [src] open.</span>", null, 5)
 
-/obj/machinery/door/airlock/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/obj/machinery/door/airlock/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	for(var/atom/movable/AM in get_turf(src))
 		if(AM != src && AM.density && !AM.CanPass(M, M.loc))
 			to_chat(M, "<span class='warning'>\The [AM] prevents you from squeezing under \the [src]!</span>")
@@ -336,7 +336,7 @@
 			usr.unset_interaction()
 			return
 
-	if((in_range(src, usr) && istype(src.loc, /turf)) && src.panel_open)
+	if((in_range(src, usr) && istype(src.loc, /turf)) && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		usr.set_interaction(src)
 		if(ishuman(usr) && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out [src]'s wiring.</span>",
@@ -580,8 +580,8 @@
 			to_chat(user, "<span class='warning'>\The [src] has no panel to open!</span>")
 			return
 
-		panel_open = !panel_open
-		to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] [src]'s panel.</span>")
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+		to_chat(user, "<span class='notice'>You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] [src]'s panel.</span>")
 		update_icon()
 	else if(iswirecutter(C))
 		return src.attack_hand(user)
@@ -590,7 +590,7 @@
 	else if(istype(C, /obj/item/assembly/signaler))
 		return src.attack_hand(user)
 	else if(C.pry_capable)
-		if(C.pry_capable == IS_PRY_CAPABLE_CROWBAR && src.panel_open && (operating == -1 || (density && welded && operating != 1 && hasPower() && !src.locked)) )
+		if(C.pry_capable == IS_PRY_CAPABLE_CROWBAR && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (operating == -1 || (density && welded && operating != 1 && hasPower() && !src.locked)) )
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 				"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
