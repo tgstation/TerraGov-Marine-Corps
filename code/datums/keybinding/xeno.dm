@@ -13,7 +13,7 @@
 /datum/keybinding/xeno/drop_weeds/down(client/user)
 	if(!isxeno(user.mob))
 		return
-	var/mob/living/carbon/Xenomorph/X = user.mob
+	var/mob/living/carbon/xenomorph/X = user.mob
 	var/datum/action/xeno_action/plant_weeds/ability = locate() in X.actions
 	if (!ability)
 		to_chat(user, "<span class='notice'>You don't have this ability.</span>") // TODO Is this spammy?
