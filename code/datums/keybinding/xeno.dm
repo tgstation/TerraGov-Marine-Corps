@@ -7,11 +7,7 @@
 	if(SEND_SIGNAL(user.mob, ability_signal) & COMSIG_XENOABILITY_HAS_ABILITY)
 		return TRUE
 
-	if(!isxeno(user.mob))
-		return
-
-	to_chat(user, "<span class='notice'>You don't have this ability.</span>") // TODO Is this spammy?
-	return TRUE
+	return FALSE
 
 /datum/keybinding/xeno/regurgitate
 	key = "N"
