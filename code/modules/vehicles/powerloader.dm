@@ -158,7 +158,7 @@
 		unbuckle() //if the pilot clicks themself with the clamp, it unbuckles them.
 		return 1
 	else if(isxeno(M) && user.a_intent == INTENT_HELP)
-		var/mob/living/carbon/Xenomorph/X = M
+		var/mob/living/carbon/xenomorph/X = M
 		if(X.stat == DEAD)
 			if(!X.anchored)
 				if(linked_powerloader)

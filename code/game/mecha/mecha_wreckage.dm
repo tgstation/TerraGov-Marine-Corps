@@ -21,7 +21,7 @@
 /obj/effect/decal/mecha_wreckage/bullet_act(var/obj/item/projectile/Proj)
 	return 1
 
-/obj/effect/decal/mecha_wreckage/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/effect/decal/mecha_wreckage/attack_alien(mob/living/carbon/xenomorph/M)
     if(M.a_intent != INTENT_HARM)
         playsound(src, 'sound/effects/metal_crash.ogg', 50, 1)
         M.visible_message("<span class='danger'>[M] slices [src] apart!</span>","<span class='danger'>You slice [src] apart!</span>")

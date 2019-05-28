@@ -159,7 +159,7 @@
 		mind.cm_skills = new /datum/skills/pfc
 
 
-/mob/living/carbon/Xenomorph/mind_initialize()
+/mob/living/carbon/xenomorph/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Xenomorph"
 

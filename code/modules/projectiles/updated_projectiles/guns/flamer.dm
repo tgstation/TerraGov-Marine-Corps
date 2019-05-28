@@ -239,7 +239,7 @@
 		fire_mod = 1
 
 		if(isxeno(M))
-			var/mob/living/carbon/Xenomorph/X = M
+			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
 			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
@@ -501,7 +501,7 @@
 			show_message(text("Your suit protects you from most of the flames."), 1)
 			return CLAMP(. * 1.5, 0.75, 1) //Min 75% resist, max 100%
 
-/mob/living/carbon/Xenomorph/run_armor_check(def_zone = null, attack_flag = "melee")
+/mob/living/carbon/xenomorph/run_armor_check(def_zone = null, attack_flag = "melee")
 	if(attack_flag == "fire" && (xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
 		return 1
 	return ..()
@@ -525,10 +525,10 @@
 		return
 	. = ..()
 	if(isxeno(pulledby))
-		var/mob/living/carbon/Xenomorph/X = pulledby
+		var/mob/living/carbon/xenomorph/X = pulledby
 		X.flamer_fire_crossed(burnlevel, firelevel)
 
-/mob/living/carbon/Xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
+/mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	fire_mod = fire_resist
@@ -590,16 +590,16 @@
 		return
 	return ..()
 
-/mob/living/carbon/Xenomorph/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	. = ..()
 	updatehealth()
 
-/mob/living/carbon/Xenomorph/Queen/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel, firelevel)
 	to_chat(src, "<span class='xenowarning'>Your extra-thick exoskeleton protects you from the flames.</span>")
 
-/mob/living/carbon/Xenomorph/Ravager/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel, firelevel)
 	if(stat)
 		return
 	plasma_stored = xeno_caste.plasma_max

@@ -1281,7 +1281,7 @@
 		return
 
 	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/Xenomorph/X = i
+		var/mob/living/carbon/xenomorph/X = i
 		if(!X.client)
 			continue
 		X.forceMove(get_turf(usr))

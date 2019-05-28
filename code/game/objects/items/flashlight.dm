@@ -186,7 +186,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(istype(usr, /mob/living/carbon/Xenomorph)) //Sneaky xenos turning off the lights
+	if(istype(usr, /mob/living/carbon/xenomorph)) //Sneaky xenos turning off the lights
 		attack_alien(usr)
 		return
 

@@ -63,7 +63,7 @@
 /obj/structure/grille/attack_paw(mob/user as mob)
 	attack_hand(user)
 
-/obj/structure/grille/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/grille/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 	var/damage_dealt = 5

@@ -290,7 +290,7 @@
 /obj/machinery/power/apc/proc/queue_icon_update()
 	updating_icon = TRUE
 
-/obj/machinery/power/apc/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/power/apc/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
 	"<span class='danger'>You slash \the [src]!</span>", null, 5)

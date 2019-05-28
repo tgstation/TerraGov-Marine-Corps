@@ -1020,7 +1020,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has offered [ADMIN_TPMONTY(L)].")
 
 
-/datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.xeno_mob_list)
+/datum/admins/proc/change_hivenumber(mob/living/carbon/xenomorph/X in GLOB.xeno_mob_list)
 	set category = "Fun"
 	set name = "Change Hivenumber"
 	set desc = "Set the hivenumber of a xenomorph."

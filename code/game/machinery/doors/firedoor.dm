@@ -118,7 +118,7 @@
 		return ..()
 	return FALSE
 
-/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/M)
 	var/turf/cur_loc = M.loc
 	if(blocked)
 		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")

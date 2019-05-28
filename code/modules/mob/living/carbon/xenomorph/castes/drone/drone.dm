@@ -1,5 +1,5 @@
-/mob/living/carbon/Xenomorph/Drone
-	caste_base_type = /mob/living/carbon/Xenomorph/Drone
+/mob/living/carbon/xenomorph/drone
+	caste_base_type = /mob/living/carbon/xenomorph/drone
 	name = "Drone"
 	desc = "An Alien Drone"
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
@@ -26,5 +26,5 @@
 		/datum/action/xeno_action/toggle_pheromones
 		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/vent_crawl
+		/mob/living/carbon/xenomorph/proc/vent_crawl
 		)

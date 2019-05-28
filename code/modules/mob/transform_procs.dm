@@ -142,7 +142,7 @@
 		qdel(t)
 
 //	var/alien_caste = "larva"
-	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
+	var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(loc)
 
 	new_xeno.a_intent = INTENT_HARM
 	new_xeno.key = key
@@ -168,7 +168,7 @@
 		qdel(t)
 
 //	var/alien_caste = "Drone"
-	var/mob/living/carbon/Xenomorph/Drone/new_xeno = new /mob/living/carbon/Xenomorph/Drone(loc)
+	var/mob/living/carbon/xenomorph/drone/new_xeno = new /mob/living/carbon/xenomorph/drone(loc)
 
 	new_xeno.a_intent = INTENT_HARM
 	new_xeno.key = key

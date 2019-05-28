@@ -177,8 +177,9 @@
 	path = 1
 	stage = 2
 
-/obj/item/explosive/grenade/chem_grenade/metalfoam/New()
-	..()
+
+/obj/item/explosive/grenade/chem_grenade/metalfoam/Initialize(mapload, ...)
+	. = ..()
 	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_container/glass/beaker/B2 = new(src)
 
@@ -199,8 +200,9 @@
 	path = 1
 	stage = 2
 
-/obj/item/explosive/grenade/chem_grenade/incendiary/New()
-	..()
+
+/obj/item/explosive/grenade/chem_grenade/incendiary/Initialize(mapload, ...)
+	. = ..()
 	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_container/glass/beaker/B2 = new(src)
 
@@ -224,8 +226,9 @@
 	path = 1
 	stage = 2
 
-/obj/item/explosive/grenade/chem_grenade/antiweed/New()
-	..()
+
+/obj/item/explosive/grenade/chem_grenade/antiweed/Initialize(mapload, ...)
+	. = ..()
 	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_container/glass/beaker/B2 = new(src)
 
@@ -248,8 +251,9 @@
 	stage = 2
 	path = 1
 
-/obj/item/explosive/grenade/chem_grenade/cleaner/New()
-	..()
+
+/obj/item/explosive/grenade/chem_grenade/cleaner/Initialize(mapload, ...)
+	. = ..()
 	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_container/glass/beaker/B2 = new(src)
 
@@ -264,15 +268,14 @@
 	icon_state = initial(icon_state) +"_locked"
 
 
-
-
 /obj/item/explosive/grenade/chem_grenade/teargas
 	name = "\improper M66 teargas grenade"
 	desc = "Tear gas grenade used for nonlethal riot control. Please wear adequate gas protection."
 	stage = 2
 
-/obj/item/explosive/grenade/chem_grenade/teargas/New()
-	..()
+
+/obj/item/explosive/grenade/chem_grenade/teargas/Initialize(mapload, ...)
+	. = ..()
 	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_container/glass/beaker/B2 = new(src)
 

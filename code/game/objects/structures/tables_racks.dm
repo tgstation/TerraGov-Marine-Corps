@@ -57,8 +57,8 @@
 
 /obj/structure/table/Crossed(atom/movable/O)
 	..()
-	if(istype(O,/mob/living/carbon/Xenomorph/Ravager) || istype(O,/mob/living/carbon/Xenomorph/Crusher))
-		var/mob/living/carbon/Xenomorph/M = O
+	if(istype(O,/mob/living/carbon/xenomorph/ravager) || istype(O,/mob/living/carbon/xenomorph/crusher))
+		var/mob/living/carbon/xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
 			destroy_structure()
@@ -251,7 +251,7 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/table/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/table/attack_alien(mob/living/carbon/xenomorph/M)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
 	M.animation_attack_on(src)
@@ -560,7 +560,7 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/rack/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/rack/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
@@ -581,8 +581,8 @@
 
 /obj/structure/rack/Crossed(atom/movable/O)
 	..()
-	if(istype(O,/mob/living/carbon/Xenomorph/Ravager) || istype(O,/mob/living/carbon/Xenomorph/Crusher))
-		var/mob/living/carbon/Xenomorph/M = O
+	if(istype(O,/mob/living/carbon/xenomorph/ravager) || istype(O,/mob/living/carbon/xenomorph/crusher))
+		var/mob/living/carbon/xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
 			destroy_structure()

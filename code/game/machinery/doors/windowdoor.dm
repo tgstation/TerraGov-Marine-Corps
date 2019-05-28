@@ -152,7 +152,7 @@
 	return src.attack_hand(user)
 
 //Slashing windoors
-/obj/machinery/door/window/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/door/window/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 	M.visible_message("<span class='danger'>[M] smashes against [src]!</span>", \

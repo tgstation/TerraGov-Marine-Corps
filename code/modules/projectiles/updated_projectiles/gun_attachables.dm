@@ -1075,7 +1075,7 @@ Defined in conflicts.dm of the #defines folder.
 		fire_mod = 1
 
 		if(isxeno(M))
-			var/mob/living/carbon/Xenomorph/X = M
+			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
 			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)

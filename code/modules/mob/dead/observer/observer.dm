@@ -239,7 +239,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	away_time = new_away //Generic way to handle away time, currently unused.
 
 
-/mob/living/carbon/Xenomorph/set_away_time(new_away = -XENO_AFK_TIMER)
+/mob/living/carbon/xenomorph/set_away_time(new_away = -XENO_AFK_TIMER)
 	away_time = new_away //Xenos who force-ghost can be immediately taken by observers.
 	handle_afk_takeover()
 

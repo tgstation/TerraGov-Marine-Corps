@@ -137,7 +137,7 @@
 	if(!gun_mounted)
 		to_chat(user, "The <b>M56D Smartgun</b> is not yet mounted.")
 
-/obj/machinery/m56d_post/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/m56d_post/attack_alien(mob/living/carbon/xenomorph/M)
 	if(isxenolarva(M))
 		return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
@@ -347,7 +347,7 @@
 	update_health(round(Proj.damage / 10)) //Universal low damage to what amounts to a post with a gun.
 	return 1
 
-/obj/machinery/m56d_hmg/attack_alien(mob/living/carbon/Xenomorph/M) // Those Ayy lmaos.
+/obj/machinery/m56d_hmg/attack_alien(mob/living/carbon/xenomorph/M) // Those Ayy lmaos.
 	if(isxenolarva(M))
 		return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
