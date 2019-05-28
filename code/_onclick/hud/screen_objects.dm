@@ -79,6 +79,7 @@
 /obj/screen/close
 	name = "close"
 	layer = ABOVE_HUD_LAYER
+	plane = ABOVE_HUD_PLANE
 	icon_state = "x"
 
 
