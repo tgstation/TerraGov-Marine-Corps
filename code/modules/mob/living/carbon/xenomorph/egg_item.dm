@@ -5,7 +5,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "egg_item"
 	w_class = 6
-	flags_atom = NOFLAGS
+	flags_atom = NONE
 	flags_item = NOBLUDGEON
 	throw_range = 1
 	layer = MOB_LAYER

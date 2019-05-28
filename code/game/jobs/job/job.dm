@@ -31,9 +31,9 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/list/head_announce = null
 	var/faction = "None"
 
-	var/flag = NOFLAGS
-	var/department_flag = NOFLAGS
-	var/prefflag = NOFLAGS
+	var/flag = NONE
+	var/department_flag = NONE
+	var/prefflag = NONE
 
 	var/total_positions = 0
 	var/current_positions = 0

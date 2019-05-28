@@ -49,7 +49,7 @@
 	path = "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/[filename]"
 
 	if(savefile_version < 21)
-		muted << NOFLAGS
+		muted << NONE
 
 	savefile_version = SAVEFILE_VERSION_MAX
 

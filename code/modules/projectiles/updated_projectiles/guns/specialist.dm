@@ -318,7 +318,7 @@
 	fire_sound = "gun_smartgun"
 	load_method = POWERPACK //codex
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
-	flags_equip_slot = NOFLAGS
+	flags_equip_slot = NONE
 	w_class = 5
 	force = 20
 	wield_delay = 16
@@ -712,7 +712,7 @@
 	origin_tech = "combat=6;materials=5"
 	matter = list("metal" = 10000)
 	current_mag = /obj/item/ammo_magazine/rocket
-	flags_equip_slot = NOFLAGS
+	flags_equip_slot = NONE
 	w_class = 5
 	force = 15
 	wield_delay = 12

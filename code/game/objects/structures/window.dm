@@ -453,7 +453,7 @@
 	name = "theoretical window"
 	layer = TABLE_LAYER
 	static_frame = TRUE
-	flags_atom = NOFLAGS //This is not a border object; it takes up the entire tile.
+	flags_atom = NONE //This is not a border object; it takes up the entire tile.
 	var/window_frame //For perspective windows,so the window frame doesn't magically dissapear
 	var/list/tiles_special = list(/obj/machinery/door/airlock,
 		/obj/structure/window/framed,

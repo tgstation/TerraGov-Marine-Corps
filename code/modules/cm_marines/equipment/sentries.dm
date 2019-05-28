@@ -7,7 +7,7 @@
 	w_class = 4
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
-	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = "10x28mm"
 	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret
@@ -275,7 +275,7 @@
 		camera = new (src)
 		camera.network = list("military")
 		camera.c_tag = "[name] ([rand(0, 1000)])"
-	machine_stat = NOFLAGS
+	machine_stat = NONE
 	//START_PROCESSING(SSobj, src)
 	ammo = GLOB.ammo_list[ammo]
 	update_icon()
@@ -1116,7 +1116,7 @@
 	w_class = 4
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
-	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = "10x28mm"
 	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret/dumb
@@ -1144,7 +1144,7 @@
 	w_class = 4
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
-	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = "12x40mm"
 	default_ammo = /datum/ammo/bullet/turret/gauss
 	gun_type = null
@@ -1293,7 +1293,7 @@
 	desc = "A box of 500 10x20mm caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 3
 	icon_state = "ua580"
-	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = "10x20mm"
 	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret/mini
