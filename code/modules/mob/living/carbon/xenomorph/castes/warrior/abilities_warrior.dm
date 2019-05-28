@@ -93,9 +93,9 @@
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
 
 	if (X.Adjacent(A))
-		swap_hand()
+		X.swap_hand()
 		X.start_pulling(A, TRUE)
-		swap_hand()
+		X.swap_hand()
 
 	add_cooldown()
 	return TRUE
