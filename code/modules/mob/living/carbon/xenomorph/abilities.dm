@@ -338,6 +338,7 @@
 	ability_name = "larval growth sting"
 	plasma_cost = 150
 	cooldown_timer = 12 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
 
 /datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -389,6 +390,7 @@
 	action_icon_state = "shift_spit_neurotoxin"
 	mechanics_text = "Switch from neurotoxin to acid spit."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY
+	keybind_signal = COMSIG_XENOABILITY_SHIFT_SPITS
 
 /datum/action/xeno_action/shift_spits/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -409,12 +411,13 @@
 
 // Corrosive Acid
 /datum/action/xeno_action/activable/corrosive_acid
-	name = "Corrosive Acid (100)"
+	name = "Corrosive Acid"
 	action_icon_state = "corrosive_acid"
 	mechanics_text = "Cover an object with acid to slowly melt it. Takes a few seconds."
 	ability_name = "corrosive acid"
 	plasma_cost = 100
 	var/acid_type = /obj/effect/xenomorph/acid
+	keybind_signal = COMSIG_XENOABILITY_CORROSIVE_ACID
 
 /datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE)
 	. = ..()
@@ -577,6 +580,9 @@
 	new_acid.ticks = current_acid.ticks //Inherit the old acid's progress
 	qdel(current_acid)
 
+/datum/action/xeno_action/activable/spray_acid
+	keybind_signal = COMSIG_XENOABILITY_SPRAY_ACID
+
 /datum/action/xeno_action/activable/spray_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
@@ -610,6 +616,7 @@
 	action_icon_state = "xeno_spit"
 	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
+	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 
 /datum/action/xeno_action/activable/xeno_spit/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -658,6 +665,7 @@
 	name = "Hide"
 	action_icon_state = "xenohide"
 	mechanics_text = "Causes your sprite to hide behind certain objects and under tables. Not the same as stealth. Does not use plasma."
+	keybind_signal = COMSIG_XENOABILITY_HIDE
 
 /datum/action/xeno_action/xenohide/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -677,6 +685,7 @@
 	ability_name = "neurotoxin sting"
 	cooldown_timer = 12 SECONDS
 	plasma_cost = 150
+	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
 
 /datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
