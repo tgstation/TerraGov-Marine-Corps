@@ -85,7 +85,6 @@
 	mutations.Add(SKELETON)
 	status_flags |= DISFIGURED
 	update_body(0)
-	update_mutantrace()
 	name = get_visible_name()
 	return
 
@@ -102,7 +101,6 @@
 	mutations.Add(HUSK)
 	status_flags |= DISFIGURED	//makes them unknown without fucking up other stuff like admintools
 	update_body(0)
-	update_mutantrace()
 	name = get_visible_name()
 	return
 

@@ -267,7 +267,7 @@ var/datum/mob_hud/huds = list(
 	else
 		var/revive_enabled = TRUE
 		var/stage = 1
-		if(!check_tod() || !is_revivable())
+		if(!check_tod(src) || !is_revivable())
 			revive_enabled = FALSE
 		else if(!client)
 			var/mob/dead/observer/G = get_ghost()
@@ -306,7 +306,7 @@ var/datum/mob_hud/huds = list(
 			else
 				holder.icon_state = "huddead"
 				holder4.icon_state = ""
-				if(!holder2_set || check_tod())
+				if(!holder2_set || check_tod(src))
 					holder2.icon_state = "huddead"
 					holder3.icon_state = "huddead"
 					holder2_set = 1

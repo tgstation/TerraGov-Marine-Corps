@@ -53,7 +53,7 @@
 	if(affected_mob.stat == DEAD)
 		if(ishuman(affected_mob))
 			var/mob/living/carbon/human/H = affected_mob
-			if(H.check_tod()) //Can't be defibbed.
+			if(check_tod(H)) //Can't be defibbed.
 				var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
 				L?.initiate_burst(affected_mob)
 				STOP_PROCESSING(SSobj, src)

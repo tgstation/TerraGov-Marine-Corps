@@ -975,9 +975,6 @@
 	if(!species)
 		set_species()
 
-	if(dna && dna.mutantrace == "golem")
-		return "Animated Construct"
-
 	return species.name
 
 /mob/living/carbon/human/proc/play_xylophone()
@@ -1544,15 +1541,6 @@
 	sight = initial(sight)
 	see_in_dark = species.darksight
 	see_invisible = see_in_dark > 2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
-	if(dna)
-		switch(dna.mutantrace)
-			if("slime")
-				see_in_dark = 3
-				see_invisible = SEE_INVISIBLE_LEVEL_ONE
-			if("shadow")
-				see_in_dark = 8
-				see_invisible = SEE_INVISIBLE_LEVEL_ONE
-
 
 	if(glasses)
 		var/obj/item/clothing/glasses/G = glasses
