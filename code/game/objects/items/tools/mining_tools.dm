@@ -104,6 +104,7 @@
 	var/powered = FALSE
 	var/dirt_amt_per_dig = 5
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
+	tool_behaviour = TOOL_WELD_CUTTER
 
 /obj/item/tool/pickaxe/plasmacutter/Initialize()
 	. = ..()

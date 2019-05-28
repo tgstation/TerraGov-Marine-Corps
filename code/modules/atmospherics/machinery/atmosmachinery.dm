@@ -176,32 +176,10 @@
 		if(user.dropItemToGround(pipe))
 			pipe.setPipingLayer(piping_layer) //align it with us
 			return TRUE
-	else if(iswrench(W)) // this is just until someone ports the tg tool handling code
-		. = wrench_act(user, W)
-	else if(ismultitool(W))
-		. = multitool_act(user, W)
-	else if(isscrewdriver(W))
-		. = screwdriver_act(user,W)
-	else if(iswelder(W))
-		. = welder_act(user, W)
-	else if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
-		. = plasmacutter_act(user, W)
 	if(!.)
 		return ..()
 
-/obj/machinery/atmospherics/proc/plasmacutter_act(mob/living/user, obj/item/I)
-	return FALSE
-
-/obj/machinery/atmospherics/proc/welder_act(mob/living/user, obj/item/I)
-	return FALSE
-
-/obj/machinery/atmospherics/proc/screwdriver_act(mob/living/user, obj/item/I)
-	return FALSE
-
-/obj/machinery/atmospherics/proc/multitool_act(mob/living/user, obj/item/I)
-	return FALSE
-
-/obj/machinery/atmospherics/proc/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/atmospherics/wrench_act(mob/living/user, obj/item/I)
 	if(!can_unwrench(user))
 		return ..()
 
