@@ -166,6 +166,7 @@
 #include "code\controllers\stonedmc\subsystem\ping.dm"
 #include "code\controllers\stonedmc\subsystem\points.dm"
 #include "code\controllers\stonedmc\subsystem\radio.dm"
+#include "code\controllers\stonedmc\subsystem\server_maint.dm"
 #include "code\controllers\stonedmc\subsystem\shuttle.dm"
 #include "code\controllers\stonedmc\subsystem\shuttleold.dm"
 #include "code\controllers\stonedmc\subsystem\stickyban.dm"

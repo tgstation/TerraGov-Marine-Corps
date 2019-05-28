@@ -15,8 +15,7 @@ Basics, the most important.
 
 /datum/config_entry/string/resource_url
 
-/datum/config_entry/string/hubpassword
-	config_entry_value = "kMZy3U5jJHSiBQjr"
+/datum/config_entry/flag/hub	// if the game appears on the hub or not
 
 /datum/config_entry/string/wikiurl
 
@@ -176,6 +175,27 @@ Administrative related.
 /datum/config_entry/string/tgs3_commandline_path
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 	config_entry_value = "C:\\Program Files (x86)\\TG Station Server\\TGCommandLine.exe"
+
+/datum/config_entry/number/minute_topic_limit
+	config_entry_value = 250
+	min_val = 0
+
+/datum/config_entry/number/second_topic_limit
+	config_entry_value = 15
+	min_val = 0
+
+/datum/config_entry/number/minute_click_limit
+	config_entry_value = 400
+	min_val = 0
+
+/datum/config_entry/number/second_click_limit
+	config_entry_value = 15
+	min_val = 0
+
+/datum/config_entry/number/afk_period	//time in ds until a player is considered inactive
+	config_entry_value = 3000
+	integer = FALSE
+	min_val = 0
 
 /*
 Voting

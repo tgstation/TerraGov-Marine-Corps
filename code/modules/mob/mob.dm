@@ -23,6 +23,8 @@
 	. = ..()
 
 	if(statpanel("Stats"))
+		if(client)
+			stat(null, "Ping: [round(client.lastping, 1)]ms (Average: [round(client.avgping, 1)]ms)")
 		if(GLOB.round_id)
 			stat("Round ID: [GLOB.round_id]")
 		stat("Operation Time: [worldtime2text()]")
@@ -613,12 +615,17 @@
 
 // facing verbs
 /mob/proc/canface()
-	if(!canmove)						return 0
-	if(client.moving)					return 0
-	if(stat==2)						return 0
-	if(anchored)						return 0
-	if(restrained())					return 0
-	return 1
+	if(!canmove)						
+		return FALSE
+	if(stat == DEAD)						
+		return FALSE
+	if(anchored)						
+		return FALSE
+	if(notransform)
+		return FALSE
+	if(restrained())					
+		return FALSE
+	return TRUE
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()

@@ -69,8 +69,6 @@
 	src.icon_dead = "mouse_[body_color]_splat"
 	src.icon_state = "mouse_[body_color]_splat"
 	layer = MOB_LAYER
-	if(client)
-		client.time_died_as_mouse = world.time
 
 /mob/living/simple_animal/mouse/start_pulling(var/atom/movable/AM)//Prevents mouse from pulling things
 	to_chat(src, "<span class='warning'>You are too small to pull anything.</span>")
@@ -86,9 +84,7 @@
 
 /mob/living/simple_animal/mouse/death()
 	layer = MOB_LAYER
-	if(client)
-		client.time_died_as_mouse = world.time
-	..()
+	return ..()
 
 /*
  * Mouse types
