@@ -23,9 +23,7 @@
 
 
 /mob/living/brain/update_canmove()
-	if(in_contents_of(/obj/mecha))
-		canmove = 1
-	else							canmove = 0
+	canmove = 0
 	return canmove
 
 

@@ -144,9 +144,6 @@
 /obj/item/circuitboard/computer/rdconsole
 	name = "Circuit Board (RD Console)"
 	build_path = /obj/machinery/computer/rdconsole/core
-/obj/item/circuitboard/computer/mecha_control
-	name = "Circuit Board (Exosuit Control Console)"
-	build_path = /obj/machinery/computer/mecha
 /obj/item/circuitboard/computer/rdservercontrol
 	name = "Circuit Board (R&D Server Control)"
 	build_path = /obj/machinery/computer/rdservercontrol
@@ -154,10 +151,6 @@
 	name = "Circuit board (Crew monitoring computer)"
 	build_path = /obj/machinery/computer/crew
 	origin_tech = "programming=3;biotech=2;magnets=2"
-/obj/item/circuitboard/computer/mech_bay_power_console
-	name = "Circuit board (Mech Bay Power Control Console)"
-	build_path = /obj/machinery/computer/mech_bay_power_console
-	origin_tech = "programming=2;powerstorage=3"
 
 /obj/item/circuitboard/computer/operating
 	name = "Circuit board (Operating Computer)"
