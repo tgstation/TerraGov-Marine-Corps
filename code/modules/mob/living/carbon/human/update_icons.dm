@@ -48,7 +48,6 @@ There are several things that need to be remembered:
 
 >	There are also these special cases:
 		update_mutations()	//handles updating your appearance for certain mutations.  e.g TK head-glows
-		update_mutantrace()	//handles updating your appearance after setting the mutantrace var
 		UpdateDamageIcon()	//handles damage overlays for brute/burn damage //(will rename this when I geta round to it)
 		update_body()	//Handles updating your mob's icon to reflect their gender/race/complexion etc
 		update_hair()	//Handles updating your hair overlay (used to be update_face, but mouth and
@@ -381,10 +380,6 @@ var/global/list/damage_icon_parts = list()
 
 		apply_overlay(MUTATIONS_LAYER)
 
-
-/mob/living/carbon/human/proc/update_mutantrace()
-	return
-
 //Call when target overlay should be added/removed
 /mob/living/carbon/human/update_targeted()
 	remove_overlay(TARGETED_LAYER)
@@ -407,7 +402,6 @@ var/global/list/damage_icon_parts = list()
 /* --------------------------------------- */
 //For legacy support.
 /mob/living/carbon/human/regenerate_icons()
-	if(monkeyizing)		return
 	update_mutations(0)
 	update_inv_w_uniform()
 	update_inv_wear_id()

@@ -23,11 +23,6 @@
 	user.visible_message("<span class='danger'>[user] is putting the live paddles on [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return (FIRELOSS)
 
-/mob/living/carbon/human/proc/check_tod()
-	if(!undefibbable && world.time <= timeofdeath + CONFIG_GET(number/revive_grace_period))
-		return TRUE
-	return FALSE
-
 /obj/item/defibrillator/Initialize()
 	sparks.set_up(5, 0, src)
 	sparks.attach(src)
@@ -131,7 +126,7 @@
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
 		return
 
-	if((!H.check_tod() && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
+	if((!check_tod(H) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient is braindead.</span>")
 		return
 
@@ -174,7 +169,7 @@
 			user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's general condition does not allow reviving.</span>")
 			return
 
-		if((!H.check_tod() && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
+		if((!check_tod(H) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
 			user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much.</span>")
 			return
 

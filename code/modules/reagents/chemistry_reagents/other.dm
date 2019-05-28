@@ -639,13 +639,6 @@
 	color = "#535E66" // rgb: 83, 94, 102
 	taste_description = "sludge"
 
-/datum/reagent/xenomicrobes/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
-	if(!iscarbon(L))
-		return
-	var/mob/living/carbon/C = L
-	if(method in list(INJECT, INGEST) || prob(5 * volume))
-		C.contract_disease(new /datum/disease/xeno_transformation(FALSE), TRUE)
-
 /datum/reagent/fluorosurfactant//foam precursor
 	name = "Fluorosurfactant"
 	id = "fluorosurfactant"

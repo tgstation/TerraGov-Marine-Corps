@@ -7,7 +7,7 @@
 
 /mob/living/carbon/xenomorph/Life()
 
-	if(monkeyizing || !loc)
+	if(!loc)
 		return
 
 	..()

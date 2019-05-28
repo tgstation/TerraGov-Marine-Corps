@@ -118,6 +118,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define UNCONSCIOUS	1
 #define DEAD		2
 
+#define check_tod(H) ((!H.undefibbable && world.time <= H.timeofdeath + CONFIG_GET(number/revive_grace_period)))
+
 //Damage things
 //Way to waste perfectly good damagetype names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc...
 #define BRUTE		"brute"
