@@ -265,11 +265,6 @@
 	screen_loc = "7,7 to 10,8"
 
 
-/obj/screen/storage/New(new_master, mapload)
-	. = ..()
-	master = new_master
-
-
 /obj/screen/storage/proc/update_fullness(obj/item/storage/S)
 	if(!length(S.contents))
 		color = null
