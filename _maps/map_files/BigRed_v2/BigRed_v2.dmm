@@ -22580,11 +22580,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "brl" = (
-/obj/machinery/bot/mulebot{
-	move_speed = 100;
-	on = 0
-	},
-/turf/open/floor,
+/obj/machinery/bot/mulebot/turf/open/floor,
 /area/bigredv2/outside/engineering)
 "brm" = (
 /obj/effect/decal/cleanable/dirt,
