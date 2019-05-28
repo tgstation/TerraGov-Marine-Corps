@@ -52,6 +52,12 @@
 	plasma_cost = 75
 	mechanics_text = "Plant a weed node (purple sac) on your tile."
 
+/datum/action/xeno_action/plant_weeds/give_action(mob/living/L)
+	RegisterSignal(owner, COMSIG_XENOABILITY_DROP_WEEDS, .proc/keybind_activation)
+
+/datum/action/xeno_action/plant_weeds/remove_action(mob/living/L)
+	UnregisterSignal(owner, COMSIG_XENOABILITY_DROP_WEEDS)
+
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/turf/T = get_turf(owner)
 

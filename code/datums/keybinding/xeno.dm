@@ -11,16 +11,11 @@
 	category = CATEGORY_XENO
 
 /datum/keybinding/xeno/drop_weeds/down(client/user)
-	if(!isxeno(user.mob))
-		return
-	var/mob/living/carbon/xenomorph/X = user.mob
-	var/datum/action/xeno_action/plant_weeds/ability = locate() in X.actions
-	if (!ability)
-		to_chat(user, "<span class='notice'>You don't have this ability.</span>") // TODO Is this spammy?
+	if(SEND_SIGNAL(user.mob, COMSIG_XENOABILITY_DROP_WEEDS) & COMSIG_XENOABILITY_HAS_ABILITY)
 		return TRUE
 
-	if(ability.can_use_action(FALSE, null, TRUE))
-		ability.action_activate()
-	else
-		ability.fail_activate()
+	if(!isxeno(user.mob))
+		return
+
+	to_chat(user, "<span class='notice'>You don't have this ability.</span>") // TODO Is this spammy?
 	return TRUE

@@ -97,3 +97,9 @@
 
 // /obj/item/radio signals
 #define COMSIG_RADIO_NEW_FREQUENCY "radio_new_frequency"		//called from base of /obj/item/radio/proc/set_frequency(): (list/args)
+
+// xeno abilities for keybindings
+#define COMSIG_XENOABILITY_HAS_ABILITY 1
+
+#define COMSIG_XENOABILITY_DROP_WEEDS "xenoability_drop_weeds"
+
