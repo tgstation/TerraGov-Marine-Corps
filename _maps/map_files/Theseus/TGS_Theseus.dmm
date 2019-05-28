@@ -48386,7 +48386,8 @@
 /area/almayer/hallways/repair_bay)
 "dGF" = (
 /obj/docking_port/stationary/ert/target{
-	name = "Port"
+	name = "Port";
+	id = "port_target"
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/port_point_defense)
@@ -48462,7 +48463,8 @@
 /area/almayer/medical/lower_medical)
 "emC" = (
 /obj/docking_port/stationary/ert/target{
-	name = "Starboard"
+	name = "Starboard";
+	id = "starboard_target"
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/starboard_point_defense)
@@ -48607,7 +48609,8 @@
 /area/almayer/living/commandbunks)
 "flR" = (
 /obj/docking_port/stationary/ert/target{
-	name = "Aft"
+	name = "Aft";
+	id = "aft_target"
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/hull/lower_hull)

@@ -30,7 +30,7 @@
 /obj/docking_port/mobile/ert/proc/get_destinations()
 	var/list/docks = list()
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(S.id == "distress_target")
+		if(istype(S, /obj/docking_port/stationary/ert/target))
 			if(canDock(S) == SHUTTLE_CAN_DOCK) // discards occupied docks
 				docks += S
 	for(var/i in SSshuttle.ert_shuttles)
@@ -60,7 +60,7 @@
 
 /obj/docking_port/mobile/ert/afterShuttleMove()
 	. = ..()
-	if(getDockedId() == "distress_target")
+	if(istype(get_docked(), /obj/docking_port/stationary/ert/target))
 		open_shutters()
 	else
 		close_shutters()
