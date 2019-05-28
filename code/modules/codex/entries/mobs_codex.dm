@@ -1,14 +1,14 @@
-/mob/living/carbon/Xenomorph/get_antag_info()
+/mob/living/carbon/xenomorph/get_antag_info()
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
 	return general_entry?.antag_text
 
-/mob/living/carbon/Xenomorph/get_lore_info()
+/mob/living/carbon/xenomorph/get_lore_info()
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
 	return general_entry?.lore_text
 
-/mob/living/carbon/Xenomorph/get_mechanics_info()
+/mob/living/carbon/xenomorph/get_mechanics_info()
 	. = ..()
 	var/list/xeno_strings = list()
 
@@ -48,20 +48,10 @@
 
 	. += jointext(xeno_strings, "<br>")
 
-/datum/codex_entry/maint_drone
-	display_name = "maintenance drone"
-	associated_paths = list(/mob/living/silicon/robot/drone)
-	mechanics_text = "Drones are player-controlled synthetics which are lawed to maintain their assigned vessel and not \
-	interfere with anyone else, except for other drones. They hold a wide array of tools to build, repair, maintain, and clean. \
-	They function similarly to other synthetics, in that they require recharging regularly, have laws, and are resilient to many hazards, \
-	such as fire, radiation, vacuum, and more. Ghosts can join the round as a maintenance drone by using the appropriate verb in the 'ghost' tab. \
-	An inactive drone can be rebooted by swiping an ID card on it with engineering or robotics access, and an active drone can be shut down in the same manner. \
-	Maintenance drone presence can be requested to specific areas from any maintenance drone control console."
-	antag_text = "A crypotgraphic sequencer, available via a traitor uplink, can be used to subvert the drone to your cause."
 
 /datum/codex_entry/xenomorph
 	display_name = "xenomorph"
-	associated_paths = list(/mob/living/carbon/Xenomorph)
+	associated_paths = list(/mob/living/carbon/xenomorph)
 	mechanics_text = "Xenomorphs are a hostile lifeform. They are very powerful individually and also in groups. \
 	They reproduce by capturing hosts and impregnating them with facehuggers. Some time later the larva growing in the hosts \
 	chest will violently burst out killing the host in the process. <br><br>Not suitable for pet ownership."

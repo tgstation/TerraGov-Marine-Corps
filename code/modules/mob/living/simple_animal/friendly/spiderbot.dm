@@ -6,7 +6,7 @@
 	minbodytemp = 0
 	maxbodytemp = 500
 
-	var/obj/item/radio/borg/radio = null
+	var/obj/item/radio/radio = null
 	var/mob/living/silicon/ai/connected_ai = null
 	var/obj/item/cell/cell = null
 	var/obj/machinery/camera/camera = null
@@ -182,7 +182,7 @@
 
 /mob/living/simple_animal/spiderbot/Initialize()
 
-	radio = new /obj/item/radio/borg(src)
+	radio = new /obj/item/radio(src)
 	camera = new /obj/machinery/camera(src)
 	camera.c_tag = "Spiderbot-[real_name]"
 	camera.network = list("SS13")

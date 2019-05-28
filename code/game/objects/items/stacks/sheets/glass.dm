@@ -69,7 +69,8 @@
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to build with [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to build with [src].</span>")
 		var/fumbling_time = 100 - 20 * user.mind.cm_skills.construction
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			return
 	var/title = "Sheet-[name]"
 	title += " ([src.amount] sheet\s left)"
 	switch(input(title, "What would you like to construct?") as null|anything in construction_options)

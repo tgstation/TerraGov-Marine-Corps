@@ -130,7 +130,7 @@
 		var/delay_disassembly = SKILL_TASK_AVERAGE
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
 			delay_disassembly -= 5 + user.mind.cm_skills.engineer * 5
-		if(do_after(user,delay_disassembly, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(user,delay_disassembly, TRUE, src, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 			"<span class='notice'>You disassemble [src].</span>")
 			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
@@ -146,8 +146,7 @@
 			user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
 			"<span class='notice'>You begin repairing the damage to [src].</span>")
 			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-			var/old_loc = loc
-			if(do_after(user, delay, TRUE, 5, BUSY_ICON_FRIENDLY) && old_loc == loc)
+			if(do_after(user, delay, TRUE, src, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 				"<span class='notice'>You repair [src].</span>")
 				obj_integrity = min(obj_integrity + 100, max_integrity)
@@ -158,12 +157,12 @@
 	if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
 		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
-			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P && src) //Barbed wire requires half the normal time
+			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, BUSY_ICON_HOSTILE)) //Barbed wire requires half the normal time
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD) //Barbed wire requires half the normal power
 				destroyed()
 		return
 
-	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
+	if((W.flags_item & ITEM_ABSTRACT))
 		return
 
 	var/damage = W.force
@@ -185,7 +184,7 @@
 		"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 
-/obj/structure/razorwire/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
@@ -217,9 +216,9 @@
 /obj/structure/razorwire/Bumped(atom/A)
 	. = ..()
 
-	if(istype(A, /mob/living/carbon/Xenomorph/Crusher))
+	if(istype(A, /mob/living/carbon/xenomorph/crusher))
 
-		var/mob/living/carbon/Xenomorph/Crusher/C = A
+		var/mob/living/carbon/xenomorph/crusher/C = A
 
 		if(C.charge_speed < CHARGE_SPEED_MAX * 0.5)
 			return

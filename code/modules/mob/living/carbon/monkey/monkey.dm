@@ -118,19 +118,6 @@
 
 	return ..()
 
-
-/mob/living/carbon/monkey/unathi/Initialize()
-	. = ..()
-	dna.mutantrace = "lizard"
-
-/mob/living/carbon/monkey/skrell/Initialize()
-	. = ..()
-	dna.mutantrace = "skrell"
-
-/mob/living/carbon/monkey/tajara/Initialize()
-	. = ..()
-	dna.mutantrace = "tajaran"
-
 /mob/living/carbon/monkey/movement_delay()
 	. = ..()
 
@@ -182,7 +169,7 @@
 			else
 				usr.visible_message("<span class='danger'>[usr] is trying to enable [src]'s internals.</span>", null, 4)
 
-			if(do_mob(usr, src, 30, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
+			if(do_mob(usr, src, 30, BUSY_ICON_GENERIC))
 				if (internal)
 					internal.add_fingerprint(usr)
 					internal = null

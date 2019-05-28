@@ -130,8 +130,6 @@
 	for(var/mob/living/M in orange(detector_range, operator))
 		if(!isturf(M.loc))
 			continue
-		if(iscyborg(M))
-			continue
 		status = MOTION_DETECTOR_HOSTILE //Reset the status to default
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
@@ -152,7 +150,7 @@
 						status = MOTION_DETECTOR_FRIENDLY
 					else
 						continue
-		if(world.time > M.l_move_time + 20 && (status == MOTION_DETECTOR_HOSTILE))
+		if(world.time > M.last_move_time + 20 && (status == MOTION_DETECTOR_HOSTILE))
 			continue //hasn't moved recently
 
 		detected = TRUE

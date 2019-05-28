@@ -1,11 +1,10 @@
 /atom/movable
 	layer = OBJ_LAYER
-	var/last_move_dir = null
+	var/last_move = null
+	var/last_move_time = 0
 	var/anchored = 0
-	// var/elevation = 2    - not used anywhere
 	var/move_speed = 10
 	var/drag_delay = 3 //delay (in deciseconds) added to mob's move_delay when pulling it.
-	var/l_move_time = 1
 	var/throwing = 0
 	var/thrower = null
 	var/turf/throw_source = null
@@ -13,8 +12,10 @@
 	var/throw_range = 7
 	var/moved_recently = 0
 	var/mob/pulledby = null
+	var/atom/movable/pulling
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
-								// and if yes, are we doing the first or second move.
+	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
+
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
 
 	var/initial_language_holder = /datum/language_holder
@@ -25,7 +26,7 @@
 	var/verb_whisper = "whispers"
 	var/verb_yell = "yells"
 
-	var/list/mob/dead/observer/followers = list()
+	var/datum/component/orbiter/orbiting
 
 //===========================================================================
 /atom/movable/Destroy()
@@ -45,57 +46,141 @@
 	. = ..()
 	loc = null //so we move into null space. Must be after ..() b/c atom's Dispose handles deleting our lighting stuff
 
-//===========================================================================
 
-/atom/movable/Move(NewLoc, direct)
-	/*
-	if (direct & (direct - 1)) //Diagonal move, split it into cardinal moves
-		moving_diagonally = FIRST_DIAG_STEP
-		if (direct & 1)
-			if (direct & 4)
-				if (step(src, NORTH))
-					moving_diagonally = SECOND_DIAG_STEP
-					. = step(src, EAST)
-				else if (step(src, EAST))
-					moving_diagonally = SECOND_DIAG_STEP
-					. = step(src, NORTH)
-			else if (direct & 8)
-				if (step(src, NORTH))
-					moving_diagonally = SECOND_DIAG_STEP
-					. = step(src, WEST)
-				else if (step(src, WEST))
-					moving_diagonally = SECOND_DIAG_STEP
-					. = step(src, NORTH)
-		else if (direct & 2)
-			if (direct & 4)
-				if (step(src, SOUTH))
-					moving_diagonally = SECOND_DIAG_STEP
-					. = step(src, EAST)
-				else if (step(src, EAST))
-					moving_diagonally = SECOND_DIAG_STEP
-					. = step(src, SOUTH)
-			else if (direct & 8)
-				if (step(src, SOUTH))
-					moving_diagonally = SECOND_DIAG_STEP
-					. = step(src, WEST)
-				else if (step(src, WEST))
-					moving_diagonally = SECOND_DIAG_STEP
-					. = step(src, SOUTH)
-		moving_diagonally = 0
+
+////////////////////////////////////////
+// Here's where we rewrite how byond handles movement except slightly different
+// To be removed on step_ conversion
+// All this work to prevent a second bump
+/atom/movable/Move(atom/newloc, direct=0)
+	. = FALSE
+	if(!newloc || newloc == loc)
 		return
-	*/
-	var/atom/oldloc = loc
-	var/old_dir = dir
 
-	. = ..()
-	if(flags_atom & DIRLOCK)
-		setDir(old_dir)
-	move_speed = world.time - l_move_time
-	l_move_time = world.time
-	if ((oldloc != loc && oldloc && oldloc.z == z))
-		last_move_dir = get_dir(oldloc, loc)
+	if(!direct)
+		direct = get_dir(src, newloc)
+	setDir(direct)
+
+	if(!loc.Exit(src, newloc))
+		return
+
+	if(!newloc.Enter(src, src.loc))
+		return
+
+	// Past this is the point of no return
+	SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc)
+	var/atom/oldloc = loc
+	var/area/oldarea = get_area(oldloc)
+	var/area/newarea = get_area(newloc)
+	loc = newloc
+	. = TRUE
+	oldloc.Exited(src, newloc)
+	if(oldarea != newarea)
+		oldarea.Exited(src, newloc)
+
+	for(var/i in oldloc)
+		if(i == src) // Multi tile objects
+			continue
+		var/atom/movable/thing = i
+		thing.Uncrossed(src)
+
+	newloc.Entered(src, oldloc)
+	if(oldarea != newarea)
+		newarea.Entered(src, oldloc)
+
+	for(var/i in loc)
+		if(i == src) // Multi tile objects
+			continue
+		var/atom/movable/thing = i
+		thing.Crossed(src)
+//
+////////////////////////////////////////
+
+/atom/movable/Move(atom/newloc, direct)
+	var/atom/movable/pullee = pulling
+	var/turf/T = loc
+	if(!moving_from_pull)
+		check_pulling()
+	if(!loc || !newloc)
+		return FALSE
+	var/atom/oldloc = loc
+
+	if(loc != newloc)
+		if(!(direct & (direct - 1))) //Cardinal move
+			. = ..()
+		else //Diagonal move, split it into cardinal moves
+			moving_diagonally = FIRST_DIAG_STEP
+			var/first_step_dir
+			// The `&& moving_diagonally` checks are so that a forceMove taking
+			// place due to a Crossed, Bumped, etc. call will interrupt
+			// the second half of the diagonal movement, or the second attempt
+			// at a first half if step() fails because we hit something.
+			if(direct & NORTH)
+				if(direct & EAST)
+					if(step(src, NORTH) && moving_diagonally)
+						first_step_dir = NORTH
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, EAST)
+					else if(moving_diagonally && step(src, EAST))
+						first_step_dir = EAST
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, NORTH)
+				else if(direct & WEST)
+					if(step(src, NORTH) && moving_diagonally)
+						first_step_dir = NORTH
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, WEST)
+					else if(moving_diagonally && step(src, WEST))
+						first_step_dir = WEST
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, NORTH)
+			else if(direct & SOUTH)
+				if(direct & EAST)
+					if(step(src, SOUTH) && moving_diagonally)
+						first_step_dir = SOUTH
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, EAST)
+					else if(moving_diagonally && step(src, EAST))
+						first_step_dir = EAST
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, SOUTH)
+				else if(direct & WEST)
+					if(step(src, SOUTH) && moving_diagonally)
+						first_step_dir = SOUTH
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, WEST)
+					else if(moving_diagonally && step(src, WEST))
+						first_step_dir = WEST
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, SOUTH)
+			if(moving_diagonally == SECOND_DIAG_STEP)
+				if(!.)
+					setDir(first_step_dir)
+			moving_diagonally = 0
+			return
+
+	if(!loc || (loc == oldloc && oldloc != newloc))
+		last_move = 0
+		return
+
 	if(.)
-		Moved(oldloc,direct)
+		Moved(oldloc, direct)
+
+	if(. && pulling && pulling == pullee && pulling != moving_from_pull) //we were pulling a thing and didn't lose it during our move.
+		if(pulling.anchored)
+			stop_pulling()
+		else
+			var/pull_dir = get_dir(src, pulling)
+			//puller and pullee more than one tile away or in diagonal position
+			if(get_dist(src, pulling) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir)))
+				pulling.moving_from_pull = src
+				pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
+				pulling.moving_from_pull = null
+			check_pulling()
+
+	last_move = direct
+	last_move_time = world.time
+	setDir(direct)
 
 
 /atom/movable/Bump(atom/A, yes) //yes arg is to distinguish our calls of this proc from the calls native from byond.
@@ -116,16 +201,16 @@
 	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, AM)
 
 
-/atom/movable/proc/Moved(atom/OldLoc)
+/atom/movable/proc/Moved(atom/oldloc, direction, Forced = FALSE)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, direction, Forced)
 	if(isturf(loc))
 		if(opacity)
-			OldLoc.UpdateAffectingLights()
+			oldloc.UpdateAffectingLights()
 		else
 			if(light)
 				light.changed()
-	for(var/_F in followers)
-		var/mob/dead/observer/F = _F
-		F.loc = loc
+
+	return TRUE
 
 
 /atom/movable/proc/forceMove(atom/destination)
@@ -388,47 +473,6 @@
 	return
 
 
-// Spin for a set amount of time at a set speed using directional states
-/atom/movable/proc/spin(var/duration, var/turn_delay = 1, var/clockwise = 0, var/cardinal_only = 1)
-	set waitfor = 0
-
-	if (turn_delay < 1)
-		return
-
-	var/spin_degree = 90
-
-	if (!cardinal_only)
-		spin_degree = 45
-
-	if (clockwise)
-		spin_degree *= -1
-
-	while (duration > turn_delay)
-		sleep(turn_delay)
-		setDir(turn(dir, spin_degree))
-		duration -= turn_delay
-
-/atom/movable/proc/spin_circle(var/num_circles = 1, var/turn_delay = 1, var/clockwise = 0, var/cardinal_only = 1)
-	set waitfor = 0
-
-	if (num_circles < 1 || turn_delay < 1)
-		return
-
-	var/spin_degree = 90
-	num_circles *= 4
-
-	if (!cardinal_only)
-		spin_degree = 45
-		num_circles *= 2
-
-	if (clockwise)
-		spin_degree *= -1
-
-	for (var/x = 0, x < num_circles, x++)
-		sleep(turn_delay)
-		setDir(turn(dir, spin_degree))
-
-
 //called when a mob tries to breathe while inside us.
 /atom/movable/proc/handle_internal_lifeform(mob/lifeform_inside_me)
 	. = return_air()
@@ -563,3 +607,65 @@
 	//if((force < (move_resist * MOVE_FORCE_THROW_RATIO)) || (move_resist == INFINITY))
 	//	return
 	return throw_at(target, range, speed, thrower, spin)
+
+
+/atom/movable/proc/start_pulling(atom/movable/AM, supress_message = FALSE)
+	if(QDELETED(AM))
+		return FALSE
+
+	if(!(AM.can_be_pulled(src)))
+		return FALSE
+
+	// If we're pulling something then drop what we're currently pulling and pull this instead.
+	if(pulling)
+		var/pulling_old = pulling
+		stop_pulling()
+		// Are we pulling the same thing twice? Just stop pulling.
+		if(pulling_old == AM)
+			return FALSE
+	if(AM.pulledby)
+		log_combat(AM, AM.pulledby, "pulled from", src)
+		AM.pulledby.stop_pulling() //an object can't be pulled by two mobs at once.
+	pulling = AM
+	AM.pulledby = src
+	if(ismob(AM))
+		var/mob/M = AM
+		log_combat(src, M, "grabbed", addition = "passive grab")
+		if(!supress_message)
+			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
+	return TRUE
+
+
+/atom/movable/proc/stop_pulling()
+	if(!pulling)
+		return
+
+	pulling.pulledby = null
+	pulling = null
+
+
+/atom/movable/proc/check_pulling()
+	if(pulling)
+		var/atom/movable/pullee = pulling
+		if(pullee && get_dist(src, pullee) > 1)
+			stop_pulling()
+			return
+		if(!isturf(loc))
+			stop_pulling()
+			return
+		if(pullee && !isturf(pullee.loc) && pullee.loc != loc) //to be removed once all code that changes an object's loc uses forceMove().
+			stop_pulling()
+			return
+		if(pulling.anchored)
+			stop_pulling()
+			return
+	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1)		//separated from our puller and not in the middle of a diagonal move.
+		pulledby.stop_pulling()
+
+
+/atom/movable/proc/can_be_pulled(user)
+	if(src == user || !isturf(loc))
+		return FALSE
+	if(anchored || throwing)
+		return FALSE
+	return TRUE

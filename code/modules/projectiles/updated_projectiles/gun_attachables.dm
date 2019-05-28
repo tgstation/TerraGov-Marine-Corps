@@ -1075,7 +1075,7 @@ Defined in conflicts.dm of the #defines folder.
 		fire_mod = 1
 
 		if(isxeno(M))
-			var/mob/living/carbon/Xenomorph/X = M
+			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
 			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
@@ -1246,7 +1246,7 @@ Defined in conflicts.dm of the #defines folder.
 		G.aim_slowdown -= SLOWDOWN_ADS_SCOPE
 		G.wield_delay -= WIELD_DELAY_FAST
 		bipod_deployed = !bipod_deployed
-	else if(do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
+	else if(do_after(user, 10, TRUE, src))
 		if(bipod_deployed)
 			return
 		bipod_deployed = !bipod_deployed

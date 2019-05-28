@@ -55,35 +55,6 @@
 /turf/open/floor/almayer/empty/attackby() //This should fix everything else. No cables, etc
 	return
 
-/turf/open/floor/almayer/empty/Entered(var/atom/movable/AM)
-	..()
-	if(istype(AM, /obj/docking_port))
-		return
-	spawn(2)
-		if(AM.throwing == 0 && istype(get_turf(AM), /turf/open/floor/almayer/empty))
-			AM.visible_message("<span class='warning'>[AM] falls into the depths!</span>", "<span class='warning'>You fall into the depths!</span>")
-			for(var/obj/structure/disposaloutlet/retrieval/R in GLOB.structure_list)
-				if(R.z != src.z)	continue
-				var/obj/structure/disposalholder/H = new()
-				AM.loc = H
-				sleep(10)
-				H.loc = R
-				for(var/mob/living/M in H)
-					M.take_overall_damage(100, 0, "Blunt Trauma")
-				sleep(20)
-				for(var/mob/living/M in H)
-					M.take_overall_damage(20, 0, "Blunt Trauma")
-				for(var/obj/effect/decal/cleanable/C in contents) //get rid of blood
-					qdel(C)
-				R.expel(H)
-				return
-
-			qdel(AM)
-
-		else
-			for(var/obj/effect/decal/cleanable/C in contents) //for the off chance of someone bleeding mid=flight
-				qdel(C)
-
 
 //Others
 /turf/open/floor/almayer/uscm
@@ -216,7 +187,7 @@
 		user.visible_message("<span class='notice'>[user] starts removing [src]'s protective cover.</span>",
 		"<span class='notice'>You start removing [src]'s protective cover.</span>")
 		playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			new /obj/item/stack/rods(src, 2)
 			ChangeTurf(/turf/open/floor)
 			var/turf/open/floor/F = src
@@ -597,57 +568,6 @@
 	name = "Mech Bay Recharge Station"
 	icon = 'icons/mecha/mech_bay.dmi'
 	icon_state = "recharge_floor"
-	var/obj/machinery/mech_bay_recharge_port/recharge_port
-	var/obj/machinery/computer/mech_bay_power_console/recharge_console
-	var/obj/mecha/recharging_mecha = null
-
-/turf/open/floor/mech_bay_recharge_floor/Entered(var/obj/mecha/mecha)
-	. = ..()
-	if(istype(mecha))
-		mecha.occupant_message("<b>Initializing power control devices.</b>")
-		init_devices()
-		if(recharge_console && recharge_port)
-			recharging_mecha = mecha
-			recharge_console.mecha_in(mecha)
-			return
-		else if(!recharge_console)
-			mecha.occupant_message("<font color='red'>Control console not found. Terminating.</font>")
-		else if(!recharge_port)
-			mecha.occupant_message("<font color='red'>Power port not found. Terminating.</font>")
-	return
-
-/turf/open/floor/mech_bay_recharge_floor/Exited(atom)
-	. = ..()
-	if(atom == recharging_mecha)
-		recharging_mecha = null
-		if(recharge_console)
-			recharge_console.mecha_out()
-	return
-
-/turf/open/floor/mech_bay_recharge_floor/proc/init_devices()
-	if(!recharge_console)
-		recharge_console = locate() in range(1,src)
-	if(!recharge_port)
-		recharge_port = locate() in get_step(src, WEST)
-
-	if(recharge_console)
-		recharge_console.recharge_floor = src
-		if(recharge_port)
-			recharge_console.recharge_port = recharge_port
-	if(recharge_port)
-		recharge_port.recharge_floor = src
-		if(recharge_console)
-			recharge_port.recharge_console = recharge_console
-	return
-
-// temporary fix for broken icon until somebody gets around to make these player-buildable
-/turf/open/floor/mech_bay_recharge_floor/attackby(obj/item/C as obj, mob/user as mob)
-	..()
-	if(floor_tile)
-		icon_state = "recharge_floor"
-	else
-		icon_state = "support_lattice"
-
 
 /turf/open/floor/mech_bay_recharge_floor/break_tile()
 	if(broken) return

@@ -102,7 +102,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
-		O.on_mob_jump()
 		var/turf/T = locate(x, y, z)
 		O.forceMove(T)
 
@@ -127,7 +126,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
-		O.on_mob_jump()
 		O.ManualFollow(AM)
 
 		if(message)
@@ -148,7 +146,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
-		O.on_mob_jump()
 		O.forceMove(get_turf(AM))
 
 		if(message)
@@ -283,37 +280,37 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(location)
 					newmob.forceMove(usr.loc)
 			if("larva")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Larva, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/larva, location, null, delmob)
 			if("defender")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Defender, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/defender, location, null, delmob)
 			if("warrior")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Warrior, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/warrior, location, null, delmob)
 			if("runner")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Runner, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/runner, location, null, delmob)
 			if("drone")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Drone, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/drone, location, null, delmob)
 			if("sentinel")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Sentinel, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/sentinel, location, null, delmob)
 			if("hunter")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Hunter, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/hunter, location, null, delmob)
 			if("carrier")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Carrier, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/carrier, location, null, delmob)
 			if("hivelord")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Hivelord, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/hivelord, location, null, delmob)
 			if("praetorian")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Praetorian, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/praetorian, location, null, delmob)
 			if("ravager")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Ravager, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/ravager, location, null, delmob)
 			if("spitter")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Spitter, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/spitter, location, null, delmob)
 			if("boiler")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Boiler, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/boiler, location, null, delmob)
 			if("crusher")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Crusher, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/crusher, location, null, delmob)
 			if("defiler")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Defiler, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/Defiler, location, null, delmob)
 			if("queen")
-				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Queen, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/queen, location, null, delmob)
 			if("human")
 				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob)
 			if("monkey")
@@ -642,7 +639,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 				target = locate(X, Y, Z)
 
-		M.on_mob_jump()
 		M.forceMove(target)
 
 		log_admin("[key_name(usr)] has sent [key_name(M)]'s mob to [AREACOORD(target)].")
@@ -882,17 +878,21 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/new_mode = href_list["changemode"]
+		if(!new_mode)
+			return
 
 		if(SSticker.mode)
 			world.save_mode(new_mode)
 			log_admin("[key_name(usr)] set the mode for next round to: [new_mode].")
-			message_admins("[ADMIN_TPMONTY(usr)] set the mode to: [new_mode].")
+			message_admins("[ADMIN_TPMONTY(usr)] set the mode for next round to: [new_mode].")
 		else
 			GLOB.master_mode = new_mode
 			to_chat(world, "<span class='boldnotice'>The mode is now: [GLOB.master_mode].</span>")
 			world.save_mode(GLOB.master_mode)
 			log_admin("[key_name(usr)] set the mode to: [GLOB.master_mode].")
 			message_admins("[ADMIN_TPMONTY(usr)] set the mode to: [GLOB.master_mode].")
+
+		Topic(usr.client.holder, list("admin_token" = RawHrefToken(TRUE), "modemenu" = TRUE))
 
 
 	if(href_list["evac_authority"])
@@ -1076,6 +1076,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		browser.open(FALSE)
 
 
+	else if(href_list["adminprivate_log"])
+		if(!check_rights(R_BAN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.adminprivate_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "adminprivate_log", "<div align='center'>Adminprivate Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
 	else if(href_list["asay_log"])
 		if(!check_rights(R_ASAY))
 			return
@@ -1100,6 +1114,34 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			dat += "[x]<br>"
 
 		var/datum/browser/browser = new(usr, "msay_log", "<div align='center'>Msay Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["game_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.game_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "game_log", "<div align='center'>Game Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["access_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.access_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "access_log", "<div align='center'>Access Log</div>")
 		browser.set_content(dat)
 		browser.open(FALSE)
 
@@ -1537,7 +1579,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
-		usr.client.holder.select_rank(H)
+		usr.client.holder.edit_rank(H)
 
 
 	else if(href_list["setequipment"])
@@ -1647,3 +1689,165 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		log_admin("[key_name(usr)] checked the contents of [key_name(L)].")
 		message_admins("[ADMIN_TPMONTY(usr)] checked the contents of [ADMIN_TPMONTY(L)].")
+
+
+	else if(href_list["appearance"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["mob"]) in GLOB.human_mob_list
+		if(!istype(H))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		var/change
+		var/previous
+
+		switch(href_list["appearance"])
+			if("hairstyle")
+				change = input("Select the hair style.", "Edit Appearance") as null|anything in sortList(GLOB.hair_styles_list)
+				if(!change || !istype(H))
+					return
+				previous = H.h_style
+				H.h_style = change
+			if("haircolor")
+				change = input("Select the hair color.", "Edit Appearance") as null|color
+				if(!change || !istype(H))
+					return
+				previous = "#[num2hex(H.r_hair)][num2hex(H.g_hair)][num2hex(H.b_hair)]"
+				H.r_hair = hex2num(copytext(change, 2, 4))
+				H.g_hair = hex2num(copytext(change, 4, 6))
+				H.b_hair = hex2num(copytext(change, 6, 8))
+			if("facialhairstyle")
+				change = input("Select the facial hair style.", "Edit Appearance") as null|anything in sortList(GLOB.facial_hair_styles_list)
+				if(!change || !istype(H))
+					return
+				previous = H.f_style
+				H.f_style = change
+			if("facialhaircolor")
+				change = input("Select the facial hair color.", "Edit Appearance") as null|color
+				if(!change || !istype(H))
+					return
+				previous = "#[num2hex(H.r_facial)][num2hex(H.g_facial)][num2hex(H.b_facial)]"
+				H.r_facial = hex2num(copytext(change, 2, 4))
+				H.g_facial = hex2num(copytext(change, 4, 6))
+				H.b_facial = hex2num(copytext(change, 6, 8))
+			if("eyecolor")
+				change = input("Select the eye color.", "Edit Appearance") as null|color
+				if(!change || !istype(H))
+					return
+				previous = "#[num2hex(H.r_eyes)][num2hex(H.g_eyes)][num2hex(H.b_eyes)]"
+				H.r_eyes = hex2num(copytext(change, 2, 4))
+				H.g_eyes = hex2num(copytext(change, 4, 6))
+				H.b_eyes = hex2num(copytext(change, 6, 8))
+			if("bodycolor")
+				change = input("Select the body color.", "Edit Appearance") as null|color
+				if(!change || !istype(H))
+					return
+				previous = "#[num2hex(H.r_skin)][num2hex(H.g_skin)][num2hex(H.b_skin)]"
+				H.r_skin = hex2num(copytext(change, 2, 4))
+				H.g_skin = hex2num(copytext(change, 4, 6))
+				H.b_skin = hex2num(copytext(change, 6, 8))
+			if("gender")
+				change = input("Select the gender.", "Edit Appearance") as null|anything in sortList(GLOB.genders)
+				if(!change || !istype(H))
+					return
+				previous = H.gender
+				H.gender = change
+			if("ethnicity")
+				change = input("Select the ethnicity.", "Edit Appearance") as null|anything in sortList(GLOB.ethnicities_list)
+				if(!change || !istype(H))
+					return
+				previous = H.ethnicity
+				H.ethnicity = change
+
+		H.update_hair()
+		H.update_body()
+		H.regenerate_icons()
+		H.check_dna(H)
+		usr.client.holder.edit_appearance(H)
+
+		log_admin("[key_name(usr)] updated the [href_list["appearance"]] from [previous] to [change] of [key_name(H)].")
+		message_admins("[ADMIN_TPMONTY(usr)] updated the [href_list["appearance"]] from [previous] to [change] of [ADMIN_TPMONTY(H)].")
+
+
+	else if(href_list["rank"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["mob"]) in GLOB.human_mob_list
+		if(!istype(H))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		var/change
+		var/previous
+
+		switch(href_list["rank"])
+			if("createmind")
+				if(!istype(H) || H.mind)
+					return
+				H.mind_initialize()
+			if("rank")
+				change = input("Select a rank.", "Edit Rank") as null|anything in sortList(SSjob.name_occupations)
+				if(!change || !istype(H) || !H.mind)
+					return
+				previous = H.mind.assigned_role
+				H.set_rank(change)
+			if("skills")
+				var/list/skilltypes = subtypesof(/datum/skills)
+				var/list/skills = list()
+				for(var/i in skilltypes)
+					var/datum/skills/S = i
+					skills[initial(S.name)] = S
+				var/newskillset = input("Select a skillset.", "Edit Rank") as null|anything in sortList(skills)
+				if(!newskillset || !istype(H) || !H.mind)
+					return
+				var/pickedtype = skills[newskillset]
+				var/datum/skills/S = new pickedtype
+				previous = H.mind.cm_skills.name
+				change = S.name
+				H.mind.cm_skills = S
+			if("commstitle")
+				change = input("Input a comms title - \[Requisitions (Title)\]", "Edit Rank") as null|text
+				if(!change || !istype(H) || !H.mind)
+					return
+				previous = H.mind.comm_title
+				H.mind.comm_title = change
+			if("chattitle")
+				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.item_list
+				change = input("Input a chat title - Title Jane Doe screams!", "Edit Rank") as null|text
+				if(isnull(change) || !istype(H) || !istype(C))
+					return
+				previous = C.paygrade
+				C.paygrade = change
+				C.update_label()
+			if("idtitle")
+				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.item_list
+				change = input("Input an ID title - Jane Doe (Title)", "Edit Rank") as null|text
+				if(isnull(change) || !istype(H) || !H.mind)
+					return
+				previous = C.assignment
+				C.assignment = change
+				C.update_label()
+			if("idname")
+				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.item_list
+				change = input("Input an ID name - Jane Doe (Title)", "Edit Rank") as null|text
+				if(isnull(change) || !istype(H) || !H.mind)
+					return
+				previous = C.registered_name
+				C.registered_name = change
+				C.update_label()
+			if("createid")
+				if(!istype(H) || H.wear_id)
+					return
+				H.equip_to_slot_or_del(new /obj/item/card/id(H), SLOT_WEAR_ID)
+
+		usr.client.holder.edit_rank(H)
+
+		if(change)
+			log_admin("[key_name(usr)] updated the [href_list["rank"]] from [previous] to [change] of [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] updated the [href_list["rank"]] from [previous] to [change] of [ADMIN_TPMONTY(H)].")
+		else
+			log_admin("[key_name(usr)] updated the rank: [href_list["rank"]] of [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] updated the rank: [href_list["rank"]] of [ADMIN_TPMONTY(H)].")

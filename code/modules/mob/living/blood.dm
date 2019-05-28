@@ -322,7 +322,7 @@
 /mob/living/proc/get_blood_color()
 	return "#A10808"
 
-/mob/living/carbon/Xenomorph/get_blood_color()
+/mob/living/carbon/xenomorph/get_blood_color()
 	return "#dffc00"
 
 /mob/living/carbon/human/get_blood_color()
@@ -337,7 +337,7 @@
 /mob/living/carbon/monkey/get_blood_id()
 	return "blood"
 
-/mob/living/carbon/Xenomorph/get_blood_id()
+/mob/living/carbon/xenomorph/get_blood_id()
 	return "xenoblood"
 
 /mob/living/carbon/human/get_blood_id()
@@ -452,7 +452,7 @@
 
 	..()
 
-/mob/living/carbon/Xenomorph/add_splatter_floor(turf/T, small_drip, b_color)
+/mob/living/carbon/xenomorph/add_splatter_floor(turf/T, small_drip, b_color)
 	if(!T)
 		T = get_turf(src)
 
@@ -463,17 +463,3 @@
 	if(!XB)
 		XB = new(T)
 	XB.blood_DNA["UNKNOWN DNA"] = "X*"
-
-
-
-/mob/living/silicon/robot/add_splatter_floor(turf/T, small_drip, b_color)
-	if(!T)
-		T = get_turf(src)
-
-	if(!T.can_bloody)
-		return
-
-	var/obj/effect/decal/cleanable/blood/oil/O = locate() in T.contents
-	if(!O)
-		O = new(T)
-

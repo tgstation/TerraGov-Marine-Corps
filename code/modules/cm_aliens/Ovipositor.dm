@@ -59,7 +59,7 @@
 		health -= 75
 
 //Every other type of nonhuman mob
-/obj/ovipositor/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/ovipositor/attack_alien(mob/living/carbon/xenomorph/M)
 	switch(M.a_intent)
 		if(INTENT_HELP)
 			M.visible_message("<span class='notice'>\The [M] caresses [src] with its scythe-like arm.</span>", \
@@ -85,7 +85,7 @@
 
 	return 0
 
-/obj/ovipositor/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/obj/ovipositor/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	M.visible_message("<span class='danger'>[M] nudges its head against [src].</span>", \
 	"<span class='danger'>You nudge your head against [src].</span>")
 

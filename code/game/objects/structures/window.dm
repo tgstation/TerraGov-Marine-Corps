@@ -19,6 +19,32 @@
 	var/damageable = TRUE
 	var/deconstructable = TRUE
 
+
+/obj/structure/window/Initialize(mapload, start_dir, constructed)
+	..()
+
+	//player-constructed windows
+	if(constructed)
+		anchored = FALSE
+		state = 0
+
+	if(start_dir)
+		setDir(start_dir)
+
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/structure/window/LateInitialize()
+	. = ..()
+	update_nearby_icons()
+
+
+/obj/structure/window/Destroy()
+	density = FALSE
+	update_nearby_icons()
+	return ..()
+
+
 //create_debris creates debris like shards and rods. This also includes the window frame for explosions
 //If an user is passed, it will create a "user smashes through the window" message. AM is the item that hits
 //Please only fire this after a hit
@@ -109,7 +135,7 @@
 	user.visible_message("<span class='notice'>Something knocks on [src].</span>")
 	playsound(loc, 'sound/effects/glassknock.ogg', 15, 1)
 
-/obj/structure/window/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/window/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HELP)
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 25, 1)
 		M.visible_message("<span class='warning'>\The [M] creepily taps on [src] with its huge claw.</span>", \
@@ -216,7 +242,7 @@
 	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && deconstructable)
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
 		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P)
+			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, src, BUSY_ICON_HOSTILE))
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
 				obj_integrity = 0
 				healthcheck(0, 0, 1)
@@ -307,24 +333,6 @@
 
 	setDir(turn(dir, 270))
 
-
-/obj/structure/window/Initialize(Loc, start_dir = null, constructed = 0)
-	. = ..()
-
-	//player-constructed windows
-	if(constructed)
-		anchored = FALSE
-
-	if(start_dir)
-		setDir(start_dir)
-
-	update_nearby_icons()
-
-/obj/structure/window/Destroy()
-	density = FALSE
-	update_nearby_icons()
-	. = ..()
-
 /obj/structure/window/Move()
 	var/ini_dir = dir
 	..()
@@ -411,13 +419,6 @@
 	basestate = "rwindow"
 	max_integrity = 300
 	reinf = TRUE
-
-/obj/structure/window/Initialize(Loc, constructed = 0)
-	. = ..()
-
-	//player-constructed windows
-	if(constructed)
-		state = 0
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -531,7 +532,7 @@
 /obj/structure/window/framed/almayer/requisitions
 	name = "kevlar-weave infused bulletproof window"
 	desc = "A borosilicate glass window infused with kevlar fibres and mounted within a special shock-absorbing frame, this is gonna be seriously hard to break through."
-	max_integrity = 2000
+	max_integrity = 1000
 	deconstructable = FALSE
 	window_frame = /obj/structure/window_frame/almayer/requisitions
 

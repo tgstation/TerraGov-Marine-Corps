@@ -88,7 +88,7 @@
 
 	if(building)
 		buildstage = 0
-		panel_open = TRUE
+		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 
 	wires = new /datum/wires/airalarm(src)
 
@@ -176,7 +176,7 @@
 	if(buildstage != 2)
 		icon_state = "alarm-b1"
 		return
-	if(panel_open)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		icon_state = "alarmx"
 		return
 	if((machine_stat & (NOPOWER|BROKEN)) || shorted)
@@ -749,12 +749,12 @@ table tr:first-child th:first-child { border: none;}
 		if(2)
 			if(isscrewdriver(W))  // Opening that Air Alarm up.
 				//to_chat(user, "You pop the Air Alarm's maintence panel open.")
-				panel_open = !panel_open
-				to_chat(user, "The wires have been [panel_open ? "exposed" : "unexposed"]")
+				TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+				to_chat(user, "The wires have been [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposed" : "unexposed"]")
 				update_icon()
 				return
 
-			if(panel_open && (ismultitool(W) || iswirecutter(W)))
+			if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (ismultitool(W) || iswirecutter(W)))
 				return attack_hand(user)
 
 			if(istype(W, /obj/item/card/id))// trying to unlock the interface with an ID card
@@ -787,7 +787,7 @@ table tr:first-child th:first-child { border: none;}
 				user.visible_message("<span class='notice'>[user] starts prying out [src]'s circuits.</span>",
 				"<span class='notice'>You start prying out [src]'s circuits.</span>")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-				if(do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					user.visible_message("<span class='notice'>[user] pries out [src]'s circuits.</span>",
 					"<span class='notice'>You pry out [src]'s circuits.</span>")
 					var/obj/item/circuitboard/airalarm/circuit

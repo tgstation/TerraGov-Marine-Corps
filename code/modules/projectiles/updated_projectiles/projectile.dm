@@ -384,7 +384,7 @@
 		return 0
 
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
-		if(((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest)) || stat == DEAD)
+		if(isnestedhost(src) || stat == DEAD)
 			return FALSE
 
 	. = P.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
@@ -444,17 +444,13 @@
 				. -= 15
 
 
-/mob/living/carbon/Xenomorph/get_projectile_hit_chance(obj/item/projectile/P)
+/mob/living/carbon/xenomorph/get_projectile_hit_chance(obj/item/projectile/P)
 	. = ..()
 	if(.)
 		if(P.ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS)
 			return 0
 		if(mob_size == MOB_SIZE_BIG)	. += 10
 		else							. -= 10
-
-
-/mob/living/silicon/robot/drone/get_projectile_hit_chance(obj/item/projectile/P)
-	return 0 // just stop them getting hit by projectiles completely
 
 
 /obj/item/projectile/proc/play_damage_effect(mob/M)
@@ -598,7 +594,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		return 1
 
 //Deal with xeno bullets.
-/mob/living/carbon/Xenomorph/bullet_act(obj/item/projectile/P)
+/mob/living/carbon/xenomorph/bullet_act(obj/item/projectile/P)
 	if(!P || !istype(P))
 		return
 	if(issamexenohive(P.firer)) //Aliens won't be harming allied aliens.
@@ -627,7 +623,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		world << "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>"
 		#endif
 		if(isxenoqueen(src) || isxenocrusher(src)) //Charging and crest resistances. Charging Xenos get a lot of extra armor, currently Crushers and Queens
-			var/mob/living/carbon/Xenomorph/charger = src
+			var/mob/living/carbon/xenomorph/charger = src
 			armor += round(charger.charge_speed * 5) //Some armor deflection when charging.
 			#if DEBUG_CREST_DEFENSE
 			world << "<span class='debuginfo'>Projectile direction is: <b>[P.dir]</b> and crest direction is: <b>[charger.dir]</b></span>"

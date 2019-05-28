@@ -38,19 +38,13 @@
 	var/opened = 0 //Has it been opened before?
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
 
-/obj/item/storage/Initialize(mapload, ...)
-	. = ..()
-	can_hold = typecacheof(can_hold)
-	cant_hold = typecacheof(cant_hold)
-	bypass_w_limit = typecacheof(bypass_w_limit)
-
 /obj/item/storage/MouseDrop(obj/over_object as obj)
-	if(ishuman(usr) || ismonkey(usr) || iscyborg(usr)) //so monkeys can take off their backpacks -- Urist
+	if(ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
 
 		if(usr.lying)
 			return
 
-		if(istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+		if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 			return
 
 		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
@@ -259,7 +253,7 @@
 	if(usr.incapacitated(TRUE))
 		return
 
-	if(istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return
 
 	var/list/PL = params2list(params)
@@ -507,8 +501,16 @@
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
 
-/obj/item/storage/New()
-	..()
+
+/obj/item/storage/Initialize(mapload, ...)
+	. = ..()
+	if(length(can_hold))
+		can_hold = typecacheof(can_hold)
+	else if(length(cant_hold))
+		cant_hold = typecacheof(cant_hold)
+	if(length(bypass_w_limit))
+		bypass_w_limit = typecacheof(bypass_w_limit)
+
 	if(!allow_quick_gather)
 		verbs -= /obj/item/storage/verb/toggle_gathering_mode
 
@@ -693,7 +695,10 @@
 
 
 /obj/item/storage/recalculate_storage_space()
+	var/list/lookers = can_see_content()
+	if(!length(lookers))
+		return
 	orient2hud()
-	for(var/X in can_see_content())
+	for(var/X in lookers)
 		var/mob/M = X //There is no need to typecast here, really, but for clarity.
 		show_to(M)

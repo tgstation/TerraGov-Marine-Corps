@@ -3,7 +3,7 @@
 	display_name = "Drone"
 	upgrade_name = ""
 	caste_desc = "A builder of hives. Only drones may evolve into Queens."
-	caste_type_path = /mob/living/carbon/Xenomorph/Drone
+	caste_type_path = /mob/living/carbon/xenomorph/drone
 
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -29,7 +29,7 @@
 	evolution_threshold = 100
 	upgrade_threshold = 100
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Queen, /mob/living/carbon/Xenomorph/Carrier, /mob/living/carbon/Xenomorph/Hivelord)
+	evolves_to = list(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/carrier, /mob/living/carbon/xenomorph/hivelord)
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER

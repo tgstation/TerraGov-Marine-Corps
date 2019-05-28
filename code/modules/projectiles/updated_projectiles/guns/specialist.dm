@@ -79,7 +79,7 @@
 	apply_overlay(LASER_LAYER)
 	return TRUE
 
-/mob/living/carbon/Xenomorph/apply_laser()
+/mob/living/carbon/xenomorph/apply_laser()
 	overlays_standing[X_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-X_LASER_LAYER)
 	apply_overlay(X_LASER_LAYER)
 	return TRUE
@@ -96,7 +96,7 @@
 	remove_overlay(LASER_LAYER)
 	return TRUE
 
-/mob/living/carbon/Xenomorph/remove_laser()
+/mob/living/carbon/xenomorph/remove_laser()
 	remove_overlay(X_LASER_LAYER)
 	return TRUE
 
@@ -337,7 +337,7 @@
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 17, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 11, "rail_y" = 18, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
 /obj/item/weapon/gun/smartgun/Initialize()
 	. = ..()
@@ -507,7 +507,7 @@
 
 /obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
 	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
-		if(!do_after(user, 8, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 8, TRUE, src))
 			return
 	if(able_to_fire(user))
 		if(get_dist(target,user) <= 2)
@@ -599,7 +599,7 @@
 	var/riot_version
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-/obj/item/weapon/gun/launcher/m81/Initialize(loc, spawn_empty)
+/obj/item/weapon/gun/launcher/m81/Initialize(mapload, spawn_empty)
 	. = ..()
 	if(!spawn_empty)
 		if(riot_version)
@@ -716,6 +716,7 @@
 	w_class = 5
 	force = 15
 	wield_delay = 12
+	wield_penalty = WIELD_DELAY_VERY_SLOW
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_HEAVY
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness,
@@ -728,7 +729,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/datum/effect_system/smoke_spread/smoke
 
-/obj/item/weapon/gun/launcher/rocket/Initialize(loc, spawn_empty)
+/obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
 	. = ..()
 	smoke = new(src, FALSE)
 
@@ -736,7 +737,7 @@
 	QDEL_NULL(smoke)
 
 /obj/item/weapon/gun/launcher/rocket/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
-	if(!able_to_fire(user))
+	if(!able_to_fire(user) || user.action_busy)
 		return
 
 	var/delay = 3
@@ -746,7 +747,7 @@
 	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
 		delay += 6
 
-	if(!do_after(user, delay, TRUE, 3, BUSY_ICON_HOSTILE, null, TRUE)) //slight wind up
+	if(!do_after(user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
 		return
 
 	playsound(loc,'sound/weapons/gun_mortar_fire.ogg', 50, 1)
@@ -762,12 +763,6 @@
 
 	log_combat(usr, usr, "fired the [src].")
 	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
-
-/obj/item/weapon/gun/launcher/rocket/wield(mob/living/user)
-	. = ..()
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
-		do_after(user, 15, TRUE, 5, BUSY_ICON_HOSTILE)
-
 
 /obj/item/weapon/gun/launcher/rocket/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 2
@@ -804,6 +799,7 @@
 /obj/item/weapon/gun/launcher/rocket/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
 	user.transferItemToLoc(magazine, src) //Click!
 	current_mag = magazine
+	ammo = GLOB.ammo_list[current_mag.default_ammo]
 	user.visible_message("<span class='notice'>[user] loads [magazine] into [src]!</span>",
 	"<span class='notice'>You load [magazine] into [src]!</span>", null, 3)
 	if(reload_sound)
@@ -818,7 +814,7 @@
 		to_chat(user, "<span class='warning'>[src] is already empty!</span>")
 		return
 	to_chat(user, "<span class='notice'>You begin unloading [src].</span>")
-	if(!do_after(user,current_mag.reload_delay * 0.5, TRUE, 5, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, current_mag.reload_delay * 0.5, TRUE, src, BUSY_ICON_GENERIC))
 		to_chat(user, "<span class='warning'>Your unloading was interrupted!</span>")
 		return
 	if(!user) //If we want to drop it on the ground or there's no user.
@@ -962,10 +958,8 @@
 	if(user.action_busy)
 		return
 	playsound(get_turf(src), 'sound/weapons/tank_minigun_start.ogg', 30)
-	if(!do_after(user, 5, TRUE, 5, BUSY_ICON_HOSTILE, null, TRUE)) //Half second wind up
-		return
-
-	. = ..()
+	if(do_after(user, 5, TRUE, src, BUSY_ICON_DANGER)) //Half second wind up
+		return ..()
 
 
 /obj/item/weapon/gun/minigun/set_gun_config_values()

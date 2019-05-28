@@ -82,7 +82,7 @@
 	src.view_range = num
 	cameranet.updateVisibility(src, 0)
 
-/obj/machinery/camera/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/camera/attack_alien(mob/living/carbon/xenomorph/M)
 	if(status)
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)
@@ -105,14 +105,14 @@
 
 	// DECONSTRUCTION
 	if(isscrewdriver(W))
-		//to_chat(user, "<span class='notice'>You start to [panel_open ? "close" : "open"] the camera's panel.</span>")
+		//to_chat(user, "<span class='notice'>You start to [ ? "close" : "open"] the camera's panel.</span>")
 		//if(toggle_panel(user)) // No delay because no one likes screwdrivers trying to be hip and have a duration cooldown
-		panel_open = !panel_open
-		user.visible_message("<span class='warning'>[user] screws the camera's panel [panel_open ? "open" : "closed"]!</span>",
-		"<span class='notice'>You screw the camera's panel [panel_open ? "open" : "closed"].</span>")
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+		user.visible_message("<span class='warning'>[user] screws the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"]!</span>",
+		"<span class='notice'>You screw the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"].</span>")
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 
-	else if((iswirecutter(W) || ismultitool(W)) && panel_open)
+	else if((iswirecutter(W) || ismultitool(W)) && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		interact(user)
 
 	else if(iswelder(W))
@@ -257,9 +257,7 @@
 
 /obj/machinery/camera/proc/weld(var/obj/item/tool/weldingtool/WT, var/mob/user)
 
-	if(user.action_busy)
-		return FALSE
-	if(!WT.isOn())
+	if(user.action_busy || !WT.isOn())
 		return FALSE
 
 	//Do after stuff here
@@ -267,11 +265,9 @@
 	"<span class='notice'>You start to weld [src].</span>")
 	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 	WT.eyecheck(user)
-	if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-		if(!WT.isOn())
-			return FALSE
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-		user.visible_message("<span class='notice'>[user] welds [src].</span>",
-		"<span class='notice'>You weld [src].</span>")
-		return TRUE
-	return FALSE
+	if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+		return FALSE
+	playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+	user.visible_message("<span class='notice'>[user] welds [src].</span>",
+	"<span class='notice'>You weld [src].</span>")
+	return TRUE

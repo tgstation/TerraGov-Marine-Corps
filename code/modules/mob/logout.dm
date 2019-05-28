@@ -1,7 +1,10 @@
 /mob/Logout()
 	SSnano.user_logout(src) // this is used to clean up (remove) this user's Nano UIs
 	if(interactee) 
-		unset_interaction()
+		unset_interaction()	
+	if(typing)
+		remove_emote_overlay(null, typing, viewers())
+		typing = null
 	GLOB.player_list -= src
 	log_access("Logout: [key_name(src)]")
 	log_message("[key_name(src)] has logged out.", LOG_OOC)

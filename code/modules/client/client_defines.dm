@@ -10,12 +10,14 @@
 	var/ban_cache = null //Used to cache this client's bans to save on DB queries
 	var/last_message	= "" //Contains the last message sent by this client - used to protect against copy-paste spamming.
 	var/last_message_count = 0 //contins a number of how many times a message identical to last_message was sent.
+	var/ircreplyamount = 0
 		/////////
 		//OTHER//
 		/////////
 	var/datum/preferences/prefs 	= null
+	var/list/keybindings[0]
+
 	var/move_delay			= 0
-	var/next_movement		= 0
 	var/moving			= null
 	var/adminobs			= null
 	var/area			= null
@@ -62,3 +64,9 @@
 	var/encoding = "1252"
 
 	var/list/char_render_holders			//Should only be a key-value list of north/south/east/west = obj/screen.
+	
+	var/list/keys_held = list() // A list of any keys held currently
+	// These next two vars are to apply movement for keypresses and releases made while move delayed.
+	// Because discarding that input makes the game less responsive.
+	var/next_move_dir_add // On next move, add this dir to the move that would otherwise be done
+	var/next_move_dir_sub // On next move, subtract this dir from the move that would otherwise be done

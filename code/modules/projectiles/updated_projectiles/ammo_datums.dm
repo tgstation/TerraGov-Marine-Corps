@@ -96,7 +96,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			shake_camera(M, 3, 4)
 			if(isliving(M)) //This is pretty ugly, but what can you do.
 				if(isxeno(M))
-					var/mob/living/carbon/Xenomorph/target = M
+					var/mob/living/carbon/xenomorph/target = M
 					if(target.mob_size == MOB_SIZE_BIG)
 						return //Big xenos are not affected.
 					target.apply_effects(0,1) //Smaller ones just get shaken.
@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			return
 		var/impact_message = ""
 		if(isxeno(M))
-			var/mob/living/carbon/Xenomorph/D = M
+			var/mob/living/carbon/xenomorph/D = M
 			if(D.fortify) //If we're fortified we don't give a shit about staggerstun.
 				impact_message += "<span class='xenodanger'>Your fortified stance braces you against the impact.</span>"
 				return
@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			var/mob/living/carbon/C = M
 			var/stagger_immune = FALSE
 			if(isxeno(C))
-				var/mob/living/carbon/Xenomorph/X = M
+				var/mob/living/carbon/xenomorph/X = M
 				if(isxenoqueen(X)) //Stagger too powerful vs the Queen, so she's immune.
 					stagger_immune = TRUE
 			#if DEBUG_STAGGER_SLOWDOWN
@@ -1180,7 +1180,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
 		return
 
-	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest))
+	if(isnestedhost(C))
 		return
 
 	staggerstun(C, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 1, 0) //Staggers and slows down briefly
@@ -1394,7 +1394,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/boiler_gas/proc/drop_nade(turf/T, atom/firer, range = 1)
 	set_xeno_smoke()
 	if(isxeno(firer))
-		var/mob/living/carbon/Xenomorph/X = firer
+		var/mob/living/carbon/xenomorph/X = firer
 		smoke_system.strength = X.xeno_caste.bomb_strength
 		range = max(2, range + X.upgrade_as_number())
 	smoke_system.set_up(range, T)

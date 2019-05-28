@@ -83,7 +83,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/remove_ai_verbs()
 	src.verbs -= ai_verbs_default
 
-/mob/living/silicon/ai/Initialize(loc, var/datum/ai_laws/L, var/obj/item/mmi/B, var/safety = 0)
+/mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, obj/item/mmi/B, safety = FALSE)
 	announcement = new()
 	announcement.title = "A.I. Announcement"
 	announcement.announcement_type = "A.I. Announcement"
@@ -114,7 +114,6 @@ var/list/ai_verbs_default = list(
 		laws = new base_law_type
 
 	aiMulti = new(src)
-	aiCamera = new/obj/item/camera/siliconcam/ai_camera(src)
 
 	if (istype(loc, /turf))
 		add_ai_verbs(src)
@@ -585,25 +584,16 @@ var/list/ai_verbs_default = list(
 
 
 /mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)
-	if(iswrench(W))
-		if(anchored)
-			user.visible_message("<span class='notice'> \The [user] starts to unbolt \the [src] from the plating...</span>")
-			if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-				user.visible_message("<span class='notice'> \The [user] decides not to unbolt \the [src].</span>")
+	if(iswrench(W) && user.a_intent != INTENT_HARM)
+		if(!user.action_busy)
+			var/un = anchored ? "un" : ""
+			user.visible_message("<span class='notice'> \The [user] starts to [un]bolt \the [src] [anchored ? "from" : "to"] the plating...</span>")
+			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				return
-			user.visible_message("<span class='notice'> \The [user] finishes unfastening \the [src]!</span>")
-			anchored = 0
-			return
-		else
-			user.visible_message("<span class='notice'> \The [user] starts to bolt \the [src] to the plating...</span>")
-			if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-				user.visible_message("<span class='notice'> \The [user] decides not to bolt \the [src].</span>")
-				return
-			user.visible_message("<span class='notice'> \The [user] finishes fastening down \the [src]!</span>")
-			anchored = 1
-			return
-	else
-		return ..()
+			user.visible_message("<span class='notice'> \The [user] finishes [un]fastening \the [src]!</span>")
+			anchored = !anchored
+		return
+	return ..()
 
 
 /mob/living/silicon/ai/proc/sensor_mode()

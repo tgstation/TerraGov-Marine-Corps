@@ -52,10 +52,6 @@
 			update_icon()
 		return
 
-	if(iscyborg(M))
-		..()
-		return
-
 	if(user.a_intent == INTENT_HARM)
 		return
 	else if(!status)

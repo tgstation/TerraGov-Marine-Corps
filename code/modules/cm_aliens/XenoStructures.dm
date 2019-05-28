@@ -56,7 +56,7 @@
 
 /obj/effect/alien/resin/hitby(AM as mob|obj)
 	..()
-	if(istype(AM,/mob/living/carbon/Xenomorph))
+	if(istype(AM,/mob/living/carbon/xenomorph))
 		return
 	visible_message("<span class='danger'>\The [src] was hit by \the [AM].</span>", \
 	"<span class='danger'>You hit \the [src].</span>")
@@ -71,7 +71,7 @@
 		playsound(loc, "alien_resin_break", 25)
 	take_damage(tforce)
 
-/obj/effect/alien/resin/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/effect/alien/resin/attack_alien(mob/living/carbon/xenomorph/M)
 	if(isxenolarva(M)) //Larvae can't do shit
 		return 0
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
@@ -221,7 +221,7 @@
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null
 
-/obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent != INTENT_HARM)
 		if(M.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			if(!hugger)
@@ -302,7 +302,7 @@
 	else
 		return TryToSwitchState(user)
 
-/obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc))
 		return FALSE
@@ -310,7 +310,7 @@
 	return TRUE
 
 //clicking on resin doors attacks them, or opens them without harm intent
-/obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/xenomorph/M)
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
@@ -321,11 +321,7 @@
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins ripping it down.</span>", \
 	"<span class='warning'>You dig into \the [src] and begin ripping it down.</span>", null, 5)
 	playsound(src, "alien_resin_break", 25)
-	if(do_after(M, 80, FALSE, 5, BUSY_ICON_HOSTILE))
-		if(!loc)
-			return FALSE //Someone already destroyed it, do_after should check this but best to be safe
-		if(M.loc != cur_loc)
-			return FALSE //Make sure we're still there
+	if(do_after(M, 80, FALSE, src, BUSY_ICON_HOSTILE))
 		M.visible_message("<span class='danger'>[M] rips down \the [src]!</span>", \
 		 "<span class='danger'>You rip down \the [src]!</span>", null, 5)
 		qdel(src)
@@ -496,11 +492,11 @@
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(TRUE)//any explosion destroys the egg.
 
-/obj/effect/alien/egg/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/obj/effect/alien/egg/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	to_chat(M, "<span class='xenowarning'>You nudge [src], but nothing happens.</span>")
 	return
 
-/obj/effect/alien/egg/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/effect/alien/egg/attack_alien(mob/living/carbon/xenomorph/M)
 
 	if(!istype(M))
 		return attack_hand(M)
@@ -692,7 +688,7 @@ TUNNEL
 	var/tunnel_desc = "" //description added by the hivelord.
 
 	max_integrity = 140
-	var/mob/living/carbon/Xenomorph/Hivelord/creator = null
+	var/mob/living/carbon/xenomorph/hivelord/creator = null
 	var/obj/structure/tunnel/other = null
 	var/id = null //For mapping
 
@@ -749,13 +745,13 @@ TUNNEL
 		return ..()
 	attack_alien(user)
 
-/obj/structure/tunnel/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/tunnel/attack_alien(mob/living/carbon/xenomorph/M)
 	if(!istype(M) || M.stat || M.lying)
 		return
 
 	if(M.a_intent == INTENT_HARM && M == creator)
 		to_chat(M, "<span class='xenowarning'>You begin filling in your tunnel...</span>")
-		if(do_after(M, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, 5, BUSY_ICON_HOSTILE))
+		if(do_after(M, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
 			obj_integrity = 0
 			healthcheck()
 		return
@@ -792,7 +788,7 @@ TUNNEL
 	if(isxenolarva(M)) //Larva can zip through near-instantly, they are wormlike after all
 		tunnel_time = 5
 
-	if(do_after(M, tunnel_time, FALSE, 5, BUSY_ICON_GENERIC))
+	if(do_after(M, tunnel_time, FALSE, src, BUSY_ICON_GENERIC))
 		if(other && isturf(other.loc)) //Make sure the end tunnel is still there
 			M.forceMove(other.loc)
 			M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \

@@ -30,13 +30,13 @@ var/global/list/image/splatter_cache=list()
 		return
 	if(istype(src, /obj/effect/decal/cleanable/blood/tracks))
 		return // We handle our own drying.
-	if(src.type == /obj/effect/decal/cleanable/blood)
-		if(src.loc && isturf(src.loc))
-			for(var/obj/effect/decal/cleanable/blood/B in src.loc)
-				if(B != src)
-					if (B.blood_DNA)
-						blood_DNA |= B.blood_DNA.Copy()
-					qdel(B)
+	if(isturf(loc))
+		for(var/obj/effect/decal/cleanable/blood/B in loc)
+			if(B == src)
+				continue
+			if(blood_DNA)
+				B.blood_DNA |= blood_DNA.Copy()
+			return INITIALIZE_HINT_QDEL
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/decal/cleanable/blood/LateInitialize()

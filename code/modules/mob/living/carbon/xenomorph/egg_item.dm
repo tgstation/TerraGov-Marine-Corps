@@ -44,7 +44,7 @@
 			return
 	user.visible_message("<span class='notice'>[user] starts planting [src].</span>", \
 					"<span class='notice'>You start planting [src].</span>", null, 5)
-	if(!do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(user, 50, TRUE, T, BUSY_ICON_BUILD))
 		return
 	for (var/obj/O in T)
 		if (!istype(O,/obj/machinery/light/small))
@@ -54,7 +54,7 @@
 	playsound(T, 'sound/effects/splat.ogg', 15, 1)
 	qdel(src)
 
-/obj/item/xeno_egg/proc/plant_egg(mob/living/carbon/Xenomorph/user, turf/T)
+/obj/item/xeno_egg/proc/plant_egg(mob/living/carbon/xenomorph/user, turf/T)
 	if(!T.check_alien_construction(user))
 		return
 	if(!user.check_plasma(30))
@@ -67,9 +67,7 @@
 	var/plant_time = 35
 	if(!isxenodrone(user))
 		plant_time = 25
-	if(!do_after(user, plant_time, TRUE, 5, BUSY_ICON_BUILD))
-		return
-	if(!T.check_alien_construction(user))
+	if(!do_after(user, plant_time, TRUE, T, BUSY_ICON_BUILD, extra_checks = CALLBACK(T, /turf/proc/check_alien_construction, user)))
 		return
 	if(!user.check_plasma(30))
 		return
@@ -83,9 +81,9 @@
 
 /obj/item/xeno_egg/attack_self(mob/user)
 	if(isxeno(user))
-		var/mob/living/carbon/Xenomorph/X = user
+		var/mob/living/carbon/xenomorph/X = user
 		if(isxenocarrier(X))
-			var/mob/living/carbon/Xenomorph/Carrier/C = X
+			var/mob/living/carbon/xenomorph/carrier/C = X
 			C.store_egg(src)
 		else
 			var/turf/T = get_turf(user)
@@ -94,7 +92,7 @@
 
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
-/obj/item/xeno_egg/attack_alien(mob/living/carbon/Xenomorph/user)
+/obj/item/xeno_egg/attack_alien(mob/living/carbon/xenomorph/user)
 	switch(user.xeno_caste.can_hold_eggs)
 		if(CAN_HOLD_ONE_HAND)
 			attack_hand(user)

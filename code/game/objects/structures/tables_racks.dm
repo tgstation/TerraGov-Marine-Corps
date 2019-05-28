@@ -57,8 +57,8 @@
 
 /obj/structure/table/Crossed(atom/movable/O)
 	..()
-	if(istype(O,/mob/living/carbon/Xenomorph/Ravager) || istype(O,/mob/living/carbon/Xenomorph/Crusher))
-		var/mob/living/carbon/Xenomorph/M = O
+	if(istype(O,/mob/living/carbon/xenomorph/ravager) || istype(O,/mob/living/carbon/xenomorph/crusher))
+		var/mob/living/carbon/xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
 			destroy_structure()
@@ -247,13 +247,11 @@
 
 	if (!istype(I) || user.get_active_held_item() != I)
 		return ..()
-	if(iscyborg(user))
-		return
 	user.drop_held_item()
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/table/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/table/attack_alien(mob/living/carbon/xenomorph/M)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
 	M.animation_attack_on(src)
@@ -305,13 +303,13 @@
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user,50, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(user,50, TRUE, src, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 			"<span class='notice'>You disassemble [src].</span>")
 			destroy_structure(1)
 		return
 
-	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
+	if((W.flags_item & ITEM_ABSTRACT))
 		return
 
 	user.transferItemToLoc(W, loc)
@@ -495,19 +493,15 @@
 				user.visible_message("<span class='notice'>[user] starts weakening [src].</span>",
 				"<span class='notice'>You start weakening [src]</span>")
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-				if (do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-					if(!src || !WT.isOn())
-						return
+				if (do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					user.visible_message("<span class='notice'>[user] weakens [src].</span>",
 					"<span class='notice'>You weaken [src]</span>")
-					src.status = 1
+					status = 1
 			else
 				user.visible_message("<span class='notice'>[user] starts welding [src] back together.</span>",
 				"<span class='notice'>You start welding [src] back together.</span>")
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-				if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-					if(!src || !WT.isOn())
-						return
+				if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					user.visible_message("<span class='notice'>[user] welds [src] back together.</span>",
 					"<span class='notice'>You weld [src] back together.</span>")
 					status = 2
@@ -562,13 +556,11 @@
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
 	if (!istype(I) || user.get_active_held_item() != I)
 		return
-	if(iscyborg(user))
-		return
 	user.drop_held_item()
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/rack/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/rack/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
@@ -582,15 +574,15 @@
 		destroy_structure(1)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		return
-	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
+	if((W.flags_item & ITEM_ABSTRACT))
 		return
 	user.transferItemToLoc(W, loc)
 
 
 /obj/structure/rack/Crossed(atom/movable/O)
 	..()
-	if(istype(O,/mob/living/carbon/Xenomorph/Ravager) || istype(O,/mob/living/carbon/Xenomorph/Crusher))
-		var/mob/living/carbon/Xenomorph/M = O
+	if(istype(O,/mob/living/carbon/xenomorph/ravager) || istype(O,/mob/living/carbon/xenomorph/crusher))
+		var/mob/living/carbon/xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
 			destroy_structure()

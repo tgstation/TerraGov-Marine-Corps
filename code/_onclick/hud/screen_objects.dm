@@ -46,7 +46,7 @@
 	if(usr.incapacitated(TRUE))
 		return TRUE
 
-	if(istype(usr.loc,/obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return TRUE
 
 	switch(name)
@@ -230,7 +230,7 @@
 
 
 /obj/screen/pull/update_icon(mob/user)
-	if(!user) 
+	if(!user)
 		return
 	if(user.pulling)
 		icon_state = "pull"
@@ -265,11 +265,6 @@
 	screen_loc = "7,7 to 10,8"
 
 
-/obj/screen/storage/New(new_master, mapload)
-	. = ..()
-	master = new_master
-
-
 /obj/screen/storage/proc/update_fullness(obj/item/storage/S)
 	if(!length(S.contents))
 		color = null
@@ -280,11 +275,11 @@
 		total_w += I.w_class
 	var/fullness = round(10 * max(length(S.contents) / S.storage_slots, total_w / S.max_storage_space))
 	switch(fullness)
-		if(10) 
+		if(10)
 			color = "#ff0000"
-		if(7 to 9) 
+		if(7 to 9)
 			color = "#ffa500"
-		else 
+		else
 			color = null
 
 
@@ -318,6 +313,17 @@
 	overlays.Cut()
 	overlays += image('icons/mob/zone_sel.dmi', "[selecting]")
 	user.zone_selected = selecting
+
+
+/obj/screen/zone_sel/proc/set_selected_zone(choice, mob/user)
+	if(isobserver(user))
+		return
+
+	if(choice != selecting)
+		selecting = choice
+		update_icon(user)
+		
+	return TRUE
 
 
 /obj/screen/zone_sel/Click(location, control, params)
@@ -488,12 +494,12 @@
 
 
 /obj/screen/Click()
-	if(!usr)	
+	if(!usr)
 		return TRUE
 
 	switch(name)
 		if("equip")
-			if(istype(usr.loc,/obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+			if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 				return TRUE
 			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
@@ -504,42 +510,6 @@
 			usr.unset_interaction()
 			return TRUE
 
-		if("module")
-			if(issilicon(usr))
-				if(usr:module)
-					return TRUE
-				usr:pick_module()
-			return TRUE
-
-		if("radio")
-			if(issilicon(usr))
-				usr:radio_menu()
-			return TRUE
-		if("panel")
-			if(issilicon(usr))
-				usr:installed_modules()
-			return TRUE
-
-		if("store")
-			if(issilicon(usr))
-				usr:uneq_active()
-			return TRUE
-
-		if("module1")
-			if(iscyborg(usr))
-				usr:toggle_module(1)
-			return TRUE
-
-		if("module2")
-			if(iscyborg(usr))
-				usr:toggle_module(2)
-			return TRUE
-
-		if("module3")
-			if(iscyborg(usr))
-				usr:toggle_module(3)
-			return TRUE
-
 		if("Activate weapon attachment")
 			var/obj/item/weapon/gun/G = usr.get_held_item()
 			if(istype(G))
@@ -548,9 +518,9 @@
 
 		if("Toggle Rail Flashlight")
 			var/obj/item/weapon/gun/G = usr.get_held_item()
-			if(!istype(G)) 
+			if(!istype(G))
 				return
-			if(!G.get_active_firearm(usr)) 
+			if(!G.get_active_firearm(usr))
 				return
 			var/obj/item/attachable/flashlight/F = G.rail
 			if(F?.activate_attachment(G, usr))
@@ -598,7 +568,7 @@
 	if(!isxeno(usr))
 		return
 
-	var/mob/living/carbon/Xenomorph/X = usr
+	var/mob/living/carbon/xenomorph/X = usr
 	X.hive_status()
 
 
@@ -614,7 +584,7 @@
 	if(!isxeno(usr))
 		return
 
-	var/mob/living/carbon/Xenomorph/X = usr
+	var/mob/living/carbon/xenomorph/X = usr
 	X.toggle_nightvision()
 	if(icon_state == "nightvision1")
 		icon_state = "nightvision0"

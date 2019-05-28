@@ -105,12 +105,11 @@
 	user.visible_message("<span class='notice'>[user] starts assembling a sandbag barricade.</span>",
 	"<span class='notice'>You start assembling a sandbag barricade.</span>")
 
-	if(!do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 		return
 	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
-		if(O.density)
-			if(!(O.flags_atom & ON_BORDER) || O.dir == user.dir)
-				return
+		if(O.density && (!(O.flags_atom & ON_BORDER) || O.dir == user.dir))
+			return
 	var/obj/structure/barricade/sandbags/SB = new(user.loc, user.dir)
 	user.visible_message("<span class='notice'>[user] assembles a sandbag barricade.</span>",
 	"<span class='notice'>You assemble a sandbag barricade.</span>")

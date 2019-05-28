@@ -40,15 +40,20 @@
 	var/list/baseturfs = /turf/baseturf_bottom
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
-/turf/New()
-	..()
+/turf/Initialize(mapload, ...)
+	. = ..()
 	GLOB.turfs += src
-	for(var/atom/movable/AM as mob|obj in src)
-		spawn(0)
-			Entered(AM)
+	for(var/atom/movable/AM in src)
+		Entered(AM)
 
 	levelupdate()
 
+	if(luminosity)
+		if(light)	
+			WARNING("[type] - Don't set lights up manually during New(), We do it automatically.")
+		trueLuminosity = luminosity * luminosity
+		light = new(src)
+	visibilityChanged()
 
 /turf/Destroy()
 	if(oldTurf != "")
@@ -115,10 +120,8 @@
 		var/mob/M = A
 		if(!M.lastarea)
 			M.lastarea = get_area(M.loc)
-		if(M.lastarea.has_gravity == 0)
-			inertial_drift(M)
 
-		else if(!isspaceturf(src))
+		if(!isspaceturf(src))
 			M.inertia_dir = 0
 			M.make_floating(0)
 	..()
@@ -146,23 +149,6 @@
 	return FALSE
 /turf/proc/return_siding_icon_state()		//used for grass floors, which have siding.
 	return 0
-
-/turf/proc/inertial_drift(atom/movable/A as mob|obj)
-	if(!(A.last_move_dir))	return
-	if((istype(A, /mob/) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy-1)))
-		var/mob/M = A
-		if(M.Process_Spacemove(1))
-			M.inertia_dir  = 0
-			return
-		spawn(5)
-			if((M && !(M.anchored) && !(M.pulledby) && (M.loc == src)))
-				if(M.inertia_dir)
-					step(M, M.inertia_dir)
-					return
-				M.inertia_dir = M.last_move_dir
-				step(M, M.inertia_dir)
-	return
-
 
 
 /turf/proc/levelupdate()
@@ -382,7 +368,7 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 //Check if you can plant weeds on that turf.
 //Does NOT return a message, just a 0 or 1.
 /turf/proc/is_weedable()
-	return !density && !is_type_in_typecache(get_area(src), GLOB.unweedable_areas)
+	return !density && !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas)
 
 /turf/open/space/is_weedable()
 	return FALSE
@@ -410,7 +396,7 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 
 
 /turf/closed/wall/is_weedable()
-	return !is_type_in_typecache(get_area(src), GLOB.unweedable_areas) //so we can spawn weeds on the walls
+	return !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas) //so we can spawn weeds on the walls
 
 
 /turf/proc/check_alien_construction(mob/living/L, silent = FALSE)

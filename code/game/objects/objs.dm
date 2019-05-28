@@ -66,7 +66,7 @@
 		if ((M.client && M.interactee == src))
 			is_in_use = TRUE
 			attack_hand(M)
-	if (isAI(usr) || iscyborg(usr))
+	if (isAI(usr))
 		if (!(usr in nearby))
 			if (usr.client && usr.interactee==src) // && M.interactee == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
 				is_in_use = TRUE
@@ -185,7 +185,7 @@
 	if (M.mob_size > MOB_SIZE_HUMAN)
 		to_chat(user, "<span class='warning'>[M] is too big to buckle in.</span>")
 		return
-	if (istype(user, /mob/living/carbon/Xenomorph))
+	if (istype(user, /mob/living/carbon/xenomorph))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do that, try a nest.</span>")
 		return
 
@@ -233,8 +233,6 @@
 	if(!(direct & (direct - 1))) //not diagonal move. the obj's diagonal move is split into two cardinal moves and those moves will handle the buckled mob's movement.
 		if(!buckled_mob.Move(NewLoc, direct))
 			loc = buckled_mob.loc
-			last_move_dir = buckled_mob.last_move_dir
-			buckled_mob.inertia_dir = last_move_dir
 			return 0
 	return 1
 

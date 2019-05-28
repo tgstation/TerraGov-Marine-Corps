@@ -57,12 +57,12 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 /datum/action/xeno_action/toggle_speed/can_use_action(silent = FALSE, override_flags)
 	. = ..()
-	var/mob/living/carbon/Xenomorph/Hivelord/X = owner
+	var/mob/living/carbon/xenomorph/hivelord/X = owner
 	if(X.speed_activated)
 		return TRUE
 
 /datum/action/xeno_action/toggle_speed/action_activate()
-	var/mob/living/carbon/Xenomorph/Hivelord/X = owner
+	var/mob/living/carbon/xenomorph/hivelord/X = owner
 	if(X.speed_activated)
 		to_chat(X, "<span class='warning'>You feel less in tune with the resin.</span>")
 		X.speed_activated = FALSE
@@ -80,7 +80,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	action_icon_state = "build_tunnel"
 	mechanics_text = "Create a tunnel entrance. Use again to create the tunnel exit."
 	plasma_cost = 200
-	cooldown_timer = HIVELORD_TUNNEL_COOLDOWN
+	cooldown_timer = 120 SECONDS
 
 /datum/action/xeno_action/build_tunnel/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -108,14 +108,14 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	owner.visible_message("<span class='xenonotice'>[owner] begins digging out a tunnel entrance.</span>", \
 	"<span class='xenonotice'>You begin digging out a tunnel entrance.</span>", null, 5)
-	if(!do_after(owner, HIVELORD_TUNNEL_DIG_TIME, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(owner, HIVELORD_TUNNEL_DIG_TIME, TRUE, T, BUSY_ICON_BUILD))
 		to_chat(owner, "<span class='warning'>Your tunnel caves in as you stop digging it.</span>")
 		return fail_activate()
 
 	if(!can_use_action(TRUE))
 		return fail_activate()
 
-	var/mob/living/carbon/Xenomorph/Hivelord/X = owner
+	var/mob/living/carbon/xenomorph/hivelord/X = owner
 	if(!X.start_dig) //Let's start a new one.
 		X.visible_message("<span class='xenonotice'>\The [X] digs out a tunnel entrance.</span>", \
 		"<span class='xenonotice'>You dig out the first entrance to your tunnel.</span>", null, 5)

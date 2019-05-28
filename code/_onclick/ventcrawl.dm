@@ -76,10 +76,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 		if(vent_found_parent && (vent_found_parent.members.len || vent_found_parent.other_atmosmch))
 			visible_message("<span class='notice'>[src] begins climbing into the ventilation system...</span>" ,"<span class='notice'>You begin climbing into the ventilation system...</span>")
 
-			if(!do_after(src, 45, FALSE, 5, BUSY_ICON_GENERIC))
-				return
-
-			if(!client)
+			if(!do_after(src, 45, FALSE, vent_found, BUSY_ICON_GENERIC) || !client)
 				return
 
 			if(iscarbon(src) && can_ventcrawl())//It must have atleast been 1 to get this far
@@ -125,7 +122,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			pipes_shown += A.pipe_vision_img
 	is_ventcrawling = TRUE
 
-/mob/living/carbon/Xenomorph/Hunter/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
+/mob/living/carbon/xenomorph/hunter/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
 	. = ..()
 	cancel_stealth()
 

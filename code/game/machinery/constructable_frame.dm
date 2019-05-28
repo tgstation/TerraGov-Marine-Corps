@@ -45,7 +45,7 @@
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 					user.visible_message("<span class='notice'>[user] starts adding cables to [src].</span>",
 					"<span class='notice'>You start adding cables to [src].</span>")
-					if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD) && state == 1)
+					if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) && state == 1)
 						if(C && istype(C) && C.use(5))
 							user.visible_message("<span class='notice'>[user] adds cables to [src].</span>",
 							"<span class='notice'>You add cables to [src].</span>")

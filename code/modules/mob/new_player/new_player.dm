@@ -14,19 +14,21 @@
 	var/mob/living/new_character	//for instant transfer once the round is set up
 
 
+/mob/new_player/Initialize()
+	if(length(GLOB.newplayer_start))
+		forceMove(pick(GLOB.newplayer_start))
+	else
+		forceMove(locate(1, 1, 1))
+
+	lastarea = get_area(loc)
+
+	return ..()
+
+
 /mob/new_player/Destroy()
 	if(ready)
 		GLOB.ready_players--
 	return ..()
-
-
-/mob/new_player/proc/version_check()
-	if(client.byond_version < world.byond_version)
-		to_chat(client, "<span class='warning'>Your version of Byond differs from the server (v[world.byond_version].[world.byond_build]). You may experience graphical glitches, crashes, or other errors. You will be disconnected until your version matches or exceeds the server version.<br> \
-		Direct Download (Windows Installer): http://www.byond.com/download/build/[world.byond_version]/[world.byond_version].[world.byond_build]_byond.exe <br> \
-		Other versions (search for [world.byond_build] or higher): http://www.byond.com/download/build/[world.byond_version]</span>")
-
-		qdel(client)
 
 
 /mob/new_player/proc/new_player_panel()
@@ -155,8 +157,6 @@
 					to_chat(src, "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump.</span>")
 
 				observer.timeofdeath = world.time
-
-				observer.alpha = 127
 
 				var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 

@@ -44,8 +44,8 @@ var/list/plating_icons = list("plating", "platingdmg1", "platingdmg2", "platingd
 var/list/wood_icons = list("wood", "wood-broken")
 
 
-/turf/open/floor/New()
-	..()
+/turf/open/floor/Initialize(mapload, ...)
+	. = ..()
 	if(icon_state in icons_to_ignore_at_floor_init)//So damaged/burned tiles or plating icons aren't saved as the default
 		icon_regular_floor = "floor"
 	else
@@ -434,11 +434,9 @@ var/list/wood_icons = list("wood", "wood-broken")
 				to_chat(user, "<span class='warning'>You need more rods.</span>")
 				return
 			to_chat(user, "<span class='notice'>Reinforcing the floor.</span>")
-			if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD) && is_plating())
-				if(!R) return
-				if(R.use(2))
-					ChangeTurf(/turf/open/floor/engine)
-					playsound(src, 'sound/items/Deconstruct.ogg', 25, 1)
+			if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(src, .proc/is_plating)) && R.use(2))
+				ChangeTurf(/turf/open/floor/engine)
+				playsound(src, 'sound/items/Deconstruct.ogg', 25, 1)
 				return
 			else
 		else

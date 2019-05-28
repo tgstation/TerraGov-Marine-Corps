@@ -265,13 +265,6 @@ What a mess.*/
 					src.authenticated = usr.name
 					src.rank = "AI"
 					src.screen = 1
-				else if (iscyborg(usr))
-					src.active1 = null
-					src.active2 = null
-					src.authenticated = usr.name
-					var/mob/living/silicon/robot/R = usr
-					src.rank = "[R.modtype] [R.braintype]"
-					src.screen = 1
 				else if (istype(scan, /obj/item/card/id))
 					active1 = null
 					active2 = null
@@ -578,11 +571,6 @@ What a mess.*/
 	if(istype(user.get_active_held_item(), /obj/item/photo))
 		var/obj/item/photo/photo = user.get_active_held_item()
 		return photo.img
-	if(issilicon(user))
-		var/mob/living/silicon/tempAI = usr
-		var/datum/picture/selection = tempAI.GetPicture()
-		if (selection)
-			return selection.fields["img"]
 
 /obj/machinery/computer/secure_data/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))

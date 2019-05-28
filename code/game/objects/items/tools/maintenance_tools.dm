@@ -11,6 +11,8 @@
  * 		Crowbar
  */
 
+//toolspeed is used to change the speed of how fast this tool works lower is faster
+
 /*
  * Wrench
  */
@@ -27,6 +29,8 @@
 	matter = list("metal" = 150)
 	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
+	tool_behaviour = TOOL_WRENCH
+
 
 
 /*
@@ -46,6 +50,8 @@
 	throw_range = 5
 	matter = list("metal" = 75)
 	attack_verb = list("stabbed")
+	tool_behaviour = TOOL_SCREWDRIVER
+
 
 /obj/item/tool/screwdriver/suicide_act(mob/user)
 	user.visible_message("<span class='danger'>[user] is stabbing the [name] into [user.p_their()] [pick("temple","heart")]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
@@ -107,6 +113,8 @@
 	attack_verb = list("pinched", "nipped")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 1
+	tool_behaviour = TOOL_WIRECUTTER
+
 
 /obj/item/tool/wirecutters/Initialize()
 	. = ..()
@@ -141,6 +149,8 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2.0
+	tool_behaviour = TOOL_WELDER
+
 
 	//Cost to make in the autolathe
 	matter = list("metal" = 70, "glass" = 30)
@@ -202,17 +212,16 @@
 		if(!(S.limb_status & LIMB_ROBOT) || user.a_intent != INTENT_HELP)
 			return ..()
 
-		if(issynth(H))
-			if(M == user)
-				to_chat(user, "<span class='warning'>You can't repair damage to your own body - it's against OH&S.</span>")
-				return
-
 		if(S.brute_dam && welding)
+			if(issynth(H) && M == user)
+				if(user.action_busy || !do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+					return
 			S.heal_damage(15,0,0,1)
 			H.UpdateDamageIcon()
 			user.visible_message("<span class='warning'>\The [user] patches some dents on \the [H]'s [S.display_name] with \the [src].</span>", \
 								"<span class='warning'>You patch some dents on \the [H]'s [S.display_name] with \the [src].</span>")
 			remove_fuel(1,user)
+			playsound(user.loc, 'sound/items/Welder2.ogg', 25, 1)
 			return
 		else
 			to_chat(user, "<span class='warning'>Nothing to fix!</span>")
@@ -392,6 +401,8 @@
 	origin_tech = "engineering=1"
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 	pry_capable = IS_PRY_CAPABLE_CROWBAR
+	tool_behaviour = TOOL_CROWBAR
+
 
 /obj/item/tool/crowbar/red
 	icon = 'icons/obj/items/items.dmi'

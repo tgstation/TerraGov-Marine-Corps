@@ -66,14 +66,6 @@
 
 	if(ismob(loc) && on)
 		var/mob/M = loc
-		var/turf/T = M.loc
-		if(istype(T, /turf))
-			if(!M.moved_recently && M.last_move_dir)
-				M.moved_recently = 1
-				step(M, M.last_move_dir)
-				sleep(50)
-				if(M)
-					M.moved_recently = 0
 		to_chat(M, "<span class='danger'>You feel a sharp shock!</span>")
 		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 		s.set_up(3, 1, M)

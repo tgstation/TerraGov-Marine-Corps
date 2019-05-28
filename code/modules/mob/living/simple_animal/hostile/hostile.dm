@@ -34,20 +34,13 @@
 				continue
 			else if(L in friends)
 				continue
-			else if (istype(src, /mob/living/simple_animal/hostile/alien) && (isxeno(L) || (iscyborg(L))))
+			else if (istype(src, /mob/living/simple_animal/hostile/alien) && isxeno(L))
 				continue
 			else
 				if(!L.stat)
 					stance = HOSTILE_STANCE_ATTACK
 					T = L
 					break
-
-		else if(istype(A, /obj/mecha)) // Our line of sight stuff was already done in ListTargets().
-			var/obj/mecha/M = A
-			if (M.occupant)
-				stance = HOSTILE_STANCE_ATTACK
-				T = M
-				break
 
 		if(istype(A, /obj/machinery/bot))
 			var/obj/machinery/bot/B = A
@@ -95,10 +88,6 @@
 		var/mob/living/L = target_mob
 		L.attack_animal(src)
 		return L
-	if(istype(target_mob,/obj/mecha))
-		var/obj/mecha/M = target_mob
-		M.attack_animal(src)
-		return M
 	if(istype(target_mob,/obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
 		B.attack_animal(src)
@@ -115,7 +104,6 @@
 
 /mob/living/simple_animal/hostile/proc/ListTargets(var/dist = 7)
 	var/list/L = hearers(src, dist)
-	L += GLOB.mechas_list
 	return L
 
 /mob/living/simple_animal/hostile/death()

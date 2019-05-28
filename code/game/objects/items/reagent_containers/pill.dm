@@ -17,7 +17,7 @@ var/global/list/randomized_pill_icons
 	volume = 60
 	var/pill_desc = "An unknown pill." //the real description of the pill, shown when examined by a medically trained person
 
-/obj/item/reagent_container/pill/New()
+/obj/item/reagent_container/pill/Initialize()
 	. = ..()
 	if(!randomized_pill_icons)
 		var/allowed_numbers = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21)
@@ -62,7 +62,8 @@ var/global/list/randomized_pill_icons
 		if(user.mind && user.mind.cm_skills)
 			ingestion_time = max(10, 30 - 10*user.mind.cm_skills.medical)
 
-		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL)) return
+		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+			return
 
 		user.dropItemToGround(src) //icon update
 		for(var/mob/O in viewers(world.view, user))
@@ -237,7 +238,7 @@ var/global/list/randomized_pill_icons
 
 /obj/item/reagent_container/pill/happy
 	pill_desc = "A Happy Pill! Happy happy joy joy!"
-	list_reagents = list("space_drugs" = 15, "sugar" = 15)
+	list_reagents = list("space_drugs" = 15, "sugar" = 15, "laughter" = 5)
 
 /obj/item/reagent_container/pill/happy/New()
 	. = ..()
@@ -245,7 +246,7 @@ var/global/list/randomized_pill_icons
 
 /obj/item/reagent_container/pill/zoom
 	pill_desc = "A Zoom pill! Gotta go fast!"
-	list_reagents = list("impedrezene" = 10, "synaptizine" = 5, "hyperzine" = 5)
+	list_reagents = list("synaptizine" = 5, "hyperzine" = 5, "nutriment" = 2)
 
 /obj/item/reagent_container/pill/zoom/New()
 	. = ..()

@@ -18,10 +18,10 @@
 		if(O.level == 1)
 			O.hide(FALSE)
 
-/turf/open/space/New()
+/turf/open/space/Initialize(mapload, ...)
+	. = ..()
 	if(!istype(src, /turf/open/space/transit))
 		icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
-	..()
 
 /turf/open/space/attack_paw(mob/user)
 	return src.attack_hand(user)
@@ -77,8 +77,6 @@
 /turf/open/space/Entered(atom/movable/A)
 	..()
 	if ((!(A) || src != A.loc))	return
-
-	inertial_drift(A)
 
 	if(SSticker?.mode)
 

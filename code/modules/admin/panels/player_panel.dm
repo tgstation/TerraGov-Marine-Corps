@@ -227,8 +227,6 @@
 			else if(issilicon(M)) //silicon
 				if(isAI(M))
 					M_job = "AI"
-				else if(iscyborg(M))
-					M_job = "Cyborg"
 				else
 					M_job = "Silicon"
 
@@ -317,8 +315,6 @@
 		dat += "<td><a href='?priv_msg=[M.ckey]'>[M.name]</a></td>"
 		if(isAI(M))
 			dat += "<td>aI</td>"
-		else if(iscyborg(M))
-			dat += "<td>Cyborg</td>"
 		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
 		else if(istype(M, /mob/new_player))

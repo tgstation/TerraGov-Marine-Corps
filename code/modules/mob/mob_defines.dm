@@ -26,7 +26,6 @@
 	var/list/logging = list()
 	var/atom/movable/interactee //the thing that the mob is currently interacting with (e.g. a computer, another mob (stripping a mob), manning a hmg)
 	var/sdisabilities = 0	//Carbon
-	var/atom/movable/pulling
 	var/next_move
 	var/next_move_slowdown = 0	// Amount added during the next movement_delay(), then is reset.
 	var/hand
@@ -119,6 +118,8 @@
 
 	var/area/lastarea
 
+	var/list/observers = null	//The list of people observing this mob.
+
 	var/obj/control_object //Used by admins to possess objects. All mobs should have this var
 
 	//Whether or not mobs can understand other mobtypes. These stay in /mob so that ghosts can hear everything.
@@ -139,6 +140,9 @@
 	var/list/hud_possible //HUD images that this mob can provide.
 
 	var/action_busy //whether the mob is currently doing an action that takes time (do_after or do_mob procs)
+
+	var/list/progressbars //for stacking do_after bars
+	var/list/progbar_towers //for stacking the total pixel height of the aboves.
 
 	var/list/fullscreens = list()
 

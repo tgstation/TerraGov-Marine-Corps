@@ -112,21 +112,13 @@
 		to_chat(user, "These people have opened \the [src] during an alert: [users_to_open_string].")
 
 /obj/machinery/door/firedoor/Bumped(atom/AM)
-	if(panel_open || operating)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) || operating)
 		return
 	if(!density)
 		return ..()
-	if(istype(AM, /obj/mecha))
-		var/obj/mecha/mecha = AM
-		if(mecha.occupant)
-			var/mob/M = mecha.occupant
-			if(world.time - M.last_bumped <= 10)
-				return //Can bump-open one airlock per second. This is to prevent popup message spam.
-			M.last_bumped = world.time
-			attack_hand(M)
 	return FALSE
 
-/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/M)
 	var/turf/cur_loc = M.loc
 	if(blocked)
 		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
@@ -141,9 +133,7 @@
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
 	"<span class='warning'>You dig into \the [src] and begin to pry it open.</span>", null, 5)
 
-	if(do_after(M, 30, FALSE, 5, BUSY_ICON_HOSTILE))
-		if(M.loc != cur_loc)
-			return FALSE //Make sure we're still there
+	if(do_after(M, 30, FALSE, src, BUSY_ICON_BUILD))
 		if(blocked)
 			to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
 			return FALSE
@@ -236,7 +226,7 @@
 				"<span class='notice'>You start forcing \the [src] [density ? "open" : "closed"] with \the [C]!</span>",\
 				"You hear metal strain.")
 		var/old_density = density
-		if(do_after(user,30, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(do_after(user,30, TRUE, src, BUSY_ICON_HOSTILE))
 			if(blocked || density != old_density)
 				return
 			user.visible_message("<span class='danger'>\The [user] forces \the [blocked ? "welded " : "" ][name] [density ? "open" : "closed"] with \a [C]!</span>",\

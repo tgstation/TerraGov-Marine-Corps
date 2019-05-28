@@ -17,7 +17,7 @@
 
 /datum/saymode/xeno/handle_message(mob/living/user, message, datum/language/language)
 	if(isxeno(user))
-		var/mob/living/carbon/Xenomorph/X = user
+		var/mob/living/carbon/xenomorph/X = user
 		if(X.hivemind_talk(message))
 			return FALSE
 	return TRUE

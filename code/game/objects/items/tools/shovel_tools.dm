@@ -83,7 +83,7 @@
 						return
 				to_chat(user, "<span class='notice'>You start digging.</span>")
 				playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
-				if(!do_after(user, shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, shovelspeed, TRUE, T, BUSY_ICON_BUILD))
 					return
 				var/transf_amt = dirt_amt_per_dig
 				if(turfdirt == DIRT_TYPE_SNOW)
