@@ -18,6 +18,7 @@
 	action_icon_state = "regurgitate"
 	mechanics_text = "Vomit whatever you have devoured."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED
+	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 
 /datum/action/xeno_action/regurgitate/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -51,12 +52,7 @@
 	action_icon_state = "plant_weeds"
 	plasma_cost = 75
 	mechanics_text = "Plant a weed node (purple sac) on your tile."
-
-/datum/action/xeno_action/plant_weeds/give_action(mob/living/L)
-	RegisterSignal(owner, COMSIG_XENOABILITY_DROP_WEEDS, .proc/keybind_activation)
-
-/datum/action/xeno_action/plant_weeds/remove_action(mob/living/L)
-	UnregisterSignal(owner, COMSIG_XENOABILITY_DROP_WEEDS)
+	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/turf/T = get_turf(owner)
@@ -82,6 +78,7 @@
 	name = "Choose Resin Structure"
 	action_icon_state = "resin wall"
 	mechanics_text = "Selects which structure you will build with the (secrete resin) ability."
+	keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin,
 		/obj/structure/bed/nest,
@@ -114,6 +111,7 @@
 	mechanics_text = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	ability_name = "secrete resin"
 	plasma_cost = 75
+	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	build_resin(get_turf(owner))
@@ -265,18 +263,21 @@
 	action_icon_state = "emit_recovery"
 	mechanics_text = "Increases healing for yourself and nearby teammates."
 	aura_type = "recovery"
+	keybind_signal = COMSIG_XENOABILITY_EMIT_RECOVERY
 
 /datum/action/xeno_action/pheromones/emit_warding
 	name = "Emit Warding Pheromones"
 	action_icon_state = "emit_warding"
 	mechanics_text = "Increases armor for yourself and nearby teammates."
 	aura_type = "warding"
+	keybind_signal = COMSIG_XENOABILITY_EMIT_WARDING
 
 /datum/action/xeno_action/pheromones/emit_frenzy
 	name = "Emit Frenzy Pheromones"
 	action_icon_state = "emit_frenzy"
 	mechanics_text = "Increases damage for yourself and nearby teammates."
 	aura_type = "frenzy"
+	keybind_signal = COMSIG_XENOABILITY_EMIT_FRENZY
 
 
 /datum/action/xeno_action/activable/transfer_plasma
@@ -287,6 +288,7 @@
 	var/plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT
 	var/transfer_delay = 2 SECONDS
 	var/max_range = 2
+	keybind_signal = COMSIG_XENOABILITY_TRANSFER_PLASMA
 
 /datum/action/xeno_action/activable/transfer_plasma/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()

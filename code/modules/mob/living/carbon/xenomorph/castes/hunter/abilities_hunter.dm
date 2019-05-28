@@ -6,6 +6,7 @@
 	action_icon_state = "stealth_on"
 	mechanics_text = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
 	ability_name = "stealth"
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
 /datum/action/xeno_action/activable/stealth/action_activate()
 	var/mob/living/carbon/xenomorph/hunter/X = owner

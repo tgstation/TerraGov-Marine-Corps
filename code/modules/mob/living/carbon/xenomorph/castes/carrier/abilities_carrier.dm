@@ -6,6 +6,7 @@
 	action_icon_state = "throw_hugger"
 	mechanics_text = "Click once to bring a facehugger into your hand. Click again to ready that facehugger for throwing at a target or tile."
 	ability_name = "throw facehugger"
+	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
 
 /datum/action/xeno_action/activable/throw_hugger/get_cooldown()
 	var/mob/living/carbon/xenomorph/carrier/X = owner
@@ -77,6 +78,7 @@
 	action_icon_state = "retrieve_egg"
 	mechanics_text = "Store an egg on your body for future use. The egg has to be unplanted."
 	ability_name = "retrieve egg"
+	keybind_signal = COMSIG_XENOABILITY_RETRIEVE_EGG
 
 /datum/action/xeno_action/activable/retrieve_egg/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/carrier/X = owner
@@ -132,6 +134,7 @@
 	action_icon_state = "place_trap"
 	mechanics_text = "Place a hole on weeds that can be filled with a hugger. Activates when a marine steps on it."
 	plasma_cost = 200
+	keybind_signal = COMSIG_XENOABILITY_PLACE_TRAP
 
 /datum/action/xeno_action/place_trap/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -168,6 +171,7 @@
 	mechanics_text = "Spawn a facehugger that is stored on your body."
 	plasma_cost = 100
 	cooldown_timer = 10 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
 
 /datum/action/xeno_action/spawn_hugger/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>You can now spawn another young one.</span>")
