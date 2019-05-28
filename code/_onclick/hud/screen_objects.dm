@@ -79,6 +79,7 @@
 /obj/screen/close
 	name = "close"
 	layer = ABOVE_HUD_LAYER
+	plane = ABOVE_HUD_PLANE
 	icon_state = "x"
 
 
@@ -556,7 +557,6 @@
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "act_drop"
 	screen_loc = ui_drop_throw
-	layer = HUD_LAYER
 
 
 /obj/screen/drop/Click()

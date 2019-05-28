@@ -63,6 +63,7 @@ STI KALY - blind
 					H.dropItemToGround(H.head)
 				H.head = new /obj/item/clothing/head/wizard(H)
 				H.head.layer = ABOVE_HUD_LAYER
+				H.head.plane = ABOVE_HUD_PLANE
 			return
 		if(prob(chance))
 			if(!istype(H.wear_suit, /obj/item/clothing/suit/wizrobe))
@@ -70,6 +71,7 @@ STI KALY - blind
 					H.dropItemToGround(H.wear_suit)
 				H.wear_suit = new /obj/item/clothing/suit/wizrobe(H)
 				H.wear_suit.layer = ABOVE_HUD_LAYER
+				H.wear_suit.plane = ABOVE_HUD_PLANE
 			return
 		if(prob(chance))
 			if(!istype(H.shoes, /obj/item/clothing/shoes/sandal))
@@ -77,6 +79,7 @@ STI KALY - blind
 					H.dropItemToGround(H.shoes)
 				H.shoes = new /obj/item/clothing/shoes/sandal(H)
 				H.shoes.layer = ABOVE_HUD_LAYER
+				H.shoes.plane = ABOVE_HUD_PLANE
 			return
 	else
 		var/mob/living/carbon/H = affected_mob
