@@ -3,7 +3,7 @@
 	display_name = "Crusher"
 	upgrade_name = ""
 	caste_desc = "A huge tanky xenomorph."
-	caste_type_path = /mob/living/carbon/Xenomorph/Crusher
+	caste_type_path = /mob/living/carbon/xenomorph/crusher
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -33,7 +33,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
-	deevolves_to = /mob/living/carbon/Xenomorph/Warrior
+	deevolves_to = /mob/living/carbon/xenomorph/warrior
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
@@ -74,7 +74,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
-	deevolves_to = /mob/living/carbon/Xenomorph/Warrior
+	deevolves_to = /mob/living/carbon/xenomorph/warrior
 
 	// *** Defense *** //
 	armor_deflection = 90
@@ -105,7 +105,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = 1600
 
-	deevolves_to = /mob/living/carbon/Xenomorph/Warrior
+	deevolves_to = /mob/living/carbon/xenomorph/warrior
 
 	// *** Defense *** //
 	armor_deflection = 95
@@ -133,7 +133,7 @@
 	// *** Health *** //
 	max_health = 350
 
-	deevolves_to = /mob/living/carbon/Xenomorph/Warrior
+	deevolves_to = /mob/living/carbon/xenomorph/warrior
 
 	// *** Defense *** //
 	armor_deflection = 100

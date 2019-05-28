@@ -7,10 +7,10 @@
 	mechanics_text = "Knocks all adjacent targets away and down."
 	ability_name = "stomp"
 	plasma_cost = 80
-	cooldown_timer = CRUSHER_STOMP_COOLDOWN
+	cooldown_timer = 20 SECONDS
 
 /datum/action/xeno_action/activable/stomp/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Crusher/X = owner
+	var/mob/living/carbon/xenomorph/crusher/X = owner
 	succeed_activate()
 	add_cooldown()
 
@@ -56,7 +56,7 @@
 	mechanics_text = "Toggles the Crusher’s movement based charge on and off."
 
 /datum/action/xeno_action/ready_charge/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	X.is_charging = !X.is_charging
 	to_chat(X, "<span class='xenonotice'>You will [X.is_charging ? "now" : "no longer"] charge when moving.</span>")
 
@@ -68,8 +68,8 @@
 	action_icon_state = "cresttoss"
 	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
 	ability_name = "crest toss"
-	plasma_cost = CRUSHER_CRESTTOSS_COST
-	cooldown_timer = CRUSHER_CRESTTOSS_COOLDOWN
+	plasma_cost = 40
+	cooldown_timer = 6 SECONDS
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
 	to_chat(src, "<span class='xenowarning'><b>You can now crest toss again.</b></span>")
@@ -91,7 +91,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/cresttoss/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/L = A
 	X.face_atom(L) //Face towards the target so we don't look silly
 

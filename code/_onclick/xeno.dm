@@ -1,4 +1,4 @@
-/mob/living/carbon/Xenomorph/UnarmedAttack(atom/A, proximity_flag)
+/mob/living/carbon/xenomorph/UnarmedAttack(atom/A, proximity_flag)
 	if(lying)
 		return FALSE
 
@@ -16,7 +16,7 @@
 	return attack_paw(user)
 
 
-/mob/living/carbon/Xenomorph/Larva/UnarmedAttack(atom/A, proximity_flag)
+/mob/living/carbon/xenomorph/larva/UnarmedAttack(atom/A, proximity_flag)
 	if(lying)
 		return FALSE
 
@@ -24,23 +24,23 @@
 
 
 //Larva attack, will default to attack_alien behaviour unless overriden
-/atom/proc/attack_larva(mob/living/carbon/Xenomorph/Larva/user)
+/atom/proc/attack_larva(mob/living/carbon/xenomorph/larva/user)
 	return attack_alien(user)
 
 
-/mob/living/carbon/Xenomorph/Queen/CtrlMiddleClickOn(atom/A)
+/mob/living/carbon/xenomorph/queen/CtrlMiddleClickOn(atom/A)
 	. = ..()
 	if(!ovipositor)
 		return
 	if(!isxeno(A) || A == src)
 		return
-	var/mob/living/carbon/Xenomorph/X = A
+	var/mob/living/carbon/xenomorph/X = A
 	if(X.stat == DEAD)
 		return
 	set_queen_overwatch(A)
 
 
-/mob/living/carbon/Xenomorph/MiddleClickOn(atom/A)
+/mob/living/carbon/xenomorph/MiddleClickOn(atom/A)
 	. = ..()
 	if(!middle_mouse_toggle || !selected_ability)
 		return
@@ -48,14 +48,14 @@
 		selected_ability.use_ability(A)
 
 
-/mob/living/carbon/Xenomorph/ShiftClickOn(atom/A)
+/mob/living/carbon/xenomorph/ShiftClickOn(atom/A)
 	. = ..()
 	if(!selected_ability || middle_mouse_toggle)
 		return
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
 
-/mob/living/carbon/Xenomorph/Crusher/ClickOn(atom/A, params)
+/mob/living/carbon/xenomorph/crusher/ClickOn(atom/A, params)
 	. = ..()
 	if(!is_charging)
 		return

@@ -210,7 +210,7 @@
 	J.attack(stasis_mob, user) // yes this is awful -spookydonut
 	return
 
-/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/M)
 	if(opened)
 		return FALSE // stop xeno closing things
 	M.animation_attack_on(src)

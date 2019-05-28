@@ -413,7 +413,7 @@
 	return
 
 //Xenos smashing lights
-/obj/machinery/light/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/M)
 	if(status == 2) //Ignore if broken.
 		return FALSE
 	M.animation_attack_on(src)

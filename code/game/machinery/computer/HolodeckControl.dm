@@ -402,7 +402,7 @@ var/global/list/holodeck_programs = list(
 		return FALSE
 	attack_alien(user)
 
-/obj/item/toy/beach_ball/holoball/attack_alien(mob/living/carbon/Xenomorph/user)
+/obj/item/toy/beach_ball/holoball/attack_alien(mob/living/carbon/xenomorph/user)
 	attack_hand(user)
 
 /obj/structure/holohoop

@@ -152,7 +152,7 @@ obj/structure/bed/Destroy()
 					new buildstacktype (loc, buildstackamount)
 				qdel(src)
 
-/obj/structure/bed/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/bed/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HARM)
 		M.animation_attack_on(src)
 		playsound(src, hit_bed_sound, 25, 1)
@@ -317,7 +317,7 @@ var/global/list/activated_medevac_stretchers = list()
 	. = ..()
 	radio = new(src)
 
-/obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/xenomorph/M)
 	unbuckle()
 
 /obj/structure/bed/medevac_stretcher/Destroy()

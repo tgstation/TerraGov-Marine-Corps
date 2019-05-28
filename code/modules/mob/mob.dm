@@ -496,7 +496,7 @@
 	show_inv(M)
 
 
-/mob/living/start_pulling(atom/movable/AM, lunge, no_msg)
+/mob/living/start_pulling(atom/movable/AM, no_msg)
 	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 

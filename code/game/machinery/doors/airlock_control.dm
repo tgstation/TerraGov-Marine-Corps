@@ -14,12 +14,12 @@ obj/machinery/door/airlock/proc/can_radio()
 	return 1
 
 obj/machinery/door/airlock/receive_signal(datum/signal/signal)
-	if(!hasPower()) 
+	if(!hasPower())
 		return
 
 	if (!can_radio()) return //no radio
 
-	if(!signal) 
+	if(!signal)
 		return
 
 	if(id_tag != signal.data["tag"] || !signal.data["command"]) return
@@ -116,15 +116,6 @@ obj/machinery/door/airlock/open(surpress_send)
 obj/machinery/door/airlock/close(surpress_send)
 	. = ..()
 	if(!surpress_send) send_status()
-
-
-obj/machinery/door/airlock/Bumped(atom/AM)
-	..(AM)
-	if(istype(AM, /obj/mecha))
-		var/obj/mecha/mecha = AM
-		if(density && radio_connection && mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)))
-			send_status(1)
-	return
 
 obj/machinery/door/airlock/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)

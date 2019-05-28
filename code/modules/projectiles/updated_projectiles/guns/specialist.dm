@@ -79,7 +79,7 @@
 	apply_overlay(LASER_LAYER)
 	return TRUE
 
-/mob/living/carbon/Xenomorph/apply_laser()
+/mob/living/carbon/xenomorph/apply_laser()
 	overlays_standing[X_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-X_LASER_LAYER)
 	apply_overlay(X_LASER_LAYER)
 	return TRUE
@@ -96,7 +96,7 @@
 	remove_overlay(LASER_LAYER)
 	return TRUE
 
-/mob/living/carbon/Xenomorph/remove_laser()
+/mob/living/carbon/xenomorph/remove_laser()
 	remove_overlay(X_LASER_LAYER)
 	return TRUE
 
@@ -599,7 +599,7 @@
 	var/riot_version
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-/obj/item/weapon/gun/launcher/m81/Initialize(loc, spawn_empty)
+/obj/item/weapon/gun/launcher/m81/Initialize(mapload, spawn_empty)
 	. = ..()
 	if(!spawn_empty)
 		if(riot_version)
@@ -729,7 +729,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/datum/effect_system/smoke_spread/smoke
 
-/obj/item/weapon/gun/launcher/rocket/Initialize(loc, spawn_empty)
+/obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
 	. = ..()
 	smoke = new(src, FALSE)
 

@@ -167,7 +167,7 @@
 	obj_integrity -= 50
 	healthcheck()
 
-/obj/structure/bed/nest/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/M)
 	if(isxenolarva(M)) //Larvae can't do shit
 		return
 	if(M.a_intent == INTENT_HARM)
