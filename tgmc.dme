@@ -798,8 +798,6 @@
 #include "code\game\verbs\ooc.dm"
 #include "code\game\verbs\suicide.dm"
 #include "code\game\verbs\who.dm"
-#include "code\js\byjax.dm"
-#include "code\js\menus.dm"
 #include "code\modules\admin\admin_ranks.dm"
 #include "code\modules\admin\admin_verbs.dm"
 #include "code\modules\admin\debug_verbs.dm"
