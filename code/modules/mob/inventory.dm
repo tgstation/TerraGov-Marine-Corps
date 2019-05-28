@@ -58,19 +58,18 @@
 //Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns 1 on success.
 //If both fail it drops it on the floor and returns 0.
 //This is probably the main one you need to know :)
-/mob/proc/put_in_hands(obj/item/W, offhand_first = FALSE)
+/mob/proc/put_in_hands(obj/item/W)
 	if(!W)
 		return FALSE
-	if(offhand_first ? put_in_inactive_hand(W) : put_in_active_hand(W))
+	if(put_in_active_hand(W))
 		return TRUE
-	if(offhand_first ? put_in_active_hand(W) : put_in_inactive_hand(W))
+	if(put_in_inactive_hand(W))
 		return TRUE
 	else
 		W.forceMove(get_turf(src))
 		W.layer = initial(W.layer)
 		W.dropped(src)
 		return FALSE
-
 
 
 /mob/proc/drop_item_v()		//this is dumb.
