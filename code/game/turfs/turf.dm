@@ -368,7 +368,7 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 //Check if you can plant weeds on that turf.
 //Does NOT return a message, just a 0 or 1.
 /turf/proc/is_weedable()
-	return !density && !is_type_in_typecache(get_area(src), GLOB.unweedable_areas)
+	return !density && !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas)
 
 /turf/open/space/is_weedable()
 	return FALSE
@@ -396,7 +396,7 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 
 
 /turf/closed/wall/is_weedable()
-	return !is_type_in_typecache(get_area(src), GLOB.unweedable_areas) //so we can spawn weeds on the walls
+	return !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas) //so we can spawn weeds on the walls
 
 
 /turf/proc/check_alien_construction(mob/living/L, silent = FALSE)
