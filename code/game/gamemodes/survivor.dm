@@ -242,7 +242,7 @@ SPAWNS
 
 
 /datum/game_mode/survivor/proc/transform_xeno(datum/mind/M)
-    var/mob/living/carbon/Xenomorph/Larva/X = new (pick(GLOB.xeno_spawn))
+    var/mob/living/carbon/xenomorph/larva/X = new (pick(GLOB.xeno_spawn))
 
     if(isnewplayer(M.current))
         var/mob/new_player/N = M.current
@@ -259,8 +259,7 @@ SPAWNS
 
 
 /datum/game_mode/survivor/proc/transform_queen(datum/mind/M)
-    // var/mob/living/carbon/Xenomorph/Queen/X = new (pick(GLOB.survivor_spawn_xeno))
-    var/mob/living/carbon/Xenomorph/Queen/X = new (pick(GLOB.xeno_spawn))
+    var/mob/living/carbon/xenomorph/queen/X = new (pick(GLOB.xeno_spawn))
 
     if(isnewplayer(M.current))
         var/mob/new_player/N = M.current
@@ -277,7 +276,7 @@ SPAWNS
 
 
 /datum/game_mode/survivor/proc/spawn_queen_in_ovi()
-    var/mob/living/carbon/Xenomorph/Queen/Q = new (pick(GLOB.xeno_spawn))
+    var/mob/living/carbon/xenomorph/queen/Q = new (pick(GLOB.xeno_spawn))
     Q.ovipositor = TRUE
     Q.away_time = 0 // queen so they can't be taken by late joins
 

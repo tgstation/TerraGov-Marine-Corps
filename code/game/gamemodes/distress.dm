@@ -211,7 +211,7 @@
 
     return TRUE
 
-
+/datum/game_mode/distress/proc/transform_xeno(datum/mind/M)
     var/mob/living/carbon/xenomorph/larva/X = new (pick(GLOB.xeno_spawn))
 
     if(isnewplayer(M.current))
@@ -228,7 +228,7 @@
 
 
 /datum/game_mode/distress/proc/transform_queen(datum/mind/M)
-    var/mob/living/carbon/xenomorph/Queen/X = new (pick(GLOB.xeno_spawn))
+    var/mob/living/carbon/xenomorph/queen/X = new (pick(GLOB.xeno_spawn))
 
     if(isnewplayer(M.current))
         var/mob/new_player/N = M.current

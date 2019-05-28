@@ -73,7 +73,7 @@
     update_icon()
 
 
-/obj/item/laptop/rescue/attack_alien(mob/living/carbon/Xenomorph/X)
+/obj/item/laptop/rescue/attack_alien(mob/living/carbon/xenomorph/X)
     if(!anchored)
         to_chat(X, "<span class='warning'>It's already broken.</span>")
         return
@@ -201,7 +201,7 @@
     STOP_PROCESSING(SSobj, src)
 
 
-/obj/item/beacon/rescue/attack_alien(mob/living/carbon/Xenomorph/X)
+/obj/item/beacon/rescue/attack_alien(mob/living/carbon/xenomorph/X)
     if(obj_integrity <= 0)
         to_chat(X, "<span class='warning'>It's already broken.</span>")
         return
