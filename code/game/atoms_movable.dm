@@ -43,8 +43,7 @@
 	moveToNullspace()
 	invisibility = INVISIBILITY_ABSTRACT
 
-	if(pulledby)
-		pulledby.stop_pulling()
+	pulledby?.stop_pulling()
 
 	if(orbiting)
 		orbiting.end_orbit(src)
