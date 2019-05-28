@@ -53,7 +53,7 @@
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-/mob/living/carbon/Xenomorph/Defender/Bump(atom/A)
+/mob/living/carbon/xenomorph/defender/Bump(atom/A)
 	if(!throwing || !throw_source || !thrower)
 		return ..()
 	if(!ishuman(A)) 
@@ -63,6 +63,6 @@
 	H.attack_alien(src, extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
 	var/target_turf = get_step_away(src, H, rand(1, 2)) //This is where we blast our target
 	target_turf =  get_step_rand(target_turf) //Scatter
-	H.throw_at(get_turf(target_turf), DEFENDER_CHARGEDISTANCE, DEFENDER_CHARGESPEED, H)
+	H.throw_at(get_turf(target_turf), 4, 70, H)
 	H.KnockDown(2)
 	return

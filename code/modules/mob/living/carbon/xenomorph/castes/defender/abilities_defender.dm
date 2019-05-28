@@ -163,7 +163,7 @@
 	if(!.)
 		return FALSE
 	if(!A)
-		CRASH("forward_charge/can_use_ability invoked without an atom/A")
+		return FALSE
 
 /datum/action/xeno_action/activable/forward_charge/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>Your exoskeleton quivers as you get ready to use Forward Charge again.</span>")
@@ -171,9 +171,9 @@
 	return ..()
 
 /datum/action/xeno_action/activable/forward_charge/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_use_ability, A)))
+	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 
 	X.visible_message("<span class='danger'>[X] charges towards \the [A]!</span>", \
@@ -181,7 +181,7 @@
 	X.emote("roar")
 	succeed_activate()
 
-	X.throw_at(A, DEFENDER_CHARGEDISTANCE, DEFENDER_CHARGESPEED, X)
+	X.throw_at(A, 4, 70, X)
 
 	add_cooldown()
 
