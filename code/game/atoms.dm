@@ -614,3 +614,10 @@ Proc for attack log creation, because really why not
 //the vision impairment to give to the mob whose perspective is set to that atom (e.g. an unfocused camera giving you an impaired vision when looking through it)
 /atom/proc/get_remote_view_fullscreens(mob/user)
 	return
+
+
+//when a mob interact with something that gives them a special view,
+//check_eye() is called to verify that they're still eligible.
+//if they are not check_eye() usually reset the mob's view.
+/atom/proc/check_eye(mob/user)
+	return

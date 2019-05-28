@@ -25,13 +25,6 @@
 		M.canmove = 0
 		M.icon = null
 		M.invisibility = INVISIBILITY_MAXIMUM
-		var/atom/movable/overlay/animation = new( M.loc )
-		animation.icon_state = "blank"
-		animation.icon = 'icons/mob/mob.dmi'
-		animation.master = src
-		flick("h2monkey", animation)
-		sleep(48)
-		qdel(animation)
 
 
 	var/mob/living/carbon/monkey/O = null
@@ -98,13 +91,7 @@
 		M.canmove = 0
 		M.icon = null
 		M.invisibility = INVISIBILITY_MAXIMUM
-		var/atom/movable/overlay/animation = new( M.loc )
-		animation.icon_state = "blank"
-		animation.icon = 'icons/mob/mob.dmi'
-		animation.master = src
-		flick("monkey2h", animation)
-		sleep(48)
-		qdel(animation)
+
 
 	var/mob/living/carbon/human/O
 	if(Mo.species)
