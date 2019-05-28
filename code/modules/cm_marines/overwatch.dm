@@ -1138,17 +1138,6 @@
 			A.give_action(H)
 
 
-/mob/living/carbon/human/Initialize()
-	. = ..()
-	var/datum/action/skill/toggle_orders/toggle_orders_action = new
-	toggle_orders_action.give_action(src)
-	var/datum/action/skill/issue_order/move/issue_order_move = new
-	issue_order_move.give_action(src)
-	var/datum/action/skill/issue_order/hold/issue_order_hold = new
-	issue_order_hold.give_action(src)
-	var/datum/action/skill/issue_order/focus/issue_order_focus = new
-	issue_order_focus.give_action(src)
-
 /obj/machinery/computer/overwatch/proc/get_squad_by_id(id)
 	if(!squads || !length(squads))
 		return FALSE
