@@ -100,7 +100,7 @@
 	add_cooldown()
 	return TRUE
 
-/mob/living/carbon/Xenomorph/Warrior/CtrlClickOn(atom/A)
+/mob/living/carbon/xenomorph/warrior/CtrlClickOn(atom/A)
 	if(SEND_SIGNAL(src, COMSIG_WARRIOR_CTRL_CLICK_ATOM, A) & COMSIG_WARRIOR_USED_LUNGE)
 		return
 	return ..()
