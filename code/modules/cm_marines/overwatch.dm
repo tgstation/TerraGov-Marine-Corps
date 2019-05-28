@@ -611,7 +611,7 @@
 		R.recalculateChannels()
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/ID = H.wear_id
-		ID.access += ACCESS_MARINE_LEADER
+		ID.access += ACCESS_MARINE_LEADER & ACCESS_MARINE_DROPSHIP
 	H.hud_set_squad()
 	H.update_inv_head() //updating marine helmet leader overlays
 	H.update_inv_wear_suit()
