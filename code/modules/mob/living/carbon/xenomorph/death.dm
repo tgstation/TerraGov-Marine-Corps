@@ -56,12 +56,7 @@
 	..(1)
 
 /mob/living/carbon/xenomorph/gib_animation()
-	var/to_flick = "gibbed-a"
-	if(isxenorunner(src))
-		to_flick = "gibbed-a-runner"
-	else if(isxenolarva(src))
-		to_flick = "larva_gib"
-	new /obj/effect/overlay/temp/gib_animation/xeno(loc, src, to_flick, icon)
+	new /obj/effect/overlay/temp/gib_animation/xeno(loc, src, xeno_caste.gib_flick, icon)
 
 /mob/living/carbon/xenomorph/spawn_gibs()
 	xgibs(get_turf(src))
