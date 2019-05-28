@@ -25,7 +25,8 @@
 	var/auto_shuttle_launch = FALSE //Useful for xenos that can't interact with the shuttle console.
 	var/medics = 0
 	var/max_medics = 1
-
+	var/candidate_timer
+	var/cooldown_timer
 
 /datum/game_mode/proc/initialize_emergency_calls()
 	if(length(all_calls)) //It's already been set up.
@@ -127,12 +128,24 @@
 	else
 		to_chat(usr, "<span class='warning'>Something went wrong while adding you into the candidate list!</span>")
 
+/datum/emergency_call/proc/reset()
+	if(candidate_timer)
+		deltimer(candidate_timer)
+	if(cooldown_timer)
+		deltimer(cooldown_timer)
+	members = list()
+	candidates = list()
+	SSticker.mode.waiting_for_candidates = FALSE
+	SSticker.mode.on_distress_cooldown = FALSE
+	message_admins("Distress beacon: [name] has been reset.")
 
 /datum/emergency_call/proc/activate(announce = TRUE)
 	if(!SSticker?.mode) //Something horribly wrong with the gamemode SSticker
+		message_admins("Distress beacon: [name] attempted to activate but no gamemode exists")
 		return FALSE
 
 	if(SSticker.mode.on_distress_cooldown) //It's already been called.
+		message_admins("Distress beacon: [name] attempted to activate but distress is on cooldown")
 		return FALSE
 
 	if(mob_max > 0)
@@ -146,7 +159,7 @@
 
 	SSticker.mode.on_distress_cooldown = TRUE
 
-	addtimer(CALLBACK(src, .do_activate, announce), 1 MINUTES)
+	candidate_timer = addtimer(CALLBACK(src, .do_activate, announce), 1 MINUTES)
 
 /datum/emergency_call/proc/do_activate(announce = TRUE)
 	SSticker.mode.waiting_for_candidates = FALSE
@@ -167,6 +180,8 @@
 			continue
 		valid_candidates += M
 
+	message_admins("Distress beacon: [name] got [length(candidates)] candidates, [length(valid_candidates)] of them were valid.")
+
 	if(length(valid_candidates) < mob_min)
 		message_admins("Aborting distress beacon [name], not enough candidates. Found: [length(valid_candidates)]. Minimum required: [mob_min].")
 		SSticker.mode.waiting_for_candidates = FALSE
@@ -179,7 +194,7 @@
 		SSticker.mode.picked_call = null
 		SSticker.mode.on_distress_cooldown = TRUE
 
-		addtimer(CALLBACK(src, .distress_cooldown), COOLDOWN_COMM_REQUEST)
+		cooldown_timer = addtimer(CALLBACK(src, .reset), COOLDOWN_COMM_REQUEST)
 		return
 
 	var/datum/mind/picked_candidates = list()
@@ -192,35 +207,41 @@
 		for(var/datum/mind/M in valid_candidates)
 			if(M.current)
 				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team. Better luck next time!</span>")
+		message_admins("Distress beacon: [length(valid_candidates)] valid candidates were not selected.")
 	else
 		picked_candidates = valid_candidates // save some time
+		message_admins("Distress beacon: All valid candidates were selected.")
 
 	if(announce)
 		command_announcement.Announce(dispatch_message, "Distress Beacon", new_sound='sound/AI/distressreceived.ogg') //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
 
-	message_admins("Distress beacon: [name] finalized, setting up candidates.")
+	message_admins("Distress beacon: [name] finalized, starting spawns.")
 
 	// begin loading the shuttle
 	if(!SSmapping.shuttle_templates[shuttle_id])
+		message_admins("Distress beacon: [name] couldn't find a valid shuttle template")
 		CRASH("ert called with invalid shuttle_id")
 		return
 	var/datum/map_template/shuttle/S = SSmapping.shuttle_templates[shuttle_id]
 
 	var/obj/docking_port/stationary/L = SSshuttle.getDock("distress_loading")
 	if(!L)
+		message_admins("Distress beacon: [name] couldn't find a distress beacon loading dock")
 		CRASH("no distress loading port defined")
 
 	if(L.get_docked())
+		message_admins("Distress beacon: [name] tried to load while something was hogging the distress beacon loading dock")
 		CRASH("trying to load an ert when one is currently being loaded")
 
 	shuttle = SSshuttle.action_load(S, L)
 
 	if(!istype(shuttle))
+		message_admins("Distress beacon: [name] couldn't load a shuttle template")
 		CRASH("ert shuttle failed to load")
 
 	spawn_items()
 
-	if(length(picked_candidates))
+	if(length(picked_candidates) && mob_min > 0)
 		max_medics = max(round(length(picked_candidates) * 0.25), 1)
 		for(var/i in picked_candidates)
 			var/datum/mind/M = i
@@ -234,16 +255,14 @@
 	if(auto_shuttle_launch)
 		if(!shuttle.auto_launch())
 			shuttle.intoTheSunset()
+			message_admins("Distress beacon: [name] couldn't find a valid target to autolaunch")
 			CRASH("can't find a valid place to autolaunch ert shuttle towards")
 
 	message_admins("Distress beacon: [name] finished spawning.")
 
 	candidates = list() //Blank out the candidates list for next time.
 
-	addtimer(CALLBACK(src, .distress_cooldown), COOLDOWN_COMM_REQUEST)
-
-/datum/emergency_call/proc/distress_cooldown()
-	SSticker.mode.on_distress_cooldown = FALSE
+	cooldown_timer = addtimer(CALLBACK(src, .reset), COOLDOWN_COMM_REQUEST)
 
 /datum/emergency_call/proc/add_candidate(var/mob/M)
 	if(!M.client)

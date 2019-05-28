@@ -496,10 +496,7 @@
 		return
 
 	if(SSticker.mode.picked_call)
-		SSticker.mode.picked_call.members = list()
-		SSticker.mode.picked_call.candidates = list()
-		SSticker.mode.waiting_for_candidates = FALSE
-		SSticker.mode.on_distress_cooldown = FALSE
+		SSticker.mode.picked_call.reset()
 		SSticker.mode.picked_call = null
 
 	var/list/list_of_calls = list()
@@ -524,13 +521,13 @@
 	if(!istype(SSticker.mode.picked_call))
 		return
 
-	var/max = input("What should the maximum amount of mobs be?", "Max Mobs", 20) as null|num
+	var/max = input("What should the maximum amount of mobs be?", "Max Mobs", SSticker.mode.picked_call.mob_max) as null|num
 	if(!max || max < 1)
 		return
 
 	SSticker.mode.picked_call.mob_max = max
 
-	var/min = input("What should the minimum amount of mobs be?", "Min Mobs", 1) as null|num
+	var/min = input("What should the minimum amount of mobs be?", "Min Mobs", SSticker.mode.picked_call.mob_min) as null|num
 	if(!min || min < 1)
 		return
 
