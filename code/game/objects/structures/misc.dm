@@ -152,7 +152,7 @@ obj/item/alienjar
 	layer = MOB_LAYER
 
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)
-	if(istype(A) && A.checkpass(PASSGLASS))
+	if(istype(A) && CHECK_BITFIELD(A.flags_pass, PASSGLASS))
 		return prob(60)
 
 	var/obj/structure/bed/B = A

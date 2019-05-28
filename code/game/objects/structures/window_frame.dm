@@ -23,7 +23,7 @@
 		/obj/structure/window_frame)
 
 /obj/structure/window_frame/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && climbable && mover.checkpass(PASSTABLE))
+	if(istype(mover) && climbable && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 	return FALSE
 
