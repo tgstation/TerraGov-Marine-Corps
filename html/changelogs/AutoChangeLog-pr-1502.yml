@@ -1,4 +1,0 @@
-author: "Jalleo"
-delete-after: True
-changes: 
-  - rscdel: "Some old unmaintained objects, such as the turbines in big red reactor room, will no longer have any interactions. They are mainly thematic with their placement. They also should be removed from the loop to avoid wasteful processing."
