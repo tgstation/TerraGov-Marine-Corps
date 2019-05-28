@@ -149,11 +149,13 @@
 
 /datum/action/xeno_action/give_action(mob/living/L)
 	. = ..()
-	RegisterSignal(L, keybind_signal, .proc/keybind_activation)
+	if(keybind_signal)
+		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
 
 /datum/action/xeno_action/remove_action(mob/living/L)
 	. = ..()
-	UnregisterSignal(L, keybind_signal)
+	if(keybind_signal)
+		UnregisterSignal(L, keybind_signal)
 
 /datum/action/xeno_action/proc/keybind_activation()
 	if(can_use_action())
