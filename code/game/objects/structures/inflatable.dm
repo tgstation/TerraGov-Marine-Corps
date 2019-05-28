@@ -214,7 +214,7 @@
 	if(isSwitchingStates) return
 	if(ismob(user))
 		var/mob/M = user
-		if(world.time - user.last_bumped <= 60) return //NOTE do we really need that?
+		if(world.time - M.last_bumped <= 60) return //NOTE do we really need that?
 		if(M.client)
 			if(iscarbon(M))
 				var/mob/living/carbon/C = M
