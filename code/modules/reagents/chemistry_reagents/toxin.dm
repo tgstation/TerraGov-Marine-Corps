@@ -149,7 +149,6 @@
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(0.5*REM)
 	L.KnockDown(10)
-	L.silent = max(L.silent, 10)
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)

@@ -9,7 +9,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 
 /mob/proc/ventcrawl_carry()
 	for(var/atom/A in src.contents)
-		if(!(is_type_in_list(A, canEnterVentWith)))
+		if(!istype(A, /obj/item/clothing/mask/facehugger))
 			to_chat(src, "<span class='warning'>You can't be carrying items or have items equipped when vent crawling!</span>")
 			return FALSE
 	return TRUE

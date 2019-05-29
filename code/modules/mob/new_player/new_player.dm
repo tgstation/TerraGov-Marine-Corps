@@ -1,7 +1,6 @@
 /mob/new_player
 	var/ready = FALSE
 	var/spawning = FALSE
-	universal_speak = TRUE
 
 	invisibility = INVISIBILITY_MAXIMUM
 

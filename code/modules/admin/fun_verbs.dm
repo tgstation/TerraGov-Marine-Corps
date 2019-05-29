@@ -1009,10 +1009,12 @@
 
 	var/mob/M = usr
 
-	if(!M.control_object || !M.name_archive)
+	if(!M.control_object)
 		return
 
-	M.real_name = M.name_archive
+	var/datum/player_details/P = GLOB.player_details[M.ckey]
+
+	M.real_name = P.played_names[length(P.played_names)]
 	M.name = M.real_name
 
 	if(ishuman(M))
@@ -1035,9 +1037,6 @@
 		return
 
 	var/mob/M = usr
-
-	if(!M.control_object)
-		M.name_archive = M.real_name
 
 	M.loc = O
 	M.real_name = O.name
