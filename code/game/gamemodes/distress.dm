@@ -140,6 +140,16 @@
 	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * GLOB.ready_players)), xeno_required_num)
 	surv_starting_num = CLAMP((round(GLOB.ready_players / CONFIG_GET(number/survivor_coefficient))), 0, 8)
 	marine_starting_num = GLOB.ready_players - xeno_starting_num - surv_starting_num
+	var/current_specialists = 0
+	var/maximum_specialists = CLAMP(GLOB.ready_players / CONFIG_GET(number/spec_coefficient), 1, 4)
+	for(var/i in SSjob.squads)
+		var/datum/squad/S = SSjob.squads[i]
+		if(current_specialists >= maximum_specialists)
+			S.max_specialists = 0
+		else
+			S.max_specialists = 1
+			current_specialists++
+
 
 
 /datum/game_mode/distress/proc/initialize_xenomorphs()

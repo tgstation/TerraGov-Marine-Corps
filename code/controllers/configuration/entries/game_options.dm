@@ -181,3 +181,9 @@
 	integer = FALSE
 	min_val = 0
 	config_entry_value = 4
+
+
+/datum/config_entry/number/spec_coefficient
+	integer = FALSE
+	config_entry_value = 5
+	min_val = 0.001
