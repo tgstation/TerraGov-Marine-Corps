@@ -142,6 +142,8 @@
 	marine_starting_num = GLOB.ready_players - xeno_starting_num - surv_starting_num
 	var/current_specialists = 0
 	var/maximum_specialists = CLAMP(GLOB.ready_players / CONFIG_GET(number/spec_coefficient), 1, 4)
+	var/datum/job/J = SSjob.GetJobType(/datum/job/marine/specialist)
+	J.total_positions = maximum_specialists
 	for(var/i in SSjob.squads)
 		var/datum/squad/S = SSjob.squads[i]
 		if(current_specialists >= maximum_specialists)
