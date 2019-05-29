@@ -125,7 +125,7 @@
 		glide_size = 32 / max(move_delay, tick_lag) * tick_lag
 
 		if(L.confused)
-			step(L, pick(cardinal))
+			step(L, pick(GLOB.cardinals))
 		else
 			. = ..()
 

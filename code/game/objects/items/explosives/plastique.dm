@@ -57,7 +57,6 @@
 
 	user.visible_message("<span class='warning'>[user] is trying to plant [name] on [target]!</span>",
 	"<span class='warning'>You are trying to plant [name] on [target]!</span>")
-	bombers += "[key_name(user)] attached C4 to [target.name]."
 
 	if(do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
 		user.drop_held_item()
