@@ -119,7 +119,7 @@
 /obj/machinery/computer/shuttle/marine_dropship/attack_paw(mob/living/user)
 	attack_alien(user)
 
-/obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/Xenomorph/X)
+/obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X)
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
@@ -137,7 +137,7 @@
 	. = ..()
 	if(!Adjacent(usr) || !isxeno(usr))
 		return
-	var/mob/living/carbon/Xenomorph/X = usr
+	var/mob/living/carbon/xenomorph/X = usr
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
 	if(href_list["hijack"])

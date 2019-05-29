@@ -70,49 +70,6 @@
 	if(force)
 		SSshuttle.ert_shuttles -= src
 
-/obj/docking_port/mobile/ert/proc/get_destinations()
-	var/list/docks = list()
-	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(S.id == "distress_target")
-			if(canDock(S) == SHUTTLE_CAN_DOCK) // discards occupied docks
-				docks += S
-	for(var/i in SSshuttle.ert_shuttles)
-		var/obj/docking_port/mobile/ert/E = i
-		if(E.destination in docks)
-			docks -= E.destination // another shuttle already headed there
-	return docks
-
-/obj/docking_port/mobile/ert/proc/auto_launch()
-	var/obj/docking_port/stationary/S = pick(get_destinations())
-	if(!S)
-		return FALSE
-	SSshuttle.moveShuttle(id, S.id, 1)
-	return TRUE
-
-/obj/docking_port/mobile/ert/proc/open_shutters()
-	for(var/i in shutters)
-		var/obj/machinery/door/poddoor/shutters/transit/T = i
-		if(T.density)
-			T.open()
-
-/obj/docking_port/mobile/ert/proc/close_shutters()
-	for(var/i in shutters)
-		var/obj/machinery/door/poddoor/shutters/transit/T = i
-		if(!T.density)
-			T.close()
-
-/obj/docking_port/mobile/ert/afterShuttleMove()
-	. = ..()
-	if(getDockedId() == "distress_target")
-		open_shutters()
-	else
-		close_shutters()
-
-/obj/docking_port/mobile/ert/Destroy(force)
-	. = ..()
-	if(force)
-		SSshuttle.ert_shuttles -= src
-
 /obj/docking_port/mobile/ert/register()
 	. = ..()
 	SSshuttle.ert_shuttles += src
