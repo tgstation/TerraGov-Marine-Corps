@@ -441,9 +441,6 @@
 /turf/open/floor/carpet/edge2
 	icon_state = "carpetedge"
 
-/turf/open/floor/carpet/alt
-	icon_state = "carpetalt"
-
 // Start Prison tiles
 
 /turf/open/floor/prison
