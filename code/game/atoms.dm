@@ -27,6 +27,7 @@
 	var/list/image/hud_list //This atom's HUD (med/sec, etc) images. Associative list.
 
 	var/datum/component/orbiter/orbiters
+	var/datum/proximity_monitor/proximity_monitor
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -239,6 +240,8 @@ directive is properly returned.
 					to_chat(user, "<span class='notice'>\The [src] is almost full!</span>")
 				else
 					to_chat(user, "<span class='notice'>\The [src] is full!</span>")
+
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user)
 
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
@@ -576,3 +579,14 @@ Proc for attack log creation, because really why not
 //if they are not check_eye() usually reset the mob's view.
 /atom/proc/check_eye(mob/user)
 	return
+
+
+/atom/proc/drop_location()
+	var/atom/L = loc
+	if(!L)
+		return null
+	return L.AllowDrop() ? L : L.drop_location()
+
+
+/atom/proc/AllowDrop()
+	return FALSE

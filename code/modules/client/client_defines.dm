@@ -3,6 +3,7 @@
 		////////////////
 		//ADMIN THINGS//
 		////////////////
+	var/ai_interact = FALSE
 	var/datum/admins/holder = null
 	var/buildmode = FALSE
 	var/datum/click_intercept = null // Needs to implement InterceptClickOn(user,params,atom) proc

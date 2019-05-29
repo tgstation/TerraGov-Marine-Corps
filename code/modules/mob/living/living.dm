@@ -707,3 +707,16 @@ below 100 is not dizzy
 
 /mob/living/proc/get_visible_name()
 	return name
+
+
+/mob/living/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
+	if(incapacitated())
+		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
+		return FALSE
+	if(proximity && !in_range(AM, src))
+		to_chat(src, "<span class='warning'>You are too far away!</span>")
+		return FALSE
+	if(!dexterity)
+		to_chat(src, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		return FALSE
+	return TRUE
