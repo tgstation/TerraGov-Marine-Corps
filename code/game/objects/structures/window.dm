@@ -97,7 +97,7 @@
 		return TRUE
 
 /obj/structure/window/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 	if(is_full_window())
 		return FALSE //Full tile window, you can't move into it!
@@ -107,7 +107,7 @@
 		return TRUE
 
 /obj/structure/window/CheckExit(atom/movable/O, turf/target)
-	if(istype(O) && O.checkpass(PASSGLASS))
+	if(istype(O) && CHECK_BITFIELD(O.flags_pass, PASSGLASS))
 		return TRUE
 	if(get_dir(O.loc, target) == dir && !is_full_window())
 		return FALSE

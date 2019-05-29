@@ -500,7 +500,7 @@
 		return attack_hand(user)
 
 /turf/closed/wall/resin/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return !opacity
 	return !density
 
