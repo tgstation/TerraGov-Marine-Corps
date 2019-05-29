@@ -268,7 +268,8 @@
 
 //Enable cable laying on turf click instead of pixel hunting the cable
 /turf/attackby(obj/item/I, mob/living/user, params)
-	if(..())
+	. = ..()
+	if(.)
 		return TRUE
 
 	user.changeNext_move(I.attack_speed)
@@ -277,12 +278,10 @@
 		var/obj/item/stack/cable_coil/coil = I
 		for(var/obj/structure/cable/C in src)
 			if(C.d1 == CABLE_NODE || C.d2 == CABLE_NODE)
-				C.attackby(I,user)
+				C.attackby(I, user, params)
 				return
 		coil.place_turf(src, user)
 		return TRUE
-
-	return FALSE
 
 //for xeno corrosive acid, 0 for unmeltable, 1 for regular, 2 for strong walls that require strong acid and more time.
 /turf/proc/can_be_dissolved()

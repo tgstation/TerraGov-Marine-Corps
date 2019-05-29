@@ -35,8 +35,8 @@
 		update_icon(1, 0)
 
 	//PLACING/REMOVING/BUILDING
-/turf/open/floor/plating/ground/snow/attackby(var/obj/item/I, var/mob/user)
-
+/turf/open/snow/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	//Light Stick
 	if(istype(I, /obj/item/lightstick))
 		var/obj/item/lightstick/L = I
@@ -49,7 +49,7 @@
 			return
 
 		user.visible_message("<span class='notice'>[user.name] planted \the [L] into [src].</span>")
-		L.anchored = 1
+		L.anchored = TRUE
 		L.icon_state = "lightstick_[L.s_color][L.anchored]"
 		user.drop_held_item()
 		L.x = x

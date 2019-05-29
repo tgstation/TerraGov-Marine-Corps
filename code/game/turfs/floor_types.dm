@@ -52,7 +52,7 @@
 /turf/open/floor/almayer/empty/fire_act(exposed_temperature, exposed_volume)
 	return
 
-/turf/open/floor/almayer/empty/attackby() //This should fix everything else. No cables, etc
+/turf/open/floor/almayer/empty/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
 
 
@@ -178,20 +178,21 @@
 /turf/open/floor/engine/make_plating()
 	return
 
-/turf/open/floor/engine/attackby(obj/item/C as obj, mob/user as mob)
-	if(!C)
-		return
-	if(!user)
-		return
-	if(iswrench(C))
+/turf/open/floor/engine/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswrench(I))
 		user.visible_message("<span class='notice'>[user] starts removing [src]'s protective cover.</span>",
 		"<span class='notice'>You start removing [src]'s protective cover.</span>")
 		playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
-			new /obj/item/stack/rods(src, 2)
-			ChangeTurf(/turf/open/floor)
-			var/turf/open/floor/F = src
-			F.make_plating()
+
+		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
+			return
+			
+		new /obj/item/stack/rods(src, 2)
+		ChangeTurf(/turf/open/floor)
+		var/turf/open/floor/F = src
+		F.make_plating()
 
 
 /turf/open/floor/engine/ex_act(severity)
