@@ -34,10 +34,11 @@
 	else
 		..()
 
-/obj/item/explosive/grenade/chem_grenade/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/explosive/grenade/chem_grenade/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(istype(W,/obj/item/assembly_holder) && (!stage || stage==1) && path != 2)
-		var/obj/item/assembly_holder/det = W
+	if(istype(I, /obj/item/assembly_holder) && (!stage || stage == 1) && path != 2)
+		var/obj/item/assembly_holder/det = I
 		if(istype(det.a_left,det.a_right.type) || (!isigniter(det.a_left) && !isigniter(det.a_right)))
 			to_chat(user, "<span class='warning'>Assembly must contain one igniter.</span>")
 			return
@@ -45,54 +46,60 @@
 			to_chat(user, "<span class='warning'>Assembly must be secured with screwdriver.</span>")
 			return
 		path = 1
-		to_chat(user, "<span class='notice'>You add [W] to the metal casing.</span>")
-		playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, 0, 6)
+		to_chat(user, "<span class='notice'>You add [I] to the metal casing.</span>")
+		playsound(loc, 'sound/items/Screwdriver2.ogg', 25, 0, 6)
 		user.temporarilyRemoveItemFromInventory(det)
 		det.forceMove(src)
 		detonator = det
-		icon_state = initial(icon_state) +"_ass"
-		name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
+		icon_state = initial(icon_state) + "_ass"
+		name = "unsecured grenade with [length(beakers)] containers[detonator ? " and detonator" : ""]"
 		stage = 1
-	else if(istype(W,/obj/item/tool/screwdriver) && path != 2)
+
+	else if(istype(I, /obj/item/tool/screwdriver) && path != 2)
 		if(stage == 1)
 			path = 1
-			if(beakers.len)
+			if(length(beakers))
 				to_chat(user, "<span class='notice'>You lock the assembly.</span>")
 				name = "grenade"
 			else
-//					to_chat(user, "<span class='warning'>You need to add at least one beaker before locking the assembly.</span>")
 				to_chat(user, "<span class='notice'>You lock the empty assembly.</span>")
 				name = "fake grenade"
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 0, 6)
-			icon_state = initial(icon_state) +"_locked"
+			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 0, 6)
+			icon_state = initial(icon_state) + "_locked"
 			stage = 2
+
 		else if(stage == 2)
 			if(active && prob(95))
 				to_chat(user, "<span class='warning'>You trigger the assembly!</span>")
 				prime()
 				return
-			else
-				to_chat(user, "<span class='notice'>You unlock the assembly.</span>")
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 0, 6)
-				name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
-				icon_state = initial(icon_state) + (detonator?"_ass":"")
-				stage = 1
-				active = 0
-	else if(is_type_in_list(W, allowed_containers) && (!stage || stage==1) && path != 2)
+
+			to_chat(user, "<span class='notice'>You unlock the assembly.</span>")
+			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 0, 6)
+			name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
+			icon_state = initial(icon_state) + (detonator ? "_ass" : "")
+			stage = 1
+			active = 0
+
+	else if(is_type_in_list(I, allowed_containers) && (!stage || stage == 1) && path != 2)
 		path = 1
-		if(beakers.len == 2)
+		if(length(beakers) >= 2)
 			to_chat(user, "<span class='warning'>The grenade can not hold more containers.</span>")
 			return
-		else
-			if(W.reagents.total_volume)
-				if(user.drop_held_item())
-					to_chat(user, "<span class='notice'>You add \the [W] to the assembly.</span>")
-					W.forceMove(src)
-					beakers += W
-					stage = 1
-					name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
-			else
-				to_chat(user, "<span class='warning'>\the [W] is empty.</span>")
+
+		if(!I.reagents.total_volume)
+			to_chat(user, "<span class='warning'>\the [I] is empty.</span>")
+			return
+
+		if(!user.drop_held_item())
+			return
+
+		to_chat(user, "<span class='notice'>You add \the [I] to the assembly.</span>")
+		I.forceMove(src)
+		beakers += I
+		stage = 1
+		name = "unsecured grenade with [length(beakers)] containers[detonator ? " and detonator" : ""]"
+
 
 /obj/item/explosive/grenade/chem_grenade/examine(mob/user)
 	..()

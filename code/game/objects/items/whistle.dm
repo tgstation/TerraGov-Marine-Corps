@@ -14,11 +14,11 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/whistle/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/whistle/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(user.wear_mask == src)
 		whistle_playsound(user)
-	else
-		..()
 
 /obj/item/whistle/attack_hand(mob/user)
 	if(user.wear_mask == src)
@@ -82,10 +82,10 @@
 	spawn(20)
 		spamcheck = 0
 
-/obj/item/hailer/attackby(obj/item/I, mob/user)
+/obj/item/hailer/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/card/emag) && !emagged)
 		to_chat(user, "<span class='warning'>You overload \the [src]'s voice synthesizer.</span>")
-		emagged = 1
-		insults = rand(1, 3)//to prevent dickflooding
-		return
-	return
+		emagged = TRUE
+		insults = rand(1, 3)
