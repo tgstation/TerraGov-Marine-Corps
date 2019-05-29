@@ -37,14 +37,13 @@
 //		src.sd_SetLuminosity(0)
 
 //Don't want to render prison breaks impossible
-/obj/machinery/flasher/attackby(obj/item/W as obj, mob/user as mob)
-	if (iswirecutter(W))
-		add_fingerprint(user)
-		src.disable = !src.disable
-		if (src.disable)
-			user.visible_message("<span class='warning'> [user] has disconnected the [src]'s flashbulb!</span>", "<span class='warning'> You disconnect the [src]'s flashbulb!</span>")
-		if (!src.disable)
-			user.visible_message("<span class='warning'> [user] has connected the [src]'s flashbulb!</span>", "<span class='warning'> You connect the [src]'s flashbulb!</span>")
+/obj/machinery/flasher/wirecutter_act(mob/living/user, obj/item/W)
+	add_fingerprint(user)
+	src.disable = !src.disable
+	if (src.disable)
+		user.visible_message("<span class='warning'> [user] has disconnected the [src]'s flashbulb!</span>", "<span class='warning'> You disconnect the [src]'s flashbulb!</span>")
+	if (!src.disable)
+		user.visible_message("<span class='warning'> [user] has connected the [src]'s flashbulb!</span>", "<span class='warning'> You connect the [src]'s flashbulb!</span>")
 
 //Let the AI trigger them directly.
 /obj/machinery/flasher/attack_ai()
@@ -56,7 +55,6 @@
 /obj/machinery/flasher/proc/flash()
 	if (!(powered()))
 		return
-
 	if ((src.disable) || (src.last_flash && world.time < src.last_flash + 150))
 		return
 

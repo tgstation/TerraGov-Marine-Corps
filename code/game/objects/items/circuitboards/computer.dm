@@ -165,10 +165,6 @@
 	build_path = /obj/machinery/computer/telecomms/server
 	origin_tech = "programming=3"
 
-/obj/item/circuitboard/computer/HolodeckControl // Not going to let people get this, but it's just here for future
-	name = "Circuit board (Holodeck Control)"
-	build_path = /obj/machinery/computer/HolodeckControl
-	origin_tech = "programming=4"
 /obj/item/circuitboard/computer/aifixer
 	name = "Circuit board (AI Integrity Restorer)"
 	build_path = /obj/machinery/computer/aifixer
@@ -226,7 +222,7 @@
 
 	if(isscrewdriver(I))
 		user.visible_message("<span class='notice'> \the [user] adjusts the jumper on the [src]'s access protocol pins.</span>", "<span class='notice'> You adjust the jumper on the access protocol pins.</span>")
-		
+
 		if(build_path == /obj/machinery/computer/rdconsole/core)
 			name = "Circuit Board (RD Console - Robotics)"
 			build_path = /obj/machinery/computer/rdconsole/robotics

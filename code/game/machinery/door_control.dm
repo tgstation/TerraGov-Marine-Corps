@@ -217,12 +217,6 @@
 				M.open()
 				return
 
-	sleep(20)
-
-	for(var/obj/machinery/mass_driver/M in GLOB.machines)
-		if(M.id == src.id)
-			M.drive()
-
 	sleep(50)
 
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
