@@ -131,8 +131,10 @@
 /datum/emergency_call/proc/reset()
 	if(candidate_timer)
 		deltimer(candidate_timer)
+		candidate_timer = null
 	if(cooldown_timer)
 		deltimer(cooldown_timer)
+		cooldown_timer = null
 	members = list()
 	candidates = list()
 	SSticker.mode.waiting_for_candidates = FALSE
@@ -162,6 +164,7 @@
 	candidate_timer = addtimer(CALLBACK(src, .do_activate, announce), 1 MINUTES)
 
 /datum/emergency_call/proc/do_activate(announce = TRUE)
+	candidate_timer = null
 	SSticker.mode.waiting_for_candidates = FALSE
 
 	var/list/valid_candidates = list()
