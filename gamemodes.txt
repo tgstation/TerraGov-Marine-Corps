@@ -1,0 +1,28 @@
+Gamemode: Munity
+
+Victory condition 
+    Leadership victory: 
+        Major - Kill the munity leaders before they grow to large (some number?)
+        Minor - Kill the munity leaders
+    Munity victory: Kill/capture the leadership (capture the captain for major)
+        Major - Capture captin without marine deaths
+        Minor - Captain captured
+    Draw: if every leader is killed.
+
+A small number of marines, start of as munity leads. They alone know from the start the gamemode that its a munity round. 
+    They have a few minutes to get ready and get equipment before annoucing to EVERYONE else that a munity has started.
+
+
+
+Gamemode: Prisoners
+
+Victory condition
+    Marine victory 
+        major - all prisoners captured and spec ops dead
+        minor - some prisoners captured and spec ops dead
+    Other victory
+        major - All prisoners rescued, marines dead
+        minor - some prisoners captured and marines dead
+
+Marines land on a planet, they engage a small team of weakly armed locals and need to capture them. 
+    After some time, the local spec ops team arrives and mission is to retrieve the prisoners.
