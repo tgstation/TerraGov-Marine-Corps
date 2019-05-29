@@ -9,7 +9,7 @@
 	if(!CONFIG_GET(flag/sql_enabled))
 		to_chat(usr, "<span class='warning'>SQL disabled.</span>")
 		return
-	if(!SSdbcore.Connect())
+	if(!SSdbcore.IsConnected())
 		to_chat(usr, "<span class='warning'>SQL not connected?!.</span>")
 		return
 	
