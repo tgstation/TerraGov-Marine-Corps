@@ -83,14 +83,14 @@
 		/obj/structure/mineral_door/resin)
 
 /datum/action/xeno_action/choose_resin/update_button_icon()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/A = X.selected_resin
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, initial(A.name))
 	return ..()
 
 /datum/action/xeno_action/choose_resin/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/i = buildable_structures.Find(X.selected_resin)
 	if(length(buildable_structures) == i)
 		X.selected_resin = buildable_structures[1]
@@ -113,8 +113,8 @@
 	build_resin(get_turf(owner))
 
 /datum/action/xeno_action/activable/secrete_resin/proc/build_resin(turf/T)
-	var/mob/living/carbon/Xenomorph/X = owner
-	var/mob/living/carbon/Xenomorph/blocker = locate() in T
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/blocker = locate() in T
 	if(blocker && blocker != X && blocker.stat != DEAD)
 		to_chat(X, "<span class='warning'>Can't do that with [blocker] in the way!</span>")
 		return fail_activate()
@@ -210,7 +210,7 @@
 	return TRUE //No actual gameplay impact; should be able to collapse or open pheromone choices at any time
 
 /datum/action/xeno_action/toggle_pheromones/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(PheromonesOpen)
 		PheromonesOpen = FALSE
 		to_chat(X, "<span class ='xenonotice'>You collapse the pheromone button choices.</span>")
@@ -232,7 +232,7 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY
 
 /datum/action/xeno_action/pheromones/action_activate() //Must pass the basic plasma cost; reduces copy pasta
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(!aura_type)
 		return FALSE
 
@@ -290,7 +290,7 @@
 	if(!isxeno(A) || A == owner || !owner.issamexenohive(A))
 		return FALSE
 
-	var/mob/living/carbon/Xenomorph/target = A
+	var/mob/living/carbon/xenomorph/target = A
 
 	if(get_dist(owner, target) > max_range)
 		if(!silent)
@@ -298,8 +298,8 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/transfer_plasma/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
-	var/mob/living/carbon/Xenomorph/target = A
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/target = A
 
 	to_chat(X, "<span class='notice'>You start focusing your plasma towards [target].</span>")
 	if(!do_after(X, transfer_delay, TRUE, null, BUSY_ICON_FRIENDLY))
@@ -329,7 +329,7 @@
 	mechanics_text = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
 	ability_name = "larval growth sting"
 	plasma_cost = 150
-	cooldown_timer = XENO_LARVAL_GROWTH_COOLDOWN
+	cooldown_timer = 12 SECONDS
 
 /datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -350,20 +350,20 @@
 		return FALSE
 
 	if(!owner.Adjacent(A))
-		var/mob/living/carbon/Xenomorph/X = owner
+		var/mob/living/carbon/xenomorph/X = owner
 		if(!silent && world.time > (X.recent_notice + X.notice_delay))
 			to_chat(X, "<span class='warning'>You can't reach this target!</span>")
 			X.recent_notice = world.time //anti-notice spam
 		return FALSE
 
 	var/mob/living/carbon/C = A
-	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
+	if (isnestedhost(C))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/larval_growth_sting/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	succeed_activate()
 
@@ -383,12 +383,12 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY
 
 /datum/action/xeno_action/shift_spits/update_button_icon()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
 
 /datum/action/xeno_action/shift_spits/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	for(var/i in 1 to X.xeno_caste.spit_types.len)
 		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
 			if(i == X.xeno_caste.spit_types.len)
@@ -466,7 +466,7 @@
 	return TRUE
 
 /datum/action/xeno_action/activable/corrosive_acid/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	X.face_atom(A)
 
@@ -607,14 +607,14 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(X.ammo?.spit_cost > X.plasma_stored)
 		if(!silent)
 			to_chat(src, "<span class='warning'>You need [X.ammo?.spit_cost - X.plasma_stored] more plasma!</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/xeno_spit/get_cooldown()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	return (X.xeno_caste.spit_delay + X.ammo?.added_spit_delay)
 
 /datum/action/xeno_action/activable/xeno_spit/on_cooldown_finish()
@@ -622,7 +622,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	var/turf/current_turf = get_turf(owner)
 
@@ -652,7 +652,7 @@
 	mechanics_text = "Causes your sprite to hide behind certain objects and under tables. Not the same as stealth. Does not use plasma."
 
 /datum/action/xeno_action/xenohide/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(X.layer != XENO_HIDING_LAYER)
 		X.layer = XENO_HIDING_LAYER
 		to_chat(X, "<span class='notice'>You are now hiding.</span>")
@@ -667,7 +667,7 @@
 	action_icon_state = "neuro_sting"
 	mechanics_text = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	ability_name = "neurotoxin sting"
-	cooldown_timer = XENO_NEURO_STING_COOLDOWN
+	cooldown_timer = 12 SECONDS
 	plasma_cost = 150
 
 /datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -680,13 +680,13 @@
 			to_chat(owner, "<span class='warning'>Your sting won't affect this target!</span>")
 		return FALSE
 	if(!owner.Adjacent(A))
-		var/mob/living/carbon/Xenomorph/X = owner
+		var/mob/living/carbon/xenomorph/X = owner
 		if(!silent && world.time > (X.recent_notice + X.notice_delay)) //anti-notice spam
 			to_chat(X, "<span class='warning'>You can't reach this target!</span>")
 			X.recent_notice = world.time //anti-notice spam
 		return FALSE
 	var/mob/living/carbon/C = A
-	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
+	if (isnestedhost(C))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return FALSE
@@ -697,7 +697,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/neurotox_sting/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	succeed_activate()
 
@@ -709,7 +709,7 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-/mob/living/carbon/Xenomorph/proc/add_abilities()
+/mob/living/carbon/xenomorph/proc/add_abilities()
 	if(actions && actions.len)
 		for(var/action_path in actions)
 			if(ispath(action_path))

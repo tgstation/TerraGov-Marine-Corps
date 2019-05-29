@@ -255,6 +255,9 @@
 	var/rechargeTime = 0			//time spent after arrival before being able to launch again
 	var/prearrivalTime = 0			//delay after call time finishes for sound effects, explosions, etc.
 
+	var/landing_sound = 'sound/effects/engine_landing.ogg'
+	var/ignition_sound = 'sound/effects/engine_startup.ogg'
+
 	// The direction the shuttle prefers to travel in
 	var/preferred_direction = NORTH
 	// And the angle from the front of the shuttle to the port
@@ -418,9 +421,12 @@
 
 // called on entering the igniting state
 /obj/docking_port/mobile/proc/on_ignition()
+	playsound(return_center_turf(), ignition_sound, 60, 0)
 	return
 
 /obj/docking_port/mobile/proc/on_prearrival()
+	playsound(destination.return_center_turf(), landing_sound, 60, 0)
+	playsound(return_center_turf(), landing_sound, 60, 0)
 	return
 
 //recall the shuttle to where it was previously

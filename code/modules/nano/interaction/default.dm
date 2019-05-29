@@ -83,7 +83,7 @@ GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
 		return STATUS_UPDATE
 
 
-/mob/living/carbon/Xenomorph/default_can_use_topic(src_object)
+/mob/living/carbon/xenomorph/default_can_use_topic(src_object)
 	. = shared_nano_interaction(src_object)
 	if(. != STATUS_CLOSE)
 		if(loc)

@@ -1,24 +1,24 @@
-/mob/living/carbon/Xenomorph/proc/hivemind_name()
+/mob/living/carbon/xenomorph/proc/hivemind_name()
 	return "<span class='game say'>Hivemind, <span class='name'>[name]</span>"
 
 
-/mob/living/carbon/Xenomorph/Queen/hivemind_name()
+/mob/living/carbon/xenomorph/queen/hivemind_name()
 	return "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span>"
 
 
-/mob/living/carbon/Xenomorph/proc/hivemind_end()
+/mob/living/carbon/xenomorph/proc/hivemind_end()
 	return ""
 
 
-/mob/living/carbon/Xenomorph/Queen/hivemind_end()
+/mob/living/carbon/xenomorph/queen/hivemind_end()
 	return "</font>"
 
 
-/mob/living/carbon/Xenomorph/proc/render_hivemind_message(message)
+/mob/living/carbon/xenomorph/proc/render_hivemind_message(message)
 	return message
 
 
-/mob/living/carbon/Xenomorph/proc/hivemind_talk(message)
+/mob/living/carbon/xenomorph/proc/hivemind_talk(message)
 	if(!message || stat)
 		return
 	if(!hive)
@@ -46,18 +46,18 @@
 	return TRUE
 
 
-/mob/living/carbon/Xenomorph/proc/receive_hivemind_message(mob/living/carbon/Xenomorph/X, message)
+/mob/living/carbon/xenomorph/proc/receive_hivemind_message(mob/living/carbon/xenomorph/X, message)
 	show_message("[X.hivemind_name()] <span class='message'>hisses, '[message]'</span></span></i>[hivemind_end()]", 2)
 
 
-/mob/living/carbon/Xenomorph/Queen/receive_hivemind_message(mob/living/carbon/Xenomorph/X, message)
+/mob/living/carbon/xenomorph/queen/receive_hivemind_message(mob/living/carbon/xenomorph/X, message)
 	if(ovipositor && X != src)
 		show_message("(<a href='byond://?src=\ref[src];watch_xeno_number=[X.nicknumber]'>F</a>) [X.hivemind_name()] <span class='message'>hisses, '[message]'</span></span></i>[hivemind_end()]", 2)
 	else
 		return ..()
 
 
-/mob/living/carbon/Xenomorph/get_saymode(message, talk_key)
+/mob/living/carbon/xenomorph/get_saymode(message, talk_key)
 	if(copytext(message, 1, 2) == ";")
 		return SSradio.saymodes["a"]
 	else if(copytext(message, 1, 3) == ".a" || copytext(message, 1, 3) == ":a")

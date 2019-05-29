@@ -496,7 +496,7 @@
 	show_inv(M)
 
 
-/mob/living/start_pulling(atom/movable/AM, lunge, no_msg)
+/mob/living/start_pulling(atom/movable/AM, no_msg)
 	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 
@@ -852,6 +852,24 @@ mob/proc/yank_out_object()
 	return TRUE
 
 
+/mob/proc/set_interaction(atom/movable/AM)
+	if(interactee)
+		if(interactee == AM) //already set
+			return
+		else
+			unset_interaction()
+	interactee = AM
+	if(istype(interactee)) //some stupid code is setting datums as interactee...
+		interactee.on_set_interaction(src)
+
+
+/mob/proc/unset_interaction()
+	if(interactee)
+		if(istype(interactee))
+			interactee.on_unset_interaction(src)
+		interactee = null
+
+
 /mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
 	var/viewers = viewers()
 	for(var/mob/M in viewers)
@@ -939,3 +957,30 @@ mob/proc/yank_out_object()
 				click_intercept = null
 				break
 	return ..()
+
+
+//This will update a mob's name, real_name, mind.name, GLOB.datacore records and id
+/mob/proc/fully_replace_character_name(oldname, newname)
+	if(!newname)	
+		return FALSE
+
+	log_played_names(ckey, newname)
+
+	real_name = newname
+	voice_name = newname
+	name = newname
+	if(mind)
+		mind.name = newname
+		if(mind.key)
+			log_played_names(mind.key, newname) //Just in case the mind is unsynced at the moment.
+
+	return TRUE
+
+
+/mob/proc/update_sight()
+	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_SIGHT)
+	sync_lighting_plane_alpha()
+
+
+/mob/proc/sync_lighting_plane_alpha()
+	return

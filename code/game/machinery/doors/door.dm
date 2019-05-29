@@ -61,7 +61,7 @@
 		fillers += new /obj/effect/opacifier(T, opacity)
 
 /obj/machinery/door/Bumped(atom/AM)
-	if(panel_open || operating)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) || operating)
 		return
 
 	if(ismob(AM))
@@ -84,17 +84,9 @@
 				open()
 		return
 
-	if(istype(AM, /obj/mecha))
-		var/obj/mecha/mecha = AM
-		if(density)
-			if(mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)))
-				open()
-			else
-				flick("door_deny", src)
-
 
 /obj/machinery/door/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return !opacity
 	return !density
 
@@ -197,12 +189,12 @@
 /obj/machinery/door/proc/do_animate(animation)
 	switch(animation)
 		if("opening")
-			if(panel_open)
+			if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				flick("o_doorc0", src)
 			else
 				flick("doorc0", src)
 		if("closing")
-			if(panel_open)
+			if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				flick("o_doorc1", src)
 			else
 				flick("doorc1", src)

@@ -263,7 +263,7 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "suppressor_a"
 
 /obj/item/attachable/suppressor/unremovable
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 /obj/item/attachable/suppressor/unremovable/invisible
 	attach_icon = ""
@@ -379,7 +379,7 @@ Defined in conflicts.dm of the #defines folder.
 
 	pixel_shift_x = 20
 	pixel_shift_y = 16
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 /obj/item/attachable/slavicbarrel/Initialize()
 	. = ..()
@@ -394,7 +394,7 @@ Defined in conflicts.dm of the #defines folder.
 
 	pixel_shift_x = 20
 	pixel_shift_y = 16
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 /obj/item/attachable/mosinbarrel/Initialize()
 	. = ..()
@@ -406,7 +406,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "sniperbarrel"
 	desc = "A heavy barrel. CANNOT BE REMOVED."
 	slot = "muzzle"
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 /obj/item/attachable/sniperbarrel/Initialize()
 	. = ..()
@@ -418,7 +418,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "smartbarrel"
 	desc = "A heavy rotating barrel. CANNOT BE REMOVED."
 	slot = "muzzle"
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 
 
@@ -655,7 +655,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A standard polymer stock for the ZX-76 assault shotgun. Designed for maximum ease of use in close quarters."
 	icon_state = "zx_stock"
 	wield_delay_mod = 0
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 /obj/item/attachable/stock/scout/Initialize()
 	. = ..()
@@ -671,7 +671,7 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 	matter = null
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 
 /obj/item/attachable/stock/slavic/Initialize()
@@ -689,7 +689,7 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 	matter = null
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 /obj/item/attachable/stock/mosin/Initialize()
 	. = ..()
@@ -720,7 +720,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "\improper M41A marksman stock"
 	icon_state = "m4markstock"
 	attach_icon = "m4markstock"
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 
 /obj/item/attachable/stock/smg
@@ -824,7 +824,7 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "laserstock"
 	pixel_shift_x = 41
 	pixel_shift_y = 10
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
@@ -1075,7 +1075,7 @@ Defined in conflicts.dm of the #defines folder.
 		fire_mod = 1
 
 		if(isxeno(M))
-			var/mob/living/carbon/Xenomorph/X = M
+			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
 			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)

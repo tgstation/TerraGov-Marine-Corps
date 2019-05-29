@@ -90,8 +90,8 @@
 	desc = "It's a green bandana with some fine nanotech lining."
 	icon_state = "greenbandana"
 	item_state = "greenbandana"
-	flags_inventory = NOFLAGS
-	flags_inv_hide = NOFLAGS
+	flags_inventory = NONE
+	flags_inv_hide = NONE
 	flags_armor_protection = 0
 
 /obj/item/clothing/head/cardborg
@@ -219,7 +219,7 @@
 	desc = "Eeeee~heheheheheheh!"
 	icon_state = "witch"
 	item_state = "witch"
-	flags_inventory = NOFLAGS
+	flags_inventory = NONE
 	flags_inv_hide = HIDEALLHAIR
 	siemens_coefficient = 2.0
 
@@ -228,7 +228,7 @@
 	desc = "Bkaw!"
 	icon_state = "chickenhead"
 	item_state = "chickensuit"
-	flags_inventory = NOFLAGS
+	flags_inventory = NONE
 	flags_inv_hide = HIDEALLHAIR
 	siemens_coefficient = 2.0
 	flags_armor_protection = HEAD|FACE|EYES

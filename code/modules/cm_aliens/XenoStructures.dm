@@ -63,7 +63,7 @@
 
 /obj/effect/alien/resin/hitby(AM as mob|obj)
 	..()
-	if(istype(AM,/mob/living/carbon/Xenomorph))
+	if(istype(AM,/mob/living/carbon/xenomorph))
 		return
 	visible_message("<span class='danger'>\The [src] was hit by \the [AM].</span>", \
 	"<span class='danger'>You hit \the [src].</span>")
@@ -78,7 +78,7 @@
 		playsound(loc, "alien_resin_break", 25)
 	take_damage(tforce)
 
-/obj/effect/alien/resin/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/effect/alien/resin/attack_alien(mob/living/carbon/xenomorph/M)
 	if(isxenolarva(M)) //Larvae can't do shit
 		return 0
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
@@ -228,7 +228,7 @@
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null
 
-/obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent != INTENT_HARM)
 		if(M.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			if(!hugger)
@@ -309,7 +309,7 @@
 	else
 		return TryToSwitchState(user)
 
-/obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc))
 		return FALSE
@@ -317,7 +317,7 @@
 	return TRUE
 
 //clicking on resin doors attacks them, or opens them without harm intent
-/obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/xenomorph/M)
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
@@ -499,11 +499,11 @@
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(TRUE)//any explosion destroys the egg.
 
-/obj/effect/alien/egg/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/obj/effect/alien/egg/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	to_chat(M, "<span class='xenowarning'>You nudge [src], but nothing happens.</span>")
 	return
 
-/obj/effect/alien/egg/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/effect/alien/egg/attack_alien(mob/living/carbon/xenomorph/M)
 
 	if(!istype(M))
 		return attack_hand(M)
@@ -695,7 +695,7 @@ TUNNEL
 	var/tunnel_desc = "" //description added by the hivelord.
 
 	max_integrity = 140
-	var/mob/living/carbon/Xenomorph/Hivelord/creator = null
+	var/mob/living/carbon/xenomorph/hivelord/creator = null
 	var/obj/structure/tunnel/other = null
 	var/id = null //For mapping
 
@@ -752,7 +752,7 @@ TUNNEL
 		return ..()
 	attack_alien(user)
 
-/obj/structure/tunnel/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/tunnel/attack_alien(mob/living/carbon/xenomorph/M)
 	if(!istype(M) || M.stat || M.lying)
 		return
 

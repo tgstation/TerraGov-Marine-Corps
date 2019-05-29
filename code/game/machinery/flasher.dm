@@ -74,7 +74,7 @@
 			if(H.get_eye_protection() > 0)
 				continue
 
-		if (istype(O, /mob/living/carbon/Xenomorph))//So aliens don't get flashed (they have no external eyes)/N
+		if (istype(O, /mob/living/carbon/xenomorph))//So aliens don't get flashed (they have no external eyes)/N
 			continue
 
 		O.KnockDown(strength)

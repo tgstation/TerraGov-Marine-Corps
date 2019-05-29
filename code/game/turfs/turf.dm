@@ -40,15 +40,20 @@
 	var/list/baseturfs = /turf/baseturf_bottom
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
-/turf/New()
-	..()
+/turf/Initialize(mapload, ...)
+	. = ..()
 	GLOB.turfs += src
-	for(var/atom/movable/AM as mob|obj in src)
-		spawn(0)
-			Entered(AM)
+	for(var/atom/movable/AM in src)
+		Entered(AM)
 
 	levelupdate()
 
+	if(luminosity)
+		if(light)	
+			WARNING("[type] - Don't set lights up manually during New(), We do it automatically.")
+		trueLuminosity = luminosity * luminosity
+		light = new(src)
+	visibilityChanged()
 
 /turf/Destroy()
 	if(oldTurf != "")
@@ -363,7 +368,7 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 //Check if you can plant weeds on that turf.
 //Does NOT return a message, just a 0 or 1.
 /turf/proc/is_weedable()
-	return !density && !is_type_in_typecache(get_area(src), GLOB.unweedable_areas)
+	return !density && !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas)
 
 /turf/open/space/is_weedable()
 	return FALSE
@@ -391,7 +396,7 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 
 
 /turf/closed/wall/is_weedable()
-	return !is_type_in_typecache(get_area(src), GLOB.unweedable_areas) //so we can spawn weeds on the walls
+	return !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas) //so we can spawn weeds on the walls
 
 
 /turf/proc/check_alien_construction(mob/living/L, silent = FALSE)

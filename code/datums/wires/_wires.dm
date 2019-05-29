@@ -149,6 +149,13 @@
 
 
 /datum/wires/proc/cut(wire)
+	if(usr.mind?.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
+		"<span class='notice'>You fumble around figuring out the wiring.</span>")
+		var/fumbling_time = 20 * (SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer)
+		if(!do_after(usr, fumbling_time, TRUE, holder, BUSY_ICON_UNSKILLED))
+			return
+
 	if(is_cut(wire))
 		cut_wires -= wire
 		on_cut(wire, mend = TRUE)
@@ -173,6 +180,14 @@
 /datum/wires/proc/pulse(wire, user)
 	if(is_cut(wire))
 		return
+
+	if(usr.mind?.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
+		"<span class='notice'>You fumble around figuring out the wiring.</span>")
+		var/fumbling_time = 20 * (SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer)
+		if(!do_after(usr, fumbling_time, TRUE, holder, BUSY_ICON_UNSKILLED) || is_cut(wire))
+			return
+
 	on_pulse(wire, user)
 
 
@@ -228,23 +243,11 @@
 
 
 /datum/wires/proc/on_cut(wire, mend = FALSE)
-	if(usr.mind?.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
-		"<span class='notice'>You fumble around figuring out the wiring.</span>")
-		var/fumbling_time = 20 * (SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer)
-		if(!do_after(usr, fumbling_time, TRUE, holder, BUSY_ICON_UNSKILLED))
-			return FALSE
-	return TRUE
+	return
 
 
 /datum/wires/proc/on_pulse(wire, user)
-	if(usr.mind?.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
-		"<span class='notice'>You fumble around figuring out the wiring.</span>")
-		var/fumbling_time = 20 * (SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer)
-		if(!do_after(usr, fumbling_time, TRUE, holder, BUSY_ICON_UNSKILLED))
-			return FALSE
-	return TRUE
+	return
 // End Overridable Procs
 
 

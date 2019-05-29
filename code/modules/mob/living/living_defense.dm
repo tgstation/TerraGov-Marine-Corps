@@ -136,7 +136,7 @@
 		if(!stat && !(species.species_flags & NO_PAIN))
 			emote("scream")
 
-/mob/living/carbon/Xenomorph/IgniteMob()
+/mob/living/carbon/xenomorph/IgniteMob()
 	. = ..()
 	if(.)
 		var/fire_light = min(fire_stacks,5)
@@ -159,7 +159,7 @@
 		fire_stacks = 0
 		update_fire()
 
-/mob/living/carbon/Xenomorph/ExtinguishMob()
+/mob/living/carbon/xenomorph/ExtinguishMob()
 	. = ..()
 	SetLuminosity(-fire_luminosity) //Reset lighting
 
@@ -186,7 +186,7 @@
 
 //Mobs on Fire end
 // When they are affected by a queens screech
-/mob/living/proc/screech_act(mob/living/carbon/Xenomorph/Queen/Q)
+/mob/living/proc/screech_act(mob/living/carbon/xenomorph/queen/Q)
 	shake_camera(src, 3 SECONDS, 1)
 
 /mob/living/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -199,7 +199,7 @@
 		smokecloak_on()
 	if(smoke_delay)
 		return FALSE
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || (istype(buckled, /obj/structure/bed/nest) && status_flags & XENO_HOST)))
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || isnestedhost(src)))
 		return FALSE
 	smoke_delay = TRUE
 	addtimer(CALLBACK(src, .proc/remove_smoke_delay), 10)

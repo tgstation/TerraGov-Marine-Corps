@@ -32,13 +32,6 @@
 				open()
 				sleep(50)
 				close()
-		else if(istype(AM, /obj/mecha))
-			var/obj/mecha/mecha = AM
-			if(density)
-				if(mecha.occupant && src.allowed(mecha.occupant))
-					open()
-					sleep(50)
-					close()
 		return
 	var/mob/M = AM // we've returned by here if M is not a mob
 	add_fingerprint(M)
@@ -56,7 +49,7 @@
 	return
 
 /obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
 		return !density
@@ -64,7 +57,7 @@
 		return TRUE
 
 /obj/machinery/door/window/CheckExit(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 	if(get_dir(loc, target) == dir)
 		return !density
@@ -159,7 +152,7 @@
 	return src.attack_hand(user)
 
 //Slashing windoors
-/obj/machinery/door/window/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/door/window/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 	M.visible_message("<span class='danger'>[M] smashes against [src]!</span>", \

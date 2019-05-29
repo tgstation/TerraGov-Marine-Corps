@@ -23,7 +23,7 @@
 
 
 	for(var/mob/living/carbon/M in hear(7, T))
-		if(!istype(M,/mob/living/carbon/Xenomorph))
+		if(!istype(M,/mob/living/carbon/xenomorph))
 			bang(T, M)
 
 

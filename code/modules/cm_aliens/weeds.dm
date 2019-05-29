@@ -8,6 +8,7 @@
 
 	anchored = 1
 	density = 0
+	plane = FLOOR_PLANE
 	layer = TURF_LAYER
 	var/parent_node
 	max_integrity = 4
@@ -17,7 +18,7 @@
         round_statistics.weeds_destroyed++
         qdel(src)
 
-/obj/effect/alien/weeds/Initialize(pos, obj/effect/alien/weeds/node/node)
+/obj/effect/alien/weeds/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
 
 	parent_node = node
@@ -189,14 +190,14 @@
 	overlays.Cut()
 	overlays += "weednode"
 
-/obj/effect/alien/weeds/node/Initialize(loc, obj/effect/alien/weeds/node/node, mob/living/carbon/Xenomorph/X)
+/obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node, mob/living/carbon/xenomorph/X)
 	for(var/obj/effect/alien/weeds/W in loc)
 		if(W != src)
 			qdel(W) //replaces the previous weed
 			break
 
 	overlays += "weednode"
-	. = ..(loc, src)
+	. = ..(mapload, src)
 
 	// Generate our full graph before adding to SSweeds
 	generate_weed_graph()

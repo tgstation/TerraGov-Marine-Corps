@@ -3,7 +3,7 @@
 	display_name = "Warrior"
 	upgrade_name = ""
 	caste_desc = "A powerful front line combatant."
-	caste_type_path = /mob/living/carbon/Xenomorph/Warrior
+	caste_type_path = /mob/living/carbon/xenomorph/warrior
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "warrior" //used to match appropriate wound overlays
@@ -29,8 +29,8 @@
 	evolution_threshold = 200
 	upgrade_threshold = 200
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Crusher)
-	deevolves_to = /mob/living/carbon/Xenomorph/Defender
+	evolves_to = list(/mob/living/carbon/xenomorph/crusher)
+	deevolves_to = /mob/living/carbon/xenomorph/defender
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER

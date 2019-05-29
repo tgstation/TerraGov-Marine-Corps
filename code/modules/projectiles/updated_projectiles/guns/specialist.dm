@@ -79,7 +79,7 @@
 	apply_overlay(LASER_LAYER)
 	return TRUE
 
-/mob/living/carbon/Xenomorph/apply_laser()
+/mob/living/carbon/xenomorph/apply_laser()
 	overlays_standing[X_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-X_LASER_LAYER)
 	apply_overlay(X_LASER_LAYER)
 	return TRUE
@@ -96,7 +96,7 @@
 	remove_overlay(LASER_LAYER)
 	return TRUE
 
-/mob/living/carbon/Xenomorph/remove_laser()
+/mob/living/carbon/xenomorph/remove_laser()
 	remove_overlay(X_LASER_LAYER)
 	return TRUE
 
@@ -275,7 +275,6 @@
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
 	attachable_allowed = list(
-						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
@@ -298,7 +297,7 @@
 	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
 	burst_accuracy_mult = CONFIG_GET(number/combat_define/min_burst_accuracy_penalty)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
@@ -318,7 +317,7 @@
 	fire_sound = "gun_smartgun"
 	load_method = POWERPACK //codex
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
-	flags_equip_slot = NOFLAGS
+	flags_equip_slot = NONE
 	w_class = 5
 	force = 20
 	wield_delay = 16
@@ -337,7 +336,7 @@
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 17, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 11, "rail_y" = 18, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
 /obj/item/weapon/gun/smartgun/Initialize()
 	. = ..()
@@ -462,7 +461,8 @@
 	var/max_grenades = 6
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	attachable_allowed = list(
-						/obj/item/attachable/magnetic_harness)
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
@@ -599,7 +599,7 @@
 	var/riot_version
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-/obj/item/weapon/gun/launcher/m81/Initialize(loc, spawn_empty)
+/obj/item/weapon/gun/launcher/m81/Initialize(mapload, spawn_empty)
 	. = ..()
 	if(!spawn_empty)
 		if(riot_version)
@@ -712,7 +712,7 @@
 	origin_tech = "combat=6;materials=5"
 	matter = list("metal" = 10000)
 	current_mag = /obj/item/ammo_magazine/rocket
-	flags_equip_slot = NOFLAGS
+	flags_equip_slot = NONE
 	w_class = 5
 	force = 15
 	wield_delay = 12
@@ -729,7 +729,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/datum/effect_system/smoke_spread/smoke
 
-/obj/item/weapon/gun/launcher/rocket/Initialize(loc, spawn_empty)
+/obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
 	. = ..()
 	smoke = new(src, FALSE)
 

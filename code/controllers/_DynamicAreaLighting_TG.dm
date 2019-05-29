@@ -30,7 +30,6 @@
 */
 
 #define LIGHTING_CIRCULAR 1									//comment this out to use old square lighting effects.
-#define LIGHTING_LAYER 10									//Drawing layer for lighting overlays
 #define LIGHTING_ICON 'icons/effects/ss13_dark_alpha6.dmi'	//Icon used for lighting shading effects
 
 datum/light_source
@@ -149,17 +148,11 @@ atom
 
 //Turfs with opacity when they are constructed will trigger nearby lights to update
 //Turfs and atoms with luminosity when they are constructed will create a light_source automatically
-turf/New()
-	..()
-	if(luminosity)
-		if(light)	WARNING("[type] - Don't set lights up manually during New(), We do it automatically.")
-		trueLuminosity = luminosity * luminosity
-		light = new(src)
 
 //Movable atoms with opacity when they are constructed will trigger nearby lights to update
 //Movable atoms with luminosity when they are constructed will create a light_source automatically
-atom/movable/New()
-	..()
+atom/movable/Initialize(mapload, ...)
+	. = ..()
 	if(opacity)
 		if(isturf(loc))
 			if(loc:lighting_lumcount > 1)
@@ -405,6 +398,7 @@ area
 			lighting_overlay.icon_state = "[light]"
 		else
 			lighting_overlay = image(LIGHTING_ICON,,num2text(light),LIGHTING_LAYER)
+			lighting_overlay.plane = LIGHTING_PLANE
 
 		if (color_overlay)
 			overlays.Remove(color_overlay)

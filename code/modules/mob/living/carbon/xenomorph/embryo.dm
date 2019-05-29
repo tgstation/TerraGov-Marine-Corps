@@ -53,13 +53,13 @@
 	if(affected_mob.stat == DEAD)
 		if(ishuman(affected_mob))
 			var/mob/living/carbon/human/H = affected_mob
-			if(H.check_tod()) //Can't be defibbed.
-				var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
+			if(check_tod(H)) //Can't be defibbed.
+				var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
 				L?.initiate_burst(affected_mob)
 				STOP_PROCESSING(SSobj, src)
 				return FALSE
 		else
-			var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
+			var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
 			L?.initiate_burst(affected_mob)
 			STOP_PROCESSING(SSobj, src)
 			return FALSE
@@ -115,7 +115,7 @@
 		if(6)
 			larva_autoburst_countdown--
 			if(!larva_autoburst_countdown)
-				var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
+				var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
 				L?.initiate_burst(affected_mob)
 
 
@@ -137,7 +137,7 @@
 		picked = get_alien_candidate()
 
 	//Spawn the larva.
-	var/mob/living/carbon/Xenomorph/Larva/new_xeno
+	var/mob/living/carbon/xenomorph/larva/new_xeno
 
 	new_xeno = new(affected_mob)
 
@@ -157,7 +157,7 @@
 	stage = 6
 
 
-/mob/living/carbon/Xenomorph/Larva/proc/initiate_burst(mob/living/carbon/victim)
+/mob/living/carbon/xenomorph/larva/proc/initiate_burst(mob/living/carbon/victim)
 	if(victim.chestburst || loc != victim)
 		return
 
@@ -172,7 +172,7 @@
 	addtimer(CALLBACK(src, .proc/burst, victim), 3 SECONDS)
 
 
-/mob/living/carbon/Xenomorph/Larva/proc/burst(mob/living/carbon/victim)
+/mob/living/carbon/xenomorph/larva/proc/burst(mob/living/carbon/victim)
 	if(QDELETED(victim))
 		return
 

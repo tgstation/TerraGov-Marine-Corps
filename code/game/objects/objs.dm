@@ -185,7 +185,7 @@
 	if (M.mob_size > MOB_SIZE_HUMAN)
 		to_chat(user, "<span class='warning'>[M] is too big to buckle in.</span>")
 		return
-	if (istype(user, /mob/living/carbon/Xenomorph))
+	if (istype(user, /mob/living/carbon/xenomorph))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do that, try a nest.</span>")
 		return
 
@@ -315,3 +315,7 @@
 			return M.mind.cm_skills.police
 		if(OBJ_SKILL_POWERLOADER)
 			return M.mind.cm_skills.powerloader
+
+/obj/on_set_interaction(mob/user)
+	. = ..()
+	ENABLE_BITFIELD(obj_flags, IN_USE)

@@ -63,7 +63,7 @@
 /obj/structure/grille/attack_paw(mob/user as mob)
 	attack_hand(user)
 
-/obj/structure/grille/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/grille/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 	var/damage_dealt = 5
@@ -125,7 +125,7 @@
 
 
 /obj/structure/grille/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSGRILLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
 		return TRUE
 	else
 		if(istype(mover, /obj/item/projectile))

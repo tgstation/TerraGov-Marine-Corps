@@ -31,7 +31,6 @@
 	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, centcomm etc ID
-	var/mutantrace = "human"
 	var/xenovictim = FALSE //whether this person was infected and killed by xenos
 
 
@@ -44,7 +43,6 @@
 /obj/effect/landmark/corpsespawner/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
 	round_statistics.total_humans_created-- //corpses don't count
-	M.dna.mutantrace = mutantrace
 	M.real_name = name
 	M.death(1) //Kills the new mob
 	if(corpseuniform)
@@ -92,9 +90,7 @@
 		W.registered_name = M.real_name
 		M.equip_to_slot_or_del(W, SLOT_WEAR_ID)
 	if(xenovictim)
-		M.adjustBruteLoss(100)
-		M.adjustBruteLoss(100)
-		M.adjustBruteLoss(100)
+		// no damage because limb updates are expensive
 		var/datum/internal_organ/O
 		var/i
 		for(i in list("heart","lungs"))

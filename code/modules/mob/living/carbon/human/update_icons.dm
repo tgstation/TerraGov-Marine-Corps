@@ -48,7 +48,6 @@ There are several things that need to be remembered:
 
 >	There are also these special cases:
 		update_mutations()	//handles updating your appearance for certain mutations.  e.g TK head-glows
-		update_mutantrace()	//handles updating your appearance after setting the mutantrace var
 		UpdateDamageIcon()	//handles damage overlays for brute/burn damage //(will rename this when I geta round to it)
 		update_body()	//Handles updating your mob's icon to reflect their gender/race/complexion etc
 		update_hair()	//Handles updating your hair overlay (used to be update_face, but mouth and
@@ -308,7 +307,7 @@ var/global/list/damage_icon_parts = list()
 		if(job in JOBS_MARINES) //undoing override
 			if(undershirt>0 && undershirt < 5)
 				stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryoshirt[undershirt]_s"), ICON_OVERLAY)
-		else if(undershirt>0 && undershirt < 5)
+		else if(undershirt > 0 && undershirt < 7)
 			stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryoshirt[undershirt]_s"), ICON_OVERLAY)
 
 	icon = stand_icon
@@ -381,26 +380,6 @@ var/global/list/damage_icon_parts = list()
 
 		apply_overlay(MUTATIONS_LAYER)
 
-
-/mob/living/carbon/human/proc/update_mutantrace()
-	remove_overlay(MUTANTRACE_LAYER)
-	var/fat
-
-	if( FAT in mutations )
-		fat = "fat"
-
-	if(dna)
-		switch(dna.mutantrace)
-			if("golem","slime","shadow","adamantine")
-				overlays_standing[MUTANTRACE_LAYER]	= image("icon" = 'icons/effects/genetics.dmi', "icon_state" = "[dna.mutantrace][fat]_[gender]_s")
-
-
-	if(!dna || !(dna.mutantrace in list("golem","metroid")))
-		update_body(0)
-
-	update_hair(0)
-	apply_overlay(MUTANTRACE_LAYER)
-
 //Call when target overlay should be added/removed
 /mob/living/carbon/human/update_targeted()
 	remove_overlay(TARGETED_LAYER)
@@ -423,9 +402,7 @@ var/global/list/damage_icon_parts = list()
 /* --------------------------------------- */
 //For legacy support.
 /mob/living/carbon/human/regenerate_icons()
-	if(monkeyizing)		return
 	update_mutations(0)
-	update_mutantrace(0)
 	update_inv_w_uniform()
 	update_inv_wear_id()
 	update_inv_gloves()

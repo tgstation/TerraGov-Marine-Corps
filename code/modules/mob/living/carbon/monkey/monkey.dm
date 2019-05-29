@@ -118,19 +118,6 @@
 
 	return ..()
 
-
-/mob/living/carbon/monkey/unathi/Initialize()
-	. = ..()
-	dna.mutantrace = "lizard"
-
-/mob/living/carbon/monkey/skrell/Initialize()
-	. = ..()
-	dna.mutantrace = "skrell"
-
-/mob/living/carbon/monkey/tajara/Initialize()
-	. = ..()
-	dna.mutantrace = "tajaran"
-
 /mob/living/carbon/monkey/movement_delay()
 	. = ..()
 

@@ -1,14 +1,14 @@
-/mob/living/carbon/Xenomorph/get_antag_info()
+/mob/living/carbon/xenomorph/get_antag_info()
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
 	return general_entry?.antag_text
 
-/mob/living/carbon/Xenomorph/get_lore_info()
+/mob/living/carbon/xenomorph/get_lore_info()
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
 	return general_entry?.lore_text
 
-/mob/living/carbon/Xenomorph/get_mechanics_info()
+/mob/living/carbon/xenomorph/get_mechanics_info()
 	. = ..()
 	var/list/xeno_strings = list()
 
@@ -51,7 +51,7 @@
 
 /datum/codex_entry/xenomorph
 	display_name = "xenomorph"
-	associated_paths = list(/mob/living/carbon/Xenomorph)
+	associated_paths = list(/mob/living/carbon/xenomorph)
 	mechanics_text = "Xenomorphs are a hostile lifeform. They are very powerful individually and also in groups. \
 	They reproduce by capturing hosts and impregnating them with facehuggers. Some time later the larva growing in the hosts \
 	chest will violently burst out killing the host in the process. <br><br>Not suitable for pet ownership."

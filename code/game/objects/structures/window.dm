@@ -19,6 +19,32 @@
 	var/damageable = TRUE
 	var/deconstructable = TRUE
 
+
+/obj/structure/window/Initialize(mapload, start_dir, constructed)
+	..()
+
+	//player-constructed windows
+	if(constructed)
+		anchored = FALSE
+		state = 0
+
+	if(start_dir)
+		setDir(start_dir)
+
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/structure/window/LateInitialize()
+	. = ..()
+	update_nearby_icons()
+
+
+/obj/structure/window/Destroy()
+	density = FALSE
+	update_nearby_icons()
+	return ..()
+
+
 //create_debris creates debris like shards and rods. This also includes the window frame for explosions
 //If an user is passed, it will create a "user smashes through the window" message. AM is the item that hits
 //Please only fire this after a hit
@@ -71,7 +97,7 @@
 		return TRUE
 
 /obj/structure/window/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 	if(is_full_window())
 		return FALSE //Full tile window, you can't move into it!
@@ -81,7 +107,7 @@
 		return TRUE
 
 /obj/structure/window/CheckExit(atom/movable/O, turf/target)
-	if(istype(O) && O.checkpass(PASSGLASS))
+	if(istype(O) && CHECK_BITFIELD(O.flags_pass, PASSGLASS))
 		return TRUE
 	if(get_dir(O.loc, target) == dir && !is_full_window())
 		return FALSE
@@ -109,7 +135,7 @@
 	user.visible_message("<span class='notice'>Something knocks on [src].</span>")
 	playsound(loc, 'sound/effects/glassknock.ogg', 15, 1)
 
-/obj/structure/window/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/window/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HELP)
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 25, 1)
 		M.visible_message("<span class='warning'>\The [M] creepily taps on [src] with its huge claw.</span>", \
@@ -307,24 +333,6 @@
 
 	setDir(turn(dir, 270))
 
-
-/obj/structure/window/Initialize(Loc, start_dir = null, constructed = 0)
-	. = ..()
-
-	//player-constructed windows
-	if(constructed)
-		anchored = FALSE
-
-	if(start_dir)
-		setDir(start_dir)
-
-	update_nearby_icons()
-
-/obj/structure/window/Destroy()
-	density = FALSE
-	update_nearby_icons()
-	. = ..()
-
 /obj/structure/window/Move()
 	var/ini_dir = dir
 	..()
@@ -412,13 +420,6 @@
 	max_integrity = 300
 	reinf = TRUE
 
-/obj/structure/window/Initialize(Loc, constructed = 0)
-	. = ..()
-
-	//player-constructed windows
-	if(constructed)
-		state = 0
-
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
 	desc = "A glass window with a rod matrice. It looks rather strong and opaque. Might take a few good hits to shatter it."
@@ -452,7 +453,7 @@
 	name = "theoretical window"
 	layer = TABLE_LAYER
 	static_frame = TRUE
-	flags_atom = NOFLAGS //This is not a border object; it takes up the entire tile.
+	flags_atom = NONE //This is not a border object; it takes up the entire tile.
 	var/window_frame //For perspective windows,so the window frame doesn't magically dissapear
 	var/list/tiles_special = list(/obj/machinery/door/airlock,
 		/obj/structure/window/framed,

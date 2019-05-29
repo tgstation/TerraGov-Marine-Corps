@@ -23,14 +23,14 @@
 		/obj/structure/window_frame)
 
 /obj/structure/window_frame/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && climbable && mover.checkpass(PASSTABLE))
+	if(istype(mover) && climbable && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 	return FALSE
 
 /obj/structure/window_frame/CheckExit(atom/movable/O as mob|obj, target as turf)
 	return TRUE
 
-/obj/structure/window_frame/Initialize(loc, from_window_shatter)
+/obj/structure/window_frame/Initialize(mapload, from_window_shatter)
 	. = ..()
 	var/weed_found
 	if(from_window_shatter)

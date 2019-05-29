@@ -86,11 +86,8 @@
 		/obj/structure/closet/secure_closet,
 		/obj/machinery/computer,
 		/obj/machinery/power,
-		/obj/machinery/shield_capacitor,
-		/obj/machinery/shield_gen,
 		/obj/machinery/deployable,
 		/obj/machinery/door_control,
-		/obj/machinery/shieldgen,
 		/obj/machinery/vending,
 		/obj/machinery/bot,
 		/obj/machinery/door,
@@ -304,6 +301,13 @@
 	icon_state = "dogtag"
 	item_state = "dogtag"
 	var/dogtag_taken = FALSE
+
+
+/obj/item/card/id/dogtag/som
+	name = "\improper Sons of Mars dogtag"
+	desc = "Used by the Sons of Mars."
+	icon_state = "dogtag_som"
+	item_state = "dogtag_som"
 
 
 /obj/item/card/id/dogtag/examine(mob/user)

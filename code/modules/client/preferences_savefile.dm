@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	24
+#define SAVEFILE_VERSION_MAX	26
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -19,6 +19,15 @@
 					fdel(delpath)
 				break
 		return FALSE
+
+	if(savefile_version < 26)
+		S["key_bindings"] << deepCopyList(GLOB.keybinding_list_by_key)
+
+	if(savefile_version < 25)
+		S["ghost_vision"]	<< TRUE
+		S["ghost_orbit"]	<< GHOST_ORBIT_CIRCLE
+		S["ghost_form"]		<< GHOST_DEFAULT_FORM
+		S["ghost_others"]	<< GHOST_OTHERS_DEFAULT_OPTION
 
 	if(savefile_version < 24)
 		S["menuoptions"]	<< list()
@@ -40,7 +49,7 @@
 	path = "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/[filename]"
 
 	if(savefile_version < 21)
-		muted << NOFLAGS
+		muted << NONE
 
 	savefile_version = SAVEFILE_VERSION_MAX
 
@@ -77,6 +86,14 @@
 	S["ghost_hud"]			>> ghost_hud
 	S["windowflashing"]		>> windowflashing
 	S["menuoptions"]		>> menuoptions
+	S["ghost_vision"]		>> ghost_vision
+	S["ghost_orbit"]		>> ghost_orbit
+	S["ghost_form"]			>> ghost_form
+	S["ghost_others"]		>> ghost_others
+	S["hotkeys"]			>> hotkeys
+
+	// Custom hotkeys
+	S["key_bindings"]		>> key_bindings
 
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
@@ -92,6 +109,13 @@
 	show_typing		= sanitize_integer(show_typing, 0, 1, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, 0, 8388608, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
+	ghost_vision	= sanitize_integer(ghost_vision, 0, 1, initial(ghost_vision))
+	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
+	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
+	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
+	hotkeys			= sanitize_integer(hotkeys, 0, 1, initial(hotkeys))
+
+	key_bindings 	= sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key)) 
 
 	return TRUE
 
@@ -119,6 +143,12 @@
 	show_typing		= sanitize_integer(show_typing, 0, 1, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, 0, 8388608, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
+	key_bindings	= sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key))
+	ghost_vision	= sanitize_integer(ghost_vision, 0, 1, initial(ghost_vision))
+	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
+	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
+	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
+	hotkeys			= sanitize_integer(hotkeys, 0, 1, initial(hotkeys))
 
 	S["default_slot"]		<< default_slot
 	S["lastchangelog"]		<< lastchangelog
@@ -134,6 +164,12 @@
 	S["ghost_hud"]			<< ghost_hud
 	S["windowflashing"]		<< windowflashing
 	S["menuoptions"]		<< menuoptions
+	S["key_bindings"]		<< key_bindings
+	S["ghost_vision"]		<< ghost_vision
+	S["ghost_orbit"]		<< ghost_orbit
+	S["ghost_form"]			<< ghost_form
+	S["ghost_others"]		<< ghost_others
+	S["hotkeys"]			<< hotkeys
 
 	return TRUE
 
