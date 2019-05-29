@@ -8,8 +8,8 @@
 	var/round_finished
 
 	var/round_time_fog
-	var/flags_round_type = NOFLAGS
-	var/flags_landmarks = NOFLAGS
+	var/flags_round_type = NONE
+	var/flags_landmarks = NONE
 
 	var/distress_cancelled = FALSE
 

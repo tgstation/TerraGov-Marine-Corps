@@ -206,5 +206,5 @@
 	agonyforce = 60	//same force as a stunbaton, but uses way more charge.
 	hitcost = 2500
 	attack_verb = list("poked")
-	flags_equip_slot = NOFLAGS
+	flags_equip_slot = NONE
 	has_user_lock = FALSE

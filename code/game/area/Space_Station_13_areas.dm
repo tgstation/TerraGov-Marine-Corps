@@ -29,7 +29,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	invisibility = INVISIBILITY_LIGHTING
 	var/lightswitch = 1
 
-	var/flags_alarm_state = NOFLAGS
+	var/flags_alarm_state = NONE
 
 	var/debug = 0
 	var/powerupdate = 10		//We give everything 10 ticks to settle out it's power usage.

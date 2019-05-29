@@ -1143,7 +1143,7 @@
 		if(O.limb_status & LIMB_ROBOT)
 			O.limb_status = LIMB_ROBOT
 		else
-			O.limb_status = NOFLAGS
+			O.limb_status = NONE
 		O.perma_injury = 0
 		O.germ_level = 0
 		O.wounds.Cut()

@@ -110,7 +110,7 @@
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket
 	gun_type = /obj/item/weapon/gun/launcher/rocket
-	flags_magazine = NOFLAGS
+	flags_magazine = NONE
 	reload_delay = 60
 
 	attack_self(mob/user)

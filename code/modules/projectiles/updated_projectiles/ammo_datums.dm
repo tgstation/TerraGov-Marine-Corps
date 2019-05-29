@@ -67,7 +67,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		damage_falloff 		= CONFIG_GET(number/combat_define/reg_damage_falloff) 	// How much damage the bullet loses per turf traveled.
 		shell_speed 		= CONFIG_GET(number/combat_define/slow_shell_speed) 	// How fast the projectile moves.
 
-	var/flags_ammo_behavior = NOFLAGS
+	var/flags_ammo_behavior = NONE
 
 	proc/do_at_half_range(obj/item/projectile/P)
 		return

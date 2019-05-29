@@ -70,7 +70,7 @@
 	var/brute_mod = null    // Physical damage reduction/malus.
 	var/burn_mod = null     // Burn damage reduction/malus.
 
-	var/species_flags  = NOFLAGS       // Various specific features.
+	var/species_flags  = NONE       // Various specific features.
 
 	var/list/abilities = list()	// For species-derived or admin-given powers
 	var/list/preferences = list()

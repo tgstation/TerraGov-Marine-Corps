@@ -78,7 +78,7 @@
 /obj/machinery/button/door
 	name = "door button"
 	desc = "A door remote control switch."
-	var/specialfunctions = NOFLAGS
+	var/specialfunctions = NONE
 
 
 /obj/machinery/button/door/indestructible
