@@ -1,7 +1,6 @@
 /datum/admins/proc/admin_sql()
 	set category = "Admin"
 	set name = "SQLQuery"
-	set desc = "Debug Query yo."
 
 	if(!check_rights(R_ADMIN))
 		to_chat(usr, "<span class='warning'>Not enough rights.</span>")
