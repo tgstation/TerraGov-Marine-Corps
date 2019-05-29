@@ -725,3 +725,10 @@
 	icon_state = "marinepack"
 	storage_slots = null
 	max_storage_space = 30
+
+
+/obj/item/storage/backpack/lightpack/som
+	name = "mining rucksack"
+	desc = "A rucksack with origins dating back to the mining colonies."
+	icon_state = "som_lightpack"
+	item_state = "som_lightpack"

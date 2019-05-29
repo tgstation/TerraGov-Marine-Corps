@@ -56,6 +56,14 @@
 	fill_type = /obj/item/binoculars/tactical
 	fill_number = 1
 
+
+/obj/item/storage/pouch/general/som
+	name = "mining general pouch"
+	desc = "A general purpose pouch used to carry small items used during mining."
+	icon_state = "general_som"
+	draw_mode = 1
+
+
 /obj/item/storage/pouch/bayonet
 	name = "bayonet sheath"
 	desc = "A pouch for your knives."
@@ -122,6 +130,32 @@
 	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine (src)
 	new /obj/item/stack/medical/bruise_pack (src)
 	new /obj/item/stack/medical/splint (src)
+
+
+/obj/item/storage/pouch/firstaid/som
+	name = "mining first aid pouch"
+	desc = "A basic first aid pouch used by miners due to dangerous working conditions on the mining colonies."
+	icon_state = "firstaid_som"
+	storage_slots = 5
+	can_hold = list(
+		/obj/item/stack/medical/ointment,
+		/obj/item/reagent_container/hypospray/autoinjector,
+		/obj/item/stack/medical/bruise_pack,
+		/obj/item/stack/medical/splint)
+
+
+/obj/item/storage/pouch/firstaid/som/full
+	desc = "A basic first aid pouch used by miners due to dangerous working conditions on the mining colonies. Contains the necessary items already."
+
+
+/obj/item/storage/pouch/firstaid/som/full/Initialize()
+	. = ..()
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/tramadol(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/splint(src)
+
 
 /obj/item/storage/pouch/pistol
 	name = "sidearm pouch"

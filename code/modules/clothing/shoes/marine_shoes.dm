@@ -113,3 +113,11 @@
 	knife = new /obj/item/weapon/combat_knife
 	update_icon()
 	
+
+
+/obj/item/clothing/shoes/marine/som
+	name = "\improper S11 combat shoes"
+	desc = "Shoes with origins dating back to the old mining colonies."
+	icon_state = "som"
+	item_state = "som"
+	armor = list(melee = 65, bullet = 45, laser = 15, energy = 15, bomb = 15, bio = 15, rad = 0)
