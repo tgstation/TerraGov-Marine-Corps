@@ -13,9 +13,9 @@
 		to_chat(usr, "<span class='warning'>SQL not connected?!.</span>")
 		return
 	
-	var/rawQuery = input(usr, "query?", "query?", "") as text|null
-	if(!dd_hasprefix(rawQuery, "SELECT"))
-		to_chat(usr, "<span class='warning'>SELECT Statements only?!.</span>")
+	var/rawQuery = input(usr, "What is your query", "Admin Query", "") as text|null
+	if(!findtext(rawQuery, regex("^select [\s*a-z,]+ from feedback(?:|\s+[a-z].*);$", "i")))
+		to_chat(usr, "<span class='warning'>SELECT Statements from Feedacb only!!.</span>")
 		return
 	var/datum/DBQuery/result = SSdbcore.NewQuery("[rawQuery]")
 	result.Execute()
