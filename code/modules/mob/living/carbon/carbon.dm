@@ -1,7 +1,4 @@
-
 /mob/living/carbon/Destroy()
-	for(var/datum/disease/virus in viruses)
-		virus.cure()
 	. = ..()
 	stomach_contents.Cut() //movable atom's Destroy() deletes all content, we clear stomach_contents to be safe.
 
@@ -62,14 +59,6 @@
 	if(!iscarbon(M))
 		return
 
-	for(var/datum/disease/D in viruses)
-		if(D.spread_by_touch())
-			M.contract_disease(D, 0, 1, CONTACT_HANDS)
-
-	for(var/datum/disease/D in M.viruses)
-		if(D.spread_by_touch())
-			contract_disease(D, 0, 1, CONTACT_HANDS)
-
 	next_move += 7 //Adds some lag to the 'attack'
 	return
 
@@ -77,16 +66,6 @@
 /mob/living/carbon/attack_paw(mob/living/carbon/M)
 	if(!iscarbon(M))
 		return
-
-	for(var/datum/disease/D in viruses)
-
-		if(D.spread_by_touch())
-			M.contract_disease(D, 0, 1, CONTACT_HANDS)
-
-	for(var/datum/disease/D in M.viruses)
-
-		if(D.spread_by_touch())
-			contract_disease(D, 0, 1, CONTACT_HANDS)
 
 	next_move += 7 //Adds some lag to the 'attack'
 	return

@@ -342,12 +342,6 @@
 		var/mob/living/carbon/C = L
 		C.drunkenness = 0
 		C.disabilities = 0
-		for(var/A in C.viruses)
-			var/datum/disease/D = A
-			D.spread = "Remissive"
-			D.stage--
-			if(D.stage < 1)
-				D.cure()
 	return ..()
 
 

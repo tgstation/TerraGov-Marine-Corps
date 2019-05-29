@@ -26,9 +26,9 @@
 
 /mob/living/carbon/human/spawn_gibs()
 	if(species)
-		hgibs(loc, viruses, dna, species.flesh_color, species.blood_color)
+		hgibs(loc, dna, species.flesh_color, species.blood_color)
 	else
-		hgibs(loc, viruses, dna)
+		hgibs(loc, dna)
 
 
 

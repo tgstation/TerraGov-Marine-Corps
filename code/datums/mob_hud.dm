@@ -314,12 +314,6 @@ var/datum/mob_hud/huds = list(
 			return
 
 
-		for(var/datum/disease/D in viruses)
-			if(!D.hidden[SCANNER])
-				holder.icon_state = "hudill"
-				if(!holder2_set)
-					holder2.icon_state = "hudill"
-				return
 		holder.icon_state = "hudhealthy"
 		if(!holder2_set)
 			holder2.icon_state = "hudhealthy"
