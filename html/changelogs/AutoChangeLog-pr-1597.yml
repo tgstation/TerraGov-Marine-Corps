@@ -1,4 +1,0 @@
-author: "Jalleo"
-delete-after: True
-changes: 
-  - code_imp: "Tools got a slight change only affects vents so far. Please report any issues with welders and plasmacutters on the vents"
