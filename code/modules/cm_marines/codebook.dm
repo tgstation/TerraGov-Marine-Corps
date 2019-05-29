@@ -19,8 +19,3 @@
 
 	dat += "</table>"
 
-
-/obj/item/book/codebook/attackby(obj/item/W, mob/living/user)
-	if(istype(W, /obj/item/tool/kitchen/knife) || iswirecutter(W))
-		return
-	..()

@@ -42,14 +42,16 @@
 	machine_id = "Acc. DB #[GLOB.num_financial_terminals++]"
 	return ..()
 
-/obj/machinery/account_database/attackby(obj/O, mob/user)
-	if(!istype(O, /obj/item/card/id))
-		return ..()
+/obj/machinery/account_database/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(!held_card)
+	if(held_card)
+		return
+
+	if(istype(I, /obj/item/card/id))
 		user.drop_held_item()
-		O.loc = src
-		held_card = O
+		I.forceMove(src)
+		held_card = I
 
 		SSnano.update_uis(src)
 
