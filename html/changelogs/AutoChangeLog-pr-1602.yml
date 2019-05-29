@@ -1,6 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - rscadd: "Custom hotkeys are now available, set them in the setup character screen."
-  - tweak: "Typical hotkeys are set to their defaults, but this can now be replaced."
-  - rscadd: "Hotkey for dropping weeds as a Xeno added. Default Key: V"

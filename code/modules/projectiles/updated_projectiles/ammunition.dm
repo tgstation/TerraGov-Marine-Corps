@@ -63,19 +63,28 @@ They're all essentially identical when it comes to getting the job done.
 	return ..() //Do normal stuff.
 
 //We should only attack it with handfuls. Empty hand to take out, handful to put back in. Same as normal handful.
-/obj/item/ammo_magazine/attackby(obj/item/I, mob/user)
+/obj/item/ammo_magazine/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/MG = I
-		if(MG.flags_magazine & AMMUNITION_HANDFUL) //got a handful of bullets
-			if(flags_magazine & AMMUNITION_REFILLABLE) //and a refillable magazine
-				var/obj/item/ammo_magazine/handful/transfer_from = I
-				if(src == user.get_inactive_held_item() ) //It has to be held.
-					if(default_ammo == transfer_from.default_ammo)
-						transfer_ammo(transfer_from,user,transfer_from.current_rounds) // This takes care of the rest.
-					else
-						to_chat(user, "Those aren't the same rounds. Better not mix them up.")
-				else
-					to_chat(user, "Try holding [src] before you attempt to restock it.")
+		if(!(MG.flags_magazine & AMMUNITION_HANDFUL)) //got a handful of bullets
+			return
+
+		if(!(flags_magazine & AMMUNITION_REFILLABLE)) //and a refillable magazine
+			return
+
+		var/obj/item/ammo_magazine/handful/H = I
+		if(src != user.get_inactive_held_item()) //It has to be held.
+			to_chat(user, "Try holding [src] before you attempt to restock it.")
+			return
+
+		if(default_ammo != H.default_ammo)
+			to_chat(user, "Those aren't the same rounds. Better not mix them up.")
+			return
+
+		transfer_ammo(H, user, H.current_rounds) // This takes care of the rest.
+
 
 //Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
 /obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, mob/user, transfer_amount = 1)
@@ -183,12 +192,17 @@ There aren't many ways to interact here.
 If the default ammo isn't the same, then you can't do much with it.
 If it is the same and the other stack isn't full, transfer an amount (default 1) to the other stack.
 */
-/obj/item/ammo_magazine/handful/attackby(obj/item/ammo_magazine/handful/transfer_from, mob/user)
-	if(istype(transfer_from)) // We have a handful. They don't need to hold it.
-		if(default_ammo == transfer_from.default_ammo) //Has to match.
-			transfer_ammo(transfer_from,user, transfer_from.current_rounds) // Transfer it from currently held to src
-		else
+/obj/item/ammo_magazine/handful/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/ammo_magazine/handful)) // We have a handful. They don't need to hold it.
+		var/obj/item/ammo_magazine/handful/H = I
+		if(default_ammo != H.default_ammo) //Has to match.
 			to_chat(user, "Those aren't the same rounds. Better not mix them up.")
+			return
+
+		transfer_ammo(H, user, H.current_rounds) // Transfer it from currently held to src
+	else
+		return ..()
+
 
 /obj/item/ammo_magazine/handful/proc/generate_handful(new_ammo, new_caliber, maximum_rounds, new_rounds, new_gun_type)
 	var/datum/ammo/A = GLOB.ammo_list[new_ammo]
@@ -297,7 +311,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	else
 		to_chat(user, "It's empty.")
 
-/obj/item/big_ammo_box/attackby(obj/item/I, mob/user)
+/obj/item/big_ammo_box/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = I
 		if(!isturf(loc))
@@ -313,8 +329,10 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			if(AM.current_rounds == AM.max_rounds)
 				to_chat(user, "<span class='warning'>[AM] is already full.</span>")
 				return
+
 			if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
 				return
+				
 			playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
 			var/S = min(bullet_amount, AM.max_rounds - AM.current_rounds)
 			AM.current_rounds += S
@@ -376,7 +394,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	. = ..()
 	to_chat(user, "It contains [magazine_amount] out of [max_magazine_amount] magazines.")
 
-/obj/item/ammobox/attackby(obj/item/I, mob/user)
+/obj/item/ammobox/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(deployed == FALSE)
 		to_chat(user, "<span class='warning'>[src] must be deployed on the ground to be refilled.</span>")
 		return
@@ -475,19 +495,12 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		update_icon()
 		return ..()
 
-/obj/item/ammo_magazine/shotgunbox/attackby(obj/item/I, mob/user)
+/obj/item/ammo_magazine/shotgunbox/attackby(obj/item/I, mob/user, params)
 	if(deployed == FALSE)
 		to_chat(user, "<span class='warning'>[src] must be on the ground to be refilled.</span>")
 		return
-	if(!istype(I, /obj/item/ammo_magazine))
-		return
-	var/obj/item/ammo_magazine/MG = I
-	if(!(MG.flags_magazine & AMMUNITION_HANDFUL) || !(flags_magazine & AMMUNITION_REFILLABLE))
-		to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
-		return
-	var/obj/item/ammo_magazine/handful/transfer_from = MG
-	if(default_ammo == transfer_from.default_ammo)
-		transfer_ammo(transfer_from,user,transfer_from.current_rounds)
+		
+	return ..()
 
 
 

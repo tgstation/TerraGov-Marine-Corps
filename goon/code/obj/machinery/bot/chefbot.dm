@@ -162,16 +162,19 @@
 		return 1
 	return 0
 
-/obj/machinery/bot/chefbot/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if(istype(W, /obj/item/weapon/card/emag))
+/obj/machinery/bot/chefbot/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/weapon/card/emag))
 		emag_act(user, W)
+
 	else
-		src.visible_message("<span class = 'warning'>[user] hits [src] with [W]!</span>")
+		visible_message("<span class ='warning'>[user] hits [src] with [I]!</span>")
 		if(prob(1))
-			emag_act(user) // WHAT DID YOU DO
-	if(src.health <= 0)
-		src.explode()
+			emag_act(user)
+			
+	if(health <= 0)
+		explode()
 
 /obj/machinery/bot/chefbot/attack_hand(mob/living/carbon/human/M)
 	if(Adjacent(M) && !M.incapacitated() && !M.lying)

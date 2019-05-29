@@ -275,7 +275,6 @@
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
 	attachable_allowed = list(
-						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
@@ -298,7 +297,7 @@
 	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
 	burst_accuracy_mult = CONFIG_GET(number/combat_define/min_burst_accuracy_penalty)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
@@ -318,7 +317,7 @@
 	fire_sound = "gun_smartgun"
 	load_method = POWERPACK //codex
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
-	flags_equip_slot = NOFLAGS
+	flags_equip_slot = NONE
 	w_class = 5
 	force = 20
 	wield_delay = 16
@@ -462,7 +461,8 @@
 	var/max_grenades = 6
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	attachable_allowed = list(
-						/obj/item/attachable/magnetic_harness)
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
@@ -489,20 +489,22 @@
 	to_chat(user, "<span class='notice'> It is loaded with <b>[length(grenades)] / [max_grenades]</b> grenades.</span>")
 
 
-/obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user)
-	if((istype(I, /obj/item/explosive/grenade)))
-		if(grenades.len < max_grenades)
-			if(user.transferItemToLoc(I, src))
-				grenades += I
-				playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
-				to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
-				to_chat(user, "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>")
-		else
+/obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/explosive/grenade))
+		if(length(grenades) >= max_grenades)
 			to_chat(user, "<span class='warning'>The grenade launcher cannot hold more grenades!</span>")
+			return
 
-	else if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user))
-			attach_to_gun(user,I)
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		grenades += I
+		playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
+		to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
+		to_chat(user, "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>")
+
+	else if(istype(I, /obj/item/attachable) && check_inactive_hand(user))
+		attach_to_gun(user, I)
 
 
 /obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
@@ -620,20 +622,24 @@
 	to_chat(user, "<span class='notice'> It is loaded with a grenade.</span>")
 
 
-/obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user)
-	if((istype(I, /obj/item/explosive/grenade)))
-		if((istype(I, grenade_type_allowed)))
-			if(!grenade)
-				if(user.transferItemToLoc(I, src))
-					grenade = I
-					to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
-			else
-				to_chat(user, "<span class='warning'>The grenade launcher cannot hold more grenades!</span>")
-		else
+/obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/explosive/grenade))
+		if(!istype(I, grenade_type_allowed))
 			to_chat(user, "<span class='warning'>[src] can't use this type of grenade!</span>")
+			return
 
-	else if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user)) attach_to_gun(user,I)
+		if(grenade)
+			to_chat(user, "<span class='warning'>The grenade launcher cannot hold more grenades!</span>")
+			return
+
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		grenade = I
+		to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
+
+	else if(istype(I, /obj/item/attachable) && check_inactive_hand(user))
+		attach_to_gun(user, I)
 
 
 /obj/item/weapon/gun/launcher/m81/afterattack(atom/target, mob/user, flag)
@@ -712,7 +718,7 @@
 	origin_tech = "combat=6;materials=5"
 	matter = list("metal" = 10000)
 	current_mag = /obj/item/ammo_magazine/rocket
-	flags_equip_slot = NOFLAGS
+	flags_equip_slot = NONE
 	w_class = 5
 	force = 15
 	wield_delay = 12

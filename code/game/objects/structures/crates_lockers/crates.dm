@@ -22,7 +22,7 @@
 	return 1
 
 /obj/structure/closet/crate/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return 1
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others

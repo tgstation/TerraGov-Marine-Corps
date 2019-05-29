@@ -40,13 +40,15 @@
 /obj/item/photo/attack_self(mob/user)
 	examine(user)
 
-/obj/item/photo/attackby(obj/item/P as obj, mob/user as mob)
-	if(istype(P, /obj/item/tool/pen) || istype(P, /obj/item/toy/crayon))
-		var/txt = sanitize(input(user, "What would you like to write on the back?", "Photo Writing", null)  as text)
+/obj/item/photo/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/toy/crayon))
+		var/txt = sanitize(input(user, "What would you like to write on the back?", "Photo Writing", null) as text)
 		txt = copytext(txt, 1, 128)
-		if(loc == user && user.stat == 0)
-			scribble = txt
-	..()
+		if(loc != user || user.stat != CONSCIOUS)
+			return
+		scribble = txt
 
 /obj/item/photo/examine(mob/user)
 	if(in_range(user, src))
@@ -153,17 +155,20 @@
 	to_chat(user, "You switch the camera [on ? "on" : "off"].")
 	return
 
-/obj/item/camera/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/camera/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/camera_film))
 		if(pictures_left)
 			to_chat(user, "<span class='notice'>[src] still has some film in it!</span>")
 			return
+
+		if(!user.temporarilyRemoveItemFromInventory(I))
+			return
+
 		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
-		if(user.temporarilyRemoveItemFromInventory(I))
-			qdel(I)
-			pictures_left = pictures_max
-		return
-	..()
+		qdel(I)
+		pictures_left = pictures_max
 
 
 /obj/item/camera/proc/get_icon(list/turfs, turf/center)

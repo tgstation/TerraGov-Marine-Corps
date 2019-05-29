@@ -16,7 +16,7 @@
 	w_class = 1 //Note: can be picked up by aliens unlike most other items of w_class below 4
 	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH|ALLOWREBREATH
 	flags_armor_protection = FACE|EYES
-	flags_atom = NOFLAGS
+	flags_atom = NONE
 	flags_item = NOBLUDGEON
 	throw_range = 1
 	layer = FACEHUGGER_LAYER
@@ -126,8 +126,8 @@
 	if(initial(sterile))
 		to_chat(user, "<span class='warning'>It looks like the proboscis has been removed.</span>")
 
-/obj/item/clothing/mask/facehugger/attackby(obj/item/W, mob/user)
-	if(W.flags_item & NOBLUDGEON || attached)
+/obj/item/clothing/mask/facehugger/attackby(obj/item/I, mob/user, params)
+	if(I.flags_item & NOBLUDGEON || attached)
 		return
 	Die()
 

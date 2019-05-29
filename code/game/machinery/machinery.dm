@@ -96,7 +96,7 @@ Class Procs:
 /obj/machinery
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
-	var/machine_stat = NOFLAGS
+	var/machine_stat = NONE
 	var/emagged = 0
 	var/use_power = IDLE_POWER_USE
 		//0 = dont run the auto

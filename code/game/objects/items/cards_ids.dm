@@ -303,6 +303,13 @@
 	var/dogtag_taken = FALSE
 
 
+/obj/item/card/id/dogtag/som
+	name = "\improper Sons of Mars dogtag"
+	desc = "Used by the Sons of Mars."
+	icon_state = "dogtag_som"
+	item_state = "dogtag_som"
+
+
 /obj/item/card/id/dogtag/examine(mob/user)
 	..()
 	if(ishuman(user))
@@ -318,23 +325,19 @@
 	var/fallen_names[0]
 	var/fallen_assignements[0]
 
-/obj/item/dogtag/attackby(obj/item/I, mob/user)
+/obj/item/dogtag/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/dogtag))
 		var/obj/item/dogtag/D = I
 		to_chat(user, "<span class='notice'>You join the two tags together.</span>")
 		name = "information dog tags"
 		if(D.fallen_names)
-			if(!fallen_names)
-				fallen_names = list()
 			fallen_names += D.fallen_names
 		if(D.fallen_assignements)
-			if(!fallen_assignements)
-				fallen_assignements = list()
 			fallen_assignements += D.fallen_assignements
 		qdel(D)
 		return TRUE
-	else
-		. = ..()
 
 /obj/item/dogtag/examine(mob/user)
 	. = ..()

@@ -129,4 +129,4 @@
 	if(!xeno_caste.hardcore)
 		flags_pass = initial(flags_pass) //Reset the passtable.
 	else
-		flags_pass = NOFLAGS //Reset the passtable.
+		flags_pass = NONE //Reset the passtable.

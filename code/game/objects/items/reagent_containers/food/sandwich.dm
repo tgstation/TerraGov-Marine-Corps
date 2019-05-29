@@ -1,10 +1,10 @@
-/obj/item/reagent_container/food/snacks/breadslice/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_container/food/snacks/breadslice/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(istype(W,/obj/item/shard) || istype(W,/obj/item/reagent_container/food/snacks))
-		var/obj/item/reagent_container/food/snacks/csandwich/S = new(get_turf(src))
-		S.attackby(W,user)
+	if(istype(I, /obj/item/shard) || istype(I, /obj/item/reagent_container/food/snacks))
+		var/obj/item/reagent_container/food/snacks/csandwich/S = new(loc)
+		S.attackby(I, user, params)
 		qdel(src)
-	..()
 
 /obj/item/reagent_container/food/snacks/csandwich
 	name = "sandwich"
@@ -15,30 +15,28 @@
 
 	var/list/ingredients = list()
 
-/obj/item/reagent_container/food/snacks/csandwich/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_container/food/snacks/csandwich/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
 	var/sandwich_limit = 4
-	for(var/obj/item/O in ingredients)
-		if(istype(O,/obj/item/reagent_container/food/snacks/breadslice))
-			sandwich_limit += 4
+	for(var/obj/item/reagent_container/food/snacks/breadslice/B in ingredients)
+		sandwich_limit += 4
 
-	if(src.contents.len > sandwich_limit)
+	if(length(contents) > sandwich_limit)
 		to_chat(user, "<span class='warning'>If you put anything else on \the [src] it's going to collapse.</span>")
-		return
-	else if(istype(W,/obj/item/shard))
-		to_chat(user, "<span class='notice'>You hide [W] in \the [src].</span>")
-		user.transferItemToLoc(W, src)
+
+	else if(istype(I, /obj/item/shard))
+		to_chat(user, "<span class='notice'>You hide [I] in \the [src].</span>")
+		user.transferItemToLoc(I, src)
 		update()
-		return
-	else if(istype(W,/obj/item/reagent_container/food/snacks))
-		to_chat(user, "<span class='notice'>You layer [W] over \the [src].</span>")
-		var/obj/item/reagent_container/F = W
+
+	else if(istype(I, /obj/item/reagent_container/food/snacks))
+		to_chat(user, "<span class='notice'>You layer [I] over \the [src].</span>")
+		var/obj/item/reagent_container/F = I
 		F.reagents.trans_to(src, F.reagents.total_volume)
-		user.transferItemToLoc(W, src)
-		ingredients += W
+		user.transferItemToLoc(I, src)
+		ingredients += I
 		update()
-		return
-	..()
 
 /obj/item/reagent_container/food/snacks/csandwich/proc/update()
 	var/fullname = "" //We need to build this from the contents of the var.

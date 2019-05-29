@@ -41,18 +41,6 @@
 			to_chat(user, "<span class='notice'>You have finished mopping!</span>")
 
 
-/obj/effect/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/tool/mop) || istype(I, /obj/item/tool/soap))
-		return
-	..()
-
-
-
-
-
-
-
-
 /obj/item/tool/wet_sign
 	name = "wet floor sign"
 	desc = "Caution! Wet Floor!"

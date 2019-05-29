@@ -488,8 +488,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/hitbox/cm_armored/ex_act(severity)
 	return root.ex_act(severity)
 
-/obj/vehicle/multitile/hitbox/cm_armored/attackby(obj/item/O, mob/user)
-	return root.attackby(O, user)
+/obj/vehicle/multitile/hitbox/cm_armored/attackby(obj/item/I, mob/user, params)
+	return root.attackby(I, user, params)
 
 /obj/vehicle/multitile/hitbox/cm_armored/attack_alien(mob/living/carbon/xenomorph/M, dam_bonus)
 	return root.attack_alien(M, dam_bonus)

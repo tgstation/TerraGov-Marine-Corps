@@ -1,0 +1,318 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp20"
+	},
+/area/shuttle/ert/upp)
+"c" = (
+/obj/docking_port/mobile/ert,
+/turf/closed/shuttle/ert{
+	icon_state = "upp27"
+	},
+/area/shuttle/ert/upp)
+"d" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp25"
+	},
+/area/shuttle/ert/upp)
+"e" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp21"
+	},
+/area/shuttle/ert/upp)
+"f" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp22"
+	},
+/area/shuttle/ert/upp)
+"g" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/upp)
+"h" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp23"
+	},
+/area/shuttle/ert/upp)
+"i" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp4"
+	},
+/area/shuttle/ert/upp)
+"j" = (
+/obj/structure/rack,
+/obj/effect/landmark/distress_item,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/multitool,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/upp)
+"k" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin6"
+	},
+/area/shuttle/ert/upp)
+"l" = (
+/turf/open/shuttle/dropship{
+	icon_state = "floor8"
+	},
+/area/shuttle/ert/upp)
+"m" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin7"
+	},
+/area/shuttle/ert/upp)
+"n" = (
+/obj/structure/rack,
+/obj/item/storage/firstaid/adv,
+/obj/effect/landmark/distress_item,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/upp)
+"o" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp5"
+	},
+/area/shuttle/ert/upp)
+"p" = (
+/obj/machinery/door/airlock/almayer/generic,
+/obj/machinery/door/poddoor/shutters/transit/open{
+	dir = 4
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/ert/upp)
+"q" = (
+/obj/effect/landmark/distress,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/ert/upp)
+"r" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/distress,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/upp)
+"s" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp16"
+	},
+/area/shuttle/ert/upp)
+"t" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/effect/landmark/distress,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/upp)
+"u" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/effect/landmark/distress,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/upp)
+"v" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin4"
+	},
+/area/shuttle/ert/upp)
+"w" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin8"
+	},
+/area/shuttle/ert/upp)
+"x" = (
+/obj/structure/rack,
+/obj/effect/landmark/distress_item,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/belt/combatLifesaver,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/upp)
+"y" = (
+/obj/structure/rack,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/belt/combatLifesaver,
+/obj/effect/landmark/distress_item,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/upp)
+"z" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/ert/upp)
+"A" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp_leftengine"
+	},
+/area/shuttle/ert/upp)
+"B" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp8"
+	},
+/area/shuttle/ert/upp)
+"C" = (
+/obj/machinery/computer/shuttle/ert,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/upp)
+"D" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp9"
+	},
+/area/shuttle/ert/upp)
+"F" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp_rightengine"
+	},
+/area/shuttle/ert/upp)
+"I" = (
+/obj/machinery/door/airlock/almayer/generic{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/shutters/transit/open{
+	dir = 2
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/upp)
+"K" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp1"
+	},
+/area/shuttle/ert/upp)
+"L" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp2"
+	},
+/area/shuttle/ert/upp)
+"M" = (
+/turf/closed/shuttle/ert{
+	icon_state = "upp3"
+	},
+/area/shuttle/ert/upp)
+
+(1,1,1) = {"
+a
+b
+i
+p
+s
+i
+i
+p
+i
+A
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+e
+j
+g
+t
+t
+t
+g
+x
+B
+i
+i
+K
+"}
+(3,1,1) = {"
+b
+f
+k
+q
+q
+q
+q
+q
+v
+g
+g
+g
+I
+"}
+(4,1,1) = {"
+c
+C
+l
+r
+r
+r
+r
+r
+l
+z
+z
+z
+L
+"}
+(5,1,1) = {"
+d
+h
+m
+q
+q
+q
+q
+q
+w
+g
+g
+g
+I
+"}
+(6,1,1) = {"
+a
+e
+n
+g
+u
+u
+u
+g
+y
+D
+o
+o
+M
+"}
+(7,1,1) = {"
+a
+d
+o
+p
+o
+o
+o
+p
+o
+F
+a
+a
+a
+"}

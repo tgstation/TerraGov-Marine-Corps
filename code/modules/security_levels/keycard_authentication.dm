@@ -28,21 +28,24 @@
 	to_chat(user, "You are too primitive to use this device.")
 	return
 
-/obj/machinery/keycard_auth/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/keycard_auth/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
-		return
-	if(istype(W,/obj/item/card/id))
-		var/obj/item/card/id/ID = W
-		if(ACCESS_MARINE_BRIDGE in ID.access)
-			if(active == 1)
-				//This is not the device that made the initial request. It is the device confirming the request.
-				if(event_source)
-					event_source.confirmed = 1
-					event_source.event_confirmed_by = usr
-			else if(screen == 2)
-				event_triggered_by = usr
-				broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
+
+	else if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/ID = I
+		if(!(ACCESS_MARINE_BRIDGE in ID.access))
+			return
+
+		if(active && event_source)
+			event_source.confirmed = TRUE
+			event_source.event_confirmed_by = user
+			
+		else if(screen == 2)
+			event_triggered_by = user
+			broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
 
 /obj/machinery/keycard_auth/power_change()
 	. = ..()

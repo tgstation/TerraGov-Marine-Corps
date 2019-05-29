@@ -21,19 +21,19 @@
 	var/hitsound = null
 	var/w_class = WEIGHT_CLASS_NORMAL
 	var/storage_cost = null
-	var/flags_item = NOFLAGS	//flags for item stuff that isn't clothing/equipping specific.
-	var/flags_equip_slot = NOFLAGS		//This is used to determine on which slots an item can fit.
+	var/flags_item = NONE	//flags for item stuff that isn't clothing/equipping specific.
+	var/flags_equip_slot = NONE		//This is used to determine on which slots an item can fit.
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
-	var/flags_inventory = NOFLAGS //This flag is used for various clothing/equipment item stuff
-	var/flags_inv_hide = NOFLAGS //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	var/flags_inventory = NONE //This flag is used for various clothing/equipment item stuff
+	var/flags_inv_hide = NONE //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 	flags_pass = PASSTABLE
 
 	var/obj/item/master = null
 
 	var/flags_armor_protection = NONE //see setup.dm for appropriate bit flags
-	var/flags_heat_protection = NOFLAGS //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
-	var/flags_cold_protection = NOFLAGS //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	var/flags_heat_protection = NONE //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	var/flags_cold_protection = NONE //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
 
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by flags_heat_protection flags
 	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by flags_cold_protection flags

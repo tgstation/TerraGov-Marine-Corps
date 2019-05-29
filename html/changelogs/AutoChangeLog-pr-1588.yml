@@ -1,4 +1,0 @@
-author: "Jalleo"
-delete-after: True
-changes: 
-  - rscdel: "Removed old mech code"

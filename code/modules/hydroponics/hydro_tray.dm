@@ -142,7 +142,7 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/CanPass(atom/movable/mover, turf/target)
 	if(!density) return 1
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return 1
 	else
 		return 0

@@ -34,7 +34,8 @@
 			A.reagents.del_reagent("water")
 			A.reagents.add_reagent("holywater",water2holy)
 
-/obj/item/storage/bible/attackby(obj/item/W as obj, mob/user as mob)
-	if (src.use_sound)
-		playsound(src.loc, src.use_sound, 25, 1, 6)
-	..()
+/obj/item/storage/bible/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(use_sound)
+		playsound(loc, use_sound, 25, 1, 6)

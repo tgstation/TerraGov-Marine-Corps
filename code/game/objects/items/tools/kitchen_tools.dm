@@ -378,14 +378,14 @@
 
 /obj/item/tool/kitchen/tray/var/cooldown = 0	//shield bash cooldown. based on world.time
 
-/obj/item/tool/kitchen/tray/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/kitchen/rollingpin))
+/obj/item/tool/kitchen/tray/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/kitchen/rollingpin))
 		if(cooldown < world.time - 25)
-			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
+			user.visible_message("<span class='warning'>[user] bashes [src] with [I]!</span>")
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
 			cooldown = world.time
-	else
-		..()
 
 /*
 ===============~~~~~================================~~~~~====================

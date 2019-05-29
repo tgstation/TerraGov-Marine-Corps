@@ -114,3 +114,8 @@
 /obj/item/encryptionkey/imperial
 	name = "\improper Imperial encryption key"
 	channels = list(RADIO_CHANNEL_IMPERIAL = TRUE)
+
+
+/obj/item/encryptionkey/som
+	name = "\improper Sons of Mars encryption key"
+	channels = list(RADIO_CHANNEL_SOM = TRUE)

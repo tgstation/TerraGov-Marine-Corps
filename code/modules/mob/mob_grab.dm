@@ -4,9 +4,10 @@
 	name = "grab"
 	icon_state = "reinforce"
 	icon = 'icons/mob/screen1.dmi'
-	flags_atom = NOFLAGS
+	flags_atom = NONE
 	flags_item = NOBLUDGEON|DELONDROP|ITEM_ABSTRACT
 	layer = ABOVE_HUD_LAYER
+	plane = ABOVE_HUD_PLANE
 	item_state = "nothing"
 	w_class = 5
 	var/atom/movable/grabbed_thing

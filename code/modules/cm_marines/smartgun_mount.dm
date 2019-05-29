@@ -13,7 +13,7 @@
 	desc = "A box of 700, 10x28mm caseless tungsten rounds for the M56D mounted smartgun system. Just click the M56D with this to reload it."
 	w_class = 4
 	icon_state = "ammo_drum"
-	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = "10x28mm"
 	max_rounds = 700
 	default_ammo = /datum/ammo/bullet/smartgun

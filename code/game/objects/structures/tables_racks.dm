@@ -211,7 +211,7 @@
 	return
 
 /obj/structure/table/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
@@ -224,7 +224,7 @@
 	return FALSE
 
 /obj/structure/table/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSTABLE))
+	if(istype(O) && CHECK_BITFIELD(O.flags_pass, PASSTABLE))
 		return TRUE
 	if(flipped)
 		if(get_dir(loc, target) & dir)
@@ -545,7 +545,7 @@
 /obj/structure/rack/CanPass(atom/movable/mover, turf/target)
 	if(!density) //Because broken racks
 		return TRUE
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border  objects allow you to universally climb over others
