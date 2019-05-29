@@ -1,0 +1,5 @@
+author: "LaKiller8 & ArachnidNexus & MJP"
+delete-after: True
+changes: 
+  - imageadd: "Added in new sprites and equipment for the Sons of Mars."
+  - tweak: "CLF has been replaced by the Sons of Mars in active distress rotation."

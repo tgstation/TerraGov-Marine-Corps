@@ -13,7 +13,7 @@
 	desc = "A box of 700, 10x28mm caseless tungsten rounds for the M56D mounted smartgun system. Just click the M56D with this to reload it."
 	w_class = 4
 	icon_state = "ammo_drum"
-	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = "10x28mm"
 	max_rounds = 700
 	default_ammo = /datum/ammo/bullet/smartgun
@@ -137,7 +137,7 @@
 	if(!gun_mounted)
 		to_chat(user, "The <b>M56D Smartgun</b> is not yet mounted.")
 
-/obj/machinery/m56d_post/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/m56d_post/attack_alien(mob/living/carbon/xenomorph/M)
 	if(isxenolarva(M))
 		return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
@@ -347,7 +347,7 @@
 	update_health(round(Proj.damage / 10)) //Universal low damage to what amounts to a post with a gun.
 	return 1
 
-/obj/machinery/m56d_hmg/attack_alien(mob/living/carbon/Xenomorph/M) // Those Ayy lmaos.
+/obj/machinery/m56d_hmg/attack_alien(mob/living/carbon/xenomorph/M) // Those Ayy lmaos.
 	if(isxenolarva(M))
 		return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",

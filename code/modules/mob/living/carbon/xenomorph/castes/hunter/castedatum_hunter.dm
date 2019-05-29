@@ -4,7 +4,7 @@
 	upgrade_name = ""
 	caste_desc = "A fast, powerful front line combatant."
 
-	caste_type_path = /mob/living/carbon/Xenomorph/Hunter
+	caste_type_path = /mob/living/carbon/xenomorph/hunter
 
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -32,8 +32,8 @@
 	evolution_threshold = 200
 	upgrade_threshold = 200
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Ravager)
-	deevolves_to = /mob/living/carbon/Xenomorph/Runner
+	evolves_to = list(/mob/living/carbon/xenomorph/ravager)
+	deevolves_to = /mob/living/carbon/xenomorph/runner
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER

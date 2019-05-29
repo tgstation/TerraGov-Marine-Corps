@@ -94,20 +94,20 @@
 	if(M.melee_damage_upper <= 0) return
 	attack_generic(M, M.melee_damage_upper)
 
-/obj/structure/inflatable/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/inflatable/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	deflate(1)
 
-/obj/structure/inflatable/attackby(obj/item/W as obj, mob/user as mob)
-	if(!istype(W)) return
+/obj/structure/inflatable/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if (can_puncture(W))
-		visible_message("<span class='danger'>[user] pierces [src] with [W]!</span>")
-		deflate(1)
-	if(W.damtype == BRUTE || W.damtype == BURN)
-		hit(W.force)
-		..()
-	return
+	if(can_puncture(I))
+		visible_message("<span class='danger'>[user] pierces [src] with [I]!</span>")
+		deflate(TRUE)
+
+	if(I.damtype == BRUTE || I.damtype == BURN)
+		hit(I.force)
+
 
 /obj/structure/inflatable/proc/hit(var/damage, var/sound_effect = 1)
 	obj_integrity = max(0, obj_integrity - damage)
@@ -222,8 +222,6 @@
 					SwitchState()
 			else
 				SwitchState()
-	else if(istype(user, /obj/mecha))
-		SwitchState()
 
 /obj/structure/inflatable/door/proc/SwitchState()
 	if(state)

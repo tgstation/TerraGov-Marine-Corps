@@ -139,30 +139,31 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	griefProtection()
 */
 
-/obj/machinery/computer/rdconsole/attackby(var/obj/item/D as obj, var/mob/user as mob)
-	//Loading a disk into it.
-	if(istype(D, /obj/item/disk))
+/obj/machinery/computer/rdconsole/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/disk))
 		if(t_disk || d_disk)
 			to_chat(user, "A disk is already loaded into the machine.")
 			return
 
-		if(istype(D, /obj/item/disk/tech_disk)) t_disk = D
-		else if (istype(D, /obj/item/disk/design_disk)) d_disk = D
+		if(istype(I, /obj/item/disk/tech_disk)) 
+			t_disk = I
+		else if(istype(I, /obj/item/disk/design_disk)) 
+			d_disk = I
 		else
 			to_chat(user, "<span class='warning'>Machine cannot accept disks in that format.</span>")
 			return
-		user.transferItemToLoc(D, src)
-		to_chat(user, "<span class='notice'>You add the disk to the machine!</span>")
-	else if(istype(D, /obj/item/card/emag) && !emagged)
-		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
-		emagged = 1
-		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
-	else
-		//The construction/deconstruction of the console code.
-		..()
 
-	src.updateUsrDialog()
-	return
+		user.transferItemToLoc(I, src)
+		to_chat(user, "<span class='notice'>You add the disk to the machine!</span>")
+	
+	else if(istype(I, /obj/item/card/emag) && !emagged)
+		playsound(loc, 'sound/effects/sparks4.ogg', 25, 1)
+		emagged = TRUE
+		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
+
+	updateUsrDialog()
 
 /obj/machinery/computer/rdconsole/Topic(href, href_list)
 	if(..())

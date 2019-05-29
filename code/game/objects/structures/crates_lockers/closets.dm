@@ -58,7 +58,7 @@
 	for(var/obj/structure/closet/closet in get_turf(src))
 		if(closet != src && !closet.wall_mounted)
 			return FALSE
-	for(var/mob/living/carbon/Xenomorph/Xeno in get_turf(src))
+	for(var/mob/living/carbon/xenomorph/Xeno in get_turf(src))
 		return FALSE
 	return TRUE
 
@@ -182,7 +182,7 @@
 			A.loc = loc
 		qdel(src)
 
-/obj/structure/closet/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/closet/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HARM && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		M.animation_attack_on(src)
 		if(!opened && prob(70))

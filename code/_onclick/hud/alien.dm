@@ -14,7 +14,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/mob/living/carbon/Xenomorph/X = usr
+	var/mob/living/carbon/xenomorph/X = usr
 	X.toggle_nightvision()
 	icon_state = (X.see_invisible == SEE_INVISIBLE_LEVEL_TWO) ? "nightvision0" : "nightvision1"
 
@@ -27,7 +27,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/mob/living/carbon/Xenomorph/X = usr
+	var/mob/living/carbon/xenomorph/X = usr
 	X.hive_status()
 
 /obj/screen/alien/plasmadisplay
@@ -35,7 +35,7 @@
 	icon_state = "power_display2"
 	screen_loc = ui_alienplasmadisplay
 
-/datum/hud/alien/New(mob/living/carbon/Xenomorph/owner, ui_alpha = 230)
+/datum/hud/alien/New(mob/living/carbon/xenomorph/owner, ui_alpha = 230)
 	..()
 	var/obj/screen/using
 	var/obj/screen/inventory/inv_box
@@ -126,7 +126,7 @@
 /datum/hud/alien/persistant_inventory_update()
 	if(!mymob)
 		return
-	var/mob/living/carbon/Xenomorph/H = mymob
+	var/mob/living/carbon/xenomorph/H = mymob
 	if(hud_version != HUD_STYLE_NOHUD)
 		if(H.r_hand)
 			H.r_hand.screen_loc = ui_rhand
@@ -141,7 +141,7 @@
 			H.l_hand.screen_loc = null
 
 
-/mob/living/carbon/Xenomorph/create_hud()
+/mob/living/carbon/xenomorph/create_hud()
 	if(client && !hud_used)
 		var/ui_alpha = client.prefs.ui_style_alpha
 		hud_used = new /datum/hud/alien(src, ui_alpha)

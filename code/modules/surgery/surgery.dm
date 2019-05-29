@@ -11,7 +11,7 @@
 	//3 : Special surgeries (Embryos, Bone Chips, Hematoma)
 
 	var/list/allowed_tools = null //Array of type path referencing tools that can be used for this step, and how well are they suited for it
-	var/list/allowed_species = null //List of names referencing mutantraces that this step applies to.
+	var/list/allowed_species = null //List of names referencing species that this step applies to.
 	var/list/disallowed_species = null
 
 

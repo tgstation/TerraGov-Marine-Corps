@@ -374,7 +374,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		var/obj/item/hardpoint/H = CA.hardpoints[slot]
 		H?.livingmob_interact(src)
 
-/mob/living/carbon/Xenomorph/Queen/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+/mob/living/carbon/xenomorph/queen/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	if(lying || loc == C.loc)
 		return ..()
 	temp = get_step(T, facing)
@@ -383,7 +383,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	throw_at(T, 2, 2, C, 0)
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
 
-/mob/living/carbon/Xenomorph/Crusher/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+/mob/living/carbon/xenomorph/crusher/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	if(lying || loc == C.loc)
 		return ..()
 	temp = get_step(T, facing)
@@ -392,7 +392,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	throw_at(T, 2, 2, C, 0)
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
 
-/mob/living/carbon/Xenomorph/Larva/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+/mob/living/carbon/xenomorph/larva/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	if(loc == C.loc) // treaded over.
 		if(!knocked_down)
 			KnockDown(1)
@@ -488,10 +488,10 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/hitbox/cm_armored/ex_act(severity)
 	return root.ex_act(severity)
 
-/obj/vehicle/multitile/hitbox/cm_armored/attackby(obj/item/O, mob/user)
-	return root.attackby(O, user)
+/obj/vehicle/multitile/hitbox/cm_armored/attackby(obj/item/I, mob/user, params)
+	return root.attackby(I, user, params)
 
-/obj/vehicle/multitile/hitbox/cm_armored/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus)
+/obj/vehicle/multitile/hitbox/cm_armored/attack_alien(mob/living/carbon/xenomorph/M, dam_bonus)
 	return root.attack_alien(M, dam_bonus)
 
 /obj/vehicle/multitile/hitbox/cm_armored/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -563,7 +563,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			take_damage_type(rand(10, 15), "slash")
 
 //Honestly copies some code from the Xeno files, just handling some special cases
-/obj/vehicle/multitile/root/cm_armored/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus)
+/obj/vehicle/multitile/root/cm_armored/attack_alien(mob/living/carbon/xenomorph/M, dam_bonus)
 
 	if(M.loc == entrance.loc && M.a_intent == INTENT_HELP)
 		handle_player_entrance(M) //will call the get out of tank proc on its own
@@ -612,9 +612,9 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/root/cm_armored/Bumped(atom/A)
 	..()
 
-	if(istype(A, /mob/living/carbon/Xenomorph/Crusher))
+	if(istype(A, /mob/living/carbon/xenomorph/crusher))
 
-		var/mob/living/carbon/Xenomorph/Crusher/C = A
+		var/mob/living/carbon/xenomorph/crusher/C = A
 
 		if(C.charge_speed < CHARGE_SPEED_MAX/(1.1)) //Arbitrary ratio here, might want to apply a linear transformation instead
 			return

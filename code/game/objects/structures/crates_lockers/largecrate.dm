@@ -6,7 +6,7 @@
 	density = 1
 	anchored = 0
 
-/obj/structure/largecrate/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/largecrate/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
 	new /obj/item/stack/sheet/wood(src)
@@ -73,16 +73,6 @@
 		var/num = rand(4, 6)
 		for(var/i = 0, i < num, i++)
 			new /mob/living/simple_animal/chick(loc)
-	..()
-
-/obj/structure/largecrate/hoverpod
-	name = "Hoverpod assembly crate"
-	desc = "It comes in a box for the fabricator's sake. Where does the wood come from? ... And why is it lighter?"
-	icon_state = "mulecrate"
-
-/obj/structure/largecrate/hoverpod/attackby(obj/item/W as obj, mob/user as mob)
-	if(iscrowbar(W))
-		new /obj/mecha/hoverpod(loc)
 	..()
 
 
@@ -165,7 +155,7 @@
 	return FALSE
 
 
-/obj/structure/largecrate/random/barrel/attack_alien(mob/living/carbon/Xenomorph/X)
+/obj/structure/largecrate/random/barrel/attack_alien(mob/living/carbon/xenomorph/X)
 	X.animation_attack_on(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	new /obj/item/stack/sheet/metal/small_stack(src)

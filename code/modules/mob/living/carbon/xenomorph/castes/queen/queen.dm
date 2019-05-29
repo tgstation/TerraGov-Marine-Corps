@@ -1,5 +1,5 @@
-/mob/living/carbon/Xenomorph/Queen
-	caste_base_type = /mob/living/carbon/Xenomorph/Queen
+/mob/living/carbon/xenomorph/queen
+	caste_base_type = /mob/living/carbon/xenomorph/queen
 	name = "Queen"
 	desc = "A huge, looming alien creature. The biggest and the baddest."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
@@ -27,7 +27,7 @@
 	var/ovipositor = FALSE //whether the Queen is attached to an ovipositor
 	var/ovipositor_cooldown = 0
 	var/queen_ability_cooldown = 0
-	var/mob/living/carbon/Xenomorph/observed_xeno //the Xenomorph the queen is currently overwatching
+	var/mob/living/carbon/xenomorph/observed_xeno //the Xenomorph the queen is currently overwatching
 	var/egg_amount = 0 //amount of eggs inside the queen
 	var/last_larva_time = 0
 	actions = list(
@@ -47,21 +47,21 @@
 		/datum/action/xeno_action/toggle_pheromones
 		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/claw_toggle,
-		/mob/living/carbon/Xenomorph/Queen/proc/set_orders,
-		/mob/living/carbon/Xenomorph/Queen/proc/hive_Message
+		/mob/living/carbon/xenomorph/proc/claw_toggle,
+		/mob/living/carbon/xenomorph/queen/proc/set_orders,
+		/mob/living/carbon/xenomorph/queen/proc/hive_Message
 		)
 
 // ***************************************
 // *********** Init
 // ***************************************
-/mob/living/carbon/Xenomorph/Queen/Initialize()
+/mob/living/carbon/xenomorph/queen/Initialize()
 	. = ..()
 	if(!is_centcom_level(z))//so admins can safely spawn Queens in Thunderdome for tests.
 		hive.update_queen()
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
 
-/mob/living/carbon/Xenomorph/Queen/Destroy()
+/mob/living/carbon/xenomorph/queen/Destroy()
 	. = ..()
 	if(observed_xeno)
 		set_queen_overwatch(observed_xeno, TRUE)
@@ -69,11 +69,11 @@
 // ***************************************
 // *********** Life overrides
 // ***************************************
-/mob/living/carbon/Xenomorph/Queen/handle_decay()
+/mob/living/carbon/xenomorph/queen/handle_decay()
 	if(prob(20+abs(3*upgrade_as_number())))
 		use_plasma(min(rand(1,2), plasma_stored))
 
-/mob/living/carbon/Xenomorph/Queen/Life()
+/mob/living/carbon/xenomorph/queen/Life()
 	. = ..()
 
 	if(stat == DEAD)
@@ -107,7 +107,7 @@
 // *********** Mob overrides
 // ***************************************
 //Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
-/mob/living/carbon/Xenomorph/Queen/Bump(atom/A, yes)
+/mob/living/carbon/xenomorph/queen/Bump(atom/A, yes)
 	set waitfor = 0
 
 	//if(charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE || !is_charging) return ..()
@@ -131,7 +131,7 @@
 	lastturf = null //Reset this so we can properly continue with momentum.
 	return TRUE
 
-/mob/living/carbon/Xenomorph/Queen/update_canmove()
+/mob/living/carbon/xenomorph/queen/update_canmove()
 	. = ..()
 	if(ovipositor)
 		lying = FALSE
@@ -139,7 +139,7 @@
 		canmove = FALSE
 		return canmove
 
-/mob/living/carbon/Xenomorph/Queen/reset_view(atom/A)
+/mob/living/carbon/xenomorph/queen/reset_view(atom/A)
 	if (!client)
 		return
 
@@ -164,7 +164,7 @@
 // ***************************************
 // *********** Name
 // ***************************************
-/mob/living/carbon/Xenomorph/Queen/generate_name()
+/mob/living/carbon/xenomorph/queen/generate_name()
 	switch(upgrade)
 		if(XENO_UPGRADE_ZERO) 
 			name = "[hive.prefix]Queen"			 //Young
@@ -182,7 +182,7 @@
 // ***************************************
 // *********** Icon
 // ***************************************
-/mob/living/carbon/Xenomorph/Queen/handle_special_state()
+/mob/living/carbon/xenomorph/queen/handle_special_state()
 	if(ovipositor)
 		icon = 'icons/Xeno/Ovipositor.dmi'
 		icon_state = "Queen Ovipositor"
@@ -190,7 +190,7 @@
 	icon = initial(icon)
 	return FALSE
 
-/mob/living/carbon/Xenomorph/Queen/Topic(href, href_list)
+/mob/living/carbon/xenomorph/queen/Topic(href, href_list)
 	if (href_list["watch_xeno_number"])
 		if(!check_state())
 			return
@@ -198,7 +198,7 @@
 			return
 		var/xeno_num = text2num(href_list["watch_xeno_number"])
 		for(var/Y in hive.get_watchable_xenos())
-			var/mob/living/carbon/Xenomorph/X = Y
+			var/mob/living/carbon/xenomorph/X = Y
 			if(X.nicknumber != xeno_num)
 				continue
 			if(observed_xeno == X)
@@ -212,16 +212,16 @@
 // ***************************************
 // *********** Death
 // ***************************************
-/mob/living/carbon/Xenomorph/Queen/gib()
+/mob/living/carbon/xenomorph/queen/gib()
 	death(1) //we need the body to show the queen's name at round end.
 
-/mob/living/carbon/Xenomorph/Queen/death_cry()
+/mob/living/carbon/xenomorph/queen/death_cry()
 	playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)
 
-/mob/living/carbon/Xenomorph/Queen/xeno_death_alert()
+/mob/living/carbon/xenomorph/queen/xeno_death_alert()
 	return
 
-/mob/living/carbon/Xenomorph/Queen/death(gibbed)
+/mob/living/carbon/xenomorph/queen/death(gibbed)
 	. = ..()
 	if(observed_xeno)
 		set_queen_overwatch(observed_xeno, TRUE)

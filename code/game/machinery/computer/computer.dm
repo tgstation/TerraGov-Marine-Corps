@@ -13,7 +13,13 @@
 /obj/machinery/computer/Initialize()
 	. = ..()
 	start_processing()
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/machinery/computer/LateInitialize()
+	. = ..()
 	power_change()
+
 
 /obj/machinery/computer/process()
 	if(machine_stat & (NOPOWER|BROKEN))

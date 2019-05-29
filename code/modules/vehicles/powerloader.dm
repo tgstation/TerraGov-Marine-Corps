@@ -55,29 +55,35 @@
 			to_chat(usr, "There is no cell in the [src].")
 
 
-/obj/vehicle/powerloader/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/powerloader_clamp))
-		var/obj/item/powerloader_clamp/PC = W
-		if(PC.linked_powerloader == src)
-			unbuckle() //clicking the powerloader with its own clamp unbuckles the pilot.
-			playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
-			return TRUE
-	else if(isscrewdriver(W))
+/obj/vehicle/powerloader/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/powerloader_clamp))
+		var/obj/item/powerloader_clamp/PC = I
+		if(PC.linked_powerloader != src)
+			return
+		
+		unbuckle() //clicking the powerloader with its own clamp unbuckles the pilot.
+		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
+		return TRUE
+
+	else if(isscrewdriver(I))
 		to_chat(user, "<span class='notice'>You screw the panel [panel_open ? "closed" : "open"].</span>")
 		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		panel_open = !panel_open
-	else if(istype(W, /obj/item/cell) && panel_open)
-		if(!cell)
-			var/obj/item/cell/C = W
-			cell = C
-			qdel(C)
-			visible_message("[user] puts a new power cell in the [src].")
-			to_chat(user, "You put a new cell in the [src] containing [cell.charge] charge.")
-			playsound(src,'sound/machines/click.ogg', 25, 1)
-		else
+
+	else if(istype(I, /obj/item/cell) && panel_open)
+		var/obj/item/cell/C = I
+
+		if(cell)
 			to_chat(user, "There already is a power cell in the [src].")
-	else
-		return ..()
+			return
+
+		cell = C
+		C.forceMove(src)
+		visible_message("[user] puts a new power cell in the [src].")
+		to_chat(user, "You put a new cell in the [src] containing [cell.charge] charge.")
+		playsound(src,'sound/machines/click.ogg', 25, 1)
 
 /obj/vehicle/powerloader/examine(mob/user)
 	. = ..()
@@ -158,7 +164,7 @@
 		unbuckle() //if the pilot clicks themself with the clamp, it unbuckles them.
 		return 1
 	else if(isxeno(M) && user.a_intent == INTENT_HELP)
-		var/mob/living/carbon/Xenomorph/X = M
+		var/mob/living/carbon/xenomorph/X = M
 		if(X.stat == DEAD)
 			if(!X.anchored)
 				if(linked_powerloader)

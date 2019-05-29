@@ -1,5 +1,5 @@
-/mob/living/carbon/Xenomorph/Boiler
-	caste_base_type = /mob/living/carbon/Xenomorph/Boiler
+/mob/living/carbon/xenomorph/boiler
+	caste_base_type = /mob/living/carbon/xenomorph/boiler
 	name = "Boiler"
 	desc = "A huge, grotesque xenomorph covered in glowing, oozing acid slime."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
@@ -30,21 +30,30 @@
 // ***************************************
 // *********** Init
 // ***************************************
-/mob/living/carbon/Xenomorph/Boiler/Initialize()
+/mob/living/carbon/xenomorph/boiler/Initialize()
 	. = ..()
 	SetLuminosity(BOILER_LUMINOSITY)
 	smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
 	see_in_dark = 20
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
+	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, .proc/gib_explode)
 
-/mob/living/carbon/Xenomorph/Boiler/Destroy()
+/mob/living/carbon/xenomorph/boiler/Destroy()
 	SetLuminosity(-BOILER_LUMINOSITY)
 	return ..()
 
 // ***************************************
 // *********** Life overrides
 // ***************************************
-/mob/living/carbon/Xenomorph/Boiler/update_stat()
+/mob/living/carbon/xenomorph/boiler/update_stat()
 	. = ..()
 	if(stat == CONSCIOUS)
 		see_in_dark = 20
+
+// ***************************************
+// *********** Gibbing behaviour
+// ***************************************
+/mob/living/carbon/xenomorph/boiler/proc/gib_explode()
+	visible_message("<span class='danger'>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</span>")
+	smoke.set_up(2, get_turf(src))
+	smoke.start()

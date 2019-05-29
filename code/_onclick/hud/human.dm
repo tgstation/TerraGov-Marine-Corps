@@ -5,7 +5,7 @@
 	layer = ABOVE_HUD_LAYER
 
 /obj/screen/human/equip/Click()
-	if(ismecha(usr.loc) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech
+	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech
 		return TRUE
 	var/mob/living/carbon/human/H = usr
 	H.quick_equip()
@@ -83,6 +83,7 @@
 
 		using = new /obj/screen/human/equip
 		using.icon = ui_style
+		using.plane = ABOVE_HUD_PLANE
 		using.color = ui_color
 		using.alpha = ui_alpha
 		static_inventory += using

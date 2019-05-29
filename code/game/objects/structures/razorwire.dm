@@ -184,7 +184,7 @@
 		"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 
-/obj/structure/razorwire/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
@@ -216,9 +216,9 @@
 /obj/structure/razorwire/Bumped(atom/A)
 	. = ..()
 
-	if(istype(A, /mob/living/carbon/Xenomorph/Crusher))
+	if(istype(A, /mob/living/carbon/xenomorph/crusher))
 
-		var/mob/living/carbon/Xenomorph/Crusher/C = A
+		var/mob/living/carbon/xenomorph/crusher/C = A
 
 		if(C.charge_speed < CHARGE_SPEED_MAX * 0.5)
 			return
@@ -280,7 +280,7 @@
 	update_icon()
 
 /obj/structure/razorwire/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSGRILLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
 		return TRUE
 	if(mover.throwing && istype(mover,/obj/item))
 		return TRUE

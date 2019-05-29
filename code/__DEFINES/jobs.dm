@@ -104,6 +104,15 @@
 #define SURV_CLOWN			(1<<13)
 
 
+
+#define J_FLAG_SOM			(1<<9)
+
+#define SOM_STANDARD		(1<<0)
+#define SOM_MEDIC			(1<<1)
+#define SOM_VETERAN			(1<<2)
+#define SOM_LEADER			(1<<3)
+
+
 #define JOB_DISPLAY_ORDER_DEFAULT 0
 
 #define JOB_DISPLAY_ORDER_CAPTAIN 1

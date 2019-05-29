@@ -12,7 +12,7 @@
 	w_class = 3.0 //making sure you can't sneak this onto your belt.
 	gun_type = /obj/item/weapon/gun/flamer
 	caliber = "UT-Napthal Fuel" //Ultra Thick Napthal Fuel, from the lore book.
-	flags_magazine = NOFLAGS
+	flags_magazine = NONE
 
 
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.

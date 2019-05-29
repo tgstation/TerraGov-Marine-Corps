@@ -26,6 +26,8 @@
 	var/list/atom_colours	 //used to store the different colors on an atom
 							//its inherent color, the colored paint applied on it, special color effect etc...
 
+	var/datum/component/orbiter/orbiters
+
 /*
 We actually care what this returns, since it can return different directives.
 Not specifically here, but in other variations of this. As a general safety,
@@ -367,8 +369,6 @@ its easier to just keep the beam vertical.
 	else
 		return 0
 
-/atom/proc/checkpass(passflag)
-	return flags_pass&passflag
 
 //Generalized Fire Proc.
 /atom/proc/flamer_fire_act()
@@ -605,10 +605,73 @@ Proc for attack log creation, because really why not
 /atom/proc/recalculate_storage_space()
 	return //Nothing to see here.
 
+// Tool behavior procedure. Redirects to tool-specific procs by default.
+// You can override it to catch all tool interactions, for use in complex deconstruction procs.
+// Just don't forget to return ..() in the end.
+/atom/proc/tool_act(mob/living/user, obj/item/I, tool_type)
+	switch(tool_type)
+		if(TOOL_CROWBAR)
+			return crowbar_act(user, I)
+		if(TOOL_MULTITOOL)
+			return multitool_act(user, I)
+		if(TOOL_SCREWDRIVER)
+			return screwdriver_act(user, I)
+		if(TOOL_WRENCH)
+			return wrench_act(user, I)
+		if(TOOL_WIRECUTTER)
+			return wirecutter_act(user, I)
+		if(TOOL_WELDER)
+			return welder_act(user, I)
+		if(TOOL_WELD_CUTTER)
+			return weld_cut_act(user, I)
+		if(TOOL_ANALYZER)
+			return analyzer_act(user, I)
+
+
+// Tool-specific behavior procs. To be overridden in subtypes.
+/atom/proc/crowbar_act(mob/living/user, obj/item/I)
+	return FALSE
+
+/atom/proc/multitool_act(mob/living/user, obj/item/I)
+	return FALSE
+
+/atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
+	if(!istype(I, /obj/item/multitool))
+		if(user && !silent)
+			to_chat(user, "<span class='warning'>[I] has no data buffer!</span>")
+		return FALSE
+	return TRUE
+
+
+/atom/proc/screwdriver_act(mob/living/user, obj/item/I)
+	SEND_SIGNAL(src, COMSIG_ATOM_SCREWDRIVER_ACT, user, I)
+
+/atom/proc/wrench_act(mob/living/user, obj/item/I)
+	return FALSE
+
+/atom/proc/wirecutter_act(mob/living/user, obj/item/I)
+	return FALSE
+
+/atom/proc/welder_act(mob/living/user, obj/item/I)
+	return FALSE
+
+/atom/proc/weld_cut_act(mob/living/user, obj/item/I)
+	return FALSE
+
+/atom/proc/analyzer_act(mob/living/user, obj/item/I)
+	return FALSE
+
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	return
 
 
 //the vision impairment to give to the mob whose perspective is set to that atom (e.g. an unfocused camera giving you an impaired vision when looking through it)
 /atom/proc/get_remote_view_fullscreens(mob/user)
+	return
+
+
+//when a mob interact with something that gives them a special view,
+//check_eye() is called to verify that they're still eligible.
+//if they are not check_eye() usually reset the mob's view.
+/atom/proc/check_eye(mob/user)
 	return

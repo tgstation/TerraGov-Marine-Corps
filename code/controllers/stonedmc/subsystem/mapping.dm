@@ -188,7 +188,7 @@ SUBSYSTEM_DEF(mapping)
 GLOBAL_LIST_EMPTY(the_station_areas)
 
 /datum/controller/subsystem/mapping/proc/generate_station_area_list()
-	var/list/station_areas_blacklist = typecacheof(list(/area/space, /area/mine))
+	var/list/station_areas_blacklist = typecacheof(list(/area/space))
 	for(var/area/A in world)
 		var/turf/picked = safepick(get_area_turfs(A.type))
 		if(picked && is_mainship_level(picked.z))

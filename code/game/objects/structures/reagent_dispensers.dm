@@ -51,7 +51,7 @@
 	return
 
 /obj/structure/reagent_dispensers/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return 1
 	else
 		return !density
@@ -197,7 +197,7 @@
 
 	amount = min(amount, reagents.total_volume)
 	reagents.remove_reagent("fuel",amount)
-	new /obj/effect/decal/cleanable/liquid_fuel(src.loc, amount,1)
+	new /obj/effect/decal/cleanable/liquid_fuel(loc, amount, FALSE)
 
 /obj/structure/reagent_dispensers/fueltank/flamer_fire_act()
 	explode()

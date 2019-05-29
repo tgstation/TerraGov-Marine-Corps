@@ -1,5 +1,5 @@
-/mob/living/carbon/Xenomorph/Hunter
-	caste_base_type = /mob/living/carbon/Xenomorph/Hunter
+/mob/living/carbon/xenomorph/hunter
+	caste_base_type = /mob/living/carbon/xenomorph/hunter
 	name = "Hunter"
 	desc = "A beefy, fast alien with sharp claws."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
@@ -21,18 +21,18 @@
 		/datum/action/xeno_action/activable/stealth,
 		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/vent_crawl,
+		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		)
 
 // ***************************************
 // *********** Mob override
 // ***************************************
-/mob/living/carbon/Xenomorph/Hunter/movement_delay()
+/mob/living/carbon/xenomorph/hunter/movement_delay()
 	. = ..()
 	if(stealth)
 		handle_stealth_movement()
 
-/mob/living/carbon/Xenomorph/Hunter/Stat()
+/mob/living/carbon/xenomorph/hunter/Stat()
 	. = ..()
 
 	if(statpanel("Stats"))
@@ -41,7 +41,7 @@
 // ***************************************
 // *********** Stealth overrides
 // ***************************************
-/mob/living/carbon/Xenomorph/Hunter/proc/handle_stealth_movement()
+/mob/living/carbon/xenomorph/hunter/proc/handle_stealth_movement()
 	//Initial stealth
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
 		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
@@ -66,11 +66,11 @@
 		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
 
-/mob/living/carbon/Xenomorph/Hunter/handle_status_effects()
+/mob/living/carbon/xenomorph/hunter/handle_status_effects()
 	. = ..()
 	handle_stealth()
 
-/mob/living/carbon/Xenomorph/Hunter/proc/handle_stealth()
+/mob/living/carbon/xenomorph/hunter/proc/handle_stealth()
 	if(!stealth_router(HANDLE_STEALTH_CHECK))
 		return
 	if(stat != CONSCIOUS || stealth == FALSE || lying || resting) //Can't stealth while unconscious/resting
@@ -94,7 +94,7 @@
 		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
 
-/mob/living/carbon/Xenomorph/Hunter/stealth_router(code = 0)
+/mob/living/carbon/xenomorph/hunter/stealth_router(code = 0)
 	switch(code)
 		if(HANDLE_STEALTH_CHECK)
 			if(stealth)
@@ -109,7 +109,7 @@
 			else
 				return FALSE
 
-/mob/living/carbon/Xenomorph/Hunter/handle_living_plasma_updates()
+/mob/living/carbon/xenomorph/hunter/handle_living_plasma_updates()
 	var/turf/T = loc
 	if(!T || !istype(T))
 		return
@@ -141,7 +141,7 @@
 // ***************************************
 // *********** Death
 // ***************************************
-/mob/living/carbon/Xenomorph/Hunter/gib()
+/mob/living/carbon/xenomorph/hunter/gib()
 
 	var/obj/effect/decal/remains/xeno/remains = new(get_turf(src))
 	remains.icon = icon
@@ -153,10 +153,10 @@
 
 	return ..()
 
-/mob/living/carbon/Xenomorph/Hunter/apply_alpha_channel(var/image/I)
+/mob/living/carbon/xenomorph/hunter/apply_alpha_channel(var/image/I)
 	I.alpha = src.alpha
 	return I
 
-/mob/living/carbon/Xenomorph/Hunter/gib_animation()
+/mob/living/carbon/xenomorph/hunter/gib_animation()
 	new /obj/effect/overlay/temp/gib_animation/xeno(loc, src, "Hunter Gibbed", icon)
 

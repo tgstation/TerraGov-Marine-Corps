@@ -15,10 +15,6 @@
 	visibilityChanged()
 	. = ..()
 
-/turf/New()
-	..()
-	visibilityChanged()
-
 
 
 // STRUCTURES
@@ -40,7 +36,7 @@
 		cameranet.updateVisibility(src)
 	return ..()
 
-/obj/effect/New()
+/obj/effect/Initialize()
 	. = ..()
 	if(SSticker?.current_state != GAME_STATE_STARTUP)
 		cameranet.updateVisibility(src)

@@ -10,7 +10,7 @@
 	cooldown_timer = 20 SECONDS
 
 /datum/action/xeno_action/activable/spray_acid/cone/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/turf/target = get_turf(A)
 
 	if(!istype(target)) //Something went horribly wrong. Clicked off edge of map probably
@@ -33,9 +33,9 @@
 	X.speed += 2
 	do_acid_spray_cone(target, X.xeno_caste.acid_spray_range)
 	add_cooldown()
-	addtimer(CALLBACK(X, /mob/living/carbon/Xenomorph/.proc/reset_speed), rand(20,30))
+	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/.proc/reset_speed), rand(20,30))
 
-/mob/living/carbon/Xenomorph/proc/reset_speed()
+/mob/living/carbon/xenomorph/proc/reset_speed()
 	speed = xeno_caste.speed
 
 GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/vehicle/multitile/root/cm_armored, /obj/structure/razorwire)))

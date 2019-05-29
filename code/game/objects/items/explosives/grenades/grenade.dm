@@ -89,24 +89,23 @@
 /obj/item/explosive/grenade/proc/prime()
 
 
-/obj/item/explosive/grenade/attackby(obj/item/W as obj, mob/user as mob)
-	if(isscrewdriver(W))
+/obj/item/explosive/grenade/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(isscrewdriver(I))
 		switch(det_time)
-			if ("1")
+			if(1)
 				det_time = 10
 				to_chat(user, "<span class='notice'>You set the [name] for 1 second detonation time.</span>")
-			if ("10")
+			if(10)
 				det_time = 30
 				to_chat(user, "<span class='notice'>You set the [name] for 3 second detonation time.</span>")
-			if ("30")
+			if(30)
 				det_time = 50
 				to_chat(user, "<span class='notice'>You set the [name] for 5 second detonation time.</span>")
-			if ("50")
+			if(50)
 				det_time = 1
 				to_chat(user, "<span class='notice'>You set the [name] for instant detonation.</span>")
-		add_fingerprint(user)
-	..()
-	return
 
 /obj/item/explosive/grenade/attack_hand()
 	walk(src, null, null)

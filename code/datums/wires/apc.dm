@@ -14,7 +14,7 @@
 
 /datum/wires/apc/interactable(mob/user)
 	var/obj/machinery/power/apc/A = holder
-	if(A.panel_open && !A.opened)
+	if(CHECK_BITFIELD(A.machine_stat, PANEL_OPEN) && !A.opened)
 		return TRUE
 
 
@@ -28,10 +28,6 @@
 
 
 /datum/wires/apc/on_pulse(wire)
-	. = ..()
-	if(!.)
-		return
-
 	var/obj/machinery/power/apc/A = holder
 	switch(wire)
 		if(WIRE_POWER1, WIRE_POWER2) // Short for a long while.
@@ -47,11 +43,7 @@
 				addtimer(CALLBACK(A, /obj/machinery/power/apc.proc/reset, wire), 10)
 
 
-/datum/wires/apc/on_cut(index, mend)
-	. = ..()
-	if(!.)
-		return
-		
+/datum/wires/apc/on_cut(index, mend)	
 	var/obj/machinery/power/apc/A = holder
 	switch(index)
 		if(WIRE_POWER1, WIRE_POWER2) // Short out.

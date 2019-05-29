@@ -1,7 +1,7 @@
 //Colonial Liberation Front
 /datum/emergency_call/clf
 	name = "CLF"
-	probability = 20
+	probability = 0
 
 
 /datum/emergency_call/clf/print_backstory(mob/living/carbon/human/H)

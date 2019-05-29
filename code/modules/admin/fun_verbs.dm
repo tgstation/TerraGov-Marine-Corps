@@ -496,10 +496,7 @@
 		return
 
 	if(SSticker.mode.picked_call)
-		SSticker.mode.picked_call.members = list()
-		SSticker.mode.picked_call.candidates = list()
-		SSticker.mode.waiting_for_candidates = FALSE
-		SSticker.mode.on_distress_cooldown = FALSE
+		SSticker.mode.picked_call.reset()
 		SSticker.mode.picked_call = null
 
 	var/list/list_of_calls = list()
@@ -524,13 +521,13 @@
 	if(!istype(SSticker.mode.picked_call))
 		return
 
-	var/max = input("What should the maximum amount of mobs be?", "Max Mobs", 20) as null|num
+	var/max = input("What should the maximum amount of mobs be?", "Max Mobs", SSticker.mode.picked_call.mob_max) as null|num
 	if(!max || max < 1)
 		return
 
 	SSticker.mode.picked_call.mob_max = max
 
-	var/min = input("What should the minimum amount of mobs be?", "Min Mobs", 1) as null|num
+	var/min = input("What should the minimum amount of mobs be?", "Min Mobs", SSticker.mode.picked_call.mob_min) as null|num
 	if(!min || min < 1)
 		return
 
@@ -582,71 +579,6 @@
 
 	log_admin("[key_name(usr)] force launched [tag][crash ? " making it crash" : ""].")
 	message_admins("[ADMIN_TPMONTY(usr)] force launched [tag][crash ? " making it crash" : ""].")
-
-
-/datum/admins/proc/force_ert_shuttle()
-	set category = "Fun"
-	set name = "Force ERT Shuttle"
-	set desc = "Force Launch the ERT Shuttle."
-
-	if(!check_rights(R_FUN))
-		return
-
-	if(!SSticker?.mode)
-		return
-
-	var/tag = input("Which ERT shuttle should be force launched?", "Select an ERT Shuttle:") as null|anything in list("Distress", "Distress_PMC", "Distress_UPP", "Distress_Big")
-	if(!tag)
-		return
-
-	var/datum/shuttle/ferry/ert/shuttle = shuttle_controller.shuttles[tag]
-	if(!shuttle || !istype(shuttle))
-		return
-
-	if(!shuttle.location)
-		return
-
-	var/dock_id
-	var/dock_list = list("Port", "Starboard", "Aft")
-	if(shuttle.use_umbilical)
-		dock_list = list("Port Hangar", "Starboard Hangar")
-	var/dock_name = input("Where on the [CONFIG_GET(string/ship_name)] should the shuttle dock?", "Select a docking zone:") as null|anything in dock_list
-	switch(dock_name)
-		if("Port")
-			dock_id = /area/shuttle/distress/arrive_2
-		if("Starboard")
-			dock_id = /area/shuttle/distress/arrive_1
-		if("Aft")
-			dock_id = /area/shuttle/distress/arrive_3
-		if("Port Hangar")
-			dock_id = /area/shuttle/distress/arrive_s_hangar
-		if("Starboard Hangar")
-			dock_id = /area/shuttle/distress/arrive_n_hangar
-		else
-			return
-
-	for(var/datum/shuttle/ferry/ert/F in shuttle_controller.process_shuttles)
-		if(F != shuttle)
-			if(!F.location || F.moving_status != SHUTTLE_IDLE)
-				if(F.area_station.type == dock_id)
-					to_chat(usr, "<span class='warning'>That docking zone is already taken by another shuttle. Aborting.</span>")
-					return
-
-	for(var/area/A in all_areas)
-		if(A.type == dock_id)
-			shuttle.area_station = A
-			break
-
-
-	if(!shuttle.can_launch())
-		to_chat(usr, "<span class='warning'>Unable to launch this distress shuttle at this moment. Aborting.</span>")
-		return
-
-	shuttle.launch()
-
-	log_admin("[key_name(usr)] force launched a distress shuttle: [tag] to [dock_name].")
-	message_admins("[ADMIN_TPMONTY(usr)] force launched a distress shuttle: [tag] to: [dock_name].")
-
 
 /datum/admins/proc/object_sound(atom/O as obj)
 	set category = null
@@ -1020,7 +952,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has offered [ADMIN_TPMONTY(L)].")
 
 
-/datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.xeno_mob_list)
+/datum/admins/proc/change_hivenumber(mob/living/carbon/xenomorph/X in GLOB.xeno_mob_list)
 	set category = "Fun"
 	set name = "Change Hivenumber"
 	set desc = "Set the hivenumber of a xenomorph."

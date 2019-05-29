@@ -1,7 +1,5 @@
 /mob/living/carbon/monkey/Life()
 
-	if (monkeyizing)
-		return
 	if (update_muts)
 		update_muts=0
 		domutcheck(src,null,MUTCHK_FORCED)

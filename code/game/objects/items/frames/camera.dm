@@ -21,71 +21,62 @@
 				4 = Screwdriver panel closed and is fully built (you cannot attach upgrades)
 	*/
 
-/obj/item/frame/camera/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/item/frame/camera/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
 	switch(state)
-
 		if(0)
-			// State 0
-			if(iswrench(W) && isturf(src.loc))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+			if(iswrench(I) && isturf(loc))
+				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				to_chat(user, "You wrench the assembly into place.")
-				anchored = 1
+				anchored = TRUE
 				state = 1
 				update_icon()
 				auto_turn()
-				return
-
 		if(1)
-			// State 1
-			if(iswelder(W))
-				if(weld(W, user))
-					to_chat(user, "You weld the assembly securely into place.")
-					anchored = 1
-					state = 2
-				return
+			if(iswelder(I))
+				if(!weld(I, user))
+					return
 
-			else if(iswrench(W))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+				to_chat(user, "You weld the assembly securely into place.")
+				anchored = TRUE
+				state = 2
+
+			else if(iswrench(I))
+				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				to_chat(user, "You unattach the assembly from it's place.")
-				anchored = 0
+				anchored = FALSE
 				update_icon()
 				state = 0
-				return
-
 		if(2)
-			// State 2
-			if(iscablecoil(W))
-				var/obj/item/stack/cable_coil/C = W
-				if(C.use(2))
-					to_chat(user, "<span class='notice'>You add wires to the assembly.</span>")
-					state = 3
-				else
+			if(iscablecoil(I))
+				var/obj/item/stack/cable_coil/C = I
+				if(!C.use(2))
 					to_chat(user, "<span class='warning'>You need 2 coils of wire to wire the assembly.</span>")
-				return
+					return
 
-			else if(iswelder(W))
+				to_chat(user, "<span class='notice'>You add wires to the assembly.</span>")
+				state = 3
 
-				if(weld(W, user))
-					to_chat(user, "You unweld the assembly from it's place.")
-					state = 1
-					anchored = 1
-				return
+			else if(iswelder(I))
+				if(!weld(I, user))
+					return
 
-
+				to_chat(user, "You unweld the assembly from it's place.")
+				state = 1
+				anchored = TRUE
 		if(3)
-			// State 3
-			if(isscrewdriver(W))
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
+			if(isscrewdriver(I))
+				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 
-				var/input = strip_html(input(usr, "Which networks would you like to connect this camera to? Seperate networks with a comma. No Spaces!\nFor example: military, Security,Secret ", "Set Network", "military"))
+				var/input = strip_html(input(user, "Which networks would you like to connect this camera to? Seperate networks with a comma. No Spaces!\nFor example: military, Security,Secret ", "Set Network", "military"))
 				if(!input)
-					to_chat(usr, "No input found please hang up and try your call again.")
+					to_chat(user, "No input found please hang up and try your call again.")
 					return
 
 				var/list/tempnetwork = text2list(input, ",")
-				if(tempnetwork.len < 1)
-					to_chat(usr, "No network found please hang up and try your call again.")
+				if(!length(tempnetwork))
+					to_chat(user, "No network found please hang up and try your call again.")
 					return
 
 				var/area/camera_area = get_area(src)
@@ -93,56 +84,42 @@
 				input = strip_html(input(usr, "How would you like to name the camera?", "Set Camera Name", temptag))
 
 				state = 4
-				var/obj/machinery/camera/C = new(src.loc)
-				src.loc = C
+				var/obj/machinery/camera/C = new(loc)
+				forceMove(C)
 				C.assembly = src
-
 				C.auto_turn()
-
 				C.network = uniquelist(tempnetwork)
 				tempnetwork = difflist(C.network,RESTRICTED_CAMERA_NETWORKS)
-				if(!tempnetwork.len)//Camera isn't on any open network - remove its chunk from AI visibility.
+				if(!length(tempnetwork))//Camera isn't on any open network - remove its chunk from AI visibility.
 					cameranet.removeCamera(C)
 
 				C.c_tag = input
 
-				for(var/i = 5; i >= 0; i -= 1)
-					var/direct = input(user, "Direction?", "Assembling Camera", null) in list("LEAVE IT", "NORTH", "EAST", "SOUTH", "WEST" )
-					if(direct != "LEAVE IT")
-						C.setDir(text2dir(direct))
-					if(i != 0)
-						var/confirm = alert(user, "Is this what you want? Chances Remaining: [i]", "Confirmation", "Yes", "No")
-						if(confirm == "Yes")
-							break
-				return
+				var/direct = input(user, "Direction?", "Assembling Camera", null) in list("LEAVE IT", "NORTH", "EAST", "SOUTH", "WEST" )
+				if(direct != "LEAVE IT")
+					C.setDir(text2dir(direct))
 
-			else if(iswirecutter(W))
-
-				new/obj/item/stack/cable_coil(get_turf(src), 2)
-				playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
+			else if(iswirecutter(I))
+				new /obj/item/stack/cable_coil(get_turf(src), 2)
+				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 				to_chat(user, "You cut the wires from the circuits.")
 				state = 2
-				return
 
-	// Upgrades!
-	if(is_type_in_list(W, possible_upgrades) && !is_type_in_list(W, upgrades)) // Is a possible upgrade and isn't in the camera already.
-		to_chat(user, "You attach \the [W] into the assembly inner circuits.")
-		upgrades += W
+	if(is_type_in_list(I, possible_upgrades) && !is_type_in_list(I, upgrades)) // Is a possible upgrade and isn't in the camera already.
+		to_chat(user, "You attach \the [I] into the assembly inner circuits.")
+		upgrades += I
 		user.drop_held_item()
-		W.forceMove(src)
-		return
+		I.forceMove(src)
 
-	// Taking out upgrades
-	else if(iscrowbar(W) && upgrades.len)
-		var/obj/U = locate(/obj) in upgrades
-		if(U)
-			to_chat(user, "You unattach an upgrade from the assembly.")
-			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-			U.loc = get_turf(src)
-			upgrades -= U
-		return
+	else if(iscrowbar(I) && length(upgrades))
+		var/obj/U = pick(upgrades)
+		if(!U)
+			return
 
-	..()
+		to_chat(user, "You unattach an upgrade from the assembly.")
+		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+		U.forceMove(loc)
+		upgrades -= U
 
 /obj/item/frame/camera/update_icon()
 	if(anchored)

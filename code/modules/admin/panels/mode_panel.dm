@@ -70,7 +70,7 @@
 
 	dat += "<table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
 	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/Xenomorph/X = i
+		var/mob/living/carbon/xenomorph/X = i
 		dat += "<tr><td><a href='?priv_msg=[REF(X)]'>[X.real_name]</a>[X.client ? "" : " <i>(logged out)</i>"][(X.client?.prefs?.xeno_name && X.client.prefs.xeno_name != "Undefined") ? " - [X.client.prefs.xeno_name]" : ""]</td>"
 		dat += "<td>[get_area(get_turf(X))]</td>"
 		dat += "<td><a href='?src=[ref];playerpanel=[REF(X)]'>PP</A></td></TR>"

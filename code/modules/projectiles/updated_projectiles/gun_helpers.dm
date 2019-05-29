@@ -251,7 +251,7 @@ should be alright.
 	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 
-	user.changeNext_move(CLICK_CD_CLICK_ABILITY)
+	. = ..()
 
 	if(istype(I,/obj/item/attachable) && check_inactive_hand(user))
 		attach_to_gun(user, I)

@@ -72,10 +72,10 @@
 		operating = 0
 
 	if(operating)
-		if(!machine_processing)
+		if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 			start_processing()
 	else
-		if(machine_processing)
+		if(CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 			stop_processing()
 
 	icon_state = "conveyor[operating]"
@@ -101,14 +101,18 @@
 				break
 
 // attack with item, place item on conveyor
-/obj/machinery/conveyor/attackby(var/obj/item/I, mob/user)
-	var/obj/item/grab/G = I
-	if(istype(G))	// handle grabbed mob
+/obj/machinery/conveyor/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
+		
 		if(ismob(G.grabbed_thing))
 			var/mob/GM = G.grabbed_thing
 			step(GM, get_dir(GM, src))
-			return
-	user.transferItemToLoc(I, loc)
+			
+	else
+		user.transferItemToLoc(I, loc)
 
 // attack with hand, move pulled object onto conveyor
 /obj/machinery/conveyor/attack_hand(mob/user as mob)

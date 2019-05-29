@@ -107,7 +107,7 @@
 				//					\\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/Initialize(loc, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
+/obj/item/weapon/gun/Initialize(mapload, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
 	. = ..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
 	base_gun_icon = icon_state
 	attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
@@ -800,12 +800,12 @@ and you're good to go.
 		return TRUE
 
 
-	if(user.zone_selected != "mouth")
+	if(M != user || user.zone_selected != "mouth")
 		return ..()
 
 	DISABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK) //If they try to click again, they're going to hit themselves.
 
-	M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
+	user.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
 	log_game("[key_name(user)] is trying to commit suicide.")
 	var/u = "[key_name(user)] is trying to commit suicide."
 	user.log_message(u, LOG_ATTACK, "red")

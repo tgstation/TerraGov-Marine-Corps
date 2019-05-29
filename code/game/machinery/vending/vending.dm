@@ -78,8 +78,14 @@
 		//Add hidden inventory
 	src.build_inventory(contraband, 1)
 	src.build_inventory(premium, 0, 1)
-	power_change()
 	start_processing()
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/machinery/vending/LateInitialize()
+	. = ..()
+	power_change()
+
 
 /obj/machinery/vending/Destroy()
 	QDEL_NULL(wires)
@@ -142,7 +148,7 @@
 		R.product_name = initial(temp_path.name)
 
 
-/obj/machinery/vending/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/M)
 	if(tipped_level)
 		to_chat(M, "<span class='warning'>There's no reason to bother with that old piece of trash.</span>")
 		return FALSE
@@ -167,7 +173,7 @@
 	var/shove_time = 100
 	if(M.mob_size == MOB_SIZE_BIG)
 		shove_time = 50
-	if(istype(M,/mob/living/carbon/Xenomorph/Crusher))
+	if(istype(M,/mob/living/carbon/xenomorph/crusher))
 		shove_time = 15
 	if(do_after(M, shove_time, FALSE, src, BUSY_ICON_HOSTILE))
 		M.visible_message("<span class='danger'>\The [M] knocks \the [src] down!</span>", \
@@ -202,15 +208,15 @@
 		to_chat(user, "You short out the product lock on [src]")
 		return
 	else if(isscrewdriver(W))
-		src.panel_open = !src.panel_open
-		to_chat(user, "You [src.panel_open ? "open" : "close"] the maintenance panel.")
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
 		src.overlays.Cut()
-		if(src.panel_open)
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			src.overlays += image(src.icon, "[initial(icon_state)]-panel")
 		src.updateUsrDialog()
 		return
 	else if(ismultitool(W)||iswirecutter(W))
-		if(src.panel_open)
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			attack_hand(user)
 		return
 	else if(istype(W, /obj/item/coin))
@@ -459,7 +465,7 @@
 			src.updateUsrDialog()
 			return
 
-		else if ((href_list["togglevoice"]) && (src.panel_open))
+		else if ((href_list["togglevoice"]) && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			src.shut_up = !src.shut_up
 
 		src.add_fingerprint(usr)

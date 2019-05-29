@@ -20,9 +20,6 @@
 
 
 /datum/wires/mulebot/on_pulse(wire)
-	. = ..()
-	if(!.)
-		return
 	var/obj/machinery/bot/mulebot/M = holder
 	switch(wire)
 		if(WIRE_POWER1, WIRE_POWER2)

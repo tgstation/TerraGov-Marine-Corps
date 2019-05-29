@@ -8,8 +8,8 @@
 	var/round_finished
 
 	var/round_time_fog
-	var/flags_round_type = NOFLAGS
-	var/flags_landmarks = NOFLAGS
+	var/flags_round_type = NONE
+	var/flags_landmarks = NONE
 
 	var/distress_cancelled = FALSE
 
@@ -258,7 +258,7 @@
 		L.revive()
 
 		if(isxeno(L))
-			var/mob/living/carbon/Xenomorph/X = L
+			var/mob/living/carbon/xenomorph/X = L
 			X.transfer_to_hive(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
 
 		else if(ishuman(L))
@@ -351,7 +351,7 @@
 		num_humans++
 
 	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/Xenomorph/X = i
+		var/mob/living/carbon/xenomorph/X = i
 		if(!X.client)
 			continue
 		if(!(X.z in z_levels) || isspaceturf(X.loc))
@@ -379,7 +379,7 @@
 	to_chat(xeno_candidate, "<span class='warning'>This is unavailable in this gamemode.</span>")
 	return FALSE
 
-/datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/Xenomorph/X)
+/datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X)
 	xeno_candidate.mind.transfer_to(X, TRUE)
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
 	if(X.is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
@@ -399,7 +399,7 @@
 	if(instant_join)
 		return pick(available_xenos) //Just picks something at random.
 
-	var/mob/living/carbon/Xenomorph/new_xeno = input("Available Xenomorphs") as null|anything in available_xenos
+	var/mob/living/carbon/xenomorph/new_xeno = input("Available Xenomorphs") as null|anything in available_xenos
 	if(!istype(new_xeno) || !xeno_candidate?.client)
 		return FALSE
 

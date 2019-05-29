@@ -75,7 +75,6 @@
 		return FALSE
 
 
-
 /mob/proc/drop_item_v()		//this is dumb.
 	if(stat == CONSCIOUS && isturf(loc))
 		return drop_held_item()

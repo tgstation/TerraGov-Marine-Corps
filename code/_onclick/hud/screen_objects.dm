@@ -75,7 +75,7 @@
 	if(isobserver(usr) || usr.incapacitated(TRUE))
 		return TRUE
 
-	if(ismecha(usr.loc) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return TRUE
 
 	if(!istype(src, /obj/screen/inventory/hand) && usr.attack_ui(slot_id)) // until we get a proper hands refactor
@@ -98,7 +98,7 @@
 		return TRUE
 	if(usr.incapacitated() || !iscarbon(usr))
 		return TRUE
-	if (ismecha(usr.loc) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored))
+	if (istype(usr.loc, /obj/vehicle/multitile/root/cm_armored))
 		return TRUE
 	var/mob/living/carbon/C = usr
 	C.activate_hand(hand_tag)
@@ -112,6 +112,7 @@
 /obj/screen/close
 	name = "close"
 	layer = ABOVE_HUD_LAYER
+	plane = ABOVE_HUD_PLANE
 	icon_state = "backpack_close"
 
 
@@ -311,11 +312,6 @@
 	name = "storage"
 	icon_state = "block"
 	screen_loc = "7,7 to 10,8"
-
-
-/obj/screen/storage/New(new_master, mapload)
-	. = ..()
-	master = new_master
 
 
 /obj/screen/storage/proc/update_fullness(obj/item/storage/S)

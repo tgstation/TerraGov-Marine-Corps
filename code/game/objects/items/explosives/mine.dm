@@ -74,15 +74,20 @@
 		tripwire.linked_claymore = src
 
 //Disarming
-/obj/item/explosive/mine/attackby(obj/item/W, mob/user)
-	if(!ismultitool(W) || !anchored)
-		return ..()
+/obj/item/explosive/mine/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(!ismultitool(I) || !anchored)
+		return
+
 	user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
 	"<span class='notice'>You start disarming [src].</span>")
+
 	if(!do_after(user, 80, TRUE, src, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='warning'>[user] stops disarming [src].", \
 		"<span class='warning'>You stop disarming [src].")
 		return
+
 	user.visible_message("<span class='notice'>[user] finishes disarming [src].", \
 	"<span class='notice'>You finish disarming [src].")
 	anchored = FALSE
@@ -123,7 +128,7 @@
 			explosion(tripwire ? tripwire.loc : loc, -1, -1, 2)
 			qdel(src)
 
-/obj/item/explosive/mine/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/M)
 	if(triggered) //Mine is already set to go off
 		return
 
