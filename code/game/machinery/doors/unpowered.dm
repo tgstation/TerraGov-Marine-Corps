@@ -10,7 +10,7 @@
 	return ..()
 
 
-/obj/machinery/door/airlock/unpowered/attackby(obj/item/I, mob/user)
+/obj/machinery/door/airlock/unpowered/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/card/emag) || locked)
 		return FALSE
 	return ..()

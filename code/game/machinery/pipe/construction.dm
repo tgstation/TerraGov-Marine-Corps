@@ -131,13 +131,12 @@ Buildable meters
 /obj/item/pipe/attack_self(mob/user)
 	setDir(turn(dir,-90))
 
-/obj/item/pipe/attackby(obj/item/W, mob/living/user)
-	if(!istype(user))
-		return FALSE
+/obj/item/pipe/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	if(user.incapacitated())
 		return FALSE
-	if(!.)
-		return ..()
+	if(iswrench(I))
+		return wrench_act(user, I)
 
 /obj/item/pipe/wrench_act(mob/living/user, obj/item/wrench/W)
 	if(!isturf(loc))

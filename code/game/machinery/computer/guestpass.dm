@@ -58,15 +58,20 @@
 	..()
 	uid = "[rand(100,999)]-G[rand(10,99)]"
 
-/obj/machinery/computer/guestpass/attackby(obj/O, mob/user)
-	if(istype(O, /obj/item/card/id))
-		if(!giver)
-			if(user.drop_held_item())
-				O.forceMove(src)
-				giver = O
-				updateUsrDialog()
-		else
+/obj/machinery/computer/guestpass/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(istype(I, /obj/item/card/id))
+		if(giver)
 			to_chat(user, "<span class='warning'>There is already ID card inside.</span>")
+			return
+
+		if(!user.drop_held_item())
+			return
+
+		I.forceMove(src)
+		giver = I
+		updateUsrDialog()
 
 /obj/machinery/computer/guestpass/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
