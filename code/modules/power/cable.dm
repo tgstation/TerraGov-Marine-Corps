@@ -174,8 +174,8 @@ By design, d1 is the smallest direction and d2 is the highest
 	add_fingerprint(user)
 
 // Items usable on a cable :
-/obj/structure/cable/attackby(obj/item/W, mob/user, params)
-	handlecable(W, user, params)
+/obj/structure/cable/attackby(obj/item/I, mob/user, params)
+	handlecable(I, user, params)
 
 // shock the user with probability prb
 /obj/structure/cable/proc/shock(mob/user, prb, siemens_coeff = 1)

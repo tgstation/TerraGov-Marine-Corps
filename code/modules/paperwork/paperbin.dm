@@ -56,13 +56,15 @@
 	return
 
 
-/obj/item/paper_bin/attackby(obj/item/paper/i as obj, mob/user as mob)
-	if(!istype(i))
-		return
+/obj/item/paper_bin/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(user.transferItemToLoc(i, src))
-		to_chat(user, "<span class='notice'>You put [i] in [src].</span>")
-		papers.Add(i)
+	if(istype(I, /obj/item/paper))
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		LAZYADD(papers, I)
 		amount++
 
 

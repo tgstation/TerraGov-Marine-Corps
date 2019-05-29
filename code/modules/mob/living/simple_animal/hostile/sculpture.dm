@@ -265,9 +265,6 @@
 		log_admin("[key_name(target)] has had his neck snapped by an active [src].")
 		message_admins("[ADMIN_TPMONTY(target)] has had his neck snapped by an active [src].")
 
-/mob/living/simple_animal/sculpture/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	..()
-
 /mob/living/simple_animal/sculpture/Topic(href, href_list)
 	..()
 

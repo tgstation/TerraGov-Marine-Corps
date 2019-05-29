@@ -111,15 +111,15 @@
 
 // attach a wire to a power machine - leads from the turf you are standing on
 //almost never called, overwritten by all power machines but terminal and generator
-/obj/machinery/power/attackby(obj/item/W, mob/user, params)
-	if(iscablecoil(W))
-		var/obj/item/stack/cable_coil/coil = W
+/obj/machinery/power/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iscablecoil(I))
+		var/obj/item/stack/cable_coil/coil = I
 		var/turf/T = user.loc
 		if(T.intact_tile || !isfloorturf(T) || get_dist(src, user) > 1)
 			return
 		coil.place_turf(T, user)
-	else
-		. = ..()
 
 ///////////////////////////////
 // Powernet handling helpers //
