@@ -551,8 +551,8 @@
 	armor = list("melee" = 38, "bullet" = 38, "laser" = 32, "energy" = 22, "bomb" = 12, "bio" = 5, "rad" = 5, "fire" = 22, "acid" = 22)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = NOFLAGS
-	flags_marine_helmet = NOFLAGS
+	flags_inv_hide = NONE
+	flags_marine_helmet = NONE
 
 
 /obj/item/clothing/head/helmet/marine/som/veteran
