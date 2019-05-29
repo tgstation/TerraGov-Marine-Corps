@@ -1,3 +1,29 @@
+/datum/admins/proc/admin_sql()
+	set category = "Admin"
+	set name = "SQLQuery"
+	set desc = "Debug Query yo."
+
+	if(!check_rights(R_ADMIN))
+		to_chat(usr, "<span class='warning'>Not enough rights.</span>")
+		return
+	if(!CONFIG_GET(flag/sql_enabled))
+		to_chat(usr, "<span class='warning'>SQL disabled.</span>")
+		return
+	if(!SSdbcore.Connect())
+		to_chat(usr, "<span class='warning'>SQL not connected?!.</span>")
+		return
+	
+	var/rawQuery = input(usr, "query?", "query?", "") as text|null
+	if(!dd_hasprefix(rawQuery, "SELECT"))
+		to_chat(usr, "<span class='warning'>SELECT Statements only?!.</span>")
+		return
+	var/datum/DBQuery/result = SSdbcore.NewQuery("[rawQuery]")
+	result.Execute()
+	if(result.NextRow())
+		to_chat(usr, result.item[1])
+	qdel(result)
+
+
 /datum/admins/proc/admin_ghost()
 	set category = "Admin"
 	set name = "Aghost"

@@ -252,6 +252,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/pref_debug_logs,
 	/datum/admins/proc/set_ooc_color_self,
 	/datum/admins/proc/admin_ghost,
+	/datum/admins/proc/admin_sql,
 	/datum/admins/proc/invisimin,
 	/datum/admins/proc/stealth_mode,
 	/datum/admins/proc/give_mob,
