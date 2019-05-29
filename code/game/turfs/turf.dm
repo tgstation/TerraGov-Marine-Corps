@@ -706,3 +706,11 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	name = "Z-level baseturf placeholder"
 	desc = "Marker for z-level baseturf, usually resolves to space."
 	baseturfs = /turf/baseturf_bottom
+
+
+/turf/proc/add_vomit_floor(mob/living/carbon/M, var/toxvomit = 0)
+	var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
+
+	// Make toxins vomit look different
+	if(toxvomit)
+		this.icon_state = "vomittox_[pick(1,4)]"
