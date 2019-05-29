@@ -80,7 +80,7 @@ directive is properly returned.
 	return
 
 /atom/proc/Bumped(atom/movable/AM)
-	set waitfor = FALSE
+	return
 
 /atom/proc/CanPass(atom/movable/mover, turf/target)
 	//Purpose: Determines if the object can pass this atom.
