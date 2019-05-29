@@ -137,13 +137,14 @@
 	var/assigned_fireteam = "" //which fire team this ID belongs to, only used by squad marines.
 
 
-/obj/item/card/id/New()
-	..()
-	spawn(30)
-	if(ishuman(loc))
-		blood_type = loc:dna:b_type
-		dna_hash = loc:dna:unique_enzymes
-		fingerprint_hash = md5(loc:dna:uni_identity)
+/obj/item/card/id/Initialize()
+	. = ..()
+	if(!ishuman(loc))
+		return
+	var/mob/living/carbon/human/H = loc
+	blood_type = H.blood_type
+	dna_hash = H.dna.unique_enzymes
+	fingerprint_hash = md5(H.dna.uni_identity)
 
 /obj/item/card/id/attack_self(mob/user as mob)
 	user.visible_message("[user] shows you: [icon2html(src, viewers(user))] [name]: assignment: [assignment]")

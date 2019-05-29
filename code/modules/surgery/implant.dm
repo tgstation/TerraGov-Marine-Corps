@@ -185,7 +185,7 @@
 		affected.hidden.loc = get_turf(target)
 		if(!affected.hidden.blood_DNA)
 			affected.hidden.blood_DNA = list()
-		affected.hidden.blood_DNA[target.dna.unique_enzymes] = target.dna.b_type
+		affected.hidden.blood_DNA[target.dna.unique_enzymes] = target.blood_type
 		affected.hidden.update_icon()
 		affected.hidden = null
 

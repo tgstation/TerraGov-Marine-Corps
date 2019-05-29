@@ -1177,14 +1177,8 @@
 
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
 
-	if(!dna)
-		if(!new_species)
-			new_species = "Human"
-	else
-		if(!new_species)
-			new_species = dna.species
-		else
-			dna.species = new_species
+	if(!new_species)
+		new_species = "Human"
 
 	if(species)
 

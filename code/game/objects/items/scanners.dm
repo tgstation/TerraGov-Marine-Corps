@@ -311,7 +311,7 @@ REAGENT SCANNER
 			blood_volume = round(H.blood_volume)
 
 			var/blood_percent =  blood_volume / 560
-			var/blood_type = H.dna.b_type
+			var/blood_type = H.blood_type
 			blood_percent *= 100
 			if(blood_volume <= 500 && blood_volume > 336)
 				dat += "\t<span class='scanner'> <b>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.</span><font color='blue;'> Type: [blood_type]</font>\n"

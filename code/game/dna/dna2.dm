@@ -75,23 +75,16 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	var/list/UI[DNA_UI_LENGTH]
 
 	// From old dna.
-	var/b_type
 	var/real_name          // Stores the real name of the person who originally got this dna datum. Used primarily for changelings,
 
-	// New stuff
-	var/species = "Human"
-
 /datum/dna/New(var/b)
-	b_type = b
 
 // Make a copy of this strand.
 // USE THIS WHEN COPYING STUFF OR YOU'LL GET CORRUPTION!
 /datum/dna/proc/Clone()
 	var/datum/dna/new_dna = new()
 	new_dna.unique_enzymes=unique_enzymes
-	new_dna.b_type=b_type
 	new_dna.real_name=real_name
-	new_dna.species=species
 	for(var/b=1;b<=DNA_SE_LENGTH;b++)
 		new_dna.SE[b]=SE[b]
 		if(b<=DNA_UI_LENGTH)

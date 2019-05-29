@@ -204,7 +204,7 @@
 	for(var/datum/reagent/R in container.reagents.reagent_list)
 		// If its blood, lets check its compatible or not and cause some toxins.
 		if(istype(R, /datum/reagent/blood) && b_id && R.id == b_id)
-			if(b_id == "blood" && R.data && !(R.data["blood_type"] in get_safe_blood(dna.b_type)))
+			if(b_id == "blood" && R.data && !(R.data["blood_type"] in get_safe_blood(blood_type)))
 				reagents.add_reagent("toxin", amount * 0.5)
 			else
 				blood_volume = min(blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
@@ -284,7 +284,7 @@
 	switch(b_id)
 		if("blood")
 			if(dna)
-				return list(dna.unique_enzymes = dna.b_type)
+				return list(dna.unique_enzymes = blood_type)
 			else
 				return list("UNKNOWN DNA" = "X*")
 		if("whiteblood")

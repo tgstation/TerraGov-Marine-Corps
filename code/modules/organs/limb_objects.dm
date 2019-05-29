@@ -9,7 +9,7 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	if(H.dna)
 		if(!blood_DNA)
 			blood_DNA = list()
-		blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
+		blood_DNA[H.dna.unique_enzymes] = H.blood_type
 
 	//Forming icon for the limb
 
