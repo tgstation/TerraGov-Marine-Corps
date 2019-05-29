@@ -283,7 +283,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	say("#[message]", bubble_type, spans, sanitize, language, ignore_spam, forced)
 
 
-/mob/living/proc/binarycheck()
+/mob/proc/binarycheck()
 	return FALSE
 
 

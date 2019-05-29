@@ -17,12 +17,8 @@
 	density = TRUE //Do not want to see past it.
 	bound_height = 64 //putting this in so we can't walk through our machine.
 	bound_width = 96
-	var/obj/item/radio/headset/almayer/mcom/ai/radio //The thing it speaks into.
 	var/sound/ai_sound //The lines that it plays when speaking.
 
-/mob/living/silicon/decoy/Initialize()
-	. = ..()
-	radio = new(src)
 
 /mob/living/silicon/decoy/Life()
 	if(stat == DEAD)

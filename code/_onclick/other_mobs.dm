@@ -50,11 +50,3 @@
 */
 /mob/new_player/Click()
 	return TRUE
-
-
-/atom/proc/attack_ai(mob/user as mob)
-	return FALSE
-
-
-/atom/proc/attack_robot(mob/user as mob)
-	return FALSE

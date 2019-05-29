@@ -18,7 +18,7 @@
 
 	var/state = OW_MAIN
 	var/obj/machinery/camera/cam = null
-	var/list/network = list("LEADER")
+	var/list/network = list("marine")
 	var/x_offset_s = 0
 	var/y_offset_s = 0
 	var/living_marines_sorting = FALSE

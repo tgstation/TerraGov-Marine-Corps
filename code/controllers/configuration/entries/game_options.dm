@@ -154,6 +154,8 @@
 
 /datum/config_entry/flag/allow_ai
 
+/datum/config_entry/flag/allow_ai_multicam	// allow ai multicamera mode
+
 /datum/config_entry/flag/fun_allowed //at the moment, when set equal to 1, allows players to *dab (and get limbs automatically blown off).
 
 /datum/config_entry/flag/tank_mouth_noise //Causes the tank to sound like a 5 year old child is driving it.
