@@ -45,11 +45,12 @@
 /obj/item/weapon/gun/revolver/update_icon() //Special snowflake update icon.
 	icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
 
-/obj/item/weapon/gun/revolver/attackby(obj/item/P as obj, mob/user as mob)
-	if(isscrewdriver(P))
-		to_chat(user, "[catchworking? "You adjust the cylinder lock to allow the cylinder to be spun.": "You adjust the cylinder lock to the correct depth."]")
+/obj/item/weapon/gun/revolver/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(isscrewdriver(I))
+		to_chat(user, "[catchworking ? "You adjust the cylinder lock to allow the cylinder to be spun." : "You adjust the cylinder lock to the correct depth."]")
 		catchworking = !catchworking
-	return ..()
 
 /obj/item/weapon/gun/revolver/proc/rotate_cylinder(mob/user) //Cylinder moves backward.
 	current_mag.chamber_position = current_mag.chamber_position == 1 ? current_mag.max_rounds : current_mag.chamber_position - 1

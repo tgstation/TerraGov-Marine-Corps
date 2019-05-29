@@ -85,15 +85,15 @@ Defined in conflicts.dm of the #defines folder.
 	var/scope_zoom_mod = FALSE //codex
 
 
-/obj/item/attachable/attackby(obj/item/I, mob/user)
+/obj/item/attachable/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(flags_attach_features & ATTACH_RELOADABLE)
 		if(user.get_inactive_held_item() != src)
 			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
 		else
 			reload_attachment(I, user)
 		return TRUE
-	else
-		return ..()
 
 
 /obj/item/attachable/attack_hand(var/mob/user as mob)
@@ -300,6 +300,8 @@ Defined in conflicts.dm of the #defines folder.
 	matter = list("metal" = 1000)
 
 /obj/item/attachable/bayonet/attackby(obj/item/I, mob/user)
+	. = ..()
+
 	if(istype(I,/obj/item/tool/screwdriver))
 		to_chat(user, "<span class='notice'>You modify the bayonet back into a combat knife.</span>")
 		if(istype(loc, /obj/item/storage))
@@ -307,13 +309,11 @@ Defined in conflicts.dm of the #defines folder.
 			S.remove_from_storage(src)
 		if(loc == user)
 			user.dropItemToGround(src)
-		var/obj/item/weapon/combat_knife/F = new(src.loc)
+		var/obj/item/weapon/combat_knife/F = new(loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
-			F.loc = src.loc
+			F.forceMove(loc)
 		qdel(src) //Delete da old bayonet
-	else
-		return ..()
 
 /obj/item/attachable/bayonet/Initialize()
 	. = ..()
@@ -487,7 +487,9 @@ Defined in conflicts.dm of the #defines folder.
 
 
 
-/obj/item/attachable/flashlight/attackby(obj/item/I, mob/user)
+/obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I,/obj/item/tool/screwdriver))
 		to_chat(user, "<span class='notice'>You modify the rail flashlight back into a normal flashlight.</span>")
 		if(istype(loc, /obj/item/storage))
@@ -498,8 +500,6 @@ Defined in conflicts.dm of the #defines folder.
 		var/obj/item/flashlight/F = new(user)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		qdel(src) //Delete da old flashlight
-	else
-		return ..()
 
 
 
@@ -783,9 +783,9 @@ Defined in conflicts.dm of the #defines folder.
 	if(pockets.handle_mousedrop(usr, over_object))
 		return ..(over_object)
 
-/obj/item/attachable/stock/vp70/attackby(obj/item/W, mob/user)
+/obj/item/attachable/stock/vp70/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	return pockets.attackby(W, user)
+	return pockets.attackby(I, user, params)
 
 /obj/item/attachable/stock/vp70/emp_act(severity)
 	pockets.emp_act(severity)
