@@ -2,6 +2,7 @@
 	name = ""
 	icon = 'icons/mob/screen1.dmi'
 	layer = HUD_LAYER
+	plane = HUD_PLANE
 	appearance_flags = APPEARANCE_UI
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
 	var/datum/hud/hud = null // A reference to the owner HUD, if any.
@@ -78,6 +79,7 @@
 /obj/screen/close
 	name = "close"
 	layer = ABOVE_HUD_LAYER
+	plane = ABOVE_HUD_PLANE
 	icon_state = "x"
 
 
