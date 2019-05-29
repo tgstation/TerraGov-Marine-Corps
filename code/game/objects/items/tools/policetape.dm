@@ -122,8 +122,9 @@
 				to_chat(M, "<span class='warning'>You are not supposed to go past [src]...</span>")
 			crumple()
 
-/obj/item/tape/attackby(obj/item/W as obj, mob/user as mob)
-	breaktape(W, user)
+/obj/item/tape/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	breaktape(I, user)
 
 /obj/item/tape/attack_hand(mob/user as mob)
 	if (user.a_intent == INTENT_HELP && allowed(user))

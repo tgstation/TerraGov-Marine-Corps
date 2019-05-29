@@ -109,16 +109,16 @@
 	for(var/obj/item/toy/crayon/crayon in contents)
 		overlays += image('icons/obj/items/crayons.dmi',crayon.colourName)
 
-/obj/item/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/toy/crayon))
-		switch(W:colourName)
+/obj/item/storage/fancy/crayons/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/toy/crayon))
+		var/obj/item/toy/crayon/C = I
+		switch(C.colourName)
 			if("mime")
-				to_chat(usr, "This crayon is too sad to be contained in this box.")
-				return
+				to_chat(user, "This crayon is too sad to be contained in this box.")
 			if("rainbow")
-				to_chat(usr, "This crayon is too powerful to be contained in this box.")
-				return
-	..()
+				to_chat(user, "This crayon is too powerful to be contained in this box.")
 
 ////////////
 //CIG PACK//
@@ -267,6 +267,6 @@
 		overlays += image(icon, src, "ledb")
 	return
 
-/obj/item/storage/lockbox/vials/attackby(obj/item/W as obj, mob/user as mob)
-	..()
+/obj/item/storage/lockbox/vials/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	update_icon()
