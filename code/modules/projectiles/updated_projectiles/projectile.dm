@@ -226,7 +226,7 @@
 		return FALSE
 
 	// Explosive ammo always explodes on the turf of the clicked target
-	if(src && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE && T == target_turf)
+	if(!QDELETED(src) && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE && T == target_turf)
 		ammo.on_hit_turf(T,src)
 		if(T?.loc)
 			T.bullet_act(src)
