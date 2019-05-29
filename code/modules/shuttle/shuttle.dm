@@ -501,7 +501,8 @@
 			// Ghostize them and put them in nullspace stasis (for stat & possession checks)
 			L.notransform = TRUE
 			var/mob/dead/observer/O = L.ghostize(FALSE)
-			O.timeofdeath = world.time
+			if(O)
+				O.timeofdeath = world.time
 			L.moveToNullspace()
 
 	// Now that mobs are stowed, delete the shuttle
