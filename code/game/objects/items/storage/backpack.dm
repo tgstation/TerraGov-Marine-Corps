@@ -488,7 +488,7 @@
 		XI.remove_from_hud(M)
 
 	spawn(1)
-		anim(M.loc,M,'icons/mob/mob.dmi',,"cloak",,M.dir)
+		anim(M.loc, M,'icons/mob/mob.dmi',,"cloak",,M.dir)
 
 	START_PROCESSING(SSfastprocess, src)
 	wearer.cloaking = TRUE
@@ -517,7 +517,7 @@
 	XI.add_to_hud(user)
 
 	spawn(1)
-		anim(user.loc,user,'icons/mob/mob.dmi',,"uncloak",,user.dir)
+		anim(user.loc, user, 'icons/mob/mob.dmi', , "uncloak", , user.dir)
 
 	var/cooldown = round( (initial(camo_energy) - camo_energy) / SCOUT_CLOAK_INACTIVE_RECOVERY * 10) //Should be 20 seconds after a full depletion with inactive recovery at 5
 	if(cooldown)

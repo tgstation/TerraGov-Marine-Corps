@@ -315,3 +315,7 @@
 			return M.mind.cm_skills.police
 		if(OBJ_SKILL_POWERLOADER)
 			return M.mind.cm_skills.powerloader
+
+/obj/on_set_interaction(mob/user)
+	. = ..()
+	ENABLE_BITFIELD(obj_flags, IN_USE)
