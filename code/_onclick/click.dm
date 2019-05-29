@@ -33,6 +33,9 @@
 
 
 /client/Click(atom/object, atom/location, control, params)
+	if(!control)
+		return
+		
 	var/mcl = CONFIG_GET(number/minute_click_limit)
 	if(mcl && !check_rights(R_ADMIN, FALSE))
 		var/minute = round(world.time, 600)
