@@ -744,86 +744,95 @@
 	connected.stop_processing()
 	connected.process() // one last update
 
-/obj/machinery/autodoc/attackby(obj/item/W, mob/living/user)
+/obj/machinery/autodoc/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(!ishuman(user))
 		return // no
-	if(istype(W, /obj/item/stack/sheet/metal))
-		var/obj/item/stack/sheet/metal/M = W
-		if(stored_metal == stored_metal_max)
+
+	if(istype(I, /obj/item/stack/sheet/metal))
+		var/obj/item/stack/sheet/metal/M = I
+		if(stored_metal >= stored_metal_max)
 			to_chat(user, "<span class='warning'>\ [src]'s metal reservoir is full; it can't hold any more material!</span>")
 			return
 		stored_metal = min(stored_metal_max,stored_metal + M.amount * 100)
-		to_chat(user, "<span class='notice'>\ [src] processes \the [W]. Its metal reservoir now contains [stored_metal] of [stored_metal_max] units.</span>")
+		to_chat(user, "<span class='notice'>\ [src] processes \the [I]. Its metal reservoir now contains [stored_metal] of [stored_metal_max] units.</span>")
 		user.drop_held_item()
-		qdel(W)
-		return
+		qdel(I)
 
-	if(istype(W, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
-		var/obj/item/healthanalyzer/J = W
+	else if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
+		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 		return
 
-	if(istype(W, /obj/item/grab))
+	else if(!istype(I, /obj/item/grab))
+		return
 
-		if(machine_stat & (NOPOWER|BROKEN))
-			to_chat(user, "<span class='notice'>\ [src] is non-functional!</span>")
+	if(machine_stat & (NOPOWER|BROKEN))
+		to_chat(user, "<span class='notice'>\ [src] is non-functional!</span>")
+		return
+
+	else if(occupant)
+		to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
+		return
+
+	if(!istype(I, /obj/item/grab))
+		return
+
+	var/obj/item/grab/G = I
+
+	var/mob/M
+	if(ismob(G.grabbed_thing))
+		M = G.grabbed_thing
+	else if(istype(G.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
+		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
+		if(!C.stasis_mob)
+			to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
+			return
+		M = C.stasis_mob
+		C.open()
+		user.start_pulling(M)
+
+
+	if(!M)
+		return
+
+	else if(!ishuman(M)) // stop fucking monkeys and xenos being put in.
+		to_chat(user, "<span class='notice'>\ [src] is compatible with humanoid anatomies only!</span>")
+		return
+
+	else if(M.abiotic())
+		to_chat(user, "<span class='warning'>Subject cannot have abiotic items on.</span>")
+		return
+
+	if(user.mind?.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to put [M] into [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to put [M] into [src].</span>")
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
+		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
 			return
 
-		if(src.occupant)
-			to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
-			return
+	visible_message("[user] starts putting [M] into [src].", 3)
 
-		var/obj/item/grab/G = W
-		var/mob/M
-		if(ismob(G.grabbed_thing))
-			M = G.grabbed_thing
-		else if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
-			var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-			if(!C.stasis_mob)
-				to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
-				return
-			M = C.stasis_mob
-			C.open()
-			user.start_pulling(M)
-		else
-			return
+	if(!do_after(user, 10, FALSE, M, BUSY_ICON_GENERIC) || QDELETED(src))
+		return
+		
+	if(occupant)
+		to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
+		return
 
-		if(!ishuman(M)) // stop fucking monkeys and xenos being put in.
-			to_chat(user, "<span class='notice'>\ [src] is compatible with humanoid anatomies only!</span>")
-			return
-
-		if (M.abiotic())
-			to_chat(user, "<span class='warning'>Subject cannot have abiotic items on.</span>")
-			return
-
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to put [M] into [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to put [M] into [src].</span>")
-			var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
-			if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
-				return
-
-		user.visible_message("<span class='notice'>[user] starts putting [M] into [src].</span>",
-		"<span class='notice'>You start putting [M] into [src].</span>")
-
-		if(do_after(user, 10, FALSE, M, BUSY_ICON_GENERIC) && !QDELETED(src))
-			if(src.occupant)
-				to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
-				return
-			if(!G)
-				return
-			M.forceMove(src)
-			update_use_power(2)
-			occupant = M
-			icon_state = "autodoc_closed"
-			var/implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
-			var/mob/living/carbon/human/H = occupant
-			var/doc_dat
-			med_scan(H, doc_dat, implants, TRUE)
-			start_processing()
-			connected.start_processing()
-
-			add_fingerprint(user)
+	if(!M || !G) 
+		return
+		
+	M.forceMove(src)
+	update_use_power(2)
+	occupant = M
+	icon_state = "autodoc_closed"
+	var/implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+	var/mob/living/carbon/human/H = occupant
+	med_scan(H, null, implants, TRUE)
+	start_processing()
+	connected.start_processing()
 
 /////////////////////////////////////////////////////////////
 
