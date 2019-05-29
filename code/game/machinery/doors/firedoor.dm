@@ -198,51 +198,50 @@
 				nextstate = CLOSED
 				close()
 
-/obj/machinery/door/firedoor/attackby(obj/item/C as obj, mob/user as mob)
+/obj/machinery/door/firedoor/attackby(obj/item/C, mob/living/user)
 	add_fingerprint(user)
 	if(operating)
 		return//Already doing something.
-	if(iswelder(C))
-		var/obj/item/tool/weldingtool/W = C
-		if(W.remove_fuel(0, user))
-			blocked = !blocked
-			user.visible_message("<span class='danger'>\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W].</span>",\
-			"You [blocked ? "weld" : "unweld"] \the [src] with \the [W].",\
-			"You hear something being welded.")
-			update_icon()
-			return
-
-	else if(C.pry_capable)
-		if(operating)
-			return
-
-		if(blocked)
-			user.visible_message("<span class='danger'>\The [user] pries at \the [src] with \a [C], but \the [src] is welded in place!</span>",\
-			"You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!",\
-			"You hear someone struggle and metal straining.")
-			return
-
-		user.visible_message("<span class='danger'>\The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\
-				"<span class='notice'>You start forcing \the [src] [density ? "open" : "closed"] with \the [C]!</span>",\
-				"You hear metal strain.")
-		var/old_density = density
-		if(do_after(user,30, TRUE, src, BUSY_ICON_HOSTILE))
-			if(blocked || density != old_density)
-				return
-			user.visible_message("<span class='danger'>\The [user] forces \the [blocked ? "welded " : "" ][name] [density ? "open" : "closed"] with \a [C]!</span>",\
-				"<span class='notice'>You force \the [blocked ? "welded " : ""][name] [density ? "open" : "closed"] with \the [C]!</span>",\
-				"You hear metal strain and groan, and a door [density ? "opening" : "closing"].")
-			spawn(0)
-				if(density)
-					open(1)
-				else
-					close()
-		return TRUE //no afterattack call
 	else
 		if(blocked)
 			to_chat(user, "<span class='danger'>\The [src] is welded solid!</span>")
 			return
 
+/obj/machinery/door/firedoor/welder_act(mob/living/user, obj/item/C)
+	var/obj/item/tool/weldingtool/W = C
+	if(W.remove_fuel(0, user))
+		blocked = !blocked
+		user.visible_message("<span class='danger'>\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W].</span>",\
+		"You [blocked ? "weld" : "unweld"] \the [src] with \the [W].",\
+		"You hear something being welded.")
+		update_icon()
+		return
+
+/obj/machinery/door/firedoor/crowbar_act(mob/living/user, obj/item/C)
+	if(operating)
+		return
+
+	if(blocked)
+		user.visible_message("<span class='danger'>\The [user] pries at \the [src] with \a [C], but \the [src] is welded in place!</span>",\
+		"You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!",\
+		"You hear someone struggle and metal straining.")
+		return
+
+	user.visible_message("<span class='danger'>\The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\
+			"<span class='notice'>You start forcing \the [src] [density ? "open" : "closed"] with \the [C]!</span>",\
+			"You hear metal strain.")
+	var/old_density = density
+	if(do_after(user,30, TRUE, src, BUSY_ICON_HOSTILE))
+		if(blocked || density != old_density)
+			return
+		user.visible_message("<span class='danger'>\The [user] forces \the [blocked ? "welded " : "" ][name] [density ? "open" : "closed"] with \a [C]!</span>",\
+			"<span class='notice'>You force \the [blocked ? "welded " : ""][name] [density ? "open" : "closed"] with \the [C]!</span>",\
+			"You hear metal strain and groan, and a door [density ? "opening" : "closing"].")
+		spawn(0)
+			if(density)
+				open(1)
+			else
+				close()
 
 /obj/machinery/door/firedoor/try_to_activate_door(mob/user)
 	return

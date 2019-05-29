@@ -13,11 +13,20 @@
 	else
 		layer = PODDOOR_CLOSED_LAYER
 
-/obj/machinery/door/poddoor/shutters/attackby(obj/item/C as obj, mob/user as mob)
-	add_fingerprint(user)
-	if(!C.pry_capable)
+/obj/machinery/door/poddoor/shutters/crowbar_act(mob/living/user, obj/item/C)
+	if(density && (machine_stat & NOPOWER) && !operating && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+	operating = 1
+	spawn(-1)
+		flick("shutterc0", src)
+		icon_state = "shutter0"
+		sleep(15)
+		density = 0
+		SetOpacity(0)
+		operating = 0
 		return
-	else if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE) && istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+
+/obj/machinery/door/poddoor/shutters/weld_cut_act(mob/living/user, obj/item/C)
+	else if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE) && !user.action_busy)
 		var/obj/item/tool/pickaxe/plasmacutter/P = C
 		if(!P.start_cut(user, name, src))
 			return
@@ -25,18 +34,6 @@
 			P.cut_apart(user, name, src)
 			qdel()
 		return
-
-	if(density && (machine_stat & NOPOWER) && !operating && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		operating = 1
-		spawn(-1)
-			flick("shutterc0", src)
-			icon_state = "shutter0"
-			sleep(15)
-			density = 0
-			SetOpacity(0)
-			operating = 0
-			return
-	return
 
 /obj/machinery/door/poddoor/shutters/open()
 	if(operating) //doors can still open when emag-disabled

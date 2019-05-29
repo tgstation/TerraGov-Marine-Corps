@@ -400,7 +400,6 @@
 	matter = list("metal" = 50)
 	origin_tech = "engineering=1"
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
-	pry_capable = IS_PRY_CAPABLE_CROWBAR
 	tool_behaviour = TOOL_CROWBAR
 
 
