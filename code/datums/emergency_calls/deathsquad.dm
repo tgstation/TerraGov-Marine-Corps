@@ -1,8 +1,7 @@
 /datum/emergency_call/deathsquad
 	name = "Deathsquad"
 	probability = 0
-	shuttle_id = "Distress_PMC"
-	name_of_spawn = "Distress_PMC"
+	shuttle_id = "distress_pmc"
 
 
 /datum/emergency_call/deathsquad/print_backstory(mob/living/carbon/human/H)
