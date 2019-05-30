@@ -435,7 +435,6 @@
 	var/active = 0	//True if the holder is moving, otherwise inactive
 	dir = 0
 	var/count = 2048 //Can travel 2048 steps before going inactive (in case of loops)
-	var/has_fat_guy = 0	//True if contains a fat person
 	var/destinationTag = "" //Changes if contains a delivery container
 	var/tomail = 0 //Changes if contains wrapped package
 	var/hasmob = 0 //If it contains a mob
@@ -499,12 +498,6 @@
 				if(SSmapping.config.map_name != MAP_WHISKEY_OUTPOST)
 					H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
 
-		if(has_fat_guy && prob(2)) //Chance of becoming stuck per segment if contains a fat guy
-			active = 0
-			//Find the fat guys
-			for(var/mob/living/carbon/human/H in src)
-
-			break
 		sleep(1) //Was 1
 		var/obj/structure/disposalpipe/curr = loc
 		last = curr
@@ -542,8 +535,6 @@
 			if(M.client) //If a client mob, update eye to follow this holder
 				M.client.eye = src
 
-	if(other.has_fat_guy)
-		has_fat_guy = 1
 	qdel(other)
 
 /obj/structure/disposalholder/proc/settag(var/new_tag)
