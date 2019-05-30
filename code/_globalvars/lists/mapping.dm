@@ -7,7 +7,6 @@ GLOBAL_LIST_EMPTY(latejoin)
 GLOBAL_LIST_EMPTY(latejoin_gateway)
 GLOBAL_LIST_EMPTY(latejoin_cryo)
 
-GLOBAL_VAR(supply_elevator)
 GLOBAL_LIST_EMPTY(shuttle_locations)			//list of all /obj/effect/landmark/shuttle_loc
 
 GLOBAL_LIST_EMPTY(landmarks_list)				//list of all landmarks created

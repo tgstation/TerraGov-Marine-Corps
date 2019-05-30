@@ -185,7 +185,7 @@
 	attack_hand(user)
 	return
 
-/obj/structure/foamedmetal/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/foamedmetal/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	if(prob(33))
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
@@ -204,13 +204,15 @@
 		to_chat(user, "<span class='notice'>You hit the metal foam but bounce off it.</span>")
 	return
 
-/obj/structure/foamedmetal/attackby(var/obj/item/I, var/mob/user)
-	if(prob(I.force*20 - metal*25))
-		user.changeNext_move(I.attack_speed)
-		user.visible_message("<span class='warning'> [user] smashes through the foamed metal.</span>", "<span class='notice'> You smash through the foamed metal with \the [I].</span>")
-		qdel(src)
-	else
+/obj/structure/foamedmetal/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!prob(I.force * 20 - metal * 25))
 		to_chat(user, "<span class='notice'>You hit the metal foam to no effect.</span>")
+		return
+
+	user.visible_message("<span class='warning'> [user] smashes through the foamed metal.</span>", "<span class='notice'> You smash through the foamed metal with \the [I].</span>")
+	qdel(src)
+
 
 /obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target, height = 1.5, air_group = 0)
 	if(air_group)

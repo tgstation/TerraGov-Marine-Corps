@@ -66,7 +66,7 @@
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
 	healthcheck()
 
-/obj/machinery/bot/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/bot/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	obj_integrity -= rand(15, 30)
 	if(obj_integrity <= 0)
@@ -80,33 +80,37 @@
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
 	healthcheck()
 
-/obj/machinery/bot/attackby(obj/item/W as obj, mob/user as mob)
-	if(isscrewdriver(W))
-		if(!locked)
-			open = !open
-			to_chat(user, "<span class='notice'>Maintenance panel is now [src.open ? "opened" : "closed"].</span>")
-	else if(iswelder(W))
-		if(obj_integrity < max_integrity)
-			if(open)
-				obj_integrity = min(max_integrity, obj_integrity+10)
-				user.visible_message("<span class='warning'> [user] repairs [src]!</span>","<span class='notice'> You repair [src]!</span>")
-			else
-				to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
-		else
+/obj/machinery/bot/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(isscrewdriver(I))
+		if(locked)
+			return
+		open = !open
+		to_chat(user, "<span class='notice'>Maintenance panel is now [src.open ? "opened" : "closed"].</span>")
+
+	else if(iswelder(I))
+		if(obj_integrity >= max_integrity)
 			to_chat(user, "<span class='notice'>[src] does not need a repair.</span>")
-	else if (istype(W, /obj/item/card/emag) && emagged < 2)
+			return
+
+		if(!open)
+			to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
+			return
+
+		obj_integrity = min(max_integrity, obj_integrity + 10)
+		user.visible_message("<span class='warning'> [user] repairs [src]!</span>","<span class='notice'> You repair [src]!</span>")
+
+	else if(istype(I, /obj/item/card/emag) && emagged < 2)
 		Emag(user)
-	else
-		if(hasvar(W,"force") && hasvar(W,"damtype"))
-			switch(W.damtype)
-				if("fire")
-					src.obj_integrity -= W.force * fire_dam_coeff
-				if("brute")
-					src.obj_integrity -= W.force * brute_dam_coeff
-			..()
-			healthcheck()
-		else
-			..()
+
+	else if(I.force && I.damtype)
+		switch(I.damtype)
+			if("fire")
+				obj_integrity -= I.force * fire_dam_coeff
+			if("brute")
+				obj_integrity -= I.force * brute_dam_coeff
+		healthcheck()
 
 /obj/machinery/bot/bullet_act(var/obj/item/projectile/Proj)
 	obj_integrity -= Proj.ammo.damage

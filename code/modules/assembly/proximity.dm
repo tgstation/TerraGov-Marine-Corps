@@ -41,7 +41,7 @@
 
 	HasProximity(atom/movable/AM as mob|obj)
 		if (istype(AM, /obj/effect/beam))	return
-		if (AM.move_speed < 12)	sense()
+		sense()
 		return
 
 
@@ -61,8 +61,7 @@
 		if(scanning)
 			var/turf/mainloc = get_turf(src)
 			for(var/mob/living/A in range(range,mainloc))
-				if (A.move_speed < 12)
-					sense()
+				sense()
 
 		if(timing && (time >= 0))
 			time--

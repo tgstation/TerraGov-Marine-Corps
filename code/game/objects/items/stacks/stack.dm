@@ -235,7 +235,7 @@
 	return TRUE
 
 
-/obj/item/stack/proc/use(used)
+/obj/item/stack/use(used)
 	if(used > amount) //If it's larger than what we have, no go.
 		return FALSE
 	amount -= used

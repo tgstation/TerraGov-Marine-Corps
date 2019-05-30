@@ -124,7 +124,7 @@
 	icon_state = "coin_adamantine"
 	flags_token = TOKEN_MARINE|TOKEN_GENERAL //when you do prefer a premium smoke over else.
 
-/obj/item/coin/marine/attackby(obj/item/W as obj, mob/user as mob) //To remove attaching a string functionality
+/obj/item/coin/marine/attackby(obj/item/I, mob/user, params) //To remove attaching a string functionality
 	return
 
 /obj/item/coin/marine/specialist

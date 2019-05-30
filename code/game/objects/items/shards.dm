@@ -41,24 +41,33 @@
 	..()
 
 
-/obj/item/shard/attackby(obj/item/W, mob/user)
-	if (iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
-		if(source_sheet_type) //can be melted into something
-			if(WT.remove_fuel(0, user))
-				var/obj/item/stack/sheet/NG = new source_sheet_type(user.loc)
-				for (var/obj/item/stack/sheet/G in user.loc)
-					if(G==NG)
-						continue
-					if(!istype(G, source_sheet_type))
-						continue
-					if(G.amount>=G.max_amount)
-						continue
-					G.attackby(NG, user)
-					to_chat(user, "You add the newly-formed glass to the stack. It now contains [NG.amount] sheets.")
-				qdel(src)
-				return
-	return ..()
+/obj/item/shard/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
+		if(!source_sheet_type) //can be melted into something
+			return
+
+		if(!WT.remove_fuel(0, user))
+			return
+
+		var/obj/item/stack/sheet/NG = new source_sheet_type(user.loc)
+		for(var/obj/item/stack/sheet/G in user.loc)
+			if(G == NG)
+				continue
+
+			if(!istype(G, source_sheet_type))
+				continue
+
+			if(G.amount >= G.max_amount)
+				continue
+
+			G.attackby(NG, user, params)
+			to_chat(user, "You add the newly-formed glass to the stack. It now contains [NG.amount] sheets.")
+
+		qdel(src)
+
 
 /obj/item/shard/Crossed(AM as mob|obj)
 	if(isliving(AM))

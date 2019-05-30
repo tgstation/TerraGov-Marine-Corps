@@ -88,28 +88,31 @@
 /obj/item/weapon/baton/pull_response(mob/puller)
 	return check_user_auth(puller)
 
-/obj/item/weapon/baton/attackby(obj/item/W, mob/user)
+/obj/item/weapon/baton/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(istype(W, /obj/item/cell))
-		if(!bcell)
-			if(user.drop_held_item())
-				W.forceMove(src)
-				bcell = W
-				to_chat(user, "<span class='notice'>You install a cell in [src].</span>")
-				update_icon()
-		else
-			to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
-
-	else if(isscrewdriver(W))
+	if(istype(I, /obj/item/cell))
 		if(bcell)
-			bcell.updateicon()
-			bcell.loc = get_turf(src.loc)
-			bcell = null
-			to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
-			status = 0
-			update_icon()
+			to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
 			return
-		..()
+
+		if(!user.drop_held_item())
+			return
+
+		I.forceMove(src)
+		bcell = I
+		to_chat(user, "<span class='notice'>You install a cell in [src].</span>")
+
+	else if(isscrewdriver(I))
+		if(!bcell)
+			return
+
+		bcell.updateicon()
+		bcell.forceMove(loc)
+		to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
+		status = 0
+
+	update_icon()
 
 /obj/item/weapon/baton/attack_self(mob/user)
 	if(has_user_lock && user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
@@ -177,7 +180,7 @@
 				L.visible_message("<span class='danger'>[L] has been prodded with [src] by [user]!</span>")
 
 	//stun effects
-	if(!istype(L,/mob/living/carbon/Xenomorph)) //Xenos are IMMUNE to all baton stuns.
+	if(!istype(L,/mob/living/carbon/xenomorph)) //Xenos are IMMUNE to all baton stuns.
 		L.stun_effect_act(stun, agony, target_zone, src)
 		if(!L.knocked_down)
 			L.KnockDown(4)
@@ -206,5 +209,5 @@
 	agonyforce = 60	//same force as a stunbaton, but uses way more charge.
 	hitcost = 2500
 	attack_verb = list("poked")
-	flags_equip_slot = NOFLAGS
+	flags_equip_slot = NONE
 	has_user_lock = FALSE

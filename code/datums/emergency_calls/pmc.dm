@@ -1,8 +1,7 @@
 /datum/emergency_call/pmc
 	name = "PMC"
 	probability = 25
-	shuttle_id = "Distress_PMC"
-	name_of_spawn = "Distress_PMC"
+	shuttle_id = "distress_pmc"
 
 
 /datum/emergency_call/pmc/print_backstory(mob/living/carbon/human/H)

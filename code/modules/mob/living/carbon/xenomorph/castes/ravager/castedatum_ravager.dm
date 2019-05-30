@@ -3,7 +3,7 @@
 	display_name = "Ravager"
 	upgrade_name = ""
 	caste_desc = "A brutal, devastating front-line attacker."
-	caste_type_path = /mob/living/carbon/Xenomorph/Ravager
+	caste_type_path = /mob/living/carbon/xenomorph/ravager
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "ravager" //used to match appropriate wound overlays
@@ -29,7 +29,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
-	deevolves_to = /mob/living/carbon/Xenomorph/Hunter
+	deevolves_to = /mob/living/carbon/xenomorph/hunter
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER

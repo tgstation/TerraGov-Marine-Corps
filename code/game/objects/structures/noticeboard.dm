@@ -17,18 +17,19 @@
 	icon_state = "nboard0[notices]"
 
 //attaching papers!!
-/obj/structure/noticeboard/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/paper))
-		if(notices < 5)
-			O.add_fingerprint(user)
-			add_fingerprint(user)
-			user.drop_held_item()
-			O.loc = src
-			notices++
-			icon_state = "nboard0[notices]"	//update sprite
-			to_chat(user, "<span class='notice'>You pin the paper to the noticeboard.</span>")
-		else
+/obj/structure/noticeboard/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/paper))
+		if(notices >= 5)
 			to_chat(user, "<span class='notice'>You reach to pin your paper to the board but hesitate. You are certain your paper will not be seen among the many others already attached.</span>")
+			return
+
+		user.drop_held_item()
+		I.forceMove(src)
+		notices++
+		icon_state = "nboard0[notices]"	//update sprite
+		to_chat(user, "<span class='notice'>You pin the paper to the noticeboard.</span>")
 
 /obj/structure/noticeboard/attack_hand(user as mob)
 	var/dat = "<B>Noticeboard</B><BR>"

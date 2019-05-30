@@ -1,7 +1,6 @@
 #define CONTROL_POD_DOORS 0
 #define CONTROL_NORMAL_DOORS 1
-#define CONTROL_EMITTERS 2
-#define CONTROL_DROPSHIP 3
+#define CONTROL_DROPSHIP 2
 
 /obj/machinery/door_control
 	name = "remote door-control"
@@ -25,7 +24,7 @@
 /obj/machinery/door_control/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/door_control/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/door_control/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT && normaldoorcontrol == CONTROL_DROPSHIP)
 		var/shuttle_tag
 		switch(id)
@@ -42,14 +41,19 @@
 	else
 		..()
 
-/obj/machinery/door_control/attackby(obj/item/W, mob/user as mob)
-	if(istype(W, /obj/item/detective_scanner))
+/obj/machinery/door_control/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/detective_scanner))
 		return
-	if(istype(W, /obj/item/card/emag))
+
+	else if(istype(I, /obj/item/card/emag))
 		req_access = list()
 		req_one_access = list()
-		playsound(src.loc, "sparks", 25, 1)
-	return src.attack_hand(user)
+		playsound(loc, "sparks", 25, 1)
+
+	else 
+		return attack_hand(user)
 
 /obj/machinery/door_control/proc/handle_dropship(var/ship_id)
 	var/shuttle_tag
@@ -149,16 +153,9 @@
 				spawn()
 					M.close()
 
-/obj/machinery/door_control/proc/handle_emitters(mob/user as mob)
-	for(var/obj/machinery/power/emitter/E in range(range))
-		if(E.id == src.id)
-			spawn(0)
-				E.activate(user)
-				return
-
 /obj/machinery/door_control/attack_hand(mob/user)
 	src.add_fingerprint(user)
-	if(istype(user,/mob/living/carbon/Xenomorph))
+	if(istype(user,/mob/living/carbon/xenomorph))
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
@@ -178,8 +175,6 @@
 			handle_door()
 		if(CONTROL_POD_DOORS)
 			handle_pod()
-		if(CONTROL_EMITTERS)
-			handle_emitters(user)
 		if(CONTROL_DROPSHIP)
 			handle_dropship(id)
 
@@ -201,11 +196,13 @@
 /obj/machinery/driver_button/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/driver_button/attackby(obj/item/W, mob/user as mob)
+/obj/machinery/driver_button/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(istype(W, /obj/item/detective_scanner))
+	if(istype(I, /obj/item/detective_scanner))
 		return
-	return src.attack_hand(user)
+	else
+		return attack_hand(user)
 
 /obj/machinery/driver_button/attack_hand(mob/user as mob)
 
@@ -267,8 +264,6 @@
 				handle_door()
 			if(CONTROL_POD_DOORS)
 				handle_pod()
-			if(CONTROL_EMITTERS)
-				handle_emitters()
 			if(CONTROL_DROPSHIP)
 				handle_dropship(id)
 

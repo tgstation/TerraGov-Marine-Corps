@@ -82,7 +82,7 @@
 	src.view_range = num
 	cameranet.updateVisibility(src, 0)
 
-/obj/machinery/camera/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/camera/attack_alien(mob/living/carbon/xenomorph/M)
 	if(status)
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)
@@ -101,37 +101,35 @@
 		light_disabled = FALSE
 		toggle_cam_status(user, TRUE)
 
-/obj/machinery/camera/attackby(W as obj, mob/living/user as mob)
-
-	// DECONSTRUCTION
-	if(isscrewdriver(W))
-		//to_chat(user, "<span class='notice'>You start to [ ? "close" : "open"] the camera's panel.</span>")
-		//if(toggle_panel(user)) // No delay because no one likes screwdrivers trying to be hip and have a duration cooldown
+/obj/machinery/camera/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(isscrewdriver(I))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 		user.visible_message("<span class='warning'>[user] screws the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"]!</span>",
 		"<span class='notice'>You screw the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"].</span>")
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 
-	else if((iswirecutter(W) || ismultitool(W)) && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+	else if((iswirecutter(I) || ismultitool(I)) && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		interact(user)
 
-	else if(iswelder(W))
-		if(weld(W, user))
-			if(assembly)
-				assembly.loc = src.loc
-				assembly.state = 1
-			qdel(src)
+	else if(iswelder(I))
+		if(!weld(I, user))
+			return
 
+		if(assembly)
+			assembly.forceMove(loc)
+			assembly.state = 1
 
-	// OTHER
-	else if (istype(W, /obj/item/paper) && isliving(user))
+		qdel(src)
+
+	else if(istype(I, /obj/item/paper) && isliving(user))
 		var/mob/living/U = user
 		var/obj/item/paper/X = null
 
 		var/itemname = ""
 		var/info = ""
-		if(istype(W, /obj/item/paper))
-			X = W
+		if(istype(I, /obj/item/paper))
+			X = I
 			itemname = X.name
 			info = X.info
 
@@ -144,25 +142,24 @@
 			else
 				to_chat(O, "<b><a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U]'>[U]</a></b> holds \a [itemname] up to one of your cameras...")
 			O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
+		
 		for(var/mob/O in GLOB.player_list)
-			if (istype(O.interactee, /obj/machinery/computer/security))
+			if(istype(O.interactee, /obj/machinery/computer/security))
 				var/obj/machinery/computer/security/S = O.interactee
-				if (S.current == src)
+				if(S.current == src)
 					to_chat(O, "[U] holds \a [itemname] up to one of the cameras ...")
 					O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
-	else if (istype(W, /obj/item/camera_bug))
-		if (!src.can_use())
+	
+	else if(istype(I, /obj/item/camera_bug))
+		if(!can_use())
 			to_chat(user, "<span class='notice'>Camera non-functional</span>")
 			return
-		if (src.bugged)
-			to_chat(user, "<span class='notice'>Camera bug removed.</span>")
-			src.bugged = FALSE
-		else
+		bugged = !bugged
+		if(bugged)
 			to_chat(user, "<span class='notice'>Camera bugged.</span>")
-			src.bugged = TRUE
-	else
-		..()
-	return
+		else
+			to_chat(user, "<span class='notice'>Camera bug removed.</span>")
+
 
 /obj/machinery/camera/proc/toggle_cam_status(mob/user, silent)
 	status = !status

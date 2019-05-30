@@ -45,7 +45,7 @@
 
 /obj/machinery/line_nexter_control/attack_hand(mob/user)
 	add_fingerprint(user)
-	if(istype(user,/mob/living/carbon/Xenomorph))
+	if(istype(user,/mob/living/carbon/xenomorph))
 		return
 
 	icon_state = "doorctrl1"

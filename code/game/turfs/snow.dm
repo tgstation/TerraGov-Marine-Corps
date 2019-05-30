@@ -8,11 +8,11 @@
 	icon = 'icons/turf/snow2.dmi'
 	icon_state = "snow_0"
 
-/turf/open/floor/plating/ground/snow/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/turf/open/floor/plating/ground/snow/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	return //Larvae can't do shit
 
 //Xenos digging up snow
-/turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/Xenomorph/M)
+/turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_GRAB)
 
 		if(!slayer)
@@ -35,8 +35,8 @@
 		update_icon(1, 0)
 
 	//PLACING/REMOVING/BUILDING
-/turf/open/floor/plating/ground/snow/attackby(var/obj/item/I, var/mob/user)
-
+/turf/open/snow/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	//Light Stick
 	if(istype(I, /obj/item/lightstick))
 		var/obj/item/lightstick/L = I
@@ -49,7 +49,7 @@
 			return
 
 		user.visible_message("<span class='notice'>[user.name] planted \the [L] into [src].</span>")
-		L.anchored = 1
+		L.anchored = TRUE
 		L.icon_state = "lightstick_[L.s_color][L.anchored]"
 		user.drop_held_item()
 		L.x = x

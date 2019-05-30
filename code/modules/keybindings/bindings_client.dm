@@ -11,26 +11,10 @@
 
 	// Client-level keybindings are ones anyone should be able to do at any time
 	// Things like taking screenshots, hitting tab, and adminhelps.
-
-	switch(_key)
-		if("F1")
-			choosehelp()
-			return
-		if("F2") // Screenshot. Hold shift to choose a name and location to save in
-			winset(src, null, "command=.screenshot [!keys_held["shift"] ? "auto" : ""]")
-			return
-		if("F3")
-			get_asay()
-			return
-		if("F4")
-			get_msay()
-			return
-		if("F5")
-			get_dsay()
-			return
-		if("F12") // Toggles minimal HUD
-			mob.button_pressed_F12()
-			return
+	for (var/i in prefs.key_bindings[_key])
+		var/datum/keybinding/kb = i
+		if (kb.down(src))
+			break
 
 	holder?.key_down(_key, src)
 	mob.focus?.key_down(_key, src)
@@ -44,6 +28,11 @@
 	var/movement = SSinput.movement_keys[_key]
 	if(!(next_move_dir_add & movement))
 		next_move_dir_sub |= movement
+
+	for (var/i in prefs.key_bindings[_key])
+		var/datum/keybinding/kb = i
+		if (kb.up(src))
+			break
 
 	holder?.key_up(_key, src)
 	mob.focus?.key_up(_key, src)

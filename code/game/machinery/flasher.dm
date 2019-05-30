@@ -37,13 +37,13 @@
 //		src.sd_SetLuminosity(0)
 
 //Don't want to render prison breaks impossible
-/obj/machinery/flasher/attackby(obj/item/W as obj, mob/user as mob)
-	if (iswirecutter(W))
-		add_fingerprint(user)
-		src.disable = !src.disable
-		if (src.disable)
+/obj/machinery/flasher/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(iswirecutter(I))
+		disable = !disable
+		if(disable)
 			user.visible_message("<span class='warning'> [user] has disconnected the [src]'s flashbulb!</span>", "<span class='warning'> You disconnect the [src]'s flashbulb!</span>")
-		if (!src.disable)
+		else
 			user.visible_message("<span class='warning'> [user] has connected the [src]'s flashbulb!</span>", "<span class='warning'> You connect the [src]'s flashbulb!</span>")
 
 //Let the AI trigger them directly.
@@ -74,7 +74,7 @@
 			if(H.get_eye_protection() > 0)
 				continue
 
-		if (istype(O, /mob/living/carbon/Xenomorph))//So aliens don't get flashed (they have no external eyes)/N
+		if (istype(O, /mob/living/carbon/xenomorph))//So aliens don't get flashed (they have no external eyes)/N
 			continue
 
 		O.KnockDown(strength)
@@ -105,18 +105,17 @@
 		if ((M.m_intent != MOVE_INTENT_WALK) && (src.anchored))
 			src.flash()
 
-/obj/machinery/flasher/portable/attackby(obj/item/W as obj, mob/user as mob)
-	if (iswrench(W))
-		add_fingerprint(user)
-		src.anchored = !src.anchored
+/obj/machinery/flasher/portable/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(iswrench(I))
+		anchored = !anchored
 
-		if (!src.anchored)
-			user.show_message(text("<span class='warning'> [src] can now be moved.</span>"))
-			src.overlays.Cut()
-
-		else if (src.anchored)
+		if(!anchored)
 			user.show_message(text("<span class='warning'> [src] is now secured.</span>"))
-			src.overlays += "[base_state]-s"
+			overlays += "[base_state]-s"
+		else
+			user.show_message(text("<span class='warning'> [src] can now be moved.</span>"))
+			overlays.Cut()
 
 /obj/machinery/flasher_button/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -124,8 +123,9 @@
 /obj/machinery/flasher_button/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/flasher_button/attackby(obj/item/W, mob/user as mob)
-	return src.attack_hand(user)
+/obj/machinery/flasher_button/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	return attack_hand(user)
 
 /obj/machinery/flasher_button/attack_hand(mob/user as mob)
 

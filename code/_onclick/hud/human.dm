@@ -80,6 +80,7 @@
 		using.icon_state = "act_equip"
 		using.screen_loc = ui_equip
 		using.layer = ABOVE_HUD_LAYER
+		using.plane = ABOVE_HUD_PLANE
 		using.color = ui_color
 		using.alpha = ui_alpha
 		static_inventory += using

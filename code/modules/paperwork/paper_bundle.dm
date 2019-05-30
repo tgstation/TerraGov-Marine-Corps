@@ -14,42 +14,51 @@
 	var/page = 1
 	var/screen = 0
 
-/obj/item/paper_bundle/attackby(obj/item/W, mob/user)
-	..()
-	var/obj/item/paper/P
-	if(istype(W, /obj/item/paper))
-		P = W
-		if (istype(P, /obj/item/paper/carbon))
+/obj/item/paper_bundle/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+
+	if(istype(I, /obj/item/paper))
+		var/obj/item/paper/P = I
+
+		if(istype(P, /obj/item/paper/carbon))
 			var/obj/item/paper/carbon/C = P
-			if (!C.iscopy && !C.copied)
+			if(!C.iscopy && !C.copied)
 				to_chat(user, "<span class='notice'>Take off the carbon copy first.</span>")
-				add_fingerprint(user)
 				return
-		if(loc == user)
-			user.dropItemToGround(P)
-			attach_doc(P, user)
-	else if(istype(W, /obj/item/photo))
-		if(loc == user)
-			user.dropItemToGround(W)
-			attach_doc(W, user)
-	else if(W.heat_source >= 400)
-		burnpaper(W, user)
-	else if(istype(W, /obj/item/paper_bundle))
-		if(loc == user)
-			user.dropItemToGround(W)
-			for(var/obj/O in W)
-				attach_doc(O, user, TRUE)
-			to_chat(user, "<span class='notice'>You add \the [W.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>")
-			qdel(W)
-	else
-		if(istype(W, /obj/item/tool/pen) || istype(W, /obj/item/toy/crayon))
-			usr << browse("", "window=[name]") //Closes the dialog
-		P = contents[page]
-		P.attackby(W, user)
+
+		if(loc != user)
+			return
+
+		user.dropItemToGround(P)
+		attach_doc(P, user)
+
+	else if(istype(I, /obj/item/photo))
+		if(loc != user)
+			return
+
+		user.dropItemToGround(I)
+		attach_doc(I, user)
+
+	else if(I.heat_source >= 400)
+		burnpaper(I, user)
+
+	else if(istype(I, /obj/item/paper_bundle))
+		if(loc != user)
+			return
+
+		user.dropItemToGround(I)
+		for(var/obj/O in I)
+			attach_doc(O, user, TRUE)
+		to_chat(user, "<span class='notice'>You add \the [I] to [src].</span>")
+		qdel(I)
+
+	else if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/toy/crayon))
+		user << browse(null, "window=[name]") //Closes the dialog
 
 	update_icon()
 	attack_self(user) //Update the browsed page.
-	add_fingerprint(user)
+
 
 /obj/item/paper_bundle/proc/burnpaper(obj/item/P, mob/user)
 	var/class = "<span class='warning'>"

@@ -78,7 +78,7 @@
 //-------------------------------------------
 
 //Xeno interaction with the Cargo Tug Train
-/obj/vehicle/train/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/vehicle/train/attack_alien(mob/living/carbon/xenomorph/M)
 	attack_hand(M)
 
 //attempts to attach src as a follower of the train T

@@ -38,7 +38,6 @@
 	var/stagger = 0 //Temporary inability to use special actions; hurts accuracy. Regenerates each tick.
 
 	var/disabilities = 0	//Carbon
-	var/monkeyizing			//Carbon
 	var/losebreath = 0		//Carbon
 	var/nutrition = 400		//Carbon
 

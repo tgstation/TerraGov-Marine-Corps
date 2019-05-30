@@ -115,26 +115,27 @@
 	src.add_fingerprint(usr)
 	return
 
-/obj/machinery/dna_scannernew/attackby(var/obj/item/item as obj, var/mob/user as mob)
-	if(istype(item, /obj/item/reagent_container/glass))
+/obj/machinery/dna_scannernew/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/reagent_container/glass))
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
 
-		beaker = item
-		user.transferItemToLoc(item, src)
-		user.visible_message("[user] adds \a [item] to \the [src]!", "You add \a [item] to \the [src]!")
+		beaker = I
+		user.transferItemToLoc(I, src)
+		user.visible_message("[user] adds \a [I] to \the [src]!", "You add \a [I] to \the [src]!")
 		return
-	else if (!istype(item, /obj/item/grab))
+	else if(!istype(I, /obj/item/grab))
 		return
-	var/obj/item/grab/G = item
-	if (!ismob(G.grabbed_thing))
+	var/obj/item/grab/G = I
+	if(!ismob(G.grabbed_thing))
 		return
 	var/mob/M = G.grabbed_thing
-	if (src.occupant)
+	if(occupant)
 		to_chat(user, "<span class='boldnotice'>The scanner is already occupied!</span>")
 		return
-	if (M.abiotic())
+	if(M.abiotic())
 		to_chat(user, "<span class='boldnotice'>Subject cannot have abiotic items on.</span>")
 		return
 	put_in(M)
@@ -215,17 +216,15 @@
 	active_power_usage = 400
 	var/waiting_for_user_input=0 // Fix for #274 (Mash create block injector without answering dialog to make unlimited injectors) - N3X
 
-/obj/machinery/computer/scan_consolenew/attackby(obj/item/I as obj, mob/user as mob)
-	if (istype(I, /obj/item/disk/data)) //INSERT SOME diskS
-		if (!src.disk)
-			user.transferItemToLoc(I, src)
-			src.disk = I
-			to_chat(user, "You insert [I].")
-			SSnano.update_uis(src) // update all UIs attached to src
+/obj/machinery/computer/scan_consolenew/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/disk/data))
+		if(disk)
 			return
-	else
-		..()
-	return
+		user.transferItemToLoc(I, src)
+		disk = I
+		to_chat(user, "You insert [I].")
+		SSnano.update_uis(src)
 
 /obj/machinery/computer/scan_consolenew/ex_act(severity)
 

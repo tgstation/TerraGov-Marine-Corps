@@ -16,7 +16,7 @@
 	w_class = 1 //Note: can be picked up by aliens unlike most other items of w_class below 4
 	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH|ALLOWREBREATH
 	flags_armor_protection = FACE|EYES
-	flags_atom = NOFLAGS
+	flags_atom = NONE
 	flags_item = NOBLUDGEON
 	throw_range = 1
 	layer = FACEHUGGER_LAYER
@@ -74,7 +74,7 @@
 		attack_hand(user)
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
-/obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/Xenomorph/user)
+/obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/user)
 	if(!issamexenohive(user) && stat != DEAD)
 		user.animation_attack_on(src)
 		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
@@ -85,7 +85,7 @@
 
 /obj/item/clothing/mask/facehugger/attack_hand(mob/user)
 	if(isxeno(user))
-		var/mob/living/carbon/Xenomorph/X = user
+		var/mob/living/carbon/xenomorph/X = user
 		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			return ..() // These can pick up huggers.
 		else
@@ -114,7 +114,7 @@
 
 /obj/item/clothing/mask/facehugger/attack_self(mob/user)
 	if(isxenocarrier(user))
-		var/mob/living/carbon/Xenomorph/Carrier/C = user
+		var/mob/living/carbon/xenomorph/carrier/C = user
 		C.store_hugger(src)
 
 /obj/item/clothing/mask/facehugger/examine(mob/user)
@@ -126,8 +126,8 @@
 	if(initial(sterile))
 		to_chat(user, "<span class='warning'>It looks like the proboscis has been removed.</span>")
 
-/obj/item/clothing/mask/facehugger/attackby(obj/item/W, mob/user)
-	if(W.flags_item & NOBLUDGEON || attached)
+/obj/item/clothing/mask/facehugger/attackby(obj/item/I, mob/user, params)
+	if(I.flags_item & NOBLUDGEON || attached)
 		return
 	Die()
 
@@ -337,7 +337,7 @@
 		return FALSE
 
 	if(isxeno(loc)) //Being carried? Drop it
-		var/mob/living/carbon/Xenomorph/X = loc
+		var/mob/living/carbon/xenomorph/X = loc
 		X.dropItemToGround(src)
 		X.update_icons()
 

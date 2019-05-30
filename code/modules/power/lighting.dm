@@ -39,81 +39,84 @@
 			to_chat(user, "The casing is closed.")
 
 
-/obj/machinery/light_construct/attackby(obj/item/W as obj, mob/user as mob)
-	src.add_fingerprint(user)
-	if(iswrench(W))
-		if (src.stage == 1)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			to_chat(usr, "You begin deconstructing [src].")
-			if (!do_after(usr, 30, TRUE, src, BUSY_ICON_BUILD))
+/obj/machinery/light_construct/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswrench(I))
+		if(stage == 1)
+			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			to_chat(user, "You begin deconstructing [src].")
+			if(!do_after(usr, 30, TRUE, src, BUSY_ICON_BUILD))
 				return
-			new /obj/item/stack/sheet/metal( get_turf(src.loc), sheets_refunded )
-			user.visible_message("[user.name] deconstructs [src].", \
+			new /obj/item/stack/sheet/metal(get_turf(loc), sheets_refunded)
+			user.visible_message("[user] deconstructs [src].", \
 				"You deconstruct [src].", "You hear a noise.")
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
+			playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			qdel(src)
-		if (src.stage == 2)
-			to_chat(usr, "You have to remove the wires first.")
+		else if(stage == 2)
+			to_chat(user, "You have to remove the wires first.")
+			return
+		else if(stage == 3)
+			to_chat(user, "You have to unscrew the case first.")
 			return
 
-		if (src.stage == 3)
-			to_chat(usr, "You have to unscrew the case first.")
+	else if(iswirecutter(I))
+		if(stage != 2)
 			return
-
-	if(iswirecutter(W))
-		if (src.stage != 2)
-			return
-		src.stage = 1
+		stage = 1
 		switch(fixture_type)
-			if ("tube")
-				src.icon_state = "tube-construct-stage1"
+			if("tube")
+				icon_state = "tube-construct-stage1"
 			if("bulb")
-				src.icon_state = "bulb-construct-stage1"
-		new /obj/item/stack/cable_coil(get_turf(src.loc), 1, "red")
+				icon_state = "bulb-construct-stage1"
+		new /obj/item/stack/cable_coil(get_turf(loc), 1, "red")
 		user.visible_message("[user.name] removes the wiring from [src].", \
 			"You remove the wiring from [src].", "You hear a noise.")
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-		return
+		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 
-	if(iscablecoil(W))
-		if (src.stage != 1)
+	else if(iscablecoil(I))
+		var/obj/item/stack/cable_coil/coil = I
+
+		if(stage != 1)
 			return
-		var/obj/item/stack/cable_coil/coil = W
-		if (coil.use(1))
-			switch(fixture_type)
-				if ("tube")
-					src.icon_state = "tube-construct-stage2"
-				if("bulb")
-					src.icon_state = "bulb-construct-stage2"
-			src.stage = 2
-			user.visible_message("[user.name] adds wires to [src].", \
-				"You add wires to [src].")
-		return
 
-	if(isscrewdriver(W))
-		if (src.stage == 2)
-			switch(fixture_type)
-				if ("tube")
-					src.icon_state = "tube-empty"
-				if("bulb")
-					src.icon_state = "bulb-empty"
-			src.stage = 3
-			user.visible_message("[user.name] closes [src]'s casing.", \
-				"You close [src]'s casing.", "You hear a noise.")
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-
-			switch(fixture_type)
-
-				if("tube")
-					newlight = new /obj/machinery/light/built(src.loc)
-				if ("bulb")
-					newlight = new /obj/machinery/light/small/built(src.loc)
-
-			newlight.setDir(src.dir)
-			src.transfer_fingerprints_to(newlight)
-			qdel(src)
+		if(!coil.use(1))
 			return
-	..()
+
+		switch(fixture_type)
+			if("tube")
+				icon_state = "tube-construct-stage2"
+			if("bulb")
+				icon_state = "bulb-construct-stage2"
+		stage = 2
+		user.visible_message("[user] adds wires to [src].", \
+			"You add wires to [src].")
+
+	else if(isscrewdriver(I))
+		if(stage != 2)
+			return
+
+		switch(fixture_type)
+			if("tube")
+				icon_state = "tube-empty"
+			if("bulb")
+				icon_state = "bulb-empty"
+		
+		stage = 3
+		user.visible_message("[user] closes [src]'s casing.", \
+			"You close [src]'s casing.", "You hear a noise.")
+		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+
+		switch(fixture_type)
+			if("tube")
+				newlight = new /obj/machinery/light/built(loc)
+			if("bulb")
+				newlight = new /obj/machinery/light/small/built(loc)
+
+		newlight.setDir(dir)
+		transfer_fingerprints_to(newlight)
+		qdel(src)
+
 
 /obj/machinery/light_construct/small
 	name = "small light fixture frame"
@@ -282,94 +285,80 @@
 
 // attack with item - insert light (if right type), otherwise try to break the light
 
-/obj/machinery/light/attackby(obj/item/W, mob/user)
+/obj/machinery/light/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	//Light replacer code
-	if(istype(W, /obj/item/lightreplacer))
-		var/obj/item/lightreplacer/LR = W
-		if(isliving(user))
-			var/mob/living/U = user
-			LR.ReplaceLight(src, U)
+	if(istype(I, /obj/item/lightreplacer))
+		var/obj/item/lightreplacer/LR = I
+		if(!isliving(user))
 			return
 
-	// attempt to insert light
-	if(istype(W, /obj/item/light_bulb))
+		var/mob/living/L = user
+		LR.ReplaceLight(src, L)
+
+	else if(istype(I, /obj/item/light_bulb))
 		if(status != LIGHT_EMPTY)
 			to_chat(user, "There is a [fitting] already inserted.")
 			return
-		else
-			src.add_fingerprint(user)
-			var/obj/item/light_bulb/L = W
-			if(istype(L, light_type))
-				status = L.status
-				to_chat(user, "You insert the [L.name].")
-				switchcount = L.switchcount
-				rigged = L.rigged
-				brightness = L.brightness
-				l_color = L.color
-				on = has_power()
-				update()
 
-				if(user.temporarilyRemoveItemFromInventory(L))
-					qdel(L)
+		var/obj/item/light_bulb/L = I
+		if(!istype(L, light_type))
+			to_chat(user, "This type of light requires a [fitting].")
+			return
 
-					if(on && rigged)
-						explode()
-			else
-				to_chat(user, "This type of light requires a [fitting].")
-				return
+		status = L.status
+		to_chat(user, "You insert \the [L].")
+		switchcount = L.switchcount
+		rigged = L.rigged
+		brightness = L.brightness
+		l_color = L.color
+		on = has_power()
+		update()
 
-		// attempt to break the light
-		//If xenos decide they want to smash a light bulb with a toolbox, who am I to stop them? /N
+		if(!user.temporarilyRemoveItemFromInventory(L))
+			return
+
+		qdel(L)
+
+		if(on && rigged)
+			explode()
 
 	else if(status != LIGHT_BROKEN && status != LIGHT_EMPTY)
-
-
-		if(prob(1+W.force * 5))
-
-			to_chat(user, "You hit the light, and it smashes!")
-			for(var/mob/M in viewers(src))
-				if(M == user)
-					continue
-				M.show_message("[user.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
-			if(on && (W.flags_atom & CONDUCT))
-				//if(!user.mutations & COLD_RESISTANCE)
-				if (prob(12))
-					electrocute_mob(user, get_area(src), src, 0.3)
-			broken()
-
-		else
+		if(!prob(1 + I.force * 5))
 			to_chat(user, "You hit the light!")
+			return
 
-	// attempt to stick weapon into light socket
+		visible_message("[user] smashed the light!", "You hit the light, and it smashes!")
+		if(on && (I.flags_atom & CONDUCT) && prob(12))
+			electrocute_mob(user, get_area(src), src, 0.3)
+		broken()
+
 	else if(status == LIGHT_EMPTY)
-		if(isscrewdriver(W)) //If it's a screwdriver open it.
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-			user.visible_message("[user.name] opens [src]'s casing.", \
+		if(isscrewdriver(I)) //If it's a screwdriver open it.
+			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+			user.visible_message("[user] opens [src]'s casing.", \
 				"You open [src]'s casing.", "You hear a noise.")
-			var/obj/machinery/light_construct/newlight = null
+			var/obj/machinery/light_construct/newlight
 			switch(fitting)
 				if("tube")
-					newlight = new /obj/machinery/light_construct(src.loc)
+					newlight = new /obj/machinery/light_construct(loc)
 					newlight.icon_state = "tube-construct-stage2"
 
 				if("bulb")
-					newlight = new /obj/machinery/light_construct/small(src.loc)
+					newlight = new /obj/machinery/light_construct/small(loc)
 					newlight.icon_state = "bulb-construct-stage2"
 			newlight.setDir(dir)
 			newlight.stage = 2
 			transfer_fingerprints_to(newlight)
 			qdel(src)
-			return
 
-		to_chat(user, "You stick \the [W] into the light socket!")
-		if(has_power() && (W.flags_atom & CONDUCT))
+		else if(has_power() && (I.flags_atom & CONDUCT))
+			to_chat(user, "You stick \the [I] into the light socket!")
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()
-			//if(!user.mutations & COLD_RESISTANCE)
-			if (prob(75))
-				electrocute_mob(user, get_area(src), src, rand(0.7,1.0))
+			if(prob(75))
+				electrocute_mob(user, get_area(src), src, rand(0.7, 1))
 
 
 // returns whether this light has power
@@ -413,7 +402,7 @@
 	return
 
 //Xenos smashing lights
-/obj/machinery/light/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/M)
 	if(status == 2) //Ignore if broken.
 		return FALSE
 	M.animation_attack_on(src)
@@ -663,8 +652,9 @@
 
 // attack bulb/tube with object
 // if a syringe, can inject phoron to make it explode
-/obj/item/light_bulb/attackby(var/obj/item/I, var/mob/user)
-	..()
+/obj/item/light_bulb/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/reagent_container/syringe))
 		var/obj/item/reagent_container/syringe/S = I
 
@@ -678,9 +668,6 @@
 			rigged = TRUE
 
 		S.reagents.clear_reagents()
-	else
-		..()
-	return
 
 // called after an attack with a light item
 // shatter light, unless it was an attempt to put it in a light socket

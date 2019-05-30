@@ -34,60 +34,66 @@
 	else
 		to_chat(user, "This book is completely blank!")
 
-/obj/item/book/attackby(obj/item/W as obj, mob/user as mob)
-	if(carved)
-		if(!store)
-			if(W.w_class < 3)
-				user.drop_held_item()
-				W.loc = src
-				store = W
-				to_chat(user, "<span class='notice'>You put [W] in [title].</span>")
-				return
-			else
-				to_chat(user, "<span class='notice'>[W] won't fit in [title].</span>")
-				return
-		else
-			to_chat(user, "<span class='notice'>There's already something in [title]!</span>")
-			return
-	if(istype(W, /obj/item/tool/pen))
+/obj/item/book/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/pen))
 		if(unique)
 			to_chat(user, "These pages don't seem to take the ink well. Looks like you can't modify it.")
 			return
+		
 		var/choice = input("What would you like to change?") in list("Title", "Contents", "Author", "Cancel")
 		switch(choice)
 			if("Title")
-				var/newtitle = reject_bad_text(stripped_input(usr, "Write a new title:"))
+				var/newtitle = reject_bad_text(stripped_input(user, "Write a new title:"))
 				if(!newtitle)
-					to_chat(usr, "The title is invalid.")
+					to_chat(user, "The title is invalid.")
 					return
-				else
-					src.name = newtitle
-					src.title = newtitle
+
+				name = newtitle
+				title = newtitle
+
 			if("Contents")
-				var/content = strip_html(input(usr, "Write your book's contents (HTML NOT allowed):") as message|null,8192)
+				var/content = strip_html(input(usr, "Write your book's contents:") as message|null, 8192)
 				if(!content)
 					to_chat(usr, "The content is invalid.")
 					return
-				else
-					src.dat += content
+
+				dat += content
+
 			if("Author")
-				var/newauthor = stripped_input(usr, "Write the author's name:")
+				var/newauthor = stripped_input(user, "Write the author's name:")
 				if(!newauthor)
-					to_chat(usr, "The name is invalid.")
+					to_chat(user, "The name is invalid.")
 					return
 				else
-					src.author = newauthor
-			else
-				return
+					author = newauthor
 
-	else if(istype(W, /obj/item/tool/kitchen/knife) || iswirecutter(W))
-		if(carved)	return
+	else if(carved)
+		if(store)
+			to_chat(user, "<span class='notice'>There's already something in [title]!</span>")
+			return
+
+		if(I.w_class >= 3)
+			to_chat(user, "<span class='notice'>[I] won't fit in [title].</span>")
+			return
+
+		user.drop_held_item()
+		I.forceMove(src)
+		store = I
+		to_chat(user, "<span class='notice'>You put [I] in [title].</span>")
+
+	else if(istype(I, /obj/item/tool/kitchen/knife) || iswirecutter(I))
+		if(carved)	
+			return
+
 		to_chat(user, "<span class='notice'>You begin to carve out [title].</span>")
-		if(do_after(user, 30, TRUE, src))
-			to_chat(user, "<span class='notice'>You carve out the pages from [title]! You didn't want to read it anyway.</span>")
-			carved = TRUE
-	else
-		..()
+		
+		if(!do_after(user, 30, TRUE, src))
+			return
+
+		to_chat(user, "<span class='notice'>You carve out the pages from [title]! You didn't want to read it anyway.</span>")
+		carved = TRUE
 
 /obj/item/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(user.zone_selected == "eyes")

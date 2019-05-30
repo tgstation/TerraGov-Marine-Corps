@@ -1,5 +1,5 @@
-/mob/living/carbon/Xenomorph/Carrier
-	caste_base_type = /mob/living/carbon/Xenomorph/Carrier
+/mob/living/carbon/xenomorph/carrier
+	caste_base_type = /mob/living/carbon/xenomorph/carrier
 	name = "Carrier"
 	desc = "A strange-looking alien creature. It carries a number of scuttling jointed crablike creatures."
 	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x2
@@ -28,13 +28,13 @@
 		/datum/action/xeno_action/toggle_pheromones
 		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/vent_crawl,
+		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		)
 
 // ***************************************
 // *********** Death
 // ***************************************
-/mob/living/carbon/Xenomorph/Carrier/death(gibbed)
+/mob/living/carbon/xenomorph/carrier/death(gibbed)
 	. = ..()
 	if(. && !gibbed && length(huggers))
 		var/chance = 75
@@ -55,7 +55,7 @@
 // ***************************************
 // *********** Life overrides
 // ***************************************
-/mob/living/carbon/Xenomorph/Carrier/Stat()
+/mob/living/carbon/xenomorph/carrier/Stat()
 	. = ..()
 
 	if(statpanel("Stats"))

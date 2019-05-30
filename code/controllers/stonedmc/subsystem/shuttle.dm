@@ -12,6 +12,7 @@ SUBSYSTEM_DEF(shuttle)
 	var/list/transit = list()
 
 	var/list/escape_pods = list()
+	var/list/ert_shuttles = list()
 
 	var/obj/docking_port/mobile/supply/supply
 	var/ordernum = 1					//order number given to next order
@@ -392,6 +393,9 @@ SUBSYSTEM_DEF(shuttle)
 	. = FALSE
 	// load shuttle template, centred at shuttle import landmark,
 	var/turf/landmark_turf = get_turf(locate(/obj/effect/landmark/shuttle_import) in GLOB.landmarks_list)
+	if(!landmark_turf)
+		to_chat(world, "no shuttle import landmark")
+		CRASH("no shuttle import landmark")
 	S.load(landmark_turf, centered = TRUE, register = FALSE)
 
 	var/affected = S.get_affected_turfs(landmark_turf, centered=TRUE)

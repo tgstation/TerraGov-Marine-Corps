@@ -58,7 +58,7 @@
 	for(var/obj/structure/closet/closet in get_turf(src))
 		if(closet != src && !closet.wall_mounted)
 			return FALSE
-	for(var/mob/living/carbon/Xenomorph/Xeno in get_turf(src))
+	for(var/mob/living/carbon/xenomorph/Xeno in get_turf(src))
 		return FALSE
 	return TRUE
 
@@ -182,7 +182,7 @@
 			A.loc = loc
 		qdel(src)
 
-/obj/structure/closet/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/closet/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HARM && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		M.animation_attack_on(src)
 		if(!opened && prob(70))
@@ -197,52 +197,47 @@
 	else if(!opened)
 		return attack_paw(M)
 
-/obj/structure/closet/attackby(obj/item/W, mob/living/user)
-	if(src.opened)
-		if(istype(W, /obj/item/grab))
+/obj/structure/closet/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(opened)
+		if(istype(I, /obj/item/grab))
 			if(isxeno(user))
 				return
-			var/obj/item/grab/G = W
-			if(G.grabbed_thing)
-				src.MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
-			return
-		if(W.flags_item & ITEM_ABSTRACT)
+			var/obj/item/grab/G = I
+			if(!G.grabbed_thing)
+				return
+
+			MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
+
+		else if(I.flags_item & ITEM_ABSTRACT)
 			return FALSE
-		if(iswelder(W))
-			var/obj/item/tool/weldingtool/WT = W
-			if(!WT.remove_fuel(0,user))
+
+		else if(iswelder(I))
+			var/obj/item/tool/weldingtool/WT = I
+			if(!WT.remove_fuel(0, user))
 				to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
 				return
 			new /obj/item/stack/sheet/metal(loc)
-			for(var/mob/M in viewers(src))
-				M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with [WT].</span>", 3, "You hear welding.", 2)
+			visible_message("<span class='notice'>\The [src] has been cut apart by [user] with [WT].</span>", "You hear welding.")
 			qdel(src)
-			return
-		if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
-			var/obj/item/tool/pickaxe/plasmacutter/P = W
-			if(!P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, null, null, SFX = FALSE))
-				return
-			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Window frames require half the normal power
-			P.debris(loc, 1, 0) //Generate some metal
-			qdel(src)
-			return
 
-		user.transferItemToLoc(W,loc)
+		user.transferItemToLoc(I, loc)
 
-	else if(istype(W, /obj/item/packageWrap))
+	else if(istype(I, /obj/item/packageWrap))
 		return
-	else if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
+
+	else if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
 		if(!WT.remove_fuel(0,user))
 			to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
 			return
 		welded = !welded
 		update_icon()
-		for(var/mob/M in viewers(src))
-			M.show_message("<span class='warning'>[src] has been [welded?"welded shut":"unwelded"] by [user.name].</span>", 3, "You hear welding.", 2)
+		visible_message("<span class='warning'>[src] has been [welded ? "welded shut" : "unwelded"] by [user.name].</span>", "You hear welding.")
 	else
-		src.attack_hand(user)
-	return
+		return attack_hand(user)
+
 
 /obj/structure/closet/MouseDrop_T(atom/movable/O, mob/user)
 	if(!opened)

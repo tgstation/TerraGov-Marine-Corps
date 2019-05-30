@@ -10,12 +10,12 @@
 	var/obj/machinery/light/newlight = null
 	var/sheets_refunded = 2
 
-/obj/item/frame/light_fixture/attackby(obj/item/W as obj, mob/user as mob)
-	if (iswrench(W))
-		new /obj/item/stack/sheet/metal( get_turf(src.loc), sheets_refunded )
+/obj/item/frame/light_fixture/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswrench(I))
+		new /obj/item/stack/sheet/metal(loc, sheets_refunded)
 		qdel(src)
-		return
-	..()
 
 /obj/item/frame/light_fixture/proc/try_build(turf/on_wall)
 	if (get_dist(on_wall,usr)>1)

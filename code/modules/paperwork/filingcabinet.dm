@@ -34,20 +34,26 @@
 			I.loc = src
 
 
-/obj/structure/filingcabinet/attackby(obj/item/P as obj, mob/user as mob)
-	if(istype(P, /obj/item/paper) || istype(P, /obj/item/folder) || istype(P, /obj/item/photo) || istype(P, /obj/item/paper_bundle))
-		to_chat(user, "<span class='notice'>You put [P] in [src].</span>")
-		if(user.transferItemToLoc(P, src))
-			icon_state = "[initial(icon_state)]-open"
-			sleep(5)
-			icon_state = initial(icon_state)
-			updateUsrDialog()
-	else if(iswrench(P))
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+/obj/structure/filingcabinet/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/paper) || istype(I, /obj/item/folder) || istype(I, /obj/item/photo) || istype(I, /obj/item/paper_bundle))
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		icon_state = "[initial(icon_state)]-open"
+		sleep(5)
+		icon_state = initial(icon_state)
+		updateUsrDialog()
+
+	else if(iswrench(I))
 		anchored = !anchored
+		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+		
 	else
-		to_chat(user, "<span class='notice'>You can't put [P] in [src]!</span>")
+		to_chat(user, "<span class='notice'>You can't put [I] in [src]!</span>")
 
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)

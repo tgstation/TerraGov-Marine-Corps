@@ -3,7 +3,7 @@
 	caste_name = "Ravenger"
 	display_name = "Ravenger"
 	upgrade_name = ""
-	caste_type_path = /mob/living/carbon/Xenomorph/Ravager/ravenger
+	caste_type_path = /mob/living/carbon/xenomorph/ravager/ravenger
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
 
@@ -40,8 +40,8 @@
 /datum/xeno_caste/ravager/ravenger/young
 	upgrade = XENO_UPGRADE_THREE
 
-/mob/living/carbon/Xenomorph/Ravager/ravenger
-	caste_base_type = /mob/living/carbon/Xenomorph/Ravager/ravenger
+/mob/living/carbon/xenomorph/ravager/ravenger
+	caste_base_type = /mob/living/carbon/xenomorph/ravager/ravenger
 	desc = "It's a goddamn dragon! Run! RUUUUN!"
 	plasma_stored = 200
 	upgrade = XENO_UPGRADE_THREE
@@ -50,9 +50,9 @@
 		/datum/action/xeno_action/activable/breathe_fire,
 		)
 
-/mob/living/carbon/Xenomorph/Ravager/ravenger/Initialize()
+/mob/living/carbon/xenomorph/ravager/ravenger/Initialize()
 	. = ..()
-	verbs -= /mob/living/carbon/Xenomorph/verb/hive_status
+	verbs -= /mob/living/carbon/xenomorph/verb/hive_status
 
 /datum/action/xeno_action/activable/breathe_fire
 	name = "Breathe Fire"
@@ -61,14 +61,14 @@
 	ability_name = "breathe fire"
 
 /datum/action/xeno_action/activable/breathe_fire/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Ravager/ravenger/X = owner
+	var/mob/living/carbon/xenomorph/ravager/ravenger/X = owner
 	X.breathe_fire(A)
 
 /datum/action/xeno_action/activable/breathe_fire/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Ravager/ravenger/X = owner
+	var/mob/living/carbon/xenomorph/ravager/ravenger/X = owner
 	if(world.time > X.used_fire_breath + 75) return TRUE
 
-/mob/living/carbon/Xenomorph/Ravager/ravenger/proc/breathe_fire(atom/A)
+/mob/living/carbon/xenomorph/ravager/ravenger/proc/breathe_fire(atom/A)
 	set waitfor = 0
 	if(world.time <= used_fire_breath + 75)
 		return
@@ -101,7 +101,7 @@
 		distance++
 		sleep(1)
 
-/mob/living/carbon/Xenomorph/Ravager/ravenger/proc/flame_turf(turf/T)
+/mob/living/carbon/xenomorph/ravager/ravenger/proc/flame_turf(turf/T)
 	if(!istype(T))
 		return
 
@@ -116,7 +116,7 @@
 			continue
 		fire_mod = 1
 		if(isxeno(M))
-			var/mob/living/carbon/Xenomorph/X = M
+			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
 			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)

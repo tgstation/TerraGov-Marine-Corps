@@ -4,8 +4,8 @@
 	icon_state = "shutter1"
 	power_channel = ENVIRON
 
-/obj/machinery/door/poddoor/shutters/New()
-	..()
+/obj/machinery/door/poddoor/shutters/Initialize()
+	. = ..()
 	if(density && closed_layer)
 		layer = closed_layer
 	else if(!density && open_layer)
@@ -13,68 +13,45 @@
 	else
 		layer = PODDOOR_CLOSED_LAYER
 
-/obj/machinery/door/poddoor/shutters/attackby(obj/item/C as obj, mob/user as mob)
-	add_fingerprint(user)
-	if(!C.pry_capable)
-		return
-	else if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE) && istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
-		var/obj/item/tool/pickaxe/plasmacutter/P = C
-		if(!P.start_cut(user, name, src))
-			return
-		if(do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
-			P.cut_apart(user, name, src)
-			qdel()
-		return
-
-	if(density && (machine_stat & NOPOWER) && !operating && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		operating = 1
-		spawn(-1)
-			flick("shutterc0", src)
-			icon_state = "shutter0"
-			sleep(15)
-			density = 0
-			SetOpacity(0)
-			operating = 0
-			return
-	return
-
 /obj/machinery/door/poddoor/shutters/open()
-	if(operating == 1) //doors can still open when emag-disabled
-		return
+	if(operating) //doors can still open when emag-disabled
+		return FALSE
 	if(!SSticker)
-		return 0
+		return FALSE
 	if(!operating) //in case of emag
-		operating = 1
+		operating = TRUE
 	flick("shutterc0", src)
 	icon_state = "shutter0"
 	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
-	sleep(10)
-	density = 0
-	layer = open_layer
-	SetOpacity(0)
+	addtimer(CALLBACK(src, .proc/do_open), 10)
+	return TRUE
 
-	if(operating == 1) //emag again
-		operating = 0
+/obj/machinery/door/poddoor/shutters/proc/do_open()
+	density = FALSE
+	layer = open_layer
+	SetOpacity(FALSE)
+
+	if(operating) //emag again
+		operating = FALSE
 	if(autoclose)
-		spawn(150)
-			autoclose()		//TODO: note to self: look into this ~Carn
-	return 1
+		addtimer(CALLBACK(src, .proc/autoclose), 150)
 
 /obj/machinery/door/poddoor/shutters/close()
 	if(operating)
 		return
-	operating = 1
+	operating = TRUE
 	flick("shutterc1", src)
 	icon_state = "shutter1"
 	layer = closed_layer
-	density = 1
+	density = TRUE
 	if(visible)
-		SetOpacity(1)
+		SetOpacity(TRUE)
 	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
+	addtimer(CALLBACK(src, .proc/do_close), 10)
+	return TRUE
 
-	sleep(10)
-	operating = 0
-	return
+/obj/machinery/door/poddoor/shutters/proc/do_close()
+	operating = FALSE
 
 /obj/machinery/door/poddoor/shutters/almayer
 	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'

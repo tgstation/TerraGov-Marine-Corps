@@ -26,17 +26,21 @@
 /obj/item/stack/barbed_wire/full
 	amount = 20
 
-/obj/item/stack/barbed_wire/attackby(obj/item/W, mob/user)
+/obj/item/stack/barbed_wire/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!istype(W, /obj/item/stack/rods))
+
+	if(!istype(I, /obj/item/stack/rods))
 		return
-	var/obj/item/stack/rods/R = W
+
+	var/obj/item/stack/rods/R = I
 	if(R.amount < 4)
 		to_chat(user, "<span class='warning'>You need [4 - R.amount] more [R] to make a razor wire obstacle!</span>")
 		return
+
 	R.use(4)
 	use(1)
-	var/obj/structure/razorwire/M = new/obj/item/stack/razorwire(user.loc, 1)
+
+	var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 1)
 	to_chat(user, "<span class='notice'>You combine the rods and barbed wire into [M]!</span>")
 
 /obj/item/stack/razorwire

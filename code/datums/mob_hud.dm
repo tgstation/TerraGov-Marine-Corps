@@ -140,7 +140,7 @@ var/datum/mob_hud/huds = list(
 			continue
 		hud.add_to_hud(src)
 
-/mob/living/carbon/Xenomorph/add_to_all_mob_huds()
+/mob/living/carbon/xenomorph/add_to_all_mob_huds()
 	for(var/datum/mob_hud/hud in huds)
 		if(!istype(hud, /datum/mob_hud/xeno))
 			continue
@@ -162,7 +162,7 @@ var/datum/mob_hud/huds = list(
 			continue
 		hud.add_to_hud(src)
 
-/mob/living/carbon/Xenomorph/remove_from_all_mob_huds()
+/mob/living/carbon/xenomorph/remove_from_all_mob_huds()
 	for(var/datum/mob_hud/hud in huds)
 		if(!istype(hud, /datum/mob_hud/xeno))
 			continue
@@ -194,7 +194,7 @@ var/datum/mob_hud/huds = list(
 /mob/proc/med_hud_set_health()
 	return
 
-/mob/living/carbon/Xenomorph/med_hud_set_health()
+/mob/living/carbon/xenomorph/med_hud_set_health()
 	var/image/holder = hud_list[HEALTH_HUD_XENO]
 	if(stat == DEAD)
 		holder.icon_state = "xenohealth0"
@@ -237,7 +237,7 @@ var/datum/mob_hud/huds = list(
 /mob/proc/med_hud_set_status() //called when mob stat changes, or get a virus/xeno host, etc
 	return
 
-/mob/living/carbon/Xenomorph/med_hud_set_status()
+/mob/living/carbon/xenomorph/med_hud_set_status()
 	hud_set_plasma()
 	hud_set_pheromone()
 
@@ -247,7 +247,7 @@ var/datum/mob_hud/huds = list(
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		if(E)
 			holder.icon_state = "infected[E.stage]"
-		else if(locate(/mob/living/carbon/Xenomorph/Larva) in src)
+		else if(locate(/mob/living/carbon/xenomorph/larva) in src)
 			holder.icon_state = "infected5"
 	else if(stat == DEAD)
 		holder.icon_state = "huddead"
@@ -267,7 +267,7 @@ var/datum/mob_hud/huds = list(
 	else
 		var/revive_enabled = TRUE
 		var/stage = 1
-		if(!check_tod() || !is_revivable())
+		if(!check_tod(src) || !is_revivable())
 			revive_enabled = FALSE
 		else if(!client)
 			var/mob/dead/observer/G = get_ghost()
@@ -288,7 +288,7 @@ var/datum/mob_hud/huds = list(
 			if(E)
 				holder3.icon_state = "infected[E.stage]"
 				holder4.icon_state = "infected[E.stage]"
-			else if(locate(/mob/living/carbon/Xenomorph/Larva) in src)
+			else if(locate(/mob/living/carbon/xenomorph/larva) in src)
 				holder.icon_state = "infected5"
 				holder4.icon_state = "infected5"
 			else
@@ -306,7 +306,7 @@ var/datum/mob_hud/huds = list(
 			else
 				holder.icon_state = "huddead"
 				holder4.icon_state = ""
-				if(!holder2_set || check_tod())
+				if(!holder2_set || check_tod(src))
 					holder2.icon_state = "huddead"
 					holder3.icon_state = "huddead"
 					holder2_set = 1
@@ -330,7 +330,7 @@ var/datum/mob_hud/huds = list(
 
 //xeno status HUD
 
-/mob/living/carbon/Xenomorph/proc/hud_set_plasma()
+/mob/living/carbon/xenomorph/proc/hud_set_plasma()
 	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
 		return
 	var/image/holder = hud_list[PLASMA_HUD]
@@ -341,7 +341,7 @@ var/datum/mob_hud/huds = list(
 		holder.icon_state = "plasma[amount]"
 
 
-/mob/living/carbon/Xenomorph/proc/hud_set_pheromone()
+/mob/living/carbon/xenomorph/proc/hud_set_pheromone()
 	var/image/holder = hud_list[PHEROMONE_HUD]
 	holder.overlays.Cut()
 	holder.icon_state = "hudblank"
@@ -375,7 +375,7 @@ var/datum/mob_hud/huds = list(
 	hud_list[PHEROMONE_HUD] = holder
 
 
-/mob/living/carbon/Xenomorph/proc/hud_set_queen_overwatch()
+/mob/living/carbon/xenomorph/proc/hud_set_queen_overwatch()
 	var/image/holder = hud_list[QUEEN_OVERWATCH_HUD]
 	holder.overlays.Cut()
 	holder.icon_state = "hudblank"

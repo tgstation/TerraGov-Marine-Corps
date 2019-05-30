@@ -140,7 +140,7 @@
 	//breaking out of handcuffs & putting out fires
 	else if(iscarbon(L))
 		if (isxeno(L))
-			var/mob/living/carbon/Xenomorph/X = L
+			var/mob/living/carbon/xenomorph/X = L
 			if (X.on_fire && X.canmove && !knocked_down)
 				X.fire_stacks = max(X.fire_stacks - rand(3, 6), 0)
 				X.KnockDown(4, TRUE)

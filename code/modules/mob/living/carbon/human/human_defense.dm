@@ -367,7 +367,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	return 1
 
 
-/mob/living/carbon/human/screech_act(mob/living/carbon/Xenomorph/Queen/Q)
+/mob/living/carbon/human/screech_act(mob/living/carbon/xenomorph/queen/Q)
 	shake_camera(src, 3 SECONDS, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
 	var/dist = get_dist(src, Q)
 
