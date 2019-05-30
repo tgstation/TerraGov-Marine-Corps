@@ -1,0 +1,1 @@
+#define ARMOUR_TO_DESCRIPTIVE_TERM ( list("melee" = "melee attacks", "bullet" = "ballistics", "laser" = "lasers", "energy" = "energy", "bomb" = "explosions", "bio" = "biohazards", "rad" = "radiation", "fire" = "fire", "acid" = "acid") )

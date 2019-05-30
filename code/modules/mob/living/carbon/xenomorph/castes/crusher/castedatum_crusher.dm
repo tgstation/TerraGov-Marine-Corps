@@ -36,10 +36,10 @@
 	deevolves_to = /mob/living/carbon/xenomorph/warrior
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_HAS_CREST
 
 	// *** Defense *** //
-	armor_deflection = 80
+	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 80, "rad" = 80, "fire" = 80, "acid" = 80)
 
 	// *** Crusher Abilities *** //
 
@@ -77,7 +77,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/warrior
 
 	// *** Defense *** //
-	armor_deflection = 90
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 90, "rad" = 90, "fire" = 90, "acid" = 90)
 
 /datum/xeno_caste/crusher/elder
 	upgrade_name = "Elder"
@@ -108,7 +108,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/warrior
 
 	// *** Defense *** //
-	armor_deflection = 95
+	armor = list("melee" = 95, "bullet" = 95, "laser" = 95, "energy" = 95, "bomb" = 95, "bio" = 95, "rad" = 95, "fire" = 95, "acid" = 95)
 
 /datum/xeno_caste/crusher/ancient
 	upgrade_name = "Ancient"
@@ -136,5 +136,5 @@
 	deevolves_to = /mob/living/carbon/xenomorph/warrior
 
 	// *** Defense *** //
-	armor_deflection = 100
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	

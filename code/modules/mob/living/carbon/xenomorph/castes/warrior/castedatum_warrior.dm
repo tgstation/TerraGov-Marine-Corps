@@ -36,7 +36,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor_deflection = 40
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 40, "bio" = 40, "rad" = 40, "fire" = 40, "acid" = 40)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
@@ -73,7 +73,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor_deflection = 50
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 	// *** Warrior Abilities *** //
 
@@ -104,7 +104,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 50
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
@@ -136,7 +136,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 55
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
