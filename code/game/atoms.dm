@@ -2,20 +2,18 @@
 	layer = TURF_LAYER
 	plane = GAME_PLANE
 	var/level = 2
-	var/flags_atom = 0
-	var/fingerprintslast
-	var/list/blood_DNA
-	var/blood_color
-	var/last_bumped = 0
-	var/flags_pass = 0
-	var/throwpass = 0
-	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
-	///Chemistry.
+	var/flags_atom = NONE
 	var/datum/reagents/reagents = null
 
-	//Detective Work, used for the duplicate data points kept in the scanners
-	var/list/original_atom
+	var/fingerprintslast
+	var/blood_color
+	var/list/blood_DNA
+
+	var/flags_pass = NONE
+	var/throwpass = FALSE
+
+	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
 	var/list/priority_overlays	//overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
 	var/list/remove_overlays // a very temporary list of overlays to remove
@@ -25,6 +23,8 @@
 
 	var/list/atom_colours	 //used to store the different colors on an atom
 							//its inherent color, the colored paint applied on it, special color effect etc...
+
+	var/list/image/hud_list //This atom's HUD (med/sec, etc) images. Associative list.
 
 	var/datum/component/orbiter/orbiters
 
@@ -38,10 +38,15 @@ directive is properly returned.
 /atom/Destroy()
 	if(reagents)
 		qdel(reagents)
-	if(light)
-		qdel(light)
-		light = null
-	. = ..()
+
+	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
+
+	LAZYCLEARLIST(overlays)
+	LAZYCLEARLIST(priority_overlays)
+
+	QDEL_NULL(light)
+
+	return ..()
 
 //===========================================================================
 
@@ -76,7 +81,7 @@ directive is properly returned.
 /atom/proc/on_reagent_change()
 	return
 
-/atom/proc/Bumped(AM as mob|obj)
+/atom/proc/Bumped(atom/movable/AM)
 	return
 
 /atom/proc/CanPass(atom/movable/mover, turf/target)
@@ -116,35 +121,20 @@ directive is properly returned.
 /atom/proc/is_drainable()
 	return reagents && CHECK_BITFIELD(reagents.reagent_flags, DRAINABLE)
 
-/*//Convenience proc to see whether a container can be accessed in a certain way.
 
-	proc/can_subract_container()
-		return flags & EXTRACT_CONTAINER
-
-	proc/can_add_container()
-		return flags & INSERT_CONTAINER
-*/
-
-
-/atom/proc/HasProximity(atom/movable/AM as mob|obj)
+/atom/proc/HasProximity(atom/movable/AM)
 	return
 
-/atom/proc/emp_act(var/severity)
+
+/atom/proc/emp_act(severity)
 	return
+
 
 /atom/proc/effect_smoke(obj/effect/particle_effect/smoke/S)
 	if(S.lifetime < 1)
 		return FALSE
 	return TRUE
 
-
-/atom/proc/in_contents_of(container)//can take class or object instance as argument
-	if(ispath(container))
-		if(istype(src.loc, container))
-			return 1
-	else if(src in container)
-		return 1
-	return
 
 /*
  *	atom/proc/search_contents_for(path,list/filter_path=null)
@@ -172,77 +162,6 @@ directive is properly returned.
 	return found
 
 
-
-
-/*
-Beam code by Gunbuddy
-
-Beam() proc will only allow one beam to come from a source at a time.  Attempting to call it more than
-once at a time per source will cause graphical errors.
-Also, the icon used for the beam will have to be vertical and 32x32.
-The math involved assumes that the icon is vertical to begin with so unless you want to adjust the math,
-its easier to just keep the beam vertical.
-*/
-/atom/proc/Beam(atom/BeamTarget,icon_state="b_beam",icon='icons/effects/beam.dmi',time=50, maxdistance=10)
-	//BeamTarget represents the target for the beam, basically just means the other end.
-	//Time is the duration to draw the beam
-	//Icon is obviously which icon to use for the beam, default is beam.dmi
-	//Icon_state is what icon state is used. Default is b_beam which is a blue beam.
-	//Maxdistance is the longest range the beam will persist before it gives up.
-	var/EndTime=world.time+time
-	while(BeamTarget&&world.time<EndTime&&get_dist(src,BeamTarget)<maxdistance&&z==BeamTarget.z)
-	//If the BeamTarget gets deleted, the time expires, or the BeamTarget gets out
-	//of range or to another z-level, then the beam will stop.  Otherwise it will
-	//continue to draw.
-
-		dir=get_dir(src,BeamTarget)	//Causes the source of the beam to rotate to continuosly face the BeamTarget.
-
-		for(var/obj/effect/overlay/beam/O in orange(10,src))	//This section erases the previously drawn beam because I found it was easier to
-			if(O.BeamSource==src)				//just draw another instance of the beam instead of trying to manipulate all the
-				qdel(O)							//pieces to a new orientation.
-		var/Angle=round(Get_Angle(src,BeamTarget))
-		var/icon/I=new(icon,icon_state)
-		I.Turn(Angle)
-		var/DX=(32*BeamTarget.x+BeamTarget.pixel_x)-(32*x+pixel_x)
-		var/DY=(32*BeamTarget.y+BeamTarget.pixel_y)-(32*y+pixel_y)
-		var/N=0
-		var/length=round(sqrt((DX)**2+(DY)**2))
-		for(N,N<length,N+=32)
-			var/obj/effect/overlay/beam/X=new(loc)
-			X.BeamSource=src
-			if(N+32>length)
-				var/icon/II=new(icon,icon_state)
-				II.DrawBox(null,1,(length-N),32,32)
-				II.Turn(Angle)
-				X.icon=II
-			else X.icon=I
-			var/Pixel_x=round(sin(Angle)+32*sin(Angle)*(N+16)/32)
-			var/Pixel_y=round(cos(Angle)+32*cos(Angle)*(N+16)/32)
-			if(DX==0) Pixel_x=0
-			if(DY==0) Pixel_y=0
-			if(Pixel_x>32)
-				for(var/a=0, a<=Pixel_x,a+=32)
-					X.x++
-					Pixel_x-=32
-			if(Pixel_x<-32)
-				for(var/a=0, a>=Pixel_x,a-=32)
-					X.x--
-					Pixel_x+=32
-			if(Pixel_y>32)
-				for(var/a=0, a<=Pixel_y,a+=32)
-					X.y++
-					Pixel_y-=32
-			if(Pixel_y<-32)
-				for(var/a=0, a>=Pixel_y,a-=32)
-					X.y--
-					Pixel_y+=32
-			X.pixel_x=Pixel_x
-			X.pixel_y=Pixel_y
-		sleep(3)	//Changing this to a lower value will cause the beam to follow more smoothly with movement, but it will also be more laggy.
-					//I've found that 3 ticks provided a nice balance for my use.
-	for(var/obj/effect/overlay/beam/O in orange(10,src)) if(O.BeamSource==src) qdel(O)
-
-
 //mob verbs are faster than object verbs. See https://secure.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
 /mob/verb/examinate(atom/A as mob|obj|turf in view())
 	set name = "Examine"
@@ -254,6 +173,7 @@ its easier to just keep the beam vertical.
 
 	face_atom(A)
 	A.examine(src)
+
 
 /atom/proc/examine(mob/user)
 	if(!istype(src, /obj/item))
@@ -332,45 +252,15 @@ its easier to just keep the beam vertical.
 /atom/proc/fire_act()
 	return
 
-/atom/proc/hitby(atom/movable/AM as mob|obj)
-	if (density)
-		AM.throwing = 0
+/atom/proc/hitby(atom/movable/AM)
+	if(density)
+		AM.throwing = FALSE
 	return
 
 
 /atom/proc/GenerateTag()
 	return
 
-
-/atom/proc/add_vomit_floor(mob/living/carbon/M, var/toxvomit = 0)
-	return
-
-/turf/add_vomit_floor(mob/living/carbon/M, var/toxvomit = 0)
-	var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
-
-	// Make toxins vomit look different
-	if(toxvomit)
-		this.icon_state = "vomittox_[pick(1,4)]"
-
-
-/atom/proc/get_global_map_pos()
-	if(!islist(global_map) || isemptylist(global_map)) return
-	var/cur_x = null
-	var/cur_y = null
-	var/list/y_arr = null
-	for(cur_x=1,cur_x<=global_map.len,cur_x++)
-		y_arr = global_map[cur_x]
-		cur_y = y_arr.Find(src.z)
-		if(cur_y)
-			break
-//	to_chat(world, "X = [cur_x]; Y = [cur_y]")
-	if(cur_x && cur_y)
-		return list("x"=cur_x,"y"=cur_y)
-	else
-		return 0
-
-/atom/proc/checkpass(passflag)
-	return flags_pass&passflag
 
 //Generalized Fire Proc.
 /atom/proc/flamer_fire_act()
@@ -380,6 +270,7 @@ its easier to just keep the beam vertical.
 //things that object need to do when a movable atom inside it is deleted
 /atom/proc/on_stored_atom_del(atom/movable/AM)
 	return
+
 
 // Generic logging helper
 /atom/proc/log_message(message, message_type, color, log_globally = TRUE)
@@ -420,10 +311,12 @@ its easier to just keep the beam vertical.
 			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
 			log_game(log_text)
 
+
 // Helper for logging chat messages or other logs wiht arbitrary inputs (e.g. announcements)
 /atom/proc/log_talk(message, message_type, tag, log_globally = TRUE)
 	var/prefix = tag ? "([tag]) " : ""
 	log_message("[prefix]\"[message]\"", message_type, log_globally=log_globally)
+
 
 // Helper for logging of messages with only one sender and receiver
 /proc/log_directed_talk(atom/source, atom/target, message, message_type, tag)
@@ -569,6 +462,7 @@ Proc for attack log creation, because really why not
 		var/atom/A = a
 		A.HandleTurfChange(T)
 
+
 //Hook for running code when a dir change occurs
 /atom/proc/setDir(newdir)
 	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, newdir)
@@ -585,18 +479,18 @@ Proc for attack log creation, because really why not
 	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"
 
 
-/atom/Entered(atom/movable/AM, atom/oldLoc)
-	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, oldLoc)
+/atom/Entered(atom/movable/AM, atom/oldloc)
+	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, oldloc)
 
 
-/atom/Exit(atom/movable/AM, atom/newLoc)
+/atom/Exit(atom/movable/AM, atom/newloc)
 	. = ..()
-	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, newLoc) & COMPONENT_ATOM_BLOCK_EXIT)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, newloc) & COMPONENT_ATOM_BLOCK_EXIT)
 		return FALSE
 
 
-/atom/Exited(atom/movable/AM, atom/newLoc)
-	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, newLoc)
+/atom/Exited(atom/movable/AM, atom/newloc)
+	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, newloc)
 
 
 // Stacks and storage redefined procs.
@@ -607,10 +501,78 @@ Proc for attack log creation, because really why not
 /atom/proc/recalculate_storage_space()
 	return //Nothing to see here.
 
+// Tool behavior procedure. Redirects to tool-specific procs by default.
+// You can override it to catch all tool interactions, for use in complex deconstruction procs.
+// Just don't forget to return ..() in the end.
+/atom/proc/tool_act(mob/living/user, obj/item/I, tool_type)
+	switch(tool_type)
+		if(TOOL_CROWBAR)
+			return crowbar_act(user, I)
+		if(TOOL_MULTITOOL)
+			return multitool_act(user, I)
+		if(TOOL_SCREWDRIVER)
+			return screwdriver_act(user, I)
+		if(TOOL_WRENCH)
+			return wrench_act(user, I)
+		if(TOOL_WIRECUTTER)
+			return wirecutter_act(user, I)
+		if(TOOL_WELDER)
+			return welder_act(user, I)
+		if(TOOL_WELD_CUTTER)
+			return weld_cut_act(user, I)
+		if(TOOL_ANALYZER)
+			return analyzer_act(user, I)
+
+
+// Tool-specific behavior procs. To be overridden in subtypes.
+/atom/proc/crowbar_act(mob/living/user, obj/item/I)
+	return FALSE
+
+/atom/proc/multitool_act(mob/living/user, obj/item/I)
+	return FALSE
+
+/atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
+	if(!istype(I, /obj/item/multitool))
+		if(user && !silent)
+			to_chat(user, "<span class='warning'>[I] has no data buffer!</span>")
+		return FALSE
+	return TRUE
+
+
+/atom/proc/screwdriver_act(mob/living/user, obj/item/I)
+	SEND_SIGNAL(src, COMSIG_ATOM_SCREWDRIVER_ACT, user, I)
+
+/atom/proc/wrench_act(mob/living/user, obj/item/I)
+	return FALSE
+
+/atom/proc/wirecutter_act(mob/living/user, obj/item/I)
+	return FALSE
+
+/atom/proc/welder_act(mob/living/user, obj/item/I)
+	return FALSE
+
+/atom/proc/weld_cut_act(mob/living/user, obj/item/I)
+	return FALSE
+
+/atom/proc/analyzer_act(mob/living/user, obj/item/I)
+	return FALSE
+
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	return
 
 
 //the vision impairment to give to the mob whose perspective is set to that atom (e.g. an unfocused camera giving you an impaired vision when looking through it)
 /atom/proc/get_remote_view_fullscreens(mob/user)
+	return
+
+
+//the sight changes to give to the mob whose perspective is set to that atom (e.g. A mob with nightvision loses its nightvision while looking through a normal camera)
+/atom/proc/update_remote_sight(mob/living/user)
+	return
+
+
+//when a mob interact with something that gives them a special view,
+//check_eye() is called to verify that they're still eligible.
+//if they are not check_eye() usually reset the mob's view.
+/atom/proc/check_eye(mob/user)
 	return

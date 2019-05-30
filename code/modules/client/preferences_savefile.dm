@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	26
+#define SAVEFILE_VERSION_MAX	27
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -19,6 +19,15 @@
 					fdel(delpath)
 				break
 		return FALSE
+
+	if(savefile_version < 27)
+		switch(S["ui_style"])
+			if("Orange")
+				S["ui_style"] << "Plasmafire"
+			if("old")
+				S["ui_style"] << "Retro"
+		if(S["ui_style_alpha"] == 255)
+			S["ui_style_alpha"] << 230
 
 	if(savefile_version < 26)
 		S["key_bindings"] << deepCopyList(GLOB.keybinding_list_by_key)
@@ -49,7 +58,7 @@
 	path = "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/[filename]"
 
 	if(savefile_version < 21)
-		muted << NOFLAGS
+		muted << NONE
 
 	savefile_version = SAVEFILE_VERSION_MAX
 
@@ -435,7 +444,7 @@
 /datum/preferences/proc/save()
 	save_preferences()
 	save_character()
-	
+
 
 /datum/preferences/proc/load()
 	load_preferences()

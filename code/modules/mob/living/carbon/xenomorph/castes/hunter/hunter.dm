@@ -25,6 +25,30 @@
 		)
 
 // ***************************************
+// *********** Init
+// ***************************************
+/mob/living/carbon/xenomorph/hunter/Initialize()
+	. = ..()
+	RegisterSignal(src, list(
+		COMSIG_XENOMORPH_GRAB,
+		COMSIG_XENOMORPH_ATTACK_BARRICADE,
+		COMSIG_XENOMORPH_ATTACK_CLOSET,
+		COMSIG_XENOMORPH_ATTACK_RAZORWIRE,
+		COMSIG_XENOMORPH_ATTACK_BED,
+		COMSIG_XENOMORPH_ATTACK_NEST,
+		COMSIG_XENOMORPH_ATTACK_TABLE,
+		COMSIG_XENOMORPH_ATTACK_RACK,
+		COMSIG_XENOMORPH_ATTACK_SENTRY,
+		COMSIG_XENOMORPH_ATTACK_M56_POST,
+		COMSIG_XENOMORPH_ATTACK_M56,
+		COMSIG_XENOMORPH_ATTACK_TANK,
+		COMSIG_XENOMORPH_ATTACK_LIVING,
+		COMSIG_XENOMORPH_DISARM_HUMAN,
+		COMSIG_XENOMORPH_THROW_HIT,
+		COMSIG_XENOMORPH_FIRE_BURNING), .proc/cancel_stealth)
+	RegisterSignal(src, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
+
+// ***************************************
 // *********** Mob override
 // ***************************************
 /mob/living/carbon/xenomorph/hunter/movement_delay()
@@ -41,6 +65,10 @@
 // ***************************************
 // *********** Stealth overrides
 // ***************************************
+/mob/living/carbon/xenomorph/hunter/proc/damage_taken(mob/living/carbon/xenomorph/hunter/X, damage_taken)
+	if(damage_taken > 15)
+		cancel_stealth()
+
 /mob/living/carbon/xenomorph/hunter/proc/handle_stealth_movement()
 	//Initial stealth
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
@@ -101,8 +129,6 @@
 				return TRUE
 			else
 				return FALSE
-		if(HANDLE_STEALTH_CODE_CANCEL)
-			cancel_stealth()
 		if(HANDLE_SNEAK_ATTACK_CHECK)
 			if(can_sneak_attack)
 				return TRUE

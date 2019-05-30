@@ -247,10 +247,9 @@
 	update_icon()
 
 
-/obj/machinery/atmospherics/components/unary/vent_pump/plasmacutter_act(mob/living/user, obj/item/W)
+/obj/machinery/atmospherics/components/unary/vent_pump/weld_cut_act(mob/living/user, obj/item/W)
 	if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
-
 		if(!welded)
 			to_chat(user, "<span class='warning'>\The [P] can only cut open welds!</span>")
 			return FALSE
@@ -291,6 +290,7 @@
 		else
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return TRUE
+	return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/can_unwrench(mob/user)
 	. = ..()

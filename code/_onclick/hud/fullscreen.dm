@@ -60,7 +60,7 @@
 
 
 /obj/screen/fullscreen
-	icon = 'icons/mob/screen1_full.dmi'
+	icon = 'icons/mob/screen/full.dmi'
 	icon_state = "default"
 	screen_loc = "CENTER-7,CENTER-7"
 	layer = FULLSCREEN_LAYER
@@ -101,40 +101,40 @@
 	layer = FULLSCREEN_IMPAIRED_LAYER
 
 /obj/screen/fullscreen/blurry
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "blurry"
 	layer = FULLSCREEN_BLURRY_LAYER
 
 /obj/screen/fullscreen/flash
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "flash"
 	layer = FULLSCREEN_FLASH_LAYER
 
 /obj/screen/fullscreen/flash/noise
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "noise"
 
 /obj/screen/fullscreen/high
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "druggy"
 	layer = FULLSCREEN_DRUGGY_LAYER
 
 /obj/screen/fullscreen/nvg
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "nvg_hud"
 
 /obj/screen/fullscreen/thermal
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "thermal_hud"
 
 /obj/screen/fullscreen/meson
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "meson_hud"
 
@@ -145,7 +145,7 @@
 
 
 /obj/screen/fullscreen/lighting_backdrop
-	icon = 'icons/mob/screen_gen.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "flash"
 	transform = matrix(200, 0, 0, 0, 200, 0)
 	plane = LIGHTING_PLANE

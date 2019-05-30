@@ -463,7 +463,7 @@
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
 
-/obj/flamer_fire/Initialize(loc, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+/obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
 
 	if(f_color)

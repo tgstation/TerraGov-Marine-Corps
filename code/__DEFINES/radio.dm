@@ -47,6 +47,7 @@
 #define RADIO_CHANNEL_UPP "UPP"
 #define RADIO_CHANNEL_DEATHSQUAD "Deathsquad"
 #define RADIO_CHANNEL_IMPERIAL "Imperial"
+#define RADIO_CHANNEL_SOM "Sons of Mars"
 
 
 
@@ -58,7 +59,8 @@
 #define FREQ_UPP		1337
 #define FREQ_DEATHSQUAD	1339
 #define FREQ_IMPERIAL	1341
-#define FREQ_AI			1343
+#define FREQ_SOM		1343
+#define FREQ_AI			1345
 
 #define FREQ_COMMAND 		1353
 #define FREQ_MEDICAL		1355
@@ -70,6 +72,8 @@
 #define FREQ_BRAVO		1363
 #define FREQ_CHARLIE	1365
 #define FREQ_DELTA		1367
+
+#define FREQ_STATUS_DISPLAYS 1435
 
 #define MIN_FREQ 1441 // ------------------------------------------------------
 // Only the 1441 to 1489 range is freely available for general conversation.

@@ -105,33 +105,40 @@
 			dial_y = temp_dial_y
 		else busy = 0
 
-/obj/structure/mortar/attackby(var/obj/item/O as obj, mob/user as mob)
+/obj/structure/mortar/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(istype(O, /obj/item/mortal_shell))
+	if(istype(I, /obj/item/mortal_shell))
+		var/obj/item/mortal_shell/mortar_shell = I
 
-		var/obj/item/mortal_shell/mortar_shell = O
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fire [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to fire [src].</span>")
 			var/fumbling_time = 30 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
+
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
 			return
+
 		if(busy)
 			to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
 			return
+
 		if(!is_ground_level(z))
 			to_chat(user, "<span class='warning'>You cannot fire [src] here.</span>")
 			return
+
 		if(targ_x == 0 && targ_y == 0) //Mortar wasn't set
 			to_chat(user, "<span class='warning'>[src] needs to be aimed first.</span>")
 			return
+
 		var/turf/T = locate(targ_x + dial_x + offset_x, targ_y + dial_y + offset_y, z)
 		if(!isturf(T))
 			to_chat(user, "<span class='warning'>You cannot fire [src] to this target.</span>")
 			return
+
 		var/area/A = get_area(T)
 		if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
 			to_chat(user, "<span class='warning'>You cannot hit the target. It is probably underground.</span>")
@@ -140,58 +147,65 @@
 		user.visible_message("<span class='notice'>[user] starts loading \a [mortar_shell.name] into [src].</span>",
 		"<span class='notice'>You start loading \a [mortar_shell.name] into [src].</span>")
 		playsound(loc, 'sound/weapons/gun_mortar_reload.ogg', 50, 1)
-		busy = 1
-		if(do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
-			user.visible_message("<span class='notice'>[user] loads \a [mortar_shell.name] into [src].</span>",
-			"<span class='notice'>You load \a [mortar_shell.name] into [src].</span>")
-			visible_message("[icon2html(src, viewers(src))] <span class='danger'>The [name] fires!</span>")
-			user.transferItemToLoc(mortar_shell, src)
-			playsound(loc, 'sound/weapons/gun_mortar_fire.ogg', 50, 1)
-			busy = 0
-			firing = 1
-			flick(icon_state + "_fire", src)
-			mortar_shell.forceMove(src)
+		busy = TRUE
+		if(!do_after(user, 15, TRUE, src, BUSY_ICON_HOSTILE))
+			busy = FALSE
+			return
 
-			var/turf/G = get_turf(src)
-			G.ceiling_debris_check(2)
+		busy = FALSE
+		user.visible_message("<span class='notice'>[user] loads \a [mortar_shell.name] into [src].</span>",
+		"<span class='notice'>You load \a [mortar_shell.name] into [src].</span>")
+		visible_message("[icon2html(src, viewers(src))] <span class='danger'>The [name] fires!</span>")
+		user.transferItemToLoc(mortar_shell, src)
+		playsound(loc, 'sound/weapons/gun_mortar_fire.ogg', 50, 1)
+		firing = TRUE
+		flick(icon_state + "_fire", src)
+		mortar_shell.forceMove(src)
 
-			for(var/mob/M in range(7))
-				shake_camera(M, 3, 1)
-			spawn(travel_time) //What goes up
-				playsound(T, 'sound/weapons/gun_mortar_travel.ogg', 50, 1)
-				spawn(45) //Must go down //This should always be 45 ticks!
-					T.ceiling_debris_check(2)
-					mortar_shell.detonate(T)
-					qdel(mortar_shell)
-					firing = 0
-		else
-			busy = 0
+		var/turf/G = get_turf(src)
+		G.ceiling_debris_check(2)
 
-	if(iswrench(O))
+		for(var/mob/M in range(7))
+			shake_camera(M, 3, 1)
+		spawn(travel_time) //What goes up
+			playsound(T, 'sound/weapons/gun_mortar_travel.ogg', 50, 1)
+			spawn(45) //Must go down //This should always be 45 ticks!
+				T.ceiling_debris_check(2)
+				mortar_shell.detonate(T)
+				qdel(mortar_shell)
+				firing = FALSE
+
+	else if(iswrench(I))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to undeploy [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to undeploy [src].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
+
 		if(fixed)
 			to_chat(user, "<span class='warning'>[src]'s supports are bolted and welded into the floor. It looks like it's going to be staying there.</span>")
 			return
+
 		if(busy)
 			to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
 			return
+
 		if(firing)
 			to_chat(user, "<span class='warning'>[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.</span>")
 			return
+
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] starts undeploying [src].",
 		"<span class='notice'>You start undeploying [src].")
-		if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
-			user.visible_message("<span class='notice'>[user] undeploys [src].",
-			"<span class='notice'>You undeploy [src].")
-			playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-			new /obj/item/mortar_kit(loc)
-			qdel(src)
+		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+			return
+		
+		user.visible_message("<span class='notice'>[user] undeploys [src].",
+		"<span class='notice'>You undeploy [src].")
+		playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+		new /obj/item/mortar_kit(loc)
+		qdel(src)
 
 
 /obj/structure/mortar/fixed

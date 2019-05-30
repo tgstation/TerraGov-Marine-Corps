@@ -33,10 +33,6 @@
 		icon_state = initial(icon_state)
 
 
-/obj/machinery/button/attack_robot(mob/user)
-	return attack_ai(user)
-
-
 /obj/machinery/button/attack_ai(mob/user)
 	return attack_hand(user)
 
@@ -78,7 +74,7 @@
 /obj/machinery/button/door
 	name = "door button"
 	desc = "A door remote control switch."
-	var/specialfunctions = NOFLAGS
+	var/specialfunctions = NONE
 
 
 /obj/machinery/button/door/indestructible

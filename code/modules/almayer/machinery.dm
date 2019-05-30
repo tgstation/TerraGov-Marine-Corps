@@ -229,31 +229,3 @@
 
 /obj/structure/prop/almayer/cannon_cable_connector/bullet_act()
 	return
-
-//------- Cryobag Recycler -------//
-// Wanted to put this in, but since we still have extra time until tomorrow and this is really simple thing. It just recycles opened cryobags to make it nice-r for medics.
-// Also the lack of sleep makes me keep typing cyro instead of cryo. FFS ~Art
-
-/obj/machinery/cryobag_recycler
-	name = "cryogenic bag recycler"
-	desc = "A small tomb like structure. Capable of taking in used and opened cryobags and refill the liner and attach new sealants."
-	icon = 'icons/Marine/almayer_props.dmi'
-	icon_state = "recycler"
-
-	density = 1
-	anchored = 1
-	use_power = 1
-	idle_power_usage = 20
-
-//What is this even doing? Why is it making a new item?
-/obj/machinery/cryobag_recycler/attackby(obj/item/W, mob/user) //Hope this works. Don't see why not.
-	..()
-	if (istype(W, /obj/item))
-		if(W.name == "used stasis bag") //possiblity for abuse, but fairly low considering its near impossible to rename something without VV
-			var/obj/item/bodybag/cryobag/R = new /obj/item/bodybag/cryobag //lets give them the bag considering having it unfolded would be a pain in the ass.
-			R.add_fingerprint(user)
-			user.temporarilyRemoveItemFromInventory(W)
-			qdel(W)
-			user.put_in_hands(R)
-			return TRUE
-	..()

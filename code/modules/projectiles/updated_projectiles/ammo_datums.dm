@@ -67,7 +67,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		damage_falloff 		= CONFIG_GET(number/combat_define/reg_damage_falloff) 	// How much damage the bullet loses per turf traveled.
 		shell_speed 		= CONFIG_GET(number/combat_define/slow_shell_speed) 	// How fast the projectile moves.
 
-	var/flags_ammo_behavior = NOFLAGS
+	var/flags_ammo_behavior = NONE
 
 	proc/do_at_half_range(obj/item/projectile/P)
 		return
@@ -511,7 +511,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	scatter = -CONFIG_GET(number/combat_define/low_scatter_value)
 	penetration= CONFIG_GET(number/combat_define/med_armor_penetration)
 	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
-	accurate_range = CONFIG_GET(number/combat_define/norm_shell_range)
 
 /datum/ammo/bullet/rifle/m4ra/incendiary
 	name = "A19 high velocity incendiary bullet"

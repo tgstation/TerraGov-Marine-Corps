@@ -446,6 +446,10 @@
 		now_pushing = 0
 
 
+/mob/living/Bumped(atom/movable/AM)
+	. = ..()
+	last_bumped = world.time
+
 
 /mob/living/throw_at(atom/target, range, speed, thrower)
 	if(!target || !src)	return 0
@@ -712,3 +716,28 @@ below 100 is not dizzy
 	else
 		clear_fullscreen("remote_view", 0)
 	update_pipe_vision()
+
+
+/mob/living/proc/can_track(mob/living/user)
+	//basic fast checks go first. When overriding this proc, I recommend calling ..() at the end.
+	var/turf/T = get_turf(src)
+	if(!T)
+		return FALSE
+	if(is_centcom_level(T.z)) //dont detect mobs on centcom
+		return FALSE
+	if(is_away_level(T.z))
+		return FALSE
+	if(user != null && src == user)
+		return FALSE
+	if(invisibility || alpha == 0)//cloaked
+		return FALSE
+
+	// Now, are they viewable by a camera? (This is last because it's the most intensive check)
+	if(!near_camera(src))
+		return FALSE
+
+	return TRUE
+
+
+/mob/living/proc/get_visible_name()
+	return name

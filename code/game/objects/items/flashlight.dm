@@ -65,26 +65,30 @@
 		return 1
 	return 0
 
-/obj/item/flashlight/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I,/obj/item/tool/screwdriver))
+/obj/item/flashlight/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/screwdriver))
 		if(!raillight_compatible) //No fancy messages, just no
 			return
+
 		if(on)
 			to_chat(user, "<span class='warning'>Turn off [src] first.</span>")
 			return
+
 		if(istype(loc, /obj/item/storage))
 			var/obj/item/storage/S = loc
 			S.remove_from_storage(src)
+
 		if(loc == user)
 			user.dropItemToGround(src) //This part is important to make sure our light sources update, as it calls dropped()
-		var/obj/item/attachable/flashlight/F = new(src.loc)
+
+		var/obj/item/attachable/flashlight/F = new(loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>")
 		to_chat(user, "<span class='notice'>Use a screwdriver on [F] to change it back.</span>")
 		qdel(src) //Delete da old flashlight
-		return
-	else
-		..()
+
 
 /obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)

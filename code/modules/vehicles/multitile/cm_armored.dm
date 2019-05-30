@@ -359,7 +359,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(!lying)
 		temp = get_step(T, facing)
 		T = temp
-		T = get_step(T, pick(cardinal))
+		T = get_step(T, pick(GLOB.cardinals))
 		if(mob_size == MOB_SIZE_BIG)
 			throw_at(T, 3, 2, C, 0)
 		else
@@ -379,7 +379,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		return ..()
 	temp = get_step(T, facing)
 	T = temp
-	T = get_step(T, pick(cardinal))
+	T = get_step(T, pick(GLOB.cardinals))
 	throw_at(T, 2, 2, C, 0)
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
 
@@ -388,7 +388,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		return ..()
 	temp = get_step(T, facing)
 	T = temp
-	T = get_step(T, pick(cardinal))
+	T = get_step(T, pick(GLOB.cardinals))
 	throw_at(T, 2, 2, C, 0)
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
 
@@ -488,8 +488,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/hitbox/cm_armored/ex_act(severity)
 	return root.ex_act(severity)
 
-/obj/vehicle/multitile/hitbox/cm_armored/attackby(obj/item/O, mob/user)
-	return root.attackby(O, user)
+/obj/vehicle/multitile/hitbox/cm_armored/attackby(obj/item/I, mob/user, params)
+	return root.attackby(I, user, params)
 
 /obj/vehicle/multitile/hitbox/cm_armored/attack_alien(mob/living/carbon/xenomorph/M, dam_bonus)
 	return root.attack_alien(M, dam_bonus)
@@ -584,8 +584,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	else
 		playsound(loc, "alien_claw_metal", 25, 1)
 
-	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_TANK)
 
 	M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
 	"<span class='danger'>You slash [src]!</span>")

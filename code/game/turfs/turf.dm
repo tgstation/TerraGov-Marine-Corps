@@ -60,6 +60,7 @@
 		ChangeTurf(text2path(oldTurf), TRUE)
 	else
 		ChangeTurf(/turf/open/floor/plating, TRUE)
+	visibilityChanged()
 	return ..()
 
 /turf/ex_act(severity)
@@ -268,7 +269,8 @@
 
 //Enable cable laying on turf click instead of pixel hunting the cable
 /turf/attackby(obj/item/I, mob/living/user, params)
-	if(..())
+	. = ..()
+	if(.)
 		return TRUE
 
 	user.changeNext_move(I.attack_speed)
@@ -277,12 +279,10 @@
 		var/obj/item/stack/cable_coil/coil = I
 		for(var/obj/structure/cable/C in src)
 			if(C.d1 == CABLE_NODE || C.d2 == CABLE_NODE)
-				C.attackby(I,user)
+				C.attackby(I, user, params)
 				return
 		coil.place_turf(src, user)
 		return TRUE
-
-	return FALSE
 
 //for xeno corrosive acid, 0 for unmeltable, 1 for regular, 2 for strong walls that require strong acid and more time.
 /turf/proc/can_be_dissolved()
@@ -368,7 +368,7 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 //Check if you can plant weeds on that turf.
 //Does NOT return a message, just a 0 or 1.
 /turf/proc/is_weedable()
-	return !density && !is_type_in_typecache(get_area(src), GLOB.unweedable_areas)
+	return !density && !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas)
 
 /turf/open/space/is_weedable()
 	return FALSE
@@ -396,7 +396,7 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 
 
 /turf/closed/wall/is_weedable()
-	return !is_type_in_typecache(get_area(src), GLOB.unweedable_areas) //so we can spawn weeds on the walls
+	return !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas) //so we can spawn weeds on the walls
 
 
 /turf/proc/check_alien_construction(mob/living/L, silent = FALSE)
@@ -707,3 +707,23 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	name = "Z-level baseturf placeholder"
 	desc = "Marker for z-level baseturf, usually resolves to space."
 	baseturfs = /turf/baseturf_bottom
+
+
+/turf/proc/add_vomit_floor(mob/living/carbon/M, var/toxvomit = 0)
+	var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
+
+	// Make toxins vomit look different
+	if(toxvomit)
+		this.icon_state = "vomittox_[pick(1,4)]"
+
+
+/turf/proc/visibilityChanged()
+	GLOB.cameranet.updateVisibility(src)
+	// The cameranet usually handles this for us, but if we've just been
+	// recreated we should make sure we have the cameranet vis_contents.
+	var/datum/camerachunk/C = GLOB.cameranet.chunkGenerated(x, y, z)
+	if(C)
+		if(C.obscuredTurfs[src])
+			vis_contents += GLOB.cameranet.vis_contents_objects
+		else
+			vis_contents -= GLOB.cameranet.vis_contents_objects

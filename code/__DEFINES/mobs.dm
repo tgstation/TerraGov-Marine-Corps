@@ -118,6 +118,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define UNCONSCIOUS	1
 #define DEAD		2
 
+#define check_tod(H) ((!H.undefibbable && world.time <= H.timeofdeath + CONFIG_GET(number/revive_grace_period)))
+
 //Damage things
 //Way to waste perfectly good damagetype names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc...
 #define BRUTE		"brute"
@@ -199,6 +201,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SLASHING_ALLOWED 1
 #define XENO_SLASHING_RESTRICTED 2
 
+
+#define XENO_NIGHTVISION_ENABLED 8
+#define XENO_NIGHTVISION_DISABLED 4
 //=================================================
 
 ///////////////////HUMAN BLOODTYPES///////////////////
@@ -508,7 +513,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_STEALTH_INITIAL_DELAY			20 //2 seconds before we can increase stealth
 #define HUNTER_POUNCE_SNEAKATTACK_DELAY 		30 //3 seconds before we can sneak attack
 #define HANDLE_STEALTH_CHECK					1
-#define HANDLE_STEALTH_CODE_CANCEL				2
 #define HANDLE_SNEAK_ATTACK_CHECK				3
 #define HUNTER_SNEAK_TACKLE_ARMOR_PEN			0.5 //1 - this value = the actual penetration
 #define HUNTER_SNEAK_SLASH_ARMOR_PEN			0.8 //1 - this value = the actual penetration

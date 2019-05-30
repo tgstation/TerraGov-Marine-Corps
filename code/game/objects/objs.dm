@@ -93,9 +93,8 @@
 		if ((M.client && M.interactee == src))
 			is_in_use = TRUE
 			interact(M)
-	var/ai_in_use = AutoUpdateAI(src)
-
-	if(!ai_in_use && !is_in_use)
+			
+	if(!is_in_use)
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 
 /obj/proc/interact(mob/user)
@@ -315,3 +314,7 @@
 			return M.mind.cm_skills.police
 		if(OBJ_SKILL_POWERLOADER)
 			return M.mind.cm_skills.powerloader
+
+/obj/on_set_interaction(mob/user)
+	. = ..()
+	ENABLE_BITFIELD(obj_flags, IN_USE)

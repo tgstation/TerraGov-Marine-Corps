@@ -74,6 +74,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 				return
 			keyslot2 = I
 
+			I.forceMove(src)
+			keyslot2 = I
 
 		recalculateChannels()
 	else
@@ -155,7 +157,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/almayer/Initialize()
 	. = ..()
 	camera = new /obj/machinery/camera(src)
-	camera.network = list("LEADER")
+	camera.network = list("marine")
 
 
 /obj/item/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
@@ -480,3 +482,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/distress/imperial
 	name = "Imperial headset"
 	keyslot = new /obj/item/encryptionkey/imperial
+
+
+/obj/item/radio/headset/distress/som
+	name = "\improper Sons of Mars headset"
+	keyslot = new /obj/item/encryptionkey/som

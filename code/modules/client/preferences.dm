@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	//Admin
 	var/warns = 0
-	var/muted = NOFLAGS
+	var/muted = NONE
 	var/last_ip
 	var/last_id
 	var/updating_icon = FALSE
@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/be_special = BE_SPECIAL_DEFAULT	//Special role selection
 	var/ui_style = "Midnight"
 	var/ui_style_color = "#ffffff"
-	var/ui_style_alpha = 255
+	var/ui_style_alpha = 230
 	var/toggles_chat = TOGGLES_CHAT_DEFAULT
 	var/toggles_sound = TOGGLES_SOUND_DEFAULT
 
@@ -57,9 +57,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/good_eyesight = TRUE
 	var/preferred_squad = "None"
 	var/alternate_option = RETURN_TO_LOBBY
-	var/jobs_high = NOFLAGS
-	var/jobs_medium = NOFLAGS
-	var/jobs_low = NOFLAGS
+	var/jobs_high = NONE
+	var/jobs_medium = NONE
+	var/jobs_low = NONE
 	var/preferred_slot = SLOT_S_STORE
 	var/list/gear = list()
 
@@ -494,9 +494,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 
 /datum/preferences/proc/ResetJobs()
-	jobs_high = NOFLAGS
-	jobs_medium = NOFLAGS
-	jobs_low = NOFLAGS
+	jobs_high = NONE
+	jobs_medium = NONE
+	jobs_low = NONE
 
 
 /datum/preferences/proc/GetJobDepartment(var/datum/job/job, var/level)
@@ -519,7 +519,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return FALSE
 	if(jobs_high && level == JOBS_PRIORITY_HIGH)
 		jobs_medium |= jobs_high
-		jobs_high = NOFLAGS
+		jobs_high = NONE
 	switch(level)
 		if(JOBS_PRIORITY_HIGH)
 			jobs_high = job.prefflag
@@ -530,7 +530,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(JOBS_PRIORITY_LOW)
 			jobs_low |= job.prefflag
 		if(JOBS_PRIORITY_NEVER)
-			jobs_high = NOFLAGS
+			jobs_high = NONE
 	return TRUE
 
 

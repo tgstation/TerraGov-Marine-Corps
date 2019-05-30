@@ -110,3 +110,19 @@
 	item_state = "browngloves"
 	armor = list("melee" = 90, "bullet" = 120, "laser" = 100, "energy" = 90, "bomb" = 50, "bio" = 30, "rad" = 30, "fire" = 90, "acid" = 90)
 	resistance_flags = UNACIDABLE
+
+
+/obj/item/clothing/gloves/marine/som
+	name = "\improper SoM gloves"
+	desc = "Gloves with origins dating back to the old mining colonies."
+	icon_state = "som"
+	item_state = "som"
+	armor = list("melee" = 60, "bullet" = 60, "laser" = 35, "energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 15, "fire" = 30, "acid" = 30)
+
+
+/obj/item/clothing/gloves/marine/som/veteran
+	name = "\improper SoM veteran gloves"
+	desc = "Gloves with origins dating back to the old mining colonies. Seem to have more care and wear on them."
+	icon_state = "som_veteran"
+	item_state = "som_veteran"
+	armor = list("melee" = 70, "bullet" = 70, "laser" = 45, "energy" = 40, "bomb" = 40, "bio" = 25, "rad" = 25, "fire" = 40, "acid" = 40)

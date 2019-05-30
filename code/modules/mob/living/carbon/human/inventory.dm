@@ -1,5 +1,5 @@
 /mob/living/carbon/human/proc/quick_equip()
-	if(incapacitated() || lying || istype(loc, /obj/mecha) || istype(loc, /obj/vehicle/multitile/root/cm_armored))
+	if(incapacitated() || lying || istype(loc, /obj/vehicle/multitile/root/cm_armored))
 		return
 
 	var/obj/item/I = get_active_held_item()
@@ -241,6 +241,7 @@
 	W.screen_loc = null
 	W.loc = src
 	W.layer = ABOVE_HUD_LAYER
+	W.plane = ABOVE_HUD_PLANE
 
 	switch(slot)
 		if(SLOT_BACK)

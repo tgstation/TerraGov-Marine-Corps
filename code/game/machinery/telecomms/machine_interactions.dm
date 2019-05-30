@@ -92,9 +92,6 @@
 	// Let's double check
 	if(!issilicon(user) && istype(user.get_active_held_item(), /obj/item/multitool))
 		P = user.get_active_held_item()
-	else if(isAI(user))
-		var/mob/living/silicon/ai/U = user
-		P = U.aiMulti
 	return P
 
 

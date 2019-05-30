@@ -8,6 +8,7 @@
 	ability_name = "toggle agility"
 	cooldown_timer = 0.5 SECONDS
 	use_state_flags = XACT_USE_AGILITY
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_AGILITY
 
 /datum/action/xeno_action/activable/toggle_agility/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -42,6 +43,7 @@
 	ability_name = "lunge"
 	plasma_cost = 10
 	cooldown_timer = 10 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_LUNGE
 
 /datum/action/xeno_action/activable/lunge/proc/neck_grab(mob/living/owner, mob/living/L)
 	if(!can_use_ability(L, FALSE, XACT_IGNORE_DEAD_TARGET))
@@ -93,12 +95,14 @@
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
 
 	if (X.Adjacent(A))
+		X.swap_hand()
 		X.start_pulling(A, TRUE)
+		X.swap_hand()
 
 	add_cooldown()
 	return TRUE
 
-/mob/living/carbon/Xenomorph/Warrior/CtrlClickOn(atom/A)
+/mob/living/carbon/xenomorph/warrior/CtrlClickOn(atom/A)
 	if(SEND_SIGNAL(src, COMSIG_WARRIOR_CTRL_CLICK_ATOM, A) & COMSIG_WARRIOR_USED_LUNGE)
 		return
 	return ..()
@@ -113,6 +117,7 @@
 	ability_name = "Fling"
 	plasma_cost = 30
 	cooldown_timer = 6 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_FLING
 
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
 	to_chat(owner, "<span class='notice'>You gather enough strength to fling something again.</span>")
@@ -170,6 +175,7 @@
 	ability_name = "punch"
 	plasma_cost = 20
 	cooldown_timer = 6 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_PUNCH
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
 	to_chat(src, "<span class='notice'>You gather enough strength to punch again.</span>")

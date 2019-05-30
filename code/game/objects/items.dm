@@ -21,19 +21,19 @@
 	var/hitsound = null
 	var/w_class = WEIGHT_CLASS_NORMAL
 	var/storage_cost = null
-	var/flags_item = NOFLAGS	//flags for item stuff that isn't clothing/equipping specific.
-	var/flags_equip_slot = NOFLAGS		//This is used to determine on which slots an item can fit.
+	var/flags_item = NONE	//flags for item stuff that isn't clothing/equipping specific.
+	var/flags_equip_slot = NONE		//This is used to determine on which slots an item can fit.
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
-	var/flags_inventory = NOFLAGS //This flag is used for various clothing/equipment item stuff
-	var/flags_inv_hide = NOFLAGS //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	var/flags_inventory = NONE //This flag is used for various clothing/equipment item stuff
+	var/flags_inv_hide = NONE //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 	flags_pass = PASSTABLE
 
 	var/obj/item/master = null
 
 	var/flags_armor_protection = NONE //see setup.dm for appropriate bit flags
-	var/flags_heat_protection = NOFLAGS //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
-	var/flags_cold_protection = NOFLAGS //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	var/flags_heat_protection = NONE //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	var/flags_cold_protection = NONE //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
 
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by flags_heat_protection flags
 	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by flags_cold_protection flags
@@ -76,8 +76,15 @@
 	*/
 	var/list/sprite_sheets_obj = null
 
+
+	//TOOL RELATED VARS
+	var/tool_behaviour = FALSE
+	var/toolspeed = 1
+	var/usesound = null
+
 /obj/item/Initialize()
 	. = ..()
+
 	GLOB.item_list += src
 	for(var/path in actions_types)
 		new path(src)
@@ -166,35 +173,40 @@
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
-/obj/item/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/storage))
-		var/obj/item/storage/S = W
-		if(S.use_to_pickup && isturf(loc))
-			if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
-				var/list/rejections = list()
-				var/success = FALSE
-				var/failure = FALSE
+/obj/item/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-				for(var/obj/item/I in src.loc)
-					if(I.type in rejections) // To limit bag spamming: any given type only complains once
-						continue
-					if(!S.can_be_inserted(I))	// Note can_be_inserted still makes noise when the answer is no
-						rejections += I.type	// therefore full bags are still a little spammy
-						failure = TRUE
-						continue
-					success = TRUE
-					S.handle_item_insertion(I, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
-				if(success && !failure)
-					to_chat(user, "<span class='notice'>You put everything in [S].</span>")
-				else if(success)
-					to_chat(user, "<span class='notice'>You put some things in [S].</span>")
-				else
-					to_chat(user, "<span class='notice'>You fail to pick anything up with [S].</span>")
+	if(!istype(I, /obj/item/storage))
+		return
 
-			else if(S.can_be_inserted(src))
-				S.handle_item_insertion(src, FALSE, user)
+	var/obj/item/storage/S = I
 
-	return
+	if(!S.use_to_pickup || !isturf(loc))
+		return
+
+	if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
+		var/list/rejections = list()
+		var/success = FALSE
+		var/failure = FALSE
+
+		for(var/obj/item/IM in loc)
+			if(IM.type in rejections) // To limit bag spamming: any given type only complains once
+				continue
+			if(!S.can_be_inserted(IM))	// Note can_be_inserted still makes noise when the answer is no
+				rejections += IM.type	// therefore full bags are still a little spammy
+				failure = TRUE
+				continue
+			success = TRUE
+			S.handle_item_insertion(IM, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
+		if(success && !failure)
+			to_chat(user, "<span class='notice'>You put everything in [S].</span>")
+		else if(success)
+			to_chat(user, "<span class='notice'>You put some things in [S].</span>")
+		else
+			to_chat(user, "<span class='notice'>You fail to pick anything up with [S].</span>")
+
+	else if(S.can_be_inserted(src))
+		S.handle_item_insertion(src, FALSE, user)
 
 /obj/item/proc/talk_into(mob/M as mob, text)
 	return
@@ -821,3 +833,72 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.inertia_dir = get_dir(target, user)
 		step(user, user.inertia_dir)
 	return
+
+
+// Called when a mob tries to use the item as a tool.
+// Handles most checks.
+/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount=0, volume=0, datum/callback/extra_checks)
+	// No delay means there is no start message, and no reason to call tool_start_check before use_tool.
+	// Run the start check here so we wouldn't have to call it manually.
+	if(!delay && !tool_start_check(user, amount))
+		return
+
+	delay *= toolspeed
+
+	// Play tool sound at the beginning of tool usage.
+	play_tool_sound(target, volume)
+
+	if(delay)
+		// Create a callback with checks that would be called every tick by do_after.
+		var/datum/callback/tool_check = CALLBACK(src, .proc/tool_check_callback, user, amount, extra_checks)
+
+		if(ismob(target))
+			if(do_mob(user, target, delay, extra_checks=tool_check))
+				return
+
+		else if(!do_after(user, delay, target=target, extra_checks=tool_check))
+			return
+
+	else if(extra_checks && !extra_checks.Invoke()) // Invoke the extra checks once, just in case.
+		return
+
+	// Use tool's fuel, stack sheets or charges if amount is set.
+	if(amount && !use(amount))
+		return
+
+	// Play tool sound at the end of tool usage,
+	// but only if the delay between the beginning and the end is not too small
+	if(delay >= MIN_TOOL_SOUND_DELAY)
+		play_tool_sound(target, volume)
+
+	return TRUE
+
+// Called before use_tool if there is a delay, or by use_tool if there isn't.
+// Only ever used by welding tools and stacks, so it's not added on any other use_tool checks.
+/obj/item/proc/tool_start_check(mob/living/user, amount=0)
+	return tool_use_check(user, amount)
+
+// A check called by tool_start_check once, and by use_tool on every tick of delay.
+/obj/item/proc/tool_use_check(mob/living/user, amount)
+	return !amount
+
+// Generic use proc. Depending on the item, it uses up fuel, charges, sheets, etc.
+// Returns TRUE on success, FALSE on failure.
+/obj/item/proc/use(used)
+	return !used
+
+// Plays item's usesound, if any.
+/obj/item/proc/play_tool_sound(atom/target, volume)
+	if(!target || !usesound || !volume)
+		return
+	playsound(target, usesound, volume, 1)
+
+// Used in a callback that is passed by use_tool into do_after call. Do not override, do not call manually.
+/obj/item/proc/tool_check_callback(mob/living/user, amount, datum/callback/extra_checks)
+	return tool_use_check(user, amount) && (!extra_checks || extra_checks.Invoke())
+
+
+
+
+
+

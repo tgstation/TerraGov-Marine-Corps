@@ -146,9 +146,15 @@
 
 /datum/config_entry/flag/jobs_have_minimal_access
 
+/datum/config_entry/number/minimal_access_threshold	//If the number of players is larger than this threshold, minimal access will be turned on.
+	config_entry_value = 10
+	min_val = 0
+
 /datum/config_entry/flag/humans_need_surnames
 
 /datum/config_entry/flag/allow_ai
+
+/datum/config_entry/flag/allow_ai_multicam	// allow ai multicamera mode
 
 /datum/config_entry/flag/fun_allowed //at the moment, when set equal to 1, allows players to *dab (and get limbs automatically blown off).
 

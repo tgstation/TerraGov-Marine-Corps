@@ -16,9 +16,10 @@
 	add_inherent_verbs()
 	add_abilities()
 
-	sight |= SEE_MOBS
-	see_invisible = SEE_INVISIBLE_MINIMUM
-	see_in_dark = 8
+	ENABLE_BITFIELD(sight, SEE_MOBS)
+	ENABLE_BITFIELD(sight, SEE_OBJS)
+	ENABLE_BITFIELD(sight, SEE_TURFS)
+	see_in_dark = XENO_NIGHTVISION_ENABLED
 
 	create_reagents(1000)
 	gender = NEUTER
@@ -190,6 +191,7 @@
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()
 
 /mob/living/carbon/xenomorph/stop_pulling()

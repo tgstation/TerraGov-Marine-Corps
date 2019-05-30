@@ -26,9 +26,9 @@
 
 /mob/living/carbon/human/spawn_gibs()
 	if(species)
-		hgibs(loc, viruses, dna, species.flesh_color, species.blood_color)
+		hgibs(loc, dna, species.flesh_color, species.blood_color)
 	else
-		hgibs(loc, viruses, dna)
+		hgibs(loc, dna)
 
 
 
@@ -85,7 +85,6 @@
 	mutations.Add(SKELETON)
 	status_flags |= DISFIGURED
 	update_body(0)
-	update_mutantrace()
 	name = get_visible_name()
 	return
 
@@ -102,7 +101,6 @@
 	mutations.Add(HUSK)
 	status_flags |= DISFIGURED	//makes them unknown without fucking up other stuff like admintools
 	update_body(0)
-	update_mutantrace()
 	name = get_visible_name()
 	return
 

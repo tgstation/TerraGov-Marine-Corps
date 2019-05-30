@@ -130,7 +130,7 @@
 
 
 /obj/machinery/optable/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return 1
 	else
 		return 0
@@ -168,7 +168,7 @@
 		user.visible_message("<span class='notice'>[user] climbs on the operating table.","You climb on the operating table.</span>", null, null, 4)
 	else
 		visible_message("<span class='notice'>[C] has been laid on the operating table by [user].</span>", null, 4)
-	C.resting = 1
+	C.set_resting(TRUE)
 	C.forceMove(loc)
 
 	add_fingerprint(user)
@@ -190,36 +190,42 @@
 
 	take_victim(usr,usr)
 
-/obj/machinery/optable/attackby(obj/item/W, mob/living/user)
-	if(istype(W, /obj/item/tank/anesthetic))
-		if(!anes_tank)
-			user.transferItemToLoc(W, src)
-			anes_tank = W
-			to_chat(user, "<span class='notice'>You connect \the [anes_tank] to \the [src].</span>")
+/obj/machinery/optable/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(istype(I, /obj/item/tank/anesthetic))
+		if(anes_tank)
 			return
-	if (istype(W, /obj/item/grab))
-		var/obj/item/grab/G = W
-		if(victim && victim != G.grabbed_thing)
-			to_chat(user, "<span class='warning'>The table is already occupied!</span>")
-			return
-		var/mob/living/carbon/M
-		if(iscarbon(G.grabbed_thing))
-			M = G.grabbed_thing
-			if(M.buckled)
-				to_chat(user, "<span class='warning'>Unbuckle first!</span>")
-				return
-		else if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
-			var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-			if(!C.stasis_mob)
-				return
-			M = C.stasis_mob
-			C.open()
-			user.stop_pulling()
-			user.start_pulling(M)
-		else
-			return
+		user.transferItemToLoc(I, src)
+		anes_tank = I
+		to_chat(user, "<span class='notice'>You connect \the [anes_tank] to \the [src].</span>")
 
-		take_victim(M,user)
+	if(!istype(I, /obj/item/grab))
+		return
+
+	var/obj/item/grab/G = I
+	if(victim && victim != G.grabbed_thing)
+		to_chat(user, "<span class='warning'>The table is already occupied!</span>")
+		return
+	var/mob/living/carbon/M
+	if(iscarbon(G.grabbed_thing))
+		M = G.grabbed_thing
+		if(M.buckled)
+			to_chat(user, "<span class='warning'>Unbuckle first!</span>")
+			return
+	else if(istype(G.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
+		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
+		if(!C.stasis_mob)
+			return
+		M = C.stasis_mob
+		C.open()
+		user.stop_pulling()
+		user.start_pulling(M)
+
+	if(!M)
+		return
+
+	take_victim(M, user)
 
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
 	if(victim)

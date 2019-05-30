@@ -8,6 +8,9 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "runner" //used to match appropriate wound overlays
 
+	gib_anim = "gibbed-a-corpse-runner"
+	gib_flick = "gibbed-a-runner"
+
 	// *** Melee Attacks *** //
 	melee_damage_lower = 10
 	melee_damage_upper = 20

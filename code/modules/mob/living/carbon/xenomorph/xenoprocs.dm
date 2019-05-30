@@ -338,11 +338,10 @@
 							to_chat(src, "<span class='xenodanger'>Pouncing from the shadows, you stagger your victim.</span>")
 					playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
 					addtimer(CALLBACK(src, .proc/reset_movement), xeno_caste.charge_type == 1 ? 5 : 15)
-					stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 				if(CHARGE_TYPE_LARGE) //Ravagers plow straight through humans; we only stop on hitting a dense turf
 					return FALSE
-
+		SEND_SIGNAL(src, COMSIG_XENOMORPH_THROW_HIT, hit_atom)
 		throwing = FALSE //Resert throwing since something was hit.
 		reset_movement()
 		return TRUE
@@ -379,16 +378,25 @@
 			A.forceMove(get_turf(src))
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision()
-	if(see_invisible == SEE_INVISIBLE_MINIMUM)
-		see_invisible = SEE_INVISIBLE_LEVEL_TWO //Turn it off.
-		see_in_dark = 4
-		sight |= SEE_MOBS
-		sight &= ~SEE_TURFS
-		sight &= ~SEE_OBJS
+	if(!hud_used)
+		return
+
+	var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
+	if(!L)
+		return
+
+	if(L.alpha == 255)
+		see_in_dark = XENO_NIGHTVISION_ENABLED
+		ENABLE_BITFIELD(sight, SEE_MOBS)
+		ENABLE_BITFIELD(sight, SEE_OBJS)
+		ENABLE_BITFIELD(sight, SEE_TURFS)
+		L.alpha = 0
 	else
-		see_invisible = SEE_INVISIBLE_MINIMUM
-		see_in_dark = 8
-		sight |= SEE_MOBS
+		see_in_dark = XENO_NIGHTVISION_DISABLED
+		ENABLE_BITFIELD(sight, SEE_MOBS)
+		DISABLE_BITFIELD(sight, SEE_OBJS)
+		DISABLE_BITFIELD(sight, SEE_TURFS)
+		L.alpha = 255
 
 
 

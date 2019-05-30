@@ -36,6 +36,7 @@
 	smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
 	see_in_dark = 20
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
+	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, .proc/gib_explode)
 
 /mob/living/carbon/xenomorph/boiler/Destroy()
 	SetLuminosity(-BOILER_LUMINOSITY)
@@ -48,3 +49,11 @@
 	. = ..()
 	if(stat == CONSCIOUS)
 		see_in_dark = 20
+
+// ***************************************
+// *********** Gibbing behaviour
+// ***************************************
+/mob/living/carbon/xenomorph/boiler/proc/gib_explode()
+	visible_message("<span class='danger'>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</span>")
+	smoke.set_up(2, get_turf(src))
+	smoke.start()

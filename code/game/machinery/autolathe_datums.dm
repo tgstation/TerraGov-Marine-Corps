@@ -259,10 +259,6 @@
 	path = /obj/item/ashtray/glass
 	category = "General"
 
-/datum/autolathe/recipe/camera_assembly
-	name = "camera assembly"
-	path = /obj/item/frame/camera
-	category = "Engineering"
 /*
 /datum/autolathe/recipe/flamethrower
 	name = "flamethrower"

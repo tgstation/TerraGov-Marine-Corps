@@ -47,6 +47,7 @@
 			return
 
 	W.layer = ABOVE_HUD_LAYER
+	W.plane = ABOVE_HUD_PLANE
 
 	return 1
 

@@ -19,8 +19,4 @@
 /mob/living/carbon/xenomorph/restrained()
 	return FALSE
 
-/mob/living/carbon/xenomorph/has_smoke_protection()
-	return TRUE
 
-/mob/living/carbon/xenomorph/smoke_contact()
-	return

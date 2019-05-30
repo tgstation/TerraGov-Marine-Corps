@@ -214,33 +214,6 @@
 "aaE" = (
 /turf/open/floor/plating,
 /area/almayer/hull/upper_hull)
-"aaF" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "84"
-	},
-/area/shuttle/drop1/sulaco)
-"aaG" = (
-/obj/effect/attach_point/electronics/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "85"
-	},
-/area/shuttle/drop1/sulaco)
-"aaH" = (
-/obj/effect/attach_point/electronics/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "90"
-	},
-/area/shuttle/drop1/sulaco)
 "aaI" = (
 /obj/machinery/door/firedoor/theseus{
 	dir = 2
@@ -250,38 +223,6 @@
 	icon_state = "test_floor4"
 	},
 /area/almayer/hallways/aft_hallway)
-"aaJ" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "91"
-	},
-/area/shuttle/drop1/sulaco)
-"aaK" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
-	icon_state = "equip_base_l_wing"
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "61"
-	},
-/area/shuttle/drop1/sulaco)
-"aaL" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 4;
-	icon_state = "equip_base_r_wing"
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "65"
-	},
-/area/shuttle/drop1/sulaco)
-"aaM" = (
-/turf/open/floor/almayer/empty,
-/area/almayer/squads/req)
 "aaN" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -293,10 +234,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/upper_hull)
-"aaO" = (
-/obj/docking_port/stationary/supply/reqs,
-/turf/open/floor/almayer/empty,
-/area/almayer/squads/req)
 "aaS" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -959,7 +896,7 @@
 /area/almayer/living/commandbunks)
 "adu" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/security/almayer_network,
+/obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
 "adv" = (
@@ -6499,10 +6436,8 @@
 	},
 /area/almayer/command/cic)
 "apr" = (
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 4;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = 17;
 	pixel_y = 16
 	},
@@ -6515,10 +6450,8 @@
 	},
 /area/almayer/command/cic)
 "aps" = (
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = -17;
 	pixel_y = 16
 	},
@@ -7491,10 +7424,8 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig)
 "ary" = (
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = -17
 	},
 /obj/structure/table/almayer,
@@ -9054,7 +8985,7 @@
 /obj/structure/table/almayer,
 /obj/item/storage/fancy/cigar,
 /obj/item/tool/lighter/zippo,
-/obj/machinery/computer/security/almayer_network,
+/obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/chief_mp_office)
 "auP" = (
@@ -12458,7 +12389,7 @@
 	},
 /obj/structure/table/almayer,
 /obj/item/tool/hand_labeler,
-/obj/machinery/computer/security/almayer_network,
+/obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/almayer/mono,
 /area/almayer/command/cic)
 "aBt" = (
@@ -16159,7 +16090,7 @@
 "aID" = (
 /obj/structure/table/reinforced,
 /obj/item/handcuffs,
-/obj/machinery/computer/security/almayer,
+/obj/machinery/computer/security/marinemainship,
 /turf/open/floor/almayer{
 	dir = 1;
 	icon_state = "red";
@@ -16303,6 +16234,15 @@
 "aIT" = (
 /turf/open/floor/wood,
 /area/almayer/living/captain_mess)
+"aIU" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "84"
+	},
+/area/shuttle/drop1/sulaco)
 "aIV" = (
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 2;
@@ -16388,6 +16328,15 @@
 	tag = "icon-sterile_green_side"
 	},
 /area/almayer/medical/medical_science)
+"aJe" = (
+/obj/effect/attach_point/electronics/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "85"
+	},
+/area/shuttle/drop1/sulaco)
 "aJf" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -16573,6 +16522,15 @@
 /obj/machinery/camera/autoname/almayer,
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/upper_engineering)
+"aJD" = (
+/obj/effect/attach_point/electronics/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "90"
+	},
+/area/shuttle/drop1/sulaco)
 "aJE" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/mineral/phoron{
@@ -16632,12 +16590,31 @@
 	dir = 1
 	},
 /area/almayer/hallways/stern_hallway)
+"aJL" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "91"
+	},
+/area/shuttle/drop1/sulaco)
 "aJM" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/command/self_destruct)
+"aJN" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "61"
+	},
+/area/shuttle/drop1/sulaco)
 "aJO" = (
 /obj/structure/table/almayer,
 /obj/machinery/prop/almayer/computer,
@@ -16736,6 +16713,16 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig_cells)
+"aKa" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 4;
+	icon_state = "equip_base_r_wing"
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle/dropship1/transparent{
+	icon_state = "65"
+	},
+/area/shuttle/drop1/sulaco)
 "aKb" = (
 /obj/structure/bed,
 /turf/open/floor/almayer{
@@ -20749,9 +20736,6 @@
 "aVi" = (
 /turf/closed/wall/almayer/outer,
 /area/space)
-"aVj" = (
-/turf/open/space,
-/area/shuttle/distress/arrive_n_hangar)
 "aVk" = (
 /turf/closed/wall/almayer/outer,
 /area/almayer/hull/lower_hull)
@@ -20917,7 +20901,7 @@
 /area/almayer/shipboard/starboard_point_defense)
 "aVK" = (
 /turf/open/floor/plating/almayer,
-/area/shuttle/distress/arrive_1)
+/area/almayer/shipboard/starboard_point_defense)
 "aVL" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -28056,6 +28040,9 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/squads/req)
+"bnC" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/almayer/squads/req)
 "bnD" = (
 /turf/open/floor/almayer{
 	dir = 4;
@@ -29496,10 +29483,8 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = -17
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -30612,7 +30597,7 @@
 /area/almayer/hull/lower_hull)
 "btF" = (
 /turf/open/floor/plating/almayer,
-/area/shuttle/distress/arrive_3)
+/area/almayer/hull/lower_hull)
 "btG" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -31509,10 +31494,8 @@
 "bvR" = (
 /obj/item/flashlight/lamp,
 /obj/structure/table/almayer,
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 4;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = 17;
 	pixel_y = 16
 	},
@@ -31619,9 +31602,6 @@
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
-/area/almayer/squads/req)
-"bwl" = (
-/turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/req)
 "bwn" = (
 /obj/machinery/firealarm{
@@ -32961,6 +32941,9 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/squads/req)
+"bzr" = (
+/turf/open/floor/almayer/empty,
+/area/almayer/squads/req)
 "bzs" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 8;
@@ -34000,6 +33983,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/req)
+"bBX" = (
+/obj/docking_port/stationary/supply/reqs,
+/turf/open/floor/almayer/empty,
+/area/almayer/squads/req)
 "bBY" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 8;
@@ -34576,10 +34563,8 @@
 "bDp" = (
 /obj/item/flashlight/lamp,
 /obj/structure/table/almayer,
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = -17;
 	pixel_y = 16
 	},
@@ -44691,9 +44676,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/port_point_defense)
-"cbG" = (
-/turf/open/space,
-/area/shuttle/distress/arrive_s_hangar)
 "cbH" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -45104,7 +45086,7 @@
 /area/almayer/shipboard/port_point_defense)
 "ccy" = (
 /turf/open/floor/plating/almayer,
-/area/shuttle/distress/arrive_2)
+/area/almayer/shipboard/port_point_defense)
 "ccz" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -46811,10 +46793,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = -17
 	},
 /turf/open/floor/almayer{
@@ -46827,10 +46807,8 @@
 /obj/item/paper_bin,
 /obj/item/tool/pen,
 /obj/item/taperecorder,
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 4;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = 17
 	},
 /turf/open/floor/almayer/mono,
@@ -47600,10 +47578,8 @@
 /area/almayer/living/briefing)
 "cjo" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = -17
 	},
 /turf/open/floor/almayer{
@@ -47614,10 +47590,8 @@
 /area/almayer/hallways/hangar)
 "cjp" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 4;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = 17
 	},
 /turf/open/floor/almayer{
@@ -48390,6 +48364,13 @@
 	tag = "icon-orange"
 	},
 /area/almayer/hallways/repair_bay)
+"dGF" = (
+/obj/docking_port/stationary/ert/target{
+	name = "Port";
+	id = "port_target"
+	},
+/turf/open/floor/plating/almayer,
+/area/almayer/shipboard/port_point_defense)
 "dKt" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/almayer{
@@ -48460,6 +48441,13 @@
 	tag = "icon-sterile_green_side"
 	},
 /area/almayer/medical/lower_medical)
+"emC" = (
+/obj/docking_port/stationary/ert/target{
+	name = "Starboard";
+	id = "starboard_target"
+	},
+/turf/open/floor/plating/almayer,
+/area/almayer/shipboard/starboard_point_defense)
 "eoj" = (
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 4
@@ -48599,6 +48587,13 @@
 	icon_state = "sterile"
 	},
 /area/almayer/living/commandbunks)
+"flR" = (
+/obj/docking_port/stationary/ert/target{
+	name = "Aft";
+	id = "aft_target"
+	},
+/turf/open/floor/plating/almayer,
+/area/almayer/hull/lower_hull)
 "fqn" = (
 /turf/open/floor/almayer{
 	dir = 9;
@@ -60956,11 +60951,11 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -61020,11 +61015,11 @@ aaa
 aaa
 aaa
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -61212,13 +61207,13 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -61276,13 +61271,13 @@ aaa
 aaa
 aaa
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -61469,13 +61464,13 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -61533,13 +61528,13 @@ aaa
 aaa
 aaa
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -61723,19 +61718,19 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -61787,19 +61782,19 @@ aaa
 aaa
 aaa
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -61979,21 +61974,21 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -62043,21 +62038,21 @@ aaa
 aaa
 aaa
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -62236,21 +62231,21 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aVk
 aVk
@@ -62300,21 +62295,21 @@ aVk
 aVk
 aVk
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -62493,21 +62488,21 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aVk
 aVG
@@ -62557,21 +62552,21 @@ bRX
 aYk
 aVk
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -62750,21 +62745,21 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aZy
 baa
@@ -62814,21 +62809,21 @@ bRz
 cae
 caN
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -63006,23 +63001,23 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aZy
 bab
 baC
@@ -63070,23 +63065,23 @@ bTq
 bRz
 caf
 caN
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -63263,23 +63258,23 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aZz
 bab
 aZz
@@ -63327,23 +63322,23 @@ bYm
 bZw
 caf
 bZw
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -63520,23 +63515,23 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aZz
 bab
 aZz
@@ -63584,23 +63579,23 @@ bYn
 bZw
 caf
 bZw
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -63777,23 +63772,23 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aZz
 bab
 aZz
@@ -63841,23 +63836,23 @@ bYn
 bZw
 caf
 bZw
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -64034,23 +64029,23 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aZz
 bac
 baD
@@ -64098,23 +64093,23 @@ bYo
 bZx
 cag
 bZw
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -64291,23 +64286,23 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aZy
 bad
 baC
@@ -64355,23 +64350,23 @@ bTq
 bRz
 cah
 caN
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -64549,21 +64544,21 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aZy
 bae
@@ -64613,21 +64608,21 @@ bRz
 cai
 caN
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -64806,21 +64801,21 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aVk
 aVn
@@ -64870,21 +64865,21 @@ bSc
 caj
 aVk
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -65063,21 +65058,21 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aVk
 aVm
@@ -65127,21 +65122,21 @@ bSc
 caj
 aVk
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -65320,21 +65315,21 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aVk
 aVm
@@ -65384,21 +65379,21 @@ bSc
 caj
 aVk
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -65577,21 +65572,21 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aVk
 aVm
@@ -65641,21 +65636,21 @@ bSc
 cak
 aVk
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -65836,17 +65831,17 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -65900,17 +65895,17 @@ aVk
 aaa
 aaa
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -66093,17 +66088,17 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -66157,17 +66152,17 @@ aVk
 aaa
 aaa
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -66350,17 +66345,17 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -66414,17 +66409,17 @@ aVk
 aaa
 aaa
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -66607,17 +66602,17 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -66671,17 +66666,17 @@ aVk
 aaa
 aaa
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -66864,17 +66859,17 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -66928,17 +66923,17 @@ aVk
 aaa
 aaa
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -67123,13 +67118,13 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -67187,13 +67182,13 @@ aaa
 aaa
 aaa
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -67380,13 +67375,13 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -67444,13 +67439,13 @@ aaa
 aaa
 aaa
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -67637,13 +67632,13 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -67701,13 +67696,13 @@ aaa
 aaa
 aaa
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -67894,13 +67889,13 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -67958,13 +67953,13 @@ aaa
 aaa
 aaa
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -68152,11 +68147,11 @@ aaa
 aaa
 aaa
 aaa
-aVj
-aVj
-aVj
-aVj
-aVj
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -68216,11 +68211,11 @@ aaa
 aaa
 aaa
 aaa
-cbG
-cbG
-cbG
-cbG
-cbG
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -71267,7 +71262,7 @@ blA
 blA
 btZ
 bvv
-aaK
+aJN
 cjV
 cjV
 cjV
@@ -71520,7 +71515,7 @@ bkY
 blA
 blA
 blA
-aaF
+aIU
 bsn
 bua
 bvw
@@ -71777,7 +71772,7 @@ bkZ
 blA
 blA
 blA
-aaG
+aJe
 bso
 bub
 bub
@@ -73319,7 +73314,7 @@ bkX
 blA
 blA
 blA
-aaH
+aJD
 bso
 bug
 bvz
@@ -73576,7 +73571,7 @@ bkY
 blA
 blA
 blA
-aaJ
+aJL
 bsu
 buh
 bvA
@@ -73837,7 +73832,7 @@ blA
 blA
 bui
 bvB
-aaL
+aKa
 cjW
 cjW
 cjW
@@ -88994,25 +88989,25 @@ biu
 bjW
 biu
 aWm
-bwl
-bwl
+bnC
+bnC
 brb
-bwl
-bwl
+bnC
+bnC
 brb
-bwl
-bwl
+bnC
+bnC
 brb
 bEO
 brb
-bwl
-bwl
+bnC
+bnC
 brb
-bwl
-bwl
+bnC
+bnC
 brb
-bwl
-bwl
+bnC
+bnC
 bDM
 bGq
 bQt
@@ -90800,11 +90795,11 @@ bsR
 buE
 bwe
 bxX
-bwl
+bnC
 bAL
 bnF
 bDE
-bwl
+bnC
 bGh
 bwd
 bID
@@ -91057,11 +91052,11 @@ bsS
 buE
 bwf
 bxY
-bwl
+bnC
 bAM
 bpq
 bDF
-bwl
+bnC
 bGh
 bHt
 bnF
@@ -91314,11 +91309,11 @@ bpq
 bnF
 avU
 bxZ
-bwl
+bnC
 bAN
 bpq
 bDG
-bwl
+bnC
 bGh
 bMs
 bnF
@@ -91571,11 +91566,11 @@ bsT
 buG
 bAK
 bya
-bwl
+bnC
 bAO
 bnF
 bDH
-bwl
+bnC
 bGi
 bHv
 bIE
@@ -91824,20 +91819,20 @@ aWm
 bnG
 bps
 brj
-bwl
+bnC
 gas
-bwl
-bwl
-bwl
-bwl
+bnC
+bnC
+bnC
+bnC
 bBV
-bwl
-bwl
-bwl
-bwl
+bnC
+bnC
+bnC
+bnC
 bIF
-bwl
-bwl
+bnC
+bnC
 bMC
 bnG
 bOO
@@ -92083,15 +92078,15 @@ bpt
 brk
 gEh
 lEo
-bwl
+bnC
 byc
-bwl
+bnC
 byc
-bwl
+bnC
 byc
-bwl
+bnC
 byc
-bwl
+bnC
 bIG
 bJM
 bKT
@@ -92340,15 +92335,15 @@ bpu
 brl
 brb
 vBC
-bwl
+bnC
 byd
-bwl
+bnC
 byd
-bwl
+bnC
 byd
-bwl
+bnC
 byd
-bwl
+bnC
 buH
 brb
 brl
@@ -92854,15 +92849,15 @@ bnF
 brm
 bnF
 bnF
-bwl
-bwl
-bwl
-bwl
-bwl
-bwl
-bwl
-bwl
-bwl
+bnC
+bnC
+bnC
+bnC
+bnC
+bnC
+bnC
+bnC
+bnC
 bnF
 bnF
 bKU
@@ -93111,7 +93106,7 @@ bpw
 brl
 bsU
 bnF
-bwl
+bnC
 byf
 bzq
 bzq
@@ -93119,7 +93114,7 @@ jER
 bzq
 bzq
 bGj
-bwl
+bnC
 bnF
 bJN
 brl
@@ -93370,11 +93365,11 @@ bsV
 bnF
 bpn
 byg
-aaM
-aaM
-aaM
-aaM
-aaM
+bzr
+bzr
+bzr
+bzr
+bzr
 bGk
 kWq
 bnF
@@ -93625,15 +93620,15 @@ bpy
 brl
 bsW
 bnF
-bwl
+bnC
 byg
-aaM
-aaM
-aaM
-aaM
-aaM
+bzr
+bzr
+bzr
+bzr
+bzr
 bGk
-bwl
+bnC
 bnF
 bJN
 brl
@@ -93882,15 +93877,15 @@ bpz
 brn
 bsX
 bnF
-bwl
+bnC
 byh
-aaM
-aaM
-aaO
-aaM
-aaM
+bzr
+bzr
+bBX
+bzr
+bzr
 bGl
-bwl
+bnC
 bnF
 bJO
 brn
@@ -94141,16 +94136,16 @@ bsY
 bnF
 bwn
 byg
-aaM
-aaM
-aaM
-aaM
-aaM
+bzr
+bzr
+bzr
+bzr
+bzr
 bGk
-bwl
+bnC
 bIH
-bwl
-bwl
+bnC
+bnC
 bMJ
 bnF
 bDM
@@ -94393,16 +94388,16 @@ biu
 aWm
 bnF
 bpB
-bwl
+bnC
 bsZ
 bnF
 bpn
 byg
-aaM
-aaM
-aaM
-aaM
-aaM
+bzr
+bzr
+bzr
+bzr
+bzr
 bGk
 kWq
 bnF
@@ -94650,10 +94645,10 @@ biu
 aKe
 bnF
 bpC
-bwl
-bwl
+bnC
+bnC
 buI
-bwl
+bnC
 byi
 bzs
 bzs
@@ -94661,7 +94656,7 @@ bBY
 bzs
 bzs
 bGm
-bwl
+bnC
 bnF
 bnF
 bKV
@@ -94907,18 +94902,18 @@ biu
 aXj
 bnF
 bpD
-bwl
+bnC
 bta
 bnF
-bwl
-bwl
-bwl
-bwl
-bwl
-bwl
-bwl
-bwl
-bwl
+bnC
+bnC
+bnC
+bnC
+bnC
+bnC
+bnC
+bnC
+bnC
 bnF
 bJQ
 bJQ
@@ -97448,7 +97443,7 @@ aaa
 aaa
 aVq
 aVy
-aVK
+emC
 aVK
 aVK
 aVK
@@ -97508,7 +97503,7 @@ bYk
 bYk
 caM
 cbC
-ccy
+dGF
 ccy
 ccy
 ccy
@@ -111613,7 +111608,7 @@ aaa
 aaa
 aVk
 boW
-btF
+flR
 btF
 btF
 btF
