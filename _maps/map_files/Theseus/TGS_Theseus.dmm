@@ -34563,7 +34563,7 @@
 "bDp" = (
 /obj/item/flashlight/lamp,
 /obj/structure/table/almayer,
-/obj/machinery/computer/security/marinmainship{
+/obj/machinery/computer/security/marinemainship{
 	dir = 8;
 	pixel_x = -17;
 	pixel_y = 16
