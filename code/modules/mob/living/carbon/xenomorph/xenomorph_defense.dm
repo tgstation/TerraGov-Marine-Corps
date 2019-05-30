@@ -11,9 +11,9 @@
 /mob/living/carbon/xenomorph/smoke_contact(obj/effect/particle_effect/smoke/S)
 	var/protection = max(1 - get_permeability_protection() * S.bio_protection) //0.2 by default
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
-		adjustFireLoss(10 * protection)
+		adjustFireLoss(12 * (protection + 0.6))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_PLASMALOSS))
-		use_plasma(7)
+		use_plasma(15)
 		if(prob(15))
 			to_chat(src, "<span class='xenowarning'>You feel your plasma reserves being drained.</span>")
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))

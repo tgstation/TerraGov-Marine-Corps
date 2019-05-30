@@ -132,7 +132,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	. = ..()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING) && species.has_organ["lungs"])
 		var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
-		L?.take_damage(1)
+		L?.take_damage(1, TRUE)
 
 //Returns 1 if the attack hit, 0 if it missed.
 /mob/living/carbon/human/proc/attacked_by(var/obj/item/I, var/mob/living/user, var/def_zone)

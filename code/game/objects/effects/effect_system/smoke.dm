@@ -8,6 +8,7 @@
 	icon_state = "smoke"
 	opacity = TRUE
 	anchored = TRUE
+	layer = FLY_LAYER
 	mouse_opacity = 0
 	var/amount = 3
 	var/spread_speed = 1 //time in decisecond for a smoke to spread one tile.
@@ -228,7 +229,7 @@
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/phosphorus
-	alpha = 160
+	alpha = 145
 	opacity = FALSE
 	color = "#DBCBB9"
 	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_PLASMALOSS
