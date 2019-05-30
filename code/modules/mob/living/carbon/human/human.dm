@@ -1044,7 +1044,7 @@
 		germ_level += n
 
 
-/mob/living/carbon/human/revive(keep_viruses)
+/mob/living/carbon/human/revive()
 	for (var/datum/limb/O in limbs)
 		if(O.limb_status & LIMB_ROBOT)
 			O.limb_status = LIMB_ROBOT
@@ -1074,10 +1074,6 @@
 
 	for(var/datum/internal_organ/I in internal_organs)
 		I.damage = 0
-
-	if(!keep_viruses)
-		for (var/datum/disease/virus in viruses)
-			virus.cure(0)
 
 	undefibbable = FALSE
 	
