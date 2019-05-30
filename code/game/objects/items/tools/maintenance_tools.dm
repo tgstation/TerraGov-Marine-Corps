@@ -197,10 +197,10 @@
 		toggle(TRUE)
 
 /obj/item/tool/weldingtool/attackby(obj/item/I, mob/user, params)
-	if(istype(I,/obj/item/tool/screwdriver))
+	. = ..()
+
+	if(istype(I, /obj/item/tool/screwdriver))
 		flamethrower_screwdriver(src, user)
-	else
-		. = ..()
 
 /obj/item/tool/weldingtool/attack(mob/M, mob/user)
 
@@ -431,27 +431,28 @@
 	R.my_atom = src
 	R.add_reagent("fuel", max_fuel)
 
-/obj/item/tool/weldpack/attackby(obj/item/W as obj, mob/user as mob)
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/T = W
+/obj/item/tool/weldpack/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/T = I
 		if(T.welding & prob(50))
 			message_admins("[ADMIN_TPMONTY(user)] triggered a weldpack explosion at [ADMIN_VERBOSEJMP(src.loc)].")
 			log_game("[key_name(user)] triggered a weldpack explosion at [AREACOORD(src.loc)].")
 			to_chat(user, "<span class='warning'>That was stupid of you.</span>")
 			log_explosion("[key_name(user)] triggered a weldpack explosion at [AREACOORD(user.loc)].")
 			explosion(get_turf(src),-1,0,2)
-			if(src)
-				qdel(src)
-			return
+			qdel(src)
 		else
 			if(T.welding)
 				to_chat(user, "<span class='warning'>That was close!</span>")
-			src.reagents.trans_to(W, T.max_fuel)
+			reagents.trans_to(T, T.max_fuel)
 			to_chat(user, "<span class='notice'>Welder refilled!</span>")
-			playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
-			return
-	to_chat(user, "<span class='notice'>The tank scoffs at your insolence.  It only provides services to welders.</span>")
-	return
+			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+
+	else
+		to_chat(user, "<span class='notice'>The tank scoffs at your insolence.  It only provides services to welders.</span>")
+
 
 /obj/item/tool/weldpack/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) // this replaces and improves the get_dist(src,O) <= 1 checks used previously

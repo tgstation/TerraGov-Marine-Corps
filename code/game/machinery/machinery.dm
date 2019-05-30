@@ -122,16 +122,17 @@ Class Procs:
 	verb_say = "beeps"
 	verb_yell = "blares"
 
-/obj/machinery/attackby(obj/item/C as obj, mob/user as mob)
+/obj/machinery/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-		var/obj/item/tool/pickaxe/plasmacutter/P = C
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(!P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
 			return
-		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, BUSY_ICON_HOSTILE))
-			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)
-			qdel()
-		return
+
+		if(!do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, BUSY_ICON_HOSTILE))
+			return
+		P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)
+		qdel(src)
 
 /obj/machinery/Initialize()
 	. = ..()

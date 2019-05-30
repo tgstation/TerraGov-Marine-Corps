@@ -734,83 +734,79 @@ table tr:first-child th:first-child { border: none;}
 	updateUsrDialog()
 
 
-/obj/machinery/alarm/attackby(obj/item/W as obj, mob/user as mob)
-
-
-	src.add_fingerprint(user)
+/obj/machinery/alarm/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
 	switch(buildstage)
 		if(2)
-			if(isscrewdriver(W))  // Opening that Air Alarm up.
-				//to_chat(user, "You pop the Air Alarm's maintence panel open.")
+			if(isscrewdriver(I))  // Opening that Air Alarm up.
 				TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 				to_chat(user, "The wires have been [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposed" : "unexposed"]")
 				update_icon()
 				return
 
-			if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (ismultitool(W) || iswirecutter(W)))
+			else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (ismultitool(I) || iswirecutter(I)))
 				return attack_hand(user)
 
-			if(istype(W, /obj/item/card/id))// trying to unlock the interface with an ID card
+			else if(istype(I, /obj/item/card/id))// trying to unlock the interface with an ID card
 				if(machine_stat & (NOPOWER|BROKEN))
 					to_chat(user, "It does nothing")
 					return
-				else
-					if(allowed(usr) && !wires.is_cut(WIRE_IDSCAN))
-						locked = !locked
-						to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] the Air Alarm interface.</span>")
-						updateUsrDialog()
-					else
-						to_chat(user, "<span class='warning'>Access denied.</span>")
-			return
+
+				if(!allowed(usr) || wires.is_cut(WIRE_IDSCAN))
+					to_chat(user, "<span class='warning'>Access denied.</span>")
+					return
+
+				locked = !locked
+				to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the Air Alarm interface.</span>")
+				updateUsrDialog()
 
 		if(1)
-			if(iscablecoil(W))
-				var/obj/item/stack/cable_coil/C = W
-				if(C.use(5))
-					to_chat(user, "<span class='notice'>You wire \the [src].</span>")
-					buildstage = 2
-					update_icon()
-					first_run()
-					return
-				else
+			if(iscablecoil(I))
+				var/obj/item/stack/cable_coil/C = I
+				if(!C.use(5))
 					to_chat(user, "<span class='warning'>You need 5 pieces of cable to do wire \the [src].</span>")
 					return
 
-			else if(iscrowbar(W))
+				to_chat(user, "<span class='notice'>You wire \the [src].</span>")
+				buildstage = 2
+				update_icon()
+				first_run()
+
+			else if(iscrowbar(I))
 				user.visible_message("<span class='notice'>[user] starts prying out [src]'s circuits.</span>",
 				"<span class='notice'>You start prying out [src]'s circuits.</span>")
-				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
+
+				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
-					user.visible_message("<span class='notice'>[user] pries out [src]'s circuits.</span>",
-					"<span class='notice'>You pry out [src]'s circuits.</span>")
-					var/obj/item/circuitboard/airalarm/circuit
-					if(!electronics)
-						circuit = new/obj/item/circuitboard/airalarm( src.loc )
-					else
-						circuit = new electronics( src.loc )
-						if(electronics.is_general_board)
-							circuit.set_general()
-					electronics = null
-					buildstage = 0
-					update_icon()
-				return
+					return
+
+				user.visible_message("<span class='notice'>[user] pries out [src]'s circuits.</span>",
+				"<span class='notice'>You pry out [src]'s circuits.</span>")
+				var/obj/item/circuitboard/airalarm/circuit
+				if(!electronics)
+					circuit = new /obj/item/circuitboard/airalarm(loc)
+				else
+					circuit = new electronics(loc)
+					if(electronics.is_general_board)
+						circuit.set_general()
+				electronics = null
+				buildstage = 0
+				update_icon()
+
 		if(0)
-			if(istype(W, /obj/item/circuitboard/airalarm))
+			if(istype(I, /obj/item/circuitboard/airalarm))
 				to_chat(user, "You insert the circuit!")
-				qdel(W)
+				qdel(I)
 				buildstage = 1
 				update_icon()
-				return
 
-			else if(iswrench(W))
+			else if(iswrench(I))
 				to_chat(user, "You remove the fire alarm assembly from the wall!")
 				var/obj/item/frame/air_alarm/frame = new /obj/item/frame/air_alarm()
-				frame.loc = user.loc
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+				frame.forceMove(user.loc)
+				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				qdel(src)
-
-	return ..()
 
 /obj/machinery/alarm/power_change()
 	..()

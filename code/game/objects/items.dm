@@ -172,35 +172,40 @@
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
-/obj/item/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/storage))
-		var/obj/item/storage/S = W
-		if(S.use_to_pickup && isturf(loc))
-			if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
-				var/list/rejections = list()
-				var/success = FALSE
-				var/failure = FALSE
+/obj/item/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-				for(var/obj/item/I in src.loc)
-					if(I.type in rejections) // To limit bag spamming: any given type only complains once
-						continue
-					if(!S.can_be_inserted(I))	// Note can_be_inserted still makes noise when the answer is no
-						rejections += I.type	// therefore full bags are still a little spammy
-						failure = TRUE
-						continue
-					success = TRUE
-					S.handle_item_insertion(I, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
-				if(success && !failure)
-					to_chat(user, "<span class='notice'>You put everything in [S].</span>")
-				else if(success)
-					to_chat(user, "<span class='notice'>You put some things in [S].</span>")
-				else
-					to_chat(user, "<span class='notice'>You fail to pick anything up with [S].</span>")
+	if(!istype(I, /obj/item/storage))
+		return
 
-			else if(S.can_be_inserted(src))
-				S.handle_item_insertion(src, FALSE, user)
+	var/obj/item/storage/S = I
 
-	return
+	if(!S.use_to_pickup || !isturf(loc))
+		return
+
+	if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
+		var/list/rejections = list()
+		var/success = FALSE
+		var/failure = FALSE
+
+		for(var/obj/item/IM in loc)
+			if(IM.type in rejections) // To limit bag spamming: any given type only complains once
+				continue
+			if(!S.can_be_inserted(IM))	// Note can_be_inserted still makes noise when the answer is no
+				rejections += IM.type	// therefore full bags are still a little spammy
+				failure = TRUE
+				continue
+			success = TRUE
+			S.handle_item_insertion(IM, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
+		if(success && !failure)
+			to_chat(user, "<span class='notice'>You put everything in [S].</span>")
+		else if(success)
+			to_chat(user, "<span class='notice'>You put some things in [S].</span>")
+		else
+			to_chat(user, "<span class='notice'>You fail to pick anything up with [S].</span>")
+
+	else if(S.can_be_inserted(src))
+		S.handle_item_insertion(src, FALSE, user)
 
 /obj/item/proc/talk_into(mob/M as mob, text)
 	return

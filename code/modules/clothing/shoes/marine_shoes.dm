@@ -31,14 +31,17 @@
 		return
 	..()
 
-/obj/item/clothing/shoes/marine/attackby(var/obj/item/I, var/mob/living/M)
+/obj/item/clothing/shoes/marine/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/weapon/combat_knife) || istype(I, /obj/item/weapon/throwing_knife))
-		if(knife)	return
-		M.drop_held_item()
+		if(knife)	
+			return
+		user.drop_held_item()
 		knife = I
-		I.loc = src
-		to_chat(M, "<div class='notice'>You slide the [I] into [src].</div>")
-		playsound(M, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, 1)
+		I.forceMove(src)
+		to_chat(user, "<div class='notice'>You slide the [I] into [src].</div>")
+		playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, 1)
 		update_icon()
 
 /obj/item/clothing/shoes/marine/update_icon()

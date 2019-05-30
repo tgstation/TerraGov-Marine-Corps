@@ -14,11 +14,12 @@
 	else
 		return FALSE
 
-/obj/machinery/door/poddoor/attackby(obj/item/W, mob/user)
-	return //BLAST DOORS OVERRIDE
+/obj/machinery/door/poddoor/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-/obj/machinery/door/poddoor/crowbar_act(mob/living/user, obj/item/W)
-	add_fingerprint(user)
+	if(!I.pry_capable)
+		return
+
 	if(density && (machine_stat & NOPOWER) && !operating && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		operating = TRUE
 		addtimer(CALLBACK(src, .proc/pry_open), 15)
