@@ -144,7 +144,7 @@
 
 
 /obj/machinery/camera/proc/can_see()
-	return hearers(view_range, get_turf(src))
+	return get_hear(view_range, get_turf(src))
 
 
 /atom/proc/auto_turn()
