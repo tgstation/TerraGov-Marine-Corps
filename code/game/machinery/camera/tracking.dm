@@ -52,11 +52,11 @@
 		track.namecounts[name] = 1
 
 		if(ishuman(L))
-			track.humans[name] = L
+			BINARY_INSERT(L, track.humans, mob/living, name)
 		else
-			track.others[name] = L
+			BINARY_INSERT(L, track.others, mob/living, name)
 
-	var/list/targets = sortList(track.humans) + sortList(track.others)
+	var/list/targets = track.humans + track.others
 
 	return targets
 
