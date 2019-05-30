@@ -306,8 +306,7 @@
 		A.give_action(src)
 
 	anchored = TRUE
-	resting = FALSE
-	update_canmove()
+	set_resting(FALSE)
 	update_icons()
 
 	hive?.update_leader_pheromones()
