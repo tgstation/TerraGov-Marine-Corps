@@ -989,15 +989,18 @@
 /datum/admins/proc/force_dropship()
 	set category = "Fun"
 	set name = "Force Dropship"
-	to_chat(usr, "<span class='warning'>forcedropship!</span>")
+
 	if(!check_rights(R_FUN))
 		return
-	to_chat(usr, "<span class='warning'>rightsok!</span>")
-	var/obj/docking_port/mobile/marine_dropship/D = input("Choose dropship.", "Choose Dropship") as null|anything in SSshuttle.dropships
-	to_chat(usr, "<span class='warning'>picked a dropship [D], [D.type]!</span>")
+
+	if(!length(SSshuttle.dropships))
+		return
+
+	var/obj/docking_port/mobile/marine_dropship/D = SSshuttle.dropships[1]
+
 	if(!istype(D))
 		return
-	to_chat(usr, "<span class='warning'>type wrong!</span>")
+
 	if(D.mode != SHUTTLE_IDLE && alert("Shuttle is not idle, move anyway?", "Active Shuttle", "Yes", "No") != "Yes")
 		return
 
