@@ -26,15 +26,6 @@
 /obj/structure/proc/update_health()
 	return
 
-/obj/structure/attack_hand(mob/user)
-	. = ..()
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		return
-	if(HULK in user.mutations)
-		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-		visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
-		destroy_structure()
-
 /obj/structure/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -64,9 +55,6 @@
 /obj/structure/attack_paw(mob/user)
 	if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		attack_hand(user)
-
-/obj/structure/attack_tk()
-	return
 
 /obj/structure/ex_act(severity)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))

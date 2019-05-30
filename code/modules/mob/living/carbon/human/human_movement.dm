@@ -78,9 +78,6 @@
 	if(mobility_aura)
 		. -= 0.1 + 0.1 * mobility_aura
 
-	if(mRun in mutations)
-		. = 0
-
 	. += CONFIG_GET(number/outdated_movedelay/human_delay)
 
 	. = max(-2.5, . + reagent_move_delay_modifier) //hyperzine and ultrazine

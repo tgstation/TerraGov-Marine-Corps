@@ -329,7 +329,6 @@
 
 /obj/item/storage/pill_bottle/restricted
 	var/req_id_role
-	var/req_dna
 	var/scan_name = FALSE
 	var/req_role
 
@@ -371,15 +370,6 @@
 /obj/item/storage/pill_bottle/restricted/open(mob/user)
 	if(scan(user))
 		return ..()
-
-/obj/item/storage/pill_bottle/restricted/proc/input_dna(mob/living/carbon/M)
-	if(M.dna?.unique_enzymes)
-		to_chat(M, "<span class='warning'>You feel a tiny prick as you open \the [src].</span>")
-		req_dna = M.dna.unique_enzymes
-		return TRUE
-	to_chat(M, "<span class='notice'>It must have some kind of special lock...</span>")
-	return FALSE
-
 
 /obj/item/storage/pill_bottle/restricted/ultrazine
 	icon_state = "pill_canister11"

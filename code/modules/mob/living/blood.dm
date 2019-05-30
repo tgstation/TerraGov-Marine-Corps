@@ -259,45 +259,9 @@
 
 	var/list/blood_data = list()
 
-	var/list/b_dna = get_blood_dna_list()
-	for(var/i in b_dna)
-		blood_data["blood_DNA"] = i
-		blood_data["blood_type"] = b_dna[i]
-
 	blood_data["blood_colour"] = get_blood_color()
 
 	return blood_data
-
-
-
-//returns the mob's dna info as a list, to be inserted in an object's blood_DNA list
-/mob/living/proc/get_blood_dna_list()
-	if(!get_blood_id())
-		return
-	return list("ANIMAL DNA" = "C-")
-
-/mob/living/carbon/get_blood_dna_list()
-	var/b_id = get_blood_id()
-	if(!b_id)
-		return
-
-	switch(b_id)
-		if("blood")
-			if(dna)
-				return list(dna.unique_enzymes = blood_type)
-			else
-				return list("UNKNOWN DNA" = "X*")
-		if("whiteblood")
-			return list("SYNTHETIC BLOOD" = "S*")
-		if("greyblood")
-			return list(dna.unique_enzymes = "Z*")
-		if("greenblood")
-			return list("UNKNOWN DNA" = "Y*")
-		if("xenoblood")
-			return list("UNKNOWN DNA" = "X*")
-
-
-
 
 //returns the color of the mob's blood
 /mob/living/proc/get_blood_color()

@@ -1034,8 +1034,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.real_name = real_name
 	character.name = character.real_name
 	character.voice_name = character.real_name
-	if(character.dna)
-		character.dna.real_name = character.real_name
 
 	character.flavor_text = flavor_text
 

@@ -73,9 +73,6 @@
 			if(!C.blood_type)
 				to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 				return
-			if(NOCLONE in C.mutations) //target done been et, no more blood in him
-				to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-				return
 
 			if(ishuman(C))
 				var/mob/living/carbon/human/H = C

@@ -1764,7 +1764,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		H.update_hair()
 		H.update_body()
 		H.regenerate_icons()
-		H.check_dna(H)
 		usr.client.holder.edit_appearance(H)
 
 		log_admin("[key_name(usr)] updated the [href_list["appearance"]] from [previous] to [change] of [key_name(H)].")

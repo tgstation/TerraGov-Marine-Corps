@@ -140,15 +140,6 @@
 				src.icon_state = text("fireaxe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
 				spawn(10) update_icon()
 
-	attack_tk(mob/user as mob)
-		if(localopened && fireaxe)
-			fireaxe.loc = loc
-			to_chat(user, "<span class='notice'>You telekinetically remove the fire axe.</span>")
-			fireaxe = null
-			update_icon()
-			return
-		attack_hand(user)
-
 	verb/toggle_openness() //nice name, huh? HUH?! -Erro //YEAH -Agouri
 		set name = "Open/Close"
 		set category = "Object"

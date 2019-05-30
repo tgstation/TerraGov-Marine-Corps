@@ -128,8 +128,6 @@
 			return
 		if(!T.blood_type)
 			return
-		if(NOCLONE in T.mutations)
-			return
 
 		if(T.species?.species_flags & NO_BLOOD)
 			return

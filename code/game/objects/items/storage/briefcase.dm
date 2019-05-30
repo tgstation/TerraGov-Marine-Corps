@@ -14,13 +14,6 @@
 /obj/item/storage/briefcase/attack(mob/living/M as mob, mob/living/user as mob)
 	//..()
 
-	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>The [src] slips out of your hand and hits your head.</span>")
-		user.take_limb_damage(10)
-		user.KnockOut(2)
-		return
-
-
 	log_combat(user, M, "attack", src)
 	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>)")
 

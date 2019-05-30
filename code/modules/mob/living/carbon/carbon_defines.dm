@@ -45,6 +45,3 @@
 	var/obj/item/tank/internal = null//Human/Monkey
 
 	var/blood_type
-
-	var/datum/dna/dna //Carbon
-	//see: setup.dm for list of mutations

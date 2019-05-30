@@ -102,7 +102,6 @@
 
 	var/job //Living
 
-	var/list/mutations //Carbon -- Doohl
 	var/voice_name = "unidentifiable voice"
 
 	var/faction = "Neutral"
@@ -154,7 +153,6 @@
 
 	var/bloody_hands = 0
 	var/track_blood = 0
-	var/list/feet_blood_DNA
 	var/feet_blood_color
 
 	var/move_on_shuttle = 1 // Can move on the shuttle.

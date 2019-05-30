@@ -113,34 +113,6 @@
 /mob/living/proc/calculate_affecting_pressure(var/pressure)
 	return
 
-
-//sort of a legacy burn method for /electrocute, /shock, and the e_chair
-/mob/living/proc/burn_skin(burn_amount)
-	if(ishuman(src))
-		//to_chat(world, "DEBUG: burn_skin(), mutations=[mutations]")
-		if(mShock in src.mutations) //shockproof
-			return 0
-		if (COLD_RESISTANCE in src.mutations) //fireproof
-			return 0
-		var/mob/living/carbon/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
-		var/divided_damage = (burn_amount)/(H.limbs.len)
-		var/extradam = 0	//added to when organ is at max dam
-		for(var/datum/limb/affecting in H.limbs)
-			if(!affecting)	continue
-			if(affecting.take_damage_limb(0, divided_damage + extradam))	//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
-				H.UpdateDamageIcon()
-		H.updatehealth()
-		return 1
-	else if(ismonkey(src))
-		if (COLD_RESISTANCE in src.mutations) //fireproof
-			return 0
-		var/mob/living/carbon/monkey/M = src
-		M.adjustFireLoss(burn_amount)
-		M.updatehealth()
-		return 1
-	else if(isAI(src))
-		return 0
-
 /mob/living/proc/adjustBodyTemp(actual, desired, incrementboost)
 	var/temperature = actual
 	var/difference = abs(actual-desired)	//get difference
@@ -377,12 +349,6 @@
 					return
 
 		if(ishuman(L))
-
-			if(HULK in L.mutations)
-				if(prob(70))
-					to_chat(usr, "<span class='danger'>You fail to push [L]'s fat ass out of the way.</span>")
-					now_pushing = 0
-					return
 			if(!(L.status_flags & CANPUSH))
 				now_pushing = 0
 				return

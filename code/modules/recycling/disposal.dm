@@ -468,10 +468,6 @@
 	for(var/atom/movable/AM in D)
 		AM.loc = src
 		SEND_SIGNAL(AM, COMSIG_MOVABLE_DISPOSING, src, D)
-		if(ishuman(AM))
-			var/mob/living/carbon/human/H = AM
-			if(FAT in H.mutations) //Is a human and fat?
-				has_fat_guy = 1 //Set flag on holder
 		if(istype(AM, /obj/structure/bigDelivery) && !hasmob)
 			var/obj/structure/bigDelivery/T = AM
 			destinationTag = T.sortTag

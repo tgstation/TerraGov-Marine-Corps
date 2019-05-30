@@ -89,29 +89,8 @@
 		name = "[name] ([rand(1, 1000)])"
 		real_name = name
 
-	if (!dna)
-		if(gender == NEUTER)
-			gender = pick(MALE, FEMALE)
-		dna = new /datum/dna( null )
-		dna.real_name = real_name
-		dna.ResetSE()
-		dna.ResetUI()
-		//dna.uni_identity = "00600200A00E0110148FC01300B009"
-		//dna.SetUI(list(0x006,0x002,0x00A,0x00E,0x011,0x014,0x8FC,0x013,0x00B,0x009))
-		//dna.struc_enzymes = "43359156756131E13763334D1C369012032164D4FE4CD61544B6C03F251B6C60A42821D26BA3B0FD6"
-		//dna.SetSE(list(0x433,0x591,0x567,0x561,0x31E,0x137,0x633,0x34D,0x1C3,0x690,0x120,0x321,0x64D,0x4FE,0x4CD,0x615,0x44B,0x6C0,0x3F2,0x51B,0x6C6,0x0A4,0x282,0x1D2,0x6BA,0x3B0,0xFD6))
-		dna.unique_enzymes = md5(name)
-
-		// Fix gender
-		dna.SetUIState(DNA_UI_GENDER, gender != MALE, 1)
-
-		// Set the blocks to uni_append, if needed.
-		if(uni_append.len>0)
-			for(var/b=1;b<=uni_append.len;b++)
-				dna.SetUIValue(DNA_UI_LENGTH-(uni_append.len-b),uni_append[b], 1)
-		dna.UpdateUI()
-
-		update_muts=1
+	if(gender == NEUTER)
+		gender = pick(MALE, FEMALE)
 
 	return ..()
 
@@ -369,18 +348,18 @@
         ..(message, speaking, verb, alt_name, italics, message_range, used_radios)
 
 /mob/living/carbon/monkey/update_sight()
-	if (stat == DEAD || (XRAY in mutations))
+	if (stat == DEAD)
 		sight |= SEE_TURFS
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS
 		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_LEVEL_TWO
-	else if (stat != DEAD)
-		sight &= ~SEE_TURFS
-		sight &= ~SEE_MOBS
-		sight &= ~SEE_OBJS
-		see_in_dark = 2
-		see_invisible = SEE_INVISIBLE_LIVING
+		return
+	sight &= ~SEE_TURFS
+	sight &= ~SEE_MOBS
+	sight &= ~SEE_OBJS
+	see_in_dark = 2
+	see_invisible = SEE_INVISIBLE_LIVING
 
 /mob/living/carbon/monkey/get_idcard(hand_first)
 	//Check hands
