@@ -193,7 +193,7 @@ directive is properly returned.
 				size = "bulky"
 			if(6 to INFINITY)
 				size = "huge"
-		to_chat(user, "This is a [blood_overlay ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""][icon2html(src, user)][src.name]. It is a [size] item.")
+		to_chat(user, "This is a [blood_color ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""][icon2html(src, user)][src.name]. It is a [size] item.")
 
 
 	if(desc)

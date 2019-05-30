@@ -434,4 +434,3 @@
 	var/obj/effect/decal/cleanable/blood/xeno/XB = locate() in T.contents
 	if(!XB)
 		XB = new(T)
-	XB.blood_DNA["UNKNOWN DNA"] = "X*"

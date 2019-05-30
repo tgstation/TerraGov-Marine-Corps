@@ -126,7 +126,7 @@
 			msg += "<span class='warning'>[t_He] [t_has] [icon2html(gloves, user)] [gloves.gender==PLURAL?"some":"a"] [(gloves.blood_color != "#030303") ? "blood" : "oil"]-stained [gloves.name] on [t_his] hands!</span>\n"
 		else
 			msg += "[t_He] [t_has] [icon2html(gloves, user)] \a [gloves] on [t_his] hands.\n"
-	else if(blood_overlay)
+	else if(blood_color)
 		msg += "<span class='warning'>[t_He] [t_has] [(blood_color != "#030303") ? "blood" : "oil"]-stained hands!</span>\n"
 
 	//handcuffed?
@@ -140,14 +140,14 @@
 
 	//belt
 	if(belt)
-		if(belt.blood_DNA)
+		if(belt.blood_overlay)
 			msg += "<span class='warning'>[t_He] [t_has] [icon2html(belt, user)] [belt.gender==PLURAL?"some":"a"] [(belt.blood_color != "#030303") ? "blood" : "oil"]-stained [belt.name] about [t_his] waist!</span>\n"
 		else
 			msg += "[t_He] [t_has] [icon2html(belt, user)] \a [belt] about [t_his] waist.\n"
 
 	//shoes
 	if(shoes && !skipshoes)
-		if(shoes.blood_DNA)
+		if(shoes.blood_overlay)
 			msg += "<span class='warning'>[t_He] [t_is] wearing [icon2html(shoes, user)] [shoes.gender==PLURAL?"some":"a"] [(shoes.blood_color != "#030303") ? "blood" : "oil"]-stained [shoes.name] on [t_his] feet!</span>\n"
 		else
 			msg += "[t_He] [t_is] wearing [icon2html(shoes, user)] \a [shoes] on [t_his] feet.\n"
@@ -156,14 +156,14 @@
 
 	//mask
 	if(wear_mask && !skipmask)
-		if(wear_mask.blood_DNA)
+		if(wear_mask.blood_overlay)
 			msg += "<span class='warning'>[t_He] [t_has] [icon2html(wear_mask, user)] [wear_mask.gender==PLURAL?"some":"a"] [(wear_mask.blood_color != "#030303") ? "blood" : "oil"]-stained [wear_mask.name] on [t_his] face!</span>\n"
 		else
 			msg += "[t_He] [t_has] [icon2html(wear_mask, user)] \a [wear_mask] on [t_his] face.\n"
 
 	//eyes
 	if(glasses && !skipeyes)
-		if(glasses.blood_DNA)
+		if(glasses.blood_overlay)
 			msg += "<span class='warning'>[t_He] [t_has] [icon2html(glasses, user)] [glasses.gender==PLURAL?"some":"a"] [(glasses.blood_color != "#030303") ? "blood" : "oil"]-stained [glasses] covering [t_his] eyes!</span>\n"
 		else
 			msg += "[t_He] [t_has] [icon2html(glasses, user)] \a [glasses] covering [t_his] eyes.\n"
