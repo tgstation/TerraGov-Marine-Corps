@@ -83,7 +83,7 @@
 #define ui_healthdoll "EAST-1:28,CENTER-2:13"
 #define ui_health "EAST-1:28,CENTER-1:15"
 #define ui_internal "EAST-1:28,CENTER:17"
-#define ui_ammo "EAST-1:28,10:14"
+#define ui_ammo "EAST-1:28,CENTER+1:25"
 
 									//borgs
 #define ui_borg_health "EAST-1:28,6:13" //borgs have the health display where humans have the bodytemp indicator.

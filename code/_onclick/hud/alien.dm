@@ -4,6 +4,7 @@
 /obj/screen/alien/Click()
 	if(!isxeno(usr))
 		return FALSE
+	return TRUE
 
 /obj/screen/alien/nightvision
 	name = "toggle night vision"
@@ -16,7 +17,7 @@
 		return
 	var/mob/living/carbon/xenomorph/X = usr
 	X.toggle_nightvision()
-	icon_state = (X.see_invisible == SEE_INVISIBLE_LEVEL_TWO) ? "nightvision0" : "nightvision1"
+	icon_state = X.see_in_dark == XENO_NIGHTVISION_DISABLED ? "nightvision0" : "nightvision1"
 
 /obj/screen/alien/queen_locator
 	icon_state = "trackoff"
@@ -41,7 +42,6 @@
 	var/obj/screen/inventory/inv_box
 
 	using = new /obj/screen/act_intent/corner()
-	using.icon = 'icons/mob/screen/alien.dmi'
 	using.alpha = ui_alpha
 	using.icon_state = owner.a_intent
 	static_inventory += using
@@ -89,6 +89,7 @@
 
 	using = new /obj/screen/resist()
 	using.icon = 'icons/mob/screen/alien.dmi'
+	using.screen_loc = ui_above_movement
 	using.alpha = ui_alpha
 	hotkeybuttons += using
 
@@ -115,6 +116,7 @@
 
 	pull_icon = new /obj/screen/pull()
 	pull_icon.icon = 'icons/mob/screen/alien.dmi'
+	pull_icon.screen_loc = ui_above_movement
 	pull_icon.alpha = ui_alpha
 	pull_icon.update_icon(owner)
 	hotkeybuttons += pull_icon
