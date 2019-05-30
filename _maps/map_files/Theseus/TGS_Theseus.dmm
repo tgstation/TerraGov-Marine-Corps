@@ -896,7 +896,7 @@
 /area/almayer/living/commandbunks)
 "adu" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/security/almayer_network,
+/obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
 "adv" = (
@@ -6436,10 +6436,8 @@
 	},
 /area/almayer/command/cic)
 "apr" = (
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 4;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = 17;
 	pixel_y = 16
 	},
@@ -6452,10 +6450,8 @@
 	},
 /area/almayer/command/cic)
 "aps" = (
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = -17;
 	pixel_y = 16
 	},
@@ -7428,10 +7424,8 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig)
 "ary" = (
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = -17
 	},
 /obj/structure/table/almayer,
@@ -8991,7 +8985,7 @@
 /obj/structure/table/almayer,
 /obj/item/storage/fancy/cigar,
 /obj/item/tool/lighter/zippo,
-/obj/machinery/computer/security/almayer_network,
+/obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/chief_mp_office)
 "auP" = (
@@ -12395,7 +12389,7 @@
 	},
 /obj/structure/table/almayer,
 /obj/item/tool/hand_labeler,
-/obj/machinery/computer/security/almayer_network,
+/obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/almayer/mono,
 /area/almayer/command/cic)
 "aBt" = (
@@ -16096,7 +16090,7 @@
 "aID" = (
 /obj/structure/table/reinforced,
 /obj/item/handcuffs,
-/obj/machinery/computer/security/almayer,
+/obj/machinery/computer/security/marinemainship,
 /turf/open/floor/almayer{
 	dir = 1;
 	icon_state = "red";
@@ -29489,10 +29483,8 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = -17
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -31502,10 +31494,8 @@
 "bvR" = (
 /obj/item/flashlight/lamp,
 /obj/structure/table/almayer,
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 4;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = 17;
 	pixel_y = 16
 	},
@@ -34573,10 +34563,8 @@
 "bDp" = (
 /obj/item/flashlight/lamp,
 /obj/structure/table/almayer,
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinmainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = -17;
 	pixel_y = 16
 	},
@@ -46805,10 +46793,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = -17
 	},
 /turf/open/floor/almayer{
@@ -46821,10 +46807,8 @@
 /obj/item/paper_bin,
 /obj/item/tool/pen,
 /obj/item/taperecorder,
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 4;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = 17
 	},
 /turf/open/floor/almayer/mono,
@@ -47594,10 +47578,8 @@
 /area/almayer/living/briefing)
 "cjo" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = -17
 	},
 /turf/open/floor/almayer{
@@ -47608,10 +47590,8 @@
 /area/almayer/hallways/hangar)
 "cjp" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/security/almayer{
+/obj/machinery/computer/security/marinemainship{
 	dir = 4;
-	name = "Ship Security Cameras";
-	network = list("almayer");
 	pixel_x = 17
 	},
 /turf/open/floor/almayer{

@@ -209,13 +209,13 @@
 	circuit = null
 
 
-/obj/machinery/computer/security/almayer
-	density = 0
+/obj/machinery/computer/security/marinemainship
+	density = FALSE
 	icon_state = "security_cam"
 	network = list("marinemainship")
 
 
-/obj/machinery/computer/security/almayer_network
+/obj/machinery/computer/security/marinemainship_network
 	network = list("marinemainship")
 
 
