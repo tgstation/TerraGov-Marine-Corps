@@ -108,6 +108,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/exp = list()
 	var/list/menuoptions
 
+	// Hud tooltip
+	var/tooltips = TRUE
+
 
 /datum/preferences/New(client/C)
 	if(!istype(C))
@@ -288,6 +291,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Ghost Hivemind:</b> <a href='?_src_=prefs;preference=ghost_hivemind'>[(toggles_chat & CHAT_GHOSTHIVEMIND) ? "Show" : "Hide"]</a><br>"
 	dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=windowflashing'>[windowflashing ? "Yes" : "No"]</a><br>"
 	dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>"
+	dat += "<b>Tooltips:</b> <a href='?_src_=prefs;preference=tooltips'>[(tooltips) ? "Shown" : "Hidden"]</a><br>"
 
 
 	if(CONFIG_GET(flag/allow_metadata))
@@ -944,6 +948,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED] mainwindow.macro=default")
 			else
 				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
+
+		if("tooltips")
+			tooltips = !tooltips
+			if(!tooltips)
+				closeToolTip(usr)
+			else if(!usr.client.tooltips && tooltips)
+				usr.client.tooltips = new /datum/tooltip(usr.client)
 
 		if("keybindings_menu")
 			ShowKeybindings(user)
