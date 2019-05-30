@@ -236,8 +236,8 @@
 	if(!length(T.contents))
 		return FALSE
 
-	for(z in T)
-		var/atom/movable/A = z
+	for(var/a in T)
+		var/atom/movable/A = a
 		// If we've already handled this atom, don't do it again
 		if(A in permutated)
 			continue

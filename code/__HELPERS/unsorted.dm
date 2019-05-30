@@ -202,44 +202,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	return "[round(frequency / 10)].[frequency % 10]"
 
 
-//Picks a string of symbols to display as the law number for hacked or ion laws
-/proc/ionnum()
-	return "[pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")]"
-
-
-//When a borg is activated, it can choose which AI it wants to be slaved to
-/proc/active_ais()
-	. = list()
-	for(var/mob/living/silicon/ai/A in GLOB.alive_mob_list)
-		if(A.stat == DEAD)
-			continue
-		if(A.control_disabled)
-			continue
-		. += A
-	return .
-
-
-//Find an active ai with the least borgs.
-/proc/select_active_ai_with_fewest_borgs()
-	var/mob/living/silicon/ai/selected
-	var/list/active = active_ais()
-	for(var/mob/living/silicon/ai/A in active)
-		if(!selected || (selected.connected_robots > A.connected_robots))
-			selected = A
-
-	return selected
-
-
-/proc/select_active_ai(mob/user)
-	var/list/ais = active_ais()
-	if(length(ais))
-		if(user)	
-			. = input(usr,"AI signals detected:", "AI selection") in ais
-		else		
-			. = pick(ais)
-	return .
-
-
 //Orders mobs by type then by name
 /proc/sortmobs()
 	var/list/moblist = list()
@@ -1183,3 +1145,51 @@ var/list/WALLITEMS = list(
 			processing += A.contents
 			assembled += A
 	return assembled
+
+
+/*
+
+ Gets the turf this atom's *ICON* appears to inhabit
+ It takes into account:
+ * Pixel_x/y
+ * Matrix x/y
+
+ NOTE: if your atom has non-standard bounds then this proc
+ will handle it, but:
+ * if the bounds are even, then there are an even amount of "middle" turfs, the one to the EAST, NORTH, or BOTH is picked
+ (this may seem bad, but you're atleast as close to the center of the atom as possible, better than byond's default loc being all the way off)
+ * if the bounds are odd, the true middle turf of the atom is returned
+
+*/
+
+/proc/get_turf_pixel(atom/AM)
+	if(!istype(AM))
+		return
+
+	//Find AM's matrix so we can use it's X/Y pixel shifts
+	var/matrix/M = matrix(AM.transform)
+
+	var/pixel_x_offset = AM.pixel_x + M.get_x_shift()
+	var/pixel_y_offset = AM.pixel_y + M.get_y_shift()
+
+	//Irregular objects
+	var/icon/AMicon = icon(AM.icon, AM.icon_state)
+	var/AMiconheight = AMicon.Height()
+	var/AMiconwidth = AMicon.Width()
+	if(AMiconheight != world.icon_size || AMiconwidth != world.icon_size)
+		pixel_x_offset += ((AMiconwidth/world.icon_size)-1)*(world.icon_size*0.5)
+		pixel_y_offset += ((AMiconheight/world.icon_size)-1)*(world.icon_size*0.5)
+
+	//DY and DX
+	var/rough_x = round(round(pixel_x_offset,world.icon_size)/world.icon_size)
+	var/rough_y = round(round(pixel_y_offset,world.icon_size)/world.icon_size)
+
+	//Find coordinates
+	var/turf/T = get_turf(AM) //use AM's turfs, as it's coords are the same as AM's AND AM's coords are lost if it is inside another atom
+	if(!T)
+		return null
+	var/final_x = T.x + rough_x
+	var/final_y = T.y + rough_y
+
+	if(final_x || final_y)
+		return locate(final_x, final_y, T.z)

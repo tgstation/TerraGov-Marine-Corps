@@ -103,8 +103,8 @@
 
 #define UI_STYLES list(\
 	"Midnight",\
-	"Orange",\
-	"old",\
+	"Plasmafire",\
+	"Retro",\
 	"White",\
 	"Slimecore",\
 	"Operative",\

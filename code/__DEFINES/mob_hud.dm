@@ -19,6 +19,13 @@
 #define QUEEN_OVERWATCH_HUD	"15" //indicates which xeno the queen is overwatching.
 #define STATUS_HUD_OBSERVER_INFECTION "16" //gives observers the xeno larval stage
 #define ORDER_HUD "17" //shows what orders are applied to marines
+#define AI_DETECT_HUD "18"
+
+#define ADD_HUD_TO_COOLDOWN 20 //cooldown for being shown the images for any particular data hud
+
+//by default everything in the hud_list of an atom is an image
+//a value in hud_list with one of these will change that behavior
+#define HUD_LIST_LIST 1
 
 
 //data HUD (medhud, sechud) defines
@@ -31,3 +38,4 @@
 #define MOB_HUD_XENO_STATUS			7
 #define MOB_HUD_SQUAD				8
 #define MOB_HUD_ORDER				9
+#define DATA_HUD_AI_DETECT			10

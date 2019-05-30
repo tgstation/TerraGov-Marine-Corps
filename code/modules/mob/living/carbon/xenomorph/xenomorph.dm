@@ -191,6 +191,7 @@
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()
 
 /mob/living/carbon/xenomorph/stop_pulling()

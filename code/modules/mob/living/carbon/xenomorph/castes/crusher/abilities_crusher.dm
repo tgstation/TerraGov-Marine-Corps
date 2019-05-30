@@ -8,6 +8,8 @@
 	ability_name = "stomp"
 	plasma_cost = 80
 	cooldown_timer = 20 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_STOMP
 
 /datum/action/xeno_action/activable/stomp/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/crusher/X = owner
@@ -54,6 +56,7 @@
 	name = "Toggle Charging"
 	action_icon_state = "ready_charge"
 	mechanics_text = "Toggles the Crusher’s movement based charge on and off."
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_CHARGE
 
 /datum/action/xeno_action/ready_charge/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -70,6 +73,7 @@
 	ability_name = "crest toss"
 	plasma_cost = 40
 	cooldown_timer = 6 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
 	to_chat(src, "<span class='xenowarning'><b>You can now crest toss again.</b></span>")

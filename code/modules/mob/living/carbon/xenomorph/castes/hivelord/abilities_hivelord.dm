@@ -54,6 +54,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	action_icon_state = "toggle_speed"
 	mechanics_text = "Move faster on resin."
 	plasma_cost = 50
+	keybind_signal = COMSIG_XENOABILITY_RESIN_WALKER
 
 /datum/action/xeno_action/toggle_speed/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -81,6 +82,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	mechanics_text = "Create a tunnel entrance. Use again to create the tunnel exit."
 	plasma_cost = 200
 	cooldown_timer = 120 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_BUILD_TUNNEL
 
 /datum/action/xeno_action/build_tunnel/can_use_action(silent = FALSE, override_flags)
 	. = ..()

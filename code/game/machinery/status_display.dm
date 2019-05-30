@@ -1,113 +1,58 @@
 // Status display
 // (formerly Countdown timer display)
 
-// Use to show shuttle ETA/ETD times
-// Alert status
-// And arbitrary messages set by comms computer
+#define CHARS_PER_LINE 5
+#define FONT_SIZE "5pt"
+#define FONT_COLOR "#09f"
+#define FONT_STYLE "Arial Black"
+#define SCROLL_SPEED 2
+
+#define SD_BLANK 0  // 0 = Blank
+#define SD_EMERGENCY 1  // 1 = Emergency Shuttle timer
+#define SD_MESSAGE 2  // 2 = Arbitrary message(s)
+#define SD_PICTURE 3  // 3 = alert picture
+
+#define SD_AI_EMOTE 1  // 1 = AI emoticon
+#define SD_AI_BSOD 2  // 2 = Blue screen of death
+
+/// Status display which can show images and scrolling text.
 /obj/machinery/status_display
+	name = "status display"
+	desc = null
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
-	name = "status display"
-	anchored = 1
-	density = 0
-	use_power = 1
+	density = FALSE
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
-	var/mode = 0	// 0 = Blank
-					// 1 = Shuttle timer
-					// 2 = Arbitrary message(s)
-					// 3 = alert picture
-					// 4 = Supply shuttle timer
 
-	var/picture_state	// icon_state of alert picture
+	maptext_height = 26
+	maptext_width = 32
+
 	var/message1 = ""	// message line 1
 	var/message2 = ""	// message line 2
 	var/index1			// display index for scrolling messages or 0 if non-scrolling
 	var/index2
 
-	var/frequency = 1435		// radio frequency
+/// Immediately blank the display.
+/obj/machinery/status_display/proc/remove_display()
+	cut_overlays()
+	if(maptext)
+		maptext = ""
 
-	var/friendc = 0      // track if Friend Computer mode
-	var/ignore_friendc = 0
+/// Immediately change the display to the given picture.
+/obj/machinery/status_display/proc/set_picture(state)
+	remove_display()
+	add_overlay(state)
 
-	maptext_height = 26
-	maptext_width = 32
+/// Immediately change the display to the given two lines.
+/obj/machinery/status_display/proc/update_display(line1, line2)
+	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
+	if(maptext != new_text)
+		maptext = new_text
 
-	var/const/CHARS_PER_LINE = 5
-	var/const/STATUS_DISPLAY_BLANK = 0
-	var/const/STATUS_DISPLAY_TRANSFER_SHUTTLE_TIME = 1
-	var/const/STATUS_DISPLAY_MESSAGE = 2
-	var/const/STATUS_DISPLAY_ALERT = 3
-	var/const/STATUS_DISPLAY_TIME = 4
-	var/const/STATUS_DISPLAY_CUSTOM = 99
-
-/obj/machinery/status_display/Initialize()
-	. = ..()
-	set_picture("default")
-
-	switch(dir)
-		if(NORTH)
-			pixel_y = 32
-
-/obj/machinery/status_display/emp_act(severity)
-	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
-		return
-	set_picture("ai_bsod")
-	..(severity)
-
-// set what is displayed
-/obj/machinery/status_display/proc/update()
-	if(friendc && !ignore_friendc)
-		set_picture("ai_friend")
-		return 1
-
-	switch(mode)
-		if(STATUS_DISPLAY_BLANK)	//blank
-			remove_display()
-			return 1
-		if(STATUS_DISPLAY_TRANSFER_SHUTTLE_TIME)				//emergency shuttle timer
-			message1 = "EVAC"
-			message2 = SSevacuation.get_status_panel_eta()
-			if(message2)
-				if(length(message2) > CHARS_PER_LINE) message2 = "Error"
-				update_display(message1, message2)
-			else remove_display()
-			return 1
-		if(STATUS_DISPLAY_MESSAGE)	//custom messages
-			var/line1
-			var/line2
-
-			if(!index1)
-				line1 = message1
-			else
-				line1 = copytext(message1+"|"+message1, index1, index1+CHARS_PER_LINE)
-				var/message1_len = length(message1)
-				index1 += SCROLL_SPEED
-				if(index1 > message1_len)
-					index1 -= message1_len
-
-			if(!index2)
-				line2 = message2
-			else
-				line2 = copytext(message2+"|"+message2, index2, index2+CHARS_PER_LINE)
-				var/message2_len = length(message2)
-				index2 += SCROLL_SPEED
-				if(index2 > message2_len)
-					index2 -= message2_len
-			update_display(line1, line2)
-			return 1
-		if(STATUS_DISPLAY_TIME)
-			message1 = "TIME"
-			message2 = worldtime2text()
-			update_display(message1, message2)
-			return 1
-	return 0
-
-/obj/machinery/status_display/examine(mob/user)
-	..()
-	if(mode != STATUS_DISPLAY_BLANK && mode != STATUS_DISPLAY_ALERT)
-		to_chat(user, "The display says:<br>\t[sanitize(message1)]<br>\t[sanitize(message2)]")
-
+/// Prepare the display to marquee the given two lines.
+///
+/// Call with no arguments to disable.
 /obj/machinery/status_display/proc/set_message(m1, m2)
 	if(m1)
 		index1 = (length(m1) > CHARS_PER_LINE)
@@ -123,77 +68,229 @@
 		message2 = ""
 		index2 = 0
 
-/obj/machinery/status_display/proc/set_picture(state)
-	picture_state = state
-	mode = 3
-	remove_display()
-	overlays += image('icons/obj/status_display.dmi', icon_state=picture_state)
-
-/obj/machinery/status_display/proc/update_display(line1, line2)
-	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
-	if(maptext != new_text)
-		maptext = new_text
-
-/obj/machinery/status_display/proc/remove_display()
-	if(overlays.len)
-		overlays.Cut()
-	if(maptext)
-		maptext = ""
-
-/obj/machinery/status_display/receive_signal(datum/signal/signal)
-	/*switch(signal.data["command"])
-		if("blank")
-			mode = STATUS_DISPLAY_BLANK
-
-		if("shuttle")
-			mode = STATUS_DISPLAY_TRANSFER_SHUTTLE_TIME
-
-		if("message")
-			mode = STATUS_DISPLAY_MESSAGE
-			set_message(signal.data["msg1"], signal.data["msg2"])
-
-		if("alert")
-			mode = STATUS_DISPLAY_ALERT
-			set_picture(signal.data["picture_state"])
-
-		if("time")
-			mode = STATUS_DISPLAY_TIME*/
-
-/obj/machinery/ai_status_display
-	icon = 'icons/obj/status_display.dmi'
-	icon_state = "frame"
-	name = "AI display"
-	anchored = 1
-	density = 0
-
-	var/mode = 0	// 0 = Blank
-					// 1 = AI emoticon
-					// 2 = Blue screen of death
-
-	var/picture_state	// icon_state of ai picture
-
-	var/emotion = "Neutral"
-
-/obj/machinery/ai_status_display/process()
+// Timed process - performs default marquee action if so needed.
+/obj/machinery/status_display/process()
 	if(machine_stat & NOPOWER)
-		overlays.Cut()
-		return
+		remove_display()
+		return PROCESS_KILL
 
+	var/line1 = message1
+	if(index1)
+		line1 = copytext("[message1]|[message1]", index1, index1+CHARS_PER_LINE)
+		var/message1_len = length(message1)
+		index1 += SCROLL_SPEED
+		if(index1 > message1_len)
+			index1 -= message1_len
+
+	var/line2 = message2
+	if(index2)
+		line2 = copytext("[message2]|[message2]", index2, index2+CHARS_PER_LINE)
+		var/message2_len = length(message2)
+		index2 += SCROLL_SPEED
+		if(index2 > message2_len)
+			index2 -= message2_len
+
+	update_display(line1, line2)
+	if(!index1 && !index2)
+		return PROCESS_KILL
+
+
+/// Update the display and, if necessary, re-enable processing.
+/obj/machinery/status_display/proc/update()
+	if(process() != PROCESS_KILL)
+		start_processing()
+
+
+/obj/machinery/status_display/power_change()
+	. = ..()
 	update()
 
-/obj/machinery/ai_status_display/emp_act(severity)
-	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
+
+/obj/machinery/status_display/emp_act(severity)
+	. = ..()
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	set_picture("ai_bsod")
-	..(severity)
 
-/obj/machinery/ai_status_display/proc/update()
-	if(mode==0) //Blank
-		overlays.Cut()
+
+/obj/machinery/status_display/examine(mob/user)
+	. = ..()
+	if(message1 || message2)
+		var/list/msg = list("The display says:")
+		if(message1)
+			msg += "<br>\t<tt>[html_encode(message1)]</tt>"
+		if(message2)
+			msg += "<br>\t<tt>[html_encode(message2)]</tt>"
+		to_chat(user, msg.Join())
+
+
+// Helper procs for child display types.
+/obj/machinery/status_display/proc/display_shuttle_status(obj/docking_port/mobile/shuttle)
+	if(!shuttle)
+		// the shuttle is missing - no processing
+		update_display("shutl?","")
+		return PROCESS_KILL
+	else if(shuttle.timer)
+		var/line1 = "-[shuttle.getModeStr()]-"
+		var/line2 = shuttle.getTimerStr()
+
+		if(length(line2) > CHARS_PER_LINE)
+			line2 = "error"
+		update_display(line1, line2)
+	else
+		// don't kill processing, the timer might turn back on
+		remove_display()
+
+
+/obj/machinery/status_display/proc/examine_shuttle(mob/user, obj/docking_port/mobile/shuttle)
+	if (shuttle)
+		var/modestr = shuttle.getModeStr()
+		if (modestr)
+			if (shuttle.timer)
+				modestr = "<br>\t<tt>[modestr]: [shuttle.getTimerStr()]</tt>"
+			else
+				modestr = "<br>\t<tt>[modestr]</tt>"
+		to_chat(user, "The display says:<br>\t<tt>[shuttle.name]</tt>[modestr]")
+	else
+		to_chat(user, "The display says:<br>\t<tt>Shuttle missing!</tt>")
+
+
+/// Evac display which shows shuttle timer or message set by Command.
+/obj/machinery/status_display/evac
+	var/frequency = FREQ_STATUS_DISPLAYS
+	var/mode = SD_EMERGENCY
+	var/friendc = FALSE      // track if Friend Computer mode
+	var/last_picture  // For when Friend Computer mode is undone
+
+
+/obj/machinery/status_display/evac/Initialize()
+	. = ..()
+	// register for radio system
+	SSradio.add_object(src, frequency)
+
+
+/obj/machinery/status_display/evac/Destroy()
+	SSradio.remove_object(src,frequency)
+	return ..()
+
+
+/obj/machinery/status_display/evac/process()
+	if(machine_stat & NOPOWER)
+		// No power, no processing.
+		remove_display()
+		return PROCESS_KILL
+
+	if(friendc) //Makes all status displays except supply shuttle timer display the eye -- Urist
+		set_picture("ai_friend")
+		return PROCESS_KILL
+
+	switch(mode)
+		if(SD_BLANK)
+			remove_display()
+			return PROCESS_KILL
+
+		if(SD_MESSAGE)
+			return ..()
+
+		if(SD_PICTURE)
+			set_picture(last_picture)
+			return PROCESS_KILL
+
+
+/obj/machinery/status_display/evac/examine(mob/user)
+	. = ..()
+	if(!message1 && !message2)
+		to_chat(user, "The display is blank.")
+
+
+/obj/machinery/status_display/evac/receive_signal(datum/signal/signal)
+	switch(signal.data["command"])
+		if("blank")
+			mode = SD_BLANK
+			set_message(null, null)
+		if("shuttle")
+			mode = SD_EMERGENCY
+			set_message(null, null)
+		if("message")
+			mode = SD_MESSAGE
+			set_message(signal.data["msg1"], signal.data["msg2"])
+		if("alert")
+			mode = SD_PICTURE
+			last_picture = signal.data["picture_state"]
+			set_picture(last_picture)
+		if("friendcomputer")
+			friendc = !friendc
+	update()
+
+
+/// General-purpose shuttle status display.
+/obj/machinery/status_display/shuttle
+	name = "shuttle display"
+	var/shuttle_id
+
+
+/obj/machinery/status_display/shuttle/process()
+	if(!shuttle_id || (machine_stat & NOPOWER))
+		// No power, no processing.
+		remove_display()
+		return PROCESS_KILL
+
+	return display_shuttle_status(SSshuttle.getShuttle(shuttle_id))
+
+
+/obj/machinery/status_display/shuttle/examine(mob/user)
+	. = ..()
+	if(shuttle_id)
+		examine_shuttle(user, SSshuttle.getShuttle(shuttle_id))
+	else
+		to_chat(user, "The display is blank.")
+
+
+/obj/machinery/status_display/shuttle/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(!.)
 		return
+	switch(var_name)
+		if("shuttle_id")
+			update()
 
-	if(mode==1)	// AI emoticon
+
+/obj/machinery/status_display/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
+	if(port && (shuttle_id == initial(shuttle_id) || override))
+		shuttle_id = port.id
+	update()
+
+
+/// Pictograph display which the AI can use to emote.
+/obj/machinery/status_display/ai
+	name = "\improper AI display"
+	desc = "A small screen which the AI can use to present itself."
+
+	var/mode = SD_BLANK
+	var/emotion = "Neutral"
+
+
+/obj/machinery/status_display/ai/Initialize()
+	. = ..()
+	GLOB.ai_status_displays.Add(src)
+
+
+/obj/machinery/status_display/ai/Destroy()
+	GLOB.ai_status_displays.Remove(src)
+	return ..()
+
+
+/obj/machinery/status_display/ai/attack_ai(mob/living/silicon/ai/user)
+	if(isAI(user))
+		user.ai_statuschange()
+
+
+/obj/machinery/status_display/ai/process()
+	if(mode == SD_BLANK || (machine_stat & NOPOWER))
+		remove_display()
+		return PROCESS_KILL
+
+	if(mode == SD_AI_EMOTE)
 		switch(emotion)
 			if("Very Happy")
 				set_picture("ai_veryhappy")
@@ -207,12 +304,6 @@
 				set_picture("ai_confused")
 			if("Sad")
 				set_picture("ai_sad")
-			if("Surprised")
-				set_picture("ai_surprised")
-			if("Upset")
-				set_picture("ai_upset")
-			if("Angry")
-				set_picture("ai_angry")
 			if("BSOD")
 				set_picture("ai_bsod")
 			if("Blank")
@@ -223,23 +314,25 @@
 				set_picture("ai_awesome")
 			if("Dorfy")
 				set_picture("ai_urist")
+			if("Thinking")
+				set_picture("ai_thinking")
 			if("Facepalm")
 				set_picture("ai_facepalm")
 			if("Friend Computer")
 				set_picture("ai_friend")
-		return
+			if("Blue Glow")
+				set_picture("ai_sal")
+			if("Red Glow")
+				set_picture("ai_hal")
+		return PROCESS_KILL
 
-	if(mode==2)	// BSOD
+	if(mode == SD_AI_BSOD)
 		set_picture("ai_bsod")
-		return
+		return PROCESS_KILL
 
 
-/obj/machinery/ai_status_display/proc/set_picture(var/state)
-	picture_state = state
-	if(overlays.len)
-		overlays.Cut()
-	overlays += image('icons/obj/status_display.dmi', icon_state=picture_state)
-
+#undef CHARS_PER_LINE
+#undef FONT_SIZE
 #undef FONT_COLOR
 #undef FONT_STYLE
 #undef SCROLL_SPEED

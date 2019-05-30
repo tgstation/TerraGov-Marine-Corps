@@ -1,0 +1,4 @@
+author: "spookydonut"
+delete-after: True
+changes: 
+  - rscadd: "All xeno abilities can be used with keybinds now, although for targeted abilities the keybind will only select it."

@@ -24673,7 +24673,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/computer/aifixer,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},

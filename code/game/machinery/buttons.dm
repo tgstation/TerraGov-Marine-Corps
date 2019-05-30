@@ -33,10 +33,6 @@
 		icon_state = initial(icon_state)
 
 
-/obj/machinery/button/attack_robot(mob/user)
-	return attack_ai(user)
-
-
 /obj/machinery/button/attack_ai(mob/user)
 	return attack_hand(user)
 

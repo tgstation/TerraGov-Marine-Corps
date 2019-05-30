@@ -173,9 +173,6 @@
 
 	add_fingerprint(usr)
 
-/obj/structure/ladder/attack_robot(mob/user as mob)
-	return attack_hand(user)
-
 //Throwing Shiet
 /obj/structure/ladder/attackby(obj/item/I, mob/user, params)
 	. = ..()
