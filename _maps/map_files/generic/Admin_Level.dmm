@@ -518,7 +518,7 @@
 /area/centcom/control)
 "eV" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/security/almayer_network,
+/obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/almayer,
 /area/centcom/control)
 "eW" = (
