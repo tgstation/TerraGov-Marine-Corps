@@ -62,18 +62,18 @@ Notes:
 
 	showing = TRUE
 
-	if (title && content)
-		title = "<h1>[title]</h1>"
-		content = "<p>[content]</p>"
-	else if (title && !content)
-		title = "<p>[title]</p>"
-	else if (!title && content)
-		content = "<p>[content]</p>"
-
 	// Strip macros from item names
 	title = replacetext(title, "\proper", "")
 	title = replacetext(title, "\improper", "")
 
+	if(!content && title)
+		content = title
+		title = null
+	if(title)
+		title = "<h1>[title]</h1>"
+	if(content)
+		content = "<p>[content]</p>"
+	
 	//Make our dumb param object
 	params = {"{ "cursor": "[params]", "screenLoc": "[thing.screen_loc]" }"}
 
